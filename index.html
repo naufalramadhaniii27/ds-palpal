@@ -843,6 +843,17 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 .toast{width:max-content}
 .iwt{cursor:pointer}
 .toast.act>span{flex:1;text-align:left}
+
+/* v26 p03 */
+.cu-f{display:block;margin:10px 0}
+.cu-f>span{display:block;font-family:var(--f-nar);font-weight:700;font-size:14px;color:var(--muted);margin-bottom:4px}
+.cu-f input,.cu-f textarea{width:100%;box-sizing:border-box;border:1px solid var(--line-2);border-radius:8px;padding:9px 10px;background:var(--panel);color:var(--ink);font:inherit}
+.cu-f small{display:block;color:var(--faint);font-size:12px;margin-top:3px}
+.cu-btns{display:flex;gap:8px;margin-top:14px}
+.cu-btns .btn{flex:1}
+.cu-btns .btn.pri{background:var(--acc);border-color:var(--acc);color:#111}
+.cu-act{margin-top:14px}
+.cu-was{color:var(--faint);font-size:13px}
 #bld{--bg:#fff;--ink:#12181c;--muted:#6b7378;--line:#d8d8d8;--top:#12181c;--bar:#262e33;--tabs:#33393d;--blue:#1b9af0;--blue-soft:#e6f3fd;--hl:#a7c7ea;--hl-2:#cfe0f4;--th:#22272b;--card:#fbfaf7;--cardline:#e3dfd6;--olive:#7d8a3a;
 --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto Condensed","Arial Narrow",Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){#bld{--bg:#15191c;--ink:#e8eaeb;--muted:#9aa3a8;--line:#30373b;--card:#1d2225;--cardline:#30373b;--blue-soft:#14324a;--hl:#24496e;--hl-2:#1b3754;--th:#0e1113;color-scheme:dark}
@@ -1095,6 +1106,21 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 
 /* v15 RD19 */
 #bld .dti,#bld .ari{display:inline-block;vertical-align:-2px;margin-left:4px}#bld .dt-fire{color:#e8590c}#bld .dt-cold{color:#4dabf7}#bld .dt-lightning{color:#f2b705}#bld .dt-acid{color:#82c91e}#bld .dt-poison{color:#37b24d}#bld .dt-necrotic{color:#9aa39f}#bld .dt-radiant{color:#f59f00}#bld .dt-psychic{color:#e64980}#bld .dt-force{color:#be4bdb}#bld .dt-thunder{color:#5c7cfa}#bld .dt-bludgeoning,#bld .dt-piercing,#bld .dt-slashing{color:#adb5bd}#bld .dt-healing{color:#fa5252}#bld .spmat{opacity:.8}
+
+/* v26 p03 */
+#bld .hbmk{border:1px solid #d6d6d6;border-radius:10px;padding:12px;margin:8px 0 14px}
+#bld .hbf{display:block;margin:10px 0}
+#bld .hbf>span{display:block;font-weight:700;font-size:14px;margin-bottom:4px}
+#bld .hbck{display:flex;align-items:center;gap:8px;font-size:14px}
+#bld .hbab{display:flex;flex-wrap:wrap;gap:10px 14px}
+#bld .hbab label{display:flex;align-items:center;gap:4px;font-size:14px}
+#bld .hbnum{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+#bld .hbnum label{display:flex;flex-direction:column;gap:3px;font-size:13px}
+#bld .hblist{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+#bld .hbrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #e3e3e3}
+#bld .hbrow>span{flex:1;min-width:0}
+#bld .hbrow b{display:block;overflow-wrap:anywhere}
+#bld .hbrow small{display:block;color:#6b6b6b;font-size:12px}
 #homeV{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--paper);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}#homeV[hidden]{display:none}.hwrap{max-width:1100px;margin:0 auto;padding:22px 16px 40px}.hhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.hhead h1{margin:0;font-family:var(--f-display,inherit);font-size:34px;font-weight:900;letter-spacing:-.01em;font-variation-settings:'wdth' 75}.hcreate{background:#2b3238;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:12px 18px;border-radius:4px;font-size:15px}.hslots{font-size:20px;margin:10px 0 14px}.hslots b{color:#1b9af0;font-weight:500}.hbar{display:flex;gap:10px;background:var(--panel-2);padding:12px;border-radius:4px;margin-bottom:18px;flex-wrap:wrap}.hsearch{flex:1 1 260px}.hsort{flex:0 0 190px}.hbar label{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 12px 6px}.hbar label span{font-size:12px;color:var(--muted)}.hbar input,.hbar select{border:0;background:transparent;font-size:16px;padding:4px 0;color:var(--ink);width:100%}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}.hcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}.hcard-top{position:relative;min-height:136px;display:flex;align-items:center;gap:12px;padding:22px 20px 34px;color:#fff;overflow:hidden}.hwm{position:absolute;right:-30px;top:-30px;width:190px;height:190px;opacity:.13;background:center/contain no-repeat}.hpor{position:relative;flex:none;width:68px;height:68px;border-radius:6px;background:rgba(255,255,255,.12) center/cover no-repeat;display:grid;place-items:center;border:2px solid rgba(255,255,255,.55);color:#fff}.hpor svg{width:38px;height:38px}.hname{position:relative;min-width:0}.hname b{display:block;font-size:28px;font-weight:600;line-height:1.1}.hname span{display:block;font-size:13.5px;opacity:.85;margin-top:4px}.hcamp{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);padding:7px 20px;font-size:13px;font-weight:700}.hcamp i{font-style:normal;color:#7cc4ff;font-weight:500}.hact{display:grid;grid-template-columns:repeat(3,1fr)}.hact button{padding:16px 6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:15px;color:var(--ink)}.hact .del{color:#e2701d}.hempty{color:var(--muted)}
 .rrow{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--panel)}.rrow.on{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp-soft)}.rrow>div{flex:1;min-width:0}.rrow b{display:block;font-size:16px}.rrow span{font-size:12.5px;color:var(--muted)}.rrow .bb{height:34px;padding:0 10px;font-size:12.5px;font-weight:700;color:var(--ink);border:1px solid var(--line)}.rrow .rdel{color:var(--bad)}.rnew{width:100%;margin-top:6px}
 
@@ -1571,7 +1597,7 @@ function saveNow(){ var cur=lsGet(KEY);
    RL47: every saved key carries _app, the highest app version that wrote it. Fields this version does not know are kept as they are.
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
-var APP_VER=25, APP_DATE="2026-10-16", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=26, APP_DATE="2026-10-16", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -1710,7 +1736,7 @@ function derive(){
     if(src) parts.push(part("Proficiency Bonus", pb, "Proficient from "+src));
     (C.saveBonus||[]).forEach(function(b){ parts.push(part(b.s||"Bonus", num(b.v))); });/* M18 */
     if(exh) parts.push(exP());
-    var t=parts.reduce(function(a,p){return a+p.v},0);
+    var t=parts.reduce(function(a,p){return a+p.v},0); t=cuApply("save-"+k,parts,t);/* v26 RU38 no. 2 */
     D.save[k]=t; B["save-"+k]={t:ABN[k]+" saving throw", parts:parts, total:sg(t), f:src?"":(C.saveBonus&&C.saveBonus.length?"Not proficient: the modifier and the bonuses above apply.":"Not proficient, so only the modifier applies.")};
   });
 
@@ -1720,7 +1746,7 @@ function derive(){
     if(p>=1) parts.push(part(p===2?"Expertise (double Proficiency Bonus)":"Proficiency Bonus", pb*(p===2?2:1), s.src?("From "+s.src):"Source not set"));
     if(num(s.misc,0)) parts.push(part(s.miscSrc||"Other bonus", num(s.misc)));
     if(exh) parts.push(exP());
-    var t=parts.reduce(function(a,q){return a+q.v},0);
+    var t=parts.reduce(function(a,q){return a+q.v},0); t=cuApply("sk:"+s.n,parts,t);/* v26 RU38 no. 2 */
     D.skill[i]=t;
     var f=[]; if(s.dis) f.push("Disadvantage on this check while wearing "+esc(s.dis)+".");
     if(s.hb) f.push(s.hbd?esc(s.hbd)+" (Retromistika Playtest, Skills.)":"Homebrew skill from Retromistika Playtest, Skills.");
@@ -1730,8 +1756,9 @@ function derive(){
   function skillByName(n){ for(var i=0;i<C.skills.length;i++){ if(C.skills[i].n===n) return i; } return -1; }
   [["Perception","per"],["Insight","ins"],["Investigation","inv"]].forEach(function(x){
     var i=skillByName(x[0]); var v=i>=0?D.skill[i]+2*exh:D.mod[x[0]==="Investigation"?"INT":"WIS"];
-    D["pas_"+x[1]]=10+v;
-    B["pas-"+x[1]]={t:"Passive "+x[0], parts:[{l:"Base",v:10,note:"Every passive check starts at 10",raw:true},part(x[0]+" bonus",v,"Tap the skill to see where this comes from")], total:String(10+v), f:""};
+    var pp=[{l:"Base",v:10,note:"Every passive check starts at 10",raw:true},part(x[0]+" bonus",v,"Tap the skill to see where this comes from")], pv=cuApply("pas-"+x[1],pp,10+v);/* v26 RU38 no. 2 */
+    D["pas_"+x[1]]=pv;
+    B["pas-"+x[1]]={t:"Passive "+x[0], parts:pp, total:String(pv), f:""};
   });
 
   var dexPart=null, dm=D.mod.DEX, mode=C.ac.dex||"none";
@@ -1739,15 +1766,16 @@ function derive(){
   if(mode==="full") acParts.push(part("Dexterity modifier", dm, "Light armor or no armor"));
   else if(mode==="max2") acParts.push(part("Dexterity modifier (max 2)", Math.min(2,dm), "Medium armor caps it at +2"));
   (C.ac.bonus||[]).forEach(function(b){ acParts.push(part(b.s||"Bonus", num(b.v))); });
-  D.ac=acParts.reduce(function(a,p){return a+p.v},0);
+  D.ac=acParts.reduce(function(a,p){return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 
   var inParts=[abPart("DEX")]; (C.initBonus||[]).forEach(function(b){ inParts.push(part(b.s||"Bonus", num(b.v))); }); if(exh) inParts.push(exP());
-  D.init=inParts.reduce(function(a,p){return a+p.v},0);
+  D.init=inParts.reduce(function(a,p){return a+p.v},0); D.init=cuApply("init",inParts,D.init);/* v26 RU38 no. 2 */
   B.init={t:"Initiative", parts:inParts, total:sg(D.init), f:"In the 2024 rules, Initiative is a Dexterity check."};
 
   D.speed=Math.max(0,num(C.speed,30)-5*exh);
   B.speed={t:"Speed", parts:[{l:C.speedSrc||"Base walking Speed", v:num(C.speed,30)+" ft", note:"", raw:true}].concat(exh?[{l:"Exhaustion level "+exh, v:"\u2212"+(5*exh)+" ft", note:"5 feet less for each level", raw:true}]:[]), total:D.speed+" ft", f:""};
+  D.speed=cuSpeed(D.speed,B.speed.parts); B.speed.total=D.speed+" ft";/* v26 RU38 no. 2 */
   B.dark={t:"Darkvision", parts:[{l:C.darkSrc||"Source not recorded", v:num(C.darkvision,0)+" ft", note:"", raw:true}], total:num(C.darkvision,0)+" ft", f:"You see in Dim Light within this range as if it were Bright Light, and in Darkness as if it were Dim Light (shades of gray only)."};
   /* RU19: other senses from the builder (C.senses, e.g. Devil's Sight). Optional field: missing = none */
   senseList().forEach(function(x){ var s=x[0]; B["sense-"+x[1]]={t:s.n, parts:[{l:s.s||"Source not recorded", v:num(s.v,0)+" ft", note:"", raw:true}], total:num(s.v,0)+" ft", f:esc(s.d||"")}; });
@@ -1780,11 +1808,13 @@ function derive(){
     if(num(a.misc,0)) hp.push(part(a.miscSrc||"Other bonus", num(a.misc)));
     if(CF.atkW&&!/^Cantrip/.test(a.sub||"")&&a.n!=="Unarmed Strike"&&atkKind(a)==="melee") hp.push(part("Sacred Weapon", CF.atkW, "Charisma modifier, while it lasts"));/* v22 RU56 */
     if(exh) hp.push(exP());
+    var cuA=cuK("a:"+a.n); if(cuA&&cuNum(cuA.hb)) hp.push(part("Customize: bonus", cuNum(cuA.hb), cuA.note||"Set with Customize"));/* v26 RU38 no. 2 */
     var hit=hp.reduce(function(t,p){return t+p.v},0);
-    var rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ var dm=(a.nomod?0:m)+num(a.dmgBonus,0)+rgB; var dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
+    if(cuA&&cuNum(cuA.ho)!=null){ hp.push({l:"Customize: override", v:sg(cuNum(cuA.ho)), note:"Replaces the attack bonus above", raw:true}); hit=cuNum(cuA.ho); }
+    var rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ var dm=(a.nomod?0:m)+num(a.dmgBonus,0)+rgB+(cuA?cuNum(cuA.db)||0:0); var dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
     D.atk[i]={hit:hit, dmg:dmg, rg:rgB};
     B["ah-"+i]={t:a.n+": attack roll", parts:hp, total:sg(hit), f:""};
-    B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
+    B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
   });
   (C.attacks||[]).forEach(function(a,i){ if(D.atk[i]&&D.atk[i].rg&&B["ad-"+i]){ B["ad-"+i].parts.push(part("Rage damage", D.atk[i].rg, "Rage is active, attack with Strength")); B["ad-"+i].total=D.atk[i].dmg; } });
   D.res=(C.res||[]).map(function(r){ var mx = r.auto==="level" ? lvl : Math.max(0,Math.round(num(r.max,0))), mx0=mx; if(r.dmax&&S.chMax&&S.chMax[r.k]!=null) mx=clamp(Math.round(num(S.chMax[r.k],mx)),0,mx);/* v21 RU44 */ return {k:r.k, n:r.n, tag:r.auto==="level" ? ("d"+hd+sg(cm)+" each") : r.die ? ("d"+num(r.die,hd)+sg(cm)+" each") /* N4 */ : (r.tag||""), max:mx, reset:r.reset||"none", pool:!!r.pool, f:r.f||"", die:r.auto==="level"?hd:(r.die?num(r.die,hd):null), own:r.own||"", item:!!r.item, rg:r.rg||"", when:r.when||"", dmax:r.dmax||"", max0:mx0}; });
@@ -1936,7 +1966,7 @@ function renderActions(){
   feats.forEach(function(x){ if(/^Background/.test(x.g)) return; var k=actKind(x.t); var hasRes=resOf(x.f.n).length>0; if(k) kinds[k].push(x); else if(hasRes) kinds.other.push(x); });
   var apa=1; feats.forEach(function(x){ if(x.f.n==="Extra Attack") apa=Math.max(apa,2); if(x.f.n==="Two Extra Attacks") apa=Math.max(apa,3); if(x.f.n==="Three Extra Attacks") apa=Math.max(apa,4); if(x.f.n==="Thirsting Blade") apa=Math.max(apa,2); if(x.f.n==="Devouring Blade") apa=Math.max(apa,3); });
   var rows=(C.attacks||[]).map(function(a,i){ if(!atkOn(a)) return ""; var d=D.atk[i];
-    return '<div class="arow"><div class="an">'+akIcon(atkKind(a))+'<button type="button" class="tx" data-info="w:'+i+'">'+esc(a.n)+'</button><small>'+esc((a.sub||(a.ab?"":"")).toString().toUpperCase().slice(0,40))+'</small>'+cfFlags(CF0().atk)+'<span class="arng">'+esc(a.range||"--")+'</span></div><button type="button" class="abox bd" data-bd="ah-'+i+'">'+sg(d.hit)+'</button><button type="button" class="abox wide bd" data-bd="ad-'+i+'">'+esc(d.dmg)+tyIcon(a.type)+'<small>'+esc(a.type||"")+'</small></button></div>'; }).join("")+
+    return '<div class="arow"><div class="an">'+akIcon(atkKind(a))+'<button type="button" class="tx" data-info="w:'+i+'">'+esc(cuNm("a:"+a.n,a.n))+'</button><small>'+esc((a.sub||(a.ab?"":"")).toString().toUpperCase().slice(0,40))+'</small>'+cfFlags(CF0().atk)+'<span class="arng">'+esc(a.range||"--")+'</span></div><button type="button" class="abox bd" data-bd="ah-'+i+'">'+sg(d.hit)+'</button><button type="button" class="abox wide bd" data-bd="ad-'+i+'">'+esc(d.dmg)+tyIcon(a.type)+'<small>'+esc(a.type||"")+'</small></button></div>'; }).join("")+
     (C.xdmg||[]).map(function(x,i){ return '<div class="arow xd"><div class="an">'+akIcon("feature")+'<button type="button" class="tx" data-info="xd:'+i+'">'+esc(x.n)+'</button><small>'+esc(String(x.sub||"").toUpperCase().slice(0,40))+'</small><span class="arng">--</span></div><span class="abox">'+(x.save?esc(x.save)+'<small>'+x.dc+'</small>':'--')+'</span><span class="abox wide">'+esc(x.dmg)+tyIcon(x.type)+'<small>'+esc(x.type)+'</small></span></div>'; }).join("");/* RU35 no. 5 */
   var tabs='<div class="ifil">'+[["all","All"],["attack","Attack"],["action","Action"],["bonus","Bonus Action"],["reaction","Reaction"],["other","Other"],["limited","Limited Use"]].map(function(f){return '<button type="button" class="ifb'+(actF===f[0]?' on':'')+'" data-actf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
   var show=function(k){return actF==="all"||actF===k};
@@ -1967,7 +1997,7 @@ function renderInv(){
   var fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map(function(f){return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   var keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   var row=function(i,ix,sub){ var q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
-    return '<div class="irow'+(sub?' isub':'')+'"><span class="iact">'+(i.equippable?'<button type="button" class="ichk'+(eqOn(i)?' on':'')+'" data-ieqs="'+esc(i.key||i.n)+'" data-iix="'+ix+'" aria-label="Toggle '+esc(i.n)+'"></button>':'<span class="muted">--</span>')+'</span><button type="button" class="iname" data-info="it:'+ix+'"><b class="'+rc+'">'+esc(i.n)+'</b><small>'+esc((i.type||"Gear").toUpperCase())+(i.rar?' \u2022 '+esc(i.rar.toUpperCase()):'')+(ct?' \u2022 CONTAINER':'')+'</small><span>'+(ww?fmtW(ww)+' lb.':'--')+'</span></button><span class="iq">'+q+'</span><span class="ic">'+(i.cost!=null?i.cost:'--')+'</span></div>'; };
+    return '<div class="irow'+(sub?' isub':'')+'"><span class="iact">'+(i.equippable?'<button type="button" class="ichk'+(eqOn(i)?' on':'')+'" data-ieqs="'+esc(i.key||i.n)+'" data-iix="'+ix+'" aria-label="Toggle '+esc(i.n)+'"></button>':'<span class="muted">--</span>')+'</span><button type="button" class="iname" data-info="it:'+ix+'"><b class="'+rc+'">'+esc(cuNm("i:"+invKey(i),i.n))+'</b><small>'+esc((i.type||"Gear").toUpperCase())+(i.rar?' \u2022 '+esc(i.rar.toUpperCase()):'')+(ct?' \u2022 CONTAINER':'')+'</small><span>'+(ww?fmtW(ww)+' lb.':'--')+'</span></button><span class="iq">'+q+'</span><span class="ic">'+(i.cost!=null?i.cost:'--')+'</span></div>'; };
   var byK={}; L.forEach(function(i){ byK[invKey(i)]=i; });
   var inCt=function(i){ var p=i.in&&byK[i.in]; return p&&p!==i&&ctOf(p.n)?p:null; };
   var att=L.map(function(i,ix){return [i,ix]}).filter(function(p){ return p[0].att&&eqOn(p[0]); }), need=L.map(function(i,ix){return [i,ix]}).filter(function(p){ return p[0].att&&!eqOn(p[0]); });
@@ -2106,11 +2136,12 @@ function openSheet(title, html, mode, wide){
   setTimeout(function(){ var b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
 function entryContent(en){
-  if(en.type==="bd") return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key), m:"bd"};
+  if(en.type==="bd"){ var cb=cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+(cb?cuBtn(cb):""), m:"bd"}; }/* v26 RU38 no. 2 */
   if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
   if(en.type==="combat") return {t:"Combat", h:combatHTML(), m:"combat"};/* v22 RU62 */
   if(en.type==="spman") return {t:"Manage Spells", h:spmHTML(), m:"spman"};/* v25 RU38 no. 3 */
-  var r=infoHTML(en.spec); return {t:r.t, h:r.h, m:"info"};
+  if(en.type==="cust") return {t:"Customize", h:cuHTML(en.key,en.n), m:"cust"};/* v26 RU38 no. 2 */
+  var r=cuDecor(en.spec,infoHTML(en.spec)); return {t:r.t, h:r.h, m:"info"};
 }
 function showEntry(en, push){
   var open=sheet.classList.contains("on") && sheetMode!=="edit";
@@ -2603,7 +2634,7 @@ function impChar(o){ var err=chCheck(o); if(err){ toast(err); return; }
     ask(nm+" is already on this device. Replace it with the file (saved "+(o.saved?fmtT(Date.parse(o.saved)):"at an unknown date")+"), or add the file as another character? A snapshot of the current one is kept before replacing.","Replace",function(){ go(id,true); },["Add as New",function(){ go(newId(r),false); }]); return; }
   go(id,false); }
 /* RU59: version and what changed */
-var WHATSNEW=[{v:25,d:"2026-10-16",n:["Manage Spells on the Spells tab: add, prepare, and remove spells from your class lists without opening the builder. The prepared limit is shown and kept.","Settings (gear button): carrying capacity on or off, Hit Points fixed or rolled, ability score or modifier on top, and spells listed again under each higher slot level they can use.","Appearance: a frame for the portrait and a backdrop behind the sheet, next to style, mode, color, and symbol."]},{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
+var WHATSNEW=[{v:26,d:"2026-10-16",n:["Customize: open an attack, spell, item, or number (Armor Class, Initiative, Speed, a save, a skill, a passive score) and press Customize to rename it, add a note, or set a bonus or a fixed value. It stays when you Apply from the builder.","Make your own species, feats, and magic items in the builder, step Sources, under Create Homebrew. Add the homebrew of your other characters with one button."]},{v:25,d:"2026-10-16",n:["Manage Spells on the Spells tab: add, prepare, and remove spells from your class lists without opening the builder. The prepared limit is shown and kept.","Settings (gear button): carrying capacity on or off, Hit Points fixed or rolled, ability score or modifier on top, and spells listed again under each higher slot level they can use.","Appearance: a frame for the portrait and a backdrop behind the sheet, next to style, mode, color, and symbol."]},{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
 function wnList(from){ return WHATSNEW.filter(function(x){ return x.v>from; }).map(function(x){ return '<h4>Version '+x.v+' <small>'+x.d+'</small></h4><ul>'+x.n.map(function(t){ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul>'; }).join(""); }
 function wnBanner(){ if(!WN_SHOW) return ""; return '<div class="hwn" id="hwnB" role="status"><b>What\'s new in version '+APP_VER+'</b>'+wnList(WN_FROM||APP_VER-1)+'<button type="button" class="btn press" data-hwn="ok">Got It</button></div>'; }
 function wnOpen(){ var old=document.getElementById("bkp"); if(old) old.remove(); var w=document.createElement("div"); w.id="bkp"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
@@ -2656,6 +2687,7 @@ $("#editBtn").addEventListener("click",openEditor);
 
 /* sheet body delegation: breakdown, conditions, editor */
 $("#sheetBody").addEventListener("click",function(e){
+  if(sheetMode==="cust"){ var cb2=e.target.closest("[data-cusave],[data-cureset]"); if(cb2){ cuSave(cb2.dataset.cusave||cb2.dataset.cureset, !!cb2.dataset.cureset); } return; }/* v26 RU38 no. 2 */
   if(sheetMode==="spman"){ if(e.target.closest("[data-info]")) return; var sb=e.target.closest("button"); if(!sb) return; var sd=sb.dataset;/* v25 RU38 no. 3 */
     if(sd.spmt){ if(sb.disabled) return; spmToggle(sd.spmt,sd.spmc); return; } if(sd.spmcls){ spmCls=sd.spmcls; spmLv="all"; spmRefresh(); return; } if(sd.spml!=null){ spmLv=sd.spml; spmRefresh(); return; } return; }
   if(sheetMode==="roster"){ var rb=e.target.closest("button"); if(!rb) return; var rd=rb.dataset, r=rEnsure();
@@ -2930,9 +2962,9 @@ function saveNotesH(){ var n=(C.saveNotes||[]), b=(C.saveBonus||[]); if(!n.lengt
 /* RU35 no. 8: containers. An item with "in" sits inside that container item. A magic container (CONTAINERS[2] set) has a fixed weight, its contents do not count */
 function ctOf(n){ var b=String(n||"").replace(/ \(.*\)$/,""); return (typeof CONTAINERS!=="undefined"?CONTAINERS:[]).filter(function(c){ return c[0]===n||c[0]===b; })[0]||null; }
 function invKey(i){ return i.key||i.n; }
-function itemW(i){ var c=ctOf(i.n); if(c&&c[2]!=null) return c[2]*num(i.q,1); return num(i.q,1)*num(i.w,0); }
+function itemW(i){ var c=ctOf(i.n); if(c&&c[2]!=null) return c[2]*num(i.q,1); return num(i.q,1)*cuW(i); }
 function invWeight(){ var L=C.inv||[], byK={}; L.forEach(function(i){ byK[invKey(i)]=i; }); return L.reduce(function(t,i){ var p=i.in&&byK[i.in], pc=p&&ctOf(p.n); if(pc&&pc[2]!=null) return t; return t+itemW(i); },0); }
-function ctLoad(c){ return (C.inv||[]).filter(function(i){ return i.in===invKey(c); }).reduce(function(t,i){ return t+num(i.q,1)*num(i.w,0); },0); }
+function ctLoad(c){ return (C.inv||[]).filter(function(i){ return i.in===invKey(c); }).reduce(function(t,i){ return t+num(i.q,1)*cuW(i); },0); }
 function moveCtl(it,ix){ var cs=(C.inv||[]).filter(function(c){ return c!==it&&ctOf(c.n)&&c.in!==invKey(it); }); if(!cs.length&&!it.in) return "";
   return '<div class="imv"><label class="muted" for="imove">Move to</label><select id="imove" data-imove="'+ix+'"><option value="">Equipment (not in a container)</option>'+cs.map(function(c){ return '<option value="'+esc(invKey(c))+'"'+(it.in===invKey(c)?' selected':'')+'>'+esc(c.n)+'</option>'; }).join("")+'</select></div>'; }
 var XDIM=/^(Bag of Holding|Heward's Handy Haversack|Portable Hole)\b/;
@@ -3028,7 +3060,9 @@ var spQ="",spF="all";
    M9: C.spellcasting.by (2+ abilities, multiclass or species): one header per source, and each spell uses the numbers of its ability (C.spells[].ab) */
 /* v19 RL44: spell attack shown with Exhaustion */
 function scAdj(sc){ if(!D||!D.exh||!sc) return sc; var o={}; for(var k in sc) o[k]=sc[k]; o.atk=num(sc.atk,0)-2*D.exh; if(Array.isArray(sc.by)) o.by=sc.by.map(function(b){ var c={}; for(var j in b) c[j]=b[j]; c.atk=num(b.atk,0)-2*D.exh; return c; }); return o; }
-function scOf(x){ var sc=scAdj(C.spellcasting||{}); if(x&&x.ab&&Array.isArray(sc.by)){ var b=sc.by.filter(function(q){return q.ab===x.ab})[0]; if(b) return b; } return sc; }
+/* v26 RU38 no. 2: a spell with its own save DC or spell attack (Customize) */
+function scOf(x){ var r=scOf0(x), c=x&&cuK("s:"+x.n); if(c&&(cuNum(c.dc)!=null||cuNum(c.atk)!=null)){ r=Object.assign({},r); if(cuNum(c.dc)!=null) r.dc=cuNum(c.dc); if(cuNum(c.atk)!=null) r.atk=cuNum(c.atk); } return r; }
+function scOf0(x){ var sc=scAdj(C.spellcasting||{}); if(x&&x.ab&&Array.isArray(sc.by)){ var b=sc.by.filter(function(q){return q.ab===x.ab})[0]; if(b) return b; } return sc; }
 function spHeadBy(sc){ return sc.by.map(function(b){ return '<p class="sp-src">'+esc(b.n)+'</p><div class="sp-head"><div><b>'+sg(b.mod)+'</b><span>Modifier ('+b.ab+')</span></div><div><b>'+sg(b.atk)+'</b><span>Spell Attack</span></div><div><b>'+b.dc+'</b><span>Save DC</span></div></div>'; }).join(""); }
 function spHead(sc){sc=scAdj(sc);var h=Array.isArray(sc.by)&&sc.by.length>1?spHeadBy(sc):'<div class="sp-head"><div><b>'+sg(sc.mod)+'</b><span>Modifier ('+sc.ab+')</span></div><div><b>'+sg(sc.atk)+'</b><span>Spell Attack</span></div><div><b>'+sc.dc+'</b><span>Save DC</span></div></div>';
  var sl=[];(sc.slots||[]).forEach(function(n,i){sl.push(ordL(i+1).replace(" Level","")+" \u00d7"+n)});if(sc.pact)sl.push("Pact \u00d7"+sc.pact.n+" (level "+sc.pact.lvl+")");if(sl.length)h+='<p class="sp-slots">Slots: '+sl.join(", ")+'. Tick the boxes at each spell level, or in Limited Use on the Actions tab.</p>';
@@ -3045,7 +3079,7 @@ function renderSpells(){var el=document.getElementById("spBody");if(!el)return;v
  lv.forEach(function(l){var rows=L.map(function(x,i){return [x,i]}).filter(function(p){var x=p[0];return (spGrpLv(x)===l||(UP&&spUpOk(x)&&l>spGrpLv(x)&&l<=UPX))&&(spF==="all"||spF===String(l)||(spF==="conc"&&x.conc)||(spF==="rit"&&x.rit))&&(!q||(x.n+" "+x.ct+" "+x.sum+" "+x.src).toLowerCase().indexOf(q)>=0)&&!(x.use==="Prepared"&&L.some(function(y){return y!==x&&y.n===x.n&&y.use==="Always prepared"}))/* v22 T1: sheets saved before v22 */}).sort(function(a,b){return a[0].n<b[0].n?-1:a[0].n>b[0].n?1:a[1]-b[1]});if(!rows.length)return;
   h+='<h3 class="sp-lv"><span>'+ordL(l)+'</span>'+spSlotsH(l,rows)+'</h3><div class="sp-tbl"><div class="sp-r sp-th"><span></span><span>Name</span><span>Time</span><span>Range</span><span>Hit / DC</span><span>Effect</span></div>'+rows.map(function(p){var x=p[0],xs=scOf(x),hd=x.sv==="ATK"?sg(xs.atk):x.sv?x.sv+" "+xs.dc:"\u2014";
    var badge=/At will|Cantrip/i.test(x.use)||!x.l?'<span class="sp-b" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">AT<br>WILL</span>':/1\/Long/.test(x.use)?'<span class="sp-b use" data-qcast="'+p[1]+'" title="Use '+esc(x.n)+'" aria-hidden="true">USE</span>':'<span class="sp-b cast" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">CAST</span>';
-   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'">'+badge+'<span class="sp-n"><b>'+esc(x.n)+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small>'+esc(x.use)+' \u2022 '+esc(x.src||"")+(l>spGrpLv(x)?' \u2022 with a '+ordL(l).replace(" Level","")+' slot':'')+'</small></span><span>'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span>'+spRangeH(x.r,x)+'</span><span class="sp-hd">'+esc(hd)+'</span><span>'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
+   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'">'+badge+'<span class="sp-n"><b>'+esc(cuNm("s:"+x.n,x.n))+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small>'+esc(x.use)+' \u2022 '+esc(x.src||"")+(l>spGrpLv(x)?' \u2022 with a '+ordL(l).replace(" Level","")+' slot':'')+'</small></span><span>'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span>'+spRangeH(x.r,x)+'</span><span class="sp-hd">'+esc(hd)+'</span><span>'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
  el.innerHTML=h}
 
 /* ================= v25: MANAGE SPELLS (RU38 no. 3) =================
@@ -3141,6 +3175,52 @@ function carryOf(str){ var SIZES=["Tiny","Small","Medium","Large","Huge","Gargan
 function spUpOn(){ return setOf("spUp")==="1"; }
 function spUpMax(){ return ((C.spellcasting||{}).slots||[]).length; }
 function spUpOk(x){ return !!x.l&&!spPact(x)&&!/Long Rest|At will/.test(x.use||"")&&/Higher-Level Spell Slot/.test(x.full||""); }
+
+/* ================= v26: CUSTOMIZE (RU38 no. 2) =================
+   S.cust (optional): {key: fields}. It sits in the play state, so Apply from the builder keeps it. Keys and fields:
+   "n:<number>" numbers (ac, init, speed, save-STR, sk:<skill name>, pas-per, pas-ins, pas-inv): o override, b bonus, note.
+   "a:<attack name>": nm display name, hb to-hit bonus, ho to-hit override, db damage bonus, note.
+   "s:<spell name>": nm, dc save DC override, atk spell attack override, note.
+   "i:<item key or name>": nm, w weight override (lb, each), note. Empty fields are not stored. */
+function cuK(k){ return S.cust&&typeof S.cust==="object"&&S.cust[k]||null; }
+function cuNum(v){ return v===""||v==null||isNaN(+v)?null:+v; }
+function cuNm(k,n){ var c=cuK(k); return c&&c.nm?c.nm:n; }
+/* number with a custom bonus or override: adds a line to the breakdown */
+function cuApply(k,parts,tot){ var c=cuK("n:"+k); if(!c) return tot; var b=cuNum(c.b), o=cuNum(c.o);
+  if(b){ parts.push(part("Customize: bonus", b, c.note||"Set with Customize")); tot+=b; }
+  if(o!=null){ parts.push({l:"Customize: override", v:String(o), note:"Replaces the total above", raw:true}); tot=o; } return tot; }
+function cuSpeed(sp,parts){ var c=cuK("n:speed"); if(!c) return sp; var b=cuNum(c.b), o=cuNum(c.o);
+  if(b){ parts.push({l:"Customize: bonus", v:(b>0?"+":"−")+Math.abs(b)+" ft", note:c.note||"Set with Customize", raw:true}); sp=Math.max(0,sp+b); }
+  if(o!=null){ parts.push({l:"Customize: override", v:o+" ft", note:"Replaces the total above", raw:true}); sp=Math.max(0,o); } return sp; }
+function cuW(i){ var c=cuK("i:"+invKey(i)), w=c?cuNum(c.w):null; return w!=null?w:num(i.w,0); }
+/* the customize key of a popup (info spec or breakdown key), with the original name */
+function cuOf(type,key){ var i=+key;
+  if(type==="w"||type==="ah"||type==="ad"){ var a=(C.attacks||[])[i]; return a?{k:"a:"+a.n, n:a.n, kind:"a"}:null; }
+  if(type==="sp"){ var x=(C.spells||[])[i]; return x?{k:"s:"+x.n, n:x.n, kind:"s"}:null; }
+  if(type==="it"){ var it=(C.inv||[])[i]; return it?{k:"i:"+invKey(it), n:it.n, kind:"i"}:null; }
+  if(type==="bd"){ var m=/^(ac|init|speed|save-[A-Z]{3}|pas-(?:per|ins|inv))$/.exec(key); if(m) return {k:"n:"+key, n:(B[key]||{}).t||key, kind:"n"};
+    var s=/^sk-(\d+)$/.exec(key); if(s&&C.skills[+s[1]]) return {k:"n:sk:"+C.skills[+s[1]].n, n:C.skills[+s[1]].n, kind:"n"};
+    var a2=/^(ah|ad)-(\d+)$/.exec(key); if(a2) return cuOf("w",a2[2]); }
+  return null; }
+function cuBtn(o){ var c=cuK(o.k); return (c&&c.note?'<div class="info-h">Your note</div><p class="info-d">'+esc(c.note)+'</p>':'')+'<div class="info-act cu-act"><button type="button" class="btn press" data-cust="'+esc(o.k)+'" data-custn="'+esc(o.n)+'">'+(c?"Customized: change":"Customize")+'</button></div>'; }
+/* add the custom name, the note, and the Customize button to a popup */
+function cuDecor(spec,r){ var i=spec.indexOf(":"), o=cuOf(spec.slice(0,i),spec.slice(i+1)); if(!o||!r) return r; var c=cuK(o.k);
+  return {t:c&&c.nm?c.nm:r.t, h:(c&&c.nm?'<p class="info-d cu-was">Shown as '+esc(c.nm)+'. Name in the rules: '+esc(o.n)+'.</p>':'')+r.h+cuBtn(o)}; }
+var CU_F={n:[["o","Override","number","Replaces the total"],["b","Bonus","number","Added to the total"],["note","Note","text",""]],
+  a:[["nm","Display name","text",""],["hb","To hit bonus","number","Added to the attack roll"],["ho","To hit override","number","Replaces the attack bonus"],["db","Damage bonus","number","Added to the damage"],["note","Note","text",""]],
+  s:[["nm","Display name","text",""],["dc","Save DC override","number","Replaces the save DC of this spell"],["atk","Spell attack override","number","Replaces the spell attack bonus of this spell"],["note","Note","text",""]],
+  i:[["nm","Display name","text",""],["w","Weight override (lb each)","number","Replaces the weight of one"],["note","Note","text",""]]};
+function cuHTML(k,n){ var kind=k.charAt(0), c=cuK(k)||{}, F=CU_F[kind]||CU_F.n;
+  return '<div class="cu"><p class="info-d">Changes for <b>'+esc(n||k.slice(2))+'</b> on this sheet only. They stay when you Apply from the builder. Leave a box empty to use the normal value.</p>'+
+    F.map(function(f){ var v=c[f[0]]!=null?c[f[0]]:""; return '<label class="cu-f"><span>'+f[1]+'</span>'+(f[0]==="note"?'<textarea data-cuf="note" rows="2">'+esc(v)+'</textarea>':'<input data-cuf="'+f[0]+'" type="'+(f[2]==="number"?"number":"text")+'"'+(f[2]==="number"?' inputmode="numeric" step="1"':'')+' value="'+esc(v)+'"'+(f[0]==="nm"?' placeholder="'+esc(n||"")+'"':'')+'>')+(f[3]?'<small>'+f[3]+'</small>':'')+'</label>'; }).join("")+
+    '<div class="cu-btns"><button type="button" class="btn press pri" data-cusave="'+esc(k)+'">Save</button>'+(S.cust&&S.cust[k]?'<button type="button" class="btn press" data-cureset="'+esc(k)+'">Reset</button>':'')+'</div></div>'; }
+function cuBack(){ if(navStack.length>1){ $("#sheetBack").click(); } else closeSheet(); }
+function cuSave(k,reset){ var kind=k.charAt(0), o={};
+  if(!reset) $$("#sheetBody [data-cuf]").forEach(function(el){ var f=el.getAttribute("data-cuf"), v=String(el.value||"").trim(); if(v==="") return;
+    if(el.type==="number"){ if(isNaN(+v)) return; v=Math.round(+v); } else v=v.slice(0,f==="note"?600:80); o[f]=v; });
+  undoMark("Customize"); S.cust=S.cust&&typeof S.cust==="object"?S.cust:{};
+  if(Object.keys(o).length) S.cust[k]=o; else delete S.cust[k]; if(!Object.keys(S.cust).length) delete S.cust;
+  save(); renderAll(); cuBack(); toastU(reset||!Object.keys(o).length?"Back to the normal values.":"Customized."); }
 
 /* ================= v23: D&D BEYOND LOOK 2 ================= */
 /* RU36 no. 1: source with the printed page, "PHB-2024, pg. 153, Warlock 1" */
@@ -3693,7 +3773,7 @@ function buildPrint(){
   var skills = C.skills.map(function(s,i){var p=num(s.p,0), f=s.dis?' <span style="color:#b3342b;font-size:9px;font-weight:700">DIS</span>':(s.hb?' <span style="color:#9c650f;font-size:9px;font-weight:700">HB</span>':''); return '<div class="ps-r"><span class="d'+(p?' on':'')+'"></span><span class="g">'+s.ab+'</span><span class="t">'+esc(s.n)+f+'</span><span class="b">'+sg(D.skill[i])+'</span></div>'}).join("");
   var senses = [["Passive Perception",D.pas_per],["Passive Insight",D.pas_ins],["Passive Investigation",D.pas_inv]].concat(num(C.darkvision,0)?[["Darkvision",num(C.darkvision)+" ft"]]:[]).concat(senseList().map(function(x){return [esc(x[0].n),num(x[0].v,0)+" ft"]})).map(function(s){return '<div class="ps-r"><span class="t">'+s[0]+'</span><span class="b">'+s[1]+'</span></div>'}).join("");
   var ATK_MAX=7, atkAll=(C.attacks||[]).map(function(a,i){return [a,i]}).filter(function(x){return atkOn(x[0])});
-  function atkRow(a,i){return '<tr><td><b>'+esc(a.n)+'</b><div style="color:#808c84;font-size:9.5px">'+esc(a.sub||"")+'</div></td><td>'+esc(a.range||"")+'</td><td class="nb">'+sg(D.atk[i].hit)+'</td><td class="nb">'+esc(D.atk[i].dmg)+' <span style="font:400 9.5px Archivo,Arial;color:#535f57">'+esc(a.type||"")+'</span></td><td>'+(a.m?'<b>'+esc(a.m)+'</b>. ':'')+esc(a.note||"")+'</td></tr>'}
+  function atkRow(a,i){return '<tr><td><b>'+esc(cuNm("a:"+a.n,a.n))+'</b><div style="color:#808c84;font-size:9.5px">'+esc(a.sub||"")+'</div></td><td>'+esc(a.range||"")+'</td><td class="nb">'+sg(D.atk[i].hit)+'</td><td class="nb">'+esc(D.atk[i].dmg)+' <span style="font:400 9.5px Archivo,Arial;color:#535f57">'+esc(a.type||"")+'</span></td><td>'+(a.m?'<b>'+esc(a.m)+'</b>. ':'')+esc(a.note||"")+'</td></tr>'}
   var atk = atkAll.slice(0,ATK_MAX).map(function(x){return atkRow(x[0],x[1])}).join("");
   var atkMore = atkAll.slice(ATK_MAX).map(function(x){return atkRow(x[0],x[1])}).join("");
   var atkHead='<thead><tr><th>NAME</th><th>RANGE</th><th>HIT</th><th>DAMAGE</th><th>NOTES</th></tr></thead>';
@@ -3831,6 +3911,7 @@ $("#pdfBtn").addEventListener("click",function(){
 (function(){ var r=lsGet(RKEY); if(r!=null){ try{ var p=JSON.parse(r); if(!p||typeof p!=="object"||!p.chars||typeof p.chars!=="object"||Array.isArray(p.chars)) throw new Error("the character list has a shape this version does not know"); }catch(e){ BAD.push("Character list: "+((e&&e.message)||e)); } } })();
 /* v25 RU38 no. 3: Manage Spells button and the search box of the panel */
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-spman]"); if(b){ e.preventDefault(); openSpMan(); } });
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-cust]"); if(b){ e.preventDefault(); showEntry({type:"cust",key:b.getAttribute("data-cust"),n:b.getAttribute("data-custn")}, true); } });/* v26 RU38 no. 2 */
 document.addEventListener("input",function(e){ if(e.target&&e.target.id==="spmQ"){ spmQ=e.target.value; spmRefresh(); } });
 if(BAD.length) recover("Saved data",BAD.join(" | ")); else { applyLook();renderAll(true); renderNotes(); syncPortrait(); }
 onMode();
@@ -5575,6 +5656,7 @@ function renderHome(){B.src=B.src||{core:true,dmg:true};var h='<h2 class="ttl">C
  h+=row("core","5.5e Core Rules: Player's Handbook (2024)","Classes, subclasses, species, backgrounds, feats, spells, and equipment. Required to build a character.",true,true);
  h+=row("dmg","5.5e Core Rules: Dungeon Master's Guide (2024)","Magic items such as Belt of Giant Strength, Ring of Protection, and Flame Tongue.",B.src.dmg!==false,false);
  allPacks().forEach(function(p){var bi=!!HB_BUILTIN[p.id];h+=row(p.id,p.name,(p.desc||"Homebrew")+(bi?"":" (added by you)"),!!B.src[p.id],false,!bi);if(p.lore&&p.lore.length)h+='<button type="button" class="link lorebtn" data-lore="'+esc(p.id)+'">Read: '+esc(p.name.replace(/ \(Homebrew\)$/,""))+', '+esc(p.loreLabel||"Public Lore")+'</button>'});
+ h+='<h3 class="sph">Create Homebrew</h3><p class="fd">Make your own species, feat, or magic item. It goes into My Homebrew, a source in the list above, and you can pick it in the steps like any other.</p>'+hbForm();/* v26 RU38 no. 8 */
  h+='<h3 class="sph">Add Homebrew Source</h3><p class="fd">Paste a homebrew pack in JSON format, then tap Add Source. It appears in the list above as a new checkbox. A pack can add species, subclasses, feats, backgrounds, skills, and magic items.</p><textarea class="btx" id="packtxt" rows="5" placeholder="{ &quot;id&quot;: &quot;my-homebrew&quot;, &quot;name&quot;: ... }">'+esc(packTxt)+'</textarea><div class="eqact"><button type="button" class="bdg add" data-packadd="1">Add Source</button><button type="button" class="link" data-tpl="1">'+(showTpl?"Hide":"Show")+' pack template</button></div>'+
   (showTpl?'<textarea class="btx" rows="12" readonly style="font:12px monospace">'+esc(JSON.stringify(PACK_TEMPLATE,null,1))+'</textarea>':'');
  return h}
@@ -5765,6 +5847,59 @@ function renderRules(){var cats=["Classes","Subclasses","Species","Backgrounds",
  return '<h2 class="ttl">Rules Database</h2><input class="btx" id="dbq" type="search" placeholder="Search name or rule text" value="'+esc(dbQ)+'"><div class="chips cats">'+cats.map(function(c){return '<button type="button" class="chip'+(c===dbCat&&!dbQ?" on":"")+'" data-cat="'+c+'">'+c+'</button>'}).join("")+'</div><p class="pick">'+it.length+' entries'+(dbQ?' across all categories':'')+'</p>'+
   it.map(function(i,n){return card("db"+i.t+n,i.t,i.m,(i.d?'<p class="fd">'+esc(i.d)+'</p>':'')+(i.x.length?i.x.map(function(x){return '<p class="fd">'+esc(x)+'</p>'}).join(""):''))}).join("")}
 
+/* v26 RU38 no. 8: make your own species, feat, or magic item in the builder (Sources step). They go into the source "My Homebrew" (B.packs, id my-homebrew),
+   which this build turns on. The pack format is the one Add Homebrew Source reads, so a made entry also works in a pasted pack.
+   Homebrew of the other characters on this device can be added to this character (copied, not linked). */
+var HB_ID="my-homebrew",HBF={t:"species"},HBE="";
+function hbMine(){return (B.packs||[]).filter(function(p){return p.id===HB_ID})[0]||null}
+function hbHas(p,t,n){return !!p&&(t==="species"?!!(p.species||{})[n]:t==="feat"?!!(p.feats||{})[n]:(p.items||[]).some(function(x){return x[0]===n}))}
+function hbList(p){if(!p)return [];var o=[];Object.keys(p.species||{}).forEach(function(k){o.push(["species",k])});Object.keys(p.feats||{}).forEach(function(k){o.push(["feat",k])});(p.items||[]).forEach(function(x){o.push(["item",x[0]])});return o}
+function hbCount(p){var a=Object.keys(p.species||{}).length,b=Object.keys(p.feats||{}).length,c=(p.items||[]).length,o=[];if(a)o.push(plural(a,"species").replace(/speciess$/,"species"));if(b)o.push(plural(b,"feat"));if(c)o.push(plural(c,"magic item"));return o.join(", ")||"empty"}
+function hbIn(id,lab,v,ph,type){return '<label class="hbf"><span>'+lab+'</span><input class="btx" id="'+id+'" type="'+(type||"text")+'" value="'+esc(v==null?"":v)+'"'+(ph?' placeholder="'+esc(ph)+'"':'')+'></label>'}
+function hbSel(id,lab,v,opts){return '<label class="hbf"><span>'+lab+'</span><select class="dd" id="'+id+'">'+opts.map(function(o){var val=Array.isArray(o)?o[0]:o,tx=Array.isArray(o)?o[1]:o;return '<option value="'+esc(val)+'"'+(String(v)===String(val)?" selected":"")+'>'+esc(tx)+'</option>'}).join("")+'</select></label>'}
+function hbTa(id,lab,v,ph){return '<label class="hbf"><span>'+lab+'</span><textarea class="btx" id="'+id+'" rows="4"'+(ph?' placeholder="'+esc(ph)+'"':'')+'>'+esc(v||"")+'</textarea></label>'}
+var HB_FX=[["ac","Armor Class"],["save","Saving throws"],["atk","Weapon attack rolls"],["dmg","Weapon damage"],["spellAtk","Spell attack"],["spellDc","Spell save DC"]];
+function hbForm(){var f=HBF,h='<div class="hbmk"><div class="radios h">'+[["species","Species"],["feat","Feat"],["item","Magic Item"]].map(function(t){return '<button type="button" class="rad'+(f.t===t[0]?" on":"")+'" data-hbt="'+t[0]+'"'+(HBE?' disabled':'')+'><b>'+t[1]+'</b></button>'}).join("")+'</div>';
+ h+=hbIn("hb-n","Name",f.n,f.t==="species"?"For example: Tidekin":f.t==="feat"?"For example: Lantern Bearer":"For example: Gloves of the Tide");
+ if(f.t==="species")h+=hbSel("hb-size","Size",f.size||"Medium",["Small","Medium"])+hbIn("hb-speed","Speed (feet)",f.speed||30,"","number")+hbSel("hb-dark","Darkvision",f.dark||0,[[0,"None"],[60,"60 feet"],[120,"120 feet"]])+hbTa("hb-traits","Traits, one per line as Name: what it does",f.traits,"Water Breathing: You can breathe air and water.");
+ if(f.t==="feat")h+=hbSel("hb-cat","Category",f.cat||"G",[["O","Origin"],["G","General"],["F","Fighting Style"],["E","Epic Boon"]])+hbIn("hb-pre","Prerequisite (optional)",f.pre,"For example: Level 4+, Wis 13+")+'<div class="hbf"><span>Ability Score Increase: the player raises one of these by 1 (optional)</span><div class="hbab">'+ABK.map(function(k){return '<label><input type="checkbox" data-hbab="'+k+'"'+((f.asi||[]).indexOf(k)>=0?" checked":"")+'> '+k+'</label>'}).join("")+'</div></div><label class="hbf hbck"><input type="checkbox" id="hb-rep"'+(f.rep?" checked":"")+'> Repeatable: can be taken more than once</label>'+hbTa("hb-d","What it does",f.d,"");
+ if(f.t==="item")h+=hbSel("hb-type","Type",f.type||"Wondrous Item",["Wondrous Item","Ring","Rod","Staff","Wand","Potion","Scroll","Weapon","Armor"])+hbSel("hb-rar","Rarity",f.rar||"Uncommon",["Common","Uncommon","Rare","Very Rare","Legendary","Artifact"])+'<label class="hbf hbck"><input type="checkbox" id="hb-att"'+(f.att?" checked":"")+'> Requires attunement</label>'+hbTa("hb-d","What it does",f.d,"")+
+  '<div class="hbf"><span>Bonus while worn or wielded (optional, counted on the sheet)</span><div class="hbnum">'+HB_FX.map(function(x){var v=(f.fx||{})[x[0]]||0;return '<label><span>'+x[1]+'</span><select class="dd sm" data-hbfx="'+x[0]+'">'+[0,1,2,3].map(function(k){return '<option value="'+k+'"'+(v===k?" selected":"")+'>'+(k?"+"+k:"None")+'</option>'}).join("")+'</select></label>'}).join("")+'</div></div>';
+ h+='<div class="eqact"><button type="button" class="bdg add" data-hbsave="1">'+(HBE?"Save Changes":"Create")+'</button>'+(HBE?'<button type="button" class="link" data-hbcancel="1">Cancel</button>':'')+'</div></div>';
+ var L=hbList(hbMine());if(L.length)h+='<p class="flab">Made by you ('+L.length+')</p><div class="hblist">'+L.map(function(e){var k=esc(e[0]+"|"+e[1]);return '<div class="hbrow"><span><b>'+esc(e[1])+'</b><small>'+({species:"Species",feat:"Feat",item:"Magic Item"})[e[0]]+'</small></span><button type="button" class="link" data-hbedit="'+k+'">Edit</button><button type="button" class="rmv" data-hbdel="'+k+'">✕ Remove</button></div>'}).join("")+'</div>';
+ var O=hbOthers();if(O.length)h+='<p class="flab">Homebrew of your other characters</p><div class="hblist">'+O.map(function(o){return '<div class="hbrow"><span><b>'+esc(o.p.name)+'</b><small>'+esc(o.who)+': '+esc(hbCount(o.p))+'</small></span><button type="button" class="bdg add" data-hbcopy="'+esc(o.cid+"|"+o.p.id)+'">Add to this character</button></div>'}).join("")+'</div>';
+ return h}
+/* user packs (not built in) of the other characters in My Characters that have something this build does not */
+function hbOthers(){var out=[],r=null;try{r=JSON.parse(localStorage.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;var me=sid();
+ Object.keys(r.chars).forEach(function(id){if(id===me||id===r.active)return;var b=null;try{b=JSON.parse(r.chars[id].B||"null")}catch(e){b=null}if(!b||!Array.isArray(b.packs))return;
+  b.packs.forEach(function(p){if(!p||!p.id||HB_BUILTIN[p.id])return;var mine=(B.packs||[]).filter(function(q){return q.id===p.id})[0];if(hbList(p).some(function(e){return !hbHas(mine,e[0],e[1])}))out.push({cid:id,who:r.chars[id].name||"Character",p:p})})});return out}
+function hbRead(){var g=function(id){var e=document.getElementById(id);return e?String(e.value||"").trim():""},f={t:HBF.t,n:g("hb-n").slice(0,60)};
+ if(f.t==="species"){f.size=g("hb-size")||"Medium";f.speed=Math.max(0,Math.min(120,Math.round(+g("hb-speed")||30)));f.dark=+g("hb-dark")||0;f.traits=g("hb-traits")}
+ if(f.t==="feat"){f.cat=g("hb-cat")||"G";f.pre=g("hb-pre");f.asi=[].slice.call(document.querySelectorAll("#bld [data-hbab]:checked")).map(function(x){return x.getAttribute("data-hbab")});f.rep=!!(document.getElementById("hb-rep")||{}).checked;f.d=g("hb-d")}
+ if(f.t==="item"){f.type=g("hb-type")||"Wondrous Item";f.rar=g("hb-rar")||"Uncommon";f.att=!!(document.getElementById("hb-att")||{}).checked;f.d=g("hb-d");f.fx={};[].slice.call(document.querySelectorAll("#bld [data-hbfx]")).forEach(function(s){var v=+s.value;if(v)f.fx[s.getAttribute("data-hbfx")]=v})}
+ return f}
+function hbRemove(p,t,n){if(!p)return;if(t==="species")delete (p.species||{})[n];if(t==="feat")delete (p.feats||{})[n];if(t==="item")p.items=(p.items||[]).filter(function(x){return x[0]!==n})}
+function hbSave(){var f=hbRead(),p=hbMine();HBF=f;
+ if(!f.n){toast("Give it a name first.");render();return}
+ var taken=f.t==="species"?SPECIES[f.n]:f.t==="feat"?FEATS[f.n]:DMAP[f.n];if(taken&&f.n!==HBE&&!hbHas(p,f.t,f.n)){toast("That name is already used. Pick another name.");render();return}
+ if(f.t!=="species"&&!f.d){toast("Write what it does.");render();return}
+ if(!p){p={id:HB_ID,name:"My Homebrew",desc:"Species, feats, and magic items you made"};B.packs=(B.packs||[]).concat([p])}
+ if(HBE&&HBE!==f.n){hbRemove(p,f.t,HBE);if(f.t==="species"&&B.species===HBE)B.species=f.n}
+ if(f.t==="species"){p.species=p.species||{};p.species[f.n]={size:f.size,speed:f.speed,dark:f.dark,traits:String(f.traits||"").split(/\n+/).map(function(l){var m=/^\s*([^:]{1,60}):\s*(.+)$/.exec(l);return m?[m[1].trim(),m[2].trim()]:l.trim()?["Trait",l.trim()]:null}).filter(Boolean)}}
+ if(f.t==="feat"){p.feats=p.feats||{};var o={cat:f.cat,d:f.d};if(f.pre)o.pre=f.pre;if(f.asi.length)o.asi=f.asi;if(f.rep)o.rep=1;p.feats[f.n]=o}
+ if(f.t==="item"){p.items=(p.items||[]).filter(function(x){return x[0]!==f.n});var x=[f.n,f.type,f.rar,f.att?1:0,f.d||""];if(Object.keys(f.fx).length)x.push({fx:f.fx});p.items.push(x)}
+ B.src=B.src||{core:true,dmg:true};B.src[HB_ID]=true;var was=HBE;HBE="";HBF={t:f.t};applyPacks();commit();toast((was?"Saved ":"Created ")+f.n+". It is in My Homebrew"+(f.t==="species"?", in the Species step.":f.t==="feat"?", in the feat lists.":", in Equipment, Magic Items."))}
+function hbEdit(t,n){var p=hbMine();if(!hbHas(p,t,n))return;var f={t:t,n:n};
+ if(t==="species"){var s=p.species[n];f.size=s.size;f.speed=s.speed;f.dark=s.dark;f.traits=(s.traits||[]).map(function(x){return Array.isArray(x)?x[0]+": "+x[1]:String(x)}).join("\n")}
+ if(t==="feat"){var o=p.feats[n];f.cat=o.cat;f.pre=o.pre||"";f.asi=o.asi||[];f.rep=!!o.rep;f.d=o.d||""}
+ if(t==="item"){var x=p.items.filter(function(y){return y[0]===n})[0];f.type=x[1];f.rar=x[2];f.att=!!x[3];f.d=x[4]||"";f.fx=(x[5]&&x[5].fx)||{}}
+ HBF=f;HBE=n;render();var e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
+function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",function(){var p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter(function(q){return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();commit();toast("Removed "+n+".")})}
+function hbCopy(cid,pid){var o=hbOthers().filter(function(x){return x.cid===cid&&x.p.id===pid})[0];if(!o)return;var src=JSON.parse(JSON.stringify(o.p)),mine=(B.packs||[]).filter(function(q){return q.id===pid})[0],n=0;
+ if(!mine){B.packs=(B.packs||[]).concat([src]);n=hbList(src).length}
+ else hbList(src).forEach(function(e){if(hbHas(mine,e[0],e[1]))return;n++;if(e[0]==="species"){mine.species=mine.species||{};mine.species[e[1]]=src.species[e[1]]}if(e[0]==="feat"){mine.feats=mine.feats||{};mine.feats[e[1]]=src.feats[e[1]]}if(e[0]==="item"){mine.items=(mine.items||[]).concat(src.items.filter(function(x){return x[0]===e[1]}))}});
+ B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}
+
 /* ---------- shell ---------- */
 function stepIss(s){try{return ruleIssues().some(function(x){return x.step===s})}catch(e){return false}}
 function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("eqC")||un("eqB");if(un({class:"cls",bg:"bg",species:"species"}[s]))return true;var cs=choices();
@@ -5786,6 +5921,8 @@ function commit(){save();render()}
 document.addEventListener("click",function(e){if(!e.target.closest("#bld"))return;var t=e.target.closest("button");if(!t)return;var d=t.dataset;
  if(d.lnk){var pp=d.lnk.split("|");showRef(pp[0],pp.slice(1).join("|"));return}
  if(d.step){go(d.step);return}
+ if(d.hbt){HBF={t:d.hbt};render();return}if(d.hbsave){hbSave();return}if(d.hbcancel){HBE="";HBF={t:HBF.t};render();return}/* v26 RU38 no. 8 */
+ if(d.hbedit){var he=d.hbedit.split("|");hbEdit(he[0],he.slice(1).join("|"));return}if(d.hbdel){var hd2=d.hbdel.split("|");hbDel(hd2[0],hd2.slice(1).join("|"));return}if(d.hbcopy){var hc=d.hbcopy.split("|");hbCopy(hc[0],hc.slice(1).join("|"));return}
  if(d.pk){var kk=d.pk.split(":"),o2=B.pk[kk[0]]=B.pk[kk[0]]||{c:[],s:[]},ar=o2[kk[1]],ix2=ar.indexOf(d.v);if(ix2>=0)ar.splice(ix2,1);else{if(ar.length>=(kk[1]==="c"?2:1)){toast("Limit reached. Remove one first.");return}ar.push(d.v)}commit();return}
  if(d.mcdel!=null){var mi=+d.mcdel;ask("Remove this class?","Remove",function(){B.mc.splice(mi,1);Object.keys(B.ch).forEach(function(k){if(/^m\d+:/.test(k))delete B.ch[k]});commit()});return}
  if(d.roll){B.hpr=B.hpr||{};B.hpr[d.roll]=1+Math.floor(Math.random()*(+d.hd));commit();return}
@@ -5848,6 +5985,8 @@ document.addEventListener("change",function(e){if(!e.target.closest("#bld"))retu
  if(d.method){if(!t.value){render();return}var was=un("abil");unDone("abil");B.method=t.value;if(was&&B.method==="point")ABK.forEach(function(k){B.base[k]=8});if(B.method==="point")ABK.forEach(function(k){B.base[k]=Math.max(8,Math.min(15,B.base[k]))});if(B.method==="array")B.arr={};commit();return}
  if(d.arr){B.arr=B.arr||{};B.arr[d.arr]=t.value;B.base[d.arr]=+t.value||8;commit();return}
  if(d.fk){var o=B.ch[d.fk]||{};o[d.fp]=t.value;if(d.fp==="feat"){delete o.a1;delete o.a2;delete o.dt}B.ch[d.fk]=o;commit()}});
+document.addEventListener("input",function(e){if(e.target.closest&&e.target.closest("#bld .hbmk"))HBF=Object.assign(hbRead(),{});});/* v26: keep what is typed in Create Homebrew */
+document.addEventListener("change",function(e){if(e.target.closest&&e.target.closest("#bld .hbmk"))HBF=hbRead();});
 document.addEventListener("input",function(e){if(!e.target.closest("#bld"))return;var t=e.target;
  if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
  if(t.id==="packtxt"){packTxt=t.value;return}
