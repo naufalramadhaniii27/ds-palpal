@@ -790,6 +790,59 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 
 /* v24 p08 */
 .hempty{grid-column:1/-1;margin:8px 0 20px;padding:18px 16px;border:1px dashed var(--line-2);border-radius:12px;color:var(--muted);font-size:15px;line-height:1.5}
+
+/* v25 p03 */
+.spm-bar{display:flex;justify-content:flex-end;margin:4px 0 8px}
+.spm-open{flex:0 0 auto!important;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;color:var(--ink)}
+.spm-open .ibt{width:18px;height:18px}
+.spm-cnt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 8px}
+.spm-c{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--panel)}
+.spm-c b{display:block;font-family:var(--f-nar);font-size:22px;line-height:1.1;font-variant-numeric:tabular-nums}
+.spm-c span{font-size:12.5px;color:var(--muted)}
+.spm-c.short{border-color:var(--warn)}
+.spm-r{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.spm-n{flex:1;min-width:0;text-align:left;background:none;border:0;color:var(--ink);padding:0;font:inherit;cursor:pointer}
+.spm-n b{display:block;overflow-wrap:anywhere}
+.spm-n small{display:block;color:var(--muted);font-size:12px}
+.spm-t{flex:0 0 auto!important;height:34px!important;padding:0 12px!important;font-size:13px!important;min-width:84px}
+.spm-t.rm{color:var(--bad)}
+.spm-t[disabled]{opacity:.45;cursor:not-allowed}
+.spm-full{color:var(--warn)}
+.spm-how,.spm-al{font-size:13px}
+.set-h{font-family:var(--f-nar);font-size:17px;margin:20px 0 2px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink)}
+.set-h:first-child{border-top:0;margin-top:0;padding-top:0}
+.frsw{display:block;width:22px;height:28px;border-radius:4px;border:1.5px dashed var(--line-2);background:var(--panel-2)}
+.frsw[data-fr="round"]{border-radius:50%;border:2.5px solid var(--acc)}
+.frsw[data-fr="double"]{border:4px double var(--acc)}
+.frsw[data-fr="gilded"]{border:3px solid #b8922e;box-shadow:inset 0 0 0 1.5px #f1d58a}
+.frsw[data-fr="outline"]{border:1.5px solid var(--line-2);outline:2px solid var(--acc);outline-offset:2px}
+.frsw[data-fr="none"]{border-color:transparent}
+:root[data-frame="round"] .photo{border-radius:50%;border:3px solid var(--acc)}
+:root[data-frame="double"] .photo{border:5px double var(--acc)}
+:root[data-frame="gilded"] .photo{border:4px solid #b8922e;box-shadow:inset 0 0 0 2px #f1d58a,0 0 0 2px #6b4f12}
+:root[data-frame="outline"] .photo{border:1.5px solid var(--line-2);outline:2px solid var(--acc);outline-offset:3px}
+:root[data-frame="none"] .photo{border-color:transparent}
+:root{
+ --bd-dusk:linear-gradient(180deg,color-mix(in srgb,var(--acc) 30%,transparent) 0,transparent 60vh);--bds-dusk:auto;
+ --bd-stars:radial-gradient(1.3px 1.3px at 22px 34px,color-mix(in srgb,var(--ink) 60%,transparent) 99%,transparent),radial-gradient(1px 1px at 96px 72px,color-mix(in srgb,var(--ink) 50%,transparent) 99%,transparent),radial-gradient(1.6px 1.6px at 150px 128px,color-mix(in srgb,var(--acc) 70%,transparent) 99%,transparent),radial-gradient(1px 1px at 58px 156px,color-mix(in srgb,var(--ink) 45%,transparent) 99%,transparent),linear-gradient(180deg,color-mix(in srgb,var(--dinas) 40%,transparent),transparent 70vh);--bds-stars:180px 180px,180px 180px,180px 180px,180px 180px,auto;
+ --bd-parchment:radial-gradient(ellipse at 25% 15%,color-mix(in srgb,#c8a46a 26%,transparent),transparent 60%),radial-gradient(ellipse at 85% 85%,color-mix(in srgb,#a07a3c 20%,transparent),transparent 55%);--bds-parchment:auto,auto;
+ --bd-stone:linear-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 2px,transparent 2px),linear-gradient(90deg,color-mix(in srgb,var(--ink) 10%,transparent) 2px,transparent 2px);--bds-stone:64px 32px,64px 32px;
+ --bd-waves:repeating-radial-gradient(circle at 0 100%,transparent 0 14px,color-mix(in srgb,var(--acc) 16%,transparent) 14px 16px);--bds-waves:60px 30px;
+ --bd-leaves:repeating-linear-gradient(45deg,color-mix(in srgb,var(--acc) 12%,transparent) 0 2px,transparent 2px 18px),repeating-linear-gradient(-45deg,color-mix(in srgb,var(--acc) 8%,transparent) 0 2px,transparent 2px 26px);--bds-leaves:auto,auto}
+.bdsw{display:block;width:40px;height:26px;border-radius:6px;border:1px solid var(--line-2);background-color:var(--paper)}
+.bdsw[data-bd0="dusk"],:root[data-bdrop="dusk"] body{background-image:var(--bd-dusk);background-size:var(--bds-dusk)}
+.bdsw[data-bd0="stars"],:root[data-bdrop="stars"] body{background-image:var(--bd-stars);background-size:var(--bds-stars)}
+.bdsw[data-bd0="parchment"],:root[data-bdrop="parchment"] body{background-image:var(--bd-parchment);background-size:var(--bds-parchment)}
+.bdsw[data-bd0="stone"],:root[data-bdrop="stone"] body{background-image:var(--bd-stone);background-size:var(--bds-stone)}
+.bdsw[data-bd0="waves"],:root[data-bdrop="waves"] body{background-image:var(--bd-waves);background-size:var(--bds-waves)}
+.bdsw[data-bd0="leaves"],:root[data-bdrop="leaves"] body{background-image:var(--bd-leaves);background-size:var(--bds-leaves)}
+:root[data-bdrop] body{background-attachment:fixed}
+.bdsw[data-bd0="stars"]{background-size:60px 60px,60px 60px,60px 60px,60px 60px,auto}
+@media print{:root[data-bdrop] body{background-image:none!important}}
+/* v25 fix: a toast centered with left:50% was only half the screen wide, so longer messages (with Undo) broke into 3 or 4 lines on a phone */
+.toast{width:max-content}
+.iwt{cursor:pointer}
+.toast.act>span{flex:1;text-align:left}
 #bld{--bg:#fff;--ink:#12181c;--muted:#6b7378;--line:#d8d8d8;--top:#12181c;--bar:#262e33;--tabs:#33393d;--blue:#1b9af0;--blue-soft:#e6f3fd;--hl:#a7c7ea;--hl-2:#cfe0f4;--th:#22272b;--card:#fbfaf7;--cardline:#e3dfd6;--olive:#7d8a3a;
 --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto Condensed","Arial Narrow",Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){#bld{--bg:#15191c;--ink:#e8eaeb;--muted:#9aa3a8;--line:#30373b;--card:#1d2225;--cardline:#30373b;--blue-soft:#14324a;--hl:#24496e;--hl-2:#1b3754;--th:#0e1113;color-scheme:dark}
@@ -1105,8 +1158,8 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
         <button class="bb press edit-b" id="editBtn" type="button" aria-label="Edit character">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span class="txt">Edit</span>
         </button>
-        <button class="bb ic press" id="themeBtn" type="button" aria-label="Switch light or dark theme">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a7.5 7.5 0 1 0 9 9A9 9 0 1 1 12 3z"/></svg>
+        <button class="bb ic press" id="themeBtn" type="button" aria-label="Settings: appearance, rules, and display">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>
         </button>
         <button class="bb pdf press" id="pdfBtn" type="button" aria-label="Export PDF">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg><span class="txt">PDF</span>
@@ -1518,7 +1571,7 @@ function saveNow(){ var cur=lsGet(KEY);
    RL47: every saved key carries _app, the highest app version that wrote it. Fields this version does not know are kept as they are.
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
-var APP_VER=24, APP_DATE="2026-10-16", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=25, APP_DATE="2026-10-16", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -1715,8 +1768,8 @@ function derive(){
   D.dc=8+D.mod[dab]+pb;
   B.dc={t:"Unarmed Strike: Grapple and Shove DC", parts:[{l:"Base",v:8,note:"",raw:true},dabP,part("Proficiency Bonus",pb,"Every creature is proficient with Unarmed Strike")], total:String(D.dc), f:"The target makes a Strength or Dexterity saving throw (its choice) against this DC (PHB-2024, Unarmed Strike)."};
 
-  D.carry=15*D.score.STR;
-  B.carry={t:"Carrying Capacity", parts:[{l:"Strength score \u00d7 15", v:D.carry+" lb", note:"Str "+D.score.STR+", Medium creature", raw:true}], total:D.carry+" lb", f:"PHB-2024, Rules Glossary: Carrying Capacity."};
+  var CY=carryOf(D.score.STR); D.carry=CY.v;/* v25: size and Powerful Build */
+  B.carry={t:"Carrying Capacity", parts:[{l:"Strength score \u00d7 "+CY.m, v:D.carry+" lb", note:"Str "+D.score.STR+", "+CY.s+" creature"+(CY.pb?", Powerful Build (one size larger)":""), raw:true}], total:D.carry+" lb", f:"PHB-2024, Rules Glossary: Carrying Capacity."+(setOf("enc")==="off"?" Weight is not tracked (Settings).":"")};
 
   var CF=cfx(); D.cf=CF;/* v22 RU53, RU56 */
   if(CF.speed0.length){ D.speed=0; B.speed.parts.push({l:CF.speed0.join(", "), v:"Speed 0", note:"Condition", raw:true}); B.speed.total="0 ft"; }
@@ -1773,14 +1826,14 @@ function applyLook(){document.documentElement.setAttribute("data-skin",S.skin||"
  var L=":root{--dinas:"+p[1]+";--dinas-2:"+p[2]+";--on-dinas-2:"+p[3]+";--stamp:"+p[4]+";--stamp-soft:"+p[5]+";--pat:"+dataUri(S.sym,"#ffffff",1,36)+";--wm:"+dataUri(S.sym,"#000000",.8)+"}";
  var Dk="--dinas:"+p[6]+";--dinas-2:"+p[7]+";--on-dinas-2:"+p[8]+";--stamp:"+p[9]+";--stamp-soft:"+p[10]+";--wm:"+dataUri(S.sym,"#ffffff",.8);
  var acc=p[8];st.textContent=":root{--acc:"+acc+";--acc2:"+p[9]+"}"+L+"@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"]){"+Dk+"}}:root[data-theme=\"dark\"]{"+Dk+"}";
- var bs=document.getElementById("bandSym");if(bs)bs.innerHTML=svgOf(S.sym,1.6);renderStamp()}
+ var bs=document.getElementById("bandSym");if(bs)bs.innerHTML=svgOf(S.sym,1.6);renderStamp();applyLook2()}
 function renderStamp(){var el=document.getElementById("stampSvg");if(!el)return;var txt=((C.name||"")+"  \u2726  "+clsLv()+"  \u2726").toUpperCase();var sy=SYMS[S.sym]||SYMS.star;
  el.innerHTML='<defs><path id="ring" d="M50 50 m-35 0 a35 35 0 1 1 70 0 a35 35 0 1 1 -70 0"/><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25"/><feComposite in="SourceGraphic" operator="in"/></filter></defs><g filter="url(#ink)" fill="none" stroke="currentColor"><circle cx="50" cy="50" r="46" stroke-width="3"/><circle cx="50" cy="50" r="27" stroke-width="1.6"/><text font-family="Archivo Narrow, Arial Narrow, sans-serif" font-weight="700" font-size="'+(txt.length>34?8.5:10.5)+'" letter-spacing="1.4" fill="currentColor" stroke="none"><textPath href="#ring">'+esc(txt)+'</textPath></text><g transform="translate(36 36) scale(1.17)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+sy[1]+'</g></g>'}
 function themeHTML(){var h='<div class="info-h">Style</div><div class="thg">'+[["record","Character Record"],["ddb","D&D Beyond"]].map(function(m){return '<button type="button" class="thb'+((S.skin||"ddb")===m[0]?" on":"")+'" data-thk="'+m[0]+'">'+m[1]+'</button>'}).join("")+'</div><div class="info-h">Mode</div><div class="thg">'+[["","Auto"],["light","Light"],["dark","Dark"]].map(function(m){return '<button type="button" class="thb'+((S.theme||"")===m[0]?" on":"")+'" data-thm="'+m[0]+'">'+m[1]+'</button>'}).join("")+'</div>';
  h+='<div class="info-h">Color</div><div class="thg">'+Object.keys(PALS).map(function(k){var p=PALS[k];return '<button type="button" class="thb'+(S.color===k?" on":"")+'" data-thc="'+k+'"><span class="sw" style="background:linear-gradient(135deg,'+p[1]+' 55%,'+p[4]+' 55%)"></span>'+p[0]+'</button>'}).join("")+'</div>';
  h+='<div class="info-h">Symbol</div><div class="thg">'+Object.keys(SYMS).map(function(k){return '<button type="button" class="thb'+(S.sym===k?" on":"")+'" data-ths="'+k+'">'+svgOf(k,1.7)+SYMS[k][0]+'</button>'}).join("")+'</div><p class="info-d">Pick any color and symbol. They are not tied to class, species, or background.</p>';
  return h}
-$("#themeBtn").addEventListener("click",function(){ openSheet("Theme", themeHTML(), "theme"); });
+$("#themeBtn").addEventListener("click",function(){ navStack=[]; openSheet("Settings", settingsHTML(), "theme"); });/* v25 RU38 no. 6, no. 7 */
 applyTheme();
 
 /* ================= SPRING ================= */
@@ -1820,9 +1873,10 @@ function renderIdentity(){
   xpBox();/* v22 RU63 */
 }
 function renderAbilities(){
+  var SC=setOf("ab")==="score";/* v25 RU38 no. 6: score on top */
   $("#abil").innerHTML = ABK.map(function(k){
     var key = !!(C.saves && C.saves[k]);
-    return '<button type="button" class="ab bd'+(key?' key':'')+'" data-bd="ab-'+k+'" title="'+ABN[k]+'"><span class="k">'+ABN[k]+'</span><span class="ks" aria-hidden="true">'+k+'</span><span class="m">'+sg(D.mod[k])+'</span><span class="s">'+D.score[k]+'</span><span class="sv">Save '+sg(D.save[k])+(key?' \u2022':'')+'</span></button>';
+    return '<button type="button" class="ab bd'+(key?' key':'')+'" data-bd="ab-'+k+'" title="'+ABN[k]+'"><span class="k">'+ABN[k]+'</span><span class="ks" aria-hidden="true">'+k+'</span><span class="m">'+(SC?D.score[k]:sg(D.mod[k]))+'</span><span class="s">'+(SC?sg(D.mod[k]):D.score[k])+'</span><span class="sv">Save '+sg(D.save[k])+(key?' \u2022':'')+'</span></button>';
   }).join("");
 }
 function renderTiles(){
@@ -1908,8 +1962,8 @@ var invF="all";
 function renderInv(){
   (C.inv||[]).forEach(function(i){ if(i.type==null&&window.__itemMeta){ var mt=window.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
-  var L=C.inv||[], total=invWeight(), enc=total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=coinsNow();
-  var head='<div class="ihero"><div><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div><button type="button" class="igp" data-coinopen="1" aria-label="Manage Coin"><span class="coin"></span>'+coinTotal(cz)+'<small>GP</small></button><button type="button" class="ibtn" data-invman="1">Manage Inventory</button></div>';
+  var L=C.inv||[], total=invWeight(), enc=setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=coinsNow();
+  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-label="Weight carried, open Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div><button type="button" class="igp" data-coinopen="1" aria-label="Manage Coin"><span class="coin"></span>'+coinTotal(cz)+'<small>GP</small></button><button type="button" class="ibtn" data-invman="1">Manage Inventory</button></div>';
   var fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map(function(f){return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   var keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   var row=function(i,ix,sub){ var q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
@@ -2055,6 +2109,7 @@ function entryContent(en){
   if(en.type==="bd") return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key), m:"bd"};
   if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
   if(en.type==="combat") return {t:"Combat", h:combatHTML(), m:"combat"};/* v22 RU62 */
+  if(en.type==="spman") return {t:"Manage Spells", h:spmHTML(), m:"spman"};/* v25 RU38 no. 3 */
   var r=infoHTML(en.spec); return {t:r.t, h:r.h, m:"info"};
 }
 function showEntry(en, push){
@@ -2110,6 +2165,7 @@ function actTitle(n){
 var NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
 function infoHTML(spec){
   var i=spec.indexOf(":"), type=spec.slice(0,i), key=spec.slice(i+1), h="";
+  if(type==="spn") return spnHTML(key);/* v25 RU38 no. 3 */
   if(type==="g"){
     var g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
@@ -2547,7 +2603,7 @@ function impChar(o){ var err=chCheck(o); if(err){ toast(err); return; }
     ask(nm+" is already on this device. Replace it with the file (saved "+(o.saved?fmtT(Date.parse(o.saved)):"at an unknown date")+"), or add the file as another character? A snapshot of the current one is kept before replacing.","Replace",function(){ go(id,true); },["Add as New",function(){ go(newId(r),false); }]); return; }
   go(id,false); }
 /* RU59: version and what changed */
-var WHATSNEW=[{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
+var WHATSNEW=[{v:25,d:"2026-10-16",n:["Manage Spells on the Spells tab: add, prepare, and remove spells from your class lists without opening the builder. The prepared limit is shown and kept.","Settings (gear button): carrying capacity on or off, Hit Points fixed or rolled, ability score or modifier on top, and spells listed again under each higher slot level they can use.","Appearance: a frame for the portrait and a backdrop behind the sheet, next to style, mode, color, and symbol."]},{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
 function wnList(from){ return WHATSNEW.filter(function(x){ return x.v>from; }).map(function(x){ return '<h4>Version '+x.v+' <small>'+x.d+'</small></h4><ul>'+x.n.map(function(t){ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul>'; }).join(""); }
 function wnBanner(){ if(!WN_SHOW) return ""; return '<div class="hwn" id="hwnB" role="status"><b>What\'s new in version '+APP_VER+'</b>'+wnList(WN_FROM||APP_VER-1)+'<button type="button" class="btn press" data-hwn="ok">Got It</button></div>'; }
 function wnOpen(){ var old=document.getElementById("bkp"); if(old) old.remove(); var w=document.createElement("div"); w.id="bkp"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
@@ -2600,13 +2656,21 @@ $("#editBtn").addEventListener("click",openEditor);
 
 /* sheet body delegation: breakdown, conditions, editor */
 $("#sheetBody").addEventListener("click",function(e){
+  if(sheetMode==="spman"){ if(e.target.closest("[data-info]")) return; var sb=e.target.closest("button"); if(!sb) return; var sd=sb.dataset;/* v25 RU38 no. 3 */
+    if(sd.spmt){ if(sb.disabled) return; spmToggle(sd.spmt,sd.spmc); return; } if(sd.spmcls){ spmCls=sd.spmcls; spmLv="all"; spmRefresh(); return; } if(sd.spml!=null){ spmLv=sd.spml; spmRefresh(); return; } return; }
   if(sheetMode==="roster"){ var rb=e.target.closest("button"); if(!rb) return; var rd=rb.dataset, r=rEnsure();
     if(rd.rsw){ rSnap(r); rLoad(r,rd.rsw,false); return; }
     if(rd.rnew){ rSnap(r); var nid="c"+Date.now(); r.chars[nid]={name:"New Character",t:Date.now()+1}; rLoad(r,nid,true); return; }
     if(rd.rdup){ rSnap(r); var src=r.chars[rd.rdup], did="c"+Date.now(), cp=JSON.parse(JSON.stringify(src)); try{ var cc=JSON.parse(cp.C); cc.name=(cc.name||"Character")+" (copy)"; cp.C=JSON.stringify(cc); cp.name=cc.name; var bb=JSON.parse(cp.B||"null"); if(bb){ bb.name=cc.name; bb.cid=did; cp.B=JSON.stringify(bb); } }catch(er){} cp.t=Date.now()+1; r.chars[did]=cp; rSave(r); $("#sheetBody").innerHTML=rosterHTML(); toast("Copied"); return; }
     if(rd.rdel){ var nm=(r.chars[rd.rdel]||{}).name; if(Object.keys(r.chars).length<2){ toast("You need at least one character"); return; } if(rb.dataset.sure!=="1"){ rb.dataset.sure="1"; rb.textContent="Tap again to delete"; return; } var wasActive=rd.rdel===r.active; delete r.chars[rd.rdel]; if(wasActive){ var other=Object.keys(r.chars)[0]; rLoad(r,other,false); return; } rSave(r); $("#sheetBody").innerHTML=rosterHTML(); toast("Deleted "+(nm||"character")); return; }
     return; }
-  if(sheetMode==="theme"){ var tb=e.target.closest(".thb"); if(!tb) return; var dd=tb.dataset; if(dd.thm!=null){ S.theme=dd.thm; applyTheme(); } if(dd.thc) S.color=dd.thc; if(dd.thk) S.skin=dd.thk; if(dd.ths) S.sym=dd.ths; save(); applyLook(); $("#sheetBody").innerHTML=themeHTML(); return; }
+  if(sheetMode==="theme"){ if(e.target.closest("[data-hpgo]")){ closeSheet(); if(window.__bldGo) window.__bldGo("class"); return; }
+    var tb=e.target.closest(".thb"); if(!tb) return; var dd=tb.dataset;
+    if(dd.hpm){ var df=[]; try{ df=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ df=[]; } undoMark("Hit Points setting"); var hm2=window.__bldHpMode&&window.__bldHpMode(dd.hpm,!df.length); if(!hm2){ UNDO=null; return; }
+      renderAll(); toastU("Hit Points: "+(dd.hpm==="roll"?"rolled":"fixed (average)")+"."+(df.length?" The sheet has its own edits, so it keeps its numbers until you press Build, then Apply.":" Maximum HP is "+D.hpmax+".")); }/* v25 RU38 no. 6 */
+    if(dd.thm!=null){ S.theme=dd.thm; applyTheme(); } if(dd.thc) S.color=dd.thc; if(dd.thk) S.skin=dd.thk; if(dd.ths) S.sym=dd.ths;
+    if(dd.thf!=null){ if(dd.thf) S.frame=dd.thf; else delete S.frame; } if(dd.thd!=null){ if(dd.thd) S.bdrop=dd.thd; else delete S.bdrop; } if(dd.set){ var kv=dd.set.split(":"); setPut(kv[0],kv[1]); renderAll(); }/* v25 */
+    save(); applyLook(); var sb2=$("#sheetBody"), st2=sb2.scrollTop; sb2.innerHTML=settingsHTML(); sb2.scrollTop=st2; return; }
   if(sheetMode==="cond"){
     var c=e.target.closest("[data-c]");
     if(c){ var k=c.getAttribute("data-c"); if(S.cond[k]) delete S.cond[k]; else S.cond[k]=true; c.setAttribute("aria-pressed",!!S.cond[k]); if(c.classList.contains("chip")) c.classList.toggle("on",!!S.cond[k]); var cc=c.closest(".cc"); if(cc) cc.classList.toggle("on",!!S.cond[k]); save(); renderAll(); return; }/* v22 RU53 */
@@ -2971,17 +3035,112 @@ function spHead(sc){sc=scAdj(sc);var h=Array.isArray(sc.by)&&sc.by.length>1?spHe
  return h}
 function renderSpells(){var el=document.getElementById("spBody");if(!el)return;var L=C.spells||[],sc=C.spellcasting;
  /* RU20: a caster with no spells chosen still sees Modifier, Spell Attack, Save DC and slots (C.spellcasting), then the note */
- if(!L.length){el.innerHTML=(sc?spHead(sc):'')+'<p class="empty-note">No spells. Add them in the builder (Build, then Class, then Spells).</p>';return}
- var h=spHead(sc);
+ var MB='<div class="spm-bar"><button type="button" class="btn press spm-open" data-spman="1">'+ico("spellbook","ibt")+'Manage Spells</button></div>';/* v25 RU38 no. 3 */
+ if(!L.length){el.innerHTML=(sc?spHead(sc):'')+MB+'<p class="empty-note">No spells yet. Press Manage Spells to add them.</p>';return}
+ var h=spHead(sc)+MB;
  h+='<input class="sp-q" id="spQ" type="search" placeholder="Search Spell Names, Casting Times, Damage Types" value="'+esc(spQ)+'">';
- var lvs=[];L.forEach(function(x){var g=spGrpLv(x);if(lvs.indexOf(g)<0)lvs.push(g)});lvs.sort(function(a,b){return a-b});
+ var lvs=[],UP=spUpOn(),UPX=spUpMax();L.forEach(function(x){var g=spGrpLv(x);if(lvs.indexOf(g)<0)lvs.push(g);if(UP&&spUpOk(x))for(var u=g+1;u<=UPX;u++)if(lvs.indexOf(u)<0)lvs.push(u)});lvs.sort(function(a,b){return a-b});/* v25 RU38 no. 6 */
  h+='<div class="ifil">'+[["all","All"]].concat(lvs.map(function(l){return [String(l),l?ordL(l).replace(" Level","").toUpperCase():"-0-"]})).concat([["conc","Conc."],["rit","Ritual"]]).map(function(f){return '<button type="button" class="ifb'+(spF===f[0]?' on':'')+'" data-spf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
  var q=spQ.toLowerCase(),lv=lvs.slice();
- lv.forEach(function(l){var rows=L.map(function(x,i){return [x,i]}).filter(function(p){var x=p[0];return spGrpLv(x)===l&&(spF==="all"||spF===String(l)||(spF==="conc"&&x.conc)||(spF==="rit"&&x.rit))&&(!q||(x.n+" "+x.ct+" "+x.sum+" "+x.src).toLowerCase().indexOf(q)>=0)&&!(x.use==="Prepared"&&L.some(function(y){return y!==x&&y.n===x.n&&y.use==="Always prepared"}))/* v22 T1: sheets saved before v22 */}).sort(function(a,b){return a[0].n<b[0].n?-1:a[0].n>b[0].n?1:a[1]-b[1]});if(!rows.length)return;
+ lv.forEach(function(l){var rows=L.map(function(x,i){return [x,i]}).filter(function(p){var x=p[0];return (spGrpLv(x)===l||(UP&&spUpOk(x)&&l>spGrpLv(x)&&l<=UPX))&&(spF==="all"||spF===String(l)||(spF==="conc"&&x.conc)||(spF==="rit"&&x.rit))&&(!q||(x.n+" "+x.ct+" "+x.sum+" "+x.src).toLowerCase().indexOf(q)>=0)&&!(x.use==="Prepared"&&L.some(function(y){return y!==x&&y.n===x.n&&y.use==="Always prepared"}))/* v22 T1: sheets saved before v22 */}).sort(function(a,b){return a[0].n<b[0].n?-1:a[0].n>b[0].n?1:a[1]-b[1]});if(!rows.length)return;
   h+='<h3 class="sp-lv"><span>'+ordL(l)+'</span>'+spSlotsH(l,rows)+'</h3><div class="sp-tbl"><div class="sp-r sp-th"><span></span><span>Name</span><span>Time</span><span>Range</span><span>Hit / DC</span><span>Effect</span></div>'+rows.map(function(p){var x=p[0],xs=scOf(x),hd=x.sv==="ATK"?sg(xs.atk):x.sv?x.sv+" "+xs.dc:"\u2014";
    var badge=/At will|Cantrip/i.test(x.use)||!x.l?'<span class="sp-b" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">AT<br>WILL</span>':/1\/Long/.test(x.use)?'<span class="sp-b use" data-qcast="'+p[1]+'" title="Use '+esc(x.n)+'" aria-hidden="true">USE</span>':'<span class="sp-b cast" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">CAST</span>';
-   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'">'+badge+'<span class="sp-n"><b>'+esc(x.n)+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small>'+esc(x.use)+' \u2022 '+esc(x.src||"")+'</small></span><span>'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span>'+spRangeH(x.r,x)+'</span><span class="sp-hd">'+esc(hd)+'</span><span>'+spEffH(x,spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
+   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'">'+badge+'<span class="sp-n"><b>'+esc(x.n)+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small>'+esc(x.use)+' \u2022 '+esc(x.src||"")+(l>spGrpLv(x)?' \u2022 with a '+ordL(l).replace(" Level","")+' slot':'')+'</small></span><span>'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span>'+spRangeH(x.r,x)+'</span><span class="sp-hd">'+esc(hd)+'</span><span>'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
  el.innerHTML=h}
+
+/* ================= v25: MANAGE SPELLS (RU38 no. 3) =================
+   The Spells tab opens a panel that adds, prepares, and removes spells of the character's spellcasting classes, with the cantrip and prepared limits.
+   Build mode: the sheet matches its build (__bldDiff empty). Changes go to the build, the sheet is rebuilt (toSheet), numbers come from the builder.
+   Sheet mode: the sheet has its own edits, or no build. C.spells changes directly, and the build of the same character follows (no rebuild), as Inventory does (N2). */
+var spmCls="", spmQ="", spmLv="all";
+function spmRec(n){ if(typeof SPELLS==="undefined") return null; for(var i=0;i<SPELLS.length;i++) if(SPELLS[i][0]===n) return SPELLS[i]; return null; }
+function spmMode(){ var I=null, d=[]; try{ I=window.__bldSpInfo?window.__bldSpInfo():null; }catch(er){ I=null; }
+  if(I){ try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ d=[]; } } return {b:!!I&&!d.length, I:I}; }
+/* limits worked out from the sheet when there is no build: class levels (clsLabel), cantrips and prepared spells from the class tables */
+function spmLocal(){ var lv=clsLvls(), out=[]; if(typeof CLASSES==="undefined") return out;
+  Object.keys(lv).forEach(function(cls){ var c=CLASSES[cls], L=lv[cls]||0, third=(C.sub==="Eldritch Knight"||C.sub==="Arcane Trickster")&&cls===C.cls&&L>=3; if(!c||!L||(!c.caster&&!third)) return;
+    var ct=0, pr=0, mx=0;
+    if(third){ ct=(C.sub==="Arcane Trickster"?3:2)+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+    else { var cc=CANT[cls]; ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0; if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
+      mx=c.caster==="pact"?(PACT[L-1]||[0,0])[1]:(c.caster==="full"?SLOTS_FULL[L-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(L/2)-1]:SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+    var list=third?"Wizard":cls;
+    out.push({cls:cls, ct:ct, pr:pr, max:mx, lists:[list], taken:(C.spells||[]).filter(function(x){ return x.src===cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map(function(x){ return x.n; })}); });
+  return out; }
+/* the caster parts the panel shows: from the build when the build is this character's, else from the sheet. Sheet mode lists what the sheet has */
+function spmParts(M){ if(M.I&&M.b) return M.I.parts; var P=M.I?M.I.parts.map(function(p){ var q=JSON.parse(JSON.stringify(p)); q.taken=(C.spells||[]).filter(function(x){ return x.src===p.cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map(function(x){ return x.n; }); return q; }):spmLocal(); return P; }
+function spmAlways(){ return (C.spells||[]).filter(function(x){ return x.use==="Always prepared"; }).map(function(x){ return x.n; }); }
+function spmCount(p){ var nc=0, np=0; p.taken.forEach(function(n){ var x=spmRec(n); if(!x) return; if(x[1]) np++; else nc++; }); return {nc:nc, np:np}; }
+function spmMeta(x){ return (x[1]?ordL(x[1]):"Cantrip")+" • "+esc(x[2])+(x[8]?" • Concentration":"")+(x[9]?" • Ritual":""); }
+function spmRow(x,on,full,cls){ var lbl=on?"Remove":(x[1]?"Prepare":"Learn");
+  return '<div class="spm-r'+(on?' on':'')+'"><button type="button" class="spm-n" data-info="spn:'+esc(x[0])+'"><b>'+esc(x[0])+(x[8]?' <i class="sp-c">C</i>':'')+(x[9]?' <i class="sp-c rit">R</i>':'')+'</b><small>'+spmMeta(x)+'</small></button>'+
+    '<button type="button" class="btn sm spm-t'+(on?' rm':'')+'" data-spmt="'+esc(x[0])+'" data-spmc="'+esc(cls)+'"'+(!on&&full?' disabled aria-disabled="true"':'')+' aria-label="'+lbl+' '+esc(x[0])+'">'+lbl+'</button></div>'; }
+function spmHTML(){ var M=spmMode(), P=spmParts(M);
+  if(!P.length) return '<p class="info-d">'+(C.cls?esc(C.cls)+' has no Spellcasting at level '+D.level+'.':'Build this character first: choose a class in the builder.')+' Spells from species, feats, and items are added by the builder.</p>';
+  var p=P.filter(function(q){ return q.cls===spmCls; })[0]||P[0]; spmCls=p.cls;
+  var h=P.length>1?'<div class="ifil spm-cls" role="tablist">'+P.map(function(q){ return '<button type="button" role="tab" class="ifb'+(q===p?' on':'')+'" aria-selected="'+(q===p)+'" data-spmcls="'+esc(q.cls)+'">'+esc(q.cls)+'</button>'; }).join("")+'</div>':'';
+  var n=spmCount(p), fc=n.nc>=p.ct, fp=n.np>=p.pr;
+  var cnt=function(lab,a,b){ return '<div class="spm-c'+(a!==b?' short':'')+'"><b>'+a+' / '+b+'</b><span>'+lab+(a<b?' • '+(b-a)+' to choose':a>b?' • '+(a-b)+' too many':'')+'</span></div>'; };
+  h+='<div class="spm-cnt">'+cnt("Cantrips",n.nc,p.ct)+cnt("Prepared Spells",n.np,p.pr)+'</div>';
+  h+='<p class="info-d spm-how">'+(M.b?'Changes go to the build and the sheet is updated right away.':M.I?'This sheet has its own edits, so only the spell list changes. The build follows.':'This sheet has no build. The spell list on the sheet changes.')+'</p>';
+  var mine=p.taken.map(spmRec).filter(Boolean).sort(function(a,b){ return a[1]-b[1]||(a[0]<b[0]?-1:1); });
+  h+='<div class="info-h">'+(P.length>1?esc(p.cls)+' ':'')+'Spells ('+mine.length+')</div>'+(mine.length?mine.map(function(x){ return spmRow(x,true,false,p.cls); }).join(""):'<p class="info-d">None yet. Add them below.</p>');
+  var al=spmAlways(); if(al.length) h+='<p class="info-d spm-al">Always prepared, not counted: '+al.map(esc).join(", ")+'.</p>';
+  h+='<div class="info-h">Add Spells</div><input class="sp-q" id="spmQ" type="search" placeholder="Search spell names" aria-label="Search spell names" value="'+esc(spmQ)+'">';
+  h+='<div class="ifil spm-lv">'+[["all","All"]].concat(Array.apply(null,{length:p.max+1}).map(function(_,i){ return [String(i),i?ordL(i).replace(" Level",""):"Cantrip"]; })).map(function(f){ return '<button type="button" class="ifb'+(String(spmLv)===f[0]?' on':'')+'" data-spml="'+f[0]+'">'+f[1]+'</button>'; }).join("")+'</div>';
+  if(fp||fc) h+='<p class="info-d spm-full">'+(fc&&fp?'Cantrips and prepared spells are full':fc?'Cantrips are full':'Prepared spells are full')+'. Remove one to pick another.</p>';
+  var q=spmQ.toLowerCase(), av=(typeof SPELLS==="undefined"?[]:SPELLS).filter(function(x){ return p.lists.some(function(l){ return x[3].indexOf(l)>=0; })&&x[1]<=p.max&&p.taken.indexOf(x[0])<0&&al.indexOf(x[0])<0&&(spmLv==="all"||String(x[1])===String(spmLv))&&(!q||x[0].toLowerCase().indexOf(q)>=0); })
+    .sort(function(a,b){ return a[1]-b[1]||(a[0]<b[0]?-1:1); });
+  h+=av.length?av.map(function(x){ return spmRow(x,false,x[1]?fp:fc,p.cls); }).join(""):'<p class="info-d">No spells match.</p>';
+  return '<div class="spm">'+h+'</div>'; }
+function spmEntry(x,cls){ var o={n:x[0],l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:(typeof SPELL_FULL!=="undefined"&&SPELL_FULL[x[0]])||"",cls:x[3].join(", "),use:x[1]?"Prepared":"Cantrip",src:cls};
+  var F=typeof SPELL_FX!=="undefined"&&SPELL_FX[x[0]]; if(F){ var f=JSON.parse(JSON.stringify(F)); if(f.mat){ o.mat=f.mat; delete f.mat; } if(Object.keys(f).length) o.fx=f; }
+  if(typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell&&BOOKPG.phb.spell[x[0]]) o.pg=BOOKPG.phb.spell[x[0]]; return o; }
+function spmToggle(n,cls){ var M=spmMode(), P=spmParts(M), p=P.filter(function(q){ return q.cls===cls; })[0], x=spmRec(n); if(!p||!x||FROZEN) return;
+  var on=p.taken.indexOf(n)<0, c=spmCount(p);
+  if(on&&(x[1]?c.np>=p.pr:c.nc>=p.ct)){ toast((x[1]?"Prepared spells":"Cantrips")+" are full. Remove one first."); return; }
+  undoMark((on?"Add ":"Remove ")+n);
+  if(M.b){ if(!window.__bldSpSet(n,cls,on,true)) return; }
+  else { var L=C.spells=C.spells||[]; if(on) L.push(spmEntry(x,cls)); else { for(var i=L.length-1;i>=0;i--) if(L[i].n===n&&L[i].src===cls&&/^(Prepared|Cantrip)$/.test(L[i].use)){ L.splice(i,1); break; } }
+    if(M.I&&window.__bldSpSet){ try{ window.__bldSpSet(n,cls,on,false); }catch(er){} } saveC(); renderAll(); }
+  spmRefresh(); toastU((on?(x[1]?"Prepared ":"Learned "):"Removed ")+n+"."); }
+function spmRefresh(){ if(sheetMode!=="spman") return; var b=$("#sheetBody"), st=b.scrollTop, qf=document.activeElement&&document.activeElement.id==="spmQ", sel=qf?document.activeElement.selectionStart:0;
+  b.innerHTML=spmHTML(); b.scrollTop=st; if(qf){ var q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
+function openSpMan(){ spmQ=""; spmLv="all"; navStack=[{type:"spman"}]; openSheet("Manage Spells", spmHTML(), "spman", true); }
+/* a spell that is not on the sheet yet: the rules text and the basic lines */
+function spnHTML(n){ var x=spmRec(n); if(!x) return {t:n, h:'<p class="info-d">Not found.</p>'};
+  var o=spmEntry(x,""), full=o.full||o.sum;
+  var h='<p class="info-d">'+ico("school-"+String(x[2]).toLowerCase(),"isch")+'<i>'+(x[1]?ordL(x[1])+" ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i> • '+esc(x[3].join(", "))+'</p>'+
+    '<div class="info-k">'+tileS("Casting Time",x[4]+(x[9]?" or Ritual":""))+tileH("Range",spRangeH(x[5],o))+tileH("Components",spCompH(x[6],o))+tileS("Duration",(x[8]?"Concentration, ":"")+x[7])+'</div><p class="info-d">'+richP(full)+'</p>';
+  if(o.pg) h+='<p class="bk-f">'+esc(srcPg("PHB-2024",o.pg))+'</p>';
+  return {t:n, h:h}; }
+
+/* ================= v25: SETTINGS AND APPEARANCE (RU38 no. 6, no. 7) =================
+   S.set (optional): enc "off" (weight not tracked), ab "score" (score big, modifier small), spUp 1 (a spell that gains from a higher slot is listed again
+   under each higher slot level). S.frame and S.bdrop (optional): portrait frame and backdrop. Hit Points fixed or rolled stay in the build (B.hpMode). */
+function setOf(k){ return S.set&&S.set[k]!=null?String(S.set[k]):""; }
+function setPut(k,v){ S.set=S.set&&typeof S.set==="object"?S.set:{}; if(v===""||v==null) delete S.set[k]; else S.set[k]=k==="spUp"?1:v; if(!Object.keys(S.set).length) delete S.set; }
+var FRAMES=[["","Plain"],["round","Round"],["double","Double line"],["gilded","Gilded"],["outline","Outline"],["none","No border"]];
+var BDROPS=[["","None"],["dusk","Dusk"],["stars","Night sky"],["parchment","Parchment"],["stone","Stone wall"],["waves","Waves"],["leaves","Woodland"]];
+function setBtn(k,v,label){ var on=setOf(k)===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-set="'+k+':'+v+'" aria-pressed="'+on+'">'+label+'</button>'; }
+function lookBtn(attr,cur,v,label,extra){ var on=(cur||"")===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-'+attr+'="'+v+'" aria-pressed="'+on+'">'+(extra||"")+label+'</button>'; }
+function settingsHTML(){ var h='<h3 class="set-h">Appearance</h3>'+themeHTML();
+  h+='<div class="info-h">Portrait Frame</div><div class="thg">'+FRAMES.map(function(f){ return lookBtn("thf",S.frame,f[0],f[1],'<span class="frsw" data-fr="'+f[0]+'" aria-hidden="true"></span>'); }).join("")+'</div>';
+  h+='<div class="info-h">Backdrop</div><div class="thg">'+BDROPS.map(function(f){ return lookBtn("thd",S.bdrop,f[0],f[1],'<span class="bdsw" data-bd0="'+f[0]+'" aria-hidden="true"></span>'); }).join("")+'</div><p class="info-d">The backdrop sits behind the sheet. It is not printed.</p>';
+  h+='<h3 class="set-h">Rules</h3><div class="info-h">Carrying Capacity</div><div class="thg">'+setBtn("enc","","Track weight")+setBtn("enc","off","Do not track")+'</div><p class="info-d">Your capacity is your Strength score times 15 pounds for a Small or Medium creature (half for Tiny, double for each size above Medium). Powerful Build counts as one size larger. Do not track hides the weight warning in Inventory.</p>';
+  var hm=null; try{ hm=window.__bldHpMode?window.__bldHpMode():null; }catch(er){ hm=null; }
+  h+='<div class="info-h">Hit Points</div>'+(hm?'<div class="thg"><button type="button" class="thb'+(hm!=="roll"?" on":"")+'" data-hpm="avg" aria-pressed="'+(hm!=="roll")+'">Fixed (average)</button><button type="button" class="thb'+(hm==="roll"?" on":"")+'" data-hpm="roll" aria-pressed="'+(hm==="roll")+'">Rolled</button></div><p class="info-d">'+(hm==="roll"?'Enter each roll in the builder. Empty rolls count as the average. <button type="button" class="lk" data-hpgo="1">Enter rolls</button>':'Each level after the first adds the average of your Hit Die plus your Constitution modifier.')+'</p>':'<p class="info-d">This sheet has no build, so its Hit Points are typed in. Change them with Edit.</p>');
+  h+='<h3 class="set-h">Display</h3><div class="info-h">Ability Scores</div><div class="thg">'+setBtn("ab","","Modifier on top")+setBtn("ab","score","Score on top")+'</div>';
+  h+='<div class="info-h">Spells</div><div class="thg">'+setBtn("spUp","","Each spell once")+setBtn("spUp","1","Also at higher slot levels")+'</div><p class="info-d">With higher slot levels on, a spell that gets stronger with a higher slot is listed again under each higher level you have slots for, with its effect at that level.</p>';
+  return h; }
+function applyLook2(){ var R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")]].forEach(function(a){ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); }
+/* carrying capacity by size (PHB 2024 Rules Glossary), Powerful Build one size larger */
+function hasFeatN(n){ return (C.features||[]).some(function(g){ return (g.items||[]).some(function(f){ return f.n===n; }); }); }
+function carryOf(str){ var SIZES=["Tiny","Small","Medium","Large","Huge","Gargantuan"], SIZE_MUL={Tiny:7.5,Small:15,Medium:15,Large:30,Huge:60,Gargantuan:120}, sz=String(C.size||""), s=SIZES.filter(function(z){ return sz.indexOf(z)>=0; })[0]||"Medium", pb=hasFeatN("Powerful Build"), s2=pb?SIZES[Math.min(5,SIZES.indexOf(s)+1)]:s;
+  return {v:SIZE_MUL[s2]*str, m:SIZE_MUL[s2], s:s, pb:pb}; }
+/* spells listed again at higher slot levels */
+function spUpOn(){ return setOf("spUp")==="1"; }
+function spUpMax(){ return ((C.spellcasting||{}).slots||[]).length; }
+function spUpOk(x){ return !!x.l&&!spPact(x)&&!/Long Rest|At will/.test(x.use||"")&&/Higher-Level Spell Slot/.test(x.full||""); }
 
 /* ================= v23: D&D BEYOND LOOK 2 ================= */
 /* RU36 no. 1: source with the printed page, "PHB-2024, pg. 153, Warlock 1" */
@@ -3115,6 +3274,9 @@ var ICO={"cond-blinded":"M2 12c3-4.5 6.5-7 10-7s7 2.5 10 7c-3 4.5-6.5 7-10 7s-7-
 /* ================= v24: ICONS (RU73) ================= */
 /* Every icon is drawn for this app (v24-tests/icons). Decorative icons sit next to a text label, so they carry no title and are hidden from
    screen readers. icoDecorate() adds them to what is drawn, also later (MutationObserver), and marks each element so it runs once */
+/* v25: icons for Manage Spells and Settings, drawn for this app */
+ICO["spellbook"]="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10M11.5 6.5l.8 1.7 1.8.3-1.3 1.3.3 1.8-1.6-.9-1.6.9.3-1.8-1.3-1.3 1.8-.3z";
+ICO["settings"]="M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1";
 function ico(k,cls,label){ var d=ICO[k]; if(!d) return ""; return '<svg class="ico '+(cls||"")+'" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(label?'role="img" aria-label="'+esc(label)+'"><title>'+esc(label)+'</title>':'aria-hidden="true" focusable="false">')+'<path d="'+d+'"/></svg>'; }
 var ICO_FCAT={"Actions":"act-action","Bonus Actions":"act-bonus","Reactions":"act-reaction","Other":"act-free","Limited Use":"act-limited","Class Features":"src-class","Species Traits":"src-species","Feats":"src-feat","Background":"src-background","Creatures":"creature"};
 var ICO_STEP={"class":"step-class",bg:"step-background",species:"step-species",abil:"step-abilities",equip:"step-equipment",next:"step-next"};
@@ -3667,6 +3829,9 @@ $("#pdfBtn").addEventListener("click",function(){
 /* ================= INIT ================= */
 /* v18 RU78: the character list must be readable too, or rEnsure() would start a new one over it */
 (function(){ var r=lsGet(RKEY); if(r!=null){ try{ var p=JSON.parse(r); if(!p||typeof p!=="object"||!p.chars||typeof p.chars!=="object"||Array.isArray(p.chars)) throw new Error("the character list has a shape this version does not know"); }catch(e){ BAD.push("Character list: "+((e&&e.message)||e)); } } })();
+/* v25 RU38 no. 3: Manage Spells button and the search box of the panel */
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-spman]"); if(b){ e.preventDefault(); openSpMan(); } });
+document.addEventListener("input",function(e){ if(e.target&&e.target.id==="spmQ"){ spmQ=e.target.value; spmRefresh(); } });
 if(BAD.length) recover("Saved data",BAD.join(" | ")); else { applyLook();renderAll(true); renderNotes(); syncPortrait(); }
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ moveTabInd(true); });
@@ -5872,6 +6037,14 @@ var DIFFL={name:"Name",species:"Species",size:"Size",cls:"Class",clsLabel:"Class
 window.__bldDiff=function(P){if(!P||!own(P.name))return [];var N=toSheet(),lost=manualLost(P,N),out=[],oth=[],j=function(x){return JSON.stringify(x===undefined?null:x)},jf=function(x){return j((x||[]).filter(function(g){return !/^Species/.test(g.g)}))};/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach(function(k){if(k==="v"||k==="_app")return;if((+P._app||0)>(window.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */var l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?jf(P[k])!==jf(N[k]):j(P[k])!==j(N[k]))oth.push(l)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
 /* v18 RU74: the build was saved in another tab: load it here */
 window.__bldReload=function(){B=loadB();applyPacks();if(!document.getElementById("bld").hidden)render()};
+/* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
+function bldMine(){var st=window.__sheetState&&window.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}
+window.__bldSpInfo=function(){if(!bldMine())return null;var CP=casterParts();if(!CP.length)return null;var SLs=spLists();
+ return {parts:CP.map(function(p){var K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]};return {cls:p.cls,ct:K.ct,pr:K.pr,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()}}),auto:autoSpells().map(function(a){return a.n})}};
+/* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */
+window.__bldSpSet=function(n,cls,on,soft){if(!bldMine())return false;var L=spLists();if(((L[cls]||[]).indexOf(n)>=0)!==!!on)spToggle(n,cls);save();if(soft&&window.__sheetSoft)window.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
+/* v25 RU38 no. 6: Hit Points fixed (average) or rolled, from Settings. m null: read */
+window.__bldHpMode=function(m,soft){if(!bldMine())return null;if(m==null)return B.hpMode==="roll"?"roll":"avg";B.hpMode=m==="roll"?"roll":"avg";save();if(soft&&window.__sheetSoft)window.__sheetSoft(toSheet());return B.hpMode};
 window.__bldHas=function(name,owner){ensureInv();return own(owner)&&B.inv.some(function(x){return x.n===name})};
 /* RL40: the sheet name was edited (Edit form). The saved build of the same character takes the new name */
 window.__bldRename=function(from,to){if(!to||B.name===to||!own(from)||savedRaw()==null)return false;B.name=to;save();return true};
