@@ -1979,6 +1979,24 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 /* v32 p91 */
 .abox.wide small{white-space:nowrap;display:block}
 .abox.wide small > svg.ico{display:none}
+/* v33 p05 */
+#invBody .inote{display:flex;align-items:flex-start;gap:8px;margin:10px 0 0;padding:9px 12px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2,transparent);color:var(--muted);font-size:calc(13px*var(--tz,1));line-height:1.45}
+#invBody .inote svg.ico{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;color:var(--muted)}
+
+/* v33 p07: text size 115 and 130 on wide screens: saves in one column, AC shield below its label */
+@media (min-width:760px){:root[data-tsize="130"] .saves,:root[data-tsize="115"] .saves{grid-template-columns:minmax(0,1fr)}
+ :root[data-tsize="130"] .saves .row,:root[data-tsize="115"] .saves .row{gap:8px}
+ :root[data-tsize="130"] .saves .row .nm,:root[data-tsize="115"] .saves .row .nm{flex:1;min-width:0}}
+:root[data-tsize="130"] .tile.ac svg:not(.ico),:root[data-tsize="115"] .tile.ac svg:not(.ico){inset:auto 0 2px;top:auto;height:calc(100% - 12px*var(--tz,1) - 14px);width:auto;aspect-ratio:76/84}
+:root[data-tsize="130"] .tile.ac .k,:root[data-tsize="115"] .tile.ac .k{white-space:nowrap}
+:root[data-tsize="130"] .tile.ac .v,:root[data-tsize="115"] .tile.ac .v{margin-top:2px}
+:root[data-tsize="130"] .skillcard .row .nm,:root[data-tsize="115"] .skillcard .row .nm{display:flex;align-items:center;gap:4px;min-width:0}
+:root[data-tsize="130"] .skillcard .row .nm>svg,:root[data-tsize="115"] .skillcard .row .nm>svg{flex:0 0 auto}
+:root[data-tsize="130"] .skillcard .row .nm .tx,:root[data-tsize="115"] .skillcard .row .nm .tx{min-width:0;text-align:left}
+/* v33 p09 */
+.fblk{display:block;margin-top:10px}.fblk:first-child{margin-top:0}.fblk.nm>strong:first-child{display:block;margin-bottom:2px}
+.ps-ft .fblk{margin-top:4px}.ps-ft .fblk.nm>strong:first-child{margin-bottom:0}
+.fold:not(.open) .fblk,.fold:not(.open) .fblk.nm>strong:first-child{display:inline;margin:0}.fold:not(.open) .fblk+.fblk::before{content:" "}
 #bld{--bg:#fff;--ink:#12181c;--muted:#6b7378;--line:#d8d8d8;--top:#12181c;--bar:#262e33;--tabs:#33393d;--blue:#1b9af0;--blue-soft:#e6f3fd;--hl:#a7c7ea;--hl-2:#cfe0f4;--th:#22272b;--card:#fbfaf7;--cardline:#e3dfd6;--olive:#7d8a3a;
 --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto Condensed","Arial Narrow",Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){#bld{--bg:#15191c;--ink:#e8eaeb;--muted:#9aa3a8;--line:#30373b;--card:#1d2225;--cardline:#30373b;--blue-soft:#14324a;--hl:#24496e;--hl-2:#1b3754;--th:#0e1113;color-scheme:dark}
@@ -2262,6 +2280,278 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 /* v32 p90 */
 #bld .sbtn[aria-disabled="true"]{opacity:.45}
 #bld .sbtn.rm.unp{grid-column:auto;justify-self:auto;margin:0}
+
+/* v33 p01: builder in the sheet's D&D Beyond look (A10, C13). Other skins keep the older builder look */
+/* base for the new parts (any skin) */
+#bld svg.bi{width:1.1em;height:1.1em;flex:0 0 auto;vertical-align:-.18em}
+#bld .brand b{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+#bld .brand b span,#bld .brand button span:not(.abad){color:inherit;font-size:inherit}
+#bld .bcb svg{display:none}
+#bld .icard.open .schev svg{transform:rotate(180deg)}
+#bld .lvhead,#bld .tosheet{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:44px}
+#bld .bclose{display:inline-grid;place-items:center;width:44px;height:44px;flex:0 0 44px}
+#bld .bclose svg.bi{width:22px;height:22px}
+#bld .st{display:inline-flex;align-items:center;gap:7px;min-height:48px}
+#bld .st svg.bi{width:18px;height:18px}
+#bld .sprog{display:inline-flex;align-items:center;gap:3px;font-size:calc(12px*var(--tz,1));font-weight:700;letter-spacing:0;text-transform:none;line-height:1;padding:3px 6px;border-radius:999px;background:rgba(127,127,127,.18);color:inherit;font-variant-numeric:tabular-nums}
+#bld .sprog.ok{color:#5fbf7a}
+#bld .sprog svg.bi{width:12px;height:12px}
+#bld .foot{gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));justify-content:space-between;align-items:center}
+#bld .foot button{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:auto;min-height:44px;min-width:104px;border-radius:8px;border:1px solid #4a5357;padding:0 16px;font-size:calc(17px*var(--tz,1))}
+#bld .foot button svg.bi{width:20px;height:20px}
+#bld .bhint{display:flex;align-items:flex-start;gap:8px;margin:10px 0;padding:9px 12px;border-radius:8px;background:var(--blue-soft);font-size:calc(14px*var(--tz,1));line-height:1.4}
+#bld .bhint>svg.bi{width:18px;height:18px;margin-top:1px;color:var(--blue)}
+#bld .bhint.warn{background:#fdf4e3;color:#7a5208}#bld .bhint.warn>svg.bi{color:#d9a43a}
+#bld .bhint>span{flex:1;min-width:0}
+#bld .bcoins{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:8px 4px 6px;margin:6px 0 10px;border:1px solid var(--line);border-radius:8px}
+#bld .bcoins .icn{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+#bld .bcoins .icn b{font-size:calc(20px*var(--tz,1));font-weight:700;line-height:1.1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+#bld .bcoins .icn small{font-size:calc(12px*var(--tz,1));font-weight:600;letter-spacing:.04em;color:var(--muted)}
+#bld .bcoins .itot{grid-column:1/-1;text-align:center;font-size:calc(12px*var(--tz,1));color:var(--muted)}
+#bld .itn{display:flex;align-items:center;gap:10px}
+#bld .itn>span{flex:1;min-width:0}
+#bld .itn>svg.bi{width:22px;height:22px;color:var(--muted)}
+#bld .schev{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:48px;font-size:calc(12px*var(--tz,1));font-weight:600}
+#bld .schev .dl{line-height:1}
+#bld .snm b svg.bi{width:18px;height:18px;color:var(--muted)}
+
+/* D&D Beyond skin */
+:root[data-skin="ddb"] #bld{--bg:#0e1215;--ink:#eceff1;--muted:#a3adb5;--line:#2a3137;--top:#12171a;--bar:#12171a;--tabs:#12171a;--blue:#5aa9ff;--blue-soft:rgba(90,169,255,.1);
+ --hl:rgba(214,69,59,.16);--hl-2:rgba(214,69,59,.24);--th:#1d2328;--card:#161b1f;--cardline:#2a3137;--olive:#eceff1;--b-act:#d6453b;--b-act-h:#e0564c;--b-act-soft:rgba(214,69,59,.16);
+ --b-line2:#3a434b;--b-panel2:#1d2328;--b-good:#5fbf7a;--b-warn:#f0b43c;--b-bad:#ef5b4f;--b-info:#5aa9ff;
+ --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto","Helvetica Neue",Arial,sans-serif;color-scheme:dark;background:#0e1215;color:#eceff1}
+:root[data-skin="ddb"] #bld h2,:root[data-skin="ddb"] #bld h3,:root[data-skin="ddb"] #bld h4{color:var(--ink)}
+:root[data-skin="ddb"] #bld .ttl{font-family:var(--f);font-weight:700;text-transform:none;letter-spacing:0;font-size:calc(24px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .ttl.sm{font-size:calc(20px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .sub{color:var(--muted)}
+/* header: one row, three button weights */
+:root[data-skin="ddb"] #bld .top{background:#12171a;border-bottom:1px solid var(--line)}
+:root[data-skin="ddb"] #bld .brand{background:transparent;padding:6px 8px 6px 14px;min-height:56px;gap:8px}
+:root[data-skin="ddb"] #bld .brand b{font-family:var(--f);font-weight:700;font-size:calc(18px*var(--tz,1));letter-spacing:0;color:#fff}
+:root[data-skin="ddb"] #bld .brand b svg.bi{width:22px;height:22px;color:var(--b-act)}
+:root[data-skin="ddb"] #bld .brand>span{color:var(--muted);font-size:calc(13px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .lvhead{margin-left:auto;margin-right:0;background:transparent;border:1px solid var(--b-line2);color:var(--ink);border-radius:var(--r2,8px);padding:0 12px;font-weight:700;font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .lvhead:hover{border-color:#8a959e;background:rgba(255,255,255,.05)}
+:root[data-skin="ddb"] #bld .tosheet{background:var(--b-act);border:1px solid var(--b-act);color:#fff;border-radius:var(--r2,8px);padding:0 14px;font-weight:700;font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .tosheet:hover{background:var(--b-act-h);border-color:var(--b-act-h)}
+:root[data-skin="ddb"] #bld .abad{box-shadow:0 0 0 2px #12171a;background:#fff;color:#b8362c;border-radius:999px}
+:root[data-skin="ddb"] #bld .bclose{color:var(--muted);border-radius:var(--r2,8px);margin-left:0}
+:root[data-skin="ddb"] #bld .bclose:hover{color:#fff;background:rgba(255,255,255,.06)}
+/* steps: icon, name, progress; white bar under the open step like the sheet tabs */
+:root[data-skin="ddb"] #bld .steps{background:#12171a;border-top:1px solid var(--line);padding:0 4px}
+:root[data-skin="ddb"] #bld .st{font-family:var(--f);font-weight:600;font-size:calc(14px*var(--tz,1));letter-spacing:.03em;color:var(--muted);padding:10px 12px 9px;border-bottom:3px solid transparent}
+:root[data-skin="ddb"] #bld .st:hover{color:var(--ink)}
+:root[data-skin="ddb"] #bld .st.on{color:#fff;border-color:#eceff1}
+:root[data-skin="ddb"] #bld .st i{background:var(--b-info);top:6px;right:3px}
+:root[data-skin="ddb"] #bld .st i.r,:root[data-skin="ddb"] #bld .tdot{background:var(--b-bad)}
+:root[data-skin="ddb"] #bld .st i.r{border-radius:0}
+:root[data-skin="ddb"] #bld .sprog{background:var(--b-panel2);color:var(--muted);border:1px solid var(--b-line2)}
+:root[data-skin="ddb"] #bld .sprog.ok{color:var(--b-good);border-color:rgba(95,191,122,.45)}
+:root[data-skin="ddb"] #bld .st.on .sprog{color:var(--ink)}:root[data-skin="ddb"] #bld .st.on .sprog.ok{color:var(--b-good)}
+/* page */
+:root[data-skin="ddb"] #bld main{max-width:820px}
+:root[data-skin="ddb"] #bld .bnm{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .bnm label{font-family:var(--f);font-size:calc(14px*var(--tz,1));font-weight:600;color:var(--muted)}
+:root[data-skin="ddb"] #bld .btx,:root[data-skin="ddb"] #bld .dd{background-color:#0e1215;border:1px solid var(--b-line2);border-radius:var(--r1,4px);color:var(--ink)}
+:root[data-skin="ddb"] #bld .btx:focus,:root[data-skin="ddb"] #bld .dd:focus{outline:2px solid var(--focus,#7cc4ff);outline-offset:1px}
+:root[data-skin="ddb"] #bld .btx::placeholder{color:#7d8891}
+:root[data-skin="ddb"] #bld .lvrow,:root[data-skin="ddb"] #bld .hprow,:root[data-skin="ddb"] #bld .hproll{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .lvrow b,:root[data-skin="ddb"] #bld .clsrow b,:root[data-skin="ddb"] #bld .abx b,:root[data-skin="ddb"] #bld .abx span{font-family:var(--f)}
+:root[data-skin="ddb"] #bld .lvrow b{font-size:calc(22px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .clsrow b{font-size:calc(26px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .bxbtn{color:var(--b-bad);display:inline-grid;place-items:center;width:44px;height:44px;border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .bxbtn:hover{background:rgba(239,91,79,.1)}
+:root[data-skin="ddb"] #bld .subtabs{gap:6px;border-bottom:1px solid var(--line)}
+:root[data-skin="ddb"] #bld .subtabs button{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;font-family:var(--f);font-weight:600;letter-spacing:.03em;color:var(--muted);border-bottom:3px solid transparent}
+:root[data-skin="ddb"] #bld .subtabs .on{color:#fff;border-color:#eceff1}
+/* cards: one neutral edge, no glow (like .card on the sheet) */
+:root[data-skin="ddb"] #bld .acc{background:var(--card);border:1px solid var(--line);border-radius:var(--r2,8px);box-shadow:none}
+:root[data-skin="ddb"] #bld .acc.todo{border-color:rgba(90,169,255,.55);box-shadow:none}
+:root[data-skin="ddb"] #bld .bang{background:var(--b-info);color:#0e1215;width:24px;height:24px;font-size:calc(14px*var(--tz,1));left:-7px;top:-9px}
+:root[data-skin="ddb"] #bld .acc-h{min-height:60px;border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .acc-h:hover{background:rgba(255,255,255,.03)}
+:root[data-skin="ddb"] #bld .acc-t b{font-size:calc(17px*var(--tz,1));font-weight:600;color:#fff}
+:root[data-skin="ddb"] #bld .acc-t small{font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .acc-b{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .acc-b h4{color:var(--muted);font-size:calc(13px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .pick{color:var(--muted);font-size:calc(13px*var(--tz,1))}
+/* choice chips: neutral outline, chosen = solid action red with a check */
+:root[data-skin="ddb"] #bld .chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--b-line2);background:transparent;border-radius:var(--r1,4px);color:var(--ink);font-size:calc(14px*var(--tz,1));font-weight:500}
+:root[data-skin="ddb"] #bld .chip svg.bi{width:16px;height:16px;color:var(--muted)}
+:root[data-skin="ddb"] #bld .chip:not(:disabled):hover{border-color:#8a959e}
+:root[data-skin="ddb"] #bld .chip.on{background:var(--b-act);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .chip.on svg.bi{color:#fff}
+:root[data-skin="ddb"] #bld .chip.have{background:var(--b-panel2);border-color:var(--b-line2);color:var(--muted)}
+:root[data-skin="ddb"] #bld .chip.clash{border-color:rgba(240,180,60,.6);color:#f3d08a;background:rgba(240,180,60,.08)}
+:root[data-skin="ddb"] #bld .chip.clash.on{background:#b07f12;border-color:#b07f12;color:#fff}
+:root[data-skin="ddb"] #bld .chip small{font-size:calc(12px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .wgrp{color:var(--muted);font-size:calc(12px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .caution{background:rgba(240,180,60,.08);border:1px solid rgba(240,180,60,.35);border-left-width:1px;border-radius:var(--r2,8px);color:#f3d08a;font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .picked{border-left:0;padding-left:0}
+:root[data-skin="ddb"] #bld .picked p{border-left:2px solid var(--b-line2);padding-left:10px}
+:root[data-skin="ddb"] #bld .rad{display:flex;align-items:flex-start;gap:10px;min-height:44px;border:1px solid var(--b-line2);border-radius:var(--r2,8px);background:transparent;color:var(--ink)}
+:root[data-skin="ddb"] #bld .rad>svg.bi{width:18px;height:18px;margin-top:2px;color:var(--muted)}
+:root[data-skin="ddb"] #bld .rad.on{border-color:var(--b-act);background:var(--b-act-soft)}
+:root[data-skin="ddb"] #bld .rad.on>svg.bi{color:var(--b-act)}
+:root[data-skin="ddb"] #bld .two label,:root[data-skin="ddb"] #bld .one{color:var(--muted);font-size:calc(13px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .lvup{display:flex;flex-direction:column;align-items:center;gap:2px;border:1px dashed var(--b-line2);color:var(--ink);border-radius:var(--r2,8px);font-size:calc(16px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .lvup:hover{border-color:#8a959e;background:rgba(255,255,255,.03)}
+:root[data-skin="ddb"] #bld .lvup>span{display:inline-flex;align-items:center;gap:6px}
+:root[data-skin="ddb"] #bld .lvup small{color:var(--muted)}
+:root[data-skin="ddb"] #bld .pickrow{display:flex;align-items:center;gap:12px;min-height:56px;background:var(--card);border:1px solid var(--line);border-radius:var(--r2,8px);color:var(--ink)}
+:root[data-skin="ddb"] #bld .pickrow>svg.bi{width:26px;height:26px;color:var(--muted)}
+:root[data-skin="ddb"] #bld .pickrow>span{flex:1;min-width:0;color:var(--ink)}
+:root[data-skin="ddb"] #bld .pickrow:hover{border-color:var(--b-line2)}
+:root[data-skin="ddb"] #bld .pickrow b{font-size:calc(17px*var(--tz,1));font-weight:600}
+:root[data-skin="ddb"] #bld .pickrow span span{color:var(--muted)}
+:root[data-skin="ddb"] #bld .sphead{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .sphead h2{font-family:var(--f);font-weight:700;font-size:calc(28px*var(--tz,1));text-transform:none;letter-spacing:0}
+/* tertiary: text button without a frame */
+:root[data-skin="ddb"] #bld .link,:root[data-skin="ddb"] #bld .lnk{color:var(--ink);text-decoration:underline;text-decoration-color:#7d8891;text-underline-offset:3px}
+:root[data-skin="ddb"] #bld .link{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:600;font-size:calc(15px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .link:hover,:root[data-skin="ddb"] #bld .lnk:hover{text-decoration-color:var(--ink)}
+:root[data-skin="ddb"] #bld .pts{font-size:calc(16px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .pb{border-color:var(--b-line2);border-radius:var(--r1,4px)}
+:root[data-skin="ddb"] #bld .pb button{width:44px;min-height:44px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .calc{font-size:calc(15px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .calc th{background:var(--b-panel2);color:#fff;font-family:var(--f);font-weight:700;letter-spacing:.02em}
+:root[data-skin="ddb"] #bld .calc td{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .calc tr.hl td{background:var(--hl);font-weight:600}
+:root[data-skin="ddb"] #bld .calc tr.hl td:last-child{background:var(--hl-2)}
+/* equipment */
+:root[data-skin="ddb"] #bld .eqh{font-family:var(--f);font-weight:700;font-size:calc(18px*var(--tz,1));text-transform:none;letter-spacing:0}
+:root[data-skin="ddb"] #bld .eqbox{border-color:var(--line);border-radius:var(--r2,8px);background:var(--card)}
+:root[data-skin="ddb"] #bld .eqo{align-items:flex-start;min-height:44px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .bcb{border:0;background:none!important;box-shadow:none!important;display:inline-grid;place-items:center;flex:0 0 26px;margin-top:0}
+:root[data-skin="ddb"] #bld .bcb svg{display:block;width:24px;height:24px;color:var(--muted)}
+:root[data-skin="ddb"] #bld .eqo.on .bcb svg{color:var(--b-act)}
+:root[data-skin="ddb"] #bld .or{border-color:var(--line);color:var(--muted)}
+:root[data-skin="ddb"] #bld .ck input,:root[data-skin="ddb"] #bld .srcrow input{accent-color:var(--b-act)}
+/* stat tiles like .tile on the sheet */
+:root[data-skin="ddb"] #bld .stats div,:root[data-skin="ddb"] #bld .abline div,:root[data-skin="ddb"] #bld .spstat div{background:var(--b-panel2);border:1px solid var(--line);border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .stats b,:root[data-skin="ddb"] #bld .abline b,:root[data-skin="ddb"] #bld .spstat b{color:#fff;font-weight:700}
+:root[data-skin="ddb"] #bld .stats span,:root[data-skin="ddb"] #bld .abline small,:root[data-skin="ddb"] #bld .spstat span{font-size:calc(12px*var(--tz,1));text-transform:none;letter-spacing:.01em;font-weight:600}
+:root[data-skin="ddb"] #bld .abline span{font-size:calc(12px*var(--tz,1))}
+/* notes */
+:root[data-skin="ddb"] #bld .bwarn{background:var(--b-panel2);border:1px solid var(--line);border-left:1px solid var(--line);border-radius:var(--r2,8px);color:var(--ink)}
+:root[data-skin="ddb"] #bld .bhint{background:var(--b-panel2);border:1px solid var(--line);color:var(--muted)}
+:root[data-skin="ddb"] #bld .bhint>svg.bi{color:var(--b-info)}
+:root[data-skin="ddb"] #bld .bhint.warn{background:rgba(240,180,60,.08);border-color:rgba(240,180,60,.35);color:#f3d08a}
+:root[data-skin="ddb"] #bld .bhint.warn>svg.bi{color:var(--b-warn)}
+:root[data-skin="ddb"] #bld .bhint b{color:var(--ink)}:root[data-skin="ddb"] #bld .bhint.warn b{color:#f8e2b0}
+/* primary and secondary full-width buttons */
+:root[data-skin="ddb"] #bld .big{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;background:var(--b-act);color:#fff;border-radius:var(--r2,8px);font-size:calc(16px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .big:hover{background:var(--b-act-h)}
+:root[data-skin="ddb"] #bld .ghost{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:1px solid var(--b-line2);border-radius:var(--r2,8px);color:var(--ink);font-weight:600}
+:root[data-skin="ddb"] #bld .ghost:hover{border-color:#8a959e}
+:root[data-skin="ddb"] #bld .skip{display:inline-flex;align-items:center;gap:6px;min-height:44px;background:transparent;border:1px solid rgba(239,91,79,.55);color:#ff8a80;font-size:calc(13px*var(--tz,1));border-radius:var(--r2,8px);padding:0 14px}
+:root[data-skin="ddb"] #bld .skip:hover{background:rgba(239,91,79,.1)}
+:root[data-skin="ddb"] #bld .sech2h{background:var(--b-panel2);border:1px solid var(--line);border-left:1px solid var(--line);border-radius:var(--r2,8px);min-height:48px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .sech2h b{font-size:calc(15px*var(--tz,1));font-weight:700;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px}
+:root[data-skin="ddb"] #bld .sech2h span{color:var(--muted)}
+:root[data-skin="ddb"] #bld .sech{background:var(--b-panel2);border:1px solid var(--line);border-left:1px solid var(--line);border-radius:var(--r2,8px);font-size:calc(16px*var(--tz,1));font-weight:700;letter-spacing:.01em;padding:12px 14px;display:flex;align-items:center;gap:8px}
+:root[data-skin="ddb"] #bld .sech span{font-weight:400}
+/* item rows */
+:root[data-skin="ddb"] #bld .icard{background:var(--card);border:1px solid var(--line);border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .ih{padding:4px 4px 4px 10px;min-height:56px}
+:root[data-skin="ddb"] #bld .itn{min-height:44px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .itn b{font-weight:600}
+:root[data-skin="ddb"] #bld .itn small{font-size:calc(12.5px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .bdg{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:0 12px;border:1px solid var(--b-line2);background:transparent;color:var(--ink);border-radius:var(--r2,8px);font-size:calc(13px*var(--tz,1));font-weight:700;text-transform:none;letter-spacing:.01em}
+:root[data-skin="ddb"] #bld .bdg svg.bi{width:16px;height:16px}
+:root[data-skin="ddb"] #bld .bdg:hover{border-color:#8a959e}
+:root[data-skin="ddb"] #bld .bdg.on{background:var(--b-act-soft);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .bdg.add{background:transparent;border-color:var(--b-line2);color:var(--ink)}
+:root[data-skin="ddb"] #bld .bdg.add svg.bi{color:var(--b-good)}
+:root[data-skin="ddb"] #bld .bdg.pri{background:var(--b-act);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .bdg.pri svg.bi{color:#fff}
+:root[data-skin="ddb"] #bld .qty{font-size:calc(16px*var(--tz,1));padding:0 6px}
+:root[data-skin="ddb"] #bld .qty small{font-size:calc(12px*var(--tz,1));color:var(--muted)}
+:root[data-skin="ddb"] #bld .idet{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .idet .rule{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .vb{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 12px;border:1px solid var(--b-line2);border-radius:var(--r1,4px);background:transparent;font-size:calc(13px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .vb.on{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px currentColor;border-color:currentColor}
+:root[data-skin="ddb"] #bld .custom{border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--card)}
+:root[data-skin="ddb"] #bld .iact{font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .step2{border-color:var(--b-line2);border-radius:var(--r1,4px)}
+:root[data-skin="ddb"] #bld .step2 button{width:44px;height:44px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .rmv{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#ff8a80;font-size:calc(13px*var(--tz,1));font-weight:600;padding:0 8px}
+:root[data-skin="ddb"] #bld .lvbox{gap:6px}
+:root[data-skin="ddb"] #bld .lvb{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid var(--b-line2);color:var(--ink);border-radius:var(--r1,4px);min-height:44px;height:auto;font-weight:600;background:transparent}
+:root[data-skin="ddb"] #bld .lvb.on{background:#fff;border-color:#fff;color:#111}
+:root[data-skin="ddb"] #bld .lvb.sm{font-size:calc(13px*var(--tz,1));height:auto;min-height:44px;padding:0 12px}
+:root[data-skin="ddb"] #bld .lvb sup{font-size:calc(12px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .flab{font-size:calc(15px*var(--tz,1));font-weight:700;color:var(--ink)}
+:root[data-skin="ddb"] #bld .shop{border-color:var(--line)}
+:root[data-skin="ddb"] #bld .srcrow{border-color:var(--line);min-height:44px}
+:root[data-skin="ddb"] #bld .srcrow small{color:var(--muted)}
+:root[data-skin="ddb"] #bld .sph{font-family:var(--f);font-weight:700;font-size:calc(15px*var(--tz,1));letter-spacing:.04em;border-color:var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* spell rows */
+:root[data-skin="ddb"] #bld .scard{background:var(--card);border:1px solid var(--line);border-radius:var(--r2,8px);box-shadow:none}
+:root[data-skin="ddb"] #bld .sh{min-height:56px;color:var(--ink)}
+:root[data-skin="ddb"] #bld .snm b{font-size:calc(17px*var(--tz,1));font-style:normal;font-weight:600}
+:root[data-skin="ddb"] #bld .snm small{font-size:calc(13px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .cd{width:18px;height:18px;font-size:calc(12px*var(--tz,1));font-weight:700;background:transparent;color:var(--ink);border:1.5px solid var(--ink);transform:none;border-radius:var(--r1,4px)}
+:root[data-skin="ddb"] #bld .cd.r{background:transparent;color:var(--b-info);border-color:var(--b-info)}
+:root[data-skin="ddb"] #bld .bsv small{font-size:calc(12px*var(--tz,1));color:var(--muted)}
+:root[data-skin="ddb"] #bld .bsv b{font-size:calc(22px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .schev{color:var(--muted);border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .schev:hover{color:var(--ink);background:rgba(255,255,255,.04)}
+:root[data-skin="ddb"] #bld .sbtn{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:0 12px;border:1px solid var(--b-line2);color:var(--ink);background:transparent;border-radius:var(--r2,8px);font-size:calc(13px*var(--tz,1));font-weight:700;text-transform:none}
+:root[data-skin="ddb"] #bld .sbtn svg.bi{width:16px;height:16px}
+:root[data-skin="ddb"] #bld .sbtn:not(:disabled):hover{border-color:#8a959e;color:#fff}
+:root[data-skin="ddb"] #bld .sbtn.on{background:var(--b-act);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .sbtn.rm{border-color:rgba(239,91,79,.55);color:#ff8a80}
+:root[data-skin="ddb"] #bld .sdet{background:transparent;border-color:var(--line);font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .sdet b{font-size:calc(12px*var(--tz,1));color:var(--muted)}
+:root[data-skin="ddb"] #bld .cnt{font-size:calc(16px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .cnt.short em{color:var(--b-bad)}
+:root[data-skin="ddb"] #bld .slots{color:var(--muted)}
+/* footer: Prev secondary, Next primary, 44 px */
+:root[data-skin="ddb"] #bld .foot{background:#12171a;border-top:1px solid var(--line)}
+:root[data-skin="ddb"] #bld .foot button{font-family:var(--f);font-weight:700;font-size:calc(16px*var(--tz,1));letter-spacing:.02em;color:var(--ink);border:1px solid var(--b-line2);background:transparent;border-left-width:1px}
+:root[data-skin="ddb"] #bld .foot #next{background:var(--b-act);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .foot #next:not(:disabled):hover{background:var(--b-act-h)}
+:root[data-skin="ddb"] #bld .foot #prev:not(:disabled):hover{border-color:#8a959e}
+:root[data-skin="ddb"] #bld .foot button:disabled{opacity:.4}
+/* dialogs and toast like the sheet popups */
+:root[data-skin="ddb"] #bld .exp{background:rgba(0,0,0,.6)}
+:root[data-skin="ddb"] #bld .expb{background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:var(--r2,8px) var(--r2,8px) 0 0;color:var(--ink)}
+:root[data-skin="ddb"] #bld .expb textarea{background:#0e1215;border-color:var(--b-line2);color:var(--ink);font-size:calc(12px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .row button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1px solid var(--b-line2);background:transparent;color:var(--ink);border-radius:var(--r2,8px)}
+:root[data-skin="ddb"] #bld .row .pri{background:var(--b-act);border-color:var(--b-act);color:#fff}
+:root[data-skin="ddb"] #bld .btoast{background:var(--b-panel2);border:1px solid var(--b-line2);color:var(--ink);border-radius:var(--r2,8px);box-shadow:0 6px 18px rgba(0,0,0,.35);bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+/* homebrew and quick build panels */
+:root[data-skin="ddb"] #bld .hbmk,:root[data-skin="ddb"] #bld .qb{border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--card)}
+:root[data-skin="ddb"] #bld .qb .ttl{margin-top:0;font-size:calc(20px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .hbrow{border-color:var(--line)}:root[data-skin="ddb"] #bld .hbrow small{color:var(--muted)}
+:root[data-skin="ddb"] #bld .hbf>span,:root[data-skin="ddb"] #bld .qb label{color:var(--muted)}
+:root[data-skin="ddb"] #bld .icard.isub{border-left:2px solid var(--b-line2)}
+:root[data-skin="ddb"] #bld .mcblk{border-top:1px solid var(--b-line2)}
+:root[data-skin="ddb"] #bld .r-rare{color:#5aa9ff!important}
+@media (max-width:480px){:root[data-skin="ddb"] #bld .brand{padding-left:12px}}
+@media (max-width:420px){#bld .brand b .bt1,#bld .tosheet .bt2{display:none}#bld .brand{gap:6px}}
+@media (max-width:374px){#bld .brand b .bt0{display:none}#bld .lvhead{padding:0 10px}}
+@media (max-width:480px){:root[data-tsize="130"] #bld .brand b .bt0,:root[data-tsize="115"] #bld .brand b .bt0{display:none}}
+@media (max-width:374px){:root[data-tsize="130"] #bld .lvhead{padding:0 8px}:root[data-tsize="130"] #bld .tosheet{padding:0 10px}}
+
+/* v33 p06: builder audit (44 px targets, icons, contrast) */
+:root[data-skin="ddb"] #bld .srcrow input,:root[data-skin="ddb"] #bld .ck input,:root[data-skin="ddb"] #bld .hbck input,:root[data-skin="ddb"] #bld .hbab input[type=checkbox]{-webkit-appearance:none;appearance:none;width:44px;height:44px;flex:0 0 44px;margin:-10px -8px -10px -11px;border:0;border-radius:var(--r1,4px);background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3.5' y='3.5' width='17' height='17' rx='3' fill='none' stroke='%23a3adb5' stroke-width='1.8'/%3E%3C/svg%3E") center/24px 24px no-repeat;cursor:pointer;accent-color:auto}
+:root[data-skin="ddb"] #bld .srcrow input:checked,:root[data-skin="ddb"] #bld .ck input:checked,:root[data-skin="ddb"] #bld .hbck input:checked,:root[data-skin="ddb"] #bld .hbab input[type=checkbox]:checked{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='18' height='18' rx='3' fill='%23d6453b'/%3E%3Cpath d='M7.5 12.5l3 3 6-6.5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+:root[data-skin="ddb"] #bld .srcrow input:disabled,:root[data-skin="ddb"] #bld .ck input:disabled{opacity:.55;cursor:default}
+:root[data-skin="ddb"] #bld .srcrow input:focus-visible,:root[data-skin="ddb"] #bld .ck input:focus-visible,:root[data-skin="ddb"] #bld .hbck input:focus-visible{outline:2px solid var(--focus,#7cc4ff);outline-offset:-8px}
+:root[data-skin="ddb"] #bld .srcrow{align-items:center}
+:root[data-skin="ddb"] #bld .ck{min-height:44px}
+:root[data-skin="ddb"] #bld .sh>svg.bi{width:22px;height:22px;color:var(--muted)}
+#bld .sh>svg.bi{flex:0 0 auto}
+:root[data-skin="ddb"] #bld .r-veryrare{color:#bd86ec!important}
+:root[data-skin="ddb"] #bld .r-artifact{color:#f0756d!important}
+:root[data-skin="ddb"] #bld .vb.r-veryrare,:root[data-skin="ddb"] #bld .vb.r-artifact{border-color:var(--b-line2)}
+:root[data-skin="ddb"] #bld .sech2h b{white-space:nowrap;font-size:calc(14px*var(--tz,1))}
+:root[data-skin="ddb"] #bld .sech2h span{text-align:right;font-size:calc(13px*var(--tz,1))}
+#bld .foot{padding-left:max(12px,calc((100% - 820px)/2 + 16px));padding-right:max(12px,calc((100% - 820px)/2 + 16px))}
+:root[data-skin="ddb"] #bld .bxbtn[data-chgcls]{color:var(--muted)}
+:root[data-skin="ddb"] #bld .bxbtn[data-chgcls]:hover{color:var(--ink);background:rgba(255,255,255,.05)}
 #homeV{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--paper);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}#homeV[hidden]{display:none}.hwrap{max-width:1100px;margin:0 auto;padding:22px 16px 40px}.hhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.hhead h1{margin:0;font-family:var(--f-display,inherit);font-size:calc(34px*var(--tz,1));font-weight:900;letter-spacing:-.01em;font-variation-settings:'wdth' 75}.hcreate{background:#2b3238;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:12px 18px;border-radius:4px;font-size:calc(15px*var(--tz,1))}.hslots{font-size:calc(20px*var(--tz,1));margin:10px 0 14px}.hslots b{color:#1b9af0;font-weight:500}.hbar{display:flex;gap:10px;background:var(--panel-2);padding:12px;border-radius:4px;margin-bottom:18px;flex-wrap:wrap}.hsearch{flex:1 1 260px}.hsort{flex:0 0 190px}.hbar label{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 12px 6px}.hbar label span{font-size:calc(12px*var(--tz,1));color:var(--muted)}.hbar input,.hbar select{border:0;background:transparent;font-size:calc(16px*var(--tz,1));padding:4px 0;color:var(--ink);width:100%}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}.hcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}.hcard-top{position:relative;min-height:136px;display:flex;align-items:center;gap:12px;padding:22px 20px 34px;color:#fff;overflow:hidden}.hwm{position:absolute;right:-30px;top:-30px;width:190px;height:190px;opacity:.13;background:center/contain no-repeat}.hpor{position:relative;flex:none;width:68px;height:68px;border-radius:6px;background:rgba(255,255,255,.12) center/cover no-repeat;display:grid;place-items:center;border:2px solid rgba(255,255,255,.55);color:#fff}.hpor svg{width:38px;height:38px}.hname{position:relative;min-width:0}.hname b{display:block;font-size:calc(28px*var(--tz,1));font-weight:600;line-height:1.1}.hname span{display:block;font-size:calc(13.5px*var(--tz,1));opacity:.85;margin-top:4px}.hcamp{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);padding:7px 20px;font-size:calc(13px*var(--tz,1));font-weight:700}.hcamp i{font-style:normal;color:#7cc4ff;font-weight:500}.hact{display:grid;grid-template-columns:repeat(3,1fr)}.hact button{padding:16px 6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:calc(15px*var(--tz,1));color:var(--ink)}.hact .del{color:#e2701d}.hempty{color:var(--muted)}
 .rrow{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--panel)}.rrow.on{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp-soft)}.rrow>div{flex:1;min-width:0}.rrow b{display:block;font-size:calc(16px*var(--tz,1))}.rrow span{font-size:calc(12.5px*var(--tz,1));color:var(--muted)}.rrow .bb{height:34px;padding:0 10px;font-size:calc(12.5px*var(--tz,1));font-weight:700;color:var(--ink);border:1px solid var(--line)}.rrow .rdel{color:var(--bad)}.rnew{width:100%;margin-top:6px}
 
@@ -2331,6 +2621,9 @@ button.hcamp:hover{background:rgba(0,0,0,.7)}button.hcamp.on{background:rgba(0,0
 /* v32 p92 */
 button.hunsv{border:0;cursor:pointer;min-height:32px;font:inherit;font-size:12px;font-weight:700}
 .hunsv-x{font-size:13px;line-height:1.45;margin:6px 0 10px;color:var(--ink-2,#c9d1d6)}
+
+/* v33 p10 */
+.chfopt{display:grid;gap:8px;margin:10px 0}.chfopt select{min-height:44px}.chfauto{display:flex;gap:10px;align-items:center;min-height:44px}
 </style>
 </head>
 <body>
@@ -2781,7 +3074,7 @@ function snSetH(){ var id=MYID||(rGet()||{}).active, L=(snGet().chars[id]||[]);
    RL47: every saved key carries _app, the highest app version that wrote it. Fields this version does not know are kept as they are.
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
-var APP_VER=32, APP_DATE="2026-10-18", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=33, APP_DATE="2026-10-18", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -3005,7 +3298,11 @@ function derive(){
   if(S.hp==null || S.hp>D.hpmax) S.hp=Math.min(S.hp==null?D.hpmax:S.hp, D.hpmax);
 }
 /* full texts: bold labels start a new line */
-function richP(t){ return rich(t).replace(/ <strong>/g,"<br><strong>"); }
+/* v33 p09: entries "**Name.** text" each in its own block (name on its own line, text below, space between). Also splits old saved text joined with spaces */
+function fBlkT(t){ return String(t==null?"":t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Still open\.)([^*\n]{1,80}?\.)\*\* /g,"$1\n\n**$2** "); }
+function richB(t){ var parts=fBlkT(t).split(/\n\s*\n/).filter(function(p){ return p.trim(); }); if(parts.length<2) return rich(t).replace(/ <strong>([^<]{1,60}:)<\/strong>/g,"<br><strong>$1</strong>");
+  return parts.map(function(p){ var h=rich(p.trim()).replace(/ <strong>([^<]{1,60}:)<\/strong>/g,"<br><strong>$1</strong>"), m=/^<strong>([^<]{1,80}\.)<\/strong>\s*/.exec(h); return '<span class="fblk'+(m&&!/^(Your choice|Still open)\.$/.test(m[1])?" nm":"")+'">'+h+'</span>'; }).join(""); }
+function richP(t){ var b=richB(t); return /class="fblk/.test(b)?b:rich(t).replace(/ <strong>/g,"<br><strong>"); }
 function fill(t){ return String(t||"").replace(/\{dc\}/g,D.dc).replace(/\{level\}/g,D.level).replace(/\{pb\}/g,sg(D.pb)).replace(/\{unarmed\}/g, (D.atk[0]?D.atk[0].dmg:"")); }
 
 /* ================= THEME ================= */
@@ -3230,7 +3527,7 @@ function renderInv(){
       body+='<button type="button" class="ieq ict" data-ctog="'+esc(ck)+'" aria-expanded="'+op+'" aria-label="'+esc(cuNm("i:"+ck,c.n))+', '+inner.length+' item'+(inner.length>1?'s':'')+', '+(op?'close':'open')+'"><b>'+esc(cuNm("i:"+ck,c.n))+'</b><span class="ictn">'+inner.length+' item'+(inner.length>1?'s':'')+'</span><span class="ictw'+(cap&&ld>cap?' over':'')+'">'+fmtW(ld)+(cap?' / '+cap:'')+' lb.'+(ct[2]!=null?' \u2022 counts as '+fmtW(ct[2])+' lb.':'')+'</span>'+CHEV+'</button>'+(cap&&ld>cap?'<div class="caution">\u26a0 Over capacity. This container holds up to '+cap+' lb.</div>':'')+(op?sh.map(function(p){return row(p[0],p[1],1)}).join(""):''); });
   }
   if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+ico("tab-inventory","es-i")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
-  $("#invBody").innerHTML=head+fil+attH+body+(C.equipNote?'<p class="next" style="margin:8px 0 0">'+esc(C.equipNote)+'</p>':'');
+  $("#invBody").innerHTML=head+fil+attH+body+(C.equipNote?'<p class="next inote">'+ico("item-gear")+'<span>'+esc(C.equipNote).replace(/\. (?=[A-Z])/g,".<br>")+'</span></p>':'')/* v33 p05 (F2) */;
 }
 var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 var featQ="",featF="all";
@@ -3500,7 +3797,7 @@ function infoHTML(spec){
   if(type==="f"){
     var ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
-    h=meta(gr.g,srcPg(f.s,pgGuess(gr,f)))+'<p class="info-d">'+fch(featNums(rich(fill(f.d)),clsOfG(gr.g)))+'</p>'+featSpL(gr,f)+(f.full?'<details class="info-more"><summary>Full description</summary><p class="info-d">'+fch(featNums(richP(fill(f.full)),clsOfG(gr.g)))+'</p></details>':'');/* v23 */
+    h=meta(gr.g,srcPg(f.s,pgGuess(gr,f)))+'<p class="info-d">'+fch(featNums(richB(fill(f.d)),clsOfG(gr.g)))+'</p>'+featSpL(gr,f)+(f.full?'<details class="info-more"><summary>Full description</summary><p class="info-d">'+fch(featNums(richP(fill(f.full)),clsOfG(gr.g)))+'</p></details>':'');/* v23 */
     var rl=resOf(f.n);
     if(rl.length){ var r=rl[0]; h+='<div class="info-h">Uses</div><div class="info-k">'+tileS("Left",(r.max-used(r.k,r.max))+" of "+r.max)+tileS("Recovers",{short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r.reset]||"")+'</div>'; }
     h+=tmpFeatH(f);/* v21 RU55 */
@@ -3562,6 +3859,19 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape" && sheet.cl
   });
   function end(){ if(!dragging) return; dragging=false; sheet.classList.remove("drag"); var projected=dy+vel*180; shDragEnd(dy,vel,projected > sheet.offsetHeight*.35); }/* v31 p14: the finger speed goes into the spring */
   head.addEventListener("pointerup",end); head.addEventListener("pointercancel",end);
+})();
+/* v33 p08: pull down from the content to close, on phones, when the content is at its top */
+(function(){ var body=$("#sheetBody"), y0=0, x0=0, dy=0, lastY=0, lastT=0, vel=0, st=0;/* st: 0 idle, 1 armed, 2 pulling, -1 scrolling */
+  if(!body) return;
+  function scroller(t){ for(var e=t; e&&e!==body; e=e.parentElement){ if(e.scrollHeight>e.clientHeight+1){ var o=getComputedStyle(e).overflowY; if(o==="auto"||o==="scroll") return e; } } return body; }
+  body.addEventListener("touchstart",function(e){ st=-1; if(!mq.matches||e.touches.length!==1||!sheet.classList.contains("on")) return; var t=e.target;
+    if(t.closest&&t.closest("input,textarea,select,[contenteditable=true],.dragh")) return; var sc=scroller(t); if(sc.scrollTop>0||body.scrollTop>0) return;
+    y0=lastY=e.touches[0].clientY; x0=e.touches[0].clientX; lastT=performance.now(); dy=0; vel=0; st=1; },{passive:true});
+  body.addEventListener("touchmove",function(e){ if(st<1) return; var t=e.touches[0], ddy=t.clientY-y0, ddx=t.clientX-x0;
+    if(st===1){ if(Math.abs(ddx)>8&&Math.abs(ddx)>Math.abs(ddy)){ st=-1; return; } if(ddy<-4){ st=-1; return; } if(ddy<10) return; st=2; sheet.classList.add("drag"); y0=t.clientY; }
+    if(e.cancelable) e.preventDefault(); var now=performance.now(); dy=Math.max(0,t.clientY-y0); vel=(t.clientY-lastY)/Math.max(1,now-lastT); lastY=t.clientY; lastT=now; sheet.style.transform="translateY("+dy+"px)"; },{passive:false});
+  function end(){ if(st===2){ sheet.classList.remove("drag"); shDragEnd(dy,vel,dy+vel*180>sheet.offsetHeight*.35); } st=0; }
+  body.addEventListener("touchend",end); body.addEventListener("touchcancel",end);
 })();
 
 /* ================= EDITOR ================= */
@@ -3707,7 +4017,7 @@ function homeCards(noSnap){var r=noSnap?rEnsure():rSnap(rEnsure()),list=Object.k
  list.sort(function(a,b){if(homeSort==="name")return a.name.localeCompare(b.name);if(homeSort==="level")return b.level-a.level;if(homeSort==="newest")return b.created-a.created;return a.created-b.created});
  return list.map(function(x){var p=PALS[x.color]||PALS.forest;var bg='background:linear-gradient(90deg,'+p[1]+' 0%,'+p[2]+' 100%)';
   var line=x.label?("Level "+x.level+" | "+x.species+" | "+x.label):("Level "+x.level+" | "+x.species+" | "+x.cls+(x.sub?"/"+x.sub:""));
-  var fm=fileMark(x.id),uns=fm&&fm.h!==rawHash(chRaw(x.id,r));
+  var fm=fileMark(x.id),uns=fileStale(fm,!!fm&&fm.h!==rawHash(chRaw(x.id,r)));/* v33 p10 */
   return '<div class="hcard"><div class="hcard-top" style="'+bg+'"><span class="hwm" style="background-image:'+dataUri(x.sym,"#ffffff",.9)+'"></span><span class="hpor'+(x.por?' has':'')+'" style="'+(x.por?'background-image:url('+x.por+')':'')+'">'+(x.por?'':homeSil(x))+'</span><div class="hname"><b>'+esc(x.name)+'</b><span>'+esc(line)+'</span>'+(uns?'<button type="button" class="hunsv" data-hfile="'+x.id+'" aria-label="File out of date. Open the file options">File out of date</button>':'')/* v32 p92 */+'</div>'+(x.camp?'<button type="button" class="hcamp'+(homeCamp===x.camp?' on':'')+'" data-hcampf="'+esc(x.camp)+'" aria-pressed="'+(homeCamp===x.camp)+'" aria-label="'+(homeCamp===x.camp?'Show all campaigns':'Show only the campaign '+esc(x.camp))+'">'+((typeof ICO==="object"&&ICO)?ico("ui-flag","hcamp-i"):'')+'Campaign: <i>'+esc(x.camp)+'</i>'+((typeof ICO==="object"&&ICO)?ico(homeCamp===x.camp?"ui-close":"ui-filter","hcamp-f"):'')+'</button>':'')+'</div><div class="hact"><button type="button" data-hview="'+x.id+'">View</button><button type="button" data-hedit="'+x.id+'">Edit</button><button type="button" data-hfile="'+x.id+'">File</button><button type="button" class="del" data-hdel="'+x.id+'">Delete</button></div></div>'}).join("")||'<p class="hempty">No characters match your search.</p>'}
 function showHome(){var w=document.getElementById("homeV");if(!w){w=document.createElement("div");w.id="homeV";document.body.appendChild(w);
   w.addEventListener("input",function(e){if(e.target.id==="homeQ"){homeQ=e.target.value;document.getElementById("hgrid").innerHTML=homeCards()}});
@@ -3790,7 +4100,13 @@ function chRaw(id,r){ r=r||rGet()||{chars:{}}; if(id===r.active&&!FROZEN) return
 function uiGet(k){ try{ return JSON.parse(localStorage.getItem(k)||"null")||{}; }catch(e){ return {}; } }
 function uiSet(k,o){ try{ localStorage.setItem(k,JSON.stringify(o)); }catch(e){} }
 function fileMark(id){ return uiGet("cs-ui-files")[id]||null; }
-function updUnsaved(){ var r=rGet(); if(!r||!r.chars||!r.active) return; var fm=fileMark(r.active), on=!!fm&&fm.h!==rawHash(curRaw()), b=document.getElementById("rosterBtn");
+/* v33 p10: the file mark is a reminder, not a duty. Days 0 = off */
+function remindCfg(){ var o=uiGet("cs-ui-remind"); return {days:o.days==null?7:+o.days, auto:!!o.auto}; }
+function fileStale(fm,changed){ var c=remindCfg(); return !!fm&&changed&&c.days>0&&(Date.now()-fm.t)>c.days*864e5; }
+function fileAgo(fm){ var d=Math.floor((Date.now()-fm.t)/864e5); return d<1?"today":d===1?"1 day ago":d+" days ago"; }
+var autoFT=null;
+function updUnsaved(){ var r=rGet(); if(!r||!r.chars||!r.active) return; var fm=fileMark(r.active), ch=!!fm&&fm.h!==rawHash(curRaw()), on=fileStale(fm,ch), b=document.getElementById("rosterBtn");
+  if(ch&&remindCfg().auto&&typeof FH!=="undefined"&&FH[r.active]){ var aid=r.active; clearTimeout(autoFT); autoFT=setTimeout(function(){ if(FH[aid]) chSave(aid); },2500); }/* v33 p10 */
   if(b){ b.classList.toggle("unsv",on); b.setAttribute("aria-label",on?"My characters. The character file is out of date":"My characters"); if(on) b.title="Changed since the last Save Character. Saved on this device"; else b.removeAttribute("title"); } }
 function fmtT(t){ var d=new Date(t), p=function(x){return (x<10?"0":"")+x}; return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes()); }
 function dlFile(txt,nm,cb){ try{ var bl=new Blob([txt],{type:/\.bs$/.test(nm)?"application/octet-stream":"application/json"}), u=URL.createObjectURL(bl), l=document.createElement("a"); l.href=u; l.download=nm; document.body.appendChild(l); l.click(); l.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); cb(true); }catch(e){ cb(false); } }
@@ -3855,10 +4171,12 @@ function chSave2(id,o,txt){ var nm=chName(o);
     hp.then(function(h){ FH[id]=h; return h.createWritable().then(function(w){ return w.write(txt).then(function(){ return w.close(); }); }).then(function(){ mark("Saved to "+h.name); }); }).catch(function(e){ if(e&&e.name==="AbortError") return; delete FH[id]; dl(); }); return; }
   dl(); }
 function chfOpen(id){ var r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) return; var old=document.getElementById("chf"); if(old) old.remove(); var w=document.createElement("div"); w.id="chf"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","chfT");
-  var fm=fileMark(id), uns=fm&&fm.h!==rawHash(chRaw(id,r)), L=snGet().chars[id]||[];
+  var fm=fileMark(id), chg=!!fm&&fm.h!==rawHash(chRaw(id,r)), uns=fileStale(fm,chg), rc=remindCfg(), L=snGet().chars[id]||[];/* v33 p10 */
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="chfT">'+esc(c.name||"Character")+'</b><button type="button" class="bkpx" data-chf="close" aria-label="Close">×</button></div>'+
    '<p>Save this character in its own file (.bs). The text inside is packed, so other apps cannot open it directly. Open Character on any device adds it back, next to the characters already there.</p>'+
-   '<p class="muted">Last saved to a file: <b>'+(fm?fmtT(fm.t):'never')+'</b>'+(uns?' <span class="hunsv">File out of date</span>':'')+'</p>'+(uns?'<p class="hunsv-x">This character changed after you last saved it to a file. Your progress is still kept on this device automatically. Press Save Character to update the file, and the mark goes away.</p>':'')+
+   '<p class="muted">Last saved to a file: <b>'+(fm?fmtT(fm.t):'never')+'</b>'+(uns?' <span class="hunsv">File out of date</span>':'')+'</p>'+(uns?'<p class="hunsv-x">Your last file backup was '+fileAgo(fm)+' and the character changed since. Your progress is kept on this device automatically. Press Save Character to refresh the backup file.</p>':(chg?'<p class="muted">Changed since the last file save. Your progress is kept on this device automatically, so this is only a backup reminder.</p>':''))+
+   '<div class="chfopt"><label for="chfRem">Backup reminder</label><select id="chfRem" data-chfrem="1"><option value="7"'+(rc.days===7?' selected':'')+'>After 7 days</option><option value="30"'+(rc.days===30?' selected':'')+'>After 30 days</option><option value="0"'+(rc.days===0?' selected':'')+'>Off</option></select>'+
+   ((window.showSaveFilePicker&&!/Mobi|Android/i.test(navigator.userAgent))?'<label class="chfauto"><input type="checkbox" data-chfauto="1"'+(rc.auto?' checked':'')+'> Keep this file updated automatically (after you save it once in this window)</label>':'')+'</div>'+
    '<div class="bkpr"><button type="button" class="btn pri press" data-chf="save">Save Character</button><button type="button" class="btn press" data-chf="text">Show as Text</button></div>'+
    '<div class="bkpt" hidden><textarea id="chfTxt" readonly spellcheck="false">Packing...</textarea><div class="bkpr"><button type="button" class="btn press" data-chf="copy">Copy Text</button></div></div>'+
    '<h4 class="chfh">Other Apps</h4><p class="muted">A basic file for Foundry VTT (dnd5e system): ability scores, saves, skills, Hit Points, Armor Class, Speed, coins, class levels, and the names of items, spells, and features. In Foundry, right-click a character and choose Import Data.</p><div class="bkpr"><button type="button" class="btn press" data-chf="foundry">Export for Foundry VTT</button></div>'+
@@ -3920,7 +4238,7 @@ function impChar(o){ var err=chCheck(o); if(err){ toast(err); return; }
     ask(nm+" is already on this device. Replace it with the file (saved "+(o.saved?fmtT(Date.parse(o.saved)):"at an unknown date")+"), or add the file as another character? A snapshot of the current one is kept before replacing.","Replace",function(){ go(id,true); },["Add as New",function(){ go(newId(r),false); }]); return; }
   go(id,false); }
 /* RU59: version and what changed */
-var WHATSNEW=[{v:32,d:"2026-10-18",n:["The builder now asks for every tool you choose: background Gaming Sets, Musical Instruments, and Artisan's Tools, Bard and Monk tools, and the Crafter, Musician, and Skilled feats. Your sheet lists the tools by name.","New choices from the Player's Handbook: Student of War, College of Lore skills and Magical Discoveries, Hunter's Prey, Defensive Tactics, Primal Companion, Aspect of the Wilds, Iron Mind, Fiendish Resilience, Wild Shape forms, and the Wizard spellbook with Savant, Spell Mastery, and Signature Spells.","Feats with a choice now ask for it: Keen Mind, Observant, Skill Expert, Weapon Master, Ritual Caster, Boon of Skill, Boon of Energy Resistance, and Lessons of the First Ones.","A second class gets its own Weapon Mastery, Primal Knowledge skill, Blessed or Druidic Warrior cantrips, Pact of the Tome, and Thaumaturge or Magician cantrip. Choices from a second class show in that class's section.","The Build button shows a dot while your build still has open choices.","Warrior of Mercy, Assassin, Chef, Poisoner, and Boon of Skill proficiencies now reach your sheet. An Illusionist knows Minor Illusion.","Equipment packs open into their Backpack or Chest with every item inside, each with its own Qty and weight. An older pack row has Unpack in its popup, with Undo.","Container sections in Inventory open and close, and a container's popup lists what is inside. Torches, candles, rations, and oil have Use 1.","An equipped item shows one checkbox with a check mark. The Qty buttons of an item match the other buttons, and dialogs have one close button.","Eldritch Knights can pick up to two War Bond weapons.","Rest opens two large cards, Short Rest and Long Rest, each listing what it restores. After a rest, Details in the message lists everything that came back.","At 0 Hit Points, the Death Saves box guides you: tap the d20 result, or Damage and Critical Hit when you are hit. Damage at 0 Hit Points now counts as a failure.","Settings has style previews, Text Size, Color-blind Mode, Keyboard Shortcuts, and Backup History. A copy of your character is kept after each hour of play, and Restore goes back to any copy.","My Characters has one action bar, class silhouettes on cards without a portrait, and the campaign on a card filters the list.","The Back button closes popups and dialogs first. Dialogs fade out, dropdowns match the app, and a change shows at once in your other open tabs.","On a computer, 1 to 7 switch tabs, and a right-click on an item, spell, or feature shows its actions.","On a mid-size window, the header uses the compact buttons (Rest, Search, Build, More) whenever the full row would not fit, so no label breaks onto two lines.","Feats and features that give an action, a Bonus Action, or a Reaction now show in that part of the Actions tab, each with its uses. Examples: Polearm Master, Great Weapon Master, Shield Master, Sentinel, War Caster, Channel Divinity, Flurry of Blows, Breath Weapon, and Battle Master maneuvers.","Polearm Master adds a Pole Strike attack row (1d4 Bludgeoning, Bonus Action) for a Quarterstaff, a Spear, or a Heavy weapon with Reach. Soulknife Psychic Blades and the Circle of the Stars Archer form now have attack rows with a to-hit number.","On a sheet made before this update, open the builder and Apply to see the new entries."]},{v:31,d:"2026-10-18",n:["Skills, saving throws, and senses: the whole row opens the breakdown, with the number on the right.","Filters on Actions, Spells, Inventory, Features, and Extras sit in one row with icons. Swipe the row when it does not fit.","Spell slots and limited-use boxes are bigger and easier to tap.","Actions and features are cards with a short summary. Tap Show more for the full rules text. The list of actions anyone can take folds away.","Inventory shows each coin (CP, SP, EP, GP, PP) with its own icon. Tap the coins to manage them.","Clear starting points when you have no spells or no items yet.","Notes: one titled section per topic, and each box grows as you write.","Description reads like a page. Tap a field to change it, and Add details shows the empty ones.","Creatures and Bastion on Extras are cards. On a computer, the left column of Skills is one panel.","A dotted underline marks every number or name that opens more details.","On a phone, swipe left or right to change pages. The new page slides in from the side you went to.","A card you tap grows into its details. On a wide computer screen the details open in a panel on the right, and the sheet stays usable.","The header gets smaller as you scroll. On a computer the tab row stays in view, and each tab keeps its own scroll position.","Reorder items in Inventory and cards in Features: tap Reorder, then drag a handle or use the arrow keys.","Breakdowns build up line by line, and popups move on a spring you can interrupt.","Spacing is roomier on phones and tighter on a computer. Cards adjust to their own width."]},{v:30,d:"2026-10-17",n:["Phones: a tidy header with Rest, Search, Build, and a More menu for the rest.","A play bar sits above the bottom bar on every page: Hit Points, Temporary Hit Points, Armor Class, conditions, Concentration, and Heroic Inspiration. Tap Hit Points to heal or take damage from any page.","Quicker Hit Points: +1, +5, and +10 buttons fill the amount, Temporary Hit Points have their own control, and every Heal or Damage can be undone from the message.","Conditions show with icons, and the Conditions list uses cards that light up when active.","A default portrait for your class, clearer Level Up and Add XP buttons, and an optional campaign name under the character name.","Search is also a command bar: type dmg 7, heal 5, temp 8, short rest, poisoned, exhaustion 2, or a page name, then press Enter. Ctrl+K or Cmd+K opens it on a computer.","Search finds what you meant even with a typo, such as fierball or poisned.","Drag the Hit Points number up or down to set the amount, or hold it for a quick menu.","Undo and Redo now remember the last 20 changes. On a computer, use Ctrl+Z and Ctrl+Shift+Z.","On a computer, Mini Window keeps Hit Points, Heal, Damage, and conditions on top of other windows.","Settings: Keep screen on, and One-handed mode for phones."]},{v:29,d:"2026-10-17",n:["A new look for the D&D Beyond style: clearer numbers, calmer panels, a new typeface, and bigger buttons on phones.","Icons everywhere: skills, saves, abilities, damage types, class resources, weapons, tabs, menus, and the builder.","Smooth motion: Hit Points slide and count, the card reacts to damage and healing, and dialogs and messages glide in. Motion stops if your device asks for reduced motion."]},{v:28,d:"2026-10-16",n:["Bastion on the Extras tab (DMG 2024, chapter 8): basic and special facilities, hirelings, orders, Bastion Defenders, Bastion turns with the Maintain order and events, and a turn log."]},{v:27,d:"2026-10-16",n:["Party on My Characters: Armor Class, Hit Points, Passive Perception, Spell DC, and conditions of every character. A DM can add a player's character file to it.","Campaigns: filter My Characters by the Campaign field and back up one campaign.","Search the sheet with the magnifier button or the / key. Pin skills to the Main tab. Print spell cards.","Quick Build in the builder (Home step) makes a level 1 character from a class and a species.","Supernatural Gifts (Blessings and Charms), the full Adventuring Gear list, and weights for magic items.","Report a problem copies a report for the person who keeps the app. Export a character for Foundry VTT from its file menu."]},{v:26,d:"2026-10-16",n:["Customize: open an attack, spell, item, or number (Armor Class, Initiative, Speed, a save, a skill, a passive score) and press Customize to rename it, add a note, or set a bonus or a fixed value. It stays when you Apply from the builder.","Make your own species, feats, and magic items in the builder, step Sources, under Create Homebrew. Add the homebrew of your other characters with one button."]},{v:25,d:"2026-10-16",n:["Manage Spells on the Spells tab: add, prepare, and remove spells from your class lists without opening the builder. The prepared limit is shown and kept.","Settings (gear button): carrying capacity on or off, Hit Points fixed or rolled, ability score or modifier on top, and spells listed again under each higher slot level they can use.","Appearance: a frame for the portrait and a backdrop behind the sheet, next to style, mode, color, and symbol."]},{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
+var WHATSNEW=[{v:33,d:"2026-10-18",n:["The builder now looks like your sheet: the same dark theme, type, buttons, and line icons.","Each builder step has an icon and shows how many of its choices are done. Prev and Next have icons and are easier to tap.","Equipment in the builder shows an icon for each item type, and your five coins (CP, SP, EP, GP, PP) each with its own icon.","Builder hints are short notes with an icon instead of long paragraphs.","On a phone, you can pull a popup down from its content to close it when the content is scrolled to the top."]},{v:32,d:"2026-10-18",n:["The builder now asks for every tool you choose: background Gaming Sets, Musical Instruments, and Artisan's Tools, Bard and Monk tools, and the Crafter, Musician, and Skilled feats. Your sheet lists the tools by name.","New choices from the Player's Handbook: Student of War, College of Lore skills and Magical Discoveries, Hunter's Prey, Defensive Tactics, Primal Companion, Aspect of the Wilds, Iron Mind, Fiendish Resilience, Wild Shape forms, and the Wizard spellbook with Savant, Spell Mastery, and Signature Spells.","Feats with a choice now ask for it: Keen Mind, Observant, Skill Expert, Weapon Master, Ritual Caster, Boon of Skill, Boon of Energy Resistance, and Lessons of the First Ones.","A second class gets its own Weapon Mastery, Primal Knowledge skill, Blessed or Druidic Warrior cantrips, Pact of the Tome, and Thaumaturge or Magician cantrip. Choices from a second class show in that class's section.","The Build button shows a dot while your build still has open choices.","Warrior of Mercy, Assassin, Chef, Poisoner, and Boon of Skill proficiencies now reach your sheet. An Illusionist knows Minor Illusion.","Equipment packs open into their Backpack or Chest with every item inside, each with its own Qty and weight. An older pack row has Unpack in its popup, with Undo.","Container sections in Inventory open and close, and a container's popup lists what is inside. Torches, candles, rations, and oil have Use 1.","An equipped item shows one checkbox with a check mark. The Qty buttons of an item match the other buttons, and dialogs have one close button.","Eldritch Knights can pick up to two War Bond weapons.","Rest opens two large cards, Short Rest and Long Rest, each listing what it restores. After a rest, Details in the message lists everything that came back.","At 0 Hit Points, the Death Saves box guides you: tap the d20 result, or Damage and Critical Hit when you are hit. Damage at 0 Hit Points now counts as a failure.","Settings has style previews, Text Size, Color-blind Mode, Keyboard Shortcuts, and Backup History. A copy of your character is kept after each hour of play, and Restore goes back to any copy.","My Characters has one action bar, class silhouettes on cards without a portrait, and the campaign on a card filters the list.","The Back button closes popups and dialogs first. Dialogs fade out, dropdowns match the app, and a change shows at once in your other open tabs.","On a computer, 1 to 7 switch tabs, and a right-click on an item, spell, or feature shows its actions.","On a mid-size window, the header uses the compact buttons (Rest, Search, Build, More) whenever the full row would not fit, so no label breaks onto two lines.","Feats and features that give an action, a Bonus Action, or a Reaction now show in that part of the Actions tab, each with its uses. Examples: Polearm Master, Great Weapon Master, Shield Master, Sentinel, War Caster, Channel Divinity, Flurry of Blows, Breath Weapon, and Battle Master maneuvers.","Polearm Master adds a Pole Strike attack row (1d4 Bludgeoning, Bonus Action) for a Quarterstaff, a Spear, or a Heavy weapon with Reach. Soulknife Psychic Blades and the Circle of the Stars Archer form now have attack rows with a to-hit number.","On a sheet made before this update, open the builder and Apply to see the new entries."]},{v:31,d:"2026-10-18",n:["Skills, saving throws, and senses: the whole row opens the breakdown, with the number on the right.","Filters on Actions, Spells, Inventory, Features, and Extras sit in one row with icons. Swipe the row when it does not fit.","Spell slots and limited-use boxes are bigger and easier to tap.","Actions and features are cards with a short summary. Tap Show more for the full rules text. The list of actions anyone can take folds away.","Inventory shows each coin (CP, SP, EP, GP, PP) with its own icon. Tap the coins to manage them.","Clear starting points when you have no spells or no items yet.","Notes: one titled section per topic, and each box grows as you write.","Description reads like a page. Tap a field to change it, and Add details shows the empty ones.","Creatures and Bastion on Extras are cards. On a computer, the left column of Skills is one panel.","A dotted underline marks every number or name that opens more details.","On a phone, swipe left or right to change pages. The new page slides in from the side you went to.","A card you tap grows into its details. On a wide computer screen the details open in a panel on the right, and the sheet stays usable.","The header gets smaller as you scroll. On a computer the tab row stays in view, and each tab keeps its own scroll position.","Reorder items in Inventory and cards in Features: tap Reorder, then drag a handle or use the arrow keys.","Breakdowns build up line by line, and popups move on a spring you can interrupt.","Spacing is roomier on phones and tighter on a computer. Cards adjust to their own width."]},{v:30,d:"2026-10-17",n:["Phones: a tidy header with Rest, Search, Build, and a More menu for the rest.","A play bar sits above the bottom bar on every page: Hit Points, Temporary Hit Points, Armor Class, conditions, Concentration, and Heroic Inspiration. Tap Hit Points to heal or take damage from any page.","Quicker Hit Points: +1, +5, and +10 buttons fill the amount, Temporary Hit Points have their own control, and every Heal or Damage can be undone from the message.","Conditions show with icons, and the Conditions list uses cards that light up when active.","A default portrait for your class, clearer Level Up and Add XP buttons, and an optional campaign name under the character name.","Search is also a command bar: type dmg 7, heal 5, temp 8, short rest, poisoned, exhaustion 2, or a page name, then press Enter. Ctrl+K or Cmd+K opens it on a computer.","Search finds what you meant even with a typo, such as fierball or poisned.","Drag the Hit Points number up or down to set the amount, or hold it for a quick menu.","Undo and Redo now remember the last 20 changes. On a computer, use Ctrl+Z and Ctrl+Shift+Z.","On a computer, Mini Window keeps Hit Points, Heal, Damage, and conditions on top of other windows.","Settings: Keep screen on, and One-handed mode for phones."]},{v:29,d:"2026-10-17",n:["A new look for the D&D Beyond style: clearer numbers, calmer panels, a new typeface, and bigger buttons on phones.","Icons everywhere: skills, saves, abilities, damage types, class resources, weapons, tabs, menus, and the builder.","Smooth motion: Hit Points slide and count, the card reacts to damage and healing, and dialogs and messages glide in. Motion stops if your device asks for reduced motion."]},{v:28,d:"2026-10-16",n:["Bastion on the Extras tab (DMG 2024, chapter 8): basic and special facilities, hirelings, orders, Bastion Defenders, Bastion turns with the Maintain order and events, and a turn log."]},{v:27,d:"2026-10-16",n:["Party on My Characters: Armor Class, Hit Points, Passive Perception, Spell DC, and conditions of every character. A DM can add a player's character file to it.","Campaigns: filter My Characters by the Campaign field and back up one campaign.","Search the sheet with the magnifier button or the / key. Pin skills to the Main tab. Print spell cards.","Quick Build in the builder (Home step) makes a level 1 character from a class and a species.","Supernatural Gifts (Blessings and Charms), the full Adventuring Gear list, and weights for magic items.","Report a problem copies a report for the person who keeps the app. Export a character for Foundry VTT from its file menu."]},{v:26,d:"2026-10-16",n:["Customize: open an attack, spell, item, or number (Armor Class, Initiative, Speed, a save, a skill, a passive score) and press Customize to rename it, add a note, or set a bonus or a fixed value. It stays when you Apply from the builder.","Make your own species, feats, and magic items in the builder, step Sources, under Create Homebrew. Add the homebrew of your other characters with one button."]},{v:25,d:"2026-10-16",n:["Manage Spells on the Spells tab: add, prepare, and remove spells from your class lists without opening the builder. The prepared limit is shown and kept.","Settings (gear button): carrying capacity on or off, Hit Points fixed or rolled, ability score or modifier on top, and spells listed again under each higher slot level they can use.","Appearance: a frame for the portrait and a backdrop behind the sheet, next to style, mode, color, and symbol."]},{v:24,d:"2026-10-16",n:["New icons drawn for this app: conditions, spell schools, Concentration and Ritual, item types, coins, speeds, senses, defenses, Hit Points, dice, Advantage and Disadvantage, classes, builder steps, and Home buttons.","Messages show whether something worked, needs a look, or failed.","New here? Home offers a short tour of where things are."]},{v:23,d:"2026-10-16",n:["Features, spells, and magic items show the book page, for example PHB-2024, pg. 153.","Features list your choices in a marked block, work out numbers for your character in bold, and list the spells they give as rows you can open.","Core class traits, your subclass, each Ability Score Improvement, and species Creature Type and Speed are in Features.","Proficiencies show where each one comes from. Manage Proficiencies and Manage Feats open the builder.","New Description tab: background, languages, alignment, and characteristics such as age, height, and eyes. Notes now has Organizations, Allies, Enemies, Backstory, and Other.","New Extras tab: stat blocks for your familiar, Wild Shape forms, Beast Master companion, and creatures your spells summon, with numbers for the spell level you pick."]},{v:22,d:"2026-10-16",n:["Conditions show on the rows they change: Disadvantage, Advantage, automatic failures, and Speed 0.","Rage, Wild Shape, Sacred Weapon, and the Aasimar transformation can be turned on from the Main tab. Their numbers apply while they last.","Track XP or milestones under your name, and use Level Up to open the builder at the next level.","Session Journal in Notes, with loot and XP.","Combat View: hit points, AC, conditions, attacks, slots, and uses on one screen.","Cantrips with a saving throw get their own row in Actions.","Keyboard shortcuts on a computer. Press ? to see them.","Save Character and Back Up now make .bs files, packed so other apps cannot open them directly. Older .dnd24.json and .json files still open. Open Character also takes a build file, for example one written in a Claude chat. Small mistakes in it are fixed, and the changes are listed before it opens.","Warlock spells cast with a Pact slot sit at the Pact slot level, as on D&D Beyond. Spells from invocations and other free casts stay at their own level."]},{v:21,d:"2026-10-16",n:["Cast from the Spells tab: the CAST and USE buttons tick a spell slot, a Pact slot, or a once-per-rest use. Cantrips need no slot.","Concentration shows at the top of the sheet. Taking damage asks for the Constitution save with its DC.","Drink a Potion of Healing, use a Spell Scroll, and count ammunition from their pop-ups.","Rests know more: Arcane Recovery, Natural Recovery, Chef, Periapt of Wound Closure, Resourceful, charges that come back on a roll, and a reminder of what you can change after a Long Rest.","Max HP modifier and override in the Hit Points pop-up. Apply Temp HP buttons on features and spells that give them.","Undo the last damage, healing, rest, cast, coin change, or deleted item from the message at the bottom."]},{v:20,d:"2026-10-16",n:["Retromistika homebrew: texts follow the latest playtest. Joystick, Warrior of Aerobics, Seer, and Leyak subclass features now show uses, attacks, and senses on the sheet. A Read button opens the setting lore.","New homebrew source, off by default: DM Pilgungy, Aurvidya. Turn it on under Sources to get one bonus class feature at level 3 for every class, Masterwork weapons, and the Combat Maneuver Roll."]},{v:19,d:"2026-10-16",n:["The builder follows the 2024 feat rules: Resilient, Magic Initiate, and Elemental Adept repeat only as the book allows, no increase goes past 20, and prerequisites are checked at the level you take a feat.","Red dots, a count on Apply, and a list in What's Next show spells and choices that are missing, extra, or break a rule. Apply still works.","Multiclassing warns when a class is missing its 13 in the primary ability.","Exhaustion lowers D20 Tests and Speed on the sheet.","Items: a Thief at level 13 can attune to four items, Rod of the Pact Keeper and similar items raise spell attack and save DC, Robe of the Archmagi sets AC without armor.","Draconic Sorcery: choose the Elemental Affinity damage type.","Hunger of Hadar upcasting and square areas (Entangle, Grease, Evard's Black Tentacles)."]},{v:18,d:"2026-10-16",n:["Save Character and Open Character: keep a character in its own file (.dnd24.json) and bring it back on any device.","Restore can add the characters from a backup instead of replacing everything.","Snapshots: the last 5 versions of each character stay on this device, so a big change can be undone.","My Characters shows the date of the last backup and how much storage the app uses.","A warning appears when the app cannot save, and the app keeps two open tabs in step.","If saved data cannot be read, a recovery screen offers a backup download instead of losing it.","Fonts are part of the file, so the sheet looks the same without internet."]}];
 function wnList(from){ return WHATSNEW.filter(function(x){ return x.v>from; }).map(function(x){ return '<h4>Version '+x.v+' <small>'+x.d+'</small></h4><ul>'+x.n.map(function(t){ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul>'; }).join(""); }
 function wnBanner(){ if(!WN_SHOW) return ""; return '<div class="hwn" id="hwnB" role="status"><b>What\'s new in version '+APP_VER+'</b>'+wnList(WN_FROM||APP_VER-1)+'<button type="button" class="btn press" data-hwn="ok">Got It</button></div>'; }
 function wnOpen(){ var old=document.getElementById("bkp"); if(old) old.remove(); var w=document.createElement("div"); w.id="bkp"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
@@ -4466,6 +4784,9 @@ function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least 1 Hit 
   doRest("long",true); var nc2=chgApply(lc); if(nc2){ save(); syncLU(); } closeSheet(); var LD=restDiff(RS0), ln=restNames(LD), hpx=LD.filter(function(x){ return x[0]==="Hit Points"; })[0];
   toastU("Long Rest taken."+(LD.length?" Restored: "+[hpx?"Hit Points ("+hpx[1]+")":""].concat(ln?[ln]:[]).filter(Boolean).join(", ")+".":" Everything was already full.")+(hr?" Maximum HP changes reset.":"")+(nc2?" Charges updated.":"")); restSumToast("long"); }
 window.__openRest=openRest; window.__coinsNow=coinsNow;
+/* v33 p03 (RU123 builder): the five coins the sheet shows after Apply when the starting gold is g (same data and rule as coinsNow) */
+window.__coinsFor=function(g,mine){ g=num(g,0); if(!mine||!S.coins) return {pp:0,gp:g,ep:0,sp:0,cp:0}; var c={}; COINS.forEach(function(k){ c[k[0]]=num(S.coins[k[0]],0); }); c.gp=Math.max(0,c.gp+g-num(S.coinBase,g)); return c; };
+window.__coinTotal=coinTotal; window.__ico=ico; window.__icoCls=icoCls; window.__icoItem=icoItem; window.__icoText=icoText;
 function ordL(n){return n===0?"Cantrip":n+(n===1?"st":n===2?"nd":n===3?"rd":"th")+" Level"}
 var spQ="",spF="all";
 /* Spells tab header: Modifier, Spell Attack, Save DC, then slots. Numbers come from C.spellcasting (builder).
@@ -5587,7 +5908,7 @@ function buildPrint(){
       '<div class="ps-box" style="margin-top:12px"><div class="ps-h">ATTACKS</div><table class="ps-tbl"><thead><tr><th>NAME</th><th>RANGE</th><th>HIT</th><th>DAMAGE</th><th>NOTES</th></tr></thead><tbody>'+atk+'</tbody></table></div>'+
       foot(1)+
     '</div>';
-  function featBox(g){ return '<div class="ps-box"><div class="ps-h">'+esc(g.g).toUpperCase()+'</div>'+(g.items||[]).map(function(f){return '<div class="ps-ft"><h5>'+esc(f.n)+'<span>'+esc(f.s)+'</span></h5><p>'+rich(f.d)+'</p></div>'}).join("")+(g.next?'<p class="ps-p" style="color:#808c84;margin:2px 0 0">'+esc(g.next)+'</p>':'')+'</div>'; }
+  function featBox(g){ return '<div class="ps-box"><div class="ps-h">'+esc(g.g).toUpperCase()+'</div>'+(g.items||[]).map(function(f){return '<div class="ps-ft"><h5>'+esc(f.n)+'<span>'+esc(f.s)+'</span></h5><p>'+richB(f.d)+'</p></div>'}).join("")+(g.next?'<p class="ps-p" style="color:#808c84;margin:2px 0 0">'+esc(g.next)+'</p>':'')+'</div>'; }
   var fs=C.features||[], left=[], right=[];
   function est(g,cpl){ return 40+(g.items||[]).reduce(function(t,f){ return t+22+Math.ceil(String(f.d||"").length/cpl)*14; },0)+(g.next?28:0); }
   var hL=0, hR=60+(C.inv||[]).length*19 + extraAtkH;
@@ -6004,6 +6325,11 @@ window.addEventListener("resize",function(){ if(!sheet.classList.contains("on")|
 /* ===== v31 p17 drag to reorder (RU131) ===== */
 ICO["ui-eye"]="M2 12c2.5-4.2 6-6.5 10-6.5s7.5 2.3 10 6.5c-2.5 4.2-6 6.5-10 6.5S4.5 16.2 2 12zM12 9.2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 1 0 0-5.6";ICO["ui-keys"]="M3 7h18v10H3zM6.5 10h1M10 10h1M13.5 10h1M17 10h.5M7 14h10";/* v32 p27 */
 ICO["ui-grip"]="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01";
+/* v33 p03: builder icons */
+ICO["step-home"]="M3 11.5L12 4l9 7.5M5.5 9.5V20h4.5v-5.5h4V20h4.5V9.5";
+ICO["ui-box"]="M5 3.5h14a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5z";
+ICO["ui-radio-on"]="M12 3a9 9 0 1 0 0.01 0M12 8.5a3.5 3.5 0 1 0 0.01 0";
+ICO["item-pack"]="M8 6V4.5a1.5 1.5 0 0 1 1.5-1.5h5A1.5 1.5 0 0 1 16 4.5V6M5 9a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v10.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19.5zM8.5 13.5h7v4h-7zM5 11h14";
 var ORD_ON={inv:0,feat:0}, DRG=null;
 function ordLive(t){ var l=document.getElementById("v31live"); if(!l){ l=document.createElement("div"); l.id="v31live"; l.className="sr"; l.setAttribute("aria-live","polite"); document.body.appendChild(l); } l.textContent=""; setTimeout(function(){ l.textContent=t; },30); }
 function ordKeyInv(row){ var b=row.querySelector(".iname[data-info]"), ix=b?+b.getAttribute("data-info").slice(3):-1, L=C.inv||[], it=L[ix]; if(!it) return null; var k=invKey(it), n=0; for(var j=0;j<ix;j++){ if(invKey(L[j])===k) n++; } return "i:"+k+"#"+n; }
@@ -6090,11 +6416,16 @@ if(BAD.length) recover("Saved data",BAD.join(" | ")); else { applyLook();renderA
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ moveTabInd(true); });
 })();
+
+/* v33 p10 handlers */
+document.addEventListener("change",function(e){ var t=e.target; if(!t||!t.getAttribute) return;
+  if(t.getAttribute("data-chfrem")){ var o=uiGet("cs-ui-remind"); o.days=+t.value; uiSet("cs-ui-remind",o); updUnsaved(); var g=document.getElementById("hgrid"); if(g&&typeof homeCards==="function") g.innerHTML=homeCards(true); toast(+t.value?"Backup reminder after "+t.value+" days.":"Backup reminder is off."); }
+  if(t.getAttribute("data-chfauto")){ var o2=uiGet("cs-ui-remind"); o2.auto=!!t.checked; uiSet("cs-ui-remind",o2); toast(t.checked?"This file will be kept updated after you save it once.":"Automatic file updates are off."); } });
 </script>
 <div id="bld" hidden>
-<div class="top"><div class="brand"><b>Character Builder</b><span>PHB 2024</span><button type="button" class="lvhead" data-lvup="1">Level Up</button><button type="button" id="b-toSheet" class="tosheet">Apply to Sheet</button><button type="button" id="b-close" class="bclose" aria-label="Close builder">✕</button></div><nav class="steps" id="steps"></nav></div>
+<div class="top"><div class="brand"><b><span class="bt0"><span class="bt1">Character </span>Builder</span></b><span>PHB 2024</span><button type="button" class="lvhead" data-lvup="1"><span>Level Up</span></button><button type="button" id="b-toSheet" class="tosheet">Apply to Sheet</button><button type="button" id="b-close" class="bclose" aria-label="Close builder" title="Close builder"></button></div><nav class="steps" id="steps"></nav></div>
 <main><div class="bnm" id="nameRow"><label for="nmIn">Character Name</label><input class="btx" id="nmIn" autocomplete="off"></div><div id="body"></div></main>
-<div class="foot"><button type="button" id="prev">&lt; PREV</button><button type="button" id="next">NEXT &gt;</button></div>
+<div class="foot"><button type="button" id="prev"><span>Prev</span></button><button type="button" id="next"><span>Next</span></button></div>
 <div class="exp" id="exp" hidden><div class="expb"><h3>Export to Character Sheet</h3><p class="fd">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id="expTxt" readonly></textarea><div class="row"><button type="button" id="expClose">Close</button><button type="button" class="pri" id="expCopy">Copy</button></div></div></div>
 <div class="btoast" id="btoast" role="status"></div>
 </div>
@@ -7055,7 +7386,7 @@ function spTraitText(sp,t){var n=t[0],d=t[1],ch=B.ch||{},o=[];function L(a){retu
  if(sp.linText&&sp.lin&&n===sp.lin.label&&ch.lin&&sp.linText[ch.lin])return sp.linText[ch.lin]+" **Your choice.** "+ch.lin+".";/* v20 RD25: only the chosen ancestry */
  if(sp.opts&&n===sp.opts.label&&(ch.spopt||[]).length){var r=(ch.spopt||[]).map(function(k){var x=sp.opts.list.filter(function(y){return y[0]===k})[0];if(!x)return "";var fx=x[2]||{},p="";
    if(fx.skills&&(ch.spsk2||[]).length)p="Skills: "+L(ch.spsk2)+".";if(fx.cantrip&&(ch.spcan||[]).length)p="Cantrip: "+L(ch.spcan)+".";if(fx.weapon&&(ch.spwep||[]).length)p="Weapon: "+L(ch.spwep)+".";if(fx.feat&&ch.spfeat)p="Origin feat: "+ch.spfeat+".";
-   return " **"+k+".** "+x[1]+(p?" "+p:"")}).join("");
+   return "\n\n**"+k+".** "+x[1]+(p?" "+p:"")}).join("");
   return "You chose "+(ch.spopt.length>1?ch.spopt.length+" options":"one option")+" from this trait."+r+(ch.spopt.length<sp.opts.n?" **Still open.** Choose "+(sp.opts.n-ch.spopt.length)+" more in the builder.":"")}
  if(sp.skillPick&&n===sp.skillPick.label&&(ch.spsk||[]).length)o.push("Skill: "+L(ch.spsk)+".");
  if(sp.featPick&&n==="Versatile"&&ch.spfeat)o.push("Origin feat: "+ch.spfeat+".");
@@ -7463,7 +7794,7 @@ function toSheet(){
  var sl=slotsFor();if(sl&&!MCL().length)cf.push({n:"Spell Slots",s:SRC+", "+B.cls,d:sl.pact?sl.pact+" Pact slots at level "+sl.lvl+".":sl.map(function(n,i){return "L"+(i+1)+": "+n}).join(", ")});
  C.features.push({g:B.cls,items:cf});
  if(B.sub&&B.sub!=="__custom"){var sf=c.subs[B.sub].filter(function(x){return x[0]<=L}).map(function(x){return {n:x[1],s:SRC+", "+B.sub+" "+x[0],d:x[2]+ycOf(CHT,x[1],undefined)+calcNote(x[1],B.cls,L,a),full:SUB_FULL[B.sub+"|"+x[1]]?SUB_FULL[B.sub+"|"+x[1]]+ycOf(CHT,x[1],undefined)+calcNote(x[1],B.cls,L,a):""}});
-  var man=[];Object.keys(B.ch).forEach(function(k){if(/maneuver$/.test(k))man=man.concat(B.ch[k]||[])});if(man.length)sf.push({n:"Maneuvers known",s:SRC+", Battle Master",d:man.map(function(n){var m=MANEUVERS.filter(function(x){return x[0]===n})[0];return "**"+n+".** "+(m?m[1]:"")}).join(" ")});
+  var man=[];Object.keys(B.ch).forEach(function(k){if(/maneuver$/.test(k))man=man.concat(B.ch[k]||[])});if(man.length)sf.push({n:"Maneuvers known",s:SRC+", Battle Master",d:man.map(function(n){var m=MANEUVERS.filter(function(x){return x[0]===n})[0];return "**"+n+".** "+(m?m[1]:"")}).join("\n\n")});
   var nx=c.subs[B.sub].filter(function(x){return x[0]>L})[0];
   C.features.push({g:B.cls+" Subclass: "+B.sub,items:sf,next:nx?B.cls+" level "+nx[0]+" unlocks "+nx[1]+".":""})}
  else if(B.sub==="__custom")C.features.push({g:B.cls+" Subclass: "+subName,items:[{n:"Homebrew subclass",s:"Homebrew",d:"Add the subclass features from your setting."}]});
@@ -7559,7 +7890,10 @@ function toSheet(){
    if(pg)it.pg=pg})});
   (C.spells||[]).forEach(function(s){var p=P.spell[s.n];if(p&&!s.hb)s.pg=p});
   (C.inv||[]).forEach(function(x){var p=DMAP[x.n]&&BOOKPG.dmg.item[x.n];if(p)x.pg=p})}
+ /* v33 p09: one entry per paragraph. A bold entry name that starts a sentence in the middle of a text starts a new paragraph (blank line). Your choice and Still open stay inline */
+ (C.features||[]).forEach(function(g){(g.items||[]).forEach(function(f){if(typeof f.d==="string")f.d=fBlk(f.d);if(typeof f.full==="string")f.full=fBlk(f.full)})});
  return C}
+function fBlk(t){return String(t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Still open\.)([^*\n]{1,80}?\.)\*\* /g,"$1\n\n**$2** ")}
 /* v32 RL51 actsFor */
 /* C.acts: one entry per action a feature gives, from ACTS (audited to PHB 2024). k = action|bonus|reaction|other, n = label, f = feature name, g = group,
    u = Limited Use name, d = the part of the text named n ("**n.** ..."), it = magic item key. g.ak lists the feature names of a group the table covers
@@ -7579,8 +7913,8 @@ function actsFor(C){var out=[],T=typeof ACTS!=="undefined"?ACTS:{},lin=String((B
   if(ak.length)g.ak=ak;else delete g.ak});
  /* magic items in use (attunement within the limit), from the item text: Magic action, Bonus Action, Reaction */
  var att=0,am=attMax();(B.inv||[]).forEach(function(x){if(!x.eq)return;var d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}
-  var t=String(d[4]||""),ss=t.split(/(?<=[.!?])\s+/);[["action",/\bMagic action\b/],["bonus",/\bBonus Action\b/],["reaction",/\bReaction\b/]].forEach(function(p){if(!p[1].test(t))return;
-   out.push({k:p[0],n:x.n,it:x.n,d:ss.filter(function(z){return p[1].test(z)}).join(" ")})})});
+  var t=String(d[4]||""),ss=t.split(/(?<=[.!?])\s+/);[["action",/\b(Magic|Utilize) action\b/],["bonus",/\bBonus Action\b/],["reaction",/\bReaction\b/]].forEach(function(p){var mine=ss.filter(function(z){return p[1].test(z)&&!/\b(A|The) (hag|creature|target|monster)\b(?:(?!\byou\b)[^.])*\b(can take|takes)\b/.test(z)});if(!mine.length)return;/* v32 p39 */
+   out.push({k:p[0],n:x.n,it:x.n,d:mine.join(" ")})})});
  return out}
 /* Attack rows a feature gives: Polearm Master Pole Strike (PHB 2024 p. 205), Soulknife Psychic Blades (p. 136), Circle of the Stars Archer (p. 89) */
 function actAtk(C,a,feats){var L=C.attacks||(C.attacks=[]),add=[];
@@ -7849,7 +8183,10 @@ function defenses(a){var o=[],L=B.level,sp=SPECIES[B.species];function add(t,v,s
  var out=[],at={};o.forEach(function(x){var k=x.t+"|"+x.v;if(at[k]==null){at[k]=out.length;out.push({t:x.t,v:x.v,s:x.s})}else if((", "+out[at[k]].s+", ").indexOf(", "+x.s+", ")<0)out[at[k]].s+=", "+x.s});
  return out}
 /* ================= UI: step builder ================= */
-var STEPS=[["home","Home"],["class","1. Class"],["bg","2. Background"],["species","3. Species"],["abil","4. Abilities"],["equip","5. Equipment"],["next","What's Next"],["rules","Rules"]];
+var STEPS=[["home","Home"],["class","Class"],["bg","Background"],["species","Species"],["abil","Abilities"],["equip","Equipment"],["next","What's Next"],["rules","Rules"]];
+/* v33 p02 (C13): step icons, line icons from the sheet set (ICO) */
+var STEP_ICO={home:"step-home","class":"step-class",bg:"step-background",species:"step-species",abil:"step-abilities",equip:"step-equipment",next:"step-next",rules:"ui-book"};
+function bI(k,c){var I=window.__ICO;return (I&&I[k]&&window.__ico)?window.__ico(k,"bi"+(c?" "+c:"")):""}
 var step="class",openCards={},pickCls=false,pickSp=false;
 function ask(msg,ok,cb){var w=document.createElement("div"),prev=document.activeElement;w.className="exp";w.setAttribute("role","dialog");w.setAttribute("aria-modal","true");w.innerHTML='<div class="expb"><p class="fd" style="font-size:16px">'+esc(msg)+'</p><div class="row"><button type="button" data-no="1">Cancel</button><button type="button" class="pri" data-yes="1">'+esc(ok)+'</button></div></div>';(document.getElementById("bld")||document.body).appendChild(w);
  function close(){w.remove();document.removeEventListener("keydown",onKey,true);if(prev&&prev.focus)try{prev.focus({preventScroll:true})}catch(e){}}function onKey(e){if(e.key==="Escape"){e.stopPropagation();close()}}/* v19 V19-5 */
@@ -7893,7 +8230,7 @@ function metaOf(nChoice,lvl){var a=[];if(nChoice)a.push(nChoice+" Choice"+(nChoi
 /* choice widgets */
 function skillSrcOther(n,key){var bg=bgX();if(bg&&bg.sk.indexOf(n)>=0)return B.bg+" background";var s=choices().filter(function(c){return c.key!==key&&c.t==="skills"&&(B.ch[c.key]||[]).indexOf(n)>=0})[0];return s?s.title.replace(/ skill.*$/,""):""}
 function skillSrc(n){var bg=bgX();if(bg&&bg.sk.indexOf(n)>=0)return B.bg;var s=choices().filter(function(c){return c.t==="skills"&&(B.ch[c.key]||[]).indexOf(n)>=0})[0];return s?s.title.replace(/ skill.*$/,""):"have"}
-function chips(c,items){var v=B.ch[c.key]||[];if(!items.length){var why=/\(([^)]+)\)$/.exec(c.title||"");return '<p class="fd" data-cko="'+c.key+'">Nothing to choose from yet'+(why?': '+esc(why[1]):'')+'.</p>'}/* v32: empty list still names the choice */return '<p class="pick">Choose '+(c.opt?'up to ':'')+c.n+' ('+v.length+'/'+c.n+')</p><div class="chips">'+items.map(function(it){var n=Array.isArray(it)?it[0]:it,lb=it&&it.lab;if(lb)return '<button type="button" class="chip clash'+(v.indexOf(it.n)>=0?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(it.n)+'" data-clash="'+esc(lb)+'">\u26a0 '+esc(it.n)+' ('+esc(lb)+')</button>';var n=Array.isArray(it)?it[0]:it,d=Array.isArray(it)?it[1]:"",lk=Array.isArray(it)&&((it[2]&&it[2]>(c.lvCap||B.level))||(it[3]&&invList().indexOf(it[3])<0&&v.indexOf(n)<0))/* RD18: another invocation required */,on=v.indexOf(n)>=0;
+function chips(c,items){var v=B.ch[c.key]||[];if(!items.length){var why=/\(([^)]+)\)$/.exec(c.title||"");return '<p class="fd bhint" data-cko="'+c.key+'">Nothing to choose from yet'+(why?': '+esc(why[1]):'')+'.</p>'}/* v32: empty list still names the choice */return '<p class="pick">Choose '+(c.opt?'up to ':'')+c.n+' ('+v.length+'/'+c.n+')</p><div class="chips">'+items.map(function(it){var n=Array.isArray(it)?it[0]:it,lb=it&&it.lab;if(lb)return '<button type="button" class="chip clash'+(v.indexOf(it.n)>=0?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(it.n)+'" data-clash="'+esc(lb)+'">\u26a0 '+esc(it.n)+' ('+esc(lb)+')</button>';var n=Array.isArray(it)?it[0]:it,d=Array.isArray(it)?it[1]:"",lk=Array.isArray(it)&&((it[2]&&it[2]>(c.lvCap||B.level))||(it[3]&&invList().indexOf(it[3])<0&&v.indexOf(n)<0))/* RD18: another invocation required */,on=v.indexOf(n)>=0;
  return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'"'+(lk?" disabled":"")+(d?' title="'+esc(String(d).replace(/\*\*/g,""))+'"':'')+'>'+esc(n)+'</button>'}).join("")+'</div>'+
  (c.list&&v.length?'<div class="picked">'+v.map(function(n){var m=c.list.filter(function(x){return x[0]===n})[0];return m?'<p><b>'+esc(n)+'.</b> '+rtp(m[1])+'</p>'+(m[3]&&c.list===INVOCATIONS&&invList().indexOf(m[3])<0?'<div class="caution">\u26a0 '+esc(n)+' needs the '+esc(m[3])+' invocation. Choose it, or swap '+esc(n)+' for another invocation.</div>':''):''}).join("")+'</div>':'')}/* RU33: spell and feat names in the picked text open their popup */
 /* RU13: a saved Fighting Style or Origin feat can be missing from FEATS (its source is off, or it was renamed).
@@ -7906,12 +8243,12 @@ function duelCtl(v){var F=v&&FEATS[v];if(!F||!F.meleeDmg1h)return "";var m=B.due
  return '<label class="one">'+esc(v)+' bonus<select class="dd" data-b="duelMode">'+[["auto","Auto"],["on","Always on"],["off","Off"]].map(function(o){return '<option value="'+o[0]+'"'+(m===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+
   '<p class="fd">'+{auto:"Auto: "+n+" while a one-handed melee weapon is your only active weapon. A Shield is fine.",on:"Always on: "+n+" with every one-handed melee weapon, even when another weapon is active.",off:"Off: the sheet never adds this damage."}[m]+'</p>'}
 function choiceBody(c){var v=B.ch[c.key];
- if(c.t==="lang"){var tk=[];langKeys().forEach(function(k){if(k!==c.key)tk=tk.concat(B.ch[k]||[])});if(clsLv("Druid"))tk.push("Druidic");if(clsLv("Rogue"))tk.push("Thieves' Cant");return chips(c,c.from.filter(function(x){return tk.indexOf(x[0])<0}))+'<p class="fd">You always know Common. Rare languages need your DM\'s approval.</p>'}
+ if(c.t==="lang"){var tk=[];langKeys().forEach(function(k){if(k!==c.key)tk=tk.concat(B.ch[k]||[])});if(clsLv("Druid"))tk.push("Druidic");if(clsLv("Rogue"))tk.push("Thieves' Cant");return chips(c,c.from.filter(function(x){return tk.indexOf(x[0])<0}))+'<p class="fd bhint">You always know Common. Rare languages need your DM\'s approval.</p>'}
  if(c.t==="skills"){var mine=v||[];var cl=(c.from||ALLSK).map(function(n){var s=skillSrcOther(n,c.key);return s?{n:n,lab:s}:n});var dup=mine.map(function(n){var s=skillSrcOther(n,c.key);return s?n+' (also from '+s+')':''}).filter(Boolean);
   if(c.tools)return chips(c,cl).replace('<p class="pick">','<p class="wgrp">Skills</p><p class="pick">')+toolChips(c,["art","music","game","other"])+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(", "))+'.</div>':"");/* v32 RL49: Skilled, any mix of skills and tools */
   return chips(c,cl)+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(', '))+'. A skill proficiency doesn\'t stack, so this pick is wasted. Choose a different skill.</div>':'')}
  if(c.t==="exp")return chips(c,c.from||profSkills());
- if(c.t==="pe"){var pk0=profSkills(),pv=v||[];return chips(c,c.from)+'<p class="fd">You gain proficiency in the skill, or Expertise if you already have proficiency.'+(pv.length?" "+pv.map(function(n){return esc(n)+": "+(pk0.indexOf(n)>=0?"Expertise":"proficiency")}).join(", ")+".":"")+'</p>'}/* v32 RL49 no. 12, 13 */
+ if(c.t==="pe"){var pk0=profSkills(),pv=v||[];return chips(c,c.from)+'<p class="fd bhint">Proficiency, or Expertise if you already have it.'+(pv.length?" "+pv.map(function(n){return esc(n)+": "+(pk0.indexOf(n)>=0?"Expertise":"proficiency")}).join(", ")+".":"")+'</p>'}/* v32 RL49 no. 12, 13 */
  if(c.t==="tool"){var tv=B.ch[c.key]||[];return '<p class="pick">Choose '+c.n+' ('+tv.length+'/'+c.n+')</p>'+toolChips(c,c.cats)}/* v32 RL49 */
  if(c.t==="wm"){var sel=v||[],G=[["S","M","Simple Melee"],["S","R","Simple Ranged"],["M","M","Martial Melee"],["M","R","Martial Ranged"]];
   var h='<p class="pick">Choose '+c.n+' ('+sel.length+'/'+c.n+')</p>';
@@ -7989,7 +8326,7 @@ function spRow(x,mine,full,I){var id="sp"+x[0],open=!!openCards[id];
  var meta=(x[1]?ord(x[1])+" Level":"Cantrip")+(x[8]?" \u2022 Concentration":"")+(x[9]?" \u2022 Ritual":"");
  var right=x[10]==="ATK"?'<span class="bsv"><small>TO<br>HIT</small><b>'+sg(I.atk)+'</b></span>':x[10]?'<span class="bsv"><small>'+x[10]+'</small><b>'+I.dc+'</b></span>':'';
  var btn=mine?'<button type="button" class="sbtn rm unp" data-sp="'+esc(x[0])+'">'+(x[1]?"Unprepare":"Unlearn")+'</button>':'<button type="button" class="sbtn" data-sp="'+esc(x[0])+'"'+(full?' aria-disabled="true" data-full="'+(x[1]?"p":"c")+'"':"")+'>'+(x[1]?"Prepare":"Learn")+'</button>';/* v32 p90 */
- return '<div class="scard'+(open?" open":"")+'"><button type="button" class="sh" data-tog="'+esc(id)+'"><span class="snm"><b>'+esc(x[0])+(x[8]?'<i class="cd">C</i>':'')+(x[9]?'<i class="cd r">R</i>':'')+'</b><small>'+esc(meta)+'</small></span>'+right+'</button>'+btn+
+ return '<div class="scard'+(open?" open":"")+'"><button type="button" class="sh" data-tog="'+esc(id)+'" aria-expanded="'+open+'">'+bI("school-"+String(x[2]||"").toLowerCase())+'<span class="snm"><b>'+esc(x[0])+(x[8]?'<i class="cd">C</i>':'')+(x[9]?'<i class="cd r">R</i>':'')+'</b><small>'+esc(meta)+'</small></span>'+right+'</button>'+btn+
   '<button type="button" class="schev" data-tog="'+esc(id)+'" aria-label="Details"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
   (open?'<div class="sdet">'+((SPELL_FULL[x[0]]||x[11])?'<p class="ssum">'+rtp(SPELL_FULL[x[0]]||x[11])+'</p>':'')+'<span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>School</b>'+esc(x[2])+'</span><span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack "+sg(I.atk):x[10]?x[10]+" save, DC "+I.dc:"None")+'</span><span class="w"><b>Classes</b>'+esc(x[3].join(", "))+'</span>'+(mine?'<button type="button" class="sbtn rm" data-sp="'+esc(x[0])+'">Remove</button>':'')+'</div>':'')+'</div>'}
 function spSec(title,count,rows){return '<div class="sech"><b>'+title+'</b>'+(count!=null?' <span>('+count+')</span>':'')+'</div>'+rows}
@@ -8005,14 +8342,14 @@ function spInfoPart(p){var o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return null;var p
 function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
  var CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter(function(p){return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
  if(!I&&!auto.length&&!mis.length)return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>';
- if(multi)h+='<div class="subtabs">'+CP.map(function(p){return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd">Each class prepares its own spells and casts them with its own ability.</p>';
+ if(multi)h+='<div class="subtabs">'+CP.map(function(p){return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
  if(I){h+='<div class="spstat"><div><b>'+K.dc+'</b><span>Save DC</span></div><div><b>'+sg(K.atk)+'</b><span>Spell Attack</span></div><div><b>'+K.ab+'</b><span>Ability</span></div></div>';
   if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map(function(n,i){return ord(i+1)+' \u00d7'+n}).join(", ")+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'}
- if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map(function(k){return '<button type="button" class="rad'+(B.ch.land===k?" on":"")+'" data-ch1="land" data-v="'+k+'"><b>'+k+'</b></button>'}).join("")+'</div><p class="fd">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
+ if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map(function(k){return '<button type="button" class="rad'+(B.ch.land===k?" on":"")+'" data-ch1="land" data-v="'+k+'"><b>'+k+'</b></button>'}).join("")+'</div><p class="fd bhint">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
  if(auto.length)h+=spSec("Always Prepared",auto.length,auto.map(function(a){var x=SMAP[a.n];return x?spRow(x,true,false,RJ(a.k)).replace(/<button type="button" class="sbtn rm"[^>]*>(Remove|Unprepare|Unlearn)<\/button>/g,'').replace('<small>','<small>'+esc(a.src)+' \u2022 '):''}).join(""));
  if(clsLv("Warlock")>=11){var wl=clsLv("Warlock"),ma=[[11,6],[13,7],[15,8],[17,9]].filter(function(r){return wl>=r[0]});
   h+=spSec("Mystic Arcanum",ma.length,ma.map(function(r){var k="ma"+r[1],v=B.pk[k],opts=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0});
-   return card(k,"Level "+r[1]+" Arcanum",(v||"1 Choice")+" \u2022 "+ord(r[0])+" level",'<p class="fd">Cast once per Long Rest without a slot.</p><select class="dd" data-pksel="'+k+'"><option value="">- Choose a level '+r[1]+' Warlock spell -</option>'+opts.map(function(x){return '<option'+(v===x[0]?" selected":"")+'>'+esc(x[0])+'</option>'}).join("")+'</select>',{todo:!v})}).join(""))}
+   return card(k,"Level "+r[1]+" Arcanum",(v||"1 Choice")+" \u2022 "+ord(r[0])+" level",'<p class="fd bhint">Cast once per Long Rest without a slot.</p><select class="dd" data-pksel="'+k+'"><option value="">- Choose a level '+r[1]+' Warlock spell -</option>'+opts.map(function(x){return '<option'+(v===x[0]?" selected":"")+'>'+esc(x[0])+'</option>'}).join("")+'</select>',{todo:!v})}).join(""))}
  mis.forEach(function(m){var v=B.pk[m.key]||{c:[],s:[]},list=SPELLS.filter(function(x){return x[3].indexOf(m.cls)>=0&&x[1]<=1}),MJ=RJ("@mi:"+m.key);
   var body='<p class="fd">Two '+m.cls+' cantrips and one level 1 '+m.cls+' spell. Cast the level 1 spell once per Long Rest free, or with your slots. Pick Int, Wis, or Cha as the spellcasting ability.</p><select class="dd" data-miab="'+m.key+'">'+["INT","WIS","CHA"].map(function(k){return '<option'+((v.ab||"WIS")===k?" selected":"")+'>'+k+'</option>'}).join("")+'</select>'+
    '<h4>Cantrips ('+v.c.length+'/2)</h4>'+pickRows(list.filter(function(x){return !x[1]}),v.c,v.c.length>=2,MJ,m.key+":c")+'<h4>Level 1 spell ('+v.s.length+'/1)</h4>'+pickRows(list.filter(function(x){return x[1]===1}),v.s,v.s.length>=1,MJ,m.key+":s");
@@ -8020,14 +8357,14 @@ function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp
  if(!I)return h;
  var taken=multi?(SLs[P.cls]||[]):B.sp,mine=taken.map(function(n){return SMAP[n]}).filter(Boolean),an=auto.map(function(a){return a.n});
  var nc=mine.filter(function(x){return !x[1]}).length,np=mine.filter(function(x){return x[1]}).length,t="";
- t+=spSec((multi?P.cls+" ":"")+"Prepared Spells",mine.length,mine.length?mine.sort(function(p,q){return p[1]-q[1]||(p[0]<q[0]?-1:1)}).map(function(x){return spRow(x,true,false,K)}).join(""):'<p class="fd">No spells yet. Add them below.</p>');
+ t+=spSec((multi?P.cls+" ":"")+"Prepared Spells",mine.length,mine.length?mine.sort(function(p,q){return p[1]-q[1]||(p[0]<q[0]?-1:1)}).map(function(x){return spRow(x,true,false,K)}).join(""):'<p class="fd bhint">No spells yet. Add them below.</p>');
  t+='<div class="sech"><b>Add Spells</b></div><p class="cnt'+(nc!==K.ct||np!==K.pr?' short':'')+'">Cantrips: '+nc+' / '+K.ct+(nc<K.ct?' <em>('+(K.ct-nc)+' to choose)</em>':nc>K.ct?' <em>('+(nc-K.ct)+' too many)</em>':'')+'<br>Prepared Spells: '+np+' / '+K.pr+(np<K.pr?' <em>('+(K.pr-np)+' to choose)</em>':np>K.pr?' <em>('+(np-K.pr)+' too many)</em>':'')+'</p>';
  t+='<p class="flab">Filter</p><input class="btx" id="spq" type="search" placeholder="Enter Spell Name" value="'+esc(spQ)+'">';
- var mx=multi?K.max:I.max;t+='<p class="flab">Filter By Spell Level</p><div class="lvbox">';for(var i=0;i<=mx;i++)t+='<button type="button" class="lvb'+(String(spLv)===String(i)?" on":"")+'" data-splv="'+i+'">'+(i===0?"- 0 -":i+'<sup>'+ord(i).slice(-2).toUpperCase()+'</sup>')+'</button>';t+='</div>';
+ var mx=multi?K.max:I.max;t+='<p class="flab">Filter By Spell Level</p><div class="lvbox">';for(var i=0;i<=mx;i++)t+='<button type="button" class="lvb'+(String(spLv)===String(i)?" on":"")+'" data-splv="'+i+'" aria-label="'+(i===0?"Level 0 spells (cantrips)":"Level "+i+" spells")+'">'+(i===0?"0":i+'<sup>'+ord(i).slice(-2).toUpperCase()+'</sup>')+'</button>';t+='</div>';
  var wz=(multi?P.cls:(CP[0]||{}).cls)==="Wizard",bk=wz?bookOf():null;/* v32 RL49 no. 34: a Wizard prepares level 1+ spells from the spellbook */
  if(wz)t=bookCard(mx)+t;
  var q=spQ.toLowerCase(),av=SPELLS.filter(function(x){return K.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=mx&&taken.indexOf(x[0])<0&&an.indexOf(x[0])<0&&(spLv==="all"||String(x[1])===String(spLv))&&(!q||x[0].toLowerCase().indexOf(q)>=0)});
- if(bk)t+='<p class="fd">Preparing a spell that is not in your spellbook adds it there too, while the spellbook has room.</p>';
+ if(bk)t+='<p class="fd bhint">Preparing a spell also writes it in your spellbook while there is room.</p>';
  var bfull=bk&&bookOwn().length>=bookNeed();
  t+=av.map(function(x){var r=spRow(x,false,x[1]?np>=K.pr:nc>=K.ct,K);if(bfull&&x[1]&&bk.indexOf(x[0])<0)r=r.replace('data-sp="'+esc(x[0])+'">','data-sp="'+esc(x[0])+'" aria-disabled="true" data-full="b">');return r}).join("");/* v32: book full */
  if(multi)t=t.replace(/data-sp="/g,'data-spc="'+esc(P.cls)+'" data-sp="');
@@ -8035,7 +8372,7 @@ function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp
 /* v32 RL49 no. 34: Wizard spellbook card. Chips per spell level (level 1 to mx). Prepared spells are in the book (Unprepare them to take them out),
    Savant spells are added free (changed in Class Features). Full book: a toast, nothing changes */
 function bookCard(mx){var own=bookOwn(),need=bookNeed(),sv=savVals(),pr=spLists().Wizard||[],lv=[],h="";for(var i=1;i<=mx;i++)lv.push(i);
- h+='<p class="fd">Your spellbook starts with six level 1 Wizard spells and gains two Wizard spells each Wizard level, of a level you have slots for. You prepare spells from it.'+(sv.length?" Savant spells are added free.":"")+'</p><p class="pick">Choose '+need+' ('+own.length+'/'+need+')</p>';
+ h+='<p class="fd bhint">Six level 1 spells to start, two more each Wizard level (of a level you have slots for). You prepare from it.'+(sv.length?" Savant spells are added free.":"")+'</p><p class="pick">Choose '+need+' ('+own.length+'/'+need+')</p>';
  lv.forEach(function(l){var L=SPELLS.filter(function(x){return x[1]===l&&x[3].indexOf("Wizard")>=0});h+='<p class="wgrp">Level '+l+'</p><div class="chips">'+L.map(function(x){var n=x[0],s=sv.indexOf(n)>=0,on=own.indexOf(n)>=0||s,p2=pr.indexOf(n)>=0;
   return '<button type="button" class="chip'+(on?" on":"")+'" data-book="'+esc(n)+'"'+(s?' data-bsav="1"':p2?' data-bprep="1"':"")+' title="'+esc(x[11])+'">'+esc(n)+(s?" <small>Savant</small>":p2?" <small>Prepared</small>":"")+'</button>'}).join("")+'</div>'});
  return card("book","Spellbook",own.length+" / "+need+" spells",h,{todo:own.length<need})}
@@ -8071,13 +8408,13 @@ function ruleIssues0(){var out=spellCounts();
 function issueText(L){return L.map(function(x){return x.m}).join(". ")}
 /* ---------- step: home (sources) ---------- */
 var showTpl=false,packTxt="";
-function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 class="ttl">Character Preferences</h2><h3 class="sph">Sources</h3><p class="fd">You only see options from the sources you enable here, in both the builder and the character sheet.</p>';
+function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 class="ttl">Character Preferences</h2><h3 class="sph">Sources</h3><p class="fd bhint">Only enabled sources show up, here and on the sheet.</p>';
  function row(id,name,desc,on,lock,del){return '<label class="srcrow"><input type="checkbox" data-srcck="'+esc(id)+'"'+(on?" checked":"")+(lock?" disabled":"")+'><span><b>'+esc(name)+'</b><small>'+esc(desc)+'</small></span>'+(del?'<button type="button" class="rmv" data-packdel="'+esc(id)+'">\u2715 Remove</button>':'')+'</label>'}
  h+=row("core","5.5e Core Rules: Player's Handbook (2024)","Classes, subclasses, species, backgrounds, feats, spells, and equipment. Required to build a character.",true,true);
  h+=row("dmg","5.5e Core Rules: Dungeon Master's Guide (2024)","Magic items such as Belt of Giant Strength, Ring of Protection, and Flame Tongue.",B.src.dmg!==false,false);
  allPacks().forEach(function(p){var bi=!!HB_BUILTIN[p.id];h+=row(p.id,p.name,(p.desc||"Homebrew")+(bi?"":" (added by you)"),!!B.src[p.id],false,!bi);if(p.lore&&p.lore.length)h+='<button type="button" class="link lorebtn" data-lore="'+esc(p.id)+'">Read: '+esc(p.name.replace(/ \(Homebrew\)$/,""))+', '+esc(p.loreLabel||"Public Lore")+'</button>'});
- h+='<h3 class="sph">Create Homebrew</h3><p class="fd">Make your own species, feat, or magic item. It goes into My Homebrew, a source in the list above, and you can pick it in the steps like any other.</p>'+hbForm();/* v26 RU38 no. 8 */
- h+='<h3 class="sph">Add Homebrew Source</h3><p class="fd">Paste a homebrew pack in JSON format, then tap Add Source. It appears in the list above as a new checkbox. A pack can add species, subclasses, feats, backgrounds, skills, and magic items.</p><textarea class="btx" id="packtxt" rows="5" placeholder="{ &quot;id&quot;: &quot;my-homebrew&quot;, &quot;name&quot;: ... }">'+esc(packTxt)+'</textarea><div class="eqact"><button type="button" class="bdg add" data-packadd="1">Add Source</button><button type="button" class="link" data-tpl="1">'+(showTpl?"Hide":"Show")+' pack template</button></div>'+
+ h+='<h3 class="sph">Create Homebrew</h3><p class="fd bhint">Your own species, feats, and magic items go into the My Homebrew source above.</p>'+hbForm();/* v26 RU38 no. 8 */
+ h+='<h3 class="sph">Add Homebrew Source</h3><p class="fd bhint">Paste a pack (JSON) and tap Add Source. It shows up as a new source above.</p><textarea class="btx" id="packtxt" rows="5" placeholder="{ &quot;id&quot;: &quot;my-homebrew&quot;, &quot;name&quot;: ... }">'+esc(packTxt)+'</textarea><div class="eqact"><button type="button" class="bdg add" data-packadd="1">Add Source</button><button type="button" class="link" data-tpl="1">'+(showTpl?"Hide":"Show")+' pack template</button></div>'+
   (showTpl?'<textarea class="btx" rows="12" readonly style="font:12px monospace">'+esc(JSON.stringify(PACK_TEMPLATE,null,1))+'</textarea>':'');
  return h}
 
@@ -8119,15 +8456,15 @@ function renderClass(){var c=CL(),L=B.level,a=abil(),h="";
   cards.push({id:"s"+f[0]+f[1],t:f[1],l:f[0],n:mine.reduce(function(t,x){return t+nC(x)},0),todo:mine.some(function(x){return !isDone(x)}),b:'<p class="fd">'+rtp(SUB_FULL[B.sub+"|"+f[1]]||f[2])+'</p>'+mine.map(function(x){return (mine.length>1?'<h4>'+esc(x.title)+'</h4>':'')+choiceBody(x)}).join("")})});
  cs.forEach(function(x){if(used[x.key]||x.mc!=null||choiceStep(x)!=="class"||x.fk)return;used[x.key]=1;
   var t=x.t==="feat"?x.lvl+": Ability Score Improvement":x.title,fs3=subOf([x]);
-  cards.push({id:x.key,t:t,l:x.lvl,n:nC(x)+fs3.reduce(function(t2,y){return t2+nC(y)},0),todo:!isDone(x)||fs3.some(function(y){return !isDone(y)}),b:(x.t==="feat"?'<p class="fd">Take the Ability Score Improvement feat or another feat you qualify for.</p>':'')+choiceBody(x)+subH(fs3)})});
+  cards.push({id:x.key,t:t,l:x.lvl,n:nC(x)+fs3.reduce(function(t2,y){return t2+nC(y)},0),todo:!isDone(x)||fs3.some(function(y){return !isDone(y)}),b:(x.t==="feat"?'<p class="fd bhint">Take Ability Score Improvement or another feat you qualify for.</p>':'')+choiceBody(x)+subH(fs3)})});
  cards.sort(function(p,q){return p.l-q.l});
  h+=cards.map(function(k){return card(k.id,k.t,metaOf(k.n,k.l),k.b,{todo:k.todo})}).join("");
  if(TL()<20){var nx=c.f.filter(function(f){return f[0]===L+1}).map(function(f){return f[1]});if(B.sub&&B.sub!=="__custom")nx=nx.concat(c.subs[B.sub].filter(function(f){return f[0]===L+1}).map(function(f){return f[1]}));
   h+='<button type="button" class="lvup" data-lvup="1">Level Up to '+(L+1)+'<small>'+esc(nx.join(", ")||"Hit Points")+'</small></button>'}
  h+=MCL().map(function(m,i){return mcBlock(m,i)}).join("");
- if(TL()<20)h+='<div class="addcls"><select class="dd" data-addcls="1"><option value="">+ Add Another Class (multiclass)</option>'+Object.keys(CLASSES).filter(function(n){return n!==B.cls&&!MCL().some(function(m){return m.cls===n})}).map(function(n){var why=mcReqFail(n)||mcReqFail(B.cls);return '<option value="'+n+'">'+n+(why?' (needs '+why+')':'')+'</option>'}).join("")+'</select><p class="fd">Multiclassing needs 13 in the primary ability of your current class and the new class.</p></div>';
+ if(TL()<20)h+='<div class="addcls"><select class="dd" data-addcls="1"><option value="">+ Add Another Class (multiclass)</option>'+Object.keys(CLASSES).filter(function(n){return n!==B.cls&&!MCL().some(function(m){return m.cls===n})}).map(function(n){var why=mcReqFail(n)||mcReqFail(B.cls);return '<option value="'+n+'">'+n+(why?' (needs '+why+')':'')+'</option>'}).join("")+'</select><p class="fd bhint">Needs 13 in the primary ability of each class you have and the new one.</p></div>';
  return h}
-function hpRollUI(H){return '<div class="hproll"><p class="fd">Enter each roll, or tap Roll. Empty boxes use the average.</p>'+H.list.map(function(e){return '<label><span>'+esc(e.c)+' (d'+e.hd+')</span><input class="btx c" type="number" min="1" max="'+e.hd+'" data-hpr="'+e.key+'" value="'+(B.hpr[e.key]||'')+'"><button type="button" class="sbtn" data-roll="'+e.key+'" data-hd="'+e.hd+'">Roll</button></label>'}).join("")+'</div>'}
+function hpRollUI(H){return '<div class="hproll"><p class="fd bhint">Enter each roll, or tap Roll. Empty boxes use the average.</p>'+H.list.map(function(e){return '<label><span>'+esc(e.c)+' (d'+e.hd+')</span><input class="btx c" type="number" min="1" max="'+e.hd+'" data-hpr="'+e.key+'" value="'+(B.hpr[e.key]||'')+'"><button type="button" class="sbtn" data-roll="'+e.key+'" data-hd="'+e.hd+'">Roll</button></label>'}).join("")+'</div>'}
 function mcBlock(m,i){var c=CLASSES[m.cls],others=TL()-m.lv,h='<div class="mcblk"><div class="clsrow"><div><small>'+esc(m.sub||"")+'</small><b>'+m.cls+'</b></div><label>Level<select class="dd sm" data-mclv="'+i+'">'+Array.from({length:20-others},function(_,k){return '<option'+(k+1===m.lv?" selected":"")+'>'+(k+1)+'</option>'}).join("")+'</select></label><button type="button" class="bxbtn" data-mcdel="'+i+'" aria-label="Remove class">\u2715</button></div>';
  var why=[mcReqFail(B.cls)?B.cls+" needs "+mcReqFail(B.cls):"",mcReqFail(m.cls)?m.cls+" needs "+mcReqFail(m.cls):""].filter(Boolean).join(", ");if(why)h+='<div class="caution">\u26a0 Multiclass prerequisite not met: '+esc(why)+'. Multiclassing needs 13 in the primary ability of your current class and of the new class. Your DM can allow it anyway.</div>';
  var g=MC_GRANT[m.cls];h+=card("mcg"+i,"Multiclass Proficiencies","",'<p class="fd">'+([g.armor?"Armor: "+g.armor:"",g.weapons?"Weapons: "+g.weapons:"",g.tools?"Tools: "+g.tools:"",g.sk?"One skill":""].filter(Boolean).join(". ")||"None")+'. You don\'t gain this class\'s saving throws.</p>');
@@ -8136,7 +8473,7 @@ function mcBlock(m,i){var c=CLASSES[m.cls],others=TL()-m.lv,h='<div class="mcblk
  if(m.sub&&c.subs[m.sub])c.subs[m.sub].forEach(function(f){if(f[0]<=m.lv)feats.push({l:f[0],t:f[1],d:SUB_FULL[m.sub+"|"+f[1]]||f[2]})});
  var items=feats.map(function(f){return {l:f.l,html:card("mc"+i+f.l+f.t,f.t,ord(f.l)+" level",'<p class="fd">'+rtp(CF_FULL[m.cls+"|"+f.t]||f.d)+'</p>')}});
  var mcSub=function(x){return cs.filter(function(y){return y.fk&&y.fk===x.key})};/* v32 RL49 */
- cs.forEach(function(x){if(x.fk&&cs.some(function(y){return y.key===x.fk}))return;var xs=mcSub(x),body=x.t==="mcsub"?'<select class="dd" data-mcsub="'+i+'"><option value="">- Choose a '+SUBLABEL[m.cls]+' -</option>'+Object.keys(c.subs).map(function(s){return '<option'+(m.sub===s?" selected":"")+'>'+esc(s)+'</option>'}).join("")+'</select>':(x.t==="feat"?'<p class="fd">Take the Ability Score Improvement feat or another feat you qualify for.</p>':'')+choiceBody(x)+xs.map(function(y){return '<h4>'+esc(y.title)+'</h4>'+choiceBody(y)}).join("");
+ cs.forEach(function(x){if(x.fk&&cs.some(function(y){return y.key===x.fk}))return;var xs=mcSub(x),body=x.t==="mcsub"?'<select class="dd" data-mcsub="'+i+'"><option value="">- Choose a '+SUBLABEL[m.cls]+' -</option>'+Object.keys(c.subs).map(function(s){return '<option'+(m.sub===s?" selected":"")+'>'+esc(s)+'</option>'}).join("")+'</select>':(x.t==="feat"?'<p class="fd bhint">Take Ability Score Improvement or another feat you qualify for.</p>':'')+choiceBody(x)+xs.map(function(y){return '<h4>'+esc(y.title)+'</h4>'+choiceBody(y)}).join("");
   items.push({l:x.lvl,html:card(x.key,x.t==="feat"?m.cls+" "+x.lvl+": Ability Score Improvement":x.title,metaOf(nC(x)+xs.reduce(function(t,y){return t+nC(y)},0),x.lvl),body,{todo:!isDone(x)||xs.some(function(y){return !isDone(y)})})})});
  items.sort(function(p,q){return p.l-q.l});
  return h+items.map(function(x){return x.html}).join("")+'</div>'}
@@ -8147,14 +8484,14 @@ function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">Choose Origin: B
  h+='<select class="dd" data-b="bg">'+Object.keys(BACKGROUNDS).map(function(n){return '<option'+(n===B.bg?" selected":"")+'>'+n+'</option>'}).join("")+'</select>';
  h+='<p class="kv"><b>Skill Proficiencies:</b> '+bg.sk.join(", ")+'</p><p class="kv"><b>Tool Proficiencies:</b> '+esc(bg.tool)+'</p>';
  var F=FEATS[bg.feat],CB=choices(),fsb=CB.filter(function(c){return c.fk==="Origin feat ("+B.bg+")"}),bt=CB.filter(function(c){return c.key==="bgTool"})[0];
- if(bt)h+=card("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */
+ if(bt)h+=card("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd bhint">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */
  h+=card("bgfeat",bg.feat,"Granted Feat",'<p class="fd">'+rtp(F?(F.full||F.d):"")+'</p>'+fsb.map(function(x){return (fsb.length>1?'<h4>'+esc(x.title)+'</h4>':"")+choiceBody(x)}).join(""),{todo:fsb.some(function(x){return !isDone(x)})});
  var doneAb=B.bgMode==="111"||(B.bg2&&B.bg1);
  var ab='<p class="fd">Increase '+bg.ab.join(", ")+'. Pick +2 to one and +1 to another, or +1 to all three. No score can go above 20.</p><div class="radios h"><button type="button" class="rad'+(B.bgMode==="21"?" on":"")+'" data-bgmode="21"><b>+2 / +1</b></button><button type="button" class="rad'+(B.bgMode==="111"?" on":"")+'" data-bgmode="111"><b>+1 / +1 / +1</b></button></div>';
  if(B.bgMode==="111")ab+='<div class="picked"><p>Applied automatically: '+bg.ab.map(function(k){return '<b>'+ABN[k]+' +1</b>'}).join(', ')+'. No choice needed, because this background always uses these three scores.</p></div>';
  if(B.bgMode==="21")ab+='<div class="two"><label>+2 to<select class="dd" data-b="bg2"><option value="">- Choose -</option>'+bg.ab.map(function(k){return '<option value="'+k+'"'+(B.bg2===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label><label>+1 to<select class="dd" data-b="bg1"><option value="">- Choose -</option>'+bg.ab.filter(function(k){return k!==B.bg2}).map(function(k){return '<option value="'+k+'"'+(B.bg1===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label></div>';
  h+=card("bgab","Ability Scores",B.bgMode==="111"?"3 Choices":"2 Choices",ab,{todo:!doneAb});
- h+=card("bgeq","Equipment","Starting gear",'<p class="fd"><b>Option A:</b> '+esc(bg.eq)+'.<br><b>Option B:</b> 50 GP.</p><p class="fd">Choose on the Equipment step.</p>');
+ h+=card("bgeq","Equipment","Starting gear",'<p class="fd"><b>Option A:</b> '+esc(bg.eq)+'.<br><b>Option B:</b> 50 GP.</p><p class="fd bhint">Choose on the Equipment step.</p>');
  return h}
 
 /* ---------- step: species ---------- */
@@ -8164,13 +8501,13 @@ function renderSpecies(){var h="";
   h+='<div class="two"><label>Name<input class="btx" data-b="cSpecies.name" value="'+esc(B.cSpecies.name)+'"></label><label>Size<select class="dd" data-b="cSpecies.size"><option'+(B.cSpecies.size==="Medium"?" selected":"")+'>Medium</option><option'+(B.cSpecies.size==="Small"?" selected":"")+'>Small</option></select></label><label>Speed (ft)<input class="btx" type="number" data-b="cSpecies.speed" value="'+B.cSpecies.speed+'"></label><label>Darkvision (ft)<input class="btx" type="number" data-b="cSpecies.dark" value="'+B.cSpecies.dark+'"></label></div>';var lc0=choices().filter(function(c){return c.key==="lang"})[0];h+=card("lang","Languages","2 Choices \u2022 Origin",choiceBody(lc0),{todo:!isDone(lc0)});return h}
  var s=SPECIES[B.species],cs=choices();
  h+='<div class="sphead"><div><h2>'+B.species+'</h2><p><b>'+B.species+' Traits</b><br>'+s.traits.map(function(t){return t[0]}).join(", ")+'</p></div><button type="button" class="link" data-chgsp="1">Change Species</button></div>';
- var szNote='<p class="fd">A Medium creature takes up a 5-ft square and can use Heavy weapons normally. A Small creature also takes up a 5-ft square but has Disadvantage on attacks with Heavy weapons.</p>';
+ var szNote='<p class="fd bhint">Both take up a 5-ft square. Heavy weapons need Strength 13 (melee) or Dexterity 13 (ranged).</p>';
  if(/or/.test(s.size))h+=card("size","Size",(B.size||"Medium")+" \u2022 "+htText(B.species,B.size||"Medium"),'<div class="radios h">'+["Medium","Small"].map(function(z){return '<button type="button" class="rad'+((B.size||"Medium")===z?" on":"")+'" data-size="'+z+'"><b>'+z+'</b><span>'+htText(B.species,z)+'</span></button>'}).join("")+'</div>'+szNote);
  else h+=card("size","Size",s.size+" \u2022 "+htText(B.species,s.size),'<p class="fd">'+s.size+', '+htText(B.species,s.size)+'.</p>'+szNote);
  h+=card("speed","Speed","",'<p class="fd">'+s.speed+' feet.'+(s.dark?' Darkvision '+s.dark+' feet.':'')+'</p>');
  var lin=cs.filter(function(c){return c.key==="lin"})[0],sab=cs.filter(function(c){return c.key==="spab"})[0];/* RL35 2b */
  var hcn=cs.filter(function(c){return c.key==="hecan"})[0];/* v32 RL49 no. 43 */
- if(lin)h+=card("lin",s.lin.label,sab?"2 Choices":"1 Choice",choiceBody(lin)+(hcn?'<h4>Lineage cantrip</h4><p class="fd">'+esc(hcn.def[0])+' unless you pick another Wizard cantrip. You can swap it after a Long Rest.</p>'+choiceBody(hcn):"")+(sab?'<h4>Spellcasting ability</h4><p class="fd">The spells from your '+esc(s.lin.label)+' use this ability.</p>'+choiceBody(sab):""),{todo:!isDone(lin)||(sab&&!isDone(sab))});
+ if(lin)h+=card("lin",s.lin.label,sab?"2 Choices":"1 Choice",choiceBody(lin)+(hcn?'<h4>Lineage cantrip</h4><p class="fd">'+esc(hcn.def[0])+' unless you pick another Wizard cantrip. You can swap it after a Long Rest.</p>'+choiceBody(hcn):"")+(sab?'<h4>Spellcasting ability</h4><p class="fd bhint">The spells from your '+esc(s.lin.label)+' use this ability.</p>'+choiceBody(sab):""),{todo:!isDone(lin)||(sab&&!isDone(sab))});
  var so=cs.filter(function(c){return c.key==="spopt"})[0];if(so){var sub=["spfeat","spsk2","spcan","spwep"].map(function(k){var x=cs.filter(function(c){return c.key===k})[0];if(!x)return "";var ex="";if(k==="spfeat")ex=cs.filter(function(c){return c.fk==="Origin feat ("+B.species+", Versatile)"}).map(choiceBody).join("");/* v32 RL49 */return '<h4>'+esc(x.title)+'</h4>'+choiceBody(x)+ex}).join("");
   var todo=!isDone(so)||["spfeat","spsk2","spcan","spwep"].some(function(k){var x=cs.filter(function(c){return c.key===k})[0];return x&&!isDone(x)});h+=card("spopt",s.opts.label,s.opts.n+" Choices",'<p class="fd">'+esc((s.traits.filter(function(t){return t[0]===s.opts.label})[0]||["",""])[1])+'</p>'+choiceBody(so)+sub,{todo:todo})}
  s.traits.forEach(function(t){var x=null;if(t[0]==="Skillful"||t[0]==="Keen Senses")x=cs.filter(function(c){return c.key==="spsk"})[0];if(t[0]==="Versatile"&&!s.opts)x=cs.filter(function(c){return c.key==="spfeat"})[0];
@@ -8183,7 +8520,7 @@ function renderSpecies(){var h="";
 /* ---------- step: abilities ---------- */
 function renderAbil(){var a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
  h+='<select class="dd" data-method="1">'+(un("abil")?'<option value="" selected>- Choose a Generation Method -</option>':'')+[["manual","Manual/Rolled"],["array","Standard Array"],["point","Point Buy"]].map(function(m){return '<option value="'+m[0]+'"'+(B.method===m[0]&&!un("abil")?" selected":"")+'>'+m[1]+'</option>'}).join("")+'</select>';
- if(un("abil"))return h+'<p class="fd">Choose how you want to generate your ability scores.</p>';
+ if(un("abil"))return h+'<p class="fd bhint">Choose how to set your ability scores.</p>';
  if(B.method==="point"){var used=ABK.reduce(function(t,k){return t+(PBC[B.base[k]]!=null?PBC[B.base[k]]:0)},0);h+='<p class="pts">Points Remaining: <b>'+(27-used)+' / 27</b></p>'}
  h+='<div class="abgrid">'+ABK.map(function(k){var ctl;
   if(B.method==="array"){var taken=ABK.filter(function(j){return j!==k&&B.arr&&B.arr[j]}).map(function(j){return +B.arr[j]});ctl='<select class="dd" data-arr="'+k+'"><option value="">--</option>'+ARR.filter(function(v,i){var cnt=taken.filter(function(t){return t===v}).length;return cnt===0}).concat([]).map(function(v){return '<option'+(B.arr&&+B.arr[k]===v?" selected":"")+'>'+v+'</option>'}).join("")+'</select>'}
@@ -8217,14 +8554,22 @@ function attWarn(x){var dm=DMAP[x.n],by=dm&&dm[3]&&dm[5]&&dm[5].by;if(!by)return
 function badge(x,i){var bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&dm[1]!=="Scroll"&&!WEAPONS[bb]&&!ARMOR[bb]&&bb!=="Shield")return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(dm[3]?(x.eq?"Attuned":"Attune"):(x.eq?"In Use":"Use"))+'</button>';if(ARMOR[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wearing":"Wear")+'</button>';
  if(bb==="Shield"||WEAPONS[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wielding":"Wield")+'</button>';
  return '<span class="qty"><small>QTY</small> '+qOf(x)+'</span>'}
+/* v33 p04 (RU125): item type icon. Packs get the pack icon, weapons the icon of their kind, the rest the sheet's type icon (icoItem) */
+var WPK=[[/Crossbow/,"wp-crossbow"],[/bow$/i,"wp-bow"],[/axe|halberd/i,"wp-axe"],[/Dagger|Sickle/,"wp-dagger"],[/Quarterstaff/,"wp-staff"],[/Spear|Javelin|Pike|Trident|Lance|Glaive/,"wp-spear"],[/hammer|maul|club|mace|morningstar|flail/i,"wp-hammer"],[/sword|rapier|scimitar/i,"wp-sword"]];
+function bItemIco(n,x){var bb=baseOf(n).b;if(PACKS[n]||PACKS[bb]||(x&&x.alias&&PACKS[x.alias]))return "item-pack";var k="item-gear";try{k=window.__icoItem?window.__icoItem({n:n,type:itemType(n,x),rar:rarityOf(x||{n:n})}):k}catch(e){}if(k==="item-weapon"&&WEAPONS[bb]){for(var i=0;i<WPK.length;i++)if(WPK[i][0].test(bb))return WPK[i][1]}return k||"item-gear"}
+function detBtn(id,o,n){return '<button type="button" class="schev" data-tog="'+esc(id)+'" aria-expanded="'+o+'" aria-label="Details: '+esc(n)+'">'+'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>'+'<span class="dl" aria-hidden="true">Details</span></button>'}
+/* v33 p04 (RU123): the five coins, copper to platinum, with the sheet's coin icons */
+function coinsB(c,t){var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]];return '<div class="bcoins" role="group" aria-label="Coins: '+o.map(function(k){return (+c[k[0]]||0)+' '+k[1]}).join(', ')+', '+t+' GP in all">'+o.map(function(k){return '<span class="icn ic-'+k[0]+'">'+bI("coin-"+k[0],"icn-i")+'<b>'+(+c[k[0]]||0)+'</b><small>'+k[0].toUpperCase()+'</small></span>'}).join("")+'<span class="itot">'+t+' GP in all</span></div>'}
+/* v33 p05 (F2): a short hint with an icon instead of a paragraph */
+function hint(k,txt,cls,attr){return '<p class="bhint'+(cls?" "+cls:"")+'"'+(attr||"")+'>'+bI(k||"ui-info")+'<span>'+txt+'</span></p>'}
 function renderEquip(){var c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 class="ttl">Choose Equipment</h2>'+acModeCard();
  function opt(key,cur,list,title){return '<h3 class="eqh">'+title+'</h3><div class="eqbox">'+list.map(function(t,i){var L="ABC"[i];return (i?'<p class="or">OR</p>':'')+'<button type="button" class="eqo'+(cur===L?" on":"")+'" data-eq="'+key+'" data-v="'+L+'"><span class="bcb"></span>('+L+') '+esc(t)+'</button>'}).join("")+'</div>'}
  var sec=function(id,title,right,body){var o=openCards[id]!==false;return '<div class="sech2"><button type="button" class="sech2h" data-tog2="'+id+'"><b>'+title+'</b><span>'+(right||"")+'</span><svg class="bchev'+(o?" up":"")+'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+(o?'<div class="sech2b">'+body+'</div>':'')+'</div>'};
- var st=(un("cls")?'<h3 class="eqh">Class Starting Equipment</h3><p class="fd">Choose a class first.</p>':opt("eqC",B.eqC==="none"||un("eqC")?"":"ABC"[eqIdx()],CLASSES[B.cls].eq,B.cls+" Starting Equipment"))+(un("bg")?'<h3 class="eqh">Background Starting Equipment</h3><p class="fd">Choose a background first.</p>':opt("eqB",B.eqB==="none"||un("eqB")?"":B.eqB,[bg.eq,"50 GP"],B.bg+" Starting Equipment"))+'<div class="eqact"><button type="button" class="skip" data-skip="1">Skip Starting Equipment</button><button type="button" class="link" data-clearinv="1">Clear All</button></div>';
+ var st=(un("cls")?'<h3 class="eqh">Class Starting Equipment</h3><p class="fd bhint">Choose a class first.</p>':opt("eqC",B.eqC==="none"||un("eqC")?"":"ABC"[eqIdx()],CLASSES[B.cls].eq,B.cls+" Starting Equipment"))+(un("bg")?'<h3 class="eqh">Background Starting Equipment</h3><p class="fd bhint">Choose a background first.</p>':opt("eqB",B.eqB==="none"||un("eqB")?"":B.eqB,[bg.eq,"50 GP"],B.bg+" Starting Equipment"))+'<div class="eqact"><button type="button" class="skip" data-skip="1">Skip Starting Equipment</button><button type="button" class="link" data-clearinv="1">Clear All</button></div>';
  h+=sec("st","Starting Equipment","",st);
  var w=inv.reduce(function(t,x){return t+itemW(x.n)*qOf(x)},0);
- var cur=inv.length?bInvOrder(inv).map(function(pp){var x=pp[0],i=pp[1],id="inv"+i+x.n,o=!!openCards[id];return '<div class="icard'+(o?" open":"")+(pp[2]?" isub":"")+'"'+(pp[2]>1?' data-dp="2"':'')+'><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'"><b class="'+rarCls(rarityOf(x))+'">'+esc(x.n)+(kitTool(x)?' ('+esc(kitTool(x))+')':'')+'</b><small>'+itemType(x.n,x)+(rarityOf(x)?', '+rarityOf(x).toLowerCase():'')+(x.src?' \u2022 '+esc(x.src):'')+(bCt(x.n)?' \u2022 '+bInN(x)+' inside':'')+'</small></button>'+badge(x,i)+'<button type="button" class="schev" data-tog="'+esc(id)+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button></div>'+
-  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd">Your inventory is empty. Pick a starting option or add items below.</p>';
+ var cur=inv.length?bInvOrder(inv).map(function(pp){var x=pp[0],i=pp[1],id="inv"+i+x.n,o=!!openCards[id];return '<div class="icard'+(o?" open":"")+(pp[2]?" isub":"")+'"'+(pp[2]>1?' data-dp="2"':'')+'><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'" aria-expanded="'+o+'">'+bI(bItemIco(x.n,x))+'<span><b class="'+rarCls(rarityOf(x))+'">'+esc(x.n)+(kitTool(x)?' ('+esc(kitTool(x))+')':'')+'</b><small>'+itemType(x.n,x)+(rarityOf(x)?', '+rarityOf(x).toLowerCase():'')+(x.src?' \u2022 '+esc(x.src):'')+(bCt(x.n)?' \u2022 '+bInN(x)+' inside':'')+'</small></span></button>'+badge(x,i)+detBtn(id,o,x.n)+'</div>'+
+  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd bhint">Empty. Pick a starting option or add items below.</p>';
  var att=inv.filter(function(x){return x.eq&&DMAP[x.n]&&DMAP[x.n][3]}).length;h+=sec("cur","Current Inventory ("+inv.length+")","Attuned "+att+"/3 \u2022 "+Math.round(w*10)/10+" lb",(att>3?'<div class="caution">\u26a0 You are attuned to '+att+' items. A creature can be attuned to at most 3 magic items at once.</div>':'')+cur);
  var cat=[];Object.keys(ARMOR).forEach(function(n){cat.push(n)});cat.push("Shield");Object.keys(WEAPONS).forEach(function(n){cat.push(n)});GEAR.forEach(function(g){cat.push(g[0])});POTIONS.forEach(function(p){if(cat.indexOf(p[0])<0)cat.push(p[0])});DMGI.forEach(function(x){if(cat.indexOf(x[0])<0)cat.push(x[0])});
  if((invR&&invR!=="Common"&&invR!=="Artifact")||/\+\s*\d/.test(invQ||"")){[1,2,3].forEach(function(k){Object.keys(WEAPONS).forEach(function(n){cat.push(n+", +"+k)});Object.keys(ARMOR).forEach(function(n){cat.push(n+", +"+k)});cat.push("Shield, +"+k)})}
@@ -8232,12 +8577,13 @@ function renderEquip(){var c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 cl
  (B.custLib||[]).forEach(function(c){if(cat.indexOf(c.n)<0)cat.push(c.n)});
  cat.sort();var q=invQ.toLowerCase(),list=cat.filter(function(n){var cx=(B.custLib||[]).filter(function(c){return c.n===n})[0],t=itemType(n,cx),rr=(cx&&cx.rar)||rarityOf({n:n})||"Common";if(invR&&rr!==invR)return false;var bn=baseOf(n).b;if(invT==="ARMOR"&&!(ARMOR[bn]||bn==="Shield"||t==="Armor"))return false;if(invT==="WEAPON"&&!(WEAPONS[bn]||t==="Weapon"))return false;var TT={POTION:"Potion",RING:"Ring",ROD:"Rod",SCROLL:"Scroll",STAFF:"Staff",WAND:"Wand",WONDROUS:"Wondrous Item",GEAR:"Gear"};if(TT[invT]&&t!==TT[invT]&&!(invT==="STAFF"&&bn==="Quarterstaff"))return false;if(invP&&!isProf(n))return false;return !q||n.toLowerCase().indexOf(q)>=0||t.toLowerCase().indexOf(q)>=0});
  var add='<p class="flab">Filter</p><input class="btx" id="invq" type="search" placeholder="Weapon, Longsword, Rope, etc." value="'+esc(invQ)+'"><p class="flab">Filter By Type</p><div class="lvbox">'+["ARMOR","POTION","RING","ROD","SCROLL","STAFF","WAND","WEAPON","WONDROUS","GEAR"].map(function(t){return '<button type="button" class="lvb sm'+(invT===t?" on":"")+'" data-invt="'+t+'">'+(t==="GEAR"?"OTHER GEAR":t)+'</button>'}).join("")+'</div><p class="flab">Filter By Rarity</p><div class="lvbox">'+["Common","Uncommon","Rare","Very Rare","Legendary","Artifact"].map(function(r){return '<button type="button" class="vb '+rarCls(r)+(invR===r?" on":"")+'" data-invr="'+r+'">'+r+'</button>'}).join("")+'</div><label class="ck"><input type="checkbox" data-invp="1"'+(invP?" checked":"")+'> Proficient only</label><p class="pick">'+list.length+' items'+(!list.length&&/RING|ROD|STAFF|WAND|WONDROUS/.test(invT)?'. The PHB has no '+invT.toLowerCase()+' items. Add one with Custom or magic item below.':'')+'</p>'+
-  list.map(function(n){var id="add"+n,o=!!openCards[id],qv=addQty[n]||1;return '<div class="icard'+(o?" open":"")+'"><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'">'+(function(){var cx=(B.custLib||[]).filter(function(c){return c.n===n})[0],rr=(cx&&cx.rar)||rarityOf({n:n});return '<b class="'+rarCls(rr)+'">'+esc(n)+'</b><small>'+itemType(n,cx)+(rr?', '+rr.toLowerCase():'')+'</small>'})()+'</button><button type="button" class="bdg add" data-iadd="'+esc(n)+'" data-qty="1">Add</button><button type="button" class="schev" data-tog="'+esc(id)+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button></div>'+
+  list.map(function(n){var id="add"+n,o=!!openCards[id],qv=addQty[n]||1;return '<div class="icard'+(o?" open":"")+'"><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'" aria-expanded="'+o+'">'+(function(){var cx=(B.custLib||[]).filter(function(c){return c.n===n})[0],rr=(cx&&cx.rar)||rarityOf({n:n});return bI(bItemIco(n,cx))+'<span><b class="'+rarCls(rr)+'">'+esc(n)+'</b><small>'+itemType(n,cx)+(rr?', '+rr.toLowerCase():'')+'</small></span>'})()+'</button><button type="button" class="bdg add" data-iadd="'+esc(n)+'" data-qty="1" aria-label="Add '+esc(n)+'">'+bI("ui-plus")+'Add</button>'+detBtn(id,o,n)+'</div>'+
    (o?itemDetail(n)+(equippable(n)&&!baseOf(n).p?'<div class="iact"><span>Magic bonus</span>'+[0,1,2,3].map(function(k){var cur=addVar[n]||0,r=k?(WEAPONS[n]?RAR_W:ARMOR[n]?RAR_A:RAR_S)[k]:"";return '<button type="button" class="vb'+(cur===k?" on":"")+' '+rarCls(r)+'" data-avar="'+esc(n)+'" data-k="'+k+'">'+(k?'+'+k:'None')+'</button>'}).join('')+'</div>':'')+'<div class="iact"><span>Amount to add</span><span class="step2"><button type="button" data-aq="'+esc(n)+'" data-d="-1">\u2212</button><output>'+qv+'</output><button type="button" data-aq="'+esc(n)+'" data-d="1">+</button></span><button type="button" class="bdg add" data-iadd="'+esc(addVar[n]&&!baseOf(n).p?n+', +'+addVar[n]:n)+'" data-qty="'+qv+'">Add Item</button></div>':'')+'</div>'}).join("");
  add+='<div class="custom"><p class="flab">Custom or magic item</p><input class="btx" id="custn" placeholder="Item name, e.g. Belt of Hill Giant Strength" value="'+esc(cust.n)+'"><select class="dd" id="custt">'+["Wondrous Item","Ring","Rod","Staff","Wand","Potion","Scroll","Weapon","Armor","Gear"].map(function(t){return '<option'+(cust.t===t?" selected":"")+'>'+t+'</option>'}).join("")+'</select><div class="lvbox">'+["Common","Uncommon","Rare","Very Rare","Legendary","Artifact"].map(function(r){return '<button type="button" class="vb '+rarCls(r)+(cust.r===r?" on":"")+'" data-custr="'+r+'">'+r+'</button>'}).join("")+'</div><textarea class="btx" id="custd" rows="2" placeholder="What it does (optional)">'+esc(cust.d)+'</textarea><button type="button" class="bdg add" data-custadd="1">Add Item</button></div>';
  h+=sec("add","Add Items","",add);
  var g=gpNow();
- h+=sec("cur2","Currency","Total in GP: "+g,'<label class="one">Gold pieces (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label><p class="fd">Starting gold from your choices is '+gpBase()+' GP. Adding items here doesn\'t spend gold, same as D&amp;D Beyond. Edit the amount if you buy things.</p>');
+ var mineC=false;try{mineC=bldMine()}catch(e){}var cn=window.__coinsFor?window.__coinsFor(g,mineC):{pp:0,gp:+g||0,ep:0,sp:0,cp:0},cT=window.__coinTotal?window.__coinTotal(cn):g,hasO=cn.pp||cn.ep||cn.sp||cn.cp;
+ h+=sec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+hint("coin-gp","From your choices: "+gpBase()+" GP. Adding items here doesn\'t spend gold.")+(mineC&&hasO?hint("ui-info","Other coins come from your sheet. Change them in Inventory, Coin."):''));
  return h}
 
 /* ---------- step: what's next ---------- */
@@ -8255,7 +8601,7 @@ function renderNext(){var miss=unList();if(miss.length){var bk0=bakInfo();return
  h+='<button type="button" class="big" id="expBtn2">Open Character Sheet</button>';
  h+=C.features.map(function(g){return card("g"+g.g,g.g,g.items.length+" entries",g.items.map(function(f){return '<p class="fd"><b>'+esc(f.n)+'.</b> '+rt(f.d)+' <i>'+esc(f.s)+'</i></p>'}).join("")+(g.next?'<p class="fd"><i>'+esc(g.next)+'</i></p>':''))}).join("");
  h+='<button type="button" class="ghost" id="newBtn2">Start a new character</button>';
- var bk=bakInfo();if(bk)h+='<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk.label)+')</button><p class="fd">Saved when you last chose Load from sheet. Restoring swaps it with the build you are editing now.</p>';
+ var bk=bakInfo();if(bk)h+='<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk.label)+')</button><p class="fd bhint">Saved at your last Load from sheet. Restoring swaps it with this build.</p>';
  return h}
 /* RU11: backup build (phb24-builder-v1-bak, written by Load from sheet). Returns {raw, b, label} or null. */
 function bakInfo(){var raw=null;try{raw=localStorage.getItem(BAK)}catch(e){}if(raw==null)return null;var b=null;try{b=JSON.parse(raw)}catch(e){}if(!b||!b.cls)return null;
@@ -8329,7 +8675,7 @@ function hbCopy(cid,pid){var o=hbOthers().filter(function(x){return x.cid===cid&
    and starting spells (QUICK in db4.js). Every pick can be changed afterwards in the steps */
 var qbCls="",qbSp="";
 function qbCard(){var cl=Object.keys(CLASSES),sp=Object.keys(SPECIES).sort();
- return '<div class="qb"><h2 class="ttl">Quick Build</h2><p class="fd">New to the game? Pick a class and a species. The builder makes a level 1 character with sensible choices: ability scores, background, equipment, skills, and spells. You can change any of it afterwards.</p>'+
+ return '<div class="qb"><h2 class="ttl">Quick Build</h2><p class="fd bhint">Pick a class and a species. You get a level 1 character with every choice made, and you can change any of it.</p>'+
   '<div class="two"><label>Class<select class="dd" id="qbCls"><option value="">- Choose a class -</option>'+cl.map(function(c){return '<option'+(qbCls===c?" selected":"")+'>'+esc(c)+'</option>'}).join("")+'</select></label>'+
   '<label>Species<select class="dd" id="qbSp">'+sp.map(function(s){return '<option'+((qbSp||"Human")===s?" selected":"")+'>'+esc(s)+'</option>'}).join("")+'</select></label></div>'+
   '<div class="eqact"><button type="button" class="bdg add" data-qb="1">Quick Build</button></div></div>'}
@@ -8369,8 +8715,8 @@ function quickBuild(cls,sp){var Q=QUICK[cls];if(!Q){toast("Choose a class first.
 
 /* v27 i2: choose how AC is set when no armor is worn. Shown when two rules can set it, or when one was chosen before */
 function acModeCard(){try{toSheet()}catch(e){}var real=(ACM||[]).filter(function(x){return x.k!=="none"});if(real.length<2&&!B.acMode)return "";if(!ACM.length)return "";var cur=B.acMode||"",best=ACM.reduce(function(m,x){return x.v>m.v?x:m},ACM[0]);
- return '<div class="acm"><h3 class="eqh">Armor Class without Armor</h3><p class="fd">More than one rule sets your Armor Class when you wear no armor. Pick the one you use, or Automatic: the first in rule order (main class first).</p><div class="radios">'+
-  [["","Automatic: "+ACM[0].n+", AC "+ACM[0].v]].concat(ACM.map(function(x){return [x.k,x.n+", AC "+x.v]})).map(function(o){return '<button type="button" class="rad'+(cur===o[0]?" on":"")+'" data-acm="'+o[0]+'"><b>'+esc(o[1])+'</b>'+(o[0]&&o[0]===best.k&&best.v>ACM[0].v?'<span>Highest</span>':'')+'</button>'}).join("")+'</div><p class="fd">A shield and magic items add to any of these. Worn armor replaces them.</p></div>'}
+ return '<div class="acm"><h3 class="eqh">Armor Class without Armor</h3><p class="fd bhint">Several rules set your AC without armor. Pick one, or Automatic (main class first).</p><div class="radios">'+
+  [["","Automatic: "+ACM[0].n+", AC "+ACM[0].v]].concat(ACM.map(function(x){return [x.k,x.n+", AC "+x.v]})).map(function(o){return '<button type="button" class="rad'+(cur===o[0]?" on":"")+'" data-acm="'+o[0]+'"><b>'+esc(o[1])+'</b>'+(o[0]&&o[0]===best.k&&best.v>ACM[0].v?'<span>Highest</span>':'')+'</button>'}).join("")+'</div><p class="fd bhint">A shield and magic items add to these. Worn armor replaces them.</p></div>'}
 /* v32 RU134: item of B.inv by name and occurrence (occ 0 = first), then by alias. -1: none */
 function invFind(name,occ){var n=+occ||0,f=-1;for(var i=0;i<B.inv.length;i++)if(B.inv[i].n===name){if(f<0)f=i;if(n--===0)return i}if(f>=0)return f;return B.inv.findIndex(function(x){return x.alias===name})}
 /* a container leaves: its items move out (no other container has its name) */
@@ -8388,6 +8734,14 @@ function bCt(n){var b=String(n||"").replace(/ \(.*\)$/,"");return (typeof CONTAI
 function binIn(x,i){var cs=(B.inv||[]).filter(function(y,k){return k!==i&&bCt(y.n)&&y.in!==x.n});if(!cs.length&&!x.in)return "";return '<label class="binin">In <select class="dd sm" data-iin="'+i+'" aria-label="Container for '+esc(x.n)+'"><option value="">Not in a container</option>'+cs.map(function(y){return '<option value="'+esc(y.n)+'"'+(x.in===y.n?" selected":"")+'>'+esc(y.n)+'</option>'}).join("")+'</select></label>'}
 /* ---------- shell ---------- */
 function stepIss(s){try{return ruleIssues().some(function(x){return x.step===s})}catch(e){return false}}
+/* v33 p02: [done, total] for a step. Same rules as stepTodo: the class, background and species themselves, the background ability increase, ability scores, both starting equipment choices, and every choice that belongs to the step */
+function stepProg(s,cs){var d=0,n=0,add=function(ok){n++;if(ok)d++},inStep=function(st){(cs||choices()).forEach(function(c){if(choiceStep(c)===st)add(isDone(c))})};
+ if(s==="class"){add(!un("cls"));if(!un("cls"))inStep("class")}
+ else if(s==="bg"){add(!un("bg"));if(!un("bg")){add(B.bgMode==="111"||!!(B.bg2&&B.bg1));inStep("bg")}}
+ else if(s==="species"){add(!un("species"));if(!un("species"))inStep("species")}
+ else if(s==="abil")add(!un("abil"));
+ else if(s==="equip"){add(!un("eqC"));add(!un("eqB"))}
+ return n?[d,n]:null}
 function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("eqC")||un("eqB");if(un({class:"cls",bg:"bg",species:"species"}[s]))return true;var cs=choices();
  /* v32 RL49: every open choice marks the step that holds it (Skilled at an ASI level marks Class) */
  if(s==="class")return cs.some(function(c){return !isDone(c)&&choiceStep(c)==="class"});
@@ -8396,10 +8750,11 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  return false}
 function render(){
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
- $("#steps").innerHTML=STEPS.map(function(s){return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'">'+s[1]+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML='Apply to Sheet'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
+ var csP=null;try{csP=choices()}catch(e){}
+ $("#steps").innerHTML=STEPS.map(function(s){var pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
  var on=$("#steps .on");if(on)on.scrollIntoView({block:"nearest",inline:"center"});
  var f={home:renderHome,class:renderClass,bg:renderBg,species:renderSpecies,abil:renderAbil,equip:renderEquip,next:renderNext,rules:renderRules}[step];
- $("#body").innerHTML=f();
+ $("#body").innerHTML=f();try{bDeco($("#body"))}catch(e){}
  var i=STEPS.map(function(s){return s[0]}).indexOf(step);$("#prev").disabled=i===0;$("#next").disabled=i===STEPS.length-1;
  $("#nameRow").hidden=step==="rules"}
 function go(s){step=s;pickCls=false;pickSp=false;render();window.scrollTo(0,0)}
@@ -8658,6 +9013,28 @@ function toSheetApply(review){var miss=unList();if(miss){toast("Choose your "+mi
  else go()}
 document.getElementById("b-toSheet").addEventListener("click",function(){toSheetApply(false)});
 document.getElementById("b-close").addEventListener("click",closeBld);
+/* v33 p02: header and footer icons (one line style, like the sheet) */
+(function(){var pre=function(id,k,end){var e=typeof id==="string"?document.querySelector(id):id;if(!e||e.querySelector("svg"))return;e.insertAdjacentHTML(end?"beforeend":"afterbegin",bI(k))};
+ pre("#bld .brand b","ui-build");pre("#bld .lvhead","ui-levelup");pre("#b-close","ui-close");pre("#prev","ui-chev-l");var nx=document.getElementById("next"),ns=nx&&nx.querySelector("svg");if(ns)ns.remove();pre("#next","ui-chev-r",true)})();
+/* v33 p02: every builder button carries an icon. Chips and radios show their state, buttons their action. Runs after each render */
+var BTXT=[[/^(Add|Add Item|Add Source|Create)$/,"ui-plus"],[/^Quick Build$/,"ui-build"],[/^(Wield|Wear|Use|Attune|Equip)$/,"ui-box"],[/^(Wielding|Wearing|In Use|Attuned|Unequip)$/,"item-equipped"],[/^Unpack$/,"ui-bag"],
+ [/^(Prepare|Learn)$/,"ui-plus"],[/^Chosen$/,"ui-check"],[/^(Unprepare|Unlearn)$/,"ui-minus"],[/^Remove/,"ui-trash"],[/^Clear All$/,"ui-trash"],[/^Read: /,"ui-book"],[/pack template$/,"ui-file"],[/^Change /,"ui-pen"],[/^Edit$/,"ui-pen"],[/^Cancel$/,"ui-close"],
+ [/^Skip /,"ui-close"],[/^Start a new character$/,"home-create"],[/^Restore backup/,"home-restore"],[/^Level Up to /,"ui-levelup"],[/^Load from sheet/i,"home-import"],[/^Export/i,"home-export"]];
+var BINV={ARMOR:"item-armor",POTION:"item-potion",RING:"item-ring",ROD:"item-rod",SCROLL:"item-scroll",STAFF:"item-staff",WAND:"item-wand",WEAPON:"item-weapon",WONDROUS:"item-wondrous",GEAR:"item-gear"};
+function bTxt(b){var t=(b.textContent||"").replace(/\s+/g," ").trim();for(var i=0;i<BTXT.length;i++)if(BTXT[i][0].test(t))return BTXT[i][1];return ""}
+function bDeco(root){var ICO=window.__ICO;if(!root||!ICO)return;var q=function(s){return Array.prototype.slice.call(root.querySelectorAll(s))},put=function(e,k,end){if(!k||e.querySelector("svg"))return;e.insertAdjacentHTML(end?"beforeend":"afterbegin",bI(k))};
+ q(".chip").forEach(function(b){if(b.querySelector("svg"))return;var on=b.classList.contains("on");if(b.classList.contains("clash")&&b.firstChild&&b.firstChild.nodeType===3)b.firstChild.nodeValue=b.firstChild.nodeValue.replace(/^\u26a0\s*/,"");put(b,on?"ui-check":b.classList.contains("clash")?"toast-warn":b.classList.contains("have")?"ui-check":"ui-plus")});
+ q(".rad").forEach(function(b){put(b,b.classList.contains("on")?"ui-radio-on":"fr-round")});
+ q(".eqo .bcb").forEach(function(s){if(!s.querySelector("svg"))s.innerHTML=bI(s.parentNode.classList.contains("on")?"item-equipped":"ui-box")});
+ q("[data-invt]").forEach(function(b){put(b,BINV[b.getAttribute("data-invt")])});
+ q("[data-invr],[data-custr]").forEach(function(b){put(b,"item-wondrous")});q("[data-avar]").forEach(function(b){put(b,b.getAttribute("data-k")==="0"?"ui-minus":"ui-star")});
+ q("[data-setcls]").forEach(function(b){var k=window.__icoCls?window.__icoCls(b.getAttribute("data-setcls")):"";put(b,ICO[k]?k:"src-class")});
+ q("[data-setsp]").forEach(function(b){var k="sp-"+String(b.getAttribute("data-setsp")).toLowerCase();put(b,ICO[k]?k:"sp-custom")});
+ q(".bxbtn").forEach(function(b){if(b.querySelector("svg"))return;b.textContent="";put(b,b.hasAttribute("data-mcdel")?"ui-trash":"ui-pen")});
+ q(".rmv").forEach(function(b){if(b.querySelector("svg"))return;if(b.firstChild&&b.firstChild.nodeType===3)b.firstChild.nodeValue=b.firstChild.nodeValue.replace(/^\u2715\s*/,"");put(b,"ui-trash")});
+ q("p.bhint,.bwarn,.caution").forEach(function(p){if(p.querySelector(":scope > svg"))return;var w=p.classList.contains("caution")||p.getAttribute("data-hi")==="toast-warn";if(p.firstChild&&p.firstChild.nodeType===3)p.firstChild.nodeValue=p.firstChild.nodeValue.replace(/^\u26a0\s*/,"");var sp=document.createElement("span");while(p.firstChild)sp.appendChild(p.firstChild);p.appendChild(sp);p.classList.add("bhint");if(w)p.classList.add("warn");p.insertAdjacentHTML("afterbegin",bI(w?"toast-warn":"ui-info"))});
+ q(".lvup").forEach(function(b){if(b.querySelector("svg"))return;var t=b.firstChild;if(t&&t.nodeType===3){var sp=document.createElement("span");b.insertBefore(sp,t);sp.appendChild(t);sp.insertAdjacentHTML("afterbegin",bI("ui-levelup"))}});
+ q("button").forEach(function(b){if(b.querySelector("svg")||b.closest(".noico"))return;put(b,bTxt(b)||(window.__icoText?window.__icoText(b):""))})}
 /* M18: attuned items in the build (equipped items that need attunement) */
 function attN(){return (B.inv||[]).filter(function(y){return y.eq&&DMAP[y.n]&&DMAP[y.n][3]}).length}
 window.__bldToggleEq=function(name,occ){ensureInv();var i=invFind(name,occ);if(i<0)return;var it=B.inv[i];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&attN()>=attMax())return;it.eq=!it.eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach(function(y,k){if(k!==i&&ARMOR[baseOf(y.n).b])y.eq=false});save();if(window.__sheetSoft)window.__sheetSoft(toSheet())};
