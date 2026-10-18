@@ -1997,6 +1997,11 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .fblk{display:block;margin-top:10px}.fblk:first-child{margin-top:0}.fblk.nm>strong:first-child{display:block;margin-bottom:2px}
 .ps-ft .fblk{margin-top:4px}.ps-ft .fblk.nm>strong:first-child{margin-bottom:0}
 .fold:not(.open) .fblk,.fold:not(.open) .fblk.nm>strong:first-child{display:inline;margin:0}.fold:not(.open) .fblk+.fblk::before{content:" "}
+
+/* v34 p06 */
+#bldBtn{position:relative}
+#bldBtn .bpend{position:absolute;bottom:3px;right:3px;width:10px;height:10px;border-radius:2px;background:#f2c14e;box-shadow:0 0 0 2px var(--bg,#0e1215);pointer-events:none}
+@media (min-width:481px){#bldBtn .bpend{bottom:-4px;right:-4px}}
 #bld{--bg:#fff;--ink:#12181c;--muted:#6b7378;--line:#d8d8d8;--top:#12181c;--bar:#262e33;--tabs:#33393d;--blue:#1b9af0;--blue-soft:#e6f3fd;--hl:#a7c7ea;--hl-2:#cfe0f4;--th:#22272b;--card:#fbfaf7;--cardline:#e3dfd6;--olive:#7d8a3a;
 --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto Condensed","Arial Narrow",Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){#bld{--bg:#15191c;--ink:#e8eaeb;--muted:#9aa3a8;--line:#30373b;--card:#1d2225;--cardline:#30373b;--blue-soft:#14324a;--hl:#24496e;--hl-2:#1b3754;--th:#0e1113;color-scheme:dark}
@@ -2552,6 +2557,12 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 #bld .foot{padding-left:max(12px,calc((100% - 820px)/2 + 16px));padding-right:max(12px,calc((100% - 820px)/2 + 16px))}
 :root[data-skin="ddb"] #bld .bxbtn[data-chgcls]{color:var(--muted)}
 :root[data-skin="ddb"] #bld .bxbtn[data-chgcls]:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+
+/* v34 p06 */
+:root[data-skin] #bld .bcoin-in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:8px 0}
+#bld .bci{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:700}
+#bld .bci .icn-i{width:18px;height:18px}
+#bld .bci input{width:100%;min-height:44px;text-align:center;box-sizing:border-box;padding:4px}
 #homeV{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--paper);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}#homeV[hidden]{display:none}.hwrap{max-width:1100px;margin:0 auto;padding:22px 16px 40px}.hhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.hhead h1{margin:0;font-family:var(--f-display,inherit);font-size:calc(34px*var(--tz,1));font-weight:900;letter-spacing:-.01em;font-variation-settings:'wdth' 75}.hcreate{background:#2b3238;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:12px 18px;border-radius:4px;font-size:calc(15px*var(--tz,1))}.hslots{font-size:calc(20px*var(--tz,1));margin:10px 0 14px}.hslots b{color:#1b9af0;font-weight:500}.hbar{display:flex;gap:10px;background:var(--panel-2);padding:12px;border-radius:4px;margin-bottom:18px;flex-wrap:wrap}.hsearch{flex:1 1 260px}.hsort{flex:0 0 190px}.hbar label{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 12px 6px}.hbar label span{font-size:calc(12px*var(--tz,1));color:var(--muted)}.hbar input,.hbar select{border:0;background:transparent;font-size:calc(16px*var(--tz,1));padding:4px 0;color:var(--ink);width:100%}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}.hcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}.hcard-top{position:relative;min-height:136px;display:flex;align-items:center;gap:12px;padding:22px 20px 34px;color:#fff;overflow:hidden}.hwm{position:absolute;right:-30px;top:-30px;width:190px;height:190px;opacity:.13;background:center/contain no-repeat}.hpor{position:relative;flex:none;width:68px;height:68px;border-radius:6px;background:rgba(255,255,255,.12) center/cover no-repeat;display:grid;place-items:center;border:2px solid rgba(255,255,255,.55);color:#fff}.hpor svg{width:38px;height:38px}.hname{position:relative;min-width:0}.hname b{display:block;font-size:calc(28px*var(--tz,1));font-weight:600;line-height:1.1}.hname span{display:block;font-size:calc(13.5px*var(--tz,1));opacity:.85;margin-top:4px}.hcamp{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);padding:7px 20px;font-size:calc(13px*var(--tz,1));font-weight:700}.hcamp i{font-style:normal;color:#7cc4ff;font-weight:500}.hact{display:grid;grid-template-columns:repeat(3,1fr)}.hact button{padding:16px 6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:calc(15px*var(--tz,1));color:var(--ink)}.hact .del{color:#e2701d}.hempty{color:var(--muted)}
 .rrow{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--panel)}.rrow.on{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp-soft)}.rrow>div{flex:1;min-width:0}.rrow b{display:block;font-size:calc(16px*var(--tz,1))}.rrow span{font-size:calc(12.5px*var(--tz,1));color:var(--muted)}.rrow .bb{height:34px;padding:0 10px;font-size:calc(12.5px*var(--tz,1));font-weight:700;color:var(--ink);border:1px solid var(--line)}.rrow .rdel{color:var(--bad)}.rnew{width:100%;margin-top:6px}
 
@@ -3930,7 +3941,7 @@ function edHTML(){
       fld("Range",inp(p+".range",a.range))+fld("Mastery",inp(p+".m",a.m))+fld("Other hit bonus",inp(p+".misc",a.misc||0,{t:"n"}))+fld("Bonus source",inp(p+".miscSrc",a.miscSrc||""))+
       fld("Notes",inp(p+".note",a.note),"full")+'<div class="ed-f">'+inp(p+".prof",a.prof,{type:"check",label:"Proficient"})+'</div></div></div>';
   }).join("")+'<button type="button" class="ed-add" data-act="add" data-list="attacks" data-tpl="attack">+ Add attack</button></div>';
-  h+='<div class="ed-sec'+(edTab==="iv"?' on':'')+'" data-sec="iv"><div class="ed-grid" style="margin-bottom:12px">'+fld("Gold (GP)",inp("gp",C.gp,{t:"n"}))+fld("Equipment note",inp("equipNote",C.equipNote),"full")+'</div>'+(C.inv||[]).map(function(it,i){
+  h+='<div class="ed-sec'+(edTab==="iv"?' on':'')+'" data-sec="iv"><div class="ed-grid" style="margin-bottom:12px">'+fld("Gold (GP)",inp("wallet.gp",coinsNow().gp,{t:"n"}))+fld("Equipment note",inp("equipNote",C.equipNote),"full")+'</div>'+(C.inv||[]).map(function(it,i){
     var p="inv."+i;
     return '<div class="ed-card"><div class="ed-ct"><b>'+esc(it.n||"Item")+'</b><button type="button" class="ed-del" data-act="del" data-list="inv" data-i="'+i+'">Remove</button></div><div class="ed-grid">'+
       fld("Name",inp(p+".n",it.n),"w2")+fld("Quantity",inp(p+".q",it.q,{t:"n"}))+fld("Weight each (lb)",inp(p+".w",it.w,{t:"n"}))+
@@ -4217,13 +4228,15 @@ function bkpMerge(o){ var src=null; try{ src=JSON.parse(o.keys["cs-roster-v1"]||
   toast(add?"Added "+add+" character"+(add===1?"":"s")+(same?". "+same+" already on this device":""):"All characters in this backup are already on this device"); }
 /* v22 RU80: a build file. The builder works out the sheet. The character is added, then the builder opens to show what is missing or breaks a rule */
 function impBuild(b,o){ if(typeof b==="string"){ try{ b=JSON.parse(b); }catch(e){ b=null; } } if(!b||typeof b!=="object"||!(b.cls||b["class"])){ toast("This build has no class, so it cannot be opened."); return; }
+  if(!(o&&"_coins" in o)){ var cz=b.coins&&typeof b.coins==="object"?b.coins:(typeof b.gp==="number"||/^\d+(\.\d+)?$/.test(String(b.gp==null?"":b.gp))?{gp:+b.gp}:null); o=Object.assign({},o||{},{_coins:cz?coinsClean(cz):null}); }/* v34 p06 */
+  delete b.coins; if(typeof b.gp!=="undefined") delete b.gp;
   if(!window.__bldSheetFor||!window.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
   if(!(o&&o._ok)){ var nm0=window.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */
     b=nm0.b; var chk=window.__bldCheck?window.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return; }
     if(nm0.notes.length){ var bb=b; ask("Open this build? To fit the app and the 2024 rules, these changes are made:\n"+nm0.notes.map(function(x){ return "\u2022 "+x+"."; }).join("\n")+"\nThe builder opens next and marks anything still missing.","Open Build",function(){ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return; } }
   var C2=null; try{ C2=window.__bldSheetFor(b); }catch(e){ C2=null; } if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
   var nm=String(b.name||(o&&o.name)||C2.name||"Character"); b.name=nm; C2.name=nm;
-  var r=rSnap(rEnsure()), nid=newId(r); r.chars[nid]={created:Date.now(),name:nm,sub:(C2.species||"")+" "+(C2.clsLabel||((C2.cls||"")+" "+(C2.level||1))),B:JSON.stringify(b),C:JSON.stringify(C2),S:null,t:Date.now()};
+  var r=rSnap(rEnsure()), nid=newId(r); r.chars[nid]={created:Date.now(),name:nm,sub:(C2.species||"")+" "+(C2.clsLabel||((C2.cls||"")+" "+(C2.level||1))),B:JSON.stringify(b),C:JSON.stringify(C2),S:o&&o._coins?JSON.stringify({coins:o._coins,coinBase:num(C2.gp,0)}):null,t:Date.now()};
   if(!rSave(r)) return; try{ localStorage.setItem("cs-edit","1"); }catch(e){} sessionStorage.setItem("cs-skip","1"); rLoad(r,nid,false); }
 function chCheck(o){ if(!o||o.kind!=="character"||typeof o.C!=="string") return "This is not a character file from this app.";
   try{ var c=JSON.parse(o.C); if(!c||!c.abilities) throw 0; if(o.S!=null){ var s=JSON.parse(o.S); if(s!==null&&typeof s!=="object") throw 0; } if(o.B!=null){ var b=JSON.parse(o.B); if(b!==null&&typeof b!=="object") throw 0; } }catch(e){ return "The character file is damaged."; } return ""; }
@@ -4390,6 +4403,7 @@ function editInput(el){
   var path=el.getAttribute("data-p"), t=el.getAttribute("data-t"), v;
   if(t==="b") v=el.checked; else if(t==="n"){ v=num(el.value, NaN); if(isNaN(v)) return; } else v=el.value;
   if(path==="level") v=clamp(Math.round(v),1,20);
+  if(path==="wallet.gp"){ var cw=coinsNow(); cw.gp=Math.max(0,Math.floor(v)); undoMark("Gold"); coinSet(cw); renderInv(); return; }/* v34 p06 */
   var oldNm=C.name;
   /* RU31: Worn ticked in the Edit form on armor or a Shield of a hand-filled sheet: AC as the Inventory checkbox (RU29) */
   var wm=/^inv\.(\d+)\.eq$/.exec(path), wi=wm&&(C.inv||[])[+wm[1]], wfx=null;
@@ -6413,6 +6427,24 @@ function barTo(el,p,instant,bc){ if(!el) return; var t="scaleX("+(Math.round(p*1
   if(el.__a){ try{ el.__a.cancel(); }catch(er){} el.__a=null; } el.__t=t; el.style.transform=t;
   if(from&&from!==t&&from!=="none"){ var e=SPRE||(SPRE=springEase(120,.9)); try{ el.__a=el.animate([{transform:from},{transform:t}],{duration:e.d,easing:e.e}); }catch(er){ el.__a=null; } } }
 if(BAD.length) recover("Saved data",BAD.join(" | ")); else { applyLook();renderAll(true); renderNotes(); syncPortrait(); }
+/* ===== v34 p06: one wallet for the sheet and the builder ===== */
+function coinsClean(c){ var o={}; COINS.forEach(function(k){ var v=Math.floor(num(c&&c[k[0]],0)); o[k[0]]=v>0?v:0; }); return o; }
+function coinsSame(a,b){ return COINS.every(function(k){ return num(a[k[0]],0)===num(b[k[0]],0); }); }
+window.__coinsGet=function(){ return coinsNow(); };
+window.__coinsGp=function(){ return num(C.gp,0); };
+window.__coinsPut=function(c,why){ var o=coinsClean(c); if(coinsSame(o,coinsNow())) return coinsNow(); undoMark(why||"Coins"); coinSet(o); try{ renderInv(); coinRefresh(); }catch(e){} return coinsNow(); };
+/* coins a build brought (new character, build file): to the sheet after Apply. The sheet already has other coins: ask */
+window.__coinsPending=function(c){ var o=coinsClean(c), cur=coinsNow(), f=function(k){ return COINS.map(function(x){ return num(k[x[0]],0)+" "+x[0]; }).filter(function(s){ return !/^0 /.test(s); }).join(", ")||"no coins"; };
+  if(!S.coins||coinsSame(o,cur)||coinTotal(cur)===num(C.gp,0)&&!cur.pp&&!cur.ep&&!cur.sp&&!cur.cp){ coinSet(o); try{ renderInv(); }catch(e){} return true; }
+  ask("The builder has coins for this character ("+f(o)+") and the sheet has other coins ("+f(cur)+"). Use the coins from the builder? Cancel keeps the sheet's coins.","Use Builder Coins",function(){ undoMark("Coins from the builder"); coinSet(o); try{ renderInv(); }catch(e){} toastU("Coins set from the builder."); }); return false; };
+window.__sheetOwnNums=function(){ var L=[]; try{ derive(); }catch(e){} if(typeof cuNumList==="function"&&cuNumList().length) L.push(cuNumList().length+" number"+(cuNumList().length>1?"s":"")+" set in Edit mode"); if(num(S.hpMod,0)) L.push("Max HP modifier "+sg(num(S.hpMod,0))); return L.length?{ac:D.ac,hp:D.hpmax,what:L}:null; };
+var BPD_T=0;
+function bldPend(){ clearTimeout(BPD_T); BPD_T=setTimeout(function(){ var b=document.getElementById("bldBtn"); if(!b) return; var L=[]; try{ L=window.__bldDiff?(window.__bldDiff(C)||[]):[]; }catch(e){ L=[]; }
+  var on=L.length>0, m=b.querySelector(".bpend"); b.classList.toggle("pend",on); window.__bldPendList=L;
+  if(on&&!m){ m=document.createElement("i"); m.className="bpend"; m.setAttribute("aria-hidden","true"); b.appendChild(m); } else if(!on&&m) m.remove();
+  if(on){ b.setAttribute("aria-label",(b.getAttribute("aria-label")||"Open character builder")+". The builder has changes the sheet does not have yet"); b.title="The builder and the sheet differ: "+L.slice(0,3).join(". ")+(L.length>3?"...":""); } },250); }
+bldDot=(function(f){ return function(){ var r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot); if(window.__bldDot) window.__bldDot=bldDot;
+document.addEventListener("bldready",function(){ bldPend(); });
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ moveTabInd(true); });
 })();
@@ -8558,6 +8590,9 @@ function badge(x,i){var bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&d
 var WPK=[[/Crossbow/,"wp-crossbow"],[/bow$/i,"wp-bow"],[/axe|halberd/i,"wp-axe"],[/Dagger|Sickle/,"wp-dagger"],[/Quarterstaff/,"wp-staff"],[/Spear|Javelin|Pike|Trident|Lance|Glaive/,"wp-spear"],[/hammer|maul|club|mace|morningstar|flail/i,"wp-hammer"],[/sword|rapier|scimitar/i,"wp-sword"]];
 function bItemIco(n,x){var bb=baseOf(n).b;if(PACKS[n]||PACKS[bb]||(x&&x.alias&&PACKS[x.alias]))return "item-pack";var k="item-gear";try{k=window.__icoItem?window.__icoItem({n:n,type:itemType(n,x),rar:rarityOf(x||{n:n})}):k}catch(e){}if(k==="item-weapon"&&WEAPONS[bb]){for(var i=0;i<WPK.length;i++)if(WPK[i][0].test(bb))return WPK[i][1]}return k||"item-gear"}
 function detBtn(id,o,n){return '<button type="button" class="schev" data-tog="'+esc(id)+'" aria-expanded="'+o+'" aria-label="Details: '+esc(n)+'">'+'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>'+'<span class="dl" aria-hidden="true">Details</span></button>'}
+/* v34 p06: coins of a build that has no sheet yet (B.coins), else the starting gold */
+function bCoins(g){var o={cp:0,sp:0,ep:0,gp:0,pp:0};if(B.coins&&typeof B.coins==="object"){for(var k in o)o[k]=Math.max(0,Math.floor(+B.coins[k]||0));return o}o.gp=+g||0;return o}
+function coinIn(c){var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]];return '<div class="bcoin-in" role="group" aria-label="Change coins">'+o.map(function(k){return '<label class="bci">'+bI("coin-"+k[0],"icn-i")+'<span>'+k[0].toUpperCase()+'</span><input class="btx" type="number" min="0" step="1" inputmode="numeric" data-coin="'+k[0]+'" value="'+(+c[k[0]]||0)+'" aria-label="'+k[1]+'"></label>'}).join("")+'</div>'}
 /* v33 p04 (RU123): the five coins, copper to platinum, with the sheet's coin icons */
 function coinsB(c,t){var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]];return '<div class="bcoins" role="group" aria-label="Coins: '+o.map(function(k){return (+c[k[0]]||0)+' '+k[1]}).join(', ')+', '+t+' GP in all">'+o.map(function(k){return '<span class="icn ic-'+k[0]+'">'+bI("coin-"+k[0],"icn-i")+'<b>'+(+c[k[0]]||0)+'</b><small>'+k[0].toUpperCase()+'</small></span>'}).join("")+'<span class="itot">'+t+' GP in all</span></div>'}
 /* v33 p05 (F2): a short hint with an icon instead of a paragraph */
@@ -8582,8 +8617,8 @@ function renderEquip(){var c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 cl
  add+='<div class="custom"><p class="flab">Custom or magic item</p><input class="btx" id="custn" placeholder="Item name, e.g. Belt of Hill Giant Strength" value="'+esc(cust.n)+'"><select class="dd" id="custt">'+["Wondrous Item","Ring","Rod","Staff","Wand","Potion","Scroll","Weapon","Armor","Gear"].map(function(t){return '<option'+(cust.t===t?" selected":"")+'>'+t+'</option>'}).join("")+'</select><div class="lvbox">'+["Common","Uncommon","Rare","Very Rare","Legendary","Artifact"].map(function(r){return '<button type="button" class="vb '+rarCls(r)+(cust.r===r?" on":"")+'" data-custr="'+r+'">'+r+'</button>'}).join("")+'</div><textarea class="btx" id="custd" rows="2" placeholder="What it does (optional)">'+esc(cust.d)+'</textarea><button type="button" class="bdg add" data-custadd="1">Add Item</button></div>';
  h+=sec("add","Add Items","",add);
  var g=gpNow();
- var mineC=false;try{mineC=bldMine()}catch(e){}var cn=window.__coinsFor?window.__coinsFor(g,mineC):{pp:0,gp:+g||0,ep:0,sp:0,cp:0},cT=window.__coinTotal?window.__coinTotal(cn):g,hasO=cn.pp||cn.ep||cn.sp||cn.cp;
- h+=sec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+hint("coin-gp","From your choices: "+gpBase()+" GP. Adding items here doesn\'t spend gold.")+(mineC&&hasO?hint("ui-info","Other coins come from your sheet. Change them in Inventory, Coin."):''));
+ var mineC=false;try{mineC=bldMine()}catch(e){}var live=!!(mineC&&window.__coinsGet),cn=live?window.__coinsGet():bCoins(g),cT=window.__coinTotal?window.__coinTotal(cn):g,ag=live&&window.__coinsGp?window.__coinsGp():null,dg=ag==null?0:Math.round(((+g||0)-ag)*100)/100;/* v34 p06: one wallet */
+ h+=sec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+coinIn(cn)+hint("ui-info",live?"The same coins as your sheet. A change here shows on the sheet at once.":"These coins go to the sheet when you Apply.")+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+hint("coin-gp","From your choices: "+gpBase()+" GP. Adding items here doesn\'t spend gold.")+(live&&dg?hint("ui-info","Starting gold here is "+g+" GP, on the sheet "+ag+" GP. After Apply, Gold changes by "+(dg>0?"+":"")+dg+" GP."):''));
  return h}
 
 /* ---------- step: what's next ---------- */
@@ -8594,6 +8629,7 @@ function renderNext(){var miss=unList();if(miss.length){var bk0=bakInfo();return
  var open=choices().filter(function(x){return !isDone(x)}).map(function(x){var v=B.ch[x.key],F=x.t==="feat"&&v&&v.feat&&FEATS[v.feat];if(F&&F.dt&&!v.dt)return {key:x.key,title:v.feat+": damage type not chosen yet"};return x});/* v19 V19-4 */
  var h='<h2 class="ttl">'+esc(B.name)+'</h2><p class="sub">'+esc(C.species)+' '+(C.clsLabel||B.cls+' '+L)+(C.sub?' \u2022 '+esc(C.sub):'')+' \u2022 '+B.bg+'</p>';
  h+='<div class="stats"><div><b>'+acv+'</b><span>AC</span></div><div><b>'+hp+'</b><span>HP</span></div><div><b>'+sg(pbOf(TL()))+'</b><span>Prof</span></div><div><b>'+C.speed+'</b><span>Speed</span></div><div><b>'+sg(mod(a.sc.DEX)+C.initBonus.reduce(function(t,b){return t+b.v},0))+'</b><span>Init</span></div></div>';
+ (function(){var o=null,mc=false;try{mc=bldMine()}catch(e){}if(mc&&window.__sheetOwnNums)o=window.__sheetOwnNums();if(o)h+=hint("ui-pen","Your sheet shows AC "+o.ac+" and HP "+o.hp+" ("+o.what.join(", ")+"). The numbers here are calculated.",""," id=\"ownNums\"")})();/* v34 p06 */
  h+='<div class="abline">'+ABK.map(function(k){return '<div><small>'+k+'</small><b>'+sg(mod(a.sc[k]))+'</b><span>'+a.sc[k]+'</span></div>'}).join("")+'</div>';
  var RI=ruleIssues(),ro=RI.filter(function(x){return x.open}),rb=RI.filter(function(x){return !x.open}),stillN=open.length+ro.length;
  if(stillN)h+='<div class="bwarn" id="stillTo"><b>Still to choose ('+stillN+').</b> '+open.map(function(x){return esc(x.title)}).concat(ro.map(function(x){return esc(x.m)})).join(", ")+'.</div>';
@@ -8827,6 +8863,8 @@ document.addEventListener("change",function(e){if(!e.target.closest("#bld"))retu
  if(d.mcsub!=null){B.mc[+d.mcsub].sub=t.value;commit();return}
  if(d.hpr){B.hpr=B.hpr||{};var hv=parseInt(t.value);if(hv>0)B.hpr[d.hpr]=hv;else delete B.hpr[d.hpr];commit();return}
  if(d.srcck){B.src=B.src||{core:true,dmg:true};if(d.srcck==='dmg')B.src.dmg=t.checked;else B.src[d.srcck]=t.checked;applyPacks();commit();return}
+ if(d.coin){var co={};document.querySelectorAll("#bld [data-coin]").forEach(function(x){var v=Math.floor(+x.value||0);co[x.dataset.coin]=v>0?v:0});var mc=false;try{mc=bldMine()}catch(er){}
+  if(mc&&window.__coinsPut){window.__coinsPut(co,"Coins in the builder");render();return}B.coins=co;commit();return}/* v34 p06 */
  if(d.gp){B.gpOverride=t.value;commit();return}
  if(d.invp){invP=t.checked;render();return}
  if(t.id==="custt"){cust.t=t.value;return}
@@ -9002,7 +9040,7 @@ function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel",
  C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}
 function toSheetApply(review){var miss=unList();if(miss){toast("Choose your "+miss+" first");return}var C=toSheet(),cur=window.__sheetName?window.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
- var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");closeBld()};
+ var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
  if(review===true&&RI.length){ask("Apply this build to the sheet?"+imsg,"Apply",function(){toSheetApply(false)});return}
  /* M3 / RU4: manual sheet entries that Apply drops (Logic manualLost). Cancel keeps the sheet. Nothing is carried over */
  var st=window.__sheetState?window.__sheetState():null,lost=manualLost(st&&st.C,C),lt=[];
