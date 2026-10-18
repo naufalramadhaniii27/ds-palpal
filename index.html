@@ -4233,7 +4233,8 @@ function impBuild(b,o){ if(typeof b==="string"){ try{ b=JSON.parse(b); }catch(e)
   if(!window.__bldSheetFor||!window.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
   if(!(o&&o._ok)){ var nm0=window.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */
     b=nm0.b; var chk=window.__bldCheck?window.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return; }
-    if(nm0.notes.length){ var bb=b; ask("Open this build? To fit the app and the 2024 rules, these changes are made:\n"+nm0.notes.map(function(x){ return "\u2022 "+x+"."; }).join("\n")+"\nThe builder opens next and marks anything still missing.","Open Build",function(){ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return; } }
+    var still=[]; try{ still=(window.__bldChoiceList?window.__bldChoiceList(b):[]).filter(function(c){ return !c.done; }).map(function(c){ return c.title; }); }catch(er){ still=[]; }/* v34 p07 */
+    if(nm0.notes.length||still.length){ var bb=b; ask("Open this build?"+(nm0.notes.length?" To fit the app and the 2024 rules, these changes are made:\n"+nm0.notes.map(function(x){ return "\u2022 "+x+"."; }).join("\n"):"")+(still.length?"\nStill to choose ("+still.length+"): "+still.join(", ")+".":"")+"\nThe builder opens next and marks anything still missing.","Open Build",function(){ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return; } }
   var C2=null; try{ C2=window.__bldSheetFor(b); }catch(e){ C2=null; } if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
   var nm=String(b.name||(o&&o.name)||C2.name||"Character"); b.name=nm; C2.name=nm;
   var r=rSnap(rEnsure()), nid=newId(r); r.chars[nid]={created:Date.now(),name:nm,sub:(C2.species||"")+" "+(C2.clsLabel||((C2.cls||"")+" "+(C2.level||1))),B:JSON.stringify(b),C:JSON.stringify(C2),S:o&&o._coins?JSON.stringify({coins:o._coins,coinBase:num(C2.gp,0)}):null,t:Date.now()};
@@ -8934,7 +8935,8 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
  try{
  b=JSON.parse(JSON.stringify(b0||{}));delete b.kind;delete b.app;delete b.format;
  /* other field names a chat may use */
- [["class","cls"],["subclass","sub"],["background","bg"],["race","species"],["spells","sp"],["abilities","base"],["scores","base"],["items","inv"],["inventory","inv"],["equipment","inv"],["multiclass","mc"],["choices","ch"]].forEach(function(p){if(b[p[1]]==null&&b[p[0]]!=null){b[p[1]]=b[p[0]];delete b[p[0]]}});
+ [["class","cls"],["subclass","sub"],["background","bg"],["race","species"],["spells","sp"],["abilities","base"],["scores","base"],["items","inv"],["inventory","inv"],["equipment","inv"],["multiclass","mc"]].forEach(function(p){if(b[p[1]]==null&&b[p[0]]!=null){b[p[1]]=b[p[0]];delete b[p[0]]}});
+ var byName=b.choices&&typeof b.choices==="object"&&!Array.isArray(b.choices)?b.choices:null;delete b.choices;/* v34 p07 */
  b.ch=b.ch&&typeof b.ch==="object"&&!Array.isArray(b.ch)?b.ch:{};
  var lin=b.lin!=null?b.lin:b.lineage;delete b.lin;delete b.lineage;if(lin&&!b.ch.lin)b.ch.lin=lin;
  /* homebrew packs this build needs */
@@ -8985,7 +8987,34 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
  if(b.pk&&typeof b.pk==="object")Object.keys(b.pk).forEach(function(k){var p=b.pk[k];if(!p||typeof p!=="object")return;if(p.c)p.c=spl(p.c);if(p.s)p.s=spl(p.s);if(p.ab!=null){var a=abl(p.ab);if(a)p.ab=a;else delete p.ab}});
  if(gone.length)notes.push("Not in the 2024 spell list, so removed: "+gone.join(", "));
  /* choices: skills, languages, Weapon Mastery, feats */
- var ch=b.ch,FT=L.ft;
+ var FT=L.ft;
+ /* v34 p07: choices by feature name ({"Eldritch Invocations":[...],"Fighting Style":"Defense"}). Raw builder keys still work */
+ if(byName){var left=Object.keys(byName).filter(function(k){return byName[k]!=null&&byName[k]!==""}),CHN=[];
+  var cands=function(c){if(c.t==="feat"||c.t==="fs"||c.t==="ofeat")return FT;if(c.t==="tool")return c.cats?[].concat.apply([],c.cats.map(function(k){return TOOLS[k]||[]})):toolAll();if(c.t==="sub")return L.subs[b.cls]||[];
+   if(c.t==="lang")return c.from||LANGS.map(function(x){return x[0]});if(c.t==="skills"||c.t==="exp")return c.from||Object.keys(SKILLS);if(c.t==="wm")return c.from||Object.keys(WEAPONS);return c.list||c.from||null};
+  var one=function(c){return /^(feat|fs|ofeat|opt|sub|mcsub|lin)$/.test(c.t)};
+  var put=function(c,vals,name){var cl=cands(c),out=[],bad=[];vals.forEach(function(v){if(v&&typeof v==="object"){out.push(v);return}var r=cl?pick(v,cl,1):{v:String(v)};if(r){said(v,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(v)});
+   if(bad.length)notes.push(name+": "+bad.map(q).join(", ")+" "+(bad.length>1?"are":"is")+" not an option there, so it is left for you to choose");if(!out.length)return;
+   if(c.t==="sub"){if(!b.sub)b.sub=out[0];return}if(c.t==="mcsub"){var mcx=(b.mc||[])[c.mc];if(mcx&&!mcx.sub)mcx.sub=out[0];return}
+   if(c.t==="feat"){var o=out[0];ch0[c.key]=typeof o==="object"?o:{feat:o};return}if(one(c)){ch0[c.key]=typeof out[0]==="object"?out[0].feat:out[0];return}ch0[c.key]=out.slice(0,c.n)};
+  var ch0=b.ch;
+  /* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
+  left=left.filter(function(name){var v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};var i=0;while(b.pk["mi"+i])i++;
+   var ab=v.ab||v.ability;b.pk["mi"+i]={c:arr(v.c||v.cantrips||[]),s:arr(v.s||v.spells||v.spell||[]),ab:ab?(abl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
+  for(var pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=withB(b,choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map(function(c){return c.key});
+   left=left.filter(function(name){var val=byName[name];if(KS.indexOf(name)>=0){ch0[name]=val;return false}
+    var nn=nk(name),lab=function(c){var t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
+    var E=CLx.filter(function(c){return c.t!=="spell"&&lab(c).some(function(x){return nk(x)===nn})});
+    if(!E.length&&nn.length>=6)E=CLx.filter(function(c){return c.t!=="spell"&&lab(c).some(function(x){return lev(nk(x),nn,2)<=2})});
+    if(!E.length)return true;
+    E.sort(function(a,c){return (a.lvl||0)-(c.lvl||0)});var got=E.map(function(){return []}),rest=[];
+    /* each value goes to the first entry (lowest level) that has room and offers it, so level 5 picks land at level 5 */
+    arr(val).forEach(function(v){var placed=E.some(function(c,i){if(got[i].length>=(one(c)?1:c.n))return false;if(v&&typeof v==="object"){if(/^(feat|fs|ofeat)$/.test(c.t)){got[i].push(v);return true}return false}var cl=cands(c);if(cl&&!pick(v,cl,1))return false;got[i].push(v);return true});if(!placed)rest.push(v)});
+    E.forEach(function(c,i){put(c,got[i],name)});
+    if(rest.length)notes.push(name+": more picks than this build has, so left out: "+rest.map(function(v){return typeof v==="object"?JSON.stringify(v):q(v)}).join(", "));
+    return false})}
+  left.forEach(function(name){if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){ch0[name]=byName[name];return}notes.push(q(name)+" is not a choice for this build, so it is left out")})}
+ var ch=b.ch;
  function lst(key,list,what){if(ch[key]==null)return;var bad=[],out=[];arr(ch[key]).forEach(function(n){var r=pick(n,list);if(r){said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(n)});ch[key]=out;if(bad.length)notes.push(what+" not in the app, so removed: "+bad.join(", "))}
  lst("clsk",Object.keys(SKILLS),"Skills");lst("lang",LANGS.map(function(x){return x[0]}),"Languages");lst("wm",Object.keys(WEAPONS),"Weapon Mastery weapons");
  Object.keys(ch).forEach(function(k){var v=ch[k];
