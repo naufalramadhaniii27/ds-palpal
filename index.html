@@ -2086,6 +2086,14 @@ body.edm .toast{bottom:var(--edmh,96px)}
 #bldBtn{position:relative}
 #bldBtn .bpend{position:absolute;bottom:3px;right:3px;width:10px;height:10px;border-radius:2px;background:#f2c14e;box-shadow:0 0 0 2px var(--bg,#0e1215);pointer-events:none}
 @media (min-width:481px){#bldBtn .bpend{bottom:-4px;right:-4px}}
+
+/* v35 p09 */
+.acomb-t .acw{display:flex;flex-direction:column;align-items:flex-start;flex:1 1 auto;min-width:0;gap:2px;padding:8px 0}
+.acomb-t .acw .asub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.2}
+.acomb-t .acw small{margin-left:0;line-height:1.2}
+.acomb-t .aci,.acomb-t .fmi{align-self:center;flex:0 0 auto}
+.acomb .aline .acx{white-space:nowrap}
+.acomb .aline svg.ico{display:none}
 #bld{--bg:#fff;--ink:#12181c;--muted:#6b7378;--line:#d8d8d8;--top:#12181c;--bar:#262e33;--tabs:#33393d;--blue:#1b9af0;--blue-soft:#e6f3fd;--hl:#a7c7ea;--hl-2:#cfe0f4;--th:#22272b;--card:#fbfaf7;--cardline:#e3dfd6;--olive:#7d8a3a;
 --f:"Roboto","Helvetica Neue",Arial,sans-serif;--fc:"Roboto Condensed","Arial Narrow",Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){#bld{--bg:#15191c;--ink:#e8eaeb;--muted:#9aa3a8;--line:#30373b;--card:#1d2225;--cardline:#30373b;--blue-soft:#14324a;--hl:#24496e;--hl-2:#1b3754;--th:#0e1113;color-scheme:dark}
@@ -3552,9 +3560,9 @@ function actItem(x,chip){ var rl=resOf(x.f.n), r=rl[0];
   return '<div class="aitem"><h4><button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(x.f.n)+'</button>'+(chip?' <span class="muted">('+chip+')</span>':'')+'</h4>'+foldP(richP(fill(x.t)),"a:"+x.gi+"."+x.fi,x.t)+(r?resBoxes(rl):'')+'</div>'; }
 function spellsBy(re){ return (C.spells||[]).map(function(x,i){return [x,i]}).filter(function(p){return re.test(p[0].ct)}); }
 function spLine(ps){ return ps.length?'<h4 class="asub">Spells</h4><div class="aline">'+ps.map(function(p){var x=p[0];return '<button type="button" class="tx" data-info="sp:'+p[1]+'"><i>'+esc(x.n)+'</i></button>'+(x.conc?' <span class="ctag">C</span>':'')+(x.rit?' <span class="ctag rit">R</span>':'')+' <small class="muted">('+(x.l?ordL(x.l).replace(" Level","").toUpperCase():"CANTRIP")+')</small>'}).join("<br>")+'</div>':''; }
-function combat(list){ var ln=list.map(function(n){return GLOSS[n]?'<button type="button" class="tx" data-info="g:'+n+'">'+n+'</button>':n}).join(", ");/* v31 C4: a long list folds */
-  if(list.length<=3) return '<div class="acomb short"><h4 class="asub">'+ico("act-free","aci")+'Actions in Combat</h4><div class="aline">'+ln+'</div></div>';
-  var op=!!FOPEN.combat; return '<div class="acomb'+(op?' open':'')+'"><button type="button" class="acomb-t press" data-fmore="combat" aria-expanded="'+op+'">'+ico("act-free","aci")+'<span class="asub">Actions in Combat</span><small>'+list.length+' actions anyone can take</small>'+ico("ui-chev-d","fmi")+'</button><div class="aline"'+(op?'':' hidden')+'>'+ln+'</div></div>'; }
+function combat(list){ var ln=list.map(function(n,i){return '<span class="acx">'+(GLOSS[n]?'<button type="button" class="tx" data-info="g:'+n+'">'+n+'</button>':n)+(i<list.length-1?',':'')+'</span>'}).join(" ");/* v35 p09 *//* v31 C4: a long list folds */
+  if(list.length<=3) return '<div class="acomb short"><h4 class="asub">'+ico("act-free","aci")+'Actions in Combat</h4><div class="aline noico">'+ln+'</div></div>';
+  var op=!!FOPEN.combat; return '<div class="acomb'+(op?' open':'')+'"><button type="button" class="acomb-t press" data-fmore="combat" aria-expanded="'+op+'">'+ico("act-free","aci")+'<span class="acw"><span class="asub">Actions in Combat</span><small>'+list.length+' actions anyone can take</small></span>'+ico("ui-chev-d","fmi")+'</button><div class="aline noico"'+(op?'':' hidden')+'>'+ln+'</div></div>'; }
 /* v32 RL51: actions from C.acts (feats, features, species, invocations, maneuvers, magic items). A feature named in its group's ak list uses only
    C.acts; other features (old sheets, hand-added ones) keep the old text rule. Attack rows with act "bonus" or "reaction" show in that part */
 function actFeat(g,n){ var r=null; featAll().some(function(x){ if(x.f.n===n&&(g==null||x.g===g)){ r=x; return true; } return false; }); return r; }
@@ -3574,7 +3582,9 @@ function actEnt(e,x,chip){ var rl=resOf(e.it?e.n:e.f); if(e.u) resOf(e.u).forEac
   return '<div class="aitem" data-act="'+e.k+'"><h4>'+(x?'<button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(e.n)+'</button>':esc(e.n))+(!same?' <span class="muted">('+esc(e.f)+')</span>':(chip?' <span class="muted">('+chip+')</span>':''))+'</h4>'+foldP(richP(fill(t)),same&&x?"a:"+x.gi+"."+x.fi:"ae:"+e.f+":"+e.n,t)+(rl.length?resBoxes(rl):'')+'</div>'; }
 function actOne(o,chip){ return o.e?actEnt(o.e,o.x,chip):actItem(o.x,chip); }
 /* hand-written C.actions entries of a category (the editor offers all four). Entries that repeat a feature, the Opportunity Attack line, or the spell list are left out */
-function actPlain(c,feats){ return (C.actions||[]).filter(function(a){ return (a.c||"")===c&&actOn(a)&&!feats.some(function(x){return x.f.n===a.n})&&!(c==="Reactions"&&a.n==="Opportunity Attack")&&!(a.n==="Spells"&&/casting time$/.test(a.t||"")); }).map(function(a){return '<div class="aitem"><h4>'+esc(a.n)+'</h4>'+foldP(rich(fill(a.d)),"c:"+a.n,a.d)+'</div>'}).join(""); }
+var ACT_STD=["Attack","Dash","Disengage","Dodge","Grapple","Help","Hide","Improvise","Influence","Magic","Ready","Search","Shove","Study","Utilize","Opportunity Attack","Two-Weapon Fighting","Interact with an Object"];
+function actStdList(a){ var p=String(a.n||"").split(/\s*,\s*/); return p.length>1&&p.every(function(x){ return ACT_STD.indexOf(x)>=0; }); }/* v35 p09: shown in Actions in Combat */
+function actPlain(c,feats){ return (C.actions||[]).filter(function(a){ return (a.c||"")===c&&actOn(a)&&!actStdList(a)&&!feats.some(function(x){return x.f.n===a.n})&&!(c==="Reactions"&&a.n==="Opportunity Attack")&&!(a.n==="Spells"&&/casting time$/.test(a.t||"")); }).map(function(a){return '<div class="aitem"><h4>'+esc(a.n)+'</h4>'+foldP(rich(fill(a.d)),"c:"+a.n,a.d)+'</div>'}).join(""); }
 function renderActions(){
   var feats=featAll(), kinds=actSplit(feats);
   var apa=1; feats.forEach(function(x){ if(x.f.n==="Extra Attack") apa=Math.max(apa,2); if(x.f.n==="Two Extra Attacks") apa=Math.max(apa,3); if(x.f.n==="Three Extra Attacks") apa=Math.max(apa,4); if(x.f.n==="Thirsting Blade") apa=Math.max(apa,2); if(x.f.n==="Devouring Blade") apa=Math.max(apa,3); });
@@ -3885,7 +3895,7 @@ function infoHTML(spec){
     var ak=ABK.filter(function(k){return ABN[k]===key})[0];
     if(ak) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Score",D.score[ak],"ab-"+ak)+tileBd("Modifier",sg(D.mod[ak]),"ab-"+ak)+tileBd("Saving throw",sg(D.save[ak]),"save-"+ak)+'</div>';
     var si=-1; C.skills.forEach(function(sk,ix){ if(sk.n===key) si=ix; });
-    if(si>=0){ var sk=C.skills[si]; h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Your bonus",sg(D.skill[si]),"sk-"+si)+tileS("Proficiency",["None","Proficient","Expertise"][num(sk.p,0)])+(sk.dis?tileS("Disadvantage",sk.dis):"")+'</div>'+(sk.src?'<p class="bk-f">Proficient from '+esc(sk.src)+'.</p>':''); }
+    if(si>=0){ var sk=C.skills[si]; h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Your bonus",sg(D.skill[si]),"sk-"+si)+tileS("Proficiency",["None","Proficient","Expertise"][num(sk.p,0)])+(sk.dis?tileS("Disadvantage",sk.dis):"")+'</div>'+(sk.src?'<p class="bk-f">Proficient from '+esc(sk.src)+'.</p>':'')+(num(sk.misc,0)?'<p class="bk-f">Also '+sg(num(sk.misc,0))+' from '+esc(sk.miscSrc||"another bonus")+'.</p>':''); }/* v35 p08 */
     if(NUM_MAP[key]){ var bk=NUM_MAP[key], b=B[bk]; if(b) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd(b.t.split(":")[0],esc(b.total),bk)+'</div>'; }
     if(STD_CONDS.indexOf(key)>=0 || HB_CONDS.some(function(c){return c.k===key})){
       var on=!!S.cond[key]; h+='<div class="info-act"><button type="button" class="btn press" data-condtoggle="'+esc(key)+'">'+(on?'Remove '+esc(key):'Apply '+esc(key))+'</button></div>';
@@ -4403,6 +4413,7 @@ window.__sheetName=function(){ return C&&C.name; };
 window.__sheetRerender=function(){ renderAll(); };
 window.__sheetSoft=function(p){ if(!p||!p.abilities) return; C=keepNewer(p); saveC(); renderAll(); };
 window.__sheetState=function(){ return {C:C, lang:S.lang}; };
+window.__D=function(){ return D; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */
 window.__actProbe=function(C2){ var C0=C, S0=JSON.stringify(S), F0=actF, out=null; try{ C=C2; S=JSON.parse(S0); actF="all"; derive(); renderActions();
   var b=document.getElementById("actBody"), cat="", res={action:[],bonus:[],reaction:[],other:[],rows:[]};
@@ -5526,7 +5537,7 @@ function icoItem(it){ if(!it) return "item-gear"; var n=it.n||"", t=String(it.ty
   if(/^Shield\b/.test(b)) return "item-shield"; if(/Weapon/.test(t)) return "item-weapon"; if(/Armor/.test(t)) return "item-armor";
   if(/^Potion|^Elixir|^Oil of|^Philter/.test(n)) return "item-potion"; if(/^Ring\b|Ring of/.test(n)) return "item-ring"; if(/^Spell Scroll|Scroll/.test(n)) return "item-scroll";
   if(/^Rod\b|Rod of/.test(n)) return "item-rod"; if(/^Staff\b|Staff of/.test(n)) return "item-staff"; if(/^Wand\b|Wand of/.test(n)) return "item-wand"; if(it.rar||/Wondrous/.test(t)) return "item-wondrous"; return "item-gear"; }
-function icoPut(el,k,before){ if(!el||el.getAttribute("data-ico")||!ICO[k]) return; el.setAttribute("data-ico","1"); el.insertAdjacentHTML(before===false?"beforeend":"afterbegin",ico(k)); }
+function icoPut(el,k,before){ if(!el||el.getAttribute("data-ico")||!ICO[k]||(el.closest&&el.closest(".noico"))) return;/* v35 p09 */ el.setAttribute("data-ico","1"); el.insertAdjacentHTML(before===false?"beforeend":"afterbegin",ico(k)); }
 function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; var q=function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
   try{
   q("h3.fcat").forEach(function(h){ var t=(h.firstChild&&h.firstChild.nodeType===3?h.firstChild.nodeValue:h.textContent).trim(); var k=ICO_FCAT[t]; if(k) icoPut(h,k); });
@@ -8043,6 +8054,7 @@ function toSheet(){
  clsParts().forEach(function(q){var g=typeof SUB_GRANT!=="undefined"&&SUB_GRANT[q.sub];if(g&&g.skills)g.skills.forEach(function(s){if(q.lv>=s[0])p(s[1],g.f+" ("+q.sub+" "+s[0]+")")})});/* v32 */
  ALLSK.forEach(function(n){var o={n:n,ab:SKILLS[n]};if(prof[n]){o.p=1;o.src=prof[n]}if(exp[n]){o.p=2;o.src=(prof[n]||"")+"; Expertise from "+exp[n]}C.skills.push(o)});
  packSkills().forEach(function(s){var o={n:s.n,ab:s.ab,hb:1};if(s.d)o.hbd=s.d;if(prof[s.n]){o.p=1;o.src=prof[s.n]}C.skills.push(o)});
+ if(clsLv("Bard")>=2&&Math.floor(pb/2))C.skills.forEach(function(s){if(!s.p){s.misc=(s.misc||0)+Math.floor(pb/2);s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+"Jack of All Trades (PHB-2024, Bard 2)"}});/* v35 p07 */
  var lg=["Common"];langKeys().forEach(function(k){(B.ch[k]||[]).forEach(function(x){if(lg.indexOf(x)<0)lg.push(x)})});if(clsLv("Druid")&&lg.indexOf("Druidic")<0)lg.push("Druidic");if(clsLv("Rogue")&&lg.indexOf("Thieves' Cant")<0)lg.push("Thieves' Cant");C.lang=lg;/* M10: any class */
  /* armor */
  var EA=effArmor(),ESH=effShield(),EW=effWeps(),KIT=kitItems(),EAp=baseOf(EA).p,ar=ARMOR[baseOf(EA).b];
@@ -8088,7 +8100,7 @@ function toSheet(){
  if(subAt("Barbarian","Path of the Wild Heart")>=6&&chOf("Barbarian","p6opt")==="Owl"){C.darkvision=dk?dk+60:60;C.darkSrc=(C.darkSrc?C.darkSrc+", +60 ":"")+"Aspect of the Wilds (Owl)"}/* v32 RL49 no. 31 */
  /* HP and init */
  C.hpBonus=hpBonusList();/* M4 (RL10): same list as hpCalc() */
- feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});if(F&&F.grappler)C.grappler=true});/* M17: FEATS.init, FEATS.grappler */
+ clsParts().forEach(function(q){if(q.sub==="Gloom Stalker"&&q.lv>=3&&!C.initBonus.some(function(x){return /^Dread Ambusher/.test(x.s)}))C.initBonus.push({s:"Dread Ambusher: Wisdom modifier (PHB-2024, Gloom Stalker 3)",v:mod(a.sc.WIS)})});/* v35 p06 */feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});if(F&&F.grappler)C.grappler=true});/* M17: FEATS.init, FEATS.grappler */
  /* proficiencies */
  /* v32 RL49: a tool "of your choice" in the data (toolPick) is replaced by the tools chosen in the builder (none chosen: nothing) */
  var CHT=choices(),tp=function(txt,pick,key){if(!pick)return txt;var v=B.ch[key];return Array.isArray(v)?v.join(", "):""},XT=toolChoices(CHT).concat(grantTools(feats));
@@ -9425,6 +9437,16 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
  }finally{B=keep;applyPacks()}
  return {err:err,notes:notes,b:b}};
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
+window.__bldAuto=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);applyPacks();qbFill();qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=JSON.parse(JSON.stringify(B))}finally{B=keep;applyPacks()}return out};
+window.__bldFeatViol=function(b){return withB(b,featViol)};
+function qbSpMC(){var cp=casterParts();if(!cp.length)return;var auto=autoSpells().map(function(a){return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
+ var all=function(){var s=[],o=spLists();for(var k in o)s=s.concat(o[k]);return s};
+ cp.forEach(function(P){var K=spInfoPart(P);if(!K)return;var L=SPELLS.filter(function(x){return K.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=K.max});
+  L.sort(function(a,b){return ((DMG.indexOf(b[0])>=0)-(DMG.indexOf(a[0])>=0))||(b[1]-a[1])});
+  [0,1].forEach(function(kind){L.forEach(function(x){var t=(spLists()[P.cls]||[]).map(function(n){return SMAP[n]}).filter(Boolean),nc=t.filter(function(y){return !y[1]}).length,np=t.filter(function(y){return y[1]}).length;
+   if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
+ var wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach(function(r){if(wl>=r[0]&&!B.pk["ma"+r[1]]){var s=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
+ var need=bookNeed(),wz=cp.filter(function(p){return p.cls==="Wizard"})[0];if(need&&wz){var mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter(function(x){return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).forEach(function(x){if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
 window.__bldSheetFor=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);applyPacks();out=toSheet()}finally{B=keep;applyPacks()}return out};
 window.__bldLevelUp=function(){var st0=window.__sheetState&&window.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(window.__bldOpen)window.__bldOpen();return}/* v22 i3 */window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
  if(!B.cls){toast("Choose a class first.");return}/* v22 i3 */
