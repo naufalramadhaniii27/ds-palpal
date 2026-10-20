@@ -5016,10 +5016,11 @@ function spEffH(x,lv){ var c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.len
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
 function spPact(x){ var sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
 /* v22: the group a spell is shown in. Pact Magic only: spells cast with a Pact slot sit at the Pact slot level */
-function spGrpLv(x){ var sc=C.spellcasting||{}; if(!x.l||!sc.pact||(sc.slots||[]).some(function(n){return n>0})) return x.l; return spPact(x)?spRowLv(x):x.l; }
-function spRowLv(x){ var sc=C.spellcasting||{}; return spPact(x)?Math.max(x.l,+sc.pact.lvl||x.l):x.l; }
+function spGrpLv(x){ var sc=C.spellcasting||{}; if(!x.l||!sc.pact) return x.l; return spPact(x)?spRowLv(x):x.l; }/* v36 p01: pact spells sit at the Pact level also with other slots */
+function spPactLv(){ var p=(C.spellcasting||{}).pact; if(!p) return 0; if(+p.lvl) return +p.lvl; var r=(D.res||[]).filter(function(q){return q.k==="pact"})[0], m=r&&/level (\d)/.exec(r.n||""); return m?+m[1]:0; }/* v36 p01 */
+function spRowLv(x){ return spPact(x)?Math.max(x.l,spPactLv()||x.l):x.l; }
 /* v15 Checker: the Lvl control stays inside the slots the character can use. Pact Magic: the Pact level only. Mystic Arcanum and once-per-rest casts: the spell level */
-function spLvRange(x){ var sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ var p=Math.max(x.l,+sc.pact.lvl||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; var mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
+function spLvRange(x){ var sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ var p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; var mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
 var spLvSel={};
 function spFxBlock(x,key){ var sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   var h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
@@ -6036,7 +6037,7 @@ function spUses(x){ if(!x.l) return []; var src=String(x.src||""), rw=reWord(x.n
 function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
 function spCastOpts(x){ var o=[], sc=C.spellcasting||{}; if(spAtWill(x)) return o;
   for(var L=x.l;L<=9;L++){ var s=slotLeft("s"+L); if(s) o.push({k:"s"+L,lv:L,lab:"level "+L+" slot",left:s.left}); }
-  var p=slotLeft("pact"); if(p&&sc.pact&&(+sc.pact.lvl||0)>=x.l) o.push({k:"pact",lv:+sc.pact.lvl,lab:"Pact slot (level "+sc.pact.lvl+")",left:p.left});
+  var p=slotLeft("pact"); if(p&&sc.pact&&spPactLv()>=x.l) o.push({k:"pact",lv:spPactLv(),lab:"Pact slot (level "+spPactLv()+")",left:p.left});
   spUses(x).forEach(function(r){ o.push({k:r.k,lv:x.l,lab:r.n,left:r.max-used(r.k,r.max),free:1}); });
   return o; }
 function spCastH(x,i){ var h='<div class="info-h">Cast</div><div class="spcast">', o=spCastOpts(x);
