@@ -1,0 +1,205 @@
+##### p40_magicsum.py
+import sys,json,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:50],s.count(o));s=s.replace(o,n)
+M={}
+for k in range(4): M.update(json.load(open(f'/home/claude/v49/out{k}.json',encoding='utf8')))
+js=json.dumps(M,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
+rep('var DMAP={};DMGI.forEach(','/* v49: short summaries of the long Magic Items (DMG 2024), written in our own words. The full text stays under a fold */\nvar MAGIC_SUM='+js+';\nvar DMAP={};DMGI.forEach(')
+rep("""+itemMetaH(dm)+'<p>'+(dm[4]?rtp(dm[4]).replace(/\\n+/g,'<br>'):'Details are in the Dungeon Master\\'s Guide (2024), Magic Items chapter.')+'</p>'})""",
+"""+itemMetaH(dm)+(MAGIC_SUM[dm[0]]&&dm[4]?'<p class="msum">'+esc(MAGIC_SUM[dm[0]])+'</p><details class="mfull"><summary>Full text</summary><p>'+rtp(dm[4]).replace(/\\n+/g,'<br>')+'</p></details>':'<p>'+(dm[4]?rtp(dm[4]).replace(/\\n+/g,'<br>'):'Details are in the Dungeon Master\\'s Guide (2024), Magic Items chapter.')+'</p>')})""")
+rep('.idetail dl{display:grid','.idetail .msum{font-weight:600;margin:6px 0}.idetail .mfull{margin:6px 0}.idetail .mfull>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}.idetail .mfull[open]>summary{margin-bottom:4px}\n.idetail dl{display:grid')
+open(P,'w',encoding='utf8').write(s);print('ok',len(M))
+##### p41_strip.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+old="""return '<p><i>'+dm[1]+', '+dm[2].toLowerCase()+(dm[3]?' (requires attunement'+(dm[5]&&dm[5].by?' by '+esc(dm[5].by):'')+')':'')+')</i></p>'""".replace("+')</i></p>'","+'</i></p>'")
+# exact old text from source
+old="""return '<p><i>'+dm[1]+', '+dm[2].toLowerCase()+(dm[3]?' (requires attunement'+(dm[5]&&dm[5].by?' by '+esc(dm[5].by):'')+')':'')+'</i></p>'+itemMetaH(dm)+"""
+new="""return '<p><i>'+esc(dm[1])+'</i></p>'+magStrip(dm)+itemMetaH(dm)+"""
+rep(old,new)
+rep("function itemMetaH(dm){","""/* v49: Rarity, Attunement and Charges of a magic item as one strip */
+function magStrip(dm){var m=dm[5]||{},w={dawn:"at dawn",dusk:"at dusk",long:"after a Long Rest",short:"after a Short Rest",never:"never"},k=[["Rarity",dm[2],""],["Attunement",dm[3]?"Required":"Not needed",dm[3]&&m.by?"by "+m.by:""]];
+ if(m.ch)k.push(["Charges",String(m.ch[0]),m.ch[2]==="never"||m.ch[1]==="0"?"not regained":"regains "+(m.ch[1]==="all"?"all":m.ch[1])+" "+(w[m.ch[2]]||m.ch[2])]);
+ return '<div class="sum-ks mstrip">'+k.map(function(x){return '<div class="sum-k"><small class="sum-l">'+'<span>'+x[0]+'</span></small><span class="mv">'+esc(x[1])+(x[2]?'<em class="sum-t">'+esc(x[2])+'</em>':'')+'</span></div>'}).join("")+'</div>'}
+function itemMetaH(dm){""")
+rep('.idetail dl{display:grid','.mstrip{margin:4px 0 10px}.mstrip .mv{font-size:calc(17px*var(--tz,1));font-weight:700;color:var(--ink);line-height:1.25}.mstrip .sum-t{font-size:calc(13px*var(--tz,1))}\n.idetail dl{display:grid')
+rep('''if(m.ch)h+='<p><b>Charges.</b> '+esc(String(m.ch[0]))+(m.ch[2]==="never"||m.ch[1]==="0"?', not regained':', regains '+(m.ch[1]==="all"?"all":esc(String(m.ch[1])))+' '+(w[m.ch[2]]||esc(m.ch[2])))+'.</p>';''','')
+rep('''function magStrip(dm){var m=dm[5]||{},w=''','''function magStrip(dm){var m=dm[5]||{},w=''')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p42_bstrip.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep("function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class=\"ttl\">Choose Origin: Background</h2>';",
+"/* v49: a strip of key facts at the top of a Species or Background page */\nfunction bStrip(a){return '<div class=\"bstrip\">'+a.map(function(x){return '<div><small>'+esc(x[0])+'</small><b>'+esc(x[1])+'</b></div>'}).join('')+'</div>'}\nfunction renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class=\"ttl\">Choose Origin: Background</h2>';")
+rep("""h+='<p class="kv"><b>Skill Proficiencies:</b> '+bg.sk.join(", ")+'</p><p class="kv"><b>Tool Proficiencies:</b> '+esc(bg.tool)+'</p>';""",
+"""h+=bStrip([["Skills",bg.sk.join(", ")],["Tool",bg.tool],["Feat",bg.feat],["Ability scores",bg.ab.map(function(k){return ABN[k]}).join(", ")]]);""")
+rep("""<button type="button" class="link" data-chgsp="1">Change Species</button></div>';
+ var szNote=""","""<button type="button" class="link" data-chgsp="1">Change Species</button></div>';
+ h+=bStrip([["Size",/or/.test(s.size)?(B.size||"Medium"):s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":"None"],["Languages","Common + 2"]]);
+ var szNote=""")
+rep('#bld *,#bld *::before,','#bld .bstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px 16px;padding:12px 14px;margin:10px 0 14px;border:1px solid var(--cardline);border-radius:12px;background:var(--card)}#bld .bstrip small{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}#bld .bstrip b{display:block;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;margin-top:2px}\n#bld *,#bld *::before,')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p43_lvtab.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep(""" if(clsTab==="spell")return h+renderSpells();
+ /* build cards */""",""" if(clsTab==="spell")return h+renderSpells();
+ h+=lvTable(c,L);
+ /* build cards */""")
+rep("function renderClass(){var c=CL(),L=B.level,a=abil(),h=\"\";","""/* v49: level table of the class. The row of the character level is highlighted */
+function lvTable(c,L){var rows="";for(var n=1;n<=20;n++){var fs=c.f.filter(function(f){return f[0]===n}).map(function(f){return esc(f[1])}).join(", ");rows+='<tr'+(n===L?' class="cur" aria-current="true"':'')+'><td>'+n+'</td><td>+'+(2+Math.floor((n-1)/4))+'</td><td>'+(fs||'\\u2014')+'</td></tr>'}
+ return '<details class="lvtab"><summary>Level table</summary><div class="lvwrap"><table><thead><tr><th>Level</th><th>Prof. Bonus</th><th>Features</th></tr></thead><tbody>'+rows+'</tbody></table></div></details>'}
+function renderClass(){var c=CL(),L=B.level,a=abil(),h="";""")
+rep('#bld *,#bld *::before,','#bld .lvtab{margin:6px 0 12px;border:1px solid var(--cardline);border-radius:12px;background:var(--card)}#bld .lvtab>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;padding:0 14px;font-weight:700}#bld .lvwrap{overflow-x:auto;padding:0 8px 8px}#bld .lvtab table{width:100%;border-collapse:collapse;font-size:14px}#bld .lvtab th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--cardline)}#bld .lvtab td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}#bld .lvtab tr.cur td{background:var(--hl);font-weight:700}\n#bld *,#bld *::before,')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p44_stepper.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+old="""  else { o.forEach(function(q){ h+='<button type="button" class="btn press'+(q.left?'':' off')+'" data-cast="'+i+'" data-ck="'+esc(q.k)+'" data-cl="'+q.lv+'"'+(q.left?'':' disabled')+'>'+esc(q.free?"Use "+q.lab:"Cast with a "+q.lab)+' <small>'+q.left+' left</small></button>'; });"""
+new="""  else { var qb=function(q){ return '<button type="button" class="btn press'+(q.left?'':' off')+'" data-cast="'+i+'" data-ck="'+esc(q.k)+'" data-cl="'+q.lv+'"'+(q.left?'':' disabled')+'>'+esc(q.free?"Use "+q.lab:"Cast with a "+q.lab)+' <small>'+q.left+' left</small></button>'; };
+    /* v49: with two or more slot levels, one stepper picks the level and one Cast button casts */
+    var sl=o.filter(function(q){ return !q.free; }), fr=o.filter(function(q){ return q.free; });
+    if(sl.length>=2){ var si=spStepIx(i,sl), sq=sl[si];
+      h+='<div class="spstep"><button type="button" class="spstep-b press" data-sstep="'+i+'|-1" aria-label="Lower slot level"'+(si<=0?' disabled':'')+'>\\u2212</button><div class="spstep-v"><small>Slot</small><b>'+esc(sq.lab)+'</b><i>'+sq.left+' left</i></div><button type="button" class="spstep-b press" data-sstep="'+i+'|1" aria-label="Higher slot level"'+(si>=sl.length-1?' disabled':'')+'>+</button></div>'+qb(sq).replace('btn press','btn pri press'); fr.forEach(function(q){ h+=qb(q); }); }
+    else o.forEach(function(q){ h+=qb(q); });"""
+rep(old,new)
+rep("function spCastH(x,i){","""var spStepSel={};
+function spStepIx(i,sl){ var v=spStepSel[i]; if(v==null||v<0||v>=sl.length){ v=0; for(var k=0;k<sl.length;k++){ if(sl[k].left>0){ v=k; break; } } spStepSel[i]=v; } return v; }
+function spCastH(x,i){""")
+rep("""document.addEventListener("click",function(e){ var q=e.target.closest&&e.target.closest("[data-qcast]");""","""document.addEventListener("click",function(e){ var st=e.target.closest&&e.target.closest("[data-sstep]"); if(st&&!st.disabled){ e.preventDefault(); e.stopPropagation(); var pp=st.getAttribute("data-sstep").split("|"), ii=+pp[0]; spStepSel[ii]=(spStepSel[ii]||0)+(+pp[1]); showEntry({type:"info",spec:"sp:"+ii},false); return; }
+  var q=e.target.closest&&e.target.closest("[data-qcast]");""")
+rep('.idetail dl{display:grid','.spstep{display:flex;align-items:center;gap:10px;margin:2px 0 10px}.spstep-b{min-width:48px;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:24px;font-weight:700;cursor:pointer}.spstep-b[disabled]{opacity:.35}.spstep-v{flex:1;text-align:center;display:flex;flex-direction:column;line-height:1.25}.spstep-v small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.spstep-v b{font-size:17px}.spstep-v i{font-style:normal;font-size:13px;color:var(--muted)}\n.idetail dl{display:grid')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p45_srcc.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep(" function row(id,name,desc,on,lock,del){return '<label class=\"srcrow\">"," function row(id,name,desc,on,lock,del){return '<div class=\"srcw\">'+row0(id,name,desc,on,lock,del)+srcContents(id)+'</div>'}\n function row0(id,name,desc,on,lock,del){return '<label class=\"srcrow\">")
+rep("function renderHome(){","""/* v49: what each source adds. Counts first, names of the small lists under a fold */
+var MOM_SP=["Aarakocra","Bugbear","Centaur","Changeling","Deep Gnome","Duergar","Eladrin","Fairy","Firbolg","Air Genasi","Earth Genasi","Fire Genasi","Water Genasi","Githyanki","Githzerai","Goblin","Harengon","Hobgoblin","Kenku","Kobold","Lizardfolk","Minotaur","Satyr","Sea Elf","Shadar-kai","Shifter","Tabaxi","Tortle","Triton","Yuan-ti","Orc (MoM)"];
+function srcLists(id){var L=[];
+ if(id==="core"){var sub=[];Object.keys(CLASSES).forEach(function(c){Object.keys(CLASSES[c].subs||{}).forEach(function(n){sub.push(n)})});
+  L=[["Classes",Object.keys(CLASSES)],["Subclasses",sub],["Species",Object.keys(SPECIES).filter(function(k){return !SPECIES[k].hb})],["Backgrounds",Object.keys(BACKGROUNDS)],["Feats",Object.keys(FEATS)],["Spells",null,SPELLS.length]]}
+ else if(id==="dmg")L=[["Magic items",null,DMGI.length]];
+ else if(id==="mom")L=[["Species",MOM_SP]];
+ else{var p=allPacks().filter(function(x){return x.id===id})[0]||{},ks=function(o){return o?Object.keys(o):[]},sb=[];ks(p.subclasses).forEach(function(c){var v=p.subclasses[c];(Array.isArray(v)?v.map(function(x){return x.name||x}):ks(v)).forEach(function(n){sb.push(n)})});
+  if(ks(p.species).length)L.push(["Species",ks(p.species)]);if(sb.length)L.push(["Subclasses",sb]);if(Array.isArray(p.feats)&&p.feats.length)L.push(["Feats",p.feats.map(function(x){return x.name||x})]);if(Array.isArray(p.items)&&p.items.length)L.push(["Items",null,p.items.length]);if(ks(p.skills).length)L.push(["Skills",ks(p.skills)])}
+ return L}
+function srcContents(id){var L=srcLists(id);if(!L.length)return "";
+ return '<details class="srcc"><summary>Contents <span>'+L.map(function(x){return (x[2]!=null?x[2]:x[1].length)+" "+x[0].toLowerCase()}).join(", ")+'</span></summary>'+L.map(function(x){return '<p><b>'+esc(x[0])+' ('+(x[2]!=null?x[2]:x[1].length)+')</b>'+(x[1]?'<br>'+x[1].map(esc).join(", "):'')+'</p>'}).join("")+'</details>'}
+function renderHome(){""")
+rep('#bld *,#bld *::before,','#bld .srcw{margin-bottom:2px}#bld .srcc{margin:0 0 10px 38px;font-size:14px}#bld .srcc>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:700;flex-wrap:wrap}#bld .srcc>summary span{font-weight:400;color:var(--muted)}#bld .srcc p{margin:4px 0 10px;line-height:1.5;color:var(--ink)}\n#bld *,#bld *::before,')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p50_ver.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:40],s.count(o));s=s.replace(o,n)
+rep('APP_VER=48','APP_VER=49')
+rep('var WHATSNEW=[{v:48,','var WHATSNEW=[{v:49,d:"2026-10-21",n:["Magic items have a short summary at the top, with the full text under Full text. Magic item pages show Rarity, Attunement and Charges in one strip. Species and Background pages open with a strip of key facts. The class page has a level table with your level highlighted. A spell with several slot levels has a stepper and one Cast button."]},{v:48,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### p51_ver.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:40],s.count(o));s=s.replace(o,n)
+rep('APP_VER=49','APP_VER=50')
+rep('var WHATSNEW=[{v:49,','var WHATSNEW=[{v:50,d:"2026-10-21",n:["Sources now show what each one adds. Under every source, a Contents line gives the counts, and opening it lists the names: classes, subclasses, species, backgrounds, feats, and more."]},{v:49,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### p60_hpfx.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep("function barColor(p){","""/* v50: a number rises from the Hit Points and fades. The sign stays, so the meaning does not rest on colour alone */
+function hpFloat(txt,kind){ if(REDUCE||!document.body.animate) return; var el=$("#hpCur"); if(!el||!el.offsetParent) el=document.getElementById("vbHpV"); if(!el||!el.getBoundingClientRect) return; var r=el.getBoundingClientRect(); if((!r.width&&!r.height)||r.bottom<0||r.top>innerHeight) return;
+  var f=document.createElement("i"); f.className="hpf hpf-"+kind; f.textContent=txt; f.setAttribute("aria-hidden","true"); f.style.left=Math.round(r.left+r.width/2)+"px"; f.style.top=Math.round(r.top)+"px"; document.body.appendChild(f);
+  var a=f.animate([{transform:"translate(-50%,0) scale(.7)",opacity:0},{transform:"translate(-50%,-14px) scale(1.08)",opacity:1,offset:.25},{transform:"translate(-50%,-44px) scale(1)",opacity:0}],{duration:1000,easing:"cubic-bezier(.2,.8,.2,1)",fill:"forwards"});
+  a.onfinish=a.oncancel=function(){ if(f.parentNode) f.parentNode.removeChild(f); }; setTimeout(function(){ if(f.parentNode) f.parentNode.removeChild(f); },1500); }
+function barColor(p){""")
+rep("""if(S.hp>before) flash("healed"); inp.value=""; save(); syncHP(); toastU("Healed ""","""if(S.hp>before){ flash("healed"); hpFloat("+"+(S.hp-before),"heal"); } inp.value=""; save(); syncHP(); toastU("Healed """)
+rep("""var before=S.hp; S.hp=Math.max(0,S.hp-a); if(S.hp<before) flash("hit"); inp.value="";""","""var before=S.hp; S.hp=Math.max(0,S.hp-a); if(S.hp<before){ flash("hit"); hpFloat("\\u2212"+(before-S.hp),"dmg"); } else if(fromTmp) hpFloat("\\u2212"+fromTmp+" temp","tmp"); inp.value="";""")
+rep("""  $("#death").classList.toggle("on", S.hp===0);
+  if(S.hp>0) S.ds=[0,0];""","""  $("#death").classList.toggle("on", S.hp===0);
+  Array.prototype.forEach.call(document.querySelectorAll(".vitals,#hpBox,#vbHp"),function(x){ x.classList.toggle("hp0",S.hp===0); });/* v50: a slow red pulse at 0 */
+  if(S.hp>0) S.ds=[0,0];""")
+rep(".vitals.m-hit{animation:v29hit .34s var(--ease-out)}",""".vitals.m-hit{animation:v29hit .34s var(--ease-out)}
+.hpf{position:fixed;z-index:90;pointer-events:none;font-family:var(--f-nar);font-weight:800;font-size:28px;line-height:1;font-variant-numeric:tabular-nums;text-shadow:0 1px 0 rgba(0,0,0,.35)}.hpf-heal{color:var(--good,#4cc27a)}.hpf-dmg{color:var(--bad,#e5534b)}.hpf-tmp{color:#4b78c2;font-size:20px}
+@keyframes v50pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,83,75,0)}50%{box-shadow:0 0 0 6px rgba(229,83,75,.30)}}
+.vitals.hp0,#hpBox.hp0,.vb-hp.hp0{animation:v50pulse 2.4s ease-in-out infinite;border-radius:14px}""")
+rep("@media (prefers-reduced-motion:reduce){#hpGhost{transition:none}","@media (prefers-reduced-motion:reduce){.vitals.hp0,#hpBox.hp0,.vb-hp.hp0{animation:none}#hpGhost{transition:none}")
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p61_crfx.py
+import sys
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep("function crHpH(key,max){","""/* v50: creature card effects. An overlay fades or sweeps, the card shakes on damage */
+function crFx(key,kind){ if(REDUCE||!document.body.animate) return; var els=document.querySelectorAll(".crhp"), el=null; Array.prototype.forEach.call(els,function(x){ if(!el&&x.querySelector('[data-crk="'+String(key).replace(/"/g,'\\\\"')+'"]')) el=x; }); if(!el) return;
+  var o=document.createElement("i"); o.className="crfx crfx-"+kind; o.setAttribute("aria-hidden","true"); el.appendChild(o); var done=function(){ if(o.parentNode) o.parentNode.removeChild(o); };
+  var a=kind==="heal"?o.animate([{transform:"translateX(-110%)",opacity:.9},{transform:"translateX(110%)",opacity:0}],{duration:650,easing:"ease-out"}):o.animate([{opacity:0},{opacity:1,offset:.25},{opacity:0}],{duration:520,easing:"ease-out"});
+  a.onfinish=a.oncancel=done; setTimeout(done,1200);
+  if(kind==="dmg"||kind==="down") el.animate([{transform:"translateX(0)"},{transform:"translateX(-5px)",offset:.2},{transform:"translateX(5px)",offset:.45},{transform:"translateX(-3px)",offset:.7},{transform:"translateX(0)"}],{duration:320,easing:"ease-out"}); }
+function crHpH(key,max){""")
+rep("""  save(); refreshEntry(); renderExtras(); },true);
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-crv],[data-crsl]");""","""  save(); refreshEntry(); renderExtras(); if(k==="dmg") crFx(key,"dmg"); else if(nv>cur) crFx(key,"heal"); },true);
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-crv],[data-crsl]");""")
+rep(".crhp{margin:0 0 12px;",".crhp{position:relative;overflow:hidden;margin:0 0 12px;")
+rep(".crhp-t{display:flex;",""".crfx{position:absolute;inset:0;pointer-events:none;border-radius:inherit}.crfx-heal{background:linear-gradient(100deg,transparent 30%,rgba(76,194,122,.35) 50%,transparent 70%)}.crfx-dmg,.crfx-down{border:2px solid var(--bad,#e5534b)}
+.crhp.down .crhp-bar{filter:grayscale(1)}.crhp.down .crhp-d::before{content:"\\2620\\FE0E  "}
+.crhp-t{display:flex;""")
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p62_ver.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:40],s.count(o));s=s.replace(o,n)
+rep('APP_VER=50','APP_VER=51')
+rep('var WHATSNEW=[{v:50,','var WHATSNEW=[{v:51,d:"2026-10-21",n:["Hit Points now react. A number rises when you take damage or heal, Hit Points at 0 pulse slowly, and creature cards flash on damage and healing. Effects turn off with Reduce Motion."]},{v:50,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### p63_insp.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep("@media (max-width:759px){#insp .gem,#insp .n{position:relative;left:-18px}}","""/* v52: Heroic Inspiration is one on/off control. The info button sits in the top corner, so the gem and state stay centred */
+@media (max-width:759px){#insp .ib{top:auto;bottom:0;right:0}#insp .ib::after{text-indent:0;top:auto;bottom:6px;right:6px;display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--f-sans);color:var(--muted)}}
+#insp .n{font-weight:700}#insp[aria-pressed="true"] .n{color:var(--stamp)}""")
+rep('APP_VER=51','APP_VER=52')
+rep('var WHATSNEW=[{v:51,','var WHATSNEW=[{v:52,d:"2026-10-21",n:["Heroic Inspiration tile is tidier. The gem and state sit in the centre, and the info button shows its letter."]},{v:51,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
