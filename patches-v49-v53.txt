@@ -203,3 +203,25 @@ open(P,'w',encoding='utf8').write(s)
 h=hashlib.sha256(s.encode()).hexdigest()[:16]
 w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
 open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### p64_grow.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:60],s.count(o));s=s.replace(o,n)
+rep("function openSheet(title, html, mode, wide){\n","""var LASTPT=null;document.addEventListener("pointerdown",function(e){ LASTPT={x:e.clientX,y:e.clientY,t:Date.now()}; },true);/* v53: the panel grows from where you tapped (wide screens) */
+function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.t>1500){ sheet.style.transformOrigin=""; return; } var r=sheet.getBoundingClientRect(); if(!r.width) return; var x=Math.max(0,Math.min(r.width,LASTPT.x-r.left)), y=Math.max(0,Math.min(r.height,LASTPT.y-r.top)); sheet.style.transformOrigin=Math.round(x)+"px "+Math.round(y)+"px"; }catch(er){} }
+function openSheet(title, html, mode, wide){
+""")
+rep("""  sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
+  $("#scrim").classList.add("on"); sheet.classList.add("on");""","""  sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
+  if(!sheet.classList.contains("on")) growFrom();
+  $("#scrim").classList.add("on"); sheet.classList.add("on");""")
+rep(".sheet.on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%) scale(1);transition-delay:0s}",""".sheet.on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%) scale(1);transition-delay:0s}
+@media (min-width:760px) and (prefers-reduced-motion:no-preference){.sheet:not(.on){transform:translate(-50%,-47%) scale(.9)}}""")
+rep('APP_VER=52','APP_VER=53')
+rep('var WHATSNEW=[{v:52,','var WHATSNEW=[{v:53,d:"2026-10-21",n:["On wide screens, panels now grow from the button you tapped."]},{v:52,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
