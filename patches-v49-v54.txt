@@ -225,3 +225,132 @@ open(P,'w',encoding='utf8').write(s)
 h=hashlib.sha256(s.encode()).hexdigest()[:16]
 w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
 open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### p70_combo.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n,c=1):
+    global s
+    assert s.count(o)==c,(o[:70],s.count(o));s=s.replace(o,n)
+# count of combos: optional S.cmbn, default 3, at least 1, no upper limit
+rep("function cmbCI(){ var c=+S.ccur; return c>=0&&c<3?c:0; }",
+"function cmbScrollOn(){ try{ var t=document.querySelector('.cmb-tab.on'), w=t&&t.parentNode; if(w&&w.scrollWidth>w.clientWidth) w.scrollLeft=Math.max(0,t.offsetLeft-(w.clientWidth-t.offsetWidth)/2); }catch(er){} }\nfunction cmbN(){ var n=Math.floor(+S.cmbn||0), m=Array.isArray(S.combos)?S.combos.length:0; return Math.max(1,n||Math.max(3,m)); }/* v54: no fixed limit of three */\nfunction cmbCI(){ var c=+S.ccur; return c>=0&&c<cmbN()?c:0; }")
+rep("while(S.combos.length<3) S.combos.push({});","while(S.combos.length<=ci) S.combos.push({});",2)
+rep("""function cmbHTML(){ try{ var ci=cmbCI(),""","""function cmbHTML(){ try{ setTimeout(cmbScrollOn,30); var ci=cmbCI(),""")
+rep("""  for(var i=0;i<3;i++) h+='<button type="button" role="tab" aria-selected="'+(i===ci)+'" class="cmb-tab'+(i===ci?' on':'')+'" data-cmbtab="'+i+'">'+esc(cmbName(i))+'</button>';
+  h+='</div>""","""  for(var i=0;i<cmbN();i++) h+='<button type="button" role="tab" aria-selected="'+(i===ci)+'" class="cmb-tab'+(i===ci?' on':'')+'" data-cmbtab="'+i+'">'+esc(cmbName(i))+'</button>';
+  h+='</div><button type="button" class="cmb-add noico press" data-cmbadd="1" aria-label="Add a combo">+</button>""")
+rep("""aria-label="Combo name"></label>';""","""aria-label="Combo name"></label>'+(cmbN()>1?'<button type="button" class="cmb-del noico press" data-cmbdel="1">Delete '+esc(cmbName(ci))+'</button>':'');""")
+rep("""function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }""","""function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }
+  else if(a==="add"){ undoMark("Add combo"); var n=cmbN(); S.cmbn=n+1; S.ccur=n; cmbEdit=true; save(); }
+  else if(a==="del"){ var ci0=cmbCI(), nm0=cmbName(ci0); ask("Delete "+nm0+"? Its steps are removed. Undo can bring it back right after.","Delete",function(){ undoMark("Delete combo"); var n=cmbN(); S.combos=Array.isArray(S.combos)?S.combos:[]; if(ci0<S.combos.length) S.combos.splice(ci0,1); S.cmbn=Math.max(1,n-1); S.ccur=Math.min(ci0,S.cmbn-1); delete S.cdn; save(); cmbRe(); }); return; }""")
+rep("""  if(b.hasAttribute("data-cmbtab")) cmbAct("tab",b.getAttribute("data-cmbtab"));""","""  if(b.hasAttribute("data-cmbadd")){ cmbAct("add"); return; }
+  if(b.hasAttribute("data-cmbdel")){ cmbAct("del"); return; }
+  if(b.hasAttribute("data-cmbtab")) cmbAct("tab",b.getAttribute("data-cmbtab"));""")
+rep("""for(var i=0;i<3;i++) h+='<button type="button" class="pp-ct""","""for(var i=0;i<cmbN();i++) h+='<button type="button" class="pp-ct""")
+rep(".cmb-tabs{flex:1;display:flex;padding:4px;",".cmb-tabs{flex:1;min-width:0;display:flex;overflow-x:auto;scrollbar-width:none;padding:4px;")
+rep(".cmb-tab{flex:1;min-height:44px;",".cmb-tab{flex:1 0 auto;min-width:64px;max-width:160px;min-height:44px;")
+rep(".cmb-top{display:flex;gap:8px;align-items:center}",""".cmb-top{display:flex;gap:8px;align-items:center}
+.cmb-add{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--ink,#fff);font:700 22px/1 var(--f-nar);cursor:pointer}
+.cmb-del{display:block;width:100%;min-height:44px;margin:4px 0 10px;border:1px solid var(--bad,#e5534b);border-radius:12px;background:transparent;color:var(--bad,#e5534b);font:700 14px/1 var(--f-nar);cursor:pointer}
+.cmb-tabs::-webkit-scrollbar{display:none}""")
+rep('closest("[data-cmbtab],[data-cmbedit],','closest("[data-cmbtab],[data-cmbadd],[data-cmbdel],[data-cmbedit],')
+open(P,'w',encoding='utf8').write(s);print('ok')
+##### p71_ver.py
+import sys,hashlib,re
+P=sys.argv[1];s=open(P,encoding='utf8').read()
+def rep(o,n):
+    global s
+    assert s.count(o)==1,(o[:40],s.count(o));s=s.replace(o,n)
+rep('APP_VER=53','APP_VER=54')
+rep('var WHATSNEW=[{v:53,','var WHATSNEW=[{v:54,d:"2026-10-21",n:["Combat View: make as many combos as you need. Press + to add one, and Delete in Edit to remove the one you are on."]},{v:53,')
+open(P,'w',encoding='utf8').write(s)
+h=hashlib.sha256(s.encode()).hexdigest()[:16]
+w=open('/home/claude/dnd-sheet/sw.js').read();w2=re.sub(r'var CACHE="dnd-sheet-[0-9a-f]+"','var CACHE="dnd-sheet-'+h+'"',w);assert w!=w2
+open('/home/claude/dnd-sheet/sw.js','w').write(w2);print(h)
+##### mk_demo.py
+"""Build island-demo.html from index.html: same app, same style, plus a motion layer.
+Data safety: the demo keeps its own copy of localStorage under the prefix "islanddemo:", so the real characters are never changed."""
+import sys
+SRC, OUT = sys.argv[1], sys.argv[2]
+s = open(SRC, encoding="utf8").read()
+
+def rep(o, n):
+    global s
+    assert s.count(o) == 1, (o[:50], s.count(o))
+    s = s.replace(o, n)
+
+STORE = r"""<script>/* island demo: separate storage. The first visit copies your characters; after that the demo writes only to its own keys. */
+(function(){ try{ var ls=window.localStorage, P="islanddemo:", SP=Storage.prototype, g=SP.getItem, st=SP.setItem, rm=SP.removeItem, ky=SP.key, ln=Object.getOwnPropertyDescriptor(SP,"length");
+  function own(){ var a=[], n=ln.get.call(ls); for(var i=0;i<n;i++){ var k=ky.call(ls,i); if(k&&k.indexOf(P)===0&&k!==P+"__init") a.push(k.slice(P.length)); } return a; }
+  if(g.call(ls,P+"__init")===null){ var n=ln.get.call(ls), keys=[]; for(var i=0;i<n;i++){ var k=ky.call(ls,i); if(k&&k.indexOf(P)!==0) keys.push(k); } keys.forEach(function(k){ try{ st.call(ls,P+k,g.call(ls,k)); }catch(e){} }); st.call(ls,P+"__init","1"); }
+  SP.getItem=function(k){ return this===ls?g.call(this,P+k):g.call(this,k); };
+  SP.setItem=function(k,v){ return this===ls?st.call(this,P+k,v):st.call(this,k,v); };
+  SP.removeItem=function(k){ return this===ls?rm.call(this,P+k):rm.call(this,k); };
+  SP.key=function(i){ return this===ls?(own()[i]===undefined?null:own()[i]):ky.call(this,i); };
+  Object.defineProperty(SP,"length",{configurable:true,get:function(){ return this===ls?own().length:ln.get.call(this); }});
+  var cl=SP.clear; SP.clear=function(){ if(this!==ls) return cl.call(this); own().forEach(function(k){ rm.call(ls,P+k); }); };
+  window.__islandDemo=true; }catch(e){} })();
+</script>"""
+rep("<title>Character Sheet and Builder</title>", "<title>Island demo</title>\n" + STORE)
+
+LAYER = r"""
+<style>/* ===== island demo: motion layer on top of the current style ===== */
+:root{--spring:cubic-bezier(.32,.72,0,1)}/* v2: smooth settle, no bounce */
+@media (prefers-reduced-motion:no-preference){
+ .sheet:not(.drag){transition:transform .5s var(--spring),opacity .25s ease,visibility 0s linear .5s}
+ .sheet.on:not(.drag){transition-delay:0s}
+ @media (max-width:759px){
+  #app>header.band,#pager{transition:transform .5s var(--spring),border-radius .5s var(--spring);transform-origin:50% var(--dmOy,30vh);backface-visibility:hidden}
+  body.dm-stack{background:#000}
+  body.dm-stack #app>header.band,body.dm-stack #pager{transform:translateY(6px) scale(.96);border-radius:18px}
+ }
+ .bnav-ind.dmA{animation:dmA .45s var(--spring)}.bnav-ind.dmB{animation:dmB .45s var(--spring)}
+ @keyframes dmA{35%{scale:1.35 1}}@keyframes dmB{35%{scale:1.35 1}}
+ #vbConc:not([hidden]){box-shadow:0 0 0 2px var(--stamp,#d9463e),0 0 14px -2px var(--stamp,#d9463e)}/* v2: a steady ring, no motion */
+}
+#dmVig{position:fixed;inset:0;pointer-events:none;z-index:85;box-shadow:inset 0 0 110px 12px rgba(214,55,45,.55);opacity:0;transition:opacity .8s ease}
+#dmRest{position:fixed;inset:0;pointer-events:none;z-index:95;opacity:0;overflow:hidden}
+#dmRest .sky{position:absolute;inset:0;background:linear-gradient(0deg,rgba(255,170,80,.55),rgba(255,120,60,.25) 40%,rgba(255,255,255,0) 75%)}
+#dmRest .sun{position:absolute;left:50%;bottom:-120px;width:180px;height:180px;margin-left:-90px;border-radius:50%;background:radial-gradient(circle,#ffe7a8 0 40%,rgba(255,200,110,.6) 55%,rgba(255,200,110,0) 70%)}
+#dmRest .glass{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;color:var(--stamp,#d9463e)}
+#dmNote{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:96;padding:8px 14px;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:600 13px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .5s ease,transform .5s var(--spring);max-width:calc(100% - 32px);text-align:center}
+#dmNote.off{opacity:0;transform:translate(-50%,-12px);pointer-events:none}
+@media (prefers-reduced-motion:reduce){#dmVig,#dmRest{display:none}}
+</style>
+<div id="dmVig" aria-hidden="true"></div>
+<div id="dmRest" aria-hidden="true"></div>
+<div id="dmNote" role="status">Island demo. Changes here stay in the demo and never touch your real characters.</div>
+<script>/* island demo: motion layer */
+(function(){
+  var RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(q){ return document.querySelector(q); };
+  setTimeout(function(){ var n=$("#dmNote"); if(n) n.classList.add("off"); },4500);
+  /* 1. iOS stack: the page behind a panel steps back */
+  var sh=$("#sheet");
+  if(sh&&window.MutationObserver){ new MutationObserver(function(){ var on=sh.classList.contains("on");
+      if(on) document.documentElement.style.setProperty("--dmOy",(window.scrollY+innerHeight*.35)+"px");
+      document.body.classList.toggle("dm-stack",on);
+
+    }).observe(sh,{attributes:true,attributeFilter:["class"]}); }
+  /* 2. tab indicator stretches like liquid */
+  var flip=0; document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("#bnav [data-go]"); if(!b||RM) return; var ind=document.querySelector(".bnav-ind"); if(!ind) return; ind.classList.remove("dmA","dmB"); flip=1-flip; void ind.offsetWidth; ind.classList.add(flip?"dmA":"dmB"); },true);
+  /* 4. low Hit Points: the screen edge turns red */
+  var vig=$("#dmVig"), chip=$("#hpChipV");
+  function vigSync(){ var mx=+(($("#hpMax")||{}).getAttribute?$("#hpMax").getAttribute("data-v"):0)||0, cur=parseInt((chip&&chip.textContent)||"0",10); if(!vig||!mx) return; var p=cur/mx; vig.style.opacity=cur<=0?.95:p<=.25?.75:p<=.5?.22:0; }
+  if(chip&&window.MutationObserver){ new MutationObserver(vigSync).observe(chip,{childList:true,characterData:true,subtree:true}); setTimeout(vigSync,600); }
+  /* 5. Rest: sunrise for Long Rest, hourglass for Short Rest */
+  var rest=$("#dmRest"), toast=$("#toast"), lastT="";
+  function play(kind){ if(RM||!rest||!rest.animate) return; rest.innerHTML=kind==="long"?'<div class="sky"></div><div class="sun"></div>':'<svg class="glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></svg>';
+    rest.animate([{opacity:0},{opacity:.6,offset:.3},{opacity:.6,offset:.6},{opacity:0}],{duration:kind==="long"?2200:1600,easing:"ease-in-out"});
+    var el=rest.firstElementChild.nextElementSibling||rest.firstElementChild;
+    if(kind==="long") el.animate([{transform:"translateY(0)"},{transform:"translateY(-46vh)"}],{duration:2200,easing:"cubic-bezier(.32,.72,0,1)"});
+    else el.animate([{transform:"rotate(0deg) scale(.8)"},{transform:"rotate(180deg) scale(1)",offset:.6},{transform:"rotate(180deg) scale(1)"}],{duration:1600,easing:"cubic-bezier(.32,.72,0,1)"}); }
+  if(toast&&window.MutationObserver){ new MutationObserver(function(){ var t=toast.textContent||""; if(t===lastT) return; lastT=t; if(/^Long Rest/.test(t)) play("long"); else if(/^Short Rest/.test(t)) play("short"); }).observe(toast,{childList:true,characterData:true,subtree:true}); }
+  window.__dmPlayRest=play;
+})();
+</script>
+"""
+idx = s.rindex("</body>")
+s = s[:idx] + LAYER + s[idx:]
+open(OUT, "w", encoding="utf8").write(s)
+print("ok", len(s))
