@@ -10507,24 +10507,18 @@ applyPacks();render();
 </script>
 
 <style>/* ===== island demo: motion layer on top of the current style ===== */
-:root{--spring:linear(0,0.009,0.035 2.1%,0.141 4.4%,0.281 6.7%,0.723 12.9%,0.938 16.7%,1.017 19.4%,1.077 22.2%,1.104 25.2%,1.098 28.2%,1.065 33.3%,1.004 41.1%,0.991 46.4%,0.993 55.6%,1.001 71.1%,1)}
+:root{--spring:cubic-bezier(.32,.72,0,1)}/* v2: smooth settle, no bounce */
 @media (prefers-reduced-motion:no-preference){
- .press{transition-timing-function:var(--spring),ease,ease,ease;transition-duration:.5s,.2s,.2s,.2s}
- .press:active{transition-duration:.06s}
- .sheet:not(.drag){transition:transform .62s var(--spring),opacity .25s ease,visibility 0s linear .62s}
+ .sheet:not(.drag){transition:transform .5s var(--spring),opacity .25s ease,visibility 0s linear .5s}
  .sheet.on:not(.drag){transition-delay:0s}
- #app>header.band,#pager{transition:transform .6s var(--spring),border-radius .4s ease,filter .4s ease;transform-origin:50% var(--dmOy,30vh)}
- body.dm-stack{background:#000}
- body.dm-stack #app>header.band,body.dm-stack #pager{transform:translateY(10px) scale(.94);border-radius:22px;filter:brightness(.7)}
- @media (min-width:760px){body.dm-stack #app>header.band,body.dm-stack #pager{transform:scale(.985);border-radius:14px;filter:brightness(.8)}}
- .bnav-ind.dmA{animation:dmA .5s cubic-bezier(.2,.8,.2,1)}.bnav-ind.dmB{animation:dmB .5s cubic-bezier(.2,.8,.2,1)}
- @keyframes dmA{40%{scale:1.7 1}}@keyframes dmB{40%{scale:1.7 1}}
- @property --dmAng{syntax:'<angle>';inherits:false;initial-value:0deg}
- #vbConc:not([hidden]){position:relative;isolation:isolate}
- #vbConc:not([hidden])::after{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;pointer-events:none;background:conic-gradient(from var(--dmAng),transparent 0 55%,var(--stamp,#d9463e) 72%,#fff 76%,var(--stamp,#d9463e) 80%,transparent 95%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:dmSpin 2.8s linear infinite}
- @keyframes dmSpin{to{--dmAng:360deg}}
- ::view-transition-old(dmpage){animation:dmOut .22s ease both}::view-transition-new(dmpage){animation:dmIn .42s var(--spring) both}
- @keyframes dmOut{to{opacity:0;transform:translateX(-14px)}}@keyframes dmIn{from{opacity:0;transform:translateX(18px)}}
+ @media (max-width:759px){
+  #app>header.band,#pager{transition:transform .5s var(--spring),border-radius .5s var(--spring);transform-origin:50% var(--dmOy,30vh);backface-visibility:hidden}
+  body.dm-stack{background:#000}
+  body.dm-stack #app>header.band,body.dm-stack #pager{transform:translateY(6px) scale(.96);border-radius:18px}
+ }
+ .bnav-ind.dmA{animation:dmA .45s var(--spring)}.bnav-ind.dmB{animation:dmB .45s var(--spring)}
+ @keyframes dmA{35%{scale:1.35 1}}@keyframes dmB{35%{scale:1.35 1}}
+ #vbConc:not([hidden]){box-shadow:0 0 0 2px var(--stamp,#d9463e),0 0 14px -2px var(--stamp,#d9463e)}/* v2: a steady ring, no motion */
 }
 #dmVig{position:fixed;inset:0;pointer-events:none;z-index:85;box-shadow:inset 0 0 110px 12px rgba(214,55,45,.55);opacity:0;transition:opacity .8s ease}
 #dmRest{position:fixed;inset:0;pointer-events:none;z-index:95;opacity:0;overflow:hidden}
@@ -10548,14 +10542,10 @@ applyPacks();render();
   if(sh&&window.MutationObserver){ new MutationObserver(function(){ var on=sh.classList.contains("on");
       if(on) document.documentElement.style.setProperty("--dmOy",(window.scrollY+innerHeight*.35)+"px");
       document.body.classList.toggle("dm-stack",on);
-      if(on&&!RM&&document.body.animate){ var b=$("#sheetBody"); if(b){ var k=b.children, n=Math.min(k.length,8); for(var i=0;i<n;i++){ k[i].animate([{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:420,delay:60+i*35,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); } } }
+
     }).observe(sh,{attributes:true,attributeFilter:["class"]}); }
   /* 2. tab indicator stretches like liquid */
   var flip=0; document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("#bnav [data-go]"); if(!b||RM) return; var ind=document.querySelector(".bnav-ind"); if(!ind) return; ind.classList.remove("dmA","dmB"); flip=1-flip; void ind.offsetWidth; ind.classList.add(flip?"dmA":"dmB"); },true);
-  /* 3. desktop tabs: the page slides in with a view transition */
-  var pg=$("#pager"); if(pg) pg.style.viewTransitionName="dmpage";
-  document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#tabs .tab"); if(!t||t.__dmPass||RM||!document.startViewTransition) return; if(t.classList.contains("on")||t.getAttribute("aria-selected")==="true") return;
-    e.stopImmediatePropagation(); e.preventDefault(); document.startViewTransition(function(){ t.__dmPass=1; try{ t.click(); }finally{ t.__dmPass=0; } }); },true);
   /* 4. low Hit Points: the screen edge turns red */
   var vig=$("#dmVig"), chip=$("#hpChipV");
   function vigSync(){ var mx=+(($("#hpMax")||{}).getAttribute?$("#hpMax").getAttribute("data-v"):0)||0, cur=parseInt((chip&&chip.textContent)||"0",10); if(!vig||!mx) return; var p=cur/mx; vig.style.opacity=cur<=0?.95:p<=.25?.75:p<=.5?.22:0; }
@@ -10563,10 +10553,10 @@ applyPacks();render();
   /* 5. Rest: sunrise for Long Rest, hourglass for Short Rest */
   var rest=$("#dmRest"), toast=$("#toast"), lastT="";
   function play(kind){ if(RM||!rest||!rest.animate) return; rest.innerHTML=kind==="long"?'<div class="sky"></div><div class="sun"></div>':'<svg class="glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></svg>';
-    rest.animate([{opacity:0},{opacity:1,offset:.2},{opacity:1,offset:.7},{opacity:0}],{duration:kind==="long"?1700:1200,easing:"ease-out"});
+    rest.animate([{opacity:0},{opacity:.6,offset:.3},{opacity:.6,offset:.6},{opacity:0}],{duration:kind==="long"?2200:1600,easing:"ease-in-out"});
     var el=rest.firstElementChild.nextElementSibling||rest.firstElementChild;
-    if(kind==="long") el.animate([{transform:"translateY(0)"},{transform:"translateY(-46vh)"}],{duration:1700,easing:"cubic-bezier(.2,.8,.2,1)"});
-    else el.animate([{transform:"rotate(0deg) scale(.8)"},{transform:"rotate(180deg) scale(1)",offset:.6},{transform:"rotate(180deg) scale(1)"}],{duration:1200,easing:"cubic-bezier(.2,.8,.2,1)"}); }
+    if(kind==="long") el.animate([{transform:"translateY(0)"},{transform:"translateY(-46vh)"}],{duration:2200,easing:"cubic-bezier(.32,.72,0,1)"});
+    else el.animate([{transform:"rotate(0deg) scale(.8)"},{transform:"rotate(180deg) scale(1)",offset:.6},{transform:"rotate(180deg) scale(1)"}],{duration:1600,easing:"cubic-bezier(.32,.72,0,1)"}); }
   if(toast&&window.MutationObserver){ new MutationObserver(function(){ var t=toast.textContent||""; if(t===lastT) return; lastT=t; if(/^Long Rest/.test(t)) play("long"); else if(/^Short Rest/.test(t)) play("short"); }).observe(toast,{childList:true,characterData:true,subtree:true}); }
   window.__dmPlayRest=play;
 })();
