@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stickman demo</title>
+<style>
+:root{--bg:#14181b;--panel:#1c2226;--ink:#e9e4d8;--line:#334047;--acc:#d9463e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px}
+h1{font-size:20px;margin:0}
+#stage{width:min(420px,100%);aspect-ratio:3/4;background:#e9e4d8;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+svg{width:100%;height:100%;display:block}
+.row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+button{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 15px system-ui;cursor:pointer}
+button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.ink{fill:#0c0e10;stroke:#0c0e10}
+.paper{fill:var(--ink)}
+@media (prefers-reduced-motion:reduce){#note{display:block}}
+#note{display:none;font-size:14px;color:#aab}
+</style></head><body>
+<h1>Stickman prototype</h1>
+<div id="stage"><svg id="svg" viewBox="0 0 300 400" role="img" aria-label="Ink-style character animation"></svg></div>
+<div class="row" id="sp" role="group" aria-label="Species"></div>
+<div class="row" id="ac" role="group" aria-label="Action">
+<button type="button" id="bShield" aria-pressed="false">Shield</button>
+<button type="button" id="bFire">Fireball</button>
+</div>
+<p id="note">Reduce Motion is on. The figure holds still and actions show a single frame.</p>
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg", svg=document.getElementById("svg");
+var REDUCE=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+var SPECIES={
+  Human:{h:1,w:1,ears:0,horns:0,tail:0,beard:0,snout:0},
+  Elf:{h:1.06,w:.86,ears:1,horns:0,tail:0,beard:0,snout:0},
+  Dwarf:{h:.8,w:1.3,ears:0,horns:0,tail:0,beard:1,snout:0},
+  Tiefling:{h:1,w:.95,ears:0,horns:1,tail:1,beard:0,snout:0},
+  Dragonborn:{h:1.1,w:1.15,ears:0,horns:0,tail:1,beard:0,snout:1}
+};
+var sp="Human", shield=false, fire=null, t0=performance.now();
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+/* layers */
+var ground=el("ellipse",{cx:150,cy:372,rx:70,ry:8,fill:"#0c0e10","fill-opacity":.18});
+var fig=el("g",{class:"ink"});
+var fx=el("g",{});
+function limb(x0,y0,a1,l1,a2,l2,wd){ var x1=x0+Math.sin(a1)*l1, y1=y0+Math.cos(a1)*l1, x2=x1+Math.sin(a1+a2)*l2, y2=y1+Math.cos(a1+a2)*l2; return {x1:x1,y1:y1,x2:x2,y2:y2,d:"M"+x0+" "+y0+"L"+x1+" "+y1+"L"+x2+" "+y2,wd:wd}; }
+function draw(t){
+  var S=SPECIES[sp], br=Math.sin(t*2.2), sw=Math.sin(t*1.3);
+  var sc=S.h, wd=S.w;
+  var hipY=250-(sc-1)*60, torso=70*sc, neck=hipY-torso, bob=REDUCE?0:br*1.6;
+  var cx=150, hx=cx+(REDUCE?0:sw*2);
+  var html="";
+  var sx=cx-0, shY=neck+8+bob;
+  /* legs */
+  var kneeL=limb(cx-9*wd,hipY,-.16-(REDUCE?0:sw*.03),48*sc,.14,48*sc,15*wd), kneeR=limb(cx+9*wd,hipY,.16+(REDUCE?0:sw*.03),48*sc,-.14,48*sc,15*wd);
+  /* arms */
+  var casting=fire&&fire.k<1, ph=fire?Math.min(1,(performance.now()-fire.t)/1400):0;
+  var armBase=(REDUCE?0:Math.sin(t*1.7)*.05);
+  var aR=limb(cx+16*wd,shY,.25+armBase,36*sc,.35,34*sc,11*wd);        /* spear arm side, idle */
+  var aL=limb(cx-16*wd,shY,-.25-armBase,36*sc,-.35,34*sc,11*wd);
+  if(fire){ var up=Math.sin(Math.min(1,ph*1.6)*Math.PI*.5); aR=limb(cx+16*wd,shY,2.2*up+.25*(1-up),36*sc,-.5*up+.35*(1-up),34*sc,11*wd); }
+  if(shield){ aL=limb(cx-16*wd,shY,-1.45,30*sc,.5,28*sc,11*wd); }
+  /* tail */
+  var tail="";
+  if(S.tail){ var tw=REDUCE?0:Math.sin(t*2)*10; tail='<path d="M'+(cx-4)+' '+(hipY+6)+' q-40 '+(10+tw)+' -52 '+(40+tw)+' q-4 -26 -30 -18" fill="none" stroke="#0c0e10" stroke-width="'+(7*wd)+'" stroke-linecap="round"/>'; }
+  html+=tail;
+  html+='<path d="'+kneeL.d+'" fill="none" stroke="#0c0e10" stroke-width="'+kneeL.wd+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  html+='<path d="'+kneeR.d+'" fill="none" stroke="#0c0e10" stroke-width="'+kneeR.wd+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  /* torso: filled tapered shape */
+  var tw1=22*wd, tw2=16*wd;
+  html+='<path d="M'+(cx-tw1)+' '+(shY)+' Q'+cx+' '+(shY-8)+' '+(cx+tw1)+' '+shY+' L'+(cx+tw2)+' '+(hipY+8)+' Q'+cx+' '+(hipY+14)+' '+(cx-tw2)+' '+(hipY+8)+'Z" fill="#0c0e10"/>';
+  html+='<path d="'+aR.d+'" fill="none" stroke="#0c0e10" stroke-width="'+aR.wd+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  html+='<path d="'+aL.d+'" fill="none" stroke="#0c0e10" stroke-width="'+aL.wd+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  /* head */
+  var hr=16*sc*(S.snout?.95:1), hy=neck-hr+2+bob;
+  html+='<circle cx="'+hx+'" cy="'+hy+'" r="'+hr+'" fill="#0c0e10"/>';
+  html+='<rect x="'+(hx-5)+'" y="'+(hy+hr-4)+'" width="10" height="10" fill="#0c0e10"/>';
+  if(S.ears) html+='<path d="M'+(hx-hr+2)+' '+(hy-3)+'L'+(hx-hr-16)+' '+(hy-14)+'L'+(hx-hr+3)+' '+(hy+6)+'Z M'+(hx+hr-2)+' '+(hy-3)+'L'+(hx+hr+16)+' '+(hy-14)+'L'+(hx+hr-3)+' '+(hy+6)+'Z" fill="#0c0e10"/>';
+  if(S.horns) html+='<path d="M'+(hx-9)+' '+(hy-hr+3)+'q-8 -14 -2 -24q4 12 10 18Z M'+(hx+9)+' '+(hy-hr+3)+'q8 -14 2 -24q-4 12 -10 18Z" fill="#0c0e10"/>';
+  if(S.beard) html+='<path d="M'+(hx-hr+2)+' '+(hy+2)+'Q'+hx+' '+(hy+hr+34)+' '+(hx+hr-2)+' '+(hy+2)+'Z" fill="#0c0e10"/>';
+  if(S.snout) html+='<path d="M'+(hx+hr-4)+' '+(hy-4)+'L'+(hx+hr+14)+' '+(hy+2)+'L'+(hx+hr-4)+' '+(hy+9)+'Z" fill="#0c0e10"/>';
+  fig.innerHTML=html;
+  /* effects */
+  var f="";
+  if(shield){
+    var pulse=REDUCE?0:Math.sin(t*4)*2, sxp=aL.x2-6, syp=aL.y2-4;
+    f+='<g><circle cx="'+sxp+'" cy="'+syp+'" r="'+(26+pulse)+'" fill="#0c0e10" stroke="#e9e4d8" stroke-width="3"/><circle cx="'+sxp+'" cy="'+syp+'" r="9" fill="none" stroke="#e9e4d8" stroke-width="3"/></g>';
+  }
+  if(fire){
+    var hx2=aR.x2, hy2=aR.y2;
+    if(ph<.45){ var r=4+ph/.45*14; f+='<circle cx="'+hx2+'" cy="'+(hy2-4)+'" r="'+r+'" fill="#d9463e" stroke="#0c0e10" stroke-width="2"/>'; }
+    else if(ph<.8){ var q=(ph-.45)/.35, px=hx2+q*(300-hx2)*.75, py=hy2-4+q*20; f+='<circle cx="'+px+'" cy="'+py+'" r="18" fill="#d9463e" stroke="#0c0e10" stroke-width="2"/><circle cx="'+(px-18)+'" cy="'+(py+4)+'" r="8" fill="#e9a23b"/>'; }
+    else { var e=(ph-.8)/.2, R=20+e*70; f+='<circle cx="228" cy="'+(hy2+18)+'" r="'+R+'" fill="#d9463e" fill-opacity="'+(.8*(1-e))+'" stroke="#e9a23b" stroke-width="'+(6*(1-e)+1)+'"/>'; }
+    if(ph>=1) fire=null;
+  }
+  fx.innerHTML=f;
+}
+var raf=0;function kick(){ if(!raf) raf=requestAnimationFrame(loop); }
+function loop(now){ raf=0; draw((now-t0)/1000); if(!REDUCE||fire||shield) kick(); }
+var spEl=document.getElementById("sp");
+Object.keys(SPECIES).forEach(function(n){ var b=document.createElement("button"); b.type="button"; b.textContent=n; b.setAttribute("aria-pressed",n===sp); b.onclick=function(){ sp=n; Array.prototype.forEach.call(spEl.children,function(c){ c.setAttribute("aria-pressed",c.textContent===n); }); kick(); }; spEl.appendChild(b); });
+var bS=document.getElementById("bShield"); bS.onclick=function(){ shield=!shield; bS.setAttribute("aria-pressed",shield); kick(); };
+document.getElementById("bFire").onclick=function(){ if(fire) return; fire={t:performance.now(),k:0}; if(REDUCE){ fire.t-=1000; } kick(); };
+if(REDUCE) document.getElementById("note").style.display="block";
+kick();
+window.__stick={set:function(n){sp=n;},shield:function(v){shield=v;},fire:function(){fire={t:performance.now(),k:0};}};
+})();
+</script></body></html>
