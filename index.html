@@ -4629,6 +4629,51 @@ var GLOSS={
   "Improvised Weapon":{c:"Weapon",s:EQ,d:"Any object you swing or throw, like a chair or a bottle. It deals 1d4 damage of a type the DM picks, and thrown range is 20/60 ft. Tavern Brawler makes you proficient with it."}
 };
 window.__GLOSS=GLOSS;/* v93: the 2014 equipment words change a few entries */
+
+/* v94: 2014 rules words. gl14 lays the 2014 Rules Glossary entries over GLOSS (rests, Exhaustion, grapple, actions, conditions) and puts the 2024 ones back when off. The sheet follows C.rs, the builder follows the build */
+var GL14S=null,GL14ON=false;
+var GL14={
+ "Proficiency Bonus":{d:"A bonus set by your level. You add it to attack rolls with weapons you are proficient with, to ability checks with proficient skills, to proficient saving throws, and to the DCs of your spells and features."},
+ "Hit Point Dice":{d:"Dice you spend during a [[Short Rest]] to heal. Roll each die you spend and add your Constitution modifier. A [[Long Rest]] gives back up to half of your total Hit Dice, and at least one."},
+ "Heroic Inspiration":{d:"A reward the DM gives for good roleplay, clever play, or a moment that fits your character. Spend it to have [[Advantage]] on one attack roll, saving throw, or ability check, and decide before you roll. You either have it or you do not. You can give yours to another player."},
+ "Passive Perception":{d:"10 plus every modifier that applies to your Wisdom ([[Perception]]) check. Advantage adds 5 and Disadvantage subtracts 5. The DM compares it against hidden creatures and traps when nobody is rolling."},
+ "Short Rest":{d:"At least 1 hour with nothing more strenuous than eating, drinking, reading, or tending wounds. At the end you can spend any number of your [[Hit Point Dice]] to heal. Some features come back, such as [[Action Surge]] and [[Second Wind]]."},
+ "Long Rest":{d:"At least 8 hours of sleep and light activity, with no more than 2 hours awake. One hour of fighting, casting, or walking breaks the rest and it starts over. You regain all Hit Points and up to half of your total Hit Dice, at least one. You lose 1 level of [[Exhaustion]] if you ate and drank. Only one Long Rest counts in 24 hours, and you need at least 1 Hit Point to begin."},
+ "Exhaustion":{d:"Stacks in six levels, and each level adds to the ones before it. 1: Disadvantage on ability checks. 2: Speed halved. 3: Disadvantage on attack rolls and saving throws. 4: Hit Point maximum halved. 5: Speed 0. 6: death. A [[Long Rest]] with food and drink removes one level."},
+ "Languages":{s:"PHB-2014, Character Creation",d:"Your race and background give you your languages. Common is almost always one of them. Ask the DM before picking a rare one."},
+ "Unarmed Strike":{d:"A punch, kick, head butt, or similar blow. It is a melee attack. On a hit it deals 1 + your Strength modifier bludgeoning damage, and you are always proficient with it. [[Grapple]] and [[Shove]] replace one attack."},
+ "Grapple":{c:"Special attack",d:"Replaces one attack of your [[Attack]] action. The target can be no more than one size larger than you and within reach, and you need one hand free. Your Strength ([[Athletics]]) check is contested by the target's Strength ([[Athletics]]) or Dexterity ([[Acrobatics]]) check, its choice. If you win, it has the [[Grappled]] condition. You can drag or carry it, at half Speed unless it is two or more sizes smaller."},
+ "Shove":{c:"Special attack",d:"Replaces one attack of your [[Attack]] action. The target can be no more than one size larger than you and within reach. Your Strength ([[Athletics]]) check is contested by the target's Strength ([[Athletics]]) or Dexterity ([[Acrobatics]]) check, its choice. If you win, you either knock it [[Prone]] or push it 5 feet away."},
+ "Attack":{d:"Make one melee or ranged attack. Features such as Extra Attack add more attacks to this action. You can also interact with one object for free as part of your move or action."},
+ "Help":{d:"Aid another creature. For a task it could attempt, it gains [[Advantage]] on its next ability check for that task if it makes it before your next turn. Or distract an enemy within 5 feet of you: the next attack roll an ally makes against that enemy before your next turn has Advantage."},
+ "Hide":{d:"Make a Dexterity ([[Stealth]]) check while you are out of sight, such as behind cover or in heavy obscurement. The DM compares your result with the passive Wisdom ([[Perception]]) of anyone who could notice you."},
+ "Search":{d:"Look for something. Make a Wisdom ([[Perception]]) or Intelligence ([[Investigation]]) check, depending on what you are looking for."},
+ "Cast a Spell":{c:"Action",s:"PHB-2014, Combat",d:"Cast a spell with a casting time of 1 action. A spell with a longer time needs that much time. If you cast a spell as a [[Bonus Action]], the only other spell you can cast that turn is a cantrip with a casting time of 1 action."},
+ "Use an Object":{c:"Action",s:"PHB-2014, Combat",d:"Use a second object on your turn, or one that needs your action, such as a [[Healer's Kit]], a lever, or a door lock. You can interact with one object for free as part of your move or action."},
+ "Opportunity Attack":{d:"When a hostile creature you can see leaves your reach, you can use your [[Reaction]] to make one melee attack against it. It does not provoke if the creature took the [[Disengage]] action, teleported, or was moved without using its own movement, action, or reaction."},
+ "Frightened":{d:"While the source of your fear is in line of sight, you have [[Disadvantage]] on ability checks and attack rolls, and you can't willingly move closer to it."},
+ "Grappled":{d:"Your [[Speed]] is 0 and you can't gain bonuses to it. The condition ends if the grappler is [[Incapacitated]], or if something moves you out of the grappler's reach. You can use your action to escape: your Strength ([[Athletics]]) or Dexterity ([[Acrobatics]]) check must beat the grappler's Strength ([[Athletics]]) check."},
+ "Incapacitated":{d:"You can't take actions or reactions."}
+};
+function gl14(on){ if(typeof GLOSS==="undefined")return; on=!!on; if(on===GL14ON)return;
+ if(on){ GL14S={}; var ks=Object.keys(GLOSS); Object.keys(GL14).forEach(function(k){ if(ks.indexOf(k)<0)ks.push(k); });
+  ks.forEach(function(k){ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ var o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   var nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
+   if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; var n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
+ else if(GL14S){ Object.keys(GL14S).forEach(function(k){ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
+window.__gl14=gl14;
+var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
+/* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */
+function gName(g){ g=String(g==null?"":g); if(!(typeof C!=="undefined"&&C&&C.rs==="2014"))return g; var m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
+function athI(){ var s=C.skills||[]; for(var i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
+function x14n(n){ return n==="Magic"?"Cast a Spell":n==="Utilize"?"Use an Object":n; }
+function x14(){ return typeof C!=="undefined"&&!!C&&C.rs==="2014"; }
+/* Exhaustion: 2024 takes 2 from every D20 Test and 5 feet of Speed per level. 2014 has six levels with fixed effects */
+function exSpd(v){ var e=(typeof D!=="undefined"&&D&&D.exh)||0; return x14()?(e>=5?0:e>=2?Math.floor(v/2):v):Math.max(0,v-5*e); }
+function exTxt(n){ if(!x14())return "D20 Tests −"+(2*n)+", Speed −"+(5*n)+" ft"; var a=[]; a.push(n>=3?"Disadvantage on ability checks, attack rolls, and saves":"Disadvantage on ability checks"); if(n>=5)a.push("Speed 0"); else if(n>=2)a.push("Speed halved"); if(n>=4)a.push("Hit Point maximum halved"); if(n>=6)a=["Dead"]; return a.join(", "); }
+function exHelp(){ return x14()?"Six levels, each adds to the last: 1 checks, 2 Speed halved, 3 attacks and saves, 4 Hit Points halved, 5 Speed 0, 6 death.":"Each level: −2 to D20 Tests and −5 ft Speed. Level 6 is death."; }
+/* Long Rest, 2014: Hit Dice come back up to half of the total (at least 1), the biggest dice first */
+function hdPlan(){ var rows=hdRows().slice().sort(function(a,b){ return num(b.die,num(C.hitDie,10))-num(a.die,num(C.hitDie,10)); }), tot=rows.reduce(function(t,r){return t+r.max},0), bud=Math.max(1,Math.floor(tot/2)), pl={}, sum=0;
+ rows.forEach(function(r){ var u=used(r.k,r.max), t=Math.min(u,bud); pl[r.k]=t; bud-=t; sum+=t; }); pl._n=sum; return pl; }
 /* features that resource and action names point to */
 GLOSS["Celurit (Sickle)"]=GLOSS["Sickle"];
 HB_CONDS.forEach(function(c){ GLOSS[c.k]={c:"Condition (homebrew)",s:HB_SRC,d:c.d}; });
@@ -4697,7 +4742,7 @@ function snSetH(){ var id=MYID||(rGet()||{}).active, L=(snGet().chars[id]||[]);
    RL47: every saved key carries _app, the highest app version that wrote it. Fields this version does not know are kept as they are.
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
-var APP_VER=93, APP_DATE="2026-10-25", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=94, APP_DATE="2026-10-25", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -4814,7 +4859,7 @@ function derive(){
   D.level = lvl; D.pb = pb;
   /* v19 RL44: Exhaustion (PHB 2024 Rules Glossary): each level takes 2 from every D20 Test (ability checks, saving throws, attack rolls, Initiative)
      and 5 feet from Speed. Passive scores are not D20 Tests and stay the same */
-  var exh=clamp(Math.round(num(S.exh,0)),0,6); D.exh=exh;
+  var exh=clamp(Math.round(num(S.exh,0)),0,6); D.exh=exh; var xr=x14(), exhN=xr?0:exh; D.exhN=exhN;/* v94: 2014 Exhaustion has no number on D20 Tests */
   function exP(){ return part("Exhaustion level "+exh, -2*exh, "Every D20 Test is 2 lower for each Exhaustion level"); }
   B.pb = {t:"Proficiency Bonus", parts:[part("Character level "+lvl, pb, "Levels 1 to 4 give +2, 5 to 8 give +3, 9 to 12 give +4, 13 to 16 give +5, 17 to 20 give +6")], total:sg(pb), f:"Set by total character level (PHB-2024, Character Advancement)."};
 
@@ -4833,9 +4878,8 @@ function derive(){
   D.save={};
   ABK.forEach(function(k){
     var src=C.saves&&C.saves[k], parts=[abPart(k)];
-    if(src) parts.push(part("Proficiency Bonus", pb, "Proficient from "+src));
-    (C.saveBonus||[]).forEach(function(b){ parts.push(part(b.s||"Bonus", num(b.v))); });/* M18 */
-    if(exh) parts.push(exP());
+    if(src) parts.push(part("Proficiency Bonus", pb, "Proficient from "+src));    (C.saveBonus||[]).forEach(function(b){ parts.push(part(b.s||"Bonus", num(b.v))); });/* M18 */
+    if(exhN) parts.push(exP());
     var t=parts.reduce(function(a,p){return a+p.v},0); t=cuApply("save-"+k,parts,t);/* v26 RU38 no. 2 */
     D.save[k]=t; B["save-"+k]={t:ABN[k]+" saving throw", parts:parts, total:sg(t), f:src?"":(C.saveBonus&&C.saveBonus.length?"Not proficient: the modifier and the bonuses above apply.":"Not proficient, so only the modifier applies.")};
   });
@@ -4843,9 +4887,8 @@ function derive(){
   D.skill={};
   C.skills.forEach(function(s,i){
     var parts=[abPart(s.ab)], p=num(s.p,0);
-    if(p>=1) parts.push(part(p===2?"Expertise (double Proficiency Bonus)":"Proficiency Bonus", pb*(p===2?2:1), s.src?("From "+s.src):"Source not set"));
-    if(num(s.misc,0)) parts.push(part(s.miscSrc||"Other bonus", num(s.misc)));
-    if(exh) parts.push(exP());
+    if(p>=1) parts.push(part(p===2?"Expertise (double Proficiency Bonus)":"Proficiency Bonus", pb*(p===2?2:1), s.src?("From "+s.src):"Source not set"));    if(num(s.misc,0)) parts.push(part(s.miscSrc||"Other bonus", num(s.misc)));
+    if(exhN) parts.push(exP());
     var t=parts.reduce(function(a,q){return a+q.v},0); t=cuApply("sk:"+s.n,parts,t);/* v26 RU38 no. 2 */
     D.skill[i]=t;
     var f=[]; if(s.dis) f.push("Disadvantage on this check while wearing "+esc(s.dis)+".");
@@ -4855,8 +4898,8 @@ function derive(){
   });
   function skillByName(n){ for(var i=0;i<C.skills.length;i++){ if(C.skills[i].n===n) return i; } return -1; }
   [["Perception","per"],["Insight","ins"],["Investigation","inv"]].forEach(function(x){
-    var i=skillByName(x[0]); var v=i>=0?D.skill[i]+2*exh:D.mod[x[0]==="Investigation"?"INT":"WIS"];
-    var pp=[{l:"Base",v:10,note:"Every passive check starts at 10",raw:true},part(x[0]+" bonus",v,"Tap the skill to see where this comes from")], pbn=0; (C.pasBon||[]).forEach(function(b){if(b.k===x[1]){pp.push(part(b.s,b.v,"Passive bonus"));pbn+=b.v}}); var pv=cuApply("pas-"+x[1],pp,10+v+pbn);/* v69 *//* v26 RU38 no. 2 */
+    var i=skillByName(x[0]); var v=i>=0?D.skill[i]+2*exhN:D.mod[x[0]==="Investigation"?"INT":"WIS"];
+    var pp=[{l:"Base",v:10,note:"Every passive check starts at 10",raw:true},part(x[0]+" bonus",v,"Tap the skill to see where this comes from")], pbn=0; (C.pasBon||[]).forEach(function(b){if(b.k===x[1]){pp.push(part(b.s,b.v,"Passive bonus"));pbn+=b.v}}); var xdis=(xr&&exh>=1)?-5:0; if(xdis) pp.push(part("Disadvantage on ability checks (Exhaustion level "+exh+")",-5,"A passive check with Disadvantage is 5 lower")); var pv=cuApply("pas-"+x[1],pp,10+v+pbn+xdis);/* v69 *//* v26 RU38 no. 2 */
     D["pas_"+x[1]]=pv;
     B["pas-"+x[1]]={t:"Passive "+x[0], parts:pp, total:String(pv), f:""};
   });
@@ -4870,12 +4913,12 @@ function derive(){
   D.ac=acParts.reduce(function(a,p){return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 
-  var inParts=[abPart("DEX")]; (C.initBonus||[]).forEach(function(b){ inParts.push(part(b.s||"Bonus", num(b.v))); }); if(exh) inParts.push(exP());
+  var inParts=[abPart("DEX")]; (C.initBonus||[]).forEach(function(b){ inParts.push(part(b.s||"Bonus", num(b.v))); }); if(exhN) inParts.push(exP());
   D.init=inParts.reduce(function(a,p){return a+p.v},0); D.init=cuApply("init",inParts,D.init);/* v26 RU38 no. 2 */
   B.init={t:"Initiative", parts:inParts, total:sg(D.init), f:"In the 2024 rules, Initiative is a Dexterity check."};
 
-  D.speed=Math.max(0,num(C.speed,30)-5*exh);
-  B.speed={t:"Speed", parts:[{l:C.speedSrc||"Base walking Speed", v:num(C.speed,30)+" ft", note:"", raw:true}].concat(exh?[{l:"Exhaustion level "+exh, v:"\u2212"+(5*exh)+" ft", note:"5 feet less for each level", raw:true}]:[]), total:D.speed+" ft", f:""};
+  D.speed=xr?(exh>=5?0:exh>=2?Math.floor(num(C.speed,30)/2):num(C.speed,30)):Math.max(0,num(C.speed,30)-5*exh);
+  B.speed={t:"Speed", parts:[{l:C.speedSrc||"Base walking Speed", v:num(C.speed,30)+" ft", note:"", raw:true}].concat(exh?[xr?{l:"Exhaustion level "+exh, v:exh>=5?"Speed 0":"Halved", note:exh>=5?"Level 5: your Speed is 0":"Level 2: your Speed is halved", raw:true}:{l:"Exhaustion level "+exh, v:"\u2212"+(5*exh)+" ft", note:"5 feet less for each level", raw:true}]:[]), total:D.speed+" ft", f:""};
   D.speed=cuSpeed(D.speed,B.speed.parts); B.speed.total=D.speed+" ft";/* v26 RU38 no. 2 */
   B.dark={t:"Darkvision", parts:[{l:C.darkSrc||"Source not recorded", v:num(C.darkvision,0)+" ft", note:"", raw:true}], total:num(C.darkvision,0)+" ft", f:"You see in Dim Light within this range as if it were Bright Light, and in Darkness as if it were Dim Light (shades of gray only)."};
   /* RU19: other senses from the builder (C.senses, e.g. Devil's Sight). Optional field: missing = none */
@@ -4887,8 +4930,8 @@ function derive(){
   if(lvl>1 && hpl.length===lvl-1){ hpl.forEach(function(e,i){ var v=typeof e==="object"?num(e.v):num(e); hpParts.push(part("Level "+(i+2)+(e&&e.c?" ("+e.c+")":"")+(e&&e.r?": rolled":": fixed"), v, e&&e.n?e.n:"")); }); }
   else if(lvl>1) hpParts.push(part("Levels 2 to "+lvl+": fixed "+avg+" each", avg*(lvl-1), (lvl-1)+" \u00d7 "+avg+" (average of d"+hd+", rounded up)"));
   hpParts.push(part("Constitution modifier \u00d7 "+lvl+" levels", cm*lvl, "Con "+D.score.CON+" gives "+sg(cm)+" per level"));
-  (C.hpBonus||[]).forEach(function(b){ hpParts.push(part(b.s||"Bonus", num(b.v))); });
-  if(num(S.hpMod,0)) hpParts.push(part("Max HP modifier", Math.round(num(S.hpMod,0)), "Set on the sheet"));/* v21 RU45 */
+  (C.hpBonus||[]).forEach(function(b){ hpParts.push(part(b.s||"Bonus", num(b.v))); });  if(num(S.hpMod,0)) hpParts.push(part("Max HP modifier", Math.round(num(S.hpMod,0)), "Set on the sheet"));/* v21 RU45 */
+  if(xr&&exh>=4){ var hs0=Math.max(1,hpParts.reduce(function(a,q){return a+q.v},0)); hpParts.push(part("Exhaustion level "+exh+": maximum halved",-Math.floor(hs0/2),"Level 4: your Hit Point maximum is half of "+hs0)); }/* v94 */
   D.hpmax=Math.max(1,hpParts.reduce(function(a,p){return a+p.v},0)); var hpOv=Math.round(num(S.hpOver,0)); CU0.hp=D.hpmax; if(hpOv>0){ hpParts.push({l:"Set by you",v:String(hpOv),note:"Calculated value: "+D.hpmax+". Your number replaces it.",raw:true}); D.hpmax=hpOv; }/* v34 RU85 */
   B.hp={t:"Hit Point Maximum", parts:hpParts, total:String(D.hpmax), f:"Uses the fixed-value option for every level after the first."+(hpOv>0?" Override set on the sheet: "+hpOv+".":"")};
 
@@ -4908,8 +4951,7 @@ function derive(){
     var m=D.mod[a.ab]||0, hp=[part(ABN[a.ab]+" modifier", m, ABN[a.ab]+" score "+D.score[a.ab])];
     if(a.prof) hp.push(part("Proficiency Bonus", pb, "Proficient with this weapon"));
     if(num(a.misc,0)) hp.push(part(a.miscSrc||"Other bonus", num(a.misc)));
-    if(CF.atkW&&!/^Cantrip/.test(a.sub||"")&&a.n!=="Unarmed Strike"&&atkKind(a)==="melee") hp.push(part("Sacred Weapon", CF.atkW, "Charisma modifier, while it lasts"));/* v22 RU56 */
-    if(exh) hp.push(exP());
+    if(CF.atkW&&!/^Cantrip/.test(a.sub||"")&&a.n!=="Unarmed Strike"&&atkKind(a)==="melee") hp.push(part("Sacred Weapon", CF.atkW, "Charisma modifier, while it lasts"));/* v22 RU56 */    if(exhN) hp.push(exP());
     var cuA=cuK("a:"+a.n); if(cuA) CU0["a:"+a.n+"|ho"]=hp.reduce(function(t,p){return t+p.v},0); if(cuA&&cuNum(cuA.hb)) hp.push(part("Customize: bonus", cuNum(cuA.hb), cuA.note||"Set with Customize"));/* v26 RU38 no. 2 */
     var hit=hp.reduce(function(t,p){return t+p.v},0);
     if(cuA&&cuNum(cuA.ho)!=null){ hp.push({l:"Set by you", v:sg(cuNum(cuA.ho)), note:"Calculated value: "+sg(CU0["a:"+a.n+"|ho"])+". Your number replaces it.", raw:true}); hit=cuNum(cuA.ho); }
@@ -5027,7 +5069,7 @@ function renderIdentity(){
   $("#miniSub").textContent = C.species+" "+clsLv();
   $("#idTop").innerHTML = '<b>'+esc((C.office||"Character Record").toUpperCase())+'</b><span>'+(C.cardNo?'No. '+esc(C.cardNo):'Level '+D.level)+'</span>';
   $("#idName").textContent = C.name;
-  var f=[["Species",C.species,grpSpec("species")],["Class",clsLv(),grpSpec("class")],["Subclass",C.sub,grpSpec("sub")],["Background",C.bg,grpSpec("bg")],["Size",C.size,"g:Size"]];
+  var f=[["Species",C.species,grpSpec("species")],["Class",clsLv(),grpSpec("class")],[(x14()&&SL14[String(C.cls||"").split(/[\s/,]/)[0]])||"Subclass",C.sub,grpSpec("sub")],["Background",C.bg,grpSpec("bg")],["Size",C.size,"g:Size"]];
   $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){return '<dt>'+x[0]+'</dt><dd>'+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   xpBox();/* v22 RU63 */
@@ -5047,8 +5089,7 @@ function renderTiles(){
     '<button type="button" class="tile ac bd" data-bd="ac">'+shield+'<span class="k">Armor Class</span><span class="v">'+D.ac+'</span></button>'+
     '<button type="button" class="tile bd" data-bd="init"><span class="k">Initiative</span><span class="v">'+sg(D.init)+'</span><span class="n">Dexterity'+cfFlags((CF0().chk||[]).concat(CF0().init||[]))+'</span></button>'+
     '<button type="button" class="tile bd" data-bd="speed"><span class="k">Speed</span><span class="v">'+D.speed+'<small>ft</small></span><span class="n">Walking</span></button>'+
-    '<button type="button" class="tile bd" data-bd="pb"><span class="k">Proficiency</span><span class="v">'+sg(D.pb)+'</span><span class="n">Bonus</span></button>'+
-    '<button type="button" class="tile bd" data-bd="dc"><span class="k">Grapple DC</span><span class="v">'+D.dc+'</span><span class="n">Strength or Dexterity save</span></button>'+
+    '<button type="button" class="tile bd" data-bd="pb"><span class="k">Proficiency</span><span class="v">'+sg(D.pb)+'</span><span class="n">Bonus</span></button>'+    (x14()&&athI()>=0?'<button type="button" class="tile bd" data-bd="sk-'+athI()+'"><span class="k">Grapple</span><span class="v">'+sg(D.skill[athI()])+'</span><span class="n">Athletics, contested</span></button>':'<button type="button" class="tile bd" data-bd="dc"><span class="k">Grapple DC</span><span class="v">'+D.dc+'</span><span class="n">Strength or Dexterity save</span></button>')+
     '<button type="button" class="tile insp press" id="insp" aria-pressed="'+S.insp+'"><span class="ib" role="button" aria-label="About Heroic Inspiration" data-info="g:Heroic Inspiration">i</span><span class="k">Heroic Inspiration</span><span class="gem"></span><span class="n" id="inspN">'+(S.insp?"Ready":"None")+'</span></button>';
 }
 function renderSkillsPage(){
@@ -5168,7 +5209,7 @@ function actItem(x,chip){ var rl=resOf(x.f.n), r=rl[0], cs=aylSplit(shortX(x.f.n
   return '<div class="aitem"><h4><button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(x.f.n)+'</button>'+(so&&so.p?sumPill(so.p):(chip?' <span class="muted">('+chip+')</span>':''))+(so&&r?resPips(rl):'')+'</h4>'+(so?sumH(so,clsOfG(x.g))+aylH(cs.a,clsOfG(x.g)):'')+(so?'':(function(){ return x.f.full?sumText(cs.t,clsOfG(x.g))+aylH(cs.a,clsOfG(x.g)):foldP(richP(fill(cs.t)),"a:"+x.gi+"."+x.fi,cs.t,!!x.f.full||!!shortX(x.f.n,x.g))+aylH(cs.a,clsOfG(x.g)); })())+(r?resTail(rl,so):'')+'</div>'; }
 function spellsBy(re){ return (C.spells||[]).map(function(x,i){return [x,i]}).filter(function(p){return re.test(p[0].ct)}); }
 function spLine(ps){ return ps.length?'<h4 class="asub">Spells</h4><div class="aline">'+ps.map(function(p){var x=p[0];return '<button type="button" class="tx" data-info="sp:'+p[1]+'"><i>'+esc(x.n)+'</i></button>'+(x.conc?' <span class="ctag">C</span>':'')+(x.rit?' <span class="ctag rit">R</span>':'')+' <small class="muted">('+(x.l?ordL(x.l).replace(" Level","").toUpperCase():"CANTRIP")+')</small>'}).join("<br>")+'</div>':''; }
-function combat(list){ var ln=list.map(function(n,i){return '<span class="acx">'+(GLOSS[n]?'<button type="button" class="tx" data-info="g:'+n+'">'+n+'</button>':n)+(i<list.length-1?',':'')+'</span>'}).join(" ");/* v35 p09 *//* v31 C4: a long list folds */
+function combat(list){ if(x14()) list=list.filter(function(n){ return n!=="Influence"&&n!=="Study"; }).map(x14n);/* v94: 2014 has no Influence or Study action */ var ln=list.map(function(n,i){return '<span class="acx">'+(GLOSS[n]?'<button type="button" class="tx" data-info="g:'+n+'">'+n+'</button>':n)+(i<list.length-1?',':'')+'</span>'}).join(" ");/* v35 p09 *//* v31 C4: a long list folds */
   if(list.length<=3) return '<div class="acomb short"><h4 class="asub">'+ico("act-free","aci")+'Actions in Combat</h4><div class="aline noico">'+ln+'</div></div>';
   var op=!!FOPEN.combat; return '<div class="acomb'+(op?' open':'')+'"><button type="button" class="acomb-t press" data-fmore="combat" aria-expanded="'+op+'">'+ico("act-free","aci")+'<span class="acw"><span class="asub">Actions in Combat</span><small>'+list.length+' actions anyone can take</small></span>'+ico("ui-chev-d","fmi")+'</button><div class="aline noico"'+(op?'':' hidden')+'>'+ln+'</div></div>'; }
 /* v32 RL51: actions from C.acts (feats, features, species, invocations, maneuvers, magic items). A feature named in its group's ak list uses only
@@ -5297,7 +5338,7 @@ function renderFeat(){
       }).join("");
       if(!items) return "";
       if(g.g==="Eldritch Invocations") return '<div class="fnest">'+items+'</div>';
-      return (o[0]==="class"?'<h3 class="fgh">'+esc(g.g)+'</h3>':'')+items;
+      return (o[0]==="class"?'<h3 class="fgh">'+esc(gName(g.g))+'</h3>':'')+items;
     }).join("");
     if(body) h+='<h3 class="fcat">'+o[1]+(o[0]==="feats"&&C.cls?'<button type="button" class="btn press fmanb" data-bldgo="class">Manage Feats</button>':'')+'</h3>'+body;/* v23 RU38 no. 4 */
   });
@@ -5410,14 +5451,14 @@ function renderConds(){
   var any=list.length||S.exh;/* v30 B3, RU84: a titled row; Exhaustion is a chip too; empty is a clear Add condition button */
   var h = '<span class="cond-l">Conditions</span>'+modeChips()+concChip()+(S.exh?'<button type="button" class="chip on exh-c press" data-info="g:Exhaustion">Exhaustion '+S.exh+'</button>':'')+list.map(function(c){return '<button type="button" class="chip on cnd press'+(c.hb?' hb':'')+'" data-info="g:'+c.k+'">'+c.k+(c.extra||"")+'</button>'}).join("");
   h += '<button type="button" class="chip add press" id="condOpen">'+(any?'Edit':'Add condition')+'</button>';
-  if(S.exh) h += '<button type="button" class="exh-note tx" data-info="g:Exhaustion">Exhaustion '+S.exh+': D20 Tests \u2212'+(2*S.exh)+', Speed \u2212'+(5*S.exh)+' ft</button>';
+  if(S.exh) h += '<button type="button" class="exh-note tx" data-info="g:Exhaustion">Exhaustion '+S.exh+': '+exTxt(S.exh)+'</button>';
   $("#conds").innerHTML = h; concHead(); vbSync();
 }
 function condHTML(){
-  var h = '<div class="exh"><div><b><button type="button" class="tx" data-info="g:Exhaustion">Exhaustion</button></b><small>Each level: \u22122 to D20 Tests and \u22125 ft Speed. Level 6 is death.</small></div><span class="stepper"><button type="button" data-exh="-1" aria-label="Decrease">−</button><output>'+S.exh+'</output><button type="button" data-exh="1" aria-label="Increase">+</button></span></div>';
+  var h = '<div class="exh"><div><b><button type="button" class="tx" data-info="g:Exhaustion">Exhaustion</button></b><small>'+exHelp()+'</small></div><span class="stepper"><button type="button" data-exh="-1" aria-label="Decrease">−</button><output>'+S.exh+'</output><button type="button" data-exh="1" aria-label="Increase">+</button></span></div>';
   /* v30 B12: icon cards that light up when active. The name toggles, the i button opens the rule */
   function card(k,d,hb,extra){ var on=!!S.cond[k]; return '<div class="cc'+(on?' on':'')+(extra?' wide':'')+'"><button type="button" class="tog cc-b press" data-c="'+k+'" aria-pressed="'+on+'">'+ico("cond-"+k.toLowerCase())+'<span class="cc-n">'+k+'</span>'+(hb?'<span class="flag hb">HB</span>':'')+'<span class="cc-s" aria-hidden="true">'+ico("ui-check")+'</span></button><button type="button" class="cc-i press" data-info="g:'+k+'" aria-label="About '+k+'" title="About '+k+'">'+ico("ui-info")+'</button>'+(extra||'')+'</div>'; }
-  h += '<span class="src" style="margin-bottom:8px">PHB-2024, Rules Glossary</span><p class="cc-help">Tap a condition to turn it on or off. The i button shows its rules.</p>';
+  h += '<span class="src" style="margin-bottom:8px">'+(x14()?"PHB-2014, Appendix A":"PHB-2024, Rules Glossary")+'</span><p class="cc-help">Tap a condition to turn it on or off. The i button shows its rules.</p>';
   h += '<div class="ccg">'+STD_CONDS.map(function(c){ return card(c,GLOSS[c].d,false); }).join("")+'</div>';
   h += '<span class="src" style="margin:12px 0 8px">'+HB_SRC+'</span>';
   h += '<div class="ccg">'+HB_CONDS.map(function(c){
@@ -5623,10 +5664,10 @@ function infoHTML(spec){
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
     var cl0=clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
     var fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
-    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gr.g))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(srcPg(f.s,pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
+    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(srcPg(f.s,pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
     if(r0){ var lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+'</div>'+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
     h+=tmpFeatH(f);/* v21 RU55 */
-    h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gr.g)+'</button></p></div>';
+    h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button></p></div>';
     return {t:f.n, h:h};
   }
   if(type==="grp"){
@@ -6262,16 +6303,16 @@ document.addEventListener("click",function(e){
   var rest=e.target.closest("[data-rest]"); if(rest){ openRest(rest.getAttribute("data-rest")); return; }/* RU41 */
   var pip=e.target.closest("#dsS .pip, #dsF .pip"); if(pip){ undoMark("Death Saving Throw"); var which=pip.parentNode.id==="dsS"?0:1, pi=+pip.getAttribute("data-i"); S.ds[which]=(S.ds[which]===pi+1)?pi:pi+1; save(); syncDeath(); if(S.ds[0]===3) toast("Stable at 0 Hit Points"); if(S.ds[1]===3) toast("Three failures. Your character dies"); return; }
 });
-function doRest(kind,quiet){ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach(function(k){ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
+function doRest(kind,quiet){ var ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach(function(k){ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
   D.res.forEach(function(r){
     var u=num(S.used[r.k],0);
-    if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1") u=Math.max(0,u-1); }
+    if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1") u=Math.max(0,u-1); }    else if(hp14&&hp14[r.k]!=null) u=Math.max(0,u-hp14[r.k]);/* v94: 2014, half of the Hit Dice come back */
     else { if(r.reset!=="none") u=0; }
     S.used[r.k]=u;
   });
   if(kind==="short"){ if(!quiet) toast("Short Rest: uses restored."); }
-  else { var before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>0) S.exh--; if(S.hp>before) flash("healed"); if(hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast("Long Rest: Hit Points, Hit Dice, and every use restored."); }
-  save(); syncHP(); syncLU(); renderConds();
+  else { var before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>0) S.exh--; if(S.hp>before) flash("healed"); if(hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
+  if(kind!=="short"&&ex0>0){ try{ renderAll(); }catch(er){} }/* v94: a lower Exhaustion level changes Speed, checks, and (2014) the Hit Point maximum, so the sheet is worked out again */
 }
 ["#notesBody","#descBody"].forEach(function(sel){ var nb=$(sel); if(nb) nb.addEventListener("input",function(e){/* v23: Description tab too */
   var t=e.target;
@@ -6458,7 +6499,7 @@ function spSlotsH(l,rows){ if(!l) return ""; var o="", r=(D.res||[]).filter(func
   return o?'<span class="spslw">'+o+'</span>':""; }
 /* RU35 no. 7: Speed and Defenses, always shown */
 function renderSpeedDef(){ var e=document.getElementById("speeds"); if(e){ var sp=Object.assign({},C.speeds||{}); if(D.cf&&D.cf.fly&&!sp.fly) sp.fly=D.cf.fly;/* v22 */ var rows='<div class="sense"><span class="bonus">'+D.speed+'</span><span>Walking, ft</span></div>';
-    ["fly","swim","climb","burrow"].forEach(function(k){ var x=sp[k]; if(!x) return; var v=x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:Math.max(0,num(x.v,0)-5*(D.exh||0))); rows+='<div class="sense"><span class="bonus">'+v+'</span><span>'+{fly:"Fly",swim:"Swim",climb:"Climb",burrow:"Burrow"}[k]+', ft<small class="muted"> '+esc(x.s||"")+'</small></span></div>'; });
+    ["fly","swim","climb","burrow"].forEach(function(k){ var x=sp[k]; if(!x) return; var v=x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:exSpd(num(x.v,0))); rows+='<div class="sense"><span class="bonus">'+v+'</span><span>'+{fly:"Fly",swim:"Swim",climb:"Climb",burrow:"Burrow"}[k]+', ft<small class="muted"> '+esc(x.s||"")+'</small></span></div>'; });
     if(!["fly","swim","climb","burrow"].some(function(k){return sp[k]})) rows+='<p class="muted dnone">No other speeds</p>'; e.innerHTML=rows; }
   var f=document.getElementById("defs"); if(f){ var L=(C.defenses||[]).concat(D.cf?D.cf.res:[]),/* v22 */ g=function(t){ return L.filter(function(d){return d.t===t}); };
     var sec=function(t,lbl,none){ var x=g(t); return '<h3 class="defh">'+lbl+'</h3>'+(x.length?x.map(function(d){return '<div class="defl"><b>'+esc(d.v)+'</b><small>'+esc(d.s)+'</small></div>'}).join(""):'<p class="muted dnone">'+none+'</p>'); };
@@ -6544,13 +6585,13 @@ function shortList(){ return (D.res||[]).filter(function(r){ return r.reset==="s
 function restHTML(kind){ var hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-kind="'+kind+'">';
   if(kind==="menu") return h+restCards()+'</div>';/* v32 p25 C15 */
   if(kind==="short"){ var cm=D.mod.CON, tot=0; h+=restHint();/* v32 p25 */
-    h+='<p class="info-d">A Short Rest is 1 hour of downtime with nothing more tiring than talking, eating, reading, or keeping watch. It ends early, with no benefit, if you roll Initiative, cast any spell except a cantrip, or take damage. You can spend Hit Point Dice to heal, one at a time, and some features recharge.</p>';
+    h+=x14()?'<p class="info-d">A Short Rest lasts at least 1 hour. You do nothing more strenuous than eating, drinking, reading, or tending wounds. At the end you can spend any number of your Hit Dice to heal, one at a time, and some features recharge.</p>':'<p class="info-d">A Short Rest is 1 hour of downtime with nothing more tiring than talking, eating, reading, or keeping watch. It ends early, with no benefit, if you roll Initiative, cast any spell except a cantrip, or take damage. You can spend Hit Point Dice to heal, one at a time, and some features recharge.</p>';
     var rl=shortList(); h+='<div class="info-h">Recover</div>'+(rl.length?recUL(rl.map(function(r){ var u=used(r.k,r.max); return [r.n+(r.reset==="short1"?" (one use)":"")+(u?"":" (already full)"),!u]; })):'<p class="info-d">No features recharge on a Short Rest.</p>');
     h+='<label class="ck"><input type="checkbox" data-rauto="1"'+(restAuto?' checked':'')+'> Automatically apply healing</label>';
     hdRows().forEach(function(r){ var die=num(r.die,num(C.hitDie,10)), left=r.max-used(r.k,r.max), sel=restSel[r.k]||[];
       h+='<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">';
       for(var i=0;i<left;i++){ var on=sel[i]!=null; h+='<button type="button" class="bx" aria-pressed="'+on+'" data-hdk="'+r.k+'" data-hdi="'+i+'" aria-label="Spend Hit Die '+(i+1)+'"></button>'; }
-      h+='</div>'+(left?'':'<p class="muted">No Hit Dice left. A Long Rest restores them.</p>');
+      h+='</div>'+(left?'':'<p class="muted">No Hit Dice left. A Long Rest restores '+(x14()?'half of them, at least one':'them')+'.</p>');
       sel.forEach(function(v,i){ if(v==null) return; var heal=v?hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll"><span class="hdh">'+(v?'+'+heal+' '+hpW(heal):'type the number rolled')+'</span></label>'; });
       h+='</div>'; });
     h+=shortExtraH();/* v21 */
@@ -6558,7 +6599,7 @@ function restHTML(kind){ var hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-k
     if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Short Rest.</p>';
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
   var rec=longRec();/* v32 p25: the same list as the Long Rest card */
-  h+='<p class="info-d">A Long Rest takes at least 8 hours: at least 6 asleep and no more than 2 of light activity. It ends early if you roll Initiative, cast any spell except a cantrip, take damage, or spend 1 hour walking or exerting yourself. If you had rested for at least 1 hour, an early end still counts as a Short Rest. You can resume right away by adding 1 hour to the rest. After a Long Rest, wait 16 hours before starting another.</p><div class="info-h">Recover</div>'+(rec.length?recUL(rec):'<p class="info-d">Everything is already full.</p>');
+  h+=(x14()?'<p class="info-d">A Long Rest lasts at least 8 hours. You sleep and do light activity, with no more than 2 hours awake. One hour of fighting, casting spells, or walking breaks the rest, and you must start it again to gain anything. You can gain the benefit of only one Long Rest in 24 hours, and you need at least 1 Hit Point when you start. You regain all Hit Points and up to half of your total Hit Dice, at least one. If you had food and drink, you also lose 1 level of Exhaustion.</p>':'<p class="info-d">A Long Rest takes at least 8 hours: at least 6 asleep and no more than 2 of light activity. It ends early if you roll Initiative, cast any spell except a cantrip, take damage, or spend 1 hour walking or exerting yourself. If you had rested for at least 1 hour, an early end still counts as a Short Rest. You can resume right away by adding 1 hour to the rest. After a Long Rest, wait 16 hours before starting another.</p>')+'<div class="info-h">Recover</div>'+(rec.length?recUL(rec):'<p class="info-d">Everything is already full.</p>');
   h+=longExtraH();/* v21 */
   if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Long Rest.</p>';
   return h+slideC("long","Slide to take Long Rest",hp1)+'</div>'; }
@@ -6568,7 +6609,7 @@ function slideC(kind,txt,off){ return '<div class="slidec'+(off?' off':'')+'" da
 function longRec(){ var sl=(D.res||[]).filter(function(r){return /^s\d$/.test(r.k)||r.k==="pact"}).reduce(function(t,r){return t+used(r.k,r.max)},0), hdu=hdRows().reduce(function(t,r){return t+used(r.k,r.max)},0),
       oth=(D.res||[]).filter(function(r){ return r.reset!=="none"&&!/^s\d$|^pact$|^hd/.test(r.k)&&used(r.k,r.max)>0; }).map(function(r){return r.n});
   var hpTo=D.hpmax; if(restX.hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0)) hpTo=Math.max(1,(B.hp&&B.hp.parts||[]).filter(function(p){ return p.l!=="Max HP modifier"&&p.l!=="Set by you"; }).reduce(function(t,p){ return t+num(p.v,0); },0));/* v21 i2 */
-  var rec=[]; if(S.hp==null||S.hp<hpTo) rec.push("Hit Points to "+hpTo); if(hdu) rec.push(hdu+" Hit "+(hdu>1?"Dice":"Die")); if(sl) rec.push(sl+" Spell Slot"+(sl>1?"s":"")); rec=rec.concat(oth); if(hasFeat("Resourceful")&&!S.insp) rec.push("Heroic Inspiration (Resourceful)"); if(S.exh>0) rec.push("Exhaustion level reduced by 1"); if(S.ds&&(S.ds[0]||S.ds[1])) rec.push("Death Saving Throws reset"); if(S.tmp) rec.push("Temporary Hit Points end");
+  var rec=[]; if(S.hp==null||S.hp<hpTo) rec.push("Hit Points to "+hpTo); if(x14()) hdu=hdPlan()._n; if(hdu) rec.push(hdu+" Hit "+(hdu>1?"Dice":"Die")); if(sl) rec.push(sl+" Spell Slot"+(sl>1?"s":"")); rec=rec.concat(oth); if(hasFeat("Resourceful")&&!S.insp) rec.push("Heroic Inspiration (Resourceful)"); if(S.exh>0) rec.push("Exhaustion level reduced by 1"); if(S.ds&&(S.ds[0]||S.ds[1])) rec.push("Death Saving Throws reset"); if(S.tmp) rec.push("Temporary Hit Points end");
   return rec; }
 function hdLeft(){ return hdRows().reduce(function(t,r){ return t+Math.max(0,r.max-used(r.k,r.max)); },0); }
 function shortRec(){ var o=[], miss=Math.max(0,D.hpmax-num(S.hp==null?D.hpmax:S.hp,0)), hl=hdLeft();
@@ -6580,7 +6621,7 @@ function recUL(L){ return '<div class="rlist" role="list">'+L.map(function(x){ v
 function restCards(){ var z=S.hp!=null&&S.hp<1, card=function(k,t,d,L){ return '<button type="button" class="restm rcard press" data-rest="'+k+'"><span class="rc-h"><span class="rc-i">'+ico(k==="short"?"rest-short":"rest-long")+'</span><span class="rc-t"><b>'+t+'</b><small>'+d+'</small></span>'+ico("ui-chev-r","rc-go")+'</span>'+recUL(L)+'</button>'; };
   return (z?'<p class="caution">You need at least 1 Hit Point to rest. Heal first, or make Death Saving Throws.</p>':'')+'<div class="rcards">'+card("short","Short Rest","1 hour",shortRec())+card("long","Long Rest","8 hours",longRec().length?longRec():[["Everything is already full",1]])+'</div>'; }
 function restHint(){ var hp=num(S.hp==null?D.hpmax:S.hp,0), miss=Math.max(0,D.hpmax-hp), hl=hdLeft(); if(hp<1) return "";
-  var t=miss&&hl?"You are missing "+miss+" "+hpW(miss)+". You have "+hl+" Hit "+(hl>1?"Dice":"Die")+" left: tap a box below to spend one, then type the number rolled.":miss?"You are missing "+miss+" "+hpW(miss)+", but no Hit Dice are left. A Long Rest restores them.":"Your Hit Points are full, so you do not need to spend Hit Dice.";
+  var t=miss&&hl?"You are missing "+miss+" "+hpW(miss)+". You have "+hl+" Hit "+(hl>1?"Dice":"Die")+" left: tap a box below to spend one, then type the number rolled.":miss?"You are missing "+miss+" "+hpW(miss)+", but no Hit Dice are left. A Long Rest restores "+(x14()?"half of them, at least one":"them")+".":"Your Hit Points are full, so you do not need to spend Hit Dice.";
   return '<p class="rhint">'+ico("ui-info","rh-i")+'<span>'+esc(t)+'</span></p>'; }
 var RS0=null, REST_SUM=null;
 function restSnap(){ return {hp:S.hp==null?D.hpmax:S.hp, tmp:num(S.tmp,0), used:JSON.parse(JSON.stringify(S.used||{})), exh:num(S.exh,0), insp:!!S.insp, ds:(S.ds||[0,0]).slice(), mode:Object.keys(S.mode||{})}; }
@@ -6638,7 +6679,7 @@ var spQ="",spF="all";
 /* Spells tab header: Modifier, Spell Attack, Save DC, then slots. Numbers come from C.spellcasting (builder).
    M9: C.spellcasting.by (2+ abilities, multiclass or species): one header per source, and each spell uses the numbers of its ability (C.spells[].ab) */
 /* v19 RL44: spell attack shown with Exhaustion */
-function scAdj(sc){ if(!sc) return sc; var ex=D&&D.exh?2*D.exh:0, o={}; for(var k in sc) o[k]=sc[k]; if(ex) o.atk=num(sc.atk,0)-ex;
+function scAdj(sc){ if(!sc) return sc; var ex=D&&D.exhN?2*D.exhN:0, o={}; for(var k in sc) o[k]=sc[k]; if(ex) o.atk=num(sc.atk,0)-ex;
   var many=Array.isArray(sc.by)&&sc.by.length>1; if(Array.isArray(sc.by)) o.by=sc.by.map(function(b){ var c={}; for(var j in b) c[j]=b[j]; if(ex) c.atk=num(b.atk,0)-ex; return many?scCu(c,"-"+b.ab,ex):scCu(c,"",ex,1); });
   return scCu(o,"",ex); }
 /* v34 RU85: Spell Attack and Save DC set by you (S.cust "n:spatk", "n:spdc", one pair per ability when 2+ sources), with a breakdown */
@@ -6911,7 +6952,7 @@ function palHeal(n){ if(!n) return palNeed("heal"); var hp=num(S.hp,0), h2=Math.
 function palTemp(n){ if(!n) return palNeed("temp"); var tp=num(S.tmp,0);
   return {i:"hp-temp",t:"Temporary Hit Points "+n,s:"Temporary "+tp+" to "+n+(tp>n?". They do not add up, the new number replaces the old":""),run:function(){ palHp("temp",n); }}; }
 function palExh(n){ n=clamp(n,0,6); var e0=num(S.exh,0);
-  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?"D20 Tests −"+(2*n)+", Speed −"+(5*n)+" ft":"No penalty"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); undoMark("Exhaustion"); exhTo(n,true); toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
+  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?exTxt(n):"No penalty"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); undoMark("Exhaustion"); exhTo(n,true); toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
 function condSet(k,on){ if(sheet.classList.contains("on")) closeSheet(); undoMark((on?"Add ":"Remove ")+k); if(on) S.cond[k]=true; else delete S.cond[k]; save(); renderAll(); toastU(k+(on?" is on.":" is off.")); }
 function palCond(k){ var on=!S.cond[k]; return {i:"cond-"+k.toLowerCase(),t:(on?"Turn on ":"Turn off ")+k,s:"Condition, now "+(on?"off":"on"),run:function(){ condSet(k,on); }}; }
 function palVerb(h){ var V={dmg:["dmg","damage","dam","d","hit","hurt","-"],heal:["heal","h","hp","+","healing","cure"],temp:["temp","tmp","thp","temporary","temp hp","temporary hp","temporary hit points"],exh:["exh","exhaustion","exhausted","exhaust"]}, r="";
@@ -7034,7 +7075,7 @@ function bsCap(b){ return (b.fac||[]).filter(function(f){ return f.k==="Barrack"
 function bsSel(attr,opts,cur,ph){ return '<select class="bs-sel" '+attr+'>'+(ph?'<option value="">'+esc(ph)+'</option>':'')+opts.map(function(o){ var v=Array.isArray(o)?o[0]:o, t=Array.isArray(o)?o[1]:o; return '<option value="'+esc(v)+'"'+(String(cur)===String(v)?' selected':'')+'>'+esc(t)+'</option>'; }).join("")+'</select>'; }
 function bsGP(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")+" GP"; }
 var bsAddK="",bsAddB="Bedroom",bsAddS="Cramped",bsEv="",bsNote="",bsLost="";
-function bastionH(){ if(typeof BASTION==="undefined") return ""; var b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
+function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: Bastions are a 2024 Dungeon Master's Guide rule */ var b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
   if(!b) return h+'<div class="bs empty-note empty-st xempty">'+ico("ui-castle","es-i")+'<b>No Bastion yet</b><p class="bs-why">A Bastion is a home base that works for you between adventures: special facilities with hirelings who craft, harvest, recruit, research, and trade (DMG 2024, chapter 8). It usually comes at level 5'+(lv<5?'; your character is level '+lv+', so ask your DM first':'')+'.</p><button type="button" class="btn pri press" data-bs="setup">'+ico("ui-castle","ibt")+'Set Up Bastion</button></div>';/* v31 C9 */
   var slots=bsSlots(lv), nf=(b.fac||[]).length, cap=bsCap(b);
   h+='<div class="bs"><div class="bs-top"><label class="bs-nm"><span>Name</span><input data-bsf="name" value="'+esc(b.name||"")+'" placeholder="For example: The Lantern House" maxlength="60"></label>'+
@@ -7599,17 +7640,17 @@ function shortExtraH(){ var h=""; if(periOn()) h+='<p class="info-d">Periapt of 
 function chgRows(kinds){ return (D.res||[]).filter(function(r){ return r.rg&&kinds.indexOf(r.when)>=0&&used(r.k,r.max)>0; }); }
 function shortChg(){ return chgRows(["short"]); }
 function chgRow(r){ return '<label class="hdv">'+esc(r.n)+': charges regained ('+esc(r.rg)+')<input type="number" min="0" inputmode="numeric" data-rchg="'+esc(r.k)+'" value="'+(restX.chg&&restX.chg[r.k]!=null?restX.chg[r.k]:"")+'" placeholder="roll"></label>'; }
-function lrNotes(){ var cl=clsLvls(), o=[], all=["Cleric","Druid","Wizard"].filter(function(c){ return cl[c]; }), one=["Paladin","Ranger"].filter(function(c){ return cl[c]; });
+function lrNotes(){ var cl=clsLvls(), o=[], r14=x14(), all=(r14?["Artificer","Cleric","Druid","Paladin","Wizard"]:["Cleric","Druid","Wizard"]).filter(function(c){ return cl[c]; }), one=(r14?[]:["Paladin","Ranger"]).filter(function(c){ return cl[c]; });/* v94: in the 2014 rules the prepared casters are Artificer, Cleric, Druid, Paladin, and Wizard, and there is no Weapon Mastery */
   if(all.length) o.push("Change your list of prepared spells ("+all.join(", ")+").");
   if(one.length) o.push("Replace one prepared spell with another ("+one.join(", ")+").");
-  if(cl.Wizard) o.push("Replace one Wizard cantrip with another (Wizard).");
-  var wm1=["Barbarian","Fighter"].filter(function(c){ return cl[c]; }), wmA=["Paladin","Ranger","Rogue"].filter(function(c){ return cl[c]; });
+  if(cl.Wizard&&!r14) o.push("Replace one Wizard cantrip with another (Wizard).");
+  var wm1=(r14?[]:["Barbarian","Fighter"]).filter(function(c){ return cl[c]; }), wmA=(r14?[]:["Paladin","Ranger","Rogue"]).filter(function(c){ return cl[c]; });
   if(wm1.length) o.push("Change one of your Weapon Mastery weapon kinds ("+wm1.join(", ")+").");
   if(wmA.length) o.push("Change any of your Weapon Mastery weapon kinds ("+wmA.join(", ")+").");
-  if(hasFeat("Weapon Master")) o.push("Swap the weapon kind of your Weapon Master feat.");/* v21 m2 */
-  if(cl.Druid>=2) o.push("Replace one of your known Wild Shape forms (Druid).");
-  if(/High Elf/.test(String(C.species||""))) o.push("Swap your High Elf cantrip for another Wizard cantrip.");
-  if(hasFeat("Aspect of the Wilds")) o.push("Change your Aspect of the Wilds option.");
+  if(!r14&&hasFeat("Weapon Master")) o.push("Swap the weapon kind of your Weapon Master feat.");/* v21 m2 */
+  if(cl.Druid>=2&&!r14) o.push("Replace one of your known Wild Shape forms (Druid).");
+  if(!r14&&/High Elf/.test(String(C.species||""))) o.push("Swap your High Elf cantrip for another Wizard cantrip.");
+  if(!r14&&hasFeat("Aspect of the Wilds")) o.push("Change your Aspect of the Wilds option.");
   return o; }
 function longExtraH(){ var h="", lc=chgRows(["dawn","dusk","long"]);
   if(lc.length) h+='<div class="rx"><div class="info-h">Charges</div><p class="info-d">These items regain a rolled number of charges at dawn or dusk. Type each roll. Leave a box empty to change it later.</p>'+lc.map(chgRow).join("")+'</div>';
@@ -7655,8 +7696,10 @@ var PADV=[
 function cfx(){ var o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[],res:[],fly:null,xd:[],dmgStr:0,atkW:0,init:[],ds:[]}, c=Object.assign({},S.cond||{});
   if(c.Petrified) delete c.Poisoned;/* v22 m2: Petrified gives Immunity to the Poisoned condition */
   if(c.Invisible) o.init.push({t:"ADV",s:"Invisible when you roll Initiative"}); INCAP.forEach(function(k){ if(c[k]) o.init.push({t:"DIS",s:k+" when you roll Initiative"}); });/* v22 m1 */
-  function add(a,t,s){ a.push({t:t,s:s}); } function sv(ab,t,s){ (o.save[ab]=o.save[ab]||[]).push({t:t,s:s}); }
-  var inc=INCAP.some(function(k){ return c[k]; });
+  function add(a,t,s){ a.push({t:t,s:s}); } function sv(ab,t,s){ (o.save[ab]=o.save[ab]||[]).push({t:t,s:s}); }  var inc=INCAP.some(function(k){ return c[k]; });
+  var exL=num(S.exh,0), xr2=x14();/* v94: Exhaustion, 2014: level 1 Disadvantage on ability checks, level 3 on attack rolls and saving throws */
+  if(xr2&&exL>=1){ add(o.chk,"DIS","Exhaustion level "+exL); add(o.init,"DIS","Exhaustion level "+exL+" (Initiative is an ability check)"); }
+  if(xr2&&exL>=3){ add(o.atk,"DIS","Exhaustion level "+exL); ABK.forEach(function(k){ sv(k,"DIS","Exhaustion level "+exL); }); }
   PADV.forEach(function(r){ if(!hasFeat(r.f)) return; if(/\(2014\)$/.test(C.sub||"")&&(r.f==="Remarkable Athlete"||r.f==="Survivor"||r.f==="Assassinate")) return;/* v72: 2014 versions of these features give no Advantage */ var src=r.f+(r.note?" ("+r.note+")":"");
     if(r.init) add(o.init,"ADV",src);
     (r.skill||[]).forEach(function(k){ (o.skill[k]=o.skill[k]||[]).push({t:"ADV",s:src}); });
@@ -7665,7 +7708,7 @@ function cfx(){ var o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[
   (C.itemAdv||[]).forEach(function(r){ if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push({t:"ADV",s:r.s}); });/* v65: magic items */
   if(c.Blinded) add(o.atk,"DIS","Blinded");
   if(c.Frightened){ add(o.atk,"DIS","Frightened, while the source of fear is in sight"); add(o.chk,"DIS","Frightened, while the source of fear is in sight"); }
-  if(c.Grappled){ add(o.atk,"DIS","Grappled, against anyone other than the grappler"); o.speed0.push("Grappled"); }
+  if(c.Grappled){ if(!xr2) add(o.atk,"DIS","Grappled, against anyone other than the grappler"); o.speed0.push("Grappled"); }
   if(c.Invisible) add(o.atk,"ADV","Invisible, against creatures that cannot see you");
   if(c.Poisoned){ add(o.atk,"DIS","Poisoned"); add(o.chk,"DIS","Poisoned"); }
   if(c.Prone||c.Unconscious) add(o.atk,"DIS",c.Prone?"Prone":"Unconscious (Prone)");
@@ -7762,7 +7805,7 @@ function combatHTML0(){ var o=concOf(), atk=(C.attacks||[]).map(function(a,i){ i
 var CMB_MOVE=["Move","Stand Up","Climb or Swim","Jump"], CMB_FREE=["Interact with an Object","Speak","Drop Prone"], CMB_DESC={"Move":"Spend up to your Speed to move on your turn. You can split it before and after your action.","Stand Up":"Standing up from Prone costs movement equal to half your Speed.","Climb or Swim":"Each foot of climbing or swimming costs 1 extra foot of movement, unless you have a Climb or Swim Speed.","Jump":"A running long jump covers feet equal to your Strength score. A high jump covers 3 plus your Strength modifier in feet. Both need a 10 foot run first.","Interact with an Object":"You get one free object interaction on your turn, such as drawing or stowing a weapon. A second one costs the Utilize action.","Speak":"You can say a few short phrases on your turn without using any action.","Drop Prone":"You can fall Prone on your turn. It costs no action and none of your Speed.","Two-Weapon Fighting":"When you take the Attack action and hit with a Light weapon, you can make one extra attack as a Bonus Action with a different Light weapon. Leave out your ability modifier on its damage unless the modifier is negative.","Hasted Action":"With Haste you get one extra action on each of your turns. It can only be used for one weapon attack, Dash, Disengage, Hide, or Utilize."};
 var CMB_SL=[["m","Movement","move"],["a","Action","action"],["x","Extra Action","extra"],["h","On Hit","onhit"],["b","Bonus Action","bonus"],["r","Reaction","reaction"],["f","Free","free"]], CMB_STD=["Dodge","Dash","Disengage","Help","Hide","Search","Ready","Grapple","Shove","Utilize","Influence","Study","Magic","Improvise"], cmbEdit=false;
 function cmbPool(sl){ var out=[], seen={}, add=function(o){ if(seen[o.k]) return; seen[o.k]=1; out.push(o); }, kk={a:"action",h:"onhit",b:"bonus",r:"reaction"}[sl], kinds=actSplit(featAll());
-  if(sl==="a") CMB_STD.forEach(function(n){ add({k:"std:"+n,n:n,g:"Standard actions"}); });
+  if(sl==="a") CMB_STD.forEach(function(n){ if(x14()&&(n==="Influence"||n==="Study")) return; add({k:"std:"+n,n:x14n(n),g:"Standard actions"}); });/* v94 */
   if(sl==="r") add({k:"std:Opportunity Attack",n:"Opportunity Attack",g:"Standard actions"});
   if(sl==="m") CMB_MOVE.forEach(function(n){ add({k:"std:"+n,n:n,g:"Movement"}); });
   if(sl==="f") CMB_FREE.forEach(function(n){ add({k:"std:"+n,n:n,g:"Free"}); });
@@ -7897,7 +7940,7 @@ function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n
   b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 window.__bldDot=bldDot;
 function renderAll(instant){
-  try{ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
+  try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
   catch(e){ if(FROZEN!=="recover"){ recover("Drawing the sheet",e); setTimeout(function(){ throw e; },0); } }/* v18 RU78 */
 }
 
@@ -7910,7 +7953,7 @@ function buildPrint(){
   var foot = function(n){ return '<div class="ps-foot"><span>'+title+'</span><span>Page '+n+' of 3</span></div>'; };
   var avStyle = S.portrait ? ' style="background-image:url(\''+S.portrait+'\');color:transparent"' : '';
   var abil = ABK.map(function(k){var key=!!(C.saves&&C.saves[k]); return '<div class="ps-ab'+(key?' k':'')+'"><div class="a">'+ABN[k].toUpperCase()+'</div><div class="m">'+sg(D.mod[k])+'</div><div class="s">'+D.score[k]+'</div></div>'}).join("");
-  var stats = [["PROFICIENCY",sg(D.pb),"Bonus"],["SPEED",D.speed+" ft","Size "+esc(C.size)+["fly","swim","climb","burrow"].filter(function(k){return (C.speeds||{})[k]}).map(function(k){var x=C.speeds[k];return ", "+k.charAt(0).toUpperCase()+k.slice(1)+" "+(x.v==="walk"?D.speed:Math.max(0,num(x.v,0)-5*(D.exh||0)))}).join("")],/* v20 M3 */["INITIATIVE",sg(D.init),"Dexterity"],["ARMOR CLASS",D.ac,esc(C.ac.baseSrc||"").split(",")[0]],["HIT POINT MAX",D.hpmax,"Current "+S.hp+(S.tmp?", temp "+S.tmp:"")],["GRAPPLE DC",D.dc,"Str or Dex save"]]
+  var stats = [["PROFICIENCY",sg(D.pb),"Bonus"],["SPEED",D.speed+" ft","Size "+esc(C.size)+["fly","swim","climb","burrow"].filter(function(k){return (C.speeds||{})[k]}).map(function(k){var x=C.speeds[k];return ", "+k.charAt(0).toUpperCase()+k.slice(1)+" "+(x.v==="walk"?D.speed:exSpd(num(x.v,0)))}).join("")],/* v20 M3 */["INITIATIVE",sg(D.init),"Dexterity"],["ARMOR CLASS",D.ac,esc(C.ac.baseSrc||"").split(",")[0]],["HIT POINT MAX",D.hpmax,"Current "+S.hp+(S.tmp?", temp "+S.tmp:"")],["GRAPPLE DC",D.dc,"Str or Dex save"]]
     .map(function(s){return '<div class="ps-st"><div class="a">'+s[0]+'</div><div class="v">'+s[1]+'</div><div class="n">'+s[2]+'</div></div>'}).join("");
   var saves = ABK.map(function(k){var on=!!(C.saves&&C.saves[k]); return '<div class="ps-r"><span class="d'+(on?' on':'')+'"></span><span class="t">'+ABN[k]+'</span><span class="b">'+sg(D.save[k])+'</span></div>'}).join("");
   var skills = C.skills.map(function(s,i){var p=num(s.p,0), f=s.dis?' <span style="color:#b3342b;font-size:9px;font-weight:700">DIS</span>':(s.hb?' <span style="color:#9c650f;font-size:9px;font-weight:700">HB</span>':''); return '<div class="ps-r"><span class="d'+(p?' on':'')+'"></span><span class="g">'+s.ab+'</span><span class="t">'+esc(s.n)+f+'</span><span class="b">'+sg(D.skill[i])+'</span></div>'}).join("");
@@ -7949,7 +7992,7 @@ function buildPrint(){
       '<div class="ps-box" style="margin-top:12px"><div class="ps-h">ATTACKS</div><table class="ps-tbl"><thead><tr><th>NAME</th><th>RANGE</th><th>HIT</th><th>DAMAGE</th><th>NOTES</th></tr></thead><tbody>'+atk+'</tbody></table></div>'+
       foot(1)+
     '</div>';
-  function featBox(g){ return '<div class="ps-box"><div class="ps-h">'+esc(g.g).toUpperCase()+'</div>'+(g.items||[]).map(function(f){return '<div class="ps-ft"><h5>'+esc(f.n)+'<span>'+esc(f.s)+'</span></h5><p>'+richB(f.d)+'</p></div>'}).join("")+(g.next?'<p class="ps-p" style="color:#808c84;margin:2px 0 0">'+esc(g.next)+'</p>':'')+'</div>'; }
+  function featBox(g){ return '<div class="ps-box"><div class="ps-h">'+esc(gName(g.g)).toUpperCase()+'</div>'+(g.items||[]).map(function(f){return '<div class="ps-ft"><h5>'+esc(f.n)+'<span>'+esc(f.s)+'</span></h5><p>'+richB(f.d)+'</p></div>'}).join("")+(g.next?'<p class="ps-p" style="color:#808c84;margin:2px 0 0">'+esc(g.next)+'</p>':'')+'</div>'; }
   var fs=C.features||[], left=[], right=[];
   function est(g,cpl){ return 40+(g.items||[]).reduce(function(t,f){ return t+22+Math.ceil(String(f.d||"").length/cpl)*14; },0)+(g.next?28:0); }
   var hL=0, hR=60+(C.inv||[]).length*19 + extraAtkH;
@@ -11934,10 +11977,10 @@ function eq14Set(on,force){if(typeof EQ14D==="undefined"||typeof WEAPONS==="unde
   Object.keys(S.id).forEach(function(k){if(S.id[k]===undefined)delete ITEMDESC[k];else ITEMDESC[k]=S.id[k]});
   Object.keys(S.gc).forEach(function(k){var g=eqGear(k);if(g){g[1]=S.gc[k][0];g[2]=S.gc[k][1]}});
   S.ga.forEach(function(g){var i=GEAR.indexOf(g);if(i>=0)GEAR.splice(i,1)});
-  var GL=window.__GLOSS||{};Object.keys(S.gl).forEach(function(k){if(S.gl[k]===null)delete GL[k];else if(GL[k])GL[k].d=S.gl[k]});
+  var GL=window.__GLOSS||{};Object.keys(S.gl).forEach(function(k){if(S.gl[k]===null)delete GL[k];else if(GL[k]){GL[k].d=S.gl[k];if(S.gs&&S.gs[k]!=null)GL[k].s=S.gs[k]}});
   ARMOR_GEN=S.ag;EQ14SH=null;EQ14S=null}
  if(!on)return;
- var T={w:{},pr:{},pk:{},id:{},gc:{},ga:[],gl:{},ag:ARMOR_GEN};EQ14S=T;
+ var T={w:{},pr:{},pk:{},id:{},gc:{},ga:[],gl:{},gs:{},ag:ARMOR_GEN};EQ14S=T;
  var cp=function(o){return JSON.parse(JSON.stringify(o))};
  Object.keys(WEAPONS).forEach(function(k){var o=WEAPONS[k];if(o.m!==undefined||EQ14D.w[k]){T.w[k]=cp(o);delete o.m}});
  Object.keys(EQ14D.w).forEach(function(k){var o=WEAPONS[k];if(o)Object.assign(o,EQ14D.w[k])});
@@ -11946,7 +11989,7 @@ function eq14Set(on,force){if(typeof EQ14D==="undefined"||typeof WEAPONS==="unde
   ITEMDESC[n]="Comes as a "+q[0].toLowerCase()+" with: "+q[1].map(function(x){return (x[1]>1?x[1]+" × ":"")+x[0]}).join(", ")+". Added to your inventory, it opens into the "+q[0].toLowerCase()+" and its items, each with its own quantity and weight.";
   var g=eqGear(n);if(g){T.gc[n]=[g[1],g[2]];g[1]=q[2];g[2]=q[3]}});
  EQ14D.gear.forEach(function(r){if(!eqGear(r[0])){var g=r.slice();GEAR.push(g);T.ga.push(g)}});
- var GL=window.__GLOSS||{};Object.keys(EQ14D.gloss).forEach(function(k){if(GL[k]){T.gl[k]=GL[k].d;GL[k].d=EQ14D.gloss[k]}else if(GL.Heavy){T.gl[k]=null;GL[k]={c:"Weapon property",s:GL.Heavy.s,d:EQ14D.gloss[k]}}});
+ var GL=window.__GLOSS||{};Object.keys(EQ14D.gloss).forEach(function(k){if(GL[k]){T.gl[k]=GL[k].d;T.gs[k]=GL[k].s;GL[k].d=EQ14D.gloss[k];GL[k].s=String(GL[k].s||"").replace("PHB-2024","PHB-2014")}else if(GL.Heavy){T.gl[k]=null;GL[k]={c:"Weapon property",s:String(GL.Heavy.s||"").replace("PHB-2024","PHB-2014"),d:EQ14D.gloss[k]}}});
  ARMOR_GEN=EQ14D.armorGen;EQ14SH=EQ14D.shield}
 function dm14Set(on,force){if(typeof DM14==="undefined"||typeof DMGI==="undefined"||typeof DMAP==="undefined")return;
  if(!force&&on===DM14ON)return;
@@ -11961,7 +12004,7 @@ function dm14Set(on,force){if(typeof DM14==="undefined"||typeof DMGI==="undefine
  DMGI.length=0;out.forEach(function(x){DMGI.push(x)});Object.keys(DMAP).forEach(function(k){delete DMAP[k]});DMGI.forEach(function(x){DMAP[x[0]]=x});dmapAlias();
  if(typeof MAGIC_SUM!=="undefined"){DM14M={};Object.keys(DM14.ov).forEach(function(n){if(MAGIC_SUM[n]!==undefined){DM14M[n]=MAGIC_SUM[n];delete MAGIC_SUM[n]}})}
  DM14ON=true}
-window.__sp14Set=function(on){sp14Set(on,false);eq14Set(on);dm14Set(on)};
+window.__sp14Set=function(on){sp14Set(on,false);eq14Set(on);dm14Set(on);window.__gl14&&window.__gl14(on)};
 function wxRows(s,on){s.rows.forEach(function(x){var w=on||!!(x[14]&&x[14].some(function(id){return B.src&&B.src[id]}));var i=SPELLS.indexOf(x);if(w&&i<0){var j=0;while(j<SPELLS.length&&!(SPELLS[j][1]>x[1]||(SPELLS[j][1]===x[1]&&SPELLS[j][0]>x[0])))j++;SPELLS.splice(j,0,x);SMAP[x[0]]=x}else if(!w&&i>=0){SPELLS.splice(i,1);delete SMAP[x[0]]}})}
 /* v65: magic items of the WotC sources. An item is in the list while its source is on. A character that owns one keeps the source on */
 function wxItems(){var R=window.WXI;if(!R||typeof DMGI==='undefined')return;var own=(B.inv||[]).map(function(x){return x.n});
@@ -12693,7 +12736,7 @@ function applyPacks(){B.src=B.src||{core:true,dmg:true};snap();var sp=JSON.parse
   /* v20 RD24: class features of a pack (Bonus Class Features), at their level, with full text */
   Object.keys(p.clsFeat||{}).forEach(function(c){if(!CLASSES[c])return;p.clsFeat[c].forEach(function(f){var k=c+"|"+f[1];if(CLASSES[c].f.some(function(x){return x[1]===f[1]}))return;/* a core feature of that name wins */
    CLASSES[c].f=CLASSES[c].f.concat([f]).sort(function(x,y){return x[0]-y[0]});if(CF_FULL[k]==null||PACK_CF.indexOf(k)>=0){CF_FULL[k]=(f[3]&&f[3].full)||f[2];PACK_CF.push(k)}})})});
- efaGate();/* v56: Eberron: Forge of the Artificer */ wxGate();/* v62: WotC sources */cls14Apply();/* v85 v86 */sp14Set(R14(),true);/* v92 */eq14Set(R14(),true);dm14Set(R14(),true);/* v93 */
+ efaGate();/* v56: Eberron: Forge of the Artificer */ wxGate();/* v62: WotC sources */cls14Apply();/* v85 v86 */sp14Set(R14(),true);/* v92 */eq14Set(R14(),true);dm14Set(R14(),true);/* v93 */window.__gl14&&window.__gl14(R14());/* v94 */
  if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
 /* v56 EFotA: the class, species and feats exist only while the source is on. A character that uses any of them keeps the source on. */
 function efaGate(){if(!window.EFA_CLS)return;var us=!R14()&&(B.cls==="Artificer"||(B.mc||[]).some(function(m){return m.cls==="Artificer"}))||!R14()&&(SPECIES[B.species]&&SPECIES[B.species].hb==="EFotA")||(BACKGROUNDS[B.bg]&&BACKGROUNDS[B.bg].hb==="EFotA")||(function(){var js=JSON.stringify(B.ch||{});return (window.EFA_NAMES.feats||[]).some(function(n){return js.indexOf('"'+n+'"')>=0})})(); if(R14())B.src.efa=false;if(us)B.src.efa=true;
@@ -14009,7 +14052,7 @@ applyPacks();render();
 </script>
 <script type="text/x-defer" data-defer="rs14">
 /* v82: wording of the 2014 rules. Species becomes Race, Heroic Inspiration becomes Inspiration. The builder follows the edition of the build, the sheet follows the edition of the character. */
-(function(){var MAP=[[/\bSpecies\b/g,"Race"],[/\bspecies\b/g,"race"],[/\bSPECIES\b/g,"RACE"],[/Heroic Inspiration/g,"Inspiration"],[/heroic inspiration/g,"inspiration"]];
+(function(){var MAP=[[/\bSpecies\b/g,"Race"],[/\bspecies\b/g,"race"],[/\bSPECIES\b/g,"RACE"],[/Heroic Inspiration/g,"Inspiration"],[/heroic inspiration/g,"inspiration"],[/Hit Point Dice/g,"Hit Dice"],[/Hit Point Die\b/g,"Hit Die"],[/HIT POINT DICE/g,"HIT DICE"]];
  function fix(t){var o=t;MAP.forEach(function(m){o=o.replace(m[0],m[1])});return o}
  function act(){var b=document.getElementById("bld");if(b&&!b.hidden)return !!(window.__bldRs&&window.__bldRs());return document.documentElement.getAttribute("data-rs")==="2014"}
  function walk(n){if(n.nodeType===3){var o=fix(n.nodeValue);if(o!==n.nodeValue)n.nodeValue=o;return}if(n.nodeType!==1)return;var g=n.tagName;if(g==="SCRIPT"||g==="STYLE"||g==="TEXTAREA"||g==="INPUT"||g==="SELECT"&&false)return;
