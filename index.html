@@ -4696,7 +4696,7 @@ function snSetH(){ var id=MYID||(rGet()||{}).active, L=(snGet().chars[id]||[]);
    RL47: every saved key carries _app, the highest app version that wrote it. Fields this version does not know are kept as they are.
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
-var APP_VER=81, APP_DATE="2026-10-25", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=82, APP_DATE="2026-10-25", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -7893,7 +7893,7 @@ function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n
   b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 window.__bldDot=bldDot;
 function renderAll(instant){
-  try{ derive(); if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
+  try{ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
   catch(e){ if(FROZEN!=="recover"){ recover("Drawing the sheet",e); setTimeout(function(){ throw e; },0); } }/* v18 RU78 */
 }
 
@@ -11730,9 +11730,13 @@ function saveBak(raw){if(raw==null)return;if(window.__lsSet)window.__lsSet(BAK,r
 
 /* ---------- choice model ---------- */
 function CL(){return CLASSES[B.cls]}
-function asiLevels(){var c=CL(),a=[4,8,12,16].concat(c.asiX||[]);return a.sort(function(x,y){return x-y})}
-function featChosen(exceptKey){var out=[];Object.keys(B.ch).forEach(function(k){if(k===exceptKey)return;var v=B.ch[k];if(v&&typeof v==="object"&&v.feat)out.push(v.feat);if(k==="spfeat"&&v)out.push(v)});var bg=bgX();if(bg)out.push(bgFeatN(bg));return out}
-function allFeats(){var f=[];var bg=bgX();if(bg)f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(B.ch.spfeat&&spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
+/* v82: ruleset. B.rs is "2014" for a character that plays by the 2014 rules, anything else is 2024. The switch shows only while the flag cs-rs14 is on, until the mode is finished */
+function R14(){return !!B&&B.rs==="2014"} var RS14_ON=(function(){try{return localStorage.getItem("cs-rs14")==="1"}catch(e){return false}})();
+/* 2014: the ability scores come from the race. sp.asi is fixed ({STR:2}), sp.asiPick {n,v,ex} lets the player choose n scores (choice key rasi) */
+function raceBonus(){var o={};if(!R14())return o;var sp=spX();if(!sp)return o;if(sp.asi)Object.keys(sp.asi).forEach(function(k){o[k]=(o[k]||0)+sp.asi[k]});if(sp.asiPick)((B.ch||{}).rasi||[]).slice(0,sp.asiPick.n).forEach(function(k){if((sp.asiPick.ex||[]).indexOf(k)<0)o[k]=(o[k]||0)+(sp.asiPick.v||1)});return o}
+function asiLevels(){var c=CL(),a=R14()?[4,8,12,16,19].concat(c.asiX||[]):[4,8,12,16].concat(c.asiX||[]);/* 2014: level 19 is a normal improvement, no Epic Boon */return a.filter(function(x,i){return a.indexOf(x)===i}).sort(function(x,y){return x-y})}
+function featChosen(exceptKey){var out=[];Object.keys(B.ch).forEach(function(k){if(k===exceptKey)return;var v=B.ch[k];if(v&&typeof v==="object"&&v.feat)out.push(v.feat);if(k==="spfeat"&&v)out.push(v)});var bg=bgX();if(bg&&!R14())out.push(bgFeatN(bg));return out}
+function allFeats(){var f=[];var bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
 choices(true).forEach(function(c){var v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat)f.push({n:v.feat,s:c.src,asi:v,key:c.key});if(c.t==="fs"&&v)f.push({n:v,s:c.src});if(c.t==="ofeat"&&c.inv&&v)f.push({n:v,s:"Origin feat (Lessons of the First Ones)",key:c.key})});
  f.slice().forEach(function(x){var F=FEATS[x.n];if(F&&F.fi){var v=B.ch[F.fi+"-"+(x.key||x.s)];if(Array.isArray(v)&&v[0]&&FEATS[v[0]])f.push({n:v[0],s:x.n})}});/* v69: Fighting Initiate (2014) */
  return f}
@@ -11876,8 +11880,7 @@ function kitTool(x){if(!x||!x.kit)return "";var g={"Gaming Set":["game"],"Musica
  var v=x.src===B.bg+" kit"?B.ch.bgTool:x.src===B.cls+" kit"?B.ch.clsTool:null;return (v||[]).filter(function(n){return g.some(function(k){return TOOLS[k].indexOf(n)>=0})})[0]||""}
 function choiceLvl(){var m={};choices(true).forEach(function(c){m[c.key]=c.lvl});return m}
 function asiOf(f,F){var v=f.asi||{},o=[];if(!F)return o;if(F.asi2){if(v.a1&&A6.indexOf(v.a1)>=0)o.push([v.a1,v.a1===v.a2?2:1]);if(v.a2&&v.a2!==v.a1&&A6.indexOf(v.a2)>=0)o.push([v.a2,1])}else if(F.asi&&v.a1&&F.asi.indexOf(v.a1)>=0)o.push([v.a1,1]);return o}
-function scoreAt(lvl,key){var sc={},lv=choiceLvl(),bg=bgX(),AF=allFeats(),me=AF.findIndex(function(f){return f.key===key});ABK.forEach(function(k){sc[k]=+B.base[k]||10});
- if(bg){if(B.bgMode==="111")bg.ab.forEach(function(k){sc[k]++});else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)sc[B.bg2]+=2;if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)sc[B.bg1]++}}
+function scoreAt(lvl,key){var sc={},lv=choiceLvl(),bg=bgX(),AF=allFeats(),me=AF.findIndex(function(f){return f.key===key});ABK.forEach(function(k){sc[k]=+B.base[k]||10});  var rb0=raceBonus();Object.keys(rb0).forEach(function(k){if(sc[k]!=null)sc[k]+=rb0[k]});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach(function(k){sc[k]++});else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)sc[B.bg2]+=2;if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)sc[B.bg1]++}}
  AF.forEach(function(f,i){if(!f.asi||!f.key||f.key===key||/^Boon of/.test(f.n))return;var l=lv[f.key]||1;if(l>lvl||(l===lvl&&(me<0||i>me)))return;/* v19 V19-2 */asiOf(f,FEATS[f.n]).forEach(function(p){sc[p[0]]=Math.min(20,sc[p[0]]+p[1])})});
  return sc}
 /* saving throws a Resilient pick may not take: the main class's saves, and abilities other Resilient picks already took */
@@ -11903,24 +11906,23 @@ function choices(noFeat){
  var sp=spX();
  if(sp&&sp.lin)add({key:"lin",lvl:1,t:"lin",title:sp.lin.label,src:B.species});
  if(sp&&sp.linCan&&B.ch.lin){var lcq=sp.linCan[Object.keys(sp.linCan).filter(function(k){return B.ch.lin.indexOf(k)===0})[0]];if(lcq)add({key:"hecan",lvl:1,t:"multi",n:1,def:[lcq.def],list:SPELLS.filter(function(x){return !x[1]&&x[3].indexOf(lcq.list)>=0}).map(function(x){return [x[0],x[11]]}),title:"Lineage cantrip (default "+lcq.def+")",src:B.species,feature:sp.lin.label})}/* v32 RL49 no. 43 */
- if(sp&&sp.spAb==="choose")add({key:"spab",lvl:1,t:"opt",list:"Species Spellcasting Ability",title:"Species spellcasting ability",src:B.species,feature:sp.spAbTrait});/* RL35 2b, v38 p15 */
+ if(R14()&&sp&&sp.asiPick)add({key:"rasi",lvl:1,t:"multi",n:sp.asiPick.n,list:ABK.filter(function(k){return (sp.asiPick.ex||[]).indexOf(k)<0}).map(function(k){return [k,ABN[k]]}),title:"Ability score increases",src:B.species,feature:"Ability Score Increase"});/* v82: 2014 race choice */ if(sp&&sp.spAb==="choose")add({key:"spab",lvl:1,t:"opt",list:"Species Spellcasting Ability",title:"Species spellcasting ability",src:B.species,feature:sp.spAbTrait});/* RL35 2b, v38 p15 */
  if(sp&&sp.skillPick)add({key:"spsk",lvl:1,t:"skills",n:sp.skillPick.n,from:sp.skillPick.from,title:sp.skillPick.label+" skill",src:B.species,feature:sp.skillPick.label});
  if(sp&&sp.toolPick)add({key:"sptool",lvl:1,t:"tool",n:sp.toolPick.n,cats:sp.toolPick.cats,title:sp.toolPick.label+" tool",src:B.species,feature:sp.toolPick.label});/* v58: EFotA species with a tool of your choice (Warforged) */
  if(sp&&sp.opts)add({key:"spopt",lvl:1,t:"multi",n:sp.opts.n,list:sp.opts.list.map(function(x){return [x[0],x[1]]}),title:sp.opts.label,src:B.species});
- var SFX=spOptFx();
- if(spHasFeat())add({key:"spfeat",lvl:1,t:"ofeat",title:"Versatile: Origin feat",src:B.species,feature:"Versatile"});
+ var SFX=spOptFx(); if(!R14()&&spHasFeat())add({key:"spfeat",lvl:1,t:"ofeat",title:"Versatile: Origin feat",src:B.species,feature:"Versatile"});
  if(SFX.skills)add({key:"spsk2",lvl:1,t:"skills",n:SFX.skills,from:ALLSK,title:"Skillful skills",src:B.species});
  if(SFX.cantrip)add({key:"spcan",lvl:1,t:"multi",n:1,list:SPELLS.filter(function(x){return !x[1]&&x[3].indexOf(SFX.cantrip)>=0}).map(function(x){return [x[0],x[11]]}),title:SFX.cantripLabel||"Limited Spellcaster cantrip",src:B.species});
  if(sp&&sp.wpPick)add({key:"spwp",lvl:1,t:"multi",n:sp.wpPick.n,list:Object.keys(WEAPONS).filter(function(n){return WEAPONS[n].cat===sp.wpPick.cat&&!WEAPONS[n].xw&&!WEAPONS[n].nm}).map(function(n){return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:sp.wpPick.label+" weapons",src:B.species,feature:sp.wpPick.label});/* v74: species with a weapon choice (Hobgoblin) */
  if(SFX.weapon)add({key:"spwep",lvl:1,t:"multi",n:1,list:wmKeys().map(function(n){return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:"Masterful weapon",src:B.species});
  subChoicesFor(B.sub).forEach(function(q){if(L>=q.l)add(q.kind==="opt"?{key:"sc"+q.k,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:B.sub+" "+q.l,feature:q.feature}:{key:"sc"+q.k,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:B.sub+" "+q.l,feature:q.feature})});
- if(c.wm)add({key:"wm",lvl:1,t:"wm",n:c.wm[L-1],melee:B.cls==="Barbarian"?1:0,title:"Weapon Mastery",src:SRC+", "+B.cls,feature:"Weapon Mastery"});
+ if(c.wm&&!R14())add({key:"wm",lvl:1,t:"wm",n:c.wm[L-1],melee:B.cls==="Barbarian"?1:0,title:"Weapon Mastery",src:SRC+", "+B.cls,feature:"Weapon Mastery"});
  if(c.fs&&L>=c.fs)add({key:"fs"+c.fs,lvl:c.fs,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"});
  (c.pick||[]).forEach(function(p){if(L>=p.l){var o1=pk(p,B.cls+" "+p.l,B.cls);if(o1)add(o1)}});
  if(L>=3)add({key:"sub",lvl:3,t:"sub",title:SUBLABEL[B.cls],src:B.cls+" 3"});
  var ps=c.pickSub&&c.pickSub[B.sub];(ps||[]).forEach(function(p){if(L>=p.l){var o2=pk(p,B.sub+" "+p.l,B.cls,B.sub);if(o2)add(o2)}});
  asiLevels().forEach(function(l){if(L>=l)add({key:"feat"+l,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+B.cls+" "+l+")"})});
- if(L>=19)add({key:"feat19",lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+B.cls+" 19)"});
+ if(L>=19&&!R14())add({key:"feat19",lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+B.cls+" 19)"});
  var fsv=c.fs?B.ch["fs"+c.fs]:null;
  if(fsv==="Blessed Warrior"||fsv==="Druidic Warrior"){var cl=fsv==="Blessed Warrior"?"Cleric":"Druid";add({key:"bwc",lvl:c.fs,t:"multi",n:2,list:SPELLS.filter(function(x){return !x[1]&&x[3].indexOf(cl)>=0}).map(function(x){return [x[0],x[11]]}),title:fsv+" cantrips",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"})}
  var invs=[];Object.keys(B.ch).forEach(function(k){if(/invocation$/.test(k))invs=invs.concat(B.ch[k]||[])});
@@ -12084,8 +12086,7 @@ function isDone(c){var v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)retu
 /* ---------- derivation ---------- */
 function abil(){
  var sc={},src={};ABK.forEach(function(k){sc[k]=+B.base[k]||10;src[k]=[]});
- var bg=bgX();
- if(bg){if(B.bgMode==="111")bg.ab.forEach(function(k){src[k].push({s:B.bg+" background ("+SRC+")",v:1})});
+ var bg=bgX();  var rb=raceBonus();Object.keys(rb).forEach(function(k){if(src[k])src[k].push({s:B.species+" (race)",v:rb[k]})});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach(function(k){src[k].push({s:B.bg+" background ("+SRC+")",v:1})});
   else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)src[B.bg2].push({s:B.bg+" background ("+SRC+")",v:2});if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)src[B.bg1].push({s:B.bg+" background ("+SRC+")",v:1})}/* v22 P1: only the background's abilities (PHB 2024) */}
  allFeats().forEach(function(f){var v=f.asi;if(!v)return;var F=FEATS[f.n];if(!F)return;
   asiOf(f,F).forEach(function(q){src[q[0]].push({s:f.n+(F.asi2?"":" feat")+", "+f.s,v:q[1]})})});/* v19 RL46 (9): only abilities on the feat's list */
@@ -12242,7 +12243,7 @@ function toSheet(){
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
  /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
  if(ar&&ar.str&&a.sc.STR<ar.str){spd=Math.max(0,spd-10);spSrc+=", \u221210 "+EA+" (needs Str "+ar.str+", yours is "+a.sc.STR+")"}
- C.speed=spd;C.speedSrc=spSrc;
+ C.speed=spd;C.speedSrc=spSrc;if(R14())C.rs="2014";/* v82 */
  var dk=custom?+B.cSpecies.dark:Math.max(sp.dark||0,SFX2.dark||0);/* RL36 d, M17: Drow Darkvision 120 and Wood Elf Speed 35 come from SPECIES.Elf.linFx (spOptFx) */
  /* m4 (RL20): name the source that gives Darkvision: species or pack, plus the pack option or lineage when that raised it */
  var dkOpt="";if(!custom&&(SFX2.dark||0)>(sp.dark||0)){(B.ch.spopt||[]).forEach(function(n){var o=sp.opts&&sp.opts.list.filter(function(x){return x[0]===n})[0];if(o&&o[2].dark&&!dkOpt)dkOpt=n});if(!dkOpt&&sp.linFx&&B.ch.lin)dkOpt=B.ch.lin.split(" (")[0]}
@@ -12370,7 +12371,7 @@ function toSheet(){
   if(subAt("Druid","Circle of the Sea")>=10)sp("fly","Stormborn, while Wrath of the Sea is active");
   if(subAt("Barbarian","Path of the Wild Heart")>=6){var aw=chOf("Barbarian","p6opt");if(aw==="Panther")sp("climb","Aspect of the Wilds (Panther)");else if(aw==="Salmon")sp("swim","Aspect of the Wilds (Salmon)");else if(!aw){sp("climb","Aspect of the Wilds, if you chose Panther");sp("swim","Aspect of the Wilds, if you chose Salmon")}}/* v32 RL49 no. 31 */
   if(spX()&&B.species==="Aasimar"&&TL()>=3)sp("fly","Celestial Revelation, Heavenly Wings, while transformed")})();
- var cf=classFeatures().map(function(x){var d=x[2];
+ var cf=classFeatures().filter(function(x){return !(R14()&&x[1]==="Weapon Mastery")}).map(function(x){var d=x[2];
   var fsv=B.ch["fs"+c.fs],FSF=fsv?FEATS[fsv]:null;if(x[1]==="Fighting Style"&&fsv)d="You chose **"+fsv+"**. "+(FSF?FSF.d:"This Fighting Style is not in your active sources. Pick it again in the builder.");var fx=(x[1]==="Fighting Style"&&FSF)?FSF.full:"";
   if(x[1]==="Weapon Mastery"&&wmSet.length)d="Masteries: "+wmSet.map(function(n){return n+" ("+WEAPONS[n].m+")"}).join(", ")+". Swap one on a Long Rest.";
   if(x[1]==="Divine Order"&&B.ch.p1opt||x[1]==="Primal Order"&&B.ch.p1opt)d="You chose **"+B.ch.p1opt+"**. "+d;
@@ -12473,7 +12474,7 @@ function toSheet(){
    put({n:ep?"Epic Boon":"Ability Score Improvement",s:SRC+", "+B.cls+" "+lv,d:ep?"You gain an Epic Boon feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+".":"You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+"."},lv)});
   var sg0=C.features.filter(function(g){return /^Species: /.test(g.g)})[0];
   if(sg0&&!custom&&sp){sg0.items.unshift({n:"Speed",s:(sp.hb||SRC)+", "+B.species,d:"Your Speed is "+(C.speed||sp.speed)+" feet."});sg0.items.unshift({n:"Creature Type",s:(sp.hb||SRC)+", "+B.species,d:"You are a "+(sp.type||"Humanoid")+"."})}
-  var bgG=C.features.filter(function(g){return /^Background: /.test(g.g)})[0];if(bgG&&bg&&B.bgMode!=="111"&&B.bg2){var it=bgG.items[0];if(it&&it.n==="Ability Scores")it.d="The background raises one of "+bg.ab.join(", ")+" by 2 and another by 1, or all three by 1. **Your choice.** "+ABN[B.bg2]+" +2"+(B.bg1?", "+ABN[B.bg1]+" +1":"")+"."}
+  var bgG=C.features.filter(function(g){return /^Background: /.test(g.g)})[0];if(bgG&&R14())bgG.items=bgG.items.filter(function(i){return i.n!=="Ability Scores"});if(bgG&&bg&&!R14()&&B.bgMode!=="111"&&B.bg2){var it=bgG.items[0];if(it&&it.n==="Ability Scores")it.d="The background raises one of "+bg.ab.join(", ")+" by 2 and another by 1, or all three by 1. **Your choice.** "+ABN[B.bg2]+" +2"+(B.bg1?", "+ABN[B.bg1]+" +1":"")+"."}
  })();
  /* v32 RL51: actions from feats, features, species, invocations, maneuvers and magic items (ACTS in db4.js), and the attack rows they give */
  C.acts=actsFor(C);if(!C.acts.length)delete C.acts;actAtk(C,a,feats);
@@ -12599,7 +12600,7 @@ function mcReqFail(cls){var a=abil().sc;return MC_REQ[cls].filter(function(g){re
 function mcChoices(){var out=[];MCL().forEach(function(m,i){var c=CLASSES[m.cls],p="m"+i+":",src=function(l){return SRC+", "+m.cls+" "+l+" (multiclass)"};
  var g=MC_GRANT[m.cls];if(g.sk)out.push({key:p+"sk",mc:i,lvl:1,t:"skills",n:1,from:g.skFrom==="any"?ALLSK:c.sk.from,title:m.cls+" multiclass skill",src:src(1)});
  if(g.toolPick)out.push({key:p+"tool",mc:i,lvl:1,t:"tool",n:g.toolPick.n,cats:g.toolPick.cats,title:m.cls+" multiclass tool",src:src(1),feature:"Multiclass Proficiencies"});/* v32 RL49 */
- if(c.wm)out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */
+ if(c.wm&&!R14())out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */
  if(c.fs&&m.lv>=c.fs){out.push({key:p+"fs",mc:i,lvl:c.fs,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:src(c.fs),feature:"Fighting Style"});
   var fv=B.ch[p+"fs"];if(fv==="Blessed Warrior"||fv==="Druidic Warrior"){var cl2=fv==="Blessed Warrior"?"Cleric":"Druid";out.push({key:p+"bwc",mc:i,lvl:c.fs,t:"multi",n:2,list:SPELLS.filter(function(x){return !x[1]&&x[3].indexOf(cl2)>=0}).map(function(x){return [x[0],x[11]]}),title:fv+" cantrips",src:src(c.fs),feature:"Fighting Style"})}}/* v32 RL49 no. 42 */
  (c.pick||[]).forEach(function(q){if(m.lv>=q.l){var o=pk(q,m.cls+" "+q.l,m.cls);if(!o)return;o.key=p+o.key;o.mc=i;if(o.list===INVOCATIONS)o.lvCap=m.lv;/* v32: level of this class */if(o.t==="skills"||o.t==="exp")o.src=src(q.l);out.push(o)}});/* v32 RL49 no. 40: Primal Knowledge too */
@@ -12699,7 +12700,7 @@ function mcFromSheet(C,main){var parts=String(C.clsLabel||"").split(" / ").map(f
  var subs={};(C.features||[]).forEach(function(g){var m=/^([A-Za-z]+) \(multiclass \d+\)(?:: (.+))?$/.exec(g.g||"");if(m)subs[m[1]]=m[2]||""});
  var out=[];parts.slice(1).forEach(function(p){if(!p||!CLASSES[p.cls]||p.cls===main||out.some(function(x){return x.cls===p.cls}))return;out.push({cls:p.cls,lv:Math.max(1,Math.min(20,p.lv)),sub:subs[p.cls]||""})});
  return out}
-function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
+function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
  var spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
  (function(){var best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
@@ -12709,7 +12710,7 @@ function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Chara
  /* v67: a species, background or subclass of a WotC source keeps its source on when the sheet is read back */
  if(window.WXSP)Object.keys(WXSP).forEach(function(id){if(WXSP[id][sp])nb.src[id]=true});if(window.WXBG)Object.keys(WXBG).forEach(function(id){if(WXBG[id][C.bg])nb.src[id]=true});if(window.WXS)WXS.forEach(function(x){if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(window.WXO){var fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach(function(id){var g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach(function(r){if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(window.WXG)Object.keys(WXG).forEach(function(id){WXG[id].forEach(function(r){if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some(function(q){return q[0]===r[0]}))nb.src[id]=true})});
  B=nb;applyPacks();
- if(SPECIES[sp]){B.species=sp;if(SPECIES[sp].opts){var so=[];(C.features||[]).forEach(function(g){(g.items||[]).forEach(function(f){SPECIES[sp].opts.list.forEach(function(o){if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}var lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){var o=SPECIES[sp].lin.opts.filter(function(x){return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}}
+ if(SPECIES[sp]){B.species=sp;if(SPECIES[sp].opts){var so=[];(C.features||[]).forEach(function(g){(g.items||[]).forEach(function(f){SPECIES[sp].opts.list.forEach(function(o){if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}var lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){var o=SPECIES[sp].lin.opts.filter(function(x){return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}/* v82: 2014 race ability picks come back from the race bonus on the sheet */if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){var rp=[];Object.keys(C.abilities).forEach(function(k){var a=C.abilities[k];if(a&&(a.bonus||[]).some(function(x){return x.s===sp+" (race)"})&&!(SPECIES[sp].asi&&SPECIES[sp].asi[k])&&rp.indexOf(k)<0)rp.push(k)});if(rp.length)B.ch.rasi=rp.slice(0,SPECIES[sp].asiPick.n)}}
  else{B.species="Custom";B.cSpecies={name:sp||"Custom",speed:+C.speed||30,dark:+C.darkvision||0,size:C.size||"Medium"};miss.push("species")}
  if(C.size)B.size=C.size;
  var cls=(C.cls||"").split(" ")[0];if(CLASSES[cls])B.cls=cls;else miss.push("class");
@@ -12723,7 +12724,7 @@ function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Chara
  if(BACKGROUNDS[C.bg])B.bg=C.bg;else miss.push("background");
  ABK.forEach(function(k){var a=(C.abilities||{})[k];if(a)B.base[k]=+a.base||10});
  var bgb=[];ABK.forEach(function(k){((C.abilities[k]||{}).bonus||[]).forEach(function(b){if(B.bg&&b.s.indexOf(B.bg)===0)bgb.push([k,+b.v])})});
- if(bgb.length===3)B.bgMode="111";else{B.bgMode="21";bgb.forEach(function(x){if(x[1]===2)B.bg2=x[0];if(x[1]===1)B.bg1=x[0]})}
+ if(C.rs==="2014")B.bgMode="111";else if(bgb.length===3)B.bgMode="111";else{B.bgMode="21";bgb.forEach(function(x){if(x[1]===2)B.bg2=x[0];if(x[1]===1)B.bg1=x[0]})}
  var feats=[];(C.features||[]).forEach(function(g){(g.items||[]).forEach(function(f){feats.push({g:g.g,n:f.n,s:f.s||"",d:f.d||""})})});
  feats.forEach(function(f){var fs=/^Fighting Style:\s*(.+)$/.exec(f.n);if(fs&&FEATS[fs[1].trim()])B.ch["fs"+(CL().fs||1)]=fs[1].trim();var yc=/You chose \*\*([^*]+)\*\*/.exec(f.d);if(f.n==="Fighting Style"&&yc&&FEATS[yc[1]])B.ch["fs"+(CL().fs||1)]=yc[1];
   if(f.n==="Weapon Mastery"){var w=[];Object.keys(WEAPONS).forEach(function(n){if(new RegExp("\\b"+n.replace(/[-]/g,"\\-")+"\\b").test(f.d))w.push(n)});if(w.length)B.ch.wm=w.slice(0,(CL().wm||[])[B.level-1]||w.length)}});
@@ -13051,14 +13052,14 @@ function spellCounts(){var out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,
 function stepOfKey(k){if(/^[a-z0-9]+-Origin feat \(/.test(k)||k==="Origin feat ("+B.bg+")")return /Versatile/.test(k)?"species":"bg";if(k==="spfeat"||/Versatile/.test(k))return "species";if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";return "class"}
 /* v32 RL49: the builder step that holds a choice (its card and its badge) */
 function choiceStep(c){var k=c.key;if(c.fk){if(c.fk==="Origin feat ("+B.bg+")")return "bg";if(/Versatile\)$/.test(c.fk))return "species"}if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";
- if(k==="lang"||k==="lin"||k==="spab"||k==="spsk"||k==="sptool"||k==="spfeat"||k==="hecan"||/^sp(opt|sk2|can|wep|wp)$/.test(k))return "species";return "class"}
+ if(k==="lang"||k==="lin"||k==="rasi"||k==="spab"||k==="spsk"||k==="sptool"||k==="spfeat"||k==="hecan"||/^sp(opt|sk2|can|wep|wp)$/.test(k))return "species";return "class"}
 /* v19 idea: one result per state of B (render asked about ten times) */
 var RIC={k:null,v:null};
 function ruleIssues(){var k="";try{k=JSON.stringify(B)}catch(e){}if(k&&RIC.k===k)return RIC.v.slice();var v=ruleIssues0();RIC={k:k,v:v};return v.slice()}
 /* v19 V19-6: subclasses from homebrew packs that are on, after the core list of the Subclass feature */
 function hbSubs(cls){var base=[];if(typeof BASE==="undefined"||!BASE)return "";try{base=Object.keys(JSON.parse(BASE.subs)[cls]||{})}catch(e){}var x=Object.keys((CLASSES[cls]||{}).subs||{}).filter(function(n){return base.indexOf(n)<0});return x.length?" Homebrew subclasses from your sources: "+x.join(", ")+".":""}
 function ruleIssues0(){var out=spellCounts();
- var bgo=bgX();if(bgo&&B.bgMode!=="111")[["bg2","+2"],["bg1","+1"]].forEach(function(q){var k=B[q[0]];if(k&&bgo.ab.indexOf(k)<0)out.push({step:"bg",m:B.bg+" can raise "+bgo.ab.join(", ")+", not "+k+". The "+q[1]+" is not counted"})});/* v22 P1 */
+ var bgo=bgX();if(bgo&&!R14()&&B.bgMode!=="111")[["bg2","+2"],["bg1","+1"]].forEach(function(q){var k=B[q[0]];if(k&&bgo.ab.indexOf(k)<0)out.push({step:"bg",m:B.bg+" can raise "+bgo.ab.join(", ")+", not "+k+". The "+q[1]+" is not counted"})});/* v22 P1 */
  hbSpellPicks().forEach(function(o){var v=B.ch[o.key];if(Array.isArray(v)&&v[0]&&!o.list.some(function(x){return x[0]===v[0]}))out.push({step:"class",m:o.feature+": "+v[0]+" no longer fits this choice, so the sheet leaves it out. Choose again"})});/* v20 N1 */
  choices().forEach(function(c){var v=B.ch[c.key];if(c.n&&Array.isArray(v)&&v.length>c.n)out.push({step:stepOfKey(c.key),m:c.title+(c.lvl>1?" (level "+c.lvl+")":"")+": "+v.length+" chosen, only "+c.n+" allowed"})});
  var s0=scoreAt(1,"");ABK.forEach(function(k){if(s0[k]>20)out.push({step:"abil",m:ABN[k]+" is "+s0[k]+" after the background increase, but 20 is the maximum. The extra points are not counted"})});/* v19 idea */
@@ -13083,11 +13084,11 @@ function srcLists(id){var L=[];
  return L}
 function srcContents(id){var L=srcLists(id);if(!L.length)return "";
  return '<details class="srcc"><summary>Contents <span>'+L.map(function(x){return (x[2]!=null?x[2]:x[1].length)+" "+x[0].toLowerCase()}).join(", ")+'</span></summary>'+L.map(function(x){return '<p><b>'+esc(x[0])+' ('+(x[2]!=null?x[2]:x[1].length)+')</b>'+(x[1]?'<br>'+x[1].map(esc).join(", "):'')+'</p>'}).join("")+'</details>'}
-function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 class="ttl">Character Preferences</h2><h3 class="sph">Sources</h3><p class="fd bhint">Only enabled sources show up, here and on the sheet.</p>';
+function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 class="ttl">Character Preferences</h2>'+(RS14_ON?'<h3 class="sph">Rules edition</h3><p class="fd bhint">Choose the rules this character follows. The builder and the sheet change their words, numbers and lists to match.</p><div class="radios h">'+[["2024","2024 rules","Species, Origin feat, Weapon Mastery"],["2014","2014 rules","Race, ability scores from race, no Weapon Mastery"]].map(function(r){return '<button type="button" class="rad'+((R14()?"2014":"2024")===r[0]?" on":"")+'" data-rs="'+r[0]+'"><b>'+r[1]+'</b><span>'+r[2]+'</span></button>'}).join("")+'</div>':"")+'<h3 class="sph">Sources</h3><p class="fd bhint">Only enabled sources show up, here and on the sheet.</p>';
  function row(id,name,desc,on,lock,del){return '<div class="srcw">'+row0(id,name,desc,on,lock,del)+srcContents(id)+'</div>'}
  function row0(id,name,desc,on,lock,del){return '<label class="srcrow"><input type="checkbox" data-srcck="'+esc(id)+'"'+(on?" checked":"")+(lock?" disabled":"")+'><span><b>'+esc(name)+'</b><small>'+esc(desc)+'</small></span>'+(del?'<button type="button" class="rmv" data-packdel="'+esc(id)+'">\u2715 Remove</button>':'')+'</label>'}
- h+=row("core","5.5e Core Rules: Player's Handbook (2024)","Classes, subclasses, species, backgrounds, feats, spells, and equipment. Required to build a character.",true,true);
- h+=row("dmg","5.5e Core Rules: Dungeon Master's Guide (2024)","Magic items such as Belt of Giant Strength, Ring of Protection, and Flame Tongue.",B.src.dmg!==false,false);
+ h+=R14()?row("core","5e Core Rules: Player's Handbook (2014)","Classes, subclasses, races, backgrounds, feats, spells, and equipment. Required to build a character.",true,true):row("core","5.5e Core Rules: Player's Handbook (2024)","Classes, subclasses, species, backgrounds, feats, spells, and equipment. Required to build a character.",true,true);
+ h+=R14()?row("dmg","5e Core Rules: Dungeon Master's Guide (2014)","Magic items such as Belt of Giant Strength, Ring of Protection, and Flame Tongue.",B.src.dmg!==false,false):row("dmg","5.5e Core Rules: Dungeon Master's Guide (2024)","Magic items such as Belt of Giant Strength, Ring of Protection, and Flame Tongue.",B.src.dmg!==false,false);
  h+=row("mom","Mordenkainen Presents: Monsters of the Multiverse (2022)","31 more species, such as Aarakocra, Centaur, Eladrin, Tortle, and Yuan-ti.",!!B.src.mom,false);/* v38 p13 */
  if(window.EFA_CLS&&window.EFA_READY)h+=row("efa","Eberron: Forge of the Artificer (2025)","The Artificer class with five subclasses, five Eberron species, and the Dragonmark feats.",!!B.src.efa,false);/* v56 */
  (window.WX?WX.src:[]).filter(function(q){return !q.legacy}).forEach(function(q){h+=row(q.id,q.name,q.desc,!!B.src[q.id],false)});/* v62 */
@@ -13168,18 +13169,16 @@ function bStrip(a){return '<div class="bstrip">'+a.map(function(x){return '<div>
 function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">Choose Origin: Background</h2>';
  if(un("bg"))return h+'<select class="dd" data-b="bg"><option value="" selected>- Choose a Background -</option>'+Object.keys(BACKGROUNDS).map(function(n){return '<option>'+n+'</option>'}).join("")+'</select>';
  h+='<select class="dd" data-b="bg">'+Object.keys(BACKGROUNDS).map(function(n){return '<option'+(n===B.bg?" selected":"")+'>'+n+'</option>'}).join("")+'</select>';
- h+=bStrip([["Skills",bg.sk.concat(bg.skPick?[(bg.skPick.n>1?bg.skPick.n+" of your choice":"1 of your choice")]:[]).join(", ")||"None"],["Tool",bg.tool],["Feat",bgFeatN(bg)],["Ability scores",bg.ab.map(function(k){return ABN[k]}).join(", ")]]);
+ h+=bStrip([["Skills",bg.sk.concat(bg.skPick?[(bg.skPick.n>1?bg.skPick.n+" of your choice":"1 of your choice")]:[]).join(", ")||"None"],["Tool",bg.tool],].concat(R14()?[]:[["Feat",bgFeatN(bg)],["Ability scores",bg.ab.map(function(k){return ABN[k]}).join(", ")]]));
  var F=FEATS[bgFeatN(bg)],CB=choices(),bfc=null,fsb=CB.filter(function(c){return c.fk==="Origin feat ("+B.bg+")"}),bt=CB.filter(function(c){return c.key==="bgTool"})[0];var bsk=CB.filter(function(c){return c.key==="bgsk"})[0];bfc=CB.filter(function(c){return c.key==="bgfeatc"})[0];
  if(bsk)h+=card("bgsk","Skill Proficiency",metaOf(bsk.n,0)||bsk.n+" Choice"+(bsk.n>1?"s":""),'<p class="fd bhint">Choose '+bsk.n+' skill'+(bsk.n>1?"s":"")+'. A skill you already have from another source is not available.</p>'+choiceBody(bsk),{todo:!isDone(bsk)});/* v70 */
- if(bt)h+=card("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd bhint">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */
- h+=card("bgfeat",bgFeatN(bg),"Granted Feat",(bfc?'<p class="fd bhint">This background lets you choose its feat.</p>'+choiceBody(bfc):"")+'<p class="fd">'+rtp(F?(F.full||F.d):"")+'</p>'+fsb.map(function(x){return (fsb.length>1?'<h4>'+esc(x.title)+'</h4>':"")+choiceBody(x)}).join(""),{todo:fsb.some(function(x){return !isDone(x)})});
- var doneAb=B.bgMode==="111"||(B.bg2&&B.bg1);
+ if(bt)h+=card("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd bhint">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */ if(!R14())h+=card("bgfeat",bgFeatN(bg),"Granted Feat",(bfc?'<p class="fd bhint">This background lets you choose its feat.</p>'+choiceBody(bfc):"")+'<p class="fd">'+rtp(F?(F.full||F.d):"")+'</p>'+fsb.map(function(x){return (fsb.length>1?'<h4>'+esc(x.title)+'</h4>':"")+choiceBody(x)}).join(""),{todo:fsb.some(function(x){return !isDone(x)})});
+ var doneAb=R14()||B.bgMode==="111"||(B.bg2&&B.bg1);
  var ab='<p class="fd">Increase '+bg.ab.join(", ")+'. Pick +2 to one and +1 to another, or +1 to all three. No score can go above 20.</p><div class="radios h"><button type="button" class="rad'+(B.bgMode==="21"?" on":"")+'" data-bgmode="21"><b>+2 / +1</b></button><button type="button" class="rad'+(B.bgMode==="111"?" on":"")+'" data-bgmode="111"><b>+1 / +1 / +1</b></button></div>';
  if(B.bgMode==="111")ab+='<div class="picked"><p>Applied automatically: '+bg.ab.map(function(k){return '<b>'+ABN[k]+' +1</b>'}).join(', ')+'. No choice needed, because this background always uses these three scores.</p></div>';
  if(B.bgMode==="21")ab+='<div class="two"><label>+2 to<select class="dd" data-b="bg2"><option value="">- Choose -</option>'+bg.ab.map(function(k){return '<option value="'+k+'"'+(B.bg2===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label><label>+1 to<select class="dd" data-b="bg1"><option value="">- Choose -</option>'+bg.ab.filter(function(k){return k!==B.bg2}).map(function(k){return '<option value="'+k+'"'+(B.bg1===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label></div>';
- h+=card("bgab","Ability Scores",B.bgMode==="111"?"3 Choices":"2 Choices",ab,{todo:!doneAb});
- (bg.bf||[]).forEach(function(f,i){h+=card("bgf"+i,f[0],"Feature",'<p class="fd">'+esc(f[1])+'</p>')});
- if(bg.leg)h+='<p class="fd bhint">This is a 2014 background. It has no ability increase of its own, so the three scores above follow its skills.'+(bg.featOpts&&!bg.featOpts.length?"":"")+'</p>';
+ if(!R14())h+=card("bgab","Ability Scores",B.bgMode==="111"?"3 Choices":"2 Choices",ab,{todo:!doneAb});
+ (bg.bf||[]).forEach(function(f,i){h+=card("bgf"+i,f[0],"Feature",'<p class="fd">'+esc(f[1])+'</p>')}); if(bg.leg&&!R14())h+='<p class="fd bhint">This is a 2014 background. It has no ability increase of its own, so the three scores above follow its skills.'+(bg.featOpts&&!bg.featOpts.length?"":"")+'</p>';
  h+=card("bgeq","Equipment","Starting gear",'<p class="fd"><b>Option A:</b> '+esc(bg.eq)+'.<br><b>Option B:</b> 50 GP.</p><p class="fd bhint">Choose on the Equipment step.</p>');
  return h}
 
@@ -13193,8 +13192,8 @@ function renderSpecies(){var h="";
  h+=bStrip([["Size",/or/.test(s.size)?(B.size||"Medium"):s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":"None"],["Languages","Common + 2"]]);
  var szNote='<p class="fd bhint">Both take up a 5-ft square. Heavy weapons need Strength 13 (melee) or Dexterity 13 (ranged).</p>';
  if(/or/.test(s.size))h+=card("size","Size",(B.size||"Medium")+" \u2022 "+htText(B.species,B.size||"Medium"),'<div class="radios h">'+["Medium","Small"].map(function(z){return '<button type="button" class="rad'+((B.size||"Medium")===z?" on":"")+'" data-size="'+z+'"><b>'+z+'</b><span>'+htText(B.species,z)+'</span></button>'}).join("")+'</div>'+szNote);
- else h+=card("size","Size",s.size+" \u2022 "+htText(B.species,s.size),'<p class="fd">'+s.size+', '+htText(B.species,s.size)+'.</p>'+szNote);
- h+=card("speed","Speed","",'<p class="fd">'+s.speed+' feet.'+(s.dark?' Darkvision '+s.dark+' feet.':'')+'</p>');
+ else h+=card("size","Size",s.size+" \u2022 "+htText(B.species,s.size),'<p class="fd">'+s.size+', '+htText(B.species,s.size)+'.</p>'+szNote); h+=card("speed","Speed","",'<p class="fd">'+s.speed+' feet.'+(s.dark?' Darkvision '+s.dark+' feet.':'')+'</p>');
+ if(R14()){var ra0=cs.filter(function(c){return c.key==="rasi"})[0],fx0=Object.keys(s.asi||{}).map(function(k){return ABN[k]+" +"+s.asi[k]}).join(", ");h+=card("rasi","Ability Score Increase",ra0?"Choose "+ra0.n:(fx0?"Fixed":"None"),(fx0?'<p class="fd">'+esc(fx0)+".</p>":"")+(ra0?'<p class="fd bhint">Choose '+ra0.n+" different scores to raise by "+(s.asiPick.v||1)+".</p>"+choiceBody(ra0):""),{todo:!!ra0&&!isDone(ra0)})}/* v82 */
  var lin=cs.filter(function(c){return c.key==="lin"})[0],sab=cs.filter(function(c){return c.key==="spab"})[0];/* RL35 2b */
  var hcn=cs.filter(function(c){return c.key==="hecan"})[0];/* v32 RL49 no. 43 */
  if(lin)h+=card("lin",s.lin.label,sab?"2 Choices":"1 Choice",choiceBody(lin)+(hcn?'<h4>Lineage cantrip</h4><p class="fd">'+esc(hcn.def[0])+' unless you pick another Wizard cantrip. You can swap it after a Long Rest.</p>'+choiceBody(hcn):"")+(sab?'<h4>Spellcasting ability</h4><p class="fd bhint">The spells from your '+esc(s.lin.label)+' use this ability.</p>'+choiceBody(sab):""),{todo:!isDone(lin)||(sab&&!isDone(sab))});
@@ -13435,7 +13434,7 @@ function stepIss(s){try{return ruleIssues().some(function(x){return x.step===s})
 /* v33 p02: [done, total] for a step. Same rules as stepTodo: the class, background and species themselves, the background ability increase, ability scores, both starting equipment choices, and every choice that belongs to the step */
 function stepProg(s,cs){var d=0,n=0,add=function(ok){n++;if(ok)d++},inStep=function(st){(cs||choices()).forEach(function(c){if(choiceStep(c)===st)add(isDone(c))})};
  if(s==="class"){add(!un("cls"));if(!un("cls"))inStep("class")}
- else if(s==="bg"){add(!un("bg"));if(!un("bg")){add(B.bgMode==="111"||!!(B.bg2&&B.bg1));inStep("bg")}}
+ else if(s==="bg"){add(!un("bg"));if(!un("bg")){add(R14()||B.bgMode==="111"||!!(B.bg2&&B.bg1));inStep("bg")}}
  else if(s==="species"){add(!un("species"));if(!un("species"))inStep("species")}
  else if(s==="abil")add(!un("abil"));
  else if(s==="equip"){add(!un("eqC"));add(!un("eqB"))}
@@ -13443,10 +13442,10 @@ function stepProg(s,cs){var d=0,n=0,add=function(ok){n++;if(ok)d++},inStep=funct
 function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("eqC")||un("eqB");if(un({class:"cls",bg:"bg",species:"species"}[s]))return true;var cs=choices();
  /* v32 RL49: every open choice marks the step that holds it (Skilled at an ASI level marks Class) */
  if(s==="class")return cs.some(function(c){return !isDone(c)&&choiceStep(c)==="class"});
- if(s==="bg")return !(B.bgMode==="111"||(B.bg2&&B.bg1))||cs.some(function(c){return choiceStep(c)==="bg"&&!isDone(c)});
+ if(s==="bg")return !(R14()||B.bgMode==="111"||(B.bg2&&B.bg1))||cs.some(function(c){return choiceStep(c)==="bg"&&!isDone(c)});
  if(s==="species")return cs.some(function(c){return choiceStep(c)==="species"&&!isDone(c)});
  return false}
-function render(){
+function render(){try{var hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
  var csP=null;try{csP=choices()}catch(e){}
  $("#steps").innerHTML=STEPS.map(function(s){var pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
@@ -13503,7 +13502,8 @@ document.addEventListener("click",function(e){if(!e.target.closest("#bld"))retur
  if(d.setsp){unDone("species");B.species=d.setsp;delete B.ch.lin;delete B.ch.spsk;delete B.ch.sptool;delete B.ch.spfeat;B.size="";pickSp=false;commit();return}
  if(d.chgsp){pickSp=true;render();return}
  if(d.lvup){if(un("cls")){toast("Choose a class first");return}if(TL()>=20){toast("Character level is already 20");return}B.level=B.level+1;var nw=choices().filter(function(c){return c.lvl===B.level&&!isDone(c)});commit();toast("Level "+B.level+(nw.length?". "+nw.length+" new choice"+(nw.length>1?"s":""):""));return}
- if(d.bgmode){B.bgMode=d.bgmode;commit();return}
+ if(d.rs){var nr=d.rs==="2014"?"2014":"2024";if((R14()?"2014":"2024")===nr)return;var sw=function(){if(nr==="2014"){B.rs="2014";B.bgMode="111"}else{delete B.rs;B.bgMode="21";B.bg2="";B.bg1=""}applyPacks();commit()};if(un("cls")&&un("species")&&un("bg"))sw();else ask("Switch this character to the "+nr+" rules? Choices that exist only in the other rules can drop out.","Switch",sw);return}/* v82 */
+  if(d.bgmode){B.bgMode=d.bgmode;commit();return}
  if(d.size){B.size=d.size;commit();return}
  if(d.pb){var k=d.pb,nv=B.base[k]+(+d.d);if(nv<8||nv>15)return;var used=ABK.reduce(function(t,j){return t+(PBC[j===k?nv:B.base[j]]||0)},0);if(used>27){toast("Not enough points");return}B.base[k]=nv;commit();return}
  if(d.eq){B[d.eq]=d.v;unDone(d.eq);ensureInv();rebuildKit(1);B.gpOverride=null;commit();return}
@@ -13635,7 +13635,7 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
  if(bs){Object.keys(bs).forEach(function(k){var a=abl(k);if(a)nb[a]=bs[k]});ABK.forEach(function(a){var v=nb[a];if(v==null||v===""||isNaN(num(v))){notes.push(ABN[a]+" score is missing, so it is 10");nb[a]=10;return}
   v=Math.round(num(v));if(v>20){notes.push(ABN[a]+" "+nb[a]+" becomes 20, the highest score");v=20}else if(v<3){notes.push(ABN[a]+" "+nb[a]+" becomes 3, the lowest score");v=3}nb[a]=v});b.base=nb;if(!b.method)b.method="manual"}
  /* background bonus: only the background's three abilities */
- var bm=String(b.bgMode==null?"21":b.bgMode).replace(/[^0-9]/g,"");b.bgMode=bm==="111"?"111":"21";
+ var bm=String(b.bgMode==null?"21":b.bgMode).replace(/[^0-9]/g,"");b.bgMode=(bm==="111"||b.rs==="2014")?"111":"21";
  var bgo=b.bg&&BACKGROUNDS[b.bg];
  if(b.bgMode==="21"){var a2=abl(b.bg2),a1=abl(b.bg1);b.bg2=a2||"";b.bg1=a1||"";
   if(bgo){var ab=bgo.ab,sc=b.base||BLANK.base,best=function(no){return ab.filter(function(x){return x!==no}).sort(function(x,y){return (sc[y]||0)-(sc[x]||0)})[0]};
@@ -13799,7 +13799,7 @@ window.__bldSpInfo=function(){if(!bldMine())return null;var CP=casterParts();if(
 /* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */
 window.__bldSpSet=function(n,cls,on,soft){if(!bldMine())return false;var L=spLists();if(((L[cls]||[]).indexOf(n)>=0)!==!!on)spToggle(n,cls);save();if(soft&&window.__sheetSoft)window.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 /* v25 RU38 no. 6: Hit Points fixed (average) or rolled, from Settings. m null: read */
-window.__bldMine=bldMine;/* v27 RU28 */
+window.__bldRs=function(){return R14()};window.__bldSpTest=function(n,o){snap();var s=JSON.parse(BASE.sp);if(o)s[n]=o;else delete s[n];BASE.sp=JSON.stringify(s);applyPacks()};/* v82 test hook */window.__bldMine=bldMine;/* v27 RU28 */
 /* v32 RL49: every choice of the build with its state. Spell picks of the Spells tab come from spellCounts (key "spell:...") */
 function choiceList(){var cs=choices().map(function(c){return {key:c.key,t:c.t,n:c.n||1,title:c.title,src:c.src,feature:c.feature||"",lvl:c.lvl,mc:c.mc,fk:c.fk||"",cats:c.cats||null,from:c.from&&c.from.length?(typeof c.from[0]==="string"?c.from:c.from.map(function(x){return x[0]})):null,list:c.list&&typeof c.list!=="string"?c.list.map(function(x){return Array.isArray(x)?x[0]:x}):c.list?(OPTS[c.list]||[]).map(function(x){return x[0]}):null,done:isDone(c),step:choiceStep(c)}});
  spellCounts().forEach(function(x){if(x.open)cs.push({key:"spell:"+(x.key||x.m),t:"spell",n:x.n||1,title:x.m,feature:x.f||"",done:false,step:"class"})});
@@ -13841,6 +13841,18 @@ if(localStorage.getItem("cs-new")){localStorage.removeItem("cs-new");B=NEWB();st
 applyPacks();render();
 })();
 
+</script>
+<script type="text/x-defer" data-defer="rs14">
+/* v82: wording of the 2014 rules. Species becomes Race, Heroic Inspiration becomes Inspiration. The builder follows the edition of the build, the sheet follows the edition of the character. */
+(function(){var MAP=[[/\bSpecies\b/g,"Race"],[/\bspecies\b/g,"race"],[/\bSPECIES\b/g,"RACE"],[/Heroic Inspiration/g,"Inspiration"],[/heroic inspiration/g,"inspiration"]];
+ function fix(t){var o=t;MAP.forEach(function(m){o=o.replace(m[0],m[1])});return o}
+ function act(){var b=document.getElementById("bld");if(b&&!b.hidden)return !!(window.__bldRs&&window.__bldRs());return document.documentElement.getAttribute("data-rs")==="2014"}
+ function walk(n){if(n.nodeType===3){var o=fix(n.nodeValue);if(o!==n.nodeValue)n.nodeValue=o;return}if(n.nodeType!==1)return;var g=n.tagName;if(g==="SCRIPT"||g==="STYLE"||g==="TEXTAREA"||g==="INPUT"||g==="SELECT"&&false)return;
+  ["title","aria-label","placeholder"].forEach(function(a){var v=n.getAttribute&&n.getAttribute(a);if(v){var o=fix(v);if(o!==v)n.setAttribute(a,o)}});for(var c=n.firstChild;c;c=c.nextSibling)walk(c)}
+ window.__rsTerm=function(){if(act())walk(document.body)};
+ var busy=false;new MutationObserver(function(ms){if(busy||!act())return;busy=true;try{ms.forEach(function(m){if(m.type==="characterData")walk(m.target);else m.addedNodes.forEach(walk)})}finally{busy=false}}).observe(document.body,{childList:true,subtree:true,characterData:true});
+ document.addEventListener("click",function(){setTimeout(window.__rsTerm,0)},true);
+})();
 </script>
 </body>
 </html>
