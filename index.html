@@ -6733,6 +6733,7 @@ function spmRec(n){ if(typeof SPELLS==="undefined") return null; for(var i=0;i<S
 function spmMode(){ var I=null, d=[]; try{ I=window.__bldSpInfo?window.__bldSpInfo():null; }catch(er){ I=null; }
   if(I){ try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ d=[]; } } return {b:!!I&&!d.length, I:I}; }
 /* limits worked out from the sheet when there is no build: class levels (clsLabel), cantrips and prepared spells from the class tables */
+function isThird3(x){ return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"; }/* v101: the sheet script has no access to the builder helper of the same name, so a sheet without a build could not open Manage Spells */
 function spmLocal(){ var lv=clsLvls(), out=[]; if(typeof CLASSES==="undefined") return out;
   Object.keys(lv).forEach(function(cls){ var c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3; if(!c||!L||(!c.caster&&!third)) return;
     var ct=0, pr=0, mx=0;    if(third){ ct=(/^Arcane Trickster/.test(C.sub)?3:2)+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
