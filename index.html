@@ -7344,16 +7344,6 @@ document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.
 /* RU36 no. 8, RU38 no. 5: Description tab. Characteristics are optional fields in S.notes ("ch_" keys), old data reads as before */
 var CHAR_FIELDS=[["ch_gender","Gender"],["ch_age","Age"],["ch_height","Height"],["ch_weight","Weight"],["ch_eyes","Eyes"],["ch_hair","Hair"],["ch_skin","Skin"],["ch_faith","Faith"]];
 function noteTA(f){ return '<div class="note"><label for="n-'+f.k+'">'+f.l+'</label><textarea id="n-'+f.k+'" data-note="'+f.k+'" rows="'+f.rows+'" placeholder="'+f.h+'">'+esc(S.notes[f.k]||"")+'</textarea></div>'; }
-function renderDesc0(){ var el=$("#descBody"); if(!el) return;/* v31: the form before B10, kept for reference */
-  var bgG=(C.features||[]).filter(function(g){return /^Background/.test(g.g)})[0];
-  var h='<div class="note camp-f"><label for="n-camp">Campaign<small>Optional. Shown under your name, and My Characters can group by it.</small></label><input id="n-camp" class="field" autocomplete="off" placeholder="Campaign name" value="'+esc(campName())+'"></div>';/* v30 RU133 */
-  h+='<h3 class="noteh">Background'+(C.bg?': '+esc(C.bg):'')+'</h3>'+(bgG?bgG.items.map(function(it){return '<p class="bgl"><b>'+esc(it.n)+'.</b> '+linkify(String(it.d).replace(/\*\*Your choice\.\*\*\s*/,""))+'</p>'}).join(''):'<p class="muted">No background chosen yet.</p>');
-  h+='<div class="note"><label>Languages<small>Common plus two of your choice. Rare or setting languages need DM approval.</small></label><div class="langs">'+[0,1,2].map(function(i){return '<input class="field" data-lang="'+i+'" value="'+esc(S.lang[i]||"")+'" placeholder="'+(i===0?'Common':'Language '+(i+1))+'" aria-label="Language '+(i+1)+'">'}).join("")+'</div></div>';
-  h+='<h3 class="noteh">Characteristics</h3><div class="note"><label for="n-align">Alignment<small>Optional in the 2024 rules</small></label><input id="n-align" class="field" value="'+esc(S.align||"")+'"></div>';
-  h+='<div class="chgrid">'+CHAR_FIELDS.map(function(f){ return '<div class="note"><label for="n-'+f[0]+'">'+f[1]+'</label><input id="n-'+f[0]+'" class="field" data-note="'+f[0]+'" value="'+esc(S.notes[f[0]]||"")+'"></div>'; }).join("")+'<div class="note"><label>Size</label><p class="chsz">'+esc(C.size||"Medium")+'</p></div></div>';
-  h+=NOTE_FIELDS.filter(function(f){ return /^(personality|ideal|bond|flaw|appearance)$/.test(f.k); }).map(noteTA).join("");
-  h+='<div class="saved">Saved on this device as you type.</div>';
-  el.innerHTML=h; }
 /* RU36 no. 9: Notes sections like D&D Beyond (new keys in S.notes) */
 var NOTE_MORE=[{k:"org",l:"Organizations",h:"Groups, guilds, and factions",rows:3},{k:"allies",l:"Allies",h:"People who help you",rows:3},{k:"enemies",l:"Enemies",h:"People who stand against you",rows:3}];
 
@@ -7989,13 +7979,6 @@ function cmbN(){ var n=Math.floor(+S.cmbn||0), m=Array.isArray(S.combos)?S.combo
 function cmbCI(){ var c=+S.ccur; return c>=0&&c<cmbN()?c:0; }
 function cmbPick(ci,sl){ var c=Array.isArray(S.combos)?S.combos[ci]:null; return (c&&c[sl])||""; }
 function cmbDone(sl){ return !!(S.cdn&&S.cdn[sl]); }
-function cmbCard(it,sl){ if(it.o) return actOne(it.o,"");
-  if(it.k.indexOf("atk:")===0){ var a=(C.attacks||[])[it.i], d=D.atk[it.i]; if(!a||!d) return "";
-    return '<div class="aitem"><h4><button type="button" class="tx" data-info="w:'+it.i+'">'+esc(a.n)+'</button></h4><div class="cmb-st"><span><small>Hit</small><b>'+sg(d.hit)+'</b></span><span><small>Damage</small><b>'+esc(d.dmg)+'</b></span><span><small>Type</small><b>'+esc(a.type||"--")+'</b></span><span><small>Range</small><b>'+esc(a.range||"--")+'</b></span></div>'+(a.m?'<p class="muted">Mastery: '+esc(a.m)+'</p>':'')+'</div>'; }
-  if(it.k.indexOf("sp:")===0){ var x=(C.spells||[])[it.i]; if(!x) return "";
-    return '<div class="aitem"><h4><button type="button" class="tx" data-info="sp:'+it.i+'">'+esc(x.n)+'</button> <span class="muted">('+(x.l?"Level "+x.l:"Cantrip")+')</span></h4><div class="cmb-st"><span><small>Range</small><b>'+esc(x.r||"--")+'</b></span><span><small>Duration</small><b>'+esc(x.dur||"--")+'</b></span>'+(x.sv?'<span><small>Save</small><b>'+esc(x.sv)+'</b></span>':'')+(x.conc?'<span><small>Focus</small><b>Concentration</b></span>':'')+'</div>'+(x.sum?'<p>'+rich(x.sum)+'</p>':'')+'<button type="button" class="btn pri press cmb-cast" data-cmbcast="'+it.i+'">Cast</button></div>'; }
-  var nm=it.n, g=GLOSS[nm], t=g?g.d:(nm==="Opportunity Attack"?"When a creature you can see leaves your reach, use your Reaction to make one melee attack against it with a weapon or an Unarmed Strike.":"");
-  return '<div class="aitem"><h4>'+esc(nm)+' <span class="muted">(Standard)</span></h4>'+(t?'<p>'+rich(fill(t))+'</p>':'')+'</div>'; }
 var cmbFoc="", CMB_SH={m:"Move",a:"Action",x:"Extra",h:"On Hit",b:"Bonus",r:"React",f:"Free"};
 function cmbSteps(ci){ return CMB_SL.map(function(s){ var key=cmbPick(ci,s[0]), it=key?cmbPool(s[0]).filter(function(o){ return o.k===key; })[0]:null; return {sl:s[0],lab:s[1],key:key,it:it,dn:cmbDone(s[0])}; }); }
 function cmbFocus(st){ var f=st.filter(function(x){ return x.sl===cmbFoc&&x.it; })[0]; return f||st.filter(function(x){ return x.it&&!x.dn; })[0]||st.filter(function(x){ return x.it; })[0]||null; }
