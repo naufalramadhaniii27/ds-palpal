@@ -4,10 +4,12 @@
   python3 build.py                 build: write index.html and the CACHE name in sw.js
   python3 build.py --check         build in memory and compare with index.html and sw.js, exit 1 if different
   python3 build.py --verify-split  self test of the splitter: split index.html into a temp folder, rebuild from it, compare
-  python3 build.py --split FILE DIR   one-time split of a built index.html into a source folder (used to create src/)
+  python3 build.py --split FILE DIR   one-time split of a built index.html into a source folder (old automatic names, kept for reference)
+  python3 build.py --lint          node --check on every JS piece and on every assembled <script> block
 
 src/manifest.json lists the pieces in order. A piece is raw text. Joining all pieces gives index.html byte for byte.
-Edit the pieces in src/, then run this script. Do not edit index.html by hand.
+Edit the pieces in src/, then run this script. Do not edit index.html by hand. SOURCE-NOTES.md has the file map.
+--check also runs --lint when node is installed.
 """
 import hashlib, json, os, re, sys, tempfile
 
@@ -145,6 +147,42 @@ def sw_with(text, html):
     return new, h
 
 
+def lint(srcdir):
+    """node --check each JS piece (pieces named *.wrap.js only open or close an IIFE, so they are checked inside their block)
+    and each assembled script block. Returns the number of failures, or None when node is missing."""
+    import shutil, subprocess
+    node = shutil.which("node")
+    if not node:
+        print("lint skipped: node not found")
+        return None
+    def why(err):
+        ls = err.strip().splitlines()
+        return ([l for l in ls if "Error" in l] or ls[-1:] or [""])[0]
+    man = json.loads(read(os.path.join(srcdir, "manifest.json")))
+    bad, n_files, n_blocks = 0, 0, 0
+    with tempfile.TemporaryDirectory() as d:
+        for i, e in enumerate(man["entries"]):
+            if e["t"] != "block" or not e["files"][0].endswith(".js"):
+                continue
+            for fn in e["files"]:
+                if fn.endswith(".wrap.js"):
+                    continue
+                n_files += 1
+                r = subprocess.run([node, "--check", os.path.join(srcdir, fn)], capture_output=True, text=True)
+                if r.returncode:
+                    bad += 1
+                    print("node --check FAILED:", fn, why(r.stderr))
+            tmp = os.path.join(d, "block-%03d.js" % i)
+            write(tmp, "".join(read(os.path.join(srcdir, fn)) for fn in e["files"]))
+            n_blocks += 1
+            r = subprocess.run([node, "--check", tmp], capture_output=True, text=True)
+            if r.returncode:
+                bad += 1
+                print("node --check FAILED: block", e["open"], e["files"][0], why(r.stderr))
+    print("lint: %d JS pieces, %d script blocks, %d failed" % (n_files, n_blocks, bad))
+    return bad
+
+
 def main(argv):
     if "--split" in argv:
         i = argv.index("--split")
@@ -158,13 +196,16 @@ def main(argv):
             same = again == read(OUT)
             print("split", n, "entries; rebuilt equals index.html:", same)
             return 0 if same else 1
+    if "--lint" in argv:
+        return 1 if lint(SRC) else 0
     html = assemble(SRC)
     sw, h = sw_with(read(SW), html)
     if "--check" in argv:
         ok_html = html == read(OUT)
         ok_sw = sw == read(SW)
         print("index.html", "same" if ok_html else "DIFFERENT", "| sw.js", "same" if ok_sw else "DIFFERENT", "| hash", h)
-        return 0 if (ok_html and ok_sw) else 1
+        bad = lint(SRC)
+        return 0 if (ok_html and ok_sw and not bad) else 1
     write(OUT, html)
     write(SW, sw)
     print("built index.html %d bytes, sha256 %s, CACHE dnd-sheet-%s" % (len(html.encode("utf-8")), hashlib.sha256(html.encode("utf-8")).hexdigest(), h))

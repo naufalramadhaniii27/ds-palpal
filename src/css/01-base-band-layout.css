@@ -1,0 +1,37 @@
+/* ================= BAND ================= */
+.band{position:relative;background:var(--dinas);color:var(--on-dinas);z-index:5}
+.band::before{content:"";position:absolute;inset:0;opacity:.08;pointer-events:none;background-image:var(--pat);background-size:42px 42px}
+.band-in{position:relative;max-width:1260px;margin:0 auto;padding:14px 28px 96px;display:flex;align-items:center;gap:16px}
+.office{display:flex;align-items:center;gap:12px;min-width:0}.office .sym{flex:none;width:30px;height:30px;color:var(--on-dinas)}.office .sym svg{width:100%;height:100%}.thg{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;margin:8px 0 16px}.thb{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border:1.5px solid var(--line);border-radius:10px;font-size:max(12px,calc(12px*var(--tz,1)));color:var(--muted);background:var(--panel)}.thb.on{border-color:var(--stamp);color:var(--ink);box-shadow:0 0 0 2px var(--stamp-soft)}.thb svg{width:26px;height:26px;color:var(--ink)}.sw{width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.office svg{flex:none;width:30px;height:30px;color:var(--on-dinas)}
+.office b{display:block;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));letter-spacing:.01em;line-height:1.15}
+.office span{display:block;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--on-dinas-2);line-height:1.2}
+.mini{display:none;min-width:0}
+.mini b{display:block;font-weight:800;font-size:calc(18px*var(--tz,1));line-height:1.15;font-variation-settings:"wdth" 112;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini span{display:block;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--on-dinas-2);white-space:nowrap}
+.acts{margin-left:auto;display:flex;align-items:center;gap:8px}
+.bb{height:38px;padding:0 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);font-family:var(--f-nar);font-weight:700;font-size:calc(14.5px*var(--tz,1));color:var(--on-dinas);display:inline-flex;align-items:center;gap:8px}
+.bb:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
+.bb.ic{width:38px;padding:0;justify-content:center}
+.bb svg{width:18px;height:18px}
+.bb.pdf{background:var(--on-dinas);color:var(--dinas-2);border-color:transparent}
+.bb.pdf:hover{background:#ffffff}
+.hpchip{display:none}
+
+/* ================= LAYOUT ================= */
+.pager{max-width:1260px;margin:-76px auto 0;padding:0 28px 48px;position:relative;z-index:6;display:grid;gap:18px;
+  grid-template-columns:268px minmax(0,310px) minmax(0,1fr);grid-template-areas:"main main main" "side skills detail"}
+#p-main{grid-area:main;min-width:0}
+#p-skills{display:contents}
+.side{grid-area:side;display:grid;gap:18px;align-content:start;min-width:0}
+.skillcard{grid-area:skills;min-width:0;align-self:start}
+.detail{grid-area:detail;min-width:0;align-self:start}
+@media (max-width:1179px) and (min-width:760px){
+  .pager{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"main main" "side skills" "detail detail"}
+}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.ch{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:13px 16px 0}
+.ch h2{margin:0;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));letter-spacing:.005em}
+.ch .as{font-size:max(12px,calc(13px*var(--tz,1)));color:var(--faint)}
+.cb{padding:10px 16px 16px}
+

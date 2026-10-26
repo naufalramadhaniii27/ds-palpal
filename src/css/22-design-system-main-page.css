@@ -1,0 +1,85 @@
+/* === A + B: design system and the Main page === */
+:root[data-skin="ddb"]{--pl-rgb:214,69,59}
+:root[data-skin="ddb"][data-mi-cls="barbarian"]{--pl-rgb:224,164,72}
+:root[data-skin="ddb"][data-mi-cls="bard"]{--pl-rgb:224,107,192}
+:root[data-skin="ddb"][data-mi-cls="cleric"]{--pl-rgb:226,178,60}
+:root[data-skin="ddb"][data-mi-cls="druid"]{--pl-rgb:76,184,106}
+:root[data-skin="ddb"][data-mi-cls="fighter"]{--pl-rgb:150,178,204}
+:root[data-skin="ddb"][data-mi-cls="monk"]{--pl-rgb:63,184,176}
+:root[data-skin="ddb"][data-mi-cls="paladin"]{--pl-rgb:240,194,74}
+:root[data-skin="ddb"][data-mi-cls="ranger"]{--pl-rgb:106,168,79}
+:root[data-skin="ddb"][data-mi-cls="rogue"]{--pl-rgb:143,106,216}
+:root[data-skin="ddb"][data-mi-cls="sorcerer"]{--pl-rgb:242,95,138}
+:root[data-skin="ddb"][data-mi-cls="warlock"]{--pl-rgb:165,94,234}
+:root[data-skin="ddb"][data-mi-cls="wizard"]{--pl-rgb:76,142,240}
+:root[data-skin="ddb"][data-mi-cls="artificer"]{--pl-rgb:201,138,62}
+
+/* A2-A4 type and numbers */
+:root[data-skin="ddb"] :is(.ab .m,.tile .v,#hpCur,.abox){font-variant-numeric:tabular-nums}
+:root[data-skin="ddb"] .ab .m{font-weight:800!important;letter-spacing:-.01em}
+:root[data-skin="ddb"] :is(#p-main,#p-skills,#sheet) h2:not(.ptitle){letter-spacing:.03em}
+/* A5 an icon chip in front of each card title */
+:root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle)>svg:first-child,:root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle) .ico:first-child{box-sizing:content-box;padding:5px;border-radius:9px;background:rgba(var(--pl-rgb),.16);color:rgb(var(--pl-rgb));box-shadow:inset 0 0 0 1px rgba(var(--pl-rgb),.3)}
+/* B1 identity: portrait frame and XP bar in the class colour */
+:root[data-skin="ddb"] .photo{box-shadow:0 0 0 2px rgba(var(--pl-rgb),.75),0 0 0 6px rgba(var(--pl-rgb),.14),0 0 26px rgba(var(--pl-rgb),.25),0 12px 28px -8px rgba(0,0,0,.7)!important}
+:root[data-skin="ddb"] .xpbar{height:8px!important;border-radius:999px!important;background:rgba(0,0,0,.35)!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
+:root[data-skin="ddb"] .xpbar>*{border-radius:999px!important;background:linear-gradient(90deg,color-mix(in srgb,rgb(var(--pl-rgb)) 60%,#fff),rgb(var(--pl-rgb)))!important;box-shadow:0 0 10px rgba(var(--pl-rgb),.6)}
+/* B2 Hit Points: a ring gauge with the state */
+:root[data-skin="ddb"] .hp-big{position:relative;padding-right:98px}
+.mi-hpg{position:absolute;right:0;top:50%;width:84px;height:84px;margin-top:-42px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;
+  background:conic-gradient(var(--hc,#38b06b) calc(var(--hp,1)*1turn),rgba(255,255,255,.08) 0);-webkit-mask:radial-gradient(circle,transparent 35px,#000 36px);mask:radial-gradient(circle,transparent 35px,#000 36px)}
+.mi-hpi{position:absolute;right:0;top:50%;width:84px;height:84px;margin-top:-42px;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;line-height:1}
+.mi-hpi b{font:800 18px/1 var(--f-nar,system-ui);color:#f4f7fa;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.mi-hpi small{margin-top:4px;max-width:68px;white-space:nowrap;text-align:center;font:700 7.5px/1 var(--f-nar,system-ui);letter-spacing:.03em;text-transform:uppercase;color:var(--hc,#38b06b)}
+.mi-hpg::after{content:"";position:absolute;inset:-6px;border-radius:50%;box-shadow:0 0 18px -2px var(--hc,#38b06b);opacity:.45}
+html:not([data-skin="ddb"]) .mi-hpg,html:not([data-skin="ddb"]) .mi-hpi{display:none}
+/* B3 ability scores as medals */
+:root[data-skin="ddb"] #abil .ab{position:relative;isolation:isolate}
+:root[data-skin="ddb"] #abil .ab::before{content:"";position:absolute;left:50%;top:50%;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(255,255,255,.07),transparent 65%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.09),0 0 0 6px rgba(255,255,255,.025)}
+:root[data-skin="ddb"] #abil .ab.key::before{box-shadow:inset 0 0 0 1.5px rgba(226,170,76,.45),0 0 0 6px rgba(226,170,76,.06),0 0 22px rgba(226,170,76,.18)}
+:root[data-skin="ddb"] #abil .ab .s{border-radius:999px!important;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04))!important;box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2)!important}
+/* B4 Armor Class shield glows in the class colour; the other tiles get a small coloured cap */
+:root[data-skin="ddb"] .tile.ac svg{filter:drop-shadow(0 0 8px rgba(var(--pl-rgb),.55))}
+:root[data-skin="ddb"] .tile:not(.ac){box-shadow:inset 0 2px 0 rgba(var(--pl-rgb),.45),0 10px 22px -8px rgba(0,0,0,.55)!important}
+/* B5 Saving Throws: proficient saves light up */
+:root[data-skin="ddb"] .sv{border-radius:999px}
+/* B6 conditions take their own colour */
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Blinded"]{--cc:138,144,150}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Charmed"]{--cc:255,143,199}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Deafened"]{--cc:159,179,179}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Frightened"]{--cc:199,184,255}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Grappled"]{--cc:208,160,96}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Incapacitated"]{--cc:170,170,170}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Invisible"]{--cc:207,232,255}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Paralyzed"]{--cc:255,224,102}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Petrified"]{--cc:154,154,154}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Poisoned"]{--cc:123,211,137}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Prone"]{--cc:201,162,122}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Restrained"]{--cc:208,160,96}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Stunned"]{--cc:255,224,102}
+:root[data-skin="ddb"] #conds .chip.on[data-info="g:Unconscious"]{--cc:138,160,200}
+:root[data-skin="ddb"] #conds .chip.on[data-info^="g:"]{background:linear-gradient(180deg,rgba(var(--cc,214,69,59),.28),rgba(var(--cc,214,69,59),.1))!important;border-color:rgba(var(--cc,214,69,59),.6)!important;color:#fff!important;box-shadow:0 0 14px -4px rgba(var(--cc,214,69,59),.7),inset 0 1px 0 rgba(255,255,255,.15)!important}
+:root[data-skin="ddb"] #conds .chip.on[data-info^="g:"] svg{color:rgb(var(--cc,214,69,59))}
+:root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1!important}
+:root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px)!important;border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)!important}
+/* detail panels: a four-up strip is too tight in a side panel or on a phone, so it goes two by two there (this was cramped in the original too) */
+#sheet:not(.wide) .dc-strip:not(.dc-s1):not(.dc-s2){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+:root[data-skin="ddb"] #sheet .dc-cell{background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
+:root[data-skin="ddb"] #sheet .dc-cell b{font-size:1.05em}
+/* the left column was a tall dark box stretched to the height of the Actions list: now its cards stand on their own */
+:root[data-skin="ddb"] .side{background:transparent!important;border-color:transparent!important;box-shadow:none!important;align-self:start}
+:root[data-skin="ddb"] .hp-big.mi-hpn{padding-right:64px}
+.hp-big.mi-hpn .mi-hpg,.hp-big.mi-hpn .mi-hpi{width:56px;height:56px;margin-top:-28px}
+.hp-big.mi-hpn .mi-hpg{-webkit-mask:radial-gradient(circle,transparent 23px,#000 24px);mask:radial-gradient(circle,transparent 23px,#000 24px)}
+.hp-big.mi-hpn .mi-hpi b{font-size:13px}.hp-big.mi-hpn .mi-hpi small{display:none}
+/* magic item full text: real paragraphs, a clear toggle, a quiet reading column */
+.mfull>summary{cursor:pointer;display:inline-flex;align-items:center;gap:8px;list-style:none;padding:6px 14px;border-radius:999px;font-weight:700;background:rgba(127,127,127,.12);border:1px solid rgba(127,127,127,.22);margin:6px 0 2px}
+.mfull>summary::-webkit-details-marker{display:none}
+.mfull>summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease;opacity:.7}
+.mfull[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+.mfull-b{margin-top:12px;padding:2px 0 2px 14px;border-left:2px solid rgba(127,127,127,.3);line-height:1.6}
+.mfull-b p{margin:0 0 .75em}.mfull-b p:last-child{margin-bottom:0}
+:root[data-skin="ddb"] .mfull-b{border-left-color:rgba(var(--pl-rgb),.55);color:color-mix(in srgb,var(--ink) 88%,transparent)}
+:root[data-skin="ddb"] .mfull>summary{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02));border-color:rgba(255,255,255,.14)}
+

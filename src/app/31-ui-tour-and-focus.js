@@ -1,0 +1,27 @@
+/* ================= v24: TOUR (RU76) ================= */
+/* A short tour for new players. Home shows an inline offer once (cs-ui-tour); the tour only starts when the player asks, so it never covers the app */
+var TOUR=[[".hcreate","Create a Character opens the builder. Choose a class, background, species, ability scores, and equipment, then press Apply to make the sheet."],
+ ['.hbtns [data-hbk="open"]',"Open Character adds a character from a file (.bs) or from pasted text. A build file written in a Claude chat works too."],
+ ['.hbtns [data-hbk="out"]',"Back Up keeps every character on this device in one file. Restore brings them back, here or on another device. Make a backup now and then."],
+ [".hcard .hact","Each character card: View opens the sheet, Edit opens the builder, and File saves this character on its own."],
+ [null,"On the sheet, tap any name, number, or rule to see where it comes from. Heal, Damage, rests, spells, and Limited Use keep count as you play. The tabs at the bottom (or the top on a PC) hold Actions, Spells, Inventory, Features, Description, Notes, and Extras. On a PC, press ? for keyboard shortcuts."]];
+var tourI=-1;
+function tourBanner(){ if(uiGet("cs-ui-tour").done) return ""; return '<div class="htour" id="htour" role="region" aria-label="Tour"><span><b>New here?</b> A short tour shows where things are.</span><span class="htb"><button type="button" class="btn pri press" data-tour="go">Take the Tour</button><button type="button" class="btn press" data-tour="no">No Thanks</button></span></div>'; }
+function tourEnd(){ tourI=-1; uiSet("cs-ui-tour",{done:1}); var c=document.getElementById("tourC"); if(c) c.remove(); document.querySelectorAll(".tour-hl").forEach(function(e){ e.classList.remove("tour-hl"); }); var b=document.getElementById("htour"); if(b) b.remove(); }
+function tourShow(i){ tourI=i; document.querySelectorAll(".tour-hl").forEach(function(e){ e.classList.remove("tour-hl"); }); var st=TOUR[i], el=st[0]&&document.querySelector(st[0]);
+  if(el){ el.classList.add("tour-hl"); try{ el.scrollIntoView({block:"center",behavior:REDUCE?"auto":"smooth"}); }catch(er){} }
+  var c=document.getElementById("tourC"); if(!c){ c=document.createElement("div"); c.id="tourC"; c.className="tourc"; c.setAttribute("role","dialog"); c.setAttribute("aria-label","Tour"); document.body.appendChild(c); }
+  c.innerHTML='<p class="tourn">Step '+(i+1)+' of '+TOUR.length+'</p><p>'+esc(st[1])+'</p><div class="tourb"><button type="button" class="btn press" data-tour="skip">Skip</button>'+(i?'<button type="button" class="btn press" data-tour="back">Back</button>':'')+'<button type="button" class="btn pri press" data-tour="'+(i<TOUR.length-1?"next":"done")+'">'+(i<TOUR.length-1?"Next":"Done")+'</button></div>';
+  var f=c.querySelector('[data-tour="next"],[data-tour="done"]'); if(f) f.focus({preventScroll:true});
+  setTimeout(function(){ var r=el&&el.getBoundingClientRect(); c.classList.toggle("top",!!(r&&r.bottom>innerHeight-c.offsetHeight-24)); },REDUCE?0:420);/* v24 m1: never over the highlighted part */ }
+document.addEventListener("click",function(e){ if(tourI>=0&&e.target.closest&&e.target.closest("[data-hview],[data-hedit],[data-hnew],[data-hfile]")) tourEnd(); var b=e.target.closest&&e.target.closest("[data-tour]"); if(!b) return; var a=b.getAttribute("data-tour");
+  if(a==="go") tourShow(0); else if(a==="next") tourShow(Math.min(TOUR.length-1,tourI+1)); else if(a==="back") tourShow(Math.max(0,tourI-1)); else tourEnd(); });
+document.addEventListener("keydown",function(e){ if(tourI>=0&&e.key==="Escape"){ e.stopPropagation(); tourEnd(); } },true);
+
+/* v24 M1: what Home covers is inert, so Tab starts on Home. m2: Tab stays inside an open dialog */
+function homeInert(){ var h=document.getElementById("homeV"), on=!!(h&&!h.hidden); Array.prototype.slice.call(document.body.children).forEach(function(e){ if(e===h||/^(SCRIPT|STYLE)$/.test(e.tagName)||e.matches(".ask,.exp,#toast,#pwaUpd,#qrSend,#qrScan,#bkp,#chf,#party,#rep,#tourC,#bld,.busy,#ps-wrap,.ps-wrap")/* v27: Party and Report dialogs sit over Home */) return;
+  if(on){ if(!e.inert){ e.inert=true; e.setAttribute("data-hinert","1"); } } else if(e.getAttribute("data-hinert")){ e.inert=false; e.removeAttribute("data-hinert"); } }); }
+(function(){ var mo=new MutationObserver(function(){ homeInert(); }); mo.observe(document.body,{childList:true}); var tie=function(){ var h=document.getElementById("homeV"); if(h&&!h.__ino){ h.__ino=1; new MutationObserver(homeInert).observe(h,{attributes:true,attributeFilter:["hidden"]}); homeInert(); } }; tie(); new MutationObserver(tie).observe(document.body,{childList:true}); })();
+document.addEventListener("keydown",function(e){ if(e.key!=="Tab") return; var L=Array.prototype.slice.call(document.querySelectorAll('.ask,#sheet.on,#bkp,#chf,#party,#rep')).filter(function(d){ return !d.hidden&&getComputedStyle(d).display!=="none"; }), D0=L[L.length-1]; if(!D0) return;
+  var f=Array.prototype.slice.call(D0.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')).filter(function(x){ return !x.disabled&&(x.offsetWidth||x.offsetHeight); }); if(!f.length) return;
+  var i=f.indexOf(document.activeElement); if(i<0){ e.preventDefault(); f[e.shiftKey?f.length-1:0].focus(); } else if(e.shiftKey&&i===0){ e.preventDefault(); f[f.length-1].focus(); } else if(!e.shiftKey&&i===f.length-1){ e.preventDefault(); f[0].focus(); } },true);

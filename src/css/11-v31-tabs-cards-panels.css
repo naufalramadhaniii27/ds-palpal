@@ -1,0 +1,376 @@
+/* v31 p01 */
+/* B1: rows. The number button stretches an invisible layer over its row, so the whole row opens the breakdown. Name and pin stay on top */
+:root[data-skin="ddb"] .saves .row,:root[data-skin="ddb"] #skills .row,:root[data-skin="ddb"] #senses .sense,:root[data-skin="ddb"] #speeds .sense{position:relative;min-height:44px;padding-top:0;padding-bottom:0;border-radius:0;font-size:var(--fs2)}
+:root[data-skin="ddb"] .saves .row .bonus.bd,:root[data-skin="ddb"] #skills .row .bonus.bd,:root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus{position:static;display:inline-flex;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px;height:auto;margin-left:auto;padding:0 2px;border:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;text-align:right;font-size:var(--fs3)}
+:root[data-skin="ddb"] .saves .row .bonus.bd::after,:root[data-skin="ddb"] #skills .row .bonus.bd::after,:root[data-skin="ddb"] #senses .sense .bonus.bd::after{content:"";position:absolute;inset:0;z-index:0;cursor:pointer}
+:root[data-skin="ddb"] .saves .row .tx,:root[data-skin="ddb"] #skills .row .tx,:root[data-skin="ddb"] #skills .row .pinb,:root[data-skin="ddb"] #senses .sense .tx{position:relative;z-index:1}
+:root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus{order:3}
+:root[data-skin="ddb"] #senses .sense,:root[data-skin="ddb"] #speeds .sense{gap:10px}
+:root[data-skin="ddb"] #senses .sense .tx{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+:root[data-skin="ddb"] #speeds .sense>span:not(.bonus){display:inline-flex;align-items:center;gap:8px}
+:root[data-skin="ddb"] #senses .sense .tx svg.ico,:root[data-skin="ddb"] #speeds .sense svg.ico{margin:0}
+:root[data-skin="ddb"] .saves .row:hover,:root[data-skin="ddb"] #skills .row:hover,:root[data-skin="ddb"] #senses .sense:hover{background:var(--panel-2)}
+:root[data-skin="ddb"] .saves .row:active,:root[data-skin="ddb"] #skills .row:active,:root[data-skin="ddb"] #senses .sense:active{background:#242b31}
+:root[data-skin="ddb"] .row .ab3,:root[data-skin="ddb"] .sk-h{font-size:var(--fs1)}
+:root[data-skin="ddb"] #speeds .dnone,:root[data-skin="ddb"] #defs .dnone{font-size:var(--fs2)}
+@media (max-width:759px){
+ :root[data-skin="ddb"] .saves .row,:root[data-skin="ddb"] #skills .row,:root[data-skin="ddb"] #senses .sense,:root[data-skin="ddb"] #speeds .sense{font-size:var(--fs3)}
+ :root[data-skin="ddb"] #skills .row .pinb{min-width:44px;min-height:44px}
+ :root[data-skin="ddb"] .saves .row .tx{min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){:root[data-skin="ddb"] .saves .row,:root[data-skin="ddb"] #skills .row,:root[data-skin="ddb"] #senses .sense{transition:none}}
+/* C11: left column of Skills is one panel with thin dividers */
+:root[data-skin="ddb"] #p-skills .side{gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden}
+:root[data-skin="ddb"] #p-skills .side>.card{border:0;border-top:1px solid var(--line);border-radius:0;background:transparent}
+:root[data-skin="ddb"] #p-skills .side>.card:first-child{border-top:0}
+:root[data-skin="ddb"] #p-skills .side>.card>.ch{padding-top:14px}
+:root[data-skin="ddb"] #p-skills .side>.card>.cb{padding-bottom:12px}
+/* D5: one mark for "opens more": a dotted underline on numbers that open a breakdown and names that open rules */
+:root[data-skin="ddb"]{--mark:color-mix(in srgb,currentColor 50%,transparent)}
+:root[data-skin="ddb"] .tx[data-info],:root[data-skin="ddb"] .tx[data-bd],:root[data-skin="ddb"] .bonus.bd,:root[data-skin="ddb"] .abox.bd,:root[data-skin="ddb"] #hpMax .bd,:root[data-skin="ddb"] #pbAside .bd,
+:root[data-skin="ddb"] .tile.bd .k,:root[data-skin="ddb"] .ab.bd .k,:root[data-skin="ddb"] .iname b,:root[data-skin="ddb"] .sp-r .sp-n b,:root[data-skin="ddb"] .crr .crn b,:root[data-skin="ddb"] .iwt b,:root[data-skin="ddb"] .ib[data-info]{
+ text-decoration-line:underline;text-decoration-style:dotted;text-decoration-color:var(--mark);text-decoration-thickness:1.5px;text-underline-offset:4px}
+:root[data-skin="ddb"] .tx[data-info]:hover,:root[data-skin="ddb"] .tx[data-bd]:hover{text-decoration-color:currentColor}
+
+/* v31 p02 */
+/* B2: one row of icon segments that scrolls sideways (no second row on a computer) */
+:root[data-skin="ddb"] .ifil{position:relative;display:flex;flex-wrap:nowrap;gap:2px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;padding:3px;margin:0 0 12px;border:1px solid var(--line-2);border-radius:var(--r2);background:var(--paper)}
+:root[data-skin="ddb"] .ifil::-webkit-scrollbar{display:none}
+:root[data-skin="ddb"] .ifil .ifb{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;min-height:40px;margin:0;padding:0 12px;border:0;border-radius:var(--r1);background:transparent;color:var(--muted);font-size:var(--fs2);font-weight:600}
+:root[data-skin="ddb"] .ifil .ifb svg.ico{margin:0;width:1.15em;height:1.15em}
+:root[data-skin="ddb"] .ifil .ifb:hover{background:var(--panel-2);color:var(--ink)}
+:root[data-skin="ddb"] .ifil .ifb.on{background:#fff;color:#111}
+:root[data-skin="ddb"] .ifil.ovf-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+:root[data-skin="ddb"] .ifil.ovf-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px);mask-image:linear-gradient(90deg,transparent,#000 32px)}
+:root[data-skin="ddb"] .ifil.ovf-l.ovf-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
+@media (max-width:759px){:root[data-skin="ddb"] .ifil .ifb{min-height:44px;padding:0 14px}}
+@media print{:root[data-skin="ddb"] .ifil{display:none}}
+
+/* v31 p03 */
+/* B8: the button is the 44 px tap area, the 28 px box is drawn inside it */
+:root[data-skin="ddb"] .bx{width:44px;height:44px;min-width:44px;padding:0;border:0;border-radius:var(--r1);background:transparent;display:inline-grid;place-items:center;position:relative;flex:0 0 auto}
+:root[data-skin="ddb"] .bx::before{content:"";grid-area:1/1;width:28px;height:28px;box-sizing:border-box;border:2px solid var(--line-2);border-radius:var(--r1);background:var(--panel);transition:background-color .2s,border-color .2s}
+:root[data-skin="ddb"] .bx::after{left:calc(50% - 4px);top:calc(50% - 9px);width:8px;height:14px;border-color:#111}
+:root[data-skin="ddb"] .bx[aria-pressed="true"]{background:transparent;border-color:transparent}
+:root[data-skin="ddb"] .bx[aria-pressed="true"]::before{background:var(--prof);border-color:var(--prof)}
+:root[data-skin="ddb"] .bx:hover::before{border-color:#8a959e}
+:root[data-skin="ddb"] .bx:active{transform:none}
+:root[data-skin="ddb"] .bx:active::before{transform:scale(.88);transition:transform .06s}
+:root[data-skin="ddb"] .boxes{gap:0;margin:-4px -8px}
+:root[data-skin="ddb"] .spslw{display:inline-flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+:root[data-skin="ddb"] .spsl{display:inline-flex;flex-wrap:wrap;align-items:center;gap:0}
+:root[data-skin="ddb"] .spsl small{margin-right:6px;font-size:var(--fs1)}
+@media (prefers-reduced-motion:reduce){:root[data-skin="ddb"] .bx::before,:root[data-skin="ddb"] .bx::after{transition:none}:root[data-skin="ddb"] .bx:active::before{transform:none}}
+
+/* v31 p04 */
+/* C4, C7: actions and features as cards with an icon */
+:root[data-skin="ddb"] .aitem,:root[data-skin="ddb"] .fitem{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r2);padding:12px 14px;margin:8px 0}
+:root[data-skin="ddb"] .fnest .fitem{margin:6px 0}
+:root[data-skin="ddb"] .aitem h4,:root[data-skin="ddb"] .fitem h4{display:flex;flex-wrap:nowrap;align-items:center;gap:4px 8px;margin:0 0 4px;font-size:var(--fs3);line-height:1.3}
+:root[data-skin="ddb"] .aitem h4 .tx,:root[data-skin="ddb"] .fitem h4 .tx{font-size:var(--fs3);font-weight:700;min-height:32px;display:inline-flex;align-items:center}
+:root[data-skin="ddb"] .fitem h4{flex-wrap:wrap}
+:root[data-skin="ddb"] .fitem h4 .fsrc{flex-basis:100%;padding-left:28px;margin-top:-6px}
+:root[data-skin="ddb"] .aitem h4>svg.ico,:root[data-skin="ddb"] .fitem h4>svg.ico{width:20px;height:20px;margin:0;color:var(--muted);flex:0 0 auto}
+:root[data-skin="ddb"] .aitem p,:root[data-skin="ddb"] .fitem p{font-size:var(--fs2);line-height:1.5;margin:4px 0}
+:root[data-skin="ddb"] .fsrc,:root[data-skin="ddb"] .ffrom,:root[data-skin="ddb"] .fres{font-size:var(--fs1)}
+:root[data-skin="ddb"] .fsub{font-size:var(--fs2)}
+/* F1: long rules text folds to two lines; the whole text stays on the page */
+.fold:not(.open){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;cursor:pointer}
+.fmore{display:inline-flex;align-items:center;gap:6px;min-height:36px;margin:0 0 2px;padding:0 10px 0 4px;border:0;background:transparent;color:var(--info,#5aa9ff);font:600 var(--fs2,14px)/1 var(--f-sans);cursor:pointer;border-radius:var(--r1,4px)}
+.fmore[hidden]{display:none}
+.fmore .fmi{width:16px;height:16px;margin:0;transition:transform .2s}
+.fmore[aria-expanded="true"] .fmi,.acomb-t[aria-expanded="true"] .fmi{transform:rotate(180deg)}
+.fmore:hover{background:var(--panel)}
+/* C4: Actions in Combat folds */
+.acomb{margin:12px 0 4px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2)}
+.acomb.short{padding:8px 14px 10px}
+.acomb .asub{margin:0;font-size:var(--fs3,16px);font-weight:700;display:flex;align-items:center;gap:8px}
+.acomb .aci{width:18px;height:18px;margin:0;color:var(--muted)}
+.acomb-t{display:flex;align-items:center;gap:8px;width:100%;min-height:48px;padding:0 14px;border:0;background:transparent;color:var(--ink);text-align:left;cursor:pointer;font:inherit;border-radius:var(--r2,8px)}
+.acomb-t small{color:var(--muted);font-size:var(--fs1,12px);margin-left:auto}
+.acomb-t .fmi{width:18px;height:18px;margin:0;flex:0 0 auto}
+.acomb .aline{margin:0 14px 12px;border-left:3px solid var(--line-2);padding:2px 0 2px 12px}
+.acomb.short .aline{margin:6px 0 0}
+.acomb .aline[hidden]{display:none}
+@media (max-width:759px){.fmore{min-height:44px}.acomb-t{min-height:52px}}
+@media (prefers-reduced-motion:reduce){.fmore .fmi{transition:none}}
+@media print{.fold:not(.open){display:block;-webkit-line-clamp:unset;overflow:visible}.fmore{display:none}}
+
+/* v31 p05 */
+/* C5, C6: empty states with an icon and one clear button */
+.empty-st{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin:12px 0;padding:28px 18px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2);color:var(--muted);font-size:var(--fs2,14px);line-height:1.45}
+.empty-st .es-i{width:40px;height:40px;margin:0 0 4px;color:var(--muted);stroke-width:1.6}
+.empty-st b{color:var(--ink);font-family:var(--f-nar);font-size:var(--fs4,20px);font-weight:700}
+.empty-st span{max-width:34ch}
+.empty-st .btn{margin-top:8px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px}
+.empty-st .btn .ibt{width:18px;height:18px;margin:0}
+:root[data-skin="ddb"] .empty-st .btn.pri{background:var(--act);border-color:var(--act);color:#fff}
+/* RU123: Inventory head: weight, Manage Inventory, then the five coins */
+:root[data-skin="ddb"] .ihero{grid-template-columns:1fr auto;gap:10px 12px;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r2);padding:14px}
+:root[data-skin="ddb"] .ihero .iwt b{font-family:var(--f-nar);font-size:var(--fs5)}
+:root[data-skin="ddb"] .ihero .iwt span{font-size:var(--fs2);letter-spacing:.04em}
+:root[data-skin="ddb"] .ihero .ibtn{grid-column:auto;grid-row:1;grid-column-start:2;justify-self:end;display:inline-flex;align-items:center;gap:8px;min-height:44px;border-radius:var(--r2);border:1px solid var(--line-2);color:#fff;background:transparent;font-family:var(--f-nar);letter-spacing:.03em}
+:root[data-skin="ddb"] .ihero .ibtn .ibt{width:18px;height:18px;margin:0}
+.ihero .icoins{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;padding:8px 4px 6px;border:1px solid var(--line-2);border-radius:var(--r2,8px);background:var(--paper,#0e1215);color:var(--ink);font-size:var(--fs2,14px);cursor:pointer}
+.ihero .icoins:hover{border-color:#8a959e}
+.ihero .icn{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.icn .icn-i{width:22px;height:22px;margin:0}
+.ihero .icn b{font-family:var(--f-nar);font-size:var(--fs4,20px);font-weight:700;line-height:1.1;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.icn small{font-size:var(--fs1,12px);color:var(--muted);font-weight:600;letter-spacing:.04em}
+.ic-cp .icn-i{color:#c98454}.ic-sp .icn-i{color:#b9c3cb}.ic-ep .icn-i{color:#9fc4b5}.ic-gp .icn-i{color:#e2b13c}.ic-pp .icn-i{color:#d6dfe8}
+.ihero .itot{grid-column:1/-1;display:block;text-align:center;font-size:var(--fs1,12px);letter-spacing:0;font-weight:600;color:var(--muted);margin-top:2px}
+
+/* v31 p06 */
+/* B9, C8: one titled section per topic; the box grows with its text */
+.nsecs{display:grid;gap:10px;margin:8px 0 16px}
+.nsec{border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2);padding:12px 14px 10px}
+.nsec-h{display:flex;align-items:flex-start;gap:10px;margin:0 0 6px;cursor:text}
+.nsec-h .nsec-i{width:20px;height:20px;margin:2px 0 0;flex:0 0 auto;color:var(--muted)}
+.nsec-h span{display:flex;flex-direction:column;gap:1px;min-width:0}
+.nsec-h b{font-family:var(--f-nar);font-size:var(--fs3,16px);font-weight:700;letter-spacing:.02em;color:var(--ink)}
+.nsec-h small{font-size:var(--fs1,12px);color:var(--faint)}
+textarea.nsec-t{display:block;width:100%;min-height:48px;field-sizing:content;resize:none;overflow:hidden;border:1px solid transparent;border-radius:var(--r1,4px);background:transparent;color:var(--ink);padding:6px 8px;margin:0 -8px;width:calc(100% + 16px);font:inherit;font-size:var(--fs3,16px);line-height:1.5}
+textarea.nsec-t:hover{border-color:var(--line-2)}
+textarea.nsec-t:focus{outline:none;border-color:var(--focus,#7cc4ff);background:var(--panel)}
+textarea.nsec-t::placeholder{color:var(--faint)}
+.noteh svg.ico{margin-right:.35em}
+:root[data-skin="ddb"] .saved{font-size:var(--fs1)}
+@media (min-width:760px){.nsec-t{font-size:var(--fs2,14px)}}
+
+/* v31 p07 */
+/* B10: Description reads first; a field looks like text until it is tapped */
+#descBody .dsec{margin:0 0 14px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 14px;margin:4px 0 14px}
+.dlist{display:grid;gap:8px;margin:4px 0 14px}
+.dfield{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dfield>label,.dfield .dlbl{font-size:var(--fs1,12px);font-weight:600;color:var(--muted);letter-spacing:.01em;margin:0}
+.dfield .dval{width:calc(100% + 16px);margin:0 -8px;min-height:44px;height:auto;padding:8px;border:1px solid transparent;border-radius:var(--r1,4px);background:transparent;color:var(--ink);font:inherit;font-size:var(--fs3,16px);font-weight:600;line-height:1.45;box-shadow:none}
+.dfield textarea.dval{field-sizing:content;resize:none;overflow:hidden;font-weight:400}
+.dfield .dval:hover{border-color:var(--line-2)}
+.dfield .dval:focus{outline:none;border-color:var(--focus,#7cc4ff);background:var(--panel-2)}
+.dfield .dval::placeholder{color:var(--faint);font-weight:400}
+.dfield.ro .chsz{margin:0;min-height:44px;display:flex;align-items:center;font-size:var(--fs3,16px);font-weight:600}
+.dhint{margin:2px 0 6px;font-size:var(--fs1,12px);color:var(--faint)}
+.dmore{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;margin:4px 0 14px;padding:10px 14px;border:1px solid var(--line-2);border-radius:var(--r2,8px);background:var(--panel-2);color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.dmore:hover{border-color:#8a959e}
+.dmore .dmi{width:22px;height:22px;margin:0;flex:0 0 auto;color:var(--info,#5aa9ff)}
+.dmore span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dmore b{font-family:var(--f-nar);font-size:var(--fs3,16px);letter-spacing:.02em}
+.dmore small{font-size:var(--fs1,12px);color:var(--muted);line-height:1.4}
+#descBody .bgl{font-size:var(--fs2,14px);line-height:1.5}
+@media (min-width:760px){.dfield .dval{min-height:36px;font-size:var(--fs2,14px)}.dfield.ro .chsz{min-height:36px;font-size:var(--fs2,14px)}}
+
+/* v31 p08 */
+/* C9: Creatures and Bastion cards */
+#extBody .xcard{border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel);padding:4px 14px 14px;margin:0 0 14px}
+#extBody .xcard>h3.fcat:first-child{margin-top:12px}
+#extBody .xempty{margin:8px 0 0;background:var(--panel-2)}
+#extBody .xempty .bs-why{margin:0;max-width:44ch}
+
+/* v31 p09 */
+/* F3: full words in tiles may take two short lines */
+:root[data-skin="ddb"] .tile .k,:root[data-skin="ddb"] .tile .n{line-height:1.2;text-wrap:balance}
+/* F4: small texts on the type scale */
+:root[data-skin="ddb"] .src,:root[data-skin="ddb"] .info-cat{font-size:var(--fs2)}
+:root[data-skin="ddb"] .info-cat{border-radius:var(--r1)}
+:root[data-skin="ddb"] .defh{font-size:var(--fs1)}
+:root[data-skin="ddb"] .defl{font-size:var(--fs2)}
+:root[data-skin="ddb"] .defl small,:root[data-skin="ddb"] .iname small,:root[data-skin="ddb"] .an small,:root[data-skin="ddb"] .abox small{font-size:var(--fs1)}
+:root[data-skin="ddb"] .iname span{font-size:var(--fs2)}
+:root[data-skin="ddb"] .an .tx{font-size:var(--fs3)}
+:root[data-skin="ddb"] .ieq b{font-size:var(--fs3)}
+:root[data-skin="ddb"] .fcat{font-size:var(--fs3)}
+:root[data-skin="ddb"] .fgh{font-size:var(--fs4)}
+/* found while checking F3: on phones the 44 px i button of Heroic Inspiration covered the gem and None; gem and state move left of it */
+/* v52: Heroic Inspiration is one on/off control. The info button sits in the top corner, so the gem and state stay centred */
+@media (max-width:759px){#insp .ib{top:auto;bottom:0;right:0}#insp .ib::after{text-indent:0;top:auto;bottom:6px;right:6px;display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--f-sans);color:var(--muted)}}
+#insp .n{font-weight:700}#insp[aria-pressed="true"] .n{color:var(--stamp)}
+
+/* v31 p10 */
+@media (max-width:759px){
+ :root[data-skin="ddb"] #skills .row .tx,:root[data-skin="ddb"] #p-skills .ch h2 .tx,:root[data-skin="ddb"] #profs h3 .tx,:root[data-skin="ddb"] #pbAside .bd{min-height:44px;display:inline-flex;align-items:center}
+ :root[data-skin="ddb"] #profs .prw .tx{min-height:44px;display:inline-flex;align-items:center}
+ :root[data-skin="ddb"] .arow .an .tx{min-height:44px;display:inline-flex;align-items:center;vertical-align:middle}
+ :root[data-skin="ddb"] .arow .abox{min-height:44px}
+ :root[data-skin="ddb"] .arow .an .aki{margin-top:15px}
+ :root[data-skin="ddb"] .aitem h4 .tx,:root[data-skin="ddb"] .fitem h4 .tx{min-height:44px}
+ :root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px 1fr 44px 64px}
+ :root[data-skin="ddb"] .ichk{width:44px;height:44px;border:0;border-radius:var(--r1);background:transparent;box-shadow:none;display:grid;place-items:center;position:relative}
+ :root[data-skin="ddb"] .ichk::before{content:"";width:22px;height:22px;box-sizing:border-box;border:1.5px solid var(--line-2);border-radius:var(--r1)}
+ :root[data-skin="ddb"] .ichk.on{background:transparent;box-shadow:none}
+ :root[data-skin="ddb"] .ichk.on::before{background:#c0392b;border-color:#c0392b;box-shadow:inset 0 0 0 5px #c0392b,inset 0 0 0 11px #fff}
+ :root[data-skin="ddb"] .jform input:not([type=checkbox]),:root[data-skin="ddb"] .jform .btn{min-height:44px;font-size:var(--fs3)}
+ :root[data-skin="ddb"] .jform .ck{min-height:44px}
+ :root[data-skin="ddb"] #p-skills .fman .btn,:root[data-skin="ddb"] .fmanb,:root[data-skin="ddb"] #actBody .rests .btn{min-height:44px}
+ :root[data-skin="ddb"] .acomb .aline .tx{min-height:44px;display:inline-flex;align-items:center;vertical-align:middle}
+}
+:root[data-skin="ddb"] .jform label,:root[data-skin="ddb"] .jh span{font-size:var(--fs1)}
+
+/* v31 p11 */
+/* RU112, D6: a swipe that starts in a text box does not change the page; a row of segments that fits does not scroll, so it passes nothing */
+@media (max-width:759px){#pager input,#pager textarea,#pager select{touch-action:pan-y pinch-zoom}[data-hscroll].fit{touch-action:pan-y}}
+/* D2: the new tab slides in from the side of the tab that was tapped, 200 ms, transform only */
+@keyframes v31psr{from{transform:translateX(36px)}to{transform:none}}
+@keyframes v31psl{from{transform:translateX(-36px)}to{transform:none}}
+/* the page (HP) or panel (PC) itself moves: it is already a layer, so nothing new is drawn for the slide */
+.psl-r,.panel.psl-r{animation:v31psr .2s var(--ease-out)}
+.psl-l,.panel.psl-l{animation:v31psl .2s var(--ease-out)}
+@media (min-width:760px){.detail>.panels{overflow-x:clip}}
+@media (prefers-reduced-motion:reduce){.psl-r,.psl-l,.panel.psl-r,.panel.psl-l{animation:none}}
+
+/* v31 p12 */
+/* RU131: card grows into the detail popup (View Transitions). Only the card and the popup are captured, not the whole page */
+:root.vt-card{view-transition-name:none}
+.sheet.vt-on{transition:none!important}
+.sheet.vt-hold{visibility:hidden!important}
+::view-transition-group(v31card){animation-duration:.26s;animation-timing-function:cubic-bezier(.2,.8,.2,1);border-radius:var(--r2,8px);overflow:clip}
+::view-transition-old(v31card),::view-transition-new(v31card){height:100%;object-fit:cover;object-position:top left;animation-duration:.26s}
+::view-transition-old(v31card){animation-duration:.14s}
+@media (prefers-reduced-motion:reduce){::view-transition-group(v31card),::view-transition-old(v31card),::view-transition-new(v31card){animation:none}}
+
+/* v31 p13 */
+/* RU130: the header shrinks as the page scrolls (scroll-driven animation). Without support nothing changes */
+@keyframes v31hBand{to{transform:translateY(-14px)}}
+@keyframes v31hDown{to{transform:translateY(12px)}}
+@keyframes v31hFade{to{opacity:0}}
+@supports (animation-timeline:scroll()) and (timeline-scope:--a){
+ @media (max-width:759px){
+  #app{timeline-scope:--v31pg}
+  #app>.band{grid-row:1;grid-column:1;align-self:start}
+  #app>.pager{grid-row:1 / 3;grid-column:1}
+  #p-main,#p-skills,.detail>.panels>.panel{padding-top:calc(var(--bandh,66px) + 14px);scroll-padding-top:calc(var(--bandh,66px) + 4px)}
+  #p-main.pcur,#p-skills.pcur,.detail>.panels>.panel.pcur{scroll-timeline:--v31pg y}
+  #app>.band{animation:v31hBand linear both;animation-timeline:--v31pg;animation-range:0 56px}
+  #app .band .mini,#app .band .acts>.hb2,#app .band .acts>#moreBtn{animation:v31hDown linear both;animation-timeline:--v31pg;animation-range:0 56px}
+  #app .band .mini #miniSub,#app .band .mcamp,#app .band .acts>.hb2 .ml,#app .band .acts>#moreBtn .ml,#app .band .acts>#bldBtn .btx{animation:v31hFade linear both;animation-timeline:--v31pg;animation-range:0 40px}
+ }
+ @media (min-width:760px){
+  :root[data-skin="ddb"] #app>.band{position:sticky;top:0;z-index:30;animation:v31hBand linear both;animation-timeline:scroll(root block);animation-range:0 80px}
+  :root[data-skin="ddb"] #app>.band .band-in>*{animation:v31hDown linear both;animation-timeline:scroll(root block);animation-range:0 80px}
+  :root[data-skin="ddb"] #app>.band #officeSub{animation:v31hFade linear both;animation-timeline:scroll(root block);animation-range:0 60px}
+  :root[data-skin="ddb"]{scroll-padding-top:72px}
+ }
+}
+@media (prefers-reduced-motion:reduce){#app>.band,#app>.band *{animation:none!important}}
+
+/* v31 p14 */
+/* RU130: the popup follows a spring that can be interrupted */
+.sheet.spr{transition:none!important}
+.sheet.sp-out{visibility:visible!important;pointer-events:none!important}
+
+/* v31 p15 */
+/* RU132: spacing tokens. Roomy on phones and touch screens, compact on a computer with a mouse */
+:root{--v31-row:44px;--v31-rowp:10px;--v31-cardp:12px 14px;--v31-cardm:8px;--v31-lh:1.55}
+@media (min-width:760px) and (pointer:fine){:root{--v31-row:36px;--v31-rowp:6px;--v31-cardp:9px 12px;--v31-cardm:6px;--v31-lh:1.45}}
+:root[data-skin="ddb"] .saves .row,:root[data-skin="ddb"] #skills .row,:root[data-skin="ddb"] #senses .sense,:root[data-skin="ddb"] #speeds .sense{min-height:var(--v31-row)}
+:root[data-skin="ddb"] .saves .row .bonus.bd,:root[data-skin="ddb"] #skills .row .bonus.bd,:root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus,:root[data-skin="ddb"] #senses .sense .tx{min-height:var(--v31-row)}
+:root[data-skin="ddb"] .aitem,:root[data-skin="ddb"] .fitem{padding:var(--v31-cardp);margin:var(--v31-cardm) 0}
+:root[data-skin="ddb"] .aitem p,:root[data-skin="ddb"] .fitem p{line-height:var(--v31-lh)}
+:root[data-skin="ddb"] .irow,:root[data-skin="ddb"] .arow{padding-top:var(--v31-rowp);padding-bottom:var(--v31-rowp)}
+@media (min-width:760px) and (pointer:fine){:root[data-skin="ddb"] .aitem h4 .tx,:root[data-skin="ddb"] .fitem h4 .tx{min-height:28px}:root[data-skin="ddb"] .ihero{padding:12px}}
+/* RU130: Actions, Features, and Inventory cards follow the width of their own box (container queries), not the screen */
+#actBody,#invBody,#featBody{container:v31c / inline-size}
+@container v31c (max-width:380px){
+ .ahead,.arow{grid-template-columns:minmax(0,1fr) 60px 92px;gap:6px}
+ .abox{font-size:calc(16px*var(--tz,1))}
+ .lu{grid-template-columns:minmax(0,1fr)}
+ .ihead,.irow,:root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px minmax(0,1fr) 36px 64px}
+ .ihead span{white-space:nowrap}
+ .ihero .icoins{gap:2px}
+ :root[data-skin="ddb"] .ihero .ibtn{grid-row:3;grid-column:1 / -1;justify-self:stretch;justify-content:center;white-space:nowrap}
+ :root[data-skin="ddb"] .fitem h4 .fsrc{padding-left:0}
+}
+@container v31c (min-width:381px) and (max-width:599px){.lu{grid-template-columns:minmax(0,1fr)}}
+@container v31c (min-width:500px){
+ .ihead,.irow,:root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px minmax(0,1fr) 56px 76px}
+ .iname{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-items:center}
+ .iname>b,.iname>small,.iname>.ists{grid-column:1}
+ .iname>span:not(.ists){grid-column:2;grid-row:1 / span 3;margin:0;color:var(--muted)}
+}
+@container v31c (min-width:600px){
+ .lu{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ahead,.arow{grid-template-columns:minmax(0,1fr) 80px 132px}
+}
+@container v31c (min-width:860px){.lu{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* v31 p16 */
+/* RU131: two panels on a computer. Details sit in a panel on the right, the sheet stays usable on the left */
+@media (min-width:1100px){
+ :root.dk #app{padding-right:var(--dockw,400px)}
+ :root.dk .pager{grid-template-columns:268px minmax(0,1fr);grid-template-areas:"main main" "side detail" "skills detail"}
+ :root.dk .skillcard{align-self:start}
+ :root.dkn .hero{grid-template-columns:minmax(0,1fr)}
+ :root.dk .srchfab{right:calc(var(--dockw,400px) + 20px)}
+ :root.dk .acts>.bb.txt[data-rest]{display:none}
+ :root.dk .acts>.restb{display:inline-flex}
+ :root.dk .office b,:root.dk .office span{white-space:nowrap}
+ .sheet.dock{left:auto;right:0;top:0;bottom:0;width:var(--dockw,400px);max-height:none;height:100%;border-radius:0;border-width:0 0 0 1px;
+  box-shadow:-18px 0 40px -24px rgba(0,0,0,.7);transform:translateX(104%);opacity:1}
+ .sheet.dock.on{transform:none}
+ .sheet.dock .sh-h{min-height:var(--bandh,64px)}
+}
+
+/* v31 p17 */
+/* RU131: reorder Inventory items and Features cards */
+.ordbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 8px}
+.ordbar .muted{font-size:var(--fs1,12px)}
+.ordb{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-left:auto}
+.ordb .ibt{width:18px;height:18px;margin:0}
+.ord-on .ordr{position:relative}
+.ord-on .irow.ordr,.ord-on .ihead{padding-right:48px}
+.ord-on .fitem.ordr h4{padding-right:44px}
+.dragh{position:absolute;right:0;top:50%;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;color:var(--muted);cursor:grab;touch-action:none;border-radius:var(--r1,4px)}
+.fitem>.dragh{top:6px;transform:none}
+.dragh:hover,.dragh:focus-visible{color:var(--ink);background:var(--panel-2)}
+.dragh svg.dgi{width:20px;height:20px;margin:0;stroke-width:3.2}
+.dragh:active{transform:translateY(-50%)}
+.fitem>.dragh:active{transform:none}
+.ordr.dragging{z-index:5;cursor:grabbing;box-shadow:0 14px 30px -12px rgba(0,0,0,.7);background:var(--panel-2);transition:none}
+.ordr.dragging .dragh{cursor:grabbing}
+.ordr.ord-fly{position:relative;z-index:4}
+
+/* v31 p18 */
+/* RU131: the parts of a number appear one after another */
+@keyframes v31row{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#sheetBody.stag .bk-r,#sheetBody.stag .bk-t{animation:v31row .22s var(--ease-out) both;animation-delay:calc(var(--i,0) * 40ms)}
+@media (prefers-reduced-motion:reduce){#sheetBody.stag .bk-r,#sheetBody.stag .bk-t{animation:none}}
+
+/* v31 p19 */
+/* RU132: on a computer the tab row stays under the header, so a tab can be changed from the middle of a long tab */
+@media (min-width:760px){:root[data-skin="ddb"] .detail>.tabs{position:sticky;top:0;z-index:4;background:var(--panel);border-radius:var(--r2,8px) var(--r2,8px) 0 0}}
+@supports (animation-timeline:scroll()) and (timeline-scope:--a){@media (min-width:760px){:root[data-skin="ddb"] .detail>.tabs{top:62px}}}
+
+/* v31 p20 */
+/* Extras: one frame per card */
+@media (max-width:759px){#p-ext>.inner{background:none;border:0;padding:0}}
+#extBody .xempty{border:0;background:transparent;padding:18px 6px 6px;margin:0}
+
+/* v31 p21 */
+/* the PDF spinner stops when it is not shown */
+.busy:not(.on){visibility:hidden}
+.busy:not(.on) .spin{animation:none}
+/* HP numbers that roll do not repaint the columns below */
+@media (min-width:760px){.detail,.side,.skillcard{contain:layout paint style}}
+
+/* v31 p23 */
+/* PC tabs fit in the tab column with the wider typeface */
+@media (min-width:760px){:root[data-skin="ddb"] #tabs > .tab{text-transform:none;letter-spacing:0;font-size:calc(13.5px*var(--tz,1))}:root[data-skin="ddb"] #tabs > .tab svg.ico{width:14px;height:14px}}
+
+/* v31 p96 */
+.hp-pre[hidden],[data-tmpset][hidden]{display:none!important}
+.tmp-s .tmp-in{width:3.2em;min-height:44px;border:0;background:transparent;color:inherit;font:inherit;font-weight:700;font-size:calc(20px*var(--tz,1));text-align:center;-moz-appearance:textfield}
+.tmp-s .tmp-in::-webkit-outer-spin-button,.tmp-s .tmp-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.tmp-s .tmp-in:focus{outline:2px solid var(--ink,#fff);outline-offset:-2px;border-radius:4px}
+
+/* v31 p97: Roboto everywhere in the DDB skin, no condensed face */
+:root[data-skin="ddb"]{--f-sans:"Roboto","Helvetica Neue",Arial,sans-serif;--f-nar:"Roboto","Helvetica Neue",Arial,sans-serif;--f-type:"Roboto","Helvetica Neue",Arial,sans-serif}
+:root[data-skin="ddb"] body,:root[data-skin="ddb"] button,:root[data-skin="ddb"] input,:root[data-skin="ddb"] select,:root[data-skin="ddb"] textarea{font-family:var(--f-sans)}
+
+/* v31 p98 */
+:root[data-skin="ddb"] .bnav-ind,:root[data-skin="ddb"] #tabInd{background:transparent!important;background-image:none!important}
+:root[data-skin="ddb"] .bnav-ind::before{background:var(--ink,#fff)!important;width:28px}
+:root[data-skin="ddb"] #tabInd{background:var(--ink,#fff)!important}
+
+/* v31 p99 */
+.hcredit{margin:18px 0 0;text-align:center;font-size:max(12px,calc(12px*var(--tz,1)));letter-spacing:.04em;color:var(--ink-2,var(--muted,#9aa3ab))}
+
