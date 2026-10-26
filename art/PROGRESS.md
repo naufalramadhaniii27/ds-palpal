@@ -29,3 +29,8 @@ art/batch/scenes/class/monk-phone.png | check: pass
 art/batch/scenes/class/paladin-pc.png | check: pass
 art/batch/scenes/class/paladin-phone.png | check: pass
 art/batch/scenes/class/ranger-pc.png | check: pass
+art/batch/scenes/class/ranger-phone.png | check: pass
+art/batch/scenes/class/rogue-pc.png | check: pass
+art/batch/scenes/class/rogue-phone.png | check: pass
+art/batch/scenes/class/sorcerer-pc.png | check: pass
+art/batch/scenes/class/sorcerer-phone.png | check: pass
