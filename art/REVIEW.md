@@ -33,3 +33,5 @@ art/style-test/gnome-scene-pc.png | KEEP | Approved original retained under upda
 art/style-test/gnome-scene-phone.png | REDO | All characters and busy detail in upper45%; calm lower55%.
 art/style-test/texture-paper-warm.png | KEEP | Approved original retained under updated PART 00; no redo requested.
 art/style-test/wipe-mask.png | KEEP | Approved original retained under updated PART 00; no redo requested.
+
+Updated PART 00 completed: all ten listed WOW replacements are saved at their required paths and sizes; transparency checked where required. Phone layouts were recomposed for a calm lower55%. Eight worn replacements were removed, including the four additional removals explicitly approved in chat.

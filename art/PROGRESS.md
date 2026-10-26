@@ -7,3 +7,10 @@ art/batch/g0/emblem-paladin.png | check: pass
 art/batch/g0/emblem-wizard.png | check: pass
 art/batch/g0/emblem-warlock.png | check: pass
 art/batch/g0/frame-portrait.png | check: pass
+art/batch/g0/badge-level.png | check: pass
+art/batch/g0/divider-wood.png | check: pass
+art/batch/style-test/bard-emblem.png | check: pass
+art/batch/g0/home-inn-phone.png | check: pass
+art/batch/style-test/gnome-scene-phone.png | check: pass
+
+Part 00 (UPDATED): complete. Next: part 02, image02-0001, art/batch/scenes/class/barbarian-pc.png.
