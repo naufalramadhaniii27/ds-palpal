@@ -1,5 +1,5 @@
 # Part 21: Background emblems (16) (16 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 21-0001 [EMBLEM] - save as art/batch/emblems/background/acolyte.png
 Background emblem for Acolyte: a badge showing the main tools and symbols of this life path.

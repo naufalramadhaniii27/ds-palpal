@@ -1,5 +1,5 @@
 # Part 10: Weapon and armor icons (51 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 10-0001 [ICON] - save as art/batch/icons/items/weapons/club.png
 Weapon or armor icon, plain mundane version. Icon: Club: the club.

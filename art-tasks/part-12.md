@@ -1,5 +1,5 @@
 # Part 12: Creatures, companions, familiars and bastion (63 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 12-0001 [ICON] - save as art/batch/icons/wild-shape/wolf.png
 Wild Shape form, companion or familiar icon, friendly anime look. Icon: Wolf.

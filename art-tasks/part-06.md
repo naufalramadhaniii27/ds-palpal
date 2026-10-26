@@ -1,5 +1,5 @@
 # Part 06: Preset portraits (20 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 06-0001 [PORTRAIT] - save as art/batch/portraits/aasimar-a.png
 an aasimar with faint golden freckles of light and soft white-gold hair. Background colors: gold and pale blue.

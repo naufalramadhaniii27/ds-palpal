@@ -1,5 +1,5 @@
 # Part 02: Class scenes (26 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 02-0001 [PC] - save as art/batch/scenes/class/barbarian-pc.png
 Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in the snow laughing, one beats a big hide drum by a bonfire, war banners on spears.

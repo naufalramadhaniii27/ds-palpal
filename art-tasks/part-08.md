@@ -1,5 +1,5 @@
 # Part 08: Moments, empty states and system states (20 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 08-0001 [VIGNETTE] - save as art/batch/vignettes/moment/level-up.png
 A young hero lifted by a swirl of golden light and leaves, eyes shining, arms open.

@@ -1,5 +1,5 @@
 # Part 09: Small icon sheets (114 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 09-0001 [ICON] - save as art/batch/icons/conditions/blinded.png
 Condition icon. Icon: Blinded: a face-less hooded head with a cloth tied over the eyes.

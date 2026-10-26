@@ -1,5 +1,5 @@
 # Part 05: Subclass emblems (53 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
 
 IMAGE 05-0001 [EMBLEM] - save as art/batch/emblems/subclass/barbarian-path-of-the-berserker.png
 Subclass emblem for Path Of The Berserker (Barbarian): a jagged red-hot axe blade crossed with a snarling broken chain. Glow color: amber #E0A448.

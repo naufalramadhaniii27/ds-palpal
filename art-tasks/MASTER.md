@@ -1,17 +1,7 @@
 # Art production for the D&D character sheet app
 
-RULE 1, HIGHEST PRIORITY, OVERRIDES EVERYTHING ELSE: ZERO AI SLOP.
-The user is extremely strict about AI slop. Quality beats speed, quota and image count. One great image is worth more than ten generic ones.
-- Before saving ANY image, run the self-check below. If even one answer is NO, do not save it: regenerate (up to three times, changing the approach each time, for example a different pose, composition, object idea or detail set). If it still fails after three tries, save the best one, and write it in art/REVIEW.md as NEEDS REVIEW with the reason.
-- Self-check (all must be YES):
-  1. Is it WOW: striking, bold and epic at first glance, at least as impressive as the approved originals on art-g0?
-  2. Does it have specific, story-telling details instead of generic decoration?
-  3. Is every character or object clearly unique, with natural anatomy, hands and perspective?
-  4. Are materials, light direction and shadows clear and believable in the painted style?
-  5. Is it free of the AI slop listed in the QUALITY BAR (random ribbons or flowers, generic glowing star or orb as the whole idea, mush, broken anatomy, duplicates, ornament spam, text-like marks, bland stock composition)?
-  6. Does it follow its size, composition and transparency rule?
-- In art/PROGRESS.md write each finished path followed by "| check: pass" or "| check: needs review".
-- Never lower this bar to finish faster. If quota runs out, stop and report, do not rush.
+RULE 1, HIGHEST PRIORITY: ZERO AI SLOP, MAXIMUM WOW.
+The user is extremely strict about AI slop and wants every image to be WOW. Follow the QUALITY BAR below for every image. Never lower quality to finish faster. If quota runs out, stop and report.
 
 You are producing painted art with $imagegen for this repo. All task files are in the folder art-tasks/ on the branch art-tasks.
 
@@ -24,7 +14,7 @@ How to work:
 5. After every 5 images: update art/PROGRESS.md (one line per finished file path), commit and push to art-batch. Do not open a PR.
 6. Never change any other file in the repo. Never touch main.
 7. If you hit a usage limit or time limit, push what is done, update PROGRESS.md, and stop with a short report: last finished image and next one. When the user says continue, start again from step 1.
-8. If an image comes out realistic, 3D, photo-like, or generic and simple (see QUALITY BAR), regenerate it before saving, up to two times.
+8. If an image comes out realistic, 3D or photo-like, regenerate it.
 9. When everything is finished, write "ALL DONE" at the end of art/PROGRESS.md and report the image model used.
 
 
