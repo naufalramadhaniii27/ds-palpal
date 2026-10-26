@@ -1,5 +1,5 @@
 # Part 04: Background scenes (32 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and terrifying enemies (bloodthirsty dragons, merciless demons) where they fit.
 
 IMAGE 04-0001 [PC] - save as art/batch/scenes/background/acolyte-pc.png
 A young acolyte in a quiet temple courtyard sweeping petals, monks lighting incense, a bell tower.
