@@ -20,3 +20,8 @@ art/batch/emblems/class/wizard.png
 art/batch/emblems/class/artificer.png
 art/batch/g0/frame-portrait.png
 art/batch/g0/badge-level.png
+art/batch/g0/divider-wood.png
+art/batch/g0/corner-wood.png
+art/batch/g0/corner-metal.png
+art/batch/g0/corner-vine.png
+art/batch/g0/crest-app.png
