@@ -3,7 +3,7 @@
 You are producing painted art with $imagegen for this repo. All task files are in the folder art-tasks/ on the branch art-tasks.
 
 How to work:
-1. Fetch the branch art-tasks and read this file and the part files art-tasks/part-01.md to art-tasks/part-14.md.
+1. Fetch the branch art-tasks and read this file and the part files art-tasks/part-01.md to art-tasks/part-26.md.
 0. Before any commit run: git config user.name "naufalramadhaniii27" and git config user.email "284653644+naufalramadhaniii27@users.noreply.github.com". Never commit with any other email (pushes with a private email are blocked).
 2. Work on the branch art-batch (create it from main if it does not exist, otherwise check it out and pull).
 3. Read art/PROGRESS.md on art-batch if it exists. It lists finished images. Skip finished images and continue from the first unfinished one, part by part in order.
@@ -11,13 +11,24 @@ How to work:
 5. After every 5 images: update art/PROGRESS.md (one line per finished file path), commit and push to art-batch. Do not open a PR.
 6. Never change any other file in the repo. Never touch main.
 7. If you hit a usage limit or time limit, push what is done, update PROGRESS.md, and stop with a short report: last finished image and next one. When the user says continue, start again from step 1.
-8. If an image comes out realistic, 3D or photo-like, regenerate it once before saving.
+8. If an image comes out realistic, 3D, photo-like, or generic and simple (see QUALITY BAR), regenerate it before saving, up to two times.
 9. When everything is finished, write "ALL DONE" at the end of art/PROGRESS.md and report the image model used.
 
 Approved reference look: branch art-style-test, files art/style-test/gnome-scene-pc.png (scenes) and art/style-test/bard-emblem.png (icons and emblems). Match them.
 
 Style lock (identical for every image): it must look like a still frame from a classic Studio Ghibli anime film, with original designs. Characters and props: classic 2D anime cel animation look, clean thin hand-drawn outlines, flat cel colors with two or three tones, simple charming anime faces. Backgrounds: lush hand-painted gouache and watercolor exactly like Ghibli background art, with visible soft brush strokes and gentle color bleeds, which gives the fluid painted feel, warm natural light, lush greenery and soft clouds where they fit, cozy and whimsical but adventurous. Soft, slightly desaturated harmonious colors. Flat 2D look. NOT realistic, NOT a photo, NOT 3D, NOT digital concept art, NOT glossy.
 Do not include: any text, letters, numbers, runes that look like writing, logos, watermark, signature, UI elements, photorealism, 3D render look, lens flare, chromatic aberration, oversaturated neon, copies of existing film characters or scenes.
+
+QUALITY BAR, NO "AI SLOP" (applies to every image, read before each part):
+- Every image must look hand-made by a skilled animation studio artist, not like a generic AI picture. Reject and redo any image that looks generic.
+- Rich, specific, layered detail: foreground, midground and background in scenes, each with its own small story (a dropped glove, a cat stealing fish, laundry on a line, a child hiding behind a barrel, chipped paint, moss in cracks, patched clothes, scuffed boots, half-eaten bread, a letter tucked in a belt).
+- Characters are all different: varied ages, heights, body shapes, skin tones, hair, faces, clothing cut and wear. Nobody looks like a copy. Hands and poses are natural and doing something specific.
+- Materials read clearly: worn wood grain, hammered metal, woven cloth, cracked leather, wet stone, each with its own painted texture.
+- Light has a clear source and direction, with colored bounce light and soft cast shadows. Atmosphere and depth with aerial perspective.
+- Avoid the AI look: no airbrushed plastic skin, no glossy sheen everywhere, no random glowing particles filling the air, no symmetric perfect generic poses, no blurry mush details, no repeated duplicated objects, no meaningless ornament spam, no extra fingers or broken anatomy, no warped perspective.
+- Icons and emblems: each one a distinct, specific object with a unique silhouette and two or three meaningful small details that tell its story (a nick on a blade, a tied charm, a stitched patch, a tiny engraving pattern without letters). Hand-drawn line with slight natural variation, not vector-perfect. No generic glowing orb as a shortcut.
+- Grids: every icon in a sheet must be clearly different from its neighbours in shape and color balance.
+- Scenes still keep the calm center (PC) or calm bottom (phone) for the app cards. Put all the complexity in the allowed areas.
 
 SIZE AND COMPOSITION RULES (apply by the tag in brackets after each image number):
 [AS WRITTEN] follow the size and description in the image text exactly.
@@ -26,6 +37,7 @@ SIZE AND COMPOSITION RULES (apply by the tag in brackets after each image number
 [EMBLEM] 1024x1024, transparent background. One centered anime-style magic icon, straight-on front view, filling about 70 percent of the canvas with equal margins. Bold clean dark outline, flat cel colors with two tones, one hard-edged shadow, one small highlight, soft top-left light with a thin bright rim on the right. Only the listed glow color glows, kept tight to the emblem. Nothing outside the emblem. Readable as one bold shape at 64x64 pixels. No human faces.
 [PORTRAIT] 768x960 portrait. Head-and-shoulders anime portrait of one original adventurer, facing three-quarters toward the viewer, friendly confident expression, simple charming Ghibli-style face, clean thin outlines and cel shading. Background: soft painted watercolor wash in the listed colors with a few loose brush strokes, no scenery details. The face sits in the upper middle so it still works when cropped to a square or a circle.
 [VIGNETTE] 1024x1024. A small story illustration in a soft painted vignette: the scene sits in the middle and fades out to transparent at all edges with loose watercolor brush edges (transparent background around it). Simple composition, warm and charming, readable at 160x160 pixels.
+[CREATURE] 1024x1024, transparent background. Full-body anime-style illustration of the named creature in a clear three-quarter pose, filling about 75 percent of the canvas, bold clean dark outline, flat cel colors, Ghibli-like charm but true to the creature, readable at 96x96 pixels. Nothing outside the creature.
 [GRID] 2048x2048, transparent background. An icon sheet: 16 separate icons in an invisible 4 by 4 grid, each cell exactly 512x512 pixels, in the listed order (cell 1 top-left, cell 4 top-right, cell 16 bottom-right). Each icon centered in its own cell, filling about 65 percent of the cell, at least 48 pixels of empty space between neighbours, nothing crossing into another cell. No grid lines, no borders, no labels, no numbers, no text. Same icon style as [EMBLEM]: bold clean dark outline, flat cel colors with two tones, soft top-left light. All 16 icons share the same scale and line weight.
 
 Parts:
@@ -43,5 +55,17 @@ Parts:
 - part-12.md: Creatures, companions, familiars and bastion (5 images)
 - part-13.md: Other species communities (61) (122 images)
 - part-14.md: Magic item icons (1144) (72 images)
+- part-15.md: Feat icons (5 images)
+- part-16.md: Rules icons: invocations, metamagic, maneuvers, weapon properties, languages, resources, actions (8 images)
+- part-17.md: Class feature icons (9 images)
+- part-18.md: Subclass feature icons (32 images)
+- part-19.md: Extra subclass emblems (other sources and homebrew) (41 images)
+- part-20.md: Species emblems (71 communities) (5 images)
+- part-21.md: Background emblems (16) (1 images)
+- part-22.md: Preset portraits for the other 61 communities (122 images)
+- part-23.md: Creature art (116) (116 images)
+- part-24.md: Adventuring gear, packs and tools icons (8 images)
+- part-25.md: Environment scenes for music, combat and ambience (28 images)
+- part-26.md: UI ornaments and animation sprites (12 images)
 
-Total: 486 images, 462 still to make (part 02 to part 14).
+Total: 873 images, 849 still to make (part 02 to part 26).
