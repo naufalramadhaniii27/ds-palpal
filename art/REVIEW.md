@@ -1,3 +1,7 @@
+# Current direction: Part 00B
+
+Updated MASTER.md at1f95e4f supersedes earlier class-emblem and ornament approvals. All13 class emblems are being redrawn at art/batch/emblems/class/ using art-tasks/ref/emblem-reference.png as their sole drawing-style reference; seven ornaments are being replaced in the same anime-prop style. Earlier class-emblem variants are superseded. Completion paths are recorded in PROGRESS.md without quality annotations.
+
 # Part 00: updated WOW review
 
 Supersedes the prior worn-prop review. Source: updated art-tasks/MASTER.md at e44fece. Bold, epic, polished 2D painted fantasy art is the approved direction. KEEP means use the original on art-g0 or art-style-test; it does not endorse an earlier worn replacement. REDO completion is tracked in PROGRESS.md.
