@@ -25,3 +25,8 @@ art/batch/g0/corner-wood.png
 art/batch/g0/corner-metal.png
 art/batch/g0/corner-vine.png
 art/batch/g0/crest-app.png
+art/batch/scenes/class/barbarian-pc.png
+art/batch/scenes/class/barbarian-phone.png
+art/batch/scenes/class/bard-pc.png
+art/batch/scenes/class/bard-phone.png
+art/batch/scenes/class/cleric-pc.png
