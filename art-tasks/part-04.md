@@ -1,5 +1,5 @@
 # Part 04: Background scenes (32 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 04-0001 [PC] - save as art/batch/scenes/background/acolyte-pc.png
 A young acolyte in a quiet temple courtyard sweeping petals, monks lighting incense, a bell tower.

@@ -1,5 +1,5 @@
 # Part 16: Rules icons: invocations, metamagic, maneuvers, weapon properties, languages, resources, actions (127 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 16-0001 [ICON] - save as art/batch/icons/rules/invocations/eldritch-invocation-agonizing-blast.png
 Rules icon. Icon: Eldritch Invocation Agonizing Blast.

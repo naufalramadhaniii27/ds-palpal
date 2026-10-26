@@ -1,5 +1,5 @@
 # Part 13: Other species communities (61) (122 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 13-0001 [PC] - save as art/batch/scenes/species/aarakocra-pc.png
 The Aarakocra community: bird-folk nests on cliff peaks above clouds, gliding, weaving feather banners, chicks learning to fly.

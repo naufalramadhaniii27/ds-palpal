@@ -1,5 +1,18 @@
 # Art production for the D&D character sheet app
 
+RULE 1, HIGHEST PRIORITY, OVERRIDES EVERYTHING ELSE: ZERO AI SLOP.
+The user is extremely strict about AI slop. Quality beats speed, quota and image count. One great image is worth more than ten generic ones.
+- Before saving ANY image, run the self-check below. If even one answer is NO, do not save it: regenerate (up to three times, changing the approach each time, for example a different pose, composition, object idea or detail set). If it still fails after three tries, save the best one, and write it in art/REVIEW.md as NEEDS REVIEW with the reason.
+- Self-check (all must be YES):
+  1. Would a professional animation studio artist sign this as their own hand-painted work?
+  2. Does it have specific, story-telling details instead of generic decoration?
+  3. Is every character or object clearly unique, with natural anatomy, hands and perspective?
+  4. Are materials, light direction and shadows clear and believable in the painted style?
+  5. Is it free of the AI look listed in the QUALITY BAR (plastic skin, glossy sheen, glowing particle spam, gold filigree spam, ribbons and flowers for no reason, perfect symmetry, glowing orb or star as the idea, vector clip-art, mush, duplicates, warped text-like marks)?
+  6. Does it follow its size, composition and transparency rule?
+- In art/PROGRESS.md write each finished path followed by "| check: pass" or "| check: needs review".
+- Never lower this bar to finish faster. If quota runs out, stop and report, do not rush.
+
 You are producing painted art with $imagegen for this repo. All task files are in the folder art-tasks/ on the branch art-tasks.
 
 How to work:

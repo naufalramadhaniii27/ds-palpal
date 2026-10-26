@@ -1,5 +1,5 @@
 # Part 22: Preset portraits for the other 61 communities (122 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 22-0001 [PORTRAIT] - save as art/batch/portraits/aarakocra-a.png
 a young adventurer of the Aarakocra people, with the typical features of the Aarakocra. Background colors: two soft colors that fit them.

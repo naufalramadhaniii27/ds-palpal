@@ -1,5 +1,5 @@
 # Part 20: Species emblems (71 communities) (71 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 20-0001 [EMBLEM] - save as art/batch/emblems/species/aasimar.png
 Species emblem for the Aasimar people: a heraldic-style badge (no letters) with symbols of their culture and homeland.

@@ -1,5 +1,5 @@
 # Part 03: PHB species scenes (18 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 03-0001 [PC] - save as art/batch/scenes/species/aasimar-pc.png
 Aasimar of the Protector, Scourge and Fallen kinds at a sunlit marble terrace among clouds: one with soft glowing wings tends a garden, one with radiant eyes trains with a spear, one with grey-ash wings sits quietly reading, children chasing light motes.

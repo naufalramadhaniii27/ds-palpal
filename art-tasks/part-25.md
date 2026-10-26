@@ -1,5 +1,5 @@
 # Part 25: Environment scenes for music, combat and ambience (28 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 25-0001 [PC] - save as art/batch/scenes/environment/dungeon-pc.png
 A stone dungeon corridor with torches, cold blue fog, an iron door, adventurers sneaking with a lantern.

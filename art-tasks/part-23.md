@@ -1,5 +1,5 @@
 # Part 23: Creature art (116) (116 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 23-0001 [CREATURE] - save as art/batch/creatures/beast/ape.png
 Ape: a medium beast.

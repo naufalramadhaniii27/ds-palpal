@@ -1,5 +1,5 @@
 # Part 15: Feat icons (79 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 15-0001 [ICON] - save as art/batch/icons/feats/alert.png
 Feat icon showing the idea of the named feat. Icon: Alert.

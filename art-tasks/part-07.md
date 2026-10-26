@@ -1,5 +1,5 @@
 # Part 07: Builder steps, sheet tabs and screens (44 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 07-0001 [PC] - save as art/batch/scenes/builder/class-pc.png
 A grand training hall where heroes of every class practice side by side: a wizard with floating books, a fighter at a sword rack, a druid with a fox, a bard tuning a lute, weapons and banners (no text).

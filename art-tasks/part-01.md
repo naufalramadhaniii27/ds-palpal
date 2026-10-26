@@ -1,5 +1,5 @@
 # Part 01: G0 style keys (24 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 01-0001 [AS WRITTEN] - save as art/batch/g0/emblem-barbarian.png
 STYLE FIRST: a classic Studio Ghibli style 2D hand-drawn anime film illustration (original design), cel-shaded with clean outlines and hand-painted watercolor backgrounds. It must clearly look like a frame from a classic animated movie, NOT realistic, NOT a photo, NOT a 3D render, NOT digital concept art.

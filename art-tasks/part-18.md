@@ -1,5 +1,5 @@
 # Part 18: Subclass feature icons (502 images)
-Apply the MASTER.md rules and style lock to every image.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP comes first: run the self-check before saving each image.
 
 IMAGE 18-0001 [ICON] - save as art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 Subclass feature icon showing the named feature. Icon: Psionic Sorcery (Aberrant Mind subclass feature).
