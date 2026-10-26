@@ -34,3 +34,8 @@ art/batch/scenes/class/rogue-pc.png | check: pass
 art/batch/scenes/class/rogue-phone.png | check: pass
 art/batch/scenes/class/sorcerer-pc.png | check: pass
 art/batch/scenes/class/sorcerer-phone.png | check: pass
+art/batch/scenes/class/warlock-pc.png | check: pass
+art/batch/scenes/class/warlock-phone.png | check: pass
+art/batch/scenes/class/wizard-pc.png | check: pass
+art/batch/scenes/class/wizard-phone.png | check: pass
+art/batch/scenes/class/artificer-pc.png | check: pass
