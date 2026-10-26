@@ -1,5 +1,5 @@
 # Part 16: Rules icons: invocations, metamagic, maneuvers, weapon properties, languages, resources, actions (127 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 16-0001 [ICON] - save as art/batch/icons/rules/invocations/eldritch-invocation-agonizing-blast.png
 Rules icon. Icon: Eldritch Invocation Agonizing Blast.

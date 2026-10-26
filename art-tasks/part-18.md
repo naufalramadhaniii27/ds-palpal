@@ -1,5 +1,5 @@
 # Part 18: Subclass feature icons (502 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 18-0001 [ICON] - save as art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 Subclass feature icon showing the named feature. Icon: Psionic Sorcery (Aberrant Mind subclass feature).

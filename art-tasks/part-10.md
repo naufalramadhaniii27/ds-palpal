@@ -1,5 +1,5 @@
 # Part 10: Weapon and armor icons (51 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 10-0001 [ICON] - save as art/batch/icons/items/weapons/club.png
 Weapon or armor icon, plain mundane version. Icon: Club: the club.

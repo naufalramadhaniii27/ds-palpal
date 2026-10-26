@@ -1,5 +1,5 @@
 # Part 14: Magic item icons (1144) (1144 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 14-0001 [ICON] - save as art/batch/icons/items/magic/uncommon/adamantine-armor.png
 Magic item icon. Draw the item as the object itself, with a soft magical glow matching its rarity (common white, uncommon green, rare blue, very rare purple, legendary orange, artifact red). Icon: Adamantine Armor (Armor, Uncommon).

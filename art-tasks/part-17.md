@@ -1,5 +1,5 @@
 # Part 17: Class feature icons (137 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 17-0001 [ICON] - save as art/batch/icons/features/class/barbarian/brutal-strike.png
 Class feature icon showing the named feature. Icon: Brutal Strike (Barbarian class feature).

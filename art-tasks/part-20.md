@@ -1,5 +1,5 @@
 # Part 20: Species emblems (71 communities) (71 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 20-0001 [EMBLEM] - save as art/batch/emblems/species/aasimar.png
 Species emblem for the Aasimar people: a heraldic-style badge (no letters) with symbols of their culture and homeland.

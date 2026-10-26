@@ -1,5 +1,5 @@
 # Part 11: Spell icons (595) (595 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 11-0001 [ICON] - save as art/batch/icons/spells/cantrips/blade-ward.png
 Spell icon showing the visual effect of the named spell, glow color follows the school. Icon: Blade Ward (cantrip Abjuration, glow blue).
