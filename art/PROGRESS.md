@@ -61,3 +61,10 @@ art/batch/scenes/species/elf-pc.png
 art/batch/scenes/species/elf-phone.png
 art/batch/scenes/species/goliath-pc.png
 art/batch/scenes/species/goliath-phone.png
+
+## batch-001 v3
+art/batch/scenes/class/barbarian-pc.png
+art/batch/scenes/class/barbarian-phone.png
+art/batch/scenes/class/bard-pc.png
+art/batch/scenes/class/bard-phone.png
+art/batch/scenes/class/cleric-pc.png
