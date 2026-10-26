@@ -1,5 +1,5 @@
 # Part 02: Class scenes (26 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and terrifying enemies (bloodthirsty dragons, merciless demons) where they fit.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and a terrifying enemy only when the Variation names one.
 
 IMAGE 02-0001 [PC] - save as art/batch/scenes/class/barbarian-pc.png
 Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in bloody snow, one beats a big hide drum by a bonfire, war banners on spears.

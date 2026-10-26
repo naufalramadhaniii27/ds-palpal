@@ -1,5 +1,5 @@
 # Part 22: Preset portraits for the other 61 communities (122 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and terrifying enemies (bloodthirsty dragons, merciless demons) where they fit.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and a terrifying enemy only when the Variation names one.
 
 IMAGE 22-0001 [PORTRAIT] - save as art/batch/portraits/aarakocra-a.png
 a young adventurer of the Aarakocra people, with the typical features of the Aarakocra. Background colors: two soft colors that fit them.
