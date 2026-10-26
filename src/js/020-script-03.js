@@ -1,0 +1,1 @@
+try{ if(sessionStorage.getItem("mi-sw")){ sessionStorage.removeItem("mi-sw"); document.documentElement.classList.add("mi-arrive"); } }catch(e){}

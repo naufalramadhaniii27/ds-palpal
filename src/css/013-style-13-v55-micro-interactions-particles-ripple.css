@@ -1,0 +1,271 @@
+/* === v55 micro-interactions (particles, ripple, jelly toggles, card tilt, entrance) === */
+.mi-fx{position:fixed;left:0;top:0;z-index:var(--z-fx);pointer-events:none;will-change:transform,opacity}
+.mi-dot{width:7px;height:7px;border-radius:50%}
+.mi-star{width:12px;height:12px;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.mi-spark{width:3px;height:12px;border-radius:2px}
+.mi-ring{width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid currentColor;background:transparent!important}
+.mi-rip{position:fixed;z-index:var(--z-rip);pointer-events:none;overflow:hidden}
+.mi-rip i{position:absolute;border-radius:50%;background:currentColor;transform:scale(0)}
+.mi-jelly{animation:miJelly .45s var(--mi-ease)}
+@keyframes miJelly{0%{transform:scale(1)}30%{transform:scale(1.22,.82)}55%{transform:scale(.9,1.1)}75%{transform:scale(1.05,.97)}100%{transform:scale(1)}}
+#homeV .hcard{position:relative;transition:transform .45s var(--mi-ease),box-shadow .3s}
+#homeV .hcard.mi-tilt{transition:transform .08s linear,box-shadow .3s;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+#homeV .hcard::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),transparent 45%)}
+#homeV .hcard.mi-tilt::after{opacity:1}
+#homeV .hcard.mi-in{animation:miCardIn var(--mi-slow) var(--mi-ease) both}
+@keyframes miCardIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+#homeV .hcreate{transition:transform .35s var(--mi-ease)}
+
+@media (prefers-reduced-motion:reduce){.mi-jelly,#homeV .hcard.mi-in{animation:none}#homeV .hcard,#homeV .hcreate{transition:none}}
+/* --- v55 round 3 --- */
+/* theme switch: the new theme grows as a circle from the button you pressed */
+html.mi-themevt::view-transition-old(root),html.mi-themevt::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.mi-themevt::view-transition-new(root){animation:miReveal .6s var(--mi-ease)}
+@keyframes miReveal{from{clip-path:circle(0 at var(--vtx,50%) var(--vty,50%))}to{clip-path:circle(150vmax at var(--vtx,50%) var(--vty,50%))}}
+/* a number that changed (ability, AC, initiative, speed...) bumps and glows */
+.mi-bump{animation:miBump .6s var(--mi-ease)}
+@keyframes miBump{0%{transform:scale(1)}25%{transform:scale(1.35);color:var(--stamp)}100%{transform:scale(1)}}
+/* low Hit Points: the heart beats (not at 0, that has its own pulse) */
+#vbHp:not(.hp0):has(#vbBar[data-lv="low"]) .vb-hi,#hpBox:not(.hp0):has(#hpBar[data-lv="low"]) .hp-h svg{animation:miBeat 1.05s ease-in-out infinite;color:var(--bad,#e5534b)}
+@keyframes miBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.28)}28%{transform:scale(1)}42%{transform:scale(1.18)}70%{transform:scale(1)}}
+/* the page you switch to in the bottom bar pops */
+.bnav button.on svg{transform:translateY(-2px) scale(1.06)}/* a transition (already on the icon), so swiping past pages never bounces */
+@keyframes miNavPop{0%{transform:scale(.7) translateY(3px)}55%{transform:scale(1.18) translateY(-2px)}100%{transform:none}}
+/* the toast icon pops in */
+.toast.on .tico{animation:miNavPop .45s .05s var(--mi-ease) both}
+/* Level Up when you have the XP: it breathes and a shine passes over it */
+.btn.pri.lvup{position:relative;overflow:hidden;animation:miBreath 2.2s ease-in-out 3}/* three breaths, then still: a loop would restyle every frame */
+/* Star Border replaces the shine: a bright arc runs around the edge (a spinning square behind, a cover in the middle; transform only) */
+.btn.pri.lvup{isolation:isolate}
+@keyframes miBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes miShine{0%,55%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(330%) skewX(-18deg)}}
+/* the XP bar shines after you add XP */
+.xpbar{position:relative}
+.xpbar.mi-shine::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:translateX(-100%);animation:miSweep .9s ease-out}
+@keyframes miSweep{to{transform:translateX(100%)}}
+.mi-float{position:fixed;left:0;top:0;z-index:var(--z-float);pointer-events:none;font-family:var(--f-nar);font-weight:800;font-size:22px;text-shadow:0 1px 0 rgba(0,0,0,.4);white-space:nowrap}
+/* level up banner */
+.mi-lv{position:fixed;left:50%;top:38%;z-index:var(--z-banner);pointer-events:none;text-align:center;font-family:var(--f-nar);font-weight:900;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.mi-lv b{display:block;font-size:clamp(40px,9vw,84px);background:linear-gradient(180deg,#fff6c9,#ffc93c 55%,#d98a00);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
+.mi-lv span{display:block;margin-top:8px;font-size:clamp(14px,3vw,20px);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+/* coins */
+.mi-coin{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3b0,#ffc93c 45%,#b97a00)!important;box-shadow:inset 0 0 0 1.5px #9a6400}
+/* desktop: top bar icons react on hover */
+@media (hover:hover) and (pointer:fine){
+ #srchBtn:hover svg{animation:miWiggle .5s ease}
+ #bldBtn:hover svg{animation:miSwing .55s ease;transform-origin:20% 80%}
+ #themeBtn:hover svg{animation:miSpin .7s var(--mi-ease)}
+ #pdfBtn:hover svg{animation:miDrop .6s ease}
+ .restb:hover svg,[data-rest]:hover>svg{animation:miFlick .6s ease}
+ #rosterBtn:hover svg,#editBtn:hover svg,#moreBtn:hover svg{animation:miWiggle .5s ease}
+ /* spotlight that follows the cursor on ability scores and the stat tiles */
+ .ab::after,.tiles .tile::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s;background:radial-gradient(130px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--stamp) 24%,transparent),transparent 65%)}
+ .ab:hover::after,.tiles .tile:hover::after{opacity:1}
+ .tiles .tile{position:relative}
+ #homeV .hhead h1{background:linear-gradient(110deg,var(--ink) 42%,color-mix(in srgb,var(--ink) 35%,#fff) 50%,var(--ink) 58%) 100% 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.1s ease}
+ #homeV .hhead h1:hover{background-position:0 0}
+}
+@keyframes miWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}}
+@keyframes miSwing{0%,100%{transform:rotate(0)}35%{transform:rotate(-28deg)}70%{transform:rotate(8deg)}}
+@keyframes miSpin{to{transform:rotate(180deg)}}
+@keyframes miDrop{0%,100%{transform:translateY(0)}40%{transform:translateY(4px)}70%{transform:translateY(-2px)}}
+@keyframes miFlick{0%,100%{transform:scale(1)}30%{transform:scale(1.15,.9)}60%{transform:scale(.95,1.1)}}
+@media (prefers-reduced-motion:reduce){.mi-bump,#vbHp .vb-hi,#hpBox .hp-h svg,.toast.on .tico,.btn.pri.lvup,.btn.pri.lvup::after,.xpbar.mi-shine::after{animation:none!important}html.mi-themevt::view-transition-new(root){animation:none}}
+/* --- v55 round 4: seamless character switch --- */
+html.mi-arrive body{animation:miArrive .45s ease-out both}
+@keyframes miArrive{from{opacity:0}to{opacity:1}}
+.mi-sw{position:fixed;left:0;top:0;z-index:var(--z-cover);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;border-radius:3px;overflow:hidden}
+.mi-sw i{position:absolute;inset:0;background:var(--paper);opacity:0}
+@media (prefers-reduced-motion:reduce){html.mi-arrive body{animation:none}}
+/* --- v55 round 5: search, inventory, conditions --- */
+.gs-r mark{background:none;color:var(--stamp);font-weight:800;padding:0}
+.irow.mi-new{position:relative}.irow.mi-new::after{content:"";position:absolute;inset:0;background:var(--stamp);pointer-events:none;opacity:0;border-radius:inherit;animation:miNewRow 1.2s ease-out}
+@keyframes miNewRow{from{opacity:.32}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.irow.mi-new{animation:none}}
+/* --- v55: ambience. While a condition or state lasts, the screen edges carry its mood: a soft colour at the sides,
+   a vignette, a thin frame, and a few slow particles. Compositor only (opacity and transform), under every dialog,
+   never takes clicks. Several can run together. --- */
+#miAmb{position:fixed;inset:0;z-index:var(--z-amb);pointer-events:none;overflow:hidden;contain:strict}
+#miAmb .ma{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1s ease,visibility 0s linear 1s}
+#miAmb .ma.on{opacity:1;visibility:visible;transition:opacity 1s ease,visibility 0s}
+#miAmb .ma:not(.on),#miAmb .ma:not(.on) *{animation-play-state:paused!important}
+#miAmb .e{position:absolute;will-change:opacity,transform;animation:miAPulse var(--t,3.6s) ease-in-out infinite}
+#miAmb .e.l{left:0;top:0;bottom:0;width:var(--ew,64px);background:linear-gradient(90deg,rgba(var(--c),var(--a)),rgba(var(--c),calc(var(--a)*.3)) 45%,transparent);transform-origin:left center}
+#miAmb .e.r{right:0;top:0;bottom:0;width:var(--ew,64px);background:linear-gradient(270deg,rgba(var(--c),var(--a)),rgba(var(--c),calc(var(--a)*.3)) 45%,transparent);transform-origin:right center;animation-delay:calc(var(--t,3.6s)/-2)}
+#miAmb .e.t{left:0;right:0;top:0;height:70px;background:linear-gradient(180deg,rgba(var(--c),var(--a)),transparent);transform-origin:top center}
+#miAmb .e.b{left:0;right:0;bottom:0;height:80px;background:linear-gradient(0deg,rgba(var(--c),var(--a)),transparent);transform-origin:bottom center}
+#miAmb .e.h{background-image:repeating-linear-gradient(135deg,rgba(var(--hc),.22) 0 3px,transparent 3px 11px);-webkit-mask:linear-gradient(90deg,#000,transparent);mask:linear-gradient(90deg,#000,transparent)}
+#miAmb .e.h.r{-webkit-mask:linear-gradient(270deg,#000,transparent);mask:linear-gradient(270deg,#000,transparent)}
+#miAmb .v{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 56%,rgba(var(--c),var(--a)) 100%);will-change:opacity;animation:miAPulse var(--t,5s) ease-in-out infinite}
+#miAmb .f{position:absolute;inset:0;box-shadow:inset 0 0 0 2px rgba(var(--c),calc(var(--a)*.9)),inset 0 0 30px rgba(var(--c),calc(var(--a)*.6));will-change:opacity;animation:miAPulse var(--t,3s) ease-in-out infinite}
+#miAmb .beat{animation-name:miABeat}
+#miAmb .shiver{animation:miAPulse var(--t) ease-in-out infinite,miAShiver 3.4s linear infinite}
+#miAmb .squeeze{animation:miAPulse var(--t) ease-in-out infinite,miASqueeze 3.2s ease-in-out infinite}
+#miAmb .p{position:absolute;display:block;will-change:transform,opacity;color:rgb(var(--pc));animation-delay:var(--dl,0s);animation-duration:var(--d,10s);animation-iteration-count:infinite}
+#miAmb .p.rise{bottom:-20px;animation-name:miARiseL;animation-timing-function:linear}
+#miAmb .p.rise.sr{animation-name:miARiseR}
+#miAmb .p.fall.sr{animation-name:miAFallR}
+#miAmb .p.leaf.sr{animation-name:miALeafR}
+#miAmb .p.bubble{width:var(--s);height:var(--s);border-radius:50%;border:1.5px solid rgba(var(--pc),.6);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.4),rgba(var(--pc),.14) 60%,transparent)}
+#miAmb .p.ember{width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,rgba(255,240,200,.95),rgba(var(--pc),.85) 45%,transparent 70%)}
+#miAmb .p.heart svg{display:block;width:var(--s);height:var(--s);fill:rgba(var(--pc),.75)}
+#miAmb .p.z{font-family:var(--f-nar);font-weight:800;font-size:var(--s);line-height:1;color:rgba(var(--pc),.8)}
+#miAmb .p.wisp{width:var(--s);height:calc(var(--s)*1.8);border-radius:50%;background:radial-gradient(ellipse,rgba(var(--pc),.55),transparent 70%)}
+#miAmb .p.tw{animation-name:miATwinkle;animation-timing-function:ease-in-out}
+#miAmb .p.mote{width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(var(--pc),.6) 50%,transparent 72%)}
+#miAmb .p.star{width:var(--s);height:var(--s);background:rgb(var(--pc));clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+#miAmb .p.spark{width:2px;height:var(--s);border-radius:2px;background:rgb(var(--pc));box-shadow:0 0 6px rgba(var(--pc),.9);animation-name:miAFlicker;animation-timing-function:steps(1,end)}
+#miAmb .p.dust{bottom:6px;width:var(--s);height:var(--s);border-radius:50%;background:rgba(var(--pc),.55);animation-name:miADust;animation-timing-function:ease-out}
+#miAmb .p.fall{top:-20px;animation-name:miAFallL;animation-timing-function:linear}
+#miAmb .p.ash{width:var(--s);height:var(--s);border-radius:50%;background:rgba(var(--pc),.7)}
+#miAmb .p.link{width:var(--s);height:calc(var(--s)*.62);border-radius:40%;border:2px solid rgba(var(--pc),.75)}
+#miAmb .p.leaf{top:-24px;width:var(--s);height:calc(var(--s)*.6);border-radius:0 80% 0 80%;background:linear-gradient(135deg,rgba(var(--pc),.9),rgba(var(--pc),.5));animation-name:miALeafL;animation-timing-function:linear}
+#miAmb.mi-top{z-index:var(--z-amb-top)}
+#miAmb .p.wave{top:50%;width:60px;height:60px;margin:-30px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
+@keyframes miAPulse{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes miABeat{0%,100%{opacity:.3}14%{opacity:1}28%{opacity:.45}42%{opacity:.85}70%{opacity:.3}}
+@keyframes miAShiver{0%,86%,100%{transform:none}88%{transform:translateX(-3px)}90%{transform:translateX(3px)}92%{transform:translateX(-2px)}94%{transform:translateX(2px)}}
+@keyframes miASqueeze{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.45)}}
+@keyframes miARiseL{0%{transform:translate(0,0);opacity:0}8%{opacity:.85}30%{transform:translate(6px,-30vh)}55%{transform:translate(-6px,-55vh)}80%{opacity:.6}100%{transform:translate(6px,-104vh);opacity:0}}
+@keyframes miARiseR{0%{transform:translate(0,0);opacity:0}8%{opacity:.85}30%{transform:translate(-6px,-30vh)}55%{transform:translate(6px,-55vh)}80%{opacity:.6}100%{transform:translate(-6px,-104vh);opacity:0}}
+@keyframes miAFallL{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}50%{transform:translate(8px,52vh)}85%{opacity:.55}100%{transform:translate(-8px,104vh);opacity:0}}
+@keyframes miAFallR{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}50%{transform:translate(-8px,52vh)}85%{opacity:.55}100%{transform:translate(8px,104vh);opacity:0}}
+@keyframes miALeafL{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(12px,34vh) rotate(160deg)}65%{transform:translate(-12px,68vh) rotate(320deg)}90%{opacity:.6}100%{transform:translate(6px,104vh) rotate(460deg);opacity:0}}
+@keyframes miALeafR{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(-12px,34vh) rotate(-160deg)}65%{transform:translate(12px,68vh) rotate(-320deg)}90%{opacity:.6}100%{transform:translate(-6px,104vh) rotate(-460deg);opacity:0}}
+@keyframes miARise{0%{transform:translate(0,0);opacity:0}8%{opacity:.85}30%{transform:translate(var(--w,6px),-30vh)}55%{transform:translate(calc(var(--w,6px)*-1),-55vh)}80%{opacity:.6}100%{transform:translate(var(--w,6px),-104vh);opacity:0}}
+@keyframes miATwinkle{0%,100%{opacity:0;transform:scale(.5) rotate(0)}50%{opacity:.9;transform:scale(1.15) rotate(40deg)}}
+@keyframes miAFlicker{0%,100%{opacity:0}6%{opacity:1}9%{opacity:.2}12%{opacity:.9}16%{opacity:0}}
+@keyframes miADust{0%{opacity:0;transform:translate(0,0)}25%{opacity:.7}100%{opacity:0;transform:translate(var(--w,10px),-36px)}}
+@keyframes miAFall{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}50%{transform:translate(var(--w,6px),52vh)}85%{opacity:.55}100%{transform:translate(calc(var(--w,6px)*-1),104vh);opacity:0}}
+@keyframes miALeaf{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(calc(var(--w,8px)*2),34vh) rotate(160deg)}65%{transform:translate(calc(var(--w,8px)*-2),68vh) rotate(320deg)}90%{opacity:.6}100%{transform:translate(var(--w,8px),104vh) rotate(460deg);opacity:0}}
+@keyframes miAWave{0%{opacity:.6;transform:scale(.3)}100%{opacity:0;transform:scale(3.2)}}
+@media (max-width:759px){#miAmb{--ew:42px}#miAmb .e.t{height:44px}#miAmb .e.b{height:50px}}
+@media (prefers-reduced-motion:reduce){#miAmb .e,#miAmb .v,#miAmb .f{animation:none!important;opacity:.75}#miAmb .p{display:none}}
+/* --- v55: Peek Rating for slots and uses (React Bits idea). Hover lifts a wave up to the pointer and previews the result;
+   a click pops the boxes that changed one after another. Transform and colour only. --- */
+.bx[data-k].mi-peek,#dsS .pip.mi-peek,#dsF .pip.mi-peek{transform:translateY(-4px) scale(1.06)}
+.bx[data-k].mi-ghost{background:color-mix(in srgb,var(--stamp) 45%,var(--panel));border-color:var(--stamp)}
+#dsS .pip.mi-ghost{background:color-mix(in srgb,var(--good) 45%,transparent);border-color:var(--good)}
+#dsF .pip.mi-ghost{background:color-mix(in srgb,var(--bad) 45%,transparent);border-color:var(--bad)}
+.bx[data-k].mi-unghost,#dsS .pip.mi-unghost,#dsF .pip.mi-unghost{opacity:.4}
+.bx[data-k],#dsS .pip,#dsF .pip{transition:background-color .2s,border-color .2s,opacity .2s,transform .3s var(--mi-ease)}
+/* D&D Beyond skin draws the boxes and circles with ::before */
+:root[data-skin="ddb"] .bx[data-k].mi-ghost{background:transparent}
+:root[data-skin="ddb"] .bx[data-k].mi-ghost::before{background:color-mix(in srgb,var(--prof,var(--stamp)) 45%,var(--panel));border-color:var(--prof,var(--stamp))}
+:root[data-skin="ddb"] #dsS .pip.mi-ghost::before{background:color-mix(in srgb,var(--good) 45%,transparent);border-color:var(--good)}
+:root[data-skin="ddb"] #dsF .pip.mi-ghost::before{background:color-mix(in srgb,var(--bad) 45%,transparent);border-color:var(--bad)}
+@media (prefers-reduced-motion:reduce){.bx[data-k].mi-peek,#dsS .pip.mi-peek,#dsF .pip.mi-peek{transform:none}}
+/* --- F1: card to detail. A light shell grows from the card into the panel (compositor transform), the panel content fades in,
+   and on close the shell shrinks back into the card. The panel edge glows in the colour of what it shows. --- */
+#sheet.mi-flip{transition:none!important;transform:translate(-50%,-50%) scale(1)!important}
+@media (max-width:759px){#sheet.mi-flip{transform:translateY(0)!important}}
+#sheet.mi-gone{opacity:0!important}
+.mi-shell{position:fixed;left:0;top:0;z-index:var(--z-fx);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;background:var(--panel);border:1px solid rgba(var(--mi-k,180,180,190),.7);box-shadow:0 0 0 1px rgba(var(--mi-k,180,180,190),.25),0 0 40px -6px rgba(var(--mi-k,180,180,190),.55),0 30px 70px -30px rgba(0,0,0,.6)}
+#sheet.mi-kind{box-shadow:0 0 0 1px rgba(var(--mi-k),.5),0 0 38px -10px rgba(var(--mi-k),.55),0 40px 90px -30px rgba(0,0,0,.6)}
+#sheetBody.mi-fb{-webkit-mask:linear-gradient(#000 calc(100% - 26px),transparent);mask:linear-gradient(#000 calc(100% - 26px),transparent)}
+#sheetBody.mi-ft{-webkit-mask:linear-gradient(transparent,#000 22px);mask:linear-gradient(transparent,#000 22px)}
+#sheetBody.mi-ft.mi-fb{-webkit-mask:linear-gradient(transparent,#000 22px,#000 calc(100% - 26px),transparent);mask:linear-gradient(transparent,#000 22px,#000 calc(100% - 26px),transparent)}
+.mi-rip.mi-glow i{background:radial-gradient(circle,rgba(var(--mi-k,200,200,210),.55),rgba(var(--mi-k,200,200,210),.18) 45%,transparent 70%)}
+@media (hover:none){#homeV .hcard:active{transform:scale(.985);transition:transform var(--mi-fast) var(--mi-ease)}}
+html.mi-off .mi-shell{display:none!important}
+/* --- F2: odometer digits, liquid HP bar, scrub fields --- */
+.mi-odo{display:inline-flex;line-height:1;vertical-align:baseline}
+.mi-odo>span{display:inline-block;height:1em;overflow:hidden;position:relative}
+.mi-odo>span>i{display:block;font-style:normal;white-space:pre;line-height:1;transition:transform var(--mi-slow) var(--mi-ease)}
+html.mi-off .mi-odo>span>i{transition:none}
+.bar.mi-liq,.vb-bar.mi-liq{isolation:isolate}
+.mi-wave{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;transform:translateX(calc(var(--p,100%) - 100%));transition:transform .45s var(--mi-ease);will-change:transform}
+.mi-wave::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:200%;background:repeating-linear-gradient(100deg,rgba(255,255,255,0) 0 18px,rgba(255,255,255,.28) 26px,rgba(255,255,255,0) 34px 52px);opacity:0;transition:opacity .4s}
+.mi-wave.mi-run::before{opacity:1;animation:miWave 2.4s linear 1}
+@keyframes miWave{to{transform:translateX(25%)}}
+html.mi-off .mi-wave,html.mi-lite .mi-wave::before{display:none}
+.mi-scrub{cursor:ew-resize;touch-action:pan-y}
+.mi-scrubbing{outline:2px solid var(--stamp)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--stamp) 25%,transparent);caret-color:transparent}
+/* app fix: a hidden toast kept its Undo button clickable, so a tap in that spot ran Undo or Redo again */
+.toast:not(.on) .tundo,.toast:not(.on){pointer-events:none!important}
+.toast:not(.on){visibility:hidden;transition:transform .45s var(--out),opacity .3s,visibility 0s linear .45s}
+.toast.on{visibility:visible}
+/* Combat View: the dialog itself carries the combat glow; the ambience stays under it */
+#sheet:has(#cbv){box-shadow:0 0 0 1px rgba(230,70,50,.55),0 0 34px -8px rgba(230,70,50,.6),0 40px 90px -30px rgba(0,0,0,.6)}
+html.mi-off #sheet:has(#cbv){box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+/* --- F3: one sliding indicator for filters, combo tabs and edit sections; Dock press on the bottom bar; swipeable toast with a fuse --- */
+
+/* filter and section chips: the chosen one springs in. Transform only, no extra element, no script */
+.ifb.on,.cmb-tab.on,.ed-sec.on{animation:miChip .34s cubic-bezier(.3,1.5,.5,1)}
+@keyframes miChip{0%{transform:scale(.9)}55%{transform:scale(1.06)}100%{transform:none}}
+.ifb:active,.cmb-tab:active,.ed-sec:active{transform:scale(.94);transition:transform .08s}
+html.mi-off .ifb.on,html.mi-off .cmb-tab.on,html.mi-off .ed-sec.on{animation:none}
+@media (prefers-reduced-motion:reduce){.ifb.on,.cmb-tab.on,.ed-sec.on{animation:none}}
+@media (max-width:759px){
+ .bnav button svg{transition:transform .22s var(--mi-ease)}
+ .bnav button.mi-dock svg{transform:translateY(-5px) scale(1.28)!important}
+}
+.toast.on{pointer-events:auto;touch-action:none}
+.mi-fuse{position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:linear-gradient(90deg,#ff9f43,#ffd166);transform-origin:0 50%;pointer-events:none;box-shadow:0 0 6px rgba(255,170,70,.8)}
+html.mi-off .mi-fuse{display:none}
+/* --- F5: moments --- */
+/* Star Border: Level Up when ready, Heroic Inspiration while you have it */
+.btn.pri.lvup::before,#insp[aria-pressed="true"]::before,#vbInsp[aria-pressed="true"]::before{content:"";position:absolute;left:50%;top:50%;width:max(160%,220px);aspect-ratio:1;z-index:-2;pointer-events:none;
+ background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,209,102,.0) 72%,#ffd166 86%,#fff 90%,rgba(255,209,102,0) 94%,transparent);transform:translate(-50%,-50%) rotate(0);animation:miOrbit 2.6s linear infinite;will-change:transform}
+.btn.pri.lvup::after,#insp[aria-pressed="true"]::after,#vbInsp[aria-pressed="true"]::after{content:"";position:absolute;inset:2px;z-index:-1;border-radius:inherit;background:inherit;pointer-events:none;opacity:1}
+#insp[aria-pressed="true"]::after,#vbInsp[aria-pressed="true"]::after{background:linear-gradient(var(--mi-tint,transparent),var(--mi-tint,transparent)),var(--mi-cover,var(--panel-2))}
+#insp[aria-pressed="true"],#vbInsp[aria-pressed="true"]{position:relative;isolation:isolate;overflow:hidden}
+#insp[aria-pressed="true"]:hover::after{opacity:1}
+@keyframes miOrbit{to{transform:translate(-50%,-50%) rotate(360deg)}}
+/* nothing loops while the page is scrolling or being swiped: the app restyles every frame then */
+.mi-sc,.mi-sc::before,.mi-sc *,.mi-sc *::before{animation-play-state:paused!important}/* set on the animated elements only: a class on <html> would restyle the whole page */
+html.mi-off .btn.pri.lvup::before,html.mi-off #insp::before,html.mi-off #vbInsp::before{display:none}
+/* lattice loader for Building PDF */
+.busy .spin.mi-lat{background:none!important;-webkit-mask:none!important;mask:none!important;width:22px;height:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;animation:none!important}
+.mi-lat i{border-radius:2px;background:var(--stamp);opacity:.18;animation:miLat 1.1s ease-in-out infinite}
+@keyframes miLat{0%,100%{opacity:.18;transform:scale(.8)}40%{opacity:1;transform:none}}
+.busy:not(.on) .mi-lat i{animation:none}
+/* status mark on Back Up */
+.mi-sm{position:fixed;z-index:var(--z-fx);width:22px;height:22px;pointer-events:none}
+.mi-sm circle{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round}
+.mi-sm path{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+/* --- F6.1: holo card, gradient name, record grain, home aurora --- */
+#homeV .hcard::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.2),transparent 45%),linear-gradient(115deg,transparent 22%,rgba(255,60,170,.32) 34%,rgba(40,240,220,.3) 44%,rgba(255,225,60,.3) 54%,rgba(130,90,255,.32) 64%,transparent 78%);background-size:100% 100%,260% 260%;background-position:0 0,var(--mx,50%) var(--my,50%);mix-blend-mode:overlay}
+#homeV .hcard.mi-holo::after{inset:-60%;background-size:100% 100%,100% 100%;background-position:0 0,0 0;animation:miHolo .7s var(--mi-ease) both}
+@keyframes miHolo{0%{opacity:0;transform:translate(28%,22%)}35%{opacity:1}100%{opacity:0;transform:translate(-28%,-22%)}}
+html:not(.mi-off) #homeV .hname b{background:linear-gradient(100deg,#fff 0%,#fff 38%,#ffe2a0 47%,#fff 52%,#c9f3ff 58%,#fff 66%,#fff 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+html:not(.mi-off) #homeV .hcard.mi-in .hname b,html:not(.mi-off) #homeV .hcard.mi-tilt .hname b{animation:miNameSh 1.5s var(--mi-ease) .15s both}
+@keyframes miNameSh{from{background-position:100% 0}to{background-position:0 0}}
+html[data-skin="record"]:not(.mi-lite):not(.mi-off)::after{content:"";position:fixed;inset:0;z-index:var(--z-amb);pointer-events:none;opacity:.55;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .2 0 0 0 0 .12 0 0 0 .5 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#homeV:not(.mi-x)::before{content:"";position:fixed;inset:-25%;z-index:-1;pointer-events:none;opacity:.34;will-change:transform;background:radial-gradient(30% 26% at 28% 32%,var(--mi-a1,#d4a548),transparent 70%),radial-gradient(28% 30% at 72% 38%,var(--mi-a2,#4fa3c7),transparent 70%),radial-gradient(34% 26% at 50% 74%,var(--mi-a3,#b0466f),transparent 70%);animation:miAur 26s ease-in-out infinite alternate}
+html[data-skin="ddb"] #homeV::before{--mi-a1:#c53131;--mi-a2:#5a3fc0;--mi-a3:#1f8f9c;opacity:.26}
+@keyframes miAur{0%{transform:translate3d(-4%,-2%,0) rotate(0) scale(1)}50%{transform:translate3d(4%,3%,0) rotate(14deg) scale(1.08)}100%{transform:translate3d(-2%,5%,0) rotate(-10deg) scale(1.02)}}
+html.mi-lite #homeV::before{animation:none}
+html.mi-off #homeV::before{display:none}
+@media print{html::after,#homeV::before{display:none!important}}
+@media (forced-colors:active){#homeV .hname b{-webkit-text-fill-color:CanvasText;background:none}#homeV::before,html::after{display:none}}
+/* --- F6.2: spring check, jelly radio, warm tooltip --- */
+input[type=checkbox].mi-jelly{animation:miSpring .5s var(--mi-ease)}
+@keyframes miSpring{0%{transform:scale(1)}25%{transform:scale(.72) rotate(-8deg)}55%{transform:scale(1.18) rotate(4deg)}78%{transform:scale(.96)}100%{transform:none}}
+.thb{transition:transform var(--mi-fast) var(--mi-ease),box-shadow var(--mi-base)}
+.thb:active{transform:scale(.93)}
+.thb.mi-jelly{animation:miJellyR .48s var(--mi-ease)}
+@keyframes miJellyR{0%{transform:scale(.9)}35%{transform:scale(1.1,.9)}60%{transform:scale(.96,1.05)}80%{transform:scale(1.02,.99)}100%{transform:none}}
+.mi-tip{position:fixed;left:0;top:0;z-index:var(--z-cover);max-width:260px;padding:6px 10px;border-radius:9px;font:500 12.5px/1.35 var(--f-sans,system-ui);color:#2b1a08;background:linear-gradient(160deg,#ffe9c2,#ffc98a);box-shadow:0 6px 18px rgba(120,60,0,.28),inset 0 1px 0 rgba(255,255,255,.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(.9);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mi-fast),transform var(--mi-base) var(--mi-ease)}
+.mi-tip.dn{transform-origin:var(--ax,50%) 0;transform:translateY(-6px) scale(.9)}
+.mi-tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-5px;background:#ffc98a;transform:rotate(45deg);border-radius:2px}
+.mi-tip.dn::after{bottom:auto;top:-5px;background:#ffe9c2}
+.mi-tip.on{opacity:1;transform:none}
+html.mi-off .mi-tip{transition:none}
+html.mi-off .thb.mi-jelly,html.mi-off input[type=checkbox].mi-jelly{animation:none}
+/* --- GPU budget on touch screens: no live blur behind bars and dialogs. A blur behind a bar is redone every frame anything under it moves. --- */
+@media (pointer:coarse){
+  .bnav,.band,.ask{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .bnav{background:var(--panel)!important}
+  :root[data-skin="ddb"] .band{background:#0e1215!important}
+  :root[data-skin="ddb"] .bnav{background:#12171a!important}
+}
+.mi-bcov{position:fixed;inset:0;z-index:var(--z-cover);background:var(--paper);display:flex;align-items:center;justify-content:center;gap:8px;pointer-events:none}
+.mi-bcov i{width:9px;height:9px;border-radius:50%;background:var(--stamp,#d6453b);animation:miDot .9s ease-in-out infinite}
+.mi-bcov i:nth-child(2){animation-delay:.12s}.mi-bcov i:nth-child(3){animation-delay:.24s}
+@keyframes miDot{0%,100%{transform:scale(.6);opacity:.4}50%{transform:scale(1);opacity:1}}
+/* last line of defence: an effect element can never stay on screen, even if its script stopped half way */
+.mi-shell,.mi-ghost-copy,.mi-bcov{animation:miKill 0s linear 1.6s forwards}
+.mi-sw{animation:miKill 0s linear 3.2s forwards}
+@keyframes miKill{to{opacity:0;visibility:hidden}}
+

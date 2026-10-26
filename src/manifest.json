@@ -1,0 +1,514 @@
+{
+ "entries": [
+  {
+   "t": "file",
+   "file": "html/000-head.html"
+  },
+  {
+   "t": "block",
+   "open": "<style>",
+   "close": "</style>",
+   "files": [
+    "css/001-style-01-start.css",
+    "css/002-style-02-band.css",
+    "css/003-style-03-mobile.css",
+    "css/004-style-04-v15-rd19-spell-data.css",
+    "css/005-style-05-v25-fix-a-toast-centered-with.css",
+    "css/006-style-06-v30-p03-hit-points-control-b6.css",
+    "css/007-style-07-p03.css",
+    "css/008-style-08-p98.css",
+    "css/009-style-09-p03.css",
+    "css/010-style-10-p18.css",
+    "css/011-style-11-rd19.css",
+    "css/012-style-12-v33-p06-builder-audit-44-px.css",
+    "css/013-style-13-v55-micro-interactions-particles-ripple.css",
+    "css/014-style-14-round-6.css",
+    "css/015-style-15-w-pack.css",
+    "css/016-style-16-z-pack.css",
+    "css/017-style-17-k-pack.css"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/018-script-01.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/019-script-02.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/020-script-03.js"
+   ]
+  },
+  {
+   "t": "file",
+   "file": "html/021-markup-1.html"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/022-sheet.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n<div class=\"ps-wrap\" id=\"psWrap\" aria-hidden=\"true\"><div class=\"ps\" id=\"ps\"></div></div>\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/023-mi-core-01-start.js",
+    "js/024-mi-core-02-storage.js",
+    "js/025-mi-core-03-v33-p09-entries-name-text-each.js",
+    "js/026-mi-core-04-v36-p11-cards-that-stand-for.js",
+    "js/027-mi-core-05-hit-points.js",
+    "js/028-mi-core-06-v36-p14-one-detail-card-template.js",
+    "js/029-mi-core-07-v24-p08-the-hidden-empty-place.js",
+    "js/030-mi-core-08-v22-ru80b-text-from-a-chat.js",
+    "js/031-mi-core-09-v18-ru74-the-same-app-open.js",
+    "js/032-mi-core-10-portrait.js",
+    "js/033-mi-core-11-v32-ru134-occurrence-of-an-item.js",
+    "js/034-mi-core-12-v33-p03-ru123-builder-the-five.js",
+    "js/035-mi-core-13-customize-ru38-no-2.js",
+    "js/036-mi-core-14-v28-bastion-rd22-dmg-2024-chapter.js",
+    "js/037-mi-core-15-icons-ru73.js",
+    "js/038-mi-core-16-tour-ru76.js",
+    "js/039-mi-core-17-playing-the-character-2.js",
+    "js/040-mi-core-18-v42-combo-three-shortcut-lists-of.js",
+    "js/041-mi-core-19-v38-p12-session-notes-that-do.js",
+    "js/042-mi-core-20-v30-p11-ru131-keep-screen-on.js",
+    "js/043-mi-core-21-v31-p16-two-panels-on-a.js",
+    "js/044-mi-core-22-v34-p03-ru82-installable-app-manifest.js",
+    "js/045-mi-core-23-v34-p06-one-wallet-for-the.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/046-script-06-01-start.js",
+    "js/047-script-06-02-f1-card-light-card-to-detail.js",
+    "js/048-script-06-03-round-6-the-final-list-every.js",
+    "js/049-script-06-04-d-pack-the-last-two-from.js",
+    "js/050-script-06-05-y-pack-class-motif-level-crest.js",
+    "js/051-script-06-06-l-pack-laptop-only-a-webgl.js",
+    "js/052-script-06-07-g-pack-on-a-laptop-it.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "js/053-script-07.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n<div id=\"bld\" hidden>\n<div class=\"top\"><div class=\"brand\"><b><span class=\"bt0\"><span class=\"bt1\">Character </span>Builder</span></b><span>PHB 2024</span><button type=\"button\" class=\"lvhead\" data-lvup=\"1\"><span>Level Up</span></button><button type=\"button\" id=\"b-toSheet\" class=\"tosheet\">Apply to Sheet</button><button type=\"button\" id=\"b-close\" class=\"bclose\" aria-label=\"Close builder\" title=\"Close builder\"></button></div><nav class=\"steps\" id=\"steps\"></nav></div>\n<main><div class=\"bnm\" id=\"nameRow\"><label for=\"nmIn\">Character Name</label><input class=\"btx\" id=\"nmIn\" autocomplete=\"off\"></div><div id=\"body\"></div></main>\n<div class=\"foot\"><button type=\"button\" id=\"prev\"><span>Prev</span></button><button type=\"button\" id=\"next\"><span>Next</span></button></div>\n<div class=\"exp\" id=\"exp\" hidden><div class=\"expb\"><h3>Export to Character Sheet</h3><p class=\"fd\">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id=\"expTxt\" readonly></textarea><div class=\"row\"><button type=\"button\" id=\"expClose\">Close</button><button type=\"button\" class=\"pri\" id=\"expCopy\">Copy</button></div></div></div>\n<div class=\"btoast\" id=\"btoast\" role=\"status\"></div>\n</div>\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
+   "close": "</script>",
+   "files": [
+    "data/054-db1.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"db2\">",
+   "close": "</script>",
+   "files": [
+    "data/055-db2.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
+   "close": "</script>",
+   "files": [
+    "data/056-db3.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"cffull\">",
+   "close": "</script>",
+   "files": [
+    "data/057-cffull.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"subfull\">",
+   "close": "</script>",
+   "files": [
+    "data/058-subfull.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"spfull\">",
+   "close": "</script>",
+   "files": [
+    "data/059-spfull.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"spells\">",
+   "close": "</script>",
+   "files": [
+    "data/060-spells.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"dmgi\">",
+   "close": "</script>",
+   "files": [
+    "data/061-dmgi.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"itsp\">",
+   "close": "</script>",
+   "files": [
+    "data/062-itsp.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"db4\">",
+   "close": "</script>",
+   "files": [
+    "data/063-db4-01-start.js",
+    "data/064-db4-02-v17-ru40-limited-uses-of-feats.js",
+    "data/065-db4-03-v17-ru35-no-6-saving-throw.js",
+    "data/066-db4-04-v23-ru36-no-10-creature-stat.js",
+    "data/067-db4-05-v27-rd23-supernatural-gifts-dmg-2024.js",
+    "data/068-db4-06-v32-rl49-tools-from-the-tools.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"efa\">",
+   "close": "</script>",
+   "files": [
+    "data/069-efa.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc1\">",
+   "close": "</script>",
+   "files": [
+    "data/070-wotc1.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc2\">",
+   "close": "</script>",
+   "files": [
+    "data/071-wotc2.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc3\">",
+   "close": "</script>",
+   "files": [
+    "data/072-wotc3.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc4\">",
+   "close": "</script>",
+   "files": [
+    "data/073-wotc4.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc5\">",
+   "close": "</script>",
+   "files": [
+    "data/074-wotc5.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc6\">",
+   "close": "</script>",
+   "files": [
+    "data/075-wotc6.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc7\">",
+   "close": "</script>",
+   "files": [
+    "data/076-wotc7.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc8\">",
+   "close": "</script>",
+   "files": [
+    "data/077-wotc8.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc9\">",
+   "close": "</script>",
+   "files": [
+    "data/078-wotc9.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc10\">",
+   "close": "</script>",
+   "files": [
+    "data/079-wotc10.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc11\">",
+   "close": "</script>",
+   "files": [
+    "data/080-wotc11.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc12\">",
+   "close": "</script>",
+   "files": [
+    "data/081-wotc12.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc13\">",
+   "close": "</script>",
+   "files": [
+    "data/082-wotc13.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc14\">",
+   "close": "</script>",
+   "files": [
+    "data/083-wotc14.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc15\">",
+   "close": "</script>",
+   "files": [
+    "data/084-wotc15.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
+   "close": "</script>",
+   "files": [
+    "data/085-hbpack.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
+   "close": "</script>",
+   "files": [
+    "data/086-builder-01-start.js",
+    "data/087-builder-02-v19-rl43-thief-13-use-magic.js",
+    "data/088-builder-03-v19-rl46-feat-rules-phb-2024.js",
+    "data/089-builder-04-v32-rl49-choices-inside-a-feat.js",
+    "data/090-builder-05-v32-rl49-every-weapon-with-its.js",
+    "data/091-builder-06-v73-clsparts-foreach-function-q-if.js",
+    "data/092-builder-07-v32-rl51-actsfor.js",
+    "data/093-builder-08-v32-p21-a-kit-name-read.js",
+    "data/094-builder-09-ui-step-builder.js",
+    "data/095-builder-10-v32-rl49-no-34-wizard-spellbook.js",
+    "data/096-builder-11-v33-p04-ru125-item-type-icon.js",
+    "data/097-builder-12-v27-ru65-quick-build-for-new.js",
+    "data/098-builder-13-v22-ru52-level-up-from-the.js",
+    "data/099-builder-14-v33-p02-header-and-footer-icons.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"rs14\">",
+   "close": "</script>",
+   "files": [
+    "data/100-rs14.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n</body>\n</html>\n"
+  }
+ ]
+}

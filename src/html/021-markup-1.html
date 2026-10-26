@@ -1,0 +1,143 @@
+
+</head>
+<body>
+<div class="app" id="app">
+  <header class="band">
+    <div class="band-in">
+      <div class="office"><span class="sym" id="bandSym"></span><div><b id="officeName">Character Record</b><span id="officeSub"></span></div></div>
+      <div class="mini"><b id="miniName">Yudhi Kelapa</b><span id="miniSub">Retron Fighter 4</span><span class="mcamp" id="miniCamp"></span></div>
+      <div class="acts">
+        <button class="hpchip press" id="hpChip" type="button" aria-label="Hit points, open main page"><b id="hpChipV">40</b><span>HP</span></button>
+        <button class="bb ic press restb hb2" type="button" data-rest="menu" aria-label="Short Rest or Long Rest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 4 4 4 7a4 4 0 0 1-8 0c0-2 1.5-3 1.5-4.5C11 7 11.5 8.5 12 9c.5-2 0-4 0-6zM4 20l16-4M4 16l16 4"/></svg><span class="ml">Rest</span></button>
+        <button class="bb txt press" type="button" data-rest="short">Short Rest</button>
+        <button class="bb txt press" type="button" data-rest="long">Long Rest</button>
+        <button class="bb ic press hb2" type="button" id="srchBtn" aria-label="Search the sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg><span class="ml">Search</span></button>
+        <button class="bb press bld-b hb2" type="button" id="bldBtn" aria-label="Open character builder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6zM12.5 8.5L4 17l3 3 8.5-8.5"/></svg><span class="btx">Build</span></button>
+        <div class="more-grp" id="moreMenu">
+          <button class="bb ic press" type="button" id="rosterBtn" aria-label="My characters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 4.9"/></svg><span class="ml">My Characters</span></button>
+          <button class="bb press edit-b" id="editBtn" type="button" aria-label="Edit character"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span class="txt">Edit</span><span class="ml">Edit Character</span></button>
+          <button class="bb ic press" id="themeBtn" type="button" aria-label="Settings: appearance, rules, and display"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg><span class="ml">Settings</span></button>
+          <button class="bb ic press" type="button" id="libBtn" data-lib="" aria-label="Library: search every spell, item, feat and rule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><circle cx="12.5" cy="10" r="3"/><path d="m14.7 12.2 2.3 2.3"/></svg><span class="ml">Library</span></button>
+          <button class="bb ic press" id="pipBtn" type="button" hidden aria-pressed="false" aria-label="Mini window: Hit Points on top of other windows"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3zM12 11h7v6h-7z"/></svg><span class="ml">Mini Window</span></button>
+          <button class="bb pdf press" id="pdfBtn" type="button" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg><span class="txt">PDF</span><span class="ml">Export PDF</span></button>
+        </div>
+        <button class="bb ic press hb2" type="button" id="moreBtn" aria-label="More actions" aria-expanded="false" aria-controls="moreMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span class="ml">More</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pager" id="pager">
+    <section id="p-main" aria-label="Main">
+      <div class="hero">
+        <article class="idcard" aria-label="Character identity">
+          <div class="id-top" id="idTop"></div>
+          <div class="id-body">
+            <button class="photo press" id="photo" type="button" aria-label="Set portrait"><span class="ph-sil" aria-hidden="true"><svg viewBox="0 0 100 125"><path d="M50 16c-13.5 0-23 10.5-23 25 0 8.6 3.6 16.2 9.4 21C22.6 66.8 13 78 10.5 94L9 125h82l-1.5-31C87 78 77.4 66.8 63.6 62c5.8-4.8 9.4-12.4 9.4-21 0-14.5-9.5-25-23-25z"/></svg></span><span class="ph-cls" id="phCls" aria-hidden="true"></span><span class="ph-t">Add portrait</span></button>
+            <div>
+              <h1 class="id-name" id="idName"></h1><p class="id-camp" id="idCamp" hidden></p>
+              <dl class="id-f" id="idF"></dl>
+            </div>
+          </div>
+          <svg class="stamp land" id="stampSvg" viewBox="0 0 100 100" aria-hidden="true"></svg>
+          <input type="file" id="avFile" accept="image/*" class="sr" tabindex="-1" aria-hidden="true">
+        </article>
+
+        <div class="vitals">
+          <div class="hp" id="hpBox">
+            <div class="hp-h"><h2><button type="button" class="tx" data-info="g:Hit Points">Hit Points</button></h2></div>
+            <div class="hp-big"><span class="hp-cur" id="hpCur">40</span><span class="hp-max">/ <span id="hpMax">40</span></span><span class="hp-tmp" id="hpTmp">+0 temp</span></div>
+            <div class="bar" aria-hidden="true"><i id="hpBar"></i><i class="t" id="tmpBar" style="transform:scaleX(0)"></i></div>
+            <div class="hp-pre noico" hidden role="group" aria-label="Quick amounts"><button type="button" class="pre press" data-hpadd="1" aria-label="Add 1 to the amount">+1</button><button type="button" class="pre press" data-hpadd="5" aria-label="Add 5 to the amount">+5</button><button type="button" class="pre press" data-hpadd="10" aria-label="Add 10 to the amount">+10</button><button type="button" class="pre clr press" data-hpadd="0" aria-label="Clear the amount"></button></div>
+            <div class="hp-ctrl">
+              <button class="btn heal press" type="button" id="healBtn">Heal</button>
+              <input id="hpAmt" type="number" inputmode="numeric" min="0" placeholder="0" aria-label="Amount">
+              <button class="btn dmg press" type="button" id="dmgBtn">Damage</button>
+            </div>
+            <div class="hp-tmpc"><button type="button" class="tx tmp-l" data-info="g:Temporary Hit Points">Temporary HP</button><span class="stepper tmp-s"><button type="button" data-tmp="-1" aria-label="Decrease temporary HP">−</button><input id="tmpV" class="tmp-in" type="number" inputmode="numeric" min="0" value="0" aria-label="Temporary HP"><button type="button" data-tmp="1" aria-label="Increase temporary HP">+</button></span><button type="button" hidden class="btn tmp-set press" data-tmpset="1" aria-label="Set Temporary HP to the amount typed">Set</button></div>
+            <div class="hp-spx"><button type="button" class="btn sm press" data-info="spx:1">Spells cast on you</button></div>
+            <div class="death" id="death"><div><div class="death-in">
+              <div class="dsr"><button type="button" class="tx" data-info="g:Death Saving Throw">Death save successes</button><span class="pips ok" id="dsS"></span></div>
+              <div class="dsr"><button type="button" class="tx" data-info="g:Death Saving Throw">Death save failures</button><span class="pips bad" id="dsF"></span></div>
+            </div></div></div>
+          </div>
+          <div class="tiles" id="tiles"></div>
+          <div class="conds" id="conds"></div>
+        </div>
+      </div>
+      <div class="abil" id="abil"></div>
+    </section>
+
+    <section id="p-skills" aria-label="Skills">
+      <h2 class="ptitle">Skills</h2>
+      <div class="side">
+        <div class="card"><div class="ch"><h2><button type="button" class="tx" data-info="g:Saving Throw">Saving Throws</button></h2></div><div class="cb"><div class="saves" id="saves"></div></div></div>
+        <div class="card"><div class="ch"><h2>Senses</h2></div><div class="cb" id="senses"></div></div>
+        <div class="card"><div class="ch"><h2>Speed</h2></div><div class="cb" id="speeds"></div></div>
+        <div class="card"><div class="ch"><h2>Defenses</h2></div><div class="cb" id="defs"></div></div>
+        <div class="card"><div class="ch"><h2>Proficiencies</h2></div><div class="cb prof" id="profs"></div></div>
+      </div>
+      <div class="card skillcard skl">
+        <div class="ch"><h2>Skills</h2><span class="as" id="pbAside"></span></div>
+        <div class="cb">
+          <div class="sk-h"><span>Pin</span><span></span><span>Mod</span><span>Skill</span><span>Bonus</span></div>
+          <div id="skills"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail" aria-label="Details">
+      <div class="tabs" role="tablist" id="tabs">
+        <button class="tab" role="tab" aria-selected="true" data-tab="p-actions" aria-controls="p-actions" id="t-actions">Actions</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-spells" aria-controls="p-spells" id="t-spells">Spells</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-inv" aria-controls="p-inv" id="t-inv">Inventory</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-feat" aria-controls="p-feat" id="t-feat">Features &amp; Traits</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-desc" aria-controls="p-desc" id="t-desc">Description</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-notes" aria-controls="p-notes" id="t-notes">Notes</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="p-ext" aria-controls="p-ext" id="t-ext">Extras</button>
+        <span class="tab-ind" id="tabInd"></span>
+      </div>
+      <div class="panels">
+        <div class="panel" role="tabpanel" id="p-actions" aria-labelledby="t-actions"><h2 class="ptitle">Actions</h2><div class="inner" id="actBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-spells" aria-labelledby="t-spells" hidden><h2 class="ptitle">Spells</h2><div class="inner" id="spBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-inv" aria-labelledby="t-inv" hidden><h2 class="ptitle">Inventory</h2><div class="inner" id="invBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-feat" aria-labelledby="t-feat" hidden><h2 class="ptitle">Features &amp; Traits</h2><div class="inner" id="featBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-desc" aria-labelledby="t-desc" hidden><h2 class="ptitle">Description</h2><div class="inner" id="descBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-notes" aria-labelledby="t-notes" hidden><h2 class="ptitle">Notes</h2><div class="inner" id="notesBody"></div></div>
+        <div class="panel" role="tabpanel" id="p-ext" aria-labelledby="t-ext" hidden><h2 class="ptitle">Extras</h2><div class="inner" id="extBody"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="vbar" id="vbar" role="group" aria-label="Play bar">
+    <button type="button" class="vb vb-hp press" id="vbHp" aria-label="Hit Points. Heal or take damage"><span class="vb-n"><span id="vbHpI"></span><b id="vbHpV">0</b><span class="vb-m">/<span id="vbHpM">0</span></span><span class="vb-t" id="vbTmp" hidden></span></span><span class="vb-bar" aria-hidden="true"><i id="vbBar"></i><i class="t" id="vbTbar"></i></span></button>
+    <button type="button" class="vb vb-ac press" id="vbAc" data-bd="ac" aria-label="Armor Class"><svg class="vb-sh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4.5-2.5-7-6-7-10V5l7-2.5L19 5v6c0 4-2.5 7.5-7 10z"/></svg><b id="vbAcV">0</b></button>
+    <button type="button" class="vb vb-cond press" id="vbCond" aria-label="Conditions"><span class="vb-ci" id="vbCondI"></span><span class="vb-ct" id="vbCondT">Conditions</span></button>
+    <button type="button" class="vb vb-conc press" id="vbConc" hidden aria-label="Concentration"></button>
+    <button type="button" class="vb vb-insp press" id="vbInsp" aria-pressed="false" aria-label="Heroic Inspiration" title="Heroic Inspiration"></button>
+  </div>
+  <div class="ohdock" id="ohDock" role="group" aria-label="One-handed controls"></div>
+  <button class="srchfab press" id="srchFab" type="button" aria-label="Search the sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg></button>
+  <nav class="bnav" aria-label="Pages">
+    <div class="bnav-in" id="bnav">
+      <button type="button" data-go="0" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4M15.5 10h3M15.5 13h3"/><circle cx="10" cy="9.5" r="1.8"/></svg>Main</button>
+      <button type="button" data-go="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.4" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.4"/><circle cx="4.5" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg>Skills</button>
+      <button type="button" data-go="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V6.5a1.5 1.5 0 0 1 3 0V10m0-1.5V5a1.5 1.5 0 0 1 3 0v5m0-3a1.5 1.5 0 0 1 3 0v4m0-2a1.5 1.5 0 0 1 3 0v5a6 6 0 0 1-6 6h-1.5A6.5 6.5 0 0 1 6 15l-1.6-3a1.5 1.5 0 0 1 2.6-1.5L7 11"/></svg>Actions</button>
+      <button type="button" data-go="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 8.3l5-.7z"/></svg>Spells</button>
+      <button type="button" data-go="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Inventory</button>
+      <button type="button" data-go="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="7" rx="3" ry="4.6"/><ellipse cx="12" cy="17" rx="3" ry="4.6"/><ellipse cx="7" cy="12" rx="4.6" ry="3"/><ellipse cx="17" cy="12" rx="4.6" ry="3"/></svg>Features</button>
+      <button type="button" data-go="6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/></svg>Description</button>
+      <button type="button" data-go="7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4"/></svg>Notes</button>
+      <button type="button" data-go="8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c0-4 3-7 7-7s7 3 7 7"/><circle cx="9" cy="12.5" r="1" fill="currentColor"/><circle cx="15" cy="12.5" r="1" fill="currentColor"/><path d="M7 9 5 5M17 9l2-4M5 15v3h14v-3"/></svg>Extras</button>
+      <span class="bnav-ind" id="bInd"></span>
+    </div>
+  </nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sh-h" id="sheetHead"><button class="xbtn press" id="sheetBack" type="button" aria-label="Back" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button><h2 id="sheetTitle"></h2><button class="xbtn press" type="button" data-close aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="sh-b" id="sheetBody"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="busy" id="busy"><div><span class="spin"></span><span>Building PDF</span></div></div>
