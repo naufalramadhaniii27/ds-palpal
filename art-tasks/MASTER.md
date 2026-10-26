@@ -47,6 +47,14 @@ QUALITY BAR: "WOW", NOT SLOP (applies to every image, read before each part):
 - UI pieces, frames, ribbons, sprites: hand-drawn props from a Ghibli film (wood, brass, paper, cloth, leaves), not shiny game UI.
 - Scenes: rich, layered and alive, with specific characters doing specific things, varied faces and bodies, clear dramatic light. Still keep the calm center (PC) or calm bottom (phone) for the app cards.
 
+HOW TO WRITE EACH IMAGE PROMPT (important, fixes the "all scenes look the same" problem):
+- Do NOT compress the rules into one fixed formula and paste it into every prompt. Earlier scenes all came out the same (sunset, dragon top-right, wounded people, orange palette) because the same summary sentence was reused for every image.
+- Build each prompt fresh, in this order: (1) the image's own subject text from the part file, (2) its Variation line (light, threat, camera) written out as concrete visual direction, (3) one short style line (Studio Ghibli 2D anime film look, tragic but warm), (4) the size and composition rule of its tag. Keep (3) short so (1) and (2) lead.
+- "Warm" does not mean orange sunset. Pick the warm color key from the Variation light: candle amber, rose dawn, golden fog, ember red night, warm green forest light, honey midday haze, lantern gold in rain. Use a different color key than the previous scene.
+- Do not add a dragon, a sunset or wounded people unless the subject or the Variation asks for it.
+- For scenes, do not pass earlier generated images as input references. Use references only for emblems and icons.
+- Append the exact final prompt you sent for every image to art/PROMPTS.md (path, then the prompt), so it can be audited.
+
 SIZE AND COMPOSITION RULES (apply by the tag in brackets after each image number):
 [AS WRITTEN] follow the size and description in the image text exactly.
 [PC] 2400x1344 landscape, desktop app background. Characters and busy details only in the LEFT third and RIGHT third. The CENTER (33 to 67 percent of the width) stays calm and simple: open ground, path, water or sky, no characters, no small busy details. Horizon near 40 percent from the top. Medium brightness. All four outer edges fade softly into loose brush strokes and dark paper, no hard rectangular border.
