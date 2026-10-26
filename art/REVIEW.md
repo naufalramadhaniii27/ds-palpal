@@ -7,3 +7,5 @@ Emblems, icons, ornaments and UI are explicitly exempt: retain the approved brig
 Part00C requires replacement of all26 class scenes at their original paths. Previous cheerful scenes are omitted from PROGRESS.md until replaced; their old versions remain in Git history. Newly generated cheerful Artificer-phone and species candidates are paused and will not be saved. PROGRESS.md contains plain completed file paths only.
 
 Part00B complete under final tone exception:13 class emblems and7 ornaments, all with required pixel sizes and real alpha transparency. The approved first10 class emblems were preserved unchanged. Next is Part00C, overwriting the26 cheerful class scenes in tragic-but-warm style.
+
+Part00C complete under TRAGIC BUT WARM: all26 class scenes replaced at their original paths. Warm amber/ember/gold/rose palette, wounds and loss with an act of care in each scene. Next unfinished production target: part03, art/batch/scenes/species/aasimar-pc.png. No self-check annotations are used in progress.
