@@ -3,9 +3,17 @@ var PUBLIC_BUILD=true;
 var PWA_BUILD=true;
 /* v34 p04: the builder loads after the sheet is on screen. Any click, input, or key that may need it finishes loading first.
    Tabs, View on Home, the More menu, and scrolling do not wait */
-(function(){ function need(e){ if(window.__deferDone||!window.__bldNeed) return; var t=e.target;
+(function(){ function need(e){ if(window.__deferDone) return; var t=e.target;
+    if(!window.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")) return;
     if(e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")) return;
     if(e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")) return;
+    /* T1: a tap before the loader script has been read (slow phone, page still loading) waits for it, then goes the usual way. Before, the tap was lost */
+    if(!window.__bldNeed){ if(!t||!t.click) return; e.preventDefault(); e.stopImmediatePropagation();
+      var bz0=document.getElementById("busy"), sp0=bz0&&bz0.querySelector("div span:last-child"), old0=sp0?sp0.textContent:"";
+      if(sp0) sp0.textContent="Opening the builder"; if(bz0){ bz0.style.transition="none"; bz0.classList.add("on"); }
+      var n0=0, again=function(){ if(!window.__bldNeed&&document.readyState==="loading"&&n0++<600){ setTimeout(again,30); return; }
+        if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) sp0.textContent=old0; try{ t.click(); }catch(x){} };
+      setTimeout(again,30); return; }
     if(e.type==="click"&&t&&t.click){/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
       e.preventDefault(); e.stopImmediatePropagation();
       var bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";

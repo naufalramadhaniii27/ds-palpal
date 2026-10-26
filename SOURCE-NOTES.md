@@ -10,6 +10,8 @@ Peta source untuk `index.html`. Hasil build `index.html` dan `sw.js`. Source ada
 | `python3 build.py --check` | Build di memori, bandingkan dengan `index.html` dan `sw.js` byte per byte, lalu `--lint`. Exit 1 jika beda atau lint gagal |
 | `python3 build.py --lint` | `node --check` untuk tiap file JS di `src/` dan tiap blok `<script>` hasil gabungan |
 | `python3 tests/scenarios.py [OUT] [--root DIR]` | Tiga skenario wajib (sheet lama Yudhi, sesudah Apply, karakter baru) di 390x844 dan 1250x850. Menulis screenshot dan isi localStorage ke OUT (default `tests/out/`, diabaikan git) |
+| `python3 tests/measure.py [OUT.json] [--runs N] [--only "1250x850 cpu4x"]` | Waktu siap, data Builder selesai, Builder pertama dan kedua, Search pertama, di 390 dan 1250, CPU 1x dan 4x |
+| `python3 tests/flow_home_sheet.py [OUT]` | Alur Home ke sheet ke Home dan ganti karakter, dengan video. Cek perpindahan tersambung jalan dan tidak ada yang tertinggal tersembunyi |
 | `python3 tests/compare_storage.py RUN_A RUN_B` | Bandingkan localStorage dua run. Cap waktu dan hash snapshot ditutup |
 | `python3 build.py --verify-split` | Tes lama pemecah otomatis (nama otomatis, hanya untuk cek). Tidak mengubah `src/` |
 
@@ -65,7 +67,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | css/13-v35-v38-high-contrast-cards-print.css | tampilan (CSS) | 40.539 |
 | css/14-combo.css | tampilan (CSS) | 5.865 |
 | css/15-v43-v45-patches.css | tampilan (CSS) | 26.764 |
-| css/16-builder.css | tampilan (CSS) | 34.727 |
+| css/16-builder.css | tampilan (CSS) | 34.888 |
 | css/17-caution-recovery-backup.css | tampilan (CSS) | 7.011 |
 | css/18-hold-and-slide-confirm.css | tampilan (CSS) | 42.950 |
 | css/19-fx-micro-interactions.css | efek (CSS) | 30.205 |
@@ -77,20 +79,21 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | css/25-fx-z-l-m-packs.css | efek (CSS) | 19.693 |
 | css/26-fx-g-pack.css | efek (CSS) | 10.902 |
 | css/27-fx-k-pack.css | efek (CSS) | 4.884 |
+| css/28-connected-home-sheet.css | efek (CSS) | 809 |
 | boot/debug-overlay.js | boot | 2.178 |
 | boot/reload-helper.js | boot | 1.500 |
-| boot/arrive-flag.js | boot | 144 |
+| boot/arrive-flag.js | boot | 783 |
 | html/sheet-body.html | markup | 17.767 |
 | boot/busy-splash.js | boot | 704 |
 | app/00-open.wrap.js | pembungkus IIFE | 29 |
-| app/01-logic-boot-flags-builder-loader.js | Logic | 3.948 |
+| app/01-logic-boot-flags-builder-loader.js | Logic | 4.822 |
 | app/02-data-default-character.js | Data | 13.980 |
 | app/03-data-glossary.js | Data | 30.178 |
 | app/04-logic-storage.js | Logic | 11.526 |
 | app/05-logic-helpers.js | Logic | 10.071 |
 | app/06-logic-derivation.js | Logic | 14.684 |
 | app/07-ui-theme-contrast-spring.js | UI | 12.896 |
-| app/08-ui-render-sheet-and-actions.js | UI | 50.944 |
+| app/08-ui-render-sheet-and-actions.js | UI | 51.342 |
 | app/09-ui-hit-points-playbar-death-saves.js | UI | 12.512 |
 | app/10-ui-conditions.js | UI | 3.215 |
 | app/11-ui-breakdown.js | UI | 2.002 |
@@ -112,7 +115,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | app/27-ui-party-search-commands-library.js | UI | 77.254 |
 | app/28-ui-bastion.js | UI | 17.759 |
 | app/29-ui-ddb-look.js | UI | 42.603 |
-| app/30-ui-icons.js | UI | 29.144 |
+| app/30-ui-icons.js | UI | 29.355 |
 | app/31-ui-tour-and-focus.js | UI | 5.431 |
 | app/32-logic-play-undo-actions.js | Logic | 39.349 |
 | app/33-logic-play-rage-conditions.js | Logic | 2.820 |
@@ -128,7 +131,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | app/98-close.wrap.js | pembungkus IIFE | 7 |
 | app/99-ui-backup-reminder-handlers.js | UI | 664 |
 | fx/01-core-router-and-switch.js | efek | 3.337 |
-| fx/02-micro-interactions.js | efek | 41.326 |
+| fx/02-micro-interactions.js | efek | 41.492 |
 | fx/03-f1-card-light-and-morph.js | efek | 9.065 |
 | fx/04-f2-odometer-hp-bar-scrub.js | efek | 5.884 |
 | fx/05-f3-indicator-dock-toast.js | efek | 3.287 |
@@ -140,14 +143,15 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | fx/11-d-pack.js | efek | 5.717 |
 | fx/12-mini-window-v2.js | efek | 6.409 |
 | fx/13-class-colour-hp-ring.js | efek | 2.837 |
-| fx/14-w-pack.js | efek | 12.717 |
-| fx/15-y-pack.js | efek | 10.178 |
+| fx/14-w-pack.js | efek | 13.015 |
+| fx/15-y-pack.js | efek | 10.974 |
 | fx/16-z-pack-dice-sound-hover.js | efek | 31.002 |
-| fx/17-l-pack-webgl-sky.js | efek | 5.547 |
+| fx/17-l-pack-webgl-sky.js | efek | 5.702 |
 | fx/18-m-pack-rolls-concentration.js | efek | 22.361 |
 | fx/19-g-pack-cinematic.js | efek | 17.548 |
 | fx/20-k-pack-character-colour-icon.js | efek | 8.536 |
-| boot/deferred-loader.js | boot | 1.924 |
+| fx/21-connected-home-sheet.js | efek | 9.032 |
+| boot/deferred-loader.js | boot | 2.756 |
 | data/db1-phb-skills-species-backgrounds-feats-weapons.js | data | 63.677 |
 | data/db2-phb-classes-a.js | data | 34.635 |
 | data/db3-phb-classes-b.js | data | 36.462 |
@@ -215,3 +219,4 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 
 - bf7444a: `src/` pertama, dipecah otomatis per 25 KB di baris banner, nama dari teks banner.
 - T0 (commit ini): dipotong ulang di batas bagian yang bermakna (banner `=====` dan `----------` dari source asli), dipisah per peran, nama file dari isi. Tiap potongan berada di batas pernyataan tingkat atas (dicek dengan parser acorn), jadi tiap file JS lolos `node --check`. Isi digabung tetap identik byte per byte dengan `index.html` v102 (sha256 aac631cf...).
+- T1 (branch t1-seamless): pemuat data Builder per irisan 10 ms sejak frame kedua, tap sebelum pemuat siap tidak hilang, perpindahan tersambung Home dan sheet (`fx/21-connected-home-sheet.js`, `css/28-connected-home-sheet.css`, `boot/arrive-flag.js`, kunci sessionStorage `mi-cx`).

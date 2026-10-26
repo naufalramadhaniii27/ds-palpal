@@ -1,0 +1,10 @@
+
+/* T1: connected move between Home and the sheet (fx/21-connected-home-sheet.js) */
+.mi-cx-pre{position:fixed;inset:0;z-index:var(--z-cover,99);pointer-events:none;overflow:hidden}
+.mi-cx-layer{position:fixed;inset:0;z-index:var(--z-cover,9000);pointer-events:none;overflow:hidden;contain:strict}
+.mi-cx-layer>*{will-change:transform}
+.mi-cx-bd{position:absolute;inset:0;opacity:0}
+html.mi-cx body::after{content:"";position:fixed;inset:0;z-index:calc(var(--z-cover,9000) - 1);background:var(--mi-cx-bg,#0f1417);pointer-events:none;opacity:1;transition:opacity .32s ease-out}
+html.mi-cx.mi-cx-go body::after{opacity:0}
+html.mi-cx #photo,html.mi-cx #idName{visibility:hidden}
+@media (prefers-reduced-motion:reduce){html.mi-cx body::after{display:none}html.mi-cx #photo,html.mi-cx #idName{visibility:visible}}

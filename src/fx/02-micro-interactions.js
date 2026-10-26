@@ -97,6 +97,7 @@
   var leaving=false; window.addEventListener("beforeunload",function(){ leaving=true; });
   MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("#homeV [data-hview],#homeV [data-hedit]"); if(!b) return; if(b.__miGo){ b.__miGo=0; return; } if(MI.rm()) return;
     var card=b.closest(".hcard"), top=card&&card.querySelector(".hcard-top"); if(!card) return; e.preventDefault(); e.stopImmediatePropagation();
+    if(window.__miFlyOut){ window.__miFlyOut(card,function(){ b.__miGo=1; b.click(); b.__miGo=0; }); return; }/* T1: portrait and name travel to the sheet (fx/21) */
     var r=card.getBoundingClientRect(), W=innerWidth, H=innerHeight, ov=document.createElement("div"), bg=top?(top.style.backgroundImage||getComputedStyle(top).backgroundImage):"none";
     ov.className="mi-sw"; ov.setAttribute("aria-hidden","true"); ov.style.width=W+"px"; ov.style.height=H+"px"; ov.style.backgroundImage=bg; ov.style.backgroundColor="var(--panel)"; ov.innerHTML="<i></i>"; document.body.appendChild(ov);
     var ex=ov.animate([{transform:"translate("+r.left+"px,"+r.top+"px) scale("+(r.width/W)+","+(r.height/H)+")",opacity:.85},{transform:"none",opacity:1}],{duration:340,easing:"cubic-bezier(.3,.7,.2,1)",fill:"forwards"});

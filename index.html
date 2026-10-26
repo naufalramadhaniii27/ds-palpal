@@ -3094,6 +3094,9 @@ button.dc-cell{font:inherit;color:inherit;text-align:left;width:100%}
 #homeV{position:fixed;inset:0;z-index:55;overflow-y:auto;background:var(--paper);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}#homeV[hidden]{display:none}.hwrap{max-width:1100px;margin:0 auto;padding:22px 16px 40px}.hhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.hhead h1{margin:0;font-family:var(--f-display,inherit);font-size:calc(34px*var(--tz,1));font-weight:900;letter-spacing:-.01em;font-variation-settings:'wdth' 75}.hcreate{background:#2b3238;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:12px 18px;border-radius:4px;font-size:calc(15px*var(--tz,1))}.hslots{font-size:calc(20px*var(--tz,1));margin:10px 0 14px}.hslots b{color:#1b9af0;font-weight:500}.hbar{display:flex;gap:10px;background:var(--panel-2);padding:12px;border-radius:4px;margin-bottom:18px;flex-wrap:wrap}.hsearch{flex:1 1 260px}.hsort{flex:0 0 190px}.hbar label{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 12px 6px}.hbar label span{font-size:max(12px,calc(12px*var(--tz,1)));color:var(--muted)}.hbar input,.hbar select{border:0;background:transparent;font-size:calc(16px*var(--tz,1));padding:4px 0;color:var(--ink);width:100%}.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}.hcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}.hcard-top{position:relative;min-height:136px;display:flex;align-items:center;gap:12px;padding:22px 20px 34px;color:#fff;overflow:hidden}.hwm{position:absolute;right:-30px;top:-30px;width:190px;height:190px;opacity:.13;background:center/contain no-repeat}.hpor{position:relative;flex:none;width:68px;height:68px;border-radius:6px;background:rgba(255,255,255,.12) center/cover no-repeat;display:grid;place-items:center;border:2px solid rgba(255,255,255,.55);color:#fff}.hpor svg{width:38px;height:38px}.hname{position:relative;min-width:0}.hname b{display:block;font-size:calc(28px*var(--tz,1));font-weight:600;line-height:1.1}.hname span{display:block;font-size:calc(13.5px*var(--tz,1));opacity:.85;margin-top:4px}.hcamp{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);padding:7px 20px;font-size:max(12px,calc(13px*var(--tz,1)));font-weight:700}.hcamp i{font-style:normal;color:#7cc4ff;font-weight:500}.hact{display:grid;grid-template-columns:repeat(3,1fr)}.hact button{padding:16px 6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:calc(15px*var(--tz,1));color:var(--ink)}.hact .del{color:#e2701d}.hempty{color:var(--muted)}
 .rrow{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--panel)}.rrow.on{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp-soft)}.rrow>div{flex:1;min-width:0}.rrow b{display:block;font-size:calc(16px*var(--tz,1))}.rrow span{font-size:max(12px,calc(12.5px*var(--tz,1)));color:var(--muted)}.rrow .bb{height:34px;padding:0 10px;font-size:max(12px,calc(12.5px*var(--tz,1)));font-weight:700;color:var(--ink);border:1px solid var(--line)}.rrow .rdel{color:var(--bad)}.rnew{width:100%;margin-top:6px}
 
+
+/* T1: Quick Build on phones. Class and Species stack, so "- Choose a class -" is not cut */
+@media (max-width:480px){#bld .qb .two{grid-template-columns:1fr}}
 /* v18 RU61 caution bar, RU78 recovery screen */
 .savew{position:fixed;left:8px;right:8px;top:calc(8px + env(safe-area-inset-top,0px));z-index:72;background:#fff3e2;color:#4a2a00;border:2px solid #e2701d;border-radius:6px;padding:10px 12px;box-shadow:0 2px 10px rgba(0,0,0,.35);max-width:720px;margin:0 auto}
 .savew p{margin:0 0 8px;font-size:calc(14.5px*var(--tz,1));line-height:1.45}
@@ -4232,6 +4235,16 @@ html:root body #sheet .mi-sws button.mi-swc.mi-swc.mi-swc{background-color:rgb(v
 .sit-act{margin:6px 0 0;font-size:calc(13px*var(--tz,1));color:var(--ink-2,#888)}
 .sit-q{margin-top:6px}.sit-nt{margin-left:auto}
 #cbv .sit-q .chip.on,:root .sit-q .chip.mode.on{background:var(--good)!important;border-color:var(--good)!important;color:#fff!important}
+
+/* T1: connected move between Home and the sheet (fx/21-connected-home-sheet.js) */
+.mi-cx-pre{position:fixed;inset:0;z-index:var(--z-cover,99);pointer-events:none;overflow:hidden}
+.mi-cx-layer{position:fixed;inset:0;z-index:var(--z-cover,9000);pointer-events:none;overflow:hidden;contain:strict}
+.mi-cx-layer>*{will-change:transform}
+.mi-cx-bd{position:absolute;inset:0;opacity:0}
+html.mi-cx body::after{content:"";position:fixed;inset:0;z-index:calc(var(--z-cover,9000) - 1);background:var(--mi-cx-bg,#0f1417);pointer-events:none;opacity:1;transition:opacity .32s ease-out}
+html.mi-cx.mi-cx-go body::after{opacity:0}
+html.mi-cx #photo,html.mi-cx #idName{visibility:hidden}
+@media (prefers-reduced-motion:reduce){html.mi-cx body::after{display:none}html.mi-cx #photo,html.mi-cx #idName{visibility:visible}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -4256,7 +4269,11 @@ addEventListener("load",function(){ var top=document.elementFromPoint(innerWidth
     b.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483646;padding:14px 16px;border-radius:14px;background:#1d2327;color:#fff;font:600 15px/1.4 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.4);display:flex;gap:12px;align-items:center";
     b.innerHTML="<span style=\"flex:1\">Saved. This browser did not reload the page by itself. Refresh the page to continue.</span><button type=\"button\" style=\"font:inherit;padding:8px 14px;border-radius:10px;border:0;background:#d6453b;color:#fff\">Refresh</button>";
     b.querySelector("button").onclick=function(){ try{ location.reload(); }catch(e){} try{ location.assign(u); }catch(e){} }; document.body.appendChild(b); },2200); };</script>
-<script>try{ if(sessionStorage.getItem("mi-sw")){ sessionStorage.removeItem("mi-sw"); document.documentElement.classList.add("mi-arrive"); } }catch(e){}</script>
+<script>try{ if(sessionStorage.getItem("mi-sw")){ sessionStorage.removeItem("mi-sw"); document.documentElement.classList.add("mi-arrive"); } }catch(e){}
+/* T1: arriving from a Home card with another character (fx/21-connected-home-sheet.js). The backdrop shows from the first paint */
+try{ var mf=JSON.parse(sessionStorage.getItem("mi-cx")||"null"); if(mf&&Date.now()-mf.t<15000){ document.documentElement.classList.add("mi-cx"); if(mf.bg) document.documentElement.style.setProperty("--mi-cx-bg",mf.bg);
+  if(mf.html){ var pre=document.createElement("div"); pre.className="mi-cx-pre"; pre.setAttribute("aria-hidden","true"); pre.innerHTML=mf.html; document.documentElement.appendChild(pre); setTimeout(function(){ if(pre.parentNode) pre.parentNode.removeChild(pre); },5000); } } }catch(e){}
+</script>
 </head>
 <body>
 <div class="app" id="app">
@@ -4410,9 +4427,17 @@ var PUBLIC_BUILD=true;
 var PWA_BUILD=true;
 /* v34 p04: the builder loads after the sheet is on screen. Any click, input, or key that may need it finishes loading first.
    Tabs, View on Home, the More menu, and scrolling do not wait */
-(function(){ function need(e){ if(window.__deferDone||!window.__bldNeed) return; var t=e.target;
+(function(){ function need(e){ if(window.__deferDone) return; var t=e.target;
+    if(!window.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")) return;
     if(e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")) return;
     if(e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")) return;
+    /* T1: a tap before the loader script has been read (slow phone, page still loading) waits for it, then goes the usual way. Before, the tap was lost */
+    if(!window.__bldNeed){ if(!t||!t.click) return; e.preventDefault(); e.stopImmediatePropagation();
+      var bz0=document.getElementById("busy"), sp0=bz0&&bz0.querySelector("div span:last-child"), old0=sp0?sp0.textContent:"";
+      if(sp0) sp0.textContent="Opening the builder"; if(bz0){ bz0.style.transition="none"; bz0.classList.add("on"); }
+      var n0=0, again=function(){ if(!window.__bldNeed&&document.readyState==="loading"&&n0++<600){ setTimeout(again,30); return; }
+        if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) sp0.textContent=old0; try{ t.click(); }catch(x){} };
+      setTimeout(again,30); return; }
     if(e.type==="click"&&t&&t.click){/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
       e.preventDefault(); e.stopImmediatePropagation();
       var bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";
@@ -5096,8 +5121,11 @@ function spring(key, target, apply, opt){
 
 /* ================= RENDER ================= */
 function campName(){ var v=(S&&typeof S.camp==="string")?S.camp:((C&&C.office)||""); return String(v).trim(); }/* v30 RU133 */
+/* T1: the hidden empty place of a first public visit (ph) holds the sample build, so the tab keeps the page title until a real character is open */
+var TITLE0=document.title;
+function phOpen(){ try{ var r=JSON.parse(localStorage.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
-  document.title = C.name+" | "+C.species+" "+clsLv();
+  document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
   var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;
@@ -7524,7 +7552,7 @@ function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; var 
 (function(){ var pend=false, roots=[], SVGNS="http://www.w3.org/2000/svg", mo=new MutationObserver(function(recs){/* v30 p13: decorate only where new elements came in. Text changes (HP number rolling), new icons, and the toast (built with its icons) are skipped */
   for(var i=0;i<recs.length;i++){ var t=recs[i].target; if(!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))||roots.indexOf(t)>=0) continue; var a=recs[i].addedNodes;
     if(a.length&&!t.querySelector("svg")&&t.matches&&t.matches("button,h2,h3,.tab,.bb,.ifb")){ roots.push(t.parentNode||t); continue; }/* a heading or button whose text was replaced */
-    for(var j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"){ roots.push(t); break; } } }
+    for(var j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"&&!/^(SCRIPT|STYLE|LINK)$/.test(a[j].tagName)){ roots.push(t); break; } } }/* T1: script elements (the parser and the builder loader add them to body while the page loads) need no icons. Before, each one started a pass over the whole page */
   if(pend||!roots.length) return; pend=true; requestAnimationFrame(function(){ pend=false; var L=roots; roots=[];
     if(L.some(function(r){ return r===document.documentElement||r===document.body; })||L.length>12){ icoDecorate(document); return; }
     L.filter(function(r){ return r.isConnected&&!L.some(function(o){ return o!==r&&o.contains(r); }); }).forEach(function(r){ icoDecorate(r); }); });}); mo.observe(document.documentElement,{childList:true,subtree:true}); })();
@@ -9297,6 +9325,7 @@ window.__MI=MI;
   var leaving=false; window.addEventListener("beforeunload",function(){ leaving=true; });
   MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("#homeV [data-hview],#homeV [data-hedit]"); if(!b) return; if(b.__miGo){ b.__miGo=0; return; } if(MI.rm()) return;
     var card=b.closest(".hcard"), top=card&&card.querySelector(".hcard-top"); if(!card) return; e.preventDefault(); e.stopImmediatePropagation();
+    if(window.__miFlyOut){ window.__miFlyOut(card,function(){ b.__miGo=1; b.click(); b.__miGo=0; }); return; }/* T1: portrait and name travel to the sheet (fx/21) */
     var r=card.getBoundingClientRect(), W=innerWidth, H=innerHeight, ov=document.createElement("div"), bg=top?(top.style.backgroundImage||getComputedStyle(top).backgroundImage):"none";
     ov.className="mi-sw"; ov.setAttribute("aria-hidden","true"); ov.style.width=W+"px"; ov.style.height=H+"px"; ov.style.backgroundImage=bg; ov.style.backgroundColor="var(--panel)"; ov.innerHTML="<i></i>"; document.body.appendChild(ov);
     var ex=ov.animate([{transform:"translate("+r.left+"px,"+r.top+"px) scale("+(r.width/W)+","+(r.height/H)+")",opacity:.85},{transform:"none",opacity:1}],{duration:340,easing:"cubic-bezier(.3,.7,.2,1)",fill:"forwards"});
@@ -10194,14 +10223,16 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   bindSig(); sigil();
 
   /* M1 the sheet opens: its cards rise in one after another. M10 after Apply to Sheet the ID card turns over */
-  function cascade(){ if(!full()) return; var n=0;
+  var lastC=-1e9;/* T1: one cascade per arrival. The connected move from Home (fx/21) starts it with the flight, load and Home closing do not repeat it */
+  function cascade(){ if(!full()||performance.now()-lastC<2500) return; lastC=performance.now(); var n=0;
     Array.prototype.forEach.call(D.querySelectorAll("#app .idcard,#app .vitals,#app .tiles>.tile,#abil .ab,#app .card,#app .panel>.inner"),function(e){ if(n>=24) return; var r=e.getBoundingClientRect(); if(!r.width||r.bottom<0||r.top>innerHeight) return;
       e.animate([{opacity:0,transform:"translateY(22px) scale(.97)"},{opacity:1,transform:"none"}],{duration:520,delay:n*38,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); n++; }); }
   function flip(){ var c=D.querySelector("#app .idcard"); if(!vis(c)||!full()) return;
     c.animate([{transform:"perspective(1100px) rotateY(-100deg) scale(.92)",opacity:0},{transform:"perspective(1100px) rotateY(12deg) scale(1.02)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
     var s=c.querySelector(":scope>.mi-sig"); if(s) s.animate([{opacity:0,transform:"rotate(-24deg) scale(.6)"},{opacity:1,transform:"rotate(-12deg) scale(1)"}],{duration:1100,delay:350,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); }
   var hv=D.getElementById("homeV");
-  function boot(){ if(vis(D.querySelector("#app .idcard"))&&!vis(hv)) nf(function(){ nf(cascade); }); }
+  window.__miCascade=cascade;
+  function boot(){ if(D.documentElement.classList.contains("mi-cx")) return; if(vis(D.querySelector("#app .idcard"))&&!vis(hv)) nf(function(){ nf(cascade); }); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
   if(hv){ var hw=hv.hidden; new MutationObserver(function(){ var h=hv.hidden; if(h&&!hw) nf(function(){ nf(cascade); }); hw=h; }).observe(hv,{attributes:true,attributeFilter:["hidden"]}); }
   var fw=0;
@@ -10308,11 +10339,16 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   if(sh&&sb){ var hq=function(){ hero(); }; new MutationObserver(hq).observe(sh,{attributes:true,attributeFilter:["class"]}); new MutationObserver(hq).observe(sb,{childList:true}); }
 
   /* M11 opening a character: its sigil and name, once per character per session */
-  function splash(){ if(!full()) return; var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
+  /* T1: no splash over the builder. Create a Character and Edit reload and then open the builder (cs-skip with cs-new or cs-edit) */
+  var html0=D.documentElement;
+  function bldSoon(){ var b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(window.__bldBusyOff) return true;
+    try{ return sessionStorage.getItem("cs-skip")==="1"&&(localStorage.getItem("cs-new")==="1"||localStorage.getItem("cs-edit")==="1"); }catch(e){ return false; } }
+  function splash(){ if(!full()||bldSoon()||html0.classList.contains("mi-cx")) return;/* T1: the connected move from Home replaces the splash */ var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
     var ic=window.__miIcon?{outerHTML:window.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
     var e=D.createElement("div"); e.className="mi-splash"; e.setAttribute("aria-hidden","true"); e.innerHTML='<div class="s">'+(ic?ic.outerHTML:"")+'</div><b></b><small></small>'; e.querySelector("b").textContent=nm; e.querySelector("small").textContent=cl; D.body.appendChild(e);
     e.querySelector(".s").animate([{transform:"scale(.6) rotate(-20deg)",opacity:0},{transform:"scale(1) rotate(0)",opacity:1,offset:.4},{transform:"scale(1.05)",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
-    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300); }
+    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300);
+    var bl=D.getElementById("bld"); if(bl){ var mo=new MutationObserver(function(){ if(!bl.hidden){ mo.disconnect(); rm(e); } }); mo.observe(bl,{attributes:true,attributeFilter:["hidden"]}); setTimeout(function(){ mo.disconnect(); },2400); } }
   function boot(){ if(vis(D.querySelector("#app .idcard"))&&!vis(D.getElementById("homeV"))) splash(); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
 
@@ -10550,7 +10586,7 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   function upd(){ var w=want(); if(w&&!init()) return; if(cv) cv.classList.toggle("on",w); if(w&&!run){ run=true; color(); last=0; raf=requestAnimationFrame(frame); } else if(!w&&run){ run=false; if(raf) cancelAnimationFrame(raf); raf=0; } }
   document.addEventListener("visibilitychange",upd); addEventListener("focus",upd); addEventListener("blur",upd); addEventListener("resize",function(){ size(); upd(); },{passive:true});
   if(Q.addEventListener){ Q.addEventListener("change",upd); RM.addEventListener("change",upd); }
-  new MutationObserver(function(){ color(); upd(); }).observe(document.documentElement,{attributes:true,attributeFilter:["class","data-mi-cls","data-skin","data-theme"]});
+  var mq=0; new MutationObserver(function(){ if(mq) return; mq=requestAnimationFrame(function(){ mq=0; color(); upd(); }); }).observe(document.documentElement,{attributes:true,attributeFilter:["class","data-mi-cls","data-skin","data-theme"]});/* T1: once per frame. Each class change used to read the computed style at once */
   var a0=window.__miAmb; window.__miAmb=function(){ if(a0) try{ a0.apply(this,arguments); }catch(e){} upd(); };
   var shq=document.getElementById("sheet"); if(shq) new MutationObserver(function(){ hold=performance.now()+900; }).observe(shq,{attributes:true,attributeFilter:["class"]});
   window.__miSky=function(o){ if(!o) return; if(o.danger!=null) dgT=o.danger; if(o.mx!=null){ mx=o.mx; my=o.my; } if("scene" in o) scn=o.scene; };
@@ -10839,6 +10875,88 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
     var ic='<button type="button" class="mi-ic'+(!ik?" on":"")+'" data-mli="" aria-pressed="'+(!ik)+'" title="Class icon"><span class="mi-icd">'+ICO[cls()]+'</span><small>Class</small></button>'+CLS.map(function(k){ var on=ik===k; return '<button type="button" class="mi-ic'+(on?" on":"")+'" data-mli="'+k+'" aria-pressed="'+on+'" title="'+k.charAt(0).toUpperCase()+k.slice(1)+'">'+ICO[k]+'<small>'+k.charAt(0).toUpperCase()+k.slice(1)+'</small></button>'; }).join("");
     return '<div class="info-h">Character colour</div><div class="mi-sws">'+sw+'</div><div class="info-h">Character icon</div><div class="mi-ics">'+ic+'</div><p class="info-d">For this character: the portrait badge, the large sigil on the ID card, the title screen and the share card.</p>'; };
 })();
+
+/* === T1: connected move between Home and the sheet. View or Edit on a Home card: the portrait and the name travel from the card
+   to their place on the sheet. Opening Home: they travel back to the card. Another character reloads the page, so the start places go
+   through sessionStorage (mi-cx). boot/arrive-flag.js marks the new page (html.mi-cx): a backdrop in the page colour covers it from
+   the first paint and the two targets wait hidden until the copies land. Copies fly in a fixed layer, so no card or scroll box clips
+   them. Transform and opacity only. Off with Immersive Off and Reduce Motion. === */
+(function(){
+  var D=document, html=D.documentElement, MI=window.__MI, KEY="mi-cx", EASE="cubic-bezier(.2,.8,.2,1)", DUR=440;
+  if(!D.body||!D.body.animate) return;
+  function rmo(){ return !MI||MI.rm(); }
+  function rect(el){ if(!el||!el.getBoundingClientRect) return null; var r=el.getBoundingClientRect(); if(!r.width||!r.height) return null; return {x:r.left,y:r.top,w:r.width,h:r.height}; }
+  function seen(r){ return !!r&&r.y<innerHeight&&r.y+r.h>0&&r.x<innerWidth&&r.x+r.w>0; }
+  /* a copy that looks the same outside its card: computed styles written inline, element and children */
+  function copyStyle(s,d){ var cs=getComputedStyle(s); for(var i=0;i<cs.length;i++){ var k=cs[i]; if(/^(transition|animation|will-change|view-transition|inset|translate|rotate|scale)|-(block|inline)|^(block|inline)-size/.test(k)) continue;/* logical twins of left, top, width would win over the inline place on the next page */ d.style.setProperty(k,cs.getPropertyValue(k)); }
+    var a=s.children, b=d.children; for(var j=0;j<a.length&&j<b.length;j++) copyStyle(a[j],b[j]); }
+  function copy(el,r,layer){ var c=el.cloneNode(true); c.removeAttribute("id"); Array.prototype.forEach.call(c.querySelectorAll("[id]"),function(x){ x.removeAttribute("id"); });
+    copyStyle(el,c); c.setAttribute("aria-hidden","true");
+    c.style.position="fixed"; c.style.left=r.x+"px"; c.style.top=r.y+"px"; c.style.width=r.w+"px"; c.style.height=r.h+"px"; c.style.margin="0"; c.style.transform="none"; c.style.transformOrigin="0 0"; c.style.visibility="visible"; c.style.opacity="1"; c.style.pointerEvents="none";
+    layer.appendChild(c); return c; }
+  function layer(){ var l=D.createElement("div"); l.className="mi-cx-layer"; l.setAttribute("aria-hidden","true"); D.body.appendChild(l); return l; }
+  /* move copy c (drawn at rect to) so it starts at rect from. Text keeps its shape: one scale from the heights */
+  function fly(c,from,to,even){ var sx=from.w/to.w, sy=from.h/to.h; if(even){ sx=sy; }
+    return c.animate([{transform:"translate("+(from.x-to.x)+"px,"+(from.y-to.y)+"px) scale("+sx+","+sy+")"},{transform:"none"}],{duration:DUR,easing:EASE,fill:"both"}); }
+  function sheetEls(){ return [D.getElementById("photo"),D.getElementById("idName")]; }
+  function cardEls(card){ return card?[card.querySelector(".hpor"),card.querySelector(".hname b")]:[null,null]; }
+
+  /* arrive on the sheet: copies from the old places (d.p, d.n) to the sheet portrait and name */
+  /* the card copy goes along and fades out while the sheet copy fades in: the look changes on the way, not at the end */
+  function along(c,from,to,even,L){ if(!c) return; L.appendChild(c); var sx=to.w/from.w, sy=to.h/from.h; if(even) sx=sy;
+    c.animate([{transform:"none",opacity:1},{transform:"translate("+(to.x-from.x)+"px,"+(to.y-from.y)+"px) scale("+sx+","+sy+")",opacity:0}],{duration:DUR,easing:EASE,fill:"both"}); }
+  function flyIn(d,done,src){ var pre=D.querySelector(".mi-cx-pre"); if(!src&&pre) src=Array.prototype.slice.call(pre.children); if(pre) pre.remove(); src=src||[]; var els=sheetEls(), L=layer(), n=0, fin=false, end=function(){ if(fin) return; fin=true; html.classList.remove("mi-cx","mi-cx-go"); els.forEach(function(e){ if(e) e.style.visibility=""; }); L.remove(); if(done) done(); };
+    els.forEach(function(el,i){ var from=i?d.n:d.p, to=rect(el); if(!el||!from||!seen(to)) return; n++;
+      if(src[i]){/* the card copy travels and fades, the real portrait or name fades in at its place */
+        along(src[i],from,to,i===1,L); el.style.visibility="visible"; el.animate([{opacity:0},{opacity:0,offset:.35},{opacity:1}],{duration:DUR,easing:"ease-out",fill:"backwards"}); return; }
+      var c=copy(el,to,L); el.style.visibility="hidden"; fly(c,from,to,i===1); });
+    html.classList.add("mi-cx-go");/* the backdrop fades while the copies travel */
+    if(window.__miCascade) try{ window.__miCascade(); }catch(e){}/* the rest of the sheet arrives with them (fx/14) */
+    window.__miFlyN=(window.__miFlyN||0)+(n?1:0);/* for tests */
+    setTimeout(end,n?DUR+40:0); setTimeout(end,DUR+900); }
+  window.__miFlyIn=flyIn;
+
+  /* leave Home: keep the portrait and name where they are, cover the rest in the page colour, then let the app switch */
+  window.__miFlyOut=function(card,go){ if(rmo()){ go(); return; }
+    var els=cardEls(card), d={p:rect(els[0]),n:rect(els[1]),t:Date.now(),bg:getComputedStyle(D.body).backgroundColor||"#0f1417"};
+    try{ sessionStorage.setItem(KEY,JSON.stringify(d)); }catch(e){}
+    var L=layer(), bd=D.createElement("i"); bd.className="mi-cx-bd"; bd.style.background=d.bg; L.appendChild(bd);
+    var cps=[]; els.forEach(function(el,i){ var r=i?d.n:d.p; if(el&&r) cps.push(copy(el,r,L)); });
+    /* the copies also go to the new page, which shows them from its first paint (boot/arrive-flag.js) until they fly */
+    try{ var hh=cps.map(function(c){ return c.outerHTML; }).join(""); if(hh.length<250000){ d.html=hh; sessionStorage.setItem(KEY,JSON.stringify(d)); } }catch(e){}
+    var leaving=false; addEventListener("pagehide",function(){ leaving=true; },{once:true}); addEventListener("beforeunload",function(){ leaving=true; },{once:true});
+    var a=bd.animate([{opacity:0},{opacity:1}],{duration:200,easing:"ease-out",fill:"forwards"}), went=false;
+    function next(){ if(went) return; went=true; go();
+      window.__miNF(function(){ window.__miNF(function(){ var hv=D.getElementById("homeV");
+        if(hv&&hv.hidden&&!leaving){/* the same character: no reload, fly now */ try{ sessionStorage.removeItem(KEY); }catch(e){}
+          html.classList.add("mi-cx"); var bdc=L.querySelector(".mi-cx-bd"); flyIn(d,null,Array.prototype.slice.call(L.children).filter(function(x){ return x!==bdc; })); var f=L.animate([{opacity:1},{opacity:0}],{duration:240,easing:"ease-out",fill:"forwards"}); f.onfinish=function(){ L.remove(); }; setTimeout(function(){ L.remove(); },700); }
+        else setTimeout(function(){ if(!leaving){ L.remove(); try{ sessionStorage.removeItem(KEY); }catch(e){} } },3000); }); }); }
+    a.onfinish=next; setTimeout(next,320); };
+
+  /* the new page after a switch */
+  function arrive(){ if(!html.classList.contains("mi-cx")) return; var d=null; try{ d=JSON.parse(sessionStorage.getItem(KEY)||"null"); sessionStorage.removeItem(KEY); }catch(e){}
+    var hv=D.getElementById("homeV"); if(!d||rmo()||(hv&&!hv.hidden)){ html.classList.remove("mi-cx","mi-cx-go"); var pr=D.querySelector(".mi-cx-pre"); if(pr) pr.remove(); return; }
+    window.__miNF(function(){ flyIn(d,null); }); }
+  if(D.readyState==="loading") D.addEventListener("DOMContentLoaded",arrive,{once:true}); else arrive();
+  setTimeout(function(){ html.classList.remove("mi-cx","mi-cx-go"); },4000);/* never leave the sheet hidden */
+
+  /* open Home: the sheet portrait and name go back to the card of this character */
+  var tap=0; addEventListener("click",function(){ tap=performance.now(); },true); addEventListener("keydown",function(){ tap=performance.now(); },true);
+  var hv0=D.getElementById("homeV");
+  function watchHome(hv,isNew){ var was=hv.hidden;
+    function opened(){ if(hv.hidden||rmo()||performance.now()-tap>800) return;/* only when you open Home, not when the app starts on it */
+      var els=sheetEls(), r0=[rect(els[0]),rect(els[1])]; if(!seen(r0[0])&&!seen(r0[1])) return;
+      var id=null; try{ id=(JSON.parse(localStorage.getItem("cs-roster-v1"))||{}).active; }catch(e){}
+      var b=id&&hv.querySelector('[data-hview="'+id+'"]'), card=b&&b.closest(".hcard"), ce=cardEls(card); if(!card) return;
+      var L=layer(), n=0;
+      ce.forEach(function(el,i){ var to=rect(el), fr=r0[i]; if(!el||!seen(to)||!fr) return; var c=copy(el,to,L); el.style.visibility="hidden"; n++;
+        fly(c,fr,to,i===1).onfinish=function(){ el.style.visibility=""; }; setTimeout(function(){ el.style.visibility=""; },DUR+600); });
+      window.__miFlyBackN=(window.__miFlyBackN||0)+(n?1:0);/* for tests */
+      setTimeout(function(){ L.remove(); },n?DUR+60:0); }
+    new MutationObserver(function(){ if(hv.hidden===was) return; was=hv.hidden; opened(); }).observe(hv,{attributes:true,attributeFilter:["hidden"]});
+    if(isNew&&!hv.hidden) window.__miNF(opened);/* the first open makes #homeV, filled in the same task */ }
+  if(hv0) watchHome(hv0,false); else new MutationObserver(function(m,o){ var h=D.getElementById("homeV"); if(h){ o.disconnect(); watchHome(h,true); } }).observe(D.body,{childList:true});
+})();
 </script>
 <script>
 /* v34: the builder data and code run after the sheet is on screen, in order, one part per task. __bldNeed() runs the rest at once */
@@ -10848,12 +10966,19 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   function run1(){ var s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ var x=document.createElement("script"); x.text=s.text; s.parentNode.replaceChild(x,s); return true; }
   function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} }
   window.__bldNeed=function(){ if(window.__deferDone) return; while(run1()){} if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",function(){ while(run1()){} fin(); }); return; } fin(); };
-  /* each part runs when the page is idle (a tap or a scroll goes first), at the latest after a short wait */
-  var idle=function(f,ms){ if(window.requestIdleCallback) requestIdleCallback(f,{timeout:ms}); else setTimeout(f,0); };
-  function step(){ if(run1()&&list().length) idle(step,400); else fin(); }
-  /* after the first frame, or after 150 ms when no frame comes (a reload that has not painted yet, a hidden tab) */
-  function go(){ if(window.__deferDone||t0) return; t0=performance.now(); var on=0, st=function(){ if(on) return; on=1; idle(step,1200); }; if(window.requestAnimationFrame&&document.visibilityState!=="hidden") requestAnimationFrame(st); setTimeout(st,150); }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",go); else go();
+  /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,
+     or one larger part, then the browser handles taps and drawing. Before, each part waited for an idle moment (up to 400 ms), and
+     the first part waited for DOMContentLoaded, so the builder was ready 1 to 20 seconds after the sheet was on screen */
+  var post=(window.scheduler&&typeof scheduler.postTask==="function")?function(f){ scheduler.postTask(f,{priority:"user-visible"}); }:(function(){
+    if(typeof MessageChannel!=="function") return function(f){ setTimeout(f,0); };
+    var mc=new MessageChannel(), q=[]; mc.port1.onmessage=function(){ var f=q.shift(); if(f) f(); }; return function(f){ q.push(f); mc.port2.postMessage(0); }; })();
+  function step(){ if(window.__deferDone) return; var t=performance.now(), ran=false;
+    while(run1()){ ran=true; if(performance.now()-t>10) break; }
+    if(!list().length){ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",fin,{once:true}); else fin(); return; }
+    if(!ran&&document.readyState==="loading"){ setTimeout(step,40); return; }/* the next part is still being read */
+    post(step); }
+  function go(){ if(window.__deferDone||t0) return; t0=performance.now(); var on=0, st=function(){ if(on) return; on=1; post(step); }; if(window.requestAnimationFrame&&document.visibilityState!=="hidden") requestAnimationFrame(function(){ requestAnimationFrame(function(){ setTimeout(st,0); }); }); setTimeout(st,300); }/* two frames: the sheet is on screen before the first part runs */
+  go();
 })();
 </script>
 <div id="bld" hidden>

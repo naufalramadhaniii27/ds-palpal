@@ -1,7 +1,10 @@
 /* ================= RENDER ================= */
 function campName(){ var v=(S&&typeof S.camp==="string")?S.camp:((C&&C.office)||""); return String(v).trim(); }/* v30 RU133 */
+/* T1: the hidden empty place of a first public visit (ph) holds the sample build, so the tab keeps the page title until a real character is open */
+var TITLE0=document.title;
+function phOpen(){ try{ var r=JSON.parse(localStorage.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
-  document.title = C.name+" | "+C.species+" "+clsLv();
+  document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
   var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;

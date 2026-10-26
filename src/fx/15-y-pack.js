@@ -46,11 +46,16 @@
   if(sh&&sb){ var hq=function(){ hero(); }; new MutationObserver(hq).observe(sh,{attributes:true,attributeFilter:["class"]}); new MutationObserver(hq).observe(sb,{childList:true}); }
 
   /* M11 opening a character: its sigil and name, once per character per session */
-  function splash(){ if(!full()) return; var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
+  /* T1: no splash over the builder. Create a Character and Edit reload and then open the builder (cs-skip with cs-new or cs-edit) */
+  var html0=D.documentElement;
+  function bldSoon(){ var b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(window.__bldBusyOff) return true;
+    try{ return sessionStorage.getItem("cs-skip")==="1"&&(localStorage.getItem("cs-new")==="1"||localStorage.getItem("cs-edit")==="1"); }catch(e){ return false; } }
+  function splash(){ if(!full()||bldSoon()||html0.classList.contains("mi-cx")) return;/* T1: the connected move from Home replaces the splash */ var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
     var ic=window.__miIcon?{outerHTML:window.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
     var e=D.createElement("div"); e.className="mi-splash"; e.setAttribute("aria-hidden","true"); e.innerHTML='<div class="s">'+(ic?ic.outerHTML:"")+'</div><b></b><small></small>'; e.querySelector("b").textContent=nm; e.querySelector("small").textContent=cl; D.body.appendChild(e);
     e.querySelector(".s").animate([{transform:"scale(.6) rotate(-20deg)",opacity:0},{transform:"scale(1) rotate(0)",opacity:1,offset:.4},{transform:"scale(1.05)",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
-    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300); }
+    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300);
+    var bl=D.getElementById("bld"); if(bl){ var mo=new MutationObserver(function(){ if(!bl.hidden){ mo.disconnect(); rm(e); } }); mo.observe(bl,{attributes:true,attributeFilter:["hidden"]}); setTimeout(function(){ mo.disconnect(); },2400); } }
   function boot(){ if(vis(D.querySelector("#app .idcard"))&&!vis(D.getElementById("homeV"))) splash(); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
 

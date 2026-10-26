@@ -6,10 +6,17 @@
   function run1(){ var s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ var x=document.createElement("script"); x.text=s.text; s.parentNode.replaceChild(x,s); return true; }
   function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} }
   window.__bldNeed=function(){ if(window.__deferDone) return; while(run1()){} if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",function(){ while(run1()){} fin(); }); return; } fin(); };
-  /* each part runs when the page is idle (a tap or a scroll goes first), at the latest after a short wait */
-  var idle=function(f,ms){ if(window.requestIdleCallback) requestIdleCallback(f,{timeout:ms}); else setTimeout(f,0); };
-  function step(){ if(run1()&&list().length) idle(step,400); else fin(); }
-  /* after the first frame, or after 150 ms when no frame comes (a reload that has not painted yet, a hidden tab) */
-  function go(){ if(window.__deferDone||t0) return; t0=performance.now(); var on=0, st=function(){ if(on) return; on=1; idle(step,1200); }; if(window.requestAnimationFrame&&document.visibilityState!=="hidden") requestAnimationFrame(st); setTimeout(st,150); }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",go); else go();
+  /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,
+     or one larger part, then the browser handles taps and drawing. Before, each part waited for an idle moment (up to 400 ms), and
+     the first part waited for DOMContentLoaded, so the builder was ready 1 to 20 seconds after the sheet was on screen */
+  var post=(window.scheduler&&typeof scheduler.postTask==="function")?function(f){ scheduler.postTask(f,{priority:"user-visible"}); }:(function(){
+    if(typeof MessageChannel!=="function") return function(f){ setTimeout(f,0); };
+    var mc=new MessageChannel(), q=[]; mc.port1.onmessage=function(){ var f=q.shift(); if(f) f(); }; return function(f){ q.push(f); mc.port2.postMessage(0); }; })();
+  function step(){ if(window.__deferDone) return; var t=performance.now(), ran=false;
+    while(run1()){ ran=true; if(performance.now()-t>10) break; }
+    if(!list().length){ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",fin,{once:true}); else fin(); return; }
+    if(!ran&&document.readyState==="loading"){ setTimeout(step,40); return; }/* the next part is still being read */
+    post(step); }
+  function go(){ if(window.__deferDone||t0) return; t0=performance.now(); var on=0, st=function(){ if(on) return; on=1; post(step); }; if(window.requestAnimationFrame&&document.visibilityState!=="hidden") requestAnimationFrame(function(){ requestAnimationFrame(function(){ setTimeout(st,0); }); }); setTimeout(st,300); }/* two frames: the sheet is on screen before the first part runs */
+  go();
 })();

@@ -29,7 +29,7 @@
   function upd(){ var w=want(); if(w&&!init()) return; if(cv) cv.classList.toggle("on",w); if(w&&!run){ run=true; color(); last=0; raf=requestAnimationFrame(frame); } else if(!w&&run){ run=false; if(raf) cancelAnimationFrame(raf); raf=0; } }
   document.addEventListener("visibilitychange",upd); addEventListener("focus",upd); addEventListener("blur",upd); addEventListener("resize",function(){ size(); upd(); },{passive:true});
   if(Q.addEventListener){ Q.addEventListener("change",upd); RM.addEventListener("change",upd); }
-  new MutationObserver(function(){ color(); upd(); }).observe(document.documentElement,{attributes:true,attributeFilter:["class","data-mi-cls","data-skin","data-theme"]});
+  var mq=0; new MutationObserver(function(){ if(mq) return; mq=requestAnimationFrame(function(){ mq=0; color(); upd(); }); }).observe(document.documentElement,{attributes:true,attributeFilter:["class","data-mi-cls","data-skin","data-theme"]});/* T1: once per frame. Each class change used to read the computed style at once */
   var a0=window.__miAmb; window.__miAmb=function(){ if(a0) try{ a0.apply(this,arguments); }catch(e){} upd(); };
   var shq=document.getElementById("sheet"); if(shq) new MutationObserver(function(){ hold=performance.now()+900; }).observe(shq,{attributes:true,attributeFilter:["class"]});
   window.__miSky=function(o){ if(!o) return; if(o.danger!=null) dgT=o.danger; if(o.mx!=null){ mx=o.mx; my=o.my; } if("scene" in o) scn=o.scene; };

@@ -22,14 +22,16 @@
   bindSig(); sigil();
 
   /* M1 the sheet opens: its cards rise in one after another. M10 after Apply to Sheet the ID card turns over */
-  function cascade(){ if(!full()) return; var n=0;
+  var lastC=-1e9;/* T1: one cascade per arrival. The connected move from Home (fx/21) starts it with the flight, load and Home closing do not repeat it */
+  function cascade(){ if(!full()||performance.now()-lastC<2500) return; lastC=performance.now(); var n=0;
     Array.prototype.forEach.call(D.querySelectorAll("#app .idcard,#app .vitals,#app .tiles>.tile,#abil .ab,#app .card,#app .panel>.inner"),function(e){ if(n>=24) return; var r=e.getBoundingClientRect(); if(!r.width||r.bottom<0||r.top>innerHeight) return;
       e.animate([{opacity:0,transform:"translateY(22px) scale(.97)"},{opacity:1,transform:"none"}],{duration:520,delay:n*38,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); n++; }); }
   function flip(){ var c=D.querySelector("#app .idcard"); if(!vis(c)||!full()) return;
     c.animate([{transform:"perspective(1100px) rotateY(-100deg) scale(.92)",opacity:0},{transform:"perspective(1100px) rotateY(12deg) scale(1.02)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
     var s=c.querySelector(":scope>.mi-sig"); if(s) s.animate([{opacity:0,transform:"rotate(-24deg) scale(.6)"},{opacity:1,transform:"rotate(-12deg) scale(1)"}],{duration:1100,delay:350,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); }
   var hv=D.getElementById("homeV");
-  function boot(){ if(vis(D.querySelector("#app .idcard"))&&!vis(hv)) nf(function(){ nf(cascade); }); }
+  window.__miCascade=cascade;
+  function boot(){ if(D.documentElement.classList.contains("mi-cx")) return; if(vis(D.querySelector("#app .idcard"))&&!vis(hv)) nf(function(){ nf(cascade); }); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
   if(hv){ var hw=hv.hidden; new MutationObserver(function(){ var h=hv.hidden; if(h&&!hw) nf(function(){ nf(cascade); }); hw=h; }).observe(hv,{attributes:true,attributeFilter:["hidden"]}); }
   var fw=0;
