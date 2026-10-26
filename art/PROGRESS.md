@@ -7,3 +7,8 @@ art/batch/g0/emblem-artificer.png | check: pass
 art/batch/g0/emblem-cleric.png | check: pass
 art/batch/g0/emblem-druid.png | check: pass
 art/batch/g0/emblem-fighter.png | check: pass
+art/batch/g0/emblem-monk.png | check: pass
+art/batch/g0/emblem-paladin.png | check: pass
+art/batch/g0/emblem-ranger.png | check: pass
+art/batch/g0/emblem-rogue.png | check: pass
+art/batch/g0/emblem-sorcerer.png | check: pass
