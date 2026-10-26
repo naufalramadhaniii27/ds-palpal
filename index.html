@@ -3168,6 +3168,8 @@ button.hunsv{border:0;cursor:pointer;min-height:32px;font:inherit;font-size:12px
 /* v33 p10 */
 .chfopt{display:grid;gap:8px;margin:10px 0}.chfopt select{min-height:44px}.chfauto{display:flex;gap:10px;align-items:center;min-height:44px}
 
+
+.hbin{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.hbinb{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--panel-2);color:inherit;border:1px solid var(--line,rgba(128,128,128,.3));cursor:pointer}.hbinb[aria-expanded=true]{border-color:currentColor}.hbinn{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#e2701d;color:#fff;font:700 11px/18px system-ui,sans-serif;text-align:center}.hbin .hbkl{align-self:stretch}
 /* === hold-to-confirm delete (replaces plain two-tap on pointer/touch; two-tap still works as fallback) === */
 .holdc{position:relative;isolation:isolate;overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
 .holdc .holdc-fill{position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(229,83,75,.45),rgba(229,83,75,.65));transform:scaleX(0);transform-origin:left;border-radius:inherit;pointer-events:none}
@@ -5956,6 +5958,7 @@ function showHome(){var w=document.getElementById("homeV");if(!w){w=document.cre
    if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
    if(d.hwn){if(d.hwn==="ok"){try{localStorage.setItem("cs-ui-ver",String(APP_VER))}catch(er){}WN_SHOW=false;var bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}/* v18 RU59 */
    if(d.hpers){askPersist();return}
+   if(d.hbin){BIN_OPEN=!BIN_OPEN;var hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
    if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
    if(d.hnew){rSnap(r);var nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}})}
  var n=Object.keys(rEnsure().chars).length-rPh(rEnsure()).length;
@@ -6063,10 +6066,12 @@ function homeInfo(){ var bk=uiGet("cs-ui-bkp"), r=rGet()||{chars:{}}, now=Date.n
       del.sort(function(a,b){ return (sn[b][0].t||0)-(sn[a][0].t||0); });
       var row=function(id){ var x=sn[id][0], c=cOf(x.C), sub=((c.species||"")+" "+(c.clsLabel||"")).trim();
         return '<li><span class="hdn"><b>'+esc(x.name||c.name||"Character")+'</b><small>'+(sub?esc(sub)+' \u2022 ':'')+'Deleted '+esc(fmtT(x.t).slice(0,10))+'</small></span><button type="button" class="hlink" data-hback="'+id+'">Bring Back</button></li>'; };
-      return '<div class="hbkl hdel"><span class="hdelh">Deleted characters you can bring back:</span><ul>'+del.slice(0,5).map(row).join("")+'</ul>'+(del.length>5?'<details><summary>Show '+(del.length-5)+' older</summary><ul>'+del.slice(5).map(row).join("")+'</ul></details>':'')+'</div>'; })(); }
+      return '<div class="hbin"><button type="button" class="hbinb press" data-hbin="1" aria-expanded="'+(BIN_OPEN?'true':'false')+'" aria-label="Recycle bin, '+del.length+' deleted character'+(del.length===1?'':'s')+'"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/><path d="M10 10v6M14 10v6"/></svg><span class="hbinn">'+del.length+'</span></button>'+
+        (BIN_OPEN?'<div class="hbkl hdel"><span class="hdelh">Deleted characters you can bring back:</span><ul>'+del.slice(0,5).map(row).join("")+'</ul>'+(del.length>5?'<details><summary>Show '+(del.length-5)+' older</summary><ul>'+del.slice(5).map(row).join("")+'</ul></details>':'')+'</div>':'')+'</div>'; })(); }
 /* (d) snapshots: cs-snap-v1 = {chars:{id:[newest first, max 5]}}. Device only: not in Back Up, untouched by Restore, so a Restore can be undone.
    Portraits are left out (the current portrait is kept on restore). Total size is kept under SN_MAX characters by dropping the oldest */
 var SN_MAX=900000;
+var BIN_OPEN=false;
 var SN_BAD=false;
 function snGet(){ var raw=lsGet(SNKEY); try{ var o=JSON.parse(raw||"null"); if(o&&o.chars&&typeof o.chars==="object"){ SN_BAD=false; return o; } }catch(e){} SN_BAD=raw!=null; return {chars:{}}; }
 function snDrop(o){ var best=null; Object.keys(o.chars).forEach(function(id){ var L=o.chars[id]; if(L&&L.length){ var x=L[L.length-1]; if(!best||x.t<best.t) best={id:id,t:x.t}; } }); if(!best) return false; o.chars[best.id].pop(); if(!o.chars[best.id].length) delete o.chars[best.id]; return true; }
