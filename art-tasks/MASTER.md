@@ -1,7 +1,7 @@
 # Art production for the D&D character sheet app
 
 RULE 1, HIGHEST PRIORITY: ZERO AI SLOP, MAXIMUM WOW.
-The user is extremely strict about AI slop and wants every image to be WOW. Follow the QUALITY BAR below for every image. Never lower quality to finish faster. If quota runs out, stop and report.
+The user is extremely strict about AI slop and wants every image to be WOW. EVERY asset without exception (scenes, portraits, creatures, emblems, icons, vignettes, ornaments, frames, UI pieces, sprites) must be in the Studio Ghibli 2D anime film style. Nothing may look like a video game UI, a Western MMO icon, a 3D render or a photo. Style references: scenes match art/style-test/gnome-scene-pc.png and art/g0/home-inn-pc.png, everything else matches art-tasks/ref/emblem-reference.png. Follow the QUALITY BAR below for every image. Never lower quality to finish faster. If quota runs out, stop and report.
 
 You are producing painted art with $imagegen for this repo. All task files are in the folder art-tasks/ on the branch art-tasks.
 
@@ -25,6 +25,7 @@ FIRST, BEFORE PART 02: PART 00 (UPDATED). The user did NOT like the worn, rusty,
 - Save redos to art/batch/g0/<same name> and art/batch/style-test/<same name>, overwriting the worn cleric redo.
 - Rewrite art/REVIEW.md with the new verdicts. Commit, push, then continue with part 02.
 - PART 00B (NEW, do this right after PART 00): the user says ALL class emblems are too far from the Ghibli anime style. Redo all 13 class emblems (barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard, artificer) in the exact look of art-tasks/ref/emblem-reference.png, keeping each class's object idea from art-tasks/part-01.md (bard: the lute in the reference itself, cleaned to a transparent background). Save to art/batch/emblems/class/<class>.png, 1024x1024 transparent. These replace every earlier class emblem.
+- PART 00B also: redo the ornaments in the same Ghibli prop style (hand-drawn wood, brass, leaves and cloth like a prop in a Ghibli film, not a game UI frame): art/batch/g0/frame-portrait.png, art/batch/g0/badge-level.png, art/batch/g0/divider-wood.png, art/batch/g0/corner-wood.png, art/batch/g0/corner-metal.png, art/batch/g0/corner-vine.png, art/batch/g0/crest-app.png (same sizes and transparency as their prompts in part-01.md and the style test).
 
 
 Reference look for scenes: art/style-test/gnome-scene-pc.png on branch art-style-test and art/g0/home-inn-pc.png on branch art-g0. For ALL emblems and icons the only style reference is art-tasks/ref/emblem-reference.png.
@@ -40,6 +41,8 @@ QUALITY BAR: "WOW", NOT SLOP (applies to every image, read before each part):
 - Rich warm accent colors with clean value contrast, soft rim light and magical glow where it tells the story. Materials look alive and hand-painted.
 - Details are purposeful and tell the story of the class or item. No filler decoration.
 - What counts as AI SLOP and must be avoided: random ribbons, flowers or bows added for no reason; the same generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy, extra fingers, warped perspective; duplicated copy-paste objects; meaningless ornament spam; plastic skin; text-like squiggles; a bland stock-image composition.
+- Portraits and creatures: Ghibli character design: soft round shapes, expressive simple faces, natural hair and clothes, warm painted light. Creatures look like Ghibli creatures: characterful, a little whimsical, still true to the D&D creature, never like a monster manual 3D render.
+- UI pieces, frames, ribbons, sprites: hand-drawn props from a Ghibli film (wood, brass, paper, cloth, leaves), not shiny game UI.
 - Scenes: rich, layered and alive, with specific characters doing specific things, varied faces and bodies, clear dramatic light. Still keep the calm center (PC) or calm bottom (phone) for the app cards.
 
 SIZE AND COMPOSITION RULES (apply by the tag in brackets after each image number):
