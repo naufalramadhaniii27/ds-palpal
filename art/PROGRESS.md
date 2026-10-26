@@ -56,3 +56,8 @@ art/batch/scenes/species/aasimar-phone.png
 art/batch/scenes/species/dragonborn-pc.png
 art/batch/scenes/species/dragonborn-phone.png
 art/batch/scenes/species/dwarf-pc.png
+art/batch/scenes/species/dwarf-phone.png
+art/batch/scenes/species/elf-pc.png
+art/batch/scenes/species/elf-phone.png
+art/batch/scenes/species/goliath-pc.png
+art/batch/scenes/species/goliath-phone.png
