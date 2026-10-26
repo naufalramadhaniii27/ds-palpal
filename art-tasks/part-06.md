@@ -1,5 +1,5 @@
 # Part 06: Preset portraits (20 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body, and a terrifying enemy only when the Variation names one.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, GORE AND DESPAIR IN A BRIGHT, COLORFUL WORLD comes first. Interpret every subject below that way: the place is bright, vivid and full of color, while the people suffer bloody wounds, loss and despair. A terrifying enemy appears only when the Variation names one.
 
 IMAGE 06-0001 [PORTRAIT] - save as art/batch/portraits/aasimar-a.png
 an aasimar with faint golden freckles of light and soft white-gold hair. Background colors: gold and pale blue.

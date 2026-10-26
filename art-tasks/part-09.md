@@ -1,5 +1,5 @@
 # Part 09: Small icon sheets (114 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 09-0001 [ICON] - save as art/batch/icons/conditions/blinded.png
 Condition icon. Icon: Blinded: a face-less hooded head with a cloth tied over the eyes.

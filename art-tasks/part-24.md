@@ -1,5 +1,5 @@
 # Part 24: Adventuring gear, packs and tools icons (128 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 24-0001 [ICON] - save as art/batch/icons/items/gear/arrows-20.png
 Adventuring gear, pack or tool icon, the plain mundane object. Icon: Arrows (20).

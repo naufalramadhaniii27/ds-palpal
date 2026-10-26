@@ -1,5 +1,5 @@
 # Part 19: Extra subclass emblems (other sources and homebrew) (41 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 19-0001 [EMBLEM] - save as art/batch/emblems/subclass/extra/aberrant-mind.png
 Subclass emblem for Aberrant Mind: an original symbol that captures the theme of this subclass. Glow color: one color that fits the theme.

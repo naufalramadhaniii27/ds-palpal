@@ -1,5 +1,5 @@
 # Part 26: UI ornaments and animation sprites (12 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, TRAGIC BUT WARM comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first. This part is emblems or icons: keep the bright warm look of the approved Part 00B class emblems, no dark tone.
 
 IMAGE 26-0001 [AS WRITTEN] - save as art/batch/ui/ribbon-dialog.png
 Size: 2048x256, transparent background. A painted cloth ribbon banner for dialog titles: deep red cloth with gold trim, folded ends, blank (no text). Spans 90 percent of the width. Same prop style as the emblems.
