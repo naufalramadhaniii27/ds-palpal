@@ -1,83 +1,192 @@
-# Part 12: Creatures, companions, familiars and bastion (5 images)
+# Part 12: Creatures, companions, familiars and bastion (63 images)
 Apply the MASTER.md rules and style lock to every image.
 
-IMAGE 12-001 [GRID] - save as art/batch/icons/creatures-01.png
-Wild Shape, companion and familiar portraits as round-ish creature icons, friendly anime look, sheet 1.
-cell 1 (row 1, column 1): Wolf
-cell 2 (row 1, column 2): Brown Bear
-cell 3 (row 1, column 3): Black Bear
-cell 4 (row 1, column 4): Panther
-cell 5 (row 2, column 1): Dire Wolf
-cell 6 (row 2, column 2): Giant Spider
-cell 7 (row 2, column 3): Giant Toad
-cell 8 (row 2, column 4): Giant Owl
-cell 9 (row 3, column 1): Giant Constrictor Snake
-cell 10 (row 3, column 2): Giant Octopus
-cell 11 (row 3, column 3): Riding Horse
-cell 12 (row 3, column 4): Crocodile
-cell 13 (row 4, column 1): Beast of the Land (primal companion)
-cell 14 (row 4, column 2): Beast of the Sea (primal companion)
-cell 15 (row 4, column 3): Beast of the Sky (primal companion)
-cell 16 (row 4, column 4): Steel Defender (mechanical guardian dog)
+IMAGE 12-0001 [ICON] - save as art/batch/icons/wild-shape/wolf.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Wolf.
 
-IMAGE 12-002 [GRID] - save as art/batch/icons/creatures-02.png
-Wild Shape, companion and familiar portraits as round-ish creature icons, friendly anime look, sheet 2.
-cell 1 (row 1, column 1): Homunculus Servant (tiny winged construct)
-cell 2 (row 1, column 2): Eldritch Cannon (small arcane cannon on legs)
-cell 3 (row 1, column 3): Bat familiar
-cell 4 (row 1, column 4): Cat familiar
-cell 5 (row 2, column 1): Frog familiar
-cell 6 (row 2, column 2): Hawk familiar
-cell 7 (row 2, column 3): Lizard familiar
-cell 8 (row 2, column 4): Octopus familiar
-cell 9 (row 3, column 1): Owl familiar
-cell 10 (row 3, column 2): Rat familiar
-cell 11 (row 3, column 3): Raven familiar
-cell 12 (row 3, column 4): Spider familiar
-cell 13 (row 4, column 1): Weasel familiar
-cell 14 (row 4, column 2): Imp (pact familiar)
-cell 15 (row 4, column 3): Pseudodragon (pact familiar)
-cell 16 (row 4, column 4): Quasit (pact familiar)
+IMAGE 12-0002 [ICON] - save as art/batch/icons/wild-shape/brown-bear.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Brown Bear.
 
-IMAGE 12-003 [GRID] - save as art/batch/icons/creatures-03.png
-Wild Shape, companion and familiar portraits as round-ish creature icons, friendly anime look, sheet 3.
-cell 1 (row 1, column 1): Sprite (pact familiar)
-cell 2 (row 1, column 2): Sphinx of Wonder (pact familiar, tiny winged sphinx)
-cells 3 to 16: leave empty (transparent).
+IMAGE 12-0003 [ICON] - save as art/batch/icons/wild-shape/black-bear.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Black Bear.
 
-IMAGE 12-004 [GRID] - save as art/batch/icons/bastion-01.png
-Bastion facility icons, each a tiny painted room or building, sheet 1.
-cell 1 (row 1, column 1): Arcane Study: a small painted vignette of a bastion arcane study
-cell 2 (row 1, column 2): Armory: a small painted vignette of a bastion armory
-cell 3 (row 1, column 3): Barrack: a small painted vignette of a bastion barrack
-cell 4 (row 1, column 4): Garden: a small painted vignette of a bastion garden
-cell 5 (row 2, column 1): Library: a small painted vignette of a bastion library
-cell 6 (row 2, column 2): Sanctuary: a small painted vignette of a bastion sanctuary
-cell 7 (row 2, column 3): Smithy: a small painted vignette of a bastion smithy
-cell 8 (row 2, column 4): Storehouse: a small painted vignette of a bastion storehouse
-cell 9 (row 3, column 1): Workshop: a small painted vignette of a bastion workshop
-cell 10 (row 3, column 2): Gaming Hall: a small painted vignette of a bastion gaming hall
-cell 11 (row 3, column 3): Greenhouse: a small painted vignette of a bastion greenhouse
-cell 12 (row 3, column 4): Laboratory: a small painted vignette of a bastion laboratory
-cell 13 (row 4, column 1): Sacristy: a small painted vignette of a bastion sacristy
-cell 14 (row 4, column 2): Scriptorium: a small painted vignette of a bastion scriptorium
-cell 15 (row 4, column 3): Stable: a small painted vignette of a bastion stable
-cell 16 (row 4, column 4): Teleportation Circle: a small painted vignette of a bastion teleportation circle
+IMAGE 12-0004 [ICON] - save as art/batch/icons/wild-shape/panther.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Panther.
 
-IMAGE 12-005 [GRID] - save as art/batch/icons/bastion-02.png
-Bastion facility icons, each a tiny painted room or building, sheet 2.
-cell 1 (row 1, column 1): Theater: a small painted vignette of a bastion theater
-cell 2 (row 1, column 2): Training Area: a small painted vignette of a bastion training area
-cell 3 (row 1, column 3): Trophy Room: a small painted vignette of a bastion trophy room
-cell 4 (row 1, column 4): Archive: a small painted vignette of a bastion archive
-cell 5 (row 2, column 1): Meditation Chamber: a small painted vignette of a bastion meditation chamber
-cell 6 (row 2, column 2): Menagerie: a small painted vignette of a bastion menagerie
-cell 7 (row 2, column 3): Observatory: a small painted vignette of a bastion observatory
-cell 8 (row 2, column 4): Pub: a small painted vignette of a bastion pub
-cell 9 (row 3, column 1): Reliquary: a small painted vignette of a bastion reliquary
-cell 10 (row 3, column 2): Demiplane: a small painted vignette of a bastion demiplane
-cell 11 (row 3, column 3): Guildhall: a small painted vignette of a bastion guildhall
-cell 12 (row 3, column 4): Sanctum: a small painted vignette of a bastion sanctum
-cell 13 (row 4, column 1): War Room: a small painted vignette of a bastion war room
-cells 14 to 16: leave empty (transparent).
+IMAGE 12-0005 [ICON] - save as art/batch/icons/wild-shape/dire-wolf.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Dire Wolf.
+
+IMAGE 12-0006 [ICON] - save as art/batch/icons/wild-shape/giant-spider.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Giant Spider.
+
+IMAGE 12-0007 [ICON] - save as art/batch/icons/wild-shape/giant-toad.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Giant Toad.
+
+IMAGE 12-0008 [ICON] - save as art/batch/icons/wild-shape/giant-owl.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Giant Owl.
+
+IMAGE 12-0009 [ICON] - save as art/batch/icons/wild-shape/giant-constrictor-snake.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Giant Constrictor Snake.
+
+IMAGE 12-0010 [ICON] - save as art/batch/icons/wild-shape/giant-octopus.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Giant Octopus.
+
+IMAGE 12-0011 [ICON] - save as art/batch/icons/wild-shape/riding-horse.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Riding Horse.
+
+IMAGE 12-0012 [ICON] - save as art/batch/icons/wild-shape/crocodile.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Crocodile.
+
+IMAGE 12-0013 [ICON] - save as art/batch/icons/companions/beast-of-the-land-primal-companion.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Beast of the Land (primal companion).
+
+IMAGE 12-0014 [ICON] - save as art/batch/icons/companions/beast-of-the-sea-primal-companion.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Beast of the Sea (primal companion).
+
+IMAGE 12-0015 [ICON] - save as art/batch/icons/companions/beast-of-the-sky-primal-companion.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Beast of the Sky (primal companion).
+
+IMAGE 12-0016 [ICON] - save as art/batch/icons/companions/steel-defender-mechanical-guardian-dog.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Steel Defender (mechanical guardian dog).
+
+IMAGE 12-0017 [ICON] - save as art/batch/icons/companions/homunculus-servant-tiny-winged-construct.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Homunculus Servant (tiny winged construct).
+
+IMAGE 12-0018 [ICON] - save as art/batch/icons/companions/eldritch-cannon-small-arcane-cannon-on-legs.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Eldritch Cannon (small arcane cannon on legs).
+
+IMAGE 12-0019 [ICON] - save as art/batch/icons/familiars/bat-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Bat familiar.
+
+IMAGE 12-0020 [ICON] - save as art/batch/icons/familiars/cat-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Cat familiar.
+
+IMAGE 12-0021 [ICON] - save as art/batch/icons/familiars/frog-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Frog familiar.
+
+IMAGE 12-0022 [ICON] - save as art/batch/icons/familiars/hawk-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Hawk familiar.
+
+IMAGE 12-0023 [ICON] - save as art/batch/icons/familiars/lizard-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Lizard familiar.
+
+IMAGE 12-0024 [ICON] - save as art/batch/icons/familiars/octopus-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Octopus familiar.
+
+IMAGE 12-0025 [ICON] - save as art/batch/icons/familiars/owl-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Owl familiar.
+
+IMAGE 12-0026 [ICON] - save as art/batch/icons/familiars/rat-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Rat familiar.
+
+IMAGE 12-0027 [ICON] - save as art/batch/icons/familiars/raven-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Raven familiar.
+
+IMAGE 12-0028 [ICON] - save as art/batch/icons/familiars/spider-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Spider familiar.
+
+IMAGE 12-0029 [ICON] - save as art/batch/icons/familiars/weasel-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Weasel familiar.
+
+IMAGE 12-0030 [ICON] - save as art/batch/icons/familiars/imp-pact-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Imp (pact familiar).
+
+IMAGE 12-0031 [ICON] - save as art/batch/icons/familiars/pseudodragon-pact-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Pseudodragon (pact familiar).
+
+IMAGE 12-0032 [ICON] - save as art/batch/icons/familiars/quasit-pact-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Quasit (pact familiar).
+
+IMAGE 12-0033 [ICON] - save as art/batch/icons/familiars/sprite-pact-familiar.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Sprite (pact familiar).
+
+IMAGE 12-0034 [ICON] - save as art/batch/icons/familiars/sphinx-of-wonder-pact-familiar-tiny-winged-sphinx.png
+Wild Shape form, companion or familiar icon, friendly anime look. Icon: Sphinx of Wonder (pact familiar, tiny winged sphinx).
+
+IMAGE 12-0035 [ICON] - save as art/batch/icons/bastion/arcane-study.png
+Bastion facility icon, a tiny painted room or building. Icon: Arcane Study: a small painted vignette of a bastion arcane study.
+
+IMAGE 12-0036 [ICON] - save as art/batch/icons/bastion/armory.png
+Bastion facility icon, a tiny painted room or building. Icon: Armory: a small painted vignette of a bastion armory.
+
+IMAGE 12-0037 [ICON] - save as art/batch/icons/bastion/barrack.png
+Bastion facility icon, a tiny painted room or building. Icon: Barrack: a small painted vignette of a bastion barrack.
+
+IMAGE 12-0038 [ICON] - save as art/batch/icons/bastion/garden.png
+Bastion facility icon, a tiny painted room or building. Icon: Garden: a small painted vignette of a bastion garden.
+
+IMAGE 12-0039 [ICON] - save as art/batch/icons/bastion/library.png
+Bastion facility icon, a tiny painted room or building. Icon: Library: a small painted vignette of a bastion library.
+
+IMAGE 12-0040 [ICON] - save as art/batch/icons/bastion/sanctuary.png
+Bastion facility icon, a tiny painted room or building. Icon: Sanctuary: a small painted vignette of a bastion sanctuary.
+
+IMAGE 12-0041 [ICON] - save as art/batch/icons/bastion/smithy.png
+Bastion facility icon, a tiny painted room or building. Icon: Smithy: a small painted vignette of a bastion smithy.
+
+IMAGE 12-0042 [ICON] - save as art/batch/icons/bastion/storehouse.png
+Bastion facility icon, a tiny painted room or building. Icon: Storehouse: a small painted vignette of a bastion storehouse.
+
+IMAGE 12-0043 [ICON] - save as art/batch/icons/bastion/workshop.png
+Bastion facility icon, a tiny painted room or building. Icon: Workshop: a small painted vignette of a bastion workshop.
+
+IMAGE 12-0044 [ICON] - save as art/batch/icons/bastion/gaming-hall.png
+Bastion facility icon, a tiny painted room or building. Icon: Gaming Hall: a small painted vignette of a bastion gaming hall.
+
+IMAGE 12-0045 [ICON] - save as art/batch/icons/bastion/greenhouse.png
+Bastion facility icon, a tiny painted room or building. Icon: Greenhouse: a small painted vignette of a bastion greenhouse.
+
+IMAGE 12-0046 [ICON] - save as art/batch/icons/bastion/laboratory.png
+Bastion facility icon, a tiny painted room or building. Icon: Laboratory: a small painted vignette of a bastion laboratory.
+
+IMAGE 12-0047 [ICON] - save as art/batch/icons/bastion/sacristy.png
+Bastion facility icon, a tiny painted room or building. Icon: Sacristy: a small painted vignette of a bastion sacristy.
+
+IMAGE 12-0048 [ICON] - save as art/batch/icons/bastion/scriptorium.png
+Bastion facility icon, a tiny painted room or building. Icon: Scriptorium: a small painted vignette of a bastion scriptorium.
+
+IMAGE 12-0049 [ICON] - save as art/batch/icons/bastion/stable.png
+Bastion facility icon, a tiny painted room or building. Icon: Stable: a small painted vignette of a bastion stable.
+
+IMAGE 12-0050 [ICON] - save as art/batch/icons/bastion/teleportation-circle.png
+Bastion facility icon, a tiny painted room or building. Icon: Teleportation Circle: a small painted vignette of a bastion teleportation circle.
+
+IMAGE 12-0051 [ICON] - save as art/batch/icons/bastion/theater.png
+Bastion facility icon, a tiny painted room or building. Icon: Theater: a small painted vignette of a bastion theater.
+
+IMAGE 12-0052 [ICON] - save as art/batch/icons/bastion/training-area.png
+Bastion facility icon, a tiny painted room or building. Icon: Training Area: a small painted vignette of a bastion training area.
+
+IMAGE 12-0053 [ICON] - save as art/batch/icons/bastion/trophy-room.png
+Bastion facility icon, a tiny painted room or building. Icon: Trophy Room: a small painted vignette of a bastion trophy room.
+
+IMAGE 12-0054 [ICON] - save as art/batch/icons/bastion/archive.png
+Bastion facility icon, a tiny painted room or building. Icon: Archive: a small painted vignette of a bastion archive.
+
+IMAGE 12-0055 [ICON] - save as art/batch/icons/bastion/meditation-chamber.png
+Bastion facility icon, a tiny painted room or building. Icon: Meditation Chamber: a small painted vignette of a bastion meditation chamber.
+
+IMAGE 12-0056 [ICON] - save as art/batch/icons/bastion/menagerie.png
+Bastion facility icon, a tiny painted room or building. Icon: Menagerie: a small painted vignette of a bastion menagerie.
+
+IMAGE 12-0057 [ICON] - save as art/batch/icons/bastion/observatory.png
+Bastion facility icon, a tiny painted room or building. Icon: Observatory: a small painted vignette of a bastion observatory.
+
+IMAGE 12-0058 [ICON] - save as art/batch/icons/bastion/pub.png
+Bastion facility icon, a tiny painted room or building. Icon: Pub: a small painted vignette of a bastion pub.
+
+IMAGE 12-0059 [ICON] - save as art/batch/icons/bastion/reliquary.png
+Bastion facility icon, a tiny painted room or building. Icon: Reliquary: a small painted vignette of a bastion reliquary.
+
+IMAGE 12-0060 [ICON] - save as art/batch/icons/bastion/demiplane.png
+Bastion facility icon, a tiny painted room or building. Icon: Demiplane: a small painted vignette of a bastion demiplane.
+
+IMAGE 12-0061 [ICON] - save as art/batch/icons/bastion/guildhall.png
+Bastion facility icon, a tiny painted room or building. Icon: Guildhall: a small painted vignette of a bastion guildhall.
+
+IMAGE 12-0062 [ICON] - save as art/batch/icons/bastion/sanctum.png
+Bastion facility icon, a tiny painted room or building. Icon: Sanctum: a small painted vignette of a bastion sanctum.
+
+IMAGE 12-0063 [ICON] - save as art/batch/icons/bastion/war-room.png
+Bastion facility icon, a tiny painted room or building. Icon: War Room: a small painted vignette of a bastion war room.
 

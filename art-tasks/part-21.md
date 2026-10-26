@@ -1,22 +1,51 @@
-# Part 21: Background emblems (16) (1 images)
+# Part 21: Background emblems (16) (16 images)
 Apply the MASTER.md rules and style lock to every image.
 
-IMAGE 21-001 [GRID] - save as art/batch/icons/background-emblems-01.png
-Background emblems. Each badge shows the main tool or symbol of the named background, sheet 1.
-cell 1 (row 1, column 1): Acolyte
-cell 2 (row 1, column 2): Artisan
-cell 3 (row 1, column 3): Charlatan
-cell 4 (row 1, column 4): Criminal
-cell 5 (row 2, column 1): Entertainer
-cell 6 (row 2, column 2): Farmer
-cell 7 (row 2, column 3): Guard
-cell 8 (row 2, column 4): Guide
-cell 9 (row 3, column 1): Hermit
-cell 10 (row 3, column 2): Merchant
-cell 11 (row 3, column 3): Noble
-cell 12 (row 3, column 4): Sage
-cell 13 (row 4, column 1): Sailor
-cell 14 (row 4, column 2): Scribe
-cell 15 (row 4, column 3): Soldier
-cell 16 (row 4, column 4): Wayfarer
+IMAGE 21-0001 [EMBLEM] - save as art/batch/emblems/background/acolyte.png
+Background emblem for Acolyte: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0002 [EMBLEM] - save as art/batch/emblems/background/artisan.png
+Background emblem for Artisan: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0003 [EMBLEM] - save as art/batch/emblems/background/charlatan.png
+Background emblem for Charlatan: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0004 [EMBLEM] - save as art/batch/emblems/background/criminal.png
+Background emblem for Criminal: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0005 [EMBLEM] - save as art/batch/emblems/background/entertainer.png
+Background emblem for Entertainer: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0006 [EMBLEM] - save as art/batch/emblems/background/farmer.png
+Background emblem for Farmer: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0007 [EMBLEM] - save as art/batch/emblems/background/guard.png
+Background emblem for Guard: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0008 [EMBLEM] - save as art/batch/emblems/background/guide.png
+Background emblem for Guide: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0009 [EMBLEM] - save as art/batch/emblems/background/hermit.png
+Background emblem for Hermit: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0010 [EMBLEM] - save as art/batch/emblems/background/merchant.png
+Background emblem for Merchant: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0011 [EMBLEM] - save as art/batch/emblems/background/noble.png
+Background emblem for Noble: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0012 [EMBLEM] - save as art/batch/emblems/background/sage.png
+Background emblem for Sage: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0013 [EMBLEM] - save as art/batch/emblems/background/sailor.png
+Background emblem for Sailor: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0014 [EMBLEM] - save as art/batch/emblems/background/scribe.png
+Background emblem for Scribe: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0015 [EMBLEM] - save as art/batch/emblems/background/soldier.png
+Background emblem for Soldier: a badge showing the main tools and symbols of this life path.
+
+IMAGE 21-0016 [EMBLEM] - save as art/batch/emblems/background/wayfarer.png
+Background emblem for Wayfarer: a badge showing the main tools and symbols of this life path.
 

@@ -1,351 +1,351 @@
 # Part 23: Creature art (116) (116 images)
 Apply the MASTER.md rules and style lock to every image.
 
-IMAGE 23-001 [CREATURE] - save as art/batch/creature/creature-ape.png
+IMAGE 23-0001 [CREATURE] - save as art/batch/creatures/beast/ape.png
 Ape: a medium beast.
 
-IMAGE 23-002 [CREATURE] - save as art/batch/creature/creature-badger.png
+IMAGE 23-0002 [CREATURE] - save as art/batch/creatures/beast/badger.png
 Badger: a tiny beast.
 
-IMAGE 23-003 [CREATURE] - save as art/batch/creature/creature-bat.png
+IMAGE 23-0003 [CREATURE] - save as art/batch/creatures/beast/bat.png
 Bat: a tiny beast.
 
-IMAGE 23-004 [CREATURE] - save as art/batch/creature/creature-black-bear.png
+IMAGE 23-0004 [CREATURE] - save as art/batch/creatures/beast/black-bear.png
 Black Bear: a medium beast.
 
-IMAGE 23-005 [CREATURE] - save as art/batch/creature/creature-boar.png
+IMAGE 23-0005 [CREATURE] - save as art/batch/creatures/beast/boar.png
 Boar: a medium beast.
 
-IMAGE 23-006 [CREATURE] - save as art/batch/creature/creature-brown-bear.png
+IMAGE 23-0006 [CREATURE] - save as art/batch/creatures/beast/brown-bear.png
 Brown Bear: a large beast.
 
-IMAGE 23-007 [CREATURE] - save as art/batch/creature/creature-camel.png
+IMAGE 23-0007 [CREATURE] - save as art/batch/creatures/beast/camel.png
 Camel: a large beast.
 
-IMAGE 23-008 [CREATURE] - save as art/batch/creature/creature-cat.png
+IMAGE 23-0008 [CREATURE] - save as art/batch/creatures/beast/cat.png
 Cat: a tiny beast.
 
-IMAGE 23-009 [CREATURE] - save as art/batch/creature/creature-constrictor-snake.png
+IMAGE 23-0009 [CREATURE] - save as art/batch/creatures/beast/constrictor-snake.png
 Constrictor Snake: a large beast.
 
-IMAGE 23-010 [CREATURE] - save as art/batch/creature/creature-crab.png
+IMAGE 23-0010 [CREATURE] - save as art/batch/creatures/beast/crab.png
 Crab: a tiny beast.
 
-IMAGE 23-011 [CREATURE] - save as art/batch/creature/creature-crocodile.png
+IMAGE 23-0011 [CREATURE] - save as art/batch/creatures/beast/crocodile.png
 Crocodile: a large beast.
 
-IMAGE 23-012 [CREATURE] - save as art/batch/creature/creature-dire-wolf.png
+IMAGE 23-0012 [CREATURE] - save as art/batch/creatures/beast/dire-wolf.png
 Dire Wolf: a large beast.
 
-IMAGE 23-013 [CREATURE] - save as art/batch/creature/creature-draft-horse.png
+IMAGE 23-0013 [CREATURE] - save as art/batch/creatures/beast/draft-horse.png
 Draft Horse: a large beast.
 
-IMAGE 23-014 [CREATURE] - save as art/batch/creature/creature-elephant.png
+IMAGE 23-0014 [CREATURE] - save as art/batch/creatures/beast/elephant.png
 Elephant: a huge beast.
 
-IMAGE 23-015 [CREATURE] - save as art/batch/creature/creature-elk.png
+IMAGE 23-0015 [CREATURE] - save as art/batch/creatures/beast/elk.png
 Elk: a large beast.
 
-IMAGE 23-016 [CREATURE] - save as art/batch/creature/creature-frog.png
+IMAGE 23-0016 [CREATURE] - save as art/batch/creatures/beast/frog.png
 Frog: a tiny beast.
 
-IMAGE 23-017 [CREATURE] - save as art/batch/creature/creature-giant-badger.png
+IMAGE 23-0017 [CREATURE] - save as art/batch/creatures/beast/giant-badger.png
 Giant Badger: a medium beast.
 
-IMAGE 23-018 [CREATURE] - save as art/batch/creature/creature-giant-crab.png
+IMAGE 23-0018 [CREATURE] - save as art/batch/creatures/beast/giant-crab.png
 Giant Crab: a medium beast.
 
-IMAGE 23-019 [CREATURE] - save as art/batch/creature/creature-giant-goat.png
+IMAGE 23-0019 [CREATURE] - save as art/batch/creatures/beast/giant-goat.png
 Giant Goat: a large beast.
 
-IMAGE 23-020 [CREATURE] - save as art/batch/creature/creature-giant-seahorse.png
+IMAGE 23-0020 [CREATURE] - save as art/batch/creatures/beast/giant-seahorse.png
 Giant Seahorse: a large beast.
 
-IMAGE 23-021 [CREATURE] - save as art/batch/creature/creature-giant-spider.png
+IMAGE 23-0021 [CREATURE] - save as art/batch/creatures/beast/giant-spider.png
 Giant Spider: a large beast.
 
-IMAGE 23-022 [CREATURE] - save as art/batch/creature/creature-giant-weasel.png
+IMAGE 23-0022 [CREATURE] - save as art/batch/creatures/beast/giant-weasel.png
 Giant Weasel: a medium beast.
 
-IMAGE 23-023 [CREATURE] - save as art/batch/creature/creature-goat.png
+IMAGE 23-0023 [CREATURE] - save as art/batch/creatures/beast/goat.png
 Goat: a medium beast.
 
-IMAGE 23-024 [CREATURE] - save as art/batch/creature/creature-hawk.png
+IMAGE 23-0024 [CREATURE] - save as art/batch/creatures/beast/hawk.png
 Hawk: a tiny beast.
 
-IMAGE 23-025 [CREATURE] - save as art/batch/creature/creature-imp.png
+IMAGE 23-0025 [CREATURE] - save as art/batch/creatures/fiend-devil/imp.png
 Imp: a tiny fiend (devil).
 
-IMAGE 23-026 [CREATURE] - save as art/batch/creature/creature-lion.png
+IMAGE 23-0026 [CREATURE] - save as art/batch/creatures/beast/lion.png
 Lion: a large beast.
 
-IMAGE 23-027 [CREATURE] - save as art/batch/creature/creature-lizard.png
+IMAGE 23-0027 [CREATURE] - save as art/batch/creatures/beast/lizard.png
 Lizard: a tiny beast.
 
-IMAGE 23-028 [CREATURE] - save as art/batch/creature/creature-mastiff.png
+IMAGE 23-0028 [CREATURE] - save as art/batch/creatures/beast/mastiff.png
 Mastiff: a medium beast.
 
-IMAGE 23-029 [CREATURE] - save as art/batch/creature/creature-mule.png
+IMAGE 23-0029 [CREATURE] - save as art/batch/creatures/beast/mule.png
 Mule: a medium beast.
 
-IMAGE 23-030 [CREATURE] - save as art/batch/creature/creature-octopus.png
+IMAGE 23-0030 [CREATURE] - save as art/batch/creatures/beast/octopus.png
 Octopus: a small beast.
 
-IMAGE 23-031 [CREATURE] - save as art/batch/creature/creature-owl.png
+IMAGE 23-0031 [CREATURE] - save as art/batch/creatures/beast/owl.png
 Owl: a tiny beast.
 
-IMAGE 23-032 [CREATURE] - save as art/batch/creature/creature-panther.png
+IMAGE 23-0032 [CREATURE] - save as art/batch/creatures/beast/panther.png
 Panther: a medium beast.
 
-IMAGE 23-033 [CREATURE] - save as art/batch/creature/creature-pony.png
+IMAGE 23-0033 [CREATURE] - save as art/batch/creatures/beast/pony.png
 Pony: a medium beast.
 
-IMAGE 23-034 [CREATURE] - save as art/batch/creature/creature-pseudodragon.png
+IMAGE 23-0034 [CREATURE] - save as art/batch/creatures/dragon/pseudodragon.png
 Pseudodragon: a tiny dragon.
 
-IMAGE 23-035 [CREATURE] - save as art/batch/creature/creature-quasit.png
+IMAGE 23-0035 [CREATURE] - save as art/batch/creatures/fiend-demon/quasit.png
 Quasit: a tiny fiend (demon).
 
-IMAGE 23-036 [CREATURE] - save as art/batch/creature/creature-rat.png
+IMAGE 23-0036 [CREATURE] - save as art/batch/creatures/beast/rat.png
 Rat: a tiny beast.
 
-IMAGE 23-037 [CREATURE] - save as art/batch/creature/creature-raven.png
+IMAGE 23-0037 [CREATURE] - save as art/batch/creatures/beast/raven.png
 Raven: a tiny beast.
 
-IMAGE 23-038 [CREATURE] - save as art/batch/creature/creature-reef-shark.png
+IMAGE 23-0038 [CREATURE] - save as art/batch/creatures/beast/reef-shark.png
 Reef Shark: a medium beast.
 
-IMAGE 23-039 [CREATURE] - save as art/batch/creature/creature-riding-horse.png
+IMAGE 23-0039 [CREATURE] - save as art/batch/creatures/beast/riding-horse.png
 Riding Horse: a large beast.
 
-IMAGE 23-040 [CREATURE] - save as art/batch/creature/creature-scorpion.png
+IMAGE 23-0040 [CREATURE] - save as art/batch/creatures/beast/scorpion.png
 Scorpion: a tiny beast.
 
-IMAGE 23-041 [CREATURE] - save as art/batch/creature/creature-skeleton.png
+IMAGE 23-0041 [CREATURE] - save as art/batch/creatures/undead/skeleton.png
 Skeleton: a medium undead.
 
-IMAGE 23-042 [CREATURE] - save as art/batch/creature/creature-slaad-tadpole.png
+IMAGE 23-0042 [CREATURE] - save as art/batch/creatures/aberration/slaad-tadpole.png
 Slaad Tadpole: a tiny aberration.
 
-IMAGE 23-043 [CREATURE] - save as art/batch/creature/creature-sphinx-of-wonder.png
+IMAGE 23-0043 [CREATURE] - save as art/batch/creatures/celestial/sphinx-of-wonder.png
 Sphinx of Wonder: a tiny celestial.
 
-IMAGE 23-044 [CREATURE] - save as art/batch/creature/creature-spider.png
+IMAGE 23-0044 [CREATURE] - save as art/batch/creatures/beast/spider.png
 Spider: a tiny beast.
 
-IMAGE 23-045 [CREATURE] - save as art/batch/creature/creature-sprite.png
+IMAGE 23-0045 [CREATURE] - save as art/batch/creatures/fey/sprite.png
 Sprite: a tiny fey.
 
-IMAGE 23-046 [CREATURE] - save as art/batch/creature/creature-tiger.png
+IMAGE 23-0046 [CREATURE] - save as art/batch/creatures/beast/tiger.png
 Tiger: a large beast.
 
-IMAGE 23-047 [CREATURE] - save as art/batch/creature/creature-venomous-snake.png
+IMAGE 23-0047 [CREATURE] - save as art/batch/creatures/beast/venomous-snake.png
 Venomous Snake: a tiny beast.
 
-IMAGE 23-048 [CREATURE] - save as art/batch/creature/creature-warhorse.png
+IMAGE 23-0048 [CREATURE] - save as art/batch/creatures/beast/warhorse.png
 Warhorse: a large beast.
 
-IMAGE 23-049 [CREATURE] - save as art/batch/creature/creature-weasel.png
+IMAGE 23-0049 [CREATURE] - save as art/batch/creatures/beast/weasel.png
 Weasel: a tiny beast.
 
-IMAGE 23-050 [CREATURE] - save as art/batch/creature/creature-wolf.png
+IMAGE 23-0050 [CREATURE] - save as art/batch/creatures/beast/wolf.png
 Wolf: a medium beast.
 
-IMAGE 23-051 [CREATURE] - save as art/batch/creature/creature-zombie.png
+IMAGE 23-0051 [CREATURE] - save as art/batch/creatures/undead/zombie.png
 Zombie: a medium undead.
 
-IMAGE 23-052 [CREATURE] - save as art/batch/creature/creature-animated-object.png
+IMAGE 23-0052 [CREATURE] - save as art/batch/creatures/construct/animated-object.png
 Animated Object: a huge or smaller construct.
 
-IMAGE 23-053 [CREATURE] - save as art/batch/creature/creature-otherworldly-steed.png
+IMAGE 23-0053 [CREATURE] - save as art/batch/creatures/celestial-fey-or-fiend/otherworldly-steed.png
 Otherworldly Steed: a large celestial, fey, or fiend.
 
-IMAGE 23-054 [CREATURE] - save as art/batch/creature/creature-giant-insect.png
+IMAGE 23-0054 [CREATURE] - save as art/batch/creatures/beast/giant-insect.png
 Giant Insect: a large beast.
 
-IMAGE 23-055 [CREATURE] - save as art/batch/creature/creature-aberrant-spirit.png
+IMAGE 23-0055 [CREATURE] - save as art/batch/creatures/aberration/aberrant-spirit.png
 Aberrant Spirit: a medium aberration.
 
-IMAGE 23-056 [CREATURE] - save as art/batch/creature/creature-bestial-spirit.png
+IMAGE 23-0056 [CREATURE] - save as art/batch/creatures/beast/bestial-spirit.png
 Bestial Spirit: a small beast.
 
-IMAGE 23-057 [CREATURE] - save as art/batch/creature/creature-celestial-spirit.png
+IMAGE 23-0057 [CREATURE] - save as art/batch/creatures/celestial/celestial-spirit.png
 Celestial Spirit: a large celestial.
 
-IMAGE 23-058 [CREATURE] - save as art/batch/creature/creature-construct-spirit.png
+IMAGE 23-0058 [CREATURE] - save as art/batch/creatures/construct/construct-spirit.png
 Construct Spirit: a medium construct.
 
-IMAGE 23-059 [CREATURE] - save as art/batch/creature/creature-draconic-spirit.png
+IMAGE 23-0059 [CREATURE] - save as art/batch/creatures/dragon/draconic-spirit.png
 Draconic Spirit: a large dragon.
 
-IMAGE 23-060 [CREATURE] - save as art/batch/creature/creature-elemental-spirit.png
+IMAGE 23-0060 [CREATURE] - save as art/batch/creatures/elemental/elemental-spirit.png
 Elemental Spirit: a medium elemental.
 
-IMAGE 23-061 [CREATURE] - save as art/batch/creature/creature-fey-spirit.png
+IMAGE 23-0061 [CREATURE] - save as art/batch/creatures/fey/fey-spirit.png
 Fey Spirit: a small fey.
 
-IMAGE 23-062 [CREATURE] - save as art/batch/creature/creature-fiendish-spirit.png
+IMAGE 23-0062 [CREATURE] - save as art/batch/creatures/fiend/fiendish-spirit.png
 Fiendish Spirit: a large fiend.
 
-IMAGE 23-063 [CREATURE] - save as art/batch/creature/creature-undead-spirit.png
+IMAGE 23-0063 [CREATURE] - save as art/batch/creatures/undead/undead-spirit.png
 Undead Spirit: a medium undead.
 
-IMAGE 23-064 [CREATURE] - save as art/batch/creature/creature-beast-of-the-land.png
+IMAGE 23-0064 [CREATURE] - save as art/batch/creatures/beast/beast-of-the-land.png
 Beast of the Land: a medium beast.
 
-IMAGE 23-065 [CREATURE] - save as art/batch/creature/creature-beast-of-the-sea.png
+IMAGE 23-0065 [CREATURE] - save as art/batch/creatures/beast/beast-of-the-sea.png
 Beast of the Sea: a medium beast.
 
-IMAGE 23-066 [CREATURE] - save as art/batch/creature/creature-beast-of-the-sky.png
+IMAGE 23-0066 [CREATURE] - save as art/batch/creatures/beast/beast-of-the-sky.png
 Beast of the Sky: a small beast.
 
-IMAGE 23-067 [CREATURE] - save as art/batch/creature/creature-giant-fly.png
+IMAGE 23-0067 [CREATURE] - save as art/batch/creatures/beast/giant-fly.png
 Giant Fly: a large beast.
 
-IMAGE 23-068 [CREATURE] - save as art/batch/creature/creature-adult-gold-dragon.png
+IMAGE 23-0068 [CREATURE] - save as art/batch/creatures/dragon-metallic/adult-gold-dragon.png
 Adult Gold Dragon: a huge dragon (metallic).
 
-IMAGE 23-069 [CREATURE] - save as art/batch/creature/creature-air-elemental.png
+IMAGE 23-0069 [CREATURE] - save as art/batch/creatures/elemental/air-elemental.png
 Air Elemental: a large elemental.
 
-IMAGE 23-070 [CREATURE] - save as art/batch/creature/creature-axe-beak.png
+IMAGE 23-0070 [CREATURE] - save as art/batch/creatures/monstrosity/axe-beak.png
 Axe Beak: a large monstrosity.
 
-IMAGE 23-071 [CREATURE] - save as art/batch/creature/creature-baboon.png
+IMAGE 23-0071 [CREATURE] - save as art/batch/creatures/beast/baboon.png
 Baboon: a small beast.
 
-IMAGE 23-072 [CREATURE] - save as art/batch/creature/creature-berserker.png
+IMAGE 23-0072 [CREATURE] - save as art/batch/creatures/humanoid/berserker.png
 Berserker: a small or medium humanoid.
 
-IMAGE 23-073 [CREATURE] - save as art/batch/creature/creature-cackler.png
+IMAGE 23-0073 [CREATURE] - save as art/batch/creatures/fiend-demon/cackler.png
 Cackler: a small fiend (demon).
 
-IMAGE 23-074 [CREATURE] - save as art/batch/creature/creature-category-1-krasis.png
+IMAGE 23-0074 [CREATURE] - save as art/batch/creatures/monstrosity/category-1-krasis.png
 Category 1 Krasis: a medium monstrosity.
 
-IMAGE 23-075 [CREATURE] - save as art/batch/creature/creature-djinni.png
+IMAGE 23-0075 [CREATURE] - save as art/batch/creatures/elemental-genie/djinni.png
 Djinni: a large elemental (genie).
 
-IMAGE 23-076 [CREATURE] - save as art/batch/creature/creature-earth-elemental.png
+IMAGE 23-0076 [CREATURE] - save as art/batch/creatures/elemental/earth-elemental.png
 Earth Elemental: a large elemental.
 
-IMAGE 23-077 [CREATURE] - save as art/batch/creature/creature-fire-elemental.png
+IMAGE 23-0077 [CREATURE] - save as art/batch/creatures/elemental/fire-elemental.png
 Fire Elemental: a large elemental.
 
-IMAGE 23-078 [CREATURE] - save as art/batch/creature/creature-galvanice-weird.png
+IMAGE 23-0078 [CREATURE] - save as art/batch/creatures/elemental/galvanice-weird.png
 Galvanice Weird: a medium elemental.
 
-IMAGE 23-079 [CREATURE] - save as art/batch/creature/creature-giant-boar.png
+IMAGE 23-0079 [CREATURE] - save as art/batch/creatures/beast/giant-boar.png
 Giant Boar: a large beast.
 
-IMAGE 23-080 [CREATURE] - save as art/batch/creature/creature-giant-canary.png
+IMAGE 23-0080 [CREATURE] - save as art/batch/creatures/beast/giant-canary.png
 Giant Canary: a large beast.
 
-IMAGE 23-081 [CREATURE] - save as art/batch/creature/creature-giant-constrictor-snake.png
+IMAGE 23-0081 [CREATURE] - save as art/batch/creatures/beast/giant-constrictor-snake.png
 Giant Constrictor Snake: a huge beast.
 
-IMAGE 23-082 [CREATURE] - save as art/batch/creature/creature-giant-eagle.png
+IMAGE 23-0082 [CREATURE] - save as art/batch/creatures/celestial/giant-eagle.png
 Giant Eagle: a large celestial.
 
-IMAGE 23-083 [CREATURE] - save as art/batch/creature/creature-giant-elk.png
+IMAGE 23-0083 [CREATURE] - save as art/batch/creatures/celestial/giant-elk.png
 Giant Elk: a huge celestial.
 
-IMAGE 23-084 [CREATURE] - save as art/batch/creature/creature-giant-hyena.png
+IMAGE 23-0084 [CREATURE] - save as art/batch/creatures/beast/giant-hyena.png
 Giant Hyena: a large beast.
 
-IMAGE 23-085 [CREATURE] - save as art/batch/creature/creature-giant-owl.png
+IMAGE 23-0085 [CREATURE] - save as art/batch/creatures/celestial/giant-owl.png
 Giant Owl: a large celestial.
 
-IMAGE 23-086 [CREATURE] - save as art/batch/creature/creature-giant-rat.png
+IMAGE 23-0086 [CREATURE] - save as art/batch/creatures/beast/giant-rat.png
 Giant Rat: a small beast.
 
-IMAGE 23-087 [CREATURE] - save as art/batch/creature/creature-giant-scorpion.png
+IMAGE 23-0087 [CREATURE] - save as art/batch/creatures/beast/giant-scorpion.png
 Giant Scorpion: a large beast.
 
-IMAGE 23-088 [CREATURE] - save as art/batch/creature/creature-griffon.png
+IMAGE 23-0088 [CREATURE] - save as art/batch/creatures/monstrosity/griffon.png
 Griffon: a large monstrosity.
 
-IMAGE 23-089 [CREATURE] - save as art/batch/creature/creature-intellect-devourer.png
+IMAGE 23-0089 [CREATURE] - save as art/batch/creatures/aberration/intellect-devourer.png
 Intellect Devourer: a tiny aberration.
 
-IMAGE 23-090 [CREATURE] - save as art/batch/creature/creature-jackal.png
+IMAGE 23-0090 [CREATURE] - save as art/batch/creatures/beast/jackal.png
 Jackal: a small beast.
 
-IMAGE 23-091 [CREATURE] - save as art/batch/creature/creature-knight.png
+IMAGE 23-0091 [CREATURE] - save as art/batch/creatures/humanoid/knight.png
 Knight: a small or medium humanoid.
 
-IMAGE 23-092 [CREATURE] - save as art/batch/creature/creature-nightmare.png
+IMAGE 23-0092 [CREATURE] - save as art/batch/creatures/fiend/nightmare.png
 Nightmare: a large fiend.
 
-IMAGE 23-093 [CREATURE] - save as art/batch/creature/creature-orc-war-chief.png
+IMAGE 23-0093 [CREATURE] - save as art/batch/creatures/humanoid-orc/orc-war-chief.png
 Orc War Chief: a medium humanoid (orc).
 
-IMAGE 23-094 [CREATURE] - save as art/batch/creature/creature-planetar.png
+IMAGE 23-0094 [CREATURE] - save as art/batch/creatures/celestial-angel/planetar.png
 Planetar: a large celestial (angel).
 
-IMAGE 23-095 [CREATURE] - save as art/batch/creature/creature-plesiosaurus.png
+IMAGE 23-0095 [CREATURE] - save as art/batch/creatures/beast-dinosaur/plesiosaurus.png
 Plesiosaurus: a large beast (dinosaur).
 
-IMAGE 23-096 [CREATURE] - save as art/batch/creature/creature-pteranodon.png
+IMAGE 23-0096 [CREATURE] - save as art/batch/creatures/beast-dinosaur/pteranodon.png
 Pteranodon: a medium beast (dinosaur).
 
-IMAGE 23-097 [CREATURE] - save as art/batch/creature/creature-quipper.png
+IMAGE 23-0097 [CREATURE] - save as art/batch/creatures/beast/quipper.png
 Quipper: a tiny beast.
 
-IMAGE 23-098 [CREATURE] - save as art/batch/creature/creature-reigar.png
+IMAGE 23-0098 [CREATURE] - save as art/batch/creatures/celestial/reigar.png
 Reigar: a medium celestial.
 
-IMAGE 23-099 [CREATURE] - save as art/batch/creature/creature-rhinoceros.png
+IMAGE 23-0099 [CREATURE] - save as art/batch/creatures/beast/rhinoceros.png
 Rhinoceros: a large beast.
 
-IMAGE 23-100 [CREATURE] - save as art/batch/creature/creature-solar.png
+IMAGE 23-0100 [CREATURE] - save as art/batch/creatures/celestial-angel/solar.png
 Solar: a large celestial (angel).
 
-IMAGE 23-101 [CREATURE] - save as art/batch/creature/creature-steam-mephit.png
+IMAGE 23-0101 [CREATURE] - save as art/batch/creatures/elemental/steam-mephit.png
 Steam Mephit: a small elemental.
 
-IMAGE 23-102 [CREATURE] - save as art/batch/creature/creature-stone-golem.png
+IMAGE 23-0102 [CREATURE] - save as art/batch/creatures/construct/stone-golem.png
 Stone Golem: a large construct.
 
-IMAGE 23-103 [CREATURE] - save as art/batch/creature/creature-swarm-of-rats.png
+IMAGE 23-0103 [CREATURE] - save as art/batch/creatures/beast/swarm-of-rats.png
 Swarm of Rats: a medium beast.
 
-IMAGE 23-104 [CREATURE] - save as art/batch/creature/creature-triceratops.png
+IMAGE 23-0104 [CREATURE] - save as art/batch/creatures/beast-dinosaur/triceratops.png
 Triceratops: a huge beast (dinosaur).
 
-IMAGE 23-105 [CREATURE] - save as art/batch/creature/creature-tyrannosaurus-rex.png
+IMAGE 23-0105 [CREATURE] - save as art/batch/creatures/beast-dinosaur/tyrannosaurus-rex.png
 Tyrannosaurus Rex: a huge beast (dinosaur).
 
-IMAGE 23-106 [CREATURE] - save as art/batch/creature/creature-veteran.png
+IMAGE 23-0106 [CREATURE] - save as art/batch/creatures/humanoid-any-race/veteran.png
 Veteran: a medium humanoid (any race).
 
-IMAGE 23-107 [CREATURE] - save as art/batch/creature/creature-water-elemental.png
+IMAGE 23-0107 [CREATURE] - save as art/batch/creatures/elemental/water-elemental.png
 Water Elemental: a large elemental.
 
-IMAGE 23-108 [CREATURE] - save as art/batch/creature/creature-winged-thrull.png
+IMAGE 23-0108 [CREATURE] - save as art/batch/creatures/construct/winged-thrull.png
 Winged Thrull: a small construct.
 
-IMAGE 23-109 [CREATURE] - save as art/batch/creature/creature-wraith.png
+IMAGE 23-0109 [CREATURE] - save as art/batch/creatures/undead/wraith.png
 Wraith: a small or medium undead.
 
-IMAGE 23-110 [CREATURE] - save as art/batch/creature/creature-deck-defender.png
+IMAGE 23-0110 [CREATURE] - save as art/batch/creatures/construct/deck-defender.png
 Deck Defender: a medium construct.
 
-IMAGE 23-111 [CREATURE] - save as art/batch/creature/creature-eldritch-eddy.png
+IMAGE 23-0111 [CREATURE] - save as art/batch/creatures/construct/eldritch-eddy.png
 Eldritch Eddy: a large construct.
 
-IMAGE 23-112 [CREATURE] - save as art/batch/creature/creature-swarm-of-corrupted-rats.png
+IMAGE 23-0112 [CREATURE] - save as art/batch/creatures/monstrosity/swarm-of-corrupted-rats.png
 Swarm of Corrupted Rats: a medium monstrosity.
 
-IMAGE 23-113 [CREATURE] - save as art/batch/creature/creature-terran-magen.png
+IMAGE 23-0113 [CREATURE] - save as art/batch/creatures/construct/terran-magen.png
 Terran Magen: a medium construct.
 
-IMAGE 23-114 [CREATURE] - save as art/batch/creature/creature-cave-bear.png
+IMAGE 23-0114 [CREATURE] - save as art/batch/creatures/beast/cave-bear.png
 Cave Bear: a large beast.
 
-IMAGE 23-115 [CREATURE] - save as art/batch/creature/creature-guardian-wolf.png
+IMAGE 23-0115 [CREATURE] - save as art/batch/creatures/monstrosity/guardian-wolf.png
 Guardian Wolf: a huge monstrosity.
 
-IMAGE 23-116 [CREATURE] - save as art/batch/creature/creature-giant-wasp.png
+IMAGE 23-0116 [CREATURE] - save as art/batch/creatures/beast/giant-wasp.png
 Giant Wasp: a medium beast.
 

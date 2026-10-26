@@ -1,168 +1,414 @@
-# Part 17: Class feature icons (9 images)
+# Part 17: Class feature icons (137 images)
 Apply the MASTER.md rules and style lock to every image.
 
-IMAGE 17-001 [GRID] - save as art/batch/icons/class-features-01.png
-Class feature icons. Each icon shows the named class feature, sheet 1.
-cell 1 (row 1, column 1): Barbarian feature: Brutal Strike
-cell 2 (row 1, column 2): Barbarian feature: Danger Sense
-cell 3 (row 1, column 3): Barbarian feature: Extra Attack
-cell 4 (row 1, column 4): Barbarian feature: Fast Movement
-cell 5 (row 2, column 1): Barbarian feature: Feral Instinct
-cell 6 (row 2, column 2): Barbarian feature: Improved Brutal Strike
-cell 7 (row 2, column 3): Barbarian feature: Indomitable Might
-cell 8 (row 2, column 4): Barbarian feature: Instinctive Pounce
-cell 9 (row 3, column 1): Barbarian feature: Persistent Rage
-cell 10 (row 3, column 2): Barbarian feature: Primal Champion
-cell 11 (row 3, column 3): Barbarian feature: Primal Knowledge
-cell 12 (row 3, column 4): Barbarian feature: Rage
-cell 13 (row 4, column 1): Barbarian feature: Reckless Attack
-cell 14 (row 4, column 2): Barbarian feature: Relentless Rage
-cell 15 (row 4, column 3): Barbarian feature: Unarmored Defense
-cell 16 (row 4, column 4): Barbarian feature: Weapon Mastery
+IMAGE 17-0001 [ICON] - save as art/batch/icons/features/class/barbarian/brutal-strike.png
+Class feature icon showing the named feature. Icon: Brutal Strike (Barbarian class feature).
 
-IMAGE 17-002 [GRID] - save as art/batch/icons/class-features-02.png
-Class feature icons. Each icon shows the named class feature, sheet 2.
-cell 1 (row 1, column 1): Bard feature: Bardic Inspiration
-cell 2 (row 1, column 2): Bard feature: Countercharm
-cell 3 (row 1, column 3): Bard feature: Expertise
-cell 4 (row 1, column 4): Bard feature: Font of Inspiration
-cell 5 (row 2, column 1): Bard feature: Jack of All Trades
-cell 6 (row 2, column 2): Bard feature: Magical Secrets
-cell 7 (row 2, column 3): Bard feature: Spellcasting
-cell 8 (row 2, column 4): Bard feature: Superior Inspiration
-cell 9 (row 3, column 1): Bard feature: Words of Creation
-cell 10 (row 3, column 2): Cleric feature: Blessed Strikes
-cell 11 (row 3, column 3): Cleric feature: Channel Divinity
-cell 12 (row 3, column 4): Cleric feature: Divine Intervention
-cell 13 (row 4, column 1): Cleric feature: Divine Order
-cell 14 (row 4, column 2): Cleric feature: Greater Divine Intervention
-cell 15 (row 4, column 3): Cleric feature: Improved Blessed Strikes
-cell 16 (row 4, column 4): Cleric feature: Sear Undead
+IMAGE 17-0002 [ICON] - save as art/batch/icons/features/class/barbarian/danger-sense.png
+Class feature icon showing the named feature. Icon: Danger Sense (Barbarian class feature).
 
-IMAGE 17-003 [GRID] - save as art/batch/icons/class-features-03.png
-Class feature icons. Each icon shows the named class feature, sheet 3.
-cell 1 (row 1, column 1): Cleric feature: Spellcasting
-cell 2 (row 1, column 2): Druid feature: Archdruid
-cell 3 (row 1, column 3): Druid feature: Beast Spells
-cell 4 (row 1, column 4): Druid feature: Druidic
-cell 5 (row 2, column 1): Druid feature: Elemental Fury
-cell 6 (row 2, column 2): Druid feature: Improved Elemental Fury
-cell 7 (row 2, column 3): Druid feature: Primal Order
-cell 8 (row 2, column 4): Druid feature: Spellcasting
-cell 9 (row 3, column 1): Druid feature: Wild Companion
-cell 10 (row 3, column 2): Druid feature: Wild Resurgence
-cell 11 (row 3, column 3): Druid feature: Wild Shape
-cell 12 (row 3, column 4): Fighter feature: Action Surge
-cell 13 (row 4, column 1): Fighter feature: Extra Attack
-cell 14 (row 4, column 2): Fighter feature: Fighting Style
-cell 15 (row 4, column 3): Fighter feature: Indomitable
-cell 16 (row 4, column 4): Fighter feature: Second Wind
+IMAGE 17-0003 [ICON] - save as art/batch/icons/features/class/barbarian/extra-attack.png
+Class feature icon showing the named feature. Icon: Extra Attack (Barbarian class feature).
 
-IMAGE 17-004 [GRID] - save as art/batch/icons/class-features-04.png
-Class feature icons. Each icon shows the named class feature, sheet 4.
-cell 1 (row 1, column 1): Fighter feature: Studied Attacks
-cell 2 (row 1, column 2): Fighter feature: Tactical Master
-cell 3 (row 1, column 3): Fighter feature: Tactical Mind
-cell 4 (row 1, column 4): Fighter feature: Tactical Shift
-cell 5 (row 2, column 1): Fighter feature: Three Extra Attacks
-cell 6 (row 2, column 2): Fighter feature: Two Extra Attacks
-cell 7 (row 2, column 3): Fighter feature: Weapon Mastery
-cell 8 (row 2, column 4): Monk feature: Acrobatic Movement
-cell 9 (row 3, column 1): Monk feature: Body and Mind
-cell 10 (row 3, column 2): Monk feature: Deflect Attacks
-cell 11 (row 3, column 3): Monk feature: Deflect Energy
-cell 12 (row 3, column 4): Monk feature: Disciplined Survivor
-cell 13 (row 4, column 1): Monk feature: Empowered Strikes
-cell 14 (row 4, column 2): Monk feature: Evasion
-cell 15 (row 4, column 3): Monk feature: Extra Attack
-cell 16 (row 4, column 4): Monk feature: Heightened Focus
+IMAGE 17-0004 [ICON] - save as art/batch/icons/features/class/barbarian/fast-movement.png
+Class feature icon showing the named feature. Icon: Fast Movement (Barbarian class feature).
 
-IMAGE 17-005 [GRID] - save as art/batch/icons/class-features-05.png
-Class feature icons. Each icon shows the named class feature, sheet 5.
-cell 1 (row 1, column 1): Monk feature: Martial Arts
-cell 2 (row 1, column 2): Monk feature: Monk's Focus
-cell 3 (row 1, column 3): Monk feature: Perfect Focus
-cell 4 (row 1, column 4): Monk feature: Self-Restoration
-cell 5 (row 2, column 1): Monk feature: Slow Fall
-cell 6 (row 2, column 2): Monk feature: Stunning Strike
-cell 7 (row 2, column 3): Monk feature: Superior Defense
-cell 8 (row 2, column 4): Monk feature: Unarmored Defense
-cell 9 (row 3, column 1): Monk feature: Unarmored Movement
-cell 10 (row 3, column 2): Monk feature: Uncanny Metabolism
-cell 11 (row 3, column 3): Paladin feature: Abjure Foes
-cell 12 (row 3, column 4): Paladin feature: Aura Expansion
-cell 13 (row 4, column 1): Paladin feature: Aura of Courage
-cell 14 (row 4, column 2): Paladin feature: Aura of Protection
-cell 15 (row 4, column 3): Paladin feature: Channel Divinity
-cell 16 (row 4, column 4): Paladin feature: Extra Attack
+IMAGE 17-0005 [ICON] - save as art/batch/icons/features/class/barbarian/feral-instinct.png
+Class feature icon showing the named feature. Icon: Feral Instinct (Barbarian class feature).
 
-IMAGE 17-006 [GRID] - save as art/batch/icons/class-features-06.png
-Class feature icons. Each icon shows the named class feature, sheet 6.
-cell 1 (row 1, column 1): Paladin feature: Faithful Steed
-cell 2 (row 1, column 2): Paladin feature: Fighting Style
-cell 3 (row 1, column 3): Paladin feature: Lay on Hands
-cell 4 (row 1, column 4): Paladin feature: Paladin's Smite
-cell 5 (row 2, column 1): Paladin feature: Radiant Strikes
-cell 6 (row 2, column 2): Paladin feature: Restoring Touch
-cell 7 (row 2, column 3): Paladin feature: Spellcasting
-cell 8 (row 2, column 4): Paladin feature: Weapon Mastery
-cell 9 (row 3, column 1): Ranger feature: Deft Explorer
-cell 10 (row 3, column 2): Ranger feature: Expertise
-cell 11 (row 3, column 3): Ranger feature: Extra Attack
-cell 12 (row 3, column 4): Ranger feature: Favored Enemy
-cell 13 (row 4, column 1): Ranger feature: Feral Senses
-cell 14 (row 4, column 2): Ranger feature: Fighting Style
-cell 15 (row 4, column 3): Ranger feature: Foe Slayer
-cell 16 (row 4, column 4): Ranger feature: Nature's Veil
+IMAGE 17-0006 [ICON] - save as art/batch/icons/features/class/barbarian/improved-brutal-strike.png
+Class feature icon showing the named feature. Icon: Improved Brutal Strike (Barbarian class feature).
 
-IMAGE 17-007 [GRID] - save as art/batch/icons/class-features-07.png
-Class feature icons. Each icon shows the named class feature, sheet 7.
-cell 1 (row 1, column 1): Ranger feature: Precise Hunter
-cell 2 (row 1, column 2): Ranger feature: Relentless Hunter
-cell 3 (row 1, column 3): Ranger feature: Roving
-cell 4 (row 1, column 4): Ranger feature: Spellcasting
-cell 5 (row 2, column 1): Ranger feature: Tireless
-cell 6 (row 2, column 2): Ranger feature: Weapon Mastery
-cell 7 (row 2, column 3): Rogue feature: Cunning Action
-cell 8 (row 2, column 4): Rogue feature: Cunning Strike
-cell 9 (row 3, column 1): Rogue feature: Devious Strikes
-cell 10 (row 3, column 2): Rogue feature: Elusive
-cell 11 (row 3, column 3): Rogue feature: Evasion
-cell 12 (row 3, column 4): Rogue feature: Expertise
-cell 13 (row 4, column 1): Rogue feature: Improved Cunning Strike
-cell 14 (row 4, column 2): Rogue feature: Reliable Talent
-cell 15 (row 4, column 3): Rogue feature: Slippery Mind
-cell 16 (row 4, column 4): Rogue feature: Sneak Attack
+IMAGE 17-0007 [ICON] - save as art/batch/icons/features/class/barbarian/indomitable-might.png
+Class feature icon showing the named feature. Icon: Indomitable Might (Barbarian class feature).
 
-IMAGE 17-008 [GRID] - save as art/batch/icons/class-features-08.png
-Class feature icons. Each icon shows the named class feature, sheet 8.
-cell 1 (row 1, column 1): Rogue feature: Steady Aim
-cell 2 (row 1, column 2): Rogue feature: Stroke of Luck
-cell 3 (row 1, column 3): Rogue feature: Thieves' Cant
-cell 4 (row 1, column 4): Rogue feature: Uncanny Dodge
-cell 5 (row 2, column 1): Rogue feature: Weapon Mastery
-cell 6 (row 2, column 2): Sorcerer feature: Arcane Apotheosis
-cell 7 (row 2, column 3): Sorcerer feature: Font of Magic
-cell 8 (row 2, column 4): Sorcerer feature: Innate Sorcery
-cell 9 (row 3, column 1): Sorcerer feature: Metamagic
-cell 10 (row 3, column 2): Sorcerer feature: Sorcerous Restoration
-cell 11 (row 3, column 3): Sorcerer feature: Sorcery Incarnate
-cell 12 (row 3, column 4): Sorcerer feature: Spellcasting
-cell 13 (row 4, column 1): Warlock feature: Contact Patron
-cell 14 (row 4, column 2): Warlock feature: Eldritch Invocations
-cell 15 (row 4, column 3): Warlock feature: Eldritch Master
-cell 16 (row 4, column 4): Warlock feature: Magical Cunning
+IMAGE 17-0008 [ICON] - save as art/batch/icons/features/class/barbarian/instinctive-pounce.png
+Class feature icon showing the named feature. Icon: Instinctive Pounce (Barbarian class feature).
 
-IMAGE 17-009 [GRID] - save as art/batch/icons/class-features-09.png
-Class feature icons. Each icon shows the named class feature, sheet 9.
-cell 1 (row 1, column 1): Warlock feature: Mystic Arcanum
-cell 2 (row 1, column 2): Warlock feature: Pact Magic
-cell 3 (row 1, column 3): Wizard feature: Arcane Recovery
-cell 4 (row 1, column 4): Wizard feature: Memorize Spell
-cell 5 (row 2, column 1): Wizard feature: Ritual Adept
-cell 6 (row 2, column 2): Wizard feature: Scholar
-cell 7 (row 2, column 3): Wizard feature: Signature Spells
-cell 8 (row 2, column 4): Wizard feature: Spell Mastery
-cell 9 (row 3, column 1): Wizard feature: Spellcasting
-cells 10 to 16: leave empty (transparent).
+IMAGE 17-0009 [ICON] - save as art/batch/icons/features/class/barbarian/persistent-rage.png
+Class feature icon showing the named feature. Icon: Persistent Rage (Barbarian class feature).
+
+IMAGE 17-0010 [ICON] - save as art/batch/icons/features/class/barbarian/primal-champion.png
+Class feature icon showing the named feature. Icon: Primal Champion (Barbarian class feature).
+
+IMAGE 17-0011 [ICON] - save as art/batch/icons/features/class/barbarian/primal-knowledge.png
+Class feature icon showing the named feature. Icon: Primal Knowledge (Barbarian class feature).
+
+IMAGE 17-0012 [ICON] - save as art/batch/icons/features/class/barbarian/rage.png
+Class feature icon showing the named feature. Icon: Rage (Barbarian class feature).
+
+IMAGE 17-0013 [ICON] - save as art/batch/icons/features/class/barbarian/reckless-attack.png
+Class feature icon showing the named feature. Icon: Reckless Attack (Barbarian class feature).
+
+IMAGE 17-0014 [ICON] - save as art/batch/icons/features/class/barbarian/relentless-rage.png
+Class feature icon showing the named feature. Icon: Relentless Rage (Barbarian class feature).
+
+IMAGE 17-0015 [ICON] - save as art/batch/icons/features/class/barbarian/unarmored-defense.png
+Class feature icon showing the named feature. Icon: Unarmored Defense (Barbarian class feature).
+
+IMAGE 17-0016 [ICON] - save as art/batch/icons/features/class/barbarian/weapon-mastery.png
+Class feature icon showing the named feature. Icon: Weapon Mastery (Barbarian class feature).
+
+IMAGE 17-0017 [ICON] - save as art/batch/icons/features/class/bard/bardic-inspiration.png
+Class feature icon showing the named feature. Icon: Bardic Inspiration (Bard class feature).
+
+IMAGE 17-0018 [ICON] - save as art/batch/icons/features/class/bard/countercharm.png
+Class feature icon showing the named feature. Icon: Countercharm (Bard class feature).
+
+IMAGE 17-0019 [ICON] - save as art/batch/icons/features/class/bard/expertise.png
+Class feature icon showing the named feature. Icon: Expertise (Bard class feature).
+
+IMAGE 17-0020 [ICON] - save as art/batch/icons/features/class/bard/font-of-inspiration.png
+Class feature icon showing the named feature. Icon: Font of Inspiration (Bard class feature).
+
+IMAGE 17-0021 [ICON] - save as art/batch/icons/features/class/bard/jack-of-all-trades.png
+Class feature icon showing the named feature. Icon: Jack of All Trades (Bard class feature).
+
+IMAGE 17-0022 [ICON] - save as art/batch/icons/features/class/bard/magical-secrets.png
+Class feature icon showing the named feature. Icon: Magical Secrets (Bard class feature).
+
+IMAGE 17-0023 [ICON] - save as art/batch/icons/features/class/bard/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Bard class feature).
+
+IMAGE 17-0024 [ICON] - save as art/batch/icons/features/class/bard/superior-inspiration.png
+Class feature icon showing the named feature. Icon: Superior Inspiration (Bard class feature).
+
+IMAGE 17-0025 [ICON] - save as art/batch/icons/features/class/bard/words-of-creation.png
+Class feature icon showing the named feature. Icon: Words of Creation (Bard class feature).
+
+IMAGE 17-0026 [ICON] - save as art/batch/icons/features/class/cleric/blessed-strikes.png
+Class feature icon showing the named feature. Icon: Blessed Strikes (Cleric class feature).
+
+IMAGE 17-0027 [ICON] - save as art/batch/icons/features/class/cleric/channel-divinity.png
+Class feature icon showing the named feature. Icon: Channel Divinity (Cleric class feature).
+
+IMAGE 17-0028 [ICON] - save as art/batch/icons/features/class/cleric/divine-intervention.png
+Class feature icon showing the named feature. Icon: Divine Intervention (Cleric class feature).
+
+IMAGE 17-0029 [ICON] - save as art/batch/icons/features/class/cleric/divine-order.png
+Class feature icon showing the named feature. Icon: Divine Order (Cleric class feature).
+
+IMAGE 17-0030 [ICON] - save as art/batch/icons/features/class/cleric/greater-divine-intervention.png
+Class feature icon showing the named feature. Icon: Greater Divine Intervention (Cleric class feature).
+
+IMAGE 17-0031 [ICON] - save as art/batch/icons/features/class/cleric/improved-blessed-strikes.png
+Class feature icon showing the named feature. Icon: Improved Blessed Strikes (Cleric class feature).
+
+IMAGE 17-0032 [ICON] - save as art/batch/icons/features/class/cleric/sear-undead.png
+Class feature icon showing the named feature. Icon: Sear Undead (Cleric class feature).
+
+IMAGE 17-0033 [ICON] - save as art/batch/icons/features/class/cleric/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Cleric class feature).
+
+IMAGE 17-0034 [ICON] - save as art/batch/icons/features/class/druid/archdruid.png
+Class feature icon showing the named feature. Icon: Archdruid (Druid class feature).
+
+IMAGE 17-0035 [ICON] - save as art/batch/icons/features/class/druid/beast-spells.png
+Class feature icon showing the named feature. Icon: Beast Spells (Druid class feature).
+
+IMAGE 17-0036 [ICON] - save as art/batch/icons/features/class/druid/druidic.png
+Class feature icon showing the named feature. Icon: Druidic (Druid class feature).
+
+IMAGE 17-0037 [ICON] - save as art/batch/icons/features/class/druid/elemental-fury.png
+Class feature icon showing the named feature. Icon: Elemental Fury (Druid class feature).
+
+IMAGE 17-0038 [ICON] - save as art/batch/icons/features/class/druid/improved-elemental-fury.png
+Class feature icon showing the named feature. Icon: Improved Elemental Fury (Druid class feature).
+
+IMAGE 17-0039 [ICON] - save as art/batch/icons/features/class/druid/primal-order.png
+Class feature icon showing the named feature. Icon: Primal Order (Druid class feature).
+
+IMAGE 17-0040 [ICON] - save as art/batch/icons/features/class/druid/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Druid class feature).
+
+IMAGE 17-0041 [ICON] - save as art/batch/icons/features/class/druid/wild-companion.png
+Class feature icon showing the named feature. Icon: Wild Companion (Druid class feature).
+
+IMAGE 17-0042 [ICON] - save as art/batch/icons/features/class/druid/wild-resurgence.png
+Class feature icon showing the named feature. Icon: Wild Resurgence (Druid class feature).
+
+IMAGE 17-0043 [ICON] - save as art/batch/icons/features/class/druid/wild-shape.png
+Class feature icon showing the named feature. Icon: Wild Shape (Druid class feature).
+
+IMAGE 17-0044 [ICON] - save as art/batch/icons/features/class/fighter/action-surge.png
+Class feature icon showing the named feature. Icon: Action Surge (Fighter class feature).
+
+IMAGE 17-0045 [ICON] - save as art/batch/icons/features/class/fighter/extra-attack.png
+Class feature icon showing the named feature. Icon: Extra Attack (Fighter class feature).
+
+IMAGE 17-0046 [ICON] - save as art/batch/icons/features/class/fighter/fighting-style.png
+Class feature icon showing the named feature. Icon: Fighting Style (Fighter class feature).
+
+IMAGE 17-0047 [ICON] - save as art/batch/icons/features/class/fighter/indomitable.png
+Class feature icon showing the named feature. Icon: Indomitable (Fighter class feature).
+
+IMAGE 17-0048 [ICON] - save as art/batch/icons/features/class/fighter/second-wind.png
+Class feature icon showing the named feature. Icon: Second Wind (Fighter class feature).
+
+IMAGE 17-0049 [ICON] - save as art/batch/icons/features/class/fighter/studied-attacks.png
+Class feature icon showing the named feature. Icon: Studied Attacks (Fighter class feature).
+
+IMAGE 17-0050 [ICON] - save as art/batch/icons/features/class/fighter/tactical-master.png
+Class feature icon showing the named feature. Icon: Tactical Master (Fighter class feature).
+
+IMAGE 17-0051 [ICON] - save as art/batch/icons/features/class/fighter/tactical-mind.png
+Class feature icon showing the named feature. Icon: Tactical Mind (Fighter class feature).
+
+IMAGE 17-0052 [ICON] - save as art/batch/icons/features/class/fighter/tactical-shift.png
+Class feature icon showing the named feature. Icon: Tactical Shift (Fighter class feature).
+
+IMAGE 17-0053 [ICON] - save as art/batch/icons/features/class/fighter/three-extra-attacks.png
+Class feature icon showing the named feature. Icon: Three Extra Attacks (Fighter class feature).
+
+IMAGE 17-0054 [ICON] - save as art/batch/icons/features/class/fighter/two-extra-attacks.png
+Class feature icon showing the named feature. Icon: Two Extra Attacks (Fighter class feature).
+
+IMAGE 17-0055 [ICON] - save as art/batch/icons/features/class/fighter/weapon-mastery.png
+Class feature icon showing the named feature. Icon: Weapon Mastery (Fighter class feature).
+
+IMAGE 17-0056 [ICON] - save as art/batch/icons/features/class/monk/acrobatic-movement.png
+Class feature icon showing the named feature. Icon: Acrobatic Movement (Monk class feature).
+
+IMAGE 17-0057 [ICON] - save as art/batch/icons/features/class/monk/body-and-mind.png
+Class feature icon showing the named feature. Icon: Body and Mind (Monk class feature).
+
+IMAGE 17-0058 [ICON] - save as art/batch/icons/features/class/monk/deflect-attacks.png
+Class feature icon showing the named feature. Icon: Deflect Attacks (Monk class feature).
+
+IMAGE 17-0059 [ICON] - save as art/batch/icons/features/class/monk/deflect-energy.png
+Class feature icon showing the named feature. Icon: Deflect Energy (Monk class feature).
+
+IMAGE 17-0060 [ICON] - save as art/batch/icons/features/class/monk/disciplined-survivor.png
+Class feature icon showing the named feature. Icon: Disciplined Survivor (Monk class feature).
+
+IMAGE 17-0061 [ICON] - save as art/batch/icons/features/class/monk/empowered-strikes.png
+Class feature icon showing the named feature. Icon: Empowered Strikes (Monk class feature).
+
+IMAGE 17-0062 [ICON] - save as art/batch/icons/features/class/monk/evasion.png
+Class feature icon showing the named feature. Icon: Evasion (Monk class feature).
+
+IMAGE 17-0063 [ICON] - save as art/batch/icons/features/class/monk/extra-attack.png
+Class feature icon showing the named feature. Icon: Extra Attack (Monk class feature).
+
+IMAGE 17-0064 [ICON] - save as art/batch/icons/features/class/monk/heightened-focus.png
+Class feature icon showing the named feature. Icon: Heightened Focus (Monk class feature).
+
+IMAGE 17-0065 [ICON] - save as art/batch/icons/features/class/monk/martial-arts.png
+Class feature icon showing the named feature. Icon: Martial Arts (Monk class feature).
+
+IMAGE 17-0066 [ICON] - save as art/batch/icons/features/class/monk/monks-focus.png
+Class feature icon showing the named feature. Icon: Monk's Focus (Monk class feature).
+
+IMAGE 17-0067 [ICON] - save as art/batch/icons/features/class/monk/perfect-focus.png
+Class feature icon showing the named feature. Icon: Perfect Focus (Monk class feature).
+
+IMAGE 17-0068 [ICON] - save as art/batch/icons/features/class/monk/self-restoration.png
+Class feature icon showing the named feature. Icon: Self-Restoration (Monk class feature).
+
+IMAGE 17-0069 [ICON] - save as art/batch/icons/features/class/monk/slow-fall.png
+Class feature icon showing the named feature. Icon: Slow Fall (Monk class feature).
+
+IMAGE 17-0070 [ICON] - save as art/batch/icons/features/class/monk/stunning-strike.png
+Class feature icon showing the named feature. Icon: Stunning Strike (Monk class feature).
+
+IMAGE 17-0071 [ICON] - save as art/batch/icons/features/class/monk/superior-defense.png
+Class feature icon showing the named feature. Icon: Superior Defense (Monk class feature).
+
+IMAGE 17-0072 [ICON] - save as art/batch/icons/features/class/monk/unarmored-defense.png
+Class feature icon showing the named feature. Icon: Unarmored Defense (Monk class feature).
+
+IMAGE 17-0073 [ICON] - save as art/batch/icons/features/class/monk/unarmored-movement.png
+Class feature icon showing the named feature. Icon: Unarmored Movement (Monk class feature).
+
+IMAGE 17-0074 [ICON] - save as art/batch/icons/features/class/monk/uncanny-metabolism.png
+Class feature icon showing the named feature. Icon: Uncanny Metabolism (Monk class feature).
+
+IMAGE 17-0075 [ICON] - save as art/batch/icons/features/class/paladin/abjure-foes.png
+Class feature icon showing the named feature. Icon: Abjure Foes (Paladin class feature).
+
+IMAGE 17-0076 [ICON] - save as art/batch/icons/features/class/paladin/aura-expansion.png
+Class feature icon showing the named feature. Icon: Aura Expansion (Paladin class feature).
+
+IMAGE 17-0077 [ICON] - save as art/batch/icons/features/class/paladin/aura-of-courage.png
+Class feature icon showing the named feature. Icon: Aura of Courage (Paladin class feature).
+
+IMAGE 17-0078 [ICON] - save as art/batch/icons/features/class/paladin/aura-of-protection.png
+Class feature icon showing the named feature. Icon: Aura of Protection (Paladin class feature).
+
+IMAGE 17-0079 [ICON] - save as art/batch/icons/features/class/paladin/channel-divinity.png
+Class feature icon showing the named feature. Icon: Channel Divinity (Paladin class feature).
+
+IMAGE 17-0080 [ICON] - save as art/batch/icons/features/class/paladin/extra-attack.png
+Class feature icon showing the named feature. Icon: Extra Attack (Paladin class feature).
+
+IMAGE 17-0081 [ICON] - save as art/batch/icons/features/class/paladin/faithful-steed.png
+Class feature icon showing the named feature. Icon: Faithful Steed (Paladin class feature).
+
+IMAGE 17-0082 [ICON] - save as art/batch/icons/features/class/paladin/fighting-style.png
+Class feature icon showing the named feature. Icon: Fighting Style (Paladin class feature).
+
+IMAGE 17-0083 [ICON] - save as art/batch/icons/features/class/paladin/lay-on-hands.png
+Class feature icon showing the named feature. Icon: Lay on Hands (Paladin class feature).
+
+IMAGE 17-0084 [ICON] - save as art/batch/icons/features/class/paladin/paladins-smite.png
+Class feature icon showing the named feature. Icon: Paladin's Smite (Paladin class feature).
+
+IMAGE 17-0085 [ICON] - save as art/batch/icons/features/class/paladin/radiant-strikes.png
+Class feature icon showing the named feature. Icon: Radiant Strikes (Paladin class feature).
+
+IMAGE 17-0086 [ICON] - save as art/batch/icons/features/class/paladin/restoring-touch.png
+Class feature icon showing the named feature. Icon: Restoring Touch (Paladin class feature).
+
+IMAGE 17-0087 [ICON] - save as art/batch/icons/features/class/paladin/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Paladin class feature).
+
+IMAGE 17-0088 [ICON] - save as art/batch/icons/features/class/paladin/weapon-mastery.png
+Class feature icon showing the named feature. Icon: Weapon Mastery (Paladin class feature).
+
+IMAGE 17-0089 [ICON] - save as art/batch/icons/features/class/ranger/deft-explorer.png
+Class feature icon showing the named feature. Icon: Deft Explorer (Ranger class feature).
+
+IMAGE 17-0090 [ICON] - save as art/batch/icons/features/class/ranger/expertise.png
+Class feature icon showing the named feature. Icon: Expertise (Ranger class feature).
+
+IMAGE 17-0091 [ICON] - save as art/batch/icons/features/class/ranger/extra-attack.png
+Class feature icon showing the named feature. Icon: Extra Attack (Ranger class feature).
+
+IMAGE 17-0092 [ICON] - save as art/batch/icons/features/class/ranger/favored-enemy.png
+Class feature icon showing the named feature. Icon: Favored Enemy (Ranger class feature).
+
+IMAGE 17-0093 [ICON] - save as art/batch/icons/features/class/ranger/feral-senses.png
+Class feature icon showing the named feature. Icon: Feral Senses (Ranger class feature).
+
+IMAGE 17-0094 [ICON] - save as art/batch/icons/features/class/ranger/fighting-style.png
+Class feature icon showing the named feature. Icon: Fighting Style (Ranger class feature).
+
+IMAGE 17-0095 [ICON] - save as art/batch/icons/features/class/ranger/foe-slayer.png
+Class feature icon showing the named feature. Icon: Foe Slayer (Ranger class feature).
+
+IMAGE 17-0096 [ICON] - save as art/batch/icons/features/class/ranger/natures-veil.png
+Class feature icon showing the named feature. Icon: Nature's Veil (Ranger class feature).
+
+IMAGE 17-0097 [ICON] - save as art/batch/icons/features/class/ranger/precise-hunter.png
+Class feature icon showing the named feature. Icon: Precise Hunter (Ranger class feature).
+
+IMAGE 17-0098 [ICON] - save as art/batch/icons/features/class/ranger/relentless-hunter.png
+Class feature icon showing the named feature. Icon: Relentless Hunter (Ranger class feature).
+
+IMAGE 17-0099 [ICON] - save as art/batch/icons/features/class/ranger/roving.png
+Class feature icon showing the named feature. Icon: Roving (Ranger class feature).
+
+IMAGE 17-0100 [ICON] - save as art/batch/icons/features/class/ranger/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Ranger class feature).
+
+IMAGE 17-0101 [ICON] - save as art/batch/icons/features/class/ranger/tireless.png
+Class feature icon showing the named feature. Icon: Tireless (Ranger class feature).
+
+IMAGE 17-0102 [ICON] - save as art/batch/icons/features/class/ranger/weapon-mastery.png
+Class feature icon showing the named feature. Icon: Weapon Mastery (Ranger class feature).
+
+IMAGE 17-0103 [ICON] - save as art/batch/icons/features/class/rogue/cunning-action.png
+Class feature icon showing the named feature. Icon: Cunning Action (Rogue class feature).
+
+IMAGE 17-0104 [ICON] - save as art/batch/icons/features/class/rogue/cunning-strike.png
+Class feature icon showing the named feature. Icon: Cunning Strike (Rogue class feature).
+
+IMAGE 17-0105 [ICON] - save as art/batch/icons/features/class/rogue/devious-strikes.png
+Class feature icon showing the named feature. Icon: Devious Strikes (Rogue class feature).
+
+IMAGE 17-0106 [ICON] - save as art/batch/icons/features/class/rogue/elusive.png
+Class feature icon showing the named feature. Icon: Elusive (Rogue class feature).
+
+IMAGE 17-0107 [ICON] - save as art/batch/icons/features/class/rogue/evasion.png
+Class feature icon showing the named feature. Icon: Evasion (Rogue class feature).
+
+IMAGE 17-0108 [ICON] - save as art/batch/icons/features/class/rogue/expertise.png
+Class feature icon showing the named feature. Icon: Expertise (Rogue class feature).
+
+IMAGE 17-0109 [ICON] - save as art/batch/icons/features/class/rogue/improved-cunning-strike.png
+Class feature icon showing the named feature. Icon: Improved Cunning Strike (Rogue class feature).
+
+IMAGE 17-0110 [ICON] - save as art/batch/icons/features/class/rogue/reliable-talent.png
+Class feature icon showing the named feature. Icon: Reliable Talent (Rogue class feature).
+
+IMAGE 17-0111 [ICON] - save as art/batch/icons/features/class/rogue/slippery-mind.png
+Class feature icon showing the named feature. Icon: Slippery Mind (Rogue class feature).
+
+IMAGE 17-0112 [ICON] - save as art/batch/icons/features/class/rogue/sneak-attack.png
+Class feature icon showing the named feature. Icon: Sneak Attack (Rogue class feature).
+
+IMAGE 17-0113 [ICON] - save as art/batch/icons/features/class/rogue/steady-aim.png
+Class feature icon showing the named feature. Icon: Steady Aim (Rogue class feature).
+
+IMAGE 17-0114 [ICON] - save as art/batch/icons/features/class/rogue/stroke-of-luck.png
+Class feature icon showing the named feature. Icon: Stroke of Luck (Rogue class feature).
+
+IMAGE 17-0115 [ICON] - save as art/batch/icons/features/class/rogue/thieves-cant.png
+Class feature icon showing the named feature. Icon: Thieves' Cant (Rogue class feature).
+
+IMAGE 17-0116 [ICON] - save as art/batch/icons/features/class/rogue/uncanny-dodge.png
+Class feature icon showing the named feature. Icon: Uncanny Dodge (Rogue class feature).
+
+IMAGE 17-0117 [ICON] - save as art/batch/icons/features/class/rogue/weapon-mastery.png
+Class feature icon showing the named feature. Icon: Weapon Mastery (Rogue class feature).
+
+IMAGE 17-0118 [ICON] - save as art/batch/icons/features/class/sorcerer/arcane-apotheosis.png
+Class feature icon showing the named feature. Icon: Arcane Apotheosis (Sorcerer class feature).
+
+IMAGE 17-0119 [ICON] - save as art/batch/icons/features/class/sorcerer/font-of-magic.png
+Class feature icon showing the named feature. Icon: Font of Magic (Sorcerer class feature).
+
+IMAGE 17-0120 [ICON] - save as art/batch/icons/features/class/sorcerer/innate-sorcery.png
+Class feature icon showing the named feature. Icon: Innate Sorcery (Sorcerer class feature).
+
+IMAGE 17-0121 [ICON] - save as art/batch/icons/features/class/sorcerer/metamagic.png
+Class feature icon showing the named feature. Icon: Metamagic (Sorcerer class feature).
+
+IMAGE 17-0122 [ICON] - save as art/batch/icons/features/class/sorcerer/sorcerous-restoration.png
+Class feature icon showing the named feature. Icon: Sorcerous Restoration (Sorcerer class feature).
+
+IMAGE 17-0123 [ICON] - save as art/batch/icons/features/class/sorcerer/sorcery-incarnate.png
+Class feature icon showing the named feature. Icon: Sorcery Incarnate (Sorcerer class feature).
+
+IMAGE 17-0124 [ICON] - save as art/batch/icons/features/class/sorcerer/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Sorcerer class feature).
+
+IMAGE 17-0125 [ICON] - save as art/batch/icons/features/class/warlock/contact-patron.png
+Class feature icon showing the named feature. Icon: Contact Patron (Warlock class feature).
+
+IMAGE 17-0126 [ICON] - save as art/batch/icons/features/class/warlock/eldritch-invocations.png
+Class feature icon showing the named feature. Icon: Eldritch Invocations (Warlock class feature).
+
+IMAGE 17-0127 [ICON] - save as art/batch/icons/features/class/warlock/eldritch-master.png
+Class feature icon showing the named feature. Icon: Eldritch Master (Warlock class feature).
+
+IMAGE 17-0128 [ICON] - save as art/batch/icons/features/class/warlock/magical-cunning.png
+Class feature icon showing the named feature. Icon: Magical Cunning (Warlock class feature).
+
+IMAGE 17-0129 [ICON] - save as art/batch/icons/features/class/warlock/mystic-arcanum.png
+Class feature icon showing the named feature. Icon: Mystic Arcanum (Warlock class feature).
+
+IMAGE 17-0130 [ICON] - save as art/batch/icons/features/class/warlock/pact-magic.png
+Class feature icon showing the named feature. Icon: Pact Magic (Warlock class feature).
+
+IMAGE 17-0131 [ICON] - save as art/batch/icons/features/class/wizard/arcane-recovery.png
+Class feature icon showing the named feature. Icon: Arcane Recovery (Wizard class feature).
+
+IMAGE 17-0132 [ICON] - save as art/batch/icons/features/class/wizard/memorize-spell.png
+Class feature icon showing the named feature. Icon: Memorize Spell (Wizard class feature).
+
+IMAGE 17-0133 [ICON] - save as art/batch/icons/features/class/wizard/ritual-adept.png
+Class feature icon showing the named feature. Icon: Ritual Adept (Wizard class feature).
+
+IMAGE 17-0134 [ICON] - save as art/batch/icons/features/class/wizard/scholar.png
+Class feature icon showing the named feature. Icon: Scholar (Wizard class feature).
+
+IMAGE 17-0135 [ICON] - save as art/batch/icons/features/class/wizard/signature-spells.png
+Class feature icon showing the named feature. Icon: Signature Spells (Wizard class feature).
+
+IMAGE 17-0136 [ICON] - save as art/batch/icons/features/class/wizard/spell-mastery.png
+Class feature icon showing the named feature. Icon: Spell Mastery (Wizard class feature).
+
+IMAGE 17-0137 [ICON] - save as art/batch/icons/features/class/wizard/spellcasting.png
+Class feature icon showing the named feature. Icon: Spellcasting (Wizard class feature).
 
