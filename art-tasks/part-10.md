@@ -1,5 +1,5 @@
 # Part 10: Weapon and armor icons (51 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
 
 IMAGE 10-0001 [ICON] - save as art/batch/icons/items/weapons/club.png
 Weapon or armor icon, plain mundane version. Icon: Club: the club.

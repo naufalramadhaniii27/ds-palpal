@@ -1,11 +1,11 @@
 # Part 02: Class scenes (26 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
 
 IMAGE 02-0001 [PC] - save as art/batch/scenes/class/barbarian-pc.png
-Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in the snow laughing, one beats a big hide drum by a bonfire, war banners on spears.
+Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in bloody snow, one beats a big hide drum by a bonfire, war banners on spears.
 
 IMAGE 02-0002 [PHONE] - save as art/batch/scenes/class/barbarian-phone.png
-Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in the snow laughing, one beats a big hide drum by a bonfire, war banners on spears.
+Barbarians of several species at a wind-swept tundra camp under a stormy sky: one splits logs with a great axe, two wrestle in bloody snow, one beats a big hide drum by a bonfire, war banners on spears.
 
 IMAGE 02-0003 [PC] - save as art/batch/scenes/class/bard-pc.png
 Bards in a lantern-lit open-air festival square at dusk: a halfling plays a lute on a small wooden stage, an elf dances with ribbons, a tiefling juggles, children and townsfolk clap, bunting overhead.

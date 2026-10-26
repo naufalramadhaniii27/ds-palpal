@@ -1,5 +1,5 @@
 # Part 13: Other species communities (61) (122 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
 
 IMAGE 13-0001 [PC] - save as art/batch/scenes/species/aarakocra-pc.png
 The Aarakocra community: bird-folk nests on cliff peaks above clouds, gliding, weaving feather banners, chicks learning to fly.
@@ -296,10 +296,10 @@ IMAGE 13-0098 [PHONE] - save as art/batch/scenes/species/siren-phone.png
 The Siren community: winged sirens singing on sea cliffs above a sunlit coast, shipwreck timber below, seabirds.
 
 IMAGE 13-0099 [PC] - save as art/batch/scenes/species/skeleton-pc.png
-The Skeleton community: friendly animated skeletons in a candlelit crypt village, a skeleton gardener, one playing a bone xylophone, cozy not scary.
+The Skeleton community: animated skeletons guarding a candlelit crypt full of bones, cracked skulls, old blood stains on the altar.
 
 IMAGE 13-0100 [PHONE] - save as art/batch/scenes/species/skeleton-phone.png
-The Skeleton community: friendly animated skeletons in a candlelit crypt village, a skeleton gardener, one playing a bone xylophone, cozy not scary.
+The Skeleton community: animated skeletons guarding a candlelit crypt full of bones, cracked skulls, old blood stains on the altar.
 
 IMAGE 13-0101 [PC] - save as art/batch/scenes/species/tabaxi-pc.png
 The Tabaxi community: cat-folk tabaxi wandering a colorful bazaar, napping in sunbeams, one climbing a tower, a storyteller.
@@ -362,8 +362,8 @@ IMAGE 13-0120 [PHONE] - save as art/batch/scenes/species/yuan-ti-phone.png
 The Yuan-ti community: snake-folk yuan-ti in a jungle pyramid temple, scaled skin and serpent eyes, coiled statues, steaming jungle. Show these kinds together: Yuan-ti Pureblood.
 
 IMAGE 13-0121 [PC] - save as art/batch/scenes/species/zombie-pc.png
-The Zombie community: friendly shambling zombies in a misty graveyard village, one tending pumpkins, one with a lantern, gentle and silly not scary.
+The Zombie community: rotting shambling zombies rising from a fog-choked graveyard at night, torn flesh and grave dirt, a lantern dropped in the mud.
 
 IMAGE 13-0122 [PHONE] - save as art/batch/scenes/species/zombie-phone.png
-The Zombie community: friendly shambling zombies in a misty graveyard village, one tending pumpkins, one with a lantern, gentle and silly not scary.
+The Zombie community: rotting shambling zombies rising from a fog-choked graveyard at night, torn flesh and grave dirt, a lantern dropped in the mud.
 

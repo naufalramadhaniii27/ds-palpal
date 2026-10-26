@@ -1,5 +1,5 @@
 # Part 03: PHB species scenes (18 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW comes first.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
 
 IMAGE 03-0001 [PC] - save as art/batch/scenes/species/aasimar-pc.png
 Aasimar of the Protector, Scourge and Fallen kinds at a sunlit marble terrace among clouds: one with soft glowing wings tends a garden, one with radiant eyes trains with a spear, one with grey-ash wings sits quietly reading, children chasing light motes.
@@ -26,10 +26,10 @@ IMAGE 03-0008 [PHONE] - save as art/batch/scenes/species/elf-phone.png
 Elves of many kinds in a forest city of tree-houses and bridges by a lake: high elves reading in a pavilion, wood elves with bows on branches, a drow with white hair carrying mushrooms from a cave, sea elves surfacing from the lake, eladrin whose hair shifts between spring, summer, autumn and winter colors, a shadar-kai in grey, an astral elf with starry skin, a pallid elf, half-elves trading at a market stall.
 
 IMAGE 03-0009 [PC] - save as art/batch/scenes/species/goliath-pc.png
-Goliaths of different giant ancestries (stone, frost, fire, hill, cloud, storm) on a high mountain plateau: one carries a huge boulder, two compete in a friendly throwing contest, one with frost on her shoulders, one with faint storm sparks, eagles soaring.
+Goliaths of different giant ancestries (stone, frost, fire, hill, cloud, storm) on a high mountain plateau: one carries a huge boulder, two clash in a brutal throwing contest, one with frost on her shoulders, one with faint storm sparks, eagles soaring.
 
 IMAGE 03-0010 [PHONE] - save as art/batch/scenes/species/goliath-phone.png
-Goliaths of different giant ancestries (stone, frost, fire, hill, cloud, storm) on a high mountain plateau: one carries a huge boulder, two compete in a friendly throwing contest, one with frost on her shoulders, one with faint storm sparks, eagles soaring.
+Goliaths of different giant ancestries (stone, frost, fire, hill, cloud, storm) on a high mountain plateau: one carries a huge boulder, two clash in a brutal throwing contest, one with frost on her shoulders, one with faint storm sparks, eagles soaring.
 
 IMAGE 03-0011 [PC] - save as art/batch/scenes/species/halfling-pc.png
 Halflings (lightfoot, stout, ghostwise and lotusden) in a green rolling village of round doors: a feast table outdoors, a halfling chef with a huge pie, children with a kite, an old halfling smoking a pipe on a bench, gardens full of vegetables.
