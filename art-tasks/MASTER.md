@@ -16,6 +16,7 @@ How to work:
 6. Never change any other file in the repo. Never touch main.
 7. If you hit a usage limit or time limit, push what is done, update PROGRESS.md, and stop with a short report: last finished image and next one. When the user says continue, start again from step 1.
 8. If an image comes out realistic, 3D or photo-like, regenerate it.
+8b. If $imagegen refuses an image for safety (too graphic), do not stop and do not skip it: soften the gore one step and retry (for example a severed limb becomes a deep bleeding wound, bodies become wounded people lying down, pooled blood becomes blood stains), keep the bright colorful world and the despair, then note the change in art/REVIEW.md. Try at most three times, then mark it NEEDS REVIEW and move on.
 9. When everything is finished, write "ALL DONE" at the end of art/PROGRESS.md and report the image model used.
 
 
