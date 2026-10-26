@@ -1,5 +1,5 @@
 # Part 21: Background emblems (16) (16 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow.
 
 IMAGE 21-0001 [EMBLEM] - save as art/batch/emblems/background/acolyte.png
 Background emblem for Acolyte: a badge showing the main tools and symbols of this life path.

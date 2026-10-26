@@ -1,5 +1,5 @@
 # Part 14: Magic item icons (1144) (1144 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow.
 
 IMAGE 14-0001 [ICON] - save as art/batch/icons/items/magic/uncommon/adamantine-armor.png
 Magic item icon. Draw the item as the object itself, with a soft magical glow matching its rarity (common white, uncommon green, rare blue, very rare purple, legendary orange, artifact red). Icon: Adamantine Armor (Armor, Uncommon).

@@ -1,5 +1,5 @@
 # Part 20: Species emblems (71 communities) (71 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow.
 
 IMAGE 20-0001 [EMBLEM] - save as art/batch/emblems/species/aasimar.png
 Species emblem for the Aasimar people: a heraldic-style badge (no letters) with symbols of their culture and homeland.
