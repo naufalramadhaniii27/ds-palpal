@@ -28,7 +28,7 @@ SIZE AND COMPOSITION RULES (apply by the tag in brackets after each image number
 [GRID] 2048x2048, transparent background. An icon sheet: 16 separate icons in an invisible 4 by 4 grid, each cell exactly 512x512 pixels, in the listed order (cell 1 top-left, cell 4 top-right, cell 16 bottom-right). Each icon centered in its own cell, filling about 65 percent of the cell, at least 48 pixels of empty space between neighbours, nothing crossing into another cell. No grid lines, no borders, no labels, no numbers, no text. Same icon style as [EMBLEM]: bold clean dark outline, flat cel colors with two tones, soft top-left light. All 16 icons share the same scale and line weight.
 
 Parts:
-- part-01.md: G0 style keys (24 images)
+- part-01.md: G0 style keys (24 images). ALREADY DONE on branch art-g0. Skip part 01 completely.
 - part-02.md: Class scenes (26 images)
 - part-03.md: PHB species scenes (18 images)
 - part-04.md: Background scenes (32 images)
@@ -43,4 +43,4 @@ Parts:
 - part-13.md: Other species communities (61) (122 images)
 - part-14.md: Magic item icons (1144) (72 images)
 
-Total: 486 images.
+Total: 486 images, 462 still to make (part 02 to part 14).
