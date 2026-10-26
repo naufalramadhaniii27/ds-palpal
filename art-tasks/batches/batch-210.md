@@ -2,17 +2,17 @@
 
 ## 23-0101 [CREATURE] art/batch/creatures/elemental/steam-mephit.png
 Subject: Steam Mephit: a small imp-like creature made of hot steam and boiling water. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = meadow green and gold; pose = landing with wings raised
+Variation: light color on the creature = meadow green and gold; pose = stepping forward into the light
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0102 [CREATURE] art/batch/creatures/construct/stone-golem.png
 Subject: Stone Golem: a large construct. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = emerald and gold; pose = striding forward
+Variation: light color on the creature = emerald and gold; pose = braced and ready
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0103 [CREATURE] art/batch/creatures/beast/swarm-of-rats.png
 Subject: Swarm of Rats: a medium beast. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = honey and mint; pose = piled up and climbing over each other
+Variation: light color on the creature = honey and mint; pose = spreading out in all directions
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0104 [CREATURE] art/batch/creatures/beast-dinosaur/triceratops.png
@@ -22,22 +22,22 @@ Style line: loose energetic hand-drawn sketch illustration (ink lines, flat text
 
 ## 23-0105 [CREATURE] art/batch/creatures/beast-dinosaur/tyrannosaurus-rex.png
 Subject: Tyrannosaurus Rex: a huge beast (dinosaur). Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = rose and pale green; pose = snarling or hissing
+Variation: light color on the creature = rose and pale green; pose = crouched
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0106 [CREATURE] art/batch/creatures/humanoid-any-race/veteran.png
 Subject: Veteran: a grizzled soldier with a longsword and scarred armor. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = cherry-pink and cream; pose = holding still with its gaze lowered
+Variation: light color on the creature = cherry-pink and cream; pose = raising its weapon, claw or fist
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0107 [CREATURE] art/batch/creatures/elemental/water-elemental.png
 Subject: Water Elemental: a large elemental. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = snow white and blue; pose = drifting still
+Variation: light color on the creature = snow white and blue; pose = turning sharply
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0108 [CREATURE] art/batch/creatures/construct/winged-thrull.png
 Subject: Winged Thrull: a small grey hairless servant creature with leathery bat wings and stitched skin. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = sky-blue and white; pose = turning its head mid-flight
+Variation: light color on the creature = sky-blue and white; pose = landing with wings raised
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0109 [CREATURE] art/batch/creatures/undead/wraith.png
@@ -47,5 +47,5 @@ Style line: loose energetic hand-drawn sketch illustration (ink lines, flat text
 
 ## 23-0110 [CREATURE] art/batch/creatures/construct/deck-defender.png
 Subject: Deck Defender: a knight-shaped guardian construct built from huge blank card-like plates. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = coral and sea blue; pose = standing guard
+Variation: light color on the creature = coral and sea blue; pose = turning to look
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
