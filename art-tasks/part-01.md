@@ -25,7 +25,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0002 [AS WRITTEN] - save as art/batch/g0/emblem-artificer.png
@@ -52,7 +52,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0003 [AS WRITTEN] - save as art/batch/g0/emblem-cleric.png
@@ -79,7 +79,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0004 [AS WRITTEN] - save as art/batch/g0/emblem-druid.png
@@ -106,7 +106,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0005 [AS WRITTEN] - save as art/batch/g0/emblem-fighter.png
@@ -133,7 +133,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0006 [AS WRITTEN] - save as art/batch/g0/emblem-monk.png
@@ -160,7 +160,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0007 [AS WRITTEN] - save as art/batch/g0/emblem-paladin.png
@@ -187,7 +187,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0008 [AS WRITTEN] - save as art/batch/g0/emblem-ranger.png
@@ -214,7 +214,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0009 [AS WRITTEN] - save as art/batch/g0/emblem-rogue.png
@@ -241,7 +241,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0010 [AS WRITTEN] - save as art/batch/g0/emblem-sorcerer.png
@@ -268,7 +268,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0011 [AS WRITTEN] - save as art/batch/g0/emblem-warlock.png
@@ -295,7 +295,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0012 [AS WRITTEN] - save as art/batch/g0/emblem-wizard.png
@@ -322,7 +322,7 @@ Composition
 - Background: transparent background, nothing outside the emblem, no floor, no cast shadow, no particles outside the emblem.
 - Glow edge: keep the glow tight to the emblem, no wide soft halo spreading into the background
 - Edges: crisp and clean so the icon can be cut out, the dark outline stays clearly separate from the background
-Style lock: match the Bard emblem already in art/style-test/bard-emblem.png on branch art-style-test (same line weight, cel shading, scale and framing).
+Style lock: match art-tasks/ref/emblem-reference.png (same line weight, cel shading, scale and framing).
 Do not include: any text, letters, numbers, runes or glyphs that look like writing, logos, brand marks, watermark, signature, frame, border, UI elements, human faces, modern objects, photorealism, 3D render look, glossy plastic look, lens flare streaks, chromatic aberration, oversaturated neon, blurry or smeared details, extra duplicated objects, copies of existing film characters or scenes.
 
 IMAGE 01-0013 [AS WRITTEN] - save as art/batch/g0/texture-paper-neutral.png
