@@ -5615,12 +5615,6 @@ function linkify(text){
     return GLOSS[base] ? '<button type="button" class="lk" data-info="g:'+esc(base)+'">'+part+'</button>' : part;
   }).join("");
 }
-function actTitle(n){
-  var special={"Attack with Dagger and Celurit":"g:Nick","Attack with Dagger and Sickle":"g:Nick","Grapple, then Celurit":"f:3.2","Utilize: Healer's Kit":"g:Healer's Kit","Release a Grapple":"g:Grappled"};
-  if(n.indexOf(",")>=0) return n.split(/,\s*/).map(function(x){ return GLOSS[x]?'<button type="button" class="tx" data-info="g:'+esc(x)+'">'+esc(x)+'</button>':esc(x); }).join(", ");
-  var spec = special[n] || (GLOSS[n]?"g:"+n:featSpec(n));
-  return spec ? '<button type="button" class="tx" data-info="'+esc(spec)+'">'+esc(n)+'</button>' : esc(n);
-}
 var NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
 /* v36 p14: one detail-card template (head, 4-cell strip, number blocks, body, At your level, use buttons, foot) */
 var KW_LIST=["Temporary Hit Points","Opportunity Attack","Heroic Inspiration","Bonus Action","Hit Points","Short Rest","Long Rest","Saving Throw","Reaction","Advantage","Disadvantage","Concentration"].concat(STD_CONDS);
@@ -8213,12 +8207,11 @@ function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }
   else if(a==="done"){ undoMark("Combo step"); cmbSetDone(v,!cmbDone(v)); save(); }
   else if(a==="sel"){ var sl=v[0], k=v[1], ci=cmbCI(); undoMark("Combo"); S.combos=Array.isArray(S.combos)?S.combos:[]; while(S.combos.length<=ci) S.combos.push({}); S.combos[ci]=S.combos[ci]&&typeof S.combos[ci]==="object"?S.combos[ci]:{}; if(k) S.combos[ci][sl]=k; else delete S.combos[ci][sl]; cmbSetDone(sl,false); save(); }
   }catch(er){} cmbRe(); }
-document.addEventListener("click",function(e){ var t=e.target, b=t.closest&&t.closest("[data-cmbtab],[data-cmbadd],[data-cmbdel],[data-cmbedit],[data-cmbturn],[data-cmbdone],[data-cmbcast],[data-cmbuse],[data-cmbfoc],[data-cmbundo],[data-cmbslot]"); if(!b) return;
+document.addEventListener("click",function(e){ var t=e.target, b=t.closest&&t.closest("[data-cmbtab],[data-cmbadd],[data-cmbdel],[data-cmbedit],[data-cmbturn],[data-cmbdone],[data-cmbuse],[data-cmbfoc],[data-cmbundo],[data-cmbslot]"); if(!b) return;
   if(b.hasAttribute("data-cmbslot")){ showEntry({type:"info",spec:"sp:"+b.getAttribute("data-cmbslot")},true); return; }
   if(b.hasAttribute("data-cmbuse")){ cmbUse(b.getAttribute("data-cmbuse")); return; }
   if(b.hasAttribute("data-cmbfoc")){ cmbFoc=b.getAttribute("data-cmbfoc"); cmbRe(); return; }
   if(b.hasAttribute("data-cmbundo")){ var wc=sheetMode==="combat"; try{ undoNow(); }catch(er){} if(wc) openCombat(); else cmbRe(); return; }
-  if(b.hasAttribute("data-cmbcast")){ cmbQuick(+b.getAttribute("data-cmbcast")); return; }
   if(b.hasAttribute("data-cmbadd")){ cmbAct("add"); return; }
   if(b.hasAttribute("data-cmbdel")){ cmbAct("del"); return; }
   if(b.hasAttribute("data-cmbtab")) cmbAct("tab",b.getAttribute("data-cmbtab")); else if(b.hasAttribute("data-cmbedit")) cmbAct("edit"); else if(b.hasAttribute("data-cmbturn")) cmbAct("turn"); else cmbAct("done",b.getAttribute("data-cmbdone")); });

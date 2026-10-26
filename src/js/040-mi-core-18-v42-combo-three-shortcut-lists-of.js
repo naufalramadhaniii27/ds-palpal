@@ -71,12 +71,11 @@ function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }
   else if(a==="done"){ undoMark("Combo step"); cmbSetDone(v,!cmbDone(v)); save(); }
   else if(a==="sel"){ var sl=v[0], k=v[1], ci=cmbCI(); undoMark("Combo"); S.combos=Array.isArray(S.combos)?S.combos:[]; while(S.combos.length<=ci) S.combos.push({}); S.combos[ci]=S.combos[ci]&&typeof S.combos[ci]==="object"?S.combos[ci]:{}; if(k) S.combos[ci][sl]=k; else delete S.combos[ci][sl]; cmbSetDone(sl,false); save(); }
   }catch(er){} cmbRe(); }
-document.addEventListener("click",function(e){ var t=e.target, b=t.closest&&t.closest("[data-cmbtab],[data-cmbadd],[data-cmbdel],[data-cmbedit],[data-cmbturn],[data-cmbdone],[data-cmbcast],[data-cmbuse],[data-cmbfoc],[data-cmbundo],[data-cmbslot]"); if(!b) return;
+document.addEventListener("click",function(e){ var t=e.target, b=t.closest&&t.closest("[data-cmbtab],[data-cmbadd],[data-cmbdel],[data-cmbedit],[data-cmbturn],[data-cmbdone],[data-cmbuse],[data-cmbfoc],[data-cmbundo],[data-cmbslot]"); if(!b) return;
   if(b.hasAttribute("data-cmbslot")){ showEntry({type:"info",spec:"sp:"+b.getAttribute("data-cmbslot")},true); return; }
   if(b.hasAttribute("data-cmbuse")){ cmbUse(b.getAttribute("data-cmbuse")); return; }
   if(b.hasAttribute("data-cmbfoc")){ cmbFoc=b.getAttribute("data-cmbfoc"); cmbRe(); return; }
   if(b.hasAttribute("data-cmbundo")){ var wc=sheetMode==="combat"; try{ undoNow(); }catch(er){} if(wc) openCombat(); else cmbRe(); return; }
-  if(b.hasAttribute("data-cmbcast")){ cmbQuick(+b.getAttribute("data-cmbcast")); return; }
   if(b.hasAttribute("data-cmbadd")){ cmbAct("add"); return; }
   if(b.hasAttribute("data-cmbdel")){ cmbAct("del"); return; }
   if(b.hasAttribute("data-cmbtab")) cmbAct("tab",b.getAttribute("data-cmbtab")); else if(b.hasAttribute("data-cmbedit")) cmbAct("edit"); else if(b.hasAttribute("data-cmbturn")) cmbAct("turn"); else cmbAct("done",b.getAttribute("data-cmbdone")); });

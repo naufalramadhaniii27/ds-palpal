@@ -224,10 +224,4 @@ function linkify(text){
     return GLOSS[base] ? '<button type="button" class="lk" data-info="g:'+esc(base)+'">'+part+'</button>' : part;
   }).join("");
 }
-function actTitle(n){
-  var special={"Attack with Dagger and Celurit":"g:Nick","Attack with Dagger and Sickle":"g:Nick","Grapple, then Celurit":"f:3.2","Utilize: Healer's Kit":"g:Healer's Kit","Release a Grapple":"g:Grappled"};
-  if(n.indexOf(",")>=0) return n.split(/,\s*/).map(function(x){ return GLOSS[x]?'<button type="button" class="tx" data-info="g:'+esc(x)+'">'+esc(x)+'</button>':esc(x); }).join(", ");
-  var spec = special[n] || (GLOSS[n]?"g:"+n:featSpec(n));
-  return spec ? '<button type="button" class="tx" data-info="'+esc(spec)+'">'+esc(n)+'</button>' : esc(n);
-}
 var NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
