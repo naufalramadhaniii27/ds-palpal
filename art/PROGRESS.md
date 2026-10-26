@@ -40,3 +40,8 @@ art/batch/scenes/class/monk-phone.png
 art/batch/scenes/class/paladin-pc.png
 art/batch/scenes/class/paladin-phone.png
 art/batch/scenes/class/ranger-pc.png
+art/batch/scenes/class/ranger-phone.png
+art/batch/scenes/class/rogue-pc.png
+art/batch/scenes/class/rogue-phone.png
+art/batch/scenes/class/sorcerer-pc.png
+art/batch/scenes/class/sorcerer-phone.png
