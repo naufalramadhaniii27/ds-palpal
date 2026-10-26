@@ -38,3 +38,8 @@ art/batch/emblems/class/bard.png
 art/batch/emblems/class/cleric.png
 art/batch/emblems/class/druid.png
 art/batch/emblems/class/fighter.png
+art/batch/emblems/class/monk.png
+art/batch/emblems/class/paladin.png
+art/batch/emblems/class/ranger.png
+art/batch/emblems/class/rogue.png
+art/batch/emblems/class/sorcerer.png
