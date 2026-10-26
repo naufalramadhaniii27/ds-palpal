@@ -45,3 +45,8 @@ art/batch/scenes/class/rogue-pc.png
 art/batch/scenes/class/rogue-phone.png
 art/batch/scenes/class/sorcerer-pc.png
 art/batch/scenes/class/sorcerer-phone.png
+art/batch/scenes/class/warlock-pc.png
+art/batch/scenes/class/warlock-phone.png
+art/batch/scenes/class/wizard-pc.png
+art/batch/scenes/class/wizard-phone.png
+art/batch/scenes/class/artificer-pc.png
