@@ -141,7 +141,10 @@ function homeInfo(){ var bk=uiGet("cs-ui-bkp"), r=rGet()||{chars:{}}, now=Date.n
     '<div class="hstor'+(full?' warn':'')+'"><span class="hmeter" aria-hidden="true"><span style="width:'+pct+'%"></span></span><span>Storage used on this device: <b>'+mb(u.n)+'</b> of about 5 MB ('+pct+'%)'+(u.por>2e4?'. Portraits: '+mb(u.por):'')+'. Protected from automatic cleanup: <span id="hpers">...</span></span>'+
     (full?'<span class="hbkw">Storage is almost full. Back up, then remove portraits or characters you no longer need.</span>':'')+'</div>'+
     (function(){ var sn=snGet().chars, del=Object.keys(sn).filter(function(id){ return !r.chars[id]&&sn[id]&&sn[id].length; }); if(!del.length) return "";
-      return '<div class="hbkl"><span>Deleted characters you can bring back:</span>'+del.map(function(id){ var x=sn[id][0]; return '<span><b>'+esc(x.name||cOf(x.C).name||"Character")+'</b> <button type="button" class="hlink" data-hback="'+id+'">Bring Back</button></span>'; }).join("")+'</div>'; })(); }
+      del.sort(function(a,b){ return (sn[b][0].t||0)-(sn[a][0].t||0); });
+      var row=function(id){ var x=sn[id][0], c=cOf(x.C), sub=((c.species||"")+" "+(c.clsLabel||"")).trim();
+        return '<li><span class="hdn"><b>'+esc(x.name||c.name||"Character")+'</b><small>'+(sub?esc(sub)+' \u2022 ':'')+'Deleted '+esc(fmtT(x.t).slice(0,10))+'</small></span><button type="button" class="hlink" data-hback="'+id+'">Bring Back</button></li>'; };
+      return '<div class="hbkl hdel"><span class="hdelh">Deleted characters you can bring back:</span><ul>'+del.slice(0,5).map(row).join("")+'</ul>'+(del.length>5?'<details><summary>Show '+(del.length-5)+' older</summary><ul>'+del.slice(5).map(row).join("")+'</ul></details>':'')+'</div>'; })(); }
 /* (d) snapshots: cs-snap-v1 = {chars:{id:[newest first, max 5]}}. Device only: not in Back Up, untouched by Restore, so a Restore can be undone.
    Portraits are left out (the current portrait is kept on restore). Total size is kept under SN_MAX characters by dropping the oldest */
 var SN_MAX=900000;
