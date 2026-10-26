@@ -1,5 +1,5 @@
 # Part 25: Environment scenes for music, combat and ambience (28 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body.
 
 IMAGE 25-0001 [PC] - save as art/batch/scenes/environment/dungeon-pc.png
 A stone dungeon corridor with torches, cold blue fog, an iron door, adventurers sneaking with a lantern.

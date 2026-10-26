@@ -1,5 +1,5 @@
 # Part 05: Subclass emblems (53 images)
-Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow.
+Apply the MASTER.md rules and style lock to every image. RULE 1 ZERO AI SLOP, MAXIMUM WOW, DARK AND GORY comes first. Interpret every subject below in that grim tone: a festival becomes a tense night gathering, play becomes hard training or the aftermath of a fight, a cozy room shows danger, loss or old blood. Every image carries despair, a world being destroyed and deep sorrow, with wounds of the heart and wounds of the body.
 
 IMAGE 05-0001 [EMBLEM] - save as art/batch/emblems/subclass/barbarian-path-of-the-berserker.png
 Subclass emblem for Path Of The Berserker (Barbarian): a jagged red-hot axe blade crossed with a snarling broken chain. Glow color: amber #E0A448.
