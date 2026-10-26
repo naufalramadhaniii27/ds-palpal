@@ -1,0 +1,81 @@
+# batch-159 (20 images)
+
+## 18-0102 [ICON] art/batch/icons/features/subclass/champion/superior-critical.png
+Subject: Subclass feature icon showing the named feature. Icon: Superior Critical (Champion subclass feature of the Fighter class). Accent: one small detail taken from its own subclass emblem (a laurel wreath around an upright longsword). Draw it as a greatsword striking a shield with a wider brighter golden critical burst.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0103 [ICON] art/batch/icons/features/subclass/champion/survivor.png
+Subject: Subclass feature icon showing the named feature. Icon: Survivor (Champion subclass feature of the Fighter class). Accent: one small detail taken from its own subclass emblem (a laurel wreath around an upright longsword). Draw it as a dented battered steel helmet with a small green healing sprout growing from its crest.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0104 [ICON] art/batch/icons/features/subclass/circle-of-dreams/balm-of-the-summer-court.png
+Subject: Subclass feature icon showing the named feature. Icon: Balm of the Summer Court (Circle of Dreams subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a hammock of moonflower vines holding a sleeping fox). Draw it as a fistful of soft summer petals scattering warm green healing light.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0105 [ICON] art/batch/icons/features/subclass/circle-of-dreams/hearth-of-moonlight-and-shadow.png
+Subject: Subclass feature icon showing the named feature. Icon: Hearth of Moonlight and Shadow (Circle of Dreams subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a hammock of moonflower vines holding a sleeping fox). Draw it as a small campfire inside a ring of moonlit stones with a shadowy blanket of protection.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0106 [ICON] art/batch/icons/features/subclass/circle-of-dreams/hidden-paths.png
+Subject: Subclass feature icon showing the named feature. Icon: Hidden Paths (Circle of Dreams subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a hammock of moonflower vines holding a sleeping fox). Draw it as a small arch of twisted branches with a shimmer of mist inside.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0107 [ICON] art/batch/icons/features/subclass/circle-of-dreams/walker-in-dreams.png
+Subject: Subclass feature icon showing the named feature. Icon: Walker in Dreams (Circle of Dreams subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a hammock of moonflower vines holding a sleeping fox). Draw it as a sleeping lantern drifting on a ribbon of dreamlike mist and blue moths.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0108 [ICON] art/batch/icons/features/subclass/circle-of-spores/circle-spells.png
+Subject: Subclass feature icon showing the named feature. Icon: Circle Spells (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a moss-covered spellbook with tiny mushrooms sprouting from its spine.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0109 [ICON] art/batch/icons/features/subclass/circle-of-spores/fungal-body.png
+Subject: Subclass feature icon showing the named feature. Icon: Fungal Body (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a mushroom-cap breastplate with thick fungal plating and drifting spores.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0110 [ICON] art/batch/icons/features/subclass/circle-of-spores/fungal-infestation.png
+Subject: Subclass feature icon showing the named feature. Icon: Fungal Infestation (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a cracked bone sprouting a tiny glowing mushroom marionette string.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0111 [ICON] art/batch/icons/features/subclass/circle-of-spores/halo-of-spores.png
+Subject: Subclass feature icon showing the named feature. Icon: Halo of Spores (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a ring of dark grey spores swirling in a circle around a fungal staff.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0112 [ICON] art/batch/icons/features/subclass/circle-of-spores/spreading-spores.png
+Subject: Subclass feature icon showing the named feature. Icon: Spreading Spores (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a fungal pod bursting open and releasing a cloud of drifting green spores.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0113 [ICON] art/batch/icons/features/subclass/circle-of-spores/symbiotic-entity.png
+Subject: Subclass feature icon showing the named feature. Icon: Symbiotic Entity (Circle of Spores subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a cluster of glowing mushrooms growing from an old skull). Draw it as a living fungus-covered staff glowing with spore vines wrapping its length.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0114 [ICON] art/batch/icons/features/subclass/circle-of-stars/cosmic-omen.png
+Subject: Subclass feature icon showing the named feature. Icon: Cosmic Omen (Circle of Stars subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (an antler crown strung with tiny star lanterns). Draw it as a small silver star dish holding a single ivory die tipped by a shooting light.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0115 [ICON] art/batch/icons/features/subclass/circle-of-stars/full-of-stars.png
+Subject: Subclass feature icon showing the named feature. Icon: Full of Stars (Circle of Stars subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (an antler crown strung with tiny star lanterns). Draw it as a starry cloak whose folds sparkle with a field of tiny glowing points of light.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0116 [ICON] art/batch/icons/features/subclass/circle-of-stars/star-map.png
+Subject: Subclass feature icon showing the named feature. Icon: Star Map (Circle of Stars subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (an antler crown strung with tiny star lanterns). Draw it as a scroll case of polished wood with a star chart sheet unrolled from it.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0117 [ICON] art/batch/icons/features/subclass/circle-of-stars/starry-form.png
+Subject: Subclass feature icon showing the named feature. Icon: Starry Form (Circle of Stars subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (an antler crown strung with tiny star lanterns). Draw it as three small constellation shapes: an archer's bow, a chalice, and a coiled dragon.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0118 [ICON] art/batch/icons/features/subclass/circle-of-stars/twinkling-constellations.png
+Subject: Subclass feature icon showing the named feature. Icon: Twinkling Constellations (Circle of Stars subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (an antler crown strung with tiny star lanterns). Draw it as three small star lanterns on a cord, shaped as a bow, a chalice and a winged dragon.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0119 [ICON] art/batch/icons/features/subclass/circle-of-wildfire/blazing-revival.png
+Subject: Subclass feature icon showing the named feature. Icon: Blazing Revival (Circle of Wildfire subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a small bright flame burning inside a ring of green leaves (a plain flame, no face, no eyes)). Draw it as a phoenix feather rising from cinders with a fresh burst of flame.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0120 [ICON] art/batch/icons/features/subclass/circle-of-wildfire/cauterizing-flames.png
+Subject: Subclass feature icon showing the named feature. Icon: Cauterizing Flames (Circle of Wildfire subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a small bright flame burning inside a ring of green leaves (a plain flame, no face, no eyes)). Draw it as a small spiral of floating embers dropping warm healing sparks onto a burned leaf.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+## 18-0121 [ICON] art/batch/icons/features/subclass/circle-of-wildfire/circle-spells.png
+Subject: Subclass feature icon showing the named feature. Icon: Circle Spells (Circle of Wildfire subclass feature of the Druid class). Accent: one small detail taken from its own subclass emblem (a small bright flame burning inside a ring of green leaves (a plain flame, no face, no eyes)). Draw it as a charred wooden staff with leaping flames curling around its head.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
