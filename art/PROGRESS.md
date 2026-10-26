@@ -24,3 +24,8 @@ art/batch/scenes/class/druid-pc.png | check: pass
 art/batch/scenes/class/druid-phone.png | check: pass
 art/batch/scenes/class/fighter-pc.png | check: pass
 art/batch/scenes/class/fighter-phone.png | check: pass
+art/batch/scenes/class/monk-pc.png | check: pass
+art/batch/scenes/class/monk-phone.png | check: pass
+art/batch/scenes/class/paladin-pc.png | check: pass
+art/batch/scenes/class/paladin-phone.png | check: pass
+art/batch/scenes/class/ranger-pc.png | check: pass
