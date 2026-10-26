@@ -4,6 +4,7 @@ You are producing painted art with $imagegen for this repo. All task files are i
 
 How to work:
 1. Fetch the branch art-tasks and read this file and the part files art-tasks/part-01.md to art-tasks/part-14.md.
+0. Before any commit run: git config user.name "naufalramadhaniii27" and git config user.email "284653644+naufalramadhaniii27@users.noreply.github.com". Never commit with any other email (pushes with a private email are blocked).
 2. Work on the branch art-batch (create it from main if it does not exist, otherwise check it out and pull).
 3. Read art/PROGRESS.md on art-batch if it exists. It lists finished images. Skip finished images and continue from the first unfinished one, part by part in order.
 4. For each image: generate it with $imagegen using the rules below and the text in the part file, save it to the given path.
