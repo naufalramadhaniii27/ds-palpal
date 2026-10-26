@@ -73,3 +73,10 @@ art/batch/scenes/class/druid-pc.png
 art/batch/scenes/class/druid-phone.png
 art/batch/scenes/class/fighter-pc.png
 art/batch/scenes/class/fighter-phone.png
+
+## batch-002 v3
+art/batch/scenes/class/monk-pc.png
+art/batch/scenes/class/monk-phone.png
+art/batch/scenes/class/paladin-pc.png
+art/batch/scenes/class/paladin-phone.png
+art/batch/scenes/class/ranger-pc.png
