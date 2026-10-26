@@ -13,4 +13,9 @@ art/batch/style-test/bard-emblem.png | check: pass
 art/batch/g0/home-inn-phone.png | check: pass
 art/batch/style-test/gnome-scene-phone.png | check: pass
 
-Part 00 (UPDATED): complete. Next: part 02, image02-0001, art/batch/scenes/class/barbarian-pc.png.
+Part 00 (UPDATED): complete. Part 02 in progress; continue at the first unlisted path in part-02.md.
+art/batch/scenes/class/barbarian-pc.png | check: pass
+art/batch/scenes/class/barbarian-phone.png | check: pass
+art/batch/scenes/class/bard-pc.png | check: pass
+art/batch/scenes/class/bard-phone.png | check: pass
+art/batch/scenes/class/cleric-pc.png | check: pass
