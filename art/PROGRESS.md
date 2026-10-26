@@ -19,3 +19,8 @@ art/batch/scenes/class/barbarian-phone.png | check: pass
 art/batch/scenes/class/bard-pc.png | check: pass
 art/batch/scenes/class/bard-phone.png | check: pass
 art/batch/scenes/class/cleric-pc.png | check: pass
+art/batch/scenes/class/cleric-phone.png | check: pass
+art/batch/scenes/class/druid-pc.png | check: pass
+art/batch/scenes/class/druid-phone.png | check: pass
+art/batch/scenes/class/fighter-pc.png | check: pass
+art/batch/scenes/class/fighter-phone.png | check: pass
