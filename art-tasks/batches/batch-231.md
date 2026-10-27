@@ -23,7 +23,7 @@ Subject: Spell school, ability or feat category icon. Icon: Necromancy school. D
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0041 [ICON] art/batch/icons/abilities/strength.png
-Subject: Spell school, ability or feat category icon. Icon: Strength. Draw it as a heavy iron kettlebell. One single object only, centered, no ground and no other objects.
+Subject: Spell school, ability or feat category icon. Icon: Strength. Draw it as a bare clenched fist, strong and steady. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0042 [ICON] art/batch/icons/abilities/dexterity.png

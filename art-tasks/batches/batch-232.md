@@ -59,7 +59,7 @@ Subject: Creature type icon. Icon: Fiend. Draw it as a red curled devil tail. On
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0091 [ICON] art/batch/icons/creature-types/giant.png
-Subject: Creature type icon. Icon: Giant. Draw it as a giant's huge clenched fist. One single object only, centered, no ground and no other objects.
+Subject: Creature type icon. Icon: Giant. Draw it as a giant's huge leather sandal. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0094 [ICON] art/batch/icons/creature-types/ooze.png

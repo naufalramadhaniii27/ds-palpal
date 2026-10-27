@@ -51,7 +51,7 @@ Subject: Condition icon. Icon: Frightened. Draw it as a small lantern whose flam
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0006 [ICON] art/batch/icons/conditions/grappled.png
-Subject: Condition icon. Icon: Grappled. Draw it as a clenched gauntlet in a tight grip. One single object only, centered, no ground and no other objects.
+Subject: Condition icon. Icon: Grappled. Draw it as a hooked iron grappling claw. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0012 [ICON] art/batch/icons/conditions/prone.png
