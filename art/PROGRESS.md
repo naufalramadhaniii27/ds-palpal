@@ -694,3 +694,8 @@ art/batch/icons/spells/level-2/locate-animals-or-plants.png
 art/batch/icons/spells/level-2/locate-object.png
 art/batch/icons/spells/level-2/mind-spike.png
 art/batch/icons/spells/level-2/see-invisibility.png
+art/batch/icons/spells/level-2/warp-sense.png
+art/batch/icons/spells/level-2/animal-messenger.png
+art/batch/icons/spells/level-2/calm-emotions.png
+art/batch/icons/spells/level-2/crown-of-madness.png
+art/batch/icons/spells/level-2/enthrall.png
