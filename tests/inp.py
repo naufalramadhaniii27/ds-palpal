@@ -63,7 +63,9 @@ async def run_case(b, base, name, W, H, cpu):
         await pg.click(".hp-h [data-info]"); await pg.wait_for_timeout(500)
         await pg.keyboard.press("Escape")
     async def rest():
-        await pg.click("[data-rest='menu']"); await pg.wait_for_timeout(500)
+        if await pg.locator("[data-rest='menu']:visible").count(): await pg.click("[data-rest='menu']:visible")
+        else: await pg.keyboard.press("r")  # wide layout has no rest button on the sheet, the R key opens the same menu
+        await pg.wait_for_timeout(500)
         await pg.keyboard.press("Escape")
 
     plan = [("damage", damage), ("heal", heal), ("temp HP step", tmp), ("detail panel", panel), ("rest menu", rest)]
