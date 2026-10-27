@@ -745,3 +745,10 @@ art/batch/scenes/species/reborn-pc.png
 art/batch/scenes/species/reborn-phone.png
 art/batch/scenes/species/rimekin-pc.png
 art/batch/scenes/species/rimekin-phone.png
+
+## batch-074 v3
+art/batch/scenes/species/satyr-pc.png
+art/batch/scenes/species/satyr-phone.png
+art/batch/scenes/species/shifter-pc.png
+art/batch/scenes/species/shifter-phone.png
+art/batch/scenes/species/simic-hybrid-pc.png
