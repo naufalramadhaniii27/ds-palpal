@@ -667,3 +667,8 @@ art/batch/icons/spells/level-2/tortoise-shell.png
 art/batch/icons/spells/level-2/warding-bond.png
 art/batch/icons/spells/level-2/air-bubble.png
 art/batch/icons/spells/level-2/battle-familiar.png
+art/batch/icons/spells/level-2/cloud-of-daggers.png
+art/batch/icons/spells/level-2/conjure-tools.png
+art/batch/icons/spells/level-2/deryans-helpful-homunculi.png
+art/batch/icons/spells/level-2/dust-devil.png
+art/batch/icons/spells/level-2/find-steed.png
