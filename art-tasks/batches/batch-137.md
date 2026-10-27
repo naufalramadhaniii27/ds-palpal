@@ -65,7 +65,7 @@ Subject: Feat icon showing the idea of the named feat. Icon: Mounted Combatant. 
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 15-0037 [ICON] art/batch/icons/feats/observant.png
-Subject: Feat icon showing the idea of the named feat. Icon: Observant. Draw it as a brass spyglass. One single object only, centered, no ground and no other objects.
+Subject: Feat icon showing the idea of the named feat. Icon: Observant. Draw it as a brass listening horn. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 15-0038 [ICON] art/batch/icons/feats/piercer.png
