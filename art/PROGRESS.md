@@ -374,3 +374,8 @@ art/batch/icons/feat-categories/origin-feat.png
 art/batch/icons/feat-categories/general-feat.png
 art/batch/icons/skills/acrobatics.png
 art/batch/icons/skills/animal-handling.png
+art/batch/icons/skills/arcana.png
+art/batch/icons/skills/athletics.png
+art/batch/icons/skills/deception.png
+art/batch/icons/skills/history.png
+art/batch/icons/skills/insight.png
