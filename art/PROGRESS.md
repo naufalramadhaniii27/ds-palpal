@@ -841,3 +841,8 @@ art/batch/icons/items/magic/rare/cape-of-the-mountebank.png
 art/batch/icons/items/magic/very-rare/carpet-of-flying.png
 art/batch/icons/items/magic/common/cast-off-armor.png
 art/batch/icons/items/magic/very-rare/cauldron-of-rebirth.png
+art/batch/icons/items/magic/rare/censer-of-controlling-air-elementals.png
+art/batch/icons/items/magic/common/charlatans-die.png
+art/batch/icons/items/magic/rare/chime-of-opening.png
+art/batch/icons/items/magic/uncommon/circlet-of-blasting.png
+art/batch/icons/items/magic/very-rare/cloak-of-arachnida.png
