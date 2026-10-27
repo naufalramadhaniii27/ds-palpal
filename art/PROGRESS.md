@@ -357,3 +357,8 @@ art/batch/icons/damage-types/resistance.png
 art/batch/icons/spell-schools/abjuration-school.png
 art/batch/icons/spell-schools/conjuration-school.png
 art/batch/icons/spell-schools/divination-school.png
+art/batch/icons/spell-schools/enchantment-school.png
+art/batch/icons/spell-schools/evocation-school.png
+art/batch/icons/spell-schools/illusion-school.png
+art/batch/icons/spell-schools/necromancy-school.png
+art/batch/icons/spell-schools/transmutation-school.png
