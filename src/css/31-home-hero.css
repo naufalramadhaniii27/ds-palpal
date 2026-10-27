@@ -1,0 +1,28 @@
+/* T3: Home hero ("Continue your adventure"). Only transform and opacity move. The order of appearance plays once each time Home is drawn.
+   Reduce Motion and Immersive Off turn it into a plain card (css/29 and the media query below). */
+.hhero{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"eb eb" "por tx";gap:10px 18px;align-items:center;margin:12px 0 16px;padding:18px;border-radius:14px;color:#fff;
+  background:linear-gradient(180deg,rgba(8,10,12,.35),rgba(8,10,12,.55)),linear-gradient(120deg,var(--hc1,#264b40),var(--hc2,#1c3a31));border:1px solid rgba(255,255,255,.14);overflow:hidden;isolation:isolate}
+.hhero[hidden]{display:none}
+.hheb{grid-area:eb;font-size:calc(12px*var(--tz,1));letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.9}
+.hhpor{grid-area:por;position:relative;width:88px;height:88px;border-radius:50%;background:rgba(0,0,0,.35) center/cover no-repeat;border:3px solid rgba(255,255,255,.9);box-shadow:0 0 0 4px rgba(255,255,255,.18);display:grid;place-items:center;overflow:hidden}
+.hhpor svg,.hhpor .hpor-ci{width:46px;height:46px;opacity:.85}
+.hhtx{grid-area:tx;min-width:0}
+.hhname{margin:0;font-family:var(--f-display,inherit);font-size:clamp(26px,7vw,44px);line-height:1.1;font-weight:900;letter-spacing:-.01em;overflow-wrap:anywhere}
+.hhw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}.hhw>span{display:inline-block}
+.hhmeta{margin:6px 0 12px;font-size:calc(14px*var(--tz,1));opacity:.92}
+.hhbtn{display:flex;flex-wrap:wrap;gap:8px}.hhbtn button{min-height:44px}
+.hhero::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .25s;z-index:-1;
+  background:radial-gradient(180px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.7),transparent 65%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.hhero.hx-lit::before{opacity:1}
+@keyframes hxUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes hxWord{from{transform:translateY(105%)}to{transform:none}}
+@keyframes hxRing{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+.hhero .hheb{animation:hxUp .5s var(--ease-out) both}
+.hhero .hhpor{animation:hxRing .6s var(--ease-out) .08s both}
+.hhero .hhw>span{animation:hxWord .6s var(--ease-out) calc(.18s + var(--i,0)*.09s) both}
+.hhero .hhmeta{animation:hxUp .5s var(--ease-out) .42s both}
+.hhero .hhbtn{animation:hxUp .5s var(--ease-out) .52s both}
+@media (min-width:760px){.hhero{grid-template-columns:auto minmax(0,1fr);padding:24px 28px;gap:10px 28px}.hhpor{width:132px;height:132px}.hhpor svg,.hhpor .hpor-ci{width:64px;height:64px}}
+@media (prefers-reduced-motion:reduce){.hhero *,.hhero{animation:none!important}.hhero::before{display:none}}
+@media (hover:none){.hhero::before{display:none}}
+html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}

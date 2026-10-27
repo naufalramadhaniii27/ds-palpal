@@ -22,7 +22,7 @@
   function fly(c,from,to,even){ var sx=from.w/to.w, sy=from.h/to.h; if(even){ sx=sy; }
     return c.animate([{transform:"translate("+(from.x-to.x)+"px,"+(from.y-to.y)+"px) scale("+sx+","+sy+")"},{transform:"none"}],{duration:DUR,easing:EASE,fill:"both"}); }
   function sheetEls(){ return [D.getElementById("photo"),D.getElementById("idName")]; }
-  function cardEls(card){ return card?[card.querySelector(".hpor"),card.querySelector(".hname b")]:[null,null]; }
+  function cardEls(card){ return card?[card.querySelector(".hpor,.hhpor"),card.querySelector(".hname b,.hhname")]:[null,null]; }
 
   /* arrive on the sheet: copies from the old places (d.p, d.n) to the sheet portrait and name */
   /* the card copy goes along and fades out while the sheet copy fades in: the look changes on the way, not at the end */
@@ -70,7 +70,7 @@
     function opened(){ if(hv.hidden||rmo()||performance.now()-tap>800) return;/* only when you open Home, not when the app starts on it */
       var els=sheetEls(), r0=[rect(els[0]),rect(els[1])]; if(!seen(r0[0])&&!seen(r0[1])) return;
       var id=null; try{ id=(JSON.parse(localStorage.getItem("cs-roster-v1"))||{}).active; }catch(e){}
-      var b=id&&hv.querySelector('[data-hview="'+id+'"]'), card=b&&b.closest(".hcard"), ce=cardEls(card); if(!card) return;
+      var b=id&&hv.querySelector('[data-hview="'+id+'"]'), card=b&&b.closest(".hcard,.hhero"), ce=cardEls(card); if(!card) return;
       var L=layer(), n=0;
       ce.forEach(function(el,i){ var to=rect(el), fr=r0[i]; if(!el||!seen(to)||!fr) return; var c=copy(el,to,L); el.style.visibility="hidden"; n++;
         fly(c,fr,to,i===1).onfinish=function(){ el.style.visibility=""; }; setTimeout(function(){ el.style.visibility=""; },DUR+600); });

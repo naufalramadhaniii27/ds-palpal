@@ -96,7 +96,7 @@
   if(document.documentElement.classList.contains("mi-arrive")) setTimeout(function(){ document.documentElement.classList.remove("mi-arrive"); },650);
   var leaving=false; window.addEventListener("beforeunload",function(){ leaving=true; });
   MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("#homeV [data-hview],#homeV [data-hedit]"); if(!b) return; if(b.__miGo){ b.__miGo=0; return; } if(MI.rm()) return;
-    var card=b.closest(".hcard"), top=card&&card.querySelector(".hcard-top"); if(!card) return; e.preventDefault(); e.stopImmediatePropagation();
+    var card=b.closest(".hcard,.hhero"), top=card&&card.querySelector(".hcard-top"); if(!card) return; e.preventDefault(); e.stopImmediatePropagation();
     if(window.__miFlyOut){ window.__miFlyOut(card,function(){ b.__miGo=1; b.click(); b.__miGo=0; }); return; }/* T1: portrait and name travel to the sheet (fx/21) */
     var r=card.getBoundingClientRect(), W=innerWidth, H=innerHeight, ov=document.createElement("div"), bg=top?(top.style.backgroundImage||getComputedStyle(top).backgroundImage):"none";
     ov.className="mi-sw"; ov.setAttribute("aria-hidden","true"); ov.style.width=W+"px"; ov.style.height=H+"px"; ov.style.backgroundImage=bg; ov.style.backgroundColor="var(--panel)"; ov.innerHTML="<i></i>"; document.body.appendChild(ov);
