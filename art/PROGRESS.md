@@ -797,3 +797,8 @@ art/batch/icons/items/magic/very-rare/amulet-of-the-planes.png
 art/batch/icons/items/magic/very-rare/animated-shield.png
 art/batch/icons/items/magic/legendary/apparatus-of-kwalish.png
 art/batch/icons/items/magic/common/armor-of-gleaming.png
+art/batch/icons/items/magic/legendary/armor-of-invulnerability.png
+art/batch/icons/items/magic/rare/armor-of-resistance.png
+art/batch/icons/items/magic/rare/armor-of-vulnerability.png
+art/batch/icons/items/magic/uncommon/arrow.png
+art/batch/icons/items/magic/rare/arrow-catching-shield.png
