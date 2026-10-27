@@ -584,3 +584,8 @@ art/batch/icons/spells/level-1/ice-knife.png
 art/batch/icons/spells/level-1/tensers-floating-disk.png
 art/batch/icons/spells/level-1/unseen-servant.png
 art/batch/icons/spells/level-1/beast-bond.png
+art/batch/icons/spells/level-1/comprehend-languages.png
+art/batch/icons/spells/level-1/detect-evil-and-good.png
+art/batch/icons/spells/level-1/detect-magic.png
+art/batch/icons/spells/level-1/detect-poison-and-disease.png
+art/batch/icons/spells/level-1/gift-of-alacrity.png
