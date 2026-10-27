@@ -117,3 +117,10 @@ art/batch/scenes/species/tiefling-pc.png
 art/batch/scenes/species/tiefling-phone.png
 art/batch/scenes/species/gnome-pc.png
 art/batch/scenes/species/gnome-phone.png
+
+## batch-006 v3
+art/batch/scenes/background/acolyte-pc.png
+art/batch/scenes/background/acolyte-phone.png
+art/batch/scenes/background/artisan-pc.png
+art/batch/scenes/background/artisan-phone.png
+art/batch/scenes/background/charlatan-pc.png
