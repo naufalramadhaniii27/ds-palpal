@@ -428,3 +428,10 @@ art/batch/icons/creature-types/swarm.png
 art/batch/icons/creature-types/summon.png
 art/batch/icons/item-categories/simple-melee-weapons.png
 art/batch/icons/item-categories/martial-melee-weapons.png
+
+## batch-027 v3
+art/batch/icons/item-categories/simple-ranged-weapons.png
+art/batch/icons/item-categories/martial-ranged-weapons.png
+art/batch/icons/item-categories/light-armor.png
+art/batch/icons/item-categories/medium-armor.png
+art/batch/icons/item-categories/heavy-armor.png
