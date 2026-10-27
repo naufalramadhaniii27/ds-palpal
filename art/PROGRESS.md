@@ -325,3 +325,8 @@ art/batch/icons/conditions/charmed.png
 art/batch/icons/conditions/deafened.png
 art/batch/icons/conditions/exhaustion.png
 art/batch/icons/conditions/frightened.png
+art/batch/icons/conditions/grappled.png
+art/batch/icons/conditions/incapacitated.png
+art/batch/icons/conditions/invisible.png
+art/batch/icons/conditions/paralyzed.png
+art/batch/icons/conditions/petrified.png
