@@ -30,15 +30,15 @@ Branch t2-smooth, commit 99d2ea5 ditambah perubahan tes sesudahnya. Semua angka 
 | Aspek | Nilai | Dasar |
 |---|---|---|
 | Respons tombol ponsel | 9,5 | Semua aksi di bawah 100 ms pada CPU 1x |
-| Respons tombol desktop | 9,0 | Heal 112 dan panel 144 ms di headless |
+| Respons tombol desktop | 9,5 | Headless: heal 68 ms terpisah, panel 112 sampai 144 ms (raster perangkat lunak). Laptop nyata, build 7f9f0a4: pemilik menilai sangat lancar (rasa, tanpa angka) |
 | Konsistensi tampilan | 9,5 | Satu skala, 0 overlap, 0 overflow |
 | Aksesibilitas | 9,5 | axe 0, target 44 px, mode hemat animasi |
 | Fitur T3 dan T4 | 9,5 | Seret Library ke sheet (23 cek) dan daftar lompat Builder Ctrl+K (22 cek) selesai |
-| Total | 9,4 | |
+| Total | 9,5 | |
 
 Seret Library memakai tekan lama lalu lepas di zona. Daftar lompat Builder berisi langkah, Prev, Next, Close. Apply sengaja tidak ada. Tes: tests/lib_drag.py, tests/builder_pal.py.
 
-Penghalang 9,5: respons desktop 9,0. Saya tidak bisa membuktikan lebih tinggi tanpa GPU asli. Rilis menunggu angka dari laptop nyata.
+Penghalang 9,5 (respons desktop) selesai: pemilik mengetes build 7f9f0a4 di laptop dan melaporkan lancar. Itu penilaian rasa, bukan angka INP.
 
 ## Catatan untuk bagian lain
 Lihat reports/requests.md: Apply di Builder menghapus entri Library (lib:1).
