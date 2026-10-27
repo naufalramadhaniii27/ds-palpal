@@ -508,3 +508,8 @@ art/batch/icons/spells/cantrips/resistance.png
 art/batch/icons/spells/cantrips/create-bonfire.png
 art/batch/icons/spells/cantrips/infestation.png
 art/batch/icons/spells/cantrips/mage-hand.png
+art/batch/icons/spells/cantrips/produce-flame.png
+art/batch/icons/spells/cantrips/sword-burst.png
+art/batch/icons/spells/cantrips/guidance.png
+art/batch/icons/spells/cantrips/true-strike.png
+art/batch/icons/spells/cantrips/encode-thoughts.png
