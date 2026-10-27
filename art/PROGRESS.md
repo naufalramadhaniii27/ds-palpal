@@ -283,3 +283,8 @@ art/batch/scenes/screen/combat-phone.png
 art/batch/scenes/screen/short-rest-pc.png
 art/batch/scenes/screen/short-rest-phone.png
 art/batch/scenes/screen/long-rest-pc.png
+art/batch/scenes/screen/long-rest-phone.png
+art/batch/scenes/screen/bastion-pc.png
+art/batch/scenes/screen/bastion-phone.png
+art/batch/scenes/screen/journal-pc.png
+art/batch/scenes/screen/journal-phone.png
