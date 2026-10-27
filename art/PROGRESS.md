@@ -545,3 +545,10 @@ art/batch/icons/spells/cantrips/druidcraft.png
 art/batch/icons/spells/cantrips/elementalism.png
 art/batch/icons/spells/cantrips/gust.png
 art/batch/icons/spells/cantrips/magic-stone.png
+
+## batch-033 v3
+art/batch/icons/spells/cantrips/mending.png
+art/batch/icons/spells/cantrips/message.png
+art/batch/icons/spells/cantrips/mold-earth.png
+art/batch/icons/spells/cantrips/prestidigitation.png
+art/batch/icons/spells/cantrips/primal-savagery.png
