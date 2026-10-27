@@ -7,3 +7,5 @@ Batch-001 v3 complete: 10 of 10 images saved at exact target dimensions, with un
 Batch-002 v3 complete under MASTER.md at ebf75de: 10 of 10 class scenes replaced in loose Western animation sketch style, each following its batch Variation. Required pixel sizes reached with uniform scaling and center cropping; cream-paper edge fades restored after cropping. Exact prompts are logged in art/PROMPTS.md. No images marked NEEDS REVIEW. Generated with imagegen; exact model version is not exposed.
 
 batch-003 v3 complete under MASTER.md at 681fadc: 10 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.
+
+batch-004 v3 complete under MASTER.md at 681fadc: 6 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.
