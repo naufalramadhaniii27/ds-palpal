@@ -37,7 +37,7 @@ function homeCmds(){var q=homeQ.trim().toLowerCase();if(!q)return "";var m=hcmdL
  return '<div class="hcmds" role="group" aria-label="Commands">'+m.map(function(c){return '<button type="button" class="hbk hcmd" data-hcmd="'+c[2]+'"><span class="hbt">'+esc(c[0])+'</span></button>'}).join("")+homeLibBtn()+'</div>'}
 function homeCards(noSnap){return homeCmds()+homeCards1(noSnap)}
 function homeCards1(noSnap){var r=noSnap?rEnsure():rSnap(rEnsure()),list=Object.keys(r.chars).filter(function(id){return !r.chars[id].ph&&campKeep(id,r)})/* v27 RU64 */.map(function(id){return charInfo(id,r)});
- if(!list.length&&!homeQ) return '<p class="hempty">No characters yet. Press <b>Create a Character</b> to build one, or <b>Open Character</b> to add one from a file.</p>';/* v24 p08 */var q=homeQ.toLowerCase();
+ if(!list.length&&!homeQ) return '<div class="hempty hempty-art">'+esArt("hero")+'<p>No characters yet. Press <b>Create a Character</b> to build one, or <b>Open Character</b> to add one from a file.</p></div>';/* v24 p08 */var q=homeQ.toLowerCase();
  if(q)list=list.filter(function(x){return (x.name+" "+x.level+" "+x.species+" "+x.cls+" "+x.sub+" "+x.camp).toLowerCase().indexOf(q)>=0});
  list.sort(function(a,b){if(homeSort==="name")return a.name.localeCompare(b.name);if(homeSort==="level")return b.level-a.level;if(homeSort==="newest")return b.created-a.created;return a.created-b.created});
  return list.map(function(x){var p=PALS[x.color]||PALS.forest;var bg='background:linear-gradient(90deg,'+p[1]+' 0%,'+p[2]+' 100%)';

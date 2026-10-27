@@ -258,7 +258,7 @@ function renderInv(){
       var ck=invKey(c), op=!ctShut[ck];/* v32 RU134: a container section opens and closes */
       body+='<button type="button" class="ieq ict" data-ctog="'+esc(ck)+'" aria-expanded="'+op+'" aria-label="'+esc(cuNm("i:"+ck,c.n))+', '+inner.length+' item'+(inner.length>1?'s':'')+', '+(op?'close':'open')+'"><b>'+esc(cuNm("i:"+ck,c.n))+'</b><span class="ictn">'+inner.length+' item'+(inner.length>1?'s':'')+'</span><span class="ictw'+(cap&&ld>cap?' over':'')+'">'+fmtW(ld)+(cap?' / '+cap:'')+' lb.'+(ct[2]!=null?' \u2022 counts as '+fmtW(ct[2])+' lb.':'')+'</span>'+CHEV+'</button>'+(cap&&ld>cap?'<div class="caution">\u26a0 Over capacity. This container holds up to '+cap+' lb.</div>':'')+(op?sh.map(function(p){return row(p[0],p[1],1)}).join(""):''); });
   }
-  if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+ico("tab-inventory","es-i")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
+  if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+esArt("chest")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
   $("#invBody").innerHTML=head+fil+attH+body+(C.equipNote?'<p class="next inote">'+ico("item-gear")+'<span>'+esc(C.equipNote).replace(/\. (?=[A-Z])/g,".<br>")+'</span></p>':'')/* v33 p05 (F2) */;
 }
 var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
@@ -295,4 +295,11 @@ function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Bac
   html += '<div class="saved">Saved on this device as you type.</div>';
   $("#notesBody").innerHTML = html; renderDesc();
 }
-
+/* T3 item 17: small original illustrations for empty states. Lines in the muted color, sparks in the accent color. Drawn once, no image files */
+function esArt(k){ var A={
+  chest:'<path d="M18 46h60v28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z"/><path d="M18 46V38a14 14 0 0 1 14-14h32a14 14 0 0 1 14 14v8"/><path d="M18 56h60"/><rect x="42" y="50" width="12" height="14" rx="2"/><circle cx="48" cy="57" r="1.6" class="es-f"/>',
+  book:'<path d="M48 30c-8-6-20-7-30-4v40c10-3 22-2 30 4 8-6 20-7 30-4V26c-10-3-22-2-30 4z"/><path d="M48 30v40"/><path d="M26 38c6-1 11 0 16 2M26 48c6-1 11 0 16 2M54 40c5-2 10-3 16-2M54 50c5-2 10-3 16-2"/>',
+  paw:'<ellipse cx="48" cy="62" rx="15" ry="12"/><ellipse cx="29" cy="46" rx="6" ry="8" transform="rotate(-18 29 46)"/><ellipse cx="42" cy="34" rx="6" ry="8.5" transform="rotate(-6 42 34)"/><ellipse cx="55" cy="34" rx="6" ry="8.5" transform="rotate(6 55 34)"/><ellipse cx="68" cy="46" rx="6" ry="8" transform="rotate(18 68 46)"/>',
+  hero:'<path d="M48 14 22 24v22c0 17 11 29 26 36 15-7 26-19 26-36V24z"/><path d="M48 36v24M36 48h24"/>'}[k]||"";
+  var sp='<path class="es-sp" d="M80 16v10M75 21h10M16 70v8M12 74h8"/>';
+  return '<svg class="es-art es-'+k+'" viewBox="0 0 96 96" width="96" height="96" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+A+sp+'</svg>'; }

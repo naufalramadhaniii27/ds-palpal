@@ -9,7 +9,7 @@
 /* RU134: a container section header opens and closes its items */
 button.ieq.ict{display:flex;align-items:center;gap:8px;width:100%;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
 button.ieq.ict b{flex:1;min-width:0;text-transform:none}
-.ipk{margin:8px 0 4px}.ipk .btn{display:inline-flex;flex-direction:row;align-items:center;gap:6px;min-height:44px;height:auto;padding:0 18px;width:auto}
+.ipk{margin:8px 0 4px}.ipk .btn{display:inline-flex;flex-direction:row;align-items:center;gap:6px;min-height:44px;height:auto;padding:0 16px;width:auto}
 .ipk .btn svg.ico{margin:0}
 button.ieq.ict .ictn{color:var(--muted);font-size:var(--fs1,12px);white-space:nowrap}
 button.ieq.ict .ictw{color:var(--muted);white-space:nowrap}
@@ -158,7 +158,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 :root[data-hdrc] #app .band{z-index:20}
 :root[data-hdrc] #app .band-in{overflow:visible;padding:8px 8px 8px 14px;gap:8px;min-width:0}
 :root[data-hdrc] #app .band .mini{flex:1 1 auto;min-width:0}
-:root[data-hdrc] #app .band .mini b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;font-size:calc(17px*var(--tz,1));line-height:1.12}
+:root[data-hdrc] #app .band .mini b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;font-size:calc(16px*var(--tz,1));line-height:1.12}
 :root[data-hdrc] #app .band .mini #miniSub{font-size:max(12px,calc(13px*var(--tz,1)))}
 :root[data-hdrc] #app .band .acts{position:relative;gap:2px;flex:none;margin-left:auto}
 :root[data-hdrc] #app .band .acts #hpChip{display:none!important}
@@ -234,7 +234,7 @@ body.edm .toast{bottom:var(--edmh,96px)}
 .edm-t{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
 .edm-t .edm-i{width:20px;height:20px;color:var(--cu);flex:none}
 .edm-t span{display:flex;flex-direction:column;min-width:0}
-.edm-t b{font-family:var(--f-nar);font-size:calc(15px*var(--tz,1))}
+.edm-t b{font-family:var(--f-nar);font-size:calc(14px*var(--tz,1))}
 .edm-t small{font-size:max(12px,calc(12px*var(--tz,1)));color:var(--muted);line-height:1.25}
 .edm-b{display:flex;gap:6px;flex:none}
 .edm-b .btn{flex:none;height:44px;min-width:44px;padding:0 12px;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--r2,8px)}
@@ -256,7 +256,7 @@ body.edm .toast{bottom:var(--edmh,96px)}
 .sp-head .bd{cursor:pointer}
 
 /* v34 p02 */
-.happ{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 0;font-family:var(--f-nar,inherit);font-size:calc(15px*var(--tz,1));color:var(--muted,#9aa5ad)}
+.happ{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 0;font-family:var(--f-nar,inherit);font-size:calc(14px*var(--tz,1));color:var(--muted,#9aa5ad)}
 .happ .happ-i{width:32px;height:32px;flex:none}
 .happ+.hcredit{margin-top:4px}
 

@@ -45,9 +45,8 @@ async def run_case(b, base, name, W, H, cpu):
     ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block", has_touch=(W < 600), is_mobile=False)
     pg = await ctx.new_page(); pg.set_default_timeout(8000)
     errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
-    await pg.goto(base); await pg.wait_for_timeout(800)
-    await pg.evaluate("v=>{localStorage.clear();sessionStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}", YUDHI)
-    await pg.reload(); await pg.wait_for_timeout(2500)
+    await ctx.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);sessionStorage.setItem('__s','1')}" % json.dumps(YUDHI))  # seeded before the page runs: a reload lets the old page write its own roster back on unload
+    await pg.goto(base); await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(2000)
     await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(1800)
     await pg.evaluate(OBS)
     cdp = await ctx.new_cdp_session(pg)

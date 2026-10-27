@@ -121,7 +121,7 @@ html.mi-arrive body{animation:miArrive .45s ease-out both}
 #miAmb .p.link{width:var(--s);height:calc(var(--s)*.62);border-radius:40%;border:2px solid rgba(var(--pc),.75)}
 #miAmb .p.leaf{top:-24px;width:var(--s);height:calc(var(--s)*.6);border-radius:0 80% 0 80%;background:linear-gradient(135deg,rgba(var(--pc),.9),rgba(var(--pc),.5));animation-name:miALeafL;animation-timing-function:linear}
 #miAmb.mi-top{z-index:var(--z-amb-top)}
-#miAmb .p.wave{top:50%;width:60px;height:60px;margin:-30px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
+#miAmb .p.wave{top:50%;width:60px;height:60px;margin:-28px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
 @keyframes miAPulse{0%,100%{opacity:.45}50%{opacity:1}}
 @keyframes miABeat{0%,100%{opacity:.3}14%{opacity:1}28%{opacity:.45}42%{opacity:.85}70%{opacity:.3}}
 @keyframes miAShiver{0%,86%,100%{transform:none}88%{transform:translateX(-3px)}90%{transform:translateX(3px)}92%{transform:translateX(-2px)}94%{transform:translateX(2px)}}

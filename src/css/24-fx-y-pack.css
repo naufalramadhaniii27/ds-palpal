@@ -63,7 +63,7 @@ html:not([data-skin="ddb"]) .mi-enc,html:not([data-skin="ddb"]) .mi-encl{display
 :root[data-skin="ddb"] #toast::before,:root[data-skin="ddb"] #toast::after{content:"";position:absolute;top:-4px;bottom:-4px;width:9px;border-radius:6px;background:linear-gradient(90deg,#6b4b22,#c9a45c 50%,#6b4b22);box-shadow:0 2px 6px rgba(0,0,0,.5)}
 :root[data-skin="ddb"] #toast::before{left:-5px}:root[data-skin="ddb"] #toast::after{right:-5px}
 :root[data-skin="ddb"] #toast:empty::before,:root[data-skin="ddb"] #toast:empty::after{display:none}
-:root[data-skin="ddb"] .empty-note .es-i{box-sizing:content-box;width:34px!important;height:34px!important;padding:18px;border-radius:50%;color:rgb(var(--pl-rgb))!important;background:radial-gradient(circle,rgba(var(--pl-rgb),.22),rgba(var(--pl-rgb),.04) 70%);box-shadow:0 0 0 1.5px rgba(var(--pl-rgb),.45),0 0 0 8px rgba(var(--pl-rgb),.06),0 0 0 9px rgba(201,164,92,.25),0 0 30px -6px rgba(var(--pl-rgb),.7)}
+:root[data-skin="ddb"] .empty-note .es-i{box-sizing:content-box;width:34px!important;height:34px!important;padding:16px;border-radius:50%;color:rgb(var(--pl-rgb))!important;background:radial-gradient(circle,rgba(var(--pl-rgb),.22),rgba(var(--pl-rgb),.04) 70%);box-shadow:0 0 0 1.5px rgba(var(--pl-rgb),.45),0 0 0 8px rgba(var(--pl-rgb),.06),0 0 0 9px rgba(201,164,92,.25),0 0 30px -6px rgba(var(--pl-rgb),.7)}
 :root[data-skin="ddb"] .empty-note b{font-family:var(--f-disp,inherit)}
 :root[data-skin="ddb"]{--f-disp:"Cinzel",var(--f-nar),serif}
 :root[data-skin="ddb"] :is(.ptitle,#idName,.idcard .id-name,.hhead h1){font-family:var(--f-disp)!important;letter-spacing:.03em}
@@ -79,6 +79,6 @@ html:not([data-skin="ddb"]) .mi-enc,html:not([data-skin="ddb"]) .mi-encl{display
 :root[data-skin="ddb"] #conds .chip.cnd svg{box-sizing:content-box;width:14px;height:14px;padding:4px;border-radius:50%;color:#fff;background:radial-gradient(circle at 50% 35%,rgba(var(--cc,214,69,59),.85),rgba(var(--cc,214,69,59),.4));box-shadow:0 0 0 1.5px rgba(255,255,255,.3),0 0 10px rgba(var(--cc,214,69,59),.6)}
 :root[data-skin="ddb"] #conds .chip.cnd{padding-left:6px!important}
 .mi-encl{width:100%}.mi-encl>span{display:inline!important;width:auto!important}
-@media (max-width:759px){:root[data-skin="ddb"] #abil .ab::before{width:60px!important;height:60px!important;margin:-20px 0 0 -30px!important}}
+@media (max-width:759px){:root[data-skin="ddb"] #abil .ab::before{width:60px!important;height:60px!important;margin:-20px 0 0 -28px!important}}
 #invBody .iwt .mi-encl{display:flex!important;justify-content:space-between}#invBody .iwt .mi-enc{display:block!important}
 

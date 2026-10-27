@@ -98,11 +98,11 @@
 
 /* v31 p05 */
 /* C5, C6: empty states with an icon and one clear button */
-.empty-st{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin:12px 0;padding:28px 18px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2);color:var(--muted);font-size:var(--fs2,14px);line-height:1.45}
+.empty-st{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin:12px 0;padding:28px 16px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2);color:var(--muted);font-size:var(--fs2,14px);line-height:1.45}
 .empty-st .es-i{width:40px;height:40px;margin:0 0 4px;color:var(--muted);stroke-width:1.6}
 .empty-st b{color:var(--ink);font-family:var(--f-nar);font-size:var(--fs4,20px);font-weight:700}
 .empty-st span{max-width:34ch}
-.empty-st .btn{margin-top:8px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px}
+.empty-st .btn{margin-top:8px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px}
 .empty-st .btn .ibt{width:18px;height:18px;margin:0}
 :root[data-skin="ddb"] .empty-st .btn.pri{background:var(--act);border-color:var(--act);color:#fff}
 /* RU123: Inventory head: weight, Manage Inventory, then the five coins */
@@ -192,7 +192,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
  :root[data-skin="ddb"] #profs .prw .tx{min-height:44px;display:inline-flex;align-items:center}
  :root[data-skin="ddb"] .arow .an .tx{min-height:44px;display:inline-flex;align-items:center;vertical-align:middle}
  :root[data-skin="ddb"] .arow .abox{min-height:44px}
- :root[data-skin="ddb"] .arow .an .aki{margin-top:15px}
+ :root[data-skin="ddb"] .arow .an .aki{margin-top:14px}
  :root[data-skin="ddb"] .aitem h4 .tx,:root[data-skin="ddb"] .fitem h4 .tx{min-height:44px}
  :root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px 1fr 44px 64px}
  :root[data-skin="ddb"] .ichk{width:44px;height:44px;border:0;border-radius:var(--r1);background:transparent;box-shadow:none;display:grid;place-items:center;position:relative}
@@ -343,7 +343,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 /* v31 p20 */
 /* Extras: one frame per card */
 @media (max-width:759px){#p-ext>.inner{background:none;border:0;padding:0}}
-#extBody .xempty{border:0;background:transparent;padding:18px 6px 6px;margin:0}
+#extBody .xempty{border:0;background:transparent;padding:16px 6px 6px;margin:0}
 
 /* v31 p21 */
 /* the PDF spinner stops when it is not shown */
@@ -372,5 +372,5 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 :root[data-skin="ddb"] #tabInd{background:var(--ink,#fff)!important}
 
 /* v31 p99 */
-.hcredit{margin:18px 0 0;text-align:center;font-size:max(12px,calc(12px*var(--tz,1)));letter-spacing:.04em;color:var(--ink-2,var(--muted,#9aa3ab))}
+.hcredit{margin:16px 0 0;text-align:center;font-size:max(12px,calc(12px*var(--tz,1)));letter-spacing:.04em;color:var(--ink-2,var(--muted,#9aa3ab))}
 

@@ -37,6 +37,8 @@ async def main():
                 pg.on("pageerror", lambda e: errs.append(str(e)[:160]))
                 await pg.goto(base); await pg.wait_for_selector("#hxHero", state="attached"); await pg.wait_for_timeout(1800)
                 t = await pg.evaluate("document.getElementById('hxHero').innerText")
+                cardAnim = await pg.evaluate("(()=>{var c=document.querySelector('#homeV .hcard');return c?getComputedStyle(c).animationName:'nocard'})()")
+                chk(tag + " " + variant + ": card reveal " + ("runs" if variant == "full" else "is off") + " (" + cardAnim + ")", (cardAnim == "hxCardIn") if variant == "full" else (cardAnim in ("none", "nocard")))
                 if variant == "full":
                     chk(tag + " hero shows name, line and both buttons", "YUDHI KELAPA" in t.upper() and "Level 4" in t and "CONTINUE" in t.upper() and "ALL CHARACTERS" in t.upper())
                     chk(tag + " hero is inside the window", await pg.evaluate("(()=>{var r=document.getElementById('hxHero').getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1&&document.documentElement.scrollWidth<=innerWidth+1&&document.getElementById('homeV').scrollWidth<=innerWidth+1})()"))

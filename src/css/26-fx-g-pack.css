@@ -16,13 +16,13 @@ html.mi-lap .mi-hud{display:block}
 @keyframes miBar{0%{transform:translateY(-100%)}18%,78%{transform:none}100%{transform:translateY(-100%)}}
 @keyframes miBar2{0%{transform:translateY(100%)}18%,78%{transform:none}100%{transform:translateY(100%)}}
 .mi-splash.lap b{font-size:56px;text-shadow:0 0 30px rgba(var(--pl-rgb,214,69,59),.8)}.mi-splash.lap .s{width:160px;height:160px}
-.mi-splash.lap small{font-size:15px}
+.mi-splash.lap small{font-size:14px}
 .mi-roll-o .dz.mi-3d svg{display:none}.mi-d3{position:absolute;inset:0;width:100%;height:100%}
 .mi-night{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#05070f,#0d1633 60%,#1b2340);display:flex;align-items:center;justify-content:center;animation:miKill 0s linear 3.3s forwards}
 .mi-night .sky{position:absolute;left:-25%;top:-25%;width:150%;height:150%;background-image:radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 50% 40%,#fff,transparent),radial-gradient(1px 1px at 70% 15%,#fff,transparent),radial-gradient(2px 2px at 85% 60%,#fff,transparent),radial-gradient(1px 1px at 20% 85%,#fff,transparent),radial-gradient(1.5px 1.5px at 60% 80%,#fff,transparent),radial-gradient(1px 1px at 90% 30%,#fff,transparent);background-size:240px 240px;opacity:.85}
-.mi-night .moon{position:absolute;left:50%;top:30%;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8,#e9e2c4 55%,#b9b08e);box-shadow:0 0 60px rgba(255,250,220,.45)}
+.mi-night .moon{position:absolute;left:50%;top:30%;width:90px;height:90px;margin:-44px 0 0 -44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8,#e9e2c4 55%,#b9b08e);box-shadow:0 0 60px rgba(255,250,220,.45)}
 .mi-night b{position:relative;font:700 30px/1 "Cinzel",var(--f-nar,serif);color:#e8e2cc;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 18px rgba(200,210,255,.5)}
-.mi-lvc{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:radial-gradient(60% 50% at 50% 45%,rgba(226,170,76,.28),rgba(5,7,10,.86) 75%);animation:miKill 0s linear 5s forwards}
+.mi-lvc{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;background:radial-gradient(60% 50% at 50% 45%,rgba(226,170,76,.28),rgba(5,7,10,.86) 75%);animation:miKill 0s linear 5s forwards}
 .mi-lvc .lv{display:flex;flex-direction:column;align-items:center}.mi-lvc .lv small{font:700 13px/1 var(--f-nar,system-ui);letter-spacing:.3em;text-transform:uppercase;color:#e2c27a}
 .mi-lvc .lv b{font:700 54px/1.1 "Cinzel",var(--f-nar,serif);color:#ffe7a3;text-shadow:0 0 30px rgba(226,170,76,.8)}
 .mi-lvc .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:min(920px,92vw)}

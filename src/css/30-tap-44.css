@@ -10,6 +10,6 @@
 }
 .hic{min-width:44px;padding:0 10px}
 .hbkl .hlink{min-height:44px}
-.bkpsec{margin:4px 0 8px;font-size:calc(15px*var(--tz,1));text-transform:uppercase;letter-spacing:.04em}
+.bkpsec{margin:4px 0 8px;font-size:calc(14px*var(--tz,1));text-transform:uppercase;letter-spacing:.04em}
 @media (max-width:600px){.hhead{position:relative}.hhead .hic{position:absolute;top:0;right:0}}
 #bkp .bkpsec::before,#bkp .bkpsec::after{content:none!important;display:none!important}

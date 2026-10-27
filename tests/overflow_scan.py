@@ -34,10 +34,9 @@ async def main():
         b = await p.chromium.launch()
         for W, H in WIDTHS:
             ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block", has_touch=W < 600)
+            await ctx.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);sessionStorage.setItem('__s','1')}" % json.dumps(YUDHI))
             pg = await ctx.new_page(); pg.set_default_timeout(12000)
-            await pg.goto(base); await pg.wait_for_timeout(500)
-            await pg.evaluate("a=>{localStorage.clear();sessionStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',a)}", YUDHI)
-            await pg.reload(); await pg.wait_for_timeout(2200)
+            await pg.goto(base); await pg.wait_for_timeout(2200)
             shots = []
             async def one(name):
                 await pg.wait_for_timeout(450); m = await pg.evaluate(MEASURE); shots.append((name, m))

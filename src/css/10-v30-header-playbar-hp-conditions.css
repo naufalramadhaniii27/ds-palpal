@@ -15,7 +15,7 @@
  #app .band{z-index:20}
  #app .band-in{overflow:visible;padding:8px 8px 8px 14px;gap:8px;min-width:0}
  #app .band .mini{flex:1 1 auto;min-width:0}
- #app .band .mini b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;font-size:calc(17px*var(--tz,1));line-height:1.12}
+ #app .band .mini b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;font-size:calc(16px*var(--tz,1));line-height:1.12}
  #app .band .mini #miniSub{font-size:max(12px,calc(13px*var(--tz,1)))}
  #app .band .acts{position:relative;gap:2px;flex:none;margin-left:auto}
  #app .band .acts #hpChip{display:none!important}
@@ -42,7 +42,7 @@
  .vb{min-height:48px;min-width:44px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border-radius:8px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink);font-family:var(--f-nar);font-weight:700;font-size:calc(14px*var(--tz,1));line-height:1}
  .vb svg.ico{width:18px;height:18px;flex:none;margin:0}
  .vb-hp{flex:0 0 auto;width:120px;flex-direction:column;align-items:stretch;justify-content:center;gap:6px;padding:4px 10px}
- .vb-n{display:flex;align-items:center;gap:4px;font-size:calc(21px*var(--tz,1))}
+ .vb-n{display:flex;align-items:center;gap:4px;font-size:calc(20px*var(--tz,1))}
  .vb-n svg.ico{width:16px;height:16px;color:var(--bad);margin-right:2px}
  .vb-m{font-size:max(12px,calc(13px*var(--tz,1)));font-weight:600;color:var(--faint)}
  .vb-t{margin-left:auto;font-size:max(12px,calc(13px*var(--tz,1)));color:#7fb2ff}
@@ -52,7 +52,7 @@
  .vb-bar i.t{left:auto;right:0;transform-origin:right center;background:#5aa9ff;opacity:.9}
  .vb-ac{flex:0 0 auto;position:relative;gap:4px;padding:0 8px}
  .vb-ac .vb-sh{width:20px;height:20px;color:var(--muted)}
- .vb-ac b{font-size:calc(21px*var(--tz,1))}
+ .vb-ac b{font-size:calc(20px*var(--tz,1))}
  .vb-k{font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(12px*var(--tz,1)));color:var(--muted)}
  .vb-cond{flex:1 1 auto;min-width:0;justify-content:flex-start;padding:0 8px;font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--muted)}
  .vb-cond .vb-ci{display:flex}
@@ -87,7 +87,7 @@
 
 /* v30 p03: hit points control (B6, B7), container levels (A1, A9), flat background (A4), portrait (B4), Level Up and Add XP (C3) */
 .hp-pre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 52px;gap:8px}
-.hp-pre .pre{height:40px;border:1px solid var(--line-2);border-radius:4px;background:transparent;color:var(--ink);font-family:var(--f-nar);font-weight:700;font-size:calc(17px*var(--tz,1));font-variant-numeric:tabular-nums}
+.hp-pre .pre{height:40px;border:1px solid var(--line-2);border-radius:4px;background:transparent;color:var(--ink);font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));font-variant-numeric:tabular-nums}
 .hp-pre .pre:hover{background:var(--panel-2)}
 .hp-pre .clr{display:flex;align-items:center;justify-content:center;color:var(--muted)}
 .hp-pre .clr svg.ico{width:18px;height:18px;margin:0}
@@ -96,7 +96,7 @@
 .hp-tmpc .tmp-l{flex:1;min-width:0;display:inline-flex;align-items:center;gap:6px;text-align:left;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));color:#7fb2ff}
 .hp-tmpc .tmp-l svg.ico{width:18px;height:18px;margin:0}
 .tmp-s button{width:44px;height:40px;font-size:calc(20px*var(--tz,1))}
-.tmp-s output{min-width:40px;font-size:calc(19px*var(--tz,1))}
+.tmp-s output{min-width:40px;font-size:calc(18px*var(--tz,1))}
 .tmp-set{height:40px;padding:0 14px}
 .bar i.t{background:repeating-linear-gradient(135deg,#5aa9ff 0 6px,#3f86d9 6px 12px)}
 .photo{overflow:hidden;align-items:center;justify-content:center;padding:0}
@@ -121,7 +121,7 @@
 :root[data-skin="ddb"] .ab.key{border-color:var(--prof);box-shadow:inset 0 0 0 3px var(--panel),inset 0 0 0 4px color-mix(in srgb,var(--prof) 35%,transparent)}
 :root[data-skin="ddb"] .tile.ac{background:transparent;border-color:transparent}
 :root[data-skin="ddb"] .tile.ac svg:not(.ico){color:#6c7983}
-:root[data-skin="ddb"] .tile.ac .v{font-size:calc(36px*var(--tz,1))}
+:root[data-skin="ddb"] .tile.ac .v{font-size:calc(32px*var(--tz,1))}
 /* level 3: secondary numbers without a frame */
 :root[data-skin="ddb"] .tile:not(.ac){background:rgba(255,255,255,.025);border-color:transparent}
 :root[data-skin="ddb"] .tile:not(.ac):hover{background:rgba(255,255,255,.06)}
@@ -129,7 +129,7 @@
 :root[data-skin="ddb"] .hp-cur{font-size:calc(64px*var(--tz,1))}
 :root[data-skin="ddb"] .hp-max{font-size:calc(22px*var(--tz,1))}
 :root[data-skin="ddb"] .cbopen{min-height:36px;padding:0 12px;border-radius:var(--r2);border:1px solid var(--line-2);background:transparent;font-family:var(--f-nar);font-weight:700;font-size:calc(14px*var(--tz,1));display:inline-flex;align-items:center;gap:6px}
-:root[data-skin="ddb"] .xpbtns .xpb{border:1px solid var(--line-2);background:transparent;color:var(--ink);text-transform:none;letter-spacing:.02em;font-size:calc(15px*var(--tz,1))}
+:root[data-skin="ddb"] .xpbtns .xpb{border:1px solid var(--line-2);background:transparent;color:var(--ink);text-transform:none;letter-spacing:.02em;font-size:calc(14px*var(--tz,1))}
 :root[data-skin="ddb"] .xpbtns .xpb:hover{background:var(--panel-2)}
 :root[data-skin="ddb"] .xpbar{height:6px;border-radius:4px;background:var(--line)}
 :root[data-skin="ddb"] .xpbar i{background:var(--prof)}
@@ -139,7 +139,7 @@
 :root[data-skin="ddb"] .pips.bad .pip[aria-pressed="true"]::before{background:var(--bad);border-color:var(--bad)}
 :root[data-skin="ddb"] .tmp-s{border-radius:var(--r1)}
 @media (max-width:759px){
- :root[data-skin="ddb"] .hp-cur{font-size:calc(60px*var(--tz,1))}
+ :root[data-skin="ddb"] .hp-cur{font-size:calc(56px*var(--tz,1))}
  .hp-pre .pre,.tmp-s button,.tmp-set{height:48px}
  .hp-ctrl input,.hp-ctrl .btn{height:48px!important}
  .hp-ctrl input{font-size:calc(22px*var(--tz,1))}
