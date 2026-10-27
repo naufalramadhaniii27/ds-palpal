@@ -318,3 +318,10 @@ art/batch/vignettes/state/import-failed.png
 art/batch/vignettes/state/backup-done.png
 art/batch/vignettes/state/storage-full.png
 art/batch/vignettes/state/saving.png
+
+## batch-022 v3
+art/batch/icons/conditions/blinded.png
+art/batch/icons/conditions/charmed.png
+art/batch/icons/conditions/deafened.png
+art/batch/icons/conditions/exhaustion.png
+art/batch/icons/conditions/frightened.png
