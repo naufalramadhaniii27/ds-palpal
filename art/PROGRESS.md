@@ -335,3 +335,8 @@ art/batch/icons/conditions/prone.png
 art/batch/icons/conditions/restrained.png
 art/batch/icons/conditions/stunned.png
 art/batch/icons/conditions/unconscious.png
+art/batch/icons/conditions/concentration.png
+art/batch/icons/damage-types/acid.png
+art/batch/icons/damage-types/bludgeoning.png
+art/batch/icons/damage-types/cold.png
+art/batch/icons/damage-types/fire.png
