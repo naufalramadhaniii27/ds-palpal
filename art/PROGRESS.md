@@ -435,3 +435,8 @@ art/batch/icons/item-categories/martial-ranged-weapons.png
 art/batch/icons/item-categories/light-armor.png
 art/batch/icons/item-categories/medium-armor.png
 art/batch/icons/item-categories/heavy-armor.png
+art/batch/icons/item-categories/shield.png
+art/batch/icons/item-categories/ammunition.png
+art/batch/icons/item-categories/adventuring-gear.png
+art/batch/icons/item-categories/tools.png
+art/batch/icons/item-categories/potion.png
