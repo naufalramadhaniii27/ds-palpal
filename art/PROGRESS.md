@@ -451,3 +451,8 @@ art/batch/icons/items/weapons/dagger.png
 art/batch/icons/items/weapons/greatclub.png
 art/batch/icons/items/weapons/handaxe.png
 art/batch/icons/items/weapons/javelin.png
+art/batch/icons/items/weapons/light-hammer.png
+art/batch/icons/items/weapons/mace.png
+art/batch/icons/items/weapons/quarterstaff.png
+art/batch/icons/items/weapons/sickle.png
+art/batch/icons/items/weapons/spear.png
