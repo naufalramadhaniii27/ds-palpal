@@ -912,3 +912,8 @@ art/batch/icons/items/magic/uncommon/firearm-bullet.png
 art/batch/icons/items/magic/rare/flame-tongue.png
 art/batch/icons/items/magic/rare/folding-boat.png
 art/batch/icons/items/magic/very-rare/frost-brand.png
+art/batch/icons/items/magic/uncommon/gauntlets-of-ogre-power.png
+art/batch/icons/items/magic/uncommon/gem-of-brightness.png
+art/batch/icons/items/magic/rare/gem-of-seeing.png
+art/batch/icons/items/magic/rare/giant-slayer.png
+art/batch/icons/items/magic/rare/glamoured-studded-leather.png
