@@ -785,3 +785,10 @@ art/batch/scenes/species/yuan-ti-phone.png
 ## batch-077 v3
 art/batch/scenes/species/zombie-pc.png
 art/batch/scenes/species/zombie-phone.png
+
+## batch-078 v3
+art/batch/icons/items/magic/uncommon/adamantine-armor.png
+art/batch/icons/items/magic/uncommon/adamantine-weapon.png
+art/batch/icons/items/magic/uncommon/alchemy-jug.png
+art/batch/icons/items/magic/very-rare/ammunition-of-slaying.png
+art/batch/icons/items/magic/rare/amulet-of-health.png
