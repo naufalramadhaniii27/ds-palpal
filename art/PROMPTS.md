@@ -1671,3 +1671,73 @@ A single curling sea-green wave wraps close around a short natural-wood trident 
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/druid-circle-of-the-stars.png
+
+Subclass emblem for Circle Of The Stars (Druid): a star map circle with three linked stars and a small chalice. Glow color: leaf green.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A simple circular star-map object with exactly three linked little star shapes and a tiny warm-brass chalice tucked at its lower curve. No zodiac, letters, coordinates or writing; only the three explicitly requested picture stars and links.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/fighter-battle-master.png
+
+Subclass emblem for Battle Master (Fighter): a commander's baton across a small tactical map board with chess-like pieces (no writing). Glow color: steel blue.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A warm wooden tactical board with a commander's baton laid diagonally over it; just three plain chess-like wooden pieces form the tactical picture. Board has no writing or grid numbers. Tight steel-blue light on baton tip.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/fighter-champion.png
+
+Subclass emblem for Champion (Fighter): a laurel wreath around an upright longsword. Glow color: steel blue.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A soft green laurel wreath curves around one upright longsword, with a natural leather grip and matte warm-brass guard. Silver blade shaded in simple warm cel tones, one small steel-blue rim glow, no other weapons.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/fighter-eldritch-knight.png
+
+Subclass emblem for Eldritch Knight (Fighter): a sword piercing a glowing arcane circle. Glow color: steel blue.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A simple sword passes diagonally through a soft steel-blue luminous arcane circle. The circle is pure unmarked light without runes; warm leather grip, brass guard and confident readable diagonal gesture.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/fighter-psi-warrior.png
+
+Subclass emblem for Psi Warrior (Fighter): a shield with a glowing mind-eye and floating psychic sparks. Glow color: steel blue.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A small warm wooden shield displays one softly glowing blue mind-eye as a simple carved magical motif, a few compact psychic sparks floating immediately beside the shield. Rounded brass rim, no spikes, tight steel-blue glow.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

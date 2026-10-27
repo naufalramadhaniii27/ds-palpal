@@ -174,3 +174,8 @@ art/batch/emblems/subclass/cleric-war-domain.png
 art/batch/emblems/subclass/druid-circle-of-the-land.png
 art/batch/emblems/subclass/druid-circle-of-the-moon.png
 art/batch/emblems/subclass/druid-circle-of-the-sea.png
+art/batch/emblems/subclass/druid-circle-of-the-stars.png
+art/batch/emblems/subclass/fighter-battle-master.png
+art/batch/emblems/subclass/fighter-champion.png
+art/batch/emblems/subclass/fighter-eldritch-knight.png
+art/batch/emblems/subclass/fighter-psi-warrior.png
