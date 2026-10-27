@@ -52,6 +52,9 @@ async def main():
             await pg.select_option("[data-cvf]", "sp"); await pg.select_option("[data-cvt]", "gp"); await pg.fill("[data-cvamt]", "10"); await pg.click("[data-coin='conv']"); await pg.wait_for_timeout(400)
             c = await pg.evaluate(COINS); chk(t + " 10 sp back to gp " + json.dumps(c), c["gp"] == 2 and c["sp"] == 0 and c["cp"] == 5)
             await pg.keyboard.press("Escape"); await pg.wait_for_timeout(400)
+            await pg.click("[data-invshop]"); await pg.wait_for_selector("#libBd .lib-r"); await pg.wait_for_timeout(600)
+            chk(t + " Shop button opens the library on gear " + await pg.evaluate("document.querySelectorAll('#libBd .lib-r').length+' rows'"), await pg.evaluate("document.querySelectorAll('#libBd .lib-r').length>5&&!document.querySelector('#libBd [data-lib-open^=\"spell|\"]')"))
+            await pg.keyboard.press("Escape"); await pg.wait_for_timeout(400)
             async def open_lib(q, key):
                 await pg.keyboard.press("Control+k"); await pg.wait_for_selector("#gsQ"); await pg.wait_for_timeout(400)
                 await pg.fill("#gsQ", q); await pg.wait_for_timeout(600); await pg.click(".gs-lib"); await pg.wait_for_selector("#libBd .lib-r"); await pg.wait_for_timeout(500)

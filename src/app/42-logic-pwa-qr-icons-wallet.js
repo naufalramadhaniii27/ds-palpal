@@ -175,6 +175,7 @@ function coinsClean(c){ var o={}; COINS.forEach(function(k){ var v=Math.floor(nu
 function coinsSame(a,b){ return COINS.every(function(k){ return num(a[k[0]],0)===num(b[k[0]],0); }); }
 window.__coinsGet=function(){ return coinsNow(); };
 window.__coinsGp=function(){ return num(C.gp,0); };
+window.__coinPay=function(c,cp){ return coinPay(c,cp); }; window.__coinCp=function(c){ return coinCp(c); }; window.__coinList=function(o){ return coinList(o); }; window.__priceTxt=function(g){ return priceTxt(g); };
 window.__coinsPut=function(c,why){ var o=coinsClean(c); if(coinsSame(o,coinsNow())) return coinsNow(); undoMark(why||"Coins"); coinSet(o); try{ renderInv(); coinRefresh(); }catch(e){} return coinsNow(); };
 /* coins a build brought (new character, build file): to the sheet after Apply. The sheet already has other coins: ask */
 window.__coinsPending=function(c){ var o=coinsClean(c), cur=coinsNow(), f=function(k){ return COINS.map(function(x){ return num(k[x[0]],0)+" "+x[0]; }).filter(function(s){ return !/^0 /.test(s); }).join(", ")||"no coins"; };

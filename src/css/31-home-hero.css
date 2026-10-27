@@ -39,3 +39,5 @@ html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 .cconv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end}.cconv label{display:flex;flex-direction:column;gap:4px;font-size:12px}.cconv select,.cconv input{min-height:44px;width:100%}.cconv .btn{grid-column:1/-1;min-height:44px}
 .cconv input,.cconv select,.lib-qty input{padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r1,8px);background:var(--panel);color:var(--ink);font-size:calc(16px*var(--tz,1));-webkit-appearance:none;appearance:none}
 .cconv select{background-image:none}
+:root[data-skin="ddb"] .ihero .ibshop{grid-row:2;grid-column:2;justify-self:end}
+@media (max-width:759px){:root[data-skin="ddb"] .ihero .ibshop{grid-row:4;grid-column:1/-1;justify-self:stretch;justify-content:center;white-space:nowrap}}
