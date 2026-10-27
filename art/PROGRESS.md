@@ -169,3 +169,8 @@ art/batch/emblems/subclass/bard-college-of-lore.png
 art/batch/emblems/subclass/bard-college-of-valor.png
 art/batch/emblems/subclass/cleric-life-domain.png
 art/batch/emblems/subclass/cleric-light-domain.png
+art/batch/emblems/subclass/cleric-trickery-domain.png
+art/batch/emblems/subclass/cleric-war-domain.png
+art/batch/emblems/subclass/druid-circle-of-the-land.png
+art/batch/emblems/subclass/druid-circle-of-the-moon.png
+art/batch/emblems/subclass/druid-circle-of-the-sea.png
