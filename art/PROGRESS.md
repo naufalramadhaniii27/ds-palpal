@@ -863,3 +863,8 @@ art/batch/icons/items/magic/legendary/crystal-ball-of-mind-reading.png
 art/batch/icons/items/magic/legendary/crystal-ball-of-telepathy.png
 art/batch/icons/items/magic/legendary/crystal-ball-of-true-seeing.png
 art/batch/icons/items/magic/rare/cube-of-force.png
+art/batch/icons/items/magic/rare/cube-of-summoning.png
+art/batch/icons/items/magic/legendary/cubic-gate.png
+art/batch/icons/items/magic/rare/daerns-instant-fortress.png
+art/batch/icons/items/magic/rare/dagger-of-venom.png
+art/batch/icons/items/magic/very-rare/dancing-sword.png
