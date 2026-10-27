@@ -540,3 +540,8 @@ art/batch/icons/spells/cantrips/poison-spray.png
 art/batch/icons/spells/cantrips/sapping-sting.png
 art/batch/icons/spells/cantrips/spare-the-dying.png
 art/batch/icons/spells/cantrips/toll-the-dead.png
+art/batch/icons/spells/cantrips/control-flames.png
+art/batch/icons/spells/cantrips/druidcraft.png
+art/batch/icons/spells/cantrips/elementalism.png
+art/batch/icons/spells/cantrips/gust.png
+art/batch/icons/spells/cantrips/magic-stone.png
