@@ -4252,6 +4252,15 @@ html.mi-cx #photo,html.mi-cx #idName{visibility:hidden}
    WAAPI animations are set to length 0 in fx/01-core-router-and-switch.js. The end state is applied at once, so layout and logic do not change. */
 html.mi-off *,html.mi-off *::before,html.mi-off *::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
 html.mi-off::view-transition-group(*),html.mi-off::view-transition-old(*),html.mi-off::view-transition-new(*){animation-duration:.001ms!important;animation-delay:0s!important}
+/* T3: touch targets at least 44 px on phones. Layout moves by a few pixels, looks stay the same.
+   Exempt by WCAG 2.2 (target size, inline and equivalent): .lk links inside text, #avFile (hidden file input). */
+@media (max-width:600px){
+  :root .bonus{min-width:44px!important;min-height:44px!important}/* skin rules set narrower widths with higher specificity */
+  :root[data-skin="ddb"] #saves .row .bonus{min-width:44px!important}/* same selector as the 34 px rule in css/26, this file comes later */
+  :root[data-skin="ddb"] .pips .pip,:root[data-skin="ddb"] .pip{min-height:44px;min-width:44px}
+  .sit-gh{min-height:44px}.fmore{min-height:44px!important}
+  .ck{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -4390,7 +4399,7 @@ try{ var mf=JSON.parse(sessionStorage.getItem("mi-cx")||"null"); if(mf&&Date.now
     </section>
   </main>
 
-  <div class="vbar" id="vbar" role="group" aria-label="Play bar">
+  <div class="vbar" id="vbar" role="region" aria-label="Play bar">
     <button type="button" class="vb vb-hp press" id="vbHp" aria-label="Hit Points. Heal or take damage"><span class="vb-n"><span id="vbHpI"></span><b id="vbHpV">0</b><span class="vb-m">/<span id="vbHpM">0</span></span><span class="vb-t" id="vbTmp" hidden></span></span><span class="vb-bar" aria-hidden="true"><i id="vbBar"></i><i class="t" id="vbTbar"></i></span></button>
     <button type="button" class="vb vb-ac press" id="vbAc" data-bd="ac" aria-label="Armor Class"><svg class="vb-sh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4.5-2.5-7-6-7-10V5l7-2.5L19 5v6c0 4-2.5 7.5-7 10z"/></svg><b id="vbAcV">0</b></button>
     <button type="button" class="vb vb-cond press" id="vbCond" aria-label="Conditions"><span class="vb-ci" id="vbCondI"></span><span class="vb-ct" id="vbCondT">Conditions</span></button>
@@ -5949,7 +5958,7 @@ function homeCards(noSnap){var r=noSnap?rEnsure():rSnap(rEnsure()),list=Object.k
   var line=x.label?("Level "+x.level+" | "+x.species+" | "+x.label):("Level "+x.level+" | "+x.species+" | "+x.cls+(x.sub?"/"+x.sub:""));
   var fm=fileMark(x.id),uns=fileStale(fm,!!fm&&fm.h!==rawHash(chRaw(x.id,r)));/* v33 p10 */
   return '<div class="hcard"><div class="hcard-top" style="'+bg+'"><span class="hwm" style="background-image:'+dataUri(x.sym,"#ffffff",.9)+'"></span><span class="hpor'+(x.por?' has':'')+'" style="'+(x.por?'background-image:url('+x.por+')':'')+'">'+(x.por?'':homeSil(x))+'</span><div class="hname"><b>'+esc(x.name)+'</b><span>'+esc(line)+'</span>'+(uns?'<button type="button" class="hunsv" data-hfile="'+x.id+'" aria-label="File out of date. Open the file options">File out of date</button>':'')/* v32 p92 */+'</div>'+(x.camp?'<button type="button" class="hcamp'+(homeCamp===x.camp?' on':'')+'" data-hcampf="'+esc(x.camp)+'" aria-pressed="'+(homeCamp===x.camp)+'" aria-label="'+(homeCamp===x.camp?'Show all campaigns':'Show only the campaign '+esc(x.camp))+'">'+((typeof ICO==="object"&&ICO)?ico("ui-flag","hcamp-i"):'')+'Campaign: <i>'+esc(x.camp)+'</i>'+((typeof ICO==="object"&&ICO)?ico(homeCamp===x.camp?"ui-close":"ui-filter","hcamp-f"):'')+'</button>':'')+'</div><div class="hact"><button type="button" data-hview="'+x.id+'">View</button><button type="button" data-hedit="'+x.id+'">Edit</button><button type="button" data-hfile="'+x.id+'">File</button><button type="button" class="del holdc" data-hdel="'+x.id+'" title="Hold to delete"><span class="holdc-fill"></span><span class="holdc-label">Delete</span></button></div></div>'}).join("")||'<p class="hempty">No characters match your search.</p>'}
-function showHome(){var w=document.getElementById("homeV");if(!w){w=document.createElement("div");w.id="homeV";document.body.appendChild(w);
+function showHome(){var w=document.getElementById("homeV");if(!w){w=document.createElement("div");w.id="homeV";w.setAttribute("role","region");w.setAttribute("aria-label","My Characters");document.body.appendChild(w);
   w.addEventListener("input",function(e){if(e.target.id==="homeQ"){homeQ=e.target.value;document.getElementById("hgrid").innerHTML=homeCards()}});
   w.addEventListener("change",function(e){if(e.target.id==="homeCamp"){homeCamp=e.target.value;document.getElementById("hgrid").innerHTML=homeCards();return}/* v27 RU64 */if(e.target.id==="homeSort"){homeSort=e.target.value;document.getElementById("hgrid").innerHTML=homeCards()}});
   w.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var d=b.dataset,r=rEnsure();
