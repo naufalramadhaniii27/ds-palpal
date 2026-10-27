@@ -28,3 +28,5 @@
 html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 #homeV .hcmds{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
 #homeV .hcmd{min-height:44px}
+.pinfav{margin-top:8px}.pinfav.on{border-color:var(--gold,currentColor)}
+.pinsp b{opacity:.75}

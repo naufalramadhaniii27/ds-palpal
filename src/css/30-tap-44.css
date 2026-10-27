@@ -1,6 +1,7 @@
 /* T3: touch targets at least 44 px on phones. Layout moves by a few pixels, looks stay the same.
    Exempt by WCAG 2.2 (target size, inline and equivalent): .lk links inside text, #avFile (hidden file input). */
 @media (max-width:600px){
+  .pinc,.pinfav{min-height:44px}
   :root .bonus{min-width:44px!important;min-height:44px!important}/* skin rules set narrower widths with higher specificity */
   :root[data-skin="ddb"] #saves .row .bonus{min-width:44px!important}/* same selector as the 34 px rule in css/26, this file comes later */
   :root[data-skin="ddb"] .pips .pip,:root[data-skin="ddb"] .pip{min-height:44px;min-width:44px}

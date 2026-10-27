@@ -316,9 +316,11 @@ function foundryOut(id){ var r=rSnap(rEnsure()), o=foundryOf(rC(id,r),rS(id,r)||
 
 /* RU35 no. 9: pinned skills (S.pin, optional) show at the top of the Main tab and in Combat view */
 function pinOn(n){ return Array.isArray(S.pin)&&S.pin.indexOf(n)>=0; }
-function pinToggle(n){ var a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); renderAll(); }
-function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; var L=S.pin.map(function(n){ var i=-1; (C.skills||[]).forEach(function(s,ix){ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length) return "";
-  return '<div class="pins" aria-label="Pinned skills">'+L.map(function(p){ return '<button type="button" class="pinc bd" data-bd="sk-'+p[1]+'">'+esc(p[0])+' <b>'+sg(D.skill[p[1]])+'</b></button>'; }).join("")+'</div>'; }
+function pinToggle(n){ var a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); renderAll();
+  Array.prototype.forEach.call(document.querySelectorAll(".pinfav[data-pin]"),function(b){ var on=pinOn(b.getAttribute("data-pin")); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on?"true":"false"); var t=b.querySelector(".hbt"); if(t) t.textContent=on?"In your favorites bar":"Add to favorites bar"; }); }
+function pinSpBtn(x){ var k="sp:"+x.n, on=pinOn(k); return '<button type="button" class="btn sm press pinfav'+(on?' on':'')+'" data-pin="'+esc(k)+'" aria-pressed="'+on+'"><span class="hbt">'+(on?"In your favorites bar":"Add to favorites bar")+'</span></button>'; }
+function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; var SP=S.pin.map(function(n){ if(String(n).indexOf("sp:")!==0) return null; var nm=n.slice(3), i=-1; (C.spells||[]).forEach(function(x,ix){ if(i<0&&x.n===nm) i=ix; }); return i>=0?[nm,i,(C.spells[i].l||0)]:null; }).filter(Boolean), L=S.pin.map(function(n){ var i=-1; (C.skills||[]).forEach(function(s,ix){ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length&&!SP.length) return "";
+  return '<div class="pins" aria-label="Favorites">'+L.map(function(p){ return '<button type="button" class="pinc bd" data-bd="sk-'+p[1]+'">'+esc(p[0])+' <b>'+sg(D.skill[p[1]])+'</b></button>'; }).join("")+SP.map(function(p){ return '<button type="button" class="pinc pinsp" data-info="sp:'+p[1]+'">'+esc(p[0])+' <b>'+(p[2]?"L"+p[2]:"C")+'</b></button>'; }).join("")+'</div>'; }
 
 /* RU28: a sheet made by the builder of an older version (no C.bv) that the builder now makes differently. Shown once per app version, until dismissed or applied */
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!window.__bldMine||!window.__bldMine()) return ""; var d=[]; try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";
