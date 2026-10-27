@@ -740,3 +740,8 @@ art/batch/scenes/species/naga-phone.png
 art/batch/scenes/species/owlin-pc.png
 art/batch/scenes/species/owlin-phone.png
 art/batch/scenes/species/plasmoid-pc.png
+art/batch/scenes/species/plasmoid-phone.png
+art/batch/scenes/species/reborn-pc.png
+art/batch/scenes/species/reborn-phone.png
+art/batch/scenes/species/rimekin-pc.png
+art/batch/scenes/species/rimekin-phone.png
