@@ -769,3 +769,10 @@ art/batch/scenes/species/triton-pc.png
 art/batch/scenes/species/triton-phone.png
 art/batch/scenes/species/troglodyte-pc.png
 art/batch/scenes/species/troglodyte-phone.png
+
+## batch-076 v3
+art/batch/scenes/species/vampire-pc.png
+art/batch/scenes/species/vampire-phone.png
+art/batch/scenes/species/vedalken-pc.png
+art/batch/scenes/species/vedalken-phone.png
+art/batch/scenes/species/verdan-pc.png
