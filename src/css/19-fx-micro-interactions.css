@@ -191,7 +191,7 @@ html.mi-off #sheet:has(#cbv){box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 /* --- F3: one sliding indicator for filters, combo tabs and edit sections; Dock press on the bottom bar; swipeable toast with a fuse --- */
 
 /* filter and section chips: the chosen one springs in. Transform only, no extra element, no script */
-.ifb.on,.cmb-tab.on,.ed-sec.on{animation:miChip .34s cubic-bezier(.3,1.5,.5,1)}
+.ifb.on,.cmb-tab.on,.ed-sec.on{animation:miChip .34s var(--ease-spring)}
 @keyframes miChip{0%{transform:scale(.9)}55%{transform:scale(1.06)}100%{transform:none}}
 .ifb:active,.cmb-tab:active,.ed-sec:active{transform:scale(.94);transition:transform .08s}
 html.mi-off .ifb.on,html.mi-off .cmb-tab.on,html.mi-off .ed-sec.on{animation:none}

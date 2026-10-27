@@ -90,7 +90,7 @@
       var n=layer("mi-night",'<div class="sky"></div><div class="moon"></div><b>8 hours later</b>',3400), sk=n.querySelector(".sky"), mo=n.querySelector(".moon"), tx=n.querySelector("b");
       n.animate([{opacity:0},{opacity:1,offset:.2},{opacity:1,offset:.75},{opacity:0}],{duration:3000,easing:"ease-in-out"}).onfinish=function(){ rm(n); };
       sk.animate([{transform:"rotate(0deg) scale(1.2)"},{transform:"rotate(18deg) scale(1.2)"}],{duration:3000,easing:"linear"});
-      mo.animate([{transform:"translate(-30vw,20vh)"},{transform:"translate(30vw,-6vh)"}],{duration:3000,easing:"cubic-bezier(.3,.1,.3,1)"});
+      mo.animate([{transform:"translate(-30vw,20vh)"},{transform:"translate(30vw,-6vh)"}],{duration:3000,easing:"cubic-bezier(.4,0,.2,1)"});
       tx.animate([{opacity:0,transform:"translateY(10px)",letterSpacing:".1em"},{opacity:1,transform:"none",letterSpacing:".22em",offset:.5},{opacity:0,letterSpacing:".3em"}],{duration:2400,delay:400,easing:"ease-in-out",fill:"backwards"});
       play("rest"); setTimeout(function(){ r0.apply(self,args); },2200); }; }
 

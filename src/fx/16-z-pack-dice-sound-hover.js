@@ -67,7 +67,7 @@
     if(calm()){ if(window.__miToast) window.__miToast(r.l+": "+r.v); return; }
     var o=fx("mi-roll-o mi-roll-"+r.k,'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
     var dz=o.querySelector(".dz"), rv=o.querySelector(".rv");
-    dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.3,1)"});
+    dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
     rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});
     o.animate([{opacity:1},{opacity:1,offset:.82},{opacity:0}],{duration:2100,easing:"linear"}).onfinish=function(){ rm(o); };
     if(r.k==="nat20"){ setTimeout(function(){ play("crit"); MI.buzz("success"); if(window.__miBurst) window.__miBurst(innerWidth/2,innerHeight*.42,{n:28,colors:["#ffe7a3","#ffd166","#ffffff","#e2aa4c"],shape:"mi-star",dist:180,dur:1100}); },650); }
@@ -139,7 +139,7 @@
   /* M14 a Hit Die result typed in: the die lands on that number */
   addEventListener("change",function(e){ var t=e.target; if(!t||!t.matches||!t.matches("input[data-hdv]")||calm()) return; var v=parseInt(t.value,10); if(!(v>0)) return; var r=t.getBoundingClientRect();
     var g=fx("mi-hdr",'<b>'+v+'</b>',1600); g.style.left=(r.right-24)+"px"; g.style.top=(r.top+r.height/2)+"px"; play("dice");
-    g.animate([{transform:"translate(-50%,-50%) translateY(-60px) rotate(-360deg) scale(.5)",opacity:0},{transform:"translate(-50%,-50%) rotate(10deg) scale(1.1)",opacity:1,offset:.55},{transform:"translate(-50%,-50%) rotate(-4deg)",opacity:1,offset:.7},{transform:"translate(-50%,-50%)",opacity:1,offset:.85},{transform:"translate(-50%,-50%) scale(.9)",opacity:0}],{duration:1300,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=function(){ rm(g); }; },true);
+    g.animate([{transform:"translate(-50%,-50%) translateY(-60px) rotate(-360deg) scale(.5)",opacity:0},{transform:"translate(-50%,-50%) rotate(10deg) scale(1.1)",opacity:1,offset:.55},{transform:"translate(-50%,-50%) rotate(-4deg)",opacity:1,offset:.7},{transform:"translate(-50%,-50%)",opacity:1,offset:.85},{transform:"translate(-50%,-50%) scale(.9)",opacity:0}],{duration:1300,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(g); }; },true);
 
   /* M15 builder: a step that becomes complete gets a stamp. M16 picking a class sweeps its colour across */
   var steps=D.getElementById("steps"), okSet=null;
@@ -148,7 +148,7 @@
         g.style.left=(r.left+r.width/2)+"px"; g.style.top=(r.top+r.height/2)+"px"; g.animate([{transform:"translate(-50%,-50%) scale(2.4) rotate(-20deg)",opacity:0},{transform:"translate(-50%,-50%) scale(.9) rotate(0)",opacity:1,offset:.35},{transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.7},{transform:"translate(-50%,-50%) scale(1)",opacity:0}],{duration:1100,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(g); }; MI.buzz("success"); play("click"); } } okSet=n; }); }).observe(steps,{subtree:true,childList:true,attributes:true,attributeFilter:["class"]}); }
   var CL=["Artificer","Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Warlock","Wizard"], bCls=null;
   function bldCls(){ var b=D.getElementById("bld"); if(!vis(b)) return null; var f=null; Array.prototype.some.call(b.querySelectorAll("h1,h2,h3,b,strong"),function(e){ var t=(e.textContent||"").trim(); if(CL.indexOf(t)>=0){ f=t; return true; } }); return f; }
-  function clsCheck(){ var c=bldCls(); if(!c) return; if(bCls&&c!==bCls){ D.documentElement.setAttribute("data-mi-cls",c.toLowerCase()); if(full()){ var s=fx("mi-csw","",1400); s.animate([{transform:"translateX(-110%) skewX(-12deg)",opacity:.9},{transform:"translateX(110%) skewX(-12deg)",opacity:.9}],{duration:900,easing:"cubic-bezier(.5,0,.3,1)"}).onfinish=function(){ rm(s); }; play("cast"); } } bCls=c; }
+  function clsCheck(){ var c=bldCls(); if(!c) return; if(bCls&&c!==bCls){ D.documentElement.setAttribute("data-mi-cls",c.toLowerCase()); if(full()){ var s=fx("mi-csw","",1400); s.animate([{transform:"translateX(-110%) skewX(-12deg)",opacity:.9},{transform:"translateX(110%) skewX(-12deg)",opacity:.9}],{duration:900,easing:"cubic-bezier(.4,0,.2,1)"}).onfinish=function(){ rm(s); }; play("cast"); } } bCls=c; }
   addEventListener("change",function(e){ if(e.target&&e.target.closest&&e.target.closest("#bld")) setTimeout(clsCheck,120); },true);
   addEventListener("click",function(e){ if(e.target&&e.target.closest&&e.target.closest("#bld")) setTimeout(clsCheck,160); },true);
   setTimeout(function(){ bCls=bldCls(); },600);

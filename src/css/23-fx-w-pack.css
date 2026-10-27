@@ -103,9 +103,9 @@ html:not([data-skin="ddb"]) .mi-sig{display:none}
 .mi-glare b{position:absolute;left:-140px;top:-140px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.13),rgba(255,255,255,.04) 40%,transparent 68%);will-change:transform}
 /* H3 + H4 hover */
 @media (hover:hover) and (pointer:fine){
-  :root[data-skin="ddb"] #abil .ab .m{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+  :root[data-skin="ddb"] #abil .ab .m{transition:transform .3s var(--ease-spring)}
   :root[data-skin="ddb"] #abil .ab:hover .m{transform:translateY(-3px) scale(1.07)}
-  :root[data-skin="ddb"] :is(#skills .row,#saves .row,.sp-r,.irow)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),0) 70%);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  :root[data-skin="ddb"] :is(#skills .row,#saves .row,.sp-r,.irow)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),0) 70%);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-out)}
   :root[data-skin="ddb"] :is(#skills .row,#saves .row,.sp-r,.irow):hover::after{transform:scaleX(1)}
   :root[data-skin="ddb"] #saves .row{position:relative}
 }

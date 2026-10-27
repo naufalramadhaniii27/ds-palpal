@@ -38,11 +38,11 @@
     flash("255,201,60",.4,900);
     var cols=["#ffd166","#ff8fc7","#7cb6ff","#4cc27a","#ffffff","#ff6b3d"];
     for(var i=0;i<34;i++){ var f=add("mi-conf"); f.style.background=cols[i%cols.length]; var sx=Math.random()*innerWidth, ex=sx+(Math.random()-.5)*160, rot=Math.random()*720-360;
-      f.animate([{transform:"translate("+sx+"px,-30px) rotate(0)",opacity:1},{transform:"translate("+ex+"px,"+(innerHeight*.95)+"px) rotate("+rot+"deg)",opacity:.9,offset:.9},{transform:"translate("+ex+"px,"+(innerHeight+20)+"px) rotate("+rot+"deg)",opacity:0}],{duration:1500+Math.random()*700,delay:250+Math.random()*350,easing:"cubic-bezier(.3,.1,.6,1)",fill:"backwards"}).onfinish=(function(f){ return function(){ rm(f); }; })(f); } };
+      f.animate([{transform:"translate("+sx+"px,-30px) rotate(0)",opacity:1},{transform:"translate("+ex+"px,"+(innerHeight*.95)+"px) rotate("+rot+"deg)",opacity:.9,offset:.9},{transform:"translate("+ex+"px,"+(innerHeight+20)+"px) rotate("+rot+"deg)",opacity:0}],{duration:1500+Math.random()*700,delay:250+Math.random()*350,easing:"cubic-bezier(.4,0,.2,1)",fill:"backwards"}).onfinish=(function(f){ return function(){ rm(f); }; })(f); } };
 
   /* W5 Long Rest: a dawn light sweeps up the screen. W6 Short Rest: embers rise from the bottom */
   W.rest=function(kind){ if(!full()) return;
-    if(kind==="long"){ var s=add("mi-dawn"); s.animate([{transform:"translateY(100vh)",opacity:0},{transform:"translateY(40vh)",opacity:1,offset:.35},{transform:"translateY(-70vh)",opacity:0}],{duration:1600,easing:"cubic-bezier(.3,.6,.3,1)"}).onfinish=function(){ rm(s); }; }
+    if(kind==="long"){ var s=add("mi-dawn"); s.animate([{transform:"translateY(100vh)",opacity:0},{transform:"translateY(40vh)",opacity:1,offset:.35},{transform:"translateY(-70vh)",opacity:0}],{duration:1600,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish=function(){ rm(s); }; }
     else { for(var i=0;i<18;i++){ var x=Math.random()*innerWidth; (function(){ var d=add("mi-wdot mi-ember"); var dx=(Math.random()-.5)*60, h=innerHeight*(.35+Math.random()*.4);
         d.animate([{transform:"translate("+x+"px,"+(innerHeight+10)+"px) scale(1)",opacity:0},{transform:"translate("+(x+dx*.5)+"px,"+(innerHeight-h*.4)+"px) scale(1)",opacity:1,offset:.3},{transform:"translate("+(x+dx)+"px,"+(innerHeight-h)+"px) scale(.3)",opacity:0}],{duration:1300+Math.random()*700,delay:Math.random()*400,easing:"ease-out",fill:"backwards"}).onfinish=function(){ rm(d); }; })(); } } };
 

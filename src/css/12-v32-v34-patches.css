@@ -115,8 +115,8 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .ovg{position:fixed;inset:0;z-index:66;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(6,12,10,.55);pointer-events:none;animation:v32ovOut .18s ease-in forwards}
 .ovg:not(.ovg-a){z-index:59}
 .ovg > *{animation:v32ovBox .18s ease-in forwards}
-.bkp .bkpb{animation:v29in .22s var(--ease-out,cubic-bezier(.2,.8,.2,1))}
-#bld > .exp:not([hidden]) > .expb{animation:v29in .22s var(--ease-out,cubic-bezier(.2,.8,.2,1))}
+.bkp .bkpb{animation:v29in .22s var(--ease-out,var(--ease-out))}
+#bld > .exp:not([hidden]) > .expb{animation:v29in .22s var(--ease-out,var(--ease-out))}
 @media (max-width:759px){#sheet .sh-h .xbtn{min-width:46px;min-height:46px}}
 @media (prefers-reduced-motion:reduce){.ovg{display:none}.bkp .bkpb,#bld > .exp > .expb{animation:none}}
 
@@ -168,7 +168,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 :root[data-hdrc] #app .band .acts > .hb2:hover,:root[data-hdrc] #app .band .acts > #moreBtn:hover{background:rgba(255,255,255,.06)!important}
 :root[data-hdrc] #app .band .acts > #moreBtn[aria-expanded="true"]{background:rgba(255,255,255,.12)!important}
 :root[data-hdrc] #app .band .more-grp{display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:228px;flex-direction:column;gap:2px;padding:6px;background:var(--panel);border:1px solid var(--line-2);border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
-:root[data-hdrc] #app .band .more-grp.open{display:flex;animation:v30menu .18s cubic-bezier(.2,.8,.2,1)}
+:root[data-hdrc] #app .band .more-grp.open{display:flex;animation:v30menu .18s var(--ease-out)}
 :root[data-hdrc] #app .band .more-grp .bb{display:flex!important;width:100%!important;height:48px!important;min-width:0!important;padding:0 12px!important;justify-content:flex-start;align-items:center;gap:14px;border:0!important;background:transparent!important;color:var(--ink)!important;font-family:var(--f-sans);font-weight:600;font-size:calc(16px*var(--tz,1))!important;letter-spacing:0!important;text-transform:none!important;border-radius:4px}
 :root[data-hdrc] #app .band .more-grp .bb:hover,:root[data-hdrc] #app .band .more-grp .bb:focus-visible{background:var(--panel-2)!important}
 :root[data-hdrc] #app .band .more-grp .bb svg{width:20px!important;height:20px!important;margin:0!important;flex:none}

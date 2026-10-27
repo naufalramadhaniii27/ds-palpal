@@ -223,7 +223,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 :root.vt-card{view-transition-name:none}
 .sheet.vt-on{transition:none!important}
 .sheet.vt-hold{visibility:hidden!important}
-::view-transition-group(v31card){animation-duration:.26s;animation-timing-function:cubic-bezier(.2,.8,.2,1);border-radius:var(--r2,8px);overflow:clip}
+::view-transition-group(v31card){animation-duration:.26s;animation-timing-function:var(--ease-out);border-radius:var(--r2,8px);overflow:clip}
 ::view-transition-old(v31card),::view-transition-new(v31card){height:100%;object-fit:cover;object-position:top left;animation-duration:.26s}
 ::view-transition-old(v31card){animation-duration:.14s}
 @media (prefers-reduced-motion:reduce){::view-transition-group(v31card),::view-transition-old(v31card),::view-transition-new(v31card){animation:none}}

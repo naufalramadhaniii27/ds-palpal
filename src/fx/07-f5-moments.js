@@ -51,7 +51,7 @@
     var chip=document.querySelector('#conds .chip.on[data-info="g:'+CSS.escape(k)+'"]'); if(!chip) return; var g=MI.ghost(chip); if(!g) return; g.style.visibility="hidden"; peel.push(g); },true);
   var sh=document.getElementById("sheet"); if(sh) new MutationObserver(function(){ if(sh.classList.contains("on")||!peel.length) return; var L=peel; peel=[];
     L.forEach(function(g,i){ g.style.visibility=""; g.style.transformOrigin="0 0"; g.style.boxShadow="0 6px 14px rgba(0,0,0,.35)";
-      g.animate([{transform:"none",opacity:1},{transform:"rotate(-8deg) translate(4px,-6px) scale(1.04)",opacity:1,offset:.3},{transform:"rotate(-28deg) translate(30px,40px) scale(.9)",opacity:0}],{duration:650,delay:180+i*90,easing:"cubic-bezier(.4,0,.7,1)",fill:"both"}).onfinish=function(){ g.remove(); }; }); }).observe(sh,{attributes:true,attributeFilter:["class"]});
+      g.animate([{transform:"none",opacity:1},{transform:"rotate(-8deg) translate(4px,-6px) scale(1.04)",opacity:1,offset:.3},{transform:"rotate(-28deg) translate(30px,40px) scale(.9)",opacity:0}],{duration:650,delay:180+i*90,easing:"cubic-bezier(.4,0,.2,1)",fill:"both"}).onfinish=function(){ g.remove(); }; }); }).observe(sh,{attributes:true,attributeFilter:["class"]});
   /* Shredder: Remove Item in Manage Inventory cuts the row into falling strips */
   MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-irm],[data-idel]"); if(!b||MI.rm()) return; var row=b.closest(".imr,.irow,.icard,li,.mrow")||b.parentNode; var r=row.getBoundingClientRect(); if(!r.width) return; var N=6;
     for(var i=0;i<N;i++){ var g=MI.ghost(row); if(!g) return; var a=(i*100/N).toFixed(1), z=((i+1)*100/N).toFixed(1); g.style.clipPath="inset(0 "+(100-z)+"% 0 "+a+"%)";
