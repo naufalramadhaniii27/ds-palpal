@@ -264,3 +264,10 @@ art/batch/scenes/tab/spells-pc.png
 art/batch/scenes/tab/spells-phone.png
 art/batch/scenes/tab/inventory-pc.png
 art/batch/scenes/tab/inventory-phone.png
+
+## batch-017 v3
+art/batch/scenes/tab/features-pc.png
+art/batch/scenes/tab/features-phone.png
+art/batch/scenes/tab/description-pc.png
+art/batch/scenes/tab/description-phone.png
+art/batch/scenes/tab/notes-pc.png
