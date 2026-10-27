@@ -153,3 +153,7 @@ art/batch/scenes/background/scribe-pc.png
 art/batch/scenes/background/scribe-phone.png
 art/batch/scenes/background/soldier-pc.png
 art/batch/scenes/background/soldier-phone.png
+
+## batch-009 v3
+art/batch/scenes/background/wayfarer-pc.png
+art/batch/scenes/background/wayfarer-phone.png
