@@ -129,3 +129,10 @@ art/batch/scenes/background/criminal-pc.png
 art/batch/scenes/background/criminal-phone.png
 art/batch/scenes/background/entertainer-pc.png
 art/batch/scenes/background/entertainer-phone.png
+
+## batch-007 v3
+art/batch/scenes/background/farmer-pc.png
+art/batch/scenes/background/farmer-phone.png
+art/batch/scenes/background/guard-pc.png
+art/batch/scenes/background/guard-phone.png
+art/batch/scenes/background/guide-pc.png
