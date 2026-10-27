@@ -907,3 +907,8 @@ art/batch/icons/items/magic/artifact/eye-of-vecna.png
 art/batch/icons/items/magic/uncommon/eyes-of-charming.png
 art/batch/icons/items/magic/uncommon/eyes-of-minute-seeing.png
 art/batch/icons/items/magic/uncommon/eyes-of-the-eagle.png
+art/batch/icons/items/magic/varies/figurine-of-wondrous-power.png
+art/batch/icons/items/magic/uncommon/firearm-bullet.png
+art/batch/icons/items/magic/rare/flame-tongue.png
+art/batch/icons/items/magic/rare/folding-boat.png
+art/batch/icons/items/magic/very-rare/frost-brand.png
