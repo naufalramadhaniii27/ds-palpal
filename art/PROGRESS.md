@@ -288,3 +288,9 @@ art/batch/scenes/screen/bastion-pc.png
 art/batch/scenes/screen/bastion-phone.png
 art/batch/scenes/screen/journal-pc.png
 art/batch/scenes/screen/journal-phone.png
+
+## batch-019 v3
+art/batch/scenes/screen/tour-pc.png
+art/batch/scenes/screen/tour-phone.png
+art/batch/scenes/screen/settings-pc.png
+art/batch/scenes/screen/settings-phone.png
