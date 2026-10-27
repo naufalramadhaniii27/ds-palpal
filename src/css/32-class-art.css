@@ -9,3 +9,7 @@ html.cls-art #clsArt{opacity:.4}
 /* the empty portrait shows the class emblem. A portrait the user sets always wins */
 html.cls-emb .photo:not(.has) .ph-sil{inset:12px 8px 20px;background:var(--ca-emb) center/contain no-repeat}
 html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{display:none}
+
+/* small icons from the art set */
+.art-ic{width:24px;height:24px;margin-right:6px;vertical-align:-6px;object-fit:contain;border-radius:4px}
+.lib-ri .art-ic{width:100%;height:100%;margin:0;vertical-align:middle}

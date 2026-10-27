@@ -13,9 +13,11 @@
   var q=0; function soon(){ if(q) return; q=requestAnimationFrame(function(){ q=0; apply(); }); }
   new MutationObserver(soon).observe(H,{attributes:true,attributeFilter:["data-mi-cls"]});
   var hv=D.getElementById("homeV"); if(hv) new MutationObserver(soon).observe(hv,{attributes:true,attributeFilter:["hidden"]});
+  function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
+  window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
   window.__clsArt=function(){ emb(H.getAttribute("data-mi-cls")||""); apply(); };
   window.__miArtH=function(){ var on=ls("mi-clsart")!=="off", B=function(v,l){ var a=(v==="on")===on; return '<button type="button" class="thb'+(a?" on":"")+'" data-miart="'+v+'" aria-pressed="'+a+'">'+l+'</button>'; };
-    return '<div class="info-h">Class art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">A picture of your class behind the sheet and on the empty portrait. Cards stay solid, so text keeps its contrast.</p>'; };
+    return '<div class="info-h">Art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">Pictures of your class behind the sheet and on the empty portrait, and small icons on spells and gear. Cards stay solid, so text keeps its contrast.</p>'; };
   addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-miart]"); if(!b) return; try{ if(b.getAttribute("data-miart")==="off") localStorage.setItem("mi-clsart","off"); else localStorage.removeItem("mi-clsart"); }catch(er){}
     Array.prototype.forEach.call(D.querySelectorAll("[data-miart]"),function(x){ var a=x===b; x.classList.toggle("on",a); x.setAttribute("aria-pressed",a); }); window.__clsArt(); },true);
   window.__clsArt();
