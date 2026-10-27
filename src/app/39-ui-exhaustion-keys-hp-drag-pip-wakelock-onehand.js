@@ -9,6 +9,11 @@ document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.a
   if(sheet.classList.contains("on")&&sheetMode==="search"){ var q=$("#gsQ"); if(q){ q.focus(); try{ q.select(); }catch(er){} } return; } openSearch(); },true);
 document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return;
   var h=document.getElementById("homeV"); if(!h||h.hidden||document.querySelector(".ask, #recov, #bkp")) return; var q=document.getElementById("homeQ"); if(!q) return; e.preventDefault(); q.focus(); try{ q.select(); }catch(er){} },true);
+/* T4 item 25: single-key shortcuts on Home. Skipped while typing, while a dialog is open, and with a modifier key */
+document.addEventListener("keydown",function(e){ if(e.ctrlKey||e.metaKey||e.altKey||e.defaultPrevented) return; var h=document.getElementById("homeV"); if(!h||h.hidden) return;
+  var t=e.target, tg=(t&&t.tagName)||""; if(/^(INPUT|TEXTAREA|SELECT)$/.test(tg)||(t&&t.isContentEditable)) return; if(document.querySelector(".ask, #recov, #bkp, #lib.on, #party, #rep, #chf, #bld:not([hidden]), #sheet.on")) return;
+  var k=e.key.length===1?e.key.toUpperCase():e.key, sel=k==="N"?"[data-hnew]":k==="B"?"[data-hbk=out]":k==="S"?"[data-hbk=info]":""; if(k==="/"){ var q=document.getElementById("homeQ"); if(q){ e.preventDefault(); q.focus(); } return; }
+  if(!sel) return; var b=h.querySelector(".hbtns "+sel); if(b){ e.preventDefault(); b.click(); } });
 document.addEventListener("keydown",function(e){ var q=e.target; if(!q||q.id!=="gsQ") return;
   if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); gsSync(); var L=gsRows(); if(!L.length) return; gsSel=(gsSel+(e.key==="ArrowDown"?1:-1)+L.length)%L.length; gsMark(true); return; }
   if(e.key==="Enter"){ e.preventDefault(); gsSync(); var r=gsRows()[gsSel]; if(r) r.click(); return; }
