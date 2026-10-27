@@ -628,3 +628,8 @@ art/batch/icons/spells/level-1/thunderwave.png
 art/batch/icons/spells/level-1/witch-bolt.png
 art/batch/icons/spells/level-1/color-spray.png
 art/batch/icons/spells/level-1/disguise-self.png
+art/batch/icons/spells/level-1/distort-value.png
+art/batch/icons/spells/level-1/feign-interest.png
+art/batch/icons/spells/level-1/illusory-script.png
+art/batch/icons/spells/level-1/silent-image.png
+art/batch/icons/spells/level-1/cause-fear.png
