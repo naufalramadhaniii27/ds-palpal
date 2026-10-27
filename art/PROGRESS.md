@@ -633,3 +633,10 @@ art/batch/icons/spells/level-1/feign-interest.png
 art/batch/icons/spells/level-1/illusory-script.png
 art/batch/icons/spells/level-1/silent-image.png
 art/batch/icons/spells/level-1/cause-fear.png
+
+## batch-037 v3
+art/batch/icons/spells/level-1/false-life.png
+art/batch/icons/spells/level-1/inflict-wounds.png
+art/batch/icons/spells/level-1/ray-of-sickness.png
+art/batch/icons/spells/level-1/wrathful-smite.png
+art/batch/icons/spells/level-1/catapult.png
