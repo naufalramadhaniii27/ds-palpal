@@ -164,3 +164,8 @@ art/batch/emblems/subclass/barbarian-path-of-the-wild-heart.png
 art/batch/emblems/subclass/barbarian-path-of-the-world-tree.png
 art/batch/emblems/subclass/barbarian-path-of-the-zealot.png
 art/batch/emblems/subclass/bard-college-of-dance.png
+art/batch/emblems/subclass/bard-college-of-glamour.png
+art/batch/emblems/subclass/bard-college-of-lore.png
+art/batch/emblems/subclass/bard-college-of-valor.png
+art/batch/emblems/subclass/cleric-life-domain.png
+art/batch/emblems/subclass/cleric-light-domain.png
