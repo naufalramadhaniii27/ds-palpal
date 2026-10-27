@@ -22,7 +22,7 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 | Scene langkah Builder | Class mengikuti kelas pilihan, Species dan Background mengikuti pilihan (cadangan scene Builder bila tidak ada gambar), Abilities, Equipment, What's Next. Opasitas 16 persen (22 di PC) |
 | Emblem kelas di slot potret kosong | Potret yang user pasang selalu menang |
 | Gambar empty state | Home (karakter), item, spell, makhluk. Cadangan: ikon gambar lama |
-| Gambar momen | Natural 20, Natural 1 (overlay roll), Level Up, catatan offline |
+| Gambar momen dan keadaan | Natural 20, Natural 1 (overlay roll), Level Up, catatan offline, peringatan penyimpanan hampir penuh di Home |
 | Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
 | Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. Ikon makhluk belum diuji di layar karena karakter tes level 1 tidak punya makhluk |
 | Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
@@ -43,7 +43,7 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 ## Belum
 | Butir | Alasan |
 |---|---|
-| Vignette state (backup-done, import-failed, saving, storage-full, update) dan momen (death-save, inspiration, level-20, stabilized, subclass) | Belum ada titik pasang yang tepat. Perlu keputusan di mana tampil |
+| Vignette state (backup-done, import-failed, saving, update) dan momen (death-save, inspiration, level-20, stabilized, subclass) | Belum ada titik pasang yang tepat. Perlu keputusan di mana tampil |
 | Scene layar (bastion, combat, journal, rest, party, settings, tour) | Layar itu belum punya lapis latar sendiri |
 | Ikon school dan damage | Ada di manifest, belum dipasang. Skill sudah punya ikon garis sendiri, dibiarkan |
 

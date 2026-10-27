@@ -4380,6 +4380,7 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 .art-sub{display:inline-block;vertical-align:-7px;margin-right:8px;border-radius:6px;object-fit:contain}
 .sub-em{display:flex;justify-content:center;margin:6px 0 4px}.sub-em .art-sub{margin:0;border-radius:12px;vertical-align:baseline}
 @media print{.art-sub{display:none}}
+.hbkl.warn .mi-vig{display:inline-block;vertical-align:middle;margin:0 10px 4px 0;border-radius:8px;filter:none}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -6236,7 +6237,7 @@ function techInfo(){ var q=bkState(), bk=q.bk, u=q.u, pct=q.pct, full=q.full, mb
 function pwaNote(){ var st=false; try{ st=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true; }catch(er){} if(st) return '<div class="hbkl"><span>This app is installed on your device.</span></div>';
   return '<div class="hbkl"><span>Install: '+((typeof PWA_EV!=="undefined"&&PWA_EV)?'press Install App on the Home screen, or use the Install command in the search.':'in Chrome or Edge use the install icon in the address bar. In Safari use Share, then Add to Home Screen.')+' An installed app opens faster and works offline.</span></div>'; }
 function homeInfo(){ var q=bkState(), r=q.r, warnH="";
-  if(q.warn||q.full) warnH='<div class="hbkl warn" role="status"><span class="hbkw">'+(q.full?'Storage is almost full. Back up, then remove portraits or characters you no longer need.':(q.bk.t?'Your last backup is '+q.days+' days old and there are changes since then.':'You have no backup yet. Back up your characters so they are safe if this browser\'s data is cleared.'))+'</span><button type="button" class="hlink" data-hbk="out">Back Up</button><button type="button" class="hlink" data-hbk="info">Details</button></div>';
+  if(q.warn||q.full) warnH='<div class="hbkl warn" role="status">'+(q.full&&window.__artVig?window.__artVig("state","storage-full",44):"")+'<span class="hbkw">'+(q.full?'Storage is almost full. Back up, then remove portraits or characters you no longer need.':(q.bk.t?'Your last backup is '+q.days+' days old and there are changes since then.':'You have no backup yet. Back up your characters so they are safe if this browser\'s data is cleared.'))+'</span><button type="button" class="hlink" data-hbk="out">Back Up</button><button type="button" class="hlink" data-hbk="info">Details</button></div>';
   return warnH+
     (function(){ var sn=snGet().chars, del=Object.keys(sn).filter(function(id){ return !r.chars[id]&&sn[id]&&sn[id].length; }); if(!del.length) return "";
       del.sort(function(a,b){ return (sn[b][0].t||0)-(sn[a][0].t||0); });
