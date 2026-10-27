@@ -513,3 +513,8 @@ art/batch/icons/spells/cantrips/sword-burst.png
 art/batch/icons/spells/cantrips/guidance.png
 art/batch/icons/spells/cantrips/true-strike.png
 art/batch/icons/spells/cantrips/encode-thoughts.png
+art/batch/icons/spells/cantrips/friends.png
+art/batch/icons/spells/cantrips/mind-sliver.png
+art/batch/icons/spells/cantrips/vicious-mockery.png
+art/batch/icons/spells/cantrips/acid-splash.png
+art/batch/icons/spells/cantrips/booming-blade.png
