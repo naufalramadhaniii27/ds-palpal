@@ -1,0 +1,7 @@
+# Static site: index.html is already built. Keep source, tests and notes out of every deployment (saves Deployment Storage)
+src
+tests
+reports
+build.py
+patches-v49-v54.txt
+*.md
