@@ -347,3 +347,22 @@ function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; var SP=S
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!window.__bldMine||!window.__bldMine()) return ""; var d=[]; try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";
   return '<div class="oldnote" role="note"><p><b>This sheet was made by an older version of the builder.</b> Rules in the builder were updated since. Press Build, then Apply to refresh the sheet. The Apply dialog lists what would change: '+esc(d.join(". "))+'.</p><div class="bkpr"><button type="button" class="btn press" data-oldn="bld">Open Builder</button><button type="button" class="btn press" data-oldn="ok">Dismiss</button></div></div>'; }
 
+/* T4: press and hold a library row (item, gear or spell), drag it onto the drop zone to add it to the sheet. Same as the Add button */
+(function(){ var timer=0, sx=0, sy=0, cur=null, ghost=null, zone=null, hold=0;
+  function pick(r){ var s=r.getAttribute("data-lib-open")||"", i=s.indexOf("|"), c=s.slice(0,i); return (c==="spell"||c==="item"||c==="gear")?{c:c,k:s.slice(i+1),t:(r.querySelector("b")||r).textContent}:null; }
+  function over(x,y){ if(!zone) return false; var r=zone.getBoundingClientRect(); return x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8; }
+  function end(){ clearTimeout(timer); timer=0; if(ghost){ ghost.remove(); ghost=null; } if(zone){ zone.remove(); zone=null; } if(cur){ cur=null; hold=Date.now(); } }
+  function begin(r,t,x,y){ cur=t; var w=document.getElementById("lib"); if(!w) { cur=null; return; }
+    ghost=document.createElement("div"); ghost.className="lib-ghost"; ghost.textContent=t.t; ghost.style.left=x+"px"; ghost.style.top=y+"px"; w.appendChild(ghost);
+    zone=document.createElement("div"); zone.className="lib-dz"; zone.setAttribute("role","status"); zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(zone);
+    try{ if(navigator.vibrate) navigator.vibrate(10); }catch(er){} }
+  document.addEventListener("pointerdown",function(e){ var r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(!r||(e.pointerType==="mouse"&&e.button!==0)) return; var t=pick(r); if(!t) return; sx=e.clientX; sy=e.clientY; clearTimeout(timer); timer=setTimeout(function(){ timer=0; begin(r,t,sx,sy); },e.pointerType==="mouse"?200:380); },true);
+  document.addEventListener("pointermove",function(e){ if(timer&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){ clearTimeout(timer); timer=0; }
+    if(!cur) return; if(ghost){ ghost.style.left=e.clientX+"px"; ghost.style.top=e.clientY+"px"; } if(zone) zone.classList.toggle("on",over(e.clientX,e.clientY)); },true);
+  document.addEventListener("touchmove",function(e){ if(cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
+  document.addEventListener("pointerup",function(e){ clearTimeout(timer); timer=0; if(!cur) return; var t=cur, hit=over(e.clientX,e.clientY); end(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); },true);
+  document.addEventListener("pointercancel",function(){ end(); },true);
+  document.addEventListener("keydown",function(e){ if(cur&&e.key==="Escape"){ e.stopPropagation(); end(); } },true);
+  document.addEventListener("click",function(e){ if(hold&&Date.now()-hold<400){ var r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } hold=0; } },true);
+  document.addEventListener("contextmenu",function(e){ if(cur||timer) e.preventDefault(); },true);
+})();

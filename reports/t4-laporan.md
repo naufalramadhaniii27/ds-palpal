@@ -12,7 +12,7 @@ Branch t2-smooth, commit 99d2ea5 ditambah perubahan tes sesudahnya. Semua angka 
 | Overflow ke samping, 6 lebar | 0 | Lolos |
 | Overlap kontrol dan teks meluber, 6 lebar | 0 (tes divalidasi: gagal pada build lama di 320, 360, 390) | Lolos |
 | Skala spasi, radius, font | 0 nilai di luar skala | Lolos |
-| axe, semua layar kecuali menu More di 1250 | 0 pelanggaran. Menu More di 1250 gagal dipindai (klik timeout) dan belum diperiksa | Lolos sebagian |
+| axe, semua layar | 0 pelanggaran. Menu More tidak tampil di 1250 (display none). Di 390, 768, 1024 axe 0. Daftar lompat Builder axe 0 | Lolos |
 | Target sentuh 44 px di 390 | 0 kontrol di bawah 44 | Lolos |
 | Mode hemat animasi | 0 transisi dan animasi | Lolos |
 | Siap pakai (CPU 4x, ponsel) | sekitar 1,0 sampai 1,5 s | Lolos |
@@ -33,8 +33,12 @@ Branch t2-smooth, commit 99d2ea5 ditambah perubahan tes sesudahnya. Semua angka 
 | Respons tombol desktop | 9,0 | Heal 112 dan panel 144 ms di headless |
 | Konsistensi tampilan | 9,5 | Satu skala, 0 overlap, 0 overflow |
 | Aksesibilitas | 9,5 | axe 0, target 44 px, mode hemat animasi |
-| Fitur T3 dan T4 | 9,0 | Seret dari Library ke sheet dan palette di Builder belum ada |
-| Total | 9,2 | |
+| Fitur T3 dan T4 | 9,5 | Seret Library ke sheet (23 cek) dan daftar lompat Builder Ctrl+K (22 cek) selesai |
+| Total | 9,4 | |
+
+Seret Library memakai tekan lama lalu lepas di zona. Daftar lompat Builder berisi langkah, Prev, Next, Close. Apply sengaja tidak ada. Tes: tests/lib_drag.py, tests/builder_pal.py.
+
+Penghalang 9,5: respons desktop 9,0. Saya tidak bisa membuktikan lebih tinggi tanpa GPU asli. Rilis menunggu angka dari laptop nyata.
 
 ## Catatan untuk bagian lain
 Lihat reports/requests.md: Apply di Builder menghapus entri Library (lib:1).

@@ -62,3 +62,20 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 @media (max-width:340px){
   :root[data-skin="ddb"] #app .idcard .xpbtns .xpb{font-size:calc(12px*var(--tz,1))!important;padding:0 2px!important;letter-spacing:0!important}
 }
+
+/* T4: drag from the library onto the drop zone */
+#lib .lib-r{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.lib-ghost{position:fixed;z-index:70;transform:translate(-50%,-120%);max-width:70vw;padding:8px 16px;border-radius:8px;background:var(--panel-2,#222);color:var(--ink,#fff);border:1px solid var(--line-2,#555);font:600 14px/1.2 var(--f-sans,sans-serif);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.lib-dz{position:fixed;z-index:69;left:16px;right:16px;bottom:24px;min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border-radius:12px;border:2px dashed var(--line-2,#666);background:color-mix(in srgb,var(--panel,#1a1a1a) 92%,transparent);color:var(--ink,#fff);font:600 16px/1.3 var(--f-sans,sans-serif);transition:background .15s,border-color .15s}
+.lib-dz.on{border-color:var(--prof,#5aa9ff);background:color-mix(in srgb,var(--prof,#5aa9ff) 24%,var(--panel,#1a1a1a))}
+@media (min-width:760px){.lib-dz{left:auto;right:24px;width:320px}}
+@media (prefers-reduced-motion:reduce){.lib-dz{transition:none}}
+
+/* T4: builder jump list */
+.bpal{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:64px 16px 16px;background:rgba(0,0,0,.5)}
+.bpal-b{width:100%;max-width:420px;border-radius:12px;background:var(--panel,#1a1a1a);border:1px solid var(--line-2,#555);box-shadow:0 16px 48px rgba(0,0,0,.5);overflow:hidden}
+.bpal-q{display:block;width:100%;min-height:48px;padding:0 16px;border:0;border-bottom:1px solid var(--line,#444);background:transparent;color:var(--ink,#fff);font:500 16px/1 var(--f-sans,sans-serif);outline:0}
+.bpal-l{max-height:min(60vh,420px);overflow:auto;padding:8px}
+.bpal-i{display:block;width:100%;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:transparent;color:var(--ink,#fff);font:500 16px/1 var(--f-sans,sans-serif);text-align:left;cursor:pointer}
+.bpal-i:hover,.bpal-i:focus-visible{background:var(--panel-2,#262626);outline:2px solid var(--prof,#5aa9ff);outline-offset:-2px}
+.bpal-e{margin:0;padding:16px;color:var(--muted,#999)}
