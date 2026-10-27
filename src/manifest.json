@@ -40,7 +40,8 @@
     "css/28-connected-home-sheet.css",
     "css/29-motion-off.css",
     "css/30-tap-44.css",
-    "css/31-home-hero.css"
+    "css/31-home-hero.css",
+    "css/32-class-art.css"
    ]
   },
   {
@@ -177,7 +178,9 @@
     "fx/19-g-pack-cinematic.js",
     "fx/20-k-pack-character-colour-icon.js",
     "fx/21-connected-home-sheet.js",
-    "fx/22-home-hero.js"
+    "fx/22-home-hero.js",
+    "fx/23-class-art-data.js",
+    "fx/24-class-art.js"
    ]
   },
   {
