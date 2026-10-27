@@ -500,3 +500,4 @@ art/batch/icons/items/armor/ring-mail.png
 art/batch/icons/items/armor/chain-mail.png
 art/batch/icons/items/armor/splint-armor.png
 art/batch/icons/items/armor/plate-armor.png
+art/batch/icons/items/armor/shield.png
