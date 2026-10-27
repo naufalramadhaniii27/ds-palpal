@@ -34,3 +34,8 @@ html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 .hhsum{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .hhsum li{font-size:calc(12px*var(--tz,1));padding:3px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.22)}
 .hhsum li.warn{border-color:#f0b84d}.hhsum li.bad{border-color:#ff7b72}
+.lib-add{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}.lib-qty{display:flex;flex-direction:column;gap:4px;font-size:12px}.lib-qty input{width:72px;min-height:44px}
+.lib-buy{min-height:44px}
+.cconv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end}.cconv label{display:flex;flex-direction:column;gap:4px;font-size:12px}.cconv select,.cconv input{min-height:44px;width:100%}.cconv .btn{grid-column:1/-1;min-height:44px}
+.cconv input,.cconv select,.lib-qty input{padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r1,8px);background:var(--panel);color:var(--ink);font-size:calc(16px*var(--tz,1));-webkit-appearance:none;appearance:none}
+.cconv select{background-image:none}

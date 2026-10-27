@@ -4303,6 +4303,11 @@ html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 .hhsum{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .hhsum li{font-size:calc(12px*var(--tz,1));padding:3px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.22)}
 .hhsum li.warn{border-color:#f0b84d}.hhsum li.bad{border-color:#ff7b72}
+.lib-add{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}.lib-qty{display:flex;flex-direction:column;gap:4px;font-size:12px}.lib-qty input{width:72px;min-height:44px}
+.lib-buy{min-height:44px}
+.cconv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end}.cconv label{display:flex;flex-direction:column;gap:4px;font-size:12px}.cconv select,.cconv input{min-height:44px;width:100%}.cconv .btn{grid-column:1/-1;min-height:44px}
+.cconv input,.cconv select,.lib-qty input{padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r1,8px);background:var(--panel);color:var(--ink);font-size:calc(16px*var(--tz,1));-webkit-appearance:none;appearance:none}
+.cconv select{background-image:none}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -6709,18 +6714,40 @@ function coinStrip(c){ var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],
   return '<button type="button" class="igp icoins" data-coinopen="1" aria-label="Manage Coin: '+o.map(function(k){ return fmtN(num(c[k[0]],0))+' '+k[1]; }).join(', ')+', '+t+' GP in all">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b><small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
 function coinTotal(c){ return Math.round(COINS.reduce(function(t,k){ return t+c[k[0]]*k[2]; },0)*100)/100; }
 function coinSet(c){ S.coins=c; S.coinBase=num(C.gp,0); save(); }
+/* T4: convert one coin into another, and pay a price with change. Values in copper: cp 1, sp 10, ep 50, gp 100, pp 1000 */
+var CVAL={cp:1,sp:10,ep:50,gp:100,pp:1000}, CORD=["cp","sp","ep","gp","pp"];
+function coinCp(c){ return CORD.reduce(function(t,k){ return t+num(c[k],0)*CVAL[k]; },0); }
+function coinList(o){ var a=[]; ["pp","gp","ep","sp","cp"].forEach(function(k){ if(o[k]>0) a.push(fmtN(o[k])+" "+k); }); return a.join(", "); }
+/* price in gold (may be a fraction) shown in the largest coin that keeps it whole */
+function priceTxt(gp){ var cp=Math.round(gp*100); if(cp%100===0) return fmtN(cp/100)+" gp"; if(cp%10===0) return fmtN(cp/10)+" sp"; return fmtN(cp)+" cp"; }
+/* pay price (in copper) from coins c. Spends the smallest coins first. When a big coin has to be broken, change comes back in gp, sp and cp. Returns null when there is not enough */
+function coinPay(c,price){ price=Math.round(price); if(coinCp(c)<price) return null; var n={}, use={pp:0,gp:0,ep:0,sp:0,cp:0}, chg={pp:0,gp:0,ep:0,sp:0,cp:0}, left=price;
+  CORD.forEach(function(k){ n[k]=num(c[k],0); });
+  CORD.forEach(function(k){ var t=Math.min(n[k],Math.floor(left/CVAL[k])); use[k]+=t; n[k]-=t; left-=t*CVAL[k]; });
+  if(left>0){ var b=CORD.filter(function(k){ return n[k]>0&&CVAL[k]>=left; })[0]; if(!b) return null; n[b]--; use[b]++; var ch=CVAL[b]-left; left=0;
+    ["gp","sp","cp"].forEach(function(k){ var t=Math.floor(ch/CVAL[k]); chg[k]=t; n[k]+=t; ch-=t*CVAL[k]; }); }
+  return {c:n,use:use,chg:chg}; }
+/* convert amt coins of type from into type to. A remainder that does not fill a whole coin of the new type stays as the old coin */
+function coinConv(c,from,to,amt){ amt=Math.floor(amt); if(from===to||amt<1) return {err:"Choose two different coins and an amount."}; if(amt>num(c[from],0)) return {err:"You only have "+fmtN(num(c[from],0))+" "+from+"."};
+  var val=amt*CVAL[from], cnt=Math.floor(val/CVAL[to]); if(cnt<1) return {err:amt+" "+from+" is worth less than one "+to+"."}; var rem=val-cnt*CVAL[to], back=Math.round(rem/CVAL[from]), n=Object.assign({},c);
+  n[from]=num(c[from],0)-amt+back; n[to]=num(c[to],0)+cnt; return {c:n,got:cnt,used:amt-back}; }
 var coinOpen=false;
 function coinHTML(){ var c=coinsNow(), ls=S.lifestyle||"", L=(typeof LIFESTYLE!=="undefined"?LIFESTYLE:[]), lo=L.filter(function(x){return x[0]===ls})[0];
   return '<div id="coinDlg"><button type="button" class="ctot" data-coin="tog" aria-expanded="'+coinOpen+'"><b>Total (in gp)</b><span>'+coinTotal(c)+'</span>'+CHEV+'</button>'+(coinOpen?'<p class="muted">Every coin converted to gold. Electrum, silver, and copper count as fractions of a gold piece.</p>':'')+
    '<div class="crows">'+COINS.map(function(k){ return '<div class="crow"><span class="cico c-'+k[0]+'"></span><span class="cnm"><b>'+k[1]+' ('+k[0]+')</b><small>'+k[3]+'</small></span><span class="cv" id="cv-'+k[0]+'">'+c[k[0]]+'</span></div>'; }).join("")+'</div>'+
    '<div class="info-h">Adjust Coin</div><div class="cadj">'+COINS.map(function(k){ return '<label><span>'+k[0].toUpperCase()+'</span><input type="number" min="0" inputmode="numeric" data-camt="'+k[0]+'" placeholder="0"></label>'; }).join("")+'</div>'+
+   '<div class="info-h">Convert Coin</div><div class="cconv"><label><span>From</span><select data-cvf aria-label="Convert from">'+CORD.slice().reverse().map(function(k){ return '<option value="'+k+'"'+(k==="gp"?' selected':'')+'>'+k.toUpperCase()+'</option>'; }).join("")+'</select></label><label><span>To</span><select data-cvt aria-label="Convert to">'+CORD.slice().reverse().map(function(k){ return '<option value="'+k+'"'+(k==="sp"?' selected':'')+'>'+k.toUpperCase()+'</option>'; }).join("")+'</select></label><label><span>Amount</span><input type="number" min="1" inputmode="numeric" data-cvamt placeholder="0" aria-label="Amount to convert"></label><button type="button" class="btn press" data-coin="conv">Convert</button></div><p class="muted" id="cvPrev" aria-live="polite"></p>'+
    '<div class="cbtns"><button type="button" class="btn press" data-coin="add">+ Add</button><button type="button" class="btn press" data-coin="rem">\u2212 Remove</button><button type="button" class="btn press" data-coin="clr">\u00d7 Clear</button></div>'+
    '<div class="info-h">Lifestyle Expenses</div><select data-life="1" aria-label="Lifestyle"><option value="">Choose a lifestyle</option>'+L.map(function(x){ return '<option value="'+x[0]+'"'+(x[0]===ls?' selected':'')+'>'+x[0]+' ('+x[1]+(x[1]==="Free"?'':' per day')+')</option>'; }).join("")+'</select>'+(lo?'<p class="info-d">'+esc(lo[2])+'</p>':'<p class="muted">Pick the lifestyle you pay for each week or month. It covers lodging, food, and upkeep.</p>')+'</div>'; }
 function openCoins(){ navStack=[]; openSheet("Manage Coin", coinHTML(), "coin"); }
 function coinRefresh(){ var b=$("#sheetBody"); if(b&&sheetMode==="coin") b.innerHTML=coinHTML(); renderInv(); }
+document.addEventListener("input",function(e){ var t=e.target; if(!t||!t.matches||!t.matches("[data-cvamt],[data-cvf],[data-cvt]")) return; var p=$("#cvPrev"); if(!p) return; var f=$("#coinDlg [data-cvf]").value, to=$("#coinDlg [data-cvt]").value, am=num($("#coinDlg [data-cvamt]").value,0), r=am>0?coinConv(coinsNow(),f,to,am):null;
+  p.textContent=!r?"":r.err?r.err:fmtN(r.used)+" "+f+" becomes "+fmtN(r.got)+" "+to+"."+(r.used<Math.floor(am)?" The other "+fmtN(Math.floor(am)-r.used)+" "+f+" stay as they are.":""); });
 document.addEventListener("click",function(e){ var b=e.target.closest("[data-coin],[data-coinopen]"); if(!b) return;
   if(b.hasAttribute("data-coinopen")){ openCoins(); return; }
   var a=b.getAttribute("data-coin"); if(a==="tog"){ coinOpen=!coinOpen; coinRefresh(); return; }
+  if(a==="conv"){ var c0=coinsNow(), cf=$("#coinDlg [data-cvf]").value, ct=$("#coinDlg [data-cvt]").value, r0=coinConv(c0,cf,ct,num($("#coinDlg [data-cvamt]").value,0)); if(r0.err){ toast(r0.err); return; }
+    undoMark("Convert coins"); coinSet(r0.c); coinRefresh(); toastU("Converted "+fmtN(r0.used)+" "+cf+" into "+fmtN(r0.got)+" "+ct+"."); return; }
   var c=coinsNow(), amt={}, any=false; $$("#coinDlg [data-camt]").forEach(function(i){ var v=Math.floor(num(i.value,0)); amt[i.getAttribute("data-camt")]=v>0?v:0; if(v>0) any=true; });
   if(a==="clr"){ $$("#coinDlg [data-camt]").forEach(function(i){ i.value=""; }); return; }
   if(!any){ toast("Type an amount first."); return; }
@@ -7167,18 +7194,26 @@ function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; 
 function libTiles(a){ return '<div class="info-k">'+a.filter(function(x){ return x&&x[1]!==""&&x[1]!=null; }).map(function(x){ return String(x[1]).length>14?tileH(esc(x[0]),esc(x[1])):tileS(x[0],x[1]); }).join("")+'</div>'; }
 function libFeatBlock(h4,txt){ return '<div class="info-h">'+h4+'</div><p class="info-d">'+richP(txt)+'</p>'; }
 /* T4 item 23: Add to my sheet from the library (spell, magic item, gear). Entries carry lib:1 so they can be told apart from builder entries */
-function libAddBtn(c,k){ return (c==="spell"||c==="item"||c==="gear")?'<div class="lib-add"><button type="button" class="btn sm press" data-libadd="'+esc(c+"|"+k)+'"><span class="hbt">Add to my sheet</span></button></div>':""; }
+function libPrice(c,k){ if(c!=="gear") return null; var p=(typeof PRICE!=="undefined"&&PRICE[k]!=null)?PRICE[k]:null; if(p==null){ GEAR.forEach(function(q){ if(q[0]===k&&q[1]!=null) p=q[1]; }); } return p!=null&&p>0?p:null; }
+function libAddBtn(c,k){ if(!(c==="spell"||c==="item"||c==="gear")) return ""; var pr=libPrice(c,k), q=c==="spell"?"":'<label class="lib-qty"><span>Quantity</span><input type="number" min="1" max="99" value="1" inputmode="numeric" data-libqty aria-label="Quantity"></label>';
+  return '<div class="lib-add">'+q+'<button type="button" class="btn sm press" data-libadd="'+esc(c+"|"+k)+'"><span class="hbt">'+(c==="spell"?"Add to my sheet":"Add (free)")+'</span></button>'+(pr!=null?'<button type="button" class="btn sm press lib-buy" data-libbuy="'+esc(c+"|"+k)+'"><span class="hbt">Buy for '+esc(priceTxt(pr))+'</span></button>':'')+'</div>'; }
+function libQty(){ var i=document.querySelector("[data-libqty]"), v=i?Math.floor(num(i.value,1)):1; return v<1?1:v>99?99:v; }
+function libItemFor(c,k){ var it=null; if(c==="item"){ DMGI.forEach(function(q){ if(q[0]===k) it=q; }); if(!it) return null; return {n:k,q:1,w:0,eq:false,type:it[1],rar:it[2],d:String(it[4]||"").replace(/\*\*|\[\[|\]\]/g,""),lib:1}; }
+  var w=WEAPONS[k], a=ARMOR[k], gr=null; GEAR.forEach(function(q){ if(q[0]===k) gr=q; }); var pr=libPrice(c,k); it={n:k,q:1,w:Number((w&&w.w)||(a&&a.w)||(gr&&gr[2])||0)||0,eq:false,d:ITEMDESC[k]||"",lib:1}; if(pr!=null) it.cost=pr; return it; }
+function libPut(c,k,qty){ var it=libItemFor(c,k); if(!it) return false; C.inv=C.inv||[]; var ex=C.inv.filter(function(y){ return y.n===k&&!y.eq&&y.lib===1; })[0]||(c==="gear"?C.inv.filter(function(y){ return y.n===k&&!y.eq; })[0]:null);
+  if(ex&&c==="gear") ex.q=(+ex.q||1)+qty; else { it.q=qty; C.inv.push(it); } saveC(); renderAll(); return true; }
 function libAddDo(c,k){ if(typeof C==="undefined"||!C) return;
   if(c==="spell"){ if(!C.spellcasting){ toast("This character has no spellcasting"); return; } var r=null; SPELLS.forEach(function(q){ if(q[0]===k) r=q; }); if(!r) return;
     if((C.spells||[]).some(function(x){ return x.n===k; })){ toast(k+" is already on your sheet"); return; }
     C.spells=C.spells||[]; C.spells.push({n:r[0],l:r[1],sch:r[2],ct:r[4],r:r[5],cmp:r[6],dur:r[7],conc:r[8],rit:r[9],sv:r[10],sum:r[11]||"",full:(typeof SPELL_FULL!=="undefined"&&SPELL_FULL[k])||"",cls:spClsJ(r),use:r[1]?"Prepared":"Cantrip",src:"Library",lib:1});
     saveC(); renderAll(); toast("Added "+k+" to your spells"); return; }
-  var it=null;
-  if(c==="item"){ DMGI.forEach(function(q){ if(q[0]===k) it=q; }); if(!it) return; it={n:k,q:1,w:0,eq:false,type:it[1],rar:it[2],d:String(it[4]||"").replace(/\*\*|\[\[|\]\]/g,""),lib:1}; }
-  else { var w=WEAPONS[k], a=ARMOR[k], gr=null; GEAR.forEach(function(q){ if(q[0]===k) gr=q; }); it={n:k,q:1,w:Number((w&&w.w)||(a&&a.w)||(gr&&gr[2])||0)||0,eq:false,d:ITEMDESC[k]||"",lib:1}; }
-  C.inv=C.inv||[]; var ex=C.inv.filter(function(y){ return y.n===k&&!y.eq; })[0]; if(ex&&c==="gear") ex.q=(+ex.q||1)+1; else C.inv.push(it);
-  saveC(); renderAll(); toast("Added "+k+" to your inventory"); }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
+  var qty=libQty(); if(libPut(c,k,qty)) toast("Added "+(qty>1?qty+" x ":"")+k+" to your inventory"); }
+/* Buy: the price comes out of your coins. Small coins go first, and a big coin is broken into change when needed */
+function libBuyDo(c,k){ var pr=libPrice(c,k); if(pr==null){ toast("This item has no listed price. Use Add."); return; } var qty=libQty(), cost=Math.round(pr*100*qty), co=coinsNow(), res=coinPay(co,cost);
+  if(!res){ toast("Not enough coin. It costs "+priceTxt(pr*qty)+" and you have "+fmtN(coinCp(co)/100)+" gp in all."); return; }
+  undoMark("Buy "+k); coinSet(res.c); libPut(c,k,qty); var ps=coinList(res.use), cs=coinList(res.chg);
+  toastU("Bought "+(qty>1?qty+" x ":"")+k+" for "+priceTxt(pr*qty)+". Paid "+ps+(cs?", change back: "+cs:"")+"."); if(sheetMode==="coin") coinRefresh(); }
+document.addEventListener("click",function(e){ var bb=e.target.closest&&e.target.closest("[data-libbuy]"); if(bb){ e.preventDefault(); var w=bb.getAttribute("data-libbuy").split("|"); libBuyDo(w[0],w.slice(1).join("|")); return; } var b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
 function libDetail(c,k){ var h="",t=k,sub="",x,i;
   if(c==="spell"){ var o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
   if(c==="rule"){ var gl=GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d}); if(!gl) return null; LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }

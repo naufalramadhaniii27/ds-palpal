@@ -81,18 +81,40 @@ function coinStrip(c){ var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],
   return '<button type="button" class="igp icoins" data-coinopen="1" aria-label="Manage Coin: '+o.map(function(k){ return fmtN(num(c[k[0]],0))+' '+k[1]; }).join(', ')+', '+t+' GP in all">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b><small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
 function coinTotal(c){ return Math.round(COINS.reduce(function(t,k){ return t+c[k[0]]*k[2]; },0)*100)/100; }
 function coinSet(c){ S.coins=c; S.coinBase=num(C.gp,0); save(); }
+/* T4: convert one coin into another, and pay a price with change. Values in copper: cp 1, sp 10, ep 50, gp 100, pp 1000 */
+var CVAL={cp:1,sp:10,ep:50,gp:100,pp:1000}, CORD=["cp","sp","ep","gp","pp"];
+function coinCp(c){ return CORD.reduce(function(t,k){ return t+num(c[k],0)*CVAL[k]; },0); }
+function coinList(o){ var a=[]; ["pp","gp","ep","sp","cp"].forEach(function(k){ if(o[k]>0) a.push(fmtN(o[k])+" "+k); }); return a.join(", "); }
+/* price in gold (may be a fraction) shown in the largest coin that keeps it whole */
+function priceTxt(gp){ var cp=Math.round(gp*100); if(cp%100===0) return fmtN(cp/100)+" gp"; if(cp%10===0) return fmtN(cp/10)+" sp"; return fmtN(cp)+" cp"; }
+/* pay price (in copper) from coins c. Spends the smallest coins first. When a big coin has to be broken, change comes back in gp, sp and cp. Returns null when there is not enough */
+function coinPay(c,price){ price=Math.round(price); if(coinCp(c)<price) return null; var n={}, use={pp:0,gp:0,ep:0,sp:0,cp:0}, chg={pp:0,gp:0,ep:0,sp:0,cp:0}, left=price;
+  CORD.forEach(function(k){ n[k]=num(c[k],0); });
+  CORD.forEach(function(k){ var t=Math.min(n[k],Math.floor(left/CVAL[k])); use[k]+=t; n[k]-=t; left-=t*CVAL[k]; });
+  if(left>0){ var b=CORD.filter(function(k){ return n[k]>0&&CVAL[k]>=left; })[0]; if(!b) return null; n[b]--; use[b]++; var ch=CVAL[b]-left; left=0;
+    ["gp","sp","cp"].forEach(function(k){ var t=Math.floor(ch/CVAL[k]); chg[k]=t; n[k]+=t; ch-=t*CVAL[k]; }); }
+  return {c:n,use:use,chg:chg}; }
+/* convert amt coins of type from into type to. A remainder that does not fill a whole coin of the new type stays as the old coin */
+function coinConv(c,from,to,amt){ amt=Math.floor(amt); if(from===to||amt<1) return {err:"Choose two different coins and an amount."}; if(amt>num(c[from],0)) return {err:"You only have "+fmtN(num(c[from],0))+" "+from+"."};
+  var val=amt*CVAL[from], cnt=Math.floor(val/CVAL[to]); if(cnt<1) return {err:amt+" "+from+" is worth less than one "+to+"."}; var rem=val-cnt*CVAL[to], back=Math.round(rem/CVAL[from]), n=Object.assign({},c);
+  n[from]=num(c[from],0)-amt+back; n[to]=num(c[to],0)+cnt; return {c:n,got:cnt,used:amt-back}; }
 var coinOpen=false;
 function coinHTML(){ var c=coinsNow(), ls=S.lifestyle||"", L=(typeof LIFESTYLE!=="undefined"?LIFESTYLE:[]), lo=L.filter(function(x){return x[0]===ls})[0];
   return '<div id="coinDlg"><button type="button" class="ctot" data-coin="tog" aria-expanded="'+coinOpen+'"><b>Total (in gp)</b><span>'+coinTotal(c)+'</span>'+CHEV+'</button>'+(coinOpen?'<p class="muted">Every coin converted to gold. Electrum, silver, and copper count as fractions of a gold piece.</p>':'')+
    '<div class="crows">'+COINS.map(function(k){ return '<div class="crow"><span class="cico c-'+k[0]+'"></span><span class="cnm"><b>'+k[1]+' ('+k[0]+')</b><small>'+k[3]+'</small></span><span class="cv" id="cv-'+k[0]+'">'+c[k[0]]+'</span></div>'; }).join("")+'</div>'+
    '<div class="info-h">Adjust Coin</div><div class="cadj">'+COINS.map(function(k){ return '<label><span>'+k[0].toUpperCase()+'</span><input type="number" min="0" inputmode="numeric" data-camt="'+k[0]+'" placeholder="0"></label>'; }).join("")+'</div>'+
+   '<div class="info-h">Convert Coin</div><div class="cconv"><label><span>From</span><select data-cvf aria-label="Convert from">'+CORD.slice().reverse().map(function(k){ return '<option value="'+k+'"'+(k==="gp"?' selected':'')+'>'+k.toUpperCase()+'</option>'; }).join("")+'</select></label><label><span>To</span><select data-cvt aria-label="Convert to">'+CORD.slice().reverse().map(function(k){ return '<option value="'+k+'"'+(k==="sp"?' selected':'')+'>'+k.toUpperCase()+'</option>'; }).join("")+'</select></label><label><span>Amount</span><input type="number" min="1" inputmode="numeric" data-cvamt placeholder="0" aria-label="Amount to convert"></label><button type="button" class="btn press" data-coin="conv">Convert</button></div><p class="muted" id="cvPrev" aria-live="polite"></p>'+
    '<div class="cbtns"><button type="button" class="btn press" data-coin="add">+ Add</button><button type="button" class="btn press" data-coin="rem">\u2212 Remove</button><button type="button" class="btn press" data-coin="clr">\u00d7 Clear</button></div>'+
    '<div class="info-h">Lifestyle Expenses</div><select data-life="1" aria-label="Lifestyle"><option value="">Choose a lifestyle</option>'+L.map(function(x){ return '<option value="'+x[0]+'"'+(x[0]===ls?' selected':'')+'>'+x[0]+' ('+x[1]+(x[1]==="Free"?'':' per day')+')</option>'; }).join("")+'</select>'+(lo?'<p class="info-d">'+esc(lo[2])+'</p>':'<p class="muted">Pick the lifestyle you pay for each week or month. It covers lodging, food, and upkeep.</p>')+'</div>'; }
 function openCoins(){ navStack=[]; openSheet("Manage Coin", coinHTML(), "coin"); }
 function coinRefresh(){ var b=$("#sheetBody"); if(b&&sheetMode==="coin") b.innerHTML=coinHTML(); renderInv(); }
+document.addEventListener("input",function(e){ var t=e.target; if(!t||!t.matches||!t.matches("[data-cvamt],[data-cvf],[data-cvt]")) return; var p=$("#cvPrev"); if(!p) return; var f=$("#coinDlg [data-cvf]").value, to=$("#coinDlg [data-cvt]").value, am=num($("#coinDlg [data-cvamt]").value,0), r=am>0?coinConv(coinsNow(),f,to,am):null;
+  p.textContent=!r?"":r.err?r.err:fmtN(r.used)+" "+f+" becomes "+fmtN(r.got)+" "+to+"."+(r.used<Math.floor(am)?" The other "+fmtN(Math.floor(am)-r.used)+" "+f+" stay as they are.":""); });
 document.addEventListener("click",function(e){ var b=e.target.closest("[data-coin],[data-coinopen]"); if(!b) return;
   if(b.hasAttribute("data-coinopen")){ openCoins(); return; }
   var a=b.getAttribute("data-coin"); if(a==="tog"){ coinOpen=!coinOpen; coinRefresh(); return; }
+  if(a==="conv"){ var c0=coinsNow(), cf=$("#coinDlg [data-cvf]").value, ct=$("#coinDlg [data-cvt]").value, r0=coinConv(c0,cf,ct,num($("#coinDlg [data-cvamt]").value,0)); if(r0.err){ toast(r0.err); return; }
+    undoMark("Convert coins"); coinSet(r0.c); coinRefresh(); toastU("Converted "+fmtN(r0.used)+" "+cf+" into "+fmtN(r0.got)+" "+ct+"."); return; }
   var c=coinsNow(), amt={}, any=false; $$("#coinDlg [data-camt]").forEach(function(i){ var v=Math.floor(num(i.value,0)); amt[i.getAttribute("data-camt")]=v>0?v:0; if(v>0) any=true; });
   if(a==="clr"){ $$("#coinDlg [data-camt]").forEach(function(i){ i.value=""; }); return; }
   if(!any){ toast("Type an amount first."); return; }
