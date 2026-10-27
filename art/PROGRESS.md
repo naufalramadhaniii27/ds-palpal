@@ -401,3 +401,8 @@ art/batch/icons/weapon-mastery/push-mastery.png
 art/batch/icons/weapon-mastery/sap-mastery.png
 art/batch/icons/weapon-mastery/slow-mastery.png
 art/batch/icons/weapon-mastery/topple-mastery.png
+art/batch/icons/weapon-mastery/vex-mastery.png
+art/batch/icons/coins/copper-piece.png
+art/batch/icons/coins/silver-piece.png
+art/batch/icons/coins/electrum-piece.png
+art/batch/icons/coins/gold-piece.png
