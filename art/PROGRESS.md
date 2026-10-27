@@ -379,3 +379,8 @@ art/batch/icons/skills/athletics.png
 art/batch/icons/skills/deception.png
 art/batch/icons/skills/history.png
 art/batch/icons/skills/insight.png
+art/batch/icons/skills/intimidation.png
+art/batch/icons/skills/investigation.png
+art/batch/icons/skills/medicine.png
+art/batch/icons/skills/nature.png
+art/batch/icons/skills/perception.png
