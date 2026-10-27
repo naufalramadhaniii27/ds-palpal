@@ -215,8 +215,37 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | builder/98-close.wrap.js | pembungkus IIFE | 7 |
 | data/rs14-2014-wording.js | data | 1.686 |
 
+## Tambahan sejak peta di atas dibuat
+
+File di manifest yang belum tercatat di tabel utama. Urutan ikut manifest. Catatan: `fx/23-class-art-data.js` dimuat sebelum `app/00-open.wrap.js` supaya `window.__ART` sudah ada saat Home pertama digambar.
+
+| File | Peran | Ukuran |
+|---|---|---|
+| css/29-motion-off.css | CSS | 695 |
+| css/30-tap-44.css | CSS | 1.122 |
+| css/31-home-hero.css | CSS | 8.654 |
+| css/32-class-art.css | CSS | 2.254 |
+| fx/23-class-art-data.js | efek | 16.535 |
+| fx/22-home-hero.js | efek | 1.030 |
+| fx/24-class-art.js | efek | 7.217 |
+
+## Seni gambar (T6)
+
+| Tempat | Isi |
+|---|---|
+| `img/` | Hasil pipeline, AVIF. Dilayani sebagai file statis, di-cache `sw.js` saat dipakai. Jangan diedit tangan |
+| `img/manifest.json` | Peta gambar. Salinan JS ada di `src/fx/23-class-art-data.js` (`window.__ART`) |
+| `tools/art_pipeline.py` | `python3 tools/art_pipeline.py SRC_DIR [--only emblems,scenes,icons,scenes2,vignettes,subclass]`. SRC_DIR adalah folder PNG dari branch Codex `art-batch` (`art/batch`). Jalankan ulang bila Codex menambah gambar |
+| `src/fx/24-class-art.js` | Dua lapis `.cls-art-l` bergantian (crossfade) di belakang sheet. Scene kelas untuk Main dan Skills, scene tab untuk tab lain. Lapis `.bld-art` di dalam `#bld` untuk langkah Builder. Pembantu: `__artIc(cat,name)` ikon, `__artVig(grup,id,px)` gambar momen, `__artSub(kelas,sub,px)` emblem subclass, `__bldArt(step,B)` dipanggil `render()` Builder, `__miArtH` baris Settings |
+| `src/css/32-class-art.css` | Gaya semua lapis dan gambar kecil. Saklar Art Off (`mi-clsart`), kontras tinggi dan cetak menyembunyikannya |
+
+Folder gambar: `emblem/<kelas>`, `emblem/sub/<kelas>-<subclass>`, `scene/<kelas>-pc|phone`, `icon/<jenis>/<slug>`, `scn/<grup>/<id>-pc|phone` (tab, builder, screen, species, background), `vig/<grup>/<id>` (empty, moment, state).
+
+Tes terkait: `tests/class_art.py`, `builder_art.py`, `vignettes.py`, `sub_art.py`, `audio_ctx.py`, `lib_drag.py`, `builder_pal.py`.
+
 ## Riwayat
 
 - bf7444a: `src/` pertama, dipecah otomatis per 25 KB di baris banner, nama dari teks banner.
 - T0 (commit ini): dipotong ulang di batas bagian yang bermakna (banner `=====` dan `----------` dari source asli), dipisah per peran, nama file dari isi. Tiap potongan berada di batas pernyataan tingkat atas (dicek dengan parser acorn), jadi tiap file JS lolos `node --check`. Isi digabung tetap identik byte per byte dengan `index.html` v102 (sha256 aac631cf...).
 - T1 (branch t1-seamless): pemuat data Builder per irisan 10 ms sejak frame kedua, tap sebelum pemuat siap tidak hilang, perpindahan tersambung Home dan sheet (`fx/21-connected-home-sheet.js`, `css/28-connected-home-sheet.css`, `boot/arrive-flag.js`, kunci sessionStorage `mi-cx`).
+- T5 dan T6 (branch t5-high-tech): satu AudioContext bersama, drag dari Library, daftar lompat Builder, seni gambar per kelas, tab, langkah Builder, empty state, momen dan subclass.

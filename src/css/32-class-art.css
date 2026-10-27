@@ -22,3 +22,6 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 .mi-lv .mi-vig{margin-bottom:6px}.mi-roll-o .mi-vig{margin-bottom:-4px}
 #offNote{display:flex;align-items:center;gap:10px}#offNote .mi-vig{flex:none;border-radius:8px;filter:none}
 @media print{.mi-vig{display:none}}
+.art-sub{display:inline-block;vertical-align:-7px;margin-right:8px;border-radius:6px;object-fit:contain}
+.sub-em{display:flex;justify-content:center;margin:6px 0 4px}.sub-em .art-sub{margin:0;border-radius:12px;vertical-align:baseline}
+@media print{.art-sub{display:none}}

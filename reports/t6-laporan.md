@@ -17,20 +17,33 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 ## Sudah terpasang
 | Butir | Tempat |
 |---|---|
-| Scene kelas di belakang sheet | PC lebar penuh, HP lebih samar. Kartu tetap solid |
+| Scene kelas di belakang sheet | Main dan Skills (HP), Actions juga di PC. PC lebar penuh, HP lebih samar. Kartu tetap solid |
+| Scene per tab | Spells, Inventory, Features, Description, Notes, Extras (dan Actions di HP). Dua lapis bergantian, crossfade 0,45 detik |
+| Scene langkah Builder | Class mengikuti kelas pilihan, Species dan Background mengikuti pilihan (cadangan scene Builder bila tidak ada gambar), Abilities, Equipment, What's Next. Opasitas 16 persen (22 di PC) |
 | Emblem kelas di slot potret kosong | Potret yang user pasang selalu menang |
-| Ikon spell | Daftar spell sheet dan baris Library (133 dari 397 spell punya ikon) |
-| Ikon senjata | Baris Library kategori Equipment |
-| Ikon kondisi | Chip kondisi aktif |
-| Saklar Art di Settings | On atau Off, tersimpan di mi-clsart |
+| Gambar empty state | Home (karakter), item, spell, makhluk. Cadangan: ikon gambar lama |
+| Gambar momen | Natural 20, Natural 1 (overlay roll), Level Up, catatan offline |
+| Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
+| Ikon spell, senjata, kondisi | Daftar spell, Library Equipment, chip kondisi, inventori |
+| Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
+
+Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Home pertama sudah punya `window.__ART`.
 
 ## Tes
-class_art 28 cek, scenarios 24/24, flow 16/16, overflow 0, overlap 0, off_mode 0 animasi. axe 0 pelanggaran.
+| Tes | Hasil |
+|---|---|
+| class_art | 22 cek lolos, termasuk ganti scene saat pindah ke Spells |
+| builder_art | 14 lolos |
+| vignettes | 14 lolos, termasuk roll nat 20 dan nat 1, offline |
+| sub_art | 14 lolos |
+| scenarios 24, flow 16 | lolos |
+| overflow 0, overlap 0, off_mode 0 animasi | lolos |
+| build --check | lolos |
 
 ## Belum
 | Butir | Alasan |
 |---|---|
-| Scene species, background, layar, langkah Builder | Hanya sebagian gambar jadi, perlu aturan pemetaan |
+| Vignette state (backup-done, import-failed, saving, storage-full, update) dan momen (death-save, inspiration, level-20, stabilized, subclass) | Belum ada titik pasang yang tepat. Perlu keputusan di mana tampil |
+| Scene layar (bastion, combat, journal, rest, party, settings, tour) | Layar itu belum punya lapis latar sendiri |
 | Ikon item sihir, school, damage, creature, skill | Ada di manifest, belum dipasang di UI |
-| Scene HP sebagai pita atas | Diganti latar samar penuh, karena pita tertutup header dan kartu |
-| Audit kontras per scene | Kartu solid, tetapi belum diukur otomatis |
+| Audit kontras per scene | Kartu solid dan scene samar, tetapi belum diukur otomatis. Selera gambar user yang menilai |
