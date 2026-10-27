@@ -9,7 +9,7 @@ function renderConds(){
   var list=activeConds();
   concAuto();/* v21 RU50 */ modeClean(); modeAuto();/* v22 M2, m3 */
   var any=list.length||S.exh;/* v30 B3, RU84: a titled row; Exhaustion is a chip too; empty is a clear Add condition button */
-  var h = '<span class="cond-l">Conditions</span>'+modeChips()+concChip()+(S.exh?'<button type="button" class="chip on exh-c press" data-info="g:Exhaustion">Exhaustion '+S.exh+'</button>':'')+list.map(function(c){return '<button type="button" class="chip on cnd press'+(c.hb?' hb':'')+'" data-info="g:'+c.k+'">'+c.k+(c.extra||"")+'</button>'}).join("");
+  var h = '<span class="cond-l">Conditions</span>'+modeChips()+concChip()+(S.exh?'<button type="button" class="chip on exh-c press" data-info="g:Exhaustion">Exhaustion '+S.exh+'</button>':'')+list.map(function(c){return '<button type="button" class="chip on cnd press'+(c.hb?' hb':'')+'" data-info="g:'+c.k+'">'+(window.__artIc?window.__artIc("condition",c.k):"")+c.k+(c.extra||"")+'</button>'}).join("");
   h += '<button type="button" class="chip add press" id="condOpen">'+(any?'Edit':'Add condition')+'</button>';
   if(S.exh) h += '<button type="button" class="exh-note tx" data-info="g:Exhaustion">Exhaustion '+S.exh+': '+exTxt(S.exh)+'</button>';
   $("#conds").innerHTML = h; concHead(); vbSync();
