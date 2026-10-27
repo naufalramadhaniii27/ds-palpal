@@ -13,8 +13,8 @@
   function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
 
   /* X1 sound: made on the fly with Web Audio, nothing to download. On by default, Settings turns it off */
-  var AC=null; function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
-  function ctx(){ if(!AC){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC=new A(); } if(AC.state==="suspended") AC.resume(); return AC; }
+  function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
+  function ctx(){ return MI.ac(); }
   function tone(f,t0,dur,type,vol,f2){ var c=ctx(); if(!c) return; var o=c.createOscillator(), g=c.createGain(), t=c.currentTime+t0; o.type=type||"sine"; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+dur); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol||.15,t+.012); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+dur+.02); }
   function noise(t0,dur,freq,vol){ var c=ctx(); if(!c) return; var n=Math.floor(c.sampleRate*dur), b=c.createBuffer(1,n,c.sampleRate), d=b.getChannelData(0); for(var i=0;i<n;i++) d[i]=(Math.random()*2-1)*(1-i/n);
     var s=c.createBufferSource(), f=c.createBiquadFilter(), g=c.createGain(), t=c.currentTime+t0; s.buffer=b; f.type="bandpass"; f.frequency.value=freq; f.Q.value=1.4; g.gain.value=vol||.25; s.connect(f); f.connect(g); g.connect(c.destination); s.start(t); }

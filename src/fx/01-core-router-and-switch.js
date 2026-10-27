@@ -27,6 +27,8 @@ var MI=(function(){
     g.setAttribute("aria-hidden","true"); g.classList.add("mi-ghost-copy");
     g.style.cssText+=";position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;height:"+r.height+"px;margin:0;z-index:var(--z-fx);pointer-events:none;box-sizing:border-box;background:"+cs.backgroundColor+";border-radius:"+cs.borderRadius;
     document.body.appendChild(g); setTimeout(function(){ g.remove(); },3000); return g; };
+  /* one shared Web Audio context for sound effects and music (T5). Created on first use, resumed when suspended */
+  var AC0=null; M.ac=function(){ if(!AC0){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC0=new A(); } if(AC0.state==="suspended") AC0.resume(); return AC0; };
   M.apply(); return M;
 })();
 window.__MI=MI;

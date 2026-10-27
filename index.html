@@ -9447,6 +9447,8 @@ var MI=(function(){
     g.setAttribute("aria-hidden","true"); g.classList.add("mi-ghost-copy");
     g.style.cssText+=";position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;height:"+r.height+"px;margin:0;z-index:var(--z-fx);pointer-events:none;box-sizing:border-box;background:"+cs.backgroundColor+";border-radius:"+cs.borderRadius;
     document.body.appendChild(g); setTimeout(function(){ g.remove(); },3000); return g; };
+  /* one shared Web Audio context for sound effects and music (T5). Created on first use, resumed when suspended */
+  var AC0=null; M.ac=function(){ if(!AC0){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC0=new A(); } if(AC0.state==="suspended") AC0.resume(); return AC0; };
   M.apply(); return M;
 })();
 window.__MI=MI;
@@ -10612,8 +10614,8 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
 
   /* X1 sound: made on the fly with Web Audio, nothing to download. On by default, Settings turns it off */
-  var AC=null; function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
-  function ctx(){ if(!AC){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC=new A(); } if(AC.state==="suspended") AC.resume(); return AC; }
+  function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
+  function ctx(){ return MI.ac(); }
   function tone(f,t0,dur,type,vol,f2){ var c=ctx(); if(!c) return; var o=c.createOscillator(), g=c.createGain(), t=c.currentTime+t0; o.type=type||"sine"; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+dur); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol||.15,t+.012); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+dur+.02); }
   function noise(t0,dur,freq,vol){ var c=ctx(); if(!c) return; var n=Math.floor(c.sampleRate*dur), b=c.createBuffer(1,n,c.sampleRate), d=b.getChannelData(0); for(var i=0;i<n;i++) d[i]=(Math.random()*2-1)*(1-i/n);
     var s=c.createBufferSource(), f=c.createBiquadFilter(), g=c.createGain(), t=c.currentTime+t0; s.buffer=b; f.type="bandpass"; f.frequency.value=freq; f.Q.value=1.4; g.gain.value=vol||.25; s.connect(f); f.connect(g); g.connect(c.destination); s.start(t); }
@@ -10999,7 +11001,7 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
 
   /* G6 music, made on the fly with Web Audio. Off unless chosen in Settings. Stops while the tab is hidden */
   var AC=null, out=null, timer=0, scene=ls("mi-music")||"off", next=0, step=0;
-  function ctx(){ if(!AC){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC=new A(); out=AC.createGain(); out.gain.value=.0001; var lp=AC.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=5200; out.connect(lp); lp.connect(AC.destination); } if(AC.state==="suspended") AC.resume(); return AC; }
+  function ctx(){ var c=MI.ac(); if(!c) return null; if(!AC){ AC=c; out=AC.createGain(); out.gain.value=.0001; var lp=AC.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=5200; out.connect(lp); lp.connect(AC.destination); } return AC; }
   function note(f,t,d,type,v,att){ var o=AC.createOscillator(), g=AC.createGain(); o.type=type||"triangle"; o.frequency.setValueAtTime(f,t); g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+(att||.01)); g.gain.exponentialRampToValueAtTime(.0001,t+d); o.connect(g); g.connect(out); o.start(t); o.stop(t+d+.05); }
   function nz(t,d,f,v,q){ var n=Math.floor(AC.sampleRate*d), b=AC.createBuffer(1,n,AC.sampleRate), x=b.getChannelData(0); for(var i=0;i<n;i++) x[i]=Math.random()*2-1; var s=AC.createBufferSource(), fl=AC.createBiquadFilter(), g=AC.createGain(); s.buffer=b; fl.type="bandpass"; fl.frequency.value=f; fl.Q.value=q||1; g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+d*.3); g.gain.exponentialRampToValueAtTime(.0001,t+d); s.connect(fl); fl.connect(g); g.connect(out); s.start(t); }
   var M=function(n){ return 440*Math.pow(2,(n-69)/12); };

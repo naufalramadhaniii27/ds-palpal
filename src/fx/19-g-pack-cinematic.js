@@ -29,7 +29,7 @@
 
   /* G6 music, made on the fly with Web Audio. Off unless chosen in Settings. Stops while the tab is hidden */
   var AC=null, out=null, timer=0, scene=ls("mi-music")||"off", next=0, step=0;
-  function ctx(){ if(!AC){ var A=window.AudioContext||window.webkitAudioContext; if(!A) return null; AC=new A(); out=AC.createGain(); out.gain.value=.0001; var lp=AC.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=5200; out.connect(lp); lp.connect(AC.destination); } if(AC.state==="suspended") AC.resume(); return AC; }
+  function ctx(){ var c=MI.ac(); if(!c) return null; if(!AC){ AC=c; out=AC.createGain(); out.gain.value=.0001; var lp=AC.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=5200; out.connect(lp); lp.connect(AC.destination); } return AC; }
   function note(f,t,d,type,v,att){ var o=AC.createOscillator(), g=AC.createGain(); o.type=type||"triangle"; o.frequency.setValueAtTime(f,t); g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+(att||.01)); g.gain.exponentialRampToValueAtTime(.0001,t+d); o.connect(g); g.connect(out); o.start(t); o.stop(t+d+.05); }
   function nz(t,d,f,v,q){ var n=Math.floor(AC.sampleRate*d), b=AC.createBuffer(1,n,AC.sampleRate), x=b.getChannelData(0); for(var i=0;i<n;i++) x[i]=Math.random()*2-1; var s=AC.createBufferSource(), fl=AC.createBiquadFilter(), g=AC.createGain(); s.buffer=b; fl.type="bandpass"; fl.frequency.value=f; fl.Q.value=q||1; g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+d*.3); g.gain.exponentialRampToValueAtTime(.0001,t+d); s.connect(fl); fl.connect(g); g.connect(out); s.start(t); }
   var M=function(n){ return 440*Math.pow(2,(n-69)/12); };
