@@ -885,3 +885,8 @@ art/batch/icons/items/magic/uncommon/driftglobe.png
 art/batch/icons/items/magic/uncommon/dust-of-disappearance.png
 art/batch/icons/items/magic/uncommon/dust-of-dryness.png
 art/batch/icons/items/magic/uncommon/dust-of-sneezing-and-choking.png
+art/batch/icons/items/magic/very-rare/dwarven-plate.png
+art/batch/icons/items/magic/very-rare/dwarven-thrower.png
+art/batch/icons/items/magic/common/ear-horn-of-hearing.png
+art/batch/icons/items/magic/very-rare/efreeti-bottle.png
+art/batch/icons/items/magic/legendary/efreeti-chain.png
