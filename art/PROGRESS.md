@@ -579,3 +579,8 @@ art/batch/icons/spells/level-1/find-familiar.png
 art/batch/icons/spells/level-1/fog-cloud.png
 art/batch/icons/spells/level-1/goodberry.png
 art/batch/icons/spells/level-1/grease.png
+art/batch/icons/spells/level-1/hail-of-thorns.png
+art/batch/icons/spells/level-1/ice-knife.png
+art/batch/icons/spells/level-1/tensers-floating-disk.png
+art/batch/icons/spells/level-1/unseen-servant.png
+art/batch/icons/spells/level-1/beast-bond.png
