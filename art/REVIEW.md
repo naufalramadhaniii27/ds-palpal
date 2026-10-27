@@ -21,3 +21,5 @@ batch-008 v3 complete under MASTER.md at 681fadc: 10 images; exact prompts logge
 batch-009 v3 complete under MASTER.md at 681fadc: 2 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.
 
 batch-010 v3 complete: 20 subclass emblems, warm approved anime prop style, no gore. Transparent visible-content crop and uniform scale to70% on1024px canvas. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+batch-011 v3 complete: 20 subclass emblems, warm approved anime prop style, no gore. Transparent visible-content crop and uniform scale to70% on1024px canvas. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.

@@ -196,3 +196,8 @@ art/batch/emblems/subclass/ranger-hunter.png
 art/batch/emblems/subclass/rogue-arcane-trickster.png
 art/batch/emblems/subclass/rogue-assassin.png
 art/batch/emblems/subclass/rogue-soulknife.png
+art/batch/emblems/subclass/rogue-thief.png
+art/batch/emblems/subclass/sorcerer-aberrant-sorcery.png
+art/batch/emblems/subclass/sorcerer-clockwork-sorcery.png
+art/batch/emblems/subclass/sorcerer-draconic-sorcery.png
+art/batch/emblems/subclass/sorcerer-wild-magic-sorcery.png

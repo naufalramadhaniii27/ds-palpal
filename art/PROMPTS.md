@@ -1951,3 +1951,73 @@ Two translucent violet psychic blades cross above a closed-eye charm carved in w
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-011 v3 — art/batch/emblems/subclass/rogue-thief.png
+
+Subclass emblem for Thief (Rogue): a coin purse with a grappling hook and rope. Glow color: violet.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A warm russet leather coin purse with a short neatly coiled hemp rope and a small matte-brass grappling hook tucked close beside it. Blank coin edges peep from purse, tight violet accent glow only.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-011 v3 — art/batch/emblems/subclass/sorcerer-aberrant-sorcery.png
+
+Subclass emblem for Aberrant Sorcery (Sorcerer): a strange tentacled eye inside a crystal shard. Glow color: crimson pink.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A tall asymmetrical clear rose crystal shard encases one strange eye with a few smooth curling tentacle motifs, drawn as a magical glass object rather than flesh. Crimson-pink glow shines through the crystal.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-011 v3 — art/batch/emblems/subclass/sorcerer-clockwork-sorcery.png
+
+Subclass emblem for Clockwork Sorcery (Sorcerer): a glowing gear orbiting a small brass sphere. Glow color: crimson pink.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A single glowing warm-brass gear orbits a small brass sphere, compact circular motion, no clock face, numbers, writing or symbols. Crimson-pink glow sits along the gear's inner edge.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-011 v3 — art/batch/emblems/subclass/sorcerer-draconic-sorcery.png
+
+Subclass emblem for Draconic Sorcery (Sorcerer): a dragon wing wrapping a flame. Glow color: crimson pink.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+One terracotta dragon wing curls protectively around a plain crimson-pink flame. The flame has no face or eyes; wing is an elegant natural membrane prop with warm cel shading, no claws or gore.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-011 v3 — art/batch/emblems/subclass/sorcerer-wild-magic-sorcery.png
+
+Subclass emblem for Wild Magic Sorcery (Sorcerer): a cracked dice-shaped crystal with blank faces spraying random colorful sparks. Glow color: crimson pink.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A faceted dice-shaped crystal with completely blank faces and a single visible internal crack sprays a small purposeful fan of colorful natural jewel-toned sparks. Main glow crimson pink, no pips or numbers.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
