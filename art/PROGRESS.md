@@ -362,3 +362,10 @@ art/batch/icons/spell-schools/evocation-school.png
 art/batch/icons/spell-schools/illusion-school.png
 art/batch/icons/spell-schools/necromancy-school.png
 art/batch/icons/spell-schools/transmutation-school.png
+
+## batch-024 v3
+art/batch/icons/abilities/strength.png
+art/batch/icons/abilities/dexterity.png
+art/batch/icons/abilities/constitution.png
+art/batch/icons/abilities/intelligence.png
+art/batch/icons/abilities/wisdom.png
