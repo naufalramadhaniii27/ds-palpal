@@ -92,3 +92,8 @@ art/batch/scenes/class/warlock-phone.png
 art/batch/scenes/class/wizard-pc.png
 art/batch/scenes/class/wizard-phone.png
 art/batch/scenes/class/artificer-pc.png
+art/batch/scenes/class/artificer-phone.png
+art/batch/scenes/species/aasimar-pc.png
+art/batch/scenes/species/aasimar-phone.png
+art/batch/scenes/species/dragonborn-pc.png
+art/batch/scenes/species/dragonborn-phone.png
