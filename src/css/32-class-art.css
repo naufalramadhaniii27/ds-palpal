@@ -27,3 +27,7 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 @media print{.art-sub{display:none}}
 .hbkl.warn .mi-vig{display:inline-block;vertical-align:middle;margin:0 10px 4px 0;border-radius:8px;filter:none}
 .dsg-t .mi-vig{float:left;margin:0 12px 4px 0;border-radius:10px;filter:none}
+#sheet.sh-scn::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.18;border-radius:inherit;background:var(--sh-ph) center top/cover no-repeat}
+@media (min-width:760px){#sheet.sh-scn::before{background-image:var(--sh-pc);background-position:center}}
+:root[data-hc] #sheet.sh-scn::before{display:none}
+@media print{#sheet.sh-scn::before{display:none}}

@@ -42,6 +42,7 @@ async def main():
             chk(t + " only one layer shows", await pg.evaluate("document.querySelectorAll('.cls-art-l.on').length===1"))
             chk(t + " empty portrait shows the emblem", await pg.evaluate("document.documentElement.classList.contains('cls-emb')&&getComputedStyle(document.querySelector('.photo .ph-sil')).backgroundImage.indexOf('emblem')>0"))
             await pg.evaluate("document.getElementById('themeBtn').click()"); await pg.wait_for_selector('[data-miart="off"]'); await pg.wait_for_timeout(300)
+            chk(t + " Settings sheet has its faint scene", await pg.evaluate("document.getElementById('sheet').classList.contains('sh-scn')&&getComputedStyle(document.getElementById('sheet'),'::before').pointerEvents==='none'"))
             chk(t + " Settings has the Class art switch, On is selected", await pg.evaluate("document.querySelector('[data-miart=on]').getAttribute('aria-pressed')==='true'"))
             await pg.evaluate("document.querySelector('[data-miart=off]').click()"); await pg.wait_for_timeout(500)
             chk(t + " off switch removes the layer", await pg.evaluate("!document.documentElement.classList.contains('cls-art')"))

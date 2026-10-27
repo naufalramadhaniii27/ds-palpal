@@ -27,6 +27,10 @@
   try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"],["moment","level-20"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
   /* Subclass emblem: window.__artSub("Fighter","Champion") gives <img> html, or "" */
   window.__artSub=function(cl,sub,px){ var id=bslug(cl)+"-"+bslug(sub); if(!A.esub||A.esub.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="art-sub" src="img/emblem/sub/'+id+'.avif" width="'+(px||28)+'" height="'+(px||28)+'" alt="" loading="lazy" decoding="async">'; };
+  /* Bottom sheet: Settings and the rest pages get a faint scene behind their content */
+  window.__artSheet=function(mode,title){ var sh=D.getElementById("sheet"); if(!sh) return; var id=mode==="theme"?"settings":mode==="rest"?(/^Short/.test(title)?"short-rest":"long-rest"):"", x=id&&A.scn&&A.scn.screen&&A.scn.screen[id];
+    if(!x||!x.pc||!x.phone||ls("mi-clsart")==="off"){ sh.classList.remove("sh-scn"); sh.style.removeProperty("--sh-pc"); sh.style.removeProperty("--sh-ph"); return; }
+    sh.style.setProperty("--sh-pc",'url("'+x.pc+'")'); sh.style.setProperty("--sh-ph",'url("'+x.phone+'")'); sh.classList.add("sh-scn"); };
   /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
   var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
   function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }

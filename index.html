@@ -4382,6 +4382,10 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 @media print{.art-sub{display:none}}
 .hbkl.warn .mi-vig{display:inline-block;vertical-align:middle;margin:0 10px 4px 0;border-radius:8px;filter:none}
 .dsg-t .mi-vig{float:left;margin:0 12px 4px 0;border-radius:10px;filter:none}
+#sheet.sh-scn::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.18;border-radius:inherit;background:var(--sh-ph) center top/cover no-repeat}
+@media (min-width:760px){#sheet.sh-scn::before{background-image:var(--sh-pc);background-position:center}}
+:root[data-hc] #sheet.sh-scn::before{display:none}
+@media print{#sheet.sh-scn::before{display:none}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -5716,6 +5720,7 @@ function openSheet(title, html, mode, wide){
   $("#sheetBack").hidden = navStack.length<2;
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
+  try{ window.__artSheet&&window.__artSheet(mode,title); }catch(er){}
   $("#scrim").classList.add("on"); sheet.classList.add("on"); dockApply(mode,wide); shOpened();/* v31 p14, p16 */
   setTimeout(function(){ var b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
@@ -11268,6 +11273,10 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"],["moment","level-20"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
   /* Subclass emblem: window.__artSub("Fighter","Champion") gives <img> html, or "" */
   window.__artSub=function(cl,sub,px){ var id=bslug(cl)+"-"+bslug(sub); if(!A.esub||A.esub.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="art-sub" src="img/emblem/sub/'+id+'.avif" width="'+(px||28)+'" height="'+(px||28)+'" alt="" loading="lazy" decoding="async">'; };
+  /* Bottom sheet: Settings and the rest pages get a faint scene behind their content */
+  window.__artSheet=function(mode,title){ var sh=D.getElementById("sheet"); if(!sh) return; var id=mode==="theme"?"settings":mode==="rest"?(/^Short/.test(title)?"short-rest":"long-rest"):"", x=id&&A.scn&&A.scn.screen&&A.scn.screen[id];
+    if(!x||!x.pc||!x.phone||ls("mi-clsart")==="off"){ sh.classList.remove("sh-scn"); sh.style.removeProperty("--sh-pc"); sh.style.removeProperty("--sh-ph"); return; }
+    sh.style.setProperty("--sh-pc",'url("'+x.pc+'")'); sh.style.setProperty("--sh-ph",'url("'+x.phone+'")'); sh.classList.add("sh-scn"); };
   /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
   var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
   function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }

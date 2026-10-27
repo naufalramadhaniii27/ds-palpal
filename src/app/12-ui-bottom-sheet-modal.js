@@ -10,6 +10,7 @@ function openSheet(title, html, mode, wide){
   $("#sheetBack").hidden = navStack.length<2;
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
+  try{ window.__artSheet&&window.__artSheet(mode,title); }catch(er){}
   $("#scrim").classList.add("on"); sheet.classList.add("on"); dockApply(mode,wide); shOpened();/* v31 p14, p16 */
   setTimeout(function(){ var b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
