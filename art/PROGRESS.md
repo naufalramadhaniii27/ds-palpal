@@ -523,3 +523,10 @@ art/batch/icons/spells/cantrips/fire-bolt.png
 art/batch/icons/spells/cantrips/frostbite.png
 art/batch/icons/spells/cantrips/green-flame-blade.png
 art/batch/icons/spells/cantrips/light.png
+
+## batch-032 v3
+art/batch/icons/spells/cantrips/lightning-lure.png
+art/batch/icons/spells/cantrips/ray-of-frost.png
+art/batch/icons/spells/cantrips/sacred-flame.png
+art/batch/icons/spells/cantrips/shocking-grasp.png
+art/batch/icons/spells/cantrips/sorcerous-burst.png
