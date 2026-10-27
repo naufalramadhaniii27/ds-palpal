@@ -483,3 +483,8 @@ art/batch/icons/items/weapons/whip.png
 art/batch/icons/items/weapons/blowgun.png
 art/batch/icons/items/weapons/hand-crossbow.png
 art/batch/icons/items/weapons/heavy-crossbow.png
+art/batch/icons/items/weapons/longbow.png
+art/batch/icons/items/weapons/musket.png
+art/batch/icons/items/weapons/pistol.png
+art/batch/icons/items/armor/padded-armor.png
+art/batch/icons/items/armor/leather-armor.png
