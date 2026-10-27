@@ -557,3 +557,8 @@ art/batch/icons/spells/cantrips/shillelagh.png
 art/batch/icons/spells/cantrips/thaumaturgy.png
 art/batch/icons/spells/cantrips/thorn-whip.png
 art/batch/icons/spells/level-1/absorb-elements.png
+art/batch/icons/spells/level-1/alarm.png
+art/batch/icons/spells/level-1/armor-of-agathys.png
+art/batch/icons/spells/level-1/ceremony.png
+art/batch/icons/spells/level-1/cure-wounds.png
+art/batch/icons/spells/level-1/healing-word.png
