@@ -802,3 +802,8 @@ art/batch/icons/items/magic/rare/armor-of-resistance.png
 art/batch/icons/items/magic/rare/armor-of-vulnerability.png
 art/batch/icons/items/magic/uncommon/arrow.png
 art/batch/icons/items/magic/rare/arrow-catching-shield.png
+art/batch/icons/items/magic/artifact/axe-of-the-dwarvish-lords.png
+art/batch/icons/items/magic/uncommon/baba-yagas-dancing-broom.png
+art/batch/icons/items/magic/rare/bag-of-beans.png
+art/batch/icons/items/magic/very-rare/bag-of-devouring.png
+art/batch/icons/items/magic/uncommon/bag-of-holding.png
