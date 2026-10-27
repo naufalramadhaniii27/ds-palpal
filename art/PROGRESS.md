@@ -276,3 +276,10 @@ art/batch/scenes/tab/extras-pc.png
 art/batch/scenes/tab/extras-phone.png
 art/batch/scenes/screen/party-pc.png
 art/batch/scenes/screen/party-phone.png
+
+## batch-018 v3
+art/batch/scenes/screen/combat-pc.png
+art/batch/scenes/screen/combat-phone.png
+art/batch/scenes/screen/short-rest-pc.png
+art/batch/scenes/screen/short-rest-phone.png
+art/batch/scenes/screen/long-rest-pc.png
