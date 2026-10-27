@@ -384,3 +384,10 @@ art/batch/icons/skills/investigation.png
 art/batch/icons/skills/medicine.png
 art/batch/icons/skills/nature.png
 art/batch/icons/skills/perception.png
+
+## batch-025 v3
+art/batch/icons/skills/performance.png
+art/batch/icons/skills/persuasion.png
+art/batch/icons/skills/religion.png
+art/batch/icons/skills/sleight-of-hand.png
+art/batch/icons/skills/stealth.png
