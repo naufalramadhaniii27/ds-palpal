@@ -501,3 +501,10 @@ art/batch/icons/items/armor/chain-mail.png
 art/batch/icons/items/armor/splint-armor.png
 art/batch/icons/items/armor/plate-armor.png
 art/batch/icons/items/armor/shield.png
+
+## batch-031 v3
+art/batch/icons/spells/cantrips/blade-ward.png
+art/batch/icons/spells/cantrips/resistance.png
+art/batch/icons/spells/cantrips/create-bonfire.png
+art/batch/icons/spells/cantrips/infestation.png
+art/batch/icons/spells/cantrips/mage-hand.png
