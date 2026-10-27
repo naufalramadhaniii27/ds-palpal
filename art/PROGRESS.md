@@ -466,3 +466,10 @@ art/batch/icons/items/weapons/glaive.png
 art/batch/icons/items/weapons/greataxe.png
 art/batch/icons/items/weapons/greatsword.png
 art/batch/icons/items/weapons/halberd.png
+
+## batch-029 v3
+art/batch/icons/items/weapons/lance.png
+art/batch/icons/items/weapons/longsword.png
+art/batch/icons/items/weapons/maul.png
+art/batch/icons/items/weapons/morningstar.png
+art/batch/icons/items/weapons/pike.png
