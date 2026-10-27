@@ -611,3 +611,10 @@ art/batch/icons/spells/level-1/burning-hands.png
 art/batch/icons/spells/level-1/chaos-bolt.png
 art/batch/icons/spells/level-1/chromatic-orb.png
 art/batch/icons/spells/level-1/divine-smite.png
+
+## batch-036 v3
+art/batch/icons/spells/level-1/earth-tremor.png
+art/batch/icons/spells/level-1/faerie-fire.png
+art/batch/icons/spells/level-1/frost-fingers.png
+art/batch/icons/spells/level-1/guiding-bolt.png
+art/batch/icons/spells/level-1/hellish-rebuke.png
