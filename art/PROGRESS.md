@@ -880,3 +880,8 @@ art/batch/icons/items/magic/artifact/demonomicon-of-iggwilv.png
 art/batch/icons/items/magic/rare/dimensional-shackles.png
 art/batch/icons/items/magic/very-rare/dragon-scale-mail.png
 art/batch/icons/items/magic/rare/dragon-slayer.png
+art/batch/icons/items/magic/common/dread-helm.png
+art/batch/icons/items/magic/uncommon/driftglobe.png
+art/batch/icons/items/magic/uncommon/dust-of-disappearance.png
+art/batch/icons/items/magic/uncommon/dust-of-dryness.png
+art/batch/icons/items/magic/uncommon/dust-of-sneezing-and-choking.png
