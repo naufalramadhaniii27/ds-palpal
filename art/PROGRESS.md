@@ -890,3 +890,8 @@ art/batch/icons/items/magic/very-rare/dwarven-thrower.png
 art/batch/icons/items/magic/common/ear-horn-of-hearing.png
 art/batch/icons/items/magic/very-rare/efreeti-bottle.png
 art/batch/icons/items/magic/legendary/efreeti-chain.png
+art/batch/icons/items/magic/uncommon/elemental-gem.png
+art/batch/icons/items/magic/rare/elixir-of-health.png
+art/batch/icons/items/magic/rare/elven-chain.png
+art/batch/icons/items/magic/common/enduring-spellbook.png
+art/batch/icons/items/magic/very-rare/energy-bow.png
