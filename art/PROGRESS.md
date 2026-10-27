@@ -868,3 +868,8 @@ art/batch/icons/items/magic/legendary/cubic-gate.png
 art/batch/icons/items/magic/rare/daerns-instant-fortress.png
 art/batch/icons/items/magic/rare/dagger-of-venom.png
 art/batch/icons/items/magic/very-rare/dancing-sword.png
+art/batch/icons/items/magic/common/dark-shard-amulet.png
+art/batch/icons/items/magic/uncommon/decanter-of-endless-water.png
+art/batch/icons/items/magic/uncommon/deck-of-illusions.png
+art/batch/icons/items/magic/legendary/deck-of-many-things.png
+art/batch/icons/items/magic/legendary/defender.png
