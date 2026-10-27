@@ -1,81 +1,81 @@
 # batch-168 (20 images)
 
 ## 18-0282 [ICON] art/batch/icons/features/subclass/life-domain/disciple-of-life.png
-Subject: Subclass feature icon showing the named feature. Icon: Disciple of Life (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a healing potion vial with extra golden light flowing into it.
+Subject: Subclass feature icon showing the named feature. Icon: Disciple of Life (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a healing potion vial with extra golden light flowing into it. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0283 [ICON] art/batch/icons/features/subclass/life-domain/divine-strike.png
-Subject: Subclass feature icon showing the named feature. Icon: Divine Strike (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a warhammer head glowing with a strong radiant strike of light.
+Subject: Subclass feature icon showing the named feature. Icon: Divine Strike (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a warhammer head glowing with a strong radiant strike of light. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0284 [ICON] art/batch/icons/features/subclass/life-domain/life-domain-spells.png
-Subject: Subclass feature icon showing the named feature. Icon: Life Domain Spells (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a cleric's prayer book with a golden heart clasp and green ribbon.
+Subject: Subclass feature icon showing the named feature. Icon: Life Domain Spells (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a cleric's prayer book with a golden heart clasp and green ribbon. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0285 [ICON] art/batch/icons/features/subclass/life-domain/preserve-life.png
-Subject: Subclass feature icon showing the named feature. Icon: Preserve Life (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a holy amulet spreading golden waves of healing to several glowing sprouts.
+Subject: Subclass feature icon showing the named feature. Icon: Preserve Life (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a holy amulet spreading golden waves of healing to several glowing sprouts. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0286 [ICON] art/batch/icons/features/subclass/life-domain/supreme-healing.png
-Subject: Subclass feature icon showing the named feature. Icon: Supreme Healing (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a full golden healing chalice overflowing with maximum bright light.
+Subject: Subclass feature icon showing the named feature. Icon: Supreme Healing (Life Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a cupped pair of hands holding a sprouting seedling and a small heart-shaped glow). Draw it as a full golden healing chalice overflowing with maximum bright light. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0287 [ICON] art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
-Subject: Subclass feature icon showing the named feature. Icon: Bonus Cantrip (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a small lantern flickering with a single cantrip flame.
+Subject: Subclass feature icon showing the named feature. Icon: Bonus Cantrip (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a small lantern flickering with a single cantrip flame. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0288 [ICON] art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
-Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Radiance of the Dawn (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy amulet bursting with dawn light that scatters shadows away.
+Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Radiance of the Dawn (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy amulet bursting with dawn light that scatters shadows away. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0289 [ICON] art/batch/icons/features/subclass/light-domain/corona-of-light.png
-Subject: Subclass feature icon showing the named feature. Icon: Corona of Light (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a blazing radiant halo crown burning with fierce sunlight.
+Subject: Subclass feature icon showing the named feature. Icon: Corona of Light (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a blazing radiant halo crown burning with fierce sunlight. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0290 [ICON] art/batch/icons/features/subclass/light-domain/improved-flare.png
-Subject: Subclass feature icon showing the named feature. Icon: Improved Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a bright warding flare spark bursting from a raised holy amulet.
+Subject: Subclass feature icon showing the named feature. Icon: Improved Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a bright warding flare spark bursting from a raised holy amulet. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0291 [ICON] art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
-Subject: Subclass feature icon showing the named feature. Icon: Improved Warding Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a larger blinding flare of light deflecting an incoming sword.
+Subject: Subclass feature icon showing the named feature. Icon: Improved Warding Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a larger blinding flare of light deflecting an incoming sword. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0292 [ICON] art/batch/icons/features/subclass/light-domain/light-domain-spells.png
-Subject: Subclass feature icon showing the named feature. Icon: Light Domain Spells (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a sun-gilded prayer book with a radiant clasp and golden edges.
+Subject: Subclass feature icon showing the named feature. Icon: Light Domain Spells (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a sun-gilded prayer book with a radiant clasp and golden edges. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0293 [ICON] art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
-Subject: Subclass feature icon showing the named feature. Icon: Potent Spellcasting (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy lantern whose beam grows stronger with a cantrip flame.
+Subject: Subclass feature icon showing the named feature. Icon: Potent Spellcasting (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy lantern whose beam grows stronger with a cantrip flame. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0294 [ICON] art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
-Subject: Subclass feature icon showing the named feature. Icon: Radiance of the Dawn (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a burst of dawn light radiating from a holy amulet, banishing shadow.
+Subject: Subclass feature icon showing the named feature. Icon: Radiance of the Dawn (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a burst of dawn light radiating from a holy amulet, banishing shadow. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0295 [ICON] art/batch/icons/features/subclass/light-domain/warding-flare.png
-Subject: Subclass feature icon showing the named feature. Icon: Warding Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy shield reflecting a blinding flash of light at an incoming blade.
+Subject: Subclass feature icon showing the named feature. Icon: Warding Flare (Light Domain subclass feature of the Cleric class). Accent: one small detail taken from its own subclass emblem (a blazing sun disc above an open lantern). Draw it as a holy shield reflecting a blinding flash of light at an incoming blade. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0296 [ICON] art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
-Subject: Subclass feature icon showing the named feature. Icon: Aura of Conquest (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a dark iron aura of fear spikes radiating from a war banner.
+Subject: Subclass feature icon showing the named feature. Icon: Aura of Conquest (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a dark iron aura of fear spikes radiating from a war banner. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0297 [ICON] art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-conquering-presence.png
-Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Conquering Presence (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked iron gauntlet raised in a fist, a dark iron shockwave of dread bursting outward.
+Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Conquering Presence (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked iron gauntlet raised in a fist, a dark iron shockwave of dread bursting outward. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0298 [ICON] art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-guided-strike.png
-Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Guided Strike (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked mace head glowing with a guided golden strike line.
+Subject: Subclass feature icon showing the named feature. Icon: Channel Divinity: Guided Strike (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked mace head glowing with a guided golden strike line. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0299 [ICON] art/batch/icons/features/subclass/oath-of-conquest/invincible-conqueror.png
-Subject: Subclass feature icon showing the named feature. Icon: Invincible Conqueror (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked warhammer swinging with a crown of victorious dark fire.
+Subject: Subclass feature icon showing the named feature. Icon: Invincible Conqueror (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a spiked warhammer swinging with a crown of victorious dark fire. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0300 [ICON] art/batch/icons/features/subclass/oath-of-conquest/oath-spells.png
-Subject: Subclass feature icon showing the named feature. Icon: Oath Spells (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a conqueror's spellbook bound in black iron with a chain lock.
+Subject: Subclass feature icon showing the named feature. Icon: Oath Spells (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a conqueror's spellbook bound in black iron with a chain lock. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 18-0301 [ICON] art/batch/icons/features/subclass/oath-of-conquest/scornful-rebuke.png
-Subject: Subclass feature icon showing the named feature. Icon: Scornful Rebuke (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a dark iron shield spiked with a psychic rebuke spark lashing out.
+Subject: Subclass feature icon showing the named feature. Icon: Scornful Rebuke (Oath of Conquest subclass feature of the Paladin class). Accent: one small detail taken from its own subclass emblem (a spiked iron gauntlet holding a cracked crown). Draw it as a dark iron shield spiked with a psychic rebuke spark lashing out. One single object only, centered, no ground. Put the accent on the object itself, not as a second object.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
