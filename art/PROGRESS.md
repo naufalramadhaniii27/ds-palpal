@@ -406,3 +406,10 @@ art/batch/icons/coins/copper-piece.png
 art/batch/icons/coins/silver-piece.png
 art/batch/icons/coins/electrum-piece.png
 art/batch/icons/coins/gold-piece.png
+
+## batch-026 v3
+art/batch/icons/coins/platinum-piece.png
+art/batch/icons/coins/coin-pile.png
+art/batch/icons/creature-types/aberration.png
+art/batch/icons/creature-types/beast.png
+art/batch/icons/creature-types/celestial.png
