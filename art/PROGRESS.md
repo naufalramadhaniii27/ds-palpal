@@ -873,3 +873,10 @@ art/batch/icons/items/magic/uncommon/decanter-of-endless-water.png
 art/batch/icons/items/magic/uncommon/deck-of-illusions.png
 art/batch/icons/items/magic/legendary/deck-of-many-things.png
 art/batch/icons/items/magic/legendary/defender.png
+
+## batch-082 v3
+art/batch/icons/items/magic/very-rare/demon-armor.png
+art/batch/icons/items/magic/artifact/demonomicon-of-iggwilv.png
+art/batch/icons/items/magic/rare/dimensional-shackles.png
+art/batch/icons/items/magic/very-rare/dragon-scale-mail.png
+art/batch/icons/items/magic/rare/dragon-slayer.png
