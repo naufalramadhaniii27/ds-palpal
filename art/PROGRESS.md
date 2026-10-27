@@ -684,3 +684,8 @@ art/batch/icons/spells/level-2/summon-beast.png
 art/batch/icons/spells/level-2/vortex-warp.png
 art/batch/icons/spells/level-2/web.png
 art/batch/icons/spells/level-2/wristpocket.png
+art/batch/icons/spells/level-2/augury.png
+art/batch/icons/spells/level-2/beast-sense.png
+art/batch/icons/spells/level-2/borrowed-knowledge.png
+art/batch/icons/spells/level-2/detect-thoughts.png
+art/batch/icons/spells/level-2/find-traps.png
