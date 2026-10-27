@@ -1,7 +1,10 @@
 /* ================= RENDER ================= */
 function campName(){ var v=(S&&typeof S.camp==="string")?S.camp:((C&&C.office)||""); return String(v).trim(); }/* v30 RU133 */
+/* T1: the hidden empty place of a first public visit (ph) holds the sample build, so the tab keeps the page title until a real character is open */
+var TITLE0=document.title;
+function phOpen(){ try{ var r=JSON.parse(localStorage.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
-  document.title = C.name+" | "+C.species+" "+clsLv();
+  document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
   var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;
@@ -232,7 +235,7 @@ function renderInv(){
   (C.inv||[]).forEach(function(i){ if(i.type==null&&window.__itemMeta){ var mt=window.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
   var L=C.inv||[], total=invWeight(), enc=setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=coinsNow();
-  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-label="Weight carried, open Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div>'+coinStrip(cz)+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
+  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-label="Weight carried, open Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div>'+coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
   var fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map(function(f){return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   var keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   var row=function(i,ix,sub){ var q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
@@ -255,7 +258,7 @@ function renderInv(){
       var ck=invKey(c), op=!ctShut[ck];/* v32 RU134: a container section opens and closes */
       body+='<button type="button" class="ieq ict" data-ctog="'+esc(ck)+'" aria-expanded="'+op+'" aria-label="'+esc(cuNm("i:"+ck,c.n))+', '+inner.length+' item'+(inner.length>1?'s':'')+', '+(op?'close':'open')+'"><b>'+esc(cuNm("i:"+ck,c.n))+'</b><span class="ictn">'+inner.length+' item'+(inner.length>1?'s':'')+'</span><span class="ictw'+(cap&&ld>cap?' over':'')+'">'+fmtW(ld)+(cap?' / '+cap:'')+' lb.'+(ct[2]!=null?' \u2022 counts as '+fmtW(ct[2])+' lb.':'')+'</span>'+CHEV+'</button>'+(cap&&ld>cap?'<div class="caution">\u26a0 Over capacity. This container holds up to '+cap+' lb.</div>':'')+(op?sh.map(function(p){return row(p[0],p[1],1)}).join(""):''); });
   }
-  if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+ico("tab-inventory","es-i")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
+  if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+esArt("chest")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
   $("#invBody").innerHTML=head+fil+attH+body+(C.equipNote?'<p class="next inote">'+ico("item-gear")+'<span>'+esc(C.equipNote).replace(/\. (?=[A-Z])/g,".<br>")+'</span></p>':'')/* v33 p05 (F2) */;
 }
 var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
@@ -292,4 +295,11 @@ function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Bac
   html += '<div class="saved">Saved on this device as you type.</div>';
   $("#notesBody").innerHTML = html; renderDesc();
 }
-
+/* T3 item 17: small original illustrations for empty states. Lines in the muted color, sparks in the accent color. Drawn once, no image files */
+function esArt(k){ var A={
+  chest:'<path d="M18 46h60v28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z"/><path d="M18 46V38a14 14 0 0 1 14-14h32a14 14 0 0 1 14 14v8"/><path d="M18 56h60"/><rect x="42" y="50" width="12" height="14" rx="2"/><circle cx="48" cy="57" r="1.6" class="es-f"/>',
+  book:'<path d="M48 30c-8-6-20-7-30-4v40c10-3 22-2 30 4 8-6 20-7 30-4V26c-10-3-22-2-30 4z"/><path d="M48 30v40"/><path d="M26 38c6-1 11 0 16 2M26 48c6-1 11 0 16 2M54 40c5-2 10-3 16-2M54 50c5-2 10-3 16-2"/>',
+  paw:'<ellipse cx="48" cy="62" rx="15" ry="12"/><ellipse cx="29" cy="46" rx="6" ry="8" transform="rotate(-18 29 46)"/><ellipse cx="42" cy="34" rx="6" ry="8.5" transform="rotate(-6 42 34)"/><ellipse cx="55" cy="34" rx="6" ry="8.5" transform="rotate(6 55 34)"/><ellipse cx="68" cy="46" rx="6" ry="8" transform="rotate(18 68 46)"/>',
+  hero:'<path d="M48 14 22 24v22c0 17 11 29 26 36 15-7 26-19 26-36V24z"/><path d="M48 36v24M36 48h24"/>'}[k]||"";
+  var sp='<path class="es-sp" d="M80 16v10M75 21h10M16 70v8M12 74h8"/>';
+  return '<svg class="es-art es-'+k+'" viewBox="0 0 96 96" width="96" height="96" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+A+sp+'</svg>'; }

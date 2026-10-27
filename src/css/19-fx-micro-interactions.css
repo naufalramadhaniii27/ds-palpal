@@ -74,7 +74,7 @@ html.mi-themevt::view-transition-new(root){animation:miReveal .6s var(--mi-ease)
 /* --- v55 round 4: seamless character switch --- */
 html.mi-arrive body{animation:miArrive .45s ease-out both}
 @keyframes miArrive{from{opacity:0}to{opacity:1}}
-.mi-sw{position:fixed;left:0;top:0;z-index:var(--z-cover);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;border-radius:3px;overflow:hidden}
+.mi-sw{position:fixed;left:0;top:0;z-index:var(--z-cover);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;border-radius:4px;overflow:hidden}
 .mi-sw i{position:absolute;inset:0;background:var(--paper);opacity:0}
 @media (prefers-reduced-motion:reduce){html.mi-arrive body{animation:none}}
 /* --- v55 round 5: search, inventory, conditions --- */
@@ -121,7 +121,7 @@ html.mi-arrive body{animation:miArrive .45s ease-out both}
 #miAmb .p.link{width:var(--s);height:calc(var(--s)*.62);border-radius:40%;border:2px solid rgba(var(--pc),.75)}
 #miAmb .p.leaf{top:-24px;width:var(--s);height:calc(var(--s)*.6);border-radius:0 80% 0 80%;background:linear-gradient(135deg,rgba(var(--pc),.9),rgba(var(--pc),.5));animation-name:miALeafL;animation-timing-function:linear}
 #miAmb.mi-top{z-index:var(--z-amb-top)}
-#miAmb .p.wave{top:50%;width:60px;height:60px;margin:-30px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
+#miAmb .p.wave{top:50%;width:60px;height:60px;margin:-28px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
 @keyframes miAPulse{0%,100%{opacity:.45}50%{opacity:1}}
 @keyframes miABeat{0%,100%{opacity:.3}14%{opacity:1}28%{opacity:.45}42%{opacity:.85}70%{opacity:.3}}
 @keyframes miAShiver{0%,86%,100%{transform:none}88%{transform:translateX(-3px)}90%{transform:translateX(3px)}92%{transform:translateX(-2px)}94%{transform:translateX(2px)}}
@@ -191,7 +191,7 @@ html.mi-off #sheet:has(#cbv){box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 /* --- F3: one sliding indicator for filters, combo tabs and edit sections; Dock press on the bottom bar; swipeable toast with a fuse --- */
 
 /* filter and section chips: the chosen one springs in. Transform only, no extra element, no script */
-.ifb.on,.cmb-tab.on,.ed-sec.on{animation:miChip .34s cubic-bezier(.3,1.5,.5,1)}
+.ifb.on,.cmb-tab.on,.ed-sec.on{animation:miChip .34s var(--ease-spring)}
 @keyframes miChip{0%{transform:scale(.9)}55%{transform:scale(1.06)}100%{transform:none}}
 .ifb:active,.cmb-tab:active,.ed-sec:active{transform:scale(.94);transition:transform .08s}
 html.mi-off .ifb.on,html.mi-off .cmb-tab.on,html.mi-off .ed-sec.on{animation:none}
@@ -246,9 +246,9 @@ input[type=checkbox].mi-jelly{animation:miSpring .5s var(--mi-ease)}
 .thb:active{transform:scale(.93)}
 .thb.mi-jelly{animation:miJellyR .48s var(--mi-ease)}
 @keyframes miJellyR{0%{transform:scale(.9)}35%{transform:scale(1.1,.9)}60%{transform:scale(.96,1.05)}80%{transform:scale(1.02,.99)}100%{transform:none}}
-.mi-tip{position:fixed;left:0;top:0;z-index:var(--z-cover);max-width:260px;padding:6px 10px;border-radius:9px;font:500 12.5px/1.35 var(--f-sans,system-ui);color:#2b1a08;background:linear-gradient(160deg,#ffe9c2,#ffc98a);box-shadow:0 6px 18px rgba(120,60,0,.28),inset 0 1px 0 rgba(255,255,255,.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(.9);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mi-fast),transform var(--mi-base) var(--mi-ease)}
+.mi-tip{position:fixed;left:0;top:0;z-index:var(--z-cover);max-width:260px;padding:6px 10px;border-radius:10px;font:500 12.5px/1.35 var(--f-sans,system-ui);color:#2b1a08;background:linear-gradient(160deg,#ffe9c2,#ffc98a);box-shadow:0 6px 18px rgba(120,60,0,.28),inset 0 1px 0 rgba(255,255,255,.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(.9);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mi-fast),transform var(--mi-base) var(--mi-ease)}
 .mi-tip.dn{transform-origin:var(--ax,50%) 0;transform:translateY(-6px) scale(.9)}
-.mi-tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-5px;background:#ffc98a;transform:rotate(45deg);border-radius:2px}
+.mi-tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-6px;background:#ffc98a;transform:rotate(45deg);border-radius:2px}
 .mi-tip.dn::after{bottom:auto;top:-5px;background:#ffe9c2}
 .mi-tip.on{opacity:1;transform:none}
 html.mi-off .mi-tip{transition:none}

@@ -55,7 +55,7 @@ function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; var 
 (function(){ var pend=false, roots=[], SVGNS="http://www.w3.org/2000/svg", mo=new MutationObserver(function(recs){/* v30 p13: decorate only where new elements came in. Text changes (HP number rolling), new icons, and the toast (built with its icons) are skipped */
   for(var i=0;i<recs.length;i++){ var t=recs[i].target; if(!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))||roots.indexOf(t)>=0) continue; var a=recs[i].addedNodes;
     if(a.length&&!t.querySelector("svg")&&t.matches&&t.matches("button,h2,h3,.tab,.bb,.ifb")){ roots.push(t.parentNode||t); continue; }/* a heading or button whose text was replaced */
-    for(var j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"){ roots.push(t); break; } } }
+    for(var j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"&&!/^(SCRIPT|STYLE|LINK)$/.test(a[j].tagName)){ roots.push(t); break; } } }/* T1: script elements (the parser and the builder loader add them to body while the page loads) need no icons. Before, each one started a pass over the whole page */
   if(pend||!roots.length) return; pend=true; requestAnimationFrame(function(){ pend=false; var L=roots; roots=[];
     if(L.some(function(r){ return r===document.documentElement||r===document.body; })||L.length>12){ icoDecorate(document); return; }
     L.filter(function(r){ return r.isConnected&&!L.some(function(o){ return o!==r&&o.contains(r); }); }).forEach(function(r){ icoDecorate(r); }); });}); mo.observe(document.documentElement,{childList:true,subtree:true}); })();

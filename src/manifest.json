@@ -36,7 +36,11 @@
     "css/24-fx-y-pack.css",
     "css/25-fx-z-l-m-packs.css",
     "css/26-fx-g-pack.css",
-    "css/27-fx-k-pack.css"
+    "css/27-fx-k-pack.css",
+    "css/28-connected-home-sheet.css",
+    "css/29-motion-off.css",
+    "css/30-tap-44.css",
+    "css/31-home-hero.css"
    ]
   },
   {
@@ -171,7 +175,9 @@
     "fx/17-l-pack-webgl-sky.js",
     "fx/18-m-pack-rolls-concentration.js",
     "fx/19-g-pack-cinematic.js",
-    "fx/20-k-pack-character-colour-icon.js"
+    "fx/20-k-pack-character-colour-icon.js",
+    "fx/21-connected-home-sheet.js",
+    "fx/22-home-hero.js"
    ]
   },
   {

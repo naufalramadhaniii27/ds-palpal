@@ -1,5 +1,5 @@
 /* v29 p03: motion (RU120). transform and opacity only */
-:root{--ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1)}
+:root{--ease-out:cubic-bezier(.2,.8,.2,1);--ease-soft:cubic-bezier(.2,.7,.3,1);--ease-io:cubic-bezier(.4,0,.2,1);--ease-spring:cubic-bezier(.3,1.5,.5,1);--ease-in:cubic-bezier(.5,0,.75,0)}/* T2: the only five curves. JS uses the same text because WAAPI easing does not take var() */
 .bar{position:relative;overflow:hidden}
 #hpGhost{position:absolute;left:0;top:0;bottom:0;width:100%;z-index:0;transform-origin:left center;background:var(--bad);opacity:.75;transition:transform .55s var(--ease-io) .3s;will-change:transform;border-radius:inherit}
 #hpBar,#tmpBar{z-index:1}
@@ -104,7 +104,7 @@ button:active,.btn:active,.bb:active,.ifb:active,.chip:active{transform:scale(.9
 :root[data-skin="ddb"] .ask{-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 :root[data-skin="ddb"] .sheet,:root[data-skin="ddb"] .ask .askb{box-shadow:0 24px 60px rgba(0,0,0,.55),0 2px 0 rgba(255,255,255,.04) inset}
 :root[data-skin="ddb"] .vitals,:root[data-skin="ddb"] .idcard{box-shadow:0 1px 0 rgba(255,255,255,.04) inset}
-::view-transition-old(root),::view-transition-new(root){animation-duration:.22s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.22s;animation-timing-function:var(--ease-out)}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 
 /* v29 p07: dead state (RU127) */
@@ -113,7 +113,7 @@ button:active,.btn:active,.bb:active,.ifb:active,.chip:active{transform:scale(.9
 .vitals.dead .hp-cur,.vitals.dead #hpMax{color:#8b959d}
 
 /* v29 p09 */
-@media (min-width:760px){:root[data-skin="ddb"] #tabs > .tab{padding-left:4px;padding-right:4px;letter-spacing:.2px}:root[data-skin="ddb"] #tabs > .tab svg.ico{margin-right:3px}}
+@media (min-width:760px){:root[data-skin="ddb"] #tabs > .tab{padding-left:4px;padding-right:4px;letter-spacing:.2px}:root[data-skin="ddb"] #tabs > .tab svg.ico{margin-right:4px}}
 
 /* v29 p10 */
 :root[data-skin="ddb"][data-frame="round"] .photo{border-radius:50%;border:3px solid var(--acc)}

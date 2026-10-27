@@ -10,7 +10,7 @@
 .mini b{display:block;font-weight:800;font-size:calc(18px*var(--tz,1));line-height:1.15;font-variation-settings:"wdth" 112;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mini span{display:block;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--on-dinas-2);white-space:nowrap}
 .acts{margin-left:auto;display:flex;align-items:center;gap:8px}
-.bb{height:38px;padding:0 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);font-family:var(--f-nar);font-weight:700;font-size:calc(14.5px*var(--tz,1));color:var(--on-dinas);display:inline-flex;align-items:center;gap:8px}
+.bb{height:38px;padding:0 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);font-family:var(--f-nar);font-weight:700;font-size:calc(14px*var(--tz,1));color:var(--on-dinas);display:inline-flex;align-items:center;gap:8px}
 .bb:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
 .bb.ic{width:38px;padding:0;justify-content:center}
 .bb svg{width:18px;height:18px}
@@ -19,18 +19,18 @@
 .hpchip{display:none}
 
 /* ================= LAYOUT ================= */
-.pager{max-width:1260px;margin:-76px auto 0;padding:0 28px 48px;position:relative;z-index:6;display:grid;gap:18px;
+.pager{max-width:1260px;margin:-64px auto 0;padding:0 28px 48px;position:relative;z-index:6;display:grid;gap:16px;
   grid-template-columns:268px minmax(0,310px) minmax(0,1fr);grid-template-areas:"main main main" "side skills detail"}
 #p-main{grid-area:main;min-width:0}
 #p-skills{display:contents}
-.side{grid-area:side;display:grid;gap:18px;align-content:start;min-width:0}
+.side{grid-area:side;display:grid;gap:16px;align-content:start;min-width:0}
 .skillcard{grid-area:skills;min-width:0;align-self:start}
 .detail{grid-area:detail;min-width:0;align-self:start}
 @media (max-width:1179px) and (min-width:760px){
   .pager{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"main main" "side skills" "detail detail"}
 }
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px}
-.ch{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:13px 16px 0}
+.ch{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:14px 16px 0}
 .ch h2{margin:0;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));letter-spacing:.005em}
 .ch .as{font-size:max(12px,calc(13px*var(--tz,1)));color:var(--faint)}
 .cb{padding:10px 16px 16px}

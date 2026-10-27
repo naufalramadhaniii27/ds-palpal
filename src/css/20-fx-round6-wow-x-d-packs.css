@@ -5,8 +5,8 @@
 .mi-slot{position:fixed;z-index:var(--z-fx);pointer-events:none;overflow:hidden;box-sizing:border-box}
 .mi-slot>span{display:block;will-change:transform}.mi-slot b{display:block;font:inherit}
 /* B5 heading reveal + B6 depth text */
-.ptitle.mi-hd{animation:miHd .5s cubic-bezier(.2,.8,.2,1) both}
-.ptitle.mi-hd svg{animation:miHdI .6s cubic-bezier(.3,1.5,.5,1) .08s both}
+.ptitle.mi-hd{animation:miHd .5s var(--ease-out) both}
+.ptitle.mi-hd svg{animation:miHdI .6s var(--ease-spring) .08s both}
 @keyframes miHd{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes miHdI{from{opacity:0;transform:scale(.4) rotate(-40deg)}to{opacity:1;transform:none}}
 html:not(.mi-off) .ptitle{text-shadow:0 1px 0 rgba(0,0,0,.18),0 2px 0 rgba(0,0,0,.12),0 4px 10px rgba(0,0,0,.14)}
@@ -15,7 +15,7 @@ html[data-skin="ddb"]:not(.mi-off) .ptitle{text-shadow:0 1px 0 rgba(0,0,0,.6),0 
 #photo{transition:transform .45s var(--mi-ease)}
 #photo.mi-ptilt{transition:transform .08s linear}
 #photo::after{content:"";position:absolute;inset:-60%;pointer-events:none;opacity:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.32) 48%,rgba(160,230,255,.22) 52%,transparent 65%)}
-#photo.mi-psheen::after{animation:miPSheen .7s cubic-bezier(.2,.8,.2,1)}
+#photo.mi-psheen::after{animation:miPSheen .7s var(--ease-out)}
 @keyframes miPSheen{0%{opacity:0;transform:translate(30%,25%)}30%{opacity:1}100%{opacity:0;transform:translate(-30%,-25%)}}
 /* B10 text type: an empty note reveals itself letter by letter, once, when it appears */
 html:not(.mi-off):not(.mi-lite) .empty-note{animation:miType .7s steps(22,end) both}
@@ -35,7 +35,7 @@ html.mi-off .ptitle.mi-hd,html.mi-off .ptitle.mi-hd svg{animation:none}
 .mi-flash{position:fixed;inset:0;z-index:var(--z-fx);pointer-events:none;opacity:0;will-change:opacity}
 .mi-dmgn{font:800 clamp(34px,9vw,56px)/1 var(--f-sans,system-ui);color:#ff5a4f;-webkit-text-stroke:2px rgba(0,0,0,.35);white-space:nowrap}
 .mi-bloom{width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(76,194,122,.65),rgba(76,194,122,0) 68%)}
-.mi-wdot{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%}
+.mi-wdot{width:7px;height:7px;margin:-4px 0 0 -4px;border-radius:50%}
 .mi-ember{background:radial-gradient(circle,#fff3b0,#ff8a3d 60%,rgba(255,80,0,0));width:9px;height:9px}
 .mi-rays{width:180vmax;height:180vmax;border-radius:50%;background:repeating-conic-gradient(rgba(255,214,102,.34) 0deg 7deg,rgba(255,214,102,0) 7deg 22deg);-webkit-mask:radial-gradient(circle,#000 8%,transparent 62%);mask:radial-gradient(circle,#000 8%,transparent 62%)}
 .mi-conf{width:8px;height:13px;margin:-6px 0 0 -4px;border-radius:2px}
@@ -60,19 +60,19 @@ html.mi-off .mi-w,html.mi-off .mi-flash,html.mi-lite .mi-w,html.mi-lite .mi-flas
 .mi-check circle{fill:rgba(76,194,122,.16)}
 .mi-revive{width:90px;height:62vh;background:linear-gradient(0deg,rgba(255,214,102,.85),rgba(255,214,102,.35) 40%,rgba(255,255,255,0));-webkit-mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);transform-origin:50% 100%}
 .mi-shield{border-radius:14px;box-shadow:0 0 0 3px rgba(124,182,255,.9),0 0 26px rgba(124,182,255,.6),inset 0 0 22px rgba(124,182,255,.35)}
-.mi-shard{width:5px;height:14px;margin:-7px 0 0 -2.5px;border-radius:2px;background:linear-gradient(#cfe3ff,#7cb6ff)}
+.mi-shard{width:5px;height:14px;margin:-8px 0 0 -4px;border-radius:2px;background:linear-gradient(#cfe3ff,#7cb6ff)}
 @supports (view-timeline-name:--x){
   html.mi-par:not(.mi-off):not(.mi-lite) #pager>[id^="p-"]{view-timeline:--mipg inline}
   html.mi-par:not(.mi-off):not(.mi-lite) #pager .ptitle{animation:miPar linear both;animation-timeline:--mipg;animation-range:cover}
-  html.mi-par:not(.mi-off):not(.mi-lite) #pager .ptitle.mi-hd{animation:miHd .5s cubic-bezier(.2,.8,.2,1) both,miPar linear both;animation-timeline:auto,--mipg;animation-range:normal,cover}
+  html.mi-par:not(.mi-off):not(.mi-lite) #pager .ptitle.mi-hd{animation:miHd .5s var(--ease-out) both,miPar linear both;animation-timeline:auto,--mipg;animation-range:normal,cover}
 }
 @keyframes miPar{from{translate:70px 0}50%{translate:0 0}to{translate:-70px 0}}
 
 /* === D pack === */
-.mi-ch{display:inline-block;animation:miCh .5s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(var(--i)*35ms)}
+.mi-ch{display:inline-block;animation:miCh .5s var(--ease-spring) both;animation-delay:calc(var(--i)*35ms)}
 @keyframes miCh{from{opacity:0;transform:translateY(.5em) rotate(8deg)}to{opacity:1;transform:none}}
 .hcreate.mi-shine{position:relative;overflow:hidden}
-.hcreate.mi-shine::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:45%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-120%) skewX(-12deg);animation:miShine 1.1s cubic-bezier(.4,0,.2,1) .5s 2 both}
+.hcreate.mi-shine::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:45%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-120%) skewX(-12deg);animation:miShine 1.1s var(--ease-io) .5s 2 both}
 @keyframes miShine{to{transform:translateX(330%) skewX(-12deg)}}
 .mi-puff{width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:radial-gradient(circle,rgba(190,190,200,.85),rgba(190,190,200,0) 70%)}
 .mi-spent b{display:block;padding:4px 10px;border-radius:999px;background:rgba(20,22,26,.85);color:#e7e3d8;font:700 12px/1.3 var(--f-sans,system-ui);white-space:nowrap;letter-spacing:.02em}

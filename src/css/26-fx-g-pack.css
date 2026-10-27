@@ -11,18 +11,18 @@ html.mi-lap .mi-hud{display:block}
 :root[data-theme="light"] .mi-hud{display:none!important}
 .mi-trail{position:fixed;left:0;top:0;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9998;opacity:0;background:radial-gradient(circle,#fff,rgba(255,211,107,.9) 40%,rgba(255,211,107,0) 70%);will-change:transform,opacity}
 .mi-splash.lap{animation:miKill 0s linear 3.2s forwards}
-.mi-splash.lap::before,.mi-splash.lap::after{content:"";position:absolute;left:0;right:0;height:11vh;background:#000;animation:miBar 2.2s cubic-bezier(.6,0,.2,1) both}
+.mi-splash.lap::before,.mi-splash.lap::after{content:"";position:absolute;left:0;right:0;height:11vh;background:#000;animation:miBar 2.2s var(--ease-io) both}
 .mi-splash.lap::before{top:0}.mi-splash.lap::after{bottom:0;animation-name:miBar2}
 @keyframes miBar{0%{transform:translateY(-100%)}18%,78%{transform:none}100%{transform:translateY(-100%)}}
 @keyframes miBar2{0%{transform:translateY(100%)}18%,78%{transform:none}100%{transform:translateY(100%)}}
 .mi-splash.lap b{font-size:56px;text-shadow:0 0 30px rgba(var(--pl-rgb,214,69,59),.8)}.mi-splash.lap .s{width:160px;height:160px}
-.mi-splash.lap small{font-size:15px}
+.mi-splash.lap small{font-size:14px}
 .mi-roll-o .dz.mi-3d svg{display:none}.mi-d3{position:absolute;inset:0;width:100%;height:100%}
 .mi-night{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#05070f,#0d1633 60%,#1b2340);display:flex;align-items:center;justify-content:center;animation:miKill 0s linear 3.3s forwards}
 .mi-night .sky{position:absolute;left:-25%;top:-25%;width:150%;height:150%;background-image:radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 50% 40%,#fff,transparent),radial-gradient(1px 1px at 70% 15%,#fff,transparent),radial-gradient(2px 2px at 85% 60%,#fff,transparent),radial-gradient(1px 1px at 20% 85%,#fff,transparent),radial-gradient(1.5px 1.5px at 60% 80%,#fff,transparent),radial-gradient(1px 1px at 90% 30%,#fff,transparent);background-size:240px 240px;opacity:.85}
-.mi-night .moon{position:absolute;left:50%;top:30%;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8,#e9e2c4 55%,#b9b08e);box-shadow:0 0 60px rgba(255,250,220,.45)}
+.mi-night .moon{position:absolute;left:50%;top:30%;width:90px;height:90px;margin:-44px 0 0 -44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8,#e9e2c4 55%,#b9b08e);box-shadow:0 0 60px rgba(255,250,220,.45)}
 .mi-night b{position:relative;font:700 30px/1 "Cinzel",var(--f-nar,serif);color:#e8e2cc;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 18px rgba(200,210,255,.5)}
-.mi-lvc{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:radial-gradient(60% 50% at 50% 45%,rgba(226,170,76,.28),rgba(5,7,10,.86) 75%);animation:miKill 0s linear 5s forwards}
+.mi-lvc{position:fixed;inset:0;z-index:var(--z-fx,9999);pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;background:radial-gradient(60% 50% at 50% 45%,rgba(226,170,76,.28),rgba(5,7,10,.86) 75%);animation:miKill 0s linear 5s forwards}
 .mi-lvc .lv{display:flex;flex-direction:column;align-items:center}.mi-lvc .lv small{font:700 13px/1 var(--f-nar,system-ui);letter-spacing:.3em;text-transform:uppercase;color:#e2c27a}
 .mi-lvc .lv b{font:700 54px/1.1 "Cinzel",var(--f-nar,serif);color:#ffe7a3;text-shadow:0 0 30px rgba(226,170,76,.8)}
 .mi-lvc .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:min(920px,92vw)}
@@ -30,10 +30,10 @@ html.mi-lap .mi-hud{display:block}
 .mi-lvc .cd i{width:46px;height:46px;transform:rotate(45deg);border-radius:8px;background:linear-gradient(135deg,#ffe7a3,#a8741f);box-shadow:0 0 18px rgba(226,170,76,.7)}
 .mi-lvc .cd span{font:700 15px/1.3 "Cinzel",var(--f-nar,serif);color:#f3e6cc}
 @media (max-width:759px){.mi-lvc .cd{width:130px;min-height:160px}.mi-lvc .lv b{font-size:40px}}
-@media (hover:hover) and (pointer:fine) and (min-width:1100px){html.mi-lap #toast{transition:transform .35s cubic-bezier(.2,.8,.2,1)}}
+@media (hover:hover) and (pointer:fine) and (min-width:1100px){html.mi-lap #toast{transition:transform .35s var(--ease-out)}}
 /* Saving Throws: rows never get cut, the bonus sits inside its pill */
 :root[data-skin="ddb"] #saves{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(104px,1fr))!important;gap:6px!important}
-:root[data-skin="ddb"] #saves .row{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:5px;min-width:0;margin:0!important;padding:3px 3px 3px 7px!important;min-height:38px;box-sizing:border-box}
+:root[data-skin="ddb"] #saves .row{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;min-width:0;margin:0!important;padding:4px 4px 4px 8px!important;min-height:38px;box-sizing:border-box}
 :root[data-skin="ddb"] #saves .row .nm{min-width:0;overflow:hidden}
 :root[data-skin="ddb"] #saves .row .nm .tx{white-space:nowrap}
 :root[data-skin="ddb"] #saves .row .bonus{min-width:34px!important;height:30px!important;padding:0 6px!important;margin:0!important;border-radius:8px!important;display:inline-flex!important;align-items:center;justify-content:center}
@@ -44,7 +44,7 @@ html.mi-lap .mi-hud{display:block}
 @media (max-width:759px){:root[data-skin="ddb"] #saves{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 /* share button: its own corner, no ornament behind it, the name keeps clear of it */
 :root[data-skin="ddb"] #app .idcard{background-size:0 0,0 0,22px 1.5px,1.5px 22px,100% 100%,100% 100%!important}
-.mi-share{top:14px!important;right:14px!important;width:36px!important;height:36px!important;border-radius:11px!important;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03))!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 6px 14px -8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)!important;opacity:.8;transition:opacity .2s,border-color .2s}
+.mi-share{top:14px!important;right:14px!important;width:36px!important;height:36px!important;border-radius:12px!important;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03))!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 6px 14px -8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)!important;opacity:.8;transition:opacity .2s,border-color .2s}
 .mi-share:hover{opacity:1;border-color:rgba(var(--pl-rgb),.6)!important}
 .mi-share.in-row{position:static!important;align-self:stretch;width:48px!important;min-width:0;height:auto!important;opacity:1;border-radius:12px!important}
 #app .idcard .xpbtns:has(.mi-share.in-row){display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 48px!important;gap:10px!important}

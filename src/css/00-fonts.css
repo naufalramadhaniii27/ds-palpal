@@ -33,7 +33,7 @@
   --f-sans:"Archivo","Helvetica Neue",Arial,sans-serif;
   --f-nar:"Archivo Narrow","Arial Narrow","Helvetica Neue",Arial,sans-serif;
   --f-type:"Courier Prime","Courier New",Courier,monospace;
-  --out:cubic-bezier(.2,.9,.25,1);
+  --out:var(--ease-out);
   color-scheme:light;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);

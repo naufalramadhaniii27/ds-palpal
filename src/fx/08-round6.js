@@ -13,7 +13,7 @@
     later(function(){ var t=document.querySelector('#steps [data-step="equip"]'); if(!t) return; var q=C(t); if(!vis(q.r)) return;
       var d=document.createElement("i"); d.className="mi-fly"; d.setAttribute("aria-hidden","true"); document.body.appendChild(d);
       var dx=q.x-p.x, dy=q.y-p.y, lift=Math.min(-60,dy*.5-60);
-      var an=d.animate([{transform:"translate("+p.x+"px,"+p.y+"px) scale(.6)",opacity:0},{transform:"translate("+(p.x+dx*.15)+"px,"+(p.y+lift*.6)+"px) scale(1.15)",opacity:1,offset:.25},{transform:"translate("+(p.x+dx*.6)+"px,"+(p.y+lift)+"px) scale(1)",opacity:1,offset:.6},{transform:"translate("+q.x+"px,"+q.y+"px) scale(.35)",opacity:.2}],{duration:620,easing:"cubic-bezier(.45,.05,.4,1)"});
+      var an=d.animate([{transform:"translate("+p.x+"px,"+p.y+"px) scale(.6)",opacity:0},{transform:"translate("+(p.x+dx*.15)+"px,"+(p.y+lift*.6)+"px) scale(1.15)",opacity:1,offset:.25},{transform:"translate("+(p.x+dx*.6)+"px,"+(p.y+lift)+"px) scale(1)",opacity:1,offset:.6},{transform:"translate("+q.x+"px,"+q.y+"px) scale(.35)",opacity:.2}],{duration:620,easing:"cubic-bezier(.4,0,.2,1)"});
       an.onfinish=function(){ rm(d); var t2=document.querySelector('#steps [data-step="equip"]'); if(t2) t2.animate([{transform:"scale(1)"},{transform:"scale(1.14)",offset:.4},{transform:"none"}],{duration:380,easing:POP}); MI.buzz("light"); };
       setTimeout(function(){ rm(d); },1200); }); },true);
 
@@ -25,7 +25,7 @@
       var bw=parseFloat(cs.borderTopWidth)||0, H=r.height-bw*2, bg=cs.backgroundColor; if(!bg||/rgba\(0, 0, 0, 0\)|transparent/.test(bg)) bg="var(--panel)";
       w.className="mi-slot"; w.setAttribute("aria-hidden","true"); w.style.cssText="left:"+(r.left+bw)+"px;top:"+(r.top+bw)+"px;width:"+(r.width-bw*2)+"px;height:"+H+"px;font:"+cs.font+";color:"+cs.color+";text-align:"+cs.textAlign+";background:"+bg+";border-radius:"+cs.borderRadius;
       col.innerHTML=seq.map(function(n){ return "<b style=\"height:"+H+"px;line-height:"+H+"px\">"+n+"</b>"; }).join(""); w.appendChild(col); document.body.appendChild(w);/* the reel sits inside the box and covers its number; the box itself is not touched */
-      var an=col.animate([{transform:"translateY(0)"},{transform:"translateY(-"+(H*(seq.length-1))+"px)"}],{duration:560,easing:"cubic-bezier(.15,.6,.2,1.02)",fill:"forwards"});
+      var an=col.animate([{transform:"translateY(0)"},{transform:"translateY(-"+(H*(seq.length-1))+"px)"}],{duration:560,easing:"cubic-bezier(.2,.7,.3,1)",fill:"forwards"});
       an.onfinish=function(){ w.animate([{opacity:1},{opacity:0}],{duration:90}).onfinish=function(){ rm(w); }; inp.animate([{transform:"scale(1.12)"},{transform:"none"}],{duration:260,easing:POP}); MI.buzz("medium"); };
       setTimeout(function(){ rm(w); },1200); }); },true);
 

@@ -108,7 +108,8 @@ async def run_viewport(b, base, vp, W, H, res):
         and await visible_text_has(pg, r"Armor Class\s*17") and await visible_text_has(pg, r"\b40\b"))
     st1 = await storage(pg); json.dump(st1, open(os.path.join(OUT, "storage-%s-s1.json" % vp), "w"), indent=1, sort_keys=True)
 
-    # 2. Build, then Apply to Sheet
+    # 2. Build, then Apply to Sheet. SCEN_WAIT_BUILD=ms waits first (to compare runs where the builder finished loading in the background)
+    if os.environ.get("SCEN_WAIT_BUILD"): await pg.wait_for_timeout(int(os.environ["SCEN_WAIT_BUILD"]))
     await js_click(pg, "#bldBtn"); await pg.wait_for_timeout(4000)
     await answer_asks(pg, log)
     n = await sheet_numbers(pg)

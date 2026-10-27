@@ -48,8 +48,13 @@ document.addEventListener("click",function(e){if(!e.target.closest("#bld"))retur
  if(d.irm!=null){var rmx=B.inv[+d.irm],rmn=rmx&&bCt(rmx.n)?bInN(rmx):0;ctFree(rmx);B.inv.splice(+d.irm,1);commit();if(rmn)toast("Removed "+rmx.n+". Its "+rmn+" item"+(rmn>1?"s are":" is")+" now outside any container.");return}
  if(d.iunpack!=null){var upx=B.inv[+d.iunpack],upn=upx&&upx.n;if(!upx)return;if(qOf(upx)<1){toast("Qty is 0, so there is nothing to unpack.");return}var upc=unpackAt(+d.iunpack);commit();toast(upc?"Unpacked "+upn+" into a "+PACKS[upx.alias&&PACKS[upx.alias]?upx.alias:upn][0]+" with its items.":"Nothing to unpack.");return}/* v32 RU134 */
  if(d.aq){addQty[d.aq]=Math.max(1,(addQty[d.aq]||1)+(+d.d));render();return}
- if(d.iadd&&PACKS[d.iadd]){ensureInv();var pq=+d.qty||1,PK=PACKS[d.iadd];for(var pk3=0;pk3<pq;pk3++)packOut(d.iadd,B.inv).forEach(function(y){B.inv.push(y)});addQty[d.iadd]=1;commit();toast("Added "+(pq>1?pq+" \u00d7 ":"")+d.iadd+": a "+PK[0]+" with "+PK[1].length+" kinds of items inside");return}/* v32 RU134 */
- if(d.iadd){ensureInv();var ex=B.inv.filter(function(y){return y.n===d.iadd&&!y.kit})[0],qq=+d.qty||1;if(ex&&!equippable(d.iadd))ex.q+=qq;else{var eq=equippable(d.iadd);if(ARMOR[d.iadd]&&B.inv.some(function(y){return ARMOR[y.n]&&y.eq}))eq=false;var lib=(B.custLib||[]).filter(function(c){return c.n===d.iadd})[0];B.inv.push(lib?{n:d.iadd,q:qq,eq:false,rar:lib.rar,desc:lib.desc,type:lib.type}:{n:d.iadd,q:qq,eq:DMAP[d.iadd]?false:eq})}addQty[d.iadd]=1;commit();toast("Added "+(qq>1?qq+" \u00d7 ":"")+d.iadd);return}
+ if(d.ibuy){var bq=Math.max(1,+d.qty||1),bp=itemCost(d.ibuy);if(bp==null||!(bp>0)){toast("This item has no listed price. Use Add.");return}
+  var mc2=false;try{mc2=bldMine()}catch(er){}var live2=!!(mc2&&window.__coinsGet),wal=live2?window.__coinsGet():bCoins(gpNow()),pr=window.__coinPay?window.__coinPay(wal,Math.round(bp*100*bq)):null;
+  if(!pr){toast("Not enough coin. It costs "+(window.__priceTxt?window.__priceTxt(bp*bq):bp*bq+" gp")+(window.__coinCp?" and you have "+(Math.round(window.__coinCp(wal))/100)+" gp in all.":"."));return}
+  if(live2&&window.__coinsPut)window.__coinsPut(pr.c,"Buy "+d.ibuy);else B.coins=pr.c;
+  var pu=window.__coinList?window.__coinList(pr.use):"",ch=window.__coinList?window.__coinList(pr.chg):"";bMsg="Bought "+(bq>1?bq+" \u00d7 ":"")+d.ibuy+" for "+(window.__priceTxt?window.__priceTxt(bp*bq):bp*bq+" gp")+(pu?". Paid "+pu:"")+(ch?", change back: "+ch:"")+".";d.iadd=d.ibuy}
+ if(d.iadd&&PACKS[d.iadd]){ensureInv();var pq=+d.qty||1,PK=PACKS[d.iadd];for(var pk3=0;pk3<pq;pk3++)packOut(d.iadd,B.inv).forEach(function(y){B.inv.push(y)});addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(pq>1?pq+" \u00d7 ":"")+d.iadd+": a "+PK[0]+" with "+PK[1].length+" kinds of items inside");bMsg="";return}/* v32 RU134 */
+ if(d.iadd){ensureInv();var ex=B.inv.filter(function(y){return y.n===d.iadd&&!y.kit})[0],qq=+d.qty||1;if(ex&&!equippable(d.iadd))ex.q+=qq;else{var eq=equippable(d.iadd);if(ARMOR[d.iadd]&&B.inv.some(function(y){return ARMOR[y.n]&&y.eq}))eq=false;var lib=(B.custLib||[]).filter(function(c){return c.n===d.iadd})[0];B.inv.push(lib?{n:d.iadd,q:qq,eq:false,rar:lib.rar,desc:lib.desc,type:lib.type}:{n:d.iadd,q:qq,eq:DMAP[d.iadd]?false:eq})}addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(qq>1?qq+" \u00d7 ":"")+d.iadd);bMsg="";return}
  if(d.avar){addVar[d.avar]=+d.k;render();return}
  if(d.custr){cust.r=d.custr;render();return}
  if(d.custadd){var cn=(cust.n||'').trim();if(!cn){toast("Type an item name first");return}ensureInv();var ci={n:cn,q:1,eq:false,rar:cust.r==='Common'?'':cust.r,desc:cust.d,type:cust.t};B.inv.push(ci);B.custLib=(B.custLib||[]).filter(function(c){return c.n!==cn}).concat([{n:cn,rar:ci.rar,desc:ci.desc,type:ci.type}]);cust={n:'',r:'Uncommon',d:'',t:'Wondrous Item'};commit();toast('Added '+cn);return}
@@ -124,3 +129,26 @@ function sid(){try{return window.__sheetId?window.__sheetId()||"":""}catch(e){re
 function own(nm){var id=sid();return B.cid&&id?B.cid===id:B.name===nm}
 function copyOf(nm){var n=B.name||"";return !B.cid&&!!nm&&nm.indexOf(n)===0&&/^( \(copy\))+$/.test(nm.slice(n.length))}
 function stamp(){var id=sid();if(id)B.cid=id}
+
+/* T4: Ctrl+K or Cmd+K inside the builder opens a small jump list: steps, Prev, Next, Close. Apply is left out on purpose */
+(function(){ var pal=null, back=null;
+  function items(){ var l=[]; STEPS.forEach(function(s){ l.push({t:"Go to "+s[1],k:s[1]+" step go",f:function(){ var b=document.querySelector('#steps [data-step="'+s[0]+'"]'); if(b) b.click(); }}); });
+    l.push({t:"Previous step",k:"prev back",f:function(){ var b=document.getElementById("prev"); if(b&&!b.disabled) b.click(); }});
+    l.push({t:"Next step",k:"next forward",f:function(){ var b=document.getElementById("next"); if(b&&!b.disabled) b.click(); }});
+    l.push({t:"Close builder",k:"close exit leave",f:function(){ var b=document.getElementById("b-close"); if(b) b.click(); }}); return l; }
+  function close(){ if(!pal) return; pal.remove(); pal=null; try{ if(back&&back.focus) back.focus(); }catch(er){} back=null; }
+  function draw(q){ var l=items().filter(function(i){ return !q||(i.t+" "+i.k).toLowerCase().indexOf(q.toLowerCase())>=0; }), box=pal.querySelector(".bpal-l");
+    box.innerHTML=l.map(function(i,n){ return '<button type="button" class="bpal-i" data-bpi="'+n+'">'+esc(i.t)+'</button>'; }).join("")||'<p class="bpal-e">No match.</p>'; pal._l=l; }
+  function open(){ if(pal) return; back=document.activeElement; pal=document.createElement("div"); pal.className="bpal"; pal.setAttribute("role","dialog"); pal.setAttribute("aria-modal","true"); pal.setAttribute("aria-label","Builder jump list");
+    pal.innerHTML='<div class="bpal-b"><input class="bpal-q" type="text" autocomplete="off" placeholder="Jump to a step" aria-label="Jump to a step"><div class="bpal-l"></div></div>';
+    document.getElementById("bld").appendChild(pal); draw(""); var q=pal.querySelector(".bpal-q"); q.focus();
+    q.addEventListener("input",function(){ draw(q.value); });
+    pal.addEventListener("click",function(e){ if(e.target===pal){ close(); return; } var b=e.target.closest(".bpal-i"); if(!b) return; var it=pal._l[+b.getAttribute("data-bpi")]; close(); if(it) it.f(); });
+    pal.addEventListener("keydown",function(e){ var bs=[].slice.call(pal.querySelectorAll(".bpal-i")), i=bs.indexOf(document.activeElement);
+      if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); close(); }
+      else if(e.key==="ArrowDown"){ e.preventDefault(); (bs[i+1]||bs[0]||q).focus(); }
+      else if(e.key==="ArrowUp"){ e.preventDefault(); (i<=0?q:bs[i-1]).focus(); }
+      else if(e.key==="Enter"&&document.activeElement===q){ e.preventDefault(); var it=pal._l&&pal._l[0]; close(); if(it) it.f(); }
+      else if(e.key==="Tab"){ var all=[q].concat(bs); var j=all.indexOf(document.activeElement); e.preventDefault(); all[(j+(e.shiftKey?-1:1)+all.length)%all.length].focus(); } }); }
+  document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return; var bl=document.getElementById("bld"); if(!bl||bl.hidden||document.querySelector(".ask")) return; e.preventDefault(); if(pal){ pal.querySelector(".bpal-q").focus(); return; } open(); },true);
+})();

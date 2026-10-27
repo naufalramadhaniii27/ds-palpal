@@ -149,6 +149,27 @@ function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; 
   return o; }
 function libTiles(a){ return '<div class="info-k">'+a.filter(function(x){ return x&&x[1]!==""&&x[1]!=null; }).map(function(x){ return String(x[1]).length>14?tileH(esc(x[0]),esc(x[1])):tileS(x[0],x[1]); }).join("")+'</div>'; }
 function libFeatBlock(h4,txt){ return '<div class="info-h">'+h4+'</div><p class="info-d">'+richP(txt)+'</p>'; }
+/* T4 item 23: Add to my sheet from the library (spell, magic item, gear). Entries carry lib:1 so they can be told apart from builder entries */
+function libPrice(c,k){ if(c!=="gear") return null; var p=(typeof PRICE!=="undefined"&&PRICE[k]!=null)?PRICE[k]:null; if(p==null){ GEAR.forEach(function(q){ if(q[0]===k&&q[1]!=null) p=q[1]; }); } return p!=null&&p>0?p:null; }
+function libAddBtn(c,k){ if(!(c==="spell"||c==="item"||c==="gear")) return ""; var pr=libPrice(c,k), q=c==="spell"?"":'<label class="lib-qty"><span>Quantity</span><input type="number" min="1" max="99" value="1" inputmode="numeric" data-libqty aria-label="Quantity"></label>';
+  return '<div class="lib-add">'+q+'<button type="button" class="btn sm press" data-libadd="'+esc(c+"|"+k)+'"><span class="hbt">'+(c==="spell"?"Add to my sheet":"Add (free)")+'</span></button>'+(pr!=null?'<button type="button" class="btn sm press lib-buy" data-libbuy="'+esc(c+"|"+k)+'"><span class="hbt">Buy for '+esc(priceTxt(pr))+'</span></button>':'')+'</div>'; }
+function libQty(){ var i=document.querySelector("[data-libqty]"), v=i?Math.floor(num(i.value,1)):1; return v<1?1:v>99?99:v; }
+function libItemFor(c,k){ var it=null; if(c==="item"){ DMGI.forEach(function(q){ if(q[0]===k) it=q; }); if(!it) return null; return {n:k,q:1,w:0,eq:false,type:it[1],rar:it[2],d:String(it[4]||"").replace(/\*\*|\[\[|\]\]/g,""),lib:1}; }
+  var w=WEAPONS[k], a=ARMOR[k], gr=null; GEAR.forEach(function(q){ if(q[0]===k) gr=q; }); var pr=libPrice(c,k); it={n:k,q:1,w:Number((w&&w.w)||(a&&a.w)||(gr&&gr[2])||0)||0,eq:false,d:ITEMDESC[k]||"",lib:1}; if(pr!=null) it.cost=pr; return it; }
+function libPut(c,k,qty){ var it=libItemFor(c,k); if(!it) return false; C.inv=C.inv||[]; var ex=C.inv.filter(function(y){ return y.n===k&&!y.eq&&y.lib===1; })[0]||(c==="gear"?C.inv.filter(function(y){ return y.n===k&&!y.eq; })[0]:null);
+  if(ex&&c==="gear") ex.q=(+ex.q||1)+qty; else { it.q=qty; C.inv.push(it); } saveC(); renderAll(); return true; }
+function libAddDo(c,k){ if(typeof C==="undefined"||!C) return;
+  if(c==="spell"){ if(!C.spellcasting){ toast("This character has no spellcasting"); return; } var r=null; SPELLS.forEach(function(q){ if(q[0]===k) r=q; }); if(!r) return;
+    if((C.spells||[]).some(function(x){ return x.n===k; })){ toast(k+" is already on your sheet"); return; }
+    C.spells=C.spells||[]; C.spells.push({n:r[0],l:r[1],sch:r[2],ct:r[4],r:r[5],cmp:r[6],dur:r[7],conc:r[8],rit:r[9],sv:r[10],sum:r[11]||"",full:(typeof SPELL_FULL!=="undefined"&&SPELL_FULL[k])||"",cls:spClsJ(r),use:r[1]?"Prepared":"Cantrip",src:"Library",lib:1});
+    saveC(); renderAll(); toast("Added "+k+" to your spells"); return; }
+  var qty=libQty(); if(libPut(c,k,qty)) toast("Added "+(qty>1?qty+" x ":"")+k+" to your inventory"); }
+/* Buy: the price comes out of your coins. Small coins go first, and a big coin is broken into change when needed */
+function libBuyDo(c,k){ var pr=libPrice(c,k); if(pr==null){ toast("This item has no listed price. Use Add."); return; } var qty=libQty(), cost=Math.round(pr*100*qty), co=coinsNow(), res=coinPay(co,cost);
+  if(!res){ toast("Not enough coin. It costs "+priceTxt(pr*qty)+" and you have "+fmtN(coinCp(co)/100)+" gp in all."); return; }
+  undoMark("Buy "+k); coinSet(res.c); libPut(c,k,qty); var ps=coinList(res.use), cs=coinList(res.chg);
+  toastU("Bought "+(qty>1?qty+" x ":"")+k+" for "+priceTxt(pr*qty)+". Paid "+ps+(cs?", change back: "+cs:"")+"."); if(sheetMode==="coin") coinRefresh(); }
+document.addEventListener("click",function(e){ var sh=e.target.closest&&e.target.closest("[data-invshop]"); if(sh){ e.preventDefault(); LIB.q=""; LIB.cur=null; LIB.hist=[]; LIB.cat="gear"; libOpen({}); return; } var bb=e.target.closest&&e.target.closest("[data-libbuy]"); if(bb){ e.preventDefault(); var w=bb.getAttribute("data-libbuy").split("|"); libBuyDo(w[0],w.slice(1).join("|")); return; } var b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
 function libDetail(c,k){ var h="",t=k,sub="",x,i;
   if(c==="spell"){ var o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
   if(c==="rule"){ var gl=GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d}); if(!gl) return null; LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }
@@ -216,7 +237,7 @@ function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=
   if(d){ bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; bd.scrollTop=0; return; }
   document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libListHTML(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ var rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
-function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; }
+function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);
   if(push!==false&&LIB.cur) LIB.hist.push(LIB.cur); else if(push!==false) { var bd=document.getElementById("libBd"); LIB.scroll=bd?bd.scrollTop:0; }
   LIB.cur=d; d.id=spec; libRecent(spec); libPaint(); }
 function libBack(){ if(LIB.hist.length){ LIB.cur=LIB.hist.pop(); } else LIB.cur=null; libPaint(); }
@@ -245,6 +266,7 @@ function libWire(w){ var drag=null;
   h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end); }
 function libOpen(o){ o=o||{}; var w=libDom(), first=!LIB.idx;
   try{ if(typeof closeSheet==="function"&&document.getElementById("sheet")&&document.getElementById("sheet").classList.contains("on")&&o.fromSearch) closeSheet(); }catch(er){}
+  var hv=document.getElementById("homeV"); w.style.zIndex=hv&&!hv.hidden?"60":"";
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
   if(window.innerWidth>=760&&!w.style.left){ var p=null; try{ p=JSON.parse(localStorage.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<window.innerWidth-100&&p[1]>=0&&p[1]<window.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,window.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
   requestAnimationFrame(function(){ w.classList.add("on"); });
@@ -315,11 +337,32 @@ function foundryOut(id){ var r=rSnap(rEnsure()), o=foundryOf(rC(id,r),rS(id,r)||
 
 /* RU35 no. 9: pinned skills (S.pin, optional) show at the top of the Main tab and in Combat view */
 function pinOn(n){ return Array.isArray(S.pin)&&S.pin.indexOf(n)>=0; }
-function pinToggle(n){ var a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); renderAll(); }
-function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; var L=S.pin.map(function(n){ var i=-1; (C.skills||[]).forEach(function(s,ix){ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length) return "";
-  return '<div class="pins" aria-label="Pinned skills">'+L.map(function(p){ return '<button type="button" class="pinc bd" data-bd="sk-'+p[1]+'">'+esc(p[0])+' <b>'+sg(D.skill[p[1]])+'</b></button>'; }).join("")+'</div>'; }
+function pinToggle(n){ var a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); renderAll();
+  Array.prototype.forEach.call(document.querySelectorAll(".pinfav[data-pin]"),function(b){ var on=pinOn(b.getAttribute("data-pin")); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on?"true":"false"); var t=b.querySelector(".hbt"); if(t) t.textContent=on?"In your favorites bar":"Add to favorites bar"; }); }
+function pinSpBtn(x){ var k="sp:"+x.n, on=pinOn(k); return '<button type="button" class="btn sm press pinfav'+(on?' on':'')+'" data-pin="'+esc(k)+'" aria-pressed="'+on+'"><span class="hbt">'+(on?"In your favorites bar":"Add to favorites bar")+'</span></button>'; }
+function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; var SP=S.pin.map(function(n){ if(String(n).indexOf("sp:")!==0) return null; var nm=n.slice(3), i=-1; (C.spells||[]).forEach(function(x,ix){ if(i<0&&x.n===nm) i=ix; }); return i>=0?[nm,i,(C.spells[i].l||0)]:null; }).filter(Boolean), L=S.pin.map(function(n){ var i=-1; (C.skills||[]).forEach(function(s,ix){ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length&&!SP.length) return "";
+  return '<div class="pins" aria-label="Favorites">'+L.map(function(p){ return '<button type="button" class="pinc bd" data-bd="sk-'+p[1]+'">'+esc(p[0])+' <b>'+sg(D.skill[p[1]])+'</b></button>'; }).join("")+SP.map(function(p){ return '<button type="button" class="pinc pinsp" data-info="sp:'+p[1]+'">'+esc(p[0])+' <b>'+(p[2]?"L"+p[2]:"C")+'</b></button>'; }).join("")+'</div>'; }
 
 /* RU28: a sheet made by the builder of an older version (no C.bv) that the builder now makes differently. Shown once per app version, until dismissed or applied */
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!window.__bldMine||!window.__bldMine()) return ""; var d=[]; try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";
   return '<div class="oldnote" role="note"><p><b>This sheet was made by an older version of the builder.</b> Rules in the builder were updated since. Press Build, then Apply to refresh the sheet. The Apply dialog lists what would change: '+esc(d.join(". "))+'.</p><div class="bkpr"><button type="button" class="btn press" data-oldn="bld">Open Builder</button><button type="button" class="btn press" data-oldn="ok">Dismiss</button></div></div>'; }
 
+/* T4: press and hold a library row (item, gear or spell), drag it onto the drop zone to add it to the sheet. Same as the Add button */
+(function(){ var timer=0, sx=0, sy=0, cur=null, ghost=null, zone=null, hold=0;
+  function pick(r){ var s=r.getAttribute("data-lib-open")||"", i=s.indexOf("|"), c=s.slice(0,i); return (c==="spell"||c==="item"||c==="gear")?{c:c,k:s.slice(i+1),t:(r.querySelector("b")||r).textContent}:null; }
+  function over(x,y){ if(!zone) return false; var r=zone.getBoundingClientRect(); return x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8; }
+  function end(){ clearTimeout(timer); timer=0; if(ghost){ ghost.remove(); ghost=null; } if(zone){ zone.remove(); zone=null; } if(cur){ cur=null; hold=Date.now(); } }
+  function begin(r,t,x,y){ cur=t; var w=document.getElementById("lib"); if(!w) { cur=null; return; }
+    ghost=document.createElement("div"); ghost.className="lib-ghost"; ghost.textContent=t.t; ghost.style.left=x+"px"; ghost.style.top=y+"px"; w.appendChild(ghost);
+    zone=document.createElement("div"); zone.className="lib-dz"; zone.setAttribute("role","status"); zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(zone);
+    try{ if(navigator.vibrate) navigator.vibrate(10); }catch(er){} }
+  document.addEventListener("pointerdown",function(e){ var r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(!r||(e.pointerType==="mouse"&&e.button!==0)) return; var t=pick(r); if(!t) return; sx=e.clientX; sy=e.clientY; clearTimeout(timer); timer=setTimeout(function(){ timer=0; begin(r,t,sx,sy); },e.pointerType==="mouse"?200:380); },true);
+  document.addEventListener("pointermove",function(e){ if(timer&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){ clearTimeout(timer); timer=0; }
+    if(!cur) return; if(ghost){ ghost.style.left=e.clientX+"px"; ghost.style.top=e.clientY+"px"; } if(zone) zone.classList.toggle("on",over(e.clientX,e.clientY)); },true);
+  document.addEventListener("touchmove",function(e){ if(cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
+  document.addEventListener("pointerup",function(e){ clearTimeout(timer); timer=0; if(!cur) return; var t=cur, hit=over(e.clientX,e.clientY); end(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); },true);
+  document.addEventListener("pointercancel",function(){ end(); },true);
+  document.addEventListener("keydown",function(e){ if(cur&&e.key==="Escape"){ e.stopPropagation(); end(); } },true);
+  document.addEventListener("click",function(e){ if(hold&&Date.now()-hold<400){ var r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } hold=0; } },true);
+  document.addEventListener("contextmenu",function(e){ if(cur||timer) e.preventDefault(); },true);
+})();

@@ -1,0 +1,4 @@
+/* T2: Immersive Off means no animation. One rule for CSS animations and transitions, one for view transitions.
+   WAAPI animations are set to length 0 in fx/01-core-router-and-switch.js. The end state is applied at once, so layout and logic do not change. */
+html.mi-off *,html.mi-off *::before,html.mi-off *::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+html.mi-off::view-transition-group(*),html.mi-off::view-transition-old(*),html.mi-off::view-transition-new(*){animation-duration:.001ms!important;animation-delay:0s!important}

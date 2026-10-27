@@ -46,18 +46,23 @@
   if(sh&&sb){ var hq=function(){ hero(); }; new MutationObserver(hq).observe(sh,{attributes:true,attributeFilter:["class"]}); new MutationObserver(hq).observe(sb,{childList:true}); }
 
   /* M11 opening a character: its sigil and name, once per character per session */
-  function splash(){ if(!full()) return; var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
+  /* T1: no splash over the builder. Create a Character and Edit reload and then open the builder (cs-skip with cs-new or cs-edit) */
+  var html0=D.documentElement;
+  function bldSoon(){ var b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(window.__bldBusyOff) return true;
+    try{ return sessionStorage.getItem("cs-skip")==="1"&&(localStorage.getItem("cs-new")==="1"||localStorage.getItem("cs-edit")==="1"); }catch(e){ return false; } }
+  function splash(){ if(!full()||bldSoon()||html0.classList.contains("mi-cx")) return;/* T1: the connected move from Home replaces the splash */ var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
     var ic=window.__miIcon?{outerHTML:window.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
     var e=D.createElement("div"); e.className="mi-splash"; e.setAttribute("aria-hidden","true"); e.innerHTML='<div class="s">'+(ic?ic.outerHTML:"")+'</div><b></b><small></small>'; e.querySelector("b").textContent=nm; e.querySelector("small").textContent=cl; D.body.appendChild(e);
     e.querySelector(".s").animate([{transform:"scale(.6) rotate(-20deg)",opacity:0},{transform:"scale(1) rotate(0)",opacity:1,offset:.4},{transform:"scale(1.05)",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
-    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300); }
+    e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(function(){ rm(e); },2300);
+    var bl=D.getElementById("bld"); if(bl){ var mo=new MutationObserver(function(){ if(!bl.hidden){ mo.disconnect(); rm(e); } }); mo.observe(bl,{attributes:true,attributeFilter:["hidden"]}); setTimeout(function(){ mo.disconnect(); },2400); } }
   function boot(){ if(vis(D.querySelector("#app .idcard"))&&!vis(D.getElementById("homeV"))) splash(); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
 
   /* M12 a spell slot spent: the gem shatters. Long Rest: every gem lights again */
   addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest(".spsl .bx"); if(!b||!full()) return; var was=b.getAttribute("aria-pressed")==="true", k=b.getAttribute("data-k"), i=b.getAttribute("data-i"), r=b.getBoundingClientRect();
     nf(function(){ nf(function(){ var n=D.querySelector('.spsl .bx[data-k="'+CSS.escape(k||"")+'"][data-i="'+CSS.escape(i||"")+'"]'); if(!n||was||n.getAttribute("aria-pressed")!=="true") return; var x=r.left+r.width/2, y=r.top+r.height/2;
-      for(var j=0;j<9;j++){ (function(j){ var s=fx("mi-gsh","",1200), a=Math.PI*2*j/9+Math.random()*.5, d=18+Math.random()*26; s.animate([{transform:"translate("+x+"px,"+y+"px) rotate(0)",opacity:1},{transform:"translate("+(x+Math.cos(a)*d)+"px,"+(y+Math.sin(a)*d+14)+"px) rotate("+(200+Math.random()*200)+"deg) scale(.5)",opacity:0}],{duration:620+Math.random()*240,easing:"cubic-bezier(.2,.7,.4,1)"}).onfinish=function(){ rm(s); }; })(j); }
+      for(var j=0;j<9;j++){ (function(j){ var s=fx("mi-gsh","",1200), a=Math.PI*2*j/9+Math.random()*.5, d=18+Math.random()*26; s.animate([{transform:"translate("+x+"px,"+y+"px) rotate(0)",opacity:1},{transform:"translate("+(x+Math.cos(a)*d)+"px,"+(y+Math.sin(a)*d+14)+"px) rotate("+(200+Math.random()*200)+"deg) scale(.5)",opacity:0}],{duration:620+Math.random()*240,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish=function(){ rm(s); }; })(j); }
       MI.buzz("light"); }); }); },true);
   var W=window.__miWow; if(W&&W.rest){ var r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); if(k==="long"&&full()) setTimeout(function(){ var i=0; Array.prototype.forEach.call(D.querySelectorAll(".spsl .bx,.lu .bx"),function(b){ if(!vis(b)) return; b.animate([{transform:"scale(.6)",opacity:.3},{transform:"scale(1.18)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:520,delay:Math.min(i++,24)*40,easing:"cubic-bezier(.3,1.5,.5,1)",fill:"backwards"}); }); },700); }; }
 
