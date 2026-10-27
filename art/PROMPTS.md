@@ -2383,3 +2383,93 @@ Every person is an adult. Express heartbreak, exhaustion and loss within the spe
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-014 v3 — art/batch/portraits/aasimar-b.png
+
+Light on the face: coral and teal light. Emotion: fragile hope. Condition: blood and grime across the face. Original adult aasimar man in his forties, silver hair and softly glowing eyes, mature face lifting with fragile hope through sorrow. Coral light from one side, teal reflected fill from other. Blood and grime only across face, not clothing. Plain silver-lilac background tinted by face light. Wears a simple mended scarf from a lost friend.
+
+an aasimar with silver hair and calm glowing eyes. Background colors: silver and lilac.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon face), plain textured color background, a face marked by loss and violence
+
+768x960 portrait. Head-and-shoulders or down-to-waist view of one original adult adventurer, facing three-quarter toward viewer, holding or wearing the specified personal story object. Species traits clearly visible. The emotion and condition specified above control the face and wounds. Face lighting tints only the plain background colors, no scenery. Background is flat color with rough dry-brush texture in the specified colors. Face sits upper-middle for square or circle crop. Keep whole head, horns, ears and tusks inside the middle80% of height for the final crop.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Heartbreak, exhaustion and loss show through the specified emotion; wounds only as the condition states. Bright vivid colorful portrait light and background, never dark, gloomy, grey or orange-only; blood vivid red and confined to the condition's place. No additional enemy or scenery, no extra warmth group in this one-person portrait.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-014 v3 — art/batch/portraits/dragonborn-b.png
+
+Light on the face: sunflower-yellow light. Emotion: tears after battle. Condition: dried blood on the hands. Original mature adult dragonborn woman with deep red scales and scarred snout, tears gathering after battle. Sunflower-yellow light rakes across scales and wet eyes. Frame to waist to show dried blood on adult clawed hands only, held around a plain broken buckle. Crimson and gold flat background.
+
+a dragonborn with deep red scales and a scarred snout. Background colors: crimson and gold.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon face), plain textured color background, a face marked by loss and violence
+
+768x960 portrait. Head-and-shoulders or down-to-waist view of one original adult adventurer, facing three-quarter toward viewer, holding or wearing the specified personal story object. Species traits clearly visible. The emotion and condition specified above control the face and wounds. Face lighting tints only the plain background colors, no scenery. Background is flat color with rough dry-brush texture in the specified colors. Face sits upper-middle for square or circle crop. Keep whole head, horns, ears and tusks inside the middle80% of height for the final crop.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Heartbreak, exhaustion and loss show through the specified emotion; wounds only as the condition states. Bright vivid colorful portrait light and background, never dark, gloomy, grey or orange-only; blood vivid red and confined to the condition's place. No additional enemy or scenery, no extra warmth group in this one-person portrait.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-014 v3 — art/batch/portraits/dwarf-b.png
+
+Light on the face: pink and pale blue light. Emotion: anger. Condition: a bloodied sling on one arm. Original adult dwarf man with shaved head, black beard and simple plain-line tattoos without symbols. Pink and pale blue light on an angry mature face, clenched jaw. One arm rests in a bloodied sling; no additional gore. Teal and pale-gold plain textured backdrop, wears a worn brass cloak clasp.
+
+a dwarf with a shaved head, tattoos of plain lines and a black beard. Background colors: teal and pale gold.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon face), plain textured color background, a face marked by loss and violence
+
+768x960 portrait. Head-and-shoulders or down-to-waist view of one original adult adventurer, facing three-quarter toward viewer, holding or wearing the specified personal story object. Species traits clearly visible. The emotion and condition specified above control the face and wounds. Face lighting tints only the plain background colors, no scenery. Background is flat color with rough dry-brush texture in the specified colors. Face sits upper-middle for square or circle crop. Keep whole head, horns, ears and tusks inside the middle80% of height for the final crop.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Heartbreak, exhaustion and loss show through the specified emotion; wounds only as the condition states. Bright vivid colorful portrait light and background, never dark, gloomy, grey or orange-only; blood vivid red and confined to the condition's place. No additional enemy or scenery, no extra warmth group in this one-person portrait.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-014 v3 — art/batch/portraits/elf-b.png
+
+Light on the face: radiant white light with deep blue shadows. Emotion: fierce protectiveness. Condition: a split, bleeding lip. Original mature adult high elf man with silver hair and blue scholar's robe, fierce protectiveness in brow and gaze. Radiant white side light, deep blue cel-shadow planes on face. Split lip with blood confined there. Holds a plain closed book against chest, blue-and-silver plain backdrop.
+
+a high elf with silver hair and a blue scholar's robe. Background colors: blue and silver.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon face), plain textured color background, a face marked by loss and violence
+
+768x960 portrait. Head-and-shoulders or down-to-waist view of one original adult adventurer, facing three-quarter toward viewer, holding or wearing the specified personal story object. Species traits clearly visible. The emotion and condition specified above control the face and wounds. Face lighting tints only the plain background colors, no scenery. Background is flat color with rough dry-brush texture in the specified colors. Face sits upper-middle for square or circle crop. Keep whole head, horns, ears and tusks inside the middle80% of height for the final crop.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Heartbreak, exhaustion and loss show through the specified emotion; wounds only as the condition states. Bright vivid colorful portrait light and background, never dark, gloomy, grey or orange-only; blood vivid red and confined to the condition's place. No additional enemy or scenery, no extra warmth group in this one-person portrait.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-014 v3 — art/batch/portraits/gnome-b.png
+
+Light on the face: silver-bright light with sparkling dust motes. Emotion: bitter half-smile. Condition: a bloodied collar. Original clearly adult forest gnome woman, weathered laugh lines and mature proportions, green hood and a natural squirrel on shoulder. Bitter half-smile, silver-bright face light with only a few small sparkling dust highlights. Bloodied collar is the only red gore area. Holds an old smooth wooden charm. Green-brown plain dry-brush background.
+
+a forest gnome with a leaf-green hood and a squirrel on the shoulder. Background colors: green and brown.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon face), plain textured color background, a face marked by loss and violence
+
+768x960 portrait. Head-and-shoulders or down-to-waist view of one original adult adventurer, facing three-quarter toward viewer, holding or wearing the specified personal story object. Species traits clearly visible. The emotion and condition specified above control the face and wounds. Face lighting tints only the plain background colors, no scenery. Background is flat color with rough dry-brush texture in the specified colors. Face sits upper-middle for square or circle crop. Keep whole head, horns, ears and tusks inside the middle80% of height for the final crop.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. The gnome has a mature adult face, wrinkles and adult proportions. Heartbreak, exhaustion and loss show through the specified emotion; wounds only as the condition states. Bright vivid colorful portrait light and background, never dark, gloomy, grey or orange-only; blood vivid red and confined to the condition's place. No additional enemy or scenery, no extra warmth group in this one-person portrait.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

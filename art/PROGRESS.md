@@ -228,3 +228,10 @@ art/batch/portraits/halfling-a.png
 art/batch/portraits/human-a.png
 art/batch/portraits/orc-a.png
 art/batch/portraits/tiefling-a.png
+
+## batch-014 v3
+art/batch/portraits/aasimar-b.png
+art/batch/portraits/dragonborn-b.png
+art/batch/portraits/dwarf-b.png
+art/batch/portraits/elf-b.png
+art/batch/portraits/gnome-b.png
