@@ -216,3 +216,10 @@ art/batch/emblems/subclass/artificer-armorer.png
 art/batch/emblems/subclass/artificer-artillerist.png
 art/batch/emblems/subclass/artificer-battle-smith.png
 art/batch/emblems/subclass/artificer-cartographer.png
+
+## batch-013 v3
+art/batch/portraits/aasimar-a.png
+art/batch/portraits/dragonborn-a.png
+art/batch/portraits/dwarf-a.png
+art/batch/portraits/elf-a.png
+art/batch/portraits/gnome-a.png
