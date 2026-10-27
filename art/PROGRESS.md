@@ -294,3 +294,10 @@ art/batch/scenes/screen/tour-pc.png
 art/batch/scenes/screen/tour-phone.png
 art/batch/scenes/screen/settings-pc.png
 art/batch/scenes/screen/settings-phone.png
+
+## batch-020 v3
+art/batch/vignettes/moment/level-up.png
+art/batch/vignettes/moment/subclass.png
+art/batch/vignettes/moment/level-20.png
+art/batch/vignettes/moment/death-save.png
+art/batch/vignettes/moment/stabilized.png
