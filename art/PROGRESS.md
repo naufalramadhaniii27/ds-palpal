@@ -112,3 +112,8 @@ art/batch/scenes/species/halfling-phone.png
 art/batch/scenes/species/human-pc.png
 art/batch/scenes/species/human-phone.png
 art/batch/scenes/species/orc-pc.png
+art/batch/scenes/species/orc-phone.png
+art/batch/scenes/species/tiefling-pc.png
+art/batch/scenes/species/tiefling-phone.png
+art/batch/scenes/species/gnome-pc.png
+art/batch/scenes/species/gnome-phone.png
