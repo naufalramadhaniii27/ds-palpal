@@ -733,3 +733,10 @@ art/batch/scenes/species/merfolk-pc.png
 art/batch/scenes/species/merfolk-phone.png
 art/batch/scenes/species/minotaur-pc.png
 art/batch/scenes/species/minotaur-phone.png
+
+## batch-073 v3
+art/batch/scenes/species/naga-pc.png
+art/batch/scenes/species/naga-phone.png
+art/batch/scenes/species/owlin-pc.png
+art/batch/scenes/species/owlin-phone.png
+art/batch/scenes/species/plasmoid-pc.png
