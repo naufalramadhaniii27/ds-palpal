@@ -208,3 +208,8 @@ art/batch/emblems/subclass/warlock-celestial-patron.png
 art/batch/emblems/subclass/warlock-fiend-patron.png
 art/batch/emblems/subclass/warlock-great-old-one-patron.png
 art/batch/emblems/subclass/wizard-abjurer.png
+art/batch/emblems/subclass/wizard-diviner.png
+art/batch/emblems/subclass/wizard-evoker.png
+art/batch/emblems/subclass/wizard-illusionist.png
+art/batch/emblems/subclass/artificer-alchemist.png
+art/batch/emblems/subclass/artificer-armorer.png
