@@ -662,3 +662,8 @@ art/batch/icons/spells/level-2/lesser-restoration.png
 art/batch/icons/spells/level-2/pass-without-trace.png
 art/batch/icons/spells/level-2/pinky-swear.png
 art/batch/icons/spells/level-2/prayer-of-healing.png
+art/batch/icons/spells/level-2/protection-from-poison.png
+art/batch/icons/spells/level-2/tortoise-shell.png
+art/batch/icons/spells/level-2/warding-bond.png
+art/batch/icons/spells/level-2/air-bubble.png
+art/batch/icons/spells/level-2/battle-familiar.png
