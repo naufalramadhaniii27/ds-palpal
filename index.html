@@ -4381,6 +4381,7 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 .sub-em{display:flex;justify-content:center;margin:6px 0 4px}.sub-em .art-sub{margin:0;border-radius:12px;vertical-align:baseline}
 @media print{.art-sub{display:none}}
 .hbkl.warn .mi-vig{display:inline-block;vertical-align:middle;margin:0 10px 4px 0;border-radius:8px;filter:none}
+.dsg-t .mi-vig{float:left;margin:0 12px 4px 0;border-radius:10px;filter:none}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -5634,7 +5635,7 @@ function dsGuideH(){ var s=S.ds||[0,0], st=s[0]>=3, dead=s[1]>=3; if(S.hp!==0||d
   var ic=function(k,c){ return (typeof ICO==="object"&&ICO)?ico(k,c):""; }, b=function(k,ik,t,sm){ return '<button type="button" class="btn press dsb dsb-'+k+'" data-dsr="'+k+'">'+ic(ik,"dsb-i")+'<span><b>'+t+'</b>'+(sm?'<small>'+sm+'</small>':'')+'</span></button>'; };
   var h='<div class="dsg" id="dsGuide">';
   if(DS_OVER>0) h+='<div class="caution dsg-mass"><span>Massive damage: '+DS_OVER+' damage was left over after you dropped to 0, which is at least your Hit Point maximum ('+D.hpmax+'). By the rules your character dies.</span><button type="button" class="btn press dsb" data-dsr="dead">'+ic("death-fail","dsb-i")+'<span><b>Mark as Dead</b></span></button></div>';
-  if(st) h+='<p class="dsg-t"><b>Stable.</b> You stop making Death Saving Throws but stay Unconscious. Without healing you regain 1 Hit Point after 1d4 hours.</p>';
+  if(st) h+='<p class="dsg-t">'+(window.__artVig?window.__artVig("moment","stabilized",72):"")+'<b>Stable.</b> You stop making Death Saving Throws but stay Unconscious. Without healing you regain 1 Hit Point after 1d4 hours.</p>';
   else h+='<p class="dsg-t"><b>Death Saving Throw.</b> At the start of each of your turns, roll a d20 and tap the result. Three successes: Stable. Three failures: you die.'+((D.cf&&D.cf.ds||[]).length?' '+cfFlags(D.cf.ds)+(function(){ var L=D.cf.ds, a=L.filter(function(x){ return x.t==="ADV"; }), d=L.filter(function(x){ return x.t==="DIS"; }); return ' '+(a.length&&d.length?'Advantage and Disadvantage cancel out, so you roll normally':'You roll with '+(a.length?'Advantage':'Disadvantage'))+' ('+esc(L.map(function(x){ return x.s; }).join(", "))+').'; })():'')+'</p><div class="dsg-b">'+b("s","death-success","10 or higher","Success")+b("f","death-fail","9 or lower","Failure")+b("1","death-fail","Rolled a 1","Two failures")+b("20","hp-heal","Rolled a 20","Regain 1 Hit Point")+'</div>';
   h+='<p class="dsg-t2">Hit while at 0 Hit Points?</p><div class="dsg-b">'+b("d","hp-damage","Damage","One failure")+b("c","hp-damage","Critical Hit","Two failures")+'</div></div>';
   return h; }
@@ -9644,7 +9645,7 @@ window.__MI=MI;
   function levelFx(lv){ if(!MI.full()) return; var x=innerWidth/2, y=innerHeight*.38; ring(x,y,"#ffc93c",220); if(window.__miWow) window.__miWow.level(x,y);
     burst(x,y,{n:26,colors:["#ffd166","#ffc93c","#fff3b0","#ffffff"],shape:"mi-star",dist:190,dur:1500,scale:1.4,grav:true});
     setTimeout(function(){ burst(x,y,{n:18,colors:["#ffd166","#7cb6ff","#ffffff"],shape:"mi-spark",dist:150,dur:1100}); },250);
-    var b=document.createElement("div"); b.className="mi-lv"; b.setAttribute("aria-hidden","true"); b.innerHTML=(window.__artVig?window.__artVig("moment","level-up",120):"")+"<b>Level "+lv+"</b><span>Level up!</span>"; document.body.appendChild(b);
+    var b=document.createElement("div"); b.className="mi-lv"; b.setAttribute("aria-hidden","true"); b.innerHTML=(window.__artVig?window.__artVig("moment",lv>=20?"level-20":"level-up",120):"")+"<b>Level "+lv+"</b><span>Level up!</span>"; document.body.appendChild(b);
     var sz=Math.min(84,Math.max(40,innerWidth*.09)); particleText("LEVEL "+lv,x,y-sz*.1,sz);
     var an=b.animate([{transform:"translate(-50%,-50%) scale(.96)",opacity:0},{transform:"translate(-50%,-50%) scale(.96)",opacity:0,offset:.3},{transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.42},{transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.8},{transform:"translate(-50%,-62%) scale(1)",opacity:0}],{duration:2600,easing:"cubic-bezier(.2,.8,.2,1)",fill:"forwards"});
     an.onfinish=function(){ b.remove(); flipLevel(); }; setTimeout(function(){ b.remove(); },3100); }
@@ -11264,7 +11265,7 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
   /* Small pictures for moments and states: window.__artVig("moment","level-up") gives <img> html, or "" when missing or Art is off */
   window.__artVig=function(g,id,px){ var v=A.vig&&A.vig[g]; if(!v||v.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="mi-vig" src="img/vig/'+g+'/'+id+'.avif" width="'+(px||112)+'" height="'+(px||112)+'" alt="" decoding="async">'; };
-  try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
+  try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"],["moment","level-20"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
   /* Subclass emblem: window.__artSub("Fighter","Champion") gives <img> html, or "" */
   window.__artSub=function(cl,sub,px){ var id=bslug(cl)+"-"+bslug(sub); if(!A.esub||A.esub.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="art-sub" src="img/emblem/sub/'+id+'.avif" width="'+(px||28)+'" height="'+(px||28)+'" alt="" loading="lazy" decoding="async">'; };
   /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
