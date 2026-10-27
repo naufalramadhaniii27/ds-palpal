@@ -8,11 +8,11 @@ Branch t2-smooth, commit 99d2ea5 ditambah perubahan tes sesudahnya. Semua angka 
 |---|---|---|
 | Skenario wajib (Yudhi lama, sesudah Apply, karakter baru) di 390 dan 1250 | 24 cek, 0 gagal, 0 error JS | Lolos |
 | Alur Home ke sheet | 16 cek, 0 gagal | Lolos |
-| Bentuk localStorage lawan main | Kunci sama. Beda hanya waktu tulis cs-snap-v1 (kunci lama) | Lolos |
+| Bentuk localStorage lawan main | Kunci sama. Beda: cs-snap-v1 muncul hanya di run saya di 1250 s2 dan s3. Kunci itu sudah ada di main. Saya menduga soal waktu tulis, belum saya buktikan | Lolos, dengan catatan |
 | Overflow ke samping, 6 lebar | 0 | Lolos |
 | Overlap kontrol dan teks meluber, 6 lebar | 0 (tes divalidasi: gagal pada build lama di 320, 360, 390) | Lolos |
 | Skala spasi, radius, font | 0 nilai di luar skala | Lolos |
-| axe, semua layar | 0 pelanggaran | Lolos |
+| axe, semua layar kecuali menu More di 1250 | 0 pelanggaran. Menu More di 1250 gagal dipindai (klik timeout) dan belum diperiksa | Lolos sebagian |
 | Target sentuh 44 px di 390 | 0 kontrol di bawah 44 | Lolos |
 | Mode hemat animasi | 0 transisi dan animasi | Lolos |
 | Siap pakai (CPU 4x, ponsel) | sekitar 1,0 sampai 1,5 s | Lolos |
