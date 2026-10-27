@@ -418,3 +418,8 @@ art/batch/icons/creature-types/dragon.png
 art/batch/icons/creature-types/elemental.png
 art/batch/icons/creature-types/fey.png
 art/batch/icons/creature-types/fiend.png
+art/batch/icons/creature-types/giant.png
+art/batch/icons/creature-types/humanoid.png
+art/batch/icons/creature-types/monstrosity.png
+art/batch/icons/creature-types/ooze.png
+art/batch/icons/creature-types/plant.png
