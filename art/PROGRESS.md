@@ -699,3 +699,10 @@ art/batch/icons/spells/level-2/animal-messenger.png
 art/batch/icons/spells/level-2/calm-emotions.png
 art/batch/icons/spells/level-2/crown-of-madness.png
 art/batch/icons/spells/level-2/enthrall.png
+
+## batch-040 v3
+art/batch/icons/spells/level-2/gift-of-gab.png
+art/batch/icons/spells/level-2/hold-person.png
+art/batch/icons/spells/level-2/jims-glowing-coin.png
+art/batch/icons/spells/level-2/suggestion.png
+art/batch/icons/spells/level-2/tashas-mind-whip.png
