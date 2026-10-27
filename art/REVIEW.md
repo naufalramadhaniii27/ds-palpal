@@ -11,3 +11,5 @@ batch-003 v3 complete under MASTER.md at 681fadc: 10 images; exact prompts logge
 batch-004 v3 complete under MASTER.md at 681fadc: 6 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.
 
 batch-005 v3 complete under MASTER.md at 681fadc: 10 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.
+
+batch-006 v3 complete under MASTER.md at 681fadc: 10 images; exact prompts logged. Uniform scaling, center cropping and restored cream-paper edges at required sizes. No images marked NEEDS REVIEW. Imagegen used; exact model version not exposed.

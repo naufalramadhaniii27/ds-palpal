@@ -124,3 +124,8 @@ art/batch/scenes/background/acolyte-phone.png
 art/batch/scenes/background/artisan-pc.png
 art/batch/scenes/background/artisan-phone.png
 art/batch/scenes/background/charlatan-pc.png
+art/batch/scenes/background/charlatan-phone.png
+art/batch/scenes/background/criminal-pc.png
+art/batch/scenes/background/criminal-phone.png
+art/batch/scenes/background/entertainer-pc.png
+art/batch/scenes/background/entertainer-phone.png
