@@ -65,3 +65,5 @@ Batch-029 Pistol: first request blocked by tool as violence. Retrying as an isol
 batch-029 v3 complete: 20 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
 
 batch-030 v3 complete: 11 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+batch-031 v3 complete: 20 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.

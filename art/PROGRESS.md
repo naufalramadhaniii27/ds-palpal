@@ -518,3 +518,8 @@ art/batch/icons/spells/cantrips/mind-sliver.png
 art/batch/icons/spells/cantrips/vicious-mockery.png
 art/batch/icons/spells/cantrips/acid-splash.png
 art/batch/icons/spells/cantrips/booming-blade.png
+art/batch/icons/spells/cantrips/eldritch-blast.png
+art/batch/icons/spells/cantrips/fire-bolt.png
+art/batch/icons/spells/cantrips/frostbite.png
+art/batch/icons/spells/cantrips/green-flame-blade.png
+art/batch/icons/spells/cantrips/light.png
