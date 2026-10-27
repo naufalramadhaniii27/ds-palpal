@@ -247,3 +247,8 @@ art/batch/scenes/builder/class-phone.png
 art/batch/scenes/builder/background-pc.png
 art/batch/scenes/builder/background-phone.png
 art/batch/scenes/builder/species-pc.png
+art/batch/scenes/builder/species-phone.png
+art/batch/scenes/builder/abilities-pc.png
+art/batch/scenes/builder/abilities-phone.png
+art/batch/scenes/builder/equipment-pc.png
+art/batch/scenes/builder/equipment-phone.png

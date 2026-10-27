@@ -29,3 +29,5 @@ batch-012 v3 complete: 13 subclass emblems, warm approved anime prop style, no g
 batch-013 v3 complete: 10 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
 
 batch-014 v3 complete: 10 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+batch-015 v3 complete: 10 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
