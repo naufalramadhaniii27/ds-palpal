@@ -488,3 +488,10 @@ art/batch/icons/items/weapons/musket.png
 art/batch/icons/items/weapons/pistol.png
 art/batch/icons/items/armor/padded-armor.png
 art/batch/icons/items/armor/leather-armor.png
+
+## batch-030 v3
+art/batch/icons/items/armor/studded-leather-armor.png
+art/batch/icons/items/armor/hide-armor.png
+art/batch/icons/items/armor/chain-shirt.png
+art/batch/icons/items/armor/scale-mail.png
+art/batch/icons/items/armor/breastplate.png
