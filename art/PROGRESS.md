@@ -829,3 +829,10 @@ art/batch/icons/items/magic/uncommon/boots-of-the-winterlands.png
 art/batch/icons/items/magic/rare/bowl-of-commanding-water-elementals.png
 art/batch/icons/items/magic/uncommon/bracers-of-archery.png
 art/batch/icons/items/magic/rare/bracers-of-defense.png
+
+## batch-080 v3
+art/batch/icons/items/magic/rare/brazier-of-commanding-fire-elementals.png
+art/batch/icons/items/magic/uncommon/brooch-of-shielding.png
+art/batch/icons/items/magic/uncommon/broom-of-flying.png
+art/batch/icons/items/magic/very-rare/candle-of-invocation.png
+art/batch/icons/items/magic/common/candle-of-the-deep.png
