@@ -478,3 +478,8 @@ art/batch/icons/items/weapons/scimitar.png
 art/batch/icons/items/weapons/shortsword.png
 art/batch/icons/items/weapons/trident.png
 art/batch/icons/items/weapons/warhammer.png
+art/batch/icons/items/weapons/war-pick.png
+art/batch/icons/items/weapons/whip.png
+art/batch/icons/items/weapons/blowgun.png
+art/batch/icons/items/weapons/hand-crossbow.png
+art/batch/icons/items/weapons/heavy-crossbow.png
