@@ -1,4 +1,4 @@
-# batch-230 (20 images, icon redo)
+# batch-230 (19 images, icon redo)
 
 Redo of small icons so every icon in a group is one single object and none looks like a class emblem. These replace the older files at the same paths.
 
@@ -48,10 +48,6 @@ Style line: Studio Ghibli anime prop exactly like the approved class emblems, br
 
 ## 09-0005 [ICON] art/batch/icons/conditions/frightened.png
 Subject: Condition icon. Icon: Frightened. Draw it as a small lantern whose flame is shrinking and trembling. One single object only, centered, no ground and no other objects.
-Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
-
-## 09-0006 [ICON] art/batch/icons/conditions/grappled.png
-Subject: Condition icon. Icon: Grappled. Draw it as a hooked iron grappling claw. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0012 [ICON] art/batch/icons/conditions/prone.png
