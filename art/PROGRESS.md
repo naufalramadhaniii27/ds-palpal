@@ -721,3 +721,10 @@ art/batch/icons/spells/level-2/scorching-ray.png
 art/batch/icons/spells/level-2/searing-orb.png
 art/batch/icons/spells/level-2/shatter.png
 art/batch/icons/spells/level-2/snillocs-snowball-swarm.png
+
+## batch-072 v3
+art/batch/scenes/species/locathah-pc.png
+art/batch/scenes/species/locathah-phone.png
+art/batch/scenes/species/loxodon-pc.png
+art/batch/scenes/species/loxodon-phone.png
+art/batch/scenes/species/lupin-pc.png
