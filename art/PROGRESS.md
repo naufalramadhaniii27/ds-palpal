@@ -136,3 +136,8 @@ art/batch/scenes/background/farmer-phone.png
 art/batch/scenes/background/guard-pc.png
 art/batch/scenes/background/guard-phone.png
 art/batch/scenes/background/guide-pc.png
+art/batch/scenes/background/guide-phone.png
+art/batch/scenes/background/hermit-pc.png
+art/batch/scenes/background/hermit-phone.png
+art/batch/scenes/background/merchant-pc.png
+art/batch/scenes/background/merchant-phone.png
