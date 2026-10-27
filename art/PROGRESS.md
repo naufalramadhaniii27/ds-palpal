@@ -606,3 +606,8 @@ art/batch/icons/spells/level-1/hex.png
 art/batch/icons/spells/level-1/insidious-rhythm.png
 art/batch/icons/spells/level-1/silvery-barbs.png
 art/batch/icons/spells/level-1/sleep.png
+art/batch/icons/spells/level-1/tashas-hideous-laughter.png
+art/batch/icons/spells/level-1/burning-hands.png
+art/batch/icons/spells/level-1/chaos-bolt.png
+art/batch/icons/spells/level-1/chromatic-orb.png
+art/batch/icons/spells/level-1/divine-smite.png
