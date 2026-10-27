@@ -700,6 +700,7 @@ art/batch/icons/spells/level-2/calm-emotions.png
 art/batch/icons/spells/level-2/crown-of-madness.png
 art/batch/icons/spells/level-2/enthrall.png
 
+NEXT: batch-040 art/batch/icons/spells/level-2/spiritual-weapon.png
 ## batch-040 v3
 art/batch/icons/spells/level-2/gift-of-gab.png
 art/batch/icons/spells/level-2/hold-person.png
@@ -716,3 +717,7 @@ art/batch/icons/spells/level-2/gust-of-wind.png
 art/batch/icons/spells/level-2/melfs-acid-arrow.png
 art/batch/icons/spells/level-2/moonbeam.png
 art/batch/icons/spells/level-2/rimes-binding-ice.png
+art/batch/icons/spells/level-2/scorching-ray.png
+art/batch/icons/spells/level-2/searing-orb.png
+art/batch/icons/spells/level-2/shatter.png
+art/batch/icons/spells/level-2/snillocs-snowball-swarm.png
