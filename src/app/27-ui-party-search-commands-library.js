@@ -245,6 +245,7 @@ function libWire(w){ var drag=null;
   h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end); }
 function libOpen(o){ o=o||{}; var w=libDom(), first=!LIB.idx;
   try{ if(typeof closeSheet==="function"&&document.getElementById("sheet")&&document.getElementById("sheet").classList.contains("on")&&o.fromSearch) closeSheet(); }catch(er){}
+  var hv=document.getElementById("homeV"); w.style.zIndex=hv&&!hv.hidden?"60":"";
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
   if(window.innerWidth>=760&&!w.style.left){ var p=null; try{ p=JSON.parse(localStorage.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<window.innerWidth-100&&p[1]>=0&&p[1]<window.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,window.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
   requestAnimationFrame(function(){ w.classList.add("on"); });

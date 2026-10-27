@@ -2,7 +2,7 @@
 """Commands on Home. python3 tests/home_cmd.py [--root DIR]
 Ctrl+K on Home focuses the search. Typing a command word shows a command button. Enter runs the first one. Click runs it too.
 Checks at 390x844 and 1250x850: Ctrl+K focus, 'back' lists Back up, Enter opens the backup dialog, 'settings' click opens Settings,
-'zzz' shows no command, a character name shows no command, no page error."""
+'zzz' shows no command, a search word opens the library above Home, a character name shows no command, no page error."""
 import asyncio, json, os, sys, socket, threading, functools, http.server
 from playwright.async_api import async_playwright
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
@@ -33,9 +33,9 @@ async def main():
             await pg.keyboard.press("Control+k"); await pg.wait_for_timeout(200)
             chk(t + " Ctrl+K focuses Home search", await pg.evaluate("document.activeElement&&document.activeElement.id==='homeQ'"))
             await pg.fill("#homeQ", "zzz"); await pg.wait_for_timeout(200)
-            chk(t + " no match, no command", await pg.evaluate("!document.querySelector('.hcmd')"))
+            chk(t + " no match, no command", await pg.evaluate("!document.querySelector('.hcmd:not([data-hlib])')"))
             await pg.fill("#homeQ", "yudhi"); await pg.wait_for_timeout(200)
-            chk(t + " character name shows no command", await pg.evaluate("!document.querySelector('.hcmd')&&!!document.querySelector('.hcard')"))
+            chk(t + " character name shows no command", await pg.evaluate("!document.querySelector('.hcmd:not([data-hlib])')&&!!document.querySelector('.hcard')"))
             await pg.fill("#homeQ", "back"); await pg.wait_for_timeout(200)
             chk(t + " 'back' lists Back up", await pg.evaluate("[...document.querySelectorAll('.hcmd')].some(x=>/Back up/i.test(x.textContent))"))
             await pg.press("#homeQ", "Enter"); await pg.wait_for_selector("#bkp"); await pg.wait_for_timeout(300)
@@ -44,6 +44,20 @@ async def main():
             await pg.fill("#homeQ", "settings"); await pg.wait_for_timeout(200)
             await pg.click(".hcmd"); await pg.wait_for_selector("#bkp"); await pg.wait_for_timeout(300)
             chk(t + " click on Settings command opens Settings", "Settings" in await pg.evaluate("document.getElementById('bkp').innerText"))
+            await pg.keyboard.press("Escape"); await pg.wait_for_timeout(300)
+            await pg.fill("#homeQ", "fireball"); await pg.wait_for_timeout(200)
+            chk(t + " library button appears for a search word", await pg.evaluate("!!document.querySelector('[data-hlib]')"))
+            await pg.press("#homeQ", "Enter"); await pg.wait_for_selector("#lib:not([hidden])", timeout=15000); await pg.wait_for_timeout(1500)
+            lib = await pg.evaluate("(()=>{var l=document.getElementById('lib');var r=l.getBoundingClientRect();var e=document.elementFromPoint(r.left+r.width/2,r.top+40);return {q:document.getElementById('libQ').value,top:!!e&&l.contains(e),n:document.querySelectorAll('#libBd .lib-r').length}})()")
+            chk(t + " library opens with the query and results " + json.dumps(lib), lib["q"] == "fireball" and lib["n"] > 0)
+            try:
+                await pg.click("#libBd .lib-r", timeout=4000); await pg.wait_for_timeout(600)
+                chk(t + " a library result can be tapped (nothing covers it)", await pg.evaluate("!!document.querySelector('#libBd .lib-d, #libBd .lib-back, #libBd [data-lib-back]')||document.getElementById('libBd').innerText.length>200"))
+            except Exception as ex:
+                chk(t + " a library result can be tapped (nothing covers it) " + str(ex)[:80], False)
+            await pg.keyboard.press("Escape"); await pg.keyboard.press("Escape"); await pg.wait_for_timeout(600)
+            chk(t + " library closes and Home answers taps again", await pg.evaluate("(()=>{var l=document.getElementById('lib');return (l.hidden||!l.classList.contains('on'))&&!document.getElementById('homeV').inert})()"))
+            await pg.screenshot(path="/tmp/home_lib-%s.png" % t)
             await pg.screenshot(path="/tmp/home_cmd-%s.png" % t)
             chk(t + " no page errors", not errs)
             await ctx.close()
