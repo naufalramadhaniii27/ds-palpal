@@ -24,7 +24,7 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 | Gambar empty state | Home (karakter), item, spell, makhluk. Cadangan: ikon gambar lama |
 | Gambar momen | Natural 20, Natural 1 (overlay roll), Level Up, catatan offline |
 | Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
-| Ikon spell, senjata, kondisi | Daftar spell, Library Equipment, chip kondisi, inventori |
+| Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. Ikon makhluk belum diuji di layar karena karakter tes level 1 tidak punya makhluk |
 | Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
 
 Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Home pertama sudah punya `window.__ART`.
@@ -45,7 +45,7 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 |---|---|
 | Vignette state (backup-done, import-failed, saving, storage-full, update) dan momen (death-save, inspiration, level-20, stabilized, subclass) | Belum ada titik pasang yang tepat. Perlu keputusan di mana tampil |
 | Scene layar (bastion, combat, journal, rest, party, settings, tour) | Layar itu belum punya lapis latar sendiri |
-| Ikon item sihir, school, damage, creature, skill | Ada di manifest, belum dipasang di UI |
+| Ikon school dan damage | Ada di manifest, belum dipasang. Skill sudah punya ikon garis sendiri, dibiarkan |
 
 ## Perbaikan di luar gambar
 | Temuan | Perbaikan |
