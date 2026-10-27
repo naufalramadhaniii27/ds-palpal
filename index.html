@@ -4350,6 +4350,10 @@ html.cls-art #clsArt{opacity:.4}
 @media (min-width:760px){#clsArt{background-image:var(--ca-pc);background-position:center}html.cls-art #clsArt{opacity:.55}}
 @media (prefers-reduced-motion:reduce){#clsArt{transition:none}}
 @media print{#clsArt{display:none}}
+
+/* the empty portrait shows the class emblem. A portrait the user sets always wins */
+html.cls-emb .photo:not(.has) .ph-sil{inset:12px 8px 20px;background:var(--ca-emb) center/contain no-repeat}
+html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{display:none}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -5193,7 +5197,7 @@ function hcNote(){ return 'Stronger text and lines for low vision or bright ligh
 function miSetH(){ var g=function(k,d){ try{ return localStorage.getItem(k)||d; }catch(e){ return d; } }, fx=g("mi-fx","full"), bz=g("mi-bz","on"), b=function(a,v,cur,label,ik){ var on=cur===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; };
   return '<div class="info-h">Immersive Effects</div><div class="thg">'+b("data-mifx","full",fx,"Full","ui-check")+b("data-mifx","lite",fx,"Lite","ui-minus")+b("data-mifx","off",fx,"Off","ui-close")+'</div><p class="info-d">Full: every effect, condition ambience and celebrations. Lite: transitions and feedback only. Off: no motion effects.</p>'+
     '<div class="info-h">Vibration</div><div class="thg">'+b("data-mibz","on",bz,"On","ui-check")+b("data-mibz","off",bz,"Off","ui-close")+'</div>'+
-    '<div class="info-h">Sound</div><div class="thg">'+b("data-misnd","on",g("mi-snd","on"),"On","ui-check")+b("data-misnd","off",g("mi-snd","on"),"Off","ui-close")+'</div><p class="info-d">Dice, healing, damage, level up and rests make a short sound.</p>'+(window.__miLookH?window.__miLookH():'')+(window.__miPrefH?window.__miPrefH():'')+(window.__miMusicH?window.__miMusicH():''); }/* v55 */
+    '<div class="info-h">Sound</div><div class="thg">'+b("data-misnd","on",g("mi-snd","on"),"On","ui-check")+b("data-misnd","off",g("mi-snd","on"),"Off","ui-close")+'</div><p class="info-d">Dice, healing, damage, level up and rests make a short sound.</p>'+(window.__miLookH?window.__miLookH():'')+(window.__miPrefH?window.__miPrefH():'')+(window.__miMusicH?window.__miMusicH():'')+(window.__miArtH?window.__miArtH():''); }/* v55 */
 function hcBtn(v,label,ik){ var on=hcMode()===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-hc="'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; }
 HC_MQ.forEach(function(q){ var f=function(){ hcApply(); try{ if(sheetMode==="theme"){ var n=document.getElementById("hcNote"); if(n) n.textContent=hcNote(); } }catch(er){} };
   try{ q.addEventListener("change",f); }catch(er){ try{ q.addListener(f); }catch(er2){} } });
@@ -11212,14 +11216,20 @@ window.__ART={"emblem":{"artificer":{"c":"#382815","h":384,"p":"img/emblem/artif
   var el=null, cur="";
   function ensure(){ if(el) return el; el=D.createElement("div"); el.id="clsArt"; el.setAttribute("aria-hidden","true"); D.body.insertBefore(el,D.body.firstChild); return el; }
   function homeOpen(){ var h=D.getElementById("homeV"); return !!h&&!h.hidden; }
-  function apply(){ var c=H.getAttribute("data-mi-cls")||"", s=A.scene[c], ok=!!s&&ls("mi-clsart")!=="off"&&!homeOpen();
+  function emb(c){ var m=A.emblem&&A.emblem[c]; if(m&&ls("mi-clsart")!=="off"){ H.style.setProperty("--ca-emb",'url("'+m.p+'")'); H.classList.add("cls-emb"); } else { H.style.removeProperty("--ca-emb"); H.classList.remove("cls-emb"); } }
+  function apply(){ var c=H.getAttribute("data-mi-cls")||"", s0=emb(c), s=A.scene[c], ok=!!s&&ls("mi-clsart")!=="off"&&!homeOpen();
     if(!ok){ H.classList.remove("cls-art"); return; }
     var e=ensure(); if(c!==cur){ cur=c; e.style.setProperty("--ca-pc",'url("'+s.pc.p+'")'); e.style.setProperty("--ca-ph",'url("'+s.phone.p+'")'); e.style.setProperty("--ca-c",s.c); }
     H.classList.add("cls-art"); }
   var q=0; function soon(){ if(q) return; q=requestAnimationFrame(function(){ q=0; apply(); }); }
   new MutationObserver(soon).observe(H,{attributes:true,attributeFilter:["data-mi-cls"]});
   var hv=D.getElementById("homeV"); if(hv) new MutationObserver(soon).observe(hv,{attributes:true,attributeFilter:["hidden"]});
-  window.__clsArt=apply; apply();
+  window.__clsArt=function(){ emb(H.getAttribute("data-mi-cls")||""); apply(); };
+  window.__miArtH=function(){ var on=ls("mi-clsart")!=="off", B=function(v,l){ var a=(v==="on")===on; return '<button type="button" class="thb'+(a?" on":"")+'" data-miart="'+v+'" aria-pressed="'+a+'">'+l+'</button>'; };
+    return '<div class="info-h">Class art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">A picture of your class behind the sheet and on the empty portrait. Cards stay solid, so text keeps its contrast.</p>'; };
+  addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-miart]"); if(!b) return; try{ if(b.getAttribute("data-miart")==="off") localStorage.setItem("mi-clsart","off"); else localStorage.removeItem("mi-clsart"); }catch(er){}
+    Array.prototype.forEach.call(D.querySelectorAll("[data-miart]"),function(x){ var a=x===b; x.classList.toggle("on",a); x.setAttribute("aria-pressed",a); }); window.__clsArt(); },true);
+  window.__clsArt();
 })();
 </script>
 <script>

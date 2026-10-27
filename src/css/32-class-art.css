@@ -5,3 +5,7 @@ html.cls-art #clsArt{opacity:.4}
 @media (min-width:760px){#clsArt{background-image:var(--ca-pc);background-position:center}html.cls-art #clsArt{opacity:.55}}
 @media (prefers-reduced-motion:reduce){#clsArt{transition:none}}
 @media print{#clsArt{display:none}}
+
+/* the empty portrait shows the class emblem. A portrait the user sets always wins */
+html.cls-emb .photo:not(.has) .ph-sil{inset:12px 8px 20px;background:var(--ca-emb) center/contain no-repeat}
+html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{display:none}
