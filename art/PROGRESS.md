@@ -851,3 +851,10 @@ art/batch/icons/items/magic/rare/cloak-of-displacement.png
 art/batch/icons/items/magic/uncommon/cloak-of-elvenkind.png
 art/batch/icons/items/magic/legendary/cloak-of-invisibility.png
 art/batch/icons/items/magic/common/cloak-of-many-fashions.png
+
+## batch-081 v3
+art/batch/icons/items/magic/uncommon/cloak-of-protection.png
+art/batch/icons/items/magic/rare/cloak-of-the-bat.png
+art/batch/icons/items/magic/uncommon/cloak-of-the-manta-ray.png
+art/batch/icons/items/magic/common/clockwork-amulet.png
+art/batch/icons/items/magic/common/clothes-of-mending.png
