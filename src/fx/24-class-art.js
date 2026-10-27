@@ -22,6 +22,22 @@
   var tb=D.getElementById("tabs"); if(tb) new MutationObserver(soon).observe(tb,{attributes:true,subtree:true,attributeFilter:["aria-selected"]});
   var bn=D.getElementById("bnav"); if(bn) new MutationObserver(soon).observe(bn,{attributes:true,subtree:true,attributeFilter:["class"]});
   try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
+  /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
+  var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
+  function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+  window.__bldArt=function(step,B){ var bl=D.getElementById("bld"); if(!bl) return; var g=A.scn||{}, x=null;
+    if(ls("mi-clsart")!=="off"){
+      if(step==="class"&&B&&B.cls){ var s=A.scene&&A.scene[bslug(B.cls)]; if(s) x={pc:s.pc.p,phone:s.phone.p,c:s.c}; }
+      else if(step==="species"&&B&&B.species) x=g.species&&g.species[bslug(B.species)];
+      else if(step==="bg"&&B&&B.bg) x=g.background&&g.background[bslug(B.bg)];
+      if(!x&&g.builder){ var id=BSTEP[step]||(step==="class"?"class":step==="species"?"species":step==="bg"?"background":""); x=id&&g.builder[id]; }
+    }
+    var key=x&&x.pc?x.pc:""; if(key===bkey) return; bkey=key;
+    if(!BL.length){ for(var i=0;i<2;i++){ var e=D.createElement("div"); e.className="bld-art"; e.setAttribute("aria-hidden","true"); bl.insertBefore(e,bl.firstChild); BL.push(e); } }
+    if(!key){ BL.forEach(function(e){ e.classList.remove("on"); }); bon=-1; return; }
+    var u=PHONE.matches?x.phone:x.pc, im=new Image(); im.onload=im.onerror=function(){ if(bkey!==key) return; var n=bon<0?0:1-bon, e=BL[n];
+      e.style.setProperty("--ca-pc",'url("'+x.pc+'")'); e.style.setProperty("--ca-ph",'url("'+x.phone+'")'); e.style.setProperty("--ca-c",x.c||"#0f1417");
+      e.classList.add("on"); if(bon>=0) BL[bon].classList.remove("on"); bon=n; }; im.src=u; };
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
   window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
   window.__clsArt=function(){ apply(); };

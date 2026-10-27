@@ -4348,8 +4348,12 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 .cls-art-l{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .45s var(--ease-out,ease);background:var(--ca-c,#0f1417) var(--ca-ph) center top/cover no-repeat}
 html.cls-art .cls-art-l.on{opacity:.4}
 @media (min-width:760px){.cls-art-l{background-image:var(--ca-pc);background-position:center}html.cls-art .cls-art-l.on{opacity:.55}}
-@media (prefers-reduced-motion:reduce){.cls-art-l{transition:none}}
-@media print{.cls-art-l{display:none}}
+.bld-art{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .45s var(--ease-out,ease);background:var(--ca-c,#0f1417) var(--ca-ph) center top/cover no-repeat}
+.bld-art.on{opacity:.16}
+@media (min-width:760px){.bld-art{background-image:var(--ca-pc);background-position:center}.bld-art.on{opacity:.22}}
+:root[data-hc] .bld-art{display:none}
+@media (prefers-reduced-motion:reduce){.cls-art-l,.bld-art{transition:none}}
+@media print{.cls-art-l,.bld-art{display:none}}
 
 /* the empty portrait shows the class emblem. A portrait the user sets always wins */
 html.cls-emb .photo:not(.has) .ph-sil{inset:12px 8px 20px;background:var(--ca-emb) center/contain no-repeat}
@@ -11238,6 +11242,22 @@ window.__ART={"emblem":{"artificer":{"c":"#382815","h":384,"p":"img/emblem/artif
   var tb=D.getElementById("tabs"); if(tb) new MutationObserver(soon).observe(tb,{attributes:true,subtree:true,attributeFilter:["aria-selected"]});
   var bn=D.getElementById("bnav"); if(bn) new MutationObserver(soon).observe(bn,{attributes:true,subtree:true,attributeFilter:["class"]});
   try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
+  /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
+  var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
+  function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+  window.__bldArt=function(step,B){ var bl=D.getElementById("bld"); if(!bl) return; var g=A.scn||{}, x=null;
+    if(ls("mi-clsart")!=="off"){
+      if(step==="class"&&B&&B.cls){ var s=A.scene&&A.scene[bslug(B.cls)]; if(s) x={pc:s.pc.p,phone:s.phone.p,c:s.c}; }
+      else if(step==="species"&&B&&B.species) x=g.species&&g.species[bslug(B.species)];
+      else if(step==="bg"&&B&&B.bg) x=g.background&&g.background[bslug(B.bg)];
+      if(!x&&g.builder){ var id=BSTEP[step]||(step==="class"?"class":step==="species"?"species":step==="bg"?"background":""); x=id&&g.builder[id]; }
+    }
+    var key=x&&x.pc?x.pc:""; if(key===bkey) return; bkey=key;
+    if(!BL.length){ for(var i=0;i<2;i++){ var e=D.createElement("div"); e.className="bld-art"; e.setAttribute("aria-hidden","true"); bl.insertBefore(e,bl.firstChild); BL.push(e); } }
+    if(!key){ BL.forEach(function(e){ e.classList.remove("on"); }); bon=-1; return; }
+    var u=PHONE.matches?x.phone:x.pc, im=new Image(); im.onload=im.onerror=function(){ if(bkey!==key) return; var n=bon<0?0:1-bon, e=BL[n];
+      e.style.setProperty("--ca-pc",'url("'+x.pc+'")'); e.style.setProperty("--ca-ph",'url("'+x.phone+'")'); e.style.setProperty("--ca-c",x.c||"#0f1417");
+      e.classList.add("on"); if(bon>=0) BL[bon].classList.remove("on"); bon=n; }; im.src=u; };
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
   window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
   window.__clsArt=function(){ apply(); };
@@ -14425,7 +14445,7 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  if(s==="bg")return !(R14()||B.bgMode==="111"||(B.bg2&&B.bg1))||cs.some(function(c){return choiceStep(c)==="bg"&&!isDone(c)});
  if(s==="species")return cs.some(function(c){return choiceStep(c)==="species"&&!isDone(c)});
  return false}
-function render(){try{var hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
+function render(){try{window.__bldArt&&window.__bldArt(step,B)}catch(e){}try{var hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
  var csP=null;try{csP=choices()}catch(e){}
  $("#steps").innerHTML=STEPS.map(function(s){var pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
