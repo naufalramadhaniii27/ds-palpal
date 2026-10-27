@@ -677,3 +677,10 @@ art/batch/icons/spells/level-2/flock-of-familiars.png
 art/batch/icons/spells/level-2/healing-spirit.png
 art/batch/icons/spells/level-2/homunculus-servant.png
 art/batch/icons/spells/level-2/misty-step.png
+
+## batch-039 v3
+art/batch/icons/spells/level-2/spray-of-cards.png
+art/batch/icons/spells/level-2/summon-beast.png
+art/batch/icons/spells/level-2/vortex-warp.png
+art/batch/icons/spells/level-2/web.png
+art/batch/icons/spells/level-2/wristpocket.png
