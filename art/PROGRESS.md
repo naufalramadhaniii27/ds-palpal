@@ -807,3 +807,10 @@ art/batch/icons/items/magic/uncommon/baba-yagas-dancing-broom.png
 art/batch/icons/items/magic/rare/bag-of-beans.png
 art/batch/icons/items/magic/very-rare/bag-of-devouring.png
 art/batch/icons/items/magic/uncommon/bag-of-holding.png
+
+## batch-079 v3
+art/batch/icons/items/magic/uncommon/bag-of-tricks.png
+art/batch/icons/items/magic/rare/bead-of-force.png
+art/batch/icons/items/magic/common/bead-of-nourishment.png
+art/batch/icons/items/magic/common/bead-of-refreshment.png
+art/batch/icons/items/magic/rare/belt-of-dwarvenkind.png
