@@ -672,3 +672,8 @@ art/batch/icons/spells/level-2/conjure-tools.png
 art/batch/icons/spells/level-2/deryans-helpful-homunculi.png
 art/batch/icons/spells/level-2/dust-devil.png
 art/batch/icons/spells/level-2/find-steed.png
+art/batch/icons/spells/level-2/flaming-sphere.png
+art/batch/icons/spells/level-2/flock-of-familiars.png
+art/batch/icons/spells/level-2/healing-spirit.png
+art/batch/icons/spells/level-2/homunculus-servant.png
+art/batch/icons/spells/level-2/misty-step.png
