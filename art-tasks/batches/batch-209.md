@@ -12,17 +12,17 @@ Style line: loose energetic hand-drawn sketch illustration (ink lines, flat text
 
 ## 23-0093 [CREATURE] art/batch/creatures/humanoid-orc/orc-war-chief.png
 Subject: Orc War Chief: an orc chief in battle-scarred armor with a greataxe. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = rose and pale green; pose = turning to look
+Variation: light color on the creature = rose and pale green; pose = striding forward
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0094 [CREATURE] art/batch/creatures/celestial-angel/planetar.png
 Subject: Planetar: a towering green-skinned angel with feathered wings and a greatsword. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = cherry-pink and cream; pose = turning toward the viewer
+Variation: light color on the creature = cherry-pink and cream; pose = drifting forward
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0095 [CREATURE] art/batch/creatures/beast-dinosaur/plesiosaurus.png
 Subject: Plesiosaurus: a large beast (dinosaur). Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = snow white and blue; pose = rising with jaws or claws open
+Variation: light color on the creature = snow white and blue; pose = turning with bared teeth
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0096 [CREATURE] art/batch/creatures/beast-dinosaur/pteranodon.png
@@ -32,17 +32,17 @@ Style line: loose energetic hand-drawn sketch illustration (ink lines, flat text
 
 ## 23-0097 [CREATURE] art/batch/creatures/beast/quipper.png
 Subject: Quipper: a tiny beast. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = lilac and silver; pose = darting away
+Variation: light color on the creature = lilac and silver; pose = gliding forward
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0098 [CREATURE] art/batch/creatures/celestial/reigar.png
 Subject: Reigar: a tall, elegant humanoid with pale opal skin and armor of shimmering light. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = coral and sea blue; pose = looking down at the viewer
+Variation: light color on the creature = coral and sea blue; pose = turning to look
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0099 [CREATURE] art/batch/creatures/beast/rhinoceros.png
 Subject: Rhinoceros: a large beast. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = turquoise and sand; pose = resting
+Variation: light color on the creature = turquoise and sand; pose = standing alert
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0100 [CREATURE] art/batch/creatures/celestial-angel/solar.png

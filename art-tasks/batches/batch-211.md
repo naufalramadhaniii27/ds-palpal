@@ -2,7 +2,7 @@
 
 ## 23-0111 [CREATURE] art/batch/creatures/construct/eldritch-eddy.png
 Subject: Eldritch Eddy: a hovering swirl of violet arcane energy around a core of floating stone shards. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = turquoise and sand; pose = turning toward the viewer
+Variation: light color on the creature = turquoise and sand; pose = hovering calmly
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0112 [CREATURE] art/batch/creatures/monstrosity/swarm-of-corrupted-rats.png
@@ -17,15 +17,15 @@ Style line: loose energetic hand-drawn sketch illustration (ink lines, flat text
 
 ## 23-0114 [CREATURE] art/batch/creatures/beast/cave-bear.png
 Subject: Cave Bear: a huge shaggy bear of the deep caves. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = emerald and gold; pose = stalking low
+Variation: light color on the creature = emerald and gold; pose = watchful
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0115 [CREATURE] art/batch/creatures/monstrosity/guardian-wolf.png
 Subject: Guardian Wolf: a huge silver-grey wolf with a thick mane. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = honey and mint; pose = watchful
+Variation: light color on the creature = honey and mint; pose = wounded and limping
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
 
 ## 23-0116 [CREATURE] art/batch/creatures/beast/giant-wasp.png
 Subject: Giant Wasp: a medium beast. Natural or noble creature: no blood on it except from its own wounds.
-Variation: light color on the creature = autumn red and amber; pose = circling with stinger raised
+Variation: light color on the creature = autumn red and amber; pose = hovering with wings buzzing
 Style line: loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright colorful light on the creature, transparent background, natural and clean, only its own wounds if any
