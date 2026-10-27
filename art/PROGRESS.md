@@ -836,3 +836,8 @@ art/batch/icons/items/magic/uncommon/brooch-of-shielding.png
 art/batch/icons/items/magic/uncommon/broom-of-flying.png
 art/batch/icons/items/magic/very-rare/candle-of-invocation.png
 art/batch/icons/items/magic/common/candle-of-the-deep.png
+art/batch/icons/items/magic/uncommon/cap-of-water-breathing.png
+art/batch/icons/items/magic/rare/cape-of-the-mountebank.png
+art/batch/icons/items/magic/very-rare/carpet-of-flying.png
+art/batch/icons/items/magic/common/cast-off-armor.png
+art/batch/icons/items/magic/very-rare/cauldron-of-rebirth.png
