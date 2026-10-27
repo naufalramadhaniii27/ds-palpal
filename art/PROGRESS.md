@@ -186,3 +186,8 @@ art/batch/emblems/subclass/monk-warrior-of-shadow.png
 art/batch/emblems/subclass/monk-warrior-of-the-elements.png
 art/batch/emblems/subclass/monk-warrior-of-the-open-hand.png
 art/batch/emblems/subclass/paladin-oath-of-devotion.png
+art/batch/emblems/subclass/paladin-oath-of-glory.png
+art/batch/emblems/subclass/paladin-oath-of-vengeance.png
+art/batch/emblems/subclass/paladin-oath-of-the-ancients.png
+art/batch/emblems/subclass/ranger-beast-master.png
+art/batch/emblems/subclass/ranger-fey-wanderer.png
