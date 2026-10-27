@@ -26,3 +26,5 @@
 @media (prefers-reduced-motion:reduce){.hhero *,.hhero{animation:none!important}.hhero::before{display:none}}
 @media (hover:none){.hhero::before{display:none}}
 html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
+#homeV .hcmds{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
+#homeV .hcmd{min-height:44px}

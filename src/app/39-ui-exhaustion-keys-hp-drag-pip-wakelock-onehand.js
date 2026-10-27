@@ -7,6 +7,8 @@ function exhTo(v,quiet){ var exh0=num(S.exh,0); S.exh=clamp(Math.round(num(v,0))
 document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return;
   if(document.querySelector(".ask, #recov, #homeV:not([hidden])")) return; var bl=$("#bld"); if(bl&&!bl.hidden) return; e.preventDefault();
   if(sheet.classList.contains("on")&&sheetMode==="search"){ var q=$("#gsQ"); if(q){ q.focus(); try{ q.select(); }catch(er){} } return; } openSearch(); },true);
+document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return;
+  var h=document.getElementById("homeV"); if(!h||h.hidden||document.querySelector(".ask, #recov, #bkp")) return; var q=document.getElementById("homeQ"); if(!q) return; e.preventDefault(); q.focus(); try{ q.select(); }catch(er){} },true);
 document.addEventListener("keydown",function(e){ var q=e.target; if(!q||q.id!=="gsQ") return;
   if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); gsSync(); var L=gsRows(); if(!L.length) return; gsSel=(gsSel+(e.key==="ArrowDown"?1:-1)+L.length)%L.length; gsMark(true); return; }
   if(e.key==="Enter"){ e.preventDefault(); gsSync(); var r=gsRows()[gsSel]; if(r) r.click(); return; }
