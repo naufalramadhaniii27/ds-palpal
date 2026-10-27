@@ -23,3 +23,5 @@ batch-009 v3 complete under MASTER.md at 681fadc: 2 images; exact prompts logged
 batch-010 v3 complete: 20 subclass emblems, warm approved anime prop style, no gore. Transparent visible-content crop and uniform scale to70% on1024px canvas. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
 
 batch-011 v3 complete: 20 subclass emblems, warm approved anime prop style, no gore. Transparent visible-content crop and uniform scale to70% on1024px canvas. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+batch-012 v3 complete: 13 subclass emblems, warm approved anime prop style, no gore. Transparent visible-content crop and uniform scale to70% on1024px canvas. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.

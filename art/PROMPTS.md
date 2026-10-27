@@ -2161,3 +2161,45 @@ An empty rounded armor helmet with a softly glowing copper visor slit, warm matt
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-012 v3 — art/batch/emblems/subclass/artificer-artillerist.png
+
+Subclass emblem for Artillerist (Artificer): a small arcane cannon on a tripod firing a spark. Glow color: copper.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A small arcane cannon on three short brass-and-wood tripod legs fires one copper-colored magical spark. Short broad barrel and hinged warm wooden mount, slightly angled for readable silhouette.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-012 v3 — art/batch/emblems/subclass/artificer-battle-smith.png
+
+Subclass emblem for Battle Smith (Artificer): a hammer and a small mechanical guardian dog head. Glow color: copper.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A small friendly mechanical guardian dog head with natural anime eyes, warm brass ears and wooden jaw plates; one smith hammer crosses behind it. Copper glow within head seam, no aggressive teeth.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-012 v3 — art/batch/emblems/subclass/artificer-cartographer.png
+
+Subclass emblem for Cartographer (Artificer): a rolled blank map with a brass compass and a pin. Glow color: copper.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A rolled cream map with completely blank paper, a small brass compass with a blank unmarked face, and one plain map pin tucked at the roll. Copper light on compass rim, no coordinates, symbols or writing.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

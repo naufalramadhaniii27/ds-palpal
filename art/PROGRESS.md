@@ -213,3 +213,6 @@ art/batch/emblems/subclass/wizard-evoker.png
 art/batch/emblems/subclass/wizard-illusionist.png
 art/batch/emblems/subclass/artificer-alchemist.png
 art/batch/emblems/subclass/artificer-armorer.png
+art/batch/emblems/subclass/artificer-artillerist.png
+art/batch/emblems/subclass/artificer-battle-smith.png
+art/batch/emblems/subclass/artificer-cartographer.png
