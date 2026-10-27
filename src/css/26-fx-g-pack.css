@@ -9,7 +9,6 @@ html.mi-lap .mi-hud{display:block}
 .mi-hud i::after{content:"";position:absolute;width:6px;height:6px;transform:rotate(45deg);background:#c9a45c}
 .mi-hud i:nth-child(1)::after{left:-4px;top:-4px}.mi-hud i:nth-child(2)::after{right:-4px;top:-4px}.mi-hud i:nth-child(3)::after{left:-4px;bottom:-4px}.mi-hud i:nth-child(4)::after{right:-4px;bottom:-4px}
 :root[data-theme="light"] .mi-hud{display:none!important}
-.mi-trail{position:fixed;left:0;top:0;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9998;opacity:0;background:radial-gradient(circle,#fff,rgba(255,211,107,.9) 40%,rgba(255,211,107,0) 70%);will-change:transform,opacity}
 .mi-splash.lap{animation:miKill 0s linear 3.2s forwards}
 .mi-splash.lap::before,.mi-splash.lap::after{content:"";position:absolute;left:0;right:0;height:11vh;background:#000;animation:miBar 2.2s var(--ease-io) both}
 .mi-splash.lap::before{top:0}.mi-splash.lap::after{bottom:0;animation-name:miBar2}

@@ -3248,7 +3248,6 @@ html.mi-themevt::view-transition-new(root){animation:miReveal .6s var(--mi-ease)
 /* Star Border replaces the shine: a bright arc runs around the edge (a spinning square behind, a cover in the middle; transform only) */
 .btn.pri.lvup{isolation:isolate}
 @keyframes miBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
-@keyframes miShine{0%,55%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(330%) skewX(-18deg)}}
 /* the XP bar shines after you add XP */
 .xpbar{position:relative}
 .xpbar.mi-shine::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:translateX(-100%);animation:miSweep .9s ease-out}
@@ -3342,12 +3341,9 @@ html.mi-arrive body{animation:miArrive .45s ease-out both}
 @keyframes miAFallR{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}50%{transform:translate(-8px,52vh)}85%{opacity:.55}100%{transform:translate(8px,104vh);opacity:0}}
 @keyframes miALeafL{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(12px,34vh) rotate(160deg)}65%{transform:translate(-12px,68vh) rotate(320deg)}90%{opacity:.6}100%{transform:translate(6px,104vh) rotate(460deg);opacity:0}}
 @keyframes miALeafR{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(-12px,34vh) rotate(-160deg)}65%{transform:translate(12px,68vh) rotate(-320deg)}90%{opacity:.6}100%{transform:translate(-6px,104vh) rotate(-460deg);opacity:0}}
-@keyframes miARise{0%{transform:translate(0,0);opacity:0}8%{opacity:.85}30%{transform:translate(var(--w,6px),-30vh)}55%{transform:translate(calc(var(--w,6px)*-1),-55vh)}80%{opacity:.6}100%{transform:translate(var(--w,6px),-104vh);opacity:0}}
 @keyframes miATwinkle{0%,100%{opacity:0;transform:scale(.5) rotate(0)}50%{opacity:.9;transform:scale(1.15) rotate(40deg)}}
 @keyframes miAFlicker{0%,100%{opacity:0}6%{opacity:1}9%{opacity:.2}12%{opacity:.9}16%{opacity:0}}
 @keyframes miADust{0%{opacity:0;transform:translate(0,0)}25%{opacity:.7}100%{opacity:0;transform:translate(var(--w,10px),-36px)}}
-@keyframes miAFall{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}50%{transform:translate(var(--w,6px),52vh)}85%{opacity:.55}100%{transform:translate(calc(var(--w,6px)*-1),104vh);opacity:0}}
-@keyframes miALeaf{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.85}35%{transform:translate(calc(var(--w,8px)*2),34vh) rotate(160deg)}65%{transform:translate(calc(var(--w,8px)*-2),68vh) rotate(320deg)}90%{opacity:.6}100%{transform:translate(var(--w,8px),104vh) rotate(460deg);opacity:0}}
 @keyframes miAWave{0%{opacity:.6;transform:scale(.3)}100%{opacity:0;transform:scale(3.2)}}
 @media (max-width:759px){#miAmb{--ew:42px}#miAmb .e.t{height:44px}#miAmb .e.b{height:50px}}
 @media (prefers-reduced-motion:reduce){#miAmb .e,#miAmb .v,#miAmb .f{animation:none!important;opacity:.75}#miAmb .p{display:none}}
@@ -4153,7 +4149,6 @@ html.mi-lap .mi-hud{display:block}
 .mi-hud i::after{content:"";position:absolute;width:6px;height:6px;transform:rotate(45deg);background:#c9a45c}
 .mi-hud i:nth-child(1)::after{left:-4px;top:-4px}.mi-hud i:nth-child(2)::after{right:-4px;top:-4px}.mi-hud i:nth-child(3)::after{left:-4px;bottom:-4px}.mi-hud i:nth-child(4)::after{right:-4px;bottom:-4px}
 :root[data-theme="light"] .mi-hud{display:none!important}
-.mi-trail{position:fixed;left:0;top:0;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9998;opacity:0;background:radial-gradient(circle,#fff,rgba(255,211,107,.9) 40%,rgba(255,211,107,0) 70%);will-change:transform,opacity}
 .mi-splash.lap{animation:miKill 0s linear 3.2s forwards}
 .mi-splash.lap::before,.mi-splash.lap::after{content:"";position:absolute;left:0;right:0;height:11vh;background:#000;animation:miBar 2.2s var(--ease-io) both}
 .mi-splash.lap::before{top:0}.mi-splash.lap::after{bottom:0;animation-name:miBar2}
@@ -10997,10 +10992,6 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   /* G2 a frame around the screen */
   var hud=D.createElement("div"); hud.className="mi-hud"; hud.setAttribute("aria-hidden","true"); hud.innerHTML="<i></i><i></i><i></i><i></i>"; D.body.appendChild(hud);
 
-  /* G4 a spark trail behind the cursor, at most one spark every 40 ms, pooled */
-  var pool=[], pi=0, lastT=0; for(var i=0;i<0;i++){ var s=D.createElement("i"); s.className="mi-trail"; s.setAttribute("aria-hidden","true"); D.body.appendChild(s); pool.push(s); }
-  addEventListener("pointermove",function(e){ return; if(e.pointerType!=="mouse"||!lap()) return; var t=performance.now(); if(t-lastT<40) return; lastT=t; var s=pool[pi++%pool.length];
-    s.style.left=e.clientX+"px"; s.style.top=e.clientY+"px"; s.animate([{transform:"translate(-50%,-50%) scale(1)",opacity:.9},{transform:"translate(-50%,calc(-50% + 14px)) scale(.2)",opacity:0}],{duration:620,easing:"ease-out"}); },{passive:true});
   /* G5 interface sounds: a soft tick on hover, a page sound on tabs and toasts */
   var hv=0, hvT=0; MI.on("pointerover",function(e){ if(e.pointerType!=="mouse"||!lap()||e.buttons) return; var b=e.target.closest&&e.target.closest("button,[role=tab],[role=button]"); if(!b||b===hv) return; hv=b; },true);
   addEventListener("click",function(e){ if(!lap()) return; if(e.target.closest&&e.target.closest("[role=tab],.bnav button")) play("page"); },true);

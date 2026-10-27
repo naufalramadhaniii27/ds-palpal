@@ -22,10 +22,6 @@
   /* G2 a frame around the screen */
   var hud=D.createElement("div"); hud.className="mi-hud"; hud.setAttribute("aria-hidden","true"); hud.innerHTML="<i></i><i></i><i></i><i></i>"; D.body.appendChild(hud);
 
-  /* G4 a spark trail behind the cursor, at most one spark every 40 ms, pooled */
-  var pool=[], pi=0, lastT=0; for(var i=0;i<0;i++){ var s=D.createElement("i"); s.className="mi-trail"; s.setAttribute("aria-hidden","true"); D.body.appendChild(s); pool.push(s); }
-  addEventListener("pointermove",function(e){ return; if(e.pointerType!=="mouse"||!lap()) return; var t=performance.now(); if(t-lastT<40) return; lastT=t; var s=pool[pi++%pool.length];
-    s.style.left=e.clientX+"px"; s.style.top=e.clientY+"px"; s.animate([{transform:"translate(-50%,-50%) scale(1)",opacity:.9},{transform:"translate(-50%,calc(-50% + 14px)) scale(.2)",opacity:0}],{duration:620,easing:"ease-out"}); },{passive:true});
   /* G5 interface sounds: a soft tick on hover, a page sound on tabs and toasts */
   var hv=0, hvT=0; MI.on("pointerover",function(e){ if(e.pointerType!=="mouse"||!lap()||e.buttons) return; var b=e.target.closest&&e.target.closest("button,[role=tab],[role=button]"); if(!b||b===hv) return; hv=b; },true);
   addEventListener("click",function(e){ if(!lap()) return; if(e.target.closest&&e.target.closest("[role=tab],.bnav button")) play("page"); },true);
