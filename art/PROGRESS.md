@@ -141,3 +141,10 @@ art/batch/scenes/background/hermit-pc.png
 art/batch/scenes/background/hermit-phone.png
 art/batch/scenes/background/merchant-pc.png
 art/batch/scenes/background/merchant-phone.png
+
+## batch-008 v3
+art/batch/scenes/background/noble-pc.png
+art/batch/scenes/background/noble-phone.png
+art/batch/scenes/background/sage-pc.png
+art/batch/scenes/background/sage-phone.png
+art/batch/scenes/background/sailor-pc.png
