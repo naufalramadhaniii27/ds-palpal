@@ -271,3 +271,8 @@ art/batch/scenes/tab/features-phone.png
 art/batch/scenes/tab/description-pc.png
 art/batch/scenes/tab/description-phone.png
 art/batch/scenes/tab/notes-pc.png
+art/batch/scenes/tab/notes-phone.png
+art/batch/scenes/tab/extras-pc.png
+art/batch/scenes/tab/extras-phone.png
+art/batch/scenes/screen/party-pc.png
+art/batch/scenes/screen/party-phone.png
