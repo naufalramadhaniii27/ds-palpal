@@ -369,3 +369,8 @@ art/batch/icons/abilities/dexterity.png
 art/batch/icons/abilities/constitution.png
 art/batch/icons/abilities/intelligence.png
 art/batch/icons/abilities/wisdom.png
+art/batch/icons/abilities/charisma.png
+art/batch/icons/feat-categories/origin-feat.png
+art/batch/icons/feat-categories/general-feat.png
+art/batch/icons/skills/acrobatics.png
+art/batch/icons/skills/animal-handling.png
