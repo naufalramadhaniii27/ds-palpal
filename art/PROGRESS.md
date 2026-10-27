@@ -645,3 +645,8 @@ art/batch/icons/spells/level-1/divine-favor.png
 art/batch/icons/spells/level-1/expeditious-retreat.png
 art/batch/icons/spells/level-1/feather-fall.png
 art/batch/icons/spells/level-1/jump.png
+art/batch/icons/spells/level-1/longstrider.png
+art/batch/icons/spells/level-1/magnify-gravity.png
+art/batch/icons/spells/level-1/purify-food-and-drink.png
+art/batch/icons/spells/level-1/quick-clothier.png
+art/batch/icons/spells/level-1/zephyr-strike.png
