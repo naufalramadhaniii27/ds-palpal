@@ -34,7 +34,7 @@
 
 /* v31 p02 */
 /* B2: one row of icon segments that scrolls sideways (no second row on a computer) */
-:root[data-skin="ddb"] .ifil{position:relative;display:flex;flex-wrap:nowrap;gap:2px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;padding:3px;margin:0 0 12px;border:1px solid var(--line-2);border-radius:var(--r2);background:var(--paper)}
+:root[data-skin="ddb"] .ifil{position:relative;display:flex;flex-wrap:nowrap;gap:2px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;padding:4px;margin:0 0 12px;border:1px solid var(--line-2);border-radius:var(--r2);background:var(--paper)}
 :root[data-skin="ddb"] .ifil::-webkit-scrollbar{display:none}
 :root[data-skin="ddb"] .ifil .ifb{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;min-height:40px;margin:0;padding:0 12px;border:0;border-radius:var(--r1);background:transparent;color:var(--muted);font-size:var(--fs2);font-weight:600}
 :root[data-skin="ddb"] .ifil .ifb svg.ico{margin:0;width:1.15em;height:1.15em}
@@ -354,7 +354,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 
 /* v31 p23 */
 /* PC tabs fit in the tab column with the wider typeface */
-@media (min-width:760px){:root[data-skin="ddb"] #tabs > .tab{text-transform:none;letter-spacing:0;font-size:calc(13.5px*var(--tz,1))}:root[data-skin="ddb"] #tabs > .tab svg.ico{width:14px;height:14px}}
+@media (min-width:760px){:root[data-skin="ddb"] #tabs > .tab{text-transform:none;letter-spacing:0;font-size:calc(14px*var(--tz,1))}:root[data-skin="ddb"] #tabs > .tab svg.ico{width:14px;height:14px}}
 
 /* v31 p96 */
 .hp-pre[hidden],[data-tmpset][hidden]{display:none!important}

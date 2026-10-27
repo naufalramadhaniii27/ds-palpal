@@ -74,7 +74,7 @@ html.mi-themevt::view-transition-new(root){animation:miReveal .6s var(--mi-ease)
 /* --- v55 round 4: seamless character switch --- */
 html.mi-arrive body{animation:miArrive .45s ease-out both}
 @keyframes miArrive{from{opacity:0}to{opacity:1}}
-.mi-sw{position:fixed;left:0;top:0;z-index:var(--z-cover);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;border-radius:3px;overflow:hidden}
+.mi-sw{position:fixed;left:0;top:0;z-index:var(--z-cover);pointer-events:none;transform-origin:0 0;will-change:transform,opacity;border-radius:4px;overflow:hidden}
 .mi-sw i{position:absolute;inset:0;background:var(--paper);opacity:0}
 @media (prefers-reduced-motion:reduce){html.mi-arrive body{animation:none}}
 /* --- v55 round 5: search, inventory, conditions --- */
@@ -246,9 +246,9 @@ input[type=checkbox].mi-jelly{animation:miSpring .5s var(--mi-ease)}
 .thb:active{transform:scale(.93)}
 .thb.mi-jelly{animation:miJellyR .48s var(--mi-ease)}
 @keyframes miJellyR{0%{transform:scale(.9)}35%{transform:scale(1.1,.9)}60%{transform:scale(.96,1.05)}80%{transform:scale(1.02,.99)}100%{transform:none}}
-.mi-tip{position:fixed;left:0;top:0;z-index:var(--z-cover);max-width:260px;padding:6px 10px;border-radius:9px;font:500 12.5px/1.35 var(--f-sans,system-ui);color:#2b1a08;background:linear-gradient(160deg,#ffe9c2,#ffc98a);box-shadow:0 6px 18px rgba(120,60,0,.28),inset 0 1px 0 rgba(255,255,255,.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(.9);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mi-fast),transform var(--mi-base) var(--mi-ease)}
+.mi-tip{position:fixed;left:0;top:0;z-index:var(--z-cover);max-width:260px;padding:6px 10px;border-radius:10px;font:500 12.5px/1.35 var(--f-sans,system-ui);color:#2b1a08;background:linear-gradient(160deg,#ffe9c2,#ffc98a);box-shadow:0 6px 18px rgba(120,60,0,.28),inset 0 1px 0 rgba(255,255,255,.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(.9);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mi-fast),transform var(--mi-base) var(--mi-ease)}
 .mi-tip.dn{transform-origin:var(--ax,50%) 0;transform:translateY(-6px) scale(.9)}
-.mi-tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-5px;background:#ffc98a;transform:rotate(45deg);border-radius:2px}
+.mi-tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-6px;background:#ffc98a;transform:rotate(45deg);border-radius:2px}
 .mi-tip.dn::after{bottom:auto;top:-5px;background:#ffe9c2}
 .mi-tip.on{opacity:1;transform:none}
 html.mi-off .mi-tip{transition:none}

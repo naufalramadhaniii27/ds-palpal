@@ -140,7 +140,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .snh{display:flex;flex-direction:column;border-top:1px solid var(--line);margin:4px 0 12px}
 .snhr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
 .snh-i{flex:0 0 18px;color:var(--muted)}.snh-i svg.ico{width:18px;height:18px;margin:0}
-.snh-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.snh-t b{font-size:calc(14px*var(--tz,1))}.snh-t small{font-size:max(12px,calc(12.5px*var(--tz,1)));color:var(--muted)}
+.snh-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.snh-t b{font-size:calc(14px*var(--tz,1))}.snh-t small{font-size:max(12px,calc(13px*var(--tz,1)));color:var(--muted)}
 .snh-b{flex:none;min-height:40px;display:inline-flex;align-items:center;gap:6px;padding:0 12px}
 .snh-b svg.ico{width:16px;height:16px;margin:0}
 @media (max-width:759px){.snh-b{min-height:44px}}
@@ -162,7 +162,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 :root[data-hdrc] #app .band .mini #miniSub{font-size:max(12px,calc(13px*var(--tz,1)))}
 :root[data-hdrc] #app .band .acts{position:relative;gap:2px;flex:none;margin-left:auto}
 :root[data-hdrc] #app .band .acts #hpChip{display:none!important}
-:root[data-hdrc] #app .band .acts > .hb2,:root[data-hdrc] #app .band .acts > #moreBtn{display:inline-flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:50px!important;height:50px!important;min-width:0!important;padding:0!important;border:0!important;background:transparent!important;border-radius:8px;font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(12px*var(--tz,1)))!important;line-height:1;letter-spacing:0!important;text-transform:none!important;color:var(--on-dinas)}
+:root[data-hdrc] #app .band .acts > .hb2,:root[data-hdrc] #app .band .acts > #moreBtn{display:inline-flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:50px!important;height:50px!important;min-width:0!important;padding:0!important;border:0!important;background:transparent!important;border-radius:8px;font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(12px*var(--tz,1)))!important;line-height:1;letter-spacing:0!important;text-transform:none!important;color:var(--on-dinas)}
 :root[data-hdrc] #app .band .acts > .hb2 svg,:root[data-hdrc] #app .band .acts > #moreBtn svg{width:22px!important;height:22px!important;margin:0!important;flex:none}
 :root[data-hdrc] #app .band .acts > .hb2 .ml,:root[data-hdrc] #app .band .acts > #moreBtn .ml,:root[data-hdrc] #app .band .acts > #bldBtn .btx{display:block!important;font-size:max(12px,calc(12px*var(--tz,1)))!important}
 :root[data-hdrc] #app .band .acts > .hb2:hover,:root[data-hdrc] #app .band .acts > #moreBtn:hover{background:rgba(255,255,255,.06)!important}
@@ -197,7 +197,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .abox.wide small{white-space:nowrap;display:block}
 .abox.wide small > svg.ico{display:none}
 /* v33 p05 */
-#invBody .inote{display:flex;align-items:flex-start;gap:8px;margin:10px 0 0;padding:9px 12px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2,transparent);color:var(--muted);font-size:max(12px,calc(13px*var(--tz,1)));line-height:1.45}
+#invBody .inote{display:flex;align-items:flex-start;gap:8px;margin:10px 0 0;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r2,8px);background:var(--panel-2,transparent);color:var(--muted);font-size:max(12px,calc(13px*var(--tz,1)));line-height:1.45}
 #invBody .inote svg.ico{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;color:var(--muted)}
 
 /* v33 p07: text size 115 and 130 on wide screens: saves in one column, AC shield below its label */

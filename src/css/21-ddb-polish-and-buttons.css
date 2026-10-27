@@ -22,7 +22,7 @@
 :root[data-skin="ddb"] #actBody button[data-info^="g:"]:not(.lk):not(.tx){border-radius:999px!important}
 /* bottom bar */
 :root[data-skin="ddb"] #vbar .vb{border-radius:12px!important;background-image:var(--pl-hi)!important}
-:root[data-skin="ddb"] .bnav button.on::after{content:"";position:absolute;left:30%;right:30%;bottom:3px;height:3px;border-radius:3px;background:rgb(var(--pl-rgb));box-shadow:0 0 10px rgb(var(--pl-rgb))}
+:root[data-skin="ddb"] .bnav button.on::after{content:"";position:absolute;left:30%;right:30%;bottom:3px;height:3px;border-radius:4px;background:rgb(var(--pl-rgb));box-shadow:0 0 10px rgb(var(--pl-rgb))}
 :root[data-skin="ddb"] .bnav button{position:relative}
 /* builder */
 :root[data-skin="ddb"] #steps .st.on{box-shadow:inset 0 -3px 0 rgb(var(--pl-rgb)),0 8px 18px -10px rgba(var(--pl-rgb),.7)}
@@ -62,9 +62,9 @@
 :root[data-skin="ddb"] .hp-big{text-shadow:none}
 :root[data-skin="ddb"] .arow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)!important;border-radius:14px;padding:10px 12px!important;margin:0 0 8px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 :root[data-skin="ddb"] .fcat{position:relative;padding:2px 0 10px!important;margin-bottom:6px!important;border:0!important;letter-spacing:.04em}
-:root[data-skin="ddb"] .fcat::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgb(var(--pl-rgb)),rgba(var(--pl-rgb),.2));box-shadow:0 0 10px rgba(var(--pl-rgb),.55)}
+:root[data-skin="ddb"] .fcat::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;border-radius:4px;background:linear-gradient(90deg,rgb(var(--pl-rgb)),rgba(var(--pl-rgb),.2));box-shadow:0 0 10px rgba(var(--pl-rgb),.55)}
 :root[data-skin="ddb"] .fcat svg{color:rgb(var(--pl-rgb))}
-:root[data-skin="ddb"] .ahead{padding:0 12px!important;border:0!important;margin-bottom:6px;font-size:10.5px!important;letter-spacing:.14em;color:var(--muted)!important;opacity:.85}
+:root[data-skin="ddb"] .ahead{padding:0 12px!important;border:0!important;margin-bottom:6px;font-size:11px!important;letter-spacing:.14em;color:var(--muted)!important;opacity:.85}
 :root[data-skin="ddb"] .abox:not(.wide){color:#fff!important;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02))!important;border-color:rgba(124,182,255,.35)!important}
 :root[data-skin="ddb"] .abox.wide{background-image:linear-gradient(180deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),.03))!important;border-color:rgba(var(--pl-rgb),.4)!important}
 :root[data-skin="ddb"] .bnav{border-radius:22px 22px 0 0!important;border-top:1px solid rgba(255,255,255,.1)!important}

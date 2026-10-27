@@ -33,7 +33,7 @@ html.mi-lap .mi-hud{display:block}
 @media (hover:hover) and (pointer:fine) and (min-width:1100px){html.mi-lap #toast{transition:transform .35s var(--ease-out)}}
 /* Saving Throws: rows never get cut, the bonus sits inside its pill */
 :root[data-skin="ddb"] #saves{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(104px,1fr))!important;gap:6px!important}
-:root[data-skin="ddb"] #saves .row{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:5px;min-width:0;margin:0!important;padding:3px 3px 3px 7px!important;min-height:38px;box-sizing:border-box}
+:root[data-skin="ddb"] #saves .row{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;min-width:0;margin:0!important;padding:4px 4px 4px 8px!important;min-height:38px;box-sizing:border-box}
 :root[data-skin="ddb"] #saves .row .nm{min-width:0;overflow:hidden}
 :root[data-skin="ddb"] #saves .row .nm .tx{white-space:nowrap}
 :root[data-skin="ddb"] #saves .row .bonus{min-width:34px!important;height:30px!important;padding:0 6px!important;margin:0!important;border-radius:8px!important;display:inline-flex!important;align-items:center;justify-content:center}
@@ -44,7 +44,7 @@ html.mi-lap .mi-hud{display:block}
 @media (max-width:759px){:root[data-skin="ddb"] #saves{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 /* share button: its own corner, no ornament behind it, the name keeps clear of it */
 :root[data-skin="ddb"] #app .idcard{background-size:0 0,0 0,22px 1.5px,1.5px 22px,100% 100%,100% 100%!important}
-.mi-share{top:14px!important;right:14px!important;width:36px!important;height:36px!important;border-radius:11px!important;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03))!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 6px 14px -8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)!important;opacity:.8;transition:opacity .2s,border-color .2s}
+.mi-share{top:14px!important;right:14px!important;width:36px!important;height:36px!important;border-radius:12px!important;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03))!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 6px 14px -8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)!important;opacity:.8;transition:opacity .2s,border-color .2s}
 .mi-share:hover{opacity:1;border-color:rgba(var(--pl-rgb),.6)!important}
 .mi-share.in-row{position:static!important;align-self:stretch;width:48px!important;min-width:0;height:auto!important;opacity:1;border-radius:12px!important}
 #app .idcard .xpbtns:has(.mi-share.in-row){display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 48px!important;gap:10px!important}
