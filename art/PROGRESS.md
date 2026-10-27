@@ -352,3 +352,8 @@ art/batch/icons/damage-types/radiant.png
 art/batch/icons/damage-types/slashing.png
 art/batch/icons/damage-types/thunder.png
 art/batch/icons/damage-types/healing.png
+art/batch/icons/damage-types/temporary-hit-points.png
+art/batch/icons/damage-types/resistance.png
+art/batch/icons/spell-schools/abjuration-school.png
+art/batch/icons/spell-schools/conjuration-school.png
+art/batch/icons/spell-schools/divination-school.png
