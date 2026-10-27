@@ -711,3 +711,8 @@ art/batch/icons/spells/level-2/aganazzars-scorcher.png
 art/batch/icons/spells/level-2/branding-smite.png
 art/batch/icons/spells/level-2/continual-flame.png
 art/batch/icons/spells/level-2/darkness.png
+art/batch/icons/spells/level-2/flame-blade.png
+art/batch/icons/spells/level-2/gust-of-wind.png
+art/batch/icons/spells/level-2/melfs-acid-arrow.png
+art/batch/icons/spells/level-2/moonbeam.png
+art/batch/icons/spells/level-2/rimes-binding-ice.png
