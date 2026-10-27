@@ -824,3 +824,8 @@ art/batch/icons/items/magic/uncommon/boots-of-elvenkind.png
 art/batch/icons/items/magic/common/boots-of-false-tracks.png
 art/batch/icons/items/magic/rare/boots-of-levitation.png
 art/batch/icons/items/magic/rare/boots-of-speed.png
+art/batch/icons/items/magic/uncommon/boots-of-striding-and-springing.png
+art/batch/icons/items/magic/uncommon/boots-of-the-winterlands.png
+art/batch/icons/items/magic/rare/bowl-of-commanding-water-elementals.png
+art/batch/icons/items/magic/uncommon/bracers-of-archery.png
+art/batch/icons/items/magic/rare/bracers-of-defense.png
