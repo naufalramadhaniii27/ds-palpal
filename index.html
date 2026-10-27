@@ -4364,6 +4364,10 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 .art-ic{width:24px;height:24px;margin-right:6px;vertical-align:-6px;object-fit:contain;border-radius:4px}
 .lib-ri .art-ic{width:100%;height:100%;margin:0;vertical-align:middle}
 .chip .art-ic{width:18px;height:18px;margin-right:4px;vertical-align:-4px}
+.mi-vig{display:block;margin:0 auto;object-fit:contain;border-radius:14px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));pointer-events:none}
+.mi-lv .mi-vig{margin-bottom:6px}.mi-roll-o .mi-vig{margin-bottom:-4px}
+#offNote{display:flex;align-items:center;gap:10px}#offNote .mi-vig{flex:none;border-radius:8px;filter:none}
+@media print{.mi-vig{display:none}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -8862,7 +8866,7 @@ function ohSync(){ var o=document.getElementById("ohAmt"), a=document.getElement
 
 /* T4 item 26: offline note. The app keeps working offline, the note says where the data is. It sits at the top of Home and on the Settings dialog, and a toast announces the change */
 (function(){ function net(){ var on=navigator.onLine!==false; document.documentElement.classList.toggle("is-off",!on); var h=document.getElementById("homeV"), n=document.getElementById("offNote");
-    if(h&&!on&&!n){ var w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.textContent="You are offline. Your characters are saved on this device and everything keeps working."; w.insertBefore(n,w.firstChild); } }
+    if(h&&!on&&!n){ var w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.innerHTML=(window.__artVig?window.__artVig("state","offline",44):"")+"<span>You are offline. Your characters are saved on this device and everything keeps working.</span>"; w.insertBefore(n,w.firstChild); } }
     else if(n&&on) n.remove(); }
   window.addEventListener("online",function(){ net(); try{ toast("Back online"); }catch(er){} }); window.addEventListener("offline",function(){ net(); try{ toast("Offline: everything is saved on this device"); }catch(er){} });
   window.__net=net; setInterval(function(){ var h=document.getElementById("homeV"); if(h&&!h.hidden&&document.documentElement.classList.contains("is-off")&&!document.getElementById("offNote")) net(); },1500); net(); })();
@@ -9627,7 +9631,7 @@ window.__MI=MI;
   function levelFx(lv){ if(!MI.full()) return; var x=innerWidth/2, y=innerHeight*.38; ring(x,y,"#ffc93c",220); if(window.__miWow) window.__miWow.level(x,y);
     burst(x,y,{n:26,colors:["#ffd166","#ffc93c","#fff3b0","#ffffff"],shape:"mi-star",dist:190,dur:1500,scale:1.4,grav:true});
     setTimeout(function(){ burst(x,y,{n:18,colors:["#ffd166","#7cb6ff","#ffffff"],shape:"mi-spark",dist:150,dur:1100}); },250);
-    var b=document.createElement("div"); b.className="mi-lv"; b.setAttribute("aria-hidden","true"); b.innerHTML="<b>Level "+lv+"</b><span>Level up!</span>"; document.body.appendChild(b);
+    var b=document.createElement("div"); b.className="mi-lv"; b.setAttribute("aria-hidden","true"); b.innerHTML=(window.__artVig?window.__artVig("moment","level-up",120):"")+"<b>Level "+lv+"</b><span>Level up!</span>"; document.body.appendChild(b);
     var sz=Math.min(84,Math.max(40,innerWidth*.09)); particleText("LEVEL "+lv,x,y-sz*.1,sz);
     var an=b.animate([{transform:"translate(-50%,-50%) scale(.96)",opacity:0},{transform:"translate(-50%,-50%) scale(.96)",opacity:0,offset:.3},{transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.42},{transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.8},{transform:"translate(-50%,-62%) scale(1)",opacity:0}],{duration:2600,easing:"cubic-bezier(.2,.8,.2,1)",fill:"forwards"});
     an.onfinish=function(){ b.remove(); flipLevel(); }; setTimeout(function(){ b.remove(); },3100); }
@@ -10691,7 +10695,7 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   var D20='<svg viewBox="0 0 100 100"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';
   function show(r){ play("dice"); var big=r.k==="nat20"||r.k==="nat1";
     if(calm()){ if(window.__miToast) window.__miToast(r.l+": "+r.v); return; }
-    var o=fx("mi-roll-o mi-roll-"+r.k,'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
+    var o=fx("mi-roll-o mi-roll-"+r.k,(big&&window.__artVig?window.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
     var dz=o.querySelector(".dz"), rv=o.querySelector(".rv");
     dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
     rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});
@@ -11245,6 +11249,9 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   var tb=D.getElementById("tabs"); if(tb) new MutationObserver(soon).observe(tb,{attributes:true,subtree:true,attributeFilter:["aria-selected"]});
   var bn=D.getElementById("bnav"); if(bn) new MutationObserver(soon).observe(bn,{attributes:true,subtree:true,attributeFilter:["class"]});
   try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
+  /* Small pictures for moments and states: window.__artVig("moment","level-up") gives <img> html, or "" when missing or Art is off */
+  window.__artVig=function(g,id,px){ var v=A.vig&&A.vig[g]; if(!v||v.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="mi-vig" src="img/vig/'+g+'/'+id+'.avif" width="'+(px||112)+'" height="'+(px||112)+'" alt="" decoding="async">'; };
+  try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
   /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
   var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
   function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }

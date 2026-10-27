@@ -65,7 +65,7 @@
   var D20='<svg viewBox="0 0 100 100"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';
   function show(r){ play("dice"); var big=r.k==="nat20"||r.k==="nat1";
     if(calm()){ if(window.__miToast) window.__miToast(r.l+": "+r.v); return; }
-    var o=fx("mi-roll-o mi-roll-"+r.k,'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
+    var o=fx("mi-roll-o mi-roll-"+r.k,(big&&window.__artVig?window.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
     var dz=o.querySelector(".dz"), rv=o.querySelector(".rv");
     dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
     rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});

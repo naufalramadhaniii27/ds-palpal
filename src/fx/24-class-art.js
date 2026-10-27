@@ -22,6 +22,9 @@
   var tb=D.getElementById("tabs"); if(tb) new MutationObserver(soon).observe(tb,{attributes:true,subtree:true,attributeFilter:["aria-selected"]});
   var bn=D.getElementById("bnav"); if(bn) new MutationObserver(soon).observe(bn,{attributes:true,subtree:true,attributeFilter:["class"]});
   try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
+  /* Small pictures for moments and states: window.__artVig("moment","level-up") gives <img> html, or "" when missing or Art is off */
+  window.__artVig=function(g,id,px){ var v=A.vig&&A.vig[g]; if(!v||v.indexOf(id)<0||ls("mi-clsart")==="off") return ""; return '<img class="mi-vig" src="img/vig/'+g+'/'+id+'.avif" width="'+(px||112)+'" height="'+(px||112)+'" alt="" decoding="async">'; };
+  try{ (window.requestIdleCallback||function(f){setTimeout(f,3000)})(function(){ [["moment","natural-20"],["moment","natural-1"],["moment","level-up"]].forEach(function(x){ var i=new Image(); i.src="img/vig/"+x[0]+"/"+x[1]+".avif"; }); }); }catch(er){}
   /* Builder: a faint scene behind each step. Class, Species and Background follow the pick, the rest use the builder scenes */
   var BL=[], bon=-1, bkey="", BSTEP={abil:"abilities",equip:"equipment",next:"review"};
   function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
