@@ -2,20 +2,29 @@
 (function(){
   var A=window.__ART, D=document, H=D.documentElement; if(!A||!A.scene) return;
   function ls(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
-  var el=null, cur="";
-  function ensure(){ if(el) return el; el=D.createElement("div"); el.id="clsArt"; el.setAttribute("aria-hidden","true"); D.body.insertBefore(el,D.body.firstChild); return el; }
+  var L=[], on=-1, curKey="", PHONE=matchMedia("(max-width:759px)");
+  function layers(){ if(L.length) return L; for(var i=0;i<2;i++){ var e=D.createElement("div"); e.className="cls-art-l"; e.setAttribute("aria-hidden","true"); if(i===0) e.id="clsArt"; D.body.insertBefore(e,D.body.firstChild); L.push(e); } return L; }
   function homeOpen(){ var h=D.getElementById("homeV"); return !!h&&!h.hidden; }
   function emb(c){ var m=A.emblem&&A.emblem[c]; if(m&&ls("mi-clsart")!=="off"){ H.style.setProperty("--ca-emb",'url("'+m.p+'")'); H.classList.add("cls-emb"); } else { H.style.removeProperty("--ca-emb"); H.classList.remove("cls-emb"); } }
-  function apply(){ var c=H.getAttribute("data-mi-cls")||"", s0=emb(c), s=A.scene[c], ok=!!s&&ls("mi-clsart")!=="off"&&!homeOpen();
-    if(!ok){ H.classList.remove("cls-art"); return; }
-    var e=ensure(); if(c!==cur){ cur=c; e.style.setProperty("--ca-pc",'url("'+s.pc.p+'")'); e.style.setProperty("--ca-ph",'url("'+s.phone.p+'")'); e.style.setProperty("--ca-c",s.c); }
-    H.classList.add("cls-art"); }
+  /* which sheet page is open: phone uses the bottom bar, laptop uses the tabs. Main and Skills keep the class scene, so does Actions on a laptop */
+  var PAGE=["","","actions","spells","inventory","features","description","notes","extras"], TAB={"p-spells":"spells","p-inv":"inventory","p-feat":"features","p-desc":"description","p-notes":"notes","p-ext":"extras"};
+  function tabId(){ if(PHONE.matches){ var b=D.querySelector("#bnav button.on"); return PAGE[b?+b.getAttribute("data-go"):0]||""; } var t=D.querySelector('#tabs .tab[aria-selected="true"]'); return (t&&TAB[t.getAttribute("data-tab")])||""; }
+  function pick(c){ var t=tabId(), x=t&&A.scn&&A.scn.tab&&A.scn.tab[t]; if(x&&x.pc&&x.phone) return {pc:x.pc,ph:x.phone,c:x.c}; var s=A.scene[c]; return s?{pc:s.pc.p,ph:s.phone.p,c:s.c}:null; }
+  function apply(){ var c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
+    if(!t){ H.classList.remove("cls-art"); return; }
+    H.classList.add("cls-art"); var key=t.pc+"|"+t.ph; if(key===curKey) return; curKey=key;
+    var im=new Image(); im.onload=im.onerror=function(){ if(curKey!==key) return; var ls_=layers(), n=on<0?0:1-on, e=ls_[n];
+      e.style.setProperty("--ca-pc",'url("'+t.pc+'")'); e.style.setProperty("--ca-ph",'url("'+t.ph+'")'); e.style.setProperty("--ca-c",t.c);
+      e.classList.add("on"); if(on>=0) ls_[on].classList.remove("on"); on=n; }; im.src=PHONE.matches?t.ph:t.pc; }
   var q=0; function soon(){ if(q) return; q=requestAnimationFrame(function(){ q=0; apply(); }); }
   new MutationObserver(soon).observe(H,{attributes:true,attributeFilter:["data-mi-cls"]});
   var hv=D.getElementById("homeV"); if(hv) new MutationObserver(soon).observe(hv,{attributes:true,attributeFilter:["hidden"]});
+  var tb=D.getElementById("tabs"); if(tb) new MutationObserver(soon).observe(tb,{attributes:true,subtree:true,attributeFilter:["aria-selected"]});
+  var bn=D.getElementById("bnav"); if(bn) new MutationObserver(soon).observe(bn,{attributes:true,subtree:true,attributeFilter:["class"]});
+  try{ PHONE.addEventListener("change",function(){ curKey=""; soon(); }); }catch(er){}
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
   window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
-  window.__clsArt=function(){ emb(H.getAttribute("data-mi-cls")||""); apply(); };
+  window.__clsArt=function(){ apply(); };
   window.__miArtH=function(){ var on=ls("mi-clsart")!=="off", B=function(v,l){ var a=(v==="on")===on; return '<button type="button" class="thb'+(a?" on":"")+'" data-miart="'+v+'" aria-pressed="'+a+'">'+l+'</button>'; };
     return '<div class="info-h">Art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">Pictures of your class behind the sheet and on the empty portrait, and small icons on spells and gear. Cards stay solid, so text keeps its contrast.</p>'; };
   addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-miart]"); if(!b) return; try{ if(b.getAttribute("data-miart")==="off") localStorage.setItem("mi-clsart","off"); else localStorage.removeItem("mi-clsart"); }catch(er){}
