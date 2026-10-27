@@ -179,3 +179,10 @@ art/batch/emblems/subclass/fighter-battle-master.png
 art/batch/emblems/subclass/fighter-champion.png
 art/batch/emblems/subclass/fighter-eldritch-knight.png
 art/batch/emblems/subclass/fighter-psi-warrior.png
+
+## batch-011 v3
+art/batch/emblems/subclass/monk-warrior-of-mercy.png
+art/batch/emblems/subclass/monk-warrior-of-shadow.png
+art/batch/emblems/subclass/monk-warrior-of-the-elements.png
+art/batch/emblems/subclass/monk-warrior-of-the-open-hand.png
+art/batch/emblems/subclass/paladin-oath-of-devotion.png
