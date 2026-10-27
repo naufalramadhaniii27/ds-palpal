@@ -530,3 +530,8 @@ art/batch/icons/spells/cantrips/ray-of-frost.png
 art/batch/icons/spells/cantrips/sacred-flame.png
 art/batch/icons/spells/cantrips/shocking-grasp.png
 art/batch/icons/spells/cantrips/sorcerous-burst.png
+art/batch/icons/spells/cantrips/starry-wisp.png
+art/batch/icons/spells/cantrips/thunderclap.png
+art/batch/icons/spells/cantrips/word-of-radiance.png
+art/batch/icons/spells/cantrips/dancing-lights.png
+art/batch/icons/spells/cantrips/minor-illusion.png
