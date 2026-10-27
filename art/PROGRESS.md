@@ -764,3 +764,8 @@ art/batch/scenes/species/tabaxi-phone.png
 art/batch/scenes/species/thri-kreen-pc.png
 art/batch/scenes/species/thri-kreen-phone.png
 art/batch/scenes/species/tortle-pc.png
+art/batch/scenes/species/tortle-phone.png
+art/batch/scenes/species/triton-pc.png
+art/batch/scenes/species/triton-phone.png
+art/batch/scenes/species/troglodyte-pc.png
+art/batch/scenes/species/troglodyte-phone.png
