@@ -201,3 +201,10 @@ art/batch/emblems/subclass/sorcerer-aberrant-sorcery.png
 art/batch/emblems/subclass/sorcerer-clockwork-sorcery.png
 art/batch/emblems/subclass/sorcerer-draconic-sorcery.png
 art/batch/emblems/subclass/sorcerer-wild-magic-sorcery.png
+
+## batch-012 v3
+art/batch/emblems/subclass/warlock-archfey-patron.png
+art/batch/emblems/subclass/warlock-celestial-patron.png
+art/batch/emblems/subclass/warlock-fiend-patron.png
+art/batch/emblems/subclass/warlock-great-old-one-patron.png
+art/batch/emblems/subclass/wizard-abjurer.png
