@@ -689,3 +689,8 @@ art/batch/icons/spells/level-2/beast-sense.png
 art/batch/icons/spells/level-2/borrowed-knowledge.png
 art/batch/icons/spells/level-2/detect-thoughts.png
 art/batch/icons/spells/level-2/find-traps.png
+art/batch/icons/spells/level-2/fortunes-favor.png
+art/batch/icons/spells/level-2/locate-animals-or-plants.png
+art/batch/icons/spells/level-2/locate-object.png
+art/batch/icons/spells/level-2/mind-spike.png
+art/batch/icons/spells/level-2/see-invisibility.png
