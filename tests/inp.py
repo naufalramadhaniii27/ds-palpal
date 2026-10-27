@@ -43,7 +43,7 @@ async def act(pg, fn):
 
 async def run_case(b, base, name, W, H, cpu):
     ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block", has_touch=(W < 600), is_mobile=False)
-    pg = await ctx.new_page(); pg.set_default_timeout(60000)
+    pg = await ctx.new_page(); pg.set_default_timeout(8000)
     errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
     await pg.goto(base); await pg.wait_for_timeout(800)
     await pg.evaluate("v=>{localStorage.clear();sessionStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}", YUDHI)
@@ -81,7 +81,11 @@ async def run_case(b, base, name, W, H, cpu):
     for rep in range(RUNS):
         for t in TABS + ["p-actions"]:
             async def go(t=t):
-                await pg.click("[data-tab='%s']" % t)
+                # the tab bar is hidden at phone width, the bottom bar [data-go] switches pages there
+                sel = "[data-tab='%s']" % t
+                if not await pg.evaluate("s=>{var e=document.querySelector(s);return !!(e&&e.offsetParent)}", sel):
+                    sel = "[data-go='%d']" % (TABS.index(t) + 2)  # data-go 0 Main, 1 Skills, 2 Actions ... 8 Extras
+                await pg.click(sel)
             try:
                 tabvals.append(await act(pg, go))
             except Exception as e:
