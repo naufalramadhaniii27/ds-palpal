@@ -706,3 +706,8 @@ art/batch/icons/spells/level-2/hold-person.png
 art/batch/icons/spells/level-2/jims-glowing-coin.png
 art/batch/icons/spells/level-2/suggestion.png
 art/batch/icons/spells/level-2/tashas-mind-whip.png
+art/batch/icons/spells/level-2/zone-of-truth.png
+art/batch/icons/spells/level-2/aganazzars-scorcher.png
+art/batch/icons/spells/level-2/branding-smite.png
+art/batch/icons/spells/level-2/continual-flame.png
+art/batch/icons/spells/level-2/darkness.png
