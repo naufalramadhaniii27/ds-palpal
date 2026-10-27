@@ -819,3 +819,8 @@ art/batch/icons/items/magic/rare/berserker-axe.png
 art/batch/icons/items/magic/artifact/blackrazor.png
 art/batch/icons/items/magic/uncommon/bolt.png
 art/batch/icons/items/magic/artifact/book-of-exalted-deeds.png
+art/batch/icons/items/magic/artifact/book-of-vile-darkness.png
+art/batch/icons/items/magic/uncommon/boots-of-elvenkind.png
+art/batch/icons/items/magic/common/boots-of-false-tracks.png
+art/batch/icons/items/magic/rare/boots-of-levitation.png
+art/batch/icons/items/magic/rare/boots-of-speed.png
