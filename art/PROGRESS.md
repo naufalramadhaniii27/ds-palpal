@@ -456,3 +456,8 @@ art/batch/icons/items/weapons/mace.png
 art/batch/icons/items/weapons/quarterstaff.png
 art/batch/icons/items/weapons/sickle.png
 art/batch/icons/items/weapons/spear.png
+art/batch/icons/items/weapons/dart.png
+art/batch/icons/items/weapons/light-crossbow.png
+art/batch/icons/items/weapons/shortbow.png
+art/batch/icons/items/weapons/sling.png
+art/batch/icons/items/weapons/battleaxe.png
