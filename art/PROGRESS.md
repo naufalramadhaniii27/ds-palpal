@@ -895,3 +895,10 @@ art/batch/icons/items/magic/rare/elixir-of-health.png
 art/batch/icons/items/magic/rare/elven-chain.png
 art/batch/icons/items/magic/common/enduring-spellbook.png
 art/batch/icons/items/magic/very-rare/energy-bow.png
+
+## batch-083 v3
+art/batch/icons/items/magic/varies/enspelled-armor.png
+art/batch/icons/items/magic/varies/enspelled-staff.png
+art/batch/icons/items/magic/varies/enspelled-weapon.png
+art/batch/icons/items/magic/common/ersatz-eye.png
+art/batch/icons/items/magic/uncommon/eversmoking-bottle.png
