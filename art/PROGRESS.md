@@ -444,3 +444,10 @@ art/batch/icons/item-categories/scroll.png
 art/batch/icons/item-categories/wand-rod-and-staff.png
 art/batch/icons/item-categories/ring.png
 art/batch/icons/item-categories/wondrous-item.png
+
+## batch-028 v3
+art/batch/icons/items/weapons/club.png
+art/batch/icons/items/weapons/dagger.png
+art/batch/icons/items/weapons/greatclub.png
+art/batch/icons/items/weapons/handaxe.png
+art/batch/icons/items/weapons/javelin.png
