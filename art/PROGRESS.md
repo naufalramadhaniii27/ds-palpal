@@ -846,3 +846,8 @@ art/batch/icons/items/magic/common/charlatans-die.png
 art/batch/icons/items/magic/rare/chime-of-opening.png
 art/batch/icons/items/magic/uncommon/circlet-of-blasting.png
 art/batch/icons/items/magic/very-rare/cloak-of-arachnida.png
+art/batch/icons/items/magic/common/cloak-of-billowing.png
+art/batch/icons/items/magic/rare/cloak-of-displacement.png
+art/batch/icons/items/magic/uncommon/cloak-of-elvenkind.png
+art/batch/icons/items/magic/legendary/cloak-of-invisibility.png
+art/batch/icons/items/magic/common/cloak-of-many-fashions.png
