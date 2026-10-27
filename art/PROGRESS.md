@@ -396,3 +396,8 @@ art/batch/icons/feat-categories/fighting-style-feat.png
 art/batch/icons/feat-categories/epic-boon.png
 art/batch/icons/weapon-mastery/cleave-mastery.png
 art/batch/icons/weapon-mastery/graze-mastery.png
+art/batch/icons/weapon-mastery/nick-mastery.png
+art/batch/icons/weapon-mastery/push-mastery.png
+art/batch/icons/weapon-mastery/sap-mastery.png
+art/batch/icons/weapon-mastery/slow-mastery.png
+art/batch/icons/weapon-mastery/topple-mastery.png
