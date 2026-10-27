@@ -44,6 +44,7 @@ html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 /* T3 item 17: empty-state illustrations */
 .es-art{display:block;margin:0 auto 6px;color:var(--muted);opacity:.9;max-width:96px;height:auto}
 .es-art .es-f{fill:var(--acc,#c9a24c);stroke:none}.es-art .es-sp{stroke:var(--acc,#c9a24c)}
+.es-art.es-img{max-width:128px;width:128px;height:128px;object-fit:contain;opacity:1;border-radius:12px}
 .hempty-art{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}.hempty-art p{margin:0}
 @keyframes esDraw{from{stroke-dashoffset:var(--l,260);opacity:.2}to{stroke-dashoffset:0;opacity:1}}
 html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es-art ellipse,html:not(.mi-off):not(.mi-lite) .es-art rect{stroke-dasharray:var(--l,260);animation:esDraw .9s var(--ease-out) both}

@@ -101,6 +101,7 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
+    "fx/23-class-art-data.js",
     "app/00-open.wrap.js",
     "app/01-logic-boot-flags-builder-loader.js",
     "app/02-data-default-character.js",
@@ -179,7 +180,6 @@
     "fx/20-k-pack-character-colour-icon.js",
     "fx/21-connected-home-sheet.js",
     "fx/22-home-hero.js",
-    "fx/23-class-art-data.js",
     "fx/24-class-art.js"
    ]
   },

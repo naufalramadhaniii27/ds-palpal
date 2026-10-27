@@ -296,7 +296,9 @@ function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Bac
   $("#notesBody").innerHTML = html; renderDesc();
 }
 /* T3 item 17: small original illustrations for empty states. Lines in the muted color, sparks in the accent color. Drawn once, no image files */
-function esArt(k){ var A={
+function esArt(k){ var V={chest:"items",book:"spells",paw:"creatures",hero:"characters"}[k], R=window.__ART&&window.__ART.vig&&window.__ART.vig.empty;
+  if(V&&R&&R.indexOf(V)>=0&&(function(){try{return localStorage.getItem("mi-clsart")!=="off"}catch(e){return true}})()) return '<img class="es-art es-img" src="img/vig/empty/'+V+'.avif" width="128" height="128" alt="" decoding="async" loading="lazy">';
+  var A={
   chest:'<path d="M18 46h60v28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z"/><path d="M18 46V38a14 14 0 0 1 14-14h32a14 14 0 0 1 14 14v8"/><path d="M18 56h60"/><rect x="42" y="50" width="12" height="14" rx="2"/><circle cx="48" cy="57" r="1.6" class="es-f"/>',
   book:'<path d="M48 30c-8-6-20-7-30-4v40c10-3 22-2 30 4 8-6 20-7 30-4V26c-10-3-22-2-30 4z"/><path d="M48 30v40"/><path d="M26 38c6-1 11 0 16 2M26 48c6-1 11 0 16 2M54 40c5-2 10-3 16-2M54 50c5-2 10-3 16-2"/>',
   paw:'<ellipse cx="48" cy="62" rx="15" ry="12"/><ellipse cx="29" cy="46" rx="6" ry="8" transform="rotate(-18 29 46)"/><ellipse cx="42" cy="34" rx="6" ry="8.5" transform="rotate(-6 42 34)"/><ellipse cx="55" cy="34" rx="6" ry="8.5" transform="rotate(6 55 34)"/><ellipse cx="68" cy="46" rx="6" ry="8" transform="rotate(18 68 46)"/>',
