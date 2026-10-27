@@ -776,3 +776,8 @@ art/batch/scenes/species/vampire-phone.png
 art/batch/scenes/species/vedalken-pc.png
 art/batch/scenes/species/vedalken-phone.png
 art/batch/scenes/species/verdan-pc.png
+art/batch/scenes/species/verdan-phone.png
+art/batch/scenes/species/warforged-pc.png
+art/batch/scenes/species/warforged-phone.png
+art/batch/scenes/species/yuan-ti-pc.png
+art/batch/scenes/species/yuan-ti-phone.png
