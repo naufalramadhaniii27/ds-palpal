@@ -391,3 +391,8 @@ art/batch/icons/skills/persuasion.png
 art/batch/icons/skills/religion.png
 art/batch/icons/skills/sleight-of-hand.png
 art/batch/icons/skills/stealth.png
+art/batch/icons/skills/survival.png
+art/batch/icons/feat-categories/fighting-style-feat.png
+art/batch/icons/feat-categories/epic-boon.png
+art/batch/icons/weapon-mastery/cleave-mastery.png
+art/batch/icons/weapon-mastery/graze-mastery.png
