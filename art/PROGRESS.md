@@ -301,3 +301,8 @@ art/batch/vignettes/moment/subclass.png
 art/batch/vignettes/moment/level-20.png
 art/batch/vignettes/moment/death-save.png
 art/batch/vignettes/moment/stabilized.png
+art/batch/vignettes/moment/inspiration.png
+art/batch/vignettes/moment/natural-20.png
+art/batch/vignettes/moment/natural-1.png
+art/batch/vignettes/empty/characters.png
+art/batch/vignettes/empty/spells.png

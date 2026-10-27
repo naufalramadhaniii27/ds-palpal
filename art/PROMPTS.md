@@ -3445,3 +3445,93 @@ Every person is an adult. Bright vivid colorful setting, never dark, gloomy, gre
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-020 v3 — art/batch/vignettes/moment/inspiration.png
+
+light and color key: honey-yellow light with pale blue shadows. wound on the hero: a torn, bloodied cloak. Honey-yellow light and pale blue hard shadows on adult bard and wounded adult hero, one compact group. A song becomes one ribbon of light winding around hero's clean sword. Hero's torn bloodied cloak is sole wound depiction. Bard's face grief-stricken but loyal, no extra audience or music writing.
+
+A bard's song turning into a ribbon of light that wraps around a bloodied hero's sword.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon faces), bright vivid colors, blood and despair
+
+1024x1024 transparent-background story vignette in the specified sketch style. One story group only, centered; fades out to real transparency at all edges with loose rough brush strokes and sketch-line edges. Simple composition readable at160x160 pixels. Keep generated square canvas, no bounding-box crop. The specified wound appears on the hero only.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful setting, never dark, gloomy, grey or orange-only. Despair, deep sorrow and loss in expression; bodily wound only in stated form and place, blood vivid red, no extra splatter. Enemy only when subject names one, at stated distance.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-020 v3 — art/batch/vignettes/moment/natural-20.png
+
+light and color key: vivid red and gold light. wound on the hero: a bleeding scrape along the cheek. Vivid red and gold light shines from one floating twenty-sided die with completely blank faces, golden sparks above battered mature adult hero at front of tightly compact adult party. Hero has a bleeding cheek scrape only. Faces show grim desperate hope rather than happy cheering; dice no pips, letters or numbers.
+
+A glowing twenty-sided die (no numbers shown) bursting with golden sparks above one battered hero at the front of a party.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon faces), bright vivid colors, blood and despair
+
+1024x1024 transparent-background story vignette in the specified sketch style. One story group only, centered; fades out to real transparency at all edges with loose rough brush strokes and sketch-line edges. Simple composition readable at160x160 pixels. Keep generated square canvas, no bounding-box crop. The specified wound appears on the hero only.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful setting, never dark, gloomy, grey or orange-only. Despair, deep sorrow and loss in expression; bodily wound only in stated form and place, blood vivid red, no extra splatter. Enemy only when subject names one, at stated distance.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-020 v3 — art/batch/vignettes/moment/natural-1.png
+
+light and color key: sunflower-yellow light. wound on the hero: a bloodied bandaged arm. Sunflower-yellow light enters the broken dungeon hall and catches one adult hero's sword snapping mid-swing. Adult goblin nearby grins, with wrinkles and mature proportions; not childlike. Hero's bandaged arm is bloodied, sole red wound. Distressed hero and goblin form one simple action group, no extra enemies.
+
+A hero's sword snapping mid-swing in a sunlit broken dungeon hall, an adult goblin grinning nearby.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows, expressive cartoon faces), bright vivid colors, blood and despair
+
+1024x1024 transparent-background story vignette in the specified sketch style. One story group only, centered; fades out to real transparency at all edges with loose rough brush strokes and sketch-line edges. Simple composition readable at160x160 pixels. Keep generated square canvas, no bounding-box crop. The specified wound appears on the hero only.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. The goblin is clearly adult with mature face, wrinkles and adult proportions. Bright vivid colorful setting, never dark, gloomy, grey or orange-only. Despair, deep sorrow and loss in expression; bodily wound only in stated form and place, blood vivid red, no extra splatter. Enemy only when subject names one, at stated distance.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-020 v3 — art/batch/vignettes/empty/characters.png
+
+light and color key: soft pastel light. trace of the fallen world: a broken arrow beside it. Soft pastel light touches an empty adventurer's table with a completely blank character card, a candle and a quill. A broken arrow lies beside the table objects as a quiet trace of a fallen world. Plain candle flame without face, no people, wounds, bodies or blood. One compact still-life vignette.
+
+An empty adventurer's table with a blank character card, a candle and a quill.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent-background story vignette in the specified sketch style. One story group only, centered; fades out to real transparency at all edges with loose rough brush strokes and sketch-line edges. Simple composition readable at160x160 pixels. Keep generated square canvas, no bounding-box crop. Empty-state still life shows only subject and stated trace of the fallen world, no wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful textured fills and quiet sadness, natural animals alive and friendly.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-020 v3 — art/batch/vignettes/empty/spells.png
+
+light and color key: coral and teal light. trace of the fallen world: a scorched corner. Coral and teal light softly reveals a closed spell book with faint page-edge glow and a natural curious owl beside it. One scorched corner on the book is the quiet trace of a fallen world. Friendly natural owl eyes, no menace, no people, wounds, bodies or blood, one small still-life group.
+
+A closed spell book with a faint glow leaking from the pages and an owl beside it.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent-background story vignette in the specified sketch style. One story group only, centered; fades out to real transparency at all edges with loose rough brush strokes and sketch-line edges. Simple composition readable at160x160 pixels. Keep generated square canvas, no bounding-box crop. Empty-state still life shows only subject and stated trace of the fallen world, no wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful textured fills and quiet sadness, natural animals alive and friendly.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

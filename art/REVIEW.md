@@ -39,3 +39,5 @@ batch-017 v3 complete: 10 images following their batch entries. Required pixel s
 batch-018 v3 complete: 10 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
 
 batch-019 v3 complete: 4 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+batch-020 v3 complete: 10 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
