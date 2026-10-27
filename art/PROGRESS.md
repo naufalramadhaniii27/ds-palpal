@@ -259,3 +259,8 @@ art/batch/scenes/builder/spells-phone.png
 art/batch/scenes/builder/review-pc.png
 art/batch/scenes/builder/review-phone.png
 art/batch/scenes/tab/actions-pc.png
+art/batch/scenes/tab/actions-phone.png
+art/batch/scenes/tab/spells-pc.png
+art/batch/scenes/tab/spells-phone.png
+art/batch/scenes/tab/inventory-pc.png
+art/batch/scenes/tab/inventory-phone.png
