@@ -601,3 +601,8 @@ art/batch/icons/spells/level-1/charm-person.png
 art/batch/icons/spells/level-1/command.png
 art/batch/icons/spells/level-1/compelled-duel.png
 art/batch/icons/spells/level-1/dissonant-whispers.png
+art/batch/icons/spells/level-1/heroism.png
+art/batch/icons/spells/level-1/hex.png
+art/batch/icons/spells/level-1/insidious-rhythm.png
+art/batch/icons/spells/level-1/silvery-barbs.png
+art/batch/icons/spells/level-1/sleep.png
