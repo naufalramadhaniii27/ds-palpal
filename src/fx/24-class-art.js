@@ -9,12 +9,12 @@
   /* which sheet page is open: phone uses the bottom bar, laptop uses the tabs. Main and Skills keep the class scene, so does Actions on a laptop */
   var PAGE=["","","actions","spells","inventory","features","description","notes","extras"], TAB={"p-spells":"spells","p-inv":"inventory","p-feat":"features","p-desc":"description","p-notes":"notes","p-ext":"extras"};
   function tabId(){ if(PHONE.matches){ var b=D.querySelector("#bnav button.on"); return PAGE[b?+b.getAttribute("data-go"):0]||""; } var t=D.querySelector('#tabs .tab[aria-selected="true"]'); return (t&&TAB[t.getAttribute("data-tab")])||""; }
-  function pick(c){ var t=tabId(), x=t&&A.scn&&A.scn.tab&&A.scn.tab[t]; if(x&&x.pc&&x.phone) return {pc:x.pc,ph:x.phone,c:x.c}; var s=A.scene[c]; return s?{pc:s.pc.p,ph:s.phone.p,c:s.c}:null; }
+  function pick(c){ var t=tabId(), x=t&&A.scn&&A.scn.tab&&A.scn.tab[t]; if(x&&x.pc&&x.phone) return {pc:x.pc,ph:x.phone,c:x.c,o:x.o}; var s=A.scene[c]; return s?{pc:s.pc.p,ph:s.phone.p,c:s.c,o:s.o}:null; }
   function apply(){ var c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
     if(!t){ H.classList.remove("cls-art"); return; }
     H.classList.add("cls-art"); var key=t.pc+"|"+t.ph; if(key===curKey) return; curKey=key;
     var im=new Image(); im.onload=im.onerror=function(){ if(curKey!==key) return; var ls_=layers(), n=on<0?0:1-on, e=ls_[n];
-      e.style.setProperty("--ca-pc",'url("'+t.pc+'")'); e.style.setProperty("--ca-ph",'url("'+t.ph+'")'); e.style.setProperty("--ca-c",t.c);
+      e.style.setProperty("--ca-pc",'url("'+t.pc+'")'); e.style.setProperty("--ca-ph",'url("'+t.ph+'")'); e.style.setProperty("--ca-c",t.c); e.style.setProperty("--ca-o",String(t.o?(PHONE.matches?t.o.ph:t.o.pc):.37));
       e.classList.add("on"); if(on>=0) ls_[on].classList.remove("on"); on=n; }; im.src=PHONE.matches?t.ph:t.pc; }
   var q=0; function soon(){ if(q) return; q=requestAnimationFrame(function(){ q=0; apply(); }); }
   new MutationObserver(soon).observe(H,{attributes:true,attributeFilter:["data-mi-cls"]});
@@ -35,6 +35,7 @@
       if(step==="class"&&B&&B.cls){ var s=A.scene&&A.scene[bslug(B.cls)]; if(s) x={pc:s.pc.p,phone:s.phone.p,c:s.c}; }
       else if(step==="species"&&B&&B.species) x=g.species&&g.species[bslug(B.species)];
       else if(step==="bg"&&B&&B.bg) x=g.background&&g.background[bslug(B.bg)];
+      if(x&&!(x.pc&&x.phone)) x=null;
       if(!x&&g.builder){ var id=BSTEP[step]||(step==="class"?"class":step==="species"?"species":step==="bg"?"background":""); x=id&&g.builder[id]; }
     }
     var key=x&&x.pc?x.pc:""; if(key===bkey) return; bkey=key;

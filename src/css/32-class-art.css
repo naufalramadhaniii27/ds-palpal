@@ -1,8 +1,8 @@
 /* T6: class scene behind the sheet. Cards keep their own solid panels, so the picture never sits under numbers or text.
    Phone: portrait scene, lower strength. Laptop: wide scene. */
 .cls-art-l{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .45s var(--ease-out,ease);background:var(--ca-c,#0f1417) var(--ca-ph) center top/cover no-repeat}
-html.cls-art .cls-art-l.on{opacity:.4}
-@media (min-width:760px){.cls-art-l{background-image:var(--ca-pc);background-position:center}html.cls-art .cls-art-l.on{opacity:.55}}
+html.cls-art .cls-art-l.on{opacity:var(--ca-o,.37)}
+@media (min-width:760px){.cls-art-l{background-image:var(--ca-pc);background-position:center}html.cls-art .cls-art-l.on{opacity:var(--ca-o,.37)}}
 .bld-art{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .45s var(--ease-out,ease);background:var(--ca-c,#0f1417) var(--ca-ph) center top/cover no-repeat}
 .bld-art.on{opacity:.16}
 @media (min-width:760px){.bld-art{background-image:var(--ca-pc);background-position:center}.bld-art.on{opacity:.22}}

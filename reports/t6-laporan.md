@@ -46,9 +46,17 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 | Vignette state (backup-done, import-failed, saving, storage-full, update) dan momen (death-save, inspiration, level-20, stabilized, subclass) | Belum ada titik pasang yang tepat. Perlu keputusan di mana tampil |
 | Scene layar (bastion, combat, journal, rest, party, settings, tour) | Layar itu belum punya lapis latar sendiri |
 | Ikon item sihir, school, damage, creature, skill | Ada di manifest, belum dipasang di UI |
-| Audit kontras per scene | Kartu solid dan scene samar, tetapi belum diukur otomatis. Selera gambar user yang menilai |
 
 ## Perbaikan di luar gambar
 | Temuan | Perbaikan |
 |---|---|
 | Skin Record (kertas) mode terang: kartu ringkasan Inventory berlatar gelap dengan teks gelap ("144 lb" nyaris tak terbaca). Ada juga di main sebelum T6 | `.ihero` memakai `--panel-2` di skin selain ddb (css/31-home-hero.css). Terbaca di mode terang dan gelap |
+
+## Audit kontras scene
+`python3 tools/scene_contrast.py` memadukan tiap scene pada opasitas tampil di atas warna halaman (skin gelap dan terang), lalu mengukur warna teks terhadap 5 persen piksel terburuk. Batas lulus 4,5.
+| Keadaan | Hasil |
+|---|---|
+| Opasitas lama (PC 0,55, HP 0,40) | 66 dari 292 kombinasi di bawah 4,5. Terburuk 2,64 (barbarian PC gelap) |
+| Langkah Builder (0,22 PC, 0,16 HP) | Terburuk 7,9. Lulus |
+| Sesudah `--write` (opasitas per scene, 0,38 sampai 0,44) | 0 dari 292 di bawah 4,5. Terendah 4,5 |
+Opasitas per scene tersimpan di kunci `o` pada `img/manifest.json` dan `window.__ART`. Jalankan `--write` setelah tiap run `art_pipeline.py`. Scene sheet jadi sedikit lebih samar di PC. Jika terlalu samar menurut selera, pilihan lain: gelapkan hanya area judul.
