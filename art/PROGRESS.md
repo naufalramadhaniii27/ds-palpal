@@ -902,3 +902,8 @@ art/batch/icons/items/magic/varies/enspelled-staff.png
 art/batch/icons/items/magic/varies/enspelled-weapon.png
 art/batch/icons/items/magic/common/ersatz-eye.png
 art/batch/icons/items/magic/uncommon/eversmoking-bottle.png
+art/batch/icons/items/magic/very-rare/executioners-axe.png
+art/batch/icons/items/magic/artifact/eye-of-vecna.png
+art/batch/icons/items/magic/uncommon/eyes-of-charming.png
+art/batch/icons/items/magic/uncommon/eyes-of-minute-seeing.png
+art/batch/icons/items/magic/uncommon/eyes-of-the-eagle.png
