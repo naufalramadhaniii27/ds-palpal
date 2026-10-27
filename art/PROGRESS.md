@@ -781,3 +781,7 @@ art/batch/scenes/species/warforged-pc.png
 art/batch/scenes/species/warforged-phone.png
 art/batch/scenes/species/yuan-ti-pc.png
 art/batch/scenes/species/yuan-ti-phone.png
+
+## batch-077 v3
+art/batch/scenes/species/zombie-pc.png
+art/batch/scenes/species/zombie-phone.png
