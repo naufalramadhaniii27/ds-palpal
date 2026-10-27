@@ -347,3 +347,8 @@ art/batch/icons/damage-types/lightning.png
 art/batch/icons/damage-types/necrotic.png
 art/batch/icons/damage-types/piercing.png
 art/batch/icons/damage-types/poison.png
+art/batch/icons/damage-types/psychic.png
+art/batch/icons/damage-types/radiant.png
+art/batch/icons/damage-types/slashing.png
+art/batch/icons/damage-types/thunder.png
+art/batch/icons/damage-types/healing.png
