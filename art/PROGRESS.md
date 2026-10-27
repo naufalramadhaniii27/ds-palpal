@@ -235,3 +235,8 @@ art/batch/portraits/dragonborn-b.png
 art/batch/portraits/dwarf-b.png
 art/batch/portraits/elf-b.png
 art/batch/portraits/gnome-b.png
+art/batch/portraits/goliath-b.png
+art/batch/portraits/halfling-b.png
+art/batch/portraits/human-b.png
+art/batch/portraits/orc-b.png
+art/batch/portraits/tiefling-b.png
