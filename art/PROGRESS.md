@@ -191,3 +191,8 @@ art/batch/emblems/subclass/paladin-oath-of-vengeance.png
 art/batch/emblems/subclass/paladin-oath-of-the-ancients.png
 art/batch/emblems/subclass/ranger-beast-master.png
 art/batch/emblems/subclass/ranger-fey-wanderer.png
+art/batch/emblems/subclass/ranger-gloom-stalker.png
+art/batch/emblems/subclass/ranger-hunter.png
+art/batch/emblems/subclass/rogue-arcane-trickster.png
+art/batch/emblems/subclass/rogue-assassin.png
+art/batch/emblems/subclass/rogue-soulknife.png
