@@ -792,3 +792,8 @@ art/batch/icons/items/magic/uncommon/adamantine-weapon.png
 art/batch/icons/items/magic/uncommon/alchemy-jug.png
 art/batch/icons/items/magic/very-rare/ammunition-of-slaying.png
 art/batch/icons/items/magic/rare/amulet-of-health.png
+art/batch/icons/items/magic/uncommon/amulet-of-proof-against-detection-and-location.png
+art/batch/icons/items/magic/very-rare/amulet-of-the-planes.png
+art/batch/icons/items/magic/very-rare/animated-shield.png
+art/batch/icons/items/magic/legendary/apparatus-of-kwalish.png
+art/batch/icons/items/magic/common/armor-of-gleaming.png
