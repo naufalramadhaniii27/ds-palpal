@@ -105,3 +105,10 @@ art/batch/scenes/species/elf-pc.png
 art/batch/scenes/species/elf-phone.png
 art/batch/scenes/species/goliath-pc.png
 art/batch/scenes/species/goliath-phone.png
+
+## batch-005 v3
+art/batch/scenes/species/halfling-pc.png
+art/batch/scenes/species/halfling-phone.png
+art/batch/scenes/species/human-pc.png
+art/batch/scenes/species/human-phone.png
+art/batch/scenes/species/orc-pc.png
