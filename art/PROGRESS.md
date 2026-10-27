@@ -618,3 +618,8 @@ art/batch/icons/spells/level-1/faerie-fire.png
 art/batch/icons/spells/level-1/frost-fingers.png
 art/batch/icons/spells/level-1/guiding-bolt.png
 art/batch/icons/spells/level-1/hellish-rebuke.png
+art/batch/icons/spells/level-1/jims-magic-missile.png
+art/batch/icons/spells/level-1/magic-missile.png
+art/batch/icons/spells/level-1/searing-smite.png
+art/batch/icons/spells/level-1/spellfire-flare.png
+art/batch/icons/spells/level-1/tashas-caustic-brew.png
