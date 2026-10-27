@@ -252,3 +252,10 @@ art/batch/scenes/builder/abilities-pc.png
 art/batch/scenes/builder/abilities-phone.png
 art/batch/scenes/builder/equipment-pc.png
 art/batch/scenes/builder/equipment-phone.png
+
+## batch-016 v3
+art/batch/scenes/builder/spells-pc.png
+art/batch/scenes/builder/spells-phone.png
+art/batch/scenes/builder/review-pc.png
+art/batch/scenes/builder/review-phone.png
+art/batch/scenes/tab/actions-pc.png
