@@ -17,7 +17,7 @@ Subject: Feat icon showing the idea of the named feat. Icon: Two-Weapon Fighting
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 15-0065 [ICON] art/batch/icons/feats/unarmed-fighting.png
-Subject: Feat icon showing the idea of the named feat. Icon: Unarmed Fighting. Draw it as a clenched fist in cloth hand wraps with a punch burst. One single object only, centered, no ground and no other objects.
+Subject: Feat icon showing the idea of the named feat. Icon: Unarmed Fighting. Draw it as a pair of rolled cloth hand wraps. One single object only, centered, no ground and no other objects.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 15-0066 [ICON] art/batch/icons/feats/boon-of-combat-prowess.png
