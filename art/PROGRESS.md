@@ -640,3 +640,8 @@ art/batch/icons/spells/level-1/inflict-wounds.png
 art/batch/icons/spells/level-1/ray-of-sickness.png
 art/batch/icons/spells/level-1/wrathful-smite.png
 art/batch/icons/spells/level-1/catapult.png
+art/batch/icons/spells/level-1/create-or-destroy-water.png
+art/batch/icons/spells/level-1/divine-favor.png
+art/batch/icons/spells/level-1/expeditious-retreat.png
+art/batch/icons/spells/level-1/feather-fall.png
+art/batch/icons/spells/level-1/jump.png
