@@ -1,6 +1,6 @@
 /* D&D Sheet service worker. The app shell is served from the cache first, so the app opens without internet. A new version is fetched in the
    background, and the page asks before it reloads. Character data stays in localStorage and is never touched here. */
-var CACHE="dnd-sheet-0ce3ab3149e7bfd0";
+var CACHE="dnd-sheet-6a31be9ec0e373a1";
 var SHELL=["./", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/favicon-32.png"];
 self.addEventListener("install",function(e){ e.waitUntil(caches.open(CACHE).then(function(c){ return c.addAll(SHELL.map(function(u){ return new Request(u,{cache:"reload"}); })); })); });
 self.addEventListener("activate",function(e){ e.waitUntil(caches.keys().then(function(k){ return Promise.all(k.filter(function(n){ return n.indexOf("dnd-sheet-")===0&&n!==CACHE; }).map(function(n){ return caches.delete(n); })); }).then(function(){ return self.clients.claim(); })); });

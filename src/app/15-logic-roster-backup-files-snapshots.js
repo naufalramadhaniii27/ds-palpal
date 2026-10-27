@@ -19,8 +19,14 @@ function homeHero(){ var r=rEnsure(), id=r.active&&r.chars[r.active]&&!r.chars[r
     words=esc(x.name).split(/\s+/).map(function(w,i){ return '<span class="hhw" style="--i:'+i+'"><span>'+w+'</span></span>'; }).join(" ");
   return '<section class="hhero" id="hxHero"'+(homeQ?' hidden':'')+' aria-labelledby="hxN" style="--hc1:'+p[1]+';--hc2:'+p[2]+'"><span class="hheb">Continue your adventure</span>'+
     '<span class="hhpor'+(x.por?' has':'')+'" style="'+(x.por?'background-image:url('+x.por+')':'')+'">'+(x.por?'':homeSil(x))+'</span>'+
-    '<div class="hhtx"><h2 class="hhname" id="hxN">'+words+'</h2><p class="hhmeta">'+esc(line)+'</p>'+
+    '<div class="hhtx"><h2 class="hhname" id="hxN">'+words+'</h2><p class="hhmeta">'+esc(line)+'</p>'+homeSum(id,r)+
     '<div class="hhbtn"><button type="button" class="hcreate hhgo" data-hview="'+id+'"><span class="hbt">Continue</span></button><button type="button" class="hbk" data-hall="1"><span class="hbt">All characters</span></button></div></div></section>'; }
+/* T4 item 24: session summary under the hero name (HP, conditions, exhaustion, Inspiration). Only for the open character, the others have no derived Hit Point maximum */
+function homeSum(id,r){ try{ if(id!==r.active||typeof D==="undefined"||!D||!D.hpmax||typeof S==="undefined"||!S) return "";
+  var a=[], hp=+S.hp; if(!isNaN(hp)) a.push(['HP '+hp+' / '+D.hpmax, hp<=0?'bad':hp<D.hpmax/2?'warn':'']);
+  var cn=Object.keys(S.cond||{}).filter(function(k){ return S.cond[k]; }); if(cn.length) a.push([cn.slice(0,2).join(", ")+(cn.length>2?" +"+(cn.length-2):""),'warn']);
+  if(+S.exh>0) a.push(['Exhaustion '+(+S.exh),'warn']); if(S.insp) a.push(['Inspiration','']);
+  if(!a.length) return ""; return '<ul class="hhsum" aria-label="Where you left off">'+a.map(function(x){ return '<li'+(x[1]?' class="'+x[1]+'"':'')+'>'+esc(x[0])+'</li>'; }).join("")+'</ul>'; }catch(er){ return ""; } }
 /* v32 p28 C12: the class silhouette of the sheet portrait (v30) with the class icon, when a character has no portrait */
 function homeSil(x){ var ck=(typeof icoCls==="function")?icoCls(x.label||x.cls):"", ci=ck&&typeof ICO==="object"&&ICO&&ICO[ck]?ico(ck,"hpor-ci"):"";
   return '<svg class="hpor-sil" viewBox="0 0 100 125" aria-hidden="true"><path d="M50 16c-13.5 0-23 10.5-23 25 0 8.6 3.6 16.2 9.4 21C22.6 66.8 13 78 10.5 94L9 125h82l-1.5-31C87 78 77.4 66.8 63.6 62c5.8-4.8 9.4-12.4 9.4-21 0-14.5-9.5-25-23-25z"/></svg>'+(ci?'<span class="hpor-c" title="'+esc(x.cls||"")+'">'+ci+'</span>':''); }
