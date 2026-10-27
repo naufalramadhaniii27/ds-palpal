@@ -461,3 +461,8 @@ art/batch/icons/items/weapons/light-crossbow.png
 art/batch/icons/items/weapons/shortbow.png
 art/batch/icons/items/weapons/sling.png
 art/batch/icons/items/weapons/battleaxe.png
+art/batch/icons/items/weapons/flail.png
+art/batch/icons/items/weapons/glaive.png
+art/batch/icons/items/weapons/greataxe.png
+art/batch/icons/items/weapons/greatsword.png
+art/batch/icons/items/weapons/halberd.png
