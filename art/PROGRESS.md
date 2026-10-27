@@ -728,3 +728,8 @@ art/batch/scenes/species/locathah-phone.png
 art/batch/scenes/species/loxodon-pc.png
 art/batch/scenes/species/loxodon-phone.png
 art/batch/scenes/species/lupin-pc.png
+art/batch/scenes/species/lupin-phone.png
+art/batch/scenes/species/merfolk-pc.png
+art/batch/scenes/species/merfolk-phone.png
+art/batch/scenes/species/minotaur-pc.png
+art/batch/scenes/species/minotaur-phone.png
