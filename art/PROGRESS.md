@@ -562,3 +562,8 @@ art/batch/icons/spells/level-1/armor-of-agathys.png
 art/batch/icons/spells/level-1/ceremony.png
 art/batch/icons/spells/level-1/cure-wounds.png
 art/batch/icons/spells/level-1/healing-word.png
+art/batch/icons/spells/level-1/mage-armor.png
+art/batch/icons/spells/level-1/protection-from-evil-and-good.png
+art/batch/icons/spells/level-1/sanctuary.png
+art/batch/icons/spells/level-1/shield.png
+art/batch/icons/spells/level-1/shield-of-faith.png
