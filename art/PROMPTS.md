@@ -3625,3 +3625,93 @@ Every person is an adult. Bright vivid colorful textured fills, quiet sadness an
 WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-021 v3 — art/batch/vignettes/state/update.png
+
+light and color key: red-rock orange and sky-blue light. trace of the fallen world: a dented shield leaning nearby. Red-rock orange and sky-blue light shines on a natural messenger bird landing at a window, a small sealed blank scroll attached safely to leg. One dented empty shield leans on the side of sill. Strong arriving gesture, simple window fragment, no written seal design.
+
+A messenger bird arriving with a small sealed scroll at a window.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent story vignette. One story group only, subject and stated trace of the fallen world. Centered illustration fades to true transparency at every edge with loose rough brush strokes and sketch-line edges. Simple and readable at160x160 pixels. Keep square generated canvas, no bounding-box crop. No wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful textured fills, quiet sadness and purposeful traces. Animals natural and alive, never monstrous. Flames plain without faces or eyes.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-021 v3 — art/batch/vignettes/state/import-failed.png
+
+light and color key: clear blue-white noon light with crisp shadows. trace of the fallen world: a tarnished brass button. Clear blue-white noon light casts crisp colored shadows on an unmistakably adult bearded gnome holding two pieces of a torn blank scroll. Mature wrinkled face and adult proportions, disappointed but gentle expression. One tarnished brass button rests by hand, no writing on scroll.
+
+A torn blank scroll with an adult, bearded gnome holding the two pieces.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent story vignette. One story group only, subject and stated trace of the fallen world. Centered illustration fades to true transparency at every edge with loose rough brush strokes and sketch-line edges. Simple and readable at160x160 pixels. Keep square generated canvas, no bounding-box crop. No wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Gnome is clearly adult with a beard, mature face, wrinkles and adult proportions. Bright vivid colorful textured fills, quiet sadness and purposeful traces. Animals natural and alive, never monstrous. Flames plain without faces or eyes.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-021 v3 — art/batch/vignettes/state/backup-done.png
+
+light and color key: bright turquoise and white light. trace of the fallen world: a torn strip of cloak. Bright turquoise and white light gleams on a sturdy warm wooden treasure chest as a mature adult bearded dwarf turns a plain key in the lock. One torn strip of cloak catches on chest corner, the quiet trace. One compact locking action, no coins or extra treasure spilled outside.
+
+A sturdy treasure chest being locked by a dwarf, a key glinting.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent story vignette. One story group only, subject and stated trace of the fallen world. Centered illustration fades to true transparency at every edge with loose rough brush strokes and sketch-line edges. Simple and readable at160x160 pixels. Keep square generated canvas, no bounding-box crop. No wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Dwarf has an adult face, beard and mature proportions. Bright vivid colorful textured fills, quiet sadness and purposeful traces. Animals natural and alive, never monstrous. Flames plain without faces or eyes.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-021 v3 — art/batch/vignettes/state/storage-full.png
+
+light and color key: crisp snow-white and sky-blue light. trace of the fallen world: a small grave candle. Crisp snow-white and sky-blue light outlines an overstuffed backpack and unmistakably adult weathered halfling sitting on it trying to close it. Adult face, wrinkles, mature proportions, tired effort. One small grave candle at side with a plain flame, no face or eyes. No extra people.
+
+An overstuffed backpack bursting with items, an adult halfling with a weathered face sitting on it trying to close it.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent story vignette. One story group only, subject and stated trace of the fallen world. Centered illustration fades to true transparency at every edge with loose rough brush strokes and sketch-line edges. Simple and readable at160x160 pixels. Keep square generated canvas, no bounding-box crop. No wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Halfling is clearly adult with weathered adult face, wrinkles and adult proportions. Bright vivid colorful textured fills, quiet sadness and purposeful traces. Animals natural and alive, never monstrous. Flames plain without faces or eyes.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-021 v3 — art/batch/vignettes/state/saving.png
+
+light and color key: pink and pale blue light. trace of the fallen world: a broken arrow beside it. Pink and pale blue light illuminates one cream quill hovering over a totally blank page with a soft small glow. One broken arrow lies beside page as quiet trace. Simple poised movement, no pen strokes, ink marks or writing.
+
+A quill hovering over a blank page by itself with a soft glow.
+
+loose energetic hand-drawn sketch illustration (ink lines, flat textured color, hard shadows), bright and colorful, quiet sadness, no gore
+
+1024x1024 transparent story vignette. One story group only, subject and stated trace of the fallen world. Centered illustration fades to true transparency at every edge with loose rough brush strokes and sketch-line edges. Simple and readable at160x160 pixels. Keep square generated canvas, no bounding-box crop. No wounds, bodies or blood.
+
+loose, energetic hand-drawn digital sketch illustration with confident black ink lines with some visible rough construction strokes, slightly exaggerated cartoon proportions and very expressive faces, flat color fills with dry-brush and pencil texture, hard-edged cel shadows with thin red-brown accent strokes in the shading, like one finished frame of modern Western animation concept art (a single illustration, no turnaround, no model sheet, no labels). Not anime, not Studio Ghibli, not painterly realism.
+
+Every person is an adult. Bright vivid colorful textured fills, quiet sadness and purposeful traces. Animals natural and alive, never monstrous. Flames plain without faces or eyes.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

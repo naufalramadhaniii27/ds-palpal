@@ -313,3 +313,8 @@ art/batch/vignettes/empty/notes.png
 art/batch/vignettes/empty/creatures.png
 art/batch/vignettes/empty/journal.png
 art/batch/vignettes/state/offline.png
+art/batch/vignettes/state/update.png
+art/batch/vignettes/state/import-failed.png
+art/batch/vignettes/state/backup-done.png
+art/batch/vignettes/state/storage-full.png
+art/batch/vignettes/state/saving.png
