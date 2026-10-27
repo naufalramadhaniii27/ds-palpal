@@ -15,7 +15,7 @@ Subject: Skill, feat category, weapon mastery or coin icon. Icon: Deception. Dra
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0061 [ICON] art/batch/icons/skills/performance.png
-Subject: Skill, feat category, weapon mastery or coin icon. Icon: Performance. Draw it as a jester's cap with three bells. One single object only, centered, no ground and no other objects. Do not draw a musical instrument, an open book, a sun symbol or a mask.
+Subject: Skill, feat category, weapon mastery or coin icon. Icon: Performance. Draw it as a single large golden music note (an eighth note) with a soft warm glow, drawn as a solid carved object, not as writing. One single object only, centered, no ground and no other objects. Do not draw a musical instrument, an open book, a sun symbol or a mask.
 Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
 
 ## 09-0063 [ICON] art/batch/icons/skills/religion.png
