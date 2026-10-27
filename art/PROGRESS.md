@@ -574,3 +574,8 @@ art/batch/icons/spells/level-1/wardaway.png
 art/batch/icons/spells/level-1/arms-of-hadar.png
 art/batch/icons/spells/level-1/buzzing-bee.png
 art/batch/icons/spells/level-1/ensnaring-strike.png
+art/batch/icons/spells/level-1/entangle.png
+art/batch/icons/spells/level-1/find-familiar.png
+art/batch/icons/spells/level-1/fog-cloud.png
+art/batch/icons/spells/level-1/goodberry.png
+art/batch/icons/spells/level-1/grease.png
