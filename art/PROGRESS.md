@@ -552,3 +552,8 @@ art/batch/icons/spells/cantrips/message.png
 art/batch/icons/spells/cantrips/mold-earth.png
 art/batch/icons/spells/cantrips/prestidigitation.png
 art/batch/icons/spells/cantrips/primal-savagery.png
+art/batch/icons/spells/cantrips/shape-water.png
+art/batch/icons/spells/cantrips/shillelagh.png
+art/batch/icons/spells/cantrips/thaumaturgy.png
+art/batch/icons/spells/cantrips/thorn-whip.png
+art/batch/icons/spells/level-1/absorb-elements.png
