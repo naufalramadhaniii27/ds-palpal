@@ -596,3 +596,8 @@ art/batch/icons/spells/level-1/identify.png
 art/batch/icons/spells/level-1/speak-with-animals.png
 art/batch/icons/spells/level-1/animal-friendship.png
 art/batch/icons/spells/level-1/bane.png
+art/batch/icons/spells/level-1/bless.png
+art/batch/icons/spells/level-1/charm-person.png
+art/batch/icons/spells/level-1/command.png
+art/batch/icons/spells/level-1/compelled-duel.png
+art/batch/icons/spells/level-1/dissonant-whispers.png
