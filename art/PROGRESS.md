@@ -473,3 +473,8 @@ art/batch/icons/items/weapons/longsword.png
 art/batch/icons/items/weapons/maul.png
 art/batch/icons/items/weapons/morningstar.png
 art/batch/icons/items/weapons/pike.png
+art/batch/icons/items/weapons/rapier.png
+art/batch/icons/items/weapons/scimitar.png
+art/batch/icons/items/weapons/shortsword.png
+art/batch/icons/items/weapons/trident.png
+art/batch/icons/items/weapons/warhammer.png
