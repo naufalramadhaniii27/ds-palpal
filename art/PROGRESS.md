@@ -752,3 +752,8 @@ art/batch/scenes/species/satyr-phone.png
 art/batch/scenes/species/shifter-pc.png
 art/batch/scenes/species/shifter-phone.png
 art/batch/scenes/species/simic-hybrid-pc.png
+art/batch/scenes/species/simic-hybrid-phone.png
+art/batch/scenes/species/siren-pc.png
+art/batch/scenes/species/siren-phone.png
+art/batch/scenes/species/skeleton-pc.png
+art/batch/scenes/species/skeleton-phone.png
