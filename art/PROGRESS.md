@@ -306,3 +306,10 @@ art/batch/vignettes/moment/natural-20.png
 art/batch/vignettes/moment/natural-1.png
 art/batch/vignettes/empty/characters.png
 art/batch/vignettes/empty/spells.png
+
+## batch-021 v3
+art/batch/vignettes/empty/items.png
+art/batch/vignettes/empty/notes.png
+art/batch/vignettes/empty/creatures.png
+art/batch/vignettes/empty/journal.png
+art/batch/vignettes/state/offline.png
