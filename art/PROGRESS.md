@@ -623,3 +623,8 @@ art/batch/icons/spells/level-1/magic-missile.png
 art/batch/icons/spells/level-1/searing-smite.png
 art/batch/icons/spells/level-1/spellfire-flare.png
 art/batch/icons/spells/level-1/tashas-caustic-brew.png
+art/batch/icons/spells/level-1/thunderous-smite.png
+art/batch/icons/spells/level-1/thunderwave.png
+art/batch/icons/spells/level-1/witch-bolt.png
+art/batch/icons/spells/level-1/color-spray.png
+art/batch/icons/spells/level-1/disguise-self.png
