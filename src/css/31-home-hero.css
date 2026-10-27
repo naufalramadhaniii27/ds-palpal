@@ -82,3 +82,10 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 .bpal-e{margin:0;padding:16px;color:var(--muted,#999)}
 /* Record skin: the inventory summary had a dark gradient with dark text. It follows the panel colour now, so it reads in light and dark mode */
 :root:not([data-skin="ddb"]) .ihero{background:var(--panel-2);border:1px solid var(--line)}
+/* Entrance for things added to the page: @starting-style gives the first frame, a transition does the rest. Browsers without support just show them. */
+@media (prefers-reduced-motion:no-preference){
+.bpal{transition:opacity .18s ease}.bpal-b{transition:opacity .2s ease,transform .22s var(--ease-out,ease)}
+#offNote{transition:opacity .25s ease,transform .25s var(--ease-out,ease)}
+.es-art.es-img{transition:opacity .35s ease,transform .35s var(--ease-out,ease)}
+@starting-style{.bpal{opacity:0}.bpal-b{opacity:0;transform:translateY(-8px) scale(.98)}#offNote{opacity:0;transform:translateY(-6px)}.es-art.es-img{opacity:0;transform:scale(.94)}}
+}
