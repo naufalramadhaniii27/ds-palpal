@@ -589,3 +589,10 @@ art/batch/icons/spells/level-1/detect-evil-and-good.png
 art/batch/icons/spells/level-1/detect-magic.png
 art/batch/icons/spells/level-1/detect-poison-and-disease.png
 art/batch/icons/spells/level-1/gift-of-alacrity.png
+
+## batch-035 v3
+art/batch/icons/spells/level-1/hunters-mark.png
+art/batch/icons/spells/level-1/identify.png
+art/batch/icons/spells/level-1/speak-with-animals.png
+art/batch/icons/spells/level-1/animal-friendship.png
+art/batch/icons/spells/level-1/bane.png
