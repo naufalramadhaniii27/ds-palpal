@@ -330,3 +330,8 @@ art/batch/icons/conditions/incapacitated.png
 art/batch/icons/conditions/invisible.png
 art/batch/icons/conditions/paralyzed.png
 art/batch/icons/conditions/petrified.png
+art/batch/icons/conditions/poisoned.png
+art/batch/icons/conditions/prone.png
+art/batch/icons/conditions/restrained.png
+art/batch/icons/conditions/stunned.png
+art/batch/icons/conditions/unconscious.png
