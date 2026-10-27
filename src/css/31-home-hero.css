@@ -30,3 +30,4 @@ html.mi-lite .hhero::before,html.mi-off .hhero::before{display:none}
 #homeV .hcmd{min-height:44px}
 .pinfav{margin-top:8px}.pinfav.on{border-color:var(--gold,currentColor)}
 .pinsp b{opacity:.75}
+.lib-add{margin:14px 0 4px}.lib-add .btn{min-height:44px}

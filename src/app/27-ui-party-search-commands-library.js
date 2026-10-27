@@ -149,6 +149,19 @@ function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; 
   return o; }
 function libTiles(a){ return '<div class="info-k">'+a.filter(function(x){ return x&&x[1]!==""&&x[1]!=null; }).map(function(x){ return String(x[1]).length>14?tileH(esc(x[0]),esc(x[1])):tileS(x[0],x[1]); }).join("")+'</div>'; }
 function libFeatBlock(h4,txt){ return '<div class="info-h">'+h4+'</div><p class="info-d">'+richP(txt)+'</p>'; }
+/* T4 item 23: Add to my sheet from the library (spell, magic item, gear). Entries carry lib:1 so they can be told apart from builder entries */
+function libAddBtn(c,k){ return (c==="spell"||c==="item"||c==="gear")?'<div class="lib-add"><button type="button" class="btn sm press" data-libadd="'+esc(c+"|"+k)+'"><span class="hbt">Add to my sheet</span></button></div>':""; }
+function libAddDo(c,k){ if(typeof C==="undefined"||!C) return;
+  if(c==="spell"){ if(!C.spellcasting){ toast("This character has no spellcasting"); return; } var r=null; SPELLS.forEach(function(q){ if(q[0]===k) r=q; }); if(!r) return;
+    if((C.spells||[]).some(function(x){ return x.n===k; })){ toast(k+" is already on your sheet"); return; }
+    C.spells=C.spells||[]; C.spells.push({n:r[0],l:r[1],sch:r[2],ct:r[4],r:r[5],cmp:r[6],dur:r[7],conc:r[8],rit:r[9],sv:r[10],sum:r[11]||"",full:(typeof SPELL_FULL!=="undefined"&&SPELL_FULL[k])||"",cls:spClsJ(r),use:r[1]?"Prepared":"Cantrip",src:"Library",lib:1});
+    saveC(); renderAll(); toast("Added "+k+" to your spells"); return; }
+  var it=null;
+  if(c==="item"){ DMGI.forEach(function(q){ if(q[0]===k) it=q; }); if(!it) return; it={n:k,q:1,w:0,eq:false,type:it[1],rar:it[2],d:String(it[4]||"").replace(/\*\*|\[\[|\]\]/g,""),lib:1}; }
+  else { var w=WEAPONS[k], a=ARMOR[k], gr=null; GEAR.forEach(function(q){ if(q[0]===k) gr=q; }); it={n:k,q:1,w:Number((w&&w.w)||(a&&a.w)||(gr&&gr[2])||0)||0,eq:false,d:ITEMDESC[k]||"",lib:1}; }
+  C.inv=C.inv||[]; var ex=C.inv.filter(function(y){ return y.n===k&&!y.eq; })[0]; if(ex&&c==="gear") ex.q=(+ex.q||1)+1; else C.inv.push(it);
+  saveC(); renderAll(); toast("Added "+k+" to your inventory"); }
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
 function libDetail(c,k){ var h="",t=k,sub="",x,i;
   if(c==="spell"){ var o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
   if(c==="rule"){ var gl=GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d}); if(!gl) return null; LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }
@@ -216,7 +229,7 @@ function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=
   if(d){ bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; bd.scrollTop=0; return; }
   document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libListHTML(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ var rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
-function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; }
+function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);
   if(push!==false&&LIB.cur) LIB.hist.push(LIB.cur); else if(push!==false) { var bd=document.getElementById("libBd"); LIB.scroll=bd?bd.scrollTop:0; }
   LIB.cur=d; d.id=spec; libRecent(spec); libPaint(); }
 function libBack(){ if(LIB.hist.length){ LIB.cur=LIB.hist.pop(); } else LIB.cur=null; libPaint(); }
