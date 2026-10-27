@@ -567,3 +567,10 @@ art/batch/icons/spells/level-1/protection-from-evil-and-good.png
 art/batch/icons/spells/level-1/sanctuary.png
 art/batch/icons/spells/level-1/shield.png
 art/batch/icons/spells/level-1/shield-of-faith.png
+
+## batch-034 v3
+art/batch/icons/spells/level-1/snare.png
+art/batch/icons/spells/level-1/wardaway.png
+art/batch/icons/spells/level-1/arms-of-hadar.png
+art/batch/icons/spells/level-1/buzzing-bee.png
+art/batch/icons/spells/level-1/ensnaring-strike.png
