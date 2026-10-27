@@ -1461,3 +1461,73 @@ Every person is an adult. The story carries despair, grief, loss, wounds of hear
 WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include: Text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays (the UI props requested in a batch are allowed), copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. When the Subject names simple pictures for a sign, banner or map (a dragon shape, a pictured shop sign, an illustrated map), draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the Subject names one simple picture for the card, and even then no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/barbarian-path-of-the-berserker.png
+
+Subclass emblem for Path Of The Berserker (Barbarian): a notched red-hot axe head crossed with a broken chain. Glow color: amber.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A bold diagonal axe head of dark warm iron with an amber heated cutting edge, its notch clearly visible; one snapped chain crosses underneath in a compact X. Wood and leather at the short socket, purposeful motion in the cut shape, no added shield.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/barbarian-path-of-the-wild-heart.png
+
+Subclass emblem for Path Of The Wild Heart (Barbarian): a bear paw print inside a ring of eagle feathers and a wolf fang. Glow color: amber.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A warm ochre bear-paw impression on a small natural stone, encircled by layered cream-and-walnut eagle feathers, with one ivory wolf fang at the lower edge. Keep the paw unmistakable and the feather ring one cohesive shape.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/barbarian-path-of-the-world-tree.png
+
+Subclass emblem for Path Of The World Tree (Barbarian): a great tree whose roots and branches form a circle around an axe. Glow color: amber.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+A gnarled living tree loops its strong roots and branches into a circle, sheltering a small wooden-handled axe through the middle. Fresh green leaves and golden bark, amber light threading the root junctions.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/barbarian-path-of-the-zealot.png
+
+Subclass emblem for Path Of The Zealot (Barbarian): a flaming war hammer above a round shield with a sun ray burst. Glow color: amber.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+One stout war hammer with a plain amber flame rising above its head, suspended over a simple round wooden shield. A clear sun-ray burst belongs to the shield; soft brass and warm wood, no spiky metal rim.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.
+
+## batch-010 v3 — art/batch/emblems/subclass/bard-college-of-dance.png
+
+Subclass emblem for College Of Dance (Bard): a pair of dancing slippers trailing a swirling ribbon of light. Glow color: rose pink.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 PNG with a truly transparent background. One magical object or compact group of the named objects, as in a Ghibli film close-up, centered at about70% of canvas with equal margins. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, feather, glass or stone materials as appropriate; magic as soft glowing light mainly in the listed glow color. Flames are plain, with no face and no eyes. Take only the drawing style from the attached references, never their background. No video game badge, heraldic crest, chrome, spikes everywhere or realistic human faces; carved mask faces are object details. Readable as one bold shape at64x64. Nothing outside the compact emblem. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Every person is an adult.
+
+Two supple dancing slippers in rose cloth, toes offset in an energetic turn; a single luminous rose-pink ribbon curls around them. No wearer or legs, one compact dancing gesture.
+
+WOW at first glance: striking, full of character and vivid color, clear silhouettes, confident gesture and composition. Specific story details, never filler decoration; natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes or known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When simple pictures are explicitly named for a sign, banner or map, draw only those pictures. Card faces stay blank unless one simple picture is explicitly named, with no letters or numbers.

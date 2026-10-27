@@ -157,3 +157,10 @@ art/batch/scenes/background/soldier-phone.png
 ## batch-009 v3
 art/batch/scenes/background/wayfarer-pc.png
 art/batch/scenes/background/wayfarer-phone.png
+
+## batch-010 v3
+art/batch/emblems/subclass/barbarian-path-of-the-berserker.png
+art/batch/emblems/subclass/barbarian-path-of-the-wild-heart.png
+art/batch/emblems/subclass/barbarian-path-of-the-world-tree.png
+art/batch/emblems/subclass/barbarian-path-of-the-zealot.png
+art/batch/emblems/subclass/bard-college-of-dance.png
