@@ -4344,6 +4344,8 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 .bpal-i{display:block;width:100%;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:transparent;color:var(--ink,#fff);font:500 16px/1 var(--f-sans,sans-serif);text-align:left;cursor:pointer}
 .bpal-i:hover,.bpal-i:focus-visible{background:var(--panel-2,#262626);outline:2px solid var(--prof,#5aa9ff);outline-offset:-2px}
 .bpal-e{margin:0;padding:16px;color:var(--muted,#999)}
+/* Record skin: the inventory summary had a dark gradient with dark text. It follows the panel colour now, so it reads in light and dark mode */
+:root:not([data-skin="ddb"]) .ihero{background:var(--panel-2);border:1px solid var(--line)}
 /* T6: class scene behind the sheet. Cards keep their own solid panels, so the picture never sits under numbers or text.
    Phone: portrait scene, lower strength. Laptop: wide scene. */
 .cls-art-l{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .45s var(--ease-out,ease);background:var(--ca-c,#0f1417) var(--ca-ph) center top/cover no-repeat}

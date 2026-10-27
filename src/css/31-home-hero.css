@@ -80,3 +80,5 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 .bpal-i{display:block;width:100%;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:transparent;color:var(--ink,#fff);font:500 16px/1 var(--f-sans,sans-serif);text-align:left;cursor:pointer}
 .bpal-i:hover,.bpal-i:focus-visible{background:var(--panel-2,#262626);outline:2px solid var(--prof,#5aa9ff);outline-offset:-2px}
 .bpal-e{margin:0;padding:16px;color:var(--muted,#999)}
+/* Record skin: the inventory summary had a dark gradient with dark text. It follows the panel colour now, so it reads in light and dark mode */
+:root:not([data-skin="ddb"]) .ihero{background:var(--panel-2);border:1px solid var(--line)}

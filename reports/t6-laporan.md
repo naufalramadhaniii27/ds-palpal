@@ -47,3 +47,8 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 | Scene layar (bastion, combat, journal, rest, party, settings, tour) | Layar itu belum punya lapis latar sendiri |
 | Ikon item sihir, school, damage, creature, skill | Ada di manifest, belum dipasang di UI |
 | Audit kontras per scene | Kartu solid dan scene samar, tetapi belum diukur otomatis. Selera gambar user yang menilai |
+
+## Perbaikan di luar gambar
+| Temuan | Perbaikan |
+|---|---|
+| Skin Record (kertas) mode terang: kartu ringkasan Inventory berlatar gelap dengan teks gelap ("144 lb" nyaris tak terbaca). Ada juga di main sebelum T6 | `.ihero` memakai `--panel-2` di skin selain ddb (css/31-home-hero.css). Terbaca di mode terang dan gelap |
