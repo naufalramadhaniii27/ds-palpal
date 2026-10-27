@@ -120,3 +120,10 @@ function ohSync(){ var o=document.getElementById("ohAmt"), a=document.getElement
   document.addEventListener("input",function(e){ var t=e.target; if(!t) return; if(t.id==="ohAmt"){ var v=parseInt(t.value,10), a=$("#hpAmt"); if(a) a.value=isNaN(v)?"":String(Math.max(0,v)); } else if(t.id==="hpAmt") ohSync(); });
   document.addEventListener("click",function(e){ if(e.target.closest&&e.target.closest("[data-hpadd]")) ohSync(); });
 })();
+
+/* T4 item 26: offline note. The app keeps working offline, the note says where the data is. It sits at the top of Home and on the Settings dialog, and a toast announces the change */
+(function(){ function net(){ var on=navigator.onLine!==false; document.documentElement.classList.toggle("is-off",!on); var h=document.getElementById("homeV"), n=document.getElementById("offNote");
+    if(h&&!on&&!n){ var w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.textContent="You are offline. Your characters are saved on this device and everything keeps working."; w.insertBefore(n,w.firstChild); } }
+    else if(n&&on) n.remove(); }
+  window.addEventListener("online",function(){ net(); try{ toast("Back online"); }catch(er){} }); window.addEventListener("offline",function(){ net(); try{ toast("Offline: everything is saved on this device"); }catch(er){} });
+  window.__net=net; setInterval(function(){ var h=document.getElementById("homeV"); if(h&&!h.hidden&&document.documentElement.classList.contains("is-off")&&!document.getElementById("offNote")) net(); },1500); net(); })();
