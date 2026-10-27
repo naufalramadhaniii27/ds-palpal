@@ -148,3 +148,8 @@ art/batch/scenes/background/noble-phone.png
 art/batch/scenes/background/sage-pc.png
 art/batch/scenes/background/sage-phone.png
 art/batch/scenes/background/sailor-pc.png
+art/batch/scenes/background/sailor-phone.png
+art/batch/scenes/background/scribe-pc.png
+art/batch/scenes/background/scribe-phone.png
+art/batch/scenes/background/soldier-pc.png
+art/batch/scenes/background/soldier-phone.png
