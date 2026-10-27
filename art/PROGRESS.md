@@ -495,3 +495,8 @@ art/batch/icons/items/armor/hide-armor.png
 art/batch/icons/items/armor/chain-shirt.png
 art/batch/icons/items/armor/scale-mail.png
 art/batch/icons/items/armor/breastplate.png
+art/batch/icons/items/armor/half-plate-armor.png
+art/batch/icons/items/armor/ring-mail.png
+art/batch/icons/items/armor/chain-mail.png
+art/batch/icons/items/armor/splint-armor.png
+art/batch/icons/items/armor/plate-armor.png
