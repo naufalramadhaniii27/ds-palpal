@@ -757,3 +757,10 @@ art/batch/scenes/species/siren-pc.png
 art/batch/scenes/species/siren-phone.png
 art/batch/scenes/species/skeleton-pc.png
 art/batch/scenes/species/skeleton-phone.png
+
+## batch-075 v3
+art/batch/scenes/species/tabaxi-pc.png
+art/batch/scenes/species/tabaxi-phone.png
+art/batch/scenes/species/thri-kreen-pc.png
+art/batch/scenes/species/thri-kreen-phone.png
+art/batch/scenes/species/tortle-pc.png
