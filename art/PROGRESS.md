@@ -240,3 +240,10 @@ art/batch/portraits/halfling-b.png
 art/batch/portraits/human-b.png
 art/batch/portraits/orc-b.png
 art/batch/portraits/tiefling-b.png
+
+## batch-015 v3
+art/batch/scenes/builder/class-pc.png
+art/batch/scenes/builder/class-phone.png
+art/batch/scenes/builder/background-pc.png
+art/batch/scenes/builder/background-phone.png
+art/batch/scenes/builder/species-pc.png
