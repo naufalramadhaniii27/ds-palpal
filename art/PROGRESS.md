@@ -423,3 +423,8 @@ art/batch/icons/creature-types/humanoid.png
 art/batch/icons/creature-types/monstrosity.png
 art/batch/icons/creature-types/ooze.png
 art/batch/icons/creature-types/plant.png
+art/batch/icons/creature-types/undead.png
+art/batch/icons/creature-types/swarm.png
+art/batch/icons/creature-types/summon.png
+art/batch/icons/item-categories/simple-melee-weapons.png
+art/batch/icons/item-categories/martial-melee-weapons.png
