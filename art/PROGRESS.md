@@ -440,3 +440,7 @@ art/batch/icons/item-categories/ammunition.png
 art/batch/icons/item-categories/adventuring-gear.png
 art/batch/icons/item-categories/tools.png
 art/batch/icons/item-categories/potion.png
+art/batch/icons/item-categories/scroll.png
+art/batch/icons/item-categories/wand-rod-and-staff.png
+art/batch/icons/item-categories/ring.png
+art/batch/icons/item-categories/wondrous-item.png
