@@ -858,3 +858,8 @@ art/batch/icons/items/magic/rare/cloak-of-the-bat.png
 art/batch/icons/items/magic/uncommon/cloak-of-the-manta-ray.png
 art/batch/icons/items/magic/common/clockwork-amulet.png
 art/batch/icons/items/magic/common/clothes-of-mending.png
+art/batch/icons/items/magic/very-rare/crystal-ball.png
+art/batch/icons/items/magic/legendary/crystal-ball-of-mind-reading.png
+art/batch/icons/items/magic/legendary/crystal-ball-of-telepathy.png
+art/batch/icons/items/magic/legendary/crystal-ball-of-true-seeing.png
+art/batch/icons/items/magic/rare/cube-of-force.png
