@@ -340,3 +340,10 @@ art/batch/icons/damage-types/acid.png
 art/batch/icons/damage-types/bludgeoning.png
 art/batch/icons/damage-types/cold.png
 art/batch/icons/damage-types/fire.png
+
+## batch-023 v3
+art/batch/icons/damage-types/force.png
+art/batch/icons/damage-types/lightning.png
+art/batch/icons/damage-types/necrotic.png
+art/batch/icons/damage-types/piercing.png
+art/batch/icons/damage-types/poison.png
