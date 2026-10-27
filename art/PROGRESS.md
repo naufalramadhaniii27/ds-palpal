@@ -655,3 +655,10 @@ art/batch/icons/spells/level-2/arcane-lock.png
 art/batch/icons/spells/level-2/arcane-vigor.png
 art/batch/icons/spells/level-2/disruptive-tune.png
 art/batch/icons/spells/level-2/dueling-ground.png
+
+## batch-038 v3
+art/batch/icons/spells/level-2/elminsters-elusion.png
+art/batch/icons/spells/level-2/lesser-restoration.png
+art/batch/icons/spells/level-2/pass-without-trace.png
+art/batch/icons/spells/level-2/pinky-swear.png
+art/batch/icons/spells/level-2/prayer-of-healing.png
