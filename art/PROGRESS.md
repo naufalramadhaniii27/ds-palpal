@@ -650,3 +650,8 @@ art/batch/icons/spells/level-1/magnify-gravity.png
 art/batch/icons/spells/level-1/purify-food-and-drink.png
 art/batch/icons/spells/level-1/quick-clothier.png
 art/batch/icons/spells/level-1/zephyr-strike.png
+art/batch/icons/spells/level-2/aid.png
+art/batch/icons/spells/level-2/arcane-lock.png
+art/batch/icons/spells/level-2/arcane-vigor.png
+art/batch/icons/spells/level-2/disruptive-tune.png
+art/batch/icons/spells/level-2/dueling-ground.png
