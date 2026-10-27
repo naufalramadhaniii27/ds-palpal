@@ -814,3 +814,8 @@ art/batch/icons/items/magic/rare/bead-of-force.png
 art/batch/icons/items/magic/common/bead-of-nourishment.png
 art/batch/icons/items/magic/common/bead-of-refreshment.png
 art/batch/icons/items/magic/rare/belt-of-dwarvenkind.png
+art/batch/icons/items/magic/legendary/belt-of-giant-strength.png
+art/batch/icons/items/magic/rare/berserker-axe.png
+art/batch/icons/items/magic/artifact/blackrazor.png
+art/batch/icons/items/magic/uncommon/bolt.png
+art/batch/icons/items/magic/artifact/book-of-exalted-deeds.png
