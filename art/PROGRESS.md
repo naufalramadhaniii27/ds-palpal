@@ -413,3 +413,8 @@ art/batch/icons/coins/coin-pile.png
 art/batch/icons/creature-types/aberration.png
 art/batch/icons/creature-types/beast.png
 art/batch/icons/creature-types/celestial.png
+art/batch/icons/creature-types/construct.png
+art/batch/icons/creature-types/dragon.png
+art/batch/icons/creature-types/elemental.png
+art/batch/icons/creature-types/fey.png
+art/batch/icons/creature-types/fiend.png
