@@ -1308,3 +1308,8 @@ art/batch/icons/items/magic/very-rare/thunder-absorbing-tattoo.png
 art/batch/icons/items/magic/very-rare/amethyst-lodestone.png
 art/batch/icons/items/magic/legendary/ascendant-dragon-vessel.png
 art/batch/icons/items/magic/legendary/ascendant-dragon-touched-focus.png
+art/batch/icons/items/magic/legendary/ascendant-scaled-ornament.png
+art/batch/icons/items/magic/uncommon/emerald-pen.png
+art/batch/icons/items/magic/legendary/flail-of-tiamat.png
+art/batch/icons/items/magic/legendary/gold-canary-figurine-of-wondrous-power.png
+art/batch/icons/items/magic/legendary/platinum-scarf.png
