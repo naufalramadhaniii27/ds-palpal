@@ -1269,3 +1269,10 @@ art/batch/icons/items/magic/very-rare/cold-absorbing-tattoo.png
 art/batch/icons/items/magic/artifact/crook-of-rao.png
 art/batch/icons/items/magic/very-rare/crystalline-chronicle.png
 art/batch/icons/items/magic/rare/devotees-censer.png
+
+## batch-100 v3
+art/batch/icons/items/magic/rare/duplicitous-manuscript.png
+art/batch/icons/items/magic/uncommon/eldritch-claw-tattoo.png
+art/batch/icons/items/magic/rare/elemental-essence-shard.png
+art/batch/icons/items/magic/rare/far-realm-shard.png
+art/batch/icons/items/magic/uncommon/feywild-shard.png
