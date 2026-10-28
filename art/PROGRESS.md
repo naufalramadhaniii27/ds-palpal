@@ -1247,3 +1247,10 @@ art/batch/icons/items/magic/uncommon/helm-of-awareness.png
 art/batch/icons/items/magic/common/manifold-tool.png
 art/batch/icons/items/magic/uncommon/mind-sharpener.png
 art/batch/icons/items/magic/uncommon/repulsion-shield.png
+
+## batch-099 v3
+art/batch/icons/items/magic/uncommon/spell-refueling-ring.png
+art/batch/icons/items/magic/artifact/ebonbane.png
+art/batch/icons/items/magic/uncommon/harkons-bite.png
+art/batch/icons/items/magic/uncommon/reliquary-of-dawn.png
+art/batch/icons/items/magic/uncommon/reliquary-of-twilight.png
