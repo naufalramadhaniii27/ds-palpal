@@ -1181,3 +1181,6 @@ art/batch/icons/items/magic/uncommon/blemished-idol-of-good-fortunes.png
 art/batch/icons/items/magic/rare/blood-amulet.png
 art/batch/icons/items/magic/uncommon/boon-companions-bands.png
 art/batch/icons/items/magic/uncommon/budding-blossom-rod.png
+
+NEXT: batch-096 art/batch/icons/items/magic/rare/chattering-staff-of-skulls.png
+## batch-096 v3
