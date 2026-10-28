@@ -1743,3 +1743,8 @@ art/batch/icons/items/magic/legendary/nightfall-pearl.png
 art/batch/icons/items/magic/very-rare/orb-of-the-veil.png
 art/batch/icons/items/magic/rare/potion-of-maximum-power.png
 art/batch/icons/items/magic/very-rare/potion-of-possibility.png
+art/batch/icons/items/magic/very-rare/reincarnation-dust.png
+art/batch/icons/items/magic/uncommon/ring-of-obscuring.png
+art/batch/icons/items/magic/rare/ring-of-temporal-salvation.png
+art/batch/icons/items/magic/uncommon/rod-of-retribution.png
+art/batch/icons/items/magic/artifact/ruins-wake.png
