@@ -1572,3 +1572,8 @@ art/batch/icons/items/magic/artifact/bigbys-beneficent-bracelet.png
 art/batch/icons/items/magic/rare/crown-of-the-wrath-bringer.png
 art/batch/icons/items/magic/rare/delvers-claws.png
 art/batch/icons/items/magic/very-rare/elven-thrower.png
+art/batch/icons/items/magic/rare/glowrune-pigment.png
+art/batch/icons/items/magic/legendary/harp-of-gilded-plenty.png
+art/batch/icons/items/magic/artifact/helm-of-perfect-potential.png
+art/batch/icons/items/magic/rare/lash-of-immolation.png
+art/batch/icons/items/magic/legendary/longbow-of-the-healing-hearth.png
