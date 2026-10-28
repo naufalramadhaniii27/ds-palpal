@@ -1709,3 +1709,10 @@ art/batch/icons/items/magic/legendary/bookmark.png
 art/batch/icons/items/magic/very-rare/devlins-staff-of-striking.png
 art/batch/icons/items/magic/rare/ghost-lantern.png
 art/batch/icons/items/magic/uncommon/mask-of-the-beast.png
+
+## batch-120 v3
+art/batch/icons/items/magic/artifact/ring-of-winter.png
+art/batch/icons/items/magic/rare/scorpion-armor.png
+art/batch/icons/items/magic/artifact/staff-of-the-forgotten-one.png
+art/batch/icons/items/magic/uncommon/amulet-of-the-drunkard.png
+art/batch/icons/items/magic/very-rare/arcane-cannon.png
