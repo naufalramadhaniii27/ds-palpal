@@ -1083,3 +1083,8 @@ art/batch/icons/items/magic/legendary/scarab-of-protection.png
 art/batch/icons/items/magic/very-rare/scimitar-of-speed.png
 art/batch/icons/items/magic/rare/scroll-of-protection.png
 art/batch/icons/items/magic/legendary/scroll-of-titan-summoning.png
+art/batch/icons/items/magic/uncommon/sending-stones.png
+art/batch/icons/items/magic/uncommon/sentinel-shield.png
+art/batch/icons/items/magic/common/shield-of-expression.png
+art/batch/icons/items/magic/rare/shield-of-missile-attraction.png
+art/batch/icons/items/magic/very-rare/shield-of-the-cavalier.png
