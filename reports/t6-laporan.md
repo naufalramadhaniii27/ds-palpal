@@ -27,7 +27,7 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 | Pilihan potret | Ketuk potret di sheet: lembar Portrait berisi 20 potret seni (species karakter di depan) dan tombol unggah foto atau hapus. Potret seni disimpan sebagai JPEG kecil di `S.portrait`, sama seperti foto unggahan, jadi tidak ada perubahan bentuk data |
 | Latar Home dan bingkai potret | Home: foto kedai malam samar (38 persen, kontras terburuk 5,6). Settings, Portrait Frame: opsi Carved wood, tampil bila potret terpasang |
 | Gambar di toast | Backup selesai (unduh atau salin), impor gagal, versi baru siap. Toast lain tetap memakai ikon lama |
-| Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
+| Emblem subclass | Chip subclass di hero sheet (bila subclass punya emblem) dan Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
 | Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. |
 | Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
 
