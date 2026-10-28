@@ -990,3 +990,8 @@ art/batch/icons/items/magic/very-rare/oil-of-sharpness.png
 art/batch/icons/items/magic/uncommon/oil-of-slipperiness.png
 art/batch/icons/items/magic/common/orb-of-direction.png
 art/batch/icons/items/magic/artifact/orb-of-dragonkind.png
+art/batch/icons/items/magic/common/orb-of-time.png
+art/batch/icons/items/magic/uncommon/pearl-of-power.png
+art/batch/icons/items/magic/common/perfume-of-bewitching.png
+art/batch/icons/items/magic/uncommon/periapt-of-health.png
+art/batch/icons/items/magic/rare/periapt-of-proof-against-poison.png
