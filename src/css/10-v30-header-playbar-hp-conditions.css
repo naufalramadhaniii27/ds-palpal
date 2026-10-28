@@ -45,7 +45,7 @@
  .vb-n{display:flex;align-items:center;gap:4px;font-size:calc(20px*var(--tz,1))}
  .vb-n svg.ico{width:16px;height:16px;color:var(--bad);margin-right:2px}
  .vb-m{font-size:max(12px,calc(13px*var(--tz,1)));font-weight:600;color:var(--faint)}
- .vb-t{margin-left:auto;font-size:max(12px,calc(13px*var(--tz,1)));color:#7fb2ff}
+ .vb-t{margin-left:auto;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--tx-blue,#7fb2ff)}
  .vb-hp.zero .vb-n b{color:var(--bad)}
  .vb-bar{position:relative;display:block;height:5px;border-radius:4px;background:var(--line-2);overflow:hidden}
  .vb-bar i{position:absolute;left:0;top:0;bottom:0;width:100%;transform-origin:left center;background:var(--good);transition:transform .3s var(--ease-out)}
@@ -93,7 +93,7 @@
 .hp-pre .clr svg.ico{width:18px;height:18px;margin:0}
 .hp-ctrl input.pop{animation:v30pop .3s var(--ease-out)}
 .hp-tmpc{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:12px}
-.hp-tmpc .tmp-l{flex:1;min-width:0;display:inline-flex;align-items:center;gap:6px;text-align:left;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));color:#7fb2ff}
+.hp-tmpc .tmp-l{flex:1;min-width:0;display:inline-flex;align-items:center;gap:6px;text-align:left;font-family:var(--f-nar);font-weight:700;font-size:calc(16px*var(--tz,1));color:var(--tx-blue,#7fb2ff)}
 .hp-tmpc .tmp-l svg.ico{width:18px;height:18px;margin:0}
 .tmp-s button{width:44px;height:40px;font-size:calc(20px*var(--tz,1))}
 .tmp-s output{min-width:40px;font-size:calc(18px*var(--tz,1))}
@@ -267,7 +267,7 @@
 .qm-h svg.qm-hi{width:20px;height:20px;color:var(--bad);margin:0}
 .qm-h b{font:700 calc(28px*var(--tz,1))/1 var(--f-nar)}
 .qm-h span{font-size:calc(14px*var(--tz,1));color:var(--muted)}
-.qm-h i{font-style:normal;color:#7fb2ff}
+.qm-h i{font-style:normal;color:var(--tx-blue,#7fb2ff)}
 .qm-x{margin-left:auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--line-2);border-radius:var(--r2,8px);color:var(--ink);cursor:pointer}
 .qm-x svg.ico{margin:0}
 .qm-a{display:flex;gap:6px}

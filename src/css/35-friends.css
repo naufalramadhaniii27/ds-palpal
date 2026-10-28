@@ -19,7 +19,7 @@
 .fr-acts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
 .fr-form{display:flex;flex-direction:column;gap:8px;margin:10px 0}
 .fr-form label{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.9em}
-.fr-form input,.fr-form textarea,.fr-find input{font:inherit;padding:9px 10px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg,var(--panel));color:var(--ink);min-width:0}
+.fr-form input,.fr-form textarea,.fr-find input{font:inherit;padding:10px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg,var(--panel));color:var(--ink);min-width:0}
 .fr-form .btn{align-self:flex-start;padding:0 16px}
 .fr-find{display:flex;gap:8px;margin:4px 0 8px}.fr-find input{flex:1}
 .fr-find .btn{padding:0 16px}
@@ -48,4 +48,4 @@
 .fr-bar span{flex:1 1 200px;min-width:0}
 .fr-bar .btn{height:40px;padding:0 14px}
 html.fr-viewing #editBtn,html.fr-viewing #bldBtn,html.fr-viewing .bld-b,html.fr-viewing .oldnote,html.fr-viewing .sy-b,html.fr-viewing #rosterBtn,html.fr-viewing .fr-b{display:none!important}
-html.fr-viewing body{padding-bottom:72px}
+html.fr-viewing body{padding-bottom:calc(64px + 8px)}

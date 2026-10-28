@@ -8,8 +8,11 @@ function segFix(root){ if(!root||!root.querySelectorAll) return; Array.prototype
   SEGX[k]=el.scrollLeft; segEdge(el); }); }
 /* icons are added one frame after a render and make the segments wider: check again two frames later */
 function segFixL(root){ segFix(root); requestAnimationFrame(function(){ requestAnimationFrame(function(){ segFix(root); }); }); }
-document.addEventListener("scroll",function(e){ var el=e.target; if(el&&el.classList&&el.classList.contains("ifil")){ SEGX[segKey(el)]=el.scrollLeft; segEdge(el); } },true);
-window.addEventListener("resize",function(){ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); });
+document.addEventListener("scroll",function(e){ var el=e.target; if(el&&el.classList&&el.classList.contains("ifil")){ SEGX[segKey(el)]=el.scrollLeft; segEdge(el); } if(el&&el.classList&&(el.id==="tabs"||el.classList.contains("bnav"))) segEdge(el); },true);
+/* T10: the tab row and the bottom bar get the same edge fade as the filter rows when they can scroll */
+function edgeRows(){ Array.prototype.forEach.call(document.querySelectorAll("#tabs,.bnav"),segEdge); }
+setTimeout(edgeRows,600); setTimeout(edgeRows,2500); setTimeout(edgeRows,6000); document.addEventListener("click",function(){ setTimeout(edgeRows,350); },true);
+window.addEventListener("resize",function(){ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); if(typeof edgeRows==="function") edgeRows(); });
 renderActions=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("actBody")); return r; }; })(renderActions);
 renderInv=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("invBody")); return r; }; })(renderInv);
 renderFeat=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("featBody")); return r; }; })(renderFeat);
