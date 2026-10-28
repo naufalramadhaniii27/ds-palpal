@@ -1061,3 +1061,8 @@ art/batch/icons/items/magic/uncommon/ring-of-water-walking.png
 art/batch/icons/items/magic/rare/ring-of-x-ray-vision.png
 art/batch/icons/items/magic/common/rival-coin.png
 art/batch/icons/items/magic/rare/robe-of-eyes.png
+art/batch/icons/items/magic/very-rare/robe-of-scintillating-colors.png
+art/batch/icons/items/magic/very-rare/robe-of-stars.png
+art/batch/icons/items/magic/legendary/robe-of-the-archmagi.png
+art/batch/icons/items/magic/uncommon/robe-of-useful-items.png
+art/batch/icons/items/magic/very-rare/rod-of-absorption.png
