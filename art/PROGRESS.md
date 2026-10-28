@@ -1132,3 +1132,8 @@ art/batch/icons/items/magic/legendary/talisman-of-ultimate-evil.png
 art/batch/icons/items/magic/common/talking-doll.png
 art/batch/icons/items/magic/common/tankard-of-sobriety.png
 art/batch/icons/items/magic/rare/tentacle-rod.png
+art/batch/icons/items/magic/very-rare/thunderous-greatclub.png
+art/batch/icons/items/magic/very-rare/tome-of-clear-thought.png
+art/batch/icons/items/magic/very-rare/tome-of-leadership-and-influence.png
+art/batch/icons/items/magic/legendary/tome-of-the-stilled-tongue.png
+art/batch/icons/items/magic/very-rare/tome-of-understanding.png
