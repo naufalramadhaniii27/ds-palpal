@@ -40,6 +40,11 @@ async def main():
             await pg.evaluate("var h=document.querySelector('#homeV .hcard [data-hview]');h&&h.click()"); await pg.wait_for_timeout(1800)
             chk(t + " Stable note carries its picture", await pg.evaluate("!!document.querySelector('#dsGuide .dsg-t img.mi-vig')"))
             await pg.evaluate("localStorage.removeItem('yudhi-kelapa-sheet-v1')")
+            for msg, nm in (("Download started: x.json. No file?", "backup-done"), ("This text is not a character, a backup, or a build.", "import-failed")):
+                await pg.evaluate("m=>__toast(m)", msg); await pg.wait_for_timeout(300)
+                chk(t + " toast shows " + nm, await pg.evaluate("!!document.querySelector('#toast img.mi-vig[src*=\"%s\"]')" % nm))
+            await pg.evaluate("__toast('Plain message')"); await pg.wait_for_timeout(300)
+            chk(t + " other toasts keep their icon", await pg.evaluate("!document.querySelector('#toast img.mi-vig')&&!!document.querySelector('#toast .tico')"))
             await ctx.set_offline(True); await pg.wait_for_timeout(600)
             chk(t + " offline note carries its picture", await pg.evaluate("!!document.querySelector('#offNote img.mi-vig')"))
             await ctx.set_offline(False)

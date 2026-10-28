@@ -44,3 +44,4 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 html.home-art #homeV::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.38;background:url("img/g0/home-inn-phone.avif") center 70%/cover no-repeat}
 :root[data-hc] #homeV::before{display:none}
 @media print{html.home-art #homeV::before{display:none}}
+#toast .mi-vig{display:inline-block;vertical-align:middle;width:28px;height:28px;margin:0 8px 0 0;border-radius:6px;filter:none}

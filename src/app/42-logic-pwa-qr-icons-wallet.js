@@ -4,7 +4,7 @@ function pwaUpdToast(w){ var t=document.getElementById("pwaUpd"); if(!t){ t=docu
     t.addEventListener("click",function(e){ if(e.target.closest("[data-pwalater]")){ t.classList.remove("on"); return; } if(!e.target.closest("[data-pwareload]")) return;
       PWA_GO=true; try{ saveNow(); }catch(er){} try{ var h=document.getElementById("homeV"); if(!h||h.hidden) sessionStorage.setItem("cs-skip","1"); }catch(er){}
       var ww=t.__w||(PWA_REG&&PWA_REG.waiting); if(ww) ww.postMessage({type:"SKIP_WAITING"}); setTimeout(function(){ __miReload(); },3000); }); }
-  t.__w=w; t.innerHTML=ico("ui-redo","tico")+'<span>New version ready.</span><button type="button" class="tundo" data-pwareload="1">'+ico("ui-redo")+'Reload</button><button type="button" class="tundo pwa-x" data-pwalater="1" aria-label="Later">'+ico("ui-close")+'</button>'; t.classList.add("on","act"); }
+  t.__w=w; t.innerHTML=(toastPic("New version ready.")||ico("ui-redo","tico"))+'<span>New version ready.</span><button type="button" class="tundo" data-pwareload="1">'+ico("ui-redo")+'Reload</button><button type="button" class="tundo pwa-x" data-pwalater="1" aria-label="Later">'+ico("ui-close")+'</button>'; t.classList.add("on","act"); }
 function pwaInit(){ if(!PWA_BUILD||!/^https?:$/.test(location.protocol)||!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.addEventListener("controllerchange",function(){ if(PWA_GO) __miReload(); });
   navigator.serviceWorker.register("sw.js").then(function(reg){ PWA_REG=reg; window.__pwaReg=reg;
