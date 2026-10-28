@@ -1748,3 +1748,8 @@ art/batch/icons/items/magic/uncommon/ring-of-obscuring.png
 art/batch/icons/items/magic/rare/ring-of-temporal-salvation.png
 art/batch/icons/items/magic/uncommon/rod-of-retribution.png
 art/batch/icons/items/magic/artifact/ruins-wake.png
+art/batch/icons/items/magic/artifact/silken-spite.png
+art/batch/icons/items/magic/legendary/spell-bottle.png
+art/batch/icons/items/magic/very-rare/staff-of-dunamancy.png
+art/batch/icons/items/magic/rare/staff-of-the-ivory-claw.png
+art/batch/icons/items/magic/legendary/stormgirdle.png
