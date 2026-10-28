@@ -1357,3 +1357,10 @@ art/batch/icons/items/magic/legendary/fool-card.png
 art/batch/icons/items/magic/legendary/gem-card.png
 art/batch/icons/items/magic/rare/grasping-whip.png
 art/batch/icons/items/magic/very-rare/hammer-of-runic-focus.png
+
+## batch-104 v3
+art/batch/icons/items/magic/uncommon/house-of-cards.png
+art/batch/icons/items/magic/legendary/jester-card.png
+art/batch/icons/items/magic/legendary/jesters-mask.png
+art/batch/icons/items/magic/legendary/key-card.png
+art/batch/icons/items/magic/legendary/knight-card.png
