@@ -1430,3 +1430,8 @@ art/batch/icons/items/magic/rare/figurine-of-wondrous-power-onyx-dog.png
 art/batch/icons/items/magic/rare/figurine-of-wondrous-power-serpentine-owl.png
 art/batch/icons/items/magic/uncommon/figurine-of-wondrous-power-silver-raven.png
 art/batch/icons/items/magic/very-rare/gold-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/green-dragon-scale-mail.png
+art/batch/icons/items/magic/rare/horn-of-valhalla-brass.png
+art/batch/icons/items/magic/very-rare/horn-of-valhalla-bronze.png
+art/batch/icons/items/magic/legendary/horn-of-valhalla-iron.png
+art/batch/icons/items/magic/rare/horn-of-valhalla-silver.png
