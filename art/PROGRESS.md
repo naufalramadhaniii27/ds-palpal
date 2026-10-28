@@ -1027,3 +1027,10 @@ art/batch/icons/items/magic/uncommon/potion-of-poison.png
 art/batch/icons/items/magic/uncommon/potion-of-pugilism.png
 art/batch/icons/items/magic/uncommon/potion-of-resistance.png
 art/batch/icons/items/magic/very-rare/potion-of-speed.png
+
+## batch-089 v3
+art/batch/icons/items/magic/very-rare/potion-of-vitality.png
+art/batch/icons/items/magic/uncommon/potion-of-water-breathing.png
+art/batch/icons/items/magic/common/prosthetic-limb.png
+art/batch/icons/items/magic/varies/quaals-feather-token.png
+art/batch/icons/items/magic/very-rare/quarterstaff-of-the-acrobat.png
