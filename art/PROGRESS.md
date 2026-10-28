@@ -1220,3 +1220,8 @@ art/batch/icons/items/magic/very-rare/pulverizing-staff-of-skulls.png
 art/batch/icons/items/magic/artifact/queen-ehlissas-marvelous-nightingale.png
 art/batch/icons/items/magic/uncommon/ring-of-dedicated-focus.png
 art/batch/icons/items/magic/rare/scholars-anchoring-bangle.png
+art/batch/icons/items/magic/rare/secret-keepers-circlet.png
+art/batch/icons/items/magic/very-rare/somniferous-blossom-rod.png
+art/batch/icons/items/magic/common/spell-component-ring.png
+art/batch/icons/items/magic/rare/spell-duelists-trophy.png
+art/batch/icons/items/magic/uncommon/spell-slingers-puppet.png
