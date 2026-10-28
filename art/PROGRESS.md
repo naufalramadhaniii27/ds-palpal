@@ -1650,3 +1650,8 @@ art/batch/icons/items/magic/legendary/hazirawn.png
 art/batch/icons/items/magic/very-rare/heartstone.png
 art/batch/icons/items/magic/legendary/helm-of-disjunction.png
 art/batch/icons/items/magic/legendary/heretic.png
+art/batch/icons/items/magic/legendary/hither-thither-staff.png
+art/batch/icons/items/magic/rare/hollys-handy-haversack.png
+art/batch/icons/items/magic/legendary/horn-of-beckoning-death.png
+art/batch/icons/items/magic/rare/iggwilvs-horn.png
+art/batch/icons/items/magic/uncommon/insignia-of-claws.png
