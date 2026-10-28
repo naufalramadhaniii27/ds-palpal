@@ -1380,7 +1380,6 @@ art/batch/icons/items/magic/rare/shrieking-greaves.png
 art/batch/icons/items/magic/legendary/skull-card.png
 art/batch/icons/items/magic/very-rare/skull-helm.png
 
-NEXT: batch-105 art/batch/icons/items/magic/legendary/telescopic-transporter.png
 ## batch-105 v3
 art/batch/icons/items/magic/uncommon/sling-of-giant-felling.png
 art/batch/icons/items/magic/legendary/spindle-of-fate.png
@@ -1389,3 +1388,6 @@ art/batch/icons/items/magic/very-rare/stonemaker-war-pick.png
 art/batch/icons/items/magic/legendary/sun-card.png
 art/batch/icons/items/magic/rare/sun-staff.png
 art/batch/icons/items/magic/legendary/talons-card.png
+art/batch/icons/items/magic/legendary/telescopic-transporter.png
+art/batch/icons/items/magic/legendary/throne-card.png
+art/batch/icons/items/magic/very-rare/tidecaller-trident.png
