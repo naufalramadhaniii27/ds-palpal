@@ -1000,3 +1000,8 @@ art/batch/icons/items/magic/uncommon/philter-of-love.png
 art/batch/icons/items/magic/common/pipe-of-smoke-monsters.png
 art/batch/icons/items/magic/uncommon/pipes-of-haunting.png
 art/batch/icons/items/magic/uncommon/pipes-of-the-sewers.png
+art/batch/icons/items/magic/legendary/plate-armor-of-etherealness.png
+art/batch/icons/items/magic/common/pole-of-angling.png
+art/batch/icons/items/magic/common/pole-of-collapsing.png
+art/batch/icons/items/magic/rare/portable-hole.png
+art/batch/icons/items/magic/common/pot-of-awakening.png
