@@ -1506,3 +1506,8 @@ art/batch/icons/items/magic/legendary/ring-of-water-elemental-command.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-aberrations.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-beasts.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-celestials.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-elementals.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-fey.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-fiends.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-plants.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-undead.png
