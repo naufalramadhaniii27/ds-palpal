@@ -1413,3 +1413,8 @@ art/batch/icons/items/magic/very-rare/carpet-of-flying-3-ft-5-ft.png
 art/batch/icons/items/magic/very-rare/carpet-of-flying-4-ft-6-ft.png
 art/batch/icons/items/magic/very-rare/carpet-of-flying-5-ft-7-ft.png
 art/batch/icons/items/magic/very-rare/carpet-of-flying-6-ft-9-ft.png
+art/batch/icons/items/magic/very-rare/copper-dragon-scale-mail.png
+art/batch/icons/items/magic/uncommon/elemental-gem-blue-sapphire.png
+art/batch/icons/items/magic/uncommon/elemental-gem-emerald.png
+art/batch/icons/items/magic/uncommon/elemental-gem-red-corundum.png
+art/batch/icons/items/magic/uncommon/elemental-gem-yellow-diamond.png
