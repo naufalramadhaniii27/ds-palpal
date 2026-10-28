@@ -1254,3 +1254,8 @@ art/batch/icons/items/magic/artifact/ebonbane.png
 art/batch/icons/items/magic/uncommon/harkons-bite.png
 art/batch/icons/items/magic/uncommon/reliquary-of-dawn.png
 art/batch/icons/items/magic/uncommon/reliquary-of-twilight.png
+art/batch/icons/items/magic/very-rare/acid-absorbing-tattoo.png
+art/batch/icons/items/magic/rare/alchemical-compendium.png
+art/batch/icons/items/magic/rare/astral-shard.png
+art/batch/icons/items/magic/rare/astromancy-archive.png
+art/batch/icons/items/magic/rare/atlas-of-endless-horizons.png
