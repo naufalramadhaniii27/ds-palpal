@@ -1335,3 +1335,10 @@ art/batch/icons/items/magic/uncommon/bloodrage-greataxe.png
 art/batch/icons/items/magic/uncommon/boomerang-shield.png
 art/batch/icons/items/magic/rare/breastplate-of-balance.png
 art/batch/icons/items/magic/uncommon/card-sharps-deck.png
+
+## batch-103 v3
+art/batch/icons/items/magic/legendary/comet-card.png
+art/batch/icons/items/magic/very-rare/crown-of-whirling-comets.png
+art/batch/icons/items/magic/very-rare/deck-of-dimensions.png
+art/batch/icons/items/magic/legendary/deck-of-many-more-things.png
+art/batch/icons/items/magic/uncommon/deck-of-miscellany.png
