@@ -1616,3 +1616,8 @@ art/batch/icons/items/magic/common/masque-charm.png
 art/batch/icons/items/magic/legendary/murgaxors-orb.png
 art/batch/icons/items/magic/uncommon/prismari-primer.png
 art/batch/icons/items/magic/uncommon/quandrix-primer.png
+art/batch/icons/items/magic/uncommon/silverquill-primer.png
+art/batch/icons/items/magic/common/strixhaven-pennant.png
+art/batch/icons/items/magic/uncommon/witherbloom-primer.png
+art/batch/icons/items/magic/uncommon/cracked-driftglobe.png
+art/batch/icons/items/magic/legendary/gloves-of-soul-catching.png
