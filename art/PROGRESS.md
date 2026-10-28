@@ -1633,3 +1633,8 @@ art/batch/icons/items/magic/legendary/amulet-of-harmony.png
 art/batch/icons/items/magic/legendary/black-dragon-mask.png
 art/batch/icons/items/magic/legendary/blue-dragon-mask.png
 art/batch/icons/items/magic/rare/bonecounter.png
+art/batch/icons/items/magic/uncommon/cap-of-vanishing.png
+art/batch/icons/items/magic/very-rare/chime-of-exile.png
+art/batch/icons/items/magic/artifact/chip-of-creation.png
+art/batch/icons/items/magic/very-rare/constantoris-portrait.png
+art/batch/icons/items/magic/artifact/crown-of-lies.png
