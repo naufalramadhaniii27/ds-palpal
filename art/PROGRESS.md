@@ -1149,3 +1149,8 @@ art/batch/icons/items/magic/rare/wand-of-binding.png
 art/batch/icons/items/magic/common/wand-of-conducting.png
 art/batch/icons/items/magic/rare/wand-of-enemy-detection.png
 art/batch/icons/items/magic/rare/wand-of-fear.png
+art/batch/icons/items/magic/rare/wand-of-fireballs.png
+art/batch/icons/items/magic/rare/wand-of-lightning-bolts.png
+art/batch/icons/items/magic/uncommon/wand-of-magic-detection.png
+art/batch/icons/items/magic/uncommon/wand-of-magic-missiles.png
+art/batch/icons/items/magic/artifact/wand-of-orcus.png
