@@ -1071,3 +1071,10 @@ art/batch/icons/items/magic/legendary/rod-of-lordly-might.png
 art/batch/icons/items/magic/legendary/rod-of-resurrection.png
 art/batch/icons/items/magic/rare/rod-of-rulership.png
 art/batch/icons/items/magic/very-rare/rod-of-security.png
+
+## batch-091 v3
+art/batch/icons/items/magic/uncommon/rod-of-the-pact-keeper.png
+art/batch/icons/items/magic/uncommon/rope-of-climbing.png
+art/batch/icons/items/magic/rare/rope-of-entanglement.png
+art/batch/icons/items/magic/common/rope-of-mending.png
+art/batch/icons/items/magic/common/ruby-of-the-war-mage.png
