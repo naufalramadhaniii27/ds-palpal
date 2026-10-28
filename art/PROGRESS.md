@@ -1452,3 +1452,8 @@ art/batch/icons/items/magic/legendary/ioun-stone-greater-absorption.png
 art/batch/icons/items/magic/very-rare/ioun-stone-insight.png
 art/batch/icons/items/magic/very-rare/ioun-stone-intellect.png
 art/batch/icons/items/magic/very-rare/ioun-stone-leadership.png
+art/batch/icons/items/magic/legendary/ioun-stone-mastery.png
+art/batch/icons/items/magic/rare/ioun-stone-protection.png
+art/batch/icons/items/magic/legendary/ioun-stone-regeneration.png
+art/batch/icons/items/magic/rare/ioun-stone-reserve.png
+art/batch/icons/items/magic/very-rare/ioun-stone-strength.png
