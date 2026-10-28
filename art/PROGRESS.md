@@ -1188,3 +1188,8 @@ art/batch/icons/items/magic/common/conjurers-canopy.png
 art/batch/icons/items/magic/rare/crusading-wand-of-celestial-prowess.png
 art/batch/icons/items/magic/legendary/diamond-staff.png
 art/batch/icons/items/magic/common/dictation-quill.png
+art/batch/icons/items/magic/rare/dissuader.png
+art/batch/icons/items/magic/rare/dream-weaver.png
+art/batch/icons/items/magic/common/elocutionists-lexicon.png
+art/batch/icons/items/magic/common/ensorcelled-missive.png
+art/batch/icons/items/magic/common/evergreen-fertilizer.png
