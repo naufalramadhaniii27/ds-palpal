@@ -1682,3 +1682,8 @@ art/batch/icons/items/magic/legendary/tablet-of-reawakening.png
 art/batch/icons/items/magic/legendary/talarith.png
 art/batch/icons/items/magic/common/tankard-of-plenty.png
 art/batch/icons/items/magic/very-rare/tashas-creeping-keelboat.png
+art/batch/icons/items/magic/rare/wand-of-winter.png
+art/batch/icons/items/magic/legendary/white-dragon-mask.png
+art/batch/icons/items/magic/uncommon/winters-dark-bite.png
+art/batch/icons/items/magic/rare/amulet-of-protection-from-turning.png
+art/batch/icons/items/magic/uncommon/balance-of-harmony.png
