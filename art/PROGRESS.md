@@ -1193,3 +1193,8 @@ art/batch/icons/items/magic/rare/dream-weaver.png
 art/batch/icons/items/magic/common/elocutionists-lexicon.png
 art/batch/icons/items/magic/common/ensorcelled-missive.png
 art/batch/icons/items/magic/common/evergreen-fertilizer.png
+art/batch/icons/items/magic/rare/flowering-blossom-rod.png
+art/batch/icons/items/magic/very-rare/golden-idol-of-good-fortunes.png
+art/batch/icons/items/magic/legendary/grave-reaper.png
+art/batch/icons/items/magic/legendary/heliacal-wand-of-celestial-prowess.png
+art/batch/icons/items/magic/common/homeward-compass.png
