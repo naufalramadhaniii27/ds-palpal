@@ -1369,3 +1369,8 @@ art/batch/icons/items/magic/uncommon/plate-of-knights-fellowship.png
 art/batch/icons/items/magic/legendary/puzzle-card.png
 art/batch/icons/items/magic/uncommon/ring-of-puzzlers-wit.png
 art/batch/icons/items/magic/very-rare/rod-of-hellish-flames.png
+art/batch/icons/items/magic/legendary/rogue-card.png
+art/batch/icons/items/magic/rare/rogues-mantle.png
+art/batch/icons/items/magic/legendary/ruin-card.png
+art/batch/icons/items/magic/rare/ruinous-flail.png
+art/batch/icons/items/magic/legendary/sage-card.png
