@@ -1467,3 +1467,10 @@ art/batch/icons/items/magic/very-rare/potion-of-cloud-giant-strength.png
 art/batch/icons/items/magic/uncommon/potion-of-cold-resistance.png
 art/batch/icons/items/magic/rare/potion-of-fire-giant-strength.png
 art/batch/icons/items/magic/uncommon/potion-of-fire-resistance.png
+
+## batch-109 v3
+art/batch/icons/items/magic/uncommon/potion-of-force-resistance.png
+art/batch/icons/items/magic/rare/potion-of-frost-giant-strength.png
+art/batch/icons/items/magic/uncommon/potion-of-hill-giant-strength.png
+art/batch/icons/items/magic/uncommon/potion-of-lightning-resistance.png
+art/batch/icons/items/magic/uncommon/potion-of-necrotic-resistance.png
