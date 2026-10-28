@@ -1088,3 +1088,8 @@ art/batch/icons/items/magic/uncommon/sentinel-shield.png
 art/batch/icons/items/magic/common/shield-of-expression.png
 art/batch/icons/items/magic/rare/shield-of-missile-attraction.png
 art/batch/icons/items/magic/very-rare/shield-of-the-cavalier.png
+art/batch/icons/items/magic/common/silvered-weapon.png
+art/batch/icons/items/magic/uncommon/sling-bullet.png
+art/batch/icons/items/magic/uncommon/slippers-of-spider-climbing.png
+art/batch/icons/items/magic/common/smoldering-armor.png
+art/batch/icons/items/magic/legendary/sovereign-glue.png
