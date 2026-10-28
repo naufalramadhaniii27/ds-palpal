@@ -1401,3 +1401,10 @@ art/batch/icons/items/magic/legendary/belt-of-cloud-giant-strength.png
 art/batch/icons/items/magic/very-rare/belt-of-fire-giant-strength.png
 art/batch/icons/items/magic/very-rare/belt-of-frost-giant-strength.png
 art/batch/icons/items/magic/rare/belt-of-hill-giant-strength.png
+
+## batch-106 v3
+art/batch/icons/items/magic/very-rare/belt-of-stone-giant-strength.png
+art/batch/icons/items/magic/legendary/belt-of-storm-giant-strength.png
+art/batch/icons/items/magic/very-rare/black-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/blue-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/brass-dragon-scale-mail.png
