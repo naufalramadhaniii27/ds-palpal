@@ -1726,3 +1726,8 @@ art/batch/icons/items/magic/common/coin-of-delving.png
 art/batch/icons/items/magic/legendary/danoths-visor.png
 art/batch/icons/items/magic/very-rare/dispelling-stone.png
 art/batch/icons/items/magic/very-rare/duskcrusher.png
+art/batch/icons/items/magic/uncommon/dust-of-deliciousness.png
+art/batch/icons/items/magic/uncommon/goggles-of-object-reading.png
+art/batch/icons/items/magic/legendary/grimoire-infinitus.png
+art/batch/icons/items/magic/artifact/grovelthrash.png
+art/batch/icons/items/magic/legendary/hide-of-the-feral-guardian.png
