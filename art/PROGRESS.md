@@ -1049,3 +1049,10 @@ art/batch/icons/items/magic/very-rare/ring-of-regeneration.png
 art/batch/icons/items/magic/rare/ring-of-resistance.png
 art/batch/icons/items/magic/very-rare/ring-of-shooting-stars.png
 art/batch/icons/items/magic/rare/ring-of-spell-storing.png
+
+## batch-090 v3
+art/batch/icons/items/magic/legendary/ring-of-spell-turning.png
+art/batch/icons/items/magic/uncommon/ring-of-swimming.png
+art/batch/icons/items/magic/very-rare/ring-of-telekinesis.png
+art/batch/icons/items/magic/rare/ring-of-the-ram.png
+art/batch/icons/items/magic/legendary/ring-of-three-wishes.png
