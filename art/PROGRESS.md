@@ -1479,3 +1479,8 @@ art/batch/icons/items/magic/uncommon/potion-of-psychic-resistance.png
 art/batch/icons/items/magic/uncommon/potion-of-radiant-resistance.png
 art/batch/icons/items/magic/rare/potion-of-stone-giant-strength.png
 art/batch/icons/items/magic/legendary/potion-of-storm-giant-strength.png
+art/batch/icons/items/magic/uncommon/potion-of-thunder-resistance.png
+art/batch/icons/items/magic/rare/quaals-feather-token-anchor.png
+art/batch/icons/items/magic/rare/quaals-feather-token-bird.png
+art/batch/icons/items/magic/rare/quaals-feather-token-fan.png
+art/batch/icons/items/magic/rare/quaals-feather-token-swan-boat.png
