@@ -1100,3 +1100,8 @@ art/batch/icons/items/magic/legendary/sphere-of-annihilation.png
 art/batch/icons/items/magic/very-rare/spirit-board.png
 art/batch/icons/items/magic/common/staff-of-adornment.png
 art/batch/icons/items/magic/common/staff-of-birdcalls.png
+art/batch/icons/items/magic/rare/staff-of-charming.png
+art/batch/icons/items/magic/very-rare/staff-of-fire.png
+art/batch/icons/items/magic/common/staff-of-flowers.png
+art/batch/icons/items/magic/very-rare/staff-of-frost.png
+art/batch/icons/items/magic/rare/staff-of-healing.png
