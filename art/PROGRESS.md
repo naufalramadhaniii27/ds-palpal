@@ -1704,3 +1704,8 @@ art/batch/icons/items/magic/uncommon/stone-of-ill-luck.png
 art/batch/icons/items/magic/rare/tloques-berserker-battleaxe.png
 art/batch/icons/items/magic/uncommon/wand-of-entangle.png
 art/batch/icons/items/magic/legendary/waythe.png
+art/batch/icons/items/magic/very-rare/amulet-of-the-black-skull.png
+art/batch/icons/items/magic/legendary/bookmark.png
+art/batch/icons/items/magic/very-rare/devlins-staff-of-striking.png
+art/batch/icons/items/magic/rare/ghost-lantern.png
+art/batch/icons/items/magic/uncommon/mask-of-the-beast.png
