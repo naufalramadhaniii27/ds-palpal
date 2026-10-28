@@ -1281,3 +1281,8 @@ art/batch/icons/items/magic/very-rare/force-absorbing-tattoo.png
 art/batch/icons/items/magic/rare/fulminating-treatise.png
 art/batch/icons/items/magic/very-rare/ghost-step-tattoo.png
 art/batch/icons/items/magic/uncommon/guardian-emblem.png
+art/batch/icons/items/magic/rare/heart-weavers-primer.png
+art/batch/icons/items/magic/common/illuminators-tattoo.png
+art/batch/icons/items/magic/rare/libram-of-souls-and-flesh.png
+art/batch/icons/items/magic/very-rare/lifewell-tattoo.png
+art/batch/icons/items/magic/very-rare/lightning-absorbing-tattoo.png
