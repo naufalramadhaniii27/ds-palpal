@@ -1523,3 +1523,8 @@ art/batch/icons/items/magic/uncommon/orc-stone.png
 art/batch/icons/items/magic/rare/professor-skant.png
 art/batch/icons/items/magic/uncommon/psi-crystal.png
 art/batch/icons/items/magic/legendary/scroll-of-tarrasque-summoning.png
+art/batch/icons/items/magic/legendary/scroll-of-the-comet.png
+art/batch/icons/items/magic/rare/shield-guardian-amulet.png
+art/batch/icons/items/magic/common/thermal-cube.png
+art/batch/icons/items/magic/legendary/ythryn-mythallar.png
+art/batch/icons/items/magic/artifact/accounting-and-valuation-of-all-things.png
