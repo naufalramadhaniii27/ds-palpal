@@ -1276,3 +1276,8 @@ art/batch/icons/items/magic/uncommon/eldritch-claw-tattoo.png
 art/batch/icons/items/magic/rare/elemental-essence-shard.png
 art/batch/icons/items/magic/rare/far-realm-shard.png
 art/batch/icons/items/magic/uncommon/feywild-shard.png
+art/batch/icons/items/magic/very-rare/fire-absorbing-tattoo.png
+art/batch/icons/items/magic/very-rare/force-absorbing-tattoo.png
+art/batch/icons/items/magic/rare/fulminating-treatise.png
+art/batch/icons/items/magic/very-rare/ghost-step-tattoo.png
+art/batch/icons/items/magic/uncommon/guardian-emblem.png
