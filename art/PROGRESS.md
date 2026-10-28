@@ -1237,3 +1237,8 @@ art/batch/icons/items/magic/uncommon/three-keyholes-dagger.png
 art/batch/icons/items/magic/legendary/tranquil-rod-of-the-honed-mind.png
 art/batch/icons/items/magic/legendary/travelers-pearl.png
 art/batch/icons/items/magic/artifact/universal-pantograph.png
+art/batch/icons/items/magic/rare/vigilant-rod-of-the-honed-mind.png
+art/batch/icons/items/magic/uncommon/wand-of-freshness.png
+art/batch/icons/items/magic/rare/wand-of-slumber.png
+art/batch/icons/items/magic/rare/wand-of-teeth.png
+art/batch/icons/items/magic/very-rare/workshop-wrecker.png
