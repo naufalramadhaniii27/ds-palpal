@@ -1562,3 +1562,8 @@ art/batch/icons/items/magic/uncommon/charred-wand-of-magic-missiles.png
 art/batch/icons/items/magic/legendary/dragonstaff-of-ahghairon.png
 art/batch/icons/items/magic/rare/feather-of-diatryma-summoning.png
 art/batch/icons/items/magic/rare/knaves-eye-patch.png
+art/batch/icons/items/magic/very-rare/lords-ensemble.png
+art/batch/icons/items/magic/uncommon/paper-bird.png
+art/batch/icons/items/magic/uncommon/ring-of-truth-telling.png
+art/batch/icons/items/magic/uncommon/smokepowder.png
+art/batch/icons/items/magic/artifact/stone-of-golorr.png
