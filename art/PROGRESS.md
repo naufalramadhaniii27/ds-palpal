@@ -1056,3 +1056,8 @@ art/batch/icons/items/magic/uncommon/ring-of-swimming.png
 art/batch/icons/items/magic/very-rare/ring-of-telekinesis.png
 art/batch/icons/items/magic/rare/ring-of-the-ram.png
 art/batch/icons/items/magic/legendary/ring-of-three-wishes.png
+art/batch/icons/items/magic/uncommon/ring-of-warmth.png
+art/batch/icons/items/magic/uncommon/ring-of-water-walking.png
+art/batch/icons/items/magic/rare/ring-of-x-ray-vision.png
+art/batch/icons/items/magic/common/rival-coin.png
+art/batch/icons/items/magic/rare/robe-of-eyes.png
