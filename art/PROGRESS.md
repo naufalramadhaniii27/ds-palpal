@@ -1408,3 +1408,8 @@ art/batch/icons/items/magic/legendary/belt-of-storm-giant-strength.png
 art/batch/icons/items/magic/very-rare/black-dragon-scale-mail.png
 art/batch/icons/items/magic/very-rare/blue-dragon-scale-mail.png
 art/batch/icons/items/magic/very-rare/brass-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/bronze-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/carpet-of-flying-3-ft-5-ft.png
+art/batch/icons/items/magic/very-rare/carpet-of-flying-4-ft-6-ft.png
+art/batch/icons/items/magic/very-rare/carpet-of-flying-5-ft-7-ft.png
+art/batch/icons/items/magic/very-rare/carpet-of-flying-6-ft-9-ft.png
