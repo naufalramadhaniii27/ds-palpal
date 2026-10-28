@@ -1176,3 +1176,8 @@ art/batch/icons/items/magic/common/adventurers-ring.png
 art/batch/icons/items/magic/uncommon/thayan-spell-tattoo.png
 art/batch/icons/items/magic/rare/arcane-chatelaine.png
 art/batch/icons/items/magic/rare/arcanists-bestiary.png
+art/batch/icons/items/magic/rare/bellows-of-strangulation.png
+art/batch/icons/items/magic/uncommon/blemished-idol-of-good-fortunes.png
+art/batch/icons/items/magic/rare/blood-amulet.png
+art/batch/icons/items/magic/uncommon/boon-companions-bands.png
+art/batch/icons/items/magic/uncommon/budding-blossom-rod.png
