@@ -1154,3 +1154,8 @@ art/batch/icons/items/magic/rare/wand-of-lightning-bolts.png
 art/batch/icons/items/magic/uncommon/wand-of-magic-detection.png
 art/batch/icons/items/magic/uncommon/wand-of-magic-missiles.png
 art/batch/icons/items/magic/artifact/wand-of-orcus.png
+art/batch/icons/items/magic/rare/wand-of-paralysis.png
+art/batch/icons/items/magic/very-rare/wand-of-polymorph.png
+art/batch/icons/items/magic/common/wand-of-pyrotechnics.png
+art/batch/icons/items/magic/uncommon/wand-of-secrets.png
+art/batch/icons/items/magic/uncommon/wand-of-the-war-mage.png
