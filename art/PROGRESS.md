@@ -1320,3 +1320,8 @@ art/batch/icons/items/magic/legendary/ruby-weave-gem.png
 art/batch/icons/items/magic/very-rare/sapphire-buckler.png
 art/batch/icons/items/magic/uncommon/slumbering-dragon-vessel.png
 art/batch/icons/items/magic/uncommon/slumbering-dragon-touched-focus.png
+art/batch/icons/items/magic/uncommon/slumbering-scaled-ornament.png
+art/batch/icons/items/magic/rare/stirring-dragon-vessel.png
+art/batch/icons/items/magic/rare/stirring-dragon-touched-focus.png
+art/batch/icons/items/magic/rare/stirring-scaled-ornament.png
+art/batch/icons/items/magic/legendary/topaz-annihilator.png
