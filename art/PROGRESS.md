@@ -1738,3 +1738,8 @@ art/batch/icons/items/magic/legendary/infiltrators-key.png
 art/batch/icons/items/magic/artifact/lash-of-shadows.png
 art/batch/icons/items/magic/legendary/luxon-beacon.png
 art/batch/icons/items/magic/artifact/mace-of-the-black-crown.png
+art/batch/icons/items/magic/rare/needle-of-mending.png
+art/batch/icons/items/magic/legendary/nightfall-pearl.png
+art/batch/icons/items/magic/very-rare/orb-of-the-veil.png
+art/batch/icons/items/magic/rare/potion-of-maximum-power.png
+art/batch/icons/items/magic/very-rare/potion-of-possibility.png
