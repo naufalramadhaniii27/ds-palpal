@@ -22,6 +22,7 @@ jobs:
       - name: Check the live site
         env:
           BASE: https://dnd-sheets-palpale.pages.dev
+          PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS: "1"
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |

@@ -17,7 +17,7 @@ YUDHI = open(os.path.join(HERE, "fixtures", "yudhi-v3.json"), encoding="utf-8").
 HDR = {}
 if os.environ.get("CF_ACCESS_CLIENT_ID"):
     HDR = {"CF-Access-Client-Id": os.environ["CF_ACCESS_CLIENT_ID"], "CF-Access-Client-Secret": os.environ.get("CF_ACCESS_CLIENT_SECRET", "")}
-RES = []; ERRS = []
+RES = []; ERRS = []; BADRESP = []
 
 
 GH = bool(os.environ.get("GITHUB_ACTIONS"))
@@ -90,6 +90,8 @@ async def main():
                 await ctx.route("**/*", lambda r: r.continue_(headers=dict(r.request.headers, **HDR)))
             if COOKIE:
                 await ctx.add_cookies([{"name": "CF_Authorization", "value": COOKIE, "url": BASE + "/"}])
+            ctx.on("response", lambda r: r.status != 200 and BADRESP.append("%d %s" % (r.status, r.url[:90])))
+            ctx.on("requestfailed", lambda r: BADRESP.append("failed %s %s" % (r.url[:90], r.failure)))
             pg = await ctx.new_page(); pg.on("pageerror", lambda e, vp=vp: ERRS.append(vp + ": " + str(e)))
             await pg.goto(BASE + "/"); await pg.wait_for_function("()=>window.__store&&__store.mode()", timeout=30000); await pg.wait_for_timeout(2500)
             txt = await pg.evaluate("()=>document.body.innerText")
@@ -106,6 +108,9 @@ async def main():
             # service worker and offline
             sw = await pg.evaluate(SW_READY)
             check(vp + " service worker active", sw is True, sw)
+            if sw is not True and GH:
+                d = await pg.evaluate("()=>navigator.serviceWorker.getRegistration().then(r=>r?JSON.stringify({i:!!r.installing,w:!!r.waiting,a:!!r.active}):'none').then(x=>navigator.serviceWorker.register('sw.js').then(()=>x+' re-register ok',e=>x+' re-register: '+e.message))")
+                print("::notice::%s sw diag: %s | non-200: %s" % (vp, d, "; ".join(BADRESP[-6:])))
             if sw is not True:
                 check(vp + " offline reload opens with the character", False, "skipped, no service worker"); await ctx.close(); continue
             await pg.wait_for_timeout(1500); await ctx.set_offline(True)
