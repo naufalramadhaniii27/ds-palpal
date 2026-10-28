@@ -1584,3 +1584,8 @@ art/batch/icons/items/magic/very-rare/mistral-mantle.png
 art/batch/icons/items/magic/very-rare/nimbus-coronet.png
 art/batch/icons/items/magic/legendary/orb-of-skoraeus.png
 art/batch/icons/items/magic/rare/prehistoric-figurine-of-wondrous-power-kyanite-pteranodon.png
+art/batch/icons/items/magic/uncommon/prehistoric-figurine-of-wondrous-power-pyrite-plesiosaurus.png
+art/batch/icons/items/magic/legendary/reapers-scream.png
+art/batch/icons/items/magic/very-rare/ring-of-amity.png
+art/batch/icons/items/magic/very-rare/sanctum-amulet.png
+art/batch/icons/items/magic/legendary/shield-of-the-blazing-dreadnought.png
