@@ -20,12 +20,17 @@ if os.environ.get("CF_ACCESS_CLIENT_ID"):
 RES = []; ERRS = []
 
 
+GH = bool(os.environ.get("GITHUB_ACTIONS"))
+
+
 def check(name, ok, info=""):
     RES.append({"check": name, "ok": bool(ok), "info": str(info)[:300]}); print(("ok   " if ok else "FAIL ") + name + ("  " + str(info)[:300] if not ok else ""))
+    if GH and not ok: print("::error::FAIL %s %s" % (name, str(info)[:300].replace("\n", " ")))
+    json.dump(RES, open(os.path.join(OUT, "result.json"), "w"), indent=1)
 
 
 def get(path):
-    rq = urllib.request.Request(BASE + path, headers=dict(HDR, **{"User-Agent": "live-check"}))
+    rq = urllib.request.Request(BASE + path, headers=dict(HDR, **{"User-Agent": "Mozilla/5.0 (live-check)"}))
     try:
         with urllib.request.urlopen(rq, timeout=30) as r:
             return r.status, dict(r.headers), r.read()
@@ -96,4 +101,11 @@ async def main():
     bad = [r for r in RES if not r["ok"]]; print("%d checks, %d failed" % (len(RES), len(bad)))
     return 1 if bad else 0
 
-sys.exit(asyncio.run(main()))
+try:
+    code = asyncio.run(main())
+except Exception as e:
+    import traceback; traceback.print_exc()
+    if GH: print("::error::live_check stopped: %s: %s" % (type(e).__name__, str(e)[:300].replace("\n", " ")))
+    code = 2
+if GH: print("::notice::live_check %d checks, %d failed" % (len(RES), len([r for r in RES if not r["ok"]])))
+sys.exit(code)
