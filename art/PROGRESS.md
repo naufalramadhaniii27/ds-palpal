@@ -1754,5 +1754,9 @@ art/batch/icons/items/magic/very-rare/staff-of-dunamancy.png
 art/batch/icons/items/magic/rare/staff-of-the-ivory-claw.png
 art/batch/icons/items/magic/legendary/stormgirdle.png
 
-NEXT: batch-122 art/batch/icons/items/magic/artifact/the-bloody-end.png
 ## batch-122 v3
+art/batch/icons/items/magic/artifact/the-bloody-end.png
+art/batch/icons/items/magic/legendary/verminshroud.png
+art/batch/icons/items/magic/common/vox-seeker.png
+art/batch/icons/items/magic/artifact/will-of-the-talon.png
+art/batch/icons/items/magic/legendary/wreath-of-the-prism.png
