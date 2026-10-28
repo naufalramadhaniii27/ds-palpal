@@ -1489,3 +1489,10 @@ art/batch/icons/items/magic/rare/quaals-feather-token-whip.png
 art/batch/icons/items/magic/very-rare/red-dragon-scale-mail.png
 art/batch/icons/items/magic/rare/ring-of-acid-resistance.png
 art/batch/icons/items/magic/legendary/ring-of-air-elemental-command.png
+
+## batch-110 v3
+art/batch/icons/items/magic/rare/ring-of-cold-resistance.png
+art/batch/icons/items/magic/legendary/ring-of-earth-elemental-command.png
+art/batch/icons/items/magic/legendary/ring-of-fire-elemental-command.png
+art/batch/icons/items/magic/rare/ring-of-fire-resistance.png
+art/batch/icons/items/magic/rare/ring-of-force-resistance.png
