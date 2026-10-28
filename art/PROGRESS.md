@@ -1545,3 +1545,8 @@ art/batch/icons/items/magic/artifact/ranseur-of-torture.png
 art/batch/icons/items/magic/very-rare/ring-of-collecting.png
 art/batch/icons/items/magic/legendary/ring-of-the-copycat.png
 art/batch/icons/items/magic/very-rare/ring-of-treachery.png
+art/batch/icons/items/magic/artifact/ruby-rod-of-asmodeus.png
+art/batch/icons/items/magic/rare/sages-mirror.png
+art/batch/icons/items/magic/artifact/scourge-of-shadow.png
+art/batch/icons/items/magic/rare/skull-of-selfish-knowledge.png
+art/batch/icons/items/magic/artifact/true-ice-shards.png
