@@ -929,3 +929,8 @@ art/batch/icons/items/magic/artifact/hand-of-vecna.png
 art/batch/icons/items/magic/uncommon/hat-of-disguise.png
 art/batch/icons/items/magic/very-rare/hat-of-many-spells.png
 art/batch/icons/items/magic/common/hat-of-vermin.png
+art/batch/icons/items/magic/common/hat-of-wizardry.png
+art/batch/icons/items/magic/uncommon/headband-of-intellect.png
+art/batch/icons/items/magic/very-rare/helm-of-brilliance.png
+art/batch/icons/items/magic/uncommon/helm-of-comprehending-languages.png
+art/batch/icons/items/magic/uncommon/helm-of-telepathy.png
