@@ -49,7 +49,7 @@
   /* T1: no splash over the builder. Create a Character and Edit reload and then open the builder (cs-skip with cs-new or cs-edit) */
   var html0=D.documentElement;
   function bldSoon(){ var b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(window.__bldBusyOff) return true;
-    try{ return sessionStorage.getItem("cs-skip")==="1"&&(localStorage.getItem("cs-new")==="1"||localStorage.getItem("cs-edit")==="1"); }catch(e){ return false; } }
+    try{ return sessionStorage.getItem("cs-skip")==="1"&&(__store.getItem("cs-new")==="1"||__store.getItem("cs-edit")==="1"); }catch(e){ return false; } }
   function splash(){ if(!full()||bldSoon()||html0.classList.contains("mi-cx")) return;/* T1: the connected move from Home replaces the splash */ var s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; var k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
     var ic=window.__miIcon?{outerHTML:window.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
     var e=D.createElement("div"); e.className="mi-splash"; e.setAttribute("aria-hidden","true"); e.innerHTML='<div class="s">'+(ic?ic.outerHTML:"")+'</div><b></b><small></small>'; e.querySelector("b").textContent=nm; e.querySelector("small").textContent=cl; D.body.appendChild(e);

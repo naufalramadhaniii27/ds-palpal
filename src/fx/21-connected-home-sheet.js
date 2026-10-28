@@ -69,7 +69,7 @@
   function watchHome(hv,isNew){ var was=hv.hidden;
     function opened(){ if(hv.hidden||rmo()||performance.now()-tap>800) return;/* only when you open Home, not when the app starts on it */
       var els=sheetEls(), r0=[rect(els[0]),rect(els[1])]; if(!seen(r0[0])&&!seen(r0[1])) return;
-      var id=null; try{ id=(JSON.parse(localStorage.getItem("cs-roster-v1"))||{}).active; }catch(e){}
+      var id=null; try{ id=(JSON.parse(__store.getItem("cs-roster-v1"))||{}).active; }catch(e){}
       var b=id&&hv.querySelector('[data-hview="'+id+'"]'), card=b&&b.closest(".hcard,.hhero"), ce=cardEls(card); if(!card) return;
       var L=layer(), n=0;
       ce.forEach(function(el,i){ var to=rect(el), fr=r0[i]; if(!el||!seen(to)||!fr) return; var c=copy(el,to,L); el.style.visibility="hidden"; n++;

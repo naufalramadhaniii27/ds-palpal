@@ -42,6 +42,13 @@ File `*.wrap.js` hanya membuka atau menutup IIFE. File ini tidak lolos `node --c
 
 ## Data dan storage
 
+T7: penyimpanan utama IndexedDB (database `dnd-sheet`, store `kv` untuk data dan `meta` untuk catatan migrasi). `boot/store-gate.js` membuat `window.__store` dengan API seperti localStorage (getItem, setItem, removeItem, key, length, clear, plus flush, mode, ready, failed, estimate). Semua kode app, fx dan builder memakai `__store`, bukan `localStorage`.
+- Blok app, fx dan `boot/deferred-loader.js` bertipe `text/x-gate`. `store-gate.js` menjalankannya berurutan, satu skrip per task, setelah isi IndexedDB dimuat ke memori. Tanpa IndexedDB atau tanpa jawaban 2,5 detik, app jalan di localStorage seperti dulu (`__store.mode()` = "ls").
+- Setiap tulis juga disalin ke localStorage selama muat (cermin). Kunci yang gagal dicermin dicatat di meta `lsFail`, IndexedDB jadi sumbernya.
+- Saat mulai, per kunci: kunci di `lsFail` memakai IndexedDB. Selain itu nilai localStorage yang beda menang (ditulis versi lama, tes, atau alat lain), termasuk kunci yang dihapus. Bila localStorage tidak berisi data app sama sekali, IndexedDB dipakai apa adanya.
+- Migrasi pertama menyimpan salinan penuh localStorage di meta `__legacy-backup` dan membaca balik tiap nilai. localStorage lama tidak dihapus.
+- Tes: `python3 tests/storage_idb.py`.
+
 Key localStorage tidak berubah oleh T0. Key utama: `cs-roster-v1` (roster), `yudhi-kelapa-build-v3` (sheet aktif, nama lama tetap), `yudhi-kelapa-sheet-v1` (state main), `phb24-builder-v1` (build), `phb24-builder-v1-bak`, `cs-snap-v1`, `cs-ui-*`, `mi-*`.
 
 ## Peta file

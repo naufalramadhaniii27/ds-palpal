@@ -39,7 +39,7 @@ async def main():
             await pg.evaluate("document.querySelector('#steps [data-step=species]').click()"); await pg.wait_for_timeout(1200)
             s3 = await pg.evaluate(CUR)
             chk(t + " Species has a scene", "undefined" not in s3 and bool(s3) and s3 != s2)
-            await pg.evaluate("localStorage.setItem('mi-clsart','off')"); await pg.evaluate("document.querySelector('#steps [data-step=equip]').click()"); await pg.wait_for_timeout(900)
+            await pg.evaluate("(window.__store||localStorage).setItem('mi-clsart','off')"); await pg.evaluate("document.querySelector('#steps [data-step=equip]').click()"); await pg.wait_for_timeout(900)
             chk(t + " Art off removes it", (await pg.evaluate(CUR)) == "")
             chk(t + " no page errors", not errs)
             await ctx.close()

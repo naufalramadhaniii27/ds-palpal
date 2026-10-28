@@ -37,7 +37,7 @@ async def main():
             chk(t + " spell panel has a favorites button", await pg.evaluate("document.querySelector('.pinfav').getAttribute('aria-pressed')==='false'"))
             await pg.click(".pinfav"); await pg.wait_for_timeout(500)
             chk(t + " button switches to 'In your favorites bar'", await pg.evaluate("document.querySelector('.pinfav').getAttribute('aria-pressed')==='true'&&/In your/.test(document.querySelector('.pinfav').textContent)"))
-            st = await pg.evaluate("(()=>{var k=Object.keys(localStorage).filter(x=>/yudhi|cs-char|cs-state/i.test(x));var o=[];k.forEach(x=>{var v=localStorage.getItem(x);if(v&&v.indexOf('\"pin\"')>=0){var m=v.match(/\"pin\":\\[[^\\]]*\\]/);if(m)o.push(m[0])}});return o})()")
+            st = await pg.evaluate("(()=>{var k=Object.keys(localStorage).filter(x=>/yudhi|cs-char|cs-state/i.test(x));var o=[];k.forEach(x=>{var v=(window.__store||localStorage).getItem(x);if(v&&v.indexOf('\"pin\"')>=0){var m=v.match(/\"pin\":\\[[^\\]]*\\]/);if(m)o.push(m[0])}});return o})()")
             chk(t + " stored as sp:Name in S.pin " + json.dumps(st)[:80], any("sp:" in x for x in st))
             await pg.keyboard.press("Escape"); await pg.wait_for_timeout(500)
             await pg.click("[data-go='0']" if W < 700 else "[data-tab='p-actions']"); await pg.wait_for_timeout(600)

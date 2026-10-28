@@ -4,7 +4,7 @@ function clone(o){ return JSON.parse(JSON.stringify(o)); }
 var CKEY = "yudhi-kelapa-build-v3", KEY = "yudhi-kelapa-sheet-v1";
 /* v18 RU78: data that cannot be read is listed in BAD. The app then shows the recovery screen and writes nothing, instead of replacing it with the default sheet */
 var BAD=[];
-function loadC(sync){ try{ var r=localStorage.getItem(CKEY); if(r){ var p=JSON.parse(r); if(p && p.v===3 && p.abilities) return p; throw new Error("the saved sheet has a shape this version does not know"); } }
+function loadC(sync){ try{ var r=__store.getItem(CKEY); if(r){ var p=JSON.parse(r); if(p && p.v===3 && p.abilities) return p; throw new Error("the saved sheet has a shape this version does not know"); } }
   catch(e){ if(sync) return null; BAD.push("Sheet: "+((e&&e.message)||e)); } return clone(DEFAULT); }
 var C = loadC();
 var cSaveT=null;
@@ -13,7 +13,7 @@ function saveC(){ clearTimeout(cSaveT); cSaveT=setTimeout(function(){ cSaveT=nul
 var DEF = {hp:null, tmp:0, used:{}, insp:false, ds:[0,0], cond:{}, exh:0, burn:1, jinx:"", notes:{}, lang:["Common","",""], portrait:"", theme:"", align:"", color:"forest", sym:"star", skin:"ddb", coins:null, coinBase:null, lifestyle:""};/* V17-1: RU37 fields */
 function loadS(sync){
   var o = clone(DEF);
-  try{ var raw = localStorage.getItem(KEY); if(raw){ var p = JSON.parse(raw); if(!p||typeof p!=="object"||Array.isArray(p)) throw new Error("the saved play state has a shape this version does not know");
+  try{ var raw = __store.getItem(KEY); if(raw){ var p = JSON.parse(raw); if(!p||typeof p!=="object"||Array.isArray(p)) throw new Error("the saved play state has a shape this version does not know");
     var old=!p.used && (p.sw!=null||p.as!=null);
     /* RL47: every field is kept, also fields written by a newer version of the app (only the four counters of the first format are converted) */
     for(var k in p){ if(Object.prototype.hasOwnProperty.call(p,k)&&!(old&&/^(sw|as|hd|kit)$/.test(k))) o[k]=p[k]; }
@@ -52,14 +52,17 @@ function snSetH(){ var id=MYID||(rGet()||{}).active, L=(snGet().chars[id]||[]);
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
 var APP_VER=102, APP_DATE="2026-10-26", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
-function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
-function lsSet(k,v){ if(FROZEN) return false; try{ localStorage.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
+function lsGet(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ if(FROZEN) return false; try{ __store.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
 function newerApp(o){ return !!o&&typeof o==="object"&&(+o._app||0)>APP_VER; }
 /* v18 RU67: "Unsaved changes" = the open character differs from what Save Character last wrote. Marks live in cs-ui-files (this device only) */
 var unsT=null;
 function unsavedSoon(k){ if(k!==CKEY&&k!==KEY&&k!==BKEY) return; clearTimeout(unsT); unsT=setTimeout(updUnsaved,400); }
 window.__lsSet=lsSet; window.__lsSave=lsSave; window.__appVer=APP_VER;
+/* T7: with IndexedDB a write that fails is known only after the transaction ends. The store reports it here, the same caution bar shows */
+window.addEventListener("cs-store-fail",function(){ SAVE_FAIL=1; saveWarn(); });
+window.addEventListener("cs-store-ok",function(){ if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } });
 /* RU61: caution bar while writes fail. Hidden again by the next write that works */
 function saveWarn(){ var w=document.getElementById("saveWarn"); if(!SAVE_FAIL){ if(w) w.remove(); return; } if(w) return;
   w=document.createElement("div"); w.id="saveWarn"; w.className="savew"; w.setAttribute("role","alert");
@@ -67,7 +70,7 @@ function saveWarn(){ var w=document.getElementById("saveWarn"); if(!SAVE_FAIL){ 
   w.addEventListener("click",function(e){ var b=e.target.closest("[data-sw]"); if(!b) return; var a=b.getAttribute("data-sw"); if(a==="x"){ w.remove(); return; } if(a==="bk"){ bkpOpen("out"); return; } if(a==="home"){ showHome(); } });
   document.body.appendChild(w); toast("Could not save: storage is full"); }
 /* RU78: recovery screen. Shown when saved data cannot be read or the sheet cannot be drawn. Nothing is written while it is open */
-function rawAll(){ var d={}; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(bkpKeyOk(k)) d[k]=localStorage.getItem(k); } }catch(e){} return d; }
+function rawAll(){ var d={}; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); if(bkpKeyOk(k)) d[k]=__store.getItem(k); } }catch(e){} return d; }
 function rawBackup(){ var d=rawAll(), n=0; try{ n=Object.keys(JSON.parse(d["cs-roster-v1"]).chars).length; }catch(e){ n=d["yudhi-kelapa-build-v3"]?1:0; }
   return {app:"dnd2024-sheet-builder",kind:"backup",version:1,appVer:APP_VER,created:new Date().toISOString(),characters:n,keys:d}; }
 function recover(why,err){ var msg=String((err&&err.message)||err||why); var w=document.getElementById("recov");
@@ -82,7 +85,7 @@ function recover(why,err){ var msg=String((err&&err.message)||err||why); var w=d
   w.addEventListener("click",function(e){ var b=e.target.closest("[data-rec]"); if(!b) return; var a=b.getAttribute("data-rec"), txt=JSON.stringify(rawBackup());
     if(a==="dl"){ try{ var bl=new Blob([txt],{type:"application/json"}), u=URL.createObjectURL(bl), l=document.createElement("a"); l.href=u; l.download=bkpName().replace(/\.bs$/,"-recovery.json"); document.body.appendChild(l); l.click(); l.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); toast("Download started. No file? Use Show as Text."); }catch(er){ toast("Download is blocked here. Use Show as Text."); } return; }
     if(a==="txt"){ var ta=document.getElementById("recTxt"); ta.value=txt; ta.hidden=false; ta.focus(); ta.select(); return; }
-    if(a==="view"){ try{ sessionStorage.clear(); ["cs-new","cs-edit"].forEach(function(k){ localStorage.removeItem(k); }); }catch(er){} sessionStorage.setItem("cs-skip","0"); __miReload(); return; }
+    if(a==="view"){ try{ sessionStorage.clear(); ["cs-new","cs-edit"].forEach(function(k){ __store.removeItem(k); }); }catch(er){} sessionStorage.setItem("cs-skip","0"); __miReload(); return; }
     if(a==="go"){ ask("Open the app with the data as it is? Parts that could not be read may be replaced when you make changes. Download a backup first if you have not.","Continue",function(){ FROZEN=""; w.remove(); BAD=[]; try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(er){ recover("render",er); } }); } }); }
 window.__recover=recover;
 

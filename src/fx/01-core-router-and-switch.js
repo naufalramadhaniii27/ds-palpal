@@ -3,7 +3,7 @@
    one haptic map. Every v55 effect goes through here. === */
 var MI=(function(){
   var html=document.documentElement, mq=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)");
-  function ls(k,d){ try{ return localStorage.getItem(k)||d; }catch(e){ return d; } }
+  function ls(k,d){ try{ return __store.getItem(k)||d; }catch(e){ return d; } }
   var M={ mode:ls("mi-fx","full"), bz:ls("mi-bz","on") };
   M.rm=function(){ return M.mode==="off"||!!(mq&&mq.matches); };
   M.full=function(){ return M.mode==="full"&&!M.rm(); };
@@ -13,7 +13,7 @@ var MI=(function(){
   /* safety net: if the browser refuses an effect's animation, run it with a plain curve rather than leave a half-made effect on screen */
   (function(){ var EP=window.Element&&Element.prototype, _an=EP&&EP.animate; if(!_an||_an.__mi) return; var HT=document.documentElement, zero=function(o){ if(typeof o==='number') return 0; var z={}; if(o&&typeof o==='object') for(var y in o) z[y]=o[y]; z.duration=0; z.delay=0; z.endDelay=0; z.iterations=1; return z; };/* T2: Immersive Off runs every animation at length 0, so the end state is set at once and finish handlers still run */
     var safe=function(k,o){ if(HT.classList.contains('mi-off')) o=zero(o); try{ return _an.call(this,k,o); }catch(e){ if(o&&typeof o==="object"){ var o2={}; for(var x in o) o2[x]=o[x]; o2.easing="ease-out"; try{ return _an.call(this,k,o2); }catch(e2){} } throw e; } }; safe.__mi=1; EP.animate=safe; })();
-  M.set=function(k,v){ M[k]=v; try{ localStorage.setItem(k==="mode"?"mi-fx":"mi-bz",v); }catch(e){} M.apply(); if(window.__miAmb) window.__miAmb(true); };
+  M.set=function(k,v){ M[k]=v; try{ __store.setItem(k==="mode"?"mi-fx":"mi-bz",v); }catch(e){} M.apply(); if(window.__miAmb) window.__miAmb(true); };
   var HZ={light:8,medium:[10,30,12],heavy:[16,40,22],success:[10,40,18]};
   M.buzz=function(k){ if(M.bz!=="on"||M.rm()) return; try{ if(navigator.vibrate) navigator.vibrate(HZ[k]||k||8); }catch(e){} };
   /* router: one real listener per event type; handlers run in the order they were added and stop when one stops propagation */

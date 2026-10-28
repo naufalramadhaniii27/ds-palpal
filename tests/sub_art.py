@@ -39,7 +39,7 @@ async def main():
             chk(t + " Fighter page lists subclasses with an emblem", await pg.evaluate("document.querySelectorAll('#libBd .lib-fl .art-sub').length>=3"))
             await pg.evaluate("document.querySelector('#libBd [data-lib-open=\"sub|Champion\"]').click()"); await pg.wait_for_timeout(900)
             chk(t + " Champion page shows the large emblem", await pg.evaluate("!!document.querySelector('#libBd .sub-em .art-sub')"))
-            await pg.evaluate("localStorage.setItem('mi-clsart','off')")
+            await pg.evaluate("(window.__store||localStorage).setItem('mi-clsart','off')")
             chk(t + " Art off gives nothing", await pg.evaluate("__artSub('Fighter','Champion')===''"))
             chk(t + " no page errors", not errs)
             await ctx.close()

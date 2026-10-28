@@ -29,7 +29,7 @@ function impBuild(b,o){ if(typeof b==="string"){ try{ b=JSON.parse(b); }catch(e)
   var C2=null; try{ C2=window.__bldSheetFor(b); }catch(e){ C2=null; } if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
   var nm=String(b.name||(o&&o.name)||C2.name||"Character"); b.name=nm; C2.name=nm;
   var r=rSnap(rEnsure()), nid=newId(r); r.chars[nid]={created:Date.now(),name:nm,sub:(C2.species||"")+" "+(C2.clsLabel||((C2.cls||"")+" "+(C2.level||1))),B:JSON.stringify(b),C:JSON.stringify(C2),S:o&&o._coins?JSON.stringify({coins:o._coins,coinBase:num(C2.gp,0)}):null,t:Date.now()};
-  if(!rSave(r)) return; try{ localStorage.setItem("cs-edit","1"); }catch(e){} sessionStorage.setItem("cs-skip","1"); rLoad(r,nid,false); }
+  if(!rSave(r)) return; try{ __store.setItem("cs-edit","1"); }catch(e){} sessionStorage.setItem("cs-skip","1"); rLoad(r,nid,false); }
 function chCheck(o){ if(!o||o.kind!=="character"||typeof o.C!=="string") return "This is not a character file from this app.";
   try{ var c=JSON.parse(o.C); if(!c||!c.abilities) throw 0; if(o.S!=null){ var s=JSON.parse(o.S); if(s!==null&&typeof s!=="object") throw 0; } if(o.B!=null){ var b=JSON.parse(o.B); if(b!==null&&typeof b!=="object") throw 0; } }catch(e){ return "The character file is damaged."; } return ""; }
 function impChar(o){ var err=chCheck(o); if(err){ toast(err); return; }

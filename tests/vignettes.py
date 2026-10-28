@@ -33,6 +33,8 @@ async def main():
                 await pg.wait_for_timeout(500)
                 chk(t + " " + nm + " roll shows its picture", await pg.evaluate("!!document.querySelector('.mi-roll-o img.mi-vig[src*=\"%s\"]')" % nm))
                 await pg.wait_for_timeout(2600)
+            # T7: on IndexedDB the limit is the browser quota. Report 85 percent used, as a nearly full device would
+            await pg.context.add_init_script("try{navigator.storage.estimate=function(){return Promise.resolve({usage:850e6,quota:1e9})}}catch(e){}")
             await pg.evaluate("try{localStorage.setItem('zz-fill','x'.repeat(4400000))}catch(e){}"); await pg.reload(); await pg.wait_for_timeout(2200)
             chk(t + " storage warning carries its picture", await pg.evaluate("!!document.querySelector('#homeV .hbkl.warn img.mi-vig')"))
             await pg.evaluate("localStorage.removeItem('zz-fill')"); await pg.reload(); await pg.wait_for_timeout(1500)

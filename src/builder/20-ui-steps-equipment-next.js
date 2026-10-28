@@ -77,7 +77,7 @@ function renderNext(){var miss=unList();if(miss.length){var bk0=bakInfo();return
  var bk=bakInfo();if(bk)h+='<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk.label)+')</button><p class="fd bhint">Saved at your last Load from sheet. Restoring swaps it with this build.</p>';
  return h}
 /* RU11: backup build (phb24-builder-v1-bak, written by Load from sheet). Returns {raw, b, label} or null. */
-function bakInfo(){var raw=null;try{raw=localStorage.getItem(BAK)}catch(e){}if(raw==null)return null;var b=null;try{b=JSON.parse(raw)}catch(e){}if(!b||!b.cls)return null;
+function bakInfo(){var raw=null;try{raw=__store.getItem(BAK)}catch(e){}if(raw==null)return null;var b=null;try{b=JSON.parse(raw)}catch(e){}if(!b||!b.cls)return null;
  var tl=(+b.level||1)+(Array.isArray(b.mc)?b.mc.reduce(function(t,m){return t+(+m.lv||0)},0):0);
  return {raw:raw,b:b,label:(b.name||"Character")+", level "+tl+": "+[b.cls+" "+(+b.level||1)].concat(Array.isArray(b.mc)?b.mc.map(function(m){return m.cls+" "+m.lv}):[]).join(" / ")}}
 function restoreBak(){var bk=bakInfo();if(!bk){toast("No backup build on this device");render();return}

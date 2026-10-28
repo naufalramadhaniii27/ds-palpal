@@ -89,7 +89,7 @@ async def main():
         await pg.evaluate("v=>{localStorage.clear();sessionStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}", YUDHI)
         await pg.reload(); await pg.wait_for_timeout(3000)
         await pg.evaluate("()=>{var b=document.querySelector('[data-hview]'); if(b) b.click()}"); await pg.wait_for_timeout(2500)
-        state = await pg.evaluate("()=>{var o={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);o[k]=localStorage.getItem(k)}return o}")
+        state = await pg.evaluate("()=>{var o={};for(var i=0;i<(window.__store||localStorage).length;i++){var k=(window.__store||localStorage).key(i);o[k]=(window.__store||localStorage).getItem(k)}return o}")
         await ctx.close()
         for vp, W, H in [("390x844", 390, 844), ("1250x850", 1250, 850)]:
             for cpu in (1, 4):

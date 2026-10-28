@@ -65,7 +65,7 @@ async def click_text(pg, scope_sel, text):
 
 
 async def storage(pg):
-    return await pg.evaluate("()=>{var o={}; for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); o[k]=localStorage.getItem(k);} return o}")
+    return await pg.evaluate("()=>{var o={}; for(var i=0;i<(window.__store||localStorage).length;i++){var k=(window.__store||localStorage).key(i); o[k]=(window.__store||localStorage).getItem(k);} return o}")
 
 
 async def sheet_numbers(pg):

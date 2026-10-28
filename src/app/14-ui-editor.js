@@ -81,7 +81,7 @@ function edHTML(){
       '<button type="button" class="ed-mini" data-act="add" data-list="'+gp+'.items" data-tpl="feature">+ Add feature to this group</button></div>';
   }).join("")+'<button type="button" class="ed-add" data-act="add" data-list="features" data-tpl="group">+ Add group</button></div>';
   h+='<div class="ed-card" style="margin-top:14px"><div class="ed-ct"><b>Import build</b></div><p class="ed-help">Paste the text from PHB 2024 Builder (Export), then tap Apply. This replaces the build. Notes, HP, and conditions stay.</p><textarea id="impTxt" class="ed-in" rows="4" style="width:100%;font-family:var(--f-type);font-size:12px" placeholder="Paste exported build here"></textarea><div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="btn press" data-act="impApply" style="flex:1">Apply import</button><button type="button" class="btn press" data-act="impCopy" style="flex:1">Copy current build</button></div></div>';
-  h+='<div class="ed-foot"><p>Saved automatically on this device.</p><button type="button" class="btn warn press" data-act="reset">Reset to original build</button></div>';
+  h+='<div class="ed-foot"><p>Saved automatically on this device.</p><button type="button" class="btn warn press" data-act="reset">Clear Build</button></div>';
   return h;
 }
 var TPL={
@@ -111,7 +111,7 @@ function rerenderEditor(){ var body=$("#sheetBody"), st=body.scrollTop; body.inn
 function openEditor(){ navStack=[]; openSheet("Edit "+C.name, edHTML(), "edit", true); }
 
 var RKEY="cs-roster-v1",BKEY="phb24-builder-v1";
-function rGet(){try{return JSON.parse(localStorage.getItem(RKEY))}catch(e){return null}}
+function rGet(){try{return JSON.parse(__store.getItem(RKEY))}catch(e){return null}}
 function rSave(r){return lsSave(RKEY,r)}/* v18 RU61: failure shows the caution bar */
-function setOrDel(k,v){if(FROZEN)return;if(v==null){try{localStorage.removeItem(k)}catch(e){}}else lsSet(k,v)}
+function setOrDel(k,v){if(FROZEN)return;if(v==null){try{__store.removeItem(k)}catch(e){}}else lsSet(k,v)}
 function rEnsure(){var r=rGet();if(!r||!r.chars||!r.chars[r.active]){var id="c"+Date.now();r={active:id,chars:{}};r.chars[id]=PUBLIC_FRESH?{name:"New Character",ph:1,created:Date.now(),t:Date.now()}:{name:C.name};}return r}

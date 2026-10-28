@@ -1,6 +1,6 @@
 /* ================= HIT POINTS ================= */
 var flashT=null;
-function buzz(ms){ try{ if(localStorage.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
+function buzz(ms){ try{ if(__store.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#healBtn,#dmgBtn,.pip,.slot,.lu-box,.box,.ifb,.tab,#bnav button"); if(t) buzz(t.id==="dmgBtn"?[12,30,12]:8); },true);
 function flash(cls){ var el=$("#hpCur"), vc=cls==="hit"?"m-hit":"m-heal", xs=[document.querySelector(".vitals"),document.getElementById("vbHp"),document.getElementById("hpBox")];/* v29 RU120, v30 */
   var again=el.classList.contains("hit")||el.classList.contains("healed")||xs.some(function(x){ return x&&(x.classList.contains("m-hit")||x.classList.contains("m-heal")); });

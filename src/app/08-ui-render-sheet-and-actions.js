@@ -2,7 +2,7 @@
 function campName(){ var v=(S&&typeof S.camp==="string")?S.camp:((C&&C.office)||""); return String(v).trim(); }/* v30 RU133 */
 /* T1: the hidden empty place of a first public visit (ph) holds the sample build, so the tab keeps the page title until a real character is open */
 var TITLE0=document.title;
-function phOpen(){ try{ var r=JSON.parse(localStorage.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
+function phOpen(){ try{ var r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
   document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
   var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
@@ -297,7 +297,7 @@ function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Bac
 }
 /* T3 item 17: small original illustrations for empty states. Lines in the muted color, sparks in the accent color. Drawn once, no image files */
 function esArt(k){ var V={chest:"items",book:"spells",paw:"creatures",hero:"characters"}[k], R=window.__ART&&window.__ART.vig&&window.__ART.vig.empty;
-  if(V&&R&&R.indexOf(V)>=0&&(function(){try{return localStorage.getItem("mi-clsart")!=="off"}catch(e){return true}})()) return '<img class="es-art es-img" src="img/vig/empty/'+V+'.avif" width="128" height="128" alt="" decoding="async" loading="lazy">';
+  if(V&&R&&R.indexOf(V)>=0&&(function(){try{return __store.getItem("mi-clsart")!=="off"}catch(e){return true}})()) return '<img class="es-art es-img" src="img/vig/empty/'+V+'.avif" width="128" height="128" alt="" decoding="async" loading="lazy">';
   var A={
   chest:'<path d="M18 46h60v28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z"/><path d="M18 46V38a14 14 0 0 1 14-14h32a14 14 0 0 1 14 14v8"/><path d="M18 56h60"/><rect x="42" y="50" width="12" height="14" rx="2"/><circle cx="48" cy="57" r="1.6" class="es-f"/>',
   book:'<path d="M48 30c-8-6-20-7-30-4v40c10-3 22-2 30 4 8-6 20-7 30-4V26c-10-3-22-2-30 4z"/><path d="M48 30v40"/><path d="M26 38c6-1 11 0 16 2M26 48c6-1 11 0 16 2M54 40c5-2 10-3 16-2M54 50c5-2 10-3 16-2"/>',

@@ -199,7 +199,7 @@ function libDetail(c,k){ var h="",t=k,sub="",x,i;
     var tr=((SPECIES[m[2]]||{}).traits||[]).filter(function(q){ return q[0]===m[3]; })[0]; if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+'<p class="info-d">'+richP(tr[1])+'</p><p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; }
   if(c==="opt"){ var p=k.split("|"), L=p[0]==="man"?MANEUVERS:p[0]==="inv"?INVOCATIONS:METAMAGIC, row=L.filter(function(q){ return q[0]===p[1]; })[0]; if(!row) return null; return {t:p[1],sub:p[0]==="man"?"Battle Master Maneuver":p[0]==="inv"?"Eldritch Invocation":"Metamagic",h:'<p class="info-d">'+richP(row[1])+'</p>'}; }
   return null; }
-function libRecent(add){ var a=[]; try{ a=JSON.parse(localStorage.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter(function(x){ return x!==add; })).slice(0,8); try{ localStorage.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
+function libRecent(add){ var a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter(function(x){ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
 function libHi(n,q){ var i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
 function libRow(e,q,showCat){ var ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((window.__artIc&&(e.c==="spell"||e.c==="gear"||e.c==="item")&&window.__artIc(e.c==="spell"?"spell":"item",e.n))||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; var inv={}, voc=[];
@@ -262,13 +262,13 @@ function libWire(w){ var drag=null;
   var h=w.querySelector("#libH");
   h.addEventListener("pointerdown",function(e){ if(e.button>0||e.target.closest("button")||window.innerWidth<760) return; var r=w.getBoundingClientRect(); drag={x:e.clientX-r.left,y:e.clientY-r.top,id:e.pointerId}; try{ h.setPointerCapture(e.pointerId); }catch(er){} w.classList.add("mv"); });
   h.addEventListener("pointermove",function(e){ if(!drag||e.pointerId!==drag.id) return; var W=w.offsetWidth, H=w.offsetHeight, x=Math.max(8-W+120,Math.min(window.innerWidth-120,e.clientX-drag.x)), y=Math.max(0,Math.min(window.innerHeight-48,e.clientY-drag.y)); w.style.left=x+"px"; w.style.top=y+"px"; w.style.right="auto"; w.style.bottom="auto"; });
-  var end=function(e){ if(!drag) return; drag=null; w.classList.remove("mv"); try{ localStorage.setItem("cs-lib-pos",JSON.stringify([parseInt(w.style.left,10),parseInt(w.style.top,10)])); }catch(er){} };
+  var end=function(e){ if(!drag) return; drag=null; w.classList.remove("mv"); try{ __store.setItem("cs-lib-pos",JSON.stringify([parseInt(w.style.left,10),parseInt(w.style.top,10)])); }catch(er){} };
   h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end); }
 function libOpen(o){ o=o||{}; var w=libDom(), first=!LIB.idx;
   try{ if(typeof closeSheet==="function"&&document.getElementById("sheet")&&document.getElementById("sheet").classList.contains("on")&&o.fromSearch) closeSheet(); }catch(er){}
   var hv=document.getElementById("homeV"); w.style.zIndex=hv&&!hv.hidden?"60":"";
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
-  if(window.innerWidth>=760&&!w.style.left){ var p=null; try{ p=JSON.parse(localStorage.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<window.innerWidth-100&&p[1]>=0&&p[1]<window.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,window.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
+  if(window.innerWidth>=760&&!w.style.left){ var p=null; try{ p=JSON.parse(__store.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<window.innerWidth-100&&p[1]>=0&&p[1]<window.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,window.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
   requestAnimationFrame(function(){ w.classList.add("on"); });
   document.removeEventListener("keydown",libKey,true); document.addEventListener("keydown",libKey,true);
   var qi=document.getElementById("libQ"); qi.value=LIB.q; libPaint();
@@ -301,7 +301,7 @@ window.addEventListener("unhandledrejection",function(e){ ERRLOG.push({t:new Dat
 var REP_NOTES=false;/* v28 I2: notes and journal only when ticked */
 function reportText(){ var s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } var b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
   return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
-    storage:(function(){ var n=0; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); n+=k.length+String(localStorage.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
+    storage:(function(){ var n=0; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); n+=k.length+String(__store.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
     errors:ERRLOG, sheet:C, state:s2, build:b},null,1); }
 function reportOpen(){ var old=document.getElementById("rep"); if(old) old.remove(); var w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");
   var txt=reportText();

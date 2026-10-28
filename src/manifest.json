@@ -98,7 +98,7 @@
   },
   {
    "t": "block",
-   "open": "<script>",
+   "open": "<script type=\"text/x-gate\">",
    "close": "</script>",
    "files": [
     "fx/23-class-art-data.js",
@@ -155,7 +155,7 @@
   },
   {
    "t": "block",
-   "open": "<script>",
+   "open": "<script type=\"text/x-gate\">",
    "close": "</script>",
    "files": [
     "fx/01-core-router-and-switch.js",
@@ -189,10 +189,22 @@
   },
   {
    "t": "block",
-   "open": "<script>",
+   "open": "<script type=\"text/x-gate\">",
    "close": "</script>",
    "files": [
     "boot/deferred-loader.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "boot/store-gate.js"
    ]
   },
   {

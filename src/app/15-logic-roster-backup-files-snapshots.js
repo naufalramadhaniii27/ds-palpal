@@ -7,9 +7,9 @@ function rSnap(r){if(FROZEN)return r;clearTimeout(cSaveT);clearTimeout(saveT);ls
 function rLoad(r,id,openB){var t=r.chars[id],prev=r.active;if(!t||FROZEN)return false;r.active=id;rPh(r).forEach(function(k){ if(k!==id) delete r.chars[k]; });/* v24 p08 */
  if(!rSave(r)||SAVE_FAIL){r.active=prev;toast("Storage is full, so the character was not switched and nothing was lost. Back up, then make room.");return false}
  var old=[[CKEY,lsGet(CKEY)],[KEY,lsGet(KEY)],[BKEY,lsGet(BKEY)]],nv=[[CKEY,t.C||null],[KEY,t.S||null],[BKEY,t.B||null]],ok=true;
- nv.forEach(function(p){if(!ok)return;if(p[1]==null){try{localStorage.removeItem(p[0])}catch(e){}}else if(!lsSet(p[0],p[1]))ok=false});
- if(!ok){old.forEach(function(p){try{if(p[1]==null)localStorage.removeItem(p[0]);else localStorage.setItem(p[0],p[1])}catch(e){}});r.active=prev;rSave(r);toast("Storage is full, so the character was not switched and nothing was lost. Back up, then make room.");return false}
- if(openB)try{localStorage.setItem("cs-new","1")}catch(e){}__miReload();return true}
+ nv.forEach(function(p){if(!ok)return;if(p[1]==null){try{__store.removeItem(p[0])}catch(e){}}else if(!lsSet(p[0],p[1]))ok=false});
+ if(!ok){old.forEach(function(p){try{if(p[1]==null)__store.removeItem(p[0]);else __store.setItem(p[0],p[1])}catch(e){}});r.active=prev;rSave(r);toast("Storage is full, so the character was not switched and nothing was lost. Back up, then make room.");return false}
+ if(openB)try{__store.setItem("cs-new","1")}catch(e){}__miReload();return true}
 function charInfo(id,r){var c=r.chars[id]||{},Cc=null,Ss=null;try{Cc=id===r.active?C:JSON.parse(c.C||"null")}catch(e){}try{Ss=id===r.active?S:JSON.parse(c.S||"null")}catch(e){}
  Cc=Cc||{};Ss=Ss||{};var lv=Cc.clsLabel||((Cc.cls||"")+" "+(Cc.level||1));return {id:id,name:Cc.name||c.name||"Unnamed",level:+Cc.level||1,species:(Cc.species||"").split(" (")[0],cls:Cc.cls||"",sub:Cc.sub||"",label:Cc.clsLabel||"",camp:(typeof Ss.camp==="string"?Ss.camp.trim():Cc.office)||"",por:Ss.portrait||"",color:Ss.color||"forest",sym:Ss.sym||"star",created:c.created||c.t||0}}
 var homeQ="",homeSort="created";
@@ -51,13 +51,13 @@ function showHome(){var w=document.getElementById("homeV");if(!w){w=document.cre
   w.addEventListener("change",function(e){if(e.target.id==="homeCamp"){homeCamp=e.target.value;document.getElementById("hgrid").innerHTML=homeCards();return}/* v27 RU64 */if(e.target.id==="homeSort"){homeSort=e.target.value;document.getElementById("hgrid").innerHTML=homeCards()}});
   w.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var d=b.dataset,r=rEnsure();
    if(d.hview){if(d.hview===r.active){w.hidden=true;document.body.style.overflow="";return}rSnap(r);sessionStorage.setItem("cs-skip","1");rLoad(r,d.hview,false);return}
-   if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(window.__bldOpen)window.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{localStorage.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{localStorage.removeItem("cs-edit")}catch(er){}return}
+   if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(window.__bldOpen)window.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
    if(d.hdel){if(Object.keys(r.chars).length<2){toast("You need at least one character");return}if(b.dataset.sure!=="1"&&b.dataset.heldDone!=="1"){b.dataset.sure="1";var bl=b.querySelector(".holdc-label");if(bl)bl.textContent="Tap again";else b.textContent="Tap again";return}snTake(d.hdel,"Before Delete",rSnap(r));var was=d.hdel===r.active;delete r.chars[d.hdel];rSave(r);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r,Object.keys(r.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards();var hi=document.getElementById("hinfo");if(hi)hi.innerHTML=homeInfo();persistShow();var hs=document.querySelector("#homeV .hslots b");if(hs)hs.textContent=Object.keys(r.chars).length;return}
    if(d.hcampf!=null){homeCamp=homeCamp===d.hcampf?"":d.hcampf;var hc=document.getElementById("homeCamp");if(hc)hc.value=homeCamp;document.getElementById("hgrid").innerHTML=homeCards();return}/* v32 p28 RU133 */
    if(d.hparty){partyOpen();return}if(d.hrep){reportOpen();return}/* v27 RU60, RU71 */
    if(d.hbk){bkpOpen(d.hbk);return}/* v14 Backup/Restore, v18 Open Character */
    if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
-   if(d.hwn){if(d.hwn==="ok"){try{localStorage.setItem("cs-ui-ver",String(APP_VER))}catch(er){}WN_SHOW=false;var bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}/* v18 RU59 */
+   if(d.hwn){if(d.hwn==="ok"){try{__store.setItem("cs-ui-ver",String(APP_VER))}catch(er){}WN_SHOW=false;var bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}/* v18 RU59 */
    if(d.hpers){askPersist();return}
    if(d.hall){var hg=document.getElementById("hgrid");if(hg)hg.scrollIntoView({behavior:(window.__MI&&window.__MI.rm&&window.__MI.rm())?"auto":"smooth",block:"start"});return}
    if(d.hbin){BIN_OPEN=!BIN_OPEN;var hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
@@ -72,8 +72,8 @@ function showHome(){var w=document.getElementById("homeV");if(!w){w=document.cre
    one-slot backup (-bak). Keys added later with the same prefixes are picked up too. Restore asks first, then replaces exactly these keys */
 var BKP_KEYS=["cs-roster-v1","phb24-builder-v1","phb24-builder-v1-bak","yudhi-kelapa-build-v3","yudhi-kelapa-sheet-v1"];
 function bkpKeyOk(k){ return BKP_KEYS.indexOf(k)>=0||/^(cs-roster-|cs-char-|phb24-|yudhi-kelapa-)/.test(k); }
-function bkpKeys(){ var o=BKP_KEYS.slice(); try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(bkpKeyOk(k)&&o.indexOf(k)<0) o.push(k); } }catch(e){} return o; }
-function bkpMake(){ var rr=null; try{ rr=rSnap(rEnsure()); }catch(e){} var d={}; bkpKeys().forEach(function(k){ var v=null; try{ v=localStorage.getItem(k); }catch(e){} d[k]=v; });
+function bkpKeys(){ var o=BKP_KEYS.slice(); try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); if(bkpKeyOk(k)&&o.indexOf(k)<0) o.push(k); } }catch(e){} return o; }
+function bkpMake(){ var rr=null; try{ rr=rSnap(rEnsure()); }catch(e){} var d={}; bkpKeys().forEach(function(k){ var v=null; try{ v=__store.getItem(k); }catch(e){} d[k]=v; });
   /* v18 RU61: the open character comes from memory, so a backup made while storage is full still holds the latest changes */
   if(!FROZEN&&C&&S){ d[CKEY]=JSON.stringify(C); d[KEY]=JSON.stringify(S); if(rr&&rr.chars&&rr.chars[rr.active]){ var e=rr.chars[rr.active]; e.C=d[CKEY]; e.S=d[KEY]; e.B=d[BKEY]==null?null:d[BKEY]; d[RKEY]=JSON.stringify(rr); } }
   d=bkpCamp(d);/* v27 RU64: one campaign */ var r=rGet()||{chars:{}}; try{ r=JSON.parse(d[RKEY])||r; }catch(e){} return {app:"dnd2024-sheet-builder",kind:"backup",version:1,appVer:APP_VER,created:new Date().toISOString(),characters:Object.keys(r.chars||{}).length,keys:d}; }
@@ -87,9 +87,9 @@ function bkpCheck(o){ if(!o||typeof o!=="object"||o.kind!=="backup"||!o.keys||ty
     if(r.active!=null&&!r.chars[r.active]) return "The character list in the backup is damaged."; }
   return ""; }
 function bkpCount(o){ try{ return Object.keys(JSON.parse(o.keys["cs-roster-v1"]).chars).length; }catch(e){ return o.keys["yudhi-kelapa-build-v3"]?1:0; } }
-function bkpRestore(o){ var r0=rGet(); if(r0&&r0.chars) Object.keys(r0.chars).forEach(function(id){ snTake(id,"Before Restore",r0); });/* v18 RU48 (d) */ clearTimeout(cSaveT); clearTimeout(saveT); var keys=bkpKeys(), old={}; keys.forEach(function(k){ try{ old[k]=localStorage.getItem(k); }catch(e){ old[k]=null; } });
-  try{ keys.forEach(function(k){ if(!(k in o.keys)) localStorage.removeItem(k); }); Object.keys(o.keys).forEach(function(k){ if(o.keys[k]==null) localStorage.removeItem(k); else localStorage.setItem(k,o.keys[k]); }); }
-  catch(e){ keys.forEach(function(k){ try{ if(old[k]==null) localStorage.removeItem(k); else localStorage.setItem(k,old[k]); }catch(e2){} }); toast("Restore failed: this device is out of storage space. Nothing was changed."); return; }/* V14-10: all or nothing */
+function bkpRestore(o){ var r0=rGet(); if(r0&&r0.chars) Object.keys(r0.chars).forEach(function(id){ snTake(id,"Before Restore",r0); });/* v18 RU48 (d) */ clearTimeout(cSaveT); clearTimeout(saveT); var keys=bkpKeys(), old={}; keys.forEach(function(k){ try{ old[k]=__store.getItem(k); }catch(e){ old[k]=null; } });
+  try{ keys.forEach(function(k){ if(!(k in o.keys)) __store.removeItem(k); }); Object.keys(o.keys).forEach(function(k){ if(o.keys[k]==null) __store.removeItem(k); else __store.setItem(k,o.keys[k]); }); }
+  catch(e){ keys.forEach(function(k){ try{ if(old[k]==null) __store.removeItem(k); else __store.setItem(k,old[k]); }catch(e2){} }); toast("Restore failed: this device is out of storage space. Nothing was changed."); return; }/* V14-10: all or nothing */
   sessionStorage.setItem("cs-skip","0"); __miReload(); }
 function bkpRead(txt){ impText(txt); }
 function bkpName(){ var d=new Date(), p=function(x){return (x<10?"0":"")+x}; return "dnd-characters-"+d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+".bs"; }
@@ -130,8 +130,8 @@ function rawHash(x){ return hashS((x.B||"")+"\u0001"+(x.C||"")+"\u0001"+(x.S||""
 /* the open character as it will be saved (memory is newer than storage for up to 200 ms) */
 function curRaw(){ [C,S].forEach(function(o){ o._app=Math.max(+o._app||0,APP_VER); }); return {B:lsGet(BKEY),C:JSON.stringify(C),S:JSON.stringify(S)}; }
 function chRaw(id,r){ r=r||rGet()||{chars:{}}; if(id===r.active&&!FROZEN) return curRaw(); var c=(r.chars||{})[id]||{}; return {B:c.B==null?null:c.B,C:c.C==null?null:c.C,S:c.S==null?null:c.S}; }
-function uiGet(k){ try{ return JSON.parse(localStorage.getItem(k)||"null")||{}; }catch(e){ return {}; } }
-function uiSet(k,o){ try{ localStorage.setItem(k,JSON.stringify(o)); }catch(e){} }
+function uiGet(k){ try{ return JSON.parse(__store.getItem(k)||"null")||{}; }catch(e){ return {}; } }
+function uiSet(k,o){ try{ __store.setItem(k,JSON.stringify(o)); }catch(e){} }
 function fileMark(id){ return uiGet("cs-ui-files")[id]||null; }
 /* v33 p10: the file mark is a reminder, not a duty. Days 0 = off */
 function remindCfg(){ var o=uiGet("cs-ui-remind"); return {days:o.days==null?7:+o.days, auto:!!o.auto}; }
@@ -158,15 +158,18 @@ function persistShow(){ var e=document.getElementById("hpers"); if(!e) return; t
 /* (b) last backup on this device (cs-ui-bkp, not part of the backup itself) */
 function allHash(r){ r=r||rGet()||{chars:{}}; return hashS(Object.keys(r.chars||{}).sort().map(function(id){ return rawHash(chRaw(id,r)); }).join(",")); }
 function bkMark(){ uiSet("cs-ui-bkp",{t:Date.now(),h:allHash()}); var hi=document.getElementById("hinfo"); if(hi) hi.innerHTML=homeInfo(), persistShow(); }
-function lsUse(){ var n=0, por=0; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i), v=localStorage.getItem(k)||""; n+=k.length+v.length; } var r=rGet(); if(r&&r.chars) Object.keys(r.chars).forEach(function(id){ por+=(cOf(id===r.active?JSON.stringify(S):r.chars[id].S).portrait||"").length; }); }catch(e){} return {n:n,por:por}; }
+function lsUse(){ var n=0, por=0; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i), v=__store.getItem(k)||""; n+=k.length+v.length; } var r=rGet(); if(r&&r.chars) Object.keys(r.chars).forEach(function(id){ por+=(cOf(id===r.active?JSON.stringify(S):r.chars[id].S).portrait||"").length; }); }catch(e){} return {n:n,por:por}; }
 function bkState(){ var bk=uiGet("cs-ui-bkp"), r=rGet()||{chars:{}}, now=Date.now(), days=bk.t?Math.floor((now-bk.t)/864e5):0, ch=bk.t&&bk.h!==allHash(r);
   var old=Object.keys(r.chars||{}).some(function(id){ return now-(r.chars[id].created||now)>3*864e5; }), warn=bk.t?(ch&&days>=7):old;
-  var u=lsUse(), pct=Math.min(100,Math.round(u.n/5e4)); return {bk:bk,r:r,days:days,ch:ch,warn:warn,u:u,pct:pct,full:pct>=80}; }
+  /* T7: on IndexedDB the limit is the space the browser gives this site (navigator.storage.estimate), not about 5 MB */
+  var u=lsUse(), idb=__store.mode&&__store.mode()==="idb", es=idb?__store.estimate:null, cap=es&&es.quota?es.quota:idb?0:5e6, used=es&&es.usage?Math.max(es.usage,u.n):u.n; u.cap=es&&es.quota?cap:0; u.idb=idb; u.used=used;
+  if(idb&&!cap){ return {bk:bk,r:r,days:days,ch:ch,warn:warn,u:u,pct:0,full:false}; }/* the browser has not answered yet: no meter warning */
+  var pct=Math.min(100,Math.round(used*100/cap)); return {bk:bk,r:r,days:days,ch:ch,warn:warn,u:u,pct:pct,full:pct>=80}; }
 /* T3: backup and storage details live in the Settings dialog (bkpOpen "info"). Home shows only a short warning when the backup is old or storage is almost full */
 function techInfo(){ var q=bkState(), bk=q.bk, u=q.u, pct=q.pct, full=q.full, mb=function(x){ return (x/1e6).toFixed(2)+" MB"; };
   return '<div class="hbkl'+(q.warn?' warn':'')+'"><span>Last backup: <b>'+(bk.t?fmtT(bk.t).slice(0,10)+' ('+(q.days?q.days+' day'+(q.days===1?'':'s')+' ago':'today')+')':'never')+'</b>'+(q.ch?' \u2022 changes since then':'')+'</span>'+
     (q.warn?'<span class="hbkw">'+(bk.t?'Back up again so the latest changes are safe.':'Back up your characters so they are safe if this browser\'s data is cleared.')+'</span>':'')+'</div>'+
-    '<div class="hstor'+(full?' warn':'')+'"><span class="hmeter" aria-hidden="true"><span style="width:'+pct+'%"></span></span><span>Storage used on this device: <b>'+mb(u.n)+'</b> of about 5 MB ('+pct+'%)'+(u.por>2e4?'. Portraits: '+mb(u.por):'')+'. Protected from automatic cleanup: <span id="hpers">...</span></span>'+
+    '<div class="hstor'+(full?' warn':'')+'"><span class="hmeter" aria-hidden="true"><span style="width:'+pct+'%"></span></span><span>Storage used on this device: <b>'+mb(u.used)+'</b> of '+(u.cap?'about '+(u.cap>=1e9?(u.cap/1e9).toFixed(1)+' GB':Math.round(u.cap/1e6)+' MB'):u.idb?'the space this browser allows':'about 5 MB')+' ('+pct+'%)'+(u.por>2e4?'. Portraits: '+mb(u.por):'')+'. Protected from automatic cleanup: <span id="hpers">...</span></span>'+
     (full?'<span class="hbkw">Storage is almost full. Back up, then remove portraits or characters you no longer need.</span>':'')+'</div>'+pwaNote(); }
 /* T4 item 27: how to install the app. Hidden once it runs as an installed app */
 function pwaNote(){ var st=false; try{ st=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true; }catch(er){} if(st) return '<div class="hbkl"><span>This app is installed on your device.</span></div>';
@@ -187,7 +190,7 @@ var BIN_OPEN=false;
 var SN_BAD=false;
 function snGet(){ var raw=lsGet(SNKEY); try{ var o=JSON.parse(raw||"null"); if(o&&o.chars&&typeof o.chars==="object"){ SN_BAD=false; return o; } }catch(e){} SN_BAD=raw!=null; return {chars:{}}; }
 function snDrop(o){ var best=null; Object.keys(o.chars).forEach(function(id){ var L=o.chars[id]; if(L&&L.length){ var x=L[L.length-1]; if(!best||x.t<best.t) best={id:id,t:x.t}; } }); if(!best) return false; o.chars[best.id].pop(); if(!o.chars[best.id].length) delete o.chars[best.id]; return true; }
-function snPut(o){ if(FROZEN||SN_BAD) return false;/* a damaged snapshot store is not overwritten */ o._app=Math.max(+o._app||0,APP_VER); for(var n=0;n<60;n++){ var s=JSON.stringify(o); if(s.length<=SN_MAX){ try{ localStorage.setItem(SNKEY,s); return true; }catch(e){} } if(!snDrop(o)) return false; } return false; }
+function snPut(o){ if(FROZEN||SN_BAD) return false;/* a damaged snapshot store is not overwritten */ o._app=Math.max(+o._app||0,APP_VER); for(var n=0;n<60;n++){ var s=JSON.stringify(o); if(s.length<=SN_MAX){ try{ __store.setItem(SNKEY,s); return true; }catch(e){} } if(!snDrop(o)) return false; } return false; }
 function snTake(id,why,r){ if(FROZEN||!id) return; r=r||rGet(); if(!r||!r.chars||!r.chars[id]) return; var x=chRaw(id,r); if(!x.C) return; var s=x.S;
   try{ var so=JSON.parse(s||"null"); if(so&&so.portrait){ so.portrait=""; s=JSON.stringify(so); } }catch(e){}
   var o=snGet(), L=o.chars[id]||[], h=rawHash({B:x.B,C:x.C,S:s}); if(L[0]&&L[0].h===h) return;

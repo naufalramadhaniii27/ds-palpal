@@ -10,7 +10,7 @@
   function vis(e){ return e&&e.getClientRects().length; }
   function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function fx(cls,html,ms){ var e=D.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(function(){ rm(e); },ms||2300); return e; }
-  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  function ls(k,v){ try{ if(v===undefined) return __store.getItem(k); __store.setItem(k,v); }catch(e){ return null; } }
   function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
   function who(){ var s=st(); return (s&&s.C&&s.C.name)||"char"; }
   function play(k){ if(window.__miSnd) window.__miSnd(k); }

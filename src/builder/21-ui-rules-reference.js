@@ -26,7 +26,7 @@ function hbForm(){var f=HBF,h='<div class="hbmk"><div class="radios h">'+[["spec
  var O=hbOthers();if(O.length)h+='<p class="flab">Homebrew of your other characters</p><div class="hblist">'+O.map(function(o){return '<div class="hbrow"><span><b>'+esc(o.p.name)+'</b><small>'+esc(o.who)+': '+esc(hbCount(o.p))+'</small></span><button type="button" class="bdg add" data-hbcopy="'+esc(o.cid+"|"+o.p.id)+'">Add to this character</button></div>'}).join("")+'</div>';
  return h}
 /* user packs (not built in) of the other characters in My Characters that have something this build does not */
-function hbOthers(){var out=[],r=null;try{r=JSON.parse(localStorage.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;var me=sid();
+function hbOthers(){var out=[],r=null;try{r=JSON.parse(__store.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;var me=sid();
  Object.keys(r.chars).forEach(function(id){if(id===me||id===r.active)return;var b=null;try{b=JSON.parse(r.chars[id].B||"null")}catch(e){b=null}if(!b||!Array.isArray(b.packs))return;
   b.packs.forEach(function(p){if(!p||!p.id||HB_BUILTIN[p.id])return;var mine=(B.packs||[]).filter(function(q){return q.id===p.id})[0];if(hbList(p).some(function(e){return !hbHas(mine,e[0],e[1])}))out.push({cid:id,who:r.chars[id].name||"Character",p:p})})});return out}
 function hbRead(){var g=function(id){var e=document.getElementById(id);return e?String(e.value||"").trim():""},f={t:HBF.t,n:g("hb-n").slice(0,60)};

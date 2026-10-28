@@ -1,7 +1,7 @@
 /* === T6: class scene behind the sheet. PC: full background seen at the sides. Phone: a ribbon at the top that fades out. Off: Settings or html.mi-off === */
 (function(){
   var A=window.__ART, D=document, H=D.documentElement; if(!A||!A.scene) return;
-  function ls(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function ls(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
   var L=[], on=-1, curKey="", PHONE=matchMedia("(max-width:759px)");
   function layers(){ if(L.length) return L; for(var i=0;i<2;i++){ var e=D.createElement("div"); e.className="cls-art-l"; e.setAttribute("aria-hidden","true"); if(i===0) e.id="clsArt"; D.body.insertBefore(e,D.body.firstChild); L.push(e); } return L; }
   function homeOpen(){ var h=D.getElementById("homeV"); return !!h&&!h.hidden; }
@@ -53,7 +53,7 @@
   window.__clsArt=function(){ apply(); };
   window.__miArtH=function(){ var on=ls("mi-clsart")!=="off", B=function(v,l){ var a=(v==="on")===on; return '<button type="button" class="thb'+(a?" on":"")+'" data-miart="'+v+'" aria-pressed="'+a+'">'+l+'</button>'; };
     return '<div class="info-h">Art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">Pictures of your class behind the sheet and on the empty portrait, and small icons on spells and gear. Cards stay solid, so text keeps its contrast.</p>'; };
-  addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-miart]"); if(!b) return; try{ if(b.getAttribute("data-miart")==="off") localStorage.setItem("mi-clsart","off"); else localStorage.removeItem("mi-clsart"); }catch(er){}
+  addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-miart]"); if(!b) return; try{ if(b.getAttribute("data-miart")==="off") __store.setItem("mi-clsart","off"); else __store.removeItem("mi-clsart"); }catch(er){}
     Array.prototype.forEach.call(D.querySelectorAll("[data-miart]"),function(x){ var a=x===b; x.classList.toggle("on",a); x.setAttribute("aria-pressed",a); }); window.__clsArt(); },true);
   window.__clsArt();
 })();

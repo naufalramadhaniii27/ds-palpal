@@ -45,7 +45,7 @@ async def main():
             await pg.click("[data-libadd]"); await pg.wait_for_timeout(600)
             chk(t + " adding again does not duplicate", await pg.evaluate("(%s.spells||[]).filter(x=>x.n==='Fireball').length" % CJ) == 1)
             await pg.wait_for_timeout(600)
-            saved = await pg.evaluate("Object.keys(localStorage).some(k=>{var v=localStorage.getItem(k);return v&&v.indexOf('Fireball')>=0&&v.indexOf('\"lib\":1')>=0})")
+            saved = await pg.evaluate("Object.keys(localStorage).some(k=>{var v=(window.__store||localStorage).getItem(k);return v&&v.indexOf('Fireball')>=0&&v.indexOf('\"lib\":1')>=0})")
             chk(t + " saved with lib:1", saved)
             await pg.keyboard.press("Escape"); await pg.wait_for_timeout(400)
             await pg.click("[data-go='3']" if W < 700 else "[data-tab='p-spells']"); await pg.wait_for_timeout(700)

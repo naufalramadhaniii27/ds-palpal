@@ -54,6 +54,6 @@ window.__bldArmor=function(st,name,eq){var bn=baseOf(name).b;if(!st||!st.C||!(AR
  }finally{if(keep){B=keep;applyPacks()}else if(out)save()}
  return out};
 if(window.__sheetRerender)setTimeout(window.__sheetRerender,0);
-if(window.__publicFresh&&!localStorage.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
-if(localStorage.getItem("cs-new")){localStorage.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home")},50)}
+if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
+if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home")},50)}
 applyPacks();render();
