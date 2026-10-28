@@ -1044,3 +1044,8 @@ art/batch/icons/items/magic/rare/ring-of-free-action.png
 art/batch/icons/items/magic/legendary/ring-of-invisibility.png
 art/batch/icons/items/magic/uncommon/ring-of-jumping.png
 art/batch/icons/items/magic/uncommon/ring-of-mind-shielding.png
+art/batch/icons/items/magic/rare/ring-of-protection.png
+art/batch/icons/items/magic/very-rare/ring-of-regeneration.png
+art/batch/icons/items/magic/rare/ring-of-resistance.png
+art/batch/icons/items/magic/very-rare/ring-of-shooting-stars.png
+art/batch/icons/items/magic/rare/ring-of-spell-storing.png
