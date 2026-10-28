@@ -968,3 +968,8 @@ art/batch/icons/items/magic/very-rare/manual-of-bodily-health.png
 art/batch/icons/items/magic/very-rare/manual-of-gainful-exercise.png
 art/batch/icons/items/magic/very-rare/manual-of-golems.png
 art/batch/icons/items/magic/very-rare/manual-of-quickness-of-action.png
+art/batch/icons/items/magic/uncommon/mariners-armor.png
+art/batch/icons/items/magic/uncommon/medallion-of-thoughts.png
+art/batch/icons/items/magic/very-rare/mirror-of-life-trapping.png
+art/batch/icons/items/magic/uncommon/mithral-armor.png
+art/batch/icons/items/magic/common/moon-touched-sword.png
