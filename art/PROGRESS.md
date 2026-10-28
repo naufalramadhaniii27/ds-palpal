@@ -956,3 +956,8 @@ art/batch/icons/items/magic/uncommon/javelin-of-lightning.png
 art/batch/icons/items/magic/uncommon/keoghtoms-ointment.png
 art/batch/icons/items/magic/uncommon/lantern-of-revealing.png
 art/batch/icons/items/magic/common/lock-of-trickery.png
+art/batch/icons/items/magic/legendary/luck-blade.png
+art/batch/icons/items/magic/very-rare/lute-of-thunderous-thumping.png
+art/batch/icons/items/magic/rare/mace-of-disruption.png
+art/batch/icons/items/magic/rare/mace-of-smiting.png
+art/batch/icons/items/magic/rare/mace-of-terror.png
