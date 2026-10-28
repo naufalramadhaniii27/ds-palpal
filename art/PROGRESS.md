@@ -1594,3 +1594,8 @@ art/batch/icons/items/magic/legendary/stonebreakers-breastplate.png
 art/batch/icons/items/magic/very-rare/thunderbuss.png
 art/batch/icons/items/magic/rare/war-horn-of-valor.png
 art/batch/icons/items/magic/rare/wayfarers-boots.png
+art/batch/icons/items/magic/very-rare/wyrmreaver-gauntlets.png
+art/batch/icons/items/magic/artifact/akmon-hammer-of-purphoros.png
+art/batch/icons/items/magic/artifact/dekella-bident-of-thassa.png
+art/batch/icons/items/magic/artifact/ephixis-bow-of-nylea.png
+art/batch/icons/items/magic/rare/flying-chariot.png
