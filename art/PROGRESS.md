@@ -1533,3 +1533,10 @@ art/batch/icons/items/magic/very-rare/amulet-of-betrayal.png
 art/batch/icons/items/magic/very-rare/amulet-of-duplicity.png
 art/batch/icons/items/magic/artifact/amulet-of-the-inferno.png
 art/batch/icons/items/magic/rare/bracers-of-asmodeus.png
+
+## batch-112 v3
+art/batch/icons/items/magic/rare/canian-fork.png
+art/batch/icons/items/magic/uncommon/condensed-order.png
+art/batch/icons/items/magic/rare/gauntlets-of-rage.png
+art/batch/icons/items/magic/rare/infernal-amulet.png
+art/batch/icons/items/magic/very-rare/infernal-plate-armor.png
