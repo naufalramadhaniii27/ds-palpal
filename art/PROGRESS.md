@@ -1677,3 +1677,8 @@ art/batch/icons/items/magic/very-rare/soul-bag.png
 art/batch/icons/items/magic/rare/speaking-stones.png
 art/batch/icons/items/magic/uncommon/spiked-shield.png
 art/batch/icons/items/magic/rare/staff-of-ruling.png
+art/batch/icons/items/magic/artifact/stone-of-creation.png
+art/batch/icons/items/magic/legendary/tablet-of-reawakening.png
+art/batch/icons/items/magic/legendary/talarith.png
+art/batch/icons/items/magic/common/tankard-of-plenty.png
+art/batch/icons/items/magic/very-rare/tashas-creeping-keelboat.png
