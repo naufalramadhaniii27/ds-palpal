@@ -1198,3 +1198,8 @@ art/batch/icons/items/magic/very-rare/golden-idol-of-good-fortunes.png
 art/batch/icons/items/magic/legendary/grave-reaper.png
 art/batch/icons/items/magic/legendary/heliacal-wand-of-celestial-prowess.png
 art/batch/icons/items/magic/common/homeward-compass.png
+art/batch/icons/items/magic/common/lucky-foot.png
+art/batch/icons/items/magic/very-rare/lunar-wand-of-celestial-prowess.png
+art/batch/icons/items/magic/rare/mage-breaker.png
+art/batch/icons/items/magic/rare/mages-manacle.png
+art/batch/icons/items/magic/uncommon/magewrights-gloves.png
