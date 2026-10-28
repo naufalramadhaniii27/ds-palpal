@@ -10,7 +10,7 @@ const b64u = s => Buffer.from(s).toString("base64url");
 async function tok(claims, kid="k1", key=kp.privateKey){ const h=b64u(JSON.stringify({alg:"RS256",kid})), p=b64u(JSON.stringify(claims));
   const sig=await crypto.subtle.sign("RSASSA-PKCS1-v1_5",key,new TextEncoder().encode(h+"."+p)); return h+"."+p+"."+Buffer.from(sig).toString("base64url"); }
 // fake D1 that answers enough for /api/me
-const DB={ prepare(sql){ const st={ bind(){return st}, async first(){ if(/FROM users/.test(sql)) return {id:"u1",name:"x"}; if(/FROM state/.test(sql)) return {v:new Date().toISOString().slice(0,10)}; if(/COUNT/.test(sql)) return {n:0,bytes:0}; return null; }, async run(){return {meta:{changes:1}}}, async all(){return {results:[]}} }; return st; }, async batch(){ return []; } };
+const DB={ prepare(sql){ const st={ bind(){return st}, async first(){ if(/FROM users/.test(sql)) return {id:"u1",name:"x"}; if(/FROM state/.test(sql)) return {v:new Date().toISOString().slice(0,10)}; if(/COUNT|COALESCE/.test(sql)) return {n:0,bytes:0,following:0,followers:0}; return null; }, async run(){return {meta:{changes:1}}}, async all(){return {results:[]}} }; return st; }, async batch(){ return []; } };
 const env={DB,ACCESS_TEAM:team,ACCESS_AUD:aud};
 const now=Math.floor(Date.now()/1000), good={aud:[aud],email:"P@x.com",iss:"https://"+team+".cloudflareaccess.com",exp:now+600};
 async function call(t){ const h=t?{"cf-access-jwt-assertion":t}:{}; const r=await onRequest({request:new Request("https://h/api/me",{headers:h}),env}); return r.status; }

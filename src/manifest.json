@@ -51,7 +51,8 @@
     "css/31-home-hero.css",
     "css/32-class-art.css",
     "css/33-store-wait.css",
-    "css/34-cloud-sync.css"
+    "css/34-cloud-sync.css",
+    "css/35-friends.css"
    ]
   },
   {
@@ -156,6 +157,7 @@
     "app/41-ui-edit-mode.js",
     "app/42-logic-pwa-qr-icons-wallet.js",
     "app/43-logic-cloud-sync.js",
+    "app/44-ui-friends.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]

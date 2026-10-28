@@ -270,6 +270,21 @@ Tes terkait: `tests/class_art.py`, `portrait_pick.py`, `builder_art.py`, `vignet
 Tes: `tests/cloud_sync.py` (butuh `wrangler pages dev --port 8788 --binding DEV_USER=a@test.dev --binding ACCESS_TEAM=` di root repo), `node tests/api_jwt.mjs`, `tests/live_check.py` (health dan cek token di situs live).
 `DEV_USER` hanya untuk tes lokal: dipakai bila `ACCESS_TEAM` kosong (`--binding ACCESS_TEAM=`). Jangan diset di Cloudflare. `ACCESS_AUD` kosong berarti semua aplikasi Access di tim diterima. `/api/health` menampilkan AUD dari token supaya bisa diisi.
 
+## Friends dan potret cloud (T9, tahap 3 sisa, 3b, 4)
+
+| Tempat | Isi |
+|---|---|
+| API skema 2 | Kolom baru di users (username, code, bio, avatar, prefs, prefs_t, seen, active) dan chars (vis, copy_ok, pin, sum, from_user). Tabel follows, blocks, shares, copy_requests, portraits. Dipasang otomatis sekali (`state.schema = 2`), data lama tetap |
+| Endpoint baru | `GET/PUT me`, `POST seen`, `GET/PUT prefs`, `GET friends`, `GET users/:id-username-kode`, `POST/DELETE follow/:x`, `POST/DELETE block/:x`, `GET/PUT chars/:id/meta`, `GET shared`, `GET feed`, `GET view/:owner/:id`, `PUT pic/:id`, `GET pic/:owner/:id`, `POST copy/:owner/:id`, `POST requests/:id/approve|decline`, `DELETE requests/:id`, `GET admin` |
+| Aturan | Lihat, share, dan minta salinan hanya untuk teman mutual yang tidak saling blokir. Unfollow atau blokir mencabut share dan permintaan terbuka di antara keduanya. Salinan dibuat dengan SQL INSERT ... SELECT. Batas harian: 50 follow, 20 share, 10 permintaan salinan |
+| Admin | Orang pertama yang login (users.created paling awal). Email tidak pernah dikirim API |
+| `src/app/43-logic-cloud-sync.js` | Tambahan: potret upload terpisah (teks karakter memuat `cloud:<hash>`), ringkasan `x-sum` untuk grid, pengaturan `PF_KEYS` ikut sinkron, banner risiko (belum ter-backup lebih dari 3 hari, ruang cloud 90 persen) |
+| `src/app/44-ui-friends.js` | Tombol Friends di Home (titik kecil untuk follower, permintaan, share baru), dialog dengan tab Profile, Friends, Sharing, Requests, Shared, Feed, Admin. View only: `FROZEN="view"`, data teman dimuat ke memori, Close memuat ulang |
+| `src/css/35-friends.css` | Gaya dialog Friends, grid kartu, bar view only |
+| `31-ui-tour-and-focus.js` | `#syBan` dan `#frBar` tidak dibuat inert saat Home terbuka |
+
+Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-user` yang hanya aktif bila `ACCESS_TEAM` kosong), `tests/friends_ui.py` (29), `tests/sync_banners.py` (9), `tests/cloud_sync.py` (31, termasuk potret dan pengaturan).
+
 ## Riwayat
 
 - bf7444a: `src/` pertama, dipecah otomatis per 25 KB di baris banner, nama dari teks banner.

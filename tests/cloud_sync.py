@@ -117,6 +117,22 @@ async def main():
             if not (dl and all(c["deleted"] for c in dl)): print("DBG B", await pb.evaluate("()=>JSON.stringify({log:__sync.log,sy:__store.getItem('cs-sync-v1'),loc:__syncLocal()})"))
             await sync(pa)
             check(vp + " A drops the deleted copy", not any("(restored)" in n for n in await names(pa)), await names(pa))
+            # stage 4: an uploaded portrait travels on its own, the character text holds "cloud:<hash>"
+            pic = "data:image/jpeg;base64," + "Q" * 3000
+            await pa.evaluate("p=>{var o=JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1'));o.portrait=p;window.__lsSave('yudhi-kelapa-sheet-v1',o);location.reload()}", pic)
+            await ready(pa); await sync(pa)
+            yid = [c["id"] for c in api("chars")["chars"] if c["name"] == "Yudhi Kelapa" and not c["deleted"]][0]
+            txt = api("chars/" + yid)["data"]; me = api("me")
+            pp = api("pic/%s/%s" % (me["id"], yid))
+            check(vp + " portrait stored on its own, text holds a reference", "cloud:" in txt and "QQQQ" not in txt and pp.get("data") == pic, txt[:120])
+            await pb.evaluate("()=>__syncRun('show')"); await pb.wait_for_timeout(1500); await ready(pb)
+            got = await pb.evaluate("()=>JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1')).portrait")
+            check(vp + " B gets the picture back in the sheet", got == pic, (got or "")[:60])
+            # settings follow the person
+            await pa.evaluate("()=>{__store.setItem('mi-snd','off')}"); await sync(pa)
+            await pb.reload(); await ready(pb)
+            check(vp + " setting from A arrives on B", await pb.evaluate("()=>__store.getItem('mi-snd')") == "off")
+            await pa.evaluate("()=>{__store.setItem('mi-snd','on')}"); await sync(pa)
             # offline: state only, no popup
             await B.set_offline(True); await pb.evaluate("()=>window.dispatchEvent(new Event('offline'))"); await pb.wait_for_timeout(300)
             st = await pb.evaluate("()=>[__sync.st, document.querySelector('.sy-b').getAttribute('aria-label')]")

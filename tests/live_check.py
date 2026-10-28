@@ -14,6 +14,9 @@ OUT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else "live-out"
 os.makedirs(OUT, exist_ok=True)
 HERE = os.path.dirname(os.path.abspath(__file__))
 YUDHI = open(os.path.join(HERE, "fixtures", "yudhi-v3.json"), encoding="utf-8").read()
+import re
+# the version this commit releases, read from the built page in the repo
+LABEL = re.search(r'APP_LABEL="([^"]+)"', open(os.path.join(os.path.dirname(HERE), "index.html"), encoding="utf-8").read()).group(1)
 HDR = {}
 if os.environ.get("CF_ACCESS_CLIENT_ID"):
     HDR = {"CF-Access-Client-Id": os.environ["CF_ACCESS_CLIENT_ID"], "CF-Access-Client-Secret": os.environ.get("CF_ACCESS_CLIENT_SECRET", "")}
@@ -77,7 +80,7 @@ async def main():
     INDEX = body
     hl = {k.lower(): v for k, v in h.items()}
     check("home page 200", st == 200, st)
-    check("index has version 0.0.1 and the store", b'APP_LABEL="0.0.1"' in body and b"__store" in body)
+    check("index has version %s and the store" % LABEL, ('APP_LABEL="%s"' % LABEL).encode() in body and b"__store" in body)
     check("no sample character name in index", b"Yudhi" not in body)
     check("index Cache-Control no-cache", "no-cache" in hl.get("cache-control", ""), hl.get("cache-control"))
     st, h, body = get("/sw.js"); hl = {k.lower(): v for k, v in h.items()}
@@ -111,7 +114,7 @@ async def main():
             pg = await ctx.new_page(); pg.on("pageerror", lambda e, vp=vp: ERRS.append(vp + ": " + str(e)))
             await pg.goto(BASE + "/"); await pg.wait_for_function("()=>window.__store&&__store.mode()", timeout=30000); await pg.wait_for_timeout(2500)
             txt = await pg.evaluate("()=>document.body.innerText")
-            check(vp + " first visit: empty Home, Version 0.0.1", ("Characters: 0" in txt or "No characters yet" in txt) and "Version 0.0.1" in txt)
+            check(vp + " first visit: empty Home, Version " + LABEL, ("Characters: 0" in txt or "No characters yet" in txt) and ("Version " + LABEL) in txt)
             check(vp + " store on IndexedDB", await pg.evaluate("()=>__store.mode()") == "idb")
             await pg.screenshot(path=os.path.join(OUT, vp + "-home.png"))
             # old data in localStorage moves over
