@@ -978,3 +978,8 @@ art/batch/icons/items/magic/common/mystery-key.png
 art/batch/icons/items/magic/uncommon/natures-mantle.png
 art/batch/icons/items/magic/uncommon/necklace-of-adaptation.png
 art/batch/icons/items/magic/rare/necklace-of-fireballs.png
+art/batch/icons/items/magic/rare/necklace-of-prayer-beads.png
+art/batch/icons/items/magic/uncommon/needle.png
+art/batch/icons/items/magic/very-rare/nine-lives-stealer.png
+art/batch/icons/items/magic/very-rare/nolzurs-marvelous-pigments.png
+art/batch/icons/items/magic/very-rare/oathbow.png
