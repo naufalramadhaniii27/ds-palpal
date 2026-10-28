@@ -1435,3 +1435,8 @@ art/batch/icons/items/magic/rare/horn-of-valhalla-brass.png
 art/batch/icons/items/magic/very-rare/horn-of-valhalla-bronze.png
 art/batch/icons/items/magic/legendary/horn-of-valhalla-iron.png
 art/batch/icons/items/magic/rare/horn-of-valhalla-silver.png
+art/batch/icons/items/magic/very-rare/instrument-of-the-bards-anstruth-harp.png
+art/batch/icons/items/magic/rare/instrument-of-the-bards-canaith-mandolin.png
+art/batch/icons/items/magic/rare/instrument-of-the-bards-cli-lyre.png
+art/batch/icons/items/magic/uncommon/instrument-of-the-bards-doss-lute.png
+art/batch/icons/items/magic/uncommon/instrument-of-the-bards-fochlucan-bandore.png
