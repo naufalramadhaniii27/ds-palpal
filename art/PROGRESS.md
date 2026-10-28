@@ -1347,3 +1347,8 @@ art/batch/icons/items/magic/very-rare/deck-of-wild-cards.png
 art/batch/icons/items/magic/uncommon/deck-of-wonder.png
 art/batch/icons/items/magic/legendary/donjon-card.png
 art/batch/icons/items/magic/rare/donjons-sundering-sphere.png
+art/batch/icons/items/magic/legendary/euryale-card.png
+art/batch/icons/items/magic/legendary/euryales-aegis.png
+art/batch/icons/items/magic/uncommon/fabulist-gem.png
+art/batch/icons/items/magic/very-rare/fate-cutter-shears.png
+art/batch/icons/items/magic/legendary/fates-card.png
