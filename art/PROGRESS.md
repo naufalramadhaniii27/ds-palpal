@@ -1496,3 +1496,8 @@ art/batch/icons/items/magic/legendary/ring-of-earth-elemental-command.png
 art/batch/icons/items/magic/legendary/ring-of-fire-elemental-command.png
 art/batch/icons/items/magic/rare/ring-of-fire-resistance.png
 art/batch/icons/items/magic/rare/ring-of-force-resistance.png
+art/batch/icons/items/magic/rare/ring-of-lightning-resistance.png
+art/batch/icons/items/magic/rare/ring-of-necrotic-resistance.png
+art/batch/icons/items/magic/rare/ring-of-poison-resistance.png
+art/batch/icons/items/magic/rare/ring-of-psychic-resistance.png
+art/batch/icons/items/magic/rare/ring-of-radiant-resistance.png
