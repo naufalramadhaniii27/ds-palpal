@@ -1638,3 +1638,8 @@ art/batch/icons/items/magic/very-rare/chime-of-exile.png
 art/batch/icons/items/magic/artifact/chip-of-creation.png
 art/batch/icons/items/magic/very-rare/constantoris-portrait.png
 art/batch/icons/items/magic/artifact/crown-of-lies.png
+art/batch/icons/items/magic/artifact/daouds-wondrous-lanthorn.png
+art/batch/icons/items/magic/artifact/draakhorn.png
+art/batch/icons/items/magic/rare/dragontooth-dagger.png
+art/batch/icons/items/magic/varies/gnomengarde-grenade.png
+art/batch/icons/items/magic/legendary/green-dragon-mask.png
