@@ -1298,3 +1298,8 @@ art/batch/icons/items/magic/rare/planecallers-codex.png
 art/batch/icons/items/magic/very-rare/poison-absorbing-tattoo.png
 art/batch/icons/items/magic/rare/protective-verses.png
 art/batch/icons/items/magic/very-rare/psychic-absorbing-tattoo.png
+art/batch/icons/items/magic/very-rare/radiant-absorbing-tattoo.png
+art/batch/icons/items/magic/rare/revelers-concertina.png
+art/batch/icons/items/magic/rare/shadowfell-brand-tattoo.png
+art/batch/icons/items/magic/rare/shadowfell-shard.png
+art/batch/icons/items/magic/common/spellwrought-tattoo.png
