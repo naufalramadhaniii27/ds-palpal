@@ -1330,3 +1330,8 @@ art/batch/icons/items/magic/very-rare/wakened-dragon-touched-focus.png
 art/batch/icons/items/magic/very-rare/wakened-scaled-ornament.png
 art/batch/icons/items/magic/legendary/balance-card.png
 art/batch/icons/items/magic/very-rare/baleful-talon.png
+art/batch/icons/items/magic/uncommon/blasted-goggles.png
+art/batch/icons/items/magic/uncommon/bloodrage-greataxe.png
+art/batch/icons/items/magic/uncommon/boomerang-shield.png
+art/batch/icons/items/magic/rare/breastplate-of-balance.png
+art/batch/icons/items/magic/uncommon/card-sharps-deck.png
