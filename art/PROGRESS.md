@@ -1039,3 +1039,8 @@ art/batch/icons/items/magic/rare/ring-of-animal-influence.png
 art/batch/icons/items/magic/legendary/ring-of-djinni-summoning.png
 art/batch/icons/items/magic/legendary/ring-of-elemental-command.png
 art/batch/icons/items/magic/rare/ring-of-evasion.png
+art/batch/icons/items/magic/rare/ring-of-feather-falling.png
+art/batch/icons/items/magic/rare/ring-of-free-action.png
+art/batch/icons/items/magic/legendary/ring-of-invisibility.png
+art/batch/icons/items/magic/uncommon/ring-of-jumping.png
+art/batch/icons/items/magic/uncommon/ring-of-mind-shielding.png
