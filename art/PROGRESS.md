@@ -1721,3 +1721,8 @@ art/batch/icons/items/magic/artifact/blade-of-broken-mirrors.png
 art/batch/icons/items/magic/very-rare/bloodaxe.png
 art/batch/icons/items/magic/common/breathing-bubble.png
 art/batch/icons/items/magic/uncommon/brooch-of-living-essence.png
+art/batch/icons/items/magic/rare/butchers-bib.png
+art/batch/icons/items/magic/common/coin-of-delving.png
+art/batch/icons/items/magic/legendary/danoths-visor.png
+art/batch/icons/items/magic/very-rare/dispelling-stone.png
+art/batch/icons/items/magic/very-rare/duskcrusher.png
