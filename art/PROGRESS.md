@@ -1232,3 +1232,8 @@ art/batch/icons/items/magic/common/sweeping-broom.png
 art/batch/icons/items/magic/rare/tarnished-idol-of-good-fortunes.png
 art/batch/icons/items/magic/rare/ten-keyholes-dagger.png
 art/batch/icons/items/magic/uncommon/thespians-playbill.png
+art/batch/icons/items/magic/uncommon/thiefs-thimble.png
+art/batch/icons/items/magic/uncommon/three-keyholes-dagger.png
+art/batch/icons/items/magic/legendary/tranquil-rod-of-the-honed-mind.png
+art/batch/icons/items/magic/legendary/travelers-pearl.png
+art/batch/icons/items/magic/artifact/universal-pantograph.png
