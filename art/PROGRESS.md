@@ -1342,3 +1342,8 @@ art/batch/icons/items/magic/very-rare/crown-of-whirling-comets.png
 art/batch/icons/items/magic/very-rare/deck-of-dimensions.png
 art/batch/icons/items/magic/legendary/deck-of-many-more-things.png
 art/batch/icons/items/magic/uncommon/deck-of-miscellany.png
+art/batch/icons/items/magic/rare/deck-of-oracles.png
+art/batch/icons/items/magic/very-rare/deck-of-wild-cards.png
+art/batch/icons/items/magic/uncommon/deck-of-wonder.png
+art/batch/icons/items/magic/legendary/donjon-card.png
+art/batch/icons/items/magic/rare/donjons-sundering-sphere.png
