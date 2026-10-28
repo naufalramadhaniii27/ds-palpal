@@ -1611,3 +1611,8 @@ art/batch/icons/items/magic/very-rare/sling-bullets-of-althemone.png
 art/batch/icons/items/magic/rare/two-birds-sling.png
 art/batch/icons/items/magic/common/bottle-of-boundless-coffee.png
 art/batch/icons/items/magic/common/cuddly-strixhaven-mascot.png
+art/batch/icons/items/magic/uncommon/lorehold-primer.png
+art/batch/icons/items/magic/common/masque-charm.png
+art/batch/icons/items/magic/legendary/murgaxors-orb.png
+art/batch/icons/items/magic/uncommon/prismari-primer.png
+art/batch/icons/items/magic/uncommon/quandrix-primer.png
