@@ -1203,3 +1203,10 @@ art/batch/icons/items/magic/very-rare/lunar-wand-of-celestial-prowess.png
 art/batch/icons/items/magic/rare/mage-breaker.png
 art/batch/icons/items/magic/rare/mages-manacle.png
 art/batch/icons/items/magic/uncommon/magewrights-gloves.png
+
+## batch-097 v3
+art/batch/icons/items/magic/very-rare/many-keyholes-dagger.png
+art/batch/icons/items/magic/uncommon/martialists-quarterstaff.png
+art/batch/icons/items/magic/rare/namers-needle.png
+art/batch/icons/items/magic/uncommon/necklace-of-the-beastly-familiar.png
+art/batch/icons/items/magic/uncommon/ominous-staff-of-skulls.png
