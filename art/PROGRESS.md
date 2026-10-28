@@ -1555,3 +1555,10 @@ art/batch/icons/items/magic/artifact/wrought-iron-tower.png
 art/batch/icons/items/magic/legendary/azuredge.png
 art/batch/icons/items/magic/rare/badge-of-the-watch.png
 art/batch/icons/items/magic/legendary/blackstaff.png
+
+## batch-113 v3
+art/batch/icons/items/magic/rare/bracer-of-flying-daggers.png
+art/batch/icons/items/magic/uncommon/charred-wand-of-magic-missiles.png
+art/batch/icons/items/magic/legendary/dragonstaff-of-ahghairon.png
+art/batch/icons/items/magic/rare/feather-of-diatryma-summoning.png
+art/batch/icons/items/magic/rare/knaves-eye-patch.png
