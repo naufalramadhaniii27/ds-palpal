@@ -1577,3 +1577,10 @@ art/batch/icons/items/magic/legendary/harp-of-gilded-plenty.png
 art/batch/icons/items/magic/artifact/helm-of-perfect-potential.png
 art/batch/icons/items/magic/rare/lash-of-immolation.png
 art/batch/icons/items/magic/legendary/longbow-of-the-healing-hearth.png
+
+## batch-114 v3
+art/batch/icons/items/magic/very-rare/lucent-destroyer.png
+art/batch/icons/items/magic/very-rare/mistral-mantle.png
+art/batch/icons/items/magic/very-rare/nimbus-coronet.png
+art/batch/icons/items/magic/legendary/orb-of-skoraeus.png
+art/batch/icons/items/magic/rare/prehistoric-figurine-of-wondrous-power-kyanite-pteranodon.png
