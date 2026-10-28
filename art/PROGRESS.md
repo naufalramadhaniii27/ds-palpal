@@ -1457,3 +1457,8 @@ art/batch/icons/items/magic/rare/ioun-stone-protection.png
 art/batch/icons/items/magic/legendary/ioun-stone-regeneration.png
 art/batch/icons/items/magic/rare/ioun-stone-reserve.png
 art/batch/icons/items/magic/very-rare/ioun-stone-strength.png
+art/batch/icons/items/magic/rare/ioun-stone-sustenance.png
+art/batch/icons/items/magic/very-rare/manual-of-clay-golems.png
+art/batch/icons/items/magic/very-rare/manual-of-flesh-golems.png
+art/batch/icons/items/magic/very-rare/manual-of-iron-golems.png
+art/batch/icons/items/magic/very-rare/manual-of-stone-golems.png
