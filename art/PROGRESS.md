@@ -1484,3 +1484,8 @@ art/batch/icons/items/magic/rare/quaals-feather-token-anchor.png
 art/batch/icons/items/magic/rare/quaals-feather-token-bird.png
 art/batch/icons/items/magic/rare/quaals-feather-token-fan.png
 art/batch/icons/items/magic/rare/quaals-feather-token-swan-boat.png
+art/batch/icons/items/magic/rare/quaals-feather-token-tree.png
+art/batch/icons/items/magic/rare/quaals-feather-token-whip.png
+art/batch/icons/items/magic/very-rare/red-dragon-scale-mail.png
+art/batch/icons/items/magic/rare/ring-of-acid-resistance.png
+art/batch/icons/items/magic/legendary/ring-of-air-elemental-command.png
