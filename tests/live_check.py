@@ -38,8 +38,23 @@ def get(path):
         return e.code, dict(e.headers), e.read()
 
 
+def aud_note():
+    # without the token Access answers 401/302 and names the application's Audience tag. Printed so wrangler.toml can be checked against it
+    rq = urllib.request.Request(BASE + "/api/health", headers={"User-Agent": "Mozilla/5.0 (live-check)"})
+    class NoRedir(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a, **k): return None
+    try:
+        r = urllib.request.build_opener(NoRedir).open(rq, timeout=30); h = dict(r.headers)
+    except urllib.error.HTTPError as e:
+        h = dict(e.headers)
+    aud = {k.lower(): v for k, v in h.items()}.get("cf-access-aud", "")
+    if GH and aud: print("::notice::Access AUD tag of this site: %s" % aud)
+
+
 def wait_deploy():
     want = os.environ.get("WAIT_CACHE", "")
+    if os.environ.get("GITHUB_REF_NAME", "main") != "main":
+        want = ""  # run by hand from another branch: test what is live now
     if not want:
         return
     t0 = time.time()
@@ -63,6 +78,7 @@ SW_READY = "()=>navigator.serviceWorker?Promise.race([navigator.serviceWorker.re
 
 
 async def main():
+    aud_note()
     wait_deploy()
     st, h, body = get("/")
     COOKIE = access_cookie(h) if HDR else ""
