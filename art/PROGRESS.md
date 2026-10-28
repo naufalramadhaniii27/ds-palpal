@@ -1775,3 +1775,10 @@ art/batch/icons/items/magic/common/common-glamerweave.png
 art/batch/icons/items/magic/rare/docent.png
 art/batch/icons/items/magic/very-rare/dyrrns-tentacle-whip.png
 art/batch/icons/items/magic/uncommon/earworm.png
+
+## batch-123 v3
+art/batch/icons/items/magic/common/everbright-lantern.png
+art/batch/icons/items/magic/common/feather-token.png
+art/batch/icons/items/magic/uncommon/finders-goggles.png
+art/batch/icons/items/magic/common/keycharm.png
+art/batch/icons/items/magic/very-rare/kyrzins-ooze.png
