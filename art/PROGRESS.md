@@ -1303,3 +1303,8 @@ art/batch/icons/items/magic/rare/revelers-concertina.png
 art/batch/icons/items/magic/rare/shadowfell-brand-tattoo.png
 art/batch/icons/items/magic/rare/shadowfell-shard.png
 art/batch/icons/items/magic/common/spellwrought-tattoo.png
+art/batch/icons/items/magic/artifact/teeth-of-dahlver-nar.png
+art/batch/icons/items/magic/very-rare/thunder-absorbing-tattoo.png
+art/batch/icons/items/magic/very-rare/amethyst-lodestone.png
+art/batch/icons/items/magic/legendary/ascendant-dragon-vessel.png
+art/batch/icons/items/magic/legendary/ascendant-dragon-touched-focus.png
