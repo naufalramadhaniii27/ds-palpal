@@ -1528,3 +1528,8 @@ art/batch/icons/items/magic/rare/shield-guardian-amulet.png
 art/batch/icons/items/magic/common/thermal-cube.png
 art/batch/icons/items/magic/legendary/ythryn-mythallar.png
 art/batch/icons/items/magic/artifact/accounting-and-valuation-of-all-things.png
+art/batch/icons/items/magic/rare/amulet-of-appearance.png
+art/batch/icons/items/magic/very-rare/amulet-of-betrayal.png
+art/batch/icons/items/magic/very-rare/amulet-of-duplicity.png
+art/batch/icons/items/magic/artifact/amulet-of-the-inferno.png
+art/batch/icons/items/magic/rare/bracers-of-asmodeus.png
