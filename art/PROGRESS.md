@@ -1005,3 +1005,10 @@ art/batch/icons/items/magic/common/pole-of-angling.png
 art/batch/icons/items/magic/common/pole-of-collapsing.png
 art/batch/icons/items/magic/rare/portable-hole.png
 art/batch/icons/items/magic/common/pot-of-awakening.png
+
+## batch-088 v3
+art/batch/icons/items/magic/uncommon/potion-of-animal-friendship.png
+art/batch/icons/items/magic/rare/potion-of-clairvoyance.png
+art/batch/icons/items/magic/common/potion-of-climbing.png
+art/batch/icons/items/magic/common/potion-of-comprehension.png
+art/batch/icons/items/magic/rare/potion-of-diminution.png
