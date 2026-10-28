@@ -1364,3 +1364,8 @@ art/batch/icons/items/magic/legendary/jester-card.png
 art/batch/icons/items/magic/legendary/jesters-mask.png
 art/batch/icons/items/magic/legendary/key-card.png
 art/batch/icons/items/magic/legendary/knight-card.png
+art/batch/icons/items/magic/legendary/moon-card.png
+art/batch/icons/items/magic/uncommon/plate-of-knights-fellowship.png
+art/batch/icons/items/magic/legendary/puzzle-card.png
+art/batch/icons/items/magic/uncommon/ring-of-puzzlers-wit.png
+art/batch/icons/items/magic/very-rare/rod-of-hellish-flames.png
