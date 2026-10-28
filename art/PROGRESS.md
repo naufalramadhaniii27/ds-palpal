@@ -1501,3 +1501,8 @@ art/batch/icons/items/magic/rare/ring-of-necrotic-resistance.png
 art/batch/icons/items/magic/rare/ring-of-poison-resistance.png
 art/batch/icons/items/magic/rare/ring-of-psychic-resistance.png
 art/batch/icons/items/magic/rare/ring-of-radiant-resistance.png
+art/batch/icons/items/magic/rare/ring-of-thunder-resistance.png
+art/batch/icons/items/magic/legendary/ring-of-water-elemental-command.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-aberrations.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-beasts.png
+art/batch/icons/items/magic/rare/scroll-of-protection-from-celestials.png
