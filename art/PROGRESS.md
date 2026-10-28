@@ -951,3 +951,8 @@ art/batch/icons/items/magic/common/instrument-of-scribing.png
 art/batch/icons/items/magic/varies/instrument-of-the-bards.png
 art/batch/icons/items/magic/varies/ioun-stone.png
 art/batch/icons/items/magic/rare/iron-bands-of-bilarro.png
+art/batch/icons/items/magic/legendary/iron-flask.png
+art/batch/icons/items/magic/uncommon/javelin-of-lightning.png
+art/batch/icons/items/magic/uncommon/keoghtoms-ointment.png
+art/batch/icons/items/magic/uncommon/lantern-of-revealing.png
+art/batch/icons/items/magic/common/lock-of-trickery.png
