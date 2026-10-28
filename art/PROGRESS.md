@@ -1621,3 +1621,10 @@ art/batch/icons/items/magic/common/strixhaven-pennant.png
 art/batch/icons/items/magic/uncommon/witherbloom-primer.png
 art/batch/icons/items/magic/uncommon/cracked-driftglobe.png
 art/batch/icons/items/magic/legendary/gloves-of-soul-catching.png
+
+## batch-116 v3
+art/batch/icons/items/magic/legendary/nether-scroll-of-azumar.png
+art/batch/icons/items/magic/uncommon/serpent-scale-armor.png
+art/batch/icons/items/magic/rare/serpents-fang.png
+art/batch/icons/items/magic/very-rare/staff-of-fate.png
+art/batch/icons/items/magic/very-rare/watchful-helm.png
