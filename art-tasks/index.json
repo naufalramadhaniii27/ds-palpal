@@ -18808,5 +18808,415 @@
 "id": "28-0035",
 "tag": "EMBLEM",
 "batch": "batch-235"
+},
+"art/batch/comic/learn/intro/p1.png": {
+"id": "28-0036",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/intro/p2.png": {
+"id": "28-0037",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/intro/p3.png": {
+"id": "28-0038",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/intro/p4.png": {
+"id": "28-0039",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p1.png": {
+"id": "28-0040",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p2.png": {
+"id": "28-0041",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p3.png": {
+"id": "28-0042",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p4.png": {
+"id": "28-0043",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p5.png": {
+"id": "28-0044",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/what-is-dnd/p6.png": {
+"id": "28-0045",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p1.png": {
+"id": "28-0046",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p2.png": {
+"id": "28-0047",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p3.png": {
+"id": "28-0048",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p4.png": {
+"id": "28-0049",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p5.png": {
+"id": "28-0050",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/d20-test/p6.png": {
+"id": "28-0051",
+"tag": "PANEL",
+"batch": "batch-236"
+},
+"art/batch/comic/learn/advantage/p1.png": {
+"id": "28-0052",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/advantage/p2.png": {
+"id": "28-0053",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/advantage/p3.png": {
+"id": "28-0054",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/advantage/p4.png": {
+"id": "28-0055",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/advantage/p5.png": {
+"id": "28-0056",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/advantage/p6.png": {
+"id": "28-0057",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p1.png": {
+"id": "28-0058",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p2.png": {
+"id": "28-0059",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p3.png": {
+"id": "28-0060",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p4.png": {
+"id": "28-0061",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p5.png": {
+"id": "28-0062",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/abilities-skills/p6.png": {
+"id": "28-0063",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p1.png": {
+"id": "28-0064",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p2.png": {
+"id": "28-0065",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p3.png": {
+"id": "28-0066",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p4.png": {
+"id": "28-0067",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p5.png": {
+"id": "28-0068",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/combat-turn/p6.png": {
+"id": "28-0069",
+"tag": "PANEL",
+"batch": "batch-237"
+},
+"art/batch/comic/learn/hit-points-rests/p1.png": {
+"id": "28-0070",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/hit-points-rests/p2.png": {
+"id": "28-0071",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/hit-points-rests/p3.png": {
+"id": "28-0072",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/hit-points-rests/p4.png": {
+"id": "28-0073",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/hit-points-rests/p5.png": {
+"id": "28-0074",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/hit-points-rests/p6.png": {
+"id": "28-0075",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p1.png": {
+"id": "28-0076",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p2.png": {
+"id": "28-0077",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p3.png": {
+"id": "28-0078",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p4.png": {
+"id": "28-0079",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p5.png": {
+"id": "28-0080",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/conditions/p6.png": {
+"id": "28-0081",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p1.png": {
+"id": "28-0082",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p2.png": {
+"id": "28-0083",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p3.png": {
+"id": "28-0084",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p4.png": {
+"id": "28-0085",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p5.png": {
+"id": "28-0086",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/spells/p6.png": {
+"id": "28-0087",
+"tag": "PANEL",
+"batch": "batch-238"
+},
+"art/batch/comic/learn/explore-talk/p1.png": {
+"id": "28-0088",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/explore-talk/p2.png": {
+"id": "28-0089",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/explore-talk/p3.png": {
+"id": "28-0090",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/explore-talk/p4.png": {
+"id": "28-0091",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/explore-talk/p5.png": {
+"id": "28-0092",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/explore-talk/p6.png": {
+"id": "28-0093",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-style/p1.png": {
+"id": "28-0094",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-style/p2.png": {
+"id": "28-0095",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-style/p3.png": {
+"id": "28-0096",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-style/p4.png": {
+"id": "28-0097",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-origin/p1.png": {
+"id": "28-0098",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-origin/p2.png": {
+"id": "28-0099",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-origin/p3.png": {
+"id": "28-0100",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-origin/p4.png": {
+"id": "28-0101",
+"tag": "PANEL",
+"batch": "batch-239"
+},
+"art/batch/comic/learn/build-abilities/p1.png": {
+"id": "28-0102",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-abilities/p2.png": {
+"id": "28-0103",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-abilities/p3.png": {
+"id": "28-0104",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-abilities/p4.png": {
+"id": "28-0105",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-equipment/p1.png": {
+"id": "28-0106",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-equipment/p2.png": {
+"id": "28-0107",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-equipment/p3.png": {
+"id": "28-0108",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-equipment/p4.png": {
+"id": "28-0109",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-spells/p1.png": {
+"id": "28-0110",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-spells/p2.png": {
+"id": "28-0111",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-spells/p3.png": {
+"id": "28-0112",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-spells/p4.png": {
+"id": "28-0113",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-review/p1.png": {
+"id": "28-0114",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-review/p2.png": {
+"id": "28-0115",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-review/p3.png": {
+"id": "28-0116",
+"tag": "PANEL",
+"batch": "batch-240"
+},
+"art/batch/comic/learn/build-review/p4.png": {
+"id": "28-0117",
+"tag": "PANEL",
+"batch": "batch-240"
 }
 }
