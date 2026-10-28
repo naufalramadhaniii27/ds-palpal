@@ -85,6 +85,9 @@ async def main():
         b = await pw.chromium.launch()
         for vp, w, hh in (("390x844", 390, 844), ("1250x850", 1250, 850)):
             ctx = await b.new_context(viewport={"width": w, "height": hh}, extra_http_headers=HDR)
+            if HDR:
+                # the service worker script is fetched without extra_http_headers. A route adds the token to every request, that one included
+                await ctx.route("**/*", lambda r: r.continue_(headers=dict(r.request.headers, **HDR)))
             if COOKIE:
                 await ctx.add_cookies([{"name": "CF_Authorization", "value": COOKIE, "url": BASE + "/"}])
             pg = await ctx.new_page(); pg.on("pageerror", lambda e, vp=vp: ERRS.append(vp + ": " + str(e)))
