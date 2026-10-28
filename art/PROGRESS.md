@@ -1694,3 +1694,8 @@ art/batch/icons/items/magic/rare/eagle-whistle.png
 art/batch/icons/items/magic/rare/hell-hound-cloak.png
 art/batch/icons/items/magic/very-rare/javelin-of-backbiting.png
 art/batch/icons/items/magic/rare/loadstone.png
+art/batch/icons/items/magic/rare/mirror-of-the-past.png
+art/batch/icons/items/magic/uncommon/night-caller.png
+art/batch/icons/items/magic/rare/potion-of-mind-control.png
+art/batch/icons/items/magic/rare/robe-of-summer.png
+art/batch/icons/items/magic/uncommon/shatterspike.png
