@@ -43,6 +43,7 @@ function vbSync(){ if(PIP) try{ pipSync(); }catch(er){} ohSync(); var vb=documen
   var cb=$("#vbCond"), k0=S.exh?"exhaustion":(activeConds()[0]||{}).k; cb.classList.toggle("on",L.length>0);
   if(hasI) $("#vbCondI").innerHTML=L.length?(ico("cond-"+String(k0).toLowerCase())||ico("cond-exhaustion")):ico("ui-plus");
   $("#vbCondT").textContent=L.length?L[0]+(L.length>1?" +"+(L.length-1):""):"Conditions";
+  cb.classList.toggle("vb-none",!L.length);
   cb.setAttribute("aria-label",L.length?"Conditions: "+L.join(", ")+". Change conditions":"No conditions. Add a condition");
   var o=concOf(), cc=$("#vbConc"); cc.hidden=!o; if(o){ var i=spIx(o.n); if(i>=0) cc.setAttribute("data-info","sp:"+i); else cc.removeAttribute("data-info"); cc.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); cc.title="Concentrating on "+o.n; }
   $("#vbInsp").setAttribute("aria-pressed",S.insp?"true":"false"); }catch(er){}

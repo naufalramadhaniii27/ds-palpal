@@ -46,3 +46,14 @@
 .fr-dlg .sy-row small{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fr-dlg .sy-h{display:block;margin:10px 0 4px}
 .fr-dlg .sy-note{color:var(--muted);margin:6px 0}
+/* D&D Beyond skin in Light mode: the header is dark brown, Short Rest and Long Rest had dark brown text on it */
+:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest],:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest] *{color:#f3e6cc!important;-webkit-text-fill-color:currentColor}
+/* Spells toolbar (Print Cards, Manage Spells) wraps instead of clipping on a 320 px phone */
+.spm-bar{flex-wrap:wrap;gap:8px}
+@media (max-width:359px){.spm-bar > .btn{flex:1 1 100%;min-width:0}#vbCond.vb-none #vbCondT{display:none}#vbCond.vb-none{justify-content:center}}
+/* Entry sheets (spell, item, feat) on a phone: back button, title and close button never overlap */
+#sheet .sh-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:8px}
+#sheet#sheet .sh-h > .mi-hero-g{position:absolute;z-index:0;width:220px;height:220px}
+#sheet .sh-h > h2{min-width:0;text-align:left;overflow-wrap:anywhere}
+#sheet .sh-h > h2 .mi-hero-t{display:inline-block;margin-left:8px;vertical-align:middle}
+#sheet .sh-h > .xbtn[data-close]{grid-column:3}

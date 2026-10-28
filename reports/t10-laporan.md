@@ -24,6 +24,9 @@ Pipeline dijalankan dari art-batch terbaru (batch-109). Yang baru masuk: 305 iko
 | Baris yang bisa digeser | Tab Extras dan bar bawah terpotong tanpa tanda | Pudar di tepi saat masih bisa digeser, semua skin |
 | Dialog Cloud dan Friends | Tombol Versions tanpa padding, teks kosong menyempit, tab Sharing menempel ("Yudhi KelapaOnly meCHANGE") | Padding 16, baris kosong selebar kartu, baris daftar memakai tata letak yang sama dengan Cloud, tab Friends ikut pudar tepi |
 | Builder Home | Quick Build kecil dan datar | Tombol utama merah, lebar penuh di phone |
+| Sheet entri (spell, item, feat) | Header setinggi 277 px karena kilau bulat ikut masuk alur, judul dan tombol Close bertabrakan di phone | Kilau absolut, header 81 px, tiga kolom tanpa tabrakan |
+| D&D Beyond Light | Teks Short Rest dan Long Rest cokelat gelap di header cokelat | Teks krem |
+| Phone 320 | Tombol Print Cards terpotong, label Conditions terpotong | Tombol turun baris, label disembunyikan saat kosong |
 | scale_audit | 2 nilai spasi dan 1 radius di luar skala (dari T8/T9 dan T6) | 0 di luar skala |
 
 File baru: src/css/36-tidy.css (dimuat terakhir). Perubahan JS: pudar tepi di app/40, nama ability di fx/16.
@@ -31,7 +34,7 @@ File baru: src/css/36-tidy.css (dimuat terakhir). Perubahan JS: pudar tepi di ap
 ## Tes
 | Tes | Hasil |
 |---|---|
-| tidy (baru, 390 dan 1250) | 9 lolos |
+| tidy (baru, 390 dan 1250) | 11 lolos |
 | scenarios (sheet lama, sesudah Apply, karakter baru) | 24 lolos |
 | flow_home_sheet, class_art, builder_art, vignettes, sub_art, portrait_pick, creature_icons, starting_style | lolos |
 | storage_idb, blank_new, version_label, off_mode, home_hero, home_sum, home_cmd, home_settings | lolos |
@@ -41,7 +44,7 @@ File baru: src/css/36-tidy.css (dimuat terakhir). Perubahan JS: pudar tepi di ap
 | friends_ui, sync_banners, cloud_sync (wrangler lokal dengan D1) | 29, 9, 31 lolos |
 
 ## Sudah dipotret dan dicek
-Manage Spells, Shop (Library), mode Edit, semua tab Friends dan Admin, Builder semua langkah, dua skin di 390 dan 1250. Tidak ada temuan tambahan di luar tabel.
+Karakter Wizard (daftar spell, slot, Manage Spells), skin D&D Beyond dan Record di mode Light dan Dark, teks 130 persen, High Contrast, lebar 320, 390 dan 1250, Library (Shop), detail spell, mode Edit, semua tab Friends dan Admin, semua langkah Builder.
 
 ## Catatan
 Situs Cloudflare Pages yang sekarang tidak menyajikan folder img. Build baru memakai tools/pages_dist.sh yang menyalin img, jadi potret dan art tampil setelah deploy dari main atau dari branch ini. Belum dirilis atas permintaan Anda.
