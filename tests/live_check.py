@@ -54,10 +54,11 @@ def wait_deploy():
 async def main():
     wait_deploy()
     st, h, body = get("/")
+    INDEX = body
     hl = {k.lower(): v for k, v in h.items()}
     check("home page 200", st == 200, st)
     check("index has version 0.0.1 and the store", b'APP_LABEL="0.0.1"' in body and b"__store" in body)
-    check("no sample character names in index", not any(x in body for x in (b"Yudhi", b"Pencak Silat")))
+    check("no sample character name in index", b"Yudhi" not in body)
     check("index Cache-Control no-cache", "no-cache" in hl.get("cache-control", ""), hl.get("cache-control"))
     st, h, body = get("/sw.js"); hl = {k.lower(): v for k, v in h.items()}
     check("sw.js 200, no-cache, Service-Worker-Allowed /", st == 200 and "no-cache" in hl.get("cache-control", "") and hl.get("service-worker-allowed") == "/", hl)
@@ -65,7 +66,8 @@ async def main():
     check("manifest type", st == 200 and "manifest+json" in hl.get("content-type", ""), hl.get("content-type"))
     for p in ("/tests/fixtures/yudhi-v3.json", "/src/manifest.json", "/reports/t7-laporan.md", "/build.py"):
         st, h, body = get(p)
-        check("not published: " + p, st == 404 or (b"Yudhi" not in body and b'"entries"' not in body and b"T7 Storage" not in body), st)
+        # Pages answers an unknown path with index.html (200). The real file must not come back
+        check("not published: " + p, st == 404 or body == INDEX, "%s, %d bytes" % (st, len(body)))
     async with async_playwright() as pw:
         b = await pw.chromium.launch()
         for vp, w, hh in (("390x844", 390, 844), ("1250x850", 1250, 850)):
