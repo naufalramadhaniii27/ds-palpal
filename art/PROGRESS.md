@@ -1418,3 +1418,8 @@ art/batch/icons/items/magic/uncommon/elemental-gem-blue-sapphire.png
 art/batch/icons/items/magic/uncommon/elemental-gem-emerald.png
 art/batch/icons/items/magic/uncommon/elemental-gem-red-corundum.png
 art/batch/icons/items/magic/uncommon/elemental-gem-yellow-diamond.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-bronze-griffon.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-ebony-fly.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-golden-lions.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-ivory-goats.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-marble-elephant.png
