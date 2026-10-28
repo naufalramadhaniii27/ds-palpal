@@ -1115,3 +1115,10 @@ art/batch/icons/items/magic/rare/staff-of-the-woodlands.png
 art/batch/icons/items/magic/very-rare/staff-of-thunder-and-lightning.png
 art/batch/icons/items/magic/rare/staff-of-withering.png
 art/batch/icons/items/magic/rare/stone-of-controlling-earth-elementals.png
+
+## batch-093 v3
+art/batch/icons/items/magic/uncommon/stone-of-good-luck.png
+art/batch/icons/items/magic/rare/sun-blade.png
+art/batch/icons/items/magic/legendary/sword-of-answering.png
+art/batch/icons/items/magic/artifact/sword-of-kas.png
+art/batch/icons/items/magic/rare/sword-of-life-stealing.png
