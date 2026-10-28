@@ -1182,5 +1182,9 @@ art/batch/icons/items/magic/rare/blood-amulet.png
 art/batch/icons/items/magic/uncommon/boon-companions-bands.png
 art/batch/icons/items/magic/uncommon/budding-blossom-rod.png
 
-NEXT: batch-096 art/batch/icons/items/magic/rare/chattering-staff-of-skulls.png
 ## batch-096 v3
+art/batch/icons/items/magic/rare/chattering-staff-of-skulls.png
+art/batch/icons/items/magic/common/conjurers-canopy.png
+art/batch/icons/items/magic/rare/crusading-wand-of-celestial-prowess.png
+art/batch/icons/items/magic/legendary/diamond-staff.png
+art/batch/icons/items/magic/common/dictation-quill.png
