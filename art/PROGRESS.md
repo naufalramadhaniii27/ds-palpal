@@ -1012,3 +1012,8 @@ art/batch/icons/items/magic/rare/potion-of-clairvoyance.png
 art/batch/icons/items/magic/common/potion-of-climbing.png
 art/batch/icons/items/magic/common/potion-of-comprehension.png
 art/batch/icons/items/magic/rare/potion-of-diminution.png
+art/batch/icons/items/magic/uncommon/potion-of-fire-breath.png
+art/batch/icons/items/magic/very-rare/potion-of-flying.png
+art/batch/icons/items/magic/rare/potion-of-gaseous-form.png
+art/batch/icons/items/magic/very-rare/potion-of-giant-strength.png
+art/batch/icons/items/magic/very-rare/potion-of-greater-invisibility.png
