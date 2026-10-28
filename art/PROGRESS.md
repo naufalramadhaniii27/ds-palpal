@@ -917,3 +917,10 @@ art/batch/icons/items/magic/uncommon/gem-of-brightness.png
 art/batch/icons/items/magic/rare/gem-of-seeing.png
 art/batch/icons/items/magic/rare/giant-slayer.png
 art/batch/icons/items/magic/rare/glamoured-studded-leather.png
+
+## batch-084 v3
+art/batch/icons/items/magic/uncommon/gloves-of-missile-snaring.png
+art/batch/icons/items/magic/uncommon/gloves-of-swimming-and-climbing.png
+art/batch/icons/items/magic/uncommon/gloves-of-thievery.png
+art/batch/icons/items/magic/uncommon/goggles-of-night.png
+art/batch/icons/items/magic/uncommon/hag-eye.png
