@@ -1022,3 +1022,8 @@ art/batch/icons/items/magic/rare/potion-of-heroism.png
 art/batch/icons/items/magic/rare/potion-of-invisibility.png
 art/batch/icons/items/magic/rare/potion-of-invulnerability.png
 art/batch/icons/items/magic/very-rare/potion-of-longevity.png
+art/batch/icons/items/magic/rare/potion-of-mind-reading.png
+art/batch/icons/items/magic/uncommon/potion-of-poison.png
+art/batch/icons/items/magic/uncommon/potion-of-pugilism.png
+art/batch/icons/items/magic/uncommon/potion-of-resistance.png
+art/batch/icons/items/magic/very-rare/potion-of-speed.png
