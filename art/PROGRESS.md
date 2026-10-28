@@ -1606,3 +1606,8 @@ art/batch/icons/items/magic/artifact/khrusor-spear-of-heliod.png
 art/batch/icons/items/magic/artifact/mastix-whip-of-erebos.png
 art/batch/icons/items/magic/rare/potion-of-aqueous-form.png
 art/batch/icons/items/magic/legendary/pyxis-of-pandemonium.png
+art/batch/icons/items/magic/rare/siren-song-lyre.png
+art/batch/icons/items/magic/very-rare/sling-bullets-of-althemone.png
+art/batch/icons/items/magic/rare/two-birds-sling.png
+art/batch/icons/items/magic/common/bottle-of-boundless-coffee.png
+art/batch/icons/items/magic/common/cuddly-strixhaven-mascot.png
