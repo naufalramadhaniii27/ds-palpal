@@ -1325,3 +1325,8 @@ art/batch/icons/items/magic/rare/stirring-dragon-vessel.png
 art/batch/icons/items/magic/rare/stirring-dragon-touched-focus.png
 art/batch/icons/items/magic/rare/stirring-scaled-ornament.png
 art/batch/icons/items/magic/legendary/topaz-annihilator.png
+art/batch/icons/items/magic/very-rare/wakened-dragon-vessel.png
+art/batch/icons/items/magic/very-rare/wakened-dragon-touched-focus.png
+art/batch/icons/items/magic/very-rare/wakened-scaled-ornament.png
+art/batch/icons/items/magic/legendary/balance-card.png
+art/batch/icons/items/magic/very-rare/baleful-talon.png
