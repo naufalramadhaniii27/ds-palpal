@@ -49,6 +49,7 @@ async def main():
         p2 = await ctx2.new_page(); await p2.goto(base); await p2.wait_for_timeout(2000)
         await p2.click("#homeV .hcard [data-hview]"); await p2.wait_for_selector("#idF", state="attached"); await p2.wait_for_timeout(1200)
         chk("sheet hero shows the Champion emblem", await p2.evaluate("!!document.querySelector('#idF .art-sub[src*=\"fighter-champion\"]')"))
+        chk("chip shows one icon, not two", await p2.evaluate("(()=>{var d=[].find.call(document.querySelectorAll('#idF dd'),x=>x.querySelector('.art-sub'));var sv=d.querySelector('svg.ico');return !!d&&(!sv||getComputedStyle(sv).display==='none')})()"))
         await ctx2.close()
         await b.close()
     print("%d failed" % fails); sys.exit(1 if fails else 0)
