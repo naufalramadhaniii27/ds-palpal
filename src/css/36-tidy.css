@@ -36,3 +36,7 @@
 .bkpb .btn.fr-sm,.fr-dlg .btn.fr-sm{min-height:34px;padding:0 10px}
 /* An empty-state line inside a card grid spans the whole row instead of one narrow cell */
 .fr-grid > :is(p,.sy-note,.muted){grid-column:1 / -1}
+/* Builder Home: Quick Build is the main action of the card, so it looks like one */
+#bld .eqact > [data-qb]{min-height:48px;padding:0 32px;background:var(--act,#d6453b);border-color:var(--act,#d6453b);color:var(--act-ink,#fff);font-weight:700}
+#bld .eqact > [data-qb]:hover{filter:brightness(1.08)}
+@media (max-width:759px){#bld .eqact > [data-qb]{width:100%}}

@@ -4626,6 +4626,10 @@ html.fr-viewing body{padding-bottom:calc(64px + 8px)}
 .bkpb .btn.fr-sm,.fr-dlg .btn.fr-sm{min-height:34px;padding:0 10px}
 /* An empty-state line inside a card grid spans the whole row instead of one narrow cell */
 .fr-grid > :is(p,.sy-note,.muted){grid-column:1 / -1}
+/* Builder Home: Quick Build is the main action of the card, so it looks like one */
+#bld .eqact > [data-qb]{min-height:48px;padding:0 32px;background:var(--act,#d6453b);border-color:var(--act,#d6453b);color:var(--act-ink,#fff);font-weight:700}
+#bld .eqact > [data-qb]:hover{filter:brightness(1.08)}
+@media (max-width:759px){#bld .eqact > [data-qb]{width:100%}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
