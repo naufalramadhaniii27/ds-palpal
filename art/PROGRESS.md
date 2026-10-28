@@ -1599,3 +1599,10 @@ art/batch/icons/items/magic/artifact/akmon-hammer-of-purphoros.png
 art/batch/icons/items/magic/artifact/dekella-bident-of-thassa.png
 art/batch/icons/items/magic/artifact/ephixis-bow-of-nylea.png
 art/batch/icons/items/magic/rare/flying-chariot.png
+
+## batch-115 v3
+art/batch/icons/items/magic/rare/helm-of-the-gods.png
+art/batch/icons/items/magic/artifact/khrusor-spear-of-heliod.png
+art/batch/icons/items/magic/artifact/mastix-whip-of-erebos.png
+art/batch/icons/items/magic/rare/potion-of-aqueous-form.png
+art/batch/icons/items/magic/legendary/pyxis-of-pandemonium.png
