@@ -1242,3 +1242,8 @@ art/batch/icons/items/magic/uncommon/wand-of-freshness.png
 art/batch/icons/items/magic/rare/wand-of-slumber.png
 art/batch/icons/items/magic/rare/wand-of-teeth.png
 art/batch/icons/items/magic/very-rare/workshop-wrecker.png
+art/batch/icons/items/magic/uncommon/boots-of-the-winding-path.png
+art/batch/icons/items/magic/uncommon/helm-of-awareness.png
+art/batch/icons/items/magic/common/manifold-tool.png
+art/batch/icons/items/magic/uncommon/mind-sharpener.png
+art/batch/icons/items/magic/uncommon/repulsion-shield.png
