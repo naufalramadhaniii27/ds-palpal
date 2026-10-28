@@ -961,3 +961,10 @@ art/batch/icons/items/magic/very-rare/lute-of-thunderous-thumping.png
 art/batch/icons/items/magic/rare/mace-of-disruption.png
 art/batch/icons/items/magic/rare/mace-of-smiting.png
 art/batch/icons/items/magic/rare/mace-of-terror.png
+
+## batch-086 v3
+art/batch/icons/items/magic/rare/mantle-of-spell-resistance.png
+art/batch/icons/items/magic/very-rare/manual-of-bodily-health.png
+art/batch/icons/items/magic/very-rare/manual-of-gainful-exercise.png
+art/batch/icons/items/magic/very-rare/manual-of-golems.png
+art/batch/icons/items/magic/very-rare/manual-of-quickness-of-action.png
