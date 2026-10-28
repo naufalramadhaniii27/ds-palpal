@@ -1753,3 +1753,6 @@ art/batch/icons/items/magic/legendary/spell-bottle.png
 art/batch/icons/items/magic/very-rare/staff-of-dunamancy.png
 art/batch/icons/items/magic/rare/staff-of-the-ivory-claw.png
 art/batch/icons/items/magic/legendary/stormgirdle.png
+
+NEXT: batch-122 art/batch/icons/items/magic/artifact/the-bloody-end.png
+## batch-122 v3
