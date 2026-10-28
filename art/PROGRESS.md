@@ -939,3 +939,10 @@ art/batch/icons/items/magic/rare/hewards-handy-haversack.png
 art/batch/icons/items/magic/common/hewards-handy-spice-pouch.png
 art/batch/icons/items/magic/legendary/holy-avenger.png
 art/batch/icons/items/magic/rare/horn-of-blasting.png
+
+## batch-085 v3
+art/batch/icons/items/magic/common/horn-of-silent-alarm.png
+art/batch/icons/items/magic/varies/horn-of-valhalla.png
+art/batch/icons/items/magic/very-rare/horseshoes-of-a-zephyr.png
+art/batch/icons/items/magic/rare/horseshoes-of-speed.png
+art/batch/icons/items/magic/uncommon/immovable-rod.png
