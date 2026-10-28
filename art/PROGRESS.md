@@ -1159,3 +1159,10 @@ art/batch/icons/items/magic/very-rare/wand-of-polymorph.png
 art/batch/icons/items/magic/common/wand-of-pyrotechnics.png
 art/batch/icons/items/magic/uncommon/wand-of-secrets.png
 art/batch/icons/items/magic/uncommon/wand-of-the-war-mage.png
+
+## batch-095 v3
+art/batch/icons/items/magic/uncommon/wand-of-web.png
+art/batch/icons/items/magic/rare/wand-of-wonder.png
+art/batch/icons/items/magic/artifact/wave.png
+art/batch/icons/items/magic/uncommon/weapon-of-warning.png
+art/batch/icons/items/magic/legendary/well-of-many-worlds.png
