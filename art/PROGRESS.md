@@ -946,3 +946,8 @@ art/batch/icons/items/magic/varies/horn-of-valhalla.png
 art/batch/icons/items/magic/very-rare/horseshoes-of-a-zephyr.png
 art/batch/icons/items/magic/rare/horseshoes-of-speed.png
 art/batch/icons/items/magic/uncommon/immovable-rod.png
+art/batch/icons/items/magic/common/instrument-of-illusions.png
+art/batch/icons/items/magic/common/instrument-of-scribing.png
+art/batch/icons/items/magic/varies/instrument-of-the-bards.png
+art/batch/icons/items/magic/varies/ioun-stone.png
+art/batch/icons/items/magic/rare/iron-bands-of-bilarro.png
