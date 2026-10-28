@@ -1391,3 +1391,8 @@ art/batch/icons/items/magic/legendary/talons-card.png
 art/batch/icons/items/magic/legendary/telescopic-transporter.png
 art/batch/icons/items/magic/legendary/throne-card.png
 art/batch/icons/items/magic/very-rare/tidecaller-trident.png
+art/batch/icons/items/magic/legendary/void-card.png
+art/batch/icons/items/magic/rare/voidwalker-armor.png
+art/batch/icons/items/magic/rare/warriors-passkey.png
+art/batch/icons/items/magic/uncommon/bag-of-tricks-gray.png
+art/batch/icons/items/magic/uncommon/bag-of-tricks-rust.png
