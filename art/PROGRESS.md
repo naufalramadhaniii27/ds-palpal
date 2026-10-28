@@ -1352,3 +1352,8 @@ art/batch/icons/items/magic/legendary/euryales-aegis.png
 art/batch/icons/items/magic/uncommon/fabulist-gem.png
 art/batch/icons/items/magic/very-rare/fate-cutter-shears.png
 art/batch/icons/items/magic/legendary/fates-card.png
+art/batch/icons/items/magic/legendary/flames-card.png
+art/batch/icons/items/magic/legendary/fool-card.png
+art/batch/icons/items/magic/legendary/gem-card.png
+art/batch/icons/items/magic/rare/grasping-whip.png
+art/batch/icons/items/magic/very-rare/hammer-of-runic-focus.png
