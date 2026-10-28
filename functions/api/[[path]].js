@@ -1,7 +1,8 @@
 /* D&D Sheet API (Cloudflare Pages Functions, only /api/*). Stage 3: backup and sync of characters in D1.
    Identity comes only from the Cloudflare Access JWT (header Cf-Access-Jwt-Assertion), verified against the team keys.
    Env: DB (D1 binding), ACCESS_TEAM (team name, e.g. purple-frog-276b), ACCESS_AUD (Application Audience tag).
-   DEV_USER (local tests only): when set and ACCESS_AUD is empty, that email is used without a JWT. Never set it on Cloudflare.
+   ACCESS_AUD empty: any application of this team is accepted (the team has one). Set it to lock the API to this application.
+   DEV_USER (local tests only): when set and ACCESS_TEAM is empty, that email is used without a JWT. Never set it on Cloudflare.
    Free plan budget, per user and day: 1000 requests, 1200 rows written, 20000 rows read, 50 MB, 50 characters, 1 MB each, 30 versions. */
 
 const LIM = { req: 1000, wr: 1200, rd: 20000, bytes: 50 * 1024 * 1024, chars: 50, one: 1024 * 1024, vers: 30, bin: 30 };
@@ -33,7 +34,7 @@ async function teamKeys(team) {
 
 /* returns the email of the signed-in person, "" for a service token, null when the token is missing or wrong */
 async function who(req, env) {
-  if (!env.ACCESS_AUD) return env.DEV_USER ? String(env.DEV_USER).toLowerCase() : null;
+  if (!env.ACCESS_TEAM) return env.DEV_USER ? String(env.DEV_USER).toLowerCase() : null;
   const tok = req.headers.get("cf-access-jwt-assertion");
   if (!tok) return null;
   const p = tok.split("."); if (p.length !== 3) return null;
@@ -43,7 +44,7 @@ async function who(req, env) {
   const now = Date.now() / 1000;
   if (!body.exp || body.exp < now || (body.nbf && body.nbf > now + 60)) return null;
   const aud = Array.isArray(body.aud) ? body.aud : [body.aud];
-  if (aud.indexOf(env.ACCESS_AUD) < 0) return null;
+  if (env.ACCESS_AUD && aud.indexOf(env.ACCESS_AUD) < 0) return null;
   if (body.iss !== "https://" + env.ACCESS_TEAM + ".cloudflareaccess.com") return null;
   let keys = await teamKeys(env.ACCESS_TEAM), jwk = keys.find(k => k.kid === head.kid);
   if (!jwk) { KEYS = null; keys = await teamKeys(env.ACCESS_TEAM); jwk = keys.find(k => k.kid === head.kid); }
@@ -98,7 +99,11 @@ async function count(db, owner, f) {
 
 export async function onRequest(ctx) {
   const { request: req, env } = ctx, url = new URL(req.url), path = url.pathname.replace(/^\/api\/?/, "").replace(/\/+$/, ""), parts = path ? path.split("/") : [];
-  if (parts[0] === "health") return json({ ok: true, db: !!env.DB });
+  if (parts[0] === "health") {
+    // the Audience tag of the login token, shown so ACCESS_AUD can be filled in (not secret)
+    let aud = ""; try { const t = req.headers.get("cf-access-jwt-assertion"); if (t) { const a = JSON.parse(new TextDecoder().decode(b64u(t.split(".")[1]))).aud; aud = Array.isArray(a) ? a[0] : a; } } catch (e) {}
+    return json({ ok: true, db: !!env.DB, aud, audSet: !!env.ACCESS_AUD });
+  }
   if (!env.DB) return json({ error: "no-db" }, 503);
   let email;
   try { email = await who(req, env); } catch (e) { return json({ error: "auth-unavailable" }, 503); }

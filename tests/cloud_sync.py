@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """T8 cloud sync with the real API on a local Pages server (wrangler pages dev with D1, DEV_USER set). Two browser contexts are two devices of one person.
 
-  # terminal 1:  sh tools/pages_dist.sh && npx wrangler pages dev dist --port 8788 --d1 DB=dndsheet --binding DEV_USER=a@test.dev
+  # terminal 1:  sh tools/pages_dist.sh && npx wrangler pages dev --port 8788 --binding DEV_USER=a@test.dev --binding ACCESS_TEAM=
   BASE=http://localhost:8788 python3 tests/cloud_sync.py [OUTDIR]
 
 Checks: upload, a second device gets the character, edits travel, conflict keeps the other copy as a version, delete goes to the recycle bin,

@@ -38,20 +38,6 @@ def get(path):
         return e.code, dict(e.headers), e.read()
 
 
-def aud_note():
-    # without the token Access answers 401/302 and names the application's Audience tag. Printed so wrangler.toml can be checked against it
-    # a wrong service token gets a 401 that carries the cf-access-aud header (a plain request only gets a redirect to the login page)
-    rq = urllib.request.Request(BASE + "/api/health", headers={"User-Agent": "Mozilla/5.0 (live-check)", "CF-Access-Client-Id": "x.access", "CF-Access-Client-Secret": "x"})
-    class NoRedir(urllib.request.HTTPRedirectHandler):
-        def redirect_request(self, *a, **k): return None
-    try:
-        r = urllib.request.build_opener(NoRedir).open(rq, timeout=30); h = dict(r.headers)
-    except urllib.error.HTTPError as e:
-        h = dict(e.headers)
-    aud = {k.lower(): v for k, v in h.items()}.get("cf-access-aud", "")
-    if GH: print("::notice::Access AUD tag of this site: %s" % (aud or "not found, headers: " + ", ".join(sorted(h))[:200]))
-
-
 def wait_deploy():
     want = os.environ.get("WAIT_CACHE", "")
     if os.environ.get("GITHUB_REF_NAME", "main") != "main":
@@ -79,7 +65,6 @@ SW_READY = "()=>navigator.serviceWorker?Promise.race([navigator.serviceWorker.re
 
 
 async def main():
-    aud_note()
     wait_deploy()
     st, h, body = get("/")
     COOKIE = access_cookie(h) if HDR else ""
@@ -99,6 +84,7 @@ async def main():
     try: hj = json.loads(body)
     except Exception: hj = {}
     check("API health answers with the database", st == 200 and hj.get("ok") and hj.get("db"), "%s %s" % (st, body[:120]))
+    if GH and hj: print("::notice::API health: aud=%s audSet=%s" % (hj.get("aud"), hj.get("audSet")))
     if HDR:
         st, h, body = get("/api/me")
         check("API verifies the Access token (service token gets 403)", st == 403 and b"service-token" in body, "%s %s" % (st, body[:120]))
