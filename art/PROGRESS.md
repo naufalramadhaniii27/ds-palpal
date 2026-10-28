@@ -1440,3 +1440,8 @@ art/batch/icons/items/magic/rare/instrument-of-the-bards-canaith-mandolin.png
 art/batch/icons/items/magic/rare/instrument-of-the-bards-cli-lyre.png
 art/batch/icons/items/magic/uncommon/instrument-of-the-bards-doss-lute.png
 art/batch/icons/items/magic/uncommon/instrument-of-the-bards-fochlucan-bandore.png
+art/batch/icons/items/magic/uncommon/instrument-of-the-bards-mac-fuirmidh-cittern.png
+art/batch/icons/items/magic/legendary/instrument-of-the-bards-ollamh-harp.png
+art/batch/icons/items/magic/very-rare/ioun-stone-absorption.png
+art/batch/icons/items/magic/very-rare/ioun-stone-agility.png
+art/batch/icons/items/magic/rare/ioun-stone-awareness.png
