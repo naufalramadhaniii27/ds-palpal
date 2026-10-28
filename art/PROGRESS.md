@@ -1782,3 +1782,8 @@ art/batch/icons/items/magic/common/feather-token.png
 art/batch/icons/items/magic/uncommon/finders-goggles.png
 art/batch/icons/items/magic/common/keycharm.png
 art/batch/icons/items/magic/very-rare/kyrzins-ooze.png
+art/batch/icons/items/magic/uncommon/living-gloves.png
+art/batch/icons/items/magic/common/scribes-pen.png
+art/batch/icons/items/magic/common/shiftweave.png
+art/batch/icons/items/magic/very-rare/speaking-stone.png
+art/batch/icons/items/magic/common/spellshard.png
