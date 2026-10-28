@@ -28,7 +28,7 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 | Latar Home dan bingkai potret | Home: foto kedai malam samar (38 persen, kontras terburuk 5,6). Settings, Portrait Frame: opsi Carved wood, tampil bila potret terpasang |
 | Gambar di toast | Backup selesai (unduh atau salin), impor gagal, versi baru siap. Toast lain tetap memakai ikon lama |
 | Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
-| Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. Ikon makhluk belum diuji di layar karena karakter tes level 1 tidak punya makhluk |
+| Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. |
 | Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
 
 Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Home pertama sudah punya `window.__ART`.
@@ -38,7 +38,9 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 |---|---|
 | class_art | 22 cek lolos, termasuk ganti scene saat pindah ke Spells |
 | builder_art | 14 lolos |
-| vignettes | 14 lolos, termasuk roll nat 20 dan nat 1, offline |
+| vignettes | lolos, termasuk roll nat 20 dan nat 1, offline, toast, peringatan penyimpanan, Stable |
+| portrait_pick | 12 lolos |
+| creature_icons | Wizard level 1: 11 baris makhluk, 11 berikon |
 | sub_art | 14 lolos |
 | scenarios 24, flow 16 | lolos |
 | overflow 0, overlap 0, off_mode 0 animasi | lolos |
