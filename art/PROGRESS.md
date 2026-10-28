@@ -973,3 +973,8 @@ art/batch/icons/items/magic/uncommon/medallion-of-thoughts.png
 art/batch/icons/items/magic/very-rare/mirror-of-life-trapping.png
 art/batch/icons/items/magic/uncommon/mithral-armor.png
 art/batch/icons/items/magic/common/moon-touched-sword.png
+art/batch/icons/items/magic/legendary/moonblade.png
+art/batch/icons/items/magic/common/mystery-key.png
+art/batch/icons/items/magic/uncommon/natures-mantle.png
+art/batch/icons/items/magic/uncommon/necklace-of-adaptation.png
+art/batch/icons/items/magic/rare/necklace-of-fireballs.png
