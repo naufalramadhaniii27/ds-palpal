@@ -1518,3 +1518,8 @@ art/batch/icons/items/magic/very-rare/white-dragon-scale-mail.png
 art/batch/icons/items/magic/very-rare/abracadabrus.png
 art/batch/icons/items/magic/rare/cauldron-of-plenty.png
 art/batch/icons/items/magic/rare/hook-of-fishers-delight.png
+art/batch/icons/items/magic/common/lantern-of-tracking.png
+art/batch/icons/items/magic/uncommon/orc-stone.png
+art/batch/icons/items/magic/rare/professor-skant.png
+art/batch/icons/items/magic/uncommon/psi-crystal.png
+art/batch/icons/items/magic/legendary/scroll-of-tarrasque-summoning.png
