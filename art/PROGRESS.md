@@ -1138,5 +1138,6 @@ art/batch/icons/items/magic/very-rare/tome-of-leadership-and-influence.png
 art/batch/icons/items/magic/legendary/tome-of-the-stilled-tongue.png
 art/batch/icons/items/magic/very-rare/tome-of-understanding.png
 
-NEXT: batch-094 art/batch/icons/items/magic/uncommon/trident-of-fish-command.png
+NEXT: batch-094 art/batch/icons/items/magic/legendary/universal-solvent.png
 ## batch-094 v3
+art/batch/icons/items/magic/uncommon/trident-of-fish-command.png
