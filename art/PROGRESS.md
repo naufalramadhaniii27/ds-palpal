@@ -1264,3 +1264,8 @@ art/batch/icons/items/magic/artifact/baba-yagas-pestle.png
 art/batch/icons/items/magic/very-rare/barrier-tattoo.png
 art/batch/icons/items/magic/rare/bell-branch.png
 art/batch/icons/items/magic/legendary/blood-fury-tattoo.png
+art/batch/icons/items/magic/uncommon/coiling-grasp-tattoo.png
+art/batch/icons/items/magic/very-rare/cold-absorbing-tattoo.png
+art/batch/icons/items/magic/artifact/crook-of-rao.png
+art/batch/icons/items/magic/very-rare/crystalline-chronicle.png
+art/batch/icons/items/magic/rare/devotees-censer.png
