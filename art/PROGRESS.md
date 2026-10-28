@@ -1034,3 +1034,8 @@ art/batch/icons/items/magic/uncommon/potion-of-water-breathing.png
 art/batch/icons/items/magic/common/prosthetic-limb.png
 art/batch/icons/items/magic/varies/quaals-feather-token.png
 art/batch/icons/items/magic/very-rare/quarterstaff-of-the-acrobat.png
+art/batch/icons/items/magic/uncommon/quiver-of-ehlonna.png
+art/batch/icons/items/magic/rare/ring-of-animal-influence.png
+art/batch/icons/items/magic/legendary/ring-of-djinni-summoning.png
+art/batch/icons/items/magic/legendary/ring-of-elemental-command.png
+art/batch/icons/items/magic/rare/ring-of-evasion.png
