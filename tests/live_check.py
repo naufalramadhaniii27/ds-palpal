@@ -31,11 +31,16 @@ def check(name, ok, info=""):
 
 def get(path):
     rq = urllib.request.Request(BASE + path, headers=dict(HDR, **{"User-Agent": "Mozilla/5.0 (live-check)"}))
-    try:
-        with urllib.request.urlopen(rq, timeout=30) as r:
-            return r.status, dict(r.headers), r.read()
-    except urllib.error.HTTPError as e:
-        return e.code, dict(e.headers), e.read()
+    # three tries: a runner sometimes loses a TLS handshake to Cloudflare
+    for i in range(3):
+        try:
+            with urllib.request.urlopen(rq, timeout=30) as r:
+                return r.status, dict(r.headers), r.read()
+        except urllib.error.HTTPError as e:
+            return e.code, dict(e.headers), e.read()
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            if i == 2: raise
+            print("retry %s after %s" % (path, e)); time.sleep(5)
 
 
 def wait_deploy():
