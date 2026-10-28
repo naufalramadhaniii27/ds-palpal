@@ -1066,3 +1066,8 @@ art/batch/icons/items/magic/very-rare/robe-of-stars.png
 art/batch/icons/items/magic/legendary/robe-of-the-archmagi.png
 art/batch/icons/items/magic/uncommon/robe-of-useful-items.png
 art/batch/icons/items/magic/very-rare/rod-of-absorption.png
+art/batch/icons/items/magic/very-rare/rod-of-alertness.png
+art/batch/icons/items/magic/legendary/rod-of-lordly-might.png
+art/batch/icons/items/magic/legendary/rod-of-resurrection.png
+art/batch/icons/items/magic/rare/rod-of-rulership.png
+art/batch/icons/items/magic/very-rare/rod-of-security.png
