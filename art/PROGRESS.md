@@ -1171,3 +1171,8 @@ art/batch/icons/items/magic/uncommon/wind-fan.png
 art/batch/icons/items/magic/uncommon/winged-boots.png
 art/batch/icons/items/magic/rare/wings-of-flying.png
 art/batch/icons/items/magic/uncommon/wraps-of-unarmed-power.png
+art/batch/icons/items/magic/very-rare/arrow-of-slaying.png
+art/batch/icons/items/magic/common/adventurers-ring.png
+art/batch/icons/items/magic/uncommon/thayan-spell-tattoo.png
+art/batch/icons/items/magic/rare/arcane-chatelaine.png
+art/batch/icons/items/magic/rare/arcanists-bestiary.png
