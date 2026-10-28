@@ -1078,3 +1078,8 @@ art/batch/icons/items/magic/uncommon/rope-of-climbing.png
 art/batch/icons/items/magic/rare/rope-of-entanglement.png
 art/batch/icons/items/magic/common/rope-of-mending.png
 art/batch/icons/items/magic/common/ruby-of-the-war-mage.png
+art/batch/icons/items/magic/uncommon/saddle-of-the-cavalier.png
+art/batch/icons/items/magic/legendary/scarab-of-protection.png
+art/batch/icons/items/magic/very-rare/scimitar-of-speed.png
+art/batch/icons/items/magic/rare/scroll-of-protection.png
+art/batch/icons/items/magic/legendary/scroll-of-titan-summoning.png
