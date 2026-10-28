@@ -18633,5 +18633,180 @@
 "id": "27-0053",
 "tag": "CREATURE",
 "batch": "batch-229"
+},
+"art/batch/scenes/screen/learn-pc.png": {
+"id": "28-0001",
+"tag": "PC",
+"batch": "batch-234"
+},
+"art/batch/scenes/screen/learn-phone.png": {
+"id": "28-0002",
+"tag": "PHONE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/learn-play.png": {
+"id": "28-0003",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/learn-build.png": {
+"id": "28-0004",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/what-is-dnd.png": {
+"id": "28-0005",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/d20-test.png": {
+"id": "28-0006",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/advantage.png": {
+"id": "28-0007",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/abilities-skills.png": {
+"id": "28-0008",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/combat-turn.png": {
+"id": "28-0009",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/hit-points-rests.png": {
+"id": "28-0010",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/conditions.png": {
+"id": "28-0011",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/spells.png": {
+"id": "28-0012",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/explore-talk.png": {
+"id": "28-0013",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/owl-welcome.png": {
+"id": "28-0014",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/owl-explain.png": {
+"id": "28-0015",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/owl-cheer.png": {
+"id": "28-0016",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/vignettes/learn/owl-think.png": {
+"id": "28-0017",
+"tag": "VIGNETTE",
+"batch": "batch-234"
+},
+"art/batch/icons/learn/d20-test.png": {
+"id": "28-0018",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/advantage.png": {
+"id": "28-0019",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/disadvantage.png": {
+"id": "28-0020",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/ability-check.png": {
+"id": "28-0021",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/saving-throw.png": {
+"id": "28-0022",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/attack-roll.png": {
+"id": "28-0023",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/proficiency.png": {
+"id": "28-0024",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/action.png": {
+"id": "28-0025",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/bonus-action.png": {
+"id": "28-0026",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/reaction.png": {
+"id": "28-0027",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/movement.png": {
+"id": "28-0028",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/initiative.png": {
+"id": "28-0029",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/hit-points.png": {
+"id": "28-0030",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/armor-class.png": {
+"id": "28-0031",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/spell-slot.png": {
+"id": "28-0032",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/icons/learn/concentration.png": {
+"id": "28-0033",
+"tag": "ICON",
+"batch": "batch-235"
+},
+"art/batch/emblems/learn/play-complete.png": {
+"id": "28-0034",
+"tag": "EMBLEM",
+"batch": "batch-235"
+},
+"art/batch/emblems/learn/build-complete.png": {
+"id": "28-0035",
+"tag": "EMBLEM",
+"batch": "batch-235"
 }
 }
