@@ -1166,3 +1166,8 @@ art/batch/icons/items/magic/rare/wand-of-wonder.png
 art/batch/icons/items/magic/artifact/wave.png
 art/batch/icons/items/magic/uncommon/weapon-of-warning.png
 art/batch/icons/items/magic/legendary/well-of-many-worlds.png
+art/batch/icons/items/magic/artifact/whelm.png
+art/batch/icons/items/magic/uncommon/wind-fan.png
+art/batch/icons/items/magic/uncommon/winged-boots.png
+art/batch/icons/items/magic/rare/wings-of-flying.png
+art/batch/icons/items/magic/uncommon/wraps-of-unarmed-power.png
