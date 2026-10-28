@@ -1462,3 +1462,8 @@ art/batch/icons/items/magic/very-rare/manual-of-clay-golems.png
 art/batch/icons/items/magic/very-rare/manual-of-flesh-golems.png
 art/batch/icons/items/magic/very-rare/manual-of-iron-golems.png
 art/batch/icons/items/magic/very-rare/manual-of-stone-golems.png
+art/batch/icons/items/magic/uncommon/potion-of-acid-resistance.png
+art/batch/icons/items/magic/very-rare/potion-of-cloud-giant-strength.png
+art/batch/icons/items/magic/uncommon/potion-of-cold-resistance.png
+art/batch/icons/items/magic/rare/potion-of-fire-giant-strength.png
+art/batch/icons/items/magic/uncommon/potion-of-fire-resistance.png
