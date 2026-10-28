@@ -1665,3 +1665,10 @@ art/batch/icons/items/magic/rare/planar-key.png
 art/batch/icons/items/magic/uncommon/poison-soaked-kukri.png
 art/batch/icons/items/magic/uncommon/potion-of-polychromy.png
 art/batch/icons/items/magic/legendary/prismatic-well.png
+
+## batch-118 v3
+art/batch/icons/items/magic/legendary/red-dragon-mask.png
+art/batch/icons/items/magic/legendary/red-wizard-blade.png
+art/batch/icons/items/magic/artifact/rod-of-seven-parts.png
+art/batch/icons/items/magic/artifact/ruinstone.png
+art/batch/icons/items/magic/rare/shard-of-xeluan.png
