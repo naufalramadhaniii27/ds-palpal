@@ -1687,3 +1687,10 @@ art/batch/icons/items/magic/legendary/white-dragon-mask.png
 art/batch/icons/items/magic/uncommon/winters-dark-bite.png
 art/batch/icons/items/magic/rare/amulet-of-protection-from-turning.png
 art/batch/icons/items/magic/uncommon/balance-of-harmony.png
+
+## batch-119 v3
+art/batch/icons/items/magic/very-rare/bracelet-of-rock-magic.png
+art/batch/icons/items/magic/rare/eagle-whistle.png
+art/batch/icons/items/magic/rare/hell-hound-cloak.png
+art/batch/icons/items/magic/very-rare/javelin-of-backbiting.png
+art/batch/icons/items/magic/rare/loadstone.png
