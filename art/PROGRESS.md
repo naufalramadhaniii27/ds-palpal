@@ -1716,3 +1716,8 @@ art/batch/icons/items/magic/rare/scorpion-armor.png
 art/batch/icons/items/magic/artifact/staff-of-the-forgotten-one.png
 art/batch/icons/items/magic/uncommon/amulet-of-the-drunkard.png
 art/batch/icons/items/magic/very-rare/arcane-cannon.png
+art/batch/icons/items/magic/rare/battering-shield.png
+art/batch/icons/items/magic/artifact/blade-of-broken-mirrors.png
+art/batch/icons/items/magic/very-rare/bloodaxe.png
+art/batch/icons/items/magic/common/breathing-bubble.png
+art/batch/icons/items/magic/uncommon/brooch-of-living-essence.png
