@@ -26,9 +26,9 @@
 :root:not([data-skin="ddb"]) #saves .nm .tx svg.ico{display:none}
 @media (max-width:759px){:root:not([data-skin="ddb"]) .ihero .ibtn{grid-column:1 / -1;justify-self:stretch;width:100%}}
 /* Edge fade on rows that scroll sideways: every skin, plus the sheet tab row and the phone bottom bar */
-:is(.ifil,#tabs,.bnav).ovf-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
-:is(.ifil,#tabs,.bnav).ovf-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px);mask-image:linear-gradient(90deg,transparent,#000 32px)}
-:is(.ifil,#tabs,.bnav).ovf-l.ovf-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
+:is(.ifil,#tabs,.bnav,.fr-tabs).ovf-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+:is(.ifil,#tabs,.bnav,.fr-tabs).ovf-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px);mask-image:linear-gradient(90deg,transparent,#000 32px)}
+:is(.ifil,#tabs,.bnav,.fr-tabs).ovf-l.ovf-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
 /* Phone: with the Friends button there are six buttons, so three per row instead of five and one left over */
 @media (max-width:759px){#homeV .hbtns:has(.fr-b){grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* Dialog buttons made with .btn had no padding (Versions touched its own border) */
@@ -40,3 +40,9 @@
 #bld .eqact > [data-qb]{min-height:48px;padding:0 32px;background:var(--act,#d6453b);border-color:var(--act,#d6453b);color:var(--act-ink,#fff);font-weight:700}
 #bld .eqact > [data-qb]:hover{filter:brightness(1.08)}
 @media (max-width:759px){#bld .eqact > [data-qb]{width:100%}}
+/* Friends dialog lists use the same row layout as the Cloud dialog (name and note on the left, button on the right) */
+.fr-dlg .sy-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.fr-dlg .sy-row > span{min-width:0;display:flex;flex-direction:column}
+.fr-dlg .sy-row small{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fr-dlg .sy-h{display:block;margin:10px 0 4px}
+.fr-dlg .sy-note{color:var(--muted);margin:6px 0}

@@ -22,7 +22,7 @@ Pipeline dijalankan dari art-batch terbaru (batch-109). Yang baru masuk: 305 iko
 | Skin Record | Saving throw: ikon di atas nama, nama terpotong | Ikon disembunyikan, satu baris |
 | Hover kartu ability | "StealthDIS" menempel | Bendera DIS tidak ikut nama |
 | Baris yang bisa digeser | Tab Extras dan bar bawah terpotong tanpa tanda | Pudar di tepi saat masih bisa digeser, semua skin |
-| Dialog Cloud dan Friends | Tombol Versions tanpa padding, teks kosong menyempit | Padding 16, baris kosong selebar kartu |
+| Dialog Cloud dan Friends | Tombol Versions tanpa padding, teks kosong menyempit, tab Sharing menempel ("Yudhi KelapaOnly meCHANGE") | Padding 16, baris kosong selebar kartu, baris daftar memakai tata letak yang sama dengan Cloud, tab Friends ikut pudar tepi |
 | Builder Home | Quick Build kecil dan datar | Tombol utama merah, lebar penuh di phone |
 | scale_audit | 2 nilai spasi dan 1 radius di luar skala (dari T8/T9 dan T6) | 0 di luar skala |
 
@@ -40,6 +40,8 @@ File baru: src/css/36-tidy.css (dimuat terakhir). Perubahan JS: pudar tepi di ap
 | axe | 0 pelanggaran, 0 kontrol di bawah 44 px |
 | friends_ui, sync_banners, cloud_sync (wrangler lokal dengan D1) | 29, 9, 31 lolos |
 
-## Belum dikerjakan
-- Dialog yang belum dipotret ulang setelah perubahan: Manage Spells, Shop, mode Edit, dan layar Admin.
-- Situs Cloudflare Pages yang sekarang tidak menyajikan folder img. Build baru memakai tools/pages_dist.sh yang menyalin img, jadi potret dan art tampil setelah deploy dari main atau dari branch ini.
+## Sudah dipotret dan dicek
+Manage Spells, Shop (Library), mode Edit, semua tab Friends dan Admin, Builder semua langkah, dua skin di 390 dan 1250. Tidak ada temuan tambahan di luar tabel.
+
+## Catatan
+Situs Cloudflare Pages yang sekarang tidak menyajikan folder img. Build baru memakai tools/pages_dist.sh yang menyalin img, jadi potret dan art tampil setelah deploy dari main atau dari branch ini. Belum dirilis atas permintaan Anda.
