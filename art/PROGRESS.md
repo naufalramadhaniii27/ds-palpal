@@ -1760,3 +1760,8 @@ art/batch/icons/items/magic/legendary/verminshroud.png
 art/batch/icons/items/magic/common/vox-seeker.png
 art/batch/icons/items/magic/artifact/will-of-the-talon.png
 art/batch/icons/items/magic/legendary/wreath-of-the-prism.png
+art/batch/icons/items/magic/uncommon/arcane-battery.png
+art/batch/icons/items/magic/rare/brooch-of-the-elements.png
+art/batch/icons/items/magic/rare/fork-of-eddy-summoning.png
+art/batch/icons/items/magic/uncommon/hat-of-vortexes.png
+art/batch/icons/items/magic/rare/magen-handbell.png
