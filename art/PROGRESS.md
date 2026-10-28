@@ -983,3 +983,10 @@ art/batch/icons/items/magic/uncommon/needle.png
 art/batch/icons/items/magic/very-rare/nine-lives-stealer.png
 art/batch/icons/items/magic/very-rare/nolzurs-marvelous-pigments.png
 art/batch/icons/items/magic/very-rare/oathbow.png
+
+## batch-087 v3
+art/batch/icons/items/magic/rare/oil-of-etherealness.png
+art/batch/icons/items/magic/very-rare/oil-of-sharpness.png
+art/batch/icons/items/magic/uncommon/oil-of-slipperiness.png
+art/batch/icons/items/magic/common/orb-of-direction.png
+art/batch/icons/items/magic/artifact/orb-of-dragonkind.png
