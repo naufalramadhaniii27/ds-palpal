@@ -1259,3 +1259,8 @@ art/batch/icons/items/magic/rare/alchemical-compendium.png
 art/batch/icons/items/magic/rare/astral-shard.png
 art/batch/icons/items/magic/rare/astromancy-archive.png
 art/batch/icons/items/magic/rare/atlas-of-endless-horizons.png
+art/batch/icons/items/magic/artifact/baba-yagas-mortar-and-pestle.png
+art/batch/icons/items/magic/artifact/baba-yagas-pestle.png
+art/batch/icons/items/magic/very-rare/barrier-tattoo.png
+art/batch/icons/items/magic/rare/bell-branch.png
+art/batch/icons/items/magic/legendary/blood-fury-tattoo.png
