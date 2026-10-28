@@ -934,3 +934,8 @@ art/batch/icons/items/magic/uncommon/headband-of-intellect.png
 art/batch/icons/items/magic/very-rare/helm-of-brilliance.png
 art/batch/icons/items/magic/uncommon/helm-of-comprehending-languages.png
 art/batch/icons/items/magic/uncommon/helm-of-telepathy.png
+art/batch/icons/items/magic/rare/helm-of-teleportation.png
+art/batch/icons/items/magic/rare/hewards-handy-haversack.png
+art/batch/icons/items/magic/common/hewards-handy-spice-pouch.png
+art/batch/icons/items/magic/legendary/holy-avenger.png
+art/batch/icons/items/magic/rare/horn-of-blasting.png
