@@ -1122,3 +1122,8 @@ art/batch/icons/items/magic/rare/sun-blade.png
 art/batch/icons/items/magic/legendary/sword-of-answering.png
 art/batch/icons/items/magic/artifact/sword-of-kas.png
 art/batch/icons/items/magic/rare/sword-of-life-stealing.png
+art/batch/icons/items/magic/very-rare/sword-of-sharpness.png
+art/batch/icons/items/magic/uncommon/sword-of-vengeance.png
+art/batch/icons/items/magic/rare/sword-of-wounding.png
+art/batch/icons/items/magic/common/sylvan-talon.png
+art/batch/icons/items/magic/legendary/talisman-of-pure-good.png
