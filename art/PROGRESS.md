@@ -1550,3 +1550,8 @@ art/batch/icons/items/magic/rare/sages-mirror.png
 art/batch/icons/items/magic/artifact/scourge-of-shadow.png
 art/batch/icons/items/magic/rare/skull-of-selfish-knowledge.png
 art/batch/icons/items/magic/artifact/true-ice-shards.png
+art/batch/icons/items/magic/rare/vial-of-greed.png
+art/batch/icons/items/magic/artifact/wrought-iron-tower.png
+art/batch/icons/items/magic/legendary/azuredge.png
+art/batch/icons/items/magic/rare/badge-of-the-watch.png
+art/batch/icons/items/magic/legendary/blackstaff.png
