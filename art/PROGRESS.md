@@ -1144,3 +1144,8 @@ art/batch/icons/items/magic/legendary/universal-solvent.png
 art/batch/icons/items/magic/common/veterans-cane.png
 art/batch/icons/items/magic/rare/vicious-weapon.png
 art/batch/icons/items/magic/legendary/vorpal-sword.png
+art/batch/icons/items/magic/common/walloping-ammunition.png
+art/batch/icons/items/magic/rare/wand-of-binding.png
+art/batch/icons/items/magic/common/wand-of-conducting.png
+art/batch/icons/items/magic/rare/wand-of-enemy-detection.png
+art/batch/icons/items/magic/rare/wand-of-fear.png
