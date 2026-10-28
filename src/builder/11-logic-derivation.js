@@ -67,7 +67,7 @@ function keepResKeys(C){try{var st=window.__sheetState&&window.__sheetState(),P=
 
 /* ---------- manual sheet entries (M3 / RL12) ---------- */
 /* Apply replaces the whole C, so sheet entries the builder never produces are lost: manual attacks ("Improvised Weapon") and manual resources
-   (Yudhi's "Healer's Kit"). manualLost(P, C) lists them: entries of the current sheet C (P) that are not builder-made and have no same-name entry in the
+   (a "Healer's Kit" added by hand). manualLost(P, C) lists them: entries of the current sheet C (P) that are not builder-made and have no same-name entry in the
    new C. Builder-made attack = Unarmed Strike, a WEAPONS row (also "Alias (Weapon)" and "Weapon (thrown)"), or a SPELLS cantrip. Builder-made resource =
    a name in any CLASSES res/resSub, Luck Points, Hit Dice, Pact Slots, Spell Slots. Read only. Errors are swallowed (empty lists). */
 function manualLost(P,C){var out={attacks:[],res:[]};try{if(!P||!C)return out;

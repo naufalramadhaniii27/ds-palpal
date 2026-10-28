@@ -1,0 +1,8 @@
+# Cloudflare Pages headers (same rules as vercel.json). The app checks for a new version itself, so nothing is cached without asking the server.
+/*
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+/sw.js
+  Cache-Control: no-cache
+  Service-Worker-Allowed: /
