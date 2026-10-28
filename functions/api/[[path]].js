@@ -84,23 +84,38 @@ async function ensure(db) {
     for (const q of SCHEMA2) { try { await db.prepare(q).run(); } catch (e) { if (!/duplicate column/i.test(String(e && e.message))) throw e; } }
     await db.prepare("INSERT INTO state (k, v) VALUES ('schema', '2') ON CONFLICT(k) DO UPDATE SET v = excluded.v").run();
   }
+  const v3 = await db.prepare("SELECT v FROM state WHERE k = 'schema'").first();
+  if (+v3.v < 3) {
+    // schema 3: friend codes were made from the name and the first name from the email. Both are replaced, so no part of an email shows
+    const us = (await db.prepare("SELECT id, email, name FROM users").all()).results;
+    for (const x of us) {
+      const local = String(x.email || "").split("@")[0];
+      let ok = false;
+      for (let i = 0; !ok && i < 5; i++) { try { await db.prepare("UPDATE users SET code = ?, name = CASE WHEN name = ? THEN ? ELSE name END WHERE id = ?").bind(codeFor(), local, nameFor(), x.id).run(); ok = true; } catch (e) {} }
+    }
+    await db.prepare("UPDATE chars SET from_user = NULL WHERE from_user IN (SELECT substr(email, 1, instr(email, '@') - 1) FROM users)").run();
+    await db.prepare("INSERT INTO state (k, v) VALUES ('schema', '3') ON CONFLICT(k) DO UPDATE SET v = excluded.v").run();
+  }
   READY = true;
 }
 
 async function rid() { const a = new Uint8Array(9); crypto.getRandomValues(a); return "u" + Array.from(a, x => x.toString(16).padStart(2, "0")).join(""); }
 
 const UCOLS = "id, name, username, code, bio, avatar, prefs_t, seen, created, active";
-/* friend code: letters of the name and four digits, e.g. YUDHI-4821 */
-function codeFor(name) { const a = new Uint16Array(1); crypto.getRandomValues(a); return (String(name || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 6) || "HERO") + "-" + String(1000 + a[0] % 9000); }
+/* friend code: random, two groups of four, no letters that look alike (e.g. K7QM-3XPA). Nothing from the email or the name */
+const CODE_ABC = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function codeFor() { const a = new Uint8Array(8); crypto.getRandomValues(a); const c = Array.from(a, x => CODE_ABC[x % 32]).join(""); return c.slice(0, 4) + "-" + c.slice(4); }
+/* a first name that does not come from the email: Player and four random signs */
+function nameFor() { return "Player " + codeFor().slice(0, 4); }
 async function userOf(db, email) {
   let u = await db.prepare("SELECT " + UCOLS + " FROM users WHERE email = ?").bind(email).first();
   if (!u) {
     const id = await rid();
-    await db.prepare("INSERT OR IGNORE INTO users (id, email, name, created) VALUES (?, ?, ?, ?)").bind(id, email, email.split("@")[0], Date.now()).run();
+    await db.prepare("INSERT OR IGNORE INTO users (id, email, name, created) VALUES (?, ?, ?, ?)").bind(id, email, nameFor(), Date.now()).run();
     u = await db.prepare("SELECT " + UCOLS + " FROM users WHERE email = ?").bind(email).first();
   }
   for (let i = 0; !u.code && i < 5; i++) {
-    const c = codeFor(u.name);
+    const c = codeFor();
     try { await db.prepare("UPDATE users SET code = ? WHERE id = ? AND code IS NULL").bind(c, u.id).run(); u.code = c; } catch (e) {}
   }
   const d = today();
