@@ -1110,3 +1110,8 @@ art/batch/icons/items/magic/very-rare/staff-of-striking.png
 art/batch/icons/items/magic/rare/staff-of-swarming-insects.png
 art/batch/icons/items/magic/uncommon/staff-of-the-adder.png
 art/batch/icons/items/magic/legendary/staff-of-the-magi.png
+art/batch/icons/items/magic/uncommon/staff-of-the-python.png
+art/batch/icons/items/magic/rare/staff-of-the-woodlands.png
+art/batch/icons/items/magic/very-rare/staff-of-thunder-and-lightning.png
+art/batch/icons/items/magic/rare/staff-of-withering.png
+art/batch/icons/items/magic/rare/stone-of-controlling-earth-elementals.png
