@@ -1770,3 +1770,8 @@ art/batch/icons/items/magic/common/mythallar-bracelet.png
 art/batch/icons/items/magic/rare/mythallar-cloak.png
 art/batch/icons/items/magic/very-rare/arcane-propulsion-arm.png
 art/batch/icons/items/magic/legendary/belashyrras-beholder-crown.png
+art/batch/icons/items/magic/common/cleansing-stone.png
+art/batch/icons/items/magic/common/common-glamerweave.png
+art/batch/icons/items/magic/rare/docent.png
+art/batch/icons/items/magic/very-rare/dyrrns-tentacle-whip.png
+art/batch/icons/items/magic/uncommon/earworm.png
