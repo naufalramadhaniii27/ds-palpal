@@ -924,3 +924,8 @@ art/batch/icons/items/magic/uncommon/gloves-of-swimming-and-climbing.png
 art/batch/icons/items/magic/uncommon/gloves-of-thievery.png
 art/batch/icons/items/magic/uncommon/goggles-of-night.png
 art/batch/icons/items/magic/uncommon/hag-eye.png
+art/batch/icons/items/magic/legendary/hammer-of-thunderbolts.png
+art/batch/icons/items/magic/artifact/hand-of-vecna.png
+art/batch/icons/items/magic/uncommon/hat-of-disguise.png
+art/batch/icons/items/magic/very-rare/hat-of-many-spells.png
+art/batch/icons/items/magic/common/hat-of-vermin.png
