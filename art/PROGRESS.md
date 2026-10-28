@@ -1655,3 +1655,8 @@ art/batch/icons/items/magic/rare/hollys-handy-haversack.png
 art/batch/icons/items/magic/legendary/horn-of-beckoning-death.png
 art/batch/icons/items/magic/rare/iggwilvs-horn.png
 art/batch/icons/items/magic/uncommon/insignia-of-claws.png
+art/batch/icons/items/magic/artifact/keystone-of-creation.png
+art/batch/icons/items/magic/legendary/lesser-hammock-of-worlds.png
+art/batch/icons/items/magic/artifact/mask-of-the-dragon-queen.png
+art/batch/icons/items/magic/legendary/nightbringer.png
+art/batch/icons/items/magic/very-rare/nikos-mace.png
