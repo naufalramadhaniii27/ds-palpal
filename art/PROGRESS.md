@@ -1589,3 +1589,8 @@ art/batch/icons/items/magic/legendary/reapers-scream.png
 art/batch/icons/items/magic/very-rare/ring-of-amity.png
 art/batch/icons/items/magic/very-rare/sanctum-amulet.png
 art/batch/icons/items/magic/legendary/shield-of-the-blazing-dreadnought.png
+art/batch/icons/items/magic/rare/staff-of-the-rooted-hills.png
+art/batch/icons/items/magic/legendary/stonebreakers-breastplate.png
+art/batch/icons/items/magic/very-rare/thunderbuss.png
+art/batch/icons/items/magic/rare/war-horn-of-valor.png
+art/batch/icons/items/magic/rare/wayfarers-boots.png
