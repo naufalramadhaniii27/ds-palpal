@@ -6,6 +6,14 @@
   },
   {
    "t": "block",
+   "open": "<script>",
+   "close": "</script>",
+   "files": [
+    "boot/store-gate.js"
+   ]
+  },
+  {
+   "t": "block",
    "open": "<style>",
    "close": "</style>",
    "files": [
@@ -41,7 +49,8 @@
     "css/29-motion-off.css",
     "css/30-tap-44.css",
     "css/31-home-hero.css",
-    "css/32-class-art.css"
+    "css/32-class-art.css",
+    "css/33-store-wait.css"
    ]
   },
   {
@@ -98,8 +107,8 @@
   },
   {
    "t": "block",
-   "open": "<script type=\"text/x-gate\">",
-   "close": "</script>",
+   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
+   "close": "\n}</script>",
    "files": [
     "fx/23-class-art-data.js",
     "app/00-open.wrap.js",
@@ -155,8 +164,8 @@
   },
   {
    "t": "block",
-   "open": "<script type=\"text/x-gate\">",
-   "close": "</script>",
+   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
+   "close": "\n}</script>",
    "files": [
     "fx/01-core-router-and-switch.js",
     "fx/02-micro-interactions.js",
@@ -185,15 +194,7 @@
   },
   {
    "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-gate\">",
-   "close": "</script>",
-   "files": [
-    "boot/deferred-loader.js"
-   ]
+   "text": "\n<script>window.__gateRun&&window.__gateRun();</script>"
   },
   {
    "t": "text",
@@ -204,7 +205,7 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
-    "boot/store-gate.js"
+    "boot/deferred-loader.js"
    ]
   },
   {

@@ -1,0 +1,2 @@
+/* T7: hidden while the store loads IndexedDB, so the empty sheet markup never flashes before Home or the sheet is drawn */
+html.st-wait #app,html.st-wait #homeV{visibility:hidden}

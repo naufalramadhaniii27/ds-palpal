@@ -26,7 +26,7 @@ def serve():
 
 READY = """()=>new Promise(r=>{var t0=performance.now();function vis(){var h=document.getElementById('homeV');
   var s=document.querySelector('.id-name,h1');return (h&&h.offsetParent&&h.querySelector('[data-hview],.hcard'))||(s&&s.offsetParent)}
-  (function w(){ if(vis()){ requestAnimationFrame(()=>setTimeout(()=>r(performance.now()),0)); } else setTimeout(w,16); })();})"""
+  (function w(){ if(vis()&&!document.documentElement.classList.contains('st-wait')){ requestAnimationFrame(()=>setTimeout(()=>r(performance.now()),0)); } else setTimeout(w,16); })();})"""
 
 async def one(b, base, W, H, cpu, setup_state):
     ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block")

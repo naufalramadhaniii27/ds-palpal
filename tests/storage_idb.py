@@ -89,6 +89,8 @@ async def run(pw, base, vp, w, h):
     await pg.reload(); await ready(pg)
     kept = await pg.evaluate("()=>{try{return JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1')).notes.t7}catch(e){return null}}")
     check(vp + " 3 app save survives reload", kept == "kept", kept)
+    fast = await pg.evaluate("()=>[!!__store.fast, !window.__storeHold, !document.documentElement.classList.contains('st-wait'), document.querySelectorAll('script[data-gate][data-ran]').length]")
+    check(vp + " 3 fast start: scripts ran inline, nothing waited", fast[0] and fast[1] and fast[2] and fast[3] == 2, fast)
     # 4. two tabs: a write in one tab is seen in the other at once
     pg2 = await page(ctx, vp + " tab2"); await pg2.goto(base + "index.html"); await ready(pg2)
     await pg.evaluate("()=>__store.setItem('cs-ui-t7tab','from-a')"); await pg2.wait_for_timeout(600)
