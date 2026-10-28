@@ -1660,3 +1660,8 @@ art/batch/icons/items/magic/legendary/lesser-hammock-of-worlds.png
 art/batch/icons/items/magic/artifact/mask-of-the-dragon-queen.png
 art/batch/icons/items/magic/legendary/nightbringer.png
 art/batch/icons/items/magic/very-rare/nikos-mace.png
+art/batch/icons/items/magic/uncommon/pipes-of-pestilence.png
+art/batch/icons/items/magic/rare/planar-key.png
+art/batch/icons/items/magic/uncommon/poison-soaked-kukri.png
+art/batch/icons/items/magic/uncommon/potion-of-polychromy.png
+art/batch/icons/items/magic/legendary/prismatic-well.png
