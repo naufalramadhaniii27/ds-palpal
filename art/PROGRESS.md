@@ -1765,3 +1765,8 @@ art/batch/icons/items/magic/rare/brooch-of-the-elements.png
 art/batch/icons/items/magic/rare/fork-of-eddy-summoning.png
 art/batch/icons/items/magic/uncommon/hat-of-vortexes.png
 art/batch/icons/items/magic/rare/magen-handbell.png
+art/batch/icons/items/magic/common/mask-of-changed-appearance.png
+art/batch/icons/items/magic/common/mythallar-bracelet.png
+art/batch/icons/items/magic/rare/mythallar-cloak.png
+art/batch/icons/items/magic/very-rare/arcane-propulsion-arm.png
+art/batch/icons/items/magic/legendary/belashyrras-beholder-crown.png
