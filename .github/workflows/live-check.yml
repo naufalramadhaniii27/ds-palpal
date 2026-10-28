@@ -1,0 +1,34 @@
+# Test the live site after each push to main (Cloudflare Pages builds main).
+# Secrets (only needed once Cloudflare Access guards the site): CF_ACCESS_CLIENT_ID, CF_ACCESS_CLIENT_SECRET
+name: live-check
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
+  workflow_dispatch:
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          pip install playwright==1.47.0
+          python -m playwright install --with-deps chromium
+      - name: Check the live site
+        env:
+          BASE: https://dnd-sheets-palpale.pages.dev
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          export WAIT_CACHE=$(grep -o 'dnd-sheet-[0-9a-f]\{16\}' sw.js | head -1)
+          python tests/live_check.py live-out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-check
+          path: live-out
