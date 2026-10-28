@@ -51,9 +51,22 @@ def wait_deploy():
     check("live site has this commit (sw.js CACHE %s)" % want, False, "not after 10 minutes")
 
 
+def access_cookie(h):
+    # Access may answer a valid service token with a CF_Authorization cookie. The browser needs it for requests that skip extra headers (the service worker script)
+    for k, v in h.items():
+        if k.lower() == "set-cookie" and "CF_Authorization=" in v:
+            return v.split("CF_Authorization=", 1)[1].split(";", 1)[0]
+    return ""
+
+
+SW_READY = "()=>navigator.serviceWorker?Promise.race([navigator.serviceWorker.ready.then(r=>!!r.active),new Promise(r=>setTimeout(()=>r('timeout'),20000))]):false"
+
+
 async def main():
     wait_deploy()
     st, h, body = get("/")
+    COOKIE = access_cookie(h) if HDR else ""
+    if HDR and GH: print("::notice::Access cookie from service token: %s" % ("yes" if COOKIE else "no"))
     INDEX = body
     hl = {k.lower(): v for k, v in h.items()}
     check("home page 200", st == 200, st)
@@ -72,6 +85,8 @@ async def main():
         b = await pw.chromium.launch()
         for vp, w, hh in (("390x844", 390, 844), ("1250x850", 1250, 850)):
             ctx = await b.new_context(viewport={"width": w, "height": hh}, extra_http_headers=HDR)
+            if COOKIE:
+                await ctx.add_cookies([{"name": "CF_Authorization", "value": COOKIE, "url": BASE + "/"}])
             pg = await ctx.new_page(); pg.on("pageerror", lambda e, vp=vp: ERRS.append(vp + ": " + str(e)))
             await pg.goto(BASE + "/"); await pg.wait_for_function("()=>window.__store&&__store.mode()", timeout=30000); await pg.wait_for_timeout(2500)
             txt = await pg.evaluate("()=>document.body.innerText")
@@ -86,8 +101,10 @@ async def main():
             await pg.evaluate("()=>{var x=document.querySelector('[data-hview]'); if(x) x.click()}"); await pg.wait_for_timeout(2000)
             await pg.screenshot(path=os.path.join(OUT, vp + "-sheet.png"))
             # service worker and offline
-            sw = await pg.evaluate("()=>navigator.serviceWorker?navigator.serviceWorker.ready.then(r=>!!r.active):false")
-            check(vp + " service worker active", sw)
+            sw = await pg.evaluate(SW_READY)
+            check(vp + " service worker active", sw is True, sw)
+            if sw is not True:
+                check(vp + " offline reload opens with the character", False, "skipped, no service worker"); await ctx.close(); continue
             await pg.wait_for_timeout(1500); await ctx.set_offline(True)
             try:
                 await pg.reload(); await pg.wait_for_function("()=>window.__store&&__store.mode()", timeout=30000); await pg.wait_for_timeout(2000)
