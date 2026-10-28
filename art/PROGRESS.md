@@ -1374,3 +1374,8 @@ art/batch/icons/items/magic/rare/rogues-mantle.png
 art/batch/icons/items/magic/legendary/ruin-card.png
 art/batch/icons/items/magic/rare/ruinous-flail.png
 art/batch/icons/items/magic/legendary/sage-card.png
+art/batch/icons/items/magic/very-rare/sages-signet.png
+art/batch/icons/items/magic/uncommon/shield-of-the-tortoise.png
+art/batch/icons/items/magic/rare/shrieking-greaves.png
+art/batch/icons/items/magic/legendary/skull-card.png
+art/batch/icons/items/magic/very-rare/skull-helm.png
