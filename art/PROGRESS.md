@@ -1215,3 +1215,8 @@ art/batch/icons/items/magic/uncommon/orb-of-sorcery.png
 art/batch/icons/items/magic/uncommon/potion-of-dragons-breath.png
 art/batch/icons/items/magic/uncommon/potion-of-tirelessness.png
 art/batch/icons/items/magic/rare/prismatic-rune.png
+art/batch/icons/items/magic/very-rare/psionic-rod-of-the-honed-mind.png
+art/batch/icons/items/magic/very-rare/pulverizing-staff-of-skulls.png
+art/batch/icons/items/magic/artifact/queen-ehlissas-marvelous-nightingale.png
+art/batch/icons/items/magic/uncommon/ring-of-dedicated-focus.png
+art/batch/icons/items/magic/rare/scholars-anchoring-bangle.png
