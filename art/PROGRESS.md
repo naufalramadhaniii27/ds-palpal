@@ -1127,3 +1127,8 @@ art/batch/icons/items/magic/uncommon/sword-of-vengeance.png
 art/batch/icons/items/magic/rare/sword-of-wounding.png
 art/batch/icons/items/magic/common/sylvan-talon.png
 art/batch/icons/items/magic/legendary/talisman-of-pure-good.png
+art/batch/icons/items/magic/legendary/talisman-of-the-sphere.png
+art/batch/icons/items/magic/legendary/talisman-of-ultimate-evil.png
+art/batch/icons/items/magic/common/talking-doll.png
+art/batch/icons/items/magic/common/tankard-of-sobriety.png
+art/batch/icons/items/magic/rare/tentacle-rod.png
