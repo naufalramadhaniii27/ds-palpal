@@ -1093,3 +1093,10 @@ art/batch/icons/items/magic/uncommon/sling-bullet.png
 art/batch/icons/items/magic/uncommon/slippers-of-spider-climbing.png
 art/batch/icons/items/magic/common/smoldering-armor.png
 art/batch/icons/items/magic/legendary/sovereign-glue.png
+
+## batch-092 v3
+art/batch/icons/items/magic/very-rare/spellguard-shield.png
+art/batch/icons/items/magic/legendary/sphere-of-annihilation.png
+art/batch/icons/items/magic/very-rare/spirit-board.png
+art/batch/icons/items/magic/common/staff-of-adornment.png
+art/batch/icons/items/magic/common/staff-of-birdcalls.png
