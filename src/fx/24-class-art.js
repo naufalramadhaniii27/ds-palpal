@@ -10,7 +10,7 @@
   var PAGE=["","","actions","spells","inventory","features","description","notes","extras"], TAB={"p-spells":"spells","p-inv":"inventory","p-feat":"features","p-desc":"description","p-notes":"notes","p-ext":"extras"};
   function tabId(){ if(PHONE.matches){ var b=D.querySelector("#bnav button.on"); return PAGE[b?+b.getAttribute("data-go"):0]||""; } var t=D.querySelector('#tabs .tab[aria-selected="true"]'); return (t&&TAB[t.getAttribute("data-tab")])||""; }
   function pick(c){ var t=tabId(), x=t&&A.scn&&A.scn.tab&&A.scn.tab[t]; if(x&&x.pc&&x.phone) return {pc:x.pc,ph:x.phone,c:x.c,o:x.o}; var s=A.scene[c]; return s?{pc:s.pc.p,ph:s.phone.p,c:s.c,o:s.o}:null; }
-  function apply(){ var c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
+  function apply(){ var c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); H.classList.toggle("home-art",ls("mi-clsart")!=="off"&&!!(A.g0&&A.g0["home-inn-phone"])); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
     if(!t){ H.classList.remove("cls-art"); return; }
     H.classList.add("cls-art"); var key=t.pc+"|"+t.ph; if(key===curKey) return; curKey=key;
     var im=new Image(); im.onload=im.onerror=function(){ if(curKey!==key) return; var ls_=layers(), n=on<0?0:1-on, e=ls_[n];

@@ -25,6 +25,7 @@ Data peta (src/fx/23-class-art-data.js) dibuat pipeline. Jalankan ulang pipeline
 | Gambar momen dan keadaan | Natural 20, Natural 1 (overlay roll), Level Up, catatan offline, peringatan penyimpanan hampir penuh di Home |
 | Scene di Settings dan halaman Rest | Lapisan samar (18 persen) di belakang isi lembar bawah. Scene layar settings, short-rest, long-rest |
 | Pilihan potret | Ketuk potret di sheet: lembar Portrait berisi 20 potret seni (species karakter di depan) dan tombol unggah foto atau hapus. Potret seni disimpan sebagai JPEG kecil di `S.portrait`, sama seperti foto unggahan, jadi tidak ada perubahan bentuk data |
+| Latar Home dan bingkai potret | Home: foto kedai malam samar (38 persen, kontras terburuk 5,6). Settings, Portrait Frame: opsi Carved wood, tampil bila potret terpasang |
 | Emblem subclass | Library: baris subclass di halaman kelas dan halaman subclass (53 emblem) |
 | Ikon spell, item sihir, senjata, kondisi, tipe makhluk | Daftar spell, Library (Spells, Magic Items, Equipment), chip kondisi, inventori, baris makhluk. Ikon makhluk belum diuji di layar karena karakter tes level 1 tidak punya makhluk |
 | Saklar Art di Settings | On atau Off, tersimpan di mi-clsart. Off, kontras tinggi dan cetak menyembunyikan semua gambar ini |
@@ -46,7 +47,7 @@ Urutan muat: `fx/23-class-art-data.js` sebelum `app/00-open.wrap.js`, supaya Hom
 | Butir | Alasan |
 |---|---|
 | Vignette backup-done, import-failed, saving, update, inspiration, subclass, death-save | Belum ada layar besar yang cocok. Sekarang terpasang: stabilized, level-20, storage-full |
-| G0 (crest, lencana level, sudut, pembatas, bingkai potret) | Belum dipasang |
+| G0: crest, lencana level, sudut, pembatas | Belum dipasang. Bingkai potret (opsi Carved wood di Settings) dan latar Home sudah terpasang |
 | Scene layar bastion, combat, journal, party, tour | Layar itu belum punya lapis latar sendiri |
 | Ikon school, damage, skill | Sengaja dibiarkan. Aplikasi sudah punya ikon garis sendiri yang konsisten |
 

@@ -134,6 +134,10 @@
   "wizard-evoker",
   "wizard-illusionist"
  ],
+ "g0": {
+  "frame-portrait": "img/g0/frame-portrait.avif",
+  "home-inn-phone": "img/g0/home-inn-phone.avif"
+ },
  "icon": {
   "ability": [
    "charisma",

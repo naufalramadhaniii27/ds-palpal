@@ -8,6 +8,7 @@ Writes small AVIF files to img/ and img/manifest.json (id to path, size, average
   scenes/tab|builder|screen|species|background  to img/scn/<group>/<id>-pc|phone.avif
   vignettes/empty|moment|state  to img/vig/<group>/<id>.avif 512 px
   emblems/subclass  to img/emblem/sub/<id>.avif 256 px
+  g0/frame-portrait to img/g0/frame-portrait.avif (alpha, 384x480), g0/home-inn-phone to img/g0/home-inn-phone.avif (720 wide)
   portraits/<species>-a|b  to img/portrait/<species>-a|b.avif 384 px wide
 Only images listed in the Codex notes as complete are used; names must match the app ids (lower case)."""
 import json, os, sys
@@ -15,7 +16,7 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 a = sys.argv[1:]
 if not a: sys.exit(__doc__)
-SRC = a[0]; ONLY = (a[a.index("--only") + 1].split(",") if "--only" in a else ["emblems", "scenes", "icons", "scenes2", "vignettes", "subclass", "portraits"])
+SRC = a[0]; ONLY = (a[a.index("--only") + 1].split(",") if "--only" in a else ["emblems", "scenes", "icons", "scenes2", "vignettes", "subclass", "portraits", "g0"])
 OUT = os.path.join(ROOT, "img"); os.makedirs(os.path.join(OUT, "emblem"), exist_ok=True); os.makedirs(os.path.join(OUT, "scene"), exist_ok=True)
 MAN = os.path.join(OUT, "manifest.json")
 man = json.load(open(MAN)) if os.path.exists(MAN) else {"emblem": {}, "scene": {}}
@@ -63,6 +64,14 @@ if "vignettes" in ONLY:
             if not f.endswith(".png"): continue
             dst = os.path.join(OUT, "vig", grp, f[:-4] + ".avif"); im = Image.open(os.path.join(d, f)).convert("RGBA"); im.thumbnail((512, 512), Image.LANCZOS); im.save(dst, "AVIF", quality=58, speed=6)
             man["vig"].setdefault(grp, []).append(f[:-4]); tot += os.path.getsize(dst)
+if "g0" in ONLY:
+    man["g0"] = {}
+    d = os.path.join(SRC, "g0"); os.makedirs(os.path.join(OUT, "g0"), exist_ok=True)
+    for name, mode, box, q in (("frame-portrait", "RGBA", (384, 480), 70), ("home-inn-phone", "RGB", (720, 1280), 50)):
+        f = os.path.join(d, name + ".png")
+        if not os.path.exists(f): continue
+        dst = os.path.join(OUT, "g0", name + ".avif"); im = Image.open(f).convert(mode); im.thumbnail(box, Image.LANCZOS); im.save(dst, "AVIF", quality=q, speed=6)
+        man["g0"][name] = "img/g0/" + name + ".avif"; tot += os.path.getsize(dst)
 if "portraits" in ONLY:
     man["portrait"] = []
     d = os.path.join(SRC, "portraits")

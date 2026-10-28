@@ -3,7 +3,7 @@
    under each higher slot level). S.frame and S.bdrop (optional): portrait frame and backdrop. Hit Points fixed or rolled stay in the build (B.hpMode). */
 function setOf(k){ return S.set&&S.set[k]!=null?String(S.set[k]):""; }
 function setPut(k,v){ S.set=S.set&&typeof S.set==="object"?S.set:{}; if(v===""||v==null) delete S.set[k]; else S.set[k]=k==="spUp"?1:v; if(!Object.keys(S.set).length) delete S.set; }
-var FRAMES=[["","Plain"],["round","Round"],["double","Double line"],["gilded","Gilded"],["outline","Outline"],["none","No border"]];
+var FRAMES=[["","Plain"],["round","Round"],["double","Double line"],["gilded","Gilded"],["wood","Carved wood"],["outline","Outline"],["none","No border"]];
 var BDROPS=[["","None"],["dusk","Dusk"],["stars","Night sky"],["parchment","Parchment"],["stone","Stone wall"],["waves","Waves"],["leaves","Woodland"]];
 function setBtn(k,v,label){ var on=setOf(k)===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-set="'+k+':'+v+'" aria-pressed="'+on+'">'+label+'</button>'; }
 function lookBtn(attr,cur,v,label,extra){ var on=(cur||"")===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-'+attr+'="'+v+'" aria-pressed="'+on+'">'+(extra||"")+label+'</button>'; }
