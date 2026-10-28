@@ -1445,3 +1445,10 @@ art/batch/icons/items/magic/legendary/instrument-of-the-bards-ollamh-harp.png
 art/batch/icons/items/magic/very-rare/ioun-stone-absorption.png
 art/batch/icons/items/magic/very-rare/ioun-stone-agility.png
 art/batch/icons/items/magic/rare/ioun-stone-awareness.png
+
+## batch-108 v3
+art/batch/icons/items/magic/very-rare/ioun-stone-fortitude.png
+art/batch/icons/items/magic/legendary/ioun-stone-greater-absorption.png
+art/batch/icons/items/magic/very-rare/ioun-stone-insight.png
+art/batch/icons/items/magic/very-rare/ioun-stone-intellect.png
+art/batch/icons/items/magic/very-rare/ioun-stone-leadership.png
