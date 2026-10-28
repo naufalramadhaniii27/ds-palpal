@@ -1291,3 +1291,10 @@ art/batch/icons/items/magic/rare/lyre-of-building.png
 art/batch/icons/items/magic/common/masquerade-tattoo.png
 art/batch/icons/items/magic/artifact/mighty-servant-of-leuk-o.png
 art/batch/icons/items/magic/very-rare/necrotic-absorbing-tattoo.png
+
+## batch-101 v3
+art/batch/icons/items/magic/rare/outer-essence-shard.png
+art/batch/icons/items/magic/rare/planecallers-codex.png
+art/batch/icons/items/magic/very-rare/poison-absorbing-tattoo.png
+art/batch/icons/items/magic/rare/protective-verses.png
+art/batch/icons/items/magic/very-rare/psychic-absorbing-tattoo.png
