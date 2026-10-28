@@ -1511,3 +1511,10 @@ art/batch/icons/items/magic/rare/scroll-of-protection-from-fey.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-fiends.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-plants.png
 art/batch/icons/items/magic/rare/scroll-of-protection-from-undead.png
+
+## batch-111 v3
+art/batch/icons/items/magic/very-rare/silver-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/white-dragon-scale-mail.png
+art/batch/icons/items/magic/very-rare/abracadabrus.png
+art/batch/icons/items/magic/rare/cauldron-of-plenty.png
+art/batch/icons/items/magic/rare/hook-of-fishers-delight.png
