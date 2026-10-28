@@ -1105,3 +1105,8 @@ art/batch/icons/items/magic/very-rare/staff-of-fire.png
 art/batch/icons/items/magic/common/staff-of-flowers.png
 art/batch/icons/items/magic/very-rare/staff-of-frost.png
 art/batch/icons/items/magic/rare/staff-of-healing.png
+art/batch/icons/items/magic/very-rare/staff-of-power.png
+art/batch/icons/items/magic/very-rare/staff-of-striking.png
+art/batch/icons/items/magic/rare/staff-of-swarming-insects.png
+art/batch/icons/items/magic/uncommon/staff-of-the-adder.png
+art/batch/icons/items/magic/legendary/staff-of-the-magi.png
