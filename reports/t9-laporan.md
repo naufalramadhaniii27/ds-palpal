@@ -32,7 +32,7 @@ Tanpa popup. Titik kecil di tombol Friends dan tab terkait untuk follower baru, 
 | cloud_sync (ditambah potret dan pengaturan) | 31 lolos |
 | api_jwt | 10 lolos |
 | Upgrade skema dari database tahap 3 (seperti produksi) | Data lama utuh, kolom baru terisi bawaan |
-| Regresi lengkap 28 tes | lihat bagian akhir |
+| Regresi lengkap 28 tes (scenarios, storage_idb, flow_home_sheet, version_label, overflow, overlap dan lainnya) | semua lolos |
 
 ## Ditemukan dan diperbaiki
 - Banner dan bar view only tidak bisa diklik saat Home terbuka (Home membuat elemen lain inert). Ditambahkan ke daftar pengecualian di 31-ui-tour-and-focus.js.
