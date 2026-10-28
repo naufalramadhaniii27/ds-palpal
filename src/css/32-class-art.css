@@ -31,3 +31,8 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 @media (min-width:760px){#sheet.sh-scn::before{background-image:var(--sh-pc);background-position:center}}
 :root[data-hc] #sheet.sh-scn::before{display:none}
 @media print{#sheet.sh-scn::before{display:none}}
+.pp-act{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.pp-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.pp-i{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border:1px solid var(--line-2,#555);border-radius:8px;background:transparent;color:inherit;min-height:44px;cursor:pointer}
+.pp-i img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:6px}.pp-i span{font-size:13px}
+.pp-i:focus-visible{outline:2px solid var(--acc,#6ab);outline-offset:2px}

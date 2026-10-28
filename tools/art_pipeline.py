@@ -8,13 +8,14 @@ Writes small AVIF files to img/ and img/manifest.json (id to path, size, average
   scenes/tab|builder|screen|species|background  to img/scn/<group>/<id>-pc|phone.avif
   vignettes/empty|moment|state  to img/vig/<group>/<id>.avif 512 px
   emblems/subclass  to img/emblem/sub/<id>.avif 256 px
+  portraits/<species>-a|b  to img/portrait/<species>-a|b.avif 384 px wide
 Only images listed in the Codex notes as complete are used; names must match the app ids (lower case)."""
 import json, os, sys
 from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 a = sys.argv[1:]
 if not a: sys.exit(__doc__)
-SRC = a[0]; ONLY = (a[a.index("--only") + 1].split(",") if "--only" in a else ["emblems", "scenes", "icons", "scenes2", "vignettes", "subclass"])
+SRC = a[0]; ONLY = (a[a.index("--only") + 1].split(",") if "--only" in a else ["emblems", "scenes", "icons", "scenes2", "vignettes", "subclass", "portraits"])
 OUT = os.path.join(ROOT, "img"); os.makedirs(os.path.join(OUT, "emblem"), exist_ok=True); os.makedirs(os.path.join(OUT, "scene"), exist_ok=True)
 MAN = os.path.join(OUT, "manifest.json")
 man = json.load(open(MAN)) if os.path.exists(MAN) else {"emblem": {}, "scene": {}}
@@ -62,6 +63,15 @@ if "vignettes" in ONLY:
             if not f.endswith(".png"): continue
             dst = os.path.join(OUT, "vig", grp, f[:-4] + ".avif"); im = Image.open(os.path.join(d, f)).convert("RGBA"); im.thumbnail((512, 512), Image.LANCZOS); im.save(dst, "AVIF", quality=58, speed=6)
             man["vig"].setdefault(grp, []).append(f[:-4]); tot += os.path.getsize(dst)
+if "portraits" in ONLY:
+    man["portrait"] = []
+    d = os.path.join(SRC, "portraits")
+    if os.path.isdir(d):
+        os.makedirs(os.path.join(OUT, "portrait"), exist_ok=True)
+        for f in sorted(os.listdir(d)):
+            if not f.endswith(".png"): continue
+            dst = os.path.join(OUT, "portrait", f[:-4] + ".avif"); im = Image.open(os.path.join(d, f)).convert("RGB"); im.thumbnail((384, 480), Image.LANCZOS); im.save(dst, "AVIF", quality=60, speed=6)
+            man["portrait"].append(f[:-4]); tot += os.path.getsize(dst)
 if "subclass" in ONLY:
     d = os.path.join(SRC, "emblems", "subclass"); os.makedirs(os.path.join(OUT, "emblem", "sub"), exist_ok=True); ls_ = []
     for f in sorted(os.listdir(d)):
