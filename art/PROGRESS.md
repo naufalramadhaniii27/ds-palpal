@@ -1540,3 +1540,8 @@ art/batch/icons/items/magic/uncommon/condensed-order.png
 art/batch/icons/items/magic/rare/gauntlets-of-rage.png
 art/batch/icons/items/magic/rare/infernal-amulet.png
 art/batch/icons/items/magic/very-rare/infernal-plate-armor.png
+art/batch/icons/items/magic/rare/knife-of-stolen-resistance.png
+art/batch/icons/items/magic/artifact/ranseur-of-torture.png
+art/batch/icons/items/magic/very-rare/ring-of-collecting.png
+art/batch/icons/items/magic/legendary/ring-of-the-copycat.png
+art/batch/icons/items/magic/very-rare/ring-of-treachery.png
