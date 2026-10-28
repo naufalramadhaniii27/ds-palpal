@@ -1699,3 +1699,8 @@ art/batch/icons/items/magic/uncommon/night-caller.png
 art/batch/icons/items/magic/rare/potion-of-mind-control.png
 art/batch/icons/items/magic/rare/robe-of-summer.png
 art/batch/icons/items/magic/uncommon/shatterspike.png
+art/batch/icons/items/magic/very-rare/spear-of-backbiting.png
+art/batch/icons/items/magic/uncommon/stone-of-ill-luck.png
+art/batch/icons/items/magic/rare/tloques-berserker-battleaxe.png
+art/batch/icons/items/magic/uncommon/wand-of-entangle.png
+art/batch/icons/items/magic/legendary/waythe.png
