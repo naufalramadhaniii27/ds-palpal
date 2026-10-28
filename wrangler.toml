@@ -7,7 +7,7 @@ compatibility_date = "2024-09-23"
 [vars]
 # Cloudflare Access: team name and the Audience (AUD) tag of the dnd-sheets-palpale application. The API checks every login token against them.
 ACCESS_TEAM = "purple-frog-276b"
-ACCESS_AUD = ""
+ACCESS_AUD = "c9eba19b745a2065b1855305f21b04f2c989029466c6f92cf26c725daeb2f70f"
 
 [[d1_databases]]
 binding = "DB"
