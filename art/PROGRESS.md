@@ -1286,3 +1286,8 @@ art/batch/icons/items/magic/common/illuminators-tattoo.png
 art/batch/icons/items/magic/rare/libram-of-souls-and-flesh.png
 art/batch/icons/items/magic/very-rare/lifewell-tattoo.png
 art/batch/icons/items/magic/very-rare/lightning-absorbing-tattoo.png
+art/batch/icons/items/magic/artifact/lubas-tarokka-of-souls.png
+art/batch/icons/items/magic/rare/lyre-of-building.png
+art/batch/icons/items/magic/common/masquerade-tattoo.png
+art/batch/icons/items/magic/artifact/mighty-servant-of-leuk-o.png
+art/batch/icons/items/magic/very-rare/necrotic-absorbing-tattoo.png
