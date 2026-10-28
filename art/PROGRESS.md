@@ -1423,3 +1423,10 @@ art/batch/icons/items/magic/rare/figurine-of-wondrous-power-ebony-fly.png
 art/batch/icons/items/magic/rare/figurine-of-wondrous-power-golden-lions.png
 art/batch/icons/items/magic/rare/figurine-of-wondrous-power-ivory-goats.png
 art/batch/icons/items/magic/rare/figurine-of-wondrous-power-marble-elephant.png
+
+## batch-107 v3
+art/batch/icons/items/magic/very-rare/figurine-of-wondrous-power-obsidian-steed.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-onyx-dog.png
+art/batch/icons/items/magic/rare/figurine-of-wondrous-power-serpentine-owl.png
+art/batch/icons/items/magic/uncommon/figurine-of-wondrous-power-silver-raven.png
+art/batch/icons/items/magic/very-rare/gold-dragon-scale-mail.png
