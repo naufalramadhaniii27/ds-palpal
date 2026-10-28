@@ -1313,3 +1313,10 @@ art/batch/icons/items/magic/uncommon/emerald-pen.png
 art/batch/icons/items/magic/legendary/flail-of-tiamat.png
 art/batch/icons/items/magic/legendary/gold-canary-figurine-of-wondrous-power.png
 art/batch/icons/items/magic/legendary/platinum-scarf.png
+
+## batch-102 v3
+art/batch/icons/items/magic/legendary/potion-of-dragons-majesty.png
+art/batch/icons/items/magic/legendary/ruby-weave-gem.png
+art/batch/icons/items/magic/very-rare/sapphire-buckler.png
+art/batch/icons/items/magic/uncommon/slumbering-dragon-vessel.png
+art/batch/icons/items/magic/uncommon/slumbering-dragon-touched-focus.png
