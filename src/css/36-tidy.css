@@ -2,8 +2,8 @@
 /* Home title: plain colour (the clipped gradient vanished on wide screens), one line, buttons share the rest of the row */
 #homeV .hhead h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink);transition:none;white-space:nowrap;flex:0 0 auto}
 @media (min-width:760px){
-  #homeV .hhead{gap:16px}
-  #homeV .hhead .hbtns{flex:1 1 auto;justify-content:flex-end;flex-wrap:wrap;gap:6px}
+  #homeV .hhead{gap:12px 16px;flex-wrap:wrap}
+  #homeV .hhead .hbtns{flex:1 0 auto;max-width:100%;justify-content:flex-end;flex-wrap:wrap;gap:6px}
   #homeV .hbtns > button{padding:0 12px;font-size:calc(13px*var(--tz,1));white-space:nowrap}
 }
 /* Home hero portrait: the empty silhouette was black on the dark card */
@@ -29,3 +29,10 @@
 :is(.ifil,#tabs,.bnav).ovf-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
 :is(.ifil,#tabs,.bnav).ovf-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px);mask-image:linear-gradient(90deg,transparent,#000 32px)}
 :is(.ifil,#tabs,.bnav).ovf-l.ovf-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
+/* Phone: with the Friends button there are six buttons, so three per row instead of five and one left over */
+@media (max-width:759px){#homeV .hbtns:has(.fr-b){grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Dialog buttons made with .btn had no padding (Versions touched its own border) */
+.bkpb .btn,.sy-dlg .btn,.fr-dlg .btn{min-height:44px;padding:0 16px}
+.bkpb .btn.fr-sm,.fr-dlg .btn.fr-sm{min-height:34px;padding:0 10px}
+/* An empty-state line inside a card grid spans the whole row instead of one narrow cell */
+.fr-grid > :is(p,.sy-note,.muted){grid-column:1 / -1}
