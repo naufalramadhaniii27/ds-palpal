@@ -1225,3 +1225,10 @@ art/batch/icons/items/magic/very-rare/somniferous-blossom-rod.png
 art/batch/icons/items/magic/common/spell-component-ring.png
 art/batch/icons/items/magic/rare/spell-duelists-trophy.png
 art/batch/icons/items/magic/uncommon/spell-slingers-puppet.png
+
+## batch-098 v3
+art/batch/icons/items/magic/very-rare/staff-of-the-lost.png
+art/batch/icons/items/magic/common/sweeping-broom.png
+art/batch/icons/items/magic/rare/tarnished-idol-of-good-fortunes.png
+art/batch/icons/items/magic/rare/ten-keyholes-dagger.png
+art/batch/icons/items/magic/uncommon/thespians-playbill.png
