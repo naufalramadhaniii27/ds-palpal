@@ -995,3 +995,8 @@ art/batch/icons/items/magic/uncommon/pearl-of-power.png
 art/batch/icons/items/magic/common/perfume-of-bewitching.png
 art/batch/icons/items/magic/uncommon/periapt-of-health.png
 art/batch/icons/items/magic/rare/periapt-of-proof-against-poison.png
+art/batch/icons/items/magic/uncommon/periapt-of-wound-closure.png
+art/batch/icons/items/magic/uncommon/philter-of-love.png
+art/batch/icons/items/magic/common/pipe-of-smoke-monsters.png
+art/batch/icons/items/magic/uncommon/pipes-of-haunting.png
+art/batch/icons/items/magic/uncommon/pipes-of-the-sewers.png
