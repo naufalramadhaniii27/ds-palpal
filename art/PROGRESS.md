@@ -1643,3 +1643,10 @@ art/batch/icons/items/magic/artifact/draakhorn.png
 art/batch/icons/items/magic/rare/dragontooth-dagger.png
 art/batch/icons/items/magic/varies/gnomengarde-grenade.png
 art/batch/icons/items/magic/legendary/green-dragon-mask.png
+
+## batch-117 v3
+art/batch/icons/items/magic/legendary/hammock-of-worlds.png
+art/batch/icons/items/magic/legendary/hazirawn.png
+art/batch/icons/items/magic/very-rare/heartstone.png
+art/batch/icons/items/magic/legendary/helm-of-disjunction.png
+art/batch/icons/items/magic/legendary/heretic.png
