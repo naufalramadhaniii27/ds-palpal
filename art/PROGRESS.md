@@ -1210,3 +1210,8 @@ art/batch/icons/items/magic/uncommon/martialists-quarterstaff.png
 art/batch/icons/items/magic/rare/namers-needle.png
 art/batch/icons/items/magic/uncommon/necklace-of-the-beastly-familiar.png
 art/batch/icons/items/magic/uncommon/ominous-staff-of-skulls.png
+art/batch/icons/items/magic/uncommon/orb-of-divination-detection.png
+art/batch/icons/items/magic/uncommon/orb-of-sorcery.png
+art/batch/icons/items/magic/uncommon/potion-of-dragons-breath.png
+art/batch/icons/items/magic/uncommon/potion-of-tirelessness.png
+art/batch/icons/items/magic/rare/prismatic-rune.png
