@@ -1672,3 +1672,8 @@ art/batch/icons/items/magic/legendary/red-wizard-blade.png
 art/batch/icons/items/magic/artifact/rod-of-seven-parts.png
 art/batch/icons/items/magic/artifact/ruinstone.png
 art/batch/icons/items/magic/rare/shard-of-xeluan.png
+art/batch/icons/items/magic/legendary/shard-solitaire.png
+art/batch/icons/items/magic/very-rare/soul-bag.png
+art/batch/icons/items/magic/rare/speaking-stones.png
+art/batch/icons/items/magic/uncommon/spiked-shield.png
+art/batch/icons/items/magic/rare/staff-of-ruling.png
