@@ -1567,3 +1567,8 @@ art/batch/icons/items/magic/uncommon/paper-bird.png
 art/batch/icons/items/magic/uncommon/ring-of-truth-telling.png
 art/batch/icons/items/magic/uncommon/smokepowder.png
 art/batch/icons/items/magic/artifact/stone-of-golorr.png
+art/batch/icons/items/magic/artifact/adze-of-annam.png
+art/batch/icons/items/magic/artifact/bigbys-beneficent-bracelet.png
+art/batch/icons/items/magic/rare/crown-of-the-wrath-bringer.png
+art/batch/icons/items/magic/rare/delvers-claws.png
+art/batch/icons/items/magic/very-rare/elven-thrower.png
