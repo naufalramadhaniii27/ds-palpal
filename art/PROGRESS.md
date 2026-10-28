@@ -1628,3 +1628,8 @@ art/batch/icons/items/magic/uncommon/serpent-scale-armor.png
 art/batch/icons/items/magic/rare/serpents-fang.png
 art/batch/icons/items/magic/very-rare/staff-of-fate.png
 art/batch/icons/items/magic/very-rare/watchful-helm.png
+art/batch/icons/items/magic/uncommon/amber-runestone.png
+art/batch/icons/items/magic/legendary/amulet-of-harmony.png
+art/batch/icons/items/magic/legendary/black-dragon-mask.png
+art/batch/icons/items/magic/legendary/blue-dragon-mask.png
+art/batch/icons/items/magic/rare/bonecounter.png
