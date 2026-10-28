@@ -1396,3 +1396,8 @@ art/batch/icons/items/magic/rare/voidwalker-armor.png
 art/batch/icons/items/magic/rare/warriors-passkey.png
 art/batch/icons/items/magic/uncommon/bag-of-tricks-gray.png
 art/batch/icons/items/magic/uncommon/bag-of-tricks-rust.png
+art/batch/icons/items/magic/uncommon/bag-of-tricks-tan.png
+art/batch/icons/items/magic/legendary/belt-of-cloud-giant-strength.png
+art/batch/icons/items/magic/very-rare/belt-of-fire-giant-strength.png
+art/batch/icons/items/magic/very-rare/belt-of-frost-giant-strength.png
+art/batch/icons/items/magic/rare/belt-of-hill-giant-strength.png
