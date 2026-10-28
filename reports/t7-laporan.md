@@ -43,3 +43,8 @@ Perubahan tes: pembacaan storage di scenarios, fav_bar, lib_add, measure memakai
 - Kunci lama `yudhi-kelapa-build-v3` dan `yudhi-kelapa-sheet-v1` tetap dipakai sebagai nama kunci supaya backup dan restore file lama tetap jalan. Nama ini tidak terlihat pengguna.
 - Karakter sampel Yudhi sekarang hanya di tests/fixtures/yudhi-v3.json.
 - Temuan di luar tugas (belum diubah): karakter kosong dari builder masih membawa profSrc Fighter dan aksi Second Wind (blankC di builder). Gambar vignette offline tidak ikut cache service worker bila belum pernah dimuat saat online.
+
+## Cloudflare Access (2026-10-28)
+- App di dnd-sheets-palpale.pages.dev dikunci Cloudflare Access: policy Teman (Allow, email, sesi 1 bulan, One-time PIN) dan GitHub check (Service Auth, token github-live-check).
+- live-check memakai secret CF_ACCESS_CLIENT_ID dan CF_ACCESS_CLIENT_SECRET. Token ditambahkan lewat route Playwright, dan env PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 supaya permintaan dari service worker ikut membawa token. Access tidak memberi cookie untuk service token.
+- Hasil run 40660140315: 21 cek, 0 gagal.
