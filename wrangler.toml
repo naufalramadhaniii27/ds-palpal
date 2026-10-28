@@ -1,0 +1,15 @@
+# Cloudflare Pages settings kept in the repo (Pages reads this file on every build of main).
+# Bindings and variables here replace the ones in the dashboard.
+name = "dnd-sheets-palpale"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-09-23"
+
+[vars]
+# Cloudflare Access: team name and the Audience (AUD) tag of the dnd-sheets-palpale application. The API checks every login token against them.
+ACCESS_TEAM = "purple-frog-276b"
+ACCESS_AUD = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dnd-sheet"
+database_id = "c484d196-f0a5-4790-8296-aacb341ad7c3"

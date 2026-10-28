@@ -77,7 +77,15 @@ async def main():
     check("sw.js 200, no-cache, Service-Worker-Allowed /", st == 200 and "no-cache" in hl.get("cache-control", "") and hl.get("service-worker-allowed") == "/", hl)
     st, h, body = get("/manifest.webmanifest"); hl = {k.lower(): v for k, v in h.items()}
     check("manifest type", st == 200 and "manifest+json" in hl.get("content-type", ""), hl.get("content-type"))
-    for p in ("/tests/fixtures/yudhi-v3.json", "/src/manifest.json", "/reports/t7-laporan.md", "/build.py"):
+    # T8 cloud API: health without login, and the login token check (a service token is a valid Access login that is not a person: 403)
+    st, h, body = get("/api/health")
+    try: hj = json.loads(body)
+    except Exception: hj = {}
+    check("API health answers with the database", st == 200 and hj.get("ok") and hj.get("db"), "%s %s" % (st, body[:120]))
+    if HDR:
+        st, h, body = get("/api/me")
+        check("API verifies the Access token (service token gets 403)", st == 403 and b"service-token" in body, "%s %s" % (st, body[:120]))
+    for p in ("/tests/fixtures/yudhi-v3.json", "/src/manifest.json", "/reports/t7-laporan.md", "/build.py", "/wrangler.toml", "/functions/api/[[path]].js"):
         st, h, body = get(p)
         # Pages answers an unknown path with index.html (200). The real file must not come back
         check("not published: " + p, st == 404 or body == INDEX, "%s, %d bytes" % (st, len(body)))

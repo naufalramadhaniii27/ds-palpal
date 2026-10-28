@@ -50,7 +50,8 @@
     "css/30-tap-44.css",
     "css/31-home-hero.css",
     "css/32-class-art.css",
-    "css/33-store-wait.css"
+    "css/33-store-wait.css",
+    "css/34-cloud-sync.css"
    ]
   },
   {
@@ -154,6 +155,7 @@
     "app/40-ui-segments-notes-swipe-motion-panels.js",
     "app/41-ui-edit-mode.js",
     "app/42-logic-pwa-qr-icons-wallet.js",
+    "app/43-logic-cloud-sync.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]

@@ -182,7 +182,7 @@ function unList(){var m=[["cls","class"],["species","species"],["bg","background
 /* RU30: sheet of a new character before its first Apply: name and level only, nothing from the unchosen defaults */
 function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel","speedSrc","darkSrc","equipNote","rolledNote"].forEach(function(k){C[k]=""});C.clsLabel="No class yet";
  C.hitDie=0;C.hpPerLevel=[];C.hpBonus=[];C.initBonus=[];C.pasBon=[];C.saves={};C.skills=(C.skills||[]).map(function(s){return {n:s.n,ab:s.ab}});C.lang=[];
- C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};
+ C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};C.profSrc={armor:[],weapons:[],tools:[]};C.acts=[];
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}
 function toSheetApply(review){var miss=unList();if(miss){toast("Choose your "+miss+" first");return}var C=toSheet(),cur=window.__sheetName?window.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
  var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};

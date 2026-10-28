@@ -254,6 +254,22 @@ Folder gambar: `g0/frame-portrait` (bingkai kayu untuk pilihan Carved wood) dan 
 
 Tes terkait: `tests/class_art.py`, `portrait_pick.py`, `builder_art.py`, `vignettes.py`, `sub_art.py`, `audio_ctx.py`, `lib_drag.py`, `builder_pal.py`.
 
+## Sinkron cloud (T8, tahap 3)
+
+| Tempat | Isi |
+|---|---|
+| `functions/api/[[path]].js` | API Pages Functions, hanya `/api/*` (`dist/_routes.json` dari `tools/pages_dist.sh`). Identitas dari JWT Cloudflare Access (header `Cf-Access-Jwt-Assertion`), dicek ke kunci tim, `ACCESS_AUD` dan `iss`. Service token dapat 403. Endpoint: `GET health`, `GET me`, `GET chars`, `GET/PUT/DELETE chars/:id`, `GET chars/:id/versions[/:rev]`. PUT menerima teks mentah (tidak di-parse, batas CPU 10 ms), `?base=rev&force=1`, header `x-name`, `x-sub` |
+| `wrangler.toml` | Konfigurasi Pages: binding D1 `DB` (database `dnd-sheet`), variabel `ACCESS_TEAM`, `ACCESS_AUD`. File ini menggantikan pengaturan binding dan variabel di dashboard |
+| Tabel D1 | `users`, `chars` (owner, id, rev, t, name, sub, data, size, deleted, vt), `versions` (maks 30 per karakter), `usage` (per pengguna per hari), `state` (hari, mode). Dibuat otomatis oleh API |
+| Siklus harian | Request pertama tiap hari UTC: pangkas versi, kosongkan recycle bin lebih dari 30 hari, hapus usage lebih dari 40 hari, tentukan mode (normal, save di atas 70 persen, pause di atas 90 persen jatah gratis kemarin). Tanpa Cron |
+| Jatah | Per pengguna per hari 1.000 request, 1.200 baris tulis, 20.000 baris baca. 50 MB, 50 karakter, 1 MB per karakter |
+| `src/app/43-logic-cloud-sync.js` | Klien. Mulai setelah builder selesai dimuat (`bldready`). Satuan sinkron = satu entri roster (karakter terbuka dibaca dari slot tersimpan). Hash teks menentukan perubahan. Bentrok: perangkat ini menang, salinan lain disimpan sebagai versi `other-device`. Karakter terbuka yang berubah di cloud diganti hanya saat app mulai atau kembali ke layar (reload). Status di `cs-sync-v1`. Log singkat di sessionStorage `cs-sync-log` |
+| `src/css/34-cloud-sync.css` | Tombol awan di header sheet dan Home, dialog Cloud backup (versi, recycle bin, Restore as copy) |
+| `sw.js` | `/api/*` tidak pernah lewat cache |
+
+Tes: `tests/cloud_sync.py` (butuh `wrangler pages dev --port 8788 --binding DEV_USER=a@test.dev` di root repo), `node tests/api_jwt.mjs`, `tests/live_check.py` (health dan cek token di situs live).
+`DEV_USER` hanya untuk tes lokal: dipakai bila `ACCESS_AUD` kosong. Jangan diset di Cloudflare.
+
 ## Riwayat
 
 - bf7444a: `src/` pertama, dipecah otomatis per 25 KB di baris banner, nama dari teks banner.

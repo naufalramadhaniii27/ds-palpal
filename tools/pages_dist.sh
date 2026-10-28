@@ -7,4 +7,6 @@ rm -rf dist
 mkdir dist
 cp index.html sw.js manifest.webmanifest _headers dist/
 cp -R img icons dist/
+# Functions run only for /api/*. Every other path is a static file, so the app itself never costs a Worker request
+printf '{"version":1,"include":["/api/*"],"exclude":[]}\n' > dist/_routes.json
 echo "dist ready: $(find dist -type f | wc -l) files"
