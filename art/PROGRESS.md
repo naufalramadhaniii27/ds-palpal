@@ -1731,3 +1731,10 @@ art/batch/icons/items/magic/uncommon/goggles-of-object-reading.png
 art/batch/icons/items/magic/legendary/grimoire-infinitus.png
 art/batch/icons/items/magic/artifact/grovelthrash.png
 art/batch/icons/items/magic/legendary/hide-of-the-feral-guardian.png
+
+## batch-121 v3
+art/batch/icons/items/magic/very-rare/hunters-coat.png
+art/batch/icons/items/magic/legendary/infiltrators-key.png
+art/batch/icons/items/magic/artifact/lash-of-shadows.png
+art/batch/icons/items/magic/legendary/luxon-beacon.png
+art/batch/icons/items/magic/artifact/mace-of-the-black-crown.png
