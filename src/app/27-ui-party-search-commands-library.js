@@ -300,7 +300,7 @@ window.addEventListener("error",function(e){ ERRLOG.push({t:new Date().toISOStri
 window.addEventListener("unhandledrejection",function(e){ ERRLOG.push({t:new Date().toISOString(),m:String(e.reason&&e.reason.message||e.reason||"").slice(0,300)}); if(ERRLOG.length>20) ERRLOG.shift(); });
 var REP_NOTES=false;/* v28 I2: notes and journal only when ticked */
 function reportText(){ var s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } var b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
-  return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
+  return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appLabel:APP_LABEL,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
     storage:(function(){ var n=0; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); n+=k.length+String(__store.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
     errors:ERRLOG, sheet:C, state:s2, build:b},null,1); }
 function reportOpen(){ var old=document.getElementById("rep"); if(old) old.remove(); var w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");

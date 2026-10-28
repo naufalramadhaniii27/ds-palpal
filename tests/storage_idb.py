@@ -59,7 +59,10 @@ async def run(pw, base, vp, w, h):
     mode = await pg.evaluate("()=>__store.mode()")
     check(vp + " 1 store runs on IndexedDB", mode == "idb", mode)
     db = await pg.evaluate(IDB_ALL)
-    check(vp + " 1 sheet copied to IndexedDB", db and db["kv"].get("yudhi-kelapa-build-v3") == YUDHI)
+    def no_app(x):
+        o = json.loads(x or "null") or {}; o.pop("_app", None); return o
+    # the app may save the sheet again with its own version stamp (_app). Everything else must be the old data
+    check(vp + " 1 sheet copied to IndexedDB", db and no_app(db["kv"].get("yudhi-kelapa-build-v3")) == no_app(YUDHI))
     lb = (db or {}).get("meta", {}).get("__legacy-backup") or {}
     check(vp + " 1 copy of the old data kept before migration", lb.get("keys", {}).get("yudhi-kelapa-build-v3") == YUDHI)
     ls = await pg.evaluate(LS_ALL)

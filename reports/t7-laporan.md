@@ -18,6 +18,7 @@ Branch t7-storage, dari t5-high-tech (0542ac5). Tahap 1 dari rencana claude/renc
 | Indikator | "Storage used on this device: X of about N GB" dari navigator.storage.estimate. Sebelum browser menjawab, tanpa peringatan penuh |
 | Default bersih | DEFAULT jadi karakter kosong. Teks Yudhi, Retron, Pencak Silat dihapus dari placeholder header, glossary (Dagger, Sickle, Unarmed Strike, Frightened), dan menu Reset |
 | Reset | "Reset to original build" (ke Yudhi) diganti "Clear Build": mengosongkan build. Nama, catatan, HP, kondisi tetap |
+| Versi | Label yang terlihat jadi 0.0.1 (APP_LABEL, 2026-10-28). Nomor internal untuk cap data naik ke 103 (APP_VER), supaya data lama tidak dianggap dari versi lebih baru. What's New hanya menampilkan versi berlabel (0.0.1 ke atas). Tes: version_label (9 lolos) |
 
 ## Waktu muat (HP 390x844, CPU 4x, data Yudhi, median 8 kali)
 | Versi | Siap tampil |
