@@ -3020,6 +3020,7 @@ art/batch/ui/sprite-heal.png
 art/batch/ui/sprite-damage.png
 art/batch/ui/sprite-levelup.png
 art/batch/ui/sprite-save.png
+art/batch/ui/sprite-candle.png
 ## batch-204 v3
 
 art/batch/creatures/undead/skeleton.png
