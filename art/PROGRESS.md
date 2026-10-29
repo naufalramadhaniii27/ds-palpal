@@ -1810,6 +1810,12 @@ art/batch/icons/rules/languages/language-druidic.png
 art/batch/icons/rules/languages/language-infernal.png
 art/batch/icons/rules/languages/language-primordial.png
 art/batch/icons/rules/languages/language-sylvan.png
+art/batch/icons/rules/resources/superiority-die.png
+art/batch/icons/rules/resources/focus-points.png
+art/batch/icons/rules/resources/lay-on-hands-pool.png
+art/batch/icons/rules/resources/sorcery-points.png
+art/batch/icons/rules/resources/hit-die.png
+
 ## batch-198 v3
 
 art/batch/portraits/vampire-a.png
