@@ -3099,6 +3099,11 @@ art/batch/icons/spells/level-6/soul-cage.png
 art/batch/icons/spells/level-6/bones-of-the-earth.png
 art/batch/icons/spells/level-6/create-homunculus.png
 art/batch/icons/spells/level-6/disintegrate.png
+art/batch/icons/spells/level-6/flesh-to-stone.png
+art/batch/icons/spells/level-6/investiture-of-flame.png
+art/batch/icons/spells/level-6/investiture-of-ice.png
+art/batch/icons/spells/level-6/investiture-of-stone.png
+art/batch/icons/spells/level-6/investiture-of-wind.png
 ## batch-223 v3
 art/batch/ui/brush-underline.png
 art/batch/ui/seal-wax.png
