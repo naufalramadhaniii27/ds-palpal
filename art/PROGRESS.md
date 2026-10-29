@@ -4445,3 +4445,10 @@ art/batch/icons/features/subclass/warrior-of-the-mystic-arts/focused-strike.png
 art/batch/icons/features/subclass/warrior-of-the-mystic-arts/improved-mystic-fighting-style.png
 art/batch/icons/features/subclass/warrior-of-the-mystic-arts/mystic-fighting-style.png
 art/batch/icons/features/subclass/warrior-of-the-mystic-arts/mystic-focus.png
+
+## batch-178 v3
+art/batch/icons/features/subclass/warrior-of-the-mystic-arts/spellcasting.png
+art/batch/icons/features/subclass/warrior-of-the-open-hand/fleet-step.png
+art/batch/icons/features/subclass/warrior-of-the-open-hand/open-hand-technique.png
+art/batch/icons/features/subclass/warrior-of-the-open-hand/quivering-palm.png
+art/batch/icons/features/subclass/warrior-of-the-open-hand/wholeness-of-body.png
