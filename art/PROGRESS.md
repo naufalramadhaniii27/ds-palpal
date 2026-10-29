@@ -4393,6 +4393,11 @@ art/batch/icons/familiars/hawk-familiar.png
 art/batch/icons/familiars/lizard-familiar.png
 art/batch/icons/familiars/octopus-familiar.png
 art/batch/icons/familiars/owl-familiar.png
+art/batch/icons/familiars/rat-familiar.png
+art/batch/icons/familiars/raven-familiar.png
+art/batch/icons/familiars/spider-familiar.png
+art/batch/icons/familiars/weasel-familiar.png
+art/batch/icons/familiars/imp-pact-familiar.png
 ## batch-177 v3
 art/batch/icons/features/subclass/warlock/epic-boon.png
 art/batch/icons/features/subclass/warrior-of-mercy/flurry-of-healing-and-harm.png
