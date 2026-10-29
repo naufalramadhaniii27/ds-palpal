@@ -2601,6 +2601,11 @@ art/batch/icons/spells/level-3/fast-friends.png
 art/batch/icons/spells/level-3/incite-greed.png
 art/batch/icons/spells/level-3/inflict-doubt.png
 art/batch/icons/spells/level-3/motivational-speech.png
+art/batch/icons/spells/level-3/astral-flood.png
+art/batch/icons/spells/level-3/blinding-smite.png
+art/batch/icons/spells/level-3/cacophonic-shield.png
+art/batch/icons/spells/level-3/crusaders-mantle.png
+art/batch/icons/spells/level-3/daylight.png
 
 ## batch-149 v3
 art/batch/icons/features/class/druid/wild-companion.png
