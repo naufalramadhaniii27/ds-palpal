@@ -177,6 +177,15 @@ Satu rilis saja: 0.0.3 berisi G0 sampai G5 dan Learn F0 sampai F7 (keputusan use
 | Workers | Pages lama tetap hidup sampai alamat Workers lolos live-check. Bila Workers gagal, rilis tetap jalan di Pages |
 | Data | Migrasi skema D1 dan data lokal dites dari salinan data produksi seperti di T9 |
 
+## Analisa sebelum mulai (2026-10-29 13.40 WIB)
+| Hal | Temuan | Tindak lanjut |
+|---|---|---|
+| Backlog lama | README menyatakan backlog kosong sejak v28. Temuan Checker lama (M13, M15, m6, m8, m9 dan lain-lain) sudah dikerjakan di v12. Yang ditunda user: field edition 2014 (sebagian sudah ada di balik flag cs-rs14), monster Retromistika, halaman About dan lisensi, preset campaign, sisa D4 (Extras: Vehicles, berat koin) | Tidak ada backlog yang perlu digabung. Halaman About dan lisensi yang dulu ditunda sekarang perlu minimal satu halaman lisensi karena dice-box, Babylon, dan Havok wajib menyertakan lisensinya |
+| Branch t10-tidy | 20 commit di atas main (rapikan tampilan, art terbaru, kampanye karakter, HD tier), commit terakhir 29 Oktober 12.40 WIB, belum dirilis. Merge ke t7-storage saat ini bersih tanpa konflik | Digabung ke branch kerja di awal G0 supaya 0.0.3 memuatnya. Bila sesi lain masih mengerjakan t10-tidy, digabung lagi sebelum rilis |
+| Hotfix 0.0.2 | Satu rilis besar berarti branch kerja lama terpisah dari main | Bug di 0.0.2 diperbaiki di branch hotfix dari main, dirilis sendiri setelah user setuju, lalu main digabung ke branch kerja |
+| Preview deployment | Commit di t7-storage tidak punya status Cloudflare Pages di GitHub, jadi preview branch kemungkinan tidak aktif. Vercel masih terhubung ke Git dan gagal build (batas build) | Uji CSP di server lokal wrangler, atau user mengaktifkan preview branch di Pages. User memutus Git di Vercel (sudah tercatat sebagai pekerjaan user) |
+| Progres Codex | 152 dari 236 batch, sekitar 2.418 dari 3.836 gambar (63 persen). Laju sejak pagi sekitar 125 gambar per jam, sisa sekitar 1.418 gambar, perkiraan selesai sekitar pukul 01.00 WIB, bukan 17.00. Batch 157 sampai 167 (sesi 6) dan 180 sampai 197 (sesi 8) belum ada yang selesai. Gambar Learn (234 sampai 236) belum dibuat | Sesi 6 dan 8 perlu dicek user. Learn tetap jalan dengan gambar sementara |
+
 ## Keputusan yang perlu dari user
 | Hal | Kapan |
 |---|---|
