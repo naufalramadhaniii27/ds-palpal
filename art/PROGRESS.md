@@ -4236,6 +4236,11 @@ art/batch/icons/spells/level-5/rarys-telepathic-bond.png
 art/batch/icons/spells/level-5/scrying.png
 art/batch/icons/spells/level-5/dominate-person.png
 art/batch/icons/spells/level-5/geas.png
+art/batch/icons/spells/level-5/cone-of-cold.png
+art/batch/icons/spells/level-5/dawn.png
+art/batch/icons/spells/level-5/destructive-wave.png
+art/batch/icons/spells/level-5/flame-strike.png
+art/batch/icons/spells/level-5/holy-weapon.png
 
 ## batch-213 v3
 
