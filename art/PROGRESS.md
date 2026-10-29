@@ -1975,6 +1975,14 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2222,6 +2230,16 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2299,16 +2317,6 @@ art/batch/icons/items/magic/common/medal-of-the-horizonback.png
 art/batch/icons/items/magic/common/medal-of-the-maze.png
 art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
 
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2603,6 +2611,11 @@ art/batch/icons/features/class/fighter/second-wind.png
 art/batch/icons/features/class/fighter/studied-attacks.png
 art/batch/icons/features/class/fighter/tactical-master.png
 
+art/batch/icons/features/class/monk/acrobatic-movement.png
+art/batch/icons/features/class/monk/body-and-mind.png
+art/batch/icons/features/class/monk/deflect-attacks.png
+art/batch/icons/features/class/monk/deflect-energy.png
+art/batch/icons/features/class/monk/disciplined-survivor.png
 ## batch-221 v3
 art/batch/scenes/environment/feywild-pc.png
 art/batch/scenes/environment/feywild-phone.png
