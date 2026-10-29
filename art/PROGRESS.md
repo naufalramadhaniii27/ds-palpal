@@ -3943,7 +3943,6 @@ art/batch/vignettes/learn/hit-points-rests.png
 
 art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
-NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3961,6 +3960,10 @@ art/batch/icons/features/subclass/path-of-the-zealot/divine-fury.png
 art/batch/icons/features/subclass/path-of-the-zealot/fanatical-focus.png
 art/batch/icons/features/subclass/path-of-the-zealot/rage-beyond-death.png
 art/batch/icons/features/subclass/path-of-the-zealot/rage-of-the-gods.png
+art/batch/icons/features/subclass/path-of-the-zealot/warrior-of-the-gods.png
+art/batch/icons/features/subclass/path-of-the-zealot/zealous-presence.png
+art/batch/icons/features/subclass/psi-warrior/bulwark-of-force.png
+art/batch/icons/features/subclass/psi-warrior/guarded-mind.png
 
 NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
