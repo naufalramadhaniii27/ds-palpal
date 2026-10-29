@@ -4003,7 +4003,6 @@ art/batch/scenes/species/leonin-phone.png
 art/batch/scenes/species/lizardfolk-pc.png
 art/batch/scenes/species/lizardfolk-phone.png
 
-NEXT: batch-050 art/batch/icons/spells/level-5/antilife-shell.png
 ## batch-050 v3
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
