@@ -1787,6 +1787,11 @@ art/batch/icons/items/magic/common/scribes-pen.png
 art/batch/icons/items/magic/common/shiftweave.png
 art/batch/icons/items/magic/very-rare/speaking-stone.png
 art/batch/icons/items/magic/common/spellshard.png
+art/batch/icons/items/magic/uncommon/uncommon-glamerweave.png
+art/batch/icons/items/magic/rare/ventilating-lungs.png
+art/batch/icons/items/magic/common/wand-sheath.png
+art/batch/icons/items/magic/uncommon/wheel-of-wind-and-water.png
+art/batch/icons/items/magic/uncommon/azorius-guild-signet.png
 
 ## batch-144 v3
 art/batch/icons/rules/languages/language-deep-speech.png
