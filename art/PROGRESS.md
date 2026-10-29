@@ -4334,6 +4334,11 @@ art/batch/icons/features/subclass/war-domain/guided-strike.png
 art/batch/icons/features/subclass/war-domain/war-domain-spells.png
 art/batch/icons/features/subclass/war-domain/war-gods-blessing.png
 art/batch/icons/features/subclass/war-domain/war-priest.png
+art/batch/icons/features/subclass/war-magic/arcane-deflection.png
+art/batch/icons/features/subclass/war-magic/deflecting-shroud.png
+art/batch/icons/features/subclass/war-magic/durable-magic.png
+art/batch/icons/features/subclass/war-magic/power-surge.png
+art/batch/icons/features/subclass/war-magic/tactical-wit.png
 
 ## batch-052 v3
 art/batch/icons/spells/level-5/immolation.png
