@@ -25,6 +25,13 @@ function lrnExam(){ var core=[], rest=[];
     if(!qs.length) return; lrnShuffle(qs); (p.core?core:rest).push(qs[0]); if(qs[1]) rest.push(qs[1]); });
   return lrnShuffle(core.concat(lrnShuffle(rest).slice(0,3))); }
 
+/* U26 Quick recap: two questions from stops learned at least a day ago, offered once a day on the map, never required */
+function lrnRecapDue(){ var day=new Date().toISOString().slice(0,10); if(LRN.recap===day) return false; var old=Date.now()-864e5;
+  return LEARN.places.some(function(p){ var d=LRN.done[p.id]; return d&&!d.skip&&d.t<old&&!p.kind; }); }
+function lrnRecap(){ var old=Date.now()-864e5, qs=[];
+  LEARN.places.forEach(function(p){ var d=LRN.done[p.id]; if(!d||d.skip||d.t>=old||p.kind) return; p.steps.forEach(function(s){ if(s.t==="why") qs.push(s); }); });
+  return lrnShuffle(qs).slice(0,2).map(function(s){ var ord=lrnShuffle(s.opts.map(function(o,k){ return k; })), ok=-1; var q={q:s.q,opts:ord.map(function(k,j){ if(s.opts[k].ok) ok=j; return s.opts[k].x; }),fb:s.opts.filter(function(o){ return o.ok; })[0].fb}; q.a=ok; return q; }); }
+
 /* dice: the 3D dice of the sheet (vendor/dice) when effects are on, numbers from crypto otherwise. Always answers, never throws */
 function lrnD(n){ var a=new Uint32Array(1); try{ crypto.getRandomValues(a); }catch(e){ a[0]=Math.floor(Math.random()*4294967295); } return 1+a[0]%n; }
 function lrnCalm(){ var M=window.__MI; return !M||(M.rm&&M.rm())||M.mode==="off"; }

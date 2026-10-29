@@ -49,3 +49,12 @@ Learn jadi prioritas dan dirilis secepatnya dengan kualitas tetap dijaga. Keputu
 | Temuan | Tidak ada data karakter yang diubah Learn (dites). Sheet sendiri menambah detail item (type, cost) ke inventory setelah data builder dimuat, dengan atau tanpa Learn. a11y_scan gagal sejak CSP G1 karena axe disuntik, sekarang memakai bypass_csp (hanya di tes) |
 | Tes | learn_flow (3 skenario wajib x 2 ukuran, EN dan ID, Back, Escape, reload, Motion off, tanpa anchor positioning, dadu 3D), learn_a11y (axe 0 pelanggaran, tombol 44 px), tour_flow, version_label 0.0.3 |
 | Belum | F3 Forge Your Hero, F5 penghubung (Learn this, Which die, recap, corong Admin), Tempat Bonus lain, gambar Codex. Uji main orang sungguhan dan Safari di iPhone: tugas user |
+
+## Sesudah rilis 0.0.3 (2026-10-29 malam)
+| Kerja | Hasil |
+|---|---|
+| Saving throws di HP | Kembali 2 kolom (aturan T10 tidy membuat 3 kolom, STR terpotong). Catatan saving throw selebar kartu. Sudah di main |
+| F4 Tempat Bonus | 7 tempat baru dan Crumbling Bridge (8 soal acak: satu dari tiap tempat inti, tiga dari sisanya). Kamus +10 istilah. Strip skor ke bonus, serangan melawan Armor Number |
+| F5 | "Learn this" di panel aturan sheet (contoh Armor Class ke Training Yard). Quick recap sekali sehari dari tempat yang dipelajari minimal sehari sebelumnya |
+| Sorotan | Bagian yang lebih tinggi dari setengah layar: kartu label di bawah, tidak keluar layar |
+| Tes | learn_flow (semua tempat dan Crumbling Bridge), learn_links |

@@ -9,8 +9,9 @@ User 2026-10-29 17.22 WIB: Learn jadi prioritas dan dirilis secepatnya, kualitas
 | F0 Fondasi | Selesai. Data dua bahasa (src/learn/45), progres `cs-learn-v1` ikut PF_KEYS, band di Home, blok tunda `learn`, gerbang bahasa di build (tools/learn_lint.js, U43 dan U48) |
 | F1 Mesin tantangan | Selesai: Tebak, Lihat (frame dari data, U38), Coba (pilih, lempar, nilai sendiri, grid, HP, dadu, dua d20), Kenapa, Find it on your sheet dengan Anchor Spotlight (U41), kamus popover, "I know this", XP yang tidak pernah turun |
 | F2 Jalur Inti | Selesai: Tavern, Rooftops, Forest, Campsite, Market, cek akhir 5 soal |
-| F4 Tempat Bonus | Meet Your Dice dan Windy Cliff ikut 0.0.3. Sisanya rilis berikutnya |
-| F3, F5, recap, corong Admin | Rilis berikutnya |
+| F4 Tempat Bonus | Meet Your Dice dan Windy Cliff ikut 0.0.3. Sesudah 0.0.3 (2026-10-29): Village Green, Training Yard, Campsite at Night, Deep Forest, The Meadow, Wizard Tower, Tower Library, Crumbling Bridge (soal acak, U4 dan U49) |
+| F5 | Sesudah 0.0.3: tombol "Learn this" di panel aturan sheet (U2), Quick recap 2 soal sekali sehari (U26). Belum: Which die (U7), contekan meja (U3), coach mode (U47), corong Admin (U12) |
+| F3 | Belum |
 | F6 Gambar Codex | Gambar sementara dari app (burung hantu di vig/empty/spells untuk Hoot). Diganti saat batch 234 sampai 236 jadi |
 | F7 | Tes otomatis selesai (tests/learn_flow.py: 3 skenario wajib, 2 ukuran, EN dan ID, Back, Motion off, tanpa anchor positioning, 3D dice). Uji main dengan orang sungguhan dan cek Safari di iPhone tetap tugas user |
 
