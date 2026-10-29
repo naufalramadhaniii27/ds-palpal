@@ -2033,6 +2033,21 @@ art/batch/icons/features/subclass/life-domain/divine-strike.png
 art/batch/icons/features/subclass/life-domain/life-domain-spells.png
 art/batch/icons/features/subclass/life-domain/preserve-life.png
 art/batch/icons/features/subclass/life-domain/supreme-healing.png
+art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
+art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/corona-of-light.png
+art/batch/icons/features/subclass/light-domain/improved-flare.png
+art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
+art/batch/icons/features/subclass/light-domain/light-domain-spells.png
+art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
+art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/warding-flare.png
+art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
+art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-conquering-presence.png
+art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-guided-strike.png
+art/batch/icons/features/subclass/oath-of-conquest/invincible-conqueror.png
+art/batch/icons/features/subclass/oath-of-conquest/oath-spells.png
+art/batch/icons/features/subclass/oath-of-conquest/scornful-rebuke.png
 ## batch-146 v3
 art/batch/icons/rules/actions/bonus-action.png
 art/batch/icons/rules/actions/reaction.png
@@ -2082,11 +2097,6 @@ art/batch/creatures/beast/giant-crab.png
 art/batch/creatures/beast/giant-goat.png
 art/batch/creatures/beast/giant-seahorse.png
 
-art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
-art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
-art/batch/icons/features/subclass/light-domain/corona-of-light.png
-art/batch/icons/features/subclass/light-domain/improved-flare.png
-art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
 ## batch-147 v3
 art/batch/icons/features/class/barbarian/brutal-strike.png
 art/batch/icons/features/class/barbarian/danger-sense.png
@@ -2098,11 +2108,6 @@ art/batch/icons/features/class/barbarian/indomitable-might.png
 art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
-art/batch/icons/features/subclass/light-domain/light-domain-spells.png
-art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
-art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
-art/batch/icons/features/subclass/light-domain/warding-flare.png
-art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
 art/batch/icons/features/class/barbarian/primal-knowledge.png
 art/batch/icons/features/class/barbarian/rage.png
 art/batch/icons/features/class/barbarian/reckless-attack.png
