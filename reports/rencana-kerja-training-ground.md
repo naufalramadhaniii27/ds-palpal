@@ -134,6 +134,9 @@ Tes nanti: (1) perbandingan piksel zoom 1x sampai 4x tanpa kebocoran warna, (2) 
 
 Keputusan user yang menunggu: ukuran sel. Saran: 128 px untuk token (tajam sampai zoom 2x di layar retina), 64 px untuk lencana (lebih ringan). Alternatif: 128 px untuk semua (tajam, atlas lebih besar), 64 px untuk semua (ringan, buram saat zoom).
 
+### 5g. Hasil riset 10 video BONEBOXID GAME (2026-10-30)
+Ringkasan dan analisa lengkap di `reports/riset-video-boneboxid-2026-10-30.md`. Usulan N33 sampai N41 (tabel fitur petak, mesin aturan bilangan bulat, sidik jari keadaan dan sambungan, arena dari seed, gambar hanya saat perlu, animasi berbasis waktu, glyph SDF, area sihir) menunggu perintah user. Yang paling menentukan untuk TG0: N34 dan N35.
+
 ## 6. Cakupan aturan (bertingkat)
 | Tingkat | Isi | Perilaku |
 |---|---|---|
