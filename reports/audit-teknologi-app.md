@@ -63,3 +63,18 @@ Sumber tambahan:
 - https://developers.cloudflare.com/workers/static-assets/migrate-from-pages/
 - https://developer.chrome.com/docs/ai/built-in-apis
 - https://dev.to/raxxostudios/local-first-architecture-for-solo-apps-when-crdts-help-and-when-they-hurt-4pj0
+
+## Cek ketiga (2026-10-29)
+| Area | Keadaan sekarang | Teknologi terbaru | Temuan |
+|---|---|---|---|
+| Keamanan halaman | Tidak ada Content-Security-Policy di _headers. 198 pemakaian innerHTML (dengan esc()) | Trusted Types, Baseline Februari 2026, ditegakkan lewat CSP | Penting sejak ada Friends: app menampilkan nama, bio, dan karakter milik orang lain. CSP dan Trusted Types membuat browser menolak HTML yang belum disaring, jadi satu esc() yang terlewat tidak menjadi celah XSS |
+| Kompresi | Belum dicek di live | Zstandard sebagai Content-Encoding, Baseline Februari 2026 | Dukungan zstd di Cloudflare untuk situs ini belum dicek |
+| Database | D1, satu lokasi utama | D1 global read replication, masih Beta, butuh Sessions API lewat binding Worker | Tunggu GA. Bila pindah ke Workers, bisa dipakai untuk mempercepat baca dari Indonesia |
+| Login | Cloudflare Access email | Mei 2026: Cloudflare jadi identity provider bawaan Access (login pakai akun Cloudflare). Halaman itu tidak menyebut passkey | Passkey untuk login Access belum terbukti ada. Passkey sendiri berarti membuat sistem login sendiri di luar Access, perubahan besar |
+| PWA | Install, offline, wake lock, share | Push notification, Background Sync | Push tidak dipakai (U30, tanpa pancingan). Background Sync hanya Chrome dan Firefox |
+
+Sumber:
+- https://web.dev/blog/baseline-digest-feb-2026
+- https://developers.cloudflare.com/d1/best-practices/read-replication/
+- https://developers.cloudflare.com/changelog/post/2026-05-19-cloudflare-as-identity-provider/
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/trusted-types
