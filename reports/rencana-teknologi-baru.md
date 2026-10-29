@@ -13,6 +13,12 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 | N6 | Rules fuzzer | Alat Checker: membuat ribuan karakter sah secara acak lewat builder, lalu memeriksa aturan tetap (tidak ada NaN, slot sesuai tabel, ekspor lalu impor sama persis, AC masuk akal) | Builder, Node, tes | Teknik property testing sudah dikenal. Penerapan ke builder 5e tidak ditemukan | Diterima 2026-10-29 |
 | N7 | Playbar sesuai situasi | Sheet mengenali situasi dari keadaannya sendiri: bertarung (tombol New turn, menerima damage, death save), lihat bagian N7 rinci, menjelajah, istirahat. Tombol yang relevan naik ke depan. Dihitung di HP, tidak disimpan (sejalan U30) | State sheet, View Transitions | Tidak ditemukan | Ditolak 2026-10-29 |
 | N8 | Migrator cascade layer | Alat build: memindahkan 36 file patch CSS ke `@layer` secara otomatis. Playwright membandingkan gaya hasil di semua layar sebelum dan sesudah, harus sama persis, baru `!important` dibuang satu per satu | Playwright, `@layer` | Tidak ditemukan | Diterima 2026-10-29 |
+| N9 | Rules lint saat main | Builder sudah punya ruleIssues saat membuat karakter. N9 memeriksa sheet saat main: dua spell Concentration sekaligus, Mage Armor bersama armor, armor berat tanpa Strength cukup, shield dengan dua senjata, attunement lebih dari 3. Muncul sebagai tanda kecil dengan alasan dan tombol perbaikan | Mesin derivasi, ruleIssues builder | D&D Beyond hanya punya sebagian peringatan dan ada laporan bug peringatan di forum. Pemeriksa lengkap saat main tidak ditemukan | Diusulkan |
+| N10 | Chip peluang | Di samping setiap bonus (skill, save, serangan) ada chip peluang berhasil terhadap angka target umum (10, 15, 20), dengan dan tanpa Advantage. Dihitung pasti, bukan perkiraan | Matematika d20, mesin derivasi | Ada di Foundry VTT (modul Calculated Risk) dan kalkulator terpisah. Di sheet HP yang menempel ke tiap bonus tidak ditemukan | Diusulkan |
+| N11 | Build DNA | Karakter dikodekan sebagai resep pilihan saja (class, species, background, score, feat, spell), bukan semua angka hasil. Hasilnya cukup satu kode QR atau satu link pendek. Penerima membangun ulang lewat builder. Sekarang kirim QR memakai banyak bingkai QR berganti berisi JSON penuh | Builder, CompressionStream, QR di 42 | Tidak ditemukan | Diusulkan |
+| N12 | Gabung per bagian saat bentrok | Sekarang bila dua perangkat mengubah karakter yang sama, perangkat ini menang dan salinan lain disimpan sebagai versi. N12 membandingkan tiga salinan (dasar, sini, sana) seperti git. Bagian yang tidak bentrok digabung otomatis, yang bentrok ditanyakan per bagian (misal HP dari HP, catatan dari PC) | Revisi base di API sinkron, N2 | Teknik three-way merge sudah dikenal. Penerapan di sheet D&D belum dicek | Diusulkan |
+| N13 | Pratinjau sebelum restore | Sebelum memulihkan backup atau versi lama, tampil daftar yang akan berubah (level, HP, item, spell) memakai struk angka N3. Restore bisa dibatalkan | N3, versi cloud | Belum dicek | Diusulkan |
+| N14 | Tingkat efek sesuai perangkat | App mengukur kemampuan HP saat pertama dibuka (jumlah core, memori, kelancaran frame). HP lemah otomatis memakai efek ringan tanpa mengubah setelan Motion. Perluasan U50 ke seluruh app | navigator.hardwareConcurrency, deviceMemory, Long Animation Frames bila ada | Tekniknya dikenal di game. Belum dicek untuk sheet | Diusulkan |
 
 ## Urutan yang disarankan
 | Urutan | Usulan | Alasan |
@@ -34,6 +40,8 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 - https://www.dndbeyond.com/changelog/373-official-errata-extra-life-adventure-tooltip
 - https://myarchivist.ai/dnd-session-recap
 - https://github.com/AClaybrook/DAndDSimulator
+- https://foundryvtt.com/packages/calculated-risk
+- https://www.dndbeyond.com/forums/d-d-beyond-general/bugs-support/9173-armor-disadvantage-on-stealth
 
 ## N7 rinci: cara mengenali situasi (2026-10-29, ditolak user, disimpan sebagai catatan)
 Bukan AI. Aturan sederhana dari tindakan yang sudah dicatat sheet (label undo di 32-logic-play-undo-actions.js dan panel Situations di 34-ui-situations.js). App tidak tahu lemparan dadu fisik, jadi yang dibaca hanya tindakan di sheet.
