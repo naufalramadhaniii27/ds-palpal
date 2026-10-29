@@ -4265,6 +4265,10 @@ art/batch/icons/items/gear/fine-clothes.png
 art/batch/icons/items/packs/explorers-pack.png
 art/batch/icons/items/packs/dungeoneers-pack.png
 art/batch/icons/items/packs/burglars-pack.png
+art/batch/icons/items/packs/priests-pack.png
+art/batch/icons/items/packs/scholars-pack.png
+art/batch/icons/items/packs/entertainers-pack.png
+art/batch/icons/items/packs/diplomats-pack.png
 
 ## batch-061 v3
 art/batch/icons/wild-shape/wolf.png
