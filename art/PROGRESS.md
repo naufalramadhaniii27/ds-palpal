@@ -2196,3 +2196,8 @@ art/batch/scenes/species/firbolg-phone.png
 art/batch/scenes/species/flamekin-pc.png
 art/batch/scenes/species/flamekin-phone.png
 art/batch/scenes/species/genasi-pc.png
+art/batch/scenes/species/genasi-phone.png
+art/batch/scenes/species/giff-pc.png
+art/batch/scenes/species/giff-phone.png
+art/batch/scenes/species/githyanki-pc.png
+art/batch/scenes/species/githyanki-phone.png
