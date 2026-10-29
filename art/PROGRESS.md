@@ -2106,6 +2106,7 @@ art/batch/icons/features/class/barbarian/rage.png
 art/batch/icons/features/class/barbarian/reckless-attack.png
 art/batch/icons/features/class/barbarian/relentless-rage.png
 art/batch/icons/features/class/barbarian/unarmored-defense.png
+NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
