@@ -3520,4 +3520,9 @@ art/batch/creatures/construct/stone-golem.png
 art/batch/creatures/beast/swarm-of-rats.png
 art/batch/creatures/beast-dinosaur/triceratops.png
 art/batch/creatures/beast-dinosaur/tyrannosaurus-rex.png
+art/batch/creatures/humanoid-any-race/veteran.png
+art/batch/creatures/elemental/water-elemental.png
+art/batch/creatures/construct/winged-thrull.png
+art/batch/creatures/undead/wraith.png
+art/batch/creatures/construct/deck-defender.png
 
