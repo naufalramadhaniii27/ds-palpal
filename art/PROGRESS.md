@@ -4484,6 +4484,11 @@ art/batch/icons/items/gear/lamp.png
 art/batch/icons/items/gear/lantern-bullseye.png
 art/batch/icons/items/gear/lock.png
 art/batch/icons/items/gear/magnifying-glass.png
+art/batch/icons/items/gear/map.png
+art/batch/icons/items/gear/mirror.png
+art/batch/icons/items/gear/net.png
+art/batch/icons/items/gear/paper.png
+art/batch/icons/items/gear/parchment.png
 
 ## batch-063 v3
 art/batch/icons/bastion/smithy.png
