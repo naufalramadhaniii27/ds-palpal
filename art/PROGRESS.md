@@ -2670,3 +2670,8 @@ art/batch/icons/items/magic/common/medal-of-wit.png
 art/batch/icons/items/magic/very-rare/ring-of-red-fury.png
 art/batch/icons/items/magic/very-rare/ruidium-shield.png
 art/batch/icons/items/magic/rare/teleportation-tablet.png
+art/batch/icons/items/magic/very-rare/fish-suit.png
+art/batch/icons/items/magic/rare/spelljamming-helm.png
+art/batch/icons/items/magic/uncommon/wildspace-orrery.png
+art/batch/icons/items/magic/rare/mind-lash.png
+art/batch/icons/items/magic/rare/shield-of-far-sight.png
