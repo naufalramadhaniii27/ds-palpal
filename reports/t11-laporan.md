@@ -169,3 +169,23 @@ Rilis bertahap ke main sesudah tiap kelompok lolos regresi.
 | Regresi | 38 tes lolos: scenarios, flow, csp, pdf, starting_style, overflow, overlap, campaign, lib_add, off_mode, storage_idb, tidy, dice_app, fx_tier, back_home, blank_new, learn_flow, learn_links, learn_forge, learn_a11y (dengan Forge dan Training Ground), tour_flow, builder_4d6, builder_g6, builder_draft, receipts, time_machine, game_log, sync_merge_ui, version_label, g4_play, tg_ui, a11y_scan, replay, tg_engine 1.000 pertarungan, fuzz 500, cloud_sync 39 cek, modes_matrix. flow dan starting_style sempat gagal saat CPU dipakai tes lain, lolos saat diulang sendiri |
 | Live-check | Lolos. workers-deploy jalan dan berhenti karena secret Cloudflare belum ada (sesuai rancangan) |
 | Tambahan TG | Pertarungan tersimpan di IndexedDB sendiri (dnd-tg) dengan Resume, legendary action (107 aksi, 41 merujuk serangan) |
+
+## G7 lanjutan: Status sesudah rilis 0.0.4 dan antrean teknologi (2026-10-30 05.53 WIB)
+Keputusan user 2026-10-30 05.53 WIB: teknologi Training Ground yang belum diterapkan diterima untuk dilanjutkan. Urutan dari yang paling terasa saat main.
+
+Sudah jalan di 0.0.4: TG0 mesin (seed, replay, legendary action), TG0b 503 makhluk (data/tg-creatures.json, bukan OPFS: file statis yang disimpan service worker), TG1 sampai TG5 (setup, kisi Canvas 2D di thread utama, panel aksi, reaksi, log, Undo, spell tingkat B), simpan pertarungan di IndexedDB sendiri (dnd-tg) dengan Resume, content-visibility di daftar makhluk.
+
+| Urutan | Teknologi | Fase rencana | Isi | Tes |
+|---|---|---|---|---|
+| 1 | Screen Wake Lock | TG2 | Layar tidak redup selama di medan, dilepas saat keluar | Tes tg_ui: lock diminta di medan, dilepas di setup |
+| 2 | View Transitions | TG1 | Setup ke medan dan medan ke hasil berganti halus, cadangan tanpa animasi, Motion off tanpa animasi | Tes tanpa error di dua ukuran |
+| 3 | `@property` bar HP | TG3 | Bar HP di urutan giliran dan panel bergerak halus | Snapshot dan tes reduced motion |
+| 4 | Anchor positioning kartu aksi | TG3 | Kartu aksi singkat menempel ke token terpilih, cadangan panel bawah seperti sekarang | Tes posisi di 390 x 844 dan 1250 x 850, kartu tidak keluar layar |
+| 5 | Bagikan susunan pertarungan | TG4 | Setup (makhluk, teman, arena, seed) jadi link pendek gzip, Web Share atau salin | Tes buka link menghasilkan setup sama |
+| 6 | Pencarian jalur di Worker, `scheduler.yield()` | TG0, TG2 | Hanya bila diukur lambat di HP lemah (tes CPU 4 kali lebih lambat) | Ukur dulu, catat hasil |
+| 7 | OffscreenCanvas di Worker | TG2 | Sama: hanya bila pengukuran menunjukkan papan menahan layar | Ukur dulu |
+| 8 | Gamepad API, getar saat kena serang | TG2, TG3 | Tambahan, mengikuti setelan getar app | Tes tanpa gamepad tidak berubah |
+| 9 | Rekam video, mode party WebRTC | TG7 | Menunggu Workers aktif (langkah user di laporan G5) | Setelah G5 |
+| 10 | Ilustrasi makhluk, token, arena | TG6 | Menunggu Codex | Aturan HD proyek |
+
+Yang sengaja tidak dipakai di app (dicatat di t11-laporan): A8 content-visibility di sheet, A9 light-dark(), variable font untuk Barlow dan Courier Prime, Web Worker untuk Find a build.
