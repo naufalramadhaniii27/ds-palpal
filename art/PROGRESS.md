@@ -1899,6 +1899,7 @@ art/batch/icons/items/magic/varies/portfolio-keeper.png
 art/batch/icons/items/magic/very-rare/rotor-of-return.png
 art/batch/icons/items/magic/uncommon/sending-stone.png
 art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
+NEXT: batch-041 art/batch/icons/spells/level-2/alter-self.png
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
@@ -2040,3 +2041,9 @@ art/batch/icons/rules/actions/reaction.png
 art/batch/icons/rules/actions/grapple.png
 art/batch/icons/rules/actions/shove.png
 art/batch/icons/rules/actions/two-weapon-attack.png
+## batch-066 v3
+art/batch/scenes/species/bugbear-pc.png
+art/batch/scenes/species/bugbear-phone.png
+art/batch/scenes/species/bullywug-pc.png
+art/batch/scenes/species/bullywug-phone.png
+art/batch/scenes/species/centaur-pc.png
