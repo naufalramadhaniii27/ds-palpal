@@ -4547,3 +4547,9 @@ art/batch/icons/items/gear/poison-basic.png
 art/batch/icons/items/gear/pole.png
 art/batch/icons/items/gear/pot-iron.png
 art/batch/icons/items/gear/ram-portable.png
+art/batch/icons/items/gear/robe.png
+art/batch/icons/items/gear/shovel.png
+art/batch/icons/items/gear/signal-whistle.png
+art/batch/icons/items/gear/spikes-iron.png
+art/batch/icons/items/gear/spyglass.png
+
