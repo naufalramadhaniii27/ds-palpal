@@ -3859,7 +3859,6 @@ art/batch/icons/feats/piercer.png
 art/batch/icons/feats/poisoner.png
 art/batch/icons/feats/polearm-master.png
 
-NEXT: batch-059 art/batch/icons/spells/level-9/wish.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
@@ -3887,6 +3886,10 @@ art/batch/icons/spells/level-8/earthquake.png
 art/batch/icons/spells/level-8/iron-body.png
 art/batch/icons/spells/level-9/imprisonment.png
 art/batch/icons/spells/level-9/storm-of-vengeance.png
+art/batch/icons/spells/level-9/wish.png
+art/batch/icons/spells/level-9/foresight.png
+art/batch/icons/spells/level-9/hindsight.png
+art/batch/icons/spells/level-9/power-word-heal.png
 ## batch-234 v3
 art/batch/vignettes/learn/learn-play.png
 art/batch/vignettes/learn/learn-build.png
