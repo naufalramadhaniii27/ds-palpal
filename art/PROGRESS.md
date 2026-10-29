@@ -2164,4 +2164,9 @@ art/batch/icons/spells/level-3/glyph-of-warding.png
 art/batch/icons/spells/level-3/intellect-fortress.png
 art/batch/icons/spells/level-3/linked-glyphs.png
 art/batch/icons/spells/level-3/magic-circle.png
+art/batch/icons/spells/level-3/mass-healing-word.png
+art/batch/icons/spells/level-3/nondetection.png
+art/batch/icons/spells/level-3/protection-from-energy.png
+art/batch/icons/spells/level-3/remove-curse.png
+art/batch/icons/spells/level-3/call-lightning.png
 
