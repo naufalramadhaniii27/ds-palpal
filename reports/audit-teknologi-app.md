@@ -1,5 +1,33 @@
 # Audit teknologi seluruh app (2026-10-29)
 
+## Ringkasan prioritas (bahan rencana teknologi baru)
+| No | Bagian | Sekarang | Terbaru | Dampak |
+|---|---|---|---|---|
+| 1 | Keamanan | Tanpa CSP, 198 innerHTML | CSP dan Trusted Types (Baseline Februari 2026) | Data teman yang tampil di app terlindungi |
+| 2 | Hosting | Cloudflare Pages | Cloudflare Workers, gratis (lihat biaya di bawah) | Cron sungguhan, log error, rate limit, tanpa antrean build |
+| 3 | Ekspor PDF | jsPDF 2.5.1 dan html2canvas 1.4.1 dari CDN | jsPDF 4.2 ke atas, dibawa di dalam app | Celah tertutup, jalan offline |
+| 4 | CSS | 36 file patch, sekitar 800 `!important` | `@layer` | Gaya tidak saling tabrak |
+| 5 | Dialog dan menu | Manual, z-index besar, pengecualian inert | Popover, `<dialog>`, anchor positioning, invoker commands | Bug klik dan fokus berkurang |
+| 6 | Tombol Back HP | Bisa keluar app | Navigation API | Back menutup dialog dulu |
+| 7 | Ukuran | JS tanpa minify, font 653 KB | esbuild, variable font | Lebih cepat terbuka |
+| 8 | Daftar panjang | Digambar semua | `content-visibility` | Daftar spell dan Library lebih ringan |
+| 9 | Tema | Warna manual per tema | `light-dark()`, `oklch()` | Kode tema ringkas |
+| 10 | Pengukuran | Tidak ada | Long Animation Frames, INP | Tahu bagian yang tersendat |
+Sudah terbaru: View Transitions, `:has()`, container queries, `@starting-style`, Web Animations, IndexedDB, Web Locks, AVIF, PWA, D1.
+Belum dicek: kompresi zstd di server live (jaringan workspace ke situs live ditolak, cek lewat GitHub Actions live-check).
+
+## Biaya Cloudflare Workers (dicek 2026-10-29)
+| Hal | Paket gratis | Kebutuhan app |
+|---|---|---|
+| Request | 100.000 per hari, CPU 10 ms per request | Sama dengan sekarang, Pages Functions sudah dihitung sebagai Workers |
+| File statis | Gratis tanpa batas | Sama dengan Pages |
+| Cron | 5 per akun, CPU 10 ms | 1 untuk siklus harian |
+| Workers Logs | 200.000 per hari, simpan 3 hari | Gratis |
+| File | 20.000 per versi, 25 MiB per file | 967 gambar sekarang |
+| Berbayar | $5 per bulan, hanya bila lewat 100.000 request per hari | Tidak perlu |
+Sumber: https://developers.cloudflare.com/workers/platform/pricing/ dan https://developers.cloudflare.com/workers/platform/limits
+
+
 Cara cek: hitung pemakaian tiap fitur di src/app, src/builder, src/css, src/html, sw.js dan functions/api (skrip audit, 104 file JS, 2,2 MB JS, 1,16 MB CSS). Patokan "terbaru": Baseline 2026 dan Interop 2026 (web.dev, edisi September 2026). Bahan untuk rencana teknologi baru.
 
 ## Sudah dipakai
