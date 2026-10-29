@@ -24,7 +24,7 @@ Teknologi terbaru (dari audit):
 | Kode | Pekerjaan |
 |---|---|
 | A1 | CSP dan Trusted Types |
-| A2 | Pindah dari Cloudflare Pages ke Workers (Cron, Workers Logs, rate limit) |
+| A2 | Pindah dari Cloudflare Pages ke Workers (Cron, Workers Logs, rate limit), dikerjakan paling akhir di G5 |
 | A3 | jsPDF 4.2 ke atas dan pengganti html2canvas, dibawa di dalam app supaya jalan offline |
 | A4 | CSS `@layer` (lewat N8) |
 | A5 | Popover, `<dialog>`, anchor positioning, invoker commands |
@@ -50,14 +50,13 @@ Dasar untuk semua gelombang: tanpa ini, perubahan besar di G1 sampai G3 tidak bi
 | A11 Cek zstd | live-check di GitHub Actions mencatat header Content-Encoding | tests/live_check.py |
 | Selesai bila | Fuzzer jalan di CI lokal tanpa temuan baru, atau temuannya dilaporkan di reports/. Rekaman ukuran performa sebelum G1 tersimpan sebagai pembanding |
 
-### G1 Platform dan keamanan
+### G1 Keamanan dan ukuran
 | Kerja | Isi | Risiko dan penanganan |
 |---|---|---|
-| A2 Pages ke Workers | wrangler.jsonc dengan static assets dan Functions yang dikompilasi (`wrangler pages functions build`). Cron harian menggantikan siklus "request pertama tiap hari". Workers Logs dan rate limit untuk /api | Alamat app bisa berubah dari pages.dev. Aplikasi Cloudflare Access, policy Teman dan GitHub check, ACCESS_AUD, dan BASE di live-check harus ikut. Pages lama tetap hidup sampai Workers lolos live-check. Pengguna diberi tahu alamat baru lewat banner |
 | A1 CSP dan Trusted Types | Tahap 1: CSP report-only, script inline diberi hash otomatis oleh build.py. Tahap 2: Trusted Types dengan satu policy yang melewati esc(), 198 pemakaian innerHTML dipindah ke policy itu. Tahap 3: CSP ditegakkan | CSP salah bisa membuat app tidak jalan. Report-only dulu minimal satu rilis. Library PDF dari CDN dibawa ke dalam app (A3) supaya CSP tidak perlu membuka domain luar |
 | A3 PDF | jsPDF 4.2 ke atas dibawa di dalam app sebagai blok `data-defer`. html2canvas diganti gambar langsung dari halaman cetak (36) atau PDF teks vektor bila ternyata lebih ringan | Hasil PDF dibandingkan dengan versi lama di tiga skenario |
 | A7 Ukuran | build.py menjalankan minify (esbuild untuk JS, Lightning CSS untuk CSS). Font statis 22 file diganti variable font untuk keluarga yang punya versi variable dengan lisensi SIL Open Font yang sama | Minify bisa mengubah perilaku. Regresi lengkap dan fuzzer G0 harus sama sebelum dan sesudah |
-| Selesai bila | Live-check lolos di alamat Workers, CSP tanpa pelanggaran di laporan, ukuran gzip turun dan dicatat |
+| Selesai bila | Live-check lolos, CSP tanpa pelanggaran di laporan, ukuran gzip turun dan dicatat. CSP dipasang lewat _headers yang sudah dipakai Pages |
 
 ### G2 CSS dan UI dasar
 | Kerja | Isi | Catatan |
@@ -93,6 +92,13 @@ Dasar untuk semua gelombang: tanpa ini, perubahan besar di G1 sampai G3 tidak bi
 | N17 Status ke chat | Salin status singkat, bisa dibaca balik oleh impor teks chat |
 | Selesai bila | Tiap fitur punya tes Playwright di dua ukuran layar, Motion off, kontras tinggi |
 
+### G5 Pindah ke Workers (paling akhir, keputusan user 2026-10-29)
+| Kerja | Isi | Risiko dan penanganan |
+|---|---|---|
+| A2 Pages ke Workers | wrangler.jsonc dengan static assets dan Functions yang dikompilasi (`wrangler pages functions build`). Cron harian menggantikan siklus "request pertama tiap hari". Workers Logs dan rate limit untuk /api | Alamat app bisa berubah dari pages.dev. Aplikasi Cloudflare Access, policy Teman dan GitHub check, ACCESS_AUD, dan BASE di live-check harus ikut. Pages lama tetap hidup sampai Workers lolos live-check. Pengguna diberi tahu alamat baru lewat banner |
+| Selesai bila | Live-check lolos di alamat Workers, Cron harian jalan, Workers Logs terisi |
+Sampai G5, app tetap di Pages dan siklus harian tetap memakai request pertama tiap hari.
+
 ### Learn (jalur paralel)
 | Tahap Learn | Bisa mulai setelah |
 |---|---|
@@ -104,15 +110,16 @@ Dasar untuk semua gelombang: tanpa ini, perubahan besar di G1 sampai G3 tidak bi
 ## Rilis
 | Rilis | Isi |
 |---|---|
-| 0.0.3 | G0 dan G1 |
+| 0.0.3 | G0 dan G1 (tanpa pindah Workers) |
 | 0.0.4 | G2, Learn F0 sampai F2 |
 | 0.0.5 | G3, Learn F3 sampai F5 |
 | 0.0.6 | G4, Learn F6 dan F7 |
+| 0.0.7 | G5 pindah ke Workers |
 Nomor rilis bisa digabung atau dipecah sesuai keputusan user saat daftar rilis dikirim.
 
 ## Keputusan yang perlu dari user
 | Hal | Kapan |
 |---|---|
-| Alamat baru setelah pindah ke Workers (workers.dev atau domain sendiri) | Awal G1 |
-| Setelan Cloudflare Access untuk alamat baru (user yang mengubah di dashboard, Claude memberi langkahnya) | G1 |
+| Alamat baru setelah pindah ke Workers (workers.dev atau domain sendiri) | Awal G5 |
+| Setelan Cloudflare Access untuk alamat baru (user yang mengubah di dashboard, Claude memberi langkahnya) | G5 |
 | Mulai kerja | Menunggu "go" |
