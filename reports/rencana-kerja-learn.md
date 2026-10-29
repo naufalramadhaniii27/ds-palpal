@@ -49,6 +49,8 @@ Setiap tahap selesai dengan tes. Rilis digabung (0.0.3), daftar rilis dikirim ke
 | Pintu masuk: tombol Learn di Home, rute #learn, tombol Back | src/app/47-ui-learn.js (baru), src/css/36-learn.css (baru) |
 | Pilihan bahasa EN/ID di header Learn | 47 |
 | Gambar sementara dari app, slot gambar Codex dengan fallback | 47, 36 |
+| Learn dimuat belakangan, cara yang sama dengan builder (mekanisme tunda di 01-logic-boot-flags-builder-loader.js), supaya app tidak lebih lambat dibuka | 01, build.py |
+| Offline: service worker hanya menyimpan gambar yang pernah dibuka. Saat Learn dibuka, gambar Learn diminta sekali supaya tersimpan. Gambar yang belum ada diganti kotak warna dengan label | 47, sw.js tidak diubah |
 | Cek keterbacaan otomatis lebih dulu, supaya semua teks berikutnya langsung dicek: panjang kalimat, kata kaku Indonesia, istilah di luar kamus (U13, U28) | tests/learn_text.py (baru) |
 | Selesai bila | Learn terbuka dan tertutup di 390x844 dan 1250x850, bahasa tersimpan setelah reload, tiga skenario wajib tidak berubah |
 
@@ -83,8 +85,8 @@ Komponen dipakai ulang oleh semua tempat.
 | Isi | Usulan |
 |---|---|
 | Quick Hero: memakai Quick Build yang sudah ada, ditambah pilihan background, potret dan "Surprise me", kartu class bergambar | U31 (menggantikan 6 pahlawan jadi di U18) |
-| Screenshot interaktif builder dengan titik bernomor, dibuat otomatis oleh Playwright untuk HP dan PC | tools/learn_shots.py (baru) |
-| Try it for real: builder asli dengan mode panduan (mesin tour yang ada), karakter latihan bertanda Practice, Keep atau Discard di akhir | U1 |
+| Screenshot interaktif builder dengan titik bernomor, dibuat oleh Playwright untuk HP dan PC. Dijalankan di workspace Claude lalu file AVIF di-commit, karena build Cloudflare Pages hanya menyalin file | tools/learn_shots.py (baru), img/learn/shots/ |
+| Try it for real: builder asli dengan mode panduan, karakter latihan bertanda Practice, Keep atau Discard di akhir (pakai ask()). Tour yang ada (31-ui-tour-and-focus.js) hanya daftar langkah tetap untuk Home, jadi dijadikan mesin sorot umum yang bisa dipakai di builder dan di "Find it on your sheet". Builder ada di dokumen yang sama, jadi bisa disorot langsung | U1, 31 |
 | Selesai bila | Karakter Quick Hero bisa di-Apply ke sheet. Practice yang di-Discard tidak meninggalkan data. Tes gagal bila titik screenshot kehilangan elemennya |
 
 ### F4 Tempat Bonus (urut prioritas)
@@ -109,7 +111,7 @@ Komponen dipakai ulang oleh semua tempat.
 | Alat "Which die do I roll?" dari karakter sendiri, di Learn dan sheet | U7 |
 | Contekan meja: satu halaman ringkas untuk sesi berjalan | U3 |
 | Quick recap: 2 soal, muncul paling cepat sehari setelah belajar, opsional | U26, U36 |
-| Corong di tab Admin: jumlah orang per tempat, angka total saja | U12, U30 |
+| Corong di tab Admin: jumlah orang per tempat, angka total saja. Progres sudah ikut sinkron lewat prefs (batas 32 KB, progres jauh lebih kecil). Siklus harian server menghitung total dari prefs ke tabel kecil, Admin hanya membaca totalnya | U12, U30, functions/api/[[path]].js, tests/api_social.py |
 | Selesai bila | Tiga skenario wajib lolos, sheet tidak berubah perilaku tanpa Learn dibuka |
 
 ### F6 Gambar Codex
@@ -134,6 +136,7 @@ Komponen dipakai ulang oleh semua tempat.
 | Logic | 46-logic-learn.js: progres, XP, simulasi aturan, hitungan CPA, recap, practice character, bahasa |
 | UI/UX | 47-ui-learn.js dan 36-learn.css: peta, layar tantangan, komponen F1, penampil screenshot, Which die, sorotan sheet |
 | Build tools | tools/learn_shots.py, entri baru di build.py dan SOURCE-NOTES.md |
+| API | Hitungan corong harian di functions/api/[[path]].js |
 | Checker | tests/learn_text.py, tests/learn_flow.py, dan regresi tiga skenario |
 
 ## Risiko
@@ -144,7 +147,11 @@ Komponen dipakai ulang oleh semua tempat.
 | Ikon tidak dipahami tanpa teks | Dicek di uji main sebelum rilis |
 | Waktu 15 menit meleset | Diukur di uji main, isi tempat dipangkas bila lewat 20 menit |
 | Isi Learn berbeda dari Library | Kamus mengambil entri Library, tidak menyalin |
+| Mengubah tour Home merusak tour lama | Tour Home tetap memakai daftar yang sama di atas mesin baru, tes tour lama ikut dijalankan |
 | Ukuran app bertambah | Data Learn dimuat saat Learn dibuka, bukan saat app mulai |
+
+## Dicocokkan ke kode (2026-10-29)
+PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda di 01, service worker, build Pages, endpoint prefs dan admin di API, entri Library di 03 dan 27. Empat hal yang semula keliru di rencana sudah dibetulkan: tour bukan mesin umum, screenshot tidak bisa dibuat di server Pages, gambar offline tidak tersimpan otomatis, corong butuh kerja di API.
 
 ## Keputusan yang masih terbuka
 | Hal | Status |
