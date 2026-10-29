@@ -3716,3 +3716,6 @@ art/batch/icons/creature-types/fiend.png
 art/batch/icons/creature-types/giant.png
 art/batch/icons/creature-types/ooze.png
 art/batch/icons/item-categories/simple-melee-weapons.png
+art/batch/icons/item-categories/martial-melee-weapons.png
+art/batch/icons/item-categories/simple-ranged-weapons.png
+art/batch/icons/item-categories/martial-ranged-weapons.png
