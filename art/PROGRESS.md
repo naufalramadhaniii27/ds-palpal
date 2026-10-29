@@ -4305,3 +4305,8 @@ art/batch/icons/features/subclass/trickery-domain/divine-strike.png
 art/batch/icons/features/subclass/trickery-domain/improved-duplicity.png
 art/batch/icons/features/subclass/trickery-domain/invoke-duplicity.png
 art/batch/icons/features/subclass/trickery-domain/trickery-domain-spells.png
+art/batch/icons/features/subclass/trickery-domain/tricksters-transposition.png
+art/batch/icons/features/subclass/war-domain/avatar-of-battle.png
+art/batch/icons/features/subclass/war-domain/bonus-proficiencies.png
+art/batch/icons/features/subclass/war-domain/channel-divinity-guided-strike.png
+art/batch/icons/features/subclass/war-domain/channel-divinity-war-gods-blessing.png
