@@ -57,6 +57,15 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | D&D Beyond Quick Build (Maret 2026) | 4 pilihan, sisanya otomatis, bisa acak, langsung main | Penjelasan class satu halaman, tanpa latihan | U31 |
 | D&D Adventure Begins (board game keluarga) | Anak 10 tahun senang improvisasi dan memakai barang secara kreatif. Aturan sederhana, tanpa perlu tahu fantasy | Karakter terasa sama, ide kreatif tidak mengubah hasil, cepat bosan | U32 |
 
+## Riset lembaga pendidikan negara maju (2026-10-29)
+| Lembaga | Temuan | Usulan |
+|---|---|---|
+| IES What Works Clearinghouse (AS), panduan "Organizing Instruction and Study" | Jeda antar latihan (bukti sedang). Selang-seling contoh jadi dan soal (sedang). Gambar dipadu kata di dekat bagian yang dimaksud (sedang). Hubungkan konkret dan abstrak (sedang). Kuis ulang (kuat). Pertanyaan "kenapa" dan "bagaimana" (kuat) | U33, U34, U35, U36 |
+| AERO (Australia), explicit teaching | Pecah materi jadi potongan kecil. Peragakan, latihan dibimbing, lalu latihan sendiri. Cek pemahaman sebelum lanjut. Bantuan dikurangi bertahap | U33 |
+| Pendekatan CPA Singapura (dari Bruner) | Konkret, gambar, lalu simbol. Gambar menjadi model di kepala saat anak macet | U34 |
+| EEF (Inggris), panduan umpan balik | Umpan balik diberi setelah pengajaran, tepat waktu, membahas tugasnya, dan anak diberi waktu memakainya | U36 |
+| Sekolah dasar Finlandia (Sahlberg) | Bermain sebagai cara belajar utama. Anak boleh memilih. Tanpa nilai sebelum kelas 4. Istirahat rutin | U37. Tempat Bonus bebas urutan. Kartu "Take a break?" setelah Jalur Inti |
+
 ## Kamus dicocokkan ke Library app (2026-10-29)
 Sumber: glossary sheet (src/app/03-data-glossary.js) dan Rules Glossary di Library (src/app/27), keduanya ditulis ulang dari PHB 2024.
 | Istilah | Isi Library | Kamus Learn |
@@ -215,6 +224,11 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U30 | 2026-10-29 | Aman untuk anak (PP Tunas) | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (larangan teknik nudge). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diterima 2026-10-29 |
 | U31 | 2026-10-29 | Quick Hero memakai Quick Build yang sudah ada | Builder sudah punya Quick Build (pilih class dan species, sisanya diisi otomatis, v27 RU65). D&D Beyond (Maret 2026) memakai 4 pilihan: class, species, background, potret, plus tombol acak. Quick Hero di Learn = Quick Build ditambah pilihan background, potret dan tombol "Surprise me", dengan kartu class bergambar. Menggantikan rencana 6 pahlawan jadi di U18 | Diusulkan |
 | U32 | 2026-10-29 | Ide kreatif dihargai | Di Tavern dan Market ada lebih dari satu jawaban benar, dan tiap jawaban berujung beda. Pilihan "Try something else" membuka ide tak terduga yang tetap diterima Hoot | Diusulkan |
+| U33 | 2026-10-29 | Pola tetap tiap tempat | 1 Tebak dulu (satu soal sebelum belajar). 2 Lihat: Hoot memperagakan. 3 Coba bareng: petunjuk masih ada. 4 Coba sendiri: petunjuk hilang. 5 Kenapa berhasil? (pilih satu dari tiga alasan). 6 Find it on your sheet. Pindah ke bagian berikut hanya setelah langkah sebelumnya benar | Diusulkan |
+| U34 | 2026-10-29 | Hitungan konkret, gambar, angka | Bonus dan dadu diajarkan tiga tahap: dadu dan kepingan bonus yang bisa digeser, lalu gambar batang, lalu angka seperti di sheet ("12 + 3 = 15"). Bentuk detail dari U16 | Diusulkan |
+| U35 | 2026-10-29 | Kata menempel di gambar | Label pendek ditaruh tepat di samping bagian gambar yang dimaksud, bukan di panel terpisah | Diusulkan |
+| U36 | 2026-10-29 | Umpan balik soal langkahnya | Pujian menyebut apa yang benar ("You added your bonus!"), bukan "You're smart". Recap (U26) muncul paling cepat sehari setelah belajar, supaya jedanya cukup | Diusulkan |
+| U37 | 2026-10-29 | Tanpa nilai dan peringkat antarpemain | Progres pribadi saja. Tidak ada skor, papan peringkat, atau perbandingan dengan teman. Lencana peringkat (batch-236) hanya menandai tempat yang sudah selesai | Diusulkan |
 
 Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 
@@ -236,6 +250,12 @@ Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 Selama gambar belum ada, Learn memakai gambar sementara dari app. Gambar tidak boleh memuat angka atau huruf, jadi semua angka, dadu dan diagram dibuat HTML.
 
 ## Sumber riset
+- https://ies.ed.gov/ncee/WWC/Docs/PracticeGuide/20072004.pdf
+- https://www.edresearch.edu.au/guides-resources/videos/teaching-how-students-learn-teach-explicitly
+- https://blog.edshed.com/?p=397
+- https://educationendowmentfoundation.org.uk/tools/guidance-reports/feedback
+- https://researchschool.org.uk/derby/news/new-guidance-report-teacher-feedback-to-improve-pupil-learning
+- https://pasisahlberg.com/wp-content/uploads/2020/08/ACEL-Play-C-2020.pdf
 - https://www.pcgamer.com/games/d-and-d-beyonds-slick-new-online-character-creator-lets-you-make-a-hero-in-seconds
 - https://gizmodo.com/dungeons-dragons-adventure-begins-doesnt-capture-the-1845240184
 - https://enworld.org/threads/adventure-begins-first-impressions.675159
