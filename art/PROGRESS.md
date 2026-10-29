@@ -4479,6 +4479,11 @@ art/batch/icons/items/gear/hunting-trap.png
 art/batch/icons/items/gear/ink.png
 art/batch/icons/items/gear/ink-pen.png
 art/batch/icons/items/gear/jug.png
+art/batch/icons/items/gear/ladder.png
+art/batch/icons/items/gear/lamp.png
+art/batch/icons/items/gear/lantern-bullseye.png
+art/batch/icons/items/gear/lock.png
+art/batch/icons/items/gear/magnifying-glass.png
 
 ## batch-063 v3
 art/batch/icons/bastion/smithy.png
