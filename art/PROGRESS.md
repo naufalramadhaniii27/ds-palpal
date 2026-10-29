@@ -1794,6 +1794,12 @@ art/batch/icons/rules/languages/language-druidic.png
 art/batch/icons/rules/languages/language-infernal.png
 art/batch/icons/rules/languages/language-primordial.png
 art/batch/icons/rules/languages/language-sylvan.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
+
 ## batch-198 v3
 
 art/batch/portraits/vampire-a.png
@@ -1820,11 +1826,6 @@ art/batch/icons/spells/level-2/invisibility.png
 art/batch/icons/spells/level-2/magic-mouth.png
 art/batch/icons/spells/level-2/mirror-image.png
 
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 art/batch/icons/items/gear/riding-horse-with-tack.png
 art/batch/icons/items/gear/rowboat.png
 art/batch/icons/items/gear/wagon.png
