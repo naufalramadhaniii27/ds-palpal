@@ -3864,6 +3864,11 @@ art/batch/icons/spells/level-8/control-weather.png
 art/batch/icons/spells/level-8/earthquake.png
 art/batch/icons/spells/level-8/iron-body.png
 art/batch/icons/spells/level-9/imprisonment.png
+art/batch/icons/spells/level-9/invulnerability.png
+art/batch/icons/spells/level-9/mass-heal.png
+art/batch/icons/spells/level-9/prismatic-wall.png
+art/batch/icons/spells/level-9/blade-of-disaster.png
+art/batch/icons/spells/level-9/gate.png
 ## batch-234 v3
 art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
