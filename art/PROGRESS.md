@@ -3885,7 +3885,6 @@ art/batch/icons/feats/piercer.png
 art/batch/icons/feats/poisoner.png
 art/batch/icons/feats/polearm-master.png
 
-NEXT: batch-059 art/batch/icons/spells/level-9/wish.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
