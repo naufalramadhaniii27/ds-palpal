@@ -1899,6 +1899,7 @@ art/batch/icons/items/magic/varies/portfolio-keeper.png
 art/batch/icons/items/magic/very-rare/rotor-of-return.png
 art/batch/icons/items/magic/uncommon/sending-stone.png
 art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
+NEXT: batch-041 art/batch/icons/spells/level-2/alter-self.png
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
@@ -1934,6 +1935,14 @@ art/batch/icons/spells/level-2/blindness-deafness.png
 art/batch/icons/spells/level-2/cordon-of-arrows.png
 art/batch/icons/spells/level-2/darkvision.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2026,6 +2035,11 @@ art/batch/icons/items/magic/rare/galders-bubble-pipe.png
 art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
 
 
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2101,6 +2115,11 @@ art/batch/creatures/beast/giant-crab.png
 art/batch/creatures/beast/giant-goat.png
 art/batch/creatures/beast/giant-seahorse.png
 
+art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
+art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/corona-of-light.png
+art/batch/icons/features/subclass/light-domain/improved-flare.png
+art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
 ## batch-147 v3
 art/batch/icons/features/class/barbarian/brutal-strike.png
 art/batch/icons/features/class/barbarian/danger-sense.png
@@ -2122,6 +2141,11 @@ art/batch/icons/features/class/bard/bardic-inspiration.png
 art/batch/icons/features/class/bard/countercharm.png
 art/batch/icons/features/class/bard/expertise.png
 art/batch/icons/features/class/bard/font-of-inspiration.png
+art/batch/icons/features/subclass/light-domain/light-domain-spells.png
+art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
+art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/warding-flare.png
+art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
 NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
@@ -2170,3 +2194,9 @@ art/batch/icons/spells/level-3/protection-from-energy.png
 art/batch/icons/spells/level-3/remove-curse.png
 art/batch/icons/spells/level-3/call-lightning.png
 
+## batch-067 v3
+art/batch/scenes/species/firbolg-pc.png
+art/batch/scenes/species/firbolg-phone.png
+art/batch/scenes/species/flamekin-pc.png
+art/batch/scenes/species/flamekin-phone.png
+art/batch/scenes/species/genasi-pc.png
