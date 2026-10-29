@@ -4352,3 +4352,9 @@ art/batch/icons/spells/level-5/creation.png
 art/batch/icons/spells/level-5/dream.png
 art/batch/icons/spells/level-5/mislead.png
 
+## batch-124 v3
+art/batch/icons/items/magic/uncommon/golgari-guild-signet.png
+art/batch/icons/items/magic/very-rare/golgari-keyrune.png
+art/batch/icons/items/magic/uncommon/gruul-guild-signet.png
+art/batch/icons/items/magic/rare/gruul-keyrune.png
+art/batch/icons/items/magic/very-rare/illusionists-bracers.png
