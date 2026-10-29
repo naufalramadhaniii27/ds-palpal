@@ -1794,3 +1794,10 @@ art/batch/icons/rules/languages/language-druidic.png
 art/batch/icons/rules/languages/language-infernal.png
 art/batch/icons/rules/languages/language-primordial.png
 art/batch/icons/rules/languages/language-sylvan.png
+## batch-198 v3
+
+art/batch/portraits/vampire-a.png
+art/batch/portraits/vampire-b.png
+art/batch/portraits/vedalken-a.png
+art/batch/portraits/vedalken-b.png
+art/batch/portraits/verdan-a.png
