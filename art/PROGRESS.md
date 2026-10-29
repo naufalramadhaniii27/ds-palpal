@@ -3046,6 +3046,8 @@ art/batch/icons/items/magic/legendary/infernal-tack.png
 art/batch/icons/items/magic/legendary/nepenthe.png
 art/batch/icons/items/magic/rare/mimir.png
 art/batch/icons/items/magic/uncommon/portal-compass.png
+art/batch/icons/items/magic/uncommon/sensory-stone.png
+art/batch/icons/items/magic/common/unbreakable-arrow.png
 
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
