@@ -14,3 +14,14 @@ Syarat tetap: tanpa AI berbayar, paket gratis, tanpa server baru bila bisa, data
 | N26 | Pemutar ulang pertarungan | Pemain ingin melihat ulang dan berbagi pertarungan | Log Training Ground diputar ulang langkah demi langkah dengan penggeser waktu. Link berisi seed dan perintah (gzip) | Replay sama persis, link membuka pertarungan yang sama |
 
 Urutan kerja: N19, N20, N21, N26, N25, N22, N23, N24. Lalu antrean Training Ground dan kandidat Baseline 2026 sesuai catatan di t11-laporan.
+
+## Penyederhanaan sebagai teknologi (permintaan user 2026-10-30 06.10 WIB)
+Referensi user: video rumput Ghost of Tsushima (BONEBOXID GAME). Prinsipnya: hasil yang terlihat sama, kerja mesin jauh lebih sedikit. Satu helai master digambar ratusan ribu kali (instancing, 1 draw call), angin dari rumus di vertex shader (akar bobot 0, pucuk bobot penuh, tanpa fisika), interaksi pemain lewat satu titik dan radius (tanpa collider).
+
+| Kode | Nama | Di app ini sekarang | Penyederhanaan | Tes |
+|---|---|---|---|---|
+| N27 | Dadu tanpa mesin fisika | Dadu 3D memakai Babylon dan Havok, folder vendor/dice 6 MB, hasil tidak bisa ditentukan dulu | Tetap 3D dan glossy, tapi jatuhnya dari lintasan yang dihitung (lempar, pantul, guling, berhenti di sisi yang sudah diputuskan crypto atau seed). Tanpa Havok. Sekaligus menyelesaikan N23: angka di dadu selalu sama dengan hasil | Ukuran unduhan dadu, waktu lempar pertama di HP lemah, 1.000 lemparan sisi atas sama dengan hasil, snapshot tampilan dadu |
+| N28 | Papan berlapis | Papan Training Ground digambar ulang penuh tiap ketukan | Lapisan tanah, kisi, dan rintangan digambar sekali ke kanvas cadangan. Tiap ketukan hanya menempel lapisan itu lalu menggambar token | Waktu gambar per ketukan sebelum dan sesudah, tampilan sama |
+| N29 | Find a build lebih hemat | 384 percobaan, tiap percobaan membangun karakter penuh | Hasil yang tidak bergantung species atau background dihitung sekali, percobaan yang pasti kalah dari tujuan dibuang lebih awal | Hasil sama, waktu turun |
+| N30 | Duel cepat dari peluang | Duel build menjalankan 200 pertarungan | Perkiraan langsung dari lensa peluang N20 (rata-rata damage per giliran dibanding HP lawan), simulasi penuh hanya bila diminta | Perkiraan dibanding hasil simulasi, selisih dicatat |
+| N31 | Kode lebih ramping | index.html 7,6 MB, banyak file patch CSS dan JS dari versi lama | Cari kode yang tidak pernah jalan dan aturan CSS yang tidak pernah menang (alat yang sama dengan important_trim), buang setelah snapshot 74 layar sama | Snapshot gaya 0 beda, regresi penuh |
