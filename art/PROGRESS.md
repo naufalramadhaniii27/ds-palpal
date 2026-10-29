@@ -4064,6 +4064,11 @@ art/batch/icons/learn/proficiency.png
 art/batch/icons/learn/action.png
 art/batch/icons/learn/bonus-action.png
 art/batch/icons/learn/reaction.png
+art/batch/icons/learn/movement.png
+art/batch/icons/learn/initiative.png
+art/batch/icons/learn/hit-points.png
+art/batch/icons/learn/armor-class.png
+art/batch/icons/learn/spell-slot.png
 ## batch-060 v3
 art/batch/icons/spells/level-9/power-word-kill.png
 art/batch/icons/spells/level-9/psychic-scream.png
