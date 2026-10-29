@@ -7,7 +7,7 @@
 
 An !important is needed on an element when, without it, it would lose: the element has the property in its inline style
 (JS sets it), or another normal declaration of the same property matches the element with higher specificity, or with equal
-specificity later in the page. It is removable only when it matched at least one element on the screens and was needed on none.
+specificity later in the page, or any other !important declaration of the same property matches it (then the order between the two would change). It is removable only when it matched at least one element on the screens and was needed on none.
 Unclear cases stay: rules inside @container, selectors with pseudo-elements, :has(), or any selector the browser cannot query.
 Files with print, motion and effect rules (06, 19, 20, 23 to 27, 29) are left alone: the screens do not cover print and motion, and effects set inline styles only while they move. Print rules elsewhere sit in @media print, which does not match on screen, so they stay."""
 import asyncio, json, os, re, sys, functools, http.server, socket, threading
@@ -31,8 +31,8 @@ ANALYSE = r"""()=>{
     r.parts.forEach(function(sel){ var sp=spec(sel); if(/::|:has\(/.test(sel)){ o.need++; o.why='pseudo'; return; } var els; try{ els=document.querySelectorAll(sel); }catch(e){ o.need++; o.why='query'; return; }
       els.forEach(function(el){ o.m++;
         if(el.style&&el.style.getPropertyValue(d.p)){ o.need++; o.why='inline'; return; }
-        for(var q=0;q<rules.length;q++){ var x=rules[q]; if(x===r||x.cond!==true) continue; var hit=x.decl.filter(function(y){ return y.p===d.p&&!y.imp; }); if(!hit.length) continue;
-          for(var z=0;z<x.parts.length;z++){ var ps=x.parts[z]; if(/::/.test(ps)) continue; var m=false; try{ m=el.matches(ps); }catch(e){} if(!m) continue; var s2=spec(ps); if(s2>sp||(s2===sp&&x.o>r.o)){ o.need++; o.why='beaten by '+ps; return; } } } }); }); }); });
+        for(var q=0;q<rules.length;q++){ var x=rules[q]; if(x===r||x.cond!==true) continue; var hit=x.decl.filter(function(y){ return y.p===d.p; }); if(!hit.length) continue; var impHit=hit.some(function(y){ return y.imp; });
+          for(var z=0;z<x.parts.length;z++){ var ps=x.parts[z]; if(/::/.test(ps)) continue; var m=false; try{ m=el.matches(ps); }catch(e){} if(!m) continue; var s2=spec(ps); if(impHit){ o.need++; o.why='another !important: '+ps; return; } if(s2>sp||(s2===sp&&x.o>r.o)){ o.need++; o.why='beaten by '+ps; return; } } } }); }); }); });
   return out; }"""
 
 def serve():

@@ -47,7 +47,7 @@
 .fr-dlg .sy-h{display:block;margin:10px 0 4px}
 .fr-dlg .sy-note{color:var(--muted);margin:6px 0}
 /* D&D Beyond skin in Light mode: the header is dark brown, Short Rest and Long Rest had dark brown text on it */
-:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest],:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest] *{color:#f3e6cc;-webkit-text-fill-color:currentColor}
+:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest],:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest] *{color:#f3e6cc!important;-webkit-text-fill-color:currentColor}
 /* Spells toolbar (Print Cards, Manage Spells): two equal buttons in one row, one per row on a 320 px phone */
 .spm-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
 .spm-bar > .btn{min-width:0;width:100%}
