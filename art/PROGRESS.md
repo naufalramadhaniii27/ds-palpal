@@ -4208,6 +4208,11 @@ art/batch/icons/spells/level-5/commune.png
 art/batch/icons/spells/level-5/commune-with-nature.png
 art/batch/icons/spells/level-5/contact-other-plane.png
 art/batch/icons/spells/level-5/legend-lore.png
+art/batch/icons/spells/level-5/mordenkainens-lucubration.png
+art/batch/icons/spells/level-5/rarys-telepathic-bond.png
+art/batch/icons/spells/level-5/scrying.png
+art/batch/icons/spells/level-5/dominate-person.png
+art/batch/icons/spells/level-5/geas.png
 
 ## batch-213 v3
 
