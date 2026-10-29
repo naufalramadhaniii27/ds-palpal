@@ -3881,6 +3881,7 @@ art/batch/icons/spells/level-8/earthquake.png
 art/batch/icons/spells/level-8/iron-body.png
 art/batch/icons/spells/level-9/imprisonment.png
 art/batch/icons/spells/level-9/storm-of-vengeance.png
+NEXT: batch-234 art/batch/scenes/screen/learn-pc.png
 ## batch-234 v3
 art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
@@ -3909,6 +3910,7 @@ art/batch/vignettes/learn/abilities-skills.png
 art/batch/vignettes/learn/combat-turn.png
 art/batch/vignettes/learn/hit-points-rests.png
 
+art/batch/vignettes/learn/owl-cheer.png
 NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
