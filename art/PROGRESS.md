@@ -4553,3 +4553,7 @@ art/batch/icons/items/gear/signal-whistle.png
 art/batch/icons/items/gear/spikes-iron.png
 art/batch/icons/items/gear/spyglass.png
 
+## batch-064 v3
+art/batch/icons/bastion/guildhall.png
+art/batch/icons/bastion/sanctum.png
+art/batch/icons/bastion/war-room.png
