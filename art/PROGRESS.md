@@ -2084,6 +2084,11 @@ art/batch/icons/spells/level-2/pyrotechnics.png
 art/batch/icons/spells/level-2/rope-trick.png
 art/batch/icons/spells/level-2/shining-smite.png
 art/batch/icons/spells/level-2/skywrite.png
+art/batch/icons/spells/level-2/spider-climb.png
+art/batch/icons/spells/level-2/spike-growth.png
+art/batch/icons/spells/level-3/aura-of-vitality.png
+art/batch/icons/spells/level-3/beacon-of-hope.png
+art/batch/icons/spells/level-3/counterspell.png
 ## batch-201 v3
 
 art/batch/creatures/beast/crocodile.png
