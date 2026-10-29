@@ -1994,6 +1994,11 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2020,11 +2025,6 @@ art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
 art/batch/icons/items/magic/legendary/deck-of-several-things.png
 art/batch/icons/items/magic/rare/galders-bubble-pipe.png
 art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
 
 
 ## batch-168 v3
@@ -2130,3 +2130,10 @@ art/batch/scenes/environment/sea-phone.png
 art/batch/scenes/environment/desert-pc.png
 art/batch/scenes/environment/desert-phone.png
 art/batch/scenes/environment/snow-pc.png
+
+## batch-148 v3
+art/batch/icons/features/class/bard/jack-of-all-trades.png
+art/batch/icons/features/class/bard/magical-secrets.png
+art/batch/icons/features/class/bard/spellcasting.png
+art/batch/icons/features/class/bard/superior-inspiration.png
+art/batch/icons/features/class/bard/words-of-creation.png
