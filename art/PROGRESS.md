@@ -3647,6 +3647,11 @@ art/batch/icons/spells/level-4/raulothims-psychic-lance.png
 art/batch/icons/spells/level-4/staggering-smite.png
 art/batch/icons/spells/level-4/zone-of-amicability.png
 art/batch/icons/spells/level-4/fire-shield.png
+art/batch/icons/spells/level-4/fount-of-moonlight.png
+art/batch/icons/spells/level-4/gravity-sinkhole.png
+art/batch/icons/spells/level-4/ice-storm.png
+art/batch/icons/spells/level-4/sickening-radiance.png
+art/batch/icons/spells/level-4/spellfire-storm.png
 
 ## batch-136 v3
 art/batch/icons/feats/alert.png
