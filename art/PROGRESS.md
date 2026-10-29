@@ -2953,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3128,3 +3133,9 @@ art/batch/icons/features/class/ranger/weapon-mastery.png
 art/batch/icons/features/class/rogue/cunning-action.png
 art/batch/icons/features/class/rogue/cunning-strike.png
 art/batch/icons/features/class/rogue/devious-strikes.png
+## batch-069 v3
+art/batch/scenes/species/hadozee-pc.png
+art/batch/scenes/species/hadozee-phone.png
+art/batch/scenes/species/harengon-pc.png
+art/batch/scenes/species/harengon-phone.png
+art/batch/scenes/species/hexblood-pc.png
