@@ -2740,7 +2740,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -3253,3 +3252,12 @@ art/batch/monsters/fiend/nalfeshnee.png
 art/batch/monsters/fiend/bone-devil.png
 art/batch/monsters/fiend/ice-devil.png
 art/batch/monsters/fiend/horned-devil.png
+
+## batch-208 v3
+
+art/batch/creatures/beast/giant-constrictor-snake.png
+art/batch/creatures/celestial/giant-eagle.png
+art/batch/creatures/celestial/giant-elk.png
+art/batch/creatures/beast/giant-hyena.png
+art/batch/creatures/celestial/giant-owl.png
+
