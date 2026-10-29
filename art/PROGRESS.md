@@ -3940,3 +3940,7 @@ art/batch/icons/feats/resilient.png
 art/batch/icons/feats/ritual-caster.png
 art/batch/icons/feats/sentinel.png
 art/batch/icons/feats/shadow-touched.png
+## batch-212 v3
+
+art/batch/icons/items/gear/arrows-20.png
+
