@@ -4518,6 +4518,11 @@ art/batch/emblems/subclass/extra/circle-of-the-shepherd.png
 art/batch/emblems/subclass/extra/clockwork-soul.png
 art/batch/emblems/subclass/extra/college-of-creation.png
 art/batch/emblems/subclass/extra/college-of-eloquence.png
+art/batch/emblems/subclass/extra/college-of-hymns.png
+art/batch/emblems/subclass/extra/college-of-spirits.png
+art/batch/emblems/subclass/extra/college-of-swords.png
+art/batch/emblems/subclass/extra/college-of-whispers.png
+art/batch/emblems/subclass/extra/college-of-the-moon.png
 ## batch-125 v3
 art/batch/icons/items/magic/uncommon/simic-guild-signet.png
 art/batch/icons/items/magic/uncommon/simic-keyrune.png
