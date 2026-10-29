@@ -3041,6 +3041,7 @@ art/batch/icons/spells/level-3/feign-death.png
 art/batch/icons/spells/level-3/life-transference.png
 art/batch/icons/spells/level-3/revivify.png
 art/batch/icons/spells/level-3/speak-with-dead.png
+art/batch/icons/spells/level-3/spirit-shroud.png
 
 ## batch-151 v3
 art/batch/icons/features/class/paladin/faithful-steed.png
