@@ -4217,3 +4217,9 @@ art/batch/icons/items/gear/tinderbox.png
 art/batch/icons/items/gear/waterskin.png
 art/batch/icons/items/gear/lantern-hooded.png
 
+## batch-061 v3
+art/batch/icons/wild-shape/wolf.png
+art/batch/icons/wild-shape/brown-bear.png
+art/batch/icons/wild-shape/black-bear.png
+art/batch/icons/wild-shape/panther.png
+art/batch/icons/wild-shape/dire-wolf.png
