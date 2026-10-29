@@ -1983,3 +1983,22 @@ art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
 art/batch/icons/items/magic/legendary/deck-of-several-things.png
 art/batch/icons/items/magic/rare/galders-bubble-pipe.png
 art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+## batch-199 v3
+
+art/batch/portraits/zombie-a.png
+art/batch/portraits/zombie-b.png
+
+## batch-200 v3
+
+art/batch/creatures/beast/ape.png
+art/batch/creatures/beast/badger.png
+art/batch/creatures/beast/bat.png
+art/batch/creatures/beast/black-bear.png
+art/batch/creatures/beast/boar.png
+
