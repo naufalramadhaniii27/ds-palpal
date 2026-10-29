@@ -4239,3 +4239,8 @@ art/batch/scenes/screen/learn-map-phone.png
 art/batch/scenes/screen/learn-trial-pc.png
 art/batch/scenes/screen/learn-trial-phone.png
 art/batch/emblems/learn/rank-novice.png
+art/batch/emblems/learn/rank-apprentice.png
+art/batch/emblems/learn/rank-adventurer.png
+art/batch/emblems/learn/rank-hero.png
+art/batch/vignettes/learn/sela-narrate.png
+art/batch/vignettes/learn/sela-smile.png
