@@ -4286,6 +4286,11 @@ art/batch/icons/wild-shape/crocodile.png
 art/batch/icons/companions/beast-of-the-land-primal-companion.png
 art/batch/icons/companions/beast-of-the-sea-primal-companion.png
 art/batch/icons/companions/beast-of-the-sky-primal-companion.png
+art/batch/icons/companions/steel-defender-mechanical-guardian-dog.png
+art/batch/icons/companions/homunculus-servant-tiny-winged-construct.png
+art/batch/icons/companions/eldritch-cannon-small-arcane-cannon-on-legs.png
+art/batch/icons/familiars/bat-familiar.png
+art/batch/icons/familiars/cat-familiar.png
 ## batch-236 v3
 art/batch/scenes/screen/learn-map-pc.png
 art/batch/scenes/screen/learn-map-phone.png
