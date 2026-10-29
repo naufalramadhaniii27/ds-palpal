@@ -1,0 +1,1 @@
+import{a}from"./dice-3YP3CHTS.js";import"./dice-FTR34MDZ.js";import"./dice-2U3DKT3D.js";import"./dice-2HLT6BHF.js";import"./dice-N2IPCLXQ.js";import"./dice-E3XPRCMA.js";import"./dice-BCN7XT3O.js";import"./dice-7VDB6THZ.js";import"./dice-QANJEEUT.js";import"./dice-PY2PUUMF.js";export{a as defaultVertexShader};

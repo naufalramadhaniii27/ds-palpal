@@ -1,0 +1,1 @@
+import{a}from"./dice-2VQ4T5IL.js";import"./dice-6UTXJ77S.js";import"./dice-2U3DKT3D.js";import"./dice-2HLT6BHF.js";import"./dice-NIYFJWRC.js";import"./dice-BCN7XT3O.js";import"./dice-7VDB6THZ.js";import"./dice-2DL3VECA.js";import"./dice-QANJEEUT.js";import"./dice-PY2PUUMF.js";export{a as defaultPixelShader};
