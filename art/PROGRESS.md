@@ -3139,3 +3139,11 @@ art/batch/scenes/species/hadozee-phone.png
 art/batch/scenes/species/harengon-pc.png
 art/batch/scenes/species/harengon-phone.png
 art/batch/scenes/species/hexblood-pc.png
+
+## batch-046 v3
+art/batch/icons/spells/level-3/summon-undead.png
+art/batch/icons/spells/level-3/vampiric-touch.png
+art/batch/icons/spells/level-3/ashardalons-stride.png
+art/batch/icons/spells/level-3/blink.png
+art/batch/icons/spells/level-3/elemental-weapon.png
+
