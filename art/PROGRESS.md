@@ -1961,3 +1961,9 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+
+## batch-199 v3
+
+art/batch/portraits/zombie-a.png
+art/batch/portraits/zombie-b.png
+
