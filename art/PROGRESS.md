@@ -2565,6 +2565,11 @@ art/batch/icons/features/subclass/oath-of-vengeance/soul-of-vengeance.png
 art/batch/icons/features/subclass/oath-of-vengeance/tenets-of-vengeance.png
 art/batch/icons/features/subclass/oath-of-vengeance/vow-of-enmity.png
 art/batch/icons/features/subclass/oath-of-the-ancients/aura-of-warding.png
+art/batch/icons/features/subclass/oath-of-the-ancients/channel-divinity-natures-wrath.png
+art/batch/icons/features/subclass/oath-of-the-ancients/channel-divinity-turn-the-faithless.png
+art/batch/icons/features/subclass/oath-of-the-ancients/elder-champion.png
+art/batch/icons/features/subclass/oath-of-the-ancients/natures-wrath.png
+art/batch/icons/features/subclass/oath-of-the-ancients/oath-spells.png
 
 ## batch-044 v3
 art/batch/icons/spells/level-3/summon-lesser-demons.png
