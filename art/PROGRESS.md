@@ -3630,6 +3630,12 @@ art/batch/icons/features/subclass/arcane-archer/arcane-shot-options.png
 art/batch/icons/features/subclass/arcane-archer/curving-shot.png
 art/batch/icons/features/subclass/arcane-archer/ever-ready-shot.png
 art/batch/icons/features/subclass/arcane-archer/indomitable-teleport.png
+art/batch/icons/features/subclass/arcane-archer/magic-arrow.png
+art/batch/icons/features/subclass/arcane-archer/magical-ammunition.png
+art/batch/icons/features/subclass/arcane-archer/masterful-shots.png
+art/batch/icons/features/subclass/arcane-trickster/mage-hand-legerdemain.png
+art/batch/icons/features/subclass/arcane-trickster/magical-ambush.png
+
 ## batch-048 v3
 art/batch/icons/spells/level-4/summon-construct.png
 art/batch/icons/spells/level-4/summon-elemental.png
