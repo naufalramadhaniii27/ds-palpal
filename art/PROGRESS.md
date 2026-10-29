@@ -4209,3 +4209,11 @@ art/batch/icons/spells/level-5/commune-with-nature.png
 art/batch/icons/spells/level-5/contact-other-plane.png
 art/batch/icons/spells/level-5/legend-lore.png
 
+## batch-213 v3
+
+art/batch/icons/items/gear/rations-1-day.png
+art/batch/icons/items/gear/torch.png
+art/batch/icons/items/gear/tinderbox.png
+art/batch/icons/items/gear/waterskin.png
+art/batch/icons/items/gear/lantern-hooded.png
+
