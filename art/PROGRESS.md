@@ -2995,3 +2995,10 @@ art/batch/creatures/celestial/sphinx-of-wonder.png
 art/batch/creatures/beast/spider.png
 art/batch/creatures/fey/sprite.png
 
+## batch-045 v3
+art/batch/icons/spells/level-3/fireball.png
+art/batch/icons/spells/level-3/laerals-silver-lance.png
+art/batch/icons/spells/level-3/leomunds-tiny-hut.png
+art/batch/icons/spells/level-3/lightning-bolt.png
+art/batch/icons/spells/level-3/melfs-minute-meteors.png
+
