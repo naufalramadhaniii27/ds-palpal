@@ -4508,3 +4508,9 @@ art/batch/emblems/subclass/extra/arcane-archer.png
 art/batch/emblems/subclass/extra/circle-of-dreams.png
 art/batch/emblems/subclass/extra/circle-of-spores.png
 art/batch/emblems/subclass/extra/circle-of-stars.png
+## batch-125 v3
+art/batch/icons/items/magic/uncommon/simic-guild-signet.png
+art/batch/icons/items/magic/uncommon/simic-keyrune.png
+art/batch/icons/items/magic/uncommon/skyblinder-staff.png
+art/batch/icons/items/magic/uncommon/spies-murmur.png
+art/batch/icons/items/magic/rare/sunforger.png
