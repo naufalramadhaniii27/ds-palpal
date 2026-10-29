@@ -4010,6 +4010,11 @@ art/batch/icons/items/gear/bolts-20.png
 art/batch/icons/items/gear/quiver.png
 art/batch/icons/items/gear/backpack.png
 art/batch/icons/items/gear/pouch.png
+art/batch/icons/items/gear/sack.png
+art/batch/icons/items/gear/basket.png
+art/batch/icons/items/gear/barrel.png
+art/batch/icons/items/gear/chest.png
+art/batch/icons/items/gear/case-map-or-scroll.png
 
 
 ## batch-235 v3
