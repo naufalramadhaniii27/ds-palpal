@@ -3634,4 +3634,5 @@ art/batch/creatures/monstrosity/swarm-of-corrupted-rats.png
 art/batch/creatures/construct/terran-magen.png
 art/batch/creatures/beast/cave-bear.png
 art/batch/creatures/monstrosity/guardian-wolf.png
+art/batch/creatures/beast/giant-wasp.png
 
