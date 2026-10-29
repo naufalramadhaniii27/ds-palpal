@@ -3947,6 +3947,11 @@ art/batch/icons/features/subclass/path-of-the-wild-heart/rage-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-world-tree/battering-roots.png
 art/batch/icons/features/subclass/path-of-the-world-tree/branches-of-the-tree.png
 art/batch/icons/features/subclass/path-of-the-world-tree/travel-along-the-tree.png
+art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
+art/batch/icons/features/subclass/path-of-the-zealot/divine-fury.png
+art/batch/icons/features/subclass/path-of-the-zealot/fanatical-focus.png
+art/batch/icons/features/subclass/path-of-the-zealot/rage-beyond-death.png
+art/batch/icons/features/subclass/path-of-the-zealot/rage-of-the-gods.png
 
 NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
