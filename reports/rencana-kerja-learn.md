@@ -80,6 +80,17 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | Samsung Internet | Tidak dihitung di Baseline, versinya biasanya tertinggal dari Chrome, banyak dipakai di Android Indonesia | Jalur cadangan `@supports` yang sama |
 | Laporan terbaru yang dicek | web.dev edisi September 2026. Edisi Oktober 2026 belum terbit saat dicek (29 Oktober 2026) | Cek ulang daftar Baseline sebelum F7 |
 
+## Teknologi buatan sendiri (U38 sampai U44, diterima 2026-10-29)
+| No | Nama | Isi singkat | Masuk tahap |
+|---|---|---|---|
+| U38 | Choreo | Peragaan sebagai data. Satu naskah menghasilkan animasi, versi Motion off, jalur keyboard, dan skrip tes | F1 |
+| U39 | Cermin aturan hidup | Angka pelajaran dihitung mesin derivasi sheet (06). Checker mencocokkan klaim pelajaran dengan mesin | F1, F7 |
+| U40 | Explain any number | Ketuk angka di sheet, angkanya disusun ulang dari kepingan asal (dari 11-ui-breakdown.js) | F5 |
+| U41 | Anchor Spotlight | Satu mesin sorot untuk tour, Learn, What's New, builder. Menggantikan rencana "tour dijadikan mesin umum" di F3 | F1 (dibuat), F3 dan F5 (dipakai) |
+| U42 | Penanda `data-learn` | Titik screenshot, sorotan, dan tes dibuat dari atribut di kode UI | F1, F3 |
+| U43 | Gerbang bahasa sederhana | Build gagal bila teks Learn melanggar panduan. Menggantikan tes laporan saja di F0 | F0 |
+| U44 | Petunjuk bertingkat tanpa profil | Tingkat petunjuk dari kesalahan di langkah ini saja, tidak disimpan | F1 |
+
 ## Bahasa dan kamus
 ### Panduan bahasa (kedua bahasa)
 | Aturan | English | Bahasa Indonesia |
