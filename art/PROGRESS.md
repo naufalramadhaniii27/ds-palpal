@@ -3058,6 +3058,11 @@ art/batch/icons/features/class/ranger/favored-enemy.png
 art/batch/icons/features/class/ranger/feral-senses.png
 art/batch/icons/features/class/ranger/fighting-style.png
 art/batch/icons/features/class/ranger/foe-slayer.png
+art/batch/icons/features/class/ranger/natures-veil.png
+art/batch/icons/features/class/ranger/precise-hunter.png
+art/batch/icons/features/class/ranger/relentless-hunter.png
+art/batch/icons/features/class/ranger/roving.png
+art/batch/icons/features/class/ranger/spellcasting.png
 ## batch-205 v3
 
 art/batch/creatures/undead/zombie.png
