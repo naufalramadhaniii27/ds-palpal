@@ -156,8 +156,8 @@ def with_csp(html):
             hs.append(h)
     pol = ("default-src 'self'; script-src 'self' 'wasm-unsafe-eval' " + " ".join(hs) + "; style-src 'self' 'unsafe-inline'; "
            "img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' data: blob:; worker-src 'self' blob:; "
-           "manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; "
-           "require-trusted-types-for 'script'; trusted-types default cs-loader")
+           "manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; "
+           "require-trusted-types-for 'script'; trusted-types default cs-loader html2canvas-pro")
     tag = '<meta charset="utf-8">\n'
     assert tag in html, "charset meta not found"
     return html.replace(tag, tag + '<meta http-equiv="Content-Security-Policy" content="%s">\n' % pol, 1)

@@ -17,8 +17,8 @@ def serve():
         def log_message(self, *a): pass
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=ROOT)); threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv, "http://127.0.0.1:%d/index.html" % port
-async def clickall(pg, sel, wait=350):
-    for el in await pg.query_selector_all(sel):
+async def clickall(pg, sel, wait=350, most=12):
+    for el in (await pg.query_selector_all(sel))[:most]:
         try:
             if await el.is_visible(): await el.click(timeout=3000); await pg.wait_for_timeout(wait)
         except Exception: pass
