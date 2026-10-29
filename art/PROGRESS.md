@@ -2975,6 +2975,11 @@ art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.pn
 art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
 art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
 art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
+art/batch/icons/features/subclass/oath-of-the-crown/divine-allegiance.png
+art/batch/icons/features/subclass/oath-of-the-crown/exalted-champion.png
+art/batch/icons/features/subclass/oath-of-the-crown/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-crown/tenets-of-the-crown.png
+art/batch/icons/features/subclass/oath-of-the-crown/unyielding-spirit.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
