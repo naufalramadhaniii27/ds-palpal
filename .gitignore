@@ -5,3 +5,4 @@ dist/
 .wrangler/
 tools/build/node_modules/
 __pycache__/
+/500/
