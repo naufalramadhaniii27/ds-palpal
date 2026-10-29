@@ -15,7 +15,7 @@
       box=new DB({container:"#diceTray",assetPath:BASE.pathname,origin:location.origin,theme:"default",themeColor:acc(),scale:innerWidth<600?5:6,enableShadows:!weak(),settleTimeout:4000,offscreen:true,delay:10});
       return box.init().then(function(){ return box; }); });
     loading.catch(function(){ loading=null; box=null; }); return loading; }
-  function values(res,list){ var by={}; (res||[]).forEach(function(g){ var r=g.rolls; r=Array.isArray(r)?r:Object.keys(r||{}).map(function(k){ return r[k]; }); (by[g.sides]=by[g.sides]||[]).push.apply(by[g.sides],r.map(function(x){ return x.value; })); });
+  function values(res,list){ var by={}; (res||[]).forEach(function(g){ var r=g.rolls; if(r===undefined){ r=[g]; } r=Array.isArray(r)?r:Object.keys(r||{}).map(function(k){ return r[k]; }); /* roll() gives one entry per die, getRollResults() gives groups */ (by[g.sides]=by[g.sides]||[]).push.apply(by[g.sides],r.map(function(x){ return x.value; })); });
     var out=[]; for(var i=0;i<list.length;i++){ var q=by[list[i]]; if(!q||!q.length) return null; out.push(q.shift()); } return out; }
   function run(list){ return load().then(function(b){ if(!b) return null; clearTimeout(hideT); b.clear(); tray.classList.add("on");
       var cnt={}, order=[]; list.forEach(function(f){ if(!cnt[f]){ cnt[f]=0; order.push(f); } cnt[f]++; });
