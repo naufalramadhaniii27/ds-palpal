@@ -62,6 +62,12 @@ function turnOf(st,id){ var g=0; while(TGE.now(st)!==id&&g++<20) st=TGE.step(st,
   for(var k=0;k<12&&!dsx.units.h.dead&&!dsx.units.h.stable&&dsx.units.h.down;k++) dsx=TGE.step(dsx,{t:"end"});
   ok(dsx.log.some(function(x){ return x.t==="ds"; }),"death save rolled");
   var mass=TGE.step(TGE.step(fight(2,[TGE.fromSheet(HERO,"h",[2,2]),TGE.fromCreature(gw,"g",[3,2])]),{t:"start"}),{t:"damage",u:"h",amt:60}); ok(mass.units.h.dead,"massive damage");
+  /* N20 odds lens: exact numbers by hand, then 20,000 seeded attacks through the engine agree within 1 percent */
+  var OH={name:"H",ac:15,hp:30,max:30,speed:30,ini:0,attacks:[{n:"Sword",hit:5,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]}, OG={name:"G",ac:15,hp:7,max:7,speed:30,ini:-9,attacks:[]};
+  var mk=function(sd){ return TGE.create({seed:sd,units:[TGE.fromSheet(OH,"a",[0,0]),Object.assign(TGE.fromSheet(OG,"b",[1,0]),{side:"foe"})]}); };
+  var od=TGE.odds(mk(1),"a","b","Sword"); ok(Math.abs(od.hit-0.55)<1e-9&&Math.abs(od.avg-4.35)<1e-9&&Math.abs(od.kill-0.36015625)<1e-9,"odds by hand "+JSON.stringify(od));
+  var nh=0, nk=0, sum=0, NN=20000; for(var z=0;z<NN;z++){ var sz=turnOf(TGE.step(mk(z+101),{t:"start"}),"a"); var az=TGE.step(sz,{t:"attack",target:"b",act:"Sword"}); var ez=az.log.filter(function(e){ return e.t==="atk"; })[0]; if(ez.hit) nh++; az.log.forEach(function(e){ if(e.t==="dmg") sum+=e.amt; }); if(az.units.b.hp===0) nk++; }
+  ok(Math.abs(nh/NN-od.hit)<0.01&&Math.abs(nk/NN-od.kill)<0.01&&Math.abs(sum/NN-od.avg)<0.1,"odds against 20000 attacks "+[nh/NN,nk/NN,sum/NN].join(" "));
   /* TG4 legendary actions: on another creature's turn only, three per round, back at the start of its own turn */
   var lgd=TGE.fromCreature(drg,"d",[3,2]); ok(lgd.lgn===3&&lgd.lg.some(function(a){ return a.ref==="Rend"; }),"legendary data "+JSON.stringify(lgd.lg.map(function(a){ return [a.n,a.k,a.ref]; })));
   var lgf=turnOf(TGE.step(fight(17,[TGE.fromSheet(Object.assign({},HERO,{hp:400,max:400}),"h",[2,2]),lgd]),{t:"start"}),"h");
@@ -121,7 +127,12 @@ for(var f=1;f<=N;f++){
     var lost=u.max-u.hp, wasDown=st.log.some(function(e){ return e.t==="down"&&e.u===k; }); ok(u.hp>0&&!wasDown?lost===dmg-heal:dmg>=lost,"hp log "+f+" "+k+" lost "+lost+" log "+dmg+" heal "+heal); });
   var again=TGE.replay(start,all); ok(TGE.hash(again)===TGE.hash(st),"replay differs in fight "+f);
 }
+/* N22 and N30: the build duel gives the same totals twice, the quick estimate stays between 0 and 1 and grows with the hero's Hit Points */
+(function(){ global.TGE=TGE; require(path.join(ROOT,"src/tg/25-sim.js")); var S=TGE.sim, gw=TG_CREATURES.filter(function(c){ return c.n==="Goblin Warrior"; })[0];
+  var pc={name:"Duelist",ac:16,hp:30,max:30,speed:30,ini:2,level:3,saves:{str:5,con:4},attacks:[{n:"Longsword",hit:5,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]};
+  var r1=null; S.duel(pc,[gw,gw,gw],40,500,function(r){ r1=r; }); var go=function(){ if(!r1) return setTimeout(go,5); S.duel(pc,[gw,gw,gw],40,500,function(r2){ ok(JSON.stringify(r1)===JSON.stringify(r2),"duel differs on the same seeds");
+    var e1=S.est(pc,gw,3).p, e2=S.est(Object.assign({},pc,{hp:60,max:60}),gw,3).p; ok(e1>0&&e1<1&&e2>e1,"estimate "+e1+" "+e2); console.log("duel 40 fights vs 3 Goblin Warriors: won "+r1.won+", estimate "+Math.round(e1*100)+"%"); }); }; go(); })();
 console.log("data: 503 creatures, srd "+srd+", actions "+JSON.stringify(kinds));
 console.log("fights "+N+": players won "+stats.won+", lost "+stats.lost+", still going at round 60: "+(stats.long||0)+", average rounds "+(stats.rounds/N).toFixed(1)+", longest "+stats.maxr);
-bad.slice(0,30).forEach(function(x){ console.log("FAIL",x); });
-console.log("tg_engine:",bad.length?bad.length+" problems":"ok"); process.exit(bad.length?1:0);
+setTimeout(function(){ bad.slice(0,30).forEach(function(x){ console.log("FAIL",x); });
+console.log("tg_engine:",bad.length?bad.length+" problems":"ok"); process.exit(bad.length?1:0); },3000);

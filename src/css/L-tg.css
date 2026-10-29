@@ -73,4 +73,23 @@
 .htg .htg-i{display:grid;place-items:center}.htg .htg-i .ico{width:26px;height:26px}
 .tg-a.k-heal{border-left:3px solid #4caf6e}.tg-a.k-man{border-left:3px dashed var(--line-2)}
 .tg-lv{display:flex;align-items:center;gap:6px}.tg-lv select{min-height:44px}
+/* N20 odds lens */
+.tg-lens{display:grid;gap:6px}
+.tg-lr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:6px;min-height:44px;padding:6px 10px;border-radius:10px;border:1px solid var(--line-2);background:var(--panel-2);text-align:left;font-variant-numeric:tabular-nums}
+.tg-lr b{grid-column:1/-1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (min-width:760px){ .tg-lr{grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr))} .tg-lr b{grid-column:auto} }
+.tg-lr span{font-size:calc(13px*var(--tz,1))}
+/* N21 encounter size */
+.tg-size{display:grid;gap:8px;margin:0 0 12px;padding:12px 14px;border-radius:14px;border:1px solid var(--line-2);background:var(--panel)}
+.tg-sz-t{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.tg-sz-t span{color:var(--muted);font-size:calc(13px*var(--tz,1));font-variant-numeric:tabular-nums}
+.tg-sz-b{position:relative;height:10px;border-radius:5px;background:var(--panel-2);overflow:hidden}
+.tg-sz-b i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#4caf6e,#e6b84a 60%,#d9534f)}
+.tg-sz-b s{position:absolute;top:0;bottom:0;width:2px;background:var(--ink,#fff);opacity:.6}
+.tg-size .btn{min-height:44px;justify-self:start}
+.tg-size small{color:var(--muted)}
+/* N26 replay */
+.tg-rp{margin-top:10px}
+.tg-rps input{width:100%;min-height:44px}
+.tg-rpl{margin:0;padding-left:1.2em;min-height:3em;line-height:1.45;font-size:calc(14px*var(--tz,1))}
 }

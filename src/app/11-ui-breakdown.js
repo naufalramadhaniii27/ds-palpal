@@ -24,7 +24,7 @@ function bdHTML(key){
     var cls = p.raw ? "" : (p.v<0?" neg":(p.v===0?" zero":""));
     return '<div class="bk-r"><b>'+esc(p.l)+'</b>'+(p.note?'<small>'+esc(p.note)+'</small>':'')+'<span class="v'+cls+'">'+v+'</span></div>';
   }).join("");
-  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+oddsHTML(key)+(key==="hp"?hpModH()+'<p class="bk-btns"><button type="button" class="btn press" data-status="1">Copy status for chat</button><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+(key==="pb"?'<p><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+bdAbout(key)+
+  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+oddsHTML(key)+(typeof nmHTML==="function"?nmHTML(key):"")+(key==="hp"?hpModH()+'<p class="bk-btns"><button type="button" class="btn press" data-status="1">Copy status for chat</button><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+(key==="pb"?'<p><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+bdAbout(key)+
     (/^sense-/.test(key)?'<p class="bk-f" style="color:var(--faint)">Set by the builder. Change it there, then Apply.</p>':(cuqOf(key)?'<p class="bk-f" style="color:var(--faint)">To set your own number, turn on Edit mode and tap it.</p>':'<p class="bk-f" style="color:var(--faint)">Change any of these in Edit.</p>'));
 }
 function showBD(key){ if(!B[key]) return; showEntry({type:"bd",key:key},false); }

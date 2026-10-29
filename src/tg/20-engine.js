@@ -188,6 +188,23 @@ var CMD={
       if(u.ds.f>=3){ u.dead=true; ev(st,{t:"dead",u:u.id}); checkOver(st); } else if(u.ds.s>=3){ u.ds={s:0,f:0}; u.stable=1; ev(st,{t:"stable",u:u.id}); } }
     return st; }
 };
+/* T11 N20 odds lens: the exact chance to hit, to land a Critical Hit, the average damage and the chance to drop the target with one attack.
+   The d20 with Advantage or Disadvantage, natural 1 and 20, damage dice convolved exactly (doubled dice on a crit), Resistance, Vulnerability
+   and Immunity per damage part, Temporary Hit Points. Nothing is rolled and the state is not changed */
+function pmfDice(expr,crit){ var dist={0:1}; parse(expr).forEach(function(q){ var add={};
+    if(q.f){ var n=q.n*(crit?2:1); for(var i=0;i<n;i++){ var nd={}; Object.keys(dist).forEach(function(k){ for(var f=1;f<=q.f;f++){ var v=+k+q.s*f; nd[v]=(nd[v]||0)+dist[k]/q.f; } }); dist=nd; } }
+    else { Object.keys(dist).forEach(function(k){ add[+k+q.s*q.k]=dist[k]; }); dist=add; } });
+  var out={}; Object.keys(dist).forEach(function(k){ var v=Math.max(0,+k); out[v]=(out[v]||0)+dist[k]; }); return out; }
+function pmfConv(a,b){ var o={}; Object.keys(a).forEach(function(x){ Object.keys(b).forEach(function(y){ var v=+x+(+y); o[v]=(o[v]||0)+a[x]*b[y]; }); }); return o; }
+function pmfDmg(t,a,crit){ var d={0:1}; (a.dmg||[]).forEach(function(q){ var p=pmfDice(q[1],crit), m={}; Object.keys(p).forEach(function(v){ var x=adjust(t,+v,q[2]); m[x]=(m[x]||0)+p[v]; }); d=pmfConv(d,m); }); return d; }
+function odds(st,attId,tgtId,actName){ var att=st.units[attId], tgt=st.units[tgtId], a=findAct(att,actName); if(!att||!tgt||!a||a.k!=="atk") return null;
+  var d=udist(att,tgt), ranged=!(a.mr==="m"||(a.mr==="mr"&&d<=(a.reach||5))), adv=advOf(st,att,tgt,ranged); if(ranged&&a.rng&&d>a.rng[0]) adv=adv>0?0:-1;
+  var pv=function(v){ return adv>0?(v*v-(v-1)*(v-1))/400:adv<0?((21-v)*(21-v)-(20-v)*(20-v))/400:1/20; };
+  var autoCrit=(tgt.cond.paralyzed||tgt.cond.unconscious||tgt.down)&&d<=5&&!ranged, pHit=0, pCrit=0;
+  for(var v=1;v<=20;v++){ var h=v===20||(v!==1&&v+a.hit>=tgt.ac); if(!h) continue; if(v===20||autoCrit) pCrit+=pv(v); else pHit+=pv(v); }
+  var N=pmfDmg(tgt,a,false), K=pmfDmg(tgt,a,true), need=tgt.hp+(tgt.tmp||0), avg=0, kill=0;
+  Object.keys(N).forEach(function(x){ avg+=pHit*N[x]*x; if(+x>=need) kill+=pHit*N[x]; }); Object.keys(K).forEach(function(x){ avg+=pCrit*K[x]*x; if(+x>=need) kill+=pCrit*K[x]; });
+  return {hit:pHit+pCrit,crit:pCrit,avg:avg,kill:need>0?kill:0,adv:adv}; }
 /* a legendary action: only on another creature's turn, one use each (2024 stat blocks have no costs above 1) */
 function lgAct(u,n){ var a=null; (u.lg||[]).forEach(function(x){ if(x.n===n) a=x; }); if(a&&a.ref){ var r=findAct(u,a.ref); if(r) return r; } return a; }
 function lgUse(st,u,n){ if(!u.lgn) return "no legendary actions"; if(now(st)===u.id) return "not on its own turn"; if(u.dead||u.down||u.cond.incapacitated) return "cannot act"; if(!(u.lgLeft>0)) return "no legendary actions left";
@@ -207,6 +224,6 @@ function step(st,c){ var s=clone(st); delete s.err; if(s.over&&c.t!=="heal"&&c.t
 function replay(start,cmds){ var s=start; cmds.forEach(function(c){ s=step(s,c); }); return s; }
 function hash(st){ var t=JSON.stringify(st), h=2166136261>>>0; for(var i=0;i<t.length;i++){ h^=t.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return h.toString(36); }
 
-var TGE={lgAct:lgAct,create:create,step:step,replay:replay,hash:hash,fromCreature:fromCreature,fromSheet:fromSheet,reach:reach,dist:dist,udist:udist,adjust:adjust,parse:parse,rollExpr:rollExpr,now:now,foes:foes,active:active,speedLeft:speedLeft,inReach:inReach,findAct:findAct};
+var TGE={odds:odds,pmfDice:pmfDice,lgAct:lgAct,create:create,step:step,replay:replay,hash:hash,fromCreature:fromCreature,fromSheet:fromSheet,reach:reach,dist:dist,udist:udist,adjust:adjust,parse:parse,rollExpr:rollExpr,now:now,foes:foes,active:active,speedLeft:speedLeft,inReach:inReach,findAct:findAct};
 if(typeof module!=="undefined"&&module.exports) module.exports=TGE; else root.TGE=TGE;
 })(typeof window!=="undefined"?window:this);

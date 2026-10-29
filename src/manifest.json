@@ -172,6 +172,7 @@
     "app/50-logic-reverse-builder.js",
     "app/51-ui-table-help.js",
     "app/52-tg-bridge.js",
+    "app/53-logic-number-map.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]
@@ -623,6 +624,7 @@
    "files": [
     "tg/00-open.wrap.js",
     "tg/20-engine.js",
+    "tg/25-sim.js",
     "tg/30-ui-tg.js",
     "tg/99-close.wrap.js"
    ]
