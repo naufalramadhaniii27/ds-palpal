@@ -1989,6 +1989,11 @@ art/batch/icons/rules/actions/study-action.png
 art/batch/icons/rules/actions/utilize-action.png
 art/batch/icons/rules/actions/opportunity-attack.png
 
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2103,6 +2108,11 @@ art/batch/icons/features/class/barbarian/rage.png
 art/batch/icons/features/class/barbarian/reckless-attack.png
 art/batch/icons/features/class/barbarian/relentless-rage.png
 art/batch/icons/features/class/barbarian/unarmored-defense.png
+art/batch/icons/features/class/barbarian/weapon-mastery.png
+art/batch/icons/features/class/bard/bardic-inspiration.png
+art/batch/icons/features/class/bard/countercharm.png
+art/batch/icons/features/class/bard/expertise.png
+art/batch/icons/features/class/bard/font-of-inspiration.png
 NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
