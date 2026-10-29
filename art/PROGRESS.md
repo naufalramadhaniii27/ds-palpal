@@ -2649,6 +2649,11 @@ art/batch/creatures/beast/panther.png
 art/batch/creatures/beast/pony.png
 art/batch/creatures/dragon/pseudodragon.png
 art/batch/creatures/fiend-demon/quasit.png
+art/batch/creatures/beast/rat.png
+art/batch/creatures/beast/raven.png
+art/batch/creatures/beast/reef-shark.png
+art/batch/creatures/beast/riding-horse.png
+art/batch/creatures/beast/scorpion.png
 
 ## batch-054 v3
 art/batch/icons/spells/level-6/conjure-fey.png
