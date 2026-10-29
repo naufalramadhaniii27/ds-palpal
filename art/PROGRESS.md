@@ -3691,3 +3691,8 @@ art/batch/icons/coins/coin-pile.png
 art/batch/icons/creature-types/beast.png
 art/batch/icons/creature-types/celestial.png
 art/batch/icons/creature-types/dragon.png
+art/batch/icons/creature-types/fey.png
+art/batch/icons/creature-types/fiend.png
+art/batch/icons/creature-types/giant.png
+art/batch/icons/creature-types/ooze.png
+art/batch/icons/item-categories/simple-melee-weapons.png
