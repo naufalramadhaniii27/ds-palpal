@@ -3036,6 +3036,11 @@ art/batch/icons/spells/level-3/hypnotic-pattern.png
 art/batch/icons/spells/level-3/major-image.png
 art/batch/icons/spells/level-3/phantom-steed.png
 art/batch/icons/spells/level-3/animate-dead.png
+art/batch/icons/spells/level-3/bestow-curse.png
+art/batch/icons/spells/level-3/feign-death.png
+art/batch/icons/spells/level-3/life-transference.png
+art/batch/icons/spells/level-3/revivify.png
+art/batch/icons/spells/level-3/speak-with-dead.png
 
 ## batch-151 v3
 art/batch/icons/features/class/paladin/faithful-steed.png
