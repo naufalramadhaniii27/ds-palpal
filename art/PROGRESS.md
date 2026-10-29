@@ -3472,6 +3472,22 @@ art/batch/icons/spells/level-7/reverse-gravity.png
 art/batch/icons/spells/level-7/sequester.png
 art/batch/icons/spells/level-7/simbuls-synostodweomer.png
 art/batch/icons/spells/level-8/antimagic-field.png
+art/batch/icons/spells/level-7/divine-word.png
+art/batch/icons/spells/level-7/fire-storm.png
+art/batch/icons/spells/level-7/forcecage.png
+art/batch/icons/spells/level-7/mordenkainens-sword.png
+NEEDS REVIEW: art/batch/icons/spells/level-7/prismatic-spray.png
+art/batch/icons/spells/level-7/whirlwind.png
+art/batch/icons/spells/level-7/mirage-arcane.png
+art/batch/icons/spells/level-7/project-image.png
+art/batch/icons/spells/level-7/simulacrum.png
+art/batch/icons/spells/level-7/finger-of-death.png
+art/batch/icons/spells/level-7/resurrection.png
+art/batch/icons/spells/level-7/tether-essence.png
+art/batch/icons/spells/level-7/void-star.png
+art/batch/icons/spells/level-7/create-magen.png
+art/batch/icons/spells/level-7/draconic-transformation.png
+art/batch/icons/spells/level-7/regenerate.png
 ## batch-230 v3
 art/batch/icons/abilities/intelligence.png
 art/batch/icons/skills/arcana.png
@@ -3527,6 +3543,15 @@ art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
 art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
+art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
+art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
+art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
@@ -3559,6 +3584,11 @@ art/batch/icons/abilities/dexterity.png
 art/batch/icons/abilities/wisdom.png
 art/batch/icons/abilities/charisma.png
 art/batch/icons/skills/animal-handling.png
+art/batch/icons/damage-types/resistance.png
+art/batch/icons/spell-schools/abjuration-school.png
+art/batch/icons/spell-schools/conjuration-school.png
+art/batch/icons/spell-schools/divination-school.png
+art/batch/icons/spell-schools/necromancy-school.png
 ## batch-135 v3
 art/batch/icons/items/magic/common/wand-of-scowls.png
 art/batch/icons/items/magic/common/wand-of-smiles.png
@@ -3581,3 +3611,9 @@ art/batch/icons/spells/level-4/summon-greater-demon.png
 art/batch/icons/spells/level-4/watery-sphere.png
 art/batch/icons/spells/level-4/arcane-eye.png
 
+## batch-136 v3
+art/batch/icons/feats/alert.png
+art/batch/icons/feats/crafter.png
+art/batch/icons/feats/healer.png
+art/batch/icons/feats/lucky.png
+art/batch/icons/feats/magic-initiate-cleric.png
