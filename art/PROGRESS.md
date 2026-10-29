@@ -1976,6 +1976,11 @@ art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
 
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
