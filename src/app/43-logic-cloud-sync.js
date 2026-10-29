@@ -87,7 +87,7 @@ function syRun(why){
     syState("offline"); syBanners(); syAgain(); });
 }
 /* settings that follow the person: only these keys, newest wins */
-var PF_KEYS=["mi-fx","mi-bz","mi-snd","mi-clsart","cs-ui-remind"];
+var PF_KEYS=["mi-fx","mi-bz","mi-snd","mi-clsart","cs-ui-remind","cs-learn-v1"];/* T11: Learn progress and language */
 function pfLocal(){ var o={}; PF_KEYS.forEach(function(k){ var v=lsGet(k); if(v!=null) o[k]=v; }); return JSON.stringify(o); }
 function pfRun(){ var sy=syGet(), pf=sy.pf||{}, t=pfLocal(), h=hashS(t), here=h!==pf.h;
   var me=SY.me||{}; if(!(me.prefsT>(pf.t||0))||(here&&pf.h)){ if(!here) return null; var at=Date.now(); return syApi("prefs?t="+at,{method:"PUT",headers:{"content-type":"text/plain;charset=UTF-8"},body:t}).then(function(){ var q=syGet(); q.pf={h:h,t:at}; sySet(q); me.prefsT=at; }); }

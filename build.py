@@ -241,6 +241,15 @@ def lint(srcdir):
     return bad
 
 
+def learn_lint():
+    """T11 Learn U43: the plain-language gate. A Learn text that breaks the guide (sentence length, stiff Indonesian words,
+    numbers that differ between English and Indonesian) stops the build. Needs node, which the minify step needs too."""
+    data = os.path.join(SRC, "learn", "45-data-learn.js")
+    if not os.path.exists(data): return
+    r = subprocess.run(["node", os.path.join(ROOT, "tools", "learn_lint.js"), data], capture_output=True, text=True)
+    if r.returncode != 0:
+        sys.stderr.write(r.stderr or r.stdout); sys.exit("build stopped: Learn text does not pass tools/learn_lint.js")
+
 def main(argv):
     if "--split" in argv:
         i = argv.index("--split")
@@ -260,6 +269,7 @@ def main(argv):
             return 0 if same else 1
     if "--lint" in argv:
         return 1 if lint(SRC) else 0
+    learn_lint()
     html = assemble(SRC)
     if "--no-minify" not in argv:
         html = minify(html)
