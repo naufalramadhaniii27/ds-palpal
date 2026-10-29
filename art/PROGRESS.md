@@ -4346,4 +4346,9 @@ art/batch/icons/spells/level-5/jallarzis-storm-of-radiance.png
 art/batch/icons/spells/level-5/maelstrom.png
 art/batch/icons/spells/level-5/wall-of-force.png
 art/batch/icons/spells/level-5/wall-of-light.png
+art/batch/icons/spells/level-5/wall-of-stone.png
+art/batch/icons/spells/level-5/wrath-of-nature.png
+art/batch/icons/spells/level-5/creation.png
+art/batch/icons/spells/level-5/dream.png
+art/batch/icons/spells/level-5/mislead.png
 
