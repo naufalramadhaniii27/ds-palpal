@@ -3774,12 +3774,12 @@ art/batch/icons/features/subclass/path-of-the-berserker/intimidating-presence.pn
 art/batch/icons/features/subclass/path-of-the-berserker/mindless-rage.png
 art/batch/icons/features/subclass/path-of-the-berserker/retaliation.png
 art/batch/icons/features/subclass/path-of-the-giant/demiurgic-colossus.png
+art/batch/icons/features/subclass/path-of-the-giant/elemental-cleaver.png
+art/batch/icons/features/subclass/path-of-the-giant/giant-power.png
+art/batch/icons/features/subclass/path-of-the-giant/giants-havoc.png
+art/batch/icons/features/subclass/path-of-the-giant/mighty-impel.png
+art/batch/icons/features/subclass/path-of-the-storm-herald/raging-storm.png
 
-art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
-art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
-art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
-art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
-art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
 
 ## batch-049 v3
 art/batch/icons/spells/level-4/storm-sphere.png
