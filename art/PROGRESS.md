@@ -2120,7 +2120,6 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
-NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2144,7 +2143,11 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
-
+art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-language-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-natural-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-religious-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-self-preservation.png
 
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
