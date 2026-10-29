@@ -3507,3 +3507,11 @@ art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
 art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+## batch-210 v3
+
+art/batch/creatures/elemental/steam-mephit.png
+art/batch/creatures/construct/stone-golem.png
+art/batch/creatures/beast/swarm-of-rats.png
+art/batch/creatures/beast-dinosaur/triceratops.png
+art/batch/creatures/beast-dinosaur/tyrannosaurus-rex.png
+
