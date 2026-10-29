@@ -1970,6 +1970,7 @@ art/batch/icons/rules/resources/death-save-failure.png
 art/batch/icons/rules/resources/heroic-inspiration.png
 art/batch/icons/rules/resources/exhaustion-level.png
 art/batch/icons/rules/resources/arcane-recovery.png
+NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
