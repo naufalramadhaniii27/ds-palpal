@@ -2953,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3190,6 +3195,7 @@ art/batch/icons/spells/level-7/conjure-celestial.png
 art/batch/icons/spells/level-7/dream-of-the-blue-veil.png
 art/batch/icons/spells/level-7/etherealness.png
 art/batch/icons/spells/level-7/mordenkainens-magnificent-mansion.png
+
 ## batch-207 v3
 
 art/batch/creatures/beast/baboon.png
@@ -3198,3 +3204,9 @@ art/batch/creatures/fiend-demon/cackler.png
 art/batch/creatures/monstrosity/category-1-krasis.png
 art/batch/creatures/elemental-genie/djinni.png
 
+## batch-226 v3
+art/batch/monsters/dragon/ancient-green-dragon.png
+art/batch/monsters/dragon/ancient-white-dragon.png
+art/batch/monsters/dragon/dracolich.png
+art/batch/monsters/dragon/shadow-dragon.png
+art/batch/monsters/dragon/five-headed-dragon-queen.png
