@@ -4424,3 +4424,8 @@ art/batch/icons/features/subclass/warrior-of-the-elements/elemental-attunement.p
 art/batch/icons/features/subclass/warrior-of-the-elements/elemental-burst.png
 art/batch/icons/features/subclass/warrior-of-the-elements/elemental-epitome.png
 art/batch/icons/features/subclass/warrior-of-the-elements/manipulate-elements.png
+art/batch/icons/features/subclass/warrior-of-the-elements/stride-of-the-elements.png
+art/batch/icons/features/subclass/warrior-of-the-mystic-arts/focused-strike.png
+art/batch/icons/features/subclass/warrior-of-the-mystic-arts/improved-mystic-fighting-style.png
+art/batch/icons/features/subclass/warrior-of-the-mystic-arts/mystic-fighting-style.png
+art/batch/icons/features/subclass/warrior-of-the-mystic-arts/mystic-focus.png
