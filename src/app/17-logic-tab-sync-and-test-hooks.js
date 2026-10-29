@@ -36,6 +36,7 @@ setTimeout(function(){if(FROZEN)return;var r=rEnsure();Object.keys(r.chars).forE
 /* V14-4: Apply keeps the game state (HANDOFF section 6). Damage taken stays the same when Hit Point maximum changes, used boxes stay (used() clamps to the new maximum) */
 /* v18 RL47: a sheet written by a newer version keeps the fields this version does not produce */
 function keepNewer(p){ if(newerApp(C)) Object.keys(C).forEach(function(k){ if(!(k in p)) p[k]=C[k]; }); return p; }
+window.__idNoArt=function(){ try{ return __store.getItem("mi-clsart")==="off"; }catch(e){ return false; } };/* T10 */
 window.__sheetCamp=function(){ return campName(); };/* T10: the builder shows the sheet's campaign */
 window.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ var om=(D&&D.hpmax)||0, oh=S.hp; C=keepNewer(p); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); } if(typeof p.camp==="string"&&p.camp.trim()){ S.camp=p.camp.trim(); save(); }/* T10: campaign typed in the builder */
   if(oh!=null&&om){ try{ derive(); S.hp=clamp(oh+(D.hpmax-om),0,D.hpmax); }catch(er){ S.hp=null; } } else S.hp=null; if(!S.used) S.used={}; save(); saveC(); renderAll(); renderNotes(); var gq=S.coins?num(S.coins.gp,0)+num(C.gp,0)-num(S.coinBase,num(C.gp,0)):0; if(note!==false) toast(gq<0?"Sheet updated. Starting gold is now lower than the gold you spent, so Gold shows 0.":note||"Sheet updated from builder"); };/* v24 p08: quiet for the blank first sheet */

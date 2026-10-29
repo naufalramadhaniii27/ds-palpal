@@ -79,3 +79,10 @@ PDF Print Cards (6 kartu per halaman) dan PDF sheet (3 halaman) dibuat lewat Pla
 - Akar masalah isi awal kosong: `fromSheet` membaca `st.S.camp`, padahal `__sheetState` tidak mengirim `S`. Sekarang `__sheetState` mengirim `camp`.
 - Tes: `tests/campaign.py` (14 cek, 390 dan 1250), `scenarios`, `tidy`, `sub_art`, `blank_new`, `flow_home_sheet`, `builder_art` hijau. Screenshot sheet dan builder dicek di 390 dan 1250.
 - Belum dites di perangkat asli.
+
+## Ronde 6: ikon Identity dan tes tambahan
+
+- Baris Class di Identity memakai emblem art kelas (22 px). Jika Art off, atau kelas tanpa art, tetap ikon garis. Subclass sudah memakai `esub` bila ada. Subclass kustom (Pencak Silat) tidak punya art, jadi memakai ikon garis.
+- Species, Background, Size belum punya asset. Permintaan ke Art ada di `reports/requests.md`.
+- Tes tambahan lulus: overflow_scan (320 sampai 1250, 0), overlap_scan (0), scale_audit (0 di luar skala), a11y_scan (tidak ada kontrol di bawah 44 px).
+- a11y_scan: 1 aturan serius, `label-content-name-mismatch`, 45 node, 11 layar (contoh `#bldBtn`, `#photo`). Sama persis di `main`, jadi bukan dari T10. Belum diperbaiki.
