@@ -11,7 +11,7 @@ Satu dokumen berisi seluruh riset, keputusan, dan urutan kerja Learn. Log usulan
 | Aturan | D&D 2024 saja, dicocokkan ke Library app |
 | Bentuk | Belajar interaktif, bukan komik. Tanpa suara. Visual dulu |
 | Gambar | Claude jalan duluan dengan gambar sementara. Gambar Codex (batch 234 sampai 236) dipasang begitu jadi |
-| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM |
+| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM, belajar bareng teman (U51), chat AI, dadu AR, dadu 3D fisika |
 
 ## Ukuran berhasil
 | Ukuran | Target | Cara ukur |
@@ -80,7 +80,7 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | Samsung Internet | Tidak dihitung di Baseline, versinya biasanya tertinggal dari Chrome, banyak dipakai di Android Indonesia | Jalur cadangan `@supports` yang sama |
 | Laporan terbaru yang dicek | web.dev edisi September 2026. Edisi Oktober 2026 belum terbit saat dicek (29 Oktober 2026) | Cek ulang daftar Baseline sebelum F7 |
 
-## Teknologi buatan sendiri (U38 sampai U44, diterima 2026-10-29)
+## Teknologi buatan sendiri (U38 sampai U50, diterima 2026-10-29)
 | No | Nama | Isi singkat | Masuk tahap |
 |---|---|---|---|
 | U38 | Choreo | Peragaan sebagai data. Satu naskah menghasilkan animasi, versi Motion off, jalur keyboard, dan skrip tes | F1 |
@@ -90,6 +90,12 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | U42 | Penanda `data-learn` | Titik screenshot, sorotan, dan tes dibuat dari atribut di kode UI | F1, F3 |
 | U43 | Gerbang bahasa sederhana | Build gagal bila teks Learn melanggar panduan. Menggantikan tes laporan saja di F0 | F0 |
 | U44 | Petunjuk bertingkat tanpa profil | Tingkat petunjuk dari kesalahan di langkah ini saja, tidak disimpan | F1 |
+| U45 | Dadu ber-seed | Peragaan dan tes memakai seed, hasil selalu sama. Latihan memakai crypto.getRandomValues. Riwayat lemparan bisa dilihat | F1 |
+| U46 | Peta hubungan angka | Ketuk score, garis SVG ke semua angka yang dipengaruhinya. Geser score, angka ikut berubah. Data dari mesin derivasi (U39) | F4 (Village Green), F5 (di sheet) |
+| U47 | Coach mode di meja | Saklar opsional di sheet. Penggunaan pertama suatu aturan memunculkan satu kalimat dan tombol "Learn this", sekali saja | F5 |
+| U48 | Cek fakta EN dan ID | Tes: tiap teks punya EN dan ID, angka, nama aturan dan istilah kamus sama di kedua versi | F0 (bagian dari gerbang U43) |
+| U49 | Acak yang menjamin cakupan | Crumbling Bridge diacak dari potongan pelajaran, tiap putaran menguji semua aturan inti | F4 |
+| U50 | Gerak menyesuaikan HP | Ukur kelancaran animasi pertama (requestAnimationFrame, Long Animation Frames API bila ada). Tersendat: gerak sederhana, setelan Motion tidak diubah | F1, F7 (tes CPU diperlambat) |
 
 ## Bahasa dan kamus
 ### Panduan bahasa (kedua bahasa)
