@@ -3115,6 +3115,11 @@ art/batch/creatures/fiend/fiendish-spirit.png
 art/batch/creatures/undead/undead-spirit.png
 art/batch/creatures/beast/beast-of-the-land.png
 art/batch/creatures/beast/beast-of-the-sea.png
+art/batch/creatures/beast/beast-of-the-sky.png
+art/batch/creatures/beast/giant-fly.png
+art/batch/creatures/dragon-metallic/adult-gold-dragon.png
+art/batch/creatures/elemental/air-elemental.png
+art/batch/creatures/monstrosity/axe-beak.png
 
 ## batch-224 v3
 art/batch/monsters/aberration/beholder.png
