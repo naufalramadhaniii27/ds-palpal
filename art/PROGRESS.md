@@ -2953,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3220,3 +3225,10 @@ art/batch/monsters/fiend/pit-fiend.png
 art/batch/monsters/fiend/marilith.png
 art/batch/monsters/fiend/glabrezu.png
 art/batch/monsters/fiend/vrock.png
+
+## batch-153 v3
+art/batch/icons/features/class/sorcerer/metamagic.png
+art/batch/icons/features/class/sorcerer/sorcerous-restoration.png
+art/batch/icons/features/class/sorcerer/sorcery-incarnate.png
+art/batch/icons/features/class/sorcerer/spellcasting.png
+art/batch/icons/features/class/warlock/contact-patron.png
