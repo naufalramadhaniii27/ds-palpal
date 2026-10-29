@@ -3185,3 +3185,11 @@ art/batch/icons/spells/level-6/tashas-otherworldly-guise.png
 art/batch/icons/spells/level-6/tensers-transformation.png
 art/batch/icons/spells/level-6/wind-walk.png
 art/batch/icons/spells/level-7/aura-of-evasion.png
+## batch-207 v3
+
+art/batch/creatures/beast/baboon.png
+art/batch/creatures/humanoid/berserker.png
+art/batch/creatures/fiend-demon/cackler.png
+art/batch/creatures/monstrosity/category-1-krasis.png
+art/batch/creatures/elemental-genie/djinni.png
+
