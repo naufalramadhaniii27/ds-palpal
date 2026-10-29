@@ -2061,6 +2061,11 @@ art/batch/icons/spells/level-2/earthbind.png
 art/batch/icons/spells/level-2/enhance-ability.png
 art/batch/icons/spells/level-2/enlarge-reduce.png
 art/batch/icons/spells/level-2/heat-metal.png
+art/batch/icons/spells/level-2/immovable-object.png
+art/batch/icons/spells/level-2/kinetic-jaunt.png
+art/batch/icons/spells/level-2/knock.png
+art/batch/icons/spells/level-2/levitate.png
+art/batch/icons/spells/level-2/magic-weapon.png
 ## batch-201 v3
 
 art/batch/creatures/beast/crocodile.png
