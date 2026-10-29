@@ -2430,6 +2430,11 @@ art/batch/icons/features/subclass/oath-of-vengeance/channel-divinity-abjure-enem
 art/batch/icons/features/subclass/oath-of-vengeance/channel-divinity-vow-of-enmity.png
 art/batch/icons/features/subclass/oath-of-vengeance/oath-spells.png
 art/batch/icons/features/subclass/oath-of-vengeance/oath-of-vengeance-spells.png
+art/batch/icons/features/subclass/oath-of-vengeance/relentless-avenger.png
+art/batch/icons/features/subclass/oath-of-vengeance/soul-of-vengeance.png
+art/batch/icons/features/subclass/oath-of-vengeance/tenets-of-vengeance.png
+art/batch/icons/features/subclass/oath-of-vengeance/vow-of-enmity.png
+art/batch/icons/features/subclass/oath-of-the-ancients/aura-of-warding.png
 
 ## batch-044 v3
 art/batch/icons/spells/level-3/summon-lesser-demons.png
