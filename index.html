@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'sha256-vSy+hrCleGMDshKfG0C0Ds8jIn6BynIowtbk9+szw1k=' 'sha256-9aSd4ggURUfwj/qbeSg+TyuJO2Iffrn6K6Vjw+g0Bvw=' 'sha256-c2Je/bSYZLgBDt9qpG6Kf/IEkYZLTv91K0m+9oXsjqs=' 'sha256-3IVzIX6laXO611KXCDt1VVI5tD3gfpmBcdA9f3fQ2S0=' 'sha256-PvLvaWsOnsQwgUgX8CpWRMoAO1pITzOMDfaUDopL/qk=' 'sha256-nIz+s4OC37xZdU5wBE2wk3jS/bGSUBLyvt85l2neuyI=' 'sha256-DEenGsbzTjIK/aIsP4ysuxRUf3C28SMTGZISwsMQnL4=' 'sha256-Diu87Ot/HZFcxJ+gctoGDBE1DGLFrptKYi4rhnevEJA=' 'sha256-p43+Cx7G4xpy1noyxuOZfqUNz12iRm+oaaBpcIrwUeM=' 'sha256-hHIiao3+/tXiltGT9I+jClaaoAlIZCcA4MHzieq5hoQ=' 'sha256-ECSKpRs8+hZNyzxrRDk9poLTl8OVO8Tp1YK1+3BHt3Q=' 'sha256-d6fpNxQAKjmaR4P7Ls6c8A+MBI1RtyPGXWA2j6CmXyc=' 'sha256-+PvNpZeTqEU+Qyxc7irWvq6bfkxHZWpA921QyXtKl4Q=' 'sha256-LdvW1xBviDSH62QyECb7IMvknQTX2nslkiD02MANSIk=' 'sha256-qUhKQ64+9U+HckwJlCBK8hT5AWdindlNLLNTaaW+AUo=' 'sha256-niYG/TNf8xc0jtECUwsBKgYDKqxKN18BUzffydtidOY=' 'sha256-oD4nPnNx5U5q8OvOby6FRv8cHIBhTQ6OwvrG8rsZfSI=' 'sha256-eeWCJe+Ptly3V7ihArwXmaXE6PLsEnSgNMlPB0hDtAQ=' 'sha256-gvP8jrAt0Fr0wLL37V1P8fOAtvgMSCBBHx3smHrO4GY=' 'sha256-14arJWypwv5RKbpHLdXMN8OvLtgLpONGNS1VXyoeUKc=' 'sha256-DPWelSeN76QfAgmoVhCGqpr9vUPtLAI7j/7mcBrIWkE=' 'sha256-vsb6P9f+zNLH5IsJvfJgBN5JAlmhw02sWgHlIjNPz1k=' 'sha256-wDjd0NBQXodmcGC4Uqis/ivc8ASiL+1dTSo33M9Hl0U=' 'sha256-4wcjTZ7zdJdwi0NZLKGL8/+X1dk3Ef6wKAN+pVz3g3I=' 'sha256-ttur4BOMbmN7UccDueJnH8tbbc/w9jlG0csBqRoLs8k=' 'sha256-Qowf4k9ulFlyO2mEHwXuK2S1iIuIaOFNXqxG6STOYPM=' 'sha256-kIQ9w1GEUz17XPGmNQ1paGaBVAm8454Gk3uXsTpa5UI=' 'sha256-x+uV7wvUgCjQ0gJ8mAq/t1MYIgEsdL5s2XVCAo/yGCw=' 'sha256-H5KQ4h+q4zPyRBAJgp6OblbvZ9qgbr+23F+mfA7xWfM=' 'sha256-y/m5QgMgCnhXp/LAETRVUrGO3Q5L5ujTEEhKzUmZcW8=' 'sha256-uhy5dKELH+igRj+CIhkQvOk/5O+S90AaSMjUfn7pqjk=' 'sha256-Id2R4vlJDZCfMxAduwYf3dcirM2i1yFvdlDpvHgcf5E=' 'sha256-64FVQVoB9uSyip3PFSZOOwZJDEPcQQNS3rXkm6JrgtY=' 'sha256-wOalaAhjr1V862IIWzZ8cE0Ly4Nyb7+fnHrSKvH2O0I=' 'sha256-ybdY9xrKRL3FHpAjhQU0RHnkGQStQMnMIbfmHXYmUq4=' 'sha256-vcBkQZY5Yuqg3Aq6ZWC54iYIwVR7pV8zhDemy7EN7ro=' 'sha256-tUuP/V3SNtljBaI5OujfvKOPpPMBiORtJYup5DRvR5o=' 'sha256-mih5NXRtCG+0Mr+HfxpaJYc+66ORvOcctYawt6WLx8g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; require-trusted-types-for 'script'; trusted-types default cs-loader">
 <meta name="author" content="Palpale">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Character Sheet and Builder</title>
@@ -17,7 +18,23 @@
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
 
-<script>/* T7: storage on IndexedDB. window.__store has the localStorage API (getItem, setItem, removeItem, key, length, clear) on a copy in memory.
+<script>/* T11 A1: Trusted Types. The page has a Content-Security-Policy (made by build.py) that asks the browser to accept HTML, scripts and
+   script URLs only through these policies. All app HTML is built with esc() already, so the default policy passes it on. If a piece of
+   HTML ever carries a script tag, an inline event handler or a javascript: link (data from a friend, an import), those parts are removed
+   and the event is kept in window.__ttLog (shown in Report a Problem). The deferred builder parts use the cs-loader policy. */
+(function(){ if(!window.trustedTypes||!trustedTypes.createPolicy) return;
+  var BAD=/<\s*\/?\s*(script|iframe|object|embed|base|meta)\b|\son[a-z]+\s*=|javascript\s*:/i;
+  var log=function(k,s){ try{ var L=window.__ttLog=window.__ttLog||[]; L.push({k:k,s:String(s).slice(0,160),t:Date.now()}); if(L.length>20) L.shift(); }catch(e){} };
+  var strip=function(s){ return s.replace(/<\s*(script|iframe|object|embed)\b[\s\S]*?<\s*\/\s*\1\s*>/gi,"").replace(/<\s*\/?\s*(script|iframe|object|embed|base|meta)\b[^>]*>/gi,"").replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi,"").replace(/javascript\s*:/gi,"blocked:"); };
+  var here=location.origin;
+  try{ trustedTypes.createPolicy("default",{
+    createHTML:function(s){ s=String(s); if(!BAD.test(s)) return s; log("html",s); return strip(s); },
+    createScript:function(s){ log("script",s); return null; },
+    createScriptURL:function(u){ var x; try{ x=new URL(String(u),location.href); }catch(e){ return null; } if(x.origin===here||x.protocol==="blob:") return x.href; log("url",u); return null; }
+  }); }catch(e){}
+  try{ window.__ttLoader=trustedTypes.createPolicy("cs-loader",{createScript:function(s){ return s; }}); }catch(e){}
+})();
+/* T7: storage on IndexedDB. window.__store has the localStorage API (getItem, setItem, removeItem, key, length, clear) on a copy in memory.
    Reads are instant from memory. Writes go to memory at once, then to IndexedDB (database "dnd-sheet", store "kv") in one transaction per task,
    and also to localStorage as a mirror while it fits. The mirror keeps older app versions and tools working and is a second copy.
    A mirror write that fails (localStorage full) is listed in meta "lsFail" (and in the localStorage key cs-store-v1), so IndexedDB stays the source for that key.
@@ -79,7 +96,7 @@
      the first at once, the rest one per task (timers a script sets run before the next one, as between inline scripts). A block the parser
      has not finished reading is left to the parser, which now runs it inline. The short script after the last block calls __gateRun */
   function one(){ var s=document.querySelector('script[data-gate]:not([data-ran])'); if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;
-    s.setAttribute("data-ran","1"); var x=document.createElement("script"); x.text=s.text; s.parentNode.insertBefore(x,s.nextSibling); return true; }
+    s.setAttribute("data-ran","1"); var x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(s.text):s.text;/* T11 A1: Trusted Types */ s.parentNode.insertBefore(x,s.nextSibling); return true; }
   function gateEnd(){ if(window.__gateAll&&!window.__gateDone){ window.__gateDone=1; document.documentElement.classList.remove("st-wait"); fire("cs-gate-done"); } }
   function run(){ if(!DONE||RUN) return; window.__storeHold=0; RUN=true; (function next(){ if(!one()){ RUN=false; if(!document.querySelector('script[data-gate]:not([data-ran])')) gateEnd(); return; } setTimeout(next,0); })(); }
   window.__gateRun=function(){ window.__gateAll=1; run(); };
@@ -5925,7 +5942,9 @@ var LASTPT=null;document.addEventListener("pointerdown",function(e){ LASTPT={x:e
 function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.t>1500){ sheet.style.transformOrigin=""; return; } var r=sheet.getBoundingClientRect(); if(!r.width) return; var x=Math.max(0,Math.min(r.width,LASTPT.x-r.left)), y=Math.max(0,Math.min(r.height,LASTPT.y-r.top)); sheet.style.transformOrigin=Math.round(x)+"px "+Math.round(y)+"px"; }catch(er){} }
 /* T10: the same icon the identity chip shows (species, class, subclass emblem, background, size) leads the detail title */
 /* T10: watermarks use the HD copy (img/hd, 768 px emblems and 384 px icons). The small file is the fallback if the HD one is missing */
-function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" onerror="this.onerror=null;this.src=\'img/'+d+f+'\'"'; }); }
+function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" data-fb="img/'+d+f+'"'; }); }
+/* T11 A1: the fallback to the normal size picture when an HD file is missing, without an inline onerror handler (the CSP allows no inline handlers) */
+document.addEventListener("error",function(e){ var t=e.target; if(t&&t.tagName==="IMG"&&t.getAttribute("data-fb")){ var f=t.getAttribute("data-fb"); t.removeAttribute("data-fb"); t.src=f; } },true);
 function wmClass(n){ var k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
 function sheetIco(t){ t=String(t||""); var h="", m;
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||ico("src-class");
@@ -11891,7 +11910,7 @@ MI.on("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mifx]
   /* no cached list: a call while the page is still loading runs only the parts already parsed, the rest run later in order */
   function list(){ return document.querySelectorAll('script[type="text/x-defer"]'); }
   /* T7: the builder reads saved data and uses the sheet, so its parts wait until the store has loaded IndexedDB and the sheet scripts ran (boot/store-gate.js) */
-  function run1(){ if(!(window.__gateDone)) return false; var s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ var x=document.createElement("script"); x.text=s.text; s.parentNode.replaceChild(x,s); return true; }
+  function run1(){ if(!(window.__gateDone)) return false; var s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ var x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(s.text):s.text;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); return true; }
   function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length||!(window.__gateDone)) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} }
   window.__bldNeed=function(){ if(window.__deferDone) return; while(run1()){} if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",function(){ while(run1()){} fin(); }); return; } fin(); };
   /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,

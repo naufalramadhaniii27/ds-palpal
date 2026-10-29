@@ -9,6 +9,7 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
+    "boot/trusted-types.js",
     "boot/store-gate.js"
    ]
   },
@@ -53,7 +54,7 @@
     "css/33-store-wait.css",
     "css/34-cloud-sync.css",
     "css/35-friends.css",
-      "css/36-tidy.css"
+    "css/36-tidy.css"
    ]
   },
   {

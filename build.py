@@ -11,7 +11,7 @@ src/manifest.json lists the pieces in order. A piece is raw text. Joining all pi
 Edit the pieces in src/, then run this script. Do not edit index.html by hand. SOURCE-NOTES.md has the file map.
 --check also runs --lint when node is installed.
 """
-import hashlib, json, os, re, sys, tempfile
+import base64, hashlib, json, os, re, sys, tempfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "src")
@@ -140,6 +140,29 @@ def assemble(srcdir):
     return "".join(out)
 
 
+CSP_META_RE = re.compile(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n?')
+SCRIPT_RE = re.compile(r'<script(?:\s[^>]*)?>(.*?)</script>', re.S)
+
+
+def with_csp(html):
+    """T11 A1: Content-Security-Policy as a meta tag. Every inline script (also the deferred builder parts, which the loader runs with
+    the same text) is allowed by its sha256 hash, nothing else inline runs. Trusted Types are required (boot/trusted-types.js).
+    frame-ancestors cannot be set in a meta tag, it is in _headers."""
+    html = CSP_META_RE.sub("", html)
+    hs = []
+    for m in SCRIPT_RE.finditer(html):
+        h = "'sha256-%s'" % base64.b64encode(hashlib.sha256(m.group(1).encode("utf-8")).digest()).decode()
+        if h not in hs:
+            hs.append(h)
+    pol = ("default-src 'self'; script-src 'self' 'wasm-unsafe-eval' " + " ".join(hs) + "; style-src 'self' 'unsafe-inline'; "
+           "img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' data: blob:; worker-src 'self' blob:; "
+           "manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; "
+           "require-trusted-types-for 'script'; trusted-types default cs-loader")
+    tag = '<meta charset="utf-8">\n'
+    assert tag in html, "charset meta not found"
+    return html.replace(tag, tag + '<meta http-equiv="Content-Security-Policy" content="%s">\n' % pol, 1)
+
+
 def sw_with(text, html):
     h = hashlib.sha256(html.encode("utf-8")).hexdigest()[:16]
     new, k = CACHE_RE.subn(r'\g<1>' + h + r'\g<2>', text)
@@ -198,7 +221,7 @@ def main(argv):
             return 0 if same else 1
     if "--lint" in argv:
         return 1 if lint(SRC) else 0
-    html = assemble(SRC)
+    html = with_csp(assemble(SRC))
     sw, h = sw_with(read(SW), html)
     if "--check" in argv:
         ok_html = html == read(OUT)

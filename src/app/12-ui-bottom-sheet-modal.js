@@ -4,7 +4,9 @@ var LASTPT=null;document.addEventListener("pointerdown",function(e){ LASTPT={x:e
 function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.t>1500){ sheet.style.transformOrigin=""; return; } var r=sheet.getBoundingClientRect(); if(!r.width) return; var x=Math.max(0,Math.min(r.width,LASTPT.x-r.left)), y=Math.max(0,Math.min(r.height,LASTPT.y-r.top)); sheet.style.transformOrigin=Math.round(x)+"px "+Math.round(y)+"px"; }catch(er){} }
 /* T10: the same icon the identity chip shows (species, class, subclass emblem, background, size) leads the detail title */
 /* T10: watermarks use the HD copy (img/hd, 768 px emblems and 384 px icons). The small file is the fallback if the HD one is missing */
-function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" onerror="this.onerror=null;this.src=\'img/'+d+f+'\'"'; }); }
+function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" data-fb="img/'+d+f+'"'; }); }
+/* T11 A1: the fallback to the normal size picture when an HD file is missing, without an inline onerror handler (the CSP allows no inline handlers) */
+document.addEventListener("error",function(e){ var t=e.target; if(t&&t.tagName==="IMG"&&t.getAttribute("data-fb")){ var f=t.getAttribute("data-fb"); t.removeAttribute("data-fb"); t.src=f; } },true);
 function wmClass(n){ var k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
 function sheetIco(t){ t=String(t||""); var h="", m;
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||ico("src-class");
