@@ -67,3 +67,5 @@
 .keys kbd{white-space:nowrap;justify-self:start;min-width:32px}
 /* Library: close button and filter chips reach 44 px on a phone */
 @media (max-width:759px){.lib-x{width:44px;height:44px;min-width:44px}.lib-chip{min-height:44px}}
+/* Secondary buttons everywhere: visible fill and border next to the primary one */
+.btn:not(.pri):not(.warn):not(.rm):not(.on):not(.off):not(.fr-sm){border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:color-mix(in srgb,var(--ink) 12%,var(--panel))}

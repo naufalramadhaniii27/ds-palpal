@@ -4657,6 +4657,8 @@ html.fr-viewing body{padding-bottom:calc(64px + 8px)}
 .keys kbd{white-space:nowrap;justify-self:start;min-width:32px}
 /* Library: close button and filter chips reach 44 px on a phone */
 @media (max-width:759px){.lib-x{width:44px;height:44px;min-width:44px}.lib-chip{min-height:44px}}
+/* Secondary buttons everywhere: visible fill and border next to the primary one */
+.btn:not(.pri):not(.warn):not(.rm):not(.on):not(.off):not(.fr-sm){border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:color-mix(in srgb,var(--ink) 12%,var(--panel))}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
