@@ -134,10 +134,21 @@ def assemble(srcdir):
             out.append(read(os.path.join(srcdir, e["file"])))
         else:
             out.append(e["open"])
+            css = e["open"].startswith("<style")
+            if css:
+                out.append(LAYER_ORDER + "@layer app{\n")
             for fn in e["files"]:
                 out.append(read(os.path.join(srcdir, fn)))
+            if css:
+                out.append("\n}\n")
             out.append(e["close"])
     return "".join(out)
+
+
+# T11 A4: all app CSS sits in the cascade layer "app" (the theme colors that 07-ui-theme writes at run time too). One layer keeps the
+# cascade exactly as before (tests/style_snapshot.py: 0 differences on 25 screens). New parts go in later layers and win over the app
+# by layer order, without !important: feat (new app features), learn (Learn menu), dice (dice tray).
+LAYER_ORDER = "@layer app,feat,learn,dice;\n"
 
 
 CSP_META_RE = re.compile(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n?')
@@ -234,6 +245,10 @@ def main(argv):
         print("split into", n, "entries")
         return 0
     if "--verify-split" in argv:
+        # T11: index.html is now minified, wrapped in a cascade layer and carries a CSP, so it no longer splits back into src/.
+        # src/ is the only source. This check stays for builds made with --raw (no minify, no layer, no CSP).
+        if "--raw" not in argv:
+            print("--verify-split needs an index.html built with --raw (T11)"); return 0
         with tempfile.TemporaryDirectory() as d:
             n = split(OUT, d)
             again = assemble(d)
