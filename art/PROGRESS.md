@@ -4379,6 +4379,11 @@ art/batch/icons/items/magic/rare/orzhov-keyrune.png
 art/batch/icons/items/magic/rare/pariahs-shield.png
 art/batch/icons/items/magic/very-rare/peregrine-mask.png
 art/batch/icons/items/magic/uncommon/pyroconverger.png
+art/batch/icons/items/magic/uncommon/rakdos-guild-signet.png
+art/batch/icons/items/magic/uncommon/rakdos-keyrune.png
+art/batch/icons/items/magic/legendary/rakdos-riteknife.png
+art/batch/icons/items/magic/uncommon/selesnya-guild-signet.png
+art/batch/icons/items/magic/rare/selesnya-keyrune.png
 
 ## batch-214 v3
 

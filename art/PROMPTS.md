@@ -47750,3 +47750,120 @@ Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. E
 Never include:
 Text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays (the UI props requested in a batch are allowed), copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. When the Subject names simple pictures for a sign, banner or map (a dragon shape, a pictured shop sign, an illustrated map), draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the Subject names one simple picture for the card, and even then no letters or numbers.
 
+art/batch/icons/items/tools/lute.png
+Warm cream afternoon sidelight reveals a pear-shaped wooden lute angled gently from lower left toward upper right in three-quarter view. Its pale honey-spruce soundboard widens into a rounded teardrop belly, with deep walnut ribs visible along one bowl-shaped side; a short neck ends in a pegbox bent distinctly backward, carrying simple wooden tuning pegs. Show a small set of taut parallel strings anchored at the lower wooden bridge, crossing one plain round soundhole and continuing along the neck to the pegs. Broad amber and warm brown cel planes explain the construction without carvings or decoration. The whole intact lute is visible; its bent upper neck, pear belly and real string path are the defining details.
+
+Subject: Adventuring gear, pack or tool icon, the plain mundane object. Icon: Lute. Draw it as a pear-shaped wooden lute with a bent neck and tuning pegs. One idea with one clear silhouette, centered, no ground. Parts that act together (a hand holding something) are fine. Separate objects placed side by side are not.
+Style line: Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Create a 1024x1024 PNG on a genuinely transparent alpha background. One object for the named thing, centered, about 70 percent of the canvas: the longer visible side is about 717 pixels with generous transparent margins, fully intact and never clipped. Keep all visible content within 90 percent of both canvas dimensions. One clear coherent silhouette, no ground, no scenery, no cast ground shadow, no backdrop or decorative frame. Readable at 48x48 pixels. Follow the Draw it as description as the main object's exact identity. This is plain mundane musical gear: no magical glow at all, no aura, no emitted light and no floating effects.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Take only the drawing style from the attached emblem reference and approved class emblem references: soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials rendered simply and convincingly. Preserve the described instrument's own material and colors. Do not reproduce reference subjects, backgrounds, colored glows or decorative emblems. No musical-note symbols, floating notes, quills, feathers, ribbons, magical trails or other extras from the bard reference. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. No gore and no despair. Every person is an adult; this object-only picture contains no people.
+
+Quality bar:
+- WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition.
+- Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands.
+- AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include:
+Text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays (the UI props requested in a batch are allowed), copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. When the Subject names simple pictures for a sign, banner or map (a dragon shape, a pictured shop sign, an illustrated map), draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the Subject names one simple picture for the card, and even then no letters or numbers.
+art/batch/icons/items/magic/uncommon/rakdos-guild-signet.png
+A black iron ring with sharp spikes around a glowing red ruby. Angle the ring to show the faceted ruby above its sturdy black band and the specific small spikes confined to the ruby bezel; do not add spikes to the whole band or any surrounding object. The ruby's magical glow is soft red as expressly requested, with no secondary green aura. Use an original ring design with no real guild logo, horned living face or writing.
+
+Magic item icon: Rakdos Guild Signet (Ring, Uncommon).
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 square icon on a genuine transparent background. Center the item described above at about 70 percent of the canvas. Leave a clear transparent margin on every side, keep every tip and soft glow entirely within the canvas, and make the whole silhouette readable at 48x48 pixels. No scenery, floor, separate display pedestal, surrounding border, square tile, colored backdrop, cream paper, checkerboard drawing or UI overlay. Retain the item's explicitly described physical parts.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones, tangible natural-material surfaces, and magic expressed as soft glowing light in the stated color. Keep the object's specified colors exactly as described. No video game badge, no heraldic crest, no chrome, no spikes everywhere, and no realistic human faces.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Use only the drawing style of the supplied approved reference emblems: the soft hand-drawn outline, warm cel shading and natural-material treatment. The background remains transparent, and the physical object is the one described here. Every person is an adult. Present this as an inanimate prop by itself, without a wearer or a separate character.
+
+The small sharp spikes explicitly requested around the ruby setting are part of this ring's physical bezel; keep all other surfaces restrained and unornamented.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition. Nothing may look like a video game UI, an MMO icon, a 3D render or a photo. Keep all specificity in the requested physical prop.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays, copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. Card faces stay blank, with no letters or numbers. Add none of these incidental objects, no labels, no captions and no inscription marks. Show only explicitly requested simple object motifs, never writing-like marks. No gore, no real blood, no flesh, no wounds, no severed body parts and no scene of despair.
+
+
+art/batch/icons/items/magic/uncommon/rakdos-keyrune.png
+A dark granite carving marbled with scarlet veins, shaped like a grinning horned demon head. Keep the head a single compact sculpted stone object, with simple stylized carved grin and horns and natural scarlet mineral veins, not blood or flesh. Its uncommon magical glow is soft green. The object is an original decorative carving, not a real guild logo or symbol, a living demon, or a realistic human face.
+
+Magic item icon: Rakdos Keyrune (Wondrous Item, Uncommon).
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 square icon on a genuine transparent background. Center the item described above at about 70 percent of the canvas. Leave a clear transparent margin on every side, keep every tip and soft glow entirely within the canvas, and make the whole silhouette readable at 48x48 pixels. No scenery, floor, separate display pedestal, surrounding border, square tile, colored backdrop, cream paper, checkerboard drawing or UI overlay. Retain the item's explicitly described physical parts.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones, tangible natural-material surfaces, and magic expressed as soft glowing light in the stated color. Keep the object's specified colors exactly as described. No video game badge, no heraldic crest, no chrome, no spikes everywhere, and no realistic human faces.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Use only the drawing style of the supplied approved reference emblems: the soft hand-drawn outline, warm cel shading and natural-material treatment. The background remains transparent, and the physical object is the one described here. Every person is an adult. Present this as an inanimate prop by itself, without a wearer or a separate character.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition. Nothing may look like a video game UI, an MMO icon, a 3D render or a photo. Keep all specificity in the requested physical prop.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays, copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. Card faces stay blank, with no letters or numbers. Add none of these incidental objects, no labels, no captions and no inscription marks. Show only explicitly requested simple object motifs, never writing-like marks. No gore, no real blood, no flesh, no wounds, no severed body parts and no scene of despair.
+
+
+art/batch/icons/items/magic/legendary/rakdos-riteknife.png
+A dagger with a cruelly serrated blade and a black hilt shaped like a horned demon head with wings. Point the blade diagonally up-left, keeping the purposeful serrations clear and the compact black carved demon-head-and-wing hilt integrated with the grip. The blade and hilt are clean dry material with a soft orange legendary magical glow, no blood or flesh. The demon face is a stylized inanimate carving, not a live head; no real guild logo or inscription.
+
+Magic item icon: Rakdos Riteknife (Weapon, Legendary).
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 square icon on a genuine transparent background. Center the item described above at about 70 percent of the canvas. Leave a clear transparent margin on every side, keep every tip and soft glow entirely within the canvas, and make the whole silhouette readable at 48x48 pixels. No scenery, floor, separate display pedestal, surrounding border, square tile, colored backdrop, cream paper, checkerboard drawing or UI overlay. Retain the item's explicitly described physical parts.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones, tangible natural-material surfaces, and magic expressed as soft glowing light in the stated color. Keep the object's specified colors exactly as described. No video game badge, no heraldic crest, no chrome, no spikes everywhere, and no realistic human faces.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Use only the drawing style of the supplied approved reference emblems: the soft hand-drawn outline, warm cel shading and natural-material treatment. The background remains transparent, and the physical object is the one described here. Every person is an adult. Present this as an inanimate prop by itself, without a wearer or a separate character.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition. Nothing may look like a video game UI, an MMO icon, a 3D render or a photo. Keep all specificity in the requested physical prop.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays, copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. Card faces stay blank, with no letters or numbers. Add none of these incidental objects, no labels, no captions and no inscription marks. Show only explicitly requested simple object motifs, never writing-like marks. No gore, no real blood, no flesh, no wounds, no severed body parts and no scene of despair.
+
+
+art/batch/icons/items/magic/uncommon/selesnya-guild-signet.png
+A pale gold ring with a green jade stone cradled by small carved leaves. Show the tapered jade setting in a gentle three-quarter turn, with just the required few pale-gold leaf forms supporting the green stone and a clean narrow band behind it. Give it a soft green uncommon magical glow. The leaf-and-stone arrangement is original, with no real guild logo, added flowers, ribbons or writing.
+
+Magic item icon: Selesnya Guild Signet (Ring, Uncommon).
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 square icon on a genuine transparent background. Center the item described above at about 70 percent of the canvas. Leave a clear transparent margin on every side, keep every tip and soft glow entirely within the canvas, and make the whole silhouette readable at 48x48 pixels. No scenery, floor, separate display pedestal, surrounding border, square tile, colored backdrop, cream paper, checkerboard drawing or UI overlay. Retain the item's explicitly described physical parts.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones, tangible natural-material surfaces, and magic expressed as soft glowing light in the stated color. Keep the object's specified colors exactly as described. No video game badge, no heraldic crest, no chrome, no spikes everywhere, and no realistic human faces.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Use only the drawing style of the supplied approved reference emblems: the soft hand-drawn outline, warm cel shading and natural-material treatment. The background remains transparent, and the physical object is the one described here. Every person is an adult. Present this as an inanimate prop by itself, without a wearer or a separate character.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition. Nothing may look like a video game UI, an MMO icon, a 3D render or a photo. Keep all specificity in the requested physical prop.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays, copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. Card faces stay blank, with no letters or numbers. Add none of these incidental objects, no labels, no captions and no inscription marks. Show only explicitly requested simple object motifs, never writing-like marks. No gore, no real blood, no flesh, no wounds, no severed body parts and no scene of despair.
+
+
+art/batch/icons/items/magic/rare/selesnya-keyrune.png
+A small carving of a wolf's head in white and green marble. Turn the single compact sculpted head in three-quarter profile, showing a white marble muzzle, green mineral bands and simple friendly carved anime eyes; it is an inanimate noble wolf carving, not a living wolf or severed head. Give it a soft blue rare magical glow. Use an original stone design with no real guild logo, letters, heraldic shield or pedestal.
+
+Magic item icon: Selesnya Keyrune (Wondrous Item, Rare).
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+1024x1024 square icon on a genuine transparent background. Center the item described above at about 70 percent of the canvas. Leave a clear transparent margin on every side, keep every tip and soft glow entirely within the canvas, and make the whole silhouette readable at 48x48 pixels. No scenery, floor, separate display pedestal, surrounding border, square tile, colored backdrop, cream paper, checkerboard drawing or UI overlay. Retain the item's explicitly described physical parts.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones, tangible natural-material surfaces, and magic expressed as soft glowing light in the stated color. Keep the object's specified colors exactly as described. No video game badge, no heraldic crest, no chrome, no spikes everywhere, and no realistic human faces.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Use only the drawing style of the supplied approved reference emblems: the soft hand-drawn outline, warm cel shading and natural-material treatment. The background remains transparent, and the physical object is the one described here. Every person is an adult. Present this as an inanimate prop by itself, without a wearer or a separate character.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition. Nothing may look like a video game UI, an MMO icon, a 3D render or a photo. Keep all specificity in the requested physical prop.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays, copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. Card faces stay blank, with no letters or numbers. Add none of these incidental objects, no labels, no captions and no inscription marks. Show only explicitly requested simple object motifs, never writing-like marks. No gore, no real blood, no flesh, no wounds, no severed body parts and no scene of despair.
