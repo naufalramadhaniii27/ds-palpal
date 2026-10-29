@@ -2142,3 +2142,9 @@ art/batch/icons/features/class/cleric/channel-divinity.png
 art/batch/icons/features/class/cleric/divine-intervention.png
 art/batch/icons/features/class/cleric/divine-order.png
 art/batch/icons/features/class/cleric/greater-divine-intervention.png
+## batch-169 v3
+art/batch/icons/features/subclass/oath-of-devotion/aura-of-devotion.png
+art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-sacred-weapon.png
+art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-turn-the-unholy.png
+art/batch/icons/features/subclass/oath-of-devotion/holy-nimbus.png
+art/batch/icons/features/subclass/oath-of-devotion/oath-spells.png
