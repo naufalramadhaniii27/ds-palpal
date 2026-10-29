@@ -3201,6 +3201,11 @@ art/batch/icons/spells/level-7/dream-of-the-blue-veil.png
 art/batch/icons/spells/level-7/etherealness.png
 art/batch/icons/spells/level-7/mordenkainens-magnificent-mansion.png
 
+art/batch/icons/spells/level-7/plane-shift.png
+art/batch/icons/spells/level-7/teleport.png
+art/batch/icons/spells/level-7/temple-of-the-gods.png
+art/batch/icons/spells/level-7/fractured-awareness.png
+art/batch/icons/spells/level-7/reweave-fate.png
 ## batch-207 v3
 
 art/batch/creatures/beast/baboon.png
