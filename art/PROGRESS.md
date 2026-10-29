@@ -3339,6 +3339,11 @@ art/batch/icons/features/subclass/aberrant-sorcery/warping-implosion.png
 art/batch/icons/features/subclass/abjurer/abjuration-savant.png
 art/batch/icons/features/subclass/abjurer/arcane-ward.png
 art/batch/icons/features/subclass/abjurer/projected-ward.png
+art/batch/icons/features/subclass/abjurer/spell-breaker.png
+art/batch/icons/features/subclass/abjurer/spell-resistance.png
+art/batch/icons/features/subclass/alchemist/alchemical-savant.png
+art/batch/icons/features/subclass/alchemist/alchemist-spells.png
+art/batch/icons/features/subclass/alchemist/chemical-mastery.png
 ## batch-229 v3
 art/batch/monsters/monstrosity/tarrasque.png
 art/batch/monsters/monstrosity/hag-coven.png
