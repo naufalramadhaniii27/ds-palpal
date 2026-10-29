@@ -3098,11 +3098,6 @@ art/batch/icons/features/subclass/oath-of-the-watchers/aura-of-the-sentinel.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-abjure-the-extraplanar.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-watchers-will.png
 art/batch/icons/features/subclass/oath-of-the-watchers/mortal-bulwark.png
-art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
-art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
-art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
-art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
-art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
@@ -3731,3 +3726,10 @@ art/batch/icons/item-categories/tools.png
 art/batch/icons/item-categories/potion.png
 art/batch/icons/item-categories/wand-rod-and-staff.png
 art/batch/icons/items/magic/artifact/blackrazor.png
+
+## batch-173 v3
+art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
+art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
+art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
+art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
+art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
