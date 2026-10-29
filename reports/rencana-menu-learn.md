@@ -1,6 +1,6 @@
 # Rencana menu Learn: Hoot's Training Grounds (2026-10-28, diperbarui 2026-10-29)
 
-Urutan kerja: claude/rencana-kerja-learn.md.
+Dokumen utama: claude/rencana-kerja-learn.md (seluruh riset, keputusan dan urutan kerja). File ini menjadi log usulan U dan riset rinci.
 
 Status: disetujui user (interactive learning, bukan komik). Kode belum dikerjakan. Saat dikerjakan, Claude jalan duluan dengan gambar sementara. Ilustrasi Codex hanya pelengkap, dipasang begitu jadi (keputusan user 2026-10-29). Gambar Codex: batch-234, 235, 236 (48 gambar).
 

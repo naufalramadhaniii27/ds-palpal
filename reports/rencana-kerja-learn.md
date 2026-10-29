@@ -1,6 +1,6 @@
 # Rencana kerja Learn: Hoot's Training Grounds (2026-10-29)
 
-Gabungan seluruh riset dan keputusan di claude/rencana-menu-learn.md (U1 sampai U37). Dokumen ini urutan kerjanya. Detail kamus, panduan bahasa, dan sumber tetap di rencana-menu-learn.md.
+Satu dokumen berisi seluruh riset, keputusan, dan urutan kerja Learn. Log usulan U1 sampai U37 dan aturan "catat usulan baru" tetap di claude/rencana-menu-learn.md.
 
 ## Tujuan dan batas
 | Hal | Keputusan |
@@ -73,6 +73,101 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | Scroll-driven animations | Belum Baseline (Firefox belum) | Gerak parallax peta, hanya tambahan | Peta diam |
 | Interest invokers, `popover="hint"` | Belum Baseline | Tidak dipakai | |
 | WebGPU, WebGL, Lottie, Rive | Tersedia tapi berat untuk kebutuhan ini | Tidak dipakai | |
+
+| Catatan | Isi | Penanganan |
+|---|---|---|
+| Teknologi lebih baru yang sengaja tidak jadi fitur utama | Customizable select (Chrome 135, Safari 27, belum Firefox), View Transitions antarhalaman (belum Firefox), interest invokers dan `popover="hint"` (belum Baseline). Learn satu halaman tanpa dropdown, jadi tidak perlu | Boleh jadi efek tambahan khusus Chrome bila user minta |
+| Samsung Internet | Tidak dihitung di Baseline, versinya biasanya tertinggal dari Chrome, banyak dipakai di Android Indonesia | Jalur cadangan `@supports` yang sama |
+| Laporan terbaru yang dicek | web.dev edisi September 2026. Edisi Oktober 2026 belum terbit saat dicek (29 Oktober 2026) | Cek ulang daftar Baseline sebelum F7 |
+
+## Bahasa dan kamus
+### Panduan bahasa (kedua bahasa)
+| Aturan | English | Bahasa Indonesia |
+|---|---|---|
+| Panjang kalimat | Rata-rata 6 sampai 10 kata, maksimal 14 | Rata-rata 6 sampai 9 kata, maksimal 12 (jenjang B3 dan C Kemendikbudristek) |
+| Per langkah | Maksimal 2 kalimat | Maksimal 2 kalimat |
+| Kata | Kata sehari-hari, kebanyakan 1 sampai 2 suku kata, kalimat aktif | Kata sehari-hari, sapaan "kamu", tanpa bahasa gaul daerah (gue, lo) |
+| Istilah aturan | Nama ramah, istilah buku kecil di sampingnya | Nama ramah Indonesia, istilah buku Inggris di sampingnya |
+| Nada | Hangat, seru, tidak menggurui | Sama |
+
+Contoh nada (Rooftops):
+| Langkah | English | Bahasa Indonesia |
+|---|---|---|
+| 1 | "Want to jump to that roof? Let's roll!" | "Mau lompat ke atap itu? Ayo lempar dadu!" |
+| 2 | "You rolled 12. Your bonus is +3. That makes 15!" | "Dadumu 12. Bonusmu +3. Jadi 15!" |
+| 3 | "The Target Number is 13. You got 15. You made it!" | "Angka targetnya 13. Kamu dapat 15. Berhasil!" |
+| Pas | "You got 13. Same as the target. That still counts!" | "Kamu dapat 13. Sama dengan target. Tetap berhasil!" |
+| Gagal | "So close! Want to try again?" | "Hampir! Mau coba lagi?" |
+| Sheet | "On your sheet, this bonus is next to Athletics." | "Di sheet-mu, bonus ini ada di samping Athletics." |
+
+Kamus istilah tetap (U6, dua bahasa):
+| Istilah buku | Nama ramah EN | Nama ramah ID | Arti satu kalimat (EN) |
+|---|---|---|---|
+| d20 | d20 | d20 (dadu 20 sisi) | The 20-sided die you roll the most |
+| Modifier | Bonus | Bonus | The number you add to your roll |
+| DC | Target Number | Angka target | The number you need to reach |
+| AC | Armor Number | Angka armor | The number an attack needs to reach to hit you |
+| Proficiency Bonus | Training Bonus | Bonus latihan | Extra bonus for things you trained for |
+| Saving Throw | Save Roll | Lemparan bertahan | A roll to resist danger, like a trap, poison or a spell |
+| Hit Points (HP) | HP | HP (darah) | How much more you can take before you fall |
+| Advantage | Lucky Roll | Lemparan untung | Roll two big dice, keep the higher |
+| Disadvantage | Unlucky Roll | Lemparan sial | Roll two big dice, keep the lower |
+| Action | Main Action | Aksi utama | The one big thing you do on your turn |
+| DM (Dungeon Master) | Story Guide | Pemandu cerita | The person who tells the story and plays everyone else |
+
+### Bahasa Indonesia santai (U28)
+Dasar: perjenjangan buku Kemendikbudristek. Anak 10 tahun ada di jenjang B3 (8 sampai 10 tahun) dan C (10 sampai 13 tahun): maksimal 12 kata per kalimat, maksimal 3 kalimat per paragraf, 100 sampai 300 kata yang sering dipakai. Gamer Indonesia sudah biasa dengan istilah game bahasa Inggris (HP, damage, skill, level), dijelaskan dengan bahasa Indonesia.
+
+| Aturan | Isi |
+|---|---|
+| Sapaan | "Kamu" dan "-mu". Hoot menyebut dirinya "aku" |
+| Ragam | Ragam cakap yang sopan (kata cakapan di KBBI). Boleh: yuk, ayo, nih, kok, dong, nggak. Tanpa gue, lo, anjay, atau bahasa daerah |
+| Dua lapis | Dialog Hoot santai (boleh "nggak"). Kartu aturan dan kamus semi-baku ("tidak") supaya bisa dipakai mengajar |
+| Panjang | Rata-rata 6 sampai 9 kata, maksimal 12. Maksimal 2 kalimat per langkah |
+| Kata kerja | Kalimat aktif, kamu sebagai pelaku: "Lempar dadunya!" bukan "Dadu dilempar". Kata kerja Indonesia, bukan kata Inggris berimbuhan: "lempar", bukan "nge-roll" atau "di-roll" |
+| Istilah game | Tetap Inggris bila gamer sudah kenal: HP, damage, bonus, level, d20. Istilah aturan lain pakai nama ramah dari kamus |
+| Angka | Selalu angka, bukan huruf: "Dadumu 12" |
+| Terjemahan | Tulis ulang dari makna, bukan kata per kata. Lelucon dan seruan boleh beda dari versi English asal artinya sama |
+
+Kata kaku yang diganti (dicek otomatis oleh Checker, U13):
+| Hindari | Pakai |
+|---|---|
+| apabila, jika | kalau |
+| merupakan | adalah, itu |
+| tersebut | itu, ini |
+| dapat | bisa |
+| memiliki | punya |
+| melakukan (aksi) | kata kerjanya langsung: serang, lari, lempar |
+| sehingga | jadi |
+| namun | tapi |
+| mengenai | soal, tentang |
+| terlebih dahulu | dulu |
+| yakni, yaitu | (pecah jadi dua kalimat) |
+| maka | (hapus) |
+
+Contoh sebelum dan sesudah:
+| Kaku | Santai |
+|---|---|
+| "Apabila hasil lemparan Anda sama dengan atau melebihi DC, maka tindakan tersebut berhasil." | "Angkamu sampai ke angka target? Kamu berhasil!" |
+| "Setiap giliran, Anda dapat melakukan satu Action." | "Di giliranmu, kamu bisa pilih satu aksi utama." |
+| "Hit Points Anda berkurang sesuai damage yang diterima." | "Kena serang? HP-mu turun sebesar damage-nya." |
+
+### Kamus dicocokkan ke Library app (2026-10-29)
+Sumber: glossary sheet (src/app/03-data-glossary.js) dan Rules Glossary di Library (src/app/27), keduanya ditulis ulang dari PHB 2024.
+| Istilah | Isi Library | Kamus Learn |
+|---|---|---|
+| Saving Throw | d20 untuk menahan atau menghindari efek, sama atau lebih dari DC berhasil | Cocok |
+| Armor Class | Serangan yang sama atau lebih dari AC kena | Cocok |
+| Difficulty Class | Angka target untuk ability check dan saving throw. Serangan memakai AC | Cocok. Learn menyebut AC sebagai target serangan |
+| Hit Points | 0 HP: jatuh Unconscious, lalu death save | Cocok |
+| Advantage, Disadvantage | Dua d20, ambil yang tinggi atau rendah, keduanya saling batal | Cocok. Aturan "saling batal" masuk Windy Cliff |
+| Proficiency Bonus | Dari level, untuk serangan, skill, save yang dilatih dan DC fitur | Cocok |
+| Action | Satu aksi per giliran: Attack, Dash, Disengage, Dodge, Help, Hide, Influence, Magic, Ready, Search, Study, Utilize | Cocok. Forest memakai nama aksi 2024 ini |
+| Bonus Action | Hanya bila fitur atau aturan mengizinkan, satu per giliran | Cocok |
+| Heroic Inspiration | Lempar ulang satu dadu, wajib pakai hasil baru, maksimal punya satu | Diperbaiki: Windy Cliff mengajarkan lempar ulang, bukan Advantage (Advantage itu Inspiration aturan 2014) |
+| Critical Hit | 20 di d20 serangan selalu kena, dadu damage dilempar dua kali | Ditambah: 20 dan 1 hanya otomatis untuk serangan. Untuk check dan save tetap dihitung biasa |
+| D20 Test | Ability check, attack roll, saving throw. DM yang menentukan kapan perlu | Dipakai untuk kartu "Which die do I roll?" (U7) |
+Kata di kamus bisa diketuk dan membuka entri Library yang sama, jadi Learn dan Library tidak berbeda isi.
 
 ## Tahap kerja
 Setiap tahap selesai dengan tes. Rilis digabung (0.0.3), daftar rilis dikirim ke user sebelum push ke main.
@@ -168,6 +263,9 @@ Komponen dipakai ulang oleh semua tempat.
 | Perbaikan dari uji main | Claude |
 | Rilis 0.0.3: daftar rilis dikirim dulu, push ke main setelah disetujui | Claude, persetujuan user |
 
+## Gambar
+Batch Codex: 234 (17 gambar: scene layar Learn, sampul track, 9 sampul tempat, 4 pose Hoot), 235 (18: 16 ikon konsep, 2 lencana track), 236 (13: peta lembah PC dan phone, scene ujian akhir PC dan phone, 4 lencana peringkat, 5 pose Sela). Gambar tanpa angka dan huruf, jadi angka, dadu, dan diagram dibuat HTML dan SVG.
+
 ## Pembagian bagian proyek
 | Bagian | Tugas di Learn |
 |---|---|
@@ -194,6 +292,61 @@ Komponen dipakai ulang oleh semua tempat.
 ## Dicocokkan ke kode (2026-10-29)
 PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda di 01, service worker, build Pages, endpoint prefs dan admin di API, entri Library di 03 dan 27. Empat hal yang semula keliru di rencana sudah dibetulkan: tour bukan mesin umum, screenshot tidak bisa dibuat di server Pages, gambar offline tidak tersimpan otomatis, corong butuh kerja di API.
 
+## Lampiran riset
+### Celah yang ditutup (2026-10-29, setelah user bertanya "sudah yakin cukup?")
+| Celah | Risiko | Perbaikan |
+|---|---|---|
+| Nama ramah berbeda dengan tulisan di sheet (sheet menulis AC, DC) | Anak paham "Armor Number" di Learn, lalu bingung saat melihat "AC" di sheet | Setiap tempat diakhiri langkah "Find it on your sheet": sheet karakter sendiri dibuka, angkanya disorot, label buku dan nama ramah tampil bersama (U24) |
+| Nama ramah bisa mengajarkan hal salah | "Dodge Roll" menyiratkan saving throw selalu soal menghindar, padahal juga untuk menahan racun atau sihir. "Main Move" tertukar dengan Move. "Nyawa" mengesankan jumlah nyawa seperti game arkade | Kamus diganti: Save Roll / Lemparan bertahan, Main Action / Aksi utama, HP / HP (darah). Setiap nama ramah dicek agar tidak bertentangan dengan aturan 2024 |
+| Main bersama orang lain tidak diajarkan | Anak dan pemula bisa memonopoli giliran atau bingung kapan bicara. Perlu juga cara bilang "berhenti" kalau cerita membuat tidak nyaman | Kartu "Playing together": gantian bicara, dengarkan teman, bantu teman, boleh bilang stop kapan saja (U25) |
+| Lupa setelah beberapa hari | Belajar sekali cepat hilang | "Quick recap": 2 soal singkat dari tempat sebelumnya saat Learn dibuka lagi, opsional (U26) |
+| Dadu sungguhan belum dikenalkan | Banyak meja memakai dadu fisik. Pemula sering salah mengenali d4, d8, d10, d12 dan cara membaca d4 | Tempat Bonus "Meet your dice": kenali bentuk tiap dadu dan cara membacanya (U27) |
+| Terjemahan Indonesia belum dicek penutur yang mengenal D&D | Kalimat bisa kaku atau istilah keliru | Claude memakai panduan bahasa Indonesia santai hasil riset dan cek otomatis (U28) |
+| Learn harus jalan di semua kondisi app | Offline, Motion off, Calm, kontras tinggi, pembaca layar | Learn ikut aturan app yang sama, tiap gambar punya teks alternatif, tes di mode-mode ini (masuk U23) |
+
+### Pemeriksaan aturan dan pembaca (2026-10-29)
+| Temuan | Hasil |
+|---|---|
+| Contoh "lebih besar dari angka target" salah aturan | Diperbaiki. Hasil yang sama dengan target juga berhasil. Contoh "Pas" ditambah supaya anak belajar ini sejak awal |
+| "Big die" untuk d20 | Diganti "d20". Di meja ada dadu lain yang juga besar, dan anak perlu kenal nama d20 untuk Meet your dice |
+| "Lucky Roll" bisa tertukar dengan feat Lucky | Tetap dipakai. Feat Lucky memang memberi Advantage, jadi artinya tidak bertentangan |
+| Kemampuan baca anak Indonesia | Asesmen Nasional 2024: 70,03 persen siswa mencapai kompetensi minimum literasi, jadi sekitar 3 dari 10 belum. Ini memperkuat visual dulu. Keputusan user: atasi lewat visual, tanpa suara |
+| Waktu 15 menit Jalur Inti | Masih perkiraan. Dibuktikan di uji main (U21) |
+
+### Tanpa suara dan PP Tunas (2026-10-29, setelah "Read to me" dibatalkan)
+| Temuan | Sumber | Akibat |
+|---|---|---|
+| Untuk anak yang belum lancar membaca, bantuan utama di riset adalah suara. Tanpa suara, ikon harus bisa dipahami sendiri, petunjuk harus menunjukkan langkah berikutnya, dan tokoh pemandu memperagakan | Daftar periksa game untuk anak pra-baca (Universitas Siprus, proyek READISTANCE) | U29 |
+| PP Tunas (PP 17/2025, berlaku 28 Maret 2026) berlaku untuk PSE swasta, termasuk fitur yang kemungkinan diakses anak. Melarang profiling anak dan teknik nudge. Mewajibkan info usia minimum, verifikasi usia, persetujuan orang tua, privasi tinggi bawaan, dan saluran laporan. Akun media sosial dibatasi untuk anak di bawah 16 tahun | Bisnis.com, NU Online | U30. Friends adalah fitur sosial. Learn yang menyasar anak 10 tahun membuat app masuk kategori "kemungkinan diakses anak". Ini bukan nasihat hukum. Teks PP perlu dibaca langsung sebelum Learn dibuka untuk anak. Catatan 2026-10-29: Learn tidak menyasar anak, jadi risiko ini kecil. Tetap dibaca bila suatu saat app dibuka untuk anak |
+
+### Pembanding (2026-10-29)
+| Produk | Yang bagus | Yang kurang | Akibat |
+|---|---|---|---|
+| D&D Beyond Quick Build (Maret 2026) | 4 pilihan, sisanya otomatis, bisa acak, langsung main | Penjelasan class satu halaman, tanpa latihan | U31 |
+| D&D Adventure Begins (board game keluarga) | Anak 10 tahun senang improvisasi dan memakai barang secara kreatif. Aturan sederhana, tanpa perlu tahu fantasy | Karakter terasa sama, ide kreatif tidak mengubah hasil, cepat bosan | U32 |
+
+### Riset lembaga pendidikan negara maju (2026-10-29)
+| Lembaga | Temuan | Usulan |
+|---|---|---|
+| IES What Works Clearinghouse (AS), panduan "Organizing Instruction and Study" | Jeda antar latihan (bukti sedang). Selang-seling contoh jadi dan soal (sedang). Gambar dipadu kata di dekat bagian yang dimaksud (sedang). Hubungkan konkret dan abstrak (sedang). Kuis ulang (kuat). Pertanyaan "kenapa" dan "bagaimana" (kuat) | U33, U34, U35, U36 |
+| AERO (Australia), explicit teaching | Pecah materi jadi potongan kecil. Peragakan, latihan dibimbing, lalu latihan sendiri. Cek pemahaman sebelum lanjut. Bantuan dikurangi bertahap | U33 |
+| Pendekatan CPA Singapura (dari Bruner) | Konkret, gambar, lalu simbol. Gambar menjadi model di kepala saat anak macet | U34 |
+| EEF (Inggris), panduan umpan balik | Umpan balik diberi setelah pengajaran, tepat waktu, membahas tugasnya, dan anak diberi waktu memakainya | U36 |
+| Sekolah dasar Finlandia (Sahlberg) | Bermain sebagai cara belajar utama. Anak boleh memilih. Tanpa nilai sebelum kelas 4. Istirahat rutin | U37. Tempat Bonus bebas urutan. Kartu "Take a break?" setelah Jalur Inti |
+
+### Riset pemain baru dan cara belajar
+| Temuan | Sumber | Akibat untuk desain |
+|---|---|---|
+| Hal yang paling membingungkan pemain baru: spell, action lawan bonus action, score lawan modifier, dadu mana, attack lawan damage, critical hit, mencari angka di sheet, conditions, rest, bingung harus berbuat apa | EN World (2024 dan 5e), Paizo | Masing-masing punya tempat (Inti atau Bonus) dan U7 sampai U10, U24 |
+| Orang hanya membaca 20 sampai 28 persen teks. Yang berhasil: belajar sambil melakukan, satu mekanik sekali, petunjuk saat dibutuhkan, mentor dalam cerita, umpan balik langsung | GDevelop (mengutip Nielsen Norman Group) | Teks pendek, Hoot mentor, efek langsung |
+| Ajarkan dari paling sederhana, optimasi menunggu | The Angry GM | Jalur Inti dan Tempat Bonus |
+| Untuk anak: buat karakter lewat cerita dulu, class bela diri dulu, sihir belakangan, aturan disederhanakan, lulus ke aturan penuh nanti | D&D Beyond, Young Adventurers | Quick Hero, spell di Tempat Bonus |
+| Bacaan anak 8 sampai 9 tahun: kalimat 6 sampai 8 kata, kata pendek, 70 sampai 80 persen kalimat aktif | Readability Formulas | Panduan bahasa |
+| Anak yang baru bisa membaca dan yang belajar bahasa asing paling mengerti umpan balik visual | Studi umpan balik game belajar (UniversityXP, 2026) | Visual dulu |
+| Anak kelas 4 bisa mulai paham angka negatif dengan garis bilangan dan bimbingan | Think Academy | Bonus minus ditunda |
+| Contoh yang dikerjakan langkah demi langkah menurunkan beban pikiran | Riset worked-example effect | Hoot mengerjakan satu contoh dulu |
+| Bahasa sederhana penting untuk pembaca non-native | Translators without Borders, W3C easy-to-read | Dua bahasa, kamus istilah |
+
 ## Keputusan yang masih terbuka
 | Hal | Status |
 |---|---|
@@ -213,3 +366,33 @@ PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda d
 - https://www.refontelearning.com/blog/css-anchor-positioning-reaches-baseline
 - https://www.buildmvpfast.com/blog/web-platform-baseline-2026-new-features-browser-support
 - https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/
+
+## Sumber riset
+- https://ies.ed.gov/ncee/WWC/Docs/PracticeGuide/20072004.pdf
+- https://www.edresearch.edu.au/guides-resources/videos/teaching-how-students-learn-teach-explicitly
+- https://blog.edshed.com/?p=397
+- https://educationendowmentfoundation.org.uk/tools/guidance-reports/feedback
+- https://researchschool.org.uk/derby/news/new-guidance-report-teacher-feedback-to-improve-pupil-learning
+- https://pasisahlberg.com/wp-content/uploads/2020/08/ACEL-Play-C-2020.pdf
+- https://www.pcgamer.com/games/d-and-d-beyonds-slick-new-online-character-creator-lets-you-make-a-hero-in-seconds
+- https://gizmodo.com/dungeons-dragons-adventure-begins-doesnt-capture-the-1845240184
+- https://enworld.org/threads/adventure-begins-first-impressions.675159
+- https://cs.ucy.ac.cy/projects/readistance/?p=3499
+- https://teknologi.bisnis.com/read/20260505/101/1971394/10-kewajiban-platform-dalam-pp-tunas-yang-perlu-diketahui-pse
+- https://nu.or.id/nasional/pp-tunas-diberlakukan-anak-di-bawah-16-tahun-dibatasi-akses-medsos-dan-gim-ZBe2S
+- https://www.medcom.id/pendidikan/news-pendidikan/Rkjr8lwk-
+- https://textintoaudio-com.pages.dev/browser-support.html
+- https://static.buku.kemdikbud.go.id/content/undang-undang/No_030_P_2022.pdf
+- https://www.vcgamers.com/news/?p=61502
+- https://www.enworld.org/goto/post?id=8837110
+- https://www.enworld.org/goto/post?id=7405380
+- https://gdevelop.io/blog/improve-game-tutorials
+- https://theangrygm.com/knowing-how-to-play-dd
+- https://awesomedice.com/blogs/news/how-to-teach-dnd-11-tips
+- https://www.dndbeyond.com/posts/554-play-d-d-with-kids-using-the-young-adventurers
+- https://readabilityformulas.com/writing-for-3rd-grade-readers/
+- https://www.universityxp.com/research/2026/1/28/i-dont-usually-listen-i-read-how-different-learner-groups-process-game-feedback
+- https://www.thethinkacademy.com/blog/edubriefs-can-fourth-graders-understand-negative-numbers
+- https://researchportal.hw.ac.uk/en/publications/the-worked-example-effect-not-an-artefact-of-lousy-control-condit/
+- https://translatorswithoutborders.org/wp-content/uploads/2020/04/Plain-Language_Write-Clearly.pdf
+- https://www.w3.org/WAI/RD/2012/easy-to-read/paper11/
