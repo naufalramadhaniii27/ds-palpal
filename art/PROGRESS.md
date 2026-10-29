@@ -4356,6 +4356,11 @@ art/batch/icons/spells/level-5/contagion.png
 art/batch/icons/spells/level-5/danse-macabre.png
 art/batch/icons/spells/level-5/enervation.png
 art/batch/icons/spells/level-5/grave-ground.png
+art/batch/icons/spells/level-5/negative-energy-flood.png
+art/batch/icons/spells/level-5/raise-dead.png
+art/batch/icons/spells/level-5/reincarnate.png
+art/batch/icons/spells/level-5/spirit-lantern.png
+art/batch/icons/spells/level-5/waves-of-exhaustion.png
 
 ## batch-124 v3
 art/batch/icons/items/magic/uncommon/golgari-guild-signet.png
