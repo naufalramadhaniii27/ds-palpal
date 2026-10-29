@@ -4409,3 +4409,8 @@ art/batch/icons/features/subclass/warrior-of-mercy/physicians-touch.png
 art/batch/icons/features/subclass/warrior-of-shadow/cloak-of-shadows.png
 art/batch/icons/features/subclass/warrior-of-shadow/improved-shadow-step.png
 art/batch/icons/features/subclass/warrior-of-shadow/shadow-arts.png
+art/batch/icons/features/subclass/warrior-of-shadow/shadow-step.png
+art/batch/icons/features/subclass/warrior-of-the-elements/elemental-attunement.png
+art/batch/icons/features/subclass/warrior-of-the-elements/elemental-burst.png
+art/batch/icons/features/subclass/warrior-of-the-elements/elemental-epitome.png
+art/batch/icons/features/subclass/warrior-of-the-elements/manipulate-elements.png
