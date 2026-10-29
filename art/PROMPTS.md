@@ -43193,3 +43193,122 @@ Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. S
 Quality bar: WOW at first glance: striking, full of character and vivid natural color, with a clear silhouette, confident gesture and composition. Specific purposeful object details, never filler decoration; distinctive materials, natural construction, sound perspective and the object's own clear colors. AI slop to avoid: random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
 
 Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors, user-interface overlays, copies of existing film characters or scenes, or copies of known card and book art such as Magic: The Gathering or official D&D art. Vivid natural color is wanted. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+art/batch/icons/learn/hit-points.png
+Rich ruby red and mellow brass: one heart-shaped red gemstone is held in a simple close-fitting brass frame. Let broad hand-drawn facets and a modest natural highlight show its translucent material, with no magical aura. The heart and frame form one compact readable object, no blood, body, chain or extra decoration.
+
+Learn concept icon. Icon: Hit points. Draw it as a heart-shaped red gem set in a simple brass frame, no blood. One idea with one clear silhouette, centered, no ground. Parts that act together (a hand holding something) are fine. Separate objects placed side by side are not.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One centered compact object or set of physically connected parts acting together, about 70 percent of the canvas. One clear silhouette, no ground, no separate objects side by side. Use the specified Draw it as object as the main idea. Every die has completely blank faces, without numerals, dots, pips or symbols. Simple friendly anime eyes for animals. Magical glow stays soft and follows the specified color; mundane objects have no magical glow. Readable at 48x48 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+FINAL OBJECT CHECK: Only the physical red gemstone in its simple brass frame, natural material highlights contained on the object. No extra star shapes, sparkles, halo, light ribbons or magical aura.
+
+art/batch/icons/learn/armor-class.png
+Muted blue steel and warm brass: one steel breastplate with practical brass rivets turns in a clean three-quarter view. Its shoulders, shaped chest panel and lower waist form a broad, sturdy silhouette; the empty armor has no wearer or face. Restrained flat cel highlights show metal without chrome or 3D realism, no magical glow.
+
+Learn concept icon. Icon: Armor class. Draw it as a steel breastplate with brass rivets. One idea with one clear silhouette, centered, no ground. Parts that act together (a hand holding something) are fine. Separate objects placed side by side are not.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One centered compact object or set of physically connected parts acting together, about 70 percent of the canvas. One clear silhouette, no ground, no separate objects side by side. Use the specified Draw it as object as the main idea. Every die has completely blank faces, without numerals, dots, pips or symbols. Simple friendly anime eyes for animals. Magical glow stays soft and follows the specified color; mundane objects have no magical glow. Readable at 48x48 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+FINAL OBJECT CHECK: Only the empty physical steel breastplate and practical brass rivets in ordinary daylight. No stars, sparkles, halo, light ribbons or magical effects.
+
+art/batch/icons/learn/spell-slot.png
+Warm aged brass and soft blue firelight: one small open brass lantern holds a single plain blue flame with no face and no eyes. The open window reveals the flame clearly, and a restrained blue glow stays close within and around its natural brass frame. One compact slightly tilted lantern, no scenery or extra sparks.
+
+Learn concept icon. Icon: Spell slot. Draw it as a small open brass lantern holding one plain blue flame with no face. One idea with one clear silhouette, centered, no ground. Parts that act together (a hand holding something) are fine. Separate objects placed side by side are not.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One centered compact object or set of physically connected parts acting together, about 70 percent of the canvas. One clear silhouette, no ground, no separate objects side by side. Use the specified Draw it as object as the main idea. Every die has completely blank faces, without numerals, dots, pips or symbols. Simple friendly anime eyes for animals. Magical glow stays soft and follows the specified color; mundane objects have no magical glow. Readable at 48x48 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/icons/learn/concentration.png
+Cream wax and steady warm amber candlelight: one simple lit candle carries a perfectly still upright plain flame with no face and no eyes. Its vertical silhouette is narrow and composed, with a small natural wax drip and a short visible dark wick. Soft ordinary flame light only, no magical aura, holder or scenery.
+
+Learn concept icon. Icon: Concentration. Draw it as a single lit candle with a perfectly still plain flame with no face. One idea with one clear silhouette, centered, no ground. Parts that act together (a hand holding something) are fine. Separate objects placed side by side are not.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One centered compact object or set of physically connected parts acting together, about 70 percent of the canvas. One clear silhouette, no ground, no separate objects side by side. Use the specified Draw it as object as the main idea. Every die has completely blank faces, without numerals, dots, pips or symbols. Simple friendly anime eyes for animals. Magical glow stays soft and follows the specified color; mundane objects have no magical glow. Readable at 48x48 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+FINAL OBJECT CHECK: Only the physical wax candle, dark wick and single plain natural flame, without face or eyes. Ordinary candlelight stays close to the flame; no stars, sparkles, energy loops or light ribbons.
+
+art/batch/emblems/learn/play-complete.png
+Warm brass and soft gold magic: one small brass owl-shaped pin holds a completely blank twenty-sided die in its talons. The owl is a friendly stylized crafted object with simple carved anime eyes and outstretched compact wings; its talons connect the blank-faceted die into the same single silhouette. A restrained warm-gold glow surrounds the pin.
+
+Completion emblem for finishing the how-to-play lessons: a small brass owl-shaped pin holding a blank twenty-sided die in its talons. Glow color: warm gold.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One magical object or the single compact physically connected object group specified in the subject, centered, about 70 percent of the canvas, as a close-up prop in a hand-drawn animated film. Show the exact listed glow color as soft light close to the object. Every die face is blank. Readable as one bold shape at 64x64 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/emblems/learn/build-complete.png
+Cream paper, warm red wax and mint-green magic: a quill crosses through one wax-sealed blank character card tied with a practical ribbon. Keep all elements physically gathered into a single compact angled object: the quill passes through the ribbon binding, the seal anchors it, and the unmarked card remains broad and clear. A soft mint-green glow stays close to the object.
+
+Completion emblem for building a first character: a quill crossed through a wax-sealed blank character card ribbon-tied, one compact object. Glow color: mint green.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials including wood, brass, cloth, feather, glass and stone as specified for this object. Magic is soft glowing light in the specified color. Flames are plain, with no face and no eyes. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces; a carved mask or idol face is an object. Take only the drawing style from the reference emblems, never their backgrounds.
+
+This is a Learn picture: warm, curious, welcoming and reassuring. No blood, no gore, no wounds, no bodies, no enemies, no despair, no brutality. Every person is an adult. Natural animals are friendly and natural, with simple expressive eyes. Keep vivid natural color and the specified light source; never grey, gloomy or orange-only.
+
+Every person is an adult; all faces, proportions and hands are clearly adult.
+
+1024x1024 transparent background. One magical object or the single compact physically connected object group specified in the subject, centered, about 70 percent of the canvas, as a close-up prop in a hand-drawn animated film. Show the exact listed glow color as soft light close to the object. Every die face is blank. Readable as one bold shape at 64x64 pixels.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
