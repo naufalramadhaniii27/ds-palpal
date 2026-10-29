@@ -2115,11 +2115,6 @@ art/batch/creatures/beast/giant-crab.png
 art/batch/creatures/beast/giant-goat.png
 art/batch/creatures/beast/giant-seahorse.png
 
-art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
-art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
-art/batch/icons/features/subclass/light-domain/corona-of-light.png
-art/batch/icons/features/subclass/light-domain/improved-flare.png
-art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
 ## batch-147 v3
 art/batch/icons/features/class/barbarian/brutal-strike.png
 art/batch/icons/features/class/barbarian/danger-sense.png
@@ -2141,11 +2136,6 @@ art/batch/icons/features/class/bard/bardic-inspiration.png
 art/batch/icons/features/class/bard/countercharm.png
 art/batch/icons/features/class/bard/expertise.png
 art/batch/icons/features/class/bard/font-of-inspiration.png
-art/batch/icons/features/subclass/light-domain/light-domain-spells.png
-art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
-art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
-art/batch/icons/features/subclass/light-domain/warding-flare.png
-art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
 NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
@@ -2181,6 +2171,11 @@ art/batch/icons/features/subclass/oath-of-devotion/purity-of-spirit.png
 art/batch/icons/features/subclass/oath-of-devotion/sacred-weapon.png
 art/batch/icons/features/subclass/oath-of-devotion/smite-of-protection.png
 art/batch/icons/features/subclass/oath-of-devotion/tenets-of-devotion.png
+art/batch/icons/features/subclass/oath-of-glory/aura-of-alacrity.png
+art/batch/icons/features/subclass/oath-of-glory/channel-divinity-inspiring-smite.png
+art/batch/icons/features/subclass/oath-of-glory/channel-divinity-peerless-athlete.png
+art/batch/icons/features/subclass/oath-of-glory/glorious-defense.png
+art/batch/icons/features/subclass/oath-of-glory/inspiring-smite.png
 
 ## batch-043 v3
 art/batch/icons/spells/level-3/dispel-magic.png
