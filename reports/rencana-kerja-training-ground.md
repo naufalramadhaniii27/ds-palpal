@@ -114,6 +114,26 @@ Alat: `tools/atlas_pack.py` menyusun atlas dan berkas peta sel (`x, y, w, h`), t
 Tes: (1) tidak ada piksel tetangga bocor pada zoom 1x sampai 4x, dibandingkan per piksel, (2) jumlah permintaan gambar papan turun, (3) waktu gambar per kerangka sebelum dan sesudah di HP lemah (throttle CPU), (4) data lama tidak berubah.
 Fase: TG2 (papan) dan TG6 (efek dan bingkai dari Codex). Ukur ikon DOM di G6.
 
+### 5f. N32 Atlas Hidup (rancangan 2026-10-30, belum dibuat, menunggu perintah user)
+Angka ukuran di bawah adalah perkiraan, belum terukur.
+
+| Bagian | Isi |
+|---|---|
+| Pengemas saat build | `tools/atlas_pack.py` menaruh ikon dan bingkai di grid sel, menulis satu AVIF dan satu berkas peta (`x, y, w, h`). Tepi tiap sel digandakan 2 piksel. Atlas dipisah per tujuan (lencana, efek, bingkai token), maksimal 2048 x 2048 |
+| Gambar dari satu bitmap | `createImageBitmap` sekali per atlas, lalu `drawImage` per potongan. Koordinat tujuan dibulatkan ke piksel utuh agar tidak ada garis tipis |
+| Zoom tanpa buram | Canvas 2D tidak punya mipmap. Atlas dibuat dua ukuran, penuh dan setengah. Papan memilih sesuai zoom |
+| Animasi dari log | Bingkai = (waktu log / lama bingkai) mod jumlah bingkai. Replay (`tools/tg-proto/replay-codec.mjs`) dan tautan bagikan menampilkan animasi yang sama persis |
+| Token 503 makhluk tanpa 503 gambar | Token dirakit dari atlas: ikon tipe makhluk (16 sudah ada), cincin warna sisi (pemain, musuh, sekutu), angka. Gambar per makhluk dari Codex masuk belakangan sebagai halaman atlas tambahan yang dimuat saat dibutuhkan. TG2 tidak menunggu art Codex |
+| Buang bingkai kembar | Pengemas menghitung hash tiap sel. Bingkai identik disimpan sekali, tabel indeks menunjuk ke sel yang sama |
+
+Perkiraan awal: atlas lencana dari 32 ikon yang ada sekitar 1056 x 528 px, memori terdekode sekitar 2,2 MB, berkas mungkin di bawah 120 KB. Satu atlas penuh 2048 x 2048 memakan sekitar 16 MB terdekode, jadi jumlahnya dibatasi.
+
+Tidak dipakai: atlas untuk daftar ikon di sheet (elemen DOM tidak mengalami ganti tekstur, dan atlas penuh memaksa dekode 16 MB demi satu ikon). Ukur dulu di G6.
+
+Tes nanti: (1) perbandingan piksel zoom 1x sampai 4x tanpa kebocoran warna, (2) waktu gambar per kerangka sebelum dan sesudah dengan CPU dilambatkan, (3) jumlah permintaan gambar turun, (4) replay menghasilkan animasi sama.
+
+Keputusan user yang menunggu: ukuran sel. Saran: 128 px untuk token (tajam sampai zoom 2x di layar retina), 64 px untuk lencana (lebih ringan). Alternatif: 128 px untuk semua (tajam, atlas lebih besar), 64 px untuk semua (ringan, buram saat zoom).
+
 ## 6. Cakupan aturan (bertingkat)
 | Tingkat | Isi | Perilaku |
 |---|---|---|
