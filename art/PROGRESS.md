@@ -4358,3 +4358,12 @@ art/batch/icons/items/magic/very-rare/golgari-keyrune.png
 art/batch/icons/items/magic/uncommon/gruul-guild-signet.png
 art/batch/icons/items/magic/rare/gruul-keyrune.png
 art/batch/icons/items/magic/very-rare/illusionists-bracers.png
+
+## batch-214 v3
+
+art/batch/icons/items/tools/bagpipes.png
+art/batch/icons/items/tools/drum.png
+art/batch/icons/items/tools/dulcimer.png
+art/batch/icons/items/tools/flute.png
+art/batch/icons/items/tools/horn.png
+
