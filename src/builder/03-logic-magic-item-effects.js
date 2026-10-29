@@ -13,7 +13,7 @@ function byOk(by){if(!by)return true;var s=String(by),cls=Object.keys(CLASSES).f
  var sp=Object.keys(SPECIES).filter(function(n){return new RegExp("\\b"+n+"\\b").test(s)});if(sp.length)return sp.indexOf(B.species)>=0;return true}
 function activeFx(){var out=[],att=0,am=attMax();(B.inv||[]).forEach(function(x){if(!x.eq)return;var d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}var f=d[5]&&d[5].fx,bb=baseOf(x.n).b;if(f)out.push({n:x.n,fx:f,arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
 function htText(sp,size){var h=HEIGHT[sp]&&HEIGHT[sp][size];if(!h)return "";return "about "+h[0]+"\u2013"+h[1]+" ft tall (\u2248"+Math.round(h[0]*30.48)+"\u2013"+Math.round(h[1]*30.48)+" cm)"}
-var BLANK={name:"New Hero",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
+var BLANK={name:"New Hero",camp:"",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
  base:{STR:15,DEX:14,CON:13,INT:12,WIS:10,CHA:8},armor:"",shield:false,weps:[],ch:{},method:"manual",eqC:"A",eqB:"A",size:""};
 /* RU30: a new character starts with nothing chosen. B.unset lists what the player has not chosen yet (cls, species, bg, abil, eqC, eqB).
    The values behind it stay as in BLANK, so every rule still computes, but the builder shows the choice lists and the sheet stays empty

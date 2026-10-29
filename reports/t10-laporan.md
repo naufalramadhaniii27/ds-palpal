@@ -71,3 +71,11 @@ Belum: perangkat nyata, Print Cards PDF, lebar 768 di semua dialog, palet lain s
 Temuan: di teks 130% pada layar lebar, label Saving Throws terpotong (STR jadi ST). Kolom minimum kini mengikuti ukuran teks.
 Catatan: `.hcreate` di Home kadang ditandai clip. Itu animasi masuk, bukan cacat.
 PDF Print Cards (6 kartu per halaman) dan PDF sheet (3 halaman) dibuat lewat Playwright dan dilihat per halaman: rapi.
+
+## Ronde 5: Campaign
+
+- Sheet: jika campaign kosong, tombol "Add campaign" muncul di bawah nama. Klik membuka kolom Campaign di Identity.
+- Builder: kolom Campaign di bawah Character Name. Terisi dari sheet saat Builder dibuka. Apply membawa nilainya ke sheet (`S.camp`). Tidak ada key localStorage baru, tidak perlu migrasi (`camp` opsional di build).
+- Akar masalah isi awal kosong: `fromSheet` membaca `st.S.camp`, padahal `__sheetState` tidak mengirim `S`. Sekarang `__sheetState` mengirim `camp`.
+- Tes: `tests/campaign.py` (14 cek, 390 dan 1250), `scenarios`, `tidy`, `sub_art`, `blank_new`, `flow_home_sheet`, `builder_art` hijau. Screenshot sheet dan builder dicek di 390 dan 1250.
+- Belum dites di perangkat asli.

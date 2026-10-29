@@ -4689,6 +4689,10 @@ html.mi-off #sheet .sh-wm{opacity:.12}
 #lib > #libBd,#lib > .lib-h{position:relative;z-index:1}
 /* Saving throws: the column minimum grows with the text size, so STR never turns into ST */
 :root[data-skin="ddb"] #saves{grid-template-columns:repeat(auto-fit,minmax(calc(104px*var(--tz,1)),1fr))!important}
+/* Empty campaign: a quiet button under the name */
+.id-camp .camp-add{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;border:1px dashed var(--line-2);border-radius:var(--r2,8px);background:transparent;color:var(--muted);font:inherit;font-weight:600;cursor:pointer}
+.id-camp .camp-add:hover{color:var(--ink);border-color:var(--ink)}
+@media print{.id-camp .camp-add{display:none}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -5475,7 +5479,7 @@ var TITLE0=document.title;
 function phOpen(){ try{ var r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
   document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
-  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
+  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=false; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':'<button type="button" class="camp-add" data-campadd="1">'+ico("ui-flag")+'<span>Add campaign</span></button>';/* T10: an empty campaign offers itself */ }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;
   $("#miniSub").textContent = C.species+" "+clsLv();
@@ -6630,12 +6634,13 @@ setTimeout(function(){if(FROZEN)return;var r=rEnsure();Object.keys(r.chars).forE
 /* V14-4: Apply keeps the game state (HANDOFF section 6). Damage taken stays the same when Hit Point maximum changes, used boxes stay (used() clamps to the new maximum) */
 /* v18 RL47: a sheet written by a newer version keeps the fields this version does not produce */
 function keepNewer(p){ if(newerApp(C)) Object.keys(C).forEach(function(k){ if(!(k in p)) p[k]=C[k]; }); return p; }
-window.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ var om=(D&&D.hpmax)||0, oh=S.hp; C=keepNewer(p); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); }
+window.__sheetCamp=function(){ return campName(); };/* T10: the builder shows the sheet's campaign */
+window.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ var om=(D&&D.hpmax)||0, oh=S.hp; C=keepNewer(p); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); } if(typeof p.camp==="string"&&p.camp.trim()){ S.camp=p.camp.trim(); save(); }/* T10: campaign typed in the builder */
   if(oh!=null&&om){ try{ derive(); S.hp=clamp(oh+(D.hpmax-om),0,D.hpmax); }catch(er){ S.hp=null; } } else S.hp=null; if(!S.used) S.used={}; save(); saveC(); renderAll(); renderNotes(); var gq=S.coins?num(S.coins.gp,0)+num(C.gp,0)-num(S.coinBase,num(C.gp,0)):0; if(note!==false) toast(gq<0?"Sheet updated. Starting gold is now lower than the gold you spent, so Gold shows 0.":note||"Sheet updated from builder"); };/* v24 p08: quiet for the blank first sheet */
 window.__sheetName=function(){ return C&&C.name; };window.__ask=ask;/* T10: test hook, opens the confirm dialog with any text */
 window.__sheetRerender=function(){ renderAll(); };
 window.__sheetSoft=function(p){ if(!p||!p.abilities) return; C=keepNewer(p); saveC(); renderAll(); };
-window.__sheetState=function(){ return {C:C, lang:S.lang}; };
+window.__sheetState=function(){ return {C:C, lang:S.lang, camp:campName()}; };
 window.__D=function(){ return D; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */
 window.__actProbe=function(C2){ var C0=C, S0=JSON.stringify(S), F0=actF, out=null; try{ C=C2; S=JSON.parse(S0); actF="all"; derive(); renderActions();
@@ -6782,6 +6787,7 @@ function doRest(kind,quiet){ sitReset(kind==='short'?'short':'long'); var ex0=nu
   else { var before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>0) S.exh--; if(S.hp>before) flash("healed"); if(hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
   if(kind!=="short"&&ex0>0){ try{ renderAll(); }catch(er){} }/* v94: a lower Exhaustion level changes Speed, checks, and (2014) the Hit Point maximum, so the sheet is worked out again */
 }
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-campadd]"); if(!b) return; e.preventDefault(); var t=[].slice.call(document.querySelectorAll("[data-tab='p-desc'],[data-go='6']")).filter(function(x){ return x.offsetParent; })[0]; if(t) t.click(); setTimeout(function(){ var i=$("#n-camp"); if(i){ i.scrollIntoView({block:"center"}); i.focus(); } },450); });/* T10 */
 ["#notesBody","#descBody"].forEach(function(sel){ var nb=$(sel); if(nb) nb.addEventListener("input",function(e){/* v23: Description tab too */
   var t=e.target;
   if(t.hasAttribute("data-note")){ S.notes[t.getAttribute("data-note")]=t.value; save(); }
@@ -13105,7 +13111,7 @@ function byOk(by){if(!by)return true;var s=String(by),cls=Object.keys(CLASSES).f
  var sp=Object.keys(SPECIES).filter(function(n){return new RegExp("\\b"+n+"\\b").test(s)});if(sp.length)return sp.indexOf(B.species)>=0;return true}
 function activeFx(){var out=[],att=0,am=attMax();(B.inv||[]).forEach(function(x){if(!x.eq)return;var d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}var f=d[5]&&d[5].fx,bb=baseOf(x.n).b;if(f)out.push({n:x.n,fx:f,arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
 function htText(sp,size){var h=HEIGHT[sp]&&HEIGHT[sp][size];if(!h)return "";return "about "+h[0]+"\u2013"+h[1]+" ft tall (\u2248"+Math.round(h[0]*30.48)+"\u2013"+Math.round(h[1]*30.48)+" cm)"}
-var BLANK={name:"New Hero",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
+var BLANK={name:"New Hero",camp:"",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
  base:{STR:15,DEX:14,CON:13,INT:12,WIS:10,CHA:8},armor:"",shield:false,weps:[],ch:{},method:"manual",eqC:"A",eqB:"A",size:""};
 /* RU30: a new character starts with nothing chosen. B.unset lists what the player has not chosen yet (cls, species, bg, abil, eqC, eqB).
    The values behind it stay as in BLANK, so every rule still computes, but the builder shows the choice lists and the sheet stays empty
@@ -13725,7 +13731,7 @@ function toSheet(){
  var spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  var subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
  var bg=BACKGROUNDS[B.bg],feats=allFeats();
- var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
+ var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",camp:B.camp||"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
  ABK.forEach(function(k){C.abilities[k]={base:+B.base[k]||10,bonus:a.src[k].map(function(b){return {s:b.s,v:b.v}})}});
  c.saves.forEach(function(k){C.saves[k]=B.cls+" class ("+SRC+")"});
  if(sp&&sp.saveProf&&!custom)sp.saveProf.forEach(function(k){if(!C.saves[k])C.saves[k]=B.species+" ("+(sp.hb||SRC)+")"});/* v74: species saving throw proficiency (Keldon Human) */
@@ -14264,7 +14270,7 @@ function mcFromSheet(C,main){var parts=String(C.clsLabel||"").split(" / ").map(f
  var subs={};(C.features||[]).forEach(function(g){var m=/^([A-Za-z]+) \(multiclass \d+\)(?:: (.+))?$/.exec(g.g||"");if(m)subs[m[1]]=m[2]||""});
  var out=[];parts.slice(1).forEach(function(p){if(!p||!CLASSES[p.cls]||p.cls===main||out.some(function(x){return x.cls===p.cls}))return;out.push({cls:p.cls,lv:Math.max(1,Math.min(20,p.lv)),sub:subs[p.cls]||""})});
  return out}
-function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
+function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.camp=String((typeof st.camp==="string")?st.camp:(C.camp||C.office||"")).trim();if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
  var spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
  (function(){var best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
@@ -15036,6 +15042,9 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  return false}
 function render(){try{window.__bldArt&&window.__bldArt(step,B)}catch(e){}try{var hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
+ /* T10: which campaign the character belongs to. Optional. A non-empty value goes to the sheet on Apply */
+ if(!$("#cpIn")){if(!B.camp&&window.__sheetCamp){var sc0=window.__sheetCamp();if(sc0){B.camp=sc0;save()}}var nr=$("#nameRow");if(nr){var cr=document.createElement("div");cr.className="bnm";cr.id="campRow";cr.innerHTML='<label for="cpIn">Campaign</label><input class="btx" id="cpIn" autocomplete="off" placeholder="Optional, for example Lost Mine">';nr.parentNode.insertBefore(cr,nr.nextSibling)}}
+ if($("#cpIn")&&$("#cpIn").value!==(B.camp||"")&&document.activeElement!==$("#cpIn"))$("#cpIn").value=B.camp||"";
  var csP=null;try{csP=choices()}catch(e){}
  $("#steps").innerHTML=STEPS.map(function(s){var pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
  var on=$("#steps .on");if(on)on.scrollIntoView({block:"nearest",inline:"center"});
@@ -15135,6 +15144,7 @@ document.addEventListener("input",function(e){if(e.target.closest&&e.target.clos
 document.addEventListener("change",function(e){if(e.target.closest&&e.target.closest("#bld .hbmk"))HBF=hbRead();});
 document.addEventListener("input",function(e){if(!e.target.closest("#bld"))return;var t=e.target;
  if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
+ if(t.id==="cpIn"){B.camp=t.value;save();return}
  if(t.id==="packtxt"){packTxt=t.value;return}
  if(t.id==="custn"){cust.n=t.value;return}
  if(t.id==="custd"){cust.d=t.value;return}
@@ -15335,7 +15345,7 @@ window.__bldLevelUp=function(){var st0=window.__sheetState&&window.__sheetState(
  var st=window.__sheetState&&window.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){step="class";render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
  if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();step="class";applyPacks();render();
  toast("Level "+TL()+": "+B.cls+" "+B.level+". New choices are marked. To level another class instead, change it in the Class step. Apply when you are done.")};
-window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;document.body.style.overflow="hidden";var st=window.__sheetState&&window.__sheetState();
+window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&window.__sheetCamp){var sc1=window.__sheetCamp();if(sc1){B.camp=sc1;save()}}var ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";var st=window.__sheetState&&window.__sheetState();
  var load=function(more){var miss=fromSheet(st);stamp();save();step="class";toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
  if(st&&st.C){var raw=savedRaw();
   /* no saved build yet (old manual sheet): nothing to lose, import as before */
@@ -15359,7 +15369,7 @@ function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel",
  C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};C.profSrc={armor:[],weapons:[],tools:[]};C.acts=[];
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}
 function toSheetApply(review){var miss=unList();if(miss){toast("Choose your "+miss+" first");return}var C=toSheet(),cur=window.__sheetName?window.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
- var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
+var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
  if(review===true&&RI.length){ask("Apply this build to the sheet?"+imsg,"Apply",function(){toSheetApply(false)});return}
  /* M3 / RU4: manual sheet entries that Apply drops (Logic manualLost). Cancel keeps the sheet. Nothing is carried over */
  var st=window.__sheetState?window.__sheetState():null,lost=manualLost(st&&st.C,C),lt=[];

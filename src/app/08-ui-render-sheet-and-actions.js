@@ -5,7 +5,7 @@ var TITLE0=document.title;
 function phOpen(){ try{ var r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
   document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
-  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
+  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=false; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':'<button type="button" class="camp-add" data-campadd="1">'+ico("ui-flag")+'<span>Add campaign</span></button>';/* T10: an empty campaign offers itself */ }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;
   $("#miniSub").textContent = C.species+" "+clsLv();
