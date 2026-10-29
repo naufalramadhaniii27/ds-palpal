@@ -1930,12 +1930,12 @@ art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
 art/batch/scenes/environment/forest-pc.png
 art/batch/scenes/environment/forest-phone.png
-art/batch/scenes/environment/battle-pc.png
 art/batch/scenes/environment/battle-phone.png
-art/batch/scenes/environment/city-pc.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
+art/batch/scenes/environment/battle-pc.png
+art/batch/scenes/environment/city-pc.png
 
 ## batch-065 v3
 art/batch/scenes/species/aarakocra-pc.png
