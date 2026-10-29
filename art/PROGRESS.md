@@ -4528,6 +4528,11 @@ art/batch/emblems/subclass/extra/college-of-spirits.png
 art/batch/emblems/subclass/extra/college-of-swords.png
 art/batch/emblems/subclass/extra/college-of-whispers.png
 art/batch/emblems/subclass/extra/college-of-the-moon.png
+art/batch/emblems/subclass/extra/draconic-bloodline.png
+art/batch/emblems/subclass/extra/oath-of-conquest.png
+art/batch/emblems/subclass/extra/oath-of-redemption.png
+art/batch/emblems/subclass/extra/oath-of-the-crown.png
+art/batch/emblems/subclass/extra/oath-of-the-noble-genies.png
 ## batch-125 v3
 art/batch/icons/items/magic/uncommon/simic-guild-signet.png
 art/batch/icons/items/magic/uncommon/simic-keyrune.png
