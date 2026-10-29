@@ -3213,6 +3213,11 @@ art/batch/creatures/humanoid/berserker.png
 art/batch/creatures/fiend-demon/cackler.png
 art/batch/creatures/monstrosity/category-1-krasis.png
 art/batch/creatures/elemental-genie/djinni.png
+art/batch/creatures/elemental/earth-elemental.png
+art/batch/creatures/elemental/fire-elemental.png
+art/batch/creatures/elemental/galvanice-weird.png
+art/batch/creatures/beast/giant-boar.png
+art/batch/creatures/beast/giant-canary.png
 
 ## batch-226 v3
 art/batch/monsters/dragon/ancient-green-dragon.png
