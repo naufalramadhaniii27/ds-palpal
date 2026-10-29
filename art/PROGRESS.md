@@ -2319,6 +2319,16 @@ art/batch/icons/items/magic/common/medal-of-the-horizonback.png
 art/batch/icons/items/magic/common/medal-of-the-maze.png
 art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
 
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2645,6 +2655,11 @@ art/batch/scenes/species/gnoll-pc.png
 art/batch/scenes/species/gnoll-phone.png
 art/batch/scenes/species/goblin-pc.png
 
+art/batch/scenes/species/goblin-phone.png
+art/batch/scenes/species/grimlock-pc.png
+art/batch/scenes/species/grimlock-phone.png
+art/batch/scenes/species/grung-pc.png
+art/batch/scenes/species/grung-phone.png
 ## batch-203 v3
 
 art/batch/creatures/beast/owl.png
