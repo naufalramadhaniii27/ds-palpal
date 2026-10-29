@@ -3242,6 +3242,11 @@ art/batch/icons/features/class/sorcerer/sorcerous-restoration.png
 art/batch/icons/features/class/sorcerer/sorcery-incarnate.png
 art/batch/icons/features/class/sorcerer/spellcasting.png
 art/batch/icons/features/class/warlock/contact-patron.png
+art/batch/icons/features/class/warlock/eldritch-invocations.png
+art/batch/icons/features/class/warlock/eldritch-master.png
+art/batch/icons/features/class/warlock/magical-cunning.png
+art/batch/icons/features/class/warlock/mystic-arcanum.png
+art/batch/icons/features/class/warlock/pact-magic.png
 ## batch-227 v3
 art/batch/monsters/fiend/hezrou.png
 art/batch/monsters/fiend/nalfeshnee.png
