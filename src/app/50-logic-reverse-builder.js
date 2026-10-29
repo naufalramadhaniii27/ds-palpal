@@ -23,9 +23,9 @@ function rbOrder(goals,c){ var w={}, add=function(k,v){ w[k]=(w[k]||0)+v; };
   var sc=(c.abilities)||{}; RB_AB.forEach(function(k){ var a=sc[k]; if(a) add(k,(+a.base||10)/100); });/* ties: keep the build's own order */
   return RB_AB.slice().sort(function(a,b){ return (w[b]||0)-(w[a]||0); }); }
 /* the numbers of one try, from the real derivation */
-function rbEval(nb,goals,opts){ var c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ return null; } if(!c2||!c2.abilities) return null;
+function rbEval(nb,goals,opts,bat){ var c2=null, t0=performance.now(); try{ c2=bat?bat.one(nb):window.__bldSheetFor(nb); }catch(e){ return null; } var t1=performance.now(); RB.st.bld+=t1-t0; if(!c2||!c2.abilities) return null;
   var keepC=C, keepD=D, keepB=B, keepCU=CU0, o={};
-  try{ C=c2; derive(); o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach(function(s,i){ o.sk[s.n]=D.skill[i]; }); o.sv=JSON.parse(JSON.stringify(D.save||{}));
+  try{ C=c2; derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach(function(s,i){ o.sk[s.n]=D.skill[i]; }); o.sv=JSON.parse(JSON.stringify(D.save||{}));
     o.atk=null; (D.atk||[]).forEach(function(a){ if(a&&isFinite(a.hit)) o.atk=o.atk==null?a.hit:Math.max(o.atk,a.hit); });
     o.mod=JSON.parse(JSON.stringify(D.mod)); o.score=JSON.parse(JSON.stringify(D.score)); o.armorP=String((c2.profs||{}).armor||"");
     o.acBonus=((c2.ac||{}).bonus||[]).reduce(function(a,b){ return a+(+b.v||0); },0); o.acNow=String((c2.ac||{}).baseSrc||""); }
@@ -53,16 +53,19 @@ function rbDiff(b0,nb,o){ var d=[]; if(nb.species!==b0.species) d.push("Species 
   if(o.alt) d.push(o.alt.armor+(o.alt.shield?" and a Shield":"")); return d; }
 function rbSearch(){ var goals=rbGoals(), box=document.querySelector("#sheetBody .rb-out"); if(!box) return; if(!goals.length){ box.innerHTML='<p class="bk-f">Fill in at least one goal.</p>'; return; }
   var opts=window.__bldOpts&&window.__bldOpts(); if(!opts||!opts.b||!opts.b.cls){ box.innerHTML='<p class="bk-f">Open the builder once, then try again.</p>'; return; }
-  var run=++RB.run, T=rbTries(opts,goals,C), i=0, hits=[], near=[], t0=Date.now();
+  var run=++RB.run, T=rbTries(opts,goals,C), i=0, hits=[], near=[], t0=Date.now(); RB.st={n:0,bld:0,der:0,tries:T.list.length,t:0,h:2166136261};
   box.innerHTML='<p class="bk-f rb-prog" aria-live="polite">Trying builds: 0 of '+T.list.length+'</p>';
-  (function slice(){ if(run!==RB.run) return; var end=Date.now()+40;
-    while(i<T.list.length&&Date.now()<end){ var t=T.list[i++], nb=rbBuild(opts.b,t,T.order), o=rbEval(nb,goals,opts); if(!o) continue;
+  /* N29: one batch for the whole search (builder tables set up only when they change), paused at the end of each slice */
+  var bat=!RB.slow&&window.__bldSheetBatch?window.__bldSheetBatch():null;
+  (function slice(){ if(run!==RB.run){ if(bat) bat.end(); return; } var end=Date.now()+40;
+    while(i<T.list.length&&Date.now()<end){ var t=T.list[i++], nb=rbBuild(opts.b,t,T.order), o=rbEval(nb,goals,opts,bat); if(!o) continue;
       var m=goals.map(function(g){ return rbMeets(o,g); }), miss=m.filter(function(x){ return !x.ok; }).length, gap=goals.reduce(function(a,g,j){ return a+Math.max(0,g.min-(m[j].v==null?-99:m[j].v)); },0);
+      var hs=JSON.stringify(o), hh=RB.st.h>>>0; for(var q=0;q<hs.length;q++){ hh^=hs.charCodeAt(q); hh=Math.imul(hh,16777619)>>>0; } RB.st.h=hh;/* N29: one fingerprint of every try's numbers */
       var rec={nb:nb,o:o,m:m,diff:rbDiff(opts.b,nb,o),gap:gap}; if(!miss) hits.push(rec); else near.push(rec); }
     var p=document.querySelector("#sheetBody .rb-prog"); if(p) p.textContent="Trying builds: "+i+" of "+T.list.length;
-    if(i<T.list.length){ setTimeout(slice,0); return; }
+    if(bat) bat.pause(); if(i<T.list.length){ setTimeout(slice,0); return; } if(bat) bat.end();
     hits.sort(function(a,b){ return a.diff.length-b.diff.length||b.o.hp-a.o.hp; }); near.sort(function(a,b){ return a.gap-b.gap||a.diff.length-b.diff.length; });
-    RB.res=hits.length?hits.slice(0,6):near.slice(0,3); RB.goals=goals; RB.ok=!!hits.length; RB.opts=opts;
+    RB.st.t=Date.now()-t0; RB.res=hits.length?hits.slice(0,6):near.slice(0,3); RB.goals=goals; RB.ok=!!hits.length; RB.opts=opts;
     box.innerHTML='<p class="bk-f">'+T.list.length+' builds tried in '+((Date.now()-t0)/1000).toFixed(1)+' s. '+(hits.length?hits.length+' reach every goal'+(hits.length>6?', the 6 with the fewest changes are shown':'')+'.':'None reaches every goal. The closest ones:')+'</p>'+RB.res.map(rbCard).join(""); })(); }
 function rbCard(r,i){ var g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' near')+'"><ul>'+(r.diff.length?r.diff.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join(""):'<li>Your build already does it</li>')+'</ul><p class="rb-v">'+g.map(function(q,j){ var m=r.m[j]; return '<span class="'+(m.ok?'ok':'no')+'">'+esc(q.l)+' '+(m.v==null?'?':(q.k==="ac"||q.k==="hp"?m.v:sg(m.v)))+'</span>'; }).join("")+'</p>'+'<p class="rb-acts">'+(r.diff.length?'<button type="button" class="btn press" data-rbuse="'+i+'">Use this build</button>':'')+'<button type="button" class="btn press" data-rbduel="'+i+'">Test in fights</button></p><p class="bk-f rb-duel" aria-live="polite" hidden></p></div>'; }
 /* N22 build duel: 100 fights of this build and of the current one against the same group (src/tg/25-sim.js, window.__tgDuel).
@@ -92,4 +95,4 @@ document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.
   if(b.hasAttribute("data-rbopen")){ rbOpen(); return; } if(b.hasAttribute("data-rbgo")){ rbSearch(); return; }
   var r=RB.res&&RB.res[+b.getAttribute("data-rbuse")]; if(!r) return; var nb=rbFinal(r);
   closeSheet(); window.__bldUse(nb,"Build from Find a build"); });
-window.__rbOpen=rbOpen;
+window.__rbOpen=rbOpen; window.__rbStats=function(){ return RB.st||null; }; window.__rbSlow=function(v){ RB.slow=!!v; };/* N29 test: one by one, to compare *//* N29: time per part of the last search */
