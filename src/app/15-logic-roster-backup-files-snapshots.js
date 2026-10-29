@@ -203,6 +203,30 @@ var SN_BAD=false;
 function snGet(){ var raw=lsGet(SNKEY); try{ var o=JSON.parse(raw||"null"); if(o&&o.chars&&typeof o.chars==="object"){ SN_BAD=false; return o; } }catch(e){} SN_BAD=raw!=null; return {chars:{}}; }
 function snDrop(o){ var best=null; Object.keys(o.chars).forEach(function(id){ var L=o.chars[id]; if(L&&L.length){ var x=L[L.length-1]; if(!best||x.t<best.t) best={id:id,t:x.t}; } }); if(!best) return false; o.chars[best.id].pop(); if(!o.chars[best.id].length) delete o.chars[best.id]; return true; }
 function snPut(o){ if(FROZEN||SN_BAD) return false;/* a damaged snapshot store is not overwritten */ o._app=Math.max(+o._app||0,APP_VER); for(var n=0;n<60;n++){ var s=JSON.stringify(o); if(s.length<=SN_MAX){ try{ __store.setItem(SNKEY,s); return true; }catch(e){} } if(!snDrop(o)) return false; } return false; }
+/* T11 N25 self-healing storage: when the open character's sheet or play state cannot be read (BAD, recovery screen), the app looks for the
+   newest copy that can: the localStorage mirror of IndexedDB (src/boot/store-gate.js), the roster's copy, then the snapshots (newest first).
+   A copy counts when it reads as JSON of the known shape (sheet: v 3 with abilities, play state: an object). Writes are whole per key in both
+   stores, so the shape test is the check that matters: no checksum is added and no stored data changes shape. Restoring asks first, keeps the
+   unreadable text under cs-heal-v1, writes only the parts that were unreadable, and loads the app again */
+function healOkC(raw){ try{ var p=JSON.parse(raw); return !!(p&&p.v===3&&p.abilities); }catch(e){ return false; } }
+function healOkS(raw){ try{ var p=JSON.parse(raw); return !!(p&&typeof p==="object"&&!Array.isArray(p)); }catch(e){ return false; } }
+function healFind(){ var curC=lsGet(CKEY), curS=lsGet(KEY), needC=curC!=null&&!healOkC(curC), needS=curS!=null&&!healOkS(curS); if(!needC&&!needS) return null;
+  var L=[], add=function(src,t,c,st){ if(needC&&!healOkC(c)) return; if(!needC&&needS&&!healOkS(st)) return; L.push({src:src,t:t||0,C:needC?c:null,S:needS&&healOkS(st)?st:null}); };
+  try{ add("the second copy on this device",0,localStorage.getItem(CKEY),localStorage.getItem(KEY)); }catch(e){}
+  var r=null; try{ r=JSON.parse(lsGet(RKEY)||"null"); }catch(e){ r=null; } var e0=r&&r.chars&&r.active&&r.chars[r.active]; if(e0) add("the character list",e0.t,e0.C,e0.S);
+  if(r&&r.active){ var o=snGet(); (o.chars[r.active]||[]).forEach(function(x){ add("a snapshot ("+x.why+")",x.t,typeof x.C==="string"?x.C:JSON.stringify(x.C),x.S); }); }
+  if(!L.length) return {needC:needC,needS:needS,none:1};
+  var first=L[0].src.indexOf("second copy")===0?L[0]:null, rest=L.filter(function(x){ return x!==first; }).sort(function(a,b){ return b.t-a.t; });
+  var pick=first||rest[0]; pick.needC=needC; pick.needS=needS; var c=cOf(pick.C||curC); pick.label=(c.name||"Character")+(c.cls?", "+(c.clsLabel||(c.cls+" "+(c.level||""))):"")+(pick.t?", saved "+fmtAgo(pick.t):""); return pick; }
+function healHTML(){ var h=null; try{ h=healFind(); }catch(e){ h=null; } if(!h) return "";
+  if(h.none) return '<p class="muted">No readable copy of this character was found on this device. Download a backup and keep it.</p>';
+  return '<div class="rec-heal"><p><b>A readable copy was found</b> in '+esc(h.src)+': '+esc(h.label)+'.</p><div class="bkpr"><button type="button" class="btn pri press" data-rec="heal">Use This Copy</button></div></div>'; }
+function healUse(){ var h=healFind(); if(!h||h.none){ toast("No readable copy was found"); return; }
+  ask("Use the copy from "+h.src+" ("+h.label+")? The unreadable data is kept on this device (cs-heal-v1). Download Backup first if you want a file of it.","Use This Copy",function(){
+    try{ __store.setItem("cs-heal-v1",JSON.stringify({t:Date.now(),src:h.src,keys:(function(){ var k={}; k[CKEY]=lsGet(CKEY); k[KEY]=lsGet(KEY); return k; })()})); }catch(e){}
+    try{ if(h.needC&&h.C) __store.setItem(CKEY,h.C); if(h.needS&&h.S) __store.setItem(KEY,h.S); else if(h.needS) __store.removeItem(KEY); }catch(e){ toast("Could not write the copy: storage is full"); return; }
+    var go=function(){ sessionStorage.setItem("cs-skip","1"); __miReload(); }; if(__store.flush) __store.flush().then(go,go); else go(); }); }
+window.__healFind=healFind;
 function snTake(id,why,r){ if(FROZEN||!id) return; r=r||rGet(); if(!r||!r.chars||!r.chars[id]) return; var x=chRaw(id,r); if(!x.C) return; var s=x.S;
   try{ var so=JSON.parse(s||"null"); if(so&&so.portrait){ so.portrait=""; s=JSON.stringify(so); } }catch(e){}
   var o=snGet(), L=o.chars[id]||[], h=rawHash({B:x.B,C:x.C,S:s}); if(L[0]&&L[0].h===h) return;
