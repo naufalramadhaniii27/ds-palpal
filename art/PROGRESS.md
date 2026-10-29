@@ -3543,6 +3543,11 @@ art/batch/icons/features/subclass/path-of-wild-magic/unstable-backlash.png
 art/batch/icons/features/subclass/path-of-wild-magic/wild-surge.png
 art/batch/icons/features/subclass/path-of-the-ancestral-guardian/ancestral-protectors.png
 art/batch/icons/features/subclass/path-of-the-ancestral-guardian/consult-the-spirits.png
+art/batch/icons/features/subclass/path-of-the-ancestral-guardian/spirit-shield.png
+art/batch/icons/features/subclass/path-of-the-ancestral-guardian/vengeful-ancestors.png
+art/batch/icons/features/subclass/path-of-the-battlerager/battlerager-armor.png
+art/batch/icons/features/subclass/path-of-the-battlerager/battlerager-charge.png
+art/batch/icons/features/subclass/path-of-the-battlerager/reckless-abandon.png
 
 ## batch-210 v3
 
