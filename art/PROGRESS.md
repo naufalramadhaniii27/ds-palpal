@@ -3863,6 +3863,11 @@ art/batch/icons/spells/level-8/entrancing-mirrors.png
 art/batch/icons/spells/level-8/illusory-dragon.png
 art/batch/icons/spells/level-8/abi-dalzims-horrid-wilting.png
 art/batch/icons/spells/level-8/clone.png
+art/batch/icons/spells/level-8/animal-shapes.png
+art/batch/icons/spells/level-8/control-weather.png
+art/batch/icons/spells/level-8/earthquake.png
+art/batch/icons/spells/level-8/iron-body.png
+art/batch/icons/spells/level-9/imprisonment.png
 ## batch-234 v3
 art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
