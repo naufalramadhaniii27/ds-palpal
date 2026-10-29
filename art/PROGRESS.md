@@ -4258,6 +4258,11 @@ art/batch/icons/wild-shape/brown-bear.png
 art/batch/icons/wild-shape/black-bear.png
 art/batch/icons/wild-shape/panther.png
 art/batch/icons/wild-shape/dire-wolf.png
+art/batch/icons/wild-shape/giant-spider.png
+art/batch/icons/wild-shape/giant-toad.png
+art/batch/icons/wild-shape/giant-owl.png
+art/batch/icons/wild-shape/giant-constrictor-snake.png
+art/batch/icons/wild-shape/giant-octopus.png
 ## batch-236 v3
 art/batch/scenes/screen/learn-map-pc.png
 art/batch/scenes/screen/learn-map-phone.png
