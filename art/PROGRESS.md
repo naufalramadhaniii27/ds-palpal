@@ -3161,6 +3161,11 @@ art/batch/scenes/species/harengon-pc.png
 art/batch/scenes/species/harengon-phone.png
 art/batch/scenes/species/hexblood-pc.png
 
+art/batch/scenes/species/hexblood-phone.png
+art/batch/scenes/species/hobgoblin-pc.png
+art/batch/scenes/species/hobgoblin-phone.png
+art/batch/scenes/species/kalashtar-pc.png
+art/batch/scenes/species/kalashtar-phone.png
 ## batch-046 v3
 art/batch/icons/spells/level-3/summon-undead.png
 art/batch/icons/spells/level-3/vampiric-touch.png
@@ -3266,4 +3271,3 @@ art/batch/creatures/celestial/giant-eagle.png
 art/batch/creatures/celestial/giant-elk.png
 art/batch/creatures/beast/giant-hyena.png
 art/batch/creatures/celestial/giant-owl.png
-
