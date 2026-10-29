@@ -4115,6 +4115,11 @@ art/batch/icons/spells/level-9/psychic-scream.png
 art/batch/icons/spells/level-9/detonate.png
 art/batch/icons/spells/level-9/meteor-swarm.png
 art/batch/icons/spells/level-9/ravenous-void.png
+art/batch/icons/spells/level-9/wail-of-the-banshee.png
+art/batch/icons/spells/level-9/mass-polymorph.png
+art/batch/icons/spells/level-9/shapechange.png
+art/batch/icons/spells/level-9/time-stop.png
+art/batch/icons/spells/level-9/true-polymorph.png
 ## batch-175 v3
 art/batch/icons/features/subclass/psi-warrior/protective-field.png
 art/batch/icons/features/subclass/psi-warrior/psionic-power.png
