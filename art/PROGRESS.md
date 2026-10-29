@@ -3517,6 +3517,7 @@ art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
 art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
@@ -3547,3 +3548,9 @@ art/batch/icons/spell-schools/necromancy-school.png
 ## batch-135 v3
 art/batch/icons/items/magic/common/wand-of-scowls.png
 art/batch/icons/items/magic/common/wand-of-smiles.png
+## batch-155 v3
+art/batch/icons/features/subclass/alchemist/experimental-elixir.png
+art/batch/icons/features/subclass/alchemist/restorative-reagents.png
+art/batch/icons/features/subclass/alchemist/tool-proficiency.png
+art/batch/icons/features/subclass/alchemist/tools-of-the-trade.png
+art/batch/icons/features/subclass/arcane-archer/arcane-archer-lore.png
