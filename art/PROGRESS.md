@@ -2379,3 +2379,11 @@ art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-rebuke-the
 art/batch/icons/features/subclass/oath-of-redemption/emissary-of-redemption.png
 art/batch/icons/features/subclass/oath-of-redemption/oath-spells.png
 art/batch/icons/features/subclass/oath-of-redemption/protective-spirit.png
+
+## batch-044 v3
+art/batch/icons/spells/level-3/summon-lesser-demons.png
+art/batch/icons/spells/level-3/summon-shadowspawn.png
+art/batch/icons/spells/level-3/sylunes-viper.png
+art/batch/icons/spells/level-3/thunder-step.png
+art/batch/icons/spells/level-3/tidal-wave.png
+
