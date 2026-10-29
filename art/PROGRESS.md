@@ -3972,7 +3972,6 @@ art/batch/icons/features/subclass/path-of-the-zealot/zealous-presence.png
 art/batch/icons/features/subclass/psi-warrior/bulwark-of-force.png
 art/batch/icons/features/subclass/psi-warrior/guarded-mind.png
 
-NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
 art/batch/scenes/species/kobold-phone.png
