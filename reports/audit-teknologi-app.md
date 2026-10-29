@@ -47,3 +47,19 @@ Cara cek: hitung pemakaian tiap fitur di src/app, src/builder, src/css, src/html
 | JS | Gaya ES5 (`var` sekitar 5.200 kali, tanpa modul, tanpa async di app) | Jalan di semua browser. Bukan masalah bagi pengguna, tapi menyulitkan perawatan |
 | Ukuran | index.html 7,6 MB, 2,36 MB gzip | Builder dan data besar sudah ditunda (`data-defer`) |
 | Kompresi | Belum dicek di server live (butuh token Access) | Zstandard Baseline 2026. Perlu cek header live |
+
+## Di luar fitur browser (cek kedua, 2026-10-29)
+| Area | Keadaan sekarang | Teknologi terbaru | Manfaat |
+|---|---|---|---|
+| Hosting | Cloudflare Pages + Pages Functions | Cloudflare Workers dengan static assets. Dokumen Cloudflare: Workers punya fitur lebih luas. Fitur khusus Workers: Cron Triggers, Workers Logs, Rate Limiting, Gradual Deployments, Image Resizing, Queues, source maps. Durable Objects disarankan lewat Workers. Panduan migrasi resmi tersedia | Siklus harian bisa pakai Cron sungguhan (sekarang menumpang request pertama tiap hari). Log error server. Rate limit API. Rilis bertahap. Tidak terkena antrean 1 build Pages |
+| Build | build.py menggabung file, tanpa minify. JS sekitar 2,2 MB mentah | esbuild atau Lightning CSS untuk minify dan cek sintaks | File lebih kecil, app terbuka lebih cepat. Perlu dites tidak mengubah perilaku |
+| Sinkron | Revisi dengan base dan force, menarik data saat app dibuka atau tampil lagi | CRDT (Yjs, Automerge) dan sinkron real-time lewat Durable Objects | CRDT tidak perlu: karakter hampir selalu diubah satu orang, dan artikel local-first menyarankan tidak memakai CRDT untuk data satu penulis. Real-time lewat Durable Objects bisa dipertimbangkan bila perlu perubahan langsung muncul di perangkat lain |
+| Login | Cloudflare Access (email) | Passkeys (WebAuthn) | Perlu dicek apakah Access mendukung passkey sebagai metode login. Belum dicek |
+| AI di browser | Tidak ada | Chrome built-in AI: Translator, Language Detector, Summarizer stabil sejak Chrome 138. Prompt API tercantum Chrome 148. Hanya Chrome | Tidak cocok jadi fitur utama karena hanya Chrome. Teks Learn ditulis tangan |
+| Pengukuran | Tidak ada pengukuran performa di perangkat pengguna | Long Animation Frames API, metrik INP | Tahu bagian mana yang tersendat di HP pengguna |
+| Kompresi live | Belum bisa dicek dari workspace (jaringan ke situs live ditolak) | Zstandard Baseline 2026, Brotli | Perlu dicek lewat GitHub Actions live-check |
+
+Sumber tambahan:
+- https://developers.cloudflare.com/workers/static-assets/migrate-from-pages/
+- https://developer.chrome.com/docs/ai/built-in-apis
+- https://dev.to/raxxostudios/local-first-architecture-for-solo-apps-when-crdts-help-and-when-they-hurt-4pj0
