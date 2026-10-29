@@ -2917,6 +2917,11 @@ art/batch/icons/spells/level-6/find-the-path.png
 art/batch/icons/spells/level-6/true-seeing.png
 art/batch/icons/spells/level-6/dirge.png
 art/batch/icons/spells/level-6/leomunds-lamentable-belaborment.png
+art/batch/icons/spells/level-6/mass-suggestion.png
+art/batch/icons/spells/level-6/ottos-irresistible-dance.png
+art/batch/icons/spells/level-6/blade-barrier.png
+art/batch/icons/spells/level-6/chain-lightning.png
+art/batch/icons/spells/level-6/elminsters-effulgent-spheres.png
 ## batch-134 v3
 art/batch/icons/items/magic/common/medal-of-the-wetlands.png
 art/batch/icons/items/magic/common/medal-of-wit.png
@@ -2928,11 +2933,6 @@ art/batch/icons/items/magic/rare/spelljamming-helm.png
 art/batch/icons/items/magic/uncommon/wildspace-orrery.png
 art/batch/icons/items/magic/rare/mind-lash.png
 art/batch/icons/items/magic/rare/shield-of-far-sight.png
-art/batch/icons/spells/level-6/summon-dinosaur.png
-art/batch/icons/spells/level-6/summon-fiend.png
-art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
-art/batch/icons/spells/level-6/transport-via-plants.png
-art/batch/icons/spells/level-6/wall-of-thorns.png
 
 art/batch/icons/items/magic/common/medal-of-the-wetlands.png
 art/batch/icons/items/magic/common/medal-of-wit.png
