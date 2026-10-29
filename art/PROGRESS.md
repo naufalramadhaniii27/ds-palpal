@@ -3864,6 +3864,7 @@ art/batch/icons/feats/piercer.png
 art/batch/icons/feats/poisoner.png
 art/batch/icons/feats/polearm-master.png
 
+NEXT: batch-059 art/batch/icons/spells/level-9/wish.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
@@ -3948,6 +3949,7 @@ art/batch/vignettes/learn/hit-points-rests.png
 
 art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
+NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3978,6 +3980,14 @@ art/batch/scenes/species/kor-pc.png
 art/batch/scenes/species/kor-phone.png
 art/batch/scenes/species/kuo-toa-pc.png
 
+art/batch/scenes/species/kuo-toa-phone.png
+art/batch/scenes/species/leonin-pc.png
+art/batch/scenes/species/leonin-phone.png
+
+art/batch/scenes/species/lizardfolk-pc.png
+art/batch/scenes/species/lizardfolk-phone.png
+
+NEXT: batch-050 art/batch/icons/spells/level-5/antilife-shell.png
 ## batch-050 v3
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
@@ -3992,6 +4002,7 @@ art/batch/icons/spells/level-5/conjure-elemental.png
 art/batch/icons/spells/level-5/conjure-volley.png
 art/batch/icons/spells/level-5/far-step.png
 
+NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
 ## batch-138 v3
 art/batch/icons/feats/resilient.png
 art/batch/icons/feats/ritual-caster.png
