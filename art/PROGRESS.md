@@ -2018,7 +2018,6 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
-NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2035,6 +2034,11 @@ art/batch/icons/spells/level-6/contingency.png
 art/batch/icons/spells/level-6/druid-grove.png
 art/batch/icons/spells/level-6/fizbans-platinum-shield.png
 art/batch/icons/spells/level-6/forbiddance.png
+art/batch/icons/spells/level-6/globe-of-invulnerability.png
+art/batch/icons/spells/level-6/guards-and-wards.png
+art/batch/icons/spells/level-6/heal.png
+art/batch/icons/spells/level-6/primordial-ward.png
+art/batch/icons/spells/level-6/arcane-gate.png
 ## batch-145 v3
 art/batch/icons/rules/resources/death-save-success.png
 art/batch/icons/rules/resources/death-save-failure.png
