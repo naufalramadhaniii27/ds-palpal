@@ -4039,3 +4039,9 @@ art/batch/icons/spells/level-9/psychic-scream.png
 art/batch/icons/spells/level-9/detonate.png
 art/batch/icons/spells/level-9/meteor-swarm.png
 art/batch/icons/spells/level-9/ravenous-void.png
+## batch-175 v3
+art/batch/icons/features/subclass/psi-warrior/protective-field.png
+art/batch/icons/features/subclass/psi-warrior/psionic-power.png
+art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
