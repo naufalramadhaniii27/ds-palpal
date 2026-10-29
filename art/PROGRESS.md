@@ -2482,3 +2482,12 @@ art/batch/scenes/species/githzerai-phone.png
 art/batch/scenes/species/gnoll-pc.png
 art/batch/scenes/species/gnoll-phone.png
 art/batch/scenes/species/goblin-pc.png
+
+## batch-203 v3
+
+art/batch/creatures/beast/owl.png
+art/batch/creatures/beast/panther.png
+art/batch/creatures/beast/pony.png
+art/batch/creatures/dragon/pseudodragon.png
+art/batch/creatures/fiend-demon/quasit.png
+
