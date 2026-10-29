@@ -1975,6 +1975,14 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2093,6 +2101,26 @@ art/batch/icons/rules/actions/help-action.png
 art/batch/icons/rules/actions/hide-action.png
 art/batch/icons/rules/actions/influence-action.png
 art/batch/icons/rules/actions/magic-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2120,26 +2148,17 @@ art/batch/icons/items/magic/rare/galders-bubble-pipe.png
 art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
 
 
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
 art/batch/icons/items/magic/legendary/deck-of-several-things.png
 art/batch/icons/items/magic/rare/galders-bubble-pipe.png
 art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-language-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-natural-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-religious-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-self-preservation.png
+
 
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
@@ -2384,3 +2403,9 @@ art/batch/icons/spells/level-3/sylunes-viper.png
 art/batch/icons/spells/level-3/thunder-step.png
 art/batch/icons/spells/level-3/tidal-wave.png
 
+## batch-149 v3
+art/batch/icons/features/class/druid/wild-companion.png
+art/batch/icons/features/class/druid/wild-resurgence.png
+art/batch/icons/features/class/druid/wild-shape.png
+art/batch/icons/features/class/fighter/action-surge.png
+art/batch/icons/features/class/fighter/extra-attack.png
