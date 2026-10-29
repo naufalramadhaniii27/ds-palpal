@@ -3880,7 +3880,6 @@ art/batch/icons/feats/piercer.png
 art/batch/icons/feats/poisoner.png
 art/batch/icons/feats/polearm-master.png
 
-NEXT: batch-059 art/batch/icons/spells/level-9/wish.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
@@ -3965,7 +3964,6 @@ art/batch/vignettes/learn/hit-points-rests.png
 
 art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
-NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3988,7 +3986,6 @@ art/batch/icons/features/subclass/path-of-the-zealot/zealous-presence.png
 art/batch/icons/features/subclass/psi-warrior/bulwark-of-force.png
 art/batch/icons/features/subclass/psi-warrior/guarded-mind.png
 
-NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
 art/batch/scenes/species/kobold-phone.png
@@ -4038,7 +4035,6 @@ art/batch/icons/spells/level-5/summon-dragon.png
 art/batch/icons/spells/level-5/summon-plant.png
 art/batch/icons/spells/level-5/teleportation-circle.png
 
-NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
 ## batch-138 v3
 art/batch/icons/feats/resilient.png
 art/batch/icons/feats/ritual-caster.png
@@ -4158,6 +4154,38 @@ art/batch/icons/features/subclass/trickery-domain/blessing-of-the-trickster.png
 art/batch/icons/features/subclass/trickery-domain/channel-divinity-cloak-of-shadows.png
 
 
+art/batch/icons/features/subclass/psi-warrior/protective-field.png
+art/batch/icons/features/subclass/psi-warrior/psionic-power.png
+art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-movement.png
+art/batch/icons/features/subclass/soulknife/psi-bolstered-knack.png
+art/batch/icons/features/subclass/soulknife/psionic-power.png
+art/batch/icons/features/subclass/soulknife/psychic-blades.png
+art/batch/icons/features/subclass/soulknife/psychic-veil.png
+art/batch/icons/features/subclass/soulknife/psychic-whispers.png
+art/batch/icons/features/subclass/soulknife/rend-mind.png
+art/batch/icons/features/subclass/soulknife/soul-blades.png
+art/batch/icons/features/subclass/thief/fast-hands.png
+art/batch/icons/features/subclass/thief/second-story-work.png
+
+art/batch/icons/features/subclass/psi-warrior/protective-field.png
+art/batch/icons/features/subclass/psi-warrior/psionic-power.png
+art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-movement.png
+art/batch/icons/features/subclass/soulknife/psi-bolstered-knack.png
+art/batch/icons/features/subclass/soulknife/psionic-power.png
+art/batch/icons/features/subclass/soulknife/psychic-blades.png
+art/batch/icons/features/subclass/soulknife/psychic-veil.png
+art/batch/icons/features/subclass/psi-warrior/protective-field.png
+art/batch/icons/features/subclass/psi-warrior/psionic-power.png
+art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
+art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
+
 ## batch-156 v3
 art/batch/icons/features/subclass/archfey-patron/bewitching-magic.png
 art/batch/icons/features/subclass/archfey-patron/misty-escape.png
@@ -4218,6 +4246,17 @@ art/batch/icons/spells/level-5/synaptic-static.png
 art/batch/icons/spells/level-5/yolandes-regal-presence.png
 art/batch/icons/spells/level-5/bigbys-hand.png
 
+art/batch/icons/spells/level-5/tree-stride.png
+art/batch/icons/spells/level-5/commune.png
+art/batch/icons/spells/level-5/commune-with-nature.png
+art/batch/icons/spells/level-5/contact-other-plane.png
+art/batch/icons/spells/level-5/legend-lore.png
+art/batch/icons/spells/level-5/mordenkainens-lucubration.png
+art/batch/icons/spells/level-5/rarys-telepathic-bond.png
+art/batch/icons/spells/level-5/scrying.png
+art/batch/icons/spells/level-5/dominate-person.png
+art/batch/icons/spells/level-5/geas.png
+
 ## batch-213 v3
 
 art/batch/icons/items/gear/rations-1-day.png
@@ -4230,6 +4269,13 @@ art/batch/icons/items/gear/ball-bearings.png
 art/batch/icons/items/gear/caltrops.png
 art/batch/icons/items/gear/manacles.png
 art/batch/icons/items/gear/potion-of-healing.png
+
+
+art/batch/icons/items/gear/rations-1-day.png
+art/batch/icons/items/gear/torch.png
+art/batch/icons/items/gear/tinderbox.png
+art/batch/icons/items/gear/waterskin.png
+art/batch/icons/items/gear/lantern-hooded.png
 
 ## batch-061 v3
 art/batch/icons/wild-shape/wolf.png
@@ -4248,3 +4294,15 @@ art/batch/emblems/learn/rank-adventurer.png
 art/batch/emblems/learn/rank-hero.png
 art/batch/vignettes/learn/sela-narrate.png
 art/batch/vignettes/learn/sela-smile.png
+art/batch/scenes/screen/learn-map-pc.png
+art/batch/scenes/screen/learn-map-phone.png
+art/batch/scenes/screen/learn-trial-pc.png
+art/batch/scenes/screen/learn-trial-phone.png
+art/batch/emblems/learn/rank-novice.png
+
+## batch-140 v3
+art/batch/icons/rules/invocations/eldritch-invocation-agonizing-blast.png
+art/batch/icons/rules/invocations/eldritch-invocation-armor-of-shadows.png
+art/batch/icons/rules/invocations/eldritch-invocation-ascendant-step.png
+art/batch/icons/rules/invocations/eldritch-invocation-devils-sight.png
+art/batch/icons/rules/invocations/eldritch-invocation-devouring-blade.png
