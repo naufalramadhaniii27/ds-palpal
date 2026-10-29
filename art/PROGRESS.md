@@ -4486,3 +4486,8 @@ art/batch/icons/bastion/storehouse.png
 art/batch/icons/bastion/workshop.png
 art/batch/icons/bastion/gaming-hall.png
 art/batch/icons/bastion/greenhouse.png
+art/batch/icons/bastion/laboratory.png
+art/batch/icons/bastion/sacristy.png
+art/batch/icons/bastion/scriptorium.png
+art/batch/icons/bastion/stable.png
+art/batch/icons/bastion/teleportation-circle.png
