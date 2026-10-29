@@ -2991,6 +2991,11 @@ art/batch/creatures/aberration/slaad-tadpole.png
 art/batch/creatures/celestial/sphinx-of-wonder.png
 art/batch/creatures/beast/spider.png
 art/batch/creatures/fey/sprite.png
+art/batch/creatures/beast/tiger.png
+art/batch/creatures/beast/venomous-snake.png
+art/batch/creatures/beast/warhorse.png
+art/batch/creatures/beast/weasel.png
+art/batch/creatures/beast/wolf.png
 
 ## batch-045 v3
 art/batch/icons/spells/level-3/fireball.png
