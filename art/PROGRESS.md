@@ -1974,14 +1974,6 @@ art/batch/icons/spells/level-2/death-armor.png
 art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
-art/batch/icons/items/gear/riding-horse-with-tack.png
-art/batch/icons/items/gear/rowboat.png
-art/batch/icons/items/gear/wagon.png
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
