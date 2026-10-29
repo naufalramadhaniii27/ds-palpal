@@ -3089,6 +3089,11 @@ art/batch/icons/spells/level-6/circle-of-death.png
 art/batch/icons/spells/level-6/create-undead.png
 art/batch/icons/spells/level-6/eyebite.png
 art/batch/icons/spells/level-6/harm.png
+art/batch/icons/spells/level-6/magic-jar.png
+art/batch/icons/spells/level-6/soul-cage.png
+art/batch/icons/spells/level-6/bones-of-the-earth.png
+art/batch/icons/spells/level-6/create-homunculus.png
+art/batch/icons/spells/level-6/disintegrate.png
 ## batch-223 v3
 art/batch/ui/brush-underline.png
 art/batch/ui/seal-wax.png
