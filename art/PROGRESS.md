@@ -3786,6 +3786,23 @@ art/batch/icons/features/subclass/path-of-the-totem-warrior/aspect-of-the-beast.
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-seeker.png
 
 
+art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
+art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
+art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
+art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
+art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
+art/batch/icons/features/subclass/path-of-the-berserker/frenzy.png
+art/batch/icons/features/subclass/path-of-the-berserker/intimidating-presence.png
+art/batch/icons/features/subclass/path-of-the-berserker/mindless-rage.png
+art/batch/icons/features/subclass/path-of-the-berserker/retaliation.png
+art/batch/icons/features/subclass/path-of-the-giant/demiurgic-colossus.png
+art/batch/icons/features/subclass/path-of-the-giant/elemental-cleaver.png
+art/batch/icons/features/subclass/path-of-the-giant/giant-power.png
+art/batch/icons/features/subclass/path-of-the-giant/giants-havoc.png
+art/batch/icons/features/subclass/path-of-the-giant/mighty-impel.png
+art/batch/icons/features/subclass/path-of-the-storm-herald/raging-storm.png
+
+
 ## batch-049 v3
 art/batch/icons/spells/level-4/storm-sphere.png
 art/batch/icons/spells/level-4/vitriolic-sphere.png
@@ -3803,6 +3820,17 @@ art/batch/icons/spells/level-4/elemental-bane.png
 art/batch/icons/spells/level-4/fabricate.png
 art/batch/icons/spells/level-4/guardian-of-nature.png
 
+art/batch/icons/spells/level-4/storm-sphere.png
+art/batch/icons/spells/level-4/vitriolic-sphere.png
+art/batch/icons/spells/level-4/wall-of-fire.png
+art/batch/icons/spells/level-4/distorted-distance.png
+art/batch/icons/spells/level-4/greater-invisibility.png
+art/batch/icons/spells/level-4/hallucinatory-terrain.png
+art/batch/icons/spells/level-4/phantasmal-killer.png
+art/batch/icons/spells/level-4/blight.png
+art/batch/icons/spells/level-4/festering-blast.png
+art/batch/icons/spells/level-4/shadow-of-moil.png
+
 ## batch-137 v3
 art/batch/icons/feats/dual-wielder.png
 art/batch/icons/feats/durable.png
@@ -3814,6 +3842,21 @@ art/batch/icons/feats/heavily-armored.png
 art/batch/icons/feats/heavy-armor-master.png
 art/batch/icons/feats/inspiring-leader.png
 art/batch/icons/feats/keen-mind.png
+art/batch/icons/feats/dual-wielder.png
+art/batch/icons/feats/durable.png
+art/batch/icons/feats/elemental-adept.png
+art/batch/icons/feats/fey-touched.png
+art/batch/icons/feats/grappler.png
+art/batch/icons/feats/great-weapon-master.png
+art/batch/icons/feats/heavily-armored.png
+art/batch/icons/feats/heavy-armor-master.png
+art/batch/icons/feats/inspiring-leader.png
+art/batch/icons/feats/keen-mind.png
+art/batch/icons/feats/lightly-armored.png
+art/batch/icons/feats/mage-slayer.png
+art/batch/icons/feats/martial-weapon-training.png
+art/batch/icons/feats/medium-armor-master.png
+art/batch/icons/feats/moderately-armored.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
