@@ -2189,6 +2189,11 @@ art/batch/icons/spells/level-3/conjure-barrage.png
 art/batch/icons/spells/level-3/conjure-constructs.png
 art/batch/icons/spells/level-3/create-food-and-water.png
 art/batch/icons/spells/level-3/galders-tower.png
+art/batch/icons/spells/level-3/hunger-of-hadar.png
+art/batch/icons/spells/level-3/sleet-storm.png
+art/batch/icons/spells/level-3/spirit-guardians.png
+art/batch/icons/spells/level-3/stinking-cloud.png
+art/batch/icons/spells/level-3/summon-fey.png
 
 ## batch-067 v3
 art/batch/scenes/species/firbolg-pc.png
