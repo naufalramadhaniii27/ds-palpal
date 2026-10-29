@@ -4159,3 +4159,11 @@ art/batch/icons/feats/boon-of-dimensional-travel.png
 art/batch/icons/feats/boon-of-energy-resistance.png
 art/batch/icons/feats/boon-of-fate.png
 art/batch/icons/feats/boon-of-fortitude.png
+
+## batch-051 v3
+art/batch/icons/spells/level-5/tree-stride.png
+art/batch/icons/spells/level-5/commune.png
+art/batch/icons/spells/level-5/commune-with-nature.png
+art/batch/icons/spells/level-5/contact-other-plane.png
+art/batch/icons/spells/level-5/legend-lore.png
+
