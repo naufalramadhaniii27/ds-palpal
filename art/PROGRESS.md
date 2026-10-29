@@ -2050,6 +2050,11 @@ art/batch/scenes/species/bullywug-pc.png
 art/batch/scenes/species/bullywug-phone.png
 art/batch/scenes/species/centaur-pc.png
 
+art/batch/scenes/species/centaur-phone.png
+art/batch/scenes/species/changeling-pc.png
+art/batch/scenes/species/changeling-phone.png
+art/batch/scenes/species/fairy-pc.png
+art/batch/scenes/species/fairy-phone.png
 ## batch-042 v3
 art/batch/icons/spells/level-2/dragons-breath.png
 art/batch/icons/spells/level-2/earthbind.png
