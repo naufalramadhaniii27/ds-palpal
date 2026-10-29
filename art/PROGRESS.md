@@ -1938,6 +1938,7 @@ art/batch/scenes/environment/city-pc.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
+
 ## batch-065 v3
 art/batch/scenes/species/aarakocra-pc.png
 art/batch/scenes/species/aarakocra-phone.png
@@ -1951,3 +1952,9 @@ art/batch/icons/spells/level-5/awaken.png
 art/batch/icons/spells/level-5/control-winds.png
 art/batch/icons/spells/level-5/create-spelljamming-helm.png
 art/batch/icons/spells/level-5/passwall.png
+## batch-145 v3
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
