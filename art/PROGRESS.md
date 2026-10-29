@@ -1794,6 +1794,7 @@ art/batch/icons/rules/languages/language-druidic.png
 art/batch/icons/rules/languages/language-infernal.png
 art/batch/icons/rules/languages/language-primordial.png
 art/batch/icons/rules/languages/language-sylvan.png
+NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
