@@ -2092,3 +2092,8 @@ art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
 art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
 art/batch/icons/features/subclass/light-domain/warding-flare.png
 art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
+art/batch/icons/features/class/barbarian/primal-knowledge.png
+art/batch/icons/features/class/barbarian/rage.png
+art/batch/icons/features/class/barbarian/reckless-attack.png
+art/batch/icons/features/class/barbarian/relentless-rage.png
+art/batch/icons/features/class/barbarian/unarmored-defense.png
