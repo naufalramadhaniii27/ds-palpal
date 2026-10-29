@@ -4397,6 +4397,11 @@ art/batch/icons/items/gear/alchemists-fire.png
 art/batch/icons/items/gear/antitoxin.png
 art/batch/icons/items/gear/bell.png
 art/batch/icons/items/gear/blanket.png
+art/batch/icons/items/gear/block-and-tackle.png
+art/batch/icons/items/gear/book.png
+art/batch/icons/items/gear/bottle-glass.png
+art/batch/icons/items/gear/bucket.png
+art/batch/icons/items/gear/candle.png
 
 ## batch-062 v3
 art/batch/icons/familiars/frog-familiar.png
