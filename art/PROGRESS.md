@@ -2740,7 +2740,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -3342,3 +3341,11 @@ art/batch/icons/skills/arcana.png
 art/batch/icons/skills/deception.png
 art/batch/icons/skills/performance.png
 art/batch/icons/skills/religion.png
+## batch-209 v3
+
+art/batch/creatures/humanoid/knight.png
+art/batch/creatures/fiend/nightmare.png
+art/batch/creatures/humanoid-orc/orc-war-chief.png
+art/batch/creatures/celestial-angel/planetar.png
+art/batch/creatures/beast-dinosaur/plesiosaurus.png
+
