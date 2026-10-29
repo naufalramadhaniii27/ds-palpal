@@ -3307,3 +3307,9 @@ art/batch/icons/spells/level-4/death-ward.png
 art/batch/icons/spells/level-4/freedom-of-movement.png
 art/batch/icons/spells/level-4/gate-seal.png
 
+## batch-154 v3
+art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
+art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
+art/batch/icons/features/subclass/aberrant-mind/psychic-defenses.png
+art/batch/icons/features/subclass/aberrant-mind/revelation-in-flesh.png
+art/batch/icons/features/subclass/aberrant-mind/telepathic-speech.png
