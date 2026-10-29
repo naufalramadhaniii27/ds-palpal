@@ -3172,6 +3172,11 @@ art/batch/icons/spells/level-3/flame-arrows.png
 art/batch/icons/spells/level-3/fly.png
 art/batch/icons/spells/level-3/gaseous-form.png
 art/batch/icons/spells/level-3/haste.png
+art/batch/icons/spells/level-3/lightning-arrow.png
+art/batch/icons/spells/level-3/meld-into-stone.png
+art/batch/icons/spells/level-3/plant-growth.png
+art/batch/icons/spells/level-3/slow.png
+art/batch/icons/spells/level-3/speak-with-plants.png
 
 ## batch-225 v3
 art/batch/monsters/aberration/chuul.png
