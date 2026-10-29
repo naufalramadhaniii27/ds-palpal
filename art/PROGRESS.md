@@ -2495,3 +2495,9 @@ art/batch/creatures/beast/pony.png
 art/batch/creatures/dragon/pseudodragon.png
 art/batch/creatures/fiend-demon/quasit.png
 
+## batch-054 v3
+art/batch/icons/spells/level-6/conjure-fey.png
+art/batch/icons/spells/level-6/drawmijs-instant-summons.png
+art/batch/icons/spells/level-6/heroes-feast.png
+art/batch/icons/spells/level-6/planar-ally.png
+art/batch/icons/spells/level-6/scatter.png
