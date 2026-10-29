@@ -3909,6 +3909,31 @@ art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
 art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/owl-think.png
+art/batch/vignettes/learn/learn-play.png
+art/batch/vignettes/learn/learn-build.png
+art/batch/vignettes/learn/what-is-dnd.png
+art/batch/vignettes/learn/d20-test.png
+art/batch/vignettes/learn/advantage.png
+art/batch/vignettes/learn/abilities-skills.png
+art/batch/vignettes/learn/combat-turn.png
+art/batch/vignettes/learn/hit-points-rests.png
+
+art/batch/vignettes/learn/conditions.png
+art/batch/vignettes/learn/spells.png
+art/batch/vignettes/learn/explore-talk.png
+art/batch/vignettes/learn/owl-welcome.png
+art/batch/vignettes/learn/owl-explain.png
+art/batch/vignettes/learn/learn-play.png
+art/batch/vignettes/learn/learn-build.png
+art/batch/vignettes/learn/what-is-dnd.png
+art/batch/vignettes/learn/d20-test.png
+art/batch/vignettes/learn/advantage.png
+art/batch/vignettes/learn/abilities-skills.png
+art/batch/vignettes/learn/combat-turn.png
+art/batch/vignettes/learn/hit-points-rests.png
+
+art/batch/vignettes/learn/owl-cheer.png
+art/batch/scenes/screen/learn-pc.png
 NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
@@ -3936,12 +3961,16 @@ NEXT: batch-050 art/batch/icons/spells/level-5/antilife-shell.png
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
 
-NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
 ## batch-138 v3
 art/batch/icons/feats/resilient.png
 art/batch/icons/feats/ritual-caster.png
 art/batch/icons/feats/sentinel.png
 art/batch/icons/feats/shadow-touched.png
+art/batch/icons/feats/resilient.png
+art/batch/icons/feats/ritual-caster.png
+art/batch/icons/feats/sentinel.png
+art/batch/icons/feats/shadow-touched.png
+art/batch/icons/feats/sharpshooter.png
 ## batch-212 v3
 
 art/batch/icons/items/gear/arrows-20.png
