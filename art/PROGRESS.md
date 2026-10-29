@@ -3117,3 +3117,9 @@ art/batch/monsters/aberration/death-tyrant.png
 art/batch/monsters/aberration/spectator.png
 art/batch/monsters/aberration/gazer.png
 art/batch/monsters/aberration/beholder-zombie.png
+## batch-152 v3
+art/batch/icons/features/class/ranger/tireless.png
+art/batch/icons/features/class/ranger/weapon-mastery.png
+art/batch/icons/features/class/rogue/cunning-action.png
+art/batch/icons/features/class/rogue/cunning-strike.png
+art/batch/icons/features/class/rogue/devious-strikes.png
