@@ -2700,3 +2700,10 @@ art/batch/icons/features/class/monk/evasion.png
 art/batch/icons/features/class/monk/extra-attack.png
 art/batch/icons/features/class/monk/heightened-focus.png
 art/batch/icons/features/class/monk/martial-arts.png
+
+## batch-171 v3
+art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
+art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
+art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
+art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
+art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
