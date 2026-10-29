@@ -3724,3 +3724,10 @@ art/batch/icons/item-categories/simple-melee-weapons.png
 art/batch/icons/item-categories/martial-melee-weapons.png
 art/batch/icons/item-categories/simple-ranged-weapons.png
 art/batch/icons/item-categories/martial-ranged-weapons.png
+
+## batch-233 v3
+art/batch/icons/item-categories/adventuring-gear.png
+art/batch/icons/item-categories/tools.png
+art/batch/icons/item-categories/potion.png
+art/batch/icons/item-categories/wand-rod-and-staff.png
+art/batch/icons/items/magic/artifact/blackrazor.png
