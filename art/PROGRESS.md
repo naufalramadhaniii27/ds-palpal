@@ -3262,6 +3262,8 @@ art/batch/icons/features/class/wizard/memorize-spell.png
 art/batch/icons/features/class/wizard/ritual-adept.png
 art/batch/icons/features/class/wizard/scholar.png
 art/batch/icons/features/class/wizard/signature-spells.png
+art/batch/icons/features/class/wizard/spell-mastery.png
+art/batch/icons/features/class/wizard/spellcasting.png
 ## batch-227 v3
 art/batch/monsters/fiend/hezrou.png
 art/batch/monsters/fiend/nalfeshnee.png
