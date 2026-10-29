@@ -2030,6 +2030,11 @@ art/batch/icons/spells/level-5/songals-elemental-suffusion.png
 art/batch/icons/spells/level-5/swift-quiver.png
 art/batch/icons/spells/level-5/telekinesis.png
 art/batch/icons/spells/level-5/temporal-shunt.png
+art/batch/icons/spells/level-5/transmute-rock.png
+art/batch/icons/spells/level-6/contingency.png
+art/batch/icons/spells/level-6/druid-grove.png
+art/batch/icons/spells/level-6/fizbans-platinum-shield.png
+art/batch/icons/spells/level-6/forbiddance.png
 ## batch-145 v3
 art/batch/icons/rules/resources/death-save-success.png
 art/batch/icons/rules/resources/death-save-failure.png
