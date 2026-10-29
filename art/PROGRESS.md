@@ -2241,6 +2241,16 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2319,16 +2329,6 @@ art/batch/icons/items/magic/common/medal-of-the-horizonback.png
 art/batch/icons/items/magic/common/medal-of-the-maze.png
 art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
 
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2648,6 +2648,7 @@ art/batch/scenes/environment/feywild-phone.png
 art/batch/scenes/environment/underdark-pc.png
 art/batch/scenes/environment/underdark-phone.png
 art/batch/scenes/environment/plane-fire-pc.png
+art/batch/scenes/environment/plane-fire-pc.png
 ## batch-068 v3
 art/batch/scenes/species/githzerai-pc.png
 art/batch/scenes/species/githzerai-phone.png
@@ -2695,3 +2696,10 @@ art/batch/icons/spells/level-6/summon-fiend.png
 art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
 art/batch/icons/spells/level-6/transport-via-plants.png
 art/batch/icons/spells/level-6/wall-of-thorns.png
+
+## batch-150 v3
+art/batch/icons/features/class/monk/empowered-strikes.png
+art/batch/icons/features/class/monk/evasion.png
+art/batch/icons/features/class/monk/extra-attack.png
+art/batch/icons/features/class/monk/heightened-focus.png
+art/batch/icons/features/class/monk/martial-arts.png
