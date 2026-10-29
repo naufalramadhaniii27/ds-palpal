@@ -3296,4 +3296,9 @@ art/batch/icons/spells/level-4/banishment.png
 art/batch/icons/spells/level-4/death-ward.png
 art/batch/icons/spells/level-4/freedom-of-movement.png
 art/batch/icons/spells/level-4/gate-seal.png
+art/batch/creatures/beast/giant-rat.png
+art/batch/creatures/beast/giant-scorpion.png
+art/batch/creatures/monstrosity/griffon.png
+art/batch/creatures/aberration/intellect-devourer.png
+art/batch/creatures/beast/jackal.png
 
