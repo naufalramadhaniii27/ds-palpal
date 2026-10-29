@@ -11,7 +11,7 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 | N4 | Rekap sesi tanpa AI | Dari catatan kejadian N2: damage diterima, penyembuhan, spell dipakai, slot habis, rest, naik level. Kartu rekap bisa disimpan sebagai gambar. Jalan offline, tidak mengirim apa pun | N2, canvas | Alat yang ada membuat rekap dari rekaman suara memakai AI berbayar | Diterima 2026-10-29 |
 | N5 | Sheet masa depan | Lihat karakter dari level sekarang sampai 20: grafik HP, AC, bonus serangan, slot spell. Rencanakan pilihan level berikutnya lebih dulu | Mesin derivasi builder, SVG | Planner ada di game lain (Pathfinder). Gabungan planner dengan sheet yang hidup tidak ditemukan | Diterima 2026-10-29 |
 | N6 | Rules fuzzer | Alat Checker: membuat ribuan karakter sah secara acak lewat builder, lalu memeriksa aturan tetap (tidak ada NaN, slot sesuai tabel, ekspor lalu impor sama persis, AC masuk akal) | Builder, Node, tes | Teknik property testing sudah dikenal. Penerapan ke builder 5e tidak ditemukan | Diterima 2026-10-29 |
-| N7 | Playbar sesuai situasi | Sheet mengenali situasi dari keadaannya sendiri: bertarung (tombol New turn, menerima damage, death save), lihat bagian N7 rinci, menjelajah, istirahat. Tombol yang relevan naik ke depan. Dihitung di HP, tidak disimpan (sejalan U30) | State sheet, View Transitions | Tidak ditemukan | Diterima 2026-10-29 |
+| N7 | Playbar sesuai situasi | Sheet mengenali situasi dari keadaannya sendiri: bertarung (tombol New turn, menerima damage, death save), lihat bagian N7 rinci, menjelajah, istirahat. Tombol yang relevan naik ke depan. Dihitung di HP, tidak disimpan (sejalan U30) | State sheet, View Transitions | Tidak ditemukan | Ditolak 2026-10-29 |
 | N8 | Migrator cascade layer | Alat build: memindahkan 36 file patch CSS ke `@layer` secara otomatis. Playwright membandingkan gaya hasil di semua layar sebelum dan sesudah, harus sama persis, baru `!important` dibuang satu per satu | Playwright, `@layer` | Tidak ditemukan | Diterima 2026-10-29 |
 
 ## Urutan yang disarankan
@@ -21,7 +21,7 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 | 2 | N3 Struk angka | Fondasi untuk N1, N5, dan U40 (Explain any number) di Learn |
 | 3 | N2 Mesin waktu | Fondasi untuk N4 |
 | 4 | N8 Migrator layer | Membuka jalan perbaikan CSS di audit (prioritas 4) |
-| 5 | N1, N5, N4, N7 | Fitur yang terlihat pengguna |
+| 5 | N1, N5, N4 | Fitur yang terlihat pengguna |
 
 ## Batas
 - Semua jalan di paket gratis Cloudflare dan di HP, tanpa AI berbayar.
@@ -35,7 +35,7 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 - https://myarchivist.ai/dnd-session-recap
 - https://github.com/AClaybrook/DAndDSimulator
 
-## N7 rinci: cara mengenali situasi (2026-10-29)
+## N7 rinci: cara mengenali situasi (2026-10-29, ditolak user, disimpan sebagai catatan)
 Bukan AI. Aturan sederhana dari tindakan yang sudah dicatat sheet (label undo di 32-logic-play-undo-actions.js dan panel Situations di 34-ui-situations.js). App tidak tahu lemparan dadu fisik, jadi yang dibaca hanya tindakan di sheet.
 
 | Situasi | Sinyal yang menaikkan | Yang naik ke depan |
