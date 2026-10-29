@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """N8: computed-style snapshot of many screens, to prove a CSS change keeps every element looking the same.
 
-  python3 tests/style_snapshot.py OUT.json [--root DIR]          take a snapshot
+  python3 tests/style_snapshot.py OUT.json [--root DIR] [--variants]   take a snapshot (--variants adds Record skin, light theme and high contrast at 1250x850)
   python3 tests/style_snapshot.py --diff A.json B.json            list what differs (exit 1 when anything differs)
 
 Screens at 390x844 and 1250x850, motion off (so animations do not move values): Home, sheet tabs (all), the first detail panel,
@@ -30,14 +30,22 @@ def serve():
     return srv, "http://127.0.0.1:%d/index.html" % port
 async def shoot(pg, name, res):
     await pg.wait_for_timeout(700); res[name] = await pg.evaluate(SNAP, PROPS)
+VARIANTS = "--variants" in args
+if VARIANTS: args.remove("--variants")
 async def take(path):
     srv, url = serve(); res = {}
+    runs = [(390, 844, "", None), (1250, 850, "", None)]
+    if VARIANTS:
+        runs += [(1250, 850, " record", {"skin": "record"}), (1250, 850, " light", {"theme": "light"}), (1250, 850, " hc", "hc"), (390, 844, " record", {"skin": "record"})]
     async with async_playwright() as pw:
         b = await pw.chromium.launch()
-        for w, h in ((390, 844), (1250, 850)):
-            vp = "%dx%d" % (w, h)
+        for w, h, vtag, var in runs:
+            vp = "%dx%d%s" % (w, h, vtag)
             ctx = await b.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce", service_workers="block"); pg = await ctx.new_page()
             await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            if var == "hc": await pg.evaluate("()=>{ localStorage.setItem('cs-ui-hc', JSON.stringify({m:'on'})); }"); await pg.reload()
+            elif var:
+                await pg.evaluate("o=>{ var k='yudhi-kelapa-sheet-v1', s={}; try{ s=JSON.parse(localStorage.getItem(k)||'{}')||{}; }catch(e){} Object.assign(s,o); localStorage.setItem(k, JSON.stringify(s)); }", var); await pg.reload()
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(2500)
             await shoot(pg, vp + " home", res)
             await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(1500)

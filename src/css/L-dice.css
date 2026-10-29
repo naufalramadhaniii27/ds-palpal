@@ -1,0 +1,9 @@
+/* T11 D1: 3D dice tray (vendor/dice). Its own cascade layer after the app layer. The tray covers the screen without taking taps;
+   the result card of the roll (.mi-roll-o) stays above it */
+@layer dice{
+  #diceTray{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:0;transition:opacity .25s ease;contain:strict}
+  #diceTray.on{opacity:1}
+  #diceTray canvas{width:100%!important;height:100%!important;display:block}
+  .mi-roll-o.mi-roll-3d{z-index:2147483001}
+  @media (prefers-reduced-motion:reduce){ #diceTray{transition:none} }
+}

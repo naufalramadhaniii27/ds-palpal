@@ -109,7 +109,7 @@
 .photo .ph-t svg.ico{display:none}
 .photo.has .ph-sil,.photo.has .ph-cls,.photo.has .ph-t{display:none}
 .xph{align-items:baseline}
-.xpbar i{width:100%!important;transform-origin:left center;transition:transform .4s var(--ease-out)}
+.xpbar i{width:100%;transform-origin:left center;transition:transform .4s var(--ease-out)}
 .xpbtns{display:flex;gap:8px;margin-top:8px}
 .xpbtns .xpb{flex:1;min-height:40px;padding:0 10px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .xpbtns .xpb svg.ico{width:18px;height:18px;margin:0}
@@ -195,11 +195,11 @@
 
 /* v30 p06: audit fixes on the v30 screens */
 .flag{font-size:max(12px,calc(12px*var(--tz,1)))}
-.vb-n,.vb-ac b{font-size:calc(20px*var(--tz,1))!important}
-.vb-m,.vb-t{font-size:max(12px,calc(12px*var(--tz,1)))!important}
-.vb-cond{font-size:calc(14px*var(--tz,1))!important}
+.vb-n,.vb-ac b{font-size:calc(20px*var(--tz,1))}
+.vb-m,.vb-t{font-size:max(12px,calc(12px*var(--tz,1)))}
+.vb-cond{font-size:calc(14px*var(--tz,1))}
 .vb-bar,.vb-bar i{border-radius:4px}
-#app .band .mini b{font-size:calc(16px*var(--tz,1))!important}
+#app .band .mini b{font-size:calc(16px*var(--tz,1))}
 .hp-pre .pre{font-size:calc(16px*var(--tz,1))}
 .tmp-s output{font-size:calc(20px*var(--tz,1))}
 :root[data-skin="ddb"] .hp-max{font-size:calc(20px*var(--tz,1))}

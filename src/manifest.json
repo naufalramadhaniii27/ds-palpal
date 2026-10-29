@@ -54,7 +54,8 @@
     "css/33-store-wait.css",
     "css/34-cloud-sync.css",
     "css/35-friends.css",
-    "css/36-tidy.css"
+    "css/36-tidy.css",
+    "css/L-dice.css"
    ]
   },
   {
@@ -195,7 +196,8 @@
     "fx/20-k-pack-character-colour-icon.js",
     "fx/21-connected-home-sheet.js",
     "fx/22-home-hero.js",
-    "fx/24-class-art.js"
+    "fx/24-class-art.js",
+    "fx/25-dice3d.js"
    ]
   },
   {

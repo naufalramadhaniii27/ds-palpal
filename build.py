@@ -137,9 +137,12 @@ def assemble(srcdir):
             css = e["open"].startswith("<style")
             if css:
                 out.append(LAYER_ORDER + "@layer app{\n")
+                inapp = True
             for fn in e["files"]:
+                if css and os.path.basename(fn).startswith("L-") and inapp:
+                    out.append("\n}\n"); inapp = False  # files named L-*.css carry their own later layer (feat, learn, dice)
                 out.append(read(os.path.join(srcdir, fn)))
-            if css:
+            if css and inapp:
                 out.append("\n}\n")
             out.append(e["close"])
     return "".join(out)

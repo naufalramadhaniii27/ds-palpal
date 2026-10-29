@@ -54,14 +54,14 @@
 :root[data-hc] #toast,:root[data-hc] .toast,:root[data-hc] .hp-gest{background:var(--panel-2)!important;color:var(--ink)!important;border:2px solid var(--ink)!important}
 :root[data-hc] #toast *,:root[data-hc] .toast *{color:inherit!important}
 :root[data-hc] .ibtn,:root[data-hc] .hlink,:root[data-hc] .lk,:root[data-hc] #bld .lk,:root[data-hc] a{color:var(--info)!important}
-:root[data-hc] .del{color:var(--bad)!important}
+:root[data-hc] .del{color:var(--bad)}
 :root[data-hc] .r-uncommon{color:var(--hc-unc)!important}:root[data-hc] .r-rare{color:var(--hc-rare)!important}:root[data-hc] .r-veryrare{color:var(--hc-vr)!important}:root[data-hc] .r-legendary{color:var(--hc-leg)!important}:root[data-hc] .r-artifact{color:var(--hc-art)!important}
 :root[data-hc]{--hc-unc:#0f5127;--hc-rare:#0b4f8a;--hc-vr:#5b2185;--hc-leg:#6b3500;--hc-art:#8f1d14}
 @media (prefers-color-scheme:dark){:root[data-hc]:not([data-theme="light"]){--hc-unc:#7ee29a;--hc-rare:#8cc6ff;--hc-vr:#dcbcff;--hc-leg:#ffc078;--hc-art:#ff8f87}}
 :root[data-hc][data-theme="dark"],:root[data-hc][data-skin="ddb"]{--hc-unc:#7ee29a;--hc-rare:#8cc6ff;--hc-vr:#dcbcff;--hc-leg:#ffc078;--hc-art:#ff8f87}
 @media (prefers-color-scheme:dark){:root[data-hc] #bld{--hc-unc:#7ee29a;--hc-rare:#8cc6ff;--hc-vr:#dcbcff;--hc-leg:#ffc078;--hc-art:#ff8f87}}
 :root[data-hc] .vb[class*=r-],:root[data-hc] #bld .vb{border-color:currentColor!important}
-:root[data-hc] .pinb,:root[data-hc] .icn,:root[data-hc] #vbHpI,:root[data-hc] .hpor{color:var(--ink)!important}
+:root[data-hc] .pinb,:root[data-hc] .icn,:root[data-hc] #vbHpI,:root[data-hc] .hpor{color:var(--ink)}
 :root[data-hc] .ab.bd,:root[data-hc] .ab,:root[data-hc] #bld .skip,:root[data-hc] #bld .acc.todo,:root[data-hc] #bld .sprog,:root[data-hc] #bld .sprog.ok,:root[data-hc] .hpor{border-color:var(--line-2)!important}
 :root[data-hc] .hcard-top{background:var(--dinas)!important;background-image:none!important}
 :root[data-hc] .hwm,:root[data-hc] .band::before,:root[data-hc] .bdrop,:root[data-hc] [data-bdrop] body::before,:root[data-hc] .ihero,:root[data-hc] .ibtn,:root[data-hc] .igp{background-image:none!important}
@@ -73,14 +73,14 @@
 :root[data-hc] svg.ico,:root[data-hc] svg.aki,:root[data-hc] .icn svg,:root[data-hc] .fcat svg,:root[data-hc] .tile svg,:root[data-hc] .vb svg,:root[data-hc] #vbHpI svg,:root[data-hc] .bhint svg,:root[data-hc] .link svg{color:inherit!important}
 :root[data-hc] .pinb,:root[data-hc] svg.ico,:root[data-hc] svg.ist,:root[data-hc] .crow .cico svg.ico{opacity:1!important}
 :root[data-hc] .ibtn{background:var(--panel)!important}
-:root[data-hc] .tx.tmp-l{color:var(--info)!important}
+:root[data-hc] .tx.tmp-l{color:var(--info)}
 :root[data-hc] .abox svg{color:inherit!important;opacity:1!important}
 :root[data-hc] .ask{background:rgba(0,0,0,.86)!important}
 :root[data-hc] .ask .askb{border-color:#fff!important}
 :root[data-hc] .hpor{border-color:#fff!important}
-:root[data-hc] .photo{background-color:var(--panel-2)!important}
-:root[data-hc] .ph-t{background:var(--hcf)!important;color:var(--hcf-ink)!important}
-:root[data-hc] .band{background:var(--dinas)!important}
+:root[data-hc] .photo{background-color:var(--panel-2)}
+:root[data-hc] .ph-t{background:var(--hcf);color:var(--hcf-ink)}
+:root[data-hc] .band{background:var(--dinas)}
 :root[data-hc] .band .bb,:root[data-hc] .band #editBtn{border-color:var(--on-dinas)!important}
 :root[data-hc] #bld .bxbtn,:root[data-hc] #bld .bxbtn svg{color:var(--bad)!important}
 :root[data-hc] #bld .lvb,:root[data-hc] #bld .lvb.sm,:root[data-hc] #bld .sech2h,:root[data-hc] #bld .hbmk,:root[data-hc] #bld .qb,:root[data-hc] #bld .acc,:root[data-hc] #bld .acc.todo,:root[data-hc] #bld .sprog,:root[data-hc] #bld .vb,:root[data-hc] #bld .bdg,:root[data-hc] #bld .chip,:root[data-hc] #bld .btx,:root[data-hc] #bld .dd{border-color:var(--b-line2)!important}
@@ -89,9 +89,9 @@
 :root[data-hc] #bld .top,:root[data-hc] #bld .top *,:root[data-hc] #bld .foot #prev,:root[data-hc] #bld .foot #prev *{color:#fff!important}
 :root[data-hc] #bld .top .lvhead,:root[data-hc] #bld .foot #prev,:root[data-hc] #bld .st.on{border-color:#fff!important}
 :root[data-hc] #bld .top .tosheet,:root[data-hc] #bld .top .tosheet *,:root[data-hc] #bld .foot #next,:root[data-hc] #bld .foot #next *{background:#fff!important;color:#000!important;border-color:#fff!important}
-:root[data-hc] .cu-pen{background:var(--hcf)!important;color:var(--hcf-ink)!important}
+:root[data-hc] .cu-pen{background:var(--hcf);color:var(--hcf-ink)}
 :root[data-hc][data-hc] #bld .r-uncommon{color:var(--hc-unc)!important}:root[data-hc][data-hc] #bld .r-rare{color:var(--hc-rare)!important}:root[data-hc][data-hc] #bld .r-veryrare{color:var(--hc-vr)!important}:root[data-hc][data-hc] #bld .r-legendary{color:var(--hc-leg)!important}:root[data-hc][data-hc] #bld .r-artifact{color:var(--hc-art)!important}
-:root[data-hc] .hp-tmp{color:var(--info)!important}
+:root[data-hc] .hp-tmp{color:var(--info)}
 :root[data-hc] *,:root[data-hc] *::before,:root[data-hc] *::after{transition-property:transform,opacity!important}
 :root[data-hc] #toast,:root[data-hc] #btoast,:root[data-hc] .btoast,:root[data-hc] .tundo{transition:none!important;animation:none!important}
 :root[data-hc] .speff,:root[data-hc] .speff *,:root[data-hc] .dti,:root[data-hc] .dti *{color:var(--ink)!important}

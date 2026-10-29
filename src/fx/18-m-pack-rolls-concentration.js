@@ -69,8 +69,8 @@
     if(!calm()) cp.animate([{opacity:0,transform:"translate(-50%,16px) scale(.96)"},{opacity:1,transform:"translate(-50%,0)"}],{duration:320,easing:"cubic-bezier(.2,.8,.2,1)"});
     var tm=setTimeout(function(){ close(); },14000);
     function close(){ clearTimeout(tm); var c=cp; cp=null; if(!c) return; if(calm()){ rm(c); return; } c.animate([{opacity:1},{opacity:0,transform:"translate(-50%,10px)"}],{duration:220}).onfinish=function(){ rm(c); }; }
-    cp.addEventListener("click",function(e){ if(e.target.closest("[data-cpx]")){ close(); return; } if(e.target.closest("[data-cpr]")&&MIr.roll){ var r=MIr.roll({bon:bon},"","Concentration save (DC "+dc+")"), ok=r.v>=dc;
-        cp.querySelector(".mi-cpr").innerHTML='<strong class="'+(ok?"ok":"bad")+'">'+r.v+'</strong> '+(ok?"Concentration holds":"Concentration is broken"); J.add("conc","Concentration save "+r.v+" vs DC "+dc+(ok?", held":", broken")); clearTimeout(tm); tm=setTimeout(close,4000); } }); }
+    cp.addEventListener("click",function(e){ if(e.target.closest("[data-cpx]")){ close(); return; } if(e.target.closest("[data-cpr]")&&MIr.roll){ clearTimeout(tm); MIr.roll({bon:bon},"","Concentration save (DC "+dc+")",function(r){ var ok=r.v>=dc;/* T11 D2: the roll may wait for the 3D dice */
+        cp.querySelector(".mi-cpr").innerHTML='<strong class="'+(ok?"ok":"bad")+'">'+r.v+'</strong> '+(ok?"Concentration holds":"Concentration is broken"); J.add("conc","Concentration save "+r.v+" vs DC "+dc+(ok?", held":", broken")); clearTimeout(tm); tm=setTimeout(close,4000); }); } }); }
 
   /* I14 rounds in Combat View */
   function rnd(){ try{ return +(sessionStorage.getItem("mi-rnd-"+who())||1); }catch(e){ return 1; } }

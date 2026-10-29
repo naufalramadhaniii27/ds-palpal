@@ -56,19 +56,28 @@
   function parseDmg(x){ var terms=[], re=/([+-]?)(\d*)d(\d+)|([+-]?)(\d+)/g, m; while((m=re.exec(x))){ if(m[3]) terms.push({s:m[1]==="-"?-1:1,n:+(m[2]||1),f:+m[3]}); else terms.push({s:m[4]==="-"?-1:1,k:+m[5]}); } return terms; }
   var H=[]; try{ H=JSON.parse(sessionStorage.getItem("mi-rolls")||"[]")||[]; }catch(e){ H=[]; }
   function save(){ try{ sessionStorage.setItem("mi-rolls",JSON.stringify(H.slice(0,30))); }catch(e){} }
-  function doRoll(spec,mode,label){ var r={l:label,t:Date.now()}; if(spec.dtype) r.dt=spec.dtype;
-    if(spec.dmg){ var terms=parseDmg(spec.dmg), tot=0, parts=[], dice=[]; terms.forEach(function(q){ if(q.f){ var n=q.n*(mode==="crit"?2:1); for(var i=0;i<n;i++){ var v=d(q.f); dice.push(v); tot+=q.s*v; } parts.push((q.s<0?"-":"")+n+"d"+q.f); } else { tot+=q.s*q.k; parts.push((q.s<0?"-":"+")+q.k); } });
+  /* T11 D2: the dice a roll needs, in order. With 3D dice (vendor/dice, dice-box on Babylon and Havok) the values come from the
+     physics roll on screen. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
+  function diceOf(spec,mode){ if(spec.dmg){ var L=[]; parseDmg(spec.dmg).forEach(function(q){ if(q.f){ var n=q.n*(mode==="crit"?2:1); for(var i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
+  function doRoll(spec,mode,label,cb){ var need=diceOf(spec,mode), go=function(vals,three){ var r=finish(spec,mode,label,vals); r.three=!!three; after(r); if(cb) cb(r); };
+    if(window.__dice3d&&!calm()&&need.length&&need.length<=12){ window.__dice3d.roll(need).then(function(v){ go(v&&v.length===need.length?v:need.map(function(f){ return d(f); }),!!v); },function(){ go(need.map(function(f){ return d(f); }),false); }); return null; }
+    var r=finish(spec,mode,label,need.map(function(f){ return d(f); })); after(r); if(cb) cb(r); return r; }
+  function finish(spec,mode,label,vals){ var r={l:label,t:Date.now()}, vi=0; if(spec.dtype) r.dt=spec.dtype;
+    if(spec.dmg){ var terms=parseDmg(spec.dmg), tot=0, parts=[], dice=[]; terms.forEach(function(q){ if(q.f){ var n=q.n*(mode==="crit"?2:1); for(var i=0;i<n;i++){ var v=vals[vi++]; dice.push(v); tot+=q.s*v; } parts.push((q.s<0?"-":"")+n+"d"+q.f); } else { tot+=q.s*q.k; parts.push((q.s<0?"-":"+")+q.k); } });
       r.v=Math.max(0,tot); r.d="["+dice.join(", ")+"] "+parts.join("").replace(/^\+/,""); r.k=mode==="crit"?"crit":"dmg"; }
-    else { var a=d(20), b=d(20), use=mode==="adv"?Math.max(a,b):mode==="dis"?Math.min(a,b):a; r.nat=use; r.v=use+spec.bon; r.d=(mode?("["+a+", "+b+"] "+(mode==="adv"?"advantage":"disadvantage")+" "):"")+use+(spec.bon<0?" − "+(-spec.bon):" + "+spec.bon); r.k=use===20?"nat20":use===1?"nat1":"d20"; }
-    H.unshift(r); H=H.slice(0,30); save(); show(r); hist(); if(window.__miJournal&&(r.k!=="d20"||/save|check/i.test(label))) window.__miJournal.add("roll",label+": "+r.v+(r.k==="nat20"?" (natural 20)":r.k==="nat1"?" (natural 1)":"")); if(r.dt&&window.__miRoll&&window.__miRoll.fxDamage) setTimeout(function(){ window.__miRoll.fxDamage(r.dt); },650); return r; }
+    else { var a=vals[0], b=vals[1]||vals[0], use=mode==="adv"?Math.max(a,b):mode==="dis"?Math.min(a,b):a; r.nat=use; r.v=use+spec.bon; r.d=(mode?("["+a+", "+b+"] "+(mode==="adv"?"advantage":"disadvantage")+" "):"")+use+(spec.bon<0?" − "+(-spec.bon):" + "+spec.bon); r.k=use===20?"nat20":use===1?"nat1":"d20"; }
+    return r; }
+  function after(r){ var label=r.l;
+    H.unshift(r); H=H.slice(0,30); save(); show(r); hist(); if(window.__miJournal&&(r.k!=="d20"||/save|check/i.test(label))) window.__miJournal.add("roll",label+": "+r.v+(r.k==="nat20"?" (natural 20)":r.k==="nat1"?" (natural 1)":"")); if(r.dt&&window.__miRoll&&window.__miRoll.fxDamage) setTimeout(function(){ window.__miRoll.fxDamage(r.dt); },650); }
   (window.__miRoll=window.__miRoll||{}).roll=doRoll;
   var D20='<svg viewBox="0 0 100 100"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';
   function show(r){ play("dice"); var big=r.k==="nat20"||r.k==="nat1";
     if(calm()){ if(window.__miToast) window.__miToast(r.l+": "+r.v); return; }
-    var o=fx("mi-roll-o mi-roll-"+r.k,(big&&window.__artVig?window.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div><div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
+    var o=fx("mi-roll-o mi-roll-"+r.k+(r.three?" mi-roll-3d":""),(big&&window.__artVig?window.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+(r.three?"":'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div>')+'<div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
     var dz=o.querySelector(".dz"), rv=o.querySelector(".rv");
-    dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
-    rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});
+    if(r.three) o.style.setProperty("top","20%","important");/* T11 D2: above the 3D dice, which land in the middle (the app layer sets top with !important) */
+    if(dz) dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
+    rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:r.three?0:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});
     o.animate([{opacity:1},{opacity:1,offset:.82},{opacity:0}],{duration:2100,easing:"linear"}).onfinish=function(){ rm(o); };
     if(r.k==="nat20"){ setTimeout(function(){ play("crit"); MI.buzz("success"); if(window.__miBurst) window.__miBurst(innerWidth/2,innerHeight*.42,{n:28,colors:["#ffe7a3","#ffd166","#ffffff","#e2aa4c"],shape:"mi-star",dist:180,dur:1100}); },650); }
     if(r.k==="nat1"){ setTimeout(function(){ play("fail"); MI.buzz("heavy"); o.animate([{transform:"none"},{transform:"translateX(-10px)"},{transform:"translateX(8px)"},{transform:"translateX(-4px)"},{transform:"none"}],{duration:380,easing:"ease-out"}); },650); }
@@ -85,8 +94,9 @@
   if(shE&&shB){ new MutationObserver(bQ).observe(shE,{attributes:true,attributeFilter:["class"]}); new MutationObserver(bQ).observe(shB,{childList:true}); }
   addEventListener("click",function(e){ var s=e.target.closest&&e.target.closest("[data-mrs]"); if(s){ e.preventDefault(); e.stopPropagation(); var res=s.closest(".mi-rres"), r=res&&res.__r; if(!r) return; var c=st(), t=((c&&c.C&&c.C.name)||"I")+" rolled "+r.l+": "+r.v+" ("+r.d+")";
       if(navigator.share) navigator.share({text:t}).catch(function(){}); else if(navigator.clipboard) navigator.clipboard.writeText(t).then(function(){ s.textContent="Copied"; },function(){}); return; }
-    var b=e.target.closest&&e.target.closest(".mi-rb:not(.mi-4d6):not([data-cpr]):not([data-cpx])"); if(!b) return; e.preventDefault(); e.stopPropagation(); var w=b.closest(".mi-roll"); if(!w) return; var r=doRoll(w.__spec,b.getAttribute("data-mr"),w.__lab), res=w.querySelector(".mi-rres");
-    res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; res.animate([{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:300,delay:calm()?0:700,fill:"backwards",easing:"ease-out"}); },true);
+    var b=e.target.closest&&e.target.closest(".mi-rb:not(.mi-4d6):not([data-cpr]):not([data-cpx])"); if(!b) return; e.preventDefault(); e.stopPropagation(); var w=b.closest(".mi-roll"); if(!w) return; var res=w.querySelector(".mi-rres"); if(w.__busy) return; w.__busy=1;
+    doRoll(w.__spec,b.getAttribute("data-mr"),w.__lab,function(r){ w.__busy=0;
+    res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; res.animate([{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:300,delay:(calm()||r.three)?0:700,fill:"backwards",easing:"ease-out"}); }); },true);
   /* X4 drawer */
   var hb=null, dr=null;
   function hist(){ if(!H.length) return; if(!hb){ hb=D.createElement("button"); hb.type="button"; hb.className="mi-rhb"; hb.setAttribute("aria-label","Roll history"); hb.innerHTML=DI+'<b></b>'; D.body.appendChild(hb); hb.addEventListener("click",function(e){ e.stopPropagation(); openH(); }); }

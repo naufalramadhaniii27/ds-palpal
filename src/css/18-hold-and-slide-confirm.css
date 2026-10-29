@@ -34,5 +34,5 @@
  --z-amb:30;--z-amb-top:45;--z-rip:94;--z-fx:95;--z-float:96;--z-banner:97;--z-cover:99}
 html.mi-off #miAmb,html.mi-off .mi-fx,html.mi-off .mi-rip,html.mi-off .mi-float,html.mi-off .mi-lv,html.mi-lite #miAmb .p{display:none!important}
 html.mi-off .mi-bump,html.mi-off .mi-jelly,html.mi-off .btn.pri.lvup,html.mi-off .btn.pri.lvup::after,html.mi-off #vbHp .vb-hi,html.mi-off #hpBox .hp-h svg,html.mi-off .toast.on .tico{animation:none!important}
-html.mi-off #homeV .hcard,html.mi-off #homeV .hcreate{transform:none!important}
+html.mi-off #homeV .hcard,html.mi-off #homeV .hcreate{transform:none}
 
