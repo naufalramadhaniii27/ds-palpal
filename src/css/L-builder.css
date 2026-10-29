@@ -9,6 +9,10 @@
 #bld .exp .expb{transition:opacity .22s ease,transform .25s cubic-bezier(.2,.8,.2,1)}
 @starting-style{ #bld .exp .expb{opacity:0;transform:translateY(10px) scale(.98)} }
 @media (prefers-reduced-motion:reduce){ #bld .exp .expb{transition:none} }
+#bld .bmiss{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 14px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,#4ea1ff 55%,var(--line,#30373b));background:color-mix(in srgb,#4ea1ff 12%,transparent)}
+#bld .bmiss.ok{border-color:color-mix(in srgb,var(--good,#5fc28b) 50%,var(--line,#30373b));background:color-mix(in srgb,var(--good,#5fc28b) 10%,transparent)}
+#bld .bmiss b{font-size:18px}
+#bld .bmiss button{min-height:44px;padding:0 14px;border-radius:10px;font-weight:700}
 #bld .abgrid .abx{min-width:0}
 #bld .abgrid .abx>b{font-size:calc(13px*var(--tz,1));letter-spacing:.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 #bld .abgrid .abx input.btx{text-align:center;width:100%}
