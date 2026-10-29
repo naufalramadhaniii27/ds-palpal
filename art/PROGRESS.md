@@ -4154,3 +4154,8 @@ art/batch/icons/feats/protection.png
 art/batch/icons/feats/thrown-weapon-fighting.png
 art/batch/icons/feats/two-weapon-fighting.png
 art/batch/icons/feats/unarmed-fighting.png
+art/batch/icons/feats/boon-of-combat-prowess.png
+art/batch/icons/feats/boon-of-dimensional-travel.png
+art/batch/icons/feats/boon-of-energy-resistance.png
+art/batch/icons/feats/boon-of-fate.png
+art/batch/icons/feats/boon-of-fortitude.png
