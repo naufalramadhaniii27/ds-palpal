@@ -3307,17 +3307,12 @@ art/batch/icons/spells/level-4/banishment.png
 art/batch/icons/spells/level-4/death-ward.png
 art/batch/icons/spells/level-4/freedom-of-movement.png
 art/batch/icons/spells/level-4/gate-seal.png
+
 art/batch/icons/spells/level-4/mordenkainens-private-sanctum.png
 art/batch/icons/spells/level-4/otilukes-resilient-sphere.png
 art/batch/icons/spells/level-4/conjure-minor-elementals.png
 art/batch/icons/spells/level-4/conjure-woodland-beings.png
 art/batch/icons/spells/level-4/dimension-door.png
-
-art/batch/creatures/beast/giant-rat.png
-art/batch/creatures/beast/giant-scorpion.png
-art/batch/creatures/monstrosity/griffon.png
-art/batch/creatures/aberration/intellect-devourer.png
-art/batch/creatures/beast/jackal.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
