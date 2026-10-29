@@ -1801,3 +1801,9 @@ art/batch/portraits/vampire-b.png
 art/batch/portraits/vedalken-a.png
 art/batch/portraits/vedalken-b.png
 art/batch/portraits/verdan-a.png
+## batch-218 v3
+art/batch/icons/items/tools/dice-set.png
+art/batch/icons/items/tools/dragonchess-set.png
+art/batch/icons/items/tools/playing-card-set.png
+art/batch/icons/items/tools/three-dragon-ante-set.png
+art/batch/icons/items/gear/mount-saddle.png
