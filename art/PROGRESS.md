@@ -3685,6 +3685,11 @@ art/batch/icons/spells/level-8/mind-blank.png
 art/batch/icons/spells/level-8/demiplane.png
 art/batch/icons/spells/level-8/incendiary-cloud.png
 art/batch/icons/spells/level-8/maze.png
+art/batch/icons/spells/level-8/mighty-fortress.png
+art/batch/icons/spells/level-8/reality-break.png
+art/batch/icons/spells/level-8/tsunami.png
+art/batch/icons/spells/level-8/moment-of-prescience.png
+art/batch/icons/spells/level-8/telepathy.png
 ## batch-232 v3
 art/batch/icons/feat-categories/epic-boon.png
 art/batch/icons/coins/coin-pile.png
