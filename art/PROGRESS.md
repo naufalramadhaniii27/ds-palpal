@@ -1794,3 +1794,9 @@ art/batch/icons/rules/languages/language-druidic.png
 art/batch/icons/rules/languages/language-infernal.png
 art/batch/icons/rules/languages/language-primordial.png
 art/batch/icons/rules/languages/language-sylvan.png
+## batch-053 v3
+art/batch/icons/spells/level-5/animate-objects.png
+art/batch/icons/spells/level-5/awaken.png
+art/batch/icons/spells/level-5/control-winds.png
+art/batch/icons/spells/level-5/create-spelljamming-helm.png
+art/batch/icons/spells/level-5/passwall.png
