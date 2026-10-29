@@ -2577,6 +2577,11 @@ art/batch/icons/spells/level-3/sending.png
 art/batch/icons/spells/level-3/tongues.png
 art/batch/icons/spells/level-3/antagonize.png
 art/batch/icons/spells/level-3/catnap.png
+art/batch/icons/spells/level-3/enemies-abound.png
+art/batch/icons/spells/level-3/fast-friends.png
+art/batch/icons/spells/level-3/incite-greed.png
+art/batch/icons/spells/level-3/inflict-doubt.png
+art/batch/icons/spells/level-3/motivational-speech.png
 
 ## batch-149 v3
 art/batch/icons/features/class/druid/wild-companion.png
