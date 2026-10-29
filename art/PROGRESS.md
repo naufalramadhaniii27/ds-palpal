@@ -1996,3 +1996,16 @@ art/batch/icons/rules/actions/opportunity-attack.png
 art/batch/portraits/zombie-a.png
 art/batch/portraits/zombie-b.png
 
+## batch-200 v3
+
+art/batch/creatures/beast/ape.png
+art/batch/creatures/beast/badger.png
+art/batch/creatures/beast/bat.png
+art/batch/creatures/beast/black-bear.png
+art/batch/creatures/beast/boar.png
+art/batch/creatures/beast/brown-bear.png
+art/batch/creatures/beast/camel.png
+art/batch/creatures/beast/cat.png
+art/batch/creatures/beast/constrictor-snake.png
+art/batch/creatures/beast/crab.png
+
