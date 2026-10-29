@@ -11,7 +11,7 @@ Satu dokumen berisi seluruh riset, keputusan, dan urutan kerja Learn. Log usulan
 | Aturan | D&D 2024 saja, dicocokkan ke Library app |
 | Bentuk | Belajar interaktif, bukan komik. Tanpa suara. Visual dulu |
 | Gambar | Claude jalan duluan dengan gambar sementara. Gambar Codex (batch 234 sampai 236) dipasang begitu jadi |
-| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM, belajar bareng teman (U51), chat AI, dadu AR. Dadu fisika dibuat lewat N19 (keputusan user 2026-10-29) |
+| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM, belajar bareng teman (U51), chat AI, dadu AR. Dadu fisika memakai dice-box (keputusan user 2026-10-29) |
 
 ## Ukuran berhasil
 | Ukuran | Target | Cara ukur |
@@ -46,7 +46,7 @@ Dasar: app sekarang 7,6 MB (2,36 MB gzip), satu file HTML, tanpa library animasi
 | Geser kepingan, token, dadu | Pointer Events: setPointerCapture, `touch-action:none` hanya di benda yang digeser, ambang gerak sebelum mulai geser, `overflow-anchor:none` di area gulir | Satu cara untuk jari dan mouse. Tidak bentrok dengan scroll dan swipe app | Geser di 13 (bottom sheet), 27 (Library), 37 (hold and slide), 39 (HP drag) |
 | Pengganti geser (WCAG 2.2 SC 2.5.7, level AA) | Setiap geser punya cara ketuk: ketuk benda lalu ketuk tujuan, atau tombol + dan − | Wajib di WCAG 2.2. Juga membantu orang yang sulit menggeser | Library sudah punya tombol Add selain geser |
 | Keyboard | Enter atau Spasi mengangkat, panah memindah, Enter menaruh, Esc batal | Pola papan permainan yang aksesibel | Tombol app sudah fokus dengan Tab |
-| Animasi dadu | Mesin dadu fisika buatan sendiri N19 (claude/rencana-kerja-teknologi.md), sama dengan dadu di sheet. Diganti dari rencana dadu SVG 2D atas keputusan user 2026-10-29 | Gerakan fisika asli, ringan, hasil adil dan bisa dites dengan seed | Dibuat di G2 |
+| Animasi dadu | dice-box (D1 di claude/rencana-kerja-teknologi.md), sama dengan dadu di sheet. Keputusan user 2026-10-29 | Dadu 3D berfisika. Hasil tidak bisa ditentukan dulu, jadi peragaan Hoot yang butuh angka tertentu (misal contoh "Pas") memakai contoh tetap tanpa lempar, dan pelajaran menyesuaikan teks dengan hasil lemparan sungguhan | Dibuat di G2 |
 | Peragaan Hoot dan tangan bayangan | CSS transform dan opacity, urutan langkah dengan Web Animations API | 0 KB, jalan di luar thread utama. Lottie (sekitar 50 KB runtime) dan Rive (sekitar 200 KB) tidak perlu karena gambar Codex berupa gambar diam | Pola gerak di 19 dan 23 sampai 27 (fx) |
 | Motion off dan reduced motion | Peragaan berubah jadi langkah diam bernomor dengan panah. Dadu langsung menampilkan hasil | Aturan app | `REDUCE` di 07, 29-motion-off.css |
 | Grid giliran (Forest) | Elemen HTML: `role="grid"`, tiap kotak tombol berlabel, ketuk kotak tujuan untuk jalan, hasil diumumkan lewat `aria-live="polite"` | Canvas tidak terbaca pembaca layar dan tidak ikut zoom | Live region `ordLive` di 40 |
@@ -90,7 +90,7 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | U42 | Penanda `data-learn` | Titik screenshot, sorotan, dan tes dibuat dari atribut di kode UI | F1, F3 |
 | U43 | Gerbang bahasa sederhana | Build gagal bila teks Learn melanggar panduan. Menggantikan tes laporan saja di F0 | F0 |
 | U44 | Petunjuk bertingkat tanpa profil | Tingkat petunjuk dari kesalahan di langkah ini saja, tidak disimpan | F1 |
-| U45 | Dadu ber-seed | Peragaan dan tes memakai seed, hasil selalu sama. Latihan memakai crypto.getRandomValues. Riwayat lemparan bisa dilihat | F1 |
+| U45 | Dadu ber-seed | Diubah karena dice-box: tes logika memakai suspendSimulation atau angka masukan, peragaan dengan angka tertentu memakai contoh tetap. Riwayat lemparan dari Game Log | F1 |
 | U46 | Peta hubungan angka | Ketuk score, garis SVG ke semua angka yang dipengaruhinya. Geser score, angka ikut berubah. Data dari mesin derivasi (U39) | F4 (Village Green), F5 (di sheet) |
 | U47 | Coach mode di meja | Saklar opsional di sheet. Penggunaan pertama suatu aturan memunculkan satu kalimat dan tombol "Learn this", sekali saja | F5 |
 | U48 | Cek fakta EN dan ID | Tes: tiap teks punya EN dan ID, angka, nama aturan dan istilah kamus sama di kedua versi | F0 (bagian dari gerbang U43) |

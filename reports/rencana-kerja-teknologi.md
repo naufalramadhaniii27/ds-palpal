@@ -34,8 +34,9 @@ Teknologi terbaru (dari audit):
 | A9 | `light-dark()` dan `oklch()` untuk tema |
 | A10 | Pengukuran Long Animation Frames dan INP |
 | A11 | Cek kompresi zstd di live lewat GitHub Actions |
+| D1 | Dadu 3D berfisika dengan dice-box, dioptimalkan |
 
-Teknologi buatan sendiri: N19 Mesin dadu fisika, N1 Reverse Builder, N2 Mesin waktu, N3 Struk angka, N4 Rekap sesi, N5 Sheet masa depan, N6 Rules fuzzer, N8 Migrator layer, N9 Rules lint, N10 Chip peluang, N11 Build DNA, N12 Gabung per bagian, N13 Pratinjau restore, N14 Tingkat efek, N15 Tanya aturan, N16 Pratinjau Apply, N17 Status ke chat, N18 Laporan bug diputar ulang.
+Teknologi buatan sendiri: N1 Reverse Builder, N2 Mesin waktu, N3 Struk angka, N4 Rekap sesi, N5 Sheet masa depan, N6 Rules fuzzer, N8 Migrator layer, N9 Rules lint, N10 Chip peluang, N11 Build DNA, N12 Gabung per bagian, N13 Pratinjau restore, N14 Tingkat efek, N15 Tanya aturan, N16 Pratinjau Apply, N17 Status ke chat, N18 Laporan bug diputar ulang.
 
 ## Lempar dadu dan Game Log (keputusan user 2026-10-29)
 Keputusan lama di HANDOFF v18-v28 bagian 8 ("Lempar dadu, Game Log tidak dikerjakan") dibatalkan user. Dadu harus bergerak dengan fisika.
@@ -46,19 +47,33 @@ Keputusan lama di HANDOFF v18-v28 bagian 8 ("Lempar dadu, Game Log tidak dikerja
 | D-A Mesin dadu buatan sendiri (N19) | Perkiraan 20 sampai 30 KB | Ringan untuk HP murah, jalan offline, hasil bisa ditentukan dulu (adil dan bisa dites), tanpa library | Dibuat dari nol, tampilan lebih sederhana dari dadu 3D bercahaya |
 | D-B three.js 0.186 + cannon-es 0.20 | three.module.js 369 KB + three.core.js 390 KB min (sekitar 195 KB gzip), cannon-es 125 KB min (36 KB gzip). Bisa dipangkas lewat bundling | Cahaya dan bayangan realistis, library terkenal | Berat untuk app yang sudah 2,36 MB gzip. cannon-es terakhir rilis Agustus 2022 |
 | D-C @3d-dice/dice-box 1.1.4 | world.offscreen.min.js 1,45 MB + ammo.wasm 317 KB + tema 300 KB | Lengkap, siap pakai | Paling berat, butuh file wasm, rilis terakhir Agustus 2024 |
-Pilihan Claude: D-A. Bila hasil tampilan D-A tidak memuaskan saat uji, D-B jadi cadangan.
+Keputusan user 2026-10-29: D-C (dice-box) dengan cara paling optimal. N19 mesin buatan sendiri tidak dibuat.
 
-### N19 Mesin dadu fisika buatan sendiri
-| Bagian | Isi |
+### D1 dice-box optimal
+Paket: @3d-dice/dice-box 1.1.4 (MIT), berisi BabylonJS (Apache 2.0) dan Ammo.js (zlib). Diukur dari paket npm 2026-10-29.
+| File | Mentah | gzip |
+|---|---|---|
+| dice-box.es.min.js | 198 KB | 40 KB |
+| world.offscreen.min.js (Babylon di Web Worker) | 1,45 MB | 412 KB |
+| world.onscreen.min.js + Dice.min.js (Babylon di thread utama) | 391 KB + 692 KB | 87 KB + 168 KB |
+| ammo.wasm.wasm (fisika) | 317 KB | 128 KB |
+| Tema default (mesh 158 KB, tekstur sekitar 130 KB) | 288 KB | sekitar 165 KB |
+| Total sekali unduh, mode offscreen | sekitar 2,2 MB | sekitar 745 KB |
+
+| Cara optimal | Isi |
 |---|---|
-| Bentuk | d4, d6, d8, d10, d12, d20, d100 (dua d10) sebagai polihedron cembung |
-| Fisika | Benda kaku sederhana: gravitasi, pantulan dan gesekan dengan lantai dan dinding meja, tabrakan antar dadu (titik sudut terhadap bidang sisi). Langkah waktu tetap |
-| Hasil adil | Hasil diambil dulu dari crypto.getRandomValues. Gerakan disimulasikan seluruhnya dalam beberapa milidetik, lalu angka di sisi dadu dipetakan ulang lewat simetri dadu supaya sisi yang menghadap atas menunjukkan hasil tadi. Gerakannya tetap gerakan fisika asli (teknik rekam lalu putar ulang) |
-| Gambar | Canvas 2D, sisi diwarnai rata dengan cahaya sederhana, angka di tiap sisi. Diputar ulang dengan requestAnimationFrame |
-| Seed | Tes dan peragaan Learn memakai seed tetap (U45), hasil selalu sama |
-| Motion off dan HP lambat | Motion off: hasil langsung tampil tanpa gerak. HP lambat (N14): lebih sedikit langkah gambar |
-| Getar dan suara | buzz() dan setelan suara app saat dadu menyentuh meja |
-| Dipakai di | Sheet (semua lemparan), Learn (menggantikan rencana dadu SVG 2D), Meet your dice |
+| Tidak ikut saat app dibuka | dice-box tidak masuk index.html. Dimuat saat lemparan pertama, atau saat app diam (requestIdleCallback) setelah sheet tampil dan bukan mode hemat data (`navigator.connection.saveData`) |
+| Dari server sendiri | File disalin ke folder `dice/` di repo (versi dikunci 1.1.4), bukan dari CDN. Bisa ikut CSP tanpa membuka domain luar |
+| Offline | Service worker sudah menyimpan file same-origin yang pernah diambil. Setelah lemparan pertama, dadu jalan offline. Tombol "Make dice work offline" di Settings mengunduh semuanya sekali |
+| Thread utama tetap lancar | Mode offscreen (OffscreenCanvas, Babylon di Web Worker) bila didukung. Cadangan mode onscreen |
+| Satu instance | dice-box dibuat sekali, dipakai ulang tiap lemparan. Kanvas disembunyikan setelah dadu diam, `clear()` membersihkan dadu |
+| HP lemah (N14) | `enableShadows:false`, `scale` dan `lightIntensity` disesuaikan, `settleTimeout` lebih pendek |
+| Motion off atau Calm | `suspendSimulation:true`: tanpa 3D, angka langsung tampil |
+| Satu tema | Hanya tema default, warna mengikuti aksen app (`themeColor`) untuk terang dan gelap |
+| Hasil | Dari simulasi fisika dice-box. dice-box tidak punya opsi hasil yang ditentukan dulu |
+| Tes | Tes alur memakai `suspendSimulation` dan pilihan "I rolled myself". Tes visual cek kanvas muncul dan hilang, tidak memeriksa angka |
+| Lisensi | File lisensi MIT dice-box, Apache 2.0 Babylon (dengan NOTICE), dan zlib Ammo disertakan di `dice/` dan disebut di Settings |
+| CSP (G1) | dice-box butuh `'wasm-unsafe-eval'` untuk Ammo dan worker dari `data:`. CSP di G1 memberi izin itu khusus untuk kebutuhan ini |
 
 ### D2 Lempar dari sheet
 Ketuk skill, save, serangan, damage, Initiative, death save, atau Hit Point Dice: dadu dilempar, hasil dan rinciannya tampil (dadu, bonus, total). Advantage dan Disadvantage melempar dua d20. Critical Hit menggandakan dadu damage. Bila kamu memakai dadu fisik, ada pilihan "I rolled myself" untuk mengetik hasilnya.
@@ -69,7 +84,7 @@ Daftar lemparan per karakter: waktu, jenis, rincian, hasil. Disimpan lokal di In
 ### Penempatan di gelombang
 | Kerja | Gelombang |
 |---|---|
-| N19 mesin dadu | G2, karena dipakai Learn F1 |
+| D1 dice-box | G2, karena dipakai Learn F1 |
 | D2 lempar dari sheet | G4 |
 | D3 Game Log | G3 bersama N2 |
 
