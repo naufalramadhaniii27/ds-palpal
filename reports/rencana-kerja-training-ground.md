@@ -115,7 +115,7 @@ Keputusan: B. Pengaman yang dicatat: (1) tiap entri menyimpan `src` dan penanda 
 | Fase | Isi | Selesai bila |
 |---|---|---|
 | TG0 | Mesin pertarungan tanpa tampilan (reducer, giliran, gerak, serangan, kondisi, seed). Pengurai stat block. Tes Node | 1.000 pertarungan seed tetap: tanpa NaN dan loop, total HP konsisten, hasil sama saat diulang |
-| TG0b | Skrip `tools/` yang mengubah data makhluk 5etools berpenanda SRD ke format app, tes 503 entri | 503 entri masuk, tanpa bidang kosong yang wajib, penanda `srd` benar (330 dan 173) |
+| TG0b | Skrip `tools/` yang mengubah semua 503 makhluk 5etools ke format app, dengan penanda `srd` dan `src` per entri, tes 503 entri | 503 entri masuk, tanpa bidang kosong yang wajib, penanda `srd` benar (330 dan 173) |
 | TG1 | Layar pemilihan (Who goes in, What waits, Who comes with you, Where you train) memakai data dan art yang ada, ikon sementara | Tiga skenario wajib di 390 x 844 dan 1250 x 850, axe 0 |
 | TG2 | Papan kisi: render, token, gerak dengan jangkauan, urutan giliran, Undo, kamera zoom di HP | Tes layar di dua ukuran, gerak benar menurut pencarian jalur |
 | TG3 | Panel aksi (tingkat A), kartu reaksi, log, End Turn | Setiap aksi tingkat A punya tes |
