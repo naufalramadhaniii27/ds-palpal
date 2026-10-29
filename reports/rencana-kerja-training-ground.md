@@ -99,6 +99,21 @@ Syarat dari G6 berlaku: tanpa AI berbayar, tingkat gratis, ada tes, dicatat di r
 | Penggaris jarak | Pemain tidak tahu jarak antar token | Seret dari token, papan menghitung petak dan kaki dengan kisi dan biaya medan yang sama dengan pencarian jalur | Jarak diagonal dan medan sulit sama dengan hasil pencarian jalur |
 | Pemuat makhluk bertahap | 503 makhluk membebani HP | Indeks kecil (nama, CR, tipe, SRD) dimuat dulu. Stat block penuh dimuat saat dipilih, disimpan di IndexedDB | Waktu muat Home tidak naik, 503 entri terbaca |
 
+### 5e. Sprite sheet dan atlas (dari video user 2026-10-30, ditambahkan karena sebelumnya tidak ada di rencana)
+Isi video: satu berkas per gerakan memaksa kartu grafis ganti tekstur puluhan kali per detik (texture thrashing). Solusinya satu atlas, lalu geser jendela UV. Pengukuran di app ini: ikon 989 berkas AVIF 128 x 128 (item 676, spell 199, sisanya kategori), rata-rata 3,5 KB, total 3,4 MB, dimuat satu per satu. Spell naik ke 455 bila 256 ikon Codex masuk.
+
+| Tempat | Masalah di video berlaku? | Keputusan |
+|---|---|---|
+| Papan Training Ground (Canvas 2D) | Ya. Puluhan token dan lencana per kerangka. Satu gambar sumber lebih ringan dari puluhan | Pakai atlas. Satu atlas maksimal 2048 x 2048, sel 128, jarak antar sel dan tepi digandakan 2 piksel agar tidak bocor saat zoom |
+| Lencana kondisi dan damage di token | Ya. 32 ikon yang sudah ada (condition 16, damage 16) | Satu atlas lencana, dibuat dari ikon yang ada tanpa gambar baru |
+| Efek (kena, meleset, api, sembuh) dan animasi token | Ya. Video menyebut efek dan proyektil di sheet yang sama | Sheet bingkai: idle, kena, jatuh. Langkah bingkai lewat indeks, bukan berkas baru. Gambar dari Codex, risiko: konsistensi antar bingkai |
+| Daftar ikon di sheet (DOM, `img`) | Tidak langsung. Kartu grafis tidak ganti tekstur untuk elemen DOM, browser menyusunnya sendiri | Jangan buat atlas dulu. Atlas penuh 1.000 ikon tidak muat. Satu atlas 2048 menampung 256 ikon dan didekode utuh (sekitar 16 MB) meski hanya satu ikon terlihat. Ukur dulu jumlah permintaan dan memori sebelum memutuskan |
+
+Alat: `tools/atlas_pack.py` menyusun atlas dan berkas peta sel (`x, y, w, h`), tanpa pustaka berat. Lalu `createImageBitmap` sekali dan `drawImage` per sel.
+
+Tes: (1) tidak ada piksel tetangga bocor pada zoom 1x sampai 4x, dibandingkan per piksel, (2) jumlah permintaan gambar papan turun, (3) waktu gambar per kerangka sebelum dan sesudah di HP lemah (throttle CPU), (4) data lama tidak berubah.
+Fase: TG2 (papan) dan TG6 (efek dan bingkai dari Codex). Ukur ikon DOM di G6.
+
 ## 6. Cakupan aturan (bertingkat)
 | Tingkat | Isi | Perilaku |
 |---|---|---|
