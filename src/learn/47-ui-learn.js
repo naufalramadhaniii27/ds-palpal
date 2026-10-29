@@ -17,14 +17,14 @@ function dom(){ var w=document.getElementById("learn"); if(w) return w;
   w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-l="back" id="lrnBk">'+ic("ui-chev-l")+'</button><div class="lrn-tt"><b id="lrnT"></b><small id="lrnS"></small></div><span class="lrn-xp" id="lrnXp"></span><div class="lrn-lang" role="group" id="lrnLg"><button type="button" data-llang="en" lang="en">EN</button><button type="button" data-llang="id" lang="id">ID</button></div><button type="button" class="lrn-ib" data-l="close" id="lrnX">'+ic("ui-close")+'</button></header>'
     +'<div class="lrn-b" id="lrnB"></div><p class="lrn-live sr" id="lrnLive" aria-live="polite"></p><div class="lrn-pop" id="lrnPop" role="dialog" aria-modal="false"></div>';
   document.body.appendChild(w); wire(w); return w; }
-function head(){ var t="",s=""; if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ var p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.recap?U("recap"):V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
+function head(){ var t="",s=""; if(V.view==="forge"){ t=lrnL(LEARN.places[V.p].name); s=lrnL(LEARN.places[V.p].goal); } else if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ var p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.recap?U("recap"):V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
   document.getElementById("lrnT").textContent=t; document.getElementById("lrnS").textContent=s; document.getElementById("lrnXp").textContent=LRN.xp+" "+U("xp");
   document.getElementById("lrnBk").setAttribute("aria-label",V.view==="map"?U("close"):U("back")); document.getElementById("lrnX").setAttribute("aria-label",U("close"));
   document.getElementById("lrnLg").setAttribute("aria-label",U("lang"));
   Array.prototype.forEach.call(document.querySelectorAll("[data-llang]"),function(b){ b.setAttribute("aria-pressed",b.getAttribute("data-llang")===LRN.lang); });
   var w=document.getElementById("learn"); w.setAttribute("lang",LRN.lang); w.setAttribute("data-view",V.view); }
 function say(html){ var b=document.getElementById("lrnSay"); if(b){ b.innerHTML=html; } var l=document.getElementById("lrnLive"); if(l){ l.textContent=""; l.textContent=(b?b.textContent:""); } }
-function paint(focus){ var go=function(){ head(); var b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():placeHtml(); after(); if(focus!==false){ var h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
+function paint(focus){ var go=function(){ head(); var b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():V.view==="forge"?forgeHtml():placeHtml(); after(); if(focus!==false){ var h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
   /* a new view or a new step moves with a View Transition, a change inside a step (paint(false)) draws at once */
   if(focus===undefined&&document.startViewTransition&&!reduce()&&!document.getElementById("learn").hidden){ try{ document.startViewTransition(go); return; }catch(e){} } go(); }
 function after(){ var p=V.view==="place"&&!V.fin?LEARN.places[V.p]:null, st=p&&p.steps[V.i]; if(st&&st.t==="show") drawFrame(); if(st&&st.t==="grid") gridPaint(); }
@@ -39,7 +39,8 @@ function mapHtml(){ var core=lrnCore(), n=lrnCoreDone(), h='<section class="lrn-
   var num=0; LEARN.places.forEach(function(p,k){ if(p.core){ num++; h+=stopCard(p,k,num); } }); h+='</ol>';
   var q=LRN.quiz, open=n>=core.length;
   h+='<button type="button" class="lrn-quizc'+(open?"":" lock")+(q&&q.best!=null?" done":"")+'" data-lquiz="1"'+(open?"":' aria-disabled="true"')+'>'+ic("ui-star")+'<span><b>'+esc(U("quiz"))+'</b><small>'+esc(open?U("quizSub"):U("quizLock"))+'</small></span>'+(q&&q.best!=null?'<span class="lrn-st">'+q.best+' / '+LEARN.quiz.length+'</span>':'')+'</button>';
-  h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach(function(p,k){ if(!p.core&&!p.app) h+=stopCard(p,k,0); }); h+='</ul>';
+  h+='<h3 class="lrn-sh">'+esc(U("forgeSec"))+'</h3><p class="lrn-ss">'+esc(U("forgeSub"))+'</p><ul class="lrn-path lrn-app">'; LEARN.places.forEach(function(p,k){ if(p.kind==="forge") h+=stopCard(p,k,0); }); h+='</ul>';
+  h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach(function(p,k){ if(!p.core&&!p.app&&p.kind!=="forge") h+=stopCard(p,k,0); }); h+='</ul>';
   if(n>0&&n<core.length) h+='<p class="lrn-break">'+esc(U("takeBreak"))+'</p>';
   return h; }
 
@@ -113,6 +114,19 @@ function gridPaint(){ var st=LEARN.places[V.p].steps[V.i], S=V.s, g=document.get
   g.innerHTML=h; var l=document.getElementById("lrnLeft"); if(l) l.textContent=U("squaresLeft")+": "+S.left; }
 function near(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))===1; }
 
+/* ===== F3 Forge Your Hero: class and species as picture cards, a name, Surprise me, then a level 1 Quick Build in the builder ===== */
+function slugA(n){ return String(n).toLowerCase().replace(/[^a-z0-9]+/g,"-"); }
+function forgeHtml(){ var FD=LEARN.forge, S=V.s, card=function(kind,x){ var on=S[kind]===x[0], img=kind==="cls"?"img/hd/emblem/"+slugA(x[0])+".avif":"img/scn/species/"+slugA(x[0])+"-phone.avif";
+    return '<button type="button" class="lrn-fc'+(on?" on":"")+'" data-lf'+kind+'="'+x[0]+'" aria-pressed="'+on+'"><span class="lrn-fi"><img src="'+img+'" alt="" loading="lazy" decoding="async"></span><b>'+esc(x[0])+'</b><small>'+esc(lrnL(x[1]))+'</small></button>'; };
+  return '<div class="lrn-forge"><div class="lrn-say">'+hoot(1)+'<p class="lrn-bub" id="lrnSay" data-lfocus="1">'+esc(S.msg||U("forgeNote"))+'</p></div>'
+   +'<h3 class="lrn-sh">'+esc(U("pickClass"))+'</h3><div class="lrn-fg" role="group" aria-label="'+esc(U("pickClass"))+'">'+FD.classes.map(function(x){ return card("cls",x); }).join("")+'</div>'
+   +'<h3 class="lrn-sh">'+esc(U("pickSpecies"))+'</h3><div class="lrn-fg" role="group" aria-label="'+esc(U("pickSpecies"))+'">'+FD.species.map(function(x){ return card("sp",x); }).join("")+'</div>'
+   +'<label class="lrn-fn"><span>'+esc(U("heroName"))+'</span><input id="lrnFn" class="lrn-in" autocomplete="off" maxlength="40" value="'+esc(S.name||"")+'"></label>'
+   +'<div class="lrn-foot"><button type="button" class="btn press" data-l="surprise">'+ic("ui-dice")+esc(U("surprise"))+'</button><button type="button" class="btn pri press" data-l="forge">'+ic("ui-build")+esc(U("forgeBtn"))+'</button></div></div>'; }
+function forgeGo(){ var S=V.s; if(!S.cls||!S.sp){ S.msg=U("forgeNeed"); paint(false); return; } lrnFinish("forge",false);
+  try{ sessionStorage.setItem("cs-forge",JSON.stringify({cls:S.cls,sp:S.sp,name:(S.name||"").trim()})); }catch(e){}
+  close(); if(typeof showHome==="function") showHome(); var n=document.querySelector("#homeV [data-hnew]"); if(n) n.click(); }
+
 /* ===== final check ===== */
 function quizHtml(){ var Q=V.Q;
   if(V.qd&&V.exam!=null) return '<section class="lrn-fin">'+pic(LEARN.places[V.exam].img,"lrn-fp","")+'<h2>'+esc(U("bridgeDone"))+'</h2><p class="lrn-xpg">'+esc(U("quizScore"))+': '+V.qok+' / '+Q.length+'</p><div class="lrn-acts"><button type="button" class="btn pri press" data-lgo="'+V.exam+'">'+ic("ui-redo")+esc(U("again"))+'</button><button type="button" class="btn press" data-l="map">'+esc(U("toMap"))+'</button></div></section>';
@@ -121,7 +135,7 @@ function quizHtml(){ var Q=V.Q;
   var q=Q[V.qi], S=V.s; return '<div class="lrn-place"><div class="lrn-dots" aria-hidden="true">'+Q.map(function(x,k){ return '<i class="'+(k<V.qi?"d":k===V.qi?"c":"")+'"></i>'; }).join("")+'</div><div class="lrn-say">'+hoot(1)+'<p class="lrn-bub" id="lrnSay" data-lfocus="1">'+(S.res?fmt(S.ok?q.fb:{en:LEARN.ui.tryAgain.en,id:LEARN.ui.tryAgain.id}):fmt(q.q))+'</p></div><div class="lrn-stage"><h2 class="sr">'+esc(lrnL(q.q))+'</h2><div class="lrn-opts" role="group">'+q.opts.map(function(o,k){ return opt("",'data-lq="'+k+'"',esc(lrnL(o)),S.res&&S.res[k]||""); }).join("")+'</div></div><div class="lrn-foot"><span></span><button type="button" class="btn pri press lrn-next" data-l="qnext"'+(S.ok?"":" disabled")+'>'+esc(V.qi===Q.length-1?U("done"):U("next"))+'</button></div></div>'; }
 
 /* ===== moving around ===== */
-function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } if(LEARN.places[k].kind==="exam"){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnExam(),exam:k}; paint(); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
+function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } if(LEARN.places[k].kind==="forge"){ V={view:"forge",p:k,s:{}}; paint(); return; } if(LEARN.places[k].kind==="exam"){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnExam(),exam:k}; paint(); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
 /* the App Tour: Learn steps aside, the tour of src/app/31 runs on the sheet in the Learn language, then Learn comes back with the map */
 function runTour(k){ var p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!window.__tour) return; V={view:"map",p:0,i:0,ok:false,s:{}};
   var hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden); w.classList.remove("on"); w.hidden=true; ovQueue();
@@ -163,6 +177,9 @@ function wire(w){
     if(d.lterm){ popShow(t); return; }
     if(d.libQ){ var q=d.libQ; popHide(); if(typeof libOpen==="function"){ libOpen({q:q}); var lb=document.getElementById("lib"); if(lb) lb.classList.add("lrn-over"); } return; }
     if(d.lgo!=null){ goPlace(+d.lgo); return; }
+    if(d.lfcls||d.lfsp){ if(d.lfcls) V.s.cls=d.lfcls; else V.s.sp=d.lfsp; V.s.msg=""; var nm=document.getElementById("lrnFn"); if(nm) V.s.name=nm.value; paint(false); return; }
+    if(d.l==="surprise"&&V.view==="forge"){ var FG=LEARN.forge; V.s.cls=FG.classes[lrnD(FG.classes.length)-1][0]; V.s.sp=FG.species[lrnD(FG.species.length)-1][0]; var nm2=document.getElementById("lrnFn"); if(nm2) V.s.name=nm2.value; V.s.msg=""; paint(false); return; }
+    if(d.l==="forge"){ var nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return; }
     if(d.lrecap){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return; }
     if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); var c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return; }
     if(d.l==="close"){ close(); return; } if(d.l==="back"){ back(); return; } if(d.l==="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; }

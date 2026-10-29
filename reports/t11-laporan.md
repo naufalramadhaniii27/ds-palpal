@@ -91,3 +91,12 @@ Rilis bertahap ke main sesudah tiap kelompok lolos regresi.
 | T12 | Garis progres pilihan di bawah langkah, mengisi halus dengan @property |
 | T13 | Kolom teks Identity tumbuh mengikuti isi (field-sizing) |
 | Tes | builder_g6.py (Back, bar pilihan, kartu, progres, Identity sampai sesudah Apply), builder_4d6.py, regresi |
+
+## Learn F3 Forge Your Hero (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Tempat | Bagian "Your first hero" di peta Learn: 6 class pemula (emblem class) dan 6 species (gambar species), nama, Surprise me. Forge membuat karakter baru dengan Quick Build level 1 dan membuka builder di What's Next. Yudhi tetap ada |
+| Gambar | Kartu class memakai emblem, bukan scene class (scene class punya darah, Learn tanpa darah) |
+| Bug ditemukan | Tur Aplikasi tidak membatalkan lemparan natural 1 atau 20 dari jurnal karena key jurnal salah (id karakter, harus nama dari fx/18). Diperbaiki, tour_flow stabil 3 dari 3 |
+| Tes | tests/learn_forge.py (Surprise me, petunjuk tanpa pilihan, hasil build, Apply), learn_flow, learn_a11y, tour_flow, scenarios |
+| Belum dari F3 | Screenshot builder bertitik (tools/learn_shots.py) dan karakter latihan Keep atau Discard |

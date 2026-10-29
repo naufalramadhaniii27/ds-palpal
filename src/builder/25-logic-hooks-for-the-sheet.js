@@ -55,7 +55,7 @@ window.__bldArmor=function(st,name,eq){var bn=baseOf(name).b;if(!st||!st.C||!(AR
  return out};
 if(window.__sheetRerender)setTimeout(window.__sheetRerender,0);
 if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
-if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home")},50)}
+if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home");/* T11 Learn F3: Forge Your Hero asked for a Quick Build of this new character */var fg=null;try{fg=JSON.parse(sessionStorage.getItem("cs-forge")||"null");sessionStorage.removeItem("cs-forge")}catch(e){}if(fg&&fg.cls&&QUICK[fg.cls]){if(fg.name)B.name=fg.name;quickBuild(fg.cls,fg.sp)}},50)}
 applyPacks();render();
 
 /* T11 N6: rules fuzzer hooks. __bldLists gives the 2024 classes, species, backgrounds and subclasses. __bldFuzz builds one character from the given picks

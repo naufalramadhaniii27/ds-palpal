@@ -80,6 +80,15 @@ var LEARN={
     xpGot:{en:"You earned {x} XP.",id:"Kamu meraih {x} XP."},
     mapTitle:{en:"Map",id:"Peta"},
     learn:{en:"Learn",id:"Belajar"},
+    forgeSec:{en:"Your first hero",id:"Pahlawan pertamamu"},
+    forgeSub:{en:"Pick a class and a species. We fill in the rest.",id:"Pilih class dan species. Sisanya kami isi."},
+    pickClass:{en:"Pick a class",id:"Pilih class"},
+    pickSpecies:{en:"Pick a species",id:"Pilih species"},
+    heroName:{en:"Hero name",id:"Nama pahlawan"},
+    surprise:{en:"Surprise me",id:"Kejutkan aku"},
+    forgeBtn:{en:"Forge the hero",id:"Tempa pahlawan"},
+    forgeNote:{en:"You get a level 1 hero with every choice filled in. You can change any of it.",id:"Kamu mendapat pahlawan level 1 dengan semua pilihan terisi. Semua bisa kamu ubah."},
+    forgeNeed:{en:"Pick a class and a species first.",id:"Pilih class dan species dulu."},
     notYet:{en:"Your character doesn't have this yet. You'll see it here once they do.",id:"Karaktermu belum punya ini. Nanti muncul di sini."},
     recap:{en:"Quick recap",id:"Ulang cepat"},
     recapSub:{en:"Two questions from what you learned before.",id:"Dua soal dari yang kamu pelajari sebelumnya."},
@@ -422,10 +431,22 @@ var LEARN={
         {x:{en:"30",id:"30"},ok:0,fb:{en:"Use half the damage. Half of 30 is 15.",id:"Pakai setengah damage. Setengah dari 30 itu 15."}}]},
       {t:"sheet",find:"sel:#spBody",say:{en:"Concentration spells are marked on your Spells tab.",id:"Sihir Concentration ditandai di tab Spells."},label:{en:"Spells",id:"Spells"}}
      ]},
+    {id:"forge",core:0,kind:"forge",img:"img/scene/fighter",icon:"star",
+     name:{en:"Forge Your Hero",id:"Tempa Pahlawanmu"},goal:{en:"Make your first character in a minute.",id:"Buat karakter pertamamu dalam semenit."},steps:[]},
     {id:"bridge",core:0,kind:"exam",img:"img/scn/background/guide",icon:"star",
      name:{en:"Crumbling Bridge",id:"Jembatan Rapuh"},goal:{en:"The final test. New questions every time.",id:"Ujian akhir. Soal baru setiap kali."},steps:[]}
 
   ],
+  /* F3 Forge Your Hero: six beginner classes and six species, a name, then a level 1 Quick Build in the builder */
+  forge:{classes:[["Fighter",{en:"Strong and tough. Great with weapons and armor.",id:"Kuat dan tangguh. Jago senjata dan armor."}],
+     ["Rogue",{en:"Quick and sneaky. Strikes hard from the shadows.",id:"Cepat dan licik. Menyerang keras dari bayangan."}],
+     ["Cleric",{en:"Heals friends and calls on divine power.",id:"Menyembuhkan teman dan memanggil kekuatan dewa."}],
+     ["Wizard",{en:"Learns many spells from a spellbook.",id:"Mempelajari banyak sihir dari buku sihir."}],
+     ["Ranger",{en:"A hunter and tracker, good with a bow.",id:"Pemburu dan pelacak, jago memanah."}],
+     ["Barbarian",{en:"Fierce in battle. Rages to hit harder and take less damage.",id:"Ganas saat bertarung. Mengamuk untuk memukul lebih keras dan lebih tahan damage."}]],
+   species:[["Human",{en:"Adaptable. Good at many things.",id:"Mudah beradaptasi. Bisa banyak hal."}],["Elf",{en:"Graceful, with keen senses and a long life.",id:"Anggun, indra tajam, dan berumur panjang."}],
+     ["Dwarf",{en:"Sturdy and tough, hard to knock down.",id:"Kokoh dan tangguh, sulit dijatuhkan."}],["Halfling",{en:"Small, brave and lucky.",id:"Kecil, berani, dan beruntung."}],
+     ["Orc",{en:"Strong and hard to stop.",id:"Kuat dan sulit dihentikan."}],["Dragonborn",{en:"Breathes a blast of dragon energy.",id:"Bisa menyemburkan energi naga."}]]},
   /* the App Tour (U52): runs on the person's own sheet with the spotlight (src/app/31). w = the words on a wide screen */
   tour:{steps:[
     {t:{en:"Your Hit Points. Type a number, then tap Damage or Heal.",id:"HP-mu. Ketik angka, lalu ketuk Damage atau Heal."}},
