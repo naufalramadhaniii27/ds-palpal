@@ -80,6 +80,7 @@ var LEARN={
     xpGot:{en:"You earned {x} XP.",id:"Kamu meraih {x} XP."},
     mapTitle:{en:"Map",id:"Peta"},
     learn:{en:"Learn",id:"Belajar"},
+    notYet:{en:"Your character doesn't have this yet. You'll see it here once they do.",id:"Karaktermu belum punya ini. Nanti muncul di sini."},
     recap:{en:"Quick recap",id:"Ulang cepat"},
     recapSub:{en:"Two questions from what you learned before.",id:"Dua soal dari yang kamu pelajari sebelumnya."},
     recapDone:{en:"Nice! You still remember it.",id:"Mantap! Kamu masih ingat."},

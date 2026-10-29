@@ -152,7 +152,7 @@ function toSheet(st){ var w=document.getElementById("learn"), hv=document.getEle
   w.hidden=true; if(home){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(e){} }
   if(A.sheetOn&&A.sheetOn()) try{ A.closeSheet(); }catch(e){}
   var done=function(){ w.hidden=false; if(home&&typeof showHome==="function") showHome(); if(typeof ovQueue==="function") ovQueue(); var b=w.querySelector('[data-l="sheet"]'); if(b) try{ b.focus({preventScroll:true}); }catch(e){} };
-  setTimeout(function(){ var el=lrnFind(st.find); if(!el){ done(); say(esc(U("noChar"))); return; }
+  setTimeout(function(){ var el=lrnFind(st.find); if(!el){ done(); say(esc(U("notYet"))); return; }/* a new character may not have it yet (no weapon, no spells) */
     try{ el.scrollIntoView({block:"center",behavior:reduce()?"auto":"smooth"}); }catch(e){}
     setTimeout(function(){ spotShow(el,'<p><b>'+esc(lrnL(st.label))+'</b></p><p>'+fmt(st.say)+'</p><button type="button" class="btn pri press" data-spot-x="1">'+ic("ui-chev-l")+esc(U("backLearn"))+'</button>',done); if(typeof ovQueue==="function") ovQueue(); },reduce()?0:350); },60); }
 document.addEventListener("click",function(e){ var x=e.target.closest&&e.target.closest("[data-spot-x]"); if(x){ spotHide(); } });

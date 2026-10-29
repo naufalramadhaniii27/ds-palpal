@@ -82,7 +82,13 @@ async def play_step(pg, tag, bad, sheet_ok):
     elif t == "sheet":
         b = await pg.query_selector('#lrnB [data-l="sheet"]')
         if b and sheet_ok:
-            await b.click(); await pg.wait_for_selector("#lrnSpot", state="visible", timeout=8000); await settle(pg, 500)
+            await b.click()
+            try: await pg.wait_for_function("()=>!!document.getElementById('lrnSpot')||(!document.getElementById('learn').hidden&&/yet|belum/.test(document.getElementById('lrnSay').textContent))", timeout=8000)
+            except Exception: bad.append(tag + " sheet step: no spotlight and no message"); return
+            if not await pg.query_selector("#lrnSpot"):
+                if tag.startswith("yudhi"): bad.append(tag + " sheet target missing for Yudhi")
+                return
+            await settle(pg, 500)
             r = await pg.evaluate("""()=>{ var r=document.getElementById('spotR').getBoundingClientRect(); return {x:r.left,y:r.top,w:r.width,h:r.height,vw:innerWidth,vh:innerHeight,learn:!document.getElementById('learn').hidden}; }""")
             if r["w"] < 10 or r["h"] < 10 or r["y"] < -2 or r["y"] + r["h"] > r["vh"] + 2 or r["learn"]: bad.append(tag + " spotlight " + json.dumps(r))
             await shot(pg, "spot-" + tag.replace(" ", "-"))
