@@ -1975,6 +1975,14 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2380,6 +2388,7 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2428,3 +2437,10 @@ art/batch/icons/features/class/fighter/indomitable.png
 art/batch/icons/features/class/fighter/second-wind.png
 art/batch/icons/features/class/fighter/studied-attacks.png
 art/batch/icons/features/class/fighter/tactical-master.png
+
+## batch-221 v3
+art/batch/scenes/environment/feywild-pc.png
+art/batch/scenes/environment/feywild-phone.png
+art/batch/scenes/environment/underdark-pc.png
+art/batch/scenes/environment/underdark-phone.png
+art/batch/scenes/environment/plane-fire-pc.png
