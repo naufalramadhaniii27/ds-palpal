@@ -4560,6 +4560,11 @@ art/batch/icons/items/gear/tent.png
 art/batch/icons/items/gear/vial.png
 art/batch/icons/items/gear/bullets-firearm-10.png
 art/batch/icons/items/gear/bullets-sling-20.png
+art/batch/icons/items/gear/needles-50.png
+art/batch/icons/items/tools/alchemists-supplies.png
+art/batch/icons/items/tools/artisans-tools.png
+art/batch/icons/items/tools/assassins-tools.png
+art/batch/icons/items/tools/brewers-supplies.png
 
 ## batch-064 v3
 art/batch/icons/bastion/guildhall.png
