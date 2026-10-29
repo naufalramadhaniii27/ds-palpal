@@ -3500,3 +3500,9 @@ art/batch/creatures/celestial/reigar.png
 art/batch/creatures/beast/rhinoceros.png
 art/batch/creatures/celestial-angel/solar.png
 
+## batch-070 v3
+art/batch/scenes/species/kender-pc.png
+art/batch/scenes/species/kender-phone.png
+art/batch/scenes/species/kenku-pc.png
+art/batch/scenes/species/kenku-phone.png
+art/batch/scenes/species/khenra-pc.png
