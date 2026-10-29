@@ -2388,7 +2388,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2396,7 +2395,11 @@ art/batch/creatures/beast/giant-weasel.png
 art/batch/creatures/beast/goat.png
 art/batch/creatures/beast/hawk.png
 art/batch/creatures/fiend-devil/imp.png
-
+art/batch/creatures/beast/lion.png
+art/batch/creatures/beast/lizard.png
+art/batch/creatures/beast/mastiff.png
+art/batch/creatures/beast/mule.png
+art/batch/creatures/beast/octopus.png
 
 ## batch-170 v3
 art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-emissary-of-peace.png
