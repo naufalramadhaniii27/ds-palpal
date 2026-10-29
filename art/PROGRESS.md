@@ -3164,3 +3164,9 @@ art/batch/monsters/aberration/cloaker.png
 art/batch/monsters/aberration/intellect-devourer.png
 art/batch/monsters/aberration/otyugh.png
 art/batch/monsters/aberration/neogi.png
+## batch-056 v3
+art/batch/icons/spells/level-6/move-earth.png
+art/batch/icons/spells/level-6/tashas-otherworldly-guise.png
+art/batch/icons/spells/level-6/tensers-transformation.png
+art/batch/icons/spells/level-6/wind-walk.png
+art/batch/icons/spells/level-7/aura-of-evasion.png
