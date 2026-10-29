@@ -1998,6 +1998,28 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
+art/batch/icons/rules/actions/ready-action.png
+art/batch/icons/rules/actions/search-action.png
+art/batch/icons/rules/actions/study-action.png
+art/batch/icons/rules/actions/utilize-action.png
+art/batch/icons/rules/actions/opportunity-attack.png
+
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2031,6 +2053,18 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/items/magic/rare/stonespeaker-crystal.png
+art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
+art/batch/icons/items/magic/legendary/deck-of-several-things.png
+art/batch/icons/items/magic/rare/galders-bubble-pipe.png
+art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2052,6 +2086,11 @@ art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-guided-strik
 art/batch/icons/features/subclass/oath-of-conquest/invincible-conqueror.png
 art/batch/icons/features/subclass/oath-of-conquest/oath-spells.png
 art/batch/icons/features/subclass/oath-of-conquest/scornful-rebuke.png
+art/batch/icons/features/subclass/life-domain/disciple-of-life.png
+art/batch/icons/features/subclass/life-domain/divine-strike.png
+art/batch/icons/features/subclass/life-domain/life-domain-spells.png
+art/batch/icons/features/subclass/life-domain/preserve-life.png
+art/batch/icons/features/subclass/life-domain/supreme-healing.png
 ## batch-146 v3
 art/batch/icons/rules/actions/bonus-action.png
 art/batch/icons/rules/actions/reaction.png
@@ -2093,6 +2132,16 @@ art/batch/icons/spells/level-2/spike-growth.png
 art/batch/icons/spells/level-3/aura-of-vitality.png
 art/batch/icons/spells/level-3/beacon-of-hope.png
 art/batch/icons/spells/level-3/counterspell.png
+art/batch/icons/spells/level-2/dragons-breath.png
+art/batch/icons/spells/level-2/earthbind.png
+art/batch/icons/spells/level-2/enhance-ability.png
+art/batch/icons/spells/level-2/enlarge-reduce.png
+art/batch/icons/spells/level-2/heat-metal.png
+art/batch/icons/spells/level-2/immovable-object.png
+art/batch/icons/spells/level-2/kinetic-jaunt.png
+art/batch/icons/spells/level-2/knock.png
+art/batch/icons/spells/level-2/levitate.png
+art/batch/icons/spells/level-2/magic-weapon.png
 ## batch-201 v3
 
 art/batch/creatures/beast/crocodile.png
@@ -2106,6 +2155,23 @@ art/batch/creatures/beast/giant-crab.png
 art/batch/creatures/beast/giant-goat.png
 art/batch/creatures/beast/giant-seahorse.png
 
+
+art/batch/creatures/beast/crocodile.png
+art/batch/creatures/beast/dire-wolf.png
+art/batch/creatures/beast/draft-horse.png
+art/batch/creatures/beast/elephant.png
+art/batch/creatures/beast/elk.png
+art/batch/creatures/beast/frog.png
+art/batch/creatures/beast/giant-badger.png
+art/batch/creatures/beast/giant-crab.png
+art/batch/creatures/beast/giant-goat.png
+art/batch/creatures/beast/giant-seahorse.png
+
+art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
+art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/corona-of-light.png
+art/batch/icons/features/subclass/light-domain/improved-flare.png
+art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
 ## batch-147 v3
 art/batch/icons/features/class/barbarian/brutal-strike.png
 art/batch/icons/features/class/barbarian/danger-sense.png
@@ -2127,6 +2193,17 @@ art/batch/icons/features/class/bard/bardic-inspiration.png
 art/batch/icons/features/class/bard/countercharm.png
 art/batch/icons/features/class/bard/expertise.png
 art/batch/icons/features/class/bard/font-of-inspiration.png
+art/batch/icons/features/class/barbarian/brutal-strike.png
+art/batch/icons/features/class/barbarian/danger-sense.png
+art/batch/icons/features/class/barbarian/extra-attack.png
+art/batch/icons/features/class/barbarian/fast-movement.png
+art/batch/icons/features/class/barbarian/feral-instinct.png
+art/batch/icons/features/class/barbarian/improved-brutal-strike.png
+art/batch/icons/features/class/barbarian/indomitable-might.png
+art/batch/icons/features/class/barbarian/instinctive-pounce.png
+art/batch/icons/features/class/barbarian/persistent-rage.png
+art/batch/icons/features/class/barbarian/primal-champion.png
+
 NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
@@ -2212,3 +2289,12 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
+## batch-202 v3
+
+art/batch/creatures/beast/giant-spider.png
+art/batch/creatures/beast/giant-weasel.png
+art/batch/creatures/beast/goat.png
+art/batch/creatures/beast/hawk.png
+art/batch/creatures/fiend-devil/imp.png
+
