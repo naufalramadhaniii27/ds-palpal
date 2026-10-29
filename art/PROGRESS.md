@@ -4535,6 +4535,11 @@ art/batch/icons/items/magic/uncommon/skyblinder-staff.png
 art/batch/icons/items/magic/uncommon/spies-murmur.png
 art/batch/icons/items/magic/rare/sunforger.png
 
+art/batch/icons/items/magic/very-rare/sword-of-the-paruns.png
+art/batch/icons/items/magic/very-rare/voyager-staff.png
+art/batch/icons/items/magic/uncommon/balloon-pack.png
+art/batch/icons/items/magic/uncommon/bottled-breath.png
+art/batch/icons/items/magic/rare/claws-of-the-umber-hulk.png
 ## batch-216 v3
 
 art/batch/icons/items/gear/perfume.png
@@ -4542,4 +4547,3 @@ art/batch/icons/items/gear/poison-basic.png
 art/batch/icons/items/gear/pole.png
 art/batch/icons/items/gear/pot-iron.png
 art/batch/icons/items/gear/ram-portable.png
-
