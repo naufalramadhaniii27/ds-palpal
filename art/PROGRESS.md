@@ -3526,3 +3526,10 @@ art/batch/creatures/construct/winged-thrull.png
 art/batch/creatures/undead/wraith.png
 art/batch/creatures/construct/deck-defender.png
 
+
+## batch-231 v3
+art/batch/icons/damage-types/resistance.png
+art/batch/icons/spell-schools/abjuration-school.png
+art/batch/icons/spell-schools/conjuration-school.png
+art/batch/icons/spell-schools/divination-school.png
+art/batch/icons/spell-schools/necromancy-school.png
