@@ -4389,3 +4389,8 @@ art/batch/icons/features/subclass/warrior-of-mercy/flurry-of-healing-and-harm.pn
 art/batch/icons/features/subclass/warrior-of-mercy/hand-of-harm.png
 art/batch/icons/features/subclass/warrior-of-mercy/hand-of-healing.png
 art/batch/icons/features/subclass/warrior-of-mercy/hand-of-ultimate-mercy.png
+art/batch/icons/features/subclass/warrior-of-mercy/implements-of-mercy.png
+art/batch/icons/features/subclass/warrior-of-mercy/physicians-touch.png
+art/batch/icons/features/subclass/warrior-of-shadow/cloak-of-shadows.png
+art/batch/icons/features/subclass/warrior-of-shadow/improved-shadow-step.png
+art/batch/icons/features/subclass/warrior-of-shadow/shadow-arts.png
