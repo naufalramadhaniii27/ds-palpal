@@ -1834,6 +1834,12 @@ art/batch/portraits/vampire-b.png
 art/batch/portraits/vedalken-a.png
 art/batch/portraits/vedalken-b.png
 art/batch/portraits/verdan-a.png
+art/batch/portraits/verdan-b.png
+art/batch/portraits/warforged-a.png
+art/batch/portraits/warforged-b.png
+art/batch/portraits/yuan-ti-a.png
+art/batch/portraits/yuan-ti-b.png
+
 ## batch-218 v3
 art/batch/icons/items/tools/dice-set.png
 art/batch/icons/items/tools/dragonchess-set.png
