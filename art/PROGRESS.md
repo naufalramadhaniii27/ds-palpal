@@ -2977,6 +2977,11 @@ art/batch/icons/features/subclass/oath-of-the-crown/exalted-champion.png
 art/batch/icons/features/subclass/oath-of-the-crown/oath-spells.png
 art/batch/icons/features/subclass/oath-of-the-crown/tenets-of-the-crown.png
 art/batch/icons/features/subclass/oath-of-the-crown/unyielding-spirit.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/aura-of-elemental-shielding.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/elemental-rebuke.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/elemental-smite.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/genie-spells.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/genies-splendor.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
