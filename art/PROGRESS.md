@@ -1822,6 +1822,7 @@ art/batch/icons/items/magic/varies/portfolio-keeper.png
 art/batch/icons/items/magic/very-rare/rotor-of-return.png
 art/batch/icons/items/magic/uncommon/sending-stone.png
 art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
+NEXT: batch-041 art/batch/icons/spells/level-2/alter-self.png
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
@@ -1834,14 +1835,6 @@ art/batch/icons/spells/level-2/phantasmal-force.png
 art/batch/icons/spells/level-2/shadow-blade.png
 art/batch/icons/spells/level-2/silence.png
 
-art/batch/icons/items/gear/riding-horse-with-tack.png
-art/batch/icons/items/gear/rowboat.png
-art/batch/icons/items/gear/wagon.png
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 art/batch/icons/spells/level-2/uncertain-footing.png
 art/batch/icons/spells/level-2/death-armor.png
 art/batch/icons/spells/level-2/gentle-repose.png
