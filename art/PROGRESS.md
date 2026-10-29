@@ -1839,13 +1839,6 @@ art/batch/portraits/warforged-a.png
 art/batch/portraits/warforged-b.png
 art/batch/portraits/yuan-ti-a.png
 art/batch/portraits/yuan-ti-b.png
-
-
-art/batch/portraits/vampire-a.png
-art/batch/portraits/vampire-b.png
-art/batch/portraits/vedalken-a.png
-art/batch/portraits/vedalken-b.png
-art/batch/portraits/verdan-a.png
 ## batch-218 v3
 art/batch/icons/items/tools/dice-set.png
 art/batch/icons/items/tools/dragonchess-set.png
@@ -1929,14 +1922,6 @@ art/batch/icons/spells/level-2/death-armor.png
 art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
-art/batch/icons/items/gear/riding-horse-with-tack.png
-art/batch/icons/items/gear/rowboat.png
-art/batch/icons/items/gear/wagon.png
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 art/batch/icons/spells/level-2/alter-self.png
 art/batch/icons/spells/level-2/barkskin.png
 art/batch/icons/spells/level-2/blindness-deafness.png
@@ -1948,12 +1933,12 @@ art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
 art/batch/scenes/environment/forest-pc.png
 art/batch/scenes/environment/forest-phone.png
+art/batch/scenes/environment/battle-pc.png
 art/batch/scenes/environment/battle-phone.png
+art/batch/scenes/environment/city-pc.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
-art/batch/scenes/environment/city-pc.png
-art/batch/scenes/environment/battle-pc.png
 
 ## batch-065 v3
 art/batch/scenes/species/aarakocra-pc.png
@@ -1961,12 +1946,6 @@ art/batch/scenes/species/aarakocra-phone.png
 art/batch/scenes/species/aetherborn-pc.png
 art/batch/scenes/species/aetherborn-phone.png
 art/batch/scenes/species/autognome-pc.png
-art/batch/scenes/species/autognome-phone.png
-art/batch/scenes/species/aven-pc.png
-art/batch/scenes/species/aven-phone.png
-art/batch/scenes/species/boggart-pc.png
-art/batch/scenes/species/boggart-phone.png
-
 NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
@@ -1980,29 +1959,3 @@ art/batch/icons/rules/resources/death-save-failure.png
 art/batch/icons/rules/resources/heroic-inspiration.png
 art/batch/icons/rules/resources/exhaustion-level.png
 art/batch/icons/rules/resources/arcane-recovery.png
-NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
-## batch-133 v3
-art/batch/icons/items/magic/rare/stonespeaker-crystal.png
-art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
-art/batch/icons/items/magic/legendary/deck-of-several-things.png
-art/batch/icons/items/magic/rare/galders-bubble-pipe.png
-art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
-art/batch/icons/rules/resources/indomitable.png
-art/batch/icons/rules/resources/favored-enemy-mark.png
-art/batch/icons/rules/actions/attack-action.png
-art/batch/icons/rules/actions/dash-action.png
-art/batch/icons/rules/actions/disengage-action.png
-
-## batch-199 v3
-
-art/batch/portraits/zombie-a.png
-art/batch/portraits/zombie-b.png
-
-## batch-200 v3
-
-art/batch/creatures/beast/ape.png
-art/batch/creatures/beast/badger.png
-art/batch/creatures/beast/bat.png
-art/batch/creatures/beast/black-bear.png
-art/batch/creatures/beast/boar.png
-
