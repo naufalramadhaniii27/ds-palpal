@@ -68,10 +68,25 @@
 /* Library: close button and filter chips reach 44 px on a phone */
 @media (max-width:759px){.lib-x{width:44px;height:44px;min-width:44px}.lib-chip{min-height:44px}}
 /* Secondary buttons everywhere: visible fill and border next to the primary one */
-.btn:not(.pri):not(.warn):not(.rm):not(.on):not(.off):not(.fr-sm){border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:color-mix(in srgb,var(--ink) 12%,var(--panel))}
+.btn:not(.pri):not(.warn):not(.rm):not(.on):not(.off):not(.fr-sm):not(#healBtn):not(#dmgBtn){border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:color-mix(in srgb,var(--ink) 12%,var(--panel))}
 /* Glass for dialogs on mouse screens. Touch screens keep it off (GPU budget, see 19-fx). */
 @media (pointer:fine){
   :root[data-skin="ddb"] .bkp{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   :root[data-skin="ddb"] .bkpb{background:color-mix(in srgb,var(--panel) 80%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25)}
   html.mi-off .bkp,html.mi-off .bkpb{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 }
+/* Small controls: bigger hit areas on phones */
+@media (max-width:759px){
+  .mi-rndr{width:44px;height:44px;font-size:18px}
+  .abox{min-height:44px}
+  :root[data-skin="record"] :is(.pip,.bx,.ichk){position:relative}
+  :root[data-skin="record"] :is(.pip,.bx,.ichk)::before{content:"";position:absolute;inset:-11px}
+}
+:root[data-skin="record"] .hbtns > .hcreate{background:#c23d33;border-color:#c23d33}
+/* Detail icon as a faint watermark behind the content, centred. Same art as the identity chip */
+#sheet .sh-wm{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(72%,340px);aspect-ratio:1;display:flex;align-items:center;justify-content:center;opacity:.16;pointer-events:none;z-index:0}
+#sheet .sh-wm:empty{display:none}
+#sheet .sh-wm img,#sheet .sh-wm svg{width:100%;height:100%;margin:0;max-width:none}
+#sheet .sh-wm svg.ico{stroke-width:1.1}
+#sheet > #sheetBody,#sheet > .sh-h{position:relative;z-index:1}
+html.mi-off #sheet .sh-wm{opacity:.12}

@@ -55,3 +55,13 @@ Diperbaiki: dialog konfirmasi (teks panjang membungkus, tombol 44 px), toolbar S
 Dilihat di 390: xp, search, levelup, report, whatsnew, restore, backup dan storage. Tidak ada temuan baru.
 Gate lulus: build --check, scenarios 24, flow_home_sheet 16, tidy 13, class_art, builder_art, vignettes, sub_art, starting_style, blank_new, home_hero, off_mode, overflow_scan, overlap_scan, scale_audit 0, axe 0 pelanggaran, friends_ui 29, sync_banners 9, cloud_sync 31.
 Belum dicek: perangkat nyata, panel coins lewat harness, Print Cards di PDF, warna tema selain Forest dan Crimson, lebar 768 di semua dialog.
+
+## Putaran 3
+Tombol sekunder: border dan isi jelas di semua layar (kecuali Heal, Damage, tombol utama, peringatan, hapus, aktif).
+Glass: dialog di layar mouse (skin DDB). Layar sentuh tetap solid demi GPU.
+Potret: nilai "cloud:hash" (gambar belum diunduh) tampil sebagai Add portrait, bukan bingkai kosong. Data tidak diubah.
+Detail identitas (species, class, subclass, background, size): ikon chip tampil sebagai watermark tengah di sheet detail.
+Target ketuk ponsel: mi-rndr 44 px, abox 44 px, pip, bx, ichk (area ketuk diperluas di Record).
+Kontras: Create di Record diperkuat. Heal dan Damage di Record kembali ke isi panel.
+Audit: coins dibuka lewat `[data-coinopen]`, hasil rapi. Pindai kontras 3 palet x 4 skin, sisa temuan adalah false positive (latar gambar).
+Belum: perangkat nyata, Print Cards PDF, lebar 768 di semua dialog, palet lain secara visual.
