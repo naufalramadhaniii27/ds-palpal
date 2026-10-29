@@ -3799,3 +3799,8 @@ art/batch/icons/feats/durable.png
 art/batch/icons/feats/elemental-adept.png
 art/batch/icons/feats/fey-touched.png
 art/batch/icons/feats/grappler.png
+art/batch/icons/feats/great-weapon-master.png
+art/batch/icons/feats/heavily-armored.png
+art/batch/icons/feats/heavy-armor-master.png
+art/batch/icons/feats/inspiring-leader.png
+art/batch/icons/feats/keen-mind.png
