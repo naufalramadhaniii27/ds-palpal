@@ -56,6 +56,24 @@ Dasar: app sekarang 7,6 MB (2,36 MB gzip), satu file HTML, tanpa library animasi
 | Pemuatan | Blok `data-defer`, dimuat saat Learn dibuka | App tidak lebih lambat dibuka | build.py sudah mendukung `data-defer` |
 | Batas ukuran | Kode dan data Learn maksimal 300 KB mentah. Screenshot AVIF sebagai file terpisah, bukan di dalam HTML | Menjaga app tetap cepat | |
 
+### Fitur web terbaru (dicek ke Baseline dan Interop 2026)
+Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lama (iPhone yang masih iOS 18 belum punya anchor positioning). Fitur yang belum Baseline hanya jadi tambahan. App sudah memakai View Transitions, `:has()`, container queries, `@starting-style` dan scroll-driven animations dengan `@supports`.
+
+| Fitur | Status | Dipakai untuk | Cadangan |
+|---|---|---|---|
+| CSS anchor positioning | Baseline Januari 2026 (Firefox 147, Safari 26, Chrome 125) | Label yang menempel di gambar (U35), kotak Hoot di samping elemen yang disorot di sheet dan builder, tanpa menghitung posisi dengan JS | Posisi dihitung JS seperti tour lama |
+| Popover API | Baseline Januari 2025 | Kartu kamus, "When you're stuck", "Playing together". Tampil di top layer, jadi tidak perlu trik z-index dan tidak terhalang Home yang inert | Tidak perlu |
+| Invoker commands (`command`, `commandfor`) | Baseline Desember 2025 | Tombol buka dan tutup popover tanpa JS | Delegasi klik app yang ada |
+| View Transitions (satu dokumen) | Baseline Oktober 2025 | Pindah langkah dan pindah tempat, dadu "terbang" ke kotak hasil | Tanpa animasi |
+| `@starting-style` | Baseline Agustus 2024 | Animasi muncul kartu dan kepingan tanpa JS | Muncul langsung |
+| Container queries | Baseline | Layar tantangan menyesuaikan lebar panel, bukan lebar layar | Tidak perlu |
+| Scroll snap | Interop 2026 | Peta lembah dan daftar tempat di HP | Gulir biasa |
+| Navigation API | Baseline 2026 | Tombol Back HP mundur satu langkah di Learn, bukan keluar app | `hashchange` seperti sekarang |
+| Custom Highlight API | Baseline 2026 | Menandai kata kamus di teks Hoot tanpa membungkus tiap kata | Garis bawah biasa |
+| Scroll-driven animations | Belum Baseline (Firefox belum) | Gerak parallax peta, hanya tambahan | Peta diam |
+| Interest invokers, `popover="hint"` | Belum Baseline | Tidak dipakai | |
+| WebGPU, WebGL, Lottie, Rive | Tersedia tapi berat untuk kebutuhan ini | Tidak dipakai | |
+
 ## Tahap kerja
 Setiap tahap selesai dengan tes. Rilis digabung (0.0.3), daftar rilis dikirim ke user sebelum push ke main.
 
@@ -185,3 +203,9 @@ PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda d
 - https://www.pkgpulse.com/guides/lottie-vs-rive-vs-css-animations-web-animation-formats-2026
 - https://svilenkovic.com/3d/webgl-vs-css-3d
 - https://www.abratabia.com/game-accessibility/web-game-aria.php
+- https://web.dev/baseline/2026
+- https://web.dev/blog/interop-2026
+- https://web.dev/blog/web-platform-09-2026
+- https://www.refontelearning.com/blog/css-anchor-positioning-reaches-baseline
+- https://www.buildmvpfast.com/blog/web-platform-baseline-2026-new-features-browser-support
+- https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/
