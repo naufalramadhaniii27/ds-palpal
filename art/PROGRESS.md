@@ -2087,3 +2087,12 @@ art/batch/icons/features/class/barbarian/indomitable-might.png
 art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
+
+## batch-202 v3
+
+art/batch/creatures/beast/giant-spider.png
+art/batch/creatures/beast/giant-weasel.png
+art/batch/creatures/beast/goat.png
+art/batch/creatures/beast/hawk.png
+art/batch/creatures/fiend-devil/imp.png
+
