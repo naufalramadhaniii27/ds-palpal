@@ -3659,6 +3659,12 @@ art/batch/icons/feats/magic-initiate-wizard.png
 art/batch/icons/feats/musician.png
 art/batch/icons/feats/savage-attacker.png
 art/batch/icons/feats/skilled.png
+art/batch/icons/feats/tavern-brawler.png
+art/batch/icons/feats/tough.png
+art/batch/icons/feats/ability-score-improvement.png
+art/batch/icons/feats/actor.png
+art/batch/icons/feats/athlete.png
+
 ## batch-211 v3
 
 art/batch/creatures/construct/eldritch-eddy.png
