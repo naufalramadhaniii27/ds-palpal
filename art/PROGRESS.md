@@ -3549,6 +3549,11 @@ art/batch/icons/spell-schools/abjuration-school.png
 art/batch/icons/spell-schools/conjuration-school.png
 art/batch/icons/spell-schools/divination-school.png
 art/batch/icons/spell-schools/necromancy-school.png
+art/batch/icons/abilities/strength.png
+art/batch/icons/abilities/dexterity.png
+art/batch/icons/abilities/wisdom.png
+art/batch/icons/abilities/charisma.png
+art/batch/icons/skills/animal-handling.png
 ## batch-135 v3
 art/batch/icons/items/magic/common/wand-of-scowls.png
 art/batch/icons/items/magic/common/wand-of-smiles.png
