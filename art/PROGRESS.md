@@ -3216,6 +3216,11 @@ art/batch/icons/spells/level-7/teleport.png
 art/batch/icons/spells/level-7/temple-of-the-gods.png
 art/batch/icons/spells/level-7/fractured-awareness.png
 art/batch/icons/spells/level-7/reweave-fate.png
+art/batch/icons/spells/level-7/power-word-fortify.png
+art/batch/icons/spells/level-7/power-word-pain.png
+art/batch/icons/spells/level-7/transfix.png
+art/batch/icons/spells/level-7/crown-of-stars.png
+art/batch/icons/spells/level-7/delayed-blast-fireball.png
 ## batch-207 v3
 
 art/batch/creatures/beast/baboon.png
