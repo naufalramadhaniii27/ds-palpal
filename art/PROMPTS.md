@@ -29479,3 +29479,417 @@ Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. E
 Never include:
 Text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, 3D render look, lens flare, chromatic aberration, neon or fluorescent colors (vivid natural color is wanted), user-interface overlays (the UI props requested in a batch are allowed), copies of existing film characters or scenes, or of known card and book art (Magic: The Gathering, official D&D art). Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols on them. When the Subject names simple pictures for a sign, banner or map (a dragon shape, a pictured shop sign, an illustrated map), draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the Subject names one simple picture for the card, and even then no letters or numbers.
 
+
+art/batch/ui/sprite-heal.png
+Key frame 1:
+Soft green-gold light in a genuinely transparent square: at the exact center, one small seed of light, compact and quietly glowing, with an incipient tiny leaf shape. Keep most of the canvas empty transparent space.
+
+A burst of green-gold healing leaves and sparkles. Green leaves and soft gold sparks carry a gentle restorative feeling. Same prop look as the approved class emblems, warm and welcoming. Only the stated healing effect, no wounded person or body. This is the first key frame, establishing the exact drawing style, palette, spatial center and object design. Generate only this single key frame, a 1024x1024 transparent image, never a sprite sheet, grid or sequence. Preserve the full transparent canvas and all transparent margins.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+Magic appears only as soft glowing light in the colors specified in this subject.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 2:
+Soft green-gold light: leaves and tiny golden sparkles burst outward from the identical center point. A dynamic radial opening shape spreads into the middle of the square with airy transparent gaps.
+
+A burst of green-gold healing leaves and sparkles. Green leaves and soft gold sparks carry a gentle restorative feeling. Same prop look as the approved class emblems, warm and welcoming. Only the stated healing effect, no wounded person or body. Use the supplied first key frame as the continuity reference: preserve its drawing style, exact palette, spatial center and object design. Change size and position only as described for this key frame. Generate only this single key frame, a 1024x1024 transparent image, never a sprite sheet, grid or sequence. Preserve the full transparent canvas and all transparent margins.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+Magic appears only as soft glowing light in the colors specified in this subject.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 3:
+Bright green-gold light: the healing burst reaches its largest and brightest extent around the identical center, with clearly drawn green leaves and separate tiny warm gold sparks. Keep every leaf and all glow fully inside the square.
+
+A burst of green-gold healing leaves and sparkles. Green leaves and soft gold sparks carry a gentle restorative feeling. Same prop look as the approved class emblems, warm and welcoming. Only the stated healing effect, no wounded person or body. Use the supplied first key frame as the continuity reference: preserve its drawing style, exact palette, spatial center and object design. Change size and position only as described for this key frame. Generate only this single key frame, a 1024x1024 transparent image, never a sprite sheet, grid or sequence. Preserve the full transparent canvas and all transparent margins.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+Magic appears only as soft glowing light in the colors specified in this subject.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 4:
+Fading green-gold light: the healing burst has thinned to only a few scattered green leaves and soft golden sparkles around the identical center point. Large transparent gaps replace most of the former burst.
+
+A burst of green-gold healing leaves and sparkles. Green leaves and soft gold sparks carry a gentle restorative feeling. Same prop look as the approved class emblems, warm and welcoming. Only the stated healing effect, no wounded person or body. Use the supplied first key frame as the continuity reference: preserve its drawing style, exact palette, spatial center and object design. Change size and position only as described for this key frame. Generate only this single key frame, a 1024x1024 transparent image, never a sprite sheet, grid or sequence. Preserve the full transparent canvas and all transparent margins.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+Magic appears only as soft glowing light in the colors specified in this subject.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/ribbon-dialog.png
+Warm scarlet cloth and mellow gold trim, straight-on horizontal composition with an exceptionally long, thin band and crisp folded tails. Keep its overall visible silhouette about eight times wider than tall, completely uncut, isolated on transparency.
+
+Size: 2048x256, transparent background. A painted cloth ribbon banner for dialog titles: deep red cloth with gold trim, folded ends, blank, no text. Draw it as one long thin ribbon about eight times longer than tall. Spans up to 90 percent of the width; the height limit wins. Same prop style as the emblems. Draw the entire object across the source canvas width so its full thin silhouette can be retained after resizing. The ribbon is the requested functional object; add no extra decorative ribbons.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+This UI prop has no magical glow.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/parchment-tooltip.png
+Warm oat-colored parchment with softly ochre torn fibers and one tiny brick-red wax seal at the lower-right corner. Straight-on, one clear wide rectangular silhouette, about twice as wide as tall, completely blank.
+
+Size: 1024x512, transparent background. A small torn-edge parchment note with a tiny wax seal in the corner, blank, no text. Draw it as a wide note about twice as wide as tall, filling 90 percent of the width. Same prop style. The seal is plain wax without letters, symbols or ornament; the note is empty.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+This UI prop has no magical glow.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/frame-dialog.png
+Honey-brown carved wood with restrained warm gold inlay, a precisely frontal wide rectangular empty window border. A very thin border band, approximately four percent of the frame width, surrounds a broad completely empty inner aperture. Leaf corner carvings remain entirely within the narrow border band.
+
+Size: 1536x1024, transparent background. A dialog window frame that fills 100 percent of the canvas: carved honey-brown wood border with gold inlay and leaf corners, the inside fully transparent. Corner ornaments stay within the border band. Border about 4 percent thick. Same prop style. Draw only the four connected border bands with a clean, closed inner edge around one empty transparent central opening; no glass, center panel, scenery, shadows or background behind the aperture. The outer border spans the entire rectangular canvas.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+This UI prop has no magical glow.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/scroll-toast.png
+Honey-colored slender wood and buttery pale parchment, a straight-on frontal view of one exceptionally long, thin, unrolled scroll strip. The complete silhouette INCLUDING both rolled wooden ends is about 7.2 times wider than its total height. Keep a continuous broad empty parchment band, extending horizontally almost across the source canvas. The wooden end rollers are plain, narrow and only marginally taller than the parchment band, at most 1.05 times the paper height. Neither end has a handle, finial, gold knob, enlarged cap or other projecting ornament. Every part remains fully visible with transparent air around it.
+
+Size: 2048x320, transparent background. An unrolled parchment scroll strip with rolled wooden ends, blank, no text, for small notifications. Draw it about seven times longer than tall, filling about 85 percent of the width. Same prop style. The actual object, including all wooden ends, must be an exceptionally long horizontal strip with an overall width-to-height ratio of about 7.2:1; its rolled ends stay slender and visually integrated with the thin parchment. Use simple honey-colored wood, natural light grain and modest flat cel shadows. Keep roller ends within roughly 1.05 times the parchment height so they do not increase the object height appreciably. The parchment is utterly blank, without ruled lines, marks, symbols, seams, pictures or text. Isolate the complete strip on true transparency without a frame, support, cast shadow or background.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore.
+
+Studio Ghibli anime prop like the reference emblems, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural materials: wood, brass, cloth, feather, glass and stone where the subject uses them. Take only the drawing style of the reference emblems; use a genuinely transparent background instead of their background. Plain flames have no face and no eyes. Every person is an adult. No gore and no despair. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Objects and effects form a single confident readable silhouette.
+
+This UI prop has no magical glow.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes when people are shown. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/sprite-heal.png
+Key frame 1:
+Soft green-gold light: one TINY seed of healing light at the exact center of the square. The entire visible light and its restrained close halo occupy only 8 to 12 percent of the canvas width, roughly 100 pixels on a 1024-pixel-wide canvas. At least 88 percent of the width is empty transparent margin.
+
+Draw only a tiny localized seed-like point of green-gold light, with a pale-gold core and a small gentle green rim. The light is a narrow hand-drawn luminous seed shape, not a solid gem or spherical orb. The exact subject is just this small seed OF LIGHT. No leaves, sprout, plant, vine, stem, wreath, rays, trails, sparks, star shapes, ring or large glow cloud. Do not enlarge the light to fill the canvas; the overwhelming majority of this image must remain empty transparency.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Establish the specified palette, clean hand-drawn prop style and canvas registration from the emblem style references.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 2:
+Soft green-gold light: several small green leaves and tiny gold sparkles open outward from the exact square center into a medium healing burst. The entire effect and glow span approximately 40 percent of the canvas width, leaving broad transparent margins on every side.
+
+A medium burst of clearly separate fresh-green leaves and a few warm-gold sparks radiates from the central point, with airy transparent gaps. Use loose outward gestures, not a closed wreath. The leaves are individual natural leaf shapes, without a central sprout, stem or vine. Keep the center fixed at 50 percent of canvas width and height. Soft close light only, no filling orb, large halo disk, container, ground or person.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 3:
+Bright green-gold light: a full healing burst expands around the exact square center to its largest and brightest state. The complete effect including all glow spans approximately 70 percent of the canvas width, entirely contained within generous transparent margins.
+
+A broad open radial burst of distinct green leaves and warm-gold sparkles, with energetic outward curved leaf gestures and vivid natural green cel shading. Keep clear transparent gaps between leaves and small sparks so this reads as an expanding effect rather than a solid disk. The luminous center stays exactly at 50 percent of the canvas width and height. No central plant or sprout, stems, vines, closed wreath, ground, container or person.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 4:
+Faint green-gold light: only three small separated green leaves and a few tiny dim golden sparkles remain near the exact center of the square. Their whole sparse grouping spans about 30 percent of the canvas width, with nearly all surrounding canvas empty transparency.
+
+Three gently drifting, faint natural-green leaves with a few tiny subdued gold sparkles. Draw only these few remnants at low luminous intensity, with large fully transparent gaps between them. No intact ring, central orb, sprout, vine, stem, wreath, full burst, streaks, container, ground or person. The grouping remains registered to the central point at 50 percent width and height.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/sprite-damage.png
+Key frame 1:
+Warm muted vermilion light: one thin red diagonal slash line is just appearing at the exact center of the transparent square. The line is a narrow tapered hand-drawn stroke running lower-left to upper-right, only about 25 percent of the canvas width long.
+
+Only the thin newly appearing red light line and a restrained close soft red edge glow. Its endpoints sit on a diagonal through 50 percent canvas width and height, with the rest of the square empty. No sparks, embers, impact explosion, large light arc, weapon, blood, wound, person or target. Keep the stroke narrow and the canvas mostly transparent.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Establish the specified palette, clean hand-drawn prop style and canvas registration from the emblem style references.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 2:
+Bright warm vermilion light: one full red diagonal slash crosses the same exact square center from lower-left to upper-right, spanning about 55 percent of the canvas width. A handful of tiny golden-red sparks fly out from it, fully inside the transparent margins.
+
+A single decisive red light slash with a crisp taper, clear diagonal motion and several small separated warm golden-red sparks. The slash and sparks form one connected impact effect, no weapon, person, target or gore. Keep soft close light, not neon, and preserve empty transparent gaps around and between the small sparks. Every spark is plain and faceless.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 3:
+Dimming warm red light: separated red spark fragments lie along a broken lower-left to upper-right diagonal through the exact canvas center. Their group spans about 45 percent of the width and large transparent gaps interrupt the former line.
+
+Only scattered fading slash fragments and red-gold sparks, with no continuous or intact red slash. Several short pointed fragments follow the central diagonal, visibly breaking apart into smaller pieces. Their brightness is subdued. No impact explosion, glowing disk, weapon, blood, wound, person or target. Every spark is plain and faceless.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 4:
+Very faint warm red light: just a few tiny dim red embers remain near the exact center of the transparent square, scattered over only about 20 percent of the canvas width.
+
+Only three or four tiny faint red ember points, with a few subtle small irregular red flickers at most. Keep nearly the entire canvas empty transparent space. No slash line, arc, streak, explosion, large glow, weapon, blood, wound, person or target. Every ember is plain, with no face and no eyes.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/sprite-levelup.png
+Key frame 1:
+Soft mellow golden light: one small elliptical gold ring sits low in the transparent square, centered horizontally at 50 percent and vertically at about 72 percent. Its width is about 24 percent of the canvas and its ellipse height about 8 percent.
+
+Only this small low golden ring of light, with a narrow hand-drawn luminous edge and a completely transparent empty interior. A soft close gold halo stays near the ring. No leaves, wreath, stars, rays, secondary rings, central orb, ground or people. Preserve broad empty transparent space above it.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Establish the specified palette, clean hand-drawn prop style and canvas registration from the emblem style references.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 2:
+Warm brightening golden light: one elliptical gold ring sits at 50 percent canvas width and 57 percent height, about 43 percent of the canvas width and 18 percent of its height. Three small green-gold leaves swirl close around its opening.
+
+A single opening golden light ring with three individually readable natural leaves curling around its perimeter. Its center opening remains entirely transparent, and the ring is a clean elliptical arc rather than a solid disk. Keep the specified size and lifted position. No wreath, central orb, additional rings, ground or people.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 3:
+Radiant soft golden light: one broad open elliptical gold ring is at its brightest, centered horizontally at 50 percent and vertically at about 44 percent. The entire ring and close glow span about 68 percent of the canvas width and 32 percent of its height.
+
+A single wide-open golden ring of light with distinct small green-gold leaves circling its rim. Its inner opening is empty transparent space. Confident clean hand-drawn arcs and glowing cel-shaded gold give a bright celebratory feeling while the full ring stays comfortably inside the square. No solid disk, central orb, extra ring, wreath, ground or people.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 4:
+Faint mellow golden light: three or four small green-gold leaves float around the last ring position, horizontally centered at 50 percent and vertically near 44 percent. Their sparse grouping occupies about 35 percent of the canvas width.
+
+Only a few separated gently drifting leaves and tiny faint gold light traces nearby. The ring has dissolved; there is no complete ring, ellipse, wreath, central orb or large glowing arc. Keep wide transparent gaps and low luminous intensity. No ground, people or added ornaments.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+The exact single-state subject described above is the entire asset. Add no material props or decorations.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+
+art/batch/ui/sprite-save.png
+Key frame 1:
+Warm honey-brown wood, muted brass, pale cream paper and brick-red wax. At the center, one small wooden-handled brass seal stamp is held directly above a completely blank sheet of paper, with a visible vertical air gap. The paper’s center stays at 50 percent canvas width and about 69 percent height.
+
+The paper is a small plain perspective rectangle about 45 percent of canvas width. A small plain red wax pool waits at its center. The stamp has a simple warm wooden handle and a plain brass base aligned over that wax, hovering roughly 10 percent of canvas height above it. The stamp’s base is unmarked. No magical glow or puff in this state, no hands, engraving, picture, writing, decorative flourish or extra object.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+Natural warm wood, brass, paper and wax keep simple clean cel shading.
+
+Establish the specified palette, clean hand-drawn prop style and canvas registration from the emblem style references.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 2:
+Warm honey-brown wood, muted brass, pale cream paper and brick-red wax. One small wooden-handled brass seal stamp presses vertically onto a small red wax pool on a blank paper sheet. The paper center is fixed at 50 percent canvas width and about 69 percent height.
+
+The same small plain paper rectangle spans about 45 percent of canvas width, without any marks. The stamp base touches the wax exactly at the paper center. A small soft pale-gold puff, no larger than about 10 percent canvas width, hugs the contact point. Keep wood, brass and red wax natural and matte with cel shading. No hovering gap, hands, engraving, picture, writing, large glow, extra object or ornament.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+Natural warm wood, brass, paper and wax keep simple clean cel shading.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 3:
+Bright soft golden light glows close around the brass base of one small wooden-handled seal stamp resting on blank cream paper. The paper center remains fixed at 50 percent canvas width and about 69 percent height.
+
+The small plain paper rectangle spans about 45 percent canvas width. The stamp is at rest with its unmarked brass base touching the plain red wax at the paper’s center. The warm gold contact glow is bright but localized, not a large cloud or ring. Keep the stamp upright and the paper completely blank. No hovering gap, puff, hands, symbols, impression picture, writing, extra objects or ornaments.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+Natural warm wood, brass, paper and wax keep simple clean cel shading.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.
+Key frame 4:
+Faint soft golden light remains close around one small wooden-handled brass seal stamp resting on blank cream paper. The paper center is fixed at 50 percent canvas width and about 69 percent height, with an unchanged resting pose.
+
+The small plain paper rectangle spans about 45 percent canvas width. The stamp base rests on plain brick-red wax at the paper center, the warm gold contact glow now very faint. Keep wood, brass, wax and paper clear and unchanged in scale and position. No hovering gap, puff, bright glow cloud, hands, symbols, engraving, impression picture, writing, extra object or ornament.
+
+Studio Ghibli anime prop exactly like the approved class emblems, bright and warm, no gore. Studio Ghibli anime prop like the reference emblems, bright and warm, no gore.
+
+Soft clean hand-drawn anime outline, cel shading with two or three warm tones. Soft glowing light stays only in the specific colors and form described for this single frame. Take only the drawing style from the supplied emblem references, never their backgrounds, object designs, decorative ribbons or objects. No video game badge, no heraldic crest, no chrome, no spikes everywhere, no realistic human faces. Every person is an adult. No gore and no despair.
+
+Natural warm wood, brass, paper and wax keep simple clean cel shading.
+
+Use the supplied first key frame only to preserve the same palette, drawing style and spatial registration; draw exactly the single current state specified here at its expressly stated size and position. Do not copy the first frame’s pose, amount of content or silhouette when this state changes them.
+
+One single current-state key frame on a 1024x1024 square canvas with a genuine alpha-transparent background. Preserve the whole square canvas and the specified relative scale and position. No sheet, grid, panels, labels or sequence. The surrounding empty area is transparent, not a white, black, grey or checkerboard backdrop.
+
+WOW at first glance: striking, full of character and vivid color, with clear silhouettes, confident gesture and composition. Specific story details, never filler decoration. Varied faces, ages, bodies and clothes. Natural anatomy and hands. Avoid random ribbons, flowers or bows added for no reason; a generic glowing star or orb as the whole idea; mushy or blurry details; broken anatomy; extra fingers; warped perspective; copy-paste duplicates; meaningless ornament; plastic skin; text-like squiggles; bland stock composition.
+
+Never include text, letters, numbers, runes that look like writing, logos, watermarks, signatures or artist marks, photorealism, a 3D render look, lens flare, chromatic aberration, neon or fluorescent colors: use vivid natural color. No user-interface overlays other than the requested UI prop. No copies of existing film characters or scenes, or of known card and book art, including Magic: The Gathering and official D&D art. Clock, watch and compass faces, dice faces, book pages, scrolls, parchment, paper sheets, notes, ledgers, letters, maps, charts, signs, banners and speech bubbles stay blank: no numbers, letters or symbols. When the subject names simple pictures for a sign, banner or map, draw only those pictures, never letters or writing-like marks. Card faces stay blank unless the subject names one simple picture for the card, and even then no letters or numbers.

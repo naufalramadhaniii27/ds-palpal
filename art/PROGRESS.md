@@ -1975,6 +1975,14 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2010,6 +2018,7 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
+NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2461,6 +2470,7 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
+NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2648,6 +2658,7 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
+NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
@@ -2737,6 +2748,7 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2949,6 +2961,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -2999,6 +3016,10 @@ art/batch/ui/parchment-tooltip.png
 art/batch/ui/frame-dialog.png
 art/batch/ui/sprite-loader-d20.png
 
+art/batch/ui/sprite-heal.png
+art/batch/ui/sprite-damage.png
+art/batch/ui/sprite-levelup.png
+art/batch/ui/sprite-save.png
 ## batch-204 v3
 
 art/batch/creatures/undead/skeleton.png
