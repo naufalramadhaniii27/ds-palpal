@@ -1934,14 +1934,6 @@ art/batch/icons/spells/level-2/blindness-deafness.png
 art/batch/icons/spells/level-2/cordon-of-arrows.png
 art/batch/icons/spells/level-2/darkvision.png
 
-art/batch/icons/items/gear/riding-horse-with-tack.png
-art/batch/icons/items/gear/rowboat.png
-art/batch/icons/items/gear/wagon.png
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
