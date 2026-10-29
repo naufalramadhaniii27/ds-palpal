@@ -3215,3 +3215,8 @@ art/batch/monsters/dragon/ancient-white-dragon.png
 art/batch/monsters/dragon/dracolich.png
 art/batch/monsters/dragon/shadow-dragon.png
 art/batch/monsters/dragon/five-headed-dragon-queen.png
+art/batch/monsters/fiend/balor.png
+art/batch/monsters/fiend/pit-fiend.png
+art/batch/monsters/fiend/marilith.png
+art/batch/monsters/fiend/glabrezu.png
+art/batch/monsters/fiend/vrock.png
