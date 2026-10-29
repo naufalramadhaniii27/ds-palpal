@@ -4221,6 +4221,11 @@ art/batch/icons/items/gear/torch.png
 art/batch/icons/items/gear/tinderbox.png
 art/batch/icons/items/gear/waterskin.png
 art/batch/icons/items/gear/lantern-hooded.png
+art/batch/icons/items/gear/oil-flask.png
+art/batch/icons/items/gear/ball-bearings.png
+art/batch/icons/items/gear/caltrops.png
+art/batch/icons/items/gear/manacles.png
+art/batch/icons/items/gear/potion-of-healing.png
 
 ## batch-061 v3
 art/batch/icons/wild-shape/wolf.png
