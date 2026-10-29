@@ -3988,4 +3988,8 @@ art/batch/icons/feats/sharpshooter.png
 ## batch-212 v3
 
 art/batch/icons/items/gear/arrows-20.png
+art/batch/icons/items/gear/bolts-20.png
+art/batch/icons/items/gear/quiver.png
+art/batch/icons/items/gear/backpack.png
+art/batch/icons/items/gear/pouch.png
 
