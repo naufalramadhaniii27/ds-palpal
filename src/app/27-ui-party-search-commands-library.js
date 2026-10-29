@@ -231,9 +231,19 @@ function libFlat(R,q,n){ return '<div class="lib-l">'+R.slice(0,LIB.lim).map(fun
 function libDom(){ var w=document.getElementById("lib"); if(w) return w; w=document.createElement("div"); w.id="lib"; w.className="lib"; w.setAttribute("role","dialog"); w.setAttribute("aria-label","Library"); w.tabIndex=-1;
   w.innerHTML='<div class="lib-h" id="libH"><button type="button" class="lib-x" data-lib-x="back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><div class="lib-tt"><b id="libT">Library</b><small id="libS"></small></div><button type="button" class="lib-x" data-lib-x="close" aria-label="Close library">'+ico("ui-close")+'</button></div><div class="lib-q"><input id="libQ" type="search" placeholder="Search spells, items, feats, rules" aria-label="Search the library" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><div class="lib-c" id="libC"></div><div class="lib-bd" id="libBd"></div>';
   document.body.appendChild(w); libWire(w); return w; }
+function libWm(w,d){ var m=document.getElementById("libWm"); if(!m){ m=document.createElement("span"); m.id="libWm"; m.className="sh-wm"; m.setAttribute("aria-hidden","true"); w.insertBefore(m,document.getElementById("libBd")); }
+  var h="";
+  if(d&&d.id){ var p=d.id.indexOf("|"), c=d.id.slice(0,p), k=d.id.slice(p+1);
+    try{ if(c==="sub"){ var own=null; Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) own=cn; }); h=(own&&window.__artSub&&window.__artSub(own,k,320))||ico("src-class"); }
+    else if(c==="class") h=ico(icoCls(k)||"src-class");
+    else if(c==="species") h=ico(icoSp(k)||"sp-custom");
+    else if(c==="bg") h=ico("src-background");
+    else h=sheetIco(d.t); }catch(er){ h=""; } }
+  m.innerHTML=h; }
 function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
+  libWm(w,d);/* T10: the entry's icon as a faint watermark */
   if(d){ bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; bd.scrollTop=0; return; }
   document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libListHTML(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ var rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
