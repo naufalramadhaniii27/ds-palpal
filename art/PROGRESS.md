@@ -3446,6 +3446,11 @@ art/batch/creatures/beast/giant-scorpion.png
 art/batch/creatures/monstrosity/griffon.png
 art/batch/creatures/aberration/intellect-devourer.png
 art/batch/creatures/beast/jackal.png
+art/batch/icons/spells/level-4/grasping-vine.png
+art/batch/icons/spells/level-4/guardian-of-faith.png
+art/batch/icons/spells/level-4/leomunds-secret-chest.png
+art/batch/icons/spells/level-4/mordenkainens-faithful-hound.png
+art/batch/icons/spells/level-4/summon-aberration.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
