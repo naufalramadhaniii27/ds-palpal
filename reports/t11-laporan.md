@@ -58,3 +58,36 @@ Learn jadi prioritas dan dirilis secepatnya dengan kualitas tetap dijaga. Keputu
 | F5 | "Learn this" di panel aturan sheet (contoh Armor Class ke Training Yard). Quick recap sekali sehari dari tempat yang dipelajari minimal sehari sebelumnya |
 | Sorotan | Bagian yang lebih tinggi dari setengah layar: kartu label di bawah, tidak keluar layar |
 | Tes | learn_flow (semua tempat dan Crumbling Bridge), learn_links |
+
+## Urutan kerja sesudah 0.0.3 (keputusan Claude, 2026-10-29 23.10 WIB, persetujuan otomatis)
+Dokumen baru dari sesi lain: claude/riset-builder-wizard.md (G6) dan claude/rencana-kerja-training-ground.md (G7 Training Ground). Urutan:
+| Urutan | Kerja | Alasan |
+|---|---|---|
+| 1 | G6 paket 1 dan 2 (builder dipercantik) | Tidak bergantung G3, langsung terlihat user |
+| 2 | Learn F3 Forge Your Hero | Memakai builder G6 |
+| 3 | G3 inti data (N3, N2 dan Game Log, N12, N13, N16), lalu G6 T9 dan T10 | Dasar G4 dan F5 lanjutan |
+| 4 | G7 TG0 mesin pertarungan tanpa tampilan dan TG0b data makhluk | Tidak menyentuh tampilan |
+| 5 | G4 fitur baru | Memakai G3 |
+| 6 | G7 TG1 sampai TG5 | Sesudah mesin dan data |
+| 7 | G5 pindah ke Workers | Paling akhir (keputusan user) |
+Rilis bertahap ke main sesudah tiap kelompok lolos regresi.
+
+## G6 Builder dipercantik (2026-10-29 malam)
+| Kode | Hasil |
+|---|---|
+| B1 | Nama dan Campaign hanya di langkah Home (tes campaign.py disesuaikan) |
+| B2 | Skor ability dalam heksagon dengan modifier, "points left" besar (merah bila lebih, hijau bila pas), tombol plus minus 44 px. Roll 4d6: 24 dadu 3D sekaligus, tiap ability ambil empat. tests/builder_4d6.py |
+| B3 | Gambar besar class, species, atau background yang dipilih di atas langkahnya (art HD yang ada) |
+| B4 | Daftar class dan species jadi kartu bergambar dengan ringkasan 3 baris |
+| B5 | Bar "n choices left" dan tombol Next missing choice (membuka dan memfokus pilihan), atau loncat ke langkah berikutnya yang belum selesai |
+| B6 | Identity (alignment 3 x 3, traits, ideals, bonds, flaws, backstory) dan Appearance (8 kolom dan deskripsi) di langkah What's Next, langsung ke kolom Description sheet. Langkah builder tidak berubah |
+| B7 dan T14 | Token bulat dari potret (canvas), Save token, Share token bila HP bisa berbagi file |
+| T1, T2 | @starting-style untuk dialog builder, text-wrap balance untuk judul |
+| T3 | Sudah ada sebelumnya (setelan wake lock di app 39) |
+| T4 | View Transition antar langkah dengan arah maju dan mundur, cadangan animasi lama |
+| T5 | Back HP mundur satu langkah builder, dari langkah pertama menutup builder |
+| T6 | Tidak dipakai di builder: B5 sudah membuka dan memfokus pilihannya. Sorotan tetap dipakai Learn dan Tur |
+| T7 | Gambar besar bergeser pelan mengikuti gulir (scroll-driven), hanya bila didukung |
+| T12 | Garis progres pilihan di bawah langkah, mengisi halus dengan @property |
+| T13 | Kolom teks Identity tumbuh mengikuti isi (field-sizing) |
+| Tes | builder_g6.py (Back, bar pilihan, kartu, progres, Identity sampai sesudah Apply), builder_4d6.py, regresi |

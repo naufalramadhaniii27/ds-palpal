@@ -57,6 +57,11 @@
     if(!x||!x.pc||!x.phone) return; var d=D.createElement("div"); d.className="bld-hero"; d.setAttribute("aria-hidden","true");
     d.innerHTML='<picture><source media="(min-width:760px)" srcset="'+x.pc+'"><img src="'+x.phone+'" alt="" decoding="async"></picture><b>'+String(nm).replace(/[&<>"]/g,"")+'</b>';
     var h=body.querySelector("h2.ttl"); if(h&&h.parentNode===body) body.insertBefore(d,h.nextSibling); else body.insertBefore(d,body.firstChild); };
+  /* T11 G6 B4: the class and species lists become picture cards (the art of each choice beside its name and a 3-line summary) */
+  window.__bldCards=function(body){ if(!body||ls("mi-clsart")==="off") return; var g=A.scn||{};
+    Array.prototype.forEach.call(body.querySelectorAll(".pickrow[data-setcls],.pickrow[data-setsp]"),function(b){ var n=b.getAttribute("data-setcls")||b.getAttribute("data-setsp"), x=null;
+      if(b.hasAttribute("data-setcls")){ var s=A.scene&&A.scene[bslug(n)]; if(s) x=s.phone.p; } else { var y=g.species&&g.species[bslug(n)]; if(y) x=y.phone; }
+      if(!x) return; b.classList.add("pcard"); b.style.setProperty("--pc-art",'url("'+x+'")'); }); };
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
   window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
   window.__clsArt=function(){ apply(); };
