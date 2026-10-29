@@ -4062,6 +4062,11 @@ art/batch/icons/items/gear/bedroll.png
 art/batch/icons/items/gear/crowbar.png
 art/batch/icons/items/tools/healers-kit.png
 art/batch/icons/items/gear/holy-symbol.png
+art/batch/icons/items/gear/arcane-focus.png
+art/batch/icons/items/gear/druidic-focus.png
+art/batch/icons/items/gear/component-pouch.png
+art/batch/icons/items/gear/spellbook.png
+art/batch/icons/items/gear/rope.png
 
 
 ## batch-235 v3
