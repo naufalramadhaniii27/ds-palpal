@@ -3743,6 +3743,11 @@ art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
 art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
 art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
 art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
+art/batch/icons/features/subclass/path-of-the-berserker/frenzy.png
+art/batch/icons/features/subclass/path-of-the-berserker/intimidating-presence.png
+art/batch/icons/features/subclass/path-of-the-berserker/mindless-rage.png
+art/batch/icons/features/subclass/path-of-the-berserker/retaliation.png
+art/batch/icons/features/subclass/path-of-the-giant/demiurgic-colossus.png
 
 ## batch-049 v3
 art/batch/icons/spells/level-4/storm-sphere.png
