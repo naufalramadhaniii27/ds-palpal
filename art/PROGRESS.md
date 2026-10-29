@@ -1891,3 +1891,9 @@ art/batch/scenes/environment/city-pc.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
+## batch-065 v3
+art/batch/scenes/species/aarakocra-pc.png
+art/batch/scenes/species/aarakocra-phone.png
+art/batch/scenes/species/aetherborn-pc.png
+art/batch/scenes/species/aetherborn-phone.png
+art/batch/scenes/species/autognome-pc.png
