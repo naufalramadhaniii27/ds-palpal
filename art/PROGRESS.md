@@ -3053,6 +3053,11 @@ art/batch/icons/features/class/paladin/spellcasting.png
 art/batch/icons/features/class/paladin/weapon-mastery.png
 art/batch/icons/features/class/ranger/deft-explorer.png
 art/batch/icons/features/class/ranger/expertise.png
+art/batch/icons/features/class/ranger/extra-attack.png
+art/batch/icons/features/class/ranger/favored-enemy.png
+art/batch/icons/features/class/ranger/feral-senses.png
+art/batch/icons/features/class/ranger/fighting-style.png
+art/batch/icons/features/class/ranger/foe-slayer.png
 ## batch-205 v3
 
 art/batch/creatures/undead/zombie.png
