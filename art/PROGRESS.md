@@ -1807,3 +1807,9 @@ art/batch/icons/items/tools/dragonchess-set.png
 art/batch/icons/items/tools/playing-card-set.png
 art/batch/icons/items/tools/three-dragon-ante-set.png
 art/batch/icons/items/gear/mount-saddle.png
+## batch-132 v3
+art/batch/icons/items/magic/rare/piercer.png
+art/batch/icons/items/magic/varies/portfolio-keeper.png
+art/batch/icons/items/magic/very-rare/rotor-of-return.png
+art/batch/icons/items/magic/uncommon/sending-stone.png
+art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
