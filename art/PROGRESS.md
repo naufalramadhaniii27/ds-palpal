@@ -2049,3 +2049,11 @@ art/batch/scenes/species/bugbear-phone.png
 art/batch/scenes/species/bullywug-pc.png
 art/batch/scenes/species/bullywug-phone.png
 art/batch/scenes/species/centaur-pc.png
+
+## batch-042 v3
+art/batch/icons/spells/level-2/dragons-breath.png
+art/batch/icons/spells/level-2/earthbind.png
+art/batch/icons/spells/level-2/enhance-ability.png
+art/batch/icons/spells/level-2/enlarge-reduce.png
+art/batch/icons/spells/level-2/heat-metal.png
+
