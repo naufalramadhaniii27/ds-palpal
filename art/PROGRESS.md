@@ -3340,6 +3340,11 @@ art/batch/icons/spells/level-7/forcecage.png
 art/batch/icons/spells/level-7/mordenkainens-sword.png
 NEEDS REVIEW: art/batch/icons/spells/level-7/prismatic-spray.png
 art/batch/icons/spells/level-7/whirlwind.png
+art/batch/icons/spells/level-7/mirage-arcane.png
+art/batch/icons/spells/level-7/project-image.png
+art/batch/icons/spells/level-7/simulacrum.png
+art/batch/icons/spells/level-7/finger-of-death.png
+art/batch/icons/spells/level-7/resurrection.png
 ## batch-230 v3
 art/batch/icons/abilities/intelligence.png
 art/batch/icons/skills/arcana.png
