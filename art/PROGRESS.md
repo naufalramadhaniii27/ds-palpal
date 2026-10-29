@@ -3598,6 +3598,21 @@ art/batch/icons/skills/nature.png
 art/batch/icons/skills/perception.png
 art/batch/icons/skills/persuasion.png
 art/batch/icons/skills/survival.png
+art/batch/icons/damage-types/resistance.png
+art/batch/icons/spell-schools/abjuration-school.png
+art/batch/icons/spell-schools/conjuration-school.png
+art/batch/icons/spell-schools/divination-school.png
+art/batch/icons/spell-schools/necromancy-school.png
+art/batch/icons/abilities/strength.png
+art/batch/icons/abilities/dexterity.png
+art/batch/icons/abilities/wisdom.png
+art/batch/icons/abilities/charisma.png
+art/batch/icons/skills/animal-handling.png
+art/batch/icons/damage-types/resistance.png
+art/batch/icons/spell-schools/abjuration-school.png
+art/batch/icons/spell-schools/conjuration-school.png
+art/batch/icons/spell-schools/divination-school.png
+art/batch/icons/spell-schools/necromancy-school.png
 ## batch-135 v3
 art/batch/icons/items/magic/common/wand-of-scowls.png
 art/batch/icons/items/magic/common/wand-of-smiles.png
@@ -3625,12 +3640,28 @@ art/batch/icons/spells/level-4/charm-monster.png
 art/batch/icons/spells/level-4/compulsion.png
 art/batch/icons/spells/level-4/confusion.png
 
+art/batch/icons/spells/level-4/summon-construct.png
+art/batch/icons/spells/level-4/summon-elemental.png
+art/batch/icons/spells/level-4/summon-greater-demon.png
+art/batch/icons/spells/level-4/watery-sphere.png
+art/batch/icons/spells/level-4/arcane-eye.png
+
 ## batch-136 v3
 art/batch/icons/feats/alert.png
 art/batch/icons/feats/crafter.png
 art/batch/icons/feats/healer.png
 art/batch/icons/feats/lucky.png
 art/batch/icons/feats/magic-initiate-cleric.png
+art/batch/icons/feats/alert.png
+art/batch/icons/feats/crafter.png
+art/batch/icons/feats/healer.png
+art/batch/icons/feats/lucky.png
+art/batch/icons/feats/magic-initiate-cleric.png
+art/batch/icons/feats/magic-initiate-druid.png
+art/batch/icons/feats/magic-initiate-wizard.png
+art/batch/icons/feats/musician.png
+art/batch/icons/feats/savage-attacker.png
+art/batch/icons/feats/skilled.png
 ## batch-211 v3
 
 art/batch/creatures/construct/eldritch-eddy.png
