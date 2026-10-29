@@ -1934,8 +1934,8 @@ art/batch/scenes/environment/battle-phone.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
-art/batch/scenes/environment/battle-pc.png
 art/batch/scenes/environment/city-pc.png
+art/batch/scenes/environment/battle-pc.png
 
 ## batch-065 v3
 art/batch/scenes/species/aarakocra-pc.png
