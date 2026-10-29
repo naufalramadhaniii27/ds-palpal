@@ -3786,21 +3786,6 @@ art/batch/icons/features/subclass/path-of-the-totem-warrior/aspect-of-the-beast.
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-seeker.png
 
 
-art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
-art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
-art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
-art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
-art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
-art/batch/icons/features/subclass/path-of-the-berserker/frenzy.png
-art/batch/icons/features/subclass/path-of-the-berserker/intimidating-presence.png
-art/batch/icons/features/subclass/path-of-the-berserker/mindless-rage.png
-art/batch/icons/features/subclass/path-of-the-berserker/retaliation.png
-art/batch/icons/features/subclass/path-of-the-giant/demiurgic-colossus.png
-art/batch/icons/features/subclass/path-of-the-giant/elemental-cleaver.png
-art/batch/icons/features/subclass/path-of-the-giant/giant-power.png
-art/batch/icons/features/subclass/path-of-the-giant/giants-havoc.png
-art/batch/icons/features/subclass/path-of-the-giant/mighty-impel.png
-art/batch/icons/features/subclass/path-of-the-storm-herald/raging-storm.png
 
 
 ## batch-049 v3
@@ -3879,3 +3864,10 @@ art/batch/vignettes/learn/advantage.png
 art/batch/vignettes/learn/abilities-skills.png
 art/batch/vignettes/learn/combat-turn.png
 art/batch/vignettes/learn/hit-points-rests.png
+
+## batch-174 v3
+art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/totemic-attunement.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/animal-speaker.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/aspect-of-the-wilds.png
