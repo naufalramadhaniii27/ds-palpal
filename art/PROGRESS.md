@@ -4555,6 +4555,11 @@ art/batch/icons/items/gear/shovel.png
 art/batch/icons/items/gear/signal-whistle.png
 art/batch/icons/items/gear/spikes-iron.png
 art/batch/icons/items/gear/spyglass.png
+art/batch/icons/items/gear/string.png
+art/batch/icons/items/gear/tent.png
+art/batch/icons/items/gear/vial.png
+art/batch/icons/items/gear/bullets-firearm-10.png
+art/batch/icons/items/gear/bullets-sling-20.png
 
 ## batch-064 v3
 art/batch/icons/bastion/guildhall.png
