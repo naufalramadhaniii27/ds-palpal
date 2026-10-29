@@ -3013,4 +3013,9 @@ art/batch/icons/spells/level-3/laerals-silver-lance.png
 art/batch/icons/spells/level-3/leomunds-tiny-hut.png
 art/batch/icons/spells/level-3/lightning-bolt.png
 art/batch/icons/spells/level-3/melfs-minute-meteors.png
+art/batch/icons/spells/level-3/pulse-wave.png
+art/batch/icons/spells/level-3/wall-of-sand.png
+art/batch/icons/spells/level-3/wall-of-water.png
+art/batch/icons/spells/level-3/wind-wall.png
+art/batch/icons/spells/level-3/fear.png
 
