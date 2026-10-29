@@ -46,11 +46,12 @@ function spotShow(el,html,onClose){ spotHide(true); var ring=document.createElem
   var b=card.querySelector("button"); if(b) try{ b.focus({preventScroll:true}); }catch(e){} return SPOT; }
 function spotHide(quiet){ var s=SPOT; if(!s) return; SPOT=null; removeEventListener("resize",s.place); removeEventListener("scroll",s.place,true);
   try{ s.el.style.removeProperty("anchor-name"); }catch(e){} s.ring.remove(); s.card.remove(); if(!quiet&&s.onClose) s.onClose(); }
-window.__spot={show:spotShow,hide:spotHide,on:function(){ return !!SPOT; }};
+window.__spot={show:spotShow,hide:spotHide,on:function(){ return !!SPOT; },find:function(s){ return lrnFind(s); }};
 
 /* finds the element a stop points at on the sheet, and turns to its page or tab first. Answers null when it is not on this sheet */
 function lrnVisible(el){ if(!el||!el.isConnected) return false; var r=el.getBoundingClientRect(); return r.width>0&&r.height>0&&r.right>0&&r.left<innerWidth&&getComputedStyle(el).visibility!=="hidden"; }/* a page of the phone pager beside the screen does not count */
 function lrnFindAll(spec){ var m;
+  if((m=/^sel:(.+)$/.exec(spec))) return Array.prototype.slice.call(document.querySelectorAll(m[1]));
   if(spec==="name") return ["#idName","#miniName","#officeName"].map(function(s){ return document.querySelector(s); }).filter(Boolean);
   if((m=/^skill:(.+)$/.exec(spec))){ var i=lrnSkillI(m[1]); return i<0?[]:Array.prototype.slice.call(document.querySelectorAll('[data-bd="sk-'+i+'"]')); }
   if((m=/^bd:(.+)$/.exec(spec))) return Array.prototype.slice.call(document.querySelectorAll('[data-bd="'+m[1]+'"]'));

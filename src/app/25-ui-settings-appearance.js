@@ -24,6 +24,7 @@ function settingsHTML(){ var h='<h3 class="set-h">Appearance</h3>'+themeHTML();
   h+='<div class="info-h">High Contrast</div><div class="thg">'+hcBtn("auto","Auto","ui-auto")+hcBtn("on","On","ui-contrast")+hcBtn("off","Off","ui-close")+'</div><p class="info-d" id="hcNote">'+hcNote()+'</p>'+miSetH();/* v35 p01, v55 */
   h+='<div class="info-h">Keyboard</div><div class="thg thgw"><button type="button" class="thb thbi" data-keysopen="1">'+ico("ui-keys")+'Keyboard Shortcuts</button></div><p class="info-d">On a computer: 1 to 7 switch tabs, H heals, D takes damage, R rests, and / searches. Press ? on the sheet to see them all.</p>';
   h+=snSetH();/* v32 p33 */
+  h+='<h3 class="set-h">Help</h3><div class="thg"><button type="button" class="btn press" data-tour="go">Tour the app</button><button type="button" class="btn press" data-hlearn="1">Learn to play D&amp;D</button></div>';/* T11 U52 */
   return h; }
 function setBtnI(k,v,label,ik){ var on=setOf(k)===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-set="'+k+':'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; }
 function applyLook2(){ var R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach(function(a){ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ wakeApply(); }catch(er){} }
