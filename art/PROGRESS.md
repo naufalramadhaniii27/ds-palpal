@@ -2145,6 +2145,7 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
+NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2170,6 +2171,16 @@ art/batch/icons/items/magic/common/earring-of-message.png
 art/batch/icons/items/magic/legendary/jewel-of-three-prayers.png
 
 
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2299,6 +2310,7 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
+NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
@@ -2402,6 +2414,7 @@ art/batch/creatures/beast/mastiff.png
 art/batch/creatures/beast/mule.png
 art/batch/creatures/beast/octopus.png
 
+
 ## batch-170 v3
 art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-emissary-of-peace.png
 art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-rebuke-the-violent.png
@@ -2444,3 +2457,9 @@ art/batch/scenes/environment/feywild-phone.png
 art/batch/scenes/environment/underdark-pc.png
 art/batch/scenes/environment/underdark-phone.png
 art/batch/scenes/environment/plane-fire-pc.png
+## batch-068 v3
+art/batch/scenes/species/githzerai-pc.png
+art/batch/scenes/species/githzerai-phone.png
+art/batch/scenes/species/gnoll-pc.png
+art/batch/scenes/species/gnoll-phone.png
+art/batch/scenes/species/goblin-pc.png
