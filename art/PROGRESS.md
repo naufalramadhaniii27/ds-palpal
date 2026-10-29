@@ -3874,3 +3874,8 @@ art/batch/vignettes/learn/learn-play.png
 art/batch/vignettes/learn/learn-build.png
 art/batch/scenes/screen/learn-pc.png
 art/batch/vignettes/learn/what-is-dnd.png
+art/batch/vignettes/learn/d20-test.png
+art/batch/vignettes/learn/advantage.png
+art/batch/vignettes/learn/abilities-skills.png
+art/batch/vignettes/learn/combat-turn.png
+art/batch/vignettes/learn/hit-points-rests.png
