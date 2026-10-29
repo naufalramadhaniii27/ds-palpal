@@ -4001,6 +4001,11 @@ art/batch/icons/spells/level-5/cloudkill.png
 art/batch/icons/spells/level-5/conjure-elemental.png
 art/batch/icons/spells/level-5/conjure-volley.png
 art/batch/icons/spells/level-5/far-step.png
+art/batch/icons/spells/level-5/infernal-calling.png
+art/batch/icons/spells/level-5/insect-plague.png
+art/batch/icons/spells/level-5/steel-wind-strike.png
+art/batch/icons/spells/level-5/summon-celestial.png
+art/batch/icons/spells/level-5/summon-draconic-spirit.png
 
 NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
 ## batch-138 v3
