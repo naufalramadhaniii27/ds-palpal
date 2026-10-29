@@ -3986,6 +3986,11 @@ art/batch/icons/spells/level-5/greater-restoration.png
 art/batch/icons/spells/level-5/hallow.png
 art/batch/icons/spells/level-5/mass-cure-wounds.png
 art/batch/icons/spells/level-5/planar-binding.png
+art/batch/icons/spells/level-5/banishing-smite.png
+art/batch/icons/spells/level-5/cloudkill.png
+art/batch/icons/spells/level-5/conjure-elemental.png
+art/batch/icons/spells/level-5/conjure-volley.png
+art/batch/icons/spells/level-5/far-step.png
 
 ## batch-138 v3
 art/batch/icons/feats/resilient.png
