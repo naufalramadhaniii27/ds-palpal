@@ -2063,6 +2063,11 @@ art/batch/creatures/beast/dire-wolf.png
 art/batch/creatures/beast/draft-horse.png
 art/batch/creatures/beast/elephant.png
 art/batch/creatures/beast/elk.png
+art/batch/creatures/beast/frog.png
+art/batch/creatures/beast/giant-badger.png
+art/batch/creatures/beast/giant-crab.png
+art/batch/creatures/beast/giant-goat.png
+art/batch/creatures/beast/giant-seahorse.png
 
 art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
 art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
