@@ -4002,6 +4002,9 @@ art/batch/icons/spells/level-5/insect-plague.png
 art/batch/icons/spells/level-5/steel-wind-strike.png
 art/batch/icons/spells/level-5/summon-celestial.png
 art/batch/icons/spells/level-5/summon-draconic-spirit.png
+art/batch/icons/spells/level-5/summon-dragon.png
+art/batch/icons/spells/level-5/summon-plant.png
+art/batch/icons/spells/level-5/teleportation-circle.png
 
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
