@@ -3617,3 +3617,11 @@ art/batch/icons/feats/crafter.png
 art/batch/icons/feats/healer.png
 art/batch/icons/feats/lucky.png
 art/batch/icons/feats/magic-initiate-cleric.png
+## batch-211 v3
+
+art/batch/creatures/construct/eldritch-eddy.png
+art/batch/creatures/monstrosity/swarm-of-corrupted-rats.png
+art/batch/creatures/construct/terran-magen.png
+art/batch/creatures/beast/cave-bear.png
+art/batch/creatures/monstrosity/guardian-wolf.png
+
