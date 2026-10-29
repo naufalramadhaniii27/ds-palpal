@@ -37,6 +37,7 @@ async def main():
             # builder
             await pg.evaluate("()=>document.getElementById('bldBtn').click()"); await pg.wait_for_timeout(4000); await asks(pg)
             check(t + "builder has the Campaign field, filled from the sheet", await pg.evaluate("()=>{var i=document.getElementById('cpIn');return !!i&&i.value==='Lost Mine'}"))
+            await pg.click('#steps [data-step="home"]'); await pg.wait_for_timeout(400)  # T11 G6 B1: Name and Campaign sit on the Home step
             await pg.fill("#cpIn", "Dragon Heist"); await pg.wait_for_timeout(400)
             await pg.evaluate("()=>document.getElementById('b-toSheet').click()"); await pg.wait_for_timeout(700); await asks(pg); await pg.wait_for_timeout(1500)
             sheet = json.loads(await pg.evaluate("()=>localStorage.getItem('yudhi-kelapa-sheet-v1')||(window.__store&&__store.getItem('yudhi-kelapa-sheet-v1'))||'{}'"))

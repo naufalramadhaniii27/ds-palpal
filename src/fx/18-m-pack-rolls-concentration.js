@@ -84,16 +84,19 @@
     var b=e.target.closest&&e.target.closest("#sheet button,[data-ppcturn]"); if(!b||!/^\s*End Turn\s*$/i.test(b.textContent||"")) return; var n=rnd()+1; setTimeout(function(){ setRnd(n); var c=D.querySelector(".mi-rnd b"); if(c&&!calm()) c.animate([{transform:"scale(1.4)",color:"#ffd36b"},{transform:"none"}],{duration:500,easing:"cubic-bezier(.3,1.5,.5,1)"}); },60); J.add("combat","Round "+n); },true);
 
   /* 4d6, drop the lowest, for every ability in the builder */
-  function d6(){ return 1+Math.floor(Math.random()*6); }
+  function d6(){ var a=new Uint32Array(1); try{ crypto.getRandomValues(a); return 1+a[0]%6; }catch(e){ return 1+Math.floor(Math.random()*6); } }
   function abilBtn(){ var sel=D.querySelector('#bld select[data-method]'); if(!vis(sel)) return; var have=sel.parentNode.querySelector(".mi-4d6"); if(sel.value!=="manual"){ rm(have); return; } if(have) return;
     var b=D.createElement("button"); b.type="button"; b.className="mi-4d6 mi-rb pri"; b.innerHTML='Roll 4d6 for every ability'; sel.parentNode.insertBefore(b,sel.nextSibling); }
   var bl=D.getElementById("bld"); if(bl){ var aq=0; new MutationObserver(function(){ if(!aq){ aq=1; nf(function(){ aq=0; abilBtn(); }); } }).observe(bl,{childList:true,subtree:true}); }
-  addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest(".mi-4d6"); if(!b) return; e.preventDefault(); e.stopPropagation(); var AB=["STR","DEX","CON","INT","WIS","CHA"], i=0, log=[];
-    (function next(){ if(i>=AB.length){ J.add("build","Rolled abilities: "+log.join(", ")); return; } var k=AB[i++], inp=D.querySelector('#bld input[data-b="base.'+k+'"]'); if(!inp){ next(); return; }
-      var r=[d6(),d6(),d6(),d6()], lo=Math.min.apply(null,r), tot=r.reduce(function(a,b){ return a+b; },0)-lo, q=inp.getBoundingClientRect(); log.push(k+" "+tot); play("dice");
+  /* T11 G6 B2: the 24 dice land together on the 3D table (vendor/dice) when effects are on, then each ability takes its four */
+  addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest(".mi-4d6"); if(!b) return; e.preventDefault(); e.stopPropagation(); if(b.__busy) return; b.__busy=1; var AB=["STR","DEX","CON","INT","WIS","CHA"], i=0, log=[], pool=null;
+    var go=function(v){ pool=v&&v.length===24?v.slice():null; b.__busy=0; next(); };
+    if(window.__dice3d&&!calm()){ var L=[]; for(var z=0;z<24;z++) L.push(6); window.__dice3d.roll(L).then(go,function(){ go(null); }); } else go(null);
+    function next(){ if(i>=AB.length){ J.add("build","Rolled abilities: "+log.join(", ")); return; } var k=AB[i++], inp=D.querySelector('#bld input[data-b="base.'+k+'"]'); if(!inp){ next(); return; }
+      var r=pool?pool.splice(0,4):[d6(),d6(),d6(),d6()], lo=Math.min.apply(null,r), tot=r.reduce(function(a,b){ return a+b; },0)-lo, q=inp.getBoundingClientRect(); log.push(k+" "+tot); play("dice");
       if(!calm()){ var g=fx("mi-4d",r.map(function(v){ return '<i class="'+(v===lo?"lo":"")+'">'+v+'</i>'; }).join(""),1500); g.style.left=(q.left+q.width/2)+"px"; g.style.top=(q.top-8)+"px";
         g.animate([{transform:"translate(-50%,-100%) translateY(20px) scale(.6)",opacity:0},{transform:"translate(-50%,-100%) scale(1)",opacity:1,offset:.3},{transform:"translate(-50%,-100%)",opacity:1,offset:.75},{transform:"translate(-50%,-100%) translateY(-10px)",opacity:0}],{duration:1100,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(g); }; }
-      setTimeout(function(){ var n=D.querySelector('#bld input[data-b="base.'+k+'"]')||inp; n.value=tot; n.dispatchEvent(new Event("input",{bubbles:true})); n.dispatchEvent(new Event("change",{bubbles:true})); setTimeout(next,calm()?40:260); },calm()?0:420); })(); },true);
+      setTimeout(function(){ var n=D.querySelector('#bld input[data-b="base.'+k+'"]')||inp; n.value=tot; n.dispatchEvent(new Event("input",{bubbles:true})); n.dispatchEvent(new Event("change",{bubbles:true})); setTimeout(next,calm()?40:260); },calm()?0:420); } },true);
 
   /* coins and XP: numbers move, a coin sound */
   function coinTot(){ var t=0; Array.prototype.forEach.call(D.querySelectorAll("#invBody .icn b"),function(b){ t+=parseFloat(b.textContent)||0; }); return t; }

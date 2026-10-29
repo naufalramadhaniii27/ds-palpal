@@ -147,12 +147,13 @@ function renderSpecies(){var h="";
 function renderAbil(){var a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
  h+='<select class="dd" data-method="1">'+(un("abil")?'<option value="" selected>- Choose a Generation Method -</option>':'')+[["manual","Manual/Rolled"],["array","Standard Array"],["point","Point Buy"]].map(function(m){return '<option value="'+m[0]+'"'+(B.method===m[0]&&!un("abil")?" selected":"")+'>'+m[1]+'</option>'}).join("")+'</select>';
  if(un("abil"))return h+'<p class="fd bhint">Choose how to set your ability scores.</p>';
- if(B.method==="point"){var used=ABK.reduce(function(t,k){return t+(PBC[B.base[k]]!=null?PBC[B.base[k]]:0)},0);h+='<p class="pts">Points Remaining: <b>'+(27-used)+' / 27</b></p>'}
+ if(B.method==="point"){var used=ABK.reduce(function(t,k){return t+(PBC[B.base[k]]!=null?PBC[B.base[k]]:0)},0);h+='<p class="pts'+(27-used===0?" done":27-used<0?" over":"")+'"><b>'+(27-used)+'</b> / 27 points left</p>'}
  h+='<div class="abgrid">'+ABK.map(function(k){var ctl;
   if(B.method==="array"){var taken=ABK.filter(function(j){return j!==k&&B.arr&&B.arr[j]}).map(function(j){return +B.arr[j]});ctl='<select class="dd" data-arr="'+k+'"><option value="">--</option>'+ARR.filter(function(v,i){var cnt=taken.filter(function(t){return t===v}).length;return cnt===0}).concat([]).map(function(v){return '<option'+(B.arr&&+B.arr[k]===v?" selected":"")+'>'+v+'</option>'}).join("")+'</select>'}
   else if(B.method==="point")ctl='<div class="pb"><button type="button" data-pb="'+k+'" data-d="-1">\u2212</button><output>'+B.base[k]+'</output><button type="button" data-pb="'+k+'" data-d="1">+</button></div>';
   else ctl='<input class="btx c" type="number" min="3" max="20" data-b="base.'+k+'" value="'+B.base[k]+'">';
-  return '<div class="abx"><b>'+ABN[k].toUpperCase()+'</b>'+ctl+'<span>TOTAL: '+a.sc[k]+'</span></div>'}).join("")+'</div>';
+  /* T11 G6 B2: the total sits in a hexagon with its modifier, the control below */
+  return '<div class="abx"><b>'+ABN[k].toUpperCase()+'</b><div class="abhex" aria-hidden="true"><strong>'+a.sc[k]+'</strong><small>'+sg(mod(a.sc[k]))+'</small></div>'+ctl+'<span class="vh">Total '+a.sc[k]+', modifier '+sg(mod(a.sc[k]))+'</span></div>'}).join("")+'</div>';
  h+='<h2 class="ttl sm">Score Calculations</h2>';
  h+=ABK.map(function(k){var s=a.sc[k],bon=a.src[k].reduce(function(t,b){return t+b.v},0);
   return '<table class="calc"><thead><tr><th colspan="2">'+ABN[k].toUpperCase()+'</th></tr></thead><tbody><tr class="hl"><td>Total Score</td><td>'+s+'</td></tr><tr class="hl"><td>Modifier</td><td>'+sg(mod(s))+'</td></tr><tr><td>Base Score</td><td>'+B.base[k]+'</td></tr><tr><td>Bonus'+a.src[k].map(function(b){return '<small>'+esc(b.s)+'</small>'}).join("")+'</td><td>'+sg(bon)+a.src[k].map(function(b){return '<small>('+sg(b.v)+')</small>'}).join("")+'</td></tr></tbody></table>'}).join("");

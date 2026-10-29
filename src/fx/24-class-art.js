@@ -48,6 +48,15 @@
     var u=PHONE.matches?x.phone:x.pc, im=new Image(); im.onload=im.onerror=function(){ if(bkey!==key) return; var n=bon<0?0:1-bon, e=BL[n];
       e.style.setProperty("--ca-pc",'url("'+x.pc+'")'); e.style.setProperty("--ca-ph",'url("'+x.phone+'")'); e.style.setProperty("--ca-c",x.c||"#0f1417");
       e.classList.add("on"); if(bon>=0) BL[bon].classList.remove("on"); bon=n; }; im.src=u; };
+  /* T11 G6 B3: the chosen class, species or background as a large picture at the top of its step (the same art as the backdrop, sharp
+     and in full colour), with the name over it. Nothing when art is off or nothing is chosen yet */
+  window.__bldBanner=function(step,B,body){ if(!body||ls("mi-clsart")==="off"||!B) return; var g=A.scn||{}, x=null, nm="";
+    if(step==="class"&&B.cls){ var s=A.scene&&A.scene[bslug(B.cls)]; if(s) x={pc:s.pc.p,phone:s.phone.p}; nm=B.cls; }
+    else if(step==="species"&&B.species){ x=g.species&&g.species[bslug(B.species)]; nm=B.species; }
+    else if(step==="bg"&&B.bg){ x=g.background&&g.background[bslug(B.bg)]; nm=B.bg; }
+    if(!x||!x.pc||!x.phone) return; var d=D.createElement("div"); d.className="bld-hero"; d.setAttribute("aria-hidden","true");
+    d.innerHTML='<picture><source media="(min-width:760px)" srcset="'+x.pc+'"><img src="'+x.phone+'" alt="" decoding="async"></picture><b>'+String(nm).replace(/[&<>"]/g,"")+'</b>';
+    var h=body.querySelector("h2.ttl"); if(h&&h.parentNode===body) body.insertBefore(d,h.nextSibling); else body.insertBefore(d,body.firstChild); };
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
   window.__artIc=function(cat,name){ var l=A.icon&&A.icon[cat]; if(!l||ls("mi-clsart")==="off") return ""; var k=slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
   window.__clsArt=function(){ apply(); };
