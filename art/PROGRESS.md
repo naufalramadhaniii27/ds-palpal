@@ -1840,6 +1840,12 @@ art/batch/portraits/warforged-b.png
 art/batch/portraits/yuan-ti-a.png
 art/batch/portraits/yuan-ti-b.png
 
+
+art/batch/portraits/vampire-a.png
+art/batch/portraits/vampire-b.png
+art/batch/portraits/vedalken-a.png
+art/batch/portraits/vedalken-b.png
+art/batch/portraits/verdan-a.png
 ## batch-218 v3
 art/batch/icons/items/tools/dice-set.png
 art/batch/icons/items/tools/dragonchess-set.png
@@ -1964,3 +1970,9 @@ art/batch/icons/rules/resources/death-save-failure.png
 art/batch/icons/rules/resources/heroic-inspiration.png
 art/batch/icons/rules/resources/exhaustion-level.png
 art/batch/icons/rules/resources/arcane-recovery.png
+## batch-133 v3
+art/batch/icons/items/magic/rare/stonespeaker-crystal.png
+art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
+art/batch/icons/items/magic/legendary/deck-of-several-things.png
+art/batch/icons/items/magic/rare/galders-bubble-pipe.png
+art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
