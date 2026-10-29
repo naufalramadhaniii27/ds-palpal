@@ -17,7 +17,7 @@ function dom(){ var w=document.getElementById("learn"); if(w) return w;
   w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-l="back" id="lrnBk">'+ic("ui-chev-l")+'</button><div class="lrn-tt"><b id="lrnT"></b><small id="lrnS"></small></div><span class="lrn-xp" id="lrnXp"></span><div class="lrn-lang" role="group" id="lrnLg"><button type="button" data-llang="en" lang="en">EN</button><button type="button" data-llang="id" lang="id">ID</button></div><button type="button" class="lrn-ib" data-l="close" id="lrnX">'+ic("ui-close")+'</button></header>'
     +'<div class="lrn-b" id="lrnB"></div><p class="lrn-live sr" id="lrnLive" aria-live="polite"></p><div class="lrn-pop" id="lrnPop" role="dialog" aria-modal="false"></div>';
   document.body.appendChild(w); wire(w); return w; }
-function head(){ var t="",s=""; if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ var p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+LEARN.quiz.length; }
+function head(){ var t="",s=""; if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ var p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
   document.getElementById("lrnT").textContent=t; document.getElementById("lrnS").textContent=s; document.getElementById("lrnXp").textContent=LRN.xp+" "+U("xp");
   document.getElementById("lrnBk").setAttribute("aria-label",V.view==="map"?U("close"):U("back")); document.getElementById("lrnX").setAttribute("aria-label",U("close"));
   document.getElementById("lrnLg").setAttribute("aria-label",U("lang"));
@@ -113,12 +113,13 @@ function gridPaint(){ var st=LEARN.places[V.p].steps[V.i], S=V.s, g=document.get
 function near(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))===1; }
 
 /* ===== final check ===== */
-function quizHtml(){ var Q=LEARN.quiz;
+function quizHtml(){ var Q=V.Q;
+  if(V.qd&&V.exam!=null) return '<section class="lrn-fin">'+pic(LEARN.places[V.exam].img,"lrn-fp","")+'<h2>'+esc(U("bridgeDone"))+'</h2><p class="lrn-xpg">'+esc(U("quizScore"))+': '+V.qok+' / '+Q.length+'</p><div class="lrn-acts"><button type="button" class="btn pri press" data-lgo="'+V.exam+'">'+ic("ui-redo")+esc(U("again"))+'</button><button type="button" class="btn press" data-l="map">'+esc(U("toMap"))+'</button></div></section>';
   if(V.qd) return '<section class="lrn-fin">'+hoot()+'<h2>'+esc(U("quizDone"))+'</h2><p class="lrn-xpg">'+esc(U("quizScore"))+': '+V.qok+' / '+Q.length+'</p><div class="lrn-acts"><button type="button" class="btn pri press" data-l="hero">'+ic("ui-build")+esc(U("makeHero"))+'</button><button type="button" class="btn press" data-l="map">'+esc(U("toMap"))+'</button></div></section>';
   var q=Q[V.qi], S=V.s; return '<div class="lrn-place"><div class="lrn-dots" aria-hidden="true">'+Q.map(function(x,k){ return '<i class="'+(k<V.qi?"d":k===V.qi?"c":"")+'"></i>'; }).join("")+'</div><div class="lrn-say">'+hoot(1)+'<p class="lrn-bub" id="lrnSay" data-lfocus="1">'+(S.res?fmt(S.ok?q.fb:{en:LEARN.ui.tryAgain.en,id:LEARN.ui.tryAgain.id}):fmt(q.q))+'</p></div><div class="lrn-stage"><h2 class="sr">'+esc(lrnL(q.q))+'</h2><div class="lrn-opts" role="group">'+q.opts.map(function(o,k){ return opt("",'data-lq="'+k+'"',esc(lrnL(o)),S.res&&S.res[k]||""); }).join("")+'</div></div><div class="lrn-foot"><span></span><button type="button" class="btn pri press lrn-next" data-l="qnext"'+(S.ok?"":" disabled")+'>'+esc(V.qi===Q.length-1?U("done"):U("next"))+'</button></div></div>'; }
 
 /* ===== moving around ===== */
-function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
+function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } if(LEARN.places[k].kind==="exam"){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnExam(),exam:k}; paint(); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
 /* the App Tour: Learn steps aside, the tour of src/app/31 runs on the sheet in the Learn language, then Learn comes back with the map */
 function runTour(k){ var p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!window.__tour) return; V={view:"map",p:0,i:0,ok:false,s:{}};
   var hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden); w.classList.remove("on"); w.hidden=true; ovQueue();
@@ -160,7 +161,7 @@ function wire(w){
     if(d.lterm){ popShow(t); return; }
     if(d.libQ){ var q=d.libQ; popHide(); if(typeof libOpen==="function"){ libOpen({q:q}); var lb=document.getElementById("lib"); if(lb) lb.classList.add("lrn-over"); } return; }
     if(d.lgo!=null){ goPlace(+d.lgo); return; }
-    if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); var c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{}}; paint(); return; }
+    if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); var c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return; }
     if(d.l==="close"){ close(); return; } if(d.l==="back"){ back(); return; } if(d.l==="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; }
     if(d.l==="pop"){ popHide(); return; }
     if(d.l==="next"){ next(); return; }
@@ -181,8 +182,8 @@ function wire(w){
     if(d.lx!=null&&st){ var x=+d.lx, y=+d.ly, dist=Math.max(Math.abs(x-S.pos[0]),Math.abs(y-S.pos[1])); if(t.classList.contains("hero")||t.classList.contains("foe")) return; if(S.act){ S.msg=fmt(st.second); paint(false); return; }
       if(dist>S.left){ S.msg=fmt(st.far); paint(false); return; } S.left-=dist; S.pos=[x,y]; S.msg=esc(F("moved",{n:S.left})); paint(false); var c2=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(c2) try{ c2.focus({preventScroll:true}); }catch(er){} return; }
     if(d.la&&st){ if(S.act){ S.msg=fmt(st.second); paint(false); return; } if(d.la==="Attack"&&!near(S.pos||st.hero,st.foe)){ S.msg=esc(U("notNear")); paint(false); return; } S.act=d.la; S.msg=fmt(st.good); paint(false); setOk(true); return; }
-    if(V.view==="quiz"){ var Q=LEARN.quiz[V.qi]; if(d.lq!=null){ if(S.ok) return; S.res=S.res||{}; var right2=+d.lq===Q.a; S.res[+d.lq]=right2?"good":"try"; if(right2){ S.ok=1; if(!S.miss) V.qok++; } else S.miss=1; paint(false); return; }
-      if(d.l==="qnext"){ if(V.qi<LEARN.quiz.length-1){ V.qi++; V.s={}; paint(); } else { V.qd=1; lrnQuizDone(V.qok); paint(); } return; } }
+    if(V.view==="quiz"){ var Q=V.Q[V.qi]; if(d.lq!=null){ if(S.ok) return; S.res=S.res||{}; var right2=+d.lq===Q.a; S.res[+d.lq]=right2?"good":"try"; if(right2){ S.ok=1; if(!S.miss) V.qok++; } else S.miss=1; paint(false); return; }
+      if(d.l==="qnext"){ if(V.qi<V.Q.length-1){ V.qi++; V.s={}; paint(); } else { V.qd=1; if(V.exam!=null){ lrnFinish(LEARN.places[V.exam].id,false); var bb=LRN.bridge||{}; if(!(bb.best>=V.qok)) bb.best=V.qok; bb.t=Date.now(); LRN.bridge=bb; lrnPut(LRN); } else lrnQuizDone(V.qok); paint(); } return; } }
   });
   w.addEventListener("keydown",function(e){ if(e.key==="Escape"){ e.stopPropagation(); if(document.getElementById("lrnPop").classList.contains("on")) popHide(); else back(); return; }
     var c=e.target.closest&&e.target.closest(".lrn-cell"); if(c&&/^Arrow/.test(e.key)){ e.preventDefault(); var x=+c.dataset.lx+(e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0), y=+c.dataset.ly+(e.key==="ArrowDown"?1:e.key==="ArrowUp"?-1:0); var n=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(n) n.focus(); } });

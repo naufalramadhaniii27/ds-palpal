@@ -80,6 +80,7 @@ var LEARN={
     xpGot:{en:"You earned {x} XP.",id:"Kamu meraih {x} XP."},
     mapTitle:{en:"Map",id:"Peta"},
     learn:{en:"Learn",id:"Belajar"},
+    bridgeDone:{en:"You crossed the Crumbling Bridge!",id:"Kamu berhasil menyeberangi Jembatan Rapuh!"},
     armor:{en:"Armor Number",id:"Angka armor"},
     hitT:{en:"{t} reaches {dc}. A hit!",id:"{t} sampai ke {dc}. Kena!"},
     missT:{en:"{t} is short of {dc}. A miss, roll again?",id:"{t} belum sampai {dc}. Meleset, lempar lagi?"},
@@ -416,7 +417,9 @@ var LEARN={
         {x:{en:"10",id:"10"},ok:0,fb:{en:"Half the damage is 15, which is higher than 10.",id:"Setengah damage itu 15, lebih tinggi dari 10."}},
         {x:{en:"30",id:"30"},ok:0,fb:{en:"Use half the damage. Half of 30 is 15.",id:"Pakai setengah damage. Setengah dari 30 itu 15."}}]},
       {t:"sheet",find:"sel:#spBody",say:{en:"Concentration spells are marked on your Spells tab.",id:"Sihir Concentration ditandai di tab Spells."},label:{en:"Spells",id:"Spells"}}
-     ]}
+     ]},
+    {id:"bridge",core:0,kind:"exam",img:"img/scn/background/guide",icon:"star",
+     name:{en:"Crumbling Bridge",id:"Jembatan Rapuh"},goal:{en:"The final test. New questions every time.",id:"Ujian akhir. Soal baru setiap kali."},steps:[]}
 
   ],
   /* the App Tour (U52): runs on the person's own sheet with the spotlight (src/app/31). w = the words on a wide screen */

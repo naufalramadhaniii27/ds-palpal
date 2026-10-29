@@ -16,6 +16,15 @@ function lrnFinish(id,skip){ var d=LRN.done[id], had=d?(d.skip?25:100):0, get=sk
   if(!d||(d.skip&&!skip)) LRN.done[id]={t:Date.now(),skip:skip?1:0}; var add=Math.max(0,get-had); LRN.xp+=add; LRN.last=id; lrnPut(LRN); return add; }
 function lrnQuizDone(n){ var q=LRN.quiz||{}; if(!(q.best>=n)) q.best=n; q.t=Date.now(); LRN.quiz=q; if(!q.xp){ q.xp=1; LRN.xp+=100; } lrnPut(LRN); }
 
+/* U4 and U49 Crumbling Bridge: a new set of questions on each run, made from the "why" steps of every stop and the final check.
+   One question from each of the five first stops is always in, three more come from the rest, answers in a new order each time */
+function lrnShuffle(a){ for(var i=a.length-1;i>0;i--){ var j=lrnD(i+1)-1, t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function lrnExam(){ var core=[], rest=[];
+  LEARN.places.forEach(function(p){ if(p.kind) return; var qs=p.steps.filter(function(s){ return s.t==="why"; }).map(function(s){ var ord=lrnShuffle(s.opts.map(function(o,k){ return k; })), ok=-1;
+      var q={q:s.q,opts:ord.map(function(k,j){ if(s.opts[k].ok) ok=j; return s.opts[k].x; }),fb:s.opts.filter(function(o){ return o.ok; })[0].fb}; q.a=ok; return q; });
+    if(!qs.length) return; lrnShuffle(qs); (p.core?core:rest).push(qs[0]); if(qs[1]) rest.push(qs[1]); });
+  return lrnShuffle(core.concat(lrnShuffle(rest).slice(0,3))); }
+
 /* dice: the 3D dice of the sheet (vendor/dice) when effects are on, numbers from crypto otherwise. Always answers, never throws */
 function lrnD(n){ var a=new Uint32Array(1); try{ crypto.getRandomValues(a); }catch(e){ a[0]=Math.floor(Math.random()*4294967295); } return 1+a[0]%n; }
 function lrnCalm(){ var M=window.__MI; return !M||(M.rm&&M.rm())||M.mode==="off"; }

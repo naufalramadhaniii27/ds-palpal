@@ -131,8 +131,18 @@ async def run(b, url, w, h, who, bad):
     sheet_ok = await pg.evaluate("()=>{ var a=window.__app, C=a&&a.C(); return !!(C&&C.name!=null); }")
     n = await pg.evaluate("()=>document.querySelectorAll('#lrnB [data-lgo]').length")
     tour = await pg.evaluate("()=>[...document.querySelectorAll('#lrnB .lrn-app [data-lgo]')].map(b=>+b.dataset.lgo)")
+    exams = await pg.evaluate("()=>[...document.querySelectorAll('#lrnB [data-lgo]')].filter(b=>/Crumbling|Rapuh/.test(b.textContent)).map(b=>+b.dataset.lgo)")
     for k in range(n):
         if k in tour: continue  # the App Tour has its own test (tests/tour_flow.py)
+        if k in exams:  # Crumbling Bridge: a fresh set of questions, at least one from each first stop
+            await click(pg, '#lrnB [data-lgo="%d"]' % k); await settle(pg, 400)
+            qn = await pg.evaluate("()=>window.__learnState().view==='quiz'?document.getElementById('lrnS').textContent:''")
+            for q in range(12):
+                if await pg.evaluate("()=>!!window.__learnState().qd"): break
+                if not await answer_opts(pg, "data-lq"): bad.append(tag + " bridge question %d" % q)
+                await click(pg, '#lrnB [data-l="qnext"]'); await settle(pg, 380)
+            if not await pg.evaluate("()=>!!window.__learnState().qd"): bad.append(tag + " bridge not finished (" + qn + ")")
+            await click(pg, '#lrnB [data-l="map"]'); await settle(pg, 300); continue
         if not await play_place(pg, k, tag, bad, sheet_ok): break
         if k == 0: await shot(pg, tag.replace(" ", "-") + "-fin")
         await click(pg, '#lrnB [data-l="map"]'); await settle(pg, 300)
