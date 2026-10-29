@@ -4023,6 +4023,11 @@ art/batch/icons/feats/telekinetic.png
 art/batch/icons/feats/telepathic.png
 art/batch/icons/feats/war-caster.png
 art/batch/icons/feats/weapon-master.png
+art/batch/icons/feats/archery.png
+art/batch/icons/feats/blind-fighting.png
+art/batch/icons/feats/defense.png
+art/batch/icons/feats/dueling.png
+art/batch/icons/feats/great-weapon-fighting.png
 
 ## batch-212 v3
 
