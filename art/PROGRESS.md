@@ -4414,6 +4414,11 @@ art/batch/icons/familiars/quasit-pact-familiar.png
 art/batch/icons/familiars/sprite-pact-familiar.png
 art/batch/icons/familiars/sphinx-of-wonder-pact-familiar-tiny-winged-sphinx.png
 art/batch/icons/bastion/arcane-study.png
+art/batch/icons/bastion/armory.png
+art/batch/icons/bastion/barrack.png
+art/batch/icons/bastion/garden.png
+art/batch/icons/bastion/library.png
+art/batch/icons/bastion/sanctuary.png
 ## batch-177 v3
 art/batch/icons/features/subclass/warlock/epic-boon.png
 art/batch/icons/features/subclass/warrior-of-mercy/flurry-of-healing-and-harm.png
