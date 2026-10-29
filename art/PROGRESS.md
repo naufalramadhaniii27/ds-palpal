@@ -2034,3 +2034,9 @@ art/batch/icons/features/subclass/life-domain/divine-strike.png
 art/batch/icons/features/subclass/life-domain/life-domain-spells.png
 art/batch/icons/features/subclass/life-domain/preserve-life.png
 art/batch/icons/features/subclass/life-domain/supreme-healing.png
+## batch-146 v3
+art/batch/icons/rules/actions/bonus-action.png
+art/batch/icons/rules/actions/reaction.png
+art/batch/icons/rules/actions/grapple.png
+art/batch/icons/rules/actions/shove.png
+art/batch/icons/rules/actions/two-weapon-attack.png
