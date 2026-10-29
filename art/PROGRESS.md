@@ -4369,6 +4369,11 @@ art/batch/icons/items/magic/uncommon/gruul-guild-signet.png
 art/batch/icons/items/magic/rare/gruul-keyrune.png
 art/batch/icons/items/magic/very-rare/illusionists-bracers.png
 
+art/batch/icons/items/magic/uncommon/izzet-guild-signet.png
+art/batch/icons/items/magic/rare/izzet-keyrune.png
+art/batch/icons/items/magic/uncommon/mizzium-apparatus.png
+art/batch/icons/items/magic/rare/mizzium-mortar.png
+art/batch/icons/items/magic/common/moodmark-paint.png
 ## batch-214 v3
 
 art/batch/icons/items/tools/bagpipes.png
