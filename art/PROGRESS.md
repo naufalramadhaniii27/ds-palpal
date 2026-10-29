@@ -3372,6 +3372,11 @@ art/batch/icons/conditions/invisible.png
 art/batch/icons/spell-schools/illusion-school.png
 art/batch/icons/feat-categories/fighting-style-feat.png
 art/batch/icons/conditions/charmed.png
+art/batch/icons/conditions/deafened.png
+art/batch/icons/conditions/frightened.png
+art/batch/icons/conditions/prone.png
+art/batch/icons/conditions/restrained.png
+art/batch/icons/conditions/unconscious.png
 ## batch-209 v3
 
 art/batch/creatures/humanoid/knight.png
