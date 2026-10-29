@@ -1800,6 +1800,11 @@ art/batch/icons/rules/resources/spell-slot-gem.png
 art/batch/icons/rules/resources/pact-magic-slot.png
 art/batch/icons/rules/resources/rage.png
 
+art/batch/icons/rules/languages/language-deep-speech.png
+art/batch/icons/rules/languages/language-druidic.png
+art/batch/icons/rules/languages/language-infernal.png
+art/batch/icons/rules/languages/language-primordial.png
+art/batch/icons/rules/languages/language-sylvan.png
 ## batch-198 v3
 
 art/batch/portraits/vampire-a.png
@@ -1816,12 +1821,27 @@ art/batch/icons/items/gear/mount-saddle.png
 art/batch/icons/items/gear/riding-horse-with-tack.png
 art/batch/icons/items/gear/rowboat.png
 art/batch/icons/items/gear/wagon.png
+art/batch/icons/items/tools/dice-set.png
+art/batch/icons/items/tools/dragonchess-set.png
+art/batch/icons/items/tools/playing-card-set.png
+art/batch/icons/items/tools/three-dragon-ante-set.png
+art/batch/icons/items/gear/mount-saddle.png
 ## batch-132 v3
 art/batch/icons/items/magic/rare/piercer.png
 art/batch/icons/items/magic/varies/portfolio-keeper.png
 art/batch/icons/items/magic/very-rare/rotor-of-return.png
 art/batch/icons/items/magic/uncommon/sending-stone.png
 art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
+art/batch/icons/items/magic/rare/piercer.png
+art/batch/icons/items/magic/varies/portfolio-keeper.png
+art/batch/icons/items/magic/very-rare/rotor-of-return.png
+art/batch/icons/items/magic/uncommon/sending-stone.png
+art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
+art/batch/icons/items/magic/very-rare/timepiece-of-travel.png
+art/batch/icons/items/magic/uncommon/travel-alchemical-kit.png
+art/batch/icons/items/magic/common/voting-kit.png
+art/batch/icons/items/magic/very-rare/wheel-of-stars.png
+art/batch/icons/items/magic/varies/whisper-jar.png
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
