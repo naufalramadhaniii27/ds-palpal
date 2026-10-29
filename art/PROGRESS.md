@@ -2141,6 +2141,11 @@ art/batch/icons/features/class/cleric/channel-divinity.png
 art/batch/icons/features/class/cleric/divine-intervention.png
 art/batch/icons/features/class/cleric/divine-order.png
 art/batch/icons/features/class/cleric/greater-divine-intervention.png
+art/batch/icons/features/class/cleric/improved-blessed-strikes.png
+art/batch/icons/features/class/cleric/sear-undead.png
+art/batch/icons/features/class/cleric/spellcasting.png
+art/batch/icons/features/class/druid/archdruid.png
+art/batch/icons/features/class/druid/beast-spells.png
 ## batch-169 v3
 art/batch/icons/features/subclass/oath-of-devotion/aura-of-devotion.png
 art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-sacred-weapon.png
