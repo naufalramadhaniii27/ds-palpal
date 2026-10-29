@@ -2162,11 +2162,6 @@ art/batch/icons/features/subclass/oath-of-conquest/channel-divinity-guided-strik
 art/batch/icons/features/subclass/oath-of-conquest/invincible-conqueror.png
 art/batch/icons/features/subclass/oath-of-conquest/oath-spells.png
 art/batch/icons/features/subclass/oath-of-conquest/scornful-rebuke.png
-art/batch/icons/features/subclass/life-domain/disciple-of-life.png
-art/batch/icons/features/subclass/life-domain/divine-strike.png
-art/batch/icons/features/subclass/life-domain/life-domain-spells.png
-art/batch/icons/features/subclass/life-domain/preserve-life.png
-art/batch/icons/features/subclass/life-domain/supreme-healing.png
 ## batch-146 v3
 art/batch/icons/rules/actions/bonus-action.png
 art/batch/icons/rules/actions/reaction.png
@@ -2243,11 +2238,6 @@ art/batch/creatures/beast/giant-crab.png
 art/batch/creatures/beast/giant-goat.png
 art/batch/creatures/beast/giant-seahorse.png
 
-art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
-art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
-art/batch/icons/features/subclass/light-domain/corona-of-light.png
-art/batch/icons/features/subclass/light-domain/improved-flare.png
-art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
 ## batch-147 v3
 art/batch/icons/features/class/barbarian/brutal-strike.png
 art/batch/icons/features/class/barbarian/danger-sense.png
@@ -2374,3 +2364,10 @@ art/batch/creatures/beast/goat.png
 art/batch/creatures/beast/hawk.png
 art/batch/creatures/fiend-devil/imp.png
 
+
+## batch-170 v3
+art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-emissary-of-peace.png
+art/batch/icons/features/subclass/oath-of-redemption/channel-divinity-rebuke-the-violent.png
+art/batch/icons/features/subclass/oath-of-redemption/emissary-of-redemption.png
+art/batch/icons/features/subclass/oath-of-redemption/oath-spells.png
+art/batch/icons/features/subclass/oath-of-redemption/protective-spirit.png
