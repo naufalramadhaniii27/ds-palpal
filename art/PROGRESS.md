@@ -3970,7 +3970,6 @@ art/batch/vignettes/learn/hit-points-rests.png
 
 art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
-NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
