@@ -3,14 +3,17 @@ var sheet=$("#sheet"), sheetMode="", lastFocus=null, navStack=[];
 var LASTPT=null;document.addEventListener("pointerdown",function(e){ LASTPT={x:e.clientX,y:e.clientY,t:Date.now()}; },true);/* v53: the panel grows from where you tapped (wide screens) */
 function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.t>1500){ sheet.style.transformOrigin=""; return; } var r=sheet.getBoundingClientRect(); if(!r.width) return; var x=Math.max(0,Math.min(r.width,LASTPT.x-r.left)), y=Math.max(0,Math.min(r.height,LASTPT.y-r.top)); sheet.style.transformOrigin=Math.round(x)+"px "+Math.round(y)+"px"; }catch(er){} }
 /* T10: the same icon the identity chip shows (species, class, subclass emblem, background, size) leads the detail title */
+/* T10: watermarks use the HD copy (img/hd, 768 px emblems and 384 px icons). The small file is the fallback if the HD one is missing */
+function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" onerror="this.onerror=null;this.src=\'img/'+d+f+'\'"'; }); }
+function wmClass(n){ var k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
 function sheetIco(t){ t=String(t||""); var h="", m;
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||ico("src-class");
   else if(/^Species: /.test(t)) h=ico(icoSp(t.slice(9))||"sp-custom");
   else if(/^Background: /.test(t)) h=ico("src-background");
   else if(t==="Size") h=ico("creature");
-  else if(typeof CLASSES==="object"&&CLASSES[t]&&icoCls(t)) h=ico(icoCls(t));
+  else if(typeof CLASSES==="object"&&CLASSES[t]&&icoCls(t)) h=wmClass(t)||ico(icoCls(t));
   if(!h&&window.__artIc){ var cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(var i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
-  return h; }
+  return wmHd(h); }
 function setSheetTitle(t){ var e=$("#sheetTitle"); e.textContent=t; var w=$("#shWm"); if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } w.innerHTML=sheetIco(t); }
 function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */

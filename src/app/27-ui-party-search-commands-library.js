@@ -235,11 +235,11 @@ function libWm(w,d){ var m=document.getElementById("libWm"); if(!m){ m=document.
   var h="";
   if(d&&d.id){ var p=d.id.indexOf("|"), c=d.id.slice(0,p), k=d.id.slice(p+1);
     try{ if(c==="sub"){ var own=null; Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) own=cn; }); h=(own&&window.__artSub&&window.__artSub(own,k,320))||ico("src-class"); }
-    else if(c==="class") h=ico(icoCls(k)||"src-class");
+    else if(c==="class") h=wmClass(k)||ico(icoCls(k)||"src-class");
     else if(c==="species") h=ico(icoSp(k)||"sp-custom");
     else if(c==="bg") h=ico("src-background");
     else h=sheetIco(d.t); }catch(er){ h=""; } }
-  m.innerHTML=h; }
+  m.innerHTML=wmHd(h); }
 function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);

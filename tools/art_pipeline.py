@@ -39,7 +39,7 @@ if "scenes" in ONLY:
         k = f[:-4]; kind = "pc" if k.endswith("-pc") else "phone" if k.endswith("-phone") else None
         if not kind: continue
         cid = k.rsplit("-", 1)[0]; im = Image.open(os.path.join(d, f)).convert("RGB"); dst = os.path.join(OUT, "scene", k + ".avif")
-        im = save(im, dst, 48, 1600 if kind == "pc" else 720)
+        im = save(im, dst, 54, 2400 if kind == "pc" else 1088)
         e = man["scene"].setdefault(cid, {}); e[kind] = {"p": "img/scene/%s.avif" % k, "w": im.width, "h": im.height}; e["c"] = avg(im); tot += os.path.getsize(dst)
 if "scenes2" in ONLY:
     man["scn"] = {}
@@ -52,7 +52,7 @@ if "scenes2" in ONLY:
             k = f[:-4]; kind = "pc" if k.endswith("-pc") else "phone" if k.endswith("-phone") else None
             if not kind: continue
             cid = k.rsplit("-", 1)[0]; im = Image.open(os.path.join(d, f)).convert("RGB"); dst = os.path.join(OUT, "scn", grp, k + ".avif")
-            im = save(im, dst, 48, 1600 if kind == "pc" else 720)
+            im = save(im, dst, 54, 2400 if kind == "pc" else 1088)
             e = man["scn"].setdefault(grp, {}).setdefault(cid, {}); e[kind] = "img/scn/%s/%s.avif" % (grp, k); e["c"] = avg(im); tot += os.path.getsize(dst)
 if "vignettes" in ONLY:
     man["vig"] = {}
@@ -67,7 +67,7 @@ if "vignettes" in ONLY:
 if "g0" in ONLY:
     man["g0"] = {}
     d = os.path.join(SRC, "g0"); os.makedirs(os.path.join(OUT, "g0"), exist_ok=True)
-    for name, mode, box, q in (("frame-portrait", "RGBA", (384, 480), 70), ("home-inn-phone", "RGB", (720, 1280), 50)):
+    for name, mode, box, q in (("frame-portrait", "RGBA", (768, 960), 70), ("home-inn-phone", "RGB", (1088, 1920), 54)):
         f = os.path.join(d, name + ".png")
         if not os.path.exists(f): continue
         dst = os.path.join(OUT, "g0", name + ".avif"); im = Image.open(f).convert(mode); im.thumbnail(box, Image.LANCZOS); im.save(dst, "AVIF", quality=q, speed=6)
