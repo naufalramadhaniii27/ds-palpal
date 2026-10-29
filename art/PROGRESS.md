@@ -3252,6 +3252,11 @@ art/batch/icons/features/class/warlock/eldritch-master.png
 art/batch/icons/features/class/warlock/magical-cunning.png
 art/batch/icons/features/class/warlock/mystic-arcanum.png
 art/batch/icons/features/class/warlock/pact-magic.png
+art/batch/icons/features/class/wizard/arcane-recovery.png
+art/batch/icons/features/class/wizard/memorize-spell.png
+art/batch/icons/features/class/wizard/ritual-adept.png
+art/batch/icons/features/class/wizard/scholar.png
+art/batch/icons/features/class/wizard/signature-spells.png
 ## batch-227 v3
 art/batch/monsters/fiend/hezrou.png
 art/batch/monsters/fiend/nalfeshnee.png
