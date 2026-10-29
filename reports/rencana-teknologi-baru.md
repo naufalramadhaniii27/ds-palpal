@@ -19,6 +19,10 @@ Teknologi buatan sendiri di atas fitur web terbaru (lihat claude/audit-teknologi
 | N12 | Gabung per bagian saat bentrok | Sekarang bila dua perangkat mengubah karakter yang sama, perangkat ini menang dan salinan lain disimpan sebagai versi. N12 membandingkan tiga salinan (dasar, sini, sana) seperti git. Bagian yang tidak bentrok digabung otomatis, yang bentrok ditanyakan per bagian (misal HP dari HP, catatan dari PC) | Revisi base di API sinkron, N2 | Teknik three-way merge sudah dikenal. Penerapan di sheet D&D belum dicek | Diusulkan |
 | N13 | Pratinjau sebelum restore | Sebelum memulihkan backup atau versi lama, tampil daftar yang akan berubah (level, HP, item, spell) memakai struk angka N3. Restore bisa dibatalkan | N3, versi cloud | Belum dicek | Diusulkan |
 | N14 | Tingkat efek sesuai perangkat | App mengukur kemampuan HP saat pertama dibuka (jumlah core, memori, kelancaran frame). HP lemah otomatis memakai efek ringan tanpa mengubah setelan Motion. Perluasan U50 ke seluruh app | navigator.hardwareConcurrency, deviceMemory, Long Animation Frames bila ada | Tekniknya dikenal di game. Belum dicek untuk sheet | Diusulkan |
+| N15 | Tanya aturan tanpa AI | Library bisa menjawab pertanyaan biasa ("how do I hide?", "can I attack twice?"). Tabel niat yang ditulis tangan memetakan kata tanya ke entri Library, lalu jawabannya diambil dari entri itu. Jalan offline, tanpa AI, tidak bisa mengarang | Pencarian Library di 27, glossary di 03 | Belum dicek | Diusulkan |
+| N16 | Pratinjau Apply | Sebelum Apply dari builder, sheet tampil dengan angka yang akan berubah menyala (AC 16 menjadi 17, spell baru, HP maksimum). Apply bisa dibatalkan | N3 struk angka, View Transitions | Belum dicek | Diusulkan |
+| N17 | Status ke grup chat | Satu tombol menyalin status singkat ke clipboard untuk WhatsApp atau Discord: "Yudhi, HP 32/44, AC 18, Concentrating: Bless, Poisoned". Format bisa dibaca balik oleh fitur impor teks chat yang sudah ada di 16 | Clipboard, impor teks di 16 | Belum dicek | Diusulkan |
+| N18 | Laporan bug yang bisa diputar ulang | Laporan masalah (#rep) sekarang memuat versi, browser, error, dan karakter. N18 menambah jejak tindakan terakhir dari catatan undo, sehingga bug bisa diputar ulang langkah demi langkah oleh skrip Playwright | Catatan undo di 32, laporan di 27 | Belum dicek | Diusulkan |
 
 ## Urutan yang disarankan
 | Urutan | Usulan | Alasan |
@@ -62,3 +66,8 @@ Bukan AI. Aturan sederhana dari tindakan yang sudah dicatat sheet (label undo di
 | Privasi | Skor hanya di memori selama sesi, tidak disimpan, tidak dikirim (sejalan U30) |
 | Gerak | Urutan tombol berubah dengan View Transitions, langsung tanpa animasi bila Motion off |
 | Tes | Skrip Playwright memainkan urutan tindakan (damage, New turn, Long Rest) lalu memeriksa situasi dan urutan tombol |
+
+## Ide yang dibuang karena sudah ada di app (2026-10-29)
+| Ide | Sudah ada |
+|---|---|
+| Penjaga penyimpanan (Safari menghapus data situs yang tidak dipasang setelah 7 hari tanpa dibuka) | App sudah meminta storage.persist (15), menampilkan statusnya, punya banner "belum ter-backup lebih dari 3 hari", dan sinkron cloud |
