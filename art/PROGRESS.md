@@ -3025,3 +3025,11 @@ art/batch/icons/features/class/paladin/fighting-style.png
 art/batch/icons/features/class/paladin/lay-on-hands.png
 art/batch/icons/features/class/paladin/paladins-smite.png
 art/batch/icons/features/class/paladin/radiant-strikes.png
+## batch-205 v3
+
+art/batch/creatures/undead/zombie.png
+art/batch/creatures/construct/animated-object.png
+art/batch/creatures/celestial-fey-or-fiend/otherworldly-steed.png
+art/batch/creatures/beast/giant-insect.png
+art/batch/creatures/aberration/aberrant-spirit.png
+
