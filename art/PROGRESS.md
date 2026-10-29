@@ -2163,6 +2163,11 @@ art/batch/icons/items/magic/rare/ioun-stone-language-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-natural-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-religious-knowledge.png
 art/batch/icons/items/magic/rare/ioun-stone-self-preservation.png
+art/batch/icons/items/magic/rare/ioun-stone-supreme-intellect.png
+art/batch/icons/items/magic/rare/leather-golem-armor.png
+art/batch/icons/items/magic/legendary/powered-armor.png
+art/batch/icons/items/magic/common/earring-of-message.png
+art/batch/icons/items/magic/legendary/jewel-of-three-prayers.png
 
 
 ## batch-168 v3
