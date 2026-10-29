@@ -4497,6 +4497,11 @@ art/batch/icons/bastion/scriptorium.png
 art/batch/icons/bastion/stable.png
 art/batch/icons/bastion/teleportation-circle.png
 
+art/batch/icons/bastion/theater.png
+art/batch/icons/bastion/training-area.png
+art/batch/icons/bastion/trophy-room.png
+art/batch/icons/bastion/archive.png
+art/batch/icons/bastion/meditation-chamber.png
 ## batch-179 v3
 art/batch/emblems/subclass/extra/aberrant-mind.png
 art/batch/emblems/subclass/extra/arcane-archer.png
