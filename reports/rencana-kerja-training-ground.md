@@ -1,6 +1,7 @@
 # Rencana kerja Training Ground (2026-10-29)
 
 Referensi: video Oneon Training Ground (56 detik, dibaca dari cuplikan gambar). Permintaan user: app ini punya Training Ground, analisa teknologinya secara mendalam, catat di rencana kerja.
+Keputusan user 2026-10-29 22.52 WIB: tanpa AI musuh. Pemain menggerakkan semua token (karakter, musuh, sekutu). Data musuh dicari di 5etools dan wiki (bagian 7).
 Status: analisa dan rencana. Belum ada kode. Keputusan di bagian 9.
 
 Batas analisa: situs dan dokumentasi Oneon tidak ditemukan lewat pencarian. Teknologi yang dipakai Oneon tidak bisa dibuktikan dari video. Bagian 2 mencatat yang terlihat. Bagian 5 adalah pilihan teknologi untuk app ini, dengan status verifikasi tiap klaim.
@@ -39,7 +40,7 @@ Tempat latihan: pemain mencoba karakter sheet sendiri (atau kelas baru) melawan 
 | Daftar makhluk: Goblin, Orc, Bugbear, Ghoul, Giant Spider, Wight, Manticore, dan lainnya belum ada. Kisaran CR 1/4 sampai 21 butuh sekitar 100 sampai 150 stat block | Besar |
 | Mesin pertarungan: urutan giliran, ekonomi aksi, gerak, opportunity attack, kondisi, cover, jangkauan | Besar |
 | Efek spell dan fitur kelas otomatis: ratusan entri | Sangat besar. Dibatasi bertingkat (bagian 6) |
-| Kecerdasan musuh dan sekutu | Sedang |
+| Kontrol semua token oleh pemain (pilih token, aksi dari stat block, giliran) | Sedang |
 | Papan kisi: gambar, token, gerak, sentuh di HP | Besar |
 | Ilustrasi kartu makhluk, token, arena | Besar, dari Codex |
 | Mode party (realtime) | Besar, ditunda |
@@ -52,8 +53,8 @@ Tempat latihan: pemain mencoba karakter sheet sendiri (atau kelas baru) melawan 
 | Garis pandang dan cover | Bresenham atau shadowcasting di kisi | Algoritma standar | Cover setengah dan tiga perempat sesuai aturan |
 | Keadaan pertarungan | Reducer murni dan log kejadian (event sourcing). Undo dan replay dari log | Pola sendiri. Sama dengan N2 dan N18 di rencana | Bisa dites tanpa tampilan: Node menjalankan ribuan pertarungan |
 | Acak yang bisa diulang | PRNG seed (mulberry32 atau sejenis) untuk hasil dan AI. Dadu 3D hanya tampilan, nilai dari log | Pilihan saya. Catatan rencana teknologi: dice-box tidak punya opsi hasil yang ditentukan dulu | Menjaga tes dan replay stabil. Mode "I rolled myself" tetap ada |
-| Pengurai stat block | Regex untuk pola serangan, save, dan multiattack di data yang ada | Pola teks terlihat di entri Knight dan Lion. Cakupan penuh belum diukur | Yang tidak terurai ditandai dan diselesaikan manual di papan (pemain lempar sendiri) |
-| AI musuh dan sekutu | Penilaian utilitas dengan peran (frontliner, ranged, healer, caster) | Pilihan saya | Satu fungsi nilai per aksi: target, risiko, jangkauan. Mudah dites dengan seed |
+| Pengurai stat block | Baca tag terstruktur dari data 5etools (`{@atkr m}`, `{@hit 4}`, `{@damage 1d6 + 2}`, `{@dc 11}`) | Diukur 2026-10-29 pada 330 makhluk SRD: dari 748 aksi, 423 serangan, 134 save, 178 Multiattack, 13 lain. Sekitar 98 persen terbaca mesin | 13 aksi lain dan efek khusus diselesaikan manual di papan (pemain lempar sendiri) |
+| Kontrol musuh dan sekutu | Tanpa AI. Pemain memilih token mana saja pada giliran token itu. Aksi musuh diambil dari stat block, serangan dan save dihitung mesin, keputusan tetap dari pemain | Keputusan user 2026-10-29 | Peran sekutu (frontliner, penembak, penyembuh) hanya teks petunjuk di kartu, tidak mengatur gerakan |
 | Sentuh di HP (390 x 844) | Zoom dan geser dengan Pointer Events, ketuk petak, panel aksi sebagai bottom sheet | Pilihan saya, belum dicoba | Petak sentuh minimal 44 px berarti kisi harus bisa di-zoom. Perlu uji di perangkat |
 | Aksesibilitas | Navigasi papan dengan panah dan Enter, log sebagai `aria-live`, daftar aksi sebagai tombol | Standar WAI | Axe 0 pelanggaran dan tombol 44 px tetap jadi syarat |
 | Suara | WebAudio dengan bunyi sintetis kecil, tanpa berkas | Pilihan saya | Mengikuti setelan suara dan Motion |
@@ -69,22 +70,55 @@ Tempat latihan: pemain mencoba karakter sheet sendiri (atau kelas baru) melawan 
 | C manual dibantu | Spell lain, fitur kelas rumit, efek area bentuk khusus | Kartu penjelasan aturan dan tombol "I resolved it" dengan input hasil |
 Aturan dicek ke PHB dan DMG 2024 di `books/` (bila tidak ada, dicatat). Monster Manual tidak ada di `books/`. Angka stat block dari data yang sudah ada dan dari SRD (bagian 7).
 
-## 7. Data makhluk
-| Pilihan | Isi | Risiko |
+## 7. Data makhluk (dicari 2026-10-29)
+### 5etools (mirror GitHub 5etools-mirror-3/5etools-src, `data/bestiary/bestiary-xmm.json`)
+Diunduh dan dianalisis dari shell.
+| Hal | Hasil |
+|---|---|
+| Isi | Monster Manual 2024 (XMM): 503 makhluk, struktur JSON penuh |
+| Bidang | AC, HP (rata-rata dan rumus), kecepatan, enam ability, save, skill, resist, immune, kondisi kebal, senses, bahasa, CR, aksi, aksi bonus, reaksi, trait, legendary action, spellcasting. Tanpa `_copy` (tidak perlu penggabungan) |
+| Penanda SRD | Bidang `srd52: true` pada 330 dari 503 makhluk. Penanda ini dari 5etools. Saya belum mencocokkannya dengan PDF SRD 5.2.1 |
+| Teks aksi | Memakai tag: `{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Slashing damage`. Mudah diurai |
+| Gambar | `hasFluffImages` dan `hasToken` pada 330 SRD. Gambar itu ilustrasi WotC, tidak dipakai. Ilustrasi kita dari Codex |
+| Lisensi repositori | MIT untuk kode proyek 5etools (README). Isi data adalah materi WotC. Bagian SRD berlisensi CC-BY-4.0 |
+| Makhluk di video yang ada | Goblin Warrior, Goblin Boss, Goblin Minion, Bugbear Warrior, Ghoul, Giant Spider, Skeleton, Wolf, Dire Wolf, Manticore, Wight, Priest, Priest Acolyte, Knight, Mage: semua `srd52: true`. Nama "Orc" dan "Acolyte" persis tidak ada di XMM 2024 |
+
+Sebaran CR (semua XMM dan yang berpenanda SRD) per tingkat kesulitan seperti di video:
+| Tingkat | CR | Semua | SRD |
+|---|---|---|---|
+| Easy | 1/4 | 44 | 32 |
+| Medium | 1/2 sampai 1 | 75 | 54 |
+| Hard | 2 sampai 3 | 100 | 67 |
+| Extreme | 3 sampai 6 | 127 | 77 |
+| Infernal | 7 sampai 10 | 67 | 30 |
+| Deadly | 11 sampai 16 | 45 | 27 |
+| Legendary | 17 sampai 21 | 18 | 12 |
+Setiap tingkat punya cukup makhluk bahkan hanya dari yang berpenanda SRD. Dari 330, 64 punya spellcasting dan 30 punya legendary action.
+
+### Wiki
+| Situs | Hasil |
+|---|---|
+| dnd5e.wikidot.com | Tidak bisa dibuka dari sesi ini (koneksi ditolak proxy, WebFetch gagal). Isinya terutama edisi 2014. Belum dicek |
+| dnd-wiki.org (daftar monster 5e) | Memuat sekitar 1.790 makhluk resmi dan buatan penggemar dari banyak buku dan homebrew. Kolom: nama, tipe, subtipe, ukuran, HP, CR, XP, alignment, habitat, sumber. Tanpa catatan lisensi di halaman. Tidak memuat aksi per makhluk di daftar |
+Kesimpulan: wiki berguna untuk mencari nama dan CR, tidak cocok sebagai sumber data pertarungan (tanpa aksi terstruktur, campur homebrew, tanpa lisensi). 5etools memberi data terstruktur 2024.
+
+### Pilihan sumber data
+| Pilihan | Isi | Catatan |
 |---|---|---|
-| Perluas data yang ada | Tambah stat block dari SRD 5.2.1 | SRD 5.2.1 berlisensi CC-BY-4.0 dan memuat bagian Monsters (dicek 2026-10-29 di dndbeyond.com/srd). Jumlah stat block dan kata atribusi yang wajib belum saya baca dari PDF SRD. Dari halaman terlihat: tidak ada Beholder dan tidak ada nama seperti Strahd. Halaman itu tidak menyebut Goblin, Orc, atau Ghoul, jadi kartu seperti di video belum tentu ada di SRD |
-| Tulis ulang dengan kata sendiri dari buku yang dimiliki user | Sesuai aturan proyek (teks app ditulis ulang) | Monster Manual tidak ada di `books/` |
-| Makhluk buatan sendiri | Daftar makhluk Training Ground yang dirancang sendiri dengan nama dan gaya sendiri, mengikuti pola CR | Aman secara lisensi, butuh waktu menyeimbangkan |
-Catatan: data 72 stat block yang ada ditulis "Text follows the 5e.tools data". Sebelum dipakai di mode yang lebih terbuka, status lisensinya perlu dicek dan dicatat. Keputusan ada di user.
+| A. 330 makhluk berpenanda SRD dari 5etools | Angka dan aksi dari data 5etools, hanya yang berpenanda SRD. Atribusi CC-BY-4.0 di Settings dan halaman lisensi | Aman secara lisensi bila penanda 5etools benar. Perlu dicocokkan dengan PDF SRD 5.2.1 sebelum rilis. Teks deskripsi ditulis ulang dengan kata sendiri sesuai aturan proyek |
+| B. Semua 503 dari 5etools | Seperti data 72 stat block sekarang ("Text follows the 5e.tools data") | 173 makhluk di luar SRD adalah materi WotC berhak cipta. Keputusan lisensi ada di user |
+| C. Makhluk buatan sendiri | Daftar yang dirancang sendiri | Aman, butuh waktu menyeimbangkan |
+Saran: A, ditambah makhluk Retromistika milik user bila diminta. Data diubah ke format app lewat skrip `tools/` yang bisa diulang.
 
 ## 8. Fase kerja
 | Fase | Isi | Selesai bila |
 |---|---|---|
 | TG0 | Mesin pertarungan tanpa tampilan (reducer, giliran, gerak, serangan, kondisi, seed). Pengurai stat block. Tes Node | 1.000 pertarungan seed tetap: tanpa NaN dan loop, total HP konsisten, hasil sama saat diulang |
+| TG0b | Skrip `tools/` yang mengubah data makhluk 5etools berpenanda SRD ke format app, tes 330 entri | Jumlah entri sama, tanpa bidang kosong yang wajib |
 | TG1 | Layar pemilihan (Who goes in, What waits, Who comes with you, Where you train) memakai data dan art yang ada, ikon sementara | Tiga skenario wajib di 390 x 844 dan 1250 x 850, axe 0 |
 | TG2 | Papan kisi: render, token, gerak dengan jangkauan, urutan giliran, Undo, kamera zoom di HP | Tes layar di dua ukuran, gerak benar menurut pencarian jalur |
 | TG3 | Panel aksi (tingkat A), kartu reaksi, log, End Turn | Setiap aksi tingkat A punya tes |
-| TG4 | AI musuh dan sekutu dengan peran, kesulitan per CR | Simulasi 1.000 pertarungan per tingkat kesulitan: hasil menang sesuai harapan yang ditetapkan |
+| TG4 | Kontrol semua token oleh pemain: pilih token, aksi dari stat block (serangan, save, Multiattack, legendary), tombol "Roll for enemy" yang menghitung serangan dari stat block, penghitung HP dan kondisi musuh | Tes skrip: urutan aksi tetap menghasilkan log yang sama dengan seed yang sama |
 | TG5 | Spell dan fitur tingkat B, kartu manual tingkat C | Daftar spell per tingkat tercatat di laporan |
 | TG6 | Ilustrasi dari Codex: kartu makhluk, token, arena | Tampil HD, tanpa pecah (aturan HD proyek) |
 | TG7 | Mode party | Setelah G5 (Workers) dan keputusan user |
@@ -95,7 +129,7 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 | Pertanyaan | Opsi | Rekomendasi |
 |---|---|---|
 | Cakupan awal | Solo saja. Solo lalu party | Solo dulu |
-| Sumber makhluk | Perluas dari SRD 5.2.1. Makhluk buatan sendiri. Campuran | Campuran: SRD untuk yang ada, buatan sendiri untuk sisanya |
+| Sumber makhluk | A: 330 berpenanda SRD. B: semua 503. C: buatan sendiri | A, tambah Retromistika bila diminta |
 | Cakupan spell | Tingkat A dan B dulu, C manual. Semua otomatis | A dan B dulu |
 | Ilustrasi | Minta Codex setelah TG1. Pakai ikon sementara dulu | Ikon sementara dulu, minta Codex paralel |
 | Tempat di app | Kartu di Home. Item di menu More | Kartu di Home bersama Learn |
@@ -106,7 +140,7 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 |---|---|
 | Cakupan sangat besar | Fase kecil dengan tes di tiap fase. Rilis solo tingkat A dan B lebih dulu |
 | Aturan salah | Cek ke buku di `books/`, tes simulasi, laporan tingkat A, B, C |
-| Lisensi data makhluk | Keputusan di bagian 7, atribusi di Settings dan halaman lisensi |
+| Lisensi data makhluk | Pilihan A di bagian 7, cocokkan penanda SRD dengan PDF SRD 5.2.1, atribusi di Settings dan halaman lisensi |
 | Papan sulit dipakai di HP | Zoom dan bottom sheet, uji di perangkat, targetnya 44 px |
 | Mode party butuh Workers | Ditunda sampai G5 |
 
@@ -116,3 +150,5 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 - [D&D Beyond SRD v5.2.1](https://dndbeyond.com/srd)
 - [D&D Beyond: SRD 5.2 dan lisensi CC-BY-4.0](https://www.dndbeyond.com/posts/1717-2024-core-rulebooks-to-expand-the-srd)
 - Data app: `src/data/wotc13-creature-stat-blocks.js` (72 stat block)
+- [5etools-mirror-3/5etools-src](https://github.com/5etools-mirror-3/5etools-src) (`data/bestiary/bestiary-xmm.json`, MIT untuk kode proyek)
+- [dnd-wiki.org daftar monster 5e](https://new.dnd-wiki.org/wiki/5e_Monster_List)
