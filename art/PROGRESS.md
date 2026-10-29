@@ -1924,6 +1924,14 @@ art/batch/icons/spells/level-2/death-armor.png
 art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
@@ -1943,6 +1951,12 @@ art/batch/scenes/species/aarakocra-phone.png
 art/batch/scenes/species/aetherborn-pc.png
 art/batch/scenes/species/aetherborn-phone.png
 art/batch/scenes/species/autognome-pc.png
+art/batch/scenes/species/autognome-phone.png
+art/batch/scenes/species/aven-pc.png
+art/batch/scenes/species/aven-phone.png
+art/batch/scenes/species/boggart-pc.png
+art/batch/scenes/species/boggart-phone.png
+
 NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
