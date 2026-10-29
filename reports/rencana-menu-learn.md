@@ -3,12 +3,12 @@
 Status: disetujui user (interactive learning, bukan komik). Kode belum dikerjakan. Saat dikerjakan, Claude jalan duluan dengan gambar sementara. Ilustrasi Codex hanya pelengkap, dipasang begitu jadi (keputusan user 2026-10-29). Gambar Codex: batch-234, 235, 236 (48 gambar).
 
 ## Tujuan
-Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 2024, lalu bisa main dan membuat karakter pertamanya, dengan cara bermain, bukan membaca. Bahasa casual dan sangat mudah. Learn tersedia dalam dua bahasa: English (bawaan) dan Bahasa Indonesia (keputusan user 2026-10-29). Ini pengecualian dari aturan proyek "teks app bahasa Inggris", hanya untuk Learn.
+Orang awam (remaja dan dewasa) yang belum pernah main game peran paham D&D 2024, lalu bisa main dan membuat karakter pertamanya, dengan cara bermain, bukan membaca. "Anak 10 tahun" hanya patokan kemudahan bahasa dan penjelasan, bukan target pengguna (keputusan user 2026-10-29). Nada tetap santai untuk orang dewasa, tidak kekanak-kanakan. Bahasa casual dan sangat mudah. Learn tersedia dalam dua bahasa: English (bawaan) dan Bahasa Indonesia (keputusan user 2026-10-29). Ini pengecualian dari aturan proyek "teks app bahasa Inggris", hanya untuk Learn.
 
 ## Ukuran berhasil
 | Ukuran | Target |
 |---|---|
-| Jalur Inti selesai tanpa dibantu | Anak 10 tahun dan orang awam dalam uji main (U21) |
+| Jalur Inti selesai tanpa dibantu | Orang awam dalam uji main (U21). Teks lolos patokan bacaan anak 10 tahun |
 | Pemahaman | Bisa menjawab 4 dari 5 pertanyaan inti setelah Jalur Inti: dadu mana yang dilempar, apa yang ditambah, apa artinya berhasil, apa yang dilakukan di giliranmu, apa yang terjadi saat Health habis |
 | Berhenti di tengah | Kurang dari 20 persen per tempat di corong Admin (U12) |
 | Waktu Jalur Inti | Sekitar 15 menit, tidak lebih dari 20 |
@@ -49,7 +49,7 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | Temuan | Sumber | Akibat |
 |---|---|---|
 | Untuk anak yang belum lancar membaca, bantuan utama di riset adalah suara. Tanpa suara, ikon harus bisa dipahami sendiri, petunjuk harus menunjukkan langkah berikutnya, dan tokoh pemandu memperagakan | Daftar periksa game untuk anak pra-baca (Universitas Siprus, proyek READISTANCE) | U29 |
-| PP Tunas (PP 17/2025, berlaku 28 Maret 2026) berlaku untuk PSE swasta, termasuk fitur yang kemungkinan diakses anak. Melarang profiling anak dan teknik nudge. Mewajibkan info usia minimum, verifikasi usia, persetujuan orang tua, privasi tinggi bawaan, dan saluran laporan. Akun media sosial dibatasi untuk anak di bawah 16 tahun | Bisnis.com, NU Online | U30. Friends adalah fitur sosial. Learn yang menyasar anak 10 tahun membuat app masuk kategori "kemungkinan diakses anak". Ini bukan nasihat hukum. Teks PP perlu dibaca langsung sebelum Learn dibuka untuk anak |
+| PP Tunas (PP 17/2025, berlaku 28 Maret 2026) berlaku untuk PSE swasta, termasuk fitur yang kemungkinan diakses anak. Melarang profiling anak dan teknik nudge. Mewajibkan info usia minimum, verifikasi usia, persetujuan orang tua, privasi tinggi bawaan, dan saluran laporan. Akun media sosial dibatasi untuk anak di bawah 16 tahun | Bisnis.com, NU Online | U30. Friends adalah fitur sosial. Learn yang menyasar anak 10 tahun membuat app masuk kategori "kemungkinan diakses anak". Ini bukan nasihat hukum. Teks PP perlu dibaca langsung sebelum Learn dibuka untuk anak. Catatan 2026-10-29: Learn tidak menyasar anak, jadi risiko ini kecil. Tetap dibaca bila suatu saat app dibuka untuk anak |
 
 ## Pembanding (2026-10-29)
 | Produk | Yang bagus | Yang kurang | Akibat |
@@ -221,7 +221,7 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U27 | 2026-10-29 | Meet your dice | Kenali bentuk d4 sampai d20 dan cara membacanya | Diterima 2026-10-29 |
 | U28 | 2026-10-29 | Panduan bahasa Indonesia santai | Diubah user: Claude riset sendiri cara menulis bahasa Indonesia santai, hasilnya bagian "Bahasa Indonesia santai" dan cek otomatis | Diterima 2026-10-29 |
 | U29 | 2026-10-29 | Tunjukkan, jangan tulis | Karena tanpa suara: tiap tantangan dimulai dengan Hoot memperagakan langkahnya. Tangan bayangan menunjuk yang harus diketuk. Petunjuk menunjukkan langkah berikutnya, bukan menjelaskannya. Ikon dari benda yang anak kenal. Uji main (U21) mengecek anak paham ikon tanpa membaca | Diterima 2026-10-29 |
-| U30 | 2026-10-29 | Aman untuk anak (PP Tunas) | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (larangan teknik nudge). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diterima 2026-10-29 |
+| U30 | 2026-10-29 | Tanpa pancingan | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (praktik baik, sejalan dengan larangan nudge di PP Tunas). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diterima 2026-10-29 |
 | U31 | 2026-10-29 | Quick Hero memakai Quick Build yang sudah ada | Builder sudah punya Quick Build (pilih class dan species, sisanya diisi otomatis, v27 RU65). D&D Beyond (Maret 2026) memakai 4 pilihan: class, species, background, potret, plus tombol acak. Quick Hero di Learn = Quick Build ditambah pilihan background, potret dan tombol "Surprise me", dengan kartu class bergambar. Menggantikan rencana 6 pahlawan jadi di U18 | Diusulkan |
 | U32 | 2026-10-29 | Ide kreatif dihargai | Di Tavern dan Market ada lebih dari satu jawaban benar, dan tiap jawaban berujung beda. Pilihan "Try something else" membuka ide tak terduga yang tetap diterima Hoot | Diusulkan |
 | U33 | 2026-10-29 | Pola tetap tiap tempat | 1 Tebak dulu (satu soal sebelum belajar). 2 Lihat: Hoot memperagakan. 3 Coba bareng: petunjuk masih ada. 4 Coba sendiri: petunjuk hilang. 5 Kenapa berhasil? (pilih satu dari tiga alasan). 6 Find it on your sheet. Pindah ke bagian berikut hanya setelah langkah sebelumnya benar | Diusulkan |
