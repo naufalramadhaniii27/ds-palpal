@@ -3051,6 +3051,11 @@ art/batch/icons/features/class/paladin/fighting-style.png
 art/batch/icons/features/class/paladin/lay-on-hands.png
 art/batch/icons/features/class/paladin/paladins-smite.png
 art/batch/icons/features/class/paladin/radiant-strikes.png
+art/batch/icons/features/class/paladin/restoring-touch.png
+art/batch/icons/features/class/paladin/spellcasting.png
+art/batch/icons/features/class/paladin/weapon-mastery.png
+art/batch/icons/features/class/ranger/deft-explorer.png
+art/batch/icons/features/class/ranger/expertise.png
 ## batch-205 v3
 
 art/batch/creatures/undead/zombie.png
