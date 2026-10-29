@@ -3027,11 +3027,6 @@ art/batch/icons/items/magic/rare/spelljamming-helm.png
 art/batch/icons/items/magic/uncommon/wildspace-orrery.png
 art/batch/icons/items/magic/rare/mind-lash.png
 art/batch/icons/items/magic/rare/shield-of-far-sight.png
-art/batch/icons/spells/level-6/summon-dinosaur.png
-art/batch/icons/spells/level-6/summon-fiend.png
-art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
-art/batch/icons/spells/level-6/transport-via-plants.png
-art/batch/icons/spells/level-6/wall-of-thorns.png
 
 art/batch/icons/items/magic/common/medal-of-the-wetlands.png
 art/batch/icons/items/magic/common/medal-of-wit.png
