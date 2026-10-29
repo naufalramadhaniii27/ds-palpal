@@ -4060,6 +4060,11 @@ art/batch/icons/spells/level-9/detonate.png
 art/batch/icons/spells/level-9/meteor-swarm.png
 art/batch/icons/spells/level-9/ravenous-void.png
 
+art/batch/icons/spells/level-9/vision-of-elapsing-eons.png
+art/batch/icons/spells/level-9/weird.png
+art/batch/icons/spells/level-9/astral-projection.png
+art/batch/icons/spells/level-9/time-ravage.png
+art/batch/icons/spells/level-9/true-resurrection.png
 ## batch-175 v3
 art/batch/icons/features/subclass/psi-warrior/protective-field.png
 art/batch/icons/features/subclass/psi-warrior/psionic-power.png
