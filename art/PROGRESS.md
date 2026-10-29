@@ -2953,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3106,3 +3111,9 @@ art/batch/creatures/undead/undead-spirit.png
 art/batch/creatures/beast/beast-of-the-land.png
 art/batch/creatures/beast/beast-of-the-sea.png
 
+## batch-224 v3
+art/batch/monsters/aberration/beholder.png
+art/batch/monsters/aberration/death-tyrant.png
+art/batch/monsters/aberration/spectator.png
+art/batch/monsters/aberration/gazer.png
+art/batch/monsters/aberration/beholder-zombie.png
