@@ -11,7 +11,7 @@ src/manifest.json lists the pieces in order. A piece is raw text. Joining all pi
 Edit the pieces in src/, then run this script. Do not edit index.html by hand. SOURCE-NOTES.md has the file map.
 --check also runs --lint when node is installed.
 """
-import base64, hashlib, json, os, re, sys, tempfile
+import base64, hashlib, json, os, re, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "src")
@@ -144,6 +144,27 @@ CSP_META_RE = re.compile(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n?')
 SCRIPT_RE = re.compile(r'<script(?:\s[^>]*)?>(.*?)</script>', re.S)
 
 
+ESBUILD = os.path.join(HERE if "HERE" in globals() else os.path.dirname(os.path.abspath(__file__)), "tools", "build", "node_modules", ".bin", "esbuild")
+BLOCK_RE = re.compile(r'(<(script|style)(?:\s[^>]*)?>)(.*?)</(?:script|style)>', re.S)
+
+
+def minify(html):
+    """T11 A7: every script and style block goes through esbuild (whitespace and syntax only, names are kept, so stack traces in
+    problem reports still name the functions). Install once: npm ci --prefix tools/build. --no-minify builds without it."""
+    if not os.path.exists(ESBUILD):
+        raise SystemExit("esbuild missing: run  npm ci --prefix tools/build  (or build with --no-minify)")
+    def one(m):
+        kind = m.group(2); body = m.group(3)
+        if not body.strip():
+            return m.group(0)
+        r = subprocess.run([ESBUILD, "--loader=" + ("css" if kind == "style" else "js"), "--minify-whitespace", "--minify-syntax",
+                            "--target=esnext", "--charset=utf8", "--legal-comments=none", "--log-level=error"], input=body.encode("utf-8"), capture_output=True)
+        if r.returncode:
+            raise SystemExit("esbuild failed on a %s block: %s" % (kind, r.stderr.decode()[:400]))
+        return m.group(1) + r.stdout.decode("utf-8").rstrip("\n") + "</%s>" % kind
+    return BLOCK_RE.sub(one, html)
+
+
 def with_csp(html):
     """T11 A1: Content-Security-Policy as a meta tag. Every inline script (also the deferred builder parts, which the loader runs with
     the same text) is allowed by its sha256 hash, nothing else inline runs. Trusted Types are required (boot/trusted-types.js).
@@ -221,7 +242,10 @@ def main(argv):
             return 0 if same else 1
     if "--lint" in argv:
         return 1 if lint(SRC) else 0
-    html = with_csp(assemble(SRC))
+    html = assemble(SRC)
+    if "--no-minify" not in argv:
+        html = minify(html)
+    html = with_csp(html)
     sw, h = sw_with(read(SW), html)
     if "--check" in argv:
         ok_html = html == read(OUT)

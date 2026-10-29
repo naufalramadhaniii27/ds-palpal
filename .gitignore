@@ -3,3 +3,4 @@ v49/
 tests/out/
 dist/
 .wrangler/
+tools/build/node_modules/
