@@ -3897,3 +3897,9 @@ art/batch/icons/features/subclass/path-of-the-wild-heart/power-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-wild-heart/rage-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-world-tree/battering-roots.png
 art/batch/icons/features/subclass/path-of-the-world-tree/branches-of-the-tree.png
+## batch-071 v3
+art/batch/scenes/species/kobold-pc.png
+art/batch/scenes/species/kobold-phone.png
+art/batch/scenes/species/kor-pc.png
+art/batch/scenes/species/kor-phone.png
+art/batch/scenes/species/kuo-toa-pc.png
