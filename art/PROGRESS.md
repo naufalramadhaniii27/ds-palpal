@@ -4386,6 +4386,11 @@ art/batch/icons/items/tools/lyre.png
 art/batch/icons/items/tools/pan-flute.png
 art/batch/icons/items/tools/shawm.png
 art/batch/icons/items/tools/viol.png
+art/batch/icons/items/gear/acid.png
+art/batch/icons/items/gear/alchemists-fire.png
+art/batch/icons/items/gear/antitoxin.png
+art/batch/icons/items/gear/bell.png
+art/batch/icons/items/gear/blanket.png
 
 ## batch-062 v3
 art/batch/icons/familiars/frog-familiar.png
