@@ -57,3 +57,12 @@ if(window.__sheetRerender)setTimeout(window.__sheetRerender,0);
 if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
 if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home")},50)}
 applyPacks();render();
+
+/* T11 N6: rules fuzzer hooks. __bldLists gives the 2024 classes, species, backgrounds and subclasses. __bldFuzz builds one character from the given picks
+   (class, species, background, standard array order, level, subclass), fills the remaining choices the Quick Build way, and returns the build, the sheet
+   object, the rule issues and the unfinished list. The open build is put back afterwards, nothing is saved */
+window.__bldLists=function(){var subs={};Object.keys(CLASSES).forEach(function(c){subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter(function(c){return CLASSES[c]}),sp:Object.keys(SPECIES).filter(function(s){return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter(function(b){return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort(function(a,b){return b-a})}};
+window.__bldFuzz=function(o){var keep=B,out=null;try{B=NEWB();B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
+  var bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
+  B.level=o.lv;if(o.sub&&o.lv>=3)B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
+  out={b:JSON.parse(JSON.stringify(B)),c:toSheet(),ri:ruleIssues().map(function(x){return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}B=keep;return out};

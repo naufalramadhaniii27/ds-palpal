@@ -44,7 +44,8 @@ window.__sheetName=function(){ return C&&C.name; };window.__ask=ask;/* T10: test
 window.__sheetRerender=function(){ renderAll(); };
 window.__sheetSoft=function(p){ if(!p||!p.abilities) return; C=keepNewer(p); saveC(); renderAll(); };
 window.__sheetState=function(){ return {C:C, lang:S.lang, camp:campName()}; };
-window.__D=function(){ return D; };/* v35 p05 */
+window.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
+window.__deriveFor=function(c){ var C0=C, S0=S, D0=D, out=null; try{ C=JSON.parse(JSON.stringify(c)); S=JSON.parse(JSON.stringify(DEF)); derive(); out=JSON.parse(JSON.stringify({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry})); }catch(e){ out={err:String(e&&e.stack||e)}; } C=C0; S=S0; D=D0; try{ derive(); }catch(e){} return out; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */
 window.__actProbe=function(C2){ var C0=C, S0=JSON.stringify(S), F0=actF, out=null; try{ C=C2; S=JSON.parse(S0); actF="all"; derive(); renderActions();
   var b=document.getElementById("actBody"), cat="", res={action:[],onhit:[],bonus:[],reaction:[],other:[],rows:[]};
