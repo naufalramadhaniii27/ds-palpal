@@ -29,6 +29,7 @@ async def main():
                 await ctx.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);sessionStorage.setItem('__s','1')}" % json.dumps(YUDHI))
                 pg = await ctx.new_page(); errs = []; pg.on("pageerror", lambda e: errs.append(str(e)[:150]))
                 await pg.goto(base); await pg.wait_for_timeout(2000)
+                await pg.evaluate("()=>{ if(window.__bldNeed) window.__bldNeed(); }"); await pg.wait_for_function("()=>typeof window.__bldOpen==='function'", timeout=30000)
                 await pg.evaluate("window.__bldOpen()"); await pg.wait_for_timeout(1000)
                 await pg.keyboard.press("Control+k"); await pg.wait_for_selector(".bpal-b", state="attached")
                 o0, o1 = await pg.evaluate(PROBE)
