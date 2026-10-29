@@ -2188,6 +2188,11 @@ art/batch/icons/spells/level-3/nondetection.png
 art/batch/icons/spells/level-3/protection-from-energy.png
 art/batch/icons/spells/level-3/remove-curse.png
 art/batch/icons/spells/level-3/call-lightning.png
+art/batch/icons/spells/level-3/conjure-animals.png
+art/batch/icons/spells/level-3/conjure-barrage.png
+art/batch/icons/spells/level-3/conjure-constructs.png
+art/batch/icons/spells/level-3/create-food-and-water.png
+art/batch/icons/spells/level-3/galders-tower.png
 
 ## batch-067 v3
 art/batch/scenes/species/firbolg-pc.png
