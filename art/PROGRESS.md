@@ -3615,6 +3615,11 @@ art/batch/icons/spells/level-4/summon-elemental.png
 art/batch/icons/spells/level-4/summon-greater-demon.png
 art/batch/icons/spells/level-4/watery-sphere.png
 art/batch/icons/spells/level-4/arcane-eye.png
+art/batch/icons/spells/level-4/divination.png
+art/batch/icons/spells/level-4/locate-creature.png
+art/batch/icons/spells/level-4/charm-monster.png
+art/batch/icons/spells/level-4/compulsion.png
+art/batch/icons/spells/level-4/confusion.png
 
 ## batch-136 v3
 art/batch/icons/feats/alert.png
