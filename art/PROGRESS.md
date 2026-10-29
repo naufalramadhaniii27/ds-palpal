@@ -3323,3 +3323,10 @@ art/batch/icons/features/subclass/aberrant-mind/telepathic-speech.png
 art/batch/monsters/monstrosity/tarrasque.png
 art/batch/monsters/monstrosity/hag-coven.png
 art/batch/monsters/monstrosity/owlbear.png
+## batch-057 v3
+art/batch/icons/spells/level-7/divine-word.png
+art/batch/icons/spells/level-7/fire-storm.png
+art/batch/icons/spells/level-7/forcecage.png
+art/batch/icons/spells/level-7/mordenkainens-sword.png
+NEEDS REVIEW: art/batch/icons/spells/level-7/prismatic-spray.png
+art/batch/icons/spells/level-7/whirlwind.png

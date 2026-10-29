@@ -185,3 +185,6 @@ batch-120 v3 complete: 20 images following their batch entries. Required pixel s
 batch-121 v3 complete: 20 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
 
 batch-122 v3 complete: 20 images following their batch entries. Required pixel sizes and uniform scaling preserved. Exact prompts logged. No NEEDS REVIEW. Imagegen; exact model version not exposed.
+
+NEEDS REVIEW: art/batch/icons/spells/level-7/prismatic-spray.png
+All four native image attempts returned seven primary rays instead of the eight explicitly required by the Subject; no image saved.
