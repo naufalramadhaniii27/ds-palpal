@@ -94,7 +94,7 @@ Syarat dari G6 berlaku: tanpa AI berbayar, tingkat gratis, ada tes, dicatat di r
 
 | Usulan | Masalah yang dijawab | Cara kerja | Tes |
 |---|---|---|---|
-| Replay pertarungan | Pemain ingin melihat ulang atau membagikan | Log kejadian plus seed dijalankan ulang oleh reducer. Tautan berisi log terkompresi (Compression Streams) | Replay menghasilkan HP dan posisi yang sama dengan aslinya |
+| Replay pertarungan | Pemain ingin melihat ulang atau membagikan | Log kejadian plus seed dijalankan ulang oleh reducer. Tautan berisi log terkompresi (Compression Streams) | Replay menghasilkan HP dan posisi yang sama dengan aslinya | Status 2026-10-29: prototipe codec ada di `tools/tg-proto/replay-codec.mjs`, tes 2.000 log acak lolos (hasil sama persis). Tautan 300 kejadian realistis: 903 karakter. 400 kejadian acak penuh: sampai 2.374 karakter. Catatan: prototipe ditulis sebelum dicatat di rencana, urutan ini terbalik dari syarat |
 | Papan tes headless | Memastikan aturan benar tanpa tampilan | Node menjalankan ribuan pertarungan seed tetap, mencatat NaN, loop, dan HP tidak konsisten | Bagian dari TG0 |
 | Penggaris jarak | Pemain tidak tahu jarak antar token | Seret dari token, papan menghitung petak dan kaki dengan kisi dan biaya medan yang sama dengan pencarian jalur | Jarak diagonal dan medan sulit sama dengan hasil pencarian jalur |
 | Pemuat makhluk bertahap | 503 makhluk membebani HP | Indeks kecil (nama, CR, tipe, SRD) dimuat dulu. Stat block penuh dimuat saat dipilih, disimpan di IndexedDB | Waktu muat Home tidak naik, 503 entri terbaca |
@@ -190,3 +190,10 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 - Data app: `src/data/wotc13-creature-stat-blocks.js` (72 stat block)
 - [5etools-mirror-3/5etools-src](https://github.com/5etools-mirror-3/5etools-src) (`data/bestiary/bestiary-xmm.json`, MIT untuk kode proyek)
 - [dnd-wiki.org daftar monster 5e](https://new.dnd-wiki.org/wiki/5e_Monster_List)
+
+### 5d. Teknologi buatan sendiri tahap berikutnya (diusulkan 2026-10-29, belum dibuat)
+| Usulan | Masalah | Cara kerja | Tes |
+|---|---|---|---|
+| Dadu 3D yang menunjukkan nilai dari log | dice-box tidak bisa menetapkan hasil dulu | Biarkan fisika berjalan, baca sisi atas, lalu petakan ulang label sisi agar sama dengan nilai log. Pemain melihat dadu jatuh normal | Uji 1.000 lemparan d20 di browser, sisi atas selalu sama dengan nilai log |
+| Pengurai stat block terstruktur | Aksi makhluk berupa teks | Ubah tag 5etools jadi objek serangan, save, dan Multiattack | Hitung terbaca mesin pada 330 SRD, target sekitar 98 persen |
+| Penempatan awal otomatis | Menaruh puluhan token satu per satu lambat | Susun kelompok dalam spiral di sekitar titik pilihan, hindari rintangan | Tidak ada token bertumpuk, semua di petak yang boleh dilalui |
