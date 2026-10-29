@@ -2137,3 +2137,8 @@ art/batch/icons/features/class/bard/magical-secrets.png
 art/batch/icons/features/class/bard/spellcasting.png
 art/batch/icons/features/class/bard/superior-inspiration.png
 art/batch/icons/features/class/bard/words-of-creation.png
+art/batch/icons/features/class/cleric/blessed-strikes.png
+art/batch/icons/features/class/cleric/channel-divinity.png
+art/batch/icons/features/class/cleric/divine-intervention.png
+art/batch/icons/features/class/cleric/divine-order.png
+art/batch/icons/features/class/cleric/greater-divine-intervention.png
