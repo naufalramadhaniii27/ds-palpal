@@ -107,6 +107,10 @@
 .lrn-fill.no{background:var(--warn)}
 .lrn-dc{position:absolute;top:-8px;bottom:-8px;width:3px;background:var(--ink);border-radius:2px}
 .lrn-dc span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;font-weight:700;margin-bottom:2px}
+.lrn-mods{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:3px;margin-top:6px}
+.lrn-mc{display:flex;flex-direction:column;align-items:center;padding:4px 0;border-radius:8px;background:var(--panel);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.lrn-mc b{font-size:13px}.lrn-mc small{font-size:11px;color:var(--muted)}
+.lrn-mc.on{background:color-mix(in srgb,var(--stamp) 22%,var(--panel));border-color:var(--stamp)}.lrn-mc.on small{color:var(--ink);font-weight:700}
 .lrn-okall{display:flex;justify-content:center}
 .lrn-okall .ico{width:56px;height:56px;color:var(--good)}
 /* HP */

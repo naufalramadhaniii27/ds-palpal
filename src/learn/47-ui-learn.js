@@ -66,15 +66,15 @@ function step(st){ var S=V.s, i;
   case "card": return {say:'<b>'+esc(lrnL(st.title))+'</b>', body:'<div class="lrn-card"><h3>'+esc(lrnL(st.title))+'</h3><ul>'+st.items.map(function(x){ return '<li>'+ic("ui-check")+'<span>'+fmt(x)+'</span></li>'; }).join("")+'</ul></div>'};
   } return {say:"",body:""}; }
 /* the d20 plus bonus against the Target Number, drawn as blocks: die, bonus, total bar and a target line (concrete, picture, number) */
-function sumVis(die,bonus,dc,stage){ var tot=die+bonus, max=Math.max(25,tot,dc+2), pct=function(v){ return Math.round(Math.max(0,v)*100/max); };
+function sumVis(die,bonus,dc,stage,tl){ var TL=U(tl||"target"); var tot=die+bonus, max=Math.max(25,tot,dc+2), pct=function(v){ return Math.round(Math.max(0,v)*100/max); };
   return '<div class="lrn-sum" data-stage="'+stage+'"><div class="lrn-die" aria-hidden="true">'+D20S+'<b>'+(stage>=1?die:"?")+'</b></div><span class="lrn-plus">+</span><div class="lrn-chip'+(stage>=2?" in":"")+'">'+(bonus<0?"−"+(-bonus):"+"+bonus)+'</div><span class="lrn-plus">=</span><div class="lrn-tot">'+(stage>=2?tot:"?")+'</div></div>'
-    +'<div class="lrn-meter" aria-hidden="true"><div class="lrn-fill'+(stage>=3?(tot>=dc?" ok":" no"):"")+'" style="width:'+(stage>=2?pct(tot):stage>=1?pct(die):0)+'%"></div><div class="lrn-dc" style="left:'+pct(dc)+'%"><span>'+esc(U("target"))+' '+dc+'</span></div></div>'
-    +'<p class="sr">'+(stage>=1?die:"")+(stage>=2?" + "+bonus+" = "+tot:"")+", "+esc(U("target"))+" "+dc+'</p>'; }
+    +'<div class="lrn-meter" aria-hidden="true"><div class="lrn-fill'+(stage>=3?(tot>=dc?" ok":" no"):"")+'" style="width:'+(stage>=2?pct(tot):stage>=1?pct(die):0)+'%"></div><div class="lrn-dc" style="left:'+pct(dc)+'%"><span>'+esc(TL)+' '+dc+'</span></div></div>'
+    +'<p class="sr">'+(stage>=1?die:"")+(stage>=2?" + "+bonus+" = "+tot:"")+", "+esc(TL)+" "+dc+'</p>'; }
 function rollStep(st,S){ var b=S.bonus!=null?S.bonus:(S.bonus=lrnBonus(st.bonus)), stage=S.stage||0, said=fmt(st.say), act="";
   if(stage===0) act='<button type="button" class="btn pri press lrn-big" data-l="roll"'+(S.busy?" disabled":"")+'>'+ic("ui-dice")+esc(U("roll"))+'</button>';
   else if(stage===1){ said=esc(F("rolled",{d:S.die})); act='<button type="button" class="btn pri press lrn-big lrn-chipb" data-l="bonus">'+esc(U("addBonus"))+' ('+(b<0?"−"+(-b):"+"+b)+')</button>'; }
-  else { var t=S.die+b; said=esc(F(t>=st.dc?"made":"missed",{t:t,dc:st.dc})); act=t>=st.dc?"":'<button type="button" class="btn press lrn-big" data-l="reroll">'+ic("ui-redo")+esc(U("rollAgain"))+'</button>'; }
-  return {say:said, body:sumVis(S.die||0,b,st.dc,stage>=2?3:stage)+'<div class="lrn-acts">'+act+'</div>'}; }
+  else { var t=S.die+b; said=esc(F(t>=st.dc?(st.win||"made"):(st.lose||"missed"),{t:t,dc:st.dc})); act=t>=st.dc?"":'<button type="button" class="btn press lrn-big" data-l="reroll">'+ic("ui-redo")+esc(U("rollAgain"))+'</button>'; }
+  return {say:said, body:sumVis(S.die||0,b,st.dc,stage>=2?3:stage,st.tl)+'<div class="lrn-acts">'+act+'</div>'}; }
 function checkStep(st,S){ var k=S.k||0; if(k>=st.items.length) return {say:fmt(st.good), body:'<div class="lrn-okall">'+ic("ui-check")+'</div>'};
   var it=st.items[k]; return {say:S.miss?fmt(st.hint):(S.k?fmt(st.good)+" "+fmt(st.q):fmt(st.q)), body:sumVis(it.die,it.bonus,it.dc,1).replace('class="lrn-chip"','class="lrn-chip in"')+'<div class="lrn-opts lrn-yn" role="group">'+opt("",'data-lc="1"',esc(U("yes")))+opt("",'data-lc="0"',esc(U("no")))+'</div><p class="lrn-cnt">'+(k+1)+" / "+st.items.length+'</p>'}; }
 function hpVis(max,cur,mark){ return '<div class="lrn-hp" aria-hidden="true"><div class="lrn-hpb"><i style="width:'+Math.round(cur*100/max)+'%"></i></div><b>'+cur+' / '+max+'</b>'+(mark?'<span class="lrn-hpm '+mark[0]+'">'+mark[1]+'</span>':'')+'</div>'; }
@@ -97,7 +97,9 @@ function advStep(st,S){ var v=S.v, act, said=fmt(st.say), body;
 
 /* Hoot shows: one visual per frame, built from data (U38 Choreo: the same frames give the animation, the still version and the test steps) */
 function drawFrame(){ var st=LEARN.places[V.p].steps[V.i], fr=st.frames[V.s.f||0], el=document.getElementById("lrnVis"); if(!el) return; var h="";
-  if(fr.vis==="sum") h=sumVis(fr.die,fr.bonus,fr.dc,fr.stage);
+  if(fr.vis==="sum") h=sumVis(fr.die,fr.bonus,fr.dc,fr.stage,fr.tl);
+  else if(fr.vis==="mod"){ var row=""; for(var sc=6;sc<=20;sc++){ var md=Math.floor((sc-10)/2); row+='<div class="lrn-mc'+(sc===fr.score?" on":"")+'"><b>'+sc+'</b><small>'+(md<0?"−"+(-md):"+"+md)+'</small></div>'; } var mm=Math.floor((fr.score-10)/2);
+    h='<div class="lrn-sum"><div class="lrn-tot">'+fr.score+'</div><span class="lrn-plus">→</span><div class="lrn-chip in">'+(mm<0?"−"+(-mm):"+"+mm)+'</div></div><div class="lrn-mods" aria-hidden="true">'+row+'</div><p class="sr">'+esc(U("score"))+' '+fr.score+', '+(mm<0?"−"+(-mm):"+"+mm)+'</p>'; }
   else if(fr.vis==="hp") h=hpVis(fr.max,fr.to,fr.dmg?["dmg","−"+fr.dmg]:fr.heal?["heal","+"+fr.heal]:null);
   else if(fr.vis==="talk") h='<div class="lrn-talk who-'+fr.who+'"><span class="lrn-tk">'+(fr.who==="die"?'<span class="lrn-die sm">'+D20S+'<b>?</b></span>':fr.who==="dm"?ic("ui-book"):ic("ui-users"))+'</span><b>'+esc(fr.who==="dm"?lrnL(LEARN.terms.dm.name):fr.who==="you"?U("you"):"d20")+'</b></div>';
   else if(fr.vis==="grid"){ h='<div class="lrn-grid demo" aria-hidden="true">'+cells(6,function(x,y){ var c=""; if(fr.path&&fr.path.some(function(q){ return q[0]===x&&q[1]===y; })) c+=" path"; if(fr.hero[0]===x&&fr.hero[1]===y) return '<i class="hero'+c+'">'+ic("ui-users")+'</i>'; if(fr.foe[0]===x&&fr.foe[1]===y) return '<i class="foe">'+ic("ui-shield")+'</i>'; return '<i class="'+c+'"></i>'; })+'</div>'+(fr.act?'<p class="lrn-lbl"><b>'+esc(fr.act)+'</b>'+(fr.over?' · '+esc(U("turnOver")):'')+'</p>':''); }

@@ -25,7 +25,7 @@ function lrnRoll(list){ var flat=function(){ return list.map(lrnD); };
 
 /* the character's numbers, from the same derivation the sheet shows (D in 06) */
 function lrnSkillI(n){ var C=A.C&&A.C(), s=(C&&C.skills)||[]; for(var i=0;i<s.length;i++) if(s[i].n===n) return i; return -1; }
-function lrnBonus(spec){ var m=/^skill:(.+)$/.exec(spec||""); var D=A.D&&A.D(); if(m&&D&&D.skill){ var i=lrnSkillI(m[1]); if(i>=0&&typeof D.skill[i]==="number") return D.skill[i]; } return 3; }
+function lrnBonus(spec){ if(typeof spec==="number") return spec; var m=/^skill:(.+)$/.exec(spec||""); var D=A.D&&A.D(); if(m&&D&&D.skill){ var i=lrnSkillI(m[1]); if(i>=0&&typeof D.skill[i]==="number") return D.skill[i]; } return 3; }
 function lrnHasChar(){ var C=A.C&&A.C(); return !!(C&&C.name!=null&&!(A.frozen&&A.frozen())); }
 
 /* ===== U41 Anchor Spotlight: one engine that points at a part of the screen. Learn uses it for "Find it on your sheet".
@@ -33,12 +33,13 @@ function lrnHasChar(){ var C=A.C&&A.C(); return !!(C&&C.name!=null&&!(A.frozen&&
    position (resize, scroll) where it does not. The label card sits beside the ring. window.__lrnNoAnchor forces the fallback (tests) */
 var SPOT=null;
 function spotAnchor(){ return !window.__lrnNoAnchor&&window.CSS&&CSS.supports&&CSS.supports("anchor-name","--a")&&CSS.supports("top","anchor(--a bottom)"); }
-function spotShow(el,html,onClose){ spotHide(true); var ring=document.createElement("div"), card=document.createElement("div"), anc=spotAnchor();
+function spotShow(el,html,onClose){ spotHide(true); var ring=document.createElement("div"), card=document.createElement("div"), r0=el.getBoundingClientRect(), tall=r0.height>innerHeight*.45, anc=spotAnchor()&&!tall;/* a part taller than half the screen: the card waits at the bottom */
   ring.id="spotR"; ring.className="spot-r"+(anc?" spot-anc":""); ring.setAttribute("aria-hidden","true");
   card.id="lrnSpot"; card.className="spot-c noico"+(anc?" spot-anc":""); card.setAttribute("role","dialog"); card.setAttribute("aria-label",(el.getAttribute("aria-label")||"")); card.innerHTML=html;
   document.body.appendChild(ring); document.body.appendChild(card);
   if(anc){ el.style.setProperty("anchor-name","--spot"); }
   var place=function(){ if(anc) return; var r=el.getBoundingClientRect(), p=6; ring.style.left=(r.left-p)+"px"; ring.style.top=(r.top-p)+"px"; ring.style.width=(r.width+2*p)+"px"; ring.style.height=(r.height+2*p)+"px";
+    if(tall){ card.style.left=Math.max(12,(innerWidth-card.offsetWidth)/2)+"px"; card.style.top=Math.max(12,innerHeight-card.offsetHeight-96)+"px"; return; }
     var below=r.bottom+180<innerHeight; card.style.left=Math.max(12,Math.min(innerWidth-card.offsetWidth-12,r.left+r.width/2-card.offsetWidth/2))+"px"; card.style.top=(below?r.bottom+14:Math.max(12,r.top-card.offsetHeight-14))+"px"; };
   if(window.__topLayer){ window.__topLayer(ring); window.__topLayer(card); }
   place(); addEventListener("resize",place); addEventListener("scroll",place,true);
