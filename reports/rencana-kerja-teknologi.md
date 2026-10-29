@@ -75,6 +75,15 @@ Paket: @3d-dice/dice-box 1.1.4 (MIT), berisi BabylonJS (Apache 2.0) dan Ammo.js 
 | Lisensi | File lisensi MIT dice-box, Apache 2.0 Babylon (dengan NOTICE), dan zlib Ammo disertakan di `dice/` dan disebut di Settings |
 | CSP (G1) | dice-box butuh `'wasm-unsafe-eval'` untuk Ammo dan worker dari `data:`. CSP di G1 memberi izin itu khusus untuk kebutuhan ini |
 
+### D1 temuan: isi dice-box sudah tua (dicek 2026-10-29)
+dice-box 1.1.4 (rilis terakhir Agustus 2024) memakai BabylonJS 5.57.1 dan Ammo.js. Versi terbaru: @babylonjs/core 9.32.1 (27 Oktober 2026) dan fisika Havok @babylonjs/havok 1.3.14 (September 2026, MIT). dice-box berlisensi MIT, jadi kodenya boleh diubah dan dibangun ulang.
+| Pilihan | Isi | Ukuran unduh pertama (gzip) | Terbaru? |
+|---|---|---|---|
+| E1 | dice-box 1.1.4 apa adanya | sekitar 745 KB | Tidak: Babylon 5.57, Ammo |
+| E2 | dice-box dibangun ulang di atas Babylon 9.32 (hanya modul yang dipakai, WebGPU dengan cadangan WebGL2), fisika tetap Ammo | perlu diukur setelah bundling | Sebagian: Babylon terbaru, fisika lama |
+| E3 | dice-box dibangun ulang di atas Babylon 9.32 dan Havok 1.3.14 | lebih besar dari E2: wasm Havok 2,09 MB (662 KB gzip) dibanding Ammo 317 KB (128 KB gzip) | Ya, semua terbaru |
+Semua pilihan tetap dimuat belakangan, jadi tidak memperlambat app saat dibuka. Menunggu keputusan user.
+
 ### D2 Lempar dari sheet
 Ketuk skill, save, serangan, damage, Initiative, death save, atau Hit Point Dice: dadu dilempar, hasil dan rinciannya tampil (dadu, bonus, total). Advantage dan Disadvantage melempar dua d20. Critical Hit menggandakan dadu damage. Bila kamu memakai dadu fisik, ada pilihan "I rolled myself" untuk mengetik hasilnya.
 
