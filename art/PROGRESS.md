@@ -4507,6 +4507,11 @@ art/batch/icons/bastion/training-area.png
 art/batch/icons/bastion/trophy-room.png
 art/batch/icons/bastion/archive.png
 art/batch/icons/bastion/meditation-chamber.png
+art/batch/icons/bastion/menagerie.png
+art/batch/icons/bastion/observatory.png
+art/batch/icons/bastion/pub.png
+art/batch/icons/bastion/reliquary.png
+art/batch/icons/bastion/demiplane.png
 ## batch-179 v3
 art/batch/emblems/subclass/extra/aberrant-mind.png
 art/batch/emblems/subclass/extra/arcane-archer.png
