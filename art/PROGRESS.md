@@ -3792,6 +3792,11 @@ art/batch/icons/spells/level-4/phantasmal-killer.png
 art/batch/icons/spells/level-4/blight.png
 art/batch/icons/spells/level-4/festering-blast.png
 art/batch/icons/spells/level-4/shadow-of-moil.png
+art/batch/icons/spells/level-4/spirit-of-death.png
+art/batch/icons/spells/level-4/control-water.png
+art/batch/icons/spells/level-4/elemental-bane.png
+art/batch/icons/spells/level-4/fabricate.png
+art/batch/icons/spells/level-4/guardian-of-nature.png
 
 ## batch-137 v3
 art/batch/icons/feats/dual-wielder.png
