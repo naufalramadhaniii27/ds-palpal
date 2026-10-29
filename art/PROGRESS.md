@@ -1975,6 +1975,77 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+art/batch/icons/spells/level-2/uncertain-footing.png
+art/batch/icons/spells/level-2/death-armor.png
+art/batch/icons/spells/level-2/gentle-repose.png
+art/batch/icons/spells/level-2/ray-of-enfeeblement.png
+art/batch/icons/spells/level-2/wither-and-bloom.png
+art/batch/icons/spells/level-2/alter-self.png
+art/batch/icons/spells/level-2/barkskin.png
+art/batch/icons/spells/level-2/blindness-deafness.png
+art/batch/icons/spells/level-2/cordon-of-arrows.png
+art/batch/icons/spells/level-2/darkvision.png
+
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+art/batch/icons/spells/level-2/uncertain-footing.png
+art/batch/icons/spells/level-2/death-armor.png
+art/batch/icons/spells/level-2/gentle-repose.png
+art/batch/icons/spells/level-2/ray-of-enfeeblement.png
+art/batch/icons/spells/level-2/wither-and-bloom.png
+
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2010,7 +2081,6 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
-NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2462,7 +2532,6 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
-NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2650,7 +2719,6 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
-NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
@@ -2740,7 +2808,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2926,6 +2993,11 @@ art/batch/icons/spells/level-6/ottos-irresistible-dance.png
 art/batch/icons/spells/level-6/blade-barrier.png
 art/batch/icons/spells/level-6/chain-lightning.png
 art/batch/icons/spells/level-6/elminsters-effulgent-spheres.png
+art/batch/icons/spells/level-6/conjure-fey.png
+art/batch/icons/spells/level-6/drawmijs-instant-summons.png
+art/batch/icons/spells/level-6/heroes-feast.png
+art/batch/icons/spells/level-6/planar-ally.png
+art/batch/icons/spells/level-6/scatter.png
 ## batch-134 v3
 art/batch/icons/items/magic/common/medal-of-the-wetlands.png
 art/batch/icons/items/magic/common/medal-of-wit.png
@@ -2958,6 +3030,41 @@ art/batch/icons/spells/level-6/summon-fiend.png
 art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
 art/batch/icons/spells/level-6/transport-via-plants.png
 art/batch/icons/spells/level-6/wall-of-thorns.png
+art/batch/icons/items/magic/common/medal-of-the-wetlands.png
+art/batch/icons/items/magic/common/medal-of-wit.png
+art/batch/icons/items/magic/very-rare/ring-of-red-fury.png
+art/batch/icons/items/magic/very-rare/ruidium-shield.png
+art/batch/icons/items/magic/rare/teleportation-tablet.png
+art/batch/icons/items/magic/very-rare/fish-suit.png
+art/batch/icons/items/magic/rare/spelljamming-helm.png
+art/batch/icons/items/magic/uncommon/wildspace-orrery.png
+art/batch/icons/items/magic/rare/mind-lash.png
+art/batch/icons/items/magic/rare/shield-of-far-sight.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
+
+art/batch/icons/items/magic/common/medal-of-the-wetlands.png
+art/batch/icons/items/magic/common/medal-of-wit.png
+art/batch/icons/items/magic/very-rare/ring-of-red-fury.png
+art/batch/icons/items/magic/very-rare/ruidium-shield.png
+art/batch/icons/items/magic/rare/teleportation-tablet.png
+art/batch/icons/items/magic/very-rare/fish-suit.png
+art/batch/icons/items/magic/rare/spelljamming-helm.png
+art/batch/icons/items/magic/uncommon/wildspace-orrery.png
+art/batch/icons/items/magic/rare/mind-lash.png
+art/batch/icons/items/magic/rare/shield-of-far-sight.png
+art/batch/icons/items/magic/very-rare/flying-citadel-helm.png
+art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
+art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
+art/batch/icons/items/magic/legendary/greater-silver-sword.png
+art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/items/magic/legendary/nepenthe.png
+art/batch/icons/items/magic/rare/mimir.png
+art/batch/icons/items/magic/uncommon/portal-compass.png
+
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -2980,6 +3087,12 @@ art/batch/icons/features/class/paladin/aura-of-courage.png
 art/batch/icons/features/class/paladin/aura-of-protection.png
 art/batch/icons/features/class/paladin/channel-divinity.png
 art/batch/icons/features/class/paladin/extra-attack.png
+art/batch/icons/features/class/monk/empowered-strikes.png
+art/batch/icons/features/class/monk/evasion.png
+art/batch/icons/features/class/monk/extra-attack.png
+art/batch/icons/features/class/monk/heightened-focus.png
+art/batch/icons/features/class/monk/martial-arts.png
+
 ## batch-171 v3
 art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
 art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
@@ -3001,6 +3114,11 @@ art/batch/icons/features/subclass/oath-of-the-watchers/aura-of-the-sentinel.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-abjure-the-extraplanar.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-watchers-will.png
 art/batch/icons/features/subclass/oath-of-the-watchers/mortal-bulwark.png
+art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
+art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
+art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
+art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
+art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
@@ -3013,6 +3131,11 @@ art/batch/ui/sprite-damage.png
 art/batch/ui/sprite-levelup.png
 art/batch/ui/sprite-save.png
 art/batch/ui/sprite-candle.png
+art/batch/ui/ribbon-dialog.png
+art/batch/ui/scroll-toast.png
+art/batch/ui/parchment-tooltip.png
+art/batch/ui/frame-dialog.png
+art/batch/ui/sprite-loader-d20.png
 ## batch-204 v3
 
 art/batch/creatures/undead/skeleton.png
