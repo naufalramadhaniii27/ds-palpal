@@ -2740,6 +2740,7 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -3307,9 +3308,18 @@ art/batch/icons/spells/level-4/death-ward.png
 art/batch/icons/spells/level-4/freedom-of-movement.png
 art/batch/icons/spells/level-4/gate-seal.png
 
+art/batch/creatures/beast/giant-rat.png
+art/batch/creatures/beast/giant-scorpion.png
+art/batch/creatures/monstrosity/griffon.png
+art/batch/creatures/aberration/intellect-devourer.png
+art/batch/creatures/beast/jackal.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
 art/batch/icons/features/subclass/aberrant-mind/psychic-defenses.png
 art/batch/icons/features/subclass/aberrant-mind/revelation-in-flesh.png
 art/batch/icons/features/subclass/aberrant-mind/telepathic-speech.png
+## batch-229 v3
+art/batch/monsters/monstrosity/tarrasque.png
+art/batch/monsters/monstrosity/hag-coven.png
+art/batch/monsters/monstrosity/owlbear.png
