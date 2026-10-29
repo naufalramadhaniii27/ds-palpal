@@ -70,7 +70,7 @@ Semua butuh cadangan. Fitur yang tidak ada di browser pemain tidak boleh merusak
 |---|---|---|---|---|
 | Gambar papan tanpa menahan UI | OffscreenCanvas di Web Worker (render papan dan token di worker) | 96,76 persen (Chrome 69, Safari 17, Firefox 105). Safari 16.2 sampai 16.6 sebagian | Canvas 2D di thread utama | TG2 |
 | Kerja berat tidak membekukan HP | Pencarian jalur dan muat 503 makhluk di Worker. `scheduler.yield()` hanya di loop utama | 73,79 persen. Safari belum mendukung | `setTimeout(0)` atau `MessageChannel` | TG0, TG2 |
-| Ganti layar (pilih, papan, hasil) | View Transitions same-document | Belum diukur ulang di caniuse. Dari artikel Chrome 2025: Chrome 111, Safari 18, Firefox 144 | Tanpa animasi | TG1 |
+| Ganti layar (pilih, papan, hasil) | View Transitions same-document | 92,91 persen (Chrome 111, Safari 18, Firefox 144). Dicek 2026-10-29 | Tanpa animasi | TG1 |
 | Panel dan kartu muncul halus | `@starting-style` dengan top layer (`popover`, `dialog`) | 93,05 persen | Muncul langsung | TG1, TG3 |
 | Kartu aksi menempel ke token | CSS Anchor Positioning, dipadukan dengan Anchor Spotlight dari T11 | 87,36 persen, di Chrome dan Firefox masih sebagian | Posisi manual lewat JS | TG3 |
 | Animasi HP, giliran, dan hit | `@property` untuk bilah HP yang bergerak halus. `animation-timeline` untuk efek geser | `@property` 96,13 persen. `animation-timeline` 87,84 persen | Bilah tanpa animasi | TG3 |
@@ -79,6 +79,11 @@ Semua butuh cadangan. Fitur yang tidak ada di browser pemain tidak boleh merusak
 | Bagikan susunan pertarungan | Compression Streams (gzip) lalu tautan atau Web Share | Compression 96,67 persen. Web Share 94,17 persen, tanpa Firefox desktop | Salin tautan ke papan klip | TG4 |
 | Rekam pertarungan jadi video | `canvas.captureStream()` dengan MediaRecorder | captureStream 97,24 persen. MediaRecorder belum dicek | Tombol disembunyikan | TG7 |
 | Kontrol pakai gamepad | Gamepad API | 97,24 persen | Papan tetap bisa dengan ketuk dan keyboard | TG2 |
+| Mode party tanpa server game | WebRTC data channel antar pemain. Satu perantara kecil hanya untuk sambungan awal | 97,26 persen (Chrome 24, Safari 11, Firefox 22) | Durable Objects (TG7 lewat G5) | TG7 |
+| Simpan 503 makhluk | Origin Private File System (OPFS) | 95,57 persen (Chrome 86, Safari 15.2, Firefox 111) | IndexedDB | TG0b |
+| Daftar 503 makhluk ringan | `content-visibility: auto` dan daftar virtual | 94,85 persen (Chrome 85, Safari 18, Firefox 125) | Daftar virtual saja | TG1 |
+| Getar saat kena serangan | Vibration API | 77,22 persen. Safari tidak mendukung, Firefox sudah melepas | Tanpa getar. Hanya tambahan | TG3 |
+| Penggaris jarak | Buatan sendiri di kisi (lihat 5c) | Tanpa API baru | Tidak perlu | TG2 |
 | Tombol Back | Navigation API dan hash (A6 dari T11) | Sudah ada di app | Hash | TG1 |
 | Hasil lempar dari dadu 3D | dice-box (Babylon 9.32.1 dan Havok 1.3.14) | Sudah ada | Dadu 2D | TG3 |
 
@@ -91,6 +96,7 @@ Syarat dari G6 berlaku: tanpa AI berbayar, tingkat gratis, ada tes, dicatat di r
 |---|---|---|---|
 | Replay pertarungan | Pemain ingin melihat ulang atau membagikan | Log kejadian plus seed dijalankan ulang oleh reducer. Tautan berisi log terkompresi (Compression Streams) | Replay menghasilkan HP dan posisi yang sama dengan aslinya |
 | Papan tes headless | Memastikan aturan benar tanpa tampilan | Node menjalankan ribuan pertarungan seed tetap, mencatat NaN, loop, dan HP tidak konsisten | Bagian dari TG0 |
+| Penggaris jarak | Pemain tidak tahu jarak antar token | Seret dari token, papan menghitung petak dan kaki dengan kisi dan biaya medan yang sama dengan pencarian jalur | Jarak diagonal dan medan sulit sama dengan hasil pencarian jalur |
 | Pemuat makhluk bertahap | 503 makhluk membebani HP | Indeks kecil (nama, CR, tipe, SRD) dimuat dulu. Stat block penuh dimuat saat dipilih, disimpan di IndexedDB | Waktu muat Home tidak naik, 503 entri terbaca |
 
 ## 6. Cakupan aturan (bertingkat)
@@ -177,7 +183,7 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 
 ## Sumber
 - Video referensi dari user (Oneon Training Ground), dibaca dari cuplikan gambar
-- Can I use (dicek 2026-10-29): offscreencanvas, css-anchor-positioning, mdn-api_htmlcanvaselement_capturestream, mdn-api_scheduler_yield, gamepad
+- Can I use (dicek 2026-10-29): mdn-api_rtcdatachannel, mdn-api_filesystemdirectoryhandle, css-content-visibility, vibration, mdn-api_document_startviewtransition, offscreencanvas, css-anchor-positioning, mdn-api_htmlcanvaselement_capturestream, mdn-api_scheduler_yield, gamepad
 - [Cloudflare Durable Objects pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [D&D Beyond SRD v5.2.1](https://dndbeyond.com/srd)
 - [D&D Beyond: SRD 5.2 dan lisensi CC-BY-4.0](https://www.dndbeyond.com/posts/1717-2024-core-rulebooks-to-expand-the-srd)
