@@ -48,3 +48,10 @@ Karakter Wizard (daftar spell, slot, Manage Spells), skin D&D Beyond dan Record 
 
 ## Catatan
 Situs Cloudflare Pages yang sekarang tidak menyajikan folder img. Build baru memakai tools/pages_dist.sh yang menyalin img, jadi potret dan art tampil setelah deploy dari main atau dari branch ini. Belum dirilis atas permintaan Anda.
+
+
+## Putaran terakhir (audit seluruh layar)
+Diperbaiki: dialog konfirmasi (teks panjang membungkus, tombol 44 px), toolbar Spells (grid), tabel Keys (dua kolom), target ketuk Library di ponsel, hook uji `window.__ask`.
+Dilihat di 390: xp, search, levelup, report, whatsnew, restore, backup dan storage. Tidak ada temuan baru.
+Gate lulus: build --check, scenarios 24, flow_home_sheet 16, tidy 13, class_art, builder_art, vignettes, sub_art, starting_style, blank_new, home_hero, off_mode, overflow_scan, overlap_scan, scale_audit 0, axe 0 pelanggaran, friends_ui 29, sync_banners 9, cloud_sync 31.
+Belum dicek: perangkat nyata, panel coins lewat harness, Print Cards di PDF, warna tema selain Forest dan Crimson, lebar 768 di semua dialog.

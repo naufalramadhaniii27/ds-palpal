@@ -4638,15 +4638,25 @@ html.fr-viewing body{padding-bottom:calc(64px + 8px)}
 .fr-dlg .sy-note{color:var(--muted);margin:6px 0}
 /* D&D Beyond skin in Light mode: the header is dark brown, Short Rest and Long Rest had dark brown text on it */
 :root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest],:root[data-skin="ddb"][data-theme="light"] #app#app#app#app .band .acts > [data-rest] *{color:#f3e6cc!important;-webkit-text-fill-color:currentColor}
-/* Spells toolbar (Print Cards, Manage Spells) wraps instead of clipping on a 320 px phone */
-.spm-bar{flex-wrap:wrap;gap:8px}
-@media (max-width:359px){.spm-bar > .btn{flex:1 1 100%;min-width:0}#vbCond.vb-none #vbCondT{display:none}#vbCond.vb-none{justify-content:center}}
+/* Spells toolbar (Print Cards, Manage Spells): two equal buttons in one row, one per row on a 320 px phone */
+.spm-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.spm-bar > .btn{min-width:0;width:100%}
+@media (max-width:359px){#vbCond.vb-none #vbCondT{display:none}#vbCond.vb-none{justify-content:center}}
 /* Entry sheets (spell, item, feat) on a phone: back button, title and close button never overlap */
 #sheet .sh-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:8px}
 #sheet#sheet .sh-h > .mi-hero-g{position:absolute;z-index:0;width:220px;height:220px}
 #sheet .sh-h > h2{min-width:0;text-align:left;overflow-wrap:anywhere}
 #sheet .sh-h > h2 .mi-hero-t{display:inline-block;margin-left:8px;vertical-align:middle}
 #sheet .sh-h > .xbtn[data-close]{grid-column:3}
+/* Confirm dialog: long names without spaces wrap, all buttons are at least 44 px high */
+.askb p{overflow-wrap:anywhere;min-width:0}
+.askr .btn,.askr.ask3 .btn{min-height:44px;height:auto}
+/* Keyboard shortcuts: one table, key column on the left, text on the right */
+.keys{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 12px;align-items:start}
+.keys div{display:contents}
+.keys kbd{white-space:nowrap;justify-self:start;min-width:32px}
+/* Library: close button and filter chips reach 44 px on a phone */
+@media (max-width:759px){.lib-x{width:44px;height:44px;min-width:44px}.lib-chip{min-height:44px}}
 </style>
 <script>/* ?debug=1 shows errors and taps at the bottom of the screen, for browsers we cannot test */(function(){ if(!/[?&]debug=1/.test(location.search)) return; var L=[];
 function show(){ var d=document.getElementById("miDbg"); if(!d){ if(!document.body) return; d=document.createElement("pre"); d.id="miDbg"; d.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:6px;font:11px/1.3 monospace;background:rgba(0,0,0,.85);color:#7fff9f;z-index:2147483647;pointer-events:none;white-space:pre-wrap"; document.body.appendChild(d); } d.textContent=L.slice(-25).join("\n"); }
@@ -6577,7 +6587,7 @@ setTimeout(function(){if(FROZEN)return;var r=rEnsure();Object.keys(r.chars).forE
 function keepNewer(p){ if(newerApp(C)) Object.keys(C).forEach(function(k){ if(!(k in p)) p[k]=C[k]; }); return p; }
 window.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ var om=(D&&D.hpmax)||0, oh=S.hp; C=keepNewer(p); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); }
   if(oh!=null&&om){ try{ derive(); S.hp=clamp(oh+(D.hpmax-om),0,D.hpmax); }catch(er){ S.hp=null; } } else S.hp=null; if(!S.used) S.used={}; save(); saveC(); renderAll(); renderNotes(); var gq=S.coins?num(S.coins.gp,0)+num(C.gp,0)-num(S.coinBase,num(C.gp,0)):0; if(note!==false) toast(gq<0?"Sheet updated. Starting gold is now lower than the gold you spent, so Gold shows 0.":note||"Sheet updated from builder"); };/* v24 p08: quiet for the blank first sheet */
-window.__sheetName=function(){ return C&&C.name; };
+window.__sheetName=function(){ return C&&C.name; };window.__ask=ask;/* T10: test hook, opens the confirm dialog with any text */
 window.__sheetRerender=function(){ renderAll(); };
 window.__sheetSoft=function(p){ if(!p||!p.abilities) return; C=keepNewer(p); saveC(); renderAll(); };
 window.__sheetState=function(){ return {C:C, lang:S.lang}; };
