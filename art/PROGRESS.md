@@ -3152,6 +3152,11 @@ art/batch/icons/spells/level-3/vampiric-touch.png
 art/batch/icons/spells/level-3/ashardalons-stride.png
 art/batch/icons/spells/level-3/blink.png
 art/batch/icons/spells/level-3/elemental-weapon.png
+art/batch/icons/spells/level-3/erupting-earth.png
+art/batch/icons/spells/level-3/flame-arrows.png
+art/batch/icons/spells/level-3/fly.png
+art/batch/icons/spells/level-3/gaseous-form.png
+art/batch/icons/spells/level-3/haste.png
 
 ## batch-225 v3
 art/batch/monsters/aberration/chuul.png
