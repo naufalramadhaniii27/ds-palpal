@@ -69,3 +69,9 @@
 @media (max-width:759px){.lib-x{width:44px;height:44px;min-width:44px}.lib-chip{min-height:44px}}
 /* Secondary buttons everywhere: visible fill and border next to the primary one */
 .btn:not(.pri):not(.warn):not(.rm):not(.on):not(.off):not(.fr-sm){border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:color-mix(in srgb,var(--ink) 12%,var(--panel))}
+/* Glass for dialogs on mouse screens. Touch screens keep it off (GPU budget, see 19-fx). */
+@media (pointer:fine){
+  :root[data-skin="ddb"] .bkp{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  :root[data-skin="ddb"] .bkpb{background:color-mix(in srgb,var(--panel) 80%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25)}
+  html.mi-off .bkp,html.mi-off .bkpb{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
