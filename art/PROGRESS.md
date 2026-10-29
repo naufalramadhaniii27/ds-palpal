@@ -4351,6 +4351,11 @@ art/batch/icons/spells/level-5/wrath-of-nature.png
 art/batch/icons/spells/level-5/creation.png
 art/batch/icons/spells/level-5/dream.png
 art/batch/icons/spells/level-5/mislead.png
+art/batch/icons/spells/level-5/seeming.png
+art/batch/icons/spells/level-5/contagion.png
+art/batch/icons/spells/level-5/danse-macabre.png
+art/batch/icons/spells/level-5/enervation.png
+art/batch/icons/spells/level-5/grave-ground.png
 
 ## batch-124 v3
 art/batch/icons/items/magic/uncommon/golgari-guild-signet.png
