@@ -1845,6 +1845,18 @@ art/batch/portraits/vedalken-a.png
 art/batch/portraits/vedalken-b.png
 art/batch/portraits/verdan-a.png
 
+
+art/batch/portraits/vampire-a.png
+art/batch/portraits/vampire-b.png
+art/batch/portraits/vedalken-a.png
+art/batch/portraits/vedalken-b.png
+art/batch/portraits/verdan-a.png
+art/batch/portraits/verdan-b.png
+art/batch/portraits/warforged-a.png
+art/batch/portraits/warforged-b.png
+art/batch/portraits/yuan-ti-a.png
+art/batch/portraits/yuan-ti-b.png
+
 ## batch-218 v3
 art/batch/icons/items/tools/dice-set.png
 art/batch/icons/items/tools/dragonchess-set.png
@@ -1934,6 +1946,43 @@ art/batch/icons/spells/level-2/blindness-deafness.png
 art/batch/icons/spells/level-2/cordon-of-arrows.png
 art/batch/icons/spells/level-2/darkvision.png
 
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+
+art/batch/icons/spells/level-2/warding-wind.png
+art/batch/icons/spells/level-2/blur.png
+art/batch/icons/spells/level-2/invisibility.png
+art/batch/icons/spells/level-2/magic-mouth.png
+art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
+
+art/batch/icons/spells/level-2/uncertain-footing.png
+art/batch/icons/spells/level-2/death-armor.png
+art/batch/icons/spells/level-2/gentle-repose.png
+art/batch/icons/spells/level-2/ray-of-enfeeblement.png
+art/batch/icons/spells/level-2/wither-and-bloom.png
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
+
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -1945,6 +1994,17 @@ art/batch/scenes/environment/city-pc.png
 art/batch/scenes/environment/city-phone.png
 art/batch/scenes/environment/cave-pc.png
 art/batch/scenes/environment/cave-phone.png
+
+art/batch/scenes/environment/dungeon-pc.png
+art/batch/scenes/environment/dungeon-phone.png
+art/batch/scenes/environment/forest-pc.png
+art/batch/scenes/environment/forest-phone.png
+art/batch/scenes/environment/battle-phone.png
+art/batch/scenes/environment/city-phone.png
+art/batch/scenes/environment/cave-pc.png
+art/batch/scenes/environment/cave-phone.png
+art/batch/scenes/environment/city-pc.png
+art/batch/scenes/environment/battle-pc.png
 
 ## batch-065 v3
 art/batch/scenes/species/aarakocra-pc.png
@@ -2020,6 +2080,22 @@ art/batch/icons/rules/actions/study-action.png
 art/batch/icons/rules/actions/utilize-action.png
 art/batch/icons/rules/actions/opportunity-attack.png
 
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
