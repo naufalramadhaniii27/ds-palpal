@@ -1956,3 +1956,8 @@ art/batch/icons/rules/resources/death-save-failure.png
 art/batch/icons/rules/resources/heroic-inspiration.png
 art/batch/icons/rules/resources/exhaustion-level.png
 art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
