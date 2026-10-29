@@ -7687,11 +7687,26 @@ var REP_NOTES=false;/* v28 I2: notes and journal only when ticked */
 function reportText(){ var s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } var b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
   return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appLabel:APP_LABEL,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
     storage:(function(){ var n=0; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); n+=k.length+String(__store.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
-    errors:ERRLOG, sheet:C, state:s2, build:b},null,1); }
+    errors:ERRLOG, perf:PERF, sheet:C, state:s2, build:b, trail:repTrail()},null,1); }
+/* T11 N18: the last actions (from the undo list) with the state before the first one and after each one, so tests/replay_report.py can play them back.
+   Portrait, notes and journal are left out the same way as in the state above */
+function repTrail(){ try{ if(typeof undoTidy==="function") undoTidy(); var L=(typeof UST!=="undefined"?UST:[]).slice(-10); if(!L.length) return null;
+  var cut=function(js){ if(!js) return null; var o; try{ o=JSON.parse(js); }catch(e){ return null; } if(o&&typeof o==="object"){ if(o.portrait) o.portrait="(portrait left out)"; if(!REP_NOTES){ if(o.notes) o.notes="(notes left out)"; if(o.journal) o.journal="(journal left out)"; } } return o; };
+  L.forEach(function(e){ if(typeof undoFix==="function") undoFix(e); });
+  return {start:{state:cut(L[0].S), sheet:cut(L[0].C), build:cut(L[0].B)}, steps:L.map(function(e){ return {l:e.l, t:new Date(e.t).toISOString(), state:cut(e.A), sheet:e.CA!==e.C?cut(e.CA):undefined, build:e.BA!==e.B?cut(e.BA):undefined}; })};
+  }catch(err){ return {error:String(err)}; } }
+window.__reportText=function(){ return reportText(); };/* T11 N18: test hook */
+/* T11 A10: field timing on this device, kept in memory only. Long Animation Frames (Chromium) and Event Timing (slow taps), the 10 worst of each.
+   They go into the problem report, nothing is sent anywhere */
+var PERF={loaf:[],ev:[]};
+(function(){ var keep=function(L,x){ L.push(x); L.sort(function(a,b){ return b.d-a.d; }); if(L.length>10) L.length=10; };
+  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ var sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
+  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ if(e.duration>=100){ var t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
+})();
 function reportOpen(){ var old=document.getElementById("rep"); if(old) old.remove(); var w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");
   var txt=reportText();
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="repT">Report a Problem</b><button type="button" class="bkpx" data-rep="close" aria-label="Close">×</button></div>'+
-    '<p>Write what you did and what went wrong, then paste this report after it in a message to the person who keeps the app.</p><p class="muted">The report holds the app version, your browser, the screen size, recent errors, and the open character ('+esc(C.name||"Character")+': build, sheet, and play state, without the portrait). Nothing is sent from here.</p><label class="repn"><input type="checkbox" id="repNotes"'+(REP_NOTES?' checked':'')+'> Include my notes and journal (personal text)</label>'+
+    '<p>Write what you did and what went wrong, then paste this report after it in a message to the person who keeps the app.</p><p class="muted">The report holds the app version, your browser, the screen size, recent errors, and the open character ('+esc(C.name||"Character")+': build, sheet, and play state, without the portrait), your last 10 actions with the state after each (so the problem can be played back), and the slowest moments on this device. Nothing is sent from here.</p><label class="repn"><input type="checkbox" id="repNotes"'+(REP_NOTES?' checked':'')+'> Include my notes and journal (personal text)</label>'+
     '<div class="bkpr"><button type="button" class="btn pri press" data-rep="copy">Copy Report</button></div><textarea id="repTxt" readonly spellcheck="false">'+esc(txt)+'</textarea></div>';
   document.body.appendChild(w);
   var esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
