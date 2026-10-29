@@ -38,7 +38,7 @@ async def main():
             await pg.evaluate("[].slice.call(document.querySelectorAll('#libBd [data-lib-open]')).filter(function(x){return x.getAttribute('data-lib-open')==='class|Fighter'})[0].click()"); await pg.wait_for_timeout(900)
             chk(t + " Fighter page lists subclasses with an emblem", await pg.evaluate("document.querySelectorAll('#libBd .lib-fl .art-sub').length>=3"))
             await pg.evaluate("document.querySelector('#libBd [data-lib-open=\"sub|Champion\"]').click()"); await pg.wait_for_timeout(900)
-            chk(t + " Champion page shows the large emblem", await pg.evaluate("!!document.querySelector('#libBd .sub-em .art-sub')"))
+            chk(t + " Champion page shows the emblem as a watermark and no small copy", await pg.evaluate("!!document.querySelector('#libWm .art-sub')&&!document.querySelector('#libBd .sub-em')"))
             await pg.evaluate("(window.__store||localStorage).setItem('mi-clsart','off')")
             chk(t + " Art off gives nothing", await pg.evaluate("__artSub('Fighter','Champion')===''"))
             chk(t + " no page errors", not errs)
