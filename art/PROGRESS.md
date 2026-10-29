@@ -2018,6 +2018,7 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
+NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2476,6 +2477,9 @@ art/batch/scenes/environment/feywild-phone.png
 art/batch/scenes/environment/underdark-pc.png
 art/batch/scenes/environment/underdark-phone.png
 art/batch/scenes/environment/plane-fire-pc.png
+art/batch/scenes/environment/plane-fire-phone.png
+art/batch/scenes/environment/astral-pc.png
+art/batch/scenes/environment/astral-phone.png
 ## batch-068 v3
 art/batch/scenes/species/githzerai-pc.png
 art/batch/scenes/species/githzerai-phone.png
