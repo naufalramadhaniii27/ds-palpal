@@ -65,3 +65,9 @@ Target ketuk ponsel: mi-rndr 44 px, abox 44 px, pip, bx, ichk (area ketuk diperl
 Kontras: Create di Record diperkuat. Heal dan Damage di Record kembali ke isi panel.
 Audit: coins dibuka lewat `[data-coinopen]`, hasil rapi. Pindai kontras 3 palet x 4 skin, sisa temuan adalah false positive (latar gambar).
 Belum: perangkat nyata, Print Cards PDF, lebar 768 di semua dialog, palet lain secara visual.
+
+## Putaran 4 (matriks mode)
+`tests/modes_matrix.py`: 14 konfigurasi dasar (skin, Color-blind, One-handed, teks 90 dan 130, backdrop, frame) + 14 palet + 4 High Contrast, di 390, 768, 1250. Hasil: bersih, kecuali satu temuan nyata yang sudah diperbaiki.
+Temuan: di teks 130% pada layar lebar, label Saving Throws terpotong (STR jadi ST). Kolom minimum kini mengikuti ukuran teks.
+Catatan: `.hcreate` di Home kadang ditandai clip. Itu animasi masuk, bukan cacat.
+PDF Print Cards (6 kartu per halaman) dan PDF sheet (3 halaman) dibuat lewat Playwright dan dilihat per halaman: rapi.
