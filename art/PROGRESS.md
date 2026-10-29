@@ -3144,6 +3144,11 @@ art/batch/icons/features/class/rogue/sneak-attack.png
 art/batch/icons/features/class/rogue/steady-aim.png
 art/batch/icons/features/class/rogue/stroke-of-luck.png
 art/batch/icons/features/class/rogue/thieves-cant.png
+art/batch/icons/features/class/rogue/uncanny-dodge.png
+art/batch/icons/features/class/rogue/weapon-mastery.png
+art/batch/icons/features/class/sorcerer/arcane-apotheosis.png
+art/batch/icons/features/class/sorcerer/font-of-magic.png
+art/batch/icons/features/class/sorcerer/innate-sorcery.png
 ## batch-069 v3
 art/batch/scenes/species/hadozee-pc.png
 art/batch/scenes/species/hadozee-phone.png
