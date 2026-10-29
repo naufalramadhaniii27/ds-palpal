@@ -11,7 +11,7 @@ Satu dokumen berisi seluruh riset, keputusan, dan urutan kerja Learn. Log usulan
 | Aturan | D&D 2024 saja, dicocokkan ke Library app |
 | Bentuk | Belajar interaktif, bukan komik. Tanpa suara. Visual dulu |
 | Gambar | Claude jalan duluan dengan gambar sementara. Gambar Codex (batch 234 sampai 236) dipasang begitu jadi |
-| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM, belajar bareng teman (U51), chat AI, dadu AR, dadu 3D fisika |
+| Tidak dibuat | Komik, tombol "Read to me", Family Mode, track khusus DM, belajar bareng teman (U51), chat AI, dadu AR. Dadu fisika dibuat lewat N19 (keputusan user 2026-10-29) |
 
 ## Ukuran berhasil
 | Ukuran | Target | Cara ukur |
@@ -46,7 +46,7 @@ Dasar: app sekarang 7,6 MB (2,36 MB gzip), satu file HTML, tanpa library animasi
 | Geser kepingan, token, dadu | Pointer Events: setPointerCapture, `touch-action:none` hanya di benda yang digeser, ambang gerak sebelum mulai geser, `overflow-anchor:none` di area gulir | Satu cara untuk jari dan mouse. Tidak bentrok dengan scroll dan swipe app | Geser di 13 (bottom sheet), 27 (Library), 37 (hold and slide), 39 (HP drag) |
 | Pengganti geser (WCAG 2.2 SC 2.5.7, level AA) | Setiap geser punya cara ketuk: ketuk benda lalu ketuk tujuan, atau tombol + dan − | Wajib di WCAG 2.2. Juga membantu orang yang sulit menggeser | Library sudah punya tombol Add selain geser |
 | Keyboard | Enter atau Spasi mengangkat, panah memindah, Enter menaruh, Esc batal | Pola papan permainan yang aksesibel | Tombol app sudah fokus dengan Tab |
-| Animasi dadu | Dadu 2D dari SVG (bentuk d4 sampai d20) dengan putar dan skala CSS, angka berganti cepat lalu berhenti | 0 KB tambahan. CSS 3D hanya mudah untuk kubus (d6). Dadu 3D WebGL butuh library 3D dan fisika ratusan KB dan berat di HP murah | Ikon d20 di 07 |
+| Animasi dadu | Mesin dadu fisika buatan sendiri N19 (claude/rencana-kerja-teknologi.md), sama dengan dadu di sheet. Diganti dari rencana dadu SVG 2D atas keputusan user 2026-10-29 | Gerakan fisika asli, ringan, hasil adil dan bisa dites dengan seed | Dibuat di G2 |
 | Peragaan Hoot dan tangan bayangan | CSS transform dan opacity, urutan langkah dengan Web Animations API | 0 KB, jalan di luar thread utama. Lottie (sekitar 50 KB runtime) dan Rive (sekitar 200 KB) tidak perlu karena gambar Codex berupa gambar diam | Pola gerak di 19 dan 23 sampai 27 (fx) |
 | Motion off dan reduced motion | Peragaan berubah jadi langkah diam bernomor dengan panah. Dadu langsung menampilkan hasil | Aturan app | `REDUCE` di 07, 29-motion-off.css |
 | Grid giliran (Forest) | Elemen HTML: `role="grid"`, tiap kotak tombol berlabel, ketuk kotak tujuan untuk jalan, hasil diumumkan lewat `aria-live="polite"` | Canvas tidak terbaca pembaca layar dan tidak ikut zoom | Live region `ordLive` di 40 |
