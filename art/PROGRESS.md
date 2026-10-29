@@ -2426,3 +2426,8 @@ art/batch/icons/features/class/druid/wild-resurgence.png
 art/batch/icons/features/class/druid/wild-shape.png
 art/batch/icons/features/class/fighter/action-surge.png
 art/batch/icons/features/class/fighter/extra-attack.png
+art/batch/icons/features/class/fighter/fighting-style.png
+art/batch/icons/features/class/fighter/indomitable.png
+art/batch/icons/features/class/fighter/second-wind.png
+art/batch/icons/features/class/fighter/studied-attacks.png
+art/batch/icons/features/class/fighter/tactical-master.png
