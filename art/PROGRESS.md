@@ -2082,3 +2082,8 @@ art/batch/icons/features/class/barbarian/danger-sense.png
 art/batch/icons/features/class/barbarian/extra-attack.png
 art/batch/icons/features/class/barbarian/fast-movement.png
 art/batch/icons/features/class/barbarian/feral-instinct.png
+art/batch/icons/features/class/barbarian/improved-brutal-strike.png
+art/batch/icons/features/class/barbarian/indomitable-might.png
+art/batch/icons/features/class/barbarian/instinctive-pounce.png
+art/batch/icons/features/class/barbarian/persistent-rage.png
+art/batch/icons/features/class/barbarian/primal-champion.png
