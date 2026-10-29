@@ -4036,7 +4036,11 @@ art/batch/icons/items/gear/basket.png
 art/batch/icons/items/gear/barrel.png
 art/batch/icons/items/gear/chest.png
 art/batch/icons/items/gear/case-map-or-scroll.png
-
+art/batch/icons/items/gear/case-crossbow-bolt.png
+art/batch/icons/items/gear/bedroll.png
+art/batch/icons/items/gear/crowbar.png
+art/batch/icons/items/tools/healers-kit.png
+art/batch/icons/items/gear/holy-symbol.png
 
 ## batch-235 v3
 art/batch/icons/learn/d20-test.png
