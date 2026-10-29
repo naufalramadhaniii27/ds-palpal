@@ -4011,3 +4011,10 @@ art/batch/icons/items/gear/quiver.png
 art/batch/icons/items/gear/backpack.png
 art/batch/icons/items/gear/pouch.png
 
+
+## batch-235 v3
+art/batch/icons/learn/d20-test.png
+art/batch/icons/learn/advantage.png
+art/batch/icons/learn/disadvantage.png
+art/batch/icons/learn/ability-check.png
+art/batch/icons/learn/saving-throw.png
