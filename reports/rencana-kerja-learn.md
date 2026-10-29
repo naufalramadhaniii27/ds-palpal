@@ -62,14 +62,14 @@ Aturan: fitur Baseline dipakai langsung dengan cadangan `@supports` untuk HP lam
 | Fitur | Status | Dipakai untuk | Cadangan |
 |---|---|---|---|
 | CSS anchor positioning | Baseline Januari 2026 (Firefox 147, Safari 26, Chrome 125) | Label yang menempel di gambar (U35), kotak Hoot di samping elemen yang disorot di sheet dan builder, tanpa menghitung posisi dengan JS | Posisi dihitung JS seperti tour lama |
-| Popover API | Baseline Januari 2025 | Kartu kamus, "When you're stuck", "Playing together". Tampil di top layer, jadi tidak perlu trik z-index dan tidak terhalang Home yang inert | Tidak perlu |
-| Invoker commands (`command`, `commandfor`) | Baseline Desember 2025 | Tombol buka dan tutup popover tanpa JS | Delegasi klik app yang ada |
+| Popover API | Baseline Januari 2025 | Kartu kamus, "When you're stuck", "Playing together". Tampil di top layer, jadi tidak perlu trik z-index. Top layer tetap ikut inert: `homeInert()` di 31 membuat semua anak body inert saat Home terbuka, jadi akar Learn (`#learn`) dan popover-nya ditaruh di dalam akar Learn, lalu `#learn` ditambah ke daftar pengecualian | Tidak perlu |
+| Invoker commands (`command`, `commandfor`) | Baseline 12 Desember 2025 (Chrome 135, Firefox 144, Safari dan iOS 26.2) | Tombol buka dan tutup popover tanpa JS | Delegasi klik app yang ada |
 | View Transitions (satu dokumen) | Baseline Oktober 2025 | Pindah langkah dan pindah tempat, dadu "terbang" ke kotak hasil | Tanpa animasi |
 | `@starting-style` | Baseline Agustus 2024 | Animasi muncul kartu dan kepingan tanpa JS | Muncul langsung |
 | Container queries | Baseline | Layar tantangan menyesuaikan lebar panel, bukan lebar layar | Tidak perlu |
 | Scroll snap | Interop 2026 | Peta lembah dan daftar tempat di HP | Gulir biasa |
 | Navigation API | Baseline 2026 | Tombol Back HP mundur satu langkah di Learn, bukan keluar app | `hashchange` seperti sekarang |
-| Custom Highlight API | Baseline 2026 | Menandai kata kamus di teks Hoot tanpa membungkus tiap kata | Garis bawah biasa |
+| Custom Highlight API | Baseline 2026 | Tidak dipakai. Sorotannya tidak bisa diketuk dan belum terbaca pembaca layar (isu CSSWG 6498 masih terbuka Maret 2026). Kata kamus tetap tombol biasa | |
 | Scroll-driven animations | Belum Baseline (Firefox belum) | Gerak parallax peta, hanya tambahan | Peta diam |
 | Interest invokers, `popover="hint"` | Belum Baseline | Tidak dipakai | |
 | WebGPU, WebGL, Lottie, Rive | Tersedia tapi berat untuk kebutuhan ini | Tidak dipakai | |
@@ -160,6 +160,8 @@ Komponen dipakai ulang oleh semua tempat.
 | Isi | Pelaku |
 |---|---|
 | Tes HP murah: Playwright dengan CPU diperlambat 4 kali, cek animasi dan geser tetap lancar | Claude |
+| Tes cadangan: workspace hanya punya Chromium (WebKit dan Firefox tidak terpasang, dan Playwright tidak boleh dipasang ulang). Learn punya saklar uji yang memaksa jalur cadangan (tanpa anchor positioning, tanpa View Transitions, tanpa Navigation API), lalu dites di Chromium | Claude |
+| Tes Safari sungguhan: buka Learn di iPhone saat uji main | User |
 | Suite Checker: tiga skenario wajib, Learn dua bahasa, 390x844 dan 1250x850, offline, Motion off, Calm, kontras tinggi, cek keterbacaan, titik screenshot | Claude |
 | Teks Indonesia dibaca ulang dengan panduan U28 | Claude |
 | Uji main Jalur Inti: 1 anak (patokan bahasa) dan 2 orang awam, tanpa dibantu, catat waktu, tempat macet, ikon yang tidak dipahami | User mengatur orangnya, Claude menyiapkan lembar catatan |
@@ -186,6 +188,7 @@ Komponen dipakai ulang oleh semua tempat.
 | Isi Learn berbeda dari Library | Kamus mengambil entri Library, tidak menyalin |
 | Mengubah tour Home merusak tour lama | Tour Home tetap memakai daftar yang sama di atas mesin baru, tes tour lama ikut dijalankan |
 | Ukuran app bertambah | Data Learn dimuat saat Learn dibuka, bukan saat app mulai |
+| Safari dan Firefox tidak bisa dites otomatis di sini | Jalur cadangan dites dengan saklar paksa, Safari dicek manual di iPhone saat uji main |
 | Geser tidak bisa dipakai sebagian orang | Setiap geser punya cara ketuk dan keyboard, dites otomatis |
 
 ## Dicocokkan ke kode (2026-10-29)
@@ -198,6 +201,7 @@ PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda d
 | Siapa peserta uji main | Diatur user saat F7 |
 
 ## Sumber teknologi
+- https://github.com/w3c/csswg-drafts/issues/6498
 - https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements
 - https://dev.to/randomengy/from-scratch-drag-and-drop-pitfalls-with-scroll-anchoring-and-touch-gestures-3299
 - https://www.pkgpulse.com/guides/lottie-vs-rive-vs-css-animations-web-animation-formats-2026
