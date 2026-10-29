@@ -2148,3 +2148,11 @@ art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-sacred-weapo
 art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-turn-the-unholy.png
 art/batch/icons/features/subclass/oath-of-devotion/holy-nimbus.png
 art/batch/icons/features/subclass/oath-of-devotion/oath-spells.png
+
+## batch-043 v3
+art/batch/icons/spells/level-3/dispel-magic.png
+art/batch/icons/spells/level-3/glyph-of-warding.png
+art/batch/icons/spells/level-3/intellect-fortress.png
+art/batch/icons/spells/level-3/linked-glyphs.png
+art/batch/icons/spells/level-3/magic-circle.png
+
