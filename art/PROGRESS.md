@@ -4046,6 +4046,7 @@ art/batch/icons/items/gear/crowbar.png
 art/batch/icons/items/tools/healers-kit.png
 art/batch/icons/items/gear/holy-symbol.png
 
+
 ## batch-235 v3
 art/batch/icons/learn/d20-test.png
 art/batch/icons/learn/advantage.png
@@ -4058,9 +4059,16 @@ art/batch/icons/spells/level-9/psychic-scream.png
 art/batch/icons/spells/level-9/detonate.png
 art/batch/icons/spells/level-9/meteor-swarm.png
 art/batch/icons/spells/level-9/ravenous-void.png
+
 ## batch-175 v3
 art/batch/icons/features/subclass/psi-warrior/protective-field.png
 art/batch/icons/features/subclass/psi-warrior/psionic-power.png
 art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
 art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
 art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
+## batch-156 v3
+art/batch/icons/features/subclass/archfey-patron/bewitching-magic.png
+art/batch/icons/features/subclass/archfey-patron/misty-escape.png
+art/batch/icons/features/subclass/archfey-patron/steps-of-the-fey.png
+art/batch/icons/features/subclass/armorer/arcane-armor.png
+art/batch/icons/features/subclass/armorer/armor-model.png
