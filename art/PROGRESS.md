@@ -3637,6 +3637,11 @@ art/batch/icons/spells/level-4/summon-elemental.png
 art/batch/icons/spells/level-4/summon-greater-demon.png
 art/batch/icons/spells/level-4/watery-sphere.png
 art/batch/icons/spells/level-4/arcane-eye.png
+art/batch/icons/spells/level-4/dominate-beast.png
+art/batch/icons/spells/level-4/raulothims-psychic-lance.png
+art/batch/icons/spells/level-4/staggering-smite.png
+art/batch/icons/spells/level-4/zone-of-amicability.png
+art/batch/icons/spells/level-4/fire-shield.png
 
 ## batch-136 v3
 art/batch/icons/feats/alert.png
