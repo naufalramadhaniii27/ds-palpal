@@ -1907,14 +1907,6 @@ art/batch/icons/spells/level-2/phantasmal-force.png
 art/batch/icons/spells/level-2/shadow-blade.png
 art/batch/icons/spells/level-2/silence.png
 
-art/batch/icons/items/gear/riding-horse-with-tack.png
-art/batch/icons/items/gear/rowboat.png
-art/batch/icons/items/gear/wagon.png
-art/batch/icons/rules/languages/language-thieves-cant.png
-art/batch/icons/rules/languages/language-undercommon.png
-art/batch/icons/rules/resources/spell-slot-gem.png
-art/batch/icons/rules/resources/pact-magic-slot.png
-art/batch/icons/rules/resources/rage.png
 
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
