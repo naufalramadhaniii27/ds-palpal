@@ -3732,6 +3732,11 @@ art/batch/icons/item-categories/potion.png
 art/batch/icons/item-categories/wand-rod-and-staff.png
 art/batch/icons/items/magic/artifact/blackrazor.png
 
+art/batch/icons/items/magic/legendary/deck-of-many-things.png
+art/batch/icons/items/magic/common/ersatz-eye.png
+art/batch/icons/items/magic/common/lock-of-trickery.png
+art/batch/icons/items/magic/uncommon/quiver-of-ehlonna.png
+art/batch/icons/items/magic/rare/bonecounter.png
 ## batch-173 v3
 art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
 art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
