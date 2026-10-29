@@ -2088,6 +2088,7 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
