@@ -3985,6 +3985,12 @@ art/batch/icons/feats/ritual-caster.png
 art/batch/icons/feats/sentinel.png
 art/batch/icons/feats/shadow-touched.png
 art/batch/icons/feats/sharpshooter.png
+art/batch/icons/feats/shield-master.png
+art/batch/icons/feats/skill-expert.png
+art/batch/icons/feats/skulker.png
+art/batch/icons/feats/slasher.png
+art/batch/icons/feats/speedy.png
+
 ## batch-212 v3
 
 art/batch/icons/items/gear/arrows-20.png
