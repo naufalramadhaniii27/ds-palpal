@@ -4543,6 +4543,12 @@ art/batch/icons/items/magic/very-rare/voyager-staff.png
 art/batch/icons/items/magic/uncommon/balloon-pack.png
 art/batch/icons/items/magic/uncommon/bottled-breath.png
 art/batch/icons/items/magic/rare/claws-of-the-umber-hulk.png
+art/batch/icons/items/magic/very-rare/devastation-orb-of-air.png
+art/batch/icons/items/magic/very-rare/devastation-orb-of-earth.png
+art/batch/icons/items/magic/very-rare/devastation-orb-of-fire.png
+art/batch/icons/items/magic/very-rare/devastation-orb-of-water.png
+art/batch/icons/items/magic/legendary/drown.png
+
 ## batch-216 v3
 
 art/batch/icons/items/gear/perfume.png
