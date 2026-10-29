@@ -2987,6 +2987,11 @@ art/batch/icons/features/subclass/oath-of-the-noble-genies/elemental-rebuke.png
 art/batch/icons/features/subclass/oath-of-the-noble-genies/elemental-smite.png
 art/batch/icons/features/subclass/oath-of-the-noble-genies/genie-spells.png
 art/batch/icons/features/subclass/oath-of-the-noble-genies/genies-splendor.png
+art/batch/icons/features/subclass/oath-of-the-noble-genies/noble-scion.png
+art/batch/icons/features/subclass/oath-of-the-watchers/aura-of-the-sentinel.png
+art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-abjure-the-extraplanar.png
+art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-watchers-will.png
+art/batch/icons/features/subclass/oath-of-the-watchers/mortal-bulwark.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
