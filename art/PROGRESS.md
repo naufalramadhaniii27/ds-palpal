@@ -2966,6 +2966,11 @@ art/batch/icons/features/class/monk/unarmored-defense.png
 art/batch/icons/features/class/monk/unarmored-movement.png
 art/batch/icons/features/class/monk/uncanny-metabolism.png
 art/batch/icons/features/class/paladin/abjure-foes.png
+art/batch/icons/features/class/paladin/aura-expansion.png
+art/batch/icons/features/class/paladin/aura-of-courage.png
+art/batch/icons/features/class/paladin/aura-of-protection.png
+art/batch/icons/features/class/paladin/channel-divinity.png
+art/batch/icons/features/class/paladin/extra-attack.png
 ## batch-171 v3
 art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
 art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
