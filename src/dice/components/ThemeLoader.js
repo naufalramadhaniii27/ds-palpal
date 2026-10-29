@@ -34,8 +34,10 @@ function glossy(mat, scene){
   mat.specularColor = new Color3(1, 1, 1)
   mat.specularPower = 96
   mat.reflectionTexture = studioEnv(scene)
-  mat.reflectionTexture.level = .8
-  mat.reflectionFresnelParameters = new FresnelParameters({ bias: .18, power: 1.8, leftColor: Color3.White(), rightColor: Color3.Black() })
+  mat.reflectionTexture.level = 1
+  mat.reflectionFresnelParameters = new FresnelParameters({ bias: .22, power: 1.6, leftColor: Color3.White(), rightColor: Color3.Black() })
+  /* glass: a soft inner glow toward the rims, the body stays a solid clay colour in the middle */
+  mat.emissiveFresnelParameters = new FresnelParameters({ bias: 0, power: 2.6, leftColor: new Color3(.42, .3, .32), rightColor: Color3.Black() })
   mat.useReflectionFresnelFromSpecular = false
 }
 
@@ -121,6 +123,7 @@ class ThemeLoader {
     }
     if(matParams.bumpTexture){
       diceMatLight.bumpTexture = await this.getTexture('bump', options)
+      if(diceMatLight.bumpTexture) diceMatLight.bumpTexture.level = .9 /* T11: deeper engraved numbers */
     }
     if(matParams.specularTexture){
       diceMatLight.specularTexture = await this.getTexture('specular', options)

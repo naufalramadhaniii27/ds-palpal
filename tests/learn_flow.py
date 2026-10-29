@@ -130,7 +130,9 @@ async def run(b, url, w, h, who, bad):
     await shot(pg, tag.replace(" ", "-") + "-map")
     sheet_ok = await pg.evaluate("()=>{ var a=window.__app, C=a&&a.C(); return !!(C&&C.name!=null); }")
     n = await pg.evaluate("()=>document.querySelectorAll('#lrnB [data-lgo]').length")
+    tour = await pg.evaluate("()=>[...document.querySelectorAll('#lrnB .lrn-app [data-lgo]')].map(b=>+b.dataset.lgo)")
     for k in range(n):
+        if k in tour: continue  # the App Tour has its own test (tests/tour_flow.py)
         if not await play_place(pg, k, tag, bad, sheet_ok): break
         if k == 0: await shot(pg, tag.replace(" ", "-") + "-fin")
         await click(pg, '#lrnB [data-l="map"]'); await settle(pg, 300)
@@ -143,11 +145,11 @@ async def run(b, url, w, h, who, bad):
     st = await pg.evaluate(ST)
     if not st.get("qd"): bad.append(tag + " quiz not done")
     saved = await pg.evaluate("()=>JSON.parse(localStorage.getItem('cs-learn-v1')||'null')")
-    if not saved or saved.get("v") != 1 or len(saved.get("done", {})) != n or saved.get("xp") != 100 * n + 100 or (saved.get("quiz") or {}).get("best") is None:
+    if not saved or saved.get("v") != 1 or len(saved.get("done", {})) != n - len(tour) or saved.get("xp") != 100 * (n - len(tour)) + 100 or (saved.get("quiz") or {}).get("best") is None:
         bad.append(tag + " saved data " + json.dumps(saved)[:300])
     # Indonesian, Back steps, reload keeps language and progress
     await click(pg, '#learn [data-llang="id"]'); await click(pg, '#lrnB [data-l="map"]'); await settle(pg, 300)
-    await click(pg, '#lrnB [data-lgo="1"]'); await settle(pg, 300)
+    await click(pg, '#lrnB [data-lgo="2"]'); await settle(pg, 300)
     await click(pg, "#lrnB [data-lg]"); await click(pg, "#lrnNext"); await settle(pg, 380)
     i1 = (await pg.evaluate(ST))["i"]; await pg.go_back(); await settle(pg, 500); i0 = await pg.evaluate(ST)
     if not (i1 == 1 and i0["i"] == 0 and i0["view"] == "place"): bad.append(tag + " Back did not step back (%s -> %s)" % (i1, i0["i"]))
@@ -185,7 +187,7 @@ async def extra(b, url, bad):
     pg.on("pageerror", lambda e: errs.append("pageerror " + str(e)))
     await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
     await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.evaluate("()=>{ window.__lrnNoAnchor=1; }")
-    await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="1"]'); await click(pg, "#lrnB [data-lg]"); await settle(pg)
+    await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="2"]'); await click(pg, "#lrnB [data-lg]"); await settle(pg)
     await click(pg, "#lrnB [data-lterm]"); await pg.wait_for_selector("#lrnPop.on", timeout=4000)
     pop = await pg.evaluate("()=>{ var p=document.getElementById('lrnPop'), r=p.getBoundingClientRect(); return {top:p.matches(':popover-open'), y:r.top, h:r.height, txt:p.textContent}; }")
     if not pop["top"] or pop["h"] < 40 or "DC" not in pop["txt"]: bad.append("glossary card " + json.dumps(pop))
@@ -206,7 +208,7 @@ async def extra(b, url, bad):
     # 3D dice in Learn (effects on), one roll
     ctx = await b.new_context(viewport={"width": 1250, "height": 850}, service_workers="block"); pg = await ctx.new_page()
     await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','full');}", FIX); await pg.reload()
-    await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="5"]')
+    await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="6"]')
     await click(pg, "#lrnB [data-lg]"); await click(pg, "#lrnNext"); await settle(pg, 400)
     await click(pg, '#lrnB [data-ld="20"]'); await pg.wait_for_function("()=>window.__learnState().s.r&&window.__learnState().s.r[20]", timeout=40000)
     three = await pg.evaluate("()=>window.__dice3d&&window.__dice3d.state().loaded")

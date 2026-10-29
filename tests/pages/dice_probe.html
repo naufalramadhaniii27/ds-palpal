@@ -7,7 +7,7 @@ window.__dice={log:[]};
 const off=new URLSearchParams(location.search).get('offscreen')!=='0';
 const t0=performance.now();
 const {default:DiceBox}=await import('../../vendor/dice/dice-box.js');
-const box=new DiceBox({container:'#tray',assetPath:'/vendor/dice/',offscreen:off,scale:+(new URLSearchParams(location.search).get('scale')||6),theme:'default',themeColor:'#'+(new URLSearchParams(location.search).get('color')||'c23b22'),
+const box=new DiceBox({container:'#tray',assetPath:'/vendor/dice/',offscreen:off,scale:+(new URLSearchParams(location.search).get('scale')||6),dpr:Math.min(devicePixelRatio||1,2),theme:'default',themeColor:'#'+(new URLSearchParams(location.search).get('color')||'c23b22'),
   onCollision:(c)=>{window.__dice.coll=(window.__dice.coll||0)+1}});
 await box.init(); window.__dice.initMs=Math.round(performance.now()-t0);
 window.__roll=async(n)=>{ const t=performance.now(); const r=await box.roll(n); window.__dice.log.push({n,ms:Math.round(performance.now()-t),r:JSON.parse(JSON.stringify(r)).map(g=>({total:g.value,rolls:(g.rolls||[]).map(x=>x.value)}))}); return window.__dice.log[window.__dice.log.length-1]; };

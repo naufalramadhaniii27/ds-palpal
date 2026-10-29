@@ -46,6 +46,8 @@ class WorldOnscreen {
 	
 		// setup babylonJS scene
 		this.#engine  = createEngine(this.#canvas )
+		/* T11 D1: draw at the screen's pixel density (dpr from the app, at most 2), so the dice are sharp on a phone */
+		if(this.config && this.config.dpr > 1) this.#engine.setHardwareScalingLevel(1 / this.config.dpr)
 		this.#scene = createScene({engine:this.#engine })
 		this.#camera  = createCamera({engine:this.#engine, scene: this.#scene})
 		this.#lights  = createLights({

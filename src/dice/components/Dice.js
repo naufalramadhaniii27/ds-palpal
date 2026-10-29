@@ -1,4 +1,6 @@
 import { SceneLoader } from '@babylonjs/core/Loading/sceneLoader'
+import '@babylonjs/core/Rendering/edgesRenderer'
+import { Color4 } from '@babylonjs/core/Maths/math.color'
 import { Vector3 } from '@babylonjs/core/Maths/math.vector'
 import { Color3 } from '@babylonjs/core/Maths/math.color'
 import { Ray } from "@babylonjs/core/Culling/ray";
@@ -97,6 +99,8 @@ class Dice {
       if(colorSuffix.length > 0){
         die.registerInstancedBuffer("customColor", 3)
       }
+      /* T11 D1: crisp edges. A thin light line on every edge of the die (shared by all its instances), like a polished bevel */
+      try{ die.edgesShareWithInstances = true; die.enableEdgesRendering(.9); die.edgesWidth = 4.5; die.edgesColor = new Color4(1, .94, .92, .78) }catch(e){}
 
       // die.material.freeze()
     }
