@@ -3138,6 +3138,11 @@ art/batch/icons/features/class/ranger/weapon-mastery.png
 art/batch/icons/features/class/rogue/cunning-action.png
 art/batch/icons/features/class/rogue/cunning-strike.png
 art/batch/icons/features/class/rogue/devious-strikes.png
+art/batch/icons/features/class/rogue/elusive.png
+art/batch/icons/features/class/rogue/evasion.png
+art/batch/icons/features/class/rogue/expertise.png
+art/batch/icons/features/class/rogue/improved-cunning-strike.png
+art/batch/icons/features/class/rogue/reliable-talent.png
 ## batch-069 v3
 art/batch/scenes/species/hadozee-pc.png
 art/batch/scenes/species/hadozee-phone.png
