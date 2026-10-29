@@ -3185,6 +3185,11 @@ art/batch/icons/spells/level-6/tashas-otherworldly-guise.png
 art/batch/icons/spells/level-6/tensers-transformation.png
 art/batch/icons/spells/level-6/wind-walk.png
 art/batch/icons/spells/level-7/aura-of-evasion.png
+art/batch/icons/spells/level-7/symbol.png
+art/batch/icons/spells/level-7/conjure-celestial.png
+art/batch/icons/spells/level-7/dream-of-the-blue-veil.png
+art/batch/icons/spells/level-7/etherealness.png
+art/batch/icons/spells/level-7/mordenkainens-magnificent-mansion.png
 ## batch-207 v3
 
 art/batch/creatures/beast/baboon.png
