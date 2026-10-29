@@ -2630,7 +2630,6 @@ art/batch/scenes/environment/feywild-pc.png
 art/batch/scenes/environment/feywild-phone.png
 art/batch/scenes/environment/underdark-pc.png
 art/batch/scenes/environment/underdark-phone.png
-art/batch/scenes/environment/plane-fire-pc.png
 art/batch/scenes/environment/plane-fire-phone.png
 art/batch/scenes/environment/astral-pc.png
 art/batch/scenes/environment/astral-phone.png
