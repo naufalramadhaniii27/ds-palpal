@@ -1847,6 +1847,12 @@ art/batch/icons/items/magic/uncommon/travel-alchemical-kit.png
 art/batch/icons/items/magic/common/voting-kit.png
 art/batch/icons/items/magic/very-rare/wheel-of-stars.png
 art/batch/icons/items/magic/varies/whisper-jar.png
+art/batch/icons/items/magic/rare/charm-of-plant-command.png
+art/batch/icons/items/magic/uncommon/cursed-luckstone.png
+art/batch/icons/items/magic/uncommon/helm-of-underwater-action.png
+art/batch/icons/items/magic/common/pipe-of-remembrance.png
+art/batch/icons/items/magic/common/pressure-capsule.png
+
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
