@@ -2740,6 +2740,7 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2952,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3312,6 +3318,11 @@ art/batch/icons/spells/level-4/evards-black-tentacles.png
 art/batch/icons/spells/level-4/find-greater-steed.png
 art/batch/icons/spells/level-4/galders-speedy-courier.png
 art/batch/icons/spells/level-4/giant-insect.png
+art/batch/creatures/beast/giant-rat.png
+art/batch/creatures/beast/giant-scorpion.png
+art/batch/creatures/monstrosity/griffon.png
+art/batch/creatures/aberration/intellect-devourer.png
+art/batch/creatures/beast/jackal.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
@@ -3351,6 +3362,11 @@ art/batch/icons/skills/arcana.png
 art/batch/icons/skills/deception.png
 art/batch/icons/skills/performance.png
 art/batch/icons/skills/religion.png
+art/batch/icons/conditions/blinded.png
+art/batch/icons/conditions/invisible.png
+art/batch/icons/spell-schools/illusion-school.png
+art/batch/icons/feat-categories/fighting-style-feat.png
+art/batch/icons/conditions/charmed.png
 ## batch-209 v3
 
 art/batch/creatures/humanoid/knight.png
