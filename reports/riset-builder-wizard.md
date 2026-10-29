@@ -2,7 +2,7 @@
 
 Permintaan user: builder seperti di video, dengan penyesuaian, plus riset teknologinya.
 Keputusan user 2026-10-29: potret AI diabaikan, tidak dikerjakan.
-Status: riset dan usulan. Belum ada kode diubah. Menunggu keputusan di bagian 6.
+Status: keputusan user 2026-10-29 22.41 WIB: builder tidak diubah strukturnya (tanpa mode Guided), dipercantik dan diberi teknologi tambahan. Masuk rencana sebagai G6 di claude/rencana-kerja-teknologi.md. Bagian 3 sampai 7 di bawah adalah riset awal (opsi B, mode tambahan), tidak dipakai.
 
 ## 1. Yang terlihat di video (Oneon, 64 detik, 10 layar)
 Dibaca dari 32 cuplikan gambar dan teks subtitle. Video buram di beberapa bagian, jadi daftar ini adalah yang jelas terlihat.
