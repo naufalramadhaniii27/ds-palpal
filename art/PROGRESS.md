@@ -3117,6 +3117,11 @@ art/batch/monsters/aberration/death-tyrant.png
 art/batch/monsters/aberration/spectator.png
 art/batch/monsters/aberration/gazer.png
 art/batch/monsters/aberration/beholder-zombie.png
+art/batch/monsters/aberration/mind-flayer.png
+art/batch/monsters/aberration/elder-brain.png
+art/batch/monsters/aberration/aboleth.png
+art/batch/monsters/aberration/gibbering-mouther.png
+art/batch/monsters/aberration/nothic.png
 ## batch-152 v3
 art/batch/icons/features/class/ranger/tireless.png
 art/batch/icons/features/class/ranger/weapon-mastery.png
