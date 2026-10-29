@@ -2151,6 +2151,12 @@ art/batch/icons/features/class/cleric/sear-undead.png
 art/batch/icons/features/class/cleric/spellcasting.png
 art/batch/icons/features/class/druid/archdruid.png
 art/batch/icons/features/class/druid/beast-spells.png
+art/batch/icons/features/class/druid/druidic.png
+art/batch/icons/features/class/druid/elemental-fury.png
+art/batch/icons/features/class/druid/improved-elemental-fury.png
+art/batch/icons/features/class/druid/primal-order.png
+art/batch/icons/features/class/druid/spellcasting.png
+
 ## batch-169 v3
 art/batch/icons/features/subclass/oath-of-devotion/aura-of-devotion.png
 art/batch/icons/features/subclass/oath-of-devotion/channel-divinity-sacred-weapon.png
