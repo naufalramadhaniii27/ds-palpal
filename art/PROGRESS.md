@@ -3177,6 +3177,11 @@ art/batch/icons/spells/level-3/meld-into-stone.png
 art/batch/icons/spells/level-3/plant-growth.png
 art/batch/icons/spells/level-3/slow.png
 art/batch/icons/spells/level-3/speak-with-plants.png
+art/batch/icons/spells/level-3/tiny-servant.png
+art/batch/icons/spells/level-3/water-breathing.png
+art/batch/icons/spells/level-3/water-walk.png
+art/batch/icons/spells/level-4/aura-of-life.png
+art/batch/icons/spells/level-4/aura-of-purity.png
 
 ## batch-225 v3
 art/batch/monsters/aberration/chuul.png
