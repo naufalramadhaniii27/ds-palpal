@@ -1799,6 +1799,11 @@ art/batch/icons/rules/languages/language-undercommon.png
 art/batch/icons/rules/resources/spell-slot-gem.png
 art/batch/icons/rules/resources/pact-magic-slot.png
 art/batch/icons/rules/resources/rage.png
+art/batch/icons/rules/resources/bardic-inspiration-die.png
+art/batch/icons/rules/resources/channel-divinity.png
+art/batch/icons/rules/resources/wild-shape-use.png
+art/batch/icons/rules/resources/second-wind.png
+art/batch/icons/rules/resources/action-surge.png
 
 art/batch/icons/rules/languages/language-deep-speech.png
 art/batch/icons/rules/languages/language-druidic.png
