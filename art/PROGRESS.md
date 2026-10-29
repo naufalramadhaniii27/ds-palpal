@@ -3869,6 +3869,16 @@ art/batch/icons/spells/level-9/mass-heal.png
 art/batch/icons/spells/level-9/prismatic-wall.png
 art/batch/icons/spells/level-9/blade-of-disaster.png
 art/batch/icons/spells/level-9/gate.png
+art/batch/icons/spells/level-8/sunburst.png
+art/batch/icons/spells/level-8/entrancing-mirrors.png
+art/batch/icons/spells/level-8/illusory-dragon.png
+art/batch/icons/spells/level-8/abi-dalzims-horrid-wilting.png
+art/batch/icons/spells/level-8/clone.png
+art/batch/icons/spells/level-8/animal-shapes.png
+art/batch/icons/spells/level-8/control-weather.png
+art/batch/icons/spells/level-8/earthquake.png
+art/batch/icons/spells/level-8/iron-body.png
+art/batch/icons/spells/level-9/imprisonment.png
 ## batch-234 v3
 art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
@@ -3886,6 +3896,17 @@ art/batch/vignettes/learn/spells.png
 art/batch/vignettes/learn/explore-talk.png
 art/batch/vignettes/learn/owl-welcome.png
 art/batch/vignettes/learn/owl-explain.png
+art/batch/scenes/screen/learn-phone.png
+art/batch/vignettes/learn/learn-play.png
+art/batch/vignettes/learn/learn-build.png
+art/batch/scenes/screen/learn-pc.png
+art/batch/vignettes/learn/what-is-dnd.png
+art/batch/vignettes/learn/d20-test.png
+art/batch/vignettes/learn/advantage.png
+art/batch/vignettes/learn/abilities-skills.png
+art/batch/vignettes/learn/combat-turn.png
+art/batch/vignettes/learn/hit-points-rests.png
+
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3897,6 +3918,12 @@ art/batch/icons/features/subclass/path-of-the-wild-heart/power-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-wild-heart/rage-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-world-tree/battering-roots.png
 art/batch/icons/features/subclass/path-of-the-world-tree/branches-of-the-tree.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/totemic-attunement.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/animal-speaker.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/aspect-of-the-wilds.png
+
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
 art/batch/scenes/species/kobold-phone.png
@@ -3910,3 +3937,9 @@ art/batch/icons/spells/level-5/antilife-shell.png
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
 
+NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
+## batch-138 v3
+art/batch/icons/feats/resilient.png
+art/batch/icons/feats/ritual-caster.png
+art/batch/icons/feats/sentinel.png
+art/batch/icons/feats/shadow-touched.png
