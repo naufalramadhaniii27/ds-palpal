@@ -3880,6 +3880,7 @@ art/batch/icons/feats/piercer.png
 art/batch/icons/feats/poisoner.png
 art/batch/icons/feats/polearm-master.png
 
+NEXT: batch-059 art/batch/icons/spells/level-9/wish.png
 ## batch-059 v3
 art/batch/icons/spells/level-8/sunburst.png
 art/batch/icons/spells/level-8/entrancing-mirrors.png
@@ -3964,6 +3965,7 @@ art/batch/vignettes/learn/hit-points-rests.png
 
 art/batch/vignettes/learn/owl-cheer.png
 art/batch/scenes/screen/learn-pc.png
+NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3986,6 +3988,7 @@ art/batch/icons/features/subclass/path-of-the-zealot/zealous-presence.png
 art/batch/icons/features/subclass/psi-warrior/bulwark-of-force.png
 art/batch/icons/features/subclass/psi-warrior/guarded-mind.png
 
+NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
 art/batch/scenes/species/kobold-phone.png
@@ -4000,6 +4003,7 @@ art/batch/scenes/species/leonin-phone.png
 art/batch/scenes/species/lizardfolk-pc.png
 art/batch/scenes/species/lizardfolk-phone.png
 
+NEXT: batch-050 art/batch/icons/spells/level-5/antilife-shell.png
 ## batch-050 v3
 art/batch/icons/spells/level-5/circle-of-power.png
 art/batch/icons/spells/level-5/dispel-evil-and-good.png
@@ -4035,6 +4039,7 @@ art/batch/icons/spells/level-5/summon-dragon.png
 art/batch/icons/spells/level-5/summon-plant.png
 art/batch/icons/spells/level-5/teleportation-circle.png
 
+NEXT: batch-138 art/batch/icons/feats/sharpshooter.png
 ## batch-138 v3
 art/batch/icons/feats/resilient.png
 art/batch/icons/feats/ritual-caster.png
@@ -4300,6 +4305,9 @@ art/batch/scenes/screen/learn-trial-pc.png
 art/batch/scenes/screen/learn-trial-phone.png
 art/batch/emblems/learn/rank-novice.png
 
+art/batch/vignettes/learn/sela-tension.png
+art/batch/vignettes/learn/sela-laugh.png
+art/batch/vignettes/learn/sela-applause.png
 ## batch-140 v3
 art/batch/icons/rules/invocations/eldritch-invocation-agonizing-blast.png
 art/batch/icons/rules/invocations/eldritch-invocation-armor-of-shadows.png
