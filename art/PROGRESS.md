@@ -3353,4 +3353,9 @@ art/batch/creatures/fiend/nightmare.png
 art/batch/creatures/humanoid-orc/orc-war-chief.png
 art/batch/creatures/celestial-angel/planetar.png
 art/batch/creatures/beast-dinosaur/plesiosaurus.png
+art/batch/creatures/beast-dinosaur/pteranodon.png
+art/batch/creatures/beast/quipper.png
+art/batch/creatures/celestial/reigar.png
+art/batch/creatures/beast/rhinoceros.png
+art/batch/creatures/celestial-angel/solar.png
 
