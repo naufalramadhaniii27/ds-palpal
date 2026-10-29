@@ -4470,3 +4470,9 @@ art/batch/icons/items/gear/costume.png
 art/batch/icons/items/gear/flask.png
 art/batch/icons/items/gear/grappling-hook.png
 
+## batch-063 v3
+art/batch/icons/bastion/smithy.png
+art/batch/icons/bastion/storehouse.png
+art/batch/icons/bastion/workshop.png
+art/batch/icons/bastion/gaming-hall.png
+art/batch/icons/bastion/greenhouse.png
