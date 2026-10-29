@@ -1820,3 +1820,8 @@ art/batch/icons/spells/level-2/invisibility.png
 art/batch/icons/spells/level-2/magic-mouth.png
 art/batch/icons/spells/level-2/mirror-image.png
 
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
