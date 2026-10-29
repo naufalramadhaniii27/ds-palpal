@@ -13,6 +13,22 @@
 #bld .bmiss.ok{border-color:color-mix(in srgb,var(--good,#5fc28b) 50%,var(--line,#30373b));background:color-mix(in srgb,var(--good,#5fc28b) 10%,transparent)}
 #bld .bmiss b{font-size:18px}
 #bld .bmiss button{min-height:44px;padding:0 14px;border-radius:10px;font-weight:700}
+#bld .bident{margin-top:24px;padding-top:8px;border-top:1px solid var(--line,#30373b);display:flex;flex-direction:column;gap:12px}
+#bld .balign{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#bld .balign button{min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:12px;border:1px solid var(--line,#30373b);background:var(--card,#1d2225);padding:6px 4px}
+#bld .balign button b{font-size:16px}
+#bld .balign button small{font-size:11px;color:var(--muted);text-align:center;line-height:1.2}
+#bld .balign button[aria-pressed="true"]{border-color:var(--stamp,#a33);background:color-mix(in srgb,var(--stamp,#a33) 22%,var(--card,#1d2225))}
+#bld .bidf{display:flex;flex-direction:column;gap:4px}
+#bld .bidf span{font-size:13px;color:var(--muted);font-weight:600}
+#bld .bidf textarea{field-sizing:content;min-height:3lh;resize:vertical}
+#bld .bidg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:760px){ #bld .bidg{grid-template-columns:repeat(4,minmax(0,1fr))} }
+#bld .btoken{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+#bld .btk-p{width:96px;aspect-ratio:4/5;object-fit:cover;border-radius:10px;border:1px solid var(--line,#30373b)}
+#bld .btk-c{width:128px;height:128px}
+#bld .btk-a{display:flex;flex-direction:column;gap:8px}
+#bld .btk-a button{min-height:44px;padding:0 16px;border-radius:10px;font-weight:700}
 #bld .abgrid .abx{min-width:0}
 #bld .abgrid .abx>b{font-size:calc(13px*var(--tz,1));letter-spacing:.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 #bld .abgrid .abx input.btx{text-align:center;width:100%}

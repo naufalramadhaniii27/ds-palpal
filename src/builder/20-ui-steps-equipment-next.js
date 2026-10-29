@@ -85,3 +85,27 @@ function restoreBak(){var bk=bakInfo();if(!bk){toast("No backup build on this de
  ask("Restore the backup build ("+bk.label+")? It replaces the build you are editing ("+cur+"). The build you are editing becomes the backup, so you can switch back.","Restore",function(){
   var now=JSON.stringify(B);var b=bk.b;for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=b;save();saveBak(now);step="class";applyPacks();render();toast("Restored "+B.name+" from the backup")})}
 
+
+/* T11 G6 B6: Identity and Appearance on the What's Next step. They are the Description fields of the sheet (written at once,
+   so they are there after Apply too). Alignment is optional in the 2024 rules: tap again to clear */
+var ALIGN=[["LG","Lawful Good"],["NG","Neutral Good"],["CG","Chaotic Good"],["LN","Lawful Neutral"],["N","Neutral"],["CN","Chaotic Neutral"],["LE","Lawful Evil"],["NE","Neutral Evil"],["CE","Chaotic Evil"]];
+function bIdent(){ if(!window.__sheetIdent) return ""; var o=window.__sheetIdent(), ta=function(k,l,hint,rows){ return '<label class="bidf"><span>'+l+'</span><textarea class="btx" rows="'+rows+'" data-ident="'+k+'" placeholder="'+esc(hint)+'">'+esc(o[k]||"")+'</textarea></label>'; },
+  inp=function(k,l){ return '<label class="bidf sm"><span>'+l+'</span><input class="btx" data-ident="'+k+'" value="'+esc(o[k]||"")+'" autocomplete="off"></label>'; };
+ return '<section class="bident" aria-labelledby="bidH"><h2 class="ttl sm" id="bidH">Identity</h2><p class="fd bhint">Optional. These go to the Description tab of the sheet.</p>'
+  +'<div class="balign" role="group" aria-label="Alignment">'+ALIGN.map(function(a){ return '<button type="button" data-align="'+a[1]+'" aria-pressed="'+(o.align===a[1])+'"><b>'+a[0]+'</b><small>'+a[1]+'</small></button>'; }).join("")+'</div>'
+  +ta("personality","Personality traits","Habits, the way your character talks",2)+ta("ideal","Ideals","What your character fights for",2)+ta("bond","Bonds","A person, place, or promise",2)+ta("flaw","Flaws","A weakness the DM can play with",2)+ta("backstory","Backstory","Write it in your own words",4)
+  +'<h2 class="ttl sm">Appearance</h2><div class="bidg">'+inp("ch_gender","Gender")+inp("ch_age","Age")+inp("ch_height","Height")+inp("ch_weight","Weight")+inp("ch_eyes","Eyes")+inp("ch_hair","Hair")+inp("ch_skin","Skin")+inp("ch_faith","Faith")+'</div>'
+  +ta("appearance","Description","What people see first",3)+bToken()+'</section>'; }
+/* T11 G6 B7 and T14: a round token from the portrait (the sheet keeps portraits cut to 4:5), drawn on a canvas here, saved as PNG
+   or shared with the Web Share API where the phone can share files */
+function bToken(){ var p=window.__sheetPortrait?window.__sheetPortrait():""; if(!p) return '<h2 class="ttl sm">Token</h2><p class="fd bhint">Add a portrait on the sheet (tap the photo) and a round token appears here.</p>';
+ return '<h2 class="ttl sm">Token</h2><div class="btoken"><img class="btk-p" src="'+esc(p)+'" alt="Portrait"><canvas class="btk-c" width="256" height="256" aria-label="Round token"></canvas><div class="btk-a"><button type="button" data-tok="save">Save token</button>'+(navigator.canShare?'<button type="button" data-tok="share">Share token</button>':'')+'</div></div>'; }
+function bTokDraw(){ var c=document.querySelector("#bld .btk-c"), p=window.__sheetPortrait&&window.__sheetPortrait(); if(!c||!p) return; var im=new Image(); im.onload=function(){ var x=c.getContext("2d"), S=256, r=S/2; x.clearRect(0,0,S,S); x.save(); x.beginPath(); x.arc(r,r,r-10,0,Math.PI*2); x.clip();
+   var w=im.width, h=im.height, side=Math.min(w,h), sx=(w-side)/2, sy=Math.max(0,(h-side)*0.25); x.drawImage(im,sx,sy,side,side,10,10,S-20,S-20); x.restore();
+   x.lineWidth=10; x.strokeStyle="#a3182b"; x.beginPath(); x.arc(r,r,r-6,0,Math.PI*2); x.stroke(); x.lineWidth=2; x.strokeStyle="rgba(255,255,255,.8)"; x.beginPath(); x.arc(r,r,r-11,0,Math.PI*2); x.stroke(); }; im.src=p; }
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("#bld [data-tok]"); if(!b) return; var c=document.querySelector("#bld .btk-c"); if(!c) return; var nm=(B.name||"token").replace(/[^\w-]+/g,"-")+"-token.png";
+ c.toBlob(function(bl){ if(!bl) return; if(b.getAttribute("data-tok")==="share"){ try{ var f=new File([bl],nm,{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:B.name||"Token"}).catch(function(){}); return; } }catch(er){} }
+   var u=URL.createObjectURL(bl), l=document.createElement("a"); l.href=u; l.download=nm; document.body.appendChild(l); l.click(); l.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); },"image/png"); });
+document.addEventListener("input",function(e){ var t=e.target; if(!t.closest||!t.closest("#bld")||!t.hasAttribute("data-ident")) return; if(window.__sheetIdentSet) window.__sheetIdentSet(t.getAttribute("data-ident"),t.value); });
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("#bld [data-align]"); if(!b||!window.__sheetIdentSet) return; var on=b.getAttribute("aria-pressed")==="true", v=on?"":b.getAttribute("data-align");
+ window.__sheetIdentSet("align",v); Array.prototype.forEach.call(document.querySelectorAll("#bld [data-align]"),function(x){ x.setAttribute("aria-pressed",x.getAttribute("data-align")===v); }); });
