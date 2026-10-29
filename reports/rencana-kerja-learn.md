@@ -38,6 +38,24 @@ Gabungan seluruh riset dan keputusan di claude/rencana-menu-learn.md (U1 sampai 
 | 11 | Tanpa pancingan, tanpa nilai dan peringkat antarpemain | Finlandia, PP Tunas | U30, U37 |
 | 12 | Jalan di semua kondisi app: offline, Motion off, Calm, kontras tinggi, pembaca layar, tombol 48 piksel | Aturan app | U23 |
 
+## Teknologi interaktif (riset 2026-10-29)
+Dasar: app sekarang 7,6 MB (2,36 MB gzip), satu file HTML, tanpa library animasi. Pola yang sudah ada di kode dipakai ulang.
+
+| Bagian | Pilihan | Alasan | Dipakai ulang dari kode |
+|---|---|---|---|
+| Geser kepingan, token, dadu | Pointer Events: setPointerCapture, `touch-action:none` hanya di benda yang digeser, ambang gerak sebelum mulai geser, `overflow-anchor:none` di area gulir | Satu cara untuk jari dan mouse. Tidak bentrok dengan scroll dan swipe app | Geser di 13 (bottom sheet), 27 (Library), 37 (hold and slide), 39 (HP drag) |
+| Pengganti geser (WCAG 2.2 SC 2.5.7, level AA) | Setiap geser punya cara ketuk: ketuk benda lalu ketuk tujuan, atau tombol + dan − | Wajib di WCAG 2.2. Juga membantu orang yang sulit menggeser | Library sudah punya tombol Add selain geser |
+| Keyboard | Enter atau Spasi mengangkat, panah memindah, Enter menaruh, Esc batal | Pola papan permainan yang aksesibel | Tombol app sudah fokus dengan Tab |
+| Animasi dadu | Dadu 2D dari SVG (bentuk d4 sampai d20) dengan putar dan skala CSS, angka berganti cepat lalu berhenti | 0 KB tambahan. CSS 3D hanya mudah untuk kubus (d6). Dadu 3D WebGL butuh library 3D dan fisika ratusan KB dan berat di HP murah | Ikon d20 di 07 |
+| Peragaan Hoot dan tangan bayangan | CSS transform dan opacity, urutan langkah dengan Web Animations API | 0 KB, jalan di luar thread utama. Lottie (sekitar 50 KB runtime) dan Rive (sekitar 200 KB) tidak perlu karena gambar Codex berupa gambar diam | Pola gerak di 19 dan 23 sampai 27 (fx) |
+| Motion off dan reduced motion | Peragaan berubah jadi langkah diam bernomor dengan panah. Dadu langsung menampilkan hasil | Aturan app | `REDUCE` di 07, 29-motion-off.css |
+| Grid giliran (Forest) | Elemen HTML: `role="grid"`, tiap kotak tombol berlabel, ketuk kotak tujuan untuk jalan, hasil diumumkan lewat `aria-live="polite"` | Canvas tidak terbaca pembaca layar dan tidak ikut zoom | Live region `ordLive` di 40 |
+| Sorot sheet | Pindah tab sheet bila perlu, gulir ke elemen, sorot, kembali ke Learn. Bila elemen tidak ada (misal karakter tanpa spell), tampil penjelasan pengganti | Angka bisa ada di tab lain atau di luar layar | `setTab` di 21, tour di 31 |
+| Pindah tempat | View Transitions bila didukung, tanpa animasi bila tidak | Sudah dipakai app | Pindah tab di 21 |
+| Getar dan suara | `buzz()` dan setelan suara app | Ikut pilihan pengguna | 09, setelan mi-bz dan mi-snd |
+| Pemuatan | Blok `data-defer`, dimuat saat Learn dibuka | App tidak lebih lambat dibuka | build.py sudah mendukung `data-defer` |
+| Batas ukuran | Kode dan data Learn maksimal 300 KB mentah. Screenshot AVIF sebagai file terpisah, bukan di dalam HTML | Menjaga app tetap cepat | |
+
 ## Tahap kerja
 Setiap tahap selesai dengan tes. Rilis digabung (0.0.3), daftar rilis dikirim ke user sebelum push ke main.
 
@@ -123,6 +141,7 @@ Komponen dipakai ulang oleh semua tempat.
 ### F7 Uji dan rilis
 | Isi | Pelaku |
 |---|---|
+| Tes HP murah: Playwright dengan CPU diperlambat 4 kali, cek animasi dan geser tetap lancar | Claude |
 | Suite Checker: tiga skenario wajib, Learn dua bahasa, 390x844 dan 1250x850, offline, Motion off, Calm, kontras tinggi, cek keterbacaan, titik screenshot | Claude |
 | Teks Indonesia dibaca ulang dengan panduan U28 | Claude |
 | Uji main Jalur Inti: 1 anak (patokan bahasa) dan 2 orang awam, tanpa dibantu, catat waktu, tempat macet, ikon yang tidak dipahami | User mengatur orangnya, Claude menyiapkan lembar catatan |
@@ -149,6 +168,7 @@ Komponen dipakai ulang oleh semua tempat.
 | Isi Learn berbeda dari Library | Kamus mengambil entri Library, tidak menyalin |
 | Mengubah tour Home merusak tour lama | Tour Home tetap memakai daftar yang sama di atas mesin baru, tes tour lama ikut dijalankan |
 | Ukuran app bertambah | Data Learn dimuat saat Learn dibuka, bukan saat app mulai |
+| Geser tidak bisa dipakai sebagian orang | Setiap geser punya cara ketuk dan keyboard, dites otomatis |
 
 ## Dicocokkan ke kode (2026-10-29)
 PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda di 01, service worker, build Pages, endpoint prefs dan admin di API, entri Library di 03 dan 27. Empat hal yang semula keliru di rencana sudah dibetulkan: tour bukan mesin umum, screenshot tidak bisa dibuat di server Pages, gambar offline tidak tersimpan otomatis, corong butuh kerja di API.
@@ -158,3 +178,10 @@ PF_KEYS (sinkron prefs), tour di 31, Quick Build di builder/21, pemuatan tunda d
 |---|---|
 | Kapan mulai coding | Menunggu "go" dari user |
 | Siapa peserta uji main | Diatur user saat F7 |
+
+## Sumber teknologi
+- https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements
+- https://dev.to/randomengy/from-scratch-drag-and-drop-pitfalls-with-scroll-anchoring-and-touch-gestures-3299
+- https://www.pkgpulse.com/guides/lottie-vs-rive-vs-css-animations-web-animation-formats-2026
+- https://svilenkovic.com/3d/webgl-vs-css-3d
+- https://www.abratabia.com/game-accessibility/web-game-aria.php
