@@ -3482,6 +3482,10 @@ art/batch/icons/conditions/frightened.png
 art/batch/icons/conditions/prone.png
 art/batch/icons/conditions/restrained.png
 art/batch/icons/conditions/unconscious.png
+art/batch/icons/damage-types/acid.png
+art/batch/icons/damage-types/piercing.png
+art/batch/icons/damage-types/thunder.png
+art/batch/icons/damage-types/temporary-hit-points.png
 ## batch-209 v3
 
 art/batch/creatures/humanoid/knight.png
