@@ -3290,6 +3290,11 @@ art/batch/monsters/undead/nightwalker.png
 art/batch/monsters/undead/bodak.png
 art/batch/monsters/undead/mummy-lord.png
 
+art/batch/monsters/monstrosity/purple-worm.png
+art/batch/monsters/monstrosity/remorhaz.png
+art/batch/monsters/monstrosity/umber-hulk.png
+art/batch/monsters/monstrosity/carrion-crawler.png
+art/batch/monsters/monstrosity/kraken.png
 ## batch-047 v3
 art/batch/icons/spells/level-4/backlash.png
 art/batch/icons/spells/level-4/banishment.png
