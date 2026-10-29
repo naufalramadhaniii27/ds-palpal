@@ -2173,7 +2173,11 @@ art/batch/icons/items/magic/rare/leather-golem-armor.png
 art/batch/icons/items/magic/legendary/powered-armor.png
 art/batch/icons/items/magic/common/earring-of-message.png
 art/batch/icons/items/magic/legendary/jewel-of-three-prayers.png
-
+art/batch/icons/items/magic/common/medal-of-muscle.png
+art/batch/icons/items/magic/common/medal-of-the-conch.png
+art/batch/icons/items/magic/common/medal-of-the-horizonback.png
+art/batch/icons/items/magic/common/medal-of-the-maze.png
+art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
 
 art/batch/icons/rules/resources/indomitable.png
 art/batch/icons/rules/resources/favored-enemy-mark.png
