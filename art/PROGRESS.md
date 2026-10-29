@@ -2067,6 +2067,12 @@ art/batch/icons/spells/level-2/kinetic-jaunt.png
 art/batch/icons/spells/level-2/knock.png
 art/batch/icons/spells/level-2/levitate.png
 art/batch/icons/spells/level-2/magic-weapon.png
+art/batch/icons/spells/level-2/maximilians-earthen-grasp.png
+art/batch/icons/spells/level-2/pyrotechnics.png
+art/batch/icons/spells/level-2/rope-trick.png
+art/batch/icons/spells/level-2/shining-smite.png
+art/batch/icons/spells/level-2/skywrite.png
+
 ## batch-201 v3
 
 art/batch/creatures/beast/crocodile.png
