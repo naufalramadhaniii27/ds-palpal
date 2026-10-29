@@ -4329,3 +4329,11 @@ art/batch/icons/features/subclass/war-domain/guided-strike.png
 art/batch/icons/features/subclass/war-domain/war-domain-spells.png
 art/batch/icons/features/subclass/war-domain/war-gods-blessing.png
 art/batch/icons/features/subclass/war-domain/war-priest.png
+
+## batch-052 v3
+art/batch/icons/spells/level-5/immolation.png
+art/batch/icons/spells/level-5/jallarzis-storm-of-radiance.png
+art/batch/icons/spells/level-5/maelstrom.png
+art/batch/icons/spells/level-5/wall-of-force.png
+art/batch/icons/spells/level-5/wall-of-light.png
+
