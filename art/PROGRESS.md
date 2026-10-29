@@ -3820,3 +3820,9 @@ art/batch/icons/spells/level-8/entrancing-mirrors.png
 art/batch/icons/spells/level-8/illusory-dragon.png
 art/batch/icons/spells/level-8/abi-dalzims-horrid-wilting.png
 art/batch/icons/spells/level-8/clone.png
+## batch-234 v3
+art/batch/scenes/screen/learn-phone.png
+art/batch/vignettes/learn/learn-play.png
+art/batch/vignettes/learn/learn-build.png
+art/batch/scenes/screen/learn-pc.png
+art/batch/vignettes/learn/what-is-dnd.png
