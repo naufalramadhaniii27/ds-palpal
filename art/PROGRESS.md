@@ -4023,3 +4023,9 @@ art/batch/icons/learn/advantage.png
 art/batch/icons/learn/disadvantage.png
 art/batch/icons/learn/ability-check.png
 art/batch/icons/learn/saving-throw.png
+## batch-060 v3
+art/batch/icons/spells/level-9/power-word-kill.png
+art/batch/icons/spells/level-9/psychic-scream.png
+art/batch/icons/spells/level-9/detonate.png
+art/batch/icons/spells/level-9/meteor-swarm.png
+art/batch/icons/spells/level-9/ravenous-void.png
