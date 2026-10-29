@@ -2087,3 +2087,8 @@ art/batch/icons/features/class/barbarian/indomitable-might.png
 art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
+art/batch/icons/features/subclass/light-domain/light-domain-spells.png
+art/batch/icons/features/subclass/light-domain/potent-spellcasting.png
+art/batch/icons/features/subclass/light-domain/radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/warding-flare.png
+art/batch/icons/features/subclass/oath-of-conquest/aura-of-conquest.png
