@@ -2018,6 +2018,7 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
+NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2259,6 +2260,7 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
+NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2446,6 +2448,7 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
+NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
@@ -2535,6 +2538,7 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
+NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
