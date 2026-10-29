@@ -63,6 +63,36 @@ Tempat latihan: pemain mencoba karakter sheet sendiri (atau kelas baru) melawan 
 | Offline | Service worker menyimpan aset yang pernah dibuka | Sudah ada | Seluruh mode solo jalan offline |
 | Mode party (With your party) | Cloudflare Durable Objects dengan WebSocket | Diverifikasi 2026-10-29: tersedia di paket Workers Free hanya dengan backend SQLite. Batas harian gratis: 100.000 permintaan, 13.000 GB-s, 5 juta baris baca, 100.000 baris tulis, 5 GB data. Pesan WebSocket masuk dihitung 20 berbanding 1 | Butuh pindah ke Workers (G5), karena app sekarang di Pages. Ditunda sampai solo selesai |
 
+### 5b. Teknologi terbaru untuk Training Ground (dicek di caniuse 2026-10-29)
+Semua butuh cadangan. Fitur yang tidak ada di browser pemain tidak boleh merusak pertarungan.
+
+| Kebutuhan | Teknologi | Dukungan global | Cadangan | Fase |
+|---|---|---|---|---|
+| Gambar papan tanpa menahan UI | OffscreenCanvas di Web Worker (render papan dan token di worker) | 96,76 persen (Chrome 69, Safari 17, Firefox 105). Safari 16.2 sampai 16.6 sebagian | Canvas 2D di thread utama | TG2 |
+| Kerja berat tidak membekukan HP | Pencarian jalur dan muat 503 makhluk di Worker. `scheduler.yield()` hanya di loop utama | 73,79 persen. Safari belum mendukung | `setTimeout(0)` atau `MessageChannel` | TG0, TG2 |
+| Ganti layar (pilih, papan, hasil) | View Transitions same-document | Belum diukur ulang di caniuse. Dari artikel Chrome 2025: Chrome 111, Safari 18, Firefox 144 | Tanpa animasi | TG1 |
+| Panel dan kartu muncul halus | `@starting-style` dengan top layer (`popover`, `dialog`) | 93,05 persen | Muncul langsung | TG1, TG3 |
+| Kartu aksi menempel ke token | CSS Anchor Positioning, dipadukan dengan Anchor Spotlight dari T11 | 87,36 persen, di Chrome dan Firefox masih sebagian | Posisi manual lewat JS | TG3 |
+| Animasi HP, giliran, dan hit | `@property` untuk bilah HP yang bergerak halus. `animation-timeline` untuk efek geser | `@property` 96,13 persen. `animation-timeline` 87,84 persen | Bilah tanpa animasi | TG3 |
+| Judul kartu rapi | `text-wrap: balance` | 93,58 persen | Teks biasa | TG1 |
+| Layar tetap menyala saat bertarung | Screen Wake Lock | 96 persen | Tidak ada, sesi bisa redup | TG2 |
+| Bagikan susunan pertarungan | Compression Streams (gzip) lalu tautan atau Web Share | Compression 96,67 persen. Web Share 94,17 persen, tanpa Firefox desktop | Salin tautan ke papan klip | TG4 |
+| Rekam pertarungan jadi video | `canvas.captureStream()` dengan MediaRecorder | captureStream 97,24 persen. MediaRecorder belum dicek | Tombol disembunyikan | TG7 |
+| Kontrol pakai gamepad | Gamepad API | 97,24 persen | Papan tetap bisa dengan ketuk dan keyboard | TG2 |
+| Tombol Back | Navigation API dan hash (A6 dari T11) | Sudah ada di app | Hash | TG1 |
+| Hasil lempar dari dadu 3D | dice-box (Babylon 9.32.1 dan Havok 1.3.14) | Sudah ada | Dadu 2D | TG3 |
+
+Catatan fitur tanpa cadangan murah: `scheduler.yield()` (Safari nol) dan Anchor Positioning (sebagian) hanya dipakai bila cadangannya sudah ada di fase yang sama.
+
+### 5c. Teknologi buatan sendiri (izin user: boleh bila mentok)
+Syarat dari G6 berlaku: tanpa AI berbayar, tingkat gratis, ada tes, dicatat di rencana lebih dulu.
+
+| Usulan | Masalah yang dijawab | Cara kerja | Tes |
+|---|---|---|---|
+| Replay pertarungan | Pemain ingin melihat ulang atau membagikan | Log kejadian plus seed dijalankan ulang oleh reducer. Tautan berisi log terkompresi (Compression Streams) | Replay menghasilkan HP dan posisi yang sama dengan aslinya |
+| Papan tes headless | Memastikan aturan benar tanpa tampilan | Node menjalankan ribuan pertarungan seed tetap, mencatat NaN, loop, dan HP tidak konsisten | Bagian dari TG0 |
+| Pemuat makhluk bertahap | 503 makhluk membebani HP | Indeks kecil (nama, CR, tipe, SRD) dimuat dulu. Stat block penuh dimuat saat dipilih, disimpan di IndexedDB | Waktu muat Home tidak naik, 503 entri terbaca |
+
 ## 6. Cakupan aturan (bertingkat)
 | Tingkat | Isi | Perilaku |
 |---|---|---|
@@ -122,7 +152,7 @@ Keputusan: B. Pengaman yang dicatat: (1) tiap entri menyimpan `src` dan penanda 
 | TG4 | Kontrol semua token oleh pemain: pilih token, aksi dari stat block (serangan, save, Multiattack, legendary), tombol "Roll for enemy" yang menghitung serangan dari stat block, penghitung HP dan kondisi musuh | Tes skrip: urutan aksi tetap menghasilkan log yang sama dengan seed yang sama |
 | TG5 | Spell dan fitur tingkat B, kartu manual tingkat C | Daftar spell per tingkat tercatat di laporan |
 | TG6 | Ilustrasi dari Codex: kartu makhluk, token, arena | Tampil HD, tanpa pecah (aturan HD proyek) |
-| TG7 | Mode party | Setelah G5 (Workers) dan keputusan user |
+| TG7 | Mode party, rekam video pertarungan | Setelah G5 (Workers) dan keputusan user |
 
 Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana teknologi. TG0 bisa mulai lebih awal karena tidak menyentuh tampilan.
 
@@ -147,6 +177,7 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 
 ## Sumber
 - Video referensi dari user (Oneon Training Ground), dibaca dari cuplikan gambar
+- Can I use (dicek 2026-10-29): offscreencanvas, css-anchor-positioning, mdn-api_htmlcanvaselement_capturestream, mdn-api_scheduler_yield, gamepad
 - [Cloudflare Durable Objects pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [D&D Beyond SRD v5.2.1](https://dndbeyond.com/srd)
 - [D&D Beyond: SRD 5.2 dan lisensi CC-BY-4.0](https://www.dndbeyond.com/posts/1717-2024-core-rulebooks-to-expand-the-srd)
