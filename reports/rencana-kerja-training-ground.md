@@ -2,6 +2,7 @@
 
 Referensi: video Oneon Training Ground (56 detik, dibaca dari cuplikan gambar). Permintaan user: app ini punya Training Ground, analisa teknologinya secara mendalam, catat di rencana kerja.
 Keputusan user 2026-10-29 22.52 WIB: tanpa AI musuh. Pemain menggerakkan semua token (karakter, musuh, sekutu). Data musuh dicari di 5etools dan wiki (bagian 7).
+Keputusan user 2026-10-29 23.02 WIB: sumber makhluk pilihan B, semua 503 makhluk Monster Manual 2024 dari 5etools. Keputusan lisensi untuk 173 makhluk di luar SRD ada di user dan dicatat di sini.
 Status: analisa dan rencana. Belum ada kode. Keputusan di bagian 9.
 
 Batas analisa: situs dan dokumentasi Oneon tidak ditemukan lewat pencarian. Teknologi yang dipakai Oneon tidak bisa dibuktikan dari video. Bagian 2 mencatat yang terlihat. Bagian 5 adalah pilihan teknologi untuk app ini, dengan status verifikasi tiap klaim.
@@ -106,15 +107,15 @@ Kesimpulan: wiki berguna untuk mencari nama dan CR, tidak cocok sebagai sumber d
 | Pilihan | Isi | Catatan |
 |---|---|---|
 | A. 330 makhluk berpenanda SRD dari 5etools | Angka dan aksi dari data 5etools, hanya yang berpenanda SRD. Atribusi CC-BY-4.0 di Settings dan halaman lisensi | Aman secara lisensi bila penanda 5etools benar. Perlu dicocokkan dengan PDF SRD 5.2.1 sebelum rilis. Teks deskripsi ditulis ulang dengan kata sendiri sesuai aturan proyek |
-| B. Semua 503 dari 5etools | Seperti data 72 stat block sekarang ("Text follows the 5e.tools data") | 173 makhluk di luar SRD adalah materi WotC berhak cipta. Keputusan lisensi ada di user |
+| B. Semua 503 dari 5etools (DIPILIH user 2026-10-29) | Seperti data 72 stat block sekarang ("Text follows the 5e.tools data") | 173 makhluk di luar SRD adalah materi WotC berhak cipta. User memutuskan memakainya. Pengaman di bawah |
 | C. Makhluk buatan sendiri | Daftar yang dirancang sendiri | Aman, butuh waktu menyeimbangkan |
-Saran: A, ditambah makhluk Retromistika milik user bila diminta. Data diubah ke format app lewat skrip `tools/` yang bisa diulang.
+Keputusan: B. Pengaman yang dicatat: (1) tiap entri menyimpan `src` dan penanda `srd` (330 berpenanda SRD, 173 bukan), supaya bisa disaring atau dibuang tanpa menyentuh yang lain. (2) Kartu dan log menampilkan sumber (XMM dan halaman). (3) Atribusi CC-BY-4.0 untuk bagian SRD di Settings dan halaman lisensi. (4) Teks deskripsi bebas (bukan angka dan aturan aksi) ditulis ulang dengan kata sendiri sesuai aturan proyek. (5) Data diubah ke format app lewat skrip `tools/` yang bisa diulang, dimuat sebagai blok `data-defer` sendiri supaya tidak memperbesar muat awal. (6) Makhluk Retromistika milik user ditambah bila diminta.
 
 ## 8. Fase kerja
 | Fase | Isi | Selesai bila |
 |---|---|---|
 | TG0 | Mesin pertarungan tanpa tampilan (reducer, giliran, gerak, serangan, kondisi, seed). Pengurai stat block. Tes Node | 1.000 pertarungan seed tetap: tanpa NaN dan loop, total HP konsisten, hasil sama saat diulang |
-| TG0b | Skrip `tools/` yang mengubah data makhluk 5etools berpenanda SRD ke format app, tes 330 entri | Jumlah entri sama, tanpa bidang kosong yang wajib |
+| TG0b | Skrip `tools/` yang mengubah data makhluk 5etools berpenanda SRD ke format app, tes 503 entri | 503 entri masuk, tanpa bidang kosong yang wajib, penanda `srd` benar (330 dan 173) |
 | TG1 | Layar pemilihan (Who goes in, What waits, Who comes with you, Where you train) memakai data dan art yang ada, ikon sementara | Tiga skenario wajib di 390 x 844 dan 1250 x 850, axe 0 |
 | TG2 | Papan kisi: render, token, gerak dengan jangkauan, urutan giliran, Undo, kamera zoom di HP | Tes layar di dua ukuran, gerak benar menurut pencarian jalur |
 | TG3 | Panel aksi (tingkat A), kartu reaksi, log, End Turn | Setiap aksi tingkat A punya tes |
@@ -129,7 +130,7 @@ Penempatan: sesudah rilis 0.0.3 dan paket G6 builder, sebagai G7 di rencana tekn
 | Pertanyaan | Opsi | Rekomendasi |
 |---|---|---|
 | Cakupan awal | Solo saja. Solo lalu party | Solo dulu |
-| Sumber makhluk | A: 330 berpenanda SRD. B: semua 503. C: buatan sendiri | A, tambah Retromistika bila diminta |
+| Sumber makhluk | Diputuskan 2026-10-29: B, semua 503 | Selesai |
 | Cakupan spell | Tingkat A dan B dulu, C manual. Semua otomatis | A dan B dulu |
 | Ilustrasi | Minta Codex setelah TG1. Pakai ikon sementara dulu | Ikon sementara dulu, minta Codex paralel |
 | Tempat di app | Kartu di Home. Item di menu More | Kartu di Home bersama Learn |
