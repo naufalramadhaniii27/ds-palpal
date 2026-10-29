@@ -1899,7 +1899,6 @@ art/batch/icons/items/magic/varies/portfolio-keeper.png
 art/batch/icons/items/magic/very-rare/rotor-of-return.png
 art/batch/icons/items/magic/uncommon/sending-stone.png
 art/batch/icons/items/magic/common/spyglass-of-clairvoyance.png
-NEXT: batch-041 art/batch/icons/spells/level-2/alter-self.png
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
 art/batch/icons/spells/level-2/blur.png
