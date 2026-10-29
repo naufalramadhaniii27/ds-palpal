@@ -4496,3 +4496,10 @@ art/batch/icons/bastion/sacristy.png
 art/batch/icons/bastion/scriptorium.png
 art/batch/icons/bastion/stable.png
 art/batch/icons/bastion/teleportation-circle.png
+
+## batch-179 v3
+art/batch/emblems/subclass/extra/aberrant-mind.png
+art/batch/emblems/subclass/extra/arcane-archer.png
+art/batch/emblems/subclass/extra/circle-of-dreams.png
+art/batch/emblems/subclass/extra/circle-of-spores.png
+art/batch/emblems/subclass/extra/circle-of-stars.png
