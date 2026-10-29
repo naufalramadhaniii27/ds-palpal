@@ -2,6 +2,18 @@
 
 Satu dokumen berisi seluruh riset, keputusan, dan urutan kerja Learn. Log usulan U1 sampai U37 dan aturan "catat usulan baru" tetap di claude/rencana-menu-learn.md.
 
+## Status (2026-10-29, rilis 0.0.3)
+User 2026-10-29 17.22 WIB: Learn jadi prioritas dan dirilis secepatnya, kualitas tetap dijaga. Keputusan Claude untuk rilis 0.0.3:
+| Bagian | Status |
+|---|---|
+| F0 Fondasi | Selesai. Data dua bahasa (src/learn/45), progres `cs-learn-v1` ikut PF_KEYS, band di Home, blok tunda `learn`, gerbang bahasa di build (tools/learn_lint.js, U43 dan U48) |
+| F1 Mesin tantangan | Selesai: Tebak, Lihat (frame dari data, U38), Coba (pilih, lempar, nilai sendiri, grid, HP, dadu, dua d20), Kenapa, Find it on your sheet dengan Anchor Spotlight (U41), kamus popover, "I know this", XP yang tidak pernah turun |
+| F2 Jalur Inti | Selesai: Tavern, Rooftops, Forest, Campsite, Market, cek akhir 5 soal |
+| F4 Tempat Bonus | Meet Your Dice dan Windy Cliff ikut 0.0.3. Sisanya rilis berikutnya |
+| F3, F5, recap, corong Admin | Rilis berikutnya |
+| F6 Gambar Codex | Gambar sementara dari app (burung hantu di vig/empty/spells untuk Hoot). Diganti saat batch 234 sampai 236 jadi |
+| F7 | Tes otomatis selesai (tests/learn_flow.py: 3 skenario wajib, 2 ukuran, EN dan ID, Back, Motion off, tanpa anchor positioning, 3D dice). Uji main dengan orang sungguhan dan cek Safari di iPhone tetap tugas user |
+
 ## Tujuan dan batas
 | Hal | Keputusan |
 |---|---|

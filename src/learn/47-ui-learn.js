@@ -132,7 +132,7 @@ function close(){ var w=document.getElementById("learn"); if(!w) return; popHide
 var POPB=null;
 function popShow(btn){ var k=btn.getAttribute("data-lterm"), t=LEARN.terms[k], p=document.getElementById("lrnPop"); if(!t||!p) return; popHide();
   p.innerHTML='<b class="lrn-pn">'+esc(lrnL(t.name))+'</b><small>'+esc(U("book"))+': '+esc(t.book)+'</small><p>'+esc(lrnL(t.say))+'</p><div class="lrn-acts"><button type="button" class="btn press" data-lib-q="'+esc(t.lib)+'">'+ic("ui-book")+esc(U("open"))+'</button><button type="button" class="btn pri press" data-l="pop">'+esc(U("done"))+'</button></div>';
-  POPB=btn; if(spotAnchor()){ btn.style.setProperty("anchor-name","--lterm"); p.classList.add("anc"); } else p.classList.remove("anc");
+  p.setAttribute("aria-label",lrnL(t.name)); POPB=btn; if(spotAnchor()){ btn.style.setProperty("anchor-name","--lterm"); p.classList.add("anc"); } else p.classList.remove("anc");
   if(window.__topLayer) window.__topLayer(p); p.classList.add("on"); btn.setAttribute("aria-expanded","true"); var f=p.querySelector('[data-l="pop"]'); if(f) try{ f.focus({preventScroll:true}); }catch(e){} }
 function popHide(){ var p=document.getElementById("lrnPop"); if(!p||!p.classList.contains("on")) return; p.classList.remove("on"); try{ if(p.matches(":popover-open")) p.hidePopover(); }catch(e){} if(POPB){ POPB.style.removeProperty("anchor-name"); POPB.setAttribute("aria-expanded","false"); try{ POPB.focus({preventScroll:true}); }catch(e){} } POPB=null; }
 /* "Find it on your sheet": Learn steps aside, the sheet of the open character comes forward with a ring and a label, Back returns */

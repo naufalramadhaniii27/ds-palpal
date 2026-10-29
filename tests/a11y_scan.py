@@ -33,7 +33,7 @@ async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
         for W, H in ((390, 844), (1250, 850)):
-            ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block", has_touch=W < 600)
+            ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block", has_touch=W < 600, bypass_csp=True)  # T11: the CSP (Trusted Types) would block the injected axe script
             pg = await ctx.new_page(); pg.set_default_timeout(12000)
             await pg.goto(base); await pg.wait_for_timeout(600)
             await pg.evaluate("a=>{localStorage.clear();sessionStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',a)}", YUDHI)
