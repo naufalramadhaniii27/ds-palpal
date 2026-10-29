@@ -3097,3 +3097,12 @@ art/batch/icons/spells/level-6/disintegrate.png
 ## batch-223 v3
 art/batch/ui/brush-underline.png
 art/batch/ui/seal-wax.png
+
+## batch-206 v3
+
+art/batch/creatures/fey/fey-spirit.png
+art/batch/creatures/fiend/fiendish-spirit.png
+art/batch/creatures/undead/undead-spirit.png
+art/batch/creatures/beast/beast-of-the-land.png
+art/batch/creatures/beast/beast-of-the-sea.png
+
