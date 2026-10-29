@@ -3715,6 +3715,21 @@ art/batch/icons/spells/level-8/dark-star.png
 art/batch/icons/spells/level-8/holy-star-of-mystra.png
 art/batch/icons/spells/level-8/lightning-ring.png
 art/batch/icons/spells/level-8/maddening-darkness.png
+art/batch/icons/spells/level-8/holy-aura.png
+art/batch/icons/spells/level-8/mind-blank.png
+art/batch/icons/spells/level-8/demiplane.png
+art/batch/icons/spells/level-8/incendiary-cloud.png
+art/batch/icons/spells/level-8/maze.png
+art/batch/icons/spells/level-8/mighty-fortress.png
+art/batch/icons/spells/level-8/reality-break.png
+art/batch/icons/spells/level-8/tsunami.png
+art/batch/icons/spells/level-8/moment-of-prescience.png
+art/batch/icons/spells/level-8/telepathy.png
+art/batch/icons/spells/level-8/antipathy-sympathy.png
+art/batch/icons/spells/level-8/befuddlement.png
+art/batch/icons/spells/level-8/dominate-monster.png
+art/batch/icons/spells/level-8/feeblemind.png
+art/batch/icons/spells/level-8/glibness.png
 ## batch-232 v3
 art/batch/icons/feat-categories/epic-boon.png
 art/batch/icons/coins/coin-pile.png
@@ -3742,6 +3757,12 @@ art/batch/icons/items/magic/common/ersatz-eye.png
 art/batch/icons/items/magic/common/lock-of-trickery.png
 art/batch/icons/items/magic/uncommon/quiver-of-ehlonna.png
 art/batch/icons/items/magic/rare/bonecounter.png
+art/batch/icons/item-categories/adventuring-gear.png
+art/batch/icons/item-categories/tools.png
+art/batch/icons/item-categories/potion.png
+art/batch/icons/item-categories/wand-rod-and-staff.png
+art/batch/icons/items/magic/artifact/blackrazor.png
+
 ## batch-173 v3
 art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
 art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
@@ -3754,6 +3775,12 @@ art/batch/icons/features/subclass/path-of-the-berserker/mindless-rage.png
 art/batch/icons/features/subclass/path-of-the-berserker/retaliation.png
 art/batch/icons/features/subclass/path-of-the-giant/demiurgic-colossus.png
 
+art/batch/icons/features/subclass/path-of-the-battlerager/spiked-retribution.png
+art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
+art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
+art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
+art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
+
 ## batch-049 v3
 art/batch/icons/spells/level-4/storm-sphere.png
 art/batch/icons/spells/level-4/vitriolic-sphere.png
@@ -3761,3 +3788,9 @@ art/batch/icons/spells/level-4/wall-of-fire.png
 art/batch/icons/spells/level-4/distorted-distance.png
 art/batch/icons/spells/level-4/greater-invisibility.png
 
+## batch-137 v3
+art/batch/icons/feats/dual-wielder.png
+art/batch/icons/feats/durable.png
+art/batch/icons/feats/elemental-adept.png
+art/batch/icons/feats/fey-touched.png
+art/batch/icons/feats/grappler.png
