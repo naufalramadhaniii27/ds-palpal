@@ -189,3 +189,23 @@ Sudah jalan di 0.0.4: TG0 mesin (seed, replay, legendary action), TG0b 503 makhl
 | 10 | Ilustrasi makhluk, token, arena | TG6 | Menunggu Codex | Aturan HD proyek |
 
 Yang sengaja tidak dipakai di app (dicatat di t11-laporan): A8 content-visibility di sheet, A9 light-dark(), variable font untuk Barlow dan Courier Prime, Web Worker untuk Find a build.
+
+## Kandidat teknologi terbaru yang belum ada di daftar (dicek 2026-10-30 dari web.dev Baseline 2026 dan Interop 2026)
+Belum diputuskan user. Dukungan tiap fitur dicek ulang di caniuse sebelum dipakai.
+| Teknologi | Status | Pemakaian di app |
+|---|---|---|
+| Invoker commands (`command`, `commandfor`) | Ada di rencana A5, belum dipakai | Tombol buka dan tutup dialog, popover, Library tanpa JS |
+| Dialog dan popover baru (`closedby`, `popover="hint"`, `:open`) | Interop 2026 | Tutup dengan ketuk di luar, tooltip aturan dan glosarium |
+| Custom Highlight API | Baseline 2026 | Sorot kata yang dicari di Library dan Learn tanpa mengubah DOM |
+| `@scope` | Baseline 2026 | CSS builder, Learn, Training Ground tidak bocor ke sheet |
+| Container style queries | Baseline 2026 | Tampilan skin dan tema per komponen |
+| `contrast-color()` | Baseline 2026 | Teks di chip warna class dan cincin HP selalu terbaca, membantu kontras tinggi |
+| Advanced `attr()` | Interop 2026 | Warna dan ukuran dari atribut data (warna class, bar HP) |
+| `shape()` | Baseline 2026 | Bentuk heksagon skor dan token dengan sudut melengkung |
+| CSS `zoom` | Interop 2026 | Setelan ukuran teks 90 dan 130 lebih sederhana |
+| `:active-view-transition` | Baseline 2026 | Mengatur gaya selama transisi builder dan Training Ground |
+| IndexedDB `getAllRecords()` | Interop 2026 | Muat data penyimpanan lebih cepat saat app dibuka |
+| Reporting API dan CSP violation reports | Baseline 2026 | Pelanggaran CSP masuk ke Report a Problem |
+| JavaScript modules di service worker | Baseline 2026 | sw.js lebih rapi, tanpa efek ke pengguna |
+| WebTransport | Baseline 2026, Interop 2026 | Alternatif WebRTC untuk mode party (TG7) |
+| WebGPU untuk dadu 3D | Belum dicek | Renderer dadu lebih ringan bila didukung, cadangan WebGL2 |
