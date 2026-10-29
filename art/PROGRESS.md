@@ -4469,6 +4469,11 @@ art/batch/icons/items/tools/climbers-kit.png
 art/batch/icons/items/gear/costume.png
 art/batch/icons/items/gear/flask.png
 art/batch/icons/items/gear/grappling-hook.png
+art/batch/icons/items/gear/holy-water.png
+art/batch/icons/items/gear/hunting-trap.png
+art/batch/icons/items/gear/ink.png
+art/batch/icons/items/gear/ink-pen.png
+art/batch/icons/items/gear/jug.png
 
 ## batch-063 v3
 art/batch/icons/bastion/smithy.png
