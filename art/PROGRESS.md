@@ -3883,10 +3883,8 @@ art/batch/icons/spells/level-9/imprisonment.png
 art/batch/icons/spells/level-9/storm-of-vengeance.png
 NEXT: batch-234 art/batch/scenes/screen/learn-pc.png
 ## batch-234 v3
-art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
 art/batch/vignettes/learn/learn-build.png
-art/batch/scenes/screen/learn-pc.png
 art/batch/vignettes/learn/what-is-dnd.png
 art/batch/vignettes/learn/d20-test.png
 art/batch/vignettes/learn/advantage.png
@@ -3899,10 +3897,8 @@ art/batch/vignettes/learn/spells.png
 art/batch/vignettes/learn/explore-talk.png
 art/batch/vignettes/learn/owl-welcome.png
 art/batch/vignettes/learn/owl-explain.png
-art/batch/scenes/screen/learn-phone.png
 art/batch/vignettes/learn/learn-play.png
 art/batch/vignettes/learn/learn-build.png
-art/batch/scenes/screen/learn-pc.png
 art/batch/vignettes/learn/what-is-dnd.png
 art/batch/vignettes/learn/d20-test.png
 art/batch/vignettes/learn/advantage.png
