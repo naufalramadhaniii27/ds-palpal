@@ -2048,4 +2048,11 @@ art/batch/icons/spells/level-2/earthbind.png
 art/batch/icons/spells/level-2/enhance-ability.png
 art/batch/icons/spells/level-2/enlarge-reduce.png
 art/batch/icons/spells/level-2/heat-metal.png
+## batch-201 v3
+
+art/batch/creatures/beast/crocodile.png
+art/batch/creatures/beast/dire-wolf.png
+art/batch/creatures/beast/draft-horse.png
+art/batch/creatures/beast/elephant.png
+art/batch/creatures/beast/elk.png
 
