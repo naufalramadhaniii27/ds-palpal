@@ -12,7 +12,7 @@
 .vitals.m-heal{animation:v29heal .7s var(--ease-out)}
 button,.btn,.bb,.ifb,.chip,.tab{transition:transform .12s var(--ease-out),background-color .18s,border-color .18s,color .18s}
 button:active,.btn:active,.bb:active,.ifb:active,.chip:active{transform:scale(.96)}
-.sheet{transition-timing-function:var(--ease-out)!important}
+.sheet{transition-timing-function:var(--ease-out)}
 @keyframes v29in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 .ask .askb{animation:v29in .22s var(--ease-out)}
 @media (prefers-reduced-motion:reduce){.vitals.hp0,#hpBox.hp0,.vb-hp.hp0{animation:none}#hpGhost{transition:none}.vitals.m-hit,.vitals.m-heal,.ask .askb{animation:none}button:active,.btn:active,.bb:active,.ifb:active,.chip:active{transform:none}}
@@ -78,7 +78,7 @@ button:active,.btn:active,.bb:active,.ifb:active,.chip:active{transform:scale(.9
 /* search button: quiet */
 :root[data-skin="ddb"] .srchfab{background:var(--panel-2);color:#fff;border:1px solid var(--line-2);box-shadow:0 4px 12px rgba(0,0,0,.4)}
 /* focus ring differs from borders */
-:root[data-skin="ddb"] :focus-visible{outline:2px solid var(--focus)!important;outline-offset:2px}
+:root[data-skin="ddb"] :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 /* save rows: icon and label on one line */
 :root[data-skin="ddb"] .saves .tx{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
 :root[data-skin="ddb"] .saves .tx svg.ico,:root[data-skin="ddb"] .ab .k svg.ico{margin:0}

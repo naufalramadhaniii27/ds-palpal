@@ -1,7 +1,7 @@
 /* v31 p01 */
 /* B1: rows. The number button stretches an invisible layer over its row, so the whole row opens the breakdown. Name and pin stay on top */
 :root[data-skin="ddb"] .saves .row,:root[data-skin="ddb"] #skills .row,:root[data-skin="ddb"] #senses .sense,:root[data-skin="ddb"] #speeds .sense{position:relative;min-height:44px;padding-top:0;padding-bottom:0;border-radius:0;font-size:var(--fs2)}
-:root[data-skin="ddb"] .saves .row .bonus.bd,:root[data-skin="ddb"] #skills .row .bonus.bd,:root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus{position:static;display:inline-flex;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px;height:auto;margin-left:auto;padding:0 2px;border:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;text-align:right;font-size:var(--fs3)}
+:root[data-skin="ddb"] .saves .row .bonus.bd,:root[data-skin="ddb"] #skills .row .bonus.bd,:root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus{position:static;display:inline-flex;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px;height:auto;margin-left:auto;padding:0 2px;border:0;background:transparent;box-shadow:none;transform:none;text-align:right;font-size:var(--fs3)}
 :root[data-skin="ddb"] .saves .row .bonus.bd::after,:root[data-skin="ddb"] #skills .row .bonus.bd::after,:root[data-skin="ddb"] #senses .sense .bonus.bd::after{content:"";position:absolute;inset:0;z-index:0;cursor:pointer}
 :root[data-skin="ddb"] .saves .row .tx,:root[data-skin="ddb"] #skills .row .tx,:root[data-skin="ddb"] #skills .row .pinb,:root[data-skin="ddb"] #senses .sense .tx{position:relative;z-index:1}
 :root[data-skin="ddb"] #senses .sense .bonus.bd,:root[data-skin="ddb"] #speeds .sense .bonus{order:3}
@@ -367,9 +367,9 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 :root[data-skin="ddb"] body,:root[data-skin="ddb"] button,:root[data-skin="ddb"] input,:root[data-skin="ddb"] select,:root[data-skin="ddb"] textarea{font-family:var(--f-sans)}
 
 /* v31 p98 */
-:root[data-skin="ddb"] .bnav-ind,:root[data-skin="ddb"] #tabInd{background:transparent!important;background-image:none!important}
+:root[data-skin="ddb"] .bnav-ind,:root[data-skin="ddb"] #tabInd{background:transparent;background-image:none}
 :root[data-skin="ddb"] .bnav-ind::before{background:var(--ink,#fff)!important;width:28px}
-:root[data-skin="ddb"] #tabInd{background:var(--ink,#fff)!important}
+:root[data-skin="ddb"] #tabInd{background:var(--ink,#fff)}
 
 /* v31 p99 */
 .hcredit{margin:16px 0 0;text-align:center;font-size:max(12px,calc(12px*var(--tz,1)));letter-spacing:.04em;color:var(--ink-2,var(--muted,#9aa3ab))}

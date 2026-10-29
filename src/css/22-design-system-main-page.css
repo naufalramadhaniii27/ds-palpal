@@ -16,13 +16,13 @@
 
 /* A2-A4 type and numbers */
 :root[data-skin="ddb"] :is(.ab .m,.tile .v,#hpCur,.abox){font-variant-numeric:tabular-nums}
-:root[data-skin="ddb"] .ab .m{font-weight:800!important;letter-spacing:-.01em}
+:root[data-skin="ddb"] .ab .m{font-weight:800;letter-spacing:-.01em}
 :root[data-skin="ddb"] :is(#p-main,#p-skills,#sheet) h2:not(.ptitle){letter-spacing:.03em}
 /* A5 an icon chip in front of each card title */
 :root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle)>svg:first-child,:root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle) .ico:first-child{box-sizing:content-box;padding:6px;border-radius:10px;background:rgba(var(--pl-rgb),.16);color:rgb(var(--pl-rgb));box-shadow:inset 0 0 0 1px rgba(var(--pl-rgb),.3)}
 /* B1 identity: portrait frame and XP bar in the class colour */
-:root[data-skin="ddb"] .photo{box-shadow:0 0 0 2px rgba(var(--pl-rgb),.75),0 0 0 6px rgba(var(--pl-rgb),.14),0 0 26px rgba(var(--pl-rgb),.25),0 12px 28px -8px rgba(0,0,0,.7)!important}
-:root[data-skin="ddb"] .xpbar{height:8px!important;border-radius:999px!important;background:rgba(0,0,0,.35)!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
+:root[data-skin="ddb"] .photo{box-shadow:0 0 0 2px rgba(var(--pl-rgb),.75),0 0 0 6px rgba(var(--pl-rgb),.14),0 0 26px rgba(var(--pl-rgb),.25),0 12px 28px -8px rgba(0,0,0,.7)}
+:root[data-skin="ddb"] .xpbar{height:8px;border-radius:999px!important;background:rgba(0,0,0,.35);box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
 :root[data-skin="ddb"] .xpbar>*{border-radius:999px!important;background:linear-gradient(90deg,color-mix(in srgb,rgb(var(--pl-rgb)) 60%,#fff),rgb(var(--pl-rgb)))!important;box-shadow:0 0 10px rgba(var(--pl-rgb),.6)}
 /* B2 Hit Points: a ring gauge with the state */
 :root[data-skin="ddb"] .hp-big{position:relative;padding-right:96px}
@@ -38,10 +38,10 @@ html:not([data-skin="ddb"]) .mi-hpg,html:not([data-skin="ddb"]) .mi-hpi{display:
 :root[data-skin="ddb"] #abil .ab::before{content:"";position:absolute;left:50%;top:50%;width:70px;height:70px;margin:-36px 0 0 -36px;border-radius:50%;pointer-events:none;z-index:-1;
   background:radial-gradient(circle,rgba(255,255,255,.07),transparent 65%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.09),0 0 0 6px rgba(255,255,255,.025)}
 :root[data-skin="ddb"] #abil .ab.key::before{box-shadow:inset 0 0 0 1.5px rgba(226,170,76,.45),0 0 0 6px rgba(226,170,76,.06),0 0 22px rgba(226,170,76,.18)}
-:root[data-skin="ddb"] #abil .ab .s{border-radius:999px!important;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04))!important;box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2)!important}
+:root[data-skin="ddb"] #abil .ab .s{border-radius:999px!important;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2)}
 /* B4 Armor Class shield glows in the class colour; the other tiles get a small coloured cap */
 :root[data-skin="ddb"] .tile.ac svg{filter:drop-shadow(0 0 8px rgba(var(--pl-rgb),.55))}
-:root[data-skin="ddb"] .tile:not(.ac){box-shadow:inset 0 2px 0 rgba(var(--pl-rgb),.45),0 10px 22px -8px rgba(0,0,0,.55)!important}
+:root[data-skin="ddb"] .tile:not(.ac){box-shadow:inset 0 2px 0 rgba(var(--pl-rgb),.45),0 10px 22px -8px rgba(0,0,0,.55)}
 /* B5 Saving Throws: proficient saves light up */
 :root[data-skin="ddb"] .sv{border-radius:999px}
 /* B6 conditions take their own colour */
@@ -61,14 +61,14 @@ html:not([data-skin="ddb"]) .mi-hpg,html:not([data-skin="ddb"]) .mi-hpi{display:
 :root[data-skin="ddb"] #conds .chip.on[data-info="g:Unconscious"]{--cc:138,160,200}
 :root[data-skin="ddb"] #conds .chip.on[data-info^="g:"]{background:linear-gradient(180deg,rgba(var(--cc,214,69,59),.28),rgba(var(--cc,214,69,59),.1))!important;border-color:rgba(var(--cc,214,69,59),.6)!important;color:#fff!important;box-shadow:0 0 14px -4px rgba(var(--cc,214,69,59),.7),inset 0 1px 0 rgba(255,255,255,.15)!important}
 :root[data-skin="ddb"] #conds .chip.on[data-info^="g:"] svg{color:rgb(var(--cc,214,69,59))}
-:root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1!important}
-:root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px)!important;border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)!important}
+:root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1}
+:root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%);background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px);border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}
 /* detail panels: a four-up strip is too tight in a side panel or on a phone, so it goes two by two there (this was cramped in the original too) */
 #sheet:not(.wide) .dc-strip:not(.dc-s1):not(.dc-s2){grid-template-columns:repeat(2,minmax(0,1fr))!important}
 :root[data-skin="ddb"] #sheet .dc-cell{background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
 :root[data-skin="ddb"] #sheet .dc-cell b{font-size:1.05em}
 /* the left column was a tall dark box stretched to the height of the Actions list: now its cards stand on their own */
-:root[data-skin="ddb"] .side{background:transparent!important;border-color:transparent!important;box-shadow:none!important;align-self:start}
+:root[data-skin="ddb"] .side{background:transparent!important;border-color:transparent!important;box-shadow:none;align-self:start}
 :root[data-skin="ddb"] .hp-big.mi-hpn{padding-right:64px}
 .hp-big.mi-hpn .mi-hpg,.hp-big.mi-hpn .mi-hpi{width:56px;height:56px;margin-top:-28px}
 .hp-big.mi-hpn .mi-hpg{-webkit-mask:radial-gradient(circle,transparent 23px,#000 24px);mask:radial-gradient(circle,transparent 23px,#000 24px)}

@@ -54,7 +54,7 @@ html:not(.mi-off):not(.mi-lite) .es-art path,html:not(.mi-off):not(.mi-lite) .es
 @supports (animation-timeline:view()){
   html:not(.mi-off):not(.mi-lite) #homeV .hgrid .hcard{animation:hxCardIn linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
 }
-@media (prefers-reduced-motion:reduce){#homeV .hgrid .hcard{animation:none!important}}
+@media (prefers-reduced-motion:reduce){#homeV .hgrid .hcard{animation:none}}
 /* T3: Add XP and Level Up overlapped at 390 (three columns inside the portrait card). Phones drop the icon and use the 14 step */
 @media (max-width:480px){
   #app .idcard .xpbtns .xpb svg.ico{display:none!important}

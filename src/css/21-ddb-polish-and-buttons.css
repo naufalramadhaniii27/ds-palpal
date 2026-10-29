@@ -1,27 +1,27 @@
 /* === Sheet polish (D&D Beyond skin): the mini window card language. Static styling, no motion === */
 /* === Polish v1: the mini window's card language on the D&D Beyond skin. Static styling only === */
 :root[data-skin="ddb"]{--pl-r:16px;--pl-hi:linear-gradient(165deg,rgba(255,255,255,.085),rgba(255,255,255,.015) 45%,rgba(255,255,255,0));--pl-sh:0 14px 34px rgba(0,0,0,.42),0 2px 6px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08);--pl-bd:rgba(255,255,255,.085)}
-:root[data-skin="ddb"] body{background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.4px)!important;background-size:22px 22px!important;background-attachment:scroll!important}
+:root[data-skin="ddb"] body{background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.4px);background-size:22px 22px;background-attachment:scroll}
 /* cards */
 :root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){border-radius:var(--pl-r)!important;background-image:var(--pl-hi)!important;box-shadow:var(--pl-sh)!important;border-color:var(--pl-bd)!important}
 :root[data-skin="ddb"] :is(.tile,.ab){border-radius:12px!important;background-image:linear-gradient(170deg,rgba(255,255,255,.06),rgba(255,255,255,0) 55%)!important;box-shadow:0 6px 16px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)!important}
-:root[data-skin="ddb"] .ab.key{box-shadow:0 0 0 1px rgba(226,170,76,.55),0 0 18px rgba(226,170,76,.18),0 6px 16px rgba(0,0,0,.25)!important}
+:root[data-skin="ddb"] .ab.key{box-shadow:0 0 0 1px rgba(226,170,76,.55),0 0 18px rgba(226,170,76,.18),0 6px 16px rgba(0,0,0,.25)}
 /* Heal / Damage like the mini window */
-:root[data-skin="ddb"] #healBtn{background:linear-gradient(180deg,#38b06b,#23804b)!important;border-color:transparent!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(56,176,107,.3)!important}
-:root[data-skin="ddb"] #dmgBtn{background:linear-gradient(180deg,#e2554a,#a92f26)!important;border-color:transparent!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(226,85,74,.3)!important}
+:root[data-skin="ddb"] #healBtn{background:linear-gradient(180deg,#38b06b,#23804b);border-color:transparent!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(56,176,107,.3)}
+:root[data-skin="ddb"] #dmgBtn{background:linear-gradient(180deg,#e2554a,#a92f26);border-color:transparent!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(226,85,74,.3)}
 :root[data-skin="ddb"] #hpAmt{border-radius:12px!important}
 :root[data-skin="ddb"] .stepper{border-radius:12px!important;overflow:hidden}
 /* HP bar */
 :root[data-skin="ddb"] #hpBar,:root[data-skin="ddb"] .vitals .bar{border-radius:999px!important}
 /* attack boxes */
-:root[data-skin="ddb"] .abox{border-radius:12px!important;border-color:rgba(255,255,255,.1)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0))!important;box-shadow:0 3px 10px rgba(0,0,0,.22)!important}
+:root[data-skin="ddb"] .abox{border-radius:12px!important;border-color:rgba(255,255,255,.1)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0));box-shadow:0 3px 10px rgba(0,0,0,.22)}
 /* chips and pills */
 :root[data-skin="ddb"] :is(.ifb,.chip,.cmb-tab){border-radius:999px!important}
 :root[data-skin="ddb"] .ifil{border-radius:999px!important}
 :root[data-skin="ddb"] :is(.btn,.bb,.hbk,.thb){border-radius:12px!important}
 :root[data-skin="ddb"] #actBody button[data-info^="g:"]:not(.lk):not(.tx){border-radius:999px!important}
 /* bottom bar */
-:root[data-skin="ddb"] #vbar .vb{border-radius:12px!important;background-image:var(--pl-hi)!important}
+:root[data-skin="ddb"] #vbar .vb{border-radius:12px!important;background-image:var(--pl-hi)}
 :root[data-skin="ddb"] .bnav button.on::after{content:"";position:absolute;left:30%;right:30%;bottom:3px;height:3px;border-radius:4px;background:rgb(var(--pl-rgb));box-shadow:0 0 10px rgb(var(--pl-rgb))}
 :root[data-skin="ddb"] .bnav button{position:relative}
 /* builder */
@@ -31,7 +31,7 @@
 :root[data-skin="ddb"] .sprog.ok{background:rgba(76,194,122,.18)!important;color:#7fdca2!important}
 :root[data-skin="ddb"] #bld :is(input.btx,select.dd){border-radius:12px!important}
 :root[data-skin="ddb"] #bld .foot button,:root[data-skin="ddb"] #bld .tosheet{border-radius:12px!important}
-:root[data-skin="ddb"] #bld .tosheet,:root[data-skin="ddb"] #bld .foot .pri{background:linear-gradient(180deg,rgb(var(--pl-rgb)),color-mix(in srgb,rgb(var(--pl-rgb)) 70%,#000))!important;box-shadow:0 6px 16px rgba(var(--pl-rgb),.35)!important;border-color:transparent!important}
+:root[data-skin="ddb"] #bld .tosheet,:root[data-skin="ddb"] #bld .foot .pri{background:linear-gradient(180deg,rgb(var(--pl-rgb)),color-mix(in srgb,rgb(var(--pl-rgb)) 70%,#000));box-shadow:0 6px 16px rgba(var(--pl-rgb),.35);border-color:transparent!important}
 
 :root[data-skin="ddb"] .ptitle{letter-spacing:.04em}
 :root[data-skin="ddb"] .acc{background-color:color-mix(in srgb,var(--panel) 92%,#fff 8%)!important}
@@ -43,11 +43,11 @@
 :root[data-skin="ddb"] .idcard .id-name,:root[data-skin="ddb"] #idName{background:linear-gradient(180deg,#ffffff,#c9d3dd);-webkit-background-clip:text;background-clip:text;color:transparent}
 :root[data-skin="ddb"] #hpCur{color:#f4f7fa}/* no gradient text here: the rolling digits move inside it, and clipped text would freeze them at 0 */
 :root[data-skin="ddb"] :is(.tile,.ab){background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
-:root[data-skin="ddb"] .ab.key{background-image:linear-gradient(180deg,rgba(255,200,90,.16),rgba(255,200,90,0) 70%)!important;border-color:rgba(226,170,76,.7)!important;box-shadow:0 0 0 1px rgba(226,170,76,.4),0 0 24px rgba(226,170,76,.22),0 10px 22px -8px rgba(0,0,0,.55)!important}
-:root[data-skin="ddb"] .abox{background-color:color-mix(in srgb,var(--panel) 80%,#9fb4c8 20%)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)!important}
-:root[data-skin="ddb"] .abox.wide{box-shadow:inset 0 -2px 0 rgba(var(--pl-rgb),.65),0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)!important}
-:root[data-skin="ddb"] .ifil{background:rgba(0,0,0,.25)!important;border:1px solid rgba(255,255,255,.08)!important;padding:4px!important}
-:root[data-skin="ddb"] .ifb.on{background:linear-gradient(180deg,#ffffff,#dfe5ea)!important;color:#14181b!important;box-shadow:0 4px 12px rgba(0,0,0,.35)!important}
+:root[data-skin="ddb"] .ab.key{background-image:linear-gradient(180deg,rgba(255,200,90,.16),rgba(255,200,90,0) 70%);border-color:rgba(226,170,76,.7)!important;box-shadow:0 0 0 1px rgba(226,170,76,.4),0 0 24px rgba(226,170,76,.22),0 10px 22px -8px rgba(0,0,0,.55)}
+:root[data-skin="ddb"] .abox{background-color:color-mix(in srgb,var(--panel) 80%,#9fb4c8 20%);border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)}
+:root[data-skin="ddb"] .abox.wide{box-shadow:inset 0 -2px 0 rgba(var(--pl-rgb),.65),0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)}
+:root[data-skin="ddb"] .ifil{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);padding:4px}
+:root[data-skin="ddb"] .ifb.on{background:linear-gradient(180deg,#ffffff,#dfe5ea)!important;color:#14181b!important;box-shadow:0 4px 12px rgba(0,0,0,.35)}
 :root[data-skin="ddb"] #vbar{border-radius:20px 20px 0 0!important}
 :root[data-skin="ddb"] .bnav{background:color-mix(in srgb,var(--panel) 92%,#000)!important;box-shadow:0 -10px 30px rgba(0,0,0,.45)}
 :root[data-skin="ddb"] .bnav button.on{color:#fff}
@@ -58,44 +58,44 @@
 :root[data-skin="ddb"] #bld .brand,:root[data-skin="ddb"] #steps{background:color-mix(in srgb,var(--panel) 92%,#000)!important;box-shadow:0 8px 24px -10px rgba(0,0,0,.6)}
 @media (min-width:1200px){:root[data-skin="ddb"] #bld main{max-width:980px!important}}
 /* === Polish v3: hierarchy and depth === */
-:root[data-skin="ddb"] .photo{border-radius:16px!important;box-shadow:0 0 0 2px rgba(var(--pl-rgb),.65),0 0 0 5px rgba(var(--pl-rgb),.12),0 12px 28px -8px rgba(0,0,0,.7)!important;background-image:radial-gradient(circle at 50% 30%,rgba(255,255,255,.08),transparent 70%)!important}
+:root[data-skin="ddb"] .photo{border-radius:16px!important;box-shadow:0 0 0 2px rgba(var(--pl-rgb),.65),0 0 0 5px rgba(var(--pl-rgb),.12),0 12px 28px -8px rgba(0,0,0,.7);background-image:radial-gradient(circle at 50% 30%,rgba(255,255,255,.08),transparent 70%)}
 :root[data-skin="ddb"] .hp-big{text-shadow:none}
-:root[data-skin="ddb"] .arow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)!important;border-radius:14px;padding:10px 12px!important;margin:0 0 8px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
-:root[data-skin="ddb"] .fcat{position:relative;padding:2px 0 10px!important;margin-bottom:6px!important;border:0!important;letter-spacing:.04em}
+:root[data-skin="ddb"] .arow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:10px 12px;margin:0 0 8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+:root[data-skin="ddb"] .fcat{position:relative;padding:2px 0 10px;margin-bottom:6px;border:0;letter-spacing:.04em}
 :root[data-skin="ddb"] .fcat::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;border-radius:4px;background:linear-gradient(90deg,rgb(var(--pl-rgb)),rgba(var(--pl-rgb),.2));box-shadow:0 0 10px rgba(var(--pl-rgb),.55)}
 :root[data-skin="ddb"] .fcat svg{color:rgb(var(--pl-rgb))}
-:root[data-skin="ddb"] .ahead{padding:0 12px!important;border:0!important;margin-bottom:6px;font-size:11px!important;letter-spacing:.14em;color:var(--muted)!important;opacity:.85}
-:root[data-skin="ddb"] .abox:not(.wide){color:#fff!important;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02))!important;border-color:rgba(124,182,255,.35)!important}
-:root[data-skin="ddb"] .abox.wide{background-image:linear-gradient(180deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),.03))!important;border-color:rgba(var(--pl-rgb),.4)!important}
-:root[data-skin="ddb"] .bnav{border-radius:20px 20px 0 0!important;border-top:1px solid rgba(255,255,255,.1)!important}
-:root[data-skin="ddb"] .bnav button.on{background:radial-gradient(60% 70% at 50% 100%,rgba(var(--pl-rgb),.28),transparent 70%)!important;border-radius:16px}
+:root[data-skin="ddb"] .ahead{padding:0 12px;border:0;margin-bottom:6px;font-size:11px;letter-spacing:.14em;color:var(--muted);opacity:.85}
+:root[data-skin="ddb"] .abox:not(.wide){color:#fff;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02));border-color:rgba(124,182,255,.35)!important}
+:root[data-skin="ddb"] .abox.wide{background-image:linear-gradient(180deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),.03));border-color:rgba(var(--pl-rgb),.4)!important}
+:root[data-skin="ddb"] .bnav{border-radius:20px 20px 0 0!important;border-top:1px solid rgba(255,255,255,.1)}
+:root[data-skin="ddb"] .bnav button.on{background:radial-gradient(60% 70% at 50% 100%,rgba(var(--pl-rgb),.28),transparent 70%);border-radius:16px}
 :root[data-skin="ddb"] .bnav button.on::after{bottom:4px!important}
 :root[data-skin="ddb"] #vbar{border-radius:20px 20px 0 0!important}
 :root[data-skin="ddb"] .ab .k,:root[data-skin="ddb"] .tile .k{letter-spacing:.08em}
-:root[data-skin="ddb"] .vitals .bar{height:10px!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.45),0 0 14px -4px rgba(56,176,107,.6)}
+:root[data-skin="ddb"] .vitals .bar{height:10px;box-shadow:inset 0 1px 3px rgba(0,0,0,.45),0 0 14px -4px rgba(56,176,107,.6)}
 
 /* === Button system (D&D Beyond skin): one look for every button family === */
 :root[data-skin="ddb"] :is(#app,#sheet,#bld) :is(.btn:not(.pri):not(.heal):not(.dmg):not(.lvup),.cbopen,.xpb,.ibtn,.ordb,.dmore,.cmb-add,.cmb-pen){
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px!important;border-radius:12px!important;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px!important;
   background-color:color-mix(in srgb,var(--panel) 80%,#9fb4c8 20%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01))!important;
-  border:1px solid rgba(255,255,255,.13)!important;color:#eef2f5!important;box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12)!important}
-:root[data-skin="ddb"] :is(#app,#sheet,#bld) .btn.pri:not(.lvup){padding:0 16px!important;border-radius:12px!important;border-color:transparent!important;background:linear-gradient(180deg,rgb(var(--pl-rgb)),color-mix(in srgb,rgb(var(--pl-rgb)) 70%,#000))!important;color:#fff!important;box-shadow:0 8px 18px -6px rgba(var(--pl-rgb),.55),inset 0 1px 0 rgba(255,255,255,.2)!important}
+  border:1px solid rgba(255,255,255,.13)!important;color:#eef2f5;box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12)}
+:root[data-skin="ddb"] :is(#app,#sheet,#bld) .btn.pri:not(.lvup){padding:0 16px;border-radius:12px!important;border-color:transparent!important;background:linear-gradient(180deg,rgb(var(--pl-rgb)),color-mix(in srgb,rgb(var(--pl-rgb)) 70%,#000));color:#fff;box-shadow:0 8px 18px -6px rgba(var(--pl-rgb),.55),inset 0 1px 0 rgba(255,255,255,.2)}
 :root[data-skin="ddb"] .ordb{flex:none}
-:root[data-skin="ddb"] .fmore{border-radius:999px!important;padding:0 14px 0 10px!important;background:rgba(90,169,255,.1)!important;min-height:36px}
-:root[data-skin="ddb"] .icoins{border-radius:14px!important;background:rgba(0,0,0,.28)!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:inset 0 2px 8px rgba(0,0,0,.35)!important}
+:root[data-skin="ddb"] .fmore{border-radius:999px!important;padding:0 14px 0 10px;background:rgba(90,169,255,.1);min-height:36px}
+:root[data-skin="ddb"] .icoins{border-radius:14px!important;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 2px 8px rgba(0,0,0,.35)}
 @media (hover:hover) and (pointer:fine){
   :root[data-skin="ddb"] :is(#app,#sheet,#bld) :is(.btn:not(.pri):not(.heal):not(.dmg):not(.lvup),.cbopen,.xpb,.ibtn,.ordb,.dmore):hover{background-image:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03))!important;border-color:rgba(255,255,255,.22)!important}
   :root[data-skin="ddb"] :is(#app,#sheet,#bld) .btn.pri:not(.lvup):hover{filter:brightness(1.08)}
 }
 
 /* === Gloss for every button (D&D Beyond skin) === */
-:root[data-skin="ddb"] .btn.heal{background:linear-gradient(180deg,#38b06b,#23804b)!important;border-color:transparent!important;color:#fff!important;border-radius:12px!important;box-shadow:0 6px 16px -4px rgba(56,176,107,.45),inset 0 1px 0 rgba(255,255,255,.22)!important}
-:root[data-skin="ddb"] .btn.dmg{background:linear-gradient(180deg,#e2554a,#a92f26)!important;border-color:transparent!important;color:#fff!important;border-radius:12px!important;box-shadow:0 6px 16px -4px rgba(226,85,74,.45),inset 0 1px 0 rgba(255,255,255,.22)!important}
+:root[data-skin="ddb"] .btn.heal{background:linear-gradient(180deg,#38b06b,#23804b)!important;border-color:transparent!important;color:#fff!important;border-radius:12px!important;box-shadow:0 6px 16px -4px rgba(56,176,107,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+:root[data-skin="ddb"] .btn.dmg{background:linear-gradient(180deg,#e2554a,#a92f26)!important;border-color:transparent!important;color:#fff!important;border-radius:12px!important;box-shadow:0 6px 16px -4px rgba(226,85,74,.45),inset 0 1px 0 rgba(255,255,255,.22)}
 /* every other button gets the same glossy face; its own colour stays underneath */
 :root[data-skin="ddb"] :is(#app,#sheet,#bld,#homeV,#moreMenu,.ask,.toast) button:not(.bx):not(.pip):not(.tx):not(.lk):not(.iname):not(.photo):not(.tab):not(.st):not(.islot):not(.ab):not(.tile):not(.abox):not(.heal):not(.dmg):not(.pri):not(.lvup):not(.hcreate):not(.hlink):not(.fmore):not(.ifb.on):not(.cmb-tab.on):not(.thb.on):not(.ichk):not(.lu-box):not([role="tab"]):not(.bnav button):not(.hcard button):not(.hp-big button):not(#hpMax):not(.vb-hp button){
-  background-image:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.025) 52%,rgba(0,0,0,.08))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 10px -5px rgba(0,0,0,.55)!important;border-color:rgba(255,255,255,.12)!important}
-:root[data-skin="ddb"] :is(.ifb.on,.cmb-tab.on){box-shadow:0 4px 12px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.6)!important}
+  background-image:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.025) 52%,rgba(0,0,0,.08));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 10px -5px rgba(0,0,0,.55);border-color:rgba(255,255,255,.12)!important}
+:root[data-skin="ddb"] :is(.ifb.on,.cmb-tab.on){box-shadow:0 4px 12px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.6)}
 :root[data-skin="ddb"] .cmb-tab.on{background:linear-gradient(180deg,#ffc24a,#e09a12)!important;color:#2b1a00!important;border-color:transparent!important}
 /* Combat View */
 :root[data-skin="ddb"] #cbv .cbh>div{border-radius:14px!important;background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}

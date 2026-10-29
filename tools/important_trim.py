@@ -9,13 +9,13 @@ An !important is needed on an element when, without it, it would lose: the eleme
 (JS sets it), or another normal declaration of the same property matches the element with higher specificity, or with equal
 specificity later in the page. It is removable only when it matched at least one element on the screens and was needed on none.
 Unclear cases stay: rules inside @container, selectors with pseudo-elements, :has(), or any selector the browser cannot query.
-Files with print, motion and effect rules (06, 13, 19 to 27, 29) are left alone: the screens do not cover print and motion."""
+Files with print, motion and effect rules (06, 19, 20, 23 to 27, 29) are left alone: the screens do not cover print and motion, and effects set inline styles only while they move. Print rules elsewhere sit in @media print, which does not match on screen, so they stay."""
 import asyncio, json, os, re, sys, functools, http.server, socket, threading
 from playwright.async_api import async_playwright
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 FIX = open(os.path.join(ROOT, "tests", "fixtures", "yudhi-v3.json"), encoding="utf-8").read()
-SKIP = re.compile(r"css/(06|13|19|2[0-7]|29)-")
+SKIP = re.compile(r"css/(06|19|20|23|24|25|26|27|29)-")
 
 ANALYSE = r"""()=>{
   var order=0, rules=[];
@@ -93,10 +93,11 @@ def apply(path):
     for fn in files:
         if SKIP.search(fn): continue
         p = os.path.join(ROOT, "src", fn); t = open(p, encoding="utf-8").read(); out = []; i = 0
-        for m in re.finditer(r"([^{}@/][^{}]*)\{([^{}]*)\}", t):
+        blank = re.sub(r"/\*.*?\*/", lambda c: " " * len(c.group(0)), t, flags=re.S)  # comments become spaces, positions stay
+        for m in re.finditer(r"([^{}@/][^{}]*)\{([^{}]*)\}", blank):
             sel = norm(m.group(1)); props = want.get(sel)
             if not props: continue
-            body = m.group(2)
+            body = t[m.start(2):m.end(2)]
             def fix(dm):
                 nonlocal n
                 name = dm.group(1).strip().lower()
