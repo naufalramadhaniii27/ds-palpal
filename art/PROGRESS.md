@@ -4122,6 +4122,11 @@ art/batch/icons/features/subclass/archfey-patron/misty-escape.png
 art/batch/icons/features/subclass/archfey-patron/steps-of-the-fey.png
 art/batch/icons/features/subclass/armorer/arcane-armor.png
 art/batch/icons/features/subclass/armorer/armor-model.png
+art/batch/icons/features/subclass/armorer/armor-modifications.png
+art/batch/icons/features/subclass/armorer/armorer-spells.png
+art/batch/icons/features/subclass/armorer/extra-attack.png
+art/batch/icons/features/subclass/armorer/improved-armorer.png
+art/batch/icons/features/subclass/armorer/perfected-armor.png
 ## batch-139 v3
 art/batch/icons/feats/interception.png
 art/batch/icons/feats/protection.png
