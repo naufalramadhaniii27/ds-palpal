@@ -3779,6 +3779,11 @@ art/batch/icons/features/subclass/path-of-the-giant/giant-power.png
 art/batch/icons/features/subclass/path-of-the-giant/giants-havoc.png
 art/batch/icons/features/subclass/path-of-the-giant/mighty-impel.png
 art/batch/icons/features/subclass/path-of-the-storm-herald/raging-storm.png
+art/batch/icons/features/subclass/path-of-the-storm-herald/shielding-storm.png
+art/batch/icons/features/subclass/path-of-the-storm-herald/storm-aura.png
+art/batch/icons/features/subclass/path-of-the-storm-herald/storm-soul.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/aspect-of-the-beast.png
+art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-seeker.png
 
 
 ## batch-049 v3
