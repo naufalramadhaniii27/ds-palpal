@@ -2740,7 +2740,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -3283,6 +3282,12 @@ art/batch/creatures/celestial/giant-eagle.png
 art/batch/creatures/celestial/giant-elk.png
 art/batch/creatures/beast/giant-hyena.png
 art/batch/creatures/celestial/giant-owl.png
+art/batch/creatures/beast/giant-rat.png
+art/batch/creatures/beast/giant-scorpion.png
+art/batch/creatures/monstrosity/griffon.png
+art/batch/creatures/aberration/intellect-devourer.png
+art/batch/creatures/beast/jackal.png
+
 ## batch-228 v3
 art/batch/monsters/undead/wraith.png
 art/batch/monsters/undead/death-knight.png
@@ -3301,9 +3306,4 @@ art/batch/icons/spells/level-4/banishment.png
 art/batch/icons/spells/level-4/death-ward.png
 art/batch/icons/spells/level-4/freedom-of-movement.png
 art/batch/icons/spells/level-4/gate-seal.png
-art/batch/creatures/beast/giant-rat.png
-art/batch/creatures/beast/giant-scorpion.png
-art/batch/creatures/monstrosity/griffon.png
-art/batch/creatures/aberration/intellect-devourer.png
-art/batch/creatures/beast/jackal.png
 
