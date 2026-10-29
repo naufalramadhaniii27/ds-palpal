@@ -3019,3 +3019,9 @@ art/batch/icons/spells/level-3/wall-of-water.png
 art/batch/icons/spells/level-3/wind-wall.png
 art/batch/icons/spells/level-3/fear.png
 
+## batch-151 v3
+art/batch/icons/features/class/paladin/faithful-steed.png
+art/batch/icons/features/class/paladin/fighting-style.png
+art/batch/icons/features/class/paladin/lay-on-hands.png
+art/batch/icons/features/class/paladin/paladins-smite.png
+art/batch/icons/features/class/paladin/radiant-strikes.png
