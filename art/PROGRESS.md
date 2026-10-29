@@ -3710,6 +3710,11 @@ art/batch/icons/spells/level-8/befuddlement.png
 art/batch/icons/spells/level-8/dominate-monster.png
 art/batch/icons/spells/level-8/feeblemind.png
 art/batch/icons/spells/level-8/glibness.png
+art/batch/icons/spells/level-8/power-word-stun.png
+art/batch/icons/spells/level-8/dark-star.png
+art/batch/icons/spells/level-8/holy-star-of-mystra.png
+art/batch/icons/spells/level-8/lightning-ring.png
+art/batch/icons/spells/level-8/maddening-darkness.png
 ## batch-232 v3
 art/batch/icons/feat-categories/epic-boon.png
 art/batch/icons/coins/coin-pile.png
