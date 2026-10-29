@@ -6,7 +6,8 @@
 (function(){
   var D=document, BASE=new URL("vendor/dice/",location.href), box=null, loading=null, tray=null, hideT=0, queue=Promise.resolve();
   function webgl(){ try{ var c=D.createElement("canvas"); return !!(c.getContext("webgl2")||c.getContext("webgl")); }catch(e){ return false; } }
-  function acc(){ var v=getComputedStyle(D.documentElement).getPropertyValue("--acc").trim(); return /^#[0-9a-f]{6}$/i.test(v)?v:"#c23b22"; }
+  /* dice colour: garnet resin, the same in every skin (the skin accent was a grey green that hid the numbers). A skin can set --dice */
+  function acc(){ var v=getComputedStyle(D.documentElement).getPropertyValue("--dice").trim(); return /^#[0-9a-f]{6}$/i.test(v)?v:"#a3182b"; }
   function weak(){ return (navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2; }
   function trayEl(){ if(tray) return tray; tray=D.createElement("div"); tray.id="diceTray"; tray.setAttribute("aria-hidden","true"); D.body.appendChild(tray); return tray; }
   function load(){ if(loading) return loading; if(!webgl()) return Promise.resolve(null);

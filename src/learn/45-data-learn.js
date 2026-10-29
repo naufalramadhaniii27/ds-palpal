@@ -79,7 +79,9 @@ var LEARN={
     nextStop:{en:"Next stop",id:"Tempat berikutnya"},
     xpGot:{en:"You earned {x} XP.",id:"Kamu meraih {x} XP."},
     mapTitle:{en:"Map",id:"Peta"},
-    learn:{en:"Learn",id:"Belajar"}
+    learn:{en:"Learn",id:"Belajar"},
+    app:{en:"Know the app",id:"Kenali aplikasi"},
+    appSub:{en:"A short tour on your own sheet.",id:"Tur singkat di sheet-mu sendiri."}
   },
   /* glossary: friendly name first, the book word beside it, one sentence. lib = the search text for the same entry in the Library */
   terms:{
@@ -100,6 +102,8 @@ var LEARN={
   },
   /* the stops. img: a picture from the app until the Learn art is ready (pc and phone versions). core: on the main path */
   places:[
+    {id:"apptour",core:0,app:1,kind:"tour",img:"img/scn/screen/tour",icon:"party",
+     name:{en:"App Tour",id:"Tur Aplikasi"},goal:{en:"Find your way around your own sheet.",id:"Kenali sheet-mu sendiri."},steps:[]},
     {id:"tavern",core:1,img:"img/scn/background/entertainer",icon:"party",
      name:{en:"The Tavern",id:"Kedai"},goal:{en:"D&D is a story you make together.",id:"D&D itu cerita yang dibuat bersama."},
      steps:[
@@ -257,6 +261,17 @@ var LEARN={
       {t:"sheet",find:"text:Heroic Inspiration",say:{en:"Your sheet shows if you have Heroic Inspiration.",id:"Sheet-mu menunjukkan apakah kamu punya Heroic Inspiration."},label:{en:"Heroic Inspiration",id:"Heroic Inspiration"}}
      ]}
   ],
+  /* the App Tour (U52): runs on the person's own sheet with the spotlight (src/app/31). w = the words on a wide screen */
+  tour:{steps:[
+    {t:{en:"Your Hit Points. Type a number, then tap Damage or Heal.",id:"HP-mu. Ketik angka, lalu ketuk Damage atau Heal."}},
+    {t:{en:"Armor Class. An attack has to reach this number to hit you.",id:"Armor Class. Serangan harus mencapai angka ini untuk mengenaimu."}},
+    {t:{en:"Tap any number to see where it comes from. Try this one now.",id:"Ketuk angka mana pun untuk melihat asalnya. Coba yang ini."}},
+    {t:{en:"Now roll it. Your bonus is added for you.",id:"Sekarang lempar. Bonusmu langsung ditambahkan."}},
+    {t:{en:"Actions, Spells, Inventory and Notes live here. Swipe or tap to move.",id:"Actions, Spells, Inventory, dan Notes ada di sini. Geser atau ketuk untuk pindah."},w:{en:"Actions, Spells, Inventory and Notes live in these tabs.",id:"Actions, Spells, Inventory, dan Notes ada di tab ini."}},
+    {t:{en:"Rest after a fight. Rests bring back HP and uses.",id:"Istirahat setelah bertarung. Istirahat memulihkan HP dan pemakaian."}},
+    {t:{en:"More holds Settings, the Library and Export PDF.",id:"More berisi Settings, Library, dan Export PDF."},w:{en:"Settings changes the look and the rules of your sheet.",id:"Settings mengubah tampilan dan aturan sheet-mu."}}],
+   create:{en:"Make a character first. Create a Character opens the builder.",id:"Buat karakter dulu. Create a Character membuka builder."},
+   ui:{step:{en:"Step",id:"Langkah"},of:{en:"of",id:"dari"},skip:{en:"Skip tour",id:"Lewati tur"},back:{en:"Back",id:"Kembali"},next:{en:"Next",id:"Lanjut"},skipThis:{en:"Skip this",id:"Lewati"},done:{en:"Back to Learn",id:"Kembali ke Learn"}}},
   /* final check after the five core stops. a = index of the right answer */
   quiz:[
     {q:{en:"Which die do you roll to see if you succeed?",id:"Dadu mana yang kamu lempar untuk melihat berhasil atau tidak?"},opts:[{en:"d20",id:"d20"},{en:"d6",id:"d6"},{en:"Any die",id:"Dadu apa saja"}],a:0,

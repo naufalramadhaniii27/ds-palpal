@@ -3,6 +3,41 @@ import { Texture } from '@babylonjs/core/Materials/Textures/texture'
 import { CustomMaterial } from '@babylonjs/materials/custom/customMaterial';
 import { SerializationHelper } from '@babylonjs/core/Misc/decorators.serialization' /* T11 D1: moved in Babylon 9 */
 import { deepCopy } from '../helpers'
+import { RawCubeTexture } from '@babylonjs/core/Materials/Textures/rawCubeTexture'
+import { FresnelParameters } from '@babylonjs/core/Materials/fresnelParameters'
+import { Color3 } from '@babylonjs/core/Maths/math.color'
+
+/* T11 D1: glossy resin finish. A small studio light box made in code (no file, works offline and in the worker): a bright soft
+   panel above, a warm one at the side, dark below. The dice reflect it at their edges (fresnel), and the lights draw sharp highlights,
+   so they read as polished plastic dice instead of flat paint */
+function studioEnv(scene){
+  if(scene.__diceEnv) return scene.__diceEnv
+  const N = 64, faces = []
+  const dir = (f, u, v) => [[1,-v,-u],[-1,-v,u],[u,1,v],[u,-1,-v],[u,-v,1],[-u,-v,-1]][f]
+  const lamp = (d, L, w) => { const n = Math.hypot(d[0],d[1],d[2]), c = (d[0]*L[0]+d[1]*L[1]+d[2]*L[2])/n; return Math.pow(Math.max(0,c), w) }
+  for (let f = 0; f < 6; f++) {
+    const a = new Uint8Array(N*N*4)
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      const d = dir(f, (x+.5)/N*2-1, (y+.5)/N*2-1), n = Math.hypot(d[0],d[1],d[2]), up = d[1]/n
+      let r = 18 + 70*Math.max(0, up+.2), g = r, b = r + 8
+      const top = lamp(d, [-.3,1,.4], 24)*200, side = lamp(d, [.9,.3,-.3], 40)*150, spark = lamp(d, [.2,1,-.5], 900)*255
+      r += top + side*1.0 + spark; g += top + side*.85 + spark; b += top + side*.7 + spark
+      const i = (y*N+x)*4; a[i] = Math.min(255,r); a[i+1] = Math.min(255,g); a[i+2] = Math.min(255,b); a[i+3] = 255
+    }
+    faces.push(a)
+  }
+  scene.__diceEnv = new RawCubeTexture(scene, faces, N, 5 /* RGBA */, 0 /* UNSIGNED_BYTE */, true)
+  return scene.__diceEnv
+}
+function glossy(mat, scene){
+  mat.specularTexture = null /* the theme map dulled every highlight */
+  mat.specularColor = new Color3(1, 1, 1)
+  mat.specularPower = 96
+  mat.reflectionTexture = studioEnv(scene)
+  mat.reflectionTexture.level = .8
+  mat.reflectionFresnelParameters = new FresnelParameters({ bias: .18, power: 1.8, leftColor: Color3.White(), rightColor: Color3.Black() })
+  mat.useReflectionFresnelFromSpecular = false
+}
 
 // this is a monkey patch for cloning CustomMaterial in BabylonJS
 CustomMaterial.prototype.clone = function (name)  {
@@ -92,6 +127,7 @@ class ThemeLoader {
     }
   
     diceMatLight.allowShaderHotSwapping = false
+    glossy(diceMatLight, this.scene)
   
     // the magic that allows for the material color to be changed on instances
     diceMatLight.Vertex_Definitions(`
@@ -118,6 +154,7 @@ class ThemeLoader {
     }
     // this must be set again for some reason - does not clone
     diceMatDark.AddAttribute('customColor')
+    glossy(diceMatDark, this.scene)
   }
 
   async getTexture(type, options){

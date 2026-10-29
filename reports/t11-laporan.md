@@ -37,3 +37,14 @@ Rencana: claude/rencana-kerja-teknologi.md dan claude/rencana-kerja-learn.md. Br
 
 ## Perubahan urutan (user, 2026-10-29 17.22 WIB)
 Learn jadi prioritas dan dirilis secepatnya dengan kualitas tetap dijaga. Keputusan Claude: sesudah G2, langsung Learn F0 sampai F7. Rilis 0.0.3 berisi G0, G1, G2, dan Learn. G3, G4, dan G5 (termasuk pindah ke Workers) masuk rilis sesudahnya.
+
+## Learn untuk rilis 0.0.3 (2026-10-29)
+| Kerja | Hasil |
+|---|---|
+| F0 | src/learn (blok tunda `learn`), data EN dan ID, key `cs-learn-v1` ikut PF_KEYS, band di Home, jembatan `window.__app` (app berjalan di satu closure), gerbang bahasa di build (tools/learn_lint.js: 314 pasangan teks lolos) |
+| F1 dan F2 | Tavern, Rooftops, Forest, Campsite, Market, cek akhir 5 soal. Tebak, Lihat, Coba, Kenapa, kartu ringkas, kamus popover, Find it on your sheet (Anchor Spotlight dengan anchor positioning dan cadangan JS), "I know this", XP. Dadu memakai dadu 3D bila efek nyala |
+| F4 sebagian | Meet Your Dice dan Windy Cliff (Advantage, Disadvantage, saling batal, Heroic Inspiration) |
+| U52 Tour baru | Tour 7 titik di sheet sendiri, ketukan nyata, lemparan dibatalkan di akhir, satu kartu New here? di Home, Settings dan pencarian perintah bisa membuka Tour dan Learn |
+| Temuan | Tidak ada data karakter yang diubah Learn (dites). Sheet sendiri menambah detail item (type, cost) ke inventory setelah data builder dimuat, dengan atau tanpa Learn. a11y_scan gagal sejak CSP G1 karena axe disuntik, sekarang memakai bypass_csp (hanya di tes) |
+| Tes | learn_flow (3 skenario wajib x 2 ukuran, EN dan ID, Back, Escape, reload, Motion off, tanpa anchor positioning, dadu 3D), learn_a11y (axe 0 pelanggaran, tombol 44 px), tour_flow, version_label 0.0.3 |
+| Belum | F3 Forge Your Hero, F5 penghubung (Learn this, Which die, recap, corong Admin), Tempat Bonus lain, gambar Codex. Uji main orang sungguhan dan Safari di iPhone: tugas user |

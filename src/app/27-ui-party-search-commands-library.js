@@ -102,7 +102,7 @@ function palWords(){ var W=[
   {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); }}; }},
   {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }},
   {k:["exhaustion"],f:function(){ return palNeed("exh"); }},
-  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tourGo(); }}; }},
+  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }},
   {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }},
   {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ var b=$("#themeBtn"); if(b) b.click(); }}; }},
   {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof undoLbl==="function"&&undoLbl()?"Undo "+undoLbl():"Take back the last change",run:function(){ if(sheet.classList.contains("on")) closeSheet(); undoNow(); }}; }},

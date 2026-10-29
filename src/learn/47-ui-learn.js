@@ -33,11 +33,12 @@ function after(){ var p=V.view==="place"&&!V.fin?LEARN.places[V.p]:null, st=p&&p
 function stopCard(p,k,num){ var d=LRN.done[p.id], next=!d&&num&&lrnCore().filter(function(x){ return !LRN.done[x.id]; })[0]===p;
   return '<li><button type="button" class="lrn-stop'+(d?" done":"")+(next?" lrn-nx":"")+'" data-lgo="'+k+'">'+pic(p.img,"lrn-sp","")+'<span class="lrn-sx">'+(num?'<span class="lrn-sn">'+num+'</span>':'<span class="lrn-sn">'+ic(ICONS[p.icon]||"ui-star")+'</span>')+'<b>'+esc(lrnL(p.name))+'</b><small>'+esc(lrnL(p.goal))+'</small></span><span class="lrn-st">'+(d?ic("ui-check")+'<span class="sr">'+U("done")+'</span>':esc(U("start")))+'</span></button></li>'; }
 function mapHtml(){ var core=lrnCore(), n=lrnCoreDone(), h='<section class="lrn-hero">'+hoot()+'<div><h2>'+esc(U("title"))+'</h2><p>'+esc(U("sub"))+'</p><div class="lrn-bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+core.length+'" aria-valuenow="'+n+'" aria-label="'+esc(U("core"))+'"><i style="width:'+Math.round(n*100/core.length)+'%"></i></div><small>'+n+" / "+core.length+'</small></div></section>';
+  h+='<h3 class="lrn-sh">'+esc(U("app"))+'</h3><p class="lrn-ss">'+esc(U("appSub"))+'</p><ul class="lrn-path lrn-app">'; LEARN.places.forEach(function(p,k){ if(p.app) h+=stopCard(p,k,0); }); h+='</ul>';
   h+='<h3 class="lrn-sh">'+esc(U("core"))+'</h3><p class="lrn-ss">'+esc(U("coreSub"))+'</p><ol class="lrn-path">';
   var num=0; LEARN.places.forEach(function(p,k){ if(p.core){ num++; h+=stopCard(p,k,num); } }); h+='</ol>';
   var q=LRN.quiz, open=n>=core.length;
   h+='<button type="button" class="lrn-quizc'+(open?"":" lock")+(q&&q.best!=null?" done":"")+'" data-lquiz="1"'+(open?"":' aria-disabled="true"')+'>'+ic("ui-star")+'<span><b>'+esc(U("quiz"))+'</b><small>'+esc(open?U("quizSub"):U("quizLock"))+'</small></span>'+(q&&q.best!=null?'<span class="lrn-st">'+q.best+' / '+LEARN.quiz.length+'</span>':'')+'</button>';
-  h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach(function(p,k){ if(!p.core) h+=stopCard(p,k,0); }); h+='</ul>';
+  h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach(function(p,k){ if(!p.core&&!p.app) h+=stopCard(p,k,0); }); h+='</ul>';
   if(n>0&&n<core.length) h+='<p class="lrn-break">'+esc(U("takeBreak"))+'</p>';
   return h; }
 
@@ -115,7 +116,13 @@ function quizHtml(){ var Q=LEARN.quiz;
   var q=Q[V.qi], S=V.s; return '<div class="lrn-place"><div class="lrn-dots" aria-hidden="true">'+Q.map(function(x,k){ return '<i class="'+(k<V.qi?"d":k===V.qi?"c":"")+'"></i>'; }).join("")+'</div><div class="lrn-say">'+hoot(1)+'<p class="lrn-bub" id="lrnSay" data-lfocus="1">'+(S.res?fmt(S.ok?q.fb:{en:LEARN.ui.tryAgain.en,id:LEARN.ui.tryAgain.id}):fmt(q.q))+'</p></div><div class="lrn-stage"><h2 class="sr">'+esc(lrnL(q.q))+'</h2><div class="lrn-opts" role="group">'+q.opts.map(function(o,k){ return opt("",'data-lq="'+k+'"',esc(lrnL(o)),S.res&&S.res[k]||""); }).join("")+'</div></div><div class="lrn-foot"><span></span><button type="button" class="btn pri press lrn-next" data-l="qnext"'+(S.ok?"":" disabled")+'>'+esc(V.qi===Q.length-1?U("done"):U("next"))+'</button></div></div>'; }
 
 /* ===== moving around ===== */
-function goPlace(k){ V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
+function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
+/* the App Tour: Learn steps aside, the tour of src/app/31 runs on the sheet in the Learn language, then Learn comes back with the map */
+function runTour(k){ var p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!window.__tour) return; V={view:"map",p:0,i:0,ok:false,s:{}};
+  var hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden); w.classList.remove("on"); w.hidden=true; ovQueue();
+  window.__tour.go({texts:T.steps.map(function(x){ return lrnL(x.t); }),wide:T.steps.map(function(x){ return x.w?lrnL(x.w):""; }),create:lrnL(T.create),
+    ui:{step:lrnL(T.ui.step),of:lrnL(T.ui.of),skip:lrnL(T.ui.skip),back:lrnL(T.ui.back),next:lrnL(T.ui.next),skipThis:lrnL(T.ui.skipThis),done:lrnL(T.ui.done)},
+    done:function(full){ if(full) lrnFinish(p.id,false); if(home&&typeof showHome==="function") showHome(); w.hidden=false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint("instant"); show(w); }}); }
 function okInit(){ var st=LEARN.places[V.p].steps[V.i]; V.ok=st.t==="sheet"||st.t==="card"; if(st.t==="show") V.ok=true;/* Next walks through the frames */ }
 function setOk(v){ V.ok=v; var n=document.getElementById("lrnNext"); if(n){ n.disabled=!v; n.textContent=nextLabel(LEARN.places[V.p].steps[V.i]); } }
 function next(){ var p=LEARN.places[V.p], st=p.steps[V.i];
@@ -124,7 +131,7 @@ function next(){ var p=LEARN.places[V.p], st=p.steps[V.i];
   V.fin=lrnFinish(p.id,false)||-1; paint(); }
 function back(){ if(V.view==="place"&&!V.fin&&V.i>0){ V.i--; V.s={}; okInit(); paint(); return; } if(V.view!=="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; } close(); }
 function pre(t){ return t==="map"?0:1; }
-function open(o){ var w=dom(); OPENER=document.activeElement; LRN=lrnGet(); if(o&&o.place!=null){ var k=-1; LEARN.places.forEach(function(p,j){ if(p.id===o.place) k=j; }); if(k>=0){ w.hidden=false; goPlace(k); show(w); return; } }
+function open(o){ var w=dom(); OPENER=document.activeElement; LRN=lrnGet(); if(o&&o.place!=null){ var k=-1; LEARN.places.forEach(function(p,j){ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); show(w); return; } }
   if(!V.view||w.hidden) V={view:"map",p:0,i:0,ok:false,s:{}}; w.hidden=false; paint("instant"); show(w); }
 function show(w){ requestAnimationFrame(function(){ w.classList.add("on"); }); if(typeof ovQueue==="function") ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){} var h=w.querySelector("#lrnB h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } }
 function close(){ var w=document.getElementById("learn"); if(!w) return; popHide(); w.classList.remove("on"); w.hidden=true; if(typeof ovQueue==="function") ovQueue(); if(typeof homeInert==="function") try{ homeInert(); }catch(e){} if(OPENER&&OPENER.focus&&OPENER.isConnected) try{ OPENER.focus({preventScroll:true}); }catch(e){} if(A.learnBand){ var hb=document.getElementById("hlearnB"); if(hb) hb.outerHTML=A.learnBand(); } }

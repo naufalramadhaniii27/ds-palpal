@@ -245,6 +245,7 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U49 | 2026-10-29 | Acak yang menjamin cakupan | Jalan cerita Crumbling Bridge diacak dari potongan pelajaran, tapi tiap putaran dijamin menguji semua aturan inti Jalur Inti | Diterima 2026-10-29 (masuk rencana kerja) |
 | U50 | 2026-10-29 | Gerak menyesuaikan HP | Learn mengukur kelancaran animasi pertama (requestAnimationFrame, plus Long Animation Frames API bila ada). Bila HP tersendat, otomatis pindah ke gerak sederhana tanpa mengubah setelan Motion pengguna | Diterima 2026-10-29 (masuk rencana kerja) |
 | U51 | 2026-10-29 | Belajar bareng teman | Kirim satu tempat ke teman mutual lewat Friends. Teman membukanya di Learn miliknya. Tanpa skor dan tanpa perbandingan (U37) | Ditolak 2026-10-29 |
+| U52 | 2026-10-29 | Tour di sheet sendiri | Usul user ("take the tour bisa lebih bermanfaat?"). Tour lama 5 langkah hanya menunjuk tombol Home. Baru: satu kartu "New here?" (Learn atau Tour), tour 7 titik di sheet karakter sendiri dengan Anchor Spotlight, dua langkah menunggu ketukan nyata (ketuk angka, lalu Roll), lemparan dibatalkan di akhir, bisa dibuka lagi dari Settings dan pencarian perintah. Tanpa karakter: menunjuk Create | Diterima dan dikerjakan 2026-10-29, rilis 0.0.3 |
 
 Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 
