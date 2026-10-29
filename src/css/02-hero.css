@@ -249,6 +249,9 @@
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);font-family:var(--f-nar);font-weight:600;font-size:calc(14px*var(--tz,1));padding:10px 16px;border-radius:10px;z-index:60;pointer-events:none;transition:transform .45s var(--out),opacity .3s;max-width:calc(100% - 32px);text-align:center}
 .toast.on{transform:translate(-50%,0);opacity:1}
 /* ask(): dialog konfirmasi sheet. Di atas #sheet (41), #homeV (55), toast (60). Di bawah .busy (70) */
+/* T11 A5: overlays shown as popovers (topLayer in 05-logic-helpers) keep their own look. :where() has no weight, so every rule of the
+   overlay still wins, and only the browser defaults of [popover] (centred box, border, padding, Canvas colours) are undone */
+:where([popover]){inset:auto;width:auto;height:auto;margin:0;border:0;padding:0;overflow:visible;color:inherit;background:none;max-width:none;max-height:none}
 .ask{position:fixed;inset:0;z-index:65;background:rgba(6,12,10,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 .askb{width:min(420px,100%);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px;box-shadow:0 30px 70px -20px rgba(0,0,0,.6)}
 .askb p{margin:0 0 16px;font-size:calc(16px*var(--tz,1));line-height:1.5}.askb p.askl{white-space:pre-line;max-height:55vh;overflow:auto;font-size:calc(14px*var(--tz,1))}/* v22 RU80b */

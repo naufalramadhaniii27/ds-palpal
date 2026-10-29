@@ -21,3 +21,19 @@ Rencana: claude/rencana-kerja-teknologi.md dan claude/rencana-kerja-learn.md. Br
 | A7 minify | build.py menjalankan esbuild 0.28.2 (tools/build, versi dikunci) per blok script dan style, hanya spasi dan sintaks, nama fungsi tetap. index.html 7,65 MB menjadi 7,31 MB, gzip 2,36 MB menjadi 2,27 MB. Minify penuh dengan ganti nama hanya menambah 0,8 persen gzip, tidak dipakai supaya laporan masalah tetap terbaca |
 | A7 font | Tidak diganti. Archivo sudah variable. Barlow dan Courier Prime tidak punya versi variable. Roboto variable (66,5 KB) bisa menggantikan 7 file Roboto dan Roboto Condensed (151,6 KB), tapi Roboto Condensed harus dibentuk dari sumbu lebar dan bentuk hurufnya berubah. Penghematan sekitar 1 persen tidak sebanding dengan risiko mengubah tampilan (aturan user: jangan ganti gaya) |
 | Regresi G1 | scenarios 24/24, flow_home_sheet 16/16, storage_idb 39/39, version_label 9/9, pdf_export, replay_report, csp_check, fuzz 120, tidy 14/14, overflow 0, overlap 0, blank_new 9/9, campaign 14/14, lib_add. starting_style gagal juga di commit sebelum T11 karena memanggil builder sebelum dimuat. Tes diperbaiki (menunggu builder), lalu lolos |
+
+## G2 Tampilan dan dadu (selesai 2026-10-29)
+| Kerja | Hasil |
+|---|---|
+| N8 Cascade layers | Semua CSS app dan CSS tema runtime di `@layer app`, file L-*.css di layer sendiri (feat, learn, dice). Snapshot gaya 74 layar (dua ukuran, Record, light, kontras tinggi): 0 beda |
+| N8 !important | tools/important_trim.py: 2.631 deklarasi dianalisis, 44 dibuang, sisanya memang dibutuhkan atau di file efek dan print. Percobaan pertama (114) gagal verifikasi dan dibatalkan. Hasil akhir: 0 beda di 74 layar |
+| A5 Top layer | ask(), ask builder, dan toast tampil sebagai popover manual (`topLayer()`), di atas semua z-index. Default popover browser direset dengan `:where([popover])`. Snapshot overlay sama. Temuan: di skin DDB toast punya `position:relative` sehingga jatuh di bawah layar dan tidak terlihat. Diperbaiki, toast kini muncul. Bottom sheet dan menu More belum dipindah (risiko tinggi, tidak perlu untuk Learn) |
+| A6 Back ke Home | Back di sheet menutup panel dulu, Back berikutnya ke Home. tests/back_home.py lolos di dua ukuran |
+| A8 content-visibility | Tidak dipakai. Diukur: daftar sheet Yudhi 7 sampai 19 baris, Library sudah memecah 60 baris per halaman. Tidak ada yang bisa dipercepat, risikonya posisi gulir melompat |
+| A9 light-dark() | Tidak dipakai. Sekitar 20 aturan app memasang `color-scheme` per elemen. light-dark() di token akan berganti warna di dalam elemen itu |
+| N14 Efek sesuai perangkat | Bila efek belum pernah dipilih: 4 core ke bawah dan memori 2 GB ke bawah, atau 90 frame awal lebih lambat dari 28 ms, efek turun ke lite. Pilihan di Settings selalu menang. tests/fx_tier.py 4/4 |
+| D1 dan D2 Dadu 3D | dice-box 1.1.4 dibangun ulang di BabylonJS 9.32.1 dan Havok 1.3.14 (src/dice ke vendor/dice), dimuat saat lemparan pertama. Tombol Roll di breakdown dan save konsentrasi memakai dadu fisika. Motion off dan Calm memakai crypto. Bug ditemukan dan diperbaiki: hasil roll() per dadu, bukan per grup. tests/dice_app.py: 3 lemparan 3D per ukuran di bawah CSP, nilai sesuai, Motion off tanpa 3D |
+| Regresi G2 | scenarios 24/24, flow 16/16, csp, pdf, replay, starting_style, overflow 0, overlap 0, campaign 14/14, lib_add, off_mode, modes_matrix, storage_idb 39/39, tidy 14/14, dice_app, fx_tier, back_home, fuzz 500 (0 gagal). sync_banners butuh server wrangler di 8788, tidak jalan di sini |
+
+## Perubahan urutan (user, 2026-10-29 17.22 WIB)
+Learn jadi prioritas dan dirilis secepatnya dengan kualitas tetap dijaga. Keputusan Claude: sesudah G2, langsung Learn F0 sampai F7. Rilis 0.0.3 berisi G0, G1, G2, dan Learn. G3, G4, dan G5 (termasuk pindah ke Workers) masuk rilis sesudahnya.
