@@ -3907,6 +3907,7 @@ art/batch/vignettes/learn/abilities-skills.png
 art/batch/vignettes/learn/combat-turn.png
 art/batch/vignettes/learn/hit-points-rests.png
 
+NEXT: batch-174 art/batch/icons/features/subclass/path-of-the-world-tree/vitality-of-the-tree.png
 ## batch-174 v3
 art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
@@ -3918,11 +3919,7 @@ art/batch/icons/features/subclass/path-of-the-wild-heart/power-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-wild-heart/rage-of-the-wilds.png
 art/batch/icons/features/subclass/path-of-the-world-tree/battering-roots.png
 art/batch/icons/features/subclass/path-of-the-world-tree/branches-of-the-tree.png
-art/batch/icons/features/subclass/path-of-the-totem-warrior/spirit-walker.png
-art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
-art/batch/icons/features/subclass/path-of-the-totem-warrior/totemic-attunement.png
-art/batch/icons/features/subclass/path-of-the-wild-heart/animal-speaker.png
-art/batch/icons/features/subclass/path-of-the-wild-heart/aspect-of-the-wilds.png
+art/batch/icons/features/subclass/path-of-the-world-tree/travel-along-the-tree.png
 
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
