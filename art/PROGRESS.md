@@ -4159,37 +4159,7 @@ art/batch/icons/features/subclass/trickery-domain/blessing-of-the-trickster.png
 art/batch/icons/features/subclass/trickery-domain/channel-divinity-cloak-of-shadows.png
 
 
-art/batch/icons/features/subclass/psi-warrior/protective-field.png
-art/batch/icons/features/subclass/psi-warrior/psionic-power.png
-art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-movement.png
-art/batch/icons/features/subclass/soulknife/psi-bolstered-knack.png
-art/batch/icons/features/subclass/soulknife/psionic-power.png
-art/batch/icons/features/subclass/soulknife/psychic-blades.png
-art/batch/icons/features/subclass/soulknife/psychic-veil.png
-art/batch/icons/features/subclass/soulknife/psychic-whispers.png
-art/batch/icons/features/subclass/soulknife/rend-mind.png
-art/batch/icons/features/subclass/soulknife/soul-blades.png
-art/batch/icons/features/subclass/thief/fast-hands.png
-art/batch/icons/features/subclass/thief/second-story-work.png
 
-art/batch/icons/features/subclass/psi-warrior/protective-field.png
-art/batch/icons/features/subclass/psi-warrior/psionic-power.png
-art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-movement.png
-art/batch/icons/features/subclass/soulknife/psi-bolstered-knack.png
-art/batch/icons/features/subclass/soulknife/psionic-power.png
-art/batch/icons/features/subclass/soulknife/psychic-blades.png
-art/batch/icons/features/subclass/soulknife/psychic-veil.png
-art/batch/icons/features/subclass/psi-warrior/protective-field.png
-art/batch/icons/features/subclass/psi-warrior/psionic-power.png
-art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
 
 ## batch-156 v3
 art/batch/icons/features/subclass/archfey-patron/bewitching-magic.png
@@ -4314,3 +4284,10 @@ art/batch/icons/rules/invocations/eldritch-invocation-armor-of-shadows.png
 art/batch/icons/rules/invocations/eldritch-invocation-ascendant-step.png
 art/batch/icons/rules/invocations/eldritch-invocation-devils-sight.png
 art/batch/icons/rules/invocations/eldritch-invocation-devouring-blade.png
+
+## batch-176 v3
+art/batch/icons/features/subclass/trickery-domain/channel-divinity-invoke-duplicity.png
+art/batch/icons/features/subclass/trickery-domain/divine-strike.png
+art/batch/icons/features/subclass/trickery-domain/improved-duplicity.png
+art/batch/icons/features/subclass/trickery-domain/invoke-duplicity.png
+art/batch/icons/features/subclass/trickery-domain/trickery-domain-spells.png
