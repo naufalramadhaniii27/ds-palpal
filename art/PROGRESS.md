@@ -1839,6 +1839,11 @@ art/batch/portraits/warforged-a.png
 art/batch/portraits/warforged-b.png
 art/batch/portraits/yuan-ti-a.png
 art/batch/portraits/yuan-ti-b.png
+art/batch/portraits/vampire-a.png
+art/batch/portraits/vampire-b.png
+art/batch/portraits/vedalken-a.png
+art/batch/portraits/vedalken-b.png
+art/batch/portraits/verdan-a.png
 
 ## batch-218 v3
 art/batch/icons/items/tools/dice-set.png
@@ -2008,4 +2013,17 @@ art/batch/creatures/beast/camel.png
 art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
+
+NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
+## batch-133 v3
+art/batch/icons/items/magic/rare/stonespeaker-crystal.png
+art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
+art/batch/icons/items/magic/legendary/deck-of-several-things.png
+art/batch/icons/items/magic/rare/galders-bubble-pipe.png
+art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 
