@@ -3476,6 +3476,11 @@ art/batch/icons/spells/level-7/project-image.png
 art/batch/icons/spells/level-7/simulacrum.png
 art/batch/icons/spells/level-7/finger-of-death.png
 art/batch/icons/spells/level-7/resurrection.png
+art/batch/icons/spells/level-7/tether-essence.png
+art/batch/icons/spells/level-7/void-star.png
+art/batch/icons/spells/level-7/create-magen.png
+art/batch/icons/spells/level-7/draconic-transformation.png
+art/batch/icons/spells/level-7/regenerate.png
 ## batch-230 v3
 art/batch/icons/abilities/intelligence.png
 art/batch/icons/skills/arcana.png
