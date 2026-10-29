@@ -4374,6 +4374,12 @@ art/batch/icons/items/magic/rare/izzet-keyrune.png
 art/batch/icons/items/magic/uncommon/mizzium-apparatus.png
 art/batch/icons/items/magic/rare/mizzium-mortar.png
 art/batch/icons/items/magic/common/moodmark-paint.png
+art/batch/icons/items/magic/uncommon/orzhov-guild-signet.png
+art/batch/icons/items/magic/rare/orzhov-keyrune.png
+art/batch/icons/items/magic/rare/pariahs-shield.png
+art/batch/icons/items/magic/very-rare/peregrine-mask.png
+art/batch/icons/items/magic/uncommon/pyroconverger.png
+
 ## batch-214 v3
 
 art/batch/icons/items/tools/bagpipes.png
