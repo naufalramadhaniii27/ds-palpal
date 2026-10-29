@@ -41,6 +41,7 @@ function mapHtml(){ var core=lrnCore(), n=lrnCoreDone(), h='<section class="lrn-
   h+='<button type="button" class="lrn-quizc'+(open?"":" lock")+(q&&q.best!=null?" done":"")+'" data-lquiz="1"'+(open?"":' aria-disabled="true"')+'>'+ic("ui-star")+'<span><b>'+esc(U("quiz"))+'</b><small>'+esc(open?U("quizSub"):U("quizLock"))+'</small></span>'+(q&&q.best!=null?'<span class="lrn-st">'+q.best+' / '+LEARN.quiz.length+'</span>':'')+'</button>';
   h+='<h3 class="lrn-sh">'+esc(U("forgeSec"))+'</h3><p class="lrn-ss">'+esc(U("forgeSub"))+'</p><ul class="lrn-path lrn-app">'; LEARN.places.forEach(function(p,k){ if(p.kind==="forge") h+=stopCard(p,k,0); }); h+='</ul>';
   h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach(function(p,k){ if(!p.core&&!p.app&&p.kind!=="forge") h+=stopCard(p,k,0); }); h+='</ul>';
+  if(lrnHasChar()&&window.__whichDie){ h+='<h3 class="lrn-sh">'+esc(U("tableSec"))+'</h3><p class="lrn-ss">'+esc(U("tableSub"))+'</p><div class="lrn-tools">'+[["wd","wdT","wdS","ui-dice"],["cheat","chT","chS","ui-book"]].map(function(x){ return '<button type="button" class="lrn-quizc" data-l="tool" data-tool="'+x[0]+'">'+ic(x[3])+'<span><b>'+esc(U(x[1]))+'</b><small>'+esc(U(x[2]))+'</small></span></button>'; }).join("")+'</div>'; }/* T11 U7 and U3 */
   if(n>0&&n<core.length) h+='<p class="lrn-break">'+esc(U("takeBreak"))+'</p>';
   return h; }
 
@@ -115,10 +116,19 @@ function gridPaint(){ var st=LEARN.places[V.p].steps[V.i], S=V.s, g=document.get
 function near(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))===1; }
 
 /* ===== F3 Forge Your Hero: class and species as picture cards, a name, Surprise me, then a level 1 Quick Build in the builder ===== */
+/* F3 "How the builder works": a picture of the real builder (phone or PC) with numbered points from img/learn/shots/shots.json.
+   A point is a button: tapping it rings that spot and Hoot says what it does. Tabs switch the step */
+var SHOTS=null;
+function shotsLoad(){ if(SHOTS) return; SHOTS={}; fetch("img/learn/shots/shots.json").then(function(r){ return r.ok?r.json():{}; }).then(function(j){ SHOTS=j||{}; if(V.view==="forge") paint(false); },function(){ SHOTS={}; }); }
+function shotsHtml(){ shotsLoad(); var st=V.s.shot||"class", wide=innerWidth>=760, tag=wide?"pc":"phone", d=SHOTS&&SHOTS[st]&&SHOTS[st][tag], L=LEARN.shots, nm=lrnL((L.steps.filter(function(x){ return x[0]===st; })[0]||[0,{en:st}])[1]);
+  if(!d) return '<h3 class="lrn-sh">'+esc(U("shotsB"))+'</h3>';
+  return '<h3 class="lrn-sh">'+esc(U("shotsB"))+'</h3><p class="lrn-ss">'+esc(U("shotsSub"))+'</p><div class="lrn-sht" role="group" aria-label="'+esc(U("shotsB"))+'">'+L.steps.map(function(x){ return '<button type="button" class="lib-chip'+(x[0]===st?' on':'')+'" data-lshot="'+x[0]+'" aria-pressed="'+(x[0]===st)+'">'+esc(lrnL(x[1]))+'</button>'; }).join("")+'</div>'
+   +'<div class="lrn-shot'+(wide?' pc':'')+'"><img src="img/learn/shots/'+st+'-'+tag+'.avif" alt="'+esc(F("shotsAlt",{step:nm}))+'" width="'+d.w+'" height="'+d.h+'" loading="lazy" decoding="async">'+d.dots.map(function(p,i){ var on=V.s.dot===p.id; return '<button type="button" class="lrn-pt'+(on?' on':'')+'" style="left:'+p.x+'%;top:'+p.y+'%" data-ldot="'+p.id+'" aria-pressed="'+on+'" aria-label="'+(i+1)+': '+esc(lrnL(L.dots[p.id]))+'">'+(i+1)+'</button>'; }).join("")+'</div>'; }
 function slugA(n){ return String(n).toLowerCase().replace(/[^a-z0-9]+/g,"-"); }
 function forgeHtml(){ var FD=LEARN.forge, S=V.s, card=function(kind,x){ var on=S[kind]===x[0], img=kind==="cls"?"img/hd/emblem/"+slugA(x[0])+".avif":"img/scn/species/"+slugA(x[0])+"-phone.avif";
     return '<button type="button" class="lrn-fc'+(on?" on":"")+'" data-lf'+kind+'="'+x[0]+'" aria-pressed="'+on+'"><span class="lrn-fi"><img src="'+img+'" alt="" loading="lazy" decoding="async"></span><b>'+esc(x[0])+'</b><small>'+esc(lrnL(x[1]))+'</small></button>'; };
   return '<div class="lrn-forge"><div class="lrn-say">'+hoot(1)+'<p class="lrn-bub" id="lrnSay" data-lfocus="1">'+esc(S.msg||U("forgeNote"))+'</p></div>'
+   +shotsHtml()
    +'<h3 class="lrn-sh">'+esc(U("pickClass"))+'</h3><div class="lrn-fg" role="group" aria-label="'+esc(U("pickClass"))+'">'+FD.classes.map(function(x){ return card("cls",x); }).join("")+'</div>'
    +'<h3 class="lrn-sh">'+esc(U("pickSpecies"))+'</h3><div class="lrn-fg" role="group" aria-label="'+esc(U("pickSpecies"))+'">'+FD.species.map(function(x){ return card("sp",x); }).join("")+'</div>'
    +'<label class="lrn-fn"><span>'+esc(U("heroName"))+'</span><input id="lrnFn" class="lrn-in" autocomplete="off" maxlength="40" value="'+esc(S.name||"")+'"></label>'
@@ -179,9 +189,12 @@ function wire(w){
     if(d.lgo!=null){ goPlace(+d.lgo); return; }
     if(d.lfcls||d.lfsp){ if(d.lfcls) V.s.cls=d.lfcls; else V.s.sp=d.lfsp; V.s.msg=""; var nm=document.getElementById("lrnFn"); if(nm) V.s.name=nm.value; paint(false); return; }
     if(d.l==="surprise"&&V.view==="forge"){ var FG=LEARN.forge; V.s.cls=FG.classes[lrnD(FG.classes.length)-1][0]; V.s.sp=FG.species[lrnD(FG.species.length)-1][0]; var nm2=document.getElementById("lrnFn"); if(nm2) V.s.name=nm2.value; V.s.msg=""; paint(false); return; }
+    if(d.lshot){ V.s.shot=d.lshot; V.s.dot=null; paint(false); return; }
+    if(d.ldot){ V.s.dot=d.ldot; var nm4=document.getElementById("lrnFn"); if(nm4) V.s.name=nm4.value; V.s.msg=lrnL(LEARN.shots.dots[d.ldot]); paint(false); var bb=document.querySelector('[data-ldot="'+d.ldot+'"]'); if(bb) try{ bb.focus({preventScroll:true}); }catch(er){} say(esc(V.s.msg)); return; }
     if(d.l==="forge"){ var nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return; }
     if(d.lrecap){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return; }
     if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); var c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return; }
+    if(d.l==="tool"){ var tk=d.tool; close(); var hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(function(){ if(tk==="wd") window.__whichDie(); else if(window.__cheatOpen) window.__cheatOpen(); },60); return; }
     if(d.l==="close"){ close(); return; } if(d.l==="back"){ back(); return; } if(d.l==="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; }
     if(d.l==="pop"){ popHide(); return; }
     if(d.l==="next"){ next(); return; }

@@ -214,4 +214,16 @@
 /* Motion off and reduced motion: everything lands at once */
 @media (prefers-reduced-motion:reduce){ .lrn,.lrn *,.spot-r{transition:none!important;animation:none!important} }
 :root.mi-off .lrn,:root.mi-off .lrn *,:root.mi-off .spot-r{transition:none!important;animation:none!important}
+.lrn-tools{display:grid;gap:10px}
+/* F3 How the builder works: picture with numbered points */
+.lrn-sht{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.lrn-sht .lib-chip{min-height:44px}
+.lrn-shot{position:relative;margin:0 auto 18px;max-width:340px;border-radius:14px;overflow:hidden;border:1px solid var(--line-2)}
+.lrn-shot.pc{max-width:100%}
+.lrn-shot img{display:block;width:100%;height:auto}
+.lrn-pt{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#1b1206;background:#ffd666;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.45)}
+.lrn-pt.on{background:#fff;outline:3px solid #ffd666;outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){ .lrn-pt:not(.on){animation:lrnPt 2.4s ease-in-out infinite} }
+@keyframes lrnPt{0%,100%{box-shadow:0 2px 10px rgba(0,0,0,.45),0 0 0 0 rgba(255,214,102,.6)}50%{box-shadow:0 2px 10px rgba(0,0,0,.45),0 0 0 10px rgba(255,214,102,0)}}
+.mi-off .lrn-pt{animation:none}
 }

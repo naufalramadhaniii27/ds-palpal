@@ -105,3 +105,77 @@ html.mi-off #sheet .sh-wm{opacity:.12}
 .id-camp .camp-add{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;border:1px dashed var(--line-2);border-radius:var(--r2,8px);background:transparent;color:var(--muted);font:inherit;font-weight:600;cursor:pointer}
 .id-camp .camp-add:hover{color:var(--ink);border-color:var(--ink)}
 @media print{.id-camp .camp-add{display:none}}
+/* T11 G4 N10: chance table in a breakdown */
+.odds{margin:12px 0 4px;padding:10px 12px;border:1px solid var(--line,rgba(127,127,127,.25));border-radius:10px}
+.odds-h{display:block;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;opacity:.8;margin-bottom:6px}
+.odds table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.odds th,.odds td{padding:5px 4px;text-align:right;font-size:.9rem}
+.odds th[scope=row]{text-align:left;font-weight:600}
+.odds thead th{font-weight:500;opacity:.75;font-size:.78rem}
+.odds tbody tr+tr{border-top:1px solid rgba(127,127,127,.18)}
+/* T11 G4 N9: rules check chip and list */
+.chip.lint-c{border-color:#c98a1b;color:inherit}
+.chip.lint-c svg.ico{width:15px;height:15px;margin-right:4px;vertical-align:-2px}
+.lint-r{padding:12px 0;border-top:1px solid rgba(127,127,127,.22)}
+.lint-r p{margin:4px 0 8px;line-height:1.4}
+/* T11 G4 N4: session recap card */
+.rcp{padding:4px 0 8px}
+.rcp-w{opacity:.8;margin:0 0 10px}
+.rcp dl{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:8px 16px;margin:0}
+.rcp dt{font-weight:600}
+.rcp dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:420px){ .rcp dl{grid-template-columns:1fr} .rcp dd{margin-bottom:6px} }
+/* T11 G4 N15: short answer above Library results */
+.qa{margin:4px 0 14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(127,127,127,.28);background:rgba(127,127,127,.08)}
+.qa-h{display:block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;opacity:.75}
+.qa p{margin:6px 0 8px;line-height:1.45}
+.qa-r{display:flex;flex-wrap:wrap;gap:6px}
+/* T11 G4 N5: future sheet */
+.fut{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin:8px 0 12px}
+.fut-g{margin:0;padding:10px;border:1px solid rgba(127,127,127,.25);border-radius:10px}
+.fut-g figcaption{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.85rem;margin-bottom:4px}
+.fut-g figcaption span{opacity:.75}
+.fut-g svg{display:block;width:100%;height:auto;color:var(--accent,#c9a227)}
+.fut-g text{font-size:11px;fill:currentColor;opacity:.7}
+.fut-tw{overflow-x:auto}
+.fut-t{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.fut-t th,.fut-t td{padding:5px 6px;text-align:right;font-size:.9rem}
+.fut-t th[scope=row]{text-align:left}
+.fut-t tr.now{font-weight:700}
+.fut-t tbody tr+tr{border-top:1px solid rgba(127,127,127,.15)}
+.bk-btns{display:flex;flex-wrap:wrap;gap:8px}
+/* T11 G4 D2: roll buttons for Hit Point Dice and death saves, typed result */
+.hdv .hd-roll{margin-left:8px;min-height:44px}
+.dsb-roll{width:100%;min-height:44px}
+.mi-self{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mi-self input{width:5.5em;min-height:44px;font-size:1.1rem;text-align:center}
+/* T11 G4 N1: Find a build */
+.rb-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin:8px 0}
+.rb-f{display:flex;flex-direction:column;gap:4px;font-size:.88rem}
+.rb-f input,.rb-f select{min-height:44px;font-size:1rem}
+.rb-c{padding:12px 0;border-top:1px solid rgba(127,127,127,.22)}
+.rb-c ul{margin:0 0 6px;padding-left:1.1em}
+.rb-v{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.rb-v span{padding:3px 8px;border-radius:999px;font-size:.85rem;border:1px solid rgba(127,127,127,.3)}
+.rb-v .ok{border-color:#3f9a5a}
+.rb-v .no{border-color:#c0503b}
+/* T11 Learn U7, U3, U47 */
+.wd-g{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.wd-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:10px 0;border-top:1px solid rgba(127,127,127,.2)}
+.wd-r small{grid-column:1/-1;opacity:.75}
+.wd-d{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cht section{margin:0 0 14px}
+.cht h3{margin:0 0 6px;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase}
+.cht ul{margin:0;padding-left:1.1em;line-height:1.5}
+.cht dl{margin:0;display:grid;gap:6px}
+.cht-n{grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
+.cht-n div{padding:8px 10px;border:1px solid rgba(127,127,127,.25);border-radius:10px}
+.cht-n dd{margin:2px 0 0;font-size:1.25rem;font-weight:700}
+.cht-a div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:8px}
+.cht-a dd{margin:0}
+.coach{margin:0 0 10px;padding:10px 12px;border-left:3px solid var(--accent,#c9a227);background:rgba(127,127,127,.08);border-radius:6px;line-height:1.45}
+.coach b{margin-right:6px;text-transform:uppercase;font-size:.78rem;letter-spacing:.05em}
+/* T11 Learn F3: practice hero on Home */
+.hprac{flex:1 1 100%;display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:6px 0;font-size:.88rem}
+.hprac span{flex:1 1 auto;opacity:.85}
+.hprac button{min-height:44px}

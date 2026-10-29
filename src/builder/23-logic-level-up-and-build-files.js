@@ -175,7 +175,7 @@ window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();documen
     applyPacks();render();
     ask("The sheet ("+(st.C.name||"Character")+", level "+(+st.C.level||1)+") does not match your saved build ("+B.name+", level "+TL()+ml+"). Load the build from the sheet? This replaces the saved choices, spells, and multiclass. A backup copy stays on this device. Cancel keeps the saved build.","Load from sheet",function(){saveBak(raw);load()});return}
    if(B.cid!==sid()||copyOf(st.C.name)){stamp();save()}}}
- applyPacks();render()};
+ try{stepBack()}catch(e){}applyPacks();render()};
 function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(window.__bldDot)window.__bldDot()}/* v32 RU137 */
 /* RU30: what a new character still has to choose before Apply: "class, species, and background" */
 function unList(){var m=[["cls","class"],["species","species"],["bg","background"]].filter(function(x){return un(x[0])}).map(function(x){return x[1]});return m.length>1?m.slice(0,-1).join(", ")+(m.length>2?",":"")+" and "+m[m.length-1]:m.join("")}

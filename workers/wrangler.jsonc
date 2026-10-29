@@ -1,0 +1,13 @@
+// G5: Cloudflare Workers settings. Kept in workers/ on purpose: a wrangler.jsonc at the repository root would take the place of
+// wrangler.toml, which Cloudflare Pages reads on every build of main. Pages stays live until the Workers address passes live-check.
+{
+  "name": "dnd-sheets-palpale",
+  "main": "worker.js",
+  "compatibility_date": "2024-09-23",
+  "assets": { "directory": "../dist", "binding": "ASSETS", "run_worker_first": ["/api/*"], "not_found_handling": "none" },
+  "d1_databases": [{ "binding": "DB", "database_name": "dnd-sheet", "database_id": "c484d196-f0a5-4790-8296-aacb341ad7c3" }],
+  "vars": { "ACCESS_TEAM": "purple-frog-276b", "ACCESS_AUD": "c9eba19b745a2065b1855305f21b04f2c989029466c6f92cf26c725daeb2f70f" },
+  "triggers": { "crons": ["1 0 * * *"] },
+  "observability": { "enabled": true },
+  "workers_dev": true
+}

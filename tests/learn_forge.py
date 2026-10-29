@@ -35,6 +35,11 @@ async def main():
             done = await pg.evaluate("()=>!!(JSON.parse(localStorage.getItem('cs-learn-v1')||'{}').done||{}).forge")
             if not done: bad.append(vp + " forge stop not marked done")
             print(vp, st["step"], Bd.get("cls"), Bd.get("species"), Bd.get("name"), "->", json.dumps(sh))
+            # the forged hero is a practice hero on Home: Keep makes it normal
+            await pg.evaluate("()=>window.__app.showHome()"); await pg.wait_for_selector("#hgrid .hprac", state="visible", timeout=10000)
+            await pg.click("#hgrid [data-hkeep]"); await pg.wait_for_timeout(500)
+            pr = await pg.evaluate("()=>[document.querySelectorAll('#hgrid .hprac').length, Object.values(JSON.parse(localStorage.getItem('cs-roster-v1')).chars).filter(c=>c.practice).length]")
+            if pr != [0, 0]: bad.append(vp + " keep practice hero " + json.dumps(pr))
             for e in errs: bad.append(vp + " " + e[:200])
             await ctx.close()
         await b.close()

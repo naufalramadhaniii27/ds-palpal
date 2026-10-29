@@ -136,6 +136,7 @@ var OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
 window.addEventListener("beforeunload",function(){ OV_UNLOAD=1; });/* a reload or page change is under way: going back in history now would cancel it */
 function ovTop(){ var c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
   var a=document.querySelectorAll("body > .ask"); if(a.length){ var x=a[a.length-1]; return function(){ var b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
+  if(window.__tgBack){ var tb=window.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
   if(window.__learnBack){ var lb=window.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
   var bl=document.getElementById("bld"); if(bl&&!bl.hidden){ var e=Array.prototype.slice.call(bl.children).filter(function(d){ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ var y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(window.__bldBack) return function(){ window.__bldBack(); }; }/* T11 G6 T5 */
   var q=document.getElementById("hpQm"); if(q) return function(){ qmClose(); };

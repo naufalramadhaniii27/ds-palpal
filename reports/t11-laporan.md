@@ -100,3 +100,64 @@ Rilis bertahap ke main sesudah tiap kelompok lolos regresi.
 | Bug ditemukan | Tur Aplikasi tidak membatalkan lemparan natural 1 atau 20 dari jurnal karena key jurnal salah (id karakter, harus nama dari fx/18). Diperbaiki, tour_flow stabil 3 dari 3 |
 | Tes | tests/learn_forge.py (Surprise me, petunjuk tanpa pilihan, hasil build, Apply), learn_flow, learn_a11y, tour_flow, scenarios |
 | Belum dari F3 | Screenshot builder bertitik (tools/learn_shots.py) dan karakter latihan Keep atau Discard |
+
+## G3 inti data (2026-10-30)
+| Kode | Hasil |
+|---|---|
+| N3 | Struk angka: sesudah update app, toast "n numbers changed" dengan tombol See why ke panel What changed (alasan tiap angka dari breakdown). Disimpan di cs-rcpt-v1. tests/receipts.py |
+| N13 | Kotak restore snapshot menyebut angka yang akan berubah |
+| N16 dan T10 | Langkah What's Next di builder menampilkan angka sheet yang berubah sebelum Apply |
+| N2 | Mesin waktu (History): titik otomatis per karakter (cs-tm-<id>, maksimal 40, digabung bila kurang dari 10 menit, titik saat app ke latar). Compare with now dan Go back (ask dengan pratinjau, snapshot dulu). Dari Settings, perintah history. tests/time_machine.py |
+| D3 | Game Log: riwayat lemparan per karakter (mi-rl-<nama>, 50 terakhir), bertahan sesudah app ditutup. Semua lemparan masuk jurnal. Tur memakai key baru lewat window.__miRollKey. tests/game_log.py |
+| N12 | Gabung per bagian saat dua perangkat mengubah karakter yang sama: salinan dasar disimpan per karakter (cs-sync-base-<id>). Bagian yang berubah di satu sisi diambil dari sisi itu. Bagian yang berubah di dua sisi memakai nilai perangkat ini, salinan cloud tetap jadi versi other-device, dan toast Choose membuka daftar per bagian (nilai di sini dan di sana, tombol Use other device). Karakter yang sedang dibuka hanya digabung saat app mulai atau kembali ke layar. tests/cloud_sync.py (39 cek, wrangler lokal dengan D1), tests/sync_merge_ui.py |
+| T9 | Builder membuka langkah terakhir yang dipakai (cs-bld-step) dengan toast Back where you left off. Pilihan sudah tersimpan tiap perubahan sejak dulu. Karakter baru tetap mulai di Home. tests/builder_draft.py |
+| Versi | APP_VER 106, label 0.0.4, What's New merangkum G6, F3, F4, G3 |
+
+## G7 TG0 dan TG0b (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| TG0b | tools/tg_creatures.py mengubah bestiary-xmm.json 5etools (503 makhluk) ke data/tg-creatures.json: srd 330, bukan SRD 173, src dan pg per entri. Aksi terurai: atk 651, save 258, multi 307 (6 Multiattack tanpa daftar, diselesaikan manual), cast 27, other 196. Tidak ada tag 5etools tersisa. 681 KB sebagai file JSON statis di samping index.html (tools/pages_dist.sh menyalin data/), diambil saat Training Ground dibuka dan disimpan service worker untuk offline. Muat awal app tidak bertambah |
+| TG0 | src/tg/20-engine.js: mesin tanpa tampilan, state JSON, step(state, perintah). Seed mulberry32, initiative, gerak di kisi (diagonal 5 kaki, Difficult Terrain dua kali), musuh menghalangi, Opportunity Attack (keputusan pemain), Disengage, Dash, Dodge, Help, serangan dengan Advantage dan Disadvantage dari kondisi, natural 20 dan 1, Critical Hit, Resistance, Immunity, Vulnerability, save dengan setengah damage, Multiattack, Recharge, death save, massive damage, Concentration save. Perintah yang ditolak tidak mengubah apa pun. Tanpa AI musuh |
+| Tes | tests/tg_engine.js: data 503 (330 dan 173), aturan per unit, 1.000 pertarungan seed tetap dengan pilot tes: semua selesai, tanpa NaN, HP dalam batas dan cocok dengan log, replay sama persis |
+
+## G4 fitur baru (2026-10-30)
+| Kode | Hasil |
+|---|---|
+| N1 | Find a build: tujuan Armor Class, Hit Points, Initiative, skill, save, serangan. Mencoba semua species, background dengan +2 dan +1 ke ability yang dibutuhkan, Standard Array menurut urutan tujuan, dan untuk Armor Class semua armor yang boleh dipakai class, dengan atau tanpa Shield. Tiap percobaan lewat builder dan derive yang sama dengan sheet. 384 percobaan sekitar 8 sampai 14 detik, dicicil per 40 ms supaya layar tidak macet. Jalan di thread utama, bukan Web Worker, karena kode builder dan derive ada di halaman (beda dari rencana, dicatat). Use this build membawa hasil ke builder di langkah Abilities, build lama jadi backup |
+| N5 | Levels up to 20 (dari panel Hit Points dan Proficiency): grafik SVG Hit Points, serangan terbaik, spell save DC, dan tabel per level. Pilihan level baru tidak ditebak |
+| N4 | Session recap dari jurnal (sesi = rangkaian tanpa jeda lebih dari 4 jam): damage, healing, spell, lemparan dengan natural 20 dan 1, Concentration, kondisi, rest, level, koin. Save as picture (canvas PNG, Web Share bila bisa). Dari perintah recap dan laci Rolls |
+| N9 | Rules check: chip di baris Conditions untuk armor berat tanpa Strength cukup, attunement lebih dari batas, 0 HP tanpa Unconscious, Exhaustion 6, dua Shield. Tombol perbaikan |
+| N10 | Tabel peluang di panel save, skill, ability, dan serangan: DC 10, 15, 20 (serangan AC 12, 15, 18), biasa, Advantage, Disadvantage. Serangan memakai aturan natural 20 dan 1 |
+| N11 | Build DNA: Copy build link dan Share build link di langkah What's Next. Isi hanya pilihan builder, gzip dan base64url di bagian # (tidak terkirim ke server), sekitar 820 karakter untuk Yudhi. Membuka link meminta konfirmasi lalu menambah karakter baru. QR satu kode belum |
+| N15 | Pertanyaan di Library (how, can, what, ... atau tanda tanya) mendapat Short answer dari tabel niat 32 entri dan tombol ke aturan lengkap. Tanpa AI |
+| N17 | Copy status for chat di panel Hit Points dan perintah status. Baris status yang ditempel di Import dikenali sebagai status, bukan karakter |
+| D2 | Roll the death save for me dan Roll untuk Hit Point Dice, memakai dadu yang sama. I rolled myself di semua bar lemparan |
+| Tes | tests/g4_play.py (semua di atas, Yudhi dan teman di browser lain), regresi |
+
+## Learn sisa (2026-10-30)
+| Kode | Hasil |
+|---|---|
+| U7 | Which die do I roll: pilih kelompok (Attack, Damage, Spell, Saving throw, Check, Fight, Rest), dadu dan bonus dari karakter sendiri |
+| U3 | Table cheat sheet: angka karakter, giliranmu, 12 aksi, aturan lemparan |
+| U47 | Coach mode di Settings (default mati): pertama kali satu jenis aturan dibuka, satu kalimat penjelasan muncul sekali (cs-coach) |
+| Learn | Bagian At the table di peta Learn (bila ada karakter) membuka U7 dan U3 |
+| F3 | Pahlawan dari Forge Your Hero bertanda Practice hero di Home dengan Keep dan Discard (Discard memakai ask dan snapshot dulu) |
+| U12 | Admin: corong Learn per tempat (total saja, tanpa daftar orang) dari setelan yang tersinkron. Query diuji di D1 lokal |
+
+## G7 TG1 sampai TG5 Training Ground versi pertama (2026-10-30)
+| Fase | Hasil |
+|---|---|
+| TG1 | Layar setup dari band Training Ground di Home dan perintah training: 1 Who goes in (karakter di perangkat ini, dihitung dengan derive yang sama, atau Try a class: class dan level dibuat builder), 2 What waits for you (Easy sampai Legendary dengan rentang CR rencana, cari nama, penghitung plus minus, sampai 12 makhluk, sumber MM 2024 dan halaman, tanda SRD), 3 Who comes with you (sampai 3: Knight, Scout, Priest Acolyte, Mage Apprentice, Dire Wolf, Warrior Veteran), 4 Where you train (4 arena: Open field, Forest clearing, Old crypt, Broken bridge), bar jumlah dan Enter the field |
+| TG2 | Papan kisi canvas 2D (44 px per petak di HP, 52 di PC, bergulir di bingkainya), penempatan spiral tanpa tumpuk, urutan giliran dengan bar HP, petak jangkauan gerak dari mesin, kursor panah dan Enter untuk keyboard, Undo |
+| TG3 | Panel aksi: Move, serangan, save, Multiattack (daftar tersisa), Bonus Action, Dash, Disengage, Dodge, Stand up, kartu reaksi Opportunity Attack, log, End Turn, layar Victory atau Defeat dengan Fight again |
+| TG4 | Semua token dikendalikan pemain. Aksi musuh dan sekutu dari stat block (serangan, save, Multiattack, Recharge). Aksi yang tidak dijalankan mesin memakai Use it (tingkat C) |
+| TG5 | Spell tingkat B untuk karakter pemain: serangan spell, save dengan setengah damage untuk spell area, penyembuhan, panah (Magic Missile) dari SPELL_FX dan spCalc yang sama dengan kartu spell sheet. Slot per level, naik level slot, satu slot per giliran (aturan 2024), Concentration. Spell tanpa angka tampil sebagai by hand |
+| Belum | Simpan pertarungan, mode party, ilustrasi Codex (TG6), legendary action otomatis, kondisi dari spell (Hold Person) otomatis, Help terbatas 5 kaki |
+
+## G5 Workers disiapkan (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Kode | workers/worker.js (static assets dari dist, /api memakai kode functions/api yang sama, Cron harian memanggil dailyRun), workers/wrangler.jsonc (di folder workers supaya wrangler.toml untuk Pages tidak tergantikan), dailyRun diekspor dari functions/api. Kompilasi Pages Functions dengan ekspor tambahan diuji (wrangler pages functions build) |
+| Uji lokal | wrangler 4.150.0 dev dengan D1 lokal: index dan aset 200, /api/me dan /api/health 200, Cron (__scheduled) jalan, /api/admin dengan corong Learn |
+| Deploy | .github/workflows/workers-deploy.yml: setelah push ke main, build dist lalu wrangler deploy. Tidak melakukan apa pun sampai secret CLOUDFLARE_API_TOKEN dan CLOUDFLARE_ACCOUNT_ID ada. Live-check alamat Workers jalan bila variabel WORKERS_BASE diisi. Pages tetap hidup |
+| Langkah user | 1 Buat API token Cloudflare (izin Workers Scripts Edit dan D1 Edit), simpan sebagai secret repo CLOUDFLARE_API_TOKEN, dan Account ID sebagai CLOUDFLARE_ACCOUNT_ID. 2 Jalankan workflow workers-deploy. 3 Tambah alamat workers.dev ke aplikasi Cloudflare Access yang sama (policy Teman dan service token GitHub). 4 Isi variabel repo WORKERS_BASE dengan alamat itu |

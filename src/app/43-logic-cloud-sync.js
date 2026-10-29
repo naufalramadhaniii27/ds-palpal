@@ -42,7 +42,7 @@ function syRun(why){
   if(!SY.on||SY.busy||FROZEN) return; if(!navigator.onLine){ syState("offline"); return; }
   SY.busy=true; var sy=syGet(), L=syLocal(), now=Date.now(); syLog("run "+why);
   /* a copy taken from the cloud is stored again by the app as it loads (version stamps, derived values). That first local form counts as the synced one */
-  Object.keys(sy.c).forEach(function(id){ var k=sy.c[id]; if(k.fresh&&L[id]&&SY.first){ k.h=L[id].h; delete k.fresh; } }); sySet(sy);
+  Object.keys(sy.c).forEach(function(id){ var k=sy.c[id]; if(k.fresh&&L[id]&&SY.first){ k.h=L[id].h; delete k.fresh; syBaseSet(id,L[id].text); } }); sySet(sy);
   var dirty=Object.keys(L).some(function(id){ return !sy.c[id]||sy.c[id].h!==L[id].h; })||Object.keys(sy.c).some(function(id){ return !L[id]; });
   var gap=SY.mode==="save"?60000:10000, needPull=why==="start"||why==="show"||now-SY.pull>300000;
   if(SY.mode==="pause"||(!needPull&&(!dirty||now-SY.push<gap))){ SY.busy=false; if(!dirty&&SY.st!=="wait") syState("ok"); return; }
@@ -52,13 +52,25 @@ function syRun(why){
     Object.keys(srv).forEach(function(id){ var s=srv[id], k=sy.c[id], l=L[id];
       if(s.deleted){ if(k&&s.rev>k.rev&&l&&l.h===k.h&&id!==r.active){ delete r.chars[id]; changedR=true; delete sy.c[id]; } else if(k&&!l) delete sy.c[id]; return; }
       if(k&&s.rev===k.rev) return; syLog("newer "+id+" "+(k&&k.rev)+">"+s.rev+" local "+(l?(k&&l.h===k.h?"same":"changed"):"none"));
-      if(l&&k&&l.h!==k.h) return; /* both changed: handled by the push below with force */
+      if(l&&k&&l.h!==k.h){ /* both changed. T11 N12: with the last synced copy at hand, combine part by part (git-style three-way). Without it, or for the
+           open character while it is in use, the push below with force keeps this device and the server keeps the other copy as a version */
+        var bt=syBaseGet(id); if(!bt||hashS(bt)!==k.h||(id===r.active&&!(SY.first||document.hidden||why==="show"))) return;
+        jobs.push(syApi("chars/"+encodeURIComponent(id)).then(function(full){ var m=syMerge(bt,l.text,full.data); if(!m){ syLog("merge skip "+id); return; }
+          syLog("merge "+id+" parts "+m.parts.length); var mt=m.text;
+          /* the picture: this device's own data when its reference won, the cloud picture otherwise */
+          var own=null; try{ var me=JSON.parse(mt), mso=JSON.parse(me.S||"null"); if(l.ph&&mso&&mso.portrait==="cloud:"+l.ph){ mso.portrait=l.pic; me.S=JSON.stringify(mso); own=JSON.stringify(me); } }catch(x){}
+          var pin=own?Promise.resolve(own):syPicIn(SY.me.id,id,mt);
+          return pin.then(function(text){ var res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; syBaseSet(id,full.data);
+            /* parts that differ: push with force afterwards, so the server keeps the cloud copy as a version too */
+            sy.c[id]=m.parts.length?{rev:full.rev,h:hashS(full.data),force:1}:{rev:full.rev,h:hashS(full.data)};
+            if(m.parts.length){ var nm=""; try{ nm=JSON.parse(text).name||""; }catch(x){} mgSet(id,{t:Date.now(),name:nm,parts:m.parts.map(function(q){ return {p:q.p,r:q.r}; })}); } }); }));
+        return; }
       if(id===r.active&&l&&!(SY.first||document.hidden||why==="show")) return; /* the open character is replaced only when the app starts or comes back to the screen */
       jobs.push(syApi("chars/"+encodeURIComponent(id)).then(function(full){ var h=hashS(full.data);
-        if(l&&l.h===h){ sy.c[id]={rev:full.rev,h:h}; return; }
+        if(l&&l.h===h){ sy.c[id]={rev:full.rev,h:h}; syBaseSet(id,full.data); return; }
         if(l&&!k){ sy.c[id]={rev:full.rev,h:"remote:"+h}; return; } /* same id, different content, never synced here: push wins below with force */
         return syPicIn(SY.me.id,id,full.data).then(function(text){ var ph=/"portrait\\?":\\?"cloud:([a-z0-9]+)/.exec(full.data);
-          var res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; sy.c[id]={rev:full.rev,h:h,fresh:1}; if(ph&&text!==full.data){ sy.p=sy.p||{}; sy.p[id]=ph[1]; } }); }));
+          var res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; sy.c[id]={rev:full.rev,h:h,fresh:1}; syBaseSet(id,full.data); if(ph&&text!==full.data){ sy.p=sy.p||{}; sy.p[id]=ph[1]; } }); }));
     });
     return Promise.all(jobs).then(function(){
       if(changedR){ window.__publicFresh=0; /* the builder must not blank the sheet of a character that just came from the cloud */ if(!r.active||!r.chars[r.active]||r.chars[r.active].ph){ var ids=Object.keys(r.chars).filter(function(x){ return !r.chars[x].ph; }); r.active=ids[0]||r.active; reload=!!ids.length; }
@@ -70,14 +82,14 @@ function syRun(why){
       /* push: changed here, new here, deleted here */
       var L2=syLocal(), pushes=[];
       Object.keys(L2).forEach(function(id){ var k=sy.c[id], s=srv[id], l=L2[id]; if(k&&k.h===l.h&&s&&!s.deleted) return;
-        var force=!!(s&&(!k||s.rev!==k.rev||/^remote:/.test(k.h))); pushes.push(function(){ return syPut(id,l,k?k.rev:(s?s.rev:0),force).then(function(o){ sy.c[id]={rev:o.rev,h:l.h}; return syPic(id,l,sy); }); }); });
+        var force=!!(s&&(!k||k.force||s.rev!==k.rev||/^remote:/.test(k.h))); pushes.push(function(){ return syPut(id,l,k?k.rev:(s?s.rev:0),force).then(function(o){ sy.c[id]={rev:o.rev,h:l.h}; syBaseSet(id,l.text); return syPic(id,l,sy); }); }); });
       Object.keys(L2).forEach(function(id){ var k=sy.c[id], l=L2[id]; if(k&&k.h===l.h&&l.ph&&(sy.p||{})[id]!==l.ph) pushes.push(function(){ return syPic(id,l,sy); }); });
       Object.keys(sy.c).forEach(function(id){ if(L2[id]) return; var s=srv[id]; if(!s||s.deleted){ delete sy.c[id]; return; }
-        pushes.push(function(){ return syApi("chars/"+encodeURIComponent(id),{method:"DELETE"}).then(function(){ delete sy.c[id]; }); }); });
+        pushes.push(function(){ return syApi("chars/"+encodeURIComponent(id),{method:"DELETE"}).then(function(){ delete sy.c[id]; syBaseSet(id,null); mgSet(id,null); }); }); });
       SY.push=Date.now();
       return pushes.reduce(function(p,f){ return p.then(f); },Promise.resolve()).then(function(){ sySet(sy); });
     });
-  }).then(function(x){ if(x==="stop") return "stop"; return needPull?pfRun():null; }).then(function(x){ if(x==="stop") return; SY.first=false; SY.busy=false; SY.err=""; SY.last=Date.now(); var q=syGet(); q.ok=SY.last; sySet(q); syState(SY.mode==="pause"?"wait":"ok"); syBanners(); syAgain(); },
+  }).then(function(x){ if(x==="stop") return "stop"; return needPull?pfRun():null; }).then(function(x){ if(x==="stop") return; SY.first=false; SY.busy=false; SY.err=""; SY.last=Date.now(); var q=syGet(); q.ok=SY.last; sySet(q); syState(SY.mode==="pause"?"wait":"ok"); syBanners(); mgNotice(); syAgain(); },
   function(e){ SY.busy=false; SY.first=false; e=e||{}; syLog("error "+JSON.stringify(e).slice(0,120));
     if(e.noapi||e._st===404){ SY.on=false; syState("off"); return; }
     if(e._st===409){ SY.pull=0; SY.again=SY.again||"show"; syAgain(); return; } /* the cloud moved on between reading and writing: read again */

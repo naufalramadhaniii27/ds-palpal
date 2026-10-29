@@ -102,6 +102,15 @@ function palWords(){ var W=[
   {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); }}; }},
   {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }},
   {k:["exhaustion"],f:function(){ return palNeed("exh"); }},
+  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ tmOpen(); }}; }},
+  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tgGo(); }}; }},
+  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ wdOpen(); }}; }},
+  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ cheatOpen(); }}; }},
+  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ rbOpen(); }}; }},
+  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ futureOpen(); }}; }},
+  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ recapOpen(); }}; }},
+  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:statusText().slice(0,80),run:function(){ if(sheet.classList.contains("on")) closeSheet(); statusCopy(); }}; }},
+  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ rcptShow(); }}; }},
   {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }},
   {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }},
   {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ var b=$("#themeBtn"); if(b) b.click(); }}; }},
@@ -224,8 +233,10 @@ function libListHTML(){ var q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h=
     if(rc.length) h+='<div class="info-h">Recent</div><div class="lib-l">'+rc.map(function(e){ return libRow(e,"",true); }).join("")+'</div>';
     var n=libCounts(); h+='<div class="info-h">Browse</div><div class="lib-tiles">'+LIB_CATS.filter(function(c){ return n[c[0]]; }).map(function(c){ return '<button type="button" class="lib-tile" data-lib-cat="'+c[0]+'">'+(ico(c[2],"gs-ri")||"")+'<b>'+esc(c[1])+'</b><small>'+n[c[0]]+'</small></button>'; }).join("")+'</div>';
     return h+'<p class="bk-f">Type at least two letters. Try a spell, an item, a feat, a rule, or a word from a description.</p>'; }
-  if(!LIB.res.length) return '<p class="info-d lib-empty">Nothing found for "'+esc(LIB.q.trim())+'".</p>';
-  if(LIB.cat!=="all"){ var F=LIB.res.filter(function(r){ return r[1].c===LIB.cat; }); return libFlat(F,q,F.length); }
+  var ah=typeof askHTML==="function"?askHTML(LIB.q):"";/* T11 N15: a question gets a short answer from the intent table first */
+  if(!LIB.res.length) return ah||'<p class="info-d lib-empty">Nothing found for "'+esc(LIB.q.trim())+'".</p>';
+  h=ah;
+  if(LIB.cat!=="all"){ var F=LIB.res.filter(function(r){ return r[1].c===LIB.cat; }); return ah+libFlat(F,q,F.length); }
   var GR=[]; LIB_CATS.forEach(function(c,ci){ var F=LIB.res.filter(function(r){ return r[1].c===c[0]; }); if(F.length) GR.push([F[0][0],ci,c,F]); }); GR.sort(function(x,y){ return x[0]-y[0]||x[1]-y[1]; });/* the group with the best name match comes first */
   GR.forEach(function(g){ var c=g[2], F=g[3]; h+='<div class="info-h">'+esc(c[1])+' ('+F.length+')</div><div class="lib-l">'+F.slice(0,5).map(function(r){ return libRow(r[1],q,false); }).join("")+'</div>'+(F.length>5?'<button type="button" class="lib-more" data-lib-cat="'+c[0]+'">Show all '+F.length+' in '+esc(c[1])+'</button>':''); });
   return h; }

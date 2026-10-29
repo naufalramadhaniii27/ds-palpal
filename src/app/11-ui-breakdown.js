@@ -8,6 +8,15 @@ function bdAbout(key){
   return spec ? '<p class="bk-about"><button type="button" class="lk" data-info="'+esc(spec)+'">What is '+esc(label)+'?</button></p>' : '';
 }
 window.__miInfo=function(s){ try{ return infoHTML(s); }catch(e){ return null; } }; window.__miBd=function(k){ try{ return B[k]||null; }catch(e){ return null; } };
+/* T11 G4 N10 odds: the exact chance to reach common targets with this bonus, plain, with Advantage and with Disadvantage.
+   Checks and saves: d20 + bonus at or above the DC (2024: a 1 or 20 on a check or save is not automatic).
+   Attacks: a natural 20 always hits and a natural 1 always misses. Shown as whole percents, worked out, not estimated */
+function oddsP(bon,t,atk){ var need=t-bon, p=(21-need)/20; if(atk){ p=Math.min(19,Math.max(1,21-need))/20; } return Math.max(0,Math.min(1,p)); }
+function oddsHTML(key){ var b=B[key]; if(!b) return ""; var atk=/^ah-/.test(key); if(!/^(save-|sk-|ab-|ah-)/.test(key)&&key!=="init") return "";
+  var bon=parseInt(String(b.total).replace("\u2212","-"),10); if(!isFinite(bon)||key==="init") return "";
+  var T=atk?[12,15,18]:[10,15,20], pc=function(x){ return Math.round(x*100)+"%"; };
+  var rows=T.map(function(t){ var p=oddsP(bon,t,atk); return '<tr><th scope="row">'+(atk?"AC ":"DC ")+t+'</th><td>'+pc(p)+'</td><td>'+pc(1-(1-p)*(1-p))+'</td><td>'+pc(p*p)+'</td></tr>'; }).join("");
+  return '<div class="odds"><b class="odds-h">'+(atk?"Chance to hit":"Chance to succeed")+'</b><table><thead><tr><th scope="col"><span class="vh">Target</span></th><th scope="col">Plain</th><th scope="col">Advantage</th><th scope="col">Disadvantage</th></tr></thead><tbody>'+rows+'</tbody></table></div>'; }
 function bdHTML(key){
   var b=B[key]; if(!b) return "";
   var rows=b.parts.map(function(p){
@@ -15,7 +24,7 @@ function bdHTML(key){
     var cls = p.raw ? "" : (p.v<0?" neg":(p.v===0?" zero":""));
     return '<div class="bk-r"><b>'+esc(p.l)+'</b>'+(p.note?'<small>'+esc(p.note)+'</small>':'')+'<span class="v'+cls+'">'+v+'</span></div>';
   }).join("");
-  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+(key==="hp"?hpModH():'')+bdAbout(key)+
+  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+oddsHTML(key)+(key==="hp"?hpModH()+'<p class="bk-btns"><button type="button" class="btn press" data-status="1">Copy status for chat</button><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+(key==="pb"?'<p><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+bdAbout(key)+
     (/^sense-/.test(key)?'<p class="bk-f" style="color:var(--faint)">Set by the builder. Change it there, then Apply.</p>':(cuqOf(key)?'<p class="bk-f" style="color:var(--faint)">To set your own number, turn on Edit mode and tap it.</p>':'<p class="bk-f" style="color:var(--faint)">Change any of these in Edit.</p>'));
 }
 function showBD(key){ if(!B[key]) return; showEntry({type:"bd",key:key},false); }

@@ -67,7 +67,7 @@ function showEntry(en, push){
   hpDockBack();/* v30 */
   var open=sheet.classList.contains("on") && sheetMode!=="edit";
   if(push && open) navStack.push(en); else navStack=[en];
-  var c=entryContent(en); c={t:c.t,h:c.h+learnLink(c.t),m:c.m};
+  var c=entryContent(en); c={t:c.t,h:(typeof coachLine==="function"?coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
   if(open){
     sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"); b.innerHTML=c.h; b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");

@@ -41,10 +41,16 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
  try{a.scrollIntoView({block:"center",behavior:(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)?"auto":"smooth"})}catch(er){}var f=a.querySelector(".acc-b button,.acc-b select,.acc-b input");if(f)try{f.focus({preventScroll:true})}catch(er){}});
 /* T11 G6 T5: the Back button of the phone walks back through the builder steps, and closes the builder from the first step */
 window.__bldBack=function(){var o=STEPS.map(function(x){return x[0]}),i=o.indexOf(step);if(i>0){go(o[i-1]);return true}var c=document.getElementById("b-close");if(c)c.click();return true};
+/* T11 G6 T9 draft: the step in use is kept with the build (cs-bld-step), so a closed tab or a reload opens the builder where it was left.
+   The choices themselves were already saved on every change (save() in 04), this adds the place */
+function stepKeep(s){try{__store.setItem("cs-bld-step",JSON.stringify({k:B.cid||B.name||"",s:s,t:Date.now()}))}catch(e){}}
+function stepBack(){if(window.__bldStepDone)return;window.__bldStepDone=1;var o=null;try{o=JSON.parse(__store.getItem("cs-bld-step")||"null")}catch(e){}
+ if(!o||o.k!==(B.cid||B.name||"")||o.s===step||o.s==="rules"||!STEPS.some(function(x){return x[0]===o.s})||Date.now()-o.t>30*864e5)return;
+ step=o.s;var nm=(STEPS.filter(function(x){return x[0]===o.s})[0]||[])[1];setTimeout(function(){toast("Back where you left off: "+nm+" step.")},300)}
 function go(s){var o=STEPS.map(function(x){return x[0]}),d=o.indexOf(s)-o.indexOf(step);
  /* T11 G6 T4: a View Transition between steps where the browser has it (the old step slides out, the new one in). Otherwise the slide below */
  var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(document.startViewTransition&&!rm&&d&&!document.documentElement.classList.contains("mi-off")){document.documentElement.dataset.bdir=d>0?"f":"b";try{document.startViewTransition(function(){step=s;pickCls=false;pickSp=false;render();window.scrollTo(0,0)});return}catch(e){}}
- step=s;pickCls=false;pickSp=false;render();window.scrollTo(0,0);/* v55: slide in from the side you move toward */try{var bd=$("#body");if(bd&&d&&bd.animate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))bd.animate([{opacity:0,transform:"translateX("+(d>0?28:-28)+"px)"},{opacity:1,transform:"none"}],{duration:window.__miT?__miT(300):260,easing:window.__miSpring||"cubic-bezier(.2,.8,.2,1)"})}catch(e){}}
+ step=s;stepKeep(s);pickCls=false;pickSp=false;render();window.scrollTo(0,0);/* v55: slide in from the side you move toward */try{var bd=$("#body");if(bd&&d&&bd.animate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))bd.animate([{opacity:0,transform:"translateX("+(d>0?28:-28)+"px)"},{opacity:1,transform:"none"}],{duration:window.__miT?__miT(300):260,easing:window.__miSpring||"cubic-bezier(.2,.8,.2,1)"})}catch(e){}}
 function setB(path,val){var ks=path.split("."),o=B;while(ks.length>1)o=o[ks.shift()];o[ks[0]]=val}
 function commit(){save();render()}
 document.addEventListener("click",function(e){if(!e.target.closest("#bld"))return;var sm=e.target.closest("summary[data-lgsum]");if(sm){lgOpen=!sm.parentNode.open;return}/* v96 v98: remember the fold across redraws; the browser still toggles it */var t=e.target.closest("button");if(!t)return;var d=t.dataset;

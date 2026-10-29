@@ -100,6 +100,19 @@ async def main():
             check(vp + " conflict: the other copy is kept as a version", other and "A2" in json.loads(api("chars/%s/versions/%d" % (yid, other[0]["rev"]))["data"]).get("S", ""), vers)
             mine = await pb.evaluate("()=>[JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1')).notes.t8, __sync.st, __sync.on, !!document.getElementById('moreBtn'), !!document.querySelector('.hhead h1')]")
             check(vp + " B kept its own edit", mine[0] == "B2", mine)
+            # T11 N12: the part changed on both is listed for a choice on B, with the other device's value
+            mg = await pb.evaluate("id=>window.__syMerge.get(id)", yid)
+            check(vp + " N12 conflict part listed", mg and any(q["p"] == ["S", "notes", "t8"] and q["r"] == '"A2"' for q in mg["parts"]), mg)
+            await pb.evaluate("id=>__store.removeItem('cs-sync-mg-'+id)", yid)
+            # T11 N12: different parts changed on two devices are combined, nothing is lost and no choice is asked
+            await pa.evaluate("()=>{var o=JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1'));o.notes.ma='A3';window.__lsSave('yudhi-kelapa-sheet-v1',o);location.reload()}"); await ready(pa); await sync(pa)
+            await pb.evaluate("()=>{var o=JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1'));o.notes.mb='B3';window.__lsSave('yudhi-kelapa-sheet-v1',o);location.reload()}"); await ready(pb); await sync(pb)
+            await pa.evaluate("()=>__syncRun('show')"); await pa.wait_for_timeout(1500); await ready(pa)
+            cur = json.loads(json.loads(api("chars/" + yid)["data"])["S"]).get("notes", {})
+            check(vp + " N12 cloud has both edits", cur.get("ma") == "A3" and cur.get("mb") == "B3" and cur.get("t8") == "B2", cur)
+            for pg_, nm_ in ((pa, "A"), (pb, "B")):
+                n_ = await pg_.evaluate("id=>[JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1')).notes, window.__syMerge.get(id)]", yid)
+                check(vp + " N12 device %s has both edits, nothing to choose" % nm_, n_[0].get("ma") == "A3" and n_[0].get("mb") == "B3" and not n_[1], n_)
             # restore that version as a copy from the cloud dialog on B
             await pb.evaluate("()=>document.querySelector('.sy-b').click()"); await pb.wait_for_selector(".sy-dlg [data-syv]", timeout=10000)
             await pb.screenshot(path=os.path.join(OUT, vp + "-B-cloud.png"))

@@ -312,3 +312,21 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | src/css/L-learn.css, L-dice.css | Tampilan Learn, sorotan sheet, band Home. Baki dadu 3D |
 | src/fx/25-dice3d.js | `window.__dice3d.roll([20,20])`, dimuat saat lemparan pertama |
 | tests | learn_flow, dice_app, fx_tier, back_home, overlay_snapshot, style_snapshot (--variants), csp_check, pdf_export, replay_report, fuzz_rules |
+
+### Sesudah 0.0.3 (rilis 0.0.4)
+| File | Isi |
+|---|---|
+| src/app/46-logic-receipts.js | N3 struk angka sesudah update (`cs-rcpt-v1`), N13, N16 |
+| src/app/47-logic-time-machine.js | N2 History (`cs-tm-<id>`), `window.__tm` |
+| src/app/48-logic-sync-merge.js | N12 gabung per bagian: `cs-sync-base-<id>` (salinan dasar), `cs-sync-mg-<id>` (bagian yang dipilih), `window.__syMerge`. Dipanggil dari 43 |
+| src/app/49-logic-status-and-odds.js | N17 status chat, N10 peluang, N9 rules check, N4 rekap sesi, N15 tanya aturan (tabel `ASK`), N11 Build DNA (`#build=`), N5 sheet masa depan, D2 lempar death save dan Hit Point Dice |
+| src/app/50-logic-reverse-builder.js | N1 Find a build. Hook builder `__bldOpts`, `__bldUse` di builder 25 |
+| src/app/51-ui-table-help.js | U7 Which die, U3 contekan, U47 coach mode (`cs-coach`) |
+| src/fx/16 | D3 Game Log `mi-rl-<nama>`, `window.__miRollKey`, I rolled myself |
+| src/builder/22 | T9 langkah terakhir `cs-bld-step` |
+| tools/tg_creatures.py, data/tg-creatures.json, src/tg/ | G7 TG0b data 503 makhluk (JSON statis, diambil saat dibuka) dan TG0 mesin pertarungan (src/tg/20-engine.js) |
+| src/app/44 dan functions/api | U12 corong Learn di Admin (total per tempat, tanpa data per orang) |
+| src/tg/00, 20, 30, 99 | Blok tunda `data-defer="tg"`: mesin (`window.TGE`) dan layar Training Ground (`window.__tgOpen`, `__tgBack`, `__tgState`). CSS `css/L-tg.css` (layer learn) |
+| src/app/52-tg-bridge.js | Karakter pemain untuk mesin: `__app.tgRoster()`, `__app.tgTry(class, level)`, spell tingkat B dari SPELL_FX dan spCalc |
+| tools/learn_shots.py, img/learn/shots/ | Gambar builder asli dengan titik bernomor untuk Forge Your Hero (HP dan PC, tanpa art scene). Jalankan sesudah build bila tampilan builder berubah |
+| tests | receipts, time_machine, game_log, sync_merge_ui, builder_draft, g4_play, tg_engine.js (node), cloud_sync (wrangler) |

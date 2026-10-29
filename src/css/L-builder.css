@@ -60,6 +60,13 @@
 .rcpt .rc-h strong{color:var(--good,#5fc28b)}
 .rcpt small{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
 .rc-none{color:var(--muted)}
+.tml{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tml li{padding:10px 12px;border-radius:10px;border:1px solid var(--line,#30373b)}
+.tml .tm-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tml .tm-h span{color:var(--muted)}
+.tml small{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
+.tml .tm-a{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tml .tm-a .btn{min-height:44px}
 #bld .abgrid .abx{min-width:0}
 #bld .abgrid .abx>b{font-size:calc(13px*var(--tz,1));letter-spacing:.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 #bld .abgrid .abx input.btx{text-align:center;width:100%}
@@ -76,4 +83,5 @@
 #bld .pts.done b{color:var(--good,#5fc28b)}
 #bld .pts.over b{color:var(--bad,#ee6d62)}
 :root[data-hc] #bld .abhex::after{background:var(--panel)}
+.dna-qr svg{width:min(100%,280px);height:auto;background:#fff;padding:8px;border-radius:8px}
 }
