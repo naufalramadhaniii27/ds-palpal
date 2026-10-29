@@ -2954,6 +2954,11 @@ art/batch/icons/features/class/monk/extra-attack.png
 art/batch/icons/features/class/monk/heightened-focus.png
 art/batch/icons/features/class/monk/martial-arts.png
 
+art/batch/icons/features/class/monk/monks-focus.png
+art/batch/icons/features/class/monk/perfect-focus.png
+art/batch/icons/features/class/monk/self-restoration.png
+art/batch/icons/features/class/monk/slow-fall.png
+art/batch/icons/features/class/monk/stunning-strike.png
 ## batch-171 v3
 art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
 art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
