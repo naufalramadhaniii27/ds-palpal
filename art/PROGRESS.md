@@ -3635,6 +3635,11 @@ art/batch/icons/features/subclass/arcane-archer/magical-ammunition.png
 art/batch/icons/features/subclass/arcane-archer/masterful-shots.png
 art/batch/icons/features/subclass/arcane-trickster/mage-hand-legerdemain.png
 art/batch/icons/features/subclass/arcane-trickster/magical-ambush.png
+art/batch/icons/features/subclass/arcane-trickster/spell-thief.png
+art/batch/icons/features/subclass/arcane-trickster/spellcasting.png
+art/batch/icons/features/subclass/arcane-trickster/versatile-trickster.png
+art/batch/icons/features/subclass/archfey-patron/archfey-spells.png
+art/batch/icons/features/subclass/archfey-patron/beguiling-defenses.png
 
 ## batch-048 v3
 art/batch/icons/spells/level-4/summon-construct.png
