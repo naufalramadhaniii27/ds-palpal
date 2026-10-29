@@ -3045,6 +3045,10 @@ art/batch/icons/spells/level-3/wall-of-sand.png
 art/batch/icons/spells/level-3/wall-of-water.png
 art/batch/icons/spells/level-3/wind-wall.png
 art/batch/icons/spells/level-3/fear.png
+art/batch/icons/spells/level-3/hypnotic-pattern.png
+art/batch/icons/spells/level-3/major-image.png
+art/batch/icons/spells/level-3/phantom-steed.png
+art/batch/icons/spells/level-3/animate-dead.png
 
 ## batch-151 v3
 art/batch/icons/features/class/paladin/faithful-steed.png
