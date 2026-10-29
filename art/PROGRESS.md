@@ -2041,6 +2041,8 @@ art/batch/icons/rules/actions/reaction.png
 art/batch/icons/rules/actions/grapple.png
 art/batch/icons/rules/actions/shove.png
 art/batch/icons/rules/actions/two-weapon-attack.png
+art/batch/icons/rules/actions/short-rest.png
+art/batch/icons/rules/actions/long-rest.png
 ## batch-066 v3
 art/batch/scenes/species/bugbear-pc.png
 art/batch/scenes/species/bugbear-phone.png
