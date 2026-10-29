@@ -50,7 +50,7 @@ Keputusan lama di HANDOFF v18-v28 bagian 8 ("Lempar dadu, Game Log tidak dikerja
 Keputusan user 2026-10-29: D-C (dice-box) dengan cara paling optimal. N19 mesin buatan sendiri tidak dibuat.
 
 ### D1 dice-box optimal
-Paket: @3d-dice/dice-box 1.1.4 (MIT), berisi BabylonJS (Apache 2.0) dan Ammo.js (zlib). Diukur dari paket npm 2026-10-29.
+Paket awal: @3d-dice/dice-box 1.1.4 (MIT), berisi BabylonJS 5.57 (Apache 2.0) dan Ammo.js (zlib). Diukur dari paket npm 2026-10-29. Diganti E3 di bawah.
 | File | Mentah | gzip |
 |---|---|---|
 | dice-box.es.min.js | 198 KB | 40 KB |
@@ -82,7 +82,8 @@ dice-box 1.1.4 (rilis terakhir Agustus 2024) memakai BabylonJS 5.57.1 dan Ammo.j
 | E1 | dice-box 1.1.4 apa adanya | sekitar 745 KB | Tidak: Babylon 5.57, Ammo |
 | E2 | dice-box dibangun ulang di atas Babylon 9.32 (hanya modul yang dipakai, WebGPU dengan cadangan WebGL2), fisika tetap Ammo | perlu diukur setelah bundling | Sebagian: Babylon terbaru, fisika lama |
 | E3 | dice-box dibangun ulang di atas Babylon 9.32 dan Havok 1.3.14 | lebih besar dari E2: wasm Havok 2,09 MB (662 KB gzip) dibanding Ammo 317 KB (128 KB gzip) | Ya, semua terbaru |
-Semua pilihan tetap dimuat belakangan, jadi tidak memperlambat app saat dibuka. Menunggu keputusan user.
+Semua pilihan tetap dimuat belakangan, jadi tidak memperlambat app saat dibuka.
+Keputusan user 2026-10-29: E3. dice-box dibangun ulang di folder `vendor/dice-box/` (sumber MIT dari repo 3d-dice/dice-box, perubahan dicatat) di atas @babylonjs/core 9.32.1 dan @babylonjs/havok 1.3.14, dibundel dengan esbuild hanya untuk modul yang dipakai. Renderer WebGPU bila tersedia, cadangan WebGL2. Versi dikunci. Tabel ukuran dan cara optimal D1 di atas tetap berlaku, angka diukur ulang setelah bundling. Lisensi: MIT dice-box, Apache 2.0 Babylon, MIT Havok. Ammo tidak dipakai, jadi CSP tetap butuh `'wasm-unsafe-eval'` untuk Havok.
 
 ### D2 Lempar dari sheet
 Ketuk skill, save, serangan, damage, Initiative, death save, atau Hit Point Dice: dadu dilempar, hasil dan rinciannya tampil (dadu, bonus, total). Advantage dan Disadvantage melempar dua d20. Critical Hit menggandakan dadu damage. Bila kamu memakai dadu fisik, ada pilihan "I rolled myself" untuk mengetik hasilnya.
