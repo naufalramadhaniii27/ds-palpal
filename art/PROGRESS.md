@@ -1975,6 +1975,14 @@ art/batch/icons/spells/level-2/gentle-repose.png
 art/batch/icons/spells/level-2/ray-of-enfeeblement.png
 art/batch/icons/spells/level-2/wither-and-bloom.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2707,3 +2715,9 @@ art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.pn
 art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
 art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
 art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
+## batch-222 v3
+art/batch/ui/ribbon-dialog.png
+art/batch/ui/scroll-toast.png
+art/batch/ui/parchment-tooltip.png
+art/batch/ui/frame-dialog.png
+art/batch/ui/sprite-loader-d20.png
