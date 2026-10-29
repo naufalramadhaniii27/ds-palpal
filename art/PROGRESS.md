@@ -3507,12 +3507,12 @@ art/batch/scenes/species/kender-phone.png
 art/batch/scenes/species/kenku-pc.png
 art/batch/scenes/species/kenku-phone.png
 art/batch/scenes/species/khenra-pc.png
-NEXT: batch-172 art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
 ## batch-172 v3
 art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
 art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
