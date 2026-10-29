@@ -1,5 +1,7 @@
 # Rencana menu Learn: Hoot's Training Grounds (2026-10-28, diperbarui 2026-10-29)
 
+Urutan kerja: claude/rencana-kerja-learn.md.
+
 Status: disetujui user (interactive learning, bukan komik). Kode belum dikerjakan. Saat dikerjakan, Claude jalan duluan dengan gambar sementara. Ilustrasi Codex hanya pelengkap, dipasang begitu jadi (keputusan user 2026-10-29). Gambar Codex: batch-234, 235, 236 (48 gambar).
 
 ## Tujuan
@@ -209,7 +211,7 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U15 | 2026-10-29 | Nama ramah untuk istilah | Lihat kamus. Diperbaiki di pemeriksaan kedua (Save Roll, Main Action, HP) | Diterima 2026-10-29 |
 | U16 | 2026-10-29 | Hitungan visual | Animasi kepingan bonus. Bonus positif dulu, minus belakangan dengan garis bilangan | Diterima 2026-10-29 |
 | U17 | 2026-10-29 | Visual dulu | Hasil selalu visual: angka, dadu, gerak dan ikon menjelaskan sebelum teks. Tombol "Read to me" dibatalkan user, kemampuan baca diatasi lewat visual | Diterima 2026-10-29, diubah |
-| U18 | 2026-10-29 | Quick Hero | 6 pahlawan siap pakai, ganti nama dan tampilan, builder lengkap belakangan | Diterima 2026-10-29 |
+| U18 | 2026-10-29 | Quick Hero | 6 pahlawan siap pakai, ganti nama dan tampilan, builder lengkap belakangan | Diterima 2026-10-29, diganti U31 |
 | U19 | 2026-10-29 | Family Mode | Saklar yang menyembunyikan gambar berdarah di seluruh app dan mematikan Friends | Ditolak 2026-10-29 |
 | U20 | 2026-10-29 | Struktur dua bahasa | Semua teks Learn di satu file data dengan kunci en dan id. Terjemahan ditulis tangan. Label titik screenshot ikut bahasa | Diterima 2026-10-29 |
 | U21 | 2026-10-29 | Uji main nyata | 1 anak dan 2 orang awam mencoba Jalur Inti tanpa dibantu, diukur dengan tabel Ukuran berhasil | Diterima 2026-10-29 |
@@ -222,13 +224,13 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U28 | 2026-10-29 | Panduan bahasa Indonesia santai | Diubah user: Claude riset sendiri cara menulis bahasa Indonesia santai, hasilnya bagian "Bahasa Indonesia santai" dan cek otomatis | Diterima 2026-10-29 |
 | U29 | 2026-10-29 | Tunjukkan, jangan tulis | Karena tanpa suara: tiap tantangan dimulai dengan Hoot memperagakan langkahnya. Tangan bayangan menunjuk yang harus diketuk. Petunjuk menunjukkan langkah berikutnya, bukan menjelaskannya. Ikon dari benda yang anak kenal. Uji main (U21) mengecek anak paham ikon tanpa membaca | Diterima 2026-10-29 |
 | U30 | 2026-10-29 | Tanpa pancingan | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (praktik baik, sejalan dengan larangan nudge di PP Tunas). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diterima 2026-10-29 |
-| U31 | 2026-10-29 | Quick Hero memakai Quick Build yang sudah ada | Builder sudah punya Quick Build (pilih class dan species, sisanya diisi otomatis, v27 RU65). D&D Beyond (Maret 2026) memakai 4 pilihan: class, species, background, potret, plus tombol acak. Quick Hero di Learn = Quick Build ditambah pilihan background, potret dan tombol "Surprise me", dengan kartu class bergambar. Menggantikan rencana 6 pahlawan jadi di U18 | Diusulkan |
-| U32 | 2026-10-29 | Ide kreatif dihargai | Di Tavern dan Market ada lebih dari satu jawaban benar, dan tiap jawaban berujung beda. Pilihan "Try something else" membuka ide tak terduga yang tetap diterima Hoot | Diusulkan |
-| U33 | 2026-10-29 | Pola tetap tiap tempat | 1 Tebak dulu (satu soal sebelum belajar). 2 Lihat: Hoot memperagakan. 3 Coba bareng: petunjuk masih ada. 4 Coba sendiri: petunjuk hilang. 5 Kenapa berhasil? (pilih satu dari tiga alasan). 6 Find it on your sheet. Pindah ke bagian berikut hanya setelah langkah sebelumnya benar | Diusulkan |
-| U34 | 2026-10-29 | Hitungan konkret, gambar, angka | Bonus dan dadu diajarkan tiga tahap: dadu dan kepingan bonus yang bisa digeser, lalu gambar batang, lalu angka seperti di sheet ("12 + 3 = 15"). Bentuk detail dari U16 | Diusulkan |
-| U35 | 2026-10-29 | Kata menempel di gambar | Label pendek ditaruh tepat di samping bagian gambar yang dimaksud, bukan di panel terpisah | Diusulkan |
-| U36 | 2026-10-29 | Umpan balik soal langkahnya | Pujian menyebut apa yang benar ("You added your bonus!"), bukan "You're smart". Recap (U26) muncul paling cepat sehari setelah belajar, supaya jedanya cukup | Diusulkan |
-| U37 | 2026-10-29 | Tanpa nilai dan peringkat antarpemain | Progres pribadi saja. Tidak ada skor, papan peringkat, atau perbandingan dengan teman. Lencana peringkat (batch-236) hanya menandai tempat yang sudah selesai | Diusulkan |
+| U31 | 2026-10-29 | Quick Hero memakai Quick Build yang sudah ada | Builder sudah punya Quick Build (pilih class dan species, sisanya diisi otomatis, v27 RU65). D&D Beyond (Maret 2026) memakai 4 pilihan: class, species, background, potret, plus tombol acak. Quick Hero di Learn = Quick Build ditambah pilihan background, potret dan tombol "Surprise me", dengan kartu class bergambar. Menggantikan rencana 6 pahlawan jadi di U18 | Diterima 2026-10-29 (masuk rencana kerja) |
+| U32 | 2026-10-29 | Ide kreatif dihargai | Di Tavern dan Market ada lebih dari satu jawaban benar, dan tiap jawaban berujung beda. Pilihan "Try something else" membuka ide tak terduga yang tetap diterima Hoot | Diterima 2026-10-29 (masuk rencana kerja) |
+| U33 | 2026-10-29 | Pola tetap tiap tempat | 1 Tebak dulu (satu soal sebelum belajar). 2 Lihat: Hoot memperagakan. 3 Coba bareng: petunjuk masih ada. 4 Coba sendiri: petunjuk hilang. 5 Kenapa berhasil? (pilih satu dari tiga alasan). 6 Find it on your sheet. Pindah ke bagian berikut hanya setelah langkah sebelumnya benar | Diterima 2026-10-29 (masuk rencana kerja) |
+| U34 | 2026-10-29 | Hitungan konkret, gambar, angka | Bonus dan dadu diajarkan tiga tahap: dadu dan kepingan bonus yang bisa digeser, lalu gambar batang, lalu angka seperti di sheet ("12 + 3 = 15"). Bentuk detail dari U16 | Diterima 2026-10-29 (masuk rencana kerja) |
+| U35 | 2026-10-29 | Kata menempel di gambar | Label pendek ditaruh tepat di samping bagian gambar yang dimaksud, bukan di panel terpisah | Diterima 2026-10-29 (masuk rencana kerja) |
+| U36 | 2026-10-29 | Umpan balik soal langkahnya | Pujian menyebut apa yang benar ("You added your bonus!"), bukan "You're smart". Recap (U26) muncul paling cepat sehari setelah belajar, supaya jedanya cukup | Diterima 2026-10-29 (masuk rencana kerja) |
+| U37 | 2026-10-29 | Tanpa nilai dan peringkat antarpemain | Progres pribadi saja. Tidak ada skor, papan peringkat, atau perbandingan dengan teman. Lencana peringkat (batch-236) hanya menandai tempat yang sudah selesai | Diterima 2026-10-29 (masuk rencana kerja) |
 
 Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 
