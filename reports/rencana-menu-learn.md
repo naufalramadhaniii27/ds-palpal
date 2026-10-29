@@ -19,7 +19,7 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | 12 tempat berurutan sebelum bisa main | Terlalu panjang. Perhatian anak habis sebelum sampai ke bagian yang dipakai di meja | Jalur Inti 5 tempat, sekitar 15 menit total, cukup untuk main sesi pertama. Sisanya Tempat Bonus (U14) |
 | Istilah buku dipakai langsung (DC, AC, modifier, proficiency, saving throw) | Kata asing tanpa gambaran | Nama ramah dulu, istilah buku kecil di sampingnya (U15) |
 | Hitungan dikerjakan pengguna | Anak 10 tahun baru mulai belajar angka negatif. Menjumlah di kepala sambil membaca aturan = beban ganda | App menghitung dengan animasi kepingan bonus. Bonus positif dulu, minus belakangan dengan garis bilangan (U16) |
-| Penjelasan lewat teks Hoot | Anak paling bisa membaca umpan balik visual | Visual dulu, teks maksimal 2 kalimat, "Read to me" opsional (U17) |
+| Penjelasan lewat teks Hoot | Anak paling bisa membaca umpan balik visual | Visual dulu, teks maksimal 2 kalimat (U17) |
 | Build track langsung memakai builder lengkap | Builder punya puluhan pilihan | Quick Hero (U18) |
 | Salah pilihan dianggap gagal | Anak cepat menyerah | Tidak ada "wrong", petunjuk lalu coba lagi (U22) |
 | App di luar Learn | Gambar berdarah dan fitur Friends | Family Mode ditolak user (U19). Gambar Learn sendiri tetap tanpa darah dan luka |
@@ -42,8 +42,7 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | Contoh "lebih besar dari angka target" salah aturan | Diperbaiki. Hasil yang sama dengan target juga berhasil. Contoh "Pas" ditambah supaya anak belajar ini sejak awal |
 | "Big die" untuk d20 | Diganti "d20". Di meja ada dadu lain yang juga besar, dan anak perlu kenal nama d20 untuk Meet your dice |
 | "Lucky Roll" bisa tertukar dengan feat Lucky | Tetap dipakai. Feat Lucky memang memberi Advantage, jadi artinya tidak bertentangan |
-| Suara Indonesia untuk "Read to me" | Tergantung perangkat (Android memakai mesin TTS terpasang, iOS memakai suara sistem). Tombol disembunyikan bila tidak ada suara id-ID |
-| Kemampuan baca anak Indonesia | Asesmen Nasional 2024: 70,03 persen siswa mencapai kompetensi minimum literasi, jadi sekitar 3 dari 10 belum. Ini memperkuat visual dulu dan "Read to me" |
+| Kemampuan baca anak Indonesia | Asesmen Nasional 2024: 70,03 persen siswa mencapai kompetensi minimum literasi, jadi sekitar 3 dari 10 belum. Ini memperkuat visual dulu. Keputusan user: atasi lewat visual, tanpa suara |
 | Waktu 15 menit Jalur Inti | Masih perkiraan. Dibuktikan di uji main (U21) |
 
 ## Kamus dicocokkan ke Library app (2026-10-29)
@@ -188,7 +187,7 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U14 | 2026-10-29 | Jalur Inti dan Tempat Bonus | 5 tempat inti sekitar 15 menit, sisanya bonus | Diterima 2026-10-29 |
 | U15 | 2026-10-29 | Nama ramah untuk istilah | Lihat kamus. Diperbaiki di pemeriksaan kedua (Save Roll, Main Action, HP) | Diterima 2026-10-29 |
 | U16 | 2026-10-29 | Hitungan visual | Animasi kepingan bonus. Bonus positif dulu, minus belakangan dengan garis bilangan | Diterima 2026-10-29 |
-| U17 | 2026-10-29 | Visual dulu, "Read to me" opsional | Hasil selalu visual. Tombol baca suara opsional (fitur suara browser, EN dan ID). Suara Indonesia tergantung perangkat, jadi tombol hanya muncul bila suara id-ID tersedia | Diterima 2026-10-29 |
+| U17 | 2026-10-29 | Visual dulu | Hasil selalu visual: angka, dadu, gerak dan ikon menjelaskan sebelum teks. Tombol "Read to me" dibatalkan user, kemampuan baca diatasi lewat visual | Diterima 2026-10-29, diubah |
 | U18 | 2026-10-29 | Quick Hero | 6 pahlawan siap pakai, ganti nama dan tampilan, builder lengkap belakangan | Diterima 2026-10-29 |
 | U19 | 2026-10-29 | Family Mode | Saklar yang menyembunyikan gambar berdarah di seluruh app dan mematikan Friends | Ditolak 2026-10-29 |
 | U20 | 2026-10-29 | Struktur dua bahasa | Semua teks Learn di satu file data dengan kunci en dan id. Terjemahan ditulis tangan. Label titik screenshot ikut bahasa | Diterima 2026-10-29 |
@@ -208,7 +207,7 @@ Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 |---|---|
 | Data | Teks tantangan dua bahasa, kamus istilah, kartu ringkasan, Quick Hero, teks titik screenshot, soal recap |
 | Logic | Progres dan XP, simulasi aturan, hitungan visual, mode panduan builder, karakter latihan, pilihan bahasa, recap |
-| UI/UX | Peta, layar tantangan, panel Hoot, kartu, penampil screenshot bertitik, alat "Which die", "Read to me", sorotan "Find it on your sheet" |
+| UI/UX | Peta, layar tantangan, panel Hoot, kartu, penampil screenshot bertitik, alat "Which die", sorotan "Find it on your sheet" |
 | Build tools | tools/learn_shots.py |
 | Checker | 3 skenario wajib, tes Learn dua bahasa dan titik screenshot di 390x844 dan 1250x850, cek keterbacaan, tes di offline, Motion off, Calm, kontras tinggi |
 
