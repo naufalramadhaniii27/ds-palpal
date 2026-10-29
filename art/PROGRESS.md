@@ -4002,6 +4002,11 @@ art/batch/icons/feats/skill-expert.png
 art/batch/icons/feats/skulker.png
 art/batch/icons/feats/slasher.png
 art/batch/icons/feats/speedy.png
+art/batch/icons/feats/spell-sniper.png
+art/batch/icons/feats/telekinetic.png
+art/batch/icons/feats/telepathic.png
+art/batch/icons/feats/war-caster.png
+art/batch/icons/feats/weapon-master.png
 
 ## batch-212 v3
 
