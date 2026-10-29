@@ -3059,3 +3059,9 @@ art/batch/creatures/celestial-fey-or-fiend/otherworldly-steed.png
 art/batch/creatures/beast/giant-insect.png
 art/batch/creatures/aberration/aberrant-spirit.png
 
+## batch-055 v3
+art/batch/icons/spells/level-6/gravity-fissure.png
+art/batch/icons/spells/level-6/otilukes-freezing-sphere.png
+art/batch/icons/spells/level-6/sunbeam.png
+art/batch/icons/spells/level-6/wall-of-ice.png
+art/batch/icons/spells/level-6/mental-prison.png
