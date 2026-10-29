@@ -161,3 +161,11 @@ Rilis bertahap ke main sesudah tiap kelompok lolos regresi.
 | Uji lokal | wrangler 4.150.0 dev dengan D1 lokal: index dan aset 200, /api/me dan /api/health 200, Cron (__scheduled) jalan, /api/admin dengan corong Learn |
 | Deploy | .github/workflows/workers-deploy.yml: setelah push ke main, build dist lalu wrangler deploy. Tidak melakukan apa pun sampai secret CLOUDFLARE_API_TOKEN dan CLOUDFLARE_ACCOUNT_ID ada. Live-check alamat Workers jalan bila variabel WORKERS_BASE diisi. Pages tetap hidup |
 | Langkah user | 1 Buat API token Cloudflare (izin Workers Scripts Edit dan D1 Edit), simpan sebagai secret repo CLOUDFLARE_API_TOKEN, dan Account ID sebagai CLOUDFLARE_ACCOUNT_ID. 2 Jalankan workflow workers-deploy. 3 Tambah alamat workers.dev ke aplikasi Cloudflare Access yang sama (policy Teman dan service token GitHub). 4 Isi variabel repo WORKERS_BASE dengan alamat itu |
+
+## Rilis 0.0.4 (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Commit | c465d85 dan c1ccf37 di main |
+| Regresi | 38 tes lolos: scenarios, flow, csp, pdf, starting_style, overflow, overlap, campaign, lib_add, off_mode, storage_idb, tidy, dice_app, fx_tier, back_home, blank_new, learn_flow, learn_links, learn_forge, learn_a11y (dengan Forge dan Training Ground), tour_flow, builder_4d6, builder_g6, builder_draft, receipts, time_machine, game_log, sync_merge_ui, version_label, g4_play, tg_ui, a11y_scan, replay, tg_engine 1.000 pertarungan, fuzz 500, cloud_sync 39 cek, modes_matrix. flow dan starting_style sempat gagal saat CPU dipakai tes lain, lolos saat diulang sendiri |
+| Live-check | Lolos. workers-deploy jalan dan berhenti karena secret Cloudflare belum ada (sesuai rancangan) |
+| Tambahan TG | Pertarungan tersimpan di IndexedDB sendiri (dnd-tg) dengan Resume, legendary action (107 aksi, 41 merujuk serangan) |
