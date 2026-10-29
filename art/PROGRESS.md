@@ -4213,6 +4213,11 @@ art/batch/icons/spells/level-5/rarys-telepathic-bond.png
 art/batch/icons/spells/level-5/scrying.png
 art/batch/icons/spells/level-5/dominate-person.png
 art/batch/icons/spells/level-5/geas.png
+art/batch/icons/spells/level-5/hold-monster.png
+art/batch/icons/spells/level-5/modify-memory.png
+art/batch/icons/spells/level-5/synaptic-static.png
+art/batch/icons/spells/level-5/yolandes-regal-presence.png
+art/batch/icons/spells/level-5/bigbys-hand.png
 
 ## batch-213 v3
 
