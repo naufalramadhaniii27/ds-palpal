@@ -3323,6 +3323,11 @@ art/batch/icons/features/subclass/aberrant-sorcery/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-sorcery/psionic-spells.png
 art/batch/icons/features/subclass/aberrant-sorcery/psychic-defenses.png
 art/batch/icons/features/subclass/aberrant-sorcery/revelation-in-flesh.png
+art/batch/icons/features/subclass/aberrant-sorcery/telepathic-speech.png
+art/batch/icons/features/subclass/aberrant-sorcery/warping-implosion.png
+art/batch/icons/features/subclass/abjurer/abjuration-savant.png
+art/batch/icons/features/subclass/abjurer/arcane-ward.png
+art/batch/icons/features/subclass/abjurer/projected-ward.png
 ## batch-229 v3
 art/batch/monsters/monstrosity/tarrasque.png
 art/batch/monsters/monstrosity/hag-coven.png
