@@ -2294,13 +2294,17 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
-NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
 art/batch/scenes/environment/desert-pc.png
 art/batch/scenes/environment/desert-phone.png
 art/batch/scenes/environment/snow-pc.png
+art/batch/scenes/environment/snow-phone.png
+art/batch/scenes/environment/swamp-pc.png
+art/batch/scenes/environment/swamp-phone.png
+art/batch/scenes/environment/castle-pc.png
+art/batch/scenes/environment/castle-phone.png
 
 ## batch-148 v3
 art/batch/icons/features/class/bard/jack-of-all-trades.png
