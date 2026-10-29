@@ -3787,6 +3787,11 @@ art/batch/icons/spells/level-4/vitriolic-sphere.png
 art/batch/icons/spells/level-4/wall-of-fire.png
 art/batch/icons/spells/level-4/distorted-distance.png
 art/batch/icons/spells/level-4/greater-invisibility.png
+art/batch/icons/spells/level-4/hallucinatory-terrain.png
+art/batch/icons/spells/level-4/phantasmal-killer.png
+art/batch/icons/spells/level-4/blight.png
+art/batch/icons/spells/level-4/festering-blast.png
+art/batch/icons/spells/level-4/shadow-of-moil.png
 
 ## batch-137 v3
 art/batch/icons/feats/dual-wielder.png
