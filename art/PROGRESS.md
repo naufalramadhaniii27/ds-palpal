@@ -2167,6 +2167,11 @@ art/batch/icons/features/subclass/oath-of-glory/channel-divinity-inspiring-smite
 art/batch/icons/features/subclass/oath-of-glory/channel-divinity-peerless-athlete.png
 art/batch/icons/features/subclass/oath-of-glory/glorious-defense.png
 art/batch/icons/features/subclass/oath-of-glory/inspiring-smite.png
+art/batch/icons/features/subclass/oath-of-glory/living-legend.png
+art/batch/icons/features/subclass/oath-of-glory/oath-spells.png
+art/batch/icons/features/subclass/oath-of-glory/oath-of-glory-spells.png
+art/batch/icons/features/subclass/oath-of-glory/peerless-athlete.png
+art/batch/icons/features/subclass/oath-of-redemption/aura-of-the-guardian.png
 
 ## batch-043 v3
 art/batch/icons/spells/level-3/dispel-magic.png
