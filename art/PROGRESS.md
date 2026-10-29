@@ -2953,6 +2953,11 @@ art/batch/icons/items/magic/rare/kagonesti-forest-shroud.png
 art/batch/icons/items/magic/very-rare/mirror-of-reflected-pasts.png
 art/batch/icons/items/magic/legendary/greater-silver-sword.png
 art/batch/icons/items/magic/legendary/infernal-tack.png
+art/batch/icons/spells/level-6/summon-dinosaur.png
+art/batch/icons/spells/level-6/summon-fiend.png
+art/batch/icons/spells/level-6/tashas-bubbling-cauldron.png
+art/batch/icons/spells/level-6/transport-via-plants.png
+art/batch/icons/spells/level-6/wall-of-thorns.png
 ## batch-150 v3
 art/batch/icons/features/class/monk/empowered-strikes.png
 art/batch/icons/features/class/monk/evasion.png
@@ -3308,6 +3313,11 @@ art/batch/icons/spells/level-4/otilukes-resilient-sphere.png
 art/batch/icons/spells/level-4/conjure-minor-elementals.png
 art/batch/icons/spells/level-4/conjure-woodland-beings.png
 art/batch/icons/spells/level-4/dimension-door.png
+art/batch/creatures/beast/giant-rat.png
+art/batch/creatures/beast/giant-scorpion.png
+art/batch/creatures/monstrosity/griffon.png
+art/batch/creatures/aberration/intellect-devourer.png
+art/batch/creatures/beast/jackal.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
@@ -3318,6 +3328,7 @@ art/batch/icons/features/subclass/aberrant-mind/telepathic-speech.png
 art/batch/monsters/monstrosity/tarrasque.png
 art/batch/monsters/monstrosity/hag-coven.png
 art/batch/monsters/monstrosity/owlbear.png
+
 ## batch-057 v3
 art/batch/icons/spells/level-7/divine-word.png
 art/batch/icons/spells/level-7/fire-storm.png
@@ -3325,3 +3336,9 @@ art/batch/icons/spells/level-7/forcecage.png
 art/batch/icons/spells/level-7/mordenkainens-sword.png
 NEEDS REVIEW: art/batch/icons/spells/level-7/prismatic-spray.png
 art/batch/icons/spells/level-7/whirlwind.png
+## batch-230 v3
+art/batch/icons/abilities/intelligence.png
+art/batch/icons/skills/arcana.png
+art/batch/icons/skills/deception.png
+art/batch/icons/skills/performance.png
+art/batch/icons/skills/religion.png
