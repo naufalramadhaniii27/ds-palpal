@@ -4,3 +4,4 @@ tests/out/
 dist/
 .wrangler/
 tools/build/node_modules/
+__pycache__/
