@@ -202,7 +202,9 @@ function snTake(id,why,r){ if(FROZEN||!id) return; r=r||rGet(); if(!r||!r.chars|
   var o=snGet(), L=o.chars[id]||[], h=rawHash({B:x.B,C:x.C,S:s}); if(L[0]&&L[0].h===h) return;
   L.unshift({t:Date.now(),why:why,cr:r.chars[id].created||null,name:cOf(x.C).name||r.chars[id].name||"",B:x.B,C:x.C,S:s,h:h}); o.chars[id]=L.slice(0,5); snPut(o); }
 function snRestore(id,i){ var o=snGet(), x=(o.chars[id]||[])[i]; if(!x) return;
-  ask("Go back to the copy from "+fmtT(x.t)+" ("+x.why+")? The character as it is now is kept as a snapshot first, so you can undo this.","Restore Snapshot",function(){ var r=rSnap(rEnsure()); snTake(id,"Before going back to a snapshot",r);
+  /* T11 G3 N13: for the open character, the numbers that the restore would change */
+  var pv=""; try{ if(id===(rGet()||{}).active&&window.__rcptRestoreText) pv=window.__rcptRestoreText(typeof x.C==="string"?JSON.parse(x.C):x.C); }catch(er){ pv=""; }
+  ask("Go back to the copy from "+fmtT(x.t)+" ("+x.why+")? The character as it is now is kept as a snapshot first, so you can undo this."+(pv?"\n\nNumbers that change:\n"+pv:""),"Restore Snapshot",function(){ var r=rSnap(rEnsure()); snTake(id,"Before going back to a snapshot",r);
     var cur=chRaw(id,r), s=x.S; try{ var so=JSON.parse(s), co=cOf(cur.S); if(co.portrait){ so.portrait=co.portrait; s=JSON.stringify(so); } }catch(e){}
     var e=r.chars[id]; e.B=x.B; e.C=x.C; e.S=s; e.name=x.name||e.name; e.t=Date.now(); if(!rSave(r)) return;
     if(id===r.active){ clearTimeout(cSaveT); clearTimeout(saveT); setOrDel(BKEY,x.B); lsSet(CKEY,x.C); lsSet(KEY,s); sessionStorage.setItem("cs-skip","1"); __miReload(); return; }

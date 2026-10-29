@@ -52,6 +52,14 @@
 @media (prefers-reduced-motion:reduce){ #bld .bld-hero img{animation:none} }
 #bprog{height:3px;background:linear-gradient(90deg,var(--good,#5fc28b) var(--p),transparent var(--p));transition:--p .6s cubic-bezier(.2,.8,.2,1)}
 @media (prefers-reduced-motion:reduce){ #bprog{transition:none} }
+#bld .bprev{margin-top:20px}
+.rcpt{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rcpt li{padding:8px 12px;border-radius:10px;border:1px solid var(--line,#30373b);background:color-mix(in srgb,var(--card,#1d2225) 90%,transparent)}
+.rcpt .rc-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.rcpt .rc-h span{white-space:nowrap;font-variant-numeric:tabular-nums}
+.rcpt .rc-h strong{color:var(--good,#5fc28b)}
+.rcpt small{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
+.rc-none{color:var(--muted)}
 #bld .abgrid .abx{min-width:0}
 #bld .abgrid .abx>b{font-size:calc(13px*var(--tz,1));letter-spacing:.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 #bld .abgrid .abx input.btx{text-align:center;width:100%}

@@ -164,6 +164,7 @@
     "app/43-logic-cloud-sync.js",
     "app/44-ui-friends.js",
     "app/45-learn-bridge.js",
+    "app/46-logic-receipts.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]
