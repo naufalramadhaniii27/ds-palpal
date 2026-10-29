@@ -2056,3 +2056,8 @@ art/batch/creatures/beast/draft-horse.png
 art/batch/creatures/beast/elephant.png
 art/batch/creatures/beast/elk.png
 
+art/batch/icons/features/subclass/light-domain/bonus-cantrip.png
+art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-dawn.png
+art/batch/icons/features/subclass/light-domain/corona-of-light.png
+art/batch/icons/features/subclass/light-domain/improved-flare.png
+art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
