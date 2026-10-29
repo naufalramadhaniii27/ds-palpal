@@ -187,6 +187,7 @@ Sumber: glossary sheet (src/app/03-data-glossary.js) dan Rules Glossary di Libra
 Kata di kamus bisa diketuk dan membuka entri Library yang sama, jadi Learn dan Library tidak berbeda isi.
 
 ## Tahap kerja
+Learn berjalan paralel dengan claude/rencana-kerja-teknologi.md: F0 dan F1 mulai setelah gelombang G2 (Anchor Spotlight dibuat sekali di G2 dan dipakai Learn), F5 setelah G3 (struk angka N3).
 Setiap tahap selesai dengan tes. Rilis digabung (0.0.3), daftar rilis dikirim ke user sebelum push ke main.
 
 ### F0 Fondasi
