@@ -4371,6 +4371,11 @@ art/batch/icons/items/tools/drum.png
 art/batch/icons/items/tools/dulcimer.png
 art/batch/icons/items/tools/flute.png
 art/batch/icons/items/tools/horn.png
+art/batch/icons/items/tools/lute.png
+art/batch/icons/items/tools/lyre.png
+art/batch/icons/items/tools/pan-flute.png
+art/batch/icons/items/tools/shawm.png
+art/batch/icons/items/tools/viol.png
 
 ## batch-062 v3
 art/batch/icons/familiars/frog-familiar.png
