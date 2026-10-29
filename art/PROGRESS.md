@@ -1787,3 +1787,10 @@ art/batch/icons/items/magic/common/scribes-pen.png
 art/batch/icons/items/magic/common/shiftweave.png
 art/batch/icons/items/magic/very-rare/speaking-stone.png
 art/batch/icons/items/magic/common/spellshard.png
+
+## batch-144 v3
+art/batch/icons/rules/languages/language-deep-speech.png
+art/batch/icons/rules/languages/language-druidic.png
+art/batch/icons/rules/languages/language-infernal.png
+art/batch/icons/rules/languages/language-primordial.png
+art/batch/icons/rules/languages/language-sylvan.png
