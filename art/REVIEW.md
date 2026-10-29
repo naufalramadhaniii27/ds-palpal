@@ -197,3 +197,8 @@ The saved draft adds three white ghost faces (eyes and mouths) inside the dark w
 
 
 Resolved correction: art/batch/icons/spells/level-5/antilife-shell.png — removed unrequested ghost faces; blue dome and featureless dark wisps preserved.
+
+
+## batch-213 v3
+NEEDS REVIEW: art/batch/icons/items/tools/thieves-tools.png
+image_gen rejected the initial request and all three unchanged retries with moderation_blocked / illicit. No image was saved.

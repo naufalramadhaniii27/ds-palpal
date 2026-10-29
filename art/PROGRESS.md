@@ -4259,6 +4259,12 @@ art/batch/icons/items/gear/torch.png
 art/batch/icons/items/gear/tinderbox.png
 art/batch/icons/items/gear/waterskin.png
 art/batch/icons/items/gear/lantern-hooded.png
+NEEDS REVIEW: art/batch/icons/items/tools/thieves-tools.png
+art/batch/icons/items/gear/travelers-clothes.png
+art/batch/icons/items/gear/fine-clothes.png
+art/batch/icons/items/packs/explorers-pack.png
+art/batch/icons/items/packs/dungeoneers-pack.png
+art/batch/icons/items/packs/burglars-pack.png
 
 ## batch-061 v3
 art/batch/icons/wild-shape/wolf.png
