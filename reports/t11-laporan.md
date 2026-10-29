@@ -209,3 +209,7 @@ Belum diputuskan user. Dukungan tiap fitur dicek ulang di caniuse sebelum dipaka
 | JavaScript modules di service worker | Baseline 2026 | sw.js lebih rapi, tanpa efek ke pengguna |
 | WebTransport | Baseline 2026, Interop 2026 | Alternatif WebRTC untuk mode party (TG7) |
 | WebGPU untuk dadu 3D | Belum dicek | Renderer dadu lebih ringan bila didukung, cadangan WebGL2 |
+
+## Keputusan user 2026-10-30 06.00 WIB
+1. Semua kandidat teknologi terbaru (Baseline 2026 dan Interop 2026, tabel di atas) diterima dan masuk antrean, sesudah antrean Training Ground.
+2. Mode developer: Claude meracik dan menciptakan teknologi baru sendiri. Syarat lama tetap: tanpa AI berbayar, paket gratis, ada tes, tiga skenario wajib, dicatat di rencana sebelum dikerjakan. Rencana: claude/rencana-teknologi-ciptaan.md (salinan reports/rencana-teknologi-ciptaan.md).
