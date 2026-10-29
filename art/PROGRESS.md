@@ -1828,6 +1828,11 @@ art/batch/icons/spells/level-2/blur.png
 art/batch/icons/spells/level-2/invisibility.png
 art/batch/icons/spells/level-2/magic-mouth.png
 art/batch/icons/spells/level-2/mirror-image.png
+art/batch/icons/spells/level-2/nathairs-mischief.png
+art/batch/icons/spells/level-2/nystuls-magic-aura.png
+art/batch/icons/spells/level-2/phantasmal-force.png
+art/batch/icons/spells/level-2/shadow-blade.png
+art/batch/icons/spells/level-2/silence.png
 
 art/batch/icons/items/gear/riding-horse-with-tack.png
 art/batch/icons/items/gear/rowboat.png
