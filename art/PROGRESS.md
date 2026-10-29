@@ -3538,20 +3538,12 @@ art/batch/icons/features/subclass/oathbreaker/oathbreaker-spells.png
 art/batch/icons/features/subclass/oathbreaker/supernatural-resistance.png
 art/batch/icons/features/subclass/path-of-wild-magic/bolstering-magic.png
 art/batch/icons/features/subclass/path-of-wild-magic/controlled-surge.png
+art/batch/icons/features/subclass/path-of-wild-magic/magic-awareness.png
+art/batch/icons/features/subclass/path-of-wild-magic/unstable-backlash.png
+art/batch/icons/features/subclass/path-of-wild-magic/wild-surge.png
+art/batch/icons/features/subclass/path-of-the-ancestral-guardian/ancestral-protectors.png
+art/batch/icons/features/subclass/path-of-the-ancestral-guardian/consult-the-spirits.png
 
-art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
-art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
-art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
-art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
-art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
-art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
-art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
-art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
-art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
-art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
-art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
-art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
-art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
