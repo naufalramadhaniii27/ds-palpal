@@ -3680,3 +3680,9 @@ art/batch/icons/spells/level-8/mind-blank.png
 art/batch/icons/spells/level-8/demiplane.png
 art/batch/icons/spells/level-8/incendiary-cloud.png
 art/batch/icons/spells/level-8/maze.png
+## batch-232 v3
+art/batch/icons/feat-categories/epic-boon.png
+art/batch/icons/coins/coin-pile.png
+art/batch/icons/creature-types/beast.png
+art/batch/icons/creature-types/celestial.png
+art/batch/icons/creature-types/dragon.png
