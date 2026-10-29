@@ -3317,6 +3317,11 @@ art/batch/creatures/beast/giant-scorpion.png
 art/batch/creatures/monstrosity/griffon.png
 art/batch/creatures/aberration/intellect-devourer.png
 art/batch/creatures/beast/jackal.png
+art/batch/icons/spells/level-4/doomtide.png
+art/batch/icons/spells/level-4/evards-black-tentacles.png
+art/batch/icons/spells/level-4/find-greater-steed.png
+art/batch/icons/spells/level-4/galders-speedy-courier.png
+art/batch/icons/spells/level-4/giant-insect.png
 ## batch-154 v3
 art/batch/icons/features/subclass/aberrant-mind/psionic-sorcery.png
 art/batch/icons/features/subclass/aberrant-mind/psionic-spells.png
