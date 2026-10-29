@@ -4173,6 +4173,12 @@ art/batch/icons/features/subclass/armorer/armorer-spells.png
 art/batch/icons/features/subclass/armorer/extra-attack.png
 art/batch/icons/features/subclass/armorer/improved-armorer.png
 art/batch/icons/features/subclass/armorer/perfected-armor.png
+art/batch/icons/features/subclass/armorer/tools-of-the-trade.png
+art/batch/icons/features/subclass/artillerist/arcane-firearm.png
+art/batch/icons/features/subclass/artillerist/artillerist-spells.png
+art/batch/icons/features/subclass/artillerist/eldritch-cannon.png
+art/batch/icons/features/subclass/artillerist/explosive-cannon.png
+
 ## batch-139 v3
 art/batch/icons/feats/interception.png
 art/batch/icons/feats/protection.png
