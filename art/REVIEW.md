@@ -194,3 +194,6 @@ All four native image attempts returned seven primary rays instead of the eight 
 
 Pending correction: art/batch/icons/spells/level-5/antilife-shell.png
 The saved draft adds three white ghost faces (eyes and mouths) inside the dark wisps. Remove those facial marks, keeping the blue force dome, featureless dark wisps, and transparency. Image generation returned usage_limit_reached before the correction could render. This path is deliberately absent from the completed v3 progress lines so step 8 resumes it first. Circle of Power and Dispel Evil and Good are saved and complete. Continue with Greater Restoration after this correction, then the remaining listed batch-050 images and batches 051–052. Quota reset reported: 2026-10-29 09:41:08 UTC.
+
+
+Resolved correction: art/batch/icons/spells/level-5/antilife-shell.png — removed unrequested ghost faces; blue dome and featureless dark wisps preserved.
