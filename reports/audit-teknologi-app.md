@@ -78,3 +78,14 @@ Sumber:
 - https://developers.cloudflare.com/d1/best-practices/read-replication/
 - https://developers.cloudflare.com/changelog/post/2026-05-19-cloudflare-as-identity-provider/
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/trusted-types
+
+## Cek keempat: library dan aset (2026-10-29)
+| Area | Keadaan sekarang | Temuan |
+|---|---|---|
+| Ekspor PDF | jsPDF 2.5.1 dan html2canvas 1.4.1 (keduanya rilis 2022), dimuat dari cdnjs saat dipakai | jsPDF di bawah 4.2.0 punya beberapa CVE 2026 (misal CVE-2026-25940, injeksi PDF lewat AcroForm). App hanya memakai addImage dari canvas sendiri, jadi kemungkinan tidak terkena, tapi versinya usang. Dimuat dari internet, jadi ekspor PDF tidak jalan offline (ada cadangan print). html2canvas tidak lagi aktif dikembangkan |
+| Font | 22 file woff2 statis subset Latin, 653 KB base64 di dalam HTML | Variable font (satu file untuk banyak ketebalan) bisa memperkecil ukuran |
+| Gambar | AVIF, `loading="lazy"`, `decoding="async"` | Sudah modern. `sizes="auto"` baru Baseline September 2026, bisa dipakai bila ada srcset |
+| Tes aksesibilitas | tests/a11y_scan.py dengan axe-core | Sudah ada |
+
+Sumber:
+- https://advisories.gitlab.com/npm/jspdf/CVE-2026-25940/
