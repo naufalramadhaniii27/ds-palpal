@@ -3523,6 +3523,10 @@ art/batch/icons/features/subclass/oathbreaker/supernatural-resistance.png
 art/batch/icons/features/subclass/path-of-wild-magic/bolstering-magic.png
 art/batch/icons/features/subclass/path-of-wild-magic/controlled-surge.png
 
+art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
+art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
@@ -3565,6 +3569,11 @@ art/batch/icons/features/subclass/alchemist/tool-proficiency.png
 art/batch/icons/features/subclass/alchemist/tools-of-the-trade.png
 art/batch/icons/features/subclass/arcane-archer/arcane-archer-lore.png
 
+art/batch/icons/features/subclass/arcane-archer/arcane-shot.png
+art/batch/icons/features/subclass/arcane-archer/arcane-shot-options.png
+art/batch/icons/features/subclass/arcane-archer/curving-shot.png
+art/batch/icons/features/subclass/arcane-archer/ever-ready-shot.png
+art/batch/icons/features/subclass/arcane-archer/indomitable-teleport.png
 ## batch-048 v3
 art/batch/icons/spells/level-4/summon-construct.png
 art/batch/icons/spells/level-4/summon-elemental.png
