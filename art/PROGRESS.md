@@ -2018,7 +2018,6 @@ art/batch/scenes/species/aven-phone.png
 art/batch/scenes/species/boggart-pc.png
 art/batch/scenes/species/boggart-phone.png
 
-NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
 ## batch-053 v3
 art/batch/icons/spells/level-5/animate-objects.png
 art/batch/icons/spells/level-5/awaken.png
@@ -2141,6 +2140,96 @@ art/batch/icons/rules/resources/favored-enemy-mark.png
 art/batch/icons/rules/actions/attack-action.png
 art/batch/icons/rules/actions/dash-action.png
 art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
+art/batch/icons/rules/actions/ready-action.png
+art/batch/icons/rules/actions/search-action.png
+art/batch/icons/rules/actions/study-action.png
+art/batch/icons/rules/actions/utilize-action.png
+art/batch/icons/rules/actions/opportunity-attack.png
+
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
+art/batch/icons/rules/actions/ready-action.png
+art/batch/icons/rules/actions/search-action.png
+art/batch/icons/rules/actions/study-action.png
+art/batch/icons/rules/actions/utilize-action.png
+art/batch/icons/rules/actions/opportunity-attack.png
+
+art/batch/icons/rules/resources/death-save-success.png
+art/batch/icons/rules/resources/death-save-failure.png
+art/batch/icons/rules/resources/heroic-inspiration.png
+art/batch/icons/rules/resources/exhaustion-level.png
+art/batch/icons/rules/resources/arcane-recovery.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+
+art/batch/icons/rules/actions/dodge-action.png
+art/batch/icons/rules/actions/help-action.png
+art/batch/icons/rules/actions/hide-action.png
+art/batch/icons/rules/actions/influence-action.png
+art/batch/icons/rules/actions/magic-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-199 v3
 
 art/batch/portraits/zombie-a.png
@@ -2160,7 +2249,6 @@ art/batch/creatures/beast/cat.png
 art/batch/creatures/beast/constrictor-snake.png
 art/batch/creatures/beast/crab.png
 
-NEXT: batch-133 art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
 ## batch-133 v3
 art/batch/icons/items/magic/rare/stonespeaker-crystal.png
 art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
@@ -2191,6 +2279,44 @@ art/batch/icons/items/magic/common/medal-of-the-maze.png
 art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
 
 
+art/batch/icons/items/magic/rare/stonespeaker-crystal.png
+art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
+art/batch/icons/items/magic/legendary/deck-of-several-things.png
+art/batch/icons/items/magic/rare/galders-bubble-pipe.png
+art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
+
+
+art/batch/icons/items/magic/rare/stonespeaker-crystal.png
+art/batch/icons/items/magic/rare/wand-of-viscid-globs.png
+art/batch/icons/items/magic/legendary/deck-of-several-things.png
+art/batch/icons/items/magic/rare/galders-bubble-pipe.png
+art/batch/icons/items/magic/very-rare/hewards-hireling-armor.png
+art/batch/icons/items/magic/rare/ioun-stone-historical-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-language-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-natural-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-religious-knowledge.png
+art/batch/icons/items/magic/rare/ioun-stone-self-preservation.png
+art/batch/icons/items/magic/rare/ioun-stone-supreme-intellect.png
+art/batch/icons/items/magic/rare/leather-golem-armor.png
+art/batch/icons/items/magic/legendary/powered-armor.png
+art/batch/icons/items/magic/common/earring-of-message.png
+art/batch/icons/items/magic/legendary/jewel-of-three-prayers.png
+art/batch/icons/items/magic/common/medal-of-muscle.png
+art/batch/icons/items/magic/common/medal-of-the-conch.png
+art/batch/icons/items/magic/common/medal-of-the-horizonback.png
+art/batch/icons/items/magic/common/medal-of-the-maze.png
+art/batch/icons/items/magic/common/medal-of-the-meat-pie.png
+
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
+art/batch/icons/rules/resources/indomitable.png
+art/batch/icons/rules/resources/favored-enemy-mark.png
+art/batch/icons/rules/actions/attack-action.png
+art/batch/icons/rules/actions/dash-action.png
+art/batch/icons/rules/actions/disengage-action.png
 ## batch-168 v3
 art/batch/icons/features/subclass/life-domain/disciple-of-life.png
 art/batch/icons/features/subclass/life-domain/divine-strike.png
@@ -2320,7 +2446,6 @@ art/batch/icons/features/class/barbarian/instinctive-pounce.png
 art/batch/icons/features/class/barbarian/persistent-rage.png
 art/batch/icons/features/class/barbarian/primal-champion.png
 
-NEXT: batch-220 art/batch/scenes/environment/snow-phone.png
 ## batch-220 v3
 art/batch/scenes/environment/sea-pc.png
 art/batch/scenes/environment/sea-phone.png
@@ -2410,7 +2535,6 @@ art/batch/scenes/species/giff-pc.png
 art/batch/scenes/species/giff-phone.png
 art/batch/scenes/species/githyanki-pc.png
 art/batch/scenes/species/githyanki-phone.png
-NEXT: batch-202 art/batch/creatures/beast/lion.png
 ## batch-202 v3
 
 art/batch/creatures/beast/giant-spider.png
@@ -2471,6 +2595,17 @@ art/batch/icons/features/class/fighter/tactical-shift.png
 art/batch/icons/features/class/fighter/three-extra-attacks.png
 art/batch/icons/features/class/fighter/two-extra-attacks.png
 art/batch/icons/features/class/fighter/weapon-mastery.png
+art/batch/icons/features/class/druid/wild-companion.png
+art/batch/icons/features/class/druid/wild-resurgence.png
+art/batch/icons/features/class/druid/wild-shape.png
+art/batch/icons/features/class/fighter/action-surge.png
+art/batch/icons/features/class/fighter/extra-attack.png
+art/batch/icons/features/class/fighter/fighting-style.png
+art/batch/icons/features/class/fighter/indomitable.png
+art/batch/icons/features/class/fighter/second-wind.png
+art/batch/icons/features/class/fighter/studied-attacks.png
+art/batch/icons/features/class/fighter/tactical-master.png
+
 ## batch-221 v3
 art/batch/scenes/environment/feywild-pc.png
 art/batch/scenes/environment/feywild-phone.png
@@ -2480,6 +2615,11 @@ art/batch/scenes/environment/plane-fire-pc.png
 art/batch/scenes/environment/plane-fire-phone.png
 art/batch/scenes/environment/astral-pc.png
 art/batch/scenes/environment/astral-phone.png
+art/batch/scenes/environment/feywild-pc.png
+art/batch/scenes/environment/feywild-phone.png
+art/batch/scenes/environment/underdark-pc.png
+art/batch/scenes/environment/underdark-phone.png
+art/batch/scenes/environment/plane-fire-pc.png
 ## batch-068 v3
 art/batch/scenes/species/githzerai-pc.png
 art/batch/scenes/species/githzerai-phone.png
@@ -2501,3 +2641,9 @@ art/batch/icons/spells/level-6/drawmijs-instant-summons.png
 art/batch/icons/spells/level-6/heroes-feast.png
 art/batch/icons/spells/level-6/planar-ally.png
 art/batch/icons/spells/level-6/scatter.png
+## batch-134 v3
+art/batch/icons/items/magic/common/medal-of-the-wetlands.png
+art/batch/icons/items/magic/common/medal-of-wit.png
+art/batch/icons/items/magic/very-rare/ring-of-red-fury.png
+art/batch/icons/items/magic/very-rare/ruidium-shield.png
+art/batch/icons/items/magic/rare/teleportation-tablet.png
