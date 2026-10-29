@@ -3517,10 +3517,11 @@ art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
-art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
-art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
-art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
-art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
+art/batch/icons/features/subclass/oathbreaker/dread-lord.png
+art/batch/icons/features/subclass/oathbreaker/oathbreaker-spells.png
+art/batch/icons/features/subclass/oathbreaker/supernatural-resistance.png
+art/batch/icons/features/subclass/path-of-wild-magic/bolstering-magic.png
+art/batch/icons/features/subclass/path-of-wild-magic/controlled-surge.png
 
 ## batch-210 v3
 
