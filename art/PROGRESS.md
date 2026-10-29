@@ -3468,6 +3468,10 @@ art/batch/icons/spells/level-7/void-star.png
 art/batch/icons/spells/level-7/create-magen.png
 art/batch/icons/spells/level-7/draconic-transformation.png
 art/batch/icons/spells/level-7/regenerate.png
+art/batch/icons/spells/level-7/reverse-gravity.png
+art/batch/icons/spells/level-7/sequester.png
+art/batch/icons/spells/level-7/simbuls-synostodweomer.png
+art/batch/icons/spells/level-8/antimagic-field.png
 ## batch-230 v3
 art/batch/icons/abilities/intelligence.png
 art/batch/icons/skills/arcana.png
