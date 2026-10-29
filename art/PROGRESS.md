@@ -3815,6 +3815,11 @@ art/batch/icons/spells/level-4/phantasmal-killer.png
 art/batch/icons/spells/level-4/blight.png
 art/batch/icons/spells/level-4/festering-blast.png
 art/batch/icons/spells/level-4/shadow-of-moil.png
+art/batch/icons/spells/level-4/polymorph.png
+art/batch/icons/spells/level-4/sticks-to-snakes.png
+art/batch/icons/spells/level-4/stone-shape.png
+art/batch/icons/spells/level-4/stoneskin.png
+art/batch/icons/spells/level-5/alustriels-mooncloak.png
 
 ## batch-137 v3
 art/batch/icons/feats/dual-wielder.png
