@@ -3972,6 +3972,7 @@ art/batch/icons/features/subclass/path-of-the-zealot/zealous-presence.png
 art/batch/icons/features/subclass/psi-warrior/bulwark-of-force.png
 art/batch/icons/features/subclass/psi-warrior/guarded-mind.png
 
+NEXT: batch-071 art/batch/scenes/species/kuo-toa-phone.png
 ## batch-071 v3
 art/batch/scenes/species/kobold-pc.png
 art/batch/scenes/species/kobold-phone.png
@@ -4053,6 +4054,11 @@ art/batch/icons/learn/advantage.png
 art/batch/icons/learn/disadvantage.png
 art/batch/icons/learn/ability-check.png
 art/batch/icons/learn/saving-throw.png
+art/batch/icons/learn/attack-roll.png
+art/batch/icons/learn/proficiency.png
+art/batch/icons/learn/action.png
+art/batch/icons/learn/bonus-action.png
+art/batch/icons/learn/reaction.png
 ## batch-060 v3
 art/batch/icons/spells/level-9/power-word-kill.png
 art/batch/icons/spells/level-9/psychic-scream.png
