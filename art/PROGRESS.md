@@ -1867,3 +1867,10 @@ art/batch/icons/rules/languages/language-undercommon.png
 art/batch/icons/rules/resources/spell-slot-gem.png
 art/batch/icons/rules/resources/pact-magic-slot.png
 art/batch/icons/rules/resources/rage.png
+
+## batch-219 v3
+art/batch/scenes/environment/dungeon-pc.png
+art/batch/scenes/environment/dungeon-phone.png
+art/batch/scenes/environment/forest-pc.png
+art/batch/scenes/environment/forest-phone.png
+art/batch/scenes/environment/battle-pc.png
