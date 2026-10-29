@@ -3143,6 +3143,7 @@ art/batch/icons/features/class/rogue/evasion.png
 art/batch/icons/features/class/rogue/expertise.png
 art/batch/icons/features/class/rogue/improved-cunning-strike.png
 art/batch/icons/features/class/rogue/reliable-talent.png
+
 ## batch-069 v3
 art/batch/scenes/species/hadozee-pc.png
 art/batch/scenes/species/hadozee-phone.png
@@ -3157,3 +3158,9 @@ art/batch/icons/spells/level-3/ashardalons-stride.png
 art/batch/icons/spells/level-3/blink.png
 art/batch/icons/spells/level-3/elemental-weapon.png
 
+## batch-225 v3
+art/batch/monsters/aberration/chuul.png
+art/batch/monsters/aberration/cloaker.png
+art/batch/monsters/aberration/intellect-devourer.png
+art/batch/monsters/aberration/otyugh.png
+art/batch/monsters/aberration/neogi.png
