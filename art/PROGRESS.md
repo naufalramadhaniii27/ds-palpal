@@ -4207,6 +4207,11 @@ art/batch/icons/feats/boon-of-recovery.png
 art/batch/icons/feats/boon-of-skill.png
 art/batch/icons/feats/boon-of-speed.png
 art/batch/icons/feats/boon-of-spell-recall.png
+art/batch/icons/feats/boon-of-the-night-spirit.png
+art/batch/icons/feats/boon-of-truesight.png
+art/batch/icons/feats/blessed-warrior.png
+art/batch/icons/feats/druidic-warrior.png
+
 ## batch-051 v3
 art/batch/icons/spells/level-5/tree-stride.png
 art/batch/icons/spells/level-5/commune.png
