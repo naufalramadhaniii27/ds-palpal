@@ -3096,11 +3096,6 @@ art/batch/icons/features/subclass/oath-of-the-watchers/aura-of-the-sentinel.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-abjure-the-extraplanar.png
 art/batch/icons/features/subclass/oath-of-the-watchers/channel-divinity-watchers-will.png
 art/batch/icons/features/subclass/oath-of-the-watchers/mortal-bulwark.png
-art/batch/icons/features/subclass/oath-of-the-ancients/oath-of-the-ancients-spells.png
-art/batch/icons/features/subclass/oath-of-the-ancients/tenets-of-the-ancients.png
-art/batch/icons/features/subclass/oath-of-the-ancients/undying-sentinel.png
-art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-champion-challenge.png
-art/batch/icons/features/subclass/oath-of-the-crown/channel-divinity-turn-the-tide.png
 ## batch-222 v3
 art/batch/ui/ribbon-dialog.png
 art/batch/ui/scroll-toast.png
@@ -3506,3 +3501,9 @@ art/batch/scenes/species/kender-phone.png
 art/batch/scenes/species/kenku-pc.png
 art/batch/scenes/species/kenku-phone.png
 art/batch/scenes/species/khenra-pc.png
+NEXT: batch-172 art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
+## batch-172 v3
+art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
+art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
