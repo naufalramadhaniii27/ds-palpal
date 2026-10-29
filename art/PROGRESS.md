@@ -1944,3 +1944,10 @@ art/batch/scenes/species/aarakocra-phone.png
 art/batch/scenes/species/aetherborn-pc.png
 art/batch/scenes/species/aetherborn-phone.png
 art/batch/scenes/species/autognome-pc.png
+NEXT: batch-053 art/batch/icons/spells/level-5/skill-empowerment.png
+## batch-053 v3
+art/batch/icons/spells/level-5/animate-objects.png
+art/batch/icons/spells/level-5/awaken.png
+art/batch/icons/spells/level-5/control-winds.png
+art/batch/icons/spells/level-5/create-spelljamming-helm.png
+art/batch/icons/spells/level-5/passwall.png
