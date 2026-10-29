@@ -51,6 +51,12 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | Untuk anak yang belum lancar membaca, bantuan utama di riset adalah suara. Tanpa suara, ikon harus bisa dipahami sendiri, petunjuk harus menunjukkan langkah berikutnya, dan tokoh pemandu memperagakan | Daftar periksa game untuk anak pra-baca (Universitas Siprus, proyek READISTANCE) | U29 |
 | PP Tunas (PP 17/2025, berlaku 28 Maret 2026) berlaku untuk PSE swasta, termasuk fitur yang kemungkinan diakses anak. Melarang profiling anak dan teknik nudge. Mewajibkan info usia minimum, verifikasi usia, persetujuan orang tua, privasi tinggi bawaan, dan saluran laporan. Akun media sosial dibatasi untuk anak di bawah 16 tahun | Bisnis.com, NU Online | U30. Friends adalah fitur sosial. Learn yang menyasar anak 10 tahun membuat app masuk kategori "kemungkinan diakses anak". Ini bukan nasihat hukum. Teks PP perlu dibaca langsung sebelum Learn dibuka untuk anak |
 
+## Pembanding (2026-10-29)
+| Produk | Yang bagus | Yang kurang | Akibat |
+|---|---|---|---|
+| D&D Beyond Quick Build (Maret 2026) | 4 pilihan, sisanya otomatis, bisa acak, langsung main | Penjelasan class satu halaman, tanpa latihan | U31 |
+| D&D Adventure Begins (board game keluarga) | Anak 10 tahun senang improvisasi dan memakai barang secara kreatif. Aturan sederhana, tanpa perlu tahu fantasy | Karakter terasa sama, ide kreatif tidak mengubah hasil, cepat bosan | U32 |
+
 ## Kamus dicocokkan ke Library app (2026-10-29)
 Sumber: glossary sheet (src/app/03-data-glossary.js) dan Rules Glossary di Library (src/app/27), keduanya ditulis ulang dari PHB 2024.
 | Istilah | Isi Library | Kamus Learn |
@@ -205,8 +211,10 @@ Aturan: setiap usulan baru terkait Learn dicatat di tabel ini, dengan tanggal da
 | U26 | 2026-10-29 | Quick recap | 2 soal singkat dari tempat sebelumnya saat Learn dibuka lagi, opsional | Diterima 2026-10-29 |
 | U27 | 2026-10-29 | Meet your dice | Kenali bentuk d4 sampai d20 dan cara membacanya | Diterima 2026-10-29 |
 | U28 | 2026-10-29 | Panduan bahasa Indonesia santai | Diubah user: Claude riset sendiri cara menulis bahasa Indonesia santai, hasilnya bagian "Bahasa Indonesia santai" dan cek otomatis | Diterima 2026-10-29 |
-| U29 | 2026-10-29 | Tunjukkan, jangan tulis | Karena tanpa suara: tiap tantangan dimulai dengan Hoot memperagakan langkahnya. Tangan bayangan menunjuk yang harus diketuk. Petunjuk menunjukkan langkah berikutnya, bukan menjelaskannya. Ikon dari benda yang anak kenal. Uji main (U21) mengecek anak paham ikon tanpa membaca | Diusulkan |
-| U30 | 2026-10-29 | Aman untuk anak (PP Tunas) | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (larangan teknik nudge). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diusulkan |
+| U29 | 2026-10-29 | Tunjukkan, jangan tulis | Karena tanpa suara: tiap tantangan dimulai dengan Hoot memperagakan langkahnya. Tangan bayangan menunjuk yang harus diketuk. Petunjuk menunjukkan langkah berikutnya, bukan menjelaskannya. Ikon dari benda yang anak kenal. Uji main (U21) mengecek anak paham ikon tanpa membaca | Diterima 2026-10-29 |
+| U30 | 2026-10-29 | Aman untuk anak (PP Tunas) | Tanpa streak, hitung mundur, notifikasi atau hadiah yang memancing kembali (larangan teknik nudge). Corong Admin (U12) hanya angka total, tanpa data per orang (larangan profiling). Progres Learn tidak dipakai untuk hal lain | Diterima 2026-10-29 |
+| U31 | 2026-10-29 | Quick Hero memakai Quick Build yang sudah ada | Builder sudah punya Quick Build (pilih class dan species, sisanya diisi otomatis, v27 RU65). D&D Beyond (Maret 2026) memakai 4 pilihan: class, species, background, potret, plus tombol acak. Quick Hero di Learn = Quick Build ditambah pilihan background, potret dan tombol "Surprise me", dengan kartu class bergambar. Menggantikan rencana 6 pahlawan jadi di U18 | Diusulkan |
+| U32 | 2026-10-29 | Ide kreatif dihargai | Di Tavern dan Market ada lebih dari satu jawaban benar, dan tiap jawaban berujung beda. Pilihan "Try something else" membuka ide tak terduga yang tetap diterima Hoot | Diusulkan |
 
 Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 
@@ -228,6 +236,9 @@ Sengaja tidak dimasukkan: track khusus DM (keputusan user: tanpa fitur DM).
 Selama gambar belum ada, Learn memakai gambar sementara dari app. Gambar tidak boleh memuat angka atau huruf, jadi semua angka, dadu dan diagram dibuat HTML.
 
 ## Sumber riset
+- https://www.pcgamer.com/games/d-and-d-beyonds-slick-new-online-character-creator-lets-you-make-a-hero-in-seconds
+- https://gizmodo.com/dungeons-dragons-adventure-begins-doesnt-capture-the-1845240184
+- https://enworld.org/threads/adventure-begins-first-impressions.675159
 - https://cs.ucy.ac.cy/projects/readistance/?p=3499
 - https://teknologi.bisnis.com/read/20260505/101/1971394/10-kewajiban-platform-dalam-pp-tunas-yang-perlu-diketahui-pse
 - https://nu.or.id/nasional/pp-tunas-diberlakukan-anak-di-bawah-16-tahun-dibatasi-akses-medsos-dan-gim-ZBe2S
