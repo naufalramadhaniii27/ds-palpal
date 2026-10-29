@@ -9,6 +9,7 @@ function sheetIco(t){ t=String(t||""); var h="", m;
   else if(/^Background: /.test(t)) h=ico("src-background");
   else if(t==="Size") h=ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&icoCls(t)) h=ico(icoCls(t));
+  if(!h&&window.__artIc){ var cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(var i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
   return h; }
 function setSheetTitle(t){ var e=$("#sheetTitle"); e.textContent=t; var w=$("#shWm"); if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } w.innerHTML=sheetIco(t); }
 function openSheet(title, html, mode, wide){
