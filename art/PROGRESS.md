@@ -3067,3 +3067,7 @@ art/batch/icons/spells/level-6/otilukes-freezing-sphere.png
 art/batch/icons/spells/level-6/sunbeam.png
 art/batch/icons/spells/level-6/wall-of-ice.png
 art/batch/icons/spells/level-6/mental-prison.png
+
+## batch-223 v3
+art/batch/ui/brush-underline.png
+art/batch/ui/seal-wax.png
