@@ -3594,6 +3594,10 @@ art/batch/icons/skills/history.png
 art/batch/icons/skills/insight.png
 art/batch/icons/skills/investigation.png
 art/batch/icons/skills/medicine.png
+art/batch/icons/skills/nature.png
+art/batch/icons/skills/perception.png
+art/batch/icons/skills/persuasion.png
+art/batch/icons/skills/survival.png
 ## batch-135 v3
 art/batch/icons/items/magic/common/wand-of-scowls.png
 art/batch/icons/items/magic/common/wand-of-smiles.png
