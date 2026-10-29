@@ -4735,7 +4735,7 @@ try{ var mf=JSON.parse(sessionStorage.getItem("mi-cx")||"null"); if(mf&&Date.now
         <button class="bb txt press" type="button" data-rest="short">Short Rest</button>
         <button class="bb txt press" type="button" data-rest="long">Long Rest</button>
         <button class="bb ic press hb2" type="button" id="srchBtn" aria-label="Search the sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg><span class="ml">Search</span></button>
-        <button class="bb press bld-b hb2" type="button" id="bldBtn" aria-label="Open character builder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6zM12.5 8.5L4 17l3 3 8.5-8.5"/></svg><span class="btx">Build</span></button>
+        <button class="bb press bld-b hb2" type="button" id="bldBtn" aria-label="Build, open character builder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6zM12.5 8.5L4 17l3 3 8.5-8.5"/></svg><span class="btx">Build</span></button>
         <div class="more-grp" id="moreMenu">
           <button class="bb ic press" type="button" id="rosterBtn" aria-label="My characters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 4.9"/></svg><span class="ml">My Characters</span></button>
           <button class="bb press edit-b" id="editBtn" type="button" aria-label="Edit character"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span class="txt">Edit</span><span class="ml">Edit Character</span></button>
@@ -4755,7 +4755,7 @@ try{ var mf=JSON.parse(sessionStorage.getItem("mi-cx")||"null"); if(mf&&Date.now
         <article class="idcard" aria-label="Character identity">
           <div class="id-top" id="idTop"></div>
           <div class="id-body">
-            <button class="photo press" id="photo" type="button" aria-label="Set portrait"><span class="ph-sil" aria-hidden="true"><svg viewBox="0 0 100 125"><path d="M50 16c-13.5 0-23 10.5-23 25 0 8.6 3.6 16.2 9.4 21C22.6 66.8 13 78 10.5 94L9 125h82l-1.5-31C87 78 77.4 66.8 63.6 62c5.8-4.8 9.4-12.4 9.4-21 0-14.5-9.5-25-23-25z"/></svg></span><span class="ph-cls" id="phCls" aria-hidden="true"></span><span class="ph-t">Add portrait</span></button>
+            <button class="photo press" id="photo" type="button" aria-label="Add portrait"><span class="ph-sil" aria-hidden="true"><svg viewBox="0 0 100 125"><path d="M50 16c-13.5 0-23 10.5-23 25 0 8.6 3.6 16.2 9.4 21C22.6 66.8 13 78 10.5 94L9 125h82l-1.5-31C87 78 77.4 66.8 63.6 62c5.8-4.8 9.4-12.4 9.4-21 0-14.5-9.5-25-23-25z"/></svg></span><span class="ph-cls" id="phCls" aria-hidden="true"></span><span class="ph-t">Add portrait</span></button>
             <div>
               <h1 class="id-name" id="idName"></h1><p class="id-camp" id="idCamp" hidden></p>
               <dl class="id-f" id="idF"></dl>
@@ -5709,7 +5709,7 @@ function renderInv(){
   (C.inv||[]).forEach(function(i){ if(i.type==null&&window.__itemMeta){ var mt=window.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
   var L=C.inv||[], total=invWeight(), enc=setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=coinsNow();
-  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-label="Weight carried, open Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div>'+coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
+  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-description="Opens Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small> <span>'+enc+'</span></div>'+coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
   var fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map(function(f){return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   var keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   var row=function(i,ix,sub){ var q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
@@ -5818,7 +5818,7 @@ function vbSync(){ if(PIP) try{ pipSync(); }catch(er){} ohSync(); var vb=documen
   var hasI=typeof ICO==="object"&&!!ICO; if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); $("#vbHpI").innerHTML=ico("hp-heal","vb-hi"); $("#vbConc").innerHTML=ico("tag-concentration"); $("#vbInsp").innerHTML=ico("ui-star","vb-star"); }
   if(window.__miOdo&&window.__MI&&!window.__MI.rm()) window.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; var t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
   var b=$("#vbBar"); b.style.transform="scaleX("+p+")"; b.style.backgroundColor=barColor(p); b.setAttribute("data-lv",hpLv(p)); $("#vbTbar").style.transform="scaleX("+clamp(tp/D.hpmax,0,1)+")";
-  $("#vbHp").setAttribute("aria-label","Hit Points "+hp+" of "+D.hpmax+(tp?", "+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
+  $("#vbHp").setAttribute("aria-label","Hit Points "+hp+"/"+D.hpmax+(tp?" +"+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
   $("#vbAcV").textContent=D.ac; $("#vbAc").setAttribute("aria-label","Armor Class "+D.ac);
   var L=activeConds().map(function(c){ return c.k+(c.extra||""); }); if(S.exh) L.unshift("Exhaustion "+S.exh);
   var cb=$("#vbCond"), k0=S.exh?"exhaustion":(activeConds()[0]||{}).k; cb.classList.toggle("on",L.length>0);
@@ -6820,7 +6820,7 @@ document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.
 })();
 
 /* ================= PORTRAIT ================= */
-function syncPortrait(){ var p=$("#photo"), pc=$("#phCls"); if(pc){ var ck=icoCls(C.clsLabel||C.cls||""); pc.innerHTML=(ck&&typeof ICO==="object"&&ICO&&ICO[ck])?ico(ck):""; pc.hidden=!pc.innerHTML; }/* v30 B4 */ if(S.portrait&&/^(data:image\/|blob:|https?:)/.test(S.portrait)){ p.style.backgroundImage='url("'+S.portrait+'")'; p.classList.add("has"); } else { p.style.backgroundImage=""; p.classList.remove("has"); } }
+function syncPortrait(){ var p=$("#photo"), pc=$("#phCls"); if(pc){ var ck=icoCls(C.clsLabel||C.cls||""); pc.innerHTML=(ck&&typeof ICO==="object"&&ICO&&ICO[ck])?ico(ck):""; pc.hidden=!pc.innerHTML; }/* v30 B4 */ if(S.portrait&&/^(data:image\/|blob:|https?:)/.test(S.portrait)){ p.style.backgroundImage='url("'+S.portrait+'")'; p.classList.add("has"); p.setAttribute("aria-label","Change portrait"); } else { p.style.backgroundImage=""; p.classList.remove("has"); p.setAttribute("aria-label","Add portrait"); } }
 /* Portrait picker: upload your own picture or pick one of the art portraits. Art portraits are stored the same way as an uploaded photo (a small JPEG in S.portrait), so saves, backups and exports need no change. */
 function ppList(){ var A=window.__ART&&window.__ART.portrait; if(!A||!A.length) return []; var sp=String(C.species||"").toLowerCase(), mine=A.filter(function(id){ return sp.indexOf(id.replace(/-[ab]$/,""))>=0; }); return mine.concat(A.filter(function(id){ return mine.indexOf(id)<0; })); }
 function ppOpen(){ var L=ppList(); if(!L.length){ $("#avFile").click(); return; }
@@ -7041,7 +7041,7 @@ var COINS=[["pp","Platinum",10,"1 pp = 10 gp"],["gp","Gold",1,""],["ep","Electru
 function coinsNow(){ var g=num(C.gp,0); if(!S.coins) return {pp:0,gp:g,ep:0,sp:0,cp:0}; var c={}; COINS.forEach(function(k){ c[k[0]]=num(S.coins[k[0]],0); }); c.gp=Math.max(0,c.gp+g-num(S.coinBase,g)); return c; }
 /* v31 RU123: the five coins, each with its icon and amount (copper to platinum), total in GP as a note. One button opens Manage Coin */
 function coinStrip(c){ var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]], t=coinTotal(c);
-  return '<button type="button" class="igp icoins" data-coinopen="1" aria-label="Manage Coin: '+o.map(function(k){ return fmtN(num(c[k[0]],0))+' '+k[1]; }).join(', ')+', '+t+' GP in all">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b><small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
+  return '<button type="button" class="igp icoins" data-coinopen="1" aria-description="Manage Coin">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b> <small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
 function coinTotal(c){ return Math.round(COINS.reduce(function(t,k){ return t+c[k[0]]*k[2]; },0)*100)/100; }
 function coinSet(c){ S.coins=c; S.coinBase=num(C.gp,0); save(); }
 /* T4: convert one coin into another, and pay a price with change. Values in copper: cp 1, sp 10, ep 50, gp 100, pp 1000 */
@@ -8798,7 +8798,7 @@ function CF0(){ return D.cf||{}; }
 /* v32 RU137: a blue dot on the Build button while the build of this character has open choices (same number as Still to choose) */
 function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n=0; try{ n=window.__bldOpenCount?(+window.__bldOpenCount()||0):0; }catch(e){ n=0; }
   var d=b.querySelector(".bdot"); if(n>0&&!d){ d=document.createElement("i"); d.className="bdot"; d.setAttribute("aria-hidden","true"); b.appendChild(d); } else if(!n&&d) d.remove();
-  b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
+  b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Build, open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 window.__bldDot=bldDot;
 function renderAll(instant){
   try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }

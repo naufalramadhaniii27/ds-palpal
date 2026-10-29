@@ -87,3 +87,8 @@ PDF Print Cards (6 kartu per halaman) dan PDF sheet (3 halaman) dibuat lewat Pla
 - Tes tambahan lulus: overflow_scan (320 sampai 1250, 0), overlap_scan (0), scale_audit (0 di luar skala), a11y_scan (tidak ada kontrol di bawah 44 px).
 - a11y_scan: 1 aturan serius, `label-content-name-mismatch`, 45 node, 11 layar (contoh `#bldBtn`, `#photo`). Sama persis di `main`, jadi bukan dari T10. Belum diperbaiki.
 - `modes_matrix` penuh (96 baris): satu regresi dari saya, teks STR dan DEX di Saving Throws terpotong pada ukuran teks 90 di 768 (`fs90`). Penyebab: lebar kolom `#saves` mengecil di bawah 104 px. Sekarang `max(104px, 104px*--tz)`. `fs90` dan `fs130-ddb` di 768 dan 1250 OK lagi. Temuan `.hcreate` di Home adalah animasi masuk (catatan di tes), sama di `main`.
+
+## Ronde 7: axe `label-content-name-mismatch`
+- Hasil axe sekarang 0 pelanggaran (sebelumnya 45 node, 11 layar, sama di `main`). Kontrol di bawah 44 px: 0.
+- Build: label "Build, open character builder". Portrait: "Add portrait" atau "Change portrait" sesuai isi. Hit Points di playbar: "Hit Points 40/40 ...". Berat bawaan (`.iwt`) dan koin (`.igp`): `aria-label` dihapus, nama kini dari isi tombol, dan `aria-description` memberi konteks ("Opens Carrying Capacity", "Manage Coin").
+- Catatan: pembaca layar kini membaca skala berat (0 100 200 300 LB.) bersama angkanya. Belum diuji dengan pembaca layar asli.
