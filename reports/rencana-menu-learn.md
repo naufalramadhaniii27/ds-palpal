@@ -46,6 +46,23 @@ Anak umur 10 tahun dan orang awam yang belum pernah main game peran paham D&D 20
 | Kemampuan baca anak Indonesia | Asesmen Nasional 2024: 70,03 persen siswa mencapai kompetensi minimum literasi, jadi sekitar 3 dari 10 belum. Ini memperkuat visual dulu dan "Read to me" |
 | Waktu 15 menit Jalur Inti | Masih perkiraan. Dibuktikan di uji main (U21) |
 
+## Kamus dicocokkan ke Library app (2026-10-29)
+Sumber: glossary sheet (src/app/03-data-glossary.js) dan Rules Glossary di Library (src/app/27), keduanya ditulis ulang dari PHB 2024.
+| Istilah | Isi Library | Kamus Learn |
+|---|---|---|
+| Saving Throw | d20 untuk menahan atau menghindari efek, sama atau lebih dari DC berhasil | Cocok |
+| Armor Class | Serangan yang sama atau lebih dari AC kena | Cocok |
+| Difficulty Class | Angka target untuk ability check dan saving throw. Serangan memakai AC | Cocok. Learn menyebut AC sebagai target serangan |
+| Hit Points | 0 HP: jatuh Unconscious, lalu death save | Cocok |
+| Advantage, Disadvantage | Dua d20, ambil yang tinggi atau rendah, keduanya saling batal | Cocok. Aturan "saling batal" masuk Windy Cliff |
+| Proficiency Bonus | Dari level, untuk serangan, skill, save yang dilatih dan DC fitur | Cocok |
+| Action | Satu aksi per giliran: Attack, Dash, Disengage, Dodge, Help, Hide, Influence, Magic, Ready, Search, Study, Utilize | Cocok. Forest memakai nama aksi 2024 ini |
+| Bonus Action | Hanya bila fitur atau aturan mengizinkan, satu per giliran | Cocok |
+| Heroic Inspiration | Lempar ulang satu dadu, wajib pakai hasil baru, maksimal punya satu | Diperbaiki: Windy Cliff mengajarkan lempar ulang, bukan Advantage (Advantage itu Inspiration aturan 2014) |
+| Critical Hit | 20 di d20 serangan selalu kena, dadu damage dilempar dua kali | Ditambah: 20 dan 1 hanya otomatis untuk serangan. Untuk check dan save tetap dihitung biasa |
+| D20 Test | Ability check, attack roll, saving throw. DM yang menentukan kapan perlu | Dipakai untuk kartu "Which die do I roll?" (U7) |
+Kata di kamus bisa diketuk dan membuka entri Library yang sama, jadi Learn dan Library tidak berbeda isi.
+
 ## Jalur Inti (sekitar 15 menit, cukup untuk sesi pertama)
 | Tempat | Satu hal yang dipelajari | Tantangan |
 |---|---|---|
