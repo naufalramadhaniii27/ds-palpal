@@ -2419,6 +2419,11 @@ art/batch/icons/spells/level-3/summon-shadowspawn.png
 art/batch/icons/spells/level-3/sylunes-viper.png
 art/batch/icons/spells/level-3/thunder-step.png
 art/batch/icons/spells/level-3/tidal-wave.png
+art/batch/icons/spells/level-3/clairvoyance.png
+art/batch/icons/spells/level-3/sending.png
+art/batch/icons/spells/level-3/tongues.png
+art/batch/icons/spells/level-3/antagonize.png
+art/batch/icons/spells/level-3/catnap.png
 
 ## batch-149 v3
 art/batch/icons/features/class/druid/wild-companion.png
