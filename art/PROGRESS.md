@@ -3684,6 +3684,11 @@ art/batch/icons/feats/tough.png
 art/batch/icons/feats/ability-score-improvement.png
 art/batch/icons/feats/actor.png
 art/batch/icons/feats/athlete.png
+art/batch/icons/feats/charger.png
+art/batch/icons/feats/chef.png
+art/batch/icons/feats/crossbow-expert.png
+art/batch/icons/feats/crusher.png
+art/batch/icons/feats/defensive-duelist.png
 
 ## batch-211 v3
 
