@@ -1858,6 +1858,11 @@ art/batch/icons/items/magic/uncommon/cursed-luckstone.png
 art/batch/icons/items/magic/uncommon/helm-of-underwater-action.png
 art/batch/icons/items/magic/common/pipe-of-remembrance.png
 art/batch/icons/items/magic/common/pressure-capsule.png
+art/batch/icons/items/magic/common/sekolahian-worshiping-statuette.png
+art/batch/icons/items/magic/legendary/dawnbringer.png
+art/batch/icons/items/magic/uncommon/piwafwi.png
+art/batch/icons/items/magic/rare/piwafwi-of-fire-resistance.png
+art/batch/icons/items/magic/very-rare/spell-gem.png
 
 ## batch-041 v3
 art/batch/icons/spells/level-2/warding-wind.png
