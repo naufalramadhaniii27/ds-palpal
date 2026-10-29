@@ -151,13 +151,21 @@ function spellBar(u){ if(TG.mode!=="spell") return ""; var x=u.spells[TG.sp]; if
 function overHtml(){ var won=TG.st.over==="won"; return '<div class="tg-p tg-over"><h2>'+(won?"Victory":"Defeat")+'</h2><p>'+(won?"Every creature is down. ":"Your side is down. ")+'Round '+TG.st.round+'. Nothing on your sheet changed.</p><div class="tg-acts"><button type="button" class="btn pri press" data-tg="again">Fight again</button><button type="button" class="btn press" data-tg="replay">Watch the replay</button><button type="button" class="btn press" data-tg="sharefight">Share this fight</button><button type="button" class="btn press" data-tg="setup">Change the setup</button><button type="button" class="btn press" data-tg="close">Close</button></div></div>'; }
 /* the grid: one canvas, sized to whole squares. A phone gets 44 px squares and the grid scrolls inside its frame */
 var CUR=[0,0];
-function draw(){ var cv=document.getElementById("tgCv"); if(!cv||!TG.st) return; var st=TG.st, cs=TG.cell, dpr=Math.min(2,window.devicePixelRatio||1), W=st.w*cs, H=st.h*cs;
-  cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+"px"; cv.style.height=H+"px"; var x=cv.getContext("2d"); if(!x) return; x.setTransform(dpr,0,0,dpr,0,0);
-  var css=getComputedStyle(document.getElementById("tg")), col=function(n,d){ return (css.getPropertyValue(n)||"").trim()||d; };
-  x.fillStyle=col("--tg-ground","#2c3a28"); x.fillRect(0,0,W,H);
+/* N28 layered board: ground, rough ground, walls and grid are drawn once into a spare canvas and only copied on each tap. Tokens are
+   drawn on top every time. The layer is drawn again when the board, cell size, pixel ratio, ground colour or terrain changes.
+   The canvas size is set only when it changes (setting it clears the bitmap and costs a full reallocation) */
+var LAYER={key:"",cv:null}, DRAWT={n:0,ms:0};
+function boardLayer(st,cs,dpr,W,H){ var css=getComputedStyle(document.getElementById("tg")), col=function(n,d){ return (css.getPropertyValue(n)||"").trim()||d; }, g=col("--tg-ground","#2c3a28");
+  var key=[st.w,st.h,cs,dpr,g,Object.keys(st.rough).join(";"),Object.keys(st.block).join(";")].join("|"); if(LAYER.key===key&&LAYER.cv&&!TG.noLayer) return LAYER.cv;
+  var c=document.createElement("canvas"); c.width=W*dpr; c.height=H*dpr; var x=c.getContext("2d"); x.setTransform(dpr,0,0,dpr,0,0);
+  x.fillStyle=g; x.fillRect(0,0,W,H);
   Object.keys(st.rough).forEach(function(k){ var p=k.split(","); x.fillStyle="rgba(120,160,70,.35)"; x.fillRect(p[0]*cs,p[1]*cs,cs,cs); x.strokeStyle="rgba(200,230,140,.35)"; for(var i=6;i<cs;i+=9){ x.beginPath(); x.moveTo(p[0]*cs+i,p[1]*cs+cs-4); x.lineTo(p[0]*cs+i+3,p[1]*cs+cs-10); x.stroke(); } });
   Object.keys(st.block).forEach(function(k){ var p=k.split(","); x.fillStyle="#1a1d1f"; x.fillRect(p[0]*cs+1,p[1]*cs+1,cs-2,cs-2); x.fillStyle="#3b3f42"; x.fillRect(p[0]*cs+4,p[1]*cs+4,cs-8,cs-10); });
   x.strokeStyle="rgba(255,255,255,.09)"; x.lineWidth=1; for(var i=0;i<=st.w;i++){ x.beginPath(); x.moveTo(i*cs+.5,0); x.lineTo(i*cs+.5,H); x.stroke(); } for(var j=0;j<=st.h;j++){ x.beginPath(); x.moveTo(0,j*cs+.5); x.lineTo(W,j*cs+.5); x.stroke(); }
+  LAYER.key=key; LAYER.cv=c; return c; }
+function draw(){ var cv=document.getElementById("tgCv"); if(!cv||!TG.st) return; var t0=performance.now(), st=TG.st, cs=TG.cell, dpr=Math.min(2,window.devicePixelRatio||1), W=st.w*cs, H=st.h*cs;
+  if(cv.width!==W*dpr||cv.height!==H*dpr){ cv.width=W*dpr; cv.height=H*dpr; } if(cv.style.width!==W+"px"){ cv.style.width=W+"px"; cv.style.height=H+"px"; } var x=cv.getContext("2d"); if(!x) return;
+  x.setTransform(1,0,0,1,0,0); x.globalAlpha=1; x.drawImage(boardLayer(st,cs,dpr,W,H),0,0); x.setTransform(dpr,0,0,dpr,0,0);
   var u=cur();
   if(TG.mode==="move"&&!st.over){ var R=TGE.reach(st,u.id); Object.keys(R).forEach(function(k){ if(R[k].pass||R[k].c===0) return; var p=k.split(","); x.fillStyle="rgba(255,214,102,.22)"; x.fillRect(p[0]*cs+2,p[1]*cs+2,u.size*cs-4,u.size*cs-4); }); }
   Object.keys(st.units).forEach(function(id){ var t=st.units[id]; if(t.dead&&t.kind!=="pc") { x.globalAlpha=.25; } var r=t.size*cs/2, cx=t.pos[0]*cs+r, cy=t.pos[1]*cs+r;
@@ -167,7 +175,9 @@ function draw(){ var cv=document.getElementById("tgCv"); if(!cv||!TG.st) return;
     if(TG.mode==="target"||TG.mode==="save"||TG.mode==="spell"||TG.mode==="lgtarget"){ var okT=TG.mode==="lgtarget"?(!t.dead&&t.side!==TG.st.units[TG.lgBy].side):targetOk(t); if(okT){ x.beginPath(); x.arc(cx,cy,r-1,0,Math.PI*2); x.setLineDash([5,4]); x.strokeStyle=TG.pick.indexOf(id)>=0?"#ffffff":"#ffd666"; x.lineWidth=2; x.stroke(); x.setLineDash([]); } }
     x.fillStyle="#fff"; x.font="600 "+Math.round(cs*.32*Math.min(1.6,t.size))+"px system-ui, sans-serif"; x.textAlign="center"; x.textBaseline="middle"; x.fillText(ini(t.name),cx,cy+1); x.globalAlpha=1;
     if(t.down&&!t.dead){ x.fillStyle="rgba(0,0,0,.45)"; x.beginPath(); x.arc(cx,cy,r-5,0,Math.PI*2); x.fill(); } });
-  if(TG.kb){ x.strokeStyle="#fff"; x.lineWidth=2; x.strokeRect(CUR[0]*cs+2,CUR[1]*cs+2,cs-4,cs-4); } }
+  if(TG.kb){ x.strokeStyle="#fff"; x.lineWidth=2; x.strokeRect(CUR[0]*cs+2,CUR[1]*cs+2,cs-4,cs-4); } DRAWT.n++; DRAWT.ms+=performance.now()-t0; }
+window.__tgDrawStats=function(reset,noLayer){ var o={n:DRAWT.n,ms:DRAWT.ms}; if(reset){ DRAWT.n=0; DRAWT.ms=0; } if(noLayer!=null) TG.noLayer=!!noLayer; return o; };/* N28 test: noLayer draws the board again every time */
+window.__tgDraw=function(){ draw(); var c=document.getElementById("tgCv"); return c?c.toDataURL():""; };
 function targetOk(t){ var u=cur(); if(TG.mode==="spell"){ var x=u.spells[TG.sp]; if(!x||t.dead) return false; if(x.k==="heal") return t.side===u.side||(u.side!=="foe"&&t.side!=="foe"); return t.id!==u.id&&(!x.rng||TGE.udist(u,t)<=x.rng); }
   if(t.dead||t.id===u.id) return false; if(TG.mode==="save") return true; var a=TGE.findAct(u,TG.act); if(!a) return false; var d=TGE.udist(u,t);
   if(a.mr==="r") return !!a.rng&&d<=a.rng[1]; if(a.mr==="mr") return d<=(a.reach||5)||(!!a.rng&&d<=a.rng[1]); return d<=(a.reach||5); }
