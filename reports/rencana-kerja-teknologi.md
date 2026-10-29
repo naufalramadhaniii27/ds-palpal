@@ -16,7 +16,7 @@ Dokumen sumber:
 | Data | Key localStorage dan bentuk data lama tidak diubah tanpa migrasi. Skema D1 naik versi lewat `ensure()` seperti skema 2 dan 3 |
 | Biaya | Semua di paket gratis Cloudflare, tanpa AI berbayar |
 | Tes | Tiga skenario wajib (sheet lama Yudhi, sesudah Apply, karakter baru) di 390x844 dan 1250x850, lewat localStorage dan screenshot. Regresi lengkap sebelum tiap rilis |
-| Rilis | Satu rilis per gelombang. Daftar rilis dikirim ke user dulu, push ke main setelah disetujui |
+| Rilis | Satu rilis 0.0.3 untuk semua gelombang. Daftar rilis dikirim ke user dulu, push ke main setelah disetujui |
 | Kode | Edit di src/, build dengan build.py, `node --check` sesudah edit JS, ask() bukan confirm() |
 
 ## Daftar pekerjaan
@@ -53,7 +53,7 @@ Dasar untuk semua gelombang: tanpa ini, perubahan besar di G1 sampai G3 tidak bi
 ### G1 Keamanan dan ukuran
 | Kerja | Isi | Risiko dan penanganan |
 |---|---|---|
-| A1 CSP dan Trusted Types | Tahap 1: CSP report-only, script inline diberi hash otomatis oleh build.py. Tahap 2: Trusted Types dengan satu policy yang melewati esc(), 198 pemakaian innerHTML dipindah ke policy itu. Tahap 3: CSP ditegakkan | CSP salah bisa membuat app tidak jalan. Report-only dulu minimal satu rilis. Library PDF dari CDN dibawa ke dalam app (A3) supaya CSP tidak perlu membuka domain luar |
+| A1 CSP dan Trusted Types | Tahap 1: CSP report-only di preview deployment, script inline diberi hash otomatis oleh build.py. Tahap 2: Trusted Types dengan satu policy yang melewati esc(), 198 pemakaian innerHTML dipindah ke policy itu. Tahap 3: CSP ditegakkan | CSP salah bisa membuat app tidak jalan. Report-only dulu di preview deployment sampai bersih. Library PDF dari CDN dibawa ke dalam app (A3) supaya CSP tidak perlu membuka domain luar |
 | A3 PDF | jsPDF 4.2 ke atas dibawa di dalam app sebagai blok `data-defer`. html2canvas diganti gambar langsung dari halaman cetak (36) atau PDF teks vektor bila ternyata lebih ringan | Hasil PDF dibandingkan dengan versi lama di tiga skenario |
 | A7 Ukuran | build.py menjalankan minify (esbuild untuk JS, Lightning CSS untuk CSS). Font statis 22 file diganti variable font untuk keluarga yang punya versi variable dengan lisensi SIL Open Font yang sama | Minify bisa mengubah perilaku. Regresi lengkap dan fuzzer G0 harus sama sebelum dan sesudah |
 | Selesai bila | Live-check lolos, CSP tanpa pelanggaran di laporan, ukuran gzip turun dan dicatat. CSP dipasang lewat _headers yang sudah dipakai Pages |
@@ -105,17 +105,16 @@ Sampai G5, app tetap di Pages dan siklus harian tetap memakai request pertama ti
 | F0 dan F1 | G2 (memakai Anchor Spotlight, Popover, `@layer`) |
 | F2 sampai F4 | F1 |
 | F5 (Explain any number, peta hubungan angka, Coach mode) | G3 (N3) |
-| F7 rilis | Ikut rilis gelombang yang sedang berjalan |
+| F7 rilis | Ikut rilis 0.0.3 |
 
 ## Rilis
-| Rilis | Isi |
+Satu rilis saja: 0.0.3 berisi G0 sampai G5 dan Learn F0 sampai F7 (keputusan user 2026-10-29). Daftar rilis dikirim dulu, push ke main setelah disetujui.
+| Pengaman karena rilisnya besar | Isi |
 |---|---|
-| 0.0.3 | G0 dan G1 (tanpa pindah Workers) |
-| 0.0.4 | G2, Learn F0 sampai F2 |
-| 0.0.5 | G3, Learn F3 sampai F5 |
-| 0.0.6 | G4, Learn F6 dan F7 |
-| 0.0.7 | G5 pindah ke Workers |
-Nomor rilis bisa digabung atau dipecah sesuai keputusan user saat daftar rilis dikirim.
+| Uji sebelum rilis | Tiap gelombang tetap dites sendiri saat selesai di branch kerja. Regresi lengkap, fuzzer, tiga skenario, Learn dua bahasa, dan tes HP lambat dijalankan sekali lagi di akhir |
+| CSP | Mode report-only dijalankan di preview deployment branch kerja (bukan di rilis). Setelah tidak ada pelanggaran, CSP ditegakkan di 0.0.3 |
+| Workers | Pages lama tetap hidup sampai alamat Workers lolos live-check. Bila Workers gagal, rilis tetap jalan di Pages |
+| Data | Migrasi skema D1 dan data lokal dites dari salinan data produksi seperti di T9 |
 
 ## Keputusan yang perlu dari user
 | Hal | Kapan |
