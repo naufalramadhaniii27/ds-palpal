@@ -2971,3 +2971,12 @@ art/batch/ui/scroll-toast.png
 art/batch/ui/parchment-tooltip.png
 art/batch/ui/frame-dialog.png
 art/batch/ui/sprite-loader-d20.png
+
+## batch-204 v3
+
+art/batch/creatures/undead/skeleton.png
+art/batch/creatures/aberration/slaad-tadpole.png
+art/batch/creatures/celestial/sphinx-of-wonder.png
+art/batch/creatures/beast/spider.png
+art/batch/creatures/fey/sprite.png
+
