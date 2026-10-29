@@ -4367,3 +4367,9 @@ art/batch/icons/items/tools/dulcimer.png
 art/batch/icons/items/tools/flute.png
 art/batch/icons/items/tools/horn.png
 
+## batch-062 v3
+art/batch/icons/familiars/frog-familiar.png
+art/batch/icons/familiars/hawk-familiar.png
+art/batch/icons/familiars/lizard-familiar.png
+art/batch/icons/familiars/octopus-familiar.png
+art/batch/icons/familiars/owl-familiar.png
