@@ -3705,6 +3705,11 @@ art/batch/icons/spells/level-8/reality-break.png
 art/batch/icons/spells/level-8/tsunami.png
 art/batch/icons/spells/level-8/moment-of-prescience.png
 art/batch/icons/spells/level-8/telepathy.png
+art/batch/icons/spells/level-8/antipathy-sympathy.png
+art/batch/icons/spells/level-8/befuddlement.png
+art/batch/icons/spells/level-8/dominate-monster.png
+art/batch/icons/spells/level-8/feeblemind.png
+art/batch/icons/spells/level-8/glibness.png
 ## batch-232 v3
 art/batch/icons/feat-categories/epic-boon.png
 art/batch/icons/coins/coin-pile.png
