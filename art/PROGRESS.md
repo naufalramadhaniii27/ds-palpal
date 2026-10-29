@@ -3060,6 +3060,11 @@ art/batch/creatures/construct/animated-object.png
 art/batch/creatures/celestial-fey-or-fiend/otherworldly-steed.png
 art/batch/creatures/beast/giant-insect.png
 art/batch/creatures/aberration/aberrant-spirit.png
+art/batch/creatures/beast/bestial-spirit.png
+art/batch/creatures/celestial/celestial-spirit.png
+art/batch/creatures/construct/construct-spirit.png
+art/batch/creatures/dragon/draconic-spirit.png
+art/batch/creatures/elemental/elemental-spirit.png
 
 ## batch-055 v3
 art/batch/icons/spells/level-6/gravity-fissure.png
