@@ -1935,6 +1935,14 @@ art/batch/icons/spells/level-2/blindness-deafness.png
 art/batch/icons/spells/level-2/cordon-of-arrows.png
 art/batch/icons/spells/level-2/darkvision.png
 
+art/batch/icons/items/gear/riding-horse-with-tack.png
+art/batch/icons/items/gear/rowboat.png
+art/batch/icons/items/gear/wagon.png
+art/batch/icons/rules/languages/language-thieves-cant.png
+art/batch/icons/rules/languages/language-undercommon.png
+art/batch/icons/rules/resources/spell-slot-gem.png
+art/batch/icons/rules/resources/pact-magic-slot.png
+art/batch/icons/rules/resources/rage.png
 ## batch-219 v3
 art/batch/scenes/environment/dungeon-pc.png
 art/batch/scenes/environment/dungeon-phone.png
@@ -2061,3 +2069,9 @@ art/batch/icons/features/subclass/light-domain/channel-divinity-radiance-of-the-
 art/batch/icons/features/subclass/light-domain/corona-of-light.png
 art/batch/icons/features/subclass/light-domain/improved-flare.png
 art/batch/icons/features/subclass/light-domain/improved-warding-flare.png
+## batch-147 v3
+art/batch/icons/features/class/barbarian/brutal-strike.png
+art/batch/icons/features/class/barbarian/danger-sense.png
+art/batch/icons/features/class/barbarian/extra-attack.png
+art/batch/icons/features/class/barbarian/fast-movement.png
+art/batch/icons/features/class/barbarian/feral-instinct.png
