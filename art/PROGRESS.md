@@ -3892,3 +3892,8 @@ art/batch/icons/features/subclass/path-of-the-totem-warrior/totem-spirit.png
 art/batch/icons/features/subclass/path-of-the-totem-warrior/totemic-attunement.png
 art/batch/icons/features/subclass/path-of-the-wild-heart/animal-speaker.png
 art/batch/icons/features/subclass/path-of-the-wild-heart/aspect-of-the-wilds.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/nature-speaker.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/power-of-the-wilds.png
+art/batch/icons/features/subclass/path-of-the-wild-heart/rage-of-the-wilds.png
+art/batch/icons/features/subclass/path-of-the-world-tree/battering-roots.png
+art/batch/icons/features/subclass/path-of-the-world-tree/branches-of-the-tree.png
