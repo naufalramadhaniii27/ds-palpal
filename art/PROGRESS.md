@@ -4513,6 +4513,11 @@ art/batch/emblems/subclass/extra/arcane-archer.png
 art/batch/emblems/subclass/extra/circle-of-dreams.png
 art/batch/emblems/subclass/extra/circle-of-spores.png
 art/batch/emblems/subclass/extra/circle-of-stars.png
+art/batch/emblems/subclass/extra/circle-of-wildfire.png
+art/batch/emblems/subclass/extra/circle-of-the-shepherd.png
+art/batch/emblems/subclass/extra/clockwork-soul.png
+art/batch/emblems/subclass/extra/college-of-creation.png
+art/batch/emblems/subclass/extra/college-of-eloquence.png
 ## batch-125 v3
 art/batch/icons/items/magic/uncommon/simic-guild-signet.png
 art/batch/icons/items/magic/uncommon/simic-keyrune.png
