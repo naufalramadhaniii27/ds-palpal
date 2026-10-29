@@ -3738,3 +3738,11 @@ art/batch/icons/features/subclass/path-of-the-beast/bestial-soul.png
 art/batch/icons/features/subclass/path-of-the-beast/call-the-hunt.png
 art/batch/icons/features/subclass/path-of-the-beast/form-of-the-beast.png
 art/batch/icons/features/subclass/path-of-the-beast/infectious-fury.png
+
+## batch-049 v3
+art/batch/icons/spells/level-4/storm-sphere.png
+art/batch/icons/spells/level-4/vitriolic-sphere.png
+art/batch/icons/spells/level-4/wall-of-fire.png
+art/batch/icons/spells/level-4/distorted-distance.png
+art/batch/icons/spells/level-4/greater-invisibility.png
+
