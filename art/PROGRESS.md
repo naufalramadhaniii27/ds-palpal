@@ -4576,3 +4576,12 @@ art/batch/icons/items/tools/brewers-supplies.png
 art/batch/icons/bastion/guildhall.png
 art/batch/icons/bastion/sanctum.png
 art/batch/icons/bastion/war-room.png
+
+## batch-217 v3
+
+art/batch/icons/items/tools/calligraphers-supplies.png
+art/batch/icons/items/tools/carpenters-tools.png
+art/batch/icons/items/tools/cartographers-tools.png
+art/batch/icons/items/tools/cobblers-tools.png
+art/batch/icons/items/tools/cooks-utensils.png
+
