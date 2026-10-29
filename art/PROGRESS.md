@@ -4452,3 +4452,11 @@ art/batch/icons/features/subclass/warrior-of-the-open-hand/fleet-step.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/open-hand-technique.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/quivering-palm.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/wholeness-of-body.png
+## batch-215 v3
+
+art/batch/icons/items/gear/chain.png
+art/batch/icons/items/tools/climbers-kit.png
+art/batch/icons/items/gear/costume.png
+art/batch/icons/items/gear/flask.png
+art/batch/icons/items/gear/grappling-hook.png
+
