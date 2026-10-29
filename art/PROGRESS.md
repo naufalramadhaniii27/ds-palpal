@@ -3513,6 +3513,10 @@ art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
 art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 art/batch/icons/features/subclass/oathbreaker/channel-divinity-dreadful-aspect.png
+art/batch/icons/features/subclass/oath-of-the-watchers/oath-spells.png
+art/batch/icons/features/subclass/oath-of-the-watchers/vigilant-rebuke.png
+art/batch/icons/features/subclass/oathbreaker/aura-of-hate.png
+art/batch/icons/features/subclass/oathbreaker/channel-divinity-control-undead.png
 ## batch-210 v3
 
 art/batch/creatures/elemental/steam-mephit.png
@@ -3527,9 +3531,19 @@ art/batch/creatures/undead/wraith.png
 art/batch/creatures/construct/deck-defender.png
 
 
+
+art/batch/creatures/elemental/steam-mephit.png
+art/batch/creatures/construct/stone-golem.png
+art/batch/creatures/beast/swarm-of-rats.png
+art/batch/creatures/beast-dinosaur/triceratops.png
+art/batch/creatures/beast-dinosaur/tyrannosaurus-rex.png
+
 ## batch-231 v3
 art/batch/icons/damage-types/resistance.png
 art/batch/icons/spell-schools/abjuration-school.png
 art/batch/icons/spell-schools/conjuration-school.png
 art/batch/icons/spell-schools/divination-school.png
 art/batch/icons/spell-schools/necromancy-school.png
+## batch-135 v3
+art/batch/icons/items/magic/common/wand-of-scowls.png
+art/batch/icons/items/magic/common/wand-of-smiles.png
