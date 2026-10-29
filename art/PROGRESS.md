@@ -3663,3 +3663,9 @@ art/batch/creatures/beast/cave-bear.png
 art/batch/creatures/monstrosity/guardian-wolf.png
 art/batch/creatures/beast/giant-wasp.png
 
+## batch-058 v3
+art/batch/icons/spells/level-8/holy-aura.png
+art/batch/icons/spells/level-8/mind-blank.png
+art/batch/icons/spells/level-8/demiplane.png
+art/batch/icons/spells/level-8/incendiary-cloud.png
+art/batch/icons/spells/level-8/maze.png
