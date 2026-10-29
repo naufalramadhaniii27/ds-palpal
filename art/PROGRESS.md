@@ -3558,3 +3558,11 @@ art/batch/icons/features/subclass/alchemist/restorative-reagents.png
 art/batch/icons/features/subclass/alchemist/tool-proficiency.png
 art/batch/icons/features/subclass/alchemist/tools-of-the-trade.png
 art/batch/icons/features/subclass/arcane-archer/arcane-archer-lore.png
+
+## batch-048 v3
+art/batch/icons/spells/level-4/summon-construct.png
+art/batch/icons/spells/level-4/summon-elemental.png
+art/batch/icons/spells/level-4/summon-greater-demon.png
+art/batch/icons/spells/level-4/watery-sphere.png
+art/batch/icons/spells/level-4/arcane-eye.png
+
