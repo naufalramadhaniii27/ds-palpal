@@ -4452,6 +4452,11 @@ art/batch/icons/features/subclass/warrior-of-the-open-hand/fleet-step.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/open-hand-technique.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/quivering-palm.png
 art/batch/icons/features/subclass/warrior-of-the-open-hand/wholeness-of-body.png
+art/batch/icons/features/subclass/wild-magic-sorcery/bend-luck.png
+art/batch/icons/features/subclass/wild-magic-sorcery/controlled-chaos.png
+art/batch/icons/features/subclass/wild-magic-sorcery/tamed-surge.png
+art/batch/icons/features/subclass/wild-magic-sorcery/tides-of-chaos.png
+art/batch/icons/features/subclass/wild-magic-sorcery/wild-magic-surge.png
 ## batch-215 v3
 
 art/batch/icons/items/gear/chain.png
