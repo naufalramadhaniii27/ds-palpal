@@ -161,7 +161,7 @@ window.__bldLevelUp=function(){var st0=window.__sheetState&&window.__sheetState(
  var st=window.__sheetState&&window.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){step="class";render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
  if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();step="class";applyPacks();render();
  toast("Level "+TL()+": "+B.cls+" "+B.level+". New choices are marked. To level another class instead, change it in the Class step. Apply when you are done.")};
-window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;document.body.style.overflow="hidden";var st=window.__sheetState&&window.__sheetState();
+window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&window.__sheetCamp){var sc1=window.__sheetCamp();if(sc1){B.camp=sc1;save()}}var ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";var st=window.__sheetState&&window.__sheetState();
  var load=function(more){var miss=fromSheet(st);stamp();save();step="class";toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
  if(st&&st.C){var raw=savedRaw();
   /* no saved build yet (old manual sheet): nothing to lose, import as before */
@@ -185,7 +185,7 @@ function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel",
  C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};C.profSrc={armor:[],weapons:[],tools:[]};C.acts=[];
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}
 function toSheetApply(review){var miss=unList();if(miss){toast("Choose your "+miss+" first");return}var C=toSheet(),cur=window.__sheetName?window.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
- var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
+var go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){var pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
  if(review===true&&RI.length){ask("Apply this build to the sheet?"+imsg,"Apply",function(){toSheetApply(false)});return}
  /* M3 / RU4: manual sheet entries that Apply drops (Logic manualLost). Cancel keeps the sheet. Nothing is carried over */
  var st=window.__sheetState?window.__sheetState():null,lost=manualLost(st&&st.C,C),lt=[];

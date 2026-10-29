@@ -5,14 +5,14 @@ var TITLE0=document.title;
 function phOpen(){ try{ var r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; var a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 function renderIdentity(){
   document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
-  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=!cpn; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':""; }
+  var cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=false; icp.innerHTML=cpn?ico("ui-flag")+'<span>'+esc(cpn)+'</span>':'<button type="button" class="camp-add" data-campadd="1">'+ico("ui-flag")+'<span>Add campaign</span></button>';/* T10: an empty campaign offers itself */ }
   $("#officeName").textContent = cpn || C.office || "Character Record"; $("#officeSub").textContent = C.name+" \u2022 "+clsLv(); renderStamp();
   $("#miniName").textContent = C.name;
   $("#miniSub").textContent = C.species+" "+clsLv();
   $("#idTop").innerHTML = '<b>'+esc((C.office||"Character Record").toUpperCase())+'</b><span>'+(C.cardNo?'No. '+esc(C.cardNo):'Level '+D.level)+'</span>';
   $("#idName").textContent = C.name;
   var f=[["Species",C.species,grpSpec("species")],["Class",clsLv(),grpSpec("class")],[(x14()&&SL14[String(C.cls||"").split(/[\s/,]/)[0]])||"Subclass",C.sub,grpSpec("sub")],["Background",C.bg,grpSpec("bg")],["Size",C.size,"g:Size"]];
-  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em=(x[2]===grpSpec("sub")&&window.__artSub)?window.__artSub(String(C.cls||"").split(/[\s\/,]/)[0],C.sub,22):""; return '<dt>'+x[0]+'</dt><dd>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
+  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em=(x[2]===grpSpec("sub")&&window.__artSub)?window.__artSub(String(C.cls||"").split(/[\s\/,]/)[0],C.sub,22):""; if(x[0]==="Class"&&window.__ART&&window.__ART.emblem){ var ck=String(C.cls||"").split(/[\s\/,]/)[0].toLowerCase(); if(window.__ART.emblem[ck]&&!window.__idNoArt()) em='<img class="art-sub" src="img/emblem/'+ck+'.avif" width="22" height="22" alt="" decoding="async">'; }/* T10: the class emblem in the Class row */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   xpBox();/* v22 RU63 */
 }
@@ -235,7 +235,7 @@ function renderInv(){
   (C.inv||[]).forEach(function(i){ if(i.type==null&&window.__itemMeta){ var mt=window.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
   var L=C.inv||[], total=invWeight(), enc=setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=coinsNow();
-  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-label="Weight carried, open Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small><span>'+enc+'</span></div>'+coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
+  var head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-description="Opens Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small> <span>'+enc+'</span></div>'+coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
   var fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map(function(f){return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   var keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   var row=function(i,ix,sub){ var q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;

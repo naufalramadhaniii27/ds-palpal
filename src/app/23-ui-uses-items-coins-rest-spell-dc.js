@@ -78,7 +78,7 @@ var COINS=[["pp","Platinum",10,"1 pp = 10 gp"],["gp","Gold",1,""],["ep","Electru
 function coinsNow(){ var g=num(C.gp,0); if(!S.coins) return {pp:0,gp:g,ep:0,sp:0,cp:0}; var c={}; COINS.forEach(function(k){ c[k[0]]=num(S.coins[k[0]],0); }); c.gp=Math.max(0,c.gp+g-num(S.coinBase,g)); return c; }
 /* v31 RU123: the five coins, each with its icon and amount (copper to platinum), total in GP as a note. One button opens Manage Coin */
 function coinStrip(c){ var o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]], t=coinTotal(c);
-  return '<button type="button" class="igp icoins" data-coinopen="1" aria-label="Manage Coin: '+o.map(function(k){ return fmtN(num(c[k[0]],0))+' '+k[1]; }).join(', ')+', '+t+' GP in all">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b><small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
+  return '<button type="button" class="igp icoins" data-coinopen="1" aria-description="Manage Coin">'+o.map(function(k){ return '<span class="icn ic-'+k[0]+'">'+ico("coin-"+k[0],"icn-i")+'<b>'+fmtN(num(c[k[0]],0))+'</b> <small>'+k[0].toUpperCase()+'</small></span>'; }).join("")+'<span class="itot">'+t+' GP in all</span></button>'; }
 function coinTotal(c){ return Math.round(COINS.reduce(function(t,k){ return t+c[k[0]]*k[2]; },0)*100)/100; }
 function coinSet(c){ S.coins=c; S.coinBase=num(C.gp,0); save(); }
 /* T4: convert one coin into another, and pay a price with change. Values in copper: cp 1, sp 10, ep 50, gp 100, pp 1000 */

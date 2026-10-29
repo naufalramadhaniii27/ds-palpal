@@ -16,6 +16,9 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  return false}
 function render(){try{window.__bldArt&&window.__bldArt(step,B)}catch(e){}try{var hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
+ /* T10: which campaign the character belongs to. Optional. A non-empty value goes to the sheet on Apply */
+ if(!$("#cpIn")){if(!B.camp&&window.__sheetCamp){var sc0=window.__sheetCamp();if(sc0){B.camp=sc0;save()}}var nr=$("#nameRow");if(nr){var cr=document.createElement("div");cr.className="bnm";cr.id="campRow";cr.innerHTML='<label for="cpIn">Campaign</label><input class="btx" id="cpIn" autocomplete="off" placeholder="Optional, for example Lost Mine">';nr.parentNode.insertBefore(cr,nr.nextSibling)}}
+ if($("#cpIn")&&$("#cpIn").value!==(B.camp||"")&&document.activeElement!==$("#cpIn"))$("#cpIn").value=B.camp||"";
  var csP=null;try{csP=choices()}catch(e){}
  $("#steps").innerHTML=STEPS.map(function(s){var pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");var nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
  var on=$("#steps .on");if(on)on.scrollIntoView({block:"nearest",inline:"center"});
@@ -115,6 +118,7 @@ document.addEventListener("input",function(e){if(e.target.closest&&e.target.clos
 document.addEventListener("change",function(e){if(e.target.closest&&e.target.closest("#bld .hbmk"))HBF=hbRead();});
 document.addEventListener("input",function(e){if(!e.target.closest("#bld"))return;var t=e.target;
  if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
+ if(t.id==="cpIn"){B.camp=t.value;save();return}
  if(t.id==="packtxt"){packTxt=t.value;return}
  if(t.id==="custn"){cust.n=t.value;return}
  if(t.id==="custd"){cust.d=t.value;return}

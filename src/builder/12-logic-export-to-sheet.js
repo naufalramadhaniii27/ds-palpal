@@ -5,7 +5,7 @@ function toSheet(){
  var spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  var subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
  var bg=BACKGROUNDS[B.bg],feats=allFeats();
- var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
+ var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",camp:B.camp||"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
  ABK.forEach(function(k){C.abilities[k]={base:+B.base[k]||10,bonus:a.src[k].map(function(b){return {s:b.s,v:b.v}})}});
  c.saves.forEach(function(k){C.saves[k]=B.cls+" class ("+SRC+")"});
  if(sp&&sp.saveProf&&!custom)sp.saveProf.forEach(function(k){if(!C.saves[k])C.saves[k]=B.species+" ("+(sp.hb||SRC)+")"});/* v74: species saving throw proficiency (Keldon Human) */

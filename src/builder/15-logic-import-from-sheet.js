@@ -5,7 +5,7 @@ function mcFromSheet(C,main){var parts=String(C.clsLabel||"").split(" / ").map(f
  var subs={};(C.features||[]).forEach(function(g){var m=/^([A-Za-z]+) \(multiclass \d+\)(?:: (.+))?$/.exec(g.g||"");if(m)subs[m[1]]=m[2]||""});
  var out=[];parts.slice(1).forEach(function(p){if(!p||!CLASSES[p.cls]||p.cls===main||out.some(function(x){return x.cls===p.cls}))return;out.push({cls:p.cls,lv:Math.max(1,Math.min(20,p.lv)),sub:subs[p.cls]||""})});
  return out}
-function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
+function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.camp=String((typeof st.camp==="string")?st.camp:(C.camp||C.office||"")).trim();if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
  var spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
  (function(){var best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}

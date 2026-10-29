@@ -291,3 +291,9 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 - T0 (commit ini): dipotong ulang di batas bagian yang bermakna (banner `=====` dan `----------` dari source asli), dipisah per peran, nama file dari isi. Tiap potongan berada di batas pernyataan tingkat atas (dicek dengan parser acorn), jadi tiap file JS lolos `node --check`. Isi digabung tetap identik byte per byte dengan `index.html` v102 (sha256 aac631cf...).
 - T1 (branch t1-seamless): pemuat data Builder per irisan 10 ms sejak frame kedua, tap sebelum pemuat siap tidak hilang, perpindahan tersambung Home dan sheet (`fx/21-connected-home-sheet.js`, `css/28-connected-home-sheet.css`, `boot/arrive-flag.js`, kunci sessionStorage `mi-cx`).
 - T5 dan T6 (branch t5-high-tech): satu AudioContext bersama, drag dari Library, daftar lompat Builder, seni gambar per kelas, tab, langkah Builder, empty state, momen dan subclass.
+
+
+## T10 Rapikan (branch t10-tidy)
+- src/css/36-tidy.css dimuat paling akhir di blok CSS. Isinya perbaikan kecil dari audit screenshot. Aturan lama tidak diubah kecuali warna biru Temporary HP (token --tx-blue di 10-v30) dan dua nilai skala di 32 dan 35.
+- app/40: edgeRows() memberi kelas ovf-l dan ovf-r pada #tabs dan .bnav, CSS memberi pudar tepi.
+- tests/tidy.py memeriksa judul Home, siluet, pudar tepi, kartu hover ability, kontras Temporary HP dan tombol inventory di skin Record.

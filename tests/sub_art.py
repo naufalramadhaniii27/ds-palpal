@@ -38,18 +38,26 @@ async def main():
             await pg.evaluate("[].slice.call(document.querySelectorAll('#libBd [data-lib-open]')).filter(function(x){return x.getAttribute('data-lib-open')==='class|Fighter'})[0].click()"); await pg.wait_for_timeout(900)
             chk(t + " Fighter page lists subclasses with an emblem", await pg.evaluate("document.querySelectorAll('#libBd .lib-fl .art-sub').length>=3"))
             await pg.evaluate("document.querySelector('#libBd [data-lib-open=\"sub|Champion\"]').click()"); await pg.wait_for_timeout(900)
-            chk(t + " Champion page shows the large emblem", await pg.evaluate("!!document.querySelector('#libBd .sub-em .art-sub')"))
+            chk(t + " Champion page shows the emblem as a watermark and no small copy", await pg.evaluate("!!document.querySelector('#libWm .art-sub')&&!document.querySelector('#libBd .sub-em')"))
             await pg.evaluate("(window.__store||localStorage).setItem('mi-clsart','off')")
             chk(t + " Art off gives nothing", await pg.evaluate("__artSub('Fighter','Champion')===''"))
             chk(t + " no page errors", not errs)
             await ctx.close()
         ctx2 = await b.new_context(viewport={"width": 1250, "height": 850}, service_workers="block")
         y2 = json.loads(YUDHI); y2["sub"] = "Champion"
+        for g in y2["features"]:
+            if "Subclass:" in g["g"]: g["g"] = "Fighter Subclass: Champion"
         await ctx2.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);sessionStorage.setItem('__s','1')}" % json.dumps(json.dumps(y2)))
         p2 = await ctx2.new_page(); await p2.goto(base); await p2.wait_for_timeout(2000)
         await p2.click("#homeV .hcard [data-hview]"); await p2.wait_for_selector("#idF", state="attached"); await p2.wait_for_timeout(1200)
         chk("sheet hero shows the Champion emblem", await p2.evaluate("!!document.querySelector('#idF .art-sub[src*=\"fighter-champion\"]')"))
         chk("chip shows one icon, not two", await p2.evaluate("(()=>{var d=[].find.call(document.querySelectorAll('#idF dd'),x=>x.querySelector('.art-sub'));var sv=d.querySelector('svg.ico');return !!d&&(!sv||getComputedStyle(sv).display==='none')})()"))
+        for idx, nm, want in [(2, "Subclass", ".art-sub[src*=\"hd/emblem/sub/fighter-champion\"]"), (0, "Species", "svg.ico"), (1, "Class", ".art-sub[src*=\"hd/emblem/fighter.avif\"]"), (3, "Background", "svg.ico"), (4, "Size", "svg.ico")]:
+            hit = await p2.evaluate("n=>{var d=[].find.call(document.querySelectorAll('#idF dt'),x=>x.textContent===n);var t=d&&d.nextElementSibling.querySelector('.tx');if(t)t.click();return !!t}", nm)
+            if not hit: print("skip (not clickable):", nm); continue
+            await p2.wait_for_timeout(700)
+            chk("detail watermark icon: " + nm, await p2.evaluate("w=>!!document.querySelector('#sheet .sh-wm '+w)", want))
+            await p2.keyboard.press("Escape"); await p2.wait_for_timeout(500)
         await ctx2.close()
         await b.close()
     print("%d failed" % fails); sys.exit(1 if fails else 0)

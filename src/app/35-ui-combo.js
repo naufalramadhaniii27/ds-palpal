@@ -127,7 +127,7 @@ function CF0(){ return D.cf||{}; }
 /* v32 RU137: a blue dot on the Build button while the build of this character has open choices (same number as Still to choose) */
 function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n=0; try{ n=window.__bldOpenCount?(+window.__bldOpenCount()||0):0; }catch(e){ n=0; }
   var d=b.querySelector(".bdot"); if(n>0&&!d){ d=document.createElement("i"); d.className="bdot"; d.setAttribute("aria-hidden","true"); b.appendChild(d); } else if(!n&&d) d.remove();
-  b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
+  b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Build, open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 window.__bldDot=bldDot;
 function renderAll(instant){
   try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }

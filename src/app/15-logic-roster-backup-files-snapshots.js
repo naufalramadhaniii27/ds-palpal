@@ -11,7 +11,7 @@ function rLoad(r,id,openB){var t=r.chars[id],prev=r.active;if(!t||FROZEN)return 
  if(!ok){old.forEach(function(p){try{if(p[1]==null)__store.removeItem(p[0]);else __store.setItem(p[0],p[1])}catch(e){}});r.active=prev;rSave(r);toast("Storage is full, so the character was not switched and nothing was lost. Back up, then make room.");return false}
  if(openB)try{__store.setItem("cs-new","1")}catch(e){}__miReload();return true}
 function charInfo(id,r){var c=r.chars[id]||{},Cc=null,Ss=null;try{Cc=id===r.active?C:JSON.parse(c.C||"null")}catch(e){}try{Ss=id===r.active?S:JSON.parse(c.S||"null")}catch(e){}
- Cc=Cc||{};Ss=Ss||{};var lv=Cc.clsLabel||((Cc.cls||"")+" "+(Cc.level||1));return {id:id,name:Cc.name||c.name||"Unnamed",level:+Cc.level||1,species:(Cc.species||"").split(" (")[0],cls:Cc.cls||"",sub:Cc.sub||"",label:Cc.clsLabel||"",camp:(typeof Ss.camp==="string"?Ss.camp.trim():Cc.office)||"",por:Ss.portrait||"",color:Ss.color||"forest",sym:Ss.sym||"star",created:c.created||c.t||0}}
+ Cc=Cc||{};Ss=Ss||{};var lv=Cc.clsLabel||((Cc.cls||"")+" "+(Cc.level||1));return {id:id,name:Cc.name||c.name||"Unnamed",level:+Cc.level||1,species:(Cc.species||"").split(" (")[0],cls:Cc.cls||"",sub:Cc.sub||"",label:Cc.clsLabel||"",camp:(typeof Ss.camp==="string"?Ss.camp.trim():Cc.office)||"",por:(/^(data:image\/|blob:|https?:)/.test(Ss.portrait||"")?Ss.portrait:""),color:Ss.color||"forest",sym:Ss.sym||"star",created:c.created||c.t||0}}
 var homeQ="",homeSort="created";
 /* T3: the Home hero, "Continue your adventure", for the character that is open now. Hidden while a search is typed */
 function homeHero(){ var r=rEnsure(), id=r.active&&r.chars[r.active]&&!r.chars[r.active].ph?r.active:Object.keys(r.chars).filter(function(k){ return !r.chars[k].ph; })[0]; if(!id) return "";

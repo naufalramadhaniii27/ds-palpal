@@ -5,7 +5,7 @@ function buildPrint(){
   function note(k,l,h){ var v=(notes[k]||"").trim(); return '<div class="ps-box"><div class="ps-h">'+l.toUpperCase()+'</div><div class="ps-note'+(v?'':' e')+'" data-nk="'+k+'" style="min-height:'+(h||36)+'px">'+(v?esc(v):'')+'</div></div>'; }
   var title = esc(C.name)+", "+esc(C.species)+" "+esc(clsLv())+(C.sub?" ("+esc(C.sub)+")":"");
   var foot = function(n){ return '<div class="ps-foot"><span>'+title+'</span><span>Page '+n+' of 3</span></div>'; };
-  var avStyle = S.portrait ? ' style="background-image:url(\''+S.portrait+'\');color:transparent"' : '';
+  var avStyle = (S.portrait&&/^(data:image\/|blob:|https?:)/.test(S.portrait)) ? ' style="background-image:url(\''+S.portrait+'\');color:transparent"' : '';
   var abil = ABK.map(function(k){var key=!!(C.saves&&C.saves[k]); return '<div class="ps-ab'+(key?' k':'')+'"><div class="a">'+ABN[k].toUpperCase()+'</div><div class="m">'+sg(D.mod[k])+'</div><div class="s">'+D.score[k]+'</div></div>'}).join("");
   var stats = [["PROFICIENCY",sg(D.pb),"Bonus"],["SPEED",D.speed+" ft","Size "+esc(C.size)+["fly","swim","climb","burrow"].filter(function(k){return (C.speeds||{})[k]}).map(function(k){var x=C.speeds[k];return ", "+k.charAt(0).toUpperCase()+k.slice(1)+" "+(x.v==="walk"?D.speed:exSpd(num(x.v,0)))}).join("")],/* v20 M3 */["INITIATIVE",sg(D.init),"Dexterity"],["ARMOR CLASS",D.ac,esc(C.ac.baseSrc||"").split(",")[0]],["HIT POINT MAX",D.hpmax,"Current "+S.hp+(S.tmp?", temp "+S.tmp:"")],["GRAPPLE DC",D.dc,"Str or Dex save"]]
     .map(function(s){return '<div class="ps-st"><div class="a">'+s[0]+'</div><div class="v">'+s[1]+'</div><div class="n">'+s[2]+'</div></div>'}).join("");

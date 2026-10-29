@@ -37,12 +37,13 @@ function vbSync(){ if(PIP) try{ pipSync(); }catch(er){} ohSync(); var vb=documen
   var hasI=typeof ICO==="object"&&!!ICO; if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); $("#vbHpI").innerHTML=ico("hp-heal","vb-hi"); $("#vbConc").innerHTML=ico("tag-concentration"); $("#vbInsp").innerHTML=ico("ui-star","vb-star"); }
   if(window.__miOdo&&window.__MI&&!window.__MI.rm()) window.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; var t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
   var b=$("#vbBar"); b.style.transform="scaleX("+p+")"; b.style.backgroundColor=barColor(p); b.setAttribute("data-lv",hpLv(p)); $("#vbTbar").style.transform="scaleX("+clamp(tp/D.hpmax,0,1)+")";
-  $("#vbHp").setAttribute("aria-label","Hit Points "+hp+" of "+D.hpmax+(tp?", "+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
+  $("#vbHp").setAttribute("aria-label","Hit Points "+hp+"/"+D.hpmax+(tp?" +"+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
   $("#vbAcV").textContent=D.ac; $("#vbAc").setAttribute("aria-label","Armor Class "+D.ac);
   var L=activeConds().map(function(c){ return c.k+(c.extra||""); }); if(S.exh) L.unshift("Exhaustion "+S.exh);
   var cb=$("#vbCond"), k0=S.exh?"exhaustion":(activeConds()[0]||{}).k; cb.classList.toggle("on",L.length>0);
   if(hasI) $("#vbCondI").innerHTML=L.length?(ico("cond-"+String(k0).toLowerCase())||ico("cond-exhaustion")):ico("ui-plus");
   $("#vbCondT").textContent=L.length?L[0]+(L.length>1?" +"+(L.length-1):""):"Conditions";
+  cb.classList.toggle("vb-none",!L.length);
   cb.setAttribute("aria-label",L.length?"Conditions: "+L.join(", ")+". Change conditions":"No conditions. Add a condition");
   var o=concOf(), cc=$("#vbConc"); cc.hidden=!o; if(o){ var i=spIx(o.n); if(i>=0) cc.setAttribute("data-info","sp:"+i); else cc.removeAttribute("data-info"); cc.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); cc.title="Concentrating on "+o.n; }
   $("#vbInsp").setAttribute("aria-pressed",S.insp?"true":"false"); }catch(er){}
