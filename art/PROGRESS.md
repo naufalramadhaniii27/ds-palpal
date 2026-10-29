@@ -4131,11 +4131,11 @@ art/batch/icons/features/subclass/soulknife/psi-bolstered-knack.png
 art/batch/icons/features/subclass/soulknife/psionic-power.png
 art/batch/icons/features/subclass/soulknife/psychic-blades.png
 art/batch/icons/features/subclass/soulknife/psychic-veil.png
-art/batch/icons/features/subclass/psi-warrior/protective-field.png
-art/batch/icons/features/subclass/psi-warrior/psionic-power.png
-art/batch/icons/features/subclass/psi-warrior/psionic-strike.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-adept.png
-art/batch/icons/features/subclass/psi-warrior/telekinetic-master.png
+art/batch/icons/features/subclass/soulknife/psychic-whispers.png
+art/batch/icons/features/subclass/soulknife/rend-mind.png
+art/batch/icons/features/subclass/soulknife/soul-blades.png
+art/batch/icons/features/subclass/thief/fast-hands.png
+art/batch/icons/features/subclass/thief/second-story-work.png
 
 ## batch-156 v3
 art/batch/icons/features/subclass/archfey-patron/bewitching-magic.png
