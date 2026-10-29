@@ -4277,6 +4277,11 @@ art/batch/icons/wild-shape/giant-toad.png
 art/batch/icons/wild-shape/giant-owl.png
 art/batch/icons/wild-shape/giant-constrictor-snake.png
 art/batch/icons/wild-shape/giant-octopus.png
+art/batch/icons/wild-shape/riding-horse.png
+art/batch/icons/wild-shape/crocodile.png
+art/batch/icons/companions/beast-of-the-land-primal-companion.png
+art/batch/icons/companions/beast-of-the-sea-primal-companion.png
+art/batch/icons/companions/beast-of-the-sky-primal-companion.png
 ## batch-236 v3
 art/batch/scenes/screen/learn-map-pc.png
 art/batch/scenes/screen/learn-map-phone.png
