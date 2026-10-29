@@ -1792,6 +1792,11 @@ art/batch/icons/items/magic/rare/ventilating-lungs.png
 art/batch/icons/items/magic/common/wand-sheath.png
 art/batch/icons/items/magic/uncommon/wheel-of-wind-and-water.png
 art/batch/icons/items/magic/uncommon/azorius-guild-signet.png
+art/batch/icons/items/magic/rare/azorius-keyrune.png
+art/batch/icons/items/magic/uncommon/boros-guild-signet.png
+art/batch/icons/items/magic/rare/boros-keyrune.png
+art/batch/icons/items/magic/uncommon/dimir-guild-signet.png
+art/batch/icons/items/magic/very-rare/dimir-keyrune.png
 
 art/batch/icons/items/magic/common/everbright-lantern.png
 art/batch/icons/items/magic/common/feather-token.png
