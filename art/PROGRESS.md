@@ -4889,3 +4889,8 @@ art/batch/icons/items/magic/artifact/wyrmskull-throne.png
 art/batch/icons/items/magic/very-rare/battle-standard-of-infernal-power.png
 art/batch/icons/items/magic/artifact/blade-of-avernus.png
 art/batch/icons/items/magic/legendary/fane-eater.png
+art/batch/icons/items/magic/rare/gauntlets-of-flaming-fury.png
+art/batch/icons/items/magic/very-rare/helm-of-devil-command.png
+art/batch/icons/items/magic/uncommon/infernal-puzzle-box.png
+art/batch/icons/items/magic/legendary/matalotok.png
+art/batch/icons/items/magic/legendary/obsidian-flint-dragon-plate.png
