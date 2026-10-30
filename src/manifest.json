@@ -159,6 +159,7 @@
     "app/42-logic-pwa-qr-icons-wallet.js",
     "app/43-logic-cloud-sync.js",
     "app/44-ui-friends.js",
+    "app/45-dev-fps-probe.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]
