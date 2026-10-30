@@ -4491,6 +4491,8 @@ art/batch/icons/rules/invocations/eldritch-invocation-eldritch-mind.png
 art/batch/icons/rules/invocations/eldritch-invocation-eldritch-smite.png
 art/batch/icons/rules/invocations/eldritch-invocation-eldritch-spear.png
 art/batch/icons/rules/invocations/eldritch-invocation-fiendish-vigor.png
+art/batch/icons/rules/invocations/eldritch-invocation-gaze-of-two-minds.png
+
 ## batch-176 v3
 art/batch/icons/features/subclass/trickery-domain/channel-divinity-invoke-duplicity.png
 art/batch/icons/features/subclass/trickery-domain/divine-strike.png
