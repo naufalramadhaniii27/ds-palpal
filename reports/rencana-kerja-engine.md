@@ -486,3 +486,7 @@ Layer (tab / damage, % frame lebih dari 16.7 ms): dasar 19.0 / 32.3, will-change
 Animasi tab: dasar 19.2, tanpa miType 19.6, tanpa judul miHd 21.1, semua animasi dimatikan 15.7. Animasi bukan lagi penyebab utama tab.
 Damage: dasar 28.9, tanpa dot dan spark 27.4, tanpa crack 30.4, tanpa gelombang HP, hpf, flash, fuse 24.1. Tidak ada satu kelompok dominan. Canvas tunggal untuk partikel dan crack tidak akan menurunkan angka. Prototipe canvas ditunda.
 Sisa dugaan: biaya JS dan style recalc dari renderAll saat HP berubah, dan batas emulasi CPU. Perlu data dari HP asli lewat #fps sebelum rekayasa lanjut.
+
+## 3q. Profil JS saat damage (CPU 4x)
+
+Fungsi JS terbesar (icoDecorate, burst, hurt, edgeRows) tiap kali di bawah 2 persen dari waktu sampel, sekitar 110 ms untuk 8 aksi. JS bukan penyebab utama frame terlambat di damage. Sisa biaya ada di style, layer, dan paint, dan tersebar. Langkah berikut menunggu data #fps dari HP asli.
