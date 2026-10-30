@@ -42,7 +42,7 @@ Backend wajib, akun wajib, AI generatif, framework UI, pelacak, iklan. Content-v
 ## 6. Kelemahan yang sudah diketahui (ditulis sendiri)
 | Kelemahan | Ukuran | Rencana |
 |---|---|---|
-| Muat awal berat di HP lambat | CPU 4x: DOM siap 2,7 detik, terblokir 1,8 detik, tugas terpanjang 611 ms. HTML tanpa blok tunda: 0,8 detik | N91, N93 |
+| Muat awal berat di HP lambat | CPU 4x: Home terlihat 1,5 detik, DOM siap 2,7 detik, terblokir 1,8 detik, tugas terpanjang 611 ms. HTML tanpa blok tunda: DOM siap 0,8 detik | N91, N93 |
 | Kebijakan Trusted Types memotong teks sah ("once = 1") | Teks hilang di tab Features dan lembar cetak | requests.md, N90 |
 | Kode global dalam satu closure | 64 MutationObserver di lapisan efek, 199 innerHTML di bawah kebijakan | N48, N63 sampai N65 |
 | Hanya diuji di Chromium | Firefox dan WebKit belum | Perlu HP dan browser nyata |

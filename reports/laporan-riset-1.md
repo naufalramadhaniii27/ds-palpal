@@ -8,7 +8,7 @@ Batas: hanya Chromium, CPU diperlambat lewat emulasi (bukan HP asli), karakter b
 |---|---|---|
 | 1 | 400 karakter acak lolos 6 sifat metamorfik baru, 0 temuan | Mesin derive konsisten. Ini bukti yang bisa ditunjukkan ke dev |
 | 2 | derive() memakan 0,5 sampai 0,85 ms (CPU normal), 2 sampai 8 ms (CPU 6x lebih pelan) | N53 (pekerja untuk derive) tidak perlu. Rencana dikoreksi |
-| 3 | Muat app di HP lambat (CPU 4x): DOM siap 2,7 detik, terblokir 1,8 detik, tugas terpanjang 611 ms | Ini kelemahan terbesar yang terukur |
+| 3 | Muat app di HP lambat (CPU 4x): Home terlihat 1,5 detik, DOM siap 2,7 detik, terblokir 1,8 detik, tugas terpanjang 611 ms | Kelemahan terukur. Home muncul sebelum semua selesai (koreksi: versi awal menyebutnya terbesar) |
 | 4 | Memindahkan 5,2 MB blok data tunda keluar dari HTML: DOM siap 2,7 detik menjadi 0,8 detik | Batas atas manfaat memecah build. Bukan perbaikan jadi |
 | 5 | 262 string diracuni payload XSS: 0 jalan, 0 pelanggaran CSP, 0 error | Pertahanan berlapis (escape, Trusted Types, CSP) bekerja |
 | 6 | Bug nyata: kebijakan Trusted Types memotong teks pemain yang sah | Ditulis di reports/requests.md untuk bagian Logic |
@@ -62,6 +62,13 @@ Percobaan batas atas: salinan index.html tanpa isi blok tunda (bukan perbaikan, 
 | Terblokir, CPU 4x | 1.820 ms | 1.251 ms |
 | Memori JS | 18,2 MB | 10 MB |
 Pelajaran: memecah blok tunda ke berkas terpisah mempercepat DOM siap sekitar 3 kali, tetapi cat pertama hampir tidak berubah. Cat pertama dibatasi oleh 1,1 MB script yang langsung jalan dan 1,17 MB CSS. Ini mengubah isi keputusan A atau B untuk N58: manfaat B (memecah build) nyata untuk DOM siap, tetapi tidak menyelesaikan cat pertama. Perlu langkah terpisah (lihat N91 di bawah).
+
+Tambahan (diukur setelah versi pertama laporan ini): waktu sampai Home terlihat, tiga muat dingin dengan karakter tersimpan.
+| CPU | Home terlihat |
+|---|---|
+| Normal | 387 sampai 423 ms |
+| 4x lebih pelan | 1.513 sampai 1.586 ms |
+Pengguna HP lambat melihat Home sekitar 1,5 detik. Yang berat sesudahnya: thread terblokir total 1,8 detik, jadi ketukan pertama bisa tertunda. Tundaan ketukan belum saya ukur langsung.
 
 ## 5. Uji injeksi teks
 262 string di karakter uji diganti atau diberi akhiran payload `"><img src=x onerror=...><svg onload=...>`. Seluruh tab, detail, Library, laporan masalah, dan Export PDF dijalankan di dua ukuran.
