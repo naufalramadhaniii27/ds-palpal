@@ -33,3 +33,10 @@ Bukti (Chromium, build main eab1472, tools/research/tt_bug.py dan tt_real2 di sc
 Dampak: teks hilang di tab Features, detail, dan lembar cetak. Bukan celah keamanan (CSP tetap memblokir). Tidak ada data yang berubah, hanya tampilan.
 Usul perbaikan (bagian Logic): cek hanya di dalam tag, bukan di teks: `/<[^>]*\son[a-z]+\s*=/i`, atau urai dengan `<template>` dan buang atribut `on*` dan elemen berbahaya dari DOM hasil urai. Tes: korpus XSS (262 string diuji, 0 jalan) dan korpus teks sah di atas harus lolos keduanya.
 Tidak diubah di sini.
+
+Tambahan 2026-10-30 (bukti untuk permintaan di atas): prototipe pembersih berbasis DOM ada di tools/research/sanitize-proto.py (di luar app).
+| Ukuran | Kebijakan sekarang | Pembersih DOM |
+|---|---|---|
+| 21 teks sah (termasuk "once = 1", tombol dengan teks itu) | 5 diubah | 0 diubah |
+| 25 payload XSS (script, onerror, onload, javascript:, entitas tersamar, form, object, embed, meta, base, svg, template, math) | 1 jalan (link `jav&#x09;ascript:` bila diklik) | 0 jalan |
+Catatan: pada app, CSP tetap memblokir javascript:, jadi satu payload itu bukan celah nyata saat ini. Kebijakan Trusted Types `default` tidak boleh memanggil `innerHTML` biasa untuk mengurai (rekursi). Perlu satu kebijakan bernama kedua (misal `cs-parse`, hanya mengembalikan string) yang harus ditambahkan ke daftar `trusted-types` di CSP buatan build.py. Tidak diubah di sini.
