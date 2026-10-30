@@ -19,6 +19,57 @@ function linkify(text){
     return GLOSS[base] ? '<button type="button" class="lk" data-info="g:'+esc(base)+'">'+part+'</button>' : part;
   }).join("");
 }
+/* x-link: names of spells, creatures and magic items in any rule text become links to their detail (spn:, cr:, mi:) */
+var XL_IDX=null, XL_KEY="", XL_STOP={"The":1,"A":1,"An":1,"Each":1,"Any":1,"Your":1,"This":1,"That":1,"One":1,"If":1,"When":1,"While":1,"You":1,"It":1,"Its":1,"On":1,"In":1,"At":1,"As":1,"For":1,"With":1,"Once":1,"Until":1,"After":1,"Before":1,"Any":1,"No":1,"Choose":1,"Cast":1,"Casts":1,"Roll":1,"Both":1,"Either":1,"All":1,"Other":1,"Another":1,"Of":1};
+function xlIdx(){
+  var crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], key=sp.length+"|"+mi.length+"|"+crs.length;
+  if(XL_IDX&&key===XL_KEY) return XL_IDX;
+  var m={}, put=function(n,k){ n=String(n||"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length>2&&/^[A-Z]/.test(n)) m[n]=k; };
+  sp.forEach(function(x){ put(x[0],["spn",x[0]]); });
+  crs.forEach(function(c){ put(c.n,["cr",c.n]); });
+  mi.forEach(function(r){ if(r&&r[0]) put(r[0],["mi",r[0]]); });
+  XL_IDX=m; XL_KEY=key; return m;
+}
+var XL_SELF="";
+function xlink(h,self,mode){
+  self=self||XL_SELF; h=String(h==null?"":h); if(!h||h.indexOf("<")<0&&h.length<3) return h;
+  var m=xlIdx(), depth=0, selfK=String(self||"").replace(/&#39;/g,"'").replace(/'/g,"\u0001");
+  return h.split(/(<[^>]+>)/).map(function(p){
+    if(p.charAt(0)==="<"){ if(/^<(button|a)[\s>]/i.test(p)) depth++; else if(/^<\/(button|a)>/i.test(p)) depth=Math.max(0,depth-1); return p; }
+    if(depth||p.length<3) return p;
+    var t=p.replace(/&#39;/g,"\u0001"), tk=[], re=/[A-Za-z0-9+\u0001’-]+/g, q;
+    while((q=re.exec(t))) tk.push([q.index,q.index+q[0].length]);
+    var out="", pos=0, i=0;
+    while(i<tk.length){
+      var a=tk[i][0], ch=t.charAt(a), hit=null, len=0;
+      if(ch>="A"&&ch<="Z"){
+        for(var L=Math.min(6,tk.length-i);L>=1;L--){
+          var ok=true; for(var j=i+1;j<i+L;j++){ if(t.slice(tk[j-1][1],tk[j][0])!==" "){ ok=false; break; } }
+          if(!ok) continue;
+          var ph=t.slice(a,tk[i+L-1][1]), k=m[ph]; if(!k) continue;
+          if(ph===selfK) break;
+          if(L===1||ph.indexOf(" ")<0){
+            var pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
+            if(pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]) break;/* part of a longer proper name, such as "Gamma Knight" */
+            if(k[0]==="spn"){ var sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) break; }
+          }
+          if(mode==="b"&&k[0]==="spn") break;/* the builder links spells itself */
+          hit=k; len=L; break;
+        }
+      }
+      if(hit){ var e=tk[i+len-1][1]; var nm_=hit[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;"); out+=t.slice(pos,a)+(mode==="b"?'<button type="button" class="lnk" data-lnk="'+hit[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+hit[0]+':'+nm_+'">')+t.slice(a,e)+'</button>'; pos=e; i+=len; }
+      else i++;
+    }
+    return (out+t.slice(pos)).replace(/\u0001/g,"&#39;");
+  }).join("");
+}
+window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:xlIdx};/* test hook */
+function miHTML(n){
+  var r=(typeof DMGI!=="undefined"?DMGI:[]).filter(function(x){ return x[0]===n; })[0];
+  if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};
+  var h='<div class="dc dc-i">'+dcHead(ico("ui-hand","isch"),esc(r[1]+" • "+r[2]+(r[3]?" • Requires attunement":"")))+'</div><div class="idetail"><p class="info-d">'+kwChips(xlink(richP(r[4]),n))+'</p></div>';
+  return {t:n, h:h};
+}
 var NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
 /* v36 p14: one detail-card template (head, 4-cell strip, number blocks, body, At your level, use buttons, foot) */
 var KW_LIST=["Temporary Hit Points","Opportunity Attack","Heroic Inspiration","Bonus Action","Hit Points","Short Rest","Long Rest","Saving Throw","Reaction","Advantage","Disadvantage","Concentration"].concat(STD_CONDS);
@@ -65,8 +116,14 @@ function spTgtCell(x){ var o=spTgt(x), L=TGT_LAB[o.k]||["Target",o.k], big=/^(Sp
   return [ik,L[0],esc(L[1])+(o.n?'<span class="dc-sz">'+o.n+(TGT_SIZE[o.k]||" ft")+'</span>':'')]; }
 function spEffCell(x){ var sv=x.sv; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"]; return ["fx-auto","Effect","No roll"]; }
 function infoHTML(spec){
+  var i0=spec.indexOf(":"), t0=spec.slice(0,i0), k0=spec.slice(i0+1), prev=XL_SELF, me="";/* a name in its own dialog is not linked to itself */
+  try{ if(t0==="spn"||t0==="mi") me=k0; else if(t0==="cr") me=k0.split("|")[0]; else if(t0==="sp") me=((C.spells||[])[+k0]||{}).n||""; else if(t0==="it") me=((C.inv||[])[+k0]||{}).n||""; else if(t0==="f"){ var q=k0.split("."), g_=(C.features||[])[+q[0]]; me=((g_&&g_.items||[])[+q[1]]||{}).n||""; } }catch(e){ me=""; }
+  XL_SELF=me; try{ return infoHTML0(spec); } finally{ XL_SELF=prev; }
+}
+function infoHTML0(spec){
   var i=spec.indexOf(":"), type=spec.slice(0,i), key=spec.slice(i+1), h="";
   if(type==="spn") return spnHTML(key);/* v25 RU38 no. 3 */
+  if(type==="mi") return miHTML(key);
   if(type==="g"){
     var g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
@@ -122,7 +179,7 @@ function infoHTML(spec){
   }
   if(type==="it"){
     var it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ var dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+dci.rest+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ var dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     var base=GLOSS[it.n], q=num(it.q,1), w=num(it.w,0);
     h=meta(base?base.c:"Item", base?base.s:"")+'<div class="info-k">'+tileS("Quantity",q)+tileS("Weight",w?fmtW(q*w)+" lb":"\u2014")+(eqOn(it)?tileS("Status","Worn"):"")+'</div>';
     if(base) h+='<p class="info-d">'+rich(base.d)+'</p>';

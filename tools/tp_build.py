@@ -62,6 +62,7 @@ def title(s):
     small = {"of", "the", "and", "or", "to", "in", "on", "a"}
     w = s.split(" "); return " ".join(x.capitalize() if (i == 0 or x not in small) else x for i, x in enumerate(w))
 
+_SEENSUB = {}
 def sub_records(bk, data, M):
     out = []
     feats = data["subclassFeature"]
@@ -80,6 +81,11 @@ def sub_records(bk, data, M):
             GAP.append((bk["tag"], "subclass", name + " (Gunslinger)", "the class Gunslinger is in the 2014 edition books (Valda 2014 and others). Built with the 2014 book path, then these subclasses join it")); continue
         if not O:
             GAP.append((bk["tag"], "subclass", name, "no overlay text, subclass not built")); continue
+        key_ = (s["className"], name)
+        if key_ in _SEENSUB and _SEENSUB[key_] != bk["id"] and bk.get("alias"):
+            nm = "%s (%s)" % (name, bk["alias"])          # same subclass name as an earlier book: renamed so neither replaces the other
+        else: nm = name
+        _SEENSUB.setdefault(key_, bk["id"])
         fl = [f for f in feats if f.get("subclassShortName") == s["shortName"] and f["className"] == s["className"]]
         arr = []; full = {}
         head = fl[0]["name"] if fl and fl[0]["name"] == name else None
@@ -89,7 +95,7 @@ def sub_records(bk, data, M):
             t = O["f"].get(f["name"])
             if t is None:
                 GAP.append((bk["tag"], "subclass feature", name + " | " + f["name"], "no overlay text")); continue
-            arr.append([lvl, f["name"], t]); full[name + "|" + f["name"]] = t
+            arr.append([lvl, f["name"], t]); full[nm + "|" + f["name"]] = t
         unused = set(O["f"]) - {a[1] for a in arr}
         for u in sorted(unused): GAP.append((bk["tag"], "overlay", name + " | " + u, "overlay text without a source feature"))
         arr.sort(key=lambda a: a[0])
@@ -105,15 +111,15 @@ def sub_records(bk, data, M):
         auto.sort(key=lambda a: a[0])
         lu = []
         for l in O.get("lu", []):
-            e = {"src": "sub", "owner": name, "feature": l["feature"], "n": l.get("n", l["feature"]), "lvl": max(3, l["lvl"]), "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")}
+            e = {"src": "sub", "owner": nm, "feature": l["feature"], "n": l.get("n", l["feature"]), "lvl": max(3, l["lvl"]), "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")}
             lu.append(e)
         acts = {}
         for ft, kind in O.get("acts", {}).items():
-            k = "sub|%s|%s" % (name, ft)
+            k = "sub|%s|%s" % (nm, ft)
             acts[k] = [["other", "", ft]] if kind == "other" else [[kind, ""]]
         if alt and arr: arr[0][2] = arr[0][2] + " Cross-compatible with %s: your GM decides whether it may be used." % " and ".join(alt)
-        for a_ in alt: full[name + "|" + arr[0][1]] = arr[0][2] if arr else ""
-        rec = {"alt": alt, "cls": s["className"], "name": name, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
+        for a_ in alt: full[nm + "|" + arr[0][1]] = arr[0][2] if arr else ""
+        rec = {"alt": alt, "cls": s["className"], "name": nm, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
                "cantrips": [], "pick": O.get("pick", []), "fx": O.get("fx", []), "spab": O.get("spab", "")}
         if O.get("grant"): rec["grant"] = O["grant"]
         if O.get("acb"): rec["acb"] = O["acb"]
