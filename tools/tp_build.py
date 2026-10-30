@@ -7,7 +7,7 @@
 Source: TheGiddyLimit/homebrew (set HB_DIR to its collection/ folder). Facts (class, level, spell lists, prerequisites, numbers) come from the
 source. All text is own wording and lives in tools/tp/overlay/. A feature without overlay text is a GAP and is listed in reports/tp-gap.md.
 Every book is a source that is off until the player turns it on (group "Third Party Books" in Sources). No art."""
-import json, os, re, sys, importlib.util
+import json, os, re, sys, glob, importlib.util
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(HERE, "tp"))
 from hb import load, flat, strip
@@ -22,9 +22,9 @@ BOOKS = [
   "sub": "tvss_sub", "feat": "tvss_feat", "spell": "tvss_spell", "item": "tvss_item", "species": "tvss_species",
   "cls": ["alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "vagabond", "warden", "warmage", "witch", "dancer"]},
  {"id": "tee24", "file": "Keith Baker; Exploring Eberron - 2024.json", "tag": "EE24", "name": "Exploring Eberron", "pub": "Keith Baker", "ed": "2024",
-  "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species"},
+  "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species", "alias": "Eberron"},
  {"id": "tghp", "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "tag": "GHPG24", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2024",
-  "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_"},
+  "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_", "alias": "Grim Hollow"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -32,6 +32,18 @@ GAP = []
 def ovl(mod):
     p = os.path.join(HERE, "tp", "overlay", mod + ".py")
     sp = importlib.util.spec_from_file_location(mod, p); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m
+
+_CORE = []
+def alias(bk, n):
+    """A book with an "alias" label renames entries whose name already exists in the app, so they never replace or switch off the core entry."""
+    if not bk.get("alias"): return n
+    if not _CORE:
+        t = ""
+        for f in glob.glob(os.path.join(ROOT, "src", "data", "*.js")) + glob.glob(os.path.join(ROOT, "src", "builder", "*.js")):
+            if os.path.basename(f).startswith("tp0"): continue
+            t += open(f, encoding="utf-8").read()
+        _CORE.append(t)
+    return "%s (%s)" % (n, bk["alias"]) if ('"%s"' % n) in _CORE[0] else n
 
 def title(s):
     s = s.split("|")[0]
@@ -120,7 +132,10 @@ def bg_records(bk, data, M):
         if not r: GAP.append((bk["tag"], "background", n, "no overlay text, background not built")); continue
         rec = dict(r); rec.setdefault("featOpts", M.OPTS); rec["hb"] = bk["tag"]; rec["leg"] = 1 if bk["ed"] == "2014" else 0
         if not rec["leg"]: del rec["leg"]
-        out[n] = rec
+        if bk.get("alias"):
+            if rec.get("feat"): rec["feat"] = _featname(bk, rec["feat"], M)
+            rec["featOpts"] = [_featname(bk, x, M) for x in rec["featOpts"]]
+        out[alias(bk, n)] = rec
     for n in M.BG:
         if n not in names and n not in getattr(M, "ALSO", ()): GAP.append((bk["tag"], "overlay", "background " + n, "overlay text without a source background"))
     for b in data.get("background", []):
@@ -132,6 +147,11 @@ Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TO
 SRC.backgrounds=Object.keys(BG);
 '''
 
+def _featname(bk, n, M=None):
+    """Name of a feat as the app knows it: the book's own feats may be renamed, the core feats never are."""
+    own = getattr(bk.get("_featmod"), "FEATS", {})
+    return alias(bk, n) if n in own else n
+
 def feat_records(bk, data, M):
     """name -> (record, lu list, acts)."""
     out = {}; lus = []; acts = {}
@@ -142,7 +162,7 @@ def feat_records(bk, data, M):
         rec = {"cat": "G", "hb": bk["tag"], "d": r["d"], "full": r["full"]}
         for k in ("pre", "asi", "fx", "pick", "needs"):
             if k in r: rec[k] = r[k]
-        out[n] = rec
+        n0 = n; n = alias(bk, n); out[n] = rec
         if r.get("dm"): FDM[n] = r["dm"]
         if r.get("lu"):
             l = r["lu"]; lus.append({"src": "feat", "owner": n, "feature": n, "n": l["n"], "lvl": 1, "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")})
@@ -268,7 +288,7 @@ def spell_records(bk, data, M):
     full = {}
     for n in sorted(T):
         if n not in src: GAP.append((bk["tag"], "overlay", "spell " + n, "overlay text without a source spell")); continue
-        r = spell_meta(src[n]); r.append(T[n][0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[n] = T[n][1]
+        r = spell_meta(src[n]); r[0] = alias(bk, n); r.append(T[n][0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = T[n][1]
     for n in sorted(set(src) - set(T)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
     return rows, full
 
@@ -282,7 +302,7 @@ def species_records(bk, data, M):
     for n in sorted(names - set(M.SPECIES)): GAP.append((bk["tag"], "species", n, "no overlay text, species not built"))
     out = {}
     for n, r in M.SPECIES.items():
-        rec = dict(r); rec["hb"] = bk["tag"]; out[n] = rec
+        rec = dict(r); rec["hb"] = bk["tag"]; out[alias(bk, n)] = rec
     for l in getattr(M, "LU", []): SPLU.append(l)
     for k, v in getattr(M, "ACTS", {}).items(): SPACTS[k] = v
     for k, v in getattr(M, "SP_AUTO", {}).items(): SPAUTO[k] = v
@@ -309,6 +329,7 @@ def build():
         recs = sub_records(bk, data, M) if M else []
         if not M:
             for x in data.get("subclass", []): GAP.append((bk["tag"], "subclass", x["name"], ("older version of the Reborn subclass of the same name. Use the TDCSR book" if bk.get("dup") else "not built yet (plan P3b, P4)")))
+        bk["_featmod"] = ovl(bk["feat"]) if bk.get("feat") else None
         bgs = bg_records(bk, data, ovl(bk["bg"])) if bk.get("bg") else {}
         ft, ftlu, fta = feat_records(bk, data, ovl(bk["feat"])) if bk.get("feat") else ({}, [], {})
         ftlu = ftlu + (list(getattr(ovl(bk["bg"]), "LU", [])) if bk.get("bg") else [])
@@ -333,7 +354,11 @@ def build():
         if bk["ed"] == "2014": src["legacy"] = 0
         body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\nvar MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
-    for g in (("All", "engine", "extra damage riders (Pyremaul fire, Agony mark, Condemner poison)", "shown on the weapon row note as xd, not added to a damage roll"),
+    for g in (("GHPG24", "charoption", "12 Transformations (Aberrant Horror, Fey, Fiend, Hag, Lich, Lycanthrope, Ooze, Primordial, Seraph, Shadowsteel Ghoul, Specter, Vampire) and their 103 staged Boons and Flaws (feature types */TB and */TF)", "not built yet. Needs a staged character option in the engine (plan P5c)"),
+              ("GHPG24", "optional feature", "9 Gifts of Dread (GoD) and the Trapper Gadgets and Monster-Hide Armor modifications (TG:*), 11 Devourer mutations (DG:M)", "chosen at play time, text sits inside the class and subclass features. Per-use pickers wait for plan P5c"),
+              ("GHPG24", "engine", "Heritage Traits taken twice, fixed skill or resistance or tool picks from a species trait, trait limited uses", "the species option list carries text, Darkvision, Speed, Climb and Swim only"),
+              ("GHPG24", "engine", "Buckler, Tower Shield and Retractable Shield AC, Hunter's Armor on any worn armor, Momentum and Magazine values, Occultist spell slots", "text only"),
+              ("All", "engine", "extra damage riders (Pyremaul fire, Agony mark, Condemner poison)", "shown on the weapon row note as xd, not added to a damage roll"),
               ("All", "engine", "effects that need a state (Star Razor glowing, Titanstone under Enlarge, Wraps ravenous strike)", "Star Razor bonus and resistance apply always. Others are text"),
               ("TDCSR", "assumption", "Deathwalker's Ward", "source data lists a +1 save bonus, the text does not. Not applied"),
               ("TDCSR", "engine", "truesight 60 ft (Circlet of Barbed Vision, Exalted)", "text only, the sheet has no truesight field"),

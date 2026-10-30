@@ -34,9 +34,11 @@ async def main():
             await pg.goto(url); await pg.wait_for_function("()=>window.__bldNeed||window.__deferDone", timeout=60000)
             await pg.evaluate("()=>{ if(window.__bldNeed) window.__bldNeed(); }")
             await pg.wait_for_function("()=>!!window.__bldSheetFor&&!!window.WX", timeout=60000)
-            await pg.evaluate(LISTS, {"on": False, "spells": spl})
-            off = await pg.evaluate(LISTS, {"on": False, "spells": spl}); on = await pg.evaluate(LISTS, {"on": True, "spells": spl})
+            await pg.evaluate(LISTS, {"on": False, "spells": spl + [n + " (Eberron)" for n in spl]})
+            off = await pg.evaluate(LISTS, {"on": False, "spells": spl + [n + " (Eberron)" for n in spl]}); on = await pg.evaluate(LISTS, {"on": True, "spells": spl + [n + " (Eberron)" for n in spl]})
             check(tag + " book registered", "tee24" in await pg.evaluate("()=>window.WX.src.map(function(q){return q.id})"))
+            def act(L, n): return (n + " (%s)") % "Eberron" if ((n + " (%s)") % "Eberron") in L else n
+            spn = [act(on["sp"], n) for n in spn]; bgn = [act(on["bg"], n) for n in bgn]; ftn = [act(on["ft"], n) for n in ftn]; spl = [act(on["spells"], n) for n in spl]
             for k, names, lab in (("sp", spn, "species"), ("bg", bgn, "backgrounds"), ("ft", ftn, "feats"), ("spells", spl, "spells")):
                 lo = [n for n in names if n in off[k]]; mi = [n for n in names if n not in on[k]]
                 check("%s off: no %s offered" % (tag, lab), not lo, str(lo)); check("%s on: every %s offered" % (tag, lab), not mi, str(mi))

@@ -882,5 +882,642 @@
    "Perfect Form"
   ],
   "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Barbarian",
+  "sub": "Path of the Fractured",
+  "level": 20,
+  "feats": [
+   "Face of Rage",
+   "Mask of Civility",
+   "Brains and Brawn",
+   "Cunning and Brutal",
+   "Better Half"
+  ],
+  "lu": [
+   "Better Half"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Barbarian",
+  "sub": "Path of the Primal Spirit",
+  "level": 20,
+  "feats": [
+   "Primal Companion",
+   "Shared Rage",
+   "Kin to Beasts",
+   "Skinrider's Trance",
+   "Shape of the Wild"
+  ],
+  "lu": [
+   "Skinrider's Trance",
+   "Shape of the Wild"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Barbarian",
+  "sub": "Path of the Wrathful Dead",
+  "level": 20,
+  "feats": [
+   "Final Night Catharsis",
+   "Rage of the Dead",
+   "Dark Doom Revisited",
+   "Death Is but a Door",
+   "Powered by Pathos"
+  ],
+  "lu": [
+   "Death Is but a Door"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Bard",
+  "sub": "College of Adventurers",
+  "level": 20,
+  "feats": [
+   "Party Planner",
+   "Talented Adventurer",
+   "Well-Rounded",
+   "Improvisational Talent"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Bard",
+  "sub": "College of Fools",
+  "level": 20,
+  "feats": [
+   "Antagonistic Antics",
+   "Cruel Jest",
+   "Gallows Humor",
+   "Last Laugh"
+  ],
+  "lu": [
+   "Gallows Humor",
+   "Last Laugh"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Bard",
+  "sub": "College of Requiems",
+  "level": 20,
+  "feats": [
+   "Chilling Melody",
+   "Pluck the Heartstrings",
+   "Stir the Bones",
+   "Dual Death"
+  ],
+  "lu": [
+   "Dual Death"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Cleric",
+  "sub": "Eldritch Domain",
+  "level": 20,
+  "feats": [
+   "Eldritch Domain Spells",
+   "Eldritch Contagion",
+   "Prophecy of Doom",
+   "Otherworldly Calm",
+   "Sing the Song that Ends the World"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Cleric",
+  "sub": "Inquisition Domain",
+  "level": 20,
+  "feats": [
+   "Inquisition Domain Spells",
+   "Spell Shield",
+   "Witch Hunter's Strike",
+   "Rebuke Invoker",
+   "Supernal Safeguard"
+  ],
+  "lu": [
+   "Witch Hunter's Strike",
+   "Rebuke Invoker"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Cleric",
+  "sub": "Purification Domain",
+  "level": 20,
+  "feats": [
+   "Cleanse with Fire",
+   "Purification Domain Spells",
+   "Unclean Brand",
+   "Ward Against Corruption",
+   "Sear Imperfections"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Druid",
+  "sub": "Circle of Blood",
+  "level": 20,
+  "feats": [
+   "Circle of Blood Spells",
+   "Rite of the Blood Moon",
+   "Blood Boon",
+   "Blood Lust",
+   "Exsanguinate"
+  ],
+  "lu": [
+   "Blood Boon",
+   "Exsanguinate"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Druid",
+  "sub": "Circle of Entropy",
+  "level": 20,
+  "feats": [
+   "Catastrophic Power",
+   "Ruin Incarnate",
+   "Many Roads to Ruin",
+   "Shake the Earth",
+   "Entropy's Apex"
+  ],
+  "lu": [
+   "Shake the Earth"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Druid",
+  "sub": "Circle of Mutation",
+  "level": 20,
+  "feats": [
+   "Circle Forms",
+   "Mutate Shape",
+   "Unnatural and Unnerving",
+   "Endless Evolution",
+   "Apex Predator"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Fighter",
+  "sub": "Bulwark Warrior",
+  "level": 20,
+  "feats": [
+   "Protective Taunt",
+   "Weather the Storm",
+   "Threatening Presence",
+   "Aggressive Defense",
+   "Improved Second Wind"
+  ],
+  "lu": [
+   "Weather the Storm",
+   "Threatening Presence"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Fighter",
+  "sub": "Living Crucible",
+  "level": 20,
+  "feats": [
+   "Compound Creator",
+   "Student of Alchemy",
+   "Living Cauldron",
+   "Rapid Consumption",
+   "Toxin Transmutation"
+  ],
+  "lu": [
+   "Toxin Transmutation"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Fighter",
+  "sub": "Nightwatcher",
+  "level": 20,
+  "feats": [
+   "Ever Vigilant",
+   "Skilled Guardian",
+   "Size Up",
+   "Night Stalker",
+   "Ready for Action"
+  ],
+  "lu": [
+   "Warning Shout",
+   "Night Stalker"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Monk",
+  "sub": "Warrior of Pride",
+  "level": 20,
+  "feats": [
+   "Assertive Attacker",
+   "Bruised Ego",
+   "Tall Tales",
+   "Irrational Retaliation",
+   "Redoubled Efforts"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Monk",
+  "sub": "Warrior of Regret",
+  "level": 20,
+  "feats": [
+   "Shade of Regret",
+   "The Road Not Traveled",
+   "Aid Not Given",
+   "Crushing Guilt",
+   "Relive the Past"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Monk",
+  "sub": "Warrior of the Leaden Crown",
+  "level": 20,
+  "feats": [
+   "Psionic Prowess",
+   "Subtle Hand",
+   "Unsubtle Strike",
+   "Psychic Crush",
+   "Psionic Mastery"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Paladin",
+  "sub": "Oath of Pestilence",
+  "level": 20,
+  "feats": [
+   "Debilitating Fever",
+   "Entropic Infection",
+   "Oath of Pestilence Spells",
+   "Aura of Rampant Sickness",
+   "Disgusting Resilience"
+  ],
+  "lu": [
+   "Plaguebringer"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Paladin",
+  "sub": "Oath of Slaughter",
+  "level": 20,
+  "feats": [
+   "Frenzied Slaughter",
+   "Oath of Slaughter Spells",
+   "Bloodthirst Aura",
+   "Follow Through",
+   "Blood Knight"
+  ],
+  "lu": [
+   "Blood Knight"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Paladin",
+  "sub": "Oath of Zeal",
+  "level": 20,
+  "feats": [
+   "Mark of the Heretic",
+   "Oath of Zeal Spells",
+   "Aura of Clarity",
+   "Compel Confession",
+   "Apocalyptic Revelation"
+  ],
+  "lu": [
+   "Apocalyptic Revelation"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Ranger",
+  "sub": "Green Reaper",
+  "level": 20,
+  "feats": [
+   "Envenomed Attack",
+   "Green Reaper Spells",
+   "Toxic Tradecraft",
+   "Poison Control",
+   "Variegated Vexations"
+  ],
+  "lu": [
+   "Envenomed Attack",
+   "Protection from Poison"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Ranger",
+  "sub": "Primordial Archer",
+  "level": 20,
+  "feats": [
+   "Elemental Arrows",
+   "Herbal Lore",
+   "Primordial Archer Spells",
+   "Weave the Elements",
+   "Witching Arrows"
+  ],
+  "lu": [
+   "Elemental Arrows",
+   "Herbal Lore"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Ranger",
+  "sub": "Vermin Lord",
+  "level": 20,
+  "feats": [
+   "Swarming Strikes",
+   "Vermin Lord Spells",
+   "Verminkin",
+   "Filth and Fortitude",
+   "Infectious Spread"
+  ],
+  "lu": [
+   "Verminkin",
+   "Swarming Strikes"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Rogue",
+  "sub": "Highway Rider",
+  "level": 20,
+  "feats": [
+   "Hair Trigger",
+   "Ride Them Down",
+   "Trusty Mount",
+   "Horse Lord",
+   "True Grit"
+  ],
+  "lu": [
+   "Trusty Mount"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Rogue",
+  "sub": "Misfortune Bringer",
+  "level": 20,
+  "feats": [
+   "Evil Eye",
+   "Misfortunist",
+   "Steal Luck",
+   "Curse Caster",
+   "Improved Steal Luck"
+  ],
+  "lu": [
+   "Jinx Points",
+   "Steal Luck"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Rogue",
+  "sub": "Sanguine Thief",
+  "level": 20,
+  "feats": [
+   "Spellcasting",
+   "Stolen Power",
+   "Steal Blood",
+   "Bloody Blades",
+   "Bloodstitch"
+  ],
+  "lu": [
+   "Steal Blood",
+   "Bloodstitch"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Sorcerer",
+  "sub": "Apocalypse Sorcery",
+  "level": 20,
+  "feats": [
+   "Apocalyptic Spells",
+   "Unhinged Asservations",
+   "Arcane Apocrypha",
+   "Bear Witness",
+   "Forbidden Magic"
+  ],
+  "lu": [
+   "Arcane Apocrypha",
+   "The End is Nigh"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Sorcerer",
+  "sub": "Haunted Sorcery",
+  "level": 20,
+  "feats": [
+   "Haunted Spells",
+   "Sixth Sense",
+   "Phantom Companion",
+   "Deathly Pallor",
+   "Strength of Spirit"
+  ],
+  "lu": [
+   "Phantom Possession",
+   "Become Death"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Sorcerer",
+  "sub": "Wretched Bloodline Sorcery",
+  "level": 20,
+  "feats": [
+   "Bad Luck Charm",
+   "Blood Ties",
+   "Wretched Curse",
+   "Share the Burden",
+   "Terrifying Visage"
+  ],
+  "lu": [
+   "Bad Luck Charm",
+   "Blood Ties"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Warlock",
+  "sub": "The Coven",
+  "level": 20,
+  "feats": [
+   "Coven Spells",
+   "Hag's Eye",
+   "Hag's Guile",
+   "Hag's Visage",
+   "Hag's Craft"
+  ],
+  "lu": [
+   "Hag's Eye (Hex)",
+   "Hag's Eye (Bestow Curse)"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Warlock",
+  "sub": "The First Vampire Patron",
+  "level": 20,
+  "feats": [
+   "Drain Life",
+   "First Vampire Spells",
+   "Nocturnal Predator",
+   "Creature of the Night",
+   "Eldritch Appetite"
+  ],
+  "lu": [
+   "Creature of the Night",
+   "Eldritch Appetite"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Warlock",
+  "sub": "The Parasite Patron",
+  "level": 20,
+  "feats": [
+   "Physical Specimen",
+   "Spell Siphon",
+   "Symbiotic Sentinel",
+   "Spawn Pawn",
+   "Larval Regeneration"
+  ],
+  "lu": [
+   "Physical Specimen",
+   "Spawn Pawn"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Wizard",
+  "sub": "Daemonologist",
+  "level": 20,
+  "feats": [
+   "Fair and Foul",
+   "Stolen Secrets",
+   "Borrowed Tongues and Hides",
+   "Unearthly Countenance",
+   "Eternal War Eruption"
+  ],
+  "lu": [
+   "Switch Sides",
+   "Unearthly Countenance"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Wizard",
+  "sub": "Plague Doctor",
+  "level": 20,
+  "feats": [
+   "Good Medicine",
+   "Potion Craft",
+   "Bad Medicine",
+   "Breathe It In",
+   "Medicinal Master"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Wizard",
+  "sub": "Sangromancer",
+  "level": 20,
+  "feats": [
+   "Full-Blooded",
+   "Sangromancy Savant",
+   "Sanguine Vigor",
+   "Blood for Blood",
+   "Red Renewal"
+  ],
+  "lu": [
+   "Red Renewal"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Monster Hunter",
+  "sub": "Carver Guild",
+  "level": 20,
+  "feats": [
+   "Close Quarters",
+   "Equipped for Battle",
+   "True Grit",
+   "Terrorize the Terrors",
+   "Deadly Redirect"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tghp",
+  "cls": "Monster Hunter",
+  "sub": "Devourer Guild",
+  "level": 20,
+  "feats": [
+   "Alchemical Gastronomy",
+   "Transmuting Metabolism",
+   "Synchronized Response",
+   "Gnawing Hunger",
+   "Alchemical Decoctions"
+  ],
+  "lu": [
+   "Gnawing Hunger"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Monster Hunter",
+  "sub": "Occultist Guild",
+  "level": 20,
+  "feats": [
+   "Acolyte of the Occult",
+   "Spellcasting",
+   "Arcane Interference",
+   "Mage Hunter",
+   "Occult Knowledge"
+  ],
+  "lu": [
+   "Counterspell (free)"
+  ]
+ },
+ {
+  "src": "tghp",
+  "cls": "Monster Hunter",
+  "sub": "Trapper Guild",
+  "level": 20,
+  "feats": [
+   "Sneaky and Crafty",
+   "Trapper Gadgets",
+   "Ambusher's Advantage",
+   "Agile Response",
+   "Monster-Hide Armor"
+  ],
+  "lu": [
+   "Rapid Tinkerer"
+  ]
  }
 ]
