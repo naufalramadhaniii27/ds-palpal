@@ -47,11 +47,12 @@ def ovl(mod):
 _CORE = []; _SEEN = {}      # _SEEN: names already used by an earlier third party book, so two books never share a name
 def alias(bk, n):
     """A book with an "alias" label renames entries whose name already exists in the app, so they never replace or switch off the core entry."""
-    if not bk.get("alias"): return n
+    if not bk.get("alias"):
+        _SEEN.setdefault(n, bk["id"]); return n
     if not _CORE:
         t = ""
         for f in glob.glob(os.path.join(ROOT, "src", "data", "*.js")) + glob.glob(os.path.join(ROOT, "src", "builder", "*.js")):
-            if os.path.basename(f).startswith("tp0"): continue
+            if re.match(r"tp\d\d-", os.path.basename(f)): continue
             t += open(f, encoding="utf-8").read()
         _CORE.append(t)
     r = "%s (%s)" % (n, bk["alias"]) if (('"%s"' % n) in _CORE[0] or _SEEN.get(n, bk["id"]) != bk["id"]) else n
