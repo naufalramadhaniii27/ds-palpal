@@ -4500,6 +4500,11 @@ art/batch/icons/rules/invocations/eldritch-invocation-gift-of-the-protectors.png
 art/batch/icons/rules/invocations/eldritch-invocation-investment-of-the-chain-master.png
 art/batch/icons/rules/invocations/eldritch-invocation-lessons-of-the-first-ones.png
 art/batch/icons/rules/invocations/eldritch-invocation-lifedrinker.png
+art/batch/icons/rules/invocations/eldritch-invocation-mask-of-many-faces.png
+art/batch/icons/rules/invocations/eldritch-invocation-master-of-myriad-forms.png
+art/batch/icons/rules/invocations/eldritch-invocation-misty-visions.png
+art/batch/icons/rules/invocations/eldritch-invocation-one-with-shadows.png
+art/batch/icons/rules/invocations/eldritch-invocation-otherworldly-leap.png
 
 ## batch-176 v3
 art/batch/icons/features/subclass/trickery-domain/channel-divinity-invoke-duplicity.png
