@@ -118,7 +118,7 @@ SUB = {
   "Hardlight Wall": "Bonus Action: raise a wall of hardlight up to 60 ft long, 20 ft high and 1 ft thick. A creature in the wall's space is pushed to a side you choose. The wall is translucent and lasts 1 minute or until you dismiss it (no action). It has AC 15, 50 HP and Immunity to Poison and Psychic damage. At 0 HP it dissolves in a flash. Short or Long Rest to use again.",
   "Improved Radiant Shell": "While you have Temporary HP, you gain +2 AC. Shell Burst: when damage removes your last Temporary HP, the shell bursts. Each creature you choose in a 5-ft Emanation makes a Strength save (DC 8 + Strength or Dexterity modifier + Proficiency Bonus) or is pushed 10 ft away and knocked Prone.",
   "Hardlight Edge": "When you deal weapon damage you can spend Temporary HP, up to your Craftsman level. The target takes an extra 1d8 Force damage for every 5 Temporary HP spent."},
- "lu": [{"feature": "Radiant Shell", "lvl": 3, "max": "col:Masterwork Bonus", "reset": "long", "tag": "Bonus Action use"}, {"feature": "Hardlight Hall", "n": "Hardlight Wall", "lvl": 6, "max": 1, "reset": "short", "tag": "Bonus Action"}],
+ "lu": [{"feature": "Radiant Shell", "lvl": 3, "max": "col:Masterwork Bonus", "reset": "long", "tag": "Bonus Action use"}, {"feature": "Hardlight Wall", "lvl": 6, "max": 1, "reset": "short", "tag": "Bonus Action"}],
  "acts": {"Hardlight Projector": "action", "Radiant Shell": "action", "Hardlight Wall": "bonus"}},
 
 "Scrappers' Guild": {"spab": "",
