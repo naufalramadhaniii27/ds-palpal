@@ -506,3 +506,7 @@ HP pengguna (Chrome 155 Android, 406x761, rasio piksel 3, 8 inti, 2026-10-30 13.
 Frame lambat terbesar di uji 2 hampir semuanya skrip (192, 145, 93 ms di tab, 111 dan 88 ms di damage), tanpa skrip tunggal di atas 5 ms (LoAF tidak menyebut sumber). Damage sudah di bawah 5 persen. Tab belum.
 
 segFix (src/app/40...) membaca dan menulis layout bergantian per baris .ifil, dan segKey memanggil querySelectorAll per baris. Diubah jadi baca dulu lalu tulis, indeks dicari sekali per induk. Perilaku sama: segcmp.py membandingkan kelas dan scrollLeft semua .ifil di 9 tab (390) dan 7 tab (1250) dengan main, 0 beda. scenarios.py 24 cek, 0 gagal. Ukur CPU 3x tab: 13.3 menjadi 12.2, masih dalam noise. Sisa biaya segFix adalah satu layout paksa (clientWidth) 60 ms setelah klik tab. Sumber frame 90 sampai 190 ms di HP belum teridentifikasi.
+
+## 3t. edgeRows dan label tab di penguji
+
+Penguji sekarang menandai frame lambat dengan tab dan putaran. Di server (CPU 4x) frame lambat terbesar saat pindah tab adalah edgeRows lewat setTimeout (89 ms skrip, 109 ms frame di tab Spells). edgeRows membaca dan menulis layout bergantian per baris (#tabs, .bnav, .fr-tabs). Diubah: baca semua dulu, tulis sesudahnya. segcmp.py: 0 beda dengan main. scenarios.py 24 cek, 0 gagal. Penguji di server sesudahnya: tab 13 persen menjadi 9 persen frame lebih dari 16.7 ms, terlama 117 menjadi 83 ms (satu jalan, belum median). Belum diukur di HP asli.

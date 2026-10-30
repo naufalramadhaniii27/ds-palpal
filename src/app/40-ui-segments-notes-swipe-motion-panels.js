@@ -15,7 +15,9 @@ function segFix(root){ if(!root||!root.querySelectorAll) return; var els=root.qu
 function segFixL(root){ segFix(root); requestAnimationFrame(function(){ requestAnimationFrame(function(){ segFix(root); }); }); }
 document.addEventListener("scroll",function(e){ var el=e.target; if(el&&el.classList&&el.classList.contains("ifil")){ SEGX[segKey(el)]=el.scrollLeft; segEdge(el); } if(el&&el.classList&&(el.id==="tabs"||el.classList.contains("bnav")||el.classList.contains("fr-tabs"))) segEdge(el); },true);
 /* T10: the tab row and the bottom bar get the same edge fade as the filter rows when they can scroll */
-function edgeRows(){ Array.prototype.forEach.call(document.querySelectorAll("#tabs,.bnav,.fr-tabs"),segEdge); }
+function edgeRows(){ var els=document.querySelectorAll("#tabs,.bnav,.fr-tabs"), X=[], i, el, m;/* P5 frame rate: all reads first, then all writes, so a click on a tab does not force layout once per row */
+  for(i=0;i<els.length;i++){ el=els[i]; m=el.scrollWidth-el.clientWidth; X.push([el,m,el.scrollLeft]); }
+  for(i=0;i<X.length;i++){ el=X[i][0]; m=X[i][1]; el.classList.toggle("fit",m<=2); el.classList.toggle("ovf-l",X[i][2]>2); el.classList.toggle("ovf-r",m>2&&X[i][2]<m-2); } }
 setTimeout(edgeRows,600); setTimeout(edgeRows,2500); setTimeout(edgeRows,6000); document.addEventListener("click",function(){ setTimeout(edgeRows,350); },true);
 window.addEventListener("resize",function(){ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); if(typeof edgeRows==="function") edgeRows(); });
 renderActions=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("actBody")); return r; }; })(renderActions);

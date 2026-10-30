@@ -13,12 +13,13 @@
   function visible(el){ return !!el&&!!el.getClientRects().length; }
   function waitFor(fn,ms){ var t0=performance.now(); return new Promise(function(res){ (function p(){ var v=fn(); if(v||performance.now()-t0>ms) return res(v); setTimeout(p,100); })(); }); }
   (function loop(t){ if(rec) rec.push(t); requestAnimationFrame(loop); })(0);
-  var loaf=[], gather=false; try{ new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ if(gather) loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
+  var loaf=[], gather=false, wins=[];
+  function tabOf(t){ var r="?"; wins.forEach(function(w){ if(t>=w[1]) r=w[0]; }); return r; } try{ new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ if(gather) loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
   function loafTxt(){ if(!loaf.length) return ""; var t=loaf.slice().sort(function(a,b){ return b.duration-a.duration; }).slice(0,3).map(function(e){ var sc=(e.scripts||[]).slice().sort(function(a,b){ return b.duration-a.duration; })[0];
-      return "   slow frame "+Math.round(e.duration)+" ms (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }).join("\n"); return "\n"+t; }
+      return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }).join("\n"); return "\n"+t; }
   function stat(fr){ if(fr.length<3) return null; var d=[], i; for(i=1;i<fr.length;i++) d.push(fr[i]-fr[i-1]); var s=d.slice().sort(function(a,b){ return a-b; }), n=d.length, over=function(x){ return Math.round(100*d.filter(function(v){ return v>x; }).length/n); };
     return {fps:Math.round(10*n/((fr[fr.length-1]-fr[0])/1000))/10, med:Math.round(10*s[n>>1])/10, p95:Math.round(10*s[Math.max(0,Math.ceil(n*.95)-1)])/10, worst:Math.round(s[n-1]), o17:over(17.7), o33:over(34.4), n:n}; }
-  async function phase(name,fn){ rec=[]; loaf=[]; gather=true; await fn(); var st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
+  async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); var st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
   async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; var withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
     try{
       lines.push("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(window.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB");
@@ -28,7 +29,7 @@
       await wait(1500);
       var idle=await phase("1 idle 3 s",function(){ return wait(3000); });
       var btns=[].slice.call(document.querySelectorAll(mq.matches?"#bnav button":"#tabs .tab")).filter(visible);
-      await phase("2 switch pages ("+btns.length+" x2)",async function(){ for(var r=0;r<2;r++){ for(var i=0;i<btns.length;i++){ btns[i].click(); await wait(320); } } });
+      await phase("2 switch pages ("+btns.length+" x2)",async function(){ for(var r=0;r<2;r++){ for(var i=0;i<btns.length;i++){ wins.push([(r+1)+","+i+" "+(btns[i].textContent||"").trim().slice(0,10),performance.now()]); btns[i].click(); await wait(320); } } });
       if(withDmg){ var inp=document.getElementById("hpAmt"), d=document.getElementById("dmgBtn"), h=document.getElementById("healBtn");
         if(visible(d)&&visible(h)&&inp&&typeof S==="object"){ h0=S.hp; t0=S.tmp;
           await phase("3 damage and heal (4 rounds)",async function(){ for(var k=0;k<4;k++){ inp.value="3"; inp.dispatchEvent(new Event("input",{bubbles:true})); d.click(); await wait(520); h.click(); await wait(520); } });
