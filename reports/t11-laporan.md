@@ -213,3 +213,12 @@ Belum diputuskan user. Dukungan tiap fitur dicek ulang di caniuse sebelum dipaka
 ## Keputusan user 2026-10-30 06.00 WIB
 1. Semua kandidat teknologi terbaru (Baseline 2026 dan Interop 2026, tabel di atas) diterima dan masuk antrean, sesudah antrean Training Ground.
 2. Mode developer: Claude meracik dan menciptakan teknologi baru sendiri. Syarat lama tetap: tanpa AI berbayar, paket gratis, ada tes, tiga skenario wajib, dicatat di rencana sebelum dikerjakan. Rencana: claude/rencana-teknologi-ciptaan.md (salinan reports/rencana-teknologi-ciptaan.md).
+
+## Rilis 0.0.5 (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Commit | e589c87 sampai 1e72bf1 di main |
+| Isi | N19 peta angka, N20 lensa peluang, N21 takaran pertarungan, N22 duel build, N23 dadu jujur, N25 penyimpanan memperbaiki diri, N26 replay dan link pertarungan, N27 dadu tanpa mesin fisika, N28 papan berlapis, N29 Find a build 4 kali lebih cepat, N30 perkiraan cepat, antrean G7: Wake Lock, View Transitions, bar HP @property, getar saat kena. Rincian dan angka di rencana-teknologi-ciptaan.md |
+| Regresi | 45 tes lolos, termasuk scenarios, flow, csp, pdf, overflow, overlap, storage_idb, dice_app, dice_lite, learn_flow, learn_a11y, tg_ui, tg_n2, tg_layer, tg_dice, tg_queue, number_map, rb_duel, rb_fast, self_heal, cloud_sync 39 cek, tg_engine |
+| Keamanan | CSP tanpa 'wasm-unsafe-eval' dan tanpa worker blob |
+| Menunggu izin user | Hapus vendor/dice (6 MB), src/dice, tools/dice_build.py: tidak dipakai lagi sejak N27 |
