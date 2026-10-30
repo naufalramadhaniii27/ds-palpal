@@ -222,3 +222,10 @@ Belum diputuskan user. Dukungan tiap fitur dicek ulang di caniuse sebelum dipaka
 | Regresi | 45 tes lolos, termasuk scenarios, flow, csp, pdf, overflow, overlap, storage_idb, dice_app, dice_lite, learn_flow, learn_a11y, tg_ui, tg_n2, tg_layer, tg_dice, tg_queue, number_map, rb_duel, rb_fast, self_heal, cloud_sync 39 cek, tg_engine |
 | Keamanan | CSP tanpa 'wasm-unsafe-eval' dan tanpa worker blob |
 | Menunggu izin user | Hapus vendor/dice (6 MB), src/dice, tools/dice_build.py: tidak dipakai lagi sejak N27 |
+
+## Rilis 0.0.6 (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Commit | 0103c6e (hapus mesin dadu lama, izin user 08.16 WIB), f29e758 di main |
+| Isi | Fisika dadu di CPU: titik massa dan putaran, meja dicek hanya ke sudut dadu, dadu lawan dadu sebagai bola, tepi layar sebagai dinding. Lemparan dihitung dulu (120 langkah per detik, di bawah 100 ms untuk 24 dadu), lalu dadu digambar diputar oleh simetrinya sendiri supaya sisi yang mendarat menunjukkan nilai. Kerja GPU sama |
+| Tes | dice_lite (1.000 lempar per jenis, sisi atas sama dengan nilai, miring saat diam maksimal 0,1 derajat), dice_app (5 dari 6 kali lolos, 1 gagal di bawah beban CPU, tidak terulang), builder_4d6, tg_dice, learn_flow, scenarios, csp, version_label |
