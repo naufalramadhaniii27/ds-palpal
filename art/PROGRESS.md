@@ -4725,6 +4725,7 @@ art/batch/icons/items/magic/very-rare/devastation-orb-of-earth.png
 art/batch/icons/items/magic/very-rare/devastation-orb-of-fire.png
 art/batch/icons/items/magic/very-rare/devastation-orb-of-water.png
 art/batch/icons/items/magic/legendary/drown.png
+art/batch/icons/items/magic/legendary/ironfang.png
 
 ## batch-216 v3
 
@@ -4762,4 +4763,3 @@ art/batch/icons/items/tools/cartographers-tools.png
 art/batch/icons/items/tools/cobblers-tools.png
 art/batch/icons/items/tools/cooks-utensils.png
 art/batch/icons/items/tools/glassblowers-tools.png
-
