@@ -23,6 +23,8 @@ BOOKS = [
   "cls": ["alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "vagabond", "warden", "warmage", "witch", "dancer"]},
  {"id": "tee24", "file": "Keith Baker; Exploring Eberron - 2024.json", "tag": "EE24", "name": "Exploring Eberron", "pub": "Keith Baker", "ed": "2024",
   "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species"},
+ {"id": "tghp", "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "tag": "GHPG24", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2024",
+  "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -315,10 +317,11 @@ def build():
         for cn in bk.get("cls", []):
             sc = [c for c in data["class"] if c["name"].lower() == cn]
             if not sc: continue
-            mp = os.path.join(HERE, "tp", "overlay", "tvsc_" + cn + ".py")
+            cmod = bk.get("clspre", "tvsc_") + cn.replace(" ", "_")
+            mp = os.path.join(HERE, "tp", "overlay", cmod + ".py")
             if not os.path.exists(mp):
                 GAP.append((bk["tag"], "class", sc[0]["name"], "no overlay yet, class not built")); continue
-            rc, ex = tp_class.class_record(sc[0], data, ovl("tvsc_" + cn).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"])
+            rc, ex = tp_class.class_record(sc[0], data, ovl(cmod).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"])
             ex["rec"] = rc; cl[sc[0]["name"]] = ex
         spr, spf = spell_records(bk, data, ovl(bk["spell"])) if bk.get("spell") else ([], {})
         it, isp, wpn, gr = item_records(bk, data, ovl(bk["item"])) if bk.get("item") else ([], {}, [], [])
