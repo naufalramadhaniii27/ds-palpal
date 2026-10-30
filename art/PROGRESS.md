@@ -5023,4 +5023,9 @@ art/batch/portraits/firbolg-b.png
 art/batch/portraits/flamekin-a.png
 art/batch/portraits/flamekin-b.png
 art/batch/portraits/genasi-a.png
+art/batch/portraits/genasi-b.png
+art/batch/portraits/giff-a.png
+art/batch/portraits/giff-b.png
+art/batch/portraits/githyanki-a.png
+art/batch/portraits/githyanki-b.png
 
