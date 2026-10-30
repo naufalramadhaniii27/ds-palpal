@@ -543,3 +543,8 @@ HP pengguna, 2026-10-30 14.15 WIB, file uji G (penguji #fps, kotak warm-up tidak
 | damage | 5 (3) | 116 ms, frame lambat 117, 87, 57 ms |
 Frame 90 sampai 180 ms di kunjungan pertama Spells dan Skills hilang. Sisa tab 7 persen berupa frame sekitar 25 ms, satu per pindah halaman. Server (CPU 3x, trace per klik) tidak menemukan frame lebih dari 16.7 ms sesudah pemanasan, jadi sumber frame kecil itu tidak terlihat di server. Sisa damage: satu frame sekitar 117 sampai 140 ms tanpa skrip, diduga kemunculan efek pertama kali. Belum ditangani.
 Koreksi: pesan sebelumnya menyebut kotak warm-up tidak ada di G. Kotaknya ada di penguji (hanya untuk uji, tidak perlu dicentang).
+
+## 3x. Penggabungan dengan main 0.0.6 dan E0 (2026-10-30 14.40 WIB)
+Sesi lain sudah merilis 0.0.4 sampai 0.0.6 di main (G0 sampai G4, Learn, Training Ground, N19 sampai N30). Branch perf-60fps tertinggal 91 commit. Main digabung ke branch g-work (konflik hanya di manifest, index.html, sw.js, diselesaikan dengan build ulang). Probe #fps pindah ke `app/54-dev-fps-probe.js` karena nomor 45 sampai 53 dipakai main. scenarios.py: 24 cek, 0 gagal.
+E0 yang belum ada di main: N49 angka emas dan N50 oracle aturan. Ditambah sebagai `tests/golden_rules.py` (nama beda dari `fuzz_rules.py` main, yang menguji lewat builder). 1.001 karakter berseed, 0 selisih oracle, hash sama pada dua jalan dan sama antara base lama dan main 0.0.6, jadi angka derive() tidak bergeser oleh 91 commit itu. Berkas emas: `tests/golden/rules-golden.json`. Menguji pembanding: oracle sengaja diubah +1 pada DC, 50 dari 50 karakter terdeteksi.
+Pekerjaan G0 yang saya mulai dobel dibatalkan karena main sudah punya: N6 (`fuzz_rules.py`), N18 (`replay_report.py`), A10, A11.
