@@ -21,6 +21,8 @@ BOOKS = [
  {"id": "tvss", "file": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "tag": "VSS24", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2024",
   "sub": "tvss_sub", "feat": "tvss_feat", "spell": "tvss_spell", "item": "tvss_item", "species": "tvss_species",
   "cls": ["alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "vagabond", "warden", "warmage", "witch", "dancer"]},
+ {"id": "tee24", "file": "Keith Baker; Exploring Eberron - 2024.json", "tag": "EE24", "name": "Exploring Eberron", "pub": "Keith Baker", "ed": "2024",
+  "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
