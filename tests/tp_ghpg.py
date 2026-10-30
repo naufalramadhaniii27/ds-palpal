@@ -5,7 +5,7 @@ import asyncio, json, os, sys, socket, threading, functools, http.server
 from playwright.async_api import async_playwright
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, "tools", "tp", "overlay"))
-import tghp_species as S, tghp_bg as B, tghp_feat as F, tghp_spell as P, tghp_item as I
+import tghp_trans as T, tghp_species as S, tghp_bg as B, tghp_feat as F, tghp_spell as P, tghp_item as I
 FIX = open(os.path.join(HERE, "fixtures", "yudhi-v3.json"), encoding="utf-8").read()
 def serve():
     s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
@@ -25,7 +25,7 @@ CLS = """(c)=>{ var b=window.__bldTestB(); b.src=Object.assign({}, b.src||{}, {t
 CLSLIST = """(on)=>{ var b=window.__bldTestB(); b.src=Object.assign({}, b.src||{}, {tghp:on}); window.__bldTestSet(b); var r=Object.keys(CLASSES).indexOf("Monster Hunter")>=0; window.__bldTestSet(null); return r; }"""
 async def main():
     srv, url = serve(); errs = []
-    spn = list(S.SPECIES); bgn = list(B.BG); ftn = list(F.FEATS); spl = list(P.TEXT); itn = [r[0] for r in I.ITEMS] + [g[0] for g in I.GEAR][:40]
+    spn = list(S.SPECIES); bgn = list(B.BG); ftn = list(F.FEATS) + ["%s Transformation: Stage %d" % (t, i) for t in T.TRANS for i in (1, 2, 3, 4)] + ["Gift of Dread"]; spl = list(P.TEXT); itn = [r[0] for r in I.ITEMS] + [g[0] for g in I.GEAR][:40]
     async with async_playwright() as p:
         br = await p.chromium.launch()
         for vp in [(390, 844), (1250, 850)]:
