@@ -4771,3 +4771,7 @@ art/batch/icons/items/tools/cartographers-tools.png
 art/batch/icons/items/tools/cobblers-tools.png
 art/batch/icons/items/tools/cooks-utensils.png
 art/batch/icons/items/tools/glassblowers-tools.png
+art/batch/icons/items/tools/jewelers-tools.png
+art/batch/icons/items/tools/leatherworkers-tools.png
+art/batch/icons/items/tools/masons-tools.png
+art/batch/icons/items/tools/navigators-tools.png
