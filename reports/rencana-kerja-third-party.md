@@ -64,3 +64,16 @@ Cek integrasi per jenis entri (dites di `tests/tp_sources.py`):
 - 4 subclass dan 25 item adalah versi lama dari entri Reborn bernama sama. Tidak dibangun dua kali (lihat tp-gap.md).
 - Tes: tp_items (feat dua buku, Ravenite, Fate-Touched), tp_sources 177, tp_ui 9, golden_rules, fuzz, csp_check, scenarios 24. Semua lolos.
 - Berikutnya: P3 Valda's Spire of Secrets (2024) untuk kelas yang sudah ada.
+
+## P3 Valda's Spire of Secrets 2024: inventaris (belum dibangun)
+File sumber: "Mage Hand Press; Valda's Spire of Secrets - 2024.json". Isi dan urutan kerja:
+| Bagian | Jumlah | Catatan mesin |
+|---|---|---|
+| Subclass untuk kelas yang ada (Wizard 12, Barbarian 12, Bard 13, Cleric 1) | 38 | Jalur subclass tp sudah ada. Satu overlay per kelas. |
+| Feat | 9 | Familiar Keeper, Pyromaniac, Spellblade memberi spell. Perlu cek jalur spell feat. |
+| Spesies | 2 (Geppettin 3 bentuk, Mandrake 4 musim) | Pilihan bentuk dan musim perlu opsi spesies. |
+| Spell | 181 | Jalur rows sudah ada (tdcsr_spell). Perlu teks kata sendiri. |
+| Item dan base item | 69 + 60 | Jalur WXI sudah ada. Base item baru (senjata GC:VSS) perlu tabel WEAPONS. |
+| Kelas baru (Alchemist, Captain, Craftsman, Investigator, Martyr, Necromancer, Vagabond, Warden, Warmage, Witch, Dancer) | 11 | P4. Butuh mesin kelas baru. |
+| Optional feature | 182 | Pilihan kelas baru, bagian P4. |
+Urutan: spesies dan feat, lalu subclass per kelas (Wizard, Bard, Barbarian), lalu spell, lalu item. P4 menyusul.
