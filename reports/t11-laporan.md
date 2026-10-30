@@ -229,3 +229,11 @@ Belum diputuskan user. Dukungan tiap fitur dicek ulang di caniuse sebelum dipaka
 | Commit | 0103c6e (hapus mesin dadu lama, izin user 08.16 WIB), f29e758 di main |
 | Isi | Fisika dadu di CPU: titik massa dan putaran, meja dicek hanya ke sudut dadu, dadu lawan dadu sebagai bola, tepi layar sebagai dinding. Lemparan dihitung dulu (120 langkah per detik, di bawah 100 ms untuk 24 dadu), lalu dadu digambar diputar oleh simetrinya sendiri supaya sisi yang mendarat menunjukkan nilai. Kerja GPU sama |
 | Tes | dice_lite (1.000 lempar per jenis, sisi atas sama dengan nilai, miring saat diam maksimal 0,1 derajat), dice_app (5 dari 6 kali lolos, 1 gagal di bawah beban CPU, tidak terulang), builder_4d6, tg_dice, learn_flow, scenarios, csp, version_label |
+
+## Rilis 0.0.7 (2026-10-30)
+| Hal | Hasil |
+|---|---|
+| Isi | Kerja fps di HP (warm-up halaman sesudah karakter terbuka, segFix dan edgeRows baca dulu baru tulis, penanda bar bawah di scroll timeline, geser halaman lewat `translate`), pelanggaran CSP masuk Report a Problem, `tests/golden_rules.py` (N49 dan N50, 1.001 karakter, 0 selisih), `tests/csp_report.py` |
+| Probe | `#fps` ada di `app/54-dev-fps-probe.js`, aktif hanya dengan `#fps` di alamat |
+| Angka HP asli (tanpa throttle) | idle 60,5 fps, pindah tab 57,6 fps, damage 55,3 fps. Diterima user (tidak di bawah 55) |
+| Tes | scenarios 24 cek, csp_check, back_home, fx_tier, tg_ui, self_heal, number_map, storage_idb, version_label, overflow dan overlap scan, golden_rules, csp_report. learn_flow terpotong 400 detik tanpa kegagalan. cloud_sync tidak jalan (butuh wrangler lokal) |
