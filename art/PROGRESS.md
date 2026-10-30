@@ -4982,3 +4982,10 @@ art/batch/icons/features/subclass/circle-of-the-moon/primal-strike.png
 art/batch/icons/features/subclass/circle-of-the-moon/thousand-forms.png
 art/batch/icons/features/subclass/circle-of-the-sea/aquatic-affinity.png
 
+## batch-165 v3
+art/batch/icons/features/subclass/draconic-bloodline/dragon-ancestor.png
+art/batch/icons/features/subclass/draconic-bloodline/dragon-wings.png
+art/batch/icons/features/subclass/draconic-bloodline/elemental-affinity.png
+art/batch/icons/features/subclass/draconic-sorcery/draconic-resilience.png
+art/batch/icons/features/subclass/draconic-sorcery/draconic-spells.png
+
