@@ -22,7 +22,8 @@ def walk(e):
         return json.dumps(e)[:400]
     return str(e)
 f = [x for x in glob.glob(os.path.join(os.path.dirname(hb.__file__), "..", "..", "..", "thegiddylimit", "homebrew", "collection", "*")) if sys.argv[1] in x] or [x for x in glob.glob("/home/claude/thegiddylimit/homebrew/collection/*") if sys.argv[1] in x]
-d = json.load(open(f[0])); a = sys.argv[2:]
+f = sorted(f, key=lambda x: -os.path.getsize(x))
+d = hb.merge([json.load(open(x)) for x in f]) if len(f) > 1 else json.load(open(f[0])); a = sys.argv[2:]
 if not a or a[0] == "list":
     print({k: len(v) for k, v in d.items() if isinstance(v, list)}); sys.exit()
 if a[0] == "class":

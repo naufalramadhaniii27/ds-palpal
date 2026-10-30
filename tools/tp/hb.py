@@ -2,7 +2,27 @@
 import json, re, os
 HB = os.environ.get("HB_DIR", "/home/claude/thegiddylimit/homebrew/collection")
 
+def _key(k, x):
+    if isinstance(x, dict) and "name" in x:
+        return (k, json.dumps([x.get(q) for q in ("name", "className", "subclassShortName", "level", "featureType", "source")], sort_keys=True))
+    return (k, json.dumps(x, sort_keys=True))
+def merge(ds):
+    """Several files of one book (Deep Magic): lists are joined, the first copy of an entry wins."""
+    out = {}; seen = set()
+    for d in ds:
+        for k, v in d.items():
+            if isinstance(v, list):
+                out.setdefault(k, [])
+                for x in v:
+                    kk = _key(k, x)
+                    if kk in seen: continue
+                    seen.add(kk); out[k].append(x)
+            elif k not in out: out[k] = v
+    return out
 def load(name):
+    if isinstance(name, (list, tuple)):
+        ds = [json.load(open(os.path.join(HB, n), encoding="utf-8")) for n in name]
+        return merge(ds)
     return json.load(open(os.path.join(HB, name), encoding="utf-8"))
 
 def strip(t):

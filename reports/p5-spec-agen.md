@@ -74,3 +74,12 @@ Buku dengan banyak entri memakai file chunk `<prefix>_<jenis>_<x>.py` (loader `<
 Prefix: Healer tshl (kelas tshc_healer), Summoner tssm (kelas tssc_summoner), Dr Dhrolin tsdd, Griffon's Saddlebag tsgs, Dark Matter tsdm (kelas tsdc_gadgeteer). Sumber dibaca dengan `python3 tools/tp/dump2.py "<nama file tanpa penerbit>" ...` (contoh: "Healer - 2024", "Summoner - 2024", "Dhrolins Dictionary of Dinosaurs - 2024", "Griffon's Saddlebag, Book 1 - 2024", "Dark Matter - 2024"). Perintah: list, class, sub, opt, race, background, feat, spell, item, baseitem, itemMastery, magicvariant.
 Subclass milik kelas yang tidak ada di app (misal Gunslinger) cukup dilewati dan dilaporkan. Subclass untuk kelas Valda (Alchemist, Captain, Craftsman, Dancer, Investigator, Martyr, Necromancer, Vagabond, Warden, Warmage, Witch) memakai nama kelas itu.
 Alias nama bentrok ditangani generator. Tulis nama persis seperti sumber.
+
+# P5l: buku aturan 2014 (Deep Magic, Humblewood)
+- Buku ini berlabel "(2014 rules)". Bentuk overlay sama dengan buku 2024, dengan perbedaan berikut.
+- Ras 2014 memakai `asi` (contoh bentuk lengkap di tools/tp/overlay/tdcg_species.py). Subras jadi opsi `opts` (lineage) pada ras induk.
+- Level fitur subclass 2014 dijepit ke minimal 3 oleh generator. Tulis teks fitur apa adanya, jangan ubah level.
+- Fitur pilihan (Rune, Hieroglyph, Elemental Mastery, dll) tidak punya tautan progresi di sumber. Tempelkan sebagai `pick` pada subclass atau feat pemiliknya (`dump2.py "<buku>" opt <Tipe>`). Tiap fitur pilihan harus terpakai di satu pick.
+- Subclass satu nama di beberapa kelas: generator memberi alias. Tulis nama persis seperti sumber.
+- Daftar subclass Deep Magic per agen ada di /tmp/dm_sub_groups.json (grup A sampai E).
+- Mantra Deep Magic: `TEXT = {"Nama": "teks"}` untuk setiap nama unik di rentang alfabet milikmu.
