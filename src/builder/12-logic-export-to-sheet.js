@@ -138,6 +138,7 @@ function toSheet(){
   /* M7 (RL7): Monk weapon (Simple Melee, Martial Melee with Light) uses the Martial Arts die when it is larger (owner decision) */
   if(maOn&&!flow&&w.k==="M"&&(w.cat==="S"||/Light/.test(w.p))&&dieAvg(maDie)>dieAvg(die)){dieSrc="Martial Arts die ("+SRC+", Monk "+monkLv+"), base "+BO.b+" "+die;die=maDie}
   var hit=BO.p,dmg=BO.mw?0:BO.p,srcs=BO.p?[n+(BO.mw?" (Masterwork, attack rolls only)":" (magic weapon)")]:[],note=(BO.p&&!BO.mw?"Add +"+BO.p+" to damage rolls. ":"")+(m?MASTERY[m]:""),thrown=/Thrown/.test(w.p),oneH=w.k==="M"&&!/Two-Handed/.test(w.p);
+  {var XD=typeof DMAP!=="undefined"&&DMAP[n]&&DMAP[n][5]&&DMAP[n][5].xd;if(XD&&XD.length)note+=(note?" ":"")+"Extra damage: "+XD.join("; ")+"."}/* tp: riders of named weapons */
   if(w.k==="R"&&FSB.rngHit){hit+=FSB.rngHit;srcs.push(FSS.rngHit+": +"+FSB.rngHit+" to hit with Ranged weapons")}
   if(w.k==="R"&&thrown&&FSB.thrownDmg){dmg+=FSB.thrownDmg;srcs.push(FSS.thrownDmg+": +"+FSB.thrownDmg+" damage, Thrown weapon")}
   if(oneH&&duelOn){dmg+=FSB.meleeDmg1h;srcs.push(FSS.meleeDmg1h+": +"+FSB.meleeDmg1h+" damage, one melee weapon and no other weapon");note="Dueling: +"+FSB.meleeDmg1h+" damage while this is your only weapon (a Shield is fine). "+note}
@@ -145,7 +146,7 @@ function toSheet(){
   if(hasGWF&&w.k==="M"&&/Two-Handed|Versatile/.test(w.p))note+=(note?" ":"")+"Great Weapon Fighting: with two hands, treat a 1 or 2 on a damage die as a 3.";
   if(hasTWF&&/Light/.test(w.p))note+=(note?" ":"")+"Two-Weapon Fighting: add your ability modifier to the damage of the extra Light weapon attack.";
   if(isPact)note="Pact of the Blade: "+(ab==="CHA"?"uses Charisma":"you can use Charisma")+"; can deal Necrotic, Psychic, or Radiant damage. "+note;
-  C.attacks.push({n:n,sub:isPact?(w.p?w.p+" \u2022 ":"")+"Pact Weapon":w.p,ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:hit,miscSrc:srcs.join("; "),dmgBonus:dmg,type:w.t,range:w.r?(w.k==="M"?"5 ft, "+w.r+" ft":w.r+" ft"):(/Reach/.test(w.p)?"10 ft":"5 ft"),m:m,note:note});
+  C.attacks.push({n:n,sub:isPact?(w.p?w.p+" \u2022 ":"")+"Pact Weapon":w.p,ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:hit,miscSrc:srcs.join("; "),dmgBonus:dmg,type:w.t,range:w.r?(w.k==="M"?"5 ft, "+w.r+" ft":w.r+" ft"):(/Reach \(20/.test(w.p)?"20 ft":/Reach/.test(w.p)?"10 ft":"5 ft"),m:m,note:note});
   /* Thrown Weapon Fighting: a melee weapon with Thrown gets a second row for the throw. Same ability (PHB 2024, Thrown property). The melee row keeps no thrown bonus */
   if(w.k==="M"&&thrown&&FSB.thrownDmg){var ts=BO.p?[n+(BO.mw?" (Masterwork)":" (magic weapon)")]:[];ts.push(FSS.thrownDmg+": +"+FSB.thrownDmg+" damage, Thrown weapon");
    C.attacks.push({n:n+" (thrown)",sub:w.p+" \u2022 ranged attack",ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:BO.p,miscSrc:ts.join("; "),dmgBonus:(BO.mw?0:BO.p)+FSB.thrownDmg,type:w.t,range:w.r+" ft",m:m,note:"Thrown Weapon Fighting: +"+FSB.thrownDmg+" damage when you throw it. "+(BO.p&&!BO.mw?"Add +"+BO.p+" to damage rolls. ":"")+(m?MASTERY[m]:"")})}
@@ -179,7 +180,7 @@ function toSheet(){
  clsParts().forEach(function(q){featsOf(q.cls,q.lv).forEach(function(x){if(/^Bonus Action/.test(x[2]))C.actions.push({c:"Bonus Actions",n:x[1],t:q.cls+" "+x[0],d:x[2]});else if(/^Reaction/.test(x[2]))C.actions.push({c:"Reactions",n:x[1],t:q.cls+" "+x[0],d:x[2]})})});/* M10: multiclass too */
  (B.inv||[]).forEach(function(x){var m=/^(Arrow|Bolt|Firearm Bullet|Needle|Sling Bullet), \+(\d)$/.exec(x.n);if(!m||!x.eq||!DMAP[x.n])return;var use={Arrow:/bow$/i,Bolt:/Crossbow/,"Firearm Bullet":/Musket|Pistol/,Needle:/Blowgun/,"Sling Bullet":/^Sling/}[m[1]];
   C.attacks.forEach(function(t){var bn=baseOf(t.n).b;if(WEAPONS[bn]&&WEAPONS[bn].k==="R"&&use.test(bn))t.note="With "+x.n+": +"+m[2]+" to attack and damage rolls. "+(t.note||"")})});/* v16: magic ammunition */
- activeFx().forEach(function(q){if(/^Wraps of Unarmed Power/.test(q.n)&&(q.fx.atk||q.fx.dmg)){var u=C.attacks.filter(function(t){return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});/* M18 */
+ activeFx().forEach(function(q){if(/^(Wraps of Unarmed Power|Wraps of Dyamak)/.test(q.n)&&(q.fx.atk||q.fx.dmg)){var u=C.attacks.filter(function(t){return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});/* M18 */
  var sno=saveNotes(feats);if(sno.length)C.saveNotes=sno;var xd=xdmgRows(a,pb);if(xd.length)C.xdmg=xd;/* RU35 no. 5, 6 */
  /* features */
  C.features=[];

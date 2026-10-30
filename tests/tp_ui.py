@@ -4,7 +4,7 @@
 import asyncio, json, os, sys
 sys.argv = sys.argv[:1] + sys.argv[1:]
 HERE = os.path.dirname(os.path.abspath(__file__))
-exec(open(os.path.join(HERE, "tp_sources.py")).read().split("JS = ")[0].split("res = []")[0])
+exec(open(os.path.join(HERE, "tp_sources.py")).read().split("\nLIST = ")[0].split("res = []")[0])
 res = []
 def check(n, ok, info=""):
     res.append(ok); print("ok  " if ok else "FAIL", n, "" if ok else info)

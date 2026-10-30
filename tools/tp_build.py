@@ -14,7 +14,7 @@ from hb import load, flat, strip
 
 BOOKS = [
  {"id": "tdcsr", "file": "Darrington Press; Tal'Dorei Campaign Setting Reborn.json", "tag": "TDCSR", "name": "Tal'Dorei Campaign Setting Reborn",
-  "pub": "Darrington Press", "ed": "2014", "sub": "tdcsr_sub", "bg": "tdcsr_bg", "feat": "tdcsr_feat"},
+  "pub": "Darrington Press", "ed": "2014", "sub": "tdcsr_sub", "bg": "tdcsr_bg", "feat": "tdcsr_feat", "item": "tdcsr_item", "spell": "tdcsr_spell"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -131,6 +131,45 @@ REGFT = '''Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(fun
 SRC.feats=Object.keys(FT);
 '''
 
+def item_records(bk, data, M):
+    """rows, ITEM_SPELLS, weapon names, gear. Names must exist in the source (else GAP)."""
+    src_names = set(i["name"] for i in data.get("item", []))
+    rows = []; wpn = []
+    for (n, typ, rar, att, text, o) in M.ITEMS:
+        if n not in src_names: GAP.append((bk["tag"], "overlay", "item " + n, "overlay text without a source item"))
+        op = {}
+        for k in ("by", "ch", "fx", "base", "xd"):
+            if k in o: op[k] = o[k]
+        if n in M.WPN: op["wp"] = M.WPN[n]; op.setdefault("base", [n]); wpn.append(n)
+        rows.append([n, typ, rar, att, text, op])
+    have = set(r[0] for r in rows) | set(g[0] for g in M.GEAR)
+    for n in sorted(src_names - have):
+        GAP.append((bk["tag"], "item", n, "no overlay text, item not built"))
+    for k, lab in (("monster", "monsters (stat blocks)"), ("deity", "deities"), ("variantrule", "variant rules"), ("reward", "rewards (boons and blessings)")):
+        if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), lab), "not in the builder or sheet. Planned for the Library as own-wording entries"))
+    for k in ("itemGroup", "magicvariant"):
+        if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), k), "grouping or variant rule of items already listed one by one"))
+    return rows, M.SP, wpn, M.GEAR
+
+REGIT = '''window.WXI=window.WXI||{};window.WXI[SRC.id]=IT;
+window.WXWP=(window.WXWP||[]).concat(WPN);
+Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
+SRC.items=IT.map(function(r){return r[0]});
+if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
+'''
+
+def spell_records(bk, data, M):
+    names = set(x["name"] for x in data.get("spell", []))
+    rows = []
+    for r in M.ROWS:
+        if r[0] not in names: GAP.append((bk["tag"], "overlay", "spell " + r[0], "overlay text without a source spell"))
+        rows.append(list(r) + [bk["tag"], list(r[3])])
+    for n in sorted(names - set(r[0] for r in rows)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
+    return rows, M.FULL
+
+REGSP = '''SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k]});
+'''
+
 def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
@@ -139,12 +178,20 @@ def build():
         bgs = bg_records(bk, data, ovl(bk["bg"])) if bk.get("bg") else {}
         ft, ftlu, fta = feat_records(bk, data, ovl(bk["feat"])) if bk.get("feat") else ({}, [], {})
         tl = getattr(ovl(bk["bg"]), "TL", {}) if bk.get("bg") else {}
+        spr, spf = spell_records(bk, data, ovl(bk["spell"])) if bk.get("spell") else ([], {})
+        it, isp, wpn, gr = item_records(bk, data, ovl(bk["item"])) if bk.get("item") else ([], {}, [], [])
         src = {"id": bk["id"], "tag": bk["tag"], "name": bk["name"] + (" (2014 rules)" if bk["ed"] == "2014" else ""),
-               "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
+               "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr)) if (it or gr) else "", "%d spells" % len(spr) if spr else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"]}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + REG + "})();\n"
+        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr) else "") + (REGSP if spr else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
+    for g in (("All", "engine", "extra damage riders (Pyremaul fire, Agony mark, Condemner poison)", "shown on the weapon row note as xd, not added to a damage roll"),
+              ("All", "engine", "effects that need a state (Star Razor glowing, Titanstone under Enlarge, Wraps ravenous strike)", "Star Razor bonus and resistance apply always. Others are text"),
+              ("TDCSR", "assumption", "Deathwalker's Ward", "source data lists a +1 save bonus, the text does not. Not applied"),
+              ("TDCSR", "engine", "truesight 60 ft (Circlet of Barbed Vision, Exalted)", "text only, the sheet has no truesight field"),
+              ("TDCSR", "engine", "conditional AC and rider reactions (Plate of the Dawnmartyr rebuke, Cabal's Ruin absorb)", "text and charge tracker only")):
+        GAP.append(g)
     gap = ["# Third party GAP list", "", "Generated by tools/tp_build.py. A GAP is a source feature the app cannot place on the sheet by itself, or text that is missing.", "",
            "| Book | Kind | Item | Note |", "|---|---|---|---|"] + ["| %s | %s | %s | %s |" % g for g in GAP]
     files["reports/tp-gap.md"] = "\n".join(gap) + "\n"

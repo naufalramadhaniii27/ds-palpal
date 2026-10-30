@@ -10,7 +10,7 @@ function abil(){
   if(B.level>=20&&((B.cls==="Barbarian"&&(k==="STR"||k==="CON"))||(B.cls==="Monk"&&!R14()&&(k==="DEX"||k==="WIS"))))cap=R14()?24:25;
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});
- var AFX=activeFx();AFX.forEach(function(q){var f=q.fx;if(f.abil){var k=f.abil[0],nv=Math.min(f.abil[2]||30,sc[k]+f.abil[1]);if(nv>sc[k]){src[k].push({s:q.n+" (magic item, +"+f.abil[1]+", maximum "+(f.abil[2]||30)+")",v:nv-sc[k]});sc[k]=nv}}});
+ var AFX=activeFx();AFX.forEach(function(q){var f=q.fx;if(f.abil){var k=f.abil[0],nv=Math.min(f.abil[2]||30,sc[k]+f.abil[1]);if(f.abil[1]<0){nv=Math.max(1,sc[k]+f.abil[1]);if(nv<sc[k]){src[k].push({s:q.n+" (magic item, "+f.abil[1]+")",v:nv-sc[k]});sc[k]=nv}}else if(nv>sc[k]){src[k].push({s:q.n+" (magic item, +"+f.abil[1]+", maximum "+(f.abil[2]||30)+")",v:nv-sc[k]});sc[k]=nv}}});
  AFX.forEach(function(q){var f=q.fx;/* V16-4: increases first, then "becomes" */
   var s=f.setsc;if(s&&sc[s[0]]<s[1]){src[s[0]].push({s:q.n+" (magic item, sets score to "+s[1]+")",v:s[1]-sc[s[0]]});sc[s[0]]=s[1]}});/* M18: DMGI fx (setsc as the old SETSC table, abil for Ioun Stones and similar) */
  return {sc:sc,src:src}}
