@@ -242,3 +242,45 @@ Syarat berlaku untuk semua fitur baru dan perubahan. Rilis tidak boleh menurunka
 Hasil: lulus untuk diam dan gulir. Gagal di CPU 4x untuk pindah tab dan damage atau heal. Di CPU 1x ada satu hentakan 133 ms saat gulir.
 Belum diukur: Learn, Training Ground, dadu 3D, builder, layar 90 atau 120 Hz. Batas: Chromium headless (rasterisasi perangkat lunak), bukan HP asli, dan 4x adalah tebakan untuk HP menengah.
 Akibat untuk rencana: N84 (antrean kerja saat diam), N14, dan N87 naik prioritas. Penyebab hentakan di pindah tab belum diselidiki.
+
+## 3g. Keputusan 60 fps pada CPU 4x dan hasil percobaan pertama (2026-10-30, user: "minimum 60fps pokoknya")
+Definisi lulus yang dipakai: CPU 4x (emulasi Chrome), 390 x 844 dan 1250 x 850, rata-rata 58 fps atau lebih, paling banyak 5% frame di atas 16,7 ms, tidak ada frame di atas 100 ms. Ini revisi usulan 3f. Status: belum lulus.
+
+### Hasil ukur di salinan build main 0.0.4 (390 x 844, CPU 4x)
+Tidak ada kode app yang diubah. Semua percobaan memakai localStorage atau CSS yang disuntikkan di salinan.
+| Kondisi | Pindah tab (fps) | Damage dan heal (fps) |
+|---|---|---|
+| Kontrol: halaman kosong dengan klik | 60,0 | 60,0 |
+| Asal (mi-fx default) | 44,0 | 43,6 |
+| mi-fx lite | 44,6 | 52,6 |
+| mi-fx off | 51,1 | 55,1 |
+| Tanpa animasi dan transisi CSS | 53,0 | 52,4 |
+| mi-fx off + tanpa animasi CSS | 52,7 sampai 55,5 | 54,7 sampai 56,9 |
+| Tanpa bayangan, filter, backdrop | 43,9 | 44,2 |
+| Sembunyikan kanvas efek | 45,9 | 47,2 |
+| Tanpa View Transitions | 45,3 | 44,0 |
+| contain pada halaman pager | 42,6 | 46,6 |
+| content-visibility pada halaman pager | 45,2 | 47,2 |
+| Tanpa scroll-timeline, scroll-snap, will-change, sticky, atau band atas (di atas mi-fx off + tanpa animasi) | 53,2 sampai 55,4 | 54,7 sampai 56,9 |
+Selisih antar percobaan 2 fps atau kurang berada dalam derau ukur.
+
+### Temuan
+1. Alat ukur sehat: halaman kosong 60 fps di CPU 4x. Batas 55 fps datang dari app.
+2. Di lebar HP semua 9 halaman sheet ada di layout sekaligus (pager geser, sekitar 2.300 elemen terlihat dari 3.042). Pindah tab = geser pager, bukan display:none.
+3. Biaya terbesar ada di dua tempat: lapisan efek (JS rAF dan MutationObserver) dan animasi atau transisi CSS. Mematikan keduanya menaikkan dari 44 ke sekitar 55 fps.
+4. Skrip pada damage dan heal: 321 ms dengan efek, 104 ms tanpa efek (Long Animation Frames, CPU 4x). Pada pindah tab, tanpa efek sisanya style dan layout native (591 ms dari 976 ms total frame panjang) dan skrip hanya 29 ms.
+5. Bukan penyebab (diukur, hasil sama dengan asal): bayangan, filter, backdrop-filter, View Transitions, content-visibility, contain, scroll-timeline, scroll-snap, band atas.
+6. Sisa 3 sampai 10% frame lambat jatuh pada frame yang memuat klik. Pemicu spesifik belum ditemukan.
+
+### Usul perubahan (belum dikerjakan, butuh izin dan pemilik bagian)
+| No | Usul | Pemilik | Perkiraan |
+|---|---|---|---|
+| F1 | Tier perangkat lemah (N14) memaksa mi-fx = off pada frame lambat berulang, bukan hanya lite | UI/UX | +7 fps pindah tab, +11 damage |
+| F2 | Animasi dan transisi CSS hanya pada elemen yang sedang berinteraksi, bukan global. Matikan `.enter` dan transisi panjang pada tier lemah | UI/UX | +9 fps pindah tab |
+| F3 | Periksa pemicu layout pada klik pindah tab (pCur, penanda tab, navShow memanggil offsetLeft setelah menulis style) | UI/UX | belum diukur |
+| F4 | Tes N99 tests/fps_budget.py memakai definisi lulus di atas, jalan di CI | Checker | mengunci hasil |
+Setelah F1 sampai F3 dipasang, ukur ulang. Jika masih di bawah 58 fps, langkah berikutnya adalah menjejak satu klik dengan Chrome trace (Layout, Paint, Commit) pada salinan.
+
+### Batas yang harus diketahui
+Chromium headless memakai rasterisasi perangkat lunak. HP asli dengan GPU bisa lebih cepat atau lebih lambat. Faktor 4x adalah tebakan untuk HP kelas menengah. Belum diukur: Learn, Training Ground, dadu 3D, builder, 1250 x 850, layar 90 atau 120 Hz, Safari, Firefox. Syarat 60 fps pada CPU 4x belum terbukti bisa dicapai. Hasil terbaik saya sejauh ini 55 sampai 57 fps.
+Skrip: tools/research/abl2.py, abl3.py, abl4.py (lepas-pasang), loaf.py (Long Animation Frames), prof.py (profil CPU), ctl.py (kontrol).

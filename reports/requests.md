@@ -52,3 +52,10 @@ Bukti (Chromium, build main eab1472, tools/research/idbcheck.py):
 Artinya satu salinan cermin yang rusak menggantikan salinan sehat di IndexedDB pada pemuatan berikutnya. Dalam uji ini saya menulis kerusakannya sendiri lewat localStorage. Seberapa sering rusak seperti ini terjadi di perangkat nyata tidak saya ukur.
 Enam jenis kerusakan dicoba: potong separuh, string kosong, JSON bentuk salah (array), `null`, satu byte diubah, level berisi teks. Lima menghasilkan karakter kosong. Level berisi teks menampilkan "Fighter 1" (level 4 berubah jadi 1 tanpa pesan).
 Usul (bagian Logic): sebelum nilai localStorage boleh menang, cek bisa di-parse dan bentuknya benar untuk kunci yang dikenal (misal `v===3` dan `abilities` untuk sheet). Bila tidak sah dan IndexedDB sah, pakai IndexedDB, simpan nilai rusak di meta untuk diagnosis, dan beri tahu pengguna. Ini bagian dari N25. Pertanyaan: mengapa layar pemulihan (BAD) tidak muncul pada jalur ini? Tidak diubah di sini.
+
+## Request ke UI/UX: anggaran 60 fps pada CPU 4x (2026-10-30, dari sesi riset)
+Syarat user: minimum 60 fps, dipilih pada kondisi CPU 4x. Bukti dan angka ada di reports/rencana-kerja-engine.md bagian 3g. Usul F1 sampai F3:
+1. Tier lemah (N14) memaksa mi-fx = off pada frame lambat berulang. Ukuran: pindah tab 44 ke 51 fps, damage 44 ke 55 fps.
+2. Batasi animasi dan transisi CSS global pada tier lemah. Ukuran: pindah tab 44 ke 53 fps.
+3. Telusuri pemicu layout pada klik pindah tab.
+Status: belum dikerjakan. Tidak ada perubahan di src/.
