@@ -19,6 +19,8 @@ var IT=[];
 var ISP={};
 var WPN=[];
 var GR=[["Wind glider",200,0,"Other","A harness-and-wing glider that takes 1 minute to put on. While harnessed and falling, you fall 30 feet per round and the glider carries you 40 feet in a line each round until you land. You can change direction each round. While harnessed, your movement is halved and you have an adjusted roll on attacks (garbled in the source, see the book). The glider has AC 10 and 5 hit points."]];
+var WPW={};
+var MST={};
 window.WXBG=window.WXBG||{};window.WXBG[SRC.id]=Object.assign(window.WXBG[SRC.id]||{},BG);
 Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TOOL_ONE[k]=TL[k].one});
 SRC.backgrounds=Object.keys(BG);
@@ -30,6 +32,7 @@ window.WXWP=(window.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
 SRC.items=IT.map(function(r){return r[0]});
 if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
+if(Object.keys(WPW).length){window.WXW=window.WXW||{};window.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
 SRC.species=Object.keys(SPC);
 window.WXS=(window.WXS||[]).concat(D);

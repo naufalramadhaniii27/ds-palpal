@@ -62,6 +62,7 @@ function pk(p,src,cls,sub){var o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+
  if(p.cond==="minill"&&((spLists()[cls||B.cls])||[]).indexOf("Minor Illusion")<0)return null;/* Improved Illusions: only when Minor Illusion is known already */
  if(p.k==="lang")return Object.assign(o,{t:"lang",n:p.n||1,from:LANGS,title:p.title||"Language"});/* v63 */
  if(p.k==="cantrip")return Object.assign(o,{t:"multi",n:p.n||1,list:SPELLS.filter(function(x){if(x[1])return false;if(p.only)return p.only.indexOf(x[0])>=0;return x[3].indexOf(p.list)>=0&&(p.incl||x[0]!=="Minor Illusion")}).map(function(x){return [x[0],x[11]]}),title:p.title});/* v63: only = a fixed list, incl = Minor Illusion allowed *//* Iron Mind: a choice only when Wisdom saves come from elsewhere */
+ if(p.k==="opts")return Object.assign(o,{t:"multi",n:p.n||1,list:p.list||[],title:p.title});/* tp P3e: a fixed list of named options */
  if(p.k==="tool")return Object.assign(o,{t:"tool",n:p.n,cats:p.cats,title:p.title||"Tool"});
  if(p.k==="plans"){/* v58: Replicate Magic Item plans (EFotA). A plan table opens at its Artificer level, so a level 6 pick reads tables 2 and 6 */
   var pt=window.EFA_PLANS||{},pm=pkOthers(o.key,/plans$/),pl=[];Object.keys(pt).map(Number).sort(function(a,b){return a-b}).forEach(function(tl){if(tl>p.l)return;pt[tl].forEach(function(r){if(pm[r[0]])return;pl.push([r[0],"Plan from the level "+tl+" table."+(r[1]===1?" Needs attunement.":r[1]===2?" Choose the item with your DM.":"")])})});

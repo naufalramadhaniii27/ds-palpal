@@ -41,8 +41,20 @@ CASES = [
  {"n": "Flamefriend Lantern", "sp": "Produce Flame"},
  {"n": "Boots of Haste", "sp": "Haste", "ch": 1},
  {"n": "+2 Ring of Protection", "ac": 2, "save": 2},
+ {"n": "Nocturnal Eyes", "dv": 60},
+ {"n": "Angelic Wings", "spd": "fly"},
+ {"n": "Amphibious Adaptation", "spd": "swim"},
+ {"n": "Climbing Apparatus", "spd": "climb"},
+ {"n": "Monstrous Hide", "acbase": 13},
+ {"n": "Antimagic Eye", "sp": "Dispel Magic", "ch": 1},
+ {"n": "Dire Diary", "sp": "Dire Warning"},
+ {"n": "Fate Deck", "sp": "Game of Fate", "ch": 1},
+ {"n": "Encyclopedia Sanguine", "sp": "Blood Print"},
+ {"n": "Rogue's Brew"},
+ {"n": "Trigger Bomb"},
+ {"n": "Estoc", "atk": 0, "dmg": 0},
 ]
-JS = """(c)=>{ var b=window.__bldTestB(); b.src=Object.assign({}, b.src||{}, {tdcsr:true}); b.inv=(b.inv||[]).filter(function(x){return !/Plate|Mail|Leather|Shield|Robe|Armor/.test(x.n)}); b.armor=""; b.shield=false;
+JS = """(c)=>{ var b=window.__bldTestB(); b.src=Object.assign({}, b.src||{}, {tdcsr:true,tvss:true}); b.inv=(b.inv||[]).filter(function(x){return !/Plate|Mail|Leather|Shield|Robe|Armor/.test(x.n)}); b.armor=""; b.shield=false;
   b.inv.push({n:c.n,q:1,eq:true}); var out={};
   try{ var sh=window.__bldSheetFor(b); out.err=0;
    out.acb=(sh.ac.bonus||[]).filter(function(x){return x.s.indexOf(c.n)===0}).reduce(function(t,x){return t+x.v},0);
@@ -51,7 +63,7 @@ JS = """(c)=>{ var b=window.__bldTestB(); b.src=Object.assign({}, b.src||{}, {td
    out.sp=(sh.spells||[]).map(function(s){return s.n+"|"+(s.src||"")});
    out.atk=(sh.attacks||[]).filter(function(t){return t.n===c.n||t.n==="Unarmed Strike"}).map(function(t){return {n:t.n,m:t.misc,d:t.dmgBonus,rg:t.range,note:t.note,sub:t.sub}});
    out.ab=(sh.abilities||{}); out.abs={};Object.keys(sh.abilities||{}).forEach(function(k){var x=sh.abilities[k];out.abs[k]=x.base+(x.bonus||[]).reduce(function(t,y){return t+y.v},0)});
-   out.ch=(sh.res||[]).map(function(r){return r.n+"|"+r.max}); out.dc=sh.spellDc!==undefined?sh.spellDc:null;
+   out.dv=sh.darkvision; out.spd=sh.speeds||{}; out.acv=sh.ac&&sh.ac.base; out.dx=sh.abilities&&sh.abilities.DEX&&sh.abilities.DEX.base; out.ch=(sh.res||[]).map(function(r){return r.n+"|"+r.max}); out.dc=sh.spellDc!==undefined?sh.spellDc:null;
   }catch(e){ out.err=String(e) }
   return out; }"""
 async def main():
@@ -85,10 +97,17 @@ async def main():
                 if "range" in c: need(any(c["range"] in (r.get("sub") or "") for r in o["atk"] if r["n"] == c["n"]), "properties " + str(o["atk"])[:160])
                 if "reach" in c: need(any(c["reach"] in (r.get("rg") or "") for r in o["atk"] if r["n"] == c["n"]), "reach " + str(o["atk"])[:200])
                 if "unarmed" in c: need(any(r["m"] == c["unarmed"] and r["d"] >= c["unarmed"] for r in o["atk"] if r["n"] == "Unarmed Strike"), "unarmed " + str(o["atk"])[:160])
+                if "dv" in c: need((o["dv"] or 0) >= c["dv"], "darkvision %s" % o["dv"])
+                if "spd" in c: need(c["spd"] in (o["spd"] or {}), "speeds %s" % str(o["spd"])[:120])
+                if "acbase" in c: need((o["acv"] or 0) >= c["acbase"] + 0 and (o["acv"] or 0) >= 13, "ac base %s" % o["acv"])
                 if "str" in c: need(o["abs"]["STR"] == c["str"] or o["abs"]["STR"] >= c["str"], "STR %s" % o["abs"]["STR"])
                 check(tag + " " + c["n"], ok, "; ".join(why))
             sp = await pg.evaluate("""()=>{var o={};[true,false].forEach(function(on){var b=window.__bldTestB();b.cls='Druid';b.sub='';b.level=9;b.src=Object.assign({},b.src||{},{tdcsr:on});window.__bldTestSet(b);o[on]=['Freedom of the Waves','Freedom of the Winds'].map(function(n){return window.__bldHasSpell(n)});window.__bldTestSet(null)});return o}""")
             check(tag + " TDCSR spells offered only while the book is on", sp.get("true") == [True, True] and sp.get("false") == [False, False], str(sp))
+            wp = await pg.evaluate("""()=>{var o={};[true,false].forEach(function(on){var b=window.__bldTestB();b.src=Object.assign({},b.src||{},{tvss:on});b.inv=(b.inv||[]).filter(function(x){return x.n!=='Katana'&&x.n!=='Estoc'});window.__bldTestSet(b);var w=window.__bldTestItems().weapons;o[on]=['Katana','Estoc','Repeater','Standard Carbine','Bowblade (Longsword form)','Spikeshot (Pistol form)','Greatbow'].map(function(n){return w.indexOf(n)>=0});window.__bldTestSet(null)});return o}""")
+            check(tag + " TVSS weapons offered only while the book is on", wp.get("true") == [True]*7 and wp.get("false") == [False]*7, str(wp))
+            mk = await pg.evaluate("""()=>{var b=window.__bldTestB();b.cls='Bard';b.sub='College of Masks';b.level=14;b.src=Object.assign({},b.src||{},{tvss:true});window.__bldTestSet(b);var l=window.__bldChoiceList(window.__bldTestB())||[];var r={};l.forEach(function(c){if(/^mask/.test(c.key||''))r[c.key]=[c.n,(c.list||[]).length]});window.__bldTestSet(null);return r}""")
+            check(tag + " College of Masks offers 3 + 1 + 1 persona masks", mk.get("mask3") == [3, 9] and mk.get("mask6") == [1, 9] and mk.get("mask14") == [1, 9], str(mk))
             ft = await pg.evaluate("""()=>{var o={};['tdcsr','tdcg'].forEach(function(id){[true,false].forEach(function(on){var b=window.__bldTestB();b.src=Object.assign({},b.src||{});b.src[id]=on;var l=window.__bldFeats(b)||[];o[id+on]=(id==='tdcsr'?['Cruel','Vital Sacrifice','Spelldriver']:['Dual-focused','Gambler','Mending Affinity','Rapid Drinker','Fate-Touched']).map(function(f){return l.indexOf(f)>=0})})});return o}""")
             check(tag + " feats of both books offered only while the book is on", ft["tdcsrtrue"] == [True]*3 and ft["tdcsrfalse"] == [False]*3 and ft["tdcgtrue"] == [True]*5 and ft["tdcgfalse"] == [False]*5, str(ft))
             fr = await pg.evaluate("""()=>{var b=window.__bldTestB();b.cls='Fighter';b.sub='';b.level=4;b.src=Object.assign({},b.src||{},{tdcg:true});b.species='Dragonborn (Ravenite)';b.ch=Object.assign({},b.ch||{},{feat4:{feat:'Fate-Touched'}});var s=window.__bldSheetFor(b);return {sp:s.species,speed:s.speed,def:(s.defenses||[]).filter(function(d){return d.s.indexOf('Ravenite')>=0}).map(function(d){return d.t+':'+d.v}),lu:(s.res||[]).map(function(r){return r.n+'|'+r.max}),err:0}}""")
