@@ -4495,6 +4495,11 @@ art/batch/icons/rules/invocations/eldritch-invocation-eldritch-smite.png
 art/batch/icons/rules/invocations/eldritch-invocation-eldritch-spear.png
 art/batch/icons/rules/invocations/eldritch-invocation-fiendish-vigor.png
 art/batch/icons/rules/invocations/eldritch-invocation-gaze-of-two-minds.png
+art/batch/icons/rules/invocations/eldritch-invocation-gift-of-the-depths.png
+art/batch/icons/rules/invocations/eldritch-invocation-gift-of-the-protectors.png
+art/batch/icons/rules/invocations/eldritch-invocation-investment-of-the-chain-master.png
+art/batch/icons/rules/invocations/eldritch-invocation-lessons-of-the-first-ones.png
+art/batch/icons/rules/invocations/eldritch-invocation-lifedrinker.png
 
 ## batch-176 v3
 art/batch/icons/features/subclass/trickery-domain/channel-divinity-invoke-duplicity.png
