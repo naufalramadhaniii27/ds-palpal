@@ -403,3 +403,24 @@ Teknologi terbaru yang relevan (scroll-driven animation, OffscreenCanvas, schedu
 | J1 | Bagi style recalc saat klik damage per perubahan kelas: klon halaman ke harness dan toggle satu kelas per kali (m-hit di .vitals dan #hpBox, .on di toast, .act) untuk mengukur recalc masing-masing |
 | J2 | scheduler.yield: tunda JS efek non-input (fx 08, 14, 18) sesudah frame input |
 | J3 | Selector stats lewat chrome://tracing manual di perangkat user (flag Blink tidak aktif di build headless) |
+
+## 3l. Damage dan heal: pemisahan biaya (11.20 WIB)
+| Pengukuran | Hasil (CPU 4x) |
+|---|---|
+| Toggle kelas tunggal (.vitals m-hit, #hpBox m-hit, toast on, hp0) lalu paksa style recalc | 0,0 sampai 1,3 ms, 12 sampai 130 turunan |
+| Toggle kelas mi-off pada html | 136 ms (3.041 elemen) |
+| Tambah atau lepas satu elemen pada body | 0,4 dan 1,0 ms |
+| Kelas html yang berubah saat damage | 0 kali |
+| Layer saat puncak damage | 150 dengan efek penuh, 72 dengan mi-fx off, 0 dikonfirmasi idle (ukur sebelum render) |
+| Isi layer tambahan efek penuh | I.mi-fx 36 buah, sisanya efek lain |
+| Gagal komposit animasi di jejak damage | 20 dari 1.036 kejadian (kode 64, 8264, 131104) |
+| .mi-fx{will-change:auto} | tidak menolong (frame lambat 43% lawan 36%, dalam derau) |
+| Partikel di satu kanvas | tidak menolong (31 sampai 32% lawan 33%) |
+Biaya damage tersebar: tidak ada satu operasi besar. Ada sekitar 26 recalc lebih dari 8 ms dalam frame yang berisi banyak animasi berjalan bersamaan (partikel, gelombang, retak, bilah HP, toast). Layer 150 jauh di atas saran kurang dari 50 di HP. Layer dasar tanpa efek sudah 72.
+
+Arah yang belum dicoba:
+| No | Langkah |
+|---|---|
+| K1 | Kurangi layer dasar 72: 21 layer .panel (3 per halaman), 12 layer .ifil, 4 layer .bnav, 4 layer .bb. Cari sebab promosi (will-change, overflow, mask) |
+| K2 | Satukan efek damage yang berjalan bersamaan ke satu animasi orkestrasi (satu timeline) agar style recalc terjadi sekali per frame |
+| K3 | Ukur di HP asli. Semua angka Chromium headless 4x tetap tebakan |
