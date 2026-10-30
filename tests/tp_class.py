@@ -26,7 +26,7 @@ JS = """()=>{var out={};Object.keys(window.WXC||{}).forEach(function(cn){var e=W
   o.empty=(e.rec.f||[]).filter(function(x){return !x[2]}).map(function(x){return x[0]+' '+x[1]});
   o.lv={};[1,5,9,20].forEach(function(L){b=T();b.cls=cn;b.sub='';b.level=L;b.src[e.book]=true;try{window.__bldTestSet(b);var s=window.__bldSheetFor(T());o.lv[L]=(s&&s.cls===cn&&s.level===L)?'ok':'bad sheet';
      var cl=window.__bldChoiceList(T());o['picks'+L]=cl.filter(function(c){return c.feature&&(e.rec.pick||[]).some(function(p){return p.key===c.key})}).length}catch(x){o.lv[L]='ERR '+x.message}});
-  var xs=(window.WXS||[]).filter(function(x){return x.cls===cn||(x.alt||[]).indexOf(cn)>=0}).map(function(x){return x.name});
+  var xs=(window.WXS||[]).filter(function(x){return x.src===e.book&&(x.cls===cn||(x.alt||[]).indexOf(cn)>=0)}).map(function(x){return x.name});
   b=T();b.cls=cn;b.sub='';b.level=20;b.src[e.book]=true;window.__bldTestSet(b);var have=Object.keys((CLASSES[cn]||{}).subs||{});
   o.subsMissing=xs.filter(function(n){return have.indexOf(n)<0});o.nsubs=xs.length;o.subErr=[];
   xs.forEach(function(n){try{var q=T();q.cls=cn;q.sub=n;q.level=20;q.src[e.book]=true;window.__bldTestSet(q);var s=window.__bldSheetFor(T());if(!s||s.sub!==n)o.subErr.push(n+' bad')}catch(x){o.subErr.push(n+' '+x.message)}});
