@@ -16,6 +16,11 @@ import hb
 AB = {"str": "STR", "dex": "DEX", "con": "CON", "int": "INT", "wis": "WIS", "cha": "CHA"}
 SKN = {"animal handling": "Animal Handling", "sleight of hand": "Sleight of Hand"}
 
+def _short(t):
+    t = t.replace("**", "")
+    m = re.match(r"(.{40,170}?[.!?])(\s|$)", t)
+    return (m.group(1) if m else t[:170]).strip()
+
 def _cap(s): return SKN.get(s, s.title())
 
 def _list(xs):
@@ -53,16 +58,17 @@ def class_record(c, data, O, gap, tag):
     for t in sp.get("tools", []): tl.append(hb.strip(t))
     rec["tools"] = ", ".join(tl)
     cp = c.get("casterProgression")
+    rec["tp"] = tag
     if cp in ("full", "1/2", "half", "1/3", "third", "pact"):
         rec["caster"] = {"1/2": "half", "1/3": "third"}.get(cp, cp)
     if c.get("spellcastingAbility"): rec["cast"] = AB[c["spellcastingAbility"]]
     rec["eq"] = O.get("eq") or []
     if not rec["eq"]: gap("class", n + " starting equipment", "no overlay text")
     # features
-    f = []; seen = set()
+    f = []; seen = set(); full = {}
     texts = O.get("f", {})
     for cf in c.get("classFeatures", []):
-        if isinstance(cf, dict): continue
+        if isinstance(cf, dict): cf = cf["classFeature"]
         nm, cn, src, lv = (cf.split("|") + ["", "", "", ""])[:4]
         lv = int(lv or 1)
         if nm in ("Ability Score Improvement", "Epic Boon") or nm.endswith("Subclass Feature") or nm == "Subclass Feature": continue
@@ -73,10 +79,13 @@ def class_record(c, data, O, gap, tag):
             f.append([lv, nm, "Choose a %s subclass." % n]); continue
         t = texts.get(nm)
         if not t: gap("class feature", "%s L%d %s" % (n, lv, nm), "no overlay text"); t = ""
-        f.append([lv, nm, t])
+        sh = O.get("s", {}).get(nm) or _short(t)
+        f.append([lv, nm, sh])
+        if t: full[nm] = t
     for nm in texts:
         if not any(r[1] == nm for r in f): gap("overlay", "%s feature %s" % (n, nm), "overlay text without a source class feature")
     rec["f"] = f
+    rec["subs"] = {}; rec["pickSub"] = {}
     # table columns
     track = {}
     for g in c.get("classTableGroups", []):
@@ -97,8 +106,42 @@ def class_record(c, data, O, gap, tag):
         rec["cant"] = [cl[0]] + ups
         if any(cl[i] - cl[i - 1] > 1 for i in range(1, 20)): gap("engine", n + " cantrips known", "uneven progression, stored as steps of one")
     if c.get("preparedSpellsProgression"): rec["prep"] = c["preparedSpellsProgression"]
-    for k in ("res", "pick", "ua", "fs", "asiX", "resSub", "acSub"):
+    # optional feature picks (Formulas, Discoveries, Tricks, ...): the list comes from the source, the text from O["opt"][type][name]
+    pk = list(O.get("pick", []))
+    for gi, g in enumerate(O.get("opts", [])):
+        names = []; tx = {}
+        for t in g["types"]:
+            for o in data.get("optionalfeature", []):
+                if t in o["featureType"] and o["name"] not in names:
+                    names.append(o["name"]); tx[o["name"]] = O.get("opt", {}).get(t, {}).get(o["name"])
+        for nm in names:
+            if not tx[nm]: gap("optional feature", "%s | %s %s" % (n, "/".join(g["types"]), nm), "no overlay text"); tx[nm] = ""
+        for nm in O.get("opt", {}).get(g["types"][0], {}):
+            if nm not in names: gap("overlay", "%s option %s" % (n, nm), "overlay text without a source option")
+        lst = [[nm, tx[nm]] for nm in sorted(names)]
+        if g.get("col"):
+            cum = [int(float(x)) if str(x).replace(".", "").isdigit() else 0 for x in track.get(g["col"], [])]
+            steps = [(i + 1, cum[i] - (cum[i - 1] if i else 0)) for i in range(len(cum)) if cum[i] - (cum[i - 1] if i else 0) > 0]
+        elif g.get("cum"):
+            prev = 0; steps = []
+            for lv in sorted(g["cum"], key=int):
+                steps.append((int(lv), g["cum"][lv] - prev)); prev = g["cum"][lv]
+        else:
+            steps = [(lv, 1) for lv in g["levels"]]
+        for lv, k in steps:
+            pk.append({"l": lv, "k": "opts", "n": k, "key": "%s%d_%d" % (n.lower().replace(" ", ""), gi, lv), "feature": g["feature"], "title": "%s (%s)" % (g["title"], "level %d" % lv), "list": lst})
+    if pk: rec["pick"] = pk
+    for k in ("ua", "fs", "asiX", "resSub", "acSub"):
         if k in O: rec[k] = O[k]
+    rs = []
+    for r in O.get("res", []):
+        r = dict(r); m = r.get("max")
+        if isinstance(m, str) and m.startswith("col:"):
+            col = track.get(m[4:])
+            if not col: gap("class", n + " resource " + r["n"], "table column %s not found" % m[4:]); continue
+            r["max"] = [int(float(x)) if re.match(r"^\d+(\.\d+)?$", str(x)) else 0 for x in col]
+        rs.append(r)
+    if rs: rec["res"] = rs
     mc = c.get("multiclassing", {}).get("proficienciesGained", {})
     g = {}
     if mc.get("armor"): g["armor"] = _list(mc["armor"])
@@ -106,4 +149,8 @@ def class_record(c, data, O, gap, tag):
     if mc.get("tools"): g["tools"] = ", ".join(hb.strip(t) for t in mc["tools"])
     if g: rec["mcg"] = g
     rec["mcreq"] = [[x for x in p if x in AB.values()] for p in [[AB[k] for k in pa] for pa in c.get("primaryAbility", [])]] or [[prim]]
-    return rec
+    ex = {"cf": full, "lu": [dict({"n": e["feature"]}, **dict(e, src="class", owner=n)) for e in O.get("lu", [])], "acts": {},
+          "auto": O.get("auto"), "quick": O.get("quick")}
+    for ft, kind in O.get("acts", {}).items():
+        ex["acts"]["cls|%s|%s" % (n, ft)] = [["other", ft]] if kind == "other" else [[kind, "", ft]]
+    return rec, ex
