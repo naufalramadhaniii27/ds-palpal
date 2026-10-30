@@ -87,7 +87,12 @@ function enter(){ if(!TG.pc||!nFoes()) { live("Pick who goes in and at least one
   paint(); live("The fight starts. "+cur().name+" goes first."); }
 function cur(){ return TG.st.units[TGE.now(TG.st)]; }
 function run(c){ var before=TG.st, s=TGE.step(TG.st,c); if(s.err){ live(errText(s.err)); flash(errText(s.err)); return false; } TG.undo.push(before); if(TG.undo.length>60) TG.undo.shift(); TG.st=s; TG.cmds.push(c); if(s.over) fightClear(); else fightSave();
-  var fresh=s.log.slice(before.log.length); fresh.forEach(function(e){ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); live(fresh.map(evText).filter(Boolean).join(" ")); return true; }
+  var fresh=s.log.slice(before.log.length); fresh.forEach(function(e){ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); live(fresh.map(evText).filter(Boolean).join(" ")); showDice(fresh); return true; }
+/* N23 honest dice: the d20s of attacks and death saves land on the 3D table with the numbers the engine rolled (N27 dice take given
+   values). Only with motion on, at most 6 dice, and not while the previous dice are still rolling (no queue of old rolls) */
+function showDice(fresh){ var M=window.__MI; if(!window.__dice3d||TG.diceBusy||!M||(M.rm&&M.rm())||M.mode==="off") return; var v=[];
+  fresh.forEach(function(e){ if(e.t==="atk"&&e.roll) v=v.concat(e.roll); else if(e.t==="ds"&&e.v>=1&&e.v<=20) v.push(e.v); }); v=v.slice(0,6); if(!v.length) return;
+  TG.diceBusy=1; window.__dice3d.roll(v.map(function(){ return 20; }),v).then(function(r){ TG.diceBusy=0; TG.diceLast={want:v,got:r}; },function(){ TG.diceBusy=0; }); }
 function errText(e){ return {"out of reach":"Too far for that attack.","out of range":"Out of range.","no action left":"No action left this turn.","square taken":"Someone is standing there.","recharging":"Not recharged yet.","no reaction":"The reaction is already used.","target is dead":"That one is down already.","not enough movement":"Not enough movement left.","no spell slot":"No spell slot left for that.","one spell slot per turn":"Only one spell slot can be spent on a turn.","no target":"Pick a target first.","no legendary actions left":"No legendary actions left this round.","not on its own turn":"Legendary actions are used on another creature's turn."}[e]||e; }
 function nm(id){ var u=TG.st.units[id]; return u?u.name:id; }
 function evText(e){ switch(e.t){
@@ -298,5 +303,5 @@ window.__tgDuel=function(pc,g,onDone,onStep){ if(!pc||!g||!window.TGE||!TGE.sim)
 function tgHash(){ var m=/^#fight=([A-Za-z0-9_-]{20,})$/.exec(location.hash||""); if(!m) return; var code=m[1]; try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){} open(); fightOpenLink(code); }
 tgHash(); addEventListener("hashchange",tgHash);
 window.__tgBack=function(){ var w=document.getElementById("tg"); if(!w||w.hidden) return null; return back; };
-window.__tgState=function(){ return {rp:TG.rp?{i:TG.rp.i,n:TG.rp.cmds.length}:null,saved:!!TG.saved,view:TG.view,st:TG.st,pc:TG.pc,foes:TG.foes,allies:TG.allies,arena:TG.arena,cmds:TG.cmds,seed:TG.seed,cr:!!TG.cr}; };
+window.__tgState=function(){ return {dice:TG.diceLast||null,rp:TG.rp?{i:TG.rp.i,n:TG.rp.cmds.length}:null,saved:!!TG.saved,view:TG.view,st:TG.st,pc:TG.pc,foes:TG.foes,allies:TG.allies,arena:TG.arena,cmds:TG.cmds,seed:TG.seed,cr:!!TG.cr}; };
 addEventListener("resize",function(){ if(TG.view==="field"&&TG.st){ var n=innerWidth<760?44:52; if(n!==TG.cell){ TG.cell=n; draw(); } } });

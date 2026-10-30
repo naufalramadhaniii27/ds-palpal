@@ -189,8 +189,8 @@ def with_csp(html):
         h = "'sha256-%s'" % base64.b64encode(hashlib.sha256(m.group(1).encode("utf-8")).digest()).decode()
         if h not in hs:
             hs.append(h)
-    pol = ("default-src 'self'; script-src 'self' 'wasm-unsafe-eval' " + " ".join(hs) + "; style-src 'self' 'unsafe-inline'; "
-           "img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' data: blob:; worker-src 'self' blob:; "
+    pol = ("default-src 'self'; script-src 'self' " + " ".join(hs) + "; style-src 'self' 'unsafe-inline'; "
+           "img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' data: blob:; worker-src 'self'; "
            "manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; "
            "require-trusted-types-for 'script'; trusted-types default cs-loader html2canvas-pro")
     tag = '<meta charset="utf-8">\n'
