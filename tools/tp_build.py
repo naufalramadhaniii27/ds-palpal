@@ -18,7 +18,7 @@ BOOKS = [
  {"id": "tdcg", "file": "Matthew Mercer; TalDorei Campaign Guide.json", "tag": "TDCG", "name": "TalDorei Campaign Guide",
   "pub": "Matthew Mercer", "ed": "2014", "sub": None, "bg": "tdcg_bg", "feat": "tdcg_feat", "species": "tdcg_species", "item": "tdcg_item", "dup": 1},
  {"id": "tvss", "file": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "tag": "VSS24", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2024",
-  "sub": "tvss_sub", "feat": "tvss_feat", "species": "tvss_species"},
+  "sub": "tvss_sub", "feat": "tvss_feat", "spell": "tvss_spell", "species": "tvss_species"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -166,14 +166,54 @@ SRC.items=IT.map(function(r){return r[0]});
 if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
 '''
 
+SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation"}
+UNIT = {"action": "Action", "bonus": "Bonus Action", "reaction": "Reaction"}
+
+def _dist(r):
+    d = r.get("distance", {}); t = d.get("type")
+    if r.get("type") == "point":
+        if t == "self": return "Self"
+        if t == "touch": return "Touch"
+        if t == "sight": return "Sight"
+        if t == "unlimited": return "Unlimited"
+        return "%s %s" % (d.get("amount"), "ft" if t == "feet" else "mile" if d.get("amount") == 1 else "miles")
+    if r.get("type") in ("emanation", "line", "cone", "sphere", "cube", "cylinder", "radius", "hemisphere"):
+        return "Self (%s %s %s)" % (d.get("amount"), "ft" if t == "feet" else t, r["type"])
+    return "Self"
+
+def spell_meta(s):
+    """Row prefix [name..save] from the source fields. The summary goes after it, from the overlay."""
+    t = s["time"][0]; cast = UNIT.get(t["unit"]) or "%s %s%s" % (t["number"], t["unit"], "" if t["number"] == 1 else "s")
+    c = s.get("components", {}); comp = ", ".join(x.upper() for x in ("v", "s", "m") if c.get(x))
+    du = s["duration"][0]; conc = 1 if du.get("concentration") else 0
+    if du["type"] == "instant": dur = "Instantaneous"
+    elif du["type"] == "permanent": dur = "Until dispelled"
+    elif du["type"] == "special": dur = "Special"
+    else:
+        q = du["duration"]; u = q["type"]; n = q["amount"]; dur = "%s%d %s%s" % ("Up to " if conc else "", n, u, "" if n == 1 else "s")
+    cl = [x["name"] for x in (s.get("classes") or {}).get("fromClassList", [])]
+    sv = (s.get("savingThrow") or [""])[0]
+    AB = {"strength": "STR", "dexterity": "DEX", "constitution": "CON", "intelligence": "INT", "wisdom": "WIS", "charisma": "CHA"}
+    rit = 1 if (s.get("meta") or {}).get("ritual") else 0
+    return [s["name"], s["level"], SCH[s["school"]], sorted(set(cl)), cast, _dist(s["range"]), comp, dur, conc, rit, AB.get(sv, "")]
+
 def spell_records(bk, data, M):
-    names = set(x["name"] for x in data.get("spell", []))
+    src = {x["name"]: x for x in data.get("spell", [])}
     rows = []
-    for r in M.ROWS:
-        if r[0] not in names: GAP.append((bk["tag"], "overlay", "spell " + r[0], "overlay text without a source spell"))
-        rows.append(list(r) + [bk["tag"], list(r[3])])
-    for n in sorted(names - set(r[0] for r in rows)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
-    return rows, M.FULL
+    T = getattr(M, "TEXT", None)
+    if T is None:
+        names = set(src)
+        for r in M.ROWS:
+            if r[0] not in names: GAP.append((bk["tag"], "overlay", "spell " + r[0], "overlay text without a source spell"))
+            rows.append(list(r) + [bk["tag"], list(r[3])])
+        for n in sorted(names - set(r[0] for r in rows)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
+        return rows, M.FULL
+    full = {}
+    for n in sorted(T):
+        if n not in src: GAP.append((bk["tag"], "overlay", "spell " + n, "overlay text without a source spell")); continue
+        r = spell_meta(src[n]); r.append(T[n][0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[n] = T[n][1]
+    for n in sorted(set(src) - set(T)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
+    return rows, full
 
 REGSP = '''SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k]});
 '''
