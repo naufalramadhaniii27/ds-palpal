@@ -307,3 +307,44 @@ Arah yang belum dicoba, urut dari yang paling mungkin:
 | E3 | Efek yang selalu hidup dipindah ke satu kanvas OffscreenCanvas di worker (dukungan 96,76 persen) | Menghapus biaya JS efek dari thread utama. Biaya besar, belum terbukti |
 | E4 | Animasi hanya properti compositor (transform, opacity). Ganti transisi border-color, background-color, box-shadow, width (total 48 aturan) | Menghindari paint per frame |
 Urutan uji: E1 dulu, lalu E4, lalu E2.
+
+## 3i. Syarat baru dari user: immersive tidak boleh dikurangi (termasuk art), 60 fps pada CPU 4x (2026-10-30 10.24 WIB)
+Efek tidak boleh dimatikan, dikurangi, atau diganti. Semua temuan di bawah hanya mengubah cara kerja, bukan tampilan. Alat ukur baru: jejak Chrome (tools/research/tr*.py) yang mengukur lama kerja thread utama per frame (ProxyMain::BeginMainFrame), karena fps dari rAF di Chromium headless ikut terkena penggambaran perangkat lunak yang tidak ada di HP asli (SoftwareRenderer 1.560 ms dari 5.400 ms uji).
+
+### Temuan 1: indikator bar bawah (#bInd) menggeser seluruh pipeline
+Tiap frame geser pager, JS menulis `bInd.style.transform`. Itu memaksa Layerize ulang: 2.136 ms dari uji 5,4 detik (fx off). Dengan indikator digerakkan CSS scroll-timeline (tanpa JS, tampilan sama) Layerize turun ke 248 ms.
+```
+body{timeline-scope:--pg}
+#pager{scroll-timeline:--pg x}
+@keyframes bs{from{transform:translateX(0)}to{transform:translateX(800%)}}
+.bnav-ind{animation:bs linear both;animation-timeline:--pg}
+```
+Catatan: pegas bIndTo (efek pegas saat tombol ditekan) harus tetap ada. Perlu diuji agar pegas tidak hilang. Usul: pegas memakai WAAPI atau variabel terpisah.
+
+### Temuan 2: 9 halaman sheet digambar semua, padahal 1 sampai 3 terlihat
+Tiap halaman adalah layer besar (misal 390 x 4934). Menyembunyikan halaman jauh dengan visibility:hidden lewat IntersectionObserver (root pager, rootMargin 0 100%) menurunkan Layerize dari 2.668 ke 570 ms dan Paint dari 726 ke 434 ms. Halaman tetangga tetap terlihat saat geser, jadi tidak ada kedipan yang diamati di uji (belum diuji dengan sentuhan nyata).
+```
+new IntersectionObserver(function(es){es.forEach(function(e){e.target.style.visibility=e.isIntersecting?"":"hidden"})},{root:pager,rootMargin:"0px 100% 0px 100%"})
+```
+
+### Hasil gabungan, efek penuh (mi-fx default), CPU 4x, pindah tab, 390 x 844
+| Kondisi | Rata-rata kerja frame | p95 | Frame di atas 16,7 ms |
+|---|---|---|---|
+| Asal | 17,1 ms | 51,7 | 37% |
+| + indikator CSS | 14,4 | 47,1 | 34% |
+| + visibility halaman jauh | 11,0 | 33,7 | 15% |
+| Pembanding: mi-fx off, tanpa perubahan | 13,2 | 28,3 | 15% |
+Efek penuh dengan dua perubahan ini sama ringannya dengan efek mati tanpa perubahan. Tampilan tidak dikurangi.
+Belum 60 fps: 15% frame masih di atas 16,7 ms (target 5%). Isi frame yang lewat batas (56 frame, 1.795 ms): style recalc 689 ms, JS 439 ms (rAF 257, event 225), paint 283 ms.
+
+### Yang diukur dan tidak menolong
+Perilaku idempoten pada classList dan setProperty (-11% style, dalam derau), mengganti translate persen ke px, contain, content-visibility, will-change, gubernur rAF, MutationObserver ditunda, animasi infinite dimatikan. Menjeda toggle kelas pcur: rata-rata 8,7 ms, dalam derau.
+
+### Berikutnya
+| No | Langkah | Alasan |
+|---|---|---|
+| G1 | Telusuri style recalc 300 sampai 650 elemen per perubahan (invalidation tracking: 3.353 kejadian, terbanyak "Animation" pada svg, cls-art-l, ptitle.mi-hd) | 689 ms di frame lewat batas |
+| G2 | Animasi masuk (miHd, v31hFade, v31hDown) hanya aktif sekali per tampil, bukan tiap pindah tab | Mengurangi style recalc tanpa mengubah tampilan |
+| G3 | Parallax scroll-timeline pada semua .ptitle (animation-timeline --mipg) hanya pada halaman aktif | Pekerjaan per frame geser |
+| G4 | Pecah tugas JS 439 ms dengan scheduler.yield, dan jalankan efek non-input sesudah frame input | Hanya JS, tampilan sama |
+Perubahan ini milik UI/UX (CSS dan src/app/21, 40) dan fx. Belum ada yang dipasang di src/.
