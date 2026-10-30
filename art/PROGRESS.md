@@ -4272,6 +4272,9 @@ art/batch/icons/features/subclass/armorer/armorer-spells.png
 art/batch/icons/features/subclass/armorer/extra-attack.png
 art/batch/icons/features/subclass/armorer/improved-armorer.png
 art/batch/icons/features/subclass/armorer/perfected-armor.png
+art/batch/icons/features/subclass/assassin/assassins-tools.png
+art/batch/icons/features/subclass/assassin/assassinate.png
+
 ## batch-139 v3
 art/batch/icons/feats/interception.png
 art/batch/icons/feats/protection.png
