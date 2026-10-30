@@ -320,6 +320,8 @@ function printCards(){ var L=[],seen={}; (C.spells||[]).forEach(function(x){ if(
 /* RU71: a report for the person who keeps the app. Nothing is sent from here: the text is copied, the player chooses where to paste it */
 var ERRLOG=[];
 window.addEventListener("error",function(e){ ERRLOG.push({t:new Date().toISOString(),m:String(e.message||"").slice(0,300),f:String(e.filename||"").slice(-60)+":"+(e.lineno||0)}); if(ERRLOG.length>20) ERRLOG.shift(); });
+/* Reporting: a blocked script, style or connection (Content Security Policy) is listed in the problem report with the rule and the file, so it shows up without opening the console */
+document.addEventListener("securitypolicyviolation",function(e){ ERRLOG.push({t:new Date().toISOString(),m:"CSP blocked "+String(e.effectiveDirective||e.violatedDirective||"").slice(0,40)+": "+String(e.blockedURI||"").slice(0,80),f:String(e.sourceFile||"").slice(-60)+":"+(e.lineNumber||0)}); if(ERRLOG.length>20) ERRLOG.shift(); });
 window.addEventListener("unhandledrejection",function(e){ ERRLOG.push({t:new Date().toISOString(),m:String(e.reason&&e.reason.message||e.reason||"").slice(0,300)}); if(ERRLOG.length>20) ERRLOG.shift(); });
 var REP_NOTES=false;/* v28 I2: notes and journal only when ticked */
 function reportText(){ var s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } var b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
