@@ -4931,3 +4931,8 @@ art/batch/icons/features/subclass/battle-master/student-of-war.png
 art/batch/icons/features/subclass/battle-master/combat-superiority.png
 art/batch/icons/features/subclass/battle-master/improved-combat-superiority.png
 art/batch/icons/features/subclass/battle-master/relentless.png
+art/batch/icons/features/subclass/battle-master/ultimate-combat-superiority.png
+art/batch/icons/features/subclass/battle-smith/arcane-jolt.png
+art/batch/icons/features/subclass/battle-smith/battle-ready.png
+art/batch/icons/features/subclass/battle-smith/battle-smith-spells.png
+art/batch/icons/features/subclass/battle-smith/extra-attack.png
