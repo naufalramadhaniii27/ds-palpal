@@ -4923,3 +4923,11 @@ art/batch/icons/features/subclass/assassin/death-strike.png
 art/batch/icons/features/subclass/assassin/envenom-weapons.png
 art/batch/icons/features/subclass/assassin/impostor.png
 art/batch/icons/features/subclass/assassin/infiltration-expertise.png
+art/batch/icons/features/subclass/battle-master/combat-superiority.png
+art/batch/icons/features/subclass/battle-master/improved-combat-superiority.png
+art/batch/icons/features/subclass/battle-master/know-your-enemy.png
+art/batch/icons/features/subclass/battle-master/relentless.png
+art/batch/icons/features/subclass/battle-master/student-of-war.png
+art/batch/icons/features/subclass/battle-master/combat-superiority.png
+art/batch/icons/features/subclass/battle-master/improved-combat-superiority.png
+art/batch/icons/features/subclass/battle-master/relentless.png
