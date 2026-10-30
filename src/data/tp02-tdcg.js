@@ -7,6 +7,10 @@ var TL={"xtdcg":{"list":["Disguise Kit","Forgery Kit","Thieves' Tools"],"cat":"M
 var FT={"Dual-focused":{"cat":"G","hb":"TDCG","d":"Concentrate on two spells at once. Check concentration for each on damage, and make a Constitution save at the end of each turn you hold two.","full":"If you cast a spell that needs concentration while already concentrating on one, you keep both. When you take damage, make a concentration check for each spell separately. At the end of each of your turns on which you hold two, make a Constitution save with DC 8 plus the combined levels of both spells. On a success you keep both. On a failure you lose both.","pre":"Spellcasting","fx":{"notes":[["Note","Dual-focused: two concentration spells. End of turn: Con save, DC 8 + both spell levels"]]}},"Gambler":{"cat":"G","hb":"TDCG","d":"Gaming-set proficiency (two), better bluffing and recruiting at games of chance, a card-shark reputation, and a Carousing reroll.","full":"Raise Charisma by 1, to a maximum of 20. You gain proficiency with two gaming sets of your choice. You have an adjusted roll on Charisma (Deception) checks to bluff at games of chance and on Charisma (Persuasion) checks to bring others into a game (the source text is garbled, intended as Advantage). You have a reputation as a card shark: some avoid you, high-stakes gamblers may seek you out. When you take the Carousing downtime action you can reroll the result once, and you keep the second roll.","asi":["CHA"],"pick":[{"k":"tl","t":"tool","n":2,"cats":["game"],"title":"2 Gaming Sets"}]},"Mending Affinity":{"cat":"G","hb":"TDCG","d":"When stabilized with a healer's kit, and on all spell, potion or class healing, regain extra HP equal to your Proficiency Bonus.","full":"Raise Constitution by 1, to a maximum of 20. When a creature uses a healer's kit to stabilize you while you are dying, you also regain hit points equal to your Proficiency Bonus. Whenever you regain hit points from a spell, potion or class feature, you regain extra hit points equal to your Proficiency Bonus.","asi":["CON"],"fx":{"notes":[["Note","Mending Affinity: healing you receive adds your Proficiency Bonus"]]}},"Rapid Drinker":{"cat":"G","hb":"TDCG","d":"Drink a potion as a Bonus Action. Adjusted roll on saves from alcohol and dangerous substances.","full":"You can drink a potion as a Bonus Action instead of an action. You have an adjusted roll on saving throws caused by drinking alcohol or a dangerous substance (the source text is garbled, intended as Advantage)."},"Fate-Touched":{"cat":"G","hb":"TDCG","d":"DM-granted. You gain 1 Luck point that works as the Lucky feat and returns on a Long Rest.","full":"This is a background feature that stacks on top of your normal background. It is normally given by the DM to a character or NPC who has a place in the story's fate. You gain 1 Luck point, used the same way as the Lucky feat. You regain it when you finish a Long Rest. If you already have the Lucky feat, add this point to its total."}};
 var FTLU=[{"src":"feat","owner":"Fate-Touched","feature":"Fate-Touched","n":"Luck point (Fate-Touched)","lvl":1,"max":1,"reset":"long","tag":"As the Lucky feat"}];
 var FTA={"feat|Rapid Drinker":[["bonus","Rapid Drinker","Rapid Drinker"]]};
+var FDM={};
+var SPL=[];
+var SPA={};
+var SPS={};
 var SPC={"Dragonborn (Ravenite)":{"size":"Medium","speed":35,"dark":0,"type":"Humanoid","traits":[["Damage Resistance","Resistance to nonmagical Slashing damage."],["Ravenite Heritage","Ravenites come from Draconia in Wildemount and lived under the abuse of the Chroma Conclave until it fell. They have no breath weapon and no draconic ancestry. Scales can be any color."],["Languages","You speak, read and write Common and Draconic."]],"asi":{"CON":1,"WIS":1},"lgf":["Common","Draconic"],"hb":"TDCG"}};
 var DFS={"Dragonborn (Ravenite)":[["Resistance","Slashing (nonmagical)"]]};
 var SPR=[];
@@ -18,6 +22,7 @@ var GR=[["Wind glider",200,0,"Other","A harness-and-wing glider that takes 1 min
 window.WXBG=window.WXBG||{};window.WXBG[SRC.id]=Object.assign(window.WXBG[SRC.id]||{},BG);
 Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TOOL_ONE[k]=TL[k].one});
 SRC.backgrounds=Object.keys(BG);
+window.DM_SP=window.DM_SP||{};Object.keys(FDM).forEach(function(k){window.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
 SRC.feats=Object.keys(FT);
 window.WXI=window.WXI||{};window.WXI[SRC.id]=IT;
@@ -25,7 +30,7 @@ window.WXWP=(window.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
 SRC.items=IT.map(function(r){return r[0]});
 if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
-window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);
+window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
 SRC.species=Object.keys(SPC);
 window.WXS=(window.WXS||[]).concat(D);
 D.forEach(function(s){var c=CLASSES[s.cls];if(!c)return;c.subs=c.subs||{};c.subs[s.name]=s.arr;

@@ -558,7 +558,8 @@
    "close": "</script>",
    "files": [
     "data/tp01-tdcsr.js",
-    "data/tp02-tdcg.js"
+    "data/tp02-tdcg.js",
+    "data/tp03-tvss.js"
    ]
   },
   {
