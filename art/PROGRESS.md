@@ -4917,3 +4917,9 @@ art/batch/icons/items/magic/rare/dragonguard.png
 art/batch/icons/items/magic/rare/flayer-slayer.png
 art/batch/icons/items/magic/uncommon/hew.png
 
+## batch-157 v3
+art/batch/icons/features/subclass/assassin/bonus-proficiencies.png
+art/batch/icons/features/subclass/assassin/death-strike.png
+art/batch/icons/features/subclass/assassin/envenom-weapons.png
+art/batch/icons/features/subclass/assassin/impostor.png
+art/batch/icons/features/subclass/assassin/infiltration-expertise.png
