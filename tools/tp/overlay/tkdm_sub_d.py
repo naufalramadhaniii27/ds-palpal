@@ -1,0 +1,125 @@
+# Own-wording Cleric domains of Deep Magic (2014 rules), group D.
+SUB = {
+"Labyrinth Domain": {"spab": "WIS",
+ "f": {
+  "First Passage": "You gain Survival proficiency. You also learn Abyssal and Rue-Thothka, the old tongue of minotaurs.",
+  "Channel Divinity: Wisdom of the Winding Way": "Use Channel Divinity to gain Advantage on Wisdom (Survival) checks made to track, for 1 hour.",
+  "Befuddling Touch": "Make a melee attack. On a hit you deal no damage, and the target is confused as the confusion spell until the start of your next turn. A miss still uses up a use. You can use this 3 + your Wisdom modifier times per day, and all uses return after a long rest. It has no effect on minotaurs or on creatures whose challenge rating is higher than your cleric level.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 damage of the weapon's type. This becomes 2d8 at 14th level.",
+  "Channel Divinity: Banish to the Maze": "Use Channel Divinity to send one target into an extra-dimensional labyrinth, much like the maze spell. A Wisdom save negates it. The banishment lasts rounds equal to half your cleric level, or until you end it early with a bonus action. You can enter the maze with the target, but each round you both spend inside counts as two rounds of its duration. To find the target in the maze, win an Intelligence contest against it, using your move. The target can evade you the same way, and you have Advantage on these contests. You can leave as an action and return to where you were. The target can search for the exit: on its turn it uses its action for a DC 20 Intelligence check, and on a success it escapes to its previous location. The maze is dimly lit."},
+ "acts": {"Befuddling Touch": "action"},
+ "fx": [[3, "First Passage", {"skills": ["Survival"], "notes": [["Note", "First Passage: you know Abyssal and Rue-Thothka"]]}]]},
+
+"Lust Domain": {"spab": "WIS",
+ "f": {
+  "Gifts of Lust": "You learn the Message cantrip. You also gain proficiency in one skill of your choice from Deception, Performance, or Persuasion.",
+  "Channel Divinity: Lustful Distraction": "Use Channel Divinity as an action to speak and gaze seductively at creatures of your choice within 30 ft that can see and hear you. Each target makes a DC 12 Wisdom save. On a failure, it fixes its attention on you for 1 minute. While you hold that attention, the targets have Disadvantage on Wisdom (Perception) checks to notice anyone but you, and you have Advantage on Charisma (Deception) and Charisma (Persuasion) checks to influence them.",
+  "Lingering Seduction": "Creatures held by Lustful Distraction stay spellbound for up to 10 minutes, as long as you keep speaking to them.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 Psychic damage. This becomes 2d8 at 14th level.",
+  "Master of Seduction": "While creatures are enraptured by your Lustful Distraction, you can use a bonus action on your turn to verbally Command what each of them does on its next turn."},
+ "acts": {"Channel Divinity: Lustful Distraction": "action", "Master of Seduction": "bonus"},
+ "fx": [[3, "Gifts of Lust", {"notes": [["Note", "Gifts of Lust: choose one of Deception, Performance, or Persuasion for proficiency"]]}]]},
+
+"Moon Domain": {"spab": "WIS",
+ "f": {
+  "Moon's Grace": "You gain proficiency in Perception and Stealth. Wearing medium armor does not give you Disadvantage on Stealth checks.",
+  "Channel Divinity: Night's Chill": "Use Channel Divinity as an action, presenting your holy symbol. All magical light within 30 ft of you is dispelled. Each hostile creature within 30 ft takes cold damage equal to 2d10 + your cleric level, or half on a successful Constitution save. A creature with total cover from you is unaffected.",
+  "Luminescent Aura": "As an action, emit light in a 30-ft radius for rounds equal to your cleric level. It works like the light spell but gives only dim illumination. Weapons and ammunition count as silvered while in the aura and for one round after leaving it. An opponent that ends its turn in the aura makes a Dexterity save or is outlined in silver light, as faerie fire, until the end of its next turn.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. This becomes 2d8 at 14th level.",
+  "The Moonlit Way": "Whenever the moon is visible in the sky, you can use an action to detect magical pathways and portals such as fey roads, shadow roads, and gate effects. The portal must be in your line of sight and within 120 ft. Detected portals are visible to you and you can point them out to others. Concentrating for 1 minute on a detected portal lets you sense conditions around its destination. You must finish a short or long rest before using this again."},
+ "lu": [{"feature": "The Moonlit Way", "lvl": 17, "max": 1, "reset": "short", "tag": "Action"}],
+ "acts": {"Luminescent Aura": "action", "The Moonlit Way": "action"},
+ "fx": [[3, "Moon's Grace", {"skills": ["Perception", "Stealth"]}]]},
+
+"Mountain Domain": {"spab": "WIS",
+ "f": {
+  "Bonus Proficiency": "You gain proficiency in your choice of Athletics, Nature, or Survival.",
+  "Tongues of the Mountains": "You become fluent in your choice of Dwarvish or Giant.",
+  "Channel Divinity: Ever Upward": "Use Channel Divinity to give yourself and up to five other creatures Advantage on skill and ability checks made to climb, avoid falling, or avoid the Prone condition. It lasts 1 hour.",
+  "Darkvision": "You gain Darkvision with a range of 30 ft. If you already have Darkvision, you can instead see in magical darkness to 30 ft as if it were dim light.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. This becomes 2d8 at 14th level.",
+  "Avalanche": "Send a 60-ft cone of ice, snow, and rubble from a point you choose within 20 ft of you, in a direction you pick. Each creature in the cone takes 15d8 bludgeoning damage, or half on a successful Strength save. A creature that fails is also Restrained. A Restrained creature is freed when it or an ally within 5 ft uses an action for a successful Strength check. You must be outdoors. The cone must run downhill or level, never uphill, and walls and other permanent structures block it. You must finish a long rest before using this again."},
+ "lu": [{"feature": "Avalanche", "lvl": 17, "max": 1, "reset": "long", "tag": "Action"}],
+ "acts": {"Avalanche": "action"},
+ "fx": [[3, "Darkvision", {"senses": [["Darkvision", 30, ""]], "notes": [["Note", "Darkvision (Mountain Domain): if you already have Darkvision, you see in magical darkness to 30 ft as if it were dim light"]]}]]},
+
+"Ocean Domain": {"spab": "WIS",
+ "f": {
+  "Envoy to the Waves": "You learn the Chill Touch cantrip and the Aquan language. You gain proficiency in Survival and with tridents and nets.",
+  "Channel Divinity: Sea Speaker": "Use Channel Divinity to talk telepathically with aquatic creatures within 100 ft for 1 hour.",
+  "At Home in the Waves": "You gain a Swim Speed of 30 ft and Darkvision 60 ft. If you already have Darkvision, its range grows by 30 ft.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. This becomes 2d8 at 14th level.",
+  "Scales of the Sea": "You can breathe water as easily as air. At will, you can turn your skin into fishlike scales of any color, using an action to grow them or to change back. While scaled, you resist Bludgeoning, Piercing, and Slashing damage from nonmagical weapons, and have Advantage on Dexterity (Stealth) checks in natural underwater environments. The scales must be wetted with at least a quart of water once per hour. Otherwise you gain one level of Exhaustion at the end of that hour."},
+ "acts": {"Scales of the Sea": "action"},
+ "fx": [[3, "Envoy to the Waves", {"skills": ["Survival"], "notes": [["Note", "Envoy to the Waves: you know Aquan and have proficiency with tridents and nets"]]}],
+        [6, "At Home in the Waves", {"senses": [["Darkvision", 60, ""]], "notes": [["Note", "At Home in the Waves: Swim Speed 30 ft. If you already have Darkvision, add 30 ft to its range instead"]]}],
+        [17, "Scales of the Sea", {"notes": [["Note", "Scales of the Sea: breathe water. While scaled, Resistance to nonmagical Bludgeoning, Piercing, and Slashing damage"]]}]]},
+
+"Prophecy Domain": {"spab": "WIS",
+ "f": {
+  "A Path Foretold": "You gain proficiency in History and Insight. You also learn one exotic language of your choice, subject to GM approval.",
+  "Channel Divinity: One Move Ahead": "Use Channel Divinity to add 20 ft to your Speed for rounds equal to your cleric level.",
+  "Channel Divinity: Future Sight": "Use Channel Divinity to declare that an action or movement you just made did not happen, then take a different one. You can do this after seeing the result, as long as it did not leave you unconscious or dead. Only one action or movement can be undone. Mixing future and present is disorienting, so you gain one level of Exhaustion each time.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 damage of the weapon's type. This becomes 2d8 at 14th level.",
+  "It Was Foretold": "You have Advantage on Dexterity saves, Wisdom (Perception) checks, and Wisdom (Insight) checks. You also resist Fire, Poison, and Psychic damage. With your GM's cooperation, you can issue a prophecy from your deity once per month. This might make you a renowned and controversial prophet who draws loyal followers and terrible enemies. Ask your GM what, if anything, your deity wants foretold."},
+ "fx": [[3, "A Path Foretold", {"skills": ["History", "Insight"]}],
+        [17, "It Was Foretold", {"res": ["Fire", "Poison", "Psychic"], "notes": [["Note", "It Was Foretold: Advantage on Dexterity saves, Wisdom (Perception) checks and Wisdom (Insight) checks"]]}]]},
+
+"Speed Domain": {"spab": "WIS",
+ "f": {
+  "Celerity in Thought and Action": "Your Speed rises by 5 ft. You gain proficiency in Acrobatics and Insight.",
+  "Channel Divinity: Burst of Speed": "Use Channel Divinity as an action to touch a creature, which could be you. Its base Speed rises by 10 ft. It also gains the benefit of the bless spell, but only on Dexterity-based attack rolls and saving throws. This lasts for rounds equal to 3 + your Wisdom modifier.",
+  "Quickness of the Gods": "Your Speed rises by another 5 ft. As a reaction or bonus action, you can raise your Dexterity score by 10 until the end of the current turn. You can do this a number of times equal to your Wisdom modifier (minimum 1), and all uses return after a long rest. The bonus works in all cases except your attacks.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 damage of the weapon's type. This becomes 2d8 at 14th level.",
+  "Channel Divinity: Time Stop": "Use Channel Divinity to stop the flow of time. The effect is the same as the time stop spell, so you take 3 turns in a row. You must finish a long rest before using this again."},
+ "lu": [{"feature": "Quickness of the Gods", "lvl": 6, "max": "mod:WIS", "reset": "long", "tag": "Reaction or Bonus Action"},
+        {"feature": "Channel Divinity: Time Stop", "lvl": 17, "max": 1, "reset": "long", "tag": "Channel Divinity"}],
+ "acts": {"Quickness of the Gods": "bonus"},
+ "fx": [[3, "Celerity in Thought and Action", {"skills": ["Acrobatics", "Insight"], "notes": [["Note", "Celerity in Thought and Action: Speed +5 ft"]]}],
+        [6, "Quickness of the Gods", {"notes": [["Note", "Quickness of the Gods: Speed +5 ft more"]]}]]},
+
+"Time Domain": {"spab": "WIS",
+ "f": {
+  "Prescient Glimpses": "You gain proficiency in Insight and Perception, and your proficiency bonus is doubled for any ability check that uses either skill.",
+  "Channel Divinity: Time Shift": "Use Channel Divinity as an action to move yourself to any point you choose in the initiative order.",
+  "Channel Divinity: Group Time Shift": "When you use Channel Divinity, you can also move up to three allies to any positions you choose in the initiative order. An ally can choose not to be affected.",
+  "Prescient Strike": "You sense where enemies will be and how they will attack. Once on each of your turns when you take the Attack action, you have Advantage on one attack roll. Or, when a creature attacks you, you can use a reaction to give it Disadvantage on that attack roll.",
+  "Master of Time": "Foresight and time stop join your cleric spell list. You are never surprised. Whenever you and your allies might be surprised, you can let up to six allies make Wisdom saves to avoid surprise, as if they had your Prescient Glimpses."},
+ "acts": {"Channel Divinity: Time Shift": "action", "Prescient Strike": "reaction"},
+ "fx": [[3, "Prescient Glimpses", {"skills": ["Insight", "Perception"], "exp": ["Insight", "Perception"]}]]},
+
+"Travel Domain": {"spab": "WIS",
+ "f": {
+  "Bonus Proficiency": "You learn two extra standard languages of your choice and gain proficiency with cartographer's tools.",
+  "Born to the Road": "You gain proficiency in your choice of Insight, Nature, or Survival.",
+  "Channel Divinity: Reinvigorate": "Use Channel Divinity to remove one level of Exhaustion from yourself or a creature you touch.",
+  "Trailblazer": "When you plan a journey longer than 5 days of travel and you have a map of the region or first-hand knowledge of it, you can find a shortcut. Using it cuts travel time by 30 percent.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 lightning damage. This becomes 2d8 at 14th level.",
+  "World Traveller": "You ignore Difficult Terrain and resist cold and fire damage."},
+ "fx": [[3, "Bonus Proficiency", {"notes": [["Note", "Bonus Proficiency (Travel): two extra standard languages of your choice, and proficiency with cartographer's tools"]]}],
+        [17, "World Traveller", {"res": ["Cold", "Fire"], "notes": [["Note", "World Traveller: ignore Difficult Terrain"]]}]]},
+
+"Void Domain": {"spab": "WIS",
+ "f": {
+  "Bonus Proficiency": "You gain proficiency with navigator's tools.",
+  "Messenger of the Void": "You gain proficiency in Arcana and Intimidation.",
+  "Channel Divinity: Hidden Knowledge": "Use Channel Divinity to gain Advantage on Intelligence skill checks. You can also use your Wisdom modifier in place of Intelligence for them. Both effects last 1 hour.",
+  "Channel Divinity: Dark Secrets": "Use Channel Divinity while presenting your holy symbol and speaking of the void. Up to three creatures of your choice that can see and hear you make a Wisdom save, or suffer temporary madness chosen at random from the Short-Term Madness table. An affected creature repeats the save at the end of each of its turns, ending the effect on a success.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. This becomes 2d8 at 14th level.",
+  "Black Star": "Create crushing gravity in a 60-ft radius circle centered on you. The area is Difficult Terrain for the duration. A creature that starts its turn there or enters it on its turn makes a Strength save. On a failure it takes 7d6 bludgeoning damage and is slowed as the spell until the start of its next turn. You and up to three creatures you choose are immune. The gravity lasts 3 rounds and ends at once if you move away from where you triggered it. You must finish a long rest before using this again."},
+ "lu": [{"feature": "Black Star", "lvl": 17, "max": 1, "reset": "long", "tag": "Action"}],
+ "acts": {"Black Star": "action"},
+ "fx": [[3, "Messenger of the Void", {"skills": ["Arcana", "Intimidation"]}],
+        [3, "Bonus Proficiency", {"notes": [["Note", "Bonus Proficiency (Void): proficiency with navigator's tools"]]}]]},
+
+"Winter Domain": {"spab": "WIS",
+ "f": {
+  "A Cold Wind": "You learn the Ray of Frost cantrip and gain proficiency in Nature and Survival.",
+  "Channel Divinity: Snow Walker": "Use Channel Divinity to walk on the surface of snow and ignore movement penalties from it. Ice bears your weight however thin it is, and you move on it as if wearing ice skates. You still leave tracks. In snowy environments, snow does not impair your vision and you have Advantage on Dexterity (Stealth) checks to hide.",
+  "Deep Cold": "When you deal cold damage to a creature, it must succeed on a Constitution save against your spell save DC or be Stunned until the end of its next turn.",
+  "Divine Strike": "Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. This becomes 2d8 at 14th level.",
+  "Bringer of Winter's Wrath": "You resist cold damage. As an action, you can surround yourself with swirling snow in a 20-ft radius. All other creatures have Disadvantage on Wisdom (Perception) checks and attack rolls against you. Creatures other than you inside the snow have Disadvantage on saves against magic that deals cold damage. It lasts 1 minute or until you dismiss it as a bonus action."},
+ "acts": {"Bringer of Winter's Wrath": "action"},
+ "fx": [[3, "A Cold Wind", {"skills": ["Nature", "Survival"]}],
+        [17, "Bringer of Winter's Wrath", {"res": ["Cold"]}]]},
+}
