@@ -45,3 +45,15 @@ Jangan menjalankan `python3 tools/q/qbuild.py` tanpa `--check`, jangan jalankan 
 
 ## Laporan akhir (5 baris)
 File, jumlah entri, GAP tersisa, hal di sumber yang tidak bisa ditiru mesin (satu baris per hal), asumsi yang kamu ambil.
+
+## Deity (dewa)
+Tulis `tools/q/overlay/deity_<huruf>.py`:
+```
+D = {
+ "Nama|SRC": "Ringkasan 2 sampai 3 kalimat (maksimal 70 kata) tentang siapa dewa itu, apa yang diajarkan, dan bagaimana pengikutnya hidup. Kata sendiri.",
+}
+```
+- Baca: `python3 tools/q/todo.py deity <potongan> <jumlah>`. Kunci persis seperti baris `## Nama|SRC`.
+- Judul, pantheon, alignment, domain, provinsi, dan simbol sudah diisi otomatis. Jangan ulangi di teks.
+- Hanya isi yang penting bagi pemain: peran dewa, nilai yang diajarkan, ritual atau pantangan yang jelas, hubungan dengan dewa lain bila perlu.
+- Cek: `python3 tools/q/qbuild.py --check` (nol GAP "no overlay text" untuk potonganmu).

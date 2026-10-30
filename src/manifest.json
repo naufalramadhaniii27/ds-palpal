@@ -583,7 +583,9 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
    "close": "</script>",
    "files": [
-    "data/q01-reward.js"
+    "data/q01-reward.js",
+    "data/q02-deity.js",
+    "data/q03-loot.js"
    ]
   },
   {
