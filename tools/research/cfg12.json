@@ -1,0 +1,4 @@
+{"base":{"bypass":true},
+ "no miType (attrib)":{"bypass":true,"css":".empty-note,.bs{animation:none!important;clip-path:none!important}"},
+ "no miHd/miHdI (attrib)":{"bypass":true,"css":".ptitle,.ptitle .ico{animation:none!important}"},
+ "no clip-path anim any (attrib)":{"bypass":true,"css":"*{animation-name:none!important}#bInd,.bnav-ind{animation-name:biSlide!important}"}}

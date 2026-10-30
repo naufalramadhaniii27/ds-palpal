@@ -1,0 +1,4 @@
+{"base":{"bypass":true},
+ "hide dots+sparks (attrib)":{"bypass":true,"css":".mi-dot,.mi-spark{display:none!important}"},
+ "hide crack (attrib)":{"bypass":true,"css":".mi-crack{display:none!important}"},
+ "hide wave+hpf+flash+fuse (attrib)":{"bypass":true,"css":".mi-wave,.hpf,.mi-flash,.mi-fuse{display:none!important}"}}

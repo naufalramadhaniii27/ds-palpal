@@ -479,3 +479,10 @@ Target di bawah 5 persen belum tercapai. Biaya sisa tab: animasi geser halaman. 
 ## 3o. Animasi geser halaman memakai properti translate
 
 Uji varian (CPU 4x, tab, median 4 kali, % frame lebih dari 16.7 ms): dasar 32.1, properti translate 21.2, contain paint 31.3, will-change halaman 34.1. Terpasang: keyframes v31psr dan v31psl memakai translate. Gerak sama. scenarios.py 24 cek, 0 gagal, tidak ada halaman kosong.
+
+## 3p. Atribusi lanjutan (build perf-60fps, CPU 4x, median)
+
+Layer (tab / damage, % frame lebih dari 16.7 ms): dasar 19.0 / 32.3, will-change dimatikan 31.9 / 54.8, .ifil bukan scroller 23.7 / 33.9, backdrop-filter bar dimatikan 23.3 / 40.8. Mengurangi layer tidak membantu. will-change membantu.
+Animasi tab: dasar 19.2, tanpa miType 19.6, tanpa judul miHd 21.1, semua animasi dimatikan 15.7. Animasi bukan lagi penyebab utama tab.
+Damage: dasar 28.9, tanpa dot dan spark 27.4, tanpa crack 30.4, tanpa gelombang HP, hpf, flash, fuse 24.1. Tidak ada satu kelompok dominan. Canvas tunggal untuk partikel dan crack tidak akan menurunkan angka. Prototipe canvas ditunda.
+Sisa dugaan: biaya JS dan style recalc dari renderAll saat HP berubah, dan batas emulasi CPU. Perlu data dari HP asli lewat #fps sebelum rekayasa lanjut.
