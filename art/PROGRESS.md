@@ -4998,4 +4998,9 @@ art/batch/icons/features/subclass/eldritch-knight/spellcasting.png
 art/batch/icons/features/subclass/eldritch-knight/war-bond.png
 art/batch/icons/features/subclass/eldritch-knight/war-magic.png
 art/batch/icons/features/subclass/eldritch-knight/weapon-bond.png
+art/batch/icons/features/subclass/evoker/empowered-evocation.png
+art/batch/icons/features/subclass/evoker/evocation-savant.png
+art/batch/icons/features/subclass/evoker/overchannel.png
+art/batch/icons/features/subclass/evoker/potent-cantrip.png
+art/batch/icons/features/subclass/evoker/sculpt-spells.png
 
