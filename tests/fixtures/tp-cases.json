@@ -1,0 +1,9 @@
+[{"src":"tdcsr","cls":"Cleric","sub":"Blood Domain","level":8,"feats":["Bloodletting Focus","Sanguine Recall","Divine Strike"],"lu":["Sanguine Recall"]},
+ {"src":"tdcsr","cls":"Wizard","sub":"Blood Magic","level":10,"feats":["Blood Channeling","Sanguine Burst","Bond of Mutual Suffering","Glyph of Hemorrhaging"],"lu":["Bond of Mutual Suffering","Glyph of Hemorrhaging"]},
+ {"src":"tdcsr","cls":"Druid","sub":"Circle of the Blighted","level":10,"feats":["Blighted Shape","Defile Ground","Call of the Shadowseeds","Foul Conjuration"],"lu":["Defile Ground","Call of the Shadowseeds"]},
+ {"src":"tdcsr","cls":"Bard","sub":"College of Tragedy","level":6,"feats":["Poetry in Misery","Sorrowful Fate","Impending Misfortune","Tale of Hubris"],"lu":["Sorrowful Fate","Impending Misfortune"]},
+ {"src":"tdcsr","cls":"Cleric","sub":"Moon Domain","level":8,"feats":["Clarity of Catha","Domain Spells","Empowered Cantrips"],"lu":["Clarity of Catha"]},
+ {"src":"tdcsr","cls":"Paladin","sub":"Oath of the Open Sea","level":15,"feats":["Oath Spells","Fury of the Tides","Marine Layer","Aura of Liberation","Stormy Waters"],"lu":[]},
+ {"src":"tdcsr","cls":"Barbarian","sub":"Path of the Juggernaut","level":14,"feats":["Spirit of the Mountain","Thunderous Blows","Resolute Stance","Hurricane Strike","Unstoppable"],"lu":[]},
+ {"src":"tdcsr","cls":"Sorcerer","sub":"Runechild","level":14,"feats":["Essence Runes","Glyph of Aegis","Runic Magic","Runic Torrent"],"lu":["Runic Torrent"]},
+ {"src":"tdcsr","cls":"Monk","sub":"Way of the Cobalt Soul","level":17,"feats":["Extract Aspects","Extort Truth","Mystical Erudition","Mind of Mercury","Debilitating Barrage"],"lu":[]}]

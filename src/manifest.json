@@ -554,6 +554,18 @@
   },
   {
    "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
+   "close": "</script>",
+   "files": [
+    "data/tp01-tdcsr.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
    "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
    "close": "</script>",
    "files": [
