@@ -19,3 +19,17 @@ Baris Identity di sheet memakai art untuk Class (`emblem`) dan Subclass (`esub`)
 | size | 6 | tiny, small, medium, large, huge, gargantuan |
 
 Setelah ada: tambah kategori ke `tools/art_pipeline.py` dan `img/manifest.json`, lalu UI/UX memakai `__artIc` di `renderIdentity`. Species kustom (misal Retron) dan background kustom tetap memakai ikon garis.
+
+## Logic/Boot: kebijakan Trusted Types memotong teks pemain yang sah (dari riset 2026-10-30)
+Berkas: src/boot/trusted-types.js, kebijakan `default`, ekspresi `BAD` dan `strip`.
+Masalah: `\son[a-z]+\s*=` dicek pada seluruh string HTML, termasuk teks biasa yang sudah di-escape. Teks pemain yang memuat " on..." lalu "=" ikut dipotong.
+Bukti (Chromium, build main eab1472, tools/research/tt_bug.py dan tt_real2 di scratchpad):
+| Teks pemain | Tampil |
+|---|---|
+| Rage: once = 1 per rest | Rage: per rest |
+| Spell slots: one = 1st level | Spell slots: level |
+| Javascript: a language | blocked: a language |
+| Nama fitur "Darkvision once = 1" di tab Features | Darkvision> (penutup tag ikut hilang, markup rusak) |
+Dampak: teks hilang di tab Features, detail, dan lembar cetak. Bukan celah keamanan (CSP tetap memblokir). Tidak ada data yang berubah, hanya tampilan.
+Usul perbaikan (bagian Logic): cek hanya di dalam tag, bukan di teks: `/<[^>]*\son[a-z]+\s*=/i`, atau urai dengan `<template>` dan buang atribut `on*` dan elemen berbahaya dari DOM hasil urai. Tes: korpus XSS (262 string diuji, 0 jalan) dan korpus teks sah di atas harus lolos keduanya.
+Tidak diubah di sini.
