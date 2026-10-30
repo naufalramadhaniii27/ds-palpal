@@ -4947,6 +4947,7 @@ art/batch/icons/features/subclass/battle-smith/tool-proficiency.png
 art/batch/icons/features/subclass/battle-smith/tools-of-the-trade.png
 art/batch/icons/features/subclass/beast-master/bestial-fury.png
 
+NEXT: batch-162 art/batch/icons/features/subclass/college-of-creation/creative-crescendo.png
 ## batch-162 v3
 art/batch/icons/features/subclass/clockwork-soul/clockwork-cavalcade.png
 art/batch/icons/features/subclass/clockwork-soul/clockwork-magic.png
