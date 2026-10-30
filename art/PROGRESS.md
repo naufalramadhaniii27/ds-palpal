@@ -4861,6 +4861,11 @@ art/batch/icons/items/magic/very-rare/ingot-of-the-skold-rune.png
 art/batch/icons/items/magic/legendary/korolnor-scepter.png
 art/batch/icons/items/magic/very-rare/navigation-orb.png
 art/batch/icons/items/magic/rare/opal-of-the-ild-rune.png
+art/batch/icons/items/magic/rare/orb-of-the-stein-rune.png
+art/batch/icons/items/magic/very-rare/pennant-of-the-vind-rune.png
+art/batch/icons/items/magic/legendary/potion-of-giant-size.png
+art/batch/icons/items/magic/uncommon/robe-of-serpents.png
+art/batch/icons/items/magic/rare/rod-of-the-vonindod.png
 ## batch-142 v3
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanders-strike.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanding-presence.png
