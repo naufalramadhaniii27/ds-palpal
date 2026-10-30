@@ -1,5 +1,102 @@
-SPECIES = {}
-LU = []
-ACTS = {}
-SP_AUTO = {}
+# Own-wording species of Exploring Eberron (2024 rules). Shape of src/data/wotc04-species-lorwyn-ravenloft.js.
+# Each Aasimar and Dhakaani variant is its own entry because the source builds each from its own trait list.
+SKILLS3 = ["Perception", "Stealth", "Survival"]
+DV60 = ["Darkvision", "Darkvision 60 ft."]
+DV120 = ["Darkvision", "Darkvision 120 ft."]
+AAS_RES = ["Celestial Resistance", "Resistance to Necrotic and Radiant damage."]
+AAS_HEAL = ["Healing Hands", "Magic action, once per Long Rest: touch a creature and roll a number of d4s equal to your Proficiency Bonus. It regains Hit Points equal to the total."]
+SPECIES = {
+ "Aasimar (Fernian)": {"size": "Medium or Small", "speed": 30, "dark": 60, "type": "Humanoid", "spAb": "choose", "spAbTrait": "Flame Bearer",
+   "traits": [DV60,
+              ["Fernian Resistance", "Resistance to Fire damage and Necrotic damage."],
+              AAS_HEAL,
+              ["Flame Bearer", "You know Produce Flame. Intelligence, Wisdom or Charisma is the spell ability, chosen with the species."],
+              ["Celestial Revelation", "From level 3, as a Bonus Action, transform for 1 minute or until you end it (no action). Pick Heavenly Wings, Inner Radiance or Necrotic Shroud each time. After you transform, finish a Long Rest to do so again. Once on each of your turns during the form, add extra damage equal to your Proficiency Bonus when you damage a target with an attack or spell. It is Necrotic for Necrotic Shroud and Radiant for the other two. **Heavenly Wings.** Spectral wings give you a Fly Speed equal to your Speed. **Inner Radiance.** You shed Bright Light 10 feet out and Dim Light 10 feet beyond. At the end of each of your turns, creatures within 10 feet take Radiant damage equal to your Proficiency Bonus. **Necrotic Shroud.** Creatures within 10 feet that are not your allies make a Charisma save (DC 8 + Charisma modifier + Proficiency Bonus) or become Frightened until the end of your next turn."]],
+   "hb": "EE24"},
+ "Aasimar (Mabaran)": {"size": "Medium or Small", "speed": 30, "dark": 60, "type": "Humanoid", "spAb": "choose", "spAbTrait": "Herald of Death",
+   "traits": [DV60, AAS_RES, AAS_HEAL,
+              ["Herald of Death", "You know Toll the Dead. Intelligence, Wisdom or Charisma is the spell ability, chosen with the species."],
+              ["Celestial Revelation", "From level 3, as a Bonus Action, transform for 1 minute or until you end it (no action). Pick Heavenly Wings, Inner Darkness or Necrotic Shroud each time. After you transform, finish a Long Rest to do so again. Once on each of your turns during the form, add extra damage equal to your Proficiency Bonus when you damage a target with an attack or spell. The source lists it as Necrotic for Necrotic Shroud and Radiant for Heavenly Wings and Inner Darkness. **Heavenly Wings.** Spectral wings give you a Fly Speed equal to your Speed. **Inner Darkness.** You drain light and life into a shroud of shadow. Bright Light within 20 feet becomes Dim Light. At the end of each of your turns, creatures within 10 feet take Necrotic damage equal to your Proficiency Bonus. **Necrotic Shroud.** Your eyes turn to pools of darkness and flightless wings appear. Creatures within 10 feet that are not your allies make a Charisma save (DC 8 + Charisma modifier + Proficiency Bonus) or become Frightened until the end of your next turn."]],
+   "hb": "EE24"},
+ "Dhakaani Ghaal'dar (Hobgoblin)": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid",
+   "skillPick": {"n": 2, "from": ["Athletics", "History", "Intimidation", "Performance"], "label": "War and Peace"},
+   "traits": [DV60,
+              ["Discipline", "Advantage on saving throws to avoid or end the Charmed condition."],
+              ["Strength in Unity", "When you fail a D20 Test, add a bonus to the roll equal to the number of allies you can see within 30 feet (maximum +5). After you use this, finish a Short or Long Rest to do so again."],
+              ["War and Peace", "Proficiency in two of these skills: Athletics, History, Intimidation, Performance."]],
+   "hb": "EE24"},
+ "Dhakaani Golin'dar (Goblin)": {"size": "Small", "speed": 35, "dark": 60, "type": "Humanoid",
+   "traits": [DV60,
+              ["Discipline", "Advantage on saving throws to avoid or end the Charmed condition."],
+              ["Naturally Stealthy", "You can take the Hide action when the only thing obscuring you is a creature at least one size larger than you."],
+              ["Nimbleness", "You can move through the space of a creature one size larger than you, but you cannot stop there."]],
+   "hb": "EE24"},
+ "Dhakaani Guul'dar (Bugbear)": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid",
+   "traits": [DV60,
+              ["Brave", "Advantage on saving throws to avoid or end the Frightened condition."],
+              ["Long-Limbed", "When you make a melee attack on your turn, your reach for it is 5 feet greater."],
+              ["Powerful Build", "Advantage on ability checks to end the Grappled condition. You count as one size larger for carrying capacity."],
+              ["Stand by the Strong", "When an ally within 30 feet who can see you fails a saving throw to avoid or end the Frightened condition, use your Reaction to let them reroll it."]],
+   "hb": "EE24"},
+ "Gnoll": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid",
+   "skillPick": {"n": 1, "from": SKILLS3, "label": "Hunter's Senses"},
+   "attacks": [{"n": "Bite", "die": "1d6", "type": "Piercing", "range": "5 ft", "ab": "STR", "note": "Your teeth are natural weapons. A Bite hit deals Piercing damage in place of the normal Bludgeoning damage of an Unarmed Strike."}],
+   "traits": [DV60,
+              ["Bite", "Your teeth are natural weapons you can use for Unarmed Strikes. On a hit they deal 1d6 + Strength modifier Piercing damage instead of the normal Bludgeoning."],
+              ["Hunter's Senses", "Proficiency in Perception, Stealth or Survival."],
+              ["Rampage", "When you use your Bite or reduce a creature to 0 Hit Points with an attack, take a Bonus Action to move up to half your Speed and make one attack with a weapon or an Unarmed Strike using your Bite."]],
+   "hb": "EE24"},
+ "Jhorgun'taal (Half-Orc)": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid", "featPick": "origin",
+   "traits": [DV60,
+              ["Relentless Endurance", "When reduced to 0 Hit Points but not killed outright, drop to 1 Hit Point instead. After you use this, finish a Long Rest to do so again."],
+              ["Versatile", "You gain an Origin feat of your choice."]],
+   "hb": "EE24"},
+ "Kalamer Landwalker (Merfolk)": {"size": "Medium", "speed": 10, "dark": 60, "type": "Elemental", "fx": {"moves": {"swim": 40}},
+   "skillPick": {"n": 1, "from": ["Nature", "Performance", "Survival"], "label": "Karakala Lore"},
+   "traits": [DV60,
+              ["Amphibious", "You can breathe air and water."],
+              ["Blessing of the Sea", "You have a merfolk form (Speed 10 ft, Swim Speed 40 ft) and a landwalker form, where your tail splits into legs. As a Magic action, change from merfolk to landwalker. In landwalker form your Speed rises by 20 feet and your Swim Speed is 0. You stay in that form until you use a Magic action to return."],
+              ["Karakala Lore", "Proficiency in Nature, Performance or Survival."]],
+   "hb": "EE24"},
+ "Ruinbound": {"size": "Medium or Small", "speed": 30, "dark": 120, "type": "Humanoid", "spAb": "choose", "spAbTrait": "Personal Symbiont",
+   "lin": {"label": "Symbiont Cantrip", "opts": ["Acid Splash", "Guidance (self only)", "Light", "Mage Hand", "Mind Sliver", "Poison Spray", "Resistance (self only)", "Shocking Grasp", "Thorn Whip"]},
+   "traits": [DV120,
+              ["Personal Symbiont", "An alien entity is part of your body and cannot be removed. It uses a minor power for you. Pick one cantrip: Acid Splash, Guidance (self only), Light, Mage Hand, Mind Sliver, Poison Spray, Resistance (self only), Shocking Grasp or Thorn Whip. You can change it after a Long Rest. Intelligence, Wisdom or Charisma is the spell ability, chosen with the species."],
+              ["Symbiont Mastery", "One magic item with the Symbiotic Nature property does not count against your attunement limit. After a Long Rest you can end attunement to any item with that property, ignoring any need for Remove Curse or similar magic."],
+              ["Unnatural Resilience", "Resistance to Poison damage and Advantage on saving throws to avoid or end the Poisoned condition."],
+              ["Ruinbound Mutations", "Pick or roll a d8 for a visible quirk. 1 Unnatural Hair. 2 Unusual Skin. 3 Aberrant Eyes. 4 Strange Appetites. 5 Living Tattoos. 6 Ageless. 7 Inexplicable Hearing. 8 Extra Joints."]],
+   "hb": "EE24"},
+ "Sahuagin": {"size": "Medium", "speed": 30, "dark": 120, "type": "Humanoid", "fx": {"moves": {"swim": "walk"}}, "natAc": {"base": 12, "ab": "DEX"},
+   "traits": [DV120,
+              ["Swift Swimmer", "Swim Speed equal to your Speed."],
+              ["Blood Frenzy", "Bonus Action: enter a frenzy until the start of your next turn. You have Advantage on attack rolls against creatures that lack some of their Hit Points. Uses equal your Proficiency Bonus per Long Rest."],
+              ["Natural Armor", "With no armor your base AC is 12 + Dexterity modifier. A Shield still works with it."],
+              ["Limited Amphibiousness", "You breathe air and water, but you must be submerged at least once every 4 hours or you suffocate."]],
+   "hb": "EE24"},
+}
+LU = [
+ {"src": "species", "owner": "Aasimar (Fernian)", "feature": "Healing Hands", "n": "Healing Hands", "lvl": 1, "max": 1, "reset": "long", "tag": "Magic action"},
+ {"src": "species", "owner": "Aasimar (Fernian)", "feature": "Celestial Revelation", "n": "Celestial Revelation", "lvl": 3, "max": 1, "reset": "long", "tag": "Bonus Action"},
+ {"src": "species", "owner": "Aasimar (Mabaran)", "feature": "Healing Hands", "n": "Healing Hands", "lvl": 1, "max": 1, "reset": "long", "tag": "Magic action"},
+ {"src": "species", "owner": "Aasimar (Mabaran)", "feature": "Celestial Revelation", "n": "Celestial Revelation", "lvl": 3, "max": 1, "reset": "long", "tag": "Bonus Action"},
+ {"src": "species", "owner": "Dhakaani Ghaal'dar (Hobgoblin)", "feature": "Strength in Unity", "n": "Strength in Unity", "lvl": 1, "max": 1, "reset": "short", "tag": "Short or Long Rest"},
+ {"src": "species", "owner": "Jhorgun'taal (Half-Orc)", "feature": "Relentless Endurance", "n": "Relentless Endurance", "lvl": 1, "max": 1, "reset": "long", "tag": "Special"},
+ {"src": "species", "owner": "Sahuagin", "feature": "Blood Frenzy", "n": "Blood Frenzy", "lvl": 1, "max": "pb", "reset": "long", "tag": "Bonus Action"},
+]
+ACTS = {
+ "sp|Aasimar (Fernian)|Healing Hands": [["action", "", "Healing Hands"]],
+ "sp|Aasimar (Fernian)|Celestial Revelation": [["bonus", "", "Celestial Revelation"]],
+ "sp|Aasimar (Mabaran)|Healing Hands": [["action", "", "Healing Hands"]],
+ "sp|Aasimar (Mabaran)|Celestial Revelation": [["bonus", "", "Celestial Revelation"]],
+ "sp|Dhakaani Guul'dar (Bugbear)|Stand by the Strong": [["reaction", "", "Stand by the Strong"]],
+ "sp|Gnoll|Rampage": [["bonus", "", "Rampage"]],
+ "sp|Kalamer Landwalker (Merfolk)|Blessing of the Sea": [["action", "", "Blessing of the Sea"]],
+ "sp|Sahuagin|Blood Frenzy": [["bonus", "", "Blood Frenzy"]],
+}
+SP_AUTO = {
+ "Aasimar (Fernian)": {"": [[1, "Produce Flame"]]},
+ "Aasimar (Mabaran)": {"": [[1, "Toll the Dead"]]},
+ "Ruinbound": {"Acid Splash": [[1, "Acid Splash"]], "Guidance": [[1, "Guidance"]], "Light": [[1, "Light"]], "Mage Hand": [[1, "Mage Hand"]], "Mind Sliver": [[1, "Mind Sliver"]],
+               "Poison Spray": [[1, "Poison Spray"]], "Resistance": [[1, "Resistance"]], "Shocking Grasp": [[1, "Shocking Grasp"]], "Thorn Whip": [[1, "Thorn Whip"]]},
+}
 DEF = {}
