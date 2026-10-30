@@ -70,6 +70,28 @@ Syarat G6 berlaku: tanpa AI berbayar, paket gratis, ada tes, dicatat di rencana 
 
 Urutan saran: N34 dan N35 bersama TG0 (murah dan menentukan semuanya), lalu N33, N37, N38, N39 bersama TG2, N41 bersama TG3, N36 bersama TG7, N40 hanya bila N32 terbukti buram.
 
+## 5b. Pengembangan untuk seluruh app (diusulkan 2026-10-30 06.59 WIB, belum dibuat)
+Ditujukan ke sheet, builder, dan Library, bukan hanya Training Ground. Sudah dicek ke rencana yang ada supaya tidak dobel: N3 (struk angka), N11 (Build DNA), N12 (gabung per bagian), N19 (peta angka), N6 (fuzzer) sudah tercatat, jadi tidak diulang. Nomor N42 sampai N47 baru dari sesi ini, bisa perlu disesuaikan bila sesi lain memakai nomor yang sama.
+
+Fakta app yang diukur dari kode hari ini:
+| Temuan | Angka |
+|---|---|
+| Pencarian di Library, daftar spell, Manage Spells, perintah Home, dan Creatures | Semua memakai pencocokan potongan teks (`indexOf`). Tidak ada toleransi salah ketik dan tidak ada peringkat |
+| Pemanggilan `requestAnimationFrame` | 21 di `src/fx`, 18 di `src/app` (jumlah titik panggil, bukan jumlah loop yang berjalan) |
+| `setInterval` | 8 titik panggil |
+| Ikon item | 676 berkas, spell 199 (menjadi 455 bila ikon Codex masuk) |
+
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N42 | Kode Hero (isi nyata untuk N11) | Berbagi build lewat file terlalu berat, dan N11 belum punya format | Pilihan builder dipadatkan per palet (video Minecraft): versi 1 byte, class 4 bit, subclass 6, species 6, background 6, level 5, enam skor 5 bit, skill 18 bit, daftar spell dan perlengkapan sebagai indeks. Perkiraan 25 sampai 70 byte, ditulis Base32 tanpa huruf membingungkan, dikelompokkan lima karakter, juga jadi QR. Tabel id append-only dan dijaga alat build: id yang dihapus atau diurutkan ulang membuat build gagal, jadi kode lama tetap terbaca. CRC 8 bit mendeteksi salah ketik. Impor membuka pratinjau N16 sebelum Apply | 10.000 build acak dari fuzzer N6: encode lalu decode sama persis. Kode versi lama tetap terbaca setelah data bertambah. Satu karakter diubah: ditolak dengan pesan jelas |
+| N43 | Efek terlihat | Pemain tidak tahu pilihan mana mengubah angka mana (pelajaran Door Problem: satu fitur menyentuh banyak sistem) | Saat build, jalankan mesin derivasi dengan dan tanpa tiap item, feat, dan fighting style pada karakter acuan. Selisih angka (AC, Speed, serangan, save, Initiative) disimpan sebagai berkas kecil. Library dan langkah builder menampilkan "Changes: AC, Stealth" di tiap entri. Cakupan awal hanya fitur yang bisa dinyalakan sendiri | Kasus tahu: Shield menambah AC, armor berat mengubah Speed dan Stealth. Sebuah entri yang teksnya menyebut angka tetapi selisihnya kosong dilaporkan sebagai kemungkinan bug data |
+| N44 | Layar diam, nol kerja | 39 titik `requestAnimationFrame` dan 8 `setInterval` mungkin masih berjalan saat layar diam, boros baterai | Ukur dulu: Playwright dengan CDP (`Performance.getMetrics`) selama 10 detik diam di tiap layar utama, pada dua ukuran. Daftar setiap loop dan animasi yang masih hidup (`document.getAnimations()` dan pencacah rAF). Perbaikan: berhenti saat tab tersembunyi, di luar layar (`IntersectionObserver`), dan saat tidak ada perubahan. Target ditetapkan setelah ada angka | Waktu skrip 10 detik diam sebelum dan sesudah. Tampilan sama (snapshot 74 layar) |
+| N45 | Cari yang memaafkan salah ketik | "firebal" tidak menemukan Fireball | Satu fungsi cari bersama: normalisasi huruf, pecah kata, peringkat (awalan kata, potongan teks, kemiripan trigram, jarak sunting 1 untuk kata 4 huruf ke atas dan 2 untuk 8 huruf ke atas). Indeks dibuat sekali saat muat. Penyorotan mengikuti hasil | 200 kueri salah ketik buatan dari nama asli: nama benar masuk tiga teratas minimal 95 persen. Kueri tepat tetap mengembalikan hasil yang sama di urutan atas |
+| N46 | Ambient dari rumus | Efek suasana Home (kedip lilin, debu melayang, kilau air) lewat video atau gambar berat | Jumlah dua sampai tiga sinus dengan rasio frekuensi tak rasional, hampir tidak pernah tampak berulang (pelajaran gelombang Gerstner). Satu loop menulis satu variabel CSS. Berhenti di luar layar dan mengikuti `fx_tier`. Tanpa berkas gambar. Bergantung pada N44 | Biaya per frame dan perilaku per tingkat efek |
+| N47 | Daftar panjang ringan | Library 676 item dan spell 455 membuat banyak elemen DOM di HP lemah | Ukur jumlah elemen dan waktu render pertama. Lalu `content-visibility: auto` dengan `contain-intrinsic-size`, dan render bertahap (50 baris, sisanya saat digulir). Dukungan `content-visibility` 94,85 persen. Cadangan: render semua | Jumlah elemen dan waktu render dengan CPU dilambatkan, sebelum dan sesudah |
+
+Urutan saran: N44 dan N47 mulai dengan pengukuran saja (tanpa mengubah tampilan), N45 dan N42 memberi nilai terbesar bagi pemain, N43 paling banyak pekerjaan, N46 terakhir.
+
 ## 6. Risiko
 | Risiko | Penanganan |
 |---|---|
