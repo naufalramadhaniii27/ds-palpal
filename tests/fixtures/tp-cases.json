@@ -1606,5 +1606,71 @@
   ],
   "lu": [],
   "tpcls": 1
+ },
+ {
+  "src": "tsae",
+  "cls": "Artificer",
+  "sub": "Forceforger",
+  "level": 20,
+  "feats": [
+   "Forceforger Spells",
+   "Tools of the Trade",
+   "Field Projector",
+   "Force Panel",
+   "Forceful Shove"
+  ],
+  "lu": [
+   "Field Projector (free spell)",
+   "Flyrokinetic Master"
+  ]
+ },
+ {
+  "src": "tsae",
+  "cls": "Artificer",
+  "sub": "Magneticist",
+  "level": 20,
+  "feats": [
+   "Magneticist Spells",
+   "Tools of the Trade",
+   "Magnetic Manipulator",
+   "Metal Slinger",
+   "Extra Attack"
+  ],
+  "lu": [
+   "Metallic Control"
+  ]
+ },
+ {
+  "src": "tsae",
+  "cls": "Artificer",
+  "sub": "Mutagenist",
+  "level": 20,
+  "feats": [
+   "Mutagenist Spells",
+   "Tools of the Trade",
+   "Mutagenic Concoctions",
+   "Extra Attack",
+   "Body Modifications"
+  ],
+  "lu": [
+   "Mutagenic Concoctions (free spell)"
+  ]
+ },
+ {
+  "src": "tsae",
+  "cls": "Artificer",
+  "sub": "Portalweaver",
+  "level": 20,
+  "feats": [
+   "Portalweaver Spells",
+   "Tools of the Trade",
+   "Portal Device",
+   "Portals",
+   "Mini Portals"
+  ],
+  "lu": [
+   "Portal Device (free spell)",
+   "Portals"
+  ]
  }
 ]
