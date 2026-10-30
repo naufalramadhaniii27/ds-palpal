@@ -4971,4 +4971,9 @@ art/batch/icons/features/subclass/circle-of-the-land/lands-stride.png
 art/batch/icons/features/subclass/circle-of-the-land/natural-recovery.png
 art/batch/icons/features/subclass/circle-of-the-land/natures-sanctuary.png
 art/batch/icons/features/subclass/circle-of-the-land/natures-ward.png
+art/batch/icons/features/subclass/circle-of-the-moon/circle-forms.png
+art/batch/icons/features/subclass/circle-of-the-moon/circle-of-the-moon-spells.png
+art/batch/icons/features/subclass/circle-of-the-moon/combat-wild-shape.png
+art/batch/icons/features/subclass/circle-of-the-moon/elemental-wild-shape.png
+art/batch/icons/features/subclass/circle-of-the-moon/improved-circle-forms.png
 
