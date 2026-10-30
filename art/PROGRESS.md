@@ -4862,3 +4862,8 @@ art/batch/icons/rules/maneuvers/battle-master-maneuver-commanding-presence.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-disarming-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-distracting-strike.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-evasive-footwork.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-feinting-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-goading-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-lunging-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-maneuvering-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-menacing-attack.png
