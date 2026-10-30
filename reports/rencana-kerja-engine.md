@@ -196,3 +196,27 @@ Dasar temuan kode (dicek 2026-10-30): PDF dibuat dari tangkapan layar html2canva
 
 Urutan saran: N88 dan N82 (kecil, lindungi data), N86 dan N87 (ukur dan aksesibilitas), N84, N85, N83, N81, N80, N89.
 Belum terverifikasi: apakah html2canvas bisa dilepas tanpa selisih tampilan (N80 perlu uji banding), dan apakah SHA-256 WebCrypto jalan di semua HP target (dukungan luas, belum diukur di sini).
+
+## 3e. Gelombang kelima: N90 sampai N98 (2026-10-30, dari riset jam 1 dan 2)
+Status: rancangan, dengan prototipe di tools/research/ (di luar app). Tidak ada kode app diubah. Bukti ada di reports/laporan-riset-1.md dan laporan-riset-2.md.
+
+| Kode | Nama | Masalah yang terukur | Cara kerja | Prototipe atau bukti | Status |
+|---|---|---|---|---|---|
+| N90 | Pembersih teks berbasis DOM | Kebijakan Trusted Types memotong teks sah ("once = 1" menjadi hilang). 5 dari 21 teks sah rusak, 1 dari 25 payload lolos ke eksekusi | Urai dengan template, buang elemen dan atribut berbahaya dari DOM. Butuh satu kebijakan bernama kedua (hanya mengembalikan string) di daftar trusted-types CSP | tools/research/sanitize-proto.py: 0 teks sah rusak, 0 payload jalan | Permintaan di requests.md (Logic) |
+| N80 | PDF vektor dari data | PDF sekarang 1,38 MB, 6,8 detik, 0 teks bisa dipilih | Penulis PDF kecil membaca hasil derive(). Font bawaan PDF | tools/research/pdf-proto.mjs: 4.515 byte, 8 ms, 4.764 karakter bisa dipilih. Tata letak sederhana, belum sama dengan sheet cetak | Rancangan, siap dikerjakan |
+| N19 | Peta angka dari catatan asal | Pemain tidak tahu ability mana memengaruhi angka mana | Graf dari breakdown B yang sudah ada. Kode derive tidak berubah | Uji kejujuran: 60 karakter acak x 6 ability, 2.134 angka berubah, 2.134 dijelaskan breakdown (0 terlewat), 32 dijelaskan tapi tidak berubah (batas seperti DEX maksimal 2) | Rancangan, data siap |
+| N92 | Tes metamorfik resmi | Sifat baru baru berupa skrip riset | tests/metamorphic.py dari meta.py dan meta2.py | 800 karakter, 0 pelanggaran, kanari aktif | Siap dikerjakan |
+| N93 | Anggaran muat di CPU 4x | Tidak ada angka muat yang dikunci | Batas dari angka 2026-10-30: Home terlihat 1,5 detik, DOM siap 2,7 detik, terblokir 1,8 detik | tools/research/load.py, tti.py, trace.py | Rancangan |
+| N91 | Muat berlapis | Memisahkan 5,2 MB blok tunda mempercepat DOM siap 3 kali, tapi cat pertama hampir sama | Pecah build (pilihan B di N58) dan cangkang Home kecil. Ukur lagi dengan N93 | Percobaan batas atas di laporan 1 | Menunggu keputusan A atau B |
+| N94 | Korpus teks sah | Tidak ada uji bahwa teks pemain tampil utuh | 100 teks di tiap kolom, tampil harus sama | 21 teks di prototipe N90 sebagai awal | Rancangan |
+| N95 | Uji kejujuran struk angka | Penjelasan bisa tertinggal dari perhitungan saat aturan baru ditambah | tests/explain_truth.py dari truth2.py, masuk regresi. Gagal bila angka berubah tanpa penjelasan | 2.134 dari 2.134 | Siap dikerjakan |
+| N96 | Build direproduksi | Tidak ada tes yang menjaga hash build | tests/repro_build.py: build dua kali, hash harus sama dan sama dengan index.html di repo | Sudah benar hari ini (f9c70004cebd5f74 tiga kali) | Siap dikerjakan |
+| N97 | Peta batas jaringan | Tidak ada tes bahwa sheet tidak memanggil jaringan | tests/net_zero.py: 0 permintaan eksternal di alur sheet, builder, Learn, Training Ground | 34 same-origin, 0 eksternal di alur sheet | Siap dikerjakan |
+| N98 | Layar pemulihan teruji | Bila kunci penyimpanan rusak, app membuka karakter kosong tanpa layar pemulihan di uji saya | Perlu penjelasan pemilik bagian Logic: apakah BAD seharusnya memunculkan layar pemulihan di jalur ini | tools/research/corrupt.py, hasil belum pasti | Pertanyaan terbuka |
+
+Dikoreksi oleh bukti:
+| Item | Koreksi |
+|---|---|
+| N53 pekerja untuk derive | Tidak perlu. derive 0,5 sampai 0,85 ms, maksimum 7,7 ms di CPU 6x pelan |
+| Klaim "muat awal kelemahan terbesar" | Home terlihat 1,5 detik di CPU 4x. Yang berat adalah thread terblokir 1,8 detik sesudahnya |
+| Kebocoran memori | Tidak ditemukan. 10 putaran: node 5,3 sampai 5,7 ribu, heap 15 sampai 17 MB, pindah tab 30 sampai 60 ms |
