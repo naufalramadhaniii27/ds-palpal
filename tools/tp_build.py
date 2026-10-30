@@ -18,7 +18,7 @@ BOOKS = [
  {"id": "tdcg", "file": "Matthew Mercer; TalDorei Campaign Guide.json", "tag": "TDCG", "name": "TalDorei Campaign Guide",
   "pub": "Matthew Mercer", "ed": "2014", "sub": None, "bg": "tdcg_bg", "feat": "tdcg_feat", "species": "tdcg_species", "item": "tdcg_item", "dup": 1},
  {"id": "tvss", "file": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "tag": "VSS24", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2024",
-  "sub": None, "feat": "tvss_feat", "species": "tvss_species"},
+  "sub": "tvss_sub", "feat": "tvss_feat", "species": "tvss_species"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []

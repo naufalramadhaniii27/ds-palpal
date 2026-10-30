@@ -219,5 +219,578 @@
    "Wicked Awareness"
   ],
   "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Chronomancer",
+  "level": 14,
+  "feats": [
+   "Chronomancy Savant",
+   "Chronoshift",
+   "Retroactive Spell",
+   "Lag Spell",
+   "Time Loop"
+  ],
+  "lu": [
+   "Lag Spell",
+   "Time Loop"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Familiar Master",
+  "level": 14,
+  "feats": [
+   "Beckon Familiar",
+   "Arcane Evolution",
+   "Servitor's Agility",
+   "Bolster Familiar",
+   "Planar Familiar"
+  ],
+  "lu": [
+   "Beckon Familiar",
+   "Bolster Familiar"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Fumaturge",
+  "level": 14,
+  "feats": [
+   "Fogcrafting",
+   "Smoke Animals",
+   "Gaseous Escape",
+   "Greater Fogcrafting",
+   "Smoke Mage"
+  ],
+  "lu": [
+   "Gaseous Escape",
+   "Smoke Mage"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Gastronomer",
+  "level": 14,
+  "feats": [
+   "Sous Chef",
+   "Monster Meal",
+   "Arcane Condiments",
+   "Heroic Snacks",
+   "Five-Star Condiments"
+  ],
+  "lu": [
+   "Sous Chef",
+   "Heroic Snacks"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Magic Missile Mage",
+  "level": 14,
+  "feats": [
+   "Magic Missile Savant",
+   "Versatile Missiles",
+   "Shield of Missiles",
+   "Giga-Missile"
+  ],
+  "lu": [
+   "Magic Missile (free)",
+   "Shield of Missiles",
+   "Giga-Missile"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Mystic Strategist",
+  "level": 14,
+  "feats": [
+   "Battle Tactics",
+   "Maneuver Options",
+   "Arcane Assessment",
+   "Spell Tactics",
+   "Supreme Stratagems"
+  ],
+  "lu": [
+   "Battle Dice",
+   "Arcane Assessment"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Protomancer",
+  "level": 14,
+  "feats": [
+   "Proto-Magic",
+   "Amnesia Surge",
+   "Vital Recovery",
+   "Mnemonic Concentration",
+   "Proto-Master"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Scroll Scribe",
+  "level": 14,
+  "feats": [
+   "Scrivener",
+   "Scribe Scroll",
+   "Arcane Revision",
+   "Warding Scrawl",
+   "Scroll Codex"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Somnomancer",
+  "level": 14,
+  "feats": [
+   "Somnambulist",
+   "Deep Sleep",
+   "Hypnotize",
+   "Lucid Dream",
+   "Nightmares"
+  ],
+  "lu": [
+   "Deep Sleep"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Tyromancer",
+  "level": 14,
+  "feats": [
+   "Cheese Magic",
+   "Ferment Spell",
+   "Legen-Dairy Resistance",
+   "Lactose Intolerance"
+  ],
+  "lu": [
+   "Cheese Magic",
+   "Ferment Spell",
+   "Legen-Dairy Resistance"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Universalist",
+  "level": 14,
+  "feats": [
+   "Arcane Excellence",
+   "Multidisciplinary Scholar",
+   "Universal Savant",
+   "Eidetic Memory",
+   "Spellwarp",
+   "Erudite Focus"
+  ],
+  "lu": [
+   "Eidetic Memory",
+   "Spellwarp"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Wizard",
+  "sub": "Wand Wizard",
+  "level": 14,
+  "feats": [
+   "Arcane Duelist",
+   "Craft Wands",
+   "Wand Slinger",
+   "Warding Shield",
+   "Remnant Recharge"
+  ],
+  "lu": [
+   "Wand Slinger",
+   "Warding Shield"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Bartending",
+  "level": 14,
+  "feats": [
+   "Bartender",
+   "Brew Cocktail",
+   "Hangover",
+   "Alcoholic Adventurers"
+  ],
+  "lu": [
+   "Hangover"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Birdsong",
+  "level": 14,
+  "feats": [
+   "Feathered Friends",
+   "Birdsong",
+   "Zephyr's Blessing",
+   "Chorus of the Sky"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Calligraphy",
+  "level": 14,
+  "feats": [
+   "Quill and Ink",
+   "Manuscript",
+   "Spell Inscription",
+   "Illuminated Spells"
+  ],
+  "lu": [
+   "Spell Inscription"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Cantors",
+  "level": 14,
+  "feats": [
+   "Chorus Leader",
+   "Healing Hymn",
+   "Minor Miracles",
+   "Song of Life"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Chronology",
+  "level": 14,
+  "feats": [
+   "Chronomantic Secrets",
+   "Retroactive Inspiration",
+   "Borrowed Time",
+   "Reorder Events"
+  ],
+  "lu": [
+   "Reorder Events"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Dirges",
+  "level": 14,
+  "feats": [
+   "Death's Friend",
+   "Dirge",
+   "Call of the Grave",
+   "Song of Sorrow"
+  ],
+  "lu": [
+   "Memento Mori",
+   "Call of the Grave"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Jesters",
+  "level": 14,
+  "feats": [
+   "Acrobatic Clown",
+   "Tumbling Taunt",
+   "Raconteur",
+   "Insult to Injury"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of the Mad God",
+  "level": 14,
+  "feats": [
+   "Outer Knowledge",
+   "Mad Melody",
+   "Frenzied Strings",
+   "Cacophonous Melody"
+  ],
+  "lu": [
+   "Frenzied Strings"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Masks",
+  "level": 14,
+  "feats": [
+   "Persona Masks",
+   "Virtuoso Skill",
+   "Master of Many Faces"
+  ],
+  "lu": [
+   "Virtuoso Skill"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Opera",
+  "level": 14,
+  "feats": [
+   "Operatic Inspiration",
+   "Vocalist",
+   "Heroic Ballad",
+   "Overture"
+  ],
+  "lu": [
+   "Operatic Inspiration",
+   "Heroic Ballad"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Origami",
+  "level": 14,
+  "feats": [
+   "Origami Familiar",
+   "Paper Trinket",
+   "Lucky Crane",
+   "Origami Fortune"
+  ],
+  "lu": [
+   "Lucky Crane",
+   "Origami Fortune"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Paint",
+  "level": 14,
+  "feats": [
+   "Painter",
+   "Colorful Casting",
+   "Marvelous Pigments",
+   "Master Illustrator"
+  ],
+  "lu": [
+   "Marvelous Pigments",
+   "Master Illustrator"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Bard",
+  "sub": "College of Sculpture",
+  "level": 14,
+  "feats": [
+   "Sculpted Golem",
+   "Golem's Bulwark",
+   "Sculpted Sentinel"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Abomination",
+  "level": 14,
+  "feats": [
+   "Abominable Transformation",
+   "Bloodcurdling Howl",
+   "Monstrous Brutality",
+   "Ravage"
+  ],
+  "lu": [
+   "Bloodcurdling Howl",
+   "Ravage"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Battlemind",
+  "level": 14,
+  "feats": [
+   "Psionic Power",
+   "Psychic Assault",
+   "Unbreakable Mind",
+   "Psionic Redirection"
+  ],
+  "lu": [
+   "Psionic Energy Dice"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Dad",
+  "level": 14,
+  "feats": [
+   "Paternal Proficiencies",
+   "Not Angry, Just Disappointed",
+   "Dad Jokes",
+   "Don't Need to Ask For Directions",
+   "Go to Your Room"
+  ],
+  "lu": [
+   "Pretty Sure It's Over Here",
+   "Go to Your Room"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Drifter",
+  "level": 14,
+  "feats": [
+   "Lone Wolf",
+   "Break Free",
+   "Crowd Brawler",
+   "Relentless Aggression"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Fin",
+  "level": 14,
+  "feats": [
+   "Aquatic Adaptation",
+   "Frenzied Bite",
+   "Blood Sense",
+   "Feeding Frenzy",
+   "Blood in the Water"
+  ],
+  "lu": [
+   "Frenzied Bite",
+   "Blood in the Water"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Frostrager",
+  "level": 14,
+  "feats": [
+   "Cold Resistance",
+   "Frostrage",
+   "Icicle Throw",
+   "Abominable",
+   "Frigid Wind"
+  ],
+  "lu": [
+   "Icicle Throw"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of Heavy Metal",
+  "level": 14,
+  "feats": [
+   "Rocker",
+   "Solo Shredding",
+   "Head Banging",
+   "Smash Hit",
+   "Up to Eleven"
+  ],
+  "lu": [
+   "Up to Eleven"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of Spellfury",
+  "level": 14,
+  "feats": [
+   "Mystical Physicality",
+   "Spellcasting",
+   "Arcane Strike",
+   "Supernatural Exploits",
+   "Eldritch Rampage"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Slasher",
+  "level": 14,
+  "feats": [
+   "Mark of the Slasher",
+   "Execution",
+   "Menacing Stare",
+   "Blood-Drunk",
+   "Killing Spree"
+  ],
+  "lu": [
+   "Killing Spree"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Swamp",
+  "level": 14,
+  "feats": [
+   "Bogborne",
+   "Swamp Thing",
+   "Primal Magic",
+   "Muck and Mire",
+   "Crushing Roots"
+  ],
+  "lu": [
+   "Swamp Thing",
+   "Primal Magic"
+  ]
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of Tranquility",
+  "level": 14,
+  "feats": [
+   "Battle Trance",
+   "Mantra",
+   "Serene Strike",
+   "Reactive"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tvss",
+  "cls": "Barbarian",
+  "sub": "Path of the Muscle Wizard",
+  "level": 14,
+  "feats": [
+   "Unarguable Wizardry",
+   "\"Cantrips\"",
+   "\"Spells\"",
+   "Magic Resistance",
+   "I Cast Fist"
+  ],
+  "lu": [
+   "Wizard \"Spells\""
+  ]
  }
 ]
