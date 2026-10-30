@@ -311,7 +311,7 @@ if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
 if(Object.keys(WPW).length){window.WXW=window.WXW||{};window.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 '''
 
-SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation"}
+SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation", "CLOCK": "Clockwork", "VOID": "Void"}
 UNIT = {"action": "Action", "bonus": "Bonus Action", "reaction": "Reaction"}
 
 def _dist(r):
@@ -356,7 +356,11 @@ def spell_records(bk, data, M):
     full = {}
     for n in sorted(T):
         if n not in src: GAP.append((bk["tag"], "overlay", "spell " + n, "overlay text without a source spell")); continue
-        r = spell_meta(src[n]); r[0] = alias(bk, n); r.append(T[n][0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = T[n][1]
+        tx = T[n]
+        if isinstance(tx, str):
+            import re as _re
+            m_ = _re.match(r"(.{40,200}?[.!?])(\s|$)", tx.replace("**", "")); tx = [(m_.group(1) if m_ else tx[:200]).strip(), tx]
+        r = spell_meta(src[n]); r[0] = alias(bk, n); r.append(tx[0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = tx[1]
     for n in sorted(set(src) - set(T)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
     return rows, full
 

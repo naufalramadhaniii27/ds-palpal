@@ -1,5 +1,152 @@
-SPECIES = {}
-LU = []
-ACTS = {}
-SP_AUTO = {}
-DEF = {}
+# Own-wording species of the Humblewood Campaign Setting (2014 rules), shape of src/data/wotc10-species-2014.js. Subraces are lineage options of the parent species.
+GLIDE = ["Glide", "While falling you can use your Reaction to spread your arms and slow your fall to 60 feet per round. You take no fall damage when you land. If you fall at least 10 feet this way, you can also fly up to your Speed in one horizontal direction you choose, but not upward, and end your move where you land. You cannot glide while holding a heavy weapon or a shield, wearing Heavy armor, or while encumbered. You may drop held items as part of the Reaction."]
+FLAP = ["Wing Flap", "As a Bonus Action you launch yourself upward a distance equal to half your Speed. You can combine this with a normal jump but not while gliding."]
+TALONS = ["Talons", "Your claws make Unarmed Strikes that deal 1d4 Piercing damage. You have Advantage on Strength (Athletics) checks to climb any surface your talons can grip."]
+DV60 = ["Darkvision", "Darkvision out to 60 ft."]
+def ex(*keep):
+    return [k for k in ("STR", "DEX", "CON", "INT", "WIS", "CHA") if k not in keep]
+def talon(n="Talons"):
+    return [{"n": n, "die": "1d4", "type": "Piercing", "range": "5 ft", "ab": "STR", "note": "Your claws are natural weapons. Piercing damage replaces the normal Bludgeoning damage of an Unarmed Strike."}]
+SPECIES = {
+ "Cervan": {"size": "Medium", "speed": 30, "dark": 0, "type": "Humanoid",
+   "skillPick": {"n": 1, "from": ["Athletics", "Medicine", "Nature", "Survival"], "label": "Practical"},
+   "lin": {"label": "Cervan Subrace", "opts": ["Grove", "Pronghorn"]},
+   "linFx": {"Grove": {"speedSet": 35}},
+   "linText": {
+     "Grove": "Dexterity rises by 1. Swift: your Speed is 35 feet. Standing Leap: your long jump is 30 feet and your high jump is 15 feet, with or without a running start. Nimble Step: Opportunity Attacks against you have Disadvantage.",
+     "Pronghorn": "Strength rises by 1. Robust Build: you count as one size larger for carrying, pushing, dragging and lifting. Antlers: your Unarmed Strike gores for 1d6 + Strength modifier Piercing damage. If you move at least 20 feet straight toward a target and then use a Bonus Action to charge, the hit deals an extra 1d6 Piercing damage. A Large or smaller target makes a Strength save (DC 8 + Proficiency Bonus + Strength modifier) or is pushed 10 feet away into a space you choose."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("DEX", "STR")},
+   "traits": [["Practical", "Proficiency in Athletics, Medicine, Nature or Survival."],
+              ["Surge of Vigor", "When one attack deals more than half of your current Hit Points in damage (even if it drops you to 0), you regain 1d12 + Constitution modifier Hit Points right away. Finish a Long Rest to use this again."],
+              ["Cervan Subrace", "Pick Grove or Pronghorn."],
+              ["Languages", "You speak, read and write Birdfolk, and speak Cervan, which has no written form."]],
+   "hb": "HWCS", "asi": {"CON": 2}, "lgf": ["Birdfolk", "Cervan"]},
+ "Corvum": {"size": "Medium", "speed": 30, "dark": 0, "type": "Humanoid",
+   "skillPick": {"n": 1, "from": ["Arcana", "History", "Nature", "Religion"], "label": "Learned"},
+   "lin": {"label": "Corvum Subrace", "opts": ["Dusk", "Kindled"]},
+   "linText": {
+     "Dusk": "Dexterity rises by 1. Skulker: Advantage on Dexterity (Stealth) checks in dim light or darkness. Street Smarts: proficiency in Insight.",
+     "Kindled": "Charisma rises by 1. Convincing: proficiency in Deception or Persuasion, and Advantage on Charisma checks to convince someone of expert knowledge in the skill you took with Learned. Sharp Mind: you learn one more language and one tool of your choice, and you recall anything you saw or heard in the past month with perfect clarity."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("DEX", "CHA")},
+   "attacks": talon(),
+   "traits": [GLIDE, TALONS,
+              ["Learned", "Proficiency in Arcana, History, Nature or Religion."],
+              ["Appraising Eye", "As an Action, study an object to learn its magical properties, how to use or trigger them, and a fair market price. It strains your eyes, so finish a Short or Long Rest to use it again."],
+              ["Corvum Subrace", "Pick Dusk or Kindled."],
+              ["Languages", "You speak, read and write Birdfolk, and you understand Auran but cannot speak it naturally."]],
+   "hb": "HWCS", "asi": {"INT": 2}, "lgf": ["Birdfolk"]},
+ "Gallus": {"size": "Medium", "speed": 30, "dark": 0, "type": "Humanoid",
+   "toolPick": {"n": 1, "cats": ["art"], "label": "Of the People"},
+   "profs": {"weapons": "Simple weapons"},
+   "lin": {"label": "Gallus Subrace", "opts": ["Bright", "Huden"]},
+   "linText": {
+     "Bright": "Charisma rises by 1. Inspiring: as an Action, give words of advice or cheer to an ally who can see and hear you. The ally rolls a d4 and adds it to its next ability check, attack roll or saving throw. Understanding: proficiency in Insight.",
+     "Huden": "Dexterity rises by 1. One With the Wood: proficiency in Nature. Seedspeech: through speech and touch you share simple ideas with living plants and understand their simple replies. Plants sense temperature, touch and vibration, not sight."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("CHA", "DEX")},
+   "traits": [GLIDE, FLAP,
+              ["Communal", "On an Intelligence (History) check about the history of your people, culture or community, you count as proficient and add double your Proficiency Bonus."],
+              ["Militia Training", "Proficiency with Simple weapons."],
+              ["Of the People", "Proficiency with Brewer's Supplies, Carpenter's Tools or Smith's Tools (your choice)."],
+              ["Gallus Subrace", "Pick Bright or Huden."],
+              ["Languages", "You speak, read and write Birdfolk, and you understand Auran but cannot speak it naturally."]],
+   "hb": "HWCS", "asi": {"WIS": 2}, "lgf": ["Birdfolk"]},
+ "Hedge": {"size": "Small", "speed": 25, "dark": 0, "type": "Humanoid", "spAb": "CHA", "natAc": {"base": 14, "ab": "DEX"},
+   "fx": {"moves": {"burrow": 15}},
+   "traits": [["Natural Burrowers", "Burrow Speed 15 feet. You dig through soil with your claws but not through anything harder."],
+              ["Spiny Quills", "Your quills prevent you from wearing armor. Your base AC is 14 + Dexterity modifier. A Shield still works if you are proficient."],
+              ["Curl Up", "As an Action you curl up. You cannot move, attack or cast spells with Somatic components. Your base AC becomes 19 and you gain no Dexterity bonus to AC, though a Shield still works. A creature that misses you with a melee attack takes 2d4 Piercing damage. A creature that hits you knocks you Prone at the end of its turn. You can uncurl at any point on your turn."],
+              ["Forest Magic", "You know Druidcraft. You can cast Animal Messenger once as a level 2 spell and regain this after a Short or Long Rest. Charisma is the spellcasting ability."],
+              ["Speak With Bugs", "With sounds and gestures you share simple ideas with Beasts that are insects, spiders, worms and similar creatures of any size."],
+              ["Languages", "You speak, read and write Birdfolk and Hedge."]],
+   "hb": "HWCS", "asi": {"WIS": 1, "CHA": 2}, "lgf": ["Birdfolk", "Hedge"]},
+ "Jerbeen": {"size": "Small", "speed": 30, "dark": 0, "type": "Humanoid",
+   "traits": [["Standing Leap", "Your long jump is 30 feet and your high jump is 15 feet, with or without a running start."],
+              ["Nimbleness", "You can move through the space of any creature larger than you."],
+              ["Take Heart", "You have Advantage on Strength saves and on saves against the Frightened condition while within 5 feet of an ally you can see and hear who is not Frightened or Incapacitated."],
+              ["Team Tactics", "You can take the Help action as a Bonus Action."],
+              ["Languages", "You speak, read and write Birdfolk and Jerbeen."]],
+   "hb": "HWCS", "asi": {"DEX": 2, "CHA": 1}, "lgf": ["Birdfolk", "Jerbeen"]},
+ "Luma": {"size": "Small", "speed": 25, "dark": 0, "type": "Humanoid", "spAb": "CHA",
+   "fx": {"cantrip": "Sorcerer", "spAb": "CHA", "cantripLabel": "Luma cantrip", "cantripTrait": "Touched"},
+   "lin": {"label": "Luma Subrace", "opts": ["Sable", "Sera"]},
+   "linText": {
+     "Sable": "Constitution rises by 1. Hard to Read: creatures have Disadvantage on Wisdom (Insight) checks against you, and you have Advantage on Charisma (Deception) checks against creatures that are not lumas. Resilience: Advantage on saves against poison and Resistance to Poison damage.",
+     "Sera": "Wisdom rises by 1. Center of Attention: proficiency in Performance. Songbird: you can cast Charm Person once per Long Rest, without Somatic components. Charisma is the spellcasting ability."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("CON", "WIS")},
+   "traits": [GLIDE, FLAP,
+              ["Touched", "You know one Sorcerer cantrip. Charisma is its spellcasting ability."],
+              ["Fated", "You can reroll one attack roll, ability check or saving throw after you roll but before the result is decided. Finish a Long Rest to use this again."],
+              ["Luma Subrace", "Pick Sable or Sera."],
+              ["Languages", "You speak, read and write Birdfolk, and you understand Auran but cannot speak it naturally."]],
+   "hb": "HWCS", "asi": {"CHA": 2}, "lgf": ["Birdfolk"]},
+ "Mapach": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid", "fx": {"moves": {"climb": 20}},
+   "profs": {"tools": "Tinker's Tools"},
+   "traits": [DV60,
+              ["Expert Climbers", "Climb Speed 20 feet."],
+              ["Resilience", "Advantage on saves against poison and Resistance to Poison damage."],
+              ["Scroungecraft", "You are proficient with Tinker's Tools. In 10 minutes you can make a working tool or piece of adventuring gear worth 30 gp or less from materials nearby, and it can pass as a disguise if it is clothing. Tools and anything that would break on first use, such as caltrops or arrows, are useless after one use. Other items last 1 hour and then fall apart. With 8 hours of work started before it falls apart, you can make an item permanent. It then works as a normal item and looks professional only if you are proficient with the tools it needs. You can also repair broken gear, and the GM decides how long a repair holds. The GM can rule that the materials do not suit the item."],
+              ["Skulker", "Advantage on Stealth checks in dim light and darkness."],
+              ["Languages", "You speak, read and write Birdfolk and Mapach."]],
+   "hb": "HWCS", "asi": {"CON": 1, "WIS": 2}, "lgf": ["Birdfolk", "Mapach"]},
+ "Raptor": {"size": "Small", "speed": 25, "dark": 0, "type": "Humanoid", "skills": ["Perception"],
+   "profs": {"weapons": "Longbow, Shortbow, Spear"},
+   "lin": {"label": "Raptor Subrace", "opts": ["Maran", "Mistral"]},
+   "linFx": {"Maran": {"moves": {"swim": 25}}},
+   "linText": {
+     "Maran": "Intelligence rises by 1. Swimmer: Swim Speed 25 feet. Patient: when you act on a readied action, you have Advantage on the first attack roll, skill check or ability check you make as part of it.",
+     "Mistral": "Wisdom rises by 1. Agile: proficiency in Acrobatics. Aerial Defense: attack rolls against you have Disadvantage while you are falling, gliding or jumping."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("INT", "WIS")},
+   "attacks": talon(),
+   "traits": [GLIDE, TALONS,
+              ["Keen Senses", "Proficiency in Perception."],
+              ["Woodland Hunter", "Your aim ignores some cover. Three-quarters cover counts as half cover and half cover counts as no cover for your attacks."],
+              ["Hunter's Training", "Proficiency with the Longbow, Shortbow and Spear. The Longbow does not count as a heavy weapon for you."],
+              ["Raptor Subrace", "Pick Maran or Mistral."],
+              ["Languages", "You speak, read and write Birdfolk, and you understand Auran but cannot speak it naturally."]],
+   "hb": "HWCS", "asi": {"DEX": 2}, "lgf": ["Birdfolk"]},
+ "Strig": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid",
+   "lin": {"label": "Strig Subrace", "opts": ["Stout", "Swift"]},
+   "linFx": {"Swift": {"speedSet": 35}},
+   "linText": {
+     "Stout": "Constitution rises by 1. Imposing: proficiency in Intimidation. Brawler: when you hit a target with your talons, you can grapple it as a Bonus Action.",
+     "Swift": "Dexterity rises by 1. Swift: your Speed is 35 feet. Survivor: proficiency in Survival."},
+   "asiPick": {"n": 1, "v": 1, "ex": ex("CON", "DEX")},
+   "attacks": talon(),
+   "traits": [GLIDE, TALONS, DV60,
+              ["Patterned Feathers", "Advantage on Dexterity (Stealth) checks to hide in a forest."],
+              ["Strig Subrace", "Pick Stout or Swift."],
+              ["Languages", "You speak, read and write Birdfolk, and you understand Auran but cannot speak it naturally."]],
+   "hb": "HWCS", "asi": {"STR": 2}, "lgf": ["Birdfolk"]},
+ "Vulpin": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid", "spAb": "INT",
+   "attacks": [{"n": "Bite", "die": "1d6", "type": "Piercing", "range": "5 ft", "ab": "STR", "note": "Your fangs are natural weapons. You can use Strength or Dexterity for the attack and damage rolls."}],
+   "traits": [DV60,
+              ["Bite", "Your fangs make Unarmed Strikes that deal 1d6 Piercing damage. You can use Strength or Dexterity for the attack roll and the damage."],
+              ["Evasive", "Add your Intelligence modifier to your Dexterity saving throws."],
+              ["Bewitching Guile", "You can cast Charm Person as a level 1 spell. At level 3 you can cast Ambush Prey as a level 2 spell. At level 5 you can cast Fear. Each works once per Long Rest. Intelligence is the spellcasting ability."],
+              ["Languages", "You speak, read and write Birdfolk and Vulpin."]],
+   "hb": "HWCS", "asi": {"INT": 2, "CHA": 1}, "lgf": ["Birdfolk", "Vulpin"]},
+}
+DEF = {"Mapach": [["Resistance", "Poison"]]}
+LU = [
+ {"src": "species", "owner": "Cervan", "feature": "Surge of Vigor", "n": "Surge of Vigor", "lvl": 1, "max": 1, "reset": "long", "tag": "Special"},
+ {"src": "species", "owner": "Corvum", "feature": "Appraising Eye", "n": "Appraising Eye", "lvl": 1, "max": 1, "reset": "short", "tag": "Action"},
+ {"src": "species", "owner": "Hedge", "feature": "Forest Magic", "n": "Forest Magic: Animal Messenger", "lvl": 1, "max": 1, "reset": "short", "tag": "1/Short Rest spell"},
+ {"src": "species", "owner": "Luma", "feature": "Fated", "n": "Fated", "lvl": 1, "max": 1, "reset": "long", "tag": "Special"},
+ {"src": "species", "owner": "Vulpin", "feature": "Bewitching Guile", "n": "Bewitching Guile: Charm Person", "lvl": 1, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Vulpin", "feature": "Bewitching Guile", "n": "Bewitching Guile: Ambush Prey", "lvl": 3, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Vulpin", "feature": "Bewitching Guile", "n": "Bewitching Guile: Fear", "lvl": 5, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+]
+ACTS = {
+ "sp|Corvum|Appraising Eye": [["action", "", "Appraising Eye"]],
+ "sp|Hedge|Curl Up": [["action", "", "Curl Up"]],
+ "sp|Jerbeen|Team Tactics": [["bonus", "", "Team Tactics"]],
+ "sp|Gallus|Wing Flap": [["bonus", "", "Wing Flap"]],
+ "sp|Luma|Wing Flap": [["bonus", "", "Wing Flap"]],
+}
+for _n in ("Corvum", "Gallus", "Luma", "Raptor", "Strig"):
+    ACTS["sp|" + _n + "|Glide"] = [["reaction", "", "Glide"]]
+SP_AUTO = {
+ "Hedge": {"": [[1, "Druidcraft"], [1, "Animal Messenger"]]},
+ "Luma": {"Sera": [[1, "Charm Person"]]},
+ "Vulpin": {"": [[1, "Charm Person"], [3, "Ambush Prey"], [5, "Fear"]]},
+}
