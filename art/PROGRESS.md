@@ -5029,3 +5029,10 @@ art/batch/portraits/giff-b.png
 art/batch/portraits/githyanki-a.png
 art/batch/portraits/githyanki-b.png
 
+## batch-194 v3
+art/batch/portraits/locathah-a.png
+art/batch/portraits/locathah-b.png
+art/batch/portraits/loxodon-a.png
+art/batch/portraits/loxodon-b.png
+art/batch/portraits/lupin-a.png
+
