@@ -284,3 +284,26 @@ Setelah F1 sampai F3 dipasang, ukur ulang. Jika masih di bawah 58 fps, langkah b
 ### Batas yang harus diketahui
 Chromium headless memakai rasterisasi perangkat lunak. HP asli dengan GPU bisa lebih cepat atau lebih lambat. Faktor 4x adalah tebakan untuk HP kelas menengah. Belum diukur: Learn, Training Ground, dadu 3D, builder, 1250 x 850, layar 90 atau 120 Hz, Safari, Firefox. Syarat 60 fps pada CPU 4x belum terbukti bisa dicapai. Hasil terbaik saya sejauh ini 55 sampai 57 fps.
 Skrip: tools/research/abl2.py, abl3.py, abl4.py (lepas-pasang), loaf.py (Long Animation Frames), prof.py (profil CPU), ctl.py (kontrol).
+
+## 3h. Percobaan rekayasa: immersive tetap, 60 fps pada CPU 4x (2026-10-30, 09.58 WIB)
+Pertanyaan user: bisakah rekayasa menjaga efek tetap ada di 60 fps. Semua percobaan di salinan build main 0.0.4, 390 x 844, CPU 4x, efek default menyala. Tidak ada kode app yang diubah. Skrip: tools/research/gov.py, gov2.py, gov3.py.
+| Percobaan | Pindah tab (fps) | Damage dan heal (fps) |
+|---|---|---|
+| Asal (dua kali ukur) | 44,0 dan 47,4 | 43,6 dan 41,8 |
+| Gubernur rAF: satu antrean, panggilan non-input ditunda bila lewat 4 ms atau 2 ms | 44,0 dan 44,8 | 43,8 dan 48,1 |
+| Gubernur rAF 4 ms + mi-fx lite | 45,2 | 52,2 |
+| MutationObserver dipindah ke idle | 46,8 | 46,8 |
+| Semua animasi infinite dimatikan | 44,7 | 44,9 |
+| Animasi dijeda di halaman pager yang tidak aktif | 47,3 | 48,1 |
+| Tanpa animasi infinite + mi-fx lite | 47,0 | 53,5 |
+Catatan: derau antar ukur sekitar 3 fps (asal 44,0 lalu 47,4).
+Hasil: tidak satu pun dari ide ini membawa efek penuh ke 60 fps. Yang mengangkat angka hanya mi-fx lite atau off dan mematikan transisi CSS, yaitu mengurangi efek. MutationObserver tanpa pengamat membuat app tidak jalan.
+Kesimpulan jujur: dengan struktur sekarang (9 halaman selalu di layout, biaya style dan layout native tinggi, efek berlapis), efek penuh dan 60 fps di CPU 4x tidak terbukti bisa bersama.
+Arah yang belum dicoba, urut dari yang paling mungkin:
+| No | Ide | Alasan |
+|---|---|---|
+| E1 | Halaman pager non-aktif display:none, tampil hanya halaman aktif dan tetangganya saat geser | Layout turun dari sekitar 2.300 elemen ke sekitar 250. Content-visibility gagal karena tetap diukur. Perlu uji dampak ke scroll-snap |
+| E2 | Efek menjadi tingkat dinamis: penuh saat idle, hemat saat 3 frame lambat berturut-turut, kembali penuh setelah 2 detik tenang | Imersi tetap di perangkat cepat dan di saat tenang |
+| E3 | Efek yang selalu hidup dipindah ke satu kanvas OffscreenCanvas di worker (dukungan 96,76 persen) | Menghapus biaya JS efek dari thread utama. Biaya besar, belum terbukti |
+| E4 | Animasi hanya properti compositor (transform, opacity). Ganti transisi border-color, background-color, box-shadow, width (total 48 aturan) | Menghindari paint per frame |
+Urutan uji: E1 dulu, lalu E4, lalu E2.
