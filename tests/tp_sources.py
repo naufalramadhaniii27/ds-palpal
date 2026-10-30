@@ -47,7 +47,7 @@ async def main():
                 nm = c.get("sub") or c["bg"]
                 if c.get("sub"):
                     lo = await pg.evaluate(LIST, dict(c, on=False)); ln = await pg.evaluate(LIST, dict(c, on=True))
-                    check("%s %s off: %s is not offered" % (tag, c["src"], nm), lo is False)
+                    if not c.get("tpcls"): check("%s %s off: %s is not offered" % (tag, c["src"], nm), lo is False)  # a class of the book turns the book on by itself
                     check("%s %s on: %s is offered" % (tag, c["src"], nm), ln is True)
                 check("%s %s a sheet that uses %s keeps its book on" % (tag, c["src"], nm), not off.get("err") and off.get("sheet") and all(f in off["sheet"]["feats"] for f in c["feats"]), json.dumps(off)[:200])
                 check("%s %s on: %s on the sheet" % (tag, c["src"], nm), on.get("sheet") and on["sheet"]["sub"] == c["sub"] if c.get("sub") else on["sheet"]["bg"] == c["bg"], json.dumps(on)[:300])

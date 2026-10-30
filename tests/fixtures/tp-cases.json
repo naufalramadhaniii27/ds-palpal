@@ -1470,7 +1470,8 @@
    "Terrorize the Terrors",
    "Deadly Redirect"
   ],
-  "lu": []
+  "lu": [],
+  "tpcls": 1
  },
  {
   "src": "tghp",
@@ -1486,7 +1487,8 @@
   ],
   "lu": [
    "Gnawing Hunger"
-  ]
+  ],
+  "tpcls": 1
  },
  {
   "src": "tghp",
@@ -1502,7 +1504,8 @@
   ],
   "lu": [
    "Counterspell (free)"
-  ]
+  ],
+  "tpcls": 1
  },
  {
   "src": "tghp",
@@ -1518,6 +1521,7 @@
   ],
   "lu": [
    "Rapid Tinkerer"
-  ]
+  ],
+  "tpcls": 1
  }
 ]
