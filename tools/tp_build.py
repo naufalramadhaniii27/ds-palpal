@@ -25,6 +25,8 @@ BOOKS = [
   "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species", "alias": "Eberron"},
  {"id": "tghp", "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "tag": "GHPG24", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2024",
   "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_", "alias": "Grim Hollow", "trans": "tghp_trans"},
+ {"id": "tsgeh", "file": "MonkeyDM; Steinhardt's Guide to the Eldritch Hunt - 2024.json", "tag": "SGEH24", "name": "Steinhardt's Guide to the Eldritch Hunt", "pub": "MonkeyDM", "ed": "2024",
+  "sub": "tsgeh_sub", "bg": "tsgeh_bg", "feat": "tsgeh_feat", "spell": "tsgeh_spell", "item": "tsgeh_item", "species": "tsgeh_species", "cls": ["jaeger"], "clspre": "tsgc_", "alias": "Steinhardt"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -33,7 +35,7 @@ def ovl(mod):
     p = os.path.join(HERE, "tp", "overlay", mod + ".py")
     sp = importlib.util.spec_from_file_location(mod, p); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m
 
-_CORE = []
+_CORE = []; _SEEN = {}      # _SEEN: names already used by an earlier third party book, so two books never share a name
 def alias(bk, n):
     """A book with an "alias" label renames entries whose name already exists in the app, so they never replace or switch off the core entry."""
     if not bk.get("alias"): return n
@@ -43,7 +45,8 @@ def alias(bk, n):
             if os.path.basename(f).startswith("tp0"): continue
             t += open(f, encoding="utf-8").read()
         _CORE.append(t)
-    return "%s (%s)" % (n, bk["alias"]) if ('"%s"' % n) in _CORE[0] else n
+    r = "%s (%s)" % (n, bk["alias"]) if (('"%s"' % n) in _CORE[0] or _SEEN.get(n, bk["id"]) != bk["id"]) else n
+    _SEEN.setdefault(r, bk["id"]); return r
 
 def title(s):
     s = s.split("|")[0]
