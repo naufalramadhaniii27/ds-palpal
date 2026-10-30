@@ -495,3 +495,14 @@ Fungsi JS terbesar (icoDecorate, burst, hurt, edgeRows) tiap kali di bawah 2 per
 
 Ditetapkan pengguna 2026-10-30 (sebelumnya 4x). bench3.py membaca RATE dari environment.
 Build perf-60fps pada 3x (median 4 kali, % frame lebih dari 16.7 ms): tab 13.3 (11.7-14.1), damage 15.9 (14.7-17.3). Batas internal di bawah 5 persen belum tercapai. Belum ada data HP asli.
+
+## 3s. Data HP asli dan segFix
+
+HP pengguna (Chrome 155 Android, 406x761, rasio piksel 3, 8 inti, 2026-10-30 13.25 dan 13.28 WIB), penguji #fps, persen frame lebih dari 16.7 ms (lebih dari 33 ms), terlama:
+| Fase | Uji 1 | Uji 2 |
+| diam 3 detik | 0 (0), 17 ms | 0 (0), 17 ms |
+| pindah tab | 8 (1), 99 ms | 9 (2), 182 ms |
+| damage dan heal | 5 (2), 108 ms | 4 (3), 99 ms |
+Frame lambat terbesar di uji 2 hampir semuanya skrip (192, 145, 93 ms di tab, 111 dan 88 ms di damage), tanpa skrip tunggal di atas 5 ms (LoAF tidak menyebut sumber). Damage sudah di bawah 5 persen. Tab belum.
+
+segFix (src/app/40...) membaca dan menulis layout bergantian per baris .ifil, dan segKey memanggil querySelectorAll per baris. Diubah jadi baca dulu lalu tulis, indeks dicari sekali per induk. Perilaku sama: segcmp.py membandingkan kelas dan scrollLeft semua .ifil di 9 tab (390) dan 7 tab (1250) dengan main, 0 beda. scenarios.py 24 cek, 0 gagal. Ukur CPU 3x tab: 13.3 menjadi 12.2, masih dalam noise. Sisa biaya segFix adalah satu layout paksa (clientWidth) 60 ms setelah klik tab. Sumber frame 90 sampai 190 ms di HP belum teridentifikasi.

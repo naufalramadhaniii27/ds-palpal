@@ -9161,10 +9161,15 @@ function ohSync(){ var o=document.getElementById("ohAmt"), a=document.getElement
 var SEGX={};
 function segKey(el){ var r=el.closest("[id]"); return (r?r.id:"")+"|"+Array.prototype.indexOf.call((r||document).querySelectorAll(".ifil"),el); }
 function segEdge(el){ var m=el.scrollWidth-el.clientWidth; el.classList.toggle("fit",m<=2);/* v31 p11: a row that cannot scroll lets the swipe go nowhere */ el.classList.toggle("ovf-l",el.scrollLeft>2); el.classList.toggle("ovf-r",m>2&&el.scrollLeft<m-2); }
-function segFix(root){ if(!root||!root.querySelectorAll) return; Array.prototype.forEach.call(root.querySelectorAll(".ifil"),function(el){ var k=segKey(el);
-  el.setAttribute("data-hscroll","1"); if(SEGX[k]!=null) el.scrollLeft=SEGX[k];
-  var on=el.querySelector(".ifb.on"); if(on&&el.clientWidth){ var l=on.offsetLeft, r=l+on.offsetWidth; if(l<el.scrollLeft+8) el.scrollLeft=Math.max(0,l-28); else if(r>el.scrollLeft+el.clientWidth-8) el.scrollLeft=r-el.clientWidth+28; }
-  SEGX[k]=el.scrollLeft; segEdge(el); }); }
+function segFix(root){ if(!root||!root.querySelectorAll) return; var els=root.querySelectorAll(".ifil"), n=els.length, i, el, k, m, sl, on, l, r, W, X=[], IDX=new Map();
+  /* P4 frame rate: read everything first, then write, so the browser lays out once instead of once per row. The saved row index is found once per parent, not once per row */
+  for(i=0;i<n;i++){ el=els[i]; var pr=el.closest("[id]"), key=pr||document, lst=IDX.get(key); if(!lst){ lst=(pr||document).querySelectorAll(".ifil"); IDX.set(key,lst); }
+    k=(pr?pr.id:"")+"|"+Array.prototype.indexOf.call(lst,el);
+    W=el.clientWidth; m=el.scrollWidth-W; sl=el.scrollLeft; if(SEGX[k]!=null) sl=Math.min(Math.max(SEGX[k],0),Math.max(m,0));
+    on=el.querySelector(".ifb.on"); if(on&&W){ l=on.offsetLeft; r=l+on.offsetWidth; if(l<sl+8) sl=Math.max(0,l-28); else if(r>sl+W-8) sl=r-W+28; sl=Math.min(Math.max(sl,0),Math.max(m,0)); }
+    X.push([el,k,sl,m]); }
+  for(i=0;i<n;i++){ el=X[i][0]; k=X[i][1]; sl=X[i][2]; m=X[i][3]; if(el.getAttribute("data-hscroll")!=="1") el.setAttribute("data-hscroll","1"); if(el.scrollLeft!==sl) el.scrollLeft=sl; SEGX[k]=sl;
+    el.classList.toggle("fit",m<=2); el.classList.toggle("ovf-l",sl>2); el.classList.toggle("ovf-r",m>2&&sl<m-2); } }
 /* icons are added one frame after a render and make the segments wider: check again two frames later */
 function segFixL(root){ segFix(root); requestAnimationFrame(function(){ requestAnimationFrame(function(){ segFix(root); }); }); }
 document.addEventListener("scroll",function(e){ var el=e.target; if(el&&el.classList&&el.classList.contains("ifil")){ SEGX[segKey(el)]=el.scrollLeft; segEdge(el); } if(el&&el.classList&&(el.id==="tabs"||el.classList.contains("bnav")||el.classList.contains("fr-tabs"))) segEdge(el); },true);
