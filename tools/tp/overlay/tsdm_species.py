@@ -1,5 +1,104 @@
-SPECIES = {}
-LU = []
-ACTS = {}
-SP_AUTO = {}
+# Own-wording species of Dark Matter (2024 rules). Shape follows tee24_species.py and tvss_species.py.
+# Elf (Fey) and Gnome (Star) copy the core Elf and Gnome and swap the lineage. They are written out in full here.
+# Engine notes: the Nautilid fire resistance and Aqua Suit, the Vect Thermalsight and graft, and the Near-Human feat are text only.
+DV60 = ["Darkvision", "Darkvision 60 ft."]
+SPECIES = {
+ "Amoeboid": {"size": "Small or Medium", "speed": 30, "dark": 0, "type": "Ooze",
+   "traits": [
+     ["Amorphous", "You can move through any space as narrow as 1 inch."],
+     ["Biomimicry", "Magic action: touch a creature and take on its general form for 1 hour, or until you dismiss it (no action). Your size and other statistics stay the same. If the target has a Burrow, Climb or Swim Speed, you gain that Speed, up to 40 feet. If the form cannot wear clothes or armor, they fall off. You handle objects with the limbs of the new form."],
+     ["Flexible Form", "Magic action: mold your body into any static shape you choose that is no larger than 8 feet in any dimension. You copy the basic shape of something, not its color, texture, moving parts or fine details. Your volume does not change. While in a static shape you cannot move, attack or cast spells."],
+     ["Reform", "Reaction, when an attack that deals Bludgeoning, Piercing or Slashing damage hits you and you do not drop to 0 Hit Points: regain Hit Points equal to 1d4, up to the damage you took. The die becomes 1d6 at level 5, 1d8 at level 11 and 1d10 at level 17."]],
+   "hb": "DM24"},
+ "Avia-Ra": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid", "spAb": "choose", "spAbTrait": "Blessings of the Sun",
+   "skillPick": {"n": 1, "from": ["Insight", "Perception"], "label": "Avian Eyes"},
+   "traits": [DV60,
+     ["Avian Eyes", "Proficiency in Insight or Perception. You also have Advantage on saving throws to avoid or end the Blinded condition."],
+     ["Blessings of the Sun", "You know Light. At level 3 you always have Bless prepared, and at level 5 Lesser Restoration. You can cast each of those two once per Long Rest without a spell slot, or with a slot of the right level. Intelligence, Wisdom or Charisma is the spell ability, chosen with the species."],
+     ["Zealous", "Reaction, when you fail an Intelligence, Wisdom or Charisma saving throw: roll a d4 and add it to the save, which can turn the failure into a success."]],
+   "hb": "DM24"},
+ "Elf (Fey)": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid", "spAb": "choose", "spAbTrait": "Elven Lineage (Fey)",
+   "skillPick": {"n": 1, "from": ["Insight", "Perception", "Survival"], "label": "Keen Senses"},
+   "traits": [DV60,
+     ["Elven Lineage (Fey)", "Your lineage gives you supernatural gifts. After each Long Rest you can swap the skill from Keen Senses for another one on its list. You know Minor Illusion. At level 3 you always have Disguise Self prepared, and at level 5 Suggestion. You can cast each of those two once per Long Rest without a spell slot, or with a slot of the right level. Intelligence, Wisdom or Charisma is the spell ability, chosen with the species."],
+     ["Fey Ancestry", "Advantage on saving throws to avoid or end the Charmed condition."],
+     ["Keen Senses", "Proficiency in Insight, Perception or Survival."],
+     ["Trance", "You do not need sleep, and magic cannot put you to sleep. You finish a Long Rest in 4 hours of meditation, staying semiconscious."]],
+   "hb": "DM24"},
+ "Gnome (Star)": {"size": "Small", "speed": 30, "dark": 60, "type": "Humanoid",
+   "traits": [DV60,
+     ["Gnomish Cunning", "Advantage on Intelligence, Wisdom and Charisma saving throws."],
+     ["Gnomish Lineage (Star)", "Spend 1 minute assembling scrap parts into one Tiny device: Binoculars, Comm Set, Flare, Flashlight, Igniter, Interface Rig, Log Keeper, Omnitool, Quadcorder or Wristwatch. It falls apart 8 hours after you make it. You can do this a number of times equal to your Proficiency Bonus, and regain all uses on a Long Rest."]],
+   "hb": "DM24"},
+ "Nautilid": {"size": "Medium", "speed": 30, "dark": 0, "type": "Humanoid", "fx": {"moves": {"swim": 30}},
+   "traits": [
+     ["Amphibious", "You breathe underwater. Without your Aqua Suit, breathing air feels like very thin air does to a human."],
+     ["Powerful Build", "Advantage on saving throws to end the Grappled condition. You count as one size larger for carrying capacity."],
+     ["Aqua Suit", "Except aboard a whorl ship you wear a bulky suit filled with Poseidon Solution so you can breathe in comfort. It covers your whole body, with a domed helmet you can see through. You don or doff the helmet on your turn (no action) and the whole suit in 1 minute. A damaged suit mends itself and leaks only a little. While you wear it you gain the next four benefits."],
+     ["Armored Suit", "Your base AC is 13 + Dexterity modifier. You can wear armor over the suit and use either one for your AC. A Shield works with it."],
+     ["Fire Resistance", "While in the Aqua Suit you have Resistance to Fire damage."],
+     ["Life Suit", "While in the Aqua Suit you gain the benefits of a Life Suit."],
+     ["Universal Translator", "While in the Aqua Suit you can use its built-in Universal Translator magic item at will."]],
+   "hb": "DM24"},
+ "Near-Human": {"size": "Small or Medium", "speed": 30, "dark": 0, "type": "Humanoid",
+   "skillPick": {"n": 1, "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Data", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Piloting", "Religion", "Sleight of Hand", "Stealth", "Survival", "Technology"], "label": "Skillful"},
+   "traits": [
+     ["Resourceful", "You gain Heroic Inspiration whenever you finish a Long Rest."],
+     ["Skillful", "Proficiency in one skill of your choice."],
+     ["Near-Human Feat", "You gain one Near-Human feat of your choice. Pick it with your other feats."]],
+   "hb": "DM24"},
+ "Orc": {"size": "Medium", "speed": 30, "dark": 60, "type": "Humanoid",
+   "skillPick": {"n": 1, "from": ["Athletics", "Intimidation", "Piloting", "Technology"], "label": "Gearhead"},
+   "traits": [DV60,
+     ["Follow Through", "When you roll damage for a melee weapon attack or an Unarmed Strike, you can reroll the damage dice and add 1d4 damage. You must use the new roll. Uses equal your Proficiency Bonus per Long Rest."],
+     ["Gearhead", "Advantage on any check to repair or modify a ship. You also have proficiency in Athletics, Intimidation, Piloting or Technology."],
+     ["Powerful Build", "Advantage on saving throws to end the Grappled condition. You count as one size larger for carrying capacity."]],
+   "hb": "DM24"},
+ "Skathári": {"size": "Medium", "speed": 30, "dark": 0, "type": "Humanoid",
+   "attacks": [{"n": "Hooked Claws", "die": "1d6", "type": "Slashing", "range": "5 ft", "ab": "STR", "note": "Your claws are natural weapons for Unarmed Strikes. You can use Dexterity instead of Strength for the attack and damage rolls. A hit can deal Slashing damage of 1d6 + Strength or Dexterity modifier instead of the normal damage."}],
+   "traits": [
+     ["Adaptive Metabolism", "You take no damage from the Extreme Temperatures of space and other harsh environments. You can hold your breath for up to 15 minutes."],
+     ["Gliding Wings", "Membranous wings let you glide clumsily. While falling you can move 10 feet sideways for every 5 feet you fall, up to your Speed. You have Resistance to falling damage."],
+     ["Hooked Claws", "Short claws on your digits power your Unarmed Strikes. Use Dexterity instead of Strength for the attack and damage rolls. When you hit, you can deal Slashing damage of 1d6 + Strength or Dexterity modifier instead of the normal damage."],
+     ["Natural Armor", "With no armor your base AC is 13 + Dexterity modifier. A Shield still works with it."],
+     ["Regenerative", "A body part you lose without dying from it fully regrows over 24 hours."]],
+   "hb": "DM24"},
+ "Vect": {"size": "Medium", "speed": 30, "dark": 0, "type": "Construct",
+   "traits": [
+     ["Construct Anatomy", "You need no food, drink or air. You need no sleep, and magic cannot put you to sleep. You can finish a Long Rest in 4 hours if you stay motionless and conscious for them."],
+     ["Inflexible Mind", "Advantage on saving throws to avoid or end the Charmed condition."],
+     ["Reconfigurable Ability Scores", "After a Long Rest you can swap two of your ability scores. They revert when you use this trait again, or if you raise either score."],
+     ["Thermalsight", "You have Thermalsight out to 60 feet."],
+     ["Construct Grafts", "You can take the Utilize action to install a Construct graft on your body. You lose no Hit Points or Hit Point Dice for the first graft installed in each body slot. The Equipment chapter lists the grafts."],
+     ["Embedded Armor", "This graft sits in your External slot. Your base AC is 13 + Dexterity modifier. You can wear armor over it and use either one for your AC. A Shield works with it."]],
+   "hb": "DM24"},
+ "Wrothian": {"size": "Medium", "speed": 30, "dark": 60, "type": "Aberration",
+   "attacks": [{"n": "Razor Claws", "die": "1d6", "type": "Slashing", "range": "5 ft", "ab": "STR", "note": "Teeth and claws are natural weapons for Unarmed Strikes. You can use Dexterity instead of Strength for the attack and damage rolls. A hit can deal Slashing damage of 1d6 + Strength or Dexterity modifier instead of the normal damage."}],
+   "traits": [DV60,
+     ["Psionic Blast", "When you take the Attack action, you can replace one attack with a psionic burst against a creature you see within 60 feet. The target makes an Intelligence save (DC 8 + Constitution modifier + Proficiency Bonus). It takes 1d10 Psychic damage on a failure, or half on a success. The damage rises to 2d10 at level 5, 3d10 at level 11 and 4d10 at level 17. Uses equal your Proficiency Bonus per Long Rest."],
+     ["Psychic Resistance", "Resistance to Psychic damage."],
+     ["Razor Claws", "Your teeth and claws power your Unarmed Strikes. Use Dexterity instead of Strength for the attack and damage rolls. When you hit, you can deal Slashing damage of 1d6 + Strength or Dexterity modifier instead of the normal damage."],
+     ["Telepathy", "Telepathy out to 60 feet."]],
+   "hb": "DM24"},
+}
+LU = [
+ {"src": "species", "owner": "Avia-Ra", "feature": "Blessings of the Sun", "n": "Blessings: Bless", "lvl": 3, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Avia-Ra", "feature": "Blessings of the Sun", "n": "Blessings: Lesser Restoration", "lvl": 5, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Avia-Ra", "feature": "Zealous", "n": "Zealous", "lvl": 1, "max": 1, "reset": "long", "tag": "Reaction"},
+ {"src": "species", "owner": "Elf (Fey)", "feature": "Elven Lineage (Fey)", "n": "Fey Lineage: Disguise Self", "lvl": 3, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Elf (Fey)", "feature": "Elven Lineage (Fey)", "n": "Fey Lineage: Suggestion", "lvl": 5, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
+ {"src": "species", "owner": "Gnome (Star)", "feature": "Gnomish Lineage (Star)", "n": "Scrap Device", "lvl": 1, "max": "pb", "reset": "long", "tag": "1 minute"},
+ {"src": "species", "owner": "Orc", "feature": "Follow Through", "n": "Follow Through", "lvl": 1, "max": "pb", "reset": "long", "tag": "Special"},
+ {"src": "species", "owner": "Wrothian", "feature": "Psionic Blast", "n": "Psionic Blast", "lvl": 1, "max": "pb", "reset": "long", "tag": "Attack action"},
+]
+ACTS = {
+ "sp|Amoeboid|Biomimicry": [["action", "", "Biomimicry"]],
+ "sp|Amoeboid|Flexible Form": [["action", "", "Flexible Form"]],
+ "sp|Amoeboid|Reform": [["reaction", "", "Reform"]],
+ "sp|Avia-Ra|Zealous": [["reaction", "", "Zealous"]],
+}
+SP_AUTO = {
+ "Avia-Ra": {"": [[1, "Light"], [3, "Bless"], [5, "Lesser Restoration"]]},
+ "Elf (Fey)": {"": [[1, "Minor Illusion"], [3, "Disguise Self"], [5, "Suggestion"]]},
+}
 DEF = {}
