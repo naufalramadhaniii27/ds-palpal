@@ -5015,4 +5015,5 @@ art/batch/emblems/species/vedalken.png
 art/batch/emblems/species/verdan.png
 art/batch/emblems/species/warforged.png
 art/batch/emblems/species/yuan-ti.png
+art/batch/emblems/species/zombie.png
 
