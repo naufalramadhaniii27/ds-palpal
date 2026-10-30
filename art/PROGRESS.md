@@ -4855,3 +4855,10 @@ art/batch/icons/rules/metamagic/metamagic-transmuted-spell.png
 art/batch/icons/rules/metamagic/metamagic-twinned-spell.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-ambush.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-bait-and-switch.png
+
+## batch-142 v3
+art/batch/icons/rules/maneuvers/battle-master-maneuver-commanders-strike.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-commanding-presence.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-disarming-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-distracting-strike.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-evasive-footwork.png
