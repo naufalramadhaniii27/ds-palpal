@@ -4838,3 +4838,10 @@ art/batch/icons/rules/metamagic/metamagic-extended-spell.png
 art/batch/icons/rules/metamagic/metamagic-heightened-spell.png
 art/batch/icons/rules/metamagic/metamagic-quickened-spell.png
 art/batch/icons/rules/metamagic/metamagic-seeking-spell.png
+
+## batch-126 v3
+art/batch/icons/items/magic/uncommon/storm-boomerang.png
+art/batch/icons/items/magic/legendary/tinderstrike.png
+art/batch/icons/items/magic/rare/weird-tank.png
+art/batch/icons/items/magic/legendary/windvane.png
+art/batch/icons/items/magic/uncommon/wingwear.png
