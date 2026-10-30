@@ -4959,3 +4959,11 @@ art/batch/icons/features/subclass/clockwork-soul/clockwork-magic.png
 art/batch/icons/features/subclass/clockwork-soul/restore-balance.png
 art/batch/icons/features/subclass/clockwork-soul/trance-of-order.png
 art/batch/icons/features/subclass/college-of-creation/animating-performance.png
+
+## batch-160 v3
+art/batch/icons/features/subclass/circle-of-wildfire/enhanced-bond.png
+art/batch/icons/features/subclass/circle-of-wildfire/summon-wildfire-spirit.png
+art/batch/icons/features/subclass/circle-of-the-land/bonus-cantrip.png
+art/batch/icons/features/subclass/circle-of-the-land/circle-spells.png
+art/batch/icons/features/subclass/circle-of-the-land/circle-of-the-land-spells.png
+
