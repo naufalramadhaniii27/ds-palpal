@@ -4941,3 +4941,8 @@ art/batch/icons/features/subclass/battle-smith/arcane-jolt.png
 art/batch/icons/features/subclass/battle-smith/battle-ready.png
 art/batch/icons/features/subclass/battle-smith/battle-smith-spells.png
 art/batch/icons/features/subclass/battle-smith/extra-attack.png
+art/batch/icons/features/subclass/battle-smith/improved-defender.png
+art/batch/icons/features/subclass/battle-smith/steel-defender.png
+art/batch/icons/features/subclass/battle-smith/tool-proficiency.png
+art/batch/icons/features/subclass/battle-smith/tools-of-the-trade.png
+art/batch/icons/features/subclass/beast-master/bestial-fury.png
