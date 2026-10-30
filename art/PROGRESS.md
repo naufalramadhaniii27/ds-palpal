@@ -4856,6 +4856,11 @@ art/batch/icons/items/magic/rare/blod-stone.png
 art/batch/icons/items/magic/rare/claw-of-the-wyrm-rune.png
 art/batch/icons/items/magic/very-rare/conch-of-teleportation.png
 art/batch/icons/items/magic/rare/gavel-of-the-venn-rune.png
+art/batch/icons/items/magic/legendary/gurts-greataxe.png
+art/batch/icons/items/magic/very-rare/ingot-of-the-skold-rune.png
+art/batch/icons/items/magic/legendary/korolnor-scepter.png
+art/batch/icons/items/magic/very-rare/navigation-orb.png
+art/batch/icons/items/magic/rare/opal-of-the-ild-rune.png
 ## batch-142 v3
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanders-strike.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanding-presence.png
