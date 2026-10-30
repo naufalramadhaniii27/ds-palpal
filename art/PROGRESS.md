@@ -4966,4 +4966,9 @@ art/batch/icons/features/subclass/circle-of-wildfire/summon-wildfire-spirit.png
 art/batch/icons/features/subclass/circle-of-the-land/bonus-cantrip.png
 art/batch/icons/features/subclass/circle-of-the-land/circle-spells.png
 art/batch/icons/features/subclass/circle-of-the-land/circle-of-the-land-spells.png
+art/batch/icons/features/subclass/circle-of-the-land/lands-aid.png
+art/batch/icons/features/subclass/circle-of-the-land/lands-stride.png
+art/batch/icons/features/subclass/circle-of-the-land/natural-recovery.png
+art/batch/icons/features/subclass/circle-of-the-land/natures-sanctuary.png
+art/batch/icons/features/subclass/circle-of-the-land/natures-ward.png
 
