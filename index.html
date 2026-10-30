@@ -1755,8 +1755,8 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 /* RU112, D6: a swipe that starts in a text box does not change the page; a row of segments that fits does not scroll, so it passes nothing */
 @media (max-width:759px){#pager input,#pager textarea,#pager select{touch-action:pan-y pinch-zoom}[data-hscroll].fit{touch-action:pan-y}}
 /* D2: the new tab slides in from the side of the tab that was tapped, 200 ms, transform only */
-@keyframes v31psr{from{transform:translateX(36px)}to{transform:none}}
-@keyframes v31psl{from{transform:translateX(-36px)}to{transform:none}}
+@keyframes v31psr{from{translate:36px 0}to{translate:0 0}}/* P3 frame rate: the translate property costs less than transform in this animation, same look */
+@keyframes v31psl{from{translate:-36px 0}to{translate:0 0}}
 /* the page (HP) or panel (PC) itself moves: it is already a layer, so nothing new is drawn for the slide */
 .psl-r,.panel.psl-r{animation:v31psr .2s var(--ease-out)}
 .psl-l,.panel.psl-l{animation:v31psl .2s var(--ease-out)}

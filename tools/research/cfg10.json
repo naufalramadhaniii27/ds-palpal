@@ -1,0 +1,4 @@
+{"base":{"bypass":true},
+ "translate prop":{"bypass":true,"css":"@keyframes t1{from{translate:36px 0}to{translate:0 0}}@keyframes t2{from{translate:-36px 0}to{translate:0 0}}.psl-r,.panel.psl-r{animation:t1 .2s var(--ease-out)!important}.psl-l,.panel.psl-l{animation:t2 .2s var(--ease-out)!important}"},
+ "contain paint":{"bypass":true,"css":"#pager>*,#pager .panel{contain:layout paint}"},
+ "will-change pages":{"bypass":true,"css":"#pager>*,#pager .panel{will-change:transform}"}}

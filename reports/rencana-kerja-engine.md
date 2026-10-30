@@ -475,3 +475,7 @@ Ukur (CPU 4x, % frame lebih dari 16.7 ms, median, mesin sedang lebih lambat dari
 | damage | 57.0 | 25.0 |
 
 Target di bawah 5 persen belum tercapai. Biaya sisa tab: animasi geser halaman. Biaya sisa damage: banyak efek bersamaan. 60 fps di HP asli belum terbukti. Pakai #fps di alamat untuk uji di HP.
+
+## 3o. Animasi geser halaman memakai properti translate
+
+Uji varian (CPU 4x, tab, median 4 kali, % frame lebih dari 16.7 ms): dasar 32.1, properti translate 21.2, contain paint 31.3, will-change halaman 34.1. Terpasang: keyframes v31psr dan v31psl memakai translate. Gerak sama. scenarios.py 24 cek, 0 gagal, tidak ada halaman kosong.
