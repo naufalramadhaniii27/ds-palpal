@@ -79,7 +79,7 @@ function qbPick(c){var Q=QUICK[B.cls]||{},have=profSkills();
  if(c.t==="multi"){var L=qbNames(c.list);return fill(/invocation$/.test(c.key)?(Q.inv||[]):[],L,c.n)}
  if(c.t==="opt"){var O=qbNames(OPTS[c.list]);return Q.opt&&O.indexOf(Q.opt[c.list])>=0?Q.opt[c.list]:(c.key==="spab"?({INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"}[CLASSES[B.cls].cast]||O[0]):O[0])||""}
  if(c.t==="tool"){var tl=[],had=[];(c.cats||[]).forEach(function(k){tl=tl.concat(TOOLS[k]||[])});choices().forEach(function(o){if(o.t==="tool"&&o.key!==c.key&&Array.isArray(B.ch[o.key]))had=had.concat(B.ch[o.key])});return fill([],tl,c.n,had)}/* v32 p22 */
- if(c.t==="fs")return Q.fs||"Defense";
+ if(c.t==="fs"){var tk=[];choices().forEach(function(o){if(o.t==="fs"&&o.key!==c.key&&B.ch[o.key])tk.push(B.ch[o.key])});var fl=R14()?fs14List(c.cls||B.cls):Object.keys(FEATS).filter(function(n){return FEATS[n].cat==="F"});return [Q.fs,"Defense","Dueling","Great Weapon Fighting","Archery","Protection","Two-Weapon Fighting"].concat(fl).filter(function(n){return n&&fl.indexOf(n)>=0&&tk.indexOf(n)<0})[0]||""}/* T11 N6: a second Fighting Style choice (Champion 7) no longer repeats the first */
  if(c.t==="lin")return ((SPECIES[B.species]||{}).lin||{opts:[]}).opts[0]||"";
  if(c.t==="ofeat"){var tk=allFeats().map(function(f){return f.n});return ["Tough","Alert","Lucky","Healer","Musician"].filter(function(n){return FEATS[n]&&tk.indexOf(n)<0})[0]||""}
  return null}
@@ -87,14 +87,25 @@ function qbFill(){for(var pass=0;pass<80;pass++){var any=false;choices().some(fu
 function qbSpells(){var I=spInfo();if(!I)return;var Q=QUICK[B.cls]||{},L=SPELLS.filter(function(x){return I.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
  var nc=function(){return B.sp.filter(function(n){return SMAP[n]&&!SMAP[n][1]}).length},np=function(){return B.sp.filter(function(n){return SMAP[n]&&SMAP[n][1]}).length},auto=autoSpells().map(function(a){return a.n});
  (Q.ct||[]).concat(L.filter(function(x){return !x[1]}).map(function(x){return x[0]})).forEach(function(n){var x=SMAP[n];if(x&&!x[1]&&nc()<I.ct&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
- (Q.sp||[]).concat(L.filter(function(x){return x[1]===1}).map(function(x){return x[0]})).forEach(function(n){var x=SMAP[n];if(x&&x[1]&&np()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)})}
+ (Q.sp||[]).concat(L.filter(function(x){return x[1]===1}).map(function(x){return x[0]})).forEach(function(n){var x=SMAP[n];if(x&&x[1]&&np()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
+ /* T11 N6: when the level 1 spells run out (or the list is short), the rest come from higher levels in turn, so no prepared spell stays empty */
+ var byL={};L.forEach(function(x){if(x[1])(byL[x[1]]=byL[x[1]]||[]).push(x[0])});for(var g=0;g<400&&np()<I.pr;g++){var put=false;for(var lv=I.max;lv>=1&&np()<I.pr;lv--){var q=byL[lv]||[];while(q.length){var n=q.shift();if(B.sp.indexOf(n)<0&&auto.indexOf(n)<0){B.sp.push(n);put=true;break}}}if(!put)break}
+ qbArc()}
+/* T11 N6: Mystic Arcanum picks (Warlock 11, 13, 15, 17): the first Warlock spell of that level not already known */
+function qbArc(){var wl=clsLv("Warlock");if(!wl)return;B.pk=B.pk||{};var mine=(B.sp||[]).concat(autoSpells().map(function(a){return a.n}));[[11,6],[13,7],[15,8],[17,9]].forEach(function(r){var k="ma"+r[1];if(wl<r[0]||B.pk[k])return;var x=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0&&mine.indexOf(x[0])<0})[0];if(x)B.pk[k]=x[0]})}
 /* Magic Initiate from the background (Acolyte, Guide, Sage): two cantrips and one level 1 spell of that list, not already chosen */
 var QB_MI={Wizard:{c:["Prestidigitation","Minor Illusion","Ray of Frost","Light"],s:["Find Familiar","Sleep","Feather Fall"]},Cleric:{c:["Spare the Dying","Light","Resistance","Guidance"],s:["Shield of Faith","Sanctuary","Command"]},Druid:{c:["Druidcraft","Shillelagh","Guidance","Produce Flame"],s:["Goodberry","Speak with Animals","Healing Word"]}};
 function qbMI(){B.pk=B.pk||{};miFeats().forEach(function(m){var v=B.pk[m.key];if(v&&v.c&&v.c.length>=2&&v.s&&v.s.length>=1)return;var L=SPELLS.filter(function(x){return x[3].indexOf(m.cls)>=0&&x[1]<=1}),mine=(B.sp||[]).concat(autoSpells().map(function(a){return a.n})),P=QB_MI[m.cls]||{c:[],s:[]};
  var pick=function(pref,lv,n){var out=[];pref.concat(L.filter(function(x){return x[1]===lv}).map(function(x){return x[0]})).forEach(function(nm){var x=SMAP[nm];if(out.length<n&&x&&x[1]===lv&&x[3].indexOf(m.cls)>=0&&mine.indexOf(nm)<0&&out.indexOf(nm)<0)out.push(nm)});return out};
- var cast=CLASSES[B.cls].cast;B.pk[m.key]={c:pick(P.c,0,2),s:pick(P.s,1,1),ab:["INT","WIS","CHA"].indexOf(cast)>=0?cast:"WIS"}})}
+ var cast=CLASSES[B.cls].cast,cs=pick(P.c,0,2),ss=pick(P.s,1,1);
+ /* T11 N6: a Cleric or Druid of high level can already know every level 1 spell of the list. Then Magic Initiate takes one of them again */
+ if(!ss.length)ss=L.filter(function(x){return x[1]===1}).map(function(x){return x[0]}).slice(0,1);if(cs.length<2)L.filter(function(x){return !x[1]&&cs.indexOf(x[0])<0}).forEach(function(x){if(cs.length<2)cs.push(x[0])});
+ B.pk[m.key]={c:cs,s:ss,ab:["INT","WIS","CHA"].indexOf(cast)>=0?cast:"WIS"}})}
 /* v32 p22: a Wizard spellbook filled with level 1 Wizard spells (the Magic Initiate picks first) */
-function qbBook(){var need=bookNeed();if(!need)return;B.pk=B.pk||{};var bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter(function(x){return x[1]===1&&x[3].indexOf("Wizard")>=0}).map(function(x){return x[0]}))).forEach(function(n){if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});if(!bk.length)delete B.pk.book}
+function qbBook(){var need=bookNeed();if(!need)return;B.pk=B.pk||{};var bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter(function(x){return x[1]===1&&x[3].indexOf("Wizard")>=0}).map(function(x){return x[0]}))).forEach(function(n){if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});
+ /* T11 N6: higher Wizard levels need more spells than there are level 1 Wizard spells, so the rest come from the levels the Wizard can cast, highest first */
+ var mx=Math.min(9,Math.ceil(wizLv()/2));for(var lv=mx;lv>=2&&bookOwn().length<need;lv--)SPELLS.filter(function(x){return x[1]===lv&&x[3].indexOf("Wizard")>=0}).forEach(function(x){if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])});
+ if(!bk.length)delete B.pk.book}
 function quickBuild(cls,sp){var Q=QUICK[cls];if(!Q){toast("Choose a class first.");return}
  var go=function(){var keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};B=NEWB();if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
   B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();/* v99: the class is set, so a class that comes from a source (Artificer) loads before the kit is read */B.species=SPECIES[sp]?sp:(R14()?"Human (2014)":"Human");B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});

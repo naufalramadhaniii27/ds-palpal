@@ -9,6 +9,7 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
+    "boot/trusted-types.js",
     "boot/store-gate.js"
    ]
   },
@@ -53,7 +54,11 @@
     "css/33-store-wait.css",
     "css/34-cloud-sync.css",
     "css/35-friends.css",
-      "css/36-tidy.css"
+    "css/36-tidy.css",
+    "css/L-builder.css",
+    "css/L-dice.css",
+    "css/L-learn.css",
+    "css/L-tg.css"
    ]
   },
   {
@@ -159,7 +164,16 @@
     "app/42-logic-pwa-qr-icons-wallet.js",
     "app/43-logic-cloud-sync.js",
     "app/44-ui-friends.js",
-    "app/45-dev-fps-probe.js",
+    "app/45-learn-bridge.js",
+    "app/46-logic-receipts.js",
+    "app/47-logic-time-machine.js",
+    "app/48-logic-sync-merge.js",
+    "app/49-logic-status-and-odds.js",
+    "app/50-logic-reverse-builder.js",
+    "app/51-ui-table-help.js",
+    "app/52-tg-bridge.js",
+    "app/53-logic-number-map.js",
+    "app/54-dev-fps-probe.js",
     "app/98-close.wrap.js",
     "app/99-ui-backup-reminder-handlers.js"
    ]
@@ -195,7 +209,8 @@
     "fx/20-k-pack-character-colour-icon.js",
     "fx/21-connected-home-sheet.js",
     "fx/22-home-hero.js",
-    "fx/24-class-art.js"
+    "fx/24-class-art.js",
+    "fx/25-dice3d.js"
    ]
   },
   {
@@ -581,6 +596,38 @@
     "builder/24-ui-icons.js",
     "builder/25-logic-hooks-for-the-sheet.js",
     "builder/98-close.wrap.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
+   "close": "</script>",
+   "files": [
+    "learn/00-open.wrap.js",
+    "learn/45-data-learn.js",
+    "learn/46-logic-learn.js",
+    "learn/47-ui-learn.js",
+    "learn/99-close.wrap.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
+   "close": "</script>",
+   "files": [
+    "tg/00-open.wrap.js",
+    "tg/20-engine.js",
+    "tg/25-sim.js",
+    "tg/30-ui-tg.js",
+    "tg/99-close.wrap.js"
    ]
   },
   {

@@ -83,6 +83,15 @@ async def main():
     check("index has version %s and the store" % LABEL, ('APP_LABEL="%s"' % LABEL).encode() in body and b"__store" in body)
     check("no sample character name in index", b"Yudhi" not in body)
     check("index Cache-Control no-cache", "no-cache" in hl.get("cache-control", ""), hl.get("cache-control"))
+    # T11 A11: which compression the live site sends when the browser offers zstd, Brotli and gzip (a notice only, not a pass or fail)
+    try:
+        rq = urllib.request.Request(BASE + "/", headers=dict(HDR, **{"User-Agent": "Mozilla/5.0 (live-check)", "Accept-Encoding": "zstd, br, gzip"}))
+        with urllib.request.urlopen(rq, timeout=30) as r:
+            enc = r.headers.get("Content-Encoding", "none"); size = len(r.read())
+        msg = "index Content-Encoding with zstd offered: %s (%d bytes over the wire)" % (enc, size)
+        print(("::notice::" if GH else "") + msg)
+    except Exception as e:
+        print("compression check skipped: %s" % e)
     st, h, body = get("/sw.js"); hl = {k.lower(): v for k, v in h.items()}
     check("sw.js 200, no-cache, Service-Worker-Allowed /", st == 200 and "no-cache" in hl.get("cache-control", "") and hl.get("service-worker-allowed") == "/", hl)
     st, h, body = get("/manifest.webmanifest"); hl = {k.lower(): v for k, v in h.items()}

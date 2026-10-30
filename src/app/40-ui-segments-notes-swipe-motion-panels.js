@@ -136,16 +136,21 @@ $("#sheetHead").addEventListener("pointerdown",function(e){ var s=SPR.sheet; if(
   var mo=new MutationObserver(function(recs){ var add={}, rem=[]; recs.forEach(function(r){ if(r.type==="childList"&&r.target===document.body){ Array.prototype.forEach.call(r.addedNodes,function(n){ add[sig(n)]=1; }); Array.prototype.forEach.call(r.removedNodes,function(n){ rem.push(n); }); } });
     rem.forEach(function(n){ if(!add[sig(n)]) ghost(n); });/* a dialog redrawn in place (same id) does not fade */ ovQueue(); });
   mo.observe(document.body,{childList:true}); mo.observe(sheet,{attributes:true,attributeFilter:["class"]});
+  new MutationObserver(function(){ ovQueue(); }).observe(document.body,{attributes:true,attributeFilter:["hidden"],subtree:true});/* T11 A6: Home shown or hidden */
   var tieB=function(){ var b=document.getElementById("bld"); if(b&&!b.__ovo){ b.__ovo=1; mo.observe(b,{childList:true,attributes:true,attributeFilter:["hidden"]}); } }; tieB(); setTimeout(tieB,500);
 })();
 var OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
 window.addEventListener("beforeunload",function(){ OV_UNLOAD=1; });/* a reload or page change is under way: going back in history now would cancel it */
 function ovTop(){ var c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
   var a=document.querySelectorAll("body > .ask"); if(a.length){ var x=a[a.length-1]; return function(){ var b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
-  var bl=document.getElementById("bld"); if(bl&&!bl.hidden){ var e=Array.prototype.slice.call(bl.children).filter(function(d){ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ var y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } }
+  if(window.__tgBack){ var tb=window.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
+  if(window.__learnBack){ var lb=window.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
+  var bl=document.getElementById("bld"); if(bl&&!bl.hidden){ var e=Array.prototype.slice.call(bl.children).filter(function(d){ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ var y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(window.__bldBack) return function(){ window.__bldBack(); }; }/* T11 G6 T5 */
   var q=document.getElementById("hpQm"); if(q) return function(){ qmClose(); };
   var k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter(function(w){ return !w.hidden&&w.querySelector(".bkpx"); }); if(k.length){ var z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }
   if(sheet.classList.contains("on")) return function(){ var bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); };
+  /* T11 A6: on the character sheet itself (no popup, builder closed, not a friend's view), Back goes to Home instead of leaving the app */
+  var hv=document.getElementById("homeV"); if(hv&&hv.hidden&&!(bl&&!bl.hidden)&&!FROZEN&&typeof showHome==="function") return function(){ showHome(); };
   return null; }
 function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; var on=!!ovTop();
   if(on&&!OVG){ try{ history.pushState({csOv:1},""); OVG=true; }catch(e){} }

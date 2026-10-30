@@ -55,5 +55,29 @@ window.__bldArmor=function(st,name,eq){var bn=baseOf(name).b;if(!st||!st.C||!(AR
  return out};
 if(window.__sheetRerender)setTimeout(window.__sheetRerender,0);
 if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
-if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home")},50)}
+if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home");/* T11 Learn F3: Forge Your Hero asked for a Quick Build of this new character */var fg=null;try{fg=JSON.parse(sessionStorage.getItem("cs-forge")||"null");sessionStorage.removeItem("cs-forge")}catch(e){}if(fg&&fg.cls&&QUICK[fg.cls]){if(fg.name)B.name=fg.name;quickBuild(fg.cls,fg.sp)}},50)}
 applyPacks();render();
+
+/* T11 N6: rules fuzzer hooks. __bldLists gives the 2024 classes, species, backgrounds and subclasses. __bldFuzz builds one character from the given picks
+   (class, species, background, standard array order, level, subclass), fills the remaining choices the Quick Build way, and returns the build, the sheet
+   object, the rule issues and the unfinished list. The open build is put back afterwards, nothing is saved */
+window.__bldLists=function(){var subs={};Object.keys(CLASSES).forEach(function(c){subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter(function(c){return CLASSES[c]}),sp:Object.keys(SPECIES).filter(function(s){return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter(function(b){return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort(function(a,b){return b-a})}};
+window.__bldFuzz=function(o){var keep=B,out=null;try{B=NEWB();B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
+  var bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
+  B.level=o.lv;if(o.sub&&o.lv>=3)B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
+  out={b:JSON.parse(JSON.stringify(B)),c:toSheet(),ri:ruleIssues().map(function(x){return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}B=keep;return out};
+window.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
+/* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */
+/* the build of the open character without opening the builder: the saved one when it is this character's, otherwise made from the sheet (like Build does) */
+function bldForSheet(){var st=window.__sheetState&&window.__sheetState();if(!st||!st.C)return null;var raw=savedRaw(),keep=B,out=null;
+ try{if(raw!=null){var b=JSON.parse(raw);B=b;if(own(st.C.name)||copyOf(st.C.name)){out=b}}if(!out){fromSheet(st);out=JSON.parse(JSON.stringify(B))}}catch(e){out=null}finally{B=keep;applyPacks()}return out}
+window.__bldForSheet=bldForSheet;
+window.__bldOpts=function(){var r14=B.rs==="2014",ok=function(k){return r14?/\(2014\)/.test(k):!/\(2014\)/.test(k)};var bg={};Object.keys(BACKGROUNDS).filter(ok).forEach(function(k){bg[k]={ab:(BACKGROUNDS[k].ab||[]).slice(),sk:(BACKGROUNDS[k].sk||[]).slice()}});
+ var b0=bldForSheet()||JSON.parse(JSON.stringify(B));return {b:b0,species:Object.keys(SPECIES).filter(ok),bg:bg,armor:JSON.parse(JSON.stringify(ARMOR)),r14:r14}};
+window.__bldUse=function(nb,why){var now=JSON.stringify(B);saveBak(now);var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);stamp();save();applyPacks();window.__bldOpen();go("abil");toast((why||"Build changed")+". The old build is kept as the backup build.")};
+/* G7 TG1 Try a class: the Quick Build of a class at a level, made on a copy (nothing saved, the open build is put back). Spells, choices and
+   the kit are filled the way Quick Build fills them, so a caster has its spells */
+window.__bldQuickFor=function(cls,lv){var Q=QUICK[cls];if(!Q)return null;var keep=B,out=null;
+ try{B=NEWB();B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=SPECIES.Human?"Human":B.species;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
+  B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=JSON.parse(JSON.stringify(B))}
+ catch(e){out=null}finally{B=keep;applyPacks()}return out};

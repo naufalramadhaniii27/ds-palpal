@@ -6,14 +6,22 @@ var MI=(function(){
   function ls(k,d){ try{ return __store.getItem(k)||d; }catch(e){ return d; } }
   var M={ mode:ls("mi-fx","full"), bz:ls("mi-bz","on") };
   M.rm=function(){ return M.mode==="off"||!!(mq&&mq.matches); };
-  M.full=function(){ return M.mode==="full"&&!M.rm(); };
-  M.apply=function(){ html.classList.toggle("mi-off",M.mode==="off"); html.classList.toggle("mi-lite",M.mode==="lite"); };
+  M.full=function(){ return M.mode==="full"&&!M.rm()&&!M.weak; };
+  M.apply=function(){ html.classList.toggle("mi-off",M.mode==="off"); html.classList.toggle("mi-lite",M.mode==="lite"||(M.mode==="full"&&!!M.weak)); };
+  /* T11 N14: effects that fit the device. When the person never chose an effects level (no mi-fx saved), a weak device gets the lite
+     effects: 4 cores or fewer with 2 GB of memory or less, or the first 90 frames after start come slower than 28 ms (median).
+     The saved setting is not changed, and a level chosen in Settings always wins */
+  M.weak=false; M.tier=function(){ return M.mode!=="full"?M.mode:(M.weak?"lite (this device)":"full"); };
+  (function(){ var chose=false; try{ chose=__store.getItem("mi-fx")!=null; }catch(e){} if(chose) return;
+    if((navigator.hardwareConcurrency||8)<=4&&(navigator.deviceMemory||8)<=2){ M.weak=true; return; }
+    var t=[], last=0, n=0; function f(ts){ if(last) t.push(ts-last); last=ts; if(++n<90) requestAnimationFrame(f); else { t.sort(function(a,b){ return a-b; }); var med=t[t.length>>1]||16; if(med>28&&document.visibilityState==="visible"){ M.weak=true; M.apply(); } } }
+    if(window.requestAnimationFrame) requestAnimationFrame(f); })();
   /* next frame, or 60 ms later if this browser holds frames back. Anything the app must still do goes through here, so it always happens */
   window.__miNF=function(fn){ var d=false, go=function(){ if(d) return; d=true; fn(); }; requestAnimationFrame(go); setTimeout(go,60); };
   /* safety net: if the browser refuses an effect's animation, run it with a plain curve rather than leave a half-made effect on screen */
   (function(){ var EP=window.Element&&Element.prototype, _an=EP&&EP.animate; if(!_an||_an.__mi) return; var HT=document.documentElement, zero=function(o){ if(typeof o==='number') return 0; var z={}; if(o&&typeof o==='object') for(var y in o) z[y]=o[y]; z.duration=0; z.delay=0; z.endDelay=0; z.iterations=1; return z; };/* T2: Immersive Off runs every animation at length 0, so the end state is set at once and finish handlers still run */
     var safe=function(k,o){ if(HT.classList.contains('mi-off')) o=zero(o); try{ return _an.call(this,k,o); }catch(e){ if(o&&typeof o==="object"){ var o2={}; for(var x in o) o2[x]=o[x]; o2.easing="ease-out"; try{ return _an.call(this,k,o2); }catch(e2){} } throw e; } }; safe.__mi=1; EP.animate=safe; })();
-  M.set=function(k,v){ M[k]=v; try{ __store.setItem(k==="mode"?"mi-fx":"mi-bz",v); }catch(e){} M.apply(); if(window.__miAmb) window.__miAmb(true); };
+  M.set=function(k,v){ M[k]=v; if(k==="mode") M.weak=false;/* T11 N14: a chosen level wins */ try{ __store.setItem(k==="mode"?"mi-fx":"mi-bz",v); }catch(e){} M.apply(); if(window.__miAmb) window.__miAmb(true); };
   var HZ={light:8,medium:[10,30,12],heavy:[16,40,22],success:[10,40,18]};
   M.buzz=function(k){ if(M.bz!=="on"||M.rm()) return; try{ if(navigator.vibrate) navigator.vibrate(HZ[k]||k||8); }catch(e){} };
   /* router: one real listener per event type; handlers run in the order they were added and stop when one stops propagation */

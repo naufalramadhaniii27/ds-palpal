@@ -16,7 +16,7 @@
 
 /* A2-A4 type and numbers */
 :root[data-skin="ddb"] :is(.ab .m,.tile .v,#hpCur,.abox){font-variant-numeric:tabular-nums}
-:root[data-skin="ddb"] .ab .m{font-weight:800!important;letter-spacing:-.01em}
+:root[data-skin="ddb"] .ab .m{font-weight:800;letter-spacing:-.01em}
 :root[data-skin="ddb"] :is(#p-main,#p-skills,#sheet) h2:not(.ptitle){letter-spacing:.03em}
 /* A5 an icon chip in front of each card title */
 :root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle)>svg:first-child,:root[data-skin="ddb"] :is(#p-main,#p-skills) h2:not(.ptitle) .ico:first-child{box-sizing:content-box;padding:6px;border-radius:10px;background:rgba(var(--pl-rgb),.16);color:rgb(var(--pl-rgb));box-shadow:inset 0 0 0 1px rgba(var(--pl-rgb),.3)}
@@ -61,14 +61,14 @@ html:not([data-skin="ddb"]) .mi-hpg,html:not([data-skin="ddb"]) .mi-hpi{display:
 :root[data-skin="ddb"] #conds .chip.on[data-info="g:Unconscious"]{--cc:138,160,200}
 :root[data-skin="ddb"] #conds .chip.on[data-info^="g:"]{background:linear-gradient(180deg,rgba(var(--cc,214,69,59),.28),rgba(var(--cc,214,69,59),.1))!important;border-color:rgba(var(--cc,214,69,59),.6)!important;color:#fff!important;box-shadow:0 0 14px -4px rgba(var(--cc,214,69,59),.7),inset 0 1px 0 rgba(255,255,255,.15)!important}
 :root[data-skin="ddb"] #conds .chip.on[data-info^="g:"] svg{color:rgb(var(--cc,214,69,59))}
-:root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1!important}
-:root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px)!important;border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)!important}
+:root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1}
+:root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px);border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)!important}
 /* detail panels: a four-up strip is too tight in a side panel or on a phone, so it goes two by two there (this was cramped in the original too) */
 #sheet:not(.wide) .dc-strip:not(.dc-s1):not(.dc-s2){grid-template-columns:repeat(2,minmax(0,1fr))!important}
 :root[data-skin="ddb"] #sheet .dc-cell{background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
 :root[data-skin="ddb"] #sheet .dc-cell b{font-size:1.05em}
 /* the left column was a tall dark box stretched to the height of the Actions list: now its cards stand on their own */
-:root[data-skin="ddb"] .side{background:transparent!important;border-color:transparent!important;box-shadow:none!important;align-self:start}
+:root[data-skin="ddb"] .side{background:transparent!important;border-color:transparent!important;box-shadow:none;align-self:start}
 :root[data-skin="ddb"] .hp-big.mi-hpn{padding-right:64px}
 .hp-big.mi-hpn .mi-hpg,.hp-big.mi-hpn .mi-hpi{width:56px;height:56px;margin-top:-28px}
 .hp-big.mi-hpn .mi-hpg{-webkit-mask:radial-gradient(circle,transparent 23px,#000 24px);mask:radial-gradient(circle,transparent 23px,#000 24px)}

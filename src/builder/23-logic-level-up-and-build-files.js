@@ -154,6 +154,20 @@ function qbSpMC(){var cp=casterParts();if(!cp.length)return;var auto=autoSpells(
  var wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach(function(r){if(wl>=r[0]&&!B.pk["ma"+r[1]]){var s=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  var need=bookNeed(),wz=cp.filter(function(p){return p.cls==="Wizard"})[0];if(need&&wz){var mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter(function(x){return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map(function(x,i,A){return [x,A.slice(0,i).filter(function(y){return y[1]===x[1]}).length]}).sort(function(a,b){return a[1]-b[1]||b[0][1]-a[0][1]}).map(function(p){return p[0]}).forEach(function(x){if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
 window.__bldSheetFor=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);applyPacks();out=toSheet()}finally{B=keep;applyPacks()}return out};
+/* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
+   every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
+   and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
+   scores, the tables stay the same, so the second set-up is skipped, and the open character's tables are set up once per slice of work (pause) and at the end,
+   not after every try. Same results as __bldSheetFor one by one (tests/rb_fast.py compares every try) */
+window.__bldSheetBatch=function(){var keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
+ function tag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
+ return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}var out=null;try{var b=JSON.parse(JSON.stringify(nb)),z=clone(BLANK);for(var k in BLANK)if(b[k]==null)b[k]=z[k];B=cleanCh(b);
+   var o={};Object.keys(B).forEach(function(k){if(!VARY[k])o[k]=B[k]});var key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);
+   if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else{B.src=JSON.parse(srcAfter);if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
+   out=toSheet()}catch(e){out=null;last=null}finally{B=keep}return out},
+  /* between slices the open character's tables come back, so nothing else ever sees a try's tables. Skipped when they are the same */
+  pause:function(){if(last===null)return;B=keep;var o={};Object.keys(B).forEach(function(k){if(!VARY[k])o[k]=B[k]});var key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);if(key!==last)applyPacks();last=null},
+  end:function(){if(done)return;done=true;B=keep;applyPacks()}}};
 /* v74 test hook: reads a sheet back without saving. Returns the species, lineage and sources the builder would hold */
 window.__bldRound=function(C){var keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map(function(x){return x.n+"|"+x.use+"|"+x.src})}}finally{B=keep;applyPacks()}return out};
 window.__bldLevelUp=function(){var st0=window.__sheetState&&window.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(window.__bldOpen)window.__bldOpen();return}/* v22 i3 */window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
@@ -175,7 +189,7 @@ window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();documen
     applyPacks();render();
     ask("The sheet ("+(st.C.name||"Character")+", level "+(+st.C.level||1)+") does not match your saved build ("+B.name+", level "+TL()+ml+"). Load the build from the sheet? This replaces the saved choices, spells, and multiclass. A backup copy stays on this device. Cancel keeps the saved build.","Load from sheet",function(){saveBak(raw);load()});return}
    if(B.cid!==sid()||copyOf(st.C.name)){stamp();save()}}}
- applyPacks();render()};
+ try{stepBack()}catch(e){}applyPacks();render()};
 function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(window.__bldDot)window.__bldDot()}/* v32 RU137 */
 /* RU30: what a new character still has to choose before Apply: "class, species, and background" */
 function unList(){var m=[["cls","class"],["species","species"],["bg","background"]].filter(function(x){return un(x[0])}).map(function(x){return x[1]});return m.length>1?m.slice(0,-1).join(", ")+(m.length>2?",":"")+" and "+m[m.length-1]:m.join("")}

@@ -37,14 +37,19 @@ setTimeout(function(){if(FROZEN)return;var r=rEnsure();Object.keys(r.chars).forE
 /* v18 RL47: a sheet written by a newer version keeps the fields this version does not produce */
 function keepNewer(p){ if(newerApp(C)) Object.keys(C).forEach(function(k){ if(!(k in p)) p[k]=C[k]; }); return p; }
 window.__idNoArt=function(){ try{ return __store.getItem("mi-clsart")==="off"; }catch(e){ return false; } };/* T10 */
-window.__sheetCamp=function(){ return campName(); };/* T10: the builder shows the sheet's campaign */
+window.__sheetCamp=function(){ return campName(); };
+/* T11 G6 B6: the builder edits Identity and Appearance of the open character. Same fields as the Description tab (S.align, S.notes) */
+window.__sheetIdent=function(){ var n=(S&&S.notes)||{}, o={align:(S&&S.align)||""}; ["personality","ideal","bond","flaw","backstory","appearance","ch_gender","ch_age","ch_height","ch_weight","ch_eyes","ch_hair","ch_skin","ch_faith"].forEach(function(k){ o[k]=n[k]||""; }); return o; };
+window.__sheetPortrait=function(){ return (S&&S.portrait)||""; };/* T11 G6 B7: the builder makes a round token from it */
+window.__sheetIdentSet=function(k,v){ if(FROZEN||!S) return false; if(k==="align") S.align=String(v||""); else if(/^(personality|ideal|bond|flaw|backstory|appearance|ch_(gender|age|height|weight|eyes|hair|skin|faith))$/.test(k)){ S.notes=S.notes||{}; S.notes[k]=String(v||""); } else return false; save(); return true; };/* T10: the builder shows the sheet's campaign */
 window.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ var om=(D&&D.hpmax)||0, oh=S.hp; C=keepNewer(p); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); } if(typeof p.camp==="string"&&p.camp.trim()){ S.camp=p.camp.trim(); save(); }/* T10: campaign typed in the builder */
   if(oh!=null&&om){ try{ derive(); S.hp=clamp(oh+(D.hpmax-om),0,D.hpmax); }catch(er){ S.hp=null; } } else S.hp=null; if(!S.used) S.used={}; save(); saveC(); renderAll(); renderNotes(); var gq=S.coins?num(S.coins.gp,0)+num(C.gp,0)-num(S.coinBase,num(C.gp,0)):0; if(note!==false) toast(gq<0?"Sheet updated. Starting gold is now lower than the gold you spent, so Gold shows 0.":note||"Sheet updated from builder"); };/* v24 p08: quiet for the blank first sheet */
 window.__sheetName=function(){ return C&&C.name; };window.__ask=ask;/* T10: test hook, opens the confirm dialog with any text */
 window.__sheetRerender=function(){ renderAll(); };
 window.__sheetSoft=function(p){ if(!p||!p.abilities) return; C=keepNewer(p); saveC(); renderAll(); };
 window.__sheetState=function(){ return {C:C, lang:S.lang, camp:campName()}; };
-window.__D=function(){ return D; };/* v35 p05 */
+window.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
+window.__deriveFor=function(c){ var C0=C, S0=S, D0=D, out=null; try{ C=JSON.parse(JSON.stringify(c)); S=JSON.parse(JSON.stringify(DEF)); derive(); out=JSON.parse(JSON.stringify({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry})); }catch(e){ out={err:String(e&&e.stack||e)}; } C=C0; S=S0; D=D0; try{ derive(); }catch(e){} return out; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */
 window.__actProbe=function(C2){ var C0=C, S0=JSON.stringify(S), F0=actF, out=null; try{ C=C2; S=JSON.parse(S0); actF="all"; derive(); renderActions();
   var b=document.getElementById("actBody"), cat="", res={action:[],onhit:[],bonus:[],reaction:[],other:[],rows:[]};

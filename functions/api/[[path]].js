@@ -407,11 +407,21 @@ async function social(db, req, url, parts, m, u, me, mode) {
     const day = await db.prepare("SELECT COALESCE(SUM(req),0) req, COALESCE(SUM(wr),0) wr, COALESCE(SUM(rd),0) rd FROM usage WHERE day = ?").bind(today()).first();
     const y = await db.prepare("SELECT v FROM state WHERE k = 'yesterday'").first();
     const top = await db.prepare("SELECT u.name, u.username, u.active, (SELECT COUNT(*) FROM chars c WHERE c.owner = u.id AND c.deleted = 0) chars, (SELECT COALESCE(SUM(size),0) FROM chars c WHERE c.owner = u.id) + (SELECT COALESCE(SUM(size),0) FROM portraits p WHERE p.owner = u.id) bytes FROM users u ORDER BY bytes DESC LIMIT 20").all();
+    // T11 Learn U12: how many people finished each Learn stop, totals only (no per-person rows, U30). Read from the settings that follow a person (prefs, key cs-learn-v1)
+    const STOPS = ["apptour", "tavern", "rooftops", "forest", "campsite", "market", "forge", "bridge"];
+    const L = "json_extract(prefs, '$.\"cs-learn-v1\"')";
+    let learn = null;
+    try {
+      learn = await db.prepare("SELECT COUNT(*) started, " + STOPS.map(k => "SUM(CASE WHEN json_extract(" + L + ", '$.done." + k + "') IS NOT NULL THEN 1 ELSE 0 END) " + k).join(", ") + ", SUM(CASE WHEN json_extract(" + L + ", '$.quiz.best') IS NOT NULL THEN 1 ELSE 0 END) quiz FROM users WHERE prefs IS NOT NULL AND json_valid(prefs) AND " + L + " IS NOT NULL AND json_valid(" + L + ")").first();
+    } catch (e) { learn = null; }
     await count(db, me, { rd: 40 });
-    return json({ mode, today: day, yesterday: y ? JSON.parse(y.v) : null, totals: tot, global: GLOBAL, storageLimit: 5 * 1024 * 1024 * 1024, people: top.results });
+    return json({ mode, today: day, yesterday: y ? JSON.parse(y.v) : null, totals: tot, global: GLOBAL, storageLimit: 5 * 1024 * 1024 * 1024, people: top.results, learn, learnStops: STOPS });
   }
   return null;
 }
+
+/* G5: the daily cycle for a Cron Trigger when the app runs on Workers (workers/worker.js). On Pages the first request of the day runs it */
+export async function dailyRun(env) { if (!env || !env.DB) return null; await ensure(env.DB); return daily(env.DB); }
 
 export async function onRequest(ctx) {
   const { request: req, env } = ctx, url = new URL(req.url), path = url.pathname.replace(/^\/api\/?/, "").replace(/\/+$/, ""), parts = path ? path.split("/") : [];

@@ -1,0 +1,87 @@
+/* T11 G6: builder look (B2 ability hexagons, points left). Own layer (feat), after the app layer */
+@property --p{syntax:'<percentage>';inherits:false;initial-value:0%}
+@layer feat{
+#bld .abgrid .abx{align-items:center;text-align:center;padding:10px 8px 12px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card,#1d2225) 88%,transparent)}
+#bld .bld-hero{position:relative;display:block;width:100%;aspect-ratio:16/7;max-height:300px;margin:4px 0 14px;border-radius:16px;overflow:hidden;background:#101417;box-shadow:0 14px 34px -14px rgba(0,0,0,.7)}
+#bld .bld-hero img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+#bld .bld-hero b{position:absolute;left:0;right:0;bottom:0;padding:28px 16px 12px;font-size:calc(22px*var(--tz,1));font-weight:800;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72));text-shadow:0 2px 6px rgba(0,0,0,.5)}
+@media (max-width:759px){ #bld .bld-hero{aspect-ratio:4/3;max-height:260px} #bld .bld-hero img{object-position:50% 25%} }
+#bld .ttl,#bld .ttl.sm,#learn h2,.lrn-hero h2{text-wrap:balance}
+#bld .exp .expb{transition:opacity .22s ease,transform .25s cubic-bezier(.2,.8,.2,1)}
+@starting-style{ #bld .exp .expb{opacity:0;transform:translateY(10px) scale(.98)} }
+@media (prefers-reduced-motion:reduce){ #bld .exp .expb{transition:none} }
+#bld .bmiss{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 14px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,#4ea1ff 55%,var(--line,#30373b));background:color-mix(in srgb,#4ea1ff 12%,transparent)}
+#bld .bmiss.ok{border-color:color-mix(in srgb,var(--good,#5fc28b) 50%,var(--line,#30373b));background:color-mix(in srgb,var(--good,#5fc28b) 10%,transparent)}
+#bld .bmiss b{font-size:18px}
+#bld .bmiss button{min-height:44px;padding:0 14px;border-radius:10px;font-weight:700}
+#bld .bident{margin-top:24px;padding-top:8px;border-top:1px solid var(--line,#30373b);display:flex;flex-direction:column;gap:12px}
+#bld .balign{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#bld .balign button{min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:12px;border:1px solid var(--line,#30373b);background:var(--card,#1d2225);padding:6px 4px}
+#bld .balign button b{font-size:16px}
+#bld .balign button small{font-size:11px;color:var(--muted);text-align:center;line-height:1.2}
+#bld .balign button[aria-pressed="true"]{border-color:var(--stamp,#a33);background:color-mix(in srgb,var(--stamp,#a33) 22%,var(--card,#1d2225))}
+#bld .bidf{display:flex;flex-direction:column;gap:4px}
+#bld .bidf span{font-size:13px;color:var(--muted);font-weight:600}
+#bld .bidf textarea{field-sizing:content;min-height:3lh;resize:vertical}
+#bld .bidg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:760px){ #bld .bidg{grid-template-columns:repeat(4,minmax(0,1fr))} }
+#bld .btoken{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+#bld .btk-p{width:96px;aspect-ratio:4/5;object-fit:cover;border-radius:10px;border:1px solid var(--line,#30373b)}
+#bld .btk-c{width:128px;height:128px}
+#bld .btk-a{display:flex;flex-direction:column;gap:8px}
+#bld .btk-a button{min-height:44px;padding:0 16px;border-radius:10px;font-weight:700}
+#bld .pickrow.pcard{position:relative;display:grid;grid-template-columns:92px 1fr;grid-template-rows:auto 1fr;column-gap:12px;align-items:start;min-height:96px;padding:0 12px 0 0;overflow:hidden;text-align:left}
+#bld .pickrow.pcard::before{content:"";grid-row:1/3;grid-column:1;align-self:stretch;min-height:96px;background:var(--pc-art) center 25%/cover no-repeat;border-radius:inherit;border-top-right-radius:0;border-bottom-right-radius:0}
+#bld .pickrow.pcard>b{grid-column:2;margin-top:10px;font-size:calc(17px*var(--tz,1))}
+#bld .pickrow.pcard>span{grid-column:2;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35}
+#bld .pickrow.pcard>svg,#bld .pickrow.pcard>.ico{display:none}
+@media (min-width:760px){ #bld .pickrow.pcard{grid-template-columns:140px 1fr} }
+#bld #body{view-transition-name:bld-body}
+::view-transition-old(bld-body){animation:bldOut .22s ease both}
+::view-transition-new(bld-body){animation:bldIn .3s cubic-bezier(.2,.8,.2,1) both}
+:root[data-bdir="b"]::view-transition-old(bld-body){animation-name:bldOutB}
+:root[data-bdir="b"]::view-transition-new(bld-body){animation-name:bldInB}
+@keyframes bldOut{to{opacity:0;transform:translateX(-24px)}}
+@keyframes bldIn{from{opacity:0;transform:translateX(28px)}}
+@keyframes bldOutB{to{opacity:0;transform:translateX(24px)}}
+@keyframes bldInB{from{opacity:0;transform:translateX(-28px)}}
+@supports (animation-timeline:view()){
+ #bld .bld-hero img{animation:bldPar linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+ @keyframes bldPar{from{transform:translateY(-6%) scale(1.12)}to{transform:translateY(6%) scale(1.12)}}
+}
+@media (prefers-reduced-motion:reduce){ #bld .bld-hero img{animation:none} }
+#bprog{height:3px;background:linear-gradient(90deg,var(--good,#5fc28b) var(--p),transparent var(--p));transition:--p .6s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){ #bprog{transition:none} }
+#bld .bprev{margin-top:20px}
+.rcpt{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rcpt li{padding:8px 12px;border-radius:10px;border:1px solid var(--line,#30373b);background:color-mix(in srgb,var(--card,#1d2225) 90%,transparent)}
+.rcpt .rc-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.rcpt .rc-h span{white-space:nowrap;font-variant-numeric:tabular-nums}
+.rcpt .rc-h strong{color:var(--good,#5fc28b)}
+.rcpt small{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
+.rc-none{color:var(--muted)}
+.tml{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tml li{padding:10px 12px;border-radius:10px;border:1px solid var(--line,#30373b)}
+.tml .tm-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tml .tm-h span{color:var(--muted)}
+.tml small{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
+.tml .tm-a{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tml .tm-a .btn{min-height:44px}
+#bld .abgrid .abx{min-width:0}
+#bld .abgrid .abx>b{font-size:calc(13px*var(--tz,1));letter-spacing:.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+#bld .abgrid .abx input.btx{text-align:center;width:100%}
+#bld .abhex{position:relative;width:84px;height:94px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;margin:2px auto 4px}
+#bld .abhex::before{content:"";position:absolute;inset:0;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(180deg,color-mix(in srgb,var(--stamp,#a33) 38%,#1b2024),#14181b);z-index:0}
+#bld .abhex::after{content:"";position:absolute;inset:3px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:#171c1f;z-index:0}
+#bld .abhex strong{position:relative;z-index:1;font-size:calc(30px*var(--tz,1));font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+#bld .abhex small{position:relative;z-index:1;margin-top:4px;padding:1px 8px;border-radius:999px;font-weight:700;font-size:calc(13px*var(--tz,1));background:color-mix(in srgb,var(--stamp,#a33) 30%,transparent)}
+#bld .abx .pb{display:grid;grid-template-columns:44px 44px;justify-content:center;gap:4px 6px}
+#bld .abx .pb output{grid-column:1/-1;order:-1;text-align:center;font-weight:700;color:var(--muted)}
+#bld .abx .pb button{min-width:44px;min-height:44px;padding:0;border-radius:10px;font-size:20px;font-weight:700}
+#bld .pts{display:flex;align-items:baseline;justify-content:center;gap:6px;font-size:calc(15px*var(--tz,1));margin:8px 0 12px}
+#bld .pts b{font-size:calc(30px*var(--tz,1));font-variant-numeric:tabular-nums}
+#bld .pts.done b{color:var(--good,#5fc28b)}
+#bld .pts.over b{color:var(--bad,#ee6d62)}
+:root[data-hc] #bld .abhex::after{background:var(--panel)}
+.dna-qr svg{width:min(100%,280px);height:auto;background:#fff;padding:8px;border-radius:8px}
+}

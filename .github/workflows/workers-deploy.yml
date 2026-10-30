@@ -1,0 +1,51 @@
+# G5: deploy the app to Cloudflare Workers after each push to main, next to Cloudflare Pages (Pages stays live until this passes).
+# Does nothing until the repository has the secrets CLOUDFLARE_API_TOKEN (Workers Scripts Edit, D1 Edit) and CLOUDFLARE_ACCOUNT_ID.
+# After the first deploy, set the repository variable WORKERS_BASE to the workers.dev address so live-check also tests it.
+name: workers-deploy
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check the secrets
+        id: has
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$T" ] && [ -n "$A" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "No Cloudflare secrets yet: Workers deploy skipped."; fi
+      - uses: actions/checkout@v4
+        if: steps.has.outputs.go == '1'
+      - uses: actions/setup-node@v4
+        if: steps.has.outputs.go == '1'
+        with:
+          node-version: "22"
+      - name: Build dist and deploy
+        if: steps.has.outputs.go == '1'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          sh tools/pages_dist.sh
+          npx --yes wrangler@4.150.0 deploy -c workers/wrangler.jsonc
+      - uses: actions/setup-python@v5
+        if: steps.has.outputs.go == '1' && vars.WORKERS_BASE != ''
+        with:
+          python-version: "3.12"
+      - name: Check the Workers address
+        if: steps.has.outputs.go == '1' && vars.WORKERS_BASE != ''
+        env:
+          BASE: ${{ vars.WORKERS_BASE }}
+          PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS: "1"
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          pip install playwright==1.47.0
+          python -m playwright install --with-deps chromium
+          export WAIT_CACHE=$(grep -o 'dnd-sheet-[0-9a-f]\{16\}' sw.js | head -1)
+          python tests/live_check.py live-out-workers

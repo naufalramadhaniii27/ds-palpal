@@ -10,8 +10,13 @@ function fmtW(n){return (Math.round(n*10)/10).toString()}
 function mod(s){return Math.floor((s-10)/2)}
 var toastT=null;
 function toastPic(msg){ if(!window.__artVig) return ""; var m=String(msg||""), id=/^Download started|^Backup text copied/.test(m)?"backup-done":/not a character|can't be read|newer version of the app|code is not a character/.test(m)?"import-failed":/^New version ready/.test(m)?"update":""; return id?window.__artVig("state",id,28):""; }
-function toast(msg){ var t=$("#toast"); t.classList.remove("act"); var tk=typeof toastKind==="function"?toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof ico==="function"?ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("on")},2400); } window.__toast=toast;/* test hook */
+function toast(msg){ var t=$("#toast"); t.classList.remove("act"); var tk=typeof toastKind==="function"?toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof ico==="function"?ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("on")},2400); } window.__toast=toast;/* test hook */
 /* ask(): dialog konfirmasi DOM versi sheet. Pengganti confirm(), yang diblokir di artifact. Tanda tangan sama dengan ask() di builder: ask(pesan, labelOk, cb). Cancel, klik di luar kotak, atau Escape menutup tanpa memanggil cb. */
+/* T11 A5: the top layer. Dialogs and the toast open as manual popovers, so they sit above every z-index (sheet panels, the dice tray,
+   effects) without a z-index race. A manual popover never closes by itself, Escape and clicks stay with the caller. Browsers without
+   popovers keep the old fixed position and z-index. The look stays the same: the popover defaults of the browser are reset in 02-hero.css */
+function topLayer(el){ try{ if(el&&el.showPopover&&el.isConnected){ if(!el.hasAttribute("popover")) el.setAttribute("popover","manual"); if(el.matches(":popover-open")) el.hidePopover(); el.showPopover(); } }catch(e){} return el; }
+window.__topLayer=topLayer;
 function ask(msg,ok,cb,alt){ var w=document.createElement("div"); w.className="ask"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");/* v18: alt = [label, callback] adds a third choice */
   w.innerHTML='<div class="askb"><p'+(/\n/.test(msg)?' class="askl"':'')+'>'+esc(msg)+'</p><div class="askr'+(alt?' ask3':'')+'"><button type="button" class="btn press" data-no="1">Cancel</button>'+(alt?'<button type="button" class="btn press" data-alt="1">'+esc(alt[0])+'</button>':'')+'<button type="button" class="btn pri press" data-yes="1">'+esc(ok)+'</button></div></div>';
   var prev=document.activeElement;
@@ -19,7 +24,7 @@ function ask(msg,ok,cb,alt){ var w=document.createElement("div"); w.className="a
   function onKey(e){ if(e.key==="Escape"){ e.stopPropagation(); close(); } }
   w.addEventListener("click",function(e){ var b=e.target.closest("button"); if(e.target===w||(b&&b.dataset.no)){ close(); return; } if(b&&b.dataset.yes){ close(); cb(); } if(b&&b.dataset.alt&&alt){ close(); alt[1](); } });
   document.addEventListener("keydown",onKey,true);
-  document.body.appendChild(w); var y=w.querySelector("[data-yes]"); if(y) y.focus({preventScroll:true}); }
+  document.body.appendChild(w); topLayer(w); var y=w.querySelector("[data-yes]"); if(y) y.focus({preventScroll:true}); }
 
 /* Equip link: an inventory item and the attack rows named "<item>" or "<item> (thrown)" share one equip state.
    A linked item with no saved eq (hand-filled sheets) counts as equipped. An unequipped item hides its attack rows. */

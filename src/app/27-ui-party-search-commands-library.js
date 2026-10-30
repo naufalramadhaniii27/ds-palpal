@@ -102,6 +102,17 @@ function palWords(){ var W=[
   {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); }}; }},
   {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }},
   {k:["exhaustion"],f:function(){ return palNeed("exh"); }},
+  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ tmOpen(); }}; }},
+  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tgGo(); }}; }},
+  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ wdOpen(); }}; }},
+  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ cheatOpen(); }}; }},
+  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ rbOpen(); }}; }},
+  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ futureOpen(); }}; }},
+  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ recapOpen(); }}; }},
+  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:statusText().slice(0,80),run:function(){ if(sheet.classList.contains("on")) closeSheet(); statusCopy(); }}; }},
+  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ rcptShow(); }}; }},
+  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }},
+  {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }},
   {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ var b=$("#themeBtn"); if(b) b.click(); }}; }},
   {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof undoLbl==="function"&&undoLbl()?"Undo "+undoLbl():"Take back the last change",run:function(){ if(sheet.classList.contains("on")) closeSheet(); undoNow(); }}; }},
   {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ if(sheet.classList.contains("on")) closeSheet(); if(typeof redoNow==="function") redoNow(); }}; }}];
@@ -222,8 +233,10 @@ function libListHTML(){ var q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h=
     if(rc.length) h+='<div class="info-h">Recent</div><div class="lib-l">'+rc.map(function(e){ return libRow(e,"",true); }).join("")+'</div>';
     var n=libCounts(); h+='<div class="info-h">Browse</div><div class="lib-tiles">'+LIB_CATS.filter(function(c){ return n[c[0]]; }).map(function(c){ return '<button type="button" class="lib-tile" data-lib-cat="'+c[0]+'">'+(ico(c[2],"gs-ri")||"")+'<b>'+esc(c[1])+'</b><small>'+n[c[0]]+'</small></button>'; }).join("")+'</div>';
     return h+'<p class="bk-f">Type at least two letters. Try a spell, an item, a feat, a rule, or a word from a description.</p>'; }
-  if(!LIB.res.length) return '<p class="info-d lib-empty">Nothing found for "'+esc(LIB.q.trim())+'".</p>';
-  if(LIB.cat!=="all"){ var F=LIB.res.filter(function(r){ return r[1].c===LIB.cat; }); return libFlat(F,q,F.length); }
+  var ah=typeof askHTML==="function"?askHTML(LIB.q):"";/* T11 N15: a question gets a short answer from the intent table first */
+  if(!LIB.res.length) return ah||'<p class="info-d lib-empty">Nothing found for "'+esc(LIB.q.trim())+'".</p>';
+  h=ah;
+  if(LIB.cat!=="all"){ var F=LIB.res.filter(function(r){ return r[1].c===LIB.cat; }); return ah+libFlat(F,q,F.length); }
   var GR=[]; LIB_CATS.forEach(function(c,ci){ var F=LIB.res.filter(function(r){ return r[1].c===c[0]; }); if(F.length) GR.push([F[0][0],ci,c,F]); }); GR.sort(function(x,y){ return x[0]-y[0]||x[1]-y[1]; });/* the group with the best name match comes first */
   GR.forEach(function(g){ var c=g[2], F=g[3]; h+='<div class="info-h">'+esc(c[1])+' ('+F.length+')</div><div class="lib-l">'+F.slice(0,5).map(function(r){ return libRow(r[1],q,false); }).join("")+'</div>'+(F.length>5?'<button type="button" class="lib-more" data-lib-cat="'+c[0]+'">Show all '+F.length+' in '+esc(c[1])+'</button>':''); });
   return h; }
@@ -312,11 +325,26 @@ var REP_NOTES=false;/* v28 I2: notes and journal only when ticked */
 function reportText(){ var s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } var b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
   return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appLabel:APP_LABEL,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
     storage:(function(){ var n=0; try{ for(var i=0;i<__store.length;i++){ var k=__store.key(i); n+=k.length+String(__store.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
-    errors:ERRLOG, sheet:C, state:s2, build:b},null,1); }
+    errors:ERRLOG, perf:PERF, sheet:C, state:s2, build:b, trail:repTrail()},null,1); }
+/* T11 N18: the last actions (from the undo list) with the state before the first one and after each one, so tests/replay_report.py can play them back.
+   Portrait, notes and journal are left out the same way as in the state above */
+function repTrail(){ try{ if(typeof undoTidy==="function") undoTidy(); var L=(typeof UST!=="undefined"?UST:[]).slice(-10); if(!L.length) return null;
+  var cut=function(js){ if(!js) return null; var o; try{ o=JSON.parse(js); }catch(e){ return null; } if(o&&typeof o==="object"){ if(o.portrait) o.portrait="(portrait left out)"; if(!REP_NOTES){ if(o.notes) o.notes="(notes left out)"; if(o.journal) o.journal="(journal left out)"; } } return o; };
+  L.forEach(function(e){ if(typeof undoFix==="function") undoFix(e); });
+  return {start:{state:cut(L[0].S), sheet:cut(L[0].C), build:cut(L[0].B)}, steps:L.map(function(e){ return {l:e.l, t:new Date(e.t).toISOString(), state:cut(e.A), sheet:e.CA!==e.C?cut(e.CA):undefined, build:e.BA!==e.B?cut(e.BA):undefined}; })};
+  }catch(err){ return {error:String(err)}; } }
+window.__reportText=function(){ return reportText(); };/* T11 N18: test hook */
+/* T11 A10: field timing on this device, kept in memory only. Long Animation Frames (Chromium) and Event Timing (slow taps), the 10 worst of each.
+   They go into the problem report, nothing is sent anywhere */
+var PERF={loaf:[],ev:[]};
+(function(){ var keep=function(L,x){ L.push(x); L.sort(function(a,b){ return b.d-a.d; }); if(L.length>10) L.length=10; };
+  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ var sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
+  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver(function(l){ l.getEntries().forEach(function(e){ if(e.duration>=100){ var t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
+})();
 function reportOpen(){ var old=document.getElementById("rep"); if(old) old.remove(); var w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");
   var txt=reportText();
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="repT">Report a Problem</b><button type="button" class="bkpx" data-rep="close" aria-label="Close">×</button></div>'+
-    '<p>Write what you did and what went wrong, then paste this report after it in a message to the person who keeps the app.</p><p class="muted">The report holds the app version, your browser, the screen size, recent errors, and the open character ('+esc(C.name||"Character")+': build, sheet, and play state, without the portrait). Nothing is sent from here.</p><label class="repn"><input type="checkbox" id="repNotes"'+(REP_NOTES?' checked':'')+'> Include my notes and journal (personal text)</label>'+
+    '<p>Write what you did and what went wrong, then paste this report after it in a message to the person who keeps the app.</p><p class="muted">The report holds the app version, your browser, the screen size, recent errors, and the open character ('+esc(C.name||"Character")+': build, sheet, and play state, without the portrait), your last 10 actions with the state after each (so the problem can be played back), and the slowest moments on this device. Nothing is sent from here.</p><label class="repn"><input type="checkbox" id="repNotes"'+(REP_NOTES?' checked':'')+'> Include my notes and journal (personal text)</label>'+
     '<div class="bkpr"><button type="button" class="btn pri press" data-rep="copy">Copy Report</button></div><textarea id="repTxt" readonly spellcheck="false">'+esc(txt)+'</textarea></div>';
   document.body.appendChild(w);
   var esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);

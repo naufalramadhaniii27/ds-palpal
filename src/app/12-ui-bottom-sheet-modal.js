@@ -4,7 +4,9 @@ var LASTPT=null;document.addEventListener("pointerdown",function(e){ LASTPT={x:e
 function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.t>1500){ sheet.style.transformOrigin=""; return; } var r=sheet.getBoundingClientRect(); if(!r.width) return; var x=Math.max(0,Math.min(r.width,LASTPT.x-r.left)), y=Math.max(0,Math.min(r.height,LASTPT.y-r.top)); sheet.style.transformOrigin=Math.round(x)+"px "+Math.round(y)+"px"; }catch(er){} }
 /* T10: the same icon the identity chip shows (species, class, subclass emblem, background, size) leads the detail title */
 /* T10: watermarks use the HD copy (img/hd, 768 px emblems and 384 px icons). The small file is the fallback if the HD one is missing */
-function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" onerror="this.onerror=null;this.src=\'img/'+d+f+'\'"'; }); }
+function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,function(m,a,d,f){ return '<img '+a+'src="img/hd/'+d+f+'" data-fb="img/'+d+f+'"'; }); }
+/* T11 A1: the fallback to the normal size picture when an HD file is missing, without an inline onerror handler (the CSP allows no inline handlers) */
+document.addEventListener("error",function(e){ var t=e.target; if(t&&t.tagName==="IMG"&&t.getAttribute("data-fb")){ var f=t.getAttribute("data-fb"); t.removeAttribute("data-fb"); t.src=f; } },true);
 function wmClass(n){ var k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
 function sheetIco(t){ t=String(t||""); var h="", m;
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||ico("src-class");
@@ -53,11 +55,19 @@ document.addEventListener("keydown",function(e){ if(!SWP||!sheet.classList.conta
 (function(){ var b=document.getElementById("sheetBody"), x0=0, y0=0, on=false; if(!b) return;
   b.addEventListener("touchstart",function(e){ on=e.touches.length===1&&!!SWP&&!(e.target.closest&&e.target.closest("input,textarea,select,.swp")); if(on){ x0=e.touches[0].clientX; y0=e.touches[0].clientY; } },{passive:true});
   b.addEventListener("touchend",function(e){ if(!on) return; on=false; var t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0; if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.6) swpMove(dx<0?1:-1); },{passive:true}); })();
+/* T11 Learn F5 (U2): a rule panel on the sheet ends with "Learn this", which opens the Learn stop that teaches it */
+var LEARN_LINK=[[/^(Athletics|Acrobatics|Sleight of Hand|Stealth|Arcana|History|Investigation|Nature|Religion|Animal Handling|Insight|Medicine|Perception|Survival|Deception|Intimidation|Performance|Persuasion)\b|Difficulty Class|Ability Check|D20 Test/i,"rooftops"],
+  [/^(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)\b|Proficiency/i,"green"],[/Armor Class|Attack|Critical Hit|Damage/i,"yard"],
+  [/Death Sav|Hit Point Dice|Hit Dice|Stable|Unconscious/i,"camp2"],[/Hit Points|Short Rest|Long Rest/i,"campsite"],[/Speed|Initiative|^Action|Dash|Dodge|Disengage/i,"forest"],
+  [/Bonus Action|Reaction|Opportunity Attack/i,"forest2"],[/Advantage|Disadvantage|Heroic Inspiration/i,"cliff"],[/Saving Throw/i,"camp2"],
+  [/Prone|Poisoned|Grappled|Blinded|Charmed|Deafened|Frightened|Incapacitated|Invisible|Paralyzed|Petrified|Restrained|Stunned|Exhaustion|Condition/i,"meadow"],
+  [/Concentration|Prepared/i,"tower2"],[/Cantrip|Spell Slot|Spellcasting|Spell Attack|Spell Save/i,"tower1"]];
+function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(var i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return '<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:'+LEARN_LINK[i][1]+'">'+ico("ui-book")+'Learn this</button></div>'; return ""; }
 function showEntry(en, push){
   hpDockBack();/* v30 */
   var open=sheet.classList.contains("on") && sheetMode!=="edit";
   if(push && open) navStack.push(en); else navStack=[en];
-  var c=entryContent(en);
+  var c=entryContent(en); c={t:c.t,h:(typeof coachLine==="function"?coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
   if(open){
     sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"); b.innerHTML=c.h; b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
@@ -68,7 +78,7 @@ function showEntry(en, push){
 function refreshEntry(){
   if(!navStack.length || !sheet.classList.contains("on") || sheetMode==="edit") return;
   var c=entryContent(navStack[navStack.length-1]), b=$("#sheetBody"), st=b.scrollTop;
-  setSheetTitle(c.t); b.innerHTML=c.h; b.scrollTop=st; swpSync();/* v36 p18 */
+  setSheetTitle(c.t); b.innerHTML=c.h+learnLink(c.t); b.scrollTop=st; swpSync();/* v36 p18 */
 }
 $("#sheetBack").addEventListener("click",function(){
   if(navStack.length<2) return;

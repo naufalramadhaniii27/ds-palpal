@@ -52,7 +52,7 @@ function snSetH(){ var id=MYID||(rGet()||{}).active, L=(snGet().chars[id]||[]);
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
 /* APP_VER is the internal number stamped on saved data (always goes up). APP_LABEL is the version people see. 0.0.1 starts the public numbering (T7) */
-var APP_VER=104, APP_LABEL="0.0.2", APP_DATE="2026-10-28", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+var APP_VER=108, APP_LABEL="0.0.6", APP_DATE="2026-10-30", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 function lsGet(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ if(FROZEN) return false; try{ __store.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }
@@ -78,13 +78,14 @@ function recover(why,err){ var msg=String((err&&err.message)||err||why); var w=d
   if(w){ var p=w.querySelector(".recm"); if(p&&p.textContent.indexOf(msg)<0) p.textContent+=" | "+msg; return; }
   FROZEN="recover"; clearTimeout(saveT); clearTimeout(cSaveT);
   w=document.createElement("div"); w.id="recov"; w.className="bkp recov"; w.setAttribute("role","alertdialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","recovT");
-  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="recovT">This character could not be shown</b></div><p>Part of the saved data does not fit what this version of the app expects. <b>Nothing has been deleted</b>, and the app saves nothing while this message is open. Download a backup first, then choose what to do.</p><p class="muted recm">'+esc(why)+': '+esc(msg)+'</p>'+
+  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="recovT">This character could not be shown</b></div><p>Part of the saved data does not fit what this version of the app expects. <b>Nothing has been deleted</b>, and the app saves nothing while this message is open. Download a backup first, then choose what to do.</p><p class="muted recm">'+esc(why)+': '+esc(msg)+'</p>'+(typeof healHTML==="function"?healHTML():"")+
    '<div class="bkpr"><button type="button" class="btn pri press" data-rec="dl">Download Backup</button><button type="button" class="btn press" data-rec="txt">Show as Text</button></div>'+
    '<div class="bkpr"><button type="button" class="btn press" data-rec="view">Reset View</button><button type="button" class="btn press" data-rec="go">Continue Anyway</button></div>'+
    '<p class="muted">Reset View clears only screen settings (open tab, dialogs) and loads the app again. Continue Anyway opens the app as it is. Parts that could not be read may then be replaced when you make changes.</p><textarea id="recTxt" readonly spellcheck="false" hidden></textarea></div>';
   document.body.appendChild(w);
   w.addEventListener("click",function(e){ var b=e.target.closest("[data-rec]"); if(!b) return; var a=b.getAttribute("data-rec"), txt=JSON.stringify(rawBackup());
     if(a==="dl"){ try{ var bl=new Blob([txt],{type:"application/json"}), u=URL.createObjectURL(bl), l=document.createElement("a"); l.href=u; l.download=bkpName().replace(/\.bs$/,"-recovery.json"); document.body.appendChild(l); l.click(); l.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); toast("Download started. No file? Use Show as Text."); }catch(er){ toast("Download is blocked here. Use Show as Text."); } return; }
+    if(a==="heal"){ healUse(); return; }
     if(a==="txt"){ var ta=document.getElementById("recTxt"); ta.value=txt; ta.hidden=false; ta.focus(); ta.select(); return; }
     if(a==="view"){ try{ sessionStorage.clear(); ["cs-new","cs-edit"].forEach(function(k){ __store.removeItem(k); }); }catch(er){} sessionStorage.setItem("cs-skip","0"); __miReload(); return; }
     if(a==="go"){ ask("Open the app with the data as it is? Parts that could not be read may be replaced when you make changes. Download a backup first if you have not.","Continue",function(){ FROZEN=""; w.remove(); BAD=[]; try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(er){ recover("render",er); } }); } }); }

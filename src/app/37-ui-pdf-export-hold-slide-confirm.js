@@ -1,7 +1,9 @@
 /* ================= PDF EXPORT ================= */
+/* T11 A3: the PDF libraries come from this site (vendor/pdf), not a CDN: jsPDF 4.2.1 (fixes the 2026 advisories of the 2.x line) and
+   html2canvas-pro 2.5.2 (maintained fork, reads modern colors such as color-mix and oklch). The service worker keeps them after the first use */
 var LIBS = [
-  "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+  "vendor/pdf/html2canvas-pro-2.5.2.min.js",
+  "vendor/pdf/jspdf-4.2.1.umd.min.js"
 ];
 var libsP=null;
 function loadScript(src){ return new Promise(function(res,rej){ var s=document.createElement("script"); s.src=src; s.async=true; s.onload=res; s.onerror=function(){rej(new Error("load "+src))}; document.head.appendChild(s); }); }
@@ -16,7 +18,8 @@ function makePdfBlob(){
     var chain=Promise.resolve(), firstPage=true;
     pages.forEach(function(pg){
       chain=chain.then(function(){
-        return window.html2canvas(pg,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:1200,
+        var h2c=(window.html2canvas&&window.html2canvas.default)||window.html2canvas;/* html2canvas-pro sets a module object */
+        return h2c(pg,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:1200,
           onclone:function(doc){ var w=doc.getElementById("psWrap"); if(w){ w.style.cssText="position:static;width:auto;height:auto;overflow:visible"; } doc.documentElement.removeAttribute("data-skin"); doc.documentElement.style.background="#fff"; doc.body.style.cssText="background:#fff;background-image:none"; }/* v38 p12: white paper in the PDF */
         }).then(function(cv){
           var sliceH = Math.round(cv.width * H / W), y = 0;
@@ -39,8 +42,11 @@ function printFallback(){ buildPrint(); setTimeout(function(){ window.print(); }
 $("#pdfBtn").addEventListener("click",function(){
   var busy=$("#busy");
   downloadsP.then(function(dl){
-    if(!dl){ printFallback(); return; }
     busy.classList.add("on");
+    /* T11 A3: outside the old artifact host there is no save API. The PDF is now built here too and downloaded as a file. Before, this case went straight to the print dialog */
+    if(!dl) return loadLibs().then(makePdfBlob).then(function(blob){ busy.classList.remove("on");
+      var u=URL.createObjectURL(blob), a=document.createElement("a"); a.href=u; a.download=(C.name||"character").replace(/[^A-Za-z0-9]+/g,"-")+"-"+C.cls+D.level+".pdf"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); toast("PDF saved");
+    }).catch(function(){ busy.classList.remove("on"); toast("The PDF couldn't be built. Opening the print dialog"); printFallback(); });
     return loadLibs().then(makePdfBlob).then(function(blob){
       busy.classList.remove("on");
       return dl.save({filename:(C.name||"character").replace(/[^A-Za-z0-9]+/g,"-")+"-"+C.cls+D.level+".pdf", data:blob}).then(function(r){

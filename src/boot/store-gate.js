@@ -60,7 +60,7 @@
      the first at once, the rest one per task (timers a script sets run before the next one, as between inline scripts). A block the parser
      has not finished reading is left to the parser, which now runs it inline. The short script after the last block calls __gateRun */
   function one(){ var s=document.querySelector('script[data-gate]:not([data-ran])'); if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;
-    s.setAttribute("data-ran","1"); var x=document.createElement("script"); x.text=s.text; s.parentNode.insertBefore(x,s.nextSibling); return true; }
+    s.setAttribute("data-ran","1"); var x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(s.text):s.text;/* T11 A1: Trusted Types */ s.parentNode.insertBefore(x,s.nextSibling); return true; }
   function gateEnd(){ if(window.__gateAll&&!window.__gateDone){ window.__gateDone=1; document.documentElement.classList.remove("st-wait"); fire("cs-gate-done"); } }
   function run(){ if(!DONE||RUN) return; window.__storeHold=0; RUN=true; (function next(){ if(!one()){ RUN=false; if(!document.querySelector('script[data-gate]:not([data-ran])')) gateEnd(); return; } setTimeout(next,0); })(); }
   window.__gateRun=function(){ window.__gateAll=1; run(); };

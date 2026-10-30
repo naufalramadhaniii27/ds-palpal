@@ -86,7 +86,7 @@ function frAdmin(box){ frApi("admin").then(function(a){ var g=a.global, mb=funct
     '<tr><td>Requests</td><td>'+a.today.req+'</td><td>'+pc(a.today.req,g.req)+' of '+g.req+'</td></tr><tr><td>Rows written</td><td>'+a.today.wr+'</td><td>'+pc(a.today.wr,g.wr)+' of '+g.wr+'</td></tr><tr><td>Rows read</td><td>'+a.today.rd+'</td><td>'+pc(a.today.rd,g.rd)+' of '+g.rd+'</td></tr></table>'+
     '<p>Mode today: <b>'+esc({normal:"Normal",save:"Saving (backup every minute)",pause:"Paused until 07:00"}[a.mode]||a.mode)+'</b>'+(y.day?' · Yesterday '+esc(y.pct)+'% of the free limit':'')+'</p>'+
     '<p>People: <b>'+a.totals.users+'</b> · active today '+a.totals.activeToday+' · characters '+a.totals.chars+'</p><p>Storage: <b>'+mb(a.totals.charBytes+a.totals.versionBytes+a.totals.picBytes)+'</b> of 5 GB (characters '+mb(a.totals.charBytes)+', versions '+mb(a.totals.versionBytes)+', portraits '+mb(a.totals.picBytes)+')</p>'+
-    '<table class="fr-tab"><tr><th>Person</th><th>Characters</th><th>Space</th><th>Last day</th></tr>'+a.people.map(function(p){ return '<tr><td>'+esc(p.name)+(p.username?' <small>@'+esc(p.username)+'</small>':'')+'</td><td>'+p.chars+'</td><td>'+mb(p.bytes)+'</td><td>'+esc(p.active||"")+'</td></tr>'; }).join("")+'</table>'; },
+    '<table class="fr-tab"><tr><th>Person</th><th>Characters</th><th>Space</th><th>Last day</th></tr>'+a.people.map(function(p){ return '<tr><td>'+esc(p.name)+(p.username?' <small>@'+esc(p.username)+'</small>':'')+'</td><td>'+p.chars+'</td><td>'+mb(p.bytes)+'</td><td>'+esc(p.active||"")+'</td></tr>'; }).join("")+'</table>'+frLearn(a); },
   function(){ box.innerHTML='<p class="sy-note">The cloud cannot be reached now.</p>'; }); }
 
 function frClick(e){ var t=e.target, w=FR.w, box=w.querySelector(".fr-body");
@@ -141,3 +141,7 @@ function frButton(){ var on=SY.on&&SY.st!=="off", hb=document.querySelector("#ho
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-friends]"); if(!b) return; e.preventDefault(); frOpen(); });
 (function(){ var _icon=syIcon; syIcon=function(){ _icon(); try{ frButton(); }catch(x){} }; })();
 window.__friends=FR; window.__frOpen=frOpen;
+/* T11 Learn U12: the Learn funnel for the admin. Totals only, never a list of people (U30) */
+function frLearn(a){ var L=a.learn; if(!L||!L.started) return '<p class="sy-note">Learn: nobody with synced settings has started yet.</p>';
+  var nm={apptour:"App Tour",tavern:"Tavern",rooftops:"Rooftops",forest:"Forest",campsite:"Campsite",market:"Market",forge:"Forge Your Hero",bridge:"Crumbling Bridge"};
+  return '<h3 class="set-h">Learn</h3><table class="fr-tab"><tr><th>Stop</th><th>Finished</th><th>Of those who started</th></tr>'+(a.learnStops||[]).map(function(k){ var n=+L[k]||0; return '<tr><td>'+esc(nm[k]||k)+'</td><td>'+n+'</td><td>'+Math.round(n/L.started*100)+'%</td></tr>'; }).join("")+'<tr><td>Final check</td><td>'+(+L.quiz||0)+'</td><td>'+Math.round((+L.quiz||0)/L.started*100)+'%</td></tr></table><p class="sy-note">'+L.started+' people opened Learn on a synced account.</p>'; }
