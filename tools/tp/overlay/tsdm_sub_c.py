@@ -1,0 +1,245 @@
+# Own-wording subclasses of Dark Matter (2024): Rogue, Sorcerer, Warlock, Wizard and the Valda classes.
+# Gunslinger subclasses (Experiment X, Laserist, Space Cowboy) are skipped, the class is not in the app.
+# Experiment X is listed under Vagabond, Captain and Gunslinger. The Captain and Gunslinger entries are stubs with the same text, so it is written once under Vagabond.
+SUB = {
+"Cyber Ninja": {"spab": "",
+ "f": {
+  "Cyber Katana": "You own a high-tech blade, the Cyber Katana. It is a Martial Melee weapon dealing 1d8 Slashing or Lightning damage plus the ability modifier you attack with. Properties are Finesse and Versatile (1d10). It has the Vex mastery, which you can use without it counting against your Weapon Mastery limit. You get +1 to attack and damage rolls with it, rising to +2 at Rogue level 9 and +3 at level 17. If you lose it, you can build a new one in 8 hours (during a Long Rest) for 100 CR.",
+  "Ninja Agility": "Bonus Action: choose Dodge (take the Dodge action) or Flash Step (move up to 30 ft in a straight Line without Opportunity Attacks). Uses equal your Dexterity modifier (minimum 1), regained on a Short or Long Rest.",
+  "Ultra Slash": "Once per turn when you take the Attack action, replace one attack with a huge Cyber Katana sweep. Up to three creatures you see within 10 ft make a Dexterity save (DC 8 + Dexterity modifier + Proficiency Bonus). A failed save takes the Katana's damage (Slashing or Lightning) plus half your Sneak Attack dice (round down), and a success takes half.",
+  "Covert Techniques": "Cloaking Device: spend a use of Ninja Agility as a Bonus Action to become Invisible until the start of your next turn. It ends early right after you make an attack roll, deal damage or force a save. Uncanny Deflection: when you use Uncanny Dodge, spend a use of Ninja Agility to add 1d10 to your AC against that attack. You must hold the Katana. If this makes a ranged attack miss, you can redirect it at a creature you see within 60 ft, which takes damage equal to half your Sneak Attack dice (round down) of the attack's type.",
+  "Omni Slash": "When you use Ultra Slash you can make it an Omni Slash. Target up to six creatures within 30 ft, and add all your Sneak Attack dice instead of half. Short or Long Rest to use again."},
+ "lu": [{"feature": "Ninja Agility", "lvl": 3, "max": "mod:DEX", "reset": "short", "tag": "Bonus Action"}, {"feature": "Omni Slash", "lvl": 17, "max": 1, "reset": "short", "tag": "Ultra Slash upgrade"}],
+ "acts": {"Ninja Agility": "bonus"}},
+
+"Infiltrator": {"spab": "INT",
+ "f": {
+  "Codebreaker": "Autonomous Protocol: after a successful Hacking attempt you can code instructions into the system. Describe up to eight triggers (such as a few keystrokes entered or a set time passing) and the operation each one starts. The code deletes itself after 24 hours. Data Expert: you gain proficiency in Data, or Expertise if you already have it. Quick Hack: hacking a device is a Utilize action instead of a minute.",
+  "Cyberattack": "Cast Technical Difficulties with no slot a number of times equal to your Intelligence modifier (minimum 1), regained on a Long Rest. Intelligence is the casting ability. When you cast it and a creature carries the affected Magical Technology, that creature takes 2d6 Lightning damage and cannot make Opportunity Attacks until the start of its next turn. The damage becomes 3d6 at level 5, 4d6 at 11 and 5d6 at 17.",
+  "Technical Exploits": "R-Virus: after a successful Hacking attempt you can infect connected Magical Technology of the same type. You gain full access to similar connected devices within 300 ft with no new attempt (open every linked door, or disable every linked camera). Thermalsight Static: while fully in Heavily Obscured conditions such as darkness or fog, you are Invisible to creatures that rely on Thermalsight.",
+  "Electromagical Burst": "Cast Electromagical Pulse as a Bonus Action with no slot, using Intelligence. Long Rest to use again.",
+  "Mind Hack": "When your Sneak Attack hits, you can try to overwrite the target's mind. It makes an Intelligence save (DC 8 + Intelligence modifier + Proficiency Bonus) or is Charmed until the end of your next turn. It is Friendly to you and your allies and obeys your commands (no action needed) and takes no other actions. Once a creature fails this save you cannot use the feature again until a Long Rest."},
+ "lu": [{"feature": "Cyberattack", "lvl": 3, "max": "mod:INT", "reset": "long", "tag": "Technical Difficulties free"}, {"feature": "Electromagical Burst", "lvl": 13, "max": 1, "reset": "long", "tag": "Bonus Action"}, {"feature": "Mind Hack", "lvl": 17, "max": 1, "reset": "long", "tag": "Sneak Attack rider"}],
+ "acts": {"Electromagical Burst": "bonus"},
+ "fx": [[3, "Codebreaker", {"notes": [["Note", "Codebreaker: proficiency in Data (Expertise if already proficient). Hacking a device is a Utilize action"]]}]]},
+
+"Cosmic Magic": {"spab": "CHA",
+ "f": {
+  "Cosmic Spells": "You always have these spells prepared once you reach the Sorcerer level. Level 3: Jump, Levitate, Worldseek, Solar Wind, Zone of Atmosphere, and the Mega spells Conjure Asteroid and Meteoroid Shower. Level 5: Gravity Well, Protection from Energy, Shield Burst. Level 7: Intensify Gravity, Zero Gravity, Eldritch Rift. Level 9: Telekinesis, Teleportation Circle, Dark Matter Override. Level 14: Reverse Gravity.",
+  "Starborn": "You breathe in water and in vacuum, and Extreme Temperatures and Vacuums do not affect you. In Zero-Gravity places you have a Fly Speed equal to your Speed.",
+  "Cosmic Rays": "Right after you cast a damaging Sorcerer spell with a spell slot, take a Bonus Action to make a ranged spell attack against a creature you see within 60 ft. On a hit it takes 1d4 Radiant damage per level of the slot spent.",
+  "Radiation Burst": "Reaction when a creature within 5 ft damages you: a 5-ft Emanation of radiation. Each creature you choose in it makes a Constitution save against your spell save DC or is Poisoned until the end of your next turn. Long Rest to use again, or spend 3 Sorcery Points (no action).",
+  "Gravimancer": "Reverse Gravity is always prepared and you can cast it once with no slot, regained on a Long Rest. As a Magic action you can change its effect to that of Intensify Gravity, Zero Gravity or back to Reverse Gravity. The area does not change.",
+  "Stardust": "When you cast a spell with a slot, create motes of stardust equal to half the slot level (round down), orbiting you for 1 minute. You can hold at most 10 motes. Spend motes instead of Sorcery Points to use Metamagic."},
+ "lu": [{"feature": "Radiation Burst", "lvl": 6, "max": 1, "reset": "long", "tag": "Reaction, or 3 Sorcery Points"}, {"feature": "Gravimancer", "lvl": 14, "max": 1, "reset": "long", "tag": "Reverse Gravity free"}],
+ "acts": {"Cosmic Rays": "bonus", "Radiation Burst": "reaction", "Gravimancer": "other"},
+ "fx": [[3, "Starborn", {"notes": [["Note", "Starborn: breathe underwater and in vacuum, unaffected by Extreme Temperatures and Vacuums, Fly Speed equal to Speed in Zero-Gravity"]]}]]},
+
+"Nanite Magic": {"spab": "CHA",
+ "f": {
+  "Nanite Spells": "You always have these spells prepared once you reach the Sorcerer level. Level 3: Antivirus, Circuit Breaker, Knock, Mending, Technical Difficulties. Level 5: Greater Mending, Rusting Grasp. Level 7: Electromagical Pulse, Fabricate. Level 9: Animate Objects, Simulation.",
+  "Nano Touch": "Bonus Action, spend Sorcery Points for one option. Nano-Armor (1 or 2 points): you or an ally within 5 ft gets +2 AC per point until the start of your next turn. Nano-Degradation (1 or 2 points): a creature within 5 ft takes a -2 AC penalty per point until the start of your next turn. Nano-Repair (1 point): you or an ally within 5 ft can spend a Hit Point Die and regains the roll plus your Charisma modifier in Hit Points.",
+  "Techno-Intuition": "Charismatic Technology: you gain proficiency in Data and Technology and add your Charisma modifier (minimum +1) to checks with those skills. Machine Code: you know Machine Code and the Technomancy cantrip.",
+  "Recycling Protocol": "When you reduce an enemy to 0 HP, or someone else does within 10 ft of you, regain 2 Sorcery Points. Uses equal your Charisma modifier (minimum 1), once per turn, regained on a Long Rest.",
+  "Canister Colony": "After a Long Rest you can fill a Nanobot Canister (Deconstructive) or Nanobot Canister (Reconstructive) with spare nanites. It lasts until your next Long Rest.",
+  "Reactive Nanites": "Reaction when a creature within 30 ft hits you or an ally with an attack: use a Nano Touch option. Nano-Armor or Nano-Repair can target yourself or an ally, and Nano-Degradation targets the attacker. Nano-Armor can make the triggering attack miss. Your Nano Touch options now reach 30 ft."},
+ "lu": [{"feature": "Recycling Protocol", "lvl": 6, "max": "mod:CHA", "reset": "long", "tag": "Regain 2 Sorcery Points"}],
+ "acts": {"Nano Touch": "bonus", "Reactive Nanites": "reaction"},
+ "fx": [[3, "Techno-Intuition", {"notes": [["Note", "Techno-Intuition: proficiency in Data and Technology, add Charisma modifier (min +1) to those checks. Know Machine Code and the Technomancy cantrip"]]}]]},
+
+"Singularity Patron": {"spab": "CHA",
+ "f": {
+  "Singularity Spells": "You always have these spells prepared once you reach the Warlock level. Level 3: Arcane Anomaly, Bane, Darkness, Silence. Level 5: Cosmic Horror, Gravity Well. Level 7: Banishment, Intensify Gravity. Level 9: Telekinesis, Teleportation Circle.",
+  "Accretion Disk": "Reaction when you take Acid, Cold, Fire, Force, Lightning, Necrotic or Radiant damage: reduce it by your Charisma modifier (minimum 1). When you do, the leftover energy can form an accretion disk, a 10-ft Emanation around you for 1 minute. It ends early if you dismiss it, make it again or become Incapacitated. As a Bonus Action on each of your turns, each creature you choose in it makes a Dexterity save against your spell save DC or takes 1d6 damage of the type you reduced. This becomes 2d6 at level 5, 3d6 at 11 and 4d6 at 17.",
+  "Wormhole": "Bonus Action: teleport to an unoccupied space you see within 60 ft. A spatial distortion stays in the space you left until the end of your next turn. An ally in it can take a Bonus Action to enter and teleport to your space if it is unoccupied. You have two uses. A Short Rest regains one and a Long Rest all.",
+  "Gravitational Resistance": "While your Accretion Disk is active, you have Resistance to the damage type you reduced (but not to the triggering damage).",
+  "Microsingularity": "Magic action: make a 2-ft-diameter Sphere that hovers in an unoccupied space you see within 60 ft for 1 minute or until you dismiss it (no action). At the start of each of your turns you can move it up to 30 ft (no action). When it enters a creature's space, or a creature enters its space or ends its turn there, that creature makes a Dexterity save against your spell save DC, taking 6d6 Force damage on a failure or half on a success. A creature saves only once per turn. The Sphere destroys any nonmagical object it fully engulfs. Long Rest to use again, or spend a Pact Magic slot (no action)."},
+ "lu": [{"feature": "Wormhole", "lvl": 6, "max": 2, "reset": "long", "tag": "Short Rest regains 1", "n": "Wormhole"}, {"feature": "Microsingularity", "lvl": 14, "max": 1, "reset": "long", "tag": "Magic action, or a Pact slot"}],
+ "acts": {"Accretion Disk": "reaction", "Wormhole": "bonus", "Microsingularity": "action"}},
+
+"Star Patron": {"spab": "CHA",
+ "f": {
+  "Star Spells": "You always have these spells prepared once you reach the Warlock level. Level 3: Burning Hands, Continual Flame, Hellish Rebuke, Light, Scorching Ray. Level 5: Daylight, Fireball. Level 7: Death Ward, Fire Shield. Level 9: Contact Other Plane, Flame Strike.",
+  "Nova": "Once per turn when you hit with a ranged attack roll, you can take 5 Radiant damage to deal an extra 1d8 Radiant damage to the target. The damage you take ignores your Resistance and Immunity and bypasses Temporary HP. At higher Warlock levels you can take more to deal more. Level 5: take 10 for 2d8. Level 11: take 15 for 3d8. Level 17: take 20 for 4d8.",
+  "Blinding Rebuke": "When you cast Hellish Rebuke with a Pact Magic slot, the attacker makes a Constitution save against your spell save DC or is Blinded until the start of its next turn.",
+  "Radiant Recovery": "When you use Magical Cunning, you can spend Hit Point Dice up to half your Warlock level (round down). Roll each and add your Charisma modifier (minimum 1 per die) and regain the total. You can decide to spend another die after each roll.",
+  "Supernova": "Whenever you use Nova, pick one. Coronal Flare: a creature within 5 ft of the target makes a Dexterity save against your spell save DC and takes your Nova's extra Radiant damage on a failure or half on a success. Searing Radiance: treat any 1, 2 or 3 on the Nova extra-damage dice as a 4."},
+ "lu": [],
+ "acts": {}},
+
+"Lumimancer": {"spab": "INT",
+ "f": {
+  "Hardlight Reservoir": "You hold Hardlight Points equal to your Wizard level, all regained with Arcane Recovery or a Long Rest. Emerald Armor: Magic action, lasts until a Short or Long Rest. At the start of each turn you gain Temporary HP equal to your remaining Hardlight Points, and spending points removes the same amount of Temporary HP. Hardlight Casting: cast spells from the table below with no slot by spending points. The spell level must be one you have slots for. Level 3, 2 points: Hardlight Blaster, Hardlight Chains. Level 3, 3 points: Hardlight Trap, Geodesic Shield. Level 5, 5 points: Hardlight Construction, Hardlight Gauntlet. Level 7, 6 points: Otiluke's Resilient Sphere, Summon Hardlight Spirit. Level 9, 7 points: Hardlight Frame, Wall of Force. Scintillating Strike: when you hit with an attack roll, Bonus Action and 1 or 2 points for an extra 1d6 Force damage per point. You can spend up to 3 points at level 5, 4 at level 11 and 5 at level 17.",
+  "Martial Training": "You gain proficiency with Martial Melee weapons that lack the Two-Handed and Heavy properties. You can use a Melee weapon you are proficient with as a spellcasting focus for Wizard spells.",
+  "Photonic Savant": "You learn the Hardlight Object spell. At each Wizard level on the Hardlight Spells list (3, 5, 7, 9) you add the listed spells to your spellbook free. They are Hardlight Blaster, Hardlight Chains, Hardlight Trap and Geodesic Shield at 3, Hardlight Construction and Hardlight Gauntlet at 5, Otiluke's Resilient Sphere and Summon Hardlight Spirit at 7, Hardlight Frame and Wall of Force at 9.",
+  "Extra Attack": "You can attack twice when you take the Attack action. You can replace one of those attacks with a cantrip that has a casting time of an action.",
+  "Hardlight Juggernaut": "Cast Hardlight Frame with no slot and no Hardlight Points, regained on a Long Rest. When you start casting it you can drop its Concentration requirement, and then its duration is 1 minute.",
+  "Low Orbit Hardlight Cannon": "Cast Orbital Hardlight Cannon with no slot. This casting needs no Concentration, lasts until the start of your next turn and deals 8d8 Radiant damage. Long Rest to use again, or spend 10 Hardlight Points."},
+ "lu": [{"feature": "Hardlight Reservoir", "lvl": 3, "max": [0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "reset": "long", "tag": "Hardlight Points, Arcane Recovery too", "n": "Hardlight Points"},
+        {"feature": "Hardlight Juggernaut", "lvl": 10, "max": 1, "reset": "long", "tag": "Hardlight Frame free"}, {"feature": "Low Orbit Hardlight Cannon", "lvl": 14, "max": 1, "reset": "long", "tag": "Or 10 Hardlight Points"}],
+ "acts": {"Hardlight Reservoir": "other", "Hardlight Juggernaut": "action", "Low Orbit Hardlight Cannon": "action"}},
+
+"Spellhacker": {"spab": "INT",
+ "f": {
+  "Spellhack Savant": "At each Wizard level on the Spellhacks list you add the listed spells to your spellbook free. Level 3: Failsafe Spellhack, Imitation Spellhack, Ray Spellhack, Upgraded Spellhack. Level 5: Transferred Spellhack. Level 7: Sequenced Spellhack. Level 9: Improvised Spellhack.",
+  "Spell Phreak": "You can cast a spellhack with a level 1 slot without spending the slot. You have two uses, plus one more at Wizard levels 5, 9, 13 and 17 (six at level 17). All uses return on a Long Rest.",
+  "Counter-Hack": "Counterspell is always prepared. When you cast it you can pick one effect. Hijack: if the target fails its save, you take over its spell instead of stopping it. You can change its target or targets or move its area, and you can include the original caster. Imitate: cast Imitation Spellhack with no slot to memorize the triggering spell. Sabotage: if the target is concentrating, it has Disadvantage on saves to keep Concentration until it loses it.",
+  "Slot Division": "Magic action: spend a spell slot of level 5 or lower and regain two spent slots whose levels add up to no more than the spent slot's level.",
+  "Permanent Spellhack": "When you start casting a spell from the list below, you can make it last until dispelled with no Concentration. It takes 1 hour, uses a slot of the minimum level shown and affects only you. After each Long Rest you must spend a slot of that level to keep it, or it ends. It also ends if you make another permanent spell this way. Alter Self 3+. Blur 6+. Detect Magic 3+. Enhance Ability 5+. Expeditious Retreat 3+. Fly 6+. Haste 8+. Protection from Energy 4+. See Invisibility 3+. Spider Climb 4+. Stoneskin 8+. Telekinesis 7+. Tongues 4+. Vampiric Touch 4+."},
+ "lu": [{"feature": "Spell Phreak", "lvl": 3, "max": [0, 0, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6], "reset": "long", "tag": "Spellhack at level 1, no slot"}],
+ "acts": {"Slot Division": "action"}},
+
+"Ionizer": {"spab": "",
+ "f": {
+  "Bonus Proficiencies": "You gain proficiency in the Technology skill.",
+  "Plasma Bomb [Formula]": "Mix a plasma core into your Bomb. It deals Radiant damage instead of Fire and all its damage dice are d8s. When it hits a target, each other creature within a 5-ft Emanation of the target makes a Dexterity save against the Bomb's Explode property. When you use Prime Bomb you can widen that Emanation as normal.",
+  "Heatsink": "Bonus Action and 1 Reagent, pick one. Overheat: a weapon you see within 60 ft Overheats. If a creature holds it, that creature takes 1d12 Fire damage. An Overheated weapon cannot attack until the end of your next turn. Supercool: a non-Bomb weapon you see within 60 ft stops being Overheated, and the next time it deals damage before the end of your next turn it deals an extra 1d12 of its damage type.",
+  "Electromagnetic Shield": "When a ranged attack that deals Force, Lightning, Necrotic or Radiant damage hits you, roll a d6. On a 6 the attack misses you.",
+  "Charged Core": "When your Plasma Bomb hits, you can pick any number of creatures in the explosion to pass the Explode save automatically and take no damage. Each gains an energetic charge until the start of your next turn. When a charged creature deals damage, it can spend the charge to add 1d10 Radiant damage to one target."},
+ "lu": [],
+ "acts": {"Heatsink": "bonus"},
+ "fx": [[3, "Bonus Proficiencies", {"skills": ["Technology"]}]]},
+
+"Star Wolf": {"spab": "",
+ "f": {
+  "Dodge Roll [Maneuver]": "Bonus Action and one Battle Die: move up to 15 ft and reload any Ranged weapon you hold. This move does not provoke Opportunity Attacks and ignores Difficult Terrain.",
+  "Grazing Shot [Maneuver]": "When you miss with a ranged attack roll, spend one Battle Die (no action) to deal damage to that creature equal to the die roll plus your Dexterity modifier (minimum 0). It is the weapon's damage type and only a higher ability modifier can raise it. Once per turn.",
+  "Squadron Leader": "While you are a ship's Pilot, Bonus Action: set a formation with up to 5 allied ships within 10,000 ft of you. They stay in it while within 10,000 ft. Barrel Roll: each gains +2 AC. Initiative: each has Advantage on Initiative rolls. Synchronized Movement: when you take the Move and Fire or Evasive Maneuvers action, each ship can take the same action (no action).",
+  "Target Designation": "Bonus Action: mark a target you see within 60 ft with a holographic reticle for 1 minute or until you use this again. It gains no benefit from Half or Three-Quarters Cover and has a -2 penalty to AC. Short or Long Rest to use again, or spend one Battle Die (no action).",
+  "Snap Shot": "When you roll Initiative, make an attack with a Ranged weapon against a target you see within 60 ft. On a hit it has Disadvantage on attacks during the first round of combat.",
+  "Focus Fire": "When you use Blitz to command an ally to attack with a weapon, the ally deals an extra 2d8 damage of the weapon's type to a creature marked by your Target Designation."},
+ "lu": [{"feature": "Target Designation", "lvl": 6, "max": 1, "reset": "short", "tag": "Bonus Action, or a Battle Die"}],
+ "acts": {"Dodge Roll [Maneuver]": "bonus", "Grazing Shot [Maneuver]": "free", "Squadron Leader": "bonus", "Target Designation": "bonus"}},
+
+"Luminaries' Guild": {"spab": "INT",
+ "f": {
+  "Hardlight Projector": "You own a hardlight projector. If it is lost or damaged, you can repair or replace it during a Long Rest with materials worth 100+ GP. Hardlight Weapons and Armor: Magic action, conjure a Masterwork weapon or suit of Masterwork armor from hardlight. It weighs half as much and sheds Bright Light in a 20-ft radius and Dim Light for 20 ft more. Armor conjured this way is donned at once around you. At the right Craftsman levels you can apply your Customize Armor, a Weapon Enchantment and an Armor Enchantment when you conjure it. Hardlight Object: while you hold the projector you can cast the Hardlight Object cantrip, using Intelligence.",
+  "Radiant Shell": "While you hold your projector, Magic action: gain Temporary HP equal to your Craftsman level. You can use this as a Bonus Action instead a number of times equal to your Masterwork Bonus, all regained on a Long Rest.",
+  "Hardlight Wall": "Bonus Action: raise a wall of hardlight up to 60 ft long, 20 ft high and 1 ft thick. A creature in the wall's space is pushed to a side you choose. The wall is translucent and lasts 1 minute or until you dismiss it (no action). It has AC 15, 50 HP and Immunity to Poison and Psychic damage. At 0 HP it dissolves in a flash. Short or Long Rest to use again.",
+  "Improved Radiant Shell": "While you have Temporary HP, you gain +2 AC. Shell Burst: when damage removes your last Temporary HP, the shell bursts. Each creature you choose in a 5-ft Emanation makes a Strength save (DC 8 + Strength or Dexterity modifier + Proficiency Bonus) or is pushed 10 ft away and knocked Prone.",
+  "Hardlight Edge": "When you deal weapon damage you can spend Temporary HP, up to your Craftsman level. The target takes an extra 1d8 Force damage for every 5 Temporary HP spent."},
+ "lu": [{"feature": "Radiant Shell", "lvl": 3, "max": "col:Masterwork Bonus", "reset": "long", "tag": "Bonus Action use"}, {"feature": "Hardlight Hall", "n": "Hardlight Wall", "lvl": 6, "max": 1, "reset": "short", "tag": "Bonus Action"}],
+ "acts": {"Hardlight Projector": "action", "Radiant Shell": "action", "Hardlight Wall": "bonus"}},
+
+"Scrappers' Guild": {"spab": "",
+ "f": {
+  "Quality Junk": "You can use the Instant Crafting benefit of Expert Crafting five times instead of twice.",
+  "Scrap Weapons": "After a Long Rest you can use Crafting Tools and scrap to make Masterwork scrap weapons equal to your Craftsman level. From Craftsman level 11 you can add a Weapon Enchantment when you build one. Temporary: scrap weapons break at your next Long Rest. Unstable: if you roll a 1 on the d20 with one, it breaks. Smashable: when you deal damage with one, you can break it to flip a damage die and use the bottom number. You cannot flip a d4. On a balanced die the top and bottom add to one more than its highest face.",
+  "Dismantle": "Construct Breaker: when you hit a Construct with a Masterwork weapon you can maximize one of the weapon's damage dice. Wrecker: any hit on an object with a Masterwork weapon is a Critical Hit.",
+  "Makeshift Armor": "Reaction when an attack hits you while you wear Masterwork armor: the attack breaks the armor instead of dealing damage, and it automatically misses. Broken armor gives no AC bonus. You can repair it in 1 minute.",
+  "Overdesigned Scrap": "A scrap weapon you build has its damage die raised by two steps (d4, d6, d8, d10, d12, up to 1d12). If it has two damage dice, each rises one step. When it would break, you can instead lower its damage die by one step (minimum 1d4)."},
+ "lu": [],
+ "acts": {"Makeshift Armor": "reaction"}},
+
+"Moonwalker": {"spab": "CHA",
+ "f": {
+  "Zero-G Kicks": "Your stylish anti-gravity shoes give two benefits. Anti-Gravity Slide: when a visible enemy misses you with a Melee attack, Reaction to move 10 ft without Opportunity Attacks. Feather Fall: cast it on yourself with no slot, using Charisma.",
+  "Moonwalk [Dance Style]": "On your turn you have a Fly Speed equal to your Speed if you wear no Heavy armor. If you are still aloft when your turn ends, you sink 30 ft per round until you land, unless you stop the fall.",
+  "Frictionless Field": "You give off an invisible 10-ft Emanation that changes friction. Creatures you choose (not you) in it move without spending movement. Every other creature except you treats it as Difficult Terrain. Dismiss or raise it again as a Bonus Action.",
+  "Slick Moves": "Cast Freedom of Movement on yourself with no slot, using Charisma.",
+  "Ethereal Moonwalk": "Perpetual Moonwalk: while Moonwalk is active, your Fly Speed equals your Speed and does not end at the end of your turn. Incorporeal Groove: when you choose Moonwalk you become an ethereal blur. You have Resistance to all damage and can move through occupied spaces as if they were Difficult Terrain. If you end your turn in one, you are moved to the last unoccupied space you were in. After you take damage, you lose these benefits until the start of your next turn while the style is active."},
+ "lu": [],
+ "acts": {"Zero-G Kicks": "reaction", "Frictionless Field": "bonus"}},
+
+"Decommissioner": {"spab": "INT",
+ "f": {
+  "System Cracker": "You gain proficiency in Data and one of Insight, Investigation or Technology. Hacking a device is a Utilize action instead of a minute.",
+  "Trinkets": "Biodynamic Quadcorder: Bonus Action, point it at a creature you see within 30 ft to learn its type and any Resistance it has. Electric Sheep Generator: Bonus Action, cast Technical Difficulties with no slot or components. It can target a Construct, which makes a Wisdom save against your spell save DC or is Stunned until the start of your next turn even if normally immune. A creature with a Challenge Rating above your Investigator level automatically succeeds. Interrogation Field: cast Zone of Truth with no slot.",
+  "Non-Regulation Blaster": "Spend 10 minutes modifying a weapon with the DM-B property. It stays improved until you modify a different blaster. Each of its damage dice rises one step (d4, d6, d8, d10, d12, up to 1d12).",
+  "Reprogrammer": "Action: hack a Construct within 5 ft. It makes a Wisdom save against your spell save DC, and a Construct with a Challenge Rating above your Investigator level automatically succeeds. On a failure pick one. Learn Directives: you learn a simple Construct's orders or an advanced Construct's surface thoughts, and whether it carries the N-Virus or has corrupted programming. Override Directives: change a simple Construct's orders so it drops its goal, becomes Indifferent toward chosen creatures or follows a simple directive you pick. The GM decides if it is too sophisticated or the directive too complex. Sleep Mode: it is Unconscious for 1 minute even if normally immune, ending early if it takes damage. You cannot use this operation on the same Construct again for 24 hours.",
+  "Finishing Shot": "When you use Finisher with a blaster on a Bloodied enemy, you may kill it outright. If it has fewer HP than three times your Investigator level after the damage, it drops to 0 HP."},
+ "lu": [],
+ "acts": {"Trinkets": "bonus", "Reprogrammer": "action"},
+ "fx": [[3, "System Cracker", {"notes": [["Note", "System Cracker: proficiency in Data and one of Insight, Investigation or Technology. Hacking a device is a Utilize action"]]}]]},
+
+"Burden of Awakening": {"spab": "WIS",
+ "f": {
+  "Burden of Awakening Spells": "You always have these spells prepared once you reach the Martyr level. Level 3: Jump, Word of Force. Level 5: Augury, Levitate. Level 9: Counterspell, Tongues. Level 13: Divination, Stoneskin. Level 17: Telekinesis, Rary's Telepathic Bond.",
+  "Mind Mastery": "You can use the mastery property of a third kind of weapon you choose, even without proficiency. A Magic action changes the chosen kind.",
+  "Psionic Awakening": "Empathy: Magic action to probe the mind of a creature you see within 30 ft and learn its emotional state. Minor Kinesis: you learn Mage Hand, and its hand is Invisible when you cast it this way. Kinetic Shove: cast Word of Force with no Radiant damage to you and no spell use. Short or Long Rest to use again.",
+  "Prescient Strike": "Once per turn, when you roll an 18 or 19 on the d20 for an attack, treat it as a 20. Short or Long Rest to use again, or take 5 Radiant damage (no action) that ignores Resistance and Immunity and bypasses Temporary HP.",
+  "Psychic Reprisal": "When you use your Reprisal you can deal Psychic damage instead of Necrotic or Radiant. The creature then has Disadvantage on its next D20 Test before the end of your next turn.",
+  "Limited Foresight": "When you start your turn you can glimpse the immediate future (no action). Until the start of your next turn you have Advantage on D20 Tests and other creatures have Disadvantage on attack rolls against you. You have 10 uses, all regained on a Long Rest."},
+ "lu": [{"feature": "Psionic Awakening", "n": "Kinetic Shove", "lvl": 3, "max": 1, "reset": "short", "tag": "Word of Force free"}, {"feature": "Prescient Strike", "lvl": 6, "max": 1, "reset": "short", "tag": "Or take 5 Radiant damage"}, {"feature": "Limited Foresight", "lvl": 18, "max": 10, "reset": "long", "tag": "Start of turn"}],
+ "acts": {"Psionic Awakening": "action", "Limited Foresight": "free"}},
+
+"Cyberghoul": {"spab": "INT",
+ "f": {
+  "Cyber Spells": "You always have these spells prepared once you reach the Necromancer level. Level 3: Circuit Breaker, Flawed Reconstruction, Geodesic Shield, Technical Difficulties. Level 5: Greater Mending, Lightning Bolt. Level 7: Electromagical Pulse, Intensify Gravity. Level 9: Simulation, Wall of Force.",
+  "Construct Corpses": "When you perform your Thralls ritual you can animate any thralls as Constructs. Each such thrall gains these. Adamantine Flesh: Critical Hits against it become normal hits. Construct: it is a Construct instead of Undead but counts as Undead for your Necromancer features. Thermalsight: range 60 ft.",
+  "Charnel Blaster": "You can make Charnel Touch as a ranged spell attack with a 30-ft range instead of a melee one. This attack ignores Half and Three-Quarters Cover.",
+  "Ghost in the Machine": "Bonus Action: infect a piece of Magical Technology you see within 120 ft with a daemon process. It stays until removed by Antivirus or Remove Curse, or until you infect another device. While it is infected and on your plane, you can do one of these as a Bonus Action. Shutdown: disable the device until you restore it. Hack: try to hack it, with Advantage on Intelligence (Data) checks and no Interface Rig needed. Remote Operation: operate it within its normal limits, and perform unauthorized operations such as opening a lock only if you have hacked it. Autonomous Operation: give the daemon a trigger (keystrokes entered, time passing) and one of these operations to perform in response. It remembers up to eight such pairs.",
+  "Digital Death": "When one of your thralls dies, you can cast Animate Dead as a Reaction. As always, you cannot reanimate Undead that were reduced to 0 HP.",
+  "Cyber Lich (Lichdom)": "You add these to your Lichdom feature. Soul Device: a computing device such as an Arcane Terminal houses your soul as your spirit jar. You can upload your soul to a connected Arcane Terminal or Datapad in a 10-minute ritual, and that device has your spirit jar's invulnerability. Radiant Immunity: a hardlight lattice gives you Immunity to Radiant damage. Infect Construct: Magic action, your body turns immaterial and you try to infect a Large or smaller Construct you see within 10 ft. It makes a Charisma save against your spell save DC, and a Construct of Challenge Rating 10+ automatically succeeds. On a failure you disappear and your game statistics become the Construct's, except alignment and Intelligence, Wisdom and Charisma, and you keep your class features and feats. If it has class levels you cannot use them. The Construct repeats the save every 8 hours, and the infection ends on a success, at 0 HP, if an effect like Antivirus forces you out, or if you end it as a Magic action. A Construct that passes the save is immune for 24 hours. Inhabit Technology: Magic action, enter Magical Technology such as an Arcane Terminal or Datapad you see within 5 ft. You control it, cannot be targeted by anything and can use any of its functions with no Hacking. As a Bonus Action you can move to any connected Magical Technology or end it. It ends early if the device is destroyed or you are forced out, and you reappear within 5 ft of it."},
+ "lu": [],
+ "acts": {"Ghost in the Machine": "bonus", "Digital Death": "reaction"},
+ "fx": [[20, "Cyber Lich (Lichdom)", {"imm": ["Radiant"]}]]},
+
+"Digital Nomad": {"spab": "",
+ "f": {
+  "High Score": "You keep Score Points, starting at 0. They reset to 0 if you neither gain nor spend any for 1 minute. You gain them when you roll Initiative (twice your Vagabond level), reduce an enemy to 0 HP (your Vagabond level) and roll a Battle Die for a Maneuver (the number rolled). You spend them with no action. 5 points, Turbo: Dash or Disengage as a Bonus Action. 10 points, Aimbot: Advantage on an attack roll. 15 points, Power-Up: regain a spent Battle Die, once per turn. 15 points, Weak Point: when a Maneuver adds Battle Dice to a damage roll, add one more die without spending it.",
+  "Technophile": "Machine Code: you know Machine Code and the Technomancy cantrip. Programming Training: you gain proficiency and Expertise in Data.",
+  "Multiplayer": "Once per turn when you spend Score Points, an ally within 15 ft that sees or hears you gets Advantage on its next attack roll before the end of its next turn.",
+  "Desperate Regen": "While Bloodied, Bonus Action: spend any number of Score Points to regain that many HP, up to half your HP maximum.",
+  "Cheat Code": "On your turn, spend 50 Score Points (no action) for one code. Long Rest to use again. God Mode: until the start of your next turn you have Immunity to Bludgeoning, Piercing and Slashing damage, Resistance to all other damage and Advantage on saves. Instakill: until the start of your next turn, a creature you damage dies if it has 50 HP or fewer afterward. Otherwise it takes extra Necrotic damage equal to four rolls of your Battle Die."},
+ "lu": [{"feature": "Cheat Code", "lvl": 14, "max": 1, "reset": "long", "tag": "50 Score Points"}],
+ "acts": {"Desperate Regen": "bonus", "Cheat Code": "free"},
+ "fx": [[3, "Technophile", {"notes": [["Note", "Technophile: know Machine Code and the Technomancy cantrip. Proficiency and Expertise in Data"]]}]]},
+
+"Experiment X": {"spab": "",
+ "f": {
+  "Bloody Rampage": "You learn the Rampage maneuver, or a different maneuver of your choice if you already know it. You can also use Rampage when you deal damage that makes a creature Bloodied.",
+  "Mutations": "Pick one mutation. At each Vagabond level you gain, you can swap it for another. Acid Spit: when you take the Attack action, replace one attack with a special ranged attack with a 60-ft range that you are proficient with and make using Dexterity. On a hit the target takes 1d8 Acid damage, rising to 2d8 at character level 5, 3d8 at 11 and 4d8 at 17. Adamantine Claws: retractable metal claws that use the Scimitar statistics. Extend or retract them whenever you could draw or stow a weapon. You cannot be disarmed of them. A hand with extended claws cannot hold or use a weapon, Shield or other object. They gain a bonus to attack and damage rolls of +1 at Vagabond level 5, +2 at 11 and +3 at 17. Extra Limbs: a second pair of arms under your normal ones. They can hold weapons and Shields (two two-handed weapons or four one-handed ones), do spell Somatic components and other tasks, but give no extra actions.",
+  "Arcane Mutation": "Pick one mutation. At each Vagabond level you gain, you can swap it for another. Invisibility: Bonus Action and one Battle Die to cast Invisibility on yourself with no slot, lasting 1 minute. Spider Climb: Bonus Action and one Battle Die to cast Spider Climb on yourself with no slot, lasting 10 minutes. Telepathy: telepathy with a 30-ft range, and a Bonus Action and one Battle Die to cast Detect Thoughts with no slot.",
+  "Exoskeleton": "When an attack hits you while you are Bloodied and wear no Heavy armor, reduce the Bludgeoning, Piercing and Slashing damage from it by your Constitution modifier.",
+  "Apex Mutation": "Pick one mutation. At each Vagabond level you gain, you can swap it for another. Accelerated Metabolism: Bonus Action and 3 Battle Dice to cast Haste on yourself with no slot. Energy Blast: Magic action and 3 Battle Dice. Pick a 30-ft Cone, a 20-ft Emanation from you or a Line 60 ft long and 5 ft wide. Each creature in it makes a Dexterity save against your Maneuver save DC, taking 8d8 damage on a failure or half on a success. Choose Acid, Cold, Fire, Lightning, Poison or Thunder each time. Monstrous Transformation: Bonus Action and 3 Battle Dice to shape-shift for 1 minute. Your creature type is Monstrosity and your Strength and Dexterity scores are 24."},
+ "lu": [],
+ "acts": {"Energy Blast": "action"}},
+
+"Steel Shepherd": {"spab": "",
+ "f": {
+  "Gearhead": "Bonus Proficiency: you gain proficiency in Technology and add your Constitution modifier (minimum +1) to checks with it. Construct Empathy: when a Construct attacks you, it makes a Wisdom save (DC 8 + Constitution modifier + Proficiency Bonus), and on a failure its attack misses. Machine Code: you know Machine Code and the Technomancy cantrip. Intelligence, Wisdom or Charisma is its casting ability (choose when you gain it).",
+  "Hardlight Block": "The Block option of Guardian Tactics works on an ally within 15 ft of you. At Warden level 14 the range becomes 30 ft.",
+  "Blaster Veteran": "Mighty Blast: when you attack with a Ranged weapon using Dexterity, you can add your Strength modifier to the attack and damage rolls. The weapon then Overheats and cannot attack until the end of your next turn. Ranged Interrupt: you can use Interrupt when an enemy you see within 30 ft makes more than one attack on its turn.",
+  "Golem Absorption": "After a Long Rest, choose Acid, Cold, Fire, Lightning or Poison. When an enemy deals that damage type to you, Reaction: take no damage and regain HP equal to the damage you would have taken. Short or Long Rest to use again, or spend two uses of Interrupt (no action).",
+  "Juggernaut Protocol": "Bonus Action: for 1 minute or until you end it (no action) you become a mechanized colossus. Size: you become Large if smaller. Energetic Absorption: Golem Absorption also works against Force, Necrotic and Radiant damage. Mighty: Advantage on Strength checks and saves. Pneumatic Strength: when a weapon hit adds your Strength modifier to damage, you can add one extra die of weapon damage. Short or Long Rest to use again."},
+ "lu": [{"feature": "Golem Absorption", "lvl": 10, "max": 1, "reset": "short", "tag": "Reaction, or 2 Interrupt uses"}, {"feature": "Juggernaut Protocol", "lvl": 17, "max": 1, "reset": "short", "tag": "Bonus Action"}],
+ "acts": {"Golem Absorption": "reaction", "Juggernaut Protocol": "bonus"},
+ "fx": [[3, "Gearhead", {"skills": ["Technology"], "notes": [["Note", "Gearhead: add Constitution modifier (min +1) to Technology checks. Know Machine Code and the Technomancy cantrip"]]}]]},
+
+"Coalition Arcanist": {"spab": "INT",
+ "f": {
+  "Blaster Gauntlet": "You gain a Blaster Gauntlet, an Arcane Focus. When you cast a Warmage cantrip that needs a ranged spell attack roll using it as your focus, you can overheat the cantrip. Its damage dice rise one step this casting (d4, d6, d8, d10, d12, up to d12). You then cannot cast that cantrip again until the end of your next turn.",
+  "Tactical Uplink": "A neural implant gives you battlefield awareness. Magic action: learn the general layout of the land in a 1-mile Emanation, limited to surface-level or obvious natural and artificial features, with no creatures shown. You also get +5 to your Passive Wisdom (Perception).",
+  "Requisition": "After a Long Rest, pick one magic item to be teleported to you: Concussion Grenade, Drive Wheel, Hoverboard, Jetpack, Nanobot Canister (Deconstructive), Nanobot Canister (Reconstructive), Phase Suit or Scout Scanner. Any save DC it has is your spell save DC, and it attunes to you automatically if needed. It stays until your next Long Rest, when it teleports back.",
+  "Squadsight": "While within 120 ft of an ally, you know the exact location of any creature that ally sees. You can also cast a Warmage cantrip at a creature your ally can see, launching it like a mortar, ricocheting it off obstacles or firing it through thin barriers.",
+  "Precision Hardlight Strike": "Magic action: mark a point you see within 120 ft. At the start of your next turn a bombardment hits a 20-ft-radius Sphere there. Each creature in it makes a Dexterity save against your spell save DC, taking 10d10 Force damage on a failure or half on a success. Unattended flammable objects in the area turn to ash. Long Rest to use again."},
+ "lu": [{"feature": "Precision Hardlight Strike", "lvl": 18, "max": 1, "reset": "long", "tag": "Magic action"}],
+ "acts": {"Tactical Uplink": "action", "Precision Hardlight Strike": "action"},
+ "fx": [[7, "Tactical Uplink", {"notes": [["Note", "Tactical Uplink: +5 to Passive Wisdom (Perception)"]]}]]},
+
+"House of Lancers": {"spab": "INT",
+ "f": {
+  "Unarmored Defense": "While you wear no armor and carry no Shield, your AC is 10 + Dexterity modifier + Intelligence modifier.",
+  "Hand-to-Hand Arcana": "Bonus Unarmed Strike: you can make an Unarmed Strike as a Bonus Action. Unarmed Strike Damage: you can roll a d6 in place of its normal damage. The die becomes d8 at Warmage level 5, d10 at 11 and d12 at 17. Intelligent Strikes: use Intelligence instead of Strength for its attack and damage rolls, and for the save DC of its Grapple or Shove option. Weaponized Fists: for Material components your Unarmed Strike counts as a Melee weapon worth 1 GP.",
+  "Shock Trooper": "When you make a melee attack on your turn against a creature you see, you can first lunge up to 15 ft toward it. This costs no movement and provokes no Opportunity Attacks. You can lunge through the air and then fall after the attack.",
+  "Mystical Physicality": "Force Damage: your Unarmed Strike can deal Force damage or its normal type. Ignore Difficult Terrain: it costs you no extra movement. Mind Over Matter: on Strength, Dexterity or Constitution checks you can use your Intelligence modifier instead.",
+  "Evasion": "When an effect lets you make a Dexterity save for half damage, you take no damage on a success and half on a failure. You lose this while Incapacitated.",
+  "Improved Shock Trooper": "Your Shock Trooper lunge reaches 30 ft. You teleport through creatures and objects, blinking to the target at once. You cannot teleport into an occupied space.",
+  "Flurry of Spells": "Magic action: spend a use of Arcane Surge to cast three different cantrips that each take an action or a Bonus Action to cast. You cannot use Arcane Surge on these cantrips. Long Rest to use again."},
+ "lu": [{"feature": "Flurry of Spells", "lvl": 18, "max": 1, "reset": "long", "tag": "Magic action, uses Arcane Surge"}],
+ "acts": {"Hand-to-Hand Arcana": "bonus", "Flurry of Spells": "action"},
+ "fx": [[3, "Unarmored Defense", {"notes": [["Note", "House of Lancers Unarmored Defense: with no armor or Shield, AC is 10 + Dexterity modifier + Intelligence modifier"]]}]]},
+
+"Lunar Magic": {"spab": "CHA",
+ "f": {
+  "Lunar Spells": "You always have these spells prepared once you reach the Witch level. Level 3: Bane, Darkness, Moonbeam, Sleep, Starry Wisp. Level 5: Fear, Nondetection. Level 7: Control Water, Phantasmal Killer. Level 9: Dream, Mislead.",
+  "Moonsight": "You gain Darkvision with a range of 60 ft. If you already have Darkvision, its range grows by 60 ft.",
+  "Hexlight": "Cast Moonbeam once with no slot, regained on a Long Rest. When you start casting it you can make its duration 1 round, ending at the end of your next turn. When you Cackle, its duration grows by 1 round (up to 1 minute) and you can move the beam with its Magic action as part of the same Bonus Action.",
+  "Cover of Darkness": "You and your familiar can try to hide while Lightly Obscured. You also add your Charisma modifier (minimum +1) to Dexterity (Stealth) checks made as part of the Hide action.",
+  "Blessing of the Moon": "After a Long Rest, you gain a blessing of a moon phase you pick, and it is empowered if it matches the current phase. The GM sets the phase or rolls 1d6 (1-2 Crescent, 3-4 Full, 5-6 New). You use the blessing once, regained on a Long Rest or by spending a level 2+ slot (no action). Crescent Moon: when an enemy you see within 30 ft moves, Reaction to teleport up to 30 ft to an unoccupied space you see, or 60 ft if empowered. Full Moon: when you fail a save, Reaction to reroll with a bonus of half your Witch level (round down), or your full Witch level if empowered. You must use the new roll. New Moon: when a creature you see hits you with an attack roll, Reaction to impose a -5 penalty to it, or -10 if empowered.",
+  "Blood Moon Beam": "When you cast Moonbeam its area is a 10-ft-radius Cylinder. If the spell reduces an enemy to 0 HP, the area grows to a 15-ft radius for the rest of the spell."},
+ "lu": [{"feature": "Hexlight", "lvl": 3, "max": 1, "reset": "long", "tag": "Moonbeam free"}, {"feature": "Blessing of the Moon", "lvl": 10, "max": 1, "reset": "long", "tag": "Reaction, or a level 2+ slot"}],
+ "acts": {"Blessing of the Moon": "reaction"},
+ "fx": [[3, "Moonsight", {"senses": [["Darkvision", 60, ""]], "notes": [["Note", "Moonsight: if you already have Darkvision, its range grows by 60 ft"]]}]]},
+}

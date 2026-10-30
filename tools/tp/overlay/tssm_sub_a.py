@@ -49,7 +49,6 @@ SUB = {
  "lu": [{"feature": "Swap Elements", "lvl": 6, "max": "mod:CHA", "reset": "long", "tag": "Bonus Action"},
         {"feature": "Twin Eidolons", "lvl": 14, "max": 1, "reset": "short", "tag": "10 minutes"}],
  "acts": {"Swap Elements": "bonus"},
- "grant": {"f": "Primordial Attunement"},
  "fx": [[3, "Primordial Attunement", {"langs": ["Primordial", "Aquan", "Auran", "Ignan", "Terran"]}]]},
 
 "Bond of the Fiendish Chain": {"spab": "CHA",
