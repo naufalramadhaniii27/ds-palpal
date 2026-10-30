@@ -4867,3 +4867,8 @@ art/batch/icons/rules/maneuvers/battle-master-maneuver-goading-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-lunging-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-maneuvering-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-menacing-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-parry.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-precision-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-pushing-attack.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-rally.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-riposte.png
