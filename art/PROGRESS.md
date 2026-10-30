@@ -4911,4 +4911,9 @@ art/batch/icons/items/magic/very-rare/jakarions-staff-of-frost.png
 art/batch/icons/items/magic/rare/saint-markovias-thighbone.png
 art/batch/icons/items/magic/rare/shield-of-the-silver-dragon.png
 art/batch/icons/items/magic/legendary/sunsword.png
+art/batch/icons/items/magic/rare/bracers-of-celerity.png
+art/batch/icons/items/magic/very-rare/cape-of-enlargement.png
+art/batch/icons/items/magic/rare/dragonguard.png
+art/batch/icons/items/magic/rare/flayer-slayer.png
+art/batch/icons/items/magic/uncommon/hew.png
 
