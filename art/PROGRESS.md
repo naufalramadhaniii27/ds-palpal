@@ -4789,3 +4789,10 @@ art/batch/icons/items/tools/poisoners-kit.png
 art/batch/icons/items/tools/potters-tools.png
 art/batch/icons/items/tools/smiths-tools.png
 art/batch/icons/items/tools/tinkers-tools.png
+
+## batch-141 v3
+art/batch/icons/rules/invocations/eldritch-invocation-pact-of-the-blade.png
+art/batch/icons/rules/invocations/eldritch-invocation-pact-of-the-chain.png
+art/batch/icons/rules/invocations/eldritch-invocation-pact-of-the-tome.png
+art/batch/icons/rules/invocations/eldritch-invocation-repelling-blast.png
+art/batch/icons/rules/invocations/eldritch-invocation-thirsting-blade.png
