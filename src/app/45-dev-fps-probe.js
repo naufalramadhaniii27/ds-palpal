@@ -5,7 +5,7 @@
   if(!/(^|[#&])fps($|&)/.test(location.hash)) return;
   var box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
   box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";
-  box.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Frame rate test</b><button id="fpsGo" style="padding:6px 12px;border-radius:8px">Start</button><button id="fpsCopy" style="padding:6px 12px;border-radius:8px" hidden>Copy result</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsDmg" checked> include damage and heal (HP restored after)</label></div><pre id="fpsOut" style="margin:8px 0 0;white-space:pre-wrap">Press Start. Keep this tab in front and do not touch the screen until it says Done.</pre>';
+  box.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Frame rate test</b><button id="fpsGo" style="padding:6px 12px;border-radius:8px">Start</button><button id="fpsCopy" style="padding:6px 12px;border-radius:8px" hidden>Copy result</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsDmg" checked> include damage and heal (HP restored after)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsWarm"> warm up hidden pages first</label></div><pre id="fpsOut" style="margin:8px 0 0;white-space:pre-wrap">Press Start. Keep this tab in front and do not touch the screen until it says Done.</pre>';
   box.setAttribute("popover","manual"); box.style.top="auto"; box.style.margin="0"; box.style.width="auto"; box.style.height="auto";/* top layer, so the Home screen cannot cover it */
   document.documentElement.appendChild(box); try{ box.showPopover(); }catch(er){}/* outside body: body is inert while a dialog or the Home screen is open */
   var out=box.querySelector("#fpsOut"), go=box.querySelector("#fpsGo"), cp=box.querySelector("#fpsCopy"), busy=false, rec=null, lines=[];
@@ -27,6 +27,8 @@
       var hv=document.querySelector("[data-hview]"); if(visible(hv)){ hv.click(); }
       var ok=await waitFor(function(){ return visible(document.getElementById("dmgBtn")); },8000); if(!ok){ lines.push("Open a character first, then press Start again."); out.textContent=lines.join("\n"); return; }
       await wait(1500);
+      if(box.querySelector("#fpsWarm").checked&&mq.matches){ var pgr=document.getElementById("pager"), wb=[].slice.call(document.querySelectorAll("#bnav button")).filter(visible); pgr.style.visibility="hidden";
+        for(var w=0;w<wb.length;w++){ wb[w].click(); await wait(150); } wb[0].click(); await wait(400); pgr.style.visibility=""; lines.push("Warm-up done (pages cycled while hidden)."); out.textContent=lines.join("\n"); await wait(800); }
       var idle=await phase("1 idle 3 s",function(){ return wait(3000); });
       var btns=[].slice.call(document.querySelectorAll(mq.matches?"#bnav button":"#tabs .tab")).filter(visible);
       await phase("2 switch pages ("+btns.length+" x2)",async function(){ for(var r=0;r<2;r++){ for(var i=0;i<btns.length;i++){ wins.push([(r+1)+","+i+" "+(btns[i].textContent||"").trim().slice(0,10),performance.now()]); btns[i].click(); await wait(320); } } });
