@@ -22,9 +22,13 @@ function linkify(text){
 /* x-link: names of spells, creatures and magic items in any rule text become links to their detail (spn:, cr:, mi:) */
 var XL_IDX=null, XL_KEY="", XL_STOP={"The":1,"A":1,"An":1,"Each":1,"Any":1,"Your":1,"This":1,"That":1,"One":1,"If":1,"When":1,"While":1,"You":1,"It":1,"Its":1,"On":1,"In":1,"At":1,"As":1,"For":1,"With":1,"Once":1,"Until":1,"After":1,"Before":1,"Any":1,"No":1,"Choose":1,"Cast":1,"Casts":1,"Roll":1,"Both":1,"Either":1,"All":1,"Other":1,"Another":1,"Of":1};
 function xlIdx(){
-  var crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], key=sp.length+"|"+mi.length+"|"+crs.length;
+  var crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length;
   if(XL_IDX&&key===XL_KEY) return XL_IDX;
   var m={}, put=function(n,k){ n=String(n||"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length>2&&/^[A-Z]/.test(n)) m[n]=k; };
+  if(typeof WEAPONS!=="undefined") Object.keys(WEAPONS).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","gear|"+n]); });
+  if(typeof ARMOR!=="undefined") Object.keys(ARMOR).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","gear|"+n]); });
+  if(typeof LIB_RULES!=="undefined") Object.keys(LIB_RULES).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","rule|"+n]); });
+  ftk.forEach(function(n){ put(n,["lib","feat|"+n]); });
   sp.forEach(function(x){ put(x[0],["spn",x[0]]); });
   crs.forEach(function(c){ put(c.n,["cr",c.n]); });
   mi.forEach(function(r){ if(r&&r[0]) put(r[0],["mi",r[0]]); });
@@ -51,9 +55,10 @@ function xlink(h,self,mode){
           if(L===1||ph.indexOf(" ")<0){
             var pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
             if(pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]) break;/* part of a longer proper name, such as "Gamma Knight" */
+            if(k[0]==="lib"&&k[1].indexOf("feat|")===0){ var sf=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\bfeats?\b/i.test(sf)) break; }
             if(k[0]==="spn"){ var sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) break; }
           }
-          if(mode==="b"&&k[0]==="spn") break;/* the builder links spells itself */
+          if(mode==="b"&&(k[0]==="spn"||k[1].indexOf("feat|")===0)) break;/* the builder links spells and feats itself */
           hit=k; len=L; break;
         }
       }
@@ -117,13 +122,14 @@ function spTgtCell(x){ var o=spTgt(x), L=TGT_LAB[o.k]||["Target",o.k], big=/^(Sp
 function spEffCell(x){ var sv=x.sv; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"]; return ["fx-auto","Effect","No roll"]; }
 function infoHTML(spec){
   var i0=spec.indexOf(":"), t0=spec.slice(0,i0), k0=spec.slice(i0+1), prev=XL_SELF, me="";/* a name in its own dialog is not linked to itself */
-  try{ if(t0==="spn"||t0==="mi") me=k0; else if(t0==="cr") me=k0.split("|")[0]; else if(t0==="sp") me=((C.spells||[])[+k0]||{}).n||""; else if(t0==="it") me=((C.inv||[])[+k0]||{}).n||""; else if(t0==="f"){ var q=k0.split("."), g_=(C.features||[])[+q[0]]; me=((g_&&g_.items||[])[+q[1]]||{}).n||""; } }catch(e){ me=""; }
+  try{ if(t0==="spn"||t0==="mi") me=k0; else if(t0==="lib") me=k0.slice(k0.indexOf("|")+1); else if(t0==="cr") me=k0.split("|")[0]; else if(t0==="sp") me=((C.spells||[])[+k0]||{}).n||""; else if(t0==="it") me=((C.inv||[])[+k0]||{}).n||""; else if(t0==="f"){ var q=k0.split("."), g_=(C.features||[])[+q[0]]; me=((g_&&g_.items||[])[+q[1]]||{}).n||""; } }catch(e){ me=""; }
   XL_SELF=me; try{ return infoHTML0(spec); } finally{ XL_SELF=prev; }
 }
 function infoHTML0(spec){
   var i=spec.indexOf(":"), type=spec.slice(0,i), key=spec.slice(i+1), h="";
   if(type==="spn") return spnHTML(key);/* v25 RU38 no. 3 */
   if(type==="mi") return miHTML(key);
+  if(type==="lib"){ var bar=key.indexOf("|"), ld=typeof libDetail==="function"&&libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'}; }
   if(type==="g"){
     var g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
