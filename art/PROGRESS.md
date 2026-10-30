@@ -4894,3 +4894,8 @@ art/batch/icons/items/magic/very-rare/helm-of-devil-command.png
 art/batch/icons/items/magic/uncommon/infernal-puzzle-box.png
 art/batch/icons/items/magic/legendary/matalotok.png
 art/batch/icons/items/magic/legendary/obsidian-flint-dragon-plate.png
+art/batch/icons/items/magic/legendary/shield-of-the-hidden-lord.png
+art/batch/icons/items/magic/uncommon/soul-coin.png
+art/batch/icons/items/magic/artifact/sword-of-zariel.png
+art/batch/icons/items/magic/rare/black-chromatic-rose.png
+art/batch/icons/items/magic/rare/blue-chromatic-rose.png
