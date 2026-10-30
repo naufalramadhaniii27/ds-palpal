@@ -458,3 +458,20 @@ Dua perbaikan terbukti dengan median: pindah tab 38,7% ke 15,8%, damage 48,3% ke
 | 1 | Boleh dua perbaikan terbukti (indikator CSS dan halaman jauh) dipasang di src/ (UI/UX) dengan tes tiga skenario | Ya. Kecil, ada bukti median |
 | 2 | Boleh saya bangun renderer kanvas tunggal untuk efek Full sebagai prototipe di tools/ dulu (belum menyentuh src/) | Ya. Ukur hasil sebelum dipasang |
 | 3 | Uji di HP asli lewat halaman uji fps | Ya. Satu-satunya bukti 60 fps sebenarnya |
+
+## 3n. Koreksi dan hasil bersih (perf-60fps)
+
+Angka di 3i, 3j, 3m yang memakai prototipe IOV lama tidak valid. IOV menyembunyikan section.detail (display:contents), jadi 7 dari 9 halaman tidak pernah digambar. IOV2 (observasi 9 halaman lewat id) benar.
+
+Terpasang di src/ (mobile saja):
+- Garis indikator tab digerakkan scroll-timeline CSS. Pegas ketuk memakai WAAPI pada translate. Cadangan JS jika browser tidak mendukung.
+- Halaman jauh diberi visibility:hidden lewat IntersectionObserver. goPage, focus() dan scrollIntoView() menampilkan halaman dulu.
+
+Tes: scenarios.py 24 cek, 0 gagal. Posisi garis sama dengan versi lama di 9 tab. Tidak ada halaman kosong.
+
+Ukur (CPU 4x, % frame lebih dari 16.7 ms, median, mesin sedang lebih lambat dari sesi sebelumnya):
+| Skenario | main | build baru |
+| tab | 58.1 | 46.8 |
+| damage | 57.0 | 25.0 |
+
+Target di bawah 5 persen belum tercapai. Biaya sisa tab: animasi geser halaman. Biaya sisa damage: banyak efek bersamaan. 60 fps di HP asli belum terbukti. Pakai #fps di alamat untuk uji di HP.

@@ -42,15 +42,28 @@ $("#featBody").addEventListener("click",function(e){ var b=e.target.closest("[da
 $("#spBody").addEventListener("click",function(e){ var b=e.target.closest("[data-spf]"); if(!b) return; e.stopPropagation(); spF=b.getAttribute("data-spf"); renderSpells(); });
 $("#spBody").addEventListener("input",function(e){ var t=e.target; if(t.id!=="spQ") return; spQ=t.value; var pos=t.selectionStart; renderSpells(); var qq=document.getElementById("spQ"); if(qq){ qq.focus(); qq.setSelectionRange(pos,pos);} });
 var pager=$("#pager"), bInd=$("#bInd"), navBtns=$$("#bnav button"), curPage=0, raf=0;
-function onPagerScroll(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; if(!mq.matches) return; var w=pager.clientWidth||1, f=pager.scrollLeft/w; bIndSet(f*100);/* v31 p11 */
+var BCSS=!!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline","--a")&&CSS.supports("timeline-scope","--a")&&Element.prototype.animate);/* P1: scroll timeline drives the bar line */
+if(BCSS) document.documentElement.classList.add("bi-css");
+/* P2 frame rate: pages far from the view are not painted. A page keeps visibility:hidden until it is within one page of the view.
+   goPage, focus() and scrollIntoView() show the page first, so a jump never lands on a blank page */
+var PGCULL=null;
+function pgOn(){ if(PGCULL||!window.IntersectionObserver) return; PGCULL=new IntersectionObserver(function(es){ if(!mq.matches) return; es.forEach(function(e){ e.target.style.visibility=e.isIntersecting?"":"hidden"; }); },{root:pager,rootMargin:"0px 100% 0px 100%"});
+  PAGES.forEach(function(id){ var el=document.getElementById(id); if(el) PGCULL.observe(el); }); }
+function pgOff(){ if(PGCULL){ PGCULL.disconnect(); PGCULL=null; } PAGES.forEach(function(id){ var el=document.getElementById(id); if(el&&el.style.visibility) el.style.visibility=""; }); }
+function pgShow(i){ for(var k=i-1;k<=i+1;k++){ var el=document.getElementById(PAGES[k]); if(el&&el.style.visibility) el.style.visibility=""; } }
+function pgReveal(el){ var p=el&&el.closest&&el.closest("#pager>*, #pager .panel"); if(p&&p.style.visibility) p.style.visibility=""; }
+(function(){ var f=HTMLElement.prototype.focus, s=Element.prototype.scrollIntoView;
+  HTMLElement.prototype.focus=function(){ if(PGCULL) pgReveal(this); return f.apply(this,arguments); };
+  Element.prototype.scrollIntoView=function(){ if(PGCULL) pgReveal(this); return s.apply(this,arguments); }; })();
+function onPagerScroll(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; if(!mq.matches) return; var w=pager.clientWidth||1, f=pager.scrollLeft/w; if(!BCSS) bIndSet(f*100);/* v31 p11 */
   var idx=clamp(Math.round(f),0,PAGES.length-1); if(idx!==curPage){ curPage=idx; navBtns.forEach(function(b,i){ b.classList.toggle("on",i===idx); if(i===idx) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); navShow(idx); pCur(idx); }/* v31 p13 */ }); }
 /* v23: the bottom bar scrolls sideways (9 pages); keep the current button in view */
 function navShow(i){ var bn=document.querySelector(".bnav"), b=navBtns[i]; if(!bn||!b) return; var l=b.offsetLeft, r=l+b.offsetWidth; if(l<bn.scrollLeft+8) bn.scrollTo({left:Math.max(0,l-24),behavior:REDUCE?"auto":"smooth"}); else if(r>bn.scrollLeft+bn.clientWidth-8) bn.scrollTo({left:r-bn.clientWidth+24,behavior:REDUCE?"auto":"smooth"}); }
 pager.addEventListener("scroll",onPagerScroll,{passive:true});
-function goPage(i,smooth){ if(!mq.matches) return; pager.scrollTo({left:i*pager.clientWidth, behavior:(smooth&&!REDUCE)?"smooth":"auto"}); }
+function goPage(i,smooth){ if(!mq.matches) return; pgShow(i); pager.scrollTo({left:i*pager.clientWidth, behavior:(smooth&&!REDUCE)?"smooth":"auto"}); }
 navBtns.forEach(function(b){ b.addEventListener("click",function(){ var i=+b.getAttribute("data-go"); if(i===curPage){ document.getElementById(PAGES[i]).scrollTo({top:0,behavior:REDUCE?"auto":"smooth"}); } goPage(i,true); }); });
 $("#hpChip").addEventListener("click",function(){ goPage(0,true); });
-function onMode(){ if(mq.matches){ ["p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"].forEach(function(p){ document.getElementById(p).hidden=false; }); requestAnimationFrame(function(){ goPage(curPage,false); onPagerScroll(); }); } else { setTab(activeTab,false,true); } }
+function onMode(){ if(mq.matches){ pgOn(); ["p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"].forEach(function(p){ document.getElementById(p).hidden=false; }); requestAnimationFrame(function(){ goPage(curPage,false); onPagerScroll(); }); } else { pgOff(); setTab(activeTab,false,true); } }
 if(mq.addEventListener) mq.addEventListener("change",onMode); else if(mq.addListener) mq.addListener(onMode);
 var rT=null;
 window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ if(mq.matches) goPage(curPage,false); else moveTabInd(true); },80); });

@@ -1,0 +1,5 @@
+{"A base":{"bypass":true},
+ "A + mi-fx off":{"ls":{"mi-fx":"off"},"bypass":true},
+ "A + mi-fx lite":{"ls":{"mi-fx":"lite"},"bypass":true},
+ "A + all fx visuals hidden":{"bypass":true,"css":".mi-fx,.mi-w,.mi-wave,.mi-rip,.mi-glarew,.mi-glare,#toast,.toast{display:none!important}.vitals,#hpBox,.vb-hp,.hp-cur,.hpf,#hpGhost,.vb-bar i{animation:none!important;transition:none!important}"},
+ "A + no css animation/transition":{"bypass":true,"css":"*,*::before,*::after{animation:none!important;transition:none!important}"}}

@@ -1,0 +1,6 @@
+{"A base":{"bypass":true},
+ "no transitions only":{"bypass":true,"css":"*,*::before,*::after{transition:none!important}"},
+ "no animations only":{"bypass":true,"css":"*,*::before,*::after{animation:none!important}"},
+ "no page slide":{"bypass":true,"css":".psl-r,.psl-l,.panel.psl-r,.panel.psl-l{animation:none!important}"},
+ "no heading entrance":{"bypass":true,"css":".ptitle.mi-hd,.ptitle.mi-hd svg,#pager .ptitle.mi-hd{animation:none!important}"},
+ "no reveal-on-scroll":{"bypass":true,"css":"[class*=mi-rv],[class*=reveal],.mi-in,.mi-pre{animation:none!important;transition:none!important}"}}
