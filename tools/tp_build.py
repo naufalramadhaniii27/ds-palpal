@@ -14,7 +14,7 @@ from hb import load, flat, strip
 
 BOOKS = [
  {"id": "tdcsr", "file": "Darrington Press; Tal'Dorei Campaign Setting Reborn.json", "tag": "TDCSR", "name": "Tal'Dorei Campaign Setting Reborn",
-  "pub": "Darrington Press", "ed": "2014", "sub": "tdcsr_sub"},
+  "pub": "Darrington Press", "ed": "2014", "sub": "tdcsr_sub", "bg": "tdcsr_bg", "feat": "tdcsr_feat"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -68,6 +68,7 @@ def sub_records(bk, data, M):
         rec = {"cls": s["className"], "name": name, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
                "cantrips": [], "pick": O.get("pick", []), "fx": O.get("fx", []), "spab": O.get("spab", "")}
         if O.get("grant"): rec["grant"] = O["grant"]
+        if O.get("acb"): rec["acb"] = O["acb"]
         out.append(rec)
     return out
 
@@ -87,16 +88,62 @@ window.WX=window.WX||{src:[]};
 if(!window.WX.src.some(function(x){return x.id===SRC.id}))window.WX.src.push(SRC);
 '''
 
+def bg_records(bk, data, M):
+    """name -> record. Names come from the source and every one must have overlay text (else GAP)."""
+    out = {}
+    names = [b["name"] for b in data.get("background", []) if "_copy" not in b]
+    for n in names:
+        r = M.BG.get(n)
+        if not r: GAP.append((bk["tag"], "background", n, "no overlay text, background not built")); continue
+        rec = dict(r); rec.setdefault("featOpts", M.OPTS); rec["hb"] = bk["tag"]; rec["leg"] = 1 if bk["ed"] == "2014" else 0
+        if not rec["leg"]: del rec["leg"]
+        out[n] = rec
+    for n in M.BG:
+        if n not in names: GAP.append((bk["tag"], "overlay", "background " + n, "overlay text without a source background"))
+    for b in data.get("background", []):
+        if "_copy" in b: GAP.append((bk["tag"], "background variant", b["name"], "carried as a story variant on " + b["_copy"]["name"]))
+    return out
+
+REGBG = '''window.WXBG=window.WXBG||{};window.WXBG[SRC.id]=Object.assign(window.WXBG[SRC.id]||{},BG);
+Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TOOL_ONE[k]=TL[k].one});
+SRC.backgrounds=Object.keys(BG);
+'''
+
+def feat_records(bk, data, M):
+    """name -> (record, lu list, acts)."""
+    out = {}; lus = []; acts = {}
+    names = [f["name"] for f in data.get("feat", [])]
+    for n in names:
+        r = M.FEATS.get(n)
+        if not r: GAP.append((bk["tag"], "feat", n, "no overlay text, feat not built")); continue
+        rec = {"cat": "G", "hb": bk["tag"], "d": r["d"], "full": r["full"]}
+        for k in ("pre", "asi", "fx", "pick", "needs"):
+            if k in r: rec[k] = r[k]
+        out[n] = rec
+        if r.get("lu"):
+            l = r["lu"]; lus.append({"src": "feat", "owner": n, "feature": n, "n": l["n"], "lvl": 1, "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")})
+        if r.get("act"): acts["feat|" + n] = [[r["act"], n, n]]
+    for n in M.FEATS:
+        if n not in names: GAP.append((bk["tag"], "overlay", "feat " + n, "overlay text without a source feat"))
+    return out, lus, acts
+
+REGFT = '''Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
+SRC.feats=Object.keys(FT);
+'''
+
 def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
         data = load(bk["file"]); M = ovl(bk["sub"])
         recs = sub_records(bk, data, M)
+        bgs = bg_records(bk, data, ovl(bk["bg"])) if bk.get("bg") else {}
+        ft, ftlu, fta = feat_records(bk, data, ovl(bk["feat"])) if bk.get("feat") else ({}, [], {})
+        tl = getattr(ovl(bk["bg"]), "TL", {}) if bk.get("bg") else {}
         src = {"id": bk["id"], "tag": bk["tag"], "name": bk["name"] + (" (2014 rules)" if bk["ed"] == "2014" else ""),
-               "desc": "%d subclasses." % len(recs), "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
+               "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"]}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\n" + REG + "})();\n"
+        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
     gap = ["# Third party GAP list", "", "Generated by tools/tp_build.py. A GAP is a source feature the app cannot place on the sheet by itself, or text that is missing.", "",
            "| Book | Kind | Item | Note |", "|---|---|---|---|"] + ["| %s | %s | %s | %s |" % g for g in GAP]

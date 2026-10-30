@@ -18,12 +18,13 @@ def serve():
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=ROOT))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv, "http://127.0.0.1:%d/index.html" % port
+FEATJS = """(c)=>{ var b=window.__bldTestB(); b.sub=""; b.src=Object.assign({}, b.src||{}); b.src[c.src]=!!c.on; var l=window.__bldFeats(b)||[]; return c.feats.map(function(f){return l.indexOf(f)>=0}); }"""
 res = []
 def check(n, ok, info=""):
     res.append(ok); print("ok  " if ok else "FAIL", n, "" if ok else info)
 LIST = """(c)=>{ var b=window.__bldTestB(); b.cls=c.cls; b.sub=""; b.level=c.level; b.src=Object.assign({}, b.src||{}); b.src[c.src]=!!c.on; window.__bldTestSet(b); var l=window.__bldLists().subs[c.cls]||[]; window.__bldTestSet(null); return l.indexOf(c.sub)>=0; }"""
 JS = """(c)=>{ var b=window.__bldTestB(); b.cls=c.cls; b.sub=c.sub; b.level=c.level; b.src=Object.assign({}, b.src||{}, c.on?{[c.src]:true}:{}); 
-  var out={}; try{ var sh=window.__bldSheetFor(b); out.sheet=sh?{sub:sh.sub, cls:sh.cls, feats:[].concat.apply([],(sh.features||[]).map(function(g){return (g.items||[]).map(function(i){return i.n})})), lu:(sh.res||[]).map(function(r){return r.n})}:null; }catch(e){ out.err=String(e&&e.message||e); } return out; }"""
+  if(c.bg) b.bg=c.bg; var out={}; try{ var sh=window.__bldSheetFor(b); out.sheet=sh?{bg:sh.bg, sub:sh.sub, cls:sh.cls, feats:[].concat.apply([],(sh.features||[]).map(function(g){return (g.items||[]).map(function(i){return i.n})})), lu:(sh.res||[]).map(function(r){return r.n})}:null; }catch(e){ out.err=String(e&&e.message||e); } return out; }"""
 async def main():
     srv, url = serve(); errs = []
     async with async_playwright() as p:
@@ -38,20 +39,23 @@ async def main():
             await pg.wait_for_function("()=>!!window.__bldSheetFor&&!!window.WX", timeout=60000)
             wx = await pg.evaluate("()=>(window.WX.src.filter(function(q){return q.tp}).map(function(q){return q.id}))")
             check(tag + " third party sources registered", set(c["src"] for c in CASES) <= set(wx), str(wx))
+            for c in [x for x in CASES if x.get("sub") and False]: pass
             dup = await pg.evaluate("()=>{var seen={},d=[];(window.WXS||[]).forEach(function(x){var k=x.cls+'|'+x.name; if(seen[k]) d.push(k); seen[k]=1;}); (window.WX.src||[]).filter(function(q){return q.tp}).forEach(function(q){(q.subs||[]).forEach(function(n){ if(typeof SUB_FULL==='undefined') return; });}); return d}")
             check(tag + " no subclass is registered twice", not dup, str(dup))
             for c in CASES:
                 off = await pg.evaluate(JS, dict(c, on=False)); on = await pg.evaluate(JS, dict(c, on=True))
-                lo = await pg.evaluate(LIST, dict(c, on=False)); ln = await pg.evaluate(LIST, dict(c, on=True))
-                check("%s %s off: %s is not offered" % (tag, c["src"], c["sub"]), lo is False)
-                check("%s %s on: %s is offered" % (tag, c["src"], c["sub"]), ln is True)
-                check("%s %s a sheet that uses %s keeps its book on" % (tag, c["src"], c["sub"]), not off.get("err") and off.get("sheet") and all(f in off["sheet"]["feats"] for f in c["feats"]), json.dumps(off)[:200])
-                check("%s %s on: %s on the sheet" % (tag, c["src"], c["sub"]), on.get("sheet") and on["sheet"]["sub"] == c["sub"], json.dumps(on)[:300])
+                nm = c.get("sub") or c["bg"]
+                if c.get("sub"):
+                    lo = await pg.evaluate(LIST, dict(c, on=False)); ln = await pg.evaluate(LIST, dict(c, on=True))
+                    check("%s %s off: %s is not offered" % (tag, c["src"], nm), lo is False)
+                    check("%s %s on: %s is offered" % (tag, c["src"], nm), ln is True)
+                check("%s %s a sheet that uses %s keeps its book on" % (tag, c["src"], nm), not off.get("err") and off.get("sheet") and all(f in off["sheet"]["feats"] for f in c["feats"]), json.dumps(off)[:200])
+                check("%s %s on: %s on the sheet" % (tag, c["src"], nm), on.get("sheet") and on["sheet"]["sub"] == c["sub"] if c.get("sub") else on["sheet"]["bg"] == c["bg"], json.dumps(on)[:300])
                 if on.get("sheet"):
                     miss = [f for f in c["feats"] if f not in on["sheet"]["feats"]]
-                    check("%s %s features on the sheet" % (tag, c["sub"]), not miss, "missing %s of %s" % (miss, on["sheet"]["feats"][:40]))
+                    check("%s %s features on the sheet" % (tag, nm), not miss, "missing %s of %s" % (miss, on["sheet"]["feats"][:40]))
                     missl = [l for l in c.get("lu", []) if l not in on["sheet"]["lu"]]
-                    check("%s %s uses tracked" % (tag, c["sub"]), not missl, "missing %s of %s" % (missl, on["sheet"]["lu"]))
+                    check("%s %s uses tracked" % (tag, nm), not missl, "missing %s of %s" % (missl, on["sheet"]["lu"]))
             await ctx.close()
         await br.close()
     srv.shutdown()

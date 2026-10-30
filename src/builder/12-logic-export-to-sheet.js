@@ -61,6 +61,7 @@ function toSheet(){
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.dwAC&&!ESH&&EW.filter(function(n){var w=WEAPONS[baseOf(n).b];return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});/* v69 */
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.ac&&ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});/* M17: FEATS.ac (with armor) */
  if(sp&&sp.acBonus&&!custom)C.ac.bonus.push({s:sp.acBonus.s,v:sp.acBonus.v});
+ {var Wsb=typeof sbWx==="function"?sbWx(B.sub,B.cls):null;if(Wsb&&Wsb.acb&&!custom&&L>=(Wsb.acb.l||1))C.ac.bonus.push({s:Wsb.acb.s,v:Wsb.acb.v})}/* third party: a flat Armor Class bonus a subclass gives from a level (acb:{l,v,s}) */
  {var SFa=spOptFx();if(SFa.acBonus&&!custom&&L>=(SFa.acBonus.l||1))C.ac.bonus.push({s:SFa.acBonus.s,v:SFa.acBonus.v})}/* v74: AC bonus from a species option (Simic Hybrid Carapace) *//* v58: species bonus to AC (Warforged Integrated Protection) */
  /* speed and senses */
  var SFX2=spOptFx(),spd=custom?+B.cSpecies.speed:(SFX2.speedSet||sp.speed),spSrc=spName+" ("+(custom?"homebrew":(sp.hb||SRC))+")";if(SFX2.speed){spd+=SFX2.speed;spSrc+=", +"+SFX2.speed+" Quick"}

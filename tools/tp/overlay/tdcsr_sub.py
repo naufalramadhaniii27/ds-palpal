@@ -49,7 +49,8 @@ SUB = {
         {"feature": "Call of the Shadowseeds", "lvl": 6, "max": "pb", "reset": "long", "tag": "Reaction"}],
  "acts": {"Defile Ground": "bonus", "Call of the Shadowseeds": "reaction", "Incarnation of Corruption": "bonus"},
  "fx": [[3, "Blighted Shape", {"skills": ["Intimidation"], "notes": [["Note", "Blighted Shape: +2 AC and 60 ft Darkvision in Wild Shape"]]}],
-        [14, "Incarnation of Corruption", {"res": ["Necrotic"], "notes": [["Note", "Incarnation of Corruption: +2 AC"]]}]]},
+        [14, "Incarnation of Corruption", {"res": ["Necrotic"], "notes": [["Note", "Incarnation of Corruption: temporary HP equal to your Proficiency Bonus as a Bonus Action when you start your turn in your defiled ground"]]}]],
+ "acb": {"l": 14, "v": 2, "s": "Incarnation of Corruption (TDCSR)"}},
 
 "College of Tragedy": {"spab": "CHA",
  "f": {
@@ -104,7 +105,7 @@ SUB = {
  "lu": [],
  "acts": {"Resolute Stance": "other", "Hurricane Strike": "reaction"},
  "fx": [[3, "Spirit of the Mountain", {"notes": [["Note", "While raging you cannot be knocked Prone or moved against your will"]]}],
-        [14, "Unstoppable", {"imm": ["Frightened", "Paralyzed", "Prone", "Stunned"], "notes": [["Note", "Unstoppable: these immunities apply while raging, and your Speed cannot be reduced"]]}]]},
+        [14, "Unstoppable", {"notes": [["Note", "Unstoppable: while raging you are immune to Frightened, Paralyzed, Prone and Stunned, and your Speed cannot be reduced"]]}]]},
 
 "Runechild": {"spab": "CHA",
  "f": {
