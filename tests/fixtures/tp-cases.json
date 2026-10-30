@@ -792,5 +792,95 @@
   "lu": [
    "Wizard \"Spells\""
   ]
+ },
+ {
+  "src": "tee24",
+  "cls": "Druid",
+  "sub": "Circle of the Forged",
+  "level": 20,
+  "feats": [
+   "Circle of the Forged Spells",
+   "Skin of Steel",
+   "Elementally Imbued",
+   "Adamantine Hide",
+   "Construction Perfection"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tee24",
+  "cls": "Bard",
+  "sub": "College of the Dirge Singer",
+  "level": 20,
+  "feats": [
+   "Broad Inspiration",
+   "Keeper of History",
+   "Commanding Voice",
+   "Battle Hymn"
+  ],
+  "lu": []
+ },
+ {
+  "src": "tee24",
+  "cls": "Artificer",
+  "sub": "Forge Adept",
+  "level": 20,
+  "feats": [
+   "Battle Ready",
+   "Forge Adept Spells",
+   "Ghaal'Shaarat",
+   "Tool Proficiency",
+   "Extra Attack"
+  ],
+  "lu": [
+   "Aura of War",
+   "Empower Aura"
+  ]
+ },
+ {
+  "src": "tee24",
+  "cls": "Artificer",
+  "sub": "Maverick",
+  "level": 20,
+  "feats": [
+   "Arcane Prototype",
+   "Maverick Spells",
+   "Tool Proficiency",
+   "Fine Tuning",
+   "Work in Progress"
+  ],
+  "lu": [
+   "Improved Genius"
+  ]
+ },
+ {
+  "src": "tee24",
+  "cls": "Cleric",
+  "sub": "Mind Domain",
+  "level": 20,
+  "feats": [
+   "Mind Domain Spells",
+   "Psychic Feedback",
+   "Psychic Force",
+   "Gestalt Anchor",
+   "Bend Reality"
+  ],
+  "lu": [
+   "Bend Reality"
+  ]
+ },
+ {
+  "src": "tee24",
+  "cls": "Monk",
+  "sub": "Warrior of the Living Weapon",
+  "level": 20,
+  "feats": [
+   "Martial Form",
+   "Mutable Strike",
+   "Manifest Blow",
+   "Reflexive Adaptation",
+   "Perfect Form"
+  ],
+  "lu": []
  }
 ]

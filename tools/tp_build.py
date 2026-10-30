@@ -155,7 +155,7 @@ SRC.feats=Object.keys(FT);
 
 def item_records(bk, data, M):
     """rows, ITEM_SPELLS, weapon names, gear. Names must exist in the source (else GAP)."""
-    src_names = set(i["name"] for i in data.get("item", []))
+    src_names = set(i["name"] for i in data.get("item", [])) | set(i["name"] for i in data.get("magicvariant", []))
     rows = []; wpn = []
     for (n, typ, rar, att, text, o) in M.ITEMS:
         if n not in src_names: GAP.append((bk["tag"], "overlay", "item " + n, "overlay text without a source item"))
@@ -171,8 +171,8 @@ def item_records(bk, data, M):
         GAP.append((bk["tag"], "item", n, "no overlay text, item not built"))
     for k, lab in (("monster", "monsters (stat blocks)"), ("deity", "deities"), ("variantrule", "variant rules"), ("reward", "rewards (boons and blessings)")):
         if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), lab), "not in the builder or sheet. Planned for the Library as own-wording entries"))
-    for k in ("itemGroup", "magicvariant"):
-        if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), k), "grouping or variant rule of items already listed one by one"))
+    for k in ("itemGroup",):
+        if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), k), "grouping of items already listed one by one"))
     return rows, M.SP, wpn, M.GEAR
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
