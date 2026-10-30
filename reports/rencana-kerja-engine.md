@@ -490,3 +490,8 @@ Sisa dugaan: biaya JS dan style recalc dari renderAll saat HP berubah, dan batas
 ## 3q. Profil JS saat damage (CPU 4x)
 
 Fungsi JS terbesar (icoDecorate, burst, hurt, edgeRows) tiap kali di bawah 2 persen dari waktu sampel, sekitar 110 ms untuk 8 aksi. JS bukan penyebab utama frame terlambat di damage. Sisa biaya ada di style, layer, dan paint, dan tersebar. Langkah berikut menunggu data #fps dari HP asli.
+
+## 3r. Syarat baru: minimum 60 fps di CPU 3x
+
+Ditetapkan pengguna 2026-10-30 (sebelumnya 4x). bench3.py membaca RATE dari environment.
+Build perf-60fps pada 3x (median 4 kali, % frame lebih dari 16.7 ms): tab 13.3 (11.7-14.1), damage 15.9 (14.7-17.3). Batas internal di bawah 5 persen belum tercapai. Belum ada data HP asli.

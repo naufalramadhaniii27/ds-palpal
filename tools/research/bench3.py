@@ -25,7 +25,7 @@ async def one(pw,cfg,scen):
     css=(SC if cfg.get("sc") else "")+cfg.get("css","")
     if css: await pg.add_style_tag(content=css)
     tabs=[t for t in await pg.query_selector_all("#bnav button") if await t.is_visible()]
-    cdp=await ctx.new_cdp_session(pg); await cdp.send("Emulation.setCPUThrottlingRate",{"rate":4})
+    cdp=await ctx.new_cdp_session(pg); await cdp.send("Emulation.setCPUThrottlingRate",{"rate":float(os.environ.get("RATE","4"))})
     ev=[]; cdp.on("Tracing.dataCollected",lambda p: ev.extend(p["value"])); done=asyncio.Event(); cdp.on("Tracing.tracingComplete",lambda p: done.set())
     await cdp.send("Tracing.start",{"categories":"devtools.timeline,disabled-by-default-devtools.timeline,cc","transferMode":"ReportEvents"})
     if scen=="tabs":
