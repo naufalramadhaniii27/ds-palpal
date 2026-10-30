@@ -26,4 +26,5 @@
 - tests/tp_p5g.py: 185 cek, 0 gagal (390x844 dan 1250x850).
 - tests/tp_sources.py: ditambah 76 kasus subclass baru.
 - tests/xlinks.py: 23 cek, 0 gagal.
-- Regresi penuh: lihat /tmp/suite_p5g.txt (hasil ditulis di status).
+- Regresi penuh sesudah perbaikan alias: scenarios 24/0, tp_ui 9/0, tp_spells 5/0, tp_class 259/0, tp_ee24 55/0, tp_ghpg 115/0, tp_sgeh 61/0, tp_aep_ghcg 29/0, tp_p5g 185/0, xlinks 23/0, tp_sources 2097/0, golden_rules 1001 karakter 0 selisih, fuzz_rules 500 karakter 0 gagal, csp_check 0.
+- Temuan dan perbaikan: generator memasukkan file tp lama ke daftar nama inti dan memberi alias ke nama unik (diperbaiki), nama feat Valda dan Dark Matter bertabrakan (alias), tracker Radiant Shell memakai kolom kelas yang tidak terbaca (diganti daftar angka).
