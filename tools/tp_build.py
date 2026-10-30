@@ -73,6 +73,7 @@ def sub_records(bk, data, M):
         for blk in s.get("additionalSpells", []):
             for key in ("prepared", "known"):
                 for lv, sp in (blk.get(key) or {}).items():
+                    if not isinstance(sp, list): continue          # "daily" and similar blocks hold free casts, not always-prepared lists
                     L = max(3, int(lv)); names = [title(x) for x in sp if isinstance(x, str)]
                     ex = [a for a in auto if a[0] == L]
                     if ex: ex[0][1] = ex[0][1] + "," + ",".join(names)
@@ -178,7 +179,7 @@ def item_records(bk, data, M):
     return rows, M.SP, wpn, M.GEAR
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
-PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber"}
+PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber", "AP": "Armor-Piercing", "BP": "Blackpowder", "CS": "Cumbersome", "D": "Double", "Dam": "Damage", "Haft": "Hafted", "Mag": "Magazine", "Mom": "Momentum", "Rep": "Repeater"}
 WEAP = {}; MAST = {}
 
 def weapon_records(bk, data, M):
