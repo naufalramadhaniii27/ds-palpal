@@ -5010,4 +5010,9 @@ art/batch/emblems/species/thri-kreen.png
 art/batch/emblems/species/tortle.png
 art/batch/emblems/species/triton.png
 art/batch/emblems/species/troglodyte.png
+art/batch/emblems/species/vampire.png
+art/batch/emblems/species/vedalken.png
+art/batch/emblems/species/verdan.png
+art/batch/emblems/species/warforged.png
+art/batch/emblems/species/yuan-ti.png
 
