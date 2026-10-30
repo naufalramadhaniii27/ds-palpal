@@ -4916,6 +4916,11 @@ art/batch/icons/items/magic/very-rare/cape-of-enlargement.png
 art/batch/icons/items/magic/rare/dragonguard.png
 art/batch/icons/items/magic/rare/flayer-slayer.png
 art/batch/icons/items/magic/uncommon/hew.png
+art/batch/icons/items/magic/uncommon/lightbringer.png
+art/batch/icons/items/magic/rare/luminous-war-pick.png
+art/batch/icons/items/magic/uncommon/mind-crystal.png
+art/batch/icons/items/magic/very-rare/mindblasting-cap.png
+art/batch/icons/items/magic/very-rare/mindguard-crown.png
 
 ## batch-157 v3
 art/batch/icons/features/subclass/assassin/bonus-proficiencies.png
