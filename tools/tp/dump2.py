@@ -3,6 +3,7 @@
   python3 tools/tp/dump2.py "Exploring Eberron - 2024" list                 kinds and counts
   python3 tools/tp/dump2.py "Exploring Eberron - 2024" race [Name]          also: background feat spell item itemGroup magicvariant reward
   python3 tools/tp/dump2.py "Exploring Eberron - 2024" sub [Class] [Name]   subclasses with their features
+  ... class Name     class table and features.   ... opt TYPE [Name]   optional features of a feature type
 """
 import sys, os, json, glob
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,21 @@ f = [x for x in glob.glob(os.path.join(os.path.dirname(hb.__file__), "..", "..",
 d = json.load(open(f[0])); a = sys.argv[2:]
 if not a or a[0] == "list":
     print({k: len(v) for k, v in d.items() if isinstance(v, list)}); sys.exit()
-if a[0] == "sub":
+if a[0] == "class":
+    c = [x for x in d["class"] if x["name"].lower() == a[1].lower()][0]
+    print("CLASS", c["name"], "hit die d%d" % c["hd"]["faces"], "saves", c["proficiency"], "spell ability", c.get("spellcastingAbility"))
+    for g in c.get("classTableGroups", []):
+        if g.get("rowsSpellProgression"): continue
+        labs = [hb.strip(x) if isinstance(x, str) else x.get("name") for x in g["colLabels"]]
+        print("TABLE columns:", labs)
+        for i, r in enumerate(g["rows"]): print("  L%d" % (i + 1), [hb.strip(str(x)) if not isinstance(x, dict) else walk(x) for x in r])
+    for x in sorted([x for x in d["classFeature"] if x["className"] == c["name"]], key=lambda x: x["level"]):
+        print("\n## L%d %s\n%s" % (x["level"], x["name"], walk(x["entries"])))
+elif a[0] == "opt":
+    for o in d["optionalfeature"]:
+        if a[1] in o["featureType"] and (len(a) < 3 or o["name"] in a[2:]):
+            print("\n## %s  [%s] prerequisite: %s\n%s" % (o["name"], ",".join(o["featureType"]), walk(o.get("prerequisite", "")) if o.get("prerequisite") else "none", walk(o["entries"])))
+elif a[0] == "sub":
     cl = a[1] if len(a) > 1 else None; nm = a[2] if len(a) > 2 else None
     for s in d["subclass"]:
         if (cl and s["className"].lower() != cl.lower()) or (nm and s["name"] != nm): continue
