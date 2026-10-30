@@ -533,3 +533,13 @@ Uji HP (penguji #fps, 406x761, Chrome 155), jalan tanpa dan dengan pemanasan:
 Kesimpulan: frame 90 sampai 150 ms di kunjungan pertama berasal dari gambar pertama halaman (paint), bukan dari kode. Halaman yang tersembunyi tidak ikut tergambar.
 Terpasang di src/app/21-ui-tabs-pager.js (P6, pgWarm) dan src/css/03-mobile.css (html.pg-warm): sesudah karakter dibuka di layar mobile, tiap halaman ditampilkan dua frame saat pager dan bar bawah hampir transparan (sekitar 0.8 detik di HP), sekali per kunjungan ke app. Sentuhan membatalkannya seketika dan mengembalikan halaman semula. Layar desktop tidak menjalankannya. Dites: scenarios.py 24 cek, 0 gagal. warmchk.py: pemanasan mulai sekitar 0.4 detik sesudah klik, selesai kembali ke halaman semula (posisi pager, tab aktif, garis indikator sama), sentuhan membatalkan, tab bisa dipakai sesudahnya, desktop tidak menjalankan, tanpa error.
 Efek yang terlihat: isi halaman dan bar bawah hampir menghilang sekitar 0.8 detik setelah karakter dibuka. Perlu dinilai pengguna. Belum diuji di HP asli sebagai fitur aplikasi.
+
+## 3w. Hasil G di HP asli (pemanasan di dalam aplikasi)
+
+HP pengguna, 2026-10-30 14.15 WIB, file uji G (penguji #fps, kotak warm-up tidak dicentang). Satu jalan:
+| Fase | lebih dari 16.7 ms (lebih dari 33) | terlama |
+| diam | 0 (0) | 17 ms |
+| tab | 7 (1) | 50 ms, satu frame lambat 53 ms di Main putaran 2 |
+| damage | 5 (3) | 116 ms, frame lambat 117, 87, 57 ms |
+Frame 90 sampai 180 ms di kunjungan pertama Spells dan Skills hilang. Sisa tab 7 persen berupa frame sekitar 25 ms, satu per pindah halaman. Server (CPU 3x, trace per klik) tidak menemukan frame lebih dari 16.7 ms sesudah pemanasan, jadi sumber frame kecil itu tidak terlihat di server. Sisa damage: satu frame sekitar 117 sampai 140 ms tanpa skrip, diduga kemunculan efek pertama kali. Belum ditangani.
+Koreksi: pesan sebelumnya menyebut kotak warm-up tidak ada di G. Kotaknya ada di penguji (hanya untuk uji, tidak perlu dicentang).
