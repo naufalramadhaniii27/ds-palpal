@@ -4845,3 +4845,8 @@ art/batch/icons/items/magic/legendary/tinderstrike.png
 art/batch/icons/items/magic/rare/weird-tank.png
 art/batch/icons/items/magic/legendary/windvane.png
 art/batch/icons/items/magic/uncommon/wingwear.png
+art/batch/icons/rules/metamagic/metamagic-subtle-spell.png
+art/batch/icons/rules/metamagic/metamagic-transmuted-spell.png
+art/batch/icons/rules/metamagic/metamagic-twinned-spell.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-ambush.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-bait-and-switch.png
