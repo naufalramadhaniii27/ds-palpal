@@ -4899,3 +4899,8 @@ art/batch/icons/items/magic/uncommon/soul-coin.png
 art/batch/icons/items/magic/artifact/sword-of-zariel.png
 art/batch/icons/items/magic/rare/black-chromatic-rose.png
 art/batch/icons/items/magic/rare/blue-chromatic-rose.png
+art/batch/icons/items/magic/very-rare/bobbing-lily-pad.png
+art/batch/icons/items/magic/uncommon/dust-of-corrosion.png
+art/batch/icons/items/magic/very-rare/eldritch-staff.png
+art/batch/icons/items/magic/rare/green-chromatic-rose.png
+art/batch/icons/items/magic/artifact/iggwilvs-cauldron.png
