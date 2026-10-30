@@ -2,7 +2,7 @@
 
 Permintaan user 2026-10-30 07.03 WIB: jangan mulai apa pun, masukkan ke rancangan kerja. Analisa dan racik untuk mengembangkan engine keseluruhan app, mode developer, ciptakan sesuatu yang baru dan bermanfaat.
 Status: rancangan. Tidak ada kode app yang diubah. Teknologi buatan sendiri ini memakai izin user 2026-10-29 22.45 WIB (tanpa AI berbayar, paket gratis, tes tiga skenario, dicatat lebih dulu di rencana).
-Nomor N48 sampai N55. Nomor lain sudah dipakai: N1 sampai N18 (rencana teknologi), N19 sampai N31 (sesi lain, `rencana-teknologi-ciptaan`), N32 sampai N47 (Training Ground, riset video).
+Nomor N48 sampai N62 (N56 sampai N62 di bagian 3b). Nomor lain sudah dipakai: N1 sampai N18 (rencana teknologi), N19 sampai N31 (sesi lain, `rencana-teknologi-ciptaan`), N32 sampai N47 (Training Ground, riset video).
 
 ## 1. Hasil analisa engine hari ini (dari membaca kode, belum ada yang dijalankan)
 | Temuan | Bukti |
@@ -41,6 +41,37 @@ Belum diukur: waktu satu panggilan `derive()` di HP lambat. Itu menentukan apaka
 | N54 | Anggaran dan peta ukuran otomatis | `index.html` 7,6 MB. Pertumbuhan tidak terlihat sampai terlambat | `build.py` mencetak tabel ukuran per blok (CSS, data, app, fx, builder) dan menulis `reports/ukuran.json`. Berkas `budget.json` menyimpan batas per blok. Build gagal bila melewati batas, kecuali batas dinaikkan dengan catatan alasan | Sengaja menambah berkas besar: build gagal dengan nama blok. Tanpa perubahan: build lolos |
 | N55 | Satu bentuk efek (opsional, berisiko) | Efek ke angka tersebar di banyak tempat: `C.ac.bonus`, `saveBonus`, `initBonus`, `hpBonus`, `cuApply`, `sitNum`, `cfx` (seperti pintu di video Door Problem yang menyentuh banyak sistem) | Satu bentuk `{target, operasi, nilai, sumber, syarat}` yang dibaca semua angka. Syarat (Rage aktif, Shield dipasang) dinyalakan oleh `S`. Dikerjakan hanya setelah E0 dan E1 ada, dan hanya bila user setuju, karena menyentuh banyak berkas | Master emas sama persis. Efek yang sama dari builder dan dari Situations menghasilkan rincian sama |
 
+### 3b. Gelombang kedua (diusulkan 2026-10-30 07.07 WIB, N56 sampai N62)
+Fakta tambahan dari kode dan berkas hari ini:
+| Temuan | Bukti |
+|---|---|
+| `index.html` 7.634.517 byte, gzip 2.362.704 byte. Satu berkas, jadi tiap rilis mengunduh ulang seluruhnya | Diukur |
+| Cache service worker diberi nama `dnd-sheet-<hash index.html>`. Saat versi baru aktif, semua cache `dnd-sheet-` lain dihapus. Gambar disimpan di cache yang sama (cache pertama, simpan saat diambil). Akibatnya tiap rilis menghapus semua gambar yang sudah diunduh pengguna, padahal gambar jarang berubah | `sw.js` (1.894 byte) |
+| `_headers`: `Cache-Control: no-cache` untuk semua berkas termasuk `img/`. Tidak ada `immutable` | `_headers` |
+| Tidak ada cache versi sebelumnya yang disimpan. Bila rilis rusak, tidak ada yang bisa dikembalikan | `sw.js`, bagian `activate` |
+| 199 pemakaian `innerHTML` di `app`, `builder`, `fx` | Dihitung |
+| Perintah Home (`HCMD`) berupa daftar `[judul, kata kunci, selektor CSS]`. Menjalankan perintah berarti mengeklik elemen lewat selektor, jadi rapuh bila tampilan berubah | `15-logic-roster-backup-files-snapshots.js` baris 34 |
+| Kampanye tersimpan sebagai teks di `S.camp` | `08-ui-render-sheet-and-actions.js` baris 2 |
+
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N56 | Satu pintu HTML | 199 titik `innerHTML` menulis ulang node tiap render. Fokus, gulir, dan animasi terputus, dan INP naik di HP lemah. Rencana A1 (Trusted Types) sudah akan memindahkan semuanya ke satu kebijakan | Satu fungsi `setHTML(elemen, html)` menjadi pintu tunggal. Tugasnya: lewat kebijakan Trusted Types (A1), lewati penulisan bila HTML sama dengan penulisan terakhir, dan opsional ganti node yang berubah saja untuk daftar. Mulai dari elemen yang dipilih, bukan semua | INP dan Long Animation Frames (A10) sebelum dan sesudah di CPU 4x. Fokus dan posisi gulir tetap setelah render ulang. Tiga skenario sama. Risiko: elemen yang diubah kode lain di antara render tidak boleh dilewati, jadi tiap elemen didaftarkan dengan sengaja |
+| N57 | Aturan meja per kampanye | Meja punya aturan rumah dan buku yang diizinkan. Sekarang kampanye hanya nama | Tabel pengaturan per kampanye dengan nilai awal sama dengan PHB 2024: cara HP (tetap atau lempar), buku yang diizinkan (mengisi langkah Sources di builder), cara menentukan skor, beban (varian), aturan critical, aturan diagonal dan flanking (untuk Training Ground). Disimpan di key baru `cs-camp-rules-v1` yang berisi nama kampanye ke aturan. `S.camp` tetap teks, jadi data lama tidak berubah. Mesin membaca lewat konteks N48 | Tanpa aturan, hasil sama persis dengan hari ini (master emas N49). Tiap aturan hanya mengubah angka yang dimaksud |
+| N58 | Cache gambar tahan rilis | Tiap rilis menghapus semua gambar di perangkat pengguna dan mengunduhnya lagi | Cache gambar terpisah `dnd-art-v1` yang tidak ikut dihapus. `img/manifest.json` mendapat hash per berkas. Saat versi baru aktif, hanya gambar yang hash-nya berubah atau hilang yang dihapus dan diunduh. Fitur "Unduh gambar untuk offline" (rencana login) memakai selisih yang sama dan menampilkan progres. `_headers` boleh memberi `immutable` bila nama berkas membawa hash | Ukur byte yang diunduh ulang setelah satu rilis, sebelum dan sesudah (Playwright dengan service worker). Offline tetap jalan. Satu gambar diubah: hanya gambar itu yang diunduh |
+| N59 | Rilis aman | 0.0.3 adalah rilis besar (CSP, IndexedDB, Workers). Bila rusak saat dibuka, pengguna terkunci dan tidak bisa kembali | Penjaga boot: penghitung percobaan boot di penyimpanan, dihapus setelah render pertama berhasil. Dua kali gagal berturut-turut: mode aman (efek dimatikan, sheet dasar tetap jalan) dengan tombol Back Up. Service worker menyimpan cache shell rilis sebelumnya satu versi dan bisa melayani itu bila penjaga memicu. Data lebih baru dari app lama dibekukan oleh `newerApp` dan `FROZEN` yang sudah ada | Sengaja membuat boot gagal dua kali di build uji: mode aman muncul, data utuh, Back Up jalan. Tes kembali ke shell sebelumnya. Tes app lama membaca data cap `_app` lebih baru: tidak menimpa |
+| N60 | Uji mutasi dan pengecil kasus | Tes yang lolos belum tentu menangkap bug | Skrip membuat salinan sementara `src/` lalu menerapkan sekitar 40 mutasi kecil pada `derive()` dan builder (ubah `+` jadi `-`, ubah konstanta). Tiap mutasi harus ditangkap N49, N50, atau fuzzer. Yang lolos tanpa terdeteksi dilaporkan sebagai celah tes. Bila fuzzer menemukan karakter gagal, pengecil menghapus pilihan satu per satu sampai kasus terkecil yang masih gagal, lalu dilampirkan ke laporan bug (N18) | Mutasi yang ditanam sengaja terdeteksi minimal 90 persen. Pengecil menghasilkan kasus lebih kecil dan masih gagal |
+| N61 | Daftar perintah tunggal | Perintah Home mengeklik elemen lewat selektor CSS, rapuh bila tampilan berubah. Learn dan tour butuh cara menunjuk fitur | Satu pendaftaran `{id, judul, kata kunci, jalankan, aktif}`. Dipakai pencarian Home, hasil Library, N45 peringkat, pintasan keyboard, Learn dan Anchor Spotlight (tunjuk lewat id), dan tautan dalam `#/c/<id>` lewat Navigation API | Semua entri `HCMD` dipindah dan tetap jalan. Perintah yang targetnya tidak ada disembunyikan. Tombol Back benar |
+| N62 | Data terparse lebih cepat (ukur dulu) | Sekitar 3,9 MB data aturan dimuat sebagai kode JavaScript | Ukur dulu: waktu evaluasi objek literal lawan `JSON.parse` untuk blok terbesar (`wotc11` 1 MB, `dmgi` 600 KB) di CPU 4x lewat `tests/measure.py`. Bila `JSON.parse` lebih cepat lebih dari 30 persen, `build.py` mengubah blok besar menjadi string JSON. Klaim bahwa `JSON.parse` lebih cepat untuk data besar berasal dari pengetahuan umum, bukan dari pengukuran app ini | Angka sebelum dan sesudah, data hasil parse sama persis |
+
+Keputusan user yang menunggu (N58): memecah build untuk hosting.
+| Pilihan | Isi | Dampak |
+|---|---|---|
+| A: tetap satu berkas | Hanya N58 (cache gambar). Tiap rilis tetap mengunduh `index.html` 2,36 MB gzip | Sederhana, sesuai pernyataan proyek "satu file HTML" |
+| B: satu berkas tetap utama, build kedua terpecah untuk hosting (`dist/`) | Blok data dan fx jadi berkas ber-hash yang di-cache lama. Rilis yang hanya mengubah kode app mengunduh jauh lebih sedikit | Dua bentuk harus dites. Berkas tunggal tetap jadi hasil akhir proyek |
+| Saran | A dulu, ukur byte unduhan per rilis, lalu putuskan B | |
+
+Urutan saran gelombang kedua: N58 dan N59 menjawab risiko rilis 0.0.3 (nilai terbesar), N56 bersama A1, N60 setelah N49, N57 dan N61 fitur untuk pemain, N62 hanya pengukuran.
+
 ## 4. Ketergantungan dengan rencana yang ada
 | Rencana | Hubungan |
 |---|---|
@@ -49,6 +80,10 @@ Belum diukur: waktu satu panggilan `derive()` di HP lambat. Itu menentukan apaka
 | N12 Gabung per bagian (G3) | N52 menjadi aturan gabung untuk bidang angka |
 | N2 Mesin waktu dan N18 (G0 dan G3) | Tidak berubah. N52 sengaja tidak memakai log kejadian |
 | N1, N22, N29, N45, TG | Memakai N53 |
+| A1 CSP dan Trusted Types (G1) | N56 memakai kebijakan A1 sebagai pintu tunggal |
+| A10 pengukuran (G0) | N56 dan N62 diukur dengan INP, Long Animation Frames, dan `tests/measure.py` |
+| Rencana login, tombol Unduh gambar offline | Memakai selisih hash N58 |
+| Navigation API (A6) | N61 |
 | Training Ground (`rencana-kerja-training-ground`) | Mesin pertarungan memakai N48 untuk menghitung angka tiap peserta tanpa halaman |
 
 ## 5. Yang sengaja tidak dikembangkan
