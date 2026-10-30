@@ -4988,4 +4988,9 @@ art/batch/icons/features/subclass/draconic-bloodline/dragon-wings.png
 art/batch/icons/features/subclass/draconic-bloodline/elemental-affinity.png
 art/batch/icons/features/subclass/draconic-sorcery/draconic-resilience.png
 art/batch/icons/features/subclass/draconic-sorcery/draconic-spells.png
+art/batch/icons/features/subclass/draconic-sorcery/dragon-companion.png
+art/batch/icons/features/subclass/draconic-sorcery/dragon-wings.png
+art/batch/icons/features/subclass/draconic-sorcery/elemental-affinity.png
+art/batch/icons/features/subclass/eldritch-knight/arcane-charge.png
+art/batch/icons/features/subclass/eldritch-knight/eldritch-strike.png
 
