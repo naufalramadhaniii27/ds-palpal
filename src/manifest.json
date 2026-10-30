@@ -580,6 +580,18 @@
   },
   {
    "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
+   "close": "</script>",
+   "files": [
+    "data/q01-reward.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
    "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
    "close": "</script>",
    "files": [
