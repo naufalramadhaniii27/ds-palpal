@@ -34,7 +34,7 @@ Angka dukungan dari caniuse, dicek 2026-10-29. Tanda "belum diukur" berarti tida
 | Cloudflare Pages + Pages Functions, D1, Access JWT | Latest | functions/api/[[path]].js, wrangler.toml | Layanan gratis. Pindah ke Workers ada di G5 |
 | Anchor Spotlight, tour | Signature | 31-ui-tour-and-focus.js | Anchor Spotlight umum masih rencana (A5) |
 | Learn: Choreo, Cermin aturan, Find it on your sheet, gerbang bahasa | Signature | src/learn, tools/learn_lint.js | Dirilis di 0.0.3 menurut rencana Learn |
-| Dadu 3D (Babylon + Havok, vendor/dice 6 MB) | Pihak ketiga | di rencana: E3 membangun ulang di Babylon 9.32.1 dan Havok 1.3.14 | Tidak ada di src/ pada branch ini (grep kosong), cek di branch lain sebelum klaim |
+| Dadu 3D dice-box (Babylon + Havok, vendor/dice 6 MB) | Pihak ketiga | Ada di origin/main (src/dice, vendor/dice, src/css/L-dice.css), tidak ada di t10-tidy | Jalan di main. E3 membangun ulang di Babylon 9.32.1 dan Havok 1.3.14. N27 mengusulkan menggantinya dengan lintasan hitung |
 | Pencarian dengan indexOf | Dasar | Library, spell, commands | Akan digantikan N45 dan indeks bersama |
 
 ## B. Teknologi buatan sendiri di rencana (belum jalan)
@@ -71,7 +71,6 @@ Angka dukungan dari caniuse, dicek 2026-10-29. Tanda "belum diukur" berarti tida
 - JSON.parse lebih cepat daripada objek literal untuk data besar.
 - Ed25519 di WebCrypto (SHA-256 untuk N82 dianggap aman, juga belum diukur).
 - Firefox dan WebKit: workspace hanya punya Chromium, jadi dukungan lintas browser hanya dari caniuse.
-- Dadu Babylon dan Havok: tidak ditemukan di src/ branch t10-tidy. Letaknya perlu dicek di branch lain.
 - Rumus dan angka dari slide video BONEBOXID dikutip, belum dicek ke sumber asli.
 
 ## E. Ringkasan jumlah
