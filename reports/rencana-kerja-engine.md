@@ -220,3 +220,25 @@ Dikoreksi oleh bukti:
 | N53 pekerja untuk derive | Tidak perlu. derive 0,5 sampai 0,85 ms, maksimum 7,7 ms di CPU 6x pelan |
 | Klaim "muat awal kelemahan terbesar" | Home terlihat 1,5 detik di CPU 4x. Yang berat adalah thread terblokir 1,8 detik sesudahnya |
 | Kebocoran memori | Tidak ditemukan. 10 putaran: node 5,3 sampai 5,7 ribu, heap 15 sampai 17 MB, pindah tab 30 sampai 60 ms |
+
+## 3f. Syarat kinerja: minimum 60 fps di keadaan normal (dari user, 2026-10-30 08.29 WIB)
+Syarat berlaku untuk semua fitur baru dan perubahan. Rilis tidak boleh menurunkan angka di bawah ini.
+| Hal | Ketentuan (usul, menunggu persetujuan) |
+|---|---|
+| Keadaan normal | Layar 60 Hz, HP kelas menengah. Proksi uji: Chromium dengan CPU 4x lebih pelan, viewport 390 x 844 dan 1250 x 850 |
+| Lulus | Rata-rata 58 fps atau lebih per skenario, paling banyak 5 persen frame lebih dari 16,7 ms, tidak ada frame lebih dari 100 ms |
+| Skenario | Home diam, sheet diam, gulir sheet, pindah tab, damage dan heal, buka Learn dan satu tempat, Training Ground (gerak token, serangan), dadu 3D, builder (pindah langkah) |
+| Efek | Bila tidak lulus, N14 menurunkan tingkat efek otomatis. Setelan pengguna menang |
+| Penjaga | N99: tests/fps_budget.py, masuk regresi. N93 dan N87 memakai skrip yang sama |
+
+### Ukuran awal (build main 0.0.4, Chromium headless, 390 x 844)
+| Skenario | CPU 1x | CPU 4x |
+|---|---|---|
+| Home diam 3 detik | 60,0 fps, 0 persen lambat | 60,0 fps, 0 persen |
+| Sheet diam 3 detik | 60,0 fps, 0 persen | 60,0 fps, 0 persen |
+| Gulir sheet | 57,5 fps, 1 frame 133 ms | 60,0 fps, 0 persen |
+| Pindah tab x18 | 58,9 fps, terburuk 50 ms | 46,5 fps, 18 persen frame lebih dari 16,7 ms, 8 persen lebih dari 33 ms, terburuk 133 ms |
+| Damage dan heal x4 | 58,5 fps, terburuk 50 ms | 47,7 fps, 12 persen lambat, terburuk 183 ms |
+Hasil: lulus untuk diam dan gulir. Gagal di CPU 4x untuk pindah tab dan damage atau heal. Di CPU 1x ada satu hentakan 133 ms saat gulir.
+Belum diukur: Learn, Training Ground, dadu 3D, builder, layar 90 atau 120 Hz. Batas: Chromium headless (rasterisasi perangkat lunak), bukan HP asli, dan 4x adalah tebakan untuk HP menengah.
+Akibat untuk rencana: N84 (antrean kerja saat diam), N14, dan N87 naik prioritas. Penyebab hentakan di pindah tab belum diselidiki.
