@@ -4904,3 +4904,11 @@ art/batch/icons/items/magic/uncommon/dust-of-corrosion.png
 art/batch/icons/items/magic/very-rare/eldritch-staff.png
 art/batch/icons/items/magic/rare/green-chromatic-rose.png
 art/batch/icons/items/magic/artifact/iggwilvs-cauldron.png
+
+## batch-130 v3
+art/batch/icons/items/magic/legendary/icon-of-ravenloft.png
+art/batch/icons/items/magic/very-rare/jakarions-staff-of-frost.png
+art/batch/icons/items/magic/rare/saint-markovias-thighbone.png
+art/batch/icons/items/magic/rare/shield-of-the-silver-dragon.png
+art/batch/icons/items/magic/legendary/sunsword.png
+
