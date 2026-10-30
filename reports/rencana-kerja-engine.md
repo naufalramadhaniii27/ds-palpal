@@ -521,3 +521,15 @@ HP pengguna, penguji #fps v3, 2026-10-30 13.44 dan 13.45 WIB. A = culling halama
 Kesimpulan: culling halaman membuat kunjungan pertama ke halaman jauh menggambar terlambat di HP asli. Dimatikan lewat PGCULL_ON=false di src/app/21-ui-tabs-pager.js. Kodenya dipertahankan.
 Catatan: benchmark server (CPU 3x) berbalik arah: tab 12.2 menjadi 16.1, damage 15.9 menjadi 25.0 persen frame lebih dari 16.7 ms (median 3 kali). Server memakai render software dan tidak mewakili HP. Untuk keputusan performa, data HP asli yang dipakai.
 Tes: scenarios.py 24 cek, 0 gagal, segcmp.py 0 beda, tanpa halaman kosong.
+
+## 3v. Pemanasan halaman (P6) berdasarkan uji A/B di HP
+
+Uji HP (penguji #fps, 406x761, Chrome 155), jalan tanpa dan dengan pemanasan:
+| Varian | Tab: lebih dari 16.7 ms (lebih dari 33), terlama | Frame lambat tab |
+| D tanpa pemanasan | 7 (2), 149 ms | Spells 149, Skills 122, Main 102 |
+| D pemanasan tersembunyi (visibility) | 8 (1), 99 ms | Spells 111, Skills 90 |
+| E pemanasan di bawah lapisan gelap, gambar di-decode | 7 (1), 50 ms | satu frame 53 ms di putaran 2 |
+| F pemanasan cepat, pager hampir transparan, 769 ms | 7 (1), 41 ms | tidak ada |
+Kesimpulan: frame 90 sampai 150 ms di kunjungan pertama berasal dari gambar pertama halaman (paint), bukan dari kode. Halaman yang tersembunyi tidak ikut tergambar.
+Terpasang di src/app/21-ui-tabs-pager.js (P6, pgWarm) dan src/css/03-mobile.css (html.pg-warm): sesudah karakter dibuka di layar mobile, tiap halaman ditampilkan dua frame saat pager dan bar bawah hampir transparan (sekitar 0.8 detik di HP), sekali per kunjungan ke app. Sentuhan membatalkannya seketika dan mengembalikan halaman semula. Layar desktop tidak menjalankannya. Dites: scenarios.py 24 cek, 0 gagal. warmchk.py: pemanasan mulai sekitar 0.4 detik sesudah klik, selesai kembali ke halaman semula (posisi pager, tab aktif, garis indikator sama), sentuhan membatalkan, tab bisa dipakai sesudahnya, desktop tidak menjalankan, tanpa error.
+Efek yang terlihat: isi halaman dan bar bawah hampir menghilang sekitar 0.8 detik setelah karakter dibuka. Perlu dinilai pengguna. Belum diuji di HP asli sebagai fitur aplikasi.

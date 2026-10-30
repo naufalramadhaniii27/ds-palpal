@@ -65,6 +65,17 @@ function goPage(i,smooth){ if(!mq.matches) return; pgShow(i); pager.scrollTo({le
 navBtns.forEach(function(b){ b.addEventListener("click",function(){ var i=+b.getAttribute("data-go"); if(i===curPage){ document.getElementById(PAGES[i]).scrollTo({top:0,behavior:REDUCE?"auto":"smooth"}); } goPage(i,true); }); });
 $("#hpChip").addEventListener("click",function(){ goPage(0,true); });
 function onMode(){ if(mq.matches){ pgOn(); ["p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"].forEach(function(p){ document.getElementById(p).hidden=false; }); requestAnimationFrame(function(){ goPage(curPage,false); onPagerScroll(); }); } else { pgOff(); setTab(activeTab,false,true); } }
+/* P6 frame rate: the first visit to a page painted late on a real phone (frames of 90 to 150 ms, A/B on a phone 2026-10-30). Once per visit to the app, right after a character opens,
+   every page is shown for two frames while the page area is nearly transparent (about 0.8 s on a phone), so the first real visit is already painted. A touch cancels it at once */
+var PGWARM=0;
+function pgWarm(){ if(PGWARM||!mq.matches||REDUCE||document.hidden) return; var d=document.getElementById("dmgBtn"); if(!d||!d.getClientRects().length||document.querySelector("dialog[open]")) return;
+  PGWARM=1; var root=document.documentElement, back=curPage, i=0, fin=function(){ if(PGWARM!==1) return; PGWARM=2; goPage(back,false); root.classList.remove("pg-warm"); document.removeEventListener("pointerdown",fin,true); };
+  [].forEach.call(document.querySelectorAll("#pager img"),function(im){ try{ im.loading="eager"; if(im.decode) im.decode().catch(function(){}); }catch(er){} });
+  root.classList.add("pg-warm"); document.addEventListener("pointerdown",fin,true);
+  (function step(){ if(PGWARM!==1) return; if(i<PAGES.length){ goPage(i++,false); requestAnimationFrame(function(){ requestAnimationFrame(step); }); } else requestAnimationFrame(function(){ fin(); }); })(); }
+function pgWarmTry(n){ pgWarm(); if(!PGWARM&&n<12) setTimeout(function(){ pgWarmTry(n+1); },700); }
+document.addEventListener("click",function(e){ if(!PGWARM&&e.target.closest&&e.target.closest("[data-hview]")) setTimeout(function(){ pgWarmTry(0); },450); },true);
+setTimeout(function(){ pgWarmTry(0); },2500);
 if(mq.addEventListener) mq.addEventListener("change",onMode); else if(mq.addListener) mq.addListener(onMode);
 var rT=null;
 window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ if(mq.matches) goPage(curPage,false); else moveTabInd(true); },80); });

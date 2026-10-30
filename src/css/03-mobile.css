@@ -55,6 +55,7 @@
   .bnav-ind{position:absolute;top:0;left:0;width:calc(100% / 9);height:3px;display:flex;justify-content:center;pointer-events:none;will-change:transform}
   .bnav-ind::before{content:"";width:30px;height:3px;border-radius:0 0 4px 4px;background:var(--stamp)}
   /* P1 frame rate: where the browser supports scroll timelines, the bar line follows the page scroll on the compositor (no script write per frame). The tap spring is a Web Animation on translate, see bIndTo */
+  html.pg-warm #pager,html.pg-warm .bnav{opacity:.01!important;transition:none!important;pointer-events:none}/* see P6 in 21-ui-tabs-pager.js */
   html.bi-css{timeline-scope:--bpg}
   html.bi-css #pager{scroll-timeline:--bpg x}
   html.bi-css .bnav-ind{animation:biSlide linear both;animation-timeline:--bpg}
