@@ -1,11 +1,8 @@
 {
  "name": "dnd-sheet-build-tools",
  "private": true,
- "description": "Build tools for build.py (T11 A7) and the dice bundle (T11 D1). Install once: npm ci --prefix tools/build",
+ "description": "Build tools for build.py (T11 A7). Install once: npm ci --prefix tools/build",
  "devDependencies": {
-  "esbuild": "0.28.2",
-  "@babylonjs/core": "9.32.1",
-  "@babylonjs/materials": "9.32.1",
-  "@babylonjs/havok": "1.3.14"
+  "esbuild": "0.28.2"
  }
 }

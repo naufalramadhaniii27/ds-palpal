@@ -304,7 +304,7 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | build.py | `learn_lint()` (gerbang bahasa Learn), `minify()` esbuild per blok, `with_csp()` CSP dengan hash script. CSS app dibungkus `@layer app`, file `css/L-*.css` di layer sendiri (urutan `app, feat, learn, dice`) |
 | tools/build/ | esbuild, BabylonJS, Havok (versi dikunci, `npm ci --prefix tools/build`) |
 | tools/learn_lint.js | Cek teks Learn: panjang kalimat EN 14 dan ID 12 kata, 2 kalimat per teks, kata kaku Indonesia, angka sama di dua bahasa, kunci kamus |
-| tools/dice_build.py, src/dice/ | dice-box 1.1.4 di BabylonJS 9 dan Havok, dibangun ke vendor/dice |
+| src/fx/25-dice3d.js | Dadu 3D sendiri (N27): WebGL 1, lintasan dihitung, tanpa mesin fisika. dice-box, Babylon, Havok dihapus 2026-10-30 |
 | tools/important_trim.py | Analisis dan pembuangan !important yang tidak berpengaruh |
 | src/boot/trusted-types.js | Policy Trusted Types `default` dan `cs-loader` |
 | src/app/45-learn-bridge.js | `window.__app`: fungsi app yang dipakai Learn (app berjalan di satu closure) |

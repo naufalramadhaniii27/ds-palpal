@@ -60,8 +60,8 @@
   function hload(){ HK=rk(); try{ H=JSON.parse(ls(HK)||"[]")||[]; }catch(e){ H=[]; } }
   function save(){ if(!HK) HK=rk(); ls(HK,JSON.stringify(H.slice(0,50))); }
   window.__miRollKey=function(){ return HK||rk(); };
-  /* T11 D2: the dice a roll needs, in order. With 3D dice (vendor/dice, dice-box on Babylon and Havok) the values come from the
-     physics roll on screen. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
+  /* T11 D2: the dice a roll needs, in order. With 3D dice (25-dice3d) the values are decided first and the dice on screen
+     land on them. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
   function diceOf(spec,mode){ if(spec.dmg){ var L=[]; parseDmg(spec.dmg).forEach(function(q){ if(q.f){ var n=q.n*(mode==="crit"?2:1); for(var i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
   function doRoll(spec,mode,label,cb){ var need=diceOf(spec,mode), go=function(vals,three){ var r=finish(spec,mode,label,vals); r.three=!!three; after(r); if(cb) cb(r); };
     if(window.__dice3d&&!calm()&&need.length&&need.length<=12){ window.__dice3d.roll(need).then(function(v){ go(v&&v.length===need.length?v:need.map(function(f){ return d(f); }),!!v); },function(){ go(need.map(function(f){ return d(f); }),false); }); return null; }

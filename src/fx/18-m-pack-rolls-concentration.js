@@ -88,7 +88,7 @@
   function abilBtn(){ var sel=D.querySelector('#bld select[data-method]'); if(!vis(sel)) return; var have=sel.parentNode.querySelector(".mi-4d6"); if(sel.value!=="manual"){ rm(have); return; } if(have) return;
     var b=D.createElement("button"); b.type="button"; b.className="mi-4d6 mi-rb pri"; b.innerHTML='Roll 4d6 for every ability'; sel.parentNode.insertBefore(b,sel.nextSibling); }
   var bl=D.getElementById("bld"); if(bl){ var aq=0; new MutationObserver(function(){ if(!aq){ aq=1; nf(function(){ aq=0; abilBtn(); }); } }).observe(bl,{childList:true,subtree:true}); }
-  /* T11 G6 B2: the 24 dice land together on the 3D table (vendor/dice) when effects are on, then each ability takes its four */
+  /* T11 G6 B2: the 24 dice land together on the 3D table (25-dice3d) when effects are on, then each ability takes its four */
   addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest(".mi-4d6"); if(!b) return; e.preventDefault(); e.stopPropagation(); if(b.__busy) return; b.__busy=1; var AB=["STR","DEX","CON","INT","WIS","CHA"], i=0, log=[], pool=null;
     var go=function(v){ pool=v&&v.length===24?v.slice():null; b.__busy=0; next(); };
     if(window.__dice3d&&!calm()){ var L=[]; for(var z=0;z<24;z++) L.push(6); window.__dice3d.roll(L).then(go,function(){ go(null); }); } else go(null);

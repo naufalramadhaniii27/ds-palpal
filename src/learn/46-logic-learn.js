@@ -32,7 +32,7 @@ function lrnRecap(){ var old=Date.now()-864e5, qs=[];
   LEARN.places.forEach(function(p){ var d=LRN.done[p.id]; if(!d||d.skip||d.t>=old||p.kind) return; p.steps.forEach(function(s){ if(s.t==="why") qs.push(s); }); });
   return lrnShuffle(qs).slice(0,2).map(function(s){ var ord=lrnShuffle(s.opts.map(function(o,k){ return k; })), ok=-1; var q={q:s.q,opts:ord.map(function(k,j){ if(s.opts[k].ok) ok=j; return s.opts[k].x; }),fb:s.opts.filter(function(o){ return o.ok; })[0].fb}; q.a=ok; return q; }); }
 
-/* dice: the 3D dice of the sheet (vendor/dice) when effects are on, numbers from crypto otherwise. Always answers, never throws */
+/* dice: the 3D dice of the sheet (25-dice3d) when effects are on, numbers from crypto otherwise. Always answers, never throws */
 function lrnD(n){ var a=new Uint32Array(1); try{ crypto.getRandomValues(a); }catch(e){ a[0]=Math.floor(Math.random()*4294967295); } return 1+a[0]%n; }
 function lrnCalm(){ var M=window.__MI; return !M||(M.rm&&M.rm())||M.mode==="off"; }
 function lrnRoll(list){ var flat=function(){ return list.map(lrnD); };
