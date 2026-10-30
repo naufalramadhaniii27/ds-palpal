@@ -348,3 +348,30 @@ Perilaku idempoten pada classList dan setProperty (-11% style, dalam derau), men
 | G3 | Parallax scroll-timeline pada semua .ptitle (animation-timeline --mipg) hanya pada halaman aktif | Pekerjaan per frame geser |
 | G4 | Pecah tugas JS 439 ms dengan scheduler.yield, dan jalankan efek non-input sesudah frame input | Hanya JS, tampilan sama |
 Perubahan ini milik UI/UX (CSS dan src/app/21, 40) dan fx. Belum ada yang dipasang di src/.
+
+## 3j. Lanjutan (10.24 sampai 11.00 WIB): biaya style recalc dan efek damage
+Ukuran: kerja thread utama per frame (BeginMainFrame), CPU 4x, efek penuh, dengan dua perbaikan dari 3i terpasang di salinan.
+| Skenario | Frame lewat 16,7 ms | Rata-rata | UpdateLayoutTree |
+|---|---|---|---|
+| Pindah tab | 14% | 10 ms | 1.490 ms |
+| Damage dan heal, efek penuh | 25 sampai 28% | 14 sampai 15 ms | 1.311 ms |
+| Damage dan heal, mi-fx off | 10% | 4,6 ms | 336 ms |
+| Idle 5,4 detik | 8% (13 frame saja) | 9,4 ms | 10,6 ms |
+Idle hampir tanpa frame, jadi app tidak boros saat diam.
+
+### Yang diukur
+1. Mengubah satu custom property pada html memerlukan 145 ms (CPU 4x) untuk menghitung ulang style seluruh dokumen. Pada #pager 94 ms, pada satu halaman 9 ms, pada satu tombol 0,5 ms. Mengubah class pada html hanya 0,5 ms. Tulis ulang nilai yang sama: 0 ms. Selama pindah tab dan damage tidak ditemukan penulisan custom property ke html, body, atau pager (cp.py). Aturan untuk pembangunan: custom property yang berubah sering harus ditulis ke elemen paling kecil.
+2. Efek damage membuat 1.311 ms style recalc, empat kali lipat dari tanpa efek. Partikel (mi-dot, mi-spark) bergaya inline dan animasi. Memindahkan elemen efek ke wadah contain:layout style paint tidak membantu (rata-rata 14,9 ms, sama).
+3. Pindah tab di HP: animasi geser halaman (pageSlide, v31psr) menambah sekitar 5 poin persentase frame lambat (14% ke 9% tanpa animasi). Tampilan geser ini tidak boleh dihilangkan. Arah: pindahkan animasi ke lapisan tipis (snapshot) bukan layer halaman setinggi 4.934 px.
+4. Content-visibility hidden pada halaman jauh lebih buruk dari visibility:hidden (frame lambat 25 sampai 31% lawan 15%).
+
+### Status
+Target 60 fps pada CPU 4x dengan efek penuh belum tercapai. Pindah tab dari 37% ke 14% frame lambat tanpa mengurangi tampilan. Damage dan heal masih 25%. Belum ditemukan sebab utama style recalc pada damage.
+
+### Langkah berikutnya
+| No | Langkah |
+|---|---|
+| H1 | Jejak damage dengan Chrome selector stats (flag Blink) untuk menemukan selektor mahal. Mulai dari `.tile.ac>svg path:first-of-type` dan `path+path`, yang memicu invalidasi saudara |
+| H2 | Partikel damage memakai satu kanvas atau elemen terpool dengan transform saja, tampilan sama |
+| H3 | Animasi geser halaman pada lapisan tipis |
+| H4 | Uji di HP asli dan layar 90 atau 120 Hz. Tanpa itu angka 4x tetap tebakan |
