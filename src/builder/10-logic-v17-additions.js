@@ -9,6 +9,7 @@ function luRows(C,a,pb,feats){var TLv=TL(),iv=invList();
  (typeof LU_X!=="undefined"?LU_X:[]).forEach(function(e){var lv=0;
   if(e.src==="feat"){if(!feats.some(function(f){return f.n===e.owner}))return;lv=TLv}
   else if(e.src==="species"){var sp=spX();if(!sp||B.species!==e.owner)return;if(/Speak with Animals/.test(e.n)&&(B.ch.lin||"").indexOf("Forest")!==0)return;if(e.opt&&(B.ch.spopt||[]).indexOf(e.opt)<0)return;lv=TLv}/* v74: e.opt, only when that species option is chosen */
+  else if(e.src==="bg"){if(B.bg!==e.owner)return;lv=TLv}/* tp: a background that tracks a use */
   else if(e.src==="class"){lv=clsLv(e.owner);if(e.feature==="Eldritch Invocations"){var inv=e.n.split(":")[0];if(iv.indexOf(inv)<0)return}}
   else if(e.src==="sub"){var sc=subClsOf(e.owner);lv=sc?subAt(sc,e.owner):0}
   else if(e.src==="hbcls"){if(!(B.src||{})[e.pack])return;lv=clsLv(e.owner)}/* v20 RD24: a pack's class feature */

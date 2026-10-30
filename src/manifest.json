@@ -557,7 +557,8 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
    "close": "</script>",
    "files": [
-    "data/tp01-tdcsr.js"
+    "data/tp01-tdcsr.js",
+    "data/tp02-tdcg.js"
    ]
   },
   {

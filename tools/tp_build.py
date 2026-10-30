@@ -15,6 +15,8 @@ from hb import load, flat, strip
 BOOKS = [
  {"id": "tdcsr", "file": "Darrington Press; Tal'Dorei Campaign Setting Reborn.json", "tag": "TDCSR", "name": "Tal'Dorei Campaign Setting Reborn",
   "pub": "Darrington Press", "ed": "2014", "sub": "tdcsr_sub", "bg": "tdcsr_bg", "feat": "tdcsr_feat", "item": "tdcsr_item", "spell": "tdcsr_spell"},
+ {"id": "tdcg", "file": "Matthew Mercer; TalDorei Campaign Guide.json", "tag": "TDCG", "name": "TalDorei Campaign Guide",
+  "pub": "Matthew Mercer", "ed": "2014", "sub": None, "bg": "tdcg_bg", "feat": "tdcg_feat", "species": "tdcg_species", "item": "tdcg_item"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -99,7 +101,7 @@ def bg_records(bk, data, M):
         if not rec["leg"]: del rec["leg"]
         out[n] = rec
     for n in M.BG:
-        if n not in names: GAP.append((bk["tag"], "overlay", "background " + n, "overlay text without a source background"))
+        if n not in names and n not in getattr(M, "ALSO", ()): GAP.append((bk["tag"], "overlay", "background " + n, "overlay text without a source background"))
     for b in data.get("background", []):
         if "_copy" in b: GAP.append((bk["tag"], "background variant", b["name"], "carried as a story variant on " + b["_copy"]["name"]))
     return out
@@ -113,7 +115,7 @@ def feat_records(bk, data, M):
     """name -> (record, lu list, acts)."""
     out = {}; lus = []; acts = {}
     names = [f["name"] for f in data.get("feat", [])]
-    for n in names:
+    for n in names + [x for x in getattr(M, "ALSO", []) if x not in names]:
         r = M.FEATS.get(n)
         if not r: GAP.append((bk["tag"], "feat", n, "no overlay text, feat not built")); continue
         rec = {"cat": "G", "hb": bk["tag"], "d": r["d"], "full": r["full"]}
@@ -124,7 +126,7 @@ def feat_records(bk, data, M):
             l = r["lu"]; lus.append({"src": "feat", "owner": n, "feature": n, "n": l["n"], "lvl": 1, "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")})
         if r.get("act"): acts["feat|" + n] = [[r["act"], n, n]]
     for n in M.FEATS:
-        if n not in names: GAP.append((bk["tag"], "overlay", "feat " + n, "overlay text without a source feat"))
+        if n not in names and n not in getattr(M, "ALSO", ()): GAP.append((bk["tag"], "overlay", "feat " + n, "overlay text without a source feat"))
     return out, lus, acts
 
 REGFT = '''Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
@@ -142,7 +144,9 @@ def item_records(bk, data, M):
             if k in o: op[k] = o[k]
         if n in M.WPN: op["wp"] = M.WPN[n]; op.setdefault("base", [n]); wpn.append(n)
         rows.append([n, typ, rar, att, text, op])
-    have = set(r[0] for r in rows) | set(g[0] for g in M.GEAR)
+    have = set(r[0] for r in rows) | set(g[0] for g in M.GEAR) | set(getattr(M, "SUPERSEDED", ()))
+    for n in getattr(M, "SUPERSEDED", ()):
+        if n in src_names: GAP.append((bk["tag"], "item", n, "older version of the Reborn entry of the same name. Use the TDCSR book"))
     for n in sorted(src_names - have):
         GAP.append((bk["tag"], "item", n, "no overlay text, item not built"))
     for k, lab in (("monster", "monsters (stat blocks)"), ("deity", "deities"), ("variantrule", "variant rules"), ("reward", "rewards (boons and blessings)")):
@@ -170,21 +174,39 @@ def spell_records(bk, data, M):
 REGSP = '''SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k]});
 '''
 
+def species_records(bk, data, M):
+    names = set(x["name"] for x in data.get("race", []))
+    for n in M.SPECIES:
+        if n not in names: GAP.append((bk["tag"], "overlay", "species " + n, "overlay text without a source species"))
+    for n in sorted(names - set(M.SPECIES)): GAP.append((bk["tag"], "species", n, "no overlay text, species not built"))
+    out = {}
+    for n, r in M.SPECIES.items():
+        rec = dict(r); rec["hb"] = bk["tag"]; out[n] = rec
+    return out, M.DEF
+
+REGSPC = '''window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);
+SRC.species=Object.keys(SPC);
+'''
+
 def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
-        data = load(bk["file"]); M = ovl(bk["sub"])
-        recs = sub_records(bk, data, M)
+        data = load(bk["file"]); M = ovl(bk["sub"]) if bk.get("sub") else None
+        recs = sub_records(bk, data, M) if M else []
+        if not M:
+            for x in data.get("subclass", []): GAP.append((bk["tag"], "subclass", x["name"], "older version of the Reborn subclass of the same name. Use the TDCSR book"))
         bgs = bg_records(bk, data, ovl(bk["bg"])) if bk.get("bg") else {}
         ft, ftlu, fta = feat_records(bk, data, ovl(bk["feat"])) if bk.get("feat") else ({}, [], {})
+        ftlu = ftlu + (list(getattr(ovl(bk["bg"]), "LU", [])) if bk.get("bg") else [])
+        spc, dfs = species_records(bk, data, ovl(bk["species"])) if bk.get("species") else ({}, {})
         tl = getattr(ovl(bk["bg"]), "TL", {}) if bk.get("bg") else {}
         spr, spf = spell_records(bk, data, ovl(bk["spell"])) if bk.get("spell") else ([], {})
         it, isp, wpn, gr = item_records(bk, data, ovl(bk["item"])) if bk.get("item") else ([], {}, [], [])
         src = {"id": bk["id"], "tag": bk["tag"], "name": bk["name"] + (" (2014 rules)" if bk["ed"] == "2014" else ""),
-               "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr)) if (it or gr) else "", "%d spells" % len(spr) if spr else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
+               "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr)) if (it or gr) else "", "%d spells" % len(spr) if spr else "", "%d species" % len(spc) if spc else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"]}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr) else "") + (REGSP if spr else "") + REG + "})();\n"
+        body = HEAD % (bk["file"], bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr) else "") + (REGSP if spr else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
     for g in (("All", "engine", "extra damage riders (Pyremaul fire, Agony mark, Condemner poison)", "shown on the weapon row note as xd, not added to a damage roll"),
               ("All", "engine", "effects that need a state (Star Razor glowing, Titanstone under Enlarge, Wraps ravenous strike)", "Star Razor bonus and resistance apply always. Others are text"),

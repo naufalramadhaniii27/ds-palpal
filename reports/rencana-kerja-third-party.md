@@ -57,3 +57,10 @@ Cek integrasi per jenis entri (dites di `tests/tp_sources.py`):
 - Tes: tests/tp_items.py (21 item + spell + penalti), tp_sources 153, tp_ui 9, golden_rules, fuzz, csp_check, scenarios 24. Semua lolos.
 - Belum: monster, dewa, variant rule, reward (hanya referensi, daftar di tp-gap.md). Pengganda engine (rider damage nyata, efek bersyarat) tercatat di tp-gap.md.
 - Berikutnya: P2 TalDorei Campaign Guide (cek tumpang tindih dengan TDCSR dulu).
+
+## Status 2026-10-30 (P2 TalDorei Campaign Guide selesai)
+- Dibangun: 3 background (Lyceum Student, Myriad Operative, Recovered Cultist), 5 feat (Dual-focused, Gambler, Mending Affinity, Rapid Drinker, Fate-Touched), spesies Dragonborn (Ravenite), gear Wind glider.
+- Fate-Touched dibangun sebagai feat karena menumpuk di atas background lain. Luck point-nya terlacak (mesin baru: LU_X src "bg").
+- 4 subclass dan 25 item adalah versi lama dari entri Reborn bernama sama. Tidak dibangun dua kali (lihat tp-gap.md).
+- Tes: tp_items (feat dua buku, Ravenite, Fate-Touched), tp_sources 177, tp_ui 9, golden_rules, fuzz, csp_check, scenarios 24. Semua lolos.
+- Berikutnya: P3 Valda's Spire of Secrets (2024) untuk kelas yang sudah ada.
