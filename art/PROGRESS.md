@@ -4946,3 +4946,10 @@ art/batch/icons/features/subclass/battle-smith/steel-defender.png
 art/batch/icons/features/subclass/battle-smith/tool-proficiency.png
 art/batch/icons/features/subclass/battle-smith/tools-of-the-trade.png
 art/batch/icons/features/subclass/beast-master/bestial-fury.png
+
+## batch-162 v3
+art/batch/icons/features/subclass/clockwork-soul/clockwork-cavalcade.png
+art/batch/icons/features/subclass/clockwork-soul/clockwork-magic.png
+art/batch/icons/features/subclass/clockwork-soul/restore-balance.png
+art/batch/icons/features/subclass/clockwork-soul/trance-of-order.png
+art/batch/icons/features/subclass/college-of-creation/animating-performance.png
