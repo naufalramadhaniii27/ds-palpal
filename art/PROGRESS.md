@@ -4993,4 +4993,9 @@ art/batch/icons/features/subclass/draconic-sorcery/dragon-wings.png
 art/batch/icons/features/subclass/draconic-sorcery/elemental-affinity.png
 art/batch/icons/features/subclass/eldritch-knight/arcane-charge.png
 art/batch/icons/features/subclass/eldritch-knight/eldritch-strike.png
+art/batch/icons/features/subclass/eldritch-knight/improved-war-magic.png
+art/batch/icons/features/subclass/eldritch-knight/spellcasting.png
+art/batch/icons/features/subclass/eldritch-knight/war-bond.png
+art/batch/icons/features/subclass/eldritch-knight/war-magic.png
+art/batch/icons/features/subclass/eldritch-knight/weapon-bond.png
 
