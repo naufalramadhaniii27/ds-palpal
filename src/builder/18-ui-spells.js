@@ -3,15 +3,15 @@ var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach(function(x){SMAP[x[0]
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];var o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
 function spInfoOne(cls,sub,L){var c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
- if(!c.caster&&!third)return null;var ct=0,pr=0;
+ if(!c.caster&&!c.nslot&&!third)return null;var ct=0,pr=0;
  if(third){ct=(/^Arcane Trickster/.test(sub)?3:2)+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
- else{var cc=CANT[cls];ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0;if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls][L-1];
+ else{var cc=CANT[cls];ct=cc?cc.slice(1).reduce(function(a,l){return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
   if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;var q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */}
- return {list:third?"Wizard":cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl()),ab:third?"INT":c.cast,ct:ct,pr:pr,kn:kn}}
+ return {smax:c.smax?c.smax[L-1]:0,list:third?"Wizard":cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl()),ab:third?"INT":c.cast,ct:ct,pr:pr,kn:kn}}
 function spInfo(){var parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map(function(m){return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;var ct=0,pr=0,lists=[];parts.forEach(function(p){ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach(function(l){if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach(function(q){var po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
- var SA=slotsAll(),max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);
+ var SA=slotsAll(),max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach(function(p){if(p.smax>max)max=p.smax});/* P4: casters without slots */
  var ab=parts[0].ab,a=abil(),dc=8+pbOf(TL())+mod(a.sc[ab]);
  var sl=SA.slots&&SA.pact?null:SA.pact?{pact:SA.pact.n,lvl:SA.pact.lvl}:SA.slots;
  return {list:lists[0],lists:lists,ab:ab,ct:ct,pr:pr,kn:parts.length===1?(parts[0].kn||0):0,max:max,dc:dc,atk:dc-8,sl:sl,SA:SA}}
@@ -38,6 +38,7 @@ function abInfo(ab){var sc=abil().sc,pb=pbOf(TL()),m=mod(sc[ab]);return {ab:ab,d
 function sch14Info(cls,sub,lv,mine){if(!R14()||!isThird3(sub)||lv<3)return null;var sch=cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"];
  return {sch:sch,free:[3,8,14,20].filter(function(l){return l<=lv}).length,off:mine.filter(function(x){return x[1]&&sch.indexOf(x[2])<0}).length}}
 function spInfoPart(p){var o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return null;var po=chOf(p.cls,"p1opt");if((p.cls==="Cleric"&&po==="Thaumaturge")||(p.cls==="Druid"&&po==="Magician"))o.ct++;/* v32 RL49 no. 45 */var t=CLASSES[p.cls].caster;
+ if(!t&&CLASSES[p.cls].nslot){o.max=o.smax}else
  o.max=t==="pact"?PACT[p.lv-1][1]:(t==="full"?SLOTS_FULL[p.lv-1]:t==="half"?SLOTS_FULL[Math.ceil(p.lv/2)-1]:SLOTS_FULL[Math.ceil(p.lv/3)-1]).length;
  var x=abInfo(o.ab);o.dc=x.dc;o.atk=x.atk;o.lists=[o.list].concat(o.xl||[]);o.cls=p.cls;return o}
 function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};

@@ -1,0 +1,27 @@
+"""Dancer, Valda's Spire of Secrets 2024 (Mage Hand Press). Own wording."""
+CLASS = {
+ "eq": ["Studded Leather Armor, 3 Daggers, 4 Darts, Whip, Explorer's Pack, 12 GP", "75 GP"],
+ "f": {
+  "Dervish Fighting": "Your nimble style improves light weapons. **Deadly D4s.** When you roll damage with a weapon that deals 1d4 or 1d6, you can roll 2d4 instead. **Extra Finesse Weapons.** A weapon you wield that deals 1d4 or 1d6 has the Finesse property for you. **Dervish Firearms.** In a setting with Firearms, when you roll damage with a weapon that deals 2d4, you can roll 3d4 instead.",
+  "Unarmored Defense": "While you wear no armor and wield no Shield, your base Armor Class is 10 + your Dexterity modifier + your Charisma modifier.",
+  "Weapon Mastery": "Choose two kinds of weapons you are proficient with, such as Dagger and Hand Crossbow. You can use their mastery properties. After a Long Rest you can change your choices.",
+  "Dance": "As a Bonus Action you can begin your Dance, unless you wear Heavy armor. It lasts 1 minute. It ends early if you are Incapacitated, your Speed is 0, or you choose to stop (no action). The Dances column shows how many times you can begin it. A Short Rest returns one use and a Long Rest returns all of them. **Dance Die.** Your Dance Die is a d4 and grows at the levels shown in the Dance Die column. **Graceful Dodge.** While your Dance is active, when a creature you can see hits you with an attack, you can roll your Dance Die and add it to your AC against that attack, which may make it miss.",
+  "Dance Styles": "When you begin your Dance, choose one Dance Style. Its benefits last until the Dance ends or you switch to another style as a Bonus Action. **Agile Movement.** Your movement provokes no Opportunity Attacks. **Elegant Form.** When you fail a Dexterity or Charisma check, or any saving throw, you can add your Dance Die to the roll, which may turn the failure into a success. **Retaliatory Swipe.** When a creature within 5 feet hits you with a melee attack roll, the attacker takes damage equal to two rolls of your Dance Die. The type matches a weapon you hold or your Unarmed Strike. **Spinning Shot.** You can add your Dance Die to ranged attack rolls with weapons. Your subclass adds more styles.",
+  "Nimble Start": "Attacks against you have Disadvantage during the first round of combat.",
+  "Fast Movement": "Your Speed rises by 10 feet while you do not wear Heavy armor.",
+  "Extra Attack": "You can attack twice, instead of once, when you take the Attack action on your turn.",
+  "Three-Target Extra Attack": "When you take the Attack action, you can attack three times if every attack targets a different creature.",
+  "Evasion": "When an effect lets you make a Dexterity save for half damage, you take no damage on a success and half on a failure. You cannot use this while Incapacitated.",
+  "Heroic Dance": "When you begin your Dance, you can give yourself Heroic Inspiration if you do not have it.",
+  "Four-Target Extra Attack": "When you take the Attack action, you can attack four times if every attack targets a different creature.",
+  "Graceful Retaliation": "When a creature you can see within 30 feet hits or misses you with an attack roll, you can use your Reaction to make one attack against it with a weapon that has the Light or Finesse property, or with an Unarmed Strike. Your attack resolves after the triggering attack and its effects.",
+  "Freestyle": "When you begin your Dance, you can choose two Dance Styles instead of one. You can change one style at a time as a Bonus Action.",
+  "Fierce Start": "On the first round of combat, when you deal damage to a creature with a weapon or an Unarmed Strike, you can add your Charisma modifier to the damage roll.",
+  "Five-Target Extra Attack": "When you take the Attack action, you can attack five times if every attack targets a different creature.",
+  "Invigorating Dance": "When you begin your Dance, you gain Temporary Hit Points equal to your Dancer level + your Charisma modifier (minimum 1).",
+  "Grand Finale": "When you take the Attack action while your Dance is active, you can perform a Grand Finale. Until the end of your turn, each attack you make that hits is a Critical Hit, and you can make two extra attacks as a Bonus Action. Your Dance ends at the end of that turn. You cannot use this on the first round of combat. After you use it, you cannot use it again until you finish a Long Rest, or you can restore it by expending two uses of your Dance (no action).",
+ },
+ "res": [{"n": "Dances", "tag": "Short Rest 1, Long Rest all", "reset": "long", "max": "col:Dances"}],
+ "lu": [{"feature": "Grand Finale", "n": "Grand Finale", "lvl": 20, "max": 1, "reset": "long", "tag": "Free"}],
+ "acts": {"Dance": "bonus", "Graceful Retaliation": "reaction", "Grand Finale": "free"},
+}

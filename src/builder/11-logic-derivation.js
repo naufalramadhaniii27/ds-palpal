@@ -26,7 +26,7 @@ function classFeatures(){return featsOf(B.cls,B.level)}
 function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(MCL().map(function(m){return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
 function isThird3(x){return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
-function casterParts(){return clsParts().map(function(q){var c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:"Wizard",ab:c.caster?c.cast:"INT",xl:(R14()&&q.cls==="Bard"?xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl())/* v32: Magical Secrets */}}).filter(Boolean)}
+function casterParts(){return clsParts().map(function(q){var c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:"Wizard",ab:c.caster?c.cast:"INT",xl:(R14()&&q.cls==="Bard"?xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl())/* v32: Magical Secrets */}}).filter(Boolean)}
 /* M9: chosen spells per caster class. B.sp = first caster class (old builds), B.spm[cls] = other classes. A B.sp spell that is not on the first
    class list but is on another caster class list belongs to that class (read only, B is not changed) */
 var SPX=null;function spRec(n){if(!SPX){SPX={};SPELLS.forEach(function(x){SPX[x[0]]=x})}return SPX[n]}

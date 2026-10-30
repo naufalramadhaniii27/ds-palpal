@@ -48,6 +48,8 @@ def sub_records(bk, data, M):
             home = max(twins, key=lambda t: (cnt.get((t["className"], t["shortName"]), 0), t["className"] == "Captain"))
             if s is not home: continue          # cross-compatible subclass listed under two classes: built once under its home class
         alt = [t["className"] for t in twins if t is not s]
+        if s["className"] == "Gunslinger" and not O:
+            GAP.append((bk["tag"], "subclass", name + " (Gunslinger)", "the class Gunslinger is in the Middle Finger of Vecna book, built in stage P5 with its subclasses")); continue
         if not O:
             GAP.append((bk["tag"], "subclass", name, "no overlay text, subclass not built")); continue
         fl = [f for f in feats if f.get("subclassShortName") == s["shortName"] and f["className"] == s["className"]]

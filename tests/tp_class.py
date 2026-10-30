@@ -26,7 +26,11 @@ JS = """()=>{var out={};Object.keys(window.WXC||{}).forEach(function(cn){var e=W
   o.empty=(e.rec.f||[]).filter(function(x){return !x[2]}).map(function(x){return x[0]+' '+x[1]});
   o.lv={};[1,5,9,20].forEach(function(L){b=T();b.cls=cn;b.sub='';b.level=L;b.src[e.book]=true;try{window.__bldTestSet(b);var s=window.__bldSheetFor(T());o.lv[L]=(s&&s.cls===cn&&s.level===L)?'ok':'bad sheet';
      var cl=window.__bldChoiceList(T());o['picks'+L]=cl.filter(function(c){return c.feature&&(e.rec.pick||[]).some(function(p){return p.key===c.key})}).length}catch(x){o.lv[L]='ERR '+x.message}});
-  b=T();b.cls=cn;b.level=3;b.src[e.book]=false;window.__bldTestSet(b);o.usedKeepsOn=!!CLASSES[cn]&&!!T().src[e.book];
+  var xs=(window.WXS||[]).filter(function(x){return x.cls===cn||(x.alt||[]).indexOf(cn)>=0}).map(function(x){return x.name});
+  b=T();b.cls=cn;b.sub='';b.level=20;b.src[e.book]=true;window.__bldTestSet(b);var have=Object.keys((CLASSES[cn]||{}).subs||{});
+  o.subsMissing=xs.filter(function(n){return have.indexOf(n)<0});o.nsubs=xs.length;o.subErr=[];
+  xs.forEach(function(n){try{var q=T();q.cls=cn;q.sub=n;q.level=20;q.src[e.book]=true;window.__bldTestSet(q);var s=window.__bldSheetFor(T());if(!s||s.sub!==n)o.subErr.push(n+' bad')}catch(x){o.subErr.push(n+' '+x.message)}});
+  b=T();b.cls=cn;b.sub='';b.level=3;b.src[e.book]=false;window.__bldTestSet(b);o.usedKeepsOn=!!CLASSES[cn]&&!!T().src[e.book];
   o.nopick=(e.rec.pick||[]).filter(function(p){return !p.list||!p.list.length}).length;
   window.__bldTestSet(null);out[cn]=o});return out}"""
 async def main():
@@ -48,6 +52,8 @@ async def main():
                 check("%s %s: listed while the book is on" % (tag, cn), o["onListed"])
                 check("%s %s: sheet builds at levels 1, 5, 9, 20" % (tag, cn), all(v == "ok" for v in o["lv"].values()), str(o["lv"]))
                 check("%s %s: every class feature has text" % (tag, cn), not o["empty"], str(o["empty"])[:200])
+                check("%s %s: %d subclasses offered" % (tag, cn, o["nsubs"]), not o["subsMissing"], str(o["subsMissing"])[:200])
+                check("%s %s: sheet builds with each subclass at level 20" % (tag, cn), not o["subErr"], str(o["subErr"])[:300])
                 check("%s %s: a build that uses the class keeps it" % (tag, cn), o["usedKeepsOn"])
                 check("%s %s: optional feature picks have options" % (tag, cn), o["nopick"] == 0)
     srv.shutdown()

@@ -48,9 +48,9 @@ def class_record(c, data, O, gap, tag):
         ch = s.get("choose")
         if ch: sk = {"n": ch["count"], "from": [_cap(x) for x in ch["from"]]}
         elif s.get("any"): sk = {"n": s["any"], "from": "all"}
-    prim = ""
-    for p in c.get("primaryAbility", [])[:1]:
-        prim = "/".join(AB[k] for k in p if k in AB)
+    FULL = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
+    alts = [[k for k in p if k in AB] for p in c.get("primaryAbility", [])]
+    prim = " or ".join(" and ".join(FULL[k] for k in a) for a in alts)
     rec = {"name": n, "hd": c["hd"]["faces"], "prim": prim, "saves": [AB[k] for k in c["proficiency"]], "sk": sk,
            "armor": _list(sp.get("armor")), "weapons": _list(sp.get("weapons")), "tools": _list([t for t in (sp.get("toolProficiencies") and []) or []]),
            "lbl": tag}
@@ -92,7 +92,7 @@ def class_record(c, data, O, gap, tag):
         if g.get("rowsSpellProgression"): continue
         labs = [hb.strip(x) if isinstance(x, str) else (x.get("name") or "") for x in g["colLabels"]]
         for i, lab in enumerate(labs):
-            if lab in ("Cantrips", "Prepared Spells") and cp: continue
+            if lab in ("Cantrips", "Prepared Spells") and (cp or c.get("cantripProgression") or c.get("preparedSpellsProgression")): continue
             if lab in ("Weapon Mastery",):
                 try: rec["wm"] = [int(r[i]) for r in g["rows"]]
                 except Exception: pass
@@ -106,6 +106,10 @@ def class_record(c, data, O, gap, tag):
         rec["cant"] = [cl[0]] + ups
         if any(cl[i] - cl[i - 1] > 1 for i in range(1, 20)): gap("engine", n + " cantrips known", "uneven progression, stored as steps of one")
     if c.get("preparedSpellsProgression"): rec["prep"] = c["preparedSpellsProgression"]
+    if not rec.get("caster") and c.get("spellcastingAbility") and (c.get("cantripProgression") or c.get("preparedSpellsProgression")):
+        rec["nslot"] = 1                       # casts without spell slots: the picker shows spells up to smax
+        col = track.get("Max Spell Levels")
+        rec["smax"] = [int(float(x)) if re.match(r"^\d+(\.\d+)?$", str(x)) else 0 for x in col] if col else [0] * 20
     # optional feature picks (Formulas, Discoveries, Tricks, ...): the list comes from the source, the text from O["opt"][type][name]
     pk = list(O.get("pick", []))
     for gi, g in enumerate(O.get("opts", [])):
@@ -148,7 +152,15 @@ def class_record(c, data, O, gap, tag):
     if mc.get("weapons"): g["weapons"] = _list(mc["weapons"])
     if mc.get("tools"): g["tools"] = ", ".join(hb.strip(t) for t in mc["tools"])
     if g: rec["mcg"] = g
-    rec["mcreq"] = [[x for x in p if x in AB.values()] for p in [[AB[k] for k in pa] for pa in c.get("primaryAbility", [])]] or [[prim]]
+    if len(alts) == 1: req = [[AB[k]] for k in alts[0]]
+    else:
+        common = [k for k in alts[0] if all(k in a for a in alts)]
+        rest = []
+        for a in alts:
+            for k in a:
+                if k not in common and AB[k] not in rest: rest.append(AB[k])
+        req = [[AB[k]] for k in common] + ([rest] if rest else [])
+    rec["mcreq"] = req
     ex = {"cf": full, "lu": [dict({"n": e["feature"]}, **dict(e, src="class", owner=n)) for e in O.get("lu", [])], "acts": {},
           "auto": O.get("auto"), "quick": O.get("quick")}
     for ft, kind in O.get("acts", {}).items():
