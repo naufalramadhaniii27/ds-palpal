@@ -4780,3 +4780,8 @@ art/batch/icons/items/tools/jewelers-tools.png
 art/batch/icons/items/tools/leatherworkers-tools.png
 art/batch/icons/items/tools/masons-tools.png
 art/batch/icons/items/tools/navigators-tools.png
+art/batch/icons/items/tools/painters-supplies.png
+art/batch/icons/items/tools/poisoners-kit.png
+art/batch/icons/items/tools/potters-tools.png
+art/batch/icons/items/tools/smiths-tools.png
+art/batch/icons/items/tools/tinkers-tools.png
