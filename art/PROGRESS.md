@@ -5017,3 +5017,10 @@ art/batch/emblems/species/warforged.png
 art/batch/emblems/species/yuan-ti.png
 art/batch/emblems/species/zombie.png
 
+## batch-189 v3
+art/batch/portraits/firbolg-a.png
+art/batch/portraits/firbolg-b.png
+art/batch/portraits/flamekin-a.png
+art/batch/portraits/flamekin-b.png
+art/batch/portraits/genasi-a.png
+
