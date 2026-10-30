@@ -4921,6 +4921,11 @@ art/batch/icons/items/magic/rare/luminous-war-pick.png
 art/batch/icons/items/magic/uncommon/mind-crystal.png
 art/batch/icons/items/magic/very-rare/mindblasting-cap.png
 art/batch/icons/items/magic/very-rare/mindguard-crown.png
+art/batch/icons/items/magic/very-rare/mudslick-tower.png
+art/batch/icons/items/magic/rare/netherese-ring-of-protection.png
+art/batch/icons/items/magic/uncommon/potion-of-psionic-fortitude.png
+art/batch/icons/items/magic/uncommon/ring-of-the-orator.png
+art/batch/icons/items/magic/rare/spider-staff.png
 
 ## batch-157 v3
 art/batch/icons/features/subclass/assassin/bonus-proficiencies.png
