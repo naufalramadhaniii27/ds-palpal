@@ -4976,4 +4976,9 @@ art/batch/icons/features/subclass/circle-of-the-moon/circle-of-the-moon-spells.p
 art/batch/icons/features/subclass/circle-of-the-moon/combat-wild-shape.png
 art/batch/icons/features/subclass/circle-of-the-moon/elemental-wild-shape.png
 art/batch/icons/features/subclass/circle-of-the-moon/improved-circle-forms.png
+art/batch/icons/features/subclass/circle-of-the-moon/lunar-form.png
+art/batch/icons/features/subclass/circle-of-the-moon/moonlight-step.png
+art/batch/icons/features/subclass/circle-of-the-moon/primal-strike.png
+art/batch/icons/features/subclass/circle-of-the-moon/thousand-forms.png
+art/batch/icons/features/subclass/circle-of-the-sea/aquatic-affinity.png
 
