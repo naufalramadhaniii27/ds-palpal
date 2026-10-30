@@ -40,3 +40,15 @@ Tambahan 2026-10-30 (bukti untuk permintaan di atas): prototipe pembersih berbas
 | 21 teks sah (termasuk "once = 1", tombol dengan teks itu) | 5 diubah | 0 diubah |
 | 25 payload XSS (script, onerror, onload, javascript:, entitas tersamar, form, object, embed, meta, base, svg, template, math) | 1 jalan (link `jav&#x09;ascript:` bila diklik) | 0 jalan |
 Catatan: pada app, CSP tetap memblokir javascript:, jadi satu payload itu bukan celah nyata saat ini. Kebijakan Trusted Types `default` tidak boleh memanggil `innerHTML` biasa untuk mengurai (rekursi). Perlu satu kebijakan bernama kedua (misal `cs-parse`, hanya mengembalikan string) yang harus ditambahkan ke daftar `trusted-types` di CSP buatan build.py. Tidak diubah di sini.
+
+## Logic/Boot: salinan localStorage yang rusak menimpa salinan IndexedDB yang sehat (dari riset 2026-10-30)
+Berkas: src/boot/store-gate.js, bagian "Slow start" dan rekonsiliasi per kunci. Komentar kode: nilai localStorage yang berbeda dari IndexedDB dianggap ditulis di luar versi app ini dan menang.
+Bukti (Chromium, build main eab1472, tools/research/idbcheck.py):
+| Langkah | Hasil |
+|---|---|
+| 1 Buka app dengan karakter Yudhi | IndexedDB menyimpan 11.747 karakter, JSON sah, nama "Yudhi Kelapa" |
+| 2 Potong nilai localStorage `yudhi-kelapa-build-v3` jadi separuh, muat ulang | Layar menampilkan "New Character". Tidak ada layar pemulihan. IndexedDB sekarang menyimpan 5.873 karakter, bukan JSON sah |
+| 3 Lakukan satu edit | IndexedDB tetap rusak |
+Artinya satu salinan cermin yang rusak menggantikan salinan sehat di IndexedDB pada pemuatan berikutnya. Dalam uji ini saya menulis kerusakannya sendiri lewat localStorage. Seberapa sering rusak seperti ini terjadi di perangkat nyata tidak saya ukur.
+Enam jenis kerusakan dicoba: potong separuh, string kosong, JSON bentuk salah (array), `null`, satu byte diubah, level berisi teks. Lima menghasilkan karakter kosong. Level berisi teks menampilkan "Fighter 1" (level 4 berubah jadi 1 tanpa pesan).
+Usul (bagian Logic): sebelum nilai localStorage boleh menang, cek bisa di-parse dan bentuknya benar untuk kunci yang dikenal (misal `v===3` dan `abilities` untuk sheet). Bila tidak sah dan IndexedDB sah, pakai IndexedDB, simpan nilai rusak di meta untuk diagnosis, dan beri tahu pengguna. Ini bagian dari N25. Pertanyaan: mengapa layar pemulihan (BAD) tidak muncul pada jalur ini? Tidak diubah di sini.
