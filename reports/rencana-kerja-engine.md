@@ -375,3 +375,31 @@ Target 60 fps pada CPU 4x dengan efek penuh belum tercapai. Pindah tab dari 37% 
 | H2 | Partikel damage memakai satu kanvas atau elemen terpool dengan transform saja, tampilan sama |
 | H3 | Animasi geser halaman pada lapisan tipis |
 | H4 | Uji di HP asli dan layar 90 atau 120 Hz. Tanpa itu angka 4x tetap tebakan |
+
+## 3k. Riset teknologi terbaru dan percobaan (2026-10-30, 10.53 sampai 11.20 WIB)
+Pertanyaan user: apakah sudah mencari teknologi terbaru. Sebelum jam ini saya melepas-pasang fitur dan menjejak. Pencarian literatur baru dilakukan sekarang.
+
+### Sumber
+| Sumber | Isi yang dipakai | Batas |
+|---|---|---|
+| arXiv 2608.23609, "Decomposing Browser Pipeline Architectures for DOM-Sourced Particle Effects" | Partikel di Worker + OffscreenCanvas: 143 fps dan p95 7 ms, lawan 52 fps dan 21 ms di thread utama (desktop GPU). WebGL2 di worker unggul saat stres. WASM tidak menaikkan fps (kernel 1,5 sampai 1,6 kali, fps sama atau lebih rendah) | Tidak diuji di HP atau CPU diperlambat. Penulis menyatakan sendiri |
+| Panduan rendering 2026 (abdallahzakzouk.com) | Hanya transform dan opacity di compositor. Di bawah 50 layer di HP. Scroll-driven animation (Chrome 115+, Safari 26+) menggantikan handler scroll. Scope custom property ke subtree. Jangan animasikan box-shadow atau blur | Blog, bukan standar. Angka di dalamnya tidak saya verifikasi |
+| Chrome for Developers, panduan performa | scheduler.yield dengan fallback, potong tugas 50 sampai 250 ms, content-visibility:auto dengan contain-intrinsic-size, contain: layout style paint | Tidak mencantumkan nomor versi |
+
+### Percobaan baru
+| Percobaan | Hasil (damage, efek penuh, CPU 4x) |
+|---|---|
+| Partikel burst, smoke, ring digambar di satu kanvas (WAAPI dicegat, tampilan setara) | Frame lewat 16,7 ms: 31 sampai 32% (asal 33%). Commit naik karena kanvas penuh layar. Tidak membantu |
+| Kanvas di Worker | Tidak dicoba: partikel bukan penyebab utama, jadi keuntungan worker dari arXiv tidak berlaku di sini |
+| Hapus aturan CSS tak terpakai | Tidak bisa diukur: CSS.RuleUsage menandai semua 2.690 aturan terpakai. Jumlah aturan wajar, ukuran 1,17 MB sebagian besar data SVG di dalam url() |
+Partikel di app sudah memakai WAAPI transform dan opacity dengan kolam elemen (POOL sampai 60). Desain itu sudah mengikuti saran riset.
+
+### Kesimpulan sementara
+Teknologi terbaru yang relevan (scroll-driven animation, OffscreenCanvas, scheduler.yield, containment) sudah dicoba atau diperiksa. Dua yang menolong: scroll-driven animation (3i, temuan 1) dan penyembunyian halaman jauh (3i, temuan 2). Penyebab utama sisa damage belum diketahui. Pola yang terlihat: 26 style recalc lebih dari 8 ms (rata-rata 19 ms di 4x) tepat saat klik, bukan partikel.
+
+### Berikutnya
+| No | Langkah |
+|---|---|
+| J1 | Bagi style recalc saat klik damage per perubahan kelas: klon halaman ke harness dan toggle satu kelas per kali (m-hit di .vitals dan #hpBox, .on di toast, .act) untuk mengukur recalc masing-masing |
+| J2 | scheduler.yield: tunda JS efek non-input (fx 08, 14, 18) sesudah frame input |
+| J3 | Selector stats lewat chrome://tracing manual di perangkat user (flag Blink tidak aktif di build headless) |
