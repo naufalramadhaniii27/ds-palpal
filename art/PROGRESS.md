@@ -5004,3 +5004,10 @@ art/batch/icons/features/subclass/evoker/overchannel.png
 art/batch/icons/features/subclass/evoker/potent-cantrip.png
 art/batch/icons/features/subclass/evoker/sculpt-spells.png
 
+## batch-185 v3
+art/batch/emblems/species/tabaxi.png
+art/batch/emblems/species/thri-kreen.png
+art/batch/emblems/species/tortle.png
+art/batch/emblems/species/triton.png
+art/batch/emblems/species/troglodyte.png
+
