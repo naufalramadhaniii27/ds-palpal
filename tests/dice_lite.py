@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """T11 N27 dice without a physics engine, 390x844 and 1250x850, under the real CSP (no 'wasm-unsafe-eval').
-1. 1,000 throws per kind (d4, d6, d8, d10, d12, d20): the face on top of the final turn is the decided value, every time.
+1. 1,000 simulated throws per kind (d4, d6, d8, d10, d12, d20): the face on top is the decided value every time, and the die lies flat.
 2. A roll of d4, d6, d8, d10, d12, d20 and d100 with given values answers those values, the canvas shows dice, setup is quick.
 3. 24 d6 (ability scores) answer 24 values from 1 to 6.
 4. Nothing is fetched from vendor/dice and no CSP violation or page error appears."""
@@ -18,7 +18,10 @@ async def main():
             await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','full');}", FIX); await pg.reload()
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(500)
             await pg.evaluate("()=>document.addEventListener('securitypolicyviolation',function(e){ (window.__csp=window.__csp||[]).push(e.violatedDirective+' '+e.blockedURI); })")
-            miss = await pg.evaluate("()=>{ var bad=[]; [4,6,8,10,12,20].forEach(k=>{ for(var i=0;i<1000;i++){ var v=1+Math.floor(Math.random()*k), t=window.__dice3d.topOf(k,v); if(t!==v){ bad.push(k+':'+v+'->'+t); break; } } }); return bad; }")
+            miss = await pg.evaluate("()=>{ var bad=[], flat=0, steps=0, n=0; [4,6,8,10,12,20].forEach(k=>{ for(var i=0;i<1000;i++){ var v=1+Math.floor(Math.random()*k), t=window.__dice3d.simTop(k,v); n++; steps+=t.steps; flat=Math.max(flat,t.flat); if(t.v!==v){ bad.push(k+':'+v+'->'+t.v); break; } } }); return {bad:bad, flat:flat, steps:Math.round(steps/n)}; }")
+            print(vp, "1000 throws per kind: worst tilt", miss["flat"], "deg, average", miss["steps"], "steps"); 
+            if miss["flat"] > 1: bad.append(vp + " a die does not lie flat: %s deg" % miss["flat"])
+            miss = miss["bad"]
             if miss: bad.append(vp + " top face differs " + json.dumps(miss))
             r = await pg.evaluate("async()=>{ var v=await window.__dice3d.roll([4,6,8,10,12,20,100],[3,5,7,10,11,20,37]); var c=document.querySelector('#diceTray canvas'), x=document.createElement('canvas'); x.width=c.width; x.height=c.height; var g=x.getContext('2d'); g.drawImage(c,0,0); var d=g.getImageData(0,0,x.width,x.height).data, n=0; for(var i=3;i<d.length;i+=4) if(d[i]>200) n++; return {v:v, px:n, st:window.__dice3d.stats()}; }")
             print(vp, "given", r["v"], "dice pixels", r["px"], "setup", r["st"].get("setup"), "ms")

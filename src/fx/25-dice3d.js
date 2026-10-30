@@ -101,10 +101,54 @@
   function rnd(n){ var c=window.crypto, a=new Uint32Array(1), lim=4294967296-(4294967296%n); for(var g=0;g<64;g++){ if(c&&c.getRandomValues) c.getRandomValues(a); else a[0]=Math.floor(Math.random()*4294967296); if(a[0]<lim) return 1+a[0]%n; } return 1+a[0]%n; }
   function acc(){ var v=getComputedStyle(D.documentElement).getPropertyValue("--dice").trim(); return /^#[0-9a-f]{6}$/i.test(v)?v:"#a3182b"; }
   function weak(){ return (navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2; }
-  /* the final turn: the face (or for a d4 the corner) with the value on top, its number upright for the viewer, a little yaw for life */
-  function finalQ(S,val,jit){ var q1, up=null;
-    if(S.t===4){ var vi=val-1, bot=S.F.filter(function(f){ return f.v.indexOf(vi)<0; })[0]; q1=qfromto(bot.n,[0,-1,0]); return qmul(qax([0,1,0],(Math.random()*2-1)*Math.PI),q1); }
-    var f=S.F.filter(function(x){ return x.val===val; })[0]; q1=qfromto(f.n,[0,1,0]); up=qrot(q1,f.up); var al=Math.atan2(up[0],-up[2]); return qmul(qax([0,1,0],al+jit),q1); }
+  /* ---------- the throw: a small rigid-body simulation on the CPU, nothing more for the GPU ----------
+     The idea of the grass video: keep the look, drop the expensive machine. Each die is a point mass with a spin. The table is a plane
+     tested against the die's corners only (no mesh collider), dice meet each other as spheres (one radius, no mesh against mesh), and the
+     screen edges are four walls. Impulses at the touching corner make it bounce, tumble and slide with friction, like a real die.
+     The whole throw is computed before it is shown (120 steps a second, a few ms for 24 dice), so the face that lands on top is known
+     in advance. The value was decided first (crypto or given): the die is drawn turned by one of its own symmetries, a turn that maps the
+     solid onto itself, so the shape and the motion stay exactly the same and only the numbers move: the landed face shows the value. */
+  function nq(q){ var l=Math.sqrt(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3])||1; return [q[0]/l,q[1]/l,q[2]/l,q[3]/l]; }
+  /* a turn of the solid onto itself that takes direction a (a face normal, or a d4 corner) to direction b */
+  function sym(S,a,b){ var r0=qfromto(a,b), P=S.V.map(function(v){ return qrot(r0,v); }), pr=function(p){ return sub(p,mul(b,dot(p,b))); };
+    var ref=null; for(var i=0;i<P.length;i++){ if(len(pr(P[i]))>1e-3){ ref=pr(P[i]); break; } } if(!ref) return r0;
+    for(var j=0;j<S.V.length;j++){ var w=pr(S.V[j]); if(Math.abs(len(w)-len(ref))>1e-3) continue; var be=Math.atan2(dot(cross(ref,w),b),dot(ref,w)), q=qmul(qax(b,be),r0);
+      if(S.V.every(function(v){ var x=qrot(q,v); return S.V.some(function(u){ return len(sub(x,u))<1e-3; }); })) return q; }
+    return null; }
+  function topIdx(S,q){ var best=-9, k=-1, L=S.t===4?S.V:S.F.map(function(f){ return f.n; }); L.forEach(function(v,i){ var y=qrot(q,v)[1]; if(y>best){ best=y; k=i; } }); return k; }
+  function shown(S,q){ var k=topIdx(S,q); return S.t===4?k+1:S.F[k].val; }
+  /* items: {S, s scale, v value, p, vel, w spin, delN}. box: walls {x0,x1,z0,z1}. Fills it.P (positions) and it.Q (turns), sets it.g */
+  function simulate(items,box){ var dt=1/120, G=-58, E=0.34, MU=0.42, maxN=300, n, alive;
+    items.forEach(function(it){ it.P=[]; it.Q=[]; it.rest=0; it.done=false; it.inBox=false; });
+    function hit(it,r,J,Iinv){ it.vel=addv(it.vel,J); it.w=addv(it.w,mul(cross(r,J),Iinv)); }
+    for(n=0;n<maxN;n++){ alive=false;
+      items.forEach(function(it){ if(it.done||n<it.delN){ if(!it.done) alive=true; return; } alive=true; var s=it.s, Iinv=1/(0.4*s*s), touch=false;
+        it.vel[1]+=G*dt; it.p=addv(it.p,mul(it.vel,dt)); var ang=len(it.w)*dt; if(ang>1e-9) it.q=nq(qmul(qax(it.w,ang),it.q));
+        for(var pass=0;pass<3;pass++){ var low=9, lr=null; it.S.V.forEach(function(v){ var r=mul(qrot(it.q,v),s), y=it.p[1]+r[1]; if(y<low){ low=y; lr=r; } }); if(low>=0) break;
+          touch=true; it.p[1]-=low; var vc=addv(it.vel,cross(it.w,lr)), vn=vc[1]; if(vn>=0) continue;
+          var rn=cross(lr,[0,1,0]), j=-(1+E)*vn/(1+dot(rn,rn)*Iinv); hit(it,lr,[0,j,0],Iinv);
+          vc=addv(it.vel,cross(it.w,lr)); var vt=[vc[0],0,vc[2]], lt=len(vt); if(lt>1e-6){ var t=mul(vt,1/lt), rt=cross(lr,t), jt=Math.min(MU*j,lt/(1+dot(rt,rt)*Iinv)); hit(it,lr,mul(t,-jt),Iinv); } }
+        if(touch){ it.w=mul(it.w,0.962); it.vel[0]*=0.985; it.vel[2]*=0.985; }/* rolling resistance: felt on a tray, round dice stop sooner */
+        var m=0.85*s; if(it.p[0]<box.x0+m){ it.p[0]=box.x0+m; if(it.vel[0]<0){ it.vel[0]*=-0.5; it.w=mul(it.w,0.7); } } if(it.p[0]>box.x1-m){ it.p[0]=box.x1-m; if(it.vel[0]>0){ it.vel[0]*=-0.5; it.w=mul(it.w,0.7); } }
+        if(it.p[2]<box.z0+m){ it.p[2]=box.z0+m; if(it.vel[2]<0){ it.vel[2]*=-0.5; it.w=mul(it.w,0.7); } } if(it.p[2]<box.z1-m) it.inBox=true; if(it.inBox&&it.p[2]>box.z1-m){ it.p[2]=box.z1-m; if(it.vel[2]>0){ it.vel[2]*=-0.5; it.w=mul(it.w,0.7); } }
+        if(touch&&len(it.vel)<0.45*s&&len(it.w)<1.2) it.rest++; else it.rest=0; });
+      /* dice against dice: two spheres. Push apart, swap the speed along the line between them, a little spin from the knock */
+      for(var i=0;i<items.length;i++) for(var k=i+1;k<items.length;k++){ var A=items[i], B=items[k]; if(A.done&&B.done||n<A.delN||n<B.delN) continue;
+        var d=sub(B.p,A.p), dl=len(d), RR=(A.s+B.s)*0.8; if(dl>=RR||dl<1e-6) continue; var nn=mul(d,1/dl), ps=(RR-dl)/2;
+        if(!A.done) A.p=sub(A.p,mul(nn,ps)); if(!B.done) B.p=addv(B.p,mul(nn,ps)); var rel=dot(sub(B.vel,A.vel),nn); if(rel<0){ var jj=-1.45*rel/2;
+          if(!A.done){ A.vel=sub(A.vel,mul(nn,jj)); A.w=addv(A.w,mul(cross([0,1,0],nn),-jj*0.6)); } if(!B.done){ B.vel=addv(B.vel,mul(nn,jj)); B.w=addv(B.w,mul(cross([0,1,0],nn),jj*0.6)); } } }
+      items.forEach(function(it){ if(it.done||n<it.delN) return; it.P.push(it.p.slice()); it.Q.push(it.q.slice());
+        if(it.rest>10||n===maxN-1){ /* at rest: lie flat on the face that points down (a few degrees at most), in a few steps */
+          var dn=null, lo=9; it.S.F.forEach(function(f){ var y=qrot(it.q,f.n)[1]; if(y<lo){ lo=y; dn=qrot(it.q,f.n); } });
+          var qf=nq(qmul(qfromto(dn,[0,-1,0]),it.q)); for(var z=1;z<=8;z++){ var u=z/8, q=nq([it.q[0]+(qf[0]-it.q[0])*u,it.q[1]+(qf[1]-it.q[1])*u,it.q[2]+(qf[2]-it.q[2])*u,it.q[3]+(qf[3]-it.q[3])*u]);
+            var low=9; it.S.V.forEach(function(v){ var y=qrot(q,v)[1]*it.s; if(y<low) low=y; }); var p=it.p.slice(); p[1]=-low; it.P.push(p); it.Q.push(q); }
+          it.q=qf; it.done=true; } });
+      if(!alive) break; }
+    items.forEach(function(it){ var S=it.S, k=topIdx(S,it.q), want=S.t===4?it.v-1:S.F.map(function(f){ return f.val; }).indexOf(it.v);
+      var a=S.t===4?S.V[want]:S.F[want].n, b=S.t===4?S.V[k]:S.F[k].n; it.g=sym(S,a,b)||[0,0,0,1]; }); }
+  function start(it,i,n,box,R){ var s=it.s, W=box.x1-box.x0, x=box.x0+W*(0.15+0.7*((i%6)+0.5)/Math.min(6,n))+(R()-0.5)*1.5;
+    it.p=[x,2.2+R()*1.8,box.z1+1.5*s+R()*1.5+Math.floor(i/6)*1.6]; it.vel=[(R()-0.5)*7-x*0.35,1.5+R()*3,-(15+R()*5)];
+    it.q=nq([R()-0.5,R()-0.5,R()-0.5,R()-0.5]); it.w=mul(nrm([R()-0.5,R()-0.5,R()-0.5]),14+R()*10); it.delN=Math.min(30,i*3); }
   /* ---------- one throw ---------- */
   function throwDice(list,given){ var W=innerWidth, H=innerHeight, dpr=Math.min(window.devicePixelRatio||1,weak()?1.5:2);
     if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){ cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); }
@@ -112,29 +156,21 @@
       if(f===100){ var tens=v===100?10:(Math.floor(v/10)||10), ones=v%10||10; if(v%10===0&&v!==100) tens=v/10; items.push({k:"10t",v:tens},{k:"10",v:ones}); }
       else if(f===4||f===6||f===8||f===10||f===12||f===20) items.push({k:String(f),v:v}); });
     if(!items.length) return Promise.resolve(vals);
-    /* the table in world units: about 34 px per unit on a phone, the die is 2 units across */
-    var fov=0.62, pxu=Math.max(24,Math.min(40,Math.min(W,H)/11)), n=items.length, sc=1, sp=2.6, cols, rows, Ww=W/pxu, Hw=H/pxu;
-    for(var g=0;g<12;g++){ cols=Math.max(1,Math.min(n,Math.floor(Ww*0.86/(sp*sc)))); rows=Math.ceil(n/cols); if(rows*sp*sc<=Hw*0.62) break; sc*=0.88; }
+    /* the table in world units: about 34 px per unit on a phone, a die is 2 units across. The result card (top) and the tab bar (bottom) stay clear */
+    var fov=0.62, pxu=Math.max(24,Math.min(40,Math.min(W,H)/11)), n=items.length, sc=n>12?0.74:n>6?0.86:1, Ww=W/pxu, Hw=H/pxu, tSet=performance.now(), R=Math.random;
     var dist=(Hw/2)/Math.tan(fov/2), eye=[0,dist,dist*0.30], VP=mm(persp(fov,W/H,dist*0.3,dist*3),look(eye,[0,0,0],[0,0,-1]));
-    var T0=0, dur=1250, cy=Hw*0.06, tSet=performance.now();
-    items.forEach(function(it,i){ var c=i%cols, r=Math.floor(i/cols), inRow=Math.min(cols,n-r*cols);
-      it.G=geo(it.k); it.s=sc; it.to=[((c-(inRow-1)/2)*sp+(Math.random()-0.5)*0.5)*sc, 0, ((r-(rows-1)/2)*sp+(Math.random()-0.5)*0.5)*sc+cy];
-      it.from=[it.to[0]*0.35+(Math.random()-0.5)*Ww*0.3, 0, Hw/2+2.5+Math.random()*2]; it.qf=finalQ(it.G.S,it.v,(Math.random()*2-1)*0.35);
-      it.a1=nrm([Math.random()-0.5,Math.random()-0.5,Math.random()-0.5]); it.a2=nrm([Math.random()-0.5,Math.random()-0.5,Math.random()-0.5]); it.A1=(3+Math.random()*3)*Math.PI; it.A2=(1+Math.random())*Math.PI;
-      it.h0=2.5+Math.random()*1.5; it.del=Math.min(260,i*22); });
-    var col=hex(acc()), ink=[0.98,0.94,0.86];
-    function hy(s,h0){ /* height above the resting height: a fall, then three bounces, each lower */
-      if(s<0.30){ var u=s/0.30; return h0*(1-u*u); } var B=[[0.30,0.60,1.0],[0.60,0.80,0.36],[0.80,0.90,0.10]];
-      for(var i=0;i<B.length;i++){ if(s<B[i][1]){ var v=(s-B[i][0])/(B[i][1]-B[i][0]); return 4*B[i][2]*v*(1-v); } } return 0; }
-    function frame(now){ var t0=performance.now(), done=true; gl.viewport(0,0,cv.width,cv.height); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
-      var poses=items.map(function(it){ var s=Math.max(0,Math.min(1,(now-T0-it.del)/dur)); if(s<1) done=false; var e=1-Math.pow(1-s,2.2), r=Math.pow(1-s,2.4);
-        var x=it.from[0]+(it.to[0]-it.from[0])*e, z=it.from[2]+(it.to[2]-it.from[2])*e, ang=(it.A1+it.A2)*r, R=it.G.S.rin;
-        var q=qmul(it.qf,qmul(qax(it.a1,it.A1*r),qax(it.a2,it.A2*r))), lift=(1-R)*Math.min(1,ang/0.7), y=(R+lift+hy(s,it.h0))*it.s; return {p:[x,y,z],q:q,y:y}; });
+    var box={x0:-Ww/2+0.3,x1:Ww/2-0.3,z0:-Hw/2+Math.min(240,H*0.3)/pxu,z1:Hw/2-80/pxu};
+    items.forEach(function(it,i){ it.G=geo(it.k); it.S=it.G.S; it.s=sc; start(it,i,n,box,R); });
+    simulate(items,box); stats.sim=Math.round(performance.now()-tSet);
+    var col=hex(acc()), ink=[0.98,0.94,0.86], T0=0, last=0; items.forEach(function(it){ last=Math.max(last,it.P.length+it.delN); });
+    function pose(it,f){ if(f<it.delN||!it.P.length) return null; var k=Math.min(it.P.length-1,f-it.delN), p=it.P[k]; return {p:p,q:qmul(it.Q[k],it.g),y:p[1]}; }
+    function frame(now){ var t0=performance.now(), f=Math.floor((now-T0)*0.12), done=f>=last; gl.viewport(0,0,cv.width,cv.height); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+      var poses=items.map(function(it){ return pose(it,f); });
       /* shadows first, without depth writes */
       gl.disable(gl.DEPTH_TEST); gl.enable(gl.BLEND); gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA); gl.useProgram(PS.p); gl.bindBuffer(gl.ARRAY_BUFFER,BUF); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,2,gl.FLOAT,false,8,0); gl.disableVertexAttribArray(1); gl.disableVertexAttribArray(2);
-      gl.uniformMatrix4fv(PS.u.VP,false,VP); poses.forEach(function(o,i){ var it=items[i]; gl.uniform3f(PS.u.c,o.p[0]+o.y*0.18,0,o.p[2]+o.y*0.12); gl.uniform1f(PS.u.r,1.25*it.s*(1+o.y*0.12)); gl.uniform1f(PS.u.a,0.42/(1+o.y*0.35)); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); });
+      gl.uniformMatrix4fv(PS.u.VP,false,VP); poses.forEach(function(o,i){ if(!o) return; var it=items[i]; gl.uniform3f(PS.u.c,o.p[0]+o.y*0.18,0,o.p[2]+o.y*0.12); gl.uniform1f(PS.u.r,1.25*it.s*(1+o.y*0.12)); gl.uniform1f(PS.u.a,0.42/(1+o.y*0.35)); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); });
       gl.disable(gl.BLEND); gl.enable(gl.DEPTH_TEST); gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK); gl.frontFace(gl.CCW); gl.useProgram(P.p); gl.uniformMatrix4fv(P.u.VP,false,VP); gl.uniform3fv(P.u.col,col); gl.uniform3fv(P.u.ink,ink); gl.uniform3fv(P.u.eye,eye); gl.uniform1i(P.u.tx,0);
-      poses.forEach(function(o,i){ var it=items[i]; gl.bindBuffer(gl.ARRAY_BUFFER,it.G.b); gl.enableVertexAttribArray(0); gl.enableVertexAttribArray(1); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(0,3,gl.FLOAT,false,32,0); gl.vertexAttribPointer(1,3,gl.FLOAT,false,32,12); gl.vertexAttribPointer(2,2,gl.FLOAT,false,32,24);
+      poses.forEach(function(o,i){ if(!o) return; var it=items[i]; gl.bindBuffer(gl.ARRAY_BUFFER,it.G.b); gl.enableVertexAttribArray(0); gl.enableVertexAttribArray(1); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(0,3,gl.FLOAT,false,32,0); gl.vertexAttribPointer(1,3,gl.FLOAT,false,32,12); gl.vertexAttribPointer(2,2,gl.FLOAT,false,32,24);
         gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D,it.G.tx); gl.uniformMatrix4fv(P.u.M,false,model(o.p,o.q,it.s)); gl.drawArrays(gl.TRIANGLES,0,it.G.n); });
       stats.frames++; stats.ms+=performance.now()-t0; return done; }
     stats.setup=Math.round(performance.now()-tSet); T0=performance.now();/* the clock starts after the meshes and atlases are ready */
@@ -146,6 +182,9 @@
   window.__dice3d={ roll:function(list,given){ var p=queue.then(function(){ try{ return run(list,given); }catch(e){ if(tray) tray.classList.remove("on"); return null; } }); queue=p.catch(function(){}); return p; },
     preload:function(){ return font().then(function(){ return init(); }); }, state:function(){ return {loaded:!!gl,loading:false,engine:"lite"}; }, stats:function(){ return stats; },
     /* for tests: the face each die shows, read back from its final turn (the face whose normal points up, or the corner on top of a d4) */
-    topOf:function(kind,val){ var S=solid(+kind), q=finalQ(S,val,0.2); if(S.t===4){ var best=-9, vi=-1; S.V.forEach(function(v,i){ var y=qrot(q,v)[1]; if(y>best){ best=y; vi=i; } }); return vi+1; } var b=-9, fv=0; S.F.forEach(function(f){ var y=qrot(q,f.n)[1]; if(y>b){ b=y; fv=f.val; } }); return fv; },
+    /* for tests: one die thrown in an empty tray without drawing; answers the value its top face shows and how flat it lies */
+    simTop:function(kind,val){ var S=solid(+kind), it={S:S,s:1,v:val}, box={x0:-6,x1:6,z0:-10,z1:10}; start(it,0,1,box,Math.random); simulate([it],box);
+      var q=qmul(it.q,it.g), lo=9; S.F.forEach(function(f){ var y=qrot(q,f.n)[1]; if(y<lo) lo=y; }); return {v:shown(S,q),flat:Math.round(Math.acos(Math.min(1,-lo))*1800/Math.PI)/10,steps:it.P.length}; },
+    simPath:function(kinds){ var box={x0:-7,x1:7,z0:-9,z1:12}, L=kinds.map(function(k,i){ var it={S:solid(+k),s:kinds.length>6?0.86:1,v:1}; start(it,i,kinds.length,box,Math.random); return it; }); simulate(L,box); return L.map(function(it){ return {d:it.delN,P:it.P,Q:it.Q}; }); },
     faces:function(kind){ var S=solid(+kind); return S.F.map(function(f){ return f.val; }); } };
 })();
