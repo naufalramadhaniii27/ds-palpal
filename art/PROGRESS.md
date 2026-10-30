@@ -4833,3 +4833,8 @@ art/batch/icons/rules/invocations/eldritch-invocation-whispers-of-the-grave.png
 art/batch/icons/rules/invocations/eldritch-invocation-witch-sight.png
 art/batch/icons/rules/metamagic/metamagic-careful-spell.png
 art/batch/icons/rules/metamagic/metamagic-distant-spell.png
+art/batch/icons/rules/metamagic/metamagic-empowered-spell.png
+art/batch/icons/rules/metamagic/metamagic-extended-spell.png
+art/batch/icons/rules/metamagic/metamagic-heightened-spell.png
+art/batch/icons/rules/metamagic/metamagic-quickened-spell.png
+art/batch/icons/rules/metamagic/metamagic-seeking-spell.png
