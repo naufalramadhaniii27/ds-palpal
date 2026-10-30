@@ -44,3 +44,21 @@ Sumber: `python3 tools/tp/dump2.py "Grim Hollow - Player's Guide - 2024" ...` (p
 - Item: `tghp_item.py`, senjata dari baseitem sumber (45) dengan MASTERY (9 mastery baru: Brutal, Defending, Disarming, Entangling, Returning, Scatter, Set, Strong-Draw, Swift) dan WDESC, seperti `tvss_item.py`. Armor modifikasi (AdvEq 17) sebagai item.
 - Kelas Monster Hunter: `tghc_monster_hunter.py` `CLASS = {...}`, contoh `tvsc_alchemist.py` dan spec `reports/p4-spec-agen.md`. Fitur pilihan Monster Grimoire (feature type MGS, 13 tipe makhluk) lewat `opts`. Tiga hal di luar tahap ini: Transformation (charoption, feature type */TB */TF), Gift of Dread (GoD), Gear modifications (TG:*), Hunter Traits dipakai species. Jangan tulis itu kecuali tugasmu menyebutnya.
 Jangan jalankan `tp_build.py` tanpa `--check` dan jangan jalankan `build.py`.
+
+# P5c: Transformations of Grim Hollow Player's Guide 2024
+Tiap Transformation menjadi 4 feat ("<Nama> Transformation: Stage N") yang dibuat generator `trans_records` di tools/tp_build.py. Kamu menulis teks sendiri.
+Baca: `python3 tools/tp/dump2.py "Grim Hollow - Player's Guide - 2024" charoption <Nama>` (aturan tiap stage ada di teks itu: berapa Boon dipilih, Boon yang wajib) dan `... opt <Kode>:TB` / `<Kode>:TF` (kode: AH Aberrant Horror, F Fey, Fi Fiend, H Hag, L Lich, Ly Lycanthrope, O Ooze, P Primordial, Ser Seraph, SG Shadowsteel Ghoul, Spec Specter, V Vampire). Stage tiap Boon/Flaw ada di prerequisite ("Stage N").
+Bentuk file `tools/tp/overlay/tghp_trans_<x>.py`:
+```
+TRANS = {
+ "Vampire": {
+  "intro": "2 sampai 4 kalimat tentang Transformation ini, dengan aturan umum (cara maju stage, penyembuhan, aturan makan) yang penting untuk bermain.",
+  "stages": {1: {"rule": "Aturan stage ini dalam kalimat sendiri.", "take": 1, "fixed": ["Fanged Bite"], "d": "ringkasan 1 kalimat"}, 2: {...}, 3: {...}, 4: {...}},
+  "opt": {"Fanged Bite": "Teks Boon atau Flaw", ...}   # satu teks untuk SETIAP Boon (TB) dan Flaw (TF) Transformation ini
+ }, ...
+}
+```
+- `fixed` = Boon wajib di stage itu (dimasukkan ke teks feat). `take` = jumlah Boon yang dipilih pemain dari sisa Boon stage itu. Flaw stage itu selalu didapat dan ditulis otomatis dalam teks.
+- Jika aturan sumber untuk sebuah stage berbeda (misal Flaw menggantikan Flaw stage sebelumnya), tulis di `rule`.
+- Teks: kata sendiri, bahasa Inggris, angka dan nama sama dengan sumber, tanpa em dash, titik koma, tag. Singkat per Boon (1 sampai 4 kalimat).
+- Jangan jalankan build. Validasi: `python3 tools/tp/gapcheck.py "<Nama Transformation>"` harus tanpa GAP (jangan jalankan tp_build.py tanpa --check).

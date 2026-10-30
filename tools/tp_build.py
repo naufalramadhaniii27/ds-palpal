@@ -24,7 +24,7 @@ BOOKS = [
  {"id": "tee24", "file": "Keith Baker; Exploring Eberron - 2024.json", "tag": "EE24", "name": "Exploring Eberron", "pub": "Keith Baker", "ed": "2024",
   "sub": "tee24_sub", "bg": "tee24_bg", "feat": "tee24_feat", "spell": "tee24_spell", "item": "tee24_item", "species": "tee24_species", "alias": "Eberron"},
  {"id": "tghp", "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "tag": "GHPG24", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2024",
-  "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_", "alias": "Grim Hollow"},
+  "sub": "tghp_sub", "bg": "tghp_bg", "feat": "tghp_feat", "spell": "tghp_spell", "item": "tghp_item", "species": "tghp_species", "cls": ["monster hunter"], "clspre": "tghc_", "alias": "Grim Hollow", "trans": "tghp_trans"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -151,6 +151,50 @@ def _featname(bk, n, M=None):
     """Name of a feat as the app knows it: the book's own feats may be renamed, the core feats never are."""
     own = getattr(bk.get("_featmod"), "FEATS", {})
     return alias(bk, n) if n in own else n
+
+def trans_records(bk, data, M2):
+    """Transformations of Grim Hollow: one feat per stage (pick the stage Boons, the Flaws are listed). T = {name: {intro, stages: {n: {rule, take, fixed}}, opt: {optname: text}}}, GIFTS = {name: text}."""
+    T = M2.TRANS; out = {}; acts = {}
+    by = {}                                   # transformation name -> stage -> {"B": [...], "F": [...]}
+    for o in data.get("optionalfeature", []):
+        ft = [t for t in o["featureType"] if t.endswith(":TB") or t.endswith(":TF")]
+        if not ft: continue
+        txt = json.dumps(o.get("prerequisite", ""))
+        m = re.search(r"Stage (\d+) of the \{@charoption ([^|}]+)", txt)
+        if not m: GAP.append((bk["tag"], "transformation", o["name"], "no stage in the prerequisite")); continue
+        by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") else "F"].append(o["name"])
+    for nm in sorted(by):
+        t = T.get(nm)
+        if not t: GAP.append((bk["tag"], "transformation", nm, "no overlay text, transformation not built")); continue
+        for st in sorted(by[nm]):
+            sd = by[nm][st]; rule = t["stages"].get(st) or t["stages"].get(str(st))
+            if not rule: GAP.append((bk["tag"], "transformation", "%s stage %d" % (nm, st), "no stage rule in the overlay")); continue
+            for n in sd["B"] + sd["F"]:
+                if n not in t["opt"]: GAP.append((bk["tag"], "transformation", "%s | %s" % (nm, n), "no overlay text"))
+            fixed = [n for n in rule.get("fixed", []) if n in sd["B"]]
+            rest = [n for n in sd["B"] if n not in fixed]
+            full = ""
+            if st == 1 and t.get("intro"): full += t["intro"] + "\n"
+            full += "**Stage %d.** %s" % (st, rule["rule"])
+            for n in fixed: full += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
+            for n in sd["F"]: full += "\n**%s (Flaw).** %s" % (n, t["opt"].get(n, ""))
+            rec = {"cat": "G", "hb": bk["tag"], "d": rule.get("d") or ("%s Transformation, stage %d. %s" % (nm, st, rule["rule"]))[:170], "full": full}
+            if st > 1: rec["pre"] = "Stage %d of the %s Transformation" % (st - 1, nm)
+            else: rec["pre"] = "Your GM allows the %s Transformation" % nm
+            if rest and rule.get("take", 0) > 0:
+                rec["pick"] = [{"k": "tr%s%d" % (re.sub("[^A-Za-z]", "", nm), st), "t": "multi", "n": rule["take"], "title": "%s stage %d Boons" % (nm, st),
+                                "list": [[n, t["opt"].get(n, "")] for n in rest]}]
+            elif rest: 
+                for n in rest: rec["full"] += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
+            out["%s Transformation: Stage %d" % (nm, st)] = rec
+    gods = [o["name"] for o in data.get("optionalfeature", []) if "GoD" in o["featureType"]]
+    G = getattr(M2, "GIFTS", {})
+    for n in gods:
+        if n not in G: GAP.append((bk["tag"], "optional feature", "Gift of Dread | " + n, "no overlay text"))
+    if gods:
+        out["Gift of Dread"] = {"cat": "G", "hb": bk["tag"], "d": getattr(M2, "GIFT_D", "Pick one Gift of Dread."), "full": getattr(M2, "GIFT_INTRO", "Pick one Gift of Dread."),
+                                "pick": [{"k": "god", "t": "multi", "n": 1, "title": "Gift of Dread", "list": [[n, G.get(n, "")] for n in gods]}]}
+    return out, acts
 
 def feat_records(bk, data, M):
     """name -> (record, lu list, acts)."""
@@ -332,6 +376,8 @@ def build():
         bk["_featmod"] = ovl(bk["feat"]) if bk.get("feat") else None
         bgs = bg_records(bk, data, ovl(bk["bg"])) if bk.get("bg") else {}
         ft, ftlu, fta = feat_records(bk, data, ovl(bk["feat"])) if bk.get("feat") else ({}, [], {})
+        if bk.get("trans"):
+            tf, _ta = trans_records(bk, data, ovl(bk["trans"])); ft.update(tf)
         ftlu = ftlu + (list(getattr(ovl(bk["bg"]), "LU", [])) if bk.get("bg") else [])
         spc, dfs = species_records(bk, data, ovl(bk["species"])) if bk.get("species") else ({}, {})
         tl = getattr(ovl(bk["bg"]), "TL", {}) if bk.get("bg") else {}
