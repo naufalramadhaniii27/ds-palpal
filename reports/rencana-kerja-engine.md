@@ -2,7 +2,7 @@
 
 Permintaan user 2026-10-30 07.03 WIB: jangan mulai apa pun, masukkan ke rancangan kerja. Analisa dan racik untuk mengembangkan engine keseluruhan app, mode developer, ciptakan sesuatu yang baru dan bermanfaat.
 Status: rancangan. Tidak ada kode app yang diubah. Teknologi buatan sendiri ini memakai izin user 2026-10-29 22.45 WIB (tanpa AI berbayar, paket gratis, tes tiga skenario, dicatat lebih dulu di rencana).
-Nomor N48 sampai N62 (N56 sampai N62 di bagian 3b). Nomor lain sudah dipakai: N1 sampai N18 (rencana teknologi), N19 sampai N31 (sesi lain, `rencana-teknologi-ciptaan`), N32 sampai N47 (Training Ground, riset video).
+Nomor N48 sampai N79 (N56 sampai N62 di bagian 3b, N63 sampai N79 di bagian 3c). Nomor lain sudah dipakai: N1 sampai N18 (rencana teknologi), N19 sampai N31 (sesi lain, `rencana-teknologi-ciptaan`), N32 sampai N47 (Training Ground, riset video).
 
 ## 1. Hasil analisa engine hari ini (dari membaca kode, belum ada yang dijalankan)
 | Temuan | Bukti |
@@ -71,6 +71,72 @@ Keputusan user yang menunggu (N58): memecah build untuk hosting.
 | Saran | A dulu, ukur byte unduhan per rilis, lalu putuskan B | |
 
 Urutan saran gelombang kedua: N58 dan N59 menjawab risiko rilis 0.0.3 (nilai terbesar), N56 bersama A1, N60 setelah N49, N57 dan N61 fitur untuk pemain, N62 hanya pengukuran.
+
+### 3c. Gelombang ketiga (diusulkan 2026-10-30 07.12 WIB, N63 sampai N79)
+Permintaan user: racik sebanyak-banyaknya, jangan membatasi kemampuan. Gelombang ini bertumpu pada pembacaan kode lebih dalam.
+
+Fakta tambahan (dihitung dari `src/` hari ini):
+| Temuan | Angka dan bukti |
+|---|---|
+| Tidak ada lapisan aksi. Penangan klik global (`19-ui-global-click-delegation.js`) mencampur tampilan dan logika. Tiap cabang memanggil `undoMark(label)`, mengubah `S`, memanggil `save()`, lalu `renderAll()` | 75 `undoMark`, 89 `save()`, 53 `renderAll`, 87 kunci `data-*` yang ditangani |
+| Paket efek (`src/fx`, 24 berkas) membaca keadaan dari tampilan, bukan dari data. Ia memasang `MutationObserver` lalu membaca teks elemen | 64 `MutationObserver`, 213 `querySelector(All)`, 123 `getElementById`, 7 `parseInt(...textContent)` (contoh: bonus save Con dibaca dari teks `#saves [data-bd="save-CON"]`) |
+| Antar bagian app hanya ada 1 kejadian kustom (`mi:rest`). Selebihnya lewat 119 pengait `window.__...` yang tidak terdaftar | Dihitung |
+| Jurnal (`fx/18`) disimpan dengan kunci `"mi-jr-"+C.name`. Mengganti nama karakter membuat jurnal lama tidak terbaca, dan dua karakter bernama sama memakai satu jurnal. Isi dipotong 400 entri | `18-m-pack-rolls-concentration.js`, fungsi `who()` dan `J.key` |
+| Rumus dadu ditulis ulang di beberapa tempat: `dieAvg` di builder, regex dadu di `08` (baris 96 dan 99) dan `21` (baris 58), `d6()` dengan `Math.random` di fx | Dicari |
+| Prasyarat feat dicek lewat `preFail(nama, level, kunci)` yang mengembalikan teks, bukan data yang bisa dijelaskan | `09-logic-feats-and-choices.js` baris 225 |
+| Data spell berupa baris larik posisi (`x[0]` nama, `x[1]` level, `x[3]` daftar class) | `spells-spell-list.js`, `24-ui-manage-spells.js` |
+| Percabangan edisi 2014 tersebar | 21 `x14()` di `app` dan `builder` |
+| Potret: ukuran dikecilkan lewat canvas ke JPEG 320 x 400. Metadata EXIF ikut hilang. Tidak perlu pembersih tambahan | `20-ui-portrait.js` |
+| Meminta penyimpanan permanen sudah ada (`askPersist`) | `15-logic-roster-backup-files-snapshots.js` baris 156 |
+| Konsentrasi: perintah save muncul dari fx (`conPrompt`) dan hitungan ronde ada. Jadi pelacak konsentrasi tidak dibuat ulang | `fx/18` baris 66 dan 76 |
+
+Kelompok A: lapisan inti
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N63 | Aksi bernama dan bus kejadian | Logika tersebar di penangan klik dan tidak bisa dipanggil tanpa tampilan. Paket efek menebak keadaan dari tampilan | Pendaftaran aksi `act("cond.toggle", {k})`. Pembungkus tiap aksi mengurus `undoMark`, `save`, `renderAll`, dan memancarkan kejadian bertipe (`hp`, `cond`, `slot`, `roll`, `rest`, `level`). Dipindah bertahap (strangler): satu cabang klik satu langkah. Efek berlangganan kejadian, bukan lagi membaca teks tampilan. Antarmuka `__sheet` hanya baca untuk `D`, `S`, dan kejadian. Jurnal, Game Log (D3), N2, N4, N18, Training Ground, dan Learn berlangganan bus yang sama | Aksi dipanggil tanpa DOM dan menghasilkan `S` yang sama dengan klik. Tiap perubahan memancarkan satu kejadian. Screenshot efek tidak berubah. Jumlah `MutationObserver` turun, dicatat |
+| N64 | Jurnal per ID karakter | Jurnal terputus saat nama diganti dan tercampur untuk nama sama | Kunci jurnal memakai ID karakter (`MYID`), bukan nama. Migrasi menyalin jurnal lama berkunci nama ke ID saat pertama dibuka, jurnal lama dibiarkan. Berlangganan bus N63. Kelak menjadi bagian N2 | Ganti nama: jurnal tetap. Dua karakter bernama sama: jurnal terpisah. Data Yudhi lama terbaca |
+| N65 | Kontrak pengait | 119 pengait `window.__` tidak terdaftar, mudah putus tanpa ketahuan | Berkas `hooks.json` mendaftar tiap pengait, pemakainya, dan jenisnya (tes, efek, builder). Pemeriksaan di `build.py`: pengait baru tanpa pendaftaran gagal, pengait terdaftar yang hilang gagal. Tes kontrak memanggil tiap pengait yang dipakai tes | Menambah `window.__x` tanpa daftar membuat build gagal |
+
+Kelompok B: aturan dan data
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N66 | Mesin ekspresi dadu | Rumus dadu ditulis ulang di banyak tempat dan tidak ada distribusi peluang | Satu berkas `src/engine/dice.js` bilangan bulat (N34): urai `2d6+3`, `4d6kh3`, kritis menggandakan dadu, Advantage dan Disadvantage, hitung rata-rata, ragam, dan distribusi pasti lewat konvolusi. Dipakai N10 chip peluang, N20 lensa peluang, Game Log, penskalaan spell, damage di Training Ground | Distribusi sama dengan hitungan semua kemungkinan untuk ekspresi sampai 4 dadu. Rata-rata sama dengan `dieAvg` lama |
+| N67 | Prasyarat deklaratif | Pemain hanya melihat "prasyarat belum terpenuhi" tanpa tahu apa yang kurang | Prasyarat diurai dari teks data saat build menjadi bentuk data `{abilitas, level, class, feat}`. Yang tidak bisa diurai ditandai manual. Dipakai untuk "Terkunci karena: Strength 13 (kamu 12)" dan "buka dengan: naikkan Strength +1", juga oleh N1 Reverse Builder | Hasil lolos sama dengan `preFail` untuk semua feat. Jumlah prasyarat yang bisa diurai dilaporkan |
+| N68 | Akses bertipe untuk data berbaris | Baris spell berupa larik posisi, rawan salah indeks | Berkas data memuat daftar kolom di kepala. Pengakses `spell(x).level` dibuat dari daftar itu. Build memeriksa panjang tiap baris sama dengan jumlah kolom | Baris dengan kolom kurang membuat build gagal. Hasil tampilan sama |
+| N69 | Paket konten pengguna | Pemain ingin menambah item, spell, feat buatan sendiri tanpa mengubah kode | Format paket JSON berversi dengan skema N51. Impor dari berkas atau kode. Paket digabung ke data saat berjalan, diberi tanda "Homebrew" dan sumbernya. Tahap awal: item, spell, feat. Id paket diberi awalan agar tidak bentrok dengan N42 | Paket sah masuk dan muncul di Library dan builder. Paket rusak ditolak dengan nama bidang. Hapus paket: sheet yang memakainya tetap terbaca |
+| N70 | Paket aturan berparameter | 21 percabangan `x14()` tersebar. Edisi 2014 ditunda user, tetapi akan menambah cabang | Aturan yang berbeda antar edisi (Exhaustion, dan seterusnya) dibaca dari objek `aturan` di konteks N48, bukan dari `x14()` di tengah rumus | Master emas sama persis untuk 2024. Satu aturan 2014 dites lewat konteks |
+| N71 | Sidik jari isi | Perubahan terdeteksi dengan membandingkan JSON penuh. Salinan identik bisa menggeser salinan yang berguna | Hash bilangan bulat (sama dengan N35) dari `C` dan `S` per karakter. Dipakai untuk "ada perubahan belum disimpan", melewati snapshot yang isinya sama, dan mendeteksi apakah sinkron perlu menulis. Periksa dulu apakah `snTake` sudah melewati salinan identik | Snapshot tanpa perubahan tidak menambah slot. Satu perubahan kecil mengubah hash |
+
+Kelompok C: pengiriman dan pengukuran
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N72 | Muat prediktif (ukur dulu) | Data builder dimuat saat dibutuhkan dan menunda kemunculan pertama | Ukur waktu Builder pertama dari `tests/measure.py`. Bila lambat: muat saat Home diam atau saat pemain mengarahkan atau memfokuskan tombol Build, hanya di luar mode hemat data | Waktu Builder pertama sebelum dan sesudah, tidak menambah waktu siap Home |
+
+Kelompok D: mutu dan tes
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N73 | Peta cakupan aksi | 87 kunci `data-*` ditangani, tidak diketahui mana yang belum dites | Skrip mendaftar tiap kunci dari kode, membandingkan dengan kunci yang disentuh `tests/*.py` (lewat log klik), dan melaporkan yang belum dites | Laporan berisi jumlah dan daftar. Kunci baru tanpa tes muncul di laporan |
+| N74 | Monyet berseed | Penguji manual tidak mengetuk kombinasi aneh | Dengan N63, ribuan urutan aksi acak berseed dijalankan tanpa tampilan, lalu sebagian dengan tampilan. Pemeriksa: HP antara 0 dan maksimum, angka `D` tidak NaN, tanpa galat di konsol, penyimpanan masih terbaca. Kegagalan dikecilkan oleh N60 dan masuk ke N18 | Seed sama menghasilkan urutan sama. Bug yang ditanam sengaja ditemukan |
+| N75 | Kunci data | Data aturan bisa berubah diam-diam saat penyuntingan | `data.lock` menyimpan jumlah baris dan hash per blok data. Perubahan data tanpa memperbarui kunci membuat build gagal. Pembaruan kunci wajib disertai catatan sumber buku di `reports/` | Mengubah satu baris data: build gagal menunjuk blok. Tanpa perubahan: lolos |
+| N79 | Indeks simbol | 40 lebih berkas berbagi satu ruang lingkup (IIFE). Hubungan fungsi tersirat dari urutan muat, sehingga sesi baru butuh waktu lama untuk paham | `tools/symbols.py` menghasilkan `reports/symbols.json`: nama, berkas dan baris definisi, berkas pemakai. Menandai fungsi yang tidak pernah dipanggil (bahan N31) | Daftar sama dengan hasil `grep` untuk sampel acak. Fungsi sengaja dihapus: pemakai yang tersisa terdeteksi |
+
+Kelompok E: fitur pemain yang dimungkinkan engine
+| Kode | Nama | Masalah | Cara kerja | Tes |
+|---|---|---|---|---|
+| N76 | Pelajaran berpenilai otomatis | Learn menjelaskan, tetapi tidak menilai apakah pemain benar-benar bisa | Pelajaran memuat peta kecil lewat tautan replay (seed dan keadaan awal) di Training Ground. Tujuan ditulis sebagai pernyataan atas log kejadian ("serang tanpa memicu Opportunity Attack"). Reducer memeriksa log pemain dan memberi tanda selesai | Pelajaran dengan log benar lulus, log salah gagal dan menunjuk kejadian penyebab |
+| N77 | Perbandingan berdampingan | Pemain sulit membandingkan dua build atau satu karakter sebelum dan sesudah level | Dengan `deriveFor` (N48), dua karakter atau dua titik N2 dihitung dan angka yang beda disorot (AC, HP, save, skill, serangan). Cocok untuk memilih antara dua build N22 | Selisih sama dengan hitungan tangan untuk dua karakter contoh |
+| N78 | Impor dari PDF sheet berformulir (riset, lisensi dicek) | Pemain yang pindah dari PDF kehilangan data | Baca kolom formulir PDF di klien (pustaka seperti pdf-lib, dimuat belakangan) lalu isi builder. Nama kolom beda per sumber PDF, jadi dites dengan PDF milik user. Lisensi pustaka dan PDF dicek sebelum dipakai. Tidak mengirim berkas ke server | Impor PDF contoh menghasilkan angka sama dengan isi PDF |
+
+Dicek dan sengaja tidak dibuat ulang: pembersih EXIF potret (sudah hilang lewat canvas), permintaan penyimpanan permanen (sudah ada), pelacak konsentrasi (sudah ada di fx).
+
+Urutan saran gelombang ketiga:
+| Urutan | Isi | Alasan |
+|---|---|---|
+| 1 | N63 dan N64 | Menghapus kerapuhan terbesar (efek membaca tampilan, jurnal terputus saat ganti nama). N63 membuka N74, N76, dan jalur Training Ground |
+| 2 | N66, N75, N65, N68 | Murah, pengaman, tanpa perubahan tampilan |
+| 3 | N67, N77, N71 | Nilai langsung untuk pemain |
+| 4 | N73, N74, N79 | Mutu dan kecepatan kerja |
+| 5 | N69, N70, N72, N76, N78 | Lebih besar atau bergantung pada keputusan lain |
 
 ## 4. Ketergantungan dengan rencana yang ada
 | Rencana | Hubungan |
