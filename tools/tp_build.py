@@ -225,7 +225,7 @@ SRC.feats=Object.keys(FT);
 
 def item_records(bk, data, M):
     """rows, ITEM_SPELLS, weapon names, gear. Names must exist in the source (else GAP)."""
-    src_names = set(i["name"] for i in data.get("item", [])) | set(i["name"] for i in data.get("magicvariant", []))
+    src_names = set(" ".join(i["name"].split()) for i in data.get("item", [])) | set(" ".join(i["name"].split()) for i in data.get("magicvariant", []))   # source names may hold a double space
     rows = []; wpn = []
     for (n, typ, rar, att, text, o) in M.ITEMS:
         if n not in src_names: GAP.append((bk["tag"], "overlay", "item " + n, "overlay text without a source item"))

@@ -1523,5 +1523,88 @@
    "Rapid Tinkerer"
   ],
   "tpcls": 1
+ },
+ {
+  "src": "tsgeh",
+  "cls": "Jaeger",
+  "sub": "Absolute Chapter",
+  "level": 20,
+  "feats": [
+   "Counter Strike",
+   "Unencumbered Movement",
+   "Encircling Strike",
+   "Mobile Pursuer",
+   "The Hunt"
+  ],
+  "lu": [
+   "The Hunt"
+  ],
+  "tpcls": 1
+ },
+ {
+  "src": "tsgeh",
+  "cls": "Jaeger",
+  "sub": "Heretic Chapter",
+  "level": 20,
+  "feats": [
+   "Occult Arts",
+   "Heretic Magic",
+   "Shrouded Steps",
+   "Mystical Momentum",
+   "Darkness Within"
+  ],
+  "lu": [
+   "Darkness Within"
+  ],
+  "tpcls": 1
+ },
+ {
+  "src": "tsgeh",
+  "cls": "Jaeger",
+  "sub": "Marauder Chapter",
+  "level": 20,
+  "feats": [
+   "Marauder Momentum",
+   "Path of Gore",
+   "Unbreakable",
+   "Leap Attack",
+   "Fell the Leviathan"
+  ],
+  "lu": [
+   "Titanic Strength (double dice)"
+  ],
+  "tpcls": 1
+ },
+ {
+  "src": "tsgeh",
+  "cls": "Jaeger",
+  "sub": "Salvation Chapter",
+  "level": 20,
+  "feats": [
+   "Art of Salvation",
+   "Savior's Focus",
+   "Sanctifying Light",
+   "Purifying Salvation",
+   "Light of Hope"
+  ],
+  "lu": [
+   "Light of Hope"
+  ],
+  "tpcls": 1
+ },
+ {
+  "src": "tsgeh",
+  "cls": "Jaeger",
+  "sub": "Sanguine Chapter",
+  "level": 20,
+  "feats": [
+   "Crimson Rage",
+   "Vital Consumption",
+   "Blood Hex",
+   "Empowered Blood Hex",
+   "Blood Frenzy"
+  ],
+  "lu": [],
+  "tpcls": 1
  }
 ]
