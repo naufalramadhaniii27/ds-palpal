@@ -83,11 +83,17 @@ function place(ar){ var units=[], used={}, take=function(x,y,s){ for(var i=0;i<s
   return units; }
 function enter(){ if(!TG.pc||!nFoes()) { live("Pick who goes in and at least one creature."); return; } var ar=ARENAS.filter(function(a){ return a.id===TG.arena; })[0];
   var seed=0; if(TG.forceSeed!=null){ seed=TG.forceSeed>>>0; TG.forceSeed=null; } else { try{ var a=new Uint32Array(1); crypto.getRandomValues(a); seed=a[0]; }catch(e){ seed=Date.now()>>>0; } } TG.seed=seed;
-  TG.start=TGE.create({seed:seed,w:ar.w,h:ar.h,block:sq(ar.block),rough:sq(ar.rough),units:place(ar)}); TG.st=TGE.step(TG.start,{t:"start"}); fightSave(); TG.undo=[]; TG.mode=""; TG.act=null; TG.pick=[]; TG.oa=[]; TG.view="field"; TG.cmds=[{t:"start"}];
-  paint(); live("The fight starts. "+cur().name+" goes first."); }
+  TG.start=TGE.create({seed:seed,w:ar.w,h:ar.h,block:sq(ar.block),rough:sq(ar.rough),units:place(ar)}); TG.st=TGE.step(TG.start,{t:"start"}); fightSave(); TG.undo=[]; TG.mode=""; TG.act=null; TG.pick=[]; TG.oa=[]; TG.view="field"; TG.cmds=[{t:"start"}]; TG.hpPrev={};
+  vtPaint(); live("The fight starts. "+cur().name+" goes first."); }
+/* G7 queue 2: View Transitions between the setup and the board (a cross-fade the browser draws). Only with motion on, plain paint otherwise */
+function vtPaint(){ var M=window.__MI; if(document.startViewTransition&&M&&!(M.rm&&M.rm())&&M.mode!=="off"){ try{ document.startViewTransition(paint); return; }catch(e){} } paint(); }
 function cur(){ return TG.st.units[TGE.now(TG.st)]; }
 function run(c){ var before=TG.st, s=TGE.step(TG.st,c); if(s.err){ live(errText(s.err)); flash(errText(s.err)); return false; } TG.undo.push(before); if(TG.undo.length>60) TG.undo.shift(); TG.st=s; TG.cmds.push(c); if(s.over) fightClear(); else fightSave();
-  var fresh=s.log.slice(before.log.length); fresh.forEach(function(e){ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); live(fresh.map(evText).filter(Boolean).join(" ")); showDice(fresh); return true; }
+  var fresh=s.log.slice(before.log.length); fresh.forEach(function(e){ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); live(fresh.map(evText).filter(Boolean).join(" ")); showDice(fresh); feel(fresh); return true; }
+/* G7 queue 8: a short vibration when a hero or ally takes damage, a longer one when it drops. Follows the app setting (MI.buzz: vibration
+   on, motion not reduced). Gamepad support is left out: no player asked, and the board already works with the keyboard */
+function feel(fresh){ var M=window.__MI; if(!M||!M.buzz||!TG.st) return; var k="";
+  fresh.forEach(function(e){ var u=e.u&&TG.st.units[e.u]; if(!u||u.side==="foe") return; if(e.t==="down"||e.t==="dead") k="heavy"; else if(e.t==="dmg"&&e.amt>0&&k!=="heavy") k="medium"; }); if(k) M.buzz(k); }
 /* N23 honest dice: the d20s of attacks and death saves land on the 3D table with the numbers the engine rolled (N27 dice take given
    values). Only with motion on, at most 6 dice, and not while the previous dice are still rolling (no queue of old rolls) */
 function showDice(fresh){ var M=window.__MI; if(!window.__dice3d||TG.diceBusy||!M||(M.rm&&M.rm())||M.mode==="off") return; var v=[];
@@ -121,7 +127,7 @@ function evText(e){ switch(e.t){
 function flash(t){ var b=document.getElementById("tgMsg"); if(b){ b.textContent=t; b.classList.remove("on"); void b.offsetWidth; b.classList.add("on"); } }
 function hpPct(u){ return Math.max(0,Math.min(1,u.hp/u.max)); }
 function fieldHtml(){ var st=TG.st, u=cur();
-  var order='<ol class="tg-ord" aria-label="Turn order">'+st.order.map(function(id){ var x=st.units[id]; return '<li class="'+x.side+(id===u.id?' now':'')+(x.dead?' out':'')+'"><button type="button" data-tgu="'+id+'" aria-label="'+esc(x.name)+', '+x.hp+' of '+x.max+' HP'+(id===u.id?', turn now':'')+'"><b>'+esc(ini(x.name))+'</b><i style="--p:'+hpPct(x)+'"></i></button></li>'; }).join("")+'</ol>';
+  var order='<ol class="tg-ord" aria-label="Turn order">'+st.order.map(function(id){ var x=st.units[id]; return '<li class="'+x.side+(id===u.id?' now':'')+(x.dead?' out':'')+'"><button type="button" data-tgu="'+id+'" aria-label="'+esc(x.name)+', '+x.hp+' of '+x.max+' HP'+(id===u.id?', turn now':'')+'"><b>'+esc(ini(x.name))+'</b><i style="--p:'+(TG.hpPrev&&TG.hpPrev[id]!=null?TG.hpPrev[id]:hpPct(x))+'" data-p="'+hpPct(x)+'"></i></button></li>'; }).join("")+'</ol>';
   var h=order+'<div class="tg-wrap" id="tgWrap"><canvas id="tgCv" tabindex="0" aria-label="Battle grid. Arrow keys move the cursor, Enter picks the square"></canvas></div><p class="tg-msg" id="tgMsg" role="status"></p>';
   h+=st.over?overHtml():panelHtml(u);
   h+='<details class="tg-log"'+(TG.logOpen?' open':'')+'><summary>The log</summary><ol>'+st.log.slice(-40).map(evText).filter(Boolean).reverse().map(function(t){ return '<li>'+esc(t)+'</li>'; }).join("")+'</ol></details>';
@@ -222,10 +228,22 @@ function fightShare(){ fightCode().then(function(code){ var u=location.origin+lo
 function fightFromCode(code){ var u; try{ u=unb64u(code); }catch(e){ return Promise.reject(new Error("This fight link is damaged.")); }
   return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text().then(function(t){ return JSON.parse(t); }); }
 function fightOpenLink(code){ fightFromCode(code).then(function(rec){ return creatures().then(function(){ TG.pc=rec.pc; TG.foes=rec.foes||{}; TG.allies=rec.allies||{}; TG.arena=rec.arena||"field"; TG.forceSeed=rec.seed; TG.linkMode=1; enter(); if(TG.start&&rec.cmds){ TG.cmds=[{t:"start"}]; TG.st=TGE.step(TG.start,{t:"start"}); rec.cmds.slice(1).forEach(function(c){ TG.st=TGE.step(TG.st,c); TG.cmds.push(c); }); rpOpen(); live("A shared fight: "+(TG.pc&&TG.pc.name||"a hero")+". Watch it, or go back to the setup to fight your own."); } }); }).catch(function(e){ flash(e.message||"This fight link could not be opened."); }); }
-function paint(){ var b=document.getElementById("tgB"); if(!b) return; var s=document.getElementById("tgS"), t=document.getElementById("tgT");
+/* G7 queue 1: Screen Wake Lock. While a fight is on screen the display stays on (players think between turns); released on the setup
+   screen, on close and when the page is hidden (the browser drops it then), taken again when the page comes back to a fight */
+var WL={l:null,want:false};
+function wakeSync(){ var w=document.getElementById("tg"), want=!!(w&&!w.hidden&&TG.view==="field"&&TG.st&&!TG.st.over); WL.want=want;
+  if(want&&!WL.l&&navigator.wakeLock&&document.visibilityState==="visible"){ WL.l=1; navigator.wakeLock.request("screen").then(function(l){ if(!WL.want){ l.release().catch(function(){}); WL.l=null; return; } WL.l=l; l.addEventListener("release",function(){ if(WL.l===l) WL.l=null; }); },function(){ WL.l=null; }); }
+  else if(!want&&WL.l&&WL.l!==1){ var l=WL.l; WL.l=null; l.release().catch(function(){}); } }
+document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="visible") wakeSync(); });
+window.__tgWake=function(){ return {want:WL.want,held:!!(WL.l&&WL.l!==1&&!WL.l.released)}; };
+/* the turn order is drawn again on each paint: the bar starts at the last value shown and moves to the new one on the next frame */
+function hpBars(){ var b=document.getElementById("tgB"); if(!b||!TG.st) return; var L=b.querySelectorAll(".tg-ord i[data-p]"); if(!L.length) return; TG.hpPrev=TG.hpPrev||{};
+  requestAnimationFrame(function(){ L.forEach(function(i){ i.style.setProperty("--p",i.getAttribute("data-p")); }); });
+  Object.keys(TG.st.units).forEach(function(id){ TG.hpPrev[id]=hpPct(TG.st.units[id]); }); }
+function paint(){ wakeSync(); var b=document.getElementById("tgB"); if(!b) return; var s=document.getElementById("tgS"), t=document.getElementById("tgT");
   if(TG.view==="setup"){ t.textContent="Training Ground"; s.textContent="Practice fights. Your sheet never changes"; b.innerHTML=setupHtml(); }
   else if(TG.view==="replay"){ t.textContent="Replay"; s.textContent="Step "+TG.rp.i+" of "+(TG.rp.cmds.length); TG.st=TG.rp.states[TG.rp.i]; b.innerHTML=replayHtml(); TG.cell=innerWidth<760?44:52; draw(); }
-  else { t.textContent=ARENAS.filter(function(a){ return a.id===TG.arena; })[0].n; s.textContent="Round "+TG.st.round+" · "+cur().name+"'s turn"; b.innerHTML=fieldHtml(); TG.cell=innerWidth<760?44:52; draw(); wireCv(); }
+  else { t.textContent=ARENAS.filter(function(a){ return a.id===TG.arena; })[0].n; s.textContent="Round "+TG.st.round+" · "+cur().name+"'s turn"; b.innerHTML=fieldHtml(); TG.cell=innerWidth<760?44:52; draw(); wireCv(); hpBars(); }
   document.getElementById("tgBk").setAttribute("aria-label",TG.view==="setup"?"Close":"Back to the setup"); document.getElementById("tg").setAttribute("data-view",TG.view); }
 function wireCv(){ var cv=document.getElementById("tgCv"); if(!cv) return;
   cv.addEventListener("click",function(e){ var r=cv.getBoundingClientRect(), cx=Math.floor((e.clientX-r.left)/TG.cell), cy=Math.floor((e.clientY-r.top)/TG.cell); TG.kb=0; tapCell(cx,cy); });
@@ -268,14 +286,14 @@ function wire(w){ w.addEventListener("click",function(e){ var b=e.target.closest
   if(d.tg==="resume"){ var rec=TG.saved; if(rec){ TG.start=rec.start; TG.cmds=rec.cmds.slice(); TG.st=TGE.replay(rec.start,rec.cmds); TG.arena=rec.arena; TG.undo=[]; TG.oa=[]; TG.mode=""; TG.act=null; TG.view="field"; TG.saved=null; paint(); live("Back in the fight. Round "+TG.st.round+"."); } return; }
   if(d.tg==="drop"){ fightClear(); paint(); return; }
   if(d.tg==="end"){ TG.oa=[]; TG.mode=""; TG.act=null; TG.pick=[]; run({t:"end"}); paint(); var c=cur(); if(c) live(c.name+"'s turn."); return; }
-  if(d.tg==="again"){ TG.linkMode=0; enter(); return; } if(d.tg==="setup"){ TG.view="setup"; TG.st=null; paint(); return; }
+  if(d.tg==="again"){ TG.linkMode=0; enter(); return; } if(d.tg==="setup"){ TG.view="setup"; TG.st=null; vtPaint(); return; }
   if(d.tgu){ var t=TG.st.units[d.tgu]; if(t){ if(TG.mode==="target"||TG.mode==="save"||TG.mode==="spell"){ tapCell(t.pos[0],t.pos[1]); return; } flash(t.name+": HP "+t.hp+"/"+t.max+", AC "+t.ac); } return; } });
   w.addEventListener("change",function(e){ var t=e.target; if(t.matches&&t.matches("[data-tglv]")){ TG.lvl=+t.value; } });
   w.addEventListener("input",function(e){ var t=e.target; if(t.matches&&t.matches("[data-tgrp]")){ clearInterval(TG.rpT); TG.rpT=0; TG.rp.i=+t.value; TG.st=TG.rp.states[TG.rp.i]; var s2=document.getElementById("tgS"); if(s2) s2.textContent="Step "+TG.rp.i+" of "+TG.rp.cmds.length; draw(); var l=w.querySelector(".tg-rpl"), n=TG.rp.states[TG.rp.i], p=TG.rp.i?TG.rp.states[TG.rp.i-1]:null; if(l) l.innerHTML=(p?n.log.slice(p.log.length).map(evText).filter(Boolean):["The fight is about to start."]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join(""); } });
   w.addEventListener("input",function(e){ var t=e.target; if(t.matches&&t.matches("[data-tgq]")){ TG.q=t.value; TG.lim=24; var l=document.getElementById("tgFoes"); if(l&&TG.cr) l.innerHTML=foeList(); } });
   w.addEventListener("toggle",function(e){ if(e.target.classList&&e.target.classList.contains("tg-log")) TG.logOpen=e.target.open; },true); }
 function back(){ if(TG.view==="replay"){ clearInterval(TG.rpT); TG.rpT=0; TG.st=TG.rp.back||TG.rp.states[TG.rp.states.length-1]; TG.view=TG.st&&TG.start?"field":"setup"; paint(); return; } if(TG.view==="field"){ if(TG.st&&!TG.st.over){ A.ask("Leave this fight? It stays saved on this device, and Resume brings it back.","Leave",function(){ TG.view="setup"; TG.st=null; fightLoad().then(function(rec){ TG.saved=rec; paint(); }); }); return; } TG.view="setup"; TG.st=null; paint(); return; } close(); }
-function close(){ var w=document.getElementById("tg"); if(!w) return; w.classList.remove("on"); w.hidden=true; if(A.ovQueue) A.ovQueue(); if(A.homeInert) try{ A.homeInert(); }catch(e){} if(TG.opener&&TG.opener.focus&&TG.opener.isConnected) try{ TG.opener.focus({preventScroll:true}); }catch(e){} }
+function close(){ var w=document.getElementById("tg"); if(!w) return; w.classList.remove("on"); w.hidden=true; wakeSync(); if(A.ovQueue) A.ovQueue(); if(A.homeInert) try{ A.homeInert(); }catch(e){} if(TG.opener&&TG.opener.focus&&TG.opener.isConnected) try{ TG.opener.focus({preventScroll:true}); }catch(e){} }
 function open(){ var w=dom(); TG.opener=document.activeElement; try{ TG.pcs=A.tgRoster?A.tgRoster():[]; }catch(e){ TG.pcs=[]; }
   if(!TG.pc&&TG.pcs.length) TG.pc=TG.pcs[0];
   w.hidden=false; if(TG.view!=="field") TG.view="setup"; paint(); requestAnimationFrame(function(){ w.classList.add("on"); }); if(A.ovQueue) A.ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){}

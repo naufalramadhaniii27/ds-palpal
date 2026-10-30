@@ -92,4 +92,9 @@
 .tg-rp{margin-top:10px}
 .tg-rps input{width:100%;min-height:44px}
 .tg-rpl{margin:0;padding-left:1.2em;min-height:3em;line-height:1.45;font-size:calc(14px*var(--tz,1))}
+.tg-ord li i{transition:--p .45s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){ .tg-ord li i{transition:none} }
+html.mi-off .tg-ord li i{transition:none}
 }
+/* G7 queue 3: the HP bars in the turn order move smoothly. --p is a registered number, so the gradient stop can transition */
+@property --p{syntax:"<number>";inherits:false;initial-value:1}
