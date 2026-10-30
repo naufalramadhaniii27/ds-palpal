@@ -6,7 +6,8 @@
   var box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
   box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";
   box.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Frame rate test</b><button id="fpsGo" style="padding:6px 12px;border-radius:8px">Start</button><button id="fpsCopy" style="padding:6px 12px;border-radius:8px" hidden>Copy result</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsDmg" checked> include damage and heal (HP restored after)</label></div><pre id="fpsOut" style="margin:8px 0 0;white-space:pre-wrap">Press Start. Keep this tab in front and do not touch the screen until it says Done.</pre>';
-  document.body.appendChild(box);
+  box.setAttribute("popover","manual"); box.style.top="auto"; box.style.margin="0"; box.style.width="auto"; box.style.height="auto";/* top layer, so the Home screen cannot cover it */
+  document.documentElement.appendChild(box); try{ box.showPopover(); }catch(er){}/* outside body: body is inert while a dialog or the Home screen is open */
   var out=box.querySelector("#fpsOut"), go=box.querySelector("#fpsGo"), cp=box.querySelector("#fpsCopy"), busy=false, rec=null, lines=[];
   function wait(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
   function visible(el){ return !!el&&!!el.getClientRects().length; }
