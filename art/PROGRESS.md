@@ -5035,4 +5035,9 @@ art/batch/portraits/locathah-b.png
 art/batch/portraits/loxodon-a.png
 art/batch/portraits/loxodon-b.png
 art/batch/portraits/lupin-a.png
+art/batch/portraits/lupin-b.png
+art/batch/portraits/merfolk-a.png
+art/batch/portraits/merfolk-b.png
+art/batch/portraits/minotaur-a.png
+art/batch/portraits/minotaur-b.png
 
