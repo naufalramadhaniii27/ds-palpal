@@ -1,1676 +1,2903 @@
 [
- {
-  "src": "tdcsr",
-  "cls": "Cleric",
-  "sub": "Blood Domain",
-  "level": 8,
-  "feats": [
-   "Bloodletting Focus",
-   "Sanguine Recall",
-   "Divine Strike"
-  ],
-  "lu": [
-   "Sanguine Recall"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Wizard",
-  "sub": "Blood Magic",
-  "level": 10,
-  "feats": [
-   "Blood Channeling",
-   "Sanguine Burst",
-   "Bond of Mutual Suffering",
-   "Glyph of Hemorrhaging"
-  ],
-  "lu": [
-   "Bond of Mutual Suffering",
-   "Glyph of Hemorrhaging"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Druid",
-  "sub": "Circle of the Blighted",
-  "level": 10,
-  "feats": [
-   "Blighted Shape",
-   "Defile Ground",
-   "Call of the Shadowseeds",
-   "Foul Conjuration"
-  ],
-  "lu": [
-   "Defile Ground",
-   "Call of the Shadowseeds"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Bard",
-  "sub": "College of Tragedy",
-  "level": 6,
-  "feats": [
-   "Poetry in Misery",
-   "Sorrowful Fate",
-   "Impending Misfortune",
-   "Tale of Hubris"
-  ],
-  "lu": [
-   "Sorrowful Fate",
-   "Impending Misfortune"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Cleric",
-  "sub": "Moon Domain",
-  "level": 8,
-  "feats": [
-   "Clarity of Catha",
-   "Domain Spells",
-   "Empowered Cantrips"
-  ],
-  "lu": [
-   "Clarity of Catha"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Paladin",
-  "sub": "Oath of the Open Sea",
-  "level": 15,
-  "feats": [
-   "Oath Spells",
-   "Fury of the Tides",
-   "Marine Layer",
-   "Aura of Liberation",
-   "Stormy Waters"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Barbarian",
-  "sub": "Path of the Juggernaut",
-  "level": 14,
-  "feats": [
-   "Spirit of the Mountain",
-   "Thunderous Blows",
-   "Resolute Stance",
-   "Hurricane Strike",
-   "Unstoppable"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Sorcerer",
-  "sub": "Runechild",
-  "level": 14,
-  "feats": [
-   "Essence Runes",
-   "Glyph of Aegis",
-   "Runic Magic",
-   "Runic Torrent"
-  ],
-  "lu": [
-   "Runic Torrent"
-  ]
- },
- {
-  "src": "tdcsr",
-  "cls": "Monk",
-  "sub": "Way of the Cobalt Soul",
-  "level": 17,
-  "feats": [
-   "Extract Aspects",
-   "Extort Truth",
-   "Mystical Erudition",
-   "Mind of Mercury",
-   "Debilitating Barrage"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Ashari",
-  "level": 1,
-  "feats": [
-   "Elemental Harmony"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Clasp Member",
-  "level": 1,
-  "feats": [
-   "A Favor in Turn"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Lyceum Scholar",
-  "level": 1,
-  "feats": [
-   "Academic Requisition"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Reformed Cultist",
-  "level": 1,
-  "feats": [
-   "Fell Teachings"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcsr",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Whitestone Rifle Corps",
-  "level": 1,
-  "feats": [
-   "Rifle Corps Relationship"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcg",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Lyceum Student",
-  "level": 1,
-  "feats": [
-   "Student Privilege"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcg",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Myriad Operative",
-  "level": 1,
-  "feats": [
-   "A Favor in Turn"
-  ],
-  "lu": []
- },
- {
-  "src": "tdcg",
-  "cls": "Fighter",
-  "sub": "",
-  "bg": "Recovered Cultist",
-  "level": 1,
-  "feats": [
-   "Wicked Awareness"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Chronomancer",
-  "level": 14,
-  "feats": [
-   "Chronomancy Savant",
-   "Chronoshift",
-   "Retroactive Spell",
-   "Lag Spell",
-   "Time Loop"
-  ],
-  "lu": [
-   "Lag Spell",
-   "Time Loop"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Familiar Master",
-  "level": 14,
-  "feats": [
-   "Beckon Familiar",
-   "Arcane Evolution",
-   "Servitor's Agility",
-   "Bolster Familiar",
-   "Planar Familiar"
-  ],
-  "lu": [
-   "Beckon Familiar",
-   "Bolster Familiar"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Fumaturge",
-  "level": 14,
-  "feats": [
-   "Fogcrafting",
-   "Smoke Animals",
-   "Gaseous Escape",
-   "Greater Fogcrafting",
-   "Smoke Mage"
-  ],
-  "lu": [
-   "Gaseous Escape",
-   "Smoke Mage"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Gastronomer",
-  "level": 14,
-  "feats": [
-   "Sous Chef",
-   "Monster Meal",
-   "Arcane Condiments",
-   "Heroic Snacks",
-   "Five-Star Condiments"
-  ],
-  "lu": [
-   "Sous Chef",
-   "Heroic Snacks"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Magic Missile Mage",
-  "level": 14,
-  "feats": [
-   "Magic Missile Savant",
-   "Versatile Missiles",
-   "Shield of Missiles",
-   "Giga-Missile"
-  ],
-  "lu": [
-   "Magic Missile (free)",
-   "Shield of Missiles",
-   "Giga-Missile"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Mystic Strategist",
-  "level": 14,
-  "feats": [
-   "Battle Tactics",
-   "Maneuver Options",
-   "Arcane Assessment",
-   "Spell Tactics",
-   "Supreme Stratagems"
-  ],
-  "lu": [
-   "Battle Dice",
-   "Arcane Assessment"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Protomancer",
-  "level": 14,
-  "feats": [
-   "Proto-Magic",
-   "Amnesia Surge",
-   "Vital Recovery",
-   "Mnemonic Concentration",
-   "Proto-Master"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Scroll Scribe",
-  "level": 14,
-  "feats": [
-   "Scrivener",
-   "Scribe Scroll",
-   "Arcane Revision",
-   "Warding Scrawl",
-   "Scroll Codex"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Somnomancer",
-  "level": 14,
-  "feats": [
-   "Somnambulist",
-   "Deep Sleep",
-   "Hypnotize",
-   "Lucid Dream",
-   "Nightmares"
-  ],
-  "lu": [
-   "Deep Sleep"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Tyromancer",
-  "level": 14,
-  "feats": [
-   "Cheese Magic",
-   "Ferment Spell",
-   "Legen-Dairy Resistance",
-   "Lactose Intolerance"
-  ],
-  "lu": [
-   "Cheese Magic",
-   "Ferment Spell",
-   "Legen-Dairy Resistance"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Universalist",
-  "level": 14,
-  "feats": [
-   "Arcane Excellence",
-   "Multidisciplinary Scholar",
-   "Universal Savant",
-   "Eidetic Memory",
-   "Spellwarp",
-   "Erudite Focus"
-  ],
-  "lu": [
-   "Eidetic Memory",
-   "Spellwarp"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Wizard",
-  "sub": "Wand Wizard",
-  "level": 14,
-  "feats": [
-   "Arcane Duelist",
-   "Craft Wands",
-   "Wand Slinger",
-   "Warding Shield",
-   "Remnant Recharge"
-  ],
-  "lu": [
-   "Wand Slinger",
-   "Warding Shield"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Bartending",
-  "level": 14,
-  "feats": [
-   "Bartender",
-   "Brew Cocktail",
-   "Hangover",
-   "Alcoholic Adventurers"
-  ],
-  "lu": [
-   "Hangover"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Birdsong",
-  "level": 14,
-  "feats": [
-   "Feathered Friends",
-   "Birdsong",
-   "Zephyr's Blessing",
-   "Chorus of the Sky"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Calligraphy",
-  "level": 14,
-  "feats": [
-   "Quill and Ink",
-   "Manuscript",
-   "Spell Inscription",
-   "Illuminated Spells"
-  ],
-  "lu": [
-   "Spell Inscription"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Cantors",
-  "level": 14,
-  "feats": [
-   "Chorus Leader",
-   "Healing Hymn",
-   "Minor Miracles",
-   "Song of Life"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Chronology",
-  "level": 14,
-  "feats": [
-   "Chronomantic Secrets",
-   "Retroactive Inspiration",
-   "Borrowed Time",
-   "Reorder Events"
-  ],
-  "lu": [
-   "Reorder Events"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Dirges",
-  "level": 14,
-  "feats": [
-   "Death's Friend",
-   "Dirge",
-   "Call of the Grave",
-   "Song of Sorrow"
-  ],
-  "lu": [
-   "Memento Mori",
-   "Call of the Grave"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Jesters",
-  "level": 14,
-  "feats": [
-   "Acrobatic Clown",
-   "Tumbling Taunt",
-   "Raconteur",
-   "Insult to Injury"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of the Mad God",
-  "level": 14,
-  "feats": [
-   "Outer Knowledge",
-   "Mad Melody",
-   "Frenzied Strings",
-   "Cacophonous Melody"
-  ],
-  "lu": [
-   "Frenzied Strings"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Masks",
-  "level": 14,
-  "feats": [
-   "Persona Masks",
-   "Virtuoso Skill",
-   "Master of Many Faces"
-  ],
-  "lu": [
-   "Virtuoso Skill"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Opera",
-  "level": 14,
-  "feats": [
-   "Operatic Inspiration",
-   "Vocalist",
-   "Heroic Ballad",
-   "Overture"
-  ],
-  "lu": [
-   "Operatic Inspiration",
-   "Heroic Ballad"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Origami",
-  "level": 14,
-  "feats": [
-   "Origami Familiar",
-   "Paper Trinket",
-   "Lucky Crane",
-   "Origami Fortune"
-  ],
-  "lu": [
-   "Lucky Crane",
-   "Origami Fortune"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Paint",
-  "level": 14,
-  "feats": [
-   "Painter",
-   "Colorful Casting",
-   "Marvelous Pigments",
-   "Master Illustrator"
-  ],
-  "lu": [
-   "Marvelous Pigments",
-   "Master Illustrator"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Bard",
-  "sub": "College of Sculpture",
-  "level": 14,
-  "feats": [
-   "Sculpted Golem",
-   "Golem's Bulwark",
-   "Sculpted Sentinel"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Abomination",
-  "level": 14,
-  "feats": [
-   "Abominable Transformation",
-   "Bloodcurdling Howl",
-   "Monstrous Brutality",
-   "Ravage"
-  ],
-  "lu": [
-   "Bloodcurdling Howl",
-   "Ravage"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Battlemind",
-  "level": 14,
-  "feats": [
-   "Psionic Power",
-   "Psychic Assault",
-   "Unbreakable Mind",
-   "Psionic Redirection"
-  ],
-  "lu": [
-   "Psionic Energy Dice"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Dad",
-  "level": 14,
-  "feats": [
-   "Paternal Proficiencies",
-   "Not Angry, Just Disappointed",
-   "Dad Jokes",
-   "Don't Need to Ask For Directions",
-   "Go to Your Room"
-  ],
-  "lu": [
-   "Pretty Sure It's Over Here",
-   "Go to Your Room"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Drifter",
-  "level": 14,
-  "feats": [
-   "Lone Wolf",
-   "Break Free",
-   "Crowd Brawler",
-   "Relentless Aggression"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Fin",
-  "level": 14,
-  "feats": [
-   "Aquatic Adaptation",
-   "Frenzied Bite",
-   "Blood Sense",
-   "Feeding Frenzy",
-   "Blood in the Water"
-  ],
-  "lu": [
-   "Frenzied Bite",
-   "Blood in the Water"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Frostrager",
-  "level": 14,
-  "feats": [
-   "Cold Resistance",
-   "Frostrage",
-   "Icicle Throw",
-   "Abominable",
-   "Frigid Wind"
-  ],
-  "lu": [
-   "Icicle Throw"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of Heavy Metal",
-  "level": 14,
-  "feats": [
-   "Rocker",
-   "Solo Shredding",
-   "Head Banging",
-   "Smash Hit",
-   "Up to Eleven"
-  ],
-  "lu": [
-   "Up to Eleven"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of Spellfury",
-  "level": 14,
-  "feats": [
-   "Mystical Physicality",
-   "Spellcasting",
-   "Arcane Strike",
-   "Supernatural Exploits",
-   "Eldritch Rampage"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Slasher",
-  "level": 14,
-  "feats": [
-   "Mark of the Slasher",
-   "Execution",
-   "Menacing Stare",
-   "Blood-Drunk",
-   "Killing Spree"
-  ],
-  "lu": [
-   "Killing Spree"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Swamp",
-  "level": 14,
-  "feats": [
-   "Bogborne",
-   "Swamp Thing",
-   "Primal Magic",
-   "Muck and Mire",
-   "Crushing Roots"
-  ],
-  "lu": [
-   "Swamp Thing",
-   "Primal Magic"
-  ]
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of Tranquility",
-  "level": 14,
-  "feats": [
-   "Battle Trance",
-   "Mantra",
-   "Serene Strike",
-   "Reactive"
-  ],
-  "lu": []
- },
- {
-  "src": "tvss",
-  "cls": "Barbarian",
-  "sub": "Path of the Muscle Wizard",
-  "level": 14,
-  "feats": [
-   "Unarguable Wizardry",
-   "\"Cantrips\"",
-   "\"Spells\"",
-   "Magic Resistance",
-   "I Cast Fist"
-  ],
-  "lu": [
-   "Wizard \"Spells\""
-  ]
- },
- {
-  "src": "tee24",
-  "cls": "Druid",
-  "sub": "Circle of the Forged",
-  "level": 20,
-  "feats": [
-   "Circle of the Forged Spells",
-   "Skin of Steel",
-   "Elementally Imbued",
-   "Adamantine Hide",
-   "Construction Perfection"
-  ],
-  "lu": []
- },
- {
-  "src": "tee24",
-  "cls": "Bard",
-  "sub": "College of the Dirge Singer",
-  "level": 20,
-  "feats": [
-   "Broad Inspiration",
-   "Keeper of History",
-   "Commanding Voice",
-   "Battle Hymn"
-  ],
-  "lu": []
- },
- {
-  "src": "tee24",
-  "cls": "Artificer",
-  "sub": "Forge Adept",
-  "level": 20,
-  "feats": [
-   "Battle Ready",
-   "Forge Adept Spells",
-   "Ghaal'Shaarat",
-   "Tool Proficiency",
-   "Extra Attack"
-  ],
-  "lu": [
-   "Aura of War",
-   "Empower Aura"
-  ]
- },
- {
-  "src": "tee24",
-  "cls": "Artificer",
-  "sub": "Maverick",
-  "level": 20,
-  "feats": [
-   "Arcane Prototype",
-   "Maverick Spells",
-   "Tool Proficiency",
-   "Fine Tuning",
-   "Work in Progress"
-  ],
-  "lu": [
-   "Improved Genius"
-  ]
- },
- {
-  "src": "tee24",
-  "cls": "Cleric",
-  "sub": "Mind Domain",
-  "level": 20,
-  "feats": [
-   "Mind Domain Spells",
-   "Psychic Feedback",
-   "Psychic Force",
-   "Gestalt Anchor",
-   "Bend Reality"
-  ],
-  "lu": [
-   "Bend Reality"
-  ]
- },
- {
-  "src": "tee24",
-  "cls": "Monk",
-  "sub": "Warrior of the Living Weapon",
-  "level": 20,
-  "feats": [
-   "Martial Form",
-   "Mutable Strike",
-   "Manifest Blow",
-   "Reflexive Adaptation",
-   "Perfect Form"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Barbarian",
-  "sub": "Path of the Fractured",
-  "level": 20,
-  "feats": [
-   "Face of Rage",
-   "Mask of Civility",
-   "Brains and Brawn",
-   "Cunning and Brutal",
-   "Better Half"
-  ],
-  "lu": [
-   "Better Half"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Barbarian",
-  "sub": "Path of the Primal Spirit",
-  "level": 20,
-  "feats": [
-   "Primal Companion",
-   "Shared Rage",
-   "Kin to Beasts",
-   "Skinrider's Trance",
-   "Shape of the Wild"
-  ],
-  "lu": [
-   "Skinrider's Trance",
-   "Shape of the Wild"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Barbarian",
-  "sub": "Path of the Wrathful Dead",
-  "level": 20,
-  "feats": [
-   "Final Night Catharsis",
-   "Rage of the Dead",
-   "Dark Doom Revisited",
-   "Death Is but a Door",
-   "Powered by Pathos"
-  ],
-  "lu": [
-   "Death Is but a Door"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Bard",
-  "sub": "College of Adventurers",
-  "level": 20,
-  "feats": [
-   "Party Planner",
-   "Talented Adventurer",
-   "Well-Rounded",
-   "Improvisational Talent"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Bard",
-  "sub": "College of Fools",
-  "level": 20,
-  "feats": [
-   "Antagonistic Antics",
-   "Cruel Jest",
-   "Gallows Humor",
-   "Last Laugh"
-  ],
-  "lu": [
-   "Gallows Humor",
-   "Last Laugh"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Bard",
-  "sub": "College of Requiems",
-  "level": 20,
-  "feats": [
-   "Chilling Melody",
-   "Pluck the Heartstrings",
-   "Stir the Bones",
-   "Dual Death"
-  ],
-  "lu": [
-   "Dual Death"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Cleric",
-  "sub": "Eldritch Domain",
-  "level": 20,
-  "feats": [
-   "Eldritch Domain Spells",
-   "Eldritch Contagion",
-   "Prophecy of Doom",
-   "Otherworldly Calm",
-   "Sing the Song that Ends the World"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Cleric",
-  "sub": "Inquisition Domain",
-  "level": 20,
-  "feats": [
-   "Inquisition Domain Spells",
-   "Spell Shield",
-   "Witch Hunter's Strike",
-   "Rebuke Invoker",
-   "Supernal Safeguard"
-  ],
-  "lu": [
-   "Witch Hunter's Strike",
-   "Rebuke Invoker"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Cleric",
-  "sub": "Purification Domain",
-  "level": 20,
-  "feats": [
-   "Cleanse with Fire",
-   "Purification Domain Spells",
-   "Unclean Brand",
-   "Ward Against Corruption",
-   "Sear Imperfections"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Druid",
-  "sub": "Circle of Blood",
-  "level": 20,
-  "feats": [
-   "Circle of Blood Spells",
-   "Rite of the Blood Moon",
-   "Blood Boon",
-   "Blood Lust",
-   "Exsanguinate"
-  ],
-  "lu": [
-   "Blood Boon",
-   "Exsanguinate"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Druid",
-  "sub": "Circle of Entropy",
-  "level": 20,
-  "feats": [
-   "Catastrophic Power",
-   "Ruin Incarnate",
-   "Many Roads to Ruin",
-   "Shake the Earth",
-   "Entropy's Apex"
-  ],
-  "lu": [
-   "Shake the Earth"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Druid",
-  "sub": "Circle of Mutation",
-  "level": 20,
-  "feats": [
-   "Circle Forms",
-   "Mutate Shape",
-   "Unnatural and Unnerving",
-   "Endless Evolution",
-   "Apex Predator"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Fighter",
-  "sub": "Bulwark Warrior",
-  "level": 20,
-  "feats": [
-   "Protective Taunt",
-   "Weather the Storm",
-   "Threatening Presence",
-   "Aggressive Defense",
-   "Improved Second Wind"
-  ],
-  "lu": [
-   "Weather the Storm",
-   "Threatening Presence"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Fighter",
-  "sub": "Living Crucible",
-  "level": 20,
-  "feats": [
-   "Compound Creator",
-   "Student of Alchemy",
-   "Living Cauldron",
-   "Rapid Consumption",
-   "Toxin Transmutation"
-  ],
-  "lu": [
-   "Toxin Transmutation"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Fighter",
-  "sub": "Nightwatcher",
-  "level": 20,
-  "feats": [
-   "Ever Vigilant",
-   "Skilled Guardian",
-   "Size Up",
-   "Night Stalker",
-   "Ready for Action"
-  ],
-  "lu": [
-   "Warning Shout",
-   "Night Stalker"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Monk",
-  "sub": "Warrior of Pride",
-  "level": 20,
-  "feats": [
-   "Assertive Attacker",
-   "Bruised Ego",
-   "Tall Tales",
-   "Irrational Retaliation",
-   "Redoubled Efforts"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Monk",
-  "sub": "Warrior of Regret",
-  "level": 20,
-  "feats": [
-   "Shade of Regret",
-   "The Road Not Traveled",
-   "Aid Not Given",
-   "Crushing Guilt",
-   "Relive the Past"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Monk",
-  "sub": "Warrior of the Leaden Crown",
-  "level": 20,
-  "feats": [
-   "Psionic Prowess",
-   "Subtle Hand",
-   "Unsubtle Strike",
-   "Psychic Crush",
-   "Psionic Mastery"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Paladin",
-  "sub": "Oath of Pestilence",
-  "level": 20,
-  "feats": [
-   "Debilitating Fever",
-   "Entropic Infection",
-   "Oath of Pestilence Spells",
-   "Aura of Rampant Sickness",
-   "Disgusting Resilience"
-  ],
-  "lu": [
-   "Plaguebringer"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Paladin",
-  "sub": "Oath of Slaughter",
-  "level": 20,
-  "feats": [
-   "Frenzied Slaughter",
-   "Oath of Slaughter Spells",
-   "Bloodthirst Aura",
-   "Follow Through",
-   "Blood Knight"
-  ],
-  "lu": [
-   "Blood Knight"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Paladin",
-  "sub": "Oath of Zeal",
-  "level": 20,
-  "feats": [
-   "Mark of the Heretic",
-   "Oath of Zeal Spells",
-   "Aura of Clarity",
-   "Compel Confession",
-   "Apocalyptic Revelation"
-  ],
-  "lu": [
-   "Apocalyptic Revelation"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Ranger",
-  "sub": "Green Reaper",
-  "level": 20,
-  "feats": [
-   "Envenomed Attack",
-   "Green Reaper Spells",
-   "Toxic Tradecraft",
-   "Poison Control",
-   "Variegated Vexations"
-  ],
-  "lu": [
-   "Envenomed Attack",
-   "Protection from Poison"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Ranger",
-  "sub": "Primordial Archer",
-  "level": 20,
-  "feats": [
-   "Elemental Arrows",
-   "Herbal Lore",
-   "Primordial Archer Spells",
-   "Weave the Elements",
-   "Witching Arrows"
-  ],
-  "lu": [
-   "Elemental Arrows",
-   "Herbal Lore"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Ranger",
-  "sub": "Vermin Lord",
-  "level": 20,
-  "feats": [
-   "Swarming Strikes",
-   "Vermin Lord Spells",
-   "Verminkin",
-   "Filth and Fortitude",
-   "Infectious Spread"
-  ],
-  "lu": [
-   "Verminkin",
-   "Swarming Strikes"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Rogue",
-  "sub": "Highway Rider",
-  "level": 20,
-  "feats": [
-   "Hair Trigger",
-   "Ride Them Down",
-   "Trusty Mount",
-   "Horse Lord",
-   "True Grit"
-  ],
-  "lu": [
-   "Trusty Mount"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Rogue",
-  "sub": "Misfortune Bringer",
-  "level": 20,
-  "feats": [
-   "Evil Eye",
-   "Misfortunist",
-   "Steal Luck",
-   "Curse Caster",
-   "Improved Steal Luck"
-  ],
-  "lu": [
-   "Jinx Points",
-   "Steal Luck"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Rogue",
-  "sub": "Sanguine Thief",
-  "level": 20,
-  "feats": [
-   "Spellcasting",
-   "Stolen Power",
-   "Steal Blood",
-   "Bloody Blades",
-   "Bloodstitch"
-  ],
-  "lu": [
-   "Steal Blood",
-   "Bloodstitch"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Sorcerer",
-  "sub": "Apocalypse Sorcery",
-  "level": 20,
-  "feats": [
-   "Apocalyptic Spells",
-   "Unhinged Asservations",
-   "Arcane Apocrypha",
-   "Bear Witness",
-   "Forbidden Magic"
-  ],
-  "lu": [
-   "Arcane Apocrypha",
-   "The End is Nigh"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Sorcerer",
-  "sub": "Haunted Sorcery",
-  "level": 20,
-  "feats": [
-   "Haunted Spells",
-   "Sixth Sense",
-   "Phantom Companion",
-   "Deathly Pallor",
-   "Strength of Spirit"
-  ],
-  "lu": [
-   "Phantom Possession",
-   "Become Death"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Sorcerer",
-  "sub": "Wretched Bloodline Sorcery",
-  "level": 20,
-  "feats": [
-   "Bad Luck Charm",
-   "Blood Ties",
-   "Wretched Curse",
-   "Share the Burden",
-   "Terrifying Visage"
-  ],
-  "lu": [
-   "Bad Luck Charm",
-   "Blood Ties"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Warlock",
-  "sub": "The Coven",
-  "level": 20,
-  "feats": [
-   "Coven Spells",
-   "Hag's Eye",
-   "Hag's Guile",
-   "Hag's Visage",
-   "Hag's Craft"
-  ],
-  "lu": [
-   "Hag's Eye (Hex)",
-   "Hag's Eye (Bestow Curse)"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Warlock",
-  "sub": "The First Vampire Patron",
-  "level": 20,
-  "feats": [
-   "Drain Life",
-   "First Vampire Spells",
-   "Nocturnal Predator",
-   "Creature of the Night",
-   "Eldritch Appetite"
-  ],
-  "lu": [
-   "Creature of the Night",
-   "Eldritch Appetite"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Warlock",
-  "sub": "The Parasite Patron",
-  "level": 20,
-  "feats": [
-   "Physical Specimen",
-   "Spell Siphon",
-   "Symbiotic Sentinel",
-   "Spawn Pawn",
-   "Larval Regeneration"
-  ],
-  "lu": [
-   "Physical Specimen",
-   "Spawn Pawn"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Wizard",
-  "sub": "Daemonologist",
-  "level": 20,
-  "feats": [
-   "Fair and Foul",
-   "Stolen Secrets",
-   "Borrowed Tongues and Hides",
-   "Unearthly Countenance",
-   "Eternal War Eruption"
-  ],
-  "lu": [
-   "Switch Sides",
-   "Unearthly Countenance"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Wizard",
-  "sub": "Plague Doctor",
-  "level": 20,
-  "feats": [
-   "Good Medicine",
-   "Potion Craft",
-   "Bad Medicine",
-   "Breathe It In",
-   "Medicinal Master"
-  ],
-  "lu": []
- },
- {
-  "src": "tghp",
-  "cls": "Wizard",
-  "sub": "Sangromancer",
-  "level": 20,
-  "feats": [
-   "Full-Blooded",
-   "Sangromancy Savant",
-   "Sanguine Vigor",
-   "Blood for Blood",
-   "Red Renewal"
-  ],
-  "lu": [
-   "Red Renewal"
-  ]
- },
- {
-  "src": "tghp",
-  "cls": "Monster Hunter",
-  "sub": "Carver Guild",
-  "level": 20,
-  "feats": [
-   "Close Quarters",
-   "Equipped for Battle",
-   "True Grit",
-   "Terrorize the Terrors",
-   "Deadly Redirect"
-  ],
-  "lu": [],
-  "tpcls": 1
- },
- {
-  "src": "tghp",
-  "cls": "Monster Hunter",
-  "sub": "Devourer Guild",
-  "level": 20,
-  "feats": [
-   "Alchemical Gastronomy",
-   "Transmuting Metabolism",
-   "Synchronized Response",
-   "Gnawing Hunger",
-   "Alchemical Decoctions"
-  ],
-  "lu": [
-   "Gnawing Hunger"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tghp",
-  "cls": "Monster Hunter",
-  "sub": "Occultist Guild",
-  "level": 20,
-  "feats": [
-   "Acolyte of the Occult",
-   "Spellcasting",
-   "Arcane Interference",
-   "Mage Hunter",
-   "Occult Knowledge"
-  ],
-  "lu": [
-   "Counterspell (free)"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tghp",
-  "cls": "Monster Hunter",
-  "sub": "Trapper Guild",
-  "level": 20,
-  "feats": [
-   "Sneaky and Crafty",
-   "Trapper Gadgets",
-   "Ambusher's Advantage",
-   "Agile Response",
-   "Monster-Hide Armor"
-  ],
-  "lu": [
-   "Rapid Tinkerer"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tsgeh",
-  "cls": "Jaeger",
-  "sub": "Absolute Chapter",
-  "level": 20,
-  "feats": [
-   "Counter Strike",
-   "Unencumbered Movement",
-   "Encircling Strike",
-   "Mobile Pursuer",
-   "The Hunt"
-  ],
-  "lu": [
-   "The Hunt"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tsgeh",
-  "cls": "Jaeger",
-  "sub": "Heretic Chapter",
-  "level": 20,
-  "feats": [
-   "Occult Arts",
-   "Heretic Magic",
-   "Shrouded Steps",
-   "Mystical Momentum",
-   "Darkness Within"
-  ],
-  "lu": [
-   "Darkness Within"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tsgeh",
-  "cls": "Jaeger",
-  "sub": "Marauder Chapter",
-  "level": 20,
-  "feats": [
-   "Marauder Momentum",
-   "Path of Gore",
-   "Unbreakable",
-   "Leap Attack",
-   "Fell the Leviathan"
-  ],
-  "lu": [
-   "Titanic Strength (double dice)"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tsgeh",
-  "cls": "Jaeger",
-  "sub": "Salvation Chapter",
-  "level": 20,
-  "feats": [
-   "Art of Salvation",
-   "Savior's Focus",
-   "Sanctifying Light",
-   "Purifying Salvation",
-   "Light of Hope"
-  ],
-  "lu": [
-   "Light of Hope"
-  ],
-  "tpcls": 1
- },
- {
-  "src": "tsgeh",
-  "cls": "Jaeger",
-  "sub": "Sanguine Chapter",
-  "level": 20,
-  "feats": [
-   "Crimson Rage",
-   "Vital Consumption",
-   "Blood Hex",
-   "Empowered Blood Hex",
-   "Blood Frenzy"
-  ],
-  "lu": [],
-  "tpcls": 1
- },
- {
-  "src": "tsae",
-  "cls": "Artificer",
-  "sub": "Forceforger",
-  "level": 20,
-  "feats": [
-   "Forceforger Spells",
-   "Tools of the Trade",
-   "Field Projector",
-   "Force Panel",
-   "Forceful Shove"
-  ],
-  "lu": [
-   "Field Projector (free spell)",
-   "Flyrokinetic Master"
-  ]
- },
- {
-  "src": "tsae",
-  "cls": "Artificer",
-  "sub": "Magneticist",
-  "level": 20,
-  "feats": [
-   "Magneticist Spells",
-   "Tools of the Trade",
-   "Magnetic Manipulator",
-   "Metal Slinger",
-   "Extra Attack"
-  ],
-  "lu": [
-   "Metallic Control"
-  ]
- },
- {
-  "src": "tsae",
-  "cls": "Artificer",
-  "sub": "Mutagenist",
-  "level": 20,
-  "feats": [
-   "Mutagenist Spells",
-   "Tools of the Trade",
-   "Mutagenic Concoctions",
-   "Extra Attack",
-   "Body Modifications"
-  ],
-  "lu": [
-   "Mutagenic Concoctions (free spell)"
-  ]
- },
- {
-  "src": "tsae",
-  "cls": "Artificer",
-  "sub": "Portalweaver",
-  "level": 20,
-  "feats": [
-   "Portalweaver Spells",
-   "Tools of the Trade",
-   "Portal Device",
-   "Portals",
-   "Mini Portals"
-  ],
-  "lu": [
-   "Portal Device (free spell)",
-   "Portals"
-  ]
- }
+{
+"src": "tdcsr",
+"cls": "Cleric",
+"sub": "Blood Domain",
+"level": 8,
+"feats": [
+"Bloodletting Focus",
+"Sanguine Recall",
+"Divine Strike"
+],
+"lu": [
+"Sanguine Recall"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Wizard",
+"sub": "Blood Magic",
+"level": 10,
+"feats": [
+"Blood Channeling",
+"Sanguine Burst",
+"Bond of Mutual Suffering",
+"Glyph of Hemorrhaging"
+],
+"lu": [
+"Bond of Mutual Suffering",
+"Glyph of Hemorrhaging"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Druid",
+"sub": "Circle of the Blighted",
+"level": 10,
+"feats": [
+"Blighted Shape",
+"Defile Ground",
+"Call of the Shadowseeds",
+"Foul Conjuration"
+],
+"lu": [
+"Defile Ground",
+"Call of the Shadowseeds"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Bard",
+"sub": "College of Tragedy",
+"level": 6,
+"feats": [
+"Poetry in Misery",
+"Sorrowful Fate",
+"Impending Misfortune",
+"Tale of Hubris"
+],
+"lu": [
+"Sorrowful Fate",
+"Impending Misfortune"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Cleric",
+"sub": "Moon Domain",
+"level": 8,
+"feats": [
+"Clarity of Catha",
+"Domain Spells",
+"Empowered Cantrips"
+],
+"lu": [
+"Clarity of Catha"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Paladin",
+"sub": "Oath of the Open Sea",
+"level": 15,
+"feats": [
+"Oath Spells",
+"Fury of the Tides",
+"Marine Layer",
+"Aura of Liberation",
+"Stormy Waters"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Barbarian",
+"sub": "Path of the Juggernaut",
+"level": 14,
+"feats": [
+"Spirit of the Mountain",
+"Thunderous Blows",
+"Resolute Stance",
+"Hurricane Strike",
+"Unstoppable"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Sorcerer",
+"sub": "Runechild",
+"level": 14,
+"feats": [
+"Essence Runes",
+"Glyph of Aegis",
+"Runic Magic",
+"Runic Torrent"
+],
+"lu": [
+"Runic Torrent"
+]
+},
+{
+"src": "tdcsr",
+"cls": "Monk",
+"sub": "Way of the Cobalt Soul",
+"level": 17,
+"feats": [
+"Extract Aspects",
+"Extort Truth",
+"Mystical Erudition",
+"Mind of Mercury",
+"Debilitating Barrage"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Fighter",
+"sub": "",
+"bg": "Ashari",
+"level": 1,
+"feats": [
+"Elemental Harmony"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Fighter",
+"sub": "",
+"bg": "Clasp Member",
+"level": 1,
+"feats": [
+"A Favor in Turn"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Fighter",
+"sub": "",
+"bg": "Lyceum Scholar",
+"level": 1,
+"feats": [
+"Academic Requisition"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Fighter",
+"sub": "",
+"bg": "Reformed Cultist",
+"level": 1,
+"feats": [
+"Fell Teachings"
+],
+"lu": []
+},
+{
+"src": "tdcsr",
+"cls": "Fighter",
+"sub": "",
+"bg": "Whitestone Rifle Corps",
+"level": 1,
+"feats": [
+"Rifle Corps Relationship"
+],
+"lu": []
+},
+{
+"src": "tdcg",
+"cls": "Fighter",
+"sub": "",
+"bg": "Lyceum Student",
+"level": 1,
+"feats": [
+"Student Privilege"
+],
+"lu": []
+},
+{
+"src": "tdcg",
+"cls": "Fighter",
+"sub": "",
+"bg": "Myriad Operative",
+"level": 1,
+"feats": [
+"A Favor in Turn"
+],
+"lu": []
+},
+{
+"src": "tdcg",
+"cls": "Fighter",
+"sub": "",
+"bg": "Recovered Cultist",
+"level": 1,
+"feats": [
+"Wicked Awareness"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Chronomancer",
+"level": 14,
+"feats": [
+"Chronomancy Savant",
+"Chronoshift",
+"Retroactive Spell",
+"Lag Spell",
+"Time Loop"
+],
+"lu": [
+"Lag Spell",
+"Time Loop"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Familiar Master",
+"level": 14,
+"feats": [
+"Beckon Familiar",
+"Arcane Evolution",
+"Servitor's Agility",
+"Bolster Familiar",
+"Planar Familiar"
+],
+"lu": [
+"Beckon Familiar",
+"Bolster Familiar"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Fumaturge",
+"level": 14,
+"feats": [
+"Fogcrafting",
+"Smoke Animals",
+"Gaseous Escape",
+"Greater Fogcrafting",
+"Smoke Mage"
+],
+"lu": [
+"Gaseous Escape",
+"Smoke Mage"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Gastronomer",
+"level": 14,
+"feats": [
+"Sous Chef",
+"Monster Meal",
+"Arcane Condiments",
+"Heroic Snacks",
+"Five-Star Condiments"
+],
+"lu": [
+"Sous Chef",
+"Heroic Snacks"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Magic Missile Mage",
+"level": 14,
+"feats": [
+"Magic Missile Savant",
+"Versatile Missiles",
+"Shield of Missiles",
+"Giga-Missile"
+],
+"lu": [
+"Magic Missile (free)",
+"Shield of Missiles",
+"Giga-Missile"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Mystic Strategist",
+"level": 14,
+"feats": [
+"Battle Tactics",
+"Maneuver Options",
+"Arcane Assessment",
+"Spell Tactics",
+"Supreme Stratagems"
+],
+"lu": [
+"Battle Dice",
+"Arcane Assessment"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Protomancer",
+"level": 14,
+"feats": [
+"Proto-Magic",
+"Amnesia Surge",
+"Vital Recovery",
+"Mnemonic Concentration",
+"Proto-Master"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Scroll Scribe",
+"level": 14,
+"feats": [
+"Scrivener",
+"Scribe Scroll",
+"Arcane Revision",
+"Warding Scrawl",
+"Scroll Codex"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Somnomancer",
+"level": 14,
+"feats": [
+"Somnambulist",
+"Deep Sleep",
+"Hypnotize",
+"Lucid Dream",
+"Nightmares"
+],
+"lu": [
+"Deep Sleep"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Tyromancer",
+"level": 14,
+"feats": [
+"Cheese Magic",
+"Ferment Spell",
+"Legen-Dairy Resistance",
+"Lactose Intolerance"
+],
+"lu": [
+"Cheese Magic",
+"Ferment Spell",
+"Legen-Dairy Resistance"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Universalist",
+"level": 14,
+"feats": [
+"Arcane Excellence",
+"Multidisciplinary Scholar",
+"Universal Savant",
+"Eidetic Memory",
+"Spellwarp",
+"Erudite Focus"
+],
+"lu": [
+"Eidetic Memory",
+"Spellwarp"
+]
+},
+{
+"src": "tvss",
+"cls": "Wizard",
+"sub": "Wand Wizard",
+"level": 14,
+"feats": [
+"Arcane Duelist",
+"Craft Wands",
+"Wand Slinger",
+"Warding Shield",
+"Remnant Recharge"
+],
+"lu": [
+"Wand Slinger",
+"Warding Shield"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Bartending",
+"level": 14,
+"feats": [
+"Bartender",
+"Brew Cocktail",
+"Hangover",
+"Alcoholic Adventurers"
+],
+"lu": [
+"Hangover"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Birdsong",
+"level": 14,
+"feats": [
+"Feathered Friends",
+"Birdsong",
+"Zephyr's Blessing",
+"Chorus of the Sky"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Calligraphy",
+"level": 14,
+"feats": [
+"Quill and Ink",
+"Manuscript",
+"Spell Inscription",
+"Illuminated Spells"
+],
+"lu": [
+"Spell Inscription"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Cantors",
+"level": 14,
+"feats": [
+"Chorus Leader",
+"Healing Hymn",
+"Minor Miracles",
+"Song of Life"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Chronology",
+"level": 14,
+"feats": [
+"Chronomantic Secrets",
+"Retroactive Inspiration",
+"Borrowed Time",
+"Reorder Events"
+],
+"lu": [
+"Reorder Events"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Dirges",
+"level": 14,
+"feats": [
+"Death's Friend",
+"Dirge",
+"Call of the Grave",
+"Song of Sorrow"
+],
+"lu": [
+"Memento Mori",
+"Call of the Grave"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Jesters",
+"level": 14,
+"feats": [
+"Acrobatic Clown",
+"Tumbling Taunt",
+"Raconteur",
+"Insult to Injury"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of the Mad God",
+"level": 14,
+"feats": [
+"Outer Knowledge",
+"Mad Melody",
+"Frenzied Strings",
+"Cacophonous Melody"
+],
+"lu": [
+"Frenzied Strings"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Masks",
+"level": 14,
+"feats": [
+"Persona Masks",
+"Virtuoso Skill",
+"Master of Many Faces"
+],
+"lu": [
+"Virtuoso Skill"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Opera",
+"level": 14,
+"feats": [
+"Operatic Inspiration",
+"Vocalist",
+"Heroic Ballad",
+"Overture"
+],
+"lu": [
+"Operatic Inspiration",
+"Heroic Ballad"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Origami",
+"level": 14,
+"feats": [
+"Origami Familiar",
+"Paper Trinket",
+"Lucky Crane",
+"Origami Fortune"
+],
+"lu": [
+"Lucky Crane",
+"Origami Fortune"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Paint",
+"level": 14,
+"feats": [
+"Painter",
+"Colorful Casting",
+"Marvelous Pigments",
+"Master Illustrator"
+],
+"lu": [
+"Marvelous Pigments",
+"Master Illustrator"
+]
+},
+{
+"src": "tvss",
+"cls": "Bard",
+"sub": "College of Sculpture",
+"level": 14,
+"feats": [
+"Sculpted Golem",
+"Golem's Bulwark",
+"Sculpted Sentinel"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Abomination",
+"level": 14,
+"feats": [
+"Abominable Transformation",
+"Bloodcurdling Howl",
+"Monstrous Brutality",
+"Ravage"
+],
+"lu": [
+"Bloodcurdling Howl",
+"Ravage"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Battlemind",
+"level": 14,
+"feats": [
+"Psionic Power",
+"Psychic Assault",
+"Unbreakable Mind",
+"Psionic Redirection"
+],
+"lu": [
+"Psionic Energy Dice"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Dad",
+"level": 14,
+"feats": [
+"Paternal Proficiencies",
+"Not Angry, Just Disappointed",
+"Dad Jokes",
+"Don't Need to Ask For Directions",
+"Go to Your Room"
+],
+"lu": [
+"Pretty Sure It's Over Here",
+"Go to Your Room"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Drifter",
+"level": 14,
+"feats": [
+"Lone Wolf",
+"Break Free",
+"Crowd Brawler",
+"Relentless Aggression"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Fin",
+"level": 14,
+"feats": [
+"Aquatic Adaptation",
+"Frenzied Bite",
+"Blood Sense",
+"Feeding Frenzy",
+"Blood in the Water"
+],
+"lu": [
+"Frenzied Bite",
+"Blood in the Water"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Frostrager",
+"level": 14,
+"feats": [
+"Cold Resistance",
+"Frostrage",
+"Icicle Throw",
+"Abominable",
+"Frigid Wind"
+],
+"lu": [
+"Icicle Throw"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of Heavy Metal",
+"level": 14,
+"feats": [
+"Rocker",
+"Solo Shredding",
+"Head Banging",
+"Smash Hit",
+"Up to Eleven"
+],
+"lu": [
+"Up to Eleven"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of Spellfury",
+"level": 14,
+"feats": [
+"Mystical Physicality",
+"Spellcasting",
+"Arcane Strike",
+"Supernatural Exploits",
+"Eldritch Rampage"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Slasher",
+"level": 14,
+"feats": [
+"Mark of the Slasher",
+"Execution",
+"Menacing Stare",
+"Blood-Drunk",
+"Killing Spree"
+],
+"lu": [
+"Killing Spree"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Swamp",
+"level": 14,
+"feats": [
+"Bogborne",
+"Swamp Thing",
+"Primal Magic",
+"Muck and Mire",
+"Crushing Roots"
+],
+"lu": [
+"Swamp Thing",
+"Primal Magic"
+]
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of Tranquility",
+"level": 14,
+"feats": [
+"Battle Trance",
+"Mantra",
+"Serene Strike",
+"Reactive"
+],
+"lu": []
+},
+{
+"src": "tvss",
+"cls": "Barbarian",
+"sub": "Path of the Muscle Wizard",
+"level": 14,
+"feats": [
+"Unarguable Wizardry",
+"\"Cantrips\"",
+"\"Spells\"",
+"Magic Resistance",
+"I Cast Fist"
+],
+"lu": [
+"Wizard \"Spells\""
+]
+},
+{
+"src": "tee24",
+"cls": "Druid",
+"sub": "Circle of the Forged",
+"level": 20,
+"feats": [
+"Circle of the Forged Spells",
+"Skin of Steel",
+"Elementally Imbued",
+"Adamantine Hide",
+"Construction Perfection"
+],
+"lu": []
+},
+{
+"src": "tee24",
+"cls": "Bard",
+"sub": "College of the Dirge Singer",
+"level": 20,
+"feats": [
+"Broad Inspiration",
+"Keeper of History",
+"Commanding Voice",
+"Battle Hymn"
+],
+"lu": []
+},
+{
+"src": "tee24",
+"cls": "Artificer",
+"sub": "Forge Adept",
+"level": 20,
+"feats": [
+"Battle Ready",
+"Forge Adept Spells",
+"Ghaal'Shaarat",
+"Tool Proficiency",
+"Extra Attack"
+],
+"lu": [
+"Aura of War",
+"Empower Aura"
+]
+},
+{
+"src": "tee24",
+"cls": "Artificer",
+"sub": "Maverick",
+"level": 20,
+"feats": [
+"Arcane Prototype",
+"Maverick Spells",
+"Tool Proficiency",
+"Fine Tuning",
+"Work in Progress"
+],
+"lu": [
+"Improved Genius"
+]
+},
+{
+"src": "tee24",
+"cls": "Cleric",
+"sub": "Mind Domain",
+"level": 20,
+"feats": [
+"Mind Domain Spells",
+"Psychic Feedback",
+"Psychic Force",
+"Gestalt Anchor",
+"Bend Reality"
+],
+"lu": [
+"Bend Reality"
+]
+},
+{
+"src": "tee24",
+"cls": "Monk",
+"sub": "Warrior of the Living Weapon",
+"level": 20,
+"feats": [
+"Martial Form",
+"Mutable Strike",
+"Manifest Blow",
+"Reflexive Adaptation",
+"Perfect Form"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Barbarian",
+"sub": "Path of the Fractured",
+"level": 20,
+"feats": [
+"Face of Rage",
+"Mask of Civility",
+"Brains and Brawn",
+"Cunning and Brutal",
+"Better Half"
+],
+"lu": [
+"Better Half"
+]
+},
+{
+"src": "tghp",
+"cls": "Barbarian",
+"sub": "Path of the Primal Spirit",
+"level": 20,
+"feats": [
+"Primal Companion",
+"Shared Rage",
+"Kin to Beasts",
+"Skinrider's Trance",
+"Shape of the Wild"
+],
+"lu": [
+"Skinrider's Trance",
+"Shape of the Wild"
+]
+},
+{
+"src": "tghp",
+"cls": "Barbarian",
+"sub": "Path of the Wrathful Dead",
+"level": 20,
+"feats": [
+"Final Night Catharsis",
+"Rage of the Dead",
+"Dark Doom Revisited",
+"Death Is but a Door",
+"Powered by Pathos"
+],
+"lu": [
+"Death Is but a Door"
+]
+},
+{
+"src": "tghp",
+"cls": "Bard",
+"sub": "College of Adventurers",
+"level": 20,
+"feats": [
+"Party Planner",
+"Talented Adventurer",
+"Well-Rounded",
+"Improvisational Talent"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Bard",
+"sub": "College of Fools",
+"level": 20,
+"feats": [
+"Antagonistic Antics",
+"Cruel Jest",
+"Gallows Humor",
+"Last Laugh"
+],
+"lu": [
+"Gallows Humor",
+"Last Laugh"
+]
+},
+{
+"src": "tghp",
+"cls": "Bard",
+"sub": "College of Requiems",
+"level": 20,
+"feats": [
+"Chilling Melody",
+"Pluck the Heartstrings",
+"Stir the Bones",
+"Dual Death"
+],
+"lu": [
+"Dual Death"
+]
+},
+{
+"src": "tghp",
+"cls": "Cleric",
+"sub": "Eldritch Domain",
+"level": 20,
+"feats": [
+"Eldritch Domain Spells",
+"Eldritch Contagion",
+"Prophecy of Doom",
+"Otherworldly Calm",
+"Sing the Song that Ends the World"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Cleric",
+"sub": "Inquisition Domain",
+"level": 20,
+"feats": [
+"Inquisition Domain Spells",
+"Spell Shield",
+"Witch Hunter's Strike",
+"Rebuke Invoker",
+"Supernal Safeguard"
+],
+"lu": [
+"Witch Hunter's Strike",
+"Rebuke Invoker"
+]
+},
+{
+"src": "tghp",
+"cls": "Cleric",
+"sub": "Purification Domain",
+"level": 20,
+"feats": [
+"Cleanse with Fire",
+"Purification Domain Spells",
+"Unclean Brand",
+"Ward Against Corruption",
+"Sear Imperfections"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Druid",
+"sub": "Circle of Blood",
+"level": 20,
+"feats": [
+"Circle of Blood Spells",
+"Rite of the Blood Moon",
+"Blood Boon",
+"Blood Lust",
+"Exsanguinate"
+],
+"lu": [
+"Blood Boon",
+"Exsanguinate"
+]
+},
+{
+"src": "tghp",
+"cls": "Druid",
+"sub": "Circle of Entropy",
+"level": 20,
+"feats": [
+"Catastrophic Power",
+"Ruin Incarnate",
+"Many Roads to Ruin",
+"Shake the Earth",
+"Entropy's Apex"
+],
+"lu": [
+"Shake the Earth"
+]
+},
+{
+"src": "tghp",
+"cls": "Druid",
+"sub": "Circle of Mutation",
+"level": 20,
+"feats": [
+"Circle Forms",
+"Mutate Shape",
+"Unnatural and Unnerving",
+"Endless Evolution",
+"Apex Predator"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Fighter",
+"sub": "Bulwark Warrior",
+"level": 20,
+"feats": [
+"Protective Taunt",
+"Weather the Storm",
+"Threatening Presence",
+"Aggressive Defense",
+"Improved Second Wind"
+],
+"lu": [
+"Weather the Storm",
+"Threatening Presence"
+]
+},
+{
+"src": "tghp",
+"cls": "Fighter",
+"sub": "Living Crucible",
+"level": 20,
+"feats": [
+"Compound Creator",
+"Student of Alchemy",
+"Living Cauldron",
+"Rapid Consumption",
+"Toxin Transmutation"
+],
+"lu": [
+"Toxin Transmutation"
+]
+},
+{
+"src": "tghp",
+"cls": "Fighter",
+"sub": "Nightwatcher",
+"level": 20,
+"feats": [
+"Ever Vigilant",
+"Skilled Guardian",
+"Size Up",
+"Night Stalker",
+"Ready for Action"
+],
+"lu": [
+"Warning Shout",
+"Night Stalker"
+]
+},
+{
+"src": "tghp",
+"cls": "Monk",
+"sub": "Warrior of Pride",
+"level": 20,
+"feats": [
+"Assertive Attacker",
+"Bruised Ego",
+"Tall Tales",
+"Irrational Retaliation",
+"Redoubled Efforts"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Monk",
+"sub": "Warrior of Regret",
+"level": 20,
+"feats": [
+"Shade of Regret",
+"The Road Not Traveled",
+"Aid Not Given",
+"Crushing Guilt",
+"Relive the Past"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Monk",
+"sub": "Warrior of the Leaden Crown",
+"level": 20,
+"feats": [
+"Psionic Prowess",
+"Subtle Hand",
+"Unsubtle Strike",
+"Psychic Crush",
+"Psionic Mastery"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Paladin",
+"sub": "Oath of Pestilence",
+"level": 20,
+"feats": [
+"Debilitating Fever",
+"Entropic Infection",
+"Oath of Pestilence Spells",
+"Aura of Rampant Sickness",
+"Disgusting Resilience"
+],
+"lu": [
+"Plaguebringer"
+]
+},
+{
+"src": "tghp",
+"cls": "Paladin",
+"sub": "Oath of Slaughter",
+"level": 20,
+"feats": [
+"Frenzied Slaughter",
+"Oath of Slaughter Spells",
+"Bloodthirst Aura",
+"Follow Through",
+"Blood Knight"
+],
+"lu": [
+"Blood Knight"
+]
+},
+{
+"src": "tghp",
+"cls": "Paladin",
+"sub": "Oath of Zeal",
+"level": 20,
+"feats": [
+"Mark of the Heretic",
+"Oath of Zeal Spells",
+"Aura of Clarity",
+"Compel Confession",
+"Apocalyptic Revelation"
+],
+"lu": [
+"Apocalyptic Revelation"
+]
+},
+{
+"src": "tghp",
+"cls": "Ranger",
+"sub": "Green Reaper",
+"level": 20,
+"feats": [
+"Envenomed Attack",
+"Green Reaper Spells",
+"Toxic Tradecraft",
+"Poison Control",
+"Variegated Vexations"
+],
+"lu": [
+"Envenomed Attack",
+"Protection from Poison"
+]
+},
+{
+"src": "tghp",
+"cls": "Ranger",
+"sub": "Primordial Archer",
+"level": 20,
+"feats": [
+"Elemental Arrows",
+"Herbal Lore",
+"Primordial Archer Spells",
+"Weave the Elements",
+"Witching Arrows"
+],
+"lu": [
+"Elemental Arrows",
+"Herbal Lore"
+]
+},
+{
+"src": "tghp",
+"cls": "Ranger",
+"sub": "Vermin Lord",
+"level": 20,
+"feats": [
+"Swarming Strikes",
+"Vermin Lord Spells",
+"Verminkin",
+"Filth and Fortitude",
+"Infectious Spread"
+],
+"lu": [
+"Verminkin",
+"Swarming Strikes"
+]
+},
+{
+"src": "tghp",
+"cls": "Rogue",
+"sub": "Highway Rider",
+"level": 20,
+"feats": [
+"Hair Trigger",
+"Ride Them Down",
+"Trusty Mount",
+"Horse Lord",
+"True Grit"
+],
+"lu": [
+"Trusty Mount"
+]
+},
+{
+"src": "tghp",
+"cls": "Rogue",
+"sub": "Misfortune Bringer",
+"level": 20,
+"feats": [
+"Evil Eye",
+"Misfortunist",
+"Steal Luck",
+"Curse Caster",
+"Improved Steal Luck"
+],
+"lu": [
+"Jinx Points",
+"Steal Luck"
+]
+},
+{
+"src": "tghp",
+"cls": "Rogue",
+"sub": "Sanguine Thief",
+"level": 20,
+"feats": [
+"Spellcasting",
+"Stolen Power",
+"Steal Blood",
+"Bloody Blades",
+"Bloodstitch"
+],
+"lu": [
+"Steal Blood",
+"Bloodstitch"
+]
+},
+{
+"src": "tghp",
+"cls": "Sorcerer",
+"sub": "Apocalypse Sorcery",
+"level": 20,
+"feats": [
+"Apocalyptic Spells",
+"Unhinged Asservations",
+"Arcane Apocrypha",
+"Bear Witness",
+"Forbidden Magic"
+],
+"lu": [
+"Arcane Apocrypha",
+"The End is Nigh"
+]
+},
+{
+"src": "tghp",
+"cls": "Sorcerer",
+"sub": "Haunted Sorcery",
+"level": 20,
+"feats": [
+"Haunted Spells",
+"Sixth Sense",
+"Phantom Companion",
+"Deathly Pallor",
+"Strength of Spirit"
+],
+"lu": [
+"Phantom Possession",
+"Become Death"
+]
+},
+{
+"src": "tghp",
+"cls": "Sorcerer",
+"sub": "Wretched Bloodline Sorcery",
+"level": 20,
+"feats": [
+"Bad Luck Charm",
+"Blood Ties",
+"Wretched Curse",
+"Share the Burden",
+"Terrifying Visage"
+],
+"lu": [
+"Bad Luck Charm",
+"Blood Ties"
+]
+},
+{
+"src": "tghp",
+"cls": "Warlock",
+"sub": "The Coven",
+"level": 20,
+"feats": [
+"Coven Spells",
+"Hag's Eye",
+"Hag's Guile",
+"Hag's Visage",
+"Hag's Craft"
+],
+"lu": [
+"Hag's Eye (Hex)",
+"Hag's Eye (Bestow Curse)"
+]
+},
+{
+"src": "tghp",
+"cls": "Warlock",
+"sub": "The First Vampire Patron",
+"level": 20,
+"feats": [
+"Drain Life",
+"First Vampire Spells",
+"Nocturnal Predator",
+"Creature of the Night",
+"Eldritch Appetite"
+],
+"lu": [
+"Creature of the Night",
+"Eldritch Appetite"
+]
+},
+{
+"src": "tghp",
+"cls": "Warlock",
+"sub": "The Parasite Patron",
+"level": 20,
+"feats": [
+"Physical Specimen",
+"Spell Siphon",
+"Symbiotic Sentinel",
+"Spawn Pawn",
+"Larval Regeneration"
+],
+"lu": [
+"Physical Specimen",
+"Spawn Pawn"
+]
+},
+{
+"src": "tghp",
+"cls": "Wizard",
+"sub": "Daemonologist",
+"level": 20,
+"feats": [
+"Fair and Foul",
+"Stolen Secrets",
+"Borrowed Tongues and Hides",
+"Unearthly Countenance",
+"Eternal War Eruption"
+],
+"lu": [
+"Switch Sides",
+"Unearthly Countenance"
+]
+},
+{
+"src": "tghp",
+"cls": "Wizard",
+"sub": "Plague Doctor",
+"level": 20,
+"feats": [
+"Good Medicine",
+"Potion Craft",
+"Bad Medicine",
+"Breathe It In",
+"Medicinal Master"
+],
+"lu": []
+},
+{
+"src": "tghp",
+"cls": "Wizard",
+"sub": "Sangromancer",
+"level": 20,
+"feats": [
+"Full-Blooded",
+"Sangromancy Savant",
+"Sanguine Vigor",
+"Blood for Blood",
+"Red Renewal"
+],
+"lu": [
+"Red Renewal"
+]
+},
+{
+"src": "tghp",
+"cls": "Monster Hunter",
+"sub": "Carver Guild",
+"level": 20,
+"feats": [
+"Close Quarters",
+"Equipped for Battle",
+"True Grit",
+"Terrorize the Terrors",
+"Deadly Redirect"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tghp",
+"cls": "Monster Hunter",
+"sub": "Devourer Guild",
+"level": 20,
+"feats": [
+"Alchemical Gastronomy",
+"Transmuting Metabolism",
+"Synchronized Response",
+"Gnawing Hunger",
+"Alchemical Decoctions"
+],
+"lu": [
+"Gnawing Hunger"
+],
+"tpcls": 1
+},
+{
+"src": "tghp",
+"cls": "Monster Hunter",
+"sub": "Occultist Guild",
+"level": 20,
+"feats": [
+"Acolyte of the Occult",
+"Spellcasting",
+"Arcane Interference",
+"Mage Hunter",
+"Occult Knowledge"
+],
+"lu": [
+"Counterspell (free)"
+],
+"tpcls": 1
+},
+{
+"src": "tghp",
+"cls": "Monster Hunter",
+"sub": "Trapper Guild",
+"level": 20,
+"feats": [
+"Sneaky and Crafty",
+"Trapper Gadgets",
+"Ambusher's Advantage",
+"Agile Response",
+"Monster-Hide Armor"
+],
+"lu": [
+"Rapid Tinkerer"
+],
+"tpcls": 1
+},
+{
+"src": "tsgeh",
+"cls": "Jaeger",
+"sub": "Absolute Chapter",
+"level": 20,
+"feats": [
+"Counter Strike",
+"Unencumbered Movement",
+"Encircling Strike",
+"Mobile Pursuer",
+"The Hunt"
+],
+"lu": [
+"The Hunt"
+],
+"tpcls": 1
+},
+{
+"src": "tsgeh",
+"cls": "Jaeger",
+"sub": "Heretic Chapter",
+"level": 20,
+"feats": [
+"Occult Arts",
+"Heretic Magic",
+"Shrouded Steps",
+"Mystical Momentum",
+"Darkness Within"
+],
+"lu": [
+"Darkness Within"
+],
+"tpcls": 1
+},
+{
+"src": "tsgeh",
+"cls": "Jaeger",
+"sub": "Marauder Chapter",
+"level": 20,
+"feats": [
+"Marauder Momentum",
+"Path of Gore",
+"Unbreakable",
+"Leap Attack",
+"Fell the Leviathan"
+],
+"lu": [
+"Titanic Strength (double dice)"
+],
+"tpcls": 1
+},
+{
+"src": "tsgeh",
+"cls": "Jaeger",
+"sub": "Salvation Chapter",
+"level": 20,
+"feats": [
+"Art of Salvation",
+"Savior's Focus",
+"Sanctifying Light",
+"Purifying Salvation",
+"Light of Hope"
+],
+"lu": [
+"Light of Hope"
+],
+"tpcls": 1
+},
+{
+"src": "tsgeh",
+"cls": "Jaeger",
+"sub": "Sanguine Chapter",
+"level": 20,
+"feats": [
+"Crimson Rage",
+"Vital Consumption",
+"Blood Hex",
+"Empowered Blood Hex",
+"Blood Frenzy"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsae",
+"cls": "Artificer",
+"sub": "Forceforger",
+"level": 20,
+"feats": [
+"Forceforger Spells",
+"Tools of the Trade",
+"Field Projector",
+"Force Panel",
+"Forceful Shove"
+],
+"lu": [
+"Field Projector (free spell)",
+"Flyrokinetic Master"
+]
+},
+{
+"src": "tsae",
+"cls": "Artificer",
+"sub": "Magneticist",
+"level": 20,
+"feats": [
+"Magneticist Spells",
+"Tools of the Trade",
+"Magnetic Manipulator",
+"Metal Slinger",
+"Extra Attack"
+],
+"lu": [
+"Metallic Control"
+]
+},
+{
+"src": "tsae",
+"cls": "Artificer",
+"sub": "Mutagenist",
+"level": 20,
+"feats": [
+"Mutagenist Spells",
+"Tools of the Trade",
+"Mutagenic Concoctions",
+"Extra Attack",
+"Body Modifications"
+],
+"lu": [
+"Mutagenic Concoctions (free spell)"
+]
+},
+{
+"src": "tsae",
+"cls": "Artificer",
+"sub": "Portalweaver",
+"level": 20,
+"feats": [
+"Portalweaver Spells",
+"Tools of the Trade",
+"Portal Device",
+"Portals",
+"Mini Portals"
+],
+"lu": [
+"Portal Device (free spell)",
+"Portals"
+]
+},
+{
+"src": "tshl",
+"cls": "Healer",
+"sub": "Vow of the Augmenter",
+"level": 20,
+"feats": [
+"Augmenter Spells",
+"Enhancing Tether",
+"Dual Augmentation",
+"Greater Empowerment",
+"Master Augmenter"
+],
+"lu": [
+"Dual Augmentation"
+],
+"tpcls": 1
+},
+{
+"src": "tshl",
+"cls": "Healer",
+"sub": "Vow of the Martyr",
+"level": 20,
+"feats": [
+"Martyr Spells",
+"Martyr's Endurance",
+"Exemplar",
+"Selfless Sacrifice",
+"True Martyrdom"
+],
+"lu": [
+"Exemplar"
+],
+"tpcls": 1
+},
+{
+"src": "tshl",
+"cls": "Healer",
+"sub": "Vow of the Protector",
+"level": 20,
+"feats": [
+"Protector Spells",
+"Tether of Protection",
+"Shield of the Protector",
+"Vigilant Protector",
+"Improved Life Tether"
+],
+"lu": [
+"Free Shield"
+],
+"tpcls": 1
+},
+{
+"src": "tshl",
+"cls": "Healer",
+"sub": "Vow of the Siphon",
+"level": 20,
+"feats": [
+"Siphon Spells",
+"Harmful Tether",
+"Life Leech",
+"Improved Sap Strength",
+"Leech Conduit"
+],
+"lu": [
+"Sap Defenses"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Guardian Angel",
+"level": 20,
+"feats": [
+"Celestial Spells",
+"Celestial Eidolon",
+"Exalted Presence",
+"Mortal Sacrifice",
+"Immortal Bulwark"
+],
+"lu": [
+"Healing Surge"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Dragon Herald",
+"level": 20,
+"feats": [
+"Draconic Spells",
+"Dragon Eidolon",
+"Evocation Expert",
+"Summoner's Blast",
+"Draconic Realisation"
+],
+"lu": [
+"Breath Weapon"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Faerie Trickster",
+"level": 20,
+"feats": [
+"Fey Spells",
+"Faerie Eidolon",
+"Enchantment Expert",
+"Faerie Dust",
+"Ultimate Trickster"
+],
+"lu": [
+"Faerie Dust"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Elemental Spirit",
+"level": 20,
+"feats": [
+"Elemental Spells",
+"Elemental Eidolon",
+"Primordial Attunement",
+"Swap Elements",
+"Twin Eidolons"
+],
+"lu": [
+"Swap Elements"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Fiendish Chain",
+"level": 20,
+"feats": [
+"Fiend Spells",
+"Fiend Eidolon",
+"Honorary Fiend",
+"Hellish Ferocity",
+"Dark Versatility"
+],
+"lu": [
+"Honorary Fiend"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Symbiote",
+"level": 20,
+"feats": [
+"Symbiote Spells",
+"Symbiote Eidolon",
+"Merge Bodies",
+"Symbiotic Synergy",
+"Perfect Symbiosis"
+],
+"lu": [
+"Merge Bodies"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Grave Caller",
+"level": 20,
+"feats": [
+"Undead Spells",
+"Undead Eidolon",
+"Necromancy Expert",
+"Life Drain",
+"Ultimate Manifestation"
+],
+"lu": [
+"Undead Vessel Reaction"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Aberrant Psion",
+"level": 20,
+"feats": [
+"Psychic Spells",
+"Psychic Eidolon",
+"Divination Expert",
+"Telekinetic Eidolon",
+"Psychic Marker"
+],
+"lu": [
+"Telekinetic Movement"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Living Armament",
+"level": 20,
+"feats": [
+"Armament Spells",
+"Armament Eidolon",
+"Encase",
+"Enhanced Protection",
+"Autopilot"
+],
+"lu": [
+"Encase"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Mirror Mage",
+"level": 20,
+"feats": [
+"Mirror Spells",
+"Mirror Eidolon",
+"Illusion Expert",
+"Reflected Positioning",
+"Magical Reflection"
+],
+"lu": [
+"Focal Point"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Monster Shaper",
+"level": 20,
+"feats": [
+"Monstrous Spells",
+"Monstrous Eidolon",
+"Transmutation Expert",
+"Reshape",
+"Master Reshaper"
+],
+"lu": [
+"Master Reshaper"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Shambling Plant",
+"level": 20,
+"feats": [
+"Plant Spells",
+"Plant Eidolon",
+"Natural Spellcasting",
+"Absorb Nutrients",
+"Root Network"
+],
+"lu": [
+"Absorb Nutrients"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Spirit Animal",
+"level": 20,
+"feats": [
+"Spirit Animal Spells",
+"Spirit Animal Eidolon",
+"Abjuration Expert",
+"Guardian's Fortitude",
+"Guardian's Sanctuary"
+],
+"lu": [
+"Protective Field"
+],
+"tpcls": 1
+},
+{
+"src": "tssm",
+"cls": "Summoner",
+"sub": "Bond of the Wrathful Giant",
+"level": 20,
+"feats": [
+"Giant Spells",
+"Giant Eidolon",
+"Attuned Toughness",
+"Physical Empowerment",
+"Ultimate Empowerment"
+],
+"lu": [
+"Physical Empowerment"
+],
+"tpcls": 1
+},
+{
+"src": "tsdd",
+"cls": "Ranger",
+"sub": "Big Game Hunter",
+"level": 20,
+"feats": [
+"Ranged Specialist",
+"Game Hunter",
+"Bolas",
+"Special Shots",
+"Finish the Hunt"
+],
+"lu": [
+"Bolas"
+]
+},
+{
+"src": "tsgs",
+"cls": "Cleric",
+"sub": "Astral Domain",
+"level": 20,
+"feats": [
+"Astral Domain Spells",
+"Create Void",
+"Planar Reach",
+"Spatial Exchange",
+"Supreme Switching"
+],
+"lu": [
+"Planar Reach"
+]
+},
+{
+"src": "tsgs",
+"cls": "Warlock",
+"sub": "Astral Griffon Patron",
+"level": 20,
+"feats": [
+"Astral Griffon Spells",
+"Astral Missile",
+"Extradimensional Acuity",
+"Planar Escape",
+"Pocketeer"
+],
+"lu": [
+"Astral Missile"
+]
+},
+{
+"src": "tsgs",
+"cls": "Druid",
+"sub": "Circle of the Unbroken",
+"level": 20,
+"feats": [
+"Unbroken Circle Spells",
+"Improved Shillelagh",
+"Wild Recovery",
+"Shillelagh Mastery",
+"Nature Armor"
+],
+"lu": []
+},
+{
+"src": "tsgs",
+"cls": "Bard",
+"sub": "College of Choreography",
+"level": 20,
+"feats": [
+"Fast Movement",
+"Inspirational Dance",
+"Entrancing Movement",
+"Endless Dance",
+"Endless Dance"
+],
+"lu": [
+"Entrancing Movement: Charm Person"
+]
+},
+{
+"src": "tsgs",
+"cls": "Fighter",
+"sub": "Couatl Herald",
+"level": 20,
+"feats": [
+"Agent of Mercy",
+"One of the People",
+"Peacebringer",
+"Calm Mind",
+"Heraldic Enforcer"
+],
+"lu": [
+"Mercy Dice"
+]
+},
+{
+"src": "tsgs",
+"cls": "Sorcerer",
+"sub": "Frost Sorcery",
+"level": 20,
+"feats": [
+"Frost Spells",
+"Create Ice",
+"Frozen Body",
+"Cold-Hearted",
+"Frozen Soul"
+],
+"lu": [
+"Frozen Soul: Wall of Ice"
+]
+},
+{
+"src": "tsgs",
+"cls": "Wizard",
+"sub": "Materializer",
+"level": 20,
+"feats": [
+"Arcane Artisan",
+"Minor Creation",
+"Material Enhancement",
+"Dematerialize",
+"Rematerialize"
+],
+"lu": [
+"Cube Detonation"
+]
+},
+{
+"src": "tsgs",
+"cls": "Paladin",
+"sub": "Oath of the Hearth",
+"level": 20,
+"feats": [
+"Oath of the Hearth Spells",
+"Burning weapon",
+"Aura of Warmth",
+"Insulating Ward",
+"Burning Spirit"
+],
+"lu": [
+"Burning Spirit"
+]
+},
+{
+"src": "tsgs",
+"cls": "Barbarian",
+"sub": "Path of the Glacier",
+"level": 20,
+"feats": [
+"Frostbite",
+"Permafrost",
+"Cold Fortress",
+"Deep Sleep",
+"Avalanche Stomp"
+],
+"lu": [
+"Rage Extension"
+]
+},
+{
+"src": "tsgs",
+"cls": "Rogue",
+"sub": "Runetagger",
+"level": 20,
+"feats": [
+"Impressionist",
+"Runes",
+"Escape Artist",
+"Resourceful",
+"Lead Paint"
+],
+"lu": [
+"Rune Points"
+]
+},
+{
+"src": "tsgs",
+"cls": "Monk",
+"sub": "Warrior of the Celestial",
+"level": 20,
+"feats": [
+"Celestial Connection",
+"Soul-Searching Strike",
+"Stabilizing Focus",
+"Celestial Emissary",
+"Heavenborne"
+],
+"lu": [
+"Celestial Emissary: Dream"
+]
+},
+{
+"src": "tsgs",
+"cls": "Ranger",
+"sub": "Winter Trapper",
+"level": 20,
+"feats": [
+"Winter Trapper Spells",
+"Pin Down",
+"Arctic Predator",
+"Magic Snare",
+"Tripped Defenses"
+],
+"lu": [
+"Magic Snare"
+]
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "AI Futurist",
+"level": 20,
+"feats": [
+"Advanced Subroutines",
+"Novel Intelligence",
+"Tactical Analysis",
+"Reactive Hack",
+"Hyperintelligence"
+],
+"lu": [
+"Hyperintelligence"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Cyber Surgeon",
+"level": 20,
+"feats": [
+"Bio-Serum",
+"Skilled Surgeon",
+"Lazarus Bolt",
+"Experimental Trials",
+"Biotech Field"
+],
+"lu": [
+"Bio-Serum"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Drone Jockey",
+"level": 20,
+"feats": [
+"Drone Commander",
+"Swarm Tactics",
+"Sacrificial Dive",
+"Omega Upgrade",
+"Omega Upgrade"
+],
+"lu": [
+"Swift Command"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Hologrammer",
+"level": 20,
+"feats": [
+"Hologram Projector",
+"Illusory Decoy",
+"Dazzling Devices",
+"Holographic Burst",
+"Cognitohazard"
+],
+"lu": [
+"Hologram points"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Jumper",
+"level": 20,
+"feats": [
+"Slip Gate",
+"Dimensional Pit",
+"Improved Slip Gate",
+"Displacement",
+"Displacement"
+],
+"lu": [
+"Slip Gate"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Mastermaker",
+"level": 20,
+"feats": [
+"Advanced Construct Grafts",
+"Reconfigure",
+"Engineered Identity",
+"Expendable Parts",
+"Construct Perfection"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Gadgeteer",
+"sub": "Quantum Mechanic",
+"level": 20,
+"feats": [
+"Temporal Relativism",
+"Uncertainty Principle",
+"Quantum Tunneling",
+"Schrödinger's Defense",
+"Entanglement"
+],
+"lu": [
+"Quantum Tunneling"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Barbarian",
+"sub": "Path of the Dreadnought",
+"level": 20,
+"feats": [
+"Brutal Gunplay",
+"Glory Kill",
+"Shock Trooper",
+"Ultraviolence",
+"Vicious Rampage"
+],
+"lu": [
+"Ultraviolence"
+]
+},
+{
+"src": "tsdm",
+"cls": "Barbarian",
+"sub": "Path of the Wrecker",
+"level": 20,
+"feats": [
+"Deconstructor",
+"Luddite",
+"Percussive Maintenance",
+"Disarm Foe",
+"Steel Shredder"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Bard",
+"sub": "College of Chronology",
+"level": 20,
+"feats": [
+"Chronomantic Secrets",
+"Retroactive Inspiration",
+"Borrowed Time",
+"Reorder Events",
+"Reorder Events"
+],
+"lu": [
+"Reorder Events"
+]
+},
+{
+"src": "tsdm",
+"cls": "Bard",
+"sub": "College of Cyberwave",
+"level": 20,
+"feats": [
+"Etheradio Transmissions",
+"Wave Synth",
+"Modulation",
+"Polyphonic Echo",
+"Polyphonic Echo"
+],
+"lu": [
+"Etheradio Transmissions"
+]
+},
+{
+"src": "tsdm",
+"cls": "Cleric",
+"sub": "Evolution Domain",
+"level": 20,
+"feats": [
+"Evolution Domain Spells",
+"Adaptation",
+"Evolutionary",
+"Transient Awakening",
+"High Evolutionary"
+],
+"lu": [
+"Evolution Dice"
+]
+},
+{
+"src": "tsdm",
+"cls": "Cleric",
+"sub": "Machine Domain",
+"level": 20,
+"feats": [
+"Machine Domain Spells",
+"Automate",
+"Gearpriest",
+"Anoint Technology",
+"Sublime Automation"
+],
+"lu": [
+"Anoint Technology"
+]
+},
+{
+"src": "tsdm",
+"cls": "Druid",
+"sub": "Circle of Configuration",
+"level": 20,
+"feats": [
+"Circle of Configuration Spells",
+"Construct Form",
+"Machine Code",
+"Speaker of Steel",
+"Mecha Configuration"
+],
+"lu": [
+"Mecha Configuration"
+]
+},
+{
+"src": "tsdm",
+"cls": "Druid",
+"sub": "Circle of Xenobiology",
+"level": 20,
+"feats": [
+"Circle of Xenobiology Spells",
+"Splicer",
+"Adaptive Resilience",
+"Genetic Library",
+"Wild Mutation"
+],
+"lu": [
+"Wild Mutation"
+]
+},
+{
+"src": "tsdm",
+"cls": "Fighter",
+"sub": "Cybernetic",
+"level": 20,
+"feats": [
+"Cybernetic Crafts",
+"Graft Mastery",
+"Neural Implant",
+"Hyperdrive",
+"Cyborg"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Fighter",
+"sub": "Space Marine",
+"level": 20,
+"feats": [
+"Impulse Frame",
+"Hell Jump",
+"Frame Upgrade",
+"Sustained Flight",
+"Dragon Frame"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Monk",
+"sub": "Warrior of Gravity",
+"level": 20,
+"feats": [
+"Singularity Strike",
+"Subjective Gravity",
+"Plunging Strike",
+"Distort Gravity",
+"Supermassive Strike"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Monk",
+"sub": "Warrior of the Warped",
+"level": 20,
+"feats": [
+"Flexile Fists",
+"Rubbery Body",
+"Spring Knees",
+"Gatling Strikes",
+"Gatling Strikes"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Paladin",
+"sub": "Oath of the Gamma Knight",
+"level": 20,
+"feats": [
+"Gamma Knight Spells",
+"Gamma Blade",
+"Aura of Attunement",
+"Intercepting Strike",
+"Galactic Knight"
+],
+"lu": [
+"Galactic Knight"
+]
+},
+{
+"src": "tsdm",
+"cls": "Paladin",
+"sub": "Oath of the Sun",
+"level": 20,
+"feats": [
+"Oath of the Sun Spells",
+"Solar Flare",
+"Aura of Warmth",
+"Incandescent Strikes",
+"Zenith"
+],
+"lu": [
+"Zenith"
+]
+},
+{
+"src": "tsdm",
+"cls": "Ranger",
+"sub": "Bounty Hunter",
+"level": 20,
+"feats": [
+"Bounty Hunter's Mark",
+"Cornered Quarry",
+"Threat Assessment",
+"Takedown Tactics",
+"Perilous Dodge"
+],
+"lu": [
+"Takedown Tactics"
+]
+},
+{
+"src": "tsdm",
+"cls": "Ranger",
+"sub": "Freerunner",
+"level": 20,
+"feats": [
+"Acrobatic Mobility",
+"Freerunning",
+"Momentum",
+"Evasive Fighter",
+"Tumbling Escape"
+],
+"lu": [
+"Freerunning"
+]
+},
+{
+"src": "tsdm",
+"cls": "Rogue",
+"sub": "Cyber Ninja",
+"level": 20,
+"feats": [
+"Cyber Katana",
+"Ninja Agility",
+"Ultra Slash",
+"Covert Techniques",
+"Omni Slash"
+],
+"lu": [
+"Ninja Agility"
+]
+},
+{
+"src": "tsdm",
+"cls": "Rogue",
+"sub": "Infiltrator",
+"level": 20,
+"feats": [
+"Codebreaker",
+"Cyberattack",
+"Technical Exploits",
+"Electromagical Burst",
+"Mind Hack"
+],
+"lu": [
+"Cyberattack"
+]
+},
+{
+"src": "tsdm",
+"cls": "Sorcerer",
+"sub": "Cosmic Magic",
+"level": 20,
+"feats": [
+"Cosmic Spells",
+"Starborn",
+"Cosmic Rays",
+"Radiation Burst",
+"Stardust"
+],
+"lu": [
+"Radiation Burst"
+]
+},
+{
+"src": "tsdm",
+"cls": "Sorcerer",
+"sub": "Nanite Magic",
+"level": 20,
+"feats": [
+"Nanite Spells",
+"Nano Touch",
+"Techno-Intuition",
+"Recycling Protocol",
+"Reactive Nanites"
+],
+"lu": [
+"Recycling Protocol"
+]
+},
+{
+"src": "tsdm",
+"cls": "Warlock",
+"sub": "Singularity Patron",
+"level": 20,
+"feats": [
+"Singularity Spells",
+"Accretion Disk",
+"Wormhole",
+"Gravitational Resistance",
+"Microsingularity"
+],
+"lu": [
+"Wormhole"
+]
+},
+{
+"src": "tsdm",
+"cls": "Warlock",
+"sub": "Star Patron",
+"level": 20,
+"feats": [
+"Star Spells",
+"Nova",
+"Blinding Rebuke",
+"Radiant Recovery",
+"Supernova"
+],
+"lu": []
+},
+{
+"src": "tsdm",
+"cls": "Wizard",
+"sub": "Lumimancer",
+"level": 20,
+"feats": [
+"Hardlight Reservoir",
+"Martial Training",
+"Photonic Savant",
+"Extra Attack",
+"Low Orbit Hardlight Cannon"
+],
+"lu": [
+"Hardlight Points"
+]
+},
+{
+"src": "tsdm",
+"cls": "Wizard",
+"sub": "Spellhacker",
+"level": 20,
+"feats": [
+"Spellhack Savant",
+"Spell Phreak",
+"Counter-Hack",
+"Slot Division",
+"Permanent Spellhack"
+],
+"lu": [
+"Spell Phreak"
+]
+},
+{
+"src": "tsdm",
+"cls": "Alchemist",
+"sub": "Ionizer",
+"level": 20,
+"feats": [
+"Bonus Proficiencies",
+"Plasma Bomb [Formula]",
+"Heatsink",
+"Electromagnetic Shield",
+"Charged Core"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Captain",
+"sub": "Star Wolf",
+"level": 20,
+"feats": [
+"Dodge Roll [Maneuver]",
+"Grazing Shot [Maneuver]",
+"Squadron Leader",
+"Target Designation",
+"Focus Fire"
+],
+"lu": [
+"Target Designation"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Craftsman",
+"sub": "Luminaries' Guild",
+"level": 20,
+"feats": [
+"Hardlight Projector",
+"Radiant Shell",
+"Hardlight Wall",
+"Improved Radiant Shell",
+"Hardlight Edge"
+],
+"lu": [
+"Radiant Shell"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Craftsman",
+"sub": "Scrappers' Guild",
+"level": 20,
+"feats": [
+"Quality Junk",
+"Scrap Weapons",
+"Dismantle",
+"Makeshift Armor",
+"Overdesigned Scrap"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Dancer",
+"sub": "Moonwalker",
+"level": 20,
+"feats": [
+"Zero-G Kicks",
+"Moonwalk [Dance Style]",
+"Frictionless Field",
+"Slick Moves",
+"Ethereal Moonwalk"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Investigator",
+"sub": "Decommissioner",
+"level": 20,
+"feats": [
+"System Cracker",
+"Trinkets",
+"Non-Regulation Blaster",
+"Reprogrammer",
+"Finishing Shot"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Martyr",
+"sub": "Burden of Awakening",
+"level": 20,
+"feats": [
+"Burden of Awakening Spells",
+"Mind Mastery",
+"Psionic Awakening",
+"Prescient Strike",
+"Limited Foresight"
+],
+"lu": [
+"Kinetic Shove"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Necromancer",
+"sub": "Cyberghoul",
+"level": 20,
+"feats": [
+"Cyber Spells",
+"Construct Corpses",
+"Charnel Blaster",
+"Ghost in the Machine",
+"Cyber Lich (Lichdom)"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Vagabond",
+"sub": "Digital Nomad",
+"level": 20,
+"feats": [
+"High Score",
+"Technophile",
+"Multiplayer",
+"Desperate Regen",
+"Cheat Code"
+],
+"lu": [
+"Cheat Code"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Vagabond",
+"sub": "Experiment X",
+"level": 20,
+"feats": [
+"Bloody Rampage",
+"Mutations",
+"Arcane Mutation",
+"Exoskeleton",
+"Apex Mutation"
+],
+"lu": [],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Warden",
+"sub": "Steel Shepherd",
+"level": 20,
+"feats": [
+"Gearhead",
+"Hardlight Block",
+"Blaster Veteran",
+"Golem Absorption",
+"Juggernaut Protocol"
+],
+"lu": [
+"Golem Absorption"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Warmage",
+"sub": "Coalition Arcanist",
+"level": 20,
+"feats": [
+"Blaster Gauntlet",
+"Tactical Uplink",
+"Requisition",
+"Squadsight",
+"Precision Hardlight Strike"
+],
+"lu": [
+"Precision Hardlight Strike"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Warmage",
+"sub": "House of Lancers",
+"level": 20,
+"feats": [
+"Unarmored Defense",
+"Hand-to-Hand Arcana",
+"Shock Trooper",
+"Mystical Physicality",
+"Flurry of Spells"
+],
+"lu": [
+"Flurry of Spells"
+],
+"tpcls": 1
+},
+{
+"src": "tsdm",
+"cls": "Witch",
+"sub": "Lunar Magic",
+"level": 20,
+"feats": [
+"Lunar Spells",
+"Moonsight",
+"Hexlight",
+"Cover of Darkness",
+"Blood Moon Beam"
+],
+"lu": [
+"Hexlight"
+],
+"tpcls": 1
+}
 ]
