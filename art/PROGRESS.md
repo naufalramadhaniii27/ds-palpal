@@ -4258,6 +4258,9 @@ art/batch/icons/features/subclass/artillerist/arcane-firearm.png
 art/batch/icons/features/subclass/artillerist/artillerist-spells.png
 art/batch/icons/features/subclass/artillerist/eldritch-cannon.png
 art/batch/icons/features/subclass/artillerist/explosive-cannon.png
+art/batch/icons/features/subclass/artillerist/fortified-position.png
+art/batch/icons/features/subclass/artillerist/tool-proficiency.png
+art/batch/icons/features/subclass/artillerist/tools-of-the-trade.png
 
 art/batch/icons/features/subclass/archfey-patron/bewitching-magic.png
 art/batch/icons/features/subclass/archfey-patron/misty-escape.png
