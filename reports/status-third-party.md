@@ -6,13 +6,16 @@ Branch third-party-all, dipush. Tidak ada rilis.
 |---|---|---|
 | P0 sampai P2 | selesai | tp-gap.md |
 | P3 Valda 2024 kelas yang ada | selesai | claude/p3-laporan.md |
-| P4 11 kelas Valda, 134 subclass | selesai, suite hijau | claude/p4-laporan.md |
-| P5 buku berikutnya | berjalan: Exploring Eberron 2024 dulu | belum |
-| Q0 sampai Q8, R, S, T0 sampai T4, U, V | belum | belum |
+| P4 11 kelas Valda, 134 subclass | selesai | claude/p4-laporan.md |
+| P5 semua buku (15 buku, tp01 sampai tp15) | selesai, suite hijau | claude/p5a sampai p5l-laporan.md |
+| Cross-link seluruh app (sheet dan builder) | selesai, tests/xlinks.py 35 cek | belum |
+| Q0, Q0b, Q1 sampai Q8, R, S, T0 sampai T4, T5, U, V | belum | belum |
 
-Catatan teknis untuk sesi berikutnya:
-- Kelas buku ketiga: tools/tp_class.py membuat rekaman kelas dari sumber dan overlay tools/tp/overlay/tvsc_<kelas>.py. Gerbang wxClasses di 09-logic. Subclass lintas kelas dibuat satu kali (alt).
-- Alat untuk penulis agen: tools/tp/dump.py (baca sumber), tools/tp/gapcheck.py (cek GAP dan gaya), spec di reports/p4-spec-agen.md.
-- Kelas tanpa slot memakai nslot dan smax. Cantrip dengan jumlah langkah bebas.
-- Gunslinger (6 subclass Valda 2024) menunggu kelas Gunslinger dari jalur 2014.
-- Pelajaran: nama subclass bisa sama dengan kata lain di data build (Medium). Deteksi sumber memakai subclass terpilih saja.
+Catatan teknis:
+- Buku 2014 (Deep Magic tkdm, Humblewood thhw) berlabel "(2014 rules)". Level subclass dijepit ke minimal 3. Spec agen: reports/p5-spec-agen.md bagian P5l.
+- Teks mantra overlay boleh string atau [ringkasan, penuh].
+- Sekolah Clockwork dan Void ada di SCH tp_build.py.
+- GAP tersisa: reports/tp-gap.md (94 baris), sebagian besar "reference only" untuk tahap Q.
+- Gunslinger (6 subclass Valda 2024) menunggu kelas dari jalur 2014.
+- Mantra bernama sama dengan dua versi sumber: satu entri per nama.
+- Kelas buku ketiga: tools/tp_class.py. Alat agen: tools/tp/dump2.py, gapcheck.py.
