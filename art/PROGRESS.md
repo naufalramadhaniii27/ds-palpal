@@ -4856,6 +4856,11 @@ art/batch/icons/rules/metamagic/metamagic-twinned-spell.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-ambush.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-bait-and-switch.png
 
+art/batch/icons/items/magic/rare/banner-of-the-krig-rune.png
+art/batch/icons/items/magic/rare/blod-stone.png
+art/batch/icons/items/magic/rare/claw-of-the-wyrm-rune.png
+art/batch/icons/items/magic/very-rare/conch-of-teleportation.png
+art/batch/icons/items/magic/rare/gavel-of-the-venn-rune.png
 ## batch-142 v3
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanders-strike.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-commanding-presence.png
