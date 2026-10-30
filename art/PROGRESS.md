@@ -4882,3 +4882,10 @@ art/batch/icons/rules/maneuvers/battle-master-maneuver-precision-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-pushing-attack.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-rally.png
 art/batch/icons/rules/maneuvers/battle-master-maneuver-riposte.png
+
+## batch-127 v3
+art/batch/icons/items/magic/very-rare/shard-of-the-ise-rune.png
+art/batch/icons/items/magic/artifact/wyrmskull-throne.png
+art/batch/icons/items/magic/very-rare/battle-standard-of-infernal-power.png
+art/batch/icons/items/magic/artifact/blade-of-avernus.png
+art/batch/icons/items/magic/legendary/fane-eater.png
