@@ -510,3 +510,14 @@ segFix (src/app/40...) membaca dan menulis layout bergantian per baris .ifil, da
 ## 3t. edgeRows dan label tab di penguji
 
 Penguji sekarang menandai frame lambat dengan tab dan putaran. Di server (CPU 4x) frame lambat terbesar saat pindah tab adalah edgeRows lewat setTimeout (89 ms skrip, 109 ms frame di tab Spells). edgeRows membaca dan menulis layout bergantian per baris (#tabs, .bnav, .fr-tabs). Diubah: baca semua dulu, tulis sesudahnya. segcmp.py: 0 beda dengan main. scenarios.py 24 cek, 0 gagal. Penguji di server sesudahnya: tab 13 persen menjadi 9 persen frame lebih dari 16.7 ms, terlama 117 menjadi 83 ms (satu jalan, belum median). Belum diukur di HP asli.
+
+## 3u. Uji A/B di HP asli: culling halaman dimatikan
+
+HP pengguna, penguji #fps v3, 2026-10-30 13.44 dan 13.45 WIB. A = culling halaman aktif, B = culling mati (kode lain sama).
+| Fase | A | B |
+| tab, frame lebih dari 16.7 ms (lebih dari 33), terlama | 8 (2) 141 ms, 11 (2) 149 ms | 7 (1) 66 ms |
+| frame lambat kunjungan pertama | Spells 138, Skills 122, Main 84 ms | satu frame 66 ms |
+| damage | 5 (2) 108 ms dan 5 (2) 132 ms | 5 (2) 108 ms |
+Kesimpulan: culling halaman membuat kunjungan pertama ke halaman jauh menggambar terlambat di HP asli. Dimatikan lewat PGCULL_ON=false di src/app/21-ui-tabs-pager.js. Kodenya dipertahankan.
+Catatan: benchmark server (CPU 3x) berbalik arah: tab 12.2 menjadi 16.1, damage 15.9 menjadi 25.0 persen frame lebih dari 16.7 ms (median 3 kali). Server memakai render software dan tidak mewakili HP. Untuk keputusan performa, data HP asli yang dipakai.
+Tes: scenarios.py 24 cek, 0 gagal, segcmp.py 0 beda, tanpa halaman kosong.

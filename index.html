@@ -6896,7 +6896,8 @@ if(BCSS) document.documentElement.classList.add("bi-css");
 /* P2 frame rate: pages far from the view are not painted. A page keeps visibility:hidden until it is within one page of the view.
    goPage, focus() and scrollIntoView() show the page first, so a jump never lands on a blank page */
 var PGCULL=null;
-function pgOn(){ if(PGCULL||!window.IntersectionObserver) return; PGCULL=new IntersectionObserver(function(es){ if(!mq.matches) return; es.forEach(function(e){ e.target.style.visibility=e.isIntersecting?"":"hidden"; }); },{root:pager,rootMargin:"0px 100% 0px 100%"});
+var PGCULL_ON=false;/* off: on a real phone the first visit to a far page painted late (frames of 120 to 150 ms in the fps test, A/B 2026-10-30). The server benchmark liked it, the phone did not */
+function pgOn(){ if(!PGCULL_ON||PGCULL||!window.IntersectionObserver) return; PGCULL=new IntersectionObserver(function(es){ if(!mq.matches) return; es.forEach(function(e){ e.target.style.visibility=e.isIntersecting?"":"hidden"; }); },{root:pager,rootMargin:"0px 100% 0px 100%"});
   PAGES.forEach(function(id){ var el=document.getElementById(id); if(el) PGCULL.observe(el); }); }
 function pgOff(){ if(PGCULL){ PGCULL.disconnect(); PGCULL=null; } PAGES.forEach(function(id){ var el=document.getElementById(id); if(el&&el.style.visibility) el.style.visibility=""; }); }
 function pgShow(i){ for(var k=i-1;k<=i+1;k++){ var el=document.getElementById(PAGES[k]); if(el&&el.style.visibility) el.style.visibility=""; } }
