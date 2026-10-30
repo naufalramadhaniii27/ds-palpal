@@ -1,0 +1,6 @@
+{"B":{"sc":true,"init":["IOV"]},
+ "B -mi-fx particles":{"sc":true,"init":["IOV"],"css":".mi-fx{display:none!important}"},
+ "B -mi-w (crack etc)":{"sc":true,"init":["IOV"],"css":".mi-w{display:none!important}"},
+ "B -mi-wave,-rip,-glare":{"sc":true,"init":["IOV"],"css":".mi-wave,.mi-rip,.mi-glarew,.mi-glare{display:none!important}"},
+ "B -toast":{"sc":true,"init":["IOV"],"css":"#toast,.toast{display:none!important}"},
+ "B -hp animations":{"sc":true,"init":["IOV"],"css":".vitals,#hpBox,.vb-hp,.hp-cur,.hpf,#hpGhost,.vb-bar i{animation:none!important;transition:none!important}"}}

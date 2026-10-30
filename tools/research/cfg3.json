@@ -1,0 +1,4 @@
+{"B":{"sc":true,"init":["IOV"]},
+ "B -all fx visuals":{"sc":true,"init":["IOV"],"css":".mi-fx,.mi-w,.mi-wave,.mi-rip,.mi-glarew,.mi-glare,#toast,.toast{display:none!important}.vitals,#hpBox,.vb-hp,.hp-cur,.hpf,#hpGhost,.vb-bar i{animation:none!important;transition:none!important}"},
+ "B + mi-fx off":{"sc":true,"init":["IOV"],"ls":{"mi-fx":"off"}},
+ "B + mi-fx lite":{"sc":true,"init":["IOV"],"ls":{"mi-fx":"lite"}}}

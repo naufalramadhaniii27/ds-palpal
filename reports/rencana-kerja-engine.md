@@ -424,3 +424,37 @@ Arah yang belum dicoba:
 | K1 | Kurangi layer dasar 72: 21 layer .panel (3 per halaman), 12 layer .ifil, 4 layer .bnav, 4 layer .bb. Cari sebab promosi (will-change, overflow, mask) |
 | K2 | Satukan efek damage yang berjalan bersamaan ke satu animasi orkestrasi (satu timeline) agar style recalc terjadi sekali per frame |
 | K3 | Ukur di HP asli. Semua angka Chromium headless 4x tetap tebakan |
+
+## 3m. Benchmark median (11.30 sampai 12.30 WIB): bukti dan sisa
+Harness: tools/research/bench.py dan bench2.py. Tiap sel adalah median beberapa putaran, browser baru tiap putaran, CPU 4x, 390 x 844, efek penuh. Ukuran: persen frame BeginMainFrame di atas 16,7 ms (target di bawah 5%).
+
+| Konfigurasi | Pindah tab (n=4) | Damage dan heal |
+|---|---|---|
+| A. Asal (main 0.0.4) | 38,7% (32,8 sampai 42,8) | 48,3% (n=4) |
+| B. + indikator CSS + halaman jauh disembunyikan | 15,8% (12,6 sampai 17,0) | 29,4 sampai 30,2% (n=3 dan n=4) |
+| C. B + hapus will-change halaman | 17,8% | 43,8% (lebih buruk, dibuang) |
+| B + semua visual efek disembunyikan (display:none) | belum diukur | 13,0% |
+| B + mi-fx off | belum diukur | 9,3% |
+| B + mi-fx lite | belum diukur | 7,5% |
+| B + observer ikon melewati node efek | belum diukur | 26,6% (lawan 27,4% di pembanding sama, dalam derau) |
+
+### Pemisahan efek damage (B, n=3)
+Menyembunyikan satu kelompok efek: partikel 36,8%, mi-w (retak, api, rune) 26,0%, gelombang HP + riak + kilau 29,8%, toast 32,7%, animasi HP 36,0% (n=2), dasar 34,7%. Tidak ada satu efek dominan. Semua visual sekaligus: 13,0%. Biaya adalah jumlah banyak efek yang tampil bersamaan, bukan satu efek.
+
+### Sumber biaya yang ditemukan
+| Temuan | Detail |
+|---|---|
+| will-change:transform pada 9 halaman (CSS baris 1402, mobile) | Dibutuhkan: menghapusnya memperburuk damage |
+| Observer ikon (src/app/30-ui-icons.js baris 60 sampai 61) | Tiap partikel yang ditambahkan ke body memicu pass ikon seluruh dokumen (icoDecorate 139 ms inklusif di profil). Memperbaikinya hanya menurunkan rata-rata 1,2 ms |
+| Efek tingkat Full | Hanya mode Full menjalankan retak, api, rune, 1,6 kali partikel (src/fx/02 baris 14, 14-w-pack). Lite menjalankan versi dasar |
+| JS | Kecil. Total di profil damage: icoDecorate 139 ms, querySelectorAll 144 ms, elementsFromPoint 62 ms dari 7.592 ms sampel. 72% adalah pekerjaan native (style, layout, paint, composite) |
+
+### Kesimpulan jujur
+Dua perbaikan terbukti dengan median: pindah tab 38,7% ke 15,8%, damage 48,3% ke sekitar 30%. Target 5% belum tercapai di kedua skenario dengan efek Full utuh. Selisih ke 9% (efek off) di damage berasal dari banyak efek native yang tampil bersamaan. Jalan yang belum dicoba: gambar semua efek Full dalam satu kanvas (satu layer) di Worker, termasuk retak (SVG path), gelombang HP, riak, kilau, dan partikel, dengan tampilan sama. Itu perubahan kode fx besar. Percobaan kanvas hanya untuk partikel tidak cukup (tidak menolong).
+
+### Keputusan yang saya butuhkan dari user
+| No | Pertanyaan | Saran |
+|---|---|---|
+| 1 | Boleh dua perbaikan terbukti (indikator CSS dan halaman jauh) dipasang di src/ (UI/UX) dengan tes tiga skenario | Ya. Kecil, ada bukti median |
+| 2 | Boleh saya bangun renderer kanvas tunggal untuk efek Full sebagai prototipe di tools/ dulu (belum menyentuh src/) | Ya. Ukur hasil sebelum dipasang |
+| 3 | Uji di HP asli lewat halaman uji fps | Ya. Satu-satunya bukti 60 fps sebenarnya |
