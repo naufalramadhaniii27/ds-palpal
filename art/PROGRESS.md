@@ -4739,6 +4739,10 @@ art/batch/icons/items/magic/very-rare/devastation-orb-of-fire.png
 art/batch/icons/items/magic/very-rare/devastation-orb-of-water.png
 art/batch/icons/items/magic/legendary/drown.png
 art/batch/icons/items/magic/legendary/ironfang.png
+art/batch/icons/items/magic/legendary/lost-crown-of-besilmer.png
+art/batch/icons/items/magic/legendary/orcsplitter.png
+art/batch/icons/items/magic/uncommon/reszur.png
+art/batch/icons/items/magic/uncommon/seeker-dart.png
 
 ## batch-216 v3
 
