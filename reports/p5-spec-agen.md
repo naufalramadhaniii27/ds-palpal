@@ -62,3 +62,15 @@ TRANS = {
 - Jika aturan sumber untuk sebuah stage berbeda (misal Flaw menggantikan Flaw stage sebelumnya), tulis di `rule`.
 - Teks: kata sendiri, bahasa Inggris, angka dan nama sama dengan sumber, tanpa em dash, titik koma, tag. Singkat per Boon (1 sampai 4 kalimat).
 - Jangan jalankan build. Validasi: `python3 tools/tp/gapcheck.py "<Nama Transformation>"` harus tanpa GAP (jangan jalankan tp_build.py tanpa --check).
+
+# P5g bis P5k: buku kecil dan Dark Matter (chunk)
+Buku dengan banyak entri memakai file chunk `<prefix>_<jenis>_<x>.py` (loader `<prefix>_<jenis>.py` menggabung semuanya, dibuat oleh tools/tp/scaffold.py). Bentuk isi tiap chunk sama dengan contoh lama:
+- `<prefix>_sub_<x>.py`: `SUB = {...}` (opsional `EXT = [...]` untuk pilihan tambahan pada subclass app, lihat tsae_sub.py)
+- `<prefix>_spell_<x>.py`: `TEXT = {...}`
+- `<prefix>_feat_<x>.py`: `FEATS = {...}`, opsional `ALSO = [...]`
+- `<prefix>_item_<x>.py`: `ITEMS = []` lewat `add(...)`, `SP`, `WPN`, `GEAR`, `MASTERY`, `WDESC` (contoh tghp_item.py, tee24_item.py)
+- `<prefix>_bg.py` dan `<prefix>_species.py`: satu file (BG/OPTS/ALSO/LU/TL dan SPECIES/LU/ACTS/SP_AUTO/DEF)
+- kelas: `<clspre><kelas>.py` dengan `CLASS = {...}` (contoh tghc_monster_hunter.py, tsgc_jaeger.py)
+Prefix: Healer tshl (kelas tshc_healer), Summoner tssm (kelas tssc_summoner), Dr Dhrolin tsdd, Griffon's Saddlebag tsgs, Dark Matter tsdm (kelas tsdc_gadgeteer). Sumber dibaca dengan `python3 tools/tp/dump2.py "<nama file tanpa penerbit>" ...` (contoh: "Healer - 2024", "Summoner - 2024", "Dhrolins Dictionary of Dinosaurs - 2024", "Griffon's Saddlebag, Book 1 - 2024", "Dark Matter - 2024"). Perintah: list, class, sub, opt, race, background, feat, spell, item, baseitem, itemMastery, magicvariant.
+Subclass milik kelas yang tidak ada di app (misal Gunslinger) cukup dilewati dan dilaporkan. Subclass untuk kelas Valda (Alchemist, Captain, Craftsman, Dancer, Investigator, Martyr, Necromancer, Vagabond, Warden, Warmage, Witch) memakai nama kelas itu.
+Alias nama bentrok ditangani generator. Tulis nama persis seperti sumber.

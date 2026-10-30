@@ -31,6 +31,11 @@ BOOKS = [
   "sub": "tsae_sub", "spell": "tsae_spell", "alias": "Artificer Expansion"},
  {"id": "tghg", "file": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "tag": "GHCG24", "name": "Grim Hollow Campaign Guide", "pub": "Ghostfire Gaming", "ed": "2024",
   "item": "tghg_item", "alias": "Grim Hollow CG"},
+ {"id": "tshl", "file": "Spaghetti0; Healer - 2024.json", "tag": "HLR24", "name": "Healer (Spaghetti0)", "pub": "Spaghetti0", "ed": "2024", "sub": "tshl_sub", "spell": "tshl_spell", "cls": ["healer"], "clspre": "tshc_", "alias": "Healer class"},
+ {"id": "tssm", "file": "Spaghetti0; Summoner - 2024.json", "tag": "SUM24", "name": "Summoner (Spaghetti0)", "pub": "Spaghetti0", "ed": "2024", "sub": "tssm_sub", "spell": "tssm_spell", "item": "tssm_item", "cls": ["summoner"], "clspre": "tssc_", "alias": "Summoner class"},
+ {"id": "tsdd", "file": "Palaeo Games; Dr Dhrolins Dictionary of Dinosaurs - 2024.json", "tag": "DDD24", "name": "Dr Dhrolin's Dictionary of Dinosaurs", "pub": "Palaeo Games", "ed": "2024", "sub": "tsdd_sub", "species": "tsdd_species", "alias": "Dinosaurs"},
+ {"id": "tsgs", "file": "Griffin Macaulay; The Griffon's Saddlebag, Book 1 - 2024.json", "tag": "GSB24", "name": "The Griffon's Saddlebag, Book 1", "pub": "Griffin Macaulay", "ed": "2024", "sub": "tsgs_sub", "item": "tsgs_item", "species": "tsgs_species", "alias": "Saddlebag"},
+ {"id": "tsdm", "file": "Mage Hand Press; Dark Matter - 2024.json", "tag": "DM24", "name": "Dark Matter", "pub": "Mage Hand Press", "ed": "2024", "sub": "tsdm_sub", "bg": "tsdm_bg", "feat": "tsdm_feat", "spell": "tsdm_spell", "item": "tsdm_item", "species": "tsdm_species", "cls": ["gadgeteer"], "clspre": "tsdc_", "alias": "Dark Matter"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
