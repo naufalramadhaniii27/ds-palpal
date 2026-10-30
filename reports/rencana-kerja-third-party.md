@@ -50,3 +50,10 @@ Cek integrasi per jenis entri (dites di `tests/tp_sources.py`):
 - Valda membawa 11 class baru (P4). Grim Hollow dan Iron Kingdoms membawa sistem aturan sendiri.
 - Tag homebrew yang belum dikenal dicatat, tidak dilewati diam-diam.
 - Lisensi: konten pihak ketiga dipakai atas keputusan user, kredit penerbit tampil.
+
+## Status 2026-10-30 (P1 TDCSR selesai)
+- Data: 9 subclass, 5 background, 7 feat, 2 spell, 75 baris item magis, 15 gear. Semua kata sendiri, mekanik ke builder dan sheet.
+- Mesin: penalti skor kemampuan (fx.abil negatif), Wraps of Dyamak pada Unarmed Strike, jangkauan 20 ft, catatan xd (extra damage) di baris senjata, hook tes __bldHasSpell dan __bldFeats.
+- Tes: tests/tp_items.py (21 item + spell + penalti), tp_sources 153, tp_ui 9, golden_rules, fuzz, csp_check, scenarios 24. Semua lolos.
+- Belum: monster, dewa, variant rule, reward (hanya referensi, daftar di tp-gap.md). Pengganda engine (rider damage nyata, efek bersyarat) tercatat di tp-gap.md.
+- Berikutnya: P2 TalDorei Campaign Guide (cek tumpang tindih dengan TDCSR dulu).
