@@ -4838,6 +4838,11 @@ art/batch/icons/rules/metamagic/metamagic-extended-spell.png
 art/batch/icons/rules/metamagic/metamagic-heightened-spell.png
 art/batch/icons/rules/metamagic/metamagic-quickened-spell.png
 art/batch/icons/rules/metamagic/metamagic-seeking-spell.png
+art/batch/icons/rules/metamagic/metamagic-subtle-spell.png
+art/batch/icons/rules/metamagic/metamagic-transmuted-spell.png
+art/batch/icons/rules/metamagic/metamagic-twinned-spell.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-ambush.png
+art/batch/icons/rules/maneuvers/battle-master-maneuver-bait-and-switch.png
 
 ## batch-126 v3
 art/batch/icons/items/magic/uncommon/storm-boomerang.png
