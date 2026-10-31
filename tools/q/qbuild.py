@@ -168,7 +168,7 @@ def gen_block(cat):
         if e.get("ing"):
             p.insert(0, ["Ingredients", "; ".join(re.sub(r"\{=?[^}]*\}", "", qlib.walk([i["entry"]] if isinstance(i, dict) and "entry" in i else [i])) for i in e["ing"]).replace(";", ",")])
         p += ["**%s**" % x for x in []] + [x for x in e["mech"]]
-        im = IMGMAP.get(cat, {}).get(key)
+        im = IMGMAP.get(cat, {}).get(key) or IMGMAP.get(cat, {}).get(e["name"] + "|*")
         rows.append({"n": e["name"], "s": sid, "sub": e["sub"], "tl": e["tl"], "p": p, "tx": (e["name"] + " " + e["sub"] + " " + " ".join(x if isinstance(x, str) else " ".join(x) for x in p)).lower(), **({"im": im} if im else {})})
     for k in T:
         if k not in keys: GAP.append((cat, k, "overlay text without a source entry"))
@@ -182,7 +182,7 @@ def mon_block():
         if sid not in qlib.app()["src"] and sid not in ("efa", "dmg", "core") and not extra_src(src):
             GAP.append(("monster", "%s|%s" % (x["name"], src), "source %s has no source in the app" % sid)); continue
         r = qmon.row(x, sid)
-        im = IMGMAP.get("monster", {}).get("%s|%s" % (x["name"], src))
+        im = IMGMAP.get("monster", {}).get("%s|%s" % (x["name"], src)) or IMGMAP.get("monster", {}).get(x["name"] + "|*")
         if im: r["im"] = im
         if cnt[x["name"]] > 1 and sid != "core": r["n"] = "%s (%s)" % (x["name"], src)
         rows.append(r)
