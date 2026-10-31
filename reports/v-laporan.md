@@ -18,3 +18,9 @@
 - Item audit (items without fx): Save advantage 48 (mostly conditional), Immunity 86, Resistance 34, Speed 37, Darkvision 25.
 - UA covers only the Mystic psionics.
 - About 250 other homebrew collections without an edition (`collection/`) are not in the plan.
+
+## Closing
+- Book search added to the Sources step (title and publisher).
+- T5 (Codex art) skipped by the user's decision. qart.py stays ready, 5etools image wins over Codex art.
+- Version bumped once: 0.0.8 (APP_VER 110, 2026-10-31). Tests after the bump: scenarios 24, tp_ui 15, tp_items, q_lib 34, q_img 14, csp_check, version_label 9, all 0 failed.
+- Nothing merged to main. Branch: third-party-all.
