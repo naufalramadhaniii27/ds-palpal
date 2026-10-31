@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Version label: Home shows the current label, an update from build 102 lists labelled versions only (0.0.8 down to 0.0.1), a first visit shows no banner.
+"""Version label: Home shows the current label, an update from build 102 lists labelled versions only (0.0.9 down to 0.0.1), a first visit shows no banner.
   python3 tests/version_label.py [OUTDIR]"""
 import asyncio, os, sys, socket, threading, functools, http.server
 from playwright.async_api import async_playwright
@@ -25,13 +25,13 @@ async def main():
             await pg.evaluate("v=>{localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v);localStorage.setItem('cs-roster-v1',JSON.stringify({active:'c1',chars:{c1:{name:'Yudhi Kelapa',created:1}}}));localStorage.setItem('cs-ui-ver','102')}", YUDHI)
             await pg.reload(); await pg.wait_for_timeout(3000)
             txt = await pg.evaluate("()=>document.body.innerText")
-            check(vp + " Home shows Version 0.0.8", "Version 0.0.8 (2026-10-31)" in txt)
+            check(vp + " Home shows Version 0.0.9", "Version 0.0.9 (2026-10-31)" in txt)
             ban = await pg.evaluate("()=>{var b=document.getElementById('hwnB');return b?b.innerText:''}")
-            check(vp + " update banner says 0.0.8 and lists no old builds", "0.0.8" in ban and "Version 102" not in ban and "Version 101" not in ban, ban[:200])
+            check(vp + " update banner says 0.0.9 and lists no old builds", "0.0.9" in ban and "Version 102" not in ban and "Version 101" not in ban, ban[:200])
             await pg.screenshot(path=os.path.join(OUT, vp + "-update.png"))
             await pg.evaluate("()=>{var b=document.querySelector('[data-hwn=all]'); if(b) b.click()}"); await pg.wait_for_timeout(600)
             dlg = await pg.evaluate("()=>{var d=document.getElementById('bkp');return d?d.innerText:''}")
-            check(vp + " What's New lists labelled versions only", "Version 0.0.8" in dlg and "Version 0.0.7" in dlg and "Version 0.0.6" in dlg and "Version 0.0.5" in dlg and "Version 0.0.4" in dlg and "Version 0.0.3" in dlg and "Version 0.0.2" in dlg and "Version 0.0.1" in dlg and "Version 102" not in dlg, dlg[:200])
+            check(vp + " What's New lists labelled versions only", "Version 0.0.9" in dlg and "Version 0.0.8" in dlg and "Version 0.0.7" in dlg and "Version 0.0.6" in dlg and "Version 0.0.5" in dlg and "Version 0.0.4" in dlg and "Version 0.0.3" in dlg and "Version 0.0.2" in dlg and "Version 0.0.1" in dlg and "Version 102" not in dlg, dlg[:200])
             await ctx.close()
             # first visit
             ctx = await b.new_context(viewport={"width": w, "height": h}); pg = await ctx.new_page(); pg.on("pageerror", lambda e: ERRS.append(str(e)))
