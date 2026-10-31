@@ -21,7 +21,7 @@ function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */
   if(!sheet.classList.contains("on")) lastFocus=document.activeElement;
   sheetMode=mode;
-  setSheetTitle(title); $("#sheetBody").innerHTML=html; $("#sheetBody").scrollTop=0;
+  setSheetTitle(title); var shw=$("#shWm"); $("#sheetBody").innerHTML=html; if(shw) $("#sheetBody").insertBefore(shw,$("#sheetBody").firstChild); $("#sheetBody").scrollTop=0;/* the icon is a big picture at the top of the content */
   $("#sheetBack").hidden = navStack.length<2;
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
@@ -69,7 +69,7 @@ function showEntry(en, push){
   if(push && open) navStack.push(en); else navStack=[en];
   var c=entryContent(en); c={t:c.t,h:(typeof coachLine==="function"?coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
   if(open){
-    sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"); b.innerHTML=c.h; b.scrollTop=0;
+    sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
     $("#sheetBack").hidden = navStack.length<2;
   } else openSheet(c.t, c.h, c.m);
@@ -78,12 +78,12 @@ function showEntry(en, push){
 function refreshEntry(){
   if(!navStack.length || !sheet.classList.contains("on") || sheetMode==="edit") return;
   var c=entryContent(navStack[navStack.length-1]), b=$("#sheetBody"), st=b.scrollTop;
-  setSheetTitle(c.t); b.innerHTML=c.h+learnLink(c.t); b.scrollTop=st; swpSync();/* v36 p18 */
+  setSheetTitle(c.t); var shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; swpSync();/* v36 p18 */
 }
 $("#sheetBack").addEventListener("click",function(){
   if(navStack.length<2) return;
   hpDockBack(); navStack.pop(); var c=entryContent(navStack[navStack.length-1]);
-  sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"); b.innerHTML=c.h; b.scrollTop=0;
+  sheetMode=c.m; setSheetTitle(c.t); var b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
   b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
   $("#sheetBack").hidden = navStack.length<2; swpSync();/* v36 p18 */
 });

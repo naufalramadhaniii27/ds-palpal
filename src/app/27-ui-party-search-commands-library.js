@@ -260,7 +260,7 @@ function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */
-  if(d){ bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; bd.scrollTop=0; return; }
+  if(d){ var wm0=document.getElementById("libWm"); bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; if(wm0) bd.insertBefore(wm0,bd.firstChild); bd.scrollTop=0; return; }
   document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libListHTML(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ var rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
 function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);
