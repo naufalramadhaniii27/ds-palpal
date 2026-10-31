@@ -598,7 +598,8 @@
     "data/q08-object.js",
     "data/q08-psionic.js",
     "data/q08-table.js",
-    "data/q08-vehicle.js"
+    "data/q08-vehicle.js",
+    "data/q10-fluff.js"
    ]
   },
   {
