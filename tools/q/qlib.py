@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import hb
 Q0 = os.environ.get("Q0_DIR", "/home/claude/work/q0")
 # 5e.tools source code (lower case) to the id of the source in the app. Anything else keeps the lower case code.
-SRCMAP = {"xdmg": "dmg", "dmg": "dmg14", "xphb": "core", "phb": "phb14", "bam": "misc14", "drde": "misc14", "vnotee": "misc14", "dip": "misc14",
+SRCMAP = {"xmm": "core", "mm": "mm14", "xdmg": "dmg", "dmg": "dmg14", "xphb": "core", "phb": "phb14", "bam": "misc14", "drde": "misc14", "vnotee": "misc14", "dip": "misc14",
           "hfstcm": "misc14", "tor": "misc14", "tofw": "misc14", "hof": "hof", "frhof": "hof", "frafi": "frafi"}
 def srcid(code): return SRCMAP.get(code.lower(), code.lower())
 def load(f): return json.load(open(os.path.join(Q0, f), encoding="utf-8"))

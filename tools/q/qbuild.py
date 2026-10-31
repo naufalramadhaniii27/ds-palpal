@@ -6,12 +6,29 @@ Overlay for reward (tools/q/overlay/reward_<x>.py):  R = {"Name|SRC": {"d": "own
 import sys, os, json, glob, importlib.util, re
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
-import qlib
+import qlib, qgen, qmon
 GAP = []
+EXTRA = {}
+def extra_src(code):
+    """a book with entries but no source in the app: register it (off by default) from the book list"""
+    sid = qlib.srcid(code)
+    if sid in EXTRA: return sid
+    b = {x["id"].lower(): x for x in qlib.load("books.json")["book"] + qlib.load("adventures.json")["adventure"]}.get(code.lower())
+    if not b:
+        FB = {"esk": ("ESK", "Essentials Kit", "2019-11-19"), "mcv2dc": ("MCV2DC", "Monstrous Compendium Volume 2: Dragonlance Creatures", "2022-12-06"), "mcv3mc": ("MCV3MC", "Monstrous Compendium Volume 3: Minecraft Creatures", "2023-05-25")}
+        if code.lower() not in FB and code.lower() not in ("mff", "hfdomm", "mismv1", "vd", "sads"): return None
+        i, nm, pub = FB.get(code.lower(), (code.upper(), code.upper() + " (additional source)", "2020-01-01"))
+        b = {"id": i, "name": nm, "published": pub}
+    leg = 1 if b.get("published", "9999") < "2024-09" else 0
+    EXTRA[sid] = {"id": sid, "tag": b["id"][:6].upper(), "name": b["name"], "desc": "Reference entries from %s." % b["name"], "feats": [], "spells": [], "rows": [], "legacy": leg} if leg else {"id": sid, "tag": b["id"][:6].upper(), "name": b["name"], "desc": "Reference entries from %s." % b["name"], "feats": [], "spells": [], "rows": []}
+    return sid
 def overlays(prefix, var):
     out = {}
     for p in sorted(glob.glob(os.path.join(HERE, "overlay", prefix + "_*.py"))):
-        sp = importlib.util.spec_from_file_location(os.path.basename(p)[:-3], p); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m)
+        sp = importlib.util.spec_from_file_location(os.path.basename(p)[:-3], p); m = importlib.util.module_from_spec(sp); 
+        try: sp.loader.exec_module(m)
+        except SyntaxError as e:
+            print("overlay not readable yet:", os.path.basename(p), e.msg); continue
         out.update(getattr(m, var, {}))
     return out
 def todo(cat):
@@ -23,6 +40,7 @@ def todo(cat):
         return out
     if cat == "deity":
         return [g["best"] for g in deity_groups() if g["best"].get("entries")]
+    if cat in qgen.CATS: return [{"name": e["name"], "source": e["src"], "type": e["sub"], "_text": e["text"]} for e in gen_todo(cat)]
     raise SystemExit("unknown category " + cat)
 def reward_block():
     T = overlays("reward", "R"); rows = {}; isp = {}; seen = set()
@@ -126,6 +144,49 @@ def loot_rows():
         add(x["name"], x["source"], "Table • Magic Items", [["Roll", "d100"]], [_loot_line(r) for r in x["table"]])
     return rows
 
+GENFILE = {"disease": "q06-disease.js", "cult": "q05-cult.js", "charopt": "q05-charopt.js", "recipe": "q04-recipe.js", "hazard": "q08-hazard.js", "vehicle": "q08-vehicle.js", "object": "q08-object.js", "psionic": "q08-psionic.js", "language": "q06-language.js", "deck": "q08-deck.js", "table": "q08-table.js"}
+def gen_todo(cat):
+    """entries of a generic category that are in the app and need prose"""
+    out = []
+    for e in qgen.CATS[cat]():
+        sid = qlib.srcid(e["src"])
+        if sid not in qlib.app()["src"] and sid not in ("efa", "dmg", "core") and not extra_src(e["src"]): continue
+        if e["text"]: out.append(e)
+    return out
+def gen_block(cat):
+    T = overlays(cat, "D"); rows = []; keys = set(); merged = {}
+    for e in qgen.CATS[cat]():
+        key = "%s|%s" % (e["name"], e["src"].upper()); sid = qlib.srcid(e["src"])
+        if sid not in qlib.app()["src"] and sid not in ("efa", "dmg", "core"):
+            if not extra_src(e["src"]): GAP.append((cat, key, "source %s has no source in the app" % sid)); continue
+        p = []
+        if e["text"]:
+            keys.add(key); t = T.get(key)
+            if not t: GAP.append((cat, key, "no overlay text"))
+            else: p = [t] if isinstance(t, str) else list(t)
+        if e.get("ing"):
+            p.insert(0, ["Ingredients", "; ".join(re.sub(r"\{=?[^}]*\}", "", qlib.walk([i["entry"]] if isinstance(i, dict) and "entry" in i else [i])) for i in e["ing"]).replace(";", ",")])
+        p += ["**%s**" % x for x in []] + [x for x in e["mech"]]
+        rows.append({"n": e["name"], "s": sid, "sub": e["sub"], "tl": e["tl"], "p": p, "tx": (e["name"] + " " + e["sub"] + " " + " ".join(x if isinstance(x, str) else " ".join(x) for x in p)).lower()})
+    for k in T:
+        if k not in keys: GAP.append((cat, k, "overlay text without a source entry"))
+    return rows
+
+def mon_block():
+    import collections
+    pairs, skipped = qmon.rows(); rows = []; cnt = collections.Counter(x["name"] for _, x in pairs)
+    for src, x in pairs:
+        sid = qlib.srcid(src)
+        if sid not in qlib.app()["src"] and sid not in ("efa", "dmg", "core") and not extra_src(src):
+            GAP.append(("monster", "%s|%s" % (x["name"], src), "source %s has no source in the app" % sid)); continue
+        r = qmon.row(x, sid)
+        if cnt[x["name"]] > 1 and sid != "core": r["n"] = "%s (%s)" % (x["name"], src)
+        rows.append(r)
+    for k in skipped: GAP.append(("monster", k, "unresolved copy or no stat block"))
+    nf = sum(1 for r in rows if any(b.endswith(".**") for b in r["p"] if isinstance(b, str)))
+    GAP.append(("monster", "%d stat blocks" % len(rows), "trait and action text not copied: features show their name and rebuilt attack numbers only (own-wording rewrite pending)"))
+    return rows
+
 REGQ = '''
 var ROWS=%s;
 window.QREFS=window.QREFS||{};window.QREFS[%s]=(window.QREFS[%s]||[]).concat(ROWS);
@@ -145,6 +206,10 @@ def build(write):
     files["q03-loot.js"] = "/* Generated by tools/q/qbuild.py from 5e.tools loot tables. Own wording. Do not edit by hand. */\n(function(){" + REGQ % (json.dumps(lrows, ensure_ascii=False), json.dumps("table"), json.dumps("table")) + "})();\n"
     drows = deity_block()
     files["q02-deity.js"] = "/* Generated by tools/q/qbuild.py from 5e.tools deity data. Own wording. Do not edit by hand. */\n(function(){" + REGQ % (json.dumps(drows, ensure_ascii=False), json.dumps("deity"), json.dumps("deity")) + "})();\n"
+    for cat in qgen.CATS:
+        files[GENFILE[cat]] = "/* Generated by tools/q/qbuild.py from 5e.tools data. Own wording. Do not edit by hand. */\n(function(){" + REGQ % (json.dumps(gen_block(cat), ensure_ascii=False), json.dumps(cat), json.dumps(cat)) + "})();\n"
+    files["q07-bestiary.js"] = "/* Generated by tools/q/qbuild.py from 5e.tools bestiary. Stat block facts only. Do not edit by hand. */\n(function(){" + REGQ % (json.dumps(mon_block(), ensure_ascii=False, separators=(",", ":")), json.dumps("monster"), json.dumps("monster")) + "})();\n"
+    files["q00-src.js"] = "/* Generated by tools/q/qbuild.py. Books that only have reference entries. Off by default. */\n(function(){var L=%s;window.WX=window.WX||{src:[]};L.forEach(function(s){if(!window.WX.src.some(function(x){return x.id===s.id}))window.WX.src.push(s)})})();\n" % json.dumps(list(EXTRA.values()), ensure_ascii=False)
     if write:
         for n, s in files.items(): open(os.path.join(ROOT, "src", "data", n), "w", encoding="utf-8").write(s)
         with open(os.path.join(ROOT, "reports", "q-gap.md"), "w", encoding="utf-8") as f:

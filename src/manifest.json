@@ -583,9 +583,33 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
    "close": "</script>",
    "files": [
+    "data/q00-src.js",
     "data/q01-reward.js",
     "data/q02-deity.js",
-    "data/q03-loot.js"
+    "data/q03-loot.js",
+    "data/q04-recipe.js",
+    "data/q05-charopt.js",
+    "data/q05-cult.js",
+    "data/q06-disease.js",
+    "data/q06-language.js",
+    "data/q08-deck.js",
+    "data/q08-hazard.js",
+    "data/q08-object.js",
+    "data/q08-psionic.js",
+    "data/q08-table.js",
+    "data/q08-vehicle.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"q7\">",
+   "close": "</script>",
+   "files": [
+    "data/q07-bestiary.js"
    ]
   },
   {
