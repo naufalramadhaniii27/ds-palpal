@@ -121,6 +121,8 @@ async def main():
             check(tag + " Mandrake and Pyromaniac spells reach the sheet", all(n in vs["sp"] for n in ("Shillelagh", "Goodberry", "Barkskin", "Fire Bolt", "Burning Hands", "Scorching Ray")), str(vs["sp"]))
             check(tag + " Mandrake Entangling Vines tracked", any(x.startswith("Entangling Vines|") for x in vs["res"]), str(vs["res"]))
             check(tag + " Geppettin on the sheet with Darkvision 60", vs["gep"] and vs["gdark"] in (60, "60 ft"), str(vs["gdark"]))
+            sn = await pg.evaluate("""()=>{var b=window.__bldTestB();b.src=Object.assign({},b.src||{},{tdcsr:true,tvss:true,rhw:true});b.inv=(b.inv||[]).concat([{n:'Ebonbane',q:1,eq:true}]);var s=window.__bldSheetFor(b);return (s.saveNotes||[]).map(function(x){return x.t+'|'+x.s})}""")
+            check(tag + " item save advantage shown as save note", any(x.startswith("Advantage on saving throws against spells") for x in sn), str(sn))
             # ability penalty: Circlet lowers Charisma
             base = await pg.evaluate("()=>{var b=window.__bldTestB();var s=window.__bldSheetFor(b);return s.abilities.CHA.base+(s.abilities.CHA.bonus||[]).reduce(function(t,y){return t+y.v},0)}")
             cir = await pg.evaluate(JS, CASES[16])
