@@ -17,6 +17,11 @@ def main(src):
     t = open(qj, encoding="utf-8").read(); qidx = json.loads(t[t.index("window.QIMG=") + 12: t.rindex(";")])
     for (cat, slug), name in nm.items():
         p = os.path.join(src, cat, slug + ".png")
+        # 5etools image wins: skip when this name already has a non-Codex image in any source
+        if cat in ("item", "feat"):
+            if name in qidx.get(cat, {}) and not qidx[cat][name].startswith("codex/"): continue
+        else:
+            if any(k.startswith(name + "|") and not str(v).startswith("codex/") for k, v in imap.get(cat, {}).items()): continue
         if not os.path.exists(p): miss.append(slug); continue
         dst = os.path.join(ROOT, "data", "img", "codex", cat, slug + ".webp"); os.makedirs(os.path.dirname(dst), exist_ok=True)
         im = Image.open(p).convert("RGBA"); im.thumbnail((384, 384)); im.save(dst, "WEBP", quality=78, method=4)
