@@ -21,4 +21,11 @@ D = {
  'Suspended Cauldron|XDMG': '**Spill (Requires a Full Cauldron).** Each creature in a 10-foot square directly below the cauldron makes a DC 15 Dexterity saving throw. A failed save takes 10 (3d6) fire damage, and a success takes half damage.',
  'Trebuchet|DMG': "**Trebuchet Stone.** Ranged weapon attack, +5 to hit, range 300/1,200 ft., one target. It can't hit targets within 60 feet of it. Hit: 44 (8d10) bludgeoning damage.",
  'Trebuchet|XDMG': "**Trebuchet Stone (Requires Load and Aim).** Ranged attack, +5 to hit, range 300/1,200 ft. It can't hit targets within 60 feet of itself. Hit: 44 (8d10) bludgeoning damage.",
+ 'Automatic Ballista|HBTD': '**Ballista Bolt (Requires Aim).** Ranged attack, +6 to hit, range 120/480 ft. Hit: 22 (4d10) piercing damage.',
+ 'Captain A-Hole|RMBRE': '**Cannon.** Ranged weapon attack, +5 to hit, range 30 ft., one target. Hit: 3 (1d6) bludgeoning damage.',
+ 'Clockwork Trebuchet|HBTD': "**Trebuchet Stone (Requires Lever Pull).** Ranged attack, +5 to hit, range 200/800 ft. It can't hit targets within 30 feet of itself. Hit: 27 (5d10) bludgeoning damage.",
+ 'Decrepit Mangonel|HBTD': '**Sack of Hands (Requires Load and Aim).** The mangonel hurls a sack of writhing hands to land 30 to 100 feet away. A Swarm of Crawling Claws appears where it lands.',
+ 'Enchanted Ballista|HBTD': '**Ballista Bolt (Requires Load).** Ranged attack, +6 to hit, range 120/480 ft. Hit: 22 (4d10) piercing damage.',
+ 'Forge Launcher|HBTD': '**Fiery Canister (Requires Aim).** Each creature in a 20-foot-radius Sphere centered on a point 30 to 300 feet from the launcher makes a DC 15 Dexterity saving throw. A failed save takes 14 (4d6) fire damage, and a success takes half damage.',
+ 'Storm Cannon|HBTD': '**Lightning Ball (Requires Aim).** Ranged attack, +6 to hit, range 600/800 ft. Hit: 22 (4d10) lightning damage.',
 }
