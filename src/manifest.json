@@ -174,8 +174,8 @@
     "app/52-tg-bridge.js",
     "app/53-logic-number-map.js",
     "app/54-dev-fps-probe.js",
-    "app/98-close.wrap.js",
-    "app/99-ui-backup-reminder-handlers.js"
+    "app/99-ui-backup-reminder-handlers.js",
+    "app/98-close.wrap.js"
    ]
   },
   {

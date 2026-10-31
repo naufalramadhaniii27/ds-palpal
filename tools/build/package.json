@@ -3,6 +3,8 @@
  "private": true,
  "description": "Build tools for build.py (T11 A7). Install once: npm ci --prefix tools/build",
  "devDependencies": {
-  "esbuild": "0.28.2"
+  "esbuild": "0.28.2",
+  "eslint": "9.39.4",
+  "globals": "16.4.0"
  }
 }
