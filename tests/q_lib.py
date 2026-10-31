@@ -36,7 +36,7 @@ async def main():
             check(tag + " third party rows hidden when sources are off", live.get("monster", 0) < 800, str(live))
             allr = await pg.evaluate("()=>{var b=window.__bldTestB();b.src=Object.assign({},b.src||{});(window.WX.src||[]).forEach(function(s){b.src[s.id]=true});var o=window.__bldQLive(b);var n={};Object.keys(o).forEach(function(k){n[k]=o[k].length});return n}")
             check(tag + " all sources on: monsters %s" % allr.get("monster"), allr.get("monster", 0) > 4400, str(allr))
-            for c in ("deity", "hazard", "vehicle", "disease", "cult", "charopt", "recipe", "language", "deck", "object", "table"):
+            for c in ("deity", "hazard", "vehicle", "disease", "cult", "charopt", "recipe", "language", "deck", "object", "table", "rule", "facility", "psionic"):
                 check("%s %s rows (%d)" % (tag, c, allr.get(c, 0)), allr.get(c, 0) > 0, str(allr))
             check(tag + " no page errors", not errs, str(errs[:2]))
             await ctx.close()

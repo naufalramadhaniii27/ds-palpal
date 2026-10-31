@@ -34,7 +34,7 @@ def main(write):
     for src, x in pairs:
         k = (src, x["name"])
         if k in art: m["%s|%s" % (x["name"], src)] = art[k]; na += 1; used.append((art[k], 480, 70))
-        elif k in tok: m["%s|%s" % (x["name"], src)] = tok[k] + "~t"; nt += 1; used.append((tok[k], 128, 72))
+        elif k in tok: m["%s|%s" % (x["name"], src)] = tok[k]; nt += 1; used.append((tok[k], 128, 72))
         else: nn += 1
     imap["monster"] = {k: v for k, v in m.items()}; rep.append(("monster", len(pairs), na, nt, nn))
     qidx = {}

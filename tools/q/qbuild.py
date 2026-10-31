@@ -7,6 +7,7 @@ import sys, os, json, glob, importlib.util, re
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
 import qlib, qgen, qmon
+IMGMAP = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'imgmap.json'))) if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'imgmap.json')) else {}
 GAP = []
 EXTRA = {}
 def extra_src(code):
@@ -15,8 +16,8 @@ def extra_src(code):
     if sid in EXTRA: return sid
     b = {x["id"].lower(): x for x in qlib.load("books.json")["book"] + qlib.load("adventures.json")["adventure"]}.get(code.lower())
     if not b:
-        FB = {"esk": ("ESK", "Essentials Kit", "2019-11-19"), "mcv2dc": ("MCV2DC", "Monstrous Compendium Volume 2: Dragonlance Creatures", "2022-12-06"), "mcv3mc": ("MCV3MC", "Monstrous Compendium Volume 3: Minecraft Creatures", "2023-05-25")}
-        if code.lower() not in FB and code.lower() not in ("mff", "hfdomm", "mismv1", "vd", "sads"): return None
+        FB = {"uathemysticclass": ("UAMyst", "Unearthed Arcana: The Mystic Class", "2020-01-01"), "esk": ("ESK", "Essentials Kit", "2019-11-19"), "mcv2dc": ("MCV2DC", "Monstrous Compendium Volume 2: Dragonlance Creatures", "2022-12-06"), "mcv3mc": ("MCV3MC", "Monstrous Compendium Volume 3: Minecraft Creatures", "2023-05-25")}
+        if code.lower() not in FB and code.lower() not in ("uathemysticclass",) and code.lower() not in ("mff", "hfdomm", "mismv1", "vd", "sads"): return None
         i, nm, pub = FB.get(code.lower(), (code.upper(), code.upper() + " (additional source)", "2020-01-01"))
         b = {"id": i, "name": nm, "published": pub}
     leg = 1 if b.get("published", "9999") < "2024-09" else 0
@@ -102,7 +103,7 @@ def deity_block():
         multi = len(names[x["name"]]) > 1 and x.get("pantheon")
         rows.append({"n": x["name"] + (" (%s)" % x["pantheon"] if multi else ""), "s": sids,
                      "sub": ("Deity" + (" • " + x["pantheon"] if x.get("pantheon") else "") + ((" • " + aln(x.get("alignment"))) if x.get("alignment") else "")),
-                     "tl": [t for t in tl if t[1]], "p": p, "tx": (dom + " " + x.get("province", "") + " " + x.get("title", "") + " " + " ".join(p)).lower()})
+                     "tl": [t for t in tl if t[1]], "p": p, "tx": (dom + " " + x.get("province", "") + " " + x.get("title", "") + " " + " ".join(p)).lower(), **({"im": IMGMAP["deity"][key]} if key in IMGMAP.get("deity", {}) else {})})
     for k in T:
         if k not in keys: GAP.append(("deity", k, "overlay text without a source deity with lore"))
     return rows
@@ -144,7 +145,7 @@ def loot_rows():
         add(x["name"], x["source"], "Table • Magic Items", [["Roll", "d100"]], [_loot_line(r) for r in x["table"]])
     return rows
 
-GENFILE = {"disease": "q06-disease.js", "cult": "q05-cult.js", "charopt": "q05-charopt.js", "recipe": "q04-recipe.js", "hazard": "q08-hazard.js", "vehicle": "q08-vehicle.js", "object": "q08-object.js", "psionic": "q08-psionic.js", "language": "q06-language.js", "deck": "q08-deck.js", "table": "q08-table.js"}
+GENFILE = {"disease": "q06-disease.js", "cult": "q05-cult.js", "charopt": "q05-charopt.js", "recipe": "q04-recipe.js", "hazard": "q08-hazard.js", "vehicle": "q08-vehicle.js", "object": "q08-object.js", "psionic": "q08-psionic.js", "language": "q06-language.js", "deck": "q08-deck.js", "table": "q08-table.js", "rule": "q12-rule.js", "facility": "q12-facility.js"}
 def gen_todo(cat):
     """entries of a generic category that are in the app and need prose"""
     out = []
@@ -167,7 +168,8 @@ def gen_block(cat):
         if e.get("ing"):
             p.insert(0, ["Ingredients", "; ".join(re.sub(r"\{=?[^}]*\}", "", qlib.walk([i["entry"]] if isinstance(i, dict) and "entry" in i else [i])) for i in e["ing"]).replace(";", ",")])
         p += ["**%s**" % x for x in []] + [x for x in e["mech"]]
-        rows.append({"n": e["name"], "s": sid, "sub": e["sub"], "tl": e["tl"], "p": p, "tx": (e["name"] + " " + e["sub"] + " " + " ".join(x if isinstance(x, str) else " ".join(x) for x in p)).lower()})
+        im = IMGMAP.get(cat, {}).get(key)
+        rows.append({"n": e["name"], "s": sid, "sub": e["sub"], "tl": e["tl"], "p": p, "tx": (e["name"] + " " + e["sub"] + " " + " ".join(x if isinstance(x, str) else " ".join(x) for x in p)).lower(), **({"im": im} if im else {})})
     for k in T:
         if k not in keys: GAP.append((cat, k, "overlay text without a source entry"))
     return rows
@@ -180,6 +182,8 @@ def mon_block():
         if sid not in qlib.app()["src"] and sid not in ("efa", "dmg", "core") and not extra_src(src):
             GAP.append(("monster", "%s|%s" % (x["name"], src), "source %s has no source in the app" % sid)); continue
         r = qmon.row(x, sid)
+        im = IMGMAP.get("monster", {}).get("%s|%s" % (x["name"], src))
+        if im: r["im"] = im
         if cnt[x["name"]] > 1 and sid != "core": r["n"] = "%s (%s)" % (x["name"], src)
         rows.append(r)
     for k in skipped: GAP.append(("monster", k, "unresolved copy or no stat block"))

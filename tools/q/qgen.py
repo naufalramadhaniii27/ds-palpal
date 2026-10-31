@@ -87,3 +87,34 @@ def table():
     return out
 CATS = {"disease": disease, "cult": cult, "charopt": charopt, "recipe": recipe, "hazard": hazard, "vehicle": vehicle, "object": obj, "psionic": psionic, "language": language, "deck": deck, "table": table}
 PROSE = {"disease", "cult", "charopt", "recipe", "hazard", "vehicle", "object", "psionic", "deck"}
+
+_KN = None
+def known(name):
+    """name appears as a quoted string in the hand written app source (not the generated q or tp files)"""
+    global _KN
+    import glob, os
+    if _KN is None:
+        R = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        t = ""
+        for f in glob.glob(R + "/src/app/*.js") + glob.glob(R + "/src/builder/*.js") + [x for x in glob.glob(R + "/src/data/*.js") if not re.search(r"/(q\d|tp\d|hb)", x)]:
+            t += open(f, encoding="utf-8", errors="ignore").read()
+        _KN = t
+    return ('"%s"' % name) in _KN
+def rule():
+    out = []
+    for x in W("variantrules.json")["variantrule"]:
+        if known(x["name"]): continue
+        out.append(_ent(x, qlib.walk(x.get("entries", [])), sub="Rule" + (" • " + x["ruleType"] if x.get("ruleType") else ""), tl=[["Kind", x.get("ruleType", "")]]))
+    for x in W("actions.json")["action"]:
+        if known(x["name"]): continue
+        out.append(_ent(x, qlib.walk(x.get("entries", [])), sub="Action", tl=[["Time", str(x.get("time", [""])[0] if x.get("time") else "")]]))
+    return out
+def facility():
+    out = []
+    for x in W("bastions.json")["facility"]:
+        if known(x["name"]): continue
+        out.append(_ent(x, qlib.walk(x.get("entries", [])), sub="Bastion Facility • " + str(x.get("facilityType", "")), tl=[["Level", x.get("level", "")], ["Space", x.get("space", "")]]))
+    return out
+def psionic_ua(): return psionic()
+CATS["rule"] = rule; CATS["facility"] = facility
+PROSE |= {"rule", "facility"}

@@ -44,3 +44,5 @@
 .cc p{margin:4px 0 0;font-size:calc(14px*var(--tz,1));color:var(--muted);line-height:1.5}
 .id-f dd .tx{font-weight:700}
 
+
+.lib-im{display:block;max-width:100%;max-height:340px;margin:0 auto 10px;border-radius:10px;object-fit:contain}.lib-im.tok{width:128px;height:128px}
