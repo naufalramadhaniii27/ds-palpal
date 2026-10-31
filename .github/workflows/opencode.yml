@@ -1,0 +1,36 @@
+# OpenCode agent: write "/opencode <request>" (or "/oc") in an issue or PR comment and it works on the repo with DeepSeek.
+# Needs the repository secret DEEPSEEK_API_KEY. Model and provider settings live in .github/opencode.jsonc.
+# Only the repository owner/members can trigger it, so other people cannot spend the API credit.
+name: opencode
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+jobs:
+  opencode:
+    if: |
+      (contains(github.event.comment.body, '/oc') || contains(github.event.comment.body, '/opencode')) &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Run OpenCode
+        uses: anomalyco/opencode/github@latest
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENCODE_CONFIG: .github/opencode.jsonc
+        with:
+          model: deepseek/deepseek-v4-pro
+          use_github_token: true
