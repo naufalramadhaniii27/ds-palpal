@@ -50,9 +50,9 @@ Risiko R3 (skor 15) karena itu tidak berlaku sebagai "manual".
 
 Audit (bagian 5.2).
 
-Fakta: `tools/build/package.json` dan `tools/build/package-lock.json` ada di commit `b1f0677`. Isinya tiga devDependencies dengan versi terkunci: esbuild 0.28.2, eslint 9.39.4, globals 16.4.0. Yang memang tidak ada hanya `package.json` di akar repo, dan itu pilihan karena aplikasi tidak punya dependensi runtime.
+Fakta: `tools/build/package.json` dan `tools/build/package-lock.json` ada di commit `b1f0677`. Isinya satu devDependency dengan versi terkunci: esbuild 0.28.2. (eslint 9.39.4 dan globals 16.4.0 baru ditambahkan di branch kerja, commit `de941c6c`, untuk pemeriksa nama. Versi 1 dokumen ini salah menyebut ketiganya ada di `b1f0677`. Koreksi dari Hermes di Lampiran E v3.) Yang memang tidak ada hanya `package.json` di akar repo, dan itu pilihan karena aplikasi tidak punya dependensi runtime.
 
-Audit juga menulis "Jumlah dependensi: nol" untuk `build.py` dan "200+ paket npm" untuk bundler. Keduanya tidak tepat: `build.py` sudah memakai esbuild, dan seluruh `node_modules` build di branch kerja berisi 76 paket (kebanyakan turunan eslint).
+Audit juga menulis "Jumlah dependensi: nol" untuk `build.py` dan "200+ paket npm" untuk bundler. Keduanya tidak tepat: `build.py` sudah memakai esbuild, dan seluruh `node_modules` build di branch kerja (dengan eslint) berisi 76 paket (kebanyakan turunan eslint).
 
 ### 3.4 Guard `DEV_USER` yang diusulkan terbalik
 
@@ -117,7 +117,7 @@ Yang salah dari audit adalah besarnya (bagian 3.5), bukan arahnya. Pada emulasi 
 
 ### 4.2 `alt=` hanya 18
 
-Di `index.html` commit itu ada 17 tag `<img` dan 18 kemunculan `alt=`. Hampir semua gambar sudah punya alt. Sebagian besar grafik antarmuka berupa SVG dengan `aria-hidden` (139 kemunculan) dan `role="img"` (6), bukan tag gambar. Jumlah 18 tidak menunjukkan kekurangan.
+Di `index.html` commit itu ada 18 kemunculan `<img` dan 18 kemunculan `alt=`. (Versi 1 dokumen ini menulis 17 karena regex saya melewatkan satu tag yang ditulis di template string. Koreksi dari Hermes.) Hampir semua gambar sudah punya alt. Sebagian besar grafik antarmuka berupa SVG dengan `aria-hidden` (139 kemunculan) dan `role="img"` (6), bukan tag gambar. Jumlah 18 tidak menunjukkan kekurangan.
 
 Pencarian `git grep` di `src/` pada commit itu menemukan 3 baris yang memuat `<img` tanpa `alt=`. Ketiganya bukan tag gambar: satu fungsi regex yang menulis ulang path gambar (`wmHd`, atribut aslinya ikut terbawa) dan dua komentar. Semua template `<img` lain di `src/` punya `alt=`. Audit axe-core atas halaman yang berjalan tetap belum dilakukan oleh siapa pun.
 
@@ -131,7 +131,7 @@ Pencarian `git grep` di `src/` pada commit itu menemukan 3 baris yang memuat `<i
 
 ### 4.4 "Build.py tidak bisa diganti bundler tanpa kehilangan determinisme"
 
-Pada branch kerja, blok `app`, `builder`, `learn` dan `tg` sudah menjadi modul ES yang dibundel esbuild lewat `build.py`. `python3 build.py --check` tetap lulus (`index.html same | sw.js same`, 0 lint gagal), jadi hasil tetap deterministik. Tabel 8.3 audit (determinisme "tidak pasti", "200+ paket") tidak berlaku untuk pemakaian esbuild saja tanpa Vite.
+Pada branch kerja `third-party-all` (belum dirilis ke main, jadi tidak ada di `b1f0677`), blok `app`, `builder`, `learn` dan `tg` sudah menjadi modul ES yang dibundel esbuild lewat `build.py`. Di `b1f0677` esbuild dipakai tanpa `--bundle`, seperti yang ditulis Hermes. `python3 build.py --check` tetap lulus (`index.html same | sw.js same`, 0 lint gagal), jadi hasil tetap deterministik. Tabel 8.3 audit (determinisme "tidak pasti", "200+ paket") tidak berlaku untuk pemakaian esbuild saja tanpa Vite.
 
 ## 5. Klaim yang benar dan diterima
 
@@ -166,7 +166,24 @@ Dalam jawaban singkat sebelum dokumen ini, saya menulis bahwa blok tertunda "han
 4. Tes yang butuh server API lokal atau argumen (misalnya `api_social`) tidak bisa saya jalankan di lingkungan ini.
 5. Saya tidak menjalankan axe-core atas aplikasi (audit juga tidak).
 
-## 8. Cara mengulang pemeriksaan
+## 8. Tambahan setelah audit versi 3
+
+Hermes menerima semua enam koreksi dan mengajukan tiga catatan. Hasil pemeriksaan saya:
+
+| Catatan Hermes | Hasil |
+|---|---|
+| Bundling esbuild tidak ada di `b1f0677` | Benar. Perubahan itu hanya ada di `third-party-all` dan belum dirilis |
+| `package.json` build hanya berisi esbuild | Benar untuk `b1f0677`. Saya keliru membaca file di branch kerja |
+| 18 `<img`, bukan 17 | Benar. Hitungan mentah `<img` memberi 18 |
+
+Dua angka tambahan yang belum ada di audit v3:
+
+| Angka | Nilai |
+|---|---|
+| brotli q11 atas `index.html` `b1f0677` | 3,04 MB (2,9 MiB), lebih kecil dari gzip 4,06 MiB |
+| gzip tanpa semua 34 blok `x-defer` | 0,96 MiB. Dengan blok builder tetap ada 1,23 MiB. Perkiraan audit "sekitar 1 MiB" untuk §8.1 wajar |
+
+## 9. Cara mengulang pemeriksaan
 
 ```
 git ls-tree -r --name-only b1f0677 tests
