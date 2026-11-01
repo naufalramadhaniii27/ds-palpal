@@ -1,16 +1,29 @@
+import {esc} from "./01-logic-core-helpers.js";
+import {bgX,spX} from "./03-logic-magic-item-effects.js";
+import {B} from "./04-logic-storage.js";
+import {CL,R14} from "./05-logic-choice-model-ruleset.js";
+import {fs14List,sdn,subLbl} from "./08-logic-2014-rules.js";
+import {allFeats,choiceLvl,choices,featChosen,featViol,grantTools,saveTaken,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
+import {invList,optAny} from "./10-logic-v17-additions.js";
+import {abil,casterParts,clsLv} from "./11-logic-derivation.js";
+import {toSheet} from "./12-logic-export-to-sheet.js";
+import {allPacks,packSkills} from "./13-logic-sources-and-packs.js";
+import {MCL,langKeys} from "./14-logic-multiclass-hp-shop.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"preFail",{get:function(){return preFail;},set:function(v){preFail=v;},configurable:true});
 /* ================= UI: step builder ================= */
-var STEPS=[["home","Home"],["class","Class"],["bg","Background"],["species","Species"],["abil","Abilities"],["equip","Equipment"],["next","What's Next"],["rules","Rules"]];
+export var STEPS=[["home","Home"],["class","Class"],["bg","Background"],["species","Species"],["abil","Abilities"],["equip","Equipment"],["next","What's Next"],["rules","Rules"]];
 /* v33 p02 (C13): step icons, line icons from the sheet set (ICO) */
-var STEP_ICO={home:"step-home","class":"step-class",bg:"step-background",species:"step-species",abil:"step-abilities",equip:"step-equipment",next:"step-next",rules:"ui-book"};
-function bI(k,c){var I=window.__ICO;return (I&&I[k]&&window.__ico)?window.__ico(k,"bi"+(c?" "+c:"")):""}
-var step="class",openCards={},pickCls=false,pickSp=false;
-window.__bldAsk=function(m,o,c){ return ask(m,o,c); };/* v35 p01: test hook */function ask(msg,ok,cb){var w=document.createElement("div"),prev=document.activeElement;w.className="exp";w.setAttribute("role","dialog");w.setAttribute("aria-modal","true");w.innerHTML='<div class="expb"><p class="fd" style="font-size:16px">'+esc(msg)+'</p><div class="row"><button type="button" data-no="1">Cancel</button><button type="button" class="pri" data-yes="1">'+esc(ok)+'</button></div></div>';(document.getElementById("bld")||document.body).appendChild(w);if(window.__topLayer)window.__topLayer(w);/* T11 A5 */
+export var STEP_ICO={home:"step-home","class":"step-class",bg:"step-background",species:"step-species",abil:"step-abilities",equip:"step-equipment",next:"step-next",rules:"ui-book"};
+export function bI(k,c){var I=window.__ICO;return (I&&I[k]&&window.__ico)?window.__ico(k,"bi"+(c?" "+c:"")):""}
+export var step="class",openCards={},pickCls=false,pickSp=false;
+window.__bldAsk=function(m,o,c){ return ask(m,o,c); };/* v35 p01: test hook */export function ask(msg,ok,cb){var w=document.createElement("div"),prev=document.activeElement;w.className="exp";w.setAttribute("role","dialog");w.setAttribute("aria-modal","true");w.innerHTML='<div class="expb"><p class="fd" style="font-size:16px">'+esc(msg)+'</p><div class="row"><button type="button" data-no="1">Cancel</button><button type="button" class="pri" data-yes="1">'+esc(ok)+'</button></div></div>';(document.getElementById("bld")||document.body).appendChild(w);if(window.__topLayer)window.__topLayer(w);/* T11 A5 */
  function close(){w.remove();document.removeEventListener("keydown",onKey,true);if(prev&&prev.focus)try{prev.focus({preventScroll:true})}catch(e){}}function onKey(e){if(e.key==="Escape"){e.stopPropagation();close()}}/* v19 V19-5 */
  document.addEventListener("keydown",onKey,true);var y=w.querySelector("[data-yes]");if(y)y.focus({preventScroll:true});
  w.addEventListener("click",function(e){var b=e.target.closest("button");if(e.target===w||(b&&b.dataset.no)){close();return}if(b&&b.dataset.yes){close();cb()}})}
-function fmtGp(p){return p>=1?p+' GP':p>=0.1?Math.round(p*10)+' SP':Math.round(p*100)+' CP'}
-function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])}
-function profSkills(){var s=[],bg=bgX();if(bg)s=s.concat(bg.sk);choices().forEach(function(c){if(c.t==="skills"&&Array.isArray(B.ch[c.key]))s=s.concat(B.ch[c.key])});return s.filter(function(x,i){return s.indexOf(x)===i&&(SKILLS[x]||packSkills().some(function(p){return p.n===x}))})}
+export function fmtGp(p){return p>=1?p+' GP':p>=0.1?Math.round(p*10)+' SP':Math.round(p*100)+' CP'}
+export function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])}
+export function profSkills(){var s=[],bg=bgX();if(bg)s=s.concat(bg.sk);choices().forEach(function(c){if(c.t==="skills"&&Array.isArray(B.ch[c.key]))s=s.concat(B.ch[c.key])});return s.filter(function(x,i){return s.indexOf(x)===i&&(SKILLS[x]||packSkills().some(function(p){return p.n===x}))})}
 /* v32 RL49: tools the character has from somewhere else (name -> source), for the overlap mark on tool chips */
 function toolTaken(key){var o={},c=CL(),bg=bgX(),add=function(t,s){String(t||"").split(/,\s*/).forEach(function(n){if(n&&!o[n])o[n]=s})};
  if(!c.toolPick)add(c.tools,B.cls);if(bg&&!bg.toolPick)add(bg.tool,B.bg+" background");grantTools().forEach(function(q){add(q[0],q[1])});MCL().forEach(function(m){var g=MC_GRANT[m.cls];if(!g.toolPick)add(g.tools,m.cls)});
@@ -24,28 +37,28 @@ function buildLinks(){var names=[];SPELLS.forEach(function(x){var e=esc(x[0]);LI
  names.sort(function(a,b){return b.length-a.length});LINKRX=new RegExp("\\b("+names.map(function(n){return n.replace(/[.*+?^${}()|[\]\\\/]/g,"\\$&")}).join("|")+")\\b","g")}
 function linkText(h){if(!LINKRX)buildLinks();return h.replace(/(<[^>]+>)|([^<]+)/g,function(m,tag,txt){if(tag)return tag;return txt.replace(LINKRX,function(n,p1,off,s){var k=LINKMAP[n.toLowerCase()];if(!k)return n;var pre=s.slice(Math.max(0,off-9),off);if(n==="Light"&&/(Dim|Bright) $/.test(pre))return n;if(n==="Darkness"&&/(\bor|\bin|magical|\bof) $/.test(pre))return n;/* V14-7 */if(k[0]==="ft"&&!/^[A-Z]/.test(n))return n;return '<button type="button" class="lnk" data-lnk="'+k[0]+'|'+esc(k[1])+'">'+n+'</button>'})})}
 function xb(h){return window.__xl&&window.__xl.xlink?window.__xl.xlink(h,null,"b"):h}
-function rt(t){return xb(linkText(esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")))}
+export function rt(t){return xb(linkText(esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")))}
 /* full texts: bold labels start a new line */
 /* full text of a magic item: real paragraphs, and "Roll 01-10: ..." lines as a d100 table */
-function mfullH(t){var L=rtp(t).split(/\n+/),h="",tb=[];function fl(){if(tb.length){h+='<div class="mroll" role="table">'+tb.join("")+'</div>';tb=[]}}L.forEach(function(x){x=x.trim();if(!x)return;var m=/^(?:<strong>)?(?:Roll\s+)?(\d{1,3}(?:\s*[-\u2013]\s*\d{1,3})?)(?::|\.)?(?:<\/strong>)?\s*:?\s+(.+)$/.exec(x);if(m&&(/^(?:<strong>)?Roll/.test(x)||tb.length)){tb.push('<div class="mroll-r" role="row"><b role="cell">'+m[1].replace(/\s*[-\u2013]\s*/,"\u2013")+'</b><span role="cell">'+m[2]+'</span></div>')}else{fl();h+='<p>'+x+'</p>'}});fl();return h}
-function rtp(t){return rt(t).replace(/ <strong>/g,"<br><strong>")}
+export function mfullH(t){var L=rtp(t).split(/\n+/),h="",tb=[];function fl(){if(tb.length){h+='<div class="mroll" role="table">'+tb.join("")+'</div>';tb=[]}}L.forEach(function(x){x=x.trim();if(!x)return;var m=/^(?:<strong>)?(?:Roll\s+)?(\d{1,3}(?:\s*[-\u2013]\s*\d{1,3})?)(?::|\.)?(?:<\/strong>)?\s*:?\s+(.+)$/.exec(x);if(m&&(/^(?:<strong>)?Roll/.test(x)||tb.length)){tb.push('<div class="mroll-r" role="row"><b role="cell">'+m[1].replace(/\s*[-\u2013]\s*/,"\u2013")+'</b><span role="cell">'+m[2]+'</span></div>')}else{fl();h+='<p>'+x+'</p>'}});fl();return h}
+export function rtp(t){return rt(t).replace(/ <strong>/g,"<br><strong>")}
 /* v20 RD25: setting page of a pack (Public Lore), paragraphs split on blank lines */
-function showLore(id){var p=allPacks().filter(function(x){return x.id===id})[0];if(!p||!p.lore)return;var w=document.createElement("div"),prev=document.activeElement;w.className="exp";w.setAttribute("role","dialog");w.setAttribute("aria-modal","true");w.setAttribute("aria-labelledby","loreT");/* v20 M4 */
+export function showLore(id){var p=allPacks().filter(function(x){return x.id===id})[0];if(!p||!p.lore)return;var w=document.createElement("div"),prev=document.activeElement;w.className="exp";w.setAttribute("role","dialog");w.setAttribute("aria-modal","true");w.setAttribute("aria-labelledby","loreT");/* v20 M4 */
  w.innerHTML='<div class="expb lore"><div class="row lorex"><button type="button" data-no="1">Close</button></div><h3 class="rh" id="loreT">'+esc(p.name.replace(/ \(Homebrew\)$/,""))+': '+esc(p.loreLabel||"Public Lore")+'</h3>'+p.lore.map(function(x){return '<h4>'+esc(x.title)+'</h4>'+String(x.text).split(/\n\n+/).map(function(t){return '<p class="fd">'+rt(t)+'</p>'}).join("")}).join("")+'<div class="row"><button type="button" class="pri" data-no="1">Close</button></div></div>';
  (document.getElementById("bld")||document.body).appendChild(w);function close(){w.remove();document.removeEventListener("keydown",onKey,true);if(prev&&prev.focus)try{prev.focus({preventScroll:true})}catch(er){}}function onKey(e){if(e.key==="Escape"){e.stopPropagation();close()}}
  document.addEventListener("keydown",onKey,true);var cb=w.querySelector("[data-no]");if(cb)cb.focus({preventScroll:true});w.addEventListener("click",function(e){if(e.target===w||e.target.closest("[data-no]"))close()})}
 window.__bldRef=function(k,n){return showRef(k,n)};/* test hook */
-function showRef(kind,name){var h="";if(kind==="cr"||kind==="mi"||kind==="lib"){try{var inf=window.__xl.info(kind+":"+name);var ih=String(inf.h).replace(/<button type="button" class="lk xl" data-info="(cr|mi|spn|lib):([^"]*)"/g,function(m,k,n){return '<button type="button" class="lnk" data-lnk="'+(k==="spn"?"sp":k)+'|'+n+'"'}).replace(/<button\b[^>]*data-info="[^"]*"[^>]*>([\s\S]*?)<\/button>/g,"$1");h='<h3 class="rh">'+esc(inf.t||name)+'</h3><div class="xref">'+ih+'</div>'}catch(er){return}}else if(kind==="sp"){var x=SMAP[name];if(!x)return;h='<h3 class="rh">'+esc(x[0])+'</h3><p class="fd"><i>'+(x[1]?ord(x[1])+" level ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i>'+(x[8]?' \u2022 Concentration':'')+(x[9]?' \u2022 Ritual':'')+'</p><p class="fd">'+rtp(SPELL_FULL[x[0]]||x[11]||"")+'</p><div class="sdet"><span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack roll":x[10]?x[10]+" saving throw":"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span></div>'}
+export function showRef(kind,name){var h="";if(kind==="cr"||kind==="mi"||kind==="lib"){try{var inf=window.__xl.info(kind+":"+name);var ih=String(inf.h).replace(/<button type="button" class="lk xl" data-info="(cr|mi|spn|lib):([^"]*)"/g,function(m,k,n){return '<button type="button" class="lnk" data-lnk="'+(k==="spn"?"sp":k)+'|'+n+'"'}).replace(/<button\b[^>]*data-info="[^"]*"[^>]*>([\s\S]*?)<\/button>/g,"$1");h='<h3 class="rh">'+esc(inf.t||name)+'</h3><div class="xref">'+ih+'</div>'}catch(er){return}}else if(kind==="sp"){var x=__R.SMAP[name];if(!x)return;h='<h3 class="rh">'+esc(x[0])+'</h3><p class="fd"><i>'+(x[1]?ord(x[1])+" level ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i>'+(x[8]?' \u2022 Concentration':'')+(x[9]?' \u2022 Ritual':'')+'</p><p class="fd">'+rtp(SPELL_FULL[x[0]]||x[11]||"")+'</p><div class="sdet"><span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+__R.spRngB(x)+'</span><span><b>Components</b>'+__R.spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+__R.spDmgB(x)+'<span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack roll":x[10]?x[10]+" saving throw":"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span></div>'}
  else{var F=FEATS[name];if(!F)return;h='<h3 class="rh">'+esc(name)+'</h3><p class="fd"><i>'+({O:"Origin feat",G:"General feat",F:"Fighting Style feat",E:"Epic Boon",X:"Fighting Style option"}[F.cat]||"Feat")+(F.pre?' \u2022 '+esc(F.pre):'')+'</i></p><p class="fd">'+rtp(F.full||F.d)+'</p>'}
  var w=document.createElement("div");w.className="exp";w.innerHTML='<div class="expb">'+h+'<div class="row"><button type="button" class="pri" data-no="1">Close</button></div></div>';(document.getElementById("bld")||document.body).appendChild(w);
  w.addEventListener("click",function(e){if(e.target===w||e.target.closest("[data-no]"))w.remove()})}
 
 /* accordion card */
-function card(id,title,meta,body,opts){opts=opts||{};var open=!!openCards[id];
+export function card(id,title,meta,body,opts){opts=opts||{};var open=!!openCards[id];
  return '<div class="acc'+(opts.todo?" todo":"")+(open?" open":"")+'" data-acc="'+esc(id)+'">'+(opts.todo?'<span class="bang">!</span>':'')+
   '<button type="button" class="acc-h" data-tog="'+esc(id)+'"><span class="acc-t"><b>'+esc(title)+'</b>'+(meta?'<small>'+esc(meta)+'</small>':'')+'</span><svg class="bchev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
   '<div class="acc-b"'+(open?'':' hidden')+'>'+body+'</div></div>'}
-function metaOf(nChoice,lvl){var a=[];if(nChoice)a.push(nChoice+" Choice"+(nChoice>1?"s":""));if(lvl)a.push(ord(lvl)+" level");return a.join(" \u2022 ")}
+export function metaOf(nChoice,lvl){var a=[];if(nChoice)a.push(nChoice+" Choice"+(nChoice>1?"s":""));if(lvl)a.push(ord(lvl)+" level");return a.join(" \u2022 ")}
 
 /* choice widgets */
 function skillSrcOther(n,key){var bg=bgX();if(bg&&bg.sk.indexOf(n)>=0)return B.bg+" background";var s=choices().filter(function(c){return c.key!==key&&c.t==="skills"&&(B.ch[c.key]||[]).indexOf(n)>=0})[0];return s?s.title.replace(/ skill.*$/,""):""}
@@ -62,7 +75,7 @@ function featInfo(v){var F=FEATS[v];return '<p class="fd">'+(F?rtp(F.full||F.d):
 function duelCtl(v){var F=v&&FEATS[v];if(!F||!F.meleeDmg1h)return "";var m=B.duelMode==="on"||B.duelMode==="off"?B.duelMode:"auto",n="+"+F.meleeDmg1h+" damage";
  return '<label class="one">'+esc(v)+' bonus<select class="dd" data-b="duelMode">'+[["auto","Auto"],["on","Always on"],["off","Off"]].map(function(o){return '<option value="'+o[0]+'"'+(m===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+
   '<p class="fd">'+{auto:"Auto: "+n+" while a one-handed melee weapon is your only active weapon. A Shield is fine.",on:"Always on: "+n+" with every one-handed melee weapon, even when another weapon is active.",off:"Off: the sheet never adds this damage."}[m]+'</p>'}
-function choiceBody(c){var v=B.ch[c.key];
+export function choiceBody(c){var v=B.ch[c.key];
  if(c.t==="lang"){var tk=[];langKeys().forEach(function(k){if(k!==c.key)tk=tk.concat(B.ch[k]||[])});if(clsLv("Druid"))tk.push("Druidic");if(clsLv("Rogue"))tk.push("Thieves' Cant");if(R14()){var sq=spX(),bq=bgX();tk=tk.concat((sq&&sq.lgf)||[]).concat((bq&&bq.lgf)||[])}return chips(c,c.from.filter(function(x){return tk.indexOf(x[0])<0}))+'<p class="fd bhint">You always know Common. Rare languages need your DM\'s approval.</p>'}
  if(c.t==="skills"){var mine=v||[];var cl=(c.from||ALLSK).map(function(n){var s=skillSrcOther(n,c.key);return s?{n:n,lab:s}:n});var dup=mine.map(function(n){var s=skillSrcOther(n,c.key);return s?n+' (also from '+s+')':''}).filter(Boolean);
   if(c.tools)return chips(c,cl).replace('<p class="pick">','<p class="wgrp">Skills</p><p class="pick">')+toolChips(c,["art","music","game","other"])+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(", "))+'.</div>':"");/* v32 RL49: Skilled, any mix of skills and tools */
@@ -127,6 +140,11 @@ function armorAt(lvl,key){var lv=choiceLvl(),late={},keep={},A=armorNow(),c=CL()
  Object.keys(late).forEach(function(a){if(keep[a])return;var other=(c.armor||"").indexOf(a)>=0||MCL().some(function(m){return ((MC_GRANT[m.cls]||{}).armor||"").indexOf(a)>=0})||(a==="Heavy"&&optAny("Protector"))||(a==="Medium"&&(B.ch.p1opt==="Warden"||(B.sub==="College of Valor"&&B.level>=3)))||(a==="Shields"&&B.sub==="College of Valor"&&B.level>=3);
   if(!other)A=A.split(/,\s*/).filter(function(x){return x!==a}).join(", ")});return A}
 function fsel(k,p,opts,v,dis){return '<select class="dd" data-fk="'+k+'" data-fp="'+p+'"><option value="">- Choose -</option>'+opts.map(function(o){var w=dis&&v!==o?dis(o):"";return '<option value="'+o+'"'+(v===o?" selected":"")+(w?" disabled":"")+'>'+o+(w?" ("+w+")":"")+'</option>'}).join("")+'</select>'}
-function nC(c){return c.n||1}
+export function nC(c){return c.n||1}
 
 
+
+export function __set_step(v){ return step=v; }
+export function __set_openCards(v){ return openCards=v; }
+export function __set_pickCls(v){ return pickCls=v; }
+export function __set_pickSp(v){ return pickSp=v; }

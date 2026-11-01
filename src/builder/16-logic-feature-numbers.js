@@ -1,3 +1,14 @@
+import {mod,pbOf} from "./01-logic-core-helpers.js";
+import {un} from "./03-logic-magic-item-effects.js";
+import {B} from "./04-logic-storage.js";
+import {R14} from "./05-logic-choice-model-ruleset.js";
+import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
+import {clsParts} from "./11-logic-derivation.js";
+import {subChoicesFor} from "./13-logic-sources-and-packs.js";
+import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"calcNote",{get:function(){return calcNote;},set:function(v){calcNote=v;},configurable:true});
+Object.defineProperty(__R,"defenses",{get:function(){return defenses;},set:function(v){defenses=v;},configurable:true});
 /* ---------- level-based numbers for feature text ---------- */
 function calcNote(name,cls,L,a){var pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)};
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */

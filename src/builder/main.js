@@ -1,0 +1,26 @@
+/* Entry of the module block: every file in the order it used to be joined. */
+import "./01-logic-core-helpers.js";
+import "./02-data-magic-item-summaries.js";
+import "./03-logic-magic-item-effects.js";
+import "./04-logic-storage.js";
+import "./05-logic-choice-model-ruleset.js";
+import "./06-data-2014-classes.js";
+import "./07-data-2014-spells.js";
+import "./08-logic-2014-rules.js";
+import "./09-logic-feats-and-choices.js";
+import "./10-logic-v17-additions.js";
+import "./11-logic-derivation.js";
+import "./12-logic-export-to-sheet.js";
+import "./13-logic-sources-and-packs.js";
+import "./14-logic-multiclass-hp-shop.js";
+import "./15-logic-import-from-sheet.js";
+import "./16-logic-feature-numbers.js";
+import "./17-ui-step-builder.js";
+import "./18-ui-spells.js";
+import "./19-ui-steps-sources-class-bg-species-abilities.js";
+import "./20-ui-steps-equipment-next.js";
+import "./21-ui-rules-reference.js";
+import "./22-ui-shell.js";
+import "./23-logic-level-up-and-build-files.js";
+import "./24-ui-icons.js";
+import "./25-logic-hooks-for-the-sheet.js";

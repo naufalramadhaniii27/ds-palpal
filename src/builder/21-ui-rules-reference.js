@@ -1,12 +1,34 @@
+import {ABK,esc,toast} from "./01-logic-core-helpers.js";
+import {DMAP,NEWB,un} from "./03-logic-magic-item-effects.js";
+import {B,__set_B,save} from "./04-logic-storage.js";
+import {R14} from "./05-logic-choice-model-ruleset.js";
+import {fs14List} from "./08-logic-2014-rules.js";
+import {allFeats,choices} from "./09-logic-feats-and-choices.js";
+import {bookNeed,bookOwn,isDone,wizLv} from "./10-logic-v17-additions.js";
+import {clsLv} from "./11-logic-derivation.js";
+import {ACM,toSheet} from "./12-logic-export-to-sheet.js";
+import {applyPacks,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
+import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
+import {__set_pickCls,__set_pickSp,__set_step,ask,card,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
+import {SMAP,issueText,plural,ruleIssues,spInfo} from "./18-ui-spells.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"acModeCard",{get:function(){return acModeCard;},set:function(v){acModeCard=v;},configurable:true});
+Object.defineProperty(__R,"bCt",{get:function(){return bCt;},set:function(v){bCt=v;},configurable:true});
+Object.defineProperty(__R,"bInN",{get:function(){return bInN;},set:function(v){bInN=v;},configurable:true});
+Object.defineProperty(__R,"bInvOrder",{get:function(){return bInvOrder;},set:function(v){bInvOrder=v;},configurable:true});
+Object.defineProperty(__R,"binIn",{get:function(){return binIn;},set:function(v){binIn=v;},configurable:true});
+Object.defineProperty(__R,"hbForm",{get:function(){return hbForm;},set:function(v){hbForm=v;},configurable:true});
+Object.defineProperty(__R,"qbCard",{get:function(){return qbCard;},set:function(v){qbCard=v;},configurable:true});
+Object.defineProperty(__R,"sp14List",{get:function(){return sp14List;},set:function(v){sp14List=v;},configurable:true});
 /* ---------- rules ---------- */
-function renderRules(){var cats=["Classes","Subclasses","Species","Backgrounds","Feats","Weapons","Armor","Options"],it=dbItems();
+export function renderRules(){var cats=["Classes","Subclasses","Species","Backgrounds","Feats","Weapons","Armor","Options"],it=dbItems();
  return '<h2 class="ttl">Rules Database</h2><input class="btx" id="dbq" type="search" placeholder="Search name or rule text" value="'+esc(dbQ)+'"><div class="chips cats">'+cats.map(function(c){return '<button type="button" class="chip'+(c===dbCat&&!dbQ?" on":"")+'" data-cat="'+c+'">'+c+'</button>'}).join("")+'</div><p class="pick">'+it.length+' entries'+(dbQ?' across all categories':'')+'</p>'+
   it.map(function(i,n){return card("db"+i.t+n,i.t,i.m,(i.d?'<p class="fd">'+esc(i.d)+'</p>':'')+(i.x.length?i.x.map(function(x){return '<p class="fd">'+esc(x)+'</p>'}).join(""):''))}).join("")}
 
 /* v26 RU38 no. 8: make your own species, feat, or magic item in the builder (Sources step). They go into the source "My Homebrew" (B.packs, id my-homebrew),
    which this build turns on. The pack format is the one Add Homebrew Source reads, so a made entry also works in a pasted pack.
    Homebrew of the other characters on this device can be added to this character (copied, not linked). */
-var HB_ID="my-homebrew",HBF={t:"species"},HBE="";
+export var HB_ID="my-homebrew",HBF={t:"species"},HBE="";
 function hbMine(){return (B.packs||[]).filter(function(p){return p.id===HB_ID})[0]||null}
 function hbHas(p,t,n){return !!p&&(t==="species"?!!(p.species||{})[n]:t==="feat"?!!(p.feats||{})[n]:(p.items||[]).some(function(x){return x[0]===n}))}
 function hbList(p){if(!p)return [];var o=[];Object.keys(p.species||{}).forEach(function(k){o.push(["species",k])});Object.keys(p.feats||{}).forEach(function(k){o.push(["feat",k])});(p.items||[]).forEach(function(x){o.push(["item",x[0]])});return o}
@@ -26,40 +48,40 @@ function hbForm(){var f=HBF,h='<div class="hbmk"><div class="radios h">'+[["spec
  var O=hbOthers();if(O.length)h+='<p class="flab">Homebrew of your other characters</p><div class="hblist">'+O.map(function(o){return '<div class="hbrow"><span><b>'+esc(o.p.name)+'</b><small>'+esc(o.who)+': '+esc(hbCount(o.p))+'</small></span><button type="button" class="bdg add" data-hbcopy="'+esc(o.cid+"|"+o.p.id)+'">Add to this character</button></div>'}).join("")+'</div>';
  return h}
 /* user packs (not built in) of the other characters in My Characters that have something this build does not */
-function hbOthers(){var out=[],r=null;try{r=JSON.parse(__store.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;var me=sid();
+function hbOthers(){var out=[],r=null;try{r=JSON.parse(__store.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;var me=__R.sid();
  Object.keys(r.chars).forEach(function(id){if(id===me||id===r.active)return;var b=null;try{b=JSON.parse(r.chars[id].B||"null")}catch(e){b=null}if(!b||!Array.isArray(b.packs))return;
   b.packs.forEach(function(p){if(!p||!p.id||HB_BUILTIN[p.id])return;var mine=(B.packs||[]).filter(function(q){return q.id===p.id})[0];if(hbList(p).some(function(e){return !hbHas(mine,e[0],e[1])}))out.push({cid:id,who:r.chars[id].name||"Character",p:p})})});return out}
-function hbRead(){var g=function(id){var e=document.getElementById(id);return e?String(e.value||"").trim():""},f={t:HBF.t,n:g("hb-n").slice(0,60)};
+export function hbRead(){var g=function(id){var e=document.getElementById(id);return e?String(e.value||"").trim():""},f={t:HBF.t,n:g("hb-n").slice(0,60)};
  if(f.t==="species"){f.size=g("hb-size")||"Medium";f.speed=Math.max(0,Math.min(120,Math.round(+g("hb-speed")||30)));f.dark=+g("hb-dark")||0;f.traits=g("hb-traits")}
  if(f.t==="feat"){f.cat=g("hb-cat")||"G";f.pre=g("hb-pre");f.asi=[].slice.call(document.querySelectorAll("#bld [data-hbab]:checked")).map(function(x){return x.getAttribute("data-hbab")});f.rep=!!(document.getElementById("hb-rep")||{}).checked;f.d=g("hb-d")}
  if(f.t==="item"){f.type=g("hb-type")||"Wondrous Item";f.rar=g("hb-rar")||"Uncommon";f.att=!!(document.getElementById("hb-att")||{}).checked;f.d=g("hb-d");f.fx={};[].slice.call(document.querySelectorAll("#bld [data-hbfx]")).forEach(function(s){var v=+s.value;if(v)f.fx[s.getAttribute("data-hbfx")]=v})}
  return f}
 function hbRemove(p,t,n){if(!p)return;if(t==="species")delete (p.species||{})[n];if(t==="feat")delete (p.feats||{})[n];if(t==="item")p.items=(p.items||[]).filter(function(x){return x[0]!==n})}
-function hbSave(){var f=hbRead(),p=hbMine();HBF=f;
- if(!f.n){toast("Give it a name first.");render();return}
- var taken=f.t==="species"?SPECIES[f.n]:f.t==="feat"?FEATS[f.n]:DMAP[f.n];if(taken&&f.n!==HBE&&!hbHas(p,f.t,f.n)){toast("That name is already used. Pick another name.");render();return}
- if(f.t!=="species"&&!f.d){toast("Write what it does.");render();return}
+export function hbSave(){var f=hbRead(),p=hbMine();HBF=f;
+ if(!f.n){toast("Give it a name first.");__R.render();return}
+ var taken=f.t==="species"?SPECIES[f.n]:f.t==="feat"?FEATS[f.n]:DMAP[f.n];if(taken&&f.n!==HBE&&!hbHas(p,f.t,f.n)){toast("That name is already used. Pick another name.");__R.render();return}
+ if(f.t!=="species"&&!f.d){toast("Write what it does.");__R.render();return}
  if(!p){p={id:HB_ID,name:"My Homebrew",desc:"Species, feats, and magic items you made"};B.packs=(B.packs||[]).concat([p])}
  if(HBE&&HBE!==f.n){hbRemove(p,f.t,HBE);if(f.t==="species"&&B.species===HBE)B.species=f.n}
  if(f.t==="species"){p.species=p.species||{};p.species[f.n]={size:f.size,speed:f.speed,dark:f.dark,traits:String(f.traits||"").split(/\n+/).map(function(l){var m=/^\s*([^:]{1,60}):\s*(.+)$/.exec(l);return m?[m[1].trim(),m[2].trim()]:l.trim()?["Trait",l.trim()]:null}).filter(Boolean)}}
  if(f.t==="feat"){p.feats=p.feats||{};var o={cat:f.cat,d:f.d};if(f.pre)o.pre=f.pre;if(f.asi.length)o.asi=f.asi;if(f.rep)o.rep=1;p.feats[f.n]=o}
  if(f.t==="item"){p.items=(p.items||[]).filter(function(x){return x[0]!==f.n});var x=[f.n,f.type,f.rar,f.att?1:0,f.d||""];if(Object.keys(f.fx).length)x.push({fx:f.fx});p.items.push(x)}
- B.src=B.src||{core:true,dmg:true};B.src[HB_ID]=true;var was=HBE;HBE="";HBF={t:f.t};applyPacks();commit();toast((was?"Saved ":"Created ")+f.n+". It is in My Homebrew"+(f.t==="species"?", in the Species step.":f.t==="feat"?", in the feat lists.":", in Equipment, Magic Items."))}
-function hbEdit(t,n){var p=hbMine();if(!hbHas(p,t,n))return;var f={t:t,n:n};
+ B.src=B.src||{core:true,dmg:true};B.src[HB_ID]=true;var was=HBE;HBE="";HBF={t:f.t};applyPacks();__R.commit();toast((was?"Saved ":"Created ")+f.n+". It is in My Homebrew"+(f.t==="species"?", in the Species step.":f.t==="feat"?", in the feat lists.":", in Equipment, Magic Items."))}
+export function hbEdit(t,n){var p=hbMine();if(!hbHas(p,t,n))return;var f={t:t,n:n};
  if(t==="species"){var s=p.species[n];f.size=s.size;f.speed=s.speed;f.dark=s.dark;f.traits=(s.traits||[]).map(function(x){return Array.isArray(x)?x[0]+": "+x[1]:String(x)}).join("\n")}
  if(t==="feat"){var o=p.feats[n];f.cat=o.cat;f.pre=o.pre||"";f.asi=o.asi||[];f.rep=!!o.rep;f.d=o.d||""}
  if(t==="item"){var x=p.items.filter(function(y){return y[0]===n})[0];f.type=x[1];f.rar=x[2];f.att=!!x[3];f.d=x[4]||"";f.fx=(x[5]&&x[5].fx)||{}}
- HBF=f;HBE=n;render();var e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
-function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",function(){var p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter(function(q){return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();commit();toast("Removed "+n+".")})}
-function hbCopy(cid,pid){var o=hbOthers().filter(function(x){return x.cid===cid&&x.p.id===pid})[0];if(!o)return;var src=JSON.parse(JSON.stringify(o.p)),mine=(B.packs||[]).filter(function(q){return q.id===pid})[0],n=0;
+ HBF=f;HBE=n;__R.render();var e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
+export function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",function(){var p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter(function(q){return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();__R.commit();toast("Removed "+n+".")})}
+export function hbCopy(cid,pid){var o=hbOthers().filter(function(x){return x.cid===cid&&x.p.id===pid})[0];if(!o)return;var src=JSON.parse(JSON.stringify(o.p)),mine=(B.packs||[]).filter(function(q){return q.id===pid})[0],n=0;
  if(!mine){B.packs=(B.packs||[]).concat([src]);n=hbList(src).length}
  else hbList(src).forEach(function(e){if(hbHas(mine,e[0],e[1]))return;n++;if(e[0]==="species"){mine.species=mine.species||{};mine.species[e[1]]=src.species[e[1]]}if(e[0]==="feat"){mine.feats=mine.feats||{};mine.feats[e[1]]=src.feats[e[1]]}if(e[0]==="item"){mine.items=(mine.items||[]).concat(src.items.filter(function(x){return x[0]===e[1]}))}});
- B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}
+ B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();__R.commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}
 
 /* v27 RU65: Quick Build for new players. Pick a class and a species; the builder fills a level 1 character: Standard Array by class (PHB 2024 table),
    a background whose abilities fit the class (+2 and +1), class and background equipment (option A), skills, languages, Weapon Mastery, class options,
    and starting spells (QUICK in db4.js). Every pick can be changed afterwards in the steps */
-var qbCls="",qbSp="";
+export var qbCls="",qbSp="";
 /* v99: races a 2014 build can use (the ones that carry ability score increases) */
 function sp14List(){return Object.keys(SPECIES).filter(function(n){var s=SPECIES[n];return s&&(s.asi||s.asiPick||s.asiFlex)})}
 var QB_BG14={Barbarian:"Outlander (2014)",Bard:"Entertainer (2014)",Cleric:"Acolyte (2014)",Druid:"Hermit (2014)",Fighter:"Soldier (2014)",Monk:"Hermit (2014)",Paladin:"Noble (2014)",Ranger:"Outlander (2014)",Rogue:"Criminal (2014)",Sorcerer:"Sage (2014)",Warlock:"Charlatan (2014)",Wizard:"Sage (2014)",Artificer:"Guild Artisan (2014)"};
@@ -83,8 +105,8 @@ function qbPick(c){var Q=QUICK[B.cls]||{},have=profSkills();
  if(c.t==="lin")return ((SPECIES[B.species]||{}).lin||{opts:[]}).opts[0]||"";
  if(c.t==="ofeat"){var tk=allFeats().map(function(f){return f.n});return ["Tough","Alert","Lucky","Healer","Musician"].filter(function(n){return FEATS[n]&&tk.indexOf(n)<0})[0]||""}
  return null}
-function qbFill(){for(var pass=0;pass<80;pass++){var any=false;choices().some(function(c){if(isDone(c))return false;var v=qbPick(c);if(v==null||v===""||(Array.isArray(v)&&!v.length))return false;B.ch[c.key]=v;any=true;return true});if(!any)break}}/* v35 p19: the list is read again after each pick, so a later level does not repeat an earlier pick */
-function qbSpells(){var I=spInfo();if(!I)return;var Q=QUICK[B.cls]||{},L=SPELLS.filter(function(x){return I.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
+export function qbFill(){for(var pass=0;pass<80;pass++){var any=false;choices().some(function(c){if(isDone(c))return false;var v=qbPick(c);if(v==null||v===""||(Array.isArray(v)&&!v.length))return false;B.ch[c.key]=v;any=true;return true});if(!any)break}}/* v35 p19: the list is read again after each pick, so a later level does not repeat an earlier pick */
+export function qbSpells(){var I=spInfo();if(!I)return;var Q=QUICK[B.cls]||{},L=SPELLS.filter(function(x){return I.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
  var nc=function(){return B.sp.filter(function(n){return SMAP[n]&&!SMAP[n][1]}).length},np=function(){return B.sp.filter(function(n){return SMAP[n]&&SMAP[n][1]}).length},auto=autoSpells().map(function(a){return a.n});
  (Q.ct||[]).concat(L.filter(function(x){return !x[1]}).map(function(x){return x[0]})).forEach(function(n){var x=SMAP[n];if(x&&!x[1]&&nc()<I.ct&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
  (Q.sp||[]).concat(L.filter(function(x){return x[1]===1}).map(function(x){return x[0]})).forEach(function(n){var x=SMAP[n];if(x&&x[1]&&np()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
@@ -95,22 +117,22 @@ function qbSpells(){var I=spInfo();if(!I)return;var Q=QUICK[B.cls]||{},L=SPELLS.
 function qbArc(){var wl=clsLv("Warlock");if(!wl)return;B.pk=B.pk||{};var mine=(B.sp||[]).concat(autoSpells().map(function(a){return a.n}));[[11,6],[13,7],[15,8],[17,9]].forEach(function(r){var k="ma"+r[1];if(wl<r[0]||B.pk[k])return;var x=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0&&mine.indexOf(x[0])<0})[0];if(x)B.pk[k]=x[0]})}
 /* Magic Initiate from the background (Acolyte, Guide, Sage): two cantrips and one level 1 spell of that list, not already chosen */
 var QB_MI={Wizard:{c:["Prestidigitation","Minor Illusion","Ray of Frost","Light"],s:["Find Familiar","Sleep","Feather Fall"]},Cleric:{c:["Spare the Dying","Light","Resistance","Guidance"],s:["Shield of Faith","Sanctuary","Command"]},Druid:{c:["Druidcraft","Shillelagh","Guidance","Produce Flame"],s:["Goodberry","Speak with Animals","Healing Word"]}};
-function qbMI(){B.pk=B.pk||{};miFeats().forEach(function(m){var v=B.pk[m.key];if(v&&v.c&&v.c.length>=2&&v.s&&v.s.length>=1)return;var L=SPELLS.filter(function(x){return x[3].indexOf(m.cls)>=0&&x[1]<=1}),mine=(B.sp||[]).concat(autoSpells().map(function(a){return a.n})),P=QB_MI[m.cls]||{c:[],s:[]};
+export function qbMI(){B.pk=B.pk||{};miFeats().forEach(function(m){var v=B.pk[m.key];if(v&&v.c&&v.c.length>=2&&v.s&&v.s.length>=1)return;var L=SPELLS.filter(function(x){return x[3].indexOf(m.cls)>=0&&x[1]<=1}),mine=(B.sp||[]).concat(autoSpells().map(function(a){return a.n})),P=QB_MI[m.cls]||{c:[],s:[]};
  var pick=function(pref,lv,n){var out=[];pref.concat(L.filter(function(x){return x[1]===lv}).map(function(x){return x[0]})).forEach(function(nm){var x=SMAP[nm];if(out.length<n&&x&&x[1]===lv&&x[3].indexOf(m.cls)>=0&&mine.indexOf(nm)<0&&out.indexOf(nm)<0)out.push(nm)});return out};
  var cast=CLASSES[B.cls].cast,cs=pick(P.c,0,2),ss=pick(P.s,1,1);
  /* T11 N6: a Cleric or Druid of high level can already know every level 1 spell of the list. Then Magic Initiate takes one of them again */
  if(!ss.length)ss=L.filter(function(x){return x[1]===1}).map(function(x){return x[0]}).slice(0,1);if(cs.length<2)L.filter(function(x){return !x[1]&&cs.indexOf(x[0])<0}).forEach(function(x){if(cs.length<2)cs.push(x[0])});
  B.pk[m.key]={c:cs,s:ss,ab:["INT","WIS","CHA"].indexOf(cast)>=0?cast:"WIS"}})}
 /* v32 p22: a Wizard spellbook filled with level 1 Wizard spells (the Magic Initiate picks first) */
-function qbBook(){var need=bookNeed();if(!need)return;B.pk=B.pk||{};var bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter(function(x){return x[1]===1&&x[3].indexOf("Wizard")>=0}).map(function(x){return x[0]}))).forEach(function(n){if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});
+export function qbBook(){var need=bookNeed();if(!need)return;B.pk=B.pk||{};var bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter(function(x){return x[1]===1&&x[3].indexOf("Wizard")>=0}).map(function(x){return x[0]}))).forEach(function(n){if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});
  /* T11 N6: higher Wizard levels need more spells than there are level 1 Wizard spells, so the rest come from the levels the Wizard can cast, highest first */
  var mx=Math.min(9,Math.ceil(wizLv()/2));for(var lv=mx;lv>=2&&bookOwn().length<need;lv--)SPELLS.filter(function(x){return x[1]===lv&&x[3].indexOf("Wizard")>=0}).forEach(function(x){if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])});
  if(!bk.length)delete B.pk.book}
-function quickBuild(cls,sp){var Q=QUICK[cls];if(!Q){toast("Choose a class first.");return}
- var go=function(){var keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};B=NEWB();if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
+export function quickBuild(cls,sp){var Q=QUICK[cls];if(!Q){toast("Choose a class first.");return}
+ var go=function(){var keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};__set_B(NEWB());if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
   B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();/* v99: the class is set, so a class that comes from a source (Artificer) loads before the kit is read */B.species=SPECIES[sp]?sp:(R14()?"Human (2014)":"Human");B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
   if(R14()){B.bg=BACKGROUNDS[QB_BG14[cls]]?QB_BG14[cls]:"Acolyte (2014)";B.bgMode="111";B.bg2="";B.bg1=""}else{B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1}/* v99: a 2014 Quick Build uses a 2014 background, no ability score picks from it */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);qbFill();qbSpells();qbMI();qbBook();save();go2()};
- var go2=function(){step="next";pickCls=false;pickSp=false;render();window.scrollTo(0,0);var RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
+ var go2=function(){__set_step("next");__set_pickCls(false);__set_pickSp(false);__R.render();window.scrollTo(0,0);var RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
  if(!un("cls")&&B.cls)ask("Replace this build with a Quick Build of a "+(SPECIES[sp]?sp.replace(/ \(2014\)$/,""):"Human")+" "+cls+"? The name stays. The choices, spells, and equipment of the build are replaced. Nothing changes on the sheet until you Apply.","Quick Build",go);else go()}
 
 /* v27 i2: choose how AC is set when no armor is worn. Shown when two rules can set it, or when one was chosen before */
@@ -118,17 +140,22 @@ function acModeCard(){try{toSheet()}catch(e){}var real=(ACM||[]).filter(function
  return '<div class="acm"><h3 class="eqh">Armor Class without Armor</h3><p class="fd bhint">Several rules set your AC without armor. Pick one, or Automatic (main class first).</p><div class="radios">'+
   [["","Automatic: "+ACM[0].n+", AC "+ACM[0].v]].concat(ACM.map(function(x){return [x.k,x.n+", AC "+x.v]})).map(function(o){return '<button type="button" class="rad'+(cur===o[0]?" on":"")+'" data-acm="'+o[0]+'"><b>'+esc(o[1])+'</b>'+(o[0]&&o[0]===best.k&&best.v>ACM[0].v?'<span>Highest</span>':'')+'</button>'}).join("")+'</div><p class="fd bhint">A shield and magic items add to these. Worn armor replaces them.</p></div>'}
 /* v32 RU134: item of B.inv by name and occurrence (occ 0 = first), then by alias. -1: none */
-function invFind(name,occ){var n=+occ||0,f=-1;for(var i=0;i<B.inv.length;i++)if(B.inv[i].n===name){if(f<0)f=i;if(n--===0)return i}if(f>=0)return f;return B.inv.findIndex(function(x){return x.alias===name})}
+export function invFind(name,occ){var n=+occ||0,f=-1;for(var i=0;i<B.inv.length;i++)if(B.inv[i].n===name){if(f<0)f=i;if(n--===0)return i}if(f>=0)return f;return B.inv.findIndex(function(x){return x.alias===name})}
 /* a container leaves: its items move out (no other container has its name) */
-function ctFree(c){if(!c||!bCt(c.n)||B.inv.some(function(y){return y!==c&&y.n===c.n}))return;B.inv.forEach(function(y){if(y.in===c.n)delete y.in})}
+export function ctFree(c){if(!c||!bCt(c.n)||B.inv.some(function(y){return y!==c&&y.n===c.n}))return;B.inv.forEach(function(y){if(y.in===c.n)delete y.in})}
 /* a pack row opens into its container and items, in its place. Returns the number of new rows, 0 when it is not a pack or its Qty is 0 */
-function unpackAt(i){var x=B.inv[i],pn=x&&(PACKS[x.n]?x.n:x.alias&&PACKS[x.alias]?x.alias:"");if(!pn||qOf(x)<1)return 0;var out=[];for(var k=0;k<qOf(x);k++)out=out.concat(packOut(pn,B.inv.concat(out)));
+export function unpackAt(i){var x=B.inv[i],pn=x&&(PACKS[x.n]?x.n:x.alias&&PACKS[x.alias]?x.alias:"");if(!pn||qOf(x)<1)return 0;var out=[];for(var k=0;k<qOf(x);k++)out=out.concat(packOut(pn,B.inv.concat(out)));
  out.forEach(function(y){if(x.kit)y.kit=1;if(x.src)y.src=x.src;if(!y.in&&x.in)y.in=x.in});B.inv.splice.apply(B.inv,[i,1].concat(out));return out.length}
 /* Current Inventory order: an item inside a container comes right after it, one step in */
 function bInvOrder(L){var out=[],seen={},top=function(y){return !y.in||!L.some(function(c){return c!==y&&c.n===y.in&&bCt(c.n)})},
   kids=function(c,d){L.forEach(function(y,j){if(!seen[j]&&y!==c&&y.in===c.n){seen[j]=1;out.push([y,j,d]);if(bCt(y.n)&&d<4)kids(y,d+1)}})};
  L.forEach(function(x,i){if(seen[i]||!top(x))return;seen[i]=1;out.push([x,i,0]);if(bCt(x.n))kids(x,1)});L.forEach(function(x,i){if(!seen[i]){seen[i]=1;out.push([x,i,0])}});return out}
-function bInN(c){return (B.inv||[]).filter(function(y){return y!==c&&y.in===c.n}).length}
+export function bInN(c){return (B.inv||[]).filter(function(y){return y!==c&&y.in===c.n}).length}
 /* v27 RU46: put an item in a container here, as Move does on the sheet */
-function bCt(n){var b=String(n||"").replace(/ \(.*\)$/,"");return (typeof CONTAINERS!=="undefined"?CONTAINERS:[]).some(function(c){return c[0]===n||c[0]===b})}
+export function bCt(n){var b=String(n||"").replace(/ \(.*\)$/,"");return (typeof CONTAINERS!=="undefined"?CONTAINERS:[]).some(function(c){return c[0]===n||c[0]===b})}
 function binIn(x,i){var cs=(B.inv||[]).filter(function(y,k){return k!==i&&bCt(y.n)&&y.in!==x.n});if(!cs.length&&!x.in)return "";return '<label class="binin">In <select class="dd sm" data-iin="'+i+'" aria-label="Container for '+esc(x.n)+'"><option value="">Not in a container</option>'+cs.map(function(y){return '<option value="'+esc(y.n)+'"'+(x.in===y.n?" selected":"")+'>'+esc(y.n)+'</option>'}).join("")+'</select></label>'}
+
+export function __set_HBF(v){ return HBF=v; }
+export function __set_HBE(v){ return HBE=v; }
+export function __set_qbCls(v){ return qbCls=v; }
+export function __set_qbSp(v){ return qbSp=v; }

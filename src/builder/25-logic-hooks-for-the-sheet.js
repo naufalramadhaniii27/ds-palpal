@@ -1,3 +1,25 @@
+import {ABK,clone,toast} from "./01-logic-core-helpers.js";
+import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
+import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
+import {R14} from "./05-logic-choice-model-ruleset.js";
+import {RL14} from "./08-logic-2014-rules.js";
+import {choices} from "./09-logic-feats-and-choices.js";
+import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
+import {casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {toSheet} from "./12-logic-export-to-sheet.js";
+import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
+import {fromSheet} from "./15-logic-import-from-sheet.js";
+import {STEPS,__set_openCards,__set_pickCls,__set_pickSp,__set_step,openCards,pickCls,pickSp,step} from "./17-ui-step-builder.js";
+import {SMAP,__set_clsTab,choiceStep,clsTab,ruleIssues,spInfoPart,spellCounts} from "./18-ui-spells.js";
+import {itemDetail,itemType} from "./20-ui-steps-equipment-next.js";
+import {ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt} from "./21-ui-rules-reference.js";
+import {copyOf,go,own,render,stamp} from "./22-ui-shell.js";
+import {blankC,unList} from "./23-logic-level-up-and-build-files.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"bldMine",{get:function(){return bldMine;},set:function(v){bldMine=v;},configurable:true});
+Object.defineProperty(__R,"choiceList",{get:function(){return choiceList;},set:function(v){choiceList=v;},configurable:true});
+Object.defineProperty(__R,"withB",{get:function(){return withB;},set:function(v){withB=v;},configurable:true});
 /* v32 RU134: open a pack of the build into its container and items. soft: rebuild the sheet from the build. false: not this character, not a pack, or Qty 0 */
 window.__bldUnpack=function(name,owner,occ,soft){ensureInv();if(!own(owner))return false;var i=invFind(name,occ);if(i<0||!unpackAt(i))return false;save();if(soft&&window.__sheetSoft)window.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 window.__itemMeta=function(n){var c=[n],pm=/\(([^)]+)\)/.exec(n);if(pm)c.push(pm[1]);for(var k=0;k<c.length;k++){var b=baseOf(c[k]).b;if(WEAPONS[b]||ARMOR[b]||b==="Shield"||DMAP[c[k]]||itemCost(b)!=null){var html="";window.__inTS=1;try{html=itemDetail(c[k],{n:c[k]})}catch(e){}window.__inTS=0;return {type:itemType(c[k]),cost:itemCost(b),w:itemW(c[k]),equippable:equippable(c[k])||!!(DMAP[c[k]]&&DMAP[c[k]][1]!=="Potion"),html:html,cost:PRICE[c[k]]!=null?PRICE[c[k]]:itemCost(b),/* v20 M1 */att:!!(DMAP[c[k]]&&DMAP[c[k]][3])}}}return null};
@@ -9,7 +31,7 @@ window.__bldSync=function(name,owner,ch){ensureInv();if(!ch||!own(owner))return 
 var DIFFL={name:"Name",species:"Species",size:"Size",cls:"Class",clsLabel:"Class",sub:"Subclass",bg:"Background",level:"Level",hitDie:"Hit Points",hpPerLevel:"Hit Points",hpBonus:"Hit Points",office:"Campaign",cardNo:"Record number",rolledNote:"Roll record",abilities:"Ability scores",saves:"Saving throws",skills:"Skills",initBonus:"Initiative",ac:"Armor Class",speed:"Speed",speedSrc:"Speed",darkvision:"Darkvision",darkSrc:"Darkvision",senses:"Senses",profs:"Proficiencies",attacks:"Attacks",inv:"Inventory",gp:"Gold",equipNote:"Equipment note",res:"Limited Use",actions:"Actions",features:"Features",defenses:"Defenses",spellcasting:"Spells",spells:"Spells",lang:"Languages",grappler:"Grappler",dcAb:"Grapple DC",dcSrc:"Grapple DC"};
 window.__bldDiff=function(P){if(!P||!own(P.name))return [];var N=toSheet(),lost=manualLost(P,N),out=[],oth=[],j=function(x){return JSON.stringify(x===undefined?null:x)},jf=function(x){return j((x||[]).filter(function(g){return !/^Species/.test(g.g)}))};/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach(function(k){if(k==="v"||k==="_app"||k==="bv")return;/* v27 RU28: C.bv is the builder version */if((+P._app||0)>(window.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */var l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?jf(P[k])!==jf(N[k]):j(P[k])!==j(N[k]))oth.push(l)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
 /* v18 RU74: the build was saved in another tab: load it here */
-window.__bldReload=function(){B=loadB();applyPacks();if(!document.getElementById("bld").hidden)render()};
+window.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
 function bldMine(){var st=window.__sheetState&&window.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}
 window.__bldSpInfo=function(){if(!bldMine())return null;var CP=casterParts();if(!CP.length)return null;var SLs=spLists();
@@ -23,12 +45,12 @@ function choiceList(){var cs=choices().map(function(c){return {key:c.key,t:c.t,n
  spellCounts().forEach(function(x){if(x.open)cs.push({key:"spell:"+(x.key||x.m),t:"spell",n:x.n||1,title:x.m,feature:x.f||"",done:false,step:"class"})});
  casterParts().forEach(function(p){if(p.xl&&p.xl.length)cs.push({key:"lists:"+p.cls,t:"lists",n:p.xl.length,list:p.xl,title:p.cls+" extra spell lists",feature:"Magical Secrets",done:true,step:"class"})});/* tests only: Magical Secrets */
  return cs}
-function withB(b,fn){var keep=B;if(!b)return fn();try{var x=JSON.parse(JSON.stringify(b));for(var k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];B=cleanCh(x);applyPacks();return fn()}finally{B=keep;applyPacks()}}
+function withB(b,fn){var keep=B;if(!b)return fn();try{var x=JSON.parse(JSON.stringify(b));for(var k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x));applyPacks();return fn()}finally{__set_B(keep);applyPacks()}}
 window.__bldChoiceList=function(b){return withB(b,choiceList)};window.__bldHasSpell=function(n){return !!SMAP[n]&&!!SPELL_FULL[n]};window.__bldItems=function(b){return withB(b,function(){return DMGI.map(function(r){return r[0]})})};window.__bldQLive=function(b){return withB(b,function(){var o={};Object.keys(window.QLIVE||{}).forEach(function(c){o[c]=window.QLIVE[c].map(function(r){return r.n})});return o})};/* test hooks: magic item names and Library reference rows while build b is open */
 window.__bldFeats=function(b){return withB(b,function(){return Object.keys(FEATS)})};/* test hook: the feat names while build b is open (third party feats follow their source) */
 /* v32 RL49 no. 10d, tests only: show build b in the open builder without saving it (null: back to the saved build), and go to a step */
-var TKEEP=null;window.__bldTestSet=function(b){if(b){if(!TKEEP)TKEEP=B;var x=JSON.parse(JSON.stringify(b));for(var k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];B=cleanCh(x)}else if(TKEEP){B=TKEEP;TKEEP=null}applyPacks();openCards={};render()};
-window.__bldTestB=function(){return JSON.parse(JSON.stringify(B))};window.__bldTestItems=function(){return {dmgi:DMGI.map(function(x){return x[0]}),gear:GEAR.map(function(x){return x[0]}),weapons:Object.keys(WEAPONS),armor:Object.keys(ARMOR),price:typeof PRICE!=="undefined"?Object.keys(PRICE):[],spells:SPELLS.map(function(x){return x[0]})}};/* v100: test hook for the audits *//* v95: test hook */window.__bldTestGo=function(s){step=s;pickCls=false;pickSp=false;clsTab="feat";render()};
+var TKEEP=null;window.__bldTestSet=function(b){if(b){if(!TKEEP)TKEEP=B;var x=JSON.parse(JSON.stringify(b));for(var k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x))}else if(TKEEP){__set_B(TKEEP);TKEEP=null}applyPacks();__set_openCards({});render()};
+window.__bldTestB=function(){return JSON.parse(JSON.stringify(B))};window.__bldTestItems=function(){return {dmgi:DMGI.map(function(x){return x[0]}),gear:GEAR.map(function(x){return x[0]}),weapons:Object.keys(WEAPONS),armor:Object.keys(ARMOR),price:typeof PRICE!=="undefined"?Object.keys(PRICE):[],spells:SPELLS.map(function(x){return x[0]})}};/* v100: test hook for the audits *//* v95: test hook */window.__bldTestGo=function(s){__set_step(s);__set_pickCls(false);__set_pickSp(false);__set_clsTab("feat");render()};
 /* v32 RU137: open choices of the build that belongs to the open character, same number as "Still to choose" in What's Next. 0 = none or no build */
 function openCount(){if(unList())return [["cls"],["species"],["bg"]].filter(function(x){return un(x[0])}).length;
  return choices().filter(function(x){return !isDone(x)}).length+ruleIssues().filter(function(x){return x.open}).length}
@@ -52,33 +74,33 @@ window.__bldArmor=function(st,name,eq){var bn=baseOf(name).b;if(!st||!st.C||!(AR
   if(i>=0){var pick=function(){var c=toSheet(),s=(c.skills||[]).filter(function(k){return k.n==="Stealth"})[0];return {ac:c.ac,speed:c.speed,speedSrc:c.speedSrc,stealth:s&&s.dis||"",sb:c.saveBonus||[],ab:c.abilities}};
    var b0=pick(),it=B.inv[i],off=[];it.eq=!!eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach(function(y,k){if(k!==i&&ARMOR[baseOf(y.n).b]&&y.eq){y.eq=false;off.push(y.n);if(y.alias)off.push(y.alias)}});
    out={b0:b0,b1:pick(),off:off}}
- }finally{if(keep){B=keep;applyPacks()}else if(out)save()}
+ }finally{if(keep){__set_B(keep);applyPacks()}else if(out)save()}
  return out};
 if(window.__sheetRerender)setTimeout(window.__sheetRerender,0);
-if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
-if(__store.getItem("cs-new")){__store.removeItem("cs-new");B=NEWB();stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home");/* T11 Learn F3: Forge Your Hero asked for a Quick Build of this new character */var fg=null;try{fg=JSON.parse(sessionStorage.getItem("cs-forge")||"null");sessionStorage.removeItem("cs-forge")}catch(e){}if(fg&&fg.cls&&QUICK[fg.cls]){if(fg.name)B.name=fg.name;quickBuild(fg.cls,fg.sp)}},50)}
+if(window.__publicFresh&&!__store.getItem("cs-new")){window.__publicFresh=0;__set_B(NEWB());stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC(),false)}/* v24 p08 */
+if(__store.getItem("cs-new")){__store.removeItem("cs-new");__set_B(NEWB());stamp();save();applyPacks();if(window.__sheetApply)window.__sheetApply(blankC());setTimeout(function(){window.__bldOpen();go("home");/* T11 Learn F3: Forge Your Hero asked for a Quick Build of this new character */var fg=null;try{fg=JSON.parse(sessionStorage.getItem("cs-forge")||"null");sessionStorage.removeItem("cs-forge")}catch(e){}if(fg&&fg.cls&&QUICK[fg.cls]){if(fg.name)B.name=fg.name;quickBuild(fg.cls,fg.sp)}},50)}
 applyPacks();render();
 
 /* T11 N6: rules fuzzer hooks. __bldLists gives the 2024 classes, species, backgrounds and subclasses. __bldFuzz builds one character from the given picks
    (class, species, background, standard array order, level, subclass), fills the remaining choices the Quick Build way, and returns the build, the sheet
    object, the rule issues and the unfinished list. The open build is put back afterwards, nothing is saved */
 window.__bldLists=function(){var subs={};Object.keys(CLASSES).forEach(function(c){subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter(function(c){return CLASSES[c]}),sp:Object.keys(SPECIES).filter(function(s){return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter(function(b){return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort(function(a,b){return b-a})}};
-window.__bldFuzz=function(o){var keep=B,out=null;try{B=NEWB();B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
+window.__bldFuzz=function(o){var keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
   var bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&o.lv>=3)B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
-  out={b:JSON.parse(JSON.stringify(B)),c:toSheet(),ri:ruleIssues().map(function(x){return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}B=keep;return out};
+  out={b:JSON.parse(JSON.stringify(B)),c:toSheet(),ri:ruleIssues().map(function(x){return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
 window.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
 /* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */
 /* the build of the open character without opening the builder: the saved one when it is this character's, otherwise made from the sheet (like Build does) */
 function bldForSheet(){var st=window.__sheetState&&window.__sheetState();if(!st||!st.C)return null;var raw=savedRaw(),keep=B,out=null;
- try{if(raw!=null){var b=JSON.parse(raw);B=b;if(own(st.C.name)||copyOf(st.C.name)){out=b}}if(!out){fromSheet(st);out=JSON.parse(JSON.stringify(B))}}catch(e){out=null}finally{B=keep;applyPacks()}return out}
+ try{if(raw!=null){var b=JSON.parse(raw);__set_B(b);if(own(st.C.name)||copyOf(st.C.name)){out=b}}if(!out){fromSheet(st);out=JSON.parse(JSON.stringify(B))}}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out}
 window.__bldForSheet=bldForSheet;
 window.__bldOpts=function(){var r14=B.rs==="2014",ok=function(k){return r14?/\(2014\)/.test(k):!/\(2014\)/.test(k)};var bg={};Object.keys(BACKGROUNDS).filter(ok).forEach(function(k){bg[k]={ab:(BACKGROUNDS[k].ab||[]).slice(),sk:(BACKGROUNDS[k].sk||[]).slice()}});
  var b0=bldForSheet()||JSON.parse(JSON.stringify(B));return {b:b0,species:Object.keys(SPECIES).filter(ok),bg:bg,armor:JSON.parse(JSON.stringify(ARMOR)),r14:r14}};
-window.__bldUse=function(nb,why){var now=JSON.stringify(B);saveBak(now);var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);stamp();save();applyPacks();window.__bldOpen();go("abil");toast((why||"Build changed")+". The old build is kept as the backup build.")};
+window.__bldUse=function(nb,why){var now=JSON.stringify(B);saveBak(now);var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));stamp();save();applyPacks();window.__bldOpen();go("abil");toast((why||"Build changed")+". The old build is kept as the backup build.")};
 /* G7 TG1 Try a class: the Quick Build of a class at a level, made on a copy (nothing saved, the open build is put back). Spells, choices and
    the kit are filled the way Quick Build fills them, so a caster has its spells */
 window.__bldQuickFor=function(cls,lv){var Q=QUICK[cls];if(!Q)return null;var keep=B,out=null;
- try{B=NEWB();B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=SPECIES.Human?"Human":B.species;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
+ try{__set_B(NEWB());B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=SPECIES.Human?"Human":B.species;B.method="array";B.arr={};ABK.forEach(function(k,i){B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
   B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=JSON.parse(JSON.stringify(B))}
- catch(e){out=null}finally{B=keep;applyPacks()}return out};
+ catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};

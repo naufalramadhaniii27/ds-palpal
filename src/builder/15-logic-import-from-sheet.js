@@ -1,3 +1,11 @@
+import {ABK,clone} from "./01-logic-core-helpers.js";
+import {BLANK,DMAP} from "./03-logic-magic-item-effects.js";
+import {B,__set_B} from "./04-logic-storage.js";
+import {CL} from "./05-logic-choice-model-ruleset.js";
+import {asiLevels,choices,wxGate} from "./09-logic-feats-and-choices.js";
+import {SPX,__set_SPX,casterParts,spRec} from "./11-logic-derivation.js";
+import {allPacks,applyPacks} from "./13-logic-sources-and-packs.js";
+import {baseOf,itemCost,qOf} from "./14-logic-multiclass-hp-shop.js";
 /* ---------- import current sheet into builder ---------- */
 /* L4: multiclass from the sheet label ("Fighter 4 / Rogue 1") and the "<Class> (multiclass N): <Subclass>" feature groups */
 function mcFromSheet(C,main){var parts=String(C.clsLabel||"").split(" / ").map(function(p){var m=/^([A-Za-z]+)\s+(\d+)$/.exec(p.trim());return m?{cls:m[1],lv:+m[2]}:null});
@@ -5,7 +13,7 @@ function mcFromSheet(C,main){var parts=String(C.clsLabel||"").split(" / ").map(f
  var subs={};(C.features||[]).forEach(function(g){var m=/^([A-Za-z]+) \(multiclass \d+\)(?:: (.+))?$/.exec(g.g||"");if(m)subs[m[1]]=m[2]||""});
  var out=[];parts.slice(1).forEach(function(p){if(!p||!CLASSES[p.cls]||p.cls===main||out.some(function(x){return x.cls===p.cls}))return;out.push({cls:p.cls,lv:Math.max(1,Math.min(20,p.lv)),sub:subs[p.cls]||""})});
  return out}
-function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.camp=String((typeof st.camp==="string")?st.camp:(C.camp||C.office||"")).trim();if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
+export function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.camp=String((typeof st.camp==="string")?st.camp:(C.camp||C.office||"")).trim();if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
  var spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
  (function(){var best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
@@ -14,7 +22,7 @@ function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Chara
  if(!SPECIES[sp]){allPacks().forEach(function(p){if(p.species&&p.species[sp])nb.src[p.id]=true})}
  /* v67: a species, background or subclass of a WotC source keeps its source on when the sheet is read back */
  if(window.WXSP)Object.keys(WXSP).forEach(function(id){if(WXSP[id][sp])nb.src[id]=true});if(window.WXBG)Object.keys(WXBG).forEach(function(id){if(WXBG[id][C.bg])nb.src[id]=true});if(window.WXS)WXS.forEach(function(x){if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(window.WXO){var fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach(function(id){var g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach(function(r){if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(window.WXG)Object.keys(WXG).forEach(function(id){WXG[id].forEach(function(r){if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some(function(q){return q[0]===r[0]}))nb.src[id]=true})});
- B=nb;applyPacks();
+ __set_B(nb);applyPacks();
  if(SPECIES[sp]){B.species=sp;if(SPECIES[sp].opts){var so=[];(C.features||[]).forEach(function(g){(g.items||[]).forEach(function(f){SPECIES[sp].opts.list.forEach(function(o){if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}var lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){var o=SPECIES[sp].lin.opts.filter(function(x){return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}/* v82: 2014 race ability picks come back from the race bonus on the sheet */if(C.rs==="2014"&&SPECIES[sp].asiFlex&&C.abilities){var f2=[],f1=[];Object.keys(C.abilities).forEach(function(k){var a=C.abilities[k],t=0;((a&&a.bonus)||[]).forEach(function(x){if(x.s===sp+" (race)")t+=x.v});if(t===2)f2.push(k);else if(t===1)f1.push(k)});if(f2.length===1&&f1.length===1){B.ch.rasi=f2;B.ch.rasi1=f1}else if(f1.length===3){B.ch.rasim="+1, +1, +1";B.ch.rasi=f1}}if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){var rp=[];Object.keys(C.abilities).forEach(function(k){var a=C.abilities[k];if(a&&(a.bonus||[]).some(function(x){return x.s===sp+" (race)"})&&!(SPECIES[sp].asi&&SPECIES[sp].asi[k])&&rp.indexOf(k)<0)rp.push(k)});if(rp.length)B.ch.rasi=rp.slice(0,SPECIES[sp].asiPick.n)}}
  else{B.species="Custom";B.cSpecies={name:sp||"Custom",speed:+C.speed||30,dark:+C.darkvision||0,size:C.size||"Medium"};miss.push("species")}
  if(C.size)B.size=C.size;
@@ -72,6 +80,6 @@ function fromSheet(st){var C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Chara
   (C.spells||[]).forEach(function(x){if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;var cl=x.src;if(!cp.some(function(p){return p.cls===cl}))return;var k=cl+"|"+x.n;if(have[k])return;have[k]=1;
    if(cl===first)B.sp.push(x.n);else{B.spm=B.spm||{};(B.spm[cl]=B.spm[cl]||[]).push(x.n)}});
   /* the source of a picked spell must be on before its row can be found */
-  try{wxGate()}catch(e){}SPX=null;
+  try{wxGate()}catch(e){}__set_SPX(null);
   B.sp=B.sp.filter(function(n){return !!spRec(n)});if(B.spm)Object.keys(B.spm).forEach(function(c){B.spm[c]=B.spm[c].filter(function(n){return !!spRec(n)});if(!B.spm[c].length)delete B.spm[c]})})();
  return miss}

@@ -1,3 +1,21 @@
+import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
+import {BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
+import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
+import {CL} from "./05-logic-choice-model-ruleset.js";
+import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
+import {bookNeed,bookOwn} from "./10-logic-v17-additions.js";
+import {casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {toSheet} from "./12-logic-export-to-sheet.js";
+import {BASE,allPacks,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
+import {fromSheet} from "./15-logic-import-from-sheet.js";
+import {__set_step,ask,step} from "./17-ui-step-builder.js";
+import {SMAP,issueText,ruleIssues,spInfoPart} from "./18-ui-spells.js";
+import {qbBook,qbFill,qbMI,qbSpells} from "./21-ui-rules-reference.js";
+import {copyOf,own,render,sid,stamp,stepBack} from "./22-ui-shell.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"toSheetApply",{get:function(){return toSheetApply;},set:function(v){toSheetApply=v;},configurable:true});
+Object.defineProperty(__R,"unList",{get:function(){return unList;},set:function(v){unList=v;},configurable:true});
 /* v22 RU52: Level Up from the sheet. Opens the build of this character and raises the main class one level. New choices show the usual marks */
 /* v22 P1: names and numbers of a build file. err stops the import, warn is shown before it */
 window.__bldCheck=function(b){var err=[],warn=[],keep=B,lv=+b.level;
@@ -5,7 +23,7 @@ window.__bldCheck=function(b){var err=[],warn=[],keep=B,lv=+b.level;
  if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv))err.push("level must be a whole number from 1 to 20");
  var tl=(lv||0)+(Array.isArray(b.mc)?b.mc.reduce(function(t,m){return t+(+m.lv||0)},0):0);if(tl>20)err.push("total level "+tl+" is more than 20");
  if(err.length)return {err:err,warn:warn};
- try{B=JSON.parse(JSON.stringify(BLANK));B.src=b.src||{core:true,dmg:true};applyPacks();
+ try{__set_B(JSON.parse(JSON.stringify(BLANK)));B.src=b.src||{core:true,dmg:true};applyPacks();
   if(b.species&&!SPECIES[b.species]&&b.species!=="Custom")warn.push("species \""+b.species+"\"");
   var bg=BACKGROUNDS[b.bg];if(b.bg&&!bg)warn.push("background \""+b.bg+"\"");
   if(bg&&b.bgMode!=="111")["bg2","bg1"].forEach(function(k){if(b[k]&&bg.ab.indexOf(b[k])<0)warn.push(b.bg+" cannot raise "+b[k])});
@@ -15,7 +33,7 @@ window.__bldCheck=function(b){var err=[],warn=[],keep=B,lv=+b.level;
   var sp=[].concat(b.sp||[]);Object.keys(b.spm||{}).forEach(function(k){sp=sp.concat(b.spm[k]||[])});var bs=sp.filter(function(n){return !SMAP[n]});if(bs.length)warn.push("spells "+bs.join(", "));
   var bi=(Array.isArray(b.inv)?b.inv:[]).map(function(x){return x&&x.n}).filter(function(n){if(!n)return false;var bo=baseOf(n).b;return !(WEAPONS[bo]||ARMOR[bo]||bo==="Shield"||DMAP[n]||itemCost(bo)!=null||/^Spell Scroll \(/.test(n)||(typeof POTIONS!=="undefined"&&POTIONS.some(function(p){return p[0]===n})))});if(bi.length)warn.push("items "+bi.join(", "));
   var bf=[];Object.keys(b.ch||{}).forEach(function(k){var v=b.ch[k];if(v&&typeof v==="object"&&!Array.isArray(v)&&v.feat&&!FEATS[v.feat])bf.push(v.feat)});if(bf.length)warn.push("feats "+bf.join(", "));
- }finally{B=keep;applyPacks()}
+ }finally{__set_B(keep);applyPacks()}
  return {err:err,warn:warn}};
 /* v22 RU80b: a build file written by hand or in a chat is tidied before it opens. Names are matched to the app lists
    (case, spaces, punctuation, a typo of one or two letters, a short form like "Berserker"), numbers written as text become numbers,
@@ -45,7 +63,7 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
  var lin=b.lin!=null?b.lin:b.lineage;delete b.lin;delete b.lineage;if(lin&&!b.ch.lin)b.ch.lin=lin;
  /* homebrew packs this build needs */
  var src0=b.src&&typeof b.src==="object"?b.src:{core:true,dmg:true};b.src=src0;
- function on(src){B=JSON.parse(JSON.stringify(BLANK));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
+ function on(src){__set_B(JSON.parse(JSON.stringify(BLANK)));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
  function names(){var o={sp:Object.keys(SPECIES),bg:Object.keys(BACKGROUNDS),ft:Object.keys(FEATS),subs:{}};Object.keys(CLASSES).forEach(function(c){o.subs[c]=Object.keys(CLASSES[c].subs||{})});return o}
  on(src0);var N0=names(),ids=[];
  var cl=pick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+q(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
@@ -105,7 +123,7 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
   /* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
   left=left.filter(function(name){var v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};var i=0;while(b.pk["mi"+i])i++;
    var ab=v.ab||v.ability;b.pk["mi"+i]={c:arr(v.c||v.cantrips||[]),s:arr(v.s||v.spells||v.spell||[]),ab:ab?(abl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
-  for(var pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=withB(b,choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map(function(c){return c.key});
+  for(var pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=__R.withB(b,__R.choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map(function(c){return c.key});
    left=left.filter(function(name){var val=byName[name];if(KS.indexOf(name)>=0){ch0[name]=val;return false}
     var nn=nk(name),lab=function(c){var t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
     var E=CLx.filter(function(c){return c.t!=="spell"&&lab(c).some(function(x){return nk(x)===nn})});
@@ -140,11 +158,11 @@ window.__bldNorm=function(b0){var keep=B,err=[],notes=[],b;
   if(plain.length)notes.push("Not in the app item lists, so kept as plain gear with no weight or cost: "+plain.join(", "));
   if(b.eqC==null)b.eqC="none";if(b.eqB==null)b.eqB="none"}
  if(!Object.keys(b.unset).length)delete b.unset;
- }finally{B=keep;applyPacks()}
+ }finally{__set_B(keep);applyPacks()}
  return {err:err,notes:notes,b:b}};
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
-window.__bldAuto=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=JSON.parse(JSON.stringify(B))}finally{B=keep;applyPacks()}return out};
-window.__bldFeatViol=function(b){return withB(b,featViol)};
+window.__bldAuto=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=JSON.parse(JSON.stringify(B))}finally{__set_B(keep);applyPacks()}return out};
+window.__bldFeatViol=function(b){return __R.withB(b,featViol)};
 function qbSpMC(){var cp=casterParts();if(!cp.length)return;var auto=autoSpells().map(function(a){return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
  var all=function(){var s=[],o=spLists();for(var k in o)s=s.concat(o[k]);return s};
  cp.slice().sort(function(a,b){var ka=spInfoPart(a),kb=spInfoPart(b),n=function(K){return K?SPELLS.filter(function(x){return K.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=K.max}).length:0};return n(ka)-n(kb)}).forEach(function(P){var K=spInfoPart(P);if(!K)return;/* the class with the shortest list picks first, so a shared spell does not leave it short */var L=SPELLS.filter(function(x){return K.lists.some(function(l){return x[3].indexOf(l)>=0})&&x[1]<=K.max});
@@ -153,7 +171,7 @@ function qbSpMC(){var cp=casterParts();if(!cp.length)return;var auto=autoSpells(
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
  var wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach(function(r){if(wl>=r[0]&&!B.pk["ma"+r[1]]){var s=SPELLS.filter(function(x){return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  var need=bookNeed(),wz=cp.filter(function(p){return p.cls==="Wizard"})[0];if(need&&wz){var mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter(function(x){return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map(function(x,i,A){return [x,A.slice(0,i).filter(function(y){return y[1]===x[1]}).length]}).sort(function(a,b){return a[1]-b[1]||b[0][1]-a[0][1]}).map(function(p){return p[0]}).forEach(function(x){if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
-window.__bldSheetFor=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];B=cleanCh(b);applyPacks();out=toSheet()}finally{B=keep;applyPacks()}return out};
+window.__bldSheetFor=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.stringify(nb));for(var k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
@@ -161,22 +179,22 @@ window.__bldSheetFor=function(nb){var keep=B,out=null;try{var b=JSON.parse(JSON.
    not after every try. Same results as __bldSheetFor one by one (tests/rb_fast.py compares every try) */
 window.__bldSheetBatch=function(){var keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
  function tag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
- return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}var out=null;try{var b=JSON.parse(JSON.stringify(nb)),z=clone(BLANK);for(var k in BLANK)if(b[k]==null)b[k]=z[k];B=cleanCh(b);
+ return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}var out=null;try{var b=JSON.parse(JSON.stringify(nb)),z=clone(BLANK);for(var k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
    var o={};Object.keys(B).forEach(function(k){if(!VARY[k])o[k]=B[k]});var key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);
    if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else{B.src=JSON.parse(srcAfter);if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
-   out=toSheet()}catch(e){out=null;last=null}finally{B=keep}return out},
+   out=toSheet()}catch(e){out=null;last=null}finally{__set_B(keep)}return out},
   /* between slices the open character's tables come back, so nothing else ever sees a try's tables. Skipped when they are the same */
-  pause:function(){if(last===null)return;B=keep;var o={};Object.keys(B).forEach(function(k){if(!VARY[k])o[k]=B[k]});var key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);if(key!==last)applyPacks();last=null},
-  end:function(){if(done)return;done=true;B=keep;applyPacks()}}};
+  pause:function(){if(last===null)return;__set_B(keep);var o={};Object.keys(B).forEach(function(k){if(!VARY[k])o[k]=B[k]});var key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);if(key!==last)applyPacks();last=null},
+  end:function(){if(done)return;done=true;__set_B(keep);applyPacks()}}};
 /* v74 test hook: reads a sheet back without saving. Returns the species, lineage and sources the builder would hold */
-window.__bldRound=function(C){var keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map(function(x){return x.n+"|"+x.use+"|"+x.src})}}finally{B=keep;applyPacks()}return out};
+window.__bldRound=function(C){var keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map(function(x){return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
 window.__bldLevelUp=function(){var st0=window.__sheetState&&window.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(window.__bldOpen)window.__bldOpen();return}/* v22 i3 */window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
  if(!B.cls){toast("Choose a class first.");return}/* v22 i3 */
- var st=window.__sheetState&&window.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){step="class";render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
- if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();step="class";applyPacks();render();
+ var st=window.__sheetState&&window.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){__set_step("class");render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
+ if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();__set_step("class");applyPacks();render();
  toast("Level "+TL()+": "+B.cls+" "+B.level+". New choices are marked. To level another class instead, change it in the Class step. Apply when you are done.")};
 window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&window.__sheetCamp){var sc1=window.__sheetCamp();if(sc1){B.camp=sc1;save()}}var ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";var st=window.__sheetState&&window.__sheetState();
- var load=function(more){var miss=fromSheet(st);stamp();save();step="class";toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
+ var load=function(more){var miss=fromSheet(st);stamp();save();__set_step("class");toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
  if(st&&st.C){var raw=savedRaw();
   /* no saved build yet (old manual sheet): nothing to lose, import as before */
   if(raw==null){if(B.name!==st.C.name||TL()!==(+st.C.level||1)){load();return}}
@@ -192,9 +210,9 @@ window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();documen
  try{stepBack()}catch(e){}applyPacks();render()};
 function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(window.__bldDot)window.__bldDot()}/* v32 RU137 */
 /* RU30: what a new character still has to choose before Apply: "class, species, and background" */
-function unList(){var m=[["cls","class"],["species","species"],["bg","background"]].filter(function(x){return un(x[0])}).map(function(x){return x[1]});return m.length>1?m.slice(0,-1).join(", ")+(m.length>2?",":"")+" and "+m[m.length-1]:m.join("")}
+export function unList(){var m=[["cls","class"],["species","species"],["bg","background"]].filter(function(x){return un(x[0])}).map(function(x){return x[1]});return m.length>1?m.slice(0,-1).join(", ")+(m.length>2?",":"")+" and "+m[m.length-1]:m.join("")}
 /* RU30: sheet of a new character before its first Apply: name and level only, nothing from the unchosen defaults */
-function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel","speedSrc","darkSrc","equipNote","rolledNote"].forEach(function(k){C[k]=""});C.clsLabel="No class yet";
+export function blankC(){var C=toSheet();["species","cls","sub","bg","size","clsLabel","speedSrc","darkSrc","equipNote","rolledNote"].forEach(function(k){C[k]=""});C.clsLabel="No class yet";
  C.hitDie=0;C.hpPerLevel=[];C.hpBonus=[];C.initBonus=[];C.pasBon=[];C.saves={};C.skills=(C.skills||[]).map(function(s){return {n:s.n,ab:s.ab}});C.lang=[];
  C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};C.profSrc={armor:[],weapons:[],tools:[]};C.acts=[];
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}

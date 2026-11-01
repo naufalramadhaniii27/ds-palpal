@@ -1,11 +1,21 @@
+import {ABK,ABN,SRC,dieAvg,mod,pbOf} from "./01-logic-core-helpers.js";
+import {DMAP,activeFx,attMax,bgX,byOk,htText,spX} from "./03-logic-magic-item-effects.js";
+import {B} from "./04-logic-storage.js";
+import {CL,R14} from "./05-logic-choice-model-ruleset.js";
+import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
+import {XFX,allFeats,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
+import {agOn,invList,luRows,optAny,pactWeapon,saveNotes,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
+import {ATKC,__set_ATKC,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"toSheet",{get:function(){return toSheet;},set:function(v){toSheet=v;},configurable:true});
 /* ---------- export to sheet (v3) ---------- */
-var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
-function toSheet(){
- var c=CL(),L=B.level,TLv=TL(),a=abil(),pb=pbOf(TLv),sp=SPECIES[B.species],custom=B.species==="Custom";
+export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
+export function toSheet(){
+ var c=CL(),L=B.level,TLv=__R.TL(),a=abil(),pb=pbOf(TLv),sp=SPECIES[B.species],custom=B.species==="Custom";
  var spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  var subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
  var bg=BACKGROUNDS[B.bg],feats=allFeats();
- var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",camp:B.camp||"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
+ var C={v:3,bv:window.__appVer||0,/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",camp:B.camp||"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:__R.hpCalc().list.map(function(e){return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
  ABK.forEach(function(k){C.abilities[k]={base:+B.base[k]||10,bonus:a.src[k].map(function(b){return {s:b.s,v:b.v}})}});
  c.saves.forEach(function(k){C.saves[k]=B.cls+" class ("+SRC+")"});
  if(sp&&sp.saveProf&&!custom)sp.saveProf.forEach(function(k){if(!C.saves[k])C.saves[k]=B.species+" ("+(sp.hb||SRC)+")"});/* v74: species saving throw proficiency (Keldon Human) */
@@ -18,28 +28,28 @@ function toSheet(){
  function p(n,s){if(n&&!prof[n])prof[n]=s}
  if(bg)bg.sk.forEach(function(n){p(n,B.bg+" background ("+SRC+")")});
  var CHT0=choices();CHT0.forEach(function(ch){var v=B.ch[ch.key];if(ch.t==="skills"&&Array.isArray(v))v.forEach(function(n){p(n,ch.title+", "+ch.src);if(ch.ex)exp[n]=ch.feature+" ("+ch.src+")"/* v63 */});if(ch.t==="exp"&&Array.isArray(v))v.forEach(function(n){exp[n]=ch.src})});
- var SG=subGrant(B.sub);if(SG&&SG.skills)SG.skills.forEach(function(q){if(L>=q[0])p(q[1],B.sub+" "+q[0])});
+ var SG=__R.subGrant(B.sub);if(SG&&SG.skills)SG.skills.forEach(function(q){if(L>=q[0])p(q[1],B.sub+" "+q[0])});
  if(sp&&sp.skills)sp.skills.forEach(function(n){p(n,B.species+" ("+(sp.hb||SRC)+")")});
  /* v32 RL49: Keen Mind, Observant: proficiency, or Expertise when you have it already. Boon of Skill: every skill */
  CHT0.forEach(function(ch){var v=B.ch[ch.key];if(ch.t==="pe"&&Array.isArray(v))v.forEach(function(n){if(prof[n])exp[n]=ch.feature+" ("+ch.src+")";else p(n,ch.title+", "+ch.src)})});
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.allSk)ALLSK.forEach(function(n){p(n,f.n+" ("+f.s+")")})});XFX.skills(feats,p,prof,exp);/* v62 */
  clsParts().forEach(function(q){var g=typeof SUB_GRANT!=="undefined"&&SUB_GRANT[q.sub];if(g&&g.skills)g.skills.forEach(function(s){if(q.lv>=s[0])p(s[1],g.f+" ("+q.sub+" "+s[0]+")")})});/* v32 */
  ALLSK.forEach(function(n){var o={n:n,ab:SKILLS[n]};if(prof[n]){o.p=1;o.src=prof[n]}if(exp[n]){o.p=2;o.src=(prof[n]||"")+"; Expertise from "+exp[n]}C.skills.push(o)});
- packSkills().forEach(function(s){var o={n:s.n,ab:s.ab,hb:1};if(s.d)o.hbd=s.d;if(prof[s.n]){o.p=1;o.src=prof[s.n]}C.skills.push(o)});
+ __R.packSkills().forEach(function(s){var o={n:s.n,ab:s.ab,hb:1};if(s.d)o.hbd=s.d;if(prof[s.n]){o.p=1;o.src=prof[s.n]}C.skills.push(o)});
  if(clsLv("Bard")>=2&&Math.floor(pb/2))C.skills.forEach(function(s){if(!s.p){s.misc=(s.misc||0)+Math.floor(pb/2);s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+"Jack of All Trades (PHB-2024, Bard 2)"}});/* v35 p07 */XFX.post(C,a);/* v63 */
- var lg=["Common"];if(R14()){var sl0=spX(),bl0=bgX();((sl0&&sl0.lgf)||[]).concat((bl0&&bl0.lgf)||[]).forEach(function(x){if(lg.indexOf(x)<0)lg.push(x)})}langKeys().forEach(function(k){(B.ch[k]||[]).forEach(function(x){if(lg.indexOf(x)<0)lg.push(x)})});if(clsLv("Druid")&&lg.indexOf("Druidic")<0)lg.push("Druidic");if(clsLv("Rogue")&&lg.indexOf("Thieves' Cant")<0)lg.push("Thieves' Cant");XFX.lang(lg);C.lang=lg;/* M10: any class. v62: feat languages */
+ var lg=["Common"];if(R14()){var sl0=spX(),bl0=bgX();((sl0&&sl0.lgf)||[]).concat((bl0&&bl0.lgf)||[]).forEach(function(x){if(lg.indexOf(x)<0)lg.push(x)})}__R.langKeys().forEach(function(k){(B.ch[k]||[]).forEach(function(x){if(lg.indexOf(x)<0)lg.push(x)})});if(clsLv("Druid")&&lg.indexOf("Druidic")<0)lg.push("Druidic");if(clsLv("Rogue")&&lg.indexOf("Thieves' Cant")<0)lg.push("Thieves' Cant");XFX.lang(lg);C.lang=lg;/* M10: any class. v62: feat languages */
  /* armor */
- var EA=effArmor(),ESH=effShield(),EW=effWeps(),KIT=kitItems(),EAp=baseOf(EA).p,ar=ARMOR[baseOf(EA).b];
+ var EA=__R.effArmor(),ESH=__R.effShield(),EW=__R.effWeps(),KIT=__R.kitItems(),EAp=__R.baseOf(EA).p,ar=ARMOR[__R.baseOf(EA).b];
  /* M13: a pact weapon that is not in the inventory is conjured in your hand, so it counts as an active weapon */
- var pactW=pactWeapon(),pactWw=pactW&&WEAPONS[baseOf(pactW).b];if(pactWw&&pactWw.k==="M"&&EW.indexOf(pactW)<0&&!ensureInv().some(function(x){return x.n===pactW}))EW=EW.concat([pactW]);else if(!(pactWw&&pactWw.k==="M"))pactW="";
+ var pactW=pactWeapon(),pactWw=pactW&&WEAPONS[__R.baseOf(pactW).b];if(pactWw&&pactWw.k==="M"&&EW.indexOf(pactW)<0&&!__R.ensureInv().some(function(x){return x.n===pactW}))EW=EW.concat([pactW]);else if(!(pactWw&&pactWw.k==="M"))pactW="";
  /* M6 (RL7): Martial Arts (die, Dexterous Attacks) and Unarmored Movement work only with no armor and no Shield (PHB 2024 p. 101-102).
     RL35 1b: Martial Arts also needs "unarmed or only Monk weapons": an active weapon that is not Simple Melee or Martial Melee Light turns it off.
     Unarmored Movement keeps the armor and Shield check only. M10: Monk level from the main class or a multiclass */
  /* M4 (RL10): Draconic Resilience AC also from a multiclass Sorcerer level 3+. Same place in the AC order as before.
     M17: read from data. CLASSES.*.ua (Unarmored Defense of the main class) and CLASSES.*.acSub[sub] (main class first, then multiclass) */
- var uaM=c.ua&&(c.ua.shield||!ESH)?c.ua:null,acS=null,uaX=null;MCL().forEach(function(m){var u=CLASSES[m.cls].ua;if(u&&(u.shield||!ESH)&&m.lv>=u.l&&!uaX)uaX={u:u,cls:m.cls}});/* M10: multiclass Unarmored Defense, after the old order */[[B.cls,B.sub,L,0]].concat(MCL().map(function(m){return [m.cls,m.sub,m.lv,1]})).forEach(function(q){var s=(CLASSES[q[0]].acSub||{})[q[1]];if(s&&q[2]>=s.l&&!acS)acS={s:s,cls:q[0],lv:q[2],mc:q[3]}});
- var monkLv=clsLv("Monk"),umOn=monkLv>0&&!ar&&!ESH,monkW=function(w,nm){return monkRule(w,nm)};
- var maOn=umOn&&!EW.some(function(n){var w=WEAPONS[baseOf(n).b];return w&&!monkW(w,baseOf(n).b)}),maDie=monkLv?CLASSES.Monk.track["Martial Arts Die"][monkLv-1].replace("d","1d"):"";
+ var uaM=c.ua&&(c.ua.shield||!ESH)?c.ua:null,acS=null,uaX=null;__R.MCL().forEach(function(m){var u=CLASSES[m.cls].ua;if(u&&(u.shield||!ESH)&&m.lv>=u.l&&!uaX)uaX={u:u,cls:m.cls}});/* M10: multiclass Unarmored Defense, after the old order */[[B.cls,B.sub,L,0]].concat(__R.MCL().map(function(m){return [m.cls,m.sub,m.lv,1]})).forEach(function(q){var s=(CLASSES[q[0]].acSub||{})[q[1]];if(s&&q[2]>=s.l&&!acS)acS={s:s,cls:q[0],lv:q[2],mc:q[3]}});
+ var monkLv=clsLv("Monk"),umOn=monkLv>0&&!ar&&!ESH,monkW=function(w,nm){return __R.monkRule(w,nm)};
+ var maOn=umOn&&!EW.some(function(n){var w=WEAPONS[__R.baseOf(n).b];return w&&!monkW(w,__R.baseOf(n).b)}),maDie=monkLv?CLASSES.Monk.track["Martial Arts Die"][monkLv-1].replace("d","1d"):"";
  ACM=[];/* v27 i2 */
  if(ar){var mam=null;feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.med3&&ar.cat==="Medium")mam=F});/* v69: Medium Armor Master */var adx=ar.dex;if(mam&&adx==="max2"&&(mam.med3===1||a.sc.DEX>=mam.med3))adx="max3";
   C.ac={base:ar.ac,baseSrc:EA+", "+ar.cat+" armor ("+SRC+")",dex:adx,bonus:[]};if(ar.dis&&!(mam&&mam.medStealth))C.skills.forEach(function(s){if(s.n==="Stealth")s.dis=EA})}
@@ -57,14 +67,14 @@ function toSheet(){
  if(sbn.length)C.saveBonus=sbn;/* M18: new optional C.saveBonus [{s,v}], all saving throws */
  if(attMax()!==3)C.attMax=attMax();/* v19 RL43: optional, missing = 3 */
  (B.inv||[]).forEach(function(x){if(!x.eq)return;if(x.n==="Bracers of Defense"&&!EA&&!ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});
- if(ESH)C.ac.bonus.push({s:ESH+" ("+SRC+")",v:2+baseOf(ESH).p});if(EAp)C.ac.bonus.push({s:EA+" (magic bonus)",v:EAp});
- feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.dwAC&&!ESH&&EW.filter(function(n){var w=WEAPONS[baseOf(n).b];return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});/* v69 */
+ if(ESH)C.ac.bonus.push({s:ESH+" ("+SRC+")",v:2+__R.baseOf(ESH).p});if(EAp)C.ac.bonus.push({s:EA+" (magic bonus)",v:EAp});
+ feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.dwAC&&!ESH&&EW.filter(function(n){var w=WEAPONS[__R.baseOf(n).b];return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});/* v69 */
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.ac&&ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});/* M17: FEATS.ac (with armor) */
  if(sp&&sp.acBonus&&!custom)C.ac.bonus.push({s:sp.acBonus.s,v:sp.acBonus.v});
  {var Wsb=typeof sbWx==="function"?sbWx(B.sub,B.cls):null;if(Wsb&&Wsb.acb&&!custom&&L>=(Wsb.acb.l||1))C.ac.bonus.push({s:Wsb.acb.s,v:Wsb.acb.v})}/* third party: a flat Armor Class bonus a subclass gives from a level (acb:{l,v,s}) */
- {var SFa=spOptFx();if(SFa.acBonus&&!custom&&L>=(SFa.acBonus.l||1))C.ac.bonus.push({s:SFa.acBonus.s,v:SFa.acBonus.v})}/* v74: AC bonus from a species option (Simic Hybrid Carapace) *//* v58: species bonus to AC (Warforged Integrated Protection) */
+ {var SFa=__R.spOptFx();if(SFa.acBonus&&!custom&&L>=(SFa.acBonus.l||1))C.ac.bonus.push({s:SFa.acBonus.s,v:SFa.acBonus.v})}/* v74: AC bonus from a species option (Simic Hybrid Carapace) *//* v58: species bonus to AC (Warforged Integrated Protection) */
  /* speed and senses */
- var SFX2=spOptFx(),spd=custom?+B.cSpecies.speed:(SFX2.speedSet||sp.speed),spSrc=spName+" ("+(custom?"homebrew":(sp.hb||SRC))+")";if(SFX2.speed){spd+=SFX2.speed;spSrc+=", +"+SFX2.speed+" Quick"}
+ var SFX2=__R.spOptFx(),spd=custom?+B.cSpecies.speed:(SFX2.speedSet||sp.speed),spSrc=spName+" ("+(custom?"homebrew":(sp.hb||SRC))+")";if(SFX2.speed){spd+=SFX2.speed;spSrc+=", +"+SFX2.speed+" Quick"}
  if(clsLv("Barbarian")>=5&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Fast Movement"}
  if(umOn&&monkLv>=2){var um=CLASSES.Monk.track["Unarmored Movement"][monkLv-1];spd+=parseInt(um);spSrc+=", "+um+" Unarmored Movement"}
  if(clsLv("Ranger")>=6&&!R14()&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Roving"}/* M8 (RL8): not in Heavy armor (PHB 2024 p. 121) */
@@ -79,7 +89,7 @@ function toSheet(){
  C.darkvision=dk;C.darkSrc=dk?spName+(dkOpt?", "+dkOpt:"")+" ("+(custom?"homebrew":(sp.hb||SRC))+")":"";
  if(subAt("Barbarian","Path of the Wild Heart")>=6&&chOf("Barbarian","p6opt")==="Owl"){C.darkvision=dk?dk+60:60;C.darkSrc=(C.darkSrc?C.darkSrc+", +60 ":"")+"Aspect of the Wilds (Owl)"}/* v32 RL49 no. 31 */
  /* HP and init */
- C.hpBonus=hpBonusList();/* M4 (RL10): same list as hpCalc() */
+ C.hpBonus=__R.hpBonusList();/* M4 (RL10): same list as hpCalc() */
  clsParts().forEach(function(q){if((q.sub==="Gloom Stalker"||q.sub==="Gloom Stalker (2014)")&&q.lv>=3&&!C.initBonus.some(function(x){return /^Dread Ambusher/.test(x.s)}))C.initBonus.push({s:"Dread Ambusher: Wisdom modifier (PHB-2024, Gloom Stalker 3)",v:mod(a.sc.WIS)})});/* v35 p06 */clsParts().forEach(function(q){if(q.sub==="Swashbuckler"&&q.cls==="Rogue"&&q.lv>=3&&!C.initBonus.some(function(x){return /^Rakish Audacity/.test(x.s)}))C.initBonus.push({s:"Rakish Audacity (Swashbuckler 3): Charisma modifier",v:mod(a.sc.CHA)})});/* v71 */clsParts().forEach(function(q){if(q.sub==="War Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some(function(x){return /^Tactical Wit/.test(x.s)}))C.initBonus.push({s:"Tactical Wit (War Magic): Intelligence modifier",v:mod(a.sc.INT)})})
 /* v73 */clsParts().forEach(function(q){if(q.sub==="Chronurgy Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some(function(x){return /^Temporal Awareness/.test(x.s)}))C.initBonus.push({s:"Temporal Awareness (Chronurgy Magic): Intelligence modifier",v:mod(a.sc.INT)})});/* v71 */clsParts().forEach(function(q){if(q.sub==="Oath of the Watchers"&&q.lv>=7&&!C.initBonus.some(function(x){return /^Aura of the Sentinel/.test(x.s)}))C.initBonus.push({s:"Aura of the Sentinel (Oath of the Watchers 7): Proficiency Bonus",v:pb})});/* v71 */feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});else if(F&&typeof F.init==="number")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:F.init});if(F&&F.pas){C.pasBon=C.pasBon||[];Object.keys(F.pas).forEach(function(k){C.pasBon.push({k:k,v:F.pas[k],s:f.n+" feat ("+f.s+")"})})}/* v69 */if(F&&F.grappler)C.grappler=true});/* M17: FEATS.init, FEATS.grappler */
  (function(){var sx=spX();if(sx&&(sx.traits||[]).some(function(t){return t[0]==="Hare-Trigger"})&&!C.initBonus.some(function(x){return /^Hare-Trigger/.test(x.s)}))C.initBonus.push({s:"Hare-Trigger (Harengon): Proficiency Bonus",v:pb})})();/* v56: Harengon adds PB to Initiative */
@@ -87,12 +97,12 @@ function toSheet(){
  /* v32 RL49: a tool "of your choice" in the data (toolPick) is replaced by the tools chosen in the builder (none chosen: nothing) */
  var CHT=choices(),tp=function(txt,pick,key){if(!pick)return txt;var v=B.ch[key];return Array.isArray(v)?v.join(", "):""},XT=toolChoices(CHT).concat(grantTools(feats));
  var armor=c.armor,weapons=c.weapons,tools=[tp(c.tools,c.toolPick,"clsTool"),bg?bgTl(bg,tp):""].filter(function(x){return x&&x!=="None"});/* v95: a background with no tool says "None", which is no tool */
- if(SG&&SG.armor)SG.armor.forEach(function(q){if(L>=q[0])armor+=", "+q[1]});if(SG&&SG.weapons)SG.weapons.forEach(function(q){if(L>=q[0])weapons+=", "+q[1]});if(SG&&SG.tools)SG.tools.forEach(function(q){if(L>=q[0])tools.push(q[1])});(B.ch.spwep||[]).forEach(function(n){weapons+=", "+n+" (Masterful)"});if(pactW)weapons+=", "+baseOf(pactW).b+" (Pact Weapon)";/* M13 */
+ if(SG&&SG.armor)SG.armor.forEach(function(q){if(L>=q[0])armor+=", "+q[1]});if(SG&&SG.weapons)SG.weapons.forEach(function(q){if(L>=q[0])weapons+=", "+q[1]});if(SG&&SG.tools)SG.tools.forEach(function(q){if(L>=q[0])tools.push(q[1])});(B.ch.spwep||[]).forEach(function(n){weapons+=", "+n+" (Masterful)"});if(pactW)weapons+=", "+__R.baseOf(pactW).b+" (Pact Weapon)";/* M13 */
  if(optAny("Protector")){armor+=", Heavy";weapons+=", Martial"}/* v32: multiclass Cleric too */
  if(optAny("Warden")){armor+=", Medium";weapons+=", Martial"}
  if(B.sub==="College of Valor"&&L>=3){armor+=", Medium, Shields";weapons+=", Martial"}
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.armor)armor+=", "+F.armor;if(F&&F.weapons)weapons+=", "+F.weapons;if(/^Tavern Brawler/.test(f.n))weapons+=", Improvised";if(F&&F.wpPick){var wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach(function(n){weapons+=", "+n})}});/* v69 */
- MCL().forEach(function(m,mi){var g=MC_GRANT[m.cls];if(g.armor)armor+=(armor?", ":"")+g.armor;if(g.weapons)weapons+=", "+g.weapons;var gt=tp(g.tools,g.toolPick,"m"+mi+":tool");if(gt)tools.push(gt)});
+ __R.MCL().forEach(function(m,mi){var g=MC_GRANT[m.cls];if(g.armor)armor+=(armor?", ":"")+g.armor;if(g.weapons)weapons+=", "+g.weapons;var gt=tp(g.tools,g.toolPick,"m"+mi+":tool");if(gt)tools.push(gt)});
  if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach(function(n){weapons+=", "+n});
  if(sp&&sp.profs&&!custom){if(sp.profs.armor)armor+=", "+sp.profs.armor;if(sp.profs.weapons)weapons+=", "+sp.profs.weapons;if(sp.profs.tools)tools.push(sp.profs.tools)}/* v74: species proficiencies (2014 species) */
  XT.forEach(function(q){tools.push(q[0])});
@@ -108,31 +118,31 @@ function toSheet(){
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.armor)ad("armor",F.armor,f.n);if(F&&F.weapons)ad("weapons",F.weapons,f.n);if(/^Tavern Brawler/.test(f.n))ad("weapons","Improvised",f.n);if(F&&F.wpPick){var wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach(function(n){ad("weapons",n,f.n)})}});/* v69 */
  if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach(function(n){ad("weapons",n,B.species+" ("+(sp.hb||SRC)+")")});
  if(sp&&sp.profs&&!custom){var spl=B.species+" ("+(sp.hb||SRC)+")";if(sp.profs.armor)ad("armor",sp.profs.armor,spl);if(sp.profs.weapons)ad("weapons",sp.profs.weapons,spl);if(sp.profs.tools)ad("tools",sp.profs.tools,spl)}/* v74 */
- MCL().forEach(function(m,mi){var g=MC_GRANT[m.cls];ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
+ __R.MCL().forEach(function(m,mi){var g=MC_GRANT[m.cls];ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
  XT.forEach(function(q){ad("tools",q[0],q[1])});
- (B.ch.spwep||[]).forEach(function(n){ad("weapons",n,"Masterful")});if(pactW)ad("weapons",baseOf(pactW).b,"Pact of the Blade");
+ (B.ch.spwep||[]).forEach(function(n){ad("weapons",n,"Masterful")});if(pactW)ad("weapons",__R.baseOf(pactW).b,"Pact of the Blade");
  C.profSrc=PS;
  /* attacks */
  var wmSet=wmAll();C.attacks=[];/* v32 RL49: multiclass and Weapon Master too */
  var ud="1",udSrc="Unarmed Strike ("+SRC+")";
  if(maOn){ud=maDie;udSrc="Martial Arts ("+SRC+", Monk)"}
  feats.forEach(function(f){if(f.n==="Unarmed Fighting"){/* m2 (RL18): d8 when no weapon and no Shield is active, else d6. The larger of this and Martial Arts is used */var uf=(EW.length||ESH)?"1d6":"1d8";if(dieAvg(uf)>dieAvg(ud)){ud=uf;udSrc="Unarmed Fighting ("+f.s+")"+(uf==="1d8"?": d8, no weapon or Shield held":": d6 while holding a weapon or Shield")}}else if(f.n==="Tavern Brawler"&&ud==="1"){ud="1d4";udSrc="Tavern Brawler ("+f.s+")"}});
- var SG2=subGrant(B.sub);if(SG2&&SG2.unarmed){SG2.unarmed.forEach(function(q){if(L>=q[0]){ud=ESH?q[2]:q[1];udSrc=B.sub+" "+q[0]+(ESH?" (holding a Shield)":"")}})}
+ var SG2=__R.subGrant(B.sub);if(SG2&&SG2.unarmed){SG2.unarmed.forEach(function(q){if(L>=q[0]){ud=ESH?q[2]:q[1];udSrc=B.sub+" "+q[0]+(ESH?" (holding a Shield)":"")}})}
  /* RL35 3a: Unarmed Fighting d8 on a Monk keeps Dexterous Attacks (Dex). RL35 4b (RL34): Grapple and Shove DC may use Dex too, written as C.dcAb */
  if(maOn&&a.sc.DEX>a.sc.STR){C.dcAb="DEX";C.dcSrc="Martial Arts: Dexterous Attacks ("+SRC+", Monk)"}
- var maOff=umOn&&!maOn?EW.filter(function(n){var w=WEAPONS[baseOf(n).b];return w&&!monkW(w,baseOf(n).b)}):[];/* RL35 1b: say why Martial Arts is off */
+ var maOff=umOn&&!maOn?EW.filter(function(n){var w=WEAPONS[__R.baseOf(n).b];return w&&!monkW(w,__R.baseOf(n).b)}):[];/* RL35 1b: say why Martial Arts is off */
  C.attacks.push({n:"Unarmed Strike",sub:"",ab:maOn&&a.sc.DEX>a.sc.STR?"DEX":"STR",prof:true,die:ud,dieSrc:udSrc,type:"Bludgeoning",range:"5 ft",m:"",note:(maOff.length?"Martial Arts is off while "+maOff.join(" and ")+(maOff.length>1?" are":" is")+" active (not a Monk weapon). Unequip "+(maOff.length>1?"them":"it")+" to use Martial Arts. ":"")+"Damage, Grapple, or Shove."});
  /* C3: Fighting Style bonuses come from FEATS fields (Archery rngHit, Dueling meleeDmg1h, Thrown Weapon Fighting thrownDmg), PHB 2024 p. 209-210.
     They are written as named sources in misc/miscSrc/dmgBonus; the sheet adds them up. Dueling auto rule: exactly one active weapon, melee, not Two-Handed
     (a Shield is allowed). B.duelMode "on" applies Dueling to every one-handed melee weapon, "off" never; missing or "auto" = the rule (toggle for UI/UX later). */
  var FSB={},FSS={},FSseen={};feats.forEach(function(f){var F=FEATS[f.n];if(!F||FSseen[f.n])return;FSseen[f.n]=1;["rngHit","meleeDmg1h","thrownDmg"].forEach(function(k){if(F[k]){FSB[k]=(FSB[k]||0)+F[k];FSS[k]=(FSS[k]?FSS[k]+"; ":"")+"Fighting Style: "+f.n+" ("+f.s+")"}})});
- var duelW=WEAPONS[baseOf(EW[0]||"").b],duelAuto=EW.length===1&&!!duelW&&duelW.k==="M"&&!/Two-Handed/.test(duelW.p);
+ var duelW=WEAPONS[__R.baseOf(EW[0]||"").b],duelAuto=EW.length===1&&!!duelW&&duelW.k==="M"&&!/Two-Handed/.test(duelW.p);
  var duelOn=!!FSB.meleeDmg1h&&(B.duelMode==="on"||(B.duelMode!=="off"&&duelAuto));
  var hasGWF=feats.some(function(f){return f.n==="Great Weapon Fighting"}),hasTWF=feats.some(function(f){return f.n==="Two-Weapon Fighting"});
- EW.forEach(function(n){var BO=baseOf(n),w=WEAPONS[BO.b];if(!w)return;var ab="STR";
+ EW.forEach(function(n){var BO=__R.baseOf(n),w=WEAPONS[BO.b];if(!w)return;var ab="STR";
   if(w.k==="R")ab="DEX";else if(/Finesse/.test(w.p)||(maOn&&(w.cat==="S"||/Light/.test(w.p))))ab=a.sc.DEX>a.sc.STR?"DEX":"STR";
   var isPact=!!pactW&&n===pactW;if(isPact&&a.sc.CHA>=a.sc[ab])ab="CHA";/* M13: only the bonded weapon, Charisma when it is at least as high */
-  var pr=isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p));
+  var pr=isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||__R.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p));
   var m=wmSet.indexOf(BO.b)>=0?w.m:"";
   var flow=!!(SG2&&L>=3&&(SG2.flowing||[]).indexOf(BO.b)>=0),die=flow?ud:w.d,dieSrc=flow?B.sub+", Flowing Blades (base "+w.d+")":BO.b+" ("+SRC+")";
   /* M7 (RL7): Monk weapon (Simple Melee, Martial Melee with Light) uses the Martial Arts die when it is larger (owner decision) */
@@ -152,24 +162,24 @@ function toSheet(){
    C.attacks.push({n:n+" (thrown)",sub:w.p+" \u2022 ranged attack",ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:BO.p,miscSrc:ts.join("; "),dmgBonus:(BO.mw?0:BO.p)+FSB.thrownDmg,type:w.t,range:w.r+" ft",m:m,note:"Thrown Weapon Fighting: +"+FSB.thrownDmg+" damage when you throw it. "+(BO.p&&!BO.mw?"Add +"+BO.p+" to damage rolls. ":"")+(m?MASTERY[m]:"")})}
  });
  /* inventory */
- ATKC=C.attacks;/* RL31 */
- try{ if(C.profs)PROFC=C.profs; C.inv=ensureInv().map(function(x){var it={n:kitTool(x)||x.n,key:x.n,q:qOf(x),w:itemW(kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq},west=itemWEst(x.n)?(it.west=1):0/* v27 RD20 */,bn=baseOf(x.n).b,rr=rarityOf(x),dm=DMAP[x.n];if(dm&&dm[3]){it.att=1}if(rr)it.rar=rr;if(equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */if(ARMOR[bn]){var A=ARMOR[bn];it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!WEAPONS[bn])it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");try{it.type=itemType(x.n,x);it.cost=PRICE[x.n]!=null?PRICE[x.n]:itemCost(baseOf(kitTool(x)||x.n).b);/* v20 M1 */if(!window.__inTS){window.__inTS=1;try{it.html=itemDetail(x.n,x)}finally{window.__inTS=0}}it.equippable=equippable(x.n)||!!(DMAP[x.n]&&DMAP[x.n][1]!=="Potion")}catch(e){}return it});
- }finally{ ATKC=null; }/* RL36 b */
- C.gp=gpNow();
+ __set_ATKC(C.attacks);/* RL31 */
+ try{ if(C.profs)__R.PROFC=C.profs; C.inv=__R.ensureInv().map(function(x){var it={n:kitTool(x)||x.n,key:x.n,q:__R.qOf(x),w:__R.itemW(kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq},west=__R.itemWEst(x.n)?(it.west=1):0/* v27 RD20 */,bn=__R.baseOf(x.n).b,rr=__R.rarityOf(x),dm=DMAP[x.n];if(dm&&dm[3]){it.att=1}if(rr)it.rar=rr;if(__R.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */if(ARMOR[bn]){var A=ARMOR[bn];it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+__R.baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!WEAPONS[bn])it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");try{it.type=__R.itemType(x.n,x);it.cost=PRICE[x.n]!=null?PRICE[x.n]:__R.itemCost(__R.baseOf(kitTool(x)||x.n).b);/* v20 M1 */if(!window.__inTS){window.__inTS=1;try{it.html=__R.itemDetail(x.n,x)}finally{window.__inTS=0}}it.equippable=__R.equippable(x.n)||!!(DMAP[x.n]&&DMAP[x.n][1]!=="Potion")}catch(e){}return it});
+ }finally{ __set_ATKC(null); }/* RL36 b */
+ C.gp=__R.gpNow();
  /* m4 (RL20): "none" = no starting package (items set by hand or imported from the sheet), not option A or 50 GP */
- C.equipNote=(B.eqC==="none"?B.cls+" starting equipment: none (items added by hand)":B.cls+" option "+"ABC"[eqIdx()]+": "+clsKitText())+". "+(B.eqB==="none"?B.bg+" starting equipment: none (items added by hand)":B.bg+" option "+B.eqB+": "+(B.eqB==="A"&&bg?bg.eq:"50 GP"))+".";
+ C.equipNote=(B.eqC==="none"?B.cls+" starting equipment: none (items added by hand)":B.cls+" option "+"ABC"[__R.eqIdx()]+": "+__R.clsKitText())+". "+(B.eqB==="none"?B.bg+" starting equipment: none (items added by hand)":B.bg+" option "+B.eqB+": "+(B.eqB==="A"&&bg?bg.eq:"50 GP"))+".";
  /* resources */
  C.res=[];var rs=(c.res||[]).concat((c.resSub&&c.resSub[B.sub])||[]);
  rs.forEach(function(r){var m=resMax(r,a);if(m>0){var o={k:resKey("r-",r.n,C.res),n:r.n,tag:r.tag,max:m,reset:(r.short5&&L>=5)?"short":r.reset};if(r.pool)o.pool=1;/* m6: a pool of points (Lay on Hands) */C.res.push(o)}});
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&(F.res==="luck"||F.luckN))C.res.push({k:"luck",n:"Luck Points",tag:f.n,max:F.luckN||pb,reset:"long",f:f.n})});
  luRows(C,a,pb,feats);/* RU40 *//* M17: FEATS.res */
  /* N4 (RL39): Hit Dice per die type (PHB 2024 p. 44). One class: as before. Multiclass: one row per die, main class die keeps key "hd" */
- if(!MCL().length)C.res.push({k:"hd",n:"Hit Dice",tag:"",max:0,reset:"long",auto:"level"});
+ if(!__R.MCL().length)C.res.push({k:"hd",n:"Hit Dice",tag:"",max:0,reset:"long",auto:"level"});
  else{var hdc={},hdo=[];clsParts().forEach(function(q){var d=CLASSES[q.cls].hd;if(hdc[d]==null){hdc[d]=0;hdo.push(d)}hdc[d]+=q.lv});
   hdo.forEach(function(d,i){C.res.push({k:i?"hd-d"+d:"hd",n:"Hit Dice",tag:"",max:hdc[d],reset:"long",die:d})})}
- MCL().forEach(function(m,mi){var mc=CLASSES[m.cls];(mc.res||[]).concat((mc.resSub&&mc.resSub[m.sub])||[]).forEach(function(r){var mx=mcResMax(r,a,m.lv);if(mx>0){var o={k:resKey("m-"+slugK(m.cls)+"-",r.n,C.res),n:r.n,tag:r.tag+" ("+m.cls+")",max:mx,reset:(r.short5&&m.lv>=5)?"short":r.reset};if(r.pool)o.pool=1;C.res.push(o)}})});
+ __R.MCL().forEach(function(m,mi){var mc=CLASSES[m.cls];(mc.res||[]).concat((mc.resSub&&mc.resSub[m.sub])||[]).forEach(function(r){var mx=__R.mcResMax(r,a,m.lv);if(mx>0){var o={k:resKey("m-"+slugK(m.cls)+"-",r.n,C.res),n:r.n,tag:r.tag+" ("+m.cls+")",max:mx,reset:(r.short5&&m.lv>=5)?"short":r.reset};if(r.pool)o.pool=1;C.res.push(o)}})});
  var RESF={"Ki Points":"Ki","Sorcery Points":"Font of Magic","Focus Points":"Monk's Focus","Superiority Dice":"Combat Superiority","Psionic Energy Dice":"Psionic Power"};C.res.forEach(function(r){if(!r.f&&RESF[r.n])r.f=RESF[r.n]});/* V17-8: also multiclass rows */
- var SA=slotsAll();
+ var SA=__R.slotsAll();
  if(SA.pact)C.res.push({k:"pact",n:"Pact Slots (level "+SA.pact.lvl+")",tag:"Short Rest",max:SA.pact.n,reset:"short"});
  if(SA.slots)SA.slots.forEach(function(n,i){C.res.push({k:"s"+(i+1),n:"Spell Slots, level "+(i+1),tag:"Long Rest",max:n,reset:"long"})});
  keepResKeys(C);
@@ -179,7 +189,7 @@ function toSheet(){
   {c:"Reactions",n:"Opportunity Attack",t:"Reaction",d:"When a creature you can see leaves your reach, make one melee attack against it."}];
  clsParts().forEach(function(q){featsOf(q.cls,q.lv).forEach(function(x){if(/^Bonus Action/.test(x[2]))C.actions.push({c:"Bonus Actions",n:x[1],t:q.cls+" "+x[0],d:x[2]});else if(/^Reaction/.test(x[2]))C.actions.push({c:"Reactions",n:x[1],t:q.cls+" "+x[0],d:x[2]})})});/* M10: multiclass too */
  (B.inv||[]).forEach(function(x){var m=/^(Arrow|Bolt|Firearm Bullet|Needle|Sling Bullet), \+(\d)$/.exec(x.n);if(!m||!x.eq||!DMAP[x.n])return;var use={Arrow:/bow$/i,Bolt:/Crossbow/,"Firearm Bullet":/Musket|Pistol/,Needle:/Blowgun/,"Sling Bullet":/^Sling/}[m[1]];
-  C.attacks.forEach(function(t){var bn=baseOf(t.n).b;if(WEAPONS[bn]&&WEAPONS[bn].k==="R"&&use.test(bn))t.note="With "+x.n+": +"+m[2]+" to attack and damage rolls. "+(t.note||"")})});/* v16: magic ammunition */
+  C.attacks.forEach(function(t){var bn=__R.baseOf(t.n).b;if(WEAPONS[bn]&&WEAPONS[bn].k==="R"&&use.test(bn))t.note="With "+x.n+": +"+m[2]+" to attack and damage rolls. "+(t.note||"")})});/* v16: magic ammunition */
  activeFx().forEach(function(q){if(/^(Wraps of Unarmed Power|Wraps of Dyamak)/.test(q.n)&&(q.fx.atk||q.fx.dmg)){var u=C.attacks.filter(function(t){return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});/* M18 */
  var sno=saveNotes(feats);if(sno.length)C.saveNotes=sno;var xd=xdmgRows(a,pb);if(xd.length)C.xdmg=xd;/* RU35 no. 5, 6 */
  /* features */
@@ -187,8 +197,8 @@ function toSheet(){
  var spItems=custom?[{n:"Homebrew species",s:"Homebrew",d:"Fill in the traits from your setting."}]:sp.traits.map(function(t){return {n:t[0],s:(sp.hb||SRC)+", "+B.species,d:spTraitText(sp,t)}});
  if(!custom&&/or/.test(sp.size))spItems.push({n:"Size",s:(sp.hb||SRC)+", "+B.species,d:"You can be Medium or Small, chosen when you create the character. **Your choice.** "+(B.size||"Medium")+(htText(B.species,B.size||"Medium")?", "+htText(B.species,B.size||"Medium"):"")+"."});/* RU34 */
  if(B.ch.lin&&!(sp&&sp.lin&&(spLinTrait(sp)||sp.traits.some(function(t){return /ancestr|lineage|legacy/i.test(t[1])}))))spItems.push({n:"Chosen: "+B.ch.lin,s:(sp&&sp.hb||SRC)+", "+B.species,d:(sp&&sp.hb&&sp.linText&&sp.linText[B.ch.lin])||"Your lineage or ancestry choice."});/* v36 p21 */
- spItems.forEach(function(it){it.d+=calcNote(it.n,B.cls,TLv,a)});C.features.push({g:"Species: "+spName,items:spItems});
- C.defenses=defenses(a);
+ spItems.forEach(function(it){it.d+=__R.calcNote(it.n,B.cls,TLv,a)});C.features.push({g:"Species: "+spName,items:spItems});
+ C.defenses=__R.defenses(a);
  /* RU35 no. 7: Resistances and Immunities from magic items in use, and extra speeds */
  C.itemAdv=[];activeFx().forEach(function(q){(q.fx.adv||[]).forEach(function(k){if(!/sav(e|ing)|Concentration/i.test(k))C.itemAdv.push({k:k,s:q.n});else{C.saveNotes=C.saveNotes||[];C.saveNotes.push({t:"Advantage on "+(/^advantage/i.test(k)?k.replace(/^advantage\s*(on\s*)?/i,""):k),s:q.n})}})});/* v65: Advantage from items on Initiative and skills, read by cfx */
  activeFx().forEach(function(q){var f=q.fx;if(f.dark){var dv=+f.dark||0;/* v101: item darkvision. Robe of Eyes sets 120. Goggles of Night and the Axe of the Dwarvish Lords give the range, or add it to Darkvision you already have */if(/^Robe of Eyes/.test(q.n))C.darkvision=Math.max(C.darkvision||0,dv);else C.darkvision=(C.darkvision||0)+dv;C.darkSrc=(C.darkSrc?C.darkSrc+", ":"")+q.n}(f.res||[]).forEach(function(t){C.defenses.push({t:"Resistance",v:t,s:q.n})});(f.imm||[]).forEach(function(t){C.defenses.push({t:"Immunity",v:t,s:q.n})});(f.condImm||[]).forEach(function(t){C.defenses.push({t:"Immunity",v:t+" (condition)",s:q.n})});(f.vul||[]).forEach(function(t){C.defenses.push({t:"Vulnerability",v:t,s:q.n})});/* v76 */
@@ -200,7 +210,7 @@ function toSheet(){
   if(subAt("Druid","Circle of the Sea")>=6)sp("swim","Aquatic Affinity (Circle of the Sea 6)");
   if(subAt("Druid","Circle of the Sea")>=10)sp("fly","Stormborn, while Wrath of the Sea is active");
   if(subAt("Barbarian","Path of the Wild Heart")>=6){var aw=chOf("Barbarian","p6opt");if(aw==="Panther")sp("climb","Aspect of the Wilds (Panther)");else if(aw==="Salmon")sp("swim","Aspect of the Wilds (Salmon)");else if(!aw){sp("climb","Aspect of the Wilds, if you chose Panther");sp("swim","Aspect of the Wilds, if you chose Salmon")}}/* v32 RL49 no. 31 */
-  if(spX()&&B.species==="Aasimar"&&TL()>=3)sp("fly","Celestial Revelation, Heavenly Wings, while transformed")})();
+  if(spX()&&B.species==="Aasimar"&&__R.TL()>=3)sp("fly","Celestial Revelation, Heavenly Wings, while transformed")})();
  var cf=classFeatures().filter(function(x){return !(R14()&&x[1]==="Weapon Mastery")}).map(function(x){var d=x[2];
   var fsv=B.ch["fs"+c.fs],FSF=fsv?FEATS[fsv]:null;if(x[1]==="Fighting Style"&&fsv)d="You chose **"+fsv+"**. "+(FSF?FSF.d:"This Fighting Style is not in your active sources. Pick it again in the builder.");var fx=(x[1]==="Fighting Style"&&FSF)?FSF.full:"";
   if(x[1]==="Weapon Mastery"&&wmSet.length)d="Masteries: "+wmSet.map(function(n){return n+" ("+WEAPONS[n].m+")"}).join(", ")+". Swap one on a Long Rest.";
@@ -208,28 +218,28 @@ function toSheet(){
   if(x[1]==="Blessed Strikes"&&B.ch.p7opt||x[1]==="Elemental Fury"&&B.ch.p7opt)d="You chose **"+B.ch.p7opt+"**. "+d;
   if(x[1]==="Eldritch Invocations"){var iv=[];Object.keys(B.ch).forEach(function(k){if(/invocation$/.test(k))iv=iv.concat(B.ch[k]||[])});if(iv.length)d="Known: "+iv.join(", ")+". "+d}
   if(x[1]==="Metamagic"){var mm=[];Object.keys(B.ch).forEach(function(k){if(/metamagic$/.test(k))mm=mm.concat(B.ch[k]||[])});if(mm.length)d="Known: "+mm.join(", ")+". "+d}
-  d+=ycOf(CHT,x[1],undefined);/* v32 */d+=calcNote(x[1],B.cls,L,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+B.cls+" "+x[0],d:d,full:fx||(CF_FULL[B.cls+"|"+x[1]]?CF_FULL[B.cls+"|"+x[1]]+ycOf(CHT,x[1],undefined)+calcNote(x[1],B.cls,L,a):"")}}).filter(function(x){return !/Subclass$|Ability Score|Epic Boon/.test(x.n)});
+  d+=ycOf(CHT,x[1],undefined);/* v32 */d+=__R.calcNote(x[1],B.cls,L,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+B.cls+" "+x[0],d:d,full:fx||(CF_FULL[B.cls+"|"+x[1]]?CF_FULL[B.cls+"|"+x[1]]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a):"")}}).filter(function(x){return !/Subclass$|Ability Score|Epic Boon/.test(x.n)});
  var tr=c.track;if(tr)Object.keys(tr).forEach(function(k){if(tr[k][L-1])cf.push({n:k,s:SRC+", "+B.cls+" table",d:"At level "+L+": "+tr[k][L-1]+"."})});
- var sl=slotsFor();if(sl&&!MCL().length)cf.push({n:"Spell Slots",s:SRC+", "+B.cls,d:sl.pact?sl.pact+" Pact slots at level "+sl.lvl+".":sl.map(function(n,i){return "L"+(i+1)+": "+n}).join(", ")});
+ var sl=slotsFor();if(sl&&!__R.MCL().length)cf.push({n:"Spell Slots",s:SRC+", "+B.cls,d:sl.pact?sl.pact+" Pact slots at level "+sl.lvl+".":sl.map(function(n,i){return "L"+(i+1)+": "+n}).join(", ")});
  C.features.push({g:B.cls,items:cf});
- if(B.sub&&B.sub!=="__custom"){var sf=c.subs[B.sub].filter(function(x){return x[0]<=L}).map(function(x){return {n:x[1],s:SRC+", "+B.sub+" "+x[0],d:x[2]+ycOf(CHT,x[1],undefined)+calcNote(x[1],B.cls,L,a),full:SUB_FULL[B.sub+"|"+x[1]]?SUB_FULL[B.sub+"|"+x[1]]+ycOf(CHT,x[1],undefined)+calcNote(x[1],B.cls,L,a):""}});
+ if(B.sub&&B.sub!=="__custom"){var sf=c.subs[B.sub].filter(function(x){return x[0]<=L}).map(function(x){return {n:x[1],s:SRC+", "+B.sub+" "+x[0],d:x[2]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a),full:SUB_FULL[B.sub+"|"+x[1]]?SUB_FULL[B.sub+"|"+x[1]]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a):""}});
   var man=[];Object.keys(B.ch).forEach(function(k){if(/maneuver$/.test(k))man=man.concat(B.ch[k]||[])});if(man.length)sf.push({n:"Maneuvers known",s:SRC+", Battle Master",d:man.map(function(n){var m=MANEUVERS.filter(function(x){return x[0]===n})[0];return "**"+n+".** "+(m?m[1]:"")}).join("\n\n")});
   var nx=c.subs[B.sub].filter(function(x){return x[0]>L})[0];
   C.features.push({g:B.cls+" Subclass: "+B.sub,items:sf,next:nx?B.cls+" level "+nx[0]+" unlocks "+nx[1]+".":""})}
  else if(B.sub==="__custom")C.features.push({g:B.cls+" Subclass: "+subName,items:[{n:"Homebrew subclass",s:"Homebrew",d:"Add the subclass features from your setting."}]});
  /* M10: multiclass features get the level note (calcNote with the class level) and the full text, like the main class */
- MCL().forEach(function(m,mi){var mc=CLASSES[m.cls],seen={},it=[],mk=function(x,s,full){var cn=calcNote(x[1],m.cls,m.lv,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+s+" "+x[0],d:x[2]+ycOf(CHT,x[1],mi)+cn,full:full?full+ycOf(CHT,x[1],mi)+cn:""}};mc.f.forEach(function(x){if(x[0]<=m.lv&&!/Subclass$|Ability Score|Epic Boon/.test(x[1])){var o=mk(x,m.cls,CF_FULL[m.cls+"|"+x[1]]);if(seen[x[1]]!=null&&x[1]!=="Expertise"){it[seen[x[1]]]=o;return}seen[x[1]]=it.length;it.push(o)}});
+ __R.MCL().forEach(function(m,mi){var mc=CLASSES[m.cls],seen={},it=[],mk=function(x,s,full){var cn=__R.calcNote(x[1],m.cls,m.lv,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+s+" "+x[0],d:x[2]+ycOf(CHT,x[1],mi)+cn,full:full?full+ycOf(CHT,x[1],mi)+cn:""}};mc.f.forEach(function(x){if(x[0]<=m.lv&&!/Subclass$|Ability Score|Epic Boon/.test(x[1])){var o=mk(x,m.cls,CF_FULL[m.cls+"|"+x[1]]);if(seen[x[1]]!=null&&x[1]!=="Expertise"){it[seen[x[1]]]=o;return}seen[x[1]]=it.length;it.push(o)}});
   if(m.sub&&mc.subs[m.sub])mc.subs[m.sub].forEach(function(x){if(x[0]<=m.lv)it.push(mk(x,m.sub,SUB_FULL[m.sub+"|"+x[1]]))});
   C.features.push({g:m.cls+" (multiclass "+m.lv+")"+(m.sub?": "+m.sub:""),items:it})});
- if(MCL().length){C.clsLabel=[B.cls+" "+L].concat(MCL().map(function(m){return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}
+ if(__R.MCL().length){C.clsLabel=[B.cls+" "+L].concat(__R.MCL().map(function(m){return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}
  C.features.push({g:"Feats",items:feats.map(function(f){var F=FEATS[f.n]||{};var ex="";if(f.asi){var v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}var fk2=f.key||f.s;CHT0.forEach(function(q){var pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,function(ch){return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */return {n:f.n,s:f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s/* m4 (RL20): no "PHB-2024, PHB-2024" */,d:(F.d||"")+ex,full:F.full?F.full+(ex?" **Your choice.**"+ex:""):""}})});/* v19: the chosen increase and damage type also under the full text */
  if(bg)C.features.push({g:"Background: "+B.bg,items:[{n:"Ability Scores",s:SRC+", "+B.bg,d:B.bgMode==="111"?bg.ab.join(" +1, ")+" +1.":(B.bg2||"?")+" +2, "+(B.bg1||"?")+" +1."},{n:"Proficiencies",s:SRC+", "+B.bg,d:"Skills: "+bg.sk.concat(Array.isArray(B.ch.bgsk)?B.ch.bgsk:[]).join(" and ")+(bg.skPick&&!(Array.isArray(B.ch.bgsk)&&B.ch.bgsk.length)?" (+"+bg.skPick.n+" of your choice, not chosen yet)":"")+". Tool: "+(bg.toolPick?((B.ch.bgTool||[]).join(", ")||"not chosen yet")+" ("+TOOL_ONE[bg.toolPick.cats[0]]+", your pick)":bg.tool)+"."},{n:"Equipment",s:SRC+", "+B.bg,d:"Option A: "+bg.eq+"."}].concat((bg.bf||[]).map(function(f){return {n:f[0],s:SRC+", "+B.bg,d:f[1]}}))});
  {var SM={};SPELLS.forEach(function(x){SM[x[0]]=x});
   var invs=[];Object.keys(B.ch).forEach(function(k){if(/invocation$/.test(k))invs=invs.concat(B.ch[k]||[])});
   /* M9: every spell has a source key (class, "@species", "@spcan", "@mi:<key>") and that source's ability (spellAb). C.spellcasting keeps the main
      ability (first caster class, else Magic Initiate, else species). C.spellcasting.by and C.spells[].ab are written only when 2+ abilities differ */
-  var SA=slotsAll(),CPs=casterParts(),castAb=CPs.length?CPs[0].ab:null,SLs=spLists(),mis=miFeats(),miK=Object.keys(B.pk||{}).filter(function(k){return /^mi/.test(k)});
-  var spl=(typeof autoSpells==="function"?autoSpells():[]),spAbE=spellAb("@species",a.sc);
+  var SA=__R.slotsAll(),CPs=casterParts(),castAb=CPs.length?CPs[0].ab:null,SLs=spLists(),mis=__R.miFeats(),miK=Object.keys(B.pk||{}).filter(function(k){return /^mi/.test(k)});
+  var spl=(typeof __R.autoSpells==="function"?__R.autoSpells():[]),spAbE=spellAb("@species",a.sc);
   var ab=castAb||(miK.length?spellAb("@mi:"+miK[0],a.sc):null)||(spl.some(function(q){return q.k==="@species"})?spAbE:null)||(spl.some(function(q){return q.k==="@spcan"})?spellAb("@spcan",a.sc):null)||(spl.some(function(q){return /^@sub:/.test(q.k)})?spellAb(spl.filter(function(q){return /^@sub:/.test(q.k)})[0].k,a.sc):null)||"CHA",scm=mod(a.sc[ab]),mainSc=CPs.length?CPs[0].cls:"",sdc=8+pb+scm+spItemB("dc",mainSc),satk=pb+scm+spItemB("atk",mainSc);/* v19 RL42 */
   var list=[],seen={},bysrc=[];function addS(n,use,src,k){var x=SM[n],kk=k||"";if(!x||seen[n+use+"|"+kk])return;seen[n+use+"|"+kk]=1;var sab=k?spellAb(k,a.sc):ab;if(!bysrc.some(function(b){return b.k===kk}))bysrc.push({k:kk,n:/^@/.test(kk)?src:kk,ab:sab});
    var o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:SPELL_FULL[n]||"",cls:spClsJ(x),use:use,src:src,_ab:sab};spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */list.push(o)}
@@ -241,7 +251,7 @@ function toSheet(){
   CPs.forEach(function(p){(SLs[p.cls]||[]).forEach(function(n){if(list.some(function(s){return s.n===n&&s.use==="Always prepared"&&spl.some(function(q){return q.n===n&&q.k===p.cls})}))return;/* v22: once, as Always prepared */addS(n,SM[n]&&!SM[n][1]?"Cantrip":"Prepared",p.cls,p.cls)})});
   var pk=B.pk||{};Object.keys(pk).forEach(function(k){var mn=(mis.filter(function(m){return m.key===k})[0]||{}).cls,ms="Magic Initiate"+(mn?" ("+mn+")":"");if(/^ma/.test(k)&&pk[k])addS(pk[k],"1/Long Rest","Mystic Arcanum","Warlock");if(/^mi/.test(k)){var mi0=list.length;(pk[k].c||[]).forEach(function(n){addS(n,"Cantrip","Magic Initiate","@mi:"+k)});(pk[k].s||[]).forEach(function(n){addS(n,"1/Long Rest free","Magic Initiate","@mi:"+k)});list.slice(mi0).forEach(function(o){o.mi=ms});/* v23 M2: which Magic Initiate feat */bysrc.forEach(function(b){if(b.k==="@mi:"+k)b.n=ms})}});
   invs.forEach(function(n){var q=INV_SPELLS[n];if(q)addS(typeof q==="string"?q:q[0],typeof q==="string"?"At will":q[1],n,"Warlock")});
-  enabledPacks().forEach(function(p){Object.keys(p.clsSpells||{}).forEach(function(c){(p.clsSpells[c]||[]).forEach(function(q){if(clsLv(c)>=q[0])addS(q[1],q[2],q[3],c)})});
+  __R.enabledPacks().forEach(function(p){Object.keys(p.clsSpells||{}).forEach(function(c){(p.clsSpells[c]||[]).forEach(function(q){if(clsLv(c)>=q[0])addS(q[1],q[2],q[3],c)})});
    Object.keys(p.spellPick||{}).forEach(function(c){var q=p.spellPick[c],v=B.ch[q.key];if(clsLv(c)>=q.l&&Array.isArray(v)&&v[0]&&hbPickOk(q.key,v[0]))addS(v[0],q.use,q.feature,c)})});/* v20 RD24 *//* M17: INV_SPELLS in db4.js */
   if(clsLv("Warlock")>=9&&!R14())addS("Contact Other Plane","1/Long Rest free","Contact Patron","Warlock");
   CHT.forEach(function(q){var v=B.ch[q.key];if(!Array.isArray(v)||!/^(m\d+:)?p(18sm[12]|20sig)$/.test(q.key))return;v.forEach(function(n){if(q.list.some(function(x){return x[0]===n}))addS(n,/sig$/.test(q.key)?"1/Short Rest free":"At will",q.feature,"Wizard")})});/* v32 RL49 no. 36, 37 *//* M10: multiclass Warlock too */
@@ -259,7 +269,7 @@ function toSheet(){
     C.attacks.push({n:s.n,sub:"Cantrip"+(eb?" \u2022 "+tier+" beam"+(tier>1?"s":""):""),ab:s._ab||ab,prof:true,die:cnt+"d"+m[2],dieSrc:s.n+(eb?"":" (scales with level)"),nomod:!(ag||(s.db&&s.db.length)),/* v15: Potent Spellcasting, Empowered Evocation add the modifier, as Agonizing Blast */type:m[3],range:(function(){var sp=(B.ch.invspear||[]).indexOf(s.n)>=0&&/^(\d+) ft$/.exec(s.r||"");return sp?(+sp[1]+30*clsLv("Warlock"))+" ft (Eldritch Spear)":s.r})(),m:"",misc:spItemB("atk",s.src)||undefined,miscSrc:spItemB("atk",s.src)?spItemSrc(s.src).join(", "):undefined,note:((B.ch.invrepel||[]).indexOf(s.n)>=0?"Repelling Blast: on a hit, push a Large or smaller target up to 10 ft away. ":"")+(ag?"Agonizing Blast adds your "+(s._ab||ab)+" modifier. ":(s.db||[]).map(function(b){return b.s+" adds "+(b.v<0?"":"+")+b.v+". "}).join(""))+s.sum})});}
   (C.spells||[]).forEach(function(s){delete s._ab});
   /* v58: spells that magic items let you cast (ITEM_SPELLS). use is "At will" when free, else "Item" and itc says what it costs */
-  if(typeof ITEM_SPELLS!=="undefined"){var ISL=[];ensureInv().forEach(function(x){var it=ITEM_SPELLS[x.n],d=DMAP[x.n];if(!it||!d)return;if(d[3]&&!x.eq)return;
+  if(typeof ITEM_SPELLS!=="undefined"){var ISL=[];__R.ensureInv().forEach(function(x){var it=ITEM_SPELLS[x.n],d=DMAP[x.n];if(!it||!d)return;if(d[3]&&!x.eq)return;
    it.sp.forEach(function(q){var sp=SM[q[0]];if(!sp)return;var cost=q[1],vr=Array.isArray(cost),pl=q[3],src=x.n+(pl?" ("+pl+")":"");if(ISL.some(function(y){return y.n===q[0]&&y.src===src}))return;
     var lv=typeof q[2]==="number"&&q[2]?q[2]:sp[1];
     var o={n:q[0],l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:SPELL_FULL[q[0]]||"",cls:sp[3].join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
@@ -279,17 +289,17 @@ function toSheet(){
  /* v20 RD25: senses and Fly Speed from a species choice (Retromistika Mistikan ancestries) */
  /* v32 RL49 no. 28, 33: chosen Wild Shape forms and Primal Companion, read by Extras (optional fields) */
  CHT.forEach(function(q){var v=B.ch[q.key];if(/^(m\d+:)?p2forms$/.test(q.key)&&Array.isArray(v)&&v.length)C.wsForms=v.slice();if(q.feature==="Primal Companion"&&typeof v==="string"&&v)C.companion=v});
- var SFq=spOptFx();(SFq.senses||[]).forEach(function(x){C.senses=(C.senses||[]).filter(function(y){return y.n!==x[0]});C.senses.push({n:x[0],v:x[1],s:x[2]+" ("+spName+")",d:x[3]||""})});
+ var SFq=__R.spOptFx();(SFq.senses||[]).forEach(function(x){C.senses=(C.senses||[]).filter(function(y){return y.n!==x[0]});C.senses.push({n:x[0],v:x[1],s:x[2]+" ("+spName+")",d:x[3]||""})});
  XFX.senses(C);/* v62 */
  if(SFq.fly){C.speeds=C.speeds||{};C.speeds.fly={v:SFq.fly[0],s:SFq.fly[1]}}
  if(SFq.moves&&!custom&&sp){C.speeds=C.speeds||{};Object.keys(SFq.moves).forEach(function(k){C.speeds[k]={v:SFq.moves[k],s:spName+" ("+(sp.hb||SRC)+")"+(SFq.movesNote&&k==="fly"?", "+SFq.movesNote:"")}})}/* v36 p21 */
  feats.forEach(function(f){var F=FEATS[f.n];if(F&&F.attacks)F.attacks.forEach(function(q){C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+f.n+")",type:q.type,range:"5 ft",m:"",note:""})})});/* v69 */
  if(sp&&!custom&&sp.attacks)sp.attacks.forEach(function(q){C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+spName+", "+(sp.hb||SRC)+")",type:q.type,range:q.range||"5 ft",m:"",note:q.note||""})});/* v36 p21 */
  /* v20 RD25: Leyak Form Sharp Claws (The Leyak Queen 3): Simple melee, Finesse, Force. Grand Leyak (level 10) Deadly Claws: 1d10 */
- var lq=subAt("Warlock","The Leyak Queen");if(lq>=3){var dc=lq>=10&&((B.ch.scgrand||[]).indexOf("Deadly Claws")>=0||(MCL().some(function(m,i){return ((B.ch["m"+i+":scgrand"])||[]).indexOf("Deadly Claws")>=0}))),fab=a.sc.DEX>a.sc.STR?"DEX":"STR";
+ var lq=subAt("Warlock","The Leyak Queen");if(lq>=3){var dc=lq>=10&&((B.ch.scgrand||[]).indexOf("Deadly Claws")>=0||(__R.MCL().some(function(m,i){return ((B.ch["m"+i+":scgrand"])||[]).indexOf("Deadly Claws")>=0}))),fab=a.sc.DEX>a.sc.STR?"DEX":"STR";
   C.attacks.push({n:"Sharp Claws",sub:"Leyak Form only \u2022 Finesse",ab:fab,prof:true,die:dc?"1d10":"1d8",dieSrc:dc?"Deadly Claws (Grand Leyak)":"Leyak Form (The Leyak Queen 3)",type:"Force",range:"5 ft",m:"",note:"Only while your Leyak Form is active. While it is, you can also make this attack as a Bonus Action."})}
  /* v20 RD24: Variant Combat Rules (Aurvidya): Combat Maneuver Roll */
- if(enabledPacks().some(function(p){return p.cmr})&&clsParts().some(function(q){return /^(Barbarian|Fighter|Monk|Paladin|Ranger|Rogue)$/.test(q.cls)})){var sm=mod(a.sc.STR),dm=mod(a.sc.DEX),rb=pb+Math.max(sm,dm);
+ if(__R.enabledPacks().some(function(p){return p.cmr})&&clsParts().some(function(q){return /^(Barbarian|Fighter|Monk|Paladin|Ranger|Rogue)$/.test(q.cls)})){var sm=mod(a.sc.STR),dm=mod(a.sc.DEX),rb=pb+Math.max(sm,dm);
   C.actions.push({c:"Actions",n:"Combat Maneuver Roll",hb:1,t:"Variant rule (Aurvidya)",d:"Instead of letting a target save against a nonmagical maneuver of a martial feature that calls for a Strength or Dexterity saving throw, roll d20 "+(rb<0?"\u2212"+(-rb):"+"+rb)+" (Proficiency Bonus plus your Strength or Dexterity modifier). It works if the total meets the target's DC: 8 + its Proficiency Bonus + its Strength modifier + its Dexterity modifier. Your own DC against such a roll is "+(8+pb+sm+dm)+"."})}
  /* v23 RU36 no. 2: entries D&D Beyond shows in Features: Core <Class> Traits, <Class> Subclass, Ability Score Improvement and Epic Boon with the feat taken,
     species Creature Type and Speed. The player's choice goes after "**Your choice.**" */
@@ -350,7 +360,7 @@ function actsFor(C){var out=[],T=typeof ACTS!=="undefined"?ACTS:{},lin=String((B
  return out}
 /* Attack rows a feature gives: Polearm Master Pole Strike (PHB 2024 p. 205), Soulknife Psychic Blades (p. 136), Circle of the Stars Archer (p. 89) */
 function actAtk(C,a,feats){var L=C.attacks||(C.attacks=[]),add=[];
- if(feats.some(function(f){return f.n==="Polearm Master"}))L.forEach(function(r){if(r.act||/ \(thrown\)$/.test(r.n)||r.n==="Unarmed Strike")return;var b=baseOf(r.n).b,w=WEAPONS[b];
+ if(feats.some(function(f){return f.n==="Polearm Master"}))L.forEach(function(r){if(r.act||/ \(thrown\)$/.test(r.n)||r.n==="Unarmed Strike")return;var b=__R.baseOf(r.n).b,w=WEAPONS[b];
   if(!w||w.k!=="M"||!(b==="Quarterstaff"||b==="Spear"||(/Heavy/.test(w.p)&&/Reach/.test(w.p))))return;
   add.push({n:"Pole Strike",sub:r.n+" • Bonus Action",ab:r.ab,prof:r.prof,die:"1d4",dieSrc:"Polearm Master: Pole Strike ("+SRC+"), the other end of the "+b,misc:r.misc,miscSrc:r.miscSrc,dmgBonus:r.dmgBonus,
    type:"Bludgeoning",range:/Reach/.test(w.p)?"10 ft":"5 ft",m:r.m,note:"Bonus Action, right after you take the Attack action and attack with this weapon.",act:"bonus",of:r.n})});

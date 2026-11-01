@@ -638,7 +638,7 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
    "close": "</script>",
    "files": [
-    "builder/00-open.wrap.js",
+    "builder/00-reg.js",
     "builder/01-logic-core-helpers.js",
     "builder/02-data-magic-item-summaries.js",
     "builder/03-logic-magic-item-effects.js",
@@ -664,8 +664,9 @@
     "builder/23-logic-level-up-and-build-files.js",
     "builder/24-ui-icons.js",
     "builder/25-logic-hooks-for-the-sheet.js",
-    "builder/98-close.wrap.js"
-   ]
+    "builder/main.js"
+   ],
+   "entry": "builder/main.js"
   },
   {
    "t": "text",

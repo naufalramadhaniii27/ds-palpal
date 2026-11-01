@@ -1,8 +1,22 @@
+import {ABK,ABN,esc,mod,sg} from "./01-logic-core-helpers.js";
+import {htText,un} from "./03-logic-magic-item-effects.js";
+import {B} from "./04-logic-storage.js";
+import {CL,R14,RS14_ON} from "./05-logic-choice-model-ruleset.js";
+import {CLS14} from "./06-data-2014-classes.js";
+import {sdn,subLbl} from "./08-logic-2014-rules.js";
+import {bgFeatN,choices,linNote,sbWx} from "./09-logic-feats-and-choices.js";
+import {isDone} from "./10-logic-v17-additions.js";
+import {abil} from "./11-logic-derivation.js";
+import {PACK_TEMPLATE,allPacks} from "./13-logic-sources-and-packs.js";
+import {MCL,TL,hpCalc,mcReqFail} from "./14-logic-multiclass-hp-shop.js";
+import {card,choiceBody,metaOf,nC,ord,pickCls,pickSp,rt,rtp} from "./17-ui-step-builder.js";
+import {choiceStep,clsTab,hbSubs,renderSpells,spellCounts} from "./18-ui-spells.js";
+import {__R} from "./00-reg.js";
 /* ---------- step: home (sources) ---------- */
-var showTpl=false,packTxt="",lgOpen=false;
+export var showTpl=false,packTxt="",lgOpen=false;
 /* v98: quick select for the Sources list. Sets of WotC sources, homebrew never included */
 function srcSets(){var W=window.WX?WX.src:[],lg=W.filter(function(q){return q.legacy&&!q.tp}).map(function(q){return q.id}),n24=W.filter(function(q){return !q.legacy&&!q.tp}).map(function(q){return q.id}),tp=W.filter(function(q){return q.tp}).map(function(q){return q.id});/* third party books are never switched on by All or 2024 */n24.unshift("mom");if(window.EFA_CLS&&window.EFA_READY)n24.splice(1,0,"efa");n24.push("dmg");return {b14:lg,b24:n24,tp:tp,all:lg.concat(n24)}}
-function srcAll(k){var S=srcSets(),ids=k==="none"?(R14()?S.b14:S.all):(k==="14"?S.b14:k==="24"?S.b24:S.all),on=k!=="none";B.src=B.src||{core:true,dmg:true};ids.forEach(function(id){B.src[id]=on});if(k==="none")S.tp.forEach(function(id){B.src[id]=false});if(R14())B.src.phb14=true;else if(k==="none")B.src.dmg=true}/* the 2014 build keeps its core book, the 2024 build keeps the Dungeon Master's Guide */
+export function srcAll(k){var S=srcSets(),ids=k==="none"?(R14()?S.b14:S.all):(k==="14"?S.b14:k==="24"?S.b24:S.all),on=k!=="none";B.src=B.src||{core:true,dmg:true};ids.forEach(function(id){B.src[id]=on});if(k==="none")S.tp.forEach(function(id){B.src[id]=false});if(R14())B.src.phb14=true;else if(k==="none")B.src.dmg=true}/* the 2014 build keeps its core book, the 2024 build keeps the Dungeon Master's Guide */
 function wx14(id){return (window.WX?WX.src:[]).filter(function(q){return q.id===id})[0]||{}}/* v96 */
 /* v49: what each source adds. Counts first, names of the small lists under a fold */
 var MOM_SP=["Aarakocra","Bugbear","Centaur","Changeling","Deep Gnome","Duergar","Eladrin","Fairy","Firbolg","Air Genasi","Earth Genasi","Fire Genasi","Water Genasi","Githyanki","Githzerai","Goblin","Harengon","Hobgoblin","Kenku","Kobold","Lizardfolk","Minotaur","Satyr","Sea Elf","Shadar-kai","Shifter","Tabaxi","Tortle","Triton","Yuan-ti","Orc (MoM)"];
@@ -33,7 +47,7 @@ function hbMatch(){var L=window.HBIDX||[],q=hbQ.toLowerCase().trim();return L.fi
 function hbRows(){return hbMatch().map(function(q){return '<div class="srcw"><label class="srcrow"><input type="checkbox" data-srcck="'+esc(q.id)+'"'+(B.src[q.id]?" checked":"")+'><span><b>'+esc(q.name)+'</b><small>'+esc(q.desc)+'</small></span></label></div>'}).join("")||'<p class="fd bhint">No match.</p>'}
 function hbSection(){var L=window.HBIDX||[];if(!L.length)return "";var on=L.filter(function(s){return B.src[s.id]}).length;return '<details class="srcg"'+(on||hbQ?" open":"")+'><summary class="sph">Homebrew Library <small>'+L.length+' sources'+(on?", "+on+" on":"")+'</small></summary><p class="fd bhint">Community homebrew from open data. The Library shows facts such as level, school, rarity and stat blocks. Text is not copied. Search for a title or author, then switch a source on.</p><input type="search" class="btx" id="hbq" placeholder="Search title or author" value="'+esc(hbQ)+'" autocomplete="off"><div id="hbList">'+hbRows()+'</div></details>'}
 document.addEventListener("input",function(e){var t=e.target;if(t&&t.id==="hbq"){hbQ=t.value;var l=document.getElementById("hbList");if(l)l.innerHTML=hbRows()}});
-function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 class="ttl">Character Preferences</h2>'+(RS14_ON?'<h3 class="sph">Rules edition</h3><p class="fd bhint">Choose the rules this character follows. The builder and the sheet change their words, numbers and lists to match.</p><div class="radios h" data-keep="1">'+[["2024","2024 rules","Species, Origin feat, Weapon Mastery"],["2014","2014 rules","Race, ability scores from race, no Weapon Mastery"]].map(function(r){return '<button type="button" class="rad'+((R14()?"2014":"2024")===r[0]?" on":"")+'" data-rs="'+r[0]+'"><b>'+r[1]+'</b><span>'+r[2]+'</span></button>'}).join("")+'</div>':"")+'<h3 class="sph">Sources</h3><p class="fd bhint">Only enabled sources show up, here and on the sheet.</p><input type="search" class="btx" id="srcfq" placeholder="Search books" value="'+esc(srcFq)+'" autocomplete="off">'+(function(){var S=srcSets(),on=function(a){return a.length&&a.every(function(id){return B.src[id]!==false&&(B.src[id]||id==="dmg")})},bt=function(k,t,a){return '<button type="button" class="bdg add'+(a?" on":"")+'" data-srcall="'+k+'">'+t+'</button>'};return '<div class="eqact srcquick">'+(R14()?bt("14","All 2014 books ("+S.b14.length+")",on(S.b14)):bt("24","All 2024 books ("+S.b24.length+")",on(S.b24))+bt("all","All WotC books ("+S.all.length+")",on(S.all)))+bt("none","Turn all off",false)+'</div>'})();
+export function renderHome(){B.src=B.src||{core:true,dmg:true};var h=__R.qbCard()+'<h2 class="ttl">Character Preferences</h2>'+(RS14_ON?'<h3 class="sph">Rules edition</h3><p class="fd bhint">Choose the rules this character follows. The builder and the sheet change their words, numbers and lists to match.</p><div class="radios h" data-keep="1">'+[["2024","2024 rules","Species, Origin feat, Weapon Mastery"],["2014","2014 rules","Race, ability scores from race, no Weapon Mastery"]].map(function(r){return '<button type="button" class="rad'+((R14()?"2014":"2024")===r[0]?" on":"")+'" data-rs="'+r[0]+'"><b>'+r[1]+'</b><span>'+r[2]+'</span></button>'}).join("")+'</div>':"")+'<h3 class="sph">Sources</h3><p class="fd bhint">Only enabled sources show up, here and on the sheet.</p><input type="search" class="btx" id="srcfq" placeholder="Search books" value="'+esc(srcFq)+'" autocomplete="off">'+(function(){var S=srcSets(),on=function(a){return a.length&&a.every(function(id){return B.src[id]!==false&&(B.src[id]||id==="dmg")})},bt=function(k,t,a){return '<button type="button" class="bdg add'+(a?" on":"")+'" data-srcall="'+k+'">'+t+'</button>'};return '<div class="eqact srcquick">'+(R14()?bt("14","All 2014 books ("+S.b14.length+")",on(S.b14)):bt("24","All 2024 books ("+S.b24.length+")",on(S.b24))+bt("all","All WotC books ("+S.all.length+")",on(S.all)))+bt("none","Turn all off",false)+'</div>'})();
  function row(id,name,desc,on,lock,del){return '<div class="srcw">'+row0(id,name,desc,on,lock,del)+srcContents(id)+'</div>'}
  function row0(id,name,desc,on,lock,del){return '<label class="srcrow"><input type="checkbox" data-srcck="'+esc(id)+'"'+(on?" checked":"")+(lock?" disabled":"")+'><span><b>'+esc(name)+'</b><small>'+esc(desc)+'</small></span>'+(del?'<button type="button" class="rmv" data-packdel="'+esc(id)+'">\u2715 Remove</button>':'')+'</label>'}
  h+=R14()?row("core","5e Core Rules: Player's Handbook (2014)","Classes, subclasses, races, backgrounds, feats, spells, and equipment. Required to build a character.",true,true):row("core","5.5e Core Rules: Player's Handbook (2024)","Classes, subclasses, species, backgrounds, feats, spells, and equipment. Required to build a character.",true,true);
@@ -44,7 +58,7 @@ function renderHome(){B.src=B.src||{core:true,dmg:true};var h=qbCard()+'<h2 clas
  if(hid)h+='<p class="fd bhint">'+hid+' sources made for the 2024 rules are hidden while you play by the 2014 rules. Switch to the 2024 rules to see them.</p>';
  var LG=(window.WX?WX.src:[]).filter(function(q){return q.legacy&&!q.tp&&!(R14()&&(q.id==="phb14"||q.id==="dmg14"))});if(LG.length){var lgOn=LG.filter(function(q){return B.src[q.id]}).length;h+='<details class="srcg"'+(lgOpen||lgOn?" open":"")+'><summary class="sph" data-lgsum="1">'+(R14()?"More 2014 Books":"Older Books (2014)")+' <small>'+LG.length+' sources'+(lgOn?", "+lgOn+" on":"")+'</small></summary><p class="fd bhint">'+(R14()?"Races, backgrounds, subclasses, spells and items from the other 2014 books. Each source is off until you turn it on.":"Content from the 2014 books. It plays with the 2024 rules, and each source is off until you turn it on.")+'</p>';LG.forEach(function(q){h+=row(q.id,q.name,q.desc,!!B.src[q.id],false)});h+='</details>'}/* v69 v96 */ var TPL=(window.WX?WX.src:[]).filter(function(q){return q.tp&&!q.hb});if(TPL.length){var tpOn=TPL.filter(function(q){return B.src[q.id]}).length;h+='<details class="srcg"'+(tpOn?" open":"")+'><summary class="sph">Third Party Books <small>'+TPL.length+' source'+(TPL.length>1?"s":"")+(tpOn?", "+tpOn+" on":"")+'</small></summary><p class="fd bhint">Books by other publishers, added from community data and written in our own words. Each book is off until you turn it on. Not official Wizards of the Coast content.</p>';TPL.forEach(function(q){h+=row(q.id,q.name,(q.pub?"By "+q.pub+". ":"")+q.desc,!!B.src[q.id],false)});h+='</details>'}/* third party */ h+=hbSection(row);if(allPacks().length)h+='<h3 class="sph">Homebrew Sources</h3>';/* v96 */
  allPacks().forEach(function(p){var bi=!!HB_BUILTIN[p.id];h+=row(p.id,p.name,(p.desc||"Homebrew")+(bi?"":" (added by you)"),!!B.src[p.id],false,!bi);if(p.lore&&p.lore.length)h+='<button type="button" class="link lorebtn" data-lore="'+esc(p.id)+'">Read: '+esc(p.name.replace(/ \(Homebrew\)$/,""))+', '+esc(p.loreLabel||"Public Lore")+'</button>'});
- h+='<h3 class="sph">Create Homebrew</h3><p class="fd bhint">Your own species, feats, and magic items go into the My Homebrew source above.</p>'+hbForm();/* v26 RU38 no. 8 */
+ h+='<h3 class="sph">Create Homebrew</h3><p class="fd bhint">Your own species, feats, and magic items go into the My Homebrew source above.</p>'+__R.hbForm();/* v26 RU38 no. 8 */
  h+='<h3 class="sph">Add Homebrew Source</h3><p class="fd bhint">Paste a pack (JSON) and tap Add Source. It shows up as a new source above.</p><textarea class="btx" id="packtxt" rows="5" placeholder="{ &quot;id&quot;: &quot;my-homebrew&quot;, &quot;name&quot;: ... }">'+esc(packTxt)+'</textarea><div class="eqact"><button type="button" class="bdg add" data-packadd="1">Add Source</button><button type="button" class="link" data-tpl="1">'+(showTpl?"Hide":"Show")+' pack template</button></div>'+
   (showTpl?'<textarea class="btx" rows="12" readonly style="font:12px monospace">'+esc(JSON.stringify(PACK_TEMPLATE,null,1))+'</textarea>':'');
  return h}
@@ -54,7 +68,7 @@ var FEAT_FOR={clsk:"core",wm:"Weapon Mastery",sub:"Subclass",p1opt:1,p7opt:1};
 /* v49: level table of the class. The row of the character level is highlighted */
 function lvTable(c,L){var rows="";for(var n=1;n<=20;n++){var fs=c.f.filter(function(f){return f[0]===n}).map(function(f){return esc(f[1])}).join(", ");rows+='<tr'+(n===L?' class="cur" aria-current="true"':'')+'><td>'+n+'</td><td>+'+(2+Math.floor((n-1)/4))+'</td><td>'+(fs||'\u2014')+'</td></tr>'}
  return '<details class="lvtab"><summary>Level table</summary><div class="lvwrap"><table><thead><tr><th>Level</th><th>Prof. Bonus</th><th>Features</th></tr></thead><tbody>'+rows+'</tbody></table></div></details>'}
-function renderClass(){var c=CL(),L=B.level,a=abil(),h="";
+export function renderClass(){var c=CL(),L=B.level,a=abil(),h="";
  if(pickCls||un("cls")){h+='<h2 class="ttl">Choose a Class</h2>'+Object.keys(CLASSES).map(function(n){var x=CLASSES[n];return '<button type="button" class="pickrow" data-setcls="'+n+'"><b>'+n+'</b><span>d'+x.hd+' Hit Die \u2022 Primary '+(ABN[x.prim]||x.prim)+' \u2022 Saves '+x.saves.join(", ")+'</span></button>'}).join("");return h}
  var H=hpCalc(),hp=H.max,others=TL()-L;
  h+='<div class="lvrow"><b>Character Level: '+TL()+'</b><span>Milestone Advancement</span></div>';
@@ -116,7 +130,7 @@ function mcBlock(m,i){var c=CLASSES[m.cls],others=TL()-m.lv,h='<div class="mcblk
 /* ---------- step: background ---------- */
 /* v49: a strip of key facts at the top of a Species or Background page */
 function bStrip(a){return '<div class="bstrip">'+a.map(function(x){return '<div><small>'+esc(x[0])+'</small><b>'+esc(x[1])+'</b></div>'}).join('')+'</div>'}
-function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">'+(R14()?"Choose a Background":"Choose Origin: Background")+'</h2>';
+export function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">'+(R14()?"Choose a Background":"Choose Origin: Background")+'</h2>';
  if(un("bg"))return h+'<select class="dd" data-b="bg"><option value="" selected>- Choose a Background -</option>'+Object.keys(BACKGROUNDS).filter(function(n){return !R14()||BACKGROUNDS[n].leg}).map(function(n){return '<option>'+n+'</option>'}).join("")+'</select>';
  h+='<select class="dd" data-b="bg">'+Object.keys(BACKGROUNDS).filter(function(n){return !R14()||BACKGROUNDS[n].leg}).map(function(n){return '<option'+(n===B.bg?" selected":"")+'>'+n+'</option>'}).join("")+'</select>';
  h+=bStrip([["Skills",bg.sk.concat(bg.skPick?[(bg.skPick.n>1?bg.skPick.n+" of your choice":"1 of your choice")]:[]).join(", ")||"None"],["Tool",bg.tool],].concat(R14()?[]:[["Feat",bgFeatN(bg)],["Ability scores",bg.ab.map(function(k){return ABN[k]}).join(", ")]]));
@@ -133,8 +147,8 @@ function renderBg(){var bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">'+(R14()?"Choose
  return h}
 
 /* ---------- step: species ---------- */
-function renderSpecies(){var h="";
- if(pickSp||un("species")){h+='<h2 class="ttl">Choose a '+(R14()?"Race":"Species")+'</h2>'+(R14()?sp14List():Object.keys(SPECIES)).concat(["Custom"]).map(function(n){var s=SPECIES[n];return '<button type="button" class="pickrow" data-setsp="'+n+'"><b>'+(n==="Custom"?"Custom (homebrew)":(R14()?n.replace(/ \(2014\)$/,""):n))+'</b><span>'+(s?s.traits.map(function(t){return t[0]}).join(", "):"Your setting's species")+'</span></button>'}).join("");return h}
+export function renderSpecies(){var h="";
+ if(pickSp||un("species")){h+='<h2 class="ttl">Choose a '+(R14()?"Race":"Species")+'</h2>'+(R14()?__R.sp14List():Object.keys(SPECIES)).concat(["Custom"]).map(function(n){var s=SPECIES[n];return '<button type="button" class="pickrow" data-setsp="'+n+'"><b>'+(n==="Custom"?"Custom (homebrew)":(R14()?n.replace(/ \(2014\)$/,""):n))+'</b><span>'+(s?s.traits.map(function(t){return t[0]}).join(", "):"Your setting's species")+'</span></button>'}).join("");return h}
  if(B.species==="Custom"){h+='<div class="sphead"><div><h2>Custom species</h2></div><button type="button" class="link" data-chgsp="1">Change Species</button></div>';
   h+='<div class="two"><label>Name<input class="btx" data-b="cSpecies.name" value="'+esc(B.cSpecies.name)+'"></label><label>Size<select class="dd" data-b="cSpecies.size"><option'+(B.cSpecies.size==="Medium"?" selected":"")+'>Medium</option><option'+(B.cSpecies.size==="Small"?" selected":"")+'>Small</option></select></label><label>Speed (ft)<input class="btx" type="number" data-b="cSpecies.speed" value="'+B.cSpecies.speed+'"></label><label>Darkvision (ft)<input class="btx" type="number" data-b="cSpecies.dark" value="'+B.cSpecies.dark+'"></label></div>';var lc0=choices().filter(function(c){return c.key==="lang"})[0];if(lc0)h+=card("lang","Languages",R14()?((lc0.n||2)+" Choices"):"2 Choices \u2022 Origin",choiceBody(lc0),{todo:!isDone(lc0)});return h}/* v99 */
  var s=SPECIES[B.species],cs=choices();
@@ -157,7 +171,7 @@ function renderSpecies(){var h="";
  return h}
 
 /* ---------- step: abilities ---------- */
-function renderAbil(){var a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
+export function renderAbil(){var a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
  h+='<select class="dd" data-method="1">'+(un("abil")?'<option value="" selected>- Choose a Generation Method -</option>':'')+[["manual","Manual/Rolled"],["array","Standard Array"],["point","Point Buy"]].map(function(m){return '<option value="'+m[0]+'"'+(B.method===m[0]&&!un("abil")?" selected":"")+'>'+m[1]+'</option>'}).join("")+'</select>';
  if(un("abil"))return h+'<p class="fd bhint">Choose how to set your ability scores.</p>';
  if(B.method==="point"){var used=ABK.reduce(function(t,k){return t+(PBC[B.base[k]]!=null?PBC[B.base[k]]:0)},0);h+='<p class="pts'+(27-used===0?" done":27-used<0?" over":"")+'"><b>'+(27-used)+'</b> / 27 points left</p>'}
@@ -172,3 +186,7 @@ function renderAbil(){var a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
   return '<table class="calc"><thead><tr><th colspan="2">'+ABN[k].toUpperCase()+'</th></tr></thead><tbody><tr class="hl"><td>Total Score</td><td>'+s+'</td></tr><tr class="hl"><td>Modifier</td><td>'+sg(mod(s))+'</td></tr><tr><td>Base Score</td><td>'+B.base[k]+'</td></tr><tr><td>Bonus'+a.src[k].map(function(b){return '<small>'+esc(b.s)+'</small>'}).join("")+'</td><td>'+sg(bon)+a.src[k].map(function(b){return '<small>('+sg(b.v)+')</small>'}).join("")+'</td></tr></tbody></table>'}).join("");
  return h}
 
+
+export function __set_showTpl(v){ return showTpl=v; }
+export function __set_packTxt(v){ return packTxt=v; }
+export function __set_lgOpen(v){ return lgOpen=v; }

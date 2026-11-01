@@ -1,5 +1,21 @@
+import {ABK,ABN,esc,mod,pbOf,sg} from "./01-logic-core-helpers.js";
+import {bgX} from "./03-logic-magic-item-effects.js";
+import {B} from "./04-logic-storage.js";
+import {R14} from "./05-logic-choice-model-ruleset.js";
+import {chOf,choices,dmXl,featViol,hbSpellPicks,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
+import {bookNeed,bookOf,bookOwn,savVals} from "./10-logic-v17-additions.js";
+import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb} from "./11-logic-derivation.js";
+import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
+import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
+import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"SMAP",{get:function(){return SMAP;},set:function(v){SMAP=v;},configurable:true});
+Object.defineProperty(__R,"spCmpB",{get:function(){return spCmpB;},set:function(v){spCmpB=v;},configurable:true});
+Object.defineProperty(__R,"spDmgB",{get:function(){return spDmgB;},set:function(v){spDmgB=v;},configurable:true});
+Object.defineProperty(__R,"spRngB",{get:function(){return spRngB;},set:function(v){spRngB=v;},configurable:true});
+Object.defineProperty(__R,"xl14",{get:function(){return xl14;},set:function(v){xl14=v;},configurable:true});
 /* ---------- spells ---------- */
-var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach(function(x){SMAP[x[0]]=x});
+export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach(function(x){SMAP[x[0]]=x});
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];var o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
 function spInfoOne(cls,sub,L){var c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
@@ -8,7 +24,7 @@ function spInfoOne(cls,sub,L){var c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
  else{var cc=CANT[cls];ct=cc?cc.slice(1).reduce(function(a,l){return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
   if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;var q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */}
  return {smax:c.smax?c.smax[L-1]:0,list:third?"Wizard":cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl()),ab:third?"INT":c.cast,ct:ct,pr:pr,kn:kn}}
-function spInfo(){var parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map(function(m){return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
+export function spInfo(){var parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map(function(m){return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;var ct=0,pr=0,lists=[];parts.forEach(function(p){ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach(function(l){if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach(function(q){var po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
  var SA=slotsAll(),max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach(function(p){if(p.smax>max)max=p.smax});/* P4: casters without slots */
@@ -32,16 +48,16 @@ function pickRows(list,taken,full,I,key){return list.map(function(x){var on=take
 /* M9: one spell section per spellcasting class (PHB 2024 p. 44: each class prepares as if single-classed, with its own ability).
    One caster class: same layout as before. Two or more: a tab per class; DC, counts, list, highest spell level per class.
    Always prepared and Magic Initiate rows show the DC of their own ability (spellAb) */
-var spCls="";
+export var spCls="";
 function abInfo(ab){var sc=abil().sc,pb=pbOf(TL()),m=mod(sc[ab]);return {ab:ab,dc:8+pb+m,atk:pb+m}}
 /* v92: 2014 Eldritch Knight and Arcane Trickster learn most spells from two schools. The spells gained at levels 3, 8, 14 and 20 can come from any school */
 function sch14Info(cls,sub,lv,mine){if(!R14()||!isThird3(sub)||lv<3)return null;var sch=cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"];
  return {sch:sch,free:[3,8,14,20].filter(function(l){return l<=lv}).length,off:mine.filter(function(x){return x[1]&&sch.indexOf(x[2])<0}).length}}
-function spInfoPart(p){var o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return null;var po=chOf(p.cls,"p1opt");if((p.cls==="Cleric"&&po==="Thaumaturge")||(p.cls==="Druid"&&po==="Magician"))o.ct++;/* v32 RL49 no. 45 */var t=CLASSES[p.cls].caster;
+export function spInfoPart(p){var o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return null;var po=chOf(p.cls,"p1opt");if((p.cls==="Cleric"&&po==="Thaumaturge")||(p.cls==="Druid"&&po==="Magician"))o.ct++;/* v32 RL49 no. 45 */var t=CLASSES[p.cls].caster;
  if(!t&&CLASSES[p.cls].nslot){o.max=o.smax}else
  o.max=t==="pact"?PACT[p.lv-1][1]:(t==="full"?SLOTS_FULL[p.lv-1]:t==="half"?SLOTS_FULL[Math.ceil(p.lv/2)-1]:SLOTS_FULL[Math.ceil(p.lv/3)-1]).length;
  var x=abInfo(o.ab);o.dc=x.dc;o.atk=x.atk;o.lists=[o.list].concat(o.xl||[]);o.cls=p.cls;return o}
-function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
+export function renderSpells(){var I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
  var CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter(function(p){return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
  if(!I&&!auto.length&&!mis.length)return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>';
  if(multi)h+='<div class="subtabs">'+CP.map(function(p){return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
@@ -80,8 +96,8 @@ function bookCard(mx){var own=bookOwn(),need=bookNeed(),sv=savVals(),pr=spLists(
   return '<button type="button" class="chip'+(on?" on":"")+'" data-book="'+esc(n)+'"'+(s?' data-bsav="1"':p2?' data-bprep="1"':"")+' title="'+esc(x[11])+'">'+esc(n)+(s?" <small>Savant</small>":p2?" <small>Prepared</small>":"")+'</button>'}).join("")+'</div>'});
  return card("book","Spellbook",own.length+" / "+need+" spells",h,{todo:own.length<need})}
 /* v19 RU47, RL45, RL46: what is still short (open) or wrong (bad). Items {step, tab, open, m} */
-function plural(n,w){return n+" "+w+(n===1?"":"s")}
-function spellCounts(){var out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,SLs=multi?spLists():null;
+export function plural(n,w){return n+" "+w+(n===1?"":"s")}
+export function spellCounts(){var out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,SLs=multi?spLists():null;
  if(I)(multi?CP:[null]).forEach(function(P){var K=P?spInfoPart(P):I;if(!K)return;var taken=P?(SLs[P.cls]||[]):(B.sp||[]),mine=taken.map(function(n){return SMAP[n]}).filter(Boolean),who=P?P.cls+": ":"";
   var nc=mine.filter(function(x){return !x[1]}).length,np=mine.filter(function(x){return x[1]}).length;
   if(nc<K.ct)out.push({step:"class",tab:"spell",open:1,m:who+plural(K.ct-nc,"cantrip")+" not chosen yet"});else if(nc>K.ct)out.push({step:"class",tab:"spell",m:who+plural(nc-K.ct,"cantrip")+" more than allowed ("+K.ct+")"});  var s14=sch14Info(P?P.cls:B.cls,P?P.sub:B.sub,P?P.lv:B.level,mine);if(s14&&s14.off>s14.free)out.push({step:"class",tab:"spell",m:who+plural(s14.off-s14.free,"spell")+" outside "+s14.sch.join(" and ")+" (only "+s14.free+" allowed)"});
@@ -92,13 +108,13 @@ function spellCounts(){var out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,
  return out}
 function stepOfKey(k){if(/^[a-z0-9]+-Origin feat \(/.test(k)||k==="Origin feat ("+B.bg+")")return /Versatile/.test(k)?"species":"bg";if(k==="spfeat"||/Versatile/.test(k))return "species";if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";return "class"}
 /* v32 RL49: the builder step that holds a choice (its card and its badge) */
-function choiceStep(c){var k=c.key;if(c.fk){if(c.fk==="Origin feat ("+B.bg+")")return "bg";if(/Versatile\)$/.test(c.fk))return "species"}if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";
+export function choiceStep(c){var k=c.key;if(c.fk){if(c.fk==="Origin feat ("+B.bg+")")return "bg";if(/Versatile\)$/.test(c.fk))return "species"}if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";
  if(k==="lang"||k==="lin"||k==="rasi"||k==="rasi1"||k==="rasim"||k==="spab"||k==="spsk"||k==="sptool"||k==="spfeat"||k==="hecan"||/^sp(opt|sk2|can|wep|wp)$/.test(k))return "species";return "class"}
 /* v19 idea: one result per state of B (render asked about ten times) */
 var RIC={k:null,v:null};
-function ruleIssues(){var k="";try{k=JSON.stringify(B)}catch(e){}if(k&&RIC.k===k)return RIC.v.slice();var v=ruleIssues0();RIC={k:k,v:v};return v.slice()}
+export function ruleIssues(){var k="";try{k=JSON.stringify(B)}catch(e){}if(k&&RIC.k===k)return RIC.v.slice();var v=ruleIssues0();RIC={k:k,v:v};return v.slice()}
 /* v19 V19-6: subclasses from homebrew packs that are on, after the core list of the Subclass feature */
-function hbSubs(cls){var base=[];if(typeof BASE==="undefined"||!BASE)return "";try{base=Object.keys(JSON.parse(BASE.subs)[cls]||{})}catch(e){}var x=Object.keys((CLASSES[cls]||{}).subs||{}).filter(function(n){return base.indexOf(n)<0});return x.length?" Homebrew subclasses from your sources: "+x.join(", ")+".":""}
+export function hbSubs(cls){var base=[];if(typeof BASE==="undefined"||!BASE)return "";try{base=Object.keys(JSON.parse(BASE.subs)[cls]||{})}catch(e){}var x=Object.keys((CLASSES[cls]||{}).subs||{}).filter(function(n){return base.indexOf(n)<0});return x.length?" Homebrew subclasses from your sources: "+x.join(", ")+".":""}
 function ruleIssues0(){var out=spellCounts();
  var bgo=bgX();if(bgo&&!R14()&&B.bgMode!=="111")[["bg2","+2"],["bg1","+1"]].forEach(function(q){var k=B[q[0]];if(k&&bgo.ab.indexOf(k)<0)out.push({step:"bg",m:B.bg+" can raise "+bgo.ab.join(", ")+", not "+k+". The "+q[1]+" is not counted"})});/* v22 P1 */
  hbSpellPicks().forEach(function(o){var v=B.ch[o.key];if(Array.isArray(v)&&v[0]&&!o.list.some(function(x){return x[0]===v[0]}))out.push({step:"class",m:o.feature+": "+v[0]+" no longer fits this choice, so the sheet leaves it out. Choose again"})});/* v20 N1 */
@@ -108,4 +124,9 @@ function ruleIssues0(){var out=spellCounts();
  /* RL45: PHB 2024 Multiclassing, Prerequisites: 13 in the primary ability of the class you have and of the new class. Caution only (the DM can waive it) */
  var mf=mcReqFail(B.cls);MCL().forEach(function(m){var w=[mf?B.cls+" needs "+mf:"",mcReqFail(m.cls)?m.cls+" needs "+mcReqFail(m.cls):""].filter(Boolean).join(", ");if(w)out.push({step:"class",m:"Multiclass prerequisite not met: "+w})});
  return out}
-function issueText(L){return L.map(function(x){return x.m}).join(". ")}
+export function issueText(L){return L.map(function(x){return x.m}).join(". ")}
+
+export function __set_clsTab(v){ return clsTab=v; }
+export function __set_spLv(v){ return spLv=v; }
+export function __set_spQ(v){ return spQ=v; }
+export function __set_spCls(v){ return spCls=v; }
