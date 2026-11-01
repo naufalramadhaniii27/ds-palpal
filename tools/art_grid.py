@@ -6,6 +6,7 @@ import json, os, re, sys
 from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sheet, lst = sys.argv[1], sys.argv[2]
+GAMMA = float(sys.argv[sys.argv.index("--gamma") + 1]) if "--gamma" in sys.argv else 1.0
 cols = int(sys.argv[sys.argv.index("--cols") + 1]) if "--cols" in sys.argv else 10
 BG = set("acolyte artisan charlatan criminal entertainer farmer guard guide hermit merchant noble sage sailor scribe soldier wayfarer".split())
 def dest(i):
@@ -25,6 +26,8 @@ for l in rows:
     num = int(l.split(".")[0]) - 1; i = l.split(". ", 1)[1].split(" | ")[0].strip()
     r, c = divmod(num, cols); cell = im.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch)).resize((128, 128), Image.LANCZOS)
     cat, slug = dest(i); d = os.path.join(ROOT, "img", "icon", cat); os.makedirs(d, exist_ok=True)
+    if cat != "size" and GAMMA != 1:  # lift brightness to match the older Codex icons (mean value 0.67)
+        lut = [round(255 * (v / 255) ** GAMMA) for v in range(256)]; rgb = cell.convert("RGB").point(lut * 3); a = cell.getchannel("A"); cell = rgb.convert("RGBA"); cell.putalpha(a)
     if cat == "size":  # light silhouette, relative height kept but readable at 24 px
         H = {"tiny": .34, "small": .5, "medium": .66, "large": .8, "huge": .92, "gargantuan": 1.0}[slug]
         big = im.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch)); bb = big.getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox()
