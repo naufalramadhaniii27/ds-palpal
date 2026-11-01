@@ -41,3 +41,14 @@ Source of the counts: 5etools-src, folder data (shallow clone, 2026-11-01). App 
 7. Monster traits and actions: own wording, in batches of about 300.
 
 Each step ends with `tests/q_lib.py` and the three scenarios at 390x844 and 1250x850.
+
+## Progress (2026-11-01, same day)
+| Step | Result |
+|---|---|
+| Library reads every book as reference | monsters 520 to 4,567 |
+| Spells of all books | 392 to 1,821 |
+| Items, gear, species, backgrounds of all books | items 447 to 2,657, gear 356 to 802, species 10 to 247, backgrounds 16 to 231 |
+| Feats of all books | 79 to 553 (copy kept in `WXF_ALL` before the builder drops them) |
+| Rules missing from the Library | 11 added in own wording (`tools/q/rule_gaps.py`). Conditions, actions and skills were already there under rules and statuses |
+| Entries in the Library | 8,228 to 13,700. `tests/q_fluff.py` opens every entry: 0 bad |
+| Still open | subclasses of all books (WXS), class and subclass features, optional features, item variants and groups, life tables, deities, languages, books and adventures index, wikis, monster trait text |

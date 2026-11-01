@@ -607,6 +607,7 @@
     "data/q11-img.js",
     "data/q12-crimg.js",
     "data/q12-rule.js",
+    "data/q13-rule-gaps.js",
     "data/q12-facility.js"
    ]
   },

@@ -198,6 +198,7 @@ function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; 
   g(function(){ Object.keys(ARMOR).forEach(function(n){ var a=ARMOR[n]; add("gear",n,(a.cat==="Shield"||n==="Shield"?"Shield":a.cat+" armor")+" • AC "+(n==="Shield"?"+"+a.ac:a.ac),n,""); }); });
   g(function(){ GEAR.forEach(function(r){ add("gear",r[0],"Adventuring gear"+(r[1]?" • "+r[1]+" gp":""),r[0],(ITEMDESC[r[0]]||"")); }); });
   g(function(){ Object.keys(ITEMDESC).forEach(function(n){ add("gear",n,"Gear",n,ITEMDESC[n]); }); });
+  g(function(){ var X=window.WXF_ALL||{}; Object.keys(X).forEach(function(n){ var f=X[n].f; add("feat",n,(LIB_FEATCAT[f.cat]||"Feat")+" • "+X[n].bk,n,f.d); }); });
   g(function(){ Object.keys(FEATS).forEach(function(n){ var f=FEATS[n]; add("feat",n,LIB_FEATCAT[f.cat]||"Feat",n,f.d+" "+((typeof FEAT_FULL!=="undefined"&&FEAT_FULL[n])||"")); }); });
   g(function(){ Object.keys(SPECIES).forEach(function(n){ var s=SPECIES[n]; add("species",n,"Species • "+s.size+" • Speed "+s.speed+" ft",n,(s.traits||[]).map(function(t){ return t[0]; }).join(" ")); (s.traits||[]).forEach(function(t){ add("feature",t[0],n+" trait","sp:"+n+"|"+t[0],t[1]); }); }); });
   g(function(){ Object.keys(BACKGROUNDS).forEach(function(n){ var b=BACKGROUNDS[n]; add("bg",n,"Background • "+b.feat,n,(b.sk||[]).join(" ")+" "+(b.tool||"")); }); });
@@ -250,7 +251,7 @@ function libDetail(c,k){ var h="",t=k,sub="",x,i;
     else if(a){ sub=k==="Shield"?"Shield":a.cat+" Armor"; h=libTiles([["Armor Class",k==="Shield"?"+"+a.ac:a.ac+(a.dex==="full"?" + Dex":a.dex==="max2"?" + Dex (max 2)":"")],["Stealth",a.dis?"Disadvantage":""],["Strength",a.str?a.str:""],["Weight",wt?wt+" lb":""]]); }
     else { sub="Adventuring Gear"; h=libTiles([["Cost",cost],["Weight",wt?wt+" lb":""]]); }
     if(dsc) h+='<p class="info-d">'+richP(dsc)+'</p>'; return {t:k,sub:sub,h:h}; }
-  if(c==="feat"){ var f=FEATS[k]; if(!f) return null; return {t:k,sub:LIB_FEATCAT[f.cat]||"Feat",h:meta(LIB_FEATCAT[f.cat]||"Feat","")+'<p class="info-d">'+richP((typeof FEAT_FULL!=="undefined"&&FEAT_FULL[k])||f.d)+'</p>'}; }
+  if(c==="feat"){ var f=FEATS[k]||(window.WXF_ALL&&window.WXF_ALL[k]&&window.WXF_ALL[k].f); if(!f) return null; return {t:k,sub:LIB_FEATCAT[f.cat]||"Feat",h:meta(LIB_FEATCAT[f.cat]||"Feat","")+'<p class="info-d">'+richP((typeof FEAT_FULL!=="undefined"&&FEAT_FULL[k])||f.d)+'</p>'}; }
   if(c==="species"){ var s=SPECIES[k]||(libX("s")[k]&&libX("s")[k].r); if(!s) return null; h=libTiles([["Size",s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":""]]);
     if(s.lin&&s.lin.opts) h+='<div class="info-h">'+esc(s.lin.label)+'</div><ul class="lib-ul">'+s.lin.opts.map(function(o){ return '<li>'+esc(o)+'</li>'; }).join("")+'</ul>';
     (s.traits||[]).forEach(function(tr){ h+=libFeatBlock(esc(tr[0]),tr[1]); }); return {t:k,sub:"Species",h:h}; }
