@@ -231,18 +231,28 @@ html.mi-off #sheet .sh-wm{opacity:.12}
 /* the entry has its own picture: no faint icon behind it */
 #lib .sh-wm:has(+ .lib-dt .lib-im){display:none}
 
-/* Floating Notch tab bar (phone): the active tab's icon rides in a round ball above the bar, the ball slides with the page,
-   and a ring in the page colour cuts a notch into the bar. The bar surface is drawn by .bnav-in::before so the ball can sit above it. */
+/* Floating Notch tab bar (phone). The bar surface is the SVG drawn by fx/26-tab-notch.js. The ball (.bnav-ind) slides with the page and hops on a tab change.
+   Only the active tab shows its label, and its icon rides in the ball. */
+@keyframes nHop{0%{transform:translateY(0)}40%{transform:translateY(-11px) scale(1.03)}74%{transform:translateY(2px) scale(.99)}100%{transform:none}}
+@keyframes nIco{0%{opacity:0;transform:translateY(-25px) scale(.1)}45%{opacity:1;transform:translateY(-25px) scale(1.22)}100%{opacity:1;transform:translateY(-25px) scale(1)}}
 @media (max-width:759px){
-  .bnav{padding-top:32px;background:transparent!important;border-top:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-  .bnav-in{isolation:isolate}
-  .bnav-in::before{content:"";position:absolute;left:0;right:0;top:32px;bottom:0;z-index:-1;border-radius:18px 18px 0 0;background:color-mix(in srgb,var(--panel) 95%,#000);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);box-shadow:0 -6px 22px -10px rgba(0,0,0,.55)}
-  .bnav button{position:relative;z-index:1;margin-top:0}
-  .bnav .bnav-ind{top:-32px;height:56px;z-index:0;align-items:flex-start;padding-top:8px}
-  .bnav #bInd::before{width:40px;height:40px;border-radius:50%!important;background:var(--act,var(--acc,var(--stamp)))!important;box-shadow:0 0 0 6px var(--mi-ring,#0e1215),0 6px 16px -4px rgba(0,0,0,.6),0 0 18px -2px var(--act,var(--acc,var(--stamp)))}
-  :root[data-theme="light"] .bnav #bInd::before{box-shadow:0 0 0 6px var(--mi-ring,#f2f0e8),0 6px 16px -4px rgba(0,0,0,.35)}
-  .bnav button.on svg,.bnav button.on.mi-dock svg{transform:translateY(-22px) scale(1.04)!important;color:#fff;stroke:#fff}
+  .bnav{padding:28px 0 max(8px,env(safe-area-inset-bottom,0px));-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent);background:transparent!important;border-top:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .bnav-in{isolation:isolate;padding:0 29px}
+  .bnav button{position:relative;height:58px;gap:0;grid-row:1}
+  .bnav button[data-go="0"]{grid-column:1}.bnav button[data-go="1"]{grid-column:2}.bnav button[data-go="2"]{grid-column:3}.bnav button[data-go="3"]{grid-column:4}.bnav button[data-go="4"]{grid-column:5}.bnav button[data-go="5"]{grid-column:6}.bnav button[data-go="6"]{grid-column:7}.bnav button[data-go="7"]{grid-column:8}.bnav button[data-go="8"]{grid-column:9}
+  .nb-s{position:sticky;left:10px;grid-row:1;grid-column:1/-1;justify-self:start;margin:0 -19px;z-index:-1;pointer-events:none;overflow:visible}
+  .nb-f{fill:color-mix(in srgb,var(--panel) 80%,#fff 9%)}
+  .nb-l{fill:none;stroke:rgba(255,255,255,.12);stroke-width:1}
+  .bnav button svg{position:relative;z-index:1}
+  .bnav .bl{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:var(--ink);opacity:0;transform:translateY(5px);transition:opacity .16s,transform .16s;pointer-events:none}
+  .bnav button.on .bl{opacity:1;transform:none;transition:opacity .28s .26s,transform .28s .26s}
+  .bnav .bnav-ind{left:29px;width:calc((100% - 58px)/9);top:-28px;height:66px;z-index:0;align-items:flex-start;padding-top:12px}
+  .bnav #bInd::before{width:40px;height:40px;border-radius:50%!important;background:linear-gradient(165deg,#4a8bff 0%,#5b73f6 55%,#6a62f2 100%)!important;box-shadow:0 5px 12px -3px rgba(0,0,0,.65),0 0 16px -1px rgba(74,125,255,.7),inset 0 1px 1px rgba(255,255,255,.28)}
+  .bnav #bInd.hop::before{animation:nHop .62s cubic-bezier(.3,.9,.4,1) both}
+  .bnav button.on svg,.bnav button.on.mi-dock svg{transform:translateY(-25px)!important;color:#fff;stroke:#fff;animation:nIco .46s .3s cubic-bezier(.3,1.3,.5,1) both}
+  .bnav button:not(.on) svg{color:var(--faint);transition:transform .26s cubic-bezier(.4,0,.2,1),color .2s}
   .bnav button.on::after,:root[data-skin="ddb"] .bnav button.on::after{display:none!important}
-  .bnav button.on{color:var(--ink)}
+  .bnav button.on{color:var(--ink);background:none!important;border-radius:0}
+  .bnav button.on svg{filter:none!important}
 }
-@media (prefers-reduced-motion:reduce){ .bnav button.on svg{transition:none} }
+@media (prefers-reduced-motion:reduce){ .bnav button,.bnav button.on svg,.bnav #bInd.hop::before,.bnav .bl{transition:none;animation:none!important} }
