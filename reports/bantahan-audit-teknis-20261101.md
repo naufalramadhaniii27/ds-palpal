@@ -28,7 +28,7 @@ Fakta di commit `b1f0677`:
 
 | Pemeriksaan | Hasil |
 |---|---|
-| File `.py`, `.js`, `.mjs` di folder `tests/` (termasuk subfolder) | 96 |
+| File `.py`, `.js`, `.mjs` di folder `tests/` (tingkat atas, tanpa subfolder) | 96 |
 | Tes yang sudah ada | `scenarios.py` (tiga skenario wajib), `golden_rules.py` (bandingkan aturan dengan oracle, 1001 karakter), `csp_check.py`, `learn_flow.py`, `builder_draft.py`, dan banyak lainnya |
 | Unit test node | `tests/tg_engine.js` (mesin Training Ground, ratusan pertarungan dengan seed tetap) |
 
@@ -119,7 +119,7 @@ Yang salah dari audit adalah besarnya (bagian 3.5), bukan arahnya. Pada emulasi 
 
 Di `index.html` commit itu ada 17 tag `<img` dan 18 kemunculan `alt=`. Hampir semua gambar sudah punya alt. Sebagian besar grafik antarmuka berupa SVG dengan `aria-hidden` (139 kemunculan) dan `role="img"` (6), bukan tag gambar. Jumlah 18 tidak menunjukkan kekurangan.
 
-Pencarian `grep` di `src/` menemukan 3 baris yang memuat `<img` tanpa `alt=` pada baris yang sama. Itu layak dicek satu per satu, tetapi belum terbukti sebagai kegagalan.
+Pencarian `git grep` di `src/` pada commit itu menemukan 3 baris yang memuat `<img` tanpa `alt=`. Ketiganya bukan tag gambar: satu fungsi regex yang menulis ulang path gambar (`wmHd`, atribut aslinya ikut terbawa) dan dua komentar. Semua template `<img` lain di `src/` punya `alt=`. Audit axe-core atas halaman yang berjalan tetap belum dilakukan oleh siapa pun.
 
 ### 4.3 Risiko R4, R6, R8 sudah punya mitigasi
 
@@ -139,7 +139,7 @@ Pada branch kerja, blok `app`, `builder`, `learn` dan `tg` sudah menjadi modul E
 |---|---|---|
 | Jalur bypass `DEV_USER` perlu dijaga | Diterima, dengan guard yang benar | Lihat kode di bawah |
 | Tidak ada sidik jari untuk `vendor/pdf/` | Diterima | `git grep` tidak menemukan cek hash vendor di build atau tes |
-| Tes belum jalan di CI | Diterima | Hanya `live_check.py` yang jalan, terhadap situs live |
+| Tes belum jalan di CI | Diterima | Hanya `live_check.py` yang jalan (di `live-check.yml` dan `workers-deploy.yml`), terhadap situs live |
 | Backup D1 harian | Diterima | Di luar repo, perlu cron |
 | Concurrency optimistis di sync | Diterima | Perkiraan usaha kecil |
 | Unduhan pertama dan beban awal HP lambat | Diterima sebagian | Bagian 4.1 |
