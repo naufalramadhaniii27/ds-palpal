@@ -330,12 +330,14 @@ function libWm(w,d){ var m=document.getElementById("libWm"); if(!m){ m=document.
     else if(c==="bg") h=ico("src-background");
     else h=sheetIco(d.t); }catch(er){ h=""; } }
   m.innerHTML=wmHd(h); }
+/* a failing icon or helper must never leave the result list blank: retry with plain rows */
+function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); var a=__R.askHTML; __R.askHTML=null; var ai=window.__artIc; window.__artIc=null; try{ return libListHTML(); } finally{ __R.askHTML=a; window.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
 function libPaint(){ var w=document.getElementById("lib"); if(!w) return; var d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */
   if(d){ var wm0=document.getElementById("libWm"); bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; if(wm0) bd.insertBefore(wm0,bd.firstChild); bd.scrollTop=0; return; }
-  document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libListHTML(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
+  document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libSafe(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ var rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
 function libGo(spec,push){ var p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);
   if(push!==false&&LIB.cur) LIB.hist.push(LIB.cur); else if(push!==false) { var bd=document.getElementById("libBd"); LIB.scroll=bd?bd.scrollTop:0; }
@@ -357,7 +359,7 @@ function libWire(w){ var drag=null;
     if(x==="close"){ libClose(); return; } if(x==="back"){ libBack(); return; }
     if(o){ libGo(o); return; }
     if(c){ LIB.cat=c; LIB.lim=60; LIB.scroll=0; libPaint(); return; }
-    if(b.hasAttribute("data-lib-more")){ LIB.lim+=60; var bd=document.getElementById("libBd"), st=bd.scrollTop; bd.innerHTML=libListHTML(); bd.scrollTop=st; libMark(); } });
+    if(b.hasAttribute("data-lib-more")){ LIB.lim+=60; var bd=document.getElementById("libBd"), st=bd.scrollTop; bd.innerHTML=libSafe(); bd.scrollTop=st; libMark(); } });
   w.addEventListener("input",function(e){ if(e.target.id==="libQ") libInput(e.target.value); });
   var h=w.querySelector("#libH");
   h.addEventListener("pointerdown",function(e){ if(e.button>0||e.target.closest("button")||window.innerWidth<760) return; var r=w.getBoundingClientRect(); drag={x:e.clientX-r.left,y:e.clientY-r.top,id:e.pointerId}; try{ h.setPointerCapture(e.pointerId); }catch(er){} w.classList.add("mv"); });
