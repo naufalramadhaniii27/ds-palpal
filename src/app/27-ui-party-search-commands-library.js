@@ -230,11 +230,16 @@ function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; 
   g(function(){ Object.keys(GLOSS).forEach(function(k){ add("rule",k,(GLOSS[k].c||"Rule")+(GLOSS[k].s?" • "+GLOSS[k].s:""),k,GLOSS[k].d); }); });
   g(function(){ Object.keys(LIB_RULES).forEach(function(k){ if(!GLOSS[k]) add("rule",k,LIB_RULES[k].c+" • PHB-2024, Rules Glossary",k,LIB_RULES[k].d); }); });
   return o; }
-function libTiles(a){ return '<div class="info-k">'+a.filter(function(x){ return x&&x[1]!==""&&x[1]!=null; }).map(function(x){ return String(x[1]).length>14?tileH(esc(x[0]),esc(x[1])):tileS(x[0],x[1]); }).join("")+'</div>'; }
+function libTiles(a){ return '<div class="info-k">'+a.filter(function(x){ return x&&x[1]!==""&&x[1]!=null; }).map(function(x){ var v=libTag(libVal(x[1])); return v.length>14?tileH(esc(x[0]),esc(v)):tileS(x[0],v); }).join("")+'</div>'; }
 /* bestiary rows: the source text keeps tags like {@variantrule Name|XPHB}. Show the name only */
-function libTag(t){ return String(t).replace(/\{@\w+ ([^}]*)\}/g,function(m,a){ var q=a.split("|"); return q[2]||q[0]; }); }
+function libVal(v){ if(v==null||typeof v!=="object") return v; if(Array.isArray(v)) return v.map(libVal).join(", "); if(v.average!=null) return v.average+(v.formula?" ("+v.formula+")":""); if(v.special) return String(v.special); return Object.keys(v).map(function(k){ return libVal(v[k]); }).join(" "); }
+function libTag(t){ return String(t)
+  .replace(/\{@recharge(?: (\d))?\}/g,function(m,n){ return "(Recharge "+(n&&n<6?n+"-6":"6")+")"; })/* bare {@recharge} means 6 */
+  .replace(/\{#itemEntry [^}]*\}\s*/g,"")/* shared item text block that is not stored in the library */
+  .replace(/\{@\w+ ([^}]*)\}/g,function(m,a){ var q=a.split("|"); return q[2]||q[0]; })
+  .replace(/([^.])\.\.(?!\.)/g,"$1."); }
 /* stat block of a creature row: AC and HP, six ability cells, then one line per fact (a long value never sits in a narrow tile) */
-function libStat(tl){ var m={}, rest=[]; tl.forEach(function(x){ if(!x||x[1]===""||x[1]==null) return; if(x[0]==="AC"||x[0]==="HP"||x[0]==="Abilities") m[x[0]]=String(x[1]); else rest.push(x); });
+function libStat(tl){ var m={}, rest=[]; tl=tl.map(function(x){ return x?[x[0],libVal(x[1])].concat(x.slice(2)):x; }); tl.forEach(function(x){ if(!x||x[1]===""||x[1]==null) return; if(x[0]==="AC"||x[0]==="HP"||x[0]==="Abilities") m[x[0]]=String(x[1]); else rest.push(x); });
   var h='<div class="cr-top">'+["AC","HP"].filter(function(k){ return m[k]; }).map(function(k){ return '<div><small>'+k+'</small><b>'+esc(libTag(m[k]))+'</b></div>'; }).join("")+'</div>', ab=[], re=/([A-Z]{3}) (\d+) \(([+\-\u2212]\d+)\)/g, x;
   while((x=re.exec(m.Abilities||""))) ab.push(x);
   if(ab.length===6) h+='<div class="cr-ab">'+ab.map(function(a){ return '<div><small>'+a[1]+'</small><b>'+a[2]+'</b><i>'+a[3]+'</i></div>'; }).join("")+'</div>'; else if(m.Abilities) rest.unshift(["Abilities",m.Abilities]);
@@ -261,7 +266,25 @@ function libBuyDo(c,k){ var pr=libPrice(c,k); if(pr==null){ toast("This item has
   __R.undoMark("Buy "+k); coinSet(res.c); libPut(c,k,qty); var ps=coinList(res.use), cs=coinList(res.chg);
   __R.toastU("Bought "+(qty>1?qty+" x ":"")+k+" for "+priceTxt(pr*qty)+". Paid "+ps+(cs?", change back: "+cs:"")+"."); if(sheetMode==="coin") coinRefresh(); }
 document.addEventListener("click",function(e){ var sh=e.target.closest&&e.target.closest("[data-invshop]"); if(sh){ e.preventDefault(); LIB.q=""; LIB.cur=null; LIB.hist=[]; LIB.cat="gear"; libOpen({}); return; } var bb=e.target.closest&&e.target.closest("[data-libbuy]"); if(bb){ e.preventDefault(); var w=bb.getAttribute("data-libbuy").split("|"); libBuyDo(w[0],w.slice(1).join("|")); return; } var b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
-function libDetail(c,k){ var h="",t=k,sub="",x,i;
+function libClean(h){ return typeof h!=="string"?h:h.replace(/\{#itemEntry [^}]*\}\s*/g,"").replace(/([^.\/])\.\.(?![.\/])/g,"$1."); }
+var LIB_IDS=null, LIB_IDSX=null;
+function libHas(c,n){ var ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix){ LIB_IDSX=ix; LIB_IDS={}; ix.forEach(function(e){ LIB_IDS[e.c+"|"+e.k]=e.k; var q=e.k.indexOf(" ("); if(q>0&&!LIB_IDS[e.c+"|"+e.k.slice(0,q)]) LIB_IDS[e.c+"|"+e.k.slice(0,q)]=e.k; }); } return LIB_IDS[c+"|"+n]||false; }
+/* a name that opens its Library entry when one exists, plain text otherwise */
+function libLnk(label,cands){ for(var i=0;i<cands.length;i++){ var key=cands[i][1]?libHas(cands[i][0],cands[i][1]):false; if(key) return '<button type="button" class="lnk" data-lib-open="'+esc(cands[i][0]+"|"+key)+'">'+esc(label)+'</button>'; } return '<span>'+esc(label)+'</span>'; }
+/* 5e.tools style lists under a spell: who can cast it and what grants it */
+function libSpRefs(k){ var R=window.SPREF&&window.SPREF[String(k).toLowerCase()]; if(!R) return ""; var h="";
+  var row=function(lbl,list,fn){ if(!list||!list.length) return; var seen={}, out=[]; list.forEach(function(x){ var o=fn(x), key=o[0]; if(seen[key]) return; seen[key]=1; out.push(o); }); out.sort(function(a,b){ return a[0]<b[0]?-1:1; }); h+='<p class="lib-ref"><b>'+lbl+':</b> '+out.map(function(o){ return libLnk(o[0],o[1]); }).join(", ")+'</p>'; };
+  row("Classes",R.c,function(x){ return [x[0],[["class",x[0]]]]; });
+  row("Subclasses",R.s,function(x){ return [x[0]+" ("+x[1]+")",[["sub",x[0]],["sub",x[3]]]]; });
+  row("Species",R.r,function(x){ return [x[0],[["species",x[0]],["species",x[2]]]]; });
+  row("Backgrounds",R.b,function(x){ return [x[0],[["bg",x[0]]]]; });
+  row("Feats",R.f,function(x){ return [x[0],[["feat",x[0]]]]; });
+  row("Other options and features",R.o,function(x){ return [x[0],[["optfeat",x[0]],["opt",x[0]]]]; });
+  var m=R.m, notes=[]; if(m){ if(m.ref&&m.ref.length) notes.push("Referenced in "+m.ref.join(", ")+"."); var av=[]; if(m.srd) av.push("the SRD 5.2.1"); if(m.br) av.push("the Basic Rules (5.5e/2024)"); if(av.length) notes.push("Available in "+av.join(" and ")+"."); }
+  if(notes.length) h+='<p class="lib-ref lib-src">'+esc(notes.join(" "))+'</p>';
+  return h?'<div class="lib-refs">'+h+'</div>':""; }
+function libDetail(c,k){ var d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} } d.h=libClean(d.h); } return d; }
+function libDetailRaw(c,k){ var h="",t=k,sub="",x,i;
   if(c==="spell"){ var o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
   if(c==="rule"){ var gl=GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d}); if(!gl){ if(!(window.QREFS&&window.QREFS.rule)) return null; var qr0=null; window.QREFS.rule.forEach(function(r){ if(r.n===k) qr0=r; }); if(!qr0) return null; var h0=libTiles(qr0.tl||[]); (qr0.p||[]).forEach(function(b){ h0+=(typeof b==="string")?'<p class="info-d">'+richP(b)+'</p>':libFeatBlock(esc(b[0]),b[1]); }); return {t:qr0.n,sub:qr0.sub||"Rule",h:h0}; } LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }
   if(c==="creature"){ var cc=__R.crOf(k); if(!cc) return null; return {t:cc.n,sub:"Creature",h:__R.crBlock(cc,"")}; }
@@ -398,6 +421,7 @@ var libDetail0=libDetail; libDetail=function(c,k){ var r=libDetail0(c,k); if(r&&
 window.__libHtml=function(c,k){ var d=libDetail(c,k); return d?d.h:null; };/* test hook */
 window.__libIndex=function(){ var i=LIB.idx||libIndex(); return i.map(function(e){ return [e.c,e.n,e.k]; }); };/* test hook */
 window.__libFind=function(q){ if(!LIB.idx){ LIB.idx=libIndex(); LIB.inv=null; } var o=LIB.q; LIB.q=q; libSearch(); var r=LIB.res.slice(0,6).map(function(x){ return x[1].n+" ("+x[0]+")"; }); LIB.q=o; return r; };/* v101: test hook */
+window.__libScan=function(){ var idx=LIB.idx||libIndex(), res={}, box=document.createElement("div"), pats={tag:/\{@|\{=|\{#|\{\//,undef:/\bundefined\b|\[object|\bNaN\b/,esc:/&(amp|lt|gt|quot);|<\/?[a-z]+[ >]/i,dollar:/\$\{/,dbl:/\.\.(?!\.)|,,|\( ?\)|\[ ?\]/,empty:/^\s*$/}; idx.forEach(function(e){ if(e.c==="homebrew") return; var d=null; try{ d=libDetail(e.c,e.k); }catch(er){ return; } if(!d||!d.h) return; box.innerHTML=d.h; var t=box.textContent||""; Object.keys(pats).forEach(function(k){ if(pats[k].test(t)){ var r=res[k+"|"+e.c]=res[k+"|"+e.c]||{n:0,s:[]}; r.n++; if(r.s.length<4){ var m=pats[k].exec(t); r.s.push(e.n+" :: "+t.slice(Math.max(0,m.index-30),m.index+50).replace(/\s+/g," ")); } } }); }); return res; };/* test hook: scans detail text for leftover markup */
 window.__libAudit=function(){ var idx=LIB.idx||libIndex(), bad=[], cnt={}; idx.forEach(function(e){ cnt[e.c]=(cnt[e.c]||0)+1; if(e.c==="homebrew") return; var d=null; try{ d=libDetail(e.c,e.k); }catch(er){ bad.push([e.c,e.k,String(er).slice(0,80)]); return; } if(!d||!d.t||!d.h||d.h.length<20) bad.push([e.c,e.k,"empty"]); }); return {n:idx.length,cnt:cnt,bad:bad.slice(0,20),nbad:bad.length}; };/* v101: test hook, opens every entry once */
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-lib]"); if(!b) return; e.preventDefault(); var v=b.getAttribute("data-lib"); libOpen(v?{q:v,fromSearch:1}:{}); });
 export function gsRefresh(){ if(sheetMode!=="search") return; var b=$("#sheetBody"), q=$("#gsQ"); if(!b) return; if(!q){ b.innerHTML=gsHTML(); return; }
