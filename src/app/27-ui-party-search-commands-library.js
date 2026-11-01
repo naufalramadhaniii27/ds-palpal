@@ -283,7 +283,22 @@ function libSpRefs(k){ var R=window.SPREF&&window.SPREF[String(k).toLowerCase()]
   var m=R.m, notes=[]; if(m){ if(m.ref&&m.ref.length) notes.push("Referenced in "+m.ref.join(", ")+"."); var av=[]; if(m.srd) av.push("the SRD 5.2.1"); if(m.br) av.push("the Basic Rules (5.5e/2024)"); if(av.length) notes.push("Available in "+av.join(" and ")+"."); }
   if(notes.length) h+='<p class="lib-ref lib-src">'+esc(notes.join(" "))+'</p>';
   return h?'<div class="lib-refs">'+h+'</div>':""; }
-function libDetail(c,k){ var d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} }
+/* what an entry grants or connects to, built from the spell lookup and from background feats */
+var LIB_REV=null, LIB_REVX=null;
+function libNorm(n){ return String(n||"").toLowerCase().replace(/[^a-z0-9]/g,""); }
+function libRev(){ var ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return {}; } } if(LIB_REVX===ix&&LIB_REV) return LIB_REV; LIB_REVX=ix; var rv={sp:{},bgf:{}}, nm={}, add=function(g,key,sp){ var k=g+"|"+libNorm(key), a=rv.sp[k]=rv.sp[k]||[]; if(a.indexOf(sp)<0) a.push(sp); };
+  ix.forEach(function(e){ if(e.c==="spell") nm[e.k.toLowerCase()]=e.k; });
+  var S=window.SPREF||{}; Object.keys(S).forEach(function(key){ var sp=nm[key]; if(!sp) return; var R=S[key]; (R.r||[]).forEach(function(x){ add("species",x[0],sp); if(x[2]) add("species",x[2],sp); }); (R.b||[]).forEach(function(x){ add("bg",x[0],sp); }); (R.f||[]).forEach(function(x){ add("feat",x[0],sp); }); (R.s||[]).forEach(function(x){ add("sub",x[0],sp); add("sub",x[3],sp); }); (R.o||[]).forEach(function(x){ add("optfeat",x[0],sp); add("opt",x[0],sp); }); });
+  try{ var B={}; Object.keys(BACKGROUNDS).forEach(function(n){ B[n]=BACKGROUNDS[n].feat; }); var X=libX("b"); Object.keys(X).forEach(function(n){ if(!B[n]) B[n]=(X[n].r||{}).feat; }); Object.keys(B).forEach(function(n){ if(!B[n]) return; var k=libNorm(String(B[n]).replace(/\s*\(.*$/,"")); (rv.bgf[k]=rv.bgf[k]||[]).push(n); rv.bgf["bg|"+libNorm(n)]=B[n]; }); }catch(er){}
+  return (LIB_REV=rv); }
+function libRelList(lbl,names,cat,keyOf){ if(!names||!names.length) return ""; var u=names.slice().sort(), more=u.length>40?u.length-40:0; u=u.slice(0,40); return '<p class="lib-ref"><b>'+lbl+':</b> '+u.map(function(n){ return libLnk(n,[[cat,keyOf?keyOf(n):n]]); }).join(", ")+(more?' and '+more+' more':'')+'</p>'; }
+function libRel(c,k){ var rv=libRev(), h="", key=libNorm(k);
+  if(c==="species"||c==="bg"||c==="feat"||c==="sub"||c==="optfeat"||c==="opt"){ var nk=c==="opt"?key.replace(/^(man|inv|mm)/,""):key; var al=String(k).replace(/\s*\(.*$/,""), m2=/^(\w+) (Elf|Dwarf|Gnome|Halfling|Orc|Tiefling)$/.exec(al); var sp=rv.sp[c+"|"+nk]||(c==="species"&&m2?rv.sp["species|"+libNorm(m2[2]+" ("+m2[1]+")")]:null)||(c==="species"?rv.sp["species|"+libNorm(String(k).replace(/\s*\(.*$/,""))]:null); h+=libRelList("Spells",sp,"spell"); }
+  if(c==="bg"){ var f=rv.bgf["bg|"+key]; if(f) h=libRelList("Feat",[f],"feat")+h; }
+  if(c==="feat"){ var bs=rv.bgf[libNorm(String(k).replace(/\s*\(.*$/,""))]; h+=libRelList("Backgrounds that grant it",bs,"bg"); }
+  if(c==="sub"){ var own=null; try{ Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) own=cn; }); var X=libXs(); if(!own&&X[k]) own=X[k].cls; }catch(er){} if(!own){ var q=null; Object.keys(window.QREFS||{}).forEach(function(cc){ if(!/^sub/.test(cc)) return; (window.QREFS[cc]||[]).forEach(function(r){ if(r.n===k) q=r; }); }); if(q){ (q.tl||[]).forEach(function(t){ if(t[0]==="Class") own=t[1]; }); if(!own) own="Artificer"; }} if(own) h=libRelList("Class",[own],"class")+h; }
+  return h?'<div class="lib-refs">'+h+'</div>':""; }
+function libDetail(c,k){ var d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} } else { try{ d.h+=libRel(c,k); }catch(er){} }
   d.h=libClean(d.h);
   var fx=c==="item"?window.ITEMFIX:c==="language"?window.LANGFIX:c==="deck"?window.DECKFIX:null; if(fx&&fx[k]&&!/<p class="info-d">[^<]/.test(d.h)&&!/class="fblk/.test(d.h)) d.h=d.h.replace(/<p class="info-d"><\/p>/g,"")+richP(fx[k]);/* entries whose 5etools data is a template or a list of speakers */
   d.h=libClean(d.h); } return d; }
@@ -308,7 +323,7 @@ function libDetailRaw(c,k){ var h="",t=k,sub="",x,i;
     h+='<div class="info-h">Features</div><div class="lib-fl">'+(cl.f||[]).map(function(f){ return '<button type="button" class="lib-r" data-lib-open="feature|cls:'+esc(k+"|"+f[1])+'"><span class="lib-lv">'+f[0]+'</span><span class="lib-rt"><b>'+esc(f[1])+'</b><small>'+esc(String(f[2]).slice(0,110))+'</small></span></button>'; }).join("")+'</div>';
     var sn=Object.keys(cl.subs||{}); if(sn.length) h+='<div class="info-h">Subclasses</div><div class="lib-fl">'+sn.map(function(n){ return '<button type="button" class="lib-r" data-lib-open="sub|'+esc(n)+'"><span class="lib-rt"><b>'+(window.__artSub?window.__artSub(k,n):"")+esc(n)+'</b></span></button>'; }).join("")+'</div>';
     if(cl.eq) h+='<div class="info-h">Starting Equipment</div><p class="info-d">'+esc((cl.eq||[]).join(" or "))+'</p>'; return {t:k,sub:"Class",h:h}; }
-  if(c==="sub"){ var own=null, xs=libXs()[k]; Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) own=cn; }); if(!own&&xs) own=xs.cls; if(!own) return null; h=meta(own+" Subclass",xs?xs.bk:"");/* T10: the emblem is the centred watermark now */
+  if(c==="sub"&&(function(){ var o=null, xx=libXs()[k]; Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) o=cn; }); return o||(xx&&xx.cls); })()){ var own=null, xs=libXs()[k]; Object.keys(CLASSES).forEach(function(cn){ if((CLASSES[cn].subs||{})[k]) own=cn; }); if(!own&&xs) own=xs.cls; if(!own) return null; h=meta(own+" Subclass",xs?xs.bk:"");/* T10: the emblem is the centred watermark now */
     (xs&&!((CLASSES[own]||{}).subs||{})[k]?xs.arr:CLASSES[own].subs[k]).forEach(function(f){ var full=(typeof SUB_FULL!=="undefined"&&SUB_FULL[k+"|"+f[1]])||f[2]; h+='<div class="info-h">Level '+f[0]+': '+esc(f[1])+'</div><p class="info-d">'+richP(full)+'</p>'; }); return {t:k,sub:own+" Subclass",h:h}; }
   if(c==="feature"&&/^(cls|sub|sp):/.test(k)){ var m=/^(cls|sub|sp):([^|]+)\|(.+)$/.exec(k); if(!m) return null;
     if(m[1]==="cls"){ var cf=(CLASSES[m[2]].f||[]).filter(function(f){ return f[1]===m[3]; })[0]; if(!cf) return null; return {t:m[3],sub:m[2]+", level "+cf[0],h:meta(m[2]+" Feature","Level "+cf[0])+'<p class="info-d">'+richP((typeof CF_FULL!=="undefined"&&CF_FULL[m[2]+"|"+m[3]])||cf[2])+'</p>'}; }
