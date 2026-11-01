@@ -1,0 +1,58 @@
+Agonizing Blast	inv|Agonizing Blast
+Ambush	man|Ambush
+Armor of Shadows	inv|Armor of Shadows
+Ascendant Step	inv|Ascendant Step
+Bait and Switch	man|Bait and Switch
+Careful Spell	mm|Careful Spell
+Commander's Strike	man|Commander's Strike
+Commanding Presence	man|Commanding Presence
+Devil's Sight	inv|Devil's Sight
+Devouring Blade	inv|Devouring Blade
+Disarming Attack	man|Disarming Attack
+Distant Spell	mm|Distant Spell
+Distracting Strike	man|Distracting Strike
+Eldritch Mind	inv|Eldritch Mind
+Eldritch Smite	inv|Eldritch Smite
+Eldritch Spear	inv|Eldritch Spear
+Empowered Spell	mm|Empowered Spell
+Evasive Footwork	man|Evasive Footwork
+Extended Spell	mm|Extended Spell
+Feinting Attack	man|Feinting Attack
+Fiendish Vigor	inv|Fiendish Vigor
+Gaze of Two Minds	inv|Gaze of Two Minds
+Gift of the Depths	inv|Gift of the Depths
+Gift of the Protectors	inv|Gift of the Protectors
+Goading Attack	man|Goading Attack
+Heightened Spell	mm|Heightened Spell
+Investment of the Chain Master	inv|Investment of the Chain Master
+Lessons of the First Ones	inv|Lessons of the First Ones
+Lifedrinker	inv|Lifedrinker
+Lunging Attack	man|Lunging Attack
+Maneuvering Attack	man|Maneuvering Attack
+Mask of Many Faces	inv|Mask of Many Faces
+Master of Myriad Forms	inv|Master of Myriad Forms
+Menacing Attack	man|Menacing Attack
+Misty Visions	inv|Misty Visions
+One with Shadows	inv|One with Shadows
+Otherworldly Leap	inv|Otherworldly Leap
+Pact of the Blade	inv|Pact of the Blade
+Pact of the Chain	inv|Pact of the Chain
+Pact of the Tome	inv|Pact of the Tome
+Parry	man|Parry
+Precision Attack	man|Precision Attack
+Pushing Attack	man|Pushing Attack
+Quickened Spell	mm|Quickened Spell
+Rally	man|Rally
+Repelling Blast	inv|Repelling Blast
+Riposte	man|Riposte
+Seeking Spell	mm|Seeking Spell
+Subtle Spell	mm|Subtle Spell
+Sweeping Attack	man|Sweeping Attack
+Tactical Assessment	man|Tactical Assessment
+Thirsting Blade	inv|Thirsting Blade
+Transmuted Spell	mm|Transmuted Spell
+Trip Attack	man|Trip Attack
+Twinned Spell	mm|Twinned Spell
+Visions of Distant Realms	inv|Visions of Distant Realms
+Whispers of the Grave	inv|Whispers of the Grave
+Witch Sight	inv|Witch Sight

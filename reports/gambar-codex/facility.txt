@@ -1,0 +1,35 @@
+Ancient Altar	Ancient Altar
+Arcane Study	Arcane Study
+Archive	Archive
+Armory	Armory
+Cabinet of Curiosities	Cabinet of Curiosities
+Circus Tent	Circus Tent
+Courtyard	Courtyard
+Dining Room	Dining Room
+Entertainment Salon	Entertainment Salon
+Gaming Hall	Gaming Hall
+Geothermal Vent	Geothermal Vent
+Greenhouse	Greenhouse
+Guildhall	Guildhall
+Heist Planning Chamber	Heist Planning Chamber
+Infirmary	Infirmary
+Lighthouse	Lighthouse
+Lightning Generator	Lightning Generator
+Liminal Space	Liminal Space
+Meditation Chamber	Meditation Chamber
+Menagerie	Menagerie
+Morgue	Morgue
+Parlor	Parlor
+Rookery	Rookery
+Sacristy	Sacristy
+Sanctum	Sanctum
+Smithy	Smithy
+Soup Kitchen	Soup Kitchen
+Spirit Vault	Spirit Vault
+Storage	Storage
+Storehouse	Storehouse
+Séance Parlor	Séance Parlor
+Theater	Theater
+Training Area	Training Area
+Transmutation Vat	Transmutation Vat
+Trophy Room	Trophy Room

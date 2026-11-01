@@ -1,0 +1,2084 @@
++1 All-Purpose Tool	+1 All-Purpose Tool
++1 Ammunition	+1 Ammunition
++1 Amulet of the Devout	+1 Amulet of the Devout
++1 Arcane Grimoire	+1 Arcane Grimoire
++1 Armor	+1 Armor
++1 Bloodwell Vial	+1 Bloodwell Vial
++1 Dragon Edge Weapon	+1 Dragon Edge Weapon
++1 Dragonhide Belt	+1 Dragonhide Belt
++1 Dragonkin Weapon	+1 Dragonkin Weapon
++1 Fate Dealer's Deck	+1 Fate Dealer's Deck
++1 Moon Sickle	+1 Moon Sickle
++1 Rhythm-Maker's Drum	+1 Rhythm-Maker's Drum
++1 Rod of the Pact Keeper	+1 Rod of the Pact Keeper
++1 Shield (*)	+1 Shield (*)
++1 Soulbind Chains	+1 Soulbind Chains
++1 Tools of the Master	+1 Tools of the Master
++1 Wand of the War Mage	+1 Wand of the War Mage
++1 Weapon	+1 Weapon
++1 Weapon (no damage)	+1 Weapon (no damage)
++1 Wraps of Unarmed Power	+1 Wraps of Unarmed Power
++1 Wraps of Unarmed Prowess	+1 Wraps of Unarmed Prowess
++2 All-Purpose Tool	+2 All-Purpose Tool
++2 Ammunition	+2 Ammunition
++2 Amulet of the Devout	+2 Amulet of the Devout
++2 Arcane Grimoire	+2 Arcane Grimoire
++2 Armor	+2 Armor
++2 Bloodwell Vial	+2 Bloodwell Vial
++2 Dragon Edge Weapon	+2 Dragon Edge Weapon
++2 Dragonhide Belt	+2 Dragonhide Belt
++2 Dragonkin Weapon	+2 Dragonkin Weapon
++2 Fate Dealer's Deck	+2 Fate Dealer's Deck
++2 Moon Sickle	+2 Moon Sickle
++2 Rhythm-Maker's Drum	+2 Rhythm-Maker's Drum
++2 Ring of Protection	+2 Ring of Protection
++2 Rod of the Pact Keeper	+2 Rod of the Pact Keeper
++2 Shield (*)	+2 Shield (*)
++2 Soulbind Chains	+2 Soulbind Chains
++2 Studded Leather Armor of Acid Resistance	+2 Studded Leather Armor of Acid Resistance
++2 Studded White Dragon Leather Armor of Cold Resistance	+2 Studded White Dragon Leather Armor of Cold Resistance
++2 Tools of the Master	+2 Tools of the Master
++2 Wand of the War Mage	+2 Wand of the War Mage
++2 Weapon	+2 Weapon
++2 Weapon (no damage)	+2 Weapon (no damage)
++2 Wraps of Unarmed Power	+2 Wraps of Unarmed Power
++2 Wraps of Unarmed Prowess	+2 Wraps of Unarmed Prowess
++3 All-Purpose Tool	+3 All-Purpose Tool
++3 Ammunition	+3 Ammunition
++3 Amulet of the Devout	+3 Amulet of the Devout
++3 Arcane Grimoire	+3 Arcane Grimoire
++3 Armor	+3 Armor
++3 Bloodwell Vial	+3 Bloodwell Vial
++3 Dragonhide Belt	+3 Dragonhide Belt
++3 Dragonkin Weapon	+3 Dragonkin Weapon
++3 Fate Dealer's Deck	+3 Fate Dealer's Deck
++3 Moon Sickle	+3 Moon Sickle
++3 Rhythm-Maker's Drum	+3 Rhythm-Maker's Drum
++3 Rod of the Pact Keeper	+3 Rod of the Pact Keeper
++3 Shield (*)	+3 Shield (*)
++3 Soulbind Chains	+3 Soulbind Chains
++3 Tools of the Master	+3 Tools of the Master
++3 Wand of the War Mage	+3 Wand of the War Mage
++3 Weapon	+3 Weapon
++3 Weapon (no damage)	+3 Weapon (no damage)
++3 Wraps of Unarmed Power	+3 Wraps of Unarmed Power
++3 Wraps of Unarmed Prowess	+3 Wraps of Unarmed Prowess
+Abjurer's Gilder	Abjurer's Gilder
+Abracadabrus	Abracadabrus
+Absorbing Tattoo	Absorbing Tattoo
+Accounting and Valuation of All Things	Accounting and Valuation of All Things
+Acheron Blade	Acheron Blade
+Acidlight Ammunition	Acidlight Ammunition
+Adamantine Ammunition	Adamantine Ammunition
+Adder Stone	Adder Stone
+Additional Arms	Additional Arms
+Adjustable Stilts	Adjustable Stilts
+Aegis of Radiance	Aegis of Radiance
+Aereni Mask	Aereni Mask
+Aether Blood	Aether Blood
+Agony (Awakened)	Agony (Awakened)
+Agony (Dormant)	Agony (Dormant)
+Agony (Exalted)	Agony (Exalted)
+Alchemist's Doom	Alchemist's Doom
+Alembic of Unmaking	Alembic of Unmaking
+All-Seeing Blade of the Guardian	All-Seeing Blade of the Guardian
+Alluring Dye	Alluring Dye
+Amber Runestone	Amber Runestone
+Amphibious Adaptation	Amphibious Adaptation
+Amulet of Appearance	Amulet of Appearance
+Amulet of Betrayal	Amulet of Betrayal
+Amulet of Curse Suppression	Amulet of Curse Suppression
+Amulet of Duplicity	Amulet of Duplicity
+Amulet of Equilibrium	Amulet of Equilibrium
+Amulet of Harmony	Amulet of Harmony
+Amulet of Protection from Turning	Amulet of Protection from Turning
+Amulet of the Black Skull	Amulet of the Black Skull
+Amulet of the Spirit Caller	Amulet of the Spirit Caller
+Ancestral Laser Sword	Ancestral Laser Sword
+Ancient Seal	Ancient Seal
+Android Skin	Android Skin
+Angelic Wings	Angelic Wings
+Angelskin Armor	Angelskin Armor
+Ankh of Ra	Ankh of Ra
+Antimagic Armor	Antimagic Armor
+Antimagic Eye	Antimagic Eye
+Antlers of the True Path	Antlers of the True Path
+Anuraag's Crucible	Anuraag's Crucible
+Arc Rifle	Arc Rifle
+Arcanaloth's Music Box	Arcanaloth's Music Box
+Arcane Battery	Arcane Battery
+Arcane Cannon	Arcane Cannon
+Arcane Carbine +1	Arcane Carbine +1
+Arcane Carbine +2	Arcane Carbine +2
+Arcane Carbine +3	Arcane Carbine +3
+Arcane Mirror	Arcane Mirror
+Arcane Oil	Arcane Oil
+Arcane Propulsion Arm	Arcane Propulsion Arm
+Arcane Resonator	Arcane Resonator
+Arcane Study Charm	Arcane Study Charm
+Arcane Synapses	Arcane Synapses
+Arcane Terminal	Arcane Terminal
+Arcane Warhead	Arcane Warhead
+Arcanist's Bestiary	Arcanist's Bestiary
+Arcanist's Bowstaff	Arcanist's Bowstaff
+Architect's Disdain	Architect's Disdain
+Ardor	Ardor
+Arm Cannon	Arm Cannon
+Armor of Acid Resistance	Armor of Acid Resistance
+Armor of Fire Resistance	Armor of Fire Resistance
+Armor of Force Resistance	Armor of Force Resistance
+Armor of Lightning Resistance	Armor of Lightning Resistance
+Armor of Necrotic Resistance	Armor of Necrotic Resistance
+Armor of Poison Resistance	Armor of Poison Resistance
+Armor of Psychic Resistance	Armor of Psychic Resistance
+Armor of Radiant Resistance	Armor of Radiant Resistance
+Armor of Safeguarding	Armor of Safeguarding
+Armor of Thunder Resistance	Armor of Thunder Resistance
+Armor of Vulnerability (Bludgeoning)	Armor of Vulnerability (Bludgeoning)
+Armor of Vulnerability (Piercing)	Armor of Vulnerability (Piercing)
+Armor of Vulnerability (Slashing)	Armor of Vulnerability (Slashing)
+Armor of Weightlessness	Armor of Weightlessness
+Armor of Zombie Flesh	Armor of Zombie Flesh
+Armor of the Valiant Soul (Awakened)	Armor of the Valiant Soul (Awakened)
+Armor of the Valiant Soul (Dormant)	Armor of the Valiant Soul (Dormant)
+Armor of the Valiant Soul (Exalted)	Armor of the Valiant Soul (Exalted)
+Arrow, +1	Arrow, +1
+Arrow, +2	Arrow, +2
+Arrow, +3	Arrow, +3
+Artisan's Tools	Artisan's Tools
+Ascendant Dragon's Wrath Weapon	Ascendant Dragon's Wrath Weapon
+Ascendant Wave-Swept Weapon	Ascendant Wave-Swept Weapon
+Astral Bracelet	Astral Bracelet
+Astral Bracelet of Energy	Astral Bracelet of Energy
+Astral Bracelet of Heavens	Astral Bracelet of Heavens
+Astral Bracelet of Hells	Astral Bracelet of Hells
+Astral Bracelet of Knowledge	Astral Bracelet of Knowledge
+Astral Bracelet of Omniscience	Astral Bracelet of Omniscience
+Astral Bracelet of Planebending	Astral Bracelet of Planebending
+Astral Sea Piercer	Astral Sea Piercer
+Athreos's Devotee	Athreos's Devotee
+Athreos's Disciple	Athreos's Disciple
+Athreos's Votary	Athreos's Votary
+Attractor Mine	Attractor Mine
+Aura Lenses (Complete)	Aura Lenses (Complete)
+Aura Lenses (Incomplete)	Aura Lenses (Incomplete)
+Aurum and Argentum	Aurum and Argentum
+Automatic Pistol	Automatic Pistol
+Avian Circlet	Avian Circlet
+Axe Beak Tomahawk	Axe Beak Tomahawk
+Axe of the Mother Tree	Axe of the Mother Tree
+Azorius Charm	Azorius Charm
+Azuredge	Azuredge
+B.E.G.	B.E.G.
+Baba Yaga's Pestle	Baba Yaga's Pestle
+Backpack Parachute	Backpack Parachute
+Bag of Cannonballs	Bag of Cannonballs
+Bag of Sundrops	Bag of Sundrops
+Balance of Harmony	Balance of Harmony
+Ballistic Sledge	Ballistic Sledge
+Balloon Pack	Balloon Pack
+Band of Fruitfulness	Band of Fruitfulness
+Band of Mirrored Essence	Band of Mirrored Essence
+Bandore	Bandore
+Bands of Synergy	Bands of Synergy
+Bands of the Found and Lost	Bands of the Found and Lost
+Bane Weapon	Bane Weapon
+Banner of the Krig Rune	Banner of the Krig Rune
+Banshee Box	Banshee Box
+Barbarian's Brew	Barbarian's Brew
+Bard-in-a-Box	Bard-in-a-Box
+Barding	Barding
+Barge Helm	Barge Helm
+Barking Box	Barking Box
+Barnacled Wave-Swept Weapon	Barnacled Wave-Swept Weapon
+Barricade Shield	Barricade Shield
+Barrier Tattoo (Large)	Barrier Tattoo (Large)
+Barrier Tattoo (Medium)	Barrier Tattoo (Medium)
+Barrier Tattoo (Small)	Barrier Tattoo (Small)
+Basco's Handy Bangle	Basco's Handy Bangle
+Basic Poison	Basic Poison
+Basilisk Crystal	Basilisk Crystal
+Basilisk Dagger	Basilisk Dagger
+Bath Potion	Bath Potion
+Baton of Many Sizes	Baton of Many Sizes
+Battering Shield	Battering Shield
+Battle Rod	Battle Rod
+Battle Tax	Battle Tax
+Battlebrew Maul	Battlebrew Maul
+Battlechef Buckler	Battlechef Buckler
+Battlechef's Splendid Saucepan	Battlechef's Splendid Saucepan
+Battlement Bow	Battlement Bow
+Bejeweled Conclave Trinket	Bejeweled Conclave Trinket
+Belashyrra's Beholder Crown	Belashyrra's Beholder Crown
+Belt of the Raid Leader	Belt of the Raid Leader
+Belt of the Weald	Belt of the Weald
+Big Bertha	Big Bertha
+Bird of a Feather (Common)	Bird of a Feather (Common)
+Bird of a Feather (Uncommon)	Bird of a Feather (Uncommon)
+Black Box	Black Box
+Black Chromatic Rose	Black Chromatic Rose
+Black Crystal Tablet	Black Crystal Tablet
+Black Dragon Mask	Black Dragon Mask
+Black Elixir	Black Elixir
+Blackstaff	Blackstaff
+Blade of Avernus	Blade of Avernus
+Blade of Broken Mirrors	Blade of Broken Mirrors
+Blade of Broken Mirrors (Awakened)	Blade of Broken Mirrors (Awakened)
+Blade of Broken Mirrors (Dormant)	Blade of Broken Mirrors (Dormant)
+Blade of Broken Mirrors (Exalted)	Blade of Broken Mirrors (Exalted)
+Blade of the Guardian	Blade of the Guardian
+Blade of the Medusa	Blade of the Medusa
+Blade of the Wood	Blade of the Wood
+Blasphemous Charm	Blasphemous Charm
+Blast Disk (Common)	Blast Disk (Common)
+Blast Disk (Rare)	Blast Disk (Rare)
+Blast Disk (Uncommon)	Blast Disk (Uncommon)
+Blast Scepter	Blast Scepter
+Blaster Mod (+1 Enchanted Battery)	Blaster Mod (+1 Enchanted Battery)
+Blaster Mod (+2 Enchanted Battery)	Blaster Mod (+2 Enchanted Battery)
+Blaster Mod (+3 Enchanted Battery)	Blaster Mod (+3 Enchanted Battery)
+Blaster Mod (Aimbot)	Blaster Mod (Aimbot)
+Blaster Mod (Antimatter Battery)	Blaster Mod (Antimatter Battery)
+Blaster Mod (Beam Module)	Blaster Mod (Beam Module)
+Blaster Mod (Dragonfire Break)	Blaster Mod (Dragonfire Break)
+Blaster Mod (Electrocoil)	Blaster Mod (Electrocoil)
+Blaster Mod (Extended Barrel)	Blaster Mod (Extended Barrel)
+Blaster Mod (Magnetic Mount)	Blaster Mod (Magnetic Mount)
+Blaster Mod (Overcharge Module)	Blaster Mod (Overcharge Module)
+Blaster Mod (Reinforced Frame)	Blaster Mod (Reinforced Frame)
+Blaster Mod (Ricochet Barrel)	Blaster Mod (Ricochet Barrel)
+Blaster Mod (Scope)	Blaster Mod (Scope)
+Blaster Mod (Silencer)	Blaster Mod (Silencer)
+Blaster Mod (Thermal Sights)	Blaster Mod (Thermal Sights)
+Blaster Prototype	Blaster Prototype
+Blaster for Dummies	Blaster for Dummies
+Blessed Reliquary	Blessed Reliquary
+Blessing of Bloody Might	Blessing of Bloody Might
+Blessing of Dumathoin	Blessing of Dumathoin
+Blessing of Health	Blessing of Health
+Blessing of Lonely Genius	Blessing of Lonely Genius
+Blessing of Magic Resistance	Blessing of Magic Resistance
+Blessing of Protection	Blessing of Protection
+Blessing of Understanding	Blessing of Understanding
+Blessing of Unearned Riches	Blessing of Unearned Riches
+Blessing of Valhalla	Blessing of Valhalla
+Blessing of Weapon Enhancement	Blessing of Weapon Enhancement
+Blessing of Wound Closure	Blessing of Wound Closure
+Blessing of the Frostmaiden	Blessing of the Frostmaiden
+Blessing of the Lone Champion	Blessing of the Lone Champion
+Blessing of the Morninglord	Blessing of the Morninglord
+Blessing of the Solipsistic Mind	Blessing of the Solipsistic Mind
+Bliss	Bliss
+Blizzard Sphere	Blizzard Sphere
+Blod Stone	Blod Stone
+Blood Capsule	Blood Capsule
+Blood Pact Pendants	Blood Pact Pendants
+Blood of the Lycanthrope Antidote	Blood of the Lycanthrope Antidote
+Bloodaxe	Bloodaxe
+Bloodmage Dagger	Bloodmage Dagger
+Bloodscryer Oculus	Bloodscryer Oculus
+Bloodseeker Ammunition	Bloodseeker Ammunition
+Bloodshed Blade	Bloodshed Blade
+Blossom Rod	Blossom Rod
+Blue Chromatic Rose	Blue Chromatic Rose
+Blue Dragon Mask	Blue Dragon Mask
+Bob	Bob
+Bobbing Lily Pad	Bobbing Lily Pad
+Bolt, +1	Bolt, +1
+Bolt, +2	Bolt, +2
+Bolt, +3	Bolt, +3
+Bondmantle	Bondmantle
+Bonecounter	Bonecounter
+Book of Eibon	Book of Eibon
+Bookmark	Bookmark
+Boon of High Magic	Boon of High Magic
+Boon of Immortality	Boon of Immortality
+Boon of Invincibility	Boon of Invincibility
+Boon of Luck	Boon of Luck
+Boon of Magic Resistance	Boon of Magic Resistance
+Boon of Peerless Aim	Boon of Peerless Aim
+Boon of Perfect Health	Boon of Perfect Health
+Boon of Planar Travel	Boon of Planar Travel
+Boon of Quick Casting	Boon of Quick Casting
+Boon of Resilience	Boon of Resilience
+Boon of Spell Mastery	Boon of Spell Mastery
+Boon of Undetectability	Boon of Undetectability
+Boon of the Fire Soul	Boon of the Fire Soul
+Boon of the Stormborn	Boon of the Stormborn
+Boon of the Unfettered	Boon of the Unfettered
+Boots of Dendallen	Boots of Dendallen
+Boots of Haste	Boots of Haste
+Boots of the Cloud Jumper	Boots of the Cloud Jumper
+Boots of the Vigilant	Boots of the Vigilant
+Borboss' Joyous Wand of Color	Borboss' Joyous Wand of Color
+Boreal Pendant	Boreal Pendant
+Borealus	Borealus
+Boros Charm	Boros Charm
+Bottle of Boundless Coffee	Bottle of Boundless Coffee
+Bottled Abyss	Bottled Abyss
+Bottled Breath	Bottled Breath
+Bottled Lightning	Bottled Lightning
+Bottled Ooze (Black Pudding)	Bottled Ooze (Black Pudding)
+Bottled Ooze (Gelatinous Cube)	Bottled Ooze (Gelatinous Cube)
+Bottled Ooze (Gray Ooze)	Bottled Ooze (Gray Ooze)
+Bottled Ooze (Ochre Jelly)	Bottled Ooze (Ochre Jelly)
+Bounty Hunter Enforcer	Bounty Hunter Enforcer
+Bounty Hunter's Carbine	Bounty Hunter's Carbine
+Bounty Hunter's Vest	Bounty Hunter's Vest
+Bow of Conflagration	Bow of Conflagration
+Bow of Four	Bow of Four
+Bow of Mind Thievery	Bow of Mind Thievery
+Bracelet of Rock Magic	Bracelet of Rock Magic
+Bracer of Flying Daggers	Bracer of Flying Daggers
+Bracers of Asmodeus	Bracers of Asmodeus
+Bracers of Celerity	Bracers of Celerity
+Braided Quarterstaff	Braided Quarterstaff
+Brain Juice	Brain Juice
+Brambleheart Quiver	Brambleheart Quiver
+Brass Repeater	Brass Repeater
+Brazen Armor	Brazen Armor
+Breastplate of Kamvuul Norek	Breastplate of Kamvuul Norek
+Breastplate of the Morning Light	Breastplate of the Morning Light
+Breastplate of the Tyrant	Breastplate of the Tyrant
+Breath of Siberys	Breath of Siberys
+Breathing Bubble	Breathing Bubble
+Bridle of Capturing	Bridle of Capturing
+Bringers of Cosmic Dawn Trinket	Bringers of Cosmic Dawn Trinket
+Broken Vow	Broken Vow
+Brooch of Living Essence	Brooch of Living Essence
+Brooch of Many Sizes	Brooch of Many Sizes
+Brooch of the Elements	Brooch of the Elements
+Bubbling Retort	Bubbling Retort
+Bug Smashers	Bug Smashers
+Bullseye Lantern	Bullseye Lantern
+Burrowing Adaptation	Burrowing Adaptation
+Byeshk Weapon	Byeshk Weapon
+Cabal's Ruin (Awakened)	Cabal's Ruin (Awakened)
+Cabal's Ruin (Dormant)	Cabal's Ruin (Dormant)
+Cabal's Ruin (Exalted)	Cabal's Ruin (Exalted)
+Cactus Mace	Cactus Mace
+Candle Mace	Candle Mace
+Candle of Anti-Light	Candle of Anti-Light
+Canian Fork	Canian Fork
+Cannith's Marvelous Miniatures	Cannith's Marvelous Miniatures
+Cantrip Module	Cantrip Module
+Cap of Bravery	Cap of Bravery
+Cape of Enlargement	Cape of Enlargement
+Card Sharp's Deck	Card Sharp's Deck
+Carvaloth Scale Armor	Carvaloth Scale Armor
+Cataclysm Bolts	Cataclysm Bolts
+Catapult Munition	Catapult Munition
+Catnip Amulet	Catnip Amulet
+Cauldron of Plenty	Cauldron of Plenty
+Caustic Rapier	Caustic Rapier
+Celestial Circlet	Celestial Circlet
+Ceratopper	Ceratopper
+Champion of Affliction	Champion of Affliction
+Champion of Deception	Champion of Deception
+Champion of Destiny	Champion of Destiny
+Champion of Harvests	Champion of Harvests
+Champion of Horizons	Champion of Horizons
+Champion of Slaughter	Champion of Slaughter
+Champion of Storms	Champion of Storms
+Champion of Victory	Champion of Victory
+Champion of the Dead	Champion of the Dead
+Champion of the Forge	Champion of the Forge
+Champion of the Hunt	Champion of the Hunt
+Champion of the Passage	Champion of the Passage
+Champion of the Polis	Champion of the Polis
+Champion of the Sea	Champion of the Sea
+Champion of the Sun	Champion of the Sun
+Charlatan's Gloves	Charlatan's Gloves
+Charlatan's Wardrobe	Charlatan's Wardrobe
+Charm of Agelessness	Charm of Agelessness
+Charm of Air Bubbles	Charm of Air Bubbles
+Charm of Animal Conjuring	Charm of Animal Conjuring
+Charm of Argonnessen	Charm of Argonnessen
+Charm of Ashtakala	Charm of Ashtakala
+Charm of Balance	Charm of Balance
+Charm of Biting Cold	Charm of Biting Cold
+Charm of Bounty	Charm of Bounty
+Charm of Cold Resistance	Charm of Cold Resistance
+Charm of Cozmioko's Glory	Charm of Cozmioko's Glory
+Charm of Cure Wounds	Charm of Cure Wounds
+Charm of Darkvision	Charm of Darkvision
+Charm of Dhakaan	Charm of Dhakaan
+Charm of Diabolical Inspiration	Charm of Diabolical Inspiration
+Charm of Druidcraft	Charm of Druidcraft
+Charm of Electromancy	Charm of Electromancy
+Charm of Euryale	Charm of Euryale
+Charm of Exorcism	Charm of Exorcism
+Charm of Feather Falling	Charm of Feather Falling
+Charm of Greater Conscription	Charm of Greater Conscription
+Charm of Hellish Rebuke	Charm of Hellish Rebuke
+Charm of Heroism	Charm of Heroism
+Charm of Instant Tools	Charm of Instant Tools
+Charm of Invisibility	Charm of Invisibility
+Charm of Khyber	Charm of Khyber
+Charm of Lesser Conscription	Charm of Lesser Conscription
+Charm of Lightning Bolt	Charm of Lightning Bolt
+Charm of Malediction	Charm of Malediction
+Charm of Many Things	Charm of Many Things
+Charm of Many Tongues	Charm of Many Tongues
+Charm of Nine Lives	Charm of Nine Lives
+Charm of Plant Command	Charm of Plant Command
+Charm of Purplemancy	Charm of Purplemancy
+Charm of Restoration	Charm of Restoration
+Charm of Ruin	Charm of Ruin
+Charm of Sending	Charm of Sending
+Charm of Snowball Strike	Charm of Snowball Strike
+Charm of Treasure Sense	Charm of Treasure Sense
+Charm of Vicious Mockery	Charm of Vicious Mockery
+Charm of Vitality	Charm of Vitality
+Charm of Water Breathing	Charm of Water Breathing
+Charm of Xen'drik	Charm of Xen'drik
+Charm of the Adamant	Charm of the Adamant
+Charm of the Black Rose	Charm of the Black Rose
+Charm of the Comet	Charm of the Comet
+Charm of the Creeping Hand	Charm of the Creeping Hand
+Charm of the Crystal Heart	Charm of the Crystal Heart
+Charm of the Donjon	Charm of the Donjon
+Charm of the Eldritch Eye	Charm of the Eldritch Eye
+Charm of the Fates	Charm of the Fates
+Charm of the Flames	Charm of the Flames
+Charm of the Fool	Charm of the Fool
+Charm of the Gem	Charm of the Gem
+Charm of the Ghoul	Charm of the Ghoul
+Charm of the Heroes' Feast	Charm of the Heroes' Feast
+Charm of the Ice Troll	Charm of the Ice Troll
+Charm of the Jester	Charm of the Jester
+Charm of the Key	Charm of the Key
+Charm of the Knight	Charm of the Knight
+Charm of the Maimed	Charm of the Maimed
+Charm of the Mirage	Charm of the Mirage
+Charm of the Moon	Charm of the Moon
+Charm of the Puzzle	Charm of the Puzzle
+Charm of the Rogue	Charm of the Rogue
+Charm of the Sage	Charm of the Sage
+Charm of the Skull	Charm of the Skull
+Charm of the Slayer	Charm of the Slayer
+Charm of the Snow Walker	Charm of the Snow Walker
+Charm of the Star	Charm of the Star
+Charm of the Storm	Charm of the Storm
+Charm of the Stumblenoodle	Charm of the Stumblenoodle
+Charm of the Sun	Charm of the Sun
+Charm of the Swollen Hag	Charm of the Swollen Hag
+Charm of the Talons	Charm of the Talons
+Charm of the Throne	Charm of the Throne
+Charm of the Traveler's Haven	Charm of the Traveler's Haven
+Charm of the Void	Charm of the Void
+Charm of the Water Bearer	Charm of the Water Bearer
+Charred Wand of Magic Missiles	Charred Wand of Magic Missiles
+Chaser	Chaser
+Chest of Preserving	Chest of Preserving
+Chillspike	Chillspike
+Chip of Creation	Chip of Creation
+Chromacloth	Chromacloth
+Chromatic Rose	Chromatic Rose
+Chronicle of Fools	Chronicle of Fools
+Chronolometer	Chronolometer
+Cinder Coat	Cinder Coat
+Cinnabar Rapier	Cinnabar Rapier
+Circlet of Barbed Vision (Awakened)	Circlet of Barbed Vision (Awakened)
+Circlet of Barbed Vision (Dormant)	Circlet of Barbed Vision (Dormant)
+Circlet of Barbed Vision (Exalted)	Circlet of Barbed Vision (Exalted)
+Circlet of Human Perfection	Circlet of Human Perfection
+Circlet of Wisdom	Circlet of Wisdom
+Circlet of the Huntsman's Third Eye	Circlet of the Huntsman's Third Eye
+Cittern	Cittern
+Claw of the Wyrm Rune	Claw of the Wyrm Rune
+Claws of the Umber Hulk	Claws of the Umber Hulk
+Clay No-Face's Charm	Clay No-Face's Charm
+Cleansing Stone	Cleansing Stone
+Climbing Apparatus	Climbing Apparatus
+Cloak of Passage	Cloak of Passage
+Cloak of Shadows	Cloak of Shadows
+Cloak of Spines	Cloak of Spines
+Cloak of Therianthropy	Cloak of Therianthropy
+Cloak of the Boundless Spirit	Cloak of the Boundless Spirit
+Cloak of the Listener	Cloak of the Listener
+Cloak of the Mausgeist	Cloak of the Mausgeist
+Cloak of the Stygian Bat	Cloak of the Stygian Bat
+Clockwork Armor	Clockwork Armor
+Clockwork Dog	Clockwork Dog
+Clockwork Faefly	Clockwork Faefly
+Clockwork Healerbee	Clockwork Healerbee
+Clockwork Inkbeetle	Clockwork Inkbeetle
+Clockwork Wings	Clockwork Wings
+Coat of Lies	Coat of Lies
+Coat of Many Eyes (Rare)	Coat of Many Eyes (Rare)
+Coat of Many Eyes (Uncommon)	Coat of Many Eyes (Uncommon)
+Coat of Many Eyes (Very Rare)	Coat of Many Eyes (Very Rare)
+Coat of the Crest	Coat of the Crest
+Cogwork Wings	Cogwork Wings
+Coil Crook	Coil Crook
+Coin of Delving	Coin of Delving
+Coin of War and Fear	Coin of War and Fear
+Coldrazor	Coldrazor
+Coldsnap	Coldsnap
+Collar of the Undead	Collar of the Undead
+Command Amulet	Command Amulet
+Common Glamerweave	Common Glamerweave
+Communion Wine	Communion Wine
+Companion's Band	Companion's Band
+Concentration Module	Concentration Module
+Concertina	Concertina
+Conch of Safe Rest	Conch of Safe Rest
+Concussion Grenade	Concussion Grenade
+Condemner (Awakened)	Condemner (Awakened)
+Condemner (Dormant)	Condemner (Dormant)
+Condemner (Exalted)	Condemner (Exalted)
+Condensed Order	Condensed Order
+Container of Heat and Frost	Container of Heat and Frost
+Contractor Nail	Contractor Nail
+Contractor Needle	Contractor Needle
+Copper	Copper
+Copper Alms-Coin	Copper Alms-Coin
+Copper Zib	Copper Zib
+Coralshield Golem	Coralshield Golem
+Corecut Dagger	Corecut Dagger
+Corpse Slayer	Corpse Slayer
+Corrupted Tusk-Dagger	Corrupted Tusk-Dagger
+Corvum Feather Robe	Corvum Feather Robe
+Couatl Herald's Fang	Couatl Herald's Fang
+Couatl Herald's Guard	Couatl Herald's Guard
+Couatl Herald's Lash	Couatl Herald's Lash
+Couatl Herald's Mantle	Couatl Herald's Mantle
+Couatl Herald's Radiance	Couatl Herald's Radiance
+Couatl Herald's Reach	Couatl Herald's Reach
+Couatl Herald's Scales	Couatl Herald's Scales
+Covenant of the Grave Trinket	Covenant of the Grave Trinket
+Cracked Driftglobe	Cracked Driftglobe
+Cratering Quarterstaff	Cratering Quarterstaff
+Crawling Gauntlet	Crawling Gauntlet
+Cream of Ooze Moisturizing Face Serum	Cream of Ooze Moisturizing Face Serum
+Crimson Compass	Crimson Compass
+Crimson Mist	Crimson Mist
+Crosier of Divine Power	Crosier of Divine Power
+Crown of Daffodils	Crown of Daffodils
+Crown of Deep Winter	Crown of Deep Winter
+Crown of the Forest	Crown of the Forest
+Crown of the Keppmir King	Crown of the Keppmir King
+Crown of the Wrath Bringer	Crown of the Wrath Bringer
+Crucible Keepers Trinket	Crucible Keepers Trinket
+Crusader's Shortsword	Crusader's Shortsword
+Cryogenic Pod	Cryogenic Pod
+Crypt Keeper Glaive	Crypt Keeper Glaive
+Crystal	Crystal
+Crystal Ball (Legendary Version)	Crystal Ball (Legendary Version)
+Crystal Blade	Crystal Blade
+Cuddly Strixhaven Mascot	Cuddly Strixhaven Mascot
+Cult of the Dragon Trinket	Cult of the Dragon Trinket
+Cup of Cthulhu	Cup of Cthulhu
+Cursed Luckstone	Cursed Luckstone
+Dagger of Blindsight	Dagger of Blindsight
+Dagger of Denial	Dagger of Denial
+Dagger of Guitar Solos	Dagger of Guitar Solos
+Dagger of Wounding (*)	Dagger of Wounding (*)
+Dagger of the Ogre Mage	Dagger of the Ogre Mage
+Damascena	Damascena
+Dancing Monkey Fruit	Dancing Monkey Fruit
+Dark Fathom Armor	Dark Fathom Armor
+Dark Gift of Dahlver-Nar, He of the Many Teeth	Dark Gift of Dahlver-Nar, He of the Many Teeth
+Dark Gift of Delban, the Star of Ice and Hate	Dark Gift of Delban, the Star of Ice and Hate
+Dark Gift of Drizlash, the Nine-Eyed Spider	Dark Gift of Drizlash, the Nine-Eyed Spider
+Dark Gift of Fekre, Queen of Poxes	Dark Gift of Fekre, Queen of Poxes
+Dark Gift of Great Taar Haak, the Five-Headed Destroyer	Dark Gift of Great Taar Haak, the Five-Headed Destroyer
+Dark Gift of Khirad, the Star of Secrets	Dark Gift of Khirad, the Star of Secrets
+Dark Gift of Norganas, the Finger of Oblivion	Dark Gift of Norganas, the Finger of Oblivion
+Dark Gift of Savnok the Inscrutable	Dark Gift of Savnok the Inscrutable
+Dark Gift of Seriach, the Hell Hound Whisperer	Dark Gift of Seriach, the Hell Hound Whisperer
+Dark Gift of Shami-Amourae, the Lady of Delights	Dark Gift of Shami-Amourae, the Lady of Delights
+Dark Gift of Sykane, the Soul Hungerer	Dark Gift of Sykane, the Soul Hungerer
+Dark Gift of Tarakamedes, the Grave Wyrm	Dark Gift of Tarakamedes, the Grave Wyrm
+Dark Gift of Vaund the Evasive	Dark Gift of Vaund the Evasive
+Dark Gift of Yog the Invincible	Dark Gift of Yog the Invincible
+Dark Gift of Yrrga, the Eye of Shadows	Dark Gift of Yrrga, the Eye of Shadows
+Dark Gift of Zantras, the Kingmaker	Dark Gift of Zantras, the Kingmaker
+Dark Gift of Zrin-Hala, the Howling Storm	Dark Gift of Zrin-Hala, the Howling Storm
+Data Drive	Data Drive
+Datapad	Datapad
+Dazzling Weapon	Dazzling Weapon
+Dead Ringer	Dead Ringer
+Death Knell	Death Knell
+Death Ray	Death Ray
+Deathwalker's Ward (Awakened)	Deathwalker's Ward (Awakened)
+Deathwalker's Ward (Dormant)	Deathwalker's Ward (Dormant)
+Deathwalker's Ward (Exalted)	Deathwalker's Ward (Exalted)
+Deck of Holding	Deck of Holding
+Deck of Holding (Expanded Storage)	Deck of Holding (Expanded Storage)
+Deck of Holding (Password Protected)	Deck of Holding (Password Protected)
+Deck of Several Things	Deck of Several Things
+Delver's Claws	Delver's Claws
+Demonbone Polearm	Demonbone Polearm
+Deni Shield	Deni Shield
+Detection Channeling Wand	Detection Channeling Wand
+Detection Dragonmark Channel	Detection Dragonmark Channel
+Detection Dragonmark Reservoir	Detection Dragonmark Reservoir
+Devastation Orb	Devastation Orb
+Devastation Orb of Air	Devastation Orb of Air
+Devastation Orb of Earth	Devastation Orb of Earth
+Devastation Orb of Fire	Devastation Orb of Fire
+Devastation Orb of Water	Devastation Orb of Water
+Devil's Detail Eyepatch	Devil's Detail Eyepatch
+Devlin's Staff of Striking	Devlin's Staff of Striking
+Dimensional Loop	Dimensional Loop
+Dimir Charm	Dimir Charm
+Diode Beam	Diode Beam
+Dire Diary	Dire Diary
+Direstone Dwarven Pick	Direstone Dwarven Pick
+Disappearing Mule	Disappearing Mule
+Discordant Thunderstave	Discordant Thunderstave
+Dispelling Ammunition	Dispelling Ammunition
+Dispelling Stone	Dispelling Stone
+Displacer Daiquiri	Displacer Daiquiri
+Docent	Docent
+Dodecahedron of Doom	Dodecahedron of Doom
+Dome Projector	Dome Projector
+Donjon's Sundering Sphere	Donjon's Sundering Sphere
+Doodle Ring	Doodle Ring
+Doomsday Cookie	Doomsday Cookie
+Double Laser Sword	Double Laser Sword
+Double-Bladed Scimitar	Double-Bladed Scimitar
+Doublet of Dramatic Demise	Doublet of Dramatic Demise
+Dowsing Dagger	Dowsing Dagger
+Draconic Familiar	Draconic Familiar
+Draconic Longsword	Draconic Longsword
+Draconic Rebirth	Draconic Rebirth
+Draconic Senses	Draconic Senses
+Draconis Fundamentum	Draconis Fundamentum
+Draft Horse	Draft Horse
+Dragon	Dragon
+Dragon Edge Weapon	Dragon Edge Weapon
+Dragon Queen's Will	Dragon Queen's Will
+Dragon Sensing Longsword	Dragon Sensing Longsword
+Dragon Tamer Lance	Dragon Tamer Lance
+Dragon Thighbone Club	Dragon Thighbone Club
+Dragon Turtle Shield	Dragon Turtle Shield
+Dragon Vessel	Dragon Vessel
+Dragon Wing Bow	Dragon Wing Bow
+Dragon's Breath Shot	Dragon's Breath Shot
+Dragon's Call	Dragon's Call
+Dragon's Wrath Weapon	Dragon's Wrath Weapon
+Dragon-Kindled Edge	Dragon-Kindled Edge
+Dragon-Touched Focus	Dragon-Touched Focus
+Dragongleam	Dragongleam
+Dragonguard	Dragonguard
+Draught of Feather Shine	Draught of Feather Shine
+Draught of Slime Curse Cure	Draught of Slime Curse Cure
+Dream Mantle	Dream Mantle
+Dreams Leaves	Dreams Leaves
+Dried Leech	Dried Leech
+Drifting Drink	Drifting Drink
+Drive Wheel	Drive Wheel
+Drone Controller	Drone Controller
+Drow +1 Armor	Drow +1 Armor
+Drow +1 Weapon	Drow +1 Weapon
+Drow +2 Armor	Drow +2 Armor
+Drow +2 Weapon	Drow +2 Weapon
+Drow +3 Armor	Drow +3 Armor
+Drow +3 Weapon	Drow +3 Weapon
+Druid's Draught	Druid's Draught
+Druidic Throwing Club	Druidic Throwing Club
+Dryadleaf	Dryadleaf
+Drybrooch	Drybrooch
+Dust of Corrosion	Dust of Corrosion
+Dust of Deliciousness	Dust of Deliciousness
+Duster	Duster
+Dyrrn's Tentacle Whip	Dyrrn's Tentacle Whip
+Dämglesvir (Adept)	Dämglesvir (Adept)
+Dämglesvir (Aspirant)	Dämglesvir (Aspirant)
+Dämglesvir (Master)	Dämglesvir (Master)
+Eagle Whistle	Eagle Whistle
+Eaglereign	Eaglereign
+Ear Cuff of the Vampire Bat	Ear Cuff of the Vampire Bat
+Earthboard	Earthboard
+Earworm	Earworm
+Echo Stone	Echo Stone
+Echo of Dragonsight	Echo of Dragonsight
+Ectoplasmic Whip	Ectoplasmic Whip
+Edible Book of Recipes	Edible Book of Recipes
+Egg of Rebirth	Egg of Rebirth
+Elder Cartographer's Glossography	Elder Cartographer's Glossography
+Eldritch Scarf	Eldritch Scarf
+Eldritch Staff	Eldritch Staff
+Electrum 50-Zib Coin	Electrum 50-Zib Coin
+Elemental Essence Shard (Air)	Elemental Essence Shard (Air)
+Elemental Essence Shard (Earth)	Elemental Essence Shard (Earth)
+Elemental Essence Shard (Fire)	Elemental Essence Shard (Fire)
+Elemental Essence Shard (Water)	Elemental Essence Shard (Water)
+Elixir of Elemental Spittle	Elixir of Elemental Spittle
+Elixir of Life Protection	Elixir of Life Protection
+Elocutionist's Lexicon	Elocutionist's Lexicon
+Elven Thrower	Elven Thrower
+Embedded Armor	Embedded Armor
+Embedded Mini Fridge	Embedded Mini Fridge
+Embedded Translator	Embedded Translator
+Embedded Weapon	Embedded Weapon
+Embedded Weapon +1	Embedded Weapon +1
+Embedded Weapon +2	Embedded Weapon +2
+Embedded Weapon +3	Embedded Weapon +3
+Emerald Enclave Trinket	Emerald Enclave Trinket
+Enchanted Feather	Enchanted Feather
+Enchanted Three-Dragon Ante Set	Enchanted Three-Dragon Ante Set
+Enchantment Breaker	Enchantment Breaker
+Encyclopedia Multiplanaria	Encyclopedia Multiplanaria
+Encyclopedia Sanguine	Encyclopedia Sanguine
+Enspelled Armor (Cantrip)	Enspelled Armor (Cantrip)
+Enspelled Armor (Level 1)	Enspelled Armor (Level 1)
+Enspelled Armor (Level 2)	Enspelled Armor (Level 2)
+Enspelled Armor (Level 3)	Enspelled Armor (Level 3)
+Enspelled Armor (Level 4)	Enspelled Armor (Level 4)
+Enspelled Armor (Level 5)	Enspelled Armor (Level 5)
+Enspelled Armor (Level 6)	Enspelled Armor (Level 6)
+Enspelled Armor (Level 7)	Enspelled Armor (Level 7)
+Enspelled Armor (Level 8)	Enspelled Armor (Level 8)
+Enspelled Armor (cantrip or level 1 spell)	Enspelled Armor (cantrip or level 1 spell)
+Enspelled Armor (level 2 or 3 spell)	Enspelled Armor (level 2 or 3 spell)
+Enspelled Armor (level 4 or 5 spell)	Enspelled Armor (level 4 or 5 spell)
+Enspelled Armor (level 6, 7, or 8 spell)	Enspelled Armor (level 6, 7, or 8 spell)
+Enspelled Staff (Cantrip)	Enspelled Staff (Cantrip)
+Enspelled Staff (Level 1)	Enspelled Staff (Level 1)
+Enspelled Staff (Level 2)	Enspelled Staff (Level 2)
+Enspelled Staff (Level 3)	Enspelled Staff (Level 3)
+Enspelled Staff (Level 4)	Enspelled Staff (Level 4)
+Enspelled Staff (Level 5)	Enspelled Staff (Level 5)
+Enspelled Staff (Level 6)	Enspelled Staff (Level 6)
+Enspelled Staff (Level 7)	Enspelled Staff (Level 7)
+Enspelled Staff (Level 8)	Enspelled Staff (Level 8)
+Enspelled Staff (cantrip or level 1 spell)	Enspelled Staff (cantrip or level 1 spell)
+Enspelled Staff (level 2 or 3 spell)	Enspelled Staff (level 2 or 3 spell)
+Enspelled Staff (level 4 or 5 spell)	Enspelled Staff (level 4 or 5 spell)
+Enspelled Staff (level 6, 7, or 8 spell)	Enspelled Staff (level 6, 7, or 8 spell)
+Enspelled Weapon (Cantrip)	Enspelled Weapon (Cantrip)
+Enspelled Weapon (Level 1)	Enspelled Weapon (Level 1)
+Enspelled Weapon (Level 2)	Enspelled Weapon (Level 2)
+Enspelled Weapon (Level 3)	Enspelled Weapon (Level 3)
+Enspelled Weapon (Level 4)	Enspelled Weapon (Level 4)
+Enspelled Weapon (Level 5)	Enspelled Weapon (Level 5)
+Enspelled Weapon (Level 6)	Enspelled Weapon (Level 6)
+Enspelled Weapon (Level 7)	Enspelled Weapon (Level 7)
+Enspelled Weapon (Level 8)	Enspelled Weapon (Level 8)
+Enspelled Weapon (cantrip or level 1 spell)	Enspelled Weapon (cantrip or level 1 spell)
+Enspelled Weapon (level 2 or 3 spell)	Enspelled Weapon (level 2 or 3 spell)
+Enspelled Weapon (level 4 or 5 spell)	Enspelled Weapon (level 4 or 5 spell)
+Enspelled Weapon (level 6, 7, or 8 spell)	Enspelled Weapon (level 6, 7, or 8 spell)
+Ephara's Devotee	Ephara's Devotee
+Ephara's Disciple	Ephara's Disciple
+Ephara's Votary	Ephara's Votary
+Erebos's Devotee	Erebos's Devotee
+Erebos's Disciple	Erebos's Disciple
+Erebos's Votary	Erebos's Votary
+Essence of Rage	Essence of Rage
+Ether Spear	Ether Spear
+Etheradio	Etheradio
+Everbright Lantern	Everbright Lantern
+Everice Box	Everice Box
+Everlasting Sugarbomb	Everlasting Sugarbomb
+Evolution Stone (Legendary)	Evolution Stone (Legendary)
+Evolution Stone (Rare)	Evolution Stone (Rare)
+Evolution Stone (Very Rare)	Evolution Stone (Very Rare)
+Executioner's Axe	Executioner's Axe
+Exo-Frame	Exo-Frame
+Expert's Espresso	Expert's Espresso
+Eye of Dendallen	Eye of Dendallen
+Eye of Starsight	Eye of Starsight
+Eye of the Bookwurm	Eye of the Bookwurm
+Eyes of Deceit	Eyes of Deceit
+Eyes of the Dragonne	Eyes of the Dragonne
+Eyes of the Impossible	Eyes of the Impossible
+Fable's End	Fable's End
+Faerie Crown	Faerie Crown
+Faerie Dust	Faerie Dust
+Failed Experiment Wand	Failed Experiment Wand
+Falkir's Helm of Pigheadedness	Falkir's Helm of Pigheadedness
+Fane-Eater	Fane-Eater
+Fanfare Ammunition	Fanfare Ammunition
+Fangs of Guile	Fangs of Guile
+Far Gear	Far Gear
+Fate Deck	Fate Deck
+Favor of the Heroic Steed	Favor of the Heroic Steed
+Feather Token	Feather Token
+Feather of Diatryma Summoning	Feather of Diatryma Summoning
+Feathered Helm	Feathered Helm
+Fenthras (Awakened)	Fenthras (Awakened)
+Fenthras (Dormant)	Fenthras (Dormant)
+Fenthras (Exalted)	Fenthras (Exalted)
+Ferryman's Take	Ferryman's Take
+Festerwood Buckler	Festerwood Buckler
+Festerwood Claymore	Festerwood Claymore
+Festerwood Fungal Stave	Festerwood Fungal Stave
+Festerwood Logger	Festerwood Logger
+Festerwood Masher	Festerwood Masher
+Festerwood Vizard	Festerwood Vizard
+Festerwood's Light	Festerwood's Light
+Feywrought Armor	Feywrought Armor
+Fife of Dragonsong	Fife of Dragonsong
+Fin Symbiote	Fin Symbiote
+Final Breath	Final Breath
+Final Messenger	Final Messenger
+Final Word	Final Word
+Finder's Goggles	Finder's Goggles
+Finding Channeling Wand	Finding Channeling Wand
+Finding Dragonmark Channel	Finding Dragonmark Channel
+Finding Dragonmark Reservoir	Finding Dragonmark Reservoir
+Finger Gun Glove	Finger Gun Glove
+Finger Picks	Finger Picks
+Fire Dervish Cloak	Fire Dervish Cloak
+Fire Fire!	Fire Fire!
+Fire Wand of the Unbroken Circle	Fire Wand of the Unbroken Circle
+Firearm Bullet, +1	Firearm Bullet, +1
+Firearm Bullet, +2	Firearm Bullet, +2
+Firearm Bullet, +3	Firearm Bullet, +3
+Firearm Bullets (10)	Firearm Bullets (10)
+Firecracker Crystals	Firecracker Crystals
+Fireweaver Gloves	Fireweaver Gloves
+Flame Tongue Shortsword of Greed	Flame Tongue Shortsword of Greed
+Flame of Ingenuity	Flame of Ingenuity
+Flamefriend Lantern	Flamefriend Lantern
+Flamethrower	Flamethrower
+Flammable Tincture	Flammable Tincture
+Flashback Polaroid	Flashback Polaroid
+Flashbang	Flashbang
+Flayer Slayer	Flayer Slayer
+Flensing Claws	Flensing Claws
+Flensing Claws (Huge)	Flensing Claws (Huge)
+Flensing Claws (Large)	Flensing Claws (Large)
+Flensing Claws (Medium)	Flensing Claws (Medium)
+Flensing Claws (Small)	Flensing Claws (Small)
+Flesh of Dendallen	Flesh of Dendallen
+Flying Citadel Helm	Flying Citadel Helm
+Fool's Blade	Fool's Blade
+Force Gauntlet	Force Gauntlet
+Forcebreaker Weapon	Forcebreaker Weapon
+Forgemaster's Might	Forgemaster's Might
+Fork of Eddy Summoning	Fork of Eddy Summoning
+Fortune's Fivepence	Fortune's Fivepence
+Fourarm Bracers	Fourarm Bracers
+Fragment of Abhorrence	Fragment of Abhorrence
+Fragment of Attachment	Fragment of Attachment
+Fragment of Deception	Fragment of Deception
+Fragment of Despondence	Fragment of Despondence
+Fragment of Elder Starlight	Fragment of Elder Starlight
+Fragment of Intransigence	Fragment of Intransigence
+Fragment of Loathing	Fragment of Loathing
+Fragment of Melancholy	Fragment of Melancholy
+Fragment of Pity	Fragment of Pity
+Fragment of Rancor	Fragment of Rancor
+Freeze Bomb	Freeze Bomb
+Frefil's Jolly Oozebean Sugarbombs	Frefil's Jolly Oozebean Sugarbombs
+Frefil's Tiny Tasty Tongue Twisty Sugarbombs	Frefil's Tiny Tasty Tongue Twisty Sugarbombs
+Frightful Presence	Frightful Presence
+Frost Giant Fork	Frost Giant Fork
+Frostbitten Buckler	Frostbitten Buckler
+Frozen Dagger	Frozen Dagger
+Full Moon Extract	Full Moon Extract
+Funeral Marchers	Funeral Marchers
+Funeral Mask	Funeral Mask
+Galder's Bubble Pipe	Galder's Bubble Pipe
+Galea of the Soulfire Phoenix	Galea of the Soulfire Phoenix
+Galepierce Weapon	Galepierce Weapon
+Gallus Feather Robe	Gallus Feather Robe
+Galvanic Steelsnare	Galvanic Steelsnare
+Gambler's Blade	Gambler's Blade
+Gamestation	Gamestation
+Gaming Set	Gaming Set
+Gamma Fragment	Gamma Fragment
+Gamma Pendant	Gamma Pendant
+Gauntlets of Flaming Fury	Gauntlets of Flaming Fury
+Gauntlets of Rage	Gauntlets of Rage
+Gavel of the Venn Rune	Gavel of the Venn Rune
+Ghaal'duur, the Mighty Dirge	Ghaal'duur, the Mighty Dirge
+Ghallan Jug	Ghallan Jug
+Ghallanda Cauldron	Ghallanda Cauldron
+Ghost Suit	Ghost Suit
+Gibberbox	Gibberbox
+Girdle of Traveling Alchemy	Girdle of Traveling Alchemy
+Give and Take	Give and Take
+Glamerweave	Glamerweave
+Glass Bottle	Glass Bottle
+Glass-Studded Armor	Glass-Studded Armor
+Glimmering Moonbow	Glimmering Moonbow
+Gloomwrought Armor	Gloomwrought Armor
+Glove of the Aegis	Glove of the Aegis
+Glove of the Grim Fandango	Glove of the Grim Fandango
+Gloves of Soul Catching	Gloves of Soul Catching
+Gloves of Storing	Gloves of Storing
+Glowing Ember	Glowing Ember
+Glowrune Pigment	Glowrune Pigment
+Gnomengarde Grenade	Gnomengarde Grenade
+Goading Ammunition	Goading Ammunition
+Goggles of Object Reading	Goggles of Object Reading
+Gold	Gold
+Gold 5-Zino Coin	Gold 5-Zino Coin
+Gold Boar Ring	Gold Boar Ring
+Gold Zino	Gold Zino
+Golden Elixir	Golden Elixir
+Golem Arms	Golem Arms
+Golem Skin	Golem Skin
+Golgari Charm	Golgari Charm
+Goodberry Wine	Goodberry Wine
+Grass Carpet	Grass Carpet
+Grass Whistle Blade	Grass Whistle Blade
+Grasshopper	Grasshopper
+Gravenhollow Compass Ring	Gravenhollow Compass Ring
+Gravity Goblet	Gravity Goblet
+Gravity Gun	Gravity Gun
+Gravity Nullifier	Gravity Nullifier
+Graz'tchar, the Decadent End	Graz'tchar, the Decadent End
+Greater Shipmending Spray	Greater Shipmending Spray
+Greaves of Dendallen	Greaves of Dendallen
+Green Chromatic Rose	Green Chromatic Rose
+Green Copper Ewer	Green Copper Ewer
+Green Dragon Mask	Green Dragon Mask
+Grenade of Remorse	Grenade of Remorse
+Grieving Tree	Grieving Tree
+Grimoire Monstrum	Grimoire Monstrum
+Grip of Dendallen	Grip of Dendallen
+Gristaline	Gristaline
+Gruul Charm	Gruul Charm
+Guild Keyrune	Guild Keyrune
+Guild Signet	Guild Signet
+Gurt's Greataxe	Gurt's Greataxe
+Habbakuk's Blessing	Habbakuk's Blessing
+Hacker Hands	Hacker Hands
+Hair of the Dog	Hair of the Dog
+Halberd of the Peacock	Halberd of the Peacock
+Hand of Glory	Hand of Glory
+Hand of the Master	Hand of the Master
+Handling Channeling Wand	Handling Channeling Wand
+Handling Dragonmark Channel	Handling Dragonmark Channel
+Handling Dragonmark Reservoir	Handling Dragonmark Reservoir
+Harbor Moon	Harbor Moon
+Hardlight Bracer	Hardlight Bracer
+Harkon's Bite	Harkon's Bite
+Harp of Gilded Plenty	Harp of Gilded Plenty
+Harp of Valor	Harp of Valor
+Harper Trinket	Harper Trinket
+Hasty Sugarbomb	Hasty Sugarbomb
+Hat Trick	Hat Trick
+Hat of Vortexes	Hat of Vortexes
+Hazirawn	Hazirawn
+Hcor'uk the Colossal's Portable Handheld Weapon of Walloping	Hcor'uk the Colossal's Portable Handheld Weapon of Walloping
+Healing Ammunition	Healing Ammunition
+Healing Channeling Wand	Healing Channeling Wand
+Healing Dragonmark Channel	Healing Dragonmark Channel
+Healing Dragonmark Reservoir	Healing Dragonmark Reservoir
+Heart Weaver's Primer	Heart Weaver's Primer
+Heart of Steel	Heart of Steel
+Heart of the Sleeveless	Heart of the Sleeveless
+Hearthfire Breastplate (Adept)	Hearthfire Breastplate (Adept)
+Hearthfire Breastplate (Aspirant)	Hearthfire Breastplate (Aspirant)
+Hearthfire Breastplate (Master)	Hearthfire Breastplate (Master)
+Heartstone	Heartstone
+Heaven's Herald	Heaven's Herald
+Heavy Legs	Heavy Legs
+Heliod's Devotee	Heliod's Devotee
+Heliod's Disciple	Heliod's Disciple
+Heliod's Votary	Heliod's Votary
+Hell Hound Cloak	Hell Hound Cloak
+Hellfire Blood	Hellfire Blood
+Hellfire Pitchfork	Hellfire Pitchfork
+Helm of Heroes	Helm of Heroes
+Helm of Underwater Action	Helm of Underwater Action
+Helm of the Gods	Helm of the Gods
+Helm of the Scavenger	Helm of the Scavenger
+Helm of the Sentinel	Helm of the Sentinel
+Helmsman's Shelter	Helmsman's Shelter
+Heretic	Heretic
+Heretical Sunstaff of Ra	Heretical Sunstaff of Ra
+Hew	Hew
+Heward's Handy Spice Pouch	Heward's Handy Spice Pouch
+Heward's Hireling Armor	Heward's Hireling Armor
+Hexaxe	Hexaxe
+Hide of the Feral Guardian	Hide of the Feral Guardian
+Hide of the Feral Guardian (Awakened)	Hide of the Feral Guardian (Awakened)
+Hide of the Feral Guardian (Dormant)	Hide of the Feral Guardian (Dormant)
+Hide of the Feral Guardian (Exalted)	Hide of the Feral Guardian (Exalted)
+Hogs' Wash	Hogs' Wash
+Holo-Companion	Holo-Companion
+Holo-Sphere	Holo-Sphere
+Honeyed Mead	Honeyed Mead
+Honor's Last Stand (Awakened)	Honor's Last Stand (Awakened)
+Honor's Last Stand (Dormant)	Honor's Last Stand (Dormant)
+Honor's Last Stand (Exalted)	Honor's Last Stand (Exalted)
+Hook of Fisher's Delight	Hook of Fisher's Delight
+Hooked Shortspear	Hooked Shortspear
+Horizon Puzzle Cube	Horizon Puzzle Cube
+Horizon Weavers Trinket	Horizon Weavers Trinket
+Horn of the Endless Maze	Horn of the Endless Maze
+Horned Ring	Horned Ring
+Hospitality Channeling Wand	Hospitality Channeling Wand
+Hospitality Dragonmark Channel	Hospitality Dragonmark Channel
+Hospitality Dragonmark Reservoir	Hospitality Dragonmark Reservoir
+Houseward (Legendary)	Houseward (Legendary)
+Houseward (Rare)	Houseward (Rare)
+Houseward (Uncommon)	Houseward (Uncommon)
+Hoverboard	Hoverboard
+Hullcutter	Hullcutter
+Humble Frock	Humble Frock
+Hungry Weapon	Hungry Weapon
+Hunter's Armor	Hunter's Armor
+Hunter's Coat	Hunter's Coat
+Hunter's Zeal	Hunter's Zeal
+Hurricane Lance	Hurricane Lance
+Hyper-Krash	Hyper-Krash
+I'jin	I'jin
+Ice Sickle	Ice Sickle
+Idol of Good Fortunes	Idol of Good Fortunes
+Illuminator's Tattoo	Illuminator's Tattoo
+Imbued Wood (Fernian Ash)	Imbued Wood (Fernian Ash)
+Imbued Wood (Irian Rosewood)	Imbued Wood (Irian Rosewood)
+Imbued Wood (Kythrian Manchineel)	Imbued Wood (Kythrian Manchineel)
+Imbued Wood (Lamannian Oak)	Imbued Wood (Lamannian Oak)
+Imbued Wood (Mabaran Ebony)	Imbued Wood (Mabaran Ebony)
+Imbued Wood (Risian Pine)	Imbued Wood (Risian Pine)
+Imbued Wood (Shavarran Birch)	Imbued Wood (Shavarran Birch)
+Imbued Wood (Xorian Wenge)	Imbued Wood (Xorian Wenge)
+Imbued Wood Focus	Imbued Wood Focus
+Immovable Button	Immovable Button
+Impulse Unit	Impulse Unit
+Indorius's Crown (Adept)	Indorius's Crown (Adept)
+Indorius's Crown (Aspirant)	Indorius's Crown (Aspirant)
+Indorius's Crown (Master)	Indorius's Crown (Master)
+Inescapable Lash	Inescapable Lash
+Infernal Aegis	Infernal Aegis
+Infernal Amulet	Infernal Amulet
+Infernal Plate Armor	Infernal Plate Armor
+Infernal Puzzle Box	Infernal Puzzle Box
+Infernal Tack	Infernal Tack
+Inferno Rope	Inferno Rope
+Infrasight Eyes	Infrasight Eyes
+Ingot of the Skold Rune	Ingot of the Skold Rune
+Innocent Blood	Innocent Blood
+Inquisitor's Draught	Inquisitor's Draught
+Insignia of Claws	Insignia of Claws
+Integrated Tool	Integrated Tool
+Invisible Spirit	Invisible Spirit
+Invisibomb	Invisibomb
+Ionbreaker, the Tempest's Reach	Ionbreaker, the Tempest's Reach
+Ioun Stone of Vitality	Ioun Stone of Vitality
+Ioun Stone, Historical Knowledge	Ioun Stone, Historical Knowledge
+Ioun Stone, Language Knowledge	Ioun Stone, Language Knowledge
+Ioun Stone, Natural Knowledge	Ioun Stone, Natural Knowledge
+Ioun Stone, Religious Knowledge	Ioun Stone, Religious Knowledge
+Ioun Stone, Self-Preservation	Ioun Stone, Self-Preservation
+Ioun Stone, Supreme Intellect	Ioun Stone, Supreme Intellect
+Iridescent Armor	Iridescent Armor
+Iroas's Devotee	Iroas's Devotee
+Iroas's Disciple	Iroas's Disciple
+Iroas's Votary	Iroas's Votary
+Iron Ball	Iron Ball
+Iron Elixir	Iron Elixir
+Iron Fangs	Iron Fangs
+Iron Pot	Iron Pot
+Iron Spikes	Iron Spikes
+Ironleaf Maul of Entanglement	Ironleaf Maul of Entanglement
+Ironleaf Oaken Shield	Ironleaf Oaken Shield
+Ironleaf Plate	Ironleaf Plate
+Ironshod Trotters	Ironshod Trotters
+Ivana's Whisper	Ivana's Whisper
+Izzet Charm	Izzet Charm
+Jade Elixir	Jade Elixir
+Jade Serpent Staff	Jade Serpent Staff
+Jakarion's Staff of Frost	Jakarion's Staff of Frost
+Javelin of Backbiting	Javelin of Backbiting
+Jax	Jax
+Jetpack	Jetpack
+Joho's Charm	Joho's Charm
+Jora Charm	Jora Charm
+Jotun's Jodhpurs	Jotun's Jodhpurs
+Junky +1 Dagger	Junky +1 Dagger
+Justiciar's Gavel	Justiciar's Gavel
+Karametra's Devotee	Karametra's Devotee
+Karametra's Disciple	Karametra's Disciple
+Karametra's Votary	Karametra's Votary
+Karrek's Bastion	Karrek's Bastion
+Keeper's Fang	Keeper's Fang
+Keranos's Devotee	Keranos's Devotee
+Keranos's Disciple	Keranos's Disciple
+Keranos's Votary	Keranos's Votary
+Keycharm	Keycharm
+Keyholes Dagger	Keyholes Dagger
+Keystone of Creation	Keystone of Creation
+Killskull Longbow of Dread	Killskull Longbow of Dread
+Kindle Egg Sugarbomb	Kindle Egg Sugarbomb
+Kiss of the Changebringer (Awakened)	Kiss of the Changebringer (Awakened)
+Kiss of the Changebringer (Dormant)	Kiss of the Changebringer (Dormant)
+Kiss of the Changebringer (Exalted)	Kiss of the Changebringer (Exalted)
+Klothys's Devotee	Klothys's Devotee
+Klothys's Disciple	Klothys's Disciple
+Klothys's Votary	Klothys's Votary
+Knave's Eye Patch	Knave's Eye Patch
+Knife of Stolen Resistance	Knife of Stolen Resistance
+Knifewing Cape	Knifewing Cape
+Knight's Standard of Valor	Knight's Standard of Valor
+Knight's Standard of Vigor	Knight's Standard of Vigor
+Knight's Standard of Virtue	Knight's Standard of Virtue
+Knocking Boots	Knocking Boots
+Korolnor Scepter	Korolnor Scepter
+Kraken's Whip	Kraken's Whip
+Kruphix's Devotee	Kruphix's Devotee
+Kruphix's Disciple	Kruphix's Disciple
+Kruphix's Votary	Kruphix's Votary
+Kubazan	Kubazan
+Kundar Chains	Kundar Chains
+Kwark's Wondrous Kernels, Planter	Kwark's Wondrous Kernels, Planter
+Kwark's Wondrous Kernels, Tossable	Kwark's Wondrous Kernels, Tossable
+Kyrzin's Ooze	Kyrzin's Ooze
+Lamplighter	Lamplighter
+Lance of the Hungering Dead	Lance of the Hungering Dead
+Lantern of Tracking	Lantern of Tracking
+Lantern of Tracking (Aberrations)	Lantern of Tracking (Aberrations)
+Lantern of Tracking (Celestials)	Lantern of Tracking (Celestials)
+Lantern of Tracking (Constructs)	Lantern of Tracking (Constructs)
+Lantern of Tracking (Dragons)	Lantern of Tracking (Dragons)
+Lantern of Tracking (Elementals)	Lantern of Tracking (Elementals)
+Lantern of Tracking (Fey)	Lantern of Tracking (Fey)
+Lantern of Tracking (Fiends)	Lantern of Tracking (Fiends)
+Lantern of Tracking (Giants)	Lantern of Tracking (Giants)
+Lantern of Tracking (Monstrosities)	Lantern of Tracking (Monstrosities)
+Lantern of Tracking (Undead)	Lantern of Tracking (Undead)
+Laser Eyes	Laser Eyes
+Lash of Immolation	Lash of Immolation
+Last Stand Armor	Last Stand Armor
+Lazarus Unit	Lazarus Unit
+Leaping Legs	Leaping Legs
+Leather Golem Armor	Leather Golem Armor
+Leeching Quarterstaff	Leeching Quarterstaff
+Legendary Molten Fire Forge	Legendary Molten Fire Forge
+Legendary Trophy	Legendary Trophy
+Lesser Hammock of Worlds	Lesser Hammock of Worlds
+Liar's Lyre	Liar's Lyre
+Life Suit	Life Suit
+Life-Sapping Blade	Life-Sapping Blade
+Light Drinker	Light Drinker
+Light Repeating Crossbow	Light Repeating Crossbow
+Lightbringer	Lightbringer
+Lightning Pylons	Lightning Pylons
+Lindwyrm Venom	Lindwyrm Venom
+Liquid Courage	Liquid Courage
+Living Armor	Living Armor
+Living Gloves	Living Gloves
+Living Net	Living Net
+Loadstone	Loadstone
+Locksmith's Bane	Locksmith's Bane
+Lodestone Armor	Lodestone Armor
+Logic Unit	Logic Unit
+Longbow of the Healing Hearth	Longbow of the Healing Hearth
+Lords' Alliance Trinket	Lords' Alliance Trinket
+Lorehold Primer	Lorehold Primer
+Lost Crown of Besilmer	Lost Crown of Besilmer
+Love's Embrace	Love's Embrace
+Lucent Destroyer	Lucent Destroyer
+Luma Feather Robe	Luma Feather Robe
+Lycan Weapon	Lycan Weapon
+Lycanthropy Antidote	Lycanthropy Antidote
+Macuahuitl	Macuahuitl
+Maddgoth's Helm	Maddgoth's Helm
+Mage's Manacle	Mage's Manacle
+Magebane Bomb	Magebane Bomb
+Magen Handbell	Magen Handbell
+Mageplate Cap	Mageplate Cap
+Magewright's Gloves	Magewright's Gloves
+Magical Prosthetics	Magical Prosthetics
+Magician's Judge	Magician's Judge
+Magma War Pick	Magma War Pick
+Making Channeling Wand	Making Channeling Wand
+Making Dragonmark Channel	Making Dragonmark Channel
+Making Dragonmark Reservoir	Making Dragonmark Reservoir
+Malleus Macabre	Malleus Macabre
+Mammoth Boots	Mammoth Boots
+Manifest Charm of Daanvi, the Perfect Order	Manifest Charm of Daanvi, the Perfect Order
+Manifest Charm of Dolurrh, the Realm of the Dead	Manifest Charm of Dolurrh, the Realm of the Dead
+Manifest Charm of Fernia, the Sea of Fire	Manifest Charm of Fernia, the Sea of Fire
+Manifest Charm of Irian, the Eternal Dawn	Manifest Charm of Irian, the Eternal Dawn
+Manifest Charm of Lamannia, the Twilight Forest	Manifest Charm of Lamannia, the Twilight Forest
+Manifest Charm of Mabar, the Endless Night	Manifest Charm of Mabar, the Endless Night
+Manifest Charm of Risia, the Plain of Ice	Manifest Charm of Risia, the Plain of Ice
+Manifest Charm of Shavarath, the Battleground	Manifest Charm of Shavarath, the Battleground
+Manifest Charm of Syrania, the Azure Sky	Manifest Charm of Syrania, the Azure Sky
+Manifest Charm of Thelanis, the Faerie Court	Manifest Charm of Thelanis, the Faerie Court
+Manifest Charm of Xoriat, the Realm of Delirium	Manifest Charm of Xoriat, the Realm of Delirium
+Manor Key	Manor Key
+Mantle of the Pack Lord	Mantle of the Pack Lord
+Marotte of Chance	Marotte of Chance
+Martialist's Quarterstaff	Martialist's Quarterstaff
+Mask of Changed Appearance	Mask of Changed Appearance
+Mask of Dendallen	Mask of Dendallen
+Mask of the Maestro	Mask of the Maestro
+Mask of the Pact Bearer	Mask of the Pact Bearer
+Masque Charm	Masque Charm
+Master Machinist's Marvelous Mallet	Master Machinist's Marvelous Mallet
+Master's Amulet	Master's Amulet
+Mastery Gem	Mastery Gem
+Matchless Pipe	Matchless Pipe
+Mechanical Limb	Mechanical Limb
+Medal of Muscle	Medal of Muscle
+Medal of Wit	Medal of Wit
+Medal of the Conch	Medal of the Conch
+Medal of the Horizonback	Medal of the Horizonback
+Medal of the Meat Pie	Medal of the Meat Pie
+Medal of the Wetlands	Medal of the Wetlands
+Medani Dowser	Medani Dowser
+Medi Spectacles	Medi Spectacles
+Memento of the Shapeless	Memento of the Shapeless
+Menga leaves (1 ounce)	Menga leaves (1 ounce)
+Merry Berry	Merry Berry
+Mind Blade	Mind Blade
+Mind Carapace Armor	Mind Carapace Armor
+Mind Flayer Skull	Mind Flayer Skull
+Mind Lash	Mind Lash
+Mindblasting Cap	Mindblasting Cap
+Mirror of Infinite Transpondence	Mirror of Infinite Transpondence
+Mirror of Reflected Pasts	Mirror of Reflected Pasts
+Mirror of the Past	Mirror of the Past
+Mirrorlight Edge	Mirrorlight Edge
+Mirrorlight Piercer	Mirrorlight Piercer
+Mistral Mantle	Mistral Mantle
+Mithral +1 Armor	Mithral +1 Armor
+Mizzium Armor	Mizzium Armor
+Mizzium Mortar	Mizzium Mortar
+Moa	Moa
+Mockingblade	Mockingblade
+Mogis's Devotee	Mogis's Devotee
+Mogis's Disciple	Mogis's Disciple
+Mogis's Votary	Mogis's Votary
+Molten Bronze Skin	Molten Bronze Skin
+Monocle of Clarity	Monocle of Clarity
+Monsterbane Lasher	Monsterbane Lasher
+Monstrous Bite	Monstrous Bite
+Monstrous Hide	Monstrous Hide
+Monstrous Weapon	Monstrous Weapon
+Moongold Ammunition	Moongold Ammunition
+Moongold Weapon	Moongold Weapon
+Moonswaddled Armor	Moonswaddled Armor
+Morose Monocle	Morose Monocle
+Mortal Coil	Mortal Coil
+Motion Tracker	Motion Tracker
+Mummy Rot Antidote	Mummy Rot Antidote
+Murgaxor's Elixir of Life	Murgaxor's Elixir of Life
+Murgaxor's Orb	Murgaxor's Orb
+Muscle Graft	Muscle Graft
+Mythallar Bracelet	Mythallar Bracelet
+Mythallar Cloak	Mythallar Cloak
+Mythcarver (Awakened)	Mythcarver (Awakened)
+Mythcarver (Dormant)	Mythcarver (Dormant)
+Mythcarver (Exalted)	Mythcarver (Exalted)
+Nameless Cults	Nameless Cults
+Namer's Needle	Namer's Needle
+Nangnang	Nangnang
+Nanobot Canister (Deconstructive)	Nanobot Canister (Deconstructive)
+Nanobot Canister (Reconstructive)	Nanobot Canister (Reconstructive)
+Nanobot Canister (Transformative)	Nanobot Canister (Transformative)
+Navigation Orb	Navigation Orb
+Necrolace	Necrolace
+Necronomicon	Necronomicon
+Necronomicon Ex Corvis	Necronomicon Ex Corvis
+Needle of Mending	Needle of Mending
+Needle, +1	Needle, +1
+Needle, +2	Needle, +2
+Needle, +3	Needle, +3
+Nest Charm	Nest Charm
+Net of Maiden's Hair	Net of Maiden's Hair
+Nether Scroll of Azumar	Nether Scroll of Azumar
+Netherese Ring of Protection	Netherese Ring of Protection
+Nib	Nib
+Night Caller	Night Caller
+Nightbringer	Nightbringer
+Nightcap	Nightcap
+Nightfall Pearl	Nightfall Pearl
+Nightmare Staff	Nightmare Staff
+Nightstalker's Kanabo	Nightstalker's Kanabo
+Niko's Mace	Niko's Mace
+Nimblewright Detector	Nimblewright Detector
+Nimbus Coronet	Nimbus Coronet
+Ninth Quill Trinket	Ninth Quill Trinket
+Nithing Pole	Nithing Pole
+Nocturnal Eyes	Nocturnal Eyes
+Null Chalk	Null Chalk
+Nylea's Devotee	Nylea's Devotee
+Nylea's Disciple	Nylea's Disciple
+Nylea's Votary	Nylea's Votary
+Oathbound Ring	Oathbound Ring
+Obo'laka	Obo'laka
+Observatory Charm	Observatory Charm
+Obsidian Flint Dragon Plate	Obsidian Flint Dragon Plate
+Obviator's Lenses	Obviator's Lenses
+Oil	Oil
+Oil of Defoliation	Oil of Defoliation
+Omenbringer's Mantle	Omenbringer's Mantle
+Ooze Infusion	Ooze Infusion
+Opal of the Ild Rune	Opal of the Ild Rune
+Orator's Quill	Orator's Quill
+Orb of Damara	Orb of Damara
+Orb of Gonging	Orb of Gonging
+Orb of Shielding	Orb of Shielding
+Orb of Shielding (Fernian Basalt)	Orb of Shielding (Fernian Basalt)
+Orb of Shielding (Irian Quartz)	Orb of Shielding (Irian Quartz)
+Orb of Shielding (Kythrian Skarn)	Orb of Shielding (Kythrian Skarn)
+Orb of Shielding (Lamannian Flint)	Orb of Shielding (Lamannian Flint)
+Orb of Shielding (Mabaran Obsidian)	Orb of Shielding (Mabaran Obsidian)
+Orb of Shielding (Risian Shale)	Orb of Shielding (Risian Shale)
+Orb of Shielding (Shavarran Chert)	Orb of Shielding (Shavarran Chert)
+Orb of Shielding (Xorian Marble)	Orb of Shielding (Xorian Marble)
+Orb of Skoraeus	Orb of Skoraeus
+Orb of the Stein Rune	Orb of the Stein Rune
+Orb of the Veil	Orb of the Veil
+Orc Stone	Orc Stone
+Orcsplitter	Orcsplitter
+Order of the Gauntlet Trinket	Order of the Gauntlet Trinket
+Ori Boots	Ori Boots
+Orzhov Charm	Orzhov Charm
+Otyugh Cloak	Otyugh Cloak
+Ouroboros Rapier	Ouroboros Rapier
+Outer Essence Shard (Chaotic)	Outer Essence Shard (Chaotic)
+Outer Essence Shard (Evil)	Outer Essence Shard (Evil)
+Outer Essence Shard (Good)	Outer Essence Shard (Good)
+Outer Essence Shard (Lawful)	Outer Essence Shard (Lawful)
+Overdrive Module	Overdrive Module
+Overshield	Overshield
+Oversized Arms	Oversized Arms
+Oversized Longbow	Oversized Longbow
+Pack of LeviBubble Sugarbombs	Pack of LeviBubble Sugarbombs
+Pair of Tiny Violin Rings	Pair of Tiny Violin Rings
+Papazotl	Papazotl
+Paragon's Plate	Paragon's Plate
+Paralyzing Bolt	Paralyzing Bolt
+Passage Channeling Wand	Passage Channeling Wand
+Passage Dragonmark Channel	Passage Dragonmark Channel
+Passage Dragonmark Reservoir	Passage Dragonmark Reservoir
+Pathfinder's Greataxe	Pathfinder's Greataxe
+Pathfinder's Pebble	Pathfinder's Pebble
+Pearl Elixir	Pearl Elixir
+Pearl of Undead Detection	Pearl of Undead Detection
+Pearl of Wisdom Quiver	Pearl of Wisdom Quiver
+Pendant of Thieves' Sight	Pendant of Thieves' Sight
+Pendant of the Tempered Fury	Pendant of the Tempered Fury
+Pennant of the Vind Rune	Pennant of the Vind Rune
+Peppermince Sugarbomb	Peppermince Sugarbomb
+Periapt of Reflection	Periapt of Reflection
+Permanent Parchment	Permanent Parchment
+Personality Module	Personality Module
+Petal Dancer Ward	Petal Dancer Ward
+Petrified Grung Egg	Petrified Grung Egg
+Phantasmic Circus Trinket	Phantasmic Circus Trinket
+Pharazorthok Sprout	Pharazorthok Sprout
+Pharika's Devotee	Pharika's Devotee
+Pharika's Disciple	Pharika's Disciple
+Pharika's Votary	Pharika's Votary
+Phase Axe	Phase Axe
+Phase Suit	Phase Suit
+Phenax's Devotee	Phenax's Devotee
+Phenax's Disciple	Phenax's Disciple
+Phenax's Votary	Phenax's Votary
+Phoenix Ammunition	Phoenix Ammunition
+Piercer	Piercer
+Pigskin Armor	Pigskin Armor
+Pike of the Forgotten Legion	Pike of the Forgotten Legion
+Pipe of Remembrance	Pipe of Remembrance
+Pirate's Cutlass	Pirate's Cutlass
+Piwafwi of Fire Resistance	Piwafwi of Fire Resistance
+Pixie Dust	Pixie Dust
+Piña Colossus	Piña Colossus
+Plaguebane Mask	Plaguebane Mask
+Planar Key	Planar Key
+Planar Rapier	Planar Rapier
+Planecaller's Codex	Planecaller's Codex
+Plate of Knight's Fellowship	Plate of Knight's Fellowship
+Plate of the Dawnmartyr (Awakened)	Plate of the Dawnmartyr (Awakened)
+Plate of the Dawnmartyr (Dormant)	Plate of the Dawnmartyr (Dormant)
+Plate of the Dawnmartyr (Exalted)	Plate of the Dawnmartyr (Exalted)
+Platinum	Platinum
+Platinum 10-Zino Coin	Platinum 10-Zino Coin
+Platinum 100-Zino Coin	Platinum 100-Zino Coin
+Playing Cards	Playing Cards
+Polymorph Blade	Polymorph Blade
+Pomade of Ten Thousand Styles	Pomade of Ten Thousand Styles
+Portable Ram	Portable Ram
+Portfolio Keeper	Portfolio Keeper
+Potion of Advantage	Potion of Advantage
+Potion of Aqueous Form	Potion of Aqueous Form
+Potion of Dragon's Breath	Potion of Dragon's Breath
+Potion of Dragon's Breath (Rare)	Potion of Dragon's Breath (Rare)
+Potion of Dragon's Breath (Uncommon)	Potion of Dragon's Breath (Uncommon)
+Potion of Dragon's Breath (Very Rare)	Potion of Dragon's Breath (Very Rare)
+Potion of Dragon's Majesty	Potion of Dragon's Majesty
+Potion of Giant Size	Potion of Giant Size
+Potion of Giant Strength (cloud)	Potion of Giant Strength (cloud)
+Potion of Giant Strength (fire)	Potion of Giant Strength (fire)
+Potion of Giant Strength (frost)	Potion of Giant Strength (frost)
+Potion of Giant Strength (hill)	Potion of Giant Strength (hill)
+Potion of Giant Strength (stone)	Potion of Giant Strength (stone)
+Potion of Giant Strength (storm)	Potion of Giant Strength (storm)
+Potion of Glacial Resistance	Potion of Glacial Resistance
+Potion of Harm	Potion of Harm
+Potion of Heal	Potion of Heal
+Potion of Life Sharing	Potion of Life Sharing
+Potion of Liquid Air	Potion of Liquid Air
+Potion of Malice	Potion of Malice
+Potion of Maximum Power	Potion of Maximum Power
+Potion of Mind Control	Potion of Mind Control
+Potion of Mind Control (beast)	Potion of Mind Control (beast)
+Potion of Mind Control (humanoid)	Potion of Mind Control (humanoid)
+Potion of Mind Control (monster)	Potion of Mind Control (monster)
+Potion of Poison Resistance	Potion of Poison Resistance
+Potion of Possibility	Potion of Possibility
+Potion of Psionic Fortitude	Potion of Psionic Fortitude
+Potion of Psychic Resistance	Potion of Psychic Resistance
+Potion of Radiant Resistance	Potion of Radiant Resistance
+Potion of Relentlessness	Potion of Relentlessness
+Potion of Rest	Potion of Rest
+Potion of Solar Radiance	Potion of Solar Radiance
+Potion of Spell Recovery	Potion of Spell Recovery
+Potion of Stone Giant Strength	Potion of Stone Giant Strength
+Potion of Superior Healing	Potion of Superior Healing
+Potion of Supreme Healing	Potion of Supreme Healing
+Potion of Thunder Resistance	Potion of Thunder Resistance
+Potion of Watchful Rest	Potion of Watchful Rest
+Potion, Pill Form	Potion, Pill Form
+Potions of Healing	Potions of Healing
+Powered Armor	Powered Armor
+Precipit, the Formless	Precipit, the Formless
+Prehensile Tail	Prehensile Tail
+Prehistoric Figurine of Wondrous Power	Prehistoric Figurine of Wondrous Power
+Prehistoric Figurine of Wondrous Power, Carnelian Triceratops	Prehistoric Figurine of Wondrous Power, Carnelian Triceratops
+Prehistoric Figurine of Wondrous Power, Jasper Tyrannosaurus Rex	Prehistoric Figurine of Wondrous Power, Jasper Tyrannosaurus Rex
+Prehistoric Figurine of Wondrous Power, Kyanite Pteranodon	Prehistoric Figurine of Wondrous Power, Kyanite Pteranodon
+Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus	Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus
+Pressure Capsule	Pressure Capsule
+Primal Amulet	Primal Amulet
+Prismari Primer	Prismari Primer
+Prismatic Javelin	Prismatic Javelin
+Prismatic Well	Prismatic Well
+Profane Charm	Profane Charm
+Profane Mask	Profane Mask
+Professor Orb	Professor Orb
+Professor Skant	Professor Skant
+Propeller Helm	Propeller Helm
+Prophecy Wine	Prophecy Wine
+Prospector's Wand	Prospector's Wand
+Prying Blade	Prying Blade
+Psionic Piercing	Psionic Piercing
+Psionic Reach	Psionic Reach
+Psychic Blade	Psychic Blade
+Purging Dagger	Purging Dagger
+Purity Spear	Purity Spear
+Purphoros's Devotee	Purphoros's Devotee
+Purphoros's Disciple	Purphoros's Disciple
+Purphoros's Votary	Purphoros's Votary
+Purple Dragon Knight Trinket	Purple Dragon Knight Trinket
+Purse Piglet	Purse Piglet
+Puzzle Ring of Vitality, Life, and Power	Puzzle Ring of Vitality, Life, and Power
+Pyremaul (Awakened)	Pyremaul (Awakened)
+Pyremaul (Dormant)	Pyremaul (Dormant)
+Pyremaul (Exalted)	Pyremaul (Exalted)
+Quagmire Maul	Quagmire Maul
+Quake Hammer	Quake Hammer
+Quakescale Armor	Quakescale Armor
+Quandrix Primer	Quandrix Primer
+Queen Ehlissa's Marvelous Nightingale	Queen Ehlissa's Marvelous Nightingale
+Queen's Token	Queen's Token
+Quickdraw	Quickdraw
+Quicksilver Clay	Quicksilver Clay
+Quiver of Energy	Quiver of Energy
+Radiance	Radiance
+Radiant Defender	Radiant Defender
+Rakdos Charm	Rakdos Charm
+Raptor Feather Robe	Raptor Feather Robe
+Rare Molten Fire Forge	Rare Molten Fire Forge
+Rations	Rations
+Raven's Slumber	Raven's Slumber
+Ready Gunk	Ready Gunk
+Reap and Sew	Reap and Sew
+Reaper's Scream	Reaper's Scream
+Rebounding Blade	Rebounding Blade
+Recall Crystal	Recall Crystal
+Red Chromatic Rose	Red Chromatic Rose
+Red Claw's Regalia	Red Claw's Regalia
+Red Dragon Mask	Red Dragon Mask
+Red Dragon Scale Mail	Red Dragon Scale Mail
+Red Wizard Trinket	Red Wizard Trinket
+Red-Feather Bow	Red-Feather Bow
+Regal Breastplate of the Tyrant (*)	Regal Breastplate of the Tyrant (*)
+Regenerating Marrow	Regenerating Marrow
+Reincarnation Dust	Reincarnation Dust
+Relentless Bulwark	Relentless Bulwark
+Reliquary Charm	Reliquary Charm
+Remote Eye	Remote Eye
+Remote Piloting Apparatus	Remote Piloting Apparatus
+Repeating Shot	Repeating Shot
+Replacement	Replacement
+Resistance Breaker	Resistance Breaker
+Resistance Plating	Resistance Plating
+Resistance Suture	Resistance Suture
+Resistant Blade of the Guardian	Resistant Blade of the Guardian
+Resuscitation Bomb	Resuscitation Bomb
+Reszur	Reszur
+Retaliating Bloom Shield	Retaliating Bloom Shield
+Retaliating Shield of Ink	Retaliating Shield of Ink
+Returning Weapon	Returning Weapon
+Reveler's Concertina	Reveler's Concertina
+Riding Horse	Riding Horse
+Ring of Acid Resistance	Ring of Acid Resistance
+Ring of Amity	Ring of Amity
+Ring of Anchoring	Ring of Anchoring
+Ring of Candor	Ring of Candor
+Ring of Cold Resistance	Ring of Cold Resistance
+Ring of Collecting	Ring of Collecting
+Ring of Earth Elemental Command	Ring of Earth Elemental Command
+Ring of Eldritch Ire	Ring of Eldritch Ire
+Ring of Elemental Command (Earth)	Ring of Elemental Command (Earth)
+Ring of Elemental Command (Fire)	Ring of Elemental Command (Fire)
+Ring of Elemental Command (Water)	Ring of Elemental Command (Water)
+Ring of Fire	Ring of Fire
+Ring of Fire Elemental Command	Ring of Fire Elemental Command
+Ring of Fire Resistance	Ring of Fire Resistance
+Ring of Force Resistance	Ring of Force Resistance
+Ring of Gestures	Ring of Gestures
+Ring of Hidden Desire	Ring of Hidden Desire
+Ring of Ice	Ring of Ice
+Ring of Lightning Resistance	Ring of Lightning Resistance
+Ring of Necrotic Resistance	Ring of Necrotic Resistance
+Ring of Nightmares	Ring of Nightmares
+Ring of Paradoxes	Ring of Paradoxes
+Ring of Plant Speech	Ring of Plant Speech
+Ring of Poison Resistance	Ring of Poison Resistance
+Ring of Psychic Resistance	Ring of Psychic Resistance
+Ring of Puzzler's Wit	Ring of Puzzler's Wit
+Ring of Radiant Resistance	Ring of Radiant Resistance
+Ring of Radiation	Ring of Radiation
+Ring of Roses	Ring of Roses
+Ring of Seething	Ring of Seething
+Ring of Spacewalking	Ring of Spacewalking
+Ring of Stone	Ring of Stone
+Ring of Temporal Salvation	Ring of Temporal Salvation
+Ring of Thunder Resistance	Ring of Thunder Resistance
+Ring of Treachery	Ring of Treachery
+Ring of Truth Telling	Ring of Truth Telling
+Ring of Veracity	Ring of Veracity
+Ring of Water Elemental Command	Ring of Water Elemental Command
+Ring of Wind	Ring of Wind
+Ring of the Copycat	Ring of the Copycat
+Ring of the Fowl Sentinel	Ring of the Fowl Sentinel
+Ring of the Sandskimmer	Ring of the Sandskimmer
+Ring of the Sky Hunter	Ring of the Sky Hunter
+Robe of Serpents	Robe of Serpents
+Robe of Summer	Robe of Summer
+Rocborne Hand Ballista	Rocborne Hand Ballista
+Rocborne Robe	Rocborne Robe
+Rocborne Rod	Rocborne Rod
+Rod	Rod
+Rod of Mercurial Form	Rod of Mercurial Form
+Rod of Retribution	Rod of Retribution
+Rod of Ruin	Rod of Ruin
+Rod of Wild Dominion	Rod of Wild Dominion
+Rod of the Honed Mind	Rod of the Honed Mind
+Rod of the Pack Master	Rod of the Pack Master
+Rod of the Pact Keeper, +1	Rod of the Pact Keeper, +1
+Rod of the Pact Keeper, +2	Rod of the Pact Keeper, +2
+Rod of the Pact Keeper, +3	Rod of the Pact Keeper, +3
+Rod of the Vonindod	Rod of the Vonindod
+Rogue's Brew	Rogue's Brew
+Rogue's Mantle	Rogue's Mantle
+Rotor of Return	Rotor of Return
+Ruby Elixir	Ruby Elixir
+Ruby Rod of Asmodeus	Ruby Rod of Asmodeus
+Ruidium Armor	Ruidium Armor
+Ruinblade	Ruinblade
+Ruinstone	Ruinstone
+Runic Ammunition	Runic Ammunition
+Ryath Root	Ryath Root
+Saber of Unity	Saber of Unity
+Sage's Mirror	Sage's Mirror
+Sage's Signet	Sage's Signet
+Sage's Signet (Bear)	Sage's Signet (Bear)
+Sage's Signet (Hart)	Sage's Signet (Hart)
+Sage's Signet (Lion)	Sage's Signet (Lion)
+Sage's Signet (Serpent)	Sage's Signet (Serpent)
+Sage's Signet (Songbird)	Sage's Signet (Songbird)
+Sage's Signet (Wolf)	Sage's Signet (Wolf)
+Sanctified Cannon	Sanctified Cannon
+Sanctuary Charm	Sanctuary Charm
+Sanctum Amulet	Sanctum Amulet
+Sanctum Charm	Sanctum Charm
+Sandstorm Dancer	Sandstorm Dancer
+Sangromancer's Vial	Sangromancer's Vial
+Scaled Ornament	Scaled Ornament
+Scaled Toughness	Scaled Toughness
+Scalehide Cream	Scalehide Cream
+Scholar's Anchoring Bangle	Scholar's Anchoring Bangle
+Scholar's Cap +1	Scholar's Cap +1
+Scholar's Cap +2	Scholar's Cap +2
+Scholar's Cap +3	Scholar's Cap +3
+Scissors of Shadow Snipping	Scissors of Shadow Snipping
+Scorching Cleaver	Scorching Cleaver
+Scorpion Armor	Scorpion Armor
+Scourge of Shadow	Scourge of Shadow
+Scout Scanner	Scout Scanner
+Screaming Longbow	Screaming Longbow
+Scribe's Pen	Scribe's Pen
+Scribing Channeling Wand	Scribing Channeling Wand
+Scribing Dragonmark Channel	Scribing Dragonmark Channel
+Scribing Dragonmark Reservoir	Scribing Dragonmark Reservoir
+Scroll of Protection from Aberrations	Scroll of Protection from Aberrations
+Scroll of Protection from Beasts	Scroll of Protection from Beasts
+Scroll of Protection from Celestials	Scroll of Protection from Celestials
+Scroll of Protection from Elementals	Scroll of Protection from Elementals
+Scroll of Protection from Fey	Scroll of Protection from Fey
+Scroll of Protection from Fiends	Scroll of Protection from Fiends
+Scroll of Protection from Plants	Scroll of Protection from Plants
+Scroll of Protection from Undead	Scroll of Protection from Undead
+Scroll of Tarrasque Summoning	Scroll of Tarrasque Summoning
+Scroll of Titan Summoning (Animal Lord)	Scroll of Titan Summoning (Animal Lord)
+Scroll of Titan Summoning (Blob of Annihilation)	Scroll of Titan Summoning (Blob of Annihilation)
+Scroll of Titan Summoning (Colossus)	Scroll of Titan Summoning (Colossus)
+Scroll of Titan Summoning (Elemental Cataclysm)	Scroll of Titan Summoning (Elemental Cataclysm)
+Scroll of Titan Summoning (Empyrean)	Scroll of Titan Summoning (Empyrean)
+Scroll of Titan Summoning (Kraken)	Scroll of Titan Summoning (Kraken)
+Scroll of Titan Summoning (Tarrasque)	Scroll of Titan Summoning (Tarrasque)
+Scroll of the Comet	Scroll of the Comet
+Sea Serpent Hairpin	Sea Serpent Hairpin
+Seafarer's Jacket	Seafarer's Jacket
+Seat Belt	Seat Belt
+Second Skin	Second Skin
+Seed of Rebirth	Seed of Rebirth
+Seeker Dart	Seeker Dart
+Seers of Sea and Sky Trinket	Seers of Sea and Sky Trinket
+Sekolahian Worshiping Statuette	Sekolahian Worshiping Statuette
+Selesnya Charm	Selesnya Charm
+Sensory Stone	Sensory Stone
+Sentinel Channeling Wand	Sentinel Channeling Wand
+Sentinel Dragonmark Channel	Sentinel Dragonmark Channel
+Sentinel Dragonmark Reservoir	Sentinel Dragonmark Reservoir
+Septum Ring of the Great Minotaur	Septum Ring of the Great Minotaur
+Serpent Dart	Serpent Dart
+Serpent Scale Armor	Serpent Scale Armor
+Serpent's Fang	Serpent's Fang
+Serpentine Mirror	Serpentine Mirror
+Servitude Choker	Servitude Choker
+Set of Numat's Trick Tubes	Set of Numat's Trick Tubes
+Set of Secret Scribe Candles	Set of Secret Scribe Candles
+Shaarat'doovol, the Blade of Truth	Shaarat'doovol, the Blade of Truth
+Shadow Channeling Wand	Shadow Channeling Wand
+Shadow Dragonmark Channel	Shadow Dragonmark Channel
+Shadow Dragonmark Reservoir	Shadow Dragonmark Reservoir
+Shadow Drinker	Shadow Drinker
+Shadow Ink	Shadow Ink
+Shadow Sibling	Shadow Sibling
+Shadow Ward	Shadow Ward
+Shadowshawl	Shadowshawl
+Shadowsmoke Dragon Pipe	Shadowsmoke Dragon Pipe
+Shadowsteel Blades	Shadowsteel Blades
+Shaedenstaff	Shaedenstaff
+Shagambi	Shagambi
+Shape-Shifter's Circlet	Shape-Shifter's Circlet
+Shapeshifter Blood	Shapeshifter Blood
+Shard	Shard
+Shard of the Ise Rune	Shard of the Ise Rune
+Shared Burden	Shared Burden
+Sharkrazor Mantle	Sharkrazor Mantle
+Shatterspike	Shatterspike
+Shatterstick	Shatterstick
+Sheer Cold	Sheer Cold
+Sheltering Hands Trinket	Sheltering Hands Trinket
+Shield Emitter	Shield Emitter
+Shield Module	Shield Module
+Shield of Far Sight	Shield of Far Sight
+Shield of Shouting	Shield of Shouting
+Shield of Yggdrasil	Shield of Yggdrasil
+Shield of the Blazing Dreadnought	Shield of the Blazing Dreadnought
+Shield of the Silver Dragon	Shield of the Silver Dragon
+Shield of the Uven Rune	Shield of the Uven Rune
+Shielding Turtle Sugarbombs	Shielding Turtle Sugarbombs
+Shiftweave	Shiftweave
+Shipmending Spray	Shipmending Spray
+Shipmending Sprays	Shipmending Sprays
+Shock Absorbers	Shock Absorbers
+Shoulder Cannon	Shoulder Cannon
+Shroud of Ending	Shroud of Ending
+Signet Rings of Blindness, Deafness, and Silence	Signet Rings of Blindness, Deafness, and Silence
+Signet Rings of the Fey Court	Signet Rings of the Fey Court
+Silent Weapon	Silent Weapon
+Silken Socks of Slickening	Silken Socks of Slickening
+Silken Spite	Silken Spite
+Silken Spite (Awakened)	Silken Spite (Awakened)
+Silken Spite (Dormant)	Silken Spite (Dormant)
+Silken Spite (Exalted)	Silken Spite (Exalted)
+Silver	Silver
+Silver 25-Zib Coin	Silver 25-Zib Coin
+Silver Dragon Scale Mail	Silver Dragon Scale Mail
+Silver Eagle Weapon	Silver Eagle Weapon
+Silver Lycan Chime	Silver Lycan Chime
+Silver Sword	Silver Sword
+Silvered Ammunition	Silvered Ammunition
+Silverquill Primer	Silverquill Primer
+Simic Charm	Simic Charm
+Sinda berries (10)	Sinda berries (10)
+Singing Stein	Singing Stein
+Singularity Emitter	Singularity Emitter
+Siren Song Lyre	Siren Song Lyre
+Sirensong Silencer	Sirensong Silencer
+Sizzling Serum	Sizzling Serum
+Skeleton Keycard	Skeleton Keycard
+Skull of Selfish Knowledge	Skull of Selfish Knowledge
+Skysail	Skysail
+Slimeforged Blade	Slimeforged Blade
+Sling Bullet, +1	Sling Bullet, +1
+Sling Bullet, +2	Sling Bullet, +2
+Sling Bullet, +3	Sling Bullet, +3
+Sling Bullets of Althemone	Sling Bullets of Althemone
+Sling of the Tiny Giant	Sling of the Tiny Giant
+Slumbering Dragon's Wrath Weapon	Slumbering Dragon's Wrath Weapon
+Smash Potatoes	Smash Potatoes
+Smokepowder	Smokepowder
+Sniper's Bracelet	Sniper's Bracelet
+Snuff	Snuff
+Snugglebeast (Dragon)	Snugglebeast (Dragon)
+Snugglebeast (Owlbear)	Snugglebeast (Owlbear)
+Snugglebeast (Tarrasque)	Snugglebeast (Tarrasque)
+Snugglebeast (Unicorn)	Snugglebeast (Unicorn)
+Snugglebeasts	Snugglebeasts
+Soarsled	Soarsled
+Socks of the Well-Rested	Socks of the Well-Rested
+Solar Wings of Ra	Solar Wings of Ra
+Sorcerous Spyglass	Sorcerous Spyglass
+Sorting Beast	Sorting Beast
+Soul Bag	Soul Bag
+Soulbond Stone	Soulbond Stone
+Spacewalkers	Spacewalkers
+Spark	Spark
+Speaking Stone	Speaking Stone
+Spear of Backbiting	Spear of Backbiting
+Spell Duelist's Trophy	Spell Duelist's Trophy
+Spell Gem	Spell Gem
+Spell Gem (Amber)	Spell Gem (Amber)
+Spell Gem (Bloodstone)	Spell Gem (Bloodstone)
+Spell Gem (Diamond)	Spell Gem (Diamond)
+Spell Gem (Jade)	Spell Gem (Jade)
+Spell Gem (Lapis lazuli)	Spell Gem (Lapis lazuli)
+Spell Gem (Obsidian)	Spell Gem (Obsidian)
+Spell Gem (Quartz)	Spell Gem (Quartz)
+Spell Gem (Ruby)	Spell Gem (Ruby)
+Spell Gem (Star ruby)	Spell Gem (Star ruby)
+Spell Gem (Topaz)	Spell Gem (Topaz)
+Spell-Fueling Armor	Spell-Fueling Armor
+Spell-Slinger's Puppet	Spell-Slinger's Puppet
+Spellburrow	Spellburrow
+Spellshard	Spellshard
+Spellwoven Robe	Spellwoven Robe
+Spellwrought Tattoo (1st Level)	Spellwrought Tattoo (1st Level)
+Spellwrought Tattoo (2nd Level)	Spellwrought Tattoo (2nd Level)
+Spellwrought Tattoo (3rd Level)	Spellwrought Tattoo (3rd Level)
+Spellwrought Tattoo (4th Level)	Spellwrought Tattoo (4th Level)
+Spellwrought Tattoo (5th Level)	Spellwrought Tattoo (5th Level)
+Spellwrought Tattoo (Cantrip)	Spellwrought Tattoo (Cantrip)
+Sphere of the Arcane Armament	Sphere of the Arcane Armament
+Spider Pod	Spider Pod
+Spider Staff	Spider Staff
+Spiderbite Daggers	Spiderbite Daggers
+Spies' Murmur	Spies' Murmur
+Spiked Armor	Spiked Armor
+Spiked Skin	Spiked Skin
+Spire Seed	Spire Seed
+Spire of Conflux (Awakened)	Spire of Conflux (Awakened)
+Spire of Conflux (Dormant)	Spire of Conflux (Dormant)
+Spire of Conflux (Exalted)	Spire of Conflux (Exalted)
+Spirit Pike	Spirit Pike
+Splintershot	Splintershot
+Splitter	Splitter
+Sprinting Legs	Sprinting Legs
+Spyglass of Clairvoyance	Spyglass of Clairvoyance
+Squasher	Squasher
+Staff	Staff
+Staff of Briars	Staff of Briars
+Staff of Climbing Ivy	Staff of Climbing Ivy
+Staff of Defense	Staff of Defense
+Staff of Dunamancy	Staff of Dunamancy
+Staff of Fate	Staff of Fate
+Staff of Favorable Winds	Staff of Favorable Winds
+Staff of Skulls	Staff of Skulls
+Staff of the Forgotten One	Staff of the Forgotten One
+Staff of the Four Seasons	Staff of the Four Seasons
+Staff of the Ivory Claw	Staff of the Ivory Claw
+Staff of the Magpie	Staff of the Magpie
+Staff of the Mirage	Staff of the Mirage
+Staff of the Mustang	Staff of the Mustang
+Staff of the Reverent Warrior	Staff of the Reverent Warrior
+Staff of the Rooted Hills	Staff of the Rooted Hills
+Staff of the Sorcerer King	Staff of the Sorcerer King
+Stalaga Spear	Stalaga Spear
+Stalk Symbiote	Stalk Symbiote
+Star Metal Ring	Star Metal Ring
+Star Razor (Awakened)	Star Razor (Awakened)
+Star Razor (Dormant)	Star Razor (Dormant)
+Star Razor (Exalted)	Star Razor (Exalted)
+Starbreaker	Starbreaker
+Starmetal Ring	Starmetal Ring
+Starmetal Shield	Starmetal Shield
+Starmetal Solar Axe	Starmetal Solar Axe
+Starmetal Striker	Starmetal Striker
+Starshot Crossbow	Starshot Crossbow
+Statuette of Augury	Statuette of Augury
+Statuette of Saint Markovia	Statuette of Saint Markovia
+Steps of the Trickster	Steps of the Trickster
+Stirring Dragon's Wrath Weapon	Stirring Dragon's Wrath Weapon
+Stone of Creation	Stone of Creation
+Stone of Ill Luck	Stone of Ill Luck
+Stonebreaker's Breastplate	Stonebreaker's Breastplate
+Stonky's ring	Stonky's ring
+Storm Boomerang	Storm Boomerang
+Storm Channeling Wand	Storm Channeling Wand
+Storm Dragonmark Channel	Storm Dragonmark Channel
+Storm Dragonmark Reservoir	Storm Dragonmark Reservoir
+Storm Sickle	Storm Sickle
+Storm Thrower Harpoon	Storm Thrower Harpoon
+Storm's Embrace	Storm's Embrace
+Stormgirdle	Stormgirdle
+Stormgirdle (Awakened)	Stormgirdle (Awakened)
+Stormgirdle (Dormant)	Stormgirdle (Dormant)
+Stormgirdle (Exalted)	Stormgirdle (Exalted)
+Stormrider Boots	Stormrider Boots
+Stormstruck Staff	Stormstruck Staff
+Straitjacket	Straitjacket
+Strawbundle's Charm	Strawbundle's Charm
+Strig Feather Robe	Strig Feather Robe
+Strixhaven Pennant	Strixhaven Pennant
+Studious Blade of the Guardian	Studious Blade of the Guardian
+Stygian Spear	Stygian Spear
+Subjugating Breastplate of the Tyrant (*)	Subjugating Breastplate of the Tyrant (*)
+Suit of the Lamb	Suit of the Lamb
+Summer's Dance	Summer's Dance
+Sun	Sun
+Sun Shades	Sun Shades
+Sunbeam Compass	Sunbeam Compass
+Sundersludge Net	Sundersludge Net
+Superior Shipmending Spray	Superior Shipmending Spray
+Supreme Shipmending Spray	Supreme Shipmending Spray
+Survival Mantle	Survival Mantle
+Switch	Switch
+Sword of Answering (Answerer)	Sword of Answering (Answerer)
+Sword of Answering (Back Talker)	Sword of Answering (Back Talker)
+Sword of Answering (Concluder)	Sword of Answering (Concluder)
+Sword of Answering (Last Quip)	Sword of Answering (Last Quip)
+Sword of Answering (Rebutter)	Sword of Answering (Rebutter)
+Sword of Answering (Replier)	Sword of Answering (Replier)
+Sword of Answering (Retorter)	Sword of Answering (Retorter)
+Sword of Answering (Scather)	Sword of Answering (Scather)
+Sword of Answering (Squelcher)	Sword of Answering (Squelcher)
+Sword of Resonance	Sword of Resonance
+Sword of Retribution	Sword of Retribution
+Sword of the Spelldrinker	Sword of the Spelldrinker
+Tachyon Missile Launcher	Tachyon Missile Launcher
+Taergash's Exsanguinating Tome	Taergash's Exsanguinating Tome
+Talarith	Talarith
+Talisman of Tormach	Talisman of Tormach
+Talking Wand	Talking Wand
+Talon Tincture	Talon Tincture
+Talons of the Squall	Talons of the Squall
+Talyard the Great's Wand of Power	Talyard the Great's Wand of Power
+Tankard of Plenty	Tankard of Plenty
+Taol	Taol
+Tear of Gaia	Tear of Gaia
+Tearulai	Tearulai
+Tectonic Gauntlets	Tectonic Gauntlets
+Teleportation Tablet	Teleportation Tablet
+Teleporter Ring	Teleporter Ring
+Telescoping Bladelance	Telescoping Bladelance
+Telltale Heart	Telltale Heart
+Tempest Griffon Feather Cape	Tempest Griffon Feather Cape
+Terraforming Engine	Terraforming Engine
+Tether Tearer	Tether Tearer
+Tethervine Quiver	Tethervine Quiver
+Thassa's Devotee	Thassa's Devotee
+Thassa's Disciple	Thassa's Disciple
+Thassa's Votary	Thassa's Votary
+The Blessed of Corellon	The Blessed of Corellon
+The Bloody End	The Bloody End
+The Bloody End (Awakened)	The Bloody End (Awakened)
+The Bloody End (Dormant)	The Bloody End (Dormant)
+The Bloody End (Exalted)	The Bloody End (Exalted)
+The Griffon's Saddlebag	The Griffon's Saddlebag
+The Infernal Machine of Lum the Mad	The Infernal Machine of Lum the Mad
+The Rose Basket	The Rose Basket
+The Thorn of Kren	The Thorn of Kren
+Thermal Cube	Thermal Cube
+Thermalsight Eyes	Thermalsight Eyes
+Thespian's Playbill	Thespian's Playbill
+Thessaltoxin Antidote	Thessaltoxin Antidote
+Thief's Thimble	Thief's Thimble
+Thornpiercer	Thornpiercer
+Thought Talker Orbs	Thought Talker Orbs
+Thricecall Mirror	Thricecall Mirror
+Throwing Scarab	Throwing Scarab
+Thunder Rifle	Thunder Rifle
+Thunderous Flail	Thunderous Flail
+Thuranni Cloak	Thuranni Cloak
+Thurimbar Rod	Thurimbar Rod
+Thwackstaff	Thwackstaff
+Timber	Timber
+Time of the Dragon	Time of the Dragon
+Timepiece of Travel	Timepiece of Travel
+Timepiercer	Timepiercer
+Timeshifter's Mantle	Timeshifter's Mantle
+Tinkertop Boltblaster 1000	Tinkertop Boltblaster 1000
+Titan Armor	Titan Armor
+Titanstone Knuckles (Awakened)	Titanstone Knuckles (Awakened)
+Titanstone Knuckles (Dormant)	Titanstone Knuckles (Dormant)
+Titanstone Knuckles (Exalted)	Titanstone Knuckles (Exalted)
+Toadstone	Toadstone
+Toadstool Toddy	Toadstool Toddy
+Tome of Dreams	Tome of Dreams
+Tongue of the Dragon	Tongue of the Dragon
+Tongueworm	Tongueworm
+Torchbearer's Reach	Torchbearer's Reach
+Tormach's Blessed Weapon	Tormach's Blessed Weapon
+Torpedo Ammunition	Torpedo Ammunition
+Torrent Taiaha	Torrent Taiaha
+Tote of Tricky Treat Sugarbombs	Tote of Tricky Treat Sugarbombs
+Traction Spikes	Traction Spikes
+Tramontane Armor	Tramontane Armor
+Traveler's Pearl	Traveler's Pearl
+Traveling Snacks	Traveling Snacks
+Trick Weapon	Trick Weapon
+Trident of the Dryad	Trident of the Dryad
+Trident of the Hydra	Trident of the Hydra
+True-Ice Shards	True-Ice Shards
+True-Ice Shards (Dagger)	True-Ice Shards (Dagger)
+True-Ice Shards (Rapier)	True-Ice Shards (Rapier)
+Tub of Churning and Fermentation	Tub of Churning and Fermentation
+Two-Birds Sling	Two-Birds Sling
+Ulmyr's Eye (Adept)	Ulmyr's Eye (Adept)
+Ulmyr's Eye (Aspirant)	Ulmyr's Eye (Aspirant)
+Ulmyr's Eye (Master)	Ulmyr's Eye (Master)
+Un's Codex	Un's Codex
+Uncommon Glamerweave	Uncommon Glamerweave
+Universal Translator	Universal Translator
+Unkh	Unkh
+Uorik the Conqueror's Juice Cup	Uorik the Conqueror's Juice Cup
+Uul'kur (Dream Key)	Uul'kur (Dream Key)
+Vadalis Band	Vadalis Band
+Vancian Helm	Vancian Helm
+Vanquisher's Banner	Vanquisher's Banner
+Vanrak's Mithral Shirt	Vanrak's Mithral Shirt
+Vari-Blaster	Vari-Blaster
+Venombane Armor	Venombane Armor
+Ventilating Lungs	Ventilating Lungs
+Verminshroud	Verminshroud
+Verminshroud (Awakened)	Verminshroud (Awakened)
+Verminshroud (Dormant)	Verminshroud (Dormant)
+Verminshroud (Exalted)	Verminshroud (Exalted)
+Very Rare Molten Fire Forge	Very Rare Molten Fire Forge
+Veteran's Cane	Veteran's Cane
+Vial of Greed	Vial of Greed
+Vial of Stardust	Vial of Stardust
+Vial of Thought Capture	Vial of Thought Capture
+Vicious +1 Weapon	Vicious +1 Weapon
+Vigilus	Vigilus
+Vilesmog Bomb	Vilesmog Bomb
+Vino Veritas	Vino Veritas
+Visage of Delight and Disaster	Visage of Delight and Disaster
+Vlagomir's Spark	Vlagomir's Spark
+Voice Changer	Voice Changer
+Void Ammunition	Void Ammunition
+Void Beacon	Void Beacon
+Vola'khesh	Vola'khesh
+Volcanic Boots	Volcanic Boots
+Volt Gauntlets	Volt Gauntlets
+Voltedge	Voltedge
+Voting Kit	Voting Kit
+Vox Helm	Vox Helm
+Vox Seeker	Vox Seeker
+Voyager Staff	Voyager Staff
+W-REC	W-REC
+Wakened Dragon's Wrath Weapon	Wakened Dragon's Wrath Weapon
+Wand	Wand
+Wand Sheath	Wand Sheath
+Wand of Celestial Prowess	Wand of Celestial Prowess
+Wand of Entangle	Wand of Entangle
+Wand of Enthralling	Wand of Enthralling
+Wand of Scowls	Wand of Scowls
+Wand of Silence	Wand of Silence
+Wand of Smiles	Wand of Smiles
+Wand of Viscid Globs	Wand of Viscid Globs
+Wand of Whispers	Wand of Whispers
+Wand of the Poltergeist	Wand of the Poltergeist
+Wand of the War Mage, +1	Wand of the War Mage, +1
+Wand of the War Mage, +2	Wand of the War Mage, +2
+Wand of the War Mage, +3	Wand of the War Mage, +3
+Wandering Eye	Wandering Eye
+War Horn of Valor	War Horn of Valor
+War Staff	War Staff
+War Standard of Battlecries	War Standard of Battlecries
+Warden's Link	Warden's Link
+Warding Brooch	Warding Brooch
+Warding Channeling Wand	Warding Channeling Wand
+Warding Dragonmark Channel	Warding Dragonmark Channel
+Warding Dragonmark Reservoir	Warding Dragonmark Reservoir
+Warmind Wand	Warmind Wand
+Watchful Helm	Watchful Helm
+Wave-Swept Weapon	Wave-Swept Weapon
+Wavebender's Leiomano	Wavebender's Leiomano
+Wayfarer's Boots	Wayfarer's Boots
+Waythe	Waythe
+Weapon Wheel	Weapon Wheel
+Weapon of Agonizing Paralysis	Weapon of Agonizing Paralysis
+Weapon of Certain Death	Weapon of Certain Death
+Weapon of Mooring	Weapon of Mooring
+Weapon of Showmanship	Weapon of Showmanship
+Weapon of Spite	Weapon of Spite
+Weapon of Throne's Command	Weapon of Throne's Command
+Webgrip Rucksack	Webgrip Rucksack
+Wheel of Stars	Wheel of Stars
+Wheel of Wind and Water	Wheel of Wind and Water
+Whisper (Awakened)	Whisper (Awakened)
+Whisper (Dormant)	Whisper (Dormant)
+Whisper (Exalted)	Whisper (Exalted)
+Whistle of Freedom	Whistle of Freedom
+Whistle-Stick	Whistle-Stick
+White Chromatic Rose	White Chromatic Rose
+White Dragon Cape	White Dragon Cape
+White Dragon Mask	White Dragon Mask
+White Dragon Scale Mail	White Dragon Scale Mail
+Wildman's Spinning Cleaver	Wildman's Spinning Cleaver
+Wildroot	Wildroot
+Wildspace Orrery	Wildspace Orrery
+Will of the Talon	Will of the Talon
+Will of the Talon (Awakened)	Will of the Talon (Awakened)
+Will of the Talon (Dormant)	Will of the Talon (Dormant)
+Will of the Talon (Exalted)	Will of the Talon (Exalted)
+Wind Stones	Wind Stones
+Windrazor	Windrazor
+Windswept Wyvernplate	Windswept Wyvernplate
+Wing Crest Shield	Wing Crest Shield
+Winged Ammunition	Winged Ammunition
+Wingwear	Wingwear
+Winter's Dark Bite	Winter's Dark Bite
+Winter's Embrace	Winter's Embrace
+Wisplight Lantern	Wisplight Lantern
+Witchlight Watch	Witchlight Watch
+Witherbloom Primer	Witherbloom Primer
+Wongo	Wongo
+Woodcutter's Axe	Woodcutter's Axe
+Wooden Chain of the Unbroken Circle	Wooden Chain of the Unbroken Circle
+Wraps of Aphaeleon	Wraps of Aphaeleon
+Wraps of Dyamak (Awakened)	Wraps of Dyamak (Awakened)
+Wraps of Dyamak (Dormant)	Wraps of Dyamak (Dormant)
+Wraps of Dyamak (Exalted)	Wraps of Dyamak (Exalted)
+Wraps of Unarmed Power, +1	Wraps of Unarmed Power, +1
+Wraps of Unarmed Power, +2	Wraps of Unarmed Power, +2
+Wraps of Unarmed Power, +3	Wraps of Unarmed Power, +3
+Wraps of Unarmed Prowess	Wraps of Unarmed Prowess
+Wukka Nut	Wukka Nut
+Wyllow's Staff of Flowers	Wyllow's Staff of Flowers
+Wyrmreaver Gauntlets	Wyrmreaver Gauntlets
+Wyvernwing	Wyvernwing
+Yester Hill Axe	Yester Hill Axe
+Yklwa	Yklwa
+Ythryn Mythallar	Ythryn Mythallar
+Yuan-Ti Pureblood Transformation	Yuan-Ti Pureblood Transformation
+Zafu of the Wandering Mind	Zafu of the Wandering Mind
+Zeal	Zeal
+Zephyr Armor	Zephyr Armor
+Zhentarim Trinket	Zhentarim Trinket
+Zipgun	Zipgun

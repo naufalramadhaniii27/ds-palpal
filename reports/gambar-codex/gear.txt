@@ -1,0 +1,726 @@
+AI Core	AI Core
+Abacus	Abacus
+Acid	Acid
+Acid (vial)	Acid (vial)
+Adamant Hardsuit	Adamant Hardsuit
+Adamantine Bar	Adamantine Bar
+Aerenal Trinket	Aerenal Trinket
+Airship	Airship
+Alchemist's Fire	Alchemist's Fire
+Alchemist's Fire (flask)	Alchemist's Fire (flask)
+Alchemist's Ice	Alchemist's Ice
+Alchemist's Supplies	Alchemist's Supplies
+Ale (gallon)	Ale (gallon)
+Ale (mug)	Ale (mug)
+Alexandrite	Alexandrite
+Amber	Amber
+Amethyst	Amethyst
+Amulet	Amulet
+Amulet of dinosaur feathers (Sun Empire)	Amulet of dinosaur feathers (Sun Empire)
+Antigravity Belt	Antigravity Belt
+Antimatter Rifle	Antimatter Rifle
+Antitoxin	Antitoxin
+Antitoxin (vial)	Antitoxin (vial)
+Aquamarine	Aquamarine
+Arcane Cannon	Arcane Cannon
+Arcane Focus	Arcane Focus
+Argonnessen Trinket	Argonnessen Trinket
+Arrow, Acid	Arrow, Acid
+Arrow, Alchemist's Fire	Arrow, Alchemist's Fire
+Arrow, Armor-Piercing	Arrow, Armor-Piercing
+Arrow, Blessed	Arrow, Blessed
+Arrow, Bludgeoning	Arrow, Bludgeoning
+Arrow, Brutal	Arrow, Brutal
+Arrow, Desecrated	Arrow, Desecrated
+Arrow, Holy Water	Arrow, Holy Water
+Arrow, Incendiary	Arrow, Incendiary
+Arrow, Ranging	Arrow, Ranging
+Arrow, Slashing	Arrow, Slashing
+Arrow, War Oil	Arrow, War Oil
+Arrow, Whistling	Arrow, Whistling
+Arrows (20)	Arrows (20)
+Assassin's Blood	Assassin's Blood
+Automatic Rifle	Automatic Rifle
+Azuremite	Azuremite
+Azurite	Azurite
+Backpack	Backpack
+Bagpipes	Bagpipes
+Ball Bearing	Ball Bearing
+Ball Bearings	Ball Bearings
+Ball Bearings (bag of 1,000)	Ball Bearings (bag of 1,000)
+Ballista Trap	Ballista Trap
+Banded Agate	Banded Agate
+Bandolier	Bandolier
+Barrel	Barrel
+Barrier Peaks Trinket	Barrier Peaks Trinket
+Basic Fishing Equipment	Basic Fishing Equipment
+Basic Poison (vial)	Basic Poison (vial)
+Basket	Basket
+Beast Whistle	Beast Whistle
+Bedroll	Bedroll
+Bejeweled gold bracelet	Bejeweled gold bracelet
+Bejeweled ivory drinking horn with gold filigree	Bejeweled ivory drinking horn with gold filigree
+Bejeweled ivory drinking horn with gold inlay (Brazen Coalition)	Bejeweled ivory drinking horn with gold inlay (Brazen Coalition)
+Bell	Bell
+Bellows Cannister	Bellows Cannister
+Binoculars	Binoculars
+Birdpipes	Birdpipes
+Bit and bridle	Bit and bridle
+Biza's Breath	Biza's Breath
+Black Ghost Orchid Seed	Black Ghost Orchid Seed
+Black Opal	Black Opal
+Black Pearl	Black Pearl
+Black Sap	Black Sap
+Black Sapphire	Black Sapphire
+Black velvet mask stitched with silver thread	Black velvet mask stitched with silver thread
+Blanket	Blanket
+Blasting Powder	Blasting Powder
+Blessed Stake	Blessed Stake
+Blight Ichor	Blight Ichor
+Block and Tackle	Block and Tackle
+Blood of the Lycanthrope	Blood of the Lycanthrope
+Bloodstone	Bloodstone
+Blowgun Needle	Blowgun Needle
+Blowgun Needles (50)	Blowgun Needles (50)
+Blue Quartz	Blue Quartz
+Blue Sapphire	Blue Sapphire
+Blue Spinel	Blue Spinel
+Bolt, Acid	Bolt, Acid
+Bolt, Alchemist's Fire	Bolt, Alchemist's Fire
+Bolt, Armor-Piercing	Bolt, Armor-Piercing
+Bolt, Blessed	Bolt, Blessed
+Bolt, Bludgeoning	Bolt, Bludgeoning
+Bolt, Brutal	Bolt, Brutal
+Bolt, Desecrated	Bolt, Desecrated
+Bolt, Holy Water	Bolt, Holy Water
+Bolt, Incendiary	Bolt, Incendiary
+Bolt, Ranging	Bolt, Ranging
+Bolt, Slashing	Bolt, Slashing
+Bolt, War Oil	Bolt, War Oil
+Bolt, Whistling	Bolt, Whistling
+Bolts (20)	Bolts (20)
+Bomb	Bomb
+Bombard	Bombard
+Book	Book
+Borderlands Tabard	Borderlands Tabard
+Bottle stopper cork embossed with gold leaf and set with amethysts	Bottle stopper cork embossed with gold leaf and set with amethysts
+Bottle, Glass	Bottle, Glass
+Box of turquoise animal figurines	Box of turquoise animal figurines
+Brass mug with jade inlay	Brass mug with jade inlay
+Bread (loaf)	Bread (loaf)
+Breath of Beleth	Breath of Beleth
+Breath of the Wind-Touched Jerbeen Figurine	Breath of the Wind-Touched Jerbeen Figurine
+Brewer's Supplies	Brewer's Supplies
+Bronze crown	Bronze crown
+Bronze spyglass (Brazen Coalition)	Bronze spyglass (Brazen Coalition)
+Bucket	Bucket
+Buckler	Buckler
+Bullet	Bullet
+Bullets (10)	Bullets (10)
+Bullets, Firearm (10)	Bullets, Firearm (10)
+Bullets, Sling (20)	Bullets, Sling (20)
+Bundle of sheet music representing the lost dirges of a famous composer	Bundle of sheet music representing the lost dirges of a famous composer
+Burglar's Pack	Burglar's Pack
+Burnt Othur Fumes	Burnt Othur Fumes
+Calligrapher's Supplies	Calligrapher's Supplies
+Caltrop	Caltrop
+Caltrops	Caltrops
+Caltrops (bag of 20)	Caltrops (bag of 20)
+Camel	Camel
+Candle	Candle
+Cannonball	Cannonball
+Cannonballs (5)	Cannonballs (5)
+Canoe	Canoe
+Canvas (1 sq. yd.)	Canvas (1 sq. yd.)
+Captain's Chair	Captain's Chair
+Carbonic Suit	Carbonic Suit
+Carnelian	Carnelian
+Carpenter's Tools	Carpenter's Tools
+Carriage	Carriage
+Carrion Crawler Mucus	Carrion Crawler Mucus
+Cart	Cart
+Cartographer's Tools	Cartographer's Tools
+Carved bone statuette	Carved bone statuette
+Carved harp of exotic wood with ivory inlay and zircon gems	Carved harp of exotic wood with ivory inlay and zircon gems
+Carved ivory statuette	Carved ivory statuette
+Carved jade statuette (River Heralds)	Carved jade statuette (River Heralds)
+Carved wooden harp with ivory inlay and zircon gems	Carved wooden harp with ivory inlay and zircon gems
+Case, Crossbow Bolt	Case, Crossbow Bolt
+Case, Map or Scroll	Case, Map or Scroll
+Ceremonial electrum dagger with a black pearl in the pommel	Ceremonial electrum dagger with a black pearl in the pommel
+Ceremonial gold armor with black pearls	Ceremonial gold armor with black pearls
+Ceremonial silver dagger with gold pommel and black pearl (Legion of Dusk)	Ceremonial silver dagger with gold pommel and black pearl (Legion of Dusk)
+Chain	Chain
+Chain (10 feet)	Chain (10 feet)
+Chalcedony	Chalcedony
+Chalk (1 piece)	Chalk (1 piece)
+Chariot	Chariot
+Cheese (wedge)	Cheese (wedge)
+Chest	Chest
+Chicken	Chicken
+Chrysoberyl	Chrysoberyl
+Chrysoprase	Chrysoprase
+Chunk of Meat	Chunk of Meat
+Cinnamon	Cinnamon
+Citrine	Citrine
+Climber's Kit	Climber's Kit
+Cloaking	Cloaking
+Cloth-of-gold vestments	Cloth-of-gold vestments
+Cloth-of-gold vestments (Legion of Dusk)	Cloth-of-gold vestments (Legion of Dusk)
+Clothing, cold weather	Clothing, cold weather
+Cloves	Cloves
+Cobbler's Tools	Cobbler's Tools
+Comm Set	Comm Set
+Common Clothes	Common Clothes
+Common Wine (bottle)	Common Wine (bottle)
+Common Wine (pitcher)	Common Wine (pitcher)
+Component Pouch	Component Pouch
+Concealed Blade	Concealed Blade
+Concussion Grenade	Concussion Grenade
+Cook's Utensils	Cook's Utensils
+Copper (1 lb)	Copper (1 lb)
+Copper chalice with silver filigree	Copper chalice with silver filigree
+Copper stein with silver filigree (Brazen Coalition)	Copper stein with silver filigree (Brazen Coalition)
+Coral	Coral
+Costume	Costume
+Costume Clothes	Costume Clothes
+Cotton Cloth (1 sq. yd.)	Cotton Cloth (1 sq. yd.)
+Cow	Cow
+Crampons	Crampons
+Crossbow Bolt	Crossbow Bolt
+Crossbow Bolt Case	Crossbow Bolt Case
+Crossbow Bolts (20)	Crossbow Bolts (20)
+Crowbar	Crowbar
+Cultist's Robe	Cultist's Robe
+Damselfly Ship	Damselfly Ship
+Deathdance	Deathdance
+Designer Clothes	Designer Clothes
+Detailed, life-sized dragonborn skull cast in electrum	Detailed, life-sized dragonborn skull cast in electrum
+Diamond	Diamond
+Dice Set	Dice Set
+Diplomat's Pack	Diplomat's Pack
+Disguise Kit	Disguise Kit
+Dogsled	Dogsled
+Donkey	Donkey
+Dragon Shot	Dragon Shot
+Dragon's Blood	Dragon's Blood
+Dragonchess Set	Dragonchess Set
+Dreamlily	Dreamlily
+Drow Poison	Drow Poison
+Druidic Focus	Druidic Focus
+Drum	Drum
+Dulcimer	Dulcimer
+Dungeoneer's Pack	Dungeoneer's Pack
+Dust of the Mummy	Dust of the Mummy
+Dustbloom Spices	Dustbloom Spices
+Dynamite	Dynamite
+Dynamite (stick)	Dynamite (stick)
+Dynamite Stick	Dynamite Stick
+Elderberry Everwine	Elderberry Everwine
+Elephant	Elephant
+Elven Trinket	Elven Trinket
+Emblem	Emblem
+Embroidered glove set with jewel chips	Embroidered glove set with jewel chips
+Embroidered silk and velvet mantle set with numerous moonstones	Embroidered silk and velvet mantle set with numerous moonstones
+Embroidered silk handkerchief	Embroidered silk handkerchief
+Emerald	Emerald
+Energy Cell	Energy Cell
+Engineer's Pack	Engineer's Pack
+Engineer's Station	Engineer's Station
+Entertainer's Pack	Entertainer's Pack
+Environ Suit	Environ Suit
+Escape Pods	Escape Pods
+Essence of Ether	Essence of Ether
+Exotic Saddle	Exotic Saddle
+Explorer's Pack	Explorer's Pack
+Explosive Bullet	Explosive Bullet
+Explosive Bullets (10)	Explosive Bullets (10)
+Explosive Cannonball	Explosive Cannonball
+Explosive Seed	Explosive Seed
+Eye Agate	Eye Agate
+Eye patch decorated with tiny blue sapphires and moonstones	Eye patch decorated with tiny blue sapphires and moonstones
+Eye patch with a mock eye set in blue sapphire and moonstone	Eye patch with a mock eye set in blue sapphire and moonstone
+Eye patch with a mock eye set in blue sapphire and moonstone (Brazen Coalition)	Eye patch with a mock eye set in blue sapphire and moonstone (Brazen Coalition)
+Eyescratch	Eyescratch
+Feathered mantle with emerald clasp (Sun Empire)	Feathered mantle with emerald clasp (Sun Empire)
+Feed (1 day)	Feed (1 day)
+Feed (per day)	Feed (per day)
+Ferrofiber Hardsuit	Ferrofiber Hardsuit
+Ffolk Sailing Ship	Ffolk Sailing Ship
+Fighter Bay	Fighter Bay
+Fine Clothes	Fine Clothes
+Fine Wine (bottle)	Fine Wine (bottle)
+Fine gold chain set with a fire opal	Fine gold chain set with a fire opal
+Fine gold chain with fire opals (Legion of Dusk)	Fine gold chain with fire opals (Legion of Dusk)
+Fine robe with dinosaur feathers and silver embroidery (Sun Empire)	Fine robe with dinosaur feathers and silver embroidery (Sun Empire)
+Fine steel rapier with gold filigree hilt (Legion of Dusk)	Fine steel rapier with gold filigree hilt (Legion of Dusk)
+Finely articulated jade glove (River Heralds)	Finely articulated jade glove (River Heralds)
+Fire Bomb	Fire Bomb
+Fire Opal	Fire Opal
+Firelance Venom	Firelance Venom
+Fishing Tackle	Fishing Tackle
+Flare	Flare
+Flares (5)	Flares (5)
+Flashlight	Flashlight
+Flask	Flask
+Flight Jacket	Flight Jacket
+Flour	Flour
+Flute	Flute
+Flying Fish Ship	Flying Fish Ship
+Forgery Kit	Forgery Kit
+Fragmentation Grenade	Fragmentation Grenade
+Frostfell and Everice Trinket	Frostfell and Everice Trinket
+Galley	Galley
+Gaming Set (Digital Games)	Gaming Set (Digital Games)
+Gargath Wool Clothes	Gargath Wool Clothes
+Garnet	Garnet
+Gasparian Tree Nuts	Gasparian Tree Nuts
+Gate Warden Trinket	Gate Warden Trinket
+Giant Trinket	Giant Trinket
+Gift of the Wind-Touched Jerbeen Figurine	Gift of the Wind-Touched Jerbeen Figurine
+Gilded royal coach or funeral barge	Gilded royal coach or funeral barge
+Ginger	Ginger
+Glassblower's Tools	Glassblower's Tools
+Glaur	Glaur
+Gluebomb	Gluebomb
+Goat	Goat
+Gold (1 lb)	Gold (1 lb)
+Gold Bar (5-pound)	Gold Bar (5-pound)
+Gold basin with rubies (Legion of Dusk)	Gold basin with rubies (Legion of Dusk)
+Gold bird cage with electrum filigree	Gold bird cage with electrum filigree
+Gold birdcage with electrum filigree	Gold birdcage with electrum filigree
+Gold bracelet	Gold bracelet
+Gold chalice (Legion of Dusk)	Gold chalice (Legion of Dusk)
+Gold chalice set with emeralds (Legion of Dusk)	Gold chalice set with emeralds (Legion of Dusk)
+Gold circlet set with four aquamarines	Gold circlet set with four aquamarines
+Gold comb shaped like a dragon with red garnets as eyes	Gold comb shaped like a dragon with red garnets as eyes
+Gold cup set with emeralds	Gold cup set with emeralds
+Gold dragon comb set with red garnets as eyes	Gold dragon comb set with red garnets as eyes
+Gold idol	Gold idol
+Gold jewelry box with platinum filigree	Gold jewelry box with platinum filigree
+Gold jewelry box with platinum filigree (Brazen Coalition)	Gold jewelry box with platinum filigree (Brazen Coalition)
+Gold locket with a painted portrait inside	Gold locket with a painted portrait inside
+Gold locket with a painted portrait inside (Legion of Dusk)	Gold locket with a painted portrait inside (Legion of Dusk)
+Gold music box	Gold music box
+Gold music box (Brazen Coalition)	Gold music box (Brazen Coalition)
+Gold pendant with black onyx (Legion of Dusk)	Gold pendant with black onyx (Legion of Dusk)
+Gold ring set with bloodstones	Gold ring set with bloodstones
+Gold ring with turquoise (Legion of Dusk)	Gold ring with turquoise (Legion of Dusk)
+Gold statuette set with rubies	Gold statuette set with rubies
+Gold-plated ceremonial helmet and pauldrons (Legion of Dusk)	Gold-plated ceremonial helmet and pauldrons (Legion of Dusk)
+Gold-plated sextant with topaz (Brazen Coalition)	Gold-plated sextant with topaz (Brazen Coalition)
+Goose Egg Trinket	Goose Egg Trinket
+Grace of the Wind-Touched Jerbeen Figurine	Grace of the Wind-Touched Jerbeen Figurine
+Grappling Gun	Grappling Gun
+Grappling Hook	Grappling Hook
+Grenade Launcher	Grenade Launcher
+Grenade, Fragmentation	Grenade, Fragmentation
+Grenade, Smoke	Grenade, Smoke
+Grenades (5)	Grenades (5)
+Gunner Bay	Gunner Bay
+Gunpowder (keg)	Gunpowder (keg)
+Gunpowder (powder horn)	Gunpowder (powder horn)
+Gunpowder Horn	Gunpowder Horn
+Gunpowder Keg	Gunpowder Keg
+Hammer	Hammer
+Hammerhead Ship	Hammerhead Ship
+Hand Drum	Hand Drum
+Handheld mirror set in a painted wooden frame	Handheld mirror set in a painted wooden frame
+Hematite	Hematite
+Hempen Rope (50 feet)	Hempen Rope (50 feet)
+Herbalism Kit	Herbalism Kit
+Hexaplate Suit	Hexaplate Suit
+Holster	Holster
+Holy Symbol	Holy Symbol
+Holy Water	Holy Water
+Holy Water (flask)	Holy Water (flask)
+Hooded Lantern	Hooded Lantern
+Horn	Horn
+Horror Trinket	Horror Trinket
+Horse, Draft	Horse, Draft
+Horse, Riding	Horse, Riding
+Hourglass	Hourglass
+Hunk of Cheese	Hunk of Cheese
+Hunting Rifle	Hunting Rifle
+Hunting Trap	Hunting Trap
+Hypodermic Arrow	Hypodermic Arrow
+Hypodermic Needle	Hypodermic Needle
+Igniter	Igniter
+Imported Fruits	Imported Fruits
+Ink	Ink
+Ink (1-ounce bottle)	Ink (1-ounce bottle)
+Ink Pen	Ink Pen
+Insect Repellent (block of incense)	Insect Repellent (block of incense)
+Insect Repellent (greasy salve)	Insect Repellent (greasy salve)
+Interface Rig	Interface Rig
+Iron	Iron
+Iron (1 lb)	Iron (1 lb)
+Iron Net	Iron Net
+Iron Spike	Iron Spike
+Iron Spikes (10)	Iron Spikes (10)
+Jacinth	Jacinth
+Jade	Jade
+Jade bowl (River Heralds)	Jade bowl (River Heralds)
+Jade breastplate (River Heralds)	Jade breastplate (River Heralds)
+Jade game board with gold playing pieces	Jade game board with gold playing pieces
+Jade game board with solid gold playing pieces	Jade game board with solid gold playing pieces
+Jade headpiece (River Heralds)	Jade headpiece (River Heralds)
+Jade sword with amber (River Heralds)	Jade sword with amber (River Heralds)
+Jade totem with diamond eyes (River Heralds)	Jade totem with diamond eyes (River Heralds)
+Jasper	Jasper
+Jet	Jet
+Jeweled anklet	Jeweled anklet
+Jeweled anklet (Brazen Coalition)	Jeweled anklet (Brazen Coalition)
+Jeweled gold crown	Jeweled gold crown
+Jeweled platinum ring	Jeweled platinum ring
+Jeweler's Tools	Jeweler's Tools
+Jug	Jug
+Keelboat	Keelboat
+Keg of Alchemist's Fire	Keg of Alchemist's Fire
+Khyber Trinket	Khyber Trinket
+Krash	Krash
+Ladder	Ladder
+Ladder (10-foot)	Ladder (10-foot)
+Lamprey Ship	Lamprey Ship
+Lantern, Bullseye	Lantern, Bullseye
+Lantern, Hooded	Lantern, Hooded
+Lapis Lazuli	Lapis Lazuli
+Large gold bracelet	Large gold bracelet
+Large gold bracelet (Legion of Dusk)	Large gold bracelet (Legion of Dusk)
+Large jade totem (River Heralds)	Large jade totem (River Heralds)
+Large well-made tapestry	Large well-made tapestry
+Large well-made tapestry (Legion of Dusk)	Large well-made tapestry (Legion of Dusk)
+Laser Pistol	Laser Pistol
+Laser Rifle	Laser Rifle
+Leatherworker's Tools	Leatherworker's Tools
+Life Support	Life Support
+Linen (1 sq. yd.)	Linen (1 sq. yd.)
+Living Ship	Living Ship
+Loaf of Bread	Loaf of Bread
+Lock	Lock
+Log Keeper	Log Keeper
+Lolth's Sting	Lolth's Sting
+Longhorn	Longhorn
+Longship	Longship
+Lorehold Trinket	Lorehold Trinket
+Lute	Lute
+Lute crafted of exotic wood with mother-of-pearl inlay and zircon gems (Brazen Coalition)	Lute crafted of exotic wood with mother-of-pearl inlay and zircon gems (Brazen Coalition)
+Lyre	Lyre
+Magazine	Magazine
+Magnifying Glass	Magnifying Glass
+Malachite	Malachite
+Malice	Malice
+Manacles	Manacles
+Manipulators	Manipulators
+Map	Map
+Map or Scroll Case	Map or Scroll Case
+Marble font with gold inlay (Legion of Dusk)	Marble font with gold inlay (Legion of Dusk)
+Marine's Pack	Marine's Pack
+Mason's Tools	Mason's Tools
+Mastercraft Instrument	Mastercraft Instrument
+Masterpiece painting in mahogany frame with gold inlay (Legion of Dusk)	Masterpiece painting in mahogany frame with gold inlay (Legion of Dusk)
+Mastiff	Mastiff
+Merchant's Scale	Merchant's Scale
+Mess Kit	Mess Kit
+Midnight Tears	Midnight Tears
+Military Saddle	Military Saddle
+Miner's Pick	Miner's Pick
+Mirror	Mirror
+Modern Bullet	Modern Bullet
+Modern Bullets (10)	Modern Bullets (10)
+Monoplate Suit	Monoplate Suit
+Monster Hunter's Pack	Monster Hunter's Pack
+Moonstone	Moonstone
+Moorbounder	Moorbounder
+Moss Agate	Moss Agate
+Mournland Trinket	Mournland Trinket
+Mule	Mule
+Muroosa Balm	Muroosa Balm
+Nanofiber Vest	Nanofiber Vest
+Nautiloid	Nautiloid
+Navigator's Tools	Navigator's Tools
+Necklace of electrum medallions with red and blue tourmalines (Brazen Coalition)	Necklace of electrum medallions with red and blue tourmalines (Brazen Coalition)
+Necklace of jade and pink pearls (River Heralds)	Necklace of jade and pink pearls (River Heralds)
+Necklace string of small pink pearls	Necklace string of small pink pearls
+Needler Pistol	Needler Pistol
+Needles (50)	Needles (50)
+Net	Net
+Nightspider	Nightspider
+Noble's Jewelry	Noble's Jewelry
+Noisemaker	Noisemaker
+Norlander Longship	Norlander Longship
+Obsidian	Obsidian
+Obsidian statuette with gold fittings and inlay	Obsidian statuette with gold fittings and inlay
+Oil (flask)	Oil (flask)
+Oil of Taggit	Oil of Taggit
+Old masterpiece painting	Old masterpiece painting
+Olisuba Leaf	Olisuba Leaf
+Oloore Root Teabag	Oloore Root Teabag
+Omnitool	Omnitool
+Onyx	Onyx
+Opal	Opal
+Orb	Orb
+Ox	Ox
+Pack Saddle	Pack Saddle
+Painted gold child's sarcophagus	Painted gold child's sarcophagus
+Painted gold war mask	Painted gold war mask
+Painter's Supplies	Painter's Supplies
+Pair of engraved bone dice	Pair of engraved bone dice
+Pair of engraved bone dice (Brazen Coalition)	Pair of engraved bone dice (Brazen Coalition)
+Pale Tincture	Pale Tincture
+Pan Flute	Pan Flute
+Paper	Paper
+Paper (one sheet)	Paper (one sheet)
+Paper Cartridge Bullet	Paper Cartridge Bullet
+Paper Cartridge Bullet, Armor-Piercing	Paper Cartridge Bullet, Armor-Piercing
+Paper Cartridge Bullet, Blessed	Paper Cartridge Bullet, Blessed
+Paper Cartridge Bullet, Brutal	Paper Cartridge Bullet, Brutal
+Paper Cartridge Bullet, Desecrated	Paper Cartridge Bullet, Desecrated
+Paper Cartridge Bullet, Incendiary	Paper Cartridge Bullet, Incendiary
+Paralysis Pistol	Paralysis Pistol
+Parchment	Parchment
+Parchment (one sheet)	Parchment (one sheet)
+Pearl	Pearl
+Pepper	Pepper
+Perfume	Perfume
+Perfume (vial)	Perfume (vial)
+Peridot	Peridot
+Pewter mug with green spinels (Brazen Coalition)	Pewter mug with green spinels (Brazen Coalition)
+Pig	Pig
+Pilot's Seat	Pilot's Seat
+Pitcher	Pitcher
+Piton	Piton
+Plainscow	Plainscow
+Planar Philosopher Trinket	Planar Philosopher Trinket
+Platinum (1 lb)	Platinum (1 lb)
+Platinum bracelet set with a sapphire	Platinum bracelet set with a sapphire
+Platinum bracelet set with an emerald	Platinum bracelet set with an emerald
+Platinum headdress with topaz sun symbol (Sun Empire)	Platinum headdress with topaz sun symbol (Sun Empire)
+Platinum ring with yellow sapphire (Sun Empire)	Platinum ring with yellow sapphire (Sun Empire)
+Platinum staff topped with amber (Sun Empire)	Platinum staff topped with amber (Sun Empire)
+Playing Card Set	Playing Card Set
+Poison, Basic	Poison, Basic
+Poisoner's Kit	Poisoner's Kit
+Pole	Pole
+Pole (10-foot)	Pole (10-foot)
+Pony	Pony
+Pot, Iron	Pot, Iron
+Potter's Tools	Potter's Tools
+Pouch	Pouch
+Prespra	Prespra
+Pride Silk	Pride Silk
+Pride Silk Outfit	Pride Silk Outfit
+Priest's Pack	Priest's Pack
+Prismari Trinket	Prismari Trinket
+Probe	Probe
+Prosthetics	Prosthetics
+Purple Worm Poison	Purple Worm Poison
+Quadcorder	Quadcorder
+Quandrix Trinket	Quandrix Trinket
+Quartz	Quartz
+Quiver	Quiver
+Rain Catcher	Rain Catcher
+Ram, Portable	Ram, Portable
+Rations (1 day)	Rations (1 day)
+Razor Wire	Razor Wire
+Reliquary	Reliquary
+Renaissance Bullet	Renaissance Bullet
+Renaissance Bullets (10)	Renaissance Bullets (10)
+Researcher's Pack	Researcher's Pack
+Residuum	Residuum
+Residuum Enchanting Slate	Residuum Enchanting Slate
+Retractable Shield	Retractable Shield
+Revolver	Revolver
+Rhodochrosite	Rhodochrosite
+Riding Saddle	Riding Saddle
+Roach	Roach
+Robe	Robe
+Robes	Robes
+Robot Controller	Robot Controller
+Rope	Rope
+Rowboat	Rowboat
+Ruby	Ruby
+Rusted Hulk	Rusted Hulk
+Sack	Sack
+Saddle, Exotic	Saddle, Exotic
+Saddle, Military	Saddle, Military
+Saddle, Riding	Saddle, Riding
+Saddlebags	Saddlebags
+Saffron	Saffron
+Sage's Trinket	Sage's Trinket
+Sailing Ship	Sailing Ship
+Salt	Salt
+Sardonyx	Sardonyx
+Sarlona Trinket	Sarlona Trinket
+Scatter Bullet	Scatter Bullet
+Scatter Bullets (10)	Scatter Bullets (10)
+Scholar's Pack	Scholar's Pack
+Scorpion Ship	Scorpion Ship
+Sealing Wax	Sealing Wax
+Secondhand Steal Trinket	Secondhand Steal Trinket
+Seeing Glass	Seeing Glass
+Semiautomatic Pistol	Semiautomatic Pistol
+Sensors	Sensors
+Serpent Venom	Serpent Venom
+Set of gold nesting dolls	Set of gold nesting dolls
+Shadowsteel Focus	Shadowsteel Focus
+Shawm	Shawm
+Sheep	Sheep
+Shells (10)	Shells (10)
+Shield Generator	Shield Generator
+Shot (10)	Shot (10)
+Shotgun	Shotgun
+Shovel	Shovel
+Shrike Ship	Shrike Ship
+Signal Jammer	Signal Jammer
+Signal Whistle	Signal Whistle
+Signet Ring	Signet Ring
+Silk	Silk
+Silk (1 sq. yd.)	Silk (1 sq. yd.)
+Silk Rope (50 feet)	Silk Rope (50 feet)
+Silk robe with gold embroidery	Silk robe with gold embroidery
+Silk vestments with gold embroidery	Silk vestments with gold embroidery
+Silver (1 lb)	Silver (1 lb)
+Silver Bar (2-pound)	Silver Bar (2-pound)
+Silver Bar (5-pound)	Silver Bar (5-pound)
+Silver and gold brooch	Silver and gold brooch
+Silver chalice set with moonstones	Silver chalice set with moonstones
+Silver ewer	Silver ewer
+Silver headdress with amber and red-coral feathers (Sun Empire)	Silver headdress with amber and red-coral feathers (Sun Empire)
+Silver medallion (Sun Empire)	Silver medallion (Sun Empire)
+Silver necklace with a gemstone pendant	Silver necklace with a gemstone pendant
+Silver necklace with an amber pendant (Sun Empire)	Silver necklace with an amber pendant (Sun Empire)
+Silver shoulder piece with amber and garnet (Sun Empire)	Silver shoulder piece with amber and garnet (Sun Empire)
+Silver-plated steel longsword with jet set in hilt	Silver-plated steel longsword with jet set in hilt
+Silverquill Trinket	Silverquill Trinket
+Skyship	Skyship
+Sled	Sled
+Sled Dog	Sled Dog
+Sledgehammer	Sledgehammer
+Sleep Grenade	Sleep Grenade
+Sling Bullet, Acid	Sling Bullet, Acid
+Sling Bullet, Alchemist's Fire	Sling Bullet, Alchemist's Fire
+Sling Bullet, Armor-Piercing	Sling Bullet, Armor-Piercing
+Sling Bullet, Blessed	Sling Bullet, Blessed
+Sling Bullet, Brutal	Sling Bullet, Brutal
+Sling Bullet, Desecrated	Sling Bullet, Desecrated
+Sling Bullet, Holy Water	Sling Bullet, Holy Water
+Sling Bullet, Incendiary	Sling Bullet, Incendiary
+Sling Bullet, Piercing	Sling Bullet, Piercing
+Sling Bullet, Ranging	Sling Bullet, Ranging
+Sling Bullet, War Oil	Sling Bullet, War Oil
+Sling Bullet, Whistling	Sling Bullet, Whistling
+Sling Bullets (20)	Sling Bullets (20)
+Small gold bracelet	Small gold bracelet
+Small gold idol	Small gold idol
+Small gold statuette set with rubies	Small gold statuette set with rubies
+Small mirror set in a painted wooden frame	Small mirror set in a painted wooden frame
+Smith's Tools	Smith's Tools
+Smoke Bomb	Smoke Bomb
+Smoke Grenade	Smoke Grenade
+Snowshoes	Snowshoes
+Soap	Soap
+Songhorn	Songhorn
+Soothsalts	Soothsalts
+Space Galleon	Space Galleon
+Spacer's Pack	Spacer's Pack
+Spaceship Trinket	Spaceship Trinket
+Spellbook	Spellbook
+Spikes, Iron	Spikes, Iron
+Spinel	Spinel
+Sprig of Mistletoe	Sprig of Mistletoe
+Spyglass	Spyglass
+Squid Ship	Squid Ship
+Stabling (1 day)	Stabling (1 day)
+Stabling (per day)	Stabling (per day)
+Star Moth	Star Moth
+Star Rose Quartz	Star Rose Quartz
+Star Ruby	Star Ruby
+Star Sapphire	Star Sapphire
+Starshield Hardsuit	Starshield Hardsuit
+Steel Mirror	Steel Mirror
+Steppe Rations	Steppe Rations
+Stink Bomb	Stink Bomb
+Stitching Needle	Stitching Needle
+String	String
+Sun amulet on a beaded chain (Sun Empire)	Sun amulet on a beaded chain (Sun Empire)
+Surveyor's Pack	Surveyor's Pack
+Suude (Blue)	Suude (Blue)
+Suude (Brown)	Suude (Brown)
+Suude (Red)	Suude (Red)
+Swarm Repellent	Swarm Repellent
+Tactical Carbonic Hardsuit	Tactical Carbonic Hardsuit
+Tactical Nanofiber Vest	Tactical Nanofiber Vest
+Tactical Vest	Tactical Vest
+Tangler Grenade	Tangler Grenade
+Tankard	Tankard
+Tantan	Tantan
+Tea	Tea
+Tej	Tej
+Teleporters	Teleporters
+Tent	Tent
+Theki Root	Theki Root
+Thelarr	Thelarr
+Thessaltoxin	Thessaltoxin
+Three-Dragon Ante Set	Three-Dragon Ante Set
+Tiger Eye	Tiger Eye
+Tinderbox	Tinderbox
+Tinker's Tools	Tinker's Tools
+Tiny jade figurine (River Heralds)	Tiny jade figurine (River Heralds)
+Tocken	Tocken
+Tooth Capsule	Tooth Capsule
+Topaz	Topaz
+Torch	Torch
+Torpor	Torpor
+Totem	Totem
+Tourmaline	Tourmaline
+Tower Shield	Tower Shield
+Tractor Beam	Tractor Beam
+Traveler's Clothes	Traveler's Clothes
+Traveler's Guide	Traveler's Guide
+Traveler's Lantern	Traveler's Lantern
+Treasure chest crafted of exotic wood with gold fittings and opals (Brazen Coalition)	Treasure chest crafted of exotic wood with gold fittings and opals (Brazen Coalition)
+Trigger Bomb	Trigger Bomb
+Triplate Suit	Triplate Suit
+Truth Serum	Truth Serum
+Turquoise	Turquoise
+Turtle Ship	Turtle Ship
+Two-Person Tent	Two-Person Tent
+Tyrant Ship	Tyrant Ship
+Ulcrun	Ulcrun
+Velvet doublet with gold buttons (Legion of Dusk)	Velvet doublet with gold buttons (Legion of Dusk)
+Vent Tape	Vent Tape
+Vial	Vial
+Viol	Viol
+Wagon	Wagon
+Wargong	Wargong
+Warhorse	Warhorse
+Warship	Warship
+Wasp Ship	Wasp Ship
+Watcher's Candle	Watcher's Candle
+Waterskin	Waterskin
+Weaver's Tools	Weaver's Tools
+Well-made tapestry that is 10 feet by 10 feet	Well-made tapestry that is 10 feet by 10 feet
+Whaleboat	Whaleboat
+Wheat	Wheat
+Whetstone	Whetstone
+White Ghost Orchid Seed	White Ghost Orchid Seed
+Whitestone	Whitestone
+Willowshade Oil	Willowshade Oil
+Wind glider	Wind glider
+Witherbloom Trinket	Witherbloom Trinket
+Woodcarver's Tools	Woodcarver's Tools
+Wooden Staff	Wooden Staff
+Wristwatch	Wristwatch
+Writing Kit	Writing Kit
+Wyvern Poison	Wyvern Poison
+Xen'drik Trinket	Xen'drik Trinket
+Yahcha	Yahcha
+Yarting	Yarting
+Yellow Death	Yellow Death
+Yellow Sapphire	Yellow Sapphire
+Yew Wand	Yew Wand
+Zabou	Zabou
+Zeal	Zeal
+Zircon	Zircon
+Zulkoon	Zulkoon

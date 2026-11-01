@@ -1,0 +1,101 @@
+1,000 GP Gemstones	1,000 GP Gemstones
+1,000 gp Gemstones	1,000 gp Gemstones
+10 GP Gemstones	10 GP Gemstones
+10 gp Gemstones	10 gp Gemstones
+100 GP Gemstones	100 GP Gemstones
+100 gp Gemstones	100 gp Gemstones
+2,500 GP Art Objects	2,500 GP Art Objects
+2,500 gp Art Objects	2,500 gp Art Objects
+25 GP Art Objects	25 GP Art Objects
+25 gp Art Objects	25 gp Art Objects
+250 GP Art Objects	250 GP Art Objects
+250 gp Art Objects	250 gp Art Objects
+5,000 GP Gemstones	5,000 GP Gemstones
+5,000 gp Gemstones	5,000 gp Gemstones
+50 GP Gemstones	50 GP Gemstones
+50 gp Gemstones	50 gp Gemstones
+500 GP Gemstones	500 GP Gemstones
+500 gp Gemstones	500 gp Gemstones
+7,500 GP Art Objects	7,500 GP Art Objects
+7,500 gp Art Objects	7,500 gp Art Objects
+750 GP Art Objects	750 GP Art Objects
+750 gp Art Objects	750 gp Art Objects
+Arcana - Common	Arcana - Common
+Arcana - Legendary	Arcana - Legendary
+Arcana - Rare	Arcana - Rare
+Arcana - Uncommon	Arcana - Uncommon
+Arcana - Very Rare	Arcana - Very Rare
+Armaments - Common	Armaments - Common
+Armaments - Legendary	Armaments - Legendary
+Armaments - Rare	Armaments - Rare
+Armaments - Uncommon	Armaments - Uncommon
+Armaments - Very Rare	Armaments - Very Rare
+Beneficial Manifestations	Beneficial Manifestations
+By Level - Levels 1-4	By Level - Levels 1-4
+By Level - Levels 11-16	By Level - Levels 11-16
+By Level - Levels 17-20	By Level - Levels 17-20
+By Level - Levels 5-10	By Level - Levels 5-10
+Damage Types	Damage Types
+Derro Madness	Derro Madness
+Detrimental Manifestations	Detrimental Manifestations
+Dragon Hoard, Adult	Dragon Hoard, Adult
+Dragon Hoard, Ancient	Dragon Hoard, Ancient
+Dragon Hoard, Wyrmling	Dragon Hoard, Wyrmling
+Dragon Hoard, Young	Dragon Hoard, Young
+Implements - Common	Implements - Common
+Implements - Legendary	Implements - Legendary
+Implements - Rare	Implements - Rare
+Implements - Uncommon	Implements - Uncommon
+Implements - Very Rare	Implements - Very Rare
+Individual Treasure, Challenge 0-4	Individual Treasure, Challenge 0-4
+Individual Treasure, Challenge 11-16	Individual Treasure, Challenge 11-16
+Individual Treasure, Challenge 17+	Individual Treasure, Challenge 17+
+Individual Treasure, Challenge 5-10	Individual Treasure, Challenge 5-10
+Magic Item Table A	Magic Item Table A
+Magic Item Table B	Magic Item Table B
+Magic Item Table C	Magic Item Table C
+Magic Item Table D	Magic Item Table D
+Magic Item Table E	Magic Item Table E
+Magic Item Table F	Magic Item Table F
+Magic Item Table G	Magic Item Table G
+Magic Item Table H	Magic Item Table H
+Magic Item Table I	Magic Item Table I
+Major Adaptations	Major Adaptations
+Minor Adaptations	Minor Adaptations
+Relics - Common	Relics - Common
+Relics - Legendary	Relics - Legendary
+Relics - Rare	Relics - Rare
+Relics - Uncommon	Relics - Uncommon
+Relics - Very Rare	Relics - Very Rare
+Treasure Hoard, Challenge 0-4	Treasure Hoard, Challenge 0-4
+Treasure Hoard, Challenge 11-16	Treasure Hoard, Challenge 11-16
+Treasure Hoard, Challenge 17+	Treasure Hoard, Challenge 17+
+Treasure Hoard, Challenge 5-10	Treasure Hoard, Challenge 5-10
+Trinkets	Trinkets
+Whirlpools; Whirlpool Rank	Whirlpools; Whirlpool Rank
+Who Created It or Was Intended to Use It?	Who Created It or Was Intended to Use It?
+Why I Became a Barbarian	Why I Became a Barbarian
+Why I Became a Bard	Why I Became a Bard
+Why I Became a Cleric	Why I Became a Cleric
+Why I Became a Druid	Why I Became a Druid
+Why I Became a Fighter	Why I Became a Fighter
+Why I Became a Monk	Why I Became a Monk
+Why I Became a Paladin	Why I Became a Paladin
+Why I Became a Ranger	Why I Became a Ranger
+Why I Became a Rogue	Why I Became a Rogue
+Why I Became a Sorcerer	Why I Became a Sorcerer
+Why I Became a Warlock	Why I Became a Warlock
+Why I Became a Wizard	Why I Became a Wizard
+Why I Chose the Acolyte Background	Why I Chose the Acolyte Background
+Why I Chose the Charlatan Background	Why I Chose the Charlatan Background
+Why I Chose the Criminal Background	Why I Chose the Criminal Background
+Why I Chose the Entertainer Background	Why I Chose the Entertainer Background
+Why I Chose the Folk Hero Background	Why I Chose the Folk Hero Background
+Why I Chose the Guild Artisan (Guild Merchant) Background	Why I Chose the Guild Artisan (Guild Merchant) Background
+Why I Chose the Hermit Background	Why I Chose the Hermit Background
+Why I Chose the Noble Background	Why I Chose the Noble Background
+Why I Chose the Outlander Background	Why I Chose the Outlander Background
+Why I Chose the Sage Background	Why I Chose the Sage Background
+Why I Chose the Sailor Background	Why I Chose the Sailor Background
+Why I Chose the Soldier Background	Why I Chose the Soldier Background
+Why I Chose the Urchin Background	Why I Chose the Urchin Background

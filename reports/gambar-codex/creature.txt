@@ -1,0 +1,36 @@
+Aberrant Spirit	Aberrant Spirit
+Animated Object	Animated Object
+Beast of the Land	Beast of the Land
+Beast of the Sea	Beast of the Sea
+Beast of the Sky	Beast of the Sky
+Bestial Spirit	Bestial Spirit
+Cackler	Cackler
+Category 1 Krasis	Category 1 Krasis
+Cave Bear	Cave Bear
+Celestial Spirit	Celestial Spirit
+Construct Spirit	Construct Spirit
+Deck Defender	Deck Defender
+Draconic Spirit	Draconic Spirit
+Eldritch Cannon	Eldritch Cannon
+Eldritch Eddy	Eldritch Eddy
+Elemental Spirit	Elemental Spirit
+Fey Spirit	Fey Spirit
+Fiendish Spirit	Fiendish Spirit
+Galvanice Weird	Galvanice Weird
+Giant Canary	Giant Canary
+Giant Fly	Giant Fly
+Giant Insect	Giant Insect
+Guardian Wolf	Guardian Wolf
+Homunculus Servant	Homunculus Servant
+Orc War Chief	Orc War Chief
+Otherworldly Steed	Otherworldly Steed
+Quipper	Quipper
+Reanimated Companion	Reanimated Companion
+Reigar	Reigar
+Steel Defender	Steel Defender
+Swarm of Corrupted Rats	Swarm of Corrupted Rats
+Terran Magen	Terran Magen
+Undead Spirit	Undead Spirit
+Vestige Companion	Vestige Companion
+Veteran	Veteran
+Winged Thrull	Winged Thrull

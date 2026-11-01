@@ -1,0 +1,430 @@
+AI Futurist	AI Futurist
+Aberrant Sorcery	Aberrant Sorcery
+Absolute Chapter	Absolute Chapter
+Acrobat	Acrobat
+Adrenaline Junkie	Adrenaline Junkie
+Alkemancer	Alkemancer
+Ambition Domain (PSA)	Ambition Domain (PSA)
+Amorist	Amorist
+Angelic Scribe	Angelic Scribe
+Antiquarian	Antiquarian
+Apocalypse Domain	Apocalypse Domain
+Apocalypse Sorcery	Apocalypse Sorcery
+Apothecary	Apothecary
+Arcane Maesters' Guild	Arcane Maesters' Guild
+Archivist	Archivist
+Aristocratic	Aristocratic
+Armigers' Guild	Armigers' Guild
+Astral Domain	Astral Domain
+Astral Griffon Patron	Astral Griffon Patron
+Beastblood Guardian	Beastblood Guardian
+Beer Domain	Beer Domain
+Big Game Hunter	Big Game Hunter
+Black Magic	Black Magic
+Black Rider	Black Rider
+Bladeworkers' Guild	Bladeworkers' Guild
+Blood Ascendant	Blood Ascendant
+Blood Domain	Blood Domain
+Blood Mage	Blood Mage
+Blood Magic	Blood Magic
+Blood Magic (Deep Magic)	Blood Magic (Deep Magic)
+Blue Magic	Blue Magic
+Bond of the Aberrant Psion	Bond of the Aberrant Psion
+Bond of the Dragon Herald	Bond of the Dragon Herald
+Bond of the Elemental Spirit	Bond of the Elemental Spirit
+Bond of the Faerie Trickster	Bond of the Faerie Trickster
+Bond of the Fiendish Chain	Bond of the Fiendish Chain
+Bond of the Grave Caller	Bond of the Grave Caller
+Bond of the Guardian Angel	Bond of the Guardian Angel
+Bond of the Living Armament	Bond of the Living Armament
+Bond of the Mirror Mage	Bond of the Mirror Mage
+Bond of the Monster Shaper	Bond of the Monster Shaper
+Bond of the Shambling Plant	Bond of the Shambling Plant
+Bond of the Spirit Animal	Bond of the Spirit Animal
+Bond of the Symbiote	Bond of the Symbiote
+Bond of the Wrathful Giant	Bond of the Wrathful Giant
+Boreal Bloodline	Boreal Bloodline
+Bounty Hunter	Bounty Hunter
+Brigand	Brigand
+Bulwark Warrior	Bulwark Warrior
+Burden of Anonymity	Burden of Anonymity
+Burden of Ascension	Burden of Ascension
+Burden of Atonement	Burden of Atonement
+Burden of Awakening	Burden of Awakening
+Burden of Calamity	Burden of Calamity
+Burden of Discord	Burden of Discord
+Burden of Fame	Burden of Fame
+Burden of Levity	Burden of Levity
+Burden of Mercy	Burden of Mercy
+Burden of Odyssey	Burden of Odyssey
+Burden of Rebirth	Burden of Rebirth
+Burden of Revolution	Burden of Revolution
+Burden of Truth	Burden of Truth
+Burden of Tyranny	Burden of Tyranny
+Burden of the End	Burden of the End
+Calibarons' Guild	Calibarons' Guild
+Carrion King	Carrion King
+Carver Guild	Carver Guild
+Cat Domain	Cat Domain
+Cavalier	Cavalier
+Chaos	Chaos
+Cheerleader	Cheerleader
+Chronomancer	Chronomancer
+Chronurgy Magic	Chronurgy Magic
+Circle of Blood	Circle of Blood
+Circle of Configuration	Circle of Configuration
+Circle of Entropy	Circle of Entropy
+Circle of Mutation	Circle of Mutation
+Circle of Oaks	Circle of Oaks
+Circle of Owls	Circle of Owls
+Circle of Roses	Circle of Roses
+Circle of Xenobiology	Circle of Xenobiology
+Circle of the Blighted	Circle of the Blighted
+Circle of the Forged	Circle of the Forged
+Circle of the Sea	Circle of the Sea
+Circle of the Unbroken	Circle of the Unbroken
+Circle of the Warden	Circle of the Warden
+Clockwork Mage	Clockwork Mage
+Clockwork Sorcery	Clockwork Sorcery
+Clockworkers' Guild	Clockworkers' Guild
+Coalition Arcanist	Coalition Arcanist
+College of Adventurers	College of Adventurers
+College of Bartending	College of Bartending
+College of Birdsong	College of Birdsong
+College of Calligraphy	College of Calligraphy
+College of Cantors	College of Cantors
+College of Choreography	College of Choreography
+College of Chronology	College of Chronology
+College of Chronology (Dark Matter)	College of Chronology (Dark Matter)
+College of Cyberwave	College of Cyberwave
+College of Dirges	College of Dirges
+College of Entropy	College of Entropy
+College of Fools	College of Fools
+College of Jesters	College of Jesters
+College of Masks	College of Masks
+College of Opera	College of Opera
+College of Origami	College of Origami
+College of Paint	College of Paint
+College of Requiems	College of Requiems
+College of Sculpture	College of Sculpture
+College of Tragedy	College of Tragedy
+College of Wyrdsingers	College of Wyrdsingers
+College of the Dirge Singer	College of the Dirge Singer
+College of the Mad God	College of the Mad God
+College of the Road	College of the Road
+Community Domain	Community Domain
+Conspiracy Theorist	Conspiracy Theorist
+Containment Specialist	Containment Specialist
+Contortionist	Contortionist
+Corpse Florist	Corpse Florist
+Cosmic Magic	Cosmic Magic
+Couatl Herald	Couatl Herald
+Courtesan	Courtesan
+Courtiers' Guild	Courtiers' Guild
+Crone	Crone
+Cyber Ninja	Cyber Ninja
+Cyber Surgeon	Cyber Surgeon
+Cyberghoul	Cyberghoul
+Cybernetic	Cybernetic
+Daemonologist	Daemonologist
+Daggermark	Daggermark
+Danseur Macabre	Danseur Macabre
+Darkness Domain	Darkness Domain
+Dead Mist Acolyte	Dead Mist Acolyte
+Death Knight	Death Knight
+Decommissioner	Decommissioner
+Demon Brand	Demon Brand
+Detective	Detective
+Devourer Guild	Devourer Guild
+Diabolist	Diabolist
+Digital Nomad	Digital Nomad
+Divine Soul	Divine Soul
+Doomsayer	Doomsayer
+Draconic Bloodline	Draconic Bloodline
+Draconic Sorcery	Draconic Sorcery
+Dragon Banner	Dragon Banner
+Dragon Domain	Dragon Domain
+Dragon Mage	Dragon Mage
+Drake-Blooded	Drake-Blooded
+Dramaturge	Dramaturge
+Drone Jockey	Drone Jockey
+Dynamo Engineer	Dynamo Engineer
+Eagle Banner	Eagle Banner
+Eldritch Domain	Eldritch Domain
+Elemental Essence	Elemental Essence
+Elementalist	Elementalist
+Entropist	Entropist
+Entropy	Entropy
+Evolution Domain	Evolution Domain
+Experiment X	Experiment X
+Exterminator	Exterminator
+Familiar Master	Familiar Master
+Farseer	Farseer
+Fencer	Fencer
+Fey Ballerina	Fey Ballerina
+Feylost	Feylost
+Fire Dancer	Fire Dancer
+Forceforger	Forceforger
+Forge Adept	Forge Adept
+Forgeknights' Guild	Forgeknights' Guild
+Fragrant Magic	Fragrant Magic
+Freerunner	Freerunner
+Frost Sorcery	Frost Sorcery
+Fumaturge	Fumaturge
+Gastronomer	Gastronomer
+Geomancy	Geomancy
+Gingerbread Magic	Gingerbread Magic
+Godsworn	Godsworn
+Gourmand	Gourmand
+Graviturgy Magic	Graviturgy Magic
+Green Magic	Green Magic
+Green Reaper	Green Reaper
+Greenleaf College	Greenleaf College
+Grey Watchman	Grey Watchman
+Griffon Scout	Griffon Scout
+Harlequin	Harlequin
+Haunted Sorcery	Haunted Sorcery
+Heretic Chapter	Heretic Chapter
+Highway Rider	Highway Rider
+Hologrammer	Hologrammer
+Holy Icon	Holy Icon
+Horizon Walker	Horizon Walker
+Houndmaster	Houndmaster
+House of Bishops	House of Bishops
+House of Cards	House of Cards
+House of Darts	House of Darts
+House of Dice	House of Dice
+House of Go	House of Go
+House of Kings	House of Kings
+House of Knights	House of Knights
+House of Lancers	House of Lancers
+House of Pawns	House of Pawns
+House of Rooks	House of Rooks
+House of Roulette	House of Roulette
+Hunger Domain	Hunger Domain
+Hunting Domain	Hunting Domain
+Illuminator	Illuminator
+Infernum	Infernum
+Infiltrator	Infiltrator
+Inquisition Domain	Inquisition Domain
+Inquisitive	Inquisitive
+Inquisitor	Inquisitor
+Ionizer	Ionizer
+Jolly Roger	Jolly Roger
+Jumper	Jumper
+Justice Domain	Justice Domain
+Kid Sleuth	Kid Sleuth
+Knight Errant	Knight Errant
+Labyrinth Domain	Labyrinth Domain
+Leyline Magic	Leyline Magic
+Lion Banner	Lion Banner
+Living Crucible	Living Crucible
+Lumimancer	Lumimancer
+Luminaries' Guild	Luminaries' Guild
+Lunar Magic	Lunar Magic
+Lunar Sorcery	Lunar Sorcery
+Lust Domain	Lust Domain
+Machine Domain	Machine Domain
+Mad Bomber	Mad Bomber
+Mage Brand	Mage Brand
+Magic Missile Mage	Magic Missile Mage
+Magneticist	Magneticist
+Marauder Chapter	Marauder Chapter
+Marionettist	Marionettist
+Master of Fiends	Master of Fiends
+Mastermaker	Mastermaker
+Mastermind	Mastermind
+Materializer	Materializer
+Maverick	Maverick
+Mechanauts' Guild	Mechanauts' Guild
+Medium	Medium
+Mime	Mime
+Mind Domain	Mind Domain
+Misfortune Bringer	Misfortune Bringer
+Monster Slayer	Monster Slayer
+Moonwalker	Moonwalker
+Mountain Domain	Mountain Domain
+Mutagenist	Mutagenist
+Mystic Strategist	Mystic Strategist
+Nanite Magic	Nanite Magic
+Nature Domain	Nature Domain
+Necrodancer	Necrodancer
+Necrophage	Necrophage
+Night Domain	Night Domain
+Nightgaunt	Nightgaunt
+Nightwatcher	Nightwatcher
+Oath of Pestilence	Oath of Pestilence
+Oath of Radiance	Oath of Radiance
+Oath of Slaughter	Oath of Slaughter
+Oath of Thunder	Oath of Thunder
+Oath of Zeal	Oath of Zeal
+Oath of the Annihilator	Oath of the Annihilator
+Oath of the Crown	Oath of the Crown
+Oath of the Gamma Knight	Oath of the Gamma Knight
+Oath of the Giving Grave	Oath of the Giving Grave
+Oath of the Hearth	Oath of the Hearth
+Oath of the Noble Genies	Oath of the Noble Genies
+Oath of the Open Sea	Oath of the Open Sea
+Oath of the Sun	Oath of the Sun
+Oathbreaker	Oathbreaker
+Occultist	Occultist
+Occultist Guild	Occultist Guild
+Ocean Domain	Ocean Domain
+Ooze Rancher	Ooze Rancher
+Overlord	Overlord
+Pale Master	Pale Master
+Path of Heavy Metal	Path of Heavy Metal
+Path of Spellfury	Path of Spellfury
+Path of Tranquility	Path of Tranquility
+Path of the Abomination	Path of the Abomination
+Path of the Ancestral Guardian	Path of the Ancestral Guardian
+Path of the Battlemind	Path of the Battlemind
+Path of the Battlerager	Path of the Battlerager
+Path of the Dad	Path of the Dad
+Path of the Dreadnought	Path of the Dreadnought
+Path of the Drifter	Path of the Drifter
+Path of the Fin	Path of the Fin
+Path of the Fractured	Path of the Fractured
+Path of the Frostrager	Path of the Frostrager
+Path of the Glacier	Path of the Glacier
+Path of the Juggernaut	Path of the Juggernaut
+Path of the Muscle Wizard	Path of the Muscle Wizard
+Path of the Primal Spirit	Path of the Primal Spirit
+Path of the Slasher	Path of the Slasher
+Path of the Swamp	Path of the Swamp
+Path of the Wrathful Dead	Path of the Wrathful Dead
+Path of the Wrecker	Path of the Wrecker
+Pestilence Domain	Pestilence Domain
+Pharaoh	Pharaoh
+Pigmentist	Pigmentist
+Plague Doctor	Plague Doctor
+Plague Lord	Plague Lord
+Portalweaver	Portalweaver
+Prescient Knight	Prescient Knight
+Primordial Archer	Primordial Archer
+Prophecy Domain	Prophecy Domain
+Protomancer	Protomancer
+Pugilist	Pugilist
+Purification Domain	Purification Domain
+Purple Magic	Purple Magic
+Pyromancer (PSK)	Pyromancer (PSK)
+Quantum Mechanic	Quantum Mechanic
+Reaper	Reaper
+Red Magic	Red Magic
+Resonator	Resonator
+Rimekeeper	Rimekeeper
+Ring Warden	Ring Warden
+Runechild	Runechild
+Runetagger	Runetagger
+Rōnin	Rōnin
+Salvation Chapter	Salvation Chapter
+Samurai	Samurai
+Sangromancer	Sangromancer
+Sanguine Chapter	Sanguine Chapter
+Sanguine Thief	Sanguine Thief
+School of Abjuration	School of Abjuration
+School of Conjuration	School of Conjuration
+School of Divination	School of Divination
+School of Enchantment	School of Enchantment
+School of Evocation	School of Evocation
+School of Illumination	School of Illumination
+School of Illusion	School of Illusion
+School of Necromancy	School of Necromancy
+School of Transmutation	School of Transmutation
+Scofflaw	Scofflaw
+Scout	Scout
+Scrappers' Guild	Scrappers' Guild
+Scroll Scribe	Scroll Scribe
+Serophage	Serophage
+Shadow Bloodline	Shadow Bloodline
+Shadow Dancer	Shadow Dancer
+Shadow Magic	Shadow Magic
+Siegeball Jersey	Siegeball Jersey
+Singularity Patron	Singularity Patron
+Skull Banner	Skull Banner
+Sky Magic	Sky Magic
+Solidarity Domain (PSA)	Solidarity Domain (PSA)
+Somnomancer	Somnomancer
+Space Marine	Space Marine
+Speed Domain	Speed Domain
+Spellfire Sorcery	Spellfire Sorcery
+Spellhacker	Spellhacker
+Spy	Spy
+Star Patron	Star Patron
+Star Wolf	Star Wolf
+Star-Spangled Banner	Star-Spangled Banner
+Steel Magic	Steel Magic
+Steel Shepherd	Steel Shepherd
+Steelsinger	Steelsinger
+Stoneheart Defender	Stoneheart Defender
+Storm Sentinel	Storm Sentinel
+Storm Sorcery	Storm Sorcery
+Strength Domain (PSA)	Strength Domain (PSA)
+Swashbuckler	Swashbuckler
+Tea Magic	Tea Magic
+Technicolor Magic	Technicolor Magic
+Tempest Domain	Tempest Domain
+The Coven	The Coven
+The First Vampire Patron	The First Vampire Patron
+The Frozen One	The Frozen One
+The Genie Lord	The Genie Lord
+The Great Machine	The Great Machine
+The Parasite Patron	The Parasite Patron
+The Predator	The Predator
+The Sibyl	The Sibyl
+The Undying	The Undying
+Thunderlords' Guild	Thunderlords' Guild
+Time Domain	Time Domain
+Time Operative	Time Operative
+Timekeeper	Timekeeper
+Tower Banner	Tower Banner
+Toymaker	Toymaker
+Trapper Guild	Trapper Guild
+Trappers' Guild	Trappers' Guild
+Travel Domain	Travel Domain
+Troubadour	Troubadour
+Tyromancer	Tyromancer
+Universalist	Universalist
+Vampire Slayer	Vampire Slayer
+Venomsmith	Venomsmith
+Verdant Protector	Verdant Protector
+Vermin Lord	Vermin Lord
+Void Caster	Void Caster
+Void Domain	Void Domain
+Void Speaker	Void Speaker
+Vow of the Augmenter	Vow of the Augmenter
+Vow of the Martyr	Vow of the Martyr
+Vow of the Protector	Vow of the Protector
+Vow of the Siphon	Vow of the Siphon
+Wand Wizard	Wand Wizard
+War Domain	War Domain
+War Domain (2014)	War Domain (2014)
+War Magic	War Magic
+Warrior of Gravity	Warrior of Gravity
+Warrior of Mercy	Warrior of Mercy
+Warrior of Pride	Warrior of Pride
+Warrior of Regret	Warrior of Regret
+Warrior of Shadow	Warrior of Shadow
+Warrior of the Celestial	Warrior of the Celestial
+Warrior of the Elements	Warrior of the Elements
+Warrior of the Leaden Crown	Warrior of the Leaden Crown
+Warrior of the Living Weapon	Warrior of the Living Weapon
+Warrior of the Open Hand	Warrior of the Open Hand
+Warrior of the Warped	Warrior of the Warped
+Way of the Cobalt Soul	Way of the Cobalt Soul
+Way of the Drunken Master	Way of the Drunken Master
+Way of the Four Elements	Way of the Four Elements
+Way of the Kensei	Way of the Kensei
+Way of the Long Death	Way of the Long Death
+Way of the Sun Soul	Way of the Sun Soul
+White Magic	White Magic
+White Necromancer	White Necromancer
+Wild Magic Sorcery	Wild Magic Sorcery
+Winter Domain	Winter Domain
+Winter Trapper	Winter Trapper
+Wintercarvers' Guild	Wintercarvers' Guild
+Witchbane Hunter	Witchbane Hunter
+Wretched Bloodline Sorcery	Wretched Bloodline Sorcery
+Xenoalchemist	Xenoalchemist
+Yellow Sign	Yellow Sign
+Zeal Domain (PSA)	Zeal Domain (PSA)

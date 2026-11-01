@@ -1,0 +1,22 @@
+Animated Ghaunadaur Statue	Animated Ghaunadaur Statue
+Automatic Ballista	Automatic Ballista
+Ballista	Ballista
+Cannon	Cannon
+Clockwork Trebuchet	Clockwork Trebuchet
+Decrepit Mangonel	Decrepit Mangonel
+Eldritch Cannon, Flamethrower	Eldritch Cannon, Flamethrower
+Eldritch Cannon, Force Ballista	Eldritch Cannon, Force Ballista
+Eldritch Cannon, Protector	Eldritch Cannon, Protector
+Enchanted Ballista	Enchanted Ballista
+Flamethrower Coach	Flamethrower Coach
+Forge Launcher	Forge Launcher
+Generic Object	Generic Object
+Gulthias Tree	Gulthias Tree
+Ice Troll Heart	Ice Troll Heart
+Lightning Cannon	Lightning Cannon
+Ram	Ram
+Siege Tower	Siege Tower
+Storm Cannon	Storm Cannon
+Suspended Cauldron	Suspended Cauldron
+The Head	The Head
+Trebuchet	Trebuchet

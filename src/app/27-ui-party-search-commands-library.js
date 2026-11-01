@@ -189,6 +189,19 @@ var LIB_XS=null;
 function libXs(){ if(LIB_XS) return LIB_XS; var m={}, tag={}; try{ (window.WX&&window.WX.src||[]).forEach(function(q){ tag[q.id]=q.tag||q.id; }); (window.WXS||[]).forEach(function(e){ if(!e||!e.name||!e.arr||m[e.name]) return; var c=CLASSES[e.cls]; if(c&&c.subs&&c.subs[e.name]) return; m[e.name]={cls:e.cls,arr:e.arr,bk:tag[e.src]||e.src}; }); }catch(er){} return (LIB_XS=m); }
 window.__wxSpRow=function(n){ return libXsp()[n]||null; };
 document.addEventListener("qrefs",function(){ LIB_XSP=null; });
+var LIB_BK=null;
+/* which book an entry comes from: rows from the reference data carry a source id, hidden-book data carries the book tag */
+function libBook(e){ try{ if(!LIB_BK){ LIB_BK={}; var T={}, nm={core:"2024 core",dmg:"DMG 2024",phb14:"PHB 2014",dmg14:"DMG 2014",mm14:"MM 2014",misc14:"2014 books"};
+    (window.WX&&window.WX.src||[]).forEach(function(q){ T[q.id]=(q.tag||q.id); }); var L=window.QREFS||{};
+    Object.keys(L).forEach(function(c){ L[c].forEach(function(r){ var k=c+"|"+r.n; if(r.s&&!LIB_BK[k]) LIB_BK[k]=nm[r.s]||String(T[r.s]||r.s).toUpperCase(); }); }); }
+  var k2=e.c+"|"+e.k; if(LIB_BK[k2]) return LIB_BK[k2]; var m=null;
+  if(e.c==="item") m=libX("i")[e.k]; else if(e.c==="gear") m=libX("g")[e.k]; else if(e.c==="species") m=libX("s")[e.k]; else if(e.c==="bg") m=libX("b")[e.k]; else if(e.c==="sub") m=libXs()[e.k]; else if(e.c==="feat") m=window.WXF_ALL&&window.WXF_ALL[e.k];
+  if(!m&&e.c==="feature"){ var f=/^(cls|sub|sp):([^|]+)\|/.exec(e.k); if(f){ if(f[1]==="sub") m=libXs()[f[2]]; else if(f[1]==="sp") m=libX("s")[f[2]]; if(!m) return f[1]==="cls"?"PHB 2024":""; } }
+  if(m) return String(m.bk||"").toUpperCase();
+  /* the rest is the 2024 core data of the app */
+  if(/\(2014\)/.test(e.k)) return "2014 edition";
+  if(e.c==="item") return "DMG 2024"; if(/^(spell|class|species|bg|feat|sub|gear|feature|opt|creature)$/.test(e.c)) return "PHB 2024"; }catch(er){} return ""; }
+document.addEventListener("qrefs",function(){ LIB_BK=null; });
 function libIndex(){ var o=[], seen={}, add=function(c,n,s,k,t){ if(!n) return; var id=c+"|"+k; if(seen[id]) return; seen[id]=1; o.push({c:c,n:String(n),s:s||"",k:k,t:String(t||"").toLowerCase()}); }, g=function(f){ try{ f(); }catch(er){} };
   g(function(){ SPELLS.forEach(function(r){ add("spell",r[0],(r[1]?ordL(r[1]):"Cantrip")+" • "+r[2]+" • "+spClsJ(r),r[0],r[11]+" "+((typeof SPELL_FULL!=="undefined"&&SPELL_FULL[r[0]])||"")); }); });
   g(function(){ var X=libXsp(); Object.keys(X).forEach(function(n){ var r=X[n]; add("spell",n,(r[1]?ordL(r[1]):"Cantrip")+" • "+r[2]+" • "+spClsJ(r)+" • "+(r.__bk||""),n,(r[11]||"")+" "+((typeof SPELL_FULL!=="undefined"&&SPELL_FULL[n])||"")); }); });
@@ -276,7 +289,7 @@ function libDetail(c,k){ var h="",t=k,sub="",x,i;
   return null; }
 function libRecent(add){ var a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter(function(x){ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
 function libHi(n,q){ var i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
-function libRow(e,q,showCat){ var ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((window.__artIc&&(e.c==="spell"||e.c==="gear"||e.c==="item")&&window.__artIc(e.c==="spell"?"spell":"item",e.n))||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
+function libRow(e,q,showCat){ var ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((window.__artIc&&(e.c==="spell"||e.c==="gear"||e.c==="item")&&window.__artIc(e.c==="spell"?"spell":"item",e.n))||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ var b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; var inv={}, voc=[];
   LIB.idx.forEach(function(e,i){ var seen={}; (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach(function(w){ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); }); LIB.inv=inv; LIB.voc=voc; LIB.fz={}; }
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */

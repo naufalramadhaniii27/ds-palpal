@@ -1,0 +1,336 @@
+Ability Check	Ability Check
+Ability Score and Modifier	Ability Score and Modifier
+Acrobatics	Acrobatics
+Action	Action
+Action Options	Action Options
+Activate an Item	Activate an Item
+Adamantine Weapons	Adamantine Weapons
+Advantage	Advantage
+Adventure	Adventure
+Alien Technology	Alien Technology
+Alignment	Alignment
+Ally	Ally
+Alternatives to Epic Boons	Alternatives to Epic Boons
+Ammunition	Ammunition
+Animal Handling	Animal Handling
+Arcana	Arcana
+Area of Effect	Area of Effect
+Armor Class	Armor Class
+Armor Training	Armor Training
+Arrows	Arrows
+Athletics	Athletics
+Attack	Attack
+Attack Roll	Attack Roll
+Attitude	Attitude
+Attunement	Attunement
+Automatic Success	Automatic Success
+Automotive	Automotive
+Bleeding	Bleeding
+Blindsight	Blindsight
+Bonus Action	Bonus Action
+Breaking Objects	Breaking Objects
+Bright Light	Bright Light
+Burning	Burning
+Burrow Speed	Burrow Speed
+Burst Fire	Burst Fire
+Campaign	Campaign
+Cantrip	Cantrip
+Carrying Capacity	Carrying Capacity
+Cast a Spell	Cast a Spell
+Celurit (Sickle)	Celurit (Sickle)
+Chain Mail	Chain Mail
+Challenge Rating	Challenge Rating
+Character Sheet	Character Sheet
+Charisma	Charisma
+Cleave	Cleave
+Cleaving Through Creatures	Cleaving Through Creatures
+Climb Speed	Climb Speed
+Climb onto a Bigger Creature	Climb onto a Bigger Creature
+Climbing	Climbing
+Computer	Computer
+Condition	Condition
+Cone	Cone
+Cone [Area of Effect]	Cone [Area of Effect]
+Constitution	Constitution
+Cover	Cover
+Crashing	Crashing
+Crawling	Crawling
+Creature	Creature
+Creature Type	Creature Type
+Crew	Crew
+Critical Hit	Critical Hit
+Cube	Cube
+Cube [Area of Effect]	Cube [Area of Effect]
+Curses	Curses
+Customizing Ability Scores	Customizing Ability Scores
+Customizing Your Origin	Customizing Your Origin
+Cylinder	Cylinder
+Cylinder [Area of Effect]	Cylinder [Area of Effect]
+D20 Test	D20 Test
+Dagger	Dagger
+Damage	Damage
+Damage Roll	Damage Roll
+Damage Threshold	Damage Threshold
+Damage Types	Damage Types
+Darkness	Darkness
+Darkvision	Darkvision
+Dash	Dash
+Dead	Dead
+Death Saving Throw	Death Saving Throw
+Deception	Deception
+Dexterity	Dexterity
+Diagonals	Diagonals
+Dice Set	Dice Set
+Difficult Terrain	Difficult Terrain
+Difficulty Class	Difficulty Class
+Dim Light	Dim Light
+Disadvantage	Disadvantage
+Disarm	Disarm
+Disengage	Disengage
+Dodge	Dodge
+Don or Doff a Shield	Don or Doff a Shield
+Downtime Activity: Building a Stronghold	Downtime Activity: Building a Stronghold
+Downtime Activity: Buying a Magic Item	Downtime Activity: Buying a Magic Item
+Downtime Activity: Carousing	Downtime Activity: Carousing
+Downtime Activity: Crafting	Downtime Activity: Crafting
+Downtime Activity: Crafting a Magic Item	Downtime Activity: Crafting a Magic Item
+Downtime Activity: Crafting an Item	Downtime Activity: Crafting an Item
+Downtime Activity: Crime	Downtime Activity: Crime
+Downtime Activity: Gaining Renown	Downtime Activity: Gaining Renown
+Downtime Activity: Gambling	Downtime Activity: Gambling
+Downtime Activity: Performing Sacred Rites	Downtime Activity: Performing Sacred Rites
+Downtime Activity: Pit Fighting	Downtime Activity: Pit Fighting
+Downtime Activity: Practicing a Profession	Downtime Activity: Practicing a Profession
+Downtime Activity: Recuperating	Downtime Activity: Recuperating
+Downtime Activity: Relaxation	Downtime Activity: Relaxation
+Downtime Activity: Religious Service	Downtime Activity: Religious Service
+Downtime Activity: Research	Downtime Activity: Research
+Downtime Activity: Researching	Downtime Activity: Researching
+Downtime Activity: Running a Business	Downtime Activity: Running a Business
+Downtime Activity: Scribing a Spell Scroll	Downtime Activity: Scribing a Spell Scroll
+Downtime Activity: Selling Magic Items	Downtime Activity: Selling Magic Items
+Downtime Activity: Selling a Magic Item	Downtime Activity: Selling a Magic Item
+Downtime Activity: Sowing Rumors	Downtime Activity: Sowing Rumors
+Downtime Activity: Training	Downtime Activity: Training
+Downtime Activity: Training to Gain Levels	Downtime Activity: Training to Gain Levels
+Downtime Activity: Work	Downtime Activity: Work
+Downtime Revisited	Downtime Revisited
+Downtime and Franchise Activity: Explore Territory	Downtime and Franchise Activity: Explore Territory
+Downtime and Franchise Activity: Franchise Restructuring	Downtime and Franchise Activity: Franchise Restructuring
+Downtime and Franchise Activity: Headquarters Modification	Downtime and Franchise Activity: Headquarters Modification
+Downtime and Franchise Activity: Marketeering	Downtime and Franchise Activity: Marketeering
+Downtime and Franchise Activity: Philanthropic Enterprise	Downtime and Franchise Activity: Philanthropic Enterprise
+Downtime and Franchise Activity: Running a Franchise	Downtime and Franchise Activity: Running a Franchise
+Downtime and Franchise Activity: Schmoozing	Downtime and Franchise Activity: Schmoozing
+Downtime and Franchise Activity: Scrutineering	Downtime and Franchise Activity: Scrutineering
+Downtime and Franchise Activity: Shady Business Practice	Downtime and Franchise Activity: Shady Business Practice
+Downtime and Franchise Activity: Team Building	Downtime and Franchise Activity: Team Building
+Dungeoneer's Pack	Dungeoneer's Pack
+Emanation	Emanation
+Emanation [Area of Effect]	Emanation [Area of Effect]
+Emrakul's Madness	Emrakul's Madness
+Encounter	Encounter
+Encounters at Sea	Encounters at Sea
+Encumbrance	Encumbrance
+End Concentration	End Concentration
+Enemy	Enemy
+Equipment Sizes	Equipment Sizes
+Escape a Grapple	Escape a Grapple
+Exhaustion	Exhaustion
+Experience Points	Experience Points
+Expertise	Expertise
+Explosives	Explosives
+Facing	Facing
+Falling	Falling
+Familiars	Familiars
+Fear and Horror	Fear and Horror
+Fear and Stress	Fear and Stress
+Feats (optional rule)	Feats (optional rule)
+Finesse	Finesse
+Firearms	Firearms
+Flanking	Flanking
+Fly Speed	Fly Speed
+Flying	Flying
+Friendly	Friendly
+Friendly [Attitude]	Friendly [Attitude]
+Grapple	Grapple
+Grappling	Grappling
+Graze	Graze
+Haunted Traps	Haunted Traps
+Hazard	Hazard
+Healer's Kit	Healer's Kit
+Healing	Healing
+Healing Surge	Healing Surge
+Heavily Obscured	Heavily Obscured
+Heavy	Heavy
+Help	Help
+Hero Points	Hero Points
+Heroic Inspiration	Heroic Inspiration
+Hide	Hide
+High Jump	High Jump
+History	History
+Hit Point Dice	Hit Point Dice
+Hit Points	Hit Points
+Hitting Cover	Hitting Cover
+Hostile	Hostile
+Hostile [Attitude]	Hostile [Attitude]
+Hover	Hover
+Human Languages	Human Languages
+Identify a Spell	Identify a Spell
+Illusions	Illusions
+Immunity	Immunity
+Improvised Weapon	Improvised Weapon
+Improvised Weapons	Improvised Weapons
+Improvising an Action	Improvising an Action
+Incapacitated	Incapacitated
+Indifferent	Indifferent
+Indifferent [Attitude]	Indifferent [Attitude]
+Influence	Influence
+Initiative	Initiative
+Initiative Variants	Initiative Variants
+Injuries	Injuries
+Insight	Insight
+Inspiration	Inspiration
+Intelligence	Intelligence
+Intimidation	Intimidation
+Investigation	Investigation
+Javelin	Javelin
+Jinxed	Jinxed
+Jumping	Jumping
+Knocking Out a Creature	Knocking Out a Creature
+Languages	Languages
+Level Advancement without XP	Level Advancement without XP
+Light	Light
+Lightly Obscured	Lightly Obscured
+Line	Line
+Line [Area of Effect]	Line [Area of Effect]
+Long Jump	Long Jump
+Long Rest	Long Rest
+Loyalty	Loyalty
+Madness	Madness
+Magic	Magic
+Magical Effect	Magical Effect
+Mark	Mark
+Massive Damage	Massive Damage
+Medicine	Medicine
+Milestones	Milestones
+Mixing Potions	Mixing Potions
+Monster	Monster
+Morale	Morale
+More Difficult Identification	More Difficult Identification
+Multiclassing	Multiclassing
+Mysterious Islands	Mysterious Islands
+Nature	Nature
+New Ability Scores: Honor and Sanity	New Ability Scores: Honor and Sanity
+Nick	Nick
+Nonplayer Character	Nonplayer Character
+Object	Object
+Occupied Space	Occupied Space
+Ocean Environs	Ocean Environs
+Officers and Crew	Officers and Crew
+Opportunity Attack	Opportunity Attack
+Optional Class Features	Optional Class Features
+Other Activity	Other Activity
+Overrun	Overrun
+Passive Perception	Passive Perception
+Per Day	Per Day
+Perception	Perception
+Performance	Performance
+Persuasion	Persuasion
+Planar Effects	Planar Effects
+Player Character	Player Character
+Player Characters as Lycanthropes	Player Characters as Lycanthropes
+Player Characters as Vampires	Player Characters as Vampires
+Playing on a Grid	Playing on a Grid
+Plot Points	Plot Points
+Possession	Possession
+Proficiency	Proficiency
+Proficiency Bonus	Proficiency Bonus
+Proficiency Dice	Proficiency Dice
+Prophet's Gambit	Prophet's Gambit
+Push	Push
+Quiver	Quiver
+Random Ships	Random Ships
+Range	Range
+Reach	Reach
+Reaction	Reaction
+Ready	Ready
+Religion	Religion
+Reload	Reload
+Renown	Renown
+Resistance	Resistance
+Rest Variants	Rest Variants
+Ritual	Ritual
+Round Down	Round Down
+Sap	Sap
+Save	Save
+Saving Throw	Saving Throw
+Scroll Mishaps	Scroll Mishaps
+Search	Search
+Shape-Shifting	Shape-Shifting
+Shared Campaign Variant Rules	Shared Campaign Variant Rules
+Ship Repairs	Ship Repairs
+Ship Stat Blocks	Ship Stat Blocks
+Ship-to-Ship Combat	Ship-to-Ship Combat
+Ships in Combat	Ships in Combat
+Short Rest	Short Rest
+Shortbow	Shortbow
+Shove	Shove
+Shove Aside	Shove Aside
+Sickle	Sickle
+Sidekicks	Sidekicks
+Simultaneous Effects	Simultaneous Effects
+Size	Size
+Skill	Skill
+Skill Variants	Skill Variants
+Skills with Different Abilities	Skills with Different Abilities
+Sleep	Sleep
+Sleight of Hand	Sleight of Hand
+Slow	Slow
+Spear	Spear
+Speed	Speed
+Spell	Spell
+Spell Attack	Spell Attack
+Spell Points	Spell Points
+Spellcasting (expanded rules)	Spellcasting (expanded rules)
+Spellcasting Focus	Spellcasting Focus
+Sphere	Sphere
+Sphere [Area of Effect]	Sphere [Area of Effect]
+Stabilize a Creature	Stabilize a Creature
+Stable	Stable
+Stat Block	Stat Block
+Stealth	Stealth
+Strength	Strength
+Study	Study
+Superior Ship Upgrades	Superior Ship Upgrades
+Survival	Survival
+Survivors	Survivors
+Swim Speed	Swim Speed
+Swimming	Swimming
+Target	Target
+Telepathy	Telepathy
+Teleportation	Teleportation
+Temporary Hit Points	Temporary Hit Points
+Thrown	Thrown
+Tool Proficiencies	Tool Proficiencies
+Topple	Topple
+Travel at Sea	Travel at Sea
+Traveler's Clothes	Traveler's Clothes
+Tremorsense	Tremorsense
+Truesight	Truesight
+Tumble	Tumble
+Two-Handed	Two-Handed
+Two-Weapon Fighting	Two-Weapon Fighting
+Tying Knots	Tying Knots
+Unarmed Strike	Unarmed Strike
+Unoccupied Space	Unoccupied Space
+Use an Object	Use an Object
+Utilize	Utilize
+Versatile	Versatile
+Vex	Vex
+Vulnerability	Vulnerability
+Waking Someone	Waking Someone
+Wands That Don't Recharge	Wands That Don't Recharge
+Weapon	Weapon
+Weapon Attack	Weapon Attack
+Wisdom	Wisdom

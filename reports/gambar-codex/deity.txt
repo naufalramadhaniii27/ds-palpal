@@ -1,0 +1,283 @@
+Abbathor	Abbathor
+Aegir	Aegir
+Aerdrie Faenya	Aerdrie Faenya
+Akadi	Akadi
+Alathrien Druanna	Alathrien Druanna
+Alobal Lorfiril	Alobal Lorfiril
+Angharradh	Angharradh
+Anubis	Anubis
+Apep	Apep
+Aphrodite	Aphrodite
+Apollo	Apollo
+Araleth Letheranil	Araleth Letheranil
+Arawai	Arawai
+Arawn	Arawn
+Ares	Ares
+Arms of the Betrayers	Arms of the Betrayers
+Artemis	Artemis
+Arvoreen	Arvoreen
+Athena	Athena
+Athreos	Athreos
+Aureon	Aureon
+Baervan Wildwanderer (Gnome)	Baervan Wildwanderer (Gnome)
+Baervan Wildwanderer (Gnomish)	Baervan Wildwanderer (Gnomish)
+Bahgtru	Bahgtru
+Balder	Balder
+Balinor	Balinor
+Baravar Cloakshadow (Gnome)	Baravar Cloakshadow (Gnome)
+Baravar Cloakshadow (Gnomish)	Baravar Cloakshadow (Gnomish)
+Bast	Bast
+Belenus	Belenus
+Beory	Beory
+Berei	Berei
+Berronar Truesilver	Berronar Truesilver
+Bes	Bes
+Bleredd	Bleredd
+Blibdoolpoolp	Blibdoolpoolp
+Boccob	Boccob
+Boldrei	Boldrei
+Branchala	Branchala
+Brandobaris	Brandobaris
+Brigantia	Brigantia
+Callarduran Smoothhands (Gnome)	Callarduran Smoothhands (Gnome)
+Callarduran Smoothhands (Gnomish)	Callarduran Smoothhands (Gnomish)
+Celestian	Celestian
+Ceratos	Ceratos
+Charmalaine	Charmalaine
+Chemosh	Chemosh
+Chislev	Chislev
+Clangeddin Silverbeard	Clangeddin Silverbeard
+Corellon Larethian (Elven)	Corellon Larethian (Elven)
+Corellon Larethian (Nonhuman)	Corellon Larethian (Nonhuman)
+Cults of the Dragon Below	Cults of the Dragon Below
+Cuthbert	Cuthbert
+Cyrrollalee	Cyrrollalee
+Darahl Tilvenar	Darahl Tilvenar
+Deep Duerra (Duergar)	Deep Duerra (Duergar)
+Deep Duerra (Dwarven)	Deep Duerra (Dwarven)
+Deep Sashelas (Elven)	Deep Sashelas (Elven)
+Deep Sashelas (Nonhuman)	Deep Sashelas (Nonhuman)
+Demeter	Demeter
+Dendar	Dendar
+Desirat	Desirat
+Diancecht	Diancecht
+Dionysus	Dionysus
+Dol Arrah	Dol Arrah
+Dol Dorn	Dol Dorn
+Dugmaren Brightmantle	Dugmaren Brightmantle
+Dumathoin	Dumathoin
+Dunatis	Dunatis
+Eadro	Eadro
+Ehlonna	Ehlonna
+Eilistraee (Drow)	Eilistraee (Drow)
+Elebrin Liothiel	Elebrin Liothiel
+Ephara	Ephara
+Erebos	Erebos
+Erevan Ilesere	Erevan Ilesere
+Erythnul	Erythnul
+Ezra	Ezra
+Fenmarel Mestarine	Fenmarel Mestarine
+Fharlanghn	Fharlanghn
+Flandal Steelskin (Gnome)	Flandal Steelskin (Gnome)
+Flandal Steelskin (Gnomish)	Flandal Steelskin (Gnomish)
+Forseti	Forseti
+Frey	Frey
+Freya	Freya
+Frigga	Frigga
+Gadhelyn	Gadhelyn
+Gaerdal Ironhand (Gnome)	Gaerdal Ironhand (Gnome)
+Gaerdal Ironhand (Gnomish)	Gaerdal Ironhand (Gnomish)
+Garl Glittergold (Gnome)	Garl Glittergold (Gnome)
+Garl Glittergold (Gnomish)	Garl Glittergold (Gnomish)
+Garl Glittergold (Nonhuman)	Garl Glittergold (Nonhuman)
+Gelf Darkhearth	Gelf Darkhearth
+Ghaunadaur	Ghaunadaur
+Gilean	Gilean
+Goibhniu	Goibhniu
+Gorm Gulthyn	Gorm Gulthyn
+Grolantor	Grolantor
+Grumbar	Grumbar
+Gwaeron Windstrom	Gwaeron Windstrom
+Habbakuk	Habbakuk
+Hades	Hades
+Haela Brightaxe	Haela Brightaxe
+Hanali Celanil	Hanali Celanil
+Hanseath	Hanseath
+Hathor	Hathor
+Hecate	Hecate
+Heimdall	Heimdall
+Heironeous	Heironeous
+Hel	Hel
+Heliod	Heliod
+Hephaestus	Hephaestus
+Hera	Hera
+Hercules	Hercules
+Hermes	Hermes
+Hermod	Hermod
+Hestia	Hestia
+Hextor	Hextor
+Hiddukel	Hiddukel
+Hruggek	Hruggek
+Ilneval	Ilneval
+Imhotep	Imhotep
+Incabulos	Incabulos
+Iroas	Iroas
+Isis	Isis
+Istishia	Istishia
+Istus	Istus
+Iuz	Iuz
+Karametra	Karametra
+Keptolo	Keptolo
+Keranos	Keranos
+Kiaransalee	Kiaransalee
+Kiri-Jolith	Kiri-Jolith
+Kirith Sotheril	Kirith Sotheril
+Klothys	Klothys
+Kol Korran	Kol Korran
+Kossuth	Kossuth
+Kruphix	Kruphix
+Kurtulmak	Kurtulmak
+Labelas Enoreth	Labelas Enoreth
+Laduguer (Duergar)	Laduguer (Duergar)
+Laduguer (Dwarven)	Laduguer (Dwarven)
+Laogzed	Laogzed
+Loki	Loki
+Lugh	Lugh
+Lunitari	Lunitari
+Luthic	Luthic
+Maglubiyet	Maglubiyet
+Majere	Majere
+Malyk	Malyk
+Manannan mac Lir	Manannan mac Lir
+Marthammor Duin	Marthammor Duin
+Math Mathonwy	Math Mathonwy
+Melira Taralen	Melira Taralen
+Merrshaulk	Merrshaulk
+Milil (Forgotten Realms)	Milil (Forgotten Realms)
+Mishakal	Mishakal
+Mogis	Mogis
+Morgion	Morgion
+Morrigan	Morrigan
+Muamman Duathal	Muamman Duathal
+Mya	Mya
+Mythrien Sarath	Mythrien Sarath
+Naralis Analor	Naralis Analor
+Naviask	Naviask
+Nebelun (Gnome)	Nebelun (Gnome)
+Nebelun (Gnomish)	Nebelun (Gnomish)
+Nephthys	Nephthys
+Nerull	Nerull
+Nike	Nike
+Njord	Njord
+Nuada	Nuada
+Nuitari	Nuitari
+Nylea	Nylea
+Obad-Hai	Obad-Hai
+Odin	Odin
+Odur	Odur
+Olidammara	Olidammara
+Olladra	Olladra
+Onatar	Onatar
+Osiris	Osiris
+Paladine	Paladine
+Pan	Pan
+Pharika	Pharika
+Phenax	Phenax
+Pholtus	Pholtus
+Poseidon	Poseidon
+Procan	Procan
+Ptah	Ptah
+Purphoros	Purphoros
+Quajath	Quajath
+Ralishaz	Ralishaz
+Rao	Rao
+Raven Queen	Raven Queen
+Re-Horakhty	Re-Horakhty
+Rellavar Danuvien	Rellavar Danuvien
+Reorx	Reorx
+Rill Cleverthrush	Rill Cleverthrush
+Rillifane Rallathil (Elven)	Rillifane Rallathil (Elven)
+Rillifane Rallathil (Nonhuman)	Rillifane Rallathil (Nonhuman)
+Roknar	Roknar
+Sargonnas	Sargonnas
+Sarula Iliene	Sarula Iliene
+Segojan Earthcaller (Gnome)	Segojan Earthcaller (Gnome)
+Segojan Earthcaller (Gnomish)	Segojan Earthcaller (Gnomish)
+Sehanine Moonbow (Elven)	Sehanine Moonbow (Elven)
+Sehanine Moonbow (Nonhuman)	Sehanine Moonbow (Nonhuman)
+Sekolah	Sekolah
+Selvetarm	Selvetarm
+Selûne (Faerûnian)	Selûne (Faerûnian)
+Selûne (Forgotten Realms)	Selûne (Forgotten Realms)
+Semuanya	Semuanya
+Set	Set
+Shar (Forgotten Realms)	Shar (Forgotten Realms)
+Shargaas	Shargaas
+Sharindlar	Sharindlar
+Sheela Peryroyl	Sheela Peryroyl
+Shevarash	Shevarash
+Sheyanna Flaxenstrand	Sheyanna Flaxenstrand
+Shinare	Shinare
+Sif	Sif
+Sirrion	Sirrion
+Skadi	Skadi
+Skerrit	Skerrit
+Skoraeus Stonebones	Skoraeus Stonebones
+Sobek	Sobek
+Solinari	Solinari
+Solonor Thelandira	Solonor Thelandira
+Sseth	Sseth
+St. Cuthbert	St. Cuthbert
+Surtur (Nonhuman)	Surtur (Nonhuman)
+Surtur (Norse)	Surtur (Norse)
+Syrul	Syrul
+Takhisis	Takhisis
+Tarsellis Meunniduin	Tarsellis Meunniduin
+Tethrin Veraldé	Tethrin Veraldé
+Thard Harr	Thard Harr
+Tharmekhûl	Tharmekhûl
+Thassa	Thassa
+Thautam	Thautam
+The Daghdha	The Daghdha
+The Devourer	The Devourer
+The Fury	The Fury
+The Hag Mother	The Hag Mother
+The Keeper	The Keeper
+The Luxon	The Luxon
+The Mockery	The Mockery
+The Shadow	The Shadow
+The Spirits of the Past	The Spirits of the Past
+The Traveler (Eberron)	The Traveler (Eberron)
+The Traveler (Exandria)	The Traveler (Exandria)
+Thor	Thor
+Thoth	Thoth
+Thrym (Nonhuman)	Thrym (Nonhuman)
+Thrym (Norse)	Thrym (Norse)
+Trithereon	Trithereon
+Tyche	Tyche
+Tyr (Forgotten Realms)	Tyr (Forgotten Realms)
+Tyr (Norse)	Tyr (Norse)
+Uk'otoa	Uk'otoa
+Ulaa (Dwarven)	Ulaa (Dwarven)
+Ulaa (Greyhawk)	Ulaa (Greyhawk)
+Uller	Uller
+Urdlen (Gnome)	Urdlen (Gnome)
+Urdlen (Gnomish)	Urdlen (Gnomish)
+Urogalan	Urogalan
+Valkauna	Valkauna
+Valkur	Valkur
+Vandria Gilmadrith	Vandria Gilmadrith
+Vergadain	Vergadain
+Vesh	Vesh
+Vhaeraun	Vhaeraun
+Wee Jas	Wee Jas
+Xalicas	Xalicas
+Ye'Cind	Ye'Cind
+Yondalla (Halfling)	Yondalla (Halfling)
+Yondalla (Nonhuman)	Yondalla (Nonhuman)
+Yurtrus	Yurtrus
+Zandilar	Zandilar
+Zeboim	Zeboim
+Zeus	Zeus
+Zinzerena	Zinzerena
+Zivilyn	Zivilyn

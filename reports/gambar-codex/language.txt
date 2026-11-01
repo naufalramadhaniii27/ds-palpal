@@ -1,0 +1,109 @@
+Aarakocra	Aarakocra
+Abanasinian	Abanasinian
+Abyssal	Abyssal
+Aglarondan	Aglarondan
+Alzhedo	Alzhedo
+Aven	Aven
+Blink Dog	Blink Dog
+Bothii	Bothii
+Bullywug	Bullywug
+Celestial	Celestial
+Chessentan	Chessentan
+Chondathan	Chondathan
+Coalition Pidgin	Coalition Pidgin
+Common	Common
+Common Sign Language	Common Sign Language
+Common Trade Pidgin	Common Trade Pidgin
+Daelkyr	Daelkyr
+Damaran	Damaran
+Dambrathan	Dambrathan
+Deep Crow	Deep Crow
+Deep Speech	Deep Speech
+Demonic	Demonic
+Druidic	Druidic
+Ergot	Ergot
+Giant	Giant
+Giant Eagle	Giant Eagle
+Giant Elk	Giant Elk
+Giant Owl	Giant Owl
+Gith	Gith
+Gnoll	Gnoll
+Gnomish	Gnomish
+Goblin	Goblin
+Grell	Grell
+Grung	Grung
+Guran	Guran
+Halfling	Halfling
+Halruaan	Halruaan
+Homarid	Homarid
+Hook Horror	Hook Horror
+Ice Toad	Ice Toad
+Illuskan	Illuskan
+Infernal	Infernal
+Istarian	Istarian
+Itzocan	Itzocan
+Ixitxachitl	Ixitxachitl
+Keldon	Keldon
+Kenderspeak	Kenderspeak
+Kharolian	Kharolian
+Khenra	Khenra
+Khur	Khur
+Kothian	Kothian
+Kraul	Kraul
+Kruthik	Kruthik
+Lantanese	Lantanese
+Leonin	Leonin
+Loross	Loross
+Loxodon	Loxodon
+Marquesian	Marquesian
+Merfolk	Merfolk
+Midani	Midani
+Minotaur	Minotaur
+Modron	Modron
+Mulhorandi	Mulhorandi
+Naga	Naga
+Naush	Naush
+Nerakese	Nerakese
+Netherese	Netherese
+Nordmaarian	Nordmaarian
+Ogre	Ogre
+Olman	Olman
+Orc	Orc
+Otyugh	Otyugh
+Primordial	Primordial
+Qualith	Qualith
+Quori	Quori
+Rashemi	Rashemi
+Reghedjic	Reghedjic
+Riedran	Riedran
+Roushoum	Roushoum
+Sahuagin	Sahuagin
+Sespech	Sespech
+Shaaran	Shaaran
+Shou	Shou
+Siren	Siren
+Slaad	Slaad
+Solamnic	Solamnic
+Sphinx	Sphinx
+Sylvan	Sylvan
+Thayan	Thayan
+Thieves' Cant	Thieves' Cant
+Thorass	Thorass
+Thri-kreen	Thri-kreen
+Tlincalli	Tlincalli
+Troglodyte	Troglodyte
+Tuigan	Tuigan
+Turmic	Turmic
+Uluik	Uluik
+Umber Hulk	Umber Hulk
+Undercommon	Undercommon
+Untheric	Untheric
+Vampire	Vampire
+Vedalken	Vedalken
+Vegepygmy	Vegepygmy
+Waelan	Waelan
+Winter Wolf	Winter Wolf
+Worg	Worg
+Yeti	Yeti
+Yikaria	Yikaria
+Zemnian	Zemnian

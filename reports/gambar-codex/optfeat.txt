@@ -1,0 +1,106 @@
+Arcane Propulsion Armor	Arcane Propulsion Armor
+Archery	Archery
+Armor of Magical Strength	Armor of Magical Strength
+Aspect of the Moon	Aspect of the Moon
+Banishing Arrow	Banishing Arrow
+Banishing Shot	Banishing Shot
+Beast Speech	Beast Speech
+Beguiling Arrow	Beguiling Arrow
+Beguiling Influence	Beguiling Influence
+Beguiling Shot	Beguiling Shot
+Bewitching Whispers	Bewitching Whispers
+Blessed Warrior	Blessed Warrior
+Blind Fighting	Blind Fighting
+Bond of the Talisman	Bond of the Talisman
+Book of Ancient Secrets	Book of Ancient Secrets
+Boots of the Winding Path	Boots of the Winding Path
+Brace	Brace
+Breath of Winter	Breath of Winter
+Bursting Arrow	Bursting Arrow
+Bursting Shot	Bursting Shot
+Celebrated in House	Celebrated in House
+Chains of Carceri	Chains of Carceri
+Clench of the North Wind	Clench of the North Wind
+Cloak of Flies	Cloak of Flies
+Cloud Rune	Cloud Rune
+Defense	Defense
+Dreadful Word	Dreadful Word
+Druidic Warrior	Druidic Warrior
+Dueling	Dueling
+Eldritch Sight	Eldritch Sight
+Elemental Attunement	Elemental Attunement
+Enfeebling Arrow	Enfeebling Arrow
+Enfeebling Shot	Enfeebling Shot
+Enhanced Arcane Focus	Enhanced Arcane Focus
+Enhanced Defense	Enhanced Defense
+Enhanced Weapon	Enhanced Weapon
+Eternal Mountain Defense	Eternal Mountain Defense
+Eyes of the Rune Keeper	Eyes of the Rune Keeper
+Fangs of the Fire Snake	Fangs of the Fire Snake
+Far Scribe	Far Scribe
+Favored in House	Favored in House
+Fire Rune	Fire Rune
+Fist of Four Thunders	Fist of Four Thunders
+Flames of the Phoenix	Flames of the Phoenix
+Frost Rune	Frost Rune
+Ghostly Gaze	Ghostly Gaze
+Gift of the Ever-Living Ones	Gift of the Ever-Living Ones
+Gong of the Summit	Gong of the Summit
+Grappling Strike	Grappling Strike
+Grasp of Hadar	Grasp of Hadar
+Grasping Arrow	Grasping Arrow
+Grasping Shot	Grasping Shot
+Great Weapon Fighting	Great Weapon Fighting
+Helm of Awareness	Helm of Awareness
+Hill Rune	Hill Rune
+Improved Pact Weapon	Improved Pact Weapon
+Interception	Interception
+Lance of Lethargy	Lance of Lethargy
+Maddening Hex	Maddening Hex
+Mind Sharpener	Mind Sharpener
+Minions of Chaos	Minions of Chaos
+Mire the Mind	Mire the Mind
+Mist Stance	Mist Stance
+Pact of the Talisman	Pact of the Talisman
+Piercing Arrow	Piercing Arrow
+Piercing Shot	Piercing Shot
+Preeminent in House	Preeminent in House
+Protection	Protection
+Protection of the Talisman	Protection of the Talisman
+Quick Toss	Quick Toss
+Radiant Weapon	Radiant Weapon
+Rebuke of the Talisman	Rebuke of the Talisman
+Recognized in House	Recognized in House
+Relentless Hex	Relentless Hex
+Repeating Shot	Repeating Shot
+Replicate Magic Item	Replicate Magic Item
+Repulsion Shield	Repulsion Shield
+Resistant Armor	Resistant Armor
+Returning Weapon	Returning Weapon
+Ride the Wind	Ride the Wind
+River of Hungry Flame	River of Hungry Flame
+Rush of the Gale Spirits	Rush of the Gale Spirits
+Sculptor of Flesh	Sculptor of Flesh
+Seeking Arrow	Seeking Arrow
+Seeking Shot	Seeking Shot
+Shadow Arrow	Shadow Arrow
+Shadow Shot	Shadow Shot
+Shape the Flowing River	Shape the Flowing River
+Shroud of Shadow	Shroud of Shadow
+Sign of Ill Omen	Sign of Ill Omen
+Spell-Refueling Ring	Spell-Refueling Ring
+Stone Rune	Stone Rune
+Storm Rune	Storm Rune
+Superior Technique	Superior Technique
+Sweeping Cinder Strike	Sweeping Cinder Strike
+Thief of Five Fates	Thief of Five Fates
+Thrown Weapon Fighting	Thrown Weapon Fighting
+Tomb of Levistus	Tomb of Levistus
+Trickster's Escape	Trickster's Escape
+Two-Weapon Fighting	Two-Weapon Fighting
+Unarmed Fighting	Unarmed Fighting
+Unbroken Air	Unbroken Air
+Undying Servitude	Undying Servitude
+Voice of the Chain Master	Voice of the Chain Master
+Water Whip	Water Whip
+Wave of Rolling Earth	Wave of Rolling Earth

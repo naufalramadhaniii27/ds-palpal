@@ -1,0 +1,43 @@
+Acidic Bile Sprayer	Acidic Bile Sprayer
+Apparatus of Kwalish	Apparatus of Kwalish
+Arcane Artillery	Arcane Artillery
+Astral Brig	Astral Brig
+Astral Skiff	Astral Skiff
+Bones of Endless Toil	Bones of Endless Toil
+Canian Armor	Canian Armor
+Churning Hull	Churning Hull
+Clockwork Oars	Clockwork Oars
+Concussive Rounds	Concussive Rounds
+Death Vessel	Death Vessel
+Defiant Sails	Defiant Sails
+Dragon Sails	Dragon Sails
+Ever-Full Sails	Ever-Full Sails
+Explosive Rounds	Explosive Rounds
+Flamethrower	Flamethrower
+Frost-Locked Hull	Frost-Locked Hull
+Galley	Galley
+Gilded Death Armor	Gilded Death Armor
+Grasping Rounds	Grasping Rounds
+Guardian Figurehead	Guardian Figurehead
+Infernal Screamer	Infernal Screamer
+Keelboat	Keelboat
+Living Vessel	Living Vessel
+Longship	Longship
+Lyrandar Skyskiff	Lyrandar Skyskiff
+Necrotic Smoke Screen	Necrotic Smoke Screen
+Planar Raider	Planar Raider
+Red Dragon Figurehead	Red Dragon Figurehead
+Reinforced Hull	Reinforced Hull
+Rowboat	Rowboat
+Screaming Sails	Screaming Sails
+Scything Oars	Scything Oars
+Smuggler's Banner	Smuggler's Banner
+Soul Spike Armor	Soul Spike Armor
+Stahlmaster	Stahlmaster
+Storm Giant Figurehead	Storm Giant Figurehead
+Styx Sprayer	Styx Sprayer
+Tasha's Creeping Keelboat	Tasha's Creeping Keelboat
+Taskmaster's Drums	Taskmaster's Drums
+Teleporter	Teleporter
+Venatrix	Venatrix
+Vigilant Watch	Vigilant Watch

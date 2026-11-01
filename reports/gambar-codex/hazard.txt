@@ -1,0 +1,85 @@
+Arcane Effluence	Arcane Effluence
+Avalanche	Avalanche
+Bear Trap	Bear Trap
+Bile Lichen	Bile Lichen
+Blizzard	Blizzard
+Brown Mold	Brown Mold
+Burning	Burning
+Calim Sandstorm	Calim Sandstorm
+Collapsing Roof	Collapsing Roof
+Crossbow Trap	Crossbow Trap
+Danse Macabre	Danse Macabre
+Dead Magic Zone	Dead Magic Zone
+Death Fog Trap	Death Fog Trap
+Deep Water	Deep Water
+Dehydration	Dehydration
+Demon Ichor	Demon Ichor
+Desecrated Ground	Desecrated Ground
+Extreme Cold	Extreme Cold
+Extreme Heat	Extreme Heat
+Falling	Falling
+Falling Net	Falling Net
+Falling Portcullis	Falling Portcullis
+Falling into Water	Falling into Water
+Falling onto a Creature	Falling onto a Creature
+Fiery Blast Trap	Fiery Blast Trap
+Fire-Breathing Statue	Fire-Breathing Statue
+Fire-Casting Statue	Fire-Casting Statue
+Fireball Fungus	Fireball Fungus
+Flame Storm	Flame Storm
+Flaywind	Flaywind
+Frigid Water	Frigid Water
+Glittermoss	Glittermoss
+Hailstorm	Hailstorm
+Heavy Precipitation	Heavy Precipitation
+Hidden Pit	Hidden Pit
+High Altitude	High Altitude
+Howling Wind	Howling Wind
+Icon of the Lower Aerial Kingdoms	Icon of the Lower Aerial Kingdoms
+Improvised Damage	Improvised Damage
+Inferno	Inferno
+Lightning Strikes	Lightning Strikes
+Magical Mirage	Magical Mirage
+Malfunctioning Phase Transference Emitter	Malfunctioning Phase Transference Emitter
+Malnutrition	Malnutrition
+Morbid Memory	Morbid Memory
+Necrotic Tempest	Necrotic Tempest
+Net Trap	Net Trap
+Nonmagical Mirage	Nonmagical Mirage
+Path of Blades	Path of Blades
+Pit Trap	Pit Trap
+Pits	Pits
+Planar Effects	Planar Effects
+Poison Darts	Poison Darts
+Poison Needle	Poison Needle
+Poison Needle Trap	Poison Needle Trap
+Poisoned Needle	Poisoned Needle
+Poisoned Tempest	Poisoned Tempest
+Poisonous Gas	Poisonous Gas
+Psionic Field	Psionic Field
+Quicksand	Quicksand
+Quicksand Pit	Quicksand Pit
+Razorvine	Razorvine
+River Styx	River Styx
+Rockslide	Rockslide
+Rolling Sphere	Rolling Sphere
+Rolling Stone	Rolling Stone
+Rot Grub	Rot Grub
+Russet Mold	Russet Mold
+Scything Blade Trap	Scything Blade Trap
+Shadowbark	Shadowbark
+Sinkhole	Sinkhole
+Sleep of Ages Trap	Sleep of Ages Trap
+Slippery Ice	Slippery Ice
+Sphere of Annihilation	Sphere of Annihilation
+Sphere of Crushing Doom	Sphere of Crushing Doom
+Spiked Pit	Spiked Pit
+Strong Wind	Strong Wind
+Suffocation	Suffocation
+Thin Ice	Thin Ice
+Thrym's Howl	Thrym's Howl
+Vicious Vine	Vicious Vine
+Wild Magic Zone	Wild Magic Zone
+Wildstorm	Wildstorm
+Yellow Mold	Yellow Mold
+Zlanic Chardalyn	Zlanic Chardalyn

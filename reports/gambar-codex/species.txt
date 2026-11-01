@@ -1,0 +1,99 @@
+Accursed	Accursed
+Accursed (Steinhardt)	Accursed (Steinhardt)
+Air Genasi (2014)	Air Genasi (2014)
+Amoeboid	Amoeboid
+Ankylier	Ankylier
+Arisen	Arisen
+Aven (Dominaria)	Aven (Dominaria)
+Aven (Hawk-Headed)	Aven (Hawk-Headed)
+Avia-Ra	Avia-Ra
+Bullywug	Bullywug
+Cervan	Cervan
+Child of Seth	Child of Seth
+Corvum	Corvum
+Cursed-Blood	Cursed-Blood
+Custom Lineage	Custom Lineage
+Deep One Dwarf	Deep One Dwarf
+Demidritch	Demidritch
+Dhakaani Ghaal'dar (Hobgoblin)	Dhakaani Ghaal'dar (Hobgoblin)
+Dhakaani Golin'dar (Goblin)	Dhakaani Golin'dar (Goblin)
+Dhakaani Guul'dar (Bugbear)	Dhakaani Guul'dar (Bugbear)
+Disembodied	Disembodied
+Downcast	Downcast
+Draconblood Dragonborn	Draconblood Dragonborn
+Dreamer	Dreamer
+Drow	Drow
+Earth Genasi (2014)	Earth Genasi (2014)
+Eladrin Elf	Eladrin Elf
+Fairy (WBtW)	Fairy (WBtW)
+Feathren	Feathren
+Fire Genasi (2014)	Fire Genasi (2014)
+Forest Gnome	Forest Gnome
+Gallus	Gallus
+Geppettin	Geppettin
+Ghostwise Halfling	Ghostwise Halfling
+Gnoll	Gnoll
+Gnoll (Eberron)	Gnoll (Eberron)
+Goblin (Grotag Tribe)	Goblin (Grotag Tribe)
+Goblin (Ixalan)	Goblin (Ixalan)
+Goblin (Lavastep Tribe)	Goblin (Lavastep Tribe)
+Goblin (Tuktuk Tribe)	Goblin (Tuktuk Tribe)
+Grimlock	Grimlock
+Grudgel	Grudgel
+Harengon (WBtW)	Harengon (WBtW)
+Hedge	Hedge
+High Elf	High Elf
+Hill Dwarf	Hill Dwarf
+Jeholrak	Jeholrak
+Jerbeen	Jerbeen
+Jhorgun'taal (Half-Orc)	Jhorgun'taal (Half-Orc)
+Kaladesh Elf (Bishatar and Tirahar)	Kaladesh Elf (Bishatar and Tirahar)
+Kaladesh Elf (Vahadar)	Kaladesh Elf (Vahadar)
+Kalamer Landwalker (Merfolk)	Kalamer Landwalker (Merfolk)
+Kithkin	Kithkin
+Kuo-Toa	Kuo-Toa
+Laneshi	Laneshi
+Lightfoot Halfling	Lightfoot Halfling
+Limukin	Limukin
+Lorwyn Changeling	Lorwyn Changeling
+Lorwyn Elf	Lorwyn Elf
+Lotusden Halfling	Lotusden Halfling
+Luma	Luma
+Mandrake	Mandrake
+Manikin	Manikin
+Manyhorn	Manyhorn
+Mapach	Mapach
+Mountain Dwarf	Mountain Dwarf
+Nautilid	Nautilid
+Near-Human	Near-Human
+Ogresh	Ogresh
+Pallid Elf	Pallid Elf
+Pluvenn	Pluvenn
+Raptor	Raptor
+Ravenite Dragonborn	Ravenite Dragonborn
+Rock Gnome	Rock Gnome
+Ruinbound	Ruinbound
+Sahuagin	Sahuagin
+Scourgeborne	Scourgeborne
+Shifter (Beasthide)	Shifter (Beasthide)
+Shifter (Longtooth)	Shifter (Longtooth)
+Shifter (Swiftstride)	Shifter (Swiftstride)
+Skathári	Skathári
+Skeleton	Skeleton
+Stout Halfling	Stout Halfling
+Strig	Strig
+Troglodyte	Troglodyte
+Vampire (Ixalan)	Vampire (Ixalan)
+Vampire (Zendikar)	Vampire (Zendikar)
+Variant Human	Variant Human
+Vect	Vect
+Vulpin	Vulpin
+Water Genasi (2014)	Water Genasi (2014)
+Wechselkind	Wechselkind
+Wood Elf	Wood Elf
+Wrothian	Wrothian
+Wulven	Wulven
+Zendikar Elf (Joraga)	Zendikar Elf (Joraga)
+Zendikar Elf (Mul Daya)	Zendikar Elf (Mul Daya)
+Zendikar Elf (Tajuru)	Zendikar Elf (Tajuru)
+Zombie	Zombie

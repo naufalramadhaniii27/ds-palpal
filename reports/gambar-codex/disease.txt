@@ -1,0 +1,29 @@
+Arcane Blight	Arcane Blight
+Blinding Sickness	Blinding Sickness
+Bloodied	Bloodied
+Blue Mist Fever	Blue Mist Fever
+Bluerot	Bluerot
+Cackle Fever	Cackle Fever
+Concentration	Concentration
+Filth Fever	Filth Fever
+Flesh Rot	Flesh Rot
+Frigid Woe	Frigid Woe
+Ghoul Gut	Ghoul Gut
+Grackle-Lung	Grackle-Lung
+Lichen Plague	Lichen Plague
+Mindfire	Mindfire
+Mudpox	Mudpox
+Redface	Redface
+Saprophytic Plague	Saprophytic Plague
+Seizure	Seizure
+Sewer Plague	Sewer Plague
+Shaking Plague	Shaking Plague
+Shivering Sickness	Shivering Sickness
+Sight Rot	Sight Rot
+Slimy Doom	Slimy Doom
+Spider Eggs	Spider Eggs
+Super-Tetanus	Super-Tetanus
+Surprised	Surprised
+The Gnawing Plague	The Gnawing Plague
+The Rusting	The Rusting
+Throat Leeches	Throat Leeches

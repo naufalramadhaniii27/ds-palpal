@@ -1,0 +1,52 @@
+Adaptive Body	Adaptive Body
+Aura Sight	Aura Sight
+Beacon	Beacon
+Bestial Form	Bestial Form
+Blade Meld	Blade Meld
+Blind Spot	Blind Spot
+Brute Force	Brute Force
+Celerity	Celerity
+Corrosive Metabolism	Corrosive Metabolism
+Crown of Despair	Crown of Despair
+Crown of Disgust	Crown of Disgust
+Crown of Rage	Crown of Rage
+Delusion	Delusion
+Diminution	Diminution
+Energy Beam	Energy Beam
+Giant Growth	Giant Growth
+Intellect Fortress	Intellect Fortress
+Iron Durability	Iron Durability
+Light Step	Light Step
+Mantle of Awe	Mantle of Awe
+Mantle of Command	Mantle of Command
+Mantle of Courage	Mantle of Courage
+Mantle of Fear	Mantle of Fear
+Mantle of Fury	Mantle of Fury
+Mantle of Joy	Mantle of Joy
+Mastery of Air	Mastery of Air
+Mastery of Fire	Mastery of Fire
+Mastery of Force	Mastery of Force
+Mastery of Ice	Mastery of Ice
+Mastery of Light and Darkness	Mastery of Light and Darkness
+Mastery of Water	Mastery of Water
+Mastery of Weather	Mastery of Weather
+Mastery of Wood and Earth	Mastery of Wood and Earth
+Mind Meld	Mind Meld
+Mind Slam	Mind Slam
+Mind Thrust	Mind Thrust
+Mystic Charm	Mystic Charm
+Mystic Hand	Mystic Hand
+Nomadic Arrow	Nomadic Arrow
+Nomadic Chameleon	Nomadic Chameleon
+Nomadic Mind	Nomadic Mind
+Nomadic Step	Nomadic Step
+Precognition	Precognition
+Psionic Restoration	Psionic Restoration
+Psionic Weapon	Psionic Weapon
+Psychic Assault	Psychic Assault
+Psychic Disruption	Psychic Disruption
+Psychic Hammer	Psychic Hammer
+Psychic Inquisition	Psychic Inquisition
+Psychic Phantoms	Psychic Phantoms
+Telepathic Contact	Telepathic Contact
+Third Eye	Third Eye

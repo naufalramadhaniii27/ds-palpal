@@ -1,0 +1,3467 @@
+"Cantrips"	sub:Path of the Muscle Wizard|"Cantrips"
+"Spells"	sub:Path of the Muscle Wizard|"Spells"
+A Claw in the Clowder	sub:Cat Domain|A Claw in the Clowder
+A Cold Wind	sub:Winter Domain|A Cold Wind
+A Path Foretold	sub:Prophecy Domain|A Path Foretold
+Abjuration Expert	sub:Bond of the Spirit Animal|Abjuration Expert
+Abjuration Savant	sub:School of Abjuration|Abjuration Savant
+Abjure Enemy	Abjure Enemy
+Abjure Foes	cls:Paladin|Abjure Foes
+Abjure the Extraplanar	Abjure the Extraplanar
+Abominable	sub:Path of the Frostrager|Abominable
+Abominable Transformation	sub:Path of the Abomination|Abominable Transformation
+Absorb Elements	sub:Elementalist|Absorb Elements
+Absorb Impurities	sub:Blood Mage|Absorb Impurities
+Absorb Nutrients	sub:Bond of the Shambling Plant|Absorb Nutrients
+Absorb Spells	sub:Spellfire Sorcery|Absorb Spells
+Absorb Toxins	sub:Blood Mage|Absorb Toxins
+Abyssal Arcana	sub:Demon Brand|Abyssal Arcana
+Abyssal Regeneration	sub:Demon Brand|Abyssal Regeneration
+Accretion Disk	sub:Singularity Patron|Accretion Disk
+Accursed Specter	sub:The Hexblade|Accursed Specter
+Ace in the Hole	sub:House of Cards|Ace in the Hole
+Acid Resistance	sp:Water Genasi (2014)|Acid Resistance
+Acolyte of Nature	sub:Nature Domain|Acolyte of Nature
+Acolyte of Strength	sub:Strength Domain (PSA)|Acolyte of Strength
+Acolyte of the Occult	sub:Occultist Guild|Acolyte of the Occult
+Acquired Taste	sub:Devourer Guild|Acquired Taste
+Acrobatic Clown	sub:College of Jesters|Acrobatic Clown
+Acrobatic Mobility	sub:Freerunner|Acrobatic Mobility
+Acrobatic Movement	cls:Monk|Acrobatic Movement
+Action Free of Thought	sub:Prescient Knight|Action Free of Thought
+Action Surge	cls:Fighter|Action Surge
+Action Surge (two uses)	Action Surge (two uses)
+Adamantine Hide	sub:Circle of the Forged|Adamantine Hide
+Adaptation	sub:Evolution Domain|Adaptation
+Adaptive Metabolism	sp:Skathári|Adaptive Metabolism
+Adaptive Resilience	sub:Circle of Xenobiology|Adaptive Resilience
+Additional Arcane Shot Option	Additional Arcane Shot Option
+Additional Fighting Style	sub:Champion (2014)|Additional Fighting Style
+Additional Magical Secrets	sub:College of Lore (2014)|Additional Magical Secrets
+Additional Maneuvers	Additional Maneuvers
+Additional Rune Known	Additional Rune Known
+Additional Superiority Die	Additional Superiority Die
+Adjust Density	sub:Graviturgy Magic|Adjust Density
+Adrenaline	sub:Adrenaline Junkie|Adrenaline
+Adrenaline High	sub:Adrenaline Junkie|Adrenaline High
+Adrenaline Rush	sp:Orc|Adrenaline Rush
+Advanced Artifice	Advanced Artifice
+Advanced Construct Grafts	sub:Mastermaker|Advanced Construct Grafts
+Advanced Mutation	sub:Mutagenist|Advanced Mutation
+Advanced Subroutines	sub:AI Futurist|Advanced Subroutines
+Adventurer's Atlas	Adventurer's Atlas
+Adventuring Couture	sub:Courtiers' Guild|Adventuring Couture
+Aerial Acrobat	sub:Acrobat|Aerial Acrobat
+Aether Lore	sp:Vedalken (Kaladesh)|Aether Lore
+Age	sp:Accursed|Age
+Agent of Mercy	sub:Couatl Herald|Agent of Mercy
+Aggressive	sp:Orc (Monster)|Aggressive
+Aggressive Defense	sub:Bulwark Warrior|Aggressive Defense
+Agile Climber	sp:Goblin (Ixalan)|Agile Climber
+Agile Parry	sub:Way of the Kensei|Agile Parry
+Agile Response	sub:Trapper Guild|Agile Response
+Agile Strikes	Agile Strikes
+Aid Not Given	sub:Warrior of Regret|Aid Not Given
+Alchemical Assassin	sub:Venomsmith|Alchemical Assassin
+Alchemical Decoctions	sub:Devourer Guild|Alchemical Decoctions
+Alchemical Gastronomy	sub:Devourer Guild|Alchemical Gastronomy
+Alchemical Resurrection	sub:Apothecary|Alchemical Resurrection
+Alchemical Romance	sub:Amorist|Alchemical Romance
+Alchemical Savant	sub:Alkemancer|Alchemical Savant
+Alchemist	Alchemist
+Alchemist Spells	Alchemist Spells
+Alcoholic Adventurers	sub:College of Bartending|Alcoholic Adventurers
+All Hands on Deck	sub:Jolly Roger|All Hands on Deck
+Alter Memories	sub:Enchanter|Alter Memories
+Ambition Domain Spells	sub:Ambition Domain (PSA)|Ambition Domain Spells
+Ambush Master	sub:Scout|Ambush Master
+Ambush [Maneuver]	sub:Brigand|Ambush [Maneuver]
+Ambusher	sp:Kenku (Monster)|Ambusher
+Ambusher's Advantage	sub:Trapper Guild|Ambusher's Advantage
+Amnesia Surge	sub:Protomancer|Amnesia Surge
+Among the Dead	sub:The Undying|Among the Dead
+Amorphous	sp:Plasmoid|Amorphous
+Amphibious	sp:Bullywug|Amphibious
+Analgesic Remedy	sub:Plague Doctor|Analgesic Remedy
+Ancestral Legacy	sp:Dhampir (VRGR)|Ancestral Legacy
+Ancestral Protectors	sub:Path of the Ancestral Guardian|Ancestral Protectors
+Ancient Might	sub:Hollow Warden|Ancient Might
+Angelic Savant	sub:Angelic Scribe|Angelic Savant
+Angelic Wrath	sub:Angelic Scribe|Angelic Wrath
+Animal Enhancement	sp:Simic Hybrid|Animal Enhancement
+Animal Friends	sub:Technicolor Magic|Animal Friends
+Animal Sidekick	sub:Kid Sleuth|Animal Sidekick
+Animal Speaker	sub:Path of the Wild Heart|Animal Speaker
+Animating Performance	sub:College of Creation|Animating Performance
+Annihilating Smite	sub:Oath of the Annihilator|Annihilating Smite
+Anoint Technology	sub:Machine Domain|Anoint Technology
+Anointed Arcana	sub:Burden of the End|Anointed Arcana
+Anointed Block	sub:Godsworn|Anointed Block
+Anointed Healer	sub:Burden of Mercy|Anointed Healer
+Antagonistic Antics	sub:College of Fools|Antagonistic Antics
+Anti-Mage	sub:Witchbane Hunter|Anti-Mage
+Anti-Sound Bomb	sub:Resonator|Anti-Sound Bomb
+Anticipatory Strike	sub:Prescient Knight|Anticipatory Strike
+Antipaladin Class Features	sub:Oath of the Giving Grave|Antipaladin Class Features
+Apex Hunter	sub:Big Game Hunter|Apex Hunter
+Apex Mutation	sub:Experiment X|Apex Mutation
+Apex Predator	sub:Circle of Mutation|Apex Predator
+Apocalypse Savant	sub:Doomsayer|Apocalypse Savant
+Apocalyptic Omen	sub:Burden of Calamity|Apocalyptic Omen
+Apocalyptic Revelation	sub:Oath of Zeal|Apocalyptic Revelation
+Apocalyptic Spells	sub:Apocalypse Sorcery|Apocalyptic Spells
+Appraising Eye	sp:Corvum|Appraising Eye
+Aqua Suit	sp:Nautilid|Aqua Suit
+Aquatic Adaptation	sub:Path of the Fin|Aquatic Adaptation
+Aquatic Affinity	sub:Circle of the Sea|Aquatic Affinity
+Arboreal Alertness	sp:Grung|Arboreal Alertness
+Arcana Domain Spells	sub:Arcana Domain|Arcana Domain Spells
+Arcane Abeyance	sub:Chronurgy Magic|Arcane Abeyance
+Arcane Acrobat	sub:House of Rooks|Arcane Acrobat
+Arcane Apocrypha	sub:Apocalypse Sorcery|Arcane Apocrypha
+Arcane Apotheosis	cls:Sorcerer|Arcane Apotheosis
+Arcane Apprenticeship	sub:Arcane Maesters' Guild|Arcane Apprenticeship
+Arcane Archer Lore	sub:Arcane Archer|Arcane Archer Lore
+Arcane Armor	Arcane Armor
+Arcane Artisan	sub:Materializer|Arcane Artisan
+Arcane Assassin	sub:House of Rooks|Arcane Assassin
+Arcane Assessment	sub:Mystic Strategist|Arcane Assessment
+Arcane Awareness	sub:Blue Magic|Arcane Awareness
+Arcane Charge	sub:Eldritch Knight (2014)|Arcane Charge
+Arcane Condiments	sub:Gastronomer|Arcane Condiments
+Arcane Dabbler	Arcane Dabbler
+Arcane Deflection	sub:War Magic|Arcane Deflection
+Arcane Disruption	sub:Containment Specialist|Arcane Disruption
+Arcane Dominance	sub:House of Bishops|Arcane Dominance
+Arcane Duelist	sub:Wand Wizard|Arcane Duelist
+Arcane Evolution	sub:Familiar Master|Arcane Evolution
+Arcane Excellence	sub:Universalist|Arcane Excellence
+Arcane Exemplar	sub:Runechild|Arcane Exemplar
+Arcane Firearm	Arcane Firearm
+Arcane Initiate	sub:Arcana Domain (2014)|Arcane Initiate
+Arcane Interference	sub:Occultist Guild|Arcane Interference
+Arcane Jolt	Arcane Jolt
+Arcane Mastery	sub:Arcana Domain (2014)|Arcane Mastery
+Arcane Mutation	sub:Experiment X|Arcane Mutation
+Arcane Prototype	sub:Maverick|Arcane Prototype
+Arcane Rebuke	sub:Witchbane Hunter|Arcane Rebuke
+Arcane Recovery	cls:Wizard|Arcane Recovery
+Arcane Recycler	sub:Dynamo Engineer|Arcane Recycler
+Arcane Relics	sub:Antiquarian|Arcane Relics
+Arcane Response	sub:Occultist Guild|Arcane Response
+Arcane Revision	sub:Scroll Scribe|Arcane Revision
+Arcane Shot	sub:Arcane Archer|Arcane Shot
+Arcane Shot Options	sub:Arcane Archer|Arcane Shot Options
+Arcane Specialty	sub:Doomsayer|Arcane Specialty
+Arcane Strike	sub:Arcane Maesters' Guild|Arcane Strike
+Arcane Study	sub:House of Bishops|Arcane Study
+Arcane Synesthesia	sub:Mage Brand|Arcane Synesthesia
+Arcane Tradition	Arcane Tradition
+Arcane Tradition feature	Arcane Tradition feature
+Arcane Ward	sub:School of Abjuration|Arcane Ward
+Arcano Bomb [Formula]	sub:Dynamo Engineer|Arcano Bomb [Formula]
+Archdevil's Blessing	sub:Diabolist|Archdevil's Blessing
+Archdruid	cls:Druid|Archdruid
+Archer	Archer
+Archfey Spells	sub:Archfey Patron|Archfey Spells
+Archlich [Lichdom]	sub:Pale Master|Archlich [Lichdom]
+Arctic Predator	sub:Winter Trapper|Arctic Predator
+Argonaut	sub:Burden of Odyssey|Argonaut
+Aristocratic Bloodline Schools and Spells	sub:Aristocratic|Aristocratic Bloodline Schools and Spells
+Armament Eidolon	sub:Bond of the Living Armament|Armament Eidolon
+Armament Spells	sub:Bond of the Living Armament|Armament Spells
+Armor Model	Armor Model
+Armor Modifications	Armor Modifications
+Armor of Hexes	sub:The Hexblade|Armor of Hexes
+Armored Casing	sp:Autognome|Armored Casing
+Armored Redirection	sub:Tower Banner|Armored Redirection
+Armored Slam	sub:Armigers' Guild|Armored Slam
+Armored Suit	sp:Nautilid|Armored Suit
+Armorer	Armorer
+Armorer Spells	Armorer Spells
+Arms of the Astral Self	sub:Way of the Astral Self|Arms of the Astral Self
+Aromamancy	sub:Fragrant Magic|Aromamancy
+Art of Salvation	sub:Salvation Chapter|Art of Salvation
+Artifact Hoarder	sub:Antiquarian|Artifact Hoarder
+Artificer Specialist	Artificer Specialist
+Artificer Specialist Feature	Artificer Specialist Feature
+Artificer Subclass	Artificer Subclass
+Artificer's Lore	sp:Rock Gnome|Artificer's Lore
+Artillerist	Artillerist
+Artillerist Spells	Artillerist Spells
+Artisan's Expertise	sp:Dwarf (Kaladesh)|Artisan's Expertise
+Artisan's Intuition	sp:Human (Mark of Making)|Artisan's Intuition
+As Foretold	sub:Tea Magic|As Foretold
+Ascendant Aspect	sub:Way of the Ascendant Dragon|Ascendant Aspect
+Aspect of the Beast	sub:Path of the Totem Warrior|Aspect of the Beast
+Aspect of the Greatwyrm	sub:Drake-Blooded|Aspect of the Greatwyrm
+Aspect of the Wilds	sub:Path of the Wild Heart|Aspect of the Wilds
+Aspect of the Wyrm	sub:Way of the Ascendant Dragon|Aspect of the Wyrm
+Assassin's Tools	sub:Assassin|Assassin's Tools
+Assassinate	sub:Assassin (2014)|Assassinate
+Assertive Attacker	sub:Warrior of Pride|Assertive Attacker
+Astral Domain Spells	sub:Astral Domain|Astral Domain Spells
+Astral Fire	sp:Astral Elf|Astral Fire
+Astral Griffon Spells	sub:Astral Griffon Patron|Astral Griffon Spells
+Astral Missile	sub:Astral Griffon Patron|Astral Missile
+Astral Sight	sp:Demidritch|Astral Sight
+Astral Spark	sp:Giff|Astral Spark
+Astral Trance	sp:Astral Elf|Astral Trance
+At Home in the Waves	sub:Ocean Domain|At Home in the Waves
+Athletic Constitution	sub:Siegeball Jersey|Athletic Constitution
+Athletic Dexterity	sub:Cheerleader|Athletic Dexterity
+Attuned Toughness	sub:Bond of the Wrathful Giant|Attuned Toughness
+Audio Enhancer	sub:Resonator|Audio Enhancer
+Augmenter Spells	sub:Vow of the Augmenter|Augmenter Spells
+Aura Expansion	cls:Paladin|Aura Expansion
+Aura improvements	Aura improvements
+Aura of Alacrity	sub:Oath of Glory (2014)|Aura of Alacrity
+Aura of Attunement	sub:Oath of the Gamma Knight|Aura of Attunement
+Aura of Calamity	sub:Burden of Calamity|Aura of Calamity
+Aura of Calm	sub:Circle of the Warden|Aura of Calm
+Aura of Clarity	sub:Oath of Zeal|Aura of Clarity
+Aura of Conquest	sub:Oath of Conquest|Aura of Conquest
+Aura of Courage	cls:Paladin|Aura of Courage
+Aura of Devotion	sub:Oath of Devotion (2014)|Aura of Devotion
+Aura of Elemental Shielding	sub:Oath of the Noble Genies|Aura of Elemental Shielding
+Aura of Hate	sub:Oathbreaker|Aura of Hate
+Aura of Inevitability	sub:Oath of the Annihilator|Aura of Inevitability
+Aura of Liberation	sub:Oath of the Open Sea|Aura of Liberation
+Aura of Liberation (18th Level)	sub:Oath of the Open Sea|Aura of Liberation (18th Level)
+Aura of Malevolence	sub:Scion of the Three|Aura of Malevolence
+Aura of Protection	cls:Paladin|Aura of Protection
+Aura of Rampant Sickness	sub:Oath of Pestilence|Aura of Rampant Sickness
+Aura of Reprieve	sub:Holy Icon|Aura of Reprieve
+Aura of Resolve	sub:Oath of Radiance|Aura of Resolve
+Aura of Tenacity	sub:Burden of Revolution|Aura of Tenacity
+Aura of Warding	sub:Oath of the Ancients (2014)|Aura of Warding
+Aura of Warmth	sub:Oath of the Hearth|Aura of Warmth
+Aura of the Guardian	sub:Oath of Redemption|Aura of the Guardian
+Aura of the Sentinel	sub:Oath of the Watchers|Aura of the Sentinel
+Aura of the Unrepentant	sub:Oath of the Giving Grave|Aura of the Unrepentant
+Automate	sub:Machine Domain|Automate
+Autopilot	sub:Bond of the Living Armament|Autopilot
+Avalanche	sub:Mountain Domain|Avalanche
+Avalanche Stomp	sub:Path of the Glacier|Avalanche Stomp
+Avatar of Battle	sub:War Domain (2014)|Avatar of Battle
+Avatar of Healing	Avatar of Healing
+Avatar of Speed	Avatar of Speed
+Avenging Angel	sub:Oath of Vengeance (2014)|Avenging Angel
+Avian Eyes	sp:Avia-Ra|Avian Eyes
+Awakened Astral Self	sub:Way of the Astral Self|Awakened Astral Self
+Awakened Mind	sub:The Great Old One (2014)|Awakened Mind
+Awakened Spellbook	sub:Order of Scribes|Awakened Spellbook
+Awakened Talent	Awakened Talent
+Baba Yaga [Lichdom]	sub:Crone|Baba Yaga [Lichdom]
+Backbend	sub:Contortionist|Backbend
+Backflip	sub:Harlequin|Backflip
+Backup Dancers	sub:Necrodancer|Backup Dancers
+Bad Luck Charm	sub:Wretched Bloodline Sorcery|Bad Luck Charm
+Ball Lightning	sub:Thunderlords' Guild|Ball Lightning
+Balm	sub:Burden of Mercy|Balm
+Balm of the Summer Court	sub:Circle of Dreams|Balm of the Summer Court
+Bane Weapons	sub:Bladeworkers' Guild|Bane Weapons
+Barbarian Subclass	cls:Barbarian|Barbarian Subclass
+Bard College	sub:College of Entropy|Bard College
+Bard College feature	Bard College feature
+Bard Subclass	cls:Bard|Bard Subclass
+Bardic Damage	Bardic Damage
+Bardic Inspiration	cls:Bard|Bardic Inspiration
+Bardic Inspiration (d10)	Bardic Inspiration (d10)
+Bardic Inspiration (d12)	Bardic Inspiration (d12)
+Bardic Inspiration (d8)	Bardic Inspiration (d8)
+Bardic Versatility	Bardic Versatility
+Bartender	sub:College of Bartending|Bartender
+Bastion of Law	sub:Clockwork Soul|Bastion of Law
+Battering Roots	sub:Path of the World Tree|Battering Roots
+Battle Hymn	sub:College of the Dirge Singer|Battle Hymn
+Battle Magic	sub:College of Valor (2014)|Battle Magic
+Battle Readiness	Battle Readiness
+Battle Ready	sub:Forge Adept|Battle Ready
+Battle Smith	Battle Smith
+Battle Smith Spells	Battle Smith Spells
+Battle Tactics	sub:House of Kings|Battle Tactics
+Battle Trance	sub:Path of Tranquility|Battle Trance
+Battlerager Armor	sub:Path of the Battlerager|Battlerager Armor
+Battlerager Charge	sub:Path of the Battlerager|Battlerager Charge
+Bear	Bear
+Bear Witness	sub:Apocalypse Sorcery|Bear Witness
+Beast Spells	cls:Druid|Beast Spells
+Beasts of Ill Omen	sub:Shadow Sorcery|Beasts of Ill Omen
+Beat Down	sub:Nightwatcher|Beat Down
+Beckon Familiar	sub:Familiar Master|Beckon Familiar
+Become Death	sub:Haunted Sorcery|Become Death
+Befuddling Touch	sub:Labyrinth Domain|Befuddling Touch
+Beguiling Charm	sub:Courtesan|Beguiling Charm
+Beguiling Defenses	sub:The Archfey (2014)|Beguiling Defenses
+Beguiling Magic	sub:College of Glamour|Beguiling Magic
+Beguiling Perfume	sub:Amorist|Beguiling Perfume
+Beguiling Twist	sub:Fey Wanderer (2014)|Beguiling Twist
+Belief is a Tool	sub:College of Entropy|Belief is a Tool
+Bend Luck	sub:Wild Magic|Bend Luck
+Bend Reality	sub:Mind Domain|Bend Reality
+Benediction	sub:Godsworn|Benediction
+Benevolent Surge	sub:White Magic|Benevolent Surge
+Benign Transposition	sub:Conjurer|Benign Transposition
+Bestial Fury	sub:Beast Master (2014)|Bestial Fury
+Bestial Soul	sub:Path of the Beast|Bestial Soul
+Better Half	sub:Path of the Fractured|Better Half
+Bewitching Guile	sp:Vulpin|Bewitching Guile
+Bewitching Magic	sub:Archfey Patron|Bewitching Magic
+Binding Contract	sub:Infernum|Binding Contract
+Bio-Serum	sub:Cyber Surgeon|Bio-Serum
+Biomimicry	sp:Amoeboid|Biomimicry
+Biorhythm	sub:Leyline Magic|Biorhythm
+Biotech Field	sub:Cyber Surgeon|Biotech Field
+Birdsong	sub:College of Birdsong|Birdsong
+Bite	sp:Gnoll|Bite
+Bittersweet Perfume	sub:Circle of Roses|Bittersweet Perfume
+Black Blood Healing	sp:Verdan|Black Blood Healing
+Black Magic Spells	sub:Black Magic|Black Magic Spells
+Black Powder Bomb [Formula]	sub:Mad Bomber|Black Powder Bomb [Formula]
+Black Star	sub:Void Domain|Black Star
+Blade Flourish	sub:College of Swords|Blade Flourish
+Bladesinger Styles	Bladesinger Styles
+Bladesong	sub:Bladesinger|Bladesong
+Blast Shield	sub:Mad Bomber|Blast Shield
+Blaster Gauntlet	sub:Coalition Arcanist|Blaster Gauntlet
+Blaster Veteran	sub:Steel Shepherd|Blaster Veteran
+Blasting Specialty	sub:Mad Bomber|Blasting Specialty
+Blaze of Glory	sub:Zeal Domain (PSA)|Blaze of Glory
+Blazing Revival	sub:Circle of Wildfire|Blazing Revival
+Blessed Healer	sub:Life Domain (2014)|Blessed Healer
+Blessed Strikes	cls:Cleric|Blessed Strikes
+Blessing of Moonlight	sub:College of the Moon|Blessing of Moonlight
+Blessing of the Forge	sub:Forge Domain|Blessing of the Forge
+Blessing of the Gears	sub:Clockwork Domain|Blessing of the Gears
+Blessing of the Hearth	sub:Community Domain|Blessing of the Hearth
+Blessing of the Moon	sub:Lunar Magic|Blessing of the Moon
+Blessing of the Moon Weaver	sp:Pallid Elf|Blessing of the Moon Weaver
+Blessing of the Raven Queen	sp:Shadar-kai (2014)|Blessing of the Raven Queen
+Blessing of the Sea	sp:Kalamer Landwalker (Merfolk)|Blessing of the Sea
+Blessing of the Trickster	sub:Trickery Domain (2014)|Blessing of the Trickster
+Blessings of Knowledge	sub:Knowledge Domain|Blessings of Knowledge
+Blessings of the Sun	sp:Avia-Ra|Blessings of the Sun
+Blighted Shape	sub:Circle of the Blighted|Blighted Shape
+Blinding Flare	sub:Fire Dancer|Blinding Flare
+Blinding Rebuke	sub:Star Patron|Blinding Rebuke
+Blindsense	Blindsense
+Blindside	sub:Scofflaw|Blindside
+Blindsight	sp:Grimlock|Blindsight
+Bloated Thralls	sub:Plague Lord|Bloated Thralls
+Blood Ascendant Spells	sub:Blood Ascendant|Blood Ascendant Spells
+Blood Barrier	sub:Serophage|Blood Barrier
+Blood Boon	sub:Circle of Blood|Blood Boon
+Blood Channeling	sub:Blood Magic|Blood Channeling
+Blood Frenzy	sp:Sahuagin|Blood Frenzy
+Blood Fuel	sub:Serophage|Blood Fuel
+Blood Hex	sub:Sanguine Chapter|Blood Hex
+Blood Knight	sub:Oath of Slaughter|Blood Knight
+Blood Lust	sub:Circle of Blood|Blood Lust
+Blood Mage	sub:Blood Magic (Deep Magic)|Blood Mage
+Blood Magic	sub:Blood Mage|Blood Magic
+Blood Moon Beam	sub:Lunar Magic|Blood Moon Beam
+Blood Moon's Call	sp:Accursed (Steinhardt)|Blood Moon's Call
+Blood Savant	sub:Blood Mage|Blood Savant
+Blood Sense	sub:Path of the Fin|Blood Sense
+Blood Thirst	sp:Vampire (Ixalan)|Blood Thirst
+Blood Ties	sub:Wretched Bloodline Sorcery|Blood Ties
+Blood Vision	sub:Blood Mage|Blood Vision
+Blood for Blood	sub:Sangromancer|Blood for Blood
+Blood in the Water	sub:Path of the Fin|Blood in the Water
+Blood of the Seer	sub:Farseer|Blood of the Seer
+Blood-Drunk	sub:Path of the Slasher|Blood-Drunk
+Bloodcurdling Howl	sub:Path of the Abomination|Bloodcurdling Howl
+Bloodletting	sub:Plague Doctor|Bloodletting
+Bloodletting Focus	sub:Blood Domain|Bloodletting Focus
+Bloodstitch	sub:Sanguine Thief|Bloodstitch
+Bloodthirst	sub:Scion of the Three|Bloodthirst
+Bloodthirst Aura	sub:Oath of Slaughter|Bloodthirst Aura
+Bloody Blades	sub:Sanguine Thief|Bloody Blades
+Bloody Exit	sub:Sanguine Thief|Bloody Exit
+Bloody Rampage	sub:Experiment X|Bloody Rampage
+Bloody Spectacle	sub:Dragon Banner|Bloody Spectacle
+Blue Magic Duplication	sub:Blue Magic|Blue Magic Duplication
+Bluff	sub:House of Cards|Bluff
+Body Double	sub:Spy|Body Double
+Body and Mind	cls:Monk|Body and Mind
+Body of the Astral Self	sub:Way of the Astral Self|Body of the Astral Self
+Bogborne	sub:Path of the Swamp|Bogborne
+Bolas	sub:Big Game Hunter|Bolas
+Bolster Familiar	sub:Familiar Master|Bolster Familiar
+Bolstering Flames	Bolstering Flames
+Bolstering Magic	sub:Path of Wild Magic|Bolstering Magic
+Bond of Fang and Scale	sub:Drakewarden|Bond of Fang and Scale
+Bond of Mutual Suffering	sub:Blood Magic|Bond of Mutual Suffering
+Bond of Mutual Suffering (14th Level)	sub:Blood Magic|Bond of Mutual Suffering (14th Level)
+Bond of Shelter	sub:Circle of the Warden|Bond of Shelter
+Bonded Ring-Staff	sub:Ring Warden|Bonded Ring-Staff
+Bonus Cantrip	sub:Light Domain (2014)|Bonus Cantrip
+Bonus Cantrips	sub:The Celestial|Bonus Cantrips
+Bonus Disciplines	Bonus Disciplines
+Bonus Languages	sp:Pluvenn|Bonus Languages
+Bonus Proficiencies	sub:Tempest Domain|Bonus Proficiencies
+Bonus Proficiency	sub:Life Domain (2014)|Bonus Proficiency
+Bonus Unarmed Strike	Bonus Unarmed Strike
+Booby Trap	sub:Trappers' Guild|Booby Trap
+Born of Aether	sp:Aetherborn|Born of Aether
+Born of Madness	sp:Scourgeborne|Born of Madness
+Born to Serve	sp:Manikin|Born to Serve
+Born to the Road	sub:Travel Domain|Born to the Road
+Born to the Saddle	sub:Cavalier|Born to the Saddle
+Borrowed Time	sub:Time Operative|Borrowed Time
+Borrowed Tongues and Hides	sub:Daemonologist|Borrowed Tongues and Hides
+Botanical Lich [Lichdom]	sub:Corpse Florist|Botanical Lich [Lichdom]
+Bottled Oozes	sub:Ooze Rancher|Bottled Oozes
+Bottled Respite	Bottled Respite
+Bountiful Healing	sub:Vow of the Protector|Bountiful Healing
+Bounty Hunter's Mark	sub:Bounty Hunter|Bounty Hunter's Mark
+Braggart	sub:College of Wyrdsingers|Braggart
+Brains and Brawn	sub:Path of the Fractured|Brains and Brawn
+Branches of the Tree	sub:Path of the World Tree|Branches of the Tree
+Bravado	sub:Spy|Bravado
+Brave	sp:Kithkin|Brave
+Breadth of Knowledge	sp:Human (Nephalia)|Breadth of Knowledge
+Break Free	sub:Path of the Drifter|Break Free
+Breath Weapon	sp:Dragonborn (2014)|Breath Weapon
+Breath of the Dragon	sub:Way of the Ascendant Dragon|Breath of the Dragon
+Brew Cocktail	sub:College of Bartending|Brew Cocktail
+Bringer of Winter's Wrath	sub:Winter Domain|Bringer of Winter's Wrath
+Brittle Bones	sp:Skeleton|Brittle Bones
+Broad Inspiration	sub:College of the Dirge Singer|Broad Inspiration
+Bruised Ego	sub:Warrior of Pride|Bruised Ego
+Brutal Brawler	sub:Scofflaw|Brutal Brawler
+Brutal Critical (1 die)	Brutal Critical (1 die)
+Brutal Critical (2 dice)	Brutal Critical (2 dice)
+Brutal Critical (3 dice)	Brutal Critical (3 dice)
+Brutal Gunplay	sub:Path of the Dreadnought|Brutal Gunplay
+Brutal Strike	cls:Barbarian|Brutal Strike
+Built for Success	sp:Autognome|Built for Success
+Bull Rush [Maneuver]	sub:Star-Spangled Banner|Bull Rush [Maneuver]
+Bullseye	sub:House of Darts|Bullseye
+Bulwark	sub:Purple Dragon Knight (Banneret)|Bulwark
+Bulwark of Force	sub:Psi Warrior (2014)|Bulwark of Force
+Burden of Anonymity Spells	sub:Burden of Anonymity|Burden of Anonymity Spells
+Burden of Ascension Spells	sub:Burden of Ascension|Burden of Ascension Spells
+Burden of Atonement Spells	sub:Burden of Atonement|Burden of Atonement Spells
+Burden of Awakening Spells	sub:Burden of Awakening|Burden of Awakening Spells
+Burden of Calamity Spells	sub:Burden of Calamity|Burden of Calamity Spells
+Burden of Discord Spells	sub:Burden of Discord|Burden of Discord Spells
+Burden of Fame Spells	sub:Burden of Fame|Burden of Fame Spells
+Burden of Levity Spells	sub:Burden of Levity|Burden of Levity Spells
+Burden of Mercy Spells	sub:Burden of Mercy|Burden of Mercy Spells
+Burden of Odyssey Spells	sub:Burden of Odyssey|Burden of Odyssey Spells
+Burden of Rebirth Spells	sub:Burden of Rebirth|Burden of Rebirth Spells
+Burden of Revolution Spells	sub:Burden of Revolution|Burden of Revolution Spells
+Burden of Truth Spells	sub:Burden of Truth|Burden of Truth Spells
+Burden of Tyranny Spells	sub:Burden of Tyranny|Burden of Tyranny Spells
+Burden of the End Spells	sub:Burden of the End|Burden of the End Spells
+Burning Spirit	sub:Oath of the Hearth|Burning Spirit
+Burning weapon	sub:Oath of the Hearth|Burning weapon
+Cacophonous Melody	sub:College of the Mad God|Cacophonous Melody
+Call of the Grave	sub:College of Dirges|Call of the Grave
+Call of the Shadowseeds	sub:Circle of the Blighted|Call of the Shadowseeds
+Call the Hunt	sub:Path of the Beast|Call the Hunt
+Call to the Wave	sp:Water Genasi (2014)|Call to the Wave
+Calm Mind	sub:Couatl Herald|Calm Mind
+Candy Land	sub:Gingerbread Magic|Candy Land
+Canister Colony	sub:Nanite Magic|Canister Colony
+Cantrip	sp:High Elf|Cantrip
+Cantrip Formulas	Cantrip Formulas
+Cantrip Versatility	Cantrip Versatility
+Card Reading	sub:House of Cards|Card Reading
+Carrier	sub:Pestilence Domain|Carrier
+Cartographer	Cartographer
+Cartographer Spells	Cartographer Spells
+Carve [Maneuver]	sub:Gourmand|Carve [Maneuver]
+Cash Out	sub:House of Roulette|Cash Out
+Cat's Claws	sp:Tabaxi (2014)|Cat's Claws
+Cat's Talents	sp:Tabaxi (2014)|Cat's Talents
+Catastrophic Power	sub:Circle of Entropy|Catastrophic Power
+Cauterizing Flames	sub:Circle of Wildfire|Cauterizing Flames
+Celebrity	sub:Burden of Fame|Celebrity
+Celerity in Thought and Action	sub:Speed Domain|Celerity in Thought and Action
+Celestial Connection	sub:Warrior of the Celestial|Celestial Connection
+Celestial Eidolon	sub:Bond of the Guardian Angel|Celestial Eidolon
+Celestial Emissary	sub:Warrior of the Celestial|Celestial Emissary
+Celestial Legacy	sp:Aasimar (Monster)|Celestial Legacy
+Celestial Resilience	sub:The Celestial|Celestial Resilience
+Celestial Resistance	sp:Aasimar (Monster)|Celestial Resistance
+Celestial Revelation	sp:Aasimar (Fernian)|Celestial Revelation
+Celestial Spells	sub:Bond of the Guardian Angel|Celestial Spells
+Censuring Light	sub:Burden of Mercy|Censuring Light
+Cerulean Reflection	sub:Blue Magic|Cerulean Reflection
+Cervan Subrace	sp:Cervan|Cervan Subrace
+Chain of Liberties	sub:House of Go|Chain of Liberties
+Chalice	Chalice
+Challenge [Maneuver]	sub:Lion Banner|Challenge [Maneuver]
+Chameleon Carapace	sp:Thri-kreen|Chameleon Carapace
+Chameleon Skin	sp:Troglodyte|Chameleon Skin
+Champion Challenge	Champion Challenge
+Changeling Instincts	sp:Changeling (2014)|Changeling Instincts
+Channel Divinity	sub:Oath of the Open Sea|Channel Divinity
+Channel Divinity: Abjure Enemy	sub:Oath of Vengeance (2014)|Channel Divinity: Abjure Enemy
+Channel Divinity: Abjure the Extraplanar	sub:Oath of the Watchers|Channel Divinity: Abjure the Extraplanar
+Channel Divinity: Arcane Abjuration	sub:Arcana Domain (2014)|Channel Divinity: Arcane Abjuration
+Channel Divinity: Artisan's Blessing	sub:Forge Domain|Channel Divinity: Artisan's Blessing
+Channel Divinity: Balm of Peace	sub:Peace Domain|Channel Divinity: Balm of Peace
+Channel Divinity: Banish to the Maze	sub:Labyrinth Domain|Channel Divinity: Banish to the Maze
+Channel Divinity: Blessed Brew	sub:Beer Domain|Channel Divinity: Blessed Brew
+Channel Divinity: Blessing of the Full Moon	sub:Moon Domain|Channel Divinity: Blessing of the Full Moon
+Channel Divinity: Blood Puppet	sub:Blood Domain|Channel Divinity: Blood Puppet
+Channel Divinity: Blood Puppet (17th Level)	sub:Blood Domain|Channel Divinity: Blood Puppet (17th Level)
+Channel Divinity: Boot and Rally	sub:Beer Domain|Channel Divinity: Boot and Rally
+Channel Divinity: Burst of Speed	sub:Speed Domain|Channel Divinity: Burst of Speed
+Channel Divinity: Champion Challenge	sub:Oath of the Crown|Channel Divinity: Champion Challenge
+Channel Divinity: Charm Animals and Plants	sub:Nature Domain|Channel Divinity: Charm Animals and Plants
+Channel Divinity: Charmer of Reptiles	sub:Dragon Domain|Channel Divinity: Charmer of Reptiles
+Channel Divinity: Cloak of Shadows	sub:Trickery Domain (2014)|Channel Divinity: Cloak of Shadows
+Channel Divinity: Community Watch	sub:Community Domain|Channel Divinity: Community Watch
+Channel Divinity: Conquering Presence	sub:Oath of Conquest|Channel Divinity: Conquering Presence
+Channel Divinity: Construct Mastery	sub:Clockwork Domain|Channel Divinity: Construct Mastery
+Channel Divinity: Consuming Fervor	sub:Zeal Domain (PSA)|Channel Divinity: Consuming Fervor
+Channel Divinity: Control Undead	sub:Oathbreaker|Channel Divinity: Control Undead
+Channel Divinity: Crimson Bond	sub:Blood Domain|Channel Divinity: Crimson Bond
+Channel Divinity: Damnation	sub:Apocalypse Domain|Channel Divinity: Damnation
+Channel Divinity: Dark Secrets	sub:Void Domain|Channel Divinity: Dark Secrets
+Channel Divinity: Destructive Wrath	sub:Tempest Domain|Channel Divinity: Destructive Wrath
+Channel Divinity: Dreadful Aspect	sub:Oathbreaker|Channel Divinity: Dreadful Aspect
+Channel Divinity: Emissary of Peace	sub:Oath of Redemption|Channel Divinity: Emissary of Peace
+Channel Divinity: Ever Upward	sub:Mountain Domain|Channel Divinity: Ever Upward
+Channel Divinity: Feat of Strength	sub:Strength Domain (PSA)|Channel Divinity: Feat of Strength
+Channel Divinity: Feline Finesse	sub:Cat Domain|Channel Divinity: Feline Finesse
+Channel Divinity: Ferocious Feast	sub:Hunger Domain|Channel Divinity: Ferocious Feast
+Channel Divinity: Future Sight	sub:Prophecy Domain|Channel Divinity: Future Sight
+Channel Divinity: Group Time Shift	sub:Time Domain|Channel Divinity: Group Time Shift
+Channel Divinity: Guided Strike	sub:War Domain (2014)|Channel Divinity: Guided Strike
+Channel Divinity: Harness Divine Power	Channel Divinity: Harness Divine Power
+Channel Divinity: Hidden Knowledge	sub:Void Domain|Channel Divinity: Hidden Knowledge
+Channel Divinity: Inspiring Smite	sub:Oath of Glory (2014)|Channel Divinity: Inspiring Smite
+Channel Divinity: Invocation of Night	sub:Night Domain|Channel Divinity: Invocation of Night
+Channel Divinity: Invoke Duplicity	sub:Trickery Domain (2014)|Channel Divinity: Invoke Duplicity
+Channel Divinity: Knowledge of the Ages	sub:Knowledge Domain (2014)|Channel Divinity: Knowledge of the Ages
+Channel Divinity: Lustful Distraction	sub:Lust Domain|Channel Divinity: Lustful Distraction
+Channel Divinity: Magnificent Feast	sub:Community Domain|Channel Divinity: Magnificent Feast
+Channel Divinity: Mind of Two Moons	sub:Moon Domain|Channel Divinity: Mind of Two Moons
+Channel Divinity: Nature's Wrath	sub:Oath of the Ancients (2014)|Channel Divinity: Nature's Wrath
+Channel Divinity: Night's Chill	sub:Moon Domain (Deep Magic)|Channel Divinity: Night's Chill
+Channel Divinity: No Hiding Place	sub:Justice Domain|Channel Divinity: No Hiding Place
+Channel Divinity: One Move Ahead	sub:Prophecy Domain|Channel Divinity: One Move Ahead
+Channel Divinity: Order's Demand	sub:Order Domain|Channel Divinity: Order's Demand
+Channel Divinity: Path to the Grave	sub:Grave Domain (2014)|Channel Divinity: Path to the Grave
+Channel Divinity: Peerless Athlete	sub:Oath of Glory (2014)|Channel Divinity: Peerless Athlete
+Channel Divinity: Preserve Life	sub:Life Domain (2014)|Channel Divinity: Preserve Life
+Channel Divinity: Radiance of the Dawn	sub:Light Domain (2014)|Channel Divinity: Radiance of the Dawn
+Channel Divinity: Read Thoughts	sub:Knowledge Domain (2014)|Channel Divinity: Read Thoughts
+Channel Divinity: Rebuke the Violent	sub:Oath of Redemption|Channel Divinity: Rebuke the Violent
+Channel Divinity: Reinvigorate	sub:Travel Domain|Channel Divinity: Reinvigorate
+Channel Divinity: Sacred Weapon	sub:Oath of Devotion (2014)|Channel Divinity: Sacred Weapon
+Channel Divinity: Sea Speaker	sub:Ocean Domain|Channel Divinity: Sea Speaker
+Channel Divinity: Shadowsight	sub:Darkness Domain|Channel Divinity: Shadowsight
+Channel Divinity: Snow Walker	sub:Winter Domain|Channel Divinity: Snow Walker
+Channel Divinity: Time Shift	sub:Time Domain|Channel Divinity: Time Shift
+Channel Divinity: Time Stop	sub:Speed Domain|Channel Divinity: Time Stop
+Channel Divinity: Touch of Death	sub:Death Domain|Channel Divinity: Touch of Death
+Channel Divinity: Turn Undead	Channel Divinity: Turn Undead
+Channel Divinity: Turn the Faithless	sub:Oath of the Ancients (2014)|Channel Divinity: Turn the Faithless
+Channel Divinity: Turn the Tide	sub:Oath of the Crown|Channel Divinity: Turn the Tide
+Channel Divinity: Turn the Unholy	sub:Oath of Devotion (2014)|Channel Divinity: Turn the Unholy
+Channel Divinity: Twilight Sanctuary	sub:Twilight Domain|Channel Divinity: Twilight Sanctuary
+Channel Divinity: Undetected	sub:Hunting Domain|Channel Divinity: Undetected
+Channel Divinity: Vow of Enmity	sub:Oath of Vengeance (2014)|Channel Divinity: Vow of Enmity
+Channel Divinity: War God's Blessing	sub:War Domain (2014)|Channel Divinity: War God's Blessing
+Channel Divinity: Watcher's Will	sub:Oath of the Watchers|Channel Divinity: Watcher's Will
+Channel Divinity: Weight of Guilt	sub:Apocalypse Domain|Channel Divinity: Weight of Guilt
+Channel Divinity: Wisdom of the Winding Way	sub:Labyrinth Domain|Channel Divinity: Wisdom of the Winding Way
+Channel Energy	sub:Aristocratic|Channel Energy
+Channel Ley Line	sub:Geomancy|Channel Ley Line
+Channel Magic	sub:Clockwork Domain|Channel Magic
+Channeler	sub:College of Spirits|Channeler
+Chaos Magic Savant	sub:Entropist|Chaos Magic Savant
+Chaos Roll	sub:House of Dice|Chaos Roll
+Chaos Savant	sub:Chaos|Chaos Savant
+Charge	sp:Centaur (2014)|Charge
+Charged Core	sub:Ionizer|Charged Core
+Charmer	sub:Amorist|Charmer
+Charnel Aura	sub:Overlord|Charnel Aura
+Charnel Blaster	sub:Cyberghoul|Charnel Blaster
+Charnel Consumption	sub:Dead Mist Acolyte|Charnel Consumption
+Charnel Curse	sub:Crone|Charnel Curse
+Charnel Drain	sub:Blood Ascendant|Charnel Drain
+Charnel Empower	sub:Pale Master|Charnel Empower
+Charnel Entangle	sub:Corpse Florist|Charnel Entangle
+Charnel Groove	sub:Necrodancer|Charnel Groove
+Charnel Puppet	sub:Toymaker|Charnel Puppet
+Charnel Resilience	sub:Death Knight|Charnel Resilience
+Charnel Shield	sub:Black Rider|Charnel Shield
+Charnel Toxin	sub:Plague Lord|Charnel Toxin
+Charnel Veil	sub:Reaper|Charnel Veil
+Cheat Code	sub:Digital Nomad|Cheat Code
+Checkmate [Maneuver]	sub:House of Kings|Checkmate [Maneuver]
+Cheese Magic	sub:Tyromancer|Cheese Magic
+Chemical Mastery	Chemical Mastery
+Child of the Sea	sp:Sea Elf (2014)|Child of the Sea
+Child of the Storm	sub:Oath of Thunder|Child of the Storm
+Child of the Wood	sp:Lotusden Halfling|Child of the Wood
+Children of the Night	sub:Blood Ascendant|Children of the Night
+Chilling Disposition	sub:Pale Master|Chilling Disposition
+Chilling Melody	sub:College of Requiems|Chilling Melody
+Chilling Retribution	sub:Winter Walker|Chilling Retribution
+Chivalrous Oath	sub:Knight Errant|Chivalrous Oath
+Chorus Leader	sub:College of Cantors|Chorus Leader
+Chorus of the Sky	sub:College of Birdsong|Chorus of the Sky
+Chromatic Ancestry	sp:Dragonborn (Chromatic)|Chromatic Ancestry
+Chromatic Warding	sp:Dragonborn (Chromatic)|Chromatic Warding
+Chronal Shift	sub:Chronurgy Magic|Chronal Shift
+Chronomancy Savant	sub:Chronomancer|Chronomancy Savant
+Chronomantic Secrets	sub:College of Chronology|Chronomantic Secrets
+Chronoshift	sub:Chronomancer|Chronoshift
+Circle Forms	sub:Circle of the Moon (2014)|Circle Forms
+Circle Spells	sub:Circle of the Land (2014)|Circle Spells
+Circle of Blood Spells	sub:Circle of Blood|Circle of Blood Spells
+Circle of Configuration Spells	sub:Circle of Configuration|Circle of Configuration Spells
+Circle of Mortality	sub:Grave Domain|Circle of Mortality
+Circle of Xenobiology Spells	sub:Circle of Xenobiology|Circle of Xenobiology Spells
+Circle of the Forged Spells	sub:Circle of the Forged|Circle of the Forged Spells
+Circle of the Land Spells	sub:Circle of the Land|Circle of the Land Spells
+Circle of the Moon Spells	sub:Circle of the Moon|Circle of the Moon Spells
+Circle of the Sea Spells	sub:Circle of the Sea|Circle of the Sea Spells
+Clairvoyant Combatant	sub:Great Old One Patron|Clairvoyant Combatant
+Clarity of Catha	sub:Moon Domain|Clarity of Catha
+Claws	sp:Leonin|Claws
+Cleanse with Fire	sub:Purification Domain|Cleanse with Fire
+Cleansing Touch	Cleansing Touch
+Cleric Subclass	cls:Cleric|Cleric Subclass
+Climb Speed	sp:Hadozee|Climb Speed
+Climbing	sp:Kor|Climbing
+Cloak and Dagger	sub:Spy|Cloak and Dagger
+Cloak of Shadows	sub:Way of Shadow|Cloak of Shadows
+Clock's Unwinding	sub:The Great Machine|Clock's Unwinding
+Clockwork Apotheosis	sub:Clockwork Domain|Clockwork Apotheosis
+Clockwork Cavalcade	sub:Clockwork Soul|Clockwork Cavalcade
+Clockwork Constructs	sub:Clockworkers' Guild|Clockwork Constructs
+Clockwork Gods	sub:Clockwork Domain|Clockwork Gods
+Clockwork Lich [Lichdom]	sub:Toymaker|Clockwork Lich [Lichdom]
+Clockwork Magic	sub:Clockwork Soul|Clockwork Magic
+Clockwork Mastery	sub:Clockwork Mage|Clockwork Mastery
+Clockwork Spells	sub:Clockwork Sorcery|Clockwork Spells
+Close Quarters	sub:Carver Guild|Close Quarters
+Close-Quarters Shooting	sub:Eagle Banner|Close-Quarters Shooting
+Cloud Dancer	sub:Sky Magic|Cloud Dancer
+Clubbed Tail	sp:Ankylier|Clubbed Tail
+Cockpit Upgrade	sub:Mechanauts' Guild|Cockpit Upgrade
+Codebreaker	sub:Infiltrator|Codebreaker
+Cognitohazard	sub:Hologrammer|Cognitohazard
+Coin of Chaos	sub:Burden of Discord|Coin of Chaos
+Cold Fire Magic	sp:Rimekin|Cold Fire Magic
+Cold Fortress	sub:Path of the Glacier|Cold Fortress
+Cold Resistance	sp:Rimekin|Cold Resistance
+Cold-Hearted	sub:Frost Sorcery|Cold-Hearted
+College of Entropy	sub:Entropy|College of Entropy
+Colorful Casting	sub:College of Paint|Colorful Casting
+Colossal Slam	sub:Armigers' Guild|Colossal Slam
+Colossus Slayer	Colossus Slayer
+Combat Inspiration	sub:College of Valor (2014)|Combat Inspiration
+Combat Research	sub:Death Knight|Combat Research
+Combat Superiority	sub:Battle Master (2014)|Combat Superiority
+Combat Wild Shape	sub:Circle of the Moon (2014)|Combat Wild Shape
+Comedy and Tragedy	sub:Dramaturge|Comedy and Tragedy
+Command Undead	sub:School of Necromancy|Command Undead
+Commanding Presence	sub:Lion Banner|Commanding Presence
+Commanding Voice	sub:College of the Dirge Singer|Commanding Voice
+Communal	sp:Gallus|Communal
+Commune with the Unknown	sub:Farseer|Commune with the Unknown
+Communion at the Crossroads	sub:Master of Fiends|Communion at the Crossroads
+Compel Confession	sub:Oath of Zeal|Compel Confession
+Compelling Message	sub:Burden of Truth|Compelling Message
+Compound Creator	sub:Living Crucible|Compound Creator
+Comprehension of the Starry Sky	sub:Illuminator|Comprehension of the Starry Sky
+Concentrated Healing	sub:Apothecary|Concentrated Healing
+Conjuration Savant	sub:Conjurer|Conjuration Savant
+Connect the Dots	sub:Conspiracy Theorist|Connect the Dots
+Conquering Presence	Conquering Presence
+Constant Vigilance	sub:Prescient Knight|Constant Vigilance
+Construct Anatomy	sp:Vect|Construct Anatomy
+Construct Corpses	sub:Cyberghoul|Construct Corpses
+Construct Enchantments	sub:Clockworkers' Guild|Construct Enchantments
+Construct Form	sub:Circle of Configuration|Construct Form
+Construct Grafts	sp:Vect|Construct Grafts
+Construct Nature	sp:Geppettin|Construct Nature
+Construct Perfection	sub:Mastermaker|Construct Perfection
+Constructed Resilience	sp:Warforged (2014)|Constructed Resilience
+Construction Perfection	sub:Circle of the Forged|Construction Perfection
+Consult the Spirits	sub:Path of the Ancestral Guardian|Consult the Spirits
+Consumptive Knife	Consumptive Knife
+Consumptive Power	Consumptive Power
+Contact Patron	cls:Warlock|Contact Patron
+Containment Dimension	sub:Containment Specialist|Containment Dimension
+Control Air and Water	sp:Triton (2014)|Control Air and Water
+Control Undead	Control Undead
+Controlled Chaos	sub:Wild Magic|Controlled Chaos
+Controlled Footwork	sub:Carver Guild|Controlled Footwork
+Controlled Surge	sub:Path of Wild Magic|Controlled Surge
+Convergent Future	sub:Chronurgy Magic|Convergent Future
+Convolute Energy	sub:Red Magic|Convolute Energy
+Coordinated Strike	Coordinated Strike
+Coordinated Strikes	sub:Griffon Scout|Coordinated Strikes
+Copycat	sub:Blue Magic|Copycat
+Cornered Quarry	sub:Bounty Hunter|Cornered Quarry
+Corona of Light	sub:Light Domain (2014)|Corona of Light
+Corpse Cavalry	sub:Black Rider|Corpse Cavalry
+Corpse Florist Spells	sub:Corpse Florist|Corpse Florist Spells
+Corpulent Lich [Lichdom]	sub:Plague Lord|Corpulent Lich [Lichdom]
+Corvid Familiar	sub:Sky Magic|Corvid Familiar
+Corvum Subrace	sp:Corvum|Corvum Subrace
+Cosmetic Enchantments	sub:Courtiers' Guild|Cosmetic Enchantments
+Cosmic Knowledge	sp:Deep One Dwarf|Cosmic Knowledge
+Cosmic Omen	sub:Circle of Stars|Cosmic Omen
+Cosmic Rays	sub:Cosmic Magic|Cosmic Rays
+Cosmic Spells	sub:Cosmic Magic|Cosmic Spells
+Counter Strike	sub:Absolute Chapter|Counter Strike
+Counter-Discharge	sub:Dynamo Engineer|Counter-Discharge
+Counter-Hack	sub:Spellhacker|Counter-Hack
+Counter-Shot [Maneuver]	sub:Eagle Banner|Counter-Shot [Maneuver]
+Countercharm	cls:Bard|Countercharm
+Coup de Grâce [Maneuver]	sub:Dragon Banner|Coup de Grâce [Maneuver]
+Courier's Speed	sp:Human (Mark of Passage)|Courier's Speed
+Coven Spells	sub:The Coven|Coven Spells
+Cover Story	sub:Containment Specialist|Cover Story
+Cover of Darkness	sub:Lunar Magic|Cover of Darkness
+Covert Magic	sub:House of Rooks|Covert Magic
+Covert Tactics	sub:Daggermark|Covert Tactics
+Covert Techniques	sub:Cyber Ninja|Covert Techniques
+Craft Minor Elixir	sub:Alkemancer|Craft Minor Elixir
+Craft Wands	sub:Wand Wizard|Craft Wands
+Craven	sub:Brigand|Craven
+Create Ice	sub:Frost Sorcery|Create Ice
+Create Thrall	sub:The Great Old One (2014)|Create Thrall
+Create Void	sub:Astral Domain|Create Void
+Creative Crescendo	sub:College of Creation|Creative Crescendo
+Creature Type	sp:Pluvenn|Creature Type
+Creature of Darkness	sub:Darkness Domain|Creature of Darkness
+Creature of the Night	sub:The First Vampire Patron|Creature of the Night
+Creed of the Trickster	sp:Merfolk (Cosi Creed)|Creed of the Trickster
+Crimson Rage	sub:Sanguine Chapter|Crimson Rage
+Critical Focus	sub:Dragon Banner|Critical Focus
+Crone Spells	sub:Crone|Crone Spells
+Crowd Brawler	sub:Path of the Drifter|Crowd Brawler
+Crowd Suggestion	sub:Burden of Fame|Crowd Suggestion
+Crown of Spellfire	sub:Spellfire Sorcery|Crown of Spellfire
+Cruel Jest	sub:College of Fools|Cruel Jest
+Crushing Guilt	sub:Warrior of Regret|Crushing Guilt
+Crushing Roots	sub:Path of the Swamp|Crushing Roots
+Cultivator	sub:Verdant Protector|Cultivator
+Cunning Action	cls:Rogue|Cunning Action
+Cunning Artisan	sp:Lizardfolk (2014)|Cunning Artisan
+Cunning Companion	sub:Kid Sleuth|Cunning Companion
+Cunning Intuition	sp:Elf (Mark of Shadow)|Cunning Intuition
+Cunning Strike	cls:Rogue|Cunning Strike
+Cunning and Brutal	sub:Path of the Fractured|Cunning and Brutal
+Curl Up	sp:Hedge|Curl Up
+Curse Caster	sub:Misfortune Bringer|Curse Caster
+Curving Shot	sub:Arcane Archer|Curving Shot
+Cushioned Fall	sub:Sky Magic|Cushioned Fall
+Cutthroat	sub:Brigand|Cutthroat
+Cutthroat Society	sp:Jeholrak|Cutthroat Society
+Cutting Words	sub:College of Lore (2014)|Cutting Words
+Cyber Katana	sub:Cyber Ninja|Cyber Katana
+Cyber Lich (Lichdom)	sub:Cyberghoul|Cyber Lich (Lichdom)
+Cyber Spells	sub:Cyberghoul|Cyber Spells
+Cyberattack	sub:Infiltrator|Cyberattack
+Cybernetic Crafts	sub:Cybernetic|Cybernetic Crafts
+Cyborg	sub:Cybernetic|Cyborg
+Dad Jokes	sub:Path of the Dad|Dad Jokes
+Dagger Climb	sub:House of Darts|Dagger Climb
+Dagger Juggling	sub:Harlequin|Dagger Juggling
+Damage Resistance	sp:Dragonborn (2014)|Damage Resistance
+Dampen Elements	sub:Nature Domain|Dampen Elements
+Dampening Field	Dampening Field
+Dance Virtuoso	Dance Virtuoso
+Dance with the Dead	sub:Danseur Macabre|Dance with the Dead
+Danger Sense	sub:Trappers' Guild|Danger Sense
+Danse Fatale	sub:Danseur Macabre|Danse Fatale
+Danse Macabre [Dance Style]	sub:Danseur Macabre|Danse Macabre [Dance Style]
+Dao's Crush	Dao's Crush
+Daredevil	sub:Adrenaline Junkie|Daredevil
+Dark Arts	sub:Master of Fiends|Dark Arts
+Dark Delirium	sub:The Archfey (2014)|Dark Delirium
+Dark Doom Revisited	sub:Path of the Wrathful Dead|Dark Doom Revisited
+Dark Illusions	sub:Shadow Bloodline|Dark Illusions
+Dark One's Blessing	sub:The Fiend (2014)|Dark One's Blessing
+Dark One's Own Luck	sub:The Fiend (2014)|Dark One's Own Luck
+Dark Versatility	sub:Bond of the Fiendish Chain|Dark Versatility
+Darkness Within	sub:Heretic Chapter|Darkness Within
+Darkvision	sp:Boggart|Darkvision
+Dart Burst	sub:House of Darts|Dart Burst
+Daunting	sp:Human (Stensia)|Daunting
+Daunting Roar	sp:Leonin|Daunting Roar
+Daze (Cost: 2d6)	Daze (Cost: 2d6)
+Dazzling Devices	sub:Hologrammer|Dazzling Devices
+Dazzling Footwork	sub:College of Dance|Dazzling Footwork
+Dead Mist Lord [Lichdom]	sub:Dead Mist Acolyte|Dead Mist Lord [Lichdom]
+Dead Mist Spells	sub:Dead Mist Acolyte|Dead Mist Spells
+Deadly Momentum	sub:Acrobat|Deadly Momentum
+Deadly Redirect	sub:Carver Guild|Deadly Redirect
+Deadly Stalker	sub:Hunting Domain|Deadly Stalker
+Dealer's Choice	sub:House of Cards|Dealer's Choice
+Death Burst	sub:Clockworkers' Guild|Death Burst
+Death Domain Spells	sub:Death Domain|Death Domain Spells
+Death Is but a Door	sub:Path of the Wrathful Dead|Death Is but a Door
+Death Stare	sub:Burden of Tyranny|Death Stare
+Death Strike	sub:Assassin (2014)|Death Strike
+Death in Bloom	sub:Corpse Florist|Death in Bloom
+Death's Friend	sub:Phantom|Death's Friend
+Death's Gambit	sub:Nightgaunt|Death's Gambit
+Death's Master	sub:Necromancer|Death's Master
+Deathless Nature	sp:Reborn (VRGR)|Deathless Nature
+Deathless Nature (Dhampir)	sp:Dhampir (VRGR)|Deathless Nature (Dhampir)
+Deathly Pallor	sub:Haunted Sorcery|Deathly Pallor
+Debilitating Barrage	sub:Way of the Cobalt Soul|Debilitating Barrage
+Debilitating Fever	sub:Oath of Pestilence|Debilitating Fever
+Decadent Mastery	sp:Githyanki (2014)|Decadent Mastery
+Decay	sub:Black Magic|Decay
+Deceitful Transposition	sub:Purple Magic|Deceitful Transposition
+Deck of Fate	sub:House of Cards|Deck of Fate
+Deconstructor	sub:Path of the Wrecker|Deconstructor
+Dedicated Weapon	Dedicated Weapon
+Deductive Intuition	sp:Half-Elf (Mark of Detection)|Deductive Intuition
+Deep Cold	sub:Winter Domain|Deep Cold
+Deep Sleep	sub:Somnomancer|Deep Sleep
+Defensive Disarm	sub:Bladeworkers' Guild|Defensive Disarm
+Defensive Field	Defensive Field
+Defensive Flourish	Defensive Flourish
+Defensive Tactics	sub:Hunter (2014)|Defensive Tactics
+Defile Ground	sub:Circle of the Blighted|Defile Ground
+Defile Ground (10th Level)	sub:Circle of the Blighted|Defile Ground (10th Level)
+Defile Ground (14th Level)	sub:Circle of the Blighted|Defile Ground (14th Level)
+Deflect Attacks	cls:Monk|Deflect Attacks
+Deflect Energy	cls:Monk|Deflect Energy
+Deflect Missiles	Deflect Missiles
+Deflecting Shroud	sub:War Magic|Deflecting Shroud
+Deflection [Dance Style]	sub:Steelsinger|Deflection [Dance Style]
+Deflective Ice	sub:The Frozen One|Deflective Ice
+Deft Explorer	cls:Ranger|Deft Explorer
+Deft Explorer Improvement	Deft Explorer Improvement
+Deft Fling	sub:Harlequin|Deft Fling
+Defy Death	sub:The Undying|Defy Death
+Delightful Imitator	sp:Lorwyn Changeling|Delightful Imitator
+Dematerialize	sub:Materializer|Dematerialize
+Demigod Ascendant	sub:Burden of Ascension|Demigod Ascendant
+Demiurgic Colossus	sub:Path of the Giant|Demiurgic Colossus
+Demolishing Might	sub:Path of the Juggernaut|Demolishing Might
+Demon Cohort	sub:Demon Brand|Demon Cohort
+Denounce Arcana	sub:Burden of Calamity|Denounce Arcana
+Desert	Desert
+Desperado	sub:Highway Rider|Desperado
+Desperate Companion	sub:Houndmaster|Desperate Companion
+Desperate Endurance	sub:Pugilist|Desperate Endurance
+Desperate Regen	sub:Digital Nomad|Desperate Regen
+Desperate Ward	sub:Mage Brand|Desperate Ward
+Despotic Discourse	sub:Overlord|Despotic Discourse
+Destroy Undead (CR 1)	Destroy Undead (CR 1)
+Destroy Undead (CR 1/2)	Destroy Undead (CR 1/2)
+Destroy Undead (CR 2)	Destroy Undead (CR 2)
+Destroy Undead (CR 3)	Destroy Undead (CR 3)
+Destroy Undead (CR 4)	Destroy Undead (CR 4)
+Detect Portal	sub:Horizon Walker|Detect Portal
+Devil's Advocate	sub:Diabolist|Devil's Advocate
+Devil's Tongue	sp:Tiefling (Devil's Tongue)|Devil's Tongue
+Devious Strikes	cls:Rogue|Devious Strikes
+Dexterous Attacks	Dexterous Attacks
+Dexterous Feet	sp:Hadozee|Dexterous Feet
+Diabolic Presence	sub:Burden of Tyranny|Diabolic Presence
+Diamond Soul	Diamond Soul
+Dice of Fate	sub:House of Dice|Dice of Fate
+Digital Death	sub:Cyberghoul|Digital Death
+Dimensional Pit	sub:Jumper|Dimensional Pit
+Dirge	sub:College of Dirges|Dirge
+Dirty Tactics	sub:Jolly Roger|Dirty Tactics
+Disarm Foe	sub:Path of the Wrecker|Disarm Foe
+Disastrous Prognostication	sub:The Sibyl|Disastrous Prognostication
+Disastrous Prognostications	sub:The Sibyl|Disastrous Prognostications
+Disciple of Life	sub:Life Domain (2014)|Disciple of Life
+Disciple of the Draught	sub:Beer Domain|Disciple of the Draught
+Disciple of the Elements	sub:Way of the Four Elements|Disciple of the Elements
+Discipline	sp:Dhakaani Ghaal'dar (Hobgoblin)|Discipline
+Disciplined Survivor	cls:Monk|Disciplined Survivor
+Disco of the Dead	sub:Necrodancer|Disco of the Dead
+Disgusting Resilience	sub:Oath of Pestilence|Disgusting Resilience
+Dismantle	sub:Scrappers' Guild|Dismantle
+Dispelling Recovery	sub:Arcana Domain|Dispelling Recovery
+Displacement	sub:Jumper|Displacement
+Distant Strike	sub:Horizon Walker|Distant Strike
+Distant Transposition	sub:Conjurer|Distant Transposition
+Distort Gravity	sub:Warrior of Gravity|Distort Gravity
+Dive Attack	sp:Aarakocra (Monster)|Dive Attack
+Divination Expert	sub:Bond of the Aberrant Psion|Divination Expert
+Divination Savant	sub:School of Divination|Divination Savant
+Divine Allegiance	sub:Oath of the Crown|Divine Allegiance
+Divine Assassin	sub:Burden of Anonymity|Divine Assassin
+Divine Domain	Divine Domain
+Divine Domain feature	Divine Domain feature
+Divine Foreknowledge	sub:Knowledge Domain|Divine Foreknowledge
+Divine Fury	sub:Path of the Zealot (2014)|Divine Fury
+Divine Health	Divine Health
+Divine Intervention	cls:Cleric|Divine Intervention
+Divine Intervention Improvement	Divine Intervention Improvement
+Divine Magic	sub:Divine Soul|Divine Magic
+Divine Mandate	sub:Godsworn|Divine Mandate
+Divine Order	cls:Cleric|Divine Order
+Divine Reaper	sub:Grave Domain|Divine Reaper
+Divine Sense	Divine Sense
+Divine Spark	Divine Spark
+Divine Strike	sub:Life Domain (2014)|Divine Strike
+Divine Strike (14th Level)	sub:Blood Domain|Divine Strike (14th Level)
+Dizzying Fog	sub:Fragrant Magic|Dizzying Fog
+Djinni's Escape	Djinni's Escape
+Dodge Roll [Maneuver]	sub:Star Wolf|Dodge Roll [Maneuver]
+Domain Spells	sub:Blood Domain|Domain Spells
+Don't Need to Ask For Directions	sub:Path of the Dad|Don't Need to Ask For Directions
+Doom Foretold	sub:Burden of Calamity|Doom Foretold
+Double Joints	sub:Contortionist|Double Joints
+Draconic Ancestry	sp:Dragonborn (2014)|Draconic Ancestry
+Draconic Disciple	sub:Way of the Ascendant Dragon|Draconic Disciple
+Draconic Flight	sp:Dragonborn|Draconic Flight
+Draconic Gift	sub:Drakewarden|Draconic Gift
+Draconic Presence	sub:Draconic Bloodline|Draconic Presence
+Draconic Realisation	sub:Bond of the Dragon Herald|Draconic Realisation
+Draconic Resilience	sub:Draconic Bloodline|Draconic Resilience
+Draconic Resistance	sp:Dragonborn (Chromatic)|Draconic Resistance
+Draconic Spells	sub:Bond of the Dragon Herald|Draconic Spells
+Draconic Vengeance	sub:Drake-Blooded|Draconic Vengeance
+Dragon Ancestor	sub:Draconic Bloodline|Dragon Ancestor
+Dragon Companion	sub:Draconic Sorcery|Dragon Companion
+Dragon Eidolon	sub:Bond of the Dragon Herald|Dragon Eidolon
+Dragon Frame	sub:Space Marine|Dragon Frame
+Dragon Magic Savant	sub:Dragon Mage|Dragon Magic Savant
+Dragon Wings	sub:Draconic Bloodline|Dragon Wings
+Dragon's Resistance	sub:Dragon Domain|Dragon's Resistance
+Drain Life	sp:Aetherborn (Gifted)|Drain Life
+Drake Companion	sub:Drakewarden|Drake Companion
+Drake's Breath	sub:Drakewarden|Drake's Breath
+Dread Allegiance	sub:Scion of the Three|Dread Allegiance
+Dread Ambusher	sub:Gloom Stalker (2014)|Dread Ambusher
+Dread Incarnate	sub:Scion of the Three|Dread Incarnate
+Dread Lord	sub:Oathbreaker|Dread Lord
+Dreadful Aspect	Dreadful Aspect
+Dreadful Strikes	sub:Fey Wanderer (2014)|Dreadful Strikes
+Dreadnaught	Dreadnaught
+Dreamer's Curse	sp:Deep One Dwarf|Dreamer's Curse
+Dreamer's Gift (optional)	sp:Deep One Dwarf|Dreamer's Gift (optional)
+Drone Commander	sub:Drone Jockey|Drone Commander
+Drow Magic	sp:Drow|Drow Magic
+Drow Weapon Training	sp:Drow|Drow Weapon Training
+Druid Circle	Druid Circle
+Druid Circle feature	Druid Circle feature
+Druid Subclass	cls:Druid|Druid Subclass
+Druidic	cls:Druid|Druidic
+Drunkard's Luck	sub:Way of the Drunken Master|Drunkard's Luck
+Drunken Technique	sub:Way of the Drunken Master|Drunken Technique
+Dual Augmentation	sub:Vow of the Augmenter|Dual Augmentation
+Dual Death	sub:College of Requiems|Dual Death
+Dual Mind (2014)	sp:Kalashtar (2014)|Dual Mind (2014)
+Dueling Stance [Dance Style]	sub:Fencer|Dueling Stance [Dance Style]
+Duergar Magic	sp:Duergar (2014)|Duergar Magic
+Duergar Resilience	sp:Duergar (2014)|Duergar Resilience
+Dullahan [Lichdom]	sub:Black Rider|Dullahan [Lichdom]
+Durable Magic	sub:War Magic|Durable Magic
+Durable Summons	sub:Conjurer|Durable Summons
+Duskfog	sub:Dead Mist Acolyte|Duskfog
+Dwarven Armor Training	sp:Mountain Dwarf|Dwarven Armor Training
+Dwarven Combat Training	sp:Hill Dwarf|Dwarven Combat Training
+Dwarven Resilience	sp:Hill Dwarf|Dwarven Resilience
+Dwarven Toughness	sp:Hill Dwarf|Dwarven Toughness
+Eagle Eye [Maneuver]	sub:Eagle Banner|Eagle Eye [Maneuver]
+Ear for Deceit	sub:Inquisitive|Ear for Deceit
+Earth Walk	sp:Earth Genasi (2014)|Earth Walk
+Earthshatter	sub:Stoneheart Defender|Earthshatter
+Echo Avatar	sub:Echo Knight|Echo Avatar
+Echo of Yesterday	sub:Time Operative|Echo of Yesterday
+Eclipse of Ill Omen	sub:Moon Domain|Eclipse of Ill Omen
+Eerie Token	sp:Hexblood|Eerie Token
+Effortless Dodge [Maneuver]	sub:Daggermark|Effortless Dodge [Maneuver]
+Effortless Journey	Effortless Journey
+Efreeti's Fury	Efreeti's Fury
+Egotistical	sub:Warrior of Pride|Egotistical
+Eidetic Memory	sub:Archivist|Eidetic Memory
+Ejector Seat	sub:Mechanauts' Guild|Ejector Seat
+Elder Champion	sub:Oath of the Ancients (2014)|Elder Champion
+Elder Tongue	sub:Green Magic|Elder Tongue
+Eldritch Appetite	sub:The First Vampire Patron|Eldritch Appetite
+Eldritch Contagion	sub:Eldritch Domain|Eldritch Contagion
+Eldritch Curse	sp:Scourgeborne|Eldritch Curse
+Eldritch Domain Spells	sub:Eldritch Domain|Eldritch Domain Spells
+Eldritch Endurance	sp:Accursed (Steinhardt)|Eldritch Endurance
+Eldritch Herald	sub:Yellow Sign|Eldritch Herald
+Eldritch Hex	sub:Great Old One Patron|Eldritch Hex
+Eldritch Invocation Options	Eldritch Invocation Options
+Eldritch Invocations	cls:Warlock|Eldritch Invocations
+Eldritch Master	cls:Warlock|Eldritch Master
+Eldritch Rampage	sub:Path of Spellfury|Eldritch Rampage
+Eldritch Ruin	sub:Occultist|Eldritch Ruin
+Eldritch Strike	sub:Eldritch Knight (2014)|Eldritch Strike
+Eldritch Versatility	Eldritch Versatility
+Electric Armory	sub:Thunderlords' Guild|Electric Armory
+Electric Heart	sp:Manikin|Electric Heart
+Electromagical Burst	sub:Infiltrator|Electromagical Burst
+Electromagnetic Shield	sub:Ionizer|Electromagnetic Shield
+Elegant Courtier	sub:Samurai|Elegant Courtier
+Elegant Maneuver	sub:Swashbuckler|Elegant Maneuver
+Elemental Affinity	sub:Draconic Bloodline|Elemental Affinity
+Elemental Annihilation	sub:Red Magic|Elemental Annihilation
+Elemental Arrows	sub:Primordial Archer|Elemental Arrows
+Elemental Attunement	sub:Way of the Four Elements|Elemental Attunement
+Elemental Burst	sub:Warrior of the Elements|Elemental Burst
+Elemental Cleaver	sub:Path of the Giant|Elemental Cleaver
+Elemental Disciplines	Elemental Disciplines
+Elemental Eidolon	sub:Bond of the Elemental Spirit|Elemental Eidolon
+Elemental Epitome	sub:Warrior of the Elements|Elemental Epitome
+Elemental Focus	sub:Elementalist|Elemental Focus
+Elemental Fury	cls:Druid|Elemental Fury
+Elemental Gift	sub:The Genie|Elemental Gift
+Elemental Heritage	sub:Elemental Essence|Elemental Heritage
+Elemental Jaunt	sub:Elemental Essence|Elemental Jaunt
+Elemental Mastery	sub:Elementalist|Elemental Mastery
+Elemental Oozes	sub:Ooze Rancher|Elemental Oozes
+Elemental Rebuke	sub:Oath of the Noble Genies|Elemental Rebuke
+Elemental Remodement	sub:Bond of the Elemental Spirit|Elemental Remodement
+Elemental Savant	sub:Elementalist|Elemental Savant
+Elemental Smite	sub:Oath of the Noble Genies|Elemental Smite
+Elemental Soul	sub:Elemental Essence|Elemental Soul
+Elemental Spells	sub:Bond of the Elemental Spirit|Elemental Spells
+Elemental Wild Shape	sub:Circle of the Moon (2014)|Elemental Wild Shape
+Elementally Imbued	sub:Circle of the Forged|Elementally Imbued
+Elf Weapon Training	sp:High Elf|Elf Weapon Training
+Elusive	cls:Rogue|Elusive
+Elusive Step	sub:House of Rooks|Elusive Step
+Elven Lineage	sp:Lorwyn Elf|Elven Lineage
+Elven Lineage (Fey)	sp:Elf (Fey)|Elven Lineage (Fey)
+Embedded Armor	sp:Vect|Embedded Armor
+Embodiment of the Law	sub:Order Domain|Embodiment of the Law
+Emboldening Bond	sub:Peace Domain|Emboldening Bond
+Emissary of Peace	Emissary of Peace
+Emissary of Redemption	sub:Oath of Redemption|Emissary of Redemption
+Emissary of the Cat	sub:Cat Domain|Emissary of the Cat
+Emissary of the Sea	sp:Triton (2014)|Emissary of the Sea
+Empowered Blood Hex	sub:Sanguine Chapter|Empowered Blood Hex
+Empowered Breath Weapon	sub:Bond of the Dragon Herald|Empowered Breath Weapon
+Empowered Cantrips	sub:Moon Domain|Empowered Cantrips
+Empowered Channeling	sub:College of Spirits|Empowered Channeling
+Empowered Evocation	sub:School of Evocation|Empowered Evocation
+Empowered Healing	sub:Divine Soul|Empowered Healing
+Empowered Spells	Empowered Spells
+Empowered Strikes	cls:Monk|Empowered Strikes
+Empowered Transmutation	sub:Transmuter|Empowered Transmutation
+Empowered Wrap	sub:Bond of the Symbiote|Empowered Wrap
+Empty Body	Empty Body
+Encase	sub:Bond of the Living Armament|Encase
+Enchanting Conversationalist	sub:Enchanter|Enchanting Conversationalist
+Enchantment Expert	sub:Bond of the Faerie Trickster|Enchantment Expert
+Enchantment Savant	sub:Enchanter|Enchantment Savant
+Encircling Strike	sub:Absolute Chapter|Encircling Strike
+Encore	sub:Dramaturge|Encore
+Encyclopedic Expertise	sub:Archivist|Encyclopedic Expertise
+End Game	sub:House of Go|End Game
+Endless Dance	sub:College of Choreography|Endless Dance
+Endless Evolution	sub:Circle of Mutation|Endless Evolution
+Engineered Identity	sub:Mastermaker|Engineered Identity
+Enhanced Bond	sub:Circle of Wildfire|Enhanced Bond
+Enhanced Protection	sub:Bond of the Living Armament|Enhanced Protection
+Enhancing Tether	sub:Vow of the Augmenter|Enhancing Tether
+Entanglement	sub:Quantum Mechanic|Entanglement
+Entangling Vines	sp:Mandrake|Entangling Vines
+Enthralling Movement [Dance Style]	sub:Courtesan|Enthralling Movement [Dance Style]
+Enthralling Performance	sub:College of Glamour (2014)|Enthralling Performance
+Entourage	sub:Burden of Fame|Entourage
+Entrancing Movement	sub:College of Choreography|Entrancing Movement
+Entropic Infection	sub:Oath of Pestilence|Entropic Infection
+Entropic Ward	sub:The Great Old One (2014)|Entropic Ward
+Entropy's Apex	sub:Circle of Entropy|Entropy's Apex
+Envenom Weapons	sub:Assassin|Envenom Weapons
+Envenomed Attack	sub:Green Reaper|Envenomed Attack
+Envenomed Weapons	sp:Limukin|Envenomed Weapons
+Envoy to the Waves	sub:Ocean Domain|Envoy to the Waves
+Epic Boon	cls:Barbarian|Epic Boon
+Epidemic Infection	sub:Pestilence Domain|Epidemic Infection
+Equine Build	sp:Centaur (2014)|Equine Build
+Equipped for Battle	sub:Carver Guild|Equipped for Battle
+Erudite Focus	sub:Universalist|Erudite Focus
+Erudite Spell	sub:Archivist|Erudite Spell
+Escape Artist	sub:Runetagger|Escape Artist
+Escape Plan	sub:Trappers' Guild|Escape Plan
+Escape the Horde	Escape the Horde
+Escaped Death	sp:Reborn|Escaped Death
+Essence Mastery	sub:Alkemancer|Essence Mastery
+Essence Runes	sub:Runechild|Essence Runes
+Eternal Night	sub:The First Vampire Patron|Eternal Night
+Eternal War Eruption	sub:Daemonologist|Eternal War Eruption
+Etheradio Transmissions	sub:College of Cyberwave|Etheradio Transmissions
+Ethereal Moonwalk	sub:Moonwalker|Ethereal Moonwalk
+Ethereal Step	sub:Horizon Walker|Ethereal Step
+Evasion	sub:Daggermark|Evasion
+Evasive	sp:Vulpin|Evasive
+Evasive Fighter	sub:Freerunner|Evasive Fighter
+Evasive Speed	sub:Acrobat|Evasive Speed
+Event Horizon	sub:Graviturgy Magic|Event Horizon
+Eventide's Splendor	sub:College of the Moon|Eventide's Splendor
+Ever Hospitable	sp:Halfling (Mark of Hospitality)|Ever Hospitable
+Ever Prideful	sub:Warrior of Pride|Ever Prideful
+Ever Vigilant	sub:Nightwatcher|Ever Vigilant
+Ever-Ready Shot	sub:Arcane Archer|Ever-Ready Shot
+Ever-Vigilant	sub:Burden of Atonement|Ever-Vigilant
+Everlasting	sp:Reborn|Everlasting
+Everything on Black	sub:House of Roulette|Everything on Black
+Evil Eye	sub:Misfortune Bringer|Evil Eye
+Evocation Expert	sub:Bond of the Dragon Herald|Evocation Expert
+Evocation Savant	sub:School of Evocation|Evocation Savant
+Evolution Domain Spells	sub:Evolution Domain|Evolution Domain Spells
+Evolutionary	sub:Evolution Domain|Evolutionary
+Exalted Champion	sub:Oath of the Crown|Exalted Champion
+Exalted Presence	sub:Bond of the Guardian Angel|Exalted Presence
+Examine Specimen	sub:Xenoalchemist|Examine Specimen
+Exceptional Training	sub:Beast Master (2014)|Exceptional Training
+Excommunication	sub:Inquisitor|Excommunication
+Execution	sub:Path of the Slasher|Execution
+Exemplar	sub:Vow of the Martyr|Exemplar
+Exorcist's Doctrines	sub:Inquisitor|Exorcist's Doctrines
+Exoskeleton	sub:Experiment X|Exoskeleton
+Exotic Ammunition	sub:Calibarons' Guild|Exotic Ammunition
+Expanded Spell List	sub:The Undying|Expanded Spell List
+Expansive Bond	sub:Peace Domain|Expansive Bond
+Expendable Parts	sub:Mastermaker|Expendable Parts
+Experimental Elixir	Experimental Elixir
+Experimental Trials	sub:Cyber Surgeon|Experimental Trials
+Expert Climbers	sp:Mapach|Expert Climbers
+Expert Divination	sub:School of Divination|Expert Divination
+Expert Forgery	sp:Kenku (2014)|Expert Forgery
+Expertise	cls:Bard|Expertise
+Explosive Armory	sub:Forgeknights' Guild|Explosive Armory
+Explosive Cannon	Explosive Cannon
+Exsanguinate	sub:Circle of Blood|Exsanguinate
+Extended Magic	sub:Timekeeper|Extended Magic
+Extort Truth	sub:Way of the Cobalt Soul|Extort Truth
+Extra Attack	sub:Bladesinger|Extra Attack
+Extra Attack (2)	Extra Attack (2)
+Extra Attack (3)	Extra Attack (3)
+Extra Attack Improvement	Extra Attack Improvement
+Extra Elemental Discipline	sub:Way of the Four Elements|Extra Elemental Discipline
+Extra Elemental Discipline (level 11)	sub:Way of the Four Elements|Extra Elemental Discipline (level 11)
+Extra Elemental Discipline (level 17)	sub:Way of the Four Elements|Extra Elemental Discipline (level 17)
+Extra Language	sp:High Elf|Extra Language
+Extract Aspects	sub:Way of the Cobalt Soul|Extract Aspects
+Extradimensional Acuity	sub:Astral Griffon Patron|Extradimensional Acuity
+Extradimensional Mastery	sub:Astral Griffon Patron|Extradimensional Mastery
+Eye for Detail	sub:Inquisitive|Eye for Detail
+Eye for Weakness	sub:Inquisitive|Eye for Weakness
+Eye of Twilight	sub:Night Domain|Eye of Twilight
+Eyes of Another World	sub:Occultist|Eyes of Another World
+Eyes of Night	sub:Twilight Domain|Eyes of Night
+Eyes of the Cat	sub:Cat Domain|Eyes of the Cat
+Eyes of the Dark	sub:Shadow Magic|Eyes of the Dark
+Eyes of the Grave	sub:Grave Domain (2014)|Eyes of the Grave
+Face of Rage	sub:Path of the Fractured|Face of Rage
+Fade from View	sub:Burden of Anonymity|Fade from View
+Faerie Dust	sub:Bond of the Faerie Trickster|Faerie Dust
+Faerie Eidolon	sub:Bond of the Faerie Trickster|Faerie Eidolon
+Faerie Lineage	sp:Faerie|Faerie Lineage
+Fair and Foul	sub:Daemonologist|Fair and Foul
+Fairy Magic	sp:Faerie|Fairy Magic
+Faithful Hound	sub:Houndmaster|Faithful Hound
+Faithful Steed	cls:Paladin|Faithful Steed
+Faithful Summons	sub:Circle of the Shepherd|Faithful Summons
+False Authority	sub:Purple Magic|False Authority
+False Martyrdom	sub:Burden of Anonymity|False Martyrdom
+Familiar Doll	sub:Marionettist|Familiar Doll
+Fanatical Focus	sub:Path of the Zealot (2014)|Fanatical Focus
+Fancy Footwork	sub:Swashbuckler|Fancy Footwork
+Fashionable	sub:Courtiers' Guild|Fashionable
+Fast Friends	sub:Troubadour|Fast Friends
+Fast Hands	sub:Thief (2014)|Fast Hands
+Fast Movement	sub:College of Choreography|Fast Movement
+Fated	sp:Luma|Fated
+Fathomless Plunge	sub:The Fathomless|Fathomless Plunge
+Favored Enemy	sub:Vampire Slayer|Favored Enemy
+Favored Enemy and Natural Explorer improvements	Favored Enemy and Natural Explorer improvements
+Favored Enemy improvement	Favored Enemy improvement
+Favored Foe	Favored Foe
+Favored by the Gods	sub:Divine Soul|Favored by the Gods
+Favorite Trick	sub:College of the Road|Favorite Trick
+Fearless	sp:Kender|Fearless
+Fearsome Presence	sub:The Predator|Fearsome Presence
+Feast of Blood	sp:Vampire (Ixalan)|Feast of Blood
+Feathered Friends	sub:College of Birdsong|Feathered Friends
+Feathered Heels	sub:Sky Magic|Feathered Heels
+Feathren Ancestry	sp:Feathren|Feathren Ancestry
+Feed on Life	sub:Necrophage|Feed on Life
+Feeding Frenzy	sub:Path of the Fin|Feeding Frenzy
+Feline Agility	sp:Tabaxi (2014)|Feline Agility
+Fell the Leviathan	sub:Marauder Chapter|Fell the Leviathan
+Fencing Maneuvers	sub:Fencer|Fencing Maneuvers
+Feral Instinct	cls:Barbarian|Feral Instinct
+Feral Limbs	sp:Scourgeborne|Feral Limbs
+Feral Pounce	sp:Lupin|Feral Pounce
+Feral Senses	cls:Ranger|Feral Senses
+Ferment Spell	sub:Tyromancer|Ferment Spell
+Fernian Resistance	sp:Aasimar (Fernian)|Fernian Resistance
+Ferocious Charger	sub:Cavalier|Ferocious Charger
+Fester	sub:Pestilence Domain|Fester
+Fey	sp:Centaur (2014)|Fey
+Fey Ancestry	sp:Boggart|Fey Ancestry
+Fey Moods	sub:Feylost|Fey Moods
+Fey Presence	sub:The Archfey (2014)|Fey Presence
+Fey Reinforcements	sub:Fey Wanderer (2014)|Fey Reinforcements
+Fey Spells	sub:Bond of the Faerie Trickster|Fey Spells
+Fey Step	sp:Eladrin Elf|Fey Step
+Fey Suggestion	sub:Bond of the Faerie Trickster|Fey Suggestion
+Fey Wanderer Magic	sub:Fey Wanderer (2014)|Fey Wanderer Magic
+Fey Wanderer Spells	sub:Fey Wanderer|Fey Wanderer Spells
+Field Projector	sub:Forceforger|Field Projector
+Field of Blades	sub:House of Knights|Field of Blades
+Fiend Eidolon	sub:Bond of the Fiendish Chain|Fiend Eidolon
+Fiend Spells	sub:Bond of the Fiendish Chain|Fiend Spells
+Fiendish Familiar	sub:Infernum|Fiendish Familiar
+Fiendish Legacy	sp:Tiefling|Fiendish Legacy
+Fiendish Presence	sub:Master of Fiends|Fiendish Presence
+Fiendish Resilience	sub:The Fiend (2014)|Fiendish Resilience
+Fiendish Transformation	sub:Infernum|Fiendish Transformation
+Fierce	sp:Shifter (Longtooth)|Fierce
+Fiery Soul	sub:Pyromancer (PSK)|Fiery Soul
+Fighter Subclass	cls:Fighter|Fighter Subclass
+Fighting Spirit	sub:Samurai|Fighting Spirit
+Fighting Style	sub:College of Swords|Fighting Style
+Filth and Fortitude	sub:Vermin Lord|Filth and Fortitude
+Final Breakthrough	sub:Maverick|Final Breakthrough
+Final Night Catharsis	sub:Path of the Wrathful Dead|Final Night Catharsis
+Finder's Magic	sp:Half-Orc (Mark of Finding)|Finder's Magic
+Fine Cuisine	sub:Gourmand|Fine Cuisine
+Fine Tuning	sub:Maverick|Fine Tuning
+Finish the Hunt	sub:Big Game Hunter|Finish the Hunt
+Finishing Shot	sub:Decommissioner|Finishing Shot
+Firbolg Magic	sp:Firbolg (2014)|Firbolg Magic
+Fire Breather	sub:Fire Dancer|Fire Breather
+Fire Burst	sub:Forgeknights' Guild|Fire Burst
+Fire Resistance	sp:Flamekin|Fire Resistance
+Fire in the Belly	sub:Beer Domain|Fire in the Belly
+Fire in the Veins	sub:Pyromancer (PSK)|Fire in the Veins
+Firearms Mastery	sp:Giff|Firearms Mastery
+First Passage	sub:Labyrinth Domain|First Passage
+First Vampire Spells	sub:The First Vampire Patron|First Vampire Spells
+Five-Star Condiments	sub:Gastronomer|Five-Star Condiments
+Flame Bearer	sp:Aasimar (Fernian)|Flame Bearer
+Flame Twirling	sub:Fire Dancer|Flame Twirling
+Flanking Strike	sub:Daggermark|Flanking Strike
+Flash Freeze	sub:Frost Sorcery|Flash Freeze
+Flash of Genius	Flash of Genius
+Flashbang	sub:Resonator|Flashbang
+Fleet Step	sub:Warrior of the Open Hand|Fleet Step
+Fleet of Foot	sp:Wood Elf|Fleet of Foot
+Fleeting Decoy	sub:House of Rooks|Fleeting Decoy
+Flex Grip	sub:Bladeworkers' Guild|Flex Grip
+Flexible Casting	Flexible Casting
+Flexible Form	sp:Amoeboid|Flexible Form
+Flexile Fists	sub:Warrior of the Warped|Flexile Fists
+Flight	sp:Faerie|Flight
+Flurry of Blows	Flurry of Blows
+Flurry of Healing and Harm	sub:Way of Mercy|Flurry of Healing and Harm
+Flurry of Spells	sub:House of Lancers|Flurry of Spells
+Flyrokinetic Master	sub:Forceforger|Flyrokinetic Master
+Focal Point	sub:Bond of the Mirror Mage|Focal Point
+Focus Fire	sub:Star Wolf|Focus Fire
+Focused Aim	Focused Aim
+Focused Casting	Focused Casting
+Focused Conjuration	sub:Conjurer|Focused Conjuration
+Focused Strike	sub:Warrior of the Mystic Arts|Focused Strike
+Foe Slayer	cls:Ranger|Foe Slayer
+Fogcrafting	sub:Fumaturge|Fogcrafting
+Folk Musician	sub:Troubadour|Folk Musician
+Follow Through	sp:Orc (Dark Matter)|Follow Through
+Font of Inspiration	cls:Bard|Font of Inspiration
+Font of Magic	cls:Sorcerer|Font of Magic
+Footloose	sub:Necrodancer|Footloose
+Forbidden Magic	sub:Apocalypse Sorcery|Forbidden Magic
+Force Panel	sub:Forceforger|Force Panel
+Forceforger Spells	sub:Forceforger|Forceforger Spells
+Forceful Presence	sp:Draconblood Dragonborn|Forceful Presence
+Forceful Shove	sub:Forceforger|Forceful Shove
+Forest Binding	sub:Circle of Oaks|Forest Binding
+Forest Folk	sp:Human (Kessig)|Forest Folk
+Forest Magic	sp:Hedge|Forest Magic
+Forest Master	sub:Hunting Domain|Forest Master
+Forest Restoration	sub:Circle of Oaks|Forest Restoration
+Foretold Demise	sub:Medium|Foretold Demise
+Forewarning	sub:Burden of Truth|Forewarning
+Forge Adept Spells	sub:Forge Adept|Forge Adept Spells
+Forge Domain Spells	sub:Forge Domain|Forge Domain Spells
+Form of Dread	sub:Undead Patron|Form of Dread
+Form of the Beast	sub:Path of the Beast|Form of the Beast
+Formations	sub:House of Go|Formations
+Forms of Your Astral Self	Forms of Your Astral Self
+Fortelling	sub:Medium|Fortelling
+Fortified Position	Fortified Position
+Fortify	sub:Armigers' Guild|Fortify
+Fortifying Soul	sub:Winter Walker|Fortifying Soul
+Fortifying Spell	Fortifying Spell
+Foul Conjuration	sub:Circle of the Blighted|Foul Conjuration
+Fragrant Aura	sub:Fragrant Magic|Fragrant Aura
+Fragrant Spells	sub:Fragrant Magic|Fragrant Spells
+Frame Upgrade	sub:Mechanauts' Guild|Frame Upgrade
+Freedom of Movement	sub:Star-Spangled Banner|Freedom of Movement
+Freerunning	sub:Freerunner|Freerunning
+Frenzied Bite	sub:Path of the Fin|Frenzied Bite
+Frenzied Slaughter	sub:Oath of Slaughter|Frenzied Slaughter
+Frenzied Strike [Maneuver]	sub:Feylost|Frenzied Strike [Maneuver]
+Frenzied Strings	sub:College of the Mad God|Frenzied Strings
+Frenzy	sub:Path of the Berserker (2014)|Frenzy
+Frictionless Field	sub:Moonwalker|Frictionless Field
+Friend of the Sea	sp:Sea Elf (2014)|Friend of the Sea
+Friendship Bracelet	sub:Technicolor Magic|Friendship Bracelet
+Frightful Presence	sub:Dragon Domain|Frightful Presence
+Frigid Armory	sub:Wintercarvers' Guild|Frigid Armory
+Frigid Explorer	sub:Winter Walker|Frigid Explorer
+Frigid Wind	sub:Path of the Frostrager|Frigid Wind
+Frost Spells	sub:Frost Sorcery|Frost Spells
+Frostbite	sub:Path of the Glacier|Frostbite
+Frostburn	sub:Wintercarvers' Guild|Frostburn
+Frostrage	sub:Path of the Frostrager|Frostrage
+Frozen Body	sub:Frost Sorcery|Frozen Body
+Frozen Haunt	sub:Winter Walker|Frozen Haunt
+Frozen Path	sub:The Frozen One|Frozen Path
+Frozen Soul	sub:Frost Sorcery|Frozen Soul
+Fruit of the Mind	sub:Necrophage|Fruit of the Mind
+Full of Stars	sub:Circle of Stars|Full of Stars
+Full-Blooded	sub:Sangromancer|Full-Blooded
+Fundamental Mastery	sub:House of Pawns|Fundamental Mastery
+Fungal Body	sub:Circle of Spores|Fungal Body
+Fungal Infestation	sub:Circle of Spores|Fungal Infestation
+Fury of the Small	sp:Boggart|Fury of the Small
+Fury of the Tides	sub:Oath of the Open Sea|Fury of the Tides
+Galactic Knight	sub:Oath of the Gamma Knight|Galactic Knight
+Gallows Humor	sub:College of Fools|Gallows Humor
+Gallus Subrace	sp:Gallus|Gallus Subrace
+Game Hunter	sub:Big Game Hunter|Game Hunter
+Game Plan	sub:Siegeball Jersey|Game Plan
+Game-Winning Play	sub:Siegeball Jersey|Game-Winning Play
+Gamma Blade	sub:Oath of the Gamma Knight|Gamma Blade
+Gamma Knight Spells	sub:Oath of the Gamma Knight|Gamma Knight Spells
+Garden of the Grave	sub:Corpse Florist|Garden of the Grave
+Gaseous Escape	sub:Dead Mist Acolyte|Gaseous Escape
+Gathered Swarm	sub:Swarmkeeper|Gathered Swarm
+Gatling Strikes	sub:Warrior of the Warped|Gatling Strikes
+Gearhead	sp:Orc (Dark Matter)|Gearhead
+Gearpriest	sub:Machine Domain|Gearpriest
+Gelid Form	sub:Boreal Bloodline|Gelid Form
+Gem Ancestry	sp:Dragonborn (Gem)|Gem Ancestry
+Gem Flight	sp:Dragonborn (Gem)|Gem Flight
+Genetic Library	sub:Circle of Xenobiology|Genetic Library
+Genie Lord's Favor	sub:The Genie Lord|Genie Lord's Favor
+Genie Spells	sub:Oath of the Noble Genies|Genie Spells
+Genie's Splendor	sub:Oath of the Noble Genies|Genie's Splendor
+Genie's Vessel	sub:The Genie|Genie's Vessel
+Genie's Wrath	Genie's Wrath
+Geppettin Construction	sp:Geppettin|Geppettin Construction
+Gestalt Anchor	sub:Mind Domain|Gestalt Anchor
+Ghaal'Shaarat	sub:Forge Adept|Ghaal'Shaarat
+Ghost Walk	sub:Phantom|Ghost Walk
+Ghost in the Machine	sub:Cyberghoul|Ghost in the Machine
+Ghoulish Calling	sub:Danseur Macabre|Ghoulish Calling
+Giant Ancestry	sp:Goliath|Giant Ancestry
+Giant Eidolon	sub:Bond of the Wrathful Giant|Giant Eidolon
+Giant Killer	Giant Killer
+Giant Power	sub:Path of the Giant|Giant Power
+Giant Spells	sub:Bond of the Wrathful Giant|Giant Spells
+Giant's Havoc	sub:Path of the Giant|Giant's Havoc
+Giant's Might	sub:Rune Knight|Giant's Might
+Gift of the Sea	sub:The Fathomless|Gift of the Sea
+Gifted Scribe	sp:Gnome (Mark of Scribing)|Gifted Scribe
+Gifts of Lust	sub:Lust Domain|Gifts of Lust
+Giga-Missile	sub:Magic Missile Mage|Giga-Missile
+Gingerbread Familiar	sub:Gingerbread Magic|Gingerbread Familiar
+Gingerbread Spells	sub:Gingerbread Magic|Gingerbread Spells
+Githyanki Psionics	sp:Githyanki (2014)|Githyanki Psionics
+Githzerai Psionics	sp:Githzerai (2014)|Githzerai Psionics
+Glib	sub:Spy|Glib
+Glide	sp:Hadozee|Glide
+Gliding Wings	sp:Skathári|Gliding Wings
+Global Migrators	sp:Child of Seth|Global Migrators
+Gloom Stalker Magic	sub:Gloom Stalker (2014)|Gloom Stalker Magic
+Gloom Stalker Spells	sub:Gloom Stalker|Gloom Stalker Spells
+Glorious Defense	sub:Oath of Glory (2014)|Glorious Defense
+Glory Kill	sub:Path of the Dreadnought|Glory Kill
+Glyph of Aegis	sub:Runechild|Glyph of Aegis
+Glyph of Aegis (14th Level)	sub:Runechild|Glyph of Aegis (14th Level)
+Glyph of Aegis (6th Level)	sub:Runechild|Glyph of Aegis (6th Level)
+Glyph of Hemorrhaging	sub:Blood Magic|Glyph of Hemorrhaging
+Gnawing Hunger	sub:Devourer Guild|Gnawing Hunger
+Gnome Cunning	sp:Forest Gnome|Gnome Cunning
+Gnomish Cunning	sp:Gnome (Star)|Gnomish Cunning
+Gnomish Lineage	sp:Gnome|Gnomish Lineage
+Gnomish Lineage (Star)	sp:Gnome (Star)|Gnomish Lineage (Star)
+Go to Your Room	sub:Path of the Dad|Go to Your Room
+Golem Absorption	sub:Steel Shepherd|Golem Absorption
+Golem Form	sub:Clockwork Mage|Golem Form
+Golem's Bulwark	sub:College of Sculpture|Golem's Bulwark
+Goring Rush	sp:Minotaur (2014)|Goring Rush
+Gourmet Ingredients	sub:Gourmand|Gourmet Ingredients
+Graceful	sp:Shifter (Swiftstride)|Graceful
+Graft Mastery	sub:Cybernetic|Graft Mastery
+Grandmaster	sub:House of Kings|Grandmaster
+Grappleclaws	sp:Pluvenn|Grappleclaws
+Grasping Tentacles	sub:The Fathomless|Grasping Tentacles
+Grasping Vines	sub:Verdant Protector|Grasping Vines
+Grave Domain Spells	sub:Grave Domain|Grave Domain Spells
+Grave Keeper	sub:Nightgaunt|Grave Keeper
+Grave Power	sub:Necromancer|Grave Power
+Grave Touched	sub:Undead Patron|Grave Touched
+Gravelord	sub:Nightgaunt|Gravelord
+Graveyard Tango	sub:Necrodancer|Graveyard Tango
+Gravimancer	sub:Cosmic Magic|Gravimancer
+Gravitational Resistance	sub:Singularity Patron|Gravitational Resistance
+Gravity Well	sub:Graviturgy Magic|Gravity Well
+Grazing Shot [Maneuver]	sub:Star Wolf|Grazing Shot [Maneuver]
+Great Old One Spells	sub:Great Old One Patron|Great Old One Spells
+Great Stature	sub:Rune Knight|Great Stature
+Greater Divine Intervention	cls:Cleric|Greater Divine Intervention
+Greater Empowerment	sub:Vow of the Augmenter|Greater Empowerment
+Greater Fogcrafting	sub:Fumaturge|Greater Fogcrafting
+Greater Portent	sub:School of Divination|Greater Portent
+Greater Seal	sub:Angelic Scribe|Greater Seal
+Green Magic Spells	sub:Green Magic|Green Magic Spells
+Green Reaper Spells	sub:Green Reaper|Green Reaper Spells
+Griffon Wings	sub:Griffon Scout|Griffon Wings
+Grim Harvest	sub:School of Necromancy|Grim Harvest
+Grim Sacrifice	sub:Black Magic|Grim Sacrifice
+Grim Troupe	sub:Danseur Macabre|Grim Troupe
+Grit	sp:Goblin (Ixalan)|Grit
+Grotag Tamer	sp:Goblin (Grotag Tribe)|Grotag Tamer
+Group Recovery	sub:Banneret|Group Recovery
+Grovel, Cower, and Beg	sp:Kobold (2014)|Grovel, Cower, and Beg
+Grudge	sub:Rōnin|Grudge
+Gruesome Charge	sub:Black Rider|Gruesome Charge
+Guarded Mind	sub:Psi Warrior (2014)|Guarded Mind
+Guardian	Guardian
+Guardian Coil	sub:The Fathomless|Guardian Coil
+Guardian Spirit	sub:Circle of the Shepherd|Guardian Spirit
+Guardian's Fortitude	sub:Bond of the Spirit Animal|Guardian's Fortitude
+Guardian's Sanctuary	sub:Bond of the Spirit Animal|Guardian's Sanctuary
+Guardian's Shield	sp:Human (Mark of Sentinel)|Guardian's Shield
+Guardians of the Depths	sp:Triton (2014)|Guardians of the Depths
+Guided Precision	Guided Precision
+Guided Strike	sub:War Domain|Guided Strike
+Guiding Light	sp:Deep One Dwarf|Guiding Light
+Guiding Whispers	sub:College of Spirits (2014)|Guiding Whispers
+Guild Connections	sp:Manyhorn|Guild Connections
+Hadozee Dodge	sp:Hadozee|Hadozee Dodge
+Hag's Craft	sub:The Coven|Hag's Craft
+Hag's Eye	sub:The Coven|Hag's Eye
+Hag's Guile	sub:The Coven|Hag's Guile
+Hag's Visage	sub:The Coven|Hag's Visage
+Hair Trigger	sub:Highway Rider|Hair Trigger
+Halfling Nimbleness	sp:Kithkin|Halfling Nimbleness
+Hallucination	sub:Purple Magic|Hallucination
+Halo of Spores	sub:Circle of Spores|Halo of Spores
+Halt the Assault	sub:Bulwark Warrior|Halt the Assault
+Hammering Horns	sp:Minotaur (2014)|Hammering Horns
+Hand of Harm	sub:Way of Mercy|Hand of Harm
+Hand of Healing	sub:Way of Mercy|Hand of Healing
+Hand of Justice	sub:Justice Domain|Hand of Justice
+Hand of Ultimate Mercy	sub:Way of Mercy|Hand of Ultimate Mercy
+Hand-to-Hand	sub:Pugilist|Hand-to-Hand
+Hand-to-Hand Arcana	sub:House of Lancers|Hand-to-Hand Arcana
+Handcrafted Quality	sp:Geppettin|Handcrafted Quality
+Hangover	sub:College of Bartending|Hangover
+Harbinger [Lichdom]	sub:Reaper|Harbinger [Lichdom]
+Harbinger of the End	sub:Oath of the Annihilator|Harbinger of the End
+Hardened Formations	sub:House of Go|Hardened Formations
+Hardlight Block	sub:Steel Shepherd|Hardlight Block
+Hardlight Edge	sub:Luminaries' Guild|Hardlight Edge
+Hardlight Juggernaut	sub:Lumimancer|Hardlight Juggernaut
+Hardlight Projector	sub:Luminaries' Guild|Hardlight Projector
+Hardlight Reservoir	sub:Lumimancer|Hardlight Reservoir
+Hardlight Wall	sub:Luminaries' Guild|Hardlight Wall
+Hare-Trigger	sp:Harengon (WBtW)|Hare-Trigger
+Harmful Tether	sub:Vow of the Siphon|Harmful Tether
+Harvest Undead	sub:Necromancer|Harvest Undead
+Hastened	sub:Timekeeper|Hastened
+Haunted Spells	sub:Haunted Sorcery|Haunted Spells
+Havoc	sub:Burden of Discord|Havoc
+Hawkeyed	sp:Aven (Hawk-Headed)|Hawkeyed
+Head Banging	sub:Path of Heavy Metal|Head Banging
+Head Crest	sp:Manyhorn|Head Crest
+Headwinds	sp:Half-Elf (Mark of Storm)|Headwinds
+Healing Hands	sp:Aasimar (Protector)|Healing Hands
+Healing Hymn	sub:College of Cantors|Healing Hymn
+Healing Light	sub:The Celestial|Healing Light
+Healing Machine	sp:Autognome|Healing Machine
+Healing Touch	sp:Halfling (Mark of Healing)|Healing Touch
+Heart of Fire	sub:Pyromancer (PSK)|Heart of Fire
+Heart of the Storm	sub:Storm Sorcery|Heart of the Storm
+Heartbeat of the Land	sub:Circle of the Warden|Heartbeat of the Land
+Heartbreaker	sub:Courtesan|Heartbreaker
+Hearth of Moonlight and Shadow	sub:Circle of Dreams|Hearth of Moonlight and Shadow
+Heartstrings	sub:Marionettist|Heartstrings
+Heatsink	sub:Ionizer|Heatsink
+Heavenborne	sub:Warrior of the Celestial|Heavenborne
+Heavy Armor Pace	sp:Hill Dwarf|Heavy Armor Pace
+Heightened Focus	cls:Monk|Heightened Focus
+Hell Jump	sub:Space Marine|Hell Jump
+Hellbent Survival	sub:Diabolist|Hellbent Survival
+Hellbound	sub:Master of Fiends|Hellbound
+Hellfire	sp:Tiefling (Hellfire)|Hellfire
+Hellish Ferocity	sub:Bond of the Fiendish Chain|Hellish Ferocity
+Hellish Resistance	sp:Tiefling (2014)|Hellish Resistance
+Helpful	Helpful
+Herald of Death	sp:Aasimar (Mabaran)|Herald of Death
+Herald of the Apocalypse	sub:Apocalypse Domain|Herald of the Apocalypse
+Herald's Aspect	sub:The Genie Lord|Herald's Aspect
+Heraldic Enforcer	sub:Couatl Herald|Heraldic Enforcer
+Herbal Lore	sub:Primordial Archer|Herbal Lore
+Herbal Remedy	sub:Tea Magic|Herbal Remedy
+Herculean Surge	sub:Burden of Ascension|Herculean Surge
+Heretic Magic	sub:Heretic Chapter|Heretic Magic
+Heritage Traits	sp:Accursed|Heritage Traits
+Hermit's Study	Hermit's Study
+Heroic Ballad	sub:College of Opera|Heroic Ballad
+Heroic Leadership	sub:Lion Banner|Heroic Leadership
+Heroic Snacks	sub:Gastronomer|Heroic Snacks
+Heroic Warrior	sub:Champion|Heroic Warrior
+Hex Magic	sp:Hexblood|Hex Magic
+Hex Warrior	sub:The Hexblade|Hex Warrior
+Hexblade's Curse	sub:The Hexblade|Hexblade's Curse
+Hexlight	sub:Lunar Magic|Hexlight
+Hexplate	sub:Steel Magic|Hexplate
+Hidden Paths	sub:Circle of Dreams|Hidden Paths
+Hidden Step	sp:Firbolg (2014)|Hidden Step
+Hide in Plain Sight	Hide in Plain Sight
+High Evolutionary	sub:Evolution Domain|High Evolutionary
+High Morale	sub:Lion Banner|High Morale
+High Score	sub:Digital Nomad|High Score
+High Stakes	sub:House of Cards|High Stakes
+Hippo Build	sp:Giff|Hippo Build
+Hit and Run	sub:Freerunner|Hit and Run
+Hoarfrost Herald	sub:Rimekeeper|Hoarfrost Herald
+Hold Breath	sp:Plasmoid|Hold Breath
+Hold the Line	sub:Cavalier|Hold the Line
+Hollow Warden Spells	sub:Hollow Warden|Hollow Warden Spells
+Hologram Projector	sub:Hologrammer|Hologram Projector
+Holographic Burst	sub:Hologrammer|Holographic Burst
+Holy Denunciation	sub:Justice Domain|Holy Denunciation
+Holy Nimbus	sub:Oath of Devotion (2014)|Holy Nimbus
+Holy Symbol	sub:Pharaoh|Holy Symbol
+Homing Strikes	Homing Strikes
+Hone the Blade	Hone the Blade
+Honed Spellfire	sub:Spellfire Sorcery|Honed Spellfire
+Honeyed Words	sub:Courtesan|Honeyed Words
+Honorary Fiend	sub:Bond of the Fiendish Chain|Honorary Fiend
+Hooked Claws	sp:Skathári|Hooked Claws
+Hooves	sp:Centaur (2014)|Hooves
+Horde Breaker	Horde Breaker
+Horizon Walker Magic	sub:Horizon Walker|Horizon Walker Magic
+Horned Repose	sp:Manyhorn|Horned Repose
+Horns	sp:Minotaur (2014)|Horns
+Horrific Strike [Maneuver]	sub:Skull Banner|Horrific Strike [Maneuver]
+Horse Lord	sub:Highway Rider|Horse Lord
+Hound of Ill Omen	sub:Shadow Magic|Hound of Ill Omen
+Hound's Instincts	sub:Houndmaster|Hound's Instincts
+Hour of Reaping	sub:Way of the Long Death|Hour of Reaping
+Howl	sp:Lupin|Howl
+Hundred-Arrow Volley	sub:Eagle Banner|Hundred-Arrow Volley
+Hungering Might	sub:Hollow Warden|Hungering Might
+Hungry Jaws	sp:Lizardfolk (2014)|Hungry Jaws
+Hunter's Instincts	sp:Leonin|Hunter's Instincts
+Hunter's Intuition	sp:Half-Orc (Mark of Finding)|Hunter's Intuition
+Hunter's Lore	sp:Lizardfolk (2014)|Hunter's Lore
+Hunter's Prey	sub:Hunter (2014)|Hunter's Prey
+Hunter's Rime	sub:Winter Walker|Hunter's Rime
+Hunter's Sense	sub:Monster Slayer|Hunter's Sense
+Hunter's Senses	sp:Gnoll (Eberron)|Hunter's Senses
+Hunter's Training	sp:Raptor|Hunter's Training
+Hunter-Gatherer	sp:Limukin|Hunter-Gatherer
+Hunting Grounds	sub:Beastblood Guardian|Hunting Grounds
+Hurl Through Hell	sub:The Fiend (2014)|Hurl Through Hell
+Hurricane Strike	sub:Path of the Juggernaut|Hurricane Strike
+Hyperdrive	sub:Cybernetic|Hyperdrive
+Hyperintelligence	sub:AI Futurist|Hyperintelligence
+Hypnotic Gaze	sub:School of Enchantment|Hypnotic Gaze
+Hypnotic Presence	sub:Enchanter|Hypnotic Presence
+Hypnotize	sub:Somnomancer|Hypnotize
+I Cast Fist	sub:Path of the Muscle Wizard|I Cast Fist
+Ice Blast	sub:Rimekeeper|Ice Blast
+Ice Sculpting	sub:Wintercarvers' Guild|Ice Sculpting
+Icehaven Born	sp:Human (Keldon)|Icehaven Born
+Icicle Throw	sub:Path of the Frostrager|Icicle Throw
+Icy Body	sub:The Frozen One|Icy Body
+Illuminated Spells	sub:College of Calligraphy|Illuminated Spells
+Illumination Magic Savant	sub:Illuminator|Illumination Magic Savant
+Illumination Savant	sub:School of Illumination|Illumination Savant
+Illusion Expert	sub:Bond of the Mirror Mage|Illusion Expert
+Illusion Savant	sub:School of Illusion|Illusion Savant
+Illusions of Permanence	sub:Illuminator|Illusions of Permanence
+Illusory Body	sp:Deep One Dwarf|Illusory Body
+Illusory Decoy	sub:Hologrammer|Illusory Decoy
+Illusory Reality	sub:School of Illusion|Illusory Reality
+Illusory Self	sub:School of Illusion|Illusory Self
+Imbalance Humors	sub:Plague Doctor|Imbalance Humors
+Imbue Ring	sub:Ring Warden|Imbue Ring
+Immortal Bulwark	sub:Bond of the Guardian Angel|Immortal Bulwark
+Immortal Durability	Immortal Durability
+Immortal Will	Immortal Will
+Impending Misfortune	sub:College of Tragedy|Impending Misfortune
+Imperator [Lichdom]	sub:Death Knight|Imperator [Lichdom]
+Imperil	sub:Red Magic|Imperil
+Implement of Peace	sub:Peace Domain|Implement of Peace
+Implements of Mercy	sub:Way of Mercy|Implements of Mercy
+Imposing Presence	sp:Minotaur (2014)|Imposing Presence
+Impostor	sub:Assassin (2014)|Impostor
+Impressionist	sub:Runetagger|Impressionist
+Imprinted Spellscar	sub:Mage Brand|Imprinted Spellscar
+Improved Abjuration	sub:School of Abjuration|Improved Abjuration
+Improved Armored Deflection	sub:Steelsinger|Improved Armored Deflection
+Improved Armorer	Improved Armorer
+Improved Blessed Strikes	cls:Cleric|Improved Blessed Strikes
+Improved Bolas	sub:Big Game Hunter|Improved Bolas
+Improved Brutal Strike	cls:Barbarian|Improved Brutal Strike
+Improved Circle Forms	sub:Circle of the Moon|Improved Circle Forms
+Improved Combat Superiority	sub:Battle Master (2014)|Improved Combat Superiority
+Improved Combat Superiority (d10)	Improved Combat Superiority (d10)
+Improved Combat Superiority (d12)	sub:Battle Master (2014)|Improved Combat Superiority (d12)
+Improved Critical	sub:Champion (2014)|Improved Critical
+Improved Cunning Strike	cls:Rogue|Improved Cunning Strike
+Improved Defender	Improved Defender
+Improved Defense	Improved Defense
+Improved Divine Smite	Improved Divine Smite
+Improved Duplicity	sub:Trickery Domain (2014)|Improved Duplicity
+Improved Elemental Fury	cls:Druid|Improved Elemental Fury
+Improved Field Projecter	sub:Forceforger|Improved Field Projecter
+Improved Flare	sub:Light Domain (2014)|Improved Flare
+Improved Illusions	sub:Illusionist|Improved Illusions
+Improved Life Tether	sub:Vow of the Protector|Improved Life Tether
+Improved Mending	sub:Clockwork Domain|Improved Mending
+Improved Minor Illusion	sub:School of Illusion|Improved Minor Illusion
+Improved Mystic Fighting Style	sub:Warrior of the Mystic Arts|Improved Mystic Fighting Style
+Improved Radiant Shell	sub:Luminaries' Guild|Improved Radiant Shell
+Improved Reanimation	sub:Reanimator|Improved Reanimation
+Improved Reaper	sub:Death Domain|Improved Reaper
+Improved Sap Strength	sub:Vow of the Siphon|Improved Sap Strength
+Improved Second Wind	sub:Bulwark Warrior|Improved Second Wind
+Improved Shadow Step	sub:Warrior of Shadow|Improved Shadow Step
+Improved Shillelagh	sub:Circle of the Unbroken|Improved Shillelagh
+Improved Shock Trooper	sub:House of Lancers|Improved Shock Trooper
+Improved Slip Gate	sub:Jumper|Improved Slip Gate
+Improved Special Shots	sub:Big Game Hunter|Improved Special Shots
+Improved Steal Luck	sub:Misfortune Bringer|Improved Steal Luck
+Improved Tricks	sub:College of the Road|Improved Tricks
+Improved Unholy Smite	sub:Oath of the Giving Grave|Improved Unholy Smite
+Improved War Magic	sub:Eldritch Knight (2014)|Improved War Magic
+Improved Ward	sub:Night Domain|Improved Ward
+Improved Warding Flare	sub:Light Domain|Improved Warding Flare
+Improvisational Talent	sub:College of Adventurers|Improvisational Talent
+Impulse Frame	sub:Space Marine|Impulse Frame
+Incandescent Strikes	sub:Oath of the Sun|Incandescent Strikes
+Incarnation of Corruption	sub:Circle of the Blighted|Incarnation of Corruption
+Incisive Sense	sp:Pallid Elf|Incisive Sense
+Indestructible Life	sub:The Undying|Indestructible Life
+Indomitable	cls:Fighter|Indomitable
+Indomitable (three uses)	Indomitable (three uses)
+Indomitable (two uses)	Indomitable (two uses)
+Indomitable Improvement	Indomitable Improvement
+Indomitable Might	cls:Barbarian|Indomitable Might
+Indomitable Teleport	sub:Arcane Archer|Indomitable Teleport
+Inescapable Destruction	sub:Death Domain|Inescapable Destruction
+Inexorable Might	sub:Aristocratic|Inexorable Might
+Infamy	sub:Rōnin|Infamy
+Infection	sub:Pestilence Domain|Infection
+Infectious Fury	sub:Path of the Beast|Infectious Fury
+Infectious Inspiration	sub:College of Eloquence|Infectious Inspiration
+Infectious Spread	sub:Vermin Lord|Infectious Spread
+Infernal Bargain	sub:Infernum|Infernal Bargain
+Infernal Command	sub:Diabolist|Infernal Command
+Infernal Legacy	sp:Tiefling (2014)|Infernal Legacy
+Inferno Breath	sub:Fire Dancer|Inferno Breath
+Infest	sub:Carrion King|Infest
+Infiltration Expertise	sub:Assassin (2014)|Infiltration Expertise
+Inflexible Mind	sp:Vect|Inflexible Mind
+Infuse Elements	sub:Elemental Essence|Infuse Elements
+Infuse Item	Infuse Item
+Infusion of Fortune	sub:College of Entropy|Infusion of Fortune
+Infusions Known	Infusions Known
+Ingenious Movement	Ingenious Movement
+Innate Necromancy	sub:Nightgaunt|Innate Necromancy
+Innate Sorcery	cls:Sorcerer|Innate Sorcery
+Innate Spellcasting	sp:Deep Gnome (Monster)|Innate Spellcasting
+Innate Toxicology	sp:Limukin|Innate Toxicology
+Innkeeper's Magic	sp:Halfling (Mark of Hospitality)|Innkeeper's Magic
+Inquisition Domain Spells	sub:Inquisition Domain|Inquisition Domain Spells
+Insidious Smite	sub:Steel Magic|Insidious Smite
+Insightful Fighting	sub:Inquisitive|Insightful Fighting
+Insightful Manipulator	sub:Mastermind|Insightful Manipulator
+Inspirational Dance	sub:College of Choreography|Inspirational Dance
+Inspire Greatness	sub:College of Wyrdsingers|Inspire Greatness
+Inspiring Battlecry	sub:Knight Errant|Inspiring Battlecry
+Inspiring Chant [Dance Style]	sub:Cheerleader|Inspiring Chant [Dance Style]
+Inspiring Commander	sub:Banneret|Inspiring Commander
+Inspiring Help	Inspiring Help
+Inspiring Help Improvement	Inspiring Help Improvement
+Inspiring Movement	sub:College of Dance|Inspiring Movement
+Inspiring Smite	sub:Oath of Glory|Inspiring Smite
+Inspiring Surge	sub:Purple Dragon Knight (Banneret)|Inspiring Surge
+Inspiring Tune [Maneuver]	sub:Troubadour|Inspiring Tune [Maneuver]
+Instinctive Charm	sub:Enchanter|Instinctive Charm
+Instinctive Pounce	cls:Barbarian|Instinctive Pounce
+Instinctive Transformation	sub:Demon Brand|Instinctive Transformation
+Insubstantial	sp:Disembodied|Insubstantial
+Insulating Ward	sub:Oath of the Hearth|Insulating Ward
+Insult to Injury	sub:College of Jesters|Insult to Injury
+Integrated Gold Plating	sp:Manikin|Integrated Gold Plating
+Integrated Protection	sp:Warforged (2014)|Integrated Protection
+Intercepting Shot	sub:House of Darts|Intercepting Shot
+Intercepting Strike	sub:Oath of the Gamma Knight|Intercepting Strike
+Internal Fortitude	sub:Blood Mage|Internal Fortitude
+Interrogator's Instinct	sub:Detective|Interrogator's Instinct
+Intimidating Banter	sub:Scofflaw|Intimidating Banter
+Intimidating Blow	sub:Pugilist|Intimidating Blow
+Intimidating Presence	sub:Path of the Berserker (2014)|Intimidating Presence
+Intoxicated Frenzy	sub:Way of the Drunken Master|Intoxicated Frenzy
+Intuitive Motion	sp:Human (Mark of Passage)|Intuitive Motion
+Inured to Undeath	sub:School of Necromancy|Inured to Undeath
+Invincible Conqueror	sub:Oath of Conquest|Invincible Conqueror
+Invisible Wall	sub:Mime|Invisible Wall
+Invoke Dragon Heart	sub:Dragon Mage|Invoke Dragon Heart
+Invoke Dragon Mask	sub:Dragon Mage|Invoke Dragon Mask
+Invoke Dragon Tail	sub:Dragon Mage|Invoke Dragon Tail
+Invoke Dragon Wings	sub:Dragon Mage|Invoke Dragon Wings
+Invoke Duplicity	sub:Trickery Domain|Invoke Duplicity
+Invulnerability	sub:Red Magic|Invulnerability
+Iron Mind	sub:Gloom Stalker (2014)|Iron Mind
+Iron Retribution	sub:Tower Banner|Iron Retribution
+Iron Wall [Maneuver]	sub:Tower Banner|Iron Wall [Maneuver]
+Irrational Retaliation	sub:Warrior of Pride|Irrational Retaliation
+Irresistible Mood	sub:Feylost|Irresistible Mood
+Irresistible Strike	sub:Elementalist|Irresistible Strike
+It Was Foretold	sub:Prophecy Domain|It Was Foretold
+It's Alive!	sub:Xenoalchemist|It's Alive!
+Jack of All Trades	cls:Bard|Jack of All Trades
+Jest [Dance Style]	sub:Harlequin|Jest [Dance Style]
+Juggernaut Protocol	sub:Steel Shepherd|Juggernaut Protocol
+Just a Prank	sub:Burden of Levity|Just a Prank
+Karakala Lore	sp:Kalamer Landwalker (Merfolk)|Karakala Lore
+Keen Hearing and Smell	sp:Grimlock|Keen Hearing and Smell
+Keen Senses	sp:Lorwyn Elf|Keen Senses
+Keen Smell	sp:Loxodon|Keen Smell
+Keeper of History	sub:College of the Dirge Singer|Keeper of History
+Keeper of Souls	sub:Grave Domain (2014)|Keeper of Souls
+Kefnet's Blessing	sp:Aven (Ibis-Headed)|Kefnet's Blessing
+Keldon Resilience	sp:Human (Keldon)|Keldon Resilience
+Kender Curiosity	sp:Kender|Kender Curiosity
+Kenku Training	sp:Kenku (2014)|Kenku Training
+Kensei's Shot	sub:Way of the Kensei|Kensei's Shot
+Khenra Twins	sp:Khenra|Khenra Twins
+Khenra Weapon Training	sp:Khenra|Khenra Weapon Training
+Ki	Ki
+Ki-Empowered Strikes	Ki-Empowered Strikes
+Ki-Fueled Attack	Ki-Fueled Attack
+Killer Instinct	sub:Exterminator|Killer Instinct
+Killing Spree	sub:Path of the Slasher|Killing Spree
+Killing Stroke	sub:Rōnin|Killing Stroke
+Kin to Beasts	sub:Path of the Primal Spirit|Kin to Beasts
+Kindred Speech	sp:Feathren|Kindred Speech
+Kingslayer	sub:Burden of Revolution|Kingslayer
+Kithkin Lineage	sp:Kithkin|Kithkin Lineage
+Knight's Challenge	sub:Knight Errant|Knight's Challenge
+Knight's Ward	sub:House of Knights|Knight's Ward
+Knightly Envoy	sub:Banneret|Knightly Envoy
+Knock Out (Cost: 6d6)	Knock Out (Cost: 6d6)
+Knockout [Maneuver]	sub:Pugilist|Knockout [Maneuver]
+Know Your Enemy	sub:Battle Master (2014)|Know Your Enemy
+Knowledge Domain Spells	sub:Knowledge Domain|Knowledge Domain Spells
+Knowledge from a Past Life	sp:Reborn|Knowledge from a Past Life
+Kor Climbing	sp:Kor|Kor Climbing
+Lactose Intolerance	sub:Tyromancer|Lactose Intolerance
+Lag Spell	sub:Chronomancer|Lag Spell
+Land's Aid	sub:Circle of the Land|Land's Aid
+Land's Stride	sub:Circle of the Land (2014)|Land's Stride
+Languages	sp:Human (2014)|Languages
+Large Form	sp:Goliath|Large Form
+Larval Regeneration	sub:The Parasite Patron|Larval Regeneration
+Last Laugh	sub:College of Fools|Last Laugh
+Laughing Gas Bombs	sub:Venomsmith|Laughing Gas Bombs
+Lavastep Grit	sp:Goblin (Lavastep Tribe)|Lavastep Grit
+Lay on Hands	cls:Paladin|Lay on Hands
+Lazarus Bolt	sub:Cyber Surgeon|Lazarus Bolt
+Lead Paint	sub:Runetagger|Lead Paint
+Lead from the Front	sub:House of Kings|Lead from the Front
+Leading Evasion	sub:College of Dance|Leading Evasion
+Leap Attack	sub:Marauder Chapter|Leap Attack
+Leap to Your Feet	Leap to Your Feet
+Learned	sp:Corvum|Learned
+Leech Conduit	sub:Vow of the Siphon|Leech Conduit
+Legacy of Avernus	sp:Tiefling (Zariel)|Legacy of Avernus
+Legacy of Cania	sp:Tiefling (Mephistopheles)|Legacy of Cania
+Legacy of Dis	sp:Tiefling (Dispater)|Legacy of Dis
+Legacy of Maladomini	sp:Tiefling (Baalzebul)|Legacy of Maladomini
+Legacy of Malbolge	sp:Tiefling (Glasya)|Legacy of Malbolge
+Legacy of Minauros	sp:Tiefling (Mammon)|Legacy of Minauros
+Legacy of Nessus	sp:Tiefling (Asmodeus)|Legacy of Nessus
+Legacy of Phlegethos	sp:Tiefling (Fierna)|Legacy of Phlegethos
+Legacy of Stygia	sp:Tiefling (Levistus)|Legacy of Stygia
+Legacy of a Thousand Young	sp:Accursed (Steinhardt)|Legacy of a Thousand Young
+Legen-Dairy Resistance	sub:Tyromancer|Legen-Dairy Resistance
+Legendary Interruption	sub:Stoneheart Defender|Legendary Interruption
+Legion of One	sub:Echo Knight|Legion of One
+Leporine Senses	sp:Harengon (WBtW)|Leporine Senses
+Leviathan Will	sp:Locathah|Leviathan Will
+Ley Line Adept	sub:Geomancy|Ley Line Adept
+Ley Line Manipulation	sub:Geomancy|Ley Line Manipulation
+Ley Line Mastery	sub:Geomancy|Ley Line Mastery
+Ley Line Savant	sub:Geomancy|Ley Line Savant
+Leyline Spells	sub:Leyline Magic|Leyline Spells
+Leyline Weaving	sub:Leyline Magic|Leyline Weaving
+Life Bond	sub:White Necromancer|Life Bond
+Life Domain Spells	sub:Life Domain (2014)|Life Domain Spells
+Life Drain	sub:Bond of the Grave Caller|Life Drain
+Life Leech	sub:Vow of the Siphon|Life Leech
+Life Suit	sp:Nautilid|Life Suit
+Life Tether	sub:Black Magic|Life Tether
+Lifespan	sp:Pluvenn|Lifespan
+Light Bearer	sp:Aasimar (Protector)|Light Bearer
+Light Domain Spells	sub:Light Domain (2014)|Light Domain Spells
+Light of Hope	sub:Salvation Chapter|Light of Hope
+Lightning Launcher	Lightning Launcher
+Lightning Step	sub:Storm Sentinel|Lightning Step
+Limited Amphibiousness	sp:Locathah|Limited Amphibiousness
+Limited Foresight	sub:Burden of Awakening|Limited Foresight
+Limited Telepathy	sp:Verdan|Limited Telepathy
+Limited Wish	sub:The Genie|Limited Wish
+Lingering Perfume	sub:Circle of Roses|Lingering Perfume
+Lingering Seduction	sub:Lust Domain|Lingering Seduction
+Live Fast	sub:Adrenaline Junkie|Live Fast
+Living Catalyst	sub:Living Crucible|Living Catalyst
+Living Cauldron	sub:Living Crucible|Living Cauldron
+Living Legend	sub:Oath of Glory (2014)|Living Legend
+Living Material	sp:Manikin|Living Material
+Loaded Dice	sub:House of Dice|Loaded Dice
+Lone Wolf	sub:Rōnin|Lone Wolf
+Long Odds	sub:Entropist|Long Odds
+Long-Limbed	sp:Bugbear (2014)|Long-Limbed
+Lord of the Flies	sub:Carrion King|Lord of the Flies
+Lore of Life and Death	sub:White Necromancer|Lore of Life and Death
+Lore of the Waters	sp:Merfolk (Ixalan, Blue)|Lore of the Waters
+Low Orbit Hardlight Cannon	sub:Lumimancer|Low Orbit Hardlight Cannon
+Loxodon Serenity	sp:Loxodon|Loxodon Serenity
+Loyal Redirection	sub:Houndmaster|Loyal Redirection
+Lucid Dream	sub:Somnomancer|Lucid Dream
+Luck	sp:Kithkin|Luck
+Luck Stealer	sub:College of Entropy|Luck Stealer
+Lucky	sp:Lightfoot Halfling|Lucky
+Lucky Crane	sub:College of Origami|Lucky Crane
+Lucky Footwork	sp:Harengon (WBtW)|Lucky Footwork
+Lucky Number	sub:House of Roulette|Lucky Number
+Luddite	sub:Path of the Wrecker|Luddite
+Luma Subrace	sp:Luma|Luma Subrace
+Luminescent Aura	sub:Moon Domain (Deep Magic)|Luminescent Aura
+Lunar Boons	sub:Lunar Sorcery|Lunar Boons
+Lunar Embodiment	sub:Lunar Sorcery|Lunar Embodiment
+Lunar Empowerment	sub:Lunar Sorcery|Lunar Empowerment
+Lunar Form	sub:Circle of the Moon|Lunar Form
+Lunar Phenomenon	sub:Lunar Sorcery|Lunar Phenomenon
+Lunar Spells	sub:Lunar Magic|Lunar Spells
+Macabre Modifications	sub:Reanimator|Macabre Modifications
+Machine Code	sub:Circle of Configuration|Machine Code
+Machine Domain Spells	sub:Machine Domain|Machine Domain Spells
+Machinelike Precision	sub:The Great Machine|Machinelike Precision
+Mad Melody	sub:College of the Mad God|Mad Melody
+Mad Scientist	sub:Xenoalchemist|Mad Scientist
+Magazine	sub:Calibarons' Guild|Magazine
+Mage Hand Legerdemain	sub:Arcane Trickster (2014)|Mage Hand Legerdemain
+Mage Hunter	sub:Occultist Guild|Mage Hunter
+Magic Arrow	sub:Arcane Archer (2014)|Magic Arrow
+Magic Awareness	sub:Path of Wild Magic|Magic Awareness
+Magic Daggers	sub:House of Darts|Magic Daggers
+Magic Item Adept	Magic Item Adept
+Magic Item Collection	sub:Antiquarian|Magic Item Collection
+Magic Item Crafting	sub:Arcane Maesters' Guild|Magic Item Crafting
+Magic Item Master	Magic Item Master
+Magic Item Recharge	sub:Arcane Maesters' Guild|Magic Item Recharge
+Magic Item Savant	Magic Item Savant
+Magic Item Tinker	Magic Item Tinker
+Magic Missile Savant	sub:Magic Missile Mage|Magic Missile Savant
+Magic Resistance	sp:Satyr (2014)|Magic Resistance
+Magic Slippers	sub:Fey Ballerina|Magic Slippers
+Magic Snare	sub:Winter Trapper|Magic Snare
+Magic-User's Nemesis	sub:Monster Slayer|Magic-User's Nemesis
+Magical Aegis	sub:Occultist Guild|Magical Aegis
+Magical Ambush	sub:Arcane Trickster (2014)|Magical Ambush
+Magical Ammunition	sub:Arcane Archer|Magical Ammunition
+Magical Cunning	cls:Warlock|Magical Cunning
+Magical Detection	sp:Half-Elf (Mark of Detection)|Magical Detection
+Magical Discoveries	sub:College of Lore|Magical Discoveries
+Magical Guidance	Magical Guidance
+Magical Inspiration	Magical Inspiration
+Magical Mastery	sub:Arcana Domain|Magical Mastery
+Magical Passage	sp:Human (Mark of Passage)|Magical Passage
+Magical Reflection	sub:Bond of the Mirror Mage|Magical Reflection
+Magical Secrets	cls:Bard|Magical Secrets
+Magical Tinkering	Magical Tinkering
+Magician	Magician
+Magitech Upgrade	sub:Mechanauts' Guild|Magitech Upgrade
+Magnetic Manipulator	sub:Magneticist|Magnetic Manipulator
+Magnetic Personality	sub:Amorist|Magnetic Personality
+Magneticist Spells	sub:Magneticist|Magneticist Spells
+Make Your Own Fate	sub:College of Wyrdsingers|Make Your Own Fate
+Maker's Gift	sp:Human (Mark of Making)|Maker's Gift
+Makeshift Armor	sub:Scrappers' Guild|Makeshift Armor
+Maleficium	sub:Occultist|Maleficium
+Malleable Illusions	sub:School of Illusion|Malleable Illusions
+Maneuver Options	sub:House of Kings|Maneuver Options
+Maneuvers	Maneuvers
+Maniacal Influence	sub:Yellow Sign|Maniacal Influence
+Manifest Aura	sub:Elemental Essence|Manifest Aura
+Manifest Blow	sub:Warrior of the Living Weapon|Manifest Blow
+Manifest Echo	sub:Echo Knight|Manifest Echo
+Manifest Inscriptions	sub:Runechild|Manifest Inscriptions
+Manifest Mind	sub:Order of Scribes|Manifest Mind
+Manifestation	sub:Void Caster|Manifestation
+Manipulate Elements	sub:Warrior of the Elements|Manipulate Elements
+Manipulator	sub:Marionettist|Manipulator
+Mantle of Inspiration	sub:College of Glamour (2014)|Mantle of Inspiration
+Mantle of Majesty	sub:College of Glamour (2014)|Mantle of Majesty
+Mantle of Whispers	sub:College of Whispers|Mantle of Whispers
+Mantra	sub:Path of Tranquility|Mantra
+Manuscript	sub:College of Calligraphy|Manuscript
+Many Roads to Ruin	sub:Circle of Entropy|Many Roads to Ruin
+Mapping Magic	Mapping Magic
+Marauder Momentum	sub:Marauder Chapter|Marauder Momentum
+Marid's Surge	Marid's Surge
+Marine Layer	sub:Oath of the Open Sea|Marine Layer
+Mark of the Funeral Feast	sub:Oath of the Giving Grave|Mark of the Funeral Feast
+Mark of the Heretic	sub:Oath of Zeal|Mark of the Heretic
+Mark of the Slasher	sub:Path of the Slasher|Mark of the Slasher
+Martial Advantage	sp:Hobgoblin (Monster)|Martial Advantage
+Martial Archetype	Martial Archetype
+Martial Archetype feature	Martial Archetype feature
+Martial Arts	cls:Monk|Martial Arts
+Martial Arts Die	Martial Arts Die
+Martial Caster	sub:Prescient Knight|Martial Caster
+Martial Form	sub:Warrior of the Living Weapon|Martial Form
+Martial Prodigy	sp:Githyanki (2014)|Martial Prodigy
+Martial Recovery	sub:Dragon Banner|Martial Recovery
+Martial Role	Martial Role
+Martial Training	sp:Hobgoblin (2014)|Martial Training
+Martial Versatility	Martial Versatility
+Martyr Spells	sub:Vow of the Martyr|Martyr Spells
+Martyr's Endurance	sub:Vow of the Martyr|Martyr's Endurance
+Marvelous Pigments	sub:College of Paint|Marvelous Pigments
+Marvelous Troupe	sub:Troubadour|Marvelous Troupe
+Mask of Civility	sub:Path of the Fractured|Mask of Civility
+Mask of the Wild	sp:Wood Elf|Mask of the Wild
+Master Augmenter	sub:Vow of the Augmenter|Master Augmenter
+Master Duelist	sub:Swashbuckler|Master Duelist
+Master Illustrator	sub:College of Paint|Master Illustrator
+Master Metalsmith	sub:Ring Warden|Master Metalsmith
+Master Reshaper	sub:Bond of the Monster Shaper|Master Reshaper
+Master Scrivener	sub:Order of Scribes|Master Scrivener
+Master Transmuter	sub:Transmuter|Master Transmuter
+Master of Chaos	sub:Entropist|Master of Chaos
+Master of Dark Conjuration	sub:Master of Fiends|Master of Dark Conjuration
+Master of Hexes	sub:The Hexblade|Master of Hexes
+Master of Intrigue	sub:Mastermind|Master of Intrigue
+Master of Many Faces	sub:College of Masks|Master of Many Faces
+Master of Nature	sub:Nature Domain|Master of Nature
+Master of Puppets	sub:Marionettist|Master of Puppets
+Master of Runes	sub:Rune Knight|Master of Runes
+Master of Seduction	sub:Lust Domain|Master of Seduction
+Master of Tactics	sub:Mastermind|Master of Tactics
+Master of Time	sub:Time Domain|Master of Time
+Master of the Endless Night	sub:School of Illumination|Master of the Endless Night
+Master of the Radiant Heavens	sub:Illuminator|Master of the Radiant Heavens
+Master's Flourish	sub:College of Swords|Master's Flourish
+Masterful Shots	sub:Arcane Archer|Masterful Shots
+Mastery of Death	sub:Way of the Long Death|Mastery of Death
+Matador Backstab	sub:Burden of Levity|Matador Backstab
+Material Enhancement	sub:Materializer|Material Enhancement
+Maverick Spells	sub:Maverick|Maverick Spells
+Mecha Configuration	sub:Circle of Configuration|Mecha Configuration
+Mechanaut's Apparatus	sub:Mechanauts' Guild|Mechanaut's Apparatus
+Mechanical Arm	sub:Clockworkers' Guild|Mechanical Arm
+Mechanical Nature	sp:Autognome|Mechanical Nature
+Mechanized Attachments	sub:Clockworkers' Guild|Mechanized Attachments
+Meddling Kids	sub:Kid Sleuth|Meddling Kids
+Medical Intuition	sp:Halfling (Mark of Healing)|Medical Intuition
+Memorize Spell	cls:Wizard|Memorize Spell
+Memory of Flesh	sub:Necrophage|Memory of Flesh
+Memory of One Thousand Steps	Memory of One Thousand Steps
+Menacing	sp:Half-Orc|Menacing
+Menacing Stare	sub:Path of the Slasher|Menacing Stare
+Mental Discipline	sp:Githzerai (2014)|Mental Discipline
+Merciful Healing	sub:Burden of Mercy|Merciful Healing
+Merciless Onslaught	sub:Doomsayer|Merciless Onslaught
+Mercurial	sub:Feylost|Mercurial
+Merge Bodies	sub:Bond of the Symbiote|Merge Bodies
+Merge with Stone	sp:Earth Genasi (2014)|Merge with Stone
+Messenger of the Void	sub:Void Domain|Messenger of the Void
+Metal Shape	sub:Clockwork Mage|Metal Shape
+Metal Slinger	sub:Magneticist|Metal Slinger
+Metallic Ancestry	sp:Dragonborn (Metallic)|Metallic Ancestry
+Metallic Breath Weapon	sp:Dragonborn (Metallic)|Metallic Breath Weapon
+Metallic Cloud	sub:Magneticist|Metallic Cloud
+Metallic Control	sub:Magneticist|Metallic Control
+Metalworker	sp:Ankylier|Metalworker
+Metamagic	cls:Sorcerer|Metamagic
+Metamagic Mastery	sub:Aristocratic|Metamagic Mastery
+Metamagic Options	Metamagic Options
+Mettle	sub:Tower Banner|Mettle
+Microsingularity	sub:Singularity Patron|Microsingularity
+Mighty Impel	sub:Path of the Giant|Mighty Impel
+Mighty Summoner	sub:Circle of the Shepherd|Mighty Summoner
+Mighty Swarm	sub:Swarmkeeper|Mighty Swarm
+Militia Training	sp:Gallus|Militia Training
+Mimicry	sp:Kenku (Monster)|Mimicry
+Mind Blast	sub:Bond of the Aberrant Psion|Mind Blast
+Mind Domain Spells	sub:Mind Domain|Mind Domain Spells
+Mind Hack	sub:Infiltrator|Mind Hack
+Mind Link	sp:Kalashtar (2014)|Mind Link
+Mind Magic	sub:Knowledge Domain|Mind Magic
+Mind Mastery	sub:Burden of Awakening|Mind Mastery
+Mind of Mercury	sub:Way of the Cobalt Soul|Mind of Mercury
+Mindless Rage	sub:Path of the Berserker (2014)|Mindless Rage
+Mingle with the Wind	sp:Air Genasi (2014)|Mingle with the Wind
+Mini Portals	sub:Portalweaver|Mini Portals
+Miniature Minions	sub:Toymaker|Miniature Minions
+Minor Alchemy	sub:School of Transmutation|Minor Alchemy
+Minor Conjuration	sub:School of Conjuration|Minor Conjuration
+Minor Creation	sub:Materializer|Minor Creation
+Minor Miracle	sub:Holy Icon|Minor Miracle
+Minor Miracles	sub:College of Cantors|Minor Miracles
+Minor Wish	sub:The Genie Lord|Minor Wish
+Miracle Serum	sub:Apothecary|Miracle Serum
+Mire or Quicken Blood	sub:Blood Mage|Mire or Quicken Blood
+Mirror Eidolon	sub:Bond of the Mirror Mage|Mirror Eidolon
+Mirror Spells	sub:Bond of the Mirror Mage|Mirror Spells
+Mirthful Leaps	sp:Satyr (2014)|Mirthful Leaps
+Misdirection	sub:Mastermind|Misdirection
+Misfortunist	sub:Misfortune Bringer|Misfortunist
+Mistborne Regeneration	sub:Dead Mist Acolyte|Mistborne Regeneration
+Misty Escape	sub:The Archfey (2014)|Misty Escape
+Misty Pathways	sub:Feylost|Misty Pathways
+Misty Transposition	sub:Burden of Odyssey|Misty Transposition
+Misty Waltz	sub:Fey Ballerina|Misty Waltz
+Misty Wanderer	sub:Fey Wanderer (2014)|Misty Wanderer
+Mithridatism	sub:Venomsmith|Mithridatism
+Mnemonic Concentration	sub:Protomancer|Mnemonic Concentration
+Mobile Flourish	Mobile Flourish
+Mobile Pursuer	sub:Absolute Chapter|Mobile Pursuer
+Mock Divinity	sub:Pharaoh|Mock Divinity
+Modify Magic	sub:Arcana Domain|Modify Magic
+Modulation	sub:College of Cyberwave|Modulation
+Momentary Stasis	sub:Chronurgy Magic|Momentary Stasis
+Momentum	sub:Acrobat|Momentum
+Monastic Tradition	Monastic Tradition
+Monastic Tradition feature	Monastic Tradition feature
+Monk Subclass	cls:Monk|Monk Subclass
+Monk's Focus	cls:Monk|Monk's Focus
+Monster Meal	sub:Gourmand|Monster Meal
+Monster Slayer	sub:Exterminator|Monster Slayer
+Monster Slayer Magic	sub:Monster Slayer|Monster Slayer Magic
+Monster-Hide Armor	sub:Trapper Guild|Monster-Hide Armor
+Monstrous Brutality	sub:Path of the Abomination|Monstrous Brutality
+Monstrous Eidolon	sub:Bond of the Monster Shaper|Monstrous Eidolon
+Monstrous Focus	sub:Bond of the Monster Shaper|Monstrous Focus
+Monstrous Lineage	sp:Scourgeborne|Monstrous Lineage
+Monstrous Spells	sub:Bond of the Monster Shaper|Monstrous Spells
+Moon Fire	sub:Lunar Sorcery|Moon Fire
+Moon's Grace	sub:Moon Domain (Deep Magic)|Moon's Grace
+Moon's Inspiration	sub:College of the Moon|Moon's Inspiration
+Moonlight Step	sub:Circle of the Moon|Moonlight Step
+Moonsight	sub:Lunar Magic|Moonsight
+Moonwalk [Dance Style]	sub:Moonwalker|Moonwalk [Dance Style]
+Mortal Bulwark	sub:Oath of the Watchers|Mortal Bulwark
+Mortal Metamagic	sub:Drake-Blooded|Mortal Metamagic
+Mortal Sacrifice	sub:Bond of the Guardian Angel|Mortal Sacrifice
+Mote of Potential	sub:College of Creation|Mote of Potential
+Mountain Born	sp:Goliath (2014)|Mountain Born
+Mounted Scout	sub:Griffon Scout|Mounted Scout
+Muck and Mire	sub:Path of the Swamp|Muck and Mire
+Mul Daya Magic	sp:Zendikar Elf (Mul Daya)|Mul Daya Magic
+Multiattack	sub:Hunter (2014)|Multiattack
+Multiattack Defense	Multiattack Defense
+Multidisciplinary Scholar	sub:Universalist|Multidisciplinary Scholar
+Multidiscipline	sub:House of Pawns|Multidiscipline
+Multiplayer	sub:Digital Nomad|Multiplayer
+Mummy Lord [Lichdom]	sub:Pharaoh|Mummy Lord [Lichdom]
+Musclebound	sp:Manyhorn|Musclebound
+Musical Interlude	sub:Technicolor Magic|Musical Interlude
+Mutable Strike	sub:Warrior of the Living Weapon|Mutable Strike
+Mutagens	sub:Mutagenist|Mutagens
+Mutate Shape	sub:Circle of Mutation|Mutate Shape
+Mutated Blood	sub:Mutagenist|Mutated Blood
+Mutations	sub:Experiment X|Mutations
+Mystic Arcanum	cls:Warlock|Mystic Arcanum
+Mystic Arcanum (6th level)	Mystic Arcanum (6th level)
+Mystic Arcanum (7th level)	Mystic Arcanum (7th level)
+Mystic Arcanum (8th level)	Mystic Arcanum (8th level)
+Mystic Arcanum (9th level)	Mystic Arcanum (9th level)
+Mystic Fighting Style	sub:Warrior of the Mystic Arts|Mystic Fighting Style
+Mystic Focus	sub:Warrior of the Mystic Arts|Mystic Focus
+Mystic Order	Mystic Order
+Mystic Order feature	Mystic Order feature
+Mystical Armament	sub:House of Knights|Mystical Armament
+Mystical Companion	sub:House of Bishops|Mystical Companion
+Mystical Connection	sub:College of Spirits|Mystical Connection
+Mystical Erudition	sub:Way of the Cobalt Soul|Mystical Erudition
+Mystical Erudition (11th Level)	sub:Way of the Cobalt Soul|Mystical Erudition (11th Level)
+Mystical Erudition (17th Level)	sub:Way of the Cobalt Soul|Mystical Erudition (17th Level)
+Mystical Maul	sub:Mime|Mystical Maul
+Mystical Momentum	sub:Heretic Chapter|Mystical Momentum
+Mystical Physicality	sub:Path of Spellfury|Mystical Physicality
+Mystical Recovery	Mystical Recovery
+Mystical Wisdom	sub:Burden of the End|Mystical Wisdom
+Mythic Swashbuckler	sub:Oath of the Open Sea|Mythic Swashbuckler
+Nanite Plating	sub:Cybernetic|Nanite Plating
+Nanite Spells	sub:Nanite Magic|Nanite Spells
+Nano Touch	sub:Nanite Magic|Nano Touch
+Natural Armor	sp:Lizardfolk (Monster)|Natural Armor
+Natural Athlete	sp:Shifter (Beasthide)|Natural Athlete
+Natural Attunement	sub:Leyline Magic|Natural Attunement
+Natural Burrowers	sp:Hedge|Natural Burrowers
+Natural Companion	sub:Burden of Rebirth|Natural Companion
+Natural Connection	sp:Mandrake|Natural Connection
+Natural Creator	sp:Feathren|Natural Creator
+Natural Disruption	sub:Leyline Magic|Natural Disruption
+Natural Explorer	Natural Explorer
+Natural Explorer improvement	Natural Explorer improvement
+Natural Illusionist	sp:Forest Gnome|Natural Illusionist
+Natural Recovery	sub:Circle of the Land (2014)|Natural Recovery
+Natural Resilience	sp:Plasmoid|Natural Resilience
+Natural Spellcasting	sub:Bond of the Shambling Plant|Natural Spellcasting
+Natural Tracker	sp:Shifter (Wildhunt)|Natural Tracker
+Natural Weapon	sp:Minotaur (Amonkhet)|Natural Weapon
+Natural Weapons	sp:Naga|Natural Weapons
+Naturally Stealthy	sp:Kithkin|Naturally Stealthy
+Nature Armor	sub:Circle of the Unbroken|Nature Armor
+Nature Domain Spells	sub:Nature Domain|Nature Domain Spells
+Nature Speaker	sub:Path of the Wild Heart|Nature Speaker
+Nature's Emissary	sub:Verdant Protector|Nature's Emissary
+Nature's Sanctuary	sub:Circle of the Land (2014)|Nature's Sanctuary
+Nature's Veil	cls:Ranger|Nature's Veil
+Nature's Ward	sub:Circle of the Land (2014)|Nature's Ward
+Nature's Wrath	sub:Oath of the Ancients|Nature's Wrath
+Ne'er-Do-Well	sub:Burden of Levity|Ne'er-Do-Well
+Near-Human Feat	sp:Near-Human|Near-Human Feat
+Necromancy Expert	sub:Bond of the Grave Caller|Necromancy Expert
+Necromancy Savant	sub:Necromancer|Necromancy Savant
+Necromancy Spellbook	sub:Necromancer|Necromancy Spellbook
+Necromantic Burst	sub:Skull Banner|Necromantic Burst
+Necromantic Organs	sub:Xenoalchemist|Necromantic Organs
+Necrotic Husk	sub:Undead Patron|Necrotic Husk
+Necrotic Resistance	sp:Shadar-kai (2014)|Necrotic Resistance
+Necrotic Shroud	sp:Aasimar (Fallen)|Necrotic Shroud
+Necrotoxin	sub:Plague Lord|Necrotoxin
+Nefarious Ruse	sub:Crone|Nefarious Ruse
+Neural Implant	sub:Cybernetic|Neural Implant
+Night Stalker	sub:Nightwatcher|Night Stalker
+Nightmares	sub:Somnomancer|Nightmares
+Nightmarish Glow	sub:Yellow Sign|Nightmarish Glow
+Nimble Escape	sp:Boggart|Nimble Escape
+Nimbleness	sp:Dhakaani Golin'dar (Goblin)|Nimbleness
+Nimbus of Pathos	sub:College of Tragedy|Nimbus of Pathos
+Ninja Agility	sub:Cyber Ninja|Ninja Agility
+Noble Scion	sub:Oath of the Noble Genies|Noble Scion
+Nocturnal	sub:Shadow Dancer|Nocturnal
+Nocturnal Predator	sub:The First Vampire Patron|Nocturnal Predator
+Nocturnal/Diurnal	sp:Pluvenn|Nocturnal/Diurnal
+Non-Regulation Blaster	sub:Decommissioner|Non-Regulation Blaster
+North Wind	sub:Rimekeeper|North Wind
+Nosferatu [Lichdom]	sub:Blood Ascendant|Nosferatu [Lichdom]
+Not Angry, Just Disappointed	sub:Path of the Dad|Not Angry, Just Disappointed
+Not This Day	sub:College of Wyrdsingers|Not This Day
+Nothing to See Here	sub:Containment Specialist|Nothing to See Here
+Nova	sub:Star Patron|Nova
+Novel Intelligence	sub:AI Futurist|Novel Intelligence
+Null Transformation	sp:Vampire (Zendikar)|Null Transformation
+Numbing Cold	sub:Boreal Bloodline|Numbing Cold
+Oak Sentinel	sub:Verdant Protector|Oak Sentinel
+Oath Spells	sub:Oath of the Crown|Oath Spells
+Oath of Devotion Spells	sub:Oath of Devotion|Oath of Devotion Spells
+Oath of Glory Spells	sub:Oath of Glory|Oath of Glory Spells
+Oath of Pestilence Spells	sub:Oath of Pestilence|Oath of Pestilence Spells
+Oath of Slaughter Spells	sub:Oath of Slaughter|Oath of Slaughter Spells
+Oath of Vengeance Spells	sub:Oath of Vengeance|Oath of Vengeance Spells
+Oath of Zeal Spells	sub:Oath of Zeal|Oath of Zeal Spells
+Oath of the Ancients Spells	sub:Oath of the Ancients|Oath of the Ancients Spells
+Oath of the Hearth Spells	sub:Oath of the Hearth|Oath of the Hearth Spells
+Oath of the Sun Spells	sub:Oath of the Sun|Oath of the Sun Spells
+Oathbreaker Spells	sub:Oathbreaker|Oathbreaker Spells
+Obscure (Cost: 3d6)	Obscure (Cost: 3d6)
+Observant & Athletic	sp:Locathah|Observant & Athletic
+Occult Arts	sub:Heretic Chapter|Occult Arts
+Occult Knowledge	sub:Occultist Guild|Occult Knowledge
+Oceanic Gift	sub:Circle of the Sea|Oceanic Gift
+Oceanic Soul	sub:The Fathomless|Oceanic Soul
+Of the People	sp:Gallus|Of the People
+Off the Grid	sub:Conspiracy Theorist|Off the Grid
+Oketra's Blessing	sub:Solidarity Domain (PSA)|Oketra's Blessing
+Old Dog, New Tricks	sub:Houndmaster|Old Dog, New Tricks
+Olfactory Aura	sub:Fragrant Magic|Olfactory Aura
+Olympic Agility	sub:Burden of Ascension|Olympic Agility
+Omega Upgrade	sub:Drone Jockey|Omega Upgrade
+Omen of Warning	sub:Illuminator|Omen of Warning
+Omni Slash	sub:Cyber Ninja|Omni Slash
+On Silent Wings	sub:Circle of Owls|On Silent Wings
+One of the People	sub:Couatl Herald|One of the People
+One with the Blade	sub:Way of the Kensei|One with the Blade
+One with the Word	sub:Order of Scribes|One with the Word
+Ooze Resilience	sub:Ooze Rancher|Ooze Resilience
+Open Hand Technique	sub:Way of the Open Hand|Open Hand Technique
+Opening Strategy	sub:House of Go|Opening Strategy
+Operatic Inspiration	sub:College of Opera|Operatic Inspiration
+Opportunist	sub:Way of Shadow|Opportunist
+Optional Rule: Firearm Proficiency	Optional Rule: Firearm Proficiency
+Order Domain Spells	sub:Order Domain|Order Domain Spells
+Order of the Avatar	Order of the Avatar
+Order of the Awakened	Order of the Awakened
+Order of the Immortal	Order of the Immortal
+Order of the Nomad	Order of the Nomad
+Order of the Soul Knife	Order of the Soul Knife
+Order of the Wu Jen	Order of the Wu Jen
+Order's Wrath	sub:Order Domain|Order's Wrath
+Origami Familiar	sub:College of Origami|Origami Familiar
+Origami Fortune	sub:College of Origami|Origami Fortune
+Osteoderms	sp:Ankylier|Osteoderms
+Otherworldly Calm	sub:Eldritch Domain|Otherworldly Calm
+Otherworldly Eye	sub:Witchbane Hunter|Otherworldly Eye
+Otherworldly Glamour	sub:Fey Wanderer (2014)|Otherworldly Glamour
+Otherworldly Patron	Otherworldly Patron
+Otherworldly Patron feature	Otherworldly Patron feature
+Otherworldly Perception	sp:Kuo-Toa|Otherworldly Perception
+Otherworldly Presence	sp:Tiefling|Otherworldly Presence
+Otherworldly Resistance	sp:Deep One Dwarf|Otherworldly Resistance
+Otherworldly Wings	sub:Divine Soul|Otherworldly Wings
+Outer Knowledge	sub:College of the Mad God|Outer Knowledge
+Overawe Enemy	sub:Oath of the Giving Grave|Overawe Enemy
+Overchannel	sub:School of Evocation|Overchannel
+Overcharged Thralls	sub:Death Knight|Overcharged Thralls
+Overdesigned Scrap	sub:Scrappers' Guild|Overdesigned Scrap
+Overloaded Charge	sub:Mad Bomber|Overloaded Charge
+Overlord Spells	sub:Overlord|Overlord Spells
+Overpowering Remedy	sub:Circle of Roses|Overpowering Remedy
+Overture	sub:College of Opera|Overture
+Owl's Eyes	sub:Circle of Owls|Owl's Eyes
+Pack Tactics	sp:Kobold (Monster)|Pack Tactics
+Pact Boon	Pact Boon
+Pact Magic	sub:Occultist|Pact Magic
+Pain Tolerance	sub:Green Reaper|Pain Tolerance
+Painkiller Bomb [Formula]	sub:Apothecary|Painkiller Bomb [Formula]
+Paint Bombs	sub:Pigmentist|Paint Bombs
+Painter	sub:Pigmentist|Painter
+Paladin Subclass	cls:Paladin|Paladin Subclass
+Paladin's Smite	cls:Paladin|Paladin's Smite
+Pale Master Spells	sub:Pale Master|Pale Master Spells
+Palette Portals	sub:Pigmentist|Palette Portals
+Pallid Aura	sub:Yellow Sign|Pallid Aura
+Panache	sub:Swashbuckler|Panache
+Pandemonium	sub:Burden of Discord|Pandemonium
+Pantomime [Dance Style]	sub:Mime|Pantomime [Dance Style]
+Paper Trinket	sub:College of Origami|Paper Trinket
+Paragon	sub:Couatl Herald|Paragon
+Paragon of the People	sub:Community Domain|Paragon of the People
+Paranoid Instincts	sub:Conspiracy Theorist|Paranoid Instincts
+Parliament of Owls	sub:Circle of Owls|Parliament of Owls
+Parry and Riposte	sub:Fencer|Parry and Riposte
+Partially Amphibious	sp:Vedalken|Partially Amphibious
+Party Planner	sub:College of Adventurers|Party Planner
+Passage Through the Dark	sub:Shadow Bloodline|Passage Through the Dark
+Paternal Proficiencies	sub:Path of the Dad|Paternal Proficiencies
+Path Feature	Path Feature
+Path feature	Path feature
+Path of Gore	sub:Marauder Chapter|Path of Gore
+Path of the Golden Glower	sub:Alkemancer|Path of the Golden Glower
+Path of the Kensei	sub:Way of the Kensei|Path of the Kensei
+Path to the Grave	sub:Grave Domain|Path to the Grave
+Patient Defense	Patient Defense
+Patriotism	sub:Star-Spangled Banner|Patriotism
+Patterned Feathers	sp:Strig|Patterned Feathers
+Pawn Storm	sub:House of Pawns|Pawn Storm
+Pawn Wall	sub:House of Pawns|Pawn Wall
+Peace Domain Spells	sub:Peace Domain|Peace Domain Spells
+Peacebringer	sub:Couatl Herald|Peacebringer
+Peerless Athlete	sub:Oath of Glory|Peerless Athlete
+Peerless Skill	sub:College of Lore (2014)|Peerless Skill
+Percussive Maintenance	sub:Path of the Wrecker|Percussive Maintenance
+Perfect Focus	cls:Monk|Perfect Focus
+Perfect Form	sub:Warrior of the Living Weapon|Perfect Form
+Perfect Self	Perfect Self
+Perfect Symbiosis	sub:Bond of the Symbiote|Perfect Symbiosis
+Perfect Weapon	sub:Forge Adept|Perfect Weapon
+Perfected Armor	Perfected Armor
+Perfected Bond	sub:Drakewarden|Perfected Bond
+Perfectionist	sub:Fey Ballerina|Perfectionist
+Performance of Creation	sub:College of Creation|Performance of Creation
+Perilous Dodge	sub:Bounty Hunter|Perilous Dodge
+Permafrost	sub:Path of the Glacier|Permafrost
+Permanent Spellhack	sub:Spellhacker|Permanent Spellhack
+Persistent Portals	sub:Portalweaver|Persistent Portals
+Persistent Rage	cls:Barbarian|Persistent Rage
+Persona Masks	sub:College of Masks|Persona Masks
+Personal Symbiont	sp:Ruinbound|Personal Symbiont
+Persuasive	sp:Verdan|Persuasive
+Pestilence Domain Spells	sub:Pestilence Domain|Pestilence Domain Spells
+Petticoat Plate	sub:Courtiers' Guild|Petticoat Plate
+Phantasmal Creatures	sub:Illusionist|Phantasmal Creatures
+Phantom Companion	sub:Haunted Sorcery|Phantom Companion
+Phantom Knife	Phantom Knife
+Phantom Possession	sub:Haunted Sorcery|Phantom Possession
+Pharaoh Spells	sub:Pharaoh|Pharaoh Spells
+Pheromone Bomb [Formula]	sub:Amorist|Pheromone Bomb [Formula]
+Photonic Savant	sub:Lumimancer|Photonic Savant
+Physical Empowerment	sub:Bond of the Wrathful Giant|Physical Empowerment
+Physical Specimen	sub:The Parasite Patron|Physical Specimen
+Physician	sub:Plague Doctor|Physician
+Physician's Studies	sub:Apothecary|Physician's Studies
+Physician's Touch	sub:Way of Mercy|Physician's Touch
+Pierce the Veil	sub:The Sibyl|Pierce the Veil
+Pierced the Veil	sub:The Sibyl|Pierced the Veil
+Pigment Potions	sub:Pigmentist|Pigment Potions
+Pin Down	sub:Winter Trapper|Pin Down
+Plague Vector	sub:Carrion King|Plague Vector
+Plaguebringer	sub:Oath of Pestilence|Plaguebringer
+Planar Defense	sub:Master of Fiends|Planar Defense
+Planar Escape	sub:Astral Griffon Patron|Planar Escape
+Planar Familiar	sub:Familiar Master|Planar Familiar
+Planar Reach	sub:Astral Domain|Planar Reach
+Planar Warrior	sub:Horizon Walker|Planar Warrior
+Plant Eidolon	sub:Bond of the Shambling Plant|Plant Eidolon
+Plant Nature	sp:Mandrake|Plant Nature
+Plant Spells	sub:Bond of the Shambling Plant|Plant Spells
+Plasma Bomb [Formula]	sub:Ionizer|Plasma Bomb [Formula]
+Pluck the Heartstrings	sub:College of Requiems|Pluck the Heartstrings
+Plunging Strike	sub:Warrior of Gravity|Plunging Strike
+Pneumatised and Feathered	sp:Pluvenn|Pneumatised and Feathered
+Pocketeer	sub:Astral Griffon Patron|Pocketeer
+Poetry in Misery	sub:College of Tragedy|Poetry in Misery
+Poison (Cost: 1d6)	Poison (Cost: 1d6)
+Poison Affinity	sp:Naga|Poison Affinity
+Poison Control	sub:Green Reaper|Poison Control
+Poison Immunity	sp:Grung|Poison Immunity
+Poisoner	sub:Venomsmith|Poisoner
+Poisonous Skin	sp:Grung|Poisonous Skin
+Polar Acclimation	sub:Rimekeeper|Polar Acclimation
+Polyphonic Echo	sub:College of Cyberwave|Polyphonic Echo
+Portable Forge	sub:Forgeknights' Guild|Portable Forge
+Portal Device	sub:Portalweaver|Portal Device
+Portal Master	sub:Portalweaver|Portal Master
+Portals	sub:Portalweaver|Portals
+Portalweaver Spells	sub:Portalweaver|Portalweaver Spells
+Portent	sub:School of Divination|Portent
+Positivity	sub:Technicolor Magic|Positivity
+Potent Cantrip	sub:School of Evocation|Potent Cantrip
+Potent Cantrips	Potent Cantrips
+Potent Psionics (1d8)	Potent Psionics (1d8)
+Potent Psionics (2d8)	Potent Psionics (2d8)
+Potent Spellcasting	sub:Knowledge Domain (2014)|Potent Spellcasting
+Potent Stone	sub:Transmuter|Potent Stone
+Power Cell	sub:Thunderlords' Guild|Power Cell
+Power Surge	sub:War Magic|Power Surge
+Power from Darkness	sub:Doomsayer|Power from Darkness
+Power of Deduction	sub:Detective|Power of Deduction
+Power of Persuasion	sp:Jeholrak|Power of Persuasion
+Power of Shadow	sub:Shadow Sorcery|Power of Shadow
+Power of the Elite	sub:Aristocratic|Power of the Elite
+Power of the Wilds	sub:Path of the Wild Heart|Power of the Wilds
+Powered Steps	Powered Steps
+Powered by Pathos	sub:Path of the Wrathful Dead|Powered by Pathos
+Powerful Build	sp:Loxodon|Powerful Build
+Powerful Echo	sub:Void Caster|Powerful Echo
+Practical	sp:Cervan|Practical
+Precise Hunter	cls:Ranger|Precise Hunter
+Precision Hardlight Strike	sub:Coalition Arcanist|Precision Hardlight Strike
+Predator's Intuition	sub:Big Game Hunter|Predator's Intuition
+Predictive Intuition	sub:Detective|Predictive Intuition
+Preemptive Strike	sub:Daggermark|Preemptive Strike
+Prescient Glimpses	sub:Time Domain|Prescient Glimpses
+Prescient Strike	sub:Burden of Awakening|Prescient Strike
+Preserve Life	sub:Life Domain|Preserve Life
+Priest of Zeal	sub:Zeal Domain (PSA)|Priest of Zeal
+Primal Ally	sub:Green Magic|Primal Ally
+Primal Awareness	Primal Awareness
+Primal Champion	cls:Barbarian|Primal Champion
+Primal Companion	sub:Path of the Primal Spirit|Primal Companion
+Primal Connection	sp:Human (Mark of Handling)|Primal Connection
+Primal Intuition	sp:Orc (2014)|Primal Intuition
+Primal Knowledge	cls:Barbarian|Primal Knowledge
+Primal Lore	sub:College of the Moon|Primal Lore
+Primal Magic	sub:Path of the Swamp|Primal Magic
+Primal Order	cls:Druid|Primal Order
+Primal Path	Primal Path
+Primal Strike	sub:Circle of the Moon (2014)|Primal Strike
+Primal Warrior	sub:Beastblood Guardian|Primal Warrior
+Primeval Awareness	Primeval Awareness
+Primordial Archer Spells	sub:Primordial Archer|Primordial Archer Spells
+Primordial Attunement	sub:Bond of the Elemental Spirit|Primordial Attunement
+Primordial Magic	sub:Primordial Archer|Primordial Magic
+Prismatic Module	sub:Circle of Configuration|Prismatic Module
+Prodigious Healer	sub:Bond of the Guardian Angel|Prodigious Healer
+Projected Ward	sub:School of Abjuration|Projected Ward
+Projectile Spew	sub:Plague Lord|Projectile Spew
+Promotion	sub:House of Pawns|Promotion
+Prophecy of Doom	sub:Eldritch Domain|Prophecy of Doom
+Protect Life	sub:White Necromancer|Protect Life
+Protection of the Lower Planes	sub:Bond of the Fiendish Chain|Protection of the Lower Planes
+Protective Bond	sub:Peace Domain|Protective Bond
+Protective Field	sub:Psi Warrior (2014)|Protective Field
+Protective Spirit	sub:Oath of Redemption|Protective Spirit
+Protective Taunt	sub:Bulwark Warrior|Protective Taunt
+Protector	Protector
+Protector Spells	sub:Vow of the Protector|Protector Spells
+Proto-Magic	sub:Protomancer|Proto-Magic
+Proto-Master	sub:Protomancer|Proto-Master
+Psi-Bolstered Knack	sub:Soulknife (2014)|Psi-Bolstered Knack
+Psi-Powered Leap	Psi-Powered Leap
+Psionic Awakening	sub:Burden of Awakening|Psionic Awakening
+Psionic Blast	sp:Wrothian|Psionic Blast
+Psionic Body	Psionic Body
+Psionic Disciplines and Talents	Psionic Disciplines and Talents
+Psionic Investigation	Psionic Investigation
+Psionic Mastery	sub:Warrior of the Leaden Crown|Psionic Mastery
+Psionic Mastery (1/Day)	Psionic Mastery (1/Day)
+Psionic Mastery (2/Day)	Psionic Mastery (2/Day)
+Psionic Mastery (3/Day)	Psionic Mastery (3/Day)
+Psionic Mastery (4/Day)	Psionic Mastery (4/Day)
+Psionic Mind	sp:Dragonborn (Gem)|Psionic Mind
+Psionic Power	sub:Psi Warrior (2014)|Psionic Power
+Psionic Prowess	sub:Warrior of the Leaden Crown|Psionic Prowess
+Psionic Redirection	sub:Path of the Battlemind|Psionic Redirection
+Psionic Resilience	Psionic Resilience
+Psionic Sorcery	sub:Aberrant Mind|Psionic Sorcery
+Psionic Spells	sub:Aberrant Mind|Psionic Spells
+Psionic Strike	sub:Psi Warrior (2014)|Psionic Strike
+Psionic Surge	Psionic Surge
+Psionics	Psionics
+Psychic Assault	sub:Path of the Battlemind|Psychic Assault
+Psychic Blades	sub:Soulknife (2014)|Psychic Blades
+Psychic Crush	sub:Warrior of the Leaden Crown|Psychic Crush
+Psychic Defenses	sub:Aberrant Mind|Psychic Defenses
+Psychic Eidolon	sub:Bond of the Aberrant Psion|Psychic Eidolon
+Psychic Feedback	sub:Mind Domain|Psychic Feedback
+Psychic Force	sub:Mind Domain|Psychic Force
+Psychic Marker	sub:Bond of the Aberrant Psion|Psychic Marker
+Psychic Reprisal	sub:Burden of Awakening|Psychic Reprisal
+Psychic Resistance	sp:Kalashtar (2014)|Psychic Resistance
+Psychic Spells	sub:Bond of the Aberrant Psion|Psychic Spells
+Psychic Teleportation	Psychic Teleportation
+Psychic Veil	sub:Soulknife (2014)|Psychic Veil
+Psychic Whispers	sub:Soulknife (2014)|Psychic Whispers
+Puppet Strings [Dance Style]	sub:Marionettist|Puppet Strings [Dance Style]
+Purification Domain Spells	sub:Purification Domain|Purification Domain Spells
+Purifying Salvation	sub:Salvation Chapter|Purifying Salvation
+Purity of Body	Purity of Body
+Purity of Spirit	sub:Oath of Devotion (2014)|Purity of Spirit
+Purple Magic Spells	sub:Purple Magic|Purple Magic Spells
+Pyromancer's Fury	sub:Pyromancer (PSK)|Pyromancer's Fury
+Pyrotechnics [Dance Style]	sub:Fire Dancer|Pyrotechnics [Dance Style]
+Quality Junk	sub:Scrappers' Guild|Quality Junk
+Quantum Tunneling	sub:Quantum Mechanic|Quantum Tunneling
+Quick Snack	sub:Gourmand|Quick Snack
+Quickened Healing	Quickened Healing
+Quickening	sub:Farseer|Quickening
+Quickness of the Gods	sub:Speed Domain|Quickness of the Gods
+Quill and Ink	sub:College of Calligraphy|Quill and Ink
+Quivering Palm	sub:Way of the Open Hand|Quivering Palm
+Rabbit Hop	sp:Harengon (WBtW)|Rabbit Hop
+Raconteur	sub:College of Jesters|Raconteur
+Radiance of the Dawn	sub:Light Domain|Radiance of the Dawn
+Radiant Champion	sub:Oath of Radiance|Radiant Champion
+Radiant Consumption	sp:Aasimar (Scourge)|Radiant Consumption
+Radiant Fire	Radiant Fire
+Radiant Recovery	sub:Star Patron|Radiant Recovery
+Radiant Shell	sub:Luminaries' Guild|Radiant Shell
+Radiant Soul	sp:Aasimar (Protector)|Radiant Soul
+Radiant Strikes	cls:Paladin|Radiant Strikes
+Radiant Sun Bolt	sub:Way of the Sun Soul|Radiant Sun Bolt
+Radiation Burst	sub:Cosmic Magic|Radiation Burst
+Rage	cls:Barbarian|Rage
+Rage beyond Death	sub:Path of the Zealot (2014)|Rage beyond Death
+Rage of the Dead	sub:Path of the Wrathful Dead|Rage of the Dead
+Rage of the Gods	sub:Path of the Zealot|Rage of the Gods
+Rage of the Wilds	sub:Path of the Wild Heart|Rage of the Wilds
+Raging Storm	sub:Path of the Storm Herald|Raging Storm
+Raise Cohort	sub:Holy Icon|Raise Cohort
+Rakish Audacity	sub:Swashbuckler|Rakish Audacity
+Rallying Cry	sub:Purple Dragon Knight (Banneret)|Rallying Cry
+Rallying Strike	sub:Burden of Revolution|Rallying Strike
+Rallying Surge	sub:Banneret|Rallying Surge
+Ram	sp:Satyr (2014)|Ram
+Rampage	sp:Gnoll|Rampage
+Rampage [Maneuver]	sub:Dragon Banner|Rampage [Maneuver]
+Ranged Specialist	sub:Big Game Hunter|Ranged Specialist
+Ranger Archetype	Ranger Archetype
+Ranger Archetype feature	Ranger Archetype feature
+Ranger Subclass	cls:Ranger|Ranger Subclass
+Ranger's Companion	sub:Beast Master (2014)|Ranger's Companion
+Ranting Ruin	sub:Apocalypse Domain|Ranting Ruin
+Rapid Consumption	sub:Living Crucible|Rapid Consumption
+Rapid Deployment	sub:Trappers' Guild|Rapid Deployment
+Rapid Strike	sub:Samurai|Rapid Strike
+Rapid Suturing	sub:Courtiers' Guild|Rapid Suturing
+Rapid Tinkerer	sub:Trapper Guild|Rapid Tinkerer
+Raptor Subrace	sp:Raptor|Raptor Subrace
+Ravage	sub:Path of the Abomination|Ravage
+Ravening Horde	sub:Hunger Domain|Ravening Horde
+Ravenite Heritage	sp:Dragonborn (Ravenite)|Ravenite Heritage
+Razor Claws	sp:Wrothian|Razor Claws
+Razormaw	sp:Pluvenn|Razormaw
+Reach to the Blaze	sp:Flamekin|Reach to the Blaze
+Reaching Roots	sub:Bond of the Shambling Plant|Reaching Roots
+Reactive	sub:Contortionist|Reactive
+Reactive Echo	sub:Prescient Knight|Reactive Echo
+Reactive Hack	sub:AI Futurist|Reactive Hack
+Reactive Nanites	sub:Nanite Magic|Reactive Nanites
+Ready for Action	sub:Nightwatcher|Ready for Action
+Reanimated Companion	sub:Reanimator|Reanimated Companion
+Reanimator Spells	sub:Reanimator|Reanimator Spells
+Reanimator's Skill Set	sub:Reanimator|Reanimator's Skill Set
+Reaper	sub:Death Domain|Reaper
+Reaper Spells	sub:Reaper|Reaper Spells
+Rebuke Death	sub:White Necromancer|Rebuke Death
+Rebuke Invoker	sub:Inquisition Domain|Rebuke Invoker
+Rebuke from Beyond	sub:Void Caster|Rebuke from Beyond
+Rebuke the Violent	Rebuke the Violent
+Reckless Abandon	sub:Path of the Battlerager|Reckless Abandon
+Reckless Attack	cls:Barbarian|Reckless Attack
+Reclaim Potential	sub:Echo Knight|Reclaim Potential
+Reclamation	sub:Circle of the Warden|Reclamation
+Reconfigurable Ability Scores	sp:Vect|Reconfigurable Ability Scores
+Reconfigure	sub:Mastermaker|Reconfigure
+Recycling Protocol	sub:Nanite Magic|Recycling Protocol
+Red Magic Spells	sub:Red Magic|Red Magic Spells
+Red Renewal	sub:Sangromancer|Red Renewal
+Redemption Arc	sub:Technicolor Magic|Redemption Arc
+Redirect Attack	Redirect Attack
+Redirection	sub:Burden of Atonement|Redirection
+Redoubled Efforts	sub:Warrior of Pride|Redoubled Efforts
+Refined Reanimation	sub:Reanimator|Refined Reanimation
+Reflected Positioning	sub:Bond of the Mirror Mage|Reflected Positioning
+Reflexive Adaptation	sub:Warrior of the Living Weapon|Reflexive Adaptation
+Reform	sp:Amoeboid|Reform
+Regenerative	sp:Skathári|Regenerative
+Rejuvenating Inspiration	sub:Greenleaf College|Rejuvenating Inspiration
+Release Energy	sub:The Genie Lord|Release Energy
+Relentless	sub:Battle Master (2014)|Relentless
+Relentless Aggression	sub:Path of the Drifter|Relentless Aggression
+Relentless Avenger	sub:Oath of Vengeance (2014)|Relentless Avenger
+Relentless Endurance	sp:Half-Orc|Relentless Endurance
+Relentless Hunter	cls:Ranger|Relentless Hunter
+Relentless Rage	cls:Barbarian|Relentless Rage
+Reliable Aim	sub:Big Game Hunter|Reliable Aim
+Reliable Talent	cls:Rogue|Reliable Talent
+Relics of Legend	sub:Burden of Ascension|Relics of Legend
+Relive the Past	sub:Warrior of Regret|Relive the Past
+Remarkable Athlete	sub:Champion (2014)|Remarkable Athlete
+Rematerialize	sub:Materializer|Rematerialize
+Remedy	sub:White Magic|Remedy
+Remedy [Maneuver]	sub:Plague Doctor|Remedy [Maneuver]
+Remnant Recharge	sub:Wand Wizard|Remnant Recharge
+Rend Mind	sub:Soulknife (2014)|Rend Mind
+Reorder Events	sub:College of Chronology|Reorder Events
+Reprogrammer	sub:Decommissioner|Reprogrammer
+Requisition	sub:Coalition Arcanist|Requisition
+Reshape	sub:Bond of the Monster Shaper|Reshape
+Resilience	sp:Mapach|Resilience
+Resolute Hunter	sub:Hunting Domain|Resolute Hunter
+Resolute Stance	sub:Path of the Juggernaut|Resolute Stance
+Resonant Frequency	sub:Resonator|Resonant Frequency
+Resounding Strike	sub:Zeal Domain (PSA)|Resounding Strike
+Resourceful	sp:Near-Human|Resourceful
+Restorative Reagents	Restorative Reagents
+Restore Balance	sub:Clockwork Soul|Restore Balance
+Restoring Touch	cls:Paladin|Restoring Touch
+Restriction: Knighthood	Restriction: Knighthood
+Restriction—Dwarves Only	Restriction—Dwarves Only
+Retaliation	sub:Path of the Berserker (2014)|Retaliation
+Retaliatory Slam	sub:Steelsinger|Retaliatory Slam
+Retroactive Inspiration	sub:College of Chronology|Retroactive Inspiration
+Retroactive Spell	sub:Chronomancer|Retroactive Spell
+Revelation in Flesh	sub:Aberrant Mind|Revelation in Flesh
+Reveler	sp:Satyr (2014)|Reveler
+Reverb Explosions	sub:Resonator|Reverb Explosions
+Revitalize	sub:Hunger Domain|Revitalize
+Revolutionary Spirit	sub:Burden of Revolution|Revolutionary Spirit
+Rewind	sub:Time Operative|Rewind
+Rhonas's Blessing	sub:Strength Domain (PSA)|Rhonas's Blessing
+Ride Them Down	sub:Highway Rider|Ride Them Down
+Ring Bond	sub:Ring Warden|Ring Bond
+Ring Savant	sub:Ring Warden|Ring Savant
+Rite of the Blood Moon	sub:Circle of Blood|Rite of the Blood Moon
+Ritual Adept	cls:Wizard|Ritual Adept
+Roar	sub:Beastblood Guardian|Roar
+Rocker	sub:Path of Heavy Metal|Rocker
+Rogue Subclass	cls:Rogue|Rogue Subclass
+Roguish Archetype	Roguish Archetype
+Roguish Archetype feature	Roguish Archetype feature
+Roll the Bones	sub:House of Dice|Roll the Bones
+Rook Strike	sub:House of Rooks|Rook Strike
+Root Magic	sp:Mandrake|Root Magic
+Root Network	sub:Bond of the Shambling Plant|Root Network
+Roots of Rock	sub:Stoneheart Defender|Roots of Rock
+Rose's Thorns	sub:Circle of Roses|Rose's Thorns
+Rot and Violence	sub:Hollow Warden|Rot and Violence
+Rote Piety	sub:Inquisitor|Rote Piety
+Rotten Seed	sub:Corpse Florist|Rotten Seed
+Roving	cls:Ranger|Roving
+Royal Envoy	sub:Purple Dragon Knight (Banneret)|Royal Envoy
+Rubbery Body	sub:Warrior of the Warped|Rubbery Body
+Ruin Incarnate	sub:Circle of Entropy|Ruin Incarnate
+Ruinbound Mutations	sp:Ruinbound|Ruinbound Mutations
+Rune Carver	sub:Rune Knight|Rune Carver
+Runes	sub:Runetagger|Runes
+Runes of War	sub:Forge Adept|Runes of War
+Runic Juggernaut	sub:Rune Knight|Runic Juggernaut
+Runic Magic	sub:Runechild|Runic Magic
+Runic Shield	sub:Rune Knight|Runic Shield
+Runic Torrent	sub:Runechild|Runic Torrent
+Sacred Oath	Sacred Oath
+Sacred Oath feature	Sacred Oath feature
+Sacred Weapon	sub:Oath of Devotion|Sacred Weapon
+Sacrificial Burst	sub:Burden of Discord|Sacrificial Burst
+Sacrificial Dive	sub:Drone Jockey|Sacrificial Dive
+Sacrificial Familiar	sub:Green Magic|Sacrificial Familiar
+Sacrificial Foresight	sub:Burden of Truth|Sacrificial Foresight
+Sacrificial Resilience	sub:Burden of Tyranny|Sacrificial Resilience
+Sacrificial Shenanigans	sub:Burden of Levity|Sacrificial Shenanigans
+Sacrificial Slime	sub:Ooze Rancher|Sacrificial Slime
+Sacrificial Spell	sub:Burden of the End|Sacrificial Spell
+Sacrificial Thralls	sub:Overlord|Sacrificial Thralls
+Saint of Forge and Fire	sub:Forge Domain|Saint of Forge and Fire
+Sainted Mantle	sub:Godsworn|Sainted Mantle
+Sanctifying Light	sub:Salvation Chapter|Sanctifying Light
+Sanctuary Vessel	sub:The Genie|Sanctuary Vessel
+Sangromancy Savant	sub:Sangromancer|Sangromancy Savant
+Sanguine Burst	sub:Blood Magic|Sanguine Burst
+Sanguine Recall	sub:Blood Domain|Sanguine Recall
+Sanguine Vigor	sub:Sangromancer|Sanguine Vigor
+Sap Defenses	sub:Vow of the Siphon|Sap Defenses
+Savage Attacks	sp:Half-Orc|Savage Attacks
+Saving Face	sp:Hobgoblin (2014)|Saving Face
+Savior Spirits	sub:Circle of the Spirits|Savior Spirits
+Savior's Focus	sub:Salvation Chapter|Savior's Focus
+Scales of the Sea	sub:Ocean Domain|Scales of the Sea
+Scallywag	sub:Jolly Roger|Scallywag
+Scarab of Judgment	sub:Pharaoh|Scarab of Judgment
+Scathing Retort	sub:Troubadour|Scathing Retort
+Scholar	cls:Wizard|Scholar
+School Mastery	sub:Aristocratic|School Mastery
+School of Chaos	sub:Chaos|School of Chaos
+Schrödinger's Defense	sub:Quantum Mechanic|Schrödinger's Defense
+Scorching Steel	sub:Forgeknights' Guild|Scorching Steel
+Scornful Rebuke	sub:Oath of Conquest|Scornful Rebuke
+Scrap Weapons	sub:Scrappers' Guild|Scrap Weapons
+Scribe Scroll	sub:Scroll Scribe|Scribe Scroll
+Scribe's Insight	sp:Gnome (Mark of Scribing)|Scribe's Insight
+Scrivener	sub:Scroll Scribe|Scrivener
+Scroll Codex	sub:Scroll Scribe|Scroll Codex
+Scroungecraft	sp:Mapach|Scroungecraft
+Sculpt Spells	sub:School of Evocation|Sculpt Spells
+Sculpted Golem	sub:College of Sculpture|Sculpted Golem
+Sculpted Sentinel	sub:College of Sculpture|Sculpted Sentinel
+Sea	Sea
+Sea Elf Training	sp:Sea Elf (2014)|Sea Elf Training
+Seafarer	sub:Storm Sentinel|Seafarer
+Seal Scribe	sub:Angelic Scribe|Seal Scribe
+Sear Imperfections	sub:Purification Domain|Sear Imperfections
+Sear Undead	cls:Cleric|Sear Undead
+Searing Arc Strike	sub:Way of the Sun Soul|Searing Arc Strike
+Searing Sunburst	sub:Way of the Sun Soul|Searing Sunburst
+Searing Vengeance	sub:The Celestial|Searing Vengeance
+Season	sp:Eladrin (2014)|Season
+Second Wind	cls:Fighter|Second Wind
+Second Wind Improvement	Second Wind Improvement
+Second-Story Work	sub:Thief (2014)|Second-Story Work
+Secondary Arms	sp:Thri-kreen|Secondary Arms
+Seer	sub:Burden of Truth|Seer
+Self-Restoration	cls:Monk|Self-Restoration
+Selfless Sacrifice	sub:Burden of Atonement|Selfless Sacrifice
+Selfless Survival	sub:Godsworn|Selfless Survival
+Semblance of Life	sub:Vestige Patron|Semblance of Life
+Sentinel at Death's Door	sub:Grave Domain|Sentinel at Death's Door
+Sentinel's Intuition	sp:Human (Mark of Sentinel)|Sentinel's Intuition
+Sentry's Rest	sp:Autognome|Sentry's Rest
+Serene Strike	sub:Path of Tranquility|Serene Strike
+Service Model	sp:Manikin|Service Model
+Servitor's Agility	sub:Familiar Master|Servitor's Agility
+Sever Connection	sub:Arcane Maesters' Guild|Sever Connection
+Severed from Dreams	sp:Kalashtar (2014)|Severed from Dreams
+Shade of Regret	sub:Warrior of Regret|Shade of Regret
+Shadow Arts	sub:Way of Shadow|Shadow Arts
+Shadow Flight	sub:Circle of Owls|Shadow Flight
+Shadow Lore	sub:College of Whispers|Shadow Lore
+Shadow Martyr	sub:Echo Knight|Shadow Martyr
+Shadow Meld	sub:Darkness Domain|Shadow Meld
+Shadow Shield	sub:Darkness Domain|Shadow Shield
+Shadow Spells	sub:Shadow Sorcery|Shadow Spells
+Shadow Step	sub:Way of Shadow|Shadow Step
+Shadow Walk	sub:Shadow Sorcery|Shadow Walk
+Shadowdance	sub:Shadow Dancer|Shadowdance
+Shadowy Dodge	sub:Gloom Stalker (2014)|Shadowy Dodge
+Shadowy Figments	Shadowy Figments
+Shake the Earth	sub:Circle of Entropy|Shake the Earth
+Shape Self	sp:Lorwyn Changeling|Shape Self
+Shape Shadows	sp:Elf (Mark of Shadow)|Shape Shadows
+Shape of the Wild	sub:Path of the Primal Spirit|Shape of the Wild
+Shape-Shifter	sub:Transmuter|Shape-Shifter
+Shapechanger	sp:Changeling (2014)|Shapechanger
+Shapes and Omens	sub:Tea Magic|Shapes and Omens
+Shard of Infinity	sp:Demidritch|Shard of Infinity
+Share Spells	sub:Beast Master (2014)|Share Spells
+Share the Burden	sub:Wretched Bloodline Sorcery|Share the Burden
+Shared Mutagen	sub:Mutagenist|Shared Mutagen
+Shared Rage	sub:Path of the Primal Spirit|Shared Rage
+Shared Resilience	sub:Banneret|Shared Resilience
+Sharing the Dream	sub:Farseer|Sharing the Dream
+Sharp Mind	Sharp Mind
+Sharpen the Blade	sub:Way of the Kensei|Sharpen the Blade
+Shell Defense	sp:Tortle (2014)|Shell Defense
+Shield Fighter	sub:Star-Spangled Banner|Shield Fighter
+Shield of Missiles	sub:Magic Missile Mage|Shield of Missiles
+Shield of the Protector	sub:Vow of the Protector|Shield of the Protector
+Shielding Storm	sub:Path of the Storm Herald|Shielding Storm
+Shifting	sp:Shifter (Beasthide)|Shifting
+Shifting Feature	sp:Shifter (Beasthide)|Shifting Feature
+Shifting Resistance	sub:Entropist|Shifting Resistance
+Shillelagh Mastery	sub:Circle of the Unbroken|Shillelagh Mastery
+Shining Steel	sub:Armigers' Guild|Shining Steel
+Shock Trooper	sub:House of Lancers|Shock Trooper
+Shrouded Start	sub:Shadow Dancer|Shrouded Start
+Shrouded Steps	sub:Heretic Chapter|Shrouded Steps
+Shrug Off [Maneuver]	sub:Pugilist|Shrug Off [Maneuver]
+Sick 'Em! [Maneuver]	sub:Houndmaster|Sick 'Em! [Maneuver]
+Sidekick Class	Sidekick Class
+Siege Casting	sub:House of Bishops|Siege Casting
+Siege Defender	sub:Grey Watchman|Siege Defender
+Siege Defense	sub:Tower Banner|Siege Defense
+Sigilic Augmentation	sub:Runechild|Sigilic Augmentation
+Signature Spells	cls:Wizard|Signature Spells
+Silent Feathers	sp:Owlin|Silent Feathers
+Silent Routine	sub:Mime|Silent Routine
+Silent Sacrifice	sub:Burden of Anonymity|Silent Sacrifice
+Silent Speech	sp:Ghostwise Halfling|Silent Speech
+Silver Tongue	sub:College of Eloquence|Silver Tongue
+Silvered Edge	sub:Exterminator|Silvered Edge
+Silvered Shield	sub:Exterminator|Silvered Shield
+Sin Eater	sub:Burden of Atonement|Sin Eater
+Sing the Song that Ends the World	sub:Eldritch Domain|Sing the Song that Ends the World
+Singularity Spells	sub:Singularity Patron|Singularity Spells
+Singularity Strike	sub:Warrior of Gravity|Singularity Strike
+Siphon Blood	sub:Serophage|Siphon Blood
+Siphon Spells	sub:Vow of the Siphon|Siphon Spells
+Siren's Song	sp:Siren|Siren's Song
+Sixth Sense	sub:Haunted Sorcery|Sixth Sense
+Size Up	sub:Nightwatcher|Size Up
+Skill Versatility	sp:Half-Elf|Skill Versatility
+Skilled Alchemist	sub:Alkemancer|Skilled Alchemist
+Skilled Guardian	sub:Nightwatcher|Skilled Guardian
+Skilled Surgeon	sub:Cyber Surgeon|Skilled Surgeon
+Skillful	sp:Near-Human|Skillful
+Skills	sp:Variant Human|Skills
+Skin of Steel	sub:Circle of the Forged|Skin of Steel
+Skinrider's Trance	sub:Path of the Primal Spirit|Skinrider's Trance
+Skirmish [Maneuver]	sub:Jolly Roger|Skirmish [Maneuver]
+Skirmisher	sub:Scout|Skirmisher
+Skirmisher's Step	sub:Griffon Scout|Skirmisher's Step
+Skulker	sp:Mapach|Skulker
+Sky Spells	sub:Sky Magic|Sky Spells
+Slashing Flourish	Slashing Flourish
+Slayer's Counter	sub:Monster Slayer|Slayer's Counter
+Slayer's Prey	sub:Monster Slayer|Slayer's Prey
+Slayer's Strike	sub:Vampire Slayer|Slayer's Strike
+Slaymates	sub:Toymaker|Slaymates
+Sleep Bomb [Formula]	sub:Xenoalchemist|Sleep Bomb [Formula]
+Sleepless	sp:Thri-kreen|Sleepless
+Slick Moves	sub:Moonwalker|Slick Moves
+Slime Bomb	sub:Ooze Rancher|Slime Bomb
+Slip Gate	sub:Jumper|Slip Gate
+Slippery	sp:Kuo-Toa|Slippery
+Slippery Mind	cls:Rogue|Slippery Mind
+Slot Division	sub:Spellhacker|Slot Division
+Slow Fall	cls:Monk|Slow Fall
+Slumbering Legacy	sp:Deep One Dwarf|Slumbering Legacy
+Smash Hit	sub:Path of Heavy Metal|Smash Hit
+Smite of Protection	sub:Oath of Devotion|Smite of Protection
+Smoke Animals	sub:Fumaturge|Smoke Animals
+Smoke Mage	sub:Fumaturge|Smoke Mage
+Smoke Rings	sub:Fragrant Magic|Smoke Rings
+Snap Shot	sub:Star Wolf|Snap Shot
+Sneak Attack	cls:Rogue|Sneak Attack
+Sneaky	sp:Bugbear (2014)|Sneaky
+Sneaky and Crafty	sub:Trapper Guild|Sneaky and Crafty
+Snowclad	sub:Rimekeeper|Snowclad
+Sociable Start	sub:Courtesan|Sociable Start
+Solar Flare	sub:Oath of the Sun|Solar Flare
+Solidarity Domain Spells	sub:Solidarity Domain (PSA)|Solidarity Domain Spells
+Solidarity's Action	sub:Solidarity Domain (PSA)|Solidarity's Action
+Solo Shredding	sub:Path of Heavy Metal|Solo Shredding
+Somnambulist	sub:Somnomancer|Somnambulist
+Song of Defense	sub:Bladesinger|Song of Defense
+Song of Life	sub:College of Cantors|Song of Life
+Song of Rest (d10)	Song of Rest (d10)
+Song of Rest (d12)	Song of Rest (d12)
+Song of Rest (d6)	Song of Rest (d6)
+Song of Rest (d8)	Song of Rest (d8)
+Song of Sorrow	sub:College of Dirges|Song of Sorrow
+Song of Victory	sub:Bladesinger|Song of Victory
+Sorcerer Subclass	cls:Sorcerer|Sorcerer Subclass
+Sorcerous Origin	sub:Boreal Bloodline|Sorcerous Origin
+Sorcerous Origin feature	Sorcerous Origin feature
+Sorcerous Restoration	cls:Sorcerer|Sorcerous Restoration
+Sorcerous Versatility	Sorcerous Versatility
+Sorcery Incarnate	cls:Sorcerer|Sorcery Incarnate
+Sorcery Points	Sorcery Points
+Sorrowful Fate	sub:College of Tragedy|Sorrowful Fate
+Soul Blades	sub:Soulknife (2014)|Soul Blades
+Soul Broker	sub:Diabolist|Soul Broker
+Soul Doll	sub:Toymaker|Soul Doll
+Soul Jar	sub:Antiquarian|Soul Jar
+Soul of Artifice	Soul of Artifice
+Soul of Death	sub:Bond of the Grave Caller|Soul of Death
+Soul of Deceit	sub:Mastermind|Soul of Deceit
+Soul of Light	sub:Oath of Radiance|Soul of Light
+Soul of Vengeance	sub:Oath of Vengeance (2014)|Soul of Vengeance
+Soul of the Forge	sub:Forge Domain|Soul of the Forge
+Soul-Searching Strike	sub:Warrior of the Celestial|Soul-Searching Strike
+Soulsteel	sub:Steel Magic|Soulsteel
+Sous Chef	sub:Gastronomer|Sous Chef
+Spatial Exchange	sub:Astral Domain|Spatial Exchange
+Spawn Pawn	sub:The Parasite Patron|Spawn Pawn
+Speak With Bugs	sp:Hedge|Speak With Bugs
+Speak with Frogs and Toads	sp:Bullywug|Speak with Frogs and Toads
+Speak with Small Beasts	sp:Forest Gnome|Speak with Small Beasts
+Speaker of Steel	sub:Circle of Configuration|Speaker of Steel
+Special Shots	sub:Big Game Hunter|Special Shots
+Specialized Design	sp:Autognome|Specialized Design
+Spectral Defense	sub:Horizon Walker|Spectral Defense
+Spectral Form	Spectral Form
+Spectrum Analyzer	sub:Dynamo Engineer|Spectrum Analyzer
+Speech of Beast and Leaf	sp:Firbolg (2014)|Speech of Beast and Leaf
+Speech of the Woods	sub:Circle of the Shepherd|Speech of the Woods
+Speed Burst	sp:Naga|Speed Burst
+Spell Bombardment	sub:Wild Magic|Spell Bombardment
+Spell Breaker	sub:Arcana Domain (2014)|Spell Breaker
+Spell Dynamos	sub:Dynamo Engineer|Spell Dynamos
+Spell Inscription	sub:College of Calligraphy|Spell Inscription
+Spell Mastery	cls:Wizard|Spell Mastery
+Spell Phreak	sub:Spellhacker|Spell Phreak
+Spell Recovery	sub:Burden of the End|Spell Recovery
+Spell Resistance	sub:School of Abjuration|Spell Resistance
+Spell Sculpting	sub:House of Bishops|Spell Sculpting
+Spell Shield	sub:Inquisition Domain|Spell Shield
+Spell Siphon	sub:The Parasite Patron|Spell Siphon
+Spell Tactics	sub:Mystic Strategist|Spell Tactics
+Spell Thief	sub:Arcane Trickster (2014)|Spell Thief
+Spell-Storing Item	Spell-Storing Item
+Spellbranding	sub:Mage Brand|Spellbranding
+Spellcasting	sub:Warrior of the Mystic Arts|Spellcasting
+Spellfire Burst	sub:Spellfire Sorcery|Spellfire Burst
+Spellfire Spells	sub:Spellfire Sorcery|Spellfire Spells
+Spellhack Savant	sub:Spellhacker|Spellhack Savant
+Spells of the Mark	sp:Dwarf (Mark of Warding)|Spells of the Mark
+Spellsmith	sp:Human (Mark of Making)|Spellsmith
+Spellwarp	sub:Universalist|Spellwarp
+Spider Climb	sp:Dhampir|Spider Climb
+Spiked Retribution	sub:Path of the Battlerager|Spiked Retribution
+Spin the Wheel	sub:House of Roulette|Spin the Wheel
+Spinning Shield	sub:House of Roulette|Spinning Shield
+Spiny Quills	sp:Hedge|Spiny Quills
+Spirit Animal Eidolon	sub:Bond of the Spirit Animal|Spirit Animal Eidolon
+Spirit Animal Spells	sub:Bond of the Spirit Animal|Spirit Animal Spells
+Spirit Dance	sub:Circle of the Spirits|Spirit Dance
+Spirit Guide	sub:Circle of the Spirits|Spirit Guide
+Spirit Projection	sub:The Undead|Spirit Projection
+Spirit Seeker	sub:Path of the Totem Warrior|Spirit Seeker
+Spirit Session	sub:College of Spirits (2014)|Spirit Session
+Spirit Shield	sub:Path of the Ancestral Guardian|Spirit Shield
+Spirit Totem	sub:Circle of the Shepherd|Spirit Totem
+Spirit Walk	sub:Circle of the Spirits|Spirit Walk
+Spirit Walker	sub:Path of the Totem Warrior|Spirit Walker
+Spirit of the Mountain	sub:Path of the Juggernaut|Spirit of the Mountain
+Spirited Start	sub:Cheerleader|Spirited Start
+Spirits from Beyond	sub:College of Spirits|Spirits from Beyond
+Spiritual Focus	sub:College of Spirits (2014)|Spiritual Focus
+Spiteful Challenge	sub:Witchbane Hunter|Spiteful Challenge
+Splatter Bombs	sub:Pigmentist|Splatter Bombs
+Splicer	sub:Circle of Xenobiology|Splicer
+Splintered Summons	sub:Conjurer|Splintered Summons
+Split Enchantment	sub:Enchanter|Split Enchantment
+Split Up, Gang	sub:Kid Sleuth|Split Up, Gang
+Sports Fanatic	sub:Siegeball Jersey|Sports Fanatic
+Spotlight [Dance Style]	sub:Dramaturge|Spotlight [Dance Style]
+Spreading Spores	sub:Circle of Spores|Spreading Spores
+Spring Attack	sp:Human (Kessig)|Spring Attack
+Spring Knees	sub:Warrior of the Warped|Spring Knees
+Squad Warmup	sub:Cheerleader|Squad Warmup
+Squadron Leader	sub:Star Wolf|Squadron Leader
+Squadsight	sub:Coalition Arcanist|Squadsight
+Stabilizing Focus	sub:Warrior of the Celestial|Stabilizing Focus
+Stalker's Flurry	sub:Gloom Stalker (2014)|Stalker's Flurry
+Stand Against the Tide	Stand Against the Tide
+Stand by the Strong	sp:Dhakaani Guul'dar (Bugbear)|Stand by the Strong
+Standing Leap	sp:Bullywug|Standing Leap
+Star Map	sub:Circle of Stars|Star Map
+Star Spells	sub:Star Patron|Star Spells
+Starborn	sub:Cosmic Magic|Starborn
+Stardust	sub:Cosmic Magic|Stardust
+Starlight Step	sp:Astral Elf|Starlight Step
+Starry Form	sub:Circle of Stars|Starry Form
+Starstruck	sub:Burden of Fame|Starstruck
+Static Charge	sub:Thunderlords' Guild|Static Charge
+Steady Aim	cls:Rogue|Steady Aim
+Steady Eye	sub:Inquisitive|Steady Eye
+Steal Blood	sub:Sanguine Thief|Steal Blood
+Steal Luck	sub:House of Dice|Steal Luck
+Steal Time	sub:Time Operative|Steal Time
+Steel Shredder	sub:Path of the Wrecker|Steel Shredder
+Steel Spells	sub:Steel Magic|Steel Spells
+Steel Will	Steel Will
+Steelsong Discipline	sub:Steelsinger|Steelsong Discipline
+Stench	sp:Troglodyte|Stench
+Step of the Wind	Step of the Wind
+Steps of Night	sub:Twilight Domain|Steps of Night
+Steps of the Fey	sub:Archfey Patron|Steps of the Fey
+Stillness of Mind	Stillness of Mind
+Stim Potion	sub:Adrenaline Junkie|Stim Potion
+Stir the Bones	sub:College of Requiems|Stir the Bones
+Stolen Power	sub:Sanguine Thief|Stolen Power
+Stolen Secrets	sub:Daemonologist|Stolen Secrets
+Stone Camouflage	sp:Deep Gnome (Monster)|Stone Camouflage
+Stone's Endurance	sp:Goliath (2014)|Stone's Endurance
+Stonecunning	sp:Hill Dwarf|Stonecunning
+Stoneforged Champion	sub:Stoneheart Defender|Stoneforged Champion
+Stonewall	sub:Stoneheart Defender|Stonewall
+Stopping Power	sub:Calibarons' Guild|Stopping Power
+Storm Aura	sub:Path of the Storm Herald|Storm Aura
+Storm Guide	sub:Storm Sorcery|Storm Guide
+Storm Soul	sub:Path of the Storm Herald|Storm Soul
+Storm Wings	sub:Storm Sentinel|Storm Wings
+Storm's Boon	sp:Half-Elf (Mark of Storm)|Storm's Boon
+Storm's Fury	sub:Storm Sorcery|Storm's Fury
+Stormborn	sub:Tempest Domain|Stormborn
+Stormlord	sub:Storm Sentinel|Stormlord
+Stormy Waters	sub:Oath of the Open Sea|Stormy Waters
+Stout Resilience	sp:Stout Halfling|Stout Resilience
+Strange Endurance	sp:Reborn|Strange Endurance
+Strange Modifications	sub:Reanimator|Strange Modifications
+Strength Beneath the Skin	sub:Serophage|Strength Beneath the Skin
+Strength Domain Spells	sub:Strength Domain (PSA)|Strength Domain Spells
+Strength before Death	sub:Samurai|Strength before Death
+Strength in Unity	sp:Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity
+Strength of Mind	Strength of Mind
+Strength of Spirit	sub:Haunted Sorcery|Strength of Spirit
+Strength of the Grave	sub:Shadow Magic|Strength of the Grave
+Strength of the Swarm	sub:Vermin Lord|Strength of the Swarm
+Stride of the Elements	sub:Warrior of the Elements|Stride of the Elements
+Strig Subrace	sp:Strig|Strig Subrace
+Strike Fear	sub:Scion of the Three|Strike Fear
+Strike Like Lightning	sub:Oath of Thunder|Strike Like Lightning
+Strike and Fade	sub:Griffon Scout|Strike and Fade
+Stroke of Luck	cls:Rogue|Stroke of Luck
+Student of Alchemy	sub:Living Crucible|Student of Alchemy
+Student of Arcana	sub:Arcana Domain|Student of Arcana
+Student of War	sub:Battle Master (2014)|Student of War
+Studied Attacks	cls:Fighter|Studied Attacks
+Stunning Strike	cls:Monk|Stunning Strike
+Sub-Zero	sub:Wintercarvers' Guild|Sub-Zero
+Subclass Feature	Subclass Feature
+Subclass feature	Subclass feature
+Subjective Gravity	sub:Warrior of Gravity|Subjective Gravity
+Sublime Automation	sub:Machine Domain|Sublime Automation
+Sublime Start	sub:Fey Ballerina|Sublime Start
+Substitue Elements	sub:Elementalist|Substitue Elements
+Substitute Elements	sub:Elementalist|Substitute Elements
+Subtle Hand	sub:Warrior of the Leaden Crown|Subtle Hand
+Sudden Strike	sub:Scout|Sudden Strike
+Sugar Rush	sub:Gingerbread Magic|Sugar Rush
+Sugar-Coat	sub:Gingerbread Magic|Sugar-Coat
+Summon Wildfire Spirit	sub:Circle of Wildfire|Summon Wildfire Spirit
+Summoner's Blast	sub:Bond of the Dragon Herald|Summoner's Blast
+Sun Shield	sub:Way of the Sun Soul|Sun Shield
+Sunlight Sensitivity	sp:Drow|Sunlight Sensitivity
+Superior Atlas	Superior Atlas
+Superior Critical	sub:Champion (2014)|Superior Critical
+Superior Darkvision	sp:Drow|Superior Darkvision
+Superior Defense	cls:Monk|Superior Defense
+Superior Dread	sub:Undead Patron|Superior Dread
+Superior Flourish	sub:Fencer|Superior Flourish
+Superior Hunter's Defense	sub:Hunter (2014)|Superior Hunter's Defense
+Superior Hunter's Prey	sub:Hunter|Superior Hunter's Prey
+Superior Inspiration	cls:Bard|Superior Inspiration
+Superior Mobility	sub:Scout|Superior Mobility
+Superior Teleportation	Superior Teleportation
+Supermassive Strike	sub:Warrior of Gravity|Supermassive Strike
+Supernal Safeguard	sub:Inquisition Domain|Supernal Safeguard
+Supernatural Defense	sub:Monster Slayer|Supernatural Defense
+Supernatural Exploits	sub:Path of Spellfury|Supernatural Exploits
+Supernatural Resistance	sub:Oathbreaker|Supernatural Resistance
+Supernova	sub:Star Patron|Supernova
+Superstar Sanctitude	sub:Burden of Fame|Superstar Sanctitude
+Suppressive Fire	sub:Calibarons' Guild|Suppressive Fire
+Supreme Healing	sub:Life Domain (2014)|Supreme Healing
+Supreme Sneak	sub:Thief (2014)|Supreme Sneak
+Supreme Stratagems	sub:Mystic Strategist|Supreme Stratagems
+Supreme Switching	sub:Astral Domain|Supreme Switching
+Sure-footed	sp:Human (Kessig)|Sure-footed
+Surefooted	sub:Burden of Rebirth|Surefooted
+Surge of Health	Surge of Health
+Surge of Valor	sub:Knight Errant|Surge of Valor
+Surge of Vigor	sp:Cervan|Surge of Vigor
+Surprise Attack	sp:Bugbear (2014)|Surprise Attack
+Survival Instinct	sp:Tortle (2014)|Survival Instinct
+Survivalist	sub:Scout|Survivalist
+Survivor	sp:Centaur (2014)|Survivor
+Sustained Flight	sub:Space Marine|Sustained Flight
+Swamp Camouflage	sp:Bullywug|Swamp Camouflage
+Swamp Thing	sub:Path of the Swamp|Swamp Thing
+Swan Song	sub:Fey Ballerina|Swan Song
+Swap Elements	sub:Bond of the Elemental Spirit|Swap Elements
+Swarm Cloud	sub:Carrion King|Swarm Cloud
+Swarm Tactics	sub:Drone Jockey|Swarm Tactics
+Swarming Dispersal	sub:Swarmkeeper|Swarming Dispersal
+Swarming Strikes	sub:Vermin Lord|Swarming Strikes
+Swarmkeeper Magic	sub:Swarmkeeper|Swarmkeeper Magic
+Sweet Tooth	sub:Gingerbread Magic|Sweet Tooth
+Swift Swimmer	sp:Sahuagin|Swift Swimmer
+Swim	sp:Water Genasi (2014)|Swim
+Swim Speed	sp:Giff|Swim Speed
+Swimming	sp:Merfolk (Ixalan, Blue)|Swimming
+Swordmaster	sub:Rōnin|Swordmaster
+Symbiont Mastery	sp:Ruinbound|Symbiont Mastery
+Symbiote Eidolon	sub:Bond of the Symbiote|Symbiote Eidolon
+Symbiote Spells	sub:Bond of the Symbiote|Symbiote Spells
+Symbiotic Entity	sub:Circle of Spores|Symbiotic Entity
+Symbiotic Sentinel	sub:The Parasite Patron|Symbiotic Sentinel
+Symbiotic Synergy	sub:Bond of the Symbiote|Symbiotic Synergy
+Sympathetic Shield	sub:Circle of the Warden|Sympathetic Shield
+Synchronized Response	sub:Devourer Guild|Synchronized Response
+System Cracker	sub:Decommissioner|System Cracker
+Tactical Analysis	sub:AI Futurist|Tactical Analysis
+Tactical Maneuver	sub:House of Knights|Tactical Maneuver
+Tactical Master	sub:House of Kings|Tactical Master
+Tactical Mind	cls:Fighter|Tactical Mind
+Tactical Shift	cls:Fighter|Tactical Shift
+Tactical Uplink	sub:Coalition Arcanist|Tactical Uplink
+Tactical Wit	sub:War Magic|Tactical Wit
+Taint of Shadow	sub:Shadow Bloodline|Taint of Shadow
+Tainted Shadows	sub:Shadow Bloodline|Tainted Shadows
+Take Heart	sp:Jerbeen|Take Heart
+Take Hostage	sub:Brigand|Take Hostage
+Takedown Tactics	sub:Bounty Hunter|Takedown Tactics
+Tale of Hubris	sub:College of Tragedy|Tale of Hubris
+Tale of Hubris (14th Level)	sub:College of Tragedy|Tale of Hubris (14th Level)
+Talented Adventurer	sub:College of Adventurers|Talented Adventurer
+Tales from Beyond	sub:College of Spirits (2014)|Tales from Beyond
+Talisman of Protection	sub:White Magic|Talisman of Protection
+Tall Tales	sub:Warrior of Pride|Tall Tales
+Talons	sp:Aarakocra (Monster)|Talons
+Tamed Surge	sub:Wild Magic Sorcery|Tamed Surge
+Tandem Footwork	sub:College of Dance|Tandem Footwork
+Target Designation	sub:Star Wolf|Target Designation
+Tasseography	sub:Tea Magic|Tasseography
+Taunt	sp:Kender|Taunt
+Tea Ceremony	sub:Tea Magic|Tea Ceremony
+Tea Spells	sub:Tea Magic|Tea Spells
+Team Inspiration [Maneuver]	sub:Siegeball Jersey|Team Inspiration [Maneuver]
+Team Player	sub:Cheerleader|Team Player
+Team Tactics	sp:Jerbeen|Team Tactics
+Technical Exploits	sub:Infiltrator|Technical Exploits
+Technicolor Spells	sub:Technicolor Magic|Technicolor Spells
+Techno-Intuition	sub:Nanite Magic|Techno-Intuition
+Technophile	sub:Digital Nomad|Technophile
+Telekinetic Adept	sub:Psi Warrior (2014)|Telekinetic Adept
+Telekinetic Eidolon	sub:Bond of the Aberrant Psion|Telekinetic Eidolon
+Telekinetic Master	sub:Psi Warrior (2014)|Telekinetic Master
+Telekinetic Movement	sub:Psi Warrior (2014)|Telekinetic Movement
+Telekinetic Thrust	Telekinetic Thrust
+Telepathic Insight	sp:Verdan|Telepathic Insight
+Telepathic Speech	sub:Aberrant Mind|Telepathic Speech
+Telepathy	sp:Wrothian|Telepathy
+Tempest Domain Spells	sub:Tempest Domain|Tempest Domain Spells
+Tempestuous Magic	sub:Storm Sorcery|Tempestuous Magic
+Temporal Awareness	sub:Chronurgy Magic|Temporal Awareness
+Temporal Magic Savant	sub:Timekeeper|Temporal Magic Savant
+Temporal Points	sub:Timekeeper|Temporal Points
+Temporal Relativism	sub:Quantum Mechanic|Temporal Relativism
+Tenacious Life	sub:Oath of the Giving Grave|Tenacious Life
+Tenacious Spell	Tenacious Spell
+Tenets of Conquest	Tenets of Conquest
+Tenets of Devotion	sub:Oath of Devotion (2014)|Tenets of Devotion
+Tenets of Glory	Tenets of Glory
+Tenets of Redemption	Tenets of Redemption
+Tenets of Vengeance	sub:Oath of Vengeance (2014)|Tenets of Vengeance
+Tenets of the Ancients	sub:Oath of the Ancients (2014)|Tenets of the Ancients
+Tenets of the Crown	sub:Oath of the Crown|Tenets of the Crown
+Tenets of the Giving Grave	sub:Oath of the Giving Grave|Tenets of the Giving Grave
+Tenets of the Open Sea	sub:Oath of the Open Sea|Tenets of the Open Sea
+Tenets of the Watchers	Tenets of the Watchers
+Tentacle of the Deeps	sub:The Fathomless|Tentacle of the Deeps
+Terrible Power	sub:Doomsayer|Terrible Power
+Terrifying Visage	sub:Wretched Bloodline Sorcery|Terrifying Visage
+Terrorize the Terrors	sub:Carver Guild|Terrorize the Terrors
+Tether of Protection	sub:Vow of the Protector|Tether of Protection
+Thaumaturge	Thaumaturge
+The Archfey	The Archfey
+The Bigger They Are	sp:Human (Mark of Handling)|The Bigger They Are
+The End is Nigh	sub:Apocalypse Sorcery|The End is Nigh
+The Fiend	The Fiend
+The Great Machine and Your Pact Boon	sub:The Great Machine|The Great Machine and Your Pact Boon
+The Great Old One	The Great Old One
+The Hunt	sub:Absolute Chapter|The Hunt
+The Moonlit Way	sub:Moon Domain (Deep Magic)|The Moonlit Way
+The Right Tool for the Job	The Right Tool for the Job
+The Road Not Traveled	sub:Warrior of Regret|The Road Not Traveled
+The Sybil and your Pact Boons	sub:The Sibyl|The Sybil and your Pact Boons
+The Third Eye	sub:School of Divination|The Third Eye
+Theological Studies	sub:Holy Icon|Theological Studies
+Thermalsight	sp:Vect|Thermalsight
+Thesis	sub:Archivist|Thesis
+Thespian	sub:Dramaturge|Thespian
+Thicken or Quicken Blood	sub:Blood Mage|Thicken or Quicken Blood
+Thicker than Water	sub:Blood Magic|Thicker than Water
+Thief's Reflexes	sub:Thief (2014)|Thief's Reflexes
+Thieves' Cant	cls:Rogue|Thieves' Cant
+Third Eye	sub:Medium|Third Eye
+Thought Shield	sub:The Great Old One (2014)|Thought Shield
+Thousand Forms	sub:Circle of the Moon (2014)|Thousand Forms
+Thrall Rush	sub:Pale Master|Thrall Rush
+Threat Assessment	sub:Bounty Hunter|Threat Assessment
+Threatening Presence	sub:Bulwark Warrior|Threatening Presence
+Three Extra Attacks	cls:Fighter|Three Extra Attacks
+Thri-kreen Telepathy	sp:Thri-kreen|Thri-kreen Telepathy
+Thrill of the Hunt	sub:The Predator|Thrill of the Hunt
+Thriller [Lichdom]	sub:Necrodancer|Thriller [Lichdom]
+Thrum of the Land	sub:Leyline Magic|Thrum of the Land
+Thunder Gauntlets	Thunder Gauntlets
+Thunderblast	sub:Storm Sentinel|Thunderblast
+Thunderbolt Strike	sub:Tempest Domain|Thunderbolt Strike
+Thunderous Blows	sub:Path of the Juggernaut|Thunderous Blows
+Thunderous Blows (10th Level)	sub:Path of the Juggernaut|Thunderous Blows (10th Level)
+Tides of Chaos	sub:Wild Magic|Tides of Chaos
+Timberwalk	sp:Lotusden Halfling|Timberwalk
+Time Loop	sub:Chronomancer|Time Loop
+Time Mastery	sub:Timekeeper|Time Mastery
+Time Slip	sub:Farseer|Time Slip
+Timed Demolition	sub:Mad Bomber|Timed Demolition
+Timeless Body	Timeless Body
+Tinker	sp:Rock Gnome|Tinker
+Tinker's Magic	Tinker's Magic
+Tipsy Sway	sub:Way of the Drunken Master|Tipsy Sway
+Tireless	cls:Ranger|Tireless
+Tireless Precision	sp:Vedalken|Tireless Precision
+Tireless Spirit	sub:Samurai|Tireless Spirit
+Titanic Body	sub:Bond of the Wrathful Giant|Titanic Body
+Titanic Strength	sub:Marauder Chapter|Titanic Strength
+Together Forever	sp:Cursed-Blood|Together Forever
+Tokens of the Departed	sub:Phantom|Tokens of the Departed
+Tongue of the Sun and Moon	Tongue of the Sun and Moon
+Tongues of the Mountains	sub:Mountain Domain|Tongues of the Mountains
+Tool Expertise	Tool Expertise
+Tool Proficiency	sp:Hill Dwarf|Tool Proficiency
+Tools of the Trade	sub:Forceforger|Tools of the Trade
+Totalitarian Control	sub:Burden of Tyranny|Totalitarian Control
+Totem Spirit	sub:Path of the Totem Warrior|Totem Spirit
+Totemic Attunement	sub:Path of the Totem Warrior|Totemic Attunement
+Totemic Protection	sub:Bond of the Spirit Animal|Totemic Protection
+Touch of Death	sub:Way of the Long Death|Touch of Death
+Touch of the Long Death	sub:Way of the Long Death|Touch of the Long Death
+Touched	sp:Luma|Touched
+Touched by the Sibyl	sub:The Sibyl|Touched by the Sibyl
+Touched by the Sybil	sub:The Sibyl|Touched by the Sybil
+Tough	sp:Human (Stensia)|Tough
+Tower Shield	sub:Armigers' Guild|Tower Shield
+Toxic Recompense	sub:Venomsmith|Toxic Recompense
+Toxic Tradecraft	sub:Green Reaper|Toxic Tradecraft
+Toxin Transmutation	sub:Living Crucible|Toxin Transmutation
+Trace of Undeath	sp:Dhampir|Trace of Undeath
+Trailblazer	sub:Travel Domain|Trailblazer
+Training in War and Song	sub:Bladesinger|Training in War and Song
+Training in War and Song (Bladesinging)	Training in War and Song (Bladesinging)
+Trance	sp:Lorwyn Elf|Trance
+Trance of Order	sub:Clockwork Soul|Trance of Order
+Tranquility	sub:Way of the Open Hand|Tranquility
+Transient Awakening	sub:Evolution Domain|Transient Awakening
+Transmutation Expert	sub:Bond of the Monster Shaper|Transmutation Expert
+Transmutation Savant	sub:Transmuter|Transmutation Savant
+Transmuter's Stone	sub:Transmuter|Transmuter's Stone
+Transmuting Metabolism	sub:Devourer Guild|Transmuting Metabolism
+Trapper Gadgets	sub:Trapper Guild|Trapper Gadgets
+Traps	sub:Trappers' Guild|Traps
+Travel Along the Tree	sub:Path of the World Tree|Travel Along the Tree
+Traveler's Tricks	sub:College of the Road|Traveler's Tricks
+Tree Merging	sub:Circle of Oaks|Tree Merging
+Tree Walking	sub:Circle of Oaks|Tree Walking
+Trick Shot	sub:House of Darts|Trick Shot
+Trickery Domain Spells	sub:Trickery Domain (2014)|Trickery Domain Spells
+Trickster's Transposition	sub:Trickery Domain|Trickster's Transposition
+Trinkets	sub:Antiquarian|Trinkets
+Trip (Cost: 1d6)	Trip (Cost: 1d6)
+Tripped Defenses	sub:Winter Trapper|Tripped Defenses
+True Grit	sub:Carver Guild|True Grit
+True Martyrdom	sub:Vow of the Martyr|True Martyrdom
+Trunk	sp:Loxodon|Trunk
+Trusty Mount	sub:Highway Rider|Trusty Mount
+Tuktuk Cunning	sp:Goblin (Tuktuk Tribe)|Tuktuk Cunning
+Tumbling	sub:Acrobat|Tumbling
+Tumbling Escape	sub:Freerunner|Tumbling Escape
+Tumbling Taunt	sub:College of Jesters|Tumbling Taunt
+Tundra	Tundra
+Turn Undead	Turn Undead
+Turn of the Wheel	sub:Burden of Rebirth|Turn of the Wheel
+Turn the Faithless	Turn the Faithless
+Turn the Tide	Turn the Tide
+Turn the Unholy	Turn the Unholy
+Turquoise Efficiency	sub:Blue Magic|Turquoise Efficiency
+Twilight Domain Spells	sub:Twilight Domain|Twilight Domain Spells
+Twilight Shroud	sub:Twilight Domain|Twilight Shroud
+Twin Eidolons	sub:Bond of the Elemental Spirit|Twin Eidolons
+Twin Familiar	sub:Green Magic|Twin Familiar
+Twinkling Constellations	sub:Circle of Stars|Twinkling Constellations
+Twisted Arcana	sub:Entropist|Twisted Arcana
+Twisted Fate	sub:House of Dice|Twisted Fate
+Twisting Redirection	sub:Contortionist|Twisting Redirection
+Two Extra Attacks	cls:Fighter|Two Extra Attacks
+Two For Flinching	sub:Scofflaw|Two For Flinching
+Tyrant [Lichdom]	sub:Overlord|Tyrant [Lichdom]
+Ultimate Combat Superiority	sub:Battle Master|Ultimate Combat Superiority
+Ultimate Empowerment	sub:Bond of the Wrathful Giant|Ultimate Empowerment
+Ultimate Manifestation	sub:Bond of the Grave Caller|Ultimate Manifestation
+Ultimate Trickster	sub:Bond of the Faerie Trickster|Ultimate Trickster
+Ultra Slash	sub:Cyber Ninja|Ultra Slash
+Ultraviolence	sub:Path of the Dreadnought|Ultraviolence
+Umbral Escape	sub:Shadow Dancer|Umbral Escape
+Umbral Form	sub:Shadow Sorcery|Umbral Form
+Umbral Sight	sub:Gloom Stalker (2014)|Umbral Sight
+Unarguable Wizardry	sub:Path of the Muscle Wizard|Unarguable Wizardry
+Unarmored Defense	sub:House of Lancers|Unarmored Defense
+Unarmored Movement	cls:Monk|Unarmored Movement
+Unarmored Movement improvement	Unarmored Movement improvement
+Unbreakable	sub:Marauder Chapter|Unbreakable
+Unbreakable Majesty	sub:College of Glamour (2014)|Unbreakable Majesty
+Unbreakable Mind	sub:Path of the Battlemind|Unbreakable Mind
+Unbreakable Sentinel	sub:Grey Watchman|Unbreakable Sentinel
+Unbroken Circle Spells	sub:Circle of the Unbroken|Unbroken Circle Spells
+Uncaged Beast	sub:The Predator|Uncaged Beast
+Uncanny Dodge	cls:Rogue|Uncanny Dodge
+Uncanny Hunch	sub:Detective|Uncanny Hunch
+Uncanny Metabolism	cls:Monk|Uncanny Metabolism
+Uncertainty Principle	sub:Quantum Mechanic|Uncertainty Principle
+Unclean Brand	sub:Purification Domain|Unclean Brand
+Undead Cohort	sub:Skull Banner|Undead Cohort
+Undead Eidolon	sub:Bond of the Grave Caller|Undead Eidolon
+Undead Familiar	sub:Necrophage|Undead Familiar
+Undead Fortitude	sp:Zombie|Undead Fortitude
+Undead Horde	sub:Skull Banner|Undead Horde
+Undead Nature	sp:Skeleton|Undead Nature
+Undead Spells	sub:Undead Patron|Undead Spells
+Undead Thralls	sub:Necromancer|Undead Thralls
+Undeath Command	sub:Black Magic|Undeath Command
+Underhanded Blow	sub:Brigand|Underhanded Blow
+Undying	sub:Nightgaunt|Undying
+Undying Nature	sub:The Undying|Undying Nature
+Undying Sentinel	sub:Oath of the Ancients (2014)|Undying Sentinel
+Unearthly Countenance	sub:Daemonologist|Unearthly Countenance
+Unearthly Recovery	sub:Divine Soul|Unearthly Recovery
+Unencumbered Movement	sub:Absolute Chapter|Unencumbered Movement
+Unending Breath	sp:Air Genasi (2014)|Unending Breath
+Unerring Accuracy	sub:Way of the Kensei|Unerring Accuracy
+Unerring Eye	sub:Inquisitive|Unerring Eye
+Unfailing Inspiration	sub:College of Eloquence|Unfailing Inspiration
+Unfettered Mind	sub:Knowledge Domain|Unfettered Mind
+Unhinged Asservations	sub:Apocalypse Sorcery|Unhinged Asservations
+Unholy Smite	sub:Oath of the Giving Grave|Unholy Smite
+Unique Nature	sp:Accursed|Unique Nature
+Universal Savant	sub:Universalist|Universal Savant
+Universal Speech	sub:College of Eloquence|Universal Speech
+Universal Translator	sp:Nautilid|Universal Translator
+Unleash Incarnation	sub:Echo Knight|Unleash Incarnation
+Unleash Infinity	sp:Demidritch|Unleash Infinity
+Unnatural Grace	sub:Contortionist|Unnatural Grace
+Unnatural Resilience	sp:Ruinbound|Unnatural Resilience
+Unnatural and Unnerving	sub:Circle of Mutation|Unnatural and Unnerving
+Unpredictable Movement	sp:Lorwyn Changeling|Unpredictable Movement
+Unsated	sub:Hunger Domain|Unsated
+Unseen Impact	sub:Mime|Unseen Impact
+Unsettling Words	sub:College of Eloquence|Unsettling Words
+Unstable Backlash	sub:Path of Wild Magic|Unstable Backlash
+Unstoppable	sub:Path of the Juggernaut|Unstoppable
+Unsubtle Strike	sub:Warrior of the Leaden Crown|Unsubtle Strike
+Unwavering Mark	sub:Cavalier|Unwavering Mark
+Unyielding Spirit	sub:Oath of the Crown|Unyielding Spirit
+Unyielding Surge	sub:Grey Watchman|Unyielding Surge
+Up to Eleven	sub:Path of Heavy Metal|Up to Eleven
+Use Magic Device	sub:Thief (2014)|Use Magic Device
+Using a Discipline	Using a Discipline
+Vampiric Bite	sp:Dhampir|Vampiric Bite
+Vampiric Resistance	sp:Vampire (Ixalan)|Vampiric Resistance
+Vampiric Transformation	sub:Blood Ascendant|Vampiric Transformation
+Vanish	Vanish
+Vanishing Toss	sub:House of Darts|Vanishing Toss
+Vantage Point	sub:Eagle Banner|Vantage Point
+Variable Trait	sp:Custom Lineage|Variable Trait
+Variant Capstone: Improved Genius	sub:Maverick|Variant Capstone: Improved Genius
+Variant Capstone: Weapon of Legend	sub:Forge Adept|Variant Capstone: Weapon of Legend
+Variegated Vexations	sub:Green Reaper|Variegated Vexations
+Vascular Corruption Aura	sub:Blood Domain|Vascular Corruption Aura
+Vedalken Cunning	sp:Vedalken (Kaladesh)|Vedalken Cunning
+Vedalken Dispassion	sp:Vedalken|Vedalken Dispassion
+Veil of Dreams	sub:Night Domain|Veil of Dreams
+Vengeful Ancestors	sub:Path of the Ancestral Guardian|Vengeful Ancestors
+Vengeful Assault	sp:Ravenite Dragonborn|Vengeful Assault
+Vengeful Gambit	sub:Lion Banner|Vengeful Gambit
+Vengeful Reprisal	sub:Burden of Tyranny|Vengeful Reprisal
+Vengeful Shadow	sub:Shadow Dancer|Vengeful Shadow
+Vengeful Summons	sub:Wretched Bloodline Sorcery|Vengeful Summons
+Verbal Culture	sp:Child of Seth|Verbal Culture
+Verdant Resilience	sub:Burden of Rebirth|Verdant Resilience
+Vermin Lord Spells	sub:Vermin Lord|Vermin Lord Spells
+Verminkin	sub:Vermin Lord|Verminkin
+Versatile	sp:Variant Human|Versatile
+Versatile Missiles	sub:Magic Missile Mage|Versatile Missiles
+Versatile Trickster	sub:Arcane Trickster (2014)|Versatile Trickster
+Versatile Vermin	sub:Carrion King|Versatile Vermin
+Vestige Companion	sub:Vestige Patron|Vestige Companion
+Vestige Power	sub:Vestige Patron|Vestige Power
+Vestige Recovery	sub:Vestige Patron|Vestige Recovery
+Vestige Spells	sub:Vestige Patron|Vestige Spells
+Vexing Jest	sub:Harlequin|Vexing Jest
+Vicious Rampage	sub:Path of the Dreadnought|Vicious Rampage
+Vicious Strike	sub:Bladeworkers' Guild|Vicious Strike
+Vigilant	sp:Cursed-Blood|Vigilant
+Vigilant Blessing	sub:Twilight Domain|Vigilant Blessing
+Vigilant Defender	sub:Cavalier|Vigilant Defender
+Vigilant Guardian	sp:Human (Mark of Sentinel)|Vigilant Guardian
+Vigilant Protector	sub:Vow of the Protector|Vigilant Protector
+Vigilant Rebuke	sub:Oath of the Watchers|Vigilant Rebuke
+Vile Congregation	sub:Plague Lord|Vile Congregation
+Vindictive Spell	sub:Burden of the End|Vindictive Spell
+Violent Attraction	sub:Graviturgy Magic|Violent Attraction
+Virtuoso Skill	sub:College of Masks|Virtuoso Skill
+Virtuous Blessings	sub:Burden of Mercy|Virtuous Blessings
+Visage of the Astral Self	sub:Way of the Astral Self|Visage of the Astral Self
+Visions of the Past	sub:Knowledge Domain (2014)|Visions of the Past
+Vital Consumption	sub:Sanguine Chapter|Vital Consumption
+Vital Nourishment	sub:Green Magic|Vital Nourishment
+Vital Recovery	sub:Protomancer|Vital Recovery
+Vital Surge	sub:Greenleaf College|Vital Surge
+Vitality of the Tree	sub:Path of the World Tree|Vitality of the Tree
+Vocalist	sub:College of Opera|Vocalist
+Voice of Authority	sub:Order Domain|Voice of Authority
+Voice of Death	sub:Phantom|Voice of Death
+Void Affinity	sub:Void Caster|Void Affinity
+Void Savant	sub:Void Speaker|Void Savant
+Volley	Volley
+Vortex	sub:Sky Magic|Vortex
+Vow of Enmity	sub:Oath of Vengeance|Vow of Enmity
+Voyager's Agility	sub:Burden of Odyssey|Voyager's Agility
+Wails from the Grave	sub:Phantom|Wails from the Grave
+Waking Nightmare	sub:Purple Magic|Waking Nightmare
+Walker in Dreams	sub:Circle of Dreams|Walker in Dreams
+Wand Slinger	sub:Wand Wizard|Wand Slinger
+Wanderer's Lore	sub:College of the Road|Wanderer's Lore
+War Bond	sub:Eldritch Knight|War Bond
+War Domain Spells	sub:War Domain (2014)|War Domain Spells
+War Druid	sub:Circle of the Unbroken|War Druid
+War God's Blessing	sub:War Domain|War God's Blessing
+War Magic	sub:Eldritch Knight (2014)|War Magic
+War Priest	sub:War Domain (2014)|War Priest
+War and Peace	sp:Dhakaani Ghaal'dar (Hobgoblin)|War and Peace
+Ward Against Corruption	sub:Purification Domain|Ward Against Corruption
+Ward of Shadows	sub:Night Domain|Ward of Shadows
+Warden	Warden
+Warder's Intuition	sp:Dwarf (Mark of Warding)|Warder's Intuition
+Warding Essence	sub:Vow of the Protector|Warding Essence
+Warding Flare	sub:Light Domain (2014)|Warding Flare
+Warding Maneuver	sub:Cavalier|Warding Maneuver
+Warding Scrawl	sub:Scroll Scribe|Warding Scrawl
+Warding Seal	sub:Angelic Scribe|Warding Seal
+Warding Shield	sub:Wand Wizard|Warding Shield
+Wards and Seals	sp:Dwarf (Mark of Warding)|Wards and Seals
+Warlock Subclass	cls:Warlock|Warlock Subclass
+Warping Implosion	sub:Aberrant Mind|Warping Implosion
+Warrior of the Gods	sub:Path of the Zealot (2014)|Warrior of the Gods
+Watcher's Will	Watcher's Will
+Water Creed Navigation	sp:Merfolk (Ula Creed)|Water Creed Navigation
+Water Dependency	sp:Grung|Water Dependency
+Wave Synth	sub:College of Cyberwave|Wave Synth
+Waxing and Waning	sub:Lunar Sorcery|Waxing and Waning
+Weapon Bond	sub:Eldritch Knight (2014)|Weapon Bond
+Weapon Mastery	cls:Barbarian|Weapon Mastery
+Weapon Versatilist	sub:Bladeworkers' Guild|Weapon Versatilist
+Weather the Storm	sub:Bulwark Warrior|Weather the Storm
+Weave the Elements	sub:Primordial Archer|Weave the Elements
+Well-Rounded	sub:College of Adventurers|Well-Rounded
+Well-Travelled	sp:Child of Seth|Well-Travelled
+Werewolf Instincts	sp:Lupin|Werewolf Instincts
+Whirlwind Attack	Whirlwind Attack
+Whispered Warnings	sub:The Sibyl|Whispered Warnings
+Whispers from Beyond	sub:Medium|Whispers from Beyond
+Whispers of the Dead	sub:Phantom|Whispers of the Dead
+Whispers of the Void	sub:Void Caster|Whispers of the Void
+White Magic Spells	sub:White Magic|White Magic Spells
+White Necromancy	sub:White Necromancer|White Necromancy
+Wholeness of Body	sub:Way of the Open Hand|Wholeness of Body
+Wicked Presence	sub:Doomsayer|Wicked Presence
+Wild Companion	cls:Druid|Wild Companion
+Wild Intuition	sp:Human (Mark of Handling)|Wild Intuition
+Wild Magic Surge	sub:Wild Magic|Wild Magic Surge
+Wild Mutation	sub:Circle of Xenobiology|Wild Mutation
+Wild Pounce	sub:Beastblood Guardian|Wild Pounce
+Wild Recovery	sub:Circle of the Unbroken|Wild Recovery
+Wild Resurgence	cls:Druid|Wild Resurgence
+Wild Shape	cls:Druid|Wild Shape
+Wild Shape Improvement	Wild Shape Improvement
+Wild Surge	sub:Path of Wild Magic|Wild Surge
+Wind Creed Manipulation	sp:Merfolk (Emeria Creed)|Wind Creed Manipulation
+Wind Soul	sub:Storm Sorcery|Wind Soul
+Wind Speaker	sub:Storm Sorcery|Wind Speaker
+Windwright's Intuition	sp:Half-Elf (Mark of Storm)|Windwright's Intuition
+Wing Flap	sp:Gallus|Wing Flap
+Winged	sp:Tiefling (Winged)|Winged
+Wings Unfurled	sub:Way of the Ascendant Dragon|Wings Unfurled
+Wings of Liberty	sub:Star-Spangled Banner|Wings of Liberty
+Winter Core	sub:Wintercarvers' Guild|Winter Core
+Winter Trapper Spells	sub:Winter Trapper|Winter Trapper Spells
+Winter Walker Spells	sub:Winter Walker|Winter Walker Spells
+Winter'S Child	sub:Boreal Bloodline|Winter'S Child
+Winter'S Form	sub:Boreal Bloodline|Winter'S Form
+Winter's Soul	sub:Boreal Bloodline|Winter's Soul
+Wintry Blast	sub:The Frozen One|Wintry Blast
+Witch Hunter's Strike	sub:Inquisition Domain|Witch Hunter's Strike
+Witch's Cauldron	sub:Crone|Witch's Cauldron
+Witch's Gift	sub:White Magic|Witch's Gift
+Witchbane Arsenal	sub:Witchbane Hunter|Witchbane Arsenal
+Witching Arrows	sub:Primordial Archer|Witching Arrows
+Withdraw (Cost: 1d6)	Withdraw (Cost: 1d6)
+Wizard Speciality	sub:Elementalist|Wizard Speciality
+Wizard Specialty	sub:Alkemancer|Wizard Specialty
+Wizard Subclass	cls:Wizard|Wizard Subclass
+Wizard or Cleric Specialty	sub:Angelic Scribe|Wizard or Cleric Specialty
+Wizardly Quill	sub:Order of Scribes|Wizardly Quill
+Wondrous Alteration	sub:Transmuter|Wondrous Alteration
+Woodland Hunter	sp:Raptor|Woodland Hunter
+Word of Revelation	sub:Burden of Truth|Word of Revelation
+Words of Creation	cls:Bard|Words of Creation
+Words of Terror	sub:College of Whispers|Words of Terror
+Work in Progress	sub:Maverick|Work in Progress
+World Traveller	sub:Travel Domain|World Traveller
+Wormhole	sub:Singularity Patron|Wormhole
+Wraith Flight	sub:Reaper|Wraith Flight
+Wrath of the Sea	sub:Circle of the Sea|Wrath of the Sea
+Wrath of the Storm	sub:Tempest Domain|Wrath of the Storm
+Wrath of the Wild	sub:Hollow Warden|Wrath of the Wild
+Wretched Curse	sub:Wretched Bloodline Sorcery|Wretched Curse
+Writhing Tide	sub:Swarmkeeper|Writhing Tide
+Xenobiology	sub:Xenoalchemist|Xenobiology
+Zany Misdirection	sub:Burden of Levity|Zany Misdirection
+Zeal Domain Spells	sub:Zeal Domain (PSA)|Zeal Domain Spells
+Zealous	sp:Avia-Ra|Zealous
+Zealous Fervor	sub:Holy Icon|Zealous Fervor
+Zealous Presence	sub:Path of the Zealot (2014)|Zealous Presence
+Zenith	sub:Oath of the Sun|Zenith
+Zephyr's Blessing	sub:College of Birdsong|Zephyr's Blessing
+Zephyr's Stride	sub:Burden of Odyssey|Zephyr's Stride
+Zero-G Kicks	sub:Moonwalker|Zero-G Kicks
+Zeroed Sights	sub:Calibarons' Guild|Zeroed Sights

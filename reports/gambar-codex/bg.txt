@@ -1,0 +1,141 @@
+Academic	Academic
+Agent of Augustine	Agent of Augustine
+Amnesiac	Amnesiac
+Amnesiac (Dark Matter)	Amnesiac (Dark Matter)
+Anthropologist	Anthropologist
+Antiquarian	Antiquarian
+Archivist	Archivist
+Aristocrat	Aristocrat
+Artist	Artist
+Ashari	Ashari
+Augen Trust (Spy)	Augen Trust (Spy)
+Azorius Functionary	Azorius Functionary
+Baldur's Gate Acolyte	Baldur's Gate Acolyte
+Baldur's Gate Charlatan	Baldur's Gate Charlatan
+Baldur's Gate Entertainer	Baldur's Gate Entertainer
+Baldur's Gate Folk Hero	Baldur's Gate Folk Hero
+Baldur's Gate Guild Artisan	Baldur's Gate Guild Artisan
+Baldur's Gate Hermit	Baldur's Gate Hermit
+Baldur's Gate Noble	Baldur's Gate Noble
+Baldur's Gate Outlander	Baldur's Gate Outlander
+Baldur's Gate Sage	Baldur's Gate Sage
+Baldur's Gate Sailor	Baldur's Gate Sailor
+Baldur's Gate Soldier	Baldur's Gate Soldier
+Baldur's Gate Urchin	Baldur's Gate Urchin
+Bandit Defector	Bandit Defector
+Beast Hunter	Beast Hunter
+Beast Hunter (Steinhardt)	Beast Hunter (Steinhardt)
+Beggar	Beggar
+Boros Legionnaire	Boros Legionnaire
+Botanist	Botanist
+Carouser	Carouser
+Changeling Traveler	Changeling Traveler
+Chapter Knight	Chapter Knight
+City Watch	City Watch
+Clan Crafter	Clan Crafter
+Clasp Member	Clasp Member
+Cloistered Scholar	Cloistered Scholar
+Cobalt Scholar (Sage)	Cobalt Scholar (Sage)
+Courtier	Courtier
+Courtier (Grim Hollow)	Courtier (Grim Hollow)
+Cult Initiate	Cult Initiate
+Dimir Operative	Dimir Operative
+Disciple	Disciple
+Disgraced Raider	Disgraced Raider
+Envoy	Envoy
+Executioner	Executioner
+Exile	Exile
+Explorer	Explorer
+Exterminator	Exterminator
+Faceless	Faceless
+Faction Agent	Faction Agent
+Failed Merchant	Failed Merchant
+Far Traveler	Far Traveler
+Fey Hostage	Fey Hostage
+Fey-Blessed	Fey-Blessed
+Fisher	Fisher
+Folk Hero	Folk Hero
+Free Swords Mercenary	Free Swords Mercenary
+Galactic Colonist	Galactic Colonist
+Gambler	Gambler
+Golgari Agent	Golgari Agent
+Grounded	Grounded
+Gruul Anarch	Gruul Anarch
+Guild Artisan	Guild Artisan
+Haunted	Haunted
+Heretic (Grim Hollow)	Heretic (Grim Hollow)
+Holo-Influencer	Holo-Influencer
+Inheritor	Inheritor
+Inquisitor of the Faithful	Inquisitor of the Faithful
+Interpreter	Interpreter
+Izzet Engineer	Izzet Engineer
+Knight of the Order	Knight of the Order
+Lapsed Inquisitor	Lapsed Inquisitor
+Lawyer	Lawyer
+Lorehold Student	Lorehold Student
+Low-Worlder	Low-Worlder
+Luxonborn (Acolyte)	Luxonborn (Acolyte)
+Lyceum Scholar	Lyceum Scholar
+Lyceum Student	Lyceum Student
+Malenti	Malenti
+Marine	Marine
+Marked for Death	Marked for Death
+Medic	Medic
+Mercenary	Mercenary
+Mercenary Veteran	Mercenary Veteran
+Miner	Miner
+Myriad Operative	Myriad Operative
+Myriad Operative (Criminal)	Myriad Operative (Criminal)
+Natural	Natural
+One of the Taken	One of the Taken
+Orzhov Representative	Orzhov Representative
+Outlander	Outlander
+Physician	Physician
+Pioneer	Pioneer
+Pit Fighter	Pit Fighter
+Plaintiff	Plaintiff
+Pox-Touched	Pox-Touched
+Prisoner	Prisoner
+Programmer	Programmer
+Rakdos Cultist	Rakdos Cultist
+Recovered Cultist	Recovered Cultist
+Reformed Cultist	Reformed Cultist
+Released Thrall	Released Thrall
+Revelry Pirate (Sailor)	Revelry Pirate (Sailor)
+Rival Intern	Rival Intern
+Salvager	Salvager
+Savant	Savant
+Scion	Scion
+Scion of the Thaumaturge	Scion of the Thaumaturge
+Scoundrel	Scoundrel
+Security Guard	Security Guard
+Selesnya Initiate	Selesnya Initiate
+Shipwright	Shipwright
+Siege Engineer	Siege Engineer
+Silverquill Student	Silverquill Student
+Simic Scientist	Simic Scientist
+Sleuth	Sleuth
+Smuggler	Smuggler
+Soul Channeler	Soul Channeler
+Spacer	Spacer
+Syndicate Smuggler	Syndicate Smuggler
+Technical Support	Technical Support
+Technologist	Technologist
+Transformed Familiar	Transformed Familiar
+Urban Bounty Hunter	Urban Bounty Hunter
+Urchin	Urchin
+Uthgardt Tribe Member	Uthgardt Tribe Member
+Vampire Survivor	Vampire Survivor
+Variant City Watch (Investigator)	Variant City Watch (Investigator)
+Variant Criminal (Spy)	Variant Criminal (Spy)
+Variant Entertainer (Gladiator)	Variant Entertainer (Gladiator)
+Variant Guild Artisan (Guild Merchant)	Variant Guild Artisan (Guild Merchant)
+Variant Noble (Knight)	Variant Noble (Knight)
+Variant Noble (Retainers)	Variant Noble (Retainers)
+Variant Sailor (Pirate)	Variant Sailor (Pirate)
+Wage Mage	Wage Mage
+Waterdhavian Noble	Waterdhavian Noble
+Whitestone Rifle Corps	Whitestone Rifle Corps
+Wind-Touched	Wind-Touched
+Witherbloom Student	Witherbloom Student
+Worthless Husk	Worthless Husk

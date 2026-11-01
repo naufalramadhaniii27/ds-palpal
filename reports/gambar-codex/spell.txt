@@ -1,0 +1,1572 @@
+Abduct	Abduct
+Aberrate	Aberrate
+Abhorrence	Abhorrence
+Abhorrent Apparition	Abhorrent Apparition
+Abi-Dalzim's Horrid Wilting	Abi-Dalzim's Horrid Wilting
+Absolute Command	Absolute Command
+Absorbing Field	Absorbing Field
+Accelerate	Accelerate
+Accelerate/Decelerate	Accelerate/Decelerate
+Accursed Act	Accursed Act
+Acid Gate	Acid Gate
+Acid Rain	Acid Rain
+Action	Action
+Acumen	Acumen
+Adjust Position	Adjust Position
+Adjust Positioning	Adjust Positioning
+Adrenaline Rush (Healer class)	Adrenaline Rush (Healer class)
+Aerial Alacrity	Aerial Alacrity
+Afflict Line	Afflict Line
+After Image	After Image
+Aganazzar's Scorcher	Aganazzar's Scorcher
+Agonizing Mark	Agonizing Mark
+Alchemical Form	Alchemical Form
+Ale-dritch Blast	Ale-dritch Blast
+Allure	Allure
+Ally Aegis	Ally Aegis
+Alone	Alone
+Alter Arrow's Fortune	Alter Arrow's Fortune
+Alter Self	Alter Self
+Alter Time Flow	Alter Time Flow
+Althea's Travel Tent	Althea's Travel Tent
+Ambush Prey	Ambush Prey
+Amplify Gravity	Amplify Gravity
+Amplify Ley Field	Amplify Ley Field
+Amplify Light	Amplify Light
+Amputate	Amputate
+Analyze Device	Analyze Device
+Ancestor's Strength	Ancestor's Strength
+Ancestral Bond	Ancestral Bond
+Anchoring Rope	Anchoring Rope
+Ancient Shade	Ancient Shade
+Angelic Guardian	Angelic Guardian
+Animal Shapes	Animal Shapes
+Animal Spy	Animal Spy
+Animate Construct	Animate Construct
+Animate Dead	Animate Dead
+Animate Ghoul	Animate Ghoul
+Animate Greater Undead	Animate Greater Undead
+Animated Object Swarm	Animated Object Swarm
+Animated Scroll	Animated Scroll
+Anomalous Object	Anomalous Object
+Antagonize	Antagonize
+Antiballistics Field	Antiballistics Field
+Anticipate Arcana	Anticipate Arcana
+Anticipate Attack	Anticipate Attack
+Anticipate Weakness	Anticipate Weakness
+Antilife Shell	Antilife Shell
+Antimagic Field	Antimagic Field
+Antimatter Mine	Antimatter Mine
+Antipathy/Sympathy	Antipathy/Sympathy
+Antivirus	Antivirus
+Arboreal Curse	Arboreal Curse
+Arc Blade	Arc Blade
+Arcane Aegis	Arcane Aegis
+Arcane Anomaly	Arcane Anomaly
+Arcane Eye	Arcane Eye
+Arcane Gate	Arcane Gate
+Arcane Parasite	Arcane Parasite
+Arcane Sight	Arcane Sight
+Arm Cannon	Arm Cannon
+Armored Heart	Armored Heart
+Armored Shell	Armored Shell
+Artifice Overcharge	Artifice Overcharge
+As You Were	As You Were
+Ashen Memories	Ashen Memories
+Aspect of Death	Aspect of Death
+Aspect of the Ape	Aspect of the Ape
+Aspect of the Dragon	Aspect of the Dragon
+Aspect of the Firebird	Aspect of the Firebird
+Aspect of the Ram	Aspect of the Ram
+Aspect of the Serpent	Aspect of the Serpent
+Assisted Aim	Assisted Aim
+Astral Barrage	Astral Barrage
+Astral Flood	Astral Flood
+Astral Projection	Astral Projection
+Astrogation	Astrogation
+Aundair's Silent Sanctum	Aundair's Silent Sanctum
+Aura of Entropy	Aura of Entropy
+Aura of Evasion	Aura of Evasion
+Aura of Life	Aura of Life
+Aura of Listlessness	Aura of Listlessness
+Aura of Protection or Destruction	Aura of Protection or Destruction
+Aura of Purity	Aura of Purity
+Aura of Vitality	Aura of Vitality
+Aura of Wrath	Aura of Wrath
+Auspicious Warning	Auspicious Warning
+Automate	Automate
+Automation Barrage	Automation Barrage
+Autopilot	Autopilot
+Avoid Grievous Injury	Avoid Grievous Injury
+Avronin's Astral Assembly	Avronin's Astral Assembly
+Awaken	Awaken
+Awaken Machine	Awaken Machine
+Awaken Object	Awaken Object
+Babble	Babble
+Backlash	Backlash
+Bad Timing	Bad Timing
+Ballistic Smite	Ballistic Smite
+Banishing Smite	Banishing Smite
+Banishment	Banishment
+Batsense	Batsense
+Battle Mind	Battle Mind
+Beacon of Hope	Beacon of Hope
+Become Nightwing	Become Nightwing
+Bedazzling Charm	Bedazzling Charm
+Befuddlement	Befuddlement
+Beguiling Bet	Beguiling Bet
+Benediction	Benediction
+Benign Dismemberment	Benign Dismemberment
+Bestial Fury (Deep Magic)	Bestial Fury (Deep Magic)
+Bestial Roar	Bestial Roar
+Bestow Curse	Bestow Curse
+Bewilderment	Bewilderment
+Binding Oath	Binding Oath
+Binding Pledge	Binding Pledge
+Biting Arrow	Biting Arrow
+Bitter Chains	Bitter Chains
+Black Goat's Blessing	Black Goat's Blessing
+Black Hand	Black Hand
+Black Hole	Black Hole
+Black Ribbons	Black Ribbons
+Black Sunshine	Black Sunshine
+Black Swan Storm	Black Swan Storm
+Black Well	Black Well
+Blade Barrier	Blade Barrier
+Blade of My Brother	Blade of My Brother
+Blade of Wrath	Blade of Wrath
+Blazing Chariot	Blazing Chariot
+Bleating Call	Bleating Call
+Bleed	Bleed
+Bless the Dead	Bless the Dead
+Blessed Halo	Blessed Halo
+Blessed Rest	Blessed Rest
+Blight	Blight
+Blind Ambush	Blind Ambush
+Blinding Smite	Blinding Smite
+Blindness/Deafness	Blindness/Deafness
+Blink	Blink
+Blizzard	Blizzard
+Bloat	Bloat
+Blood Armor	Blood Armor
+Blood Bond	Blood Bond
+Blood Lure	Blood Lure
+Blood Offering	Blood Offering
+Blood Print	Blood Print
+Blood Puppet	Blood Puppet
+Blood Rush	Blood Rush
+Blood Scarab	Blood Scarab
+Blood Spoor	Blood Spoor
+Blood Tide	Blood Tide
+Blood Tide (Deep Magic)	Blood Tide (Deep Magic)
+Blood Wisp	Blood Wisp
+Blood and Steel	Blood and Steel
+Blood to Acid	Blood to Acid
+Bloodbane Rune	Bloodbane Rune
+Bloodhound	Bloodhound
+Bloodletter	Bloodletter
+Bloodshot	Bloodshot
+Bloody Hands	Bloody Hands
+Bloody Smite	Bloody Smite
+Bloom	Bloom
+Bludgeoning Horror	Bludgeoning Horror
+Blunder	Blunder
+Blur	Blur
+Boil Blood	Boil Blood
+Boiling Blood	Boiling Blood
+Boiling Oil	Boiling Oil
+Bolster Undead (Deep Magic)	Bolster Undead (Deep Magic)
+Bolstering Brew	Bolstering Brew
+Bone Claws	Bone Claws
+Bone Cocoon	Bone Cocoon
+Bone Shield	Bone Shield
+Bones of Stone	Bones of Stone
+Bones of the Earth	Bones of the Earth
+Boneyard	Boneyard
+Booster Shot	Booster Shot
+Boreas's Breath	Boreas's Breath
+Bottled Arcana	Bottled Arcana
+Bottomless Stomach	Bottomless Stomach
+Boulder Toss	Boulder Toss
+Bouncing Fireball	Bouncing Fireball
+Brawn Boost	Brawn Boost
+Breathtaking Wind	Breathtaking Wind
+Breeze Compass	Breeze Compass
+Brimstone	Brimstone
+Brimstone Infusion	Brimstone Infusion
+Brittle Bone Throw	Brittle Bone Throw
+Brittling	Brittling
+Broken Charge	Broken Charge
+Buff	Buff
+Burning Blade	Burning Blade
+Burning Radiance	Burning Radiance
+Burst Forth	Burst Forth
+Bury	Bury
+By the Light of the Moon	By the Light of the Moon
+By the Light of the Watchful Moon	By the Light of the Watchful Moon
+Cacophonic Shield	Cacophonic Shield
+Calcified Memories	Calcified Memories
+Call Lightning	Call Lightning
+Call Shadow Mastiff	Call Shadow Mastiff
+Call the Hunter	Call the Hunter
+Call the Rabid Beast	Call the Rabid Beast
+Calling Card	Calling Card
+Calm of the Storm	Calm of the Storm
+Candle's Insight	Candle's Insight
+Candy Blast	Candy Blast
+Card Trick	Card Trick
+Carmello-Volta's Irksome Preserves	Carmello-Volta's Irksome Preserves
+Catapult (Deep Magic)	Catapult (Deep Magic)
+Catch the Breath	Catch the Breath
+Catnap	Catnap
+Caustic Blood	Caustic Blood
+Caustic Torrent	Caustic Torrent
+Caustic Touch	Caustic Touch
+Caustic Waste	Caustic Waste
+Cave Dragon's Dominance	Cave Dragon's Dominance
+Celebration	Celebration
+Celestial Fanfare	Celestial Fanfare
+Chain Lightning	Chain Lightning
+Chains of Beleth	Chains of Beleth
+Chains of Perdition	Chains of Perdition
+Chains of Torment	Chains of Torment
+Chains of the Goddess	Chains of the Goddess
+Champion's Weapon	Champion's Weapon
+Channel Fiendish Power	Channel Fiendish Power
+Chaotic Form	Chaotic Form
+Chaotic Vitality	Chaotic Vitality
+Chaotic World	Chaotic World
+Charm Monster	Charm Monster
+Charm of Great Fondness	Charm of Great Fondness
+Charm of Long Standing	Charm of Long Standing
+Cheat	Cheat
+Cherub's Burning Blade	Cherub's Burning Blade
+Chilling Words	Chilling Words
+Chisel Skull	Chisel Skull
+Chronal Lance	Chronal Lance
+Circle of Death	Circle of Death
+Circle of Devastation	Circle of Devastation
+Circle of Power	Circle of Power
+Circle of Scarlet	Circle of Scarlet
+Circle of Wind	Circle of Wind
+Circuit Breaker	Circuit Breaker
+Claim Lair	Claim Lair
+Clairvoyance	Clairvoyance
+Clash of Glaciers	Clash of Glaciers
+Claws of Darkness	Claws of Darkness
+Claws of the Earth Dragon	Claws of the Earth Dragon
+Clearing the Field	Clearing the Field
+Cloak of Fiendish Menace	Cloak of Fiendish Menace
+Cloak of Serpents	Cloak of Serpents
+Cloak of Shadow	Cloak of Shadow
+Cloak of Vermin	Cloak of Vermin
+Clockwork Bodyguard	Clockwork Bodyguard
+Clockwork Bolt	Clockwork Bolt
+Clone	Clone
+Closing In	Closing In
+Clue	Clue
+Clumsiness	Clumsiness
+Cobra Fangs	Cobra Fangs
+Command Undead (Deep Magic)	Command Undead (Deep Magic)
+Commandeer Ship	Commandeer Ship
+Commune	Commune
+Commune with Nature	Commune with Nature
+Compelled Movement	Compelled Movement
+Compelling Fate	Compelling Fate
+Comprehend Wild Shape	Comprehend Wild Shape
+Compulsion	Compulsion
+Concealed Shot	Concealed Shot
+Concussive Burst	Concussive Burst
+Confound Senses	Confound Senses
+Confusion	Confusion
+Conjure Animals	Conjure Animals
+Conjure Asteroid	Conjure Asteroid
+Conjure Barrage	Conjure Barrage
+Conjure Cannonball	Conjure Cannonball
+Conjure Celestial	Conjure Celestial
+Conjure Constructs	Conjure Constructs
+Conjure Cover	Conjure Cover
+Conjure Elemental	Conjure Elemental
+Conjure Fey	Conjure Fey
+Conjure Fey Hound	Conjure Fey Hound
+Conjure Fiends	Conjure Fiends
+Conjure Forest Defender	Conjure Forest Defender
+Conjure Greater Spectral Dead	Conjure Greater Spectral Dead
+Conjure Mantelet	Conjure Mantelet
+Conjure Minor Elementals	Conjure Minor Elementals
+Conjure Minor Voidborn	Conjure Minor Voidborn
+Conjure Mock Animals	Conjure Mock Animals
+Conjure Nightmare	Conjure Nightmare
+Conjure Plants	Conjure Plants
+Conjure Scarab Swarm	Conjure Scarab Swarm
+Conjure Shadow Titan	Conjure Shadow Titan
+Conjure Shuttle	Conjure Shuttle
+Conjure Spectral Dead	Conjure Spectral Dead
+Conjure Undead	Conjure Undead
+Conjure Voidborn	Conjure Voidborn
+Conjure Volley	Conjure Volley
+Conjure Woodland Beings	Conjure Woodland Beings
+Consecrated Armor	Consecrated Armor
+Consult the Storm	Consult the Storm
+Consume Mind	Consume Mind
+Consumption	Consumption
+Contact Other Plane	Contact Other Plane
+Contagion	Contagion
+Contagion (Deep Magic)	Contagion (Deep Magic)
+Contingency	Contingency
+Control Ice	Control Ice
+Control Water	Control Water
+Control Winds	Control Winds
+Converse with Dragon	Converse with Dragon
+Convoluted Dictum	Convoluted Dictum
+Cordon of Arrows	Cordon of Arrows
+Corruption Curse	Corruption Curse
+Cosmic Eye	Cosmic Eye
+Cosmic Horror	Cosmic Horror
+Costly Victory	Costly Victory
+Counterspell	Counterspell
+Create Food and Water	Create Food and Water
+Create Homunculus	Create Homunculus
+Create Magen	Create Magen
+Create Ring Servant	Create Ring Servant
+Create Spelljamming Helm	Create Spelljamming Helm
+Create Thunderstaff	Create Thunderstaff
+Create Undead	Create Undead
+Create Vacuum	Create Vacuum
+Creation	Creation
+Creeping Darkness	Creeping Darkness
+Creeping Death	Creeping Death
+Creeping Ice	Creeping Ice
+Creeping Touch	Creeping Touch
+Crimson Lash	Crimson Lash
+Crown of Radiance	Crown of Radiance
+Crown of Stars	Crown of Stars
+Cruor of Visions	Cruor of Visions
+Crusader's Mantle	Crusader's Mantle
+Crush	Crush
+Crushing Curse	Crushing Curse
+Crushing Trample	Crushing Trample
+Cryptogram	Cryptogram
+Cure Beast	Cure Beast
+Curse Object	Curse Object
+Curse Ring	Curse Ring
+Curse Ward	Curse Ward
+Curse of Aging	Curse of Aging
+Curse of Binding	Curse of Binding
+Curse of Blades	Curse of Blades
+Curse of Boreas	Curse of Boreas
+Curse of Chains	Curse of Chains
+Curse of Conceited Obsession	Curse of Conceited Obsession
+Curse of Crushing Sensation	Curse of Crushing Sensation
+Curse of Damned Aging	Curse of Damned Aging
+Curse of Dust	Curse of Dust
+Curse of Fastidious Pride	Curse of Fastidious Pride
+Curse of Foul Blight	Curse of Foul Blight
+Curse of Hostility	Curse of Hostility
+Curse of Ill-Fated Fortune	Curse of Ill-Fated Fortune
+Curse of Incompetence	Curse of Incompetence
+Curse of Insatiable Greed	Curse of Insatiable Greed
+Curse of Lost Sentiment	Curse of Lost Sentiment
+Curse of Ravenous Hunger	Curse of Ravenous Hunger
+Curse of Uncontrollable Wrath	Curse of Uncontrollable Wrath
+Curse of Yig	Curse of Yig
+Curse of the Grave	Curse of the Grave
+Cursed Gift	Cursed Gift
+Cynophobia	Cynophobia
+Daggerhawk	Daggerhawk
+Dampen Gravity	Dampen Gravity
+Dark Dementing	Dark Dementing
+Dark Heraldry	Dark Heraldry
+Dark Lord's Mantle	Dark Lord's Mantle
+Dark Matter Override	Dark Matter Override
+Dark Maw	Dark Maw
+Dark Path	Dark Path
+Dark Sacrament	Dark Sacrament
+Dark Web of the Spider Monarch	Dark Web of the Spider Monarch
+Darkbolt	Darkbolt
+Darkvision	Darkvision
+Dawn	Dawn
+Dazing Blast	Dazing Blast
+Dead Fog	Dead Fog
+Dead Mist Lash	Dead Mist Lash
+Dead Walking	Dead Walking
+Deadly Sting	Deadly Sting
+Death Armor	Death Armor
+Death God's Touch	Death God's Touch
+Death Ward	Death Ward
+Decay	Decay
+Decelerate	Decelerate
+Deep Breath	Deep Breath
+Deep Focus	Deep Focus
+Deep Freeze	Deep Freeze
+Defenestration	Defenestration
+Defensive Quills	Defensive Quills
+Defile Healing	Defile Healing
+Delay	Delay
+Delay Potion	Delay Potion
+Delayed Blast Fireball	Delayed Blast Fireball
+Demand	Demand
+Demiplane	Demiplane
+Demon Within	Demon Within
+Deryan's Helpful Homunculi	Deryan's Helpful Homunculi
+Desiccating Breath	Desiccating Breath
+Desolation	Desolation
+Destructive Resonance	Destructive Resonance
+Destructive Wave	Destructive Wave
+Detect Dragons	Detect Dragons
+Detonate Corpses	Detonate Corpses
+Deva's Wings	Deva's Wings
+Digitize	Digitize
+Dimensional Shove	Dimensional Shove
+Dire Warning	Dire Warning
+Dirge	Dirge
+Disable Weapon	Disable Weapon
+Discern Weakness	Discern Weakness
+Disintegrate	Disintegrate
+Dispel Magic	Dispel Magic
+Displacing Maw	Displacing Maw
+Disquieting Gaze	Disquieting Gaze
+Disruptive Aura	Disruptive Aura
+Distorted Distance	Distorted Distance
+Distracting Divination	Distracting Divination
+Distraction Cascade	Distraction Cascade
+Distressing Resonance	Distressing Resonance
+Divination	Divination
+Divine Order: Reveal	Divine Order: Reveal
+Divine Order: Sacrifice	Divine Order: Sacrifice
+Divine Order: Transcend	Divine Order: Transcend
+Divine Word	Divine Word
+Divine Wrath	Divine Wrath
+Dome of Silence	Dome of Silence
+Dominate Beast	Dominate Beast
+Dominate Monster	Dominate Monster
+Dominate Person	Dominate Person
+Doom of Blue Crystal	Doom of Blue Crystal
+Doom of Consuming Fire	Doom of Consuming Fire
+Doom of Dancing Blades	Doom of Dancing Blades
+Doom of Disenchantment	Doom of Disenchantment
+Doom of Serpent Coils	Doom of Serpent Coils
+Doom of the Cracked Shield	Doom of the Cracked Shield
+Doom of the Earthen Maw	Doom of the Earthen Maw
+Doom of the Pit	Doom of the Pit
+Doom of the Slippery Rogue	Doom of the Slippery Rogue
+Doomtide	Doomtide
+Douse Light	Douse Light
+Draconic Majesty	Draconic Majesty
+Draconic Senses	Draconic Senses
+Draconic Smite	Draconic Smite
+Draconic Transformation	Draconic Transformation
+Dragon Breath	Dragon Breath
+Dragon Roar	Dragon Roar
+Dragon's Breath	Dragon's Breath
+Dragon's Pride	Dragon's Pride
+Drain Item	Drain Item
+Drawmij's Instant Summons	Drawmij's Instant Summons
+Dread Scarecrow	Dread Scarecrow
+Dread Wings	Dread Wings
+Dream	Dream
+Dream of the Blue Veil	Dream of the Blue Veil
+Drown (Deep Magic)	Drown (Deep Magic)
+Druid Grove	Druid Grove
+Dryad's Kiss	Dryad's Kiss
+Dying of the Light	Dying of the Light
+Dynamo Swarm	Dynamo Swarm
+Ear Worm	Ear Worm
+Ears of the Bat	Ears of the Bat
+Earth Wave	Earth Wave
+Earth Worm	Earth Worm
+Earthbind	Earthbind
+Earthquake	Earthquake
+Earthskimmer	Earthskimmer
+Earworm Melody	Earworm Melody
+Echoes of Steel	Echoes of Steel
+Ectoplasm	Ectoplasm
+Eidetic Memory	Eidetic Memory
+Eldritch Communion	Eldritch Communion
+Eldritch Orb	Eldritch Orb
+Eldritch Rift	Eldritch Rift
+Electrify	Electrify
+Electromagical Pulse	Electromagical Pulse
+Elemental Bane	Elemental Bane
+Elemental Body	Elemental Body
+Elemental Curse	Elemental Curse
+Elemental Exhalation	Elemental Exhalation
+Elemental Horns	Elemental Horns
+Elemental Strikes	Elemental Strikes
+Elemental Twist	Elemental Twist
+Elemental Weapon	Elemental Weapon
+Elevated Sight	Elevated Sight
+Elminster's Elusion	Elminster's Elusion
+Emanation of Yoth	Emanation of Yoth
+Emmeline's Essence Infusion	Emmeline's Essence Infusion
+Enchant Ring	Enchant Ring
+Encroaching Shadows	Encroaching Shadows
+Encrypt / Decrypt	Encrypt / Decrypt
+Endow Attribute	Endow Attribute
+Enemies Abound	Enemies Abound
+Energy Absorption	Energy Absorption
+Energy Foreknowledge	Energy Foreknowledge
+Enervation	Enervation
+Enhance Ability	Enhance Ability
+Enhance Familiar	Enhance Familiar
+Enhance Greed	Enhance Greed
+Enlarge/Reduce	Enlarge/Reduce
+Enspelled Armament	Enspelled Armament
+Entomb	Entomb
+Entomb in Ice	Entomb in Ice
+Entrancing Mirrors	Entrancing Mirrors
+Entropic Damage Field	Entropic Damage Field
+Enumerate	Enumerate
+Erupting Lightning	Erupting Lightning
+Essence Instability	Essence Instability
+Ethereal Jaunt	Ethereal Jaunt
+Etherealness	Etherealness
+Evercold	Evercold
+Exceptional Wit	Exceptional Wit
+Exhume	Exhume
+Exoskeleton	Exoskeleton
+Exsanguinate	Exsanguinate
+Exsanguinating Cloud	Exsanguinating Cloud
+Extract Essence	Extract Essence
+Extract Iron	Extract Iron
+Extract Knowledge	Extract Knowledge
+Exude Acid	Exude Acid
+Eye of Anubis	Eye of Anubis
+Eye of Ra	Eye of Ra
+Eyebite	Eyebite
+Fabricate	Fabricate
+Face Swap	Face Swap
+Failsafe Spellhack	Failsafe Spellhack
+Fall	Fall
+Fall Loop	Fall Loop
+Far Step	Far Step
+Fast Friends	Fast Friends
+Fault Line	Fault Line
+Fear	Fear
+Feather Field	Feather Field
+Feather Travel	Feather Travel
+Feathered Reach	Feathered Reach
+Feeblemind	Feeblemind
+Feign Death	Feign Death
+Festering Blast	Festering Blast
+Fey Crown	Fey Crown
+Fey Glamer	Fey Glamer
+Fiend Flesh	Fiend Flesh
+Fiendish Brand	Fiendish Brand
+Find Kin	Find Kin
+Find the Flaw	Find the Flaw
+Find the Path	Find the Path
+Finger Guns	Finger Guns
+Finger of Death	Finger of Death
+Fire Darts	Fire Darts
+Fire Dragon's Fury	Fire Dragon's Fury
+Fire Shield	Fire Shield
+Fire Storm	Fire Storm
+Fire Under the Tongue	Fire Under the Tongue
+Firewalk	Firewalk
+Fist of Iron	Fist of Iron
+Fizban's Platinum Shield	Fizban's Platinum Shield
+Flame Arrows	Flame Arrows
+Flame Strike	Flame Strike
+Flame Wave	Flame Wave
+Flash Fever	Flash Fever
+Flashback	Flashback
+Flawed Reconstruction	Flawed Reconstruction
+Flawed Resurrection	Flawed Resurrection
+Flense	Flense
+Flesh to Paper	Flesh to Paper
+Flesh to Stone	Flesh to Stone
+Fleshcrawl	Fleshcrawl
+Flickering Fate	Flickering Fate
+Fling	Fling
+Fluctuating Alignment	Fluctuating Alignment
+Flurry (Deep Magic)	Flurry (Deep Magic)
+Fly	Fly
+Fog of War	Fog of War
+Forbiddance	Forbiddance
+Force Blast	Force Blast
+Force Buckler	Force Buckler
+Force Dart	Force Dart
+Force Weapon	Force Weapon
+Forcecage	Forcecage
+Forceful Repurposing	Forceful Repurposing
+Foresight	Foresight
+Forest Affinity	Forest Affinity
+Forest Native	Forest Native
+Forest Sanctuary	Forest Sanctuary
+Forest of Dread	Forest of Dread
+Forest of Spears	Forest of Spears
+Foretell Distraction	Foretell Distraction
+Form of the Gods	Form of the Gods
+Fortitude	Fortitude
+Fortune's Favor	Fortune's Favor
+Fount of Moonlight	Fount of Moonlight
+Fractured Awareness	Fractured Awareness
+Fractured Shell	Fractured Shell
+Frailform	Frailform
+Frailty	Frailty
+Free Throw	Free Throw
+Freedom of Movement	Freedom of Movement
+Freedom of the Waves	Freedom of the Waves
+Freedom of the Winds	Freedom of the Winds
+Freeze Blood	Freeze Blood
+Freeze Potion	Freeze Potion
+Freezing Fog	Freezing Fog
+Frenzied Bolt	Frenzied Bolt
+Frenzy	Frenzy
+Frightful Start	Frightful Start
+Frigid Blade	Frigid Blade
+Frolicking Fountain	Frolicking Fountain
+Frostbite (Deep Magic)	Frostbite (Deep Magic)
+Frostbitten Fingers	Frostbitten Fingers
+Frozen Razors	Frozen Razors
+Furious Hooves	Furious Hooves
+Fusillade of Ice	Fusillade of Ice
+Gahoul's Glorious Gothic	Gahoul's Glorious Gothic
+Gahoul's Scapegoat	Gahoul's Scapegoat
+Gahoul's Shrieking Skull	Gahoul's Shrieking Skull
+Gahoul's Spectral Scythe	Gahoul's Spectral Scythe
+Galder's Speedy Courier	Galder's Speedy Courier
+Galder's Tower	Galder's Tower
+Game of Fate	Game of Fate
+Gaseous Form	Gaseous Form
+Gate Seal	Gate Seal
+Gear Barrage	Gear Barrage
+Gear Shield	Gear Shield
+Geas	Geas
+Gentle Repose	Gentle Repose
+Geodesic Shield	Geodesic Shield
+Geomantic Discernment	Geomantic Discernment
+Ghost Light	Ghost Light
+Ghoul King's Cloak	Ghoul King's Cloak
+Giant Insect	Giant Insect
+Giant's Jest	Giant's Jest
+Gift of Azathoth	Gift of Azathoth
+Gift of Luck	Gift of Luck
+Gift of Resilience	Gift of Resilience
+Gird the Spirit	Gird the Spirit
+Glacial Cascade	Glacial Cascade
+Glacial Fog	Glacial Fog
+Glamer of Mundanity	Glamer of Mundanity
+Glibness	Glibness
+Gliding Step	Gliding Step
+Glimpse of the Void	Glimpse of the Void
+Glimpse the End	Glimpse the End
+Globe of Invulnerability	Globe of Invulnerability
+Globe of Twilight	Globe of Twilight
+Gloomwrought Barrier	Gloomwrought Barrier
+Gluey Globule	Gluey Globule
+Glyph of Shifting	Glyph of Shifting
+Glyph of Warding	Glyph of Warding
+Goat's Hoof Charm	Goat's Hoof Charm
+Going in Circles	Going in Circles
+Gordolay's Pleasant Aroma	Gordolay's Pleasant Aroma
+Grain of Truth	Grain of Truth
+Grasp of the Grave	Grasp of the Grave
+Grasp of the Tupilak	Grasp of the Tupilak
+Grasping Vine	Grasping Vine
+Grave Ground	Grave Ground
+Grave Sense	Grave Sense
+Gravitational Distortion	Gravitational Distortion
+Graviturgic Smite	Graviturgic Smite
+Gravity Barrier	Gravity Barrier
+Gravity Fissure	Gravity Fissure
+Gravity Leap	Gravity Leap
+Gravity Sinkhole	Gravity Sinkhole
+Gravity Spike	Gravity Spike
+Gravity Storm	Gravity Storm
+Gravity Well	Gravity Well
+Gravity Well (Steinhardt)	Gravity Well (Steinhardt)
+Gravity Whip	Gravity Whip
+Greater Aid	Greater Aid
+Greater Analyze Device	Greater Analyze Device
+Greater Animate Dead	Greater Animate Dead
+Greater Enhance Ability	Greater Enhance Ability
+Greater Invisibility	Greater Invisibility
+Greater Ley Pulse	Greater Ley Pulse
+Greater Maze	Greater Maze
+Greater Mending	Greater Mending
+Greater Protective Nimbus	Greater Protective Nimbus
+Greater Restoration	Greater Restoration
+Greater Seal of Sanctuary	Greater Seal of Sanctuary
+Green Decay	Green Decay
+Green Mantle	Green Mantle
+Gremlins	Gremlins
+Grim Siphon	Grim Siphon
+Grinding Gears	Grinding Gears
+Grudge Match	Grudge Match
+Guardian of Nature	Guardian of Nature
+Guards and Wards	Guards and Wards
+Guest of Honor	Guest of Honor
+Guiding Star	Guiding Star
+Gust Barrier	Gust Barrier
+Hack System	Hack System
+Hallow	Hallow
+Hallucinatory Terrain	Hallucinatory Terrain
+Halo of Flame	Halo of Flame
+Hamstring	Hamstring
+Hand of Doom	Hand of Doom
+Hangover	Hangover
+Hard Heart	Hard Heart
+Hardlight Battleframe	Hardlight Battleframe
+Hardlight Blaster	Hardlight Blaster
+Hardlight Chains	Hardlight Chains
+Hardlight Construction	Hardlight Construction
+Hardlight Frame	Hardlight Frame
+Hardlight Gauntlet	Hardlight Gauntlet
+Hardlight Object	Hardlight Object
+Hardlight Trap	Hardlight Trap
+Harm	Harm
+Harry	Harry
+Harsh Light of Summer's Glare	Harsh Light of Summer's Glare
+Haste	Haste
+Heal	Heal
+Heart to Heart	Heart to Heart
+Heart-Seeking Arrow	Heart-Seeking Arrow
+Heartache	Heartache
+Heartseeker	Heartseeker
+Heartstop	Heartstop
+Heartstrike	Heartstrike
+Heat Metal	Heat Metal
+Heavenly Crown	Heavenly Crown
+Hedren's Birds of Clay	Hedren's Birds of Clay
+Hellfire Blitz	Hellfire Blitz
+Hellforging	Hellforging
+Helping Hand	Helping Hand
+Hematomancy	Hematomancy
+Hero's Steel	Hero's Steel
+Heroic Sacrifice	Heroic Sacrifice
+Hex: Abate	Hex: Abate
+Hex: Apathy	Hex: Apathy
+Hex: Bleeding	Hex: Bleeding
+Hex: Blood Curse	Hex: Blood Curse
+Hex: Charm	Hex: Charm
+Hex: Decay	Hex: Decay
+Hex: Disorient	Hex: Disorient
+Hex: Doomward	Hex: Doomward
+Hex: Duplicity	Hex: Duplicity
+Hex: Evil Eye	Hex: Evil Eye
+Hex: Fortune	Hex: Fortune
+Hex: Garble	Hex: Garble
+Hex: Hallucination	Hex: Hallucination
+Hex: Hobble	Hex: Hobble
+Hex: Imperil	Hex: Imperil
+Hex: Mire	Hex: Mire
+Hex: Misfortune	Hex: Misfortune
+Hex: Musical Interlude	Hex: Musical Interlude
+Hex: Obfuscate	Hex: Obfuscate
+Hex: Peacebond	Hex: Peacebond
+Hex: Pox	Hex: Pox
+Hex: Ruin	Hex: Ruin
+Hex: Stupor	Hex: Stupor
+Hex: Sweet Tooth	Hex: Sweet Tooth
+Hex: Tremors	Hex: Tremors
+Hex: Vanish	Hex: Vanish
+Hex: Ward	Hex: Ward
+Hide in One's Shadow	Hide in One's Shadow
+Hindsight	Hindsight
+Hoarfrost	Hoarfrost
+Hobble	Hobble
+Hobble Mount	Hobble Mount
+Hocuspocus	Hocuspocus
+Hold Monster	Hold Monster
+Hollowing Curse	Hollowing Curse
+Holy Aura	Holy Aura
+Holy Ground	Holy Ground
+Holy Star of Mystra	Holy Star of Mystra
+Holy Vow	Holy Vow
+Holy Warding	Holy Warding
+Holy Weapon	Holy Weapon
+Holy Word	Holy Word
+Hone Blade	Hone Blade
+Hunger of Leng	Hunger of Leng
+Hunger of the Earth	Hunger of the Earth
+Hunter Sense	Hunter Sense
+Hunter's Cunning	Hunter's Cunning
+Hunter's Endurance	Hunter's Endurance
+Hunter's Mark	Hunter's Mark
+Hunting Stand	Hunting Stand
+Hypnotic Missive	Hypnotic Missive
+Hypnotic Pattern	Hypnotic Pattern
+Ice Burn	Ice Burn
+Ice Fortress	Ice Fortress
+Ice Hammer	Ice Hammer
+Ice Soldiers	Ice Soldiers
+Ice Storm	Ice Storm
+Icicle Daggers	Icicle Daggers
+Icicle Javelin	Icicle Javelin
+Icy Grasp of the Ether	Icy Grasp of the Ether
+Icy Grasp of the Void	Icy Grasp of the Void
+Icy Manipulation	Icy Manipulation
+Identity Curse	Identity Curse
+Ill-Fated Word	Ill-Fated Word
+Ill-fated Word	Ill-fated Word
+Illuminate Spoor	Illuminate Spoor
+Illusory Instrument	Illusory Instrument
+Illusory Trap	Illusory Trap
+Imbue Sentience	Imbue Sentience
+Imbue Spell	Imbue Spell
+Imitation Spellhack	Imitation Spellhack
+Immolation	Immolation
+Immovable Object	Immovable Object
+Impending Ally	Impending Ally
+Impotence	Impotence
+Impressions of the Past	Impressions of the Past
+Imprisonment	Imprisonment
+Improvised Spellhack	Improvised Spellhack
+Incendiary Cloud	Incendiary Cloud
+Incite Greed	Incite Greed
+Incite Riot	Incite Riot
+Indecision	Indecision
+Inevitable Boulder	Inevitable Boulder
+Inexorable Sarcophagus	Inexorable Sarcophagus
+Inflict Doubt	Inflict Doubt
+Innocuous Aspect	Innocuous Aspect
+Insightful Maneuver	Insightful Maneuver
+Inspiring Speech	Inspiring Speech
+Instant Barricade	Instant Barricade
+Instant Fortification	Instant Fortification
+Instant Refreshement	Instant Refreshement
+Instant Replay	Instant Replay
+Instant Siege Weapon	Instant Siege Weapon
+Instant Snare	Instant Snare
+Intaglio	Intaglio
+Intensify Gravity	Intensify Gravity
+Intrusive Thought	Intrusive Thought
+Invested Champion	Invested Champion
+Investiture of Blight	Investiture of Blight
+Investiture of Flame	Investiture of Flame
+Investiture of Ice	Investiture of Ice
+Investiture of Stone	Investiture of Stone
+Investiture of Venom	Investiture of Venom
+Investiture of Wind	Investiture of Wind
+Invisibility	Invisibility
+Invisibility Purge	Invisibility Purge
+Invoke the Amaranthine	Invoke the Amaranthine
+Invulnerability	Invulnerability
+Ionize	Ionize
+Ire of the Mountain	Ire of the Mountain
+Iron Body	Iron Body
+Iron Hand	Iron Hand
+Iron Mind (Deep Magic)	Iron Mind (Deep Magic)
+Iron Stomach	Iron Stomach
+Jam Weapon	Jam Weapon
+Jerilyn's Cadaverous Uprising	Jerilyn's Cadaverous Uprising
+Jethro's Instant Reload	Jethro's Instant Reload
+Jeweled Fissure	Jeweled Fissure
+Jim's Glowing Coin	Jim's Glowing Coin
+Jim's Magic Missile	Jim's Magic Missile
+Jotunn Transformation	Jotunn Transformation
+Jumping Jolt	Jumping Jolt
+Kareef's Entreaty	Kareef's Entreaty
+Kavelin's Instant Aerosol	Kavelin's Instant Aerosol
+Keening Wail	Keening Wail
+Killing Fields	Killing Fields
+Kinetic Jaunt	Kinetic Jaunt
+Kiss of the Succubus	Kiss of the Succubus
+Knock	Knock
+Kobold's Fury	Kobold's Fury
+Labyrinth Mastery	Labyrinth Mastery
+Labyrinthine Howl	Labyrinthine Howl
+Lacerate	Lacerate
+Laeral's Silver Lance	Laeral's Silver Lance
+Lair Sense	Lair Sense
+Lance of the Sun God	Lance of the Sun God
+Land Bond	Land Bond
+Lashing Tendrils	Lashing Tendrils
+Last Rays of the Dying Sun	Last Rays of the Dying Sun
+Laugh in the Face of Fear	Laugh in the Face of Fear
+Lava Stone	Lava Stone
+Lay to Rest	Lay to Rest
+Legend Killer	Legend Killer
+Legend Lore	Legend Lore
+Legendary Libation	Legendary Libation
+Legion	Legion
+Legion of Rabid Squirrels	Legion of Rabid Squirrels
+Leomund's Lamentable Belaborment	Leomund's Lamentable Belaborment
+Leomund's Secret Chest	Leomund's Secret Chest
+Leomund's Tiny Hut	Leomund's Tiny Hut
+Lesser Charm	Lesser Charm
+Lesser Ley Pulse	Lesser Ley Pulse
+Lesser Maze	Lesser Maze
+Levitate	Levitate
+Ley Disruption	Ley Disruption
+Ley Energy Bolt	Ley Energy Bolt
+Ley Leech	Ley Leech
+Ley Sense	Ley Sense
+Ley Storm	Ley Storm
+Ley Surge	Ley Surge
+Ley Whip	Ley Whip
+Liar's Gift	Liar's Gift
+Life Drain (Deep Magic)	Life Drain (Deep Magic)
+Life Hack	Life Hack
+Life Sense	Life Sense
+Life Siphon	Life Siphon
+Life Tether	Life Tether
+Life Transference	Life Transference
+Life Transference Arrow	Life Transference Arrow
+Life from Death	Life from Death
+Lifesink	Lifesink
+Lightning Arrow	Lightning Arrow
+Lightning Bolt	Lightning Bolt
+Lightning Charged	Lightning Charged
+Lightning Ring	Lightning Ring
+Lightning Surge	Lightning Surge
+Linked Glyphs	Linked Glyphs
+Litany of Sure Hands	Litany of Sure Hands
+Little Death	Little Death
+Living Shadows	Living Shadows
+Local Jump	Local Jump
+Locate Creature	Locate Creature
+Lock Armor	Lock Armor
+Looping Trail	Looping Trail
+Lovesick	Lovesick
+Lower the Veil	Lower the Veil
+Machine Sacrifice	Machine Sacrifice
+Machine Speech	Machine Speech
+Machine's Load	Machine's Load
+Maddening Darkness	Maddening Darkness
+Maddening Whispers	Maddening Whispers
+Maelfa's Quickened Class	Maelfa's Quickened Class
+Maelstrom	Maelstrom
+Magecraft	Magecraft
+Magic Circle	Magic Circle
+Magic Daggers	Magic Daggers
+Magic Jar	Magic Jar
+Magic Mirror	Magic Mirror
+Magic Mouth	Magic Mouth
+Magic Weapon	Magic Weapon
+Magma Spray	Magma Spray
+Magnet Trap	Magnet Trap
+Magnetize	Magnetize
+Maiden of Bones	Maiden of Bones
+Maim	Maim
+Major Image	Major Image
+Malevolent Waves	Malevolent Waves
+Malicious Rancor	Malicious Rancor
+Mammon's Avarice	Mammon's Avarice
+Mammon's Due	Mammon's Due
+Mandy's Enchanted Carriage	Mandy's Enchanted Carriage
+Mandy's Feral Follower	Mandy's Feral Follower
+Mandy's Marvelous Dress	Mandy's Marvelous Dress
+Mantle of the Brave	Mantle of the Brave
+Map	Map
+Mark Prey	Mark Prey
+Marrow Transplant	Marrow Transplant
+Mass Blade Ward	Mass Blade Ward
+Mass Cure Wounds	Mass Cure Wounds
+Mass Heal	Mass Heal
+Mass Healing Word	Mass Healing Word
+Mass Hobble Mount	Mass Hobble Mount
+Mass Polymorph	Mass Polymorph
+Mass Repair Metal	Mass Repair Metal
+Mass Skirmish	Mass Skirmish
+Mass Suggestion	Mass Suggestion
+Mass Surge Dampener	Mass Surge Dampener
+Maw of Needles	Maw of Needles
+Maximilian's Earthen Grasp	Maximilian's Earthen Grasp
+Maze	Maze
+Mechanical Union	Mechanical Union
+Meld into Stone	Meld into Stone
+Melf's Minute Meteors	Melf's Minute Meteors
+Melting Curse	Melting Curse
+Memento Mori	Memento Mori
+Memorize	Memorize
+Mend Plants	Mend Plants
+Mental Prison	Mental Prison
+Mephitic Croak	Mephitic Croak
+Meteor Swarm	Meteor Swarm
+Meteoroid Shower	Meteoroid Shower
+Might of the Abyss	Might of the Abyss
+Mind Blank	Mind Blank
+Mind Exchange	Mind Exchange
+Minor Lifesteal	Minor Lifesteal
+Mirage Arcane	Mirage Arcane
+Mire	Mire
+Mirror Image	Mirror Image
+Mirror Spell	Mirror Spell
+Misfortune	Misfortune
+Mislead	Mislead
+Misstep	Misstep
+Mist of Wonders	Mist of Wonders
+Mithral Dragon's Might	Mithral Dragon's Might
+Modify Memory	Modify Memory
+Molech's Blessing	Molech's Blessing
+Moment of Prescience	Moment of Prescience
+Moment to Think	Moment to Think
+Monstrous Empathy	Monstrous Empathy
+Moon Trap	Moon Trap
+Moonlight Charm	Moonlight Charm
+Mordenkainen's Faithful Hound	Mordenkainen's Faithful Hound
+Mordenkainen's Lucubration	Mordenkainen's Lucubration
+Mordenkainen's Private Sanctum	Mordenkainen's Private Sanctum
+Mortal Insight	Mortal Insight
+Mortality	Mortality
+Mosquito Bane	Mosquito Bane
+Motivational Speech	Motivational Speech
+Move Earth	Move Earth
+Move the Cosmic Wheel	Move the Cosmic Wheel
+Mud Pack	Mud Pack
+Mutate	Mutate
+Nathair's Mischief	Nathair's Mischief
+Nature's Aegis	Nature's Aegis
+Necrotic Leech	Necrotic Leech
+Negative Energy Flood	Negative Energy Flood
+Negative Image	Negative Image
+Nest of Infernal Vipers	Nest of Infernal Vipers
+Nether Weapon	Nether Weapon
+Neutralize Aura	Neutralize Aura
+Night Terrors	Night Terrors
+Nightfall	Nightfall
+Nimbleness	Nimbleness
+Nip at the Heels	Nip at the Heels
+Nondescript	Nondescript
+Nondetection	Nondetection
+Not Dead Yet	Not Dead Yet
+Not This Day!	Not This Day!
+Nourishing Repast	Nourishing Repast
+Nystul's Magic Aura	Nystul's Magic Aura
+Obtuse	Obtuse
+Opportunistic Foresight	Opportunistic Foresight
+Orb of Light	Orb of Light
+Orbital Hardlight Cannon	Orbital Hardlight Cannon
+Osseous Cage	Osseous Cage
+Osseous Impalement	Osseous Impalement
+Osteophagia	Osteophagia
+Otherworldly Gaze	Otherworldly Gaze
+Otiluke's Freezing Sphere	Otiluke's Freezing Sphere
+Otiluke's Resilient Sphere	Otiluke's Resilient Sphere
+Otto's Irresistible Dance	Otto's Irresistible Dance
+Outflanking Boon	Outflanking Boon
+Overcharge Weapon	Overcharge Weapon
+Overclock	Overclock
+Overgrow	Overgrow
+Overwhelming Greed	Overwhelming Greed
+Paradox	Paradox
+Paragon of Chaos	Paragon of Chaos
+Passwall	Passwall
+Pendulum	Pendulum
+Perfection	Perfection
+Perforating Shot	Perforating Shot
+Petal Storm	Petal Storm
+Phalangeal Shot	Phalangeal Shot
+Phantasmal Beauty	Phantasmal Beauty
+Phantasmal Force	Phantasmal Force
+Phantasmal Killer	Phantasmal Killer
+Phantom Dragon	Phantom Dragon
+Phantom Grapnel	Phantom Grapnel
+Phantom Light	Phantom Light
+Pharaoh's Curse	Pharaoh's Curse
+Phase Bolt	Phase Bolt
+Phase Shift	Phase Shift
+Phoenix Flames	Phoenix Flames
+Pit Trap	Pit Trap
+Pitfall	Pitfall
+Plaguebearer	Plaguebearer
+Planar Ally	Planar Ally
+Planar Binding	Planar Binding
+Plane Shift	Plane Shift
+Plant Growth	Plant Growth
+Poisoned Volley	Poisoned Volley
+Poisonous Flesh	Poisonous Flesh
+Polybrachia	Polybrachia
+Polymorph	Polymorph
+Portal Jaunt	Portal Jaunt
+Potency of the Pack	Potency of the Pack
+Power Word Fortify	Power Word Fortify
+Power Word Heal	Power Word Heal
+Power Word Kill	Power Word Kill
+Power Word Kneel	Power Word Kneel
+Power Word Maim	Power Word Maim
+Power Word Pain	Power Word Pain
+Power Word Pain (Deep Magic)	Power Word Pain (Deep Magic)
+Power Word Restore	Power Word Restore
+Power Word Stun	Power Word Stun
+Prayer of Resolve	Prayer of Resolve
+Prehensile Hair	Prehensile Hair
+Preserve	Preserve
+Pressure Cage	Pressure Cage
+Primal Infusion	Primal Infusion
+Primordial Power	Primordial Power
+Primordial Ward	Primordial Ward
+Prismatic Ray	Prismatic Ray
+Prismatic Wall	Prismatic Wall
+Project Image	Project Image
+Proselytize	Proselytize
+Protect Threshold	Protect Threshold
+Protection from Energy	Protection from Energy
+Protection from Malady	Protection from Malady
+Protection from the Void	Protection from the Void
+Protective Gizmo	Protective Gizmo
+Protective Ice	Protective Ice
+Protective Nimbus	Protective Nimbus
+Proto-Abjuration	Proto-Abjuration
+Proto-Conjuration	Proto-Conjuration
+Proto-Divination	Proto-Divination
+Proto-Enchantment	Proto-Enchantment
+Proto-Evocation	Proto-Evocation
+Proto-Illusion	Proto-Illusion
+Proto-Necromancy	Proto-Necromancy
+Proto-Transmutation	Proto-Transmutation
+Psychedelics	Psychedelics
+Psychic Scream	Psychic Scream
+Puff of Smoke	Puff of Smoke
+Pulse Wave	Pulse Wave
+Pummelstone	Pummelstone
+Pyroclasm	Pyroclasm
+Pyrotechnics	Pyrotechnics
+Quench	Quench
+Quick Time	Quick Time
+Quicken	Quicken
+Quicksilver Mantle	Quicksilver Mantle
+Quickstep	Quickstep
+Quintessence	Quintessence
+Radiant Bell	Radiant Bell
+Radiant Slaughter	Radiant Slaughter
+Raid the Lair	Raid the Lair
+Railgun	Railgun
+Rain of Blades	Rain of Blades
+Raise Elder	Raise Elder
+Raise Ghost	Raise Ghost
+Raise Hero	Raise Hero
+Raise Nemesis	Raise Nemesis
+Raise Questing Dead	Raise Questing Dead
+Raise Shade	Raise Shade
+Rary's Telepathic Bond	Rary's Telepathic Bond
+Raulothim's Psychic Lance	Raulothim's Psychic Lance
+Ravages of Time	Ravages of Time
+Ravenous Void	Ravenous Void
+Ray Spellhack	Ray Spellhack
+Ray of Alchemical Negation	Ray of Alchemical Negation
+Ray of Enfeeblement	Ray of Enfeeblement
+Ray of Life Suppression	Ray of Life Suppression
+Read Memory	Read Memory
+Read Object	Read Object
+Reanimate	Reanimate
+Reaver Spirit	Reaver Spirit
+Recall	Recall
+Recharge	Recharge
+Recharge Shields	Recharge Shields
+Red Rain	Red Rain
+Regenerate	Regenerate
+Regenerating Ward	Regenerating Ward
+Reincarnate	Reincarnate
+Remove Curse	Remove Curse
+Remove Scent	Remove Scent
+Repair Metal	Repair Metal
+Reposition	Reposition
+Reset	Reset
+Restore Youth	Restore Youth
+Resurrection	Resurrection
+Reverberate	Reverberate
+Reverse Gravity	Reverse Gravity
+Revive Beast	Revive Beast
+Revivify	Revivify
+Reweave Fate	Reweave Fate
+Ride the Lightning	Ride the Lightning
+Right the Stars	Right the Stars
+Ring Strike	Ring Strike
+Ring Ward	Ring Ward
+Ringstrike	Ringstrike
+Ringward	Ringward
+Riptide	Riptide
+Roaming Pain	Roaming Pain
+Roaring Winds of Limbo	Roaring Winds of Limbo
+Robe of Shards	Robe of Shards
+Rocks Fall	Rocks Fall
+Rolling Bones	Rolling Bones
+Rolling Thunder	Rolling Thunder
+Rope Trick	Rope Trick
+Rotting Corpse	Rotting Corpse
+Rubber Bones	Rubber Bones
+Ruby-Eye Curse	Ruby-Eye Curse
+Rumbling Charge	Rumbling Charge
+Rumor	Rumor
+Rune of Imprisonment	Rune of Imprisonment
+Rupturing Curse	Rupturing Curse
+Rusting Grasp	Rusting Grasp
+Sacrificial Healing	Sacrificial Healing
+Salt Lash	Salt Lash
+Sanction	Sanction
+Sand Ship	Sand Ship
+Sanguine Fusillade	Sanguine Fusillade
+Sanguine Horror	Sanguine Horror
+Sanguine Poppet	Sanguine Poppet
+Sanguine Shield	Sanguine Shield
+Scale Rot	Scale Rot
+Scaly Hide	Scaly Hide
+Scatter	Scatter
+Scentless	Scentless
+Screaming Ray	Screaming Ray
+Scribe	Scribe
+Scrutinize Foe	Scrutinize Foe
+Scry Ambush	Scry Ambush
+Sculpt Snow	Sculpt Snow
+Scurry	Scurry
+Seal Spellcasting	Seal Spellcasting
+Seal of Sanctuary	Seal of Sanctuary
+Searing Sun	Searing Sun
+Secret Enclave	Secret Enclave
+See Beyond	See Beyond
+Seed of Destruction	Seed of Destruction
+Seeming	Seeming
+Seeping Death	Seeping Death
+Seer's Reaction	Seer's Reaction
+Seer's reaction	Seer's reaction
+Semblance of Dread	Semblance of Dread
+Sending	Sending
+Sense Lifeblood	Sense Lifeblood
+Sequenced Spellhack	Sequenced Spellhack
+Sequester	Sequester
+Serpent Tongue	Serpent Tongue
+Servant of Doom	Servant of Doom
+Sever Attunement	Sever Attunement
+Shade	Shade
+Shadow Armor	Shadow Armor
+Shadow Bite	Shadow Bite
+Shadow Blindness	Shadow Blindness
+Shadow Gateway	Shadow Gateway
+Shadow Hands	Shadow Hands
+Shadow Metamorphosis	Shadow Metamorphosis
+Shadow Monsters	Shadow Monsters
+Shadow Puppets	Shadow Puppets
+Shadow Step (Deep Magic)	Shadow Step (Deep Magic)
+Shadow Tendrils	Shadow Tendrils
+Shadow Trove	Shadow Trove
+Shadow of Moil	Shadow of Moil
+Shadows Brought to Light	Shadows Brought to Light
+Shadowy Retribution	Shadowy Retribution
+Shape Plants	Shape Plants
+Shared Judgement	Shared Judgement
+Shared Sacrifice	Shared Sacrifice
+Sheen of Ice	Sheen of Ice
+Shield Burst	Shield Burst
+Shield Disruption	Shield Disruption
+Shield of Star and Shadow	Shield of Star and Shadow
+Shield of Starlight	Shield of Starlight
+Shifting the Odds	Shifting the Odds
+Shining Smite	Shining Smite
+Shiver	Shiver
+Shocking Shroud	Shocking Shroud
+Shriek	Shriek
+Shroud Blood	Shroud Blood
+Shroud of Death	Shroud of Death
+Sickening Radiance	Sickening Radiance
+Sidestep Arrow	Sidestep Arrow
+Sign of Koth	Sign of Koth
+Silence	Silence
+Silhouette	Silhouette
+Silvered Shell	Silvered Shell
+Simbul's Synostodweomer	Simbul's Synostodweomer
+Simulacrum	Simulacrum
+Simulation	Simulation
+Sir Mittinz's Move Curse	Sir Mittinz's Move Curse
+Skeletal Tail	Skeletal Tail
+Skill Empowerment	Skill Empowerment
+Skirmish	Skirmish
+Skywrite	Skywrite
+Sleep of the Deep	Sleep of the Deep
+Sleet Storm	Sleet Storm
+Slippery Fingers	Slippery Fingers
+Slither	Slither
+Slow	Slow
+Slow-Burn Fireball	Slow-Burn Fireball
+Smiting Arrow	Smiting Arrow
+Snap the Leash	Snap the Leash
+Snilloc's Snowball Swarm	Snilloc's Snowball Swarm
+Snow Boulder	Snow Boulder
+Snow Fort	Snow Fort
+Snowy Coat	Snowy Coat
+Solar Wind	Solar Wind
+Solitary Fireball	Solitary Fireball
+Somnolence	Somnolence
+Song of the Forest	Song of the Forest
+Sonic Pulse	Sonic Pulse
+Soothing Chant	Soothing Chant
+Soothing Incandescence	Soothing Incandescence
+Soothsayer's Shield	Soothsayer's Shield
+Soul Borrowing	Soul Borrowing
+Soul Cage	Soul Cage
+Soul Effigy	Soul Effigy
+Soul of the Machine	Soul of the Machine
+Souleater	Souleater
+Spark of Life	Spark of Life
+Speak with Dead	Speak with Dead
+Speak with Inanimate Object	Speak with Inanimate Object
+Speak with Plants	Speak with Plants
+Spectral Fury	Spectral Fury
+Spectral Herd	Spectral Herd
+Spectral Slash	Spectral Slash
+Speedcycle	Speedcycle
+Spellfire Storm	Spellfire Storm
+Sphere of Order	Sphere of Order
+Spider Climb	Spider Climb
+Spike Growth	Spike Growth
+Spin	Spin
+Spinning Axes	Spinning Axes
+Spiny Shield	Spiny Shield
+Spire of Stone	Spire of Stone
+Spirit Guardians	Spirit Guardians
+Spirit Lantern	Spirit Lantern
+Spirit Shroud	Spirit Shroud
+Spirit Swarm	Spirit Swarm
+Spirit of Death	Spirit of Death
+Spiteful Weapon	Spiteful Weapon
+Splattering Smite	Splattering Smite
+Splice	Splice
+Springheel	Springheel
+Spur Mount	Spur Mount
+Spy My Shadow	Spy My Shadow
+St. Blusen's Reaver Spirit	St. Blusen's Reaver Spirit
+St. Parvalas's Risen Road	St. Parvalas's Risen Road
+St. Whiteskull's Borrowing	St. Whiteskull's Borrowing
+Staff of Violet Fire	Staff of Violet Fire
+Staggering Smite	Staggering Smite
+Stanch	Stanch
+Star's Heart	Star's Heart
+Starburst	Starburst
+Starfall	Starfall
+Starfall (Deep Magic)	Starfall (Deep Magic)
+Starry Vision	Starry Vision
+Steal Immortality	Steal Immortality
+Steal Warmth	Steal Warmth
+Steam Blast	Steam Blast
+Steam Whistle	Steam Whistle
+Steel Wind Strike	Steel Wind Strike
+Stellar Bodies	Stellar Bodies
+Stench of Rot	Stench of Rot
+Step Like Me	Step Like Me
+Sticks to Snakes	Sticks to Snakes
+Sting of the Scorpion Goddess	Sting of the Scorpion Goddess
+Stinking Cloud	Stinking Cloud
+Stone Bones	Stone Bones
+Stone Shape	Stone Shape
+Stoneskin	Stoneskin
+Storm Form	Storm Form
+Storm God's Doom	Storm God's Doom
+Storm of Vengeance	Storm of Vengeance
+Storm of Wings	Storm of Wings
+Strength of an Ox	Strength of an Ox
+Strength of the Underworld	Strength of the Underworld
+Sudden Dawn	Sudden Dawn
+Sudden Stampede	Sudden Stampede
+Suffocate	Suffocate
+Sulfuric Smoke	Sulfuric Smoke
+Summon Avatar	Summon Avatar
+Summon Dinosaur	Summon Dinosaur
+Summon Draconic Spirit	Summon Draconic Spirit
+Summon Eldritch Servitor	Summon Eldritch Servitor
+Summon Elemental	Summon Elemental
+Summon Giant	Summon Giant
+Summon Greater Demon	Summon Greater Demon
+Summon Hardlight Spirit	Summon Hardlight Spirit
+Summon Lesser Demons	Summon Lesser Demons
+Summon Monstrosity	Summon Monstrosity
+Summon Old One's Avatar	Summon Old One's Avatar
+Summon Ooze	Summon Ooze
+Summon Plant	Summon Plant
+Summon Plant (Grim Hollow)	Summon Plant (Grim Hollow)
+Summon Plant (Summoner class)	Summon Plant (Summoner class)
+Summon Sea Spirit	Summon Sea Spirit
+Summon Star	Summon Star
+Summon Titan	Summon Titan
+Sun's Bounty	Sun's Bounty
+Sunbeam	Sunbeam
+Sunburst	Sunburst
+Supernal Smite	Supernal Smite
+Suppress Enchantment	Suppress Enchantment
+Surge Dampener	Surge Dampener
+Surprise Blessing	Surprise Blessing
+Suspend	Suspend
+Swift Exchange	Swift Exchange
+Swift Flight	Swift Flight
+Swift Quiver	Swift Quiver
+Switch Attunement	Switch Attunement
+Sword of Judgment	Sword of Judgment
+Sylune's Viper	Sylune's Viper
+Symbol	Symbol
+Symbol of Sorcery	Symbol of Sorcery
+Synaptic Static	Synaptic Static
+Synergize	Synergize
+System Surge	System Surge
+Séance	Séance
+Talons of a Hungry Land	Talons of a Hungry Land
+Targeting Foreknowledge	Targeting Foreknowledge
+Tasha's Caustic Brew	Tasha's Caustic Brew
+Tasha's Hideous Laughter	Tasha's Hideous Laughter
+Tasha's Otherworldly Guise	Tasha's Otherworldly Guise
+Technical Difficulties	Technical Difficulties
+Technomancy	Technomancy
+Telekinesis	Telekinesis
+Telekinetic Parry	Telekinetic Parry
+Telekinetic Trip	Telekinetic Trip
+Telepathy	Telepathy
+Teleport	Teleport
+Teleportation Circle	Teleportation Circle
+Temple of the Gods	Temple of the Gods
+Temporal Shunt	Temporal Shunt
+Tenser's Transformation	Tenser's Transformation
+Terrifying Lash	Terrifying Lash
+Tether Essence	Tether Essence
+Theft of Vitae	Theft of Vitae
+Thin the Ice	Thin the Ice
+Thorn Armor	Thorn Armor
+Thorn Cage	Thorn Cage
+Thousand Darts	Thousand Darts
+Throes of Ecstasy	Throes of Ecstasy
+Thunder Bolt	Thunder Bolt
+Thunder Step	Thunder Step
+Thunderclap (Deep Magic)	Thunderclap (Deep Magic)
+Thunderous Charge	Thunderous Charge
+Thunderous Echo	Thunderous Echo
+Thunderous Stampede	Thunderous Stampede
+Thunderous Wave	Thunderous Wave
+Thunderstorm	Thunderstorm
+Tick Stop	Tick Stop
+Tidal Barrier	Tidal Barrier
+Tidal Wave	Tidal Wave
+Time Hop	Time Hop
+Time Jaunt	Time Jaunt
+Time Jump	Time Jump
+Time Loop	Time Loop
+Time Ravage	Time Ravage
+Time Slippage	Time Slippage
+Time Step	Time Step
+Time Stop	Time Stop
+Time Vortex	Time Vortex
+Time in a Bottle	Time in a Bottle
+Timeless Engine	Timeless Engine
+Timely Distraction	Timely Distraction
+Tireless (Deep Magic)	Tireless (Deep Magic)
+Tolling Doom	Tolling Doom
+Tome Curse	Tome Curse
+Tongue Tied	Tongue Tied
+Tongue of Sand	Tongue of Sand
+Tongues	Tongues
+Torrent of Fire	Torrent of Fire
+Total Refreshment	Total Refreshment
+Touch of the Unliving	Touch of the Unliving
+Tracer	Tracer
+Tracking Beacon	Tracking Beacon
+Transfer Consciousness	Transfer Consciousness
+Transferred Spellhack	Transferred Spellhack
+Transfix	Transfix
+Transient Bulwark	Transient Bulwark
+Transmogrification	Transmogrification
+Transmute Rock	Transmute Rock
+Treasure Chasm	Treasure Chasm
+Tree Heal	Tree Heal
+Tree Running	Tree Running
+Tree Speak	Tree Speak
+Tremor	Tremor
+Trench	Trench
+Trick Question	Trick Question
+Triumph of Ice	Triumph of Ice
+True Light of Revelation	True Light of Revelation
+True Polymorph	True Polymorph
+True Resurrection	True Resurrection
+True Seeing	True Seeing
+Tsunami	Tsunami
+Turbulence	Turbulence
+Twist the Skein	Twist the Skein
+Umbral Storm	Umbral Storm
+Unbound Chamber	Unbound Chamber
+Uncanny Avoidance	Uncanny Avoidance
+Uncertain Footing	Uncertain Footing
+Uncontrollable Transformation	Uncontrollable Transformation
+Undead Enthrallment	Undead Enthrallment
+Undermine Armor	Undermine Armor
+Unholy Defiance	Unholy Defiance
+Unleash Effigy	Unleash Effigy
+Unlock Potential	Unlock Potential
+Unluck on That	Unluck on That
+Unruly Item	Unruly Item
+Unseen Artisan	Unseen Artisan
+Unseen Strangler	Unseen Strangler
+Unshackled Magic	Unshackled Magic
+Upgraded Spellhack	Upgraded Spellhack
+Vampiric Claws	Vampiric Claws
+Vampiric Touch	Vampiric Touch
+Vanishing Step	Vanishing Step
+Veil of Dusk	Veil of Dusk
+Vibrating Humors	Vibrating Humors
+Vine Trestle	Vine Trestle
+Visage of Madness	Visage of Madness
+Visage of the Dead	Visage of the Dead
+Viscous Sheath	Viscous Sheath
+Vision of Elapsing Eons	Vision of Elapsing Eons
+Vital Mark	Vital Mark
+Void Rift	Void Rift
+Void Star	Void Star
+Void Strike	Void Strike
+Void Walk	Void Walk
+Volley Shield	Volley Shield
+Vomit Tentacles	Vomit Tentacles
+Voorish Sign	Voorish Sign
+Waft	Waft
+Wail of the Banshee	Wail of the Banshee
+Walk the Twisted Path	Walk the Twisted Path
+Walking Wall	Walking Wall
+Wall of Bones	Wall of Bones
+Wall of Fire	Wall of Fire
+Wall of Force	Wall of Force
+Wall of Gloom	Wall of Gloom
+Wall of Ice	Wall of Ice
+Wall of Light	Wall of Light
+Wall of Sand	Wall of Sand
+Wall of Stone	Wall of Stone
+Wall of Thorns	Wall of Thorns
+Wall of Time	Wall of Time
+Wall of Water	Wall of Water
+Ward Object	Ward Object
+Warding Wind	Warding Wind
+Warning Shout	Warning Shout
+Warp Mind and Matter	Warp Mind and Matter
+Watery Sphere	Watery Sphere
+Watery Tentacles	Watery Tentacles
+Wave of Corruption	Wave of Corruption
+Waves of Exhaustion	Waves of Exhaustion
+Wayward Strike	Wayward Strike
+Weapon of Blood	Weapon of Blood
+Weave Numen	Weave Numen
+Weiler's Ward	Weiler's Ward
+Weird	Weird
+Whispering Wind	Whispering Wind
+White Dwarf	White Dwarf
+Wild Shield	Wild Shield
+Wild Trajectory	Wild Trajectory
+Wilting Smite	Wilting Smite
+Wind Lash	Wind Lash
+Wind Tunnel	Wind Tunnel
+Wind Walk	Wind Walk
+Wind Wall	Wind Wall
+Wind of the Hereafter	Wind of the Hereafter
+Winding Key	Winding Key
+Winter Flower	Winter Flower
+Winter's Radiance	Winter's Radiance
+Winterdark	Winterdark
+Wintry Glide	Wintry Glide
+Wipe Face	Wipe Face
+Wish	Wish
+Wither and Bloom	Wither and Bloom
+Withered Sight	Withered Sight
+Withering Smite	Withering Smite
+Wolfsong	Wolfsong
+Word of Control	Word of Control
+Word of Force	Word of Force
+Word of Frailty	Word of Frailty
+Word of Misfortune	Word of Misfortune
+Word of Recall	Word of Recall
+Word of Terror	Word of Terror
+World Breaker	World Breaker
+Worldseek	Worldseek
+Wrack	Wrack
+Wrath of Nature	Wrath of Nature
+Wresting Wind	Wresting Wind
+Write Memory	Write Memory
+Writhing Arms	Writhing Arms
+Yellow Sign	Yellow Sign
+Zephyr's Feather	Zephyr's Feather
+Zero Gravity	Zero Gravity
+Zone of Amicability	Zone of Amicability
+Zone of Atmosphere	Zone of Atmosphere
