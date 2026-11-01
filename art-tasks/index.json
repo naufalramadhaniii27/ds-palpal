@@ -21928,5 +21928,25 @@
 "id": "40-0611",
 "tag": "CREATURE",
 "batch": "batch-267"
+},
+"art/batch/icons/library/recipe.png": {
+"id": "40-0612",
+"tag": "ICON",
+"batch": "batch-268"
+},
+"art/batch/icons/library/psionic.png": {
+"id": "40-0613",
+"tag": "ICON",
+"batch": "batch-268"
+},
+"art/batch/icons/library/charopt.png": {
+"id": "40-0614",
+"tag": "ICON",
+"batch": "batch-268"
+},
+"art/batch/icons/library/cult.png": {
+"id": "40-0615",
+"tag": "ICON",
+"batch": "batch-268"
 }
 }
