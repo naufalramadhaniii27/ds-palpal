@@ -21,7 +21,7 @@ export function renderIdentity(){
   $("#idTop").innerHTML = '<b>'+esc((C.office||"Character Record").toUpperCase())+'</b><span>'+(C.cardNo?'No. '+esc(C.cardNo):'Level '+D.level)+'</span>';
   $("#idName").textContent = C.name;
   var f=[["Species",C.species,__R.grpSpec("species")],["Class",clsLv(),__R.grpSpec("class")],[(x14()&&SL14[String(C.cls||"").split(/[\s/,]/)[0]])||"Subclass",C.sub,__R.grpSpec("sub")],["Background",C.bg,__R.grpSpec("bg")],["Size",C.size,"g:Size"]];
-  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em=(x[2]===__R.grpSpec("sub")&&window.__artSub)?window.__artSub(String(C.cls||"").split(/[\s\/,]/)[0],C.sub,22):""; if(x[0]==="Class"&&window.__ART&&window.__ART.emblem){ var ck=String(C.cls||"").split(/[\s\/,]/)[0].toLowerCase(); if(window.__ART.emblem[ck]&&!window.__idNoArt()) em='<img class="art-sub" src="img/emblem/'+ck+'.avif" width="22" height="22" alt="" decoding="async">'; }/* T10: the class emblem in the Class row */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
+  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em="";/* all five chips use the same line icons, see 30-ui-icons.js */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   __R.xpBox();/* v22 RU63 */
 }
