@@ -6,9 +6,9 @@ Dokumen ini menjawab laporan "dnd-sheet-technical-audit-20261101" (revisi v2, pe
 
 | Hasil pemeriksaan | Jumlah |
 |---|---|
-| Klaim audit yang salah | 6 |
+| Klaim audit yang salah | 7 |
 | Klaim yang benar sebagian atau salah hitung | 4 |
-| Klaim yang benar dan diterima | 6 |
+| Klaim yang benar dan diterima | 5 |
 
 Skor "Testability 2/10" dan "Maintainability 3/10" tidak punya dasar. Audit menyatakan sendiri di Lampiran B bahwa tes tidak dijalankan, dan menyebut repo tanpa tes otomatis. Itu keliru.
 
@@ -107,6 +107,21 @@ Fakta transfer: Cloudflare Pages mengirim teks terkompresi. Ukuran terkompresi `
 
 Dengan itu, unduhan pertama sekitar 3 sampai 4,3 MB, bukan 17 MB. Di 3G 1,5 Mbps itu sekitar 16 sampai 23 detik (bukan 95), di 4G 10 Mbps sekitar 2,4 sampai 3,4 detik. Kompresi aktual di situs live tidak bisa saya cek karena situs di balik Cloudflare Access, jadi ini perkiraan dari perilaku standar Cloudflare. Server lokal pengukuran saya tidak mengompresi.
 
+### 3.7 "Dua orang mengedit karakter yang sama akan saling menimpa" dan usul concurrency optimistis
+
+Audit (bagian 6.4 versi awal, usul 8.5 di v3). Saya sempat menerima usul ini di versi sebelumnya dokumen ini. Itu keliru, dan saya koreksi setelah membaca kodenya.
+
+Fakta: concurrency optimistis sudah ada di API dan klien.
+
+| Bagian | Bukti |
+|---|---|
+| Server | `PUT /api/chars/:id` memakai parameter `base` (revisi yang dipegang klien). Bila `base` tidak sama dengan revisi di server dan tidak ada `force=1`, server menjawab 409 `conflict` dengan revisi terbaru (`functions/api/[[path]].js`, sekitar baris 480) |
+| Salinan yang kalah | Pada penimpaan paksa (dua perangkat) server menyimpan salinan lama sebagai versi (sampai 30 versi per karakter) |
+| Klien | `syPut(id, L, base, force)` mengirim `base`. Jawaban 409 membuat klien membaca ulang cloud sebelum menulis (`app/43-logic-cloud-sync.js`). Bagian yang berbeda digabung per bagian (komentar "N12 conflict part") |
+| Tes | `tests/cloud_sync.py`: "conflict: newest push is the cloud copy", "the other copy is kept as a version", "N12 conflict part listed" |
+
+Jadi item ini tidak perlu dikerjakan. `cloud_sync.py` dijalankan terhadap server lokal setelah guard `DEV_USER` dipasang.
+
 ## 4. Klaim yang benar sebagian atau salah hitung
 
 ### 4.1 Beban awal di HP lambat tetap nyata
@@ -141,7 +156,6 @@ Pada branch kerja `third-party-all` (belum dirilis ke main, jadi tidak ada di `b
 | Tidak ada sidik jari untuk `vendor/pdf/` | Diterima | `git grep` tidak menemukan cek hash vendor di build atau tes |
 | Tes belum jalan di CI | Diterima | Hanya `live_check.py` yang jalan (di `live-check.yml` dan `workers-deploy.yml`), terhadap situs live |
 | Backup D1 harian | Diterima | Di luar repo, perlu cron |
-| Concurrency optimistis di sync | Diterima | Perkiraan usaha kecil |
 | Unduhan pertama dan beban awal HP lambat | Diterima sebagian | Bagian 4.1 |
 
 Guard `DEV_USER` yang benar menutup kondisi "tanpa `ACCESS_TEAM`" untuk selain localhost:

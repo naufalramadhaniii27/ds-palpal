@@ -3,7 +3,7 @@
    Identity comes only from the Cloudflare Access JWT (header Cf-Access-Jwt-Assertion), verified against the team keys.
    Env: DB (D1 binding), ACCESS_TEAM (team name, e.g. purple-frog-276b), ACCESS_AUD (Application Audience tag).
    ACCESS_AUD empty: any application of this team is accepted (the team has one). Set it to lock the API to this application.
-   DEV_USER (local tests only): when set and ACCESS_TEAM is empty, that email is used without a JWT. Never set it on Cloudflare.
+   DEV_USER (local tests only): when set and ACCESS_TEAM is empty, that email is used without a JWT, on localhost only. Never set it on Cloudflare.
    Free plan budget, per user and day: 1000 requests, 1200 rows written, 20000 rows read, 50 MB, 50 characters, 1 MB each, 30 versions. */
 
 const LIM = { req: 1000, wr: 1200, rd: 20000, bytes: 50 * 1024 * 1024, chars: 50, one: 1024 * 1024, vers: 30, bin: 30 };
@@ -54,8 +54,13 @@ async function teamKeys(team) {
 
 /* returns the email of the signed-in person, "" for a service token, null when the token is missing or wrong */
 async function who(req, env) {
-  // local tests only (no team set): DEV_USER, or another test person named in x-dev-user
-  if (!env.ACCESS_TEAM) return env.DEV_USER ? String(req.headers.get("x-dev-user") || env.DEV_USER).toLowerCase() : null;
+  // local tests only (no team set): DEV_USER, or another test person named in x-dev-user. Only on this computer: if ACCESS_TEAM is lost on a
+  // deployed copy, nobody is let in, whatever DEV_USER says
+  if (!env.ACCESS_TEAM) {
+    const host = new URL(req.url).hostname;
+    if (host !== "localhost" && host !== "127.0.0.1" && host !== "[::1]") return null;
+    return env.DEV_USER ? String(req.headers.get("x-dev-user") || env.DEV_USER).toLowerCase() : null;
+  }
   const tok = req.headers.get("cf-access-jwt-assertion");
   if (!tok) return null;
   const p = tok.split("."); if (p.length !== 3) return null;

@@ -65,7 +65,10 @@ Bukti dan konteks ada di reports/bantahan-audit-teknis-20261101.md. Tidak ada pe
 1. Guard jalur tanpa ACCESS_TEAM. Sekarang `who()` di functions/api/[[path]].js menerima DEV_USER bila ACCESS_TEAM kosong, di host mana pun. Usul: bila ACCESS_TEAM kosong, hanya localhost dan 127.0.0.1 yang boleh memakai jalur itu, selain itu `return null`. Kode contoh ada di bagian 5 dokumen bantahan. Guard yang diusulkan audit awal (tolak bila DEV_USER dan ACCESS_TEAM sama-sama ada) terbalik, jangan dipakai.
 2. Concurrency optimistis di sinkronisasi. Klien mengirim nomor revisi saat PUT, server menolak (409) bila revisi di server lebih baru, klien lalu menawarkan pilihan lewat ask(). Perkiraan 20 baris di API dan sebagian kecil di app/43-logic-cloud-sync.js. Butuh tes: tests/cloud_sync.py (perlu server lokal).
 3. Backup D1 harian (di luar repo): `wrangler d1 export dnd-sheet --remote --output backup-DATE.sql`, simpan 14 hari, beri tahu bila gagal. Perlu cron di mesin Anda atau di VPS.
-Status: belum dikerjakan.
+Status (2026-11-01, sesi yang sama):
+1. Guard: dikerjakan di functions/api/[[path]].js dan diuji (tests/api_dev_guard.mjs, 8 pemeriksaan, 2 di antaranya gagal pada kode lama). api_social lulus (37) terhadap server lokal dengan guard baru. Produksi tidak berubah karena wrangler.toml dan workers/wrangler.jsonc mengisi ACCESS_TEAM.
+2. Concurrency: tidak perlu. Sudah ada (base, 409, force, versi, gabung per bagian) dan sudah diuji di tests/cloud_sync.py. Usul audit keliru.
+3. Backup D1: .github/workflows/d1-backup.yml. Perintah ekspor diuji lokal (--local). Belum jalan di GitHub: butuh secret CLOUDFLARE_API_TOKEN dan CLOUDFLARE_ACCOUNT_ID, dan jadwal GitHub hanya jalan dari main, jadi aktif setelah rilis berikutnya.
 
 ## Catatan untuk usulan "pisahkan data dari shell" (2026-11-01)
 Bila data jadi berkas terpisah, sw.js perlu mengunduhnya di latar belakang atau memasukkannya ke daftar cache pasang. Tanpa itu aplikasi tidak lagi sepenuhnya offline sebelum tiap data dibuka sekali. Hasilnya lebih cepat pada tampilan pertama, bukan unduhan total yang lebih kecil. Keputusan belum diambil.

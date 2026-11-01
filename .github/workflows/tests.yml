@@ -29,6 +29,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Engine rules (node)
         run: node tests/tg_engine.js 300
+      - name: API sign-in guard (node)
+        run: node tests/api_dev_guard.mjs
       - name: Browser tests
         run: |
           fail=0

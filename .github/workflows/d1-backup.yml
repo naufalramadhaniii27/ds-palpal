@@ -1,0 +1,50 @@
+# Daily copy of the cloud database (characters of everyone who signs in) as an SQL file.
+# Runs only when the repository has the secrets CLOUDFLARE_API_TOKEN (D1 Edit) and CLOUDFLARE_ACCOUNT_ID, the same two the Workers deploy uses.
+# The file is kept 14 days as a build artifact of this private repository. It holds e-mail addresses and characters: keep the repository private.
+# GitHub runs scheduled workflows from the default branch (main) only, so this starts after the next release. A failed run sends the usual
+# GitHub e-mail about a failed workflow. To restore: wrangler d1 execute dnd-sheet --remote --file backup.sql (read the Cloudflare D1 notes first).
+name: d1-backup
+on:
+  schedule:
+    - cron: "30 20 * * *"   # 03:30 in Jakarta
+  workflow_dispatch:
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check the secrets
+        id: has
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$T" ] && [ -n "$A" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "No Cloudflare secrets yet: backup skipped."; fi
+      - uses: actions/checkout@v4
+        if: steps.has.outputs.go == '1'
+      - uses: actions/setup-node@v4
+        if: steps.has.outputs.go == '1'
+        with:
+          node-version: "22"
+      - name: Export the database
+        if: steps.has.outputs.go == '1'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          mkdir -p backup
+          npx --yes wrangler@4.150.0 d1 export dnd-sheet --remote --output "backup/d1-$(date -u +%F).sql"
+      - name: The file looks like a database
+        if: steps.has.outputs.go == '1'
+        run: |
+          f=$(ls backup/*.sql)
+          test "$(wc -c < "$f")" -gt 1000 || { echo "::error::backup file is too small"; exit 1; }
+          grep -q "CREATE TABLE" "$f" || { echo "::error::no CREATE TABLE in the backup"; exit 1; }
+          ls -l backup
+      - uses: actions/upload-artifact@v4
+        if: steps.has.outputs.go == '1'
+        with:
+          name: d1-backup
+          path: backup
+          retention-days: 14
+          if-no-files-found: error
