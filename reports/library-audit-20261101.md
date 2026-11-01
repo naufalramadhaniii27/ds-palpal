@@ -66,7 +66,7 @@ Koreksi audit: deity, bahasa, aksi, skill, dan kondisi sudah ada di Library. Itu
 | Fitur kelas dan subkelas | 350 entri | src/data/q17-class-gap.js |
 | Tabel Life (trinket, alasan kelas, alasan latar) | 26 tabel | src/data/q18-life.js |
 | Aturan yang kurang | 11 baris | src/data/q13-rule-gaps.js |
-| Teks sifat dan aksi monster, Monster Manual 2024 | 1.647 dari 1.740 blok | tools/q/overlay/monster_txt.json |
+| Teks sifat dan aksi monster, Monster Manual 2024 dan 2014 | 3.170 blok unik | tools/q/overlay/monster_txt.json |
 
 Semua teks ditulis ulang dengan kata sendiri. Gerbang kemiripan: 93 blok monster ditolak karena terlalu dekat dengan sumber, jadi tetap tampil sebagai baris serangan atau nama saja.
 
