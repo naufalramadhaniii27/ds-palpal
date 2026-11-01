@@ -73,7 +73,7 @@ export function spmRefresh(){ if(sheetMode!=="spman") return; var b=$("#sheetBod
   b.innerHTML=spmHTML(); b.scrollTop=st; if(qf){ var q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
 export function openSpMan(){ spmQ=""; spmLv="all"; __set_navStack([{type:"spman"}]); openSheet("Manage Spells", spmHTML(), "spman", true); }
 /* a spell that is not on the sheet yet: the rules text and the basic lines */
-export function spnHTML(n){ var x=spmRec(n); if(!x) return {t:n, h:'<p class="info-d">Not found.</p>'};
+export function spnHTML(n){ var x=spmRec(n)||(window.__wxSpRow&&window.__wxSpRow(n)); if(!x) return {t:n, h:'<p class="info-d">Not found.</p>'};
   var o=spmEntry(x,""), full=o.full||o.sum;
   var h='<p class="info-d">'+ico("school-"+String(x[2]).toLowerCase(),"isch")+'<i>'+(x[1]?ordL(x[1])+" ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i> • '+esc(spClsJ(x))+'</p>'+
     '<div class="info-k">'+tileS("Casting Time",x[4]+(x[9]?" or Ritual":""))+tileH("Range",spRangeH(x[5],o))+tileH("Components",spCompH(x[6],o))+tileS("Duration",(x[8]?"Concentration, ":"")+x[7])+'</div><p class="info-d">'+richP(full)+'</p>';
