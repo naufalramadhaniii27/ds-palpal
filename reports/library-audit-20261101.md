@@ -53,3 +53,24 @@ Each step ends with `tests/q_lib.py` and the three scenarios at 390x844 and 1250
 | Entries in the Library | 8,228 to 13,700. `tests/q_fluff.py` opens every entry: 0 bad |
 | Subclasses of all books and their features | subclasses 48 to 571, features 1,340 to 4,169, entries in the Library 13,700 to 17,510. `tests/q_fluff.py`: 0 bad |
 | Still open | class features of base classes, optional features, item variants and groups, life tables, deities, languages, books and adventures index, wikis, monster trait text |
+
+## Pembaruan 1 November 2026 (sesi lanjutan)
+
+Koreksi audit: deity, bahasa, aksi, skill, dan kondisi sudah ada di Library. Itu bukan celah.
+
+| Kategori | Hasil | Berkas |
+|---|---|---|
+| Fitur opsional | 107 entri | src/data/q14-optfeat.js |
+| Buku dan petualangan | 169 baris (judul dan nama bab) | src/data/q15-books.js |
+| Item (varian magis, grup, item dasar, item lain) | 348 baris | src/data/q16-items-gap.js |
+| Fitur kelas dan subkelas | 350 entri | src/data/q17-class-gap.js |
+| Tabel Life (trinket, alasan kelas, alasan latar) | 26 tabel | src/data/q18-life.js |
+| Aturan yang kurang | 11 baris | src/data/q13-rule-gaps.js |
+| Teks sifat dan aksi monster, Monster Manual 2024 | 1.647 dari 1.740 blok | tools/q/overlay/monster_txt.json |
+
+Semua teks ditulis ulang dengan kata sendiri. Gerbang kemiripan: 93 blok monster ditolak karena terlalu dekat dengan sumber, jadi tetap tampil sebagai baris serangan atau nama saja.
+
+Belum dikerjakan:
+- Teks sifat dan aksi monster dari Monster Manual 2014 (1.563 blok unik) dan buku lain (sekitar 11.000 blok unik).
+- Konten wiki (Forgotten Realms wiki berlisensi CC BY-SA, perlu kredit dan cek lisensi).
+- 93 blok monster yang ditolak gerbang.
