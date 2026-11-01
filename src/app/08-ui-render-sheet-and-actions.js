@@ -21,10 +21,17 @@ export function renderIdentity(){
   $("#idTop").innerHTML = '<b>'+esc((C.office||"Character Record").toUpperCase())+'</b><span>'+(C.cardNo?'No. '+esc(C.cardNo):'Level '+D.level)+'</span>';
   $("#idName").textContent = C.name;
   var f=[["Species",C.species,__R.grpSpec("species")],["Class",clsLv(),__R.grpSpec("class")],[(x14()&&SL14[String(C.cls||"").split(/[\s/,]/)[0]])||"Subclass",C.sub,__R.grpSpec("sub")],["Background",C.bg,__R.grpSpec("bg")],["Size",C.size,"g:Size"]];
-  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em="";/* all five chips use the same line icons, see 30-ui-icons.js */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
+  $("#idF").innerHTML = f.filter(function(x){return x[1]}).map(function(x){var em=idArt(x[0],x[1]);/* every chip gets a Codex picture, or none does */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   __R.xpBox();/* v22 RU63 */
 }
+function idArt(lbl,val){ var A=window.__ART; if(!A||!A.icon||(window.__idNoArt&&window.__idNoArt())) return ""; var sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];
+  var im=function(u){ return '<img class="art-sub" src="'+u+'.avif" width="24" height="24" alt="" decoding="async">'; }, has=function(c,k){ return A.icon[c]&&A.icon[c].indexOf(k)>=0; };
+  if(lbl==="Class"){ var ck=cls.toLowerCase(); if(A.emblem&&A.emblem[ck]) return im("img/emblem/"+ck); return has("cat","class")?im("img/icon/cat/class"):""; }
+  if(lbl==="Species"){ var k=sl(val); return has("species",k)?im("img/icon/species/"+k):has("species","custom")?im("img/icon/species/custom"):""; }
+  if(lbl==="Background"){ var b=sl(val); return has("background",b)?im("img/icon/background/"+b):has("background","custom")?im("img/icon/background/custom"):""; }
+  if(lbl==="Size"){ var z=sl(val); return has("size",z)?im("img/icon/size/"+z):""; }
+  var e=window.__artSub?window.__artSub(cls,val,24):""; return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
 export function renderAbilities(){
   var SC=__R.setOf("ab")==="score";/* v25 RU38 no. 6: score on top */
   $("#abil").innerHTML = ABK.map(function(k){
