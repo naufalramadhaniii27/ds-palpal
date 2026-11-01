@@ -5041,3 +5041,11 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+
+## sheet-001 — grid trial (2026-11-01)
+
+- File: art/batch/icons/grids/sheet-001.png. PNG RGBA, 2560 x 2560; 10 x 10 cells of 256 px, row-major order exactly as requested.
+- Generated with imagegen using conditions/blinded.png and feats/alert.png from art-batch as style references. Generator model version unavailable. Native output 1254 x 1254; each source icon was uniformly resized and centered on its target cell. No cell borders or text; transparent gutters. All 100 cells occupied, every alpha bounding box has at least 24 px margin (actual minimum 30 px). Size silhouettes 27–32 use increasing heights 44, 68, 96, 128, 160, 196 px.
+- NEEDS REVIEW at 24 px: 27 size-tiny and 28 size-small intentionally become very small to preserve relative scale. 33 species-custom can read as a sculptor's bust rather than a general custom species. 34 background-custom may read as scribe. 53 shifter resembles 66 lupin. 54 kalashtar may read as a human with jewel. 56 centaur has an insufficiently clear human torso and can read as an ordinary horse. 64 githyanki and 65 githzerai mainly differ by hair and skin tone. 68 hexblood's twig crown is subtle. 73 cat-feat / 77 cat-optfeat, 74 cat-feature / 78 cat-option, 93 cat-class / 94 cat-subclass, and 72 cat-gear / 96 cat-background require user review for distinction at small sizes. 95 cat-species uses a generic ancestry leaf emblem; 97 cat-homebrew uses a flask and may read as a potion. No cells omitted.
+- Visual review performed on light background and 24 px per-cell preview. This is a trial sheet; the above ambiguities are not marked approved.
