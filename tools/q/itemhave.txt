@@ -1,0 +1,3459 @@
++1 all-purpose tool
++1 amulet of the devout
++1 arcane grimoire
++1 bloodwell vial
++1 dragon edge weapon
++1 dragonhide belt
++1 dragonkin weapon
++1 fate dealer's deck
++1 moon sickle
++1 rhythm-maker's drum
++1 rod of the pact keeper
++1 soulbind chains
++1 tools of the master
++1 wand of the war mage
++1 wraps of unarmed prowess
++2 all-purpose tool
++2 amulet of the devout
++2 arcane grimoire
++2 bloodwell vial
++2 dragon edge weapon
++2 dragonhide belt
++2 dragonkin weapon
++2 fate dealer's deck
++2 moon sickle
++2 rhythm-maker's drum
++2 ring of protection
++2 rod of the pact keeper
++2 soulbind chains
++2 studded leather armor of acid resistance
++2 studded white dragon leather armor of cold resistance
++2 tools of the master
++2 wand of the war mage
++2 wraps of unarmed prowess
++3 all-purpose tool
++3 amulet of the devout
++3 arcane grimoire
++3 bloodwell vial
++3 dragonhide belt
++3 dragonkin weapon
++3 fate dealer's deck
++3 moon sickle
++3 rhythm-maker's drum
++3 rod of the pact keeper
++3 soulbind chains
++3 tools of the master
++3 wand of the war mage
++3 wraps of unarmed prowess
+abacus
+abjurer's gilder
+abracadabrus
+accounting and valuation of all things
+acid
+acid (vial)
+acid absorbing tattoo
+acidlight ammunition
+adamant hardsuit
+adamantine armor
+adamantine bar
+adamantine weapon
+adder stone
+additional arms
+adjustable stilts
+adventurer's ring
+adze of annam
+aegis of radiance
+aerenal trinket
+aereni mask
+aether blood
+agony (awakened)
+agony (dormant)
+agony (exalted)
+ai core
+airship
+akmon, hammer of purphoros
+alchemical compendium
+alchemist's doom
+alchemist's fire
+alchemist's fire (flask)
+alchemist's ice
+alchemist's supplies
+alchemy jug
+alchemy jug (blue)
+alchemy jug (orange)
+ale (gallon)
+ale (mug)
+alembic of unmaking
+alexandrite
+alluring dye
+amber
+amber runestone
+amethyst
+amethyst lodestone
+ammunition of slaying
+amphibious adaptation
+amulet
+amulet of appearance
+amulet of betrayal
+amulet of curse suppression
+amulet of dinosaur feathers (sun empire)
+amulet of duplicity
+amulet of equilibrium
+amulet of harmony
+amulet of health
+amulet of proof against detection and location
+amulet of protection from turning
+amulet of the black skull
+amulet of the drunkard
+amulet of the inferno
+amulet of the planes
+amulet of the spirit caller
+ancestral laser sword
+ancient seal
+android skin
+angelic wings
+angelskin armor
+animated shield
+ankh of ra
+antigravity belt
+antimagic eye
+antimatter rifle
+antitoxin
+antitoxin (vial)
+antlers of the true path
+anuraag's crucible
+apparatus of kwalish
+aquamarine
+arc rifle
+arcanaloth's music box
+arcane battery
+arcane cannon
+arcane cannon
+arcane carbine +1
+arcane carbine +2
+arcane carbine +3
+arcane chatelaine
+arcane focus
+arcane mirror
+arcane oil
+arcane propulsion arm
+arcane resonator
+arcane study charm
+arcane synapses
+arcane terminal
+arcane warhead
+arcanist's bestiary
+arcanist's bowstaff
+architect's disdain
+ardor
+argonnessen trinket
+arm blade
+arm cannon
+armor of gleaming
+armor of invulnerability
+armor of resistance
+armor of the valiant soul (awakened)
+armor of the valiant soul (dormant)
+armor of the valiant soul (exalted)
+armor of vulnerability
+armor of vulnerability (bludgeoning)
+armor of vulnerability (piercing)
+armor of vulnerability (slashing)
+armor of zombie flesh
+arrow, +1
+arrow, +2
+arrow, +3
+arrow, acid
+arrow, alchemist's fire
+arrow, armor-piercing
+arrow, blessed
+arrow, bludgeoning
+arrow, brutal
+arrow, desecrated
+arrow, holy water
+arrow, incendiary
+arrow, ranging
+arrow, slashing
+arrow, war oil
+arrow, whistling
+arrow-catching shield
+arrows (20)
+ascendant dragon vessel
+ascendant dragon-touched focus
+ascendant scaled ornament
+assassin's blood
+astral bracelet
+astral bracelet of energy
+astral bracelet of heavens
+astral bracelet of hells
+astral bracelet of knowledge
+astral bracelet of omniscience
+astral bracelet of planebending
+astral sea piercer
+astral shard
+astromancy archive
+athreos's devotee
+athreos's disciple
+athreos's votary
+atlas of endless horizons
+attractor mine
+aura lenses (complete)
+aura lenses (incomplete)
+aurum and argentum
+automatic rifle
+avian circlet
+axe beak
+axe beak tomahawk
+axe of the dwarvish lords
+axe of the mother tree
+azorius charm
+azorius guild signet
+azorius keyrune
+azuredge
+azuremite
+azurite
+b.e.g.
+baba yaga's dancing broom
+baba yaga's mortar and pestle
+baba yaga's pestle
+backpack
+backpack parachute
+badge of the watch
+bag of beans
+bag of cannonballs
+bag of devouring
+bag of holding
+bag of sundrops
+bag of tricks
+bag of tricks, gray
+bag of tricks, rust
+bag of tricks, tan
+bagpipes
+balance card
+balance of harmony
+baleful talon
+ball bearing
+ball bearings
+ball bearings (bag of 1,000)
+ballista trap
+ballistic sledge
+balloon pack
+band of fruitfulness
+band of mirrored essence
+banded agate
+bandolier
+bands of synergy
+bands of the found and lost
+bane weapon
+banner of the krig rune
+banshee box
+barbarian's brew
+bard-in-a-box
+barge helm
+barking box
+barrel
+barricade shield
+barrier peaks trinket
+barrier tattoo (large)
+barrier tattoo (medium)
+barrier tattoo (small)
+basco's handy bangle
+basic fishing equipment
+basic poison (vial)
+basilisk crystal
+basilisk dagger
+basket
+bath potion
+baton of many sizes
+battering shield
+battle rod
+battle standard of infernal power
+battle tax
+battleaxe
+battlebrew maul
+battlechef buckler
+battlechef's splendid saucepan
+battlement bow
+bead of force
+bead of nourishment
+bead of refreshment
+beast whistle
+bedroll
+bejeweled gold bracelet
+bejeweled ivory drinking horn with gold filigree
+bejeweled ivory drinking horn with gold inlay (brazen coalition)
+belashyrra's beholder crown
+bell
+bell branch
+bellows cannister
+bellows of strangulation
+belt of cloud giant strength
+belt of dwarvenkind
+belt of fire giant strength
+belt of frost giant strength
+belt of giant strength (cloud)
+belt of giant strength (fire)
+belt of giant strength (frost)
+belt of giant strength (hill)
+belt of giant strength (stone)
+belt of giant strength (storm)
+belt of hill giant strength
+belt of stone giant strength
+belt of storm giant strength
+belt of the raid leader
+belt of the weald
+berserker axe
+big bertha
+bigby's beneficent bracelet
+binoculars
+bird of a feather (common)
+bird of a feather (uncommon)
+birdpipes
+bit and bridle
+biza's breath
+black box
+black chromatic rose
+black crystal tablet
+black dragon mask
+black dragon scale mail
+black elixir
+black ghost orchid seed
+black opal
+black pearl
+black sap
+black sapphire
+black velvet mask stitched with silver thread
+blackrazor
+blackstaff
+blade of avernus
+blade of broken mirrors (awakened)
+blade of broken mirrors (dormant)
+blade of broken mirrors (exalted)
+blade of the wood
+blanket
+blasphemous charm
+blast disk (common)
+blast disk (rare)
+blast disk (uncommon)
+blast scepter
+blasted goggles
+blaster for dummies
+blaster mod (+1 enchanted battery)
+blaster mod (+2 enchanted battery)
+blaster mod (+3 enchanted battery)
+blaster mod (aimbot)
+blaster mod (antimatter battery)
+blaster mod (beam module)
+blaster mod (dragonfire break)
+blaster mod (electrocoil)
+blaster mod (extended barrel)
+blaster mod (magnetic mount)
+blaster mod (overcharge module)
+blaster mod (reinforced frame)
+blaster mod (ricochet barrel)
+blaster mod (scope)
+blaster mod (silencer)
+blaster mod (thermal sights)
+blaster prototype
+blasting powder
+blemished idol of good fortunes
+blessed reliquary
+blessed stake
+blessing of bloody might
+blessing of dumathoin
+blessing of health
+blessing of lonely genius
+blessing of magic resistance
+blessing of protection
+blessing of the frostmaiden
+blessing of the lone champion
+blessing of the morninglord
+blessing of the solipsistic mind
+blessing of understanding
+blessing of unearned riches
+blessing of valhalla
+blessing of weapon enhancement
+blessing of wound closure
+blight ichor
+bliss
+blizzard sphere
+block and tackle
+blod stone
+blood amulet
+blood capsule
+blood fury tattoo
+blood of the lycanthrope
+blood of the lycanthrope antidote
+blood pact pendants
+blood spear
+bloodaxe
+bloodmage dagger
+bloodrage greataxe
+bloodscryer oculus
+bloodstone
+blowgun
+blowgun needle
+blowgun needles (50)
+blue chromatic rose
+blue dragon mask
+blue dragon scale mail
+blue quartz
+blue sapphire
+blue spinel
+bob
+bobbing lily pad
+bolt
+bolt, +1
+bolt, +2
+bolt, +3
+bolt, acid
+bolt, alchemist's fire
+bolt, armor-piercing
+bolt, blessed
+bolt, bludgeoning
+bolt, brutal
+bolt, desecrated
+bolt, holy water
+bolt, incendiary
+bolt, ranging
+bolt, slashing
+bolt, war oil
+bolt, whistling
+bolts (20)
+bomb
+bombard
+bondmantle
+bonecounter
+book
+book of eibon
+book of exalted deeds
+book of vile darkness
+bookmark
+boomerang shield
+boon companions' bands
+boon of high magic
+boon of immortality
+boon of invincibility
+boon of luck
+boon of magic resistance
+boon of peerless aim
+boon of perfect health
+boon of planar travel
+boon of quick casting
+boon of resilience
+boon of spell mastery
+boon of the fire soul
+boon of the stormborn
+boon of the unfettered
+boon of undetectability
+boots of dendallen
+boots of elvenkind
+boots of false tracks
+boots of haste
+boots of levitation
+boots of speed
+boots of striding and springing
+boots of the cloud jumper
+boots of the vigilant
+boots of the winding path
+boots of the winterlands
+borboss' joyous wand of color
+borderlands tabard
+boreal pendant
+borealus
+boros charm
+boros guild signet
+boros keyrune
+bottle of boundless coffee
+bottle stopper cork embossed with gold leaf and set with amethysts
+bottle, glass
+bottled abyss
+bottled breath
+bottled lightning
+bottled ooze (black pudding)
+bottled ooze (gelatinous cube)
+bottled ooze (gray ooze)
+bottled ooze (ochre jelly)
+bounty hunter enforcer
+bounty hunter's carbine
+bounty hunter's vest
+bow of four
+bow of mind thievery
+bowl of commanding water elementals
+box of turquoise animal figurines
+bracelet of rock magic
+bracer of flying daggers
+bracers of archery
+bracers of asmodeus
+bracers of celerity
+bracers of defense
+braided quarterstaff
+brain juice
+brambleheart quiver
+brass dragon scale mail
+brass mug with jade inlay
+brass repeater
+brazen armor
+brazier of commanding fire elementals
+bread (loaf)
+breastplate
+breastplate of balance
+breastplate of kamvuul norek
+breastplate of the morning light
+breath of beleth
+breath of siberys
+breath of the wind-touched jerbeen figurine
+breathing bubble
+brewer's supplies
+bridle of capturing
+bright fungal cloak
+broken vow
+bronze crown
+bronze dragon scale mail
+bronze spyglass (brazen coalition)
+brooch of living essence
+brooch of many sizes
+brooch of shielding
+brooch of the elements
+broom of flying
+bubbling retort
+bucket
+buckler
+budding blossom rod
+bug smashers
+bullet
+bullets (10)
+bullets, firearm (10)
+bullets, sling (20)
+bundle of sheet music representing the lost dirges of a famous composer
+burglar's pack
+burnt othur fumes
+burrowing adaptation
+butcher's bib
+byeshk weapon
+cabal's ruin (awakened)
+cabal's ruin (dormant)
+cabal's ruin (exalted)
+cactus mace
+calimemnon crystal
+calligrapher's supplies
+caltrop
+caltrops
+caltrops (bag of 20)
+camel
+candle
+candle mace
+candle of anti-light
+candle of invocation
+candle of the deep
+canian fork
+cannith's marvelous miniatures
+cannonball
+cannonballs (5)
+canoe
+cantrip module
+canvas (1 sq. yd.)
+cap of bravery
+cap of vanishing
+cap of water breathing
+cape of enlargement
+cape of the mountebank
+captain's chair
+carbonic suit
+card sharp's deck
+carnelian
+carpenter's tools
+carpet of flying
+carpet of flying, 3 ft. × 5 ft.
+carpet of flying, 4 ft. × 6 ft.
+carpet of flying, 5 ft. × 7 ft.
+carpet of flying, 6 ft. × 9 ft.
+carriage
+carrion crawler mucus
+cart
+cartographer's map case
+cartographer's tools
+carvaloth scale armor
+carved bone statuette
+carved harp of exotic wood with ivory inlay and zircon gems
+carved ivory statuette
+carved jade statuette (river heralds)
+carved wooden harp with ivory inlay and zircon gems
+case, crossbow bolt
+case, map or scroll
+cast-off armor
+cataclysm bolts
+catapult munition
+catnip amulet
+cauldron of plenty
+cauldron of rebirth
+caustic rapier
+celestial circlet
+censer of controlling air elementals
+ceratopper
+ceremonial electrum dagger with a black pearl in the pommel
+ceremonial gold armor with black pearls
+ceremonial silver dagger with gold pommel and black pearl (legion of dusk)
+chain
+chain (10 feet)
+chain mail
+chain shirt
+chalcedony
+chalk (1 piece)
+champion of affliction
+champion of deception
+champion of destiny
+champion of harvests
+champion of horizons
+champion of slaughter
+champion of storms
+champion of the dead
+champion of the forge
+champion of the hunt
+champion of the passage
+champion of the polis
+champion of the sea
+champion of the sun
+champion of victory
+chariot
+charlatan's die
+charlatan's gloves
+charlatan's wardrobe
+charm of agelessness
+charm of air bubbles
+charm of animal conjuring
+charm of argonnessen
+charm of ashtakala
+charm of balance
+charm of biting cold
+charm of bounty
+charm of cold resistance
+charm of cozmioko's glory
+charm of cure wounds
+charm of darkvision
+charm of dhakaan
+charm of diabolical inspiration
+charm of druidcraft
+charm of electromancy
+charm of euryale
+charm of exorcism
+charm of feather falling
+charm of greater conscription
+charm of hellish rebuke
+charm of heroism
+charm of instant tools
+charm of invisibility
+charm of khyber
+charm of lesser conscription
+charm of lightning bolt
+charm of malediction
+charm of many things
+charm of many tongues
+charm of nine lives
+charm of plant command
+charm of purplemancy
+charm of restoration
+charm of ruin
+charm of sending
+charm of snowball strike
+charm of the adamant
+charm of the black rose
+charm of the comet
+charm of the creeping hand
+charm of the crystal heart
+charm of the donjon
+charm of the eldritch eye
+charm of the fates
+charm of the flames
+charm of the fool
+charm of the gem
+charm of the ghoul
+charm of the heroes' feast
+charm of the ice troll
+charm of the jester
+charm of the key
+charm of the knight
+charm of the maimed
+charm of the mirage
+charm of the moon
+charm of the puzzle
+charm of the rogue
+charm of the sage
+charm of the skull
+charm of the slayer
+charm of the snow walker
+charm of the star
+charm of the storm
+charm of the stumblenoodle
+charm of the sun
+charm of the swollen hag
+charm of the talons
+charm of the throne
+charm of the traveler's haven
+charm of the void
+charm of the water bearer
+charm of treasure sense
+charm of vicious mockery
+charm of vitality
+charm of water breathing
+charm of xen'drik
+charred wand of magic missiles
+chaser
+chattering staff of skulls
+cheese (wedge)
+chest
+chest of preserving
+chicken
+chillspike
+chime of exile
+chime of opening
+chip of creation
+chromacloth
+chronicle of fools
+chronolometer
+chrysoberyl
+chrysoprase
+chunk of meat
+cinder coat
+cinnabar rapier
+cinnamon
+circlet of barbed vision (awakened)
+circlet of barbed vision (dormant)
+circlet of barbed vision (exalted)
+circlet of blasting
+circlet of human perfection
+circlet of the huntsman's third eye
+circlet of wisdom
+citrine
+claw of the wyrm rune
+claws of the umber hulk
+clay no-face's charm
+cleansing stone
+climber's kit
+climbing apparatus
+cloak of arachnida
+cloak of billowing
+cloak of displacement
+cloak of elvenkind
+cloak of invisibility
+cloak of many fashions
+cloak of passage
+cloak of protection
+cloak of shadows
+cloak of spines
+cloak of the bat
+cloak of the boundless spirit
+cloak of the listener
+cloak of the manta ray
+cloak of the mausgeist
+cloak of the stygian bat
+cloak of therianthropy
+cloaking
+clockwork amulet
+clockwork dog
+clockwork faefly
+clockwork healerbee
+clockwork inkbeetle
+clockwork wings
+cloth-of-gold vestments
+cloth-of-gold vestments (legion of dusk)
+clothes of mending
+clothing, cold weather
+cloves
+club
+coat of lies
+coat of many eyes (rare)
+coat of many eyes (uncommon)
+coat of many eyes (very rare)
+coat of the crest
+cobbler's tools
+cogwork wings
+coil crook
+coiling grasp tattoo
+coin of decisionry
+coin of delving
+coin of war and fear
+cold absorbing tattoo
+coldrazor
+coldsnap
+collar of the undead
+comet card
+comm set
+common clothes
+common glamerweave
+common wine (bottle)
+common wine (pitcher)
+communion wine
+companion's band
+component pouch
+concealed blade
+concentration module
+conch of safe rest
+conch of teleportation
+concussion grenade
+concussion grenade
+condemner (awakened)
+condemner (dormant)
+condemner (exalted)
+condensed order
+conjurer's canopy
+constantori's portrait
+container of heat and frost
+contractor nail
+contractor needle
+cook's utensils
+copper (1 lb)
+copper chalice with silver filigree
+copper dragon scale mail
+copper stein with silver filigree (brazen coalition)
+coral
+coralshield golem
+corecut dagger
+corrupted tusk-dagger
+corvum feather robe
+costume
+costume clothes
+cotton cloth (1 sq. yd.)
+couatl herald's fang
+couatl herald's guard
+couatl herald's lash
+couatl herald's mantle
+couatl herald's radiance
+couatl herald's reach
+couatl herald's scales
+covered wagon
+cow
+cracked driftglobe
+crampons
+cratering quarterstaff
+crawling gauntlet
+cream of ooze moisturizing face serum
+crimson compass
+crimson mist
+crook of rao
+crosier of divine power
+crossbow bolt
+crossbow bolt case
+crossbow bolts (20)
+crowbar
+crown of daffodils
+crown of deep winter
+crown of horns
+crown of lies
+crown of the forest
+crown of the keppmir king
+crown of the wrath bringer
+crown of whirling comets
+crusader's shortsword
+crusading wand of celestial prowess
+cryogenic pod
+crypt keeper glaive
+crystal ball
+crystal ball of mind reading
+crystal ball of telepathy
+crystal ball of true seeing
+crystalline chronicle
+cube of force
+cube of summoning
+cubic gate
+cuddly strixhaven mascot
+cultist's robe
+cup of cthulhu
+cursed luckstone
+daern's instant fortress
+dagger
+dagger of blindsight
+dagger of denial
+dagger of guitar solos
+dagger of the ogre mage
+dagger of venom
+dagger of wounding (*)
+damascena
+damselfly ship
+dancing monkey fruit
+dancing sword
+danoth's visor (awakened)
+danoth's visor (dormant)
+danoth's visor (exalted)
+daoud's wondrous lanthorn
+dark fathom armor
+dark gift of dahlver-nar, he of the many teeth
+dark gift of delban, the star of ice and hate
+dark gift of drizlash, the nine-eyed spider
+dark gift of fekre, queen of poxes
+dark gift of great taar haak, the five-headed destroyer
+dark gift of khirad, the star of secrets
+dark gift of norganas, the finger of oblivion
+dark gift of savnok the inscrutable
+dark gift of seriach, the hell hound whisperer
+dark gift of shami-amourae, the lady of delights
+dark gift of sykane, the soul hungerer
+dark gift of tarakamedes, the grave wyrm
+dark gift of vaund the evasive
+dark gift of yog the invincible
+dark gift of yrrga, the eye of shadows
+dark gift of zantras, the kingmaker
+dark gift of zrin-hala, the howling storm
+dark shard amulet
+dart
+data drive
+datapad
+dawnbringer
+dead ringer
+death knell
+death ray
+deathdance
+deathwalker's ward (awakened)
+deathwalker's ward (dormant)
+deathwalker's ward (exalted)
+decanter of endless water
+deck of dimensions
+deck of holding
+deck of holding (expanded storage)
+deck of holding (password protected)
+deck of illusions
+deck of many more things
+deck of many things
+deck of miscellany
+deck of oracles
+deck of several things
+deck of wild cards
+deck of wonder
+defender
+dekella, bident of thassa
+delver's claws
+demon armor
+demonomicon of iggwilv
+deni shield
+desert clothing
+designer clothes
+detailed, life-sized dragonborn skull cast in electrum
+detection channeling wand
+detection dragonmark channel
+detection dragonmark reservoir
+devastation orb of air
+devastation orb of earth
+devastation orb of fire
+devastation orb of water
+devil mask
+devil's detail eyepatch
+devlin's staff of striking
+devotee's censer
+diamond
+diamond staff
+dice set
+dictation quill
+dimensional loop
+dimensional shackles
+dimir charm
+dimir guild signet
+dimir keyrune
+diode beam
+diplomat's pack
+dire diary
+direstone dwarven pick
+disappearing mule
+discordant thunderstave
+disguise kit
+dispelling stone
+displacer daiquiri
+dissuader
+docent
+documancy satchel
+dodecahedron of doom
+dogsled
+dome projector
+donjon card
+donjon's sundering sphere
+donkey
+doodle ring
+doomsday cookie
+double laser sword
+doublet of dramatic demise
+draakhorn
+draconic familiar
+draconic longsword
+draconic rebirth
+draconic senses
+draconis fundamentum
+dragon edge weapon
+dragon queen's will
+dragon scale mail
+dragon sensing longsword
+dragon shot
+dragon slayer
+dragon tamer lance
+dragon thighbone club
+dragon turtle shield
+dragon's blood
+dragon's breath shot
+dragon's call
+dragon-kindled edge
+dragonchess set
+dragongleam
+dragonguard
+dragonstaff of ahghairon
+dragontooth dagger
+draught of feather shine
+draught of slime curse cure
+dread helm
+dream mantle
+dream weaver
+dreamlily
+dreams leaves
+driftglobe
+drifting drink
+drive wheel
+drone controller
+drow poison
+drown
+druid's draught
+druidic focus
+druidic throwing club
+drum
+dryadleaf
+drybrooch
+dulcimer
+dungeoneer's pack
+duplicitous manuscript
+duskcrusher
+dust of corrosion
+dust of deliciousness
+dust of disappearance
+dust of dryness
+dust of sneezing and choking
+dust of the mummy
+dustbloom spices
+duster
+dwarven plate
+dwarven thrower
+dynamite
+dynamite (stick)
+dynamite stick
+dyrrn's tentacle whip
+dämglesvir (adept)
+dämglesvir (aspirant)
+dämglesvir (master)
+eagle whistle
+eaglereign
+ear cuff of the vampire bat
+ear horn of hearing
+earring of message
+earthboard
+earworm
+ebonbane
+echo of dragonsight
+echo stone
+ectoplasmic whip
+edible book of recipes
+efreeti bottle
+efreeti chain
+egg of rebirth
+elder cartographer's glossography
+elderberry everwine
+eldritch claw tattoo
+eldritch scarf
+eldritch staff
+elemental essence shard
+elemental essence shard (air)
+elemental essence shard (earth)
+elemental essence shard (fire)
+elemental essence shard (water)
+elemental gem
+elemental gem, blue sapphire
+elemental gem, emerald
+elemental gem, red corundum
+elemental gem, yellow diamond
+elephant
+elixir of elemental spittle
+elixir of health
+elixir of life protection
+elocutionist's lexicon
+elven chain
+elven thrower
+elven trinket
+embedded armor
+embedded mini fridge
+embedded translator
+embedded weapon
+embedded weapon +1
+embedded weapon +2
+embedded weapon +3
+emblem
+embroidered glove set with jewel chips
+embroidered silk and velvet mantle set with numerous moonstones
+embroidered silk handkerchief
+emerald
+emerald pen
+enchanted feather
+enchanted three-dragon ante set
+enchantment breaker
+encyclopedia multiplanaria
+encyclopedia sanguine
+enduring spellbook
+energy bow
+energy cell
+engineer's pack
+engineer's station
+ensorcelled missive
+enspelled armor
+enspelled armor (cantrip or level 1 spell)
+enspelled armor (level 2 or 3 spell)
+enspelled armor (level 4 or 5 spell)
+enspelled armor (level 6, 7, or 8 spell)
+enspelled staff
+enspelled staff (cantrip or level 1 spell)
+enspelled staff (level 2 or 3 spell)
+enspelled staff (level 4 or 5 spell)
+enspelled staff (level 6, 7, or 8 spell)
+enspelled weapon
+enspelled weapon (cantrip or level 1 spell)
+enspelled weapon (level 2 or 3 spell)
+enspelled weapon (level 4 or 5 spell)
+enspelled weapon (level 6, 7, or 8 spell)
+entertainer's pack
+environ suit
+ephara's devotee
+ephara's disciple
+ephara's votary
+ephixis, bow of nylea
+erebos's devotee
+erebos's disciple
+erebos's votary
+ersatz eye
+escape pods
+essence of ether
+essence of rage
+ether spear
+etheradio
+euryale card
+euryale's aegis
+everbright lantern
+evergreen fertilizer
+everice box
+everlasting sugarbomb
+eversmoking bottle
+evolution stone (legendary)
+evolution stone (rare)
+evolution stone (very rare)
+executioner's axe
+exo-frame
+exotic saddle
+expert's espresso
+explorer's pack
+explosive bullet
+explosive bullets (10)
+explosive cannonball
+explosive seed
+eye agate
+eye of dendallen
+eye of starsight
+eye of the bookwurm
+eye of vecna
+eye patch decorated with tiny blue sapphires and moonstones
+eye patch with a mock eye set in blue sapphire and moonstone
+eye patch with a mock eye set in blue sapphire and moonstone (brazen coalition)
+eyes of charming
+eyes of minute seeing
+eyes of the dragonne
+eyes of the eagle
+eyes of the impossible
+eyescratch
+fable's end
+fabulist gem
+faerie crown
+faerie dust
+failed experiment wand
+falkir's helm of pigheadedness
+fane-eater
+fanfare ammunition
+fangs of guile
+far gear
+far realm shard
+fargab
+fate cutter shears
+fate deck
+fates card
+favor of the heroic steed
+feather of diatryma summoning
+feather token
+feathered helm
+feathered mantle with emerald clasp (sun empire)
+feed (1 day)
+feed (per day)
+fenthras (awakened)
+fenthras (dormant)
+fenthras (exalted)
+ferrofiber hardsuit
+ferryman's take
+festerwood buckler
+festerwood claymore
+festerwood fungal stave
+festerwood logger
+festerwood masher
+festerwood vizard
+festerwood's light
+feywild shard
+feywild trinket
+ffolk sailing ship
+fife of dragonsong
+fighter bay
+figurine of wondrous power
+figurine of wondrous power (bronze griffon)
+figurine of wondrous power (ebony fly)
+figurine of wondrous power (golden lions)
+figurine of wondrous power (ivory goats)
+figurine of wondrous power (marble elephant)
+figurine of wondrous power (obsidian steed)
+figurine of wondrous power (onyx dog)
+figurine of wondrous power (serpentine owl)
+figurine of wondrous power (silver raven)
+figurine of wondrous power, bronze griffon
+figurine of wondrous power, ebony fly
+figurine of wondrous power, golden lions
+figurine of wondrous power, ivory goats
+figurine of wondrous power, marble elephant
+figurine of wondrous power, obsidian steed
+figurine of wondrous power, onyx dog
+figurine of wondrous power, serpentine owl
+figurine of wondrous power, silver raven
+fin symbiote
+final breath
+final messenger
+final word
+finder's goggles
+finding channeling wand
+finding dragonmark channel
+finding dragonmark reservoir
+fine clothes
+fine gold chain set with a fire opal
+fine gold chain with fire opals (legion of dusk)
+fine robe with dinosaur feathers and silver embroidery (sun empire)
+fine steel rapier with gold filigree hilt (legion of dusk)
+fine wine (bottle)
+finely articulated jade glove (river heralds)
+finger gun glove
+finger picks
+fire absorbing tattoo
+fire bomb
+fire dervish cloak
+fire fire!
+fire opal
+fire wand of the unbroken circle
+firearm bullet, +1
+firearm bullet, +2
+firearm bullet, +3
+firecracker crystals
+firelance venom
+fireweaver gloves
+fish suit
+fishing tackle
+flail
+flail of tiamat
+flame of ingenuity
+flame tongue
+flame tongue shortsword of greed
+flamefriend lantern
+flames card
+flamethrower
+flammable tincture
+flare
+flares (5)
+flashback polaroid
+flashbang
+flashlight
+flask
+flayer slayer
+flensing claws (huge)
+flensing claws (large)
+flensing claws (medium)
+flensing claws (small)
+flesh of dendallen
+flight jacket
+flour
+flowering blossom rod
+flute
+flying chariot
+flying citadel helm
+flying fish ship
+flying snake
+folding boat
+fool card
+force absorbing tattoo
+force gauntlet
+forgemaster's might
+forgery kit
+fork of eddy summoning
+fortune's fivepence
+fourarm bracers
+fragment of abhorrence
+fragment of attachment
+fragment of deception
+fragment of despondence
+fragment of elder starlight
+fragment of intransigence
+fragment of loathing
+fragment of melancholy
+fragment of pity
+fragment of rancor
+fragmentation grenade
+freeze bomb
+frefil's jolly oozebean sugarbombs
+frefil's tiny tasty tongue twisty sugarbombs
+frightful presence
+frost brand
+frost giant fork
+frostbitten buckler
+frostfell and everice trinket
+frozen dagger
+full moon extract
+fulminating treatise
+funeral marchers
+funeral mask
+galder's bubble pipe
+galea of the soulfire phoenix
+galepierce weapon
+galley
+gallus feather robe
+galvanic steelsnare
+gamestation
+gaming set (digital games)
+gamma fragment
+gamma pendant
+garb of light and shadow
+gargath wool clothes
+garnet
+gasparian tree nuts
+gate warden trinket
+gauntlets of flaming fury
+gauntlets of ogre power
+gauntlets of rage
+gavel of the venn rune
+gem card
+gem of brightness
+gem of seeing
+genie robe
+ghaal'duur, the mighty dirge
+ghallan jug
+ghallanda cauldron
+ghost lantern
+ghost step tattoo
+ghost suit
+giant slayer
+giant trinket
+gibberbox
+gift of the wind-touched jerbeen figurine
+gilded royal coach or funeral barge
+ginger
+girdle of traveling alchemy
+give and take
+glaive
+glamoured studded leather
+glass-studded armor
+glassblower's tools
+glaur
+glove of the aegis
+glove of the grim fandango
+gloves of missile snaring
+gloves of soul catching
+gloves of storing
+gloves of swimming and climbing
+gloves of thievery
+glowing ember
+glowrune pigment
+gluebomb
+gnomengarde grenade
+goat
+goggles of night
+goggles of object reading
+gold (1 lb)
+gold bar (5-pound)
+gold basin with rubies (legion of dusk)
+gold bird cage with electrum filigree
+gold birdcage with electrum filigree
+gold boar ring
+gold bracelet
+gold canary figurine of wondrous power
+gold chalice (legion of dusk)
+gold chalice set with emeralds (legion of dusk)
+gold circlet set with four aquamarines
+gold comb shaped like a dragon with red garnets as eyes
+gold cup set with emeralds
+gold dragon comb set with red garnets as eyes
+gold dragon scale mail
+gold idol
+gold jewelry box with platinum filigree
+gold jewelry box with platinum filigree (brazen coalition)
+gold locket with a painted portrait inside
+gold locket with a painted portrait inside (legion of dusk)
+gold music box
+gold music box (brazen coalition)
+gold pendant with black onyx (legion of dusk)
+gold ring set with bloodstones
+gold ring with turquoise (legion of dusk)
+gold statuette set with rubies
+gold-plated ceremonial helmet and pauldrons (legion of dusk)
+gold-plated sextant with topaz (brazen coalition)
+golden elixir
+golden idol of good fortunes
+golem arms
+golem skin
+golgari charm
+golgari guild signet
+golgari keyrune
+goodberry wine
+goose egg trinket
+grace of the wind-touched jerbeen figurine
+grappling gun
+grappling hook
+grasping whip
+grass carpet
+grass whistle blade
+grasshopper
+grave reaper
+gravenhollow compass ring
+gravity goblet
+gravity gun
+gravity nullifier
+graz'tchar, the decadent end
+greataxe
+greatclub
+greater shipmending spray
+greater silver sword
+greatsword
+greaves of dendallen
+green chromatic rose
+green copper ewer
+green dragon mask
+green dragon scale mail
+grenade launcher
+grenade of remorse
+grenade, fragmentation
+grenade, smoke
+grenades (5)
+grieving tree
+grimoire infinitus (awakened)
+grimoire infinitus (dormant)
+grimoire infinitus (exalted)
+grimoire monstrum
+grip of dendallen
+gristaline
+grovelthrash (awakened)
+grovelthrash (dormant)
+grovelthrash (exalted)
+gruul charm
+gruul guild signet
+gruul keyrune
+guardian emblem
+gulthias staff
+gunner bay
+gunpowder (keg)
+gunpowder (powder horn)
+gunpowder horn
+gunpowder keg
+gurt's greataxe
+habbakuk's blessing
+hacker hands
+hag eye
+hair of the dog
+halberd
+halberd of the peacock
+half plate armor
+hammer
+hammer of runic focus
+hammer of thunderbolts
+hammerhead ship
+hammock of worlds
+hand crossbow
+hand drum
+hand of glory
+hand of the master
+hand of vecna
+handaxe
+handheld mirror set in a painted wooden frame
+handling channeling wand
+handling dragonmark channel
+handling dragonmark reservoir
+hardlight bracer
+harkon's bite
+harp of gilded plenty
+harp of valor
+harper pin
+hasty sugarbomb
+hat of disguise
+hat of many spells
+hat of vermin
+hat of vortexes
+hat of wizardry
+hat trick
+hazirawn
+hcor'uk the colossal's portable handheld weapon of walloping
+headband of intellect
+healer's kit
+healing ammunition
+healing channeling wand
+healing dragonmark channel
+healing dragonmark reservoir
+heart of steel
+heart of the sleeveless
+heart weaver's primer
+hearthfire breastplate (adept)
+hearthfire breastplate (aspirant)
+hearthfire breastplate (master)
+heartstone
+heaven's herald
+heavy crossbow
+heavy legs
+heliacal wand of celestial prowess
+heliod's devotee
+heliod's disciple
+heliod's votary
+hell hound cloak
+hellfire blood
+hellfire pitchfork
+helm of awareness
+helm of brilliance
+helm of comprehending languages
+helm of devil command
+helm of disjunction
+helm of heroes
+helm of perfect potential
+helm of telepathy
+helm of teleportation
+helm of the gods
+helm of the scavenger
+helm of the sentinel
+helm of underwater action
+helmsman's shelter
+hematite
+hempen rope (50 feet)
+herbalism kit
+heretic
+heretical sunstaff of ra
+hew
+heward's handy haversack
+heward's handy spice pouch
+heward's hireling armor
+hexaplate suit
+hexaxe
+hide armor
+hide of the feral guardian (awakened)
+hide of the feral guardian (dormant)
+hide of the feral guardian (exalted)
+hither-thither staff
+hogs' wash
+holly's handy haversack
+holo-companion
+holo-sphere
+holster
+holy avenger
+holy symbol
+holy symbol of ravenkind
+holy water
+holy water (flask)
+homeward compass
+honeyed mead
+honor's last stand (awakened)
+honor's last stand (dormant)
+honor's last stand (exalted)
+hooded lantern
+hook of fisher's delight
+horizon puzzle cube
+horn
+horn of beckoning death
+horn of blasting
+horn of silent alarm
+horn of the endless maze
+horn of valhalla
+horn of valhalla (brass)
+horn of valhalla (bronze)
+horn of valhalla (iron)
+horn of valhalla (silver)
+horn of valhalla, brass
+horn of valhalla, bronze
+horn of valhalla, iron
+horn of valhalla, silver
+horned ring
+horror trinket
+horse, draft
+horse, riding
+horseshoes of a zephyr
+horseshoes of speed
+hospitality channeling wand
+hospitality dragonmark channel
+hospitality dragonmark reservoir
+hourglass
+house of cards
+houseward (legendary)
+houseward (rare)
+houseward (uncommon)
+hoverboard
+hullcutter
+humble frock
+hungry weapon
+hunk of cheese
+hunter's armor
+hunter's coat
+hunter's zeal
+hunting rifle
+hunting trap
+hurricane lance
+hyper-krash
+hypodermic arrow
+hypodermic needle
+i'jin
+ice sickle
+icewind dale trinket
+icon of ravenloft
+iggwilv's cauldron
+iggwilv's horn
+igniter
+illuminator's tattoo
+illusionist's bracers
+immovable button
+immovable rod
+imported fruits
+impulse unit
+indorius's crown (adept)
+indorius's crown (aspirant)
+indorius's crown (master)
+inescapable lash
+infernal aegis
+infernal amulet
+infernal plate armor
+infernal puzzle box
+infernal tack
+inferno rope
+infiltrator's key (awakened)
+infiltrator's key (dormant)
+infiltrator's key (exalted)
+infrasight eyes
+ingot of the skold rune
+ink
+ink (1-ounce bottle)
+ink pen
+innocent blood
+inquisitor's draught
+insect repellent (block of incense)
+insect repellent (greasy salve)
+insignia of claws
+instrument of illusions
+instrument of scribing
+instrument of the bards
+instrument of the bards (anstruth harp)
+instrument of the bards (canaith mandolin)
+instrument of the bards (cli lyre)
+instrument of the bards (doss lute)
+instrument of the bards (fochlucan bandore)
+instrument of the bards (mac-fuirmidh cittern)
+instrument of the bards (ollamh harp)
+instrument of the bards, anstruth harp
+instrument of the bards, canaith mandolin
+instrument of the bards, cli lyre
+instrument of the bards, doss lute
+instrument of the bards, fochlucan bandore
+instrument of the bards, mac-fuirmidh cittern
+instrument of the bards, ollamh harp
+integrated tool
+interface rig
+invisible spirit
+invisibomb
+ionbreaker, the tempest's reach
+ioun stone
+ioun stone (absorption)
+ioun stone (agility)
+ioun stone (awareness)
+ioun stone (fortitude)
+ioun stone (greater absorption)
+ioun stone (insight)
+ioun stone (intellect)
+ioun stone (leadership)
+ioun stone (mastery)
+ioun stone (protection)
+ioun stone (regeneration)
+ioun stone (reserve)
+ioun stone (strength)
+ioun stone (sustenance)
+ioun stone of vitality
+ioun stone, absorption
+ioun stone, agility
+ioun stone, awareness
+ioun stone, fortitude
+ioun stone, greater absorption
+ioun stone, historical knowledge
+ioun stone, insight
+ioun stone, intellect
+ioun stone, language knowledge
+ioun stone, leadership
+ioun stone, mastery
+ioun stone, natural knowledge
+ioun stone, protection
+ioun stone, regeneration
+ioun stone, religious knowledge
+ioun stone, reserve
+ioun stone, self-preservation
+ioun stone, strength
+ioun stone, supreme intellect
+ioun stone, sustenance
+iridescent armor
+iroas's devotee
+iroas's disciple
+iroas's votary
+iron
+iron (1 lb)
+iron ball
+iron bands of bilarro
+iron elixir
+iron fangs
+iron flask
+iron net
+iron spike
+iron spikes (10)
+ironfang
+ironleaf maul of entanglement
+ironleaf oaken shield
+ironleaf plate
+ironshod trotters
+ivana's whisper
+izzet charm
+izzet guild signet
+izzet keyrune
+jacinth
+jade
+jade bowl (river heralds)
+jade breastplate (river heralds)
+jade elixir
+jade game board with gold playing pieces
+jade game board with solid gold playing pieces
+jade headpiece (river heralds)
+jade serpent staff
+jade sword with amber (river heralds)
+jade totem with diamond eyes (river heralds)
+jakarion's staff of frost
+jasper
+javelin
+javelin of backbiting
+javelin of lightning
+jax
+jester card
+jester's mask
+jet
+jetpack
+jewel of three prayers (awakened)
+jewel of three prayers (dormant)
+jewel of three prayers (exalted)
+jeweled anklet
+jeweled anklet (brazen coalition)
+jeweled gold crown
+jeweled platinum ring
+jeweler's tools
+joho's charm
+jora charm
+jotun's jodhpurs
+jug
+junky +1 dagger
+justiciar's gavel
+kagonesti forest shroud
+karametra's devotee
+karametra's disciple
+karametra's votary
+karrek's bastion
+keelboat
+keeper's fang
+keg of alchemist's fire
+keoghtom's ointment
+keranos's devotee
+keranos's disciple
+keranos's votary
+key card
+keycharm
+keystone of creation
+khrusor, spear of heliod
+khyber trinket
+killskull longbow of dread
+kindle egg sugarbomb
+kiss of the changebringer (awakened)
+kiss of the changebringer (dormant)
+kiss of the changebringer (exalted)
+klothys's devotee
+klothys's disciple
+klothys's votary
+knave's eye patch
+knife of stolen resistance
+knifewing cape
+knight card
+knight's standard of valor
+knight's standard of vigor
+knight's standard of virtue
+knocking boots
+korolnor scepter
+kraken's whip
+krash
+kruphix's devotee
+kruphix's disciple
+kruphix's votary
+kubazan
+kundar chains
+kwark's wondrous kernels, planter
+kwark's wondrous kernels, tossable
+kyrzin's ooze
+ladder
+ladder (10-foot)
+lamp
+lamplighter
+lamprey ship
+lance
+lance of the hungering dead
+lantern of revealing
+lantern of tracking (aberrations)
+lantern of tracking (celestials)
+lantern of tracking (constructs)
+lantern of tracking (dragons)
+lantern of tracking (elementals)
+lantern of tracking (fey)
+lantern of tracking (fiends)
+lantern of tracking (giants)
+lantern of tracking (monstrosities)
+lantern of tracking (undead)
+lantern, bullseye
+lantern, hooded
+lapis lazuli
+large gold bracelet
+large gold bracelet (legion of dusk)
+large jade totem (river heralds)
+large well-made tapestry
+large well-made tapestry (legion of dusk)
+laser eyes
+laser pistol
+laser rifle
+lash of immolation
+lash of shadows (awakened)
+lash of shadows (dormant)
+lash of shadows (exalted)
+lazarus unit
+leaping legs
+leather armor
+leather golem armor
+leatherworker's tools
+leeching quarterstaff
+legendary molten fire forge
+legendary trophy
+lesser hammock of worlds
+liar's lyre
+libram of souls and flesh
+life suit
+life support
+lifewell tattoo
+light crossbow
+light drinker
+light hammer
+lightbringer
+lightning absorbing tattoo
+lightning pylons
+lindwyrm venom
+linen (1 sq. yd.)
+liquid courage
+living gloves
+living loot satchel
+living net
+living ship
+loadstone
+loaf of bread
+lock
+lock of trickery
+locking spellbook
+locksmith's bane
+lodestone armor
+log keeper
+logic unit
+lolth's sting
+longbow
+longbow of the healing hearth
+longhorn
+longship
+longsword
+lord's ensemble
+lorehold primer
+lorehold trinket
+lost crown of besilmer
+love's embrace
+luba's tarokka of souls
+lucent destroyer
+luck blade
+lucky foot
+luma feather robe
+luminous war pick
+lunar wand of celestial prowess
+lute
+lute crafted of exotic wood with mother-of-pearl inlay and zircon gems (brazen coalition)
+lute of thunderous thumping
+luxon beacon
+lycan weapon
+lycanthropy antidote
+lyre
+lyre of building
+mace
+mace of disruption
+mace of smiting
+mace of terror
+mace of the black crown (awakened)
+mace of the black crown (dormant)
+mace of the black crown (exalted)
+macuahuitl
+maddgoth's helm
+magazine
+mage breaker
+mage's manacle
+magebane bomb
+magen handbell
+mageplate cap
+magewright's gloves
+magical prosthetics
+magician's judge
+magma war pick
+magnifying glass
+making channeling wand
+making dragonmark channel
+making dragonmark reservoir
+malachite
+malice
+malleus macabre
+mammoth boots
+manacles
+manifest charm of daanvi, the perfect order
+manifest charm of dolurrh, the realm of the dead
+manifest charm of fernia, the sea of fire
+manifest charm of irian, the eternal dawn
+manifest charm of lamannia, the twilight forest
+manifest charm of mabar, the endless night
+manifest charm of risia, the plain of ice
+manifest charm of shavarath, the battleground
+manifest charm of syrania, the azure sky
+manifest charm of thelanis, the faerie court
+manifest charm of xoriat, the realm of delirium
+manifold tool
+manipulators
+manor key
+mantle of spell resistance
+mantle of the pack lord
+manual of bodily health
+manual of clay golems
+manual of flesh golems
+manual of gainful exercise
+manual of golems
+manual of iron golems
+manual of quickness of action
+manual of stone golems
+many keyholes dagger
+map
+map or scroll case
+marble font with gold inlay (legion of dusk)
+marine's pack
+mariner's armor
+marotte of chance
+martialist's quarterstaff
+mask of changed appearance
+mask of dendallen
+mask of the beast
+mask of the dragon queen
+mask of the maestro
+mask of the pact bearer
+mason's tools
+masque charm
+masquerade tattoo
+master machinist's marvelous mallet
+master's amulet
+mastercraft instrument
+masterpiece painting in mahogany frame with gold inlay (legion of dusk)
+mastery gem
+mastiff
+mastix, whip of erebos
+matalotok
+matchless pipe
+maul
+mechanical limb
+mechanical wonder (domestic)
+mechanical wonder (flying)
+mechanical wonder (gyrocopter)
+mechanical wonder (mobility)
+medal of muscle
+medal of the conch
+medal of the horizonback
+medal of the maze
+medal of the meat pie
+medal of the wetlands
+medal of wit
+medallion of thoughts
+medani dowser
+medi spectacles
+memento of the shapeless
+menga leaves (1 ounce)
+merchant's scale
+merry berry
+mess kit
+midnight tears
+mighty servant of leuk-o
+military saddle
+mimir
+mind crystal (careful)
+mind crystal (distant)
+mind crystal (empowered)
+mind crystal (extended)
+mind crystal (heightened)
+mind crystal (quickened)
+mind crystal (subtle)
+mind flayer skull
+mind lash
+mind sharpener
+mindblasting cap
+mindguard crown
+miner's pick
+mirror
+mirror of infinite transpondence
+mirror of life trapping
+mirror of reflected pasts
+mirror of the past
+mirrorlight edge
+mirrorlight piercer
+mistral mantle
+mithral armor
+mizzium apparatus
+mizzium mortar
+moa
+mockingblade
+modern bullet
+modern bullets (10)
+mogis's devotee
+mogis's disciple
+mogis's votary
+monocle of clarity
+monoplate suit
+monster camouflage
+monster hunter's pack
+monsterbane lasher
+monstrous bite
+monstrous hide
+monstrous weapon
+moodmark paint
+moon card
+moon-touched sword
+moonblade
+moongold ammunition
+moongold weapon
+moonstone
+moonswaddled armor
+moorbounder
+morningstar
+morose monocle
+mortal coil
+moss agate
+motion tracker
+mournland trinket
+mudslick tower
+mule
+mummy rot antidote
+murgaxor's elixir of life
+murgaxor's orb
+muroosa balm
+muscle graft
+musket
+mystery key
+mythallar bracelet
+mythallar cloak
+mythcarver (awakened)
+mythcarver (dormant)
+mythcarver (exalted)
+nameless cults
+namer's needle
+nangnang
+nanobot canister (deconstructive)
+nanobot canister (reconstructive)
+nanobot canister (transformative)
+nanofiber vest
+narycrash
+nature's mantle
+nautiloid
+navigation orb
+navigator's tools
+necklace of adaptation
+necklace of electrum medallions with red and blue tourmalines (brazen coalition)
+necklace of fireballs
+necklace of jade and pink pearls (river heralds)
+necklace of prayer beads
+necklace of the beastly familiar (giant octopus)
+necklace of the beastly familiar (giant scorpion)
+necklace of the beastly familiar (hippopotamus)
+necklace of the beastly familiar (mammoth)
+necklace of the beastly familiar (tyrannosaurus rex)
+necklace string of small pink pearls
+necrolace
+necronomicon
+necronomicon ex corvis
+necrotic absorbing tattoo
+needle of mending
+needle, +1
+needle, +2
+needle, +3
+needler pistol
+needles (50)
+nepenthe
+nest charm
+net
+net of maiden's hair
+nether scroll of azumar
+netherese ring of protection
+night caller
+nightbringer
+nightcap
+nightfall pearl
+nightmare staff
+nightspider
+nightstalker's kanabo
+niko's mace
+nimblewright detector
+nimbus coronet
+nine lives stealer
+nithing pole
+noble's jewelry
+nocturnal eyes
+noisemaker
+nolzur's marvelous pigments
+norlander longship
+null chalk
+nylea's devotee
+nylea's disciple
+nylea's votary
+oathbound ring
+oathbow
+obo'laka
+observatory charm
+obsidian
+obsidian flint dragon plate
+obsidian statuette with gold fittings and inlay
+obviator's lenses
+occultant abacus
+oil (flask)
+oil of defoliation
+oil of etherealness
+oil of sharpness
+oil of slipperiness
+oil of taggit
+old masterpiece painting
+olisuba leaf
+oloore root teabag
+omenbringer's mantle
+ominous staff of skulls
+omnitool
+onyx
+ooze infusion
+opal
+opal of the ild rune
+orator's quill
+orb
+orb of damara
+orb of direction
+orb of divination detection
+orb of dragonkind
+orb of gonging
+orb of skoraeus
+orb of sorcery
+orb of the stein rune
+orb of the veil
+orb of time
+orc stone
+orcsplitter
+orcus figurine
+ori boots
+ornithopter of flying
+orrery of the wanderer
+orzhov charm
+orzhov guild signet
+orzhov keyrune
+otyugh cloak
+ouroboros rapier
+outer essence shard
+outer essence shard (chaotic)
+outer essence shard (evil)
+outer essence shard (good)
+outer essence shard (lawful)
+overdrive module
+overshield
+oversized arms
+oversized longbow
+ox
+pack of levibubble sugarbombs
+pack saddle
+padded armor
+painted gold child's sarcophagus
+painted gold war mask
+painter's supplies
+pair of engraved bone dice
+pair of engraved bone dice (brazen coalition)
+pair of tiny violin rings
+pale tincture
+pan flute
+papazotl
+paper
+paper (one sheet)
+paper bird
+paper cartridge bullet
+paper cartridge bullet, armor-piercing
+paper cartridge bullet, blessed
+paper cartridge bullet, brutal
+paper cartridge bullet, desecrated
+paper cartridge bullet, incendiary
+paragon's plate
+paralysis pistol
+paralyzing bolt
+parchment
+parchment (one sheet)
+pariah's shield
+passage channeling wand
+passage dragonmark channel
+passage dragonmark reservoir
+pathfinder's greataxe
+pathfinder's pebble
+pearl
+pearl elixir
+pearl of power
+pearl of undead detection
+pearl of wisdom quiver
+pendant of the tempered fury
+pendant of thieves' sight
+pennant of the vind rune
+pepper
+peppermince sugarbomb
+peregrine mask
+perfume
+perfume (vial)
+perfume of bewitching
+periapt of health
+periapt of proof against poison
+periapt of reflection
+periapt of wound closure
+peridot
+permanent parchment
+personality module
+petal dancer ward
+petrified grung egg
+pewter mug with green spinels (brazen coalition)
+pharazorthok sprout
+pharika's devotee
+pharika's disciple
+pharika's votary
+phase axe
+phase suit
+phenax's devotee
+phenax's disciple
+phenax's votary
+philter of love
+phoenix ammunition
+piercer
+pig
+pigskin armor
+pike
+pike of the forgotten legion
+pilot's seat
+pipe of remembrance
+pipe of smoke monsters
+pipes of haunting
+pipes of pestilence
+pipes of the sewers
+pistol
+pitcher
+piton
+piwafwi (cloak of elvenkind)
+piwafwi of fire resistance
+pixie dust
+piña colossus
+plaguebane mask
+plainscow
+planar key
+planar philosopher trinket
+planar rapier
+planecaller's codex
+plate armor
+plate armor of etherealness
+plate of knight's fellowship
+plate of the dawnmartyr (awakened)
+plate of the dawnmartyr (dormant)
+plate of the dawnmartyr (exalted)
+platinum (1 lb)
+platinum bracelet set with a sapphire
+platinum bracelet set with an emerald
+platinum headdress with topaz sun symbol (sun empire)
+platinum ring with yellow sapphire (sun empire)
+platinum scarf
+platinum staff topped with amber (sun empire)
+playing card set
+poison absorbing tattoo
+poison soaked kukri
+poison, basic
+poisoner's kit
+pole
+pole (10-foot)
+pole of angling
+pole of collapsing
+pomade of ten thousand styles
+pony
+portable hole
+portal compass
+portfolio keeper
+pot of awakening
+pot, iron
+potion of acid resistance
+potion of advantage
+potion of animal friendship
+potion of aqueous form
+potion of clairvoyance
+potion of climbing
+potion of cloud giant strength
+potion of cold resistance
+potion of comprehension
+potion of diminution
+potion of dragon's breath
+potion of dragon's breath (rare)
+potion of dragon's breath (uncommon)
+potion of dragon's breath (very rare)
+potion of dragon's majesty
+potion of fire breath
+potion of fire giant strength
+potion of fire resistance
+potion of flying
+potion of force resistance
+potion of frost giant strength
+potion of gaseous form
+potion of giant size
+potion of giant strength (cloud)
+potion of giant strength (fire)
+potion of giant strength (frost)
+potion of giant strength (hill)
+potion of giant strength (stone)
+potion of giant strength (storm)
+potion of glacial resistance
+potion of greater invisibility
+potion of growth
+potion of harm
+potion of heal
+potion of healing
+potion of heroism
+potion of hill giant strength
+potion of invisibility
+potion of invulnerability
+potion of life sharing
+potion of lightning resistance
+potion of liquid air
+potion of longevity
+potion of malice
+potion of maximum power
+potion of mind control (beast)
+potion of mind control (humanoid)
+potion of mind control (monster)
+potion of mind reading
+potion of necrotic resistance
+potion of poison
+potion of poison resistance
+potion of polychromy
+potion of possibility
+potion of psionic fortitude
+potion of psychic resistance
+potion of pugilism
+potion of radiant resistance
+potion of relentlessness
+potion of resistance
+potion of rest
+potion of solar radiance
+potion of speed
+potion of spell recovery
+potion of stone giant strength
+potion of storm giant strength
+potion of thunder resistance
+potion of tirelessness
+potion of vitality
+potion of watchful rest
+potion of water breathing
+potion, pill form
+potter's tools
+pouch
+powered armor
+precipit, the formless
+prehensile tail
+prehistoric figurine of wondrous power, carnelian triceratops
+prehistoric figurine of wondrous power, jasper tyrannosaurus rex
+prehistoric figurine of wondrous power, kyanite pteranodon
+prehistoric figurine of wondrous power, pyrite plesiosaurus
+prespra
+pressure capsule
+pride silk
+pride silk outfit
+priest's pack
+prismari primer
+prismari trinket
+prismatic javelin
+prismatic rune
+prismatic well
+probe
+profane charm
+profane mask
+professor orb
+professor skant
+propeller helm
+prophecy wine
+prospector's wand
+prosthetic limb
+prosthetics
+protective verses
+psi crystal
+psionic piercing
+psionic reach
+psionic rod of the honed mind
+psychic absorbing tattoo
+pulverizing staff of skulls
+purging dagger
+purity spear
+purphoros's devotee
+purphoros's disciple
+purphoros's votary
+purple worm poison
+purse piglet
+puzzle card
+puzzle ring of vitality, life, and power
+pyremaul (awakened)
+pyremaul (dormant)
+pyremaul (exalted)
+pyroconverger
+pyxis of pandemonium
+quaal's feather token
+quaal's feather token (anchor)
+quaal's feather token (bird)
+quaal's feather token (fan)
+quaal's feather token (swan boat)
+quaal's feather token (tree)
+quaal's feather token (whip)
+quaal's feather token, anchor
+quaal's feather token, bird
+quaal's feather token, fan
+quaal's feather token, swan boat
+quaal's feather token, tree
+quaal's feather token, whip
+quadcorder
+quagmire maul
+quake hammer
+quakescale armor
+quandrix primer
+quandrix trinket
+quarterstaff
+quarterstaff of the acrobat
+quartz
+queen ehlissa's marvelous nightingale
+queen's token
+quickdraw
+quicksilver clay
+quiver
+quiver of ehlonna
+quiver of energy
+radiance
+radiant absorbing tattoo
+radiant defender
+rain catcher
+rakdos charm
+rakdos guild signet
+rakdos keyrune
+rakdos riteknife
+ram, portable
+ranseur of torture
+rapier
+raptor feather robe
+rare molten fire forge
+rations (1 day)
+raven's slumber
+razor wire
+ready gunk
+reap and sew
+reaper's scream
+rebounding blade
+recall crystal
+red chromatic rose
+red claw's regalia
+red dragon mask
+red dragon scale mail
+red wizard blade
+red-feather bow
+regenerating marrow
+reincarnation dust
+relentless bulwark
+reliquary
+reliquary charm
+reliquary of dawn
+reliquary of twilight
+remote eye
+remote piloting apparatus
+renaissance bullet
+renaissance bullets (10)
+replacement
+repulsion shield
+researcher's pack
+residuum
+residuum enchanting slate
+resistance breaker
+resistance plating
+resistance suture
+resuscitation bomb
+reszur
+retaliating bloom shield
+retaliating shield of ink
+retractable shield
+reveler's concertina
+revolver
+rhodochrosite
+riding saddle
+ring mail
+ring of acid resistance
+ring of air elemental command
+ring of amity
+ring of anchoring
+ring of animal influence
+ring of cold resistance
+ring of collecting
+ring of dedicated focus
+ring of djinni summoning
+ring of earth elemental command
+ring of eldritch ire
+ring of elemental command
+ring of evasion
+ring of feather falling
+ring of fire
+ring of fire elemental command
+ring of fire resistance
+ring of force resistance
+ring of free action
+ring of gestures
+ring of hidden desire
+ring of ice
+ring of invisibility
+ring of jumping
+ring of lightning resistance
+ring of mind shielding
+ring of necrotic resistance
+ring of nightmares
+ring of obscuring
+ring of paradoxes
+ring of plant speech
+ring of poison resistance
+ring of protection
+ring of psychic resistance
+ring of puzzler's wit
+ring of radiant resistance
+ring of radiation
+ring of red fury
+ring of regeneration
+ring of resistance
+ring of roses
+ring of seething
+ring of shooting stars
+ring of spacewalking
+ring of spell storing
+ring of spell turning
+ring of stone
+ring of swimming
+ring of telekinesis
+ring of temporal salvation
+ring of the copycat
+ring of the fowl sentinel
+ring of the orator
+ring of the ram
+ring of the sandskimmer
+ring of the sky hunter
+ring of three wishes
+ring of thunder resistance
+ring of treachery
+ring of truth telling
+ring of veracity
+ring of warmth
+ring of water elemental command
+ring of water walking
+ring of wind
+ring of winter
+ring of x-ray vision
+rival coin
+roach
+robe
+robe of eyes
+robe of scintillating colors
+robe of serpents
+robe of stars
+robe of summer
+robe of the archmagi
+robe of useful items
+robes
+robot controller
+rocborne hand ballista
+rocborne robe
+rocborne rod
+rod of absorption
+rod of alertness
+rod of hellish flames
+rod of lordly might
+rod of mercurial form
+rod of resurrection
+rod of retribution
+rod of ruin
+rod of rulership
+rod of security
+rod of seven parts
+rod of the pack master
+rod of the pact keeper, +1
+rod of the pact keeper, +2
+rod of the pact keeper, +3
+rod of the vonindod
+rod of wild dominion
+rogue card
+rogue's brew
+rogue's mantle
+rope
+rope of climbing
+rope of entanglement
+rope of mending
+rotor of return
+rowboat
+ruby
+ruby elixir
+ruby of the war mage
+ruby rod of asmodeus
+ruby weave gem
+ruidium shield
+ruin card
+ruin's wake (awakened)
+ruin's wake (dormant)
+ruin's wake (exalted)
+ruinblade
+ruinous flail
+ruinstone
+runic ammunition
+rusted hulk
+ryath root
+saber of unity
+sack
+saddle of the cavalier
+saddle, exotic
+saddle, military
+saddle, riding
+saddlebags
+saffron
+sage card
+sage's mirror
+sage's signet (bear)
+sage's signet (hart)
+sage's signet (lion)
+sage's signet (serpent)
+sage's signet (songbird)
+sage's signet (wolf)
+sage's trinket
+sailing ship
+saint markovia's thighbone
+salt
+sanctified cannon
+sanctuary charm
+sanctum amulet
+sanctum charm
+sandstorm dancer
+sangromancer's vial
+sapphire buckler
+sardonyx
+sarlona trinket
+scale mail
+scaled toughness
+scalehide cream
+scarab of protection
+scatter bullet
+scatter bullets (10)
+scholar's anchoring bangle
+scholar's cap +1
+scholar's cap +2
+scholar's cap +3
+scholar's pack
+scimitar
+scimitar of speed
+scissors of shadow snipping
+scorching cleaver
+scorpion armor
+scorpion ship
+scourge of shadow
+scout scanner
+screaming longbow
+scribe's pen
+scribing channeling wand
+scribing dragonmark channel
+scribing dragonmark reservoir
+scroll of protection
+scroll of protection from aberrations
+scroll of protection from beasts
+scroll of protection from celestials
+scroll of protection from elementals
+scroll of protection from fey
+scroll of protection from fiends
+scroll of protection from plants
+scroll of protection from undead
+scroll of tarrasque summoning
+scroll of the comet
+scroll of titan summoning
+sea serpent hairpin
+seafarer's jacket
+sealing wax
+seat belt
+second skin
+secondhand steal trinket
+secret keeper's circlet
+seed of rebirth
+seeing glass
+seeker dart
+sekolahian worshiping statuette
+selesnya charm
+selesnya guild signet
+selesnya keyrune
+semiautomatic pistol
+sending stone
+sending stones
+sensors
+sensory stone
+sentinel channeling wand
+sentinel dragonmark channel
+sentinel dragonmark reservoir
+sentinel shield
+septum ring of the great minotaur
+serpent dart
+serpent scale armor
+serpent venom
+serpent's fang
+serpentine mirror
+servitude choker
+set of gold nesting dolls
+set of numat's trick tubes
+set of secret scribe candles
+shaarat'doovol, the blade of truth
+shadow channeling wand
+shadow dragonmark channel
+shadow dragonmark reservoir
+shadow drinker
+shadow ink
+shadow sibling
+shadow ward
+shadowfell brand tattoo
+shadowfell shard
+shadowshawl
+shadowsmoke dragon pipe
+shadowsteel blades
+shadowsteel focus
+shaedenstaff
+shagambi
+shape-shifter's circlet
+shapeshifter blood
+shard of the ise rune
+shard of xeluan
+shard solitaire (black sapphire)
+shard solitaire (diamond)
+shard solitaire (jacinth)
+shard solitaire (rainbow pearl)
+shard solitaire (ruby)
+shared burden
+sharkrazor mantle
+shatterspike
+shatterstick
+shawm
+sheep
+sheer cold
+shells (10)
+shield
+shield emitter
+shield generator
+shield guardian amulet
+shield module
+shield of expression
+shield of far sight
+shield of missile attraction
+shield of shouting
+shield of the blazing dreadnought
+shield of the cavalier
+shield of the hidden lord
+shield of the silver dragon
+shield of the tortoise
+shield of the uven rune
+shield of yggdrasil
+shielding turtle sugarbombs
+shiftweave
+shipmending spray
+shipmending sprays
+shock absorbers
+shortbow
+shortsword
+shot (10)
+shotgun
+shoulder cannon
+shovel
+shrieking greaves
+shrike ship
+shroud of ending
+sickle
+signal jammer
+signal whistle
+signet ring
+signet rings of blindness, deafness, and silence
+signet rings of the fey court
+silent weapon
+silk
+silk (1 sq. yd.)
+silk robe with gold embroidery
+silk rope (50 feet)
+silk vestments with gold embroidery
+silken socks of slickening
+silken spite (awakened)
+silken spite (dormant)
+silken spite (exalted)
+silver (1 lb)
+silver and gold brooch
+silver bar (2-pound)
+silver bar (5-pound)
+silver chalice set with moonstones
+silver dragon scale mail
+silver eagle weapon
+silver ewer
+silver headdress with amber and red-coral feathers (sun empire)
+silver lycan chime
+silver medallion (sun empire)
+silver necklace with a gemstone pendant
+silver necklace with an amber pendant (sun empire)
+silver shoulder piece with amber and garnet (sun empire)
+silver sword
+silver-plated steel longsword with jet set in hilt
+silvered weapon
+silverquill primer
+silverquill trinket
+simic charm
+simic guild signet
+simic keyrune
+sinda berries (10)
+singing stein
+singularity emitter
+siren song lyre
+sirensong silencer
+sizzling serum
+skeleton keycard
+skull card
+skull helm
+skull of selfish knowledge
+skyblinder staff
+skysail
+skyship
+sled
+sled dog
+sledgehammer
+sleep grenade
+slimeforged blade
+sling
+sling bullet, +1
+sling bullet, +2
+sling bullet, +3
+sling bullet, acid
+sling bullet, alchemist's fire
+sling bullet, armor-piercing
+sling bullet, blessed
+sling bullet, brutal
+sling bullet, desecrated
+sling bullet, holy water
+sling bullet, incendiary
+sling bullet, piercing
+sling bullet, ranging
+sling bullet, war oil
+sling bullet, whistling
+sling bullets (20)
+sling bullets of althemone
+sling of giant felling
+sling of the tiny giant
+slippers of spider climbing
+slumbering dragon vessel
+slumbering dragon-touched focus
+slumbering scaled ornament
+small gold bracelet
+small gold idol
+small gold statuette set with rubies
+small mirror set in a painted wooden frame
+smash potatoes
+smith's tools
+smoke bomb
+smoke grenade
+smokepowder
+smoldering armor
+snicker-snack
+snowshoes
+snuff
+snugglebeast (dragon)
+snugglebeast (owlbear)
+snugglebeast (tarrasque)
+snugglebeast (unicorn)
+snugglebeasts
+soap
+soarsled
+socks of the well-rested
+solar wings of ra
+somniferous blossom rod
+songhorn
+soothsalts
+sorting beast
+soul bag
+soul coin
+soulbond stone
+sovereign glue
+space galleon
+spacer's pack
+spaceship trinket
+spacewalkers
+spark
+speaking stone
+speaking stones
+spear
+spear of backbiting
+spell bottle
+spell component ring
+spell duelist's trophy
+spell gem (amber)
+spell gem (bloodstone)
+spell gem (diamond)
+spell gem (jade)
+spell gem (lapis lazuli)
+spell gem (obsidian)
+spell gem (quartz)
+spell gem (ruby)
+spell gem (star ruby)
+spell gem (topaz)
+spell-refueling ring
+spell-slinger's puppet
+spellbook
+spellburrow
+spellguard shield
+spelljamming helm
+spellshard
+spellwoven robe
+spellwrought tattoo (1st level)
+spellwrought tattoo (2nd level)
+spellwrought tattoo (3rd level)
+spellwrought tattoo (4th level)
+spellwrought tattoo (5th level)
+spellwrought tattoo (cantrip)
+sphere of annihilation
+sphere of the arcane armament
+spider pod
+spider staff
+spiderbite daggers
+spies' murmur
+spiked shield
+spiked skin
+spikes, iron
+spindle of fate
+spinel
+spire of conflux (awakened)
+spire of conflux (dormant)
+spire of conflux (exalted)
+spire seed
+spirit board
+spirit pike
+splint armor
+splintershot
+splitter
+sprig of mistletoe
+sprinting legs
+spyglass
+spyglass of clairvoyance
+squasher
+squid ship
+stabling (1 day)
+stabling (per day)
+staff of adornment
+staff of birdcalls
+staff of briars
+staff of charming
+staff of climbing ivy
+staff of defense
+staff of dunamancy
+staff of fate
+staff of favorable winds
+staff of fire
+staff of flowers
+staff of frost
+staff of healing
+staff of power
+staff of ruling
+staff of striking
+staff of swarming insects
+staff of the adder
+staff of the forgotten one
+staff of the four seasons
+staff of the ivory claw
+staff of the lost
+staff of the magi
+staff of the magpie
+staff of the mirage
+staff of the mustang
+staff of the python
+staff of the reverent warrior
+staff of the rooted hills
+staff of the sorcerer king
+staff of the woodlands
+staff of thunder and lightning
+staff of withering
+stalaga spear
+stalk symbiote
+star card
+star metal ring
+star moth
+star razor (awakened)
+star razor (dormant)
+star razor (exalted)
+star rose quartz
+star ruby
+star sapphire
+starbreaker
+starmetal ring
+starmetal shield
+starmetal solar axe
+starmetal striker
+starshield hardsuit
+statuette of augury
+statuette of saint markovia
+steel
+steel mirror
+steppe rations
+steps of the trickster
+stink bomb
+stirring dragon vessel
+stirring dragon-touched focus
+stirring scaled ornament
+stitching needle
+stone of controlling earth elementals
+stone of creation
+stone of golorr
+stone of good luck
+stone of ill luck
+stonebreaker's breastplate
+stonemaker war pick
+stonespeaker crystal
+stonky's ring
+storm boomerang
+storm channeling wand
+storm dragonmark channel
+storm dragonmark reservoir
+storm sickle
+storm thrower harpoon
+storm's embrace
+stormgirdle (awakened)
+stormgirdle (dormant)
+stormgirdle (exalted)
+stormrider boots
+stormstruck staff
+straitjacket
+strawbundle's charm
+strig feather robe
+string
+strixhaven pennant
+studded leather armor
+suit of the lamb
+summer's dance
+sun amulet on a beaded chain (sun empire)
+sun blade
+sun card
+sun shades
+sun staff
+sunbeam compass
+sundersludge net
+sunforger
+sunsword
+superior shipmending spray
+supreme shipmending spray
+surveyor's pack
+survival mantle
+suude (blue)
+suude (brown)
+suude (red)
+swarm repellent
+sweeping broom
+switch
+sword of answering
+sword of answering (answerer)
+sword of answering (back talker)
+sword of answering (concluder)
+sword of answering (last quip)
+sword of answering (rebutter)
+sword of answering (replier)
+sword of answering (retorter)
+sword of answering (scather)
+sword of answering (squelcher)
+sword of kas
+sword of life stealing
+sword of resonance
+sword of sharpness
+sword of the paruns
+sword of the spelldrinker
+sword of vengeance
+sword of wounding
+sword of zariel
+sylvan talon
+tablet of reawakening
+tachyon missile launcher
+tactical carbonic hardsuit
+tactical nanofiber vest
+tactical vest
+taergash's exsanguinating tome
+talarith
+talisman of pure good
+talisman of the sphere
+talisman of tormach
+talisman of ultimate evil
+talking doll
+talking wand
+talon tincture
+talons card
+talons of the squall
+talyard the great's wand of power
+tangler grenade
+tankard
+tankard of plenty
+tankard of sobriety
+tantan
+tarnished idol of good fortunes
+tasha's creeping keelboat
+tea
+tear of gaia
+tearulai
+tectonic gauntlets
+teeth of dahlver-nar
+tej
+teleportation tablet
+teleporter ring
+teleporters
+telescopic transporter
+telescoping bladelance
+telltale heart
+tempest griffon feather cape
+ten keyholes dagger
+tent
+tentacle rod
+terraforming engine
+tether tearer
+tethervine quiver
+thassa's devotee
+thassa's disciple
+thassa's votary
+thayan spell tattoo
+the blessed of corellon
+the bloody end (awakened)
+the bloody end (dormant)
+the bloody end (exalted)
+the codicil of white
+the griffon's saddlebag
+the incantations of iriolarthas
+the infernal machine of lum the mad
+the rose basket
+the thorn of kren
+theki root
+thelarr
+thermal cube
+thermalsight eyes
+thespian's playbill
+thessaltoxin
+thessaltoxin antidote
+thief's thimble
+thieves' tools
+thornpiercer
+thought talker orbs
+three keyholes dagger
+three-dragon ante set
+thricecall mirror
+throne card
+throwing scarab
+thunder absorbing tattoo
+thunder rifle
+thunderbuss
+thunderous flail
+thunderous greatclub
+thuranni cloak
+thurimbar rod
+thwackstaff
+tidecaller trident
+tiger eye
+timber
+time of the dragon
+timepiece of travel
+timepiercer
+timeshifter's mantle
+tinderbox
+tinderstrike
+tinker's tools
+tinkertop boltblaster 1000
+tiny jade figurine (river heralds)
+titan armor
+titanstone knuckles (awakened)
+titanstone knuckles (dormant)
+titanstone knuckles (exalted)
+tloques' berserker battleaxe
+toadstone
+toadstool toddy
+tocken
+tome of clear thought
+tome of dreams
+tome of leadership and influence
+tome of strahd
+tome of the dragon
+tome of the stilled tongue
+tome of understanding
+tongue of the dragon
+tongueworm
+tooth capsule
+topaz
+topaz annihilator
+torch
+torchbearer's reach
+tormach's blessed weapon
+torpedo ammunition
+torpor
+torrent taiaha
+tote of tricky treat sugarbombs
+totem
+tourmaline
+tower shield
+traction spikes
+tractor beam
+tranquil rod of the honed mind
+travel alchemical kit
+traveler's clothes
+traveler's guide
+traveler's lantern
+traveler's pearl
+traveling snacks
+treasure chest crafted of exotic wood with gold fittings and opals (brazen coalition)
+trident
+trident of fish command
+trident of the dryad
+trident of the hydra
+trigger bomb
+trinket (ai)
+trinket (cos)
+trinket (eet)
+trinket (phb)
+triplate suit
+true-ice shards (dagger)
+true-ice shards (rapier)
+truth serum
+tub of churning and fermentation
+turquoise
+turtle ship
+two-birds sling
+two-person tent
+tyrant ship
+ulcrun
+ulmyr's eye (adept)
+ulmyr's eye (aspirant)
+ulmyr's eye (master)
+un's codex
+unbreakable arrow
+uncommon glamerweave
+universal pantograph
+universal solvent
+universal translator
+unkh
+uorik the conqueror's juice cup
+uul'kur (dream key)
+vadalis band
+vancian helm
+vanrak's mithral shirt
+vari-blaster
+velvet doublet with gold buttons (legion of dusk)
+venombane armor
+vent tape
+ventilating lungs
+verminshroud (awakened)
+verminshroud (dormant)
+verminshroud (exalted)
+very rare molten fire forge
+veteran's cane
+vial
+vial of greed
+vial of stardust
+vial of thought capture
+vicious weapon
+vigilant rod of the honed mind
+vigilus
+vilesmog bomb
+vino veritas
+viol
+visage of delight and disaster
+vlagomir's spark
+voice changer
+void ammunition
+void beacon
+void card
+voidwalker armor
+vola'khesh
+volcanic boots
+volt gauntlets
+voltedge
+vorpal sword
+voting kit
+vox helm
+vox seeker
+voyager staff
+w-rec
+wagon
+wakened dragon vessel
+wakened dragon-touched focus
+wakened scaled ornament
+walloping ammunition
+wand of binding
+wand of conducting
+wand of enemy detection
+wand of entangle
+wand of fear
+wand of fireballs
+wand of freshness
+wand of lightning bolts
+wand of magic detection
+wand of magic missiles
+wand of orcus
+wand of paralysis
+wand of polymorph
+wand of pyrotechnics
+wand of scowls
+wand of secrets
+wand of silence
+wand of slumber
+wand of smiles
+wand of teeth
+wand of the poltergeist
+wand of the war mage, +1
+wand of the war mage, +2
+wand of the war mage, +3
+wand of viscid globs
+wand of web
+wand of whispers
+wand of winter
+wand of wonder
+wand sheath
+wandering eye
+war horn of valor
+war pick
+war staff
+war standard of battlecries
+warden's link
+warding brooch
+warding channeling wand
+warding dragonmark channel
+warding dragonmark reservoir
+wargong
+warhammer
+warhorse
+warm fungal clothing
+warmind wand
+warrior's passkey
+warship
+wasp ship
+watcher's candle
+watchful helm
+waterskin
+wave
+wavebender's leiomano
+wayfarer's boots
+waythe
+weapon of mooring
+weapon of showmanship
+weapon of spite
+weapon of warning
+weapon wheel
+weaver's tools
+webgrip rucksack
+weird tank
+well of many worlds
+well-made tapestry that is 10 feet by 10 feet
+whaleboat
+wheat
+wheel of stars
+wheel of wind and water
+whelm
+whetstone
+whip
+whisper (awakened)
+whisper (dormant)
+whisper (exalted)
+whisper jar
+whistle of freedom
+whistle-stick
+white chromatic rose
+white dragon cape
+white dragon mask
+white dragon scale mail
+white ghost orchid seed
+whitestone
+wildman's spinning cleaver
+wildroot
+wildspace orrery
+will of the talon (awakened)
+will of the talon (dormant)
+will of the talon (exalted)
+willowshade oil
+wind fan
+wind glider
+wind stones
+windrazor
+windskiff
+windswept wyvernplate
+windvane
+wing crest shield
+winged boots
+wings of flying
+wingwear
+winter camouflage
+winter's dark bite
+winter's embrace
+wisplight lantern
+witchlight vane
+witchlight watch
+witherbloom primer
+witherbloom trinket
+wongo
+woodcarver's tools
+woodcutter's axe
+wooden chain of the unbroken circle
+wooden staff
+workshop wrecker
+wraps of aphaeleon
+wraps of dyamak (awakened)
+wraps of dyamak (dormant)
+wraps of dyamak (exalted)
+wraps of unarmed power, +1
+wraps of unarmed power, +2
+wraps of unarmed power, +3
+wreath of the prism (awakened)
+wreath of the prism (dormant)
+wreath of the prism (exalted)
+wristwatch
+writing kit
+wrought-iron tower
+wukka nut
+wyllow's staff of flowers
+wyrmreaver gauntlets
+wyrmskull throne
+wyvern poison
+wyvernwing
+xen'drik trinket
+yahcha
+yarting
+yellow death
+yellow sapphire
+yester hill axe
+yew wand
+ythryn mythallar
+yuan-ti pureblood transformation
+zabou
+zafu of the wandering mind
+zeal
+zeal
+zipgun
+zircon
+zulkoon

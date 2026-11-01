@@ -67,11 +67,17 @@ def attack(e):
     if dc: out.append("DC " + "/".join(dc))
     return ", ".join(out) + "."
 def strip_keep(t): return t if isinstance(t, str) else ""
+import hashlib, json as _json, os as _os
+def tkey(e):
+    """key of one trait or action in tools/q/overlay/monster_txt.json: name plus the entries (the same text in many stat blocks shares one rewrite)"""
+    return hashlib.sha1((e.get("name", "") + "\n" + _json.dumps(e.get("entries", ""), sort_keys=True)).encode("utf-8")).hexdigest()[:12]
+_TP = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "overlay", "monster_txt.json")
+TXT = _json.load(open(_TP, encoding="utf-8")) if _os.path.exists(_TP) else {}
 def block(items, att=True):
     out = []
     for e in items or []:
         if not isinstance(e, dict) or not e.get("name"): continue
-        a = attack(e) if att else None
+        a = TXT.get(tkey(e)) or (attack(e) if att else None)
         out.append([strip(e["name"]), a or ""])
     return out
 def spells(x):
