@@ -5041,3 +5041,9 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 1 — kajian gaya awal
+Sudah melihat langsung 14 ikon art-batch: lucky, alert, savage-attacker, blinded, charmed, potion, ring, dragon, undead, fire, strength, serta tiga item acak (crystal-ball-of-mind-reading, voyager-staff, queen-ehlissas-marvelous-nightingale), dan sheet-001-a/b dari art-test2. Ikon lama memiliki kontur berwarna lebih gelap dari bahan, detail lipatan/ukiran dan bentuk yang terbaca kecil; beberapa lebih berkilau. Patokan utama lembar art-test2 lebih realistis dan tenang: palet cokelat, emas kusam, gading, batu dan warna aksen sedang, tekstur lukisan halus, ukiran kecil, kilap terbatas, kontur tipis tanpa hitam tebal, bayangan lembut dan transparansi. Lembar baru mengikuti patokan art-test2 tersebut.
+
+### Sesi 1 — sheet-002
+Selesai: sheet-002-a.png (1–50) dan sheet-002-b.png (51–100), masing-masing PNG RGBA 2560×1280, sel 256 px. Generate asli: empat panel 1254×1254 RGBA; tidak diperbesar, objek diekstrak lalu diperkecil seperlunya agar margin minimal 24 px. Pemeriksaan visual berdampingan pada kanvas 256 px dengan alert, blinded, ring dari art-batch dan buku acuan art-test2: kontur halus, warna sedang, tekstur realistis. Pemeriksaan urutan dan seluruh lembar dilakukan; dimensi, alpha dan margin semua sel lolos. Sel interpretatif/meragukan: 15–22 (lambang pantheon), 60 (demam: botol obat), 62 (kegilaan: kepala retak), 72–78 (psionik/patron/pilihan karakter), 83–84 dan 95–100 (tabel/bahasa sebagai simbol tanpa teks).
