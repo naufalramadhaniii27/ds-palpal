@@ -156,7 +156,8 @@ function crHpH(key,max){ var cur=crHpCur(key,max), pc=max?Math.round(100*cur/max
   return '<div class="crhp '+st+'"><div class="crhp-t"><span class="crhp-l">'+ico("hp-heal","dc-ci")+'Hit Points</span><b><span class="crhp-n">'+cur+'</span><i> / '+max+'</i></b></div><div class="crhp-bar"><i style="width:'+pc+'%"></i></div>'+(cur<=0?'<p class="crhp-d">0 Hit Points. This creature is down.</p>':'')+
    '<div class="crhp-c"><input class="crhp-in" type="number" inputmode="numeric" min="0" step="1" placeholder="HP" aria-label="Hit Points amount">'+bt("dmg","Damage","dmg")+bt("heal","Heal","heal")+bt("full","Full","full")+'</div></div>'; }
 function crBlock(c,ctx){ var env=crEnv(ctx,c), o=crStat(c,ctx), T=function(s){ return rich(crText(s,env)); }, h="";
-  var sp=/^sp:/.test(ctx)?ctx.slice(3):"", sel=crSel[c.n]||{};
+  var sp=/^sp:/.test(ctx)?ctx.slice(3):"", sel=crSel[c.n]||{}, im=window.CRIMG&&window.CRIMG[c.n];
+  if(im) h+='<img class="lib-im cr-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="'+esc(c.n)+'" src="data/img/'+encodeURI(im)+'.webp" onerror="this.remove()">';/* picture first, large */
   h+='<div class="dc dc-c">'+dcHead(ico("creature","isch"),esc(o.size+" "+o.type+(o.al?", "+o.al:""))+' • '+esc(srcPg(o.src||"PHB-2024",o.pg)));
   if(sp) h+='<div class="crsp"><span class="crsp-l">Spell level <small>from '+esc(sp)+'</small></span><div class="crsp-s"><button type="button" class="btn press crsl" data-crsl="-1" data-crn="'+esc(c.n)+'" aria-label="Lower spell level">−</button><b>'+env.SL+'</b><button type="button" class="btn press crsl" data-crsl="1" data-crn="'+esc(c.n)+'" aria-label="Higher spell level">+</button></div></div>';
   if((c.variants||[]).length) h+='<div class="ifil crvar">'+c.variants.map(function(q){ return '<button type="button" class="ifb'+(sel.v===q.v?' on':'')+'" data-crv="'+esc(q.v)+'" data-crn="'+esc(c.n)+'">'+esc(q.v)+'</button>'; }).join("")+'</div>';

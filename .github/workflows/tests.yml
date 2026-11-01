@@ -34,7 +34,7 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in names_lint csp_check version_label learn_links builder_draft scenarios golden_rules; do
+          for t in names_lint csp_check version_label learn_links builder_draft scenarios golden_rules split_dist; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"

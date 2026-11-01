@@ -13,7 +13,7 @@ Peta source untuk `index.html`. Hasil build `index.html` dan `sw.js`. Source ada
 | `python3 tests/measure.py [OUT.json] [--runs N] [--only "1250x850 cpu4x"]` | Waktu siap, data Builder selesai, Builder pertama dan kedua, Search pertama, di 390 dan 1250, CPU 1x dan 4x |
 | `python3 tests/flow_home_sheet.py [OUT]` | Alur Home ke sheet ke Home dan ganti karakter, dengan video. Cek perpindahan tersambung jalan dan tidak ada yang tertinggal tersembunyi |
 | `python3 tests/compare_storage.py RUN_A RUN_B` | Bandingkan localStorage dua run. Cap waktu dan hash snapshot ditutup |
-| `sh tools/pages_dist.sh` | Cloudflare Pages: salin situs jadi (index.html, sw.js, manifest, _headers, img, icons) ke `dist/`. Source, tests, reports tidak ikut. Header ada di `_headers` |
+| `sh tools/pages_dist.sh` | Cloudflare Pages: salin situs jadi (index.html, sw.js, manifest, _headers, img, icons) ke `dist/`. Source, tests, reports tidak ikut. Header ada di `_headers`. Sesudah salin, `tools/split_dist.py` memecah 34 bagian tunda jadi `dist/p/NAME.HASH.js` (lihat bagian Build terpecah) |
 | `python3 build.py --verify-split` | Tes lama pemecah otomatis (nama otomatis, hanya untuk cek). Tidak mengubah `src/` |
 
 Alur edit: ubah file di `src/`, jalankan `python3 build.py`, lalu `python3 build.py --check` dan `python3 tests/scenarios.py`. Commit `src/`, `index.html`, dan `sw.js` bersama.
@@ -340,3 +340,12 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | Build sinkron dengan `index.html`, `sw.js`, hash CSP, lint, sidik jari vendor | `python3 build.py --check` | Gagal bila salah satu berbeda |
 | Sidik jari library PDF | `python3 build.py --vendor-update` | Menulis ulang `vendor/pdf/SHA256SUMS`. Jalankan hanya setelah mengganti library dengan sengaja |
 | CI sebelum merge | `.github/workflows/tests.yml` | Menjalankan build check, `tg_engine.js`, dan tujuh tes browser yang tidak butuh server |
+
+
+## Build terpecah (hosting)
+- `index.html` di root tetap satu berkas dan tetap hasil proyek. `tools/split_dist.py` membuat bentuk kedua hanya untuk `dist/`: tiap `<script type="text/x-defer" data-defer="N">` jadi `data-src="p/N.HASH.js"`. Hanya Python standar, jalan dari `tools/pages_dist.sh`.
+- CSP tidak diubah. Hash tiap bagian sudah ada di meta CSP, dan loader menjalankan teks hasil fetch sebagai skrip inline. Berkas yang berubah di jalan ditolak browser.
+- `src/boot/deferred-loader.js` mengambil berkas setelah halaman terbaca, lalu menjalankannya berurutan. `__bldNeed()` membaca bagian yang belum datang lewat XHR sinkron, jadi pemanggil lama tidak berubah.
+- `sw.js` hasil pecah menyimpan semua bagian saat install. Bagian yang sudah ada di cache lama disalin, tidak diunduh lagi. Permintaan `p/*.js` dijawab dari cache tanpa fetch ulang. `_headers` memberi `immutable` untuk `/p/*`.
+- Hasil ukur (`tests/measure_split.py`, 6 Mbps, 40 ms): tampilan pertama sama (1,8 detik) karena berkas tunggal sudah tampil saat HTML masih mengalir. Manfaatnya ada di rilis: satu bagian berubah berarti satu berkas diunduh, bukan seluruh halaman.
+- Tes: `python3 tests/split_dist.py` (nama window sama dengan berkas tunggal, 34 bagian sekali fetch, bagian rusak ditolak CSP, offline). Tes lain memakai `index.html` tunggal. Tes yang mengosongkan localStorage tepat setelah `goto` bisa balapan dengan boot di build terpecah karena event load datang lebih awal. Jalankan tes itu pada berkas tunggal.

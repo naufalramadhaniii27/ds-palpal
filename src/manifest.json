@@ -605,6 +605,7 @@
     "data/q08-vehicle.js",
     "data/q10-fluff.js",
     "data/q11-img.js",
+    "data/q12-crimg.js",
     "data/q12-rule.js",
     "data/q12-facility.js"
    ]
