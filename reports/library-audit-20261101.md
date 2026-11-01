@@ -51,4 +51,5 @@ Each step ends with `tests/q_lib.py` and the three scenarios at 390x844 and 1250
 | Feats of all books | 79 to 553 (copy kept in `WXF_ALL` before the builder drops them) |
 | Rules missing from the Library | 11 added in own wording (`tools/q/rule_gaps.py`). Conditions, actions and skills were already there under rules and statuses |
 | Entries in the Library | 8,228 to 13,700. `tests/q_fluff.py` opens every entry: 0 bad |
-| Still open | subclasses of all books (WXS), class and subclass features, optional features, item variants and groups, life tables, deities, languages, books and adventures index, wikis, monster trait text |
+| Subclasses of all books and their features | 48 to 235 subclasses, entries in the Library 13,700 to 17,510. `tests/q_fluff.py`: 0 bad |
+| Still open | class features of base classes, optional features, item variants and groups, life tables, deities, languages, books and adventures index, wikis, monster trait text |
