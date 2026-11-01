@@ -9,14 +9,19 @@ const man = JSON.parse(fs.readFileSync(path.join(SRC, "manifest.json"), "utf8"))
 const known = Object.assign({}, globals.browser, globals.es2021, globals.serviceworker);
 ["window","document","navigator","localStorage"].forEach(k => known[k] = false);
 const out = [], globalDecl = new Set(), undefAll = [];
+const units = [];
 man.forEach((e, bi) => {
   if (e.t !== "block" || !/^<script/.test(e.open) || /src=/.test(e.open)) return;
-  const files = e.files.filter(f => f.endsWith(".js")); if (!files.length) return;
+  const fl = e.files.filter(f => f.endsWith(".js")); if (!fl.length) return;
+  /* ES module blocks (entry): each file is its own module, imports are followed by esbuild at build */
+  if (e.entry) fl.forEach(f => units.push({ e, bi, files: [f], mod: true })); else units.push({ e, bi, files: fl, mod: false });
+});
+units.forEach(({ e, bi, files, mod }) => {
   let text = "", spans = [];
   files.forEach(f => { const t = fs.readFileSync(path.join(SRC, f), "utf8"); spans.push({ f, a: text.length, b: text.length + t.length }); text += t; });
   const rec = { block: bi, tag: e.open, files: files.length, first: files[0], bytes: text.length };
-  let ast; try { ast = espree.parse(text, { ecmaVersion: 2022, range: true, loc: true, sourceType: "script" }); } catch (er) { rec.parseError = String(er.message).slice(0, 120) + " @" + (er.index || "?"); out.push(rec); return; }
-  const sm = escope.analyze(ast, { ecmaVersion: 2022, sourceType: "script" });
+  let ast; try { ast = espree.parse(text, { ecmaVersion: 2022, range: true, loc: true, sourceType: mod ? "module" : "script" }); } catch (er) { rec.parseError = String(er.message).slice(0, 120) + " @" + (er.index || "?"); out.push(rec); return; }
+  const sm = escope.analyze(ast, { ecmaVersion: 2022, sourceType: mod ? "module" : "script" });
   const fileOf = pos => { for (const s of spans) if (pos >= s.a && pos < s.b) return s.f; return "?"; };
   const undef = {}, cross = {}, decl = {}, where = {};
   const visit = sc => {
@@ -29,7 +34,7 @@ man.forEach((e, bi) => {
   sm.globalScope.variables.forEach(v => { if (v.defs.length) globalDecl.add(v.name); });
   (function wa(n){ if (!n || typeof n !== 'object') return; if (n.type === 'AssignmentExpression' && n.left.type === 'MemberExpression' && n.left.object.name === 'window' && !n.left.computed && n.left.property.name) globalDecl.add(n.left.property.name); for (const k in n) { if (k === 'loc' || k === 'range') continue; const c = n[k]; if (Array.isArray(c)) c.forEach(wa); else if (c && typeof c.type === 'string') wa(c); } })(ast);
   /* names declared at the outermost function scope (the IIFE) or global: used from another file? */
-  const top = []; sm.scopes.forEach(sc => { if (sc.type === "global") top.push(sc); else if (sc.type === "function" && sc.upper && sc.upper.type === "global") top.push(sc); });
+  const top = []; sm.scopes.forEach(sc => { if (sc.type === "global") top.push(sc); else if (sc.type === "module") top.push(sc); else if (sc.type === "function" && sc.upper && sc.upper.type === "global") top.push(sc); });
   let nDecl = 0, nCross = 0; const crossTop = {};
   top.forEach(sc => sc.variables.forEach(v => {
     if (!v.defs.length || v.name === "arguments") return; nDecl++;

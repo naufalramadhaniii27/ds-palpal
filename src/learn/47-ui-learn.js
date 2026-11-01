@@ -1,3 +1,6 @@
+import {A,esc,ico,ask,libOpen,buzz,ovQueue,homeInert,showHome} from "./00-bridge.js";
+import {LEARN} from "./45-data-learn.js";
+import {LRN,refreshLRN,lrnGet,lrnPut,lrnL,lrnF,lrnCore,lrnCoreDone,lrnFinish,lrnQuizDone,lrnExam,lrnRecapDue,lrnRecap,lrnD,lrnRoll,lrnBonus,lrnHasChar,spotAnchor,spotShow,spotHide,lrnFind,SPOT} from "./46-logic-learn.js";
 /* T11 Learn UI: the map, the stops step by step, the final check, the glossary card and "Find it on your sheet".
    One root (#learn) over Home and the sheet. Every drag has a tap way, every button works with the keyboard, the step text is read out
    by a live region. Motion off and reduced motion: no transitions, the 2D die shows its number at once, no 3D dice. */
@@ -160,7 +163,7 @@ function next(){ var p=LEARN.places[V.p], st=p.steps[V.i];
   V.fin=lrnFinish(p.id,false)||-1; paint(); }
 function back(){ if(V.view==="place"&&!V.fin&&V.i>0){ V.i--; V.s={}; okInit(); paint(); return; } if(V.view!=="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; } close(); }
 function pre(t){ return t==="map"?0:1; }
-function open(o){ var w=dom(); OPENER=document.activeElement; LRN=lrnGet(); if(o&&o.place!=null){ var k=-1; LEARN.places.forEach(function(p,j){ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); show(w); return; } }
+function open(o){ var w=dom(); OPENER=document.activeElement; refreshLRN(); if(o&&o.place!=null){ var k=-1; LEARN.places.forEach(function(p,j){ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); show(w); return; } }
   if(!V.view||w.hidden) V={view:"map",p:0,i:0,ok:false,s:{}}; w.hidden=false; paint("instant"); show(w); }
 function show(w){ requestAnimationFrame(function(){ w.classList.add("on"); }); if(typeof ovQueue==="function") ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){} var h=w.querySelector("#lrnB h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } }
 function close(){ var w=document.getElementById("learn"); if(!w) return; popHide(); w.classList.remove("on"); w.hidden=true; if(typeof ovQueue==="function") ovQueue(); if(typeof homeInert==="function") try{ homeInert(); }catch(e){} if(OPENER&&OPENER.focus&&OPENER.isConnected) try{ OPENER.focus({preventScroll:true}); }catch(e){} if(A.learnBand){ var hb=document.getElementById("hlearnB"); if(hb) hb.outerHTML=A.learnBand(); } }

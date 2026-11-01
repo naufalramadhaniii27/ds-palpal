@@ -4,7 +4,7 @@
    Step kinds: guess (any answer goes on), show (Hoot shows, frame by frame), pick (one or more good answers, a hint after a miss),
    roll (d20 plus bonus against a Target Number), check (judge a roll yourself), grid (move, then one main action), hp (HP goes down and up),
    dice (meet the dice), adv (two d20s), why (pick the reason), sheet (find it on your own sheet), card (a short summary to keep). */
-var LEARN={
+export var LEARN={
   ui:{
     title:{en:"Hoot's Training Grounds",id:"Tempat Latihan Hoot"},
     sub:{en:"Learn to play D&D by playing.",id:"Belajar main D&D sambil main."},
