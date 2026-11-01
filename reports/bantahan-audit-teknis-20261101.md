@@ -180,8 +180,13 @@ Dua angka tambahan yang belum ada di audit v3:
 
 | Angka | Nilai |
 |---|---|
-| brotli q11 atas `index.html` `b1f0677` | 3,04 MB (2,9 MiB), lebih kecil dari gzip 4,06 MiB |
-| gzip tanpa semua 34 blok `x-defer` | 0,96 MiB. Dengan blok builder tetap ada 1,23 MiB. Perkiraan audit "sekitar 1 MiB" untuk §8.1 wajar |
+| brotli q11 atas `index.html` `b1f0677` | 3.043.696 byte dengan jendela bawaan, 2.972.751 byte dengan jendela 24 bit (angka Hermes, 2,84 MiB). Keduanya benar untuk pengaturan masing-masing. Cloudflare memakai brotli level lebih rendah saat kirim langsung (q6 memberi 3,46 MB), jadi unduhan nyata kemungkinan 3 sampai 4 MB |
+| gzip tanpa semua 34 blok `x-defer` | 0,96 MiB. Dengan blok kode builder, learn dan tg tetap ada 1,29 MiB. Perkiraan audit "sekitar 1 MiB" untuk §8.1 wajar sebagai batas bawah |
+
+Dua catatan atas §8.1 audit v3.1 (memisahkan data):
+
+1. 34 blok `x-defer` bukan semuanya data. Tiga di antaranya kode (builder 1,0 MB, learn 0,1 MB, tg 0,07 MB), dan blok kampanye seperti `tp1` berisi ratusan fungsi di samping datanya. Angka 0,96 MiB adalah batas bawah bila semua blok itu dipisah.
+2. Angka "unduhan pertama turun ke sekitar 1 MiB" berlaku untuk tampilan pertama saja. Aplikasi ini offline-first. `sw.js` di commit itu hanya menaruh `./` dan beberapa ikon di cache pasang. Seluruh data ikut karena ada di dalam `index.html`. Bila data jadi berkas `data/*.js`, berkas itu baru masuk cache saat pertama dipakai. Pengguna yang offline sebelum membuka bestiary tidak akan memilikinya. Agar tetap offline-first, data harus diunduh di latar belakang atau masuk daftar cache pasang, sehingga total byte yang diunduh tetap sama, hanya lebih lambat datangnya.
 
 ## 9. Cara mengulang pemeriksaan
 
