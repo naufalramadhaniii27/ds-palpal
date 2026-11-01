@@ -618,7 +618,8 @@
     "data/q16-items-gap.js",
     "data/q17-class-gap.js",
     "data/q14-optfeat.js",
-    "data/q12-facility.js"
+    "data/q12-facility.js",
+    "data/q23-gapfill.js"
    ]
   },
   {
