@@ -1,0 +1,101 @@
+LEMBAR 090, 100 sel
+1. feature/psychic-eidolon | Psychic Eidolon | sub:Bond of the Aberrant Psion|Psychic Eidolon
+2. feature/psychic-feedback | Psychic Feedback | sub:Mind Domain|Psychic Feedback
+3. feature/psychic-force | Psychic Force | sub:Mind Domain|Psychic Force
+4. feature/psychic-marker | Psychic Marker | sub:Bond of the Aberrant Psion|Psychic Marker
+5. feature/psychic-reprisal | Psychic Reprisal | sub:Burden of Awakening|Psychic Reprisal
+6. feature/psychic-resistance | Psychic Resistance | sp:Kalashtar (2014)|Psychic Resistance
+7. feature/psychic-spells | Psychic Spells | sub:Bond of the Aberrant Psion|Psychic Spells
+8. feature/psychic-teleportation | Psychic Teleportation
+9. feature/puppet-strings-dance-style | Puppet Strings [Dance Style] | sub:Marionettist|Puppet Strings [Dance Style]
+10. feature/purification-domain-spells | Purification Domain Spells | sub:Purification Domain|Purification Domain Spells
+11. feature/purifying-salvation | Purifying Salvation | sub:Salvation Chapter|Purifying Salvation
+12. feature/purity-of-body | Purity of Body
+13. feature/purple-magic-spells | Purple Magic Spells | sub:Purple Magic|Purple Magic Spells
+14. feature/pyromancers-fury | Pyromancer's Fury | sub:Pyromancer (PSK)|Pyromancer's Fury
+15. feature/pyrotechnics-dance-style | Pyrotechnics [Dance Style] | sub:Fire Dancer|Pyrotechnics [Dance Style]
+16. feature/quality-junk | Quality Junk | sub:Scrappers' Guild|Quality Junk
+17. feature/quantum-tunneling | Quantum Tunneling | sub:Quantum Mechanic|Quantum Tunneling
+18. feature/quick-snack | Quick Snack | sub:Gourmand|Quick Snack
+19. feature/quickened-healing | Quickened Healing
+20. feature/quickening | Quickening | sub:Farseer|Quickening
+21. feature/quickness-of-the-gods | Quickness of the Gods | sub:Speed Domain|Quickness of the Gods
+22. feature/quill-and-ink | Quill and Ink | sub:College of Calligraphy|Quill and Ink
+23. feature/rabbit-hop | Rabbit Hop | sp:Harengon (WBtW)|Rabbit Hop
+24. feature/raconteur | Raconteur | sub:College of Jesters|Raconteur
+25. feature/radiant-champion | Radiant Champion | sub:Oath of Radiance|Radiant Champion
+26. feature/radiant-consumption | Radiant Consumption | sp:Aasimar (Scourge)|Radiant Consumption
+27. feature/radiant-fire | Radiant Fire
+28. feature/radiant-recovery | Radiant Recovery | sub:Star Patron|Radiant Recovery
+29. feature/radiant-shell | Radiant Shell | sub:Luminaries' Guild|Radiant Shell
+30. feature/radiant-soul | Radiant Soul | sp:Aasimar (Protector)|Radiant Soul
+31. feature/radiant-sun-bolt | Radiant Sun Bolt | sub:Way of the Sun Soul|Radiant Sun Bolt
+32. feature/radiation-burst | Radiation Burst | sub:Cosmic Magic|Radiation Burst
+33. feature/rage-of-the-dead | Rage of the Dead | sub:Path of the Wrathful Dead|Rage of the Dead
+34. feature/raise-cohort | Raise Cohort | sub:Holy Icon|Raise Cohort
+35. feature/rakish-audacity | Rakish Audacity | sub:Swashbuckler|Rakish Audacity
+36. feature/rallying-cry | Rallying Cry | sub:Purple Dragon Knight (Banneret)|Rallying Cry
+37. feature/rallying-strike | Rallying Strike | sub:Burden of Revolution|Rallying Strike
+38. feature/rallying-surge | Rallying Surge | sub:Banneret|Rallying Surge
+39. feature/ram | Ram | sp:Satyr (2014)|Ram
+40. feature/rampage | Rampage | sp:Gnoll|Rampage
+41. feature/rampage-maneuver | Rampage [Maneuver] | sub:Dragon Banner|Rampage [Maneuver]
+42. feature/ranged-specialist | Ranged Specialist | sub:Big Game Hunter|Ranged Specialist
+43. feature/ranger-archetype | Ranger Archetype
+44. feature/ranger-archetype-feature | Ranger Archetype feature
+45. feature/ranger-subclass | Ranger Subclass | cls:Ranger|Ranger Subclass
+46. feature/rangers-companion | Ranger's Companion | sub:Beast Master (2014)|Ranger's Companion
+47. feature/ranting-ruin | Ranting Ruin | sub:Apocalypse Domain|Ranting Ruin
+48. feature/rapid-consumption | Rapid Consumption | sub:Living Crucible|Rapid Consumption
+49. feature/rapid-deployment | Rapid Deployment | sub:Trappers' Guild|Rapid Deployment
+50. feature/rapid-strike | Rapid Strike | sub:Samurai|Rapid Strike
+51. feature/rapid-suturing | Rapid Suturing | sub:Courtiers' Guild|Rapid Suturing
+52. feature/rapid-tinkerer | Rapid Tinkerer | sub:Trapper Guild|Rapid Tinkerer
+53. feature/raptor-subrace | Raptor Subrace | sp:Raptor|Raptor Subrace
+54. feature/ravage | Ravage | sub:Path of the Abomination|Ravage
+55. feature/ravening-horde | Ravening Horde | sub:Hunger Domain|Ravening Horde
+56. feature/ravenite-heritage | Ravenite Heritage | sp:Dragonborn (Ravenite)|Ravenite Heritage
+57. feature/razor-claws | Razor Claws | sp:Wrothian|Razor Claws
+58. feature/razormaw | Razormaw | sp:Pluvenn|Razormaw
+59. feature/reach-to-the-blaze | Reach to the Blaze | sp:Flamekin|Reach to the Blaze
+60. feature/reaching-roots | Reaching Roots | sub:Bond of the Shambling Plant|Reaching Roots
+61. feature/reactive | Reactive | sub:Contortionist|Reactive
+62. feature/reactive-echo | Reactive Echo | sub:Prescient Knight|Reactive Echo
+63. feature/reactive-hack | Reactive Hack | sub:AI Futurist|Reactive Hack
+64. feature/reactive-nanites | Reactive Nanites | sub:Nanite Magic|Reactive Nanites
+65. feature/ready-for-action | Ready for Action | sub:Nightwatcher|Ready for Action
+66. feature/reanimated-companion | Reanimated Companion | sub:Reanimator|Reanimated Companion
+67. feature/reanimator-spells | Reanimator Spells | sub:Reanimator|Reanimator Spells
+68. feature/reanimators-skill-set | Reanimator's Skill Set | sub:Reanimator|Reanimator's Skill Set
+69. feature/reaper | Reaper | sub:Death Domain|Reaper
+70. feature/reaper-spells | Reaper Spells | sub:Reaper|Reaper Spells
+71. feature/rebuke-death | Rebuke Death | sub:White Necromancer|Rebuke Death
+72. feature/rebuke-invoker | Rebuke Invoker | sub:Inquisition Domain|Rebuke Invoker
+73. feature/rebuke-from-beyond | Rebuke from Beyond | sub:Void Caster|Rebuke from Beyond
+74. feature/rebuke-the-violent | Rebuke the Violent
+75. feature/reclaim-potential | Reclaim Potential | sub:Echo Knight|Reclaim Potential
+76. feature/reclamation | Reclamation | sub:Circle of the Warden|Reclamation
+77. feature/reconfigurable-ability-scores | Reconfigurable Ability Scores | sp:Vect|Reconfigurable Ability Scores
+78. feature/reconfigure | Reconfigure | sub:Mastermaker|Reconfigure
+79. feature/recycling-protocol | Recycling Protocol | sub:Nanite Magic|Recycling Protocol
+80. feature/red-magic-spells | Red Magic Spells | sub:Red Magic|Red Magic Spells
+81. feature/red-renewal | Red Renewal | sub:Sangromancer|Red Renewal
+82. feature/redemption-arc | Redemption Arc | sub:Technicolor Magic|Redemption Arc
+83. feature/redirect-attack | Redirect Attack
+84. feature/redirection | Redirection | sub:Burden of Atonement|Redirection
+85. feature/redoubled-efforts | Redoubled Efforts | sub:Warrior of Pride|Redoubled Efforts
+86. feature/refined-reanimation | Refined Reanimation | sub:Reanimator|Refined Reanimation
+87. feature/reflected-positioning | Reflected Positioning | sub:Bond of the Mirror Mage|Reflected Positioning
+88. feature/reflexive-adaptation | Reflexive Adaptation | sub:Warrior of the Living Weapon|Reflexive Adaptation
+89. feature/reform | Reform | sp:Amoeboid|Reform
+90. feature/regenerative | Regenerative | sp:Skathári|Regenerative
+91. feature/rejuvenating-inspiration | Rejuvenating Inspiration | sub:Greenleaf College|Rejuvenating Inspiration
+92. feature/release-energy | Release Energy | sub:The Genie Lord|Release Energy
+93. feature/relentless-aggression | Relentless Aggression | sub:Path of the Drifter|Relentless Aggression
+94. feature/relentless-endurance | Relentless Endurance | sp:Half-Orc|Relentless Endurance
+95. feature/reliable-aim | Reliable Aim | sub:Big Game Hunter|Reliable Aim
+96. feature/relics-of-legend | Relics of Legend | sub:Burden of Ascension|Relics of Legend
+97. feature/relive-the-past | Relive the Past | sub:Warrior of Regret|Relive the Past
+98. feature/remarkable-athlete | Remarkable Athlete | sub:Champion (2014)|Remarkable Athlete
+99. feature/rematerialize | Rematerialize | sub:Materializer|Rematerialize
+100. feature/remedy | Remedy | sub:White Magic|Remedy

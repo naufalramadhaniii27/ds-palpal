@@ -1,0 +1,101 @@
+LEMBAR 014, 100 sel
+1. feat/remarkable-recovery | Remarkable Recovery
+2. feat/reptiloid | Reptiloid
+3. feat/resilient-2014 | Resilient (2014)
+4. feat/resolute-caster | Resolute Caster
+5. feat/resolution-of-the-syndicate | Resolution of the Syndicate
+6. feat/revenant-blade | Revenant Blade
+7. feat/righteous-heritor | Righteous Heritor
+8. feat/ring-bound | Ring-Bound
+9. feat/ring-bound-2 | Ring-bound
+10. feat/roguean | Roguean
+11. feat/rune-knowledge | Rune Knowledge
+12. feat/rune-mastery | Rune Mastery
+13. feat/rune-shaper | Rune Shaper
+14. feat/s-s-st-vincent-archon | S.S. St. Vincent: Archon
+15. feat/sangromantic-initiate | Sangromantic Initiate
+16. feat/savage-attacker-2014 | Savage Attacker (2014)
+17. feat/scale-and-fang-scaleguard | Scale and Fang: Scaleguard
+18. feat/scion-of-the-outer-planes | Scion of the Outer Planes
+19. feat/script-carver | Script Carver
+20. feat/script-sage | Script Sage
+21. feat/second-chance | Second Chance
+22. feat/second-skin | Second Skin
+23. feat/sentinel-2014 | Sentinel (2014)
+24. feat/sepulcher-knight-deputy | Sepulcher Knight: Deputy
+25. feat/seraph-transformation-stage-1 | Seraph Transformation: Stage 1
+26. feat/seraph-transformation-stage-2 | Seraph Transformation: Stage 2
+27. feat/seraph-transformation-stage-3 | Seraph Transformation: Stage 3
+28. feat/seraph-transformation-stage-4 | Seraph Transformation: Stage 4
+29. feat/shadow-pact | Shadow Pact
+30. feat/shadow-touched-2014 | Shadow Touched (2014)
+31. feat/shadow-trapper | Shadow Trapper
+32. feat/shadow-weaver | Shadow Weaver
+33. feat/shadowmoor-hexer | Shadowmoor Hexer
+34. feat/shadowsteel-adept | Shadowsteel Adept
+35. feat/shadowsteel-ghoul-transformation-stage-1 | Shadowsteel Ghoul Transformation: Stage 1
+36. feat/shadowsteel-ghoul-transformation-stage-2 | Shadowsteel Ghoul Transformation: Stage 2
+37. feat/shadowsteel-ghoul-transformation-stage-3 | Shadowsteel Ghoul Transformation: Stage 3
+38. feat/shadowsteel-ghoul-transformation-stage-4 | Shadowsteel Ghoul Transformation: Stage 4
+39. feat/shadowsteel-master | Shadowsteel Master
+40. feat/shapeshifter | Shapeshifter
+41. feat/sharp-eye | Sharp Eye
+42. feat/sharpshooter-2014 | Sharpshooter (2014)
+43. feat/shield-master-2014 | Shield Master (2014)
+44. feat/shifting-combatant | Shifting Combatant
+45. feat/shock-trooper | Shock Trooper
+46. feat/shock-trooper-dark-matter | Shock Trooper (Dark Matter)
+47. feat/showman | Showman
+48. feat/showman-dark-matter | Showman (Dark Matter)
+49. feat/silver-tongued | Silver-Tongued
+50. feat/simian | Simian
+51. feat/skill-expert-2014 | Skill Expert (2014)
+52. feat/skilled-2014 | Skilled (2014)
+53. feat/skulker-2014 | Skulker (2014)
+54. feat/slasher-2014 | Slasher (2014)
+55. feat/soothing-familiar | Soothing Familiar
+56. feat/soul-of-the-storm-giant | Soul of the Storm Giant
+57. feat/specter-transformation-stage-1 | Specter Transformation: Stage 1
+58. feat/specter-transformation-stage-2 | Specter Transformation: Stage 2
+59. feat/specter-transformation-stage-3 | Specter Transformation: Stage 3
+60. feat/specter-transformation-stage-4 | Specter Transformation: Stage 4
+61. feat/speech-of-the-ancient-beasts | Speech of the Ancient Beasts
+62. feat/spell-sniper-2014 | Spell Sniper (2014)
+63. feat/spell-subterfuge | Spell Subterfuge
+64. feat/spellblade | Spellblade
+65. feat/spelldriver | Spelldriver
+66. feat/spellfire-adept | Spellfire Adept
+67. feat/spellfire-spark | Spellfire Spark
+68. feat/squat-nimbleness | Squat Nimbleness
+69. feat/squire-of-solamnia | Squire of Solamnia
+70. feat/star-and-shadow-reader | Star and Shadow Reader
+71. feat/street-justice | Street Justice
+72. feat/strike-of-the-giants | Strike of the Giants
+73. feat/strixhaven-initiate | Strixhaven Initiate
+74. feat/strixhaven-mascot | Strixhaven Mascot
+75. feat/superior-shifting | Superior Shifting
+76. feat/survivor | Survivor
+77. feat/survivor-deep-magic | Survivor (Deep Magic)
+78. feat/survivor-grim-hollow | Survivor (Grim Hollow)
+79. feat/svirfneblin-magic | Svirfneblin Magic
+80. feat/symbiotic-being | Symbiotic Being
+81. feat/syndicate-spy | Syndicate Spy
+82. feat/tactical-combatant | Tactical Combatant
+83. feat/tavern-brawler-2014 | Tavern Brawler (2014)
+84. feat/technical | Technical
+85. feat/technopath | Technopath
+86. feat/telekinetic-2014 | Telekinetic (2014)
+87. feat/the-cabal-soul-broker | The Cabal: Soul Broker
+88. feat/the-coalition-recruit | The Coalition: Recruit
+89. feat/the-firm-contractor | The Firm: Contractor
+90. feat/the-tower-agent | The Tower: Agent
+91. feat/thoughtsinger | Thoughtsinger
+92. feat/thrown-arms-master | Thrown Arms Master
+93. feat/thrown-weapon-master | Thrown Weapon Master
+94. feat/tireless-reveler | Tireless Reveler
+95. feat/touch-of-death | Touch of Death
+96. feat/tough-2014 | Tough (2014)
+97. feat/transmutation-adept | Transmutation Adept
+98. feat/transmuted-anatomy | Transmuted Anatomy
+99. feat/treacherous-allure | Treacherous Allure
+100. feat/triage-expert | Triage Expert

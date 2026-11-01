@@ -1,0 +1,101 @@
+LEMBAR 040, 100 sel
+1. item/prospectors-wand | Prospector's Wand
+2. item/prying-blade | Prying Blade
+3. item/psionic-piercing | Psionic Piercing
+4. item/psionic-reach | Psionic Reach
+5. item/psychic-blade | Psychic Blade
+6. item/purging-dagger | Purging Dagger
+7. item/purity-spear | Purity Spear
+8. item/purphoross-devotee | Purphoros's Devotee
+9. item/purphoross-disciple | Purphoros's Disciple
+10. item/purphoross-votary | Purphoros's Votary
+11. item/purple-dragon-knight-trinket | Purple Dragon Knight Trinket
+12. item/purse-piglet | Purse Piglet
+13. item/puzzle-ring-of-vitality-life-and-power | Puzzle Ring of Vitality, Life, and Power
+14. item/pyremaul-awakened | Pyremaul (Awakened)
+15. item/pyremaul-dormant | Pyremaul (Dormant)
+16. item/pyremaul-exalted | Pyremaul (Exalted)
+17. item/quagmire-maul | Quagmire Maul
+18. item/quake-hammer | Quake Hammer
+19. item/quakescale-armor | Quakescale Armor
+20. item/queens-token | Queen's Token
+21. item/quickdraw | Quickdraw
+22. item/quicksilver-clay | Quicksilver Clay
+23. item/quiver-of-energy | Quiver of Energy
+24. item/radiance | Radiance
+25. item/radiant-defender | Radiant Defender
+26. item/rakdos-charm | Rakdos Charm
+27. item/raptor-feather-robe | Raptor Feather Robe
+28. item/rare-molten-fire-forge | Rare Molten Fire Forge
+29. item/rations | Rations
+30. item/ravens-slumber | Raven's Slumber
+31. item/ready-gunk | Ready Gunk
+32. item/reap-and-sew | Reap and Sew
+33. item/rebounding-blade | Rebounding Blade
+34. item/recall-crystal | Recall Crystal
+35. item/red-chromatic-rose | Red Chromatic Rose
+36. item/red-claws-regalia | Red Claw's Regalia
+37. item/red-wizard-trinket | Red Wizard Trinket
+38. item/red-feather-bow | Red-Feather Bow
+39. item/regal-breastplate-of-the-tyrant | Regal Breastplate of the Tyrant (*)
+40. item/regenerating-marrow | Regenerating Marrow
+41. item/relentless-bulwark | Relentless Bulwark
+42. item/reliquary-charm | Reliquary Charm
+43. item/remote-eye | Remote Eye
+44. item/remote-piloting-apparatus | Remote Piloting Apparatus
+45. item/repeating-shot | Repeating Shot
+46. item/replacement | Replacement
+47. item/resistance-breaker | Resistance Breaker
+48. item/resistance-plating | Resistance Plating
+49. item/resistance-suture | Resistance Suture
+50. item/resistant-blade-of-the-guardian | Resistant Blade of the Guardian
+51. item/resuscitation-bomb | Resuscitation Bomb
+52. item/retaliating-bloom-shield | Retaliating Bloom Shield
+53. item/retaliating-shield-of-ink | Retaliating Shield of Ink
+54. item/returning-weapon | Returning Weapon
+55. item/riding-horse | Riding Horse
+56. item/ring-of-anchoring | Ring of Anchoring
+57. item/ring-of-candor | Ring of Candor
+58. item/ring-of-eldritch-ire | Ring of Eldritch Ire
+59. item/ring-of-elemental-command-earth | Ring of Elemental Command (Earth)
+60. item/ring-of-elemental-command-fire | Ring of Elemental Command (Fire)
+61. item/ring-of-elemental-command-water | Ring of Elemental Command (Water)
+62. item/ring-of-fire | Ring of Fire
+63. item/ring-of-gestures | Ring of Gestures
+64. item/ring-of-hidden-desire | Ring of Hidden Desire
+65. item/ring-of-ice | Ring of Ice
+66. item/ring-of-nightmares | Ring of Nightmares
+67. item/ring-of-paradoxes | Ring of Paradoxes
+68. item/ring-of-plant-speech | Ring of Plant Speech
+69. item/ring-of-radiation | Ring of Radiation
+70. item/ring-of-roses | Ring of Roses
+71. item/ring-of-seething | Ring of Seething
+72. item/ring-of-spacewalking | Ring of Spacewalking
+73. item/ring-of-stone | Ring of Stone
+74. item/ring-of-veracity | Ring of Veracity
+75. item/ring-of-wind | Ring of Wind
+76. item/ring-of-the-fowl-sentinel | Ring of the Fowl Sentinel
+77. item/ring-of-the-sandskimmer | Ring of the Sandskimmer
+78. item/ring-of-the-sky-hunter | Ring of the Sky Hunter
+79. item/rocborne-hand-ballista | Rocborne Hand Ballista
+80. item/rocborne-robe | Rocborne Robe
+81. item/rocborne-rod | Rocborne Rod
+82. item/rod | Rod
+83. item/rod-of-mercurial-form | Rod of Mercurial Form
+84. item/rod-of-ruin | Rod of Ruin
+85. item/rod-of-wild-dominion | Rod of Wild Dominion
+86. item/rod-of-the-honed-mind | Rod of the Honed Mind
+87. item/rod-of-the-pack-master | Rod of the Pack Master
+88. item/rod-of-the-pact-keeper-1 | Rod of the Pact Keeper, +1
+89. item/rod-of-the-pact-keeper-2 | Rod of the Pact Keeper, +2
+90. item/rod-of-the-pact-keeper-3 | Rod of the Pact Keeper, +3
+91. item/rogues-brew | Rogue's Brew
+92. item/ruby-elixir | Ruby Elixir
+93. item/ruidium-armor | Ruidium Armor
+94. item/ruinblade | Ruinblade
+95. item/runic-ammunition | Runic Ammunition
+96. item/ryath-root | Ryath Root
+97. item/saber-of-unity | Saber of Unity
+98. item/sages-signet-bear | Sage's Signet (Bear)
+99. item/sages-signet-hart | Sage's Signet (Hart)
+100. item/sages-signet-lion | Sage's Signet (Lion)

@@ -1,0 +1,101 @@
+LEMBAR 013, 100 sel
+1. feat/jinx | Jinx
+2. feat/juggernaut-plating | Juggernaut Plating
+3. feat/keen-mind-2014 | Keen Mind (2014)
+4. feat/keenness-of-the-stone-giant | Keenness of the Stone Giant
+5. feat/kheshdar-training | Khesh'dar Training
+6. feat/knight-of-the-crown | Knight of the Crown
+7. feat/knight-of-the-rose | Knight of the Rose
+8. feat/knight-of-the-sword | Knight of the Sword
+9. feat/lakshay-oni | Lakshay: Oni
+10. feat/laser-swordsmaster | Laser Swordsmaster
+11. feat/latent-psionics | Latent Psionics
+12. feat/leviathan-suit | Leviathan Suit
+13. feat/ley-initiate | Ley Initiate
+14. feat/ley-bound | Ley-Bound
+15. feat/lich-transformation-stage-1 | Lich Transformation: Stage 1
+16. feat/lich-transformation-stage-2 | Lich Transformation: Stage 2
+17. feat/lich-transformation-stage-3 | Lich Transformation: Stage 3
+18. feat/lich-transformation-stage-4 | Lich Transformation: Stage 4
+19. feat/light-bringer | Light Bringer
+20. feat/lightly-armored-2014 | Lightly Armored (2014)
+21. feat/lightning-caster | Lightning Caster
+22. feat/lilliputian | Lilliputian
+23. feat/linguist | Linguist
+24. feat/lordly-resolve | Lordly Resolve
+25. feat/lords-alliance-agent | Lords' Alliance Agent
+26. feat/love-bites | Love Bites
+27. feat/lucky-2014 | Lucky (2014)
+28. feat/lycanthrope-transformation-stage-1 | Lycanthrope Transformation: Stage 1
+29. feat/lycanthrope-transformation-stage-2 | Lycanthrope Transformation: Stage 2
+30. feat/lycanthrope-transformation-stage-3 | Lycanthrope Transformation: Stage 3
+31. feat/lycanthrope-transformation-stage-4 | Lycanthrope Transformation: Stage 4
+32. feat/mage-slayer-2014 | Mage Slayer (2014)
+33. feat/magic-connoisseur | Magic Connoisseur
+34. feat/magic-initiate-2014 | Magic Initiate (2014)
+35. feat/magitechnician | Magitechnician
+36. feat/magitechnician-dark-matter | Magitechnician (Dark Matter)
+37. feat/marksman | Marksman
+38. feat/marksmans-luck | Marksman's Luck
+39. feat/martial-adept | Martial Adept
+40. feat/mechanic | Mechanic
+41. feat/medician-of-the-morbus-doctore | Medician of the Morbus Doctore
+42. feat/medium-armor-master-2014 | Medium Armor Master (2014)
+43. feat/mending-affinity | Mending Affinity
+44. feat/merc | Merc
+45. feat/merciful-caster | Merciful Caster
+46. feat/metabolistic-magic | Metabolistic Magic
+47. feat/metabolistic-magic-dark-matter | Metabolistic Magic (Dark Matter)
+48. feat/metamagic-adept | Metamagic Adept
+49. feat/mist-walker | Mist Walker
+50. feat/mobile | Mobile
+51. feat/mobile-combatant | Mobile Combatant
+52. feat/moderately-armored-2014 | Moderately Armored (2014)
+53. feat/mounted-combatant-2014 | Mounted Combatant (2014)
+54. feat/multiscale | Multiscale
+55. feat/mystic-conflux | Mystic Conflux
+56. feat/mythal-touched | Mythal Touched
+57. feat/necromancy-adept | Necromancy Adept
+58. feat/negotiator | Negotiator
+59. feat/night-blessed | Night Blessed
+60. feat/nimble-physique | Nimble Physique
+61. feat/observant-2014 | Observant (2014)
+62. feat/ooze-transformation-stage-1 | Ooze Transformation: Stage 1
+63. feat/ooze-transformation-stage-2 | Ooze Transformation: Stage 2
+64. feat/ooze-transformation-stage-3 | Ooze Transformation: Stage 3
+65. feat/ooze-transformation-stage-4 | Ooze Transformation: Stage 4
+66. feat/opportunist-grim-hollow | Opportunist (Grim Hollow)
+67. feat/opportunistic-thief | Opportunistic Thief
+68. feat/orcish-fury | Orcish Fury
+69. feat/orders-resilience | Order's Resilience
+70. feat/osteomantic-adept | Osteomantic Adept
+71. feat/otherworldly-familiar | Otherworldly Familiar
+72. feat/outlands-envoy | Outlands Envoy
+73. feat/pack-fighting | Pack Fighting
+74. feat/perfect-landing | Perfect Landing
+75. feat/piercer-2014 | Piercer (2014)
+76. feat/plantmender | Plantmender
+77. feat/polearm-master-2014 | Polearm Master (2014)
+78. feat/portal-jumper | Portal Jumper
+79. feat/porterling | Porterling
+80. feat/precognitive | Precognitive
+81. feat/primordial-transformation-stage-1 | Primordial Transformation: Stage 1
+82. feat/primordial-transformation-stage-2 | Primordial Transformation: Stage 2
+83. feat/primordial-transformation-stage-3 | Primordial Transformation: Stage 3
+84. feat/primordial-transformation-stage-4 | Primordial Transformation: Stage 4
+85. feat/prodigy | Prodigy
+86. feat/prone-defense | Prone Defense
+87. feat/prone-fighting | Prone Fighting
+88. feat/proto-man | Proto-Man
+89. feat/psionic-awakened | Psionic-Awakened
+90. feat/purple-dragon-commandant | Purple Dragon Commandant
+91. feat/purple-dragon-rook | Purple Dragon Rook
+92. feat/putrefy | Putrefy
+93. feat/pyromaniac | Pyromaniac
+94. feat/pyromaniac-dark-matter | Pyromaniac (Dark Matter)
+95. feat/quicksmithing | Quicksmithing
+96. feat/quori-bond | Quori Bond
+97. feat/radiant-dragons-heart | Radiant Dragon's Heart
+98. feat/rapid-drinker | Rapid Drinker
+99. feat/reanimated | Reanimated
+100. feat/rebuke | Rebuke

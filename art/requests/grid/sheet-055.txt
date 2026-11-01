@@ -1,0 +1,101 @@
+LEMBAR 055, 100 sel
+1. deity/thassa | Thassa
+2. deity/thautam | Thautam
+3. deity/the-daghdha | The Daghdha
+4. deity/the-devourer | The Devourer
+5. deity/the-fury | The Fury
+6. deity/the-hag-mother | The Hag Mother
+7. deity/the-keeper | The Keeper
+8. deity/the-luxon | The Luxon
+9. deity/the-mockery | The Mockery
+10. deity/the-shadow | The Shadow
+11. deity/the-spirits-of-the-past | The Spirits of the Past
+12. deity/the-traveler-eberron | The Traveler (Eberron)
+13. deity/the-traveler-exandria | The Traveler (Exandria)
+14. deity/thor | Thor
+15. deity/thoth | Thoth
+16. deity/thrym-nonhuman | Thrym (Nonhuman)
+17. deity/thrym-norse | Thrym (Norse)
+18. deity/trithereon | Trithereon
+19. deity/tyche | Tyche
+20. deity/tyr-forgotten-realms | Tyr (Forgotten Realms)
+21. deity/tyr-norse | Tyr (Norse)
+22. deity/ukotoa | Uk'otoa
+23. deity/ulaa-dwarven | Ulaa (Dwarven)
+24. deity/ulaa-greyhawk | Ulaa (Greyhawk)
+25. deity/uller | Uller
+26. deity/urdlen-gnome | Urdlen (Gnome)
+27. deity/urdlen-gnomish | Urdlen (Gnomish)
+28. deity/urogalan | Urogalan
+29. deity/valkauna | Valkauna
+30. deity/valkur | Valkur
+31. deity/vandria-gilmadrith | Vandria Gilmadrith
+32. deity/vergadain | Vergadain
+33. deity/vesh | Vesh
+34. deity/vhaeraun | Vhaeraun
+35. deity/wee-jas | Wee Jas
+36. deity/xalicas | Xalicas
+37. deity/yecind | Ye'Cind
+38. deity/yondalla-halfling | Yondalla (Halfling)
+39. deity/yondalla-nonhuman | Yondalla (Nonhuman)
+40. deity/yurtrus | Yurtrus
+41. deity/zandilar | Zandilar
+42. deity/zeboim | Zeboim
+43. deity/zeus | Zeus
+44. deity/zinzerena | Zinzerena
+45. deity/zivilyn | Zivilyn
+46. facility/ancient-altar | Ancient Altar
+47. facility/cabinet-of-curiosities | Cabinet of Curiosities
+48. facility/circus-tent | Circus Tent
+49. facility/courtyard | Courtyard
+50. facility/dining-room | Dining Room
+51. facility/entertainment-salon | Entertainment Salon
+52. facility/geothermal-vent | Geothermal Vent
+53. facility/heist-planning-chamber | Heist Planning Chamber
+54. facility/infirmary | Infirmary
+55. facility/lighthouse | Lighthouse
+56. facility/lightning-generator | Lightning Generator
+57. facility/liminal-space | Liminal Space
+58. facility/morgue | Morgue
+59. facility/parlor | Parlor
+60. facility/rookery | Rookery
+61. facility/soup-kitchen | Soup Kitchen
+62. facility/spirit-vault | Spirit Vault
+63. facility/storage | Storage
+64. facility/s-ance-parlor | Séance Parlor
+65. facility/transmutation-vat | Transmutation Vat
+66. language/aarakocra | Aarakocra
+67. language/abanasinian | Abanasinian
+68. language/abyssal | Abyssal
+69. language/aglarondan | Aglarondan
+70. language/alzhedo | Alzhedo
+71. language/aven | Aven
+72. language/blink-dog | Blink Dog
+73. language/bothii | Bothii
+74. language/bullywug | Bullywug
+75. language/celestial | Celestial
+76. language/chessentan | Chessentan
+77. language/chondathan | Chondathan
+78. language/coalition-pidgin | Coalition Pidgin
+79. language/common | Common
+80. language/common-sign-language | Common Sign Language
+81. language/common-trade-pidgin | Common Trade Pidgin
+82. language/daelkyr | Daelkyr
+83. language/damaran | Damaran
+84. language/dambrathan | Dambrathan
+85. language/deep-crow | Deep Crow
+86. language/demonic | Demonic
+87. language/ergot | Ergot
+88. language/giant | Giant
+89. language/giant-eagle | Giant Eagle
+90. language/giant-elk | Giant Elk
+91. language/giant-owl | Giant Owl
+92. language/gith | Gith
+93. language/gnoll | Gnoll
+94. language/gnomish | Gnomish
+95. language/goblin | Goblin
+96. language/grell | Grell
+97. language/grung | Grung
+98. language/guran | Guran
+99. language/halfling | Halfling
+100. language/halruaan | Halruaan

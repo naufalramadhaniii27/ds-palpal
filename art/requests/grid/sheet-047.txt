@@ -1,0 +1,101 @@
+LEMBAR 047, 100 sel
+1. gear/finely-articulated-jade-glove-river-heralds | Finely articulated jade glove (River Heralds)
+2. gear/fire-bomb | Fire Bomb
+3. gear/fire-opal | Fire Opal
+4. gear/firelance-venom | Firelance Venom
+5. gear/fishing-tackle | Fishing Tackle
+6. gear/flare | Flare
+7. gear/flares-5 | Flares (5)
+8. gear/flashlight | Flashlight
+9. gear/flight-jacket | Flight Jacket
+10. gear/flour | Flour
+11. gear/flying-fish-ship | Flying Fish Ship
+12. gear/fragmentation-grenade | Fragmentation Grenade
+13. gear/frostfell-and-everice-trinket | Frostfell and Everice Trinket
+14. gear/galley | Galley
+15. gear/gaming-set-digital-games | Gaming Set (Digital Games)
+16. gear/gargath-wool-clothes | Gargath Wool Clothes
+17. gear/garnet | Garnet
+18. gear/gasparian-tree-nuts | Gasparian Tree Nuts
+19. gear/gate-warden-trinket | Gate Warden Trinket
+20. gear/giant-trinket | Giant Trinket
+21. gear/gift-of-the-wind-touched-jerbeen-figurine | Gift of the Wind-Touched Jerbeen Figurine
+22. gear/gilded-royal-coach-or-funeral-barge | Gilded royal coach or funeral barge
+23. gear/ginger | Ginger
+24. gear/glaur | Glaur
+25. gear/gluebomb | Gluebomb
+26. gear/goat | Goat
+27. gear/gold-1-lb | Gold (1 lb)
+28. gear/gold-bar-5-pound | Gold Bar (5-pound)
+29. gear/gold-basin-with-rubies-legion-of-dusk | Gold basin with rubies (Legion of Dusk)
+30. gear/gold-bird-cage-with-electrum-filigree | Gold bird cage with electrum filigree
+31. gear/gold-birdcage-with-electrum-filigree | Gold birdcage with electrum filigree
+32. gear/gold-bracelet | Gold bracelet
+33. gear/gold-chalice-legion-of-dusk | Gold chalice (Legion of Dusk)
+34. gear/gold-chalice-set-with-emeralds-legion-of-dusk | Gold chalice set with emeralds (Legion of Dusk)
+35. gear/gold-circlet-set-with-four-aquamarines | Gold circlet set with four aquamarines
+36. gear/gold-comb-shaped-like-a-dragon-with-red-garnets-as-eyes | Gold comb shaped like a dragon with red garnets as eyes
+37. gear/gold-cup-set-with-emeralds | Gold cup set with emeralds
+38. gear/gold-dragon-comb-set-with-red-garnets-as-eyes | Gold dragon comb set with red garnets as eyes
+39. gear/gold-idol | Gold idol
+40. gear/gold-jewelry-box-with-platinum-filigree | Gold jewelry box with platinum filigree
+41. gear/gold-jewelry-box-with-platinum-filigree-brazen-coalition | Gold jewelry box with platinum filigree (Brazen Coalition)
+42. gear/gold-locket-with-a-painted-portrait-inside | Gold locket with a painted portrait inside
+43. gear/gold-locket-with-a-painted-portrait-inside-legion-of-dusk | Gold locket with a painted portrait inside (Legion of Dusk)
+44. gear/gold-music-box | Gold music box
+45. gear/gold-music-box-brazen-coalition | Gold music box (Brazen Coalition)
+46. gear/gold-pendant-with-black-onyx-legion-of-dusk | Gold pendant with black onyx (Legion of Dusk)
+47. gear/gold-ring-set-with-bloodstones | Gold ring set with bloodstones
+48. gear/gold-ring-with-turquoise-legion-of-dusk | Gold ring with turquoise (Legion of Dusk)
+49. gear/gold-statuette-set-with-rubies | Gold statuette set with rubies
+50. gear/gold-plated-ceremonial-helmet-and-pauldrons-legion-of-dusk | Gold-plated ceremonial helmet and pauldrons (Legion of Dusk)
+51. gear/gold-plated-sextant-with-topaz-brazen-coalition | Gold-plated sextant with topaz (Brazen Coalition)
+52. gear/goose-egg-trinket | Goose Egg Trinket
+53. gear/grace-of-the-wind-touched-jerbeen-figurine | Grace of the Wind-Touched Jerbeen Figurine
+54. gear/grappling-gun | Grappling Gun
+55. gear/grenade-launcher | Grenade Launcher
+56. gear/grenade-fragmentation | Grenade, Fragmentation
+57. gear/grenade-smoke | Grenade, Smoke
+58. gear/grenades-5 | Grenades (5)
+59. gear/gunner-bay | Gunner Bay
+60. gear/gunpowder-keg | Gunpowder (keg)
+61. gear/gunpowder-powder-horn | Gunpowder (powder horn)
+62. gear/gunpowder-horn | Gunpowder Horn
+63. gear/gunpowder-keg-2 | Gunpowder Keg
+64. gear/hammer | Hammer
+65. gear/hammerhead-ship | Hammerhead Ship
+66. gear/hand-drum | Hand Drum
+67. gear/handheld-mirror-set-in-a-painted-wooden-frame | Handheld mirror set in a painted wooden frame
+68. gear/hematite | Hematite
+69. gear/hempen-rope-50-feet | Hempen Rope (50 feet)
+70. gear/hexaplate-suit | Hexaplate Suit
+71. gear/holster | Holster
+72. gear/holy-water-flask | Holy Water (flask)
+73. gear/hooded-lantern | Hooded Lantern
+74. gear/horror-trinket | Horror Trinket
+75. gear/horse-draft | Horse, Draft
+76. gear/horse-riding | Horse, Riding
+77. gear/hourglass | Hourglass
+78. gear/hunk-of-cheese | Hunk of Cheese
+79. gear/hunting-rifle | Hunting Rifle
+80. gear/hypodermic-arrow | Hypodermic Arrow
+81. gear/hypodermic-needle | Hypodermic Needle
+82. gear/igniter | Igniter
+83. gear/imported-fruits | Imported Fruits
+84. gear/ink-1-ounce-bottle | Ink (1-ounce bottle)
+85. gear/insect-repellent-block-of-incense | Insect Repellent (block of incense)
+86. gear/insect-repellent-greasy-salve | Insect Repellent (greasy salve)
+87. gear/interface-rig | Interface Rig
+88. gear/iron | Iron
+89. gear/iron-1-lb | Iron (1 lb)
+90. gear/iron-net | Iron Net
+91. gear/iron-spike | Iron Spike
+92. gear/iron-spikes-10 | Iron Spikes (10)
+93. gear/jacinth | Jacinth
+94. gear/jade | Jade
+95. gear/jade-bowl-river-heralds | Jade bowl (River Heralds)
+96. gear/jade-breastplate-river-heralds | Jade breastplate (River Heralds)
+97. gear/jade-game-board-with-gold-playing-pieces | Jade game board with gold playing pieces
+98. gear/jade-game-board-with-solid-gold-playing-pieces | Jade game board with solid gold playing pieces
+99. gear/jade-headpiece-river-heralds | Jade headpiece (River Heralds)
+100. gear/jade-sword-with-amber-river-heralds | Jade sword with amber (River Heralds)

@@ -1,0 +1,96 @@
+LEMBAR 098, 95 sel
+1. feature/void-savant | Void Savant | sub:Void Speaker|Void Savant
+2. feature/volley | Volley
+3. feature/vortex | Vortex | sub:Sky Magic|Vortex
+4. feature/voyagers-agility | Voyager's Agility | sub:Burden of Odyssey|Voyager's Agility
+5. feature/wails-from-the-grave | Wails from the Grave | sub:Phantom|Wails from the Grave
+6. feature/waking-nightmare | Waking Nightmare | sub:Purple Magic|Waking Nightmare
+7. feature/walker-in-dreams | Walker in Dreams | sub:Circle of Dreams|Walker in Dreams
+8. feature/wand-slinger | Wand Slinger | sub:Wand Wizard|Wand Slinger
+9. feature/wanderers-lore | Wanderer's Lore | sub:College of the Road|Wanderer's Lore
+10. feature/war-druid | War Druid | sub:Circle of the Unbroken|War Druid
+11. feature/war-and-peace | War and Peace | sp:Dhakaani Ghaal'dar (Hobgoblin)|War and Peace
+12. feature/ward-against-corruption | Ward Against Corruption | sub:Purification Domain|Ward Against Corruption
+13. feature/ward-of-shadows | Ward of Shadows | sub:Night Domain|Ward of Shadows
+14. feature/warden | Warden
+15. feature/warders-intuition | Warder's Intuition | sp:Dwarf (Mark of Warding)|Warder's Intuition
+16. feature/warding-essence | Warding Essence | sub:Vow of the Protector|Warding Essence
+17. feature/warding-maneuver | Warding Maneuver | sub:Cavalier|Warding Maneuver
+18. feature/warding-scrawl | Warding Scrawl | sub:Scroll Scribe|Warding Scrawl
+19. feature/warding-seal | Warding Seal | sub:Angelic Scribe|Warding Seal
+20. feature/warding-shield | Warding Shield | sub:Wand Wizard|Warding Shield
+21. feature/wards-and-seals | Wards and Seals | sp:Dwarf (Mark of Warding)|Wards and Seals
+22. feature/warlock-subclass | Warlock Subclass | cls:Warlock|Warlock Subclass
+23. feature/watchers-will | Watcher's Will
+24. feature/water-creed-navigation | Water Creed Navigation | sp:Merfolk (Ula Creed)|Water Creed Navigation
+25. feature/water-dependency | Water Dependency | sp:Grung|Water Dependency
+26. feature/wave-synth | Wave Synth | sub:College of Cyberwave|Wave Synth
+27. feature/waxing-and-waning | Waxing and Waning | sub:Lunar Sorcery|Waxing and Waning
+28. feature/weapon-versatilist | Weapon Versatilist | sub:Bladeworkers' Guild|Weapon Versatilist
+29. feature/weather-the-storm | Weather the Storm | sub:Bulwark Warrior|Weather the Storm
+30. feature/weave-the-elements | Weave the Elements | sub:Primordial Archer|Weave the Elements
+31. feature/well-rounded | Well-Rounded | sub:College of Adventurers|Well-Rounded
+32. feature/well-travelled | Well-Travelled | sp:Child of Seth|Well-Travelled
+33. feature/werewolf-instincts | Werewolf Instincts | sp:Lupin|Werewolf Instincts
+34. feature/whirlwind-attack | Whirlwind Attack
+35. feature/whispered-warnings | Whispered Warnings | sub:The Sibyl|Whispered Warnings
+36. feature/whispers-from-beyond | Whispers from Beyond | sub:Medium|Whispers from Beyond
+37. feature/whispers-of-the-dead | Whispers of the Dead | sub:Phantom|Whispers of the Dead
+38. feature/whispers-of-the-void | Whispers of the Void | sub:Void Caster|Whispers of the Void
+39. feature/white-magic-spells | White Magic Spells | sub:White Magic|White Magic Spells
+40. feature/white-necromancy | White Necromancy | sub:White Necromancer|White Necromancy
+41. feature/wicked-presence | Wicked Presence | sub:Doomsayer|Wicked Presence
+42. feature/wild-intuition | Wild Intuition | sp:Human (Mark of Handling)|Wild Intuition
+43. feature/wild-mutation | Wild Mutation | sub:Circle of Xenobiology|Wild Mutation
+44. feature/wild-pounce | Wild Pounce | sub:Beastblood Guardian|Wild Pounce
+45. feature/wild-recovery | Wild Recovery | sub:Circle of the Unbroken|Wild Recovery
+46. feature/wild-shape-improvement | Wild Shape Improvement
+47. feature/wind-creed-manipulation | Wind Creed Manipulation | sp:Merfolk (Emeria Creed)|Wind Creed Manipulation
+48. feature/wind-soul | Wind Soul | sub:Storm Sorcery|Wind Soul
+49. feature/wind-speaker | Wind Speaker | sub:Storm Sorcery|Wind Speaker
+50. feature/windwrights-intuition | Windwright's Intuition | sp:Half-Elf (Mark of Storm)|Windwright's Intuition
+51. feature/wing-flap | Wing Flap | sp:Gallus|Wing Flap
+52. feature/winged | Winged | sp:Tiefling (Winged)|Winged
+53. feature/wings-unfurled | Wings Unfurled | sub:Way of the Ascendant Dragon|Wings Unfurled
+54. feature/wings-of-liberty | Wings of Liberty | sub:Star-Spangled Banner|Wings of Liberty
+55. feature/winter-core | Winter Core | sub:Wintercarvers' Guild|Winter Core
+56. feature/winter-trapper-spells | Winter Trapper Spells | sub:Winter Trapper|Winter Trapper Spells
+57. feature/winter-walker-spells | Winter Walker Spells | sub:Winter Walker|Winter Walker Spells
+58. feature/winters-child | Winter'S Child | sub:Boreal Bloodline|Winter'S Child
+59. feature/winters-form | Winter'S Form | sub:Boreal Bloodline|Winter'S Form
+60. feature/winters-soul | Winter's Soul | sub:Boreal Bloodline|Winter's Soul
+61. feature/wintry-blast | Wintry Blast | sub:The Frozen One|Wintry Blast
+62. feature/witch-hunters-strike | Witch Hunter's Strike | sub:Inquisition Domain|Witch Hunter's Strike
+63. feature/witchs-cauldron | Witch's Cauldron | sub:Crone|Witch's Cauldron
+64. feature/witchs-gift | Witch's Gift | sub:White Magic|Witch's Gift
+65. feature/witchbane-arsenal | Witchbane Arsenal | sub:Witchbane Hunter|Witchbane Arsenal
+66. feature/witching-arrows | Witching Arrows | sub:Primordial Archer|Witching Arrows
+67. feature/withdraw-cost-1d6 | Withdraw (Cost: 1d6)
+68. feature/wizard-speciality | Wizard Speciality | sub:Elementalist|Wizard Speciality
+69. feature/wizard-specialty | Wizard Specialty | sub:Alkemancer|Wizard Specialty
+70. feature/wizard-subclass | Wizard Subclass | cls:Wizard|Wizard Subclass
+71. feature/wizard-or-cleric-specialty | Wizard or Cleric Specialty | sub:Angelic Scribe|Wizard or Cleric Specialty
+72. feature/wizardly-quill | Wizardly Quill | sub:Order of Scribes|Wizardly Quill
+73. feature/wondrous-alteration | Wondrous Alteration | sub:Transmuter|Wondrous Alteration
+74. feature/woodland-hunter | Woodland Hunter | sp:Raptor|Woodland Hunter
+75. feature/word-of-revelation | Word of Revelation | sub:Burden of Truth|Word of Revelation
+76. feature/words-of-terror | Words of Terror | sub:College of Whispers|Words of Terror
+77. feature/work-in-progress | Work in Progress | sub:Maverick|Work in Progress
+78. feature/world-traveller | World Traveller | sub:Travel Domain|World Traveller
+79. feature/wormhole | Wormhole | sub:Singularity Patron|Wormhole
+80. feature/wraith-flight | Wraith Flight | sub:Reaper|Wraith Flight
+81. feature/wrath-of-the-sea | Wrath of the Sea | sub:Circle of the Sea|Wrath of the Sea
+82. feature/wrath-of-the-storm | Wrath of the Storm | sub:Tempest Domain|Wrath of the Storm
+83. feature/wrath-of-the-wild | Wrath of the Wild | sub:Hollow Warden|Wrath of the Wild
+84. feature/wretched-curse | Wretched Curse | sub:Wretched Bloodline Sorcery|Wretched Curse
+85. feature/writhing-tide | Writhing Tide | sub:Swarmkeeper|Writhing Tide
+86. feature/xenobiology | Xenobiology | sub:Xenoalchemist|Xenobiology
+87. feature/zany-misdirection | Zany Misdirection | sub:Burden of Levity|Zany Misdirection
+88. feature/zeal-domain-spells | Zeal Domain Spells | sub:Zeal Domain (PSA)|Zeal Domain Spells
+89. feature/zealous | Zealous | sp:Avia-Ra|Zealous
+90. feature/zealous-fervor | Zealous Fervor | sub:Holy Icon|Zealous Fervor
+91. feature/zenith | Zenith | sub:Oath of the Sun|Zenith
+92. feature/zephyrs-blessing | Zephyr's Blessing | sub:College of Birdsong|Zephyr's Blessing
+93. feature/zephyrs-stride | Zephyr's Stride | sub:Burden of Odyssey|Zephyr's Stride
+94. feature/zero-g-kicks | Zero-G Kicks | sub:Moonwalker|Zero-G Kicks
+95. feature/zeroed-sights | Zeroed Sights | sub:Calibarons' Guild|Zeroed Sights

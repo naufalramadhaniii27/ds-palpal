@@ -1,0 +1,101 @@
+LEMBAR 063, 100 sel
+1. recipe/fol-de-rol | Fol-De-Rol
+2. recipe/fried-bread-and-spices | Fried Bread and Spices
+3. recipe/fried-fingers | Fried Fingers
+4. recipe/fried-soy-with-vegetables | Fried Soy with Vegetables
+5. recipe/fruit-and-ricotta-pancakes | Fruit and Ricotta Pancakes
+6. recipe/gaethad | Gaeth'ad
+7. recipe/gingerbread-man | Gingerbread Man
+8. recipe/golden-way | Golden Way
+9. recipe/goldenstars | Goldenstars
+10. recipe/goodberry-blend | Goodberry Blend
+11. recipe/green-dragon-blackbread-muffins | Green Dragon Blackbread Muffins
+12. recipe/green-ice-rime | Green Ice Rime
+13. recipe/green-onion-pancakes | Green Onion Pancakes
+14. recipe/greengrass | Greengrass
+15. recipe/greenspear-bundles-in-bacon | Greenspear Bundles in Bacon
+16. recipe/gully-dwarf-homestyle-porridge | Gully Dwarf Homestyle Porridge
+17. recipe/gurdats | Gurdats
+18. recipe/halfling-game-birds | Halfling Game Birds
+19. recipe/halfling-iron-rations | Halfling Iron Rations
+20. recipe/halfling-oatmeal-sweet-nibbles | Halfling Oatmeal Sweet Nibbles
+21. recipe/hand-of-vecna | Hand Of Vecna
+22. recipe/hand-pies | Hand Pies
+23. recipe/hardbuckler-stew | Hardbuckler Stew
+24. recipe/harengon-coffee-carrots | Harengon Coffee Carrots
+25. recipe/harmonious-barracks-meatloaf | Harmonious Barracks Meatloaf
+26. recipe/harpells-reserve | Harpell's Reserve
+27. recipe/heartlands-rose-apple-and-blackberry-pie | Heartlands Rose Apple and Blackberry Pie
+28. recipe/hellish-rebuke | Hellish Rebuke
+29. recipe/high-harvest-puree | High Harvest Puree
+30. recipe/high-sun-florentines | High Sun Florentines
+31. recipe/hogs-in-bedrolls | Hogs in Bedrolls
+32. recipe/hommlet-golden-brown-roasted-turkey-with-sausage-stuffing-and-drippings | Hommlet Golden Brown Roasted Turkey with Sausage Stuffing and Drippings
+33. recipe/honey-milk | Honey Milk
+34. recipe/honey-drizzled-cream-puffs | Honey-Drizzled Cream Puffs
+35. recipe/honeyed-ham-with-pineapple-gravy | Honeyed Ham with Pineapple Gravy
+36. recipe/hordelander | Hordelander
+37. recipe/hot-river-crab-bites | Hot River Crab Bites
+38. recipe/hot-spiced-cider | Hot Spiced Cider
+39. recipe/illuskan-mulled-cider | Illuskan Mulled Cider
+40. recipe/inkpot-negroni | Inkpot Negroni
+41. recipe/irlymeyers-dragonfire-punch | Irlymeyer's Dragonfire Punch
+42. recipe/iron-rations | Iron Rations
+43. recipe/kaeth | Kaeth
+44. recipe/kale-soup-with-sausage-and-potatoes | Kale Soup with Sausage and Potatoes
+45. recipe/kara-tur-noodles | Kara-Tur Noodles
+46. recipe/karrnathi-breaded-veal | Karrnathi Breaded Veal
+47. recipe/kender-loaf | Kender Loaf
+48. recipe/kender-stumblenoodles | Kender Stumblenoodles
+49. recipe/kendermore-cobbler | Kendermore Cobbler
+50. recipe/kinship-shrub | Kinship Shrub
+51. recipe/krigala-supreme | Krigala Supreme
+52. recipe/lady-ophala | Lady Ophala
+53. recipe/lathanders-bounty | Lathander's Bounty
+54. recipe/laumberry-pie | Laumberry Pie
+55. recipe/library-martini | Library Martini
+56. recipe/littlewinter | Littlewinter
+57. recipe/lluirwood-salad | Lluirwood Salad
+58. recipe/loaf-pudding | Loaf Pudding
+59. recipe/loklee | Loklee
+60. recipe/luiric-rarebit | Luiric Rarebit
+61. recipe/madame-rosenes-nightcap | Madame Rosene's Nightcap
+62. recipe/magic-jar | Magic Jar
+63. recipe/malatran-mule | Malatran Mule
+64. recipe/many-stars | Many Stars
+65. recipe/meals-end | Meal's End
+66. recipe/melted-cheeses-with-chunky-tomato-broth | Melted Cheeses with Chunky Tomato Broth
+67. recipe/miners-pie | Miner's Pie
+68. recipe/mingari-spiced-owlbear-milk | Mingari-Spiced Owlbear Milk
+69. recipe/minted-pea-soup | Minted Pea Soup
+70. recipe/mintwater | Mintwater
+71. recipe/moonrise | Moonrise
+72. recipe/moonshae-seafood-rice | Moonshae Seafood Rice
+73. recipe/morning-cookies | Morning Cookies
+74. recipe/mother | Mother
+75. recipe/mourning-cup | Mourning Cup
+76. recipe/mushroom-tea | Mushroom Tea
+77. recipe/necromancer | Necromancer
+78. recipe/nether-gold | Nether Gold
+79. recipe/neverwinter-cheese-board | Neverwinter Cheese Board
+80. recipe/neverwinter-nectar | Neverwinter Nectar
+81. recipe/night-watch | Night Watch
+82. recipe/noble-pretender | Noble Pretender
+83. recipe/ogretoe | Ogretoe
+84. recipe/onion-loaf | Onion Loaf
+85. recipe/orange-mountain-duck | Orange Mountain Duck
+86. recipe/ornabra | Ornabra
+87. recipe/otiks-skillet-fried-spiced-potatoes | Otik's Skillet-Fried Spiced Potatoes
+88. recipe/ottos-irresistible-noodles | Otto's Irresistible Noodles
+89. recipe/pan-fried-fungi-with-garlic-butter | Pan-Fried Fungi with Garlic Butter
+90. recipe/pan-fried-knucklehead-trout | Pan-Fried Knucklehead Trout
+91. recipe/par-salians-tea | Par-Salian's Tea
+92. recipe/pegasus | Pegasus
+93. recipe/pieglass | Pieglass
+94. recipe/plate-of-silver | Plate of Silver
+95. recipe/plate-of-gold | Plate-of-Gold
+96. recipe/poetess | Poetess
+97. recipe/potato-leek-soup | Potato Leek Soup
+98. recipe/potion-of-restoration | Potion of Restoration
+99. recipe/purple-grapemash-no-3 | Purple Grapemash No. 3
+100. recipe/purskul-welcome-soup | Purskul Welcome Soup

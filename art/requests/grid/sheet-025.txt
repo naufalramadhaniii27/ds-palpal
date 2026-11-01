@@ -1,0 +1,101 @@
+LEMBAR 025, 100 sel
+1. spell/shadow-tendrils | Shadow Tendrils
+2. spell/shadow-trove | Shadow Trove
+3. spell/shadows-brought-to-light | Shadows Brought to Light
+4. spell/shadowy-retribution | Shadowy Retribution
+5. spell/shape-plants | Shape Plants
+6. spell/shared-judgement | Shared Judgement
+7. spell/shared-sacrifice | Shared Sacrifice
+8. spell/sheen-of-ice | Sheen of Ice
+9. spell/shield-burst | Shield Burst
+10. spell/shield-disruption | Shield Disruption
+11. spell/shield-of-star-and-shadow | Shield of Star and Shadow
+12. spell/shield-of-starlight | Shield of Starlight
+13. spell/shifting-the-odds | Shifting the Odds
+14. spell/shiver | Shiver
+15. spell/shocking-shroud | Shocking Shroud
+16. spell/shriek | Shriek
+17. spell/shroud-blood | Shroud Blood
+18. spell/shroud-of-death | Shroud of Death
+19. spell/sidestep-arrow | Sidestep Arrow
+20. spell/sign-of-koth | Sign of Koth
+21. spell/silhouette | Silhouette
+22. spell/silvered-shell | Silvered Shell
+23. spell/simulation | Simulation
+24. spell/sir-mittinzs-move-curse | Sir Mittinz's Move Curse
+25. spell/skeletal-tail | Skeletal Tail
+26. spell/skirmish | Skirmish
+27. spell/sleep-of-the-deep | Sleep of the Deep
+28. spell/slippery-fingers | Slippery Fingers
+29. spell/slither | Slither
+30. spell/slow-burn-fireball | Slow-Burn Fireball
+31. spell/smiting-arrow | Smiting Arrow
+32. spell/snap-the-leash | Snap the Leash
+33. spell/snow-boulder | Snow Boulder
+34. spell/snow-fort | Snow Fort
+35. spell/snowy-coat | Snowy Coat
+36. spell/solar-wind | Solar Wind
+37. spell/solitary-fireball | Solitary Fireball
+38. spell/somnolence | Somnolence
+39. spell/song-of-the-forest | Song of the Forest
+40. spell/sonic-pulse | Sonic Pulse
+41. spell/soothing-chant | Soothing Chant
+42. spell/soothing-incandescence | Soothing Incandescence
+43. spell/soothsayers-shield | Soothsayer's Shield
+44. spell/soul-borrowing | Soul Borrowing
+45. spell/soul-effigy | Soul Effigy
+46. spell/soul-of-the-machine | Soul of the Machine
+47. spell/souleater | Souleater
+48. spell/spark-of-life | Spark of Life
+49. spell/speak-with-inanimate-object | Speak with Inanimate Object
+50. spell/spectral-fury | Spectral Fury
+51. spell/spectral-herd | Spectral Herd
+52. spell/spectral-slash | Spectral Slash
+53. spell/speedcycle | Speedcycle
+54. spell/sphere-of-order | Sphere of Order
+55. spell/spin | Spin
+56. spell/spinning-axes | Spinning Axes
+57. spell/spiny-shield | Spiny Shield
+58. spell/spire-of-stone | Spire of Stone
+59. spell/spirit-swarm | Spirit Swarm
+60. spell/spiteful-weapon | Spiteful Weapon
+61. spell/splattering-smite | Splattering Smite
+62. spell/splice | Splice
+63. spell/springheel | Springheel
+64. spell/spur-mount | Spur Mount
+65. spell/spy-my-shadow | Spy My Shadow
+66. spell/st-blusens-reaver-spirit | St. Blusen's Reaver Spirit
+67. spell/st-parvalass-risen-road | St. Parvalas's Risen Road
+68. spell/st-whiteskulls-borrowing | St. Whiteskull's Borrowing
+69. spell/staff-of-violet-fire | Staff of Violet Fire
+70. spell/stanch | Stanch
+71. spell/stars-heart | Star's Heart
+72. spell/starburst | Starburst
+73. spell/starfall | Starfall
+74. spell/starfall-deep-magic | Starfall (Deep Magic)
+75. spell/starry-vision | Starry Vision
+76. spell/steal-immortality | Steal Immortality
+77. spell/steal-warmth | Steal Warmth
+78. spell/steam-blast | Steam Blast
+79. spell/steam-whistle | Steam Whistle
+80. spell/stellar-bodies | Stellar Bodies
+81. spell/stench-of-rot | Stench of Rot
+82. spell/step-like-me | Step Like Me
+83. spell/sting-of-the-scorpion-goddess | Sting of the Scorpion Goddess
+84. spell/stone-bones | Stone Bones
+85. spell/storm-form | Storm Form
+86. spell/storm-gods-doom | Storm God's Doom
+87. spell/storm-of-wings | Storm of Wings
+88. spell/strength-of-an-ox | Strength of an Ox
+89. spell/strength-of-the-underworld | Strength of the Underworld
+90. spell/sudden-dawn | Sudden Dawn
+91. spell/sudden-stampede | Sudden Stampede
+92. spell/suffocate | Suffocate
+93. spell/sulfuric-smoke | Sulfuric Smoke
+94. spell/summon-avatar | Summon Avatar
+95. spell/summon-eldritch-servitor | Summon Eldritch Servitor
+96. spell/summon-giant | Summon Giant
+97. spell/summon-hardlight-spirit | Summon Hardlight Spirit
+98. spell/summon-monstrosity | Summon Monstrosity
+99. spell/summon-old-ones-avatar | Summon Old One's Avatar
+100. spell/summon-ooze | Summon Ooze

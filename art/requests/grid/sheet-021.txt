@@ -1,0 +1,101 @@
+LEMBAR 021, 100 sel
+1. spell/heart-to-heart | Heart to Heart
+2. spell/heart-seeking-arrow | Heart-Seeking Arrow
+3. spell/heartache | Heartache
+4. spell/heartseeker | Heartseeker
+5. spell/heartstop | Heartstop
+6. spell/heartstrike | Heartstrike
+7. spell/heavenly-crown | Heavenly Crown
+8. spell/hedrens-birds-of-clay | Hedren's Birds of Clay
+9. spell/hellfire-blitz | Hellfire Blitz
+10. spell/hellforging | Hellforging
+11. spell/helping-hand | Helping Hand
+12. spell/hematomancy | Hematomancy
+13. spell/heros-steel | Hero's Steel
+14. spell/heroic-sacrifice | Heroic Sacrifice
+15. spell/hex-abate | Hex: Abate
+16. spell/hex-apathy | Hex: Apathy
+17. spell/hex-bleeding | Hex: Bleeding
+18. spell/hex-blood-curse | Hex: Blood Curse
+19. spell/hex-charm | Hex: Charm
+20. spell/hex-decay | Hex: Decay
+21. spell/hex-disorient | Hex: Disorient
+22. spell/hex-doomward | Hex: Doomward
+23. spell/hex-duplicity | Hex: Duplicity
+24. spell/hex-evil-eye | Hex: Evil Eye
+25. spell/hex-fortune | Hex: Fortune
+26. spell/hex-garble | Hex: Garble
+27. spell/hex-hallucination | Hex: Hallucination
+28. spell/hex-hobble | Hex: Hobble
+29. spell/hex-imperil | Hex: Imperil
+30. spell/hex-mire | Hex: Mire
+31. spell/hex-misfortune | Hex: Misfortune
+32. spell/hex-musical-interlude | Hex: Musical Interlude
+33. spell/hex-obfuscate | Hex: Obfuscate
+34. spell/hex-peacebond | Hex: Peacebond
+35. spell/hex-pox | Hex: Pox
+36. spell/hex-ruin | Hex: Ruin
+37. spell/hex-stupor | Hex: Stupor
+38. spell/hex-sweet-tooth | Hex: Sweet Tooth
+39. spell/hex-tremors | Hex: Tremors
+40. spell/hex-vanish | Hex: Vanish
+41. spell/hex-ward | Hex: Ward
+42. spell/hide-in-ones-shadow | Hide in One's Shadow
+43. spell/hoarfrost | Hoarfrost
+44. spell/hobble | Hobble
+45. spell/hobble-mount | Hobble Mount
+46. spell/hocuspocus | Hocuspocus
+47. spell/hollowing-curse | Hollowing Curse
+48. spell/holy-ground | Holy Ground
+49. spell/holy-vow | Holy Vow
+50. spell/holy-warding | Holy Warding
+51. spell/holy-word | Holy Word
+52. spell/hone-blade | Hone Blade
+53. spell/hunger-of-leng | Hunger of Leng
+54. spell/hunger-of-the-earth | Hunger of the Earth
+55. spell/hunter-sense | Hunter Sense
+56. spell/hunters-cunning | Hunter's Cunning
+57. spell/hunters-endurance | Hunter's Endurance
+58. spell/hunting-stand | Hunting Stand
+59. spell/hypnotic-missive | Hypnotic Missive
+60. spell/ice-burn | Ice Burn
+61. spell/ice-fortress | Ice Fortress
+62. spell/ice-hammer | Ice Hammer
+63. spell/ice-soldiers | Ice Soldiers
+64. spell/icicle-daggers | Icicle Daggers
+65. spell/icicle-javelin | Icicle Javelin
+66. spell/icy-grasp-of-the-ether | Icy Grasp of the Ether
+67. spell/icy-grasp-of-the-void | Icy Grasp of the Void
+68. spell/icy-manipulation | Icy Manipulation
+69. spell/identity-curse | Identity Curse
+70. spell/ill-fated-word | Ill-Fated Word
+71. spell/ill-fated-word-2 | Ill-fated Word
+72. spell/illuminate-spoor | Illuminate Spoor
+73. spell/illusory-instrument | Illusory Instrument
+74. spell/illusory-trap | Illusory Trap
+75. spell/imbue-sentience | Imbue Sentience
+76. spell/imbue-spell | Imbue Spell
+77. spell/imitation-spellhack | Imitation Spellhack
+78. spell/impending-ally | Impending Ally
+79. spell/impotence | Impotence
+80. spell/impressions-of-the-past | Impressions of the Past
+81. spell/improvised-spellhack | Improvised Spellhack
+82. spell/incite-riot | Incite Riot
+83. spell/indecision | Indecision
+84. spell/inevitable-boulder | Inevitable Boulder
+85. spell/inexorable-sarcophagus | Inexorable Sarcophagus
+86. spell/innocuous-aspect | Innocuous Aspect
+87. spell/insightful-maneuver | Insightful Maneuver
+88. spell/inspiring-speech | Inspiring Speech
+89. spell/instant-barricade | Instant Barricade
+90. spell/instant-fortification | Instant Fortification
+91. spell/instant-refreshement | Instant Refreshement
+92. spell/instant-replay | Instant Replay
+93. spell/instant-siege-weapon | Instant Siege Weapon
+94. spell/instant-snare | Instant Snare
+95. spell/intaglio | Intaglio
+96. spell/intensify-gravity | Intensify Gravity
+97. spell/intrusive-thought | Intrusive Thought
+98. spell/invested-champion | Invested Champion
+99. spell/investiture-of-blight | Investiture of Blight
+100. spell/investiture-of-venom | Investiture of Venom

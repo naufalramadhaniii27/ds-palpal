@@ -1,0 +1,101 @@
+LEMBAR 027, 100 sel
+1. spell/void-rift | Void Rift
+2. spell/void-strike | Void Strike
+3. spell/void-walk | Void Walk
+4. spell/volley-shield | Volley Shield
+5. spell/vomit-tentacles | Vomit Tentacles
+6. spell/voorish-sign | Voorish Sign
+7. spell/waft | Waft
+8. spell/walk-the-twisted-path | Walk the Twisted Path
+9. spell/walking-wall | Walking Wall
+10. spell/wall-of-bones | Wall of Bones
+11. spell/wall-of-gloom | Wall of Gloom
+12. spell/wall-of-time | Wall of Time
+13. spell/ward-object | Ward Object
+14. spell/warning-shout | Warning Shout
+15. spell/warp-mind-and-matter | Warp Mind and Matter
+16. spell/watery-tentacles | Watery Tentacles
+17. spell/wave-of-corruption | Wave of Corruption
+18. spell/wayward-strike | Wayward Strike
+19. spell/weapon-of-blood | Weapon of Blood
+20. spell/weave-numen | Weave Numen
+21. spell/weilers-ward | Weiler's Ward
+22. spell/whispering-wind | Whispering Wind
+23. spell/white-dwarf | White Dwarf
+24. spell/wild-shield | Wild Shield
+25. spell/wild-trajectory | Wild Trajectory
+26. spell/wilting-smite | Wilting Smite
+27. spell/wind-lash | Wind Lash
+28. spell/wind-tunnel | Wind Tunnel
+29. spell/wind-of-the-hereafter | Wind of the Hereafter
+30. spell/winding-key | Winding Key
+31. spell/winter-flower | Winter Flower
+32. spell/winters-radiance | Winter's Radiance
+33. spell/winterdark | Winterdark
+34. spell/wintry-glide | Wintry Glide
+35. spell/wipe-face | Wipe Face
+36. spell/withered-sight | Withered Sight
+37. spell/withering-smite | Withering Smite
+38. spell/wolfsong | Wolfsong
+39. spell/word-of-control | Word of Control
+40. spell/word-of-force | Word of Force
+41. spell/word-of-frailty | Word of Frailty
+42. spell/word-of-misfortune | Word of Misfortune
+43. spell/word-of-terror | Word of Terror
+44. spell/world-breaker | World Breaker
+45. spell/worldseek | Worldseek
+46. spell/wrack | Wrack
+47. spell/wresting-wind | Wresting Wind
+48. spell/write-memory | Write Memory
+49. spell/writhing-arms | Writhing Arms
+50. spell/yellow-sign | Yellow Sign
+51. spell/zephyrs-feather | Zephyr's Feather
+52. spell/zero-gravity | Zero Gravity
+53. spell/zone-of-atmosphere | Zone of Atmosphere
+54. item/1-all-purpose-tool | +1 All-Purpose Tool
+55. item/1-ammunition | +1 Ammunition
+56. item/1-amulet-of-the-devout | +1 Amulet of the Devout
+57. item/1-arcane-grimoire | +1 Arcane Grimoire
+58. item/1-armor | +1 Armor
+59. item/1-bloodwell-vial | +1 Bloodwell Vial
+60. item/1-dragon-edge-weapon | +1 Dragon Edge Weapon
+61. item/1-dragonhide-belt | +1 Dragonhide Belt
+62. item/1-dragonkin-weapon | +1 Dragonkin Weapon
+63. item/1-fate-dealers-deck | +1 Fate Dealer's Deck
+64. item/1-moon-sickle | +1 Moon Sickle
+65. item/1-rhythm-makers-drum | +1 Rhythm-Maker's Drum
+66. item/1-rod-of-the-pact-keeper | +1 Rod of the Pact Keeper
+67. item/1-shield | +1 Shield (*)
+68. item/1-soulbind-chains | +1 Soulbind Chains
+69. item/1-tools-of-the-master | +1 Tools of the Master
+70. item/1-wand-of-the-war-mage | +1 Wand of the War Mage
+71. item/1-weapon | +1 Weapon
+72. item/1-weapon-no-damage | +1 Weapon (no damage)
+73. item/1-wraps-of-unarmed-power | +1 Wraps of Unarmed Power
+74. item/1-wraps-of-unarmed-prowess | +1 Wraps of Unarmed Prowess
+75. item/2-all-purpose-tool | +2 All-Purpose Tool
+76. item/2-ammunition | +2 Ammunition
+77. item/2-amulet-of-the-devout | +2 Amulet of the Devout
+78. item/2-arcane-grimoire | +2 Arcane Grimoire
+79. item/2-armor | +2 Armor
+80. item/2-bloodwell-vial | +2 Bloodwell Vial
+81. item/2-dragon-edge-weapon | +2 Dragon Edge Weapon
+82. item/2-dragonhide-belt | +2 Dragonhide Belt
+83. item/2-dragonkin-weapon | +2 Dragonkin Weapon
+84. item/2-fate-dealers-deck | +2 Fate Dealer's Deck
+85. item/2-moon-sickle | +2 Moon Sickle
+86. item/2-rhythm-makers-drum | +2 Rhythm-Maker's Drum
+87. item/2-ring-of-protection | +2 Ring of Protection
+88. item/2-rod-of-the-pact-keeper | +2 Rod of the Pact Keeper
+89. item/2-shield | +2 Shield (*)
+90. item/2-soulbind-chains | +2 Soulbind Chains
+91. item/2-studded-leather-armor-of-acid-resistance | +2 Studded Leather Armor of Acid Resistance
+92. item/2-studded-white-dragon-leather-armor-of-cold-resistance | +2 Studded White Dragon Leather Armor of Cold Resistance
+93. item/2-tools-of-the-master | +2 Tools of the Master
+94. item/2-wand-of-the-war-mage | +2 Wand of the War Mage
+95. item/2-weapon | +2 Weapon
+96. item/2-weapon-no-damage | +2 Weapon (no damage)
+97. item/2-wraps-of-unarmed-power | +2 Wraps of Unarmed Power
+98. item/2-wraps-of-unarmed-prowess | +2 Wraps of Unarmed Prowess
+99. item/3-all-purpose-tool | +3 All-Purpose Tool
+100. item/3-ammunition | +3 Ammunition

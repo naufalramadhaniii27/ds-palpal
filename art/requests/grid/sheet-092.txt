@@ -1,0 +1,101 @@
+LEMBAR 092, 100 sel
+1. feature/season | Season | sp:Eladrin (2014)|Season
+2. feature/second-wind-improvement | Second Wind Improvement
+3. feature/secondary-arms | Secondary Arms | sp:Thri-kreen|Secondary Arms
+4. feature/seer | Seer | sub:Burden of Truth|Seer
+5. feature/selfless-sacrifice | Selfless Sacrifice | sub:Burden of Atonement|Selfless Sacrifice
+6. feature/selfless-survival | Selfless Survival | sub:Godsworn|Selfless Survival
+7. feature/semblance-of-life | Semblance of Life | sub:Vestige Patron|Semblance of Life
+8. feature/sentinel-at-deaths-door | Sentinel at Death's Door | sub:Grave Domain|Sentinel at Death's Door
+9. feature/sentinels-intuition | Sentinel's Intuition | sp:Human (Mark of Sentinel)|Sentinel's Intuition
+10. feature/sentrys-rest | Sentry's Rest | sp:Autognome|Sentry's Rest
+11. feature/serene-strike | Serene Strike | sub:Path of Tranquility|Serene Strike
+12. feature/service-model | Service Model | sp:Manikin|Service Model
+13. feature/servitors-agility | Servitor's Agility | sub:Familiar Master|Servitor's Agility
+14. feature/sever-connection | Sever Connection | sub:Arcane Maesters' Guild|Sever Connection
+15. feature/severed-from-dreams | Severed from Dreams | sp:Kalashtar (2014)|Severed from Dreams
+16. feature/shade-of-regret | Shade of Regret | sub:Warrior of Regret|Shade of Regret
+17. feature/shadow-flight | Shadow Flight | sub:Circle of Owls|Shadow Flight
+18. feature/shadow-lore | Shadow Lore | sub:College of Whispers|Shadow Lore
+19. feature/shadow-martyr | Shadow Martyr | sub:Echo Knight|Shadow Martyr
+20. feature/shadow-meld | Shadow Meld | sub:Darkness Domain|Shadow Meld
+21. feature/shadow-shield | Shadow Shield | sub:Darkness Domain|Shadow Shield
+22. feature/shadow-spells | Shadow Spells | sub:Shadow Sorcery|Shadow Spells
+23. feature/shadow-walk | Shadow Walk | sub:Shadow Sorcery|Shadow Walk
+24. feature/shadowdance | Shadowdance | sub:Shadow Dancer|Shadowdance
+25. feature/shadowy-dodge | Shadowy Dodge | sub:Gloom Stalker (2014)|Shadowy Dodge
+26. feature/shadowy-figments | Shadowy Figments
+27. feature/shake-the-earth | Shake the Earth | sub:Circle of Entropy|Shake the Earth
+28. feature/shape-self | Shape Self | sp:Lorwyn Changeling|Shape Self
+29. feature/shape-shadows | Shape Shadows | sp:Elf (Mark of Shadow)|Shape Shadows
+30. feature/shape-of-the-wild | Shape of the Wild | sub:Path of the Primal Spirit|Shape of the Wild
+31. feature/shape-shifter | Shape-Shifter | sub:Transmuter|Shape-Shifter
+32. feature/shapechanger | Shapechanger | sp:Changeling (2014)|Shapechanger
+33. feature/shapes-and-omens | Shapes and Omens | sub:Tea Magic|Shapes and Omens
+34. feature/shard-of-infinity | Shard of Infinity | sp:Demidritch|Shard of Infinity
+35. feature/share-spells | Share Spells | sub:Beast Master (2014)|Share Spells
+36. feature/share-the-burden | Share the Burden | sub:Wretched Bloodline Sorcery|Share the Burden
+37. feature/shared-mutagen | Shared Mutagen | sub:Mutagenist|Shared Mutagen
+38. feature/shared-rage | Shared Rage | sub:Path of the Primal Spirit|Shared Rage
+39. feature/shared-resilience | Shared Resilience | sub:Banneret|Shared Resilience
+40. feature/sharing-the-dream | Sharing the Dream | sub:Farseer|Sharing the Dream
+41. feature/sharp-mind | Sharp Mind
+42. feature/sharpen-the-blade | Sharpen the Blade | sub:Way of the Kensei|Sharpen the Blade
+43. feature/shell-defense | Shell Defense | sp:Tortle (2014)|Shell Defense
+44. feature/shield-fighter | Shield Fighter | sub:Star-Spangled Banner|Shield Fighter
+45. feature/shield-of-missiles | Shield of Missiles | sub:Magic Missile Mage|Shield of Missiles
+46. feature/shield-of-the-protector | Shield of the Protector | sub:Vow of the Protector|Shield of the Protector
+47. feature/shifting | Shifting | sp:Shifter (Beasthide)|Shifting
+48. feature/shifting-feature | Shifting Feature | sp:Shifter (Beasthide)|Shifting Feature
+49. feature/shifting-resistance | Shifting Resistance | sub:Entropist|Shifting Resistance
+50. feature/shillelagh-mastery | Shillelagh Mastery | sub:Circle of the Unbroken|Shillelagh Mastery
+51. feature/shining-steel | Shining Steel | sub:Armigers' Guild|Shining Steel
+52. feature/shock-trooper | Shock Trooper | sub:House of Lancers|Shock Trooper
+53. feature/shrouded-start | Shrouded Start | sub:Shadow Dancer|Shrouded Start
+54. feature/shrouded-steps | Shrouded Steps | sub:Heretic Chapter|Shrouded Steps
+55. feature/shrug-off-maneuver | Shrug Off [Maneuver] | sub:Pugilist|Shrug Off [Maneuver]
+56. feature/sick-em-maneuver | Sick 'Em! [Maneuver] | sub:Houndmaster|Sick 'Em! [Maneuver]
+57. feature/sidekick-class | Sidekick Class
+58. feature/siege-casting | Siege Casting | sub:House of Bishops|Siege Casting
+59. feature/siege-defender | Siege Defender | sub:Grey Watchman|Siege Defender
+60. feature/siege-defense | Siege Defense | sub:Tower Banner|Siege Defense
+61. feature/sigilic-augmentation | Sigilic Augmentation | sub:Runechild|Sigilic Augmentation
+62. feature/silent-feathers | Silent Feathers | sp:Owlin|Silent Feathers
+63. feature/silent-routine | Silent Routine | sub:Mime|Silent Routine
+64. feature/silent-sacrifice | Silent Sacrifice | sub:Burden of Anonymity|Silent Sacrifice
+65. feature/silent-speech | Silent Speech | sp:Ghostwise Halfling|Silent Speech
+66. feature/silver-tongue | Silver Tongue | sub:College of Eloquence|Silver Tongue
+67. feature/silvered-edge | Silvered Edge | sub:Exterminator|Silvered Edge
+68. feature/silvered-shield | Silvered Shield | sub:Exterminator|Silvered Shield
+69. feature/sin-eater | Sin Eater | sub:Burden of Atonement|Sin Eater
+70. feature/sing-the-song-that-ends-the-world | Sing the Song that Ends the World | sub:Eldritch Domain|Sing the Song that Ends the World
+71. feature/singularity-spells | Singularity Spells | sub:Singularity Patron|Singularity Spells
+72. feature/singularity-strike | Singularity Strike | sub:Warrior of Gravity|Singularity Strike
+73. feature/siphon-blood | Siphon Blood | sub:Serophage|Siphon Blood
+74. feature/siphon-spells | Siphon Spells | sub:Vow of the Siphon|Siphon Spells
+75. feature/sirens-song | Siren's Song | sp:Siren|Siren's Song
+76. feature/sixth-sense | Sixth Sense | sub:Haunted Sorcery|Sixth Sense
+77. feature/size-up | Size Up | sub:Nightwatcher|Size Up
+78. feature/skill-versatility | Skill Versatility | sp:Half-Elf|Skill Versatility
+79. feature/skilled-alchemist | Skilled Alchemist | sub:Alkemancer|Skilled Alchemist
+80. feature/skilled-guardian | Skilled Guardian | sub:Nightwatcher|Skilled Guardian
+81. feature/skilled-surgeon | Skilled Surgeon | sub:Cyber Surgeon|Skilled Surgeon
+82. feature/skillful | Skillful | sp:Near-Human|Skillful
+83. feature/skills | Skills | sp:Variant Human|Skills
+84. feature/skin-of-steel | Skin of Steel | sub:Circle of the Forged|Skin of Steel
+85. feature/skinriders-trance | Skinrider's Trance | sub:Path of the Primal Spirit|Skinrider's Trance
+86. feature/skirmish-maneuver | Skirmish [Maneuver] | sub:Jolly Roger|Skirmish [Maneuver]
+87. feature/skirmisher | Skirmisher | sub:Scout|Skirmisher
+88. feature/skirmishers-step | Skirmisher's Step | sub:Griffon Scout|Skirmisher's Step
+89. feature/skulker | Skulker | sp:Mapach|Skulker
+90. feature/sky-spells | Sky Spells | sub:Sky Magic|Sky Spells
+91. feature/slashing-flourish | Slashing Flourish
+92. feature/slayers-counter | Slayer's Counter | sub:Monster Slayer|Slayer's Counter
+93. feature/slayers-prey | Slayer's Prey | sub:Monster Slayer|Slayer's Prey
+94. feature/slayers-strike | Slayer's Strike | sub:Vampire Slayer|Slayer's Strike
+95. feature/slaymates | Slaymates | sub:Toymaker|Slaymates
+96. feature/sleep-bomb-formula | Sleep Bomb [Formula] | sub:Xenoalchemist|Sleep Bomb [Formula]
+97. feature/sleepless | Sleepless | sp:Thri-kreen|Sleepless
+98. feature/slick-moves | Slick Moves | sub:Moonwalker|Slick Moves
+99. feature/slime-bomb | Slime Bomb | sub:Ooze Rancher|Slime Bomb
+100. feature/slip-gate | Slip Gate | sub:Jumper|Slip Gate

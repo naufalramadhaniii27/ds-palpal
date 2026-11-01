@@ -1,0 +1,101 @@
+LEMBAR 033, 100 sel
+1. item/deathwalkers-ward-exalted | Deathwalker's Ward (Exalted)
+2. item/deck-of-holding | Deck of Holding
+3. item/deck-of-holding-expanded-storage | Deck of Holding (Expanded Storage)
+4. item/deck-of-holding-password-protected | Deck of Holding (Password Protected)
+5. item/demonbone-polearm | Demonbone Polearm
+6. item/deni-shield | Deni Shield
+7. item/detection-channeling-wand | Detection Channeling Wand
+8. item/detection-dragonmark-channel | Detection Dragonmark Channel
+9. item/detection-dragonmark-reservoir | Detection Dragonmark Reservoir
+10. item/devastation-orb | Devastation Orb
+11. item/devils-detail-eyepatch | Devil's Detail Eyepatch
+12. item/dimensional-loop | Dimensional Loop
+13. item/dimir-charm | Dimir Charm
+14. item/diode-beam | Diode Beam
+15. item/dire-diary | Dire Diary
+16. item/direstone-dwarven-pick | Direstone Dwarven Pick
+17. item/disappearing-mule | Disappearing Mule
+18. item/discordant-thunderstave | Discordant Thunderstave
+19. item/dispelling-ammunition | Dispelling Ammunition
+20. item/displacer-daiquiri | Displacer Daiquiri
+21. item/dodecahedron-of-doom | Dodecahedron of Doom
+22. item/dome-projector | Dome Projector
+23. item/doodle-ring | Doodle Ring
+24. item/doomsday-cookie | Doomsday Cookie
+25. item/double-laser-sword | Double Laser Sword
+26. item/double-bladed-scimitar | Double-Bladed Scimitar
+27. item/doublet-of-dramatic-demise | Doublet of Dramatic Demise
+28. item/dowsing-dagger | Dowsing Dagger
+29. item/draconic-familiar | Draconic Familiar
+30. item/draconic-longsword | Draconic Longsword
+31. item/draconic-rebirth | Draconic Rebirth
+32. item/draconic-senses | Draconic Senses
+33. item/draconis-fundamentum | Draconis Fundamentum
+34. item/draft-horse | Draft Horse
+35. item/dragon | Dragon
+36. item/dragon-edge-weapon | Dragon Edge Weapon
+37. item/dragon-queens-will | Dragon Queen's Will
+38. item/dragon-sensing-longsword | Dragon Sensing Longsword
+39. item/dragon-tamer-lance | Dragon Tamer Lance
+40. item/dragon-thighbone-club | Dragon Thighbone Club
+41. item/dragon-turtle-shield | Dragon Turtle Shield
+42. item/dragon-vessel | Dragon Vessel
+43. item/dragon-wing-bow | Dragon Wing Bow
+44. item/dragons-breath-shot | Dragon's Breath Shot
+45. item/dragons-call | Dragon's Call
+46. item/dragons-wrath-weapon | Dragon's Wrath Weapon
+47. item/dragon-kindled-edge | Dragon-Kindled Edge
+48. item/dragon-touched-focus | Dragon-Touched Focus
+49. item/dragongleam | Dragongleam
+50. item/draught-of-feather-shine | Draught of Feather Shine
+51. item/draught-of-slime-curse-cure | Draught of Slime Curse Cure
+52. item/dream-mantle | Dream Mantle
+53. item/dreams-leaves | Dreams Leaves
+54. item/dried-leech | Dried Leech
+55. item/drifting-drink | Drifting Drink
+56. item/drive-wheel | Drive Wheel
+57. item/drone-controller | Drone Controller
+58. item/drow-1-armor | Drow +1 Armor
+59. item/drow-1-weapon | Drow +1 Weapon
+60. item/drow-2-armor | Drow +2 Armor
+61. item/drow-2-weapon | Drow +2 Weapon
+62. item/drow-3-armor | Drow +3 Armor
+63. item/drow-3-weapon | Drow +3 Weapon
+64. item/druids-draught | Druid's Draught
+65. item/druidic-throwing-club | Druidic Throwing Club
+66. item/dryadleaf | Dryadleaf
+67. item/drybrooch | Drybrooch
+68. item/duster | Duster
+69. item/d-mglesvir-adept | Dämglesvir (Adept)
+70. item/d-mglesvir-aspirant | Dämglesvir (Aspirant)
+71. item/d-mglesvir-master | Dämglesvir (Master)
+72. item/eaglereign | Eaglereign
+73. item/ear-cuff-of-the-vampire-bat | Ear Cuff of the Vampire Bat
+74. item/earthboard | Earthboard
+75. item/echo-stone | Echo Stone
+76. item/echo-of-dragonsight | Echo of Dragonsight
+77. item/ectoplasmic-whip | Ectoplasmic Whip
+78. item/edible-book-of-recipes | Edible Book of Recipes
+79. item/egg-of-rebirth | Egg of Rebirth
+80. item/elder-cartographers-glossography | Elder Cartographer's Glossography
+81. item/eldritch-scarf | Eldritch Scarf
+82. item/electrum-50-zib-coin | Electrum 50-Zib Coin
+83. item/elemental-essence-shard-air | Elemental Essence Shard (Air)
+84. item/elemental-essence-shard-earth | Elemental Essence Shard (Earth)
+85. item/elemental-essence-shard-fire | Elemental Essence Shard (Fire)
+86. item/elemental-essence-shard-water | Elemental Essence Shard (Water)
+87. item/elixir-of-elemental-spittle | Elixir of Elemental Spittle
+88. item/elixir-of-life-protection | Elixir of Life Protection
+89. item/embedded-armor | Embedded Armor
+90. item/embedded-mini-fridge | Embedded Mini Fridge
+91. item/embedded-translator | Embedded Translator
+92. item/embedded-weapon | Embedded Weapon
+93. item/embedded-weapon-1 | Embedded Weapon +1
+94. item/embedded-weapon-2 | Embedded Weapon +2
+95. item/embedded-weapon-3 | Embedded Weapon +3
+96. item/emerald-enclave-trinket | Emerald Enclave Trinket
+97. item/enchanted-feather | Enchanted Feather
+98. item/enchanted-three-dragon-ante-set | Enchanted Three-Dragon Ante Set
+99. item/enchantment-breaker | Enchantment Breaker
+100. item/encyclopedia-multiplanaria | Encyclopedia Multiplanaria

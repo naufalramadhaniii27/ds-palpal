@@ -1,0 +1,101 @@
+LEMBAR 024, 100 sel
+1. spell/quench | Quench
+2. spell/quick-time | Quick Time
+3. spell/quicken | Quicken
+4. spell/quicksilver-mantle | Quicksilver Mantle
+5. spell/quickstep | Quickstep
+6. spell/quintessence | Quintessence
+7. spell/radiant-bell | Radiant Bell
+8. spell/radiant-slaughter | Radiant Slaughter
+9. spell/raid-the-lair | Raid the Lair
+10. spell/railgun | Railgun
+11. spell/rain-of-blades | Rain of Blades
+12. spell/raise-elder | Raise Elder
+13. spell/raise-ghost | Raise Ghost
+14. spell/raise-hero | Raise Hero
+15. spell/raise-nemesis | Raise Nemesis
+16. spell/raise-questing-dead | Raise Questing Dead
+17. spell/raise-shade | Raise Shade
+18. spell/ravages-of-time | Ravages of Time
+19. spell/ray-spellhack | Ray Spellhack
+20. spell/ray-of-alchemical-negation | Ray of Alchemical Negation
+21. spell/ray-of-life-suppression | Ray of Life Suppression
+22. spell/read-memory | Read Memory
+23. spell/read-object | Read Object
+24. spell/reanimate | Reanimate
+25. spell/reaver-spirit | Reaver Spirit
+26. spell/recall | Recall
+27. spell/recharge | Recharge
+28. spell/recharge-shields | Recharge Shields
+29. spell/red-rain | Red Rain
+30. spell/regenerating-ward | Regenerating Ward
+31. spell/remove-scent | Remove Scent
+32. spell/repair-metal | Repair Metal
+33. spell/reposition | Reposition
+34. spell/reset | Reset
+35. spell/restore-youth | Restore Youth
+36. spell/reverberate | Reverberate
+37. spell/revive-beast | Revive Beast
+38. spell/ride-the-lightning | Ride the Lightning
+39. spell/right-the-stars | Right the Stars
+40. spell/ring-strike | Ring Strike
+41. spell/ring-ward | Ring Ward
+42. spell/ringstrike | Ringstrike
+43. spell/ringward | Ringward
+44. spell/riptide | Riptide
+45. spell/roaming-pain | Roaming Pain
+46. spell/roaring-winds-of-limbo | Roaring Winds of Limbo
+47. spell/robe-of-shards | Robe of Shards
+48. spell/rocks-fall | Rocks Fall
+49. spell/rolling-bones | Rolling Bones
+50. spell/rolling-thunder | Rolling Thunder
+51. spell/rotting-corpse | Rotting Corpse
+52. spell/rubber-bones | Rubber Bones
+53. spell/ruby-eye-curse | Ruby-Eye Curse
+54. spell/rumbling-charge | Rumbling Charge
+55. spell/rumor | Rumor
+56. spell/rune-of-imprisonment | Rune of Imprisonment
+57. spell/rupturing-curse | Rupturing Curse
+58. spell/rusting-grasp | Rusting Grasp
+59. spell/sacrificial-healing | Sacrificial Healing
+60. spell/salt-lash | Salt Lash
+61. spell/sanction | Sanction
+62. spell/sand-ship | Sand Ship
+63. spell/sanguine-fusillade | Sanguine Fusillade
+64. spell/sanguine-horror | Sanguine Horror
+65. spell/sanguine-poppet | Sanguine Poppet
+66. spell/sanguine-shield | Sanguine Shield
+67. spell/scale-rot | Scale Rot
+68. spell/scaly-hide | Scaly Hide
+69. spell/scentless | Scentless
+70. spell/screaming-ray | Screaming Ray
+71. spell/scribe | Scribe
+72. spell/scrutinize-foe | Scrutinize Foe
+73. spell/scry-ambush | Scry Ambush
+74. spell/sculpt-snow | Sculpt Snow
+75. spell/scurry | Scurry
+76. spell/seal-spellcasting | Seal Spellcasting
+77. spell/seal-of-sanctuary | Seal of Sanctuary
+78. spell/searing-sun | Searing Sun
+79. spell/secret-enclave | Secret Enclave
+80. spell/see-beyond | See Beyond
+81. spell/seed-of-destruction | Seed of Destruction
+82. spell/seeping-death | Seeping Death
+83. spell/seers-reaction | Seer's Reaction
+84. spell/seers-reaction-2 | Seer's reaction
+85. spell/semblance-of-dread | Semblance of Dread
+86. spell/sense-lifeblood | Sense Lifeblood
+87. spell/sequenced-spellhack | Sequenced Spellhack
+88. spell/serpent-tongue | Serpent Tongue
+89. spell/servant-of-doom | Servant of Doom
+90. spell/sever-attunement | Sever Attunement
+91. spell/shade | Shade
+92. spell/shadow-armor | Shadow Armor
+93. spell/shadow-bite | Shadow Bite
+94. spell/shadow-blindness | Shadow Blindness
+95. spell/shadow-gateway | Shadow Gateway
+96. spell/shadow-hands | Shadow Hands
+97. spell/shadow-metamorphosis | Shadow Metamorphosis
+98. spell/shadow-monsters | Shadow Monsters
+99. spell/shadow-puppets | Shadow Puppets
+100. spell/shadow-step-deep-magic | Shadow Step (Deep Magic)

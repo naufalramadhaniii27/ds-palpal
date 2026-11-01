@@ -1,0 +1,101 @@
+LEMBAR 081, 100 sel
+1. feature/group-recovery | Group Recovery | sub:Banneret|Group Recovery
+2. feature/grovel-cower-and-beg | Grovel, Cower, and Beg | sp:Kobold (2014)|Grovel, Cower, and Beg
+3. feature/grudge | Grudge | sub:Rōnin|Grudge
+4. feature/gruesome-charge | Gruesome Charge | sub:Black Rider|Gruesome Charge
+5. feature/guardian | Guardian
+6. feature/guardian-coil | Guardian Coil | sub:The Fathomless|Guardian Coil
+7. feature/guardian-spirit | Guardian Spirit | sub:Circle of the Shepherd|Guardian Spirit
+8. feature/guardians-fortitude | Guardian's Fortitude | sub:Bond of the Spirit Animal|Guardian's Fortitude
+9. feature/guardians-sanctuary | Guardian's Sanctuary | sub:Bond of the Spirit Animal|Guardian's Sanctuary
+10. feature/guardians-shield | Guardian's Shield | sp:Human (Mark of Sentinel)|Guardian's Shield
+11. feature/guardians-of-the-depths | Guardians of the Depths | sp:Triton (2014)|Guardians of the Depths
+12. feature/guided-precision | Guided Precision
+13. feature/guiding-light | Guiding Light | sp:Deep One Dwarf|Guiding Light
+14. feature/guiding-whispers | Guiding Whispers | sub:College of Spirits (2014)|Guiding Whispers
+15. feature/guild-connections | Guild Connections | sp:Manyhorn|Guild Connections
+16. feature/hadozee-dodge | Hadozee Dodge | sp:Hadozee|Hadozee Dodge
+17. feature/hags-craft | Hag's Craft | sub:The Coven|Hag's Craft
+18. feature/hags-eye | Hag's Eye | sub:The Coven|Hag's Eye
+19. feature/hags-guile | Hag's Guile | sub:The Coven|Hag's Guile
+20. feature/hags-visage | Hag's Visage | sub:The Coven|Hag's Visage
+21. feature/hair-trigger | Hair Trigger | sub:Highway Rider|Hair Trigger
+22. feature/halfling-nimbleness | Halfling Nimbleness | sp:Kithkin|Halfling Nimbleness
+23. feature/hallucination | Hallucination | sub:Purple Magic|Hallucination
+24. feature/halo-of-spores | Halo of Spores | sub:Circle of Spores|Halo of Spores
+25. feature/halt-the-assault | Halt the Assault | sub:Bulwark Warrior|Halt the Assault
+26. feature/hammering-horns | Hammering Horns | sp:Minotaur (2014)|Hammering Horns
+27. feature/hand-of-justice | Hand of Justice | sub:Justice Domain|Hand of Justice
+28. feature/hand-to-hand | Hand-to-Hand | sub:Pugilist|Hand-to-Hand
+29. feature/hand-to-hand-arcana | Hand-to-Hand Arcana | sub:House of Lancers|Hand-to-Hand Arcana
+30. feature/handcrafted-quality | Handcrafted Quality | sp:Geppettin|Handcrafted Quality
+31. feature/hangover | Hangover | sub:College of Bartending|Hangover
+32. feature/harbinger-lichdom | Harbinger [Lichdom] | sub:Reaper|Harbinger [Lichdom]
+33. feature/harbinger-of-the-end | Harbinger of the End | sub:Oath of the Annihilator|Harbinger of the End
+34. feature/hardened-formations | Hardened Formations | sub:House of Go|Hardened Formations
+35. feature/hardlight-block | Hardlight Block | sub:Steel Shepherd|Hardlight Block
+36. feature/hardlight-edge | Hardlight Edge | sub:Luminaries' Guild|Hardlight Edge
+37. feature/hardlight-juggernaut | Hardlight Juggernaut | sub:Lumimancer|Hardlight Juggernaut
+38. feature/hardlight-projector | Hardlight Projector | sub:Luminaries' Guild|Hardlight Projector
+39. feature/hardlight-reservoir | Hardlight Reservoir | sub:Lumimancer|Hardlight Reservoir
+40. feature/hardlight-wall | Hardlight Wall | sub:Luminaries' Guild|Hardlight Wall
+41. feature/hare-trigger | Hare-Trigger | sp:Harengon (WBtW)|Hare-Trigger
+42. feature/harmful-tether | Harmful Tether | sub:Vow of the Siphon|Harmful Tether
+43. feature/harvest-undead | Harvest Undead | sub:Necromancer|Harvest Undead
+44. feature/hastened | Hastened | sub:Timekeeper|Hastened
+45. feature/haunted-spells | Haunted Spells | sub:Haunted Sorcery|Haunted Spells
+46. feature/havoc | Havoc | sub:Burden of Discord|Havoc
+47. feature/hawkeyed | Hawkeyed | sp:Aven (Hawk-Headed)|Hawkeyed
+48. feature/head-banging | Head Banging | sub:Path of Heavy Metal|Head Banging
+49. feature/head-crest | Head Crest | sp:Manyhorn|Head Crest
+50. feature/headwinds | Headwinds | sp:Half-Elf (Mark of Storm)|Headwinds
+51. feature/healing-hands | Healing Hands | sp:Aasimar (Protector)|Healing Hands
+52. feature/healing-hymn | Healing Hymn | sub:College of Cantors|Healing Hymn
+53. feature/healing-light | Healing Light | sub:The Celestial|Healing Light
+54. feature/healing-machine | Healing Machine | sp:Autognome|Healing Machine
+55. feature/healing-touch | Healing Touch | sp:Halfling (Mark of Healing)|Healing Touch
+56. feature/heart-of-fire | Heart of Fire | sub:Pyromancer (PSK)|Heart of Fire
+57. feature/heart-of-the-storm | Heart of the Storm | sub:Storm Sorcery|Heart of the Storm
+58. feature/heartbeat-of-the-land | Heartbeat of the Land | sub:Circle of the Warden|Heartbeat of the Land
+59. feature/heartbreaker | Heartbreaker | sub:Courtesan|Heartbreaker
+60. feature/hearth-of-moonlight-and-shadow | Hearth of Moonlight and Shadow | sub:Circle of Dreams|Hearth of Moonlight and Shadow
+61. feature/heartstrings | Heartstrings | sub:Marionettist|Heartstrings
+62. feature/heatsink | Heatsink | sub:Ionizer|Heatsink
+63. feature/heavenborne | Heavenborne | sub:Warrior of the Celestial|Heavenborne
+64. feature/heavy-armor-pace | Heavy Armor Pace | sp:Hill Dwarf|Heavy Armor Pace
+65. feature/hell-jump | Hell Jump | sub:Space Marine|Hell Jump
+66. feature/hellbent-survival | Hellbent Survival | sub:Diabolist|Hellbent Survival
+67. feature/hellbound | Hellbound | sub:Master of Fiends|Hellbound
+68. feature/hellfire | Hellfire | sp:Tiefling (Hellfire)|Hellfire
+69. feature/hellish-ferocity | Hellish Ferocity | sub:Bond of the Fiendish Chain|Hellish Ferocity
+70. feature/hellish-resistance | Hellish Resistance | sp:Tiefling (2014)|Hellish Resistance
+71. feature/helpful | Helpful
+72. feature/herald-of-death | Herald of Death | sp:Aasimar (Mabaran)|Herald of Death
+73. feature/herald-of-the-apocalypse | Herald of the Apocalypse | sub:Apocalypse Domain|Herald of the Apocalypse
+74. feature/heralds-aspect | Herald's Aspect | sub:The Genie Lord|Herald's Aspect
+75. feature/heraldic-enforcer | Heraldic Enforcer | sub:Couatl Herald|Heraldic Enforcer
+76. feature/herbal-lore | Herbal Lore | sub:Primordial Archer|Herbal Lore
+77. feature/herbal-remedy | Herbal Remedy | sub:Tea Magic|Herbal Remedy
+78. feature/herculean-surge | Herculean Surge | sub:Burden of Ascension|Herculean Surge
+79. feature/heretic-magic | Heretic Magic | sub:Heretic Chapter|Heretic Magic
+80. feature/heritage-traits | Heritage Traits | sp:Accursed|Heritage Traits
+81. feature/hermits-study | Hermit's Study
+82. feature/heroic-ballad | Heroic Ballad | sub:College of Opera|Heroic Ballad
+83. feature/heroic-leadership | Heroic Leadership | sub:Lion Banner|Heroic Leadership
+84. feature/heroic-snacks | Heroic Snacks | sub:Gastronomer|Heroic Snacks
+85. feature/heroic-warrior | Heroic Warrior | sub:Champion|Heroic Warrior
+86. feature/hex-magic | Hex Magic | sp:Hexblood|Hex Magic
+87. feature/hex-warrior | Hex Warrior | sub:The Hexblade|Hex Warrior
+88. feature/hexblades-curse | Hexblade's Curse | sub:The Hexblade|Hexblade's Curse
+89. feature/hexlight | Hexlight | sub:Lunar Magic|Hexlight
+90. feature/hexplate | Hexplate | sub:Steel Magic|Hexplate
+91. feature/hidden-paths | Hidden Paths | sub:Circle of Dreams|Hidden Paths
+92. feature/hidden-step | Hidden Step | sp:Firbolg (2014)|Hidden Step
+93. feature/hide-in-plain-sight | Hide in Plain Sight
+94. feature/high-evolutionary | High Evolutionary | sub:Evolution Domain|High Evolutionary
+95. feature/high-morale | High Morale | sub:Lion Banner|High Morale
+96. feature/high-score | High Score | sub:Digital Nomad|High Score
+97. feature/high-stakes | High Stakes | sub:House of Cards|High Stakes
+98. feature/hippo-build | Hippo Build | sp:Giff|Hippo Build
+99. feature/hit-and-run | Hit and Run | sub:Freerunner|Hit and Run
+100. feature/hoarfrost-herald | Hoarfrost Herald | sub:Rimekeeper|Hoarfrost Herald

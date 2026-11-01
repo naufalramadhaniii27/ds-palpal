@@ -1,0 +1,101 @@
+LEMBAR 079, 100 sel
+1. feature/fiend-eidolon | Fiend Eidolon | sub:Bond of the Fiendish Chain|Fiend Eidolon
+2. feature/fiend-spells | Fiend Spells | sub:Bond of the Fiendish Chain|Fiend Spells
+3. feature/fiendish-familiar | Fiendish Familiar | sub:Infernum|Fiendish Familiar
+4. feature/fiendish-legacy | Fiendish Legacy | sp:Tiefling|Fiendish Legacy
+5. feature/fiendish-presence | Fiendish Presence | sub:Master of Fiends|Fiendish Presence
+6. feature/fiendish-resilience | Fiendish Resilience | sub:The Fiend (2014)|Fiendish Resilience
+7. feature/fiendish-transformation | Fiendish Transformation | sub:Infernum|Fiendish Transformation
+8. feature/fierce | Fierce | sp:Shifter (Longtooth)|Fierce
+9. feature/fiery-soul | Fiery Soul | sub:Pyromancer (PSK)|Fiery Soul
+10. feature/fighter-subclass | Fighter Subclass | cls:Fighter|Fighter Subclass
+11. feature/fighting-spirit | Fighting Spirit | sub:Samurai|Fighting Spirit
+12. feature/filth-and-fortitude | Filth and Fortitude | sub:Vermin Lord|Filth and Fortitude
+13. feature/final-breakthrough | Final Breakthrough | sub:Maverick|Final Breakthrough
+14. feature/final-night-catharsis | Final Night Catharsis | sub:Path of the Wrathful Dead|Final Night Catharsis
+15. feature/finders-magic | Finder's Magic | sp:Half-Orc (Mark of Finding)|Finder's Magic
+16. feature/fine-cuisine | Fine Cuisine | sub:Gourmand|Fine Cuisine
+17. feature/fine-tuning | Fine Tuning | sub:Maverick|Fine Tuning
+18. feature/finish-the-hunt | Finish the Hunt | sub:Big Game Hunter|Finish the Hunt
+19. feature/finishing-shot | Finishing Shot | sub:Decommissioner|Finishing Shot
+20. feature/firbolg-magic | Firbolg Magic | sp:Firbolg (2014)|Firbolg Magic
+21. feature/fire-breather | Fire Breather | sub:Fire Dancer|Fire Breather
+22. feature/fire-burst | Fire Burst | sub:Forgeknights' Guild|Fire Burst
+23. feature/fire-resistance | Fire Resistance | sp:Flamekin|Fire Resistance
+24. feature/fire-in-the-belly | Fire in the Belly | sub:Beer Domain|Fire in the Belly
+25. feature/fire-in-the-veins | Fire in the Veins | sub:Pyromancer (PSK)|Fire in the Veins
+26. feature/firearms-mastery | Firearms Mastery | sp:Giff|Firearms Mastery
+27. feature/first-passage | First Passage | sub:Labyrinth Domain|First Passage
+28. feature/first-vampire-spells | First Vampire Spells | sub:The First Vampire Patron|First Vampire Spells
+29. feature/five-star-condiments | Five-Star Condiments | sub:Gastronomer|Five-Star Condiments
+30. feature/flame-bearer | Flame Bearer | sp:Aasimar (Fernian)|Flame Bearer
+31. feature/flame-twirling | Flame Twirling | sub:Fire Dancer|Flame Twirling
+32. feature/flanking-strike | Flanking Strike | sub:Daggermark|Flanking Strike
+33. feature/flash-freeze | Flash Freeze | sub:Frost Sorcery|Flash Freeze
+34. feature/flash-of-genius | Flash of Genius
+35. feature/flashbang | Flashbang | sub:Resonator|Flashbang
+36. feature/fleet-of-foot | Fleet of Foot | sp:Wood Elf|Fleet of Foot
+37. feature/fleeting-decoy | Fleeting Decoy | sub:House of Rooks|Fleeting Decoy
+38. feature/flex-grip | Flex Grip | sub:Bladeworkers' Guild|Flex Grip
+39. feature/flexible-casting | Flexible Casting
+40. feature/flexible-form | Flexible Form | sp:Amoeboid|Flexible Form
+41. feature/flexile-fists | Flexile Fists | sub:Warrior of the Warped|Flexile Fists
+42. feature/flight | Flight | sp:Faerie|Flight
+43. feature/flurry-of-blows | Flurry of Blows
+44. feature/flurry-of-spells | Flurry of Spells | sub:House of Lancers|Flurry of Spells
+45. feature/flyrokinetic-master | Flyrokinetic Master | sub:Forceforger|Flyrokinetic Master
+46. feature/focal-point | Focal Point | sub:Bond of the Mirror Mage|Focal Point
+47. feature/focus-fire | Focus Fire | sub:Star Wolf|Focus Fire
+48. feature/focused-aim | Focused Aim
+49. feature/focused-casting | Focused Casting
+50. feature/focused-conjuration | Focused Conjuration | sub:Conjurer|Focused Conjuration
+51. feature/fogcrafting | Fogcrafting | sub:Fumaturge|Fogcrafting
+52. feature/folk-musician | Folk Musician | sub:Troubadour|Folk Musician
+53. feature/follow-through | Follow Through | sp:Orc (Dark Matter)|Follow Through
+54. feature/footloose | Footloose | sub:Necrodancer|Footloose
+55. feature/forbidden-magic | Forbidden Magic | sub:Apocalypse Sorcery|Forbidden Magic
+56. feature/force-panel | Force Panel | sub:Forceforger|Force Panel
+57. feature/forceforger-spells | Forceforger Spells | sub:Forceforger|Forceforger Spells
+58. feature/forceful-presence | Forceful Presence | sp:Draconblood Dragonborn|Forceful Presence
+59. feature/forceful-shove | Forceful Shove | sub:Forceforger|Forceful Shove
+60. feature/forest-binding | Forest Binding | sub:Circle of Oaks|Forest Binding
+61. feature/forest-folk | Forest Folk | sp:Human (Kessig)|Forest Folk
+62. feature/forest-magic | Forest Magic | sp:Hedge|Forest Magic
+63. feature/forest-master | Forest Master | sub:Hunting Domain|Forest Master
+64. feature/forest-restoration | Forest Restoration | sub:Circle of Oaks|Forest Restoration
+65. feature/foretold-demise | Foretold Demise | sub:Medium|Foretold Demise
+66. feature/forewarning | Forewarning | sub:Burden of Truth|Forewarning
+67. feature/forge-adept-spells | Forge Adept Spells | sub:Forge Adept|Forge Adept Spells
+68. feature/forge-domain-spells | Forge Domain Spells | sub:Forge Domain|Forge Domain Spells
+69. feature/form-of-dread | Form of Dread | sub:Undead Patron|Form of Dread
+70. feature/formations | Formations | sub:House of Go|Formations
+71. feature/forms-of-your-astral-self | Forms of Your Astral Self
+72. feature/fortelling | Fortelling | sub:Medium|Fortelling
+73. feature/fortify | Fortify | sub:Armigers' Guild|Fortify
+74. feature/fortifying-soul | Fortifying Soul | sub:Winter Walker|Fortifying Soul
+75. feature/fortifying-spell | Fortifying Spell
+76. feature/foul-conjuration | Foul Conjuration | sub:Circle of the Blighted|Foul Conjuration
+77. feature/fragrant-aura | Fragrant Aura | sub:Fragrant Magic|Fragrant Aura
+78. feature/fragrant-spells | Fragrant Spells | sub:Fragrant Magic|Fragrant Spells
+79. feature/frame-upgrade | Frame Upgrade | sub:Mechanauts' Guild|Frame Upgrade
+80. feature/freedom-of-movement | Freedom of Movement | sub:Star-Spangled Banner|Freedom of Movement
+81. feature/freerunning | Freerunning | sub:Freerunner|Freerunning
+82. feature/frenzied-bite | Frenzied Bite | sub:Path of the Fin|Frenzied Bite
+83. feature/frenzied-slaughter | Frenzied Slaughter | sub:Oath of Slaughter|Frenzied Slaughter
+84. feature/frenzied-strike-maneuver | Frenzied Strike [Maneuver] | sub:Feylost|Frenzied Strike [Maneuver]
+85. feature/frenzied-strings | Frenzied Strings | sub:College of the Mad God|Frenzied Strings
+86. feature/frictionless-field | Frictionless Field | sub:Moonwalker|Frictionless Field
+87. feature/friend-of-the-sea | Friend of the Sea | sp:Sea Elf (2014)|Friend of the Sea
+88. feature/friendship-bracelet | Friendship Bracelet | sub:Technicolor Magic|Friendship Bracelet
+89. feature/frightful-presence | Frightful Presence | sub:Dragon Domain|Frightful Presence
+90. feature/frigid-armory | Frigid Armory | sub:Wintercarvers' Guild|Frigid Armory
+91. feature/frigid-explorer | Frigid Explorer | sub:Winter Walker|Frigid Explorer
+92. feature/frigid-wind | Frigid Wind | sub:Path of the Frostrager|Frigid Wind
+93. feature/frost-spells | Frost Spells | sub:Frost Sorcery|Frost Spells
+94. feature/frostbite | Frostbite | sub:Path of the Glacier|Frostbite
+95. feature/frostburn | Frostburn | sub:Wintercarvers' Guild|Frostburn
+96. feature/frostrage | Frostrage | sub:Path of the Frostrager|Frostrage
+97. feature/frozen-body | Frozen Body | sub:Frost Sorcery|Frozen Body
+98. feature/frozen-haunt | Frozen Haunt | sub:Winter Walker|Frozen Haunt
+99. feature/frozen-path | Frozen Path | sub:The Frozen One|Frozen Path
+100. feature/frozen-soul | Frozen Soul | sub:Frost Sorcery|Frozen Soul

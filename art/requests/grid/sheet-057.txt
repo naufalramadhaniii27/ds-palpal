@@ -1,0 +1,101 @@
+LEMBAR 057, 100 sel
+1. psionic/mind-meld | Mind Meld
+2. psionic/mind-slam | Mind Slam
+3. psionic/mind-thrust | Mind Thrust
+4. psionic/mystic-charm | Mystic Charm
+5. psionic/mystic-hand | Mystic Hand
+6. psionic/nomadic-arrow | Nomadic Arrow
+7. psionic/nomadic-chameleon | Nomadic Chameleon
+8. psionic/nomadic-mind | Nomadic Mind
+9. psionic/nomadic-step | Nomadic Step
+10. psionic/precognition | Precognition
+11. psionic/psionic-restoration | Psionic Restoration
+12. psionic/psionic-weapon | Psionic Weapon
+13. psionic/psychic-assault | Psychic Assault
+14. psionic/psychic-disruption | Psychic Disruption
+15. psionic/psychic-hammer | Psychic Hammer
+16. psionic/psychic-inquisition | Psychic Inquisition
+17. psionic/psychic-phantoms | Psychic Phantoms
+18. psionic/telepathic-contact | Telepathic Contact
+19. psionic/third-eye | Third Eye
+20. rule/ability-check | Ability Check
+21. rule/ability-score-and-modifier | Ability Score and Modifier
+22. rule/acrobatics | Acrobatics
+23. rule/action | Action
+24. rule/action-options | Action Options
+25. rule/activate-an-item | Activate an Item
+26. rule/adamantine-weapons | Adamantine Weapons
+27. rule/advantage | Advantage
+28. rule/adventure | Adventure
+29. rule/alien-technology | Alien Technology
+30. rule/alignment | Alignment
+31. rule/ally | Ally
+32. rule/alternatives-to-epic-boons | Alternatives to Epic Boons
+33. rule/ammunition | Ammunition
+34. rule/animal-handling | Animal Handling
+35. rule/arcana | Arcana
+36. rule/area-of-effect | Area of Effect
+37. rule/armor-class | Armor Class
+38. rule/armor-training | Armor Training
+39. rule/arrows | Arrows
+40. rule/athletics | Athletics
+41. rule/attack-roll | Attack Roll
+42. rule/attitude | Attitude
+43. rule/attunement | Attunement
+44. rule/automatic-success | Automatic Success
+45. rule/automotive | Automotive
+46. rule/bleeding | Bleeding
+47. rule/blindsight | Blindsight
+48. rule/breaking-objects | Breaking Objects
+49. rule/bright-light | Bright Light
+50. rule/burning | Burning
+51. rule/burrow-speed | Burrow Speed
+52. rule/burst-fire | Burst Fire
+53. rule/campaign | Campaign
+54. rule/cantrip | Cantrip
+55. rule/carrying-capacity | Carrying Capacity
+56. rule/cast-a-spell | Cast a Spell
+57. rule/celurit-sickle | Celurit (Sickle)
+58. rule/chain-mail | Chain Mail
+59. rule/challenge-rating | Challenge Rating
+60. rule/character-sheet | Character Sheet
+61. rule/charisma | Charisma
+62. rule/cleave | Cleave
+63. rule/cleaving-through-creatures | Cleaving Through Creatures
+64. rule/climb-speed | Climb Speed
+65. rule/climb-onto-a-bigger-creature | Climb onto a Bigger Creature
+66. rule/climbing | Climbing
+67. rule/computer | Computer
+68. rule/condition | Condition
+69. rule/cone | Cone
+70. rule/cone-area-of-effect | Cone [Area of Effect]
+71. rule/constitution | Constitution
+72. rule/cover | Cover
+73. rule/crashing | Crashing
+74. rule/crawling | Crawling
+75. rule/creature | Creature
+76. rule/creature-type | Creature Type
+77. rule/crew | Crew
+78. rule/critical-hit | Critical Hit
+79. rule/cube | Cube
+80. rule/cube-area-of-effect | Cube [Area of Effect]
+81. rule/curses | Curses
+82. rule/customizing-ability-scores | Customizing Ability Scores
+83. rule/customizing-your-origin | Customizing Your Origin
+84. rule/cylinder | Cylinder
+85. rule/cylinder-area-of-effect | Cylinder [Area of Effect]
+86. rule/d20-test | D20 Test
+87. rule/dagger | Dagger
+88. rule/damage | Damage
+89. rule/damage-roll | Damage Roll
+90. rule/damage-threshold | Damage Threshold
+91. rule/damage-types | Damage Types
+92. rule/darkness | Darkness
+93. rule/darkvision | Darkvision
+94. rule/dead | Dead
+95. rule/death-saving-throw | Death Saving Throw
+96. rule/deception | Deception
+97. rule/dexterity | Dexterity
+98. rule/diagonals | Diagonals
+99. rule/dice-set | Dice Set
+100. rule/difficult-terrain | Difficult Terrain

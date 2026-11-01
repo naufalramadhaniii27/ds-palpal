@@ -1,0 +1,101 @@
+LEMBAR 035, 100 sel
+1. item/firearm-bullet-3 | Firearm Bullet, +3
+2. item/firearm-bullets-10 | Firearm Bullets (10)
+3. item/firecracker-crystals | Firecracker Crystals
+4. item/fireweaver-gloves | Fireweaver Gloves
+5. item/flame-tongue-shortsword-of-greed | Flame Tongue Shortsword of Greed
+6. item/flame-of-ingenuity | Flame of Ingenuity
+7. item/flamefriend-lantern | Flamefriend Lantern
+8. item/flamethrower | Flamethrower
+9. item/flammable-tincture | Flammable Tincture
+10. item/flashback-polaroid | Flashback Polaroid
+11. item/flashbang | Flashbang
+12. item/flensing-claws | Flensing Claws
+13. item/flensing-claws-huge | Flensing Claws (Huge)
+14. item/flensing-claws-large | Flensing Claws (Large)
+15. item/flensing-claws-medium | Flensing Claws (Medium)
+16. item/flensing-claws-small | Flensing Claws (Small)
+17. item/flesh-of-dendallen | Flesh of Dendallen
+18. item/fools-blade | Fool's Blade
+19. item/force-gauntlet | Force Gauntlet
+20. item/forcebreaker-weapon | Forcebreaker Weapon
+21. item/forgemasters-might | Forgemaster's Might
+22. item/fortunes-fivepence | Fortune's Fivepence
+23. item/fourarm-bracers | Fourarm Bracers
+24. item/fragment-of-abhorrence | Fragment of Abhorrence
+25. item/fragment-of-attachment | Fragment of Attachment
+26. item/fragment-of-deception | Fragment of Deception
+27. item/fragment-of-despondence | Fragment of Despondence
+28. item/fragment-of-elder-starlight | Fragment of Elder Starlight
+29. item/fragment-of-intransigence | Fragment of Intransigence
+30. item/fragment-of-loathing | Fragment of Loathing
+31. item/fragment-of-melancholy | Fragment of Melancholy
+32. item/fragment-of-pity | Fragment of Pity
+33. item/fragment-of-rancor | Fragment of Rancor
+34. item/freeze-bomb | Freeze Bomb
+35. item/frefils-jolly-oozebean-sugarbombs | Frefil's Jolly Oozebean Sugarbombs
+36. item/frefils-tiny-tasty-tongue-twisty-sugarbombs | Frefil's Tiny Tasty Tongue Twisty Sugarbombs
+37. item/frightful-presence | Frightful Presence
+38. item/frost-giant-fork | Frost Giant Fork
+39. item/frostbitten-buckler | Frostbitten Buckler
+40. item/frozen-dagger | Frozen Dagger
+41. item/full-moon-extract | Full Moon Extract
+42. item/funeral-marchers | Funeral Marchers
+43. item/funeral-mask | Funeral Mask
+44. item/galea-of-the-soulfire-phoenix | Galea of the Soulfire Phoenix
+45. item/galepierce-weapon | Galepierce Weapon
+46. item/gallus-feather-robe | Gallus Feather Robe
+47. item/galvanic-steelsnare | Galvanic Steelsnare
+48. item/gamblers-blade | Gambler's Blade
+49. item/gamestation | Gamestation
+50. item/gaming-set | Gaming Set
+51. item/gamma-fragment | Gamma Fragment
+52. item/gamma-pendant | Gamma Pendant
+53. item/ghaalduur-the-mighty-dirge | Ghaal'duur, the Mighty Dirge
+54. item/ghallan-jug | Ghallan Jug
+55. item/ghallanda-cauldron | Ghallanda Cauldron
+56. item/ghost-suit | Ghost Suit
+57. item/gibberbox | Gibberbox
+58. item/girdle-of-traveling-alchemy | Girdle of Traveling Alchemy
+59. item/give-and-take | Give and Take
+60. item/glamerweave | Glamerweave
+61. item/glass-bottle | Glass Bottle
+62. item/glass-studded-armor | Glass-Studded Armor
+63. item/glimmering-moonbow | Glimmering Moonbow
+64. item/gloomwrought-armor | Gloomwrought Armor
+65. item/glove-of-the-aegis | Glove of the Aegis
+66. item/glove-of-the-grim-fandango | Glove of the Grim Fandango
+67. item/gloves-of-storing | Gloves of Storing
+68. item/glowing-ember | Glowing Ember
+69. item/goading-ammunition | Goading Ammunition
+70. item/gold | Gold
+71. item/gold-5-zino-coin | Gold 5-Zino Coin
+72. item/gold-boar-ring | Gold Boar Ring
+73. item/gold-zino | Gold Zino
+74. item/golden-elixir | Golden Elixir
+75. item/golem-arms | Golem Arms
+76. item/golem-skin | Golem Skin
+77. item/golgari-charm | Golgari Charm
+78. item/goodberry-wine | Goodberry Wine
+79. item/grass-carpet | Grass Carpet
+80. item/grass-whistle-blade | Grass Whistle Blade
+81. item/grasshopper | Grasshopper
+82. item/gravenhollow-compass-ring | Gravenhollow Compass Ring
+83. item/gravity-goblet | Gravity Goblet
+84. item/gravity-gun | Gravity Gun
+85. item/gravity-nullifier | Gravity Nullifier
+86. item/graztchar-the-decadent-end | Graz'tchar, the Decadent End
+87. item/greater-shipmending-spray | Greater Shipmending Spray
+88. item/greaves-of-dendallen | Greaves of Dendallen
+89. item/green-copper-ewer | Green Copper Ewer
+90. item/grenade-of-remorse | Grenade of Remorse
+91. item/grieving-tree | Grieving Tree
+92. item/grimoire-monstrum | Grimoire Monstrum
+93. item/grip-of-dendallen | Grip of Dendallen
+94. item/gristaline | Gristaline
+95. item/gruul-charm | Gruul Charm
+96. item/guild-keyrune | Guild Keyrune
+97. item/guild-signet | Guild Signet
+98. item/habbakuks-blessing | Habbakuk's Blessing
+99. item/hacker-hands | Hacker Hands
+100. item/hair-of-the-dog | Hair of the Dog

@@ -1,0 +1,101 @@
+LEMBAR 053, 100 sel
+1. deity/branchala | Branchala
+2. deity/brandobaris | Brandobaris
+3. deity/brigantia | Brigantia
+4. deity/callarduran-smoothhands-gnome | Callarduran Smoothhands (Gnome)
+5. deity/callarduran-smoothhands-gnomish | Callarduran Smoothhands (Gnomish)
+6. deity/celestian | Celestian
+7. deity/ceratos | Ceratos
+8. deity/charmalaine | Charmalaine
+9. deity/chemosh | Chemosh
+10. deity/chislev | Chislev
+11. deity/clangeddin-silverbeard | Clangeddin Silverbeard
+12. deity/corellon-larethian-elven | Corellon Larethian (Elven)
+13. deity/corellon-larethian-nonhuman | Corellon Larethian (Nonhuman)
+14. deity/cults-of-the-dragon-below | Cults of the Dragon Below
+15. deity/cuthbert | Cuthbert
+16. deity/cyrrollalee | Cyrrollalee
+17. deity/darahl-tilvenar | Darahl Tilvenar
+18. deity/deep-duerra-duergar | Deep Duerra (Duergar)
+19. deity/deep-duerra-dwarven | Deep Duerra (Dwarven)
+20. deity/deep-sashelas-elven | Deep Sashelas (Elven)
+21. deity/deep-sashelas-nonhuman | Deep Sashelas (Nonhuman)
+22. deity/demeter | Demeter
+23. deity/dendar | Dendar
+24. deity/desirat | Desirat
+25. deity/diancecht | Diancecht
+26. deity/dionysus | Dionysus
+27. deity/dol-arrah | Dol Arrah
+28. deity/dol-dorn | Dol Dorn
+29. deity/dugmaren-brightmantle | Dugmaren Brightmantle
+30. deity/dumathoin | Dumathoin
+31. deity/dunatis | Dunatis
+32. deity/eadro | Eadro
+33. deity/ehlonna | Ehlonna
+34. deity/eilistraee-drow | Eilistraee (Drow)
+35. deity/elebrin-liothiel | Elebrin Liothiel
+36. deity/ephara | Ephara
+37. deity/erebos | Erebos
+38. deity/erevan-ilesere | Erevan Ilesere
+39. deity/erythnul | Erythnul
+40. deity/ezra | Ezra
+41. deity/fenmarel-mestarine | Fenmarel Mestarine
+42. deity/fharlanghn | Fharlanghn
+43. deity/flandal-steelskin-gnome | Flandal Steelskin (Gnome)
+44. deity/flandal-steelskin-gnomish | Flandal Steelskin (Gnomish)
+45. deity/forseti | Forseti
+46. deity/frey | Frey
+47. deity/freya | Freya
+48. deity/frigga | Frigga
+49. deity/gadhelyn | Gadhelyn
+50. deity/gaerdal-ironhand-gnome | Gaerdal Ironhand (Gnome)
+51. deity/gaerdal-ironhand-gnomish | Gaerdal Ironhand (Gnomish)
+52. deity/garl-glittergold-gnome | Garl Glittergold (Gnome)
+53. deity/garl-glittergold-gnomish | Garl Glittergold (Gnomish)
+54. deity/garl-glittergold-nonhuman | Garl Glittergold (Nonhuman)
+55. deity/gelf-darkhearth | Gelf Darkhearth
+56. deity/ghaunadaur | Ghaunadaur
+57. deity/gilean | Gilean
+58. deity/goibhniu | Goibhniu
+59. deity/gorm-gulthyn | Gorm Gulthyn
+60. deity/grolantor | Grolantor
+61. deity/grumbar | Grumbar
+62. deity/gwaeron-windstrom | Gwaeron Windstrom
+63. deity/habbakuk | Habbakuk
+64. deity/hades | Hades
+65. deity/haela-brightaxe | Haela Brightaxe
+66. deity/hanali-celanil | Hanali Celanil
+67. deity/hanseath | Hanseath
+68. deity/hathor | Hathor
+69. deity/hecate | Hecate
+70. deity/heimdall | Heimdall
+71. deity/heironeous | Heironeous
+72. deity/hel | Hel
+73. deity/heliod | Heliod
+74. deity/hephaestus | Hephaestus
+75. deity/hera | Hera
+76. deity/hercules | Hercules
+77. deity/hermes | Hermes
+78. deity/hermod | Hermod
+79. deity/hestia | Hestia
+80. deity/hextor | Hextor
+81. deity/hiddukel | Hiddukel
+82. deity/hruggek | Hruggek
+83. deity/ilneval | Ilneval
+84. deity/imhotep | Imhotep
+85. deity/incabulos | Incabulos
+86. deity/iroas | Iroas
+87. deity/isis | Isis
+88. deity/istishia | Istishia
+89. deity/istus | Istus
+90. deity/iuz | Iuz
+91. deity/karametra | Karametra
+92. deity/keptolo | Keptolo
+93. deity/keranos | Keranos
+94. deity/kiaransalee | Kiaransalee
+95. deity/kiri-jolith | Kiri-Jolith
+96. deity/kirith-sotheril | Kirith Sotheril
+97. deity/klothys | Klothys
+98. deity/kol-korran | Kol Korran
+99. deity/kossuth | Kossuth
+100. deity/kruphix | Kruphix

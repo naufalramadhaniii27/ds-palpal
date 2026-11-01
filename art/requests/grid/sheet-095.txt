@@ -1,0 +1,101 @@
+LEMBAR 095, 100 sel
+1. feature/survival-instinct | Survival Instinct | sp:Tortle (2014)|Survival Instinct
+2. feature/survivalist | Survivalist | sub:Scout|Survivalist
+3. feature/survivor | Survivor | sp:Centaur (2014)|Survivor
+4. feature/sustained-flight | Sustained Flight | sub:Space Marine|Sustained Flight
+5. feature/swamp-camouflage | Swamp Camouflage | sp:Bullywug|Swamp Camouflage
+6. feature/swamp-thing | Swamp Thing | sub:Path of the Swamp|Swamp Thing
+7. feature/swan-song | Swan Song | sub:Fey Ballerina|Swan Song
+8. feature/swap-elements | Swap Elements | sub:Bond of the Elemental Spirit|Swap Elements
+9. feature/swarm-cloud | Swarm Cloud | sub:Carrion King|Swarm Cloud
+10. feature/swarm-tactics | Swarm Tactics | sub:Drone Jockey|Swarm Tactics
+11. feature/swarming-dispersal | Swarming Dispersal | sub:Swarmkeeper|Swarming Dispersal
+12. feature/swarming-strikes | Swarming Strikes | sub:Vermin Lord|Swarming Strikes
+13. feature/swarmkeeper-magic | Swarmkeeper Magic | sub:Swarmkeeper|Swarmkeeper Magic
+14. feature/sweet-tooth | Sweet Tooth | sub:Gingerbread Magic|Sweet Tooth
+15. feature/swift-swimmer | Swift Swimmer | sp:Sahuagin|Swift Swimmer
+16. feature/swim | Swim | sp:Water Genasi (2014)|Swim
+17. feature/swim-speed | Swim Speed | sp:Giff|Swim Speed
+18. feature/swimming | Swimming | sp:Merfolk (Ixalan, Blue)|Swimming
+19. feature/swordmaster | Swordmaster | sub:Rōnin|Swordmaster
+20. feature/symbiont-mastery | Symbiont Mastery | sp:Ruinbound|Symbiont Mastery
+21. feature/symbiote-eidolon | Symbiote Eidolon | sub:Bond of the Symbiote|Symbiote Eidolon
+22. feature/symbiote-spells | Symbiote Spells | sub:Bond of the Symbiote|Symbiote Spells
+23. feature/symbiotic-entity | Symbiotic Entity | sub:Circle of Spores|Symbiotic Entity
+24. feature/symbiotic-sentinel | Symbiotic Sentinel | sub:The Parasite Patron|Symbiotic Sentinel
+25. feature/symbiotic-synergy | Symbiotic Synergy | sub:Bond of the Symbiote|Symbiotic Synergy
+26. feature/sympathetic-shield | Sympathetic Shield | sub:Circle of the Warden|Sympathetic Shield
+27. feature/synchronized-response | Synchronized Response | sub:Devourer Guild|Synchronized Response
+28. feature/system-cracker | System Cracker | sub:Decommissioner|System Cracker
+29. feature/tactical-analysis | Tactical Analysis | sub:AI Futurist|Tactical Analysis
+30. feature/tactical-maneuver | Tactical Maneuver | sub:House of Knights|Tactical Maneuver
+31. feature/tactical-uplink | Tactical Uplink | sub:Coalition Arcanist|Tactical Uplink
+32. feature/taint-of-shadow | Taint of Shadow | sub:Shadow Bloodline|Taint of Shadow
+33. feature/tainted-shadows | Tainted Shadows | sub:Shadow Bloodline|Tainted Shadows
+34. feature/take-heart | Take Heart | sp:Jerbeen|Take Heart
+35. feature/take-hostage | Take Hostage | sub:Brigand|Take Hostage
+36. feature/takedown-tactics | Takedown Tactics | sub:Bounty Hunter|Takedown Tactics
+37. feature/tale-of-hubris | Tale of Hubris | sub:College of Tragedy|Tale of Hubris
+38. feature/tale-of-hubris-14th-level | Tale of Hubris (14th Level) | sub:College of Tragedy|Tale of Hubris (14th Level)
+39. feature/talented-adventurer | Talented Adventurer | sub:College of Adventurers|Talented Adventurer
+40. feature/tales-from-beyond | Tales from Beyond | sub:College of Spirits (2014)|Tales from Beyond
+41. feature/talisman-of-protection | Talisman of Protection | sub:White Magic|Talisman of Protection
+42. feature/tall-tales | Tall Tales | sub:Warrior of Pride|Tall Tales
+43. feature/talons | Talons | sp:Aarakocra (Monster)|Talons
+44. feature/tandem-footwork | Tandem Footwork | sub:College of Dance|Tandem Footwork
+45. feature/target-designation | Target Designation | sub:Star Wolf|Target Designation
+46. feature/tasseography | Tasseography | sub:Tea Magic|Tasseography
+47. feature/taunt | Taunt | sp:Kender|Taunt
+48. feature/tea-ceremony | Tea Ceremony | sub:Tea Magic|Tea Ceremony
+49. feature/tea-spells | Tea Spells | sub:Tea Magic|Tea Spells
+50. feature/team-inspiration-maneuver | Team Inspiration [Maneuver] | sub:Siegeball Jersey|Team Inspiration [Maneuver]
+51. feature/team-player | Team Player | sub:Cheerleader|Team Player
+52. feature/team-tactics | Team Tactics | sp:Jerbeen|Team Tactics
+53. feature/technical-exploits | Technical Exploits | sub:Infiltrator|Technical Exploits
+54. feature/technicolor-spells | Technicolor Spells | sub:Technicolor Magic|Technicolor Spells
+55. feature/techno-intuition | Techno-Intuition | sub:Nanite Magic|Techno-Intuition
+56. feature/technophile | Technophile | sub:Digital Nomad|Technophile
+57. feature/telekinetic-eidolon | Telekinetic Eidolon | sub:Bond of the Aberrant Psion|Telekinetic Eidolon
+58. feature/telekinetic-thrust | Telekinetic Thrust
+59. feature/telepathic-insight | Telepathic Insight | sp:Verdan|Telepathic Insight
+60. feature/telepathy | Telepathy | sp:Wrothian|Telepathy
+61. feature/tempest-domain-spells | Tempest Domain Spells | sub:Tempest Domain|Tempest Domain Spells
+62. feature/tempestuous-magic | Tempestuous Magic | sub:Storm Sorcery|Tempestuous Magic
+63. feature/temporal-awareness | Temporal Awareness | sub:Chronurgy Magic|Temporal Awareness
+64. feature/temporal-magic-savant | Temporal Magic Savant | sub:Timekeeper|Temporal Magic Savant
+65. feature/temporal-points | Temporal Points | sub:Timekeeper|Temporal Points
+66. feature/temporal-relativism | Temporal Relativism | sub:Quantum Mechanic|Temporal Relativism
+67. feature/tenacious-life | Tenacious Life | sub:Oath of the Giving Grave|Tenacious Life
+68. feature/tenacious-spell | Tenacious Spell
+69. feature/tenets-of-conquest | Tenets of Conquest
+70. feature/tenets-of-glory | Tenets of Glory
+71. feature/tenets-of-redemption | Tenets of Redemption
+72. feature/tenets-of-the-giving-grave | Tenets of the Giving Grave | sub:Oath of the Giving Grave|Tenets of the Giving Grave
+73. feature/tenets-of-the-open-sea | Tenets of the Open Sea | sub:Oath of the Open Sea|Tenets of the Open Sea
+74. feature/tenets-of-the-watchers | Tenets of the Watchers
+75. feature/tentacle-of-the-deeps | Tentacle of the Deeps | sub:The Fathomless|Tentacle of the Deeps
+76. feature/terrible-power | Terrible Power | sub:Doomsayer|Terrible Power
+77. feature/terrifying-visage | Terrifying Visage | sub:Wretched Bloodline Sorcery|Terrifying Visage
+78. feature/terrorize-the-terrors | Terrorize the Terrors | sub:Carver Guild|Terrorize the Terrors
+79. feature/tether-of-protection | Tether of Protection | sub:Vow of the Protector|Tether of Protection
+80. feature/thaumaturge | Thaumaturge
+81. feature/the-archfey | The Archfey
+82. feature/the-bigger-they-are | The Bigger They Are | sp:Human (Mark of Handling)|The Bigger They Are
+83. feature/the-end-is-nigh | The End is Nigh | sub:Apocalypse Sorcery|The End is Nigh
+84. feature/the-fiend | The Fiend
+85. feature/the-great-machine-and-your-pact-boon | The Great Machine and Your Pact Boon | sub:The Great Machine|The Great Machine and Your Pact Boon
+86. feature/the-great-old-one | The Great Old One
+87. feature/the-hunt | The Hunt | sub:Absolute Chapter|The Hunt
+88. feature/the-moonlit-way | The Moonlit Way | sub:Moon Domain (Deep Magic)|The Moonlit Way
+89. feature/the-right-tool-for-the-job | The Right Tool for the Job
+90. feature/the-road-not-traveled | The Road Not Traveled | sub:Warrior of Regret|The Road Not Traveled
+91. feature/the-sybil-and-your-pact-boons | The Sybil and your Pact Boons | sub:The Sibyl|The Sybil and your Pact Boons
+92. feature/the-third-eye | The Third Eye | sub:School of Divination|The Third Eye
+93. feature/theological-studies | Theological Studies | sub:Holy Icon|Theological Studies
+94. feature/thermalsight | Thermalsight | sp:Vect|Thermalsight
+95. feature/thesis | Thesis | sub:Archivist|Thesis
+96. feature/thespian | Thespian | sub:Dramaturge|Thespian
+97. feature/thicken-or-quicken-blood | Thicken or Quicken Blood | sub:Blood Mage|Thicken or Quicken Blood
+98. feature/thicker-than-water | Thicker than Water | sub:Blood Magic|Thicker than Water
+99. feature/third-eye | Third Eye | sub:Medium|Third Eye
+100. feature/thought-shield | Thought Shield | sub:The Great Old One (2014)|Thought Shield

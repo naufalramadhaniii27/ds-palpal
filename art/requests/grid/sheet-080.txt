@@ -1,0 +1,101 @@
+LEMBAR 080, 100 sel
+1. feature/fruit-of-the-mind | Fruit of the Mind | sub:Necrophage|Fruit of the Mind
+2. feature/full-of-stars | Full of Stars | sub:Circle of Stars|Full of Stars
+3. feature/full-blooded | Full-Blooded | sub:Sangromancer|Full-Blooded
+4. feature/fundamental-mastery | Fundamental Mastery | sub:House of Pawns|Fundamental Mastery
+5. feature/fungal-body | Fungal Body | sub:Circle of Spores|Fungal Body
+6. feature/fungal-infestation | Fungal Infestation | sub:Circle of Spores|Fungal Infestation
+7. feature/fury-of-the-small | Fury of the Small | sp:Boggart|Fury of the Small
+8. feature/fury-of-the-tides | Fury of the Tides | sub:Oath of the Open Sea|Fury of the Tides
+9. feature/galactic-knight | Galactic Knight | sub:Oath of the Gamma Knight|Galactic Knight
+10. feature/gallows-humor | Gallows Humor | sub:College of Fools|Gallows Humor
+11. feature/gallus-subrace | Gallus Subrace | sp:Gallus|Gallus Subrace
+12. feature/game-hunter | Game Hunter | sub:Big Game Hunter|Game Hunter
+13. feature/game-plan | Game Plan | sub:Siegeball Jersey|Game Plan
+14. feature/game-winning-play | Game-Winning Play | sub:Siegeball Jersey|Game-Winning Play
+15. feature/gamma-blade | Gamma Blade | sub:Oath of the Gamma Knight|Gamma Blade
+16. feature/gamma-knight-spells | Gamma Knight Spells | sub:Oath of the Gamma Knight|Gamma Knight Spells
+17. feature/garden-of-the-grave | Garden of the Grave | sub:Corpse Florist|Garden of the Grave
+18. feature/gaseous-escape | Gaseous Escape | sub:Dead Mist Acolyte|Gaseous Escape
+19. feature/gathered-swarm | Gathered Swarm | sub:Swarmkeeper|Gathered Swarm
+20. feature/gatling-strikes | Gatling Strikes | sub:Warrior of the Warped|Gatling Strikes
+21. feature/gearhead | Gearhead | sp:Orc (Dark Matter)|Gearhead
+22. feature/gearpriest | Gearpriest | sub:Machine Domain|Gearpriest
+23. feature/gelid-form | Gelid Form | sub:Boreal Bloodline|Gelid Form
+24. feature/gem-ancestry | Gem Ancestry | sp:Dragonborn (Gem)|Gem Ancestry
+25. feature/gem-flight | Gem Flight | sp:Dragonborn (Gem)|Gem Flight
+26. feature/genetic-library | Genetic Library | sub:Circle of Xenobiology|Genetic Library
+27. feature/genie-lords-favor | Genie Lord's Favor | sub:The Genie Lord|Genie Lord's Favor
+28. feature/genies-vessel | Genie's Vessel | sub:The Genie|Genie's Vessel
+29. feature/genies-wrath | Genie's Wrath
+30. feature/geppettin-construction | Geppettin Construction | sp:Geppettin|Geppettin Construction
+31. feature/gestalt-anchor | Gestalt Anchor | sub:Mind Domain|Gestalt Anchor
+32. feature/ghaalshaarat | Ghaal'Shaarat | sub:Forge Adept|Ghaal'Shaarat
+33. feature/ghost-walk | Ghost Walk | sub:Phantom|Ghost Walk
+34. feature/ghost-in-the-machine | Ghost in the Machine | sub:Cyberghoul|Ghost in the Machine
+35. feature/ghoulish-calling | Ghoulish Calling | sub:Danseur Macabre|Ghoulish Calling
+36. feature/giant-ancestry | Giant Ancestry | sp:Goliath|Giant Ancestry
+37. feature/giant-eidolon | Giant Eidolon | sub:Bond of the Wrathful Giant|Giant Eidolon
+38. feature/giant-killer | Giant Killer
+39. feature/giant-spells | Giant Spells | sub:Bond of the Wrathful Giant|Giant Spells
+40. feature/giants-might | Giant's Might | sub:Rune Knight|Giant's Might
+41. feature/gift-of-the-sea | Gift of the Sea | sub:The Fathomless|Gift of the Sea
+42. feature/gifted-scribe | Gifted Scribe | sp:Gnome (Mark of Scribing)|Gifted Scribe
+43. feature/gifts-of-lust | Gifts of Lust | sub:Lust Domain|Gifts of Lust
+44. feature/giga-missile | Giga-Missile | sub:Magic Missile Mage|Giga-Missile
+45. feature/gingerbread-familiar | Gingerbread Familiar | sub:Gingerbread Magic|Gingerbread Familiar
+46. feature/gingerbread-spells | Gingerbread Spells | sub:Gingerbread Magic|Gingerbread Spells
+47. feature/githyanki-psionics | Githyanki Psionics | sp:Githyanki (2014)|Githyanki Psionics
+48. feature/githzerai-psionics | Githzerai Psionics | sp:Githzerai (2014)|Githzerai Psionics
+49. feature/glib | Glib | sub:Spy|Glib
+50. feature/glide | Glide | sp:Hadozee|Glide
+51. feature/gliding-wings | Gliding Wings | sp:Skathári|Gliding Wings
+52. feature/global-migrators | Global Migrators | sp:Child of Seth|Global Migrators
+53. feature/gloom-stalker-magic | Gloom Stalker Magic | sub:Gloom Stalker (2014)|Gloom Stalker Magic
+54. feature/gloom-stalker-spells | Gloom Stalker Spells | sub:Gloom Stalker|Gloom Stalker Spells
+55. feature/glory-kill | Glory Kill | sub:Path of the Dreadnought|Glory Kill
+56. feature/glyph-of-aegis | Glyph of Aegis | sub:Runechild|Glyph of Aegis
+57. feature/glyph-of-aegis-14th-level | Glyph of Aegis (14th Level) | sub:Runechild|Glyph of Aegis (14th Level)
+58. feature/glyph-of-aegis-6th-level | Glyph of Aegis (6th Level) | sub:Runechild|Glyph of Aegis (6th Level)
+59. feature/glyph-of-hemorrhaging | Glyph of Hemorrhaging | sub:Blood Magic|Glyph of Hemorrhaging
+60. feature/gnawing-hunger | Gnawing Hunger | sub:Devourer Guild|Gnawing Hunger
+61. feature/gnome-cunning | Gnome Cunning | sp:Forest Gnome|Gnome Cunning
+62. feature/gnomish-cunning | Gnomish Cunning | sp:Gnome (Star)|Gnomish Cunning
+63. feature/gnomish-lineage | Gnomish Lineage | sp:Gnome|Gnomish Lineage
+64. feature/gnomish-lineage-star | Gnomish Lineage (Star) | sp:Gnome (Star)|Gnomish Lineage (Star)
+65. feature/go-to-your-room | Go to Your Room | sub:Path of the Dad|Go to Your Room
+66. feature/golem-absorption | Golem Absorption | sub:Steel Shepherd|Golem Absorption
+67. feature/golem-form | Golem Form | sub:Clockwork Mage|Golem Form
+68. feature/golems-bulwark | Golem's Bulwark | sub:College of Sculpture|Golem's Bulwark
+69. feature/goring-rush | Goring Rush | sp:Minotaur (2014)|Goring Rush
+70. feature/gourmet-ingredients | Gourmet Ingredients | sub:Gourmand|Gourmet Ingredients
+71. feature/graceful | Graceful | sp:Shifter (Swiftstride)|Graceful
+72. feature/graft-mastery | Graft Mastery | sub:Cybernetic|Graft Mastery
+73. feature/grandmaster | Grandmaster | sub:House of Kings|Grandmaster
+74. feature/grappleclaws | Grappleclaws | sp:Pluvenn|Grappleclaws
+75. feature/grasping-tentacles | Grasping Tentacles | sub:The Fathomless|Grasping Tentacles
+76. feature/grasping-vines | Grasping Vines | sub:Verdant Protector|Grasping Vines
+77. feature/grave-domain-spells | Grave Domain Spells | sub:Grave Domain|Grave Domain Spells
+78. feature/grave-keeper | Grave Keeper | sub:Nightgaunt|Grave Keeper
+79. feature/grave-power | Grave Power | sub:Necromancer|Grave Power
+80. feature/grave-touched | Grave Touched | sub:Undead Patron|Grave Touched
+81. feature/gravelord | Gravelord | sub:Nightgaunt|Gravelord
+82. feature/graveyard-tango | Graveyard Tango | sub:Necrodancer|Graveyard Tango
+83. feature/gravimancer | Gravimancer | sub:Cosmic Magic|Gravimancer
+84. feature/gravitational-resistance | Gravitational Resistance | sub:Singularity Patron|Gravitational Resistance
+85. feature/gravity-well | Gravity Well | sub:Graviturgy Magic|Gravity Well
+86. feature/grazing-shot-maneuver | Grazing Shot [Maneuver] | sub:Star Wolf|Grazing Shot [Maneuver]
+87. feature/great-old-one-spells | Great Old One Spells | sub:Great Old One Patron|Great Old One Spells
+88. feature/great-stature | Great Stature | sub:Rune Knight|Great Stature
+89. feature/greater-empowerment | Greater Empowerment | sub:Vow of the Augmenter|Greater Empowerment
+90. feature/greater-fogcrafting | Greater Fogcrafting | sub:Fumaturge|Greater Fogcrafting
+91. feature/greater-portent | Greater Portent | sub:School of Divination|Greater Portent
+92. feature/greater-seal | Greater Seal | sub:Angelic Scribe|Greater Seal
+93. feature/green-magic-spells | Green Magic Spells | sub:Green Magic|Green Magic Spells
+94. feature/green-reaper-spells | Green Reaper Spells | sub:Green Reaper|Green Reaper Spells
+95. feature/griffon-wings | Griffon Wings | sub:Griffon Scout|Griffon Wings
+96. feature/grim-harvest | Grim Harvest | sub:School of Necromancy|Grim Harvest
+97. feature/grim-sacrifice | Grim Sacrifice | sub:Black Magic|Grim Sacrifice
+98. feature/grim-troupe | Grim Troupe | sub:Danseur Macabre|Grim Troupe
+99. feature/grit | Grit | sp:Goblin (Ixalan)|Grit
+100. feature/grotag-tamer | Grotag Tamer | sp:Goblin (Grotag Tribe)|Grotag Tamer

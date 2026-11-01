@@ -1,0 +1,101 @@
+LEMBAR 077, 100 sel
+1. feature/egotistical | Egotistical | sub:Warrior of Pride|Egotistical
+2. feature/eidetic-memory | Eidetic Memory | sub:Archivist|Eidetic Memory
+3. feature/ejector-seat | Ejector Seat | sub:Mechanauts' Guild|Ejector Seat
+4. feature/elder-tongue | Elder Tongue | sub:Green Magic|Elder Tongue
+5. feature/eldritch-appetite | Eldritch Appetite | sub:The First Vampire Patron|Eldritch Appetite
+6. feature/eldritch-contagion | Eldritch Contagion | sub:Eldritch Domain|Eldritch Contagion
+7. feature/eldritch-curse | Eldritch Curse | sp:Scourgeborne|Eldritch Curse
+8. feature/eldritch-domain-spells | Eldritch Domain Spells | sub:Eldritch Domain|Eldritch Domain Spells
+9. feature/eldritch-endurance | Eldritch Endurance | sp:Accursed (Steinhardt)|Eldritch Endurance
+10. feature/eldritch-herald | Eldritch Herald | sub:Yellow Sign|Eldritch Herald
+11. feature/eldritch-hex | Eldritch Hex | sub:Great Old One Patron|Eldritch Hex
+12. feature/eldritch-invocation-options | Eldritch Invocation Options
+13. feature/eldritch-rampage | Eldritch Rampage | sub:Path of Spellfury|Eldritch Rampage
+14. feature/eldritch-ruin | Eldritch Ruin | sub:Occultist|Eldritch Ruin
+15. feature/eldritch-versatility | Eldritch Versatility
+16. feature/electric-armory | Electric Armory | sub:Thunderlords' Guild|Electric Armory
+17. feature/electric-heart | Electric Heart | sp:Manikin|Electric Heart
+18. feature/electromagical-burst | Electromagical Burst | sub:Infiltrator|Electromagical Burst
+19. feature/electromagnetic-shield | Electromagnetic Shield | sub:Ionizer|Electromagnetic Shield
+20. feature/elegant-courtier | Elegant Courtier | sub:Samurai|Elegant Courtier
+21. feature/elegant-maneuver | Elegant Maneuver | sub:Swashbuckler|Elegant Maneuver
+22. feature/elemental-annihilation | Elemental Annihilation | sub:Red Magic|Elemental Annihilation
+23. feature/elemental-arrows | Elemental Arrows | sub:Primordial Archer|Elemental Arrows
+24. feature/elemental-disciplines | Elemental Disciplines
+25. feature/elemental-eidolon | Elemental Eidolon | sub:Bond of the Elemental Spirit|Elemental Eidolon
+26. feature/elemental-focus | Elemental Focus | sub:Elementalist|Elemental Focus
+27. feature/elemental-gift | Elemental Gift | sub:The Genie|Elemental Gift
+28. feature/elemental-heritage | Elemental Heritage | sub:Elemental Essence|Elemental Heritage
+29. feature/elemental-jaunt | Elemental Jaunt | sub:Elemental Essence|Elemental Jaunt
+30. feature/elemental-mastery | Elemental Mastery | sub:Elementalist|Elemental Mastery
+31. feature/elemental-oozes | Elemental Oozes | sub:Ooze Rancher|Elemental Oozes
+32. feature/elemental-remodement | Elemental Remodement | sub:Bond of the Elemental Spirit|Elemental Remodement
+33. feature/elemental-savant | Elemental Savant | sub:Elementalist|Elemental Savant
+34. feature/elemental-soul | Elemental Soul | sub:Elemental Essence|Elemental Soul
+35. feature/elemental-spells | Elemental Spells | sub:Bond of the Elemental Spirit|Elemental Spells
+36. feature/elementally-imbued | Elementally Imbued | sub:Circle of the Forged|Elementally Imbued
+37. feature/elf-weapon-training | Elf Weapon Training | sp:High Elf|Elf Weapon Training
+38. feature/elusive-step | Elusive Step | sub:House of Rooks|Elusive Step
+39. feature/elven-lineage | Elven Lineage | sp:Lorwyn Elf|Elven Lineage
+40. feature/elven-lineage-fey | Elven Lineage (Fey) | sp:Elf (Fey)|Elven Lineage (Fey)
+41. feature/embedded-armor | Embedded Armor | sp:Vect|Embedded Armor
+42. feature/embodiment-of-the-law | Embodiment of the Law | sub:Order Domain|Embodiment of the Law
+43. feature/emboldening-bond | Emboldening Bond | sub:Peace Domain|Emboldening Bond
+44. feature/emissary-of-peace | Emissary of Peace
+45. feature/emissary-of-the-cat | Emissary of the Cat | sub:Cat Domain|Emissary of the Cat
+46. feature/emissary-of-the-sea | Emissary of the Sea | sp:Triton (2014)|Emissary of the Sea
+47. feature/empowered-blood-hex | Empowered Blood Hex | sub:Sanguine Chapter|Empowered Blood Hex
+48. feature/empowered-breath-weapon | Empowered Breath Weapon | sub:Bond of the Dragon Herald|Empowered Breath Weapon
+49. feature/empowered-cantrips | Empowered Cantrips | sub:Moon Domain|Empowered Cantrips
+50. feature/empowered-channeling | Empowered Channeling | sub:College of Spirits|Empowered Channeling
+51. feature/empowered-healing | Empowered Healing | sub:Divine Soul|Empowered Healing
+52. feature/empowered-spells | Empowered Spells
+53. feature/empowered-transmutation | Empowered Transmutation | sub:Transmuter|Empowered Transmutation
+54. feature/empowered-wrap | Empowered Wrap | sub:Bond of the Symbiote|Empowered Wrap
+55. feature/empty-body | Empty Body
+56. feature/encase | Encase | sub:Bond of the Living Armament|Encase
+57. feature/enchanting-conversationalist | Enchanting Conversationalist | sub:Enchanter|Enchanting Conversationalist
+58. feature/enchantment-expert | Enchantment Expert | sub:Bond of the Faerie Trickster|Enchantment Expert
+59. feature/enchantment-savant | Enchantment Savant | sub:Enchanter|Enchantment Savant
+60. feature/encircling-strike | Encircling Strike | sub:Absolute Chapter|Encircling Strike
+61. feature/encore | Encore | sub:Dramaturge|Encore
+62. feature/encyclopedic-expertise | Encyclopedic Expertise | sub:Archivist|Encyclopedic Expertise
+63. feature/end-game | End Game | sub:House of Go|End Game
+64. feature/endless-dance | Endless Dance | sub:College of Choreography|Endless Dance
+65. feature/endless-evolution | Endless Evolution | sub:Circle of Mutation|Endless Evolution
+66. feature/engineered-identity | Engineered Identity | sub:Mastermaker|Engineered Identity
+67. feature/enhanced-protection | Enhanced Protection | sub:Bond of the Living Armament|Enhanced Protection
+68. feature/enhancing-tether | Enhancing Tether | sub:Vow of the Augmenter|Enhancing Tether
+69. feature/entanglement | Entanglement | sub:Quantum Mechanic|Entanglement
+70. feature/entangling-vines | Entangling Vines | sp:Mandrake|Entangling Vines
+71. feature/enthralling-movement-dance-style | Enthralling Movement [Dance Style] | sub:Courtesan|Enthralling Movement [Dance Style]
+72. feature/enthralling-performance | Enthralling Performance | sub:College of Glamour (2014)|Enthralling Performance
+73. feature/entourage | Entourage | sub:Burden of Fame|Entourage
+74. feature/entrancing-movement | Entrancing Movement | sub:College of Choreography|Entrancing Movement
+75. feature/entropic-infection | Entropic Infection | sub:Oath of Pestilence|Entropic Infection
+76. feature/entropic-ward | Entropic Ward | sub:The Great Old One (2014)|Entropic Ward
+77. feature/entropys-apex | Entropy's Apex | sub:Circle of Entropy|Entropy's Apex
+78. feature/envenomed-attack | Envenomed Attack | sub:Green Reaper|Envenomed Attack
+79. feature/envenomed-weapons | Envenomed Weapons | sp:Limukin|Envenomed Weapons
+80. feature/envoy-to-the-waves | Envoy to the Waves | sub:Ocean Domain|Envoy to the Waves
+81. feature/epidemic-infection | Epidemic Infection | sub:Pestilence Domain|Epidemic Infection
+82. feature/equine-build | Equine Build | sp:Centaur (2014)|Equine Build
+83. feature/equipped-for-battle | Equipped for Battle | sub:Carver Guild|Equipped for Battle
+84. feature/erudite-focus | Erudite Focus | sub:Universalist|Erudite Focus
+85. feature/erudite-spell | Erudite Spell | sub:Archivist|Erudite Spell
+86. feature/escape-artist | Escape Artist | sub:Runetagger|Escape Artist
+87. feature/escape-plan | Escape Plan | sub:Trappers' Guild|Escape Plan
+88. feature/escape-the-horde | Escape the Horde
+89. feature/escaped-death | Escaped Death | sp:Reborn|Escaped Death
+90. feature/essence-mastery | Essence Mastery | sub:Alkemancer|Essence Mastery
+91. feature/essence-runes | Essence Runes | sub:Runechild|Essence Runes
+92. feature/eternal-night | Eternal Night | sub:The First Vampire Patron|Eternal Night
+93. feature/eternal-war-eruption | Eternal War Eruption | sub:Daemonologist|Eternal War Eruption
+94. feature/etheradio-transmissions | Etheradio Transmissions | sub:College of Cyberwave|Etheradio Transmissions
+95. feature/ethereal-moonwalk | Ethereal Moonwalk | sub:Moonwalker|Ethereal Moonwalk
+96. feature/ethereal-step | Ethereal Step | sub:Horizon Walker|Ethereal Step
+97. feature/evasive | Evasive | sp:Vulpin|Evasive
+98. feature/evasive-fighter | Evasive Fighter | sub:Freerunner|Evasive Fighter
+99. feature/evasive-speed | Evasive Speed | sub:Acrobat|Evasive Speed
+100. feature/event-horizon | Event Horizon | sub:Graviturgy Magic|Event Horizon

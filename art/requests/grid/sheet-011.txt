@@ -1,0 +1,101 @@
+LEMBAR 011, 100 sel
+1. feat/arcane-prescience | Arcane Prescience
+2. feat/arcane-safeguard | Arcane Safeguard
+3. feat/arcane-undertaker | Arcane Undertaker
+4. feat/arcane-warrior | Arcane Warrior
+5. feat/arms-booster | Arms Booster
+6. feat/artificer-initiate | Artificer Initiate
+7. feat/artillerist-dark-matter | Artillerist (Dark Matter)
+8. feat/astrogations-inc-starguide | Astrogations Inc.: Starguide
+9. feat/athlete-2014 | Athlete (2014)
+10. feat/baleful-scion | Baleful Scion
+11. feat/bandit-cunning | Bandit Cunning
+12. feat/battlecaster | Battlecaster
+13. feat/battleframe-dragoon | Battleframe Dragoon
+14. feat/beastperson | Beastperson
+15. feat/blackpowder-pistol-expert | Blackpowder Pistol Expert
+16. feat/blaster-master | Blaster Master
+17. feat/blaster-master-dark-matter | Blaster Master (Dark Matter)
+18. feat/blood-hound | Blood Hound
+19. feat/bloodlust | Bloodlust
+20. feat/bomber | Bomber
+21. feat/boon-of-blazing-dawn | Boon of Blazing Dawn
+22. feat/boon-of-bloodshed | Boon of Bloodshed
+23. feat/boon-of-bountiful-health | Boon of Bountiful Health
+24. feat/boon-of-communication | Boon of Communication
+25. feat/boon-of-desperate-resilience | Boon of Desperate Resilience
+26. feat/boon-of-erupting-spellpower | Boon of Erupting Spellpower
+27. feat/boon-of-exquisite-radiance | Boon of Exquisite Radiance
+28. feat/boon-of-fluid-forms | Boon of Fluid Forms
+29. feat/boon-of-fortunes-favor | Boon of Fortune's Favor
+30. feat/boon-of-looming-shadows | Boon of Looming Shadows
+31. feat/boon-of-magic-resistance | Boon of Magic Resistance
+32. feat/boon-of-magic-school-mastery | Boon of Magic School Mastery
+33. feat/boon-of-misty-escape | Boon of Misty Escape
+34. feat/boon-of-perfect-flight | Boon of Perfect Flight
+35. feat/boon-of-poison-mastery | Boon of Poison Mastery
+36. feat/boon-of-revelry | Boon of Revelry
+37. feat/boon-of-shadowsteel-mastery | Boon of Shadowsteel Mastery
+38. feat/boon-of-terror | Boon of Terror
+39. feat/boon-of-the-archlich | Boon of the Archlich
+40. feat/boon-of-the-ascended-vampire | Boon of the Ascended Vampire
+41. feat/boon-of-the-bright-sun | Boon of the Bright Sun
+42. feat/boon-of-the-earthly-tether | Boon of the Earthly Tether
+43. feat/boon-of-the-elder-fey | Boon of the Elder Fey
+44. feat/boon-of-the-elder-fiend | Boon of the Elder Fiend
+45. feat/boon-of-the-elder-horror | Boon of the Elder Horror
+46. feat/boon-of-the-elemental-temperance | Boon of the Elemental Temperance
+47. feat/boon-of-the-furious-storm | Boon of the Furious Storm
+48. feat/boon-of-the-high-seraph | Boon of the High Seraph
+49. feat/boon-of-the-iron-mind | Boon of the Iron Mind
+50. feat/boon-of-the-soul-drinker | Boon of the Soul Drinker
+51. feat/boon-of-the-wilds | Boon of the Wilds
+52. feat/bountiful-luck | Bountiful Luck
+53. feat/brutal-grip | Brutal Grip
+54. feat/brutalizer | Brutalizer
+55. feat/cannoneer | Cannoneer
+56. feat/careful-dragon-mask | Careful Dragon Mask
+57. feat/cartomancer | Cartomancer
+58. feat/changeling-metamorphosis | Changeling Metamorphosis
+59. feat/charger-2014 | Charger (2014)
+60. feat/chef-2014 | Chef (2014)
+61. feat/chief-engineer | Chief Engineer
+62. feat/child-of-the-sun | Child of the Sun
+63. feat/chronomancy-initiate | Chronomancy Initiate
+64. feat/church-of-the-sun-above-adherent | Church of the Sun Above: Adherent
+65. feat/circle-spellcaster | Circle Spellcaster
+66. feat/clairvoyant-warrior | Clairvoyant Warrior
+67. feat/close-combat-artillerist | Close Combat Artillerist
+68. feat/clown | Clown
+69. feat/cloying-mists | Cloying Mists
+70. feat/cohort-of-chaos | Cohort of Chaos
+71. feat/cold-caster | Cold Caster
+72. feat/conjuration-adept | Conjuration Adept
+73. feat/convincing-inquisitor | Convincing Inquisitor
+74. feat/cosmos-touched | Cosmos Touched
+75. feat/creative | Creative
+76. feat/crossbow-expert-2014 | Crossbow Expert (2014)
+77. feat/cruel | Cruel
+78. feat/crusher-2014 | Crusher (2014)
+79. feat/cult-of-the-dragon-initiate | Cult of the Dragon Initiate
+80. feat/curious | Curious
+81. feat/cyberfiend | Cyberfiend
+82. feat/dd-d-artifactor | DD&D: Artifactor
+83. feat/deathbound | Deathbound
+84. feat/defensive-duelist-2014 | Defensive Duelist (2014)
+85. feat/delicious-pain | Delicious Pain
+86. feat/demolitionist | Demolitionist
+87. feat/dilettante | Dilettante
+88. feat/divination-adept | Divination Adept
+89. feat/divinely-favored | Divinely Favored
+90. feat/dogfighter | Dogfighter
+91. feat/dragon-fear | Dragon Fear
+92. feat/dragon-hide | Dragon Hide
+93. feat/dragonrider | Dragonrider
+94. feat/dragonscarred | Dragonscarred
+95. feat/dragonsmith | Dragonsmith
+96. feat/drow-high-magic | Drow High Magic
+97. feat/dual-dragon-aspect | Dual Dragon Aspect
+98. feat/dual-shot | Dual Shot
+99. feat/dual-wielder-2014 | Dual Wielder (2014)
+100. feat/dual-focused | Dual-focused

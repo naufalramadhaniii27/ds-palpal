@@ -1,0 +1,101 @@
+LEMBAR 076, 100 sel
+1. feature/dexterous-attacks | Dexterous Attacks
+2. feature/dexterous-feet | Dexterous Feet | sp:Hadozee|Dexterous Feet
+3. feature/diabolic-presence | Diabolic Presence | sub:Burden of Tyranny|Diabolic Presence
+4. feature/diamond-soul | Diamond Soul
+5. feature/dice-of-fate | Dice of Fate | sub:House of Dice|Dice of Fate
+6. feature/digital-death | Digital Death | sub:Cyberghoul|Digital Death
+7. feature/dimensional-pit | Dimensional Pit | sub:Jumper|Dimensional Pit
+8. feature/dirge | Dirge | sub:College of Dirges|Dirge
+9. feature/dirty-tactics | Dirty Tactics | sub:Jolly Roger|Dirty Tactics
+10. feature/disarm-foe | Disarm Foe | sub:Path of the Wrecker|Disarm Foe
+11. feature/disastrous-prognostication | Disastrous Prognostication | sub:The Sibyl|Disastrous Prognostication
+12. feature/disastrous-prognostications | Disastrous Prognostications | sub:The Sibyl|Disastrous Prognostications
+13. feature/disciple-of-the-draught | Disciple of the Draught | sub:Beer Domain|Disciple of the Draught
+14. feature/disciple-of-the-elements | Disciple of the Elements | sub:Way of the Four Elements|Disciple of the Elements
+15. feature/discipline | Discipline | sp:Dhakaani Ghaal'dar (Hobgoblin)|Discipline
+16. feature/disco-of-the-dead | Disco of the Dead | sub:Necrodancer|Disco of the Dead
+17. feature/disgusting-resilience | Disgusting Resilience | sub:Oath of Pestilence|Disgusting Resilience
+18. feature/dismantle | Dismantle | sub:Scrappers' Guild|Dismantle
+19. feature/dispelling-recovery | Dispelling Recovery | sub:Arcana Domain|Dispelling Recovery
+20. feature/displacement | Displacement | sub:Jumper|Displacement
+21. feature/distant-strike | Distant Strike | sub:Horizon Walker|Distant Strike
+22. feature/distant-transposition | Distant Transposition | sub:Conjurer|Distant Transposition
+23. feature/distort-gravity | Distort Gravity | sub:Warrior of Gravity|Distort Gravity
+24. feature/dive-attack | Dive Attack | sp:Aarakocra (Monster)|Dive Attack
+25. feature/divination-expert | Divination Expert | sub:Bond of the Aberrant Psion|Divination Expert
+26. feature/divination-savant | Divination Savant | sub:School of Divination|Divination Savant
+27. feature/divine-assassin | Divine Assassin | sub:Burden of Anonymity|Divine Assassin
+28. feature/divine-domain | Divine Domain
+29. feature/divine-domain-feature | Divine Domain feature
+30. feature/divine-foreknowledge | Divine Foreknowledge | sub:Knowledge Domain|Divine Foreknowledge
+31. feature/divine-health | Divine Health
+32. feature/divine-intervention-improvement | Divine Intervention Improvement
+33. feature/divine-magic | Divine Magic | sub:Divine Soul|Divine Magic
+34. feature/divine-mandate | Divine Mandate | sub:Godsworn|Divine Mandate
+35. feature/divine-reaper | Divine Reaper | sub:Grave Domain|Divine Reaper
+36. feature/divine-sense | Divine Sense
+37. feature/divine-spark | Divine Spark
+38. feature/divine-strike-14th-level | Divine Strike (14th Level) | sub:Blood Domain|Divine Strike (14th Level)
+39. feature/dizzying-fog | Dizzying Fog | sub:Fragrant Magic|Dizzying Fog
+40. feature/djinnis-escape | Djinni's Escape
+41. feature/dodge-roll-maneuver | Dodge Roll [Maneuver] | sub:Star Wolf|Dodge Roll [Maneuver]
+42. feature/domain-spells | Domain Spells | sub:Blood Domain|Domain Spells
+43. feature/dont-need-to-ask-for-directions | Don't Need to Ask For Directions | sub:Path of the Dad|Don't Need to Ask For Directions
+44. feature/doom-foretold | Doom Foretold | sub:Burden of Calamity|Doom Foretold
+45. feature/double-joints | Double Joints | sub:Contortionist|Double Joints
+46. feature/draconic-ancestry | Draconic Ancestry | sp:Dragonborn (2014)|Draconic Ancestry
+47. feature/draconic-disciple | Draconic Disciple | sub:Way of the Ascendant Dragon|Draconic Disciple
+48. feature/draconic-flight | Draconic Flight | sp:Dragonborn|Draconic Flight
+49. feature/draconic-gift | Draconic Gift | sub:Drakewarden|Draconic Gift
+50. feature/draconic-presence | Draconic Presence | sub:Draconic Bloodline|Draconic Presence
+51. feature/draconic-realisation | Draconic Realisation | sub:Bond of the Dragon Herald|Draconic Realisation
+52. feature/draconic-resistance | Draconic Resistance | sp:Dragonborn (Chromatic)|Draconic Resistance
+53. feature/draconic-vengeance | Draconic Vengeance | sub:Drake-Blooded|Draconic Vengeance
+54. feature/dragon-eidolon | Dragon Eidolon | sub:Bond of the Dragon Herald|Dragon Eidolon
+55. feature/dragon-frame | Dragon Frame | sub:Space Marine|Dragon Frame
+56. feature/dragon-magic-savant | Dragon Magic Savant | sub:Dragon Mage|Dragon Magic Savant
+57. feature/dragons-resistance | Dragon's Resistance | sub:Dragon Domain|Dragon's Resistance
+58. feature/drain-life | Drain Life | sp:Aetherborn (Gifted)|Drain Life
+59. feature/drake-companion | Drake Companion | sub:Drakewarden|Drake Companion
+60. feature/drakes-breath | Drake's Breath | sub:Drakewarden|Drake's Breath
+61. feature/dread-allegiance | Dread Allegiance | sub:Scion of the Three|Dread Allegiance
+62. feature/dread-ambusher | Dread Ambusher | sub:Gloom Stalker (2014)|Dread Ambusher
+63. feature/dread-incarnate | Dread Incarnate | sub:Scion of the Three|Dread Incarnate
+64. feature/dreadful-aspect | Dreadful Aspect
+65. feature/dreadful-strikes | Dreadful Strikes | sub:Fey Wanderer (2014)|Dreadful Strikes
+66. feature/dreadnaught | Dreadnaught
+67. feature/dreamers-curse | Dreamer's Curse | sp:Deep One Dwarf|Dreamer's Curse
+68. feature/dreamers-gift-optional | Dreamer's Gift (optional) | sp:Deep One Dwarf|Dreamer's Gift (optional)
+69. feature/drone-commander | Drone Commander | sub:Drone Jockey|Drone Commander
+70. feature/drow-magic | Drow Magic | sp:Drow|Drow Magic
+71. feature/drow-weapon-training | Drow Weapon Training | sp:Drow|Drow Weapon Training
+72. feature/druid-circle | Druid Circle
+73. feature/druid-circle-feature | Druid Circle feature
+74. feature/druid-subclass | Druid Subclass | cls:Druid|Druid Subclass
+75. feature/drunkards-luck | Drunkard's Luck | sub:Way of the Drunken Master|Drunkard's Luck
+76. feature/drunken-technique | Drunken Technique | sub:Way of the Drunken Master|Drunken Technique
+77. feature/dual-augmentation | Dual Augmentation | sub:Vow of the Augmenter|Dual Augmentation
+78. feature/dual-death | Dual Death | sub:College of Requiems|Dual Death
+79. feature/dual-mind-2014 | Dual Mind (2014) | sp:Kalashtar (2014)|Dual Mind (2014)
+80. feature/dueling-stance-dance-style | Dueling Stance [Dance Style] | sub:Fencer|Dueling Stance [Dance Style]
+81. feature/duergar-magic | Duergar Magic | sp:Duergar (2014)|Duergar Magic
+82. feature/duergar-resilience | Duergar Resilience | sp:Duergar (2014)|Duergar Resilience
+83. feature/dullahan-lichdom | Dullahan [Lichdom] | sub:Black Rider|Dullahan [Lichdom]
+84. feature/durable-summons | Durable Summons | sub:Conjurer|Durable Summons
+85. feature/duskfog | Duskfog | sub:Dead Mist Acolyte|Duskfog
+86. feature/dwarven-armor-training | Dwarven Armor Training | sp:Mountain Dwarf|Dwarven Armor Training
+87. feature/dwarven-combat-training | Dwarven Combat Training | sp:Hill Dwarf|Dwarven Combat Training
+88. feature/dwarven-resilience | Dwarven Resilience | sp:Hill Dwarf|Dwarven Resilience
+89. feature/dwarven-toughness | Dwarven Toughness | sp:Hill Dwarf|Dwarven Toughness
+90. feature/eagle-eye-maneuver | Eagle Eye [Maneuver] | sub:Eagle Banner|Eagle Eye [Maneuver]
+91. feature/ear-for-deceit | Ear for Deceit | sub:Inquisitive|Ear for Deceit
+92. feature/earth-walk | Earth Walk | sp:Earth Genasi (2014)|Earth Walk
+93. feature/earthshatter | Earthshatter | sub:Stoneheart Defender|Earthshatter
+94. feature/echo-avatar | Echo Avatar | sub:Echo Knight|Echo Avatar
+95. feature/echo-of-yesterday | Echo of Yesterday | sub:Time Operative|Echo of Yesterday
+96. feature/eclipse-of-ill-omen | Eclipse of Ill Omen | sub:Moon Domain|Eclipse of Ill Omen
+97. feature/eerie-token | Eerie Token | sp:Hexblood|Eerie Token
+98. feature/effortless-dodge-maneuver | Effortless Dodge [Maneuver] | sub:Daggermark|Effortless Dodge [Maneuver]
+99. feature/effortless-journey | Effortless Journey
+100. feature/efreetis-fury | Efreeti's Fury

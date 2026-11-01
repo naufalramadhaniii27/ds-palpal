@@ -1,0 +1,101 @@
+LEMBAR 062, 100 sel
+1. disease/redface | Redface
+2. disease/saprophytic-plague | Saprophytic Plague
+3. disease/seizure | Seizure
+4. disease/sewer-plague | Sewer Plague
+5. disease/shaking-plague | Shaking Plague
+6. disease/shivering-sickness | Shivering Sickness
+7. disease/sight-rot | Sight Rot
+8. disease/slimy-doom | Slimy Doom
+9. disease/spider-eggs | Spider Eggs
+10. disease/super-tetanus | Super-Tetanus
+11. disease/surprised | Surprised
+12. disease/the-gnawing-plague | The Gnawing Plague
+13. disease/the-rusting | The Rusting
+14. disease/throat-leeches | Throat Leeches
+15. recipe/orc-bacon | Orc" Bacon | "Orc" Bacon
+16. recipe/almond-brandy | Almond Brandy
+17. recipe/amphail-braised-beef | Amphail Braised Beef
+18. recipe/arkhan-the-cruels-flame-roasted-halfling-chili | Arkhan the Cruel's Flame-Roasted Halfling Chili
+19. recipe/astral-plane | Astral Plane
+20. recipe/bacon-wrapped-smoked-mussels | Bacon-Wrapped Smoked Mussels
+21. recipe/baldurian-tonic | Baldurian Tonic
+22. recipe/bangers-and-smash | Bangers and Smash
+23. recipe/barovian-butterscotch-pudding | Barovian Butterscotch Pudding
+24. recipe/barovian-garlic-bread | Barovian Garlic Bread
+25. recipe/barovian-garlic-soup | Barovian Garlic Soup
+26. recipe/beauty-mark | Beauty Mark
+27. recipe/bee-well | Bee Well
+28. recipe/beer-porridge | Beer "Porridge | Beer "Porridge"
+29. recipe/beer-bread | Beer Bread
+30. recipe/beluir-poached-salmon | Beluir Poached Salmon
+31. recipe/bitter-black | Bitter Black
+32. recipe/black-lotus-root | Black Lotus Root
+33. recipe/black-pudding | Black Pudding
+34. recipe/blood-of-vol | Blood of Vol
+35. recipe/boar-hock-soup | Boar Hock Soup
+36. recipe/brackleberry-jam | Brackleberry Jam
+37. recipe/braised-lamb | Braised Lamb
+38. recipe/brandied-ham-and-carrots | Brandied Ham and Carrots
+39. recipe/brandy-cassalanter | Brandy Cassalanter
+40. recipe/breaded-bird-cutlets | Breaded Bird Cutlets
+41. recipe/butternut-beer | Butternut Beer
+42. recipe/bytopian-shepherds-bread | Bytopian Shepherd's Bread
+43. recipe/candlekeep-tea | Candlekeep Tea
+44. recipe/captains-fancy | Captain's Fancy
+45. recipe/castle-amber-onion-soup | Castle Amber Onion Soup
+46. recipe/cats-cradle | Cat's Cradle
+47. recipe/celebration-brew | Celebration Brew
+48. recipe/cheap-seat | Cheap Seat
+49. recipe/cherry-mead | Cherry Mead
+50. recipe/cherrybread | Cherrybread
+51. recipe/chessentan-tea | Chessentan Tea
+52. recipe/chicken-something-dumplings | Chicken-Something Dumplings
+53. recipe/chickpea-and-spicy-sausage-soup | Chickpea and Spicy Sausage Soup
+54. recipe/chirpers-sugar-biscuits | Chirper's Sugar Biscuits
+55. recipe/chopforest | Chopforest
+56. recipe/chultan-zombie | Chultan Zombie
+57. recipe/chultwater | Chultwater
+58. recipe/cloaks | Cloaks
+59. recipe/cocoa-broth | Cocoa Broth
+60. recipe/community-cheeses | Community Cheeses
+61. recipe/corned-beef-and-cabbage | Corned Beef and Cabbage
+62. recipe/courtesans | Courtesans
+63. recipe/crakaneg | Crakaneg
+64. recipe/craknoeg | Craknoeg
+65. recipe/create-food-and-water | Create Food and Water
+66. recipe/dark-molasses-nutbread | Dark Molasses Nutbread
+67. recipe/deadwinter-fire | Deadwinter Fire
+68. recipe/deep-gnome-trillimac-pods | Deep Gnome Trillimac Pods
+69. recipe/delayed-blast-fireball | Delayed Blast Fireball
+70. recipe/delzoun-tide-me-overs | Delzoun "Tide-Me-Overs | Delzoun "Tide-Me-Overs"
+71. recipe/dour-bread | Dour Bread
+72. recipe/dragon-salmon | Dragon Salmon
+73. recipe/dragonberries | Dragonberries
+74. recipe/drow-mushroom-steaks | Drow Mushroom Steaks
+75. recipe/duergar-smoked-herring | Duergar Smoked Herring
+76. recipe/dwarven-flatbread | Dwarven Flatbread
+77. recipe/dwarven-mulled-wine | Dwarven Mulled Wine
+78. recipe/eggplant-steaks-with-harelveauplum-sauce | Eggplant Steaks with Harelveauplum Sauce
+79. recipe/eldeen-banquet | Eldeen Banquet
+80. recipe/eldritch-storm | Eldritch Storm
+81. recipe/elfharrow-baked-goat-cheese | Elfharrow Baked Goat Cheese
+82. recipe/elfharrow-kiss | Elfharrow Kiss
+83. recipe/elven-bread | Elven Bread
+84. recipe/elven-flatbread | Elven Flatbread
+85. recipe/elven-marruth | Elven Marruth
+86. recipe/elverquisst | Elverquisst
+87. recipe/emerald-chicken | Emerald Chicken
+88. recipe/emerald-door | Emerald Door
+89. recipe/endurance | Endurance
+90. recipe/evermead | Evermead
+91. recipe/everything-soup | Everything Soup
+92. recipe/eye-of-the-beholder | Eye Of The Beholder
+93. recipe/faerie-fire | Faerie Fire
+94. recipe/fey-fritters | Fey Fritters
+95. recipe/feywild-eggs | Feywild Eggs
+96. recipe/feywine-punch | Feywine Punch
+97. recipe/fig-cakes | Fig Cakes
+98. recipe/fire-spiced-abyssal-chicken-kebabs | Fire-Spiced Abyssal Chicken Kebabs
+99. recipe/fire-wrapped-golden-fish | Fire-Wrapped Golden Fish
+100. recipe/flumphcakes | Flumphcakes

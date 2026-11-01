@@ -1,0 +1,101 @@
+LEMBAR 010, 100 sel
+1. sub/storm-sorcery | Storm Sorcery
+2. sub/strength-domain-psa | Strength Domain (PSA)
+3. sub/swashbuckler | Swashbuckler
+4. sub/tea-magic | Tea Magic
+5. sub/technicolor-magic | Technicolor Magic
+6. sub/tempest-domain | Tempest Domain
+7. sub/the-coven | The Coven
+8. sub/the-first-vampire-patron | The First Vampire Patron
+9. sub/the-frozen-one | The Frozen One
+10. sub/the-genie-lord | The Genie Lord
+11. sub/the-great-machine | The Great Machine
+12. sub/the-parasite-patron | The Parasite Patron
+13. sub/the-predator | The Predator
+14. sub/the-sibyl | The Sibyl
+15. sub/the-undying | The Undying
+16. sub/thunderlords-guild | Thunderlords' Guild
+17. sub/time-domain | Time Domain
+18. sub/time-operative | Time Operative
+19. sub/timekeeper | Timekeeper
+20. sub/tower-banner | Tower Banner
+21. sub/toymaker | Toymaker
+22. sub/trapper-guild | Trapper Guild
+23. sub/trappers-guild | Trappers' Guild
+24. sub/travel-domain | Travel Domain
+25. sub/troubadour | Troubadour
+26. sub/tyromancer | Tyromancer
+27. sub/universalist | Universalist
+28. sub/vampire-slayer | Vampire Slayer
+29. sub/venomsmith | Venomsmith
+30. sub/verdant-protector | Verdant Protector
+31. sub/vermin-lord | Vermin Lord
+32. sub/void-caster | Void Caster
+33. sub/void-domain | Void Domain
+34. sub/void-speaker | Void Speaker
+35. sub/vow-of-the-augmenter | Vow of the Augmenter
+36. sub/vow-of-the-martyr | Vow of the Martyr
+37. sub/vow-of-the-protector | Vow of the Protector
+38. sub/vow-of-the-siphon | Vow of the Siphon
+39. sub/wand-wizard | Wand Wizard
+40. sub/war-domain | War Domain
+41. sub/war-domain-2014 | War Domain (2014)
+42. sub/war-magic | War Magic
+43. sub/warrior-of-gravity | Warrior of Gravity
+44. sub/warrior-of-mercy | Warrior of Mercy
+45. sub/warrior-of-pride | Warrior of Pride
+46. sub/warrior-of-regret | Warrior of Regret
+47. sub/warrior-of-shadow | Warrior of Shadow
+48. sub/warrior-of-the-celestial | Warrior of the Celestial
+49. sub/warrior-of-the-elements | Warrior of the Elements
+50. sub/warrior-of-the-leaden-crown | Warrior of the Leaden Crown
+51. sub/warrior-of-the-living-weapon | Warrior of the Living Weapon
+52. sub/warrior-of-the-open-hand | Warrior of the Open Hand
+53. sub/warrior-of-the-warped | Warrior of the Warped
+54. sub/way-of-the-cobalt-soul | Way of the Cobalt Soul
+55. sub/way-of-the-drunken-master | Way of the Drunken Master
+56. sub/way-of-the-four-elements | Way of the Four Elements
+57. sub/way-of-the-kensei | Way of the Kensei
+58. sub/way-of-the-long-death | Way of the Long Death
+59. sub/way-of-the-sun-soul | Way of the Sun Soul
+60. sub/white-magic | White Magic
+61. sub/white-necromancer | White Necromancer
+62. sub/wild-magic-sorcery | Wild Magic Sorcery
+63. sub/winter-domain | Winter Domain
+64. sub/winter-trapper | Winter Trapper
+65. sub/wintercarvers-guild | Wintercarvers' Guild
+66. sub/witchbane-hunter | Witchbane Hunter
+67. sub/wretched-bloodline-sorcery | Wretched Bloodline Sorcery
+68. sub/xenoalchemist | Xenoalchemist
+69. sub/yellow-sign | Yellow Sign
+70. sub/zeal-domain-psa | Zeal Domain (PSA)
+71. feat/aberrant-dragonmark-2014 | Aberrant Dragonmark (2014)
+72. feat/aberrant-horror-transformation-stage-1 | Aberrant Horror Transformation: Stage 1
+73. feat/aberrant-horror-transformation-stage-2 | Aberrant Horror Transformation: Stage 2
+74. feat/aberrant-horror-transformation-stage-3 | Aberrant Horror Transformation: Stage 3
+75. feat/aberrant-horror-transformation-stage-4 | Aberrant Horror Transformation: Stage 4
+76. feat/aberrant-spawn | Aberrant Spawn
+77. feat/ace-pilot | Ace Pilot
+78. feat/actor-2014 | Actor (2014)
+79. feat/adamantine-clan | Adamantine Clan
+80. feat/adept-of-the-black-robes | Adept of the Black Robes
+81. feat/adept-of-the-red-robes | Adept of the Red Robes
+82. feat/adept-of-the-white-robes | Adept of the White Robes
+83. feat/advanced-weapon-proficiency-fs | Advanced Weapon Proficiency (FS)
+84. feat/advanced-weapon-proficiency-g | Advanced Weapon Proficiency (G)
+85. feat/aereni-expertise | Aereni Expertise
+86. feat/aereni-half-life | Aereni Half-Life
+87. feat/aerial-expert | Aerial Expert
+88. feat/affluent | Affluent
+89. feat/agent-of-order | Agent of Order
+90. feat/alert-2014 | Alert (2014)
+91. feat/android | Android
+92. feat/aquanaut | Aquanaut
+93. feat/aquatic-adaptation | Aquatic Adaptation
+94. feat/arcane-artist | Arcane Artist
+95. feat/arcane-cannoneer | Arcane Cannoneer
+96. feat/arcane-charger | Arcane Charger
+97. feat/arcane-eloquence | Arcane Eloquence
+98. feat/arcane-infiltrator | Arcane Infiltrator
+99. feat/arcane-omens | Arcane Omens
+100. feat/arcane-overload | Arcane Overload

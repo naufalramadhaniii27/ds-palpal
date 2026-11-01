@@ -1,0 +1,101 @@
+LEMBAR 018, 100 sel
+1. spell/creeping-touch | Creeping Touch
+2. spell/crimson-lash | Crimson Lash
+3. spell/crown-of-radiance | Crown of Radiance
+4. spell/cruor-of-visions | Cruor of Visions
+5. spell/crush | Crush
+6. spell/crushing-curse | Crushing Curse
+7. spell/crushing-trample | Crushing Trample
+8. spell/cryptogram | Cryptogram
+9. spell/cure-beast | Cure Beast
+10. spell/curse-object | Curse Object
+11. spell/curse-ring | Curse Ring
+12. spell/curse-ward | Curse Ward
+13. spell/curse-of-aging | Curse of Aging
+14. spell/curse-of-binding | Curse of Binding
+15. spell/curse-of-blades | Curse of Blades
+16. spell/curse-of-boreas | Curse of Boreas
+17. spell/curse-of-chains | Curse of Chains
+18. spell/curse-of-conceited-obsession | Curse of Conceited Obsession
+19. spell/curse-of-crushing-sensation | Curse of Crushing Sensation
+20. spell/curse-of-damned-aging | Curse of Damned Aging
+21. spell/curse-of-dust | Curse of Dust
+22. spell/curse-of-fastidious-pride | Curse of Fastidious Pride
+23. spell/curse-of-foul-blight | Curse of Foul Blight
+24. spell/curse-of-hostility | Curse of Hostility
+25. spell/curse-of-ill-fated-fortune | Curse of Ill-Fated Fortune
+26. spell/curse-of-incompetence | Curse of Incompetence
+27. spell/curse-of-insatiable-greed | Curse of Insatiable Greed
+28. spell/curse-of-lost-sentiment | Curse of Lost Sentiment
+29. spell/curse-of-ravenous-hunger | Curse of Ravenous Hunger
+30. spell/curse-of-uncontrollable-wrath | Curse of Uncontrollable Wrath
+31. spell/curse-of-yig | Curse of Yig
+32. spell/curse-of-the-grave | Curse of the Grave
+33. spell/cursed-gift | Cursed Gift
+34. spell/cynophobia | Cynophobia
+35. spell/daggerhawk | Daggerhawk
+36. spell/dampen-gravity | Dampen Gravity
+37. spell/dark-dementing | Dark Dementing
+38. spell/dark-heraldry | Dark Heraldry
+39. spell/dark-lords-mantle | Dark Lord's Mantle
+40. spell/dark-matter-override | Dark Matter Override
+41. spell/dark-maw | Dark Maw
+42. spell/dark-path | Dark Path
+43. spell/dark-sacrament | Dark Sacrament
+44. spell/dark-web-of-the-spider-monarch | Dark Web of the Spider Monarch
+45. spell/darkbolt | Darkbolt
+46. spell/dazing-blast | Dazing Blast
+47. spell/dead-fog | Dead Fog
+48. spell/dead-mist-lash | Dead Mist Lash
+49. spell/dead-walking | Dead Walking
+50. spell/deadly-sting | Deadly Sting
+51. spell/death-gods-touch | Death God's Touch
+52. spell/decay | Decay
+53. spell/decelerate | Decelerate
+54. spell/deep-breath | Deep Breath
+55. spell/deep-focus | Deep Focus
+56. spell/deep-freeze | Deep Freeze
+57. spell/defenestration | Defenestration
+58. spell/defensive-quills | Defensive Quills
+59. spell/defile-healing | Defile Healing
+60. spell/delay | Delay
+61. spell/delay-potion | Delay Potion
+62. spell/demand | Demand
+63. spell/demon-within | Demon Within
+64. spell/desiccating-breath | Desiccating Breath
+65. spell/desolation | Desolation
+66. spell/destructive-resonance | Destructive Resonance
+67. spell/detect-dragons | Detect Dragons
+68. spell/detonate-corpses | Detonate Corpses
+69. spell/devas-wings | Deva's Wings
+70. spell/digitize | Digitize
+71. spell/dimensional-shove | Dimensional Shove
+72. spell/dire-warning | Dire Warning
+73. spell/disable-weapon | Disable Weapon
+74. spell/discern-weakness | Discern Weakness
+75. spell/displacing-maw | Displacing Maw
+76. spell/disquieting-gaze | Disquieting Gaze
+77. spell/disruptive-aura | Disruptive Aura
+78. spell/distracting-divination | Distracting Divination
+79. spell/distraction-cascade | Distraction Cascade
+80. spell/distressing-resonance | Distressing Resonance
+81. spell/divine-order-reveal | Divine Order: Reveal
+82. spell/divine-order-sacrifice | Divine Order: Sacrifice
+83. spell/divine-order-transcend | Divine Order: Transcend
+84. spell/divine-wrath | Divine Wrath
+85. spell/dome-of-silence | Dome of Silence
+86. spell/doom-of-blue-crystal | Doom of Blue Crystal
+87. spell/doom-of-consuming-fire | Doom of Consuming Fire
+88. spell/doom-of-dancing-blades | Doom of Dancing Blades
+89. spell/doom-of-disenchantment | Doom of Disenchantment
+90. spell/doom-of-serpent-coils | Doom of Serpent Coils
+91. spell/doom-of-the-cracked-shield | Doom of the Cracked Shield
+92. spell/doom-of-the-earthen-maw | Doom of the Earthen Maw
+93. spell/doom-of-the-pit | Doom of the Pit
+94. spell/doom-of-the-slippery-rogue | Doom of the Slippery Rogue
+95. spell/douse-light | Douse Light
+96. spell/draconic-majesty | Draconic Majesty
+97. spell/draconic-senses | Draconic Senses
+98. spell/draconic-smite | Draconic Smite
+99. spell/dragon-breath | Dragon Breath
+100. spell/dragon-roar | Dragon Roar

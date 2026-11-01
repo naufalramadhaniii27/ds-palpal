@@ -1,0 +1,101 @@
+LEMBAR 049, 100 sel
+1. gear/piton | Piton
+2. gear/plainscow | Plainscow
+3. gear/planar-philosopher-trinket | Planar Philosopher Trinket
+4. gear/platinum-1-lb | Platinum (1 lb)
+5. gear/platinum-bracelet-set-with-a-sapphire | Platinum bracelet set with a sapphire
+6. gear/platinum-bracelet-set-with-an-emerald | Platinum bracelet set with an emerald
+7. gear/platinum-headdress-with-topaz-sun-symbol-sun-empire | Platinum headdress with topaz sun symbol (Sun Empire)
+8. gear/platinum-ring-with-yellow-sapphire-sun-empire | Platinum ring with yellow sapphire (Sun Empire)
+9. gear/platinum-staff-topped-with-amber-sun-empire | Platinum staff topped with amber (Sun Empire)
+10. gear/pole-10-foot | Pole (10-foot)
+11. gear/pony | Pony
+12. gear/prespra | Prespra
+13. gear/pride-silk | Pride Silk
+14. gear/pride-silk-outfit | Pride Silk Outfit
+15. gear/prismari-trinket | Prismari Trinket
+16. gear/probe | Probe
+17. gear/prosthetics | Prosthetics
+18. gear/purple-worm-poison | Purple Worm Poison
+19. gear/quadcorder | Quadcorder
+20. gear/quandrix-trinket | Quandrix Trinket
+21. gear/quartz | Quartz
+22. gear/rain-catcher | Rain Catcher
+23. gear/razor-wire | Razor Wire
+24. gear/reliquary | Reliquary
+25. gear/renaissance-bullet | Renaissance Bullet
+26. gear/renaissance-bullets-10 | Renaissance Bullets (10)
+27. gear/researchers-pack | Researcher's Pack
+28. gear/residuum | Residuum
+29. gear/residuum-enchanting-slate | Residuum Enchanting Slate
+30. gear/retractable-shield | Retractable Shield
+31. gear/revolver | Revolver
+32. gear/rhodochrosite | Rhodochrosite
+33. gear/riding-saddle | Riding Saddle
+34. gear/roach | Roach
+35. gear/robes | Robes
+36. gear/robot-controller | Robot Controller
+37. gear/ruby | Ruby
+38. gear/rusted-hulk | Rusted Hulk
+39. gear/saddle-exotic | Saddle, Exotic
+40. gear/saddle-military | Saddle, Military
+41. gear/saddle-riding | Saddle, Riding
+42. gear/saddlebags | Saddlebags
+43. gear/saffron | Saffron
+44. gear/sages-trinket | Sage's Trinket
+45. gear/sailing-ship | Sailing Ship
+46. gear/salt | Salt
+47. gear/sardonyx | Sardonyx
+48. gear/sarlona-trinket | Sarlona Trinket
+49. gear/scatter-bullet | Scatter Bullet
+50. gear/scatter-bullets-10 | Scatter Bullets (10)
+51. gear/scorpion-ship | Scorpion Ship
+52. gear/sealing-wax | Sealing Wax
+53. gear/secondhand-steal-trinket | Secondhand Steal Trinket
+54. gear/seeing-glass | Seeing Glass
+55. gear/semiautomatic-pistol | Semiautomatic Pistol
+56. gear/sensors | Sensors
+57. gear/serpent-venom | Serpent Venom
+58. gear/set-of-gold-nesting-dolls | Set of gold nesting dolls
+59. gear/shadowsteel-focus | Shadowsteel Focus
+60. gear/sheep | Sheep
+61. gear/shells-10 | Shells (10)
+62. gear/shield-generator | Shield Generator
+63. gear/shot-10 | Shot (10)
+64. gear/shotgun | Shotgun
+65. gear/shrike-ship | Shrike Ship
+66. gear/signal-jammer | Signal Jammer
+67. gear/signet-ring | Signet Ring
+68. gear/silk | Silk
+69. gear/silk-1-sq-yd | Silk (1 sq. yd.)
+70. gear/silk-rope-50-feet | Silk Rope (50 feet)
+71. gear/silk-robe-with-gold-embroidery | Silk robe with gold embroidery
+72. gear/silk-vestments-with-gold-embroidery | Silk vestments with gold embroidery
+73. gear/silver-1-lb | Silver (1 lb)
+74. gear/silver-bar-2-pound | Silver Bar (2-pound)
+75. gear/silver-bar-5-pound | Silver Bar (5-pound)
+76. gear/silver-and-gold-brooch | Silver and gold brooch
+77. gear/silver-chalice-set-with-moonstones | Silver chalice set with moonstones
+78. gear/silver-ewer | Silver ewer
+79. gear/silver-headdress-with-amber-and-red-coral-feathers-sun-empire | Silver headdress with amber and red-coral feathers (Sun Empire)
+80. gear/silver-medallion-sun-empire | Silver medallion (Sun Empire)
+81. gear/silver-necklace-with-a-gemstone-pendant | Silver necklace with a gemstone pendant
+82. gear/silver-necklace-with-an-amber-pendant-sun-empire | Silver necklace with an amber pendant (Sun Empire)
+83. gear/silver-shoulder-piece-with-amber-and-garnet-sun-empire | Silver shoulder piece with amber and garnet (Sun Empire)
+84. gear/silver-plated-steel-longsword-with-jet-set-in-hilt | Silver-plated steel longsword with jet set in hilt
+85. gear/silverquill-trinket | Silverquill Trinket
+86. gear/skyship | Skyship
+87. gear/sled | Sled
+88. gear/sled-dog | Sled Dog
+89. gear/sledgehammer | Sledgehammer
+90. gear/sleep-grenade | Sleep Grenade
+91. gear/sling-bullet-acid | Sling Bullet, Acid
+92. gear/sling-bullet-alchemists-fire | Sling Bullet, Alchemist's Fire
+93. gear/sling-bullet-armor-piercing | Sling Bullet, Armor-Piercing
+94. gear/sling-bullet-blessed | Sling Bullet, Blessed
+95. gear/sling-bullet-brutal | Sling Bullet, Brutal
+96. gear/sling-bullet-desecrated | Sling Bullet, Desecrated
+97. gear/sling-bullet-holy-water | Sling Bullet, Holy Water
+98. gear/sling-bullet-incendiary | Sling Bullet, Incendiary
+99. gear/sling-bullet-piercing | Sling Bullet, Piercing
+100. gear/sling-bullet-ranging | Sling Bullet, Ranging

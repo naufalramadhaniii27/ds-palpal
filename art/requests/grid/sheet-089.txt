@@ -1,0 +1,101 @@
+LEMBAR 089, 100 sel
+1. feature/pigment-potions | Pigment Potions | sub:Pigmentist|Pigment Potions
+2. feature/pin-down | Pin Down | sub:Winter Trapper|Pin Down
+3. feature/plague-vector | Plague Vector | sub:Carrion King|Plague Vector
+4. feature/plaguebringer | Plaguebringer | sub:Oath of Pestilence|Plaguebringer
+5. feature/planar-defense | Planar Defense | sub:Master of Fiends|Planar Defense
+6. feature/planar-escape | Planar Escape | sub:Astral Griffon Patron|Planar Escape
+7. feature/planar-familiar | Planar Familiar | sub:Familiar Master|Planar Familiar
+8. feature/planar-reach | Planar Reach | sub:Astral Domain|Planar Reach
+9. feature/planar-warrior | Planar Warrior | sub:Horizon Walker|Planar Warrior
+10. feature/plant-eidolon | Plant Eidolon | sub:Bond of the Shambling Plant|Plant Eidolon
+11. feature/plant-nature | Plant Nature | sp:Mandrake|Plant Nature
+12. feature/plant-spells | Plant Spells | sub:Bond of the Shambling Plant|Plant Spells
+13. feature/plasma-bomb-formula | Plasma Bomb [Formula] | sub:Ionizer|Plasma Bomb [Formula]
+14. feature/pluck-the-heartstrings | Pluck the Heartstrings | sub:College of Requiems|Pluck the Heartstrings
+15. feature/plunging-strike | Plunging Strike | sub:Warrior of Gravity|Plunging Strike
+16. feature/pneumatised-and-feathered | Pneumatised and Feathered | sp:Pluvenn|Pneumatised and Feathered
+17. feature/pocketeer | Pocketeer | sub:Astral Griffon Patron|Pocketeer
+18. feature/poetry-in-misery | Poetry in Misery | sub:College of Tragedy|Poetry in Misery
+19. feature/poison-cost-1d6 | Poison (Cost: 1d6)
+20. feature/poison-affinity | Poison Affinity | sp:Naga|Poison Affinity
+21. feature/poison-control | Poison Control | sub:Green Reaper|Poison Control
+22. feature/poison-immunity | Poison Immunity | sp:Grung|Poison Immunity
+23. feature/poisoner | Poisoner | sub:Venomsmith|Poisoner
+24. feature/poisonous-skin | Poisonous Skin | sp:Grung|Poisonous Skin
+25. feature/polar-acclimation | Polar Acclimation | sub:Rimekeeper|Polar Acclimation
+26. feature/polyphonic-echo | Polyphonic Echo | sub:College of Cyberwave|Polyphonic Echo
+27. feature/portable-forge | Portable Forge | sub:Forgeknights' Guild|Portable Forge
+28. feature/portal-device | Portal Device | sub:Portalweaver|Portal Device
+29. feature/portal-master | Portal Master | sub:Portalweaver|Portal Master
+30. feature/portals | Portals | sub:Portalweaver|Portals
+31. feature/portalweaver-spells | Portalweaver Spells | sub:Portalweaver|Portalweaver Spells
+32. feature/portent | Portent | sub:School of Divination|Portent
+33. feature/positivity | Positivity | sub:Technicolor Magic|Positivity
+34. feature/potent-cantrips | Potent Cantrips
+35. feature/potent-psionics-1d8 | Potent Psionics (1d8)
+36. feature/potent-psionics-2d8 | Potent Psionics (2d8)
+37. feature/potent-stone | Potent Stone | sub:Transmuter|Potent Stone
+38. feature/power-cell | Power Cell | sub:Thunderlords' Guild|Power Cell
+39. feature/power-from-darkness | Power from Darkness | sub:Doomsayer|Power from Darkness
+40. feature/power-of-deduction | Power of Deduction | sub:Detective|Power of Deduction
+41. feature/power-of-persuasion | Power of Persuasion | sp:Jeholrak|Power of Persuasion
+42. feature/power-of-shadow | Power of Shadow | sub:Shadow Sorcery|Power of Shadow
+43. feature/power-of-the-elite | Power of the Elite | sub:Aristocratic|Power of the Elite
+44. feature/powered-steps | Powered Steps
+45. feature/powered-by-pathos | Powered by Pathos | sub:Path of the Wrathful Dead|Powered by Pathos
+46. feature/powerful-build | Powerful Build | sp:Loxodon|Powerful Build
+47. feature/powerful-echo | Powerful Echo | sub:Void Caster|Powerful Echo
+48. feature/practical | Practical | sp:Cervan|Practical
+49. feature/precision-hardlight-strike | Precision Hardlight Strike | sub:Coalition Arcanist|Precision Hardlight Strike
+50. feature/predators-intuition | Predator's Intuition | sub:Big Game Hunter|Predator's Intuition
+51. feature/predictive-intuition | Predictive Intuition | sub:Detective|Predictive Intuition
+52. feature/preemptive-strike | Preemptive Strike | sub:Daggermark|Preemptive Strike
+53. feature/prescient-glimpses | Prescient Glimpses | sub:Time Domain|Prescient Glimpses
+54. feature/prescient-strike | Prescient Strike | sub:Burden of Awakening|Prescient Strike
+55. feature/priest-of-zeal | Priest of Zeal | sub:Zeal Domain (PSA)|Priest of Zeal
+56. feature/primal-ally | Primal Ally | sub:Green Magic|Primal Ally
+57. feature/primal-awareness | Primal Awareness
+58. feature/primal-companion | Primal Companion | sub:Path of the Primal Spirit|Primal Companion
+59. feature/primal-connection | Primal Connection | sp:Human (Mark of Handling)|Primal Connection
+60. feature/primal-intuition | Primal Intuition | sp:Orc (2014)|Primal Intuition
+61. feature/primal-lore | Primal Lore | sub:College of the Moon|Primal Lore
+62. feature/primal-magic | Primal Magic | sub:Path of the Swamp|Primal Magic
+63. feature/primal-path | Primal Path
+64. feature/primal-warrior | Primal Warrior | sub:Beastblood Guardian|Primal Warrior
+65. feature/primeval-awareness | Primeval Awareness
+66. feature/primordial-archer-spells | Primordial Archer Spells | sub:Primordial Archer|Primordial Archer Spells
+67. feature/primordial-attunement | Primordial Attunement | sub:Bond of the Elemental Spirit|Primordial Attunement
+68. feature/primordial-magic | Primordial Magic | sub:Primordial Archer|Primordial Magic
+69. feature/prismatic-module | Prismatic Module | sub:Circle of Configuration|Prismatic Module
+70. feature/prodigious-healer | Prodigious Healer | sub:Bond of the Guardian Angel|Prodigious Healer
+71. feature/projectile-spew | Projectile Spew | sub:Plague Lord|Projectile Spew
+72. feature/promotion | Promotion | sub:House of Pawns|Promotion
+73. feature/prophecy-of-doom | Prophecy of Doom | sub:Eldritch Domain|Prophecy of Doom
+74. feature/protect-life | Protect Life | sub:White Necromancer|Protect Life
+75. feature/protection-of-the-lower-planes | Protection of the Lower Planes | sub:Bond of the Fiendish Chain|Protection of the Lower Plane
+76. feature/protective-bond | Protective Bond | sub:Peace Domain|Protective Bond
+77. feature/protective-taunt | Protective Taunt | sub:Bulwark Warrior|Protective Taunt
+78. feature/protector | Protector
+79. feature/protector-spells | Protector Spells | sub:Vow of the Protector|Protector Spells
+80. feature/proto-magic | Proto-Magic | sub:Protomancer|Proto-Magic
+81. feature/proto-master | Proto-Master | sub:Protomancer|Proto-Master
+82. feature/psi-powered-leap | Psi-Powered Leap
+83. feature/psionic-awakening | Psionic Awakening | sub:Burden of Awakening|Psionic Awakening
+84. feature/psionic-blast | Psionic Blast | sp:Wrothian|Psionic Blast
+85. feature/psionic-body | Psionic Body
+86. feature/psionic-disciplines-and-talents | Psionic Disciplines and Talents
+87. feature/psionic-investigation | Psionic Investigation
+88. feature/psionic-mastery | Psionic Mastery | sub:Warrior of the Leaden Crown|Psionic Mastery
+89. feature/psionic-mastery-1-day | Psionic Mastery (1/Day)
+90. feature/psionic-mastery-2-day | Psionic Mastery (2/Day)
+91. feature/psionic-mastery-3-day | Psionic Mastery (3/Day)
+92. feature/psionic-mastery-4-day | Psionic Mastery (4/Day)
+93. feature/psionic-mind | Psionic Mind | sp:Dragonborn (Gem)|Psionic Mind
+94. feature/psionic-prowess | Psionic Prowess | sub:Warrior of the Leaden Crown|Psionic Prowess
+95. feature/psionic-redirection | Psionic Redirection | sub:Path of the Battlemind|Psionic Redirection
+96. feature/psionic-resilience | Psionic Resilience
+97. feature/psionic-surge | Psionic Surge
+98. feature/psionics | Psionics
+99. feature/psychic-assault | Psychic Assault | sub:Path of the Battlemind|Psychic Assault
+100. feature/psychic-crush | Psychic Crush | sub:Warrior of the Leaden Crown|Psychic Crush

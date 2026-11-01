@@ -1,0 +1,101 @@
+LEMBAR 036, 100 sel
+1. item/halberd-of-the-peacock | Halberd of the Peacock
+2. item/hand-of-glory | Hand of Glory
+3. item/hand-of-the-master | Hand of the Master
+4. item/handling-channeling-wand | Handling Channeling Wand
+5. item/handling-dragonmark-channel | Handling Dragonmark Channel
+6. item/handling-dragonmark-reservoir | Handling Dragonmark Reservoir
+7. item/harbor-moon | Harbor Moon
+8. item/hardlight-bracer | Hardlight Bracer
+9. item/harp-of-valor | Harp of Valor
+10. item/harper-trinket | Harper Trinket
+11. item/hasty-sugarbomb | Hasty Sugarbomb
+12. item/hat-trick | Hat Trick
+13. item/hcoruk-the-colossals-portable-handheld-weapon-of-walloping | Hcor'uk the Colossal's Portable Handheld Weapon of Walloping
+14. item/healing-ammunition | Healing Ammunition
+15. item/healing-channeling-wand | Healing Channeling Wand
+16. item/healing-dragonmark-channel | Healing Dragonmark Channel
+17. item/healing-dragonmark-reservoir | Healing Dragonmark Reservoir
+18. item/heart-of-steel | Heart of Steel
+19. item/heart-of-the-sleeveless | Heart of the Sleeveless
+20. item/hearthfire-breastplate-adept | Hearthfire Breastplate (Adept)
+21. item/hearthfire-breastplate-aspirant | Hearthfire Breastplate (Aspirant)
+22. item/hearthfire-breastplate-master | Hearthfire Breastplate (Master)
+23. item/heavens-herald | Heaven's Herald
+24. item/heavy-legs | Heavy Legs
+25. item/heliods-devotee | Heliod's Devotee
+26. item/heliods-disciple | Heliod's Disciple
+27. item/heliods-votary | Heliod's Votary
+28. item/hellfire-blood | Hellfire Blood
+29. item/hellfire-pitchfork | Hellfire Pitchfork
+30. item/helm-of-heroes | Helm of Heroes
+31. item/helm-of-the-scavenger | Helm of the Scavenger
+32. item/helm-of-the-sentinel | Helm of the Sentinel
+33. item/helmsmans-shelter | Helmsman's Shelter
+34. item/heretical-sunstaff-of-ra | Heretical Sunstaff of Ra
+35. item/hexaxe | Hexaxe
+36. item/hide-of-the-feral-guardian-awakened | Hide of the Feral Guardian (Awakened)
+37. item/hide-of-the-feral-guardian-dormant | Hide of the Feral Guardian (Dormant)
+38. item/hide-of-the-feral-guardian-exalted | Hide of the Feral Guardian (Exalted)
+39. item/hogs-wash | Hogs' Wash
+40. item/holo-companion | Holo-Companion
+41. item/holo-sphere | Holo-Sphere
+42. item/honeyed-mead | Honeyed Mead
+43. item/honors-last-stand-awakened | Honor's Last Stand (Awakened)
+44. item/honors-last-stand-dormant | Honor's Last Stand (Dormant)
+45. item/honors-last-stand-exalted | Honor's Last Stand (Exalted)
+46. item/hooked-shortspear | Hooked Shortspear
+47. item/horizon-puzzle-cube | Horizon Puzzle Cube
+48. item/horizon-weavers-trinket | Horizon Weavers Trinket
+49. item/horn-of-the-endless-maze | Horn of the Endless Maze
+50. item/horned-ring | Horned Ring
+51. item/hospitality-channeling-wand | Hospitality Channeling Wand
+52. item/hospitality-dragonmark-channel | Hospitality Dragonmark Channel
+53. item/hospitality-dragonmark-reservoir | Hospitality Dragonmark Reservoir
+54. item/houseward-legendary | Houseward (Legendary)
+55. item/houseward-rare | Houseward (Rare)
+56. item/houseward-uncommon | Houseward (Uncommon)
+57. item/hoverboard | Hoverboard
+58. item/hullcutter | Hullcutter
+59. item/humble-frock | Humble Frock
+60. item/hungry-weapon | Hungry Weapon
+61. item/hunters-armor | Hunter's Armor
+62. item/hunters-zeal | Hunter's Zeal
+63. item/hurricane-lance | Hurricane Lance
+64. item/hyper-krash | Hyper-Krash
+65. item/ijin | I'jin
+66. item/ice-sickle | Ice Sickle
+67. item/idol-of-good-fortunes | Idol of Good Fortunes
+68. item/imbued-wood-fernian-ash | Imbued Wood (Fernian Ash)
+69. item/imbued-wood-irian-rosewood | Imbued Wood (Irian Rosewood)
+70. item/imbued-wood-kythrian-manchineel | Imbued Wood (Kythrian Manchineel)
+71. item/imbued-wood-lamannian-oak | Imbued Wood (Lamannian Oak)
+72. item/imbued-wood-mabaran-ebony | Imbued Wood (Mabaran Ebony)
+73. item/imbued-wood-risian-pine | Imbued Wood (Risian Pine)
+74. item/imbued-wood-shavarran-birch | Imbued Wood (Shavarran Birch)
+75. item/imbued-wood-xorian-wenge | Imbued Wood (Xorian Wenge)
+76. item/imbued-wood-focus | Imbued Wood Focus
+77. item/immovable-button | Immovable Button
+78. item/impulse-unit | Impulse Unit
+79. item/indoriuss-crown-adept | Indorius's Crown (Adept)
+80. item/indoriuss-crown-aspirant | Indorius's Crown (Aspirant)
+81. item/indoriuss-crown-master | Indorius's Crown (Master)
+82. item/inescapable-lash | Inescapable Lash
+83. item/infernal-aegis | Infernal Aegis
+84. item/inferno-rope | Inferno Rope
+85. item/infrasight-eyes | Infrasight Eyes
+86. item/innocent-blood | Innocent Blood
+87. item/inquisitors-draught | Inquisitor's Draught
+88. item/integrated-tool | Integrated Tool
+89. item/invisible-spirit | Invisible Spirit
+90. item/invisibomb | Invisibomb
+91. item/ionbreaker-the-tempests-reach | Ionbreaker, the Tempest's Reach
+92. item/ioun-stone-of-vitality | Ioun Stone of Vitality
+93. item/iridescent-armor | Iridescent Armor
+94. item/iroass-devotee | Iroas's Devotee
+95. item/iroass-disciple | Iroas's Disciple
+96. item/iroass-votary | Iroas's Votary
+97. item/iron-ball | Iron Ball
+98. item/iron-elixir | Iron Elixir
+99. item/iron-fangs | Iron Fangs
+100. item/iron-pot | Iron Pot

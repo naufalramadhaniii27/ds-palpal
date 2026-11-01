@@ -1,0 +1,101 @@
+LEMBAR 043, 100 sel
+1. item/sun | Sun
+2. item/sun-shades | Sun Shades
+3. item/sunbeam-compass | Sunbeam Compass
+4. item/sundersludge-net | Sundersludge Net
+5. item/superior-shipmending-spray | Superior Shipmending Spray
+6. item/supreme-shipmending-spray | Supreme Shipmending Spray
+7. item/survival-mantle | Survival Mantle
+8. item/switch | Switch
+9. item/sword-of-answering-answerer | Sword of Answering (Answerer)
+10. item/sword-of-answering-back-talker | Sword of Answering (Back Talker)
+11. item/sword-of-answering-concluder | Sword of Answering (Concluder)
+12. item/sword-of-answering-last-quip | Sword of Answering (Last Quip)
+13. item/sword-of-answering-rebutter | Sword of Answering (Rebutter)
+14. item/sword-of-answering-replier | Sword of Answering (Replier)
+15. item/sword-of-answering-retorter | Sword of Answering (Retorter)
+16. item/sword-of-answering-scather | Sword of Answering (Scather)
+17. item/sword-of-answering-squelcher | Sword of Answering (Squelcher)
+18. item/sword-of-resonance | Sword of Resonance
+19. item/sword-of-retribution | Sword of Retribution
+20. item/sword-of-the-spelldrinker | Sword of the Spelldrinker
+21. item/tachyon-missile-launcher | Tachyon Missile Launcher
+22. item/taergashs-exsanguinating-tome | Taergash's Exsanguinating Tome
+23. item/talisman-of-tormach | Talisman of Tormach
+24. item/talking-wand | Talking Wand
+25. item/talon-tincture | Talon Tincture
+26. item/talons-of-the-squall | Talons of the Squall
+27. item/talyard-the-greats-wand-of-power | Talyard the Great's Wand of Power
+28. item/taol | Taol
+29. item/tear-of-gaia | Tear of Gaia
+30. item/tearulai | Tearulai
+31. item/tectonic-gauntlets | Tectonic Gauntlets
+32. item/teleporter-ring | Teleporter Ring
+33. item/telescoping-bladelance | Telescoping Bladelance
+34. item/telltale-heart | Telltale Heart
+35. item/tempest-griffon-feather-cape | Tempest Griffon Feather Cape
+36. item/terraforming-engine | Terraforming Engine
+37. item/tether-tearer | Tether Tearer
+38. item/tethervine-quiver | Tethervine Quiver
+39. item/thassas-devotee | Thassa's Devotee
+40. item/thassas-disciple | Thassa's Disciple
+41. item/thassas-votary | Thassa's Votary
+42. item/the-blessed-of-corellon | The Blessed of Corellon
+43. item/the-bloody-end-awakened | The Bloody End (Awakened)
+44. item/the-bloody-end-dormant | The Bloody End (Dormant)
+45. item/the-bloody-end-exalted | The Bloody End (Exalted)
+46. item/the-griffons-saddlebag | The Griffon's Saddlebag
+47. item/the-infernal-machine-of-lum-the-mad | The Infernal Machine of Lum the Mad
+48. item/the-rose-basket | The Rose Basket
+49. item/the-thorn-of-kren | The Thorn of Kren
+50. item/thermalsight-eyes | Thermalsight Eyes
+51. item/thessaltoxin-antidote | Thessaltoxin Antidote
+52. item/thornpiercer | Thornpiercer
+53. item/thought-talker-orbs | Thought Talker Orbs
+54. item/thricecall-mirror | Thricecall Mirror
+55. item/throwing-scarab | Throwing Scarab
+56. item/thunder-rifle | Thunder Rifle
+57. item/thunderous-flail | Thunderous Flail
+58. item/thuranni-cloak | Thuranni Cloak
+59. item/thurimbar-rod | Thurimbar Rod
+60. item/thwackstaff | Thwackstaff
+61. item/timber | Timber
+62. item/time-of-the-dragon | Time of the Dragon
+63. item/timepiercer | Timepiercer
+64. item/timeshifters-mantle | Timeshifter's Mantle
+65. item/tinkertop-boltblaster-1000 | Tinkertop Boltblaster 1000
+66. item/titan-armor | Titan Armor
+67. item/titanstone-knuckles-awakened | Titanstone Knuckles (Awakened)
+68. item/titanstone-knuckles-dormant | Titanstone Knuckles (Dormant)
+69. item/titanstone-knuckles-exalted | Titanstone Knuckles (Exalted)
+70. item/toadstone | Toadstone
+71. item/toadstool-toddy | Toadstool Toddy
+72. item/tome-of-dreams | Tome of Dreams
+73. item/tongue-of-the-dragon | Tongue of the Dragon
+74. item/tongueworm | Tongueworm
+75. item/torchbearers-reach | Torchbearer's Reach
+76. item/tormachs-blessed-weapon | Tormach's Blessed Weapon
+77. item/torpedo-ammunition | Torpedo Ammunition
+78. item/torrent-taiaha | Torrent Taiaha
+79. item/tote-of-tricky-treat-sugarbombs | Tote of Tricky Treat Sugarbombs
+80. item/traction-spikes | Traction Spikes
+81. item/tramontane-armor | Tramontane Armor
+82. item/traveling-snacks | Traveling Snacks
+83. item/trick-weapon | Trick Weapon
+84. item/trident-of-the-dryad | Trident of the Dryad
+85. item/trident-of-the-hydra | Trident of the Hydra
+86. item/true-ice-shards-dagger | True-Ice Shards (Dagger)
+87. item/true-ice-shards-rapier | True-Ice Shards (Rapier)
+88. item/tub-of-churning-and-fermentation | Tub of Churning and Fermentation
+89. item/ulmyrs-eye-adept | Ulmyr's Eye (Adept)
+90. item/ulmyrs-eye-aspirant | Ulmyr's Eye (Aspirant)
+91. item/ulmyrs-eye-master | Ulmyr's Eye (Master)
+92. item/uns-codex | Un's Codex
+93. item/universal-translator | Universal Translator
+94. item/unkh | Unkh
+95. item/uorik-the-conquerors-juice-cup | Uorik the Conqueror's Juice Cup
+96. item/uulkur-dream-key | Uul'kur (Dream Key)
+97. item/vadalis-band | Vadalis Band
+98. item/vancian-helm | Vancian Helm
+99. item/vanquishers-banner | Vanquisher's Banner
+100. item/vanraks-mithral-shirt | Vanrak's Mithral Shirt

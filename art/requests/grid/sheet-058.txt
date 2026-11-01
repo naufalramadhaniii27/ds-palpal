@@ -1,0 +1,101 @@
+LEMBAR 058, 100 sel
+1. rule/difficulty-class | Difficulty Class
+2. rule/dim-light | Dim Light
+3. rule/disadvantage | Disadvantage
+4. rule/disarm | Disarm
+5. rule/don-or-doff-a-shield | Don or Doff a Shield
+6. rule/downtime-activity-building-a-stronghold | Downtime Activity: Building a Stronghold
+7. rule/downtime-activity-buying-a-magic-item | Downtime Activity: Buying a Magic Item
+8. rule/downtime-activity-carousing | Downtime Activity: Carousing
+9. rule/downtime-activity-crafting | Downtime Activity: Crafting
+10. rule/downtime-activity-crafting-a-magic-item | Downtime Activity: Crafting a Magic Item
+11. rule/downtime-activity-crafting-an-item | Downtime Activity: Crafting an Item
+12. rule/downtime-activity-crime | Downtime Activity: Crime
+13. rule/downtime-activity-gaining-renown | Downtime Activity: Gaining Renown
+14. rule/downtime-activity-gambling | Downtime Activity: Gambling
+15. rule/downtime-activity-performing-sacred-rites | Downtime Activity: Performing Sacred Rites
+16. rule/downtime-activity-pit-fighting | Downtime Activity: Pit Fighting
+17. rule/downtime-activity-practicing-a-profession | Downtime Activity: Practicing a Profession
+18. rule/downtime-activity-recuperating | Downtime Activity: Recuperating
+19. rule/downtime-activity-relaxation | Downtime Activity: Relaxation
+20. rule/downtime-activity-religious-service | Downtime Activity: Religious Service
+21. rule/downtime-activity-research | Downtime Activity: Research
+22. rule/downtime-activity-researching | Downtime Activity: Researching
+23. rule/downtime-activity-running-a-business | Downtime Activity: Running a Business
+24. rule/downtime-activity-scribing-a-spell-scroll | Downtime Activity: Scribing a Spell Scroll
+25. rule/downtime-activity-selling-magic-items | Downtime Activity: Selling Magic Items
+26. rule/downtime-activity-selling-a-magic-item | Downtime Activity: Selling a Magic Item
+27. rule/downtime-activity-sowing-rumors | Downtime Activity: Sowing Rumors
+28. rule/downtime-activity-training | Downtime Activity: Training
+29. rule/downtime-activity-training-to-gain-levels | Downtime Activity: Training to Gain Levels
+30. rule/downtime-activity-work | Downtime Activity: Work
+31. rule/downtime-revisited | Downtime Revisited
+32. rule/downtime-and-franchise-activity-explore-territory | Downtime and Franchise Activity: Explore Territory
+33. rule/downtime-and-franchise-activity-franchise-restructuring | Downtime and Franchise Activity: Franchise Restructuring
+34. rule/downtime-and-franchise-activity-headquarters-modification | Downtime and Franchise Activity: Headquarters Modification
+35. rule/downtime-and-franchise-activity-marketeering | Downtime and Franchise Activity: Marketeering
+36. rule/downtime-and-franchise-activity-philanthropic-enterprise | Downtime and Franchise Activity: Philanthropic Enterprise
+37. rule/downtime-and-franchise-activity-running-a-franchise | Downtime and Franchise Activity: Running a Franchise
+38. rule/downtime-and-franchise-activity-schmoozing | Downtime and Franchise Activity: Schmoozing
+39. rule/downtime-and-franchise-activity-scrutineering | Downtime and Franchise Activity: Scrutineering
+40. rule/downtime-and-franchise-activity-shady-business-practice | Downtime and Franchise Activity: Shady Business Practice
+41. rule/downtime-and-franchise-activity-team-building | Downtime and Franchise Activity: Team Building
+42. rule/dungeoneers-pack | Dungeoneer's Pack
+43. rule/emanation | Emanation
+44. rule/emanation-area-of-effect | Emanation [Area of Effect]
+45. rule/emrakuls-madness | Emrakul's Madness
+46. rule/encounter | Encounter
+47. rule/encounters-at-sea | Encounters at Sea
+48. rule/encumbrance | Encumbrance
+49. rule/end-concentration | End Concentration
+50. rule/enemy | Enemy
+51. rule/equipment-sizes | Equipment Sizes
+52. rule/escape-a-grapple | Escape a Grapple
+53. rule/exhaustion | Exhaustion
+54. rule/experience-points | Experience Points
+55. rule/expertise | Expertise
+56. rule/explosives | Explosives
+57. rule/facing | Facing
+58. rule/falling | Falling
+59. rule/familiars | Familiars
+60. rule/fear-and-horror | Fear and Horror
+61. rule/fear-and-stress | Fear and Stress
+62. rule/feats-optional-rule | Feats (optional rule)
+63. rule/finesse | Finesse
+64. rule/firearms | Firearms
+65. rule/flanking | Flanking
+66. rule/fly-speed | Fly Speed
+67. rule/flying | Flying
+68. rule/friendly | Friendly
+69. rule/friendly-attitude | Friendly [Attitude]
+70. rule/grappling | Grappling
+71. rule/graze | Graze
+72. rule/haunted-traps | Haunted Traps
+73. rule/hazard | Hazard
+74. rule/healers-kit | Healer's Kit
+75. rule/healing | Healing
+76. rule/healing-surge | Healing Surge
+77. rule/heavily-obscured | Heavily Obscured
+78. rule/heavy | Heavy
+79. rule/hero-points | Hero Points
+80. rule/high-jump | High Jump
+81. rule/history | History
+82. rule/hit-point-dice | Hit Point Dice
+83. rule/hit-points | Hit Points
+84. rule/hitting-cover | Hitting Cover
+85. rule/hostile | Hostile
+86. rule/hostile-attitude | Hostile [Attitude]
+87. rule/hover | Hover
+88. rule/human-languages | Human Languages
+89. rule/identify-a-spell | Identify a Spell
+90. rule/illusions | Illusions
+91. rule/immunity | Immunity
+92. rule/improvised-weapon | Improvised Weapon
+93. rule/improvised-weapons | Improvised Weapons
+94. rule/improvising-an-action | Improvising an Action
+95. rule/incapacitated | Incapacitated
+96. rule/indifferent | Indifferent
+97. rule/indifferent-attitude | Indifferent [Attitude]
+98. rule/initiative | Initiative
+99. rule/initiative-variants | Initiative Variants
+100. rule/injuries | Injuries

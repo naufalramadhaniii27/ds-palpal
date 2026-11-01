@@ -1,0 +1,101 @@
+LEMBAR 060, 100 sel
+1. rule/stable | Stable
+2. rule/stat-block | Stat Block
+3. rule/stealth | Stealth
+4. rule/strength | Strength
+5. rule/superior-ship-upgrades | Superior Ship Upgrades
+6. rule/survival | Survival
+7. rule/survivors | Survivors
+8. rule/swim-speed | Swim Speed
+9. rule/swimming | Swimming
+10. rule/target | Target
+11. rule/telepathy | Telepathy
+12. rule/teleportation | Teleportation
+13. rule/temporary-hit-points | Temporary Hit Points
+14. rule/thrown | Thrown
+15. rule/tool-proficiencies | Tool Proficiencies
+16. rule/topple | Topple
+17. rule/travel-at-sea | Travel at Sea
+18. rule/travelers-clothes | Traveler's Clothes
+19. rule/tremorsense | Tremorsense
+20. rule/truesight | Truesight
+21. rule/tumble | Tumble
+22. rule/two-handed | Two-Handed
+23. rule/two-weapon-fighting | Two-Weapon Fighting
+24. rule/tying-knots | Tying Knots
+25. rule/unarmed-strike | Unarmed Strike
+26. rule/unoccupied-space | Unoccupied Space
+27. rule/use-an-object | Use an Object
+28. rule/versatile | Versatile
+29. rule/vex | Vex
+30. rule/vulnerability | Vulnerability
+31. rule/waking-someone | Waking Someone
+32. rule/wands-that-dont-recharge | Wands That Don't Recharge
+33. rule/weapon | Weapon
+34. rule/weapon-attack | Weapon Attack
+35. rule/wisdom | Wisdom
+36. hazard/arcane-effluence | Arcane Effluence
+37. hazard/avalanche | Avalanche
+38. hazard/bear-trap | Bear Trap
+39. hazard/bile-lichen | Bile Lichen
+40. hazard/blizzard | Blizzard
+41. hazard/brown-mold | Brown Mold
+42. hazard/burning | Burning
+43. hazard/calim-sandstorm | Calim Sandstorm
+44. hazard/collapsing-roof | Collapsing Roof
+45. hazard/crossbow-trap | Crossbow Trap
+46. hazard/danse-macabre | Danse Macabre
+47. hazard/dead-magic-zone | Dead Magic Zone
+48. hazard/death-fog-trap | Death Fog Trap
+49. hazard/deep-water | Deep Water
+50. hazard/dehydration | Dehydration
+51. hazard/demon-ichor | Demon Ichor
+52. hazard/desecrated-ground | Desecrated Ground
+53. hazard/extreme-cold | Extreme Cold
+54. hazard/extreme-heat | Extreme Heat
+55. hazard/falling | Falling
+56. hazard/falling-net | Falling Net
+57. hazard/falling-portcullis | Falling Portcullis
+58. hazard/falling-into-water | Falling into Water
+59. hazard/falling-onto-a-creature | Falling onto a Creature
+60. hazard/fiery-blast-trap | Fiery Blast Trap
+61. hazard/fire-breathing-statue | Fire-Breathing Statue
+62. hazard/fire-casting-statue | Fire-Casting Statue
+63. hazard/fireball-fungus | Fireball Fungus
+64. hazard/flame-storm | Flame Storm
+65. hazard/flaywind | Flaywind
+66. hazard/frigid-water | Frigid Water
+67. hazard/glittermoss | Glittermoss
+68. hazard/hailstorm | Hailstorm
+69. hazard/heavy-precipitation | Heavy Precipitation
+70. hazard/hidden-pit | Hidden Pit
+71. hazard/high-altitude | High Altitude
+72. hazard/howling-wind | Howling Wind
+73. hazard/icon-of-the-lower-aerial-kingdoms | Icon of the Lower Aerial Kingdoms
+74. hazard/improvised-damage | Improvised Damage
+75. hazard/inferno | Inferno
+76. hazard/lightning-strikes | Lightning Strikes
+77. hazard/magical-mirage | Magical Mirage
+78. hazard/malfunctioning-phase-transference-emitter | Malfunctioning Phase Transference Emitter
+79. hazard/malnutrition | Malnutrition
+80. hazard/morbid-memory | Morbid Memory
+81. hazard/necrotic-tempest | Necrotic Tempest
+82. hazard/net-trap | Net Trap
+83. hazard/nonmagical-mirage | Nonmagical Mirage
+84. hazard/path-of-blades | Path of Blades
+85. hazard/pit-trap | Pit Trap
+86. hazard/pits | Pits
+87. hazard/planar-effects | Planar Effects
+88. hazard/poison-darts | Poison Darts
+89. hazard/poison-needle | Poison Needle
+90. hazard/poison-needle-trap | Poison Needle Trap
+91. hazard/poisoned-needle | Poisoned Needle
+92. hazard/poisoned-tempest | Poisoned Tempest
+93. hazard/poisonous-gas | Poisonous Gas
+94. hazard/psionic-field | Psionic Field
+95. hazard/quicksand | Quicksand
+96. hazard/quicksand-pit | Quicksand Pit
+97. hazard/razorvine | Razorvine
+98. hazard/river-styx | River Styx
+99. hazard/rockslide | Rockslide
+100. hazard/rolling-sphere | Rolling Sphere

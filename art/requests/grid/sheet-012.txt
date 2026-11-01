@@ -1,0 +1,101 @@
+LEMBAR 012, 100 sel
+1. feat/dungeon-delver | Dungeon Delver
+2. feat/durable-2014 | Durable (2014)
+3. feat/dwarven-fortitude | Dwarven Fortitude
+4. feat/echoing-soul | Echoing Soul
+5. feat/eldritch-lifesaver | Eldritch Lifesaver
+6. feat/elemental-adept-2014 | Elemental Adept (2014)
+7. feat/elemental-trapper | Elemental Trapper
+8. feat/elven-accuracy | Elven Accuracy
+9. feat/ember-of-the-fire-giant | Ember of the Fire Giant
+10. feat/emerald-enclave-fledgling | Emerald Enclave Fledgling
+11. feat/enchantment-adept | Enchantment Adept
+12. feat/enclave-magic | Enclave Magic
+13. feat/envoy-specialist | Envoy Specialist
+14. feat/evocation-adept | Evocation Adept
+15. feat/exomorph | Exomorph
+16. feat/expanded-grip | Expanded Grip
+17. feat/fade-away | Fade Away
+18. feat/fairy-trickster | Fairy Trickster
+19. feat/faithful | Faithful
+20. feat/familiar-friend | Familiar Friend
+21. feat/familiar-keeper | Familiar Keeper
+22. feat/fate-touched | Fate-Touched
+23. feat/fearsome-dragon-mask | Fearsome Dragon Mask
+24. feat/fey-pact | Fey Pact
+25. feat/fey-sentinel | Fey Sentinel
+26. feat/fey-teleportation | Fey Teleportation
+27. feat/fey-tormentor | Fey Tormentor
+28. feat/fey-transformation-stage-1 | Fey Transformation: Stage 1
+29. feat/fey-transformation-stage-2 | Fey Transformation: Stage 2
+30. feat/fey-transformation-stage-3 | Fey Transformation: Stage 3
+31. feat/fey-transformation-stage-4 | Fey Transformation: Stage 4
+32. feat/field-commander | Field Commander
+33. feat/field-medic | Field Medic
+34. feat/fiend-transformation-stage-1 | Fiend Transformation: Stage 1
+35. feat/fiend-transformation-stage-2 | Fiend Transformation: Stage 2
+36. feat/fiend-transformation-stage-3 | Fiend Transformation: Stage 3
+37. feat/fiend-transformation-stage-4 | Fiend Transformation: Stage 4
+38. feat/fighting-initiate | Fighting Initiate
+39. feat/find-the-titans-weakness | Find the Titan's Weakness
+40. feat/flames-of-phlegethos | Flames of Phlegethos
+41. feat/flamewoken | Flamewoken
+42. feat/flash-recall | Flash Recall
+43. feat/flex-caster | Flex Caster
+44. feat/flex-caster-dark-matter | Flex Caster (Dark Matter)
+45. feat/flexible-fighting | Flexible Fighting
+46. feat/flurry | Flurry
+47. feat/focused-critical | Focused Critical
+48. feat/focused-fighting | Focused Fighting
+49. feat/focused-hunter | Focused Hunter
+50. feat/focused-personas | Focused Personas
+51. feat/forest-sage | Forest Sage
+52. feat/fortifying-healer | Fortifying Healer
+53. feat/fortune-of-the-thaumaturge | Fortune of the Thaumaturge
+54. feat/free-sword-mercenarys-will | Free Sword Mercenary's Will
+55. feat/galactic-bank-trustee | Galactic Bank: Trustee
+56. feat/gambler | Gambler
+57. feat/gambler-dark-matter | Gambler (Dark Matter)
+58. feat/gathered-whispers | Gathered Whispers
+59. feat/genie-magic | Genie Magic
+60. feat/gift-of-dread | Gift of Dread
+61. feat/gift-of-the-chromatic-dragon | Gift of the Chromatic Dragon
+62. feat/gift-of-the-gem-dragon | Gift of the Gem Dragon
+63. feat/gift-of-the-metallic-dragon | Gift of the Metallic Dragon
+64. feat/grafter | Grafter
+65. feat/grappler-2014 | Grappler (2014)
+66. feat/graxs-guys-for-cheap-graxs-guy | Grax's Guys for Cheap: Grax's Guy
+67. feat/great-weapon-master-2014 | Great Weapon Master (2014)
+68. feat/green-skin | Green-Skin
+69. feat/grizzled | Grizzled
+70. feat/grue | Grue
+71. feat/guile-of-the-cloud-giant | Guile of the Cloud Giant
+72. feat/gun-mage-adept | Gun-Mage Adept
+73. feat/gunner | Gunner
+74. feat/hacker | Hacker
+75. feat/hag-transformation-stage-1 | Hag Transformation: Stage 1
+76. feat/hag-transformation-stage-2 | Hag Transformation: Stage 2
+77. feat/hag-transformation-stage-3 | Hag Transformation: Stage 3
+78. feat/hag-transformation-stage-4 | Hag Transformation: Stage 4
+79. feat/harper-agent | Harper Agent
+80. feat/harper-teamwork | Harper Teamwork
+81. feat/heavily-armored-2014 | Heavily Armored (2014)
+82. feat/heavy-armor-master-2014 | Heavy Armor Master (2014)
+83. feat/heavy-glider | Heavy Glider
+84. feat/heavy-gunner | Heavy Gunner
+85. feat/hulking-figure | Hulking Figure
+86. feat/illusion-adept | Illusion Adept
+87. feat/industrious | Industrious
+88. feat/infernal-bulwark | Infernal Bulwark
+89. feat/infernal-constitution | Infernal Constitution
+90. feat/infernal-dragoon | Infernal Dragoon
+91. feat/infernal-pact | Infernal Pact
+92. feat/initiate-of-high-sorcery | Initiate of High Sorcery
+93. feat/insectoid | Insectoid
+94. feat/insightful-collector | Insightful Collector
+95. feat/inspirational-caster | Inspirational Caster
+96. feat/intrepid-captain | Intrepid Captain
+97. feat/inventor | Inventor
+98. feat/iron-gut | Iron Gut
+99. feat/iron-hero | Iron Hero
+100. feat/ironwood-dryad | Ironwood Dryad

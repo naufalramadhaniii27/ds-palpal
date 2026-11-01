@@ -1,0 +1,101 @@
+LEMBAR 094, 100 sel
+1. feature/squadron-leader | Squadron Leader | sub:Star Wolf|Squadron Leader
+2. feature/squadsight | Squadsight | sub:Coalition Arcanist|Squadsight
+3. feature/stabilizing-focus | Stabilizing Focus | sub:Warrior of the Celestial|Stabilizing Focus
+4. feature/stalkers-flurry | Stalker's Flurry | sub:Gloom Stalker (2014)|Stalker's Flurry
+5. feature/stand-against-the-tide | Stand Against the Tide
+6. feature/stand-by-the-strong | Stand by the Strong | sp:Dhakaani Guul'dar (Bugbear)|Stand by the Strong
+7. feature/standing-leap | Standing Leap | sp:Bullywug|Standing Leap
+8. feature/star-map | Star Map | sub:Circle of Stars|Star Map
+9. feature/star-spells | Star Spells | sub:Star Patron|Star Spells
+10. feature/starborn | Starborn | sub:Cosmic Magic|Starborn
+11. feature/stardust | Stardust | sub:Cosmic Magic|Stardust
+12. feature/starlight-step | Starlight Step | sp:Astral Elf|Starlight Step
+13. feature/starry-form | Starry Form | sub:Circle of Stars|Starry Form
+14. feature/starstruck | Starstruck | sub:Burden of Fame|Starstruck
+15. feature/static-charge | Static Charge | sub:Thunderlords' Guild|Static Charge
+16. feature/steady-eye | Steady Eye | sub:Inquisitive|Steady Eye
+17. feature/steal-blood | Steal Blood | sub:Sanguine Thief|Steal Blood
+18. feature/steal-luck | Steal Luck | sub:House of Dice|Steal Luck
+19. feature/steal-time | Steal Time | sub:Time Operative|Steal Time
+20. feature/steel-shredder | Steel Shredder | sub:Path of the Wrecker|Steel Shredder
+21. feature/steel-spells | Steel Spells | sub:Steel Magic|Steel Spells
+22. feature/steel-will | Steel Will
+23. feature/steelsong-discipline | Steelsong Discipline | sub:Steelsinger|Steelsong Discipline
+24. feature/stench | Stench | sp:Troglodyte|Stench
+25. feature/step-of-the-wind | Step of the Wind
+26. feature/steps-of-night | Steps of Night | sub:Twilight Domain|Steps of Night
+27. feature/stillness-of-mind | Stillness of Mind
+28. feature/stim-potion | Stim Potion | sub:Adrenaline Junkie|Stim Potion
+29. feature/stir-the-bones | Stir the Bones | sub:College of Requiems|Stir the Bones
+30. feature/stolen-power | Stolen Power | sub:Sanguine Thief|Stolen Power
+31. feature/stolen-secrets | Stolen Secrets | sub:Daemonologist|Stolen Secrets
+32. feature/stone-camouflage | Stone Camouflage | sp:Deep Gnome (Monster)|Stone Camouflage
+33. feature/stones-endurance | Stone's Endurance | sp:Goliath (2014)|Stone's Endurance
+34. feature/stonecunning | Stonecunning | sp:Hill Dwarf|Stonecunning
+35. feature/stoneforged-champion | Stoneforged Champion | sub:Stoneheart Defender|Stoneforged Champion
+36. feature/stonewall | Stonewall | sub:Stoneheart Defender|Stonewall
+37. feature/stopping-power | Stopping Power | sub:Calibarons' Guild|Stopping Power
+38. feature/storm-guide | Storm Guide | sub:Storm Sorcery|Storm Guide
+39. feature/storm-wings | Storm Wings | sub:Storm Sentinel|Storm Wings
+40. feature/storms-boon | Storm's Boon | sp:Half-Elf (Mark of Storm)|Storm's Boon
+41. feature/storms-fury | Storm's Fury | sub:Storm Sorcery|Storm's Fury
+42. feature/stormborn | Stormborn | sub:Tempest Domain|Stormborn
+43. feature/stormlord | Stormlord | sub:Storm Sentinel|Stormlord
+44. feature/stormy-waters | Stormy Waters | sub:Oath of the Open Sea|Stormy Waters
+45. feature/stout-resilience | Stout Resilience | sp:Stout Halfling|Stout Resilience
+46. feature/strange-endurance | Strange Endurance | sp:Reborn|Strange Endurance
+47. feature/strange-modifications | Strange Modifications | sub:Reanimator|Strange Modifications
+48. feature/strength-beneath-the-skin | Strength Beneath the Skin | sub:Serophage|Strength Beneath the Skin
+49. feature/strength-domain-spells | Strength Domain Spells | sub:Strength Domain (PSA)|Strength Domain Spells
+50. feature/strength-before-death | Strength before Death | sub:Samurai|Strength before Death
+51. feature/strength-in-unity | Strength in Unity | sp:Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity
+52. feature/strength-of-mind | Strength of Mind
+53. feature/strength-of-spirit | Strength of Spirit | sub:Haunted Sorcery|Strength of Spirit
+54. feature/strength-of-the-grave | Strength of the Grave | sub:Shadow Magic|Strength of the Grave
+55. feature/strength-of-the-swarm | Strength of the Swarm | sub:Vermin Lord|Strength of the Swarm
+56. feature/strig-subrace | Strig Subrace | sp:Strig|Strig Subrace
+57. feature/strike-fear | Strike Fear | sub:Scion of the Three|Strike Fear
+58. feature/strike-like-lightning | Strike Like Lightning | sub:Oath of Thunder|Strike Like Lightning
+59. feature/strike-and-fade | Strike and Fade | sub:Griffon Scout|Strike and Fade
+60. feature/student-of-alchemy | Student of Alchemy | sub:Living Crucible|Student of Alchemy
+61. feature/student-of-arcana | Student of Arcana | sub:Arcana Domain|Student of Arcana
+62. feature/sub-zero | Sub-Zero | sub:Wintercarvers' Guild|Sub-Zero
+63. feature/subclass-feature | Subclass Feature
+64. feature/subclass-feature-2 | Subclass feature
+65. feature/subjective-gravity | Subjective Gravity | sub:Warrior of Gravity|Subjective Gravity
+66. feature/sublime-automation | Sublime Automation | sub:Machine Domain|Sublime Automation
+67. feature/sublime-start | Sublime Start | sub:Fey Ballerina|Sublime Start
+68. feature/substitue-elements | Substitue Elements | sub:Elementalist|Substitue Elements
+69. feature/substitute-elements | Substitute Elements | sub:Elementalist|Substitute Elements
+70. feature/subtle-hand | Subtle Hand | sub:Warrior of the Leaden Crown|Subtle Hand
+71. feature/sudden-strike | Sudden Strike | sub:Scout|Sudden Strike
+72. feature/sugar-rush | Sugar Rush | sub:Gingerbread Magic|Sugar Rush
+73. feature/sugar-coat | Sugar-Coat | sub:Gingerbread Magic|Sugar-Coat
+74. feature/summoners-blast | Summoner's Blast | sub:Bond of the Dragon Herald|Summoner's Blast
+75. feature/sun-shield | Sun Shield | sub:Way of the Sun Soul|Sun Shield
+76. feature/sunlight-sensitivity | Sunlight Sensitivity | sp:Drow|Sunlight Sensitivity
+77. feature/superior-atlas | Superior Atlas
+78. feature/superior-critical | Superior Critical | sub:Champion (2014)|Superior Critical
+79. feature/superior-darkvision | Superior Darkvision | sp:Drow|Superior Darkvision
+80. feature/superior-dread | Superior Dread | sub:Undead Patron|Superior Dread
+81. feature/superior-flourish | Superior Flourish | sub:Fencer|Superior Flourish
+82. feature/superior-hunters-defense | Superior Hunter's Defense | sub:Hunter (2014)|Superior Hunter's Defense
+83. feature/superior-hunters-prey | Superior Hunter's Prey | sub:Hunter|Superior Hunter's Prey
+84. feature/superior-mobility | Superior Mobility | sub:Scout|Superior Mobility
+85. feature/superior-teleportation | Superior Teleportation
+86. feature/supermassive-strike | Supermassive Strike | sub:Warrior of Gravity|Supermassive Strike
+87. feature/supernal-safeguard | Supernal Safeguard | sub:Inquisition Domain|Supernal Safeguard
+88. feature/supernatural-defense | Supernatural Defense | sub:Monster Slayer|Supernatural Defense
+89. feature/supernatural-exploits | Supernatural Exploits | sub:Path of Spellfury|Supernatural Exploits
+90. feature/supernova | Supernova | sub:Star Patron|Supernova
+91. feature/superstar-sanctitude | Superstar Sanctitude | sub:Burden of Fame|Superstar Sanctitude
+92. feature/suppressive-fire | Suppressive Fire | sub:Calibarons' Guild|Suppressive Fire
+93. feature/supreme-stratagems | Supreme Stratagems | sub:Mystic Strategist|Supreme Stratagems
+94. feature/supreme-switching | Supreme Switching | sub:Astral Domain|Supreme Switching
+95. feature/sure-footed | Sure-footed | sp:Human (Kessig)|Sure-footed
+96. feature/surefooted | Surefooted | sub:Burden of Rebirth|Surefooted
+97. feature/surge-of-health | Surge of Health
+98. feature/surge-of-valor | Surge of Valor | sub:Knight Errant|Surge of Valor
+99. feature/surge-of-vigor | Surge of Vigor | sp:Cervan|Surge of Vigor
+100. feature/surprise-attack | Surprise Attack | sp:Bugbear (2014)|Surprise Attack

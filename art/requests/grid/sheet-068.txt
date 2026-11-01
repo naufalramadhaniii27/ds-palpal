@@ -1,0 +1,101 @@
+LEMBAR 068, 100 sel
+1. book/sage-advice-compendium-2025 | Sage Advice Compendium (2025)
+2. book/scions-of-elemental-evil | Scions of Elemental Evil
+3. book/shadows-of-sithicus | Shadows of Sithicus
+4. book/sigil-and-the-outlands | Sigil and the Outlands
+5. book/spelljammer-academy | Spelljammer Academy
+6. book/storm-kings-thunder | Storm King's Thunder
+7. book/stranger-things-welcome-to-the-hellfire-club | Stranger Things: Welcome to the Hellfire Club
+8. book/strixhaven-a-curriculum-of-chaos | Strixhaven: A Curriculum of Chaos
+9. book/strixhaven-a-reckoning-in-ruins | Strixhaven: A Reckoning in Ruins
+10. book/strixhaven-campus-kerfuffle | Strixhaven: Campus Kerfuffle
+11. book/strixhaven-hunt-for-mage-tower | Strixhaven: Hunt for Mage Tower
+12. book/strixhaven-the-magisters-masquerade | Strixhaven: The Magister's Masquerade
+13. book/sword-coast-adventurers-guide | Sword Coast Adventurer's Guide
+14. book/tales-from-the-yawning-portal-against-the-giants | Tales from the Yawning Portal: Against the Giants
+15. book/tales-from-the-yawning-portal-dead-in-thay | Tales from the Yawning Portal: Dead in Thay
+16. book/tales-from-the-yawning-portal-the-forge-of-fury | Tales from the Yawning Portal: The Forge of Fury
+17. book/tales-from-the-yawning-portal-the-hidden-shrine-of-tamoachan | Tales from the Yawning Portal: The Hidden Shrine of Tamoachan
+18. book/tales-from-the-yawning-portal-the-sunless-citadel | Tales from the Yawning Portal: The Sunless Citadel
+19. book/tales-from-the-yawning-portal-tomb-of-horrors | Tales from the Yawning Portal: Tomb of Horrors
+20. book/tales-from-the-yawning-portal-white-plume-mountain | Tales from the Yawning Portal: White Plume Mountain
+21. book/tarot-deck | Tarot Deck
+22. book/tashas-cauldron-of-everything | Tasha's Cauldron of Everything
+23. book/the-book-of-many-things | The Book of Many Things
+24. book/the-deck-of-many-things-card-reference-guide | The Deck of Many Things: Card Reference Guide
+25. book/the-lost-dungeon-of-rickedness-big-rick-energy | The Lost Dungeon of Rickedness: Big Rick Energy
+26. book/the-lost-kenku | The Lost Kenku
+27. book/the-lost-library-of-lethchauntos | The Lost Library of Lethchauntos
+28. book/the-orrery-of-the-wanderer | The Orrery of the Wanderer
+29. book/the-tortle-package | The Tortle Package
+30. book/the-wild-beyond-the-witchlight | The Wild Beyond the Witchlight
+31. book/theros-no-silent-secret | Theros: No Silent Secret
+32. book/thieves-gallery | Thieves' Gallery
+33. book/tomb-of-annihilation | Tomb of Annihilation
+34. book/turn-of-fortunes-wheel | Turn of Fortune's Wheel
+35. book/uni-and-the-hunt-for-the-lost-horn | Uni and the Hunt for the Lost Horn
+36. book/van-richtens-guide-to-ravenloft | Van Richten's Guide to Ravenloft
+37. book/vecna-eve-of-ruin | Vecna: Eve of Ruin
+38. book/vecna-nest-of-the-eldritch-eye | Vecna: Nest of the Eldritch Eye
+39. book/volos-guide-to-monsters | Volo's Guide to Monsters
+40. book/waterdeep-dragon-heist | Waterdeep: Dragon Heist
+41. book/waterdeep-dungeon-of-the-mad-mage | Waterdeep: Dungeon of the Mad Mage
+42. book/wildemount-dangerous-designs | Wildemount: Dangerous Designs
+43. book/wildemount-frozen-sick | Wildemount: Frozen Sick
+44. book/wildemount-tide-of-retribution | Wildemount: Tide of Retribution
+45. book/wildemount-unwelcome-spirits | Wildemount: Unwelcome Spirits
+46. book/x-marks-the-spot | X Marks the Spot
+47. book/xanathars-guide-to-everything | Xanathar's Guide to Everything
+48. feature/cantrips | Cantrips | sub:Path of the Muscle Wizard|"Cantrips"
+49. feature/spells | Spells | sub:Path of the Muscle Wizard|"Spells"
+50. feature/a-claw-in-the-clowder | A Claw in the Clowder | sub:Cat Domain|A Claw in the Clowder
+51. feature/a-cold-wind | A Cold Wind | sub:Winter Domain|A Cold Wind
+52. feature/a-path-foretold | A Path Foretold | sub:Prophecy Domain|A Path Foretold
+53. feature/abjuration-expert | Abjuration Expert | sub:Bond of the Spirit Animal|Abjuration Expert
+54. feature/abjure-enemy | Abjure Enemy
+55. feature/abjure-the-extraplanar | Abjure the Extraplanar
+56. feature/abominable | Abominable | sub:Path of the Frostrager|Abominable
+57. feature/abominable-transformation | Abominable Transformation | sub:Path of the Abomination|Abominable Transformation
+58. feature/absorb-elements | Absorb Elements | sub:Elementalist|Absorb Elements
+59. feature/absorb-impurities | Absorb Impurities | sub:Blood Mage|Absorb Impurities
+60. feature/absorb-nutrients | Absorb Nutrients | sub:Bond of the Shambling Plant|Absorb Nutrients
+61. feature/absorb-spells | Absorb Spells | sub:Spellfire Sorcery|Absorb Spells
+62. feature/absorb-toxins | Absorb Toxins | sub:Blood Mage|Absorb Toxins
+63. feature/abyssal-arcana | Abyssal Arcana | sub:Demon Brand|Abyssal Arcana
+64. feature/abyssal-regeneration | Abyssal Regeneration | sub:Demon Brand|Abyssal Regeneration
+65. feature/accretion-disk | Accretion Disk | sub:Singularity Patron|Accretion Disk
+66. feature/accursed-specter | Accursed Specter | sub:The Hexblade|Accursed Specter
+67. feature/ace-in-the-hole | Ace in the Hole | sub:House of Cards|Ace in the Hole
+68. feature/acid-resistance | Acid Resistance | sp:Water Genasi (2014)|Acid Resistance
+69. feature/acolyte-of-nature | Acolyte of Nature | sub:Nature Domain|Acolyte of Nature
+70. feature/acolyte-of-strength | Acolyte of Strength | sub:Strength Domain (PSA)|Acolyte of Strength
+71. feature/acolyte-of-the-occult | Acolyte of the Occult | sub:Occultist Guild|Acolyte of the Occult
+72. feature/acquired-taste | Acquired Taste | sub:Devourer Guild|Acquired Taste
+73. feature/acrobatic-clown | Acrobatic Clown | sub:College of Jesters|Acrobatic Clown
+74. feature/acrobatic-mobility | Acrobatic Mobility | sub:Freerunner|Acrobatic Mobility
+75. feature/action-free-of-thought | Action Free of Thought | sub:Prescient Knight|Action Free of Thought
+76. feature/action-surge-two-uses | Action Surge (two uses)
+77. feature/adamantine-hide | Adamantine Hide | sub:Circle of the Forged|Adamantine Hide
+78. feature/adaptation | Adaptation | sub:Evolution Domain|Adaptation
+79. feature/adaptive-metabolism | Adaptive Metabolism | sp:Skathári|Adaptive Metabolism
+80. feature/adaptive-resilience | Adaptive Resilience | sub:Circle of Xenobiology|Adaptive Resilience
+81. feature/additional-arcane-shot-option | Additional Arcane Shot Option
+82. feature/additional-fighting-style | Additional Fighting Style | sub:Champion (2014)|Additional Fighting Style
+83. feature/additional-magical-secrets | Additional Magical Secrets | sub:College of Lore (2014)|Additional Magical Secrets
+84. feature/additional-maneuvers | Additional Maneuvers
+85. feature/additional-rune-known | Additional Rune Known
+86. feature/additional-superiority-die | Additional Superiority Die
+87. feature/adjust-density | Adjust Density | sub:Graviturgy Magic|Adjust Density
+88. feature/adrenaline | Adrenaline | sub:Adrenaline Junkie|Adrenaline
+89. feature/adrenaline-high | Adrenaline High | sub:Adrenaline Junkie|Adrenaline High
+90. feature/adrenaline-rush | Adrenaline Rush | sp:Orc|Adrenaline Rush
+91. feature/advanced-artifice | Advanced Artifice
+92. feature/advanced-construct-grafts | Advanced Construct Grafts | sub:Mastermaker|Advanced Construct Grafts
+93. feature/advanced-mutation | Advanced Mutation | sub:Mutagenist|Advanced Mutation
+94. feature/advanced-subroutines | Advanced Subroutines | sub:AI Futurist|Advanced Subroutines
+95. feature/adventurers-atlas | Adventurer's Atlas
+96. feature/adventuring-couture | Adventuring Couture | sub:Courtiers' Guild|Adventuring Couture
+97. feature/aerial-acrobat | Aerial Acrobat | sub:Acrobat|Aerial Acrobat
+98. feature/aether-lore | Aether Lore | sp:Vedalken (Kaladesh)|Aether Lore
+99. feature/age | Age | sp:Accursed|Age
+100. feature/agent-of-mercy | Agent of Mercy | sub:Couatl Herald|Agent of Mercy

@@ -1,0 +1,101 @@
+LEMBAR 070, 100 sel
+1. feature/armored-suit | Armored Suit | sp:Nautilid|Armored Suit
+2. feature/armorer | Armorer
+3. feature/arms-of-the-astral-self | Arms of the Astral Self | sub:Way of the Astral Self|Arms of the Astral Self
+4. feature/aromamancy | Aromamancy | sub:Fragrant Magic|Aromamancy
+5. feature/art-of-salvation | Art of Salvation | sub:Salvation Chapter|Art of Salvation
+6. feature/artifact-hoarder | Artifact Hoarder | sub:Antiquarian|Artifact Hoarder
+7. feature/artificer-specialist | Artificer Specialist
+8. feature/artificer-specialist-feature | Artificer Specialist Feature
+9. feature/artificer-subclass | Artificer Subclass
+10. feature/artificers-lore | Artificer's Lore | sp:Rock Gnome|Artificer's Lore
+11. feature/artillerist | Artillerist
+12. feature/artisans-expertise | Artisan's Expertise | sp:Dwarf (Kaladesh)|Artisan's Expertise
+13. feature/artisans-intuition | Artisan's Intuition | sp:Human (Mark of Making)|Artisan's Intuition
+14. feature/as-foretold | As Foretold | sub:Tea Magic|As Foretold
+15. feature/ascendant-aspect | Ascendant Aspect | sub:Way of the Ascendant Dragon|Ascendant Aspect
+16. feature/aspect-of-the-greatwyrm | Aspect of the Greatwyrm | sub:Drake-Blooded|Aspect of the Greatwyrm
+17. feature/aspect-of-the-wyrm | Aspect of the Wyrm | sub:Way of the Ascendant Dragon|Aspect of the Wyrm
+18. feature/assertive-attacker | Assertive Attacker | sub:Warrior of Pride|Assertive Attacker
+19. feature/astral-domain-spells | Astral Domain Spells | sub:Astral Domain|Astral Domain Spells
+20. feature/astral-fire | Astral Fire | sp:Astral Elf|Astral Fire
+21. feature/astral-griffon-spells | Astral Griffon Spells | sub:Astral Griffon Patron|Astral Griffon Spells
+22. feature/astral-missile | Astral Missile | sub:Astral Griffon Patron|Astral Missile
+23. feature/astral-sight | Astral Sight | sp:Demidritch|Astral Sight
+24. feature/astral-spark | Astral Spark | sp:Giff|Astral Spark
+25. feature/astral-trance | Astral Trance | sp:Astral Elf|Astral Trance
+26. feature/at-home-in-the-waves | At Home in the Waves | sub:Ocean Domain|At Home in the Waves
+27. feature/athletic-constitution | Athletic Constitution | sub:Siegeball Jersey|Athletic Constitution
+28. feature/athletic-dexterity | Athletic Dexterity | sub:Cheerleader|Athletic Dexterity
+29. feature/attuned-toughness | Attuned Toughness | sub:Bond of the Wrathful Giant|Attuned Toughness
+30. feature/audio-enhancer | Audio Enhancer | sub:Resonator|Audio Enhancer
+31. feature/augmenter-spells | Augmenter Spells | sub:Vow of the Augmenter|Augmenter Spells
+32. feature/aura-improvements | Aura improvements
+33. feature/aura-of-attunement | Aura of Attunement | sub:Oath of the Gamma Knight|Aura of Attunement
+34. feature/aura-of-calamity | Aura of Calamity | sub:Burden of Calamity|Aura of Calamity
+35. feature/aura-of-calm | Aura of Calm | sub:Circle of the Warden|Aura of Calm
+36. feature/aura-of-clarity | Aura of Clarity | sub:Oath of Zeal|Aura of Clarity
+37. feature/aura-of-inevitability | Aura of Inevitability | sub:Oath of the Annihilator|Aura of Inevitability
+38. feature/aura-of-liberation | Aura of Liberation | sub:Oath of the Open Sea|Aura of Liberation
+39. feature/aura-of-liberation-18th-level | Aura of Liberation (18th Level) | sub:Oath of the Open Sea|Aura of Liberation (18th Level)
+40. feature/aura-of-malevolence | Aura of Malevolence | sub:Scion of the Three|Aura of Malevolence
+41. feature/aura-of-rampant-sickness | Aura of Rampant Sickness | sub:Oath of Pestilence|Aura of Rampant Sickness
+42. feature/aura-of-reprieve | Aura of Reprieve | sub:Holy Icon|Aura of Reprieve
+43. feature/aura-of-resolve | Aura of Resolve | sub:Oath of Radiance|Aura of Resolve
+44. feature/aura-of-tenacity | Aura of Tenacity | sub:Burden of Revolution|Aura of Tenacity
+45. feature/aura-of-warmth | Aura of Warmth | sub:Oath of the Hearth|Aura of Warmth
+46. feature/aura-of-the-unrepentant | Aura of the Unrepentant | sub:Oath of the Giving Grave|Aura of the Unrepentant
+47. feature/automate | Automate | sub:Machine Domain|Automate
+48. feature/autopilot | Autopilot | sub:Bond of the Living Armament|Autopilot
+49. feature/avalanche | Avalanche | sub:Mountain Domain|Avalanche
+50. feature/avalanche-stomp | Avalanche Stomp | sub:Path of the Glacier|Avalanche Stomp
+51. feature/avatar-of-healing | Avatar of Healing
+52. feature/avatar-of-speed | Avatar of Speed
+53. feature/avian-eyes | Avian Eyes | sp:Avia-Ra|Avian Eyes
+54. feature/awakened-astral-self | Awakened Astral Self | sub:Way of the Astral Self|Awakened Astral Self
+55. feature/awakened-mind | Awakened Mind | sub:The Great Old One (2014)|Awakened Mind
+56. feature/awakened-spellbook | Awakened Spellbook | sub:Order of Scribes|Awakened Spellbook
+57. feature/awakened-talent | Awakened Talent
+58. feature/baba-yaga-lichdom | Baba Yaga [Lichdom] | sub:Crone|Baba Yaga [Lichdom]
+59. feature/backbend | Backbend | sub:Contortionist|Backbend
+60. feature/backflip | Backflip | sub:Harlequin|Backflip
+61. feature/backup-dancers | Backup Dancers | sub:Necrodancer|Backup Dancers
+62. feature/bad-luck-charm | Bad Luck Charm | sub:Wretched Bloodline Sorcery|Bad Luck Charm
+63. feature/ball-lightning | Ball Lightning | sub:Thunderlords' Guild|Ball Lightning
+64. feature/balm | Balm | sub:Burden of Mercy|Balm
+65. feature/balm-of-the-summer-court | Balm of the Summer Court | sub:Circle of Dreams|Balm of the Summer Court
+66. feature/bane-weapons | Bane Weapons | sub:Bladeworkers' Guild|Bane Weapons
+67. feature/barbarian-subclass | Barbarian Subclass | cls:Barbarian|Barbarian Subclass
+68. feature/bard-college | Bard College | sub:College of Entropy|Bard College
+69. feature/bard-college-feature | Bard College feature
+70. feature/bard-subclass | Bard Subclass | cls:Bard|Bard Subclass
+71. feature/bardic-damage | Bardic Damage
+72. feature/bardic-inspiration-d10 | Bardic Inspiration (d10)
+73. feature/bardic-inspiration-d12 | Bardic Inspiration (d12)
+74. feature/bardic-inspiration-d8 | Bardic Inspiration (d8)
+75. feature/bardic-versatility | Bardic Versatility
+76. feature/bartender | Bartender | sub:College of Bartending|Bartender
+77. feature/bastion-of-law | Bastion of Law | sub:Clockwork Soul|Bastion of Law
+78. feature/battle-hymn | Battle Hymn | sub:College of the Dirge Singer|Battle Hymn
+79. feature/battle-magic | Battle Magic | sub:College of Valor (2014)|Battle Magic
+80. feature/battle-readiness | Battle Readiness
+81. feature/battle-smith | Battle Smith
+82. feature/battle-tactics | Battle Tactics | sub:House of Kings|Battle Tactics
+83. feature/battle-trance | Battle Trance | sub:Path of Tranquility|Battle Trance
+84. feature/bear | Bear
+85. feature/bear-witness | Bear Witness | sub:Apocalypse Sorcery|Bear Witness
+86. feature/beasts-of-ill-omen | Beasts of Ill Omen | sub:Shadow Sorcery|Beasts of Ill Omen
+87. feature/beat-down | Beat Down | sub:Nightwatcher|Beat Down
+88. feature/beckon-familiar | Beckon Familiar | sub:Familiar Master|Beckon Familiar
+89. feature/become-death | Become Death | sub:Haunted Sorcery|Become Death
+90. feature/befuddling-touch | Befuddling Touch | sub:Labyrinth Domain|Befuddling Touch
+91. feature/beguiling-charm | Beguiling Charm | sub:Courtesan|Beguiling Charm
+92. feature/beguiling-magic | Beguiling Magic | sub:College of Glamour|Beguiling Magic
+93. feature/beguiling-perfume | Beguiling Perfume | sub:Amorist|Beguiling Perfume
+94. feature/beguiling-twist | Beguiling Twist | sub:Fey Wanderer (2014)|Beguiling Twist
+95. feature/belief-is-a-tool | Belief is a Tool | sub:College of Entropy|Belief is a Tool
+96. feature/bend-reality | Bend Reality | sub:Mind Domain|Bend Reality
+97. feature/benediction | Benediction | sub:Godsworn|Benediction
+98. feature/benevolent-surge | Benevolent Surge | sub:White Magic|Benevolent Surge
+99. feature/benign-transposition | Benign Transposition | sub:Conjurer|Benign Transposition
+100. feature/better-half | Better Half | sub:Path of the Fractured|Better Half

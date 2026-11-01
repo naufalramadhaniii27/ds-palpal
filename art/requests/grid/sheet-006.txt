@@ -1,0 +1,101 @@
+LEMBAR 006, 100 sel
+1. bg/reformed-cultist | Reformed Cultist
+2. bg/released-thrall | Released Thrall
+3. bg/revelry-pirate-sailor | Revelry Pirate (Sailor)
+4. bg/rival-intern | Rival Intern
+5. bg/salvager | Salvager
+6. bg/savant | Savant
+7. bg/scion | Scion
+8. bg/scion-of-the-thaumaturge | Scion of the Thaumaturge
+9. bg/scoundrel | Scoundrel
+10. bg/security-guard | Security Guard
+11. bg/selesnya-initiate | Selesnya Initiate
+12. bg/shipwright | Shipwright
+13. bg/siege-engineer | Siege Engineer
+14. bg/silverquill-student | Silverquill Student
+15. bg/simic-scientist | Simic Scientist
+16. bg/sleuth | Sleuth
+17. bg/smuggler | Smuggler
+18. bg/soul-channeler | Soul Channeler
+19. bg/spacer | Spacer
+20. bg/syndicate-smuggler | Syndicate Smuggler
+21. bg/technical-support | Technical Support
+22. bg/technologist | Technologist
+23. bg/transformed-familiar | Transformed Familiar
+24. bg/urban-bounty-hunter | Urban Bounty Hunter
+25. bg/urchin | Urchin
+26. bg/uthgardt-tribe-member | Uthgardt Tribe Member
+27. bg/vampire-survivor | Vampire Survivor
+28. bg/variant-city-watch-investigator | Variant City Watch (Investigator)
+29. bg/variant-criminal-spy | Variant Criminal (Spy)
+30. bg/variant-entertainer-gladiator | Variant Entertainer (Gladiator)
+31. bg/variant-guild-artisan-guild-merchant | Variant Guild Artisan (Guild Merchant)
+32. bg/variant-noble-knight | Variant Noble (Knight)
+33. bg/variant-noble-retainers | Variant Noble (Retainers)
+34. bg/variant-sailor-pirate | Variant Sailor (Pirate)
+35. bg/wage-mage | Wage Mage
+36. bg/waterdhavian-noble | Waterdhavian Noble
+37. bg/whitestone-rifle-corps | Whitestone Rifle Corps
+38. bg/wind-touched | Wind-Touched
+39. bg/witherbloom-student | Witherbloom Student
+40. bg/worthless-husk | Worthless Husk
+41. sub/ai-futurist | AI Futurist
+42. sub/aberrant-sorcery | Aberrant Sorcery
+43. sub/absolute-chapter | Absolute Chapter
+44. sub/acrobat | Acrobat
+45. sub/adrenaline-junkie | Adrenaline Junkie
+46. sub/alkemancer | Alkemancer
+47. sub/ambition-domain-psa | Ambition Domain (PSA)
+48. sub/amorist | Amorist
+49. sub/angelic-scribe | Angelic Scribe
+50. sub/antiquarian | Antiquarian
+51. sub/apocalypse-domain | Apocalypse Domain
+52. sub/apocalypse-sorcery | Apocalypse Sorcery
+53. sub/apothecary | Apothecary
+54. sub/arcane-maesters-guild | Arcane Maesters' Guild
+55. sub/archivist | Archivist
+56. sub/aristocratic | Aristocratic
+57. sub/armigers-guild | Armigers' Guild
+58. sub/astral-domain | Astral Domain
+59. sub/astral-griffon-patron | Astral Griffon Patron
+60. sub/beastblood-guardian | Beastblood Guardian
+61. sub/beer-domain | Beer Domain
+62. sub/big-game-hunter | Big Game Hunter
+63. sub/black-magic | Black Magic
+64. sub/black-rider | Black Rider
+65. sub/bladeworkers-guild | Bladeworkers' Guild
+66. sub/blood-ascendant | Blood Ascendant
+67. sub/blood-domain | Blood Domain
+68. sub/blood-mage | Blood Mage
+69. sub/blood-magic | Blood Magic
+70. sub/blood-magic-deep-magic | Blood Magic (Deep Magic)
+71. sub/blue-magic | Blue Magic
+72. sub/bond-of-the-aberrant-psion | Bond of the Aberrant Psion
+73. sub/bond-of-the-dragon-herald | Bond of the Dragon Herald
+74. sub/bond-of-the-elemental-spirit | Bond of the Elemental Spirit
+75. sub/bond-of-the-faerie-trickster | Bond of the Faerie Trickster
+76. sub/bond-of-the-fiendish-chain | Bond of the Fiendish Chain
+77. sub/bond-of-the-grave-caller | Bond of the Grave Caller
+78. sub/bond-of-the-guardian-angel | Bond of the Guardian Angel
+79. sub/bond-of-the-living-armament | Bond of the Living Armament
+80. sub/bond-of-the-mirror-mage | Bond of the Mirror Mage
+81. sub/bond-of-the-monster-shaper | Bond of the Monster Shaper
+82. sub/bond-of-the-shambling-plant | Bond of the Shambling Plant
+83. sub/bond-of-the-spirit-animal | Bond of the Spirit Animal
+84. sub/bond-of-the-symbiote | Bond of the Symbiote
+85. sub/bond-of-the-wrathful-giant | Bond of the Wrathful Giant
+86. sub/boreal-bloodline | Boreal Bloodline
+87. sub/bounty-hunter | Bounty Hunter
+88. sub/brigand | Brigand
+89. sub/bulwark-warrior | Bulwark Warrior
+90. sub/burden-of-anonymity | Burden of Anonymity
+91. sub/burden-of-ascension | Burden of Ascension
+92. sub/burden-of-atonement | Burden of Atonement
+93. sub/burden-of-awakening | Burden of Awakening
+94. sub/burden-of-calamity | Burden of Calamity
+95. sub/burden-of-discord | Burden of Discord
+96. sub/burden-of-fame | Burden of Fame
+97. sub/burden-of-levity | Burden of Levity
+98. sub/burden-of-mercy | Burden of Mercy
+99. sub/burden-of-odyssey | Burden of Odyssey
+100. sub/burden-of-rebirth | Burden of Rebirth

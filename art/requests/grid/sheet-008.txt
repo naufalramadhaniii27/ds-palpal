@@ -1,0 +1,101 @@
+LEMBAR 008, 100 sel
+1. sub/familiar-master | Familiar Master
+2. sub/farseer | Farseer
+3. sub/fencer | Fencer
+4. sub/fey-ballerina | Fey Ballerina
+5. sub/feylost | Feylost
+6. sub/fire-dancer | Fire Dancer
+7. sub/forceforger | Forceforger
+8. sub/forge-adept | Forge Adept
+9. sub/forgeknights-guild | Forgeknights' Guild
+10. sub/fragrant-magic | Fragrant Magic
+11. sub/freerunner | Freerunner
+12. sub/frost-sorcery | Frost Sorcery
+13. sub/fumaturge | Fumaturge
+14. sub/gastronomer | Gastronomer
+15. sub/geomancy | Geomancy
+16. sub/gingerbread-magic | Gingerbread Magic
+17. sub/godsworn | Godsworn
+18. sub/gourmand | Gourmand
+19. sub/graviturgy-magic | Graviturgy Magic
+20. sub/green-magic | Green Magic
+21. sub/green-reaper | Green Reaper
+22. sub/greenleaf-college | Greenleaf College
+23. sub/grey-watchman | Grey Watchman
+24. sub/griffon-scout | Griffon Scout
+25. sub/harlequin | Harlequin
+26. sub/haunted-sorcery | Haunted Sorcery
+27. sub/heretic-chapter | Heretic Chapter
+28. sub/highway-rider | Highway Rider
+29. sub/hologrammer | Hologrammer
+30. sub/holy-icon | Holy Icon
+31. sub/horizon-walker | Horizon Walker
+32. sub/houndmaster | Houndmaster
+33. sub/house-of-bishops | House of Bishops
+34. sub/house-of-cards | House of Cards
+35. sub/house-of-darts | House of Darts
+36. sub/house-of-dice | House of Dice
+37. sub/house-of-go | House of Go
+38. sub/house-of-kings | House of Kings
+39. sub/house-of-knights | House of Knights
+40. sub/house-of-lancers | House of Lancers
+41. sub/house-of-pawns | House of Pawns
+42. sub/house-of-rooks | House of Rooks
+43. sub/house-of-roulette | House of Roulette
+44. sub/hunger-domain | Hunger Domain
+45. sub/hunting-domain | Hunting Domain
+46. sub/illuminator | Illuminator
+47. sub/infernum | Infernum
+48. sub/infiltrator | Infiltrator
+49. sub/inquisition-domain | Inquisition Domain
+50. sub/inquisitive | Inquisitive
+51. sub/inquisitor | Inquisitor
+52. sub/ionizer | Ionizer
+53. sub/jolly-roger | Jolly Roger
+54. sub/jumper | Jumper
+55. sub/justice-domain | Justice Domain
+56. sub/kid-sleuth | Kid Sleuth
+57. sub/knight-errant | Knight Errant
+58. sub/labyrinth-domain | Labyrinth Domain
+59. sub/leyline-magic | Leyline Magic
+60. sub/lion-banner | Lion Banner
+61. sub/living-crucible | Living Crucible
+62. sub/lumimancer | Lumimancer
+63. sub/luminaries-guild | Luminaries' Guild
+64. sub/lunar-magic | Lunar Magic
+65. sub/lunar-sorcery | Lunar Sorcery
+66. sub/lust-domain | Lust Domain
+67. sub/machine-domain | Machine Domain
+68. sub/mad-bomber | Mad Bomber
+69. sub/mage-brand | Mage Brand
+70. sub/magic-missile-mage | Magic Missile Mage
+71. sub/magneticist | Magneticist
+72. sub/marauder-chapter | Marauder Chapter
+73. sub/marionettist | Marionettist
+74. sub/master-of-fiends | Master of Fiends
+75. sub/mastermaker | Mastermaker
+76. sub/mastermind | Mastermind
+77. sub/materializer | Materializer
+78. sub/maverick | Maverick
+79. sub/mechanauts-guild | Mechanauts' Guild
+80. sub/medium | Medium
+81. sub/mime | Mime
+82. sub/mind-domain | Mind Domain
+83. sub/misfortune-bringer | Misfortune Bringer
+84. sub/monster-slayer | Monster Slayer
+85. sub/moonwalker | Moonwalker
+86. sub/mountain-domain | Mountain Domain
+87. sub/mutagenist | Mutagenist
+88. sub/mystic-strategist | Mystic Strategist
+89. sub/nanite-magic | Nanite Magic
+90. sub/nature-domain | Nature Domain
+91. sub/necrodancer | Necrodancer
+92. sub/necrophage | Necrophage
+93. sub/night-domain | Night Domain
+94. sub/nightgaunt | Nightgaunt
+95. sub/nightwatcher | Nightwatcher
+96. sub/oath-of-pestilence | Oath of Pestilence
+97. sub/oath-of-radiance | Oath of Radiance
+98. sub/oath-of-slaughter | Oath of Slaughter
+99. sub/oath-of-thunder | Oath of Thunder
+100. sub/oath-of-zeal | Oath of Zeal

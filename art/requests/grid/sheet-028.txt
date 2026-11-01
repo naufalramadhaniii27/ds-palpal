@@ -1,0 +1,101 @@
+LEMBAR 028, 100 sel
+1. item/3-amulet-of-the-devout | +3 Amulet of the Devout
+2. item/3-arcane-grimoire | +3 Arcane Grimoire
+3. item/3-armor | +3 Armor
+4. item/3-bloodwell-vial | +3 Bloodwell Vial
+5. item/3-dragonhide-belt | +3 Dragonhide Belt
+6. item/3-dragonkin-weapon | +3 Dragonkin Weapon
+7. item/3-fate-dealers-deck | +3 Fate Dealer's Deck
+8. item/3-moon-sickle | +3 Moon Sickle
+9. item/3-rhythm-makers-drum | +3 Rhythm-Maker's Drum
+10. item/3-rod-of-the-pact-keeper | +3 Rod of the Pact Keeper
+11. item/3-shield | +3 Shield (*)
+12. item/3-soulbind-chains | +3 Soulbind Chains
+13. item/3-tools-of-the-master | +3 Tools of the Master
+14. item/3-wand-of-the-war-mage | +3 Wand of the War Mage
+15. item/3-weapon | +3 Weapon
+16. item/3-weapon-no-damage | +3 Weapon (no damage)
+17. item/3-wraps-of-unarmed-power | +3 Wraps of Unarmed Power
+18. item/3-wraps-of-unarmed-prowess | +3 Wraps of Unarmed Prowess
+19. item/abjurers-gilder | Abjurer's Gilder
+20. item/absorbing-tattoo | Absorbing Tattoo
+21. item/acheron-blade | Acheron Blade
+22. item/acidlight-ammunition | Acidlight Ammunition
+23. item/adamantine-ammunition | Adamantine Ammunition
+24. item/adder-stone | Adder Stone
+25. item/additional-arms | Additional Arms
+26. item/adjustable-stilts | Adjustable Stilts
+27. item/aegis-of-radiance | Aegis of Radiance
+28. item/aereni-mask | Aereni Mask
+29. item/aether-blood | Aether Blood
+30. item/agony-awakened | Agony (Awakened)
+31. item/agony-dormant | Agony (Dormant)
+32. item/agony-exalted | Agony (Exalted)
+33. item/alchemists-doom | Alchemist's Doom
+34. item/alembic-of-unmaking | Alembic of Unmaking
+35. item/all-seeing-blade-of-the-guardian | All-Seeing Blade of the Guardian
+36. item/alluring-dye | Alluring Dye
+37. item/amphibious-adaptation | Amphibious Adaptation
+38. item/amulet-of-curse-suppression | Amulet of Curse Suppression
+39. item/amulet-of-equilibrium | Amulet of Equilibrium
+40. item/amulet-of-the-spirit-caller | Amulet of the Spirit Caller
+41. item/ancestral-laser-sword | Ancestral Laser Sword
+42. item/ancient-seal | Ancient Seal
+43. item/android-skin | Android Skin
+44. item/angelic-wings | Angelic Wings
+45. item/angelskin-armor | Angelskin Armor
+46. item/ankh-of-ra | Ankh of Ra
+47. item/antimagic-armor | Antimagic Armor
+48. item/antimagic-eye | Antimagic Eye
+49. item/antlers-of-the-true-path | Antlers of the True Path
+50. item/anuraags-crucible | Anuraag's Crucible
+51. item/arc-rifle | Arc Rifle
+52. item/arcanaloths-music-box | Arcanaloth's Music Box
+53. item/arcane-carbine-1 | Arcane Carbine +1
+54. item/arcane-carbine-2 | Arcane Carbine +2
+55. item/arcane-carbine-3 | Arcane Carbine +3
+56. item/arcane-mirror | Arcane Mirror
+57. item/arcane-oil | Arcane Oil
+58. item/arcane-resonator | Arcane Resonator
+59. item/arcane-study-charm | Arcane Study Charm
+60. item/arcane-synapses | Arcane Synapses
+61. item/arcane-terminal | Arcane Terminal
+62. item/arcane-warhead | Arcane Warhead
+63. item/arcanists-bowstaff | Arcanist's Bowstaff
+64. item/architects-disdain | Architect's Disdain
+65. item/ardor | Ardor
+66. item/arm-cannon | Arm Cannon
+67. item/armor-of-acid-resistance | Armor of Acid Resistance
+68. item/armor-of-fire-resistance | Armor of Fire Resistance
+69. item/armor-of-force-resistance | Armor of Force Resistance
+70. item/armor-of-lightning-resistance | Armor of Lightning Resistance
+71. item/armor-of-necrotic-resistance | Armor of Necrotic Resistance
+72. item/armor-of-poison-resistance | Armor of Poison Resistance
+73. item/armor-of-psychic-resistance | Armor of Psychic Resistance
+74. item/armor-of-radiant-resistance | Armor of Radiant Resistance
+75. item/armor-of-safeguarding | Armor of Safeguarding
+76. item/armor-of-thunder-resistance | Armor of Thunder Resistance
+77. item/armor-of-vulnerability-bludgeoning | Armor of Vulnerability (Bludgeoning)
+78. item/armor-of-vulnerability-piercing | Armor of Vulnerability (Piercing)
+79. item/armor-of-vulnerability-slashing | Armor of Vulnerability (Slashing)
+80. item/armor-of-weightlessness | Armor of Weightlessness
+81. item/armor-of-zombie-flesh | Armor of Zombie Flesh
+82. item/armor-of-the-valiant-soul-awakened | Armor of the Valiant Soul (Awakened)
+83. item/armor-of-the-valiant-soul-dormant | Armor of the Valiant Soul (Dormant)
+84. item/armor-of-the-valiant-soul-exalted | Armor of the Valiant Soul (Exalted)
+85. item/arrow-1 | Arrow, +1
+86. item/arrow-2 | Arrow, +2
+87. item/arrow-3 | Arrow, +3
+88. item/ascendant-dragons-wrath-weapon | Ascendant Dragon's Wrath Weapon
+89. item/ascendant-wave-swept-weapon | Ascendant Wave-Swept Weapon
+90. item/astral-bracelet | Astral Bracelet
+91. item/astral-bracelet-of-energy | Astral Bracelet of Energy
+92. item/astral-bracelet-of-heavens | Astral Bracelet of Heavens
+93. item/astral-bracelet-of-hells | Astral Bracelet of Hells
+94. item/astral-bracelet-of-knowledge | Astral Bracelet of Knowledge
+95. item/astral-bracelet-of-omniscience | Astral Bracelet of Omniscience
+96. item/astral-bracelet-of-planebending | Astral Bracelet of Planebending
+97. item/astral-sea-piercer | Astral Sea Piercer
+98. item/athreoss-devotee | Athreos's Devotee
+99. item/athreoss-disciple | Athreos's Disciple
+100. item/athreoss-votary | Athreos's Votary

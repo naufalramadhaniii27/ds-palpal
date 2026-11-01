@@ -1,0 +1,101 @@
+LEMBAR 075, 100 sel
+1. feature/curse-caster | Curse Caster | sub:Misfortune Bringer|Curse Caster
+2. feature/cushioned-fall | Cushioned Fall | sub:Sky Magic|Cushioned Fall
+3. feature/cutthroat | Cutthroat | sub:Brigand|Cutthroat
+4. feature/cutthroat-society | Cutthroat Society | sp:Jeholrak|Cutthroat Society
+5. feature/cutting-words | Cutting Words | sub:College of Lore (2014)|Cutting Words
+6. feature/cyber-katana | Cyber Katana | sub:Cyber Ninja|Cyber Katana
+7. feature/cyber-lich-lichdom | Cyber Lich (Lichdom) | sub:Cyberghoul|Cyber Lich (Lichdom)
+8. feature/cyber-spells | Cyber Spells | sub:Cyberghoul|Cyber Spells
+9. feature/cyberattack | Cyberattack | sub:Infiltrator|Cyberattack
+10. feature/cybernetic-crafts | Cybernetic Crafts | sub:Cybernetic|Cybernetic Crafts
+11. feature/cyborg | Cyborg | sub:Cybernetic|Cyborg
+12. feature/dad-jokes | Dad Jokes | sub:Path of the Dad|Dad Jokes
+13. feature/dagger-climb | Dagger Climb | sub:House of Darts|Dagger Climb
+14. feature/dagger-juggling | Dagger Juggling | sub:Harlequin|Dagger Juggling
+15. feature/damage-resistance | Damage Resistance | sp:Dragonborn (2014)|Damage Resistance
+16. feature/dampen-elements | Dampen Elements | sub:Nature Domain|Dampen Elements
+17. feature/dampening-field | Dampening Field
+18. feature/dance-virtuoso | Dance Virtuoso
+19. feature/dance-with-the-dead | Dance with the Dead | sub:Danseur Macabre|Dance with the Dead
+20. feature/danse-fatale | Danse Fatale | sub:Danseur Macabre|Danse Fatale
+21. feature/danse-macabre-dance-style | Danse Macabre [Dance Style] | sub:Danseur Macabre|Danse Macabre [Dance Style]
+22. feature/daos-crush | Dao's Crush
+23. feature/daredevil | Daredevil | sub:Adrenaline Junkie|Daredevil
+24. feature/dark-arts | Dark Arts | sub:Master of Fiends|Dark Arts
+25. feature/dark-delirium | Dark Delirium | sub:The Archfey (2014)|Dark Delirium
+26. feature/dark-doom-revisited | Dark Doom Revisited | sub:Path of the Wrathful Dead|Dark Doom Revisited
+27. feature/dark-illusions | Dark Illusions | sub:Shadow Bloodline|Dark Illusions
+28. feature/dark-ones-blessing | Dark One's Blessing | sub:The Fiend (2014)|Dark One's Blessing
+29. feature/dark-ones-own-luck | Dark One's Own Luck | sub:The Fiend (2014)|Dark One's Own Luck
+30. feature/dark-versatility | Dark Versatility | sub:Bond of the Fiendish Chain|Dark Versatility
+31. feature/darkness-within | Darkness Within | sub:Heretic Chapter|Darkness Within
+32. feature/darkvision | Darkvision | sp:Boggart|Darkvision
+33. feature/dart-burst | Dart Burst | sub:House of Darts|Dart Burst
+34. feature/daunting | Daunting | sp:Human (Stensia)|Daunting
+35. feature/daunting-roar | Daunting Roar | sp:Leonin|Daunting Roar
+36. feature/daze-cost-2d6 | Daze (Cost: 2d6)
+37. feature/dazzling-devices | Dazzling Devices | sub:Hologrammer|Dazzling Devices
+38. feature/dazzling-footwork | Dazzling Footwork | sub:College of Dance|Dazzling Footwork
+39. feature/dead-mist-lord-lichdom | Dead Mist Lord [Lichdom] | sub:Dead Mist Acolyte|Dead Mist Lord [Lichdom]
+40. feature/dead-mist-spells | Dead Mist Spells | sub:Dead Mist Acolyte|Dead Mist Spells
+41. feature/deadly-momentum | Deadly Momentum | sub:Acrobat|Deadly Momentum
+42. feature/deadly-redirect | Deadly Redirect | sub:Carver Guild|Deadly Redirect
+43. feature/deadly-stalker | Deadly Stalker | sub:Hunting Domain|Deadly Stalker
+44. feature/dealers-choice | Dealer's Choice | sub:House of Cards|Dealer's Choice
+45. feature/death-burst | Death Burst | sub:Clockworkers' Guild|Death Burst
+46. feature/death-domain-spells | Death Domain Spells | sub:Death Domain|Death Domain Spells
+47. feature/death-is-but-a-door | Death Is but a Door | sub:Path of the Wrathful Dead|Death Is but a Door
+48. feature/death-stare | Death Stare | sub:Burden of Tyranny|Death Stare
+49. feature/death-in-bloom | Death in Bloom | sub:Corpse Florist|Death in Bloom
+50. feature/deaths-friend | Death's Friend | sub:Phantom|Death's Friend
+51. feature/deaths-gambit | Death's Gambit | sub:Nightgaunt|Death's Gambit
+52. feature/deaths-master | Death's Master | sub:Necromancer|Death's Master
+53. feature/deathless-nature | Deathless Nature | sp:Reborn (VRGR)|Deathless Nature
+54. feature/deathless-nature-dhampir | Deathless Nature (Dhampir) | sp:Dhampir (VRGR)|Deathless Nature (Dhampir)
+55. feature/deathly-pallor | Deathly Pallor | sub:Haunted Sorcery|Deathly Pallor
+56. feature/debilitating-barrage | Debilitating Barrage | sub:Way of the Cobalt Soul|Debilitating Barrage
+57. feature/debilitating-fever | Debilitating Fever | sub:Oath of Pestilence|Debilitating Fever
+58. feature/decadent-mastery | Decadent Mastery | sp:Githyanki (2014)|Decadent Mastery
+59. feature/decay | Decay | sub:Black Magic|Decay
+60. feature/deceitful-transposition | Deceitful Transposition | sub:Purple Magic|Deceitful Transposition
+61. feature/deck-of-fate | Deck of Fate | sub:House of Cards|Deck of Fate
+62. feature/deconstructor | Deconstructor | sub:Path of the Wrecker|Deconstructor
+63. feature/dedicated-weapon | Dedicated Weapon
+64. feature/deductive-intuition | Deductive Intuition | sp:Half-Elf (Mark of Detection)|Deductive Intuition
+65. feature/deep-cold | Deep Cold | sub:Winter Domain|Deep Cold
+66. feature/deep-sleep | Deep Sleep | sub:Somnomancer|Deep Sleep
+67. feature/defensive-disarm | Defensive Disarm | sub:Bladeworkers' Guild|Defensive Disarm
+68. feature/defensive-field | Defensive Field
+69. feature/defensive-flourish | Defensive Flourish
+70. feature/defensive-tactics | Defensive Tactics | sub:Hunter (2014)|Defensive Tactics
+71. feature/defile-ground | Defile Ground | sub:Circle of the Blighted|Defile Ground
+72. feature/defile-ground-10th-level | Defile Ground (10th Level) | sub:Circle of the Blighted|Defile Ground (10th Level)
+73. feature/defile-ground-14th-level | Defile Ground (14th Level) | sub:Circle of the Blighted|Defile Ground (14th Level)
+74. feature/deflect-missiles | Deflect Missiles
+75. feature/deflection-dance-style | Deflection [Dance Style] | sub:Steelsinger|Deflection [Dance Style]
+76. feature/deflective-ice | Deflective Ice | sub:The Frozen One|Deflective Ice
+77. feature/deft-explorer-improvement | Deft Explorer Improvement
+78. feature/deft-fling | Deft Fling | sub:Harlequin|Deft Fling
+79. feature/defy-death | Defy Death | sub:The Undying|Defy Death
+80. feature/delightful-imitator | Delightful Imitator | sp:Lorwyn Changeling|Delightful Imitator
+81. feature/dematerialize | Dematerialize | sub:Materializer|Dematerialize
+82. feature/demigod-ascendant | Demigod Ascendant | sub:Burden of Ascension|Demigod Ascendant
+83. feature/demolishing-might | Demolishing Might | sub:Path of the Juggernaut|Demolishing Might
+84. feature/demon-cohort | Demon Cohort | sub:Demon Brand|Demon Cohort
+85. feature/denounce-arcana | Denounce Arcana | sub:Burden of Calamity|Denounce Arcana
+86. feature/desert | Desert
+87. feature/desperado | Desperado | sub:Highway Rider|Desperado
+88. feature/desperate-companion | Desperate Companion | sub:Houndmaster|Desperate Companion
+89. feature/desperate-endurance | Desperate Endurance | sub:Pugilist|Desperate Endurance
+90. feature/desperate-regen | Desperate Regen | sub:Digital Nomad|Desperate Regen
+91. feature/desperate-ward | Desperate Ward | sub:Mage Brand|Desperate Ward
+92. feature/despotic-discourse | Despotic Discourse | sub:Overlord|Despotic Discourse
+93. feature/destroy-undead-cr-1 | Destroy Undead (CR 1)
+94. feature/destroy-undead-cr-1-2 | Destroy Undead (CR 1/2)
+95. feature/destroy-undead-cr-2 | Destroy Undead (CR 2)
+96. feature/destroy-undead-cr-3 | Destroy Undead (CR 3)
+97. feature/destroy-undead-cr-4 | Destroy Undead (CR 4)
+98. feature/detect-portal | Detect Portal | sub:Horizon Walker|Detect Portal
+99. feature/devils-advocate | Devil's Advocate | sub:Diabolist|Devil's Advocate
+100. feature/devils-tongue | Devil's Tongue | sp:Tiefling (Devil's Tongue)|Devil's Tongue

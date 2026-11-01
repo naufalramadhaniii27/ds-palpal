@@ -1,0 +1,101 @@
+LEMBAR 009, 100 sel
+1. sub/oath-of-the-annihilator | Oath of the Annihilator
+2. sub/oath-of-the-crown | Oath of the Crown
+3. sub/oath-of-the-gamma-knight | Oath of the Gamma Knight
+4. sub/oath-of-the-giving-grave | Oath of the Giving Grave
+5. sub/oath-of-the-hearth | Oath of the Hearth
+6. sub/oath-of-the-noble-genies | Oath of the Noble Genies
+7. sub/oath-of-the-open-sea | Oath of the Open Sea
+8. sub/oath-of-the-sun | Oath of the Sun
+9. sub/oathbreaker | Oathbreaker
+10. sub/occultist | Occultist
+11. sub/occultist-guild | Occultist Guild
+12. sub/ocean-domain | Ocean Domain
+13. sub/ooze-rancher | Ooze Rancher
+14. sub/overlord | Overlord
+15. sub/pale-master | Pale Master
+16. sub/path-of-heavy-metal | Path of Heavy Metal
+17. sub/path-of-spellfury | Path of Spellfury
+18. sub/path-of-tranquility | Path of Tranquility
+19. sub/path-of-the-abomination | Path of the Abomination
+20. sub/path-of-the-ancestral-guardian | Path of the Ancestral Guardian
+21. sub/path-of-the-battlemind | Path of the Battlemind
+22. sub/path-of-the-battlerager | Path of the Battlerager
+23. sub/path-of-the-dad | Path of the Dad
+24. sub/path-of-the-dreadnought | Path of the Dreadnought
+25. sub/path-of-the-drifter | Path of the Drifter
+26. sub/path-of-the-fin | Path of the Fin
+27. sub/path-of-the-fractured | Path of the Fractured
+28. sub/path-of-the-frostrager | Path of the Frostrager
+29. sub/path-of-the-glacier | Path of the Glacier
+30. sub/path-of-the-juggernaut | Path of the Juggernaut
+31. sub/path-of-the-muscle-wizard | Path of the Muscle Wizard
+32. sub/path-of-the-primal-spirit | Path of the Primal Spirit
+33. sub/path-of-the-slasher | Path of the Slasher
+34. sub/path-of-the-swamp | Path of the Swamp
+35. sub/path-of-the-wrathful-dead | Path of the Wrathful Dead
+36. sub/path-of-the-wrecker | Path of the Wrecker
+37. sub/pestilence-domain | Pestilence Domain
+38. sub/pharaoh | Pharaoh
+39. sub/pigmentist | Pigmentist
+40. sub/plague-doctor | Plague Doctor
+41. sub/plague-lord | Plague Lord
+42. sub/portalweaver | Portalweaver
+43. sub/prescient-knight | Prescient Knight
+44. sub/primordial-archer | Primordial Archer
+45. sub/prophecy-domain | Prophecy Domain
+46. sub/protomancer | Protomancer
+47. sub/pugilist | Pugilist
+48. sub/purification-domain | Purification Domain
+49. sub/purple-magic | Purple Magic
+50. sub/pyromancer-psk | Pyromancer (PSK)
+51. sub/quantum-mechanic | Quantum Mechanic
+52. sub/reaper | Reaper
+53. sub/red-magic | Red Magic
+54. sub/resonator | Resonator
+55. sub/rimekeeper | Rimekeeper
+56. sub/ring-warden | Ring Warden
+57. sub/runechild | Runechild
+58. sub/runetagger | Runetagger
+59. sub/r-nin | Rōnin
+60. sub/salvation-chapter | Salvation Chapter
+61. sub/samurai | Samurai
+62. sub/sangromancer | Sangromancer
+63. sub/sanguine-chapter | Sanguine Chapter
+64. sub/sanguine-thief | Sanguine Thief
+65. sub/school-of-abjuration | School of Abjuration
+66. sub/school-of-conjuration | School of Conjuration
+67. sub/school-of-divination | School of Divination
+68. sub/school-of-enchantment | School of Enchantment
+69. sub/school-of-evocation | School of Evocation
+70. sub/school-of-illumination | School of Illumination
+71. sub/school-of-illusion | School of Illusion
+72. sub/school-of-necromancy | School of Necromancy
+73. sub/school-of-transmutation | School of Transmutation
+74. sub/scofflaw | Scofflaw
+75. sub/scout | Scout
+76. sub/scrappers-guild | Scrappers' Guild
+77. sub/scroll-scribe | Scroll Scribe
+78. sub/serophage | Serophage
+79. sub/shadow-bloodline | Shadow Bloodline
+80. sub/shadow-dancer | Shadow Dancer
+81. sub/shadow-magic | Shadow Magic
+82. sub/siegeball-jersey | Siegeball Jersey
+83. sub/singularity-patron | Singularity Patron
+84. sub/skull-banner | Skull Banner
+85. sub/sky-magic | Sky Magic
+86. sub/solidarity-domain-psa | Solidarity Domain (PSA)
+87. sub/somnomancer | Somnomancer
+88. sub/space-marine | Space Marine
+89. sub/speed-domain | Speed Domain
+90. sub/spellfire-sorcery | Spellfire Sorcery
+91. sub/spellhacker | Spellhacker
+92. sub/spy | Spy
+93. sub/star-patron | Star Patron
+94. sub/star-wolf | Star Wolf
+95. sub/star-spangled-banner | Star-Spangled Banner
+96. sub/steel-magic | Steel Magic
+97. sub/steel-shepherd | Steel Shepherd
+98. sub/steelsinger | Steelsinger
+99. sub/stoneheart-defender | Stoneheart Defender
+100. sub/storm-sentinel | Storm Sentinel

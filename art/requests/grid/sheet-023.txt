@@ -1,0 +1,101 @@
+LEMBAR 023, 100 sel
+1. spell/might-of-the-abyss | Might of the Abyss
+2. spell/mind-exchange | Mind Exchange
+3. spell/minor-lifesteal | Minor Lifesteal
+4. spell/mire | Mire
+5. spell/mirror-spell | Mirror Spell
+6. spell/misfortune | Misfortune
+7. spell/misstep | Misstep
+8. spell/mist-of-wonders | Mist of Wonders
+9. spell/mithral-dragons-might | Mithral Dragon's Might
+10. spell/molechs-blessing | Molech's Blessing
+11. spell/moment-to-think | Moment to Think
+12. spell/monstrous-empathy | Monstrous Empathy
+13. spell/moon-trap | Moon Trap
+14. spell/moonlight-charm | Moonlight Charm
+15. spell/mortal-insight | Mortal Insight
+16. spell/mortality | Mortality
+17. spell/mosquito-bane | Mosquito Bane
+18. spell/move-the-cosmic-wheel | Move the Cosmic Wheel
+19. spell/mud-pack | Mud Pack
+20. spell/mutate | Mutate
+21. spell/natures-aegis | Nature's Aegis
+22. spell/necrotic-leech | Necrotic Leech
+23. spell/negative-image | Negative Image
+24. spell/nest-of-infernal-vipers | Nest of Infernal Vipers
+25. spell/nether-weapon | Nether Weapon
+26. spell/neutralize-aura | Neutralize Aura
+27. spell/night-terrors | Night Terrors
+28. spell/nightfall | Nightfall
+29. spell/nimbleness | Nimbleness
+30. spell/nip-at-the-heels | Nip at the Heels
+31. spell/nondescript | Nondescript
+32. spell/not-dead-yet | Not Dead Yet
+33. spell/not-this-day | Not This Day!
+34. spell/nourishing-repast | Nourishing Repast
+35. spell/obtuse | Obtuse
+36. spell/opportunistic-foresight | Opportunistic Foresight
+37. spell/orb-of-light | Orb of Light
+38. spell/orbital-hardlight-cannon | Orbital Hardlight Cannon
+39. spell/osseous-cage | Osseous Cage
+40. spell/osseous-impalement | Osseous Impalement
+41. spell/osteophagia | Osteophagia
+42. spell/otherworldly-gaze | Otherworldly Gaze
+43. spell/outflanking-boon | Outflanking Boon
+44. spell/overcharge-weapon | Overcharge Weapon
+45. spell/overclock | Overclock
+46. spell/overgrow | Overgrow
+47. spell/overwhelming-greed | Overwhelming Greed
+48. spell/paradox | Paradox
+49. spell/paragon-of-chaos | Paragon of Chaos
+50. spell/pendulum | Pendulum
+51. spell/perfection | Perfection
+52. spell/perforating-shot | Perforating Shot
+53. spell/petal-storm | Petal Storm
+54. spell/phalangeal-shot | Phalangeal Shot
+55. spell/phantasmal-beauty | Phantasmal Beauty
+56. spell/phantom-dragon | Phantom Dragon
+57. spell/phantom-grapnel | Phantom Grapnel
+58. spell/phantom-light | Phantom Light
+59. spell/pharaohs-curse | Pharaoh's Curse
+60. spell/phase-bolt | Phase Bolt
+61. spell/phase-shift | Phase Shift
+62. spell/phoenix-flames | Phoenix Flames
+63. spell/pit-trap | Pit Trap
+64. spell/pitfall | Pitfall
+65. spell/plaguebearer | Plaguebearer
+66. spell/poisoned-volley | Poisoned Volley
+67. spell/poisonous-flesh | Poisonous Flesh
+68. spell/polybrachia | Polybrachia
+69. spell/portal-jaunt | Portal Jaunt
+70. spell/potency-of-the-pack | Potency of the Pack
+71. spell/power-word-kneel | Power Word Kneel
+72. spell/power-word-maim | Power Word Maim
+73. spell/power-word-pain-deep-magic | Power Word Pain (Deep Magic)
+74. spell/power-word-restore | Power Word Restore
+75. spell/prayer-of-resolve | Prayer of Resolve
+76. spell/prehensile-hair | Prehensile Hair
+77. spell/preserve | Preserve
+78. spell/pressure-cage | Pressure Cage
+79. spell/primal-infusion | Primal Infusion
+80. spell/primordial-power | Primordial Power
+81. spell/prismatic-ray | Prismatic Ray
+82. spell/proselytize | Proselytize
+83. spell/protect-threshold | Protect Threshold
+84. spell/protection-from-malady | Protection from Malady
+85. spell/protection-from-the-void | Protection from the Void
+86. spell/protective-gizmo | Protective Gizmo
+87. spell/protective-ice | Protective Ice
+88. spell/protective-nimbus | Protective Nimbus
+89. spell/proto-abjuration | Proto-Abjuration
+90. spell/proto-conjuration | Proto-Conjuration
+91. spell/proto-divination | Proto-Divination
+92. spell/proto-enchantment | Proto-Enchantment
+93. spell/proto-evocation | Proto-Evocation
+94. spell/proto-illusion | Proto-Illusion
+95. spell/proto-necromancy | Proto-Necromancy
+96. spell/proto-transmutation | Proto-Transmutation
+97. spell/psychedelics | Psychedelics
+98. spell/puff-of-smoke | Puff of Smoke
+99. spell/pummelstone | Pummelstone
+100. spell/pyroclasm | Pyroclasm

@@ -1,0 +1,101 @@
+LEMBAR 074, 100 sel
+1. feature/clubbed-tail | Clubbed Tail | sp:Ankylier|Clubbed Tail
+2. feature/cockpit-upgrade | Cockpit Upgrade | sub:Mechanauts' Guild|Cockpit Upgrade
+3. feature/codebreaker | Codebreaker | sub:Infiltrator|Codebreaker
+4. feature/cognitohazard | Cognitohazard | sub:Hologrammer|Cognitohazard
+5. feature/coin-of-chaos | Coin of Chaos | sub:Burden of Discord|Coin of Chaos
+6. feature/cold-fire-magic | Cold Fire Magic | sp:Rimekin|Cold Fire Magic
+7. feature/cold-fortress | Cold Fortress | sub:Path of the Glacier|Cold Fortress
+8. feature/cold-resistance | Cold Resistance | sp:Rimekin|Cold Resistance
+9. feature/cold-hearted | Cold-Hearted | sub:Frost Sorcery|Cold-Hearted
+10. feature/college-of-entropy | College of Entropy | sub:Entropy|College of Entropy
+11. feature/colorful-casting | Colorful Casting | sub:College of Paint|Colorful Casting
+12. feature/colossal-slam | Colossal Slam | sub:Armigers' Guild|Colossal Slam
+13. feature/colossus-slayer | Colossus Slayer
+14. feature/combat-inspiration | Combat Inspiration | sub:College of Valor (2014)|Combat Inspiration
+15. feature/combat-research | Combat Research | sub:Death Knight|Combat Research
+16. feature/comedy-and-tragedy | Comedy and Tragedy | sub:Dramaturge|Comedy and Tragedy
+17. feature/command-undead | Command Undead | sub:School of Necromancy|Command Undead
+18. feature/commanding-presence | Commanding Presence | sub:Lion Banner|Commanding Presence
+19. feature/commanding-voice | Commanding Voice | sub:College of the Dirge Singer|Commanding Voice
+20. feature/communal | Communal | sp:Gallus|Communal
+21. feature/commune-with-the-unknown | Commune with the Unknown | sub:Farseer|Commune with the Unknown
+22. feature/communion-at-the-crossroads | Communion at the Crossroads | sub:Master of Fiends|Communion at the Crossroads
+23. feature/compel-confession | Compel Confession | sub:Oath of Zeal|Compel Confession
+24. feature/compelling-message | Compelling Message | sub:Burden of Truth|Compelling Message
+25. feature/compound-creator | Compound Creator | sub:Living Crucible|Compound Creator
+26. feature/comprehension-of-the-starry-sky | Comprehension of the Starry Sky | sub:Illuminator|Comprehension of the Starry Sky
+27. feature/concentrated-healing | Concentrated Healing | sub:Apothecary|Concentrated Healing
+28. feature/conjuration-savant | Conjuration Savant | sub:Conjurer|Conjuration Savant
+29. feature/connect-the-dots | Connect the Dots | sub:Conspiracy Theorist|Connect the Dots
+30. feature/conquering-presence | Conquering Presence
+31. feature/constant-vigilance | Constant Vigilance | sub:Prescient Knight|Constant Vigilance
+32. feature/construct-anatomy | Construct Anatomy | sp:Vect|Construct Anatomy
+33. feature/construct-corpses | Construct Corpses | sub:Cyberghoul|Construct Corpses
+34. feature/construct-enchantments | Construct Enchantments | sub:Clockworkers' Guild|Construct Enchantments
+35. feature/construct-form | Construct Form | sub:Circle of Configuration|Construct Form
+36. feature/construct-grafts | Construct Grafts | sp:Vect|Construct Grafts
+37. feature/construct-nature | Construct Nature | sp:Geppettin|Construct Nature
+38. feature/construct-perfection | Construct Perfection | sub:Mastermaker|Construct Perfection
+39. feature/constructed-resilience | Constructed Resilience | sp:Warforged (2014)|Constructed Resilience
+40. feature/construction-perfection | Construction Perfection | sub:Circle of the Forged|Construction Perfection
+41. feature/consumptive-knife | Consumptive Knife
+42. feature/consumptive-power | Consumptive Power
+43. feature/containment-dimension | Containment Dimension | sub:Containment Specialist|Containment Dimension
+44. feature/control-air-and-water | Control Air and Water | sp:Triton (2014)|Control Air and Water
+45. feature/control-undead | Control Undead
+46. feature/controlled-footwork | Controlled Footwork | sub:Carver Guild|Controlled Footwork
+47. feature/convergent-future | Convergent Future | sub:Chronurgy Magic|Convergent Future
+48. feature/convolute-energy | Convolute Energy | sub:Red Magic|Convolute Energy
+49. feature/coordinated-strike | Coordinated Strike
+50. feature/coordinated-strikes | Coordinated Strikes | sub:Griffon Scout|Coordinated Strikes
+51. feature/copycat | Copycat | sub:Blue Magic|Copycat
+52. feature/cornered-quarry | Cornered Quarry | sub:Bounty Hunter|Cornered Quarry
+53. feature/corpse-cavalry | Corpse Cavalry | sub:Black Rider|Corpse Cavalry
+54. feature/corpse-florist-spells | Corpse Florist Spells | sub:Corpse Florist|Corpse Florist Spells
+55. feature/corpulent-lich-lichdom | Corpulent Lich [Lichdom] | sub:Plague Lord|Corpulent Lich [Lichdom]
+56. feature/corvid-familiar | Corvid Familiar | sub:Sky Magic|Corvid Familiar
+57. feature/corvum-subrace | Corvum Subrace | sp:Corvum|Corvum Subrace
+58. feature/cosmetic-enchantments | Cosmetic Enchantments | sub:Courtiers' Guild|Cosmetic Enchantments
+59. feature/cosmic-knowledge | Cosmic Knowledge | sp:Deep One Dwarf|Cosmic Knowledge
+60. feature/cosmic-omen | Cosmic Omen | sub:Circle of Stars|Cosmic Omen
+61. feature/cosmic-rays | Cosmic Rays | sub:Cosmic Magic|Cosmic Rays
+62. feature/cosmic-spells | Cosmic Spells | sub:Cosmic Magic|Cosmic Spells
+63. feature/counter-strike | Counter Strike | sub:Absolute Chapter|Counter Strike
+64. feature/counter-discharge | Counter-Discharge | sub:Dynamo Engineer|Counter-Discharge
+65. feature/counter-hack | Counter-Hack | sub:Spellhacker|Counter-Hack
+66. feature/counter-shot-maneuver | Counter-Shot [Maneuver] | sub:Eagle Banner|Counter-Shot [Maneuver]
+67. feature/coup-de-gr-ce-maneuver | Coup de Grâce [Maneuver] | sub:Dragon Banner|Coup de Grâce [Maneuver]
+68. feature/couriers-speed | Courier's Speed | sp:Human (Mark of Passage)|Courier's Speed
+69. feature/coven-spells | Coven Spells | sub:The Coven|Coven Spells
+70. feature/cover-story | Cover Story | sub:Containment Specialist|Cover Story
+71. feature/cover-of-darkness | Cover of Darkness | sub:Lunar Magic|Cover of Darkness
+72. feature/covert-magic | Covert Magic | sub:House of Rooks|Covert Magic
+73. feature/covert-tactics | Covert Tactics | sub:Daggermark|Covert Tactics
+74. feature/covert-techniques | Covert Techniques | sub:Cyber Ninja|Covert Techniques
+75. feature/craft-minor-elixir | Craft Minor Elixir | sub:Alkemancer|Craft Minor Elixir
+76. feature/craft-wands | Craft Wands | sub:Wand Wizard|Craft Wands
+77. feature/craven | Craven | sub:Brigand|Craven
+78. feature/create-ice | Create Ice | sub:Frost Sorcery|Create Ice
+79. feature/create-thrall | Create Thrall | sub:The Great Old One (2014)|Create Thrall
+80. feature/create-void | Create Void | sub:Astral Domain|Create Void
+81. feature/creative-crescendo | Creative Crescendo | sub:College of Creation|Creative Crescendo
+82. feature/creature-type | Creature Type | sp:Pluvenn|Creature Type
+83. feature/creature-of-darkness | Creature of Darkness | sub:Darkness Domain|Creature of Darkness
+84. feature/creature-of-the-night | Creature of the Night | sub:The First Vampire Patron|Creature of the Night
+85. feature/creed-of-the-trickster | Creed of the Trickster | sp:Merfolk (Cosi Creed)|Creed of the Trickster
+86. feature/crimson-rage | Crimson Rage | sub:Sanguine Chapter|Crimson Rage
+87. feature/critical-focus | Critical Focus | sub:Dragon Banner|Critical Focus
+88. feature/crone-spells | Crone Spells | sub:Crone|Crone Spells
+89. feature/crowd-brawler | Crowd Brawler | sub:Path of the Drifter|Crowd Brawler
+90. feature/crowd-suggestion | Crowd Suggestion | sub:Burden of Fame|Crowd Suggestion
+91. feature/crown-of-spellfire | Crown of Spellfire | sub:Spellfire Sorcery|Crown of Spellfire
+92. feature/cruel-jest | Cruel Jest | sub:College of Fools|Cruel Jest
+93. feature/crushing-guilt | Crushing Guilt | sub:Warrior of Regret|Crushing Guilt
+94. feature/crushing-roots | Crushing Roots | sub:Path of the Swamp|Crushing Roots
+95. feature/cultivator | Cultivator | sub:Verdant Protector|Cultivator
+96. feature/cunning-artisan | Cunning Artisan | sp:Lizardfolk (2014)|Cunning Artisan
+97. feature/cunning-companion | Cunning Companion | sub:Kid Sleuth|Cunning Companion
+98. feature/cunning-intuition | Cunning Intuition | sp:Elf (Mark of Shadow)|Cunning Intuition
+99. feature/cunning-and-brutal | Cunning and Brutal | sub:Path of the Fractured|Cunning and Brutal
+100. feature/curl-up | Curl Up | sp:Hedge|Curl Up

@@ -1,0 +1,101 @@
+LEMBAR 017, 100 sel
+1. spell/by-the-light-of-the-moon | By the Light of the Moon
+2. spell/by-the-light-of-the-watchful-moon | By the Light of the Watchful Moon
+3. spell/calcified-memories | Calcified Memories
+4. spell/call-shadow-mastiff | Call Shadow Mastiff
+5. spell/call-the-hunter | Call the Hunter
+6. spell/call-the-rabid-beast | Call the Rabid Beast
+7. spell/calling-card | Calling Card
+8. spell/calm-of-the-storm | Calm of the Storm
+9. spell/candles-insight | Candle's Insight
+10. spell/candy-blast | Candy Blast
+11. spell/card-trick | Card Trick
+12. spell/carmello-voltas-irksome-preserves | Carmello-Volta's Irksome Preserves
+13. spell/catapult-deep-magic | Catapult (Deep Magic)
+14. spell/catch-the-breath | Catch the Breath
+15. spell/caustic-blood | Caustic Blood
+16. spell/caustic-torrent | Caustic Torrent
+17. spell/caustic-touch | Caustic Touch
+18. spell/caustic-waste | Caustic Waste
+19. spell/cave-dragons-dominance | Cave Dragon's Dominance
+20. spell/celebration | Celebration
+21. spell/celestial-fanfare | Celestial Fanfare
+22. spell/chains-of-beleth | Chains of Beleth
+23. spell/chains-of-perdition | Chains of Perdition
+24. spell/chains-of-torment | Chains of Torment
+25. spell/chains-of-the-goddess | Chains of the Goddess
+26. spell/champions-weapon | Champion's Weapon
+27. spell/channel-fiendish-power | Channel Fiendish Power
+28. spell/chaotic-form | Chaotic Form
+29. spell/chaotic-vitality | Chaotic Vitality
+30. spell/chaotic-world | Chaotic World
+31. spell/charm-of-great-fondness | Charm of Great Fondness
+32. spell/charm-of-long-standing | Charm of Long Standing
+33. spell/cheat | Cheat
+34. spell/cherubs-burning-blade | Cherub's Burning Blade
+35. spell/chilling-words | Chilling Words
+36. spell/chisel-skull | Chisel Skull
+37. spell/chronal-lance | Chronal Lance
+38. spell/circle-of-devastation | Circle of Devastation
+39. spell/circle-of-scarlet | Circle of Scarlet
+40. spell/circle-of-wind | Circle of Wind
+41. spell/circuit-breaker | Circuit Breaker
+42. spell/claim-lair | Claim Lair
+43. spell/clash-of-glaciers | Clash of Glaciers
+44. spell/claws-of-darkness | Claws of Darkness
+45. spell/claws-of-the-earth-dragon | Claws of the Earth Dragon
+46. spell/clearing-the-field | Clearing the Field
+47. spell/cloak-of-fiendish-menace | Cloak of Fiendish Menace
+48. spell/cloak-of-serpents | Cloak of Serpents
+49. spell/cloak-of-shadow | Cloak of Shadow
+50. spell/cloak-of-vermin | Cloak of Vermin
+51. spell/clockwork-bodyguard | Clockwork Bodyguard
+52. spell/clockwork-bolt | Clockwork Bolt
+53. spell/closing-in | Closing In
+54. spell/clue | Clue
+55. spell/clumsiness | Clumsiness
+56. spell/cobra-fangs | Cobra Fangs
+57. spell/command-undead-deep-magic | Command Undead (Deep Magic)
+58. spell/commandeer-ship | Commandeer Ship
+59. spell/compelled-movement | Compelled Movement
+60. spell/compelling-fate | Compelling Fate
+61. spell/comprehend-wild-shape | Comprehend Wild Shape
+62. spell/concealed-shot | Concealed Shot
+63. spell/concussive-burst | Concussive Burst
+64. spell/confound-senses | Confound Senses
+65. spell/conjure-asteroid | Conjure Asteroid
+66. spell/conjure-cannonball | Conjure Cannonball
+67. spell/conjure-cover | Conjure Cover
+68. spell/conjure-fey-hound | Conjure Fey Hound
+69. spell/conjure-fiends | Conjure Fiends
+70. spell/conjure-forest-defender | Conjure Forest Defender
+71. spell/conjure-greater-spectral-dead | Conjure Greater Spectral Dead
+72. spell/conjure-mantelet | Conjure Mantelet
+73. spell/conjure-minor-voidborn | Conjure Minor Voidborn
+74. spell/conjure-mock-animals | Conjure Mock Animals
+75. spell/conjure-nightmare | Conjure Nightmare
+76. spell/conjure-plants | Conjure Plants
+77. spell/conjure-scarab-swarm | Conjure Scarab Swarm
+78. spell/conjure-shadow-titan | Conjure Shadow Titan
+79. spell/conjure-shuttle | Conjure Shuttle
+80. spell/conjure-spectral-dead | Conjure Spectral Dead
+81. spell/conjure-undead | Conjure Undead
+82. spell/conjure-voidborn | Conjure Voidborn
+83. spell/consecrated-armor | Consecrated Armor
+84. spell/consult-the-storm | Consult the Storm
+85. spell/consume-mind | Consume Mind
+86. spell/consumption | Consumption
+87. spell/contagion-deep-magic | Contagion (Deep Magic)
+88. spell/control-ice | Control Ice
+89. spell/converse-with-dragon | Converse with Dragon
+90. spell/convoluted-dictum | Convoluted Dictum
+91. spell/corruption-curse | Corruption Curse
+92. spell/cosmic-eye | Cosmic Eye
+93. spell/cosmic-horror | Cosmic Horror
+94. spell/costly-victory | Costly Victory
+95. spell/create-ring-servant | Create Ring Servant
+96. spell/create-thunderstaff | Create Thunderstaff
+97. spell/create-vacuum | Create Vacuum
+98. spell/creeping-darkness | Creeping Darkness
+99. spell/creeping-death | Creeping Death
+100. spell/creeping-ice | Creeping Ice

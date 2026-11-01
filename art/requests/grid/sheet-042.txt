@@ -1,0 +1,101 @@
+LEMBAR 042, 100 sel
+1. item/sling-bullet-3 | Sling Bullet, +3
+2. item/sling-of-the-tiny-giant | Sling of the Tiny Giant
+3. item/slumbering-dragons-wrath-weapon | Slumbering Dragon's Wrath Weapon
+4. item/smash-potatoes | Smash Potatoes
+5. item/snipers-bracelet | Sniper's Bracelet
+6. item/snuff | Snuff
+7. item/snugglebeast-dragon | Snugglebeast (Dragon)
+8. item/snugglebeast-owlbear | Snugglebeast (Owlbear)
+9. item/snugglebeast-tarrasque | Snugglebeast (Tarrasque)
+10. item/snugglebeast-unicorn | Snugglebeast (Unicorn)
+11. item/snugglebeasts | Snugglebeasts
+12. item/soarsled | Soarsled
+13. item/socks-of-the-well-rested | Socks of the Well-Rested
+14. item/solar-wings-of-ra | Solar Wings of Ra
+15. item/sorcerous-spyglass | Sorcerous Spyglass
+16. item/sorting-beast | Sorting Beast
+17. item/soulbond-stone | Soulbond Stone
+18. item/spacewalkers | Spacewalkers
+19. item/spark | Spark
+20. item/spell-gem-amber | Spell Gem (Amber)
+21. item/spell-gem-bloodstone | Spell Gem (Bloodstone)
+22. item/spell-gem-diamond | Spell Gem (Diamond)
+23. item/spell-gem-jade | Spell Gem (Jade)
+24. item/spell-gem-lapis-lazuli | Spell Gem (Lapis lazuli)
+25. item/spell-gem-obsidian | Spell Gem (Obsidian)
+26. item/spell-gem-quartz | Spell Gem (Quartz)
+27. item/spell-gem-ruby | Spell Gem (Ruby)
+28. item/spell-gem-star-ruby | Spell Gem (Star ruby)
+29. item/spell-gem-topaz | Spell Gem (Topaz)
+30. item/spell-fueling-armor | Spell-Fueling Armor
+31. item/spellburrow | Spellburrow
+32. item/spellwoven-robe | Spellwoven Robe
+33. item/spellwrought-tattoo-1st-level | Spellwrought Tattoo (1st Level)
+34. item/spellwrought-tattoo-2nd-level | Spellwrought Tattoo (2nd Level)
+35. item/spellwrought-tattoo-3rd-level | Spellwrought Tattoo (3rd Level)
+36. item/spellwrought-tattoo-4th-level | Spellwrought Tattoo (4th Level)
+37. item/spellwrought-tattoo-5th-level | Spellwrought Tattoo (5th Level)
+38. item/spellwrought-tattoo-cantrip | Spellwrought Tattoo (Cantrip)
+39. item/sphere-of-the-arcane-armament | Sphere of the Arcane Armament
+40. item/spider-pod | Spider Pod
+41. item/spiderbite-daggers | Spiderbite Daggers
+42. item/spiked-armor | Spiked Armor
+43. item/spiked-skin | Spiked Skin
+44. item/spire-seed | Spire Seed
+45. item/spire-of-conflux-awakened | Spire of Conflux (Awakened)
+46. item/spire-of-conflux-dormant | Spire of Conflux (Dormant)
+47. item/spire-of-conflux-exalted | Spire of Conflux (Exalted)
+48. item/spirit-pike | Spirit Pike
+49. item/splintershot | Splintershot
+50. item/splitter | Splitter
+51. item/sprinting-legs | Sprinting Legs
+52. item/squasher | Squasher
+53. item/staff | Staff
+54. item/staff-of-briars | Staff of Briars
+55. item/staff-of-climbing-ivy | Staff of Climbing Ivy
+56. item/staff-of-defense | Staff of Defense
+57. item/staff-of-favorable-winds | Staff of Favorable Winds
+58. item/staff-of-skulls | Staff of Skulls
+59. item/staff-of-the-four-seasons | Staff of the Four Seasons
+60. item/staff-of-the-magpie | Staff of the Magpie
+61. item/staff-of-the-mirage | Staff of the Mirage
+62. item/staff-of-the-mustang | Staff of the Mustang
+63. item/staff-of-the-reverent-warrior | Staff of the Reverent Warrior
+64. item/staff-of-the-sorcerer-king | Staff of the Sorcerer King
+65. item/stalaga-spear | Stalaga Spear
+66. item/stalk-symbiote | Stalk Symbiote
+67. item/star-metal-ring | Star Metal Ring
+68. item/star-razor-awakened | Star Razor (Awakened)
+69. item/star-razor-dormant | Star Razor (Dormant)
+70. item/star-razor-exalted | Star Razor (Exalted)
+71. item/starbreaker | Starbreaker
+72. item/starmetal-ring | Starmetal Ring
+73. item/starmetal-shield | Starmetal Shield
+74. item/starmetal-solar-axe | Starmetal Solar Axe
+75. item/starmetal-striker | Starmetal Striker
+76. item/starshot-crossbow | Starshot Crossbow
+77. item/statuette-of-augury | Statuette of Augury
+78. item/statuette-of-saint-markovia | Statuette of Saint Markovia
+79. item/steps-of-the-trickster | Steps of the Trickster
+80. item/stirring-dragons-wrath-weapon | Stirring Dragon's Wrath Weapon
+81. item/stonkys-ring | Stonky's ring
+82. item/storm-channeling-wand | Storm Channeling Wand
+83. item/storm-dragonmark-channel | Storm Dragonmark Channel
+84. item/storm-dragonmark-reservoir | Storm Dragonmark Reservoir
+85. item/storm-sickle | Storm Sickle
+86. item/storm-thrower-harpoon | Storm Thrower Harpoon
+87. item/storms-embrace | Storm's Embrace
+88. item/stormgirdle-awakened | Stormgirdle (Awakened)
+89. item/stormgirdle-dormant | Stormgirdle (Dormant)
+90. item/stormgirdle-exalted | Stormgirdle (Exalted)
+91. item/stormrider-boots | Stormrider Boots
+92. item/stormstruck-staff | Stormstruck Staff
+93. item/straitjacket | Straitjacket
+94. item/strawbundles-charm | Strawbundle's Charm
+95. item/strig-feather-robe | Strig Feather Robe
+96. item/studious-blade-of-the-guardian | Studious Blade of the Guardian
+97. item/stygian-spear | Stygian Spear
+98. item/subjugating-breastplate-of-the-tyrant | Subjugating Breastplate of the Tyrant (*)
+99. item/suit-of-the-lamb | Suit of the Lamb
+100. item/summers-dance | Summer's Dance

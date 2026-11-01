@@ -1,0 +1,101 @@
+LEMBAR 037, 100 sel
+1. item/iron-spikes | Iron Spikes
+2. item/ironleaf-maul-of-entanglement | Ironleaf Maul of Entanglement
+3. item/ironleaf-oaken-shield | Ironleaf Oaken Shield
+4. item/ironleaf-plate | Ironleaf Plate
+5. item/ironshod-trotters | Ironshod Trotters
+6. item/ivanas-whisper | Ivana's Whisper
+7. item/izzet-charm | Izzet Charm
+8. item/jade-elixir | Jade Elixir
+9. item/jade-serpent-staff | Jade Serpent Staff
+10. item/jax | Jax
+11. item/jetpack | Jetpack
+12. item/johos-charm | Joho's Charm
+13. item/jora-charm | Jora Charm
+14. item/jotuns-jodhpurs | Jotun's Jodhpurs
+15. item/junky-1-dagger | Junky +1 Dagger
+16. item/justiciars-gavel | Justiciar's Gavel
+17. item/karametras-devotee | Karametra's Devotee
+18. item/karametras-disciple | Karametra's Disciple
+19. item/karametras-votary | Karametra's Votary
+20. item/karreks-bastion | Karrek's Bastion
+21. item/keepers-fang | Keeper's Fang
+22. item/keranoss-devotee | Keranos's Devotee
+23. item/keranoss-disciple | Keranos's Disciple
+24. item/keranoss-votary | Keranos's Votary
+25. item/keyholes-dagger | Keyholes Dagger
+26. item/killskull-longbow-of-dread | Killskull Longbow of Dread
+27. item/kindle-egg-sugarbomb | Kindle Egg Sugarbomb
+28. item/kiss-of-the-changebringer-awakened | Kiss of the Changebringer (Awakened)
+29. item/kiss-of-the-changebringer-dormant | Kiss of the Changebringer (Dormant)
+30. item/kiss-of-the-changebringer-exalted | Kiss of the Changebringer (Exalted)
+31. item/klothyss-devotee | Klothys's Devotee
+32. item/klothyss-disciple | Klothys's Disciple
+33. item/klothyss-votary | Klothys's Votary
+34. item/knifewing-cape | Knifewing Cape
+35. item/knights-standard-of-valor | Knight's Standard of Valor
+36. item/knights-standard-of-vigor | Knight's Standard of Vigor
+37. item/knights-standard-of-virtue | Knight's Standard of Virtue
+38. item/knocking-boots | Knocking Boots
+39. item/krakens-whip | Kraken's Whip
+40. item/kruphixs-devotee | Kruphix's Devotee
+41. item/kruphixs-disciple | Kruphix's Disciple
+42. item/kruphixs-votary | Kruphix's Votary
+43. item/kubazan | Kubazan
+44. item/kundar-chains | Kundar Chains
+45. item/kwarks-wondrous-kernels-planter | Kwark's Wondrous Kernels, Planter
+46. item/kwarks-wondrous-kernels-tossable | Kwark's Wondrous Kernels, Tossable
+47. item/lamplighter | Lamplighter
+48. item/lance-of-the-hungering-dead | Lance of the Hungering Dead
+49. item/lantern-of-tracking-aberrations | Lantern of Tracking (Aberrations)
+50. item/lantern-of-tracking-celestials | Lantern of Tracking (Celestials)
+51. item/lantern-of-tracking-constructs | Lantern of Tracking (Constructs)
+52. item/lantern-of-tracking-dragons | Lantern of Tracking (Dragons)
+53. item/lantern-of-tracking-elementals | Lantern of Tracking (Elementals)
+54. item/lantern-of-tracking-fey | Lantern of Tracking (Fey)
+55. item/lantern-of-tracking-fiends | Lantern of Tracking (Fiends)
+56. item/lantern-of-tracking-giants | Lantern of Tracking (Giants)
+57. item/lantern-of-tracking-monstrosities | Lantern of Tracking (Monstrosities)
+58. item/lantern-of-tracking-undead | Lantern of Tracking (Undead)
+59. item/laser-eyes | Laser Eyes
+60. item/last-stand-armor | Last Stand Armor
+61. item/lazarus-unit | Lazarus Unit
+62. item/leaping-legs | Leaping Legs
+63. item/leeching-quarterstaff | Leeching Quarterstaff
+64. item/legendary-molten-fire-forge | Legendary Molten Fire Forge
+65. item/legendary-trophy | Legendary Trophy
+66. item/liars-lyre | Liar's Lyre
+67. item/life-suit | Life Suit
+68. item/life-sapping-blade | Life-Sapping Blade
+69. item/light-drinker | Light Drinker
+70. item/light-repeating-crossbow | Light Repeating Crossbow
+71. item/lightning-pylons | Lightning Pylons
+72. item/lindwyrm-venom | Lindwyrm Venom
+73. item/liquid-courage | Liquid Courage
+74. item/living-armor | Living Armor
+75. item/living-net | Living Net
+76. item/locksmiths-bane | Locksmith's Bane
+77. item/lodestone-armor | Lodestone Armor
+78. item/logic-unit | Logic Unit
+79. item/lords-alliance-trinket | Lords' Alliance Trinket
+80. item/loves-embrace | Love's Embrace
+81. item/luma-feather-robe | Luma Feather Robe
+82. item/lycan-weapon | Lycan Weapon
+83. item/lycanthropy-antidote | Lycanthropy Antidote
+84. item/macuahuitl | Macuahuitl
+85. item/maddgoths-helm | Maddgoth's Helm
+86. item/magebane-bomb | Magebane Bomb
+87. item/mageplate-cap | Mageplate Cap
+88. item/magical-prosthetics | Magical Prosthetics
+89. item/magicians-judge | Magician's Judge
+90. item/magma-war-pick | Magma War Pick
+91. item/making-channeling-wand | Making Channeling Wand
+92. item/making-dragonmark-channel | Making Dragonmark Channel
+93. item/making-dragonmark-reservoir | Making Dragonmark Reservoir
+94. item/malleus-macabre | Malleus Macabre
+95. item/mammoth-boots | Mammoth Boots
+96. item/manifest-charm-of-daanvi-the-perfect-order | Manifest Charm of Daanvi, the Perfect Order
+97. item/manifest-charm-of-dolurrh-the-realm-of-the-dead | Manifest Charm of Dolurrh, the Realm of the Dead
+98. item/manifest-charm-of-fernia-the-sea-of-fire | Manifest Charm of Fernia, the Sea of Fire
+99. item/manifest-charm-of-irian-the-eternal-dawn | Manifest Charm of Irian, the Eternal Dawn
+100. item/manifest-charm-of-lamannia-the-twilight-forest | Manifest Charm of Lamannia, the Twilight Forest

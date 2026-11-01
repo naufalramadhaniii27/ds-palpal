@@ -1,0 +1,101 @@
+LEMBAR 045, 100 sel
+1. gear/airship | Airship
+2. gear/alchemists-fire-flask | Alchemist's Fire (flask)
+3. gear/alchemists-ice | Alchemist's Ice
+4. gear/ale-gallon | Ale (gallon)
+5. gear/ale-mug | Ale (mug)
+6. gear/alexandrite | Alexandrite
+7. gear/amber | Amber
+8. gear/amethyst | Amethyst
+9. gear/amulet | Amulet
+10. gear/amulet-of-dinosaur-feathers-sun-empire | Amulet of dinosaur feathers (Sun Empire)
+11. gear/antigravity-belt | Antigravity Belt
+12. gear/antimatter-rifle | Antimatter Rifle
+13. gear/antitoxin-vial | Antitoxin (vial)
+14. gear/aquamarine | Aquamarine
+15. gear/argonnessen-trinket | Argonnessen Trinket
+16. gear/arrow-acid | Arrow, Acid
+17. gear/arrow-alchemists-fire | Arrow, Alchemist's Fire
+18. gear/arrow-armor-piercing | Arrow, Armor-Piercing
+19. gear/arrow-blessed | Arrow, Blessed
+20. gear/arrow-bludgeoning | Arrow, Bludgeoning
+21. gear/arrow-brutal | Arrow, Brutal
+22. gear/arrow-desecrated | Arrow, Desecrated
+23. gear/arrow-holy-water | Arrow, Holy Water
+24. gear/arrow-incendiary | Arrow, Incendiary
+25. gear/arrow-ranging | Arrow, Ranging
+26. gear/arrow-slashing | Arrow, Slashing
+27. gear/arrow-war-oil | Arrow, War Oil
+28. gear/arrow-whistling | Arrow, Whistling
+29. gear/assassins-blood | Assassin's Blood
+30. gear/automatic-rifle | Automatic Rifle
+31. gear/azuremite | Azuremite
+32. gear/azurite | Azurite
+33. gear/ball-bearing | Ball Bearing
+34. gear/ball-bearings-bag-of-1-000 | Ball Bearings (bag of 1,000)
+35. gear/ballista-trap | Ballista Trap
+36. gear/banded-agate | Banded Agate
+37. gear/bandolier | Bandolier
+38. gear/barrier-peaks-trinket | Barrier Peaks Trinket
+39. gear/basic-fishing-equipment | Basic Fishing Equipment
+40. gear/basic-poison-vial | Basic Poison (vial)
+41. gear/beast-whistle | Beast Whistle
+42. gear/bejeweled-gold-bracelet | Bejeweled gold bracelet
+43. gear/bejeweled-ivory-drinking-horn-with-gold-filigree | Bejeweled ivory drinking horn with gold filigree
+44. gear/bejeweled-ivory-drinking-horn-with-gold-inlay-brazen-coalition | Bejeweled ivory drinking horn with gold inlay (Brazen Coalition)
+45. gear/bellows-cannister | Bellows Cannister
+46. gear/binoculars | Binoculars
+47. gear/birdpipes | Birdpipes
+48. gear/bit-and-bridle | Bit and bridle
+49. gear/bizas-breath | Biza's Breath
+50. gear/black-ghost-orchid-seed | Black Ghost Orchid Seed
+51. gear/black-opal | Black Opal
+52. gear/black-pearl | Black Pearl
+53. gear/black-sap | Black Sap
+54. gear/black-sapphire | Black Sapphire
+55. gear/black-velvet-mask-stitched-with-silver-thread | Black velvet mask stitched with silver thread
+56. gear/blasting-powder | Blasting Powder
+57. gear/blessed-stake | Blessed Stake
+58. gear/blight-ichor | Blight Ichor
+59. gear/blood-of-the-lycanthrope | Blood of the Lycanthrope
+60. gear/bloodstone | Bloodstone
+61. gear/blowgun-needle | Blowgun Needle
+62. gear/blowgun-needles-50 | Blowgun Needles (50)
+63. gear/blue-quartz | Blue Quartz
+64. gear/blue-sapphire | Blue Sapphire
+65. gear/blue-spinel | Blue Spinel
+66. gear/bolt-acid | Bolt, Acid
+67. gear/bolt-alchemists-fire | Bolt, Alchemist's Fire
+68. gear/bolt-armor-piercing | Bolt, Armor-Piercing
+69. gear/bolt-blessed | Bolt, Blessed
+70. gear/bolt-bludgeoning | Bolt, Bludgeoning
+71. gear/bolt-brutal | Bolt, Brutal
+72. gear/bolt-desecrated | Bolt, Desecrated
+73. gear/bolt-holy-water | Bolt, Holy Water
+74. gear/bolt-incendiary | Bolt, Incendiary
+75. gear/bolt-ranging | Bolt, Ranging
+76. gear/bolt-slashing | Bolt, Slashing
+77. gear/bolt-war-oil | Bolt, War Oil
+78. gear/bolt-whistling | Bolt, Whistling
+79. gear/bomb | Bomb
+80. gear/bombard | Bombard
+81. gear/borderlands-tabard | Borderlands Tabard
+82. gear/bottle-stopper-cork-embossed-with-gold-leaf-and-set-with-amethysts | Bottle stopper cork embossed with gold leaf and set with amethysts
+83. gear/box-of-turquoise-animal-figurines | Box of turquoise animal figurines
+84. gear/brass-mug-with-jade-inlay | Brass mug with jade inlay
+85. gear/bread-loaf | Bread (loaf)
+86. gear/breath-of-beleth | Breath of Beleth
+87. gear/breath-of-the-wind-touched-jerbeen-figurine | Breath of the Wind-Touched Jerbeen Figurine
+88. gear/bronze-crown | Bronze crown
+89. gear/bronze-spyglass-brazen-coalition | Bronze spyglass (Brazen Coalition)
+90. gear/buckler | Buckler
+91. gear/bullet | Bullet
+92. gear/bullets-10 | Bullets (10)
+93. gear/bundle-of-sheet-music-representing-the-lost-dirges-of-a-famous-composer | Bundle of sheet music representing the lost dirges of a famous composer
+94. gear/burnt-othur-fumes | Burnt Othur Fumes
+95. gear/caltrop | Caltrop
+96. gear/caltrops-bag-of-20 | Caltrops (bag of 20)
+97. gear/camel | Camel
+98. gear/cannonball | Cannonball
+99. gear/cannonballs-5 | Cannonballs (5)
+100. gear/canoe | Canoe

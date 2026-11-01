@@ -1,0 +1,101 @@
+LEMBAR 034, 100 sel
+1. item/encyclopedia-sanguine | Encyclopedia Sanguine
+2. item/enspelled-armor-cantrip | Enspelled Armor (Cantrip)
+3. item/enspelled-armor-level-1 | Enspelled Armor (Level 1)
+4. item/enspelled-armor-level-2 | Enspelled Armor (Level 2)
+5. item/enspelled-armor-level-3 | Enspelled Armor (Level 3)
+6. item/enspelled-armor-level-4 | Enspelled Armor (Level 4)
+7. item/enspelled-armor-level-5 | Enspelled Armor (Level 5)
+8. item/enspelled-armor-level-6 | Enspelled Armor (Level 6)
+9. item/enspelled-armor-level-7 | Enspelled Armor (Level 7)
+10. item/enspelled-armor-level-8 | Enspelled Armor (Level 8)
+11. item/enspelled-armor-cantrip-or-level-1-spell | Enspelled Armor (cantrip or level 1 spell)
+12. item/enspelled-armor-level-2-or-3-spell | Enspelled Armor (level 2 or 3 spell)
+13. item/enspelled-armor-level-4-or-5-spell | Enspelled Armor (level 4 or 5 spell)
+14. item/enspelled-armor-level-6-7-or-8-spell | Enspelled Armor (level 6, 7, or 8 spell)
+15. item/enspelled-staff-cantrip | Enspelled Staff (Cantrip)
+16. item/enspelled-staff-level-1 | Enspelled Staff (Level 1)
+17. item/enspelled-staff-level-2 | Enspelled Staff (Level 2)
+18. item/enspelled-staff-level-3 | Enspelled Staff (Level 3)
+19. item/enspelled-staff-level-4 | Enspelled Staff (Level 4)
+20. item/enspelled-staff-level-5 | Enspelled Staff (Level 5)
+21. item/enspelled-staff-level-6 | Enspelled Staff (Level 6)
+22. item/enspelled-staff-level-7 | Enspelled Staff (Level 7)
+23. item/enspelled-staff-level-8 | Enspelled Staff (Level 8)
+24. item/enspelled-staff-cantrip-or-level-1-spell | Enspelled Staff (cantrip or level 1 spell)
+25. item/enspelled-staff-level-2-or-3-spell | Enspelled Staff (level 2 or 3 spell)
+26. item/enspelled-staff-level-4-or-5-spell | Enspelled Staff (level 4 or 5 spell)
+27. item/enspelled-staff-level-6-7-or-8-spell | Enspelled Staff (level 6, 7, or 8 spell)
+28. item/enspelled-weapon-cantrip | Enspelled Weapon (Cantrip)
+29. item/enspelled-weapon-level-1 | Enspelled Weapon (Level 1)
+30. item/enspelled-weapon-level-2 | Enspelled Weapon (Level 2)
+31. item/enspelled-weapon-level-3 | Enspelled Weapon (Level 3)
+32. item/enspelled-weapon-level-4 | Enspelled Weapon (Level 4)
+33. item/enspelled-weapon-level-5 | Enspelled Weapon (Level 5)
+34. item/enspelled-weapon-level-6 | Enspelled Weapon (Level 6)
+35. item/enspelled-weapon-level-7 | Enspelled Weapon (Level 7)
+36. item/enspelled-weapon-level-8 | Enspelled Weapon (Level 8)
+37. item/enspelled-weapon-cantrip-or-level-1-spell | Enspelled Weapon (cantrip or level 1 spell)
+38. item/enspelled-weapon-level-2-or-3-spell | Enspelled Weapon (level 2 or 3 spell)
+39. item/enspelled-weapon-level-4-or-5-spell | Enspelled Weapon (level 4 or 5 spell)
+40. item/enspelled-weapon-level-6-7-or-8-spell | Enspelled Weapon (level 6, 7, or 8 spell)
+41. item/epharas-devotee | Ephara's Devotee
+42. item/epharas-disciple | Ephara's Disciple
+43. item/epharas-votary | Ephara's Votary
+44. item/ereboss-devotee | Erebos's Devotee
+45. item/ereboss-disciple | Erebos's Disciple
+46. item/ereboss-votary | Erebos's Votary
+47. item/essence-of-rage | Essence of Rage
+48. item/ether-spear | Ether Spear
+49. item/etheradio | Etheradio
+50. item/everice-box | Everice Box
+51. item/everlasting-sugarbomb | Everlasting Sugarbomb
+52. item/evolution-stone-legendary | Evolution Stone (Legendary)
+53. item/evolution-stone-rare | Evolution Stone (Rare)
+54. item/evolution-stone-very-rare | Evolution Stone (Very Rare)
+55. item/exo-frame | Exo-Frame
+56. item/experts-espresso | Expert's Espresso
+57. item/eye-of-dendallen | Eye of Dendallen
+58. item/eye-of-starsight | Eye of Starsight
+59. item/eye-of-the-bookwurm | Eye of the Bookwurm
+60. item/eyes-of-deceit | Eyes of Deceit
+61. item/eyes-of-the-dragonne | Eyes of the Dragonne
+62. item/eyes-of-the-impossible | Eyes of the Impossible
+63. item/fables-end | Fable's End
+64. item/faerie-crown | Faerie Crown
+65. item/faerie-dust | Faerie Dust
+66. item/failed-experiment-wand | Failed Experiment Wand
+67. item/falkirs-helm-of-pigheadedness | Falkir's Helm of Pigheadedness
+68. item/fanfare-ammunition | Fanfare Ammunition
+69. item/fangs-of-guile | Fangs of Guile
+70. item/far-gear | Far Gear
+71. item/fate-deck | Fate Deck
+72. item/favor-of-the-heroic-steed | Favor of the Heroic Steed
+73. item/feathered-helm | Feathered Helm
+74. item/fenthras-awakened | Fenthras (Awakened)
+75. item/fenthras-dormant | Fenthras (Dormant)
+76. item/fenthras-exalted | Fenthras (Exalted)
+77. item/ferrymans-take | Ferryman's Take
+78. item/festerwood-buckler | Festerwood Buckler
+79. item/festerwood-claymore | Festerwood Claymore
+80. item/festerwood-fungal-stave | Festerwood Fungal Stave
+81. item/festerwood-logger | Festerwood Logger
+82. item/festerwood-masher | Festerwood Masher
+83. item/festerwood-vizard | Festerwood Vizard
+84. item/festerwoods-light | Festerwood's Light
+85. item/feywrought-armor | Feywrought Armor
+86. item/fife-of-dragonsong | Fife of Dragonsong
+87. item/fin-symbiote | Fin Symbiote
+88. item/final-breath | Final Breath
+89. item/final-messenger | Final Messenger
+90. item/final-word | Final Word
+91. item/finding-channeling-wand | Finding Channeling Wand
+92. item/finding-dragonmark-channel | Finding Dragonmark Channel
+93. item/finding-dragonmark-reservoir | Finding Dragonmark Reservoir
+94. item/finger-gun-glove | Finger Gun Glove
+95. item/finger-picks | Finger Picks
+96. item/fire-dervish-cloak | Fire Dervish Cloak
+97. item/fire-fire | Fire Fire!
+98. item/fire-wand-of-the-unbroken-circle | Fire Wand of the Unbroken Circle
+99. item/firearm-bullet-1 | Firearm Bullet, +1
+100. item/firearm-bullet-2 | Firearm Bullet, +2

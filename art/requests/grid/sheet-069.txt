@@ -1,0 +1,101 @@
+LEMBAR 069, 100 sel
+1. feature/aggressive | Aggressive | sp:Orc (Monster)|Aggressive
+2. feature/aggressive-defense | Aggressive Defense | sub:Bulwark Warrior|Aggressive Defense
+3. feature/agile-climber | Agile Climber | sp:Goblin (Ixalan)|Agile Climber
+4. feature/agile-parry | Agile Parry | sub:Way of the Kensei|Agile Parry
+5. feature/agile-response | Agile Response | sub:Trapper Guild|Agile Response
+6. feature/agile-strikes | Agile Strikes
+7. feature/aid-not-given | Aid Not Given | sub:Warrior of Regret|Aid Not Given
+8. feature/alchemical-assassin | Alchemical Assassin | sub:Venomsmith|Alchemical Assassin
+9. feature/alchemical-decoctions | Alchemical Decoctions | sub:Devourer Guild|Alchemical Decoctions
+10. feature/alchemical-gastronomy | Alchemical Gastronomy | sub:Devourer Guild|Alchemical Gastronomy
+11. feature/alchemical-resurrection | Alchemical Resurrection | sub:Apothecary|Alchemical Resurrection
+12. feature/alchemical-romance | Alchemical Romance | sub:Amorist|Alchemical Romance
+13. feature/alchemist | Alchemist
+14. feature/alcoholic-adventurers | Alcoholic Adventurers | sub:College of Bartending|Alcoholic Adventurers
+15. feature/all-hands-on-deck | All Hands on Deck | sub:Jolly Roger|All Hands on Deck
+16. feature/alter-memories | Alter Memories | sub:Enchanter|Alter Memories
+17. feature/ambition-domain-spells | Ambition Domain Spells | sub:Ambition Domain (PSA)|Ambition Domain Spells
+18. feature/ambush-master | Ambush Master | sub:Scout|Ambush Master
+19. feature/ambush-maneuver | Ambush [Maneuver] | sub:Brigand|Ambush [Maneuver]
+20. feature/ambusher | Ambusher | sp:Kenku (Monster)|Ambusher
+21. feature/ambushers-advantage | Ambusher's Advantage | sub:Trapper Guild|Ambusher's Advantage
+22. feature/amnesia-surge | Amnesia Surge | sub:Protomancer|Amnesia Surge
+23. feature/among-the-dead | Among the Dead | sub:The Undying|Among the Dead
+24. feature/amorphous | Amorphous | sp:Plasmoid|Amorphous
+25. feature/amphibious | Amphibious | sp:Bullywug|Amphibious
+26. feature/analgesic-remedy | Analgesic Remedy | sub:Plague Doctor|Analgesic Remedy
+27. feature/ancestral-legacy | Ancestral Legacy | sp:Dhampir (VRGR)|Ancestral Legacy
+28. feature/ancient-might | Ancient Might | sub:Hollow Warden|Ancient Might
+29. feature/angelic-savant | Angelic Savant | sub:Angelic Scribe|Angelic Savant
+30. feature/angelic-wrath | Angelic Wrath | sub:Angelic Scribe|Angelic Wrath
+31. feature/animal-enhancement | Animal Enhancement | sp:Simic Hybrid|Animal Enhancement
+32. feature/animal-friends | Animal Friends | sub:Technicolor Magic|Animal Friends
+33. feature/animal-sidekick | Animal Sidekick | sub:Kid Sleuth|Animal Sidekick
+34. feature/annihilating-smite | Annihilating Smite | sub:Oath of the Annihilator|Annihilating Smite
+35. feature/anoint-technology | Anoint Technology | sub:Machine Domain|Anoint Technology
+36. feature/anointed-arcana | Anointed Arcana | sub:Burden of the End|Anointed Arcana
+37. feature/anointed-block | Anointed Block | sub:Godsworn|Anointed Block
+38. feature/anointed-healer | Anointed Healer | sub:Burden of Mercy|Anointed Healer
+39. feature/antagonistic-antics | Antagonistic Antics | sub:College of Fools|Antagonistic Antics
+40. feature/anti-mage | Anti-Mage | sub:Witchbane Hunter|Anti-Mage
+41. feature/anti-sound-bomb | Anti-Sound Bomb | sub:Resonator|Anti-Sound Bomb
+42. feature/anticipatory-strike | Anticipatory Strike | sub:Prescient Knight|Anticipatory Strike
+43. feature/antipaladin-class-features | Antipaladin Class Features | sub:Oath of the Giving Grave|Antipaladin Class Features
+44. feature/apex-hunter | Apex Hunter | sub:Big Game Hunter|Apex Hunter
+45. feature/apex-mutation | Apex Mutation | sub:Experiment X|Apex Mutation
+46. feature/apex-predator | Apex Predator | sub:Circle of Mutation|Apex Predator
+47. feature/apocalypse-savant | Apocalypse Savant | sub:Doomsayer|Apocalypse Savant
+48. feature/apocalyptic-omen | Apocalyptic Omen | sub:Burden of Calamity|Apocalyptic Omen
+49. feature/apocalyptic-revelation | Apocalyptic Revelation | sub:Oath of Zeal|Apocalyptic Revelation
+50. feature/apocalyptic-spells | Apocalyptic Spells | sub:Apocalypse Sorcery|Apocalyptic Spells
+51. feature/appraising-eye | Appraising Eye | sp:Corvum|Appraising Eye
+52. feature/aqua-suit | Aqua Suit | sp:Nautilid|Aqua Suit
+53. feature/aquatic-adaptation | Aquatic Adaptation | sub:Path of the Fin|Aquatic Adaptation
+54. feature/arboreal-alertness | Arboreal Alertness | sp:Grung|Arboreal Alertness
+55. feature/arcana-domain-spells | Arcana Domain Spells | sub:Arcana Domain|Arcana Domain Spells
+56. feature/arcane-abeyance | Arcane Abeyance | sub:Chronurgy Magic|Arcane Abeyance
+57. feature/arcane-acrobat | Arcane Acrobat | sub:House of Rooks|Arcane Acrobat
+58. feature/arcane-apocrypha | Arcane Apocrypha | sub:Apocalypse Sorcery|Arcane Apocrypha
+59. feature/arcane-apprenticeship | Arcane Apprenticeship | sub:Arcane Maesters' Guild|Arcane Apprenticeship
+60. feature/arcane-artisan | Arcane Artisan | sub:Materializer|Arcane Artisan
+61. feature/arcane-assassin | Arcane Assassin | sub:House of Rooks|Arcane Assassin
+62. feature/arcane-assessment | Arcane Assessment | sub:Mystic Strategist|Arcane Assessment
+63. feature/arcane-awareness | Arcane Awareness | sub:Blue Magic|Arcane Awareness
+64. feature/arcane-condiments | Arcane Condiments | sub:Gastronomer|Arcane Condiments
+65. feature/arcane-dabbler | Arcane Dabbler
+66. feature/arcane-disruption | Arcane Disruption | sub:Containment Specialist|Arcane Disruption
+67. feature/arcane-dominance | Arcane Dominance | sub:House of Bishops|Arcane Dominance
+68. feature/arcane-duelist | Arcane Duelist | sub:Wand Wizard|Arcane Duelist
+69. feature/arcane-evolution | Arcane Evolution | sub:Familiar Master|Arcane Evolution
+70. feature/arcane-excellence | Arcane Excellence | sub:Universalist|Arcane Excellence
+71. feature/arcane-exemplar | Arcane Exemplar | sub:Runechild|Arcane Exemplar
+72. feature/arcane-initiate | Arcane Initiate | sub:Arcana Domain (2014)|Arcane Initiate
+73. feature/arcane-interference | Arcane Interference | sub:Occultist Guild|Arcane Interference
+74. feature/arcane-mastery | Arcane Mastery | sub:Arcana Domain (2014)|Arcane Mastery
+75. feature/arcane-mutation | Arcane Mutation | sub:Experiment X|Arcane Mutation
+76. feature/arcane-prototype | Arcane Prototype | sub:Maverick|Arcane Prototype
+77. feature/arcane-rebuke | Arcane Rebuke | sub:Witchbane Hunter|Arcane Rebuke
+78. feature/arcane-recycler | Arcane Recycler | sub:Dynamo Engineer|Arcane Recycler
+79. feature/arcane-relics | Arcane Relics | sub:Antiquarian|Arcane Relics
+80. feature/arcane-response | Arcane Response | sub:Occultist Guild|Arcane Response
+81. feature/arcane-revision | Arcane Revision | sub:Scroll Scribe|Arcane Revision
+82. feature/arcane-specialty | Arcane Specialty | sub:Doomsayer|Arcane Specialty
+83. feature/arcane-strike | Arcane Strike | sub:Arcane Maesters' Guild|Arcane Strike
+84. feature/arcane-study | Arcane Study | sub:House of Bishops|Arcane Study
+85. feature/arcane-synesthesia | Arcane Synesthesia | sub:Mage Brand|Arcane Synesthesia
+86. feature/arcane-tradition | Arcane Tradition
+87. feature/arcane-tradition-feature | Arcane Tradition feature
+88. feature/arcano-bomb-formula | Arcano Bomb [Formula] | sub:Dynamo Engineer|Arcano Bomb [Formula]
+89. feature/archdevils-blessing | Archdevil's Blessing | sub:Diabolist|Archdevil's Blessing
+90. feature/archer | Archer
+91. feature/archlich-lichdom | Archlich [Lichdom] | sub:Pale Master|Archlich [Lichdom]
+92. feature/arctic-predator | Arctic Predator | sub:Winter Trapper|Arctic Predator
+93. feature/argonaut | Argonaut | sub:Burden of Odyssey|Argonaut
+94. feature/aristocratic-bloodline-schools-and-spells | Aristocratic Bloodline Schools and Spells | sub:Aristocratic|Aristocratic Bloodline Schools and Spells
+95. feature/armament-eidolon | Armament Eidolon | sub:Bond of the Living Armament|Armament Eidolon
+96. feature/armament-spells | Armament Spells | sub:Bond of the Living Armament|Armament Spells
+97. feature/armor-of-hexes | Armor of Hexes | sub:The Hexblade|Armor of Hexes
+98. feature/armored-casing | Armored Casing | sp:Autognome|Armored Casing
+99. feature/armored-redirection | Armored Redirection | sub:Tower Banner|Armored Redirection
+100. feature/armored-slam | Armored Slam | sub:Armigers' Guild|Armored Slam

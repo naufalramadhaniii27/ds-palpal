@@ -1,0 +1,101 @@
+LEMBAR 031, 100 sel
+1. item/charm-of-air-bubbles | Charm of Air Bubbles
+2. item/charm-of-animal-conjuring | Charm of Animal Conjuring
+3. item/charm-of-argonnessen | Charm of Argonnessen
+4. item/charm-of-ashtakala | Charm of Ashtakala
+5. item/charm-of-balance | Charm of Balance
+6. item/charm-of-biting-cold | Charm of Biting Cold
+7. item/charm-of-bounty | Charm of Bounty
+8. item/charm-of-cold-resistance | Charm of Cold Resistance
+9. item/charm-of-cozmiokos-glory | Charm of Cozmioko's Glory
+10. item/charm-of-cure-wounds | Charm of Cure Wounds
+11. item/charm-of-darkvision | Charm of Darkvision
+12. item/charm-of-dhakaan | Charm of Dhakaan
+13. item/charm-of-diabolical-inspiration | Charm of Diabolical Inspiration
+14. item/charm-of-druidcraft | Charm of Druidcraft
+15. item/charm-of-electromancy | Charm of Electromancy
+16. item/charm-of-euryale | Charm of Euryale
+17. item/charm-of-exorcism | Charm of Exorcism
+18. item/charm-of-feather-falling | Charm of Feather Falling
+19. item/charm-of-greater-conscription | Charm of Greater Conscription
+20. item/charm-of-hellish-rebuke | Charm of Hellish Rebuke
+21. item/charm-of-heroism | Charm of Heroism
+22. item/charm-of-instant-tools | Charm of Instant Tools
+23. item/charm-of-invisibility | Charm of Invisibility
+24. item/charm-of-khyber | Charm of Khyber
+25. item/charm-of-lesser-conscription | Charm of Lesser Conscription
+26. item/charm-of-lightning-bolt | Charm of Lightning Bolt
+27. item/charm-of-malediction | Charm of Malediction
+28. item/charm-of-many-things | Charm of Many Things
+29. item/charm-of-many-tongues | Charm of Many Tongues
+30. item/charm-of-nine-lives | Charm of Nine Lives
+31. item/charm-of-purplemancy | Charm of Purplemancy
+32. item/charm-of-restoration | Charm of Restoration
+33. item/charm-of-ruin | Charm of Ruin
+34. item/charm-of-sending | Charm of Sending
+35. item/charm-of-snowball-strike | Charm of Snowball Strike
+36. item/charm-of-treasure-sense | Charm of Treasure Sense
+37. item/charm-of-vicious-mockery | Charm of Vicious Mockery
+38. item/charm-of-vitality | Charm of Vitality
+39. item/charm-of-water-breathing | Charm of Water Breathing
+40. item/charm-of-xendrik | Charm of Xen'drik
+41. item/charm-of-the-adamant | Charm of the Adamant
+42. item/charm-of-the-black-rose | Charm of the Black Rose
+43. item/charm-of-the-comet | Charm of the Comet
+44. item/charm-of-the-creeping-hand | Charm of the Creeping Hand
+45. item/charm-of-the-crystal-heart | Charm of the Crystal Heart
+46. item/charm-of-the-donjon | Charm of the Donjon
+47. item/charm-of-the-eldritch-eye | Charm of the Eldritch Eye
+48. item/charm-of-the-fates | Charm of the Fates
+49. item/charm-of-the-flames | Charm of the Flames
+50. item/charm-of-the-fool | Charm of the Fool
+51. item/charm-of-the-gem | Charm of the Gem
+52. item/charm-of-the-ghoul | Charm of the Ghoul
+53. item/charm-of-the-heroes-feast | Charm of the Heroes' Feast
+54. item/charm-of-the-ice-troll | Charm of the Ice Troll
+55. item/charm-of-the-jester | Charm of the Jester
+56. item/charm-of-the-key | Charm of the Key
+57. item/charm-of-the-knight | Charm of the Knight
+58. item/charm-of-the-maimed | Charm of the Maimed
+59. item/charm-of-the-mirage | Charm of the Mirage
+60. item/charm-of-the-moon | Charm of the Moon
+61. item/charm-of-the-puzzle | Charm of the Puzzle
+62. item/charm-of-the-rogue | Charm of the Rogue
+63. item/charm-of-the-sage | Charm of the Sage
+64. item/charm-of-the-skull | Charm of the Skull
+65. item/charm-of-the-slayer | Charm of the Slayer
+66. item/charm-of-the-snow-walker | Charm of the Snow Walker
+67. item/charm-of-the-star | Charm of the Star
+68. item/charm-of-the-storm | Charm of the Storm
+69. item/charm-of-the-stumblenoodle | Charm of the Stumblenoodle
+70. item/charm-of-the-sun | Charm of the Sun
+71. item/charm-of-the-swollen-hag | Charm of the Swollen Hag
+72. item/charm-of-the-talons | Charm of the Talons
+73. item/charm-of-the-throne | Charm of the Throne
+74. item/charm-of-the-travelers-haven | Charm of the Traveler's Haven
+75. item/charm-of-the-void | Charm of the Void
+76. item/charm-of-the-water-bearer | Charm of the Water Bearer
+77. item/chaser | Chaser
+78. item/chest-of-preserving | Chest of Preserving
+79. item/chillspike | Chillspike
+80. item/chromacloth | Chromacloth
+81. item/chromatic-rose | Chromatic Rose
+82. item/chronicle-of-fools | Chronicle of Fools
+83. item/chronolometer | Chronolometer
+84. item/cinder-coat | Cinder Coat
+85. item/cinnabar-rapier | Cinnabar Rapier
+86. item/circlet-of-barbed-vision-awakened | Circlet of Barbed Vision (Awakened)
+87. item/circlet-of-barbed-vision-dormant | Circlet of Barbed Vision (Dormant)
+88. item/circlet-of-barbed-vision-exalted | Circlet of Barbed Vision (Exalted)
+89. item/circlet-of-human-perfection | Circlet of Human Perfection
+90. item/circlet-of-wisdom | Circlet of Wisdom
+91. item/circlet-of-the-huntsmans-third-eye | Circlet of the Huntsman's Third Eye
+92. item/cittern | Cittern
+93. item/clay-no-faces-charm | Clay No-Face's Charm
+94. item/climbing-apparatus | Climbing Apparatus
+95. item/cloak-of-passage | Cloak of Passage
+96. item/cloak-of-shadows | Cloak of Shadows
+97. item/cloak-of-spines | Cloak of Spines
+98. item/cloak-of-therianthropy | Cloak of Therianthropy
+99. item/cloak-of-the-boundless-spirit | Cloak of the Boundless Spirit
+100. item/cloak-of-the-listener | Cloak of the Listener

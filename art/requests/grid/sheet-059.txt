@@ -1,0 +1,101 @@
+LEMBAR 059, 100 sel
+1. rule/insight | Insight
+2. rule/inspiration | Inspiration
+3. rule/intelligence | Intelligence
+4. rule/intimidation | Intimidation
+5. rule/investigation | Investigation
+6. rule/javelin | Javelin
+7. rule/jinxed | Jinxed
+8. rule/jumping | Jumping
+9. rule/knocking-out-a-creature | Knocking Out a Creature
+10. rule/languages | Languages
+11. rule/level-advancement-without-xp | Level Advancement without XP
+12. rule/light | Light
+13. rule/lightly-obscured | Lightly Obscured
+14. rule/line | Line
+15. rule/line-area-of-effect | Line [Area of Effect]
+16. rule/long-jump | Long Jump
+17. rule/loyalty | Loyalty
+18. rule/madness | Madness
+19. rule/magical-effect | Magical Effect
+20. rule/mark | Mark
+21. rule/massive-damage | Massive Damage
+22. rule/medicine | Medicine
+23. rule/milestones | Milestones
+24. rule/mixing-potions | Mixing Potions
+25. rule/monster | Monster
+26. rule/morale | Morale
+27. rule/more-difficult-identification | More Difficult Identification
+28. rule/multiclassing | Multiclassing
+29. rule/mysterious-islands | Mysterious Islands
+30. rule/nature | Nature
+31. rule/new-ability-scores-honor-and-sanity | New Ability Scores: Honor and Sanity
+32. rule/nick | Nick
+33. rule/nonplayer-character | Nonplayer Character
+34. rule/object | Object
+35. rule/occupied-space | Occupied Space
+36. rule/ocean-environs | Ocean Environs
+37. rule/officers-and-crew | Officers and Crew
+38. rule/optional-class-features | Optional Class Features
+39. rule/other-activity | Other Activity
+40. rule/overrun | Overrun
+41. rule/passive-perception | Passive Perception
+42. rule/per-day | Per Day
+43. rule/perception | Perception
+44. rule/performance | Performance
+45. rule/persuasion | Persuasion
+46. rule/planar-effects | Planar Effects
+47. rule/player-character | Player Character
+48. rule/player-characters-as-lycanthropes | Player Characters as Lycanthropes
+49. rule/player-characters-as-vampires | Player Characters as Vampires
+50. rule/playing-on-a-grid | Playing on a Grid
+51. rule/plot-points | Plot Points
+52. rule/possession | Possession
+53. rule/proficiency | Proficiency
+54. rule/proficiency-bonus | Proficiency Bonus
+55. rule/proficiency-dice | Proficiency Dice
+56. rule/prophets-gambit | Prophet's Gambit
+57. rule/push | Push
+58. rule/quiver | Quiver
+59. rule/random-ships | Random Ships
+60. rule/range | Range
+61. rule/reach | Reach
+62. rule/religion | Religion
+63. rule/reload | Reload
+64. rule/renown | Renown
+65. rule/resistance | Resistance
+66. rule/rest-variants | Rest Variants
+67. rule/ritual | Ritual
+68. rule/round-down | Round Down
+69. rule/sap | Sap
+70. rule/save | Save
+71. rule/saving-throw | Saving Throw
+72. rule/scroll-mishaps | Scroll Mishaps
+73. rule/shape-shifting | Shape-Shifting
+74. rule/shared-campaign-variant-rules | Shared Campaign Variant Rules
+75. rule/ship-repairs | Ship Repairs
+76. rule/ship-stat-blocks | Ship Stat Blocks
+77. rule/ship-to-ship-combat | Ship-to-Ship Combat
+78. rule/ships-in-combat | Ships in Combat
+79. rule/shortbow | Shortbow
+80. rule/shove-aside | Shove Aside
+81. rule/sickle | Sickle
+82. rule/sidekicks | Sidekicks
+83. rule/simultaneous-effects | Simultaneous Effects
+84. rule/size | Size
+85. rule/skill | Skill
+86. rule/skill-variants | Skill Variants
+87. rule/skills-with-different-abilities | Skills with Different Abilities
+88. rule/sleep | Sleep
+89. rule/sleight-of-hand | Sleight of Hand
+90. rule/slow | Slow
+91. rule/spear | Spear
+92. rule/speed | Speed
+93. rule/spell | Spell
+94. rule/spell-attack | Spell Attack
+95. rule/spell-points | Spell Points
+96. rule/spellcasting-expanded-rules | Spellcasting (expanded rules)
+97. rule/spellcasting-focus | Spellcasting Focus
+98. rule/sphere | Sphere
+99. rule/sphere-area-of-effect | Sphere [Area of Effect]
+100. rule/stabilize-a-creature | Stabilize a Creature

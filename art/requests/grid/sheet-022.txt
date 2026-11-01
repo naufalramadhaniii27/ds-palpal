@@ -1,0 +1,101 @@
+LEMBAR 022, 100 sel
+1. spell/invisibility-purge | Invisibility Purge
+2. spell/invoke-the-amaranthine | Invoke the Amaranthine
+3. spell/ionize | Ionize
+4. spell/ire-of-the-mountain | Ire of the Mountain
+5. spell/iron-hand | Iron Hand
+6. spell/iron-mind-deep-magic | Iron Mind (Deep Magic)
+7. spell/iron-stomach | Iron Stomach
+8. spell/jam-weapon | Jam Weapon
+9. spell/jerilyns-cadaverous-uprising | Jerilyn's Cadaverous Uprising
+10. spell/jethros-instant-reload | Jethro's Instant Reload
+11. spell/jeweled-fissure | Jeweled Fissure
+12. spell/jotunn-transformation | Jotunn Transformation
+13. spell/jumping-jolt | Jumping Jolt
+14. spell/kareefs-entreaty | Kareef's Entreaty
+15. spell/kavelins-instant-aerosol | Kavelin's Instant Aerosol
+16. spell/keening-wail | Keening Wail
+17. spell/killing-fields | Killing Fields
+18. spell/kiss-of-the-succubus | Kiss of the Succubus
+19. spell/kobolds-fury | Kobold's Fury
+20. spell/labyrinth-mastery | Labyrinth Mastery
+21. spell/labyrinthine-howl | Labyrinthine Howl
+22. spell/lacerate | Lacerate
+23. spell/lair-sense | Lair Sense
+24. spell/lance-of-the-sun-god | Lance of the Sun God
+25. spell/land-bond | Land Bond
+26. spell/lashing-tendrils | Lashing Tendrils
+27. spell/last-rays-of-the-dying-sun | Last Rays of the Dying Sun
+28. spell/laugh-in-the-face-of-fear | Laugh in the Face of Fear
+29. spell/lava-stone | Lava Stone
+30. spell/lay-to-rest | Lay to Rest
+31. spell/legend-killer | Legend Killer
+32. spell/legendary-libation | Legendary Libation
+33. spell/legion | Legion
+34. spell/legion-of-rabid-squirrels | Legion of Rabid Squirrels
+35. spell/lesser-charm | Lesser Charm
+36. spell/lesser-ley-pulse | Lesser Ley Pulse
+37. spell/lesser-maze | Lesser Maze
+38. spell/ley-disruption | Ley Disruption
+39. spell/ley-energy-bolt | Ley Energy Bolt
+40. spell/ley-leech | Ley Leech
+41. spell/ley-sense | Ley Sense
+42. spell/ley-storm | Ley Storm
+43. spell/ley-surge | Ley Surge
+44. spell/ley-whip | Ley Whip
+45. spell/liars-gift | Liar's Gift
+46. spell/life-drain-deep-magic | Life Drain (Deep Magic)
+47. spell/life-hack | Life Hack
+48. spell/life-sense | Life Sense
+49. spell/life-siphon | Life Siphon
+50. spell/life-tether | Life Tether
+51. spell/life-transference-arrow | Life Transference Arrow
+52. spell/life-from-death | Life from Death
+53. spell/lifesink | Lifesink
+54. spell/lightning-charged | Lightning Charged
+55. spell/lightning-surge | Lightning Surge
+56. spell/litany-of-sure-hands | Litany of Sure Hands
+57. spell/little-death | Little Death
+58. spell/living-shadows | Living Shadows
+59. spell/local-jump | Local Jump
+60. spell/lock-armor | Lock Armor
+61. spell/looping-trail | Looping Trail
+62. spell/lovesick | Lovesick
+63. spell/lower-the-veil | Lower the Veil
+64. spell/machine-sacrifice | Machine Sacrifice
+65. spell/machine-speech | Machine Speech
+66. spell/machines-load | Machine's Load
+67. spell/maddening-whispers | Maddening Whispers
+68. spell/maelfas-quickened-class | Maelfa's Quickened Class
+69. spell/magecraft | Magecraft
+70. spell/magic-daggers | Magic Daggers
+71. spell/magic-mirror | Magic Mirror
+72. spell/magma-spray | Magma Spray
+73. spell/magnet-trap | Magnet Trap
+74. spell/magnetize | Magnetize
+75. spell/maiden-of-bones | Maiden of Bones
+76. spell/maim | Maim
+77. spell/malevolent-waves | Malevolent Waves
+78. spell/malicious-rancor | Malicious Rancor
+79. spell/mammons-avarice | Mammon's Avarice
+80. spell/mammons-due | Mammon's Due
+81. spell/mandys-enchanted-carriage | Mandy's Enchanted Carriage
+82. spell/mandys-feral-follower | Mandy's Feral Follower
+83. spell/mandys-marvelous-dress | Mandy's Marvelous Dress
+84. spell/mantle-of-the-brave | Mantle of the Brave
+85. spell/map | Map
+86. spell/mark-prey | Mark Prey
+87. spell/marrow-transplant | Marrow Transplant
+88. spell/mass-blade-ward | Mass Blade Ward
+89. spell/mass-hobble-mount | Mass Hobble Mount
+90. spell/mass-repair-metal | Mass Repair Metal
+91. spell/mass-skirmish | Mass Skirmish
+92. spell/mass-surge-dampener | Mass Surge Dampener
+93. spell/maw-of-needles | Maw of Needles
+94. spell/mechanical-union | Mechanical Union
+95. spell/melting-curse | Melting Curse
+96. spell/memento-mori | Memento Mori
+97. spell/memorize | Memorize
+98. spell/mend-plants | Mend Plants
+99. spell/mephitic-croak | Mephitic Croak
+100. spell/meteoroid-shower | Meteoroid Shower

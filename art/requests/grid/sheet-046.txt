@@ -1,0 +1,101 @@
+LEMBAR 046, 100 sel
+1. gear/canvas-1-sq-yd | Canvas (1 sq. yd.)
+2. gear/captains-chair | Captain's Chair
+3. gear/carbonic-suit | Carbonic Suit
+4. gear/carnelian | Carnelian
+5. gear/carriage | Carriage
+6. gear/carrion-crawler-mucus | Carrion Crawler Mucus
+7. gear/cart | Cart
+8. gear/carved-bone-statuette | Carved bone statuette
+9. gear/carved-harp-of-exotic-wood-with-ivory-inlay-and-zircon-gems | Carved harp of exotic wood with ivory inlay and zircon gems
+10. gear/carved-ivory-statuette | Carved ivory statuette
+11. gear/carved-jade-statuette-river-heralds | Carved jade statuette (River Heralds)
+12. gear/carved-wooden-harp-with-ivory-inlay-and-zircon-gems | Carved wooden harp with ivory inlay and zircon gems
+13. gear/ceremonial-electrum-dagger-with-a-black-pearl-in-the-pommel | Ceremonial electrum dagger with a black pearl in the pommel
+14. gear/ceremonial-gold-armor-with-black-pearls | Ceremonial gold armor with black pearls
+15. gear/ceremonial-silver-dagger-with-gold-pommel-and-black-pearl-legion-of-dusk | Ceremonial silver dagger with gold pommel and black pearl (Legion of Dusk)
+16. gear/chain-10-feet | Chain (10 feet)
+17. gear/chalcedony | Chalcedony
+18. gear/chalk-1-piece | Chalk (1 piece)
+19. gear/chariot | Chariot
+20. gear/cheese-wedge | Cheese (wedge)
+21. gear/chicken | Chicken
+22. gear/chrysoberyl | Chrysoberyl
+23. gear/chrysoprase | Chrysoprase
+24. gear/chunk-of-meat | Chunk of Meat
+25. gear/cinnamon | Cinnamon
+26. gear/citrine | Citrine
+27. gear/cloaking | Cloaking
+28. gear/cloth-of-gold-vestments | Cloth-of-gold vestments
+29. gear/cloth-of-gold-vestments-legion-of-dusk | Cloth-of-gold vestments (Legion of Dusk)
+30. gear/clothing-cold-weather | Clothing, cold weather
+31. gear/cloves | Cloves
+32. gear/comm-set | Comm Set
+33. gear/common-clothes | Common Clothes
+34. gear/common-wine-bottle | Common Wine (bottle)
+35. gear/common-wine-pitcher | Common Wine (pitcher)
+36. gear/concealed-blade | Concealed Blade
+37. gear/concussion-grenade | Concussion Grenade
+38. gear/copper-1-lb | Copper (1 lb)
+39. gear/copper-chalice-with-silver-filigree | Copper chalice with silver filigree
+40. gear/copper-stein-with-silver-filigree-brazen-coalition | Copper stein with silver filigree (Brazen Coalition)
+41. gear/coral | Coral
+42. gear/costume-clothes | Costume Clothes
+43. gear/cotton-cloth-1-sq-yd | Cotton Cloth (1 sq. yd.)
+44. gear/cow | Cow
+45. gear/crampons | Crampons
+46. gear/crossbow-bolt | Crossbow Bolt
+47. gear/crossbow-bolt-case | Crossbow Bolt Case
+48. gear/crossbow-bolts-20 | Crossbow Bolts (20)
+49. gear/cultists-robe | Cultist's Robe
+50. gear/damselfly-ship | Damselfly Ship
+51. gear/deathdance | Deathdance
+52. gear/designer-clothes | Designer Clothes
+53. gear/detailed-life-sized-dragonborn-skull-cast-in-electrum | Detailed, life-sized dragonborn skull cast in electrum
+54. gear/diamond | Diamond
+55. gear/dogsled | Dogsled
+56. gear/donkey | Donkey
+57. gear/dragon-shot | Dragon Shot
+58. gear/dragons-blood | Dragon's Blood
+59. gear/dreamlily | Dreamlily
+60. gear/drow-poison | Drow Poison
+61. gear/dust-of-the-mummy | Dust of the Mummy
+62. gear/dustbloom-spices | Dustbloom Spices
+63. gear/dynamite | Dynamite
+64. gear/dynamite-stick | Dynamite (stick)
+65. gear/dynamite-stick-2 | Dynamite Stick
+66. gear/elderberry-everwine | Elderberry Everwine
+67. gear/elephant | Elephant
+68. gear/elven-trinket | Elven Trinket
+69. gear/emblem | Emblem
+70. gear/embroidered-glove-set-with-jewel-chips | Embroidered glove set with jewel chips
+71. gear/embroidered-silk-and-velvet-mantle-set-with-numerous-moonstones | Embroidered silk and velvet mantle set with numerous moonstones
+72. gear/embroidered-silk-handkerchief | Embroidered silk handkerchief
+73. gear/emerald | Emerald
+74. gear/energy-cell | Energy Cell
+75. gear/engineers-pack | Engineer's Pack
+76. gear/engineers-station | Engineer's Station
+77. gear/environ-suit | Environ Suit
+78. gear/escape-pods | Escape Pods
+79. gear/essence-of-ether | Essence of Ether
+80. gear/exotic-saddle | Exotic Saddle
+81. gear/explosive-bullet | Explosive Bullet
+82. gear/explosive-bullets-10 | Explosive Bullets (10)
+83. gear/explosive-cannonball | Explosive Cannonball
+84. gear/explosive-seed | Explosive Seed
+85. gear/eye-agate | Eye Agate
+86. gear/eye-patch-decorated-with-tiny-blue-sapphires-and-moonstones | Eye patch decorated with tiny blue sapphires and moonstones
+87. gear/eye-patch-with-a-mock-eye-set-in-blue-sapphire-and-moonstone | Eye patch with a mock eye set in blue sapphire and moonstone
+88. gear/eye-patch-with-a-mock-eye-set-in-blue-sapphire-and-moonstone-brazen-coalition | Eye patch with a mock eye set in blue sapphire and moonstone (Brazen Coalition)
+89. gear/eyescratch | Eyescratch
+90. gear/feathered-mantle-with-emerald-clasp-sun-empire | Feathered mantle with emerald clasp (Sun Empire)
+91. gear/feed-1-day | Feed (1 day)
+92. gear/feed-per-day | Feed (per day)
+93. gear/ferrofiber-hardsuit | Ferrofiber Hardsuit
+94. gear/ffolk-sailing-ship | Ffolk Sailing Ship
+95. gear/fighter-bay | Fighter Bay
+96. gear/fine-wine-bottle | Fine Wine (bottle)
+97. gear/fine-gold-chain-set-with-a-fire-opal | Fine gold chain set with a fire opal
+98. gear/fine-gold-chain-with-fire-opals-legion-of-dusk | Fine gold chain with fire opals (Legion of Dusk)
+99. gear/fine-robe-with-dinosaur-feathers-and-silver-embroidery-sun-empire | Fine robe with dinosaur feathers and silver embroidery (Sun Empire)
+100. gear/fine-steel-rapier-with-gold-filigree-hilt-legion-of-dusk | Fine steel rapier with gold filigree hilt (Legion of Dusk)

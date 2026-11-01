@@ -1,0 +1,101 @@
+LEMBAR 020, 100 sel
+1. spell/forest-of-dread | Forest of Dread
+2. spell/forest-of-spears | Forest of Spears
+3. spell/foretell-distraction | Foretell Distraction
+4. spell/form-of-the-gods | Form of the Gods
+5. spell/fortitude | Fortitude
+6. spell/fractured-shell | Fractured Shell
+7. spell/frailform | Frailform
+8. spell/frailty | Frailty
+9. spell/free-throw | Free Throw
+10. spell/freedom-of-the-waves | Freedom of the Waves
+11. spell/freedom-of-the-winds | Freedom of the Winds
+12. spell/freeze-blood | Freeze Blood
+13. spell/freeze-potion | Freeze Potion
+14. spell/freezing-fog | Freezing Fog
+15. spell/frenzied-bolt | Frenzied Bolt
+16. spell/frenzy | Frenzy
+17. spell/frightful-start | Frightful Start
+18. spell/frigid-blade | Frigid Blade
+19. spell/frolicking-fountain | Frolicking Fountain
+20. spell/frostbite-deep-magic | Frostbite (Deep Magic)
+21. spell/frostbitten-fingers | Frostbitten Fingers
+22. spell/frozen-razors | Frozen Razors
+23. spell/furious-hooves | Furious Hooves
+24. spell/fusillade-of-ice | Fusillade of Ice
+25. spell/gahouls-glorious-gothic | Gahoul's Glorious Gothic
+26. spell/gahouls-scapegoat | Gahoul's Scapegoat
+27. spell/gahouls-shrieking-skull | Gahoul's Shrieking Skull
+28. spell/gahouls-spectral-scythe | Gahoul's Spectral Scythe
+29. spell/game-of-fate | Game of Fate
+30. spell/gear-barrage | Gear Barrage
+31. spell/gear-shield | Gear Shield
+32. spell/geodesic-shield | Geodesic Shield
+33. spell/geomantic-discernment | Geomantic Discernment
+34. spell/ghost-light | Ghost Light
+35. spell/ghoul-kings-cloak | Ghoul King's Cloak
+36. spell/giants-jest | Giant's Jest
+37. spell/gift-of-azathoth | Gift of Azathoth
+38. spell/gift-of-luck | Gift of Luck
+39. spell/gift-of-resilience | Gift of Resilience
+40. spell/gird-the-spirit | Gird the Spirit
+41. spell/glacial-cascade | Glacial Cascade
+42. spell/glacial-fog | Glacial Fog
+43. spell/glamer-of-mundanity | Glamer of Mundanity
+44. spell/gliding-step | Gliding Step
+45. spell/glimpse-of-the-void | Glimpse of the Void
+46. spell/glimpse-the-end | Glimpse the End
+47. spell/globe-of-twilight | Globe of Twilight
+48. spell/gloomwrought-barrier | Gloomwrought Barrier
+49. spell/gluey-globule | Gluey Globule
+50. spell/glyph-of-shifting | Glyph of Shifting
+51. spell/goats-hoof-charm | Goat's Hoof Charm
+52. spell/going-in-circles | Going in Circles
+53. spell/gordolays-pleasant-aroma | Gordolay's Pleasant Aroma
+54. spell/grain-of-truth | Grain of Truth
+55. spell/grasp-of-the-grave | Grasp of the Grave
+56. spell/grasp-of-the-tupilak | Grasp of the Tupilak
+57. spell/grave-sense | Grave Sense
+58. spell/gravitational-distortion | Gravitational Distortion
+59. spell/graviturgic-smite | Graviturgic Smite
+60. spell/gravity-barrier | Gravity Barrier
+61. spell/gravity-leap | Gravity Leap
+62. spell/gravity-spike | Gravity Spike
+63. spell/gravity-storm | Gravity Storm
+64. spell/gravity-well | Gravity Well
+65. spell/gravity-well-steinhardt | Gravity Well (Steinhardt)
+66. spell/gravity-whip | Gravity Whip
+67. spell/greater-aid | Greater Aid
+68. spell/greater-analyze-device | Greater Analyze Device
+69. spell/greater-animate-dead | Greater Animate Dead
+70. spell/greater-enhance-ability | Greater Enhance Ability
+71. spell/greater-ley-pulse | Greater Ley Pulse
+72. spell/greater-maze | Greater Maze
+73. spell/greater-mending | Greater Mending
+74. spell/greater-protective-nimbus | Greater Protective Nimbus
+75. spell/greater-seal-of-sanctuary | Greater Seal of Sanctuary
+76. spell/green-decay | Green Decay
+77. spell/green-mantle | Green Mantle
+78. spell/gremlins | Gremlins
+79. spell/grim-siphon | Grim Siphon
+80. spell/grinding-gears | Grinding Gears
+81. spell/grudge-match | Grudge Match
+82. spell/guest-of-honor | Guest of Honor
+83. spell/guiding-star | Guiding Star
+84. spell/gust-barrier | Gust Barrier
+85. spell/hack-system | Hack System
+86. spell/halo-of-flame | Halo of Flame
+87. spell/hamstring | Hamstring
+88. spell/hand-of-doom | Hand of Doom
+89. spell/hangover | Hangover
+90. spell/hard-heart | Hard Heart
+91. spell/hardlight-battleframe | Hardlight Battleframe
+92. spell/hardlight-blaster | Hardlight Blaster
+93. spell/hardlight-chains | Hardlight Chains
+94. spell/hardlight-construction | Hardlight Construction
+95. spell/hardlight-frame | Hardlight Frame
+96. spell/hardlight-gauntlet | Hardlight Gauntlet
+97. spell/hardlight-object | Hardlight Object
+98. spell/hardlight-trap | Hardlight Trap
+99. spell/harry | Harry
+100. spell/harsh-light-of-summers-glare | Harsh Light of Summer's Glare

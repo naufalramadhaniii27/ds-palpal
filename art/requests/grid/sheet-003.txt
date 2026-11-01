@@ -1,0 +1,101 @@
+LEMBAR 003, 100 sel
+1. generic/rod | rod
+2. generic/staff | staff
+3. generic/wand | wand
+4. generic/amulet | amulet
+5. generic/cloak | cloak
+6. generic/boots | boots
+7. generic/gloves | gloves
+8. generic/belt | belt
+9. generic/helm | helm
+10. generic/bracers | bracers
+11. generic/necklace | necklace
+12. generic/orb | orb
+13. generic/instrument | instrument
+14. generic/tome | tome
+15. generic/gem | gem
+16. generic/figurine | figurine
+17. generic/magic-armor | magic armor
+18. generic/magic-shield | magic shield
+19. generic/magic-sword | magic sword
+20. generic/magic-axe | magic axe
+21. generic/magic-bow | magic bow
+22. generic/magic-hammer | magic hammer
+23. generic/magic-mace | magic mace
+24. generic/magic-spear | magic spear
+25. generic/magic-dagger | magic dagger
+26. generic/magic-whip | magic whip
+27. generic/magic-trident | magic trident
+28. generic/magic-flail | magic flail
+29. generic/magic-crossbow | magic crossbow
+30. generic/magic-ammunition | magic ammunition
+31. generic/magic-potion | magic potion
+32. generic/magic-scroll | magic scroll
+33. generic/cube | cube
+34. generic/crystal-ball | crystal ball
+35. generic/lamp | lamp
+36. generic/carpet | carpet
+37. generic/horn | horn
+38. generic/mirror | mirror
+39. generic/bag | bag
+40. generic/key | key
+41. generic/tool-set | tool set
+42. generic/kit | kit
+43. generic/container | container
+44. generic/light-source | light source
+45. generic/clothing | clothing
+46. generic/food | food
+47. generic/drink | drink
+48. generic/mount | mount
+49. generic/tack | tack
+50. generic/trade-good | trade good
+51. generic/quiver | quiver
+52. generic/explosive | explosive
+53. generic/poison | poison
+54. generic/siege-gear | siege gear
+55. generic/spellcasting-focus | spellcasting focus
+56. generic/arcane-focus | arcane focus
+57. generic/druidic-focus | druidic focus
+58. generic/lodging | lodging
+59. generic/writing-supplies | writing supplies
+60. generic/climbing-gear | climbing gear
+61. generic/optfeat-invocation | optfeat invocation
+62. generic/optfeat-metamagic | optfeat metamagic
+63. generic/optfeat-maneuver | optfeat maneuver
+64. generic/optfeat-fighting-style | optfeat fighting style
+65. generic/optfeat-infusion | optfeat infusion
+66. generic/optfeat-pact-boon | optfeat pact boon
+67. generic/optfeat-rune | optfeat rune
+68. generic/optfeat-elemental-discipline | optfeat elemental discipline
+69. generic/optfeat-arcane-shot | optfeat arcane shot
+70. generic/optfeat-psionic-talent | optfeat psionic talent
+71. generic/spells-barbarian | spells barbarian
+72. generic/spells-bard | spells bard
+73. generic/spells-cleric | spells cleric
+74. generic/spells-druid | spells druid
+75. generic/spells-fighter | spells fighter
+76. generic/spells-monk | spells monk
+77. generic/spells-paladin | spells paladin
+78. generic/spells-ranger | spells ranger
+79. generic/spells-rogue | spells rogue
+80. generic/spells-sorcerer | spells sorcerer
+81. generic/spells-warlock | spells warlock
+82. generic/spells-wizard | spells wizard
+83. generic/cantrip | cantrip
+84. generic/ritual | ritual
+85. generic/concentration | concentration
+86. generic/level-1 | level 1
+87. generic/level-2 | level 2
+88. generic/level-3 | level 3
+89. generic/level-4 | level 4
+90. generic/level-5 | level 5
+91. generic/level-6 | level 6
+92. generic/level-7 | level 7
+93. generic/level-8 | level 8
+94. generic/level-9 | level 9
+95. generic/verbal | verbal
+96. generic/somatic | somatic
+97. generic/material | material
+98. generic/reaction | reaction
+99. generic/bonus-action | bonus action
+100. generic/action | action

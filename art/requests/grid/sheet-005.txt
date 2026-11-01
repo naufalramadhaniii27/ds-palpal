@@ -1,0 +1,101 @@
+LEMBAR 005, 100 sel
+1. bg/agent-of-augustine | Agent of Augustine
+2. bg/amnesiac | Amnesiac
+3. bg/amnesiac-dark-matter | Amnesiac (Dark Matter)
+4. bg/anthropologist | Anthropologist
+5. bg/antiquarian | Antiquarian
+6. bg/archivist | Archivist
+7. bg/aristocrat | Aristocrat
+8. bg/artist | Artist
+9. bg/ashari | Ashari
+10. bg/augen-trust-spy | Augen Trust (Spy)
+11. bg/azorius-functionary | Azorius Functionary
+12. bg/baldurs-gate-acolyte | Baldur's Gate Acolyte
+13. bg/baldurs-gate-charlatan | Baldur's Gate Charlatan
+14. bg/baldurs-gate-entertainer | Baldur's Gate Entertainer
+15. bg/baldurs-gate-folk-hero | Baldur's Gate Folk Hero
+16. bg/baldurs-gate-guild-artisan | Baldur's Gate Guild Artisan
+17. bg/baldurs-gate-hermit | Baldur's Gate Hermit
+18. bg/baldurs-gate-noble | Baldur's Gate Noble
+19. bg/baldurs-gate-outlander | Baldur's Gate Outlander
+20. bg/baldurs-gate-sage | Baldur's Gate Sage
+21. bg/baldurs-gate-sailor | Baldur's Gate Sailor
+22. bg/baldurs-gate-soldier | Baldur's Gate Soldier
+23. bg/baldurs-gate-urchin | Baldur's Gate Urchin
+24. bg/bandit-defector | Bandit Defector
+25. bg/beast-hunter | Beast Hunter
+26. bg/beast-hunter-steinhardt | Beast Hunter (Steinhardt)
+27. bg/beggar | Beggar
+28. bg/boros-legionnaire | Boros Legionnaire
+29. bg/botanist | Botanist
+30. bg/carouser | Carouser
+31. bg/changeling-traveler | Changeling Traveler
+32. bg/chapter-knight | Chapter Knight
+33. bg/city-watch | City Watch
+34. bg/clan-crafter | Clan Crafter
+35. bg/clasp-member | Clasp Member
+36. bg/cloistered-scholar | Cloistered Scholar
+37. bg/cobalt-scholar-sage | Cobalt Scholar (Sage)
+38. bg/courtier | Courtier
+39. bg/courtier-grim-hollow | Courtier (Grim Hollow)
+40. bg/cult-initiate | Cult Initiate
+41. bg/dimir-operative | Dimir Operative
+42. bg/disciple | Disciple
+43. bg/disgraced-raider | Disgraced Raider
+44. bg/envoy | Envoy
+45. bg/executioner | Executioner
+46. bg/exile | Exile
+47. bg/explorer | Explorer
+48. bg/exterminator | Exterminator
+49. bg/faceless | Faceless
+50. bg/faction-agent | Faction Agent
+51. bg/failed-merchant | Failed Merchant
+52. bg/far-traveler | Far Traveler
+53. bg/fey-hostage | Fey Hostage
+54. bg/fey-blessed | Fey-Blessed
+55. bg/fisher | Fisher
+56. bg/folk-hero | Folk Hero
+57. bg/free-swords-mercenary | Free Swords Mercenary
+58. bg/galactic-colonist | Galactic Colonist
+59. bg/gambler | Gambler
+60. bg/golgari-agent | Golgari Agent
+61. bg/grounded | Grounded
+62. bg/gruul-anarch | Gruul Anarch
+63. bg/guild-artisan | Guild Artisan
+64. bg/haunted | Haunted
+65. bg/heretic-grim-hollow | Heretic (Grim Hollow)
+66. bg/holo-influencer | Holo-Influencer
+67. bg/inheritor | Inheritor
+68. bg/inquisitor-of-the-faithful | Inquisitor of the Faithful
+69. bg/interpreter | Interpreter
+70. bg/izzet-engineer | Izzet Engineer
+71. bg/knight-of-the-order | Knight of the Order
+72. bg/lapsed-inquisitor | Lapsed Inquisitor
+73. bg/lawyer | Lawyer
+74. bg/lorehold-student | Lorehold Student
+75. bg/low-worlder | Low-Worlder
+76. bg/luxonborn-acolyte | Luxonborn (Acolyte)
+77. bg/lyceum-scholar | Lyceum Scholar
+78. bg/lyceum-student | Lyceum Student
+79. bg/malenti | Malenti
+80. bg/marine | Marine
+81. bg/marked-for-death | Marked for Death
+82. bg/medic | Medic
+83. bg/mercenary | Mercenary
+84. bg/mercenary-veteran | Mercenary Veteran
+85. bg/miner | Miner
+86. bg/myriad-operative | Myriad Operative
+87. bg/myriad-operative-criminal | Myriad Operative (Criminal)
+88. bg/natural | Natural
+89. bg/one-of-the-taken | One of the Taken
+90. bg/orzhov-representative | Orzhov Representative
+91. bg/outlander | Outlander
+92. bg/physician | Physician
+93. bg/pioneer | Pioneer
+94. bg/pit-fighter | Pit Fighter
+95. bg/plaintiff | Plaintiff
+96. bg/pox-touched | Pox-Touched
+97. bg/prisoner | Prisoner
+98. bg/programmer | Programmer
+99. bg/rakdos-cultist | Rakdos Cultist
+100. bg/recovered-cultist | Recovered Cultist

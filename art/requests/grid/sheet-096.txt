@@ -1,0 +1,101 @@
+LEMBAR 096, 100 sel
+1. feature/thrall-rush | Thrall Rush | sub:Pale Master|Thrall Rush
+2. feature/threat-assessment | Threat Assessment | sub:Bounty Hunter|Threat Assessment
+3. feature/threatening-presence | Threatening Presence | sub:Bulwark Warrior|Threatening Presence
+4. feature/thri-kreen-telepathy | Thri-kreen Telepathy | sp:Thri-kreen|Thri-kreen Telepathy
+5. feature/thrill-of-the-hunt | Thrill of the Hunt | sub:The Predator|Thrill of the Hunt
+6. feature/thriller-lichdom | Thriller [Lichdom] | sub:Necrodancer|Thriller [Lichdom]
+7. feature/thrum-of-the-land | Thrum of the Land | sub:Leyline Magic|Thrum of the Land
+8. feature/thunder-gauntlets | Thunder Gauntlets
+9. feature/thunderblast | Thunderblast | sub:Storm Sentinel|Thunderblast
+10. feature/thunderbolt-strike | Thunderbolt Strike | sub:Tempest Domain|Thunderbolt Strike
+11. feature/thunderous-blows | Thunderous Blows | sub:Path of the Juggernaut|Thunderous Blows
+12. feature/thunderous-blows-10th-level | Thunderous Blows (10th Level) | sub:Path of the Juggernaut|Thunderous Blows (10th Level)
+13. feature/timberwalk | Timberwalk | sp:Lotusden Halfling|Timberwalk
+14. feature/time-loop | Time Loop | sub:Chronomancer|Time Loop
+15. feature/time-mastery | Time Mastery | sub:Timekeeper|Time Mastery
+16. feature/time-slip | Time Slip | sub:Farseer|Time Slip
+17. feature/timed-demolition | Timed Demolition | sub:Mad Bomber|Timed Demolition
+18. feature/timeless-body | Timeless Body
+19. feature/tinker | Tinker | sp:Rock Gnome|Tinker
+20. feature/tinkers-magic | Tinker's Magic
+21. feature/tipsy-sway | Tipsy Sway | sub:Way of the Drunken Master|Tipsy Sway
+22. feature/tireless-precision | Tireless Precision | sp:Vedalken|Tireless Precision
+23. feature/tireless-spirit | Tireless Spirit | sub:Samurai|Tireless Spirit
+24. feature/titanic-body | Titanic Body | sub:Bond of the Wrathful Giant|Titanic Body
+25. feature/titanic-strength | Titanic Strength | sub:Marauder Chapter|Titanic Strength
+26. feature/together-forever | Together Forever | sp:Cursed-Blood|Together Forever
+27. feature/tokens-of-the-departed | Tokens of the Departed | sub:Phantom|Tokens of the Departed
+28. feature/tongue-of-the-sun-and-moon | Tongue of the Sun and Moon
+29. feature/tongues-of-the-mountains | Tongues of the Mountains | sub:Mountain Domain|Tongues of the Mountains
+30. feature/tool-expertise | Tool Expertise
+31. feature/totalitarian-control | Totalitarian Control | sub:Burden of Tyranny|Totalitarian Control
+32. feature/totemic-protection | Totemic Protection | sub:Bond of the Spirit Animal|Totemic Protection
+33. feature/touch-of-death | Touch of Death | sub:Way of the Long Death|Touch of Death
+34. feature/touch-of-the-long-death | Touch of the Long Death | sub:Way of the Long Death|Touch of the Long Death
+35. feature/touched | Touched | sp:Luma|Touched
+36. feature/touched-by-the-sibyl | Touched by the Sibyl | sub:The Sibyl|Touched by the Sibyl
+37. feature/touched-by-the-sybil | Touched by the Sybil | sub:The Sibyl|Touched by the Sybil
+38. feature/tough | Tough | sp:Human (Stensia)|Tough
+39. feature/tower-shield | Tower Shield | sub:Armigers' Guild|Tower Shield
+40. feature/toxic-recompense | Toxic Recompense | sub:Venomsmith|Toxic Recompense
+41. feature/toxic-tradecraft | Toxic Tradecraft | sub:Green Reaper|Toxic Tradecraft
+42. feature/toxin-transmutation | Toxin Transmutation | sub:Living Crucible|Toxin Transmutation
+43. feature/trace-of-undeath | Trace of Undeath | sp:Dhampir|Trace of Undeath
+44. feature/trailblazer | Trailblazer | sub:Travel Domain|Trailblazer
+45. feature/training-in-war-and-song | Training in War and Song | sub:Bladesinger|Training in War and Song
+46. feature/training-in-war-and-song-bladesinging | Training in War and Song (Bladesinging)
+47. feature/trance | Trance | sp:Lorwyn Elf|Trance
+48. feature/tranquility | Tranquility | sub:Way of the Open Hand|Tranquility
+49. feature/transient-awakening | Transient Awakening | sub:Evolution Domain|Transient Awakening
+50. feature/transmutation-expert | Transmutation Expert | sub:Bond of the Monster Shaper|Transmutation Expert
+51. feature/transmutation-savant | Transmutation Savant | sub:Transmuter|Transmutation Savant
+52. feature/transmuters-stone | Transmuter's Stone | sub:Transmuter|Transmuter's Stone
+53. feature/transmuting-metabolism | Transmuting Metabolism | sub:Devourer Guild|Transmuting Metabolism
+54. feature/trapper-gadgets | Trapper Gadgets | sub:Trapper Guild|Trapper Gadgets
+55. feature/traps | Traps | sub:Trappers' Guild|Traps
+56. feature/travelers-tricks | Traveler's Tricks | sub:College of the Road|Traveler's Tricks
+57. feature/tree-merging | Tree Merging | sub:Circle of Oaks|Tree Merging
+58. feature/tree-walking | Tree Walking | sub:Circle of Oaks|Tree Walking
+59. feature/trick-shot | Trick Shot | sub:House of Darts|Trick Shot
+60. feature/trinkets | Trinkets | sub:Antiquarian|Trinkets
+61. feature/trip-cost-1d6 | Trip (Cost: 1d6)
+62. feature/tripped-defenses | Tripped Defenses | sub:Winter Trapper|Tripped Defenses
+63. feature/true-grit | True Grit | sub:Carver Guild|True Grit
+64. feature/true-martyrdom | True Martyrdom | sub:Vow of the Martyr|True Martyrdom
+65. feature/trunk | Trunk | sp:Loxodon|Trunk
+66. feature/trusty-mount | Trusty Mount | sub:Highway Rider|Trusty Mount
+67. feature/tuktuk-cunning | Tuktuk Cunning | sp:Goblin (Tuktuk Tribe)|Tuktuk Cunning
+68. feature/tumbling | Tumbling | sub:Acrobat|Tumbling
+69. feature/tumbling-escape | Tumbling Escape | sub:Freerunner|Tumbling Escape
+70. feature/tumbling-taunt | Tumbling Taunt | sub:College of Jesters|Tumbling Taunt
+71. feature/tundra | Tundra
+72. feature/turn-undead | Turn Undead
+73. feature/turn-of-the-wheel | Turn of the Wheel | sub:Burden of Rebirth|Turn of the Wheel
+74. feature/turn-the-faithless | Turn the Faithless
+75. feature/turn-the-tide | Turn the Tide
+76. feature/turn-the-unholy | Turn the Unholy
+77. feature/turquoise-efficiency | Turquoise Efficiency | sub:Blue Magic|Turquoise Efficiency
+78. feature/twilight-domain-spells | Twilight Domain Spells | sub:Twilight Domain|Twilight Domain Spells
+79. feature/twilight-shroud | Twilight Shroud | sub:Twilight Domain|Twilight Shroud
+80. feature/twin-eidolons | Twin Eidolons | sub:Bond of the Elemental Spirit|Twin Eidolons
+81. feature/twin-familiar | Twin Familiar | sub:Green Magic|Twin Familiar
+82. feature/twinkling-constellations | Twinkling Constellations | sub:Circle of Stars|Twinkling Constellations
+83. feature/twisted-arcana | Twisted Arcana | sub:Entropist|Twisted Arcana
+84. feature/twisted-fate | Twisted Fate | sub:House of Dice|Twisted Fate
+85. feature/twisting-redirection | Twisting Redirection | sub:Contortionist|Twisting Redirection
+86. feature/two-for-flinching | Two For Flinching | sub:Scofflaw|Two For Flinching
+87. feature/tyrant-lichdom | Tyrant [Lichdom] | sub:Overlord|Tyrant [Lichdom]
+88. feature/ultimate-empowerment | Ultimate Empowerment | sub:Bond of the Wrathful Giant|Ultimate Empowerment
+89. feature/ultimate-manifestation | Ultimate Manifestation | sub:Bond of the Grave Caller|Ultimate Manifestation
+90. feature/ultimate-trickster | Ultimate Trickster | sub:Bond of the Faerie Trickster|Ultimate Trickster
+91. feature/ultra-slash | Ultra Slash | sub:Cyber Ninja|Ultra Slash
+92. feature/ultraviolence | Ultraviolence | sub:Path of the Dreadnought|Ultraviolence
+93. feature/umbral-escape | Umbral Escape | sub:Shadow Dancer|Umbral Escape
+94. feature/umbral-form | Umbral Form | sub:Shadow Sorcery|Umbral Form
+95. feature/umbral-sight | Umbral Sight | sub:Gloom Stalker (2014)|Umbral Sight
+96. feature/unarguable-wizardry | Unarguable Wizardry | sub:Path of the Muscle Wizard|Unarguable Wizardry
+97. feature/unarmored-movement-improvement | Unarmored Movement improvement
+98. feature/unbreakable | Unbreakable | sub:Marauder Chapter|Unbreakable
+99. feature/unbreakable-majesty | Unbreakable Majesty | sub:College of Glamour (2014)|Unbreakable Majesty
+100. feature/unbreakable-mind | Unbreakable Mind | sub:Path of the Battlemind|Unbreakable Mind

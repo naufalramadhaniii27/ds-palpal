@@ -1,0 +1,101 @@
+LEMBAR 073, 100 sel
+1. feature/channel-divinity-destructive-wrath | Channel Divinity: Destructive Wrath | sub:Tempest Domain|Channel Divinity: Destructive Wrath
+2. feature/channel-divinity-ever-upward | Channel Divinity: Ever Upward | sub:Mountain Domain|Channel Divinity: Ever Upward
+3. feature/channel-divinity-feat-of-strength | Channel Divinity: Feat of Strength | sub:Strength Domain (PSA)|Channel Divinity: Feat of Strength
+4. feature/channel-divinity-feline-finesse | Channel Divinity: Feline Finesse | sub:Cat Domain|Channel Divinity: Feline Finesse
+5. feature/channel-divinity-ferocious-feast | Channel Divinity: Ferocious Feast | sub:Hunger Domain|Channel Divinity: Ferocious Feast
+6. feature/channel-divinity-future-sight | Channel Divinity: Future Sight | sub:Prophecy Domain|Channel Divinity: Future Sight
+7. feature/channel-divinity-group-time-shift | Channel Divinity: Group Time Shift | sub:Time Domain|Channel Divinity: Group Time Shift
+8. feature/channel-divinity-harness-divine-power | Channel Divinity: Harness Divine Power
+9. feature/channel-divinity-hidden-knowledge | Channel Divinity: Hidden Knowledge | sub:Void Domain|Channel Divinity: Hidden Knowledge
+10. feature/channel-divinity-invocation-of-night | Channel Divinity: Invocation of Night | sub:Night Domain|Channel Divinity: Invocation of Night
+11. feature/channel-divinity-knowledge-of-the-ages | Channel Divinity: Knowledge of the Ages | sub:Knowledge Domain (2014)|Channel Divinity: Knowledge of t
+12. feature/channel-divinity-lustful-distraction | Channel Divinity: Lustful Distraction | sub:Lust Domain|Channel Divinity: Lustful Distraction
+13. feature/channel-divinity-magnificent-feast | Channel Divinity: Magnificent Feast | sub:Community Domain|Channel Divinity: Magnificent Feast
+14. feature/channel-divinity-mind-of-two-moons | Channel Divinity: Mind of Two Moons | sub:Moon Domain|Channel Divinity: Mind of Two Moons
+15. feature/channel-divinity-nights-chill | Channel Divinity: Night's Chill | sub:Moon Domain (Deep Magic)|Channel Divinity: Night's Chill
+16. feature/channel-divinity-no-hiding-place | Channel Divinity: No Hiding Place | sub:Justice Domain|Channel Divinity: No Hiding Place
+17. feature/channel-divinity-one-move-ahead | Channel Divinity: One Move Ahead | sub:Prophecy Domain|Channel Divinity: One Move Ahead
+18. feature/channel-divinity-orders-demand | Channel Divinity: Order's Demand | sub:Order Domain|Channel Divinity: Order's Demand
+19. feature/channel-divinity-path-to-the-grave | Channel Divinity: Path to the Grave | sub:Grave Domain (2014)|Channel Divinity: Path to the Grave
+20. feature/channel-divinity-preserve-life | Channel Divinity: Preserve Life | sub:Life Domain (2014)|Channel Divinity: Preserve Life
+21. feature/channel-divinity-read-thoughts | Channel Divinity: Read Thoughts | sub:Knowledge Domain (2014)|Channel Divinity: Read Thoughts
+22. feature/channel-divinity-reinvigorate | Channel Divinity: Reinvigorate | sub:Travel Domain|Channel Divinity: Reinvigorate
+23. feature/channel-divinity-sea-speaker | Channel Divinity: Sea Speaker | sub:Ocean Domain|Channel Divinity: Sea Speaker
+24. feature/channel-divinity-shadowsight | Channel Divinity: Shadowsight | sub:Darkness Domain|Channel Divinity: Shadowsight
+25. feature/channel-divinity-snow-walker | Channel Divinity: Snow Walker | sub:Winter Domain|Channel Divinity: Snow Walker
+26. feature/channel-divinity-time-shift | Channel Divinity: Time Shift | sub:Time Domain|Channel Divinity: Time Shift
+27. feature/channel-divinity-time-stop | Channel Divinity: Time Stop | sub:Speed Domain|Channel Divinity: Time Stop
+28. feature/channel-divinity-touch-of-death | Channel Divinity: Touch of Death | sub:Death Domain|Channel Divinity: Touch of Death
+29. feature/channel-divinity-turn-undead | Channel Divinity: Turn Undead
+30. feature/channel-divinity-twilight-sanctuary | Channel Divinity: Twilight Sanctuary | sub:Twilight Domain|Channel Divinity: Twilight Sanctuary
+31. feature/channel-divinity-undetected | Channel Divinity: Undetected | sub:Hunting Domain|Channel Divinity: Undetected
+32. feature/channel-divinity-weight-of-guilt | Channel Divinity: Weight of Guilt | sub:Apocalypse Domain|Channel Divinity: Weight of Guilt
+33. feature/channel-divinity-wisdom-of-the-winding-way | Channel Divinity: Wisdom of the Winding Way | sub:Labyrinth Domain|Channel Divinity: Wisdom of the Winding
+34. feature/channel-energy | Channel Energy | sub:Aristocratic|Channel Energy
+35. feature/channel-ley-line | Channel Ley Line | sub:Geomancy|Channel Ley Line
+36. feature/channel-magic | Channel Magic | sub:Clockwork Domain|Channel Magic
+37. feature/channeler | Channeler | sub:College of Spirits|Channeler
+38. feature/chaos-magic-savant | Chaos Magic Savant | sub:Entropist|Chaos Magic Savant
+39. feature/chaos-roll | Chaos Roll | sub:House of Dice|Chaos Roll
+40. feature/chaos-savant | Chaos Savant | sub:Chaos|Chaos Savant
+41. feature/charge | Charge | sp:Centaur (2014)|Charge
+42. feature/charged-core | Charged Core | sub:Ionizer|Charged Core
+43. feature/charmer | Charmer | sub:Amorist|Charmer
+44. feature/charnel-aura | Charnel Aura | sub:Overlord|Charnel Aura
+45. feature/charnel-blaster | Charnel Blaster | sub:Cyberghoul|Charnel Blaster
+46. feature/charnel-consumption | Charnel Consumption | sub:Dead Mist Acolyte|Charnel Consumption
+47. feature/charnel-curse | Charnel Curse | sub:Crone|Charnel Curse
+48. feature/charnel-drain | Charnel Drain | sub:Blood Ascendant|Charnel Drain
+49. feature/charnel-empower | Charnel Empower | sub:Pale Master|Charnel Empower
+50. feature/charnel-entangle | Charnel Entangle | sub:Corpse Florist|Charnel Entangle
+51. feature/charnel-groove | Charnel Groove | sub:Necrodancer|Charnel Groove
+52. feature/charnel-puppet | Charnel Puppet | sub:Toymaker|Charnel Puppet
+53. feature/charnel-resilience | Charnel Resilience | sub:Death Knight|Charnel Resilience
+54. feature/charnel-shield | Charnel Shield | sub:Black Rider|Charnel Shield
+55. feature/charnel-toxin | Charnel Toxin | sub:Plague Lord|Charnel Toxin
+56. feature/charnel-veil | Charnel Veil | sub:Reaper|Charnel Veil
+57. feature/cheat-code | Cheat Code | sub:Digital Nomad|Cheat Code
+58. feature/checkmate-maneuver | Checkmate [Maneuver] | sub:House of Kings|Checkmate [Maneuver]
+59. feature/cheese-magic | Cheese Magic | sub:Tyromancer|Cheese Magic
+60. feature/child-of-the-sea | Child of the Sea | sp:Sea Elf (2014)|Child of the Sea
+61. feature/child-of-the-storm | Child of the Storm | sub:Oath of Thunder|Child of the Storm
+62. feature/child-of-the-wood | Child of the Wood | sp:Lotusden Halfling|Child of the Wood
+63. feature/children-of-the-night | Children of the Night | sub:Blood Ascendant|Children of the Night
+64. feature/chilling-disposition | Chilling Disposition | sub:Pale Master|Chilling Disposition
+65. feature/chilling-melody | Chilling Melody | sub:College of Requiems|Chilling Melody
+66. feature/chilling-retribution | Chilling Retribution | sub:Winter Walker|Chilling Retribution
+67. feature/chivalrous-oath | Chivalrous Oath | sub:Knight Errant|Chivalrous Oath
+68. feature/chorus-leader | Chorus Leader | sub:College of Cantors|Chorus Leader
+69. feature/chorus-of-the-sky | Chorus of the Sky | sub:College of Birdsong|Chorus of the Sky
+70. feature/chromatic-ancestry | Chromatic Ancestry | sp:Dragonborn (Chromatic)|Chromatic Ancestry
+71. feature/chromatic-warding | Chromatic Warding | sp:Dragonborn (Chromatic)|Chromatic Warding
+72. feature/chronal-shift | Chronal Shift | sub:Chronurgy Magic|Chronal Shift
+73. feature/chronomancy-savant | Chronomancy Savant | sub:Chronomancer|Chronomancy Savant
+74. feature/chronomantic-secrets | Chronomantic Secrets | sub:College of Chronology|Chronomantic Secrets
+75. feature/chronoshift | Chronoshift | sub:Chronomancer|Chronoshift
+76. feature/circle-of-blood-spells | Circle of Blood Spells | sub:Circle of Blood|Circle of Blood Spells
+77. feature/circle-of-configuration-spells | Circle of Configuration Spells | sub:Circle of Configuration|Circle of Configuration Spells
+78. feature/circle-of-mortality | Circle of Mortality | sub:Grave Domain|Circle of Mortality
+79. feature/circle-of-xenobiology-spells | Circle of Xenobiology Spells | sub:Circle of Xenobiology|Circle of Xenobiology Spells
+80. feature/circle-of-the-forged-spells | Circle of the Forged Spells | sub:Circle of the Forged|Circle of the Forged Spells
+81. feature/circle-of-the-sea-spells | Circle of the Sea Spells | sub:Circle of the Sea|Circle of the Sea Spells
+82. feature/clairvoyant-combatant | Clairvoyant Combatant | sub:Great Old One Patron|Clairvoyant Combatant
+83. feature/clarity-of-catha | Clarity of Catha | sub:Moon Domain|Clarity of Catha
+84. feature/claws | Claws | sp:Leonin|Claws
+85. feature/cleanse-with-fire | Cleanse with Fire | sub:Purification Domain|Cleanse with Fire
+86. feature/cleansing-touch | Cleansing Touch
+87. feature/cleric-subclass | Cleric Subclass | cls:Cleric|Cleric Subclass
+88. feature/climb-speed | Climb Speed | sp:Hadozee|Climb Speed
+89. feature/climbing | Climbing | sp:Kor|Climbing
+90. feature/cloak-and-dagger | Cloak and Dagger | sub:Spy|Cloak and Dagger
+91. feature/clocks-unwinding | Clock's Unwinding | sub:The Great Machine|Clock's Unwinding
+92. feature/clockwork-apotheosis | Clockwork Apotheosis | sub:Clockwork Domain|Clockwork Apotheosis
+93. feature/clockwork-constructs | Clockwork Constructs | sub:Clockworkers' Guild|Clockwork Constructs
+94. feature/clockwork-gods | Clockwork Gods | sub:Clockwork Domain|Clockwork Gods
+95. feature/clockwork-lich-lichdom | Clockwork Lich [Lichdom] | sub:Toymaker|Clockwork Lich [Lichdom]
+96. feature/clockwork-mastery | Clockwork Mastery | sub:Clockwork Mage|Clockwork Mastery
+97. feature/clockwork-spells | Clockwork Spells | sub:Clockwork Sorcery|Clockwork Spells
+98. feature/close-quarters | Close Quarters | sub:Carver Guild|Close Quarters
+99. feature/close-quarters-shooting | Close-Quarters Shooting | sub:Eagle Banner|Close-Quarters Shooting
+100. feature/cloud-dancer | Cloud Dancer | sub:Sky Magic|Cloud Dancer

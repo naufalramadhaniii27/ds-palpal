@@ -1,0 +1,101 @@
+LEMBAR 064, 100 sel
+1. recipe/qualinesti-vegetable-stew | Qualinesti Vegetable Stew
+2. recipe/quijs-plate | Quij's Plate
+3. recipe/quith-pa | Quith-pa
+4. recipe/ray-of-frost | Ray of Frost
+5. recipe/reghed-venison-pot-roast | Reghed Venison Pot Roast
+6. recipe/restoration | Restoration
+7. recipe/rewards | Rewards
+8. recipe/rime-of-the-frostmaiden | Rime Of The Frostmaiden
+9. recipe/river-fish-fry | River Fish Fry
+10. recipe/roasted-plums-and-burrata | Roasted Plums and Burrata
+11. recipe/rollrum | Rollrum
+12. recipe/roth-steak | Rothé Steak
+13. recipe/ruby-cordial | Ruby Cordial
+14. recipe/rumtack | Rumtack
+15. recipe/saerloonian-glowfire | Saerloonian Glowfire
+16. recipe/salbread | Salbread
+17. recipe/sarth | Sarth
+18. recipe/scrap-and-oil | Scrap And Oil
+19. recipe/scrimshaw | Scrimshaw
+20. recipe/seafoam | Seafoam
+21. recipe/seelie-court-cheese-and-potato-soup | Seelie Court Cheese and Potato Soup
+22. recipe/sembian-honey-glazed-roth-ribs | Sembian Honey-Glazed Rothé Ribs
+23. recipe/sensate-palate-cleanser | Sensate Palate Cleanser
+24. recipe/shadowdark | Shadowdark
+25. recipe/silverfruit-pie | Silverfruit Pie
+26. recipe/smoked-sausages-and-kraut-with-dwarven-mustard | Smoked Sausages and Kraut with Dwarven Mustard
+27. recipe/solstice-soup | Solstice Soup
+28. recipe/sornstag | Sornstag
+29. recipe/sour-cream-walnut-cake | Sour Cream-Walnut Cake
+30. recipe/spiced-pork-and-orange-peppers | Spiced Pork and Orange Peppers
+31. recipe/spicy-brothers-honey-glazed-hot-chips | Spicy Brothers Honey-Glazed Hot Chips
+32. recipe/sprucebark-quaff | Sprucebark Quaff
+33. recipe/steak-of-the-deep | Steak of the Deep
+34. recipe/stuffed-egg-battered-toast | Stuffed Egg-Battered Toast
+35. recipe/stuffed-trout | Stuffed Trout
+36. recipe/surrogate-steaks | Surrogate Steaks
+37. recipe/sweet-butter-ale | Sweet Butter Ale
+38. recipe/sword-coast-seafood-bouillabaisse | Sword Coast Seafood Bouillabaisse
+39. recipe/tpk-total-party-katastrophe | TPK (Total Party Katastrophe)
+40. recipe/talyth | Talyth
+41. recipe/tamarind-balls | Tamarind Balls
+42. recipe/tarsis-style-shrimp | Tarsis-Style Shrimp
+43. recipe/tavern-steak | Tavern "Steak | Tavern "Steak"
+44. recipe/tavern-crickets | Tavern Crickets
+45. recipe/tavern-noodles | Tavern Noodles
+46. recipe/tavern-punch | Tavern Punch
+47. recipe/tearoom-cookies | Tearoom Cookies
+48. recipe/tears-of-sel-ne | Tears of Selûne
+49. recipe/the-bag | The Bag
+50. recipe/the-hoard | The Hoard
+51. recipe/the-mindflayer | The Mindflayer
+52. recipe/thrakel-seared-beef-in-red-sauce | Thrakel-Seared Beef in Red Sauce
+53. recipe/tikas-honey-mead | Tika's Honey Mead
+54. recipe/trail-mashums | Trail Mash'ums
+55. recipe/travelers-stew | Traveler's Stew
+56. recipe/trencher-bread | Trencher Bread
+57. recipe/trolltide-candied-apples | Trolltide Candied Apples
+58. recipe/twice-baked-cockatrice-wings | Twice-Baked Cockatrice Wings
+59. recipe/two-hares-inn-rabbit-stew | Two Hares Inn Rabbit Stew
+60. recipe/tymoras-coins | Tymora's Coins
+61. recipe/underdark-forage-board | Underdark Forage Board
+62. recipe/underdark-lotus-with-fire-lichen-spread | Underdark Lotus with Fire Lichen Spread
+63. recipe/undermountain-alurlyath | Undermountain Alurlyath
+64. recipe/utmost-discretion | Utmost Discretion
+65. recipe/vadas-vanilla-buns | Vada's Vanilla Buns
+66. recipe/vedbread | Vedbread
+67. recipe/waterdeep-charcuterie | Waterdeep Charcuterie
+68. recipe/whole-roast-boar | Whole Roast Boar
+69. recipe/wood-elf-forest-salad | Wood Elf Forest Salad
+70. recipe/yawning-portal-buttermilk-biscuits | Yawning Portal Buttermilk Biscuits
+71. recipe/zzar | Zzar
+72. cult/cult-of-asmodeus | Cult of Asmodeus
+73. cult/cult-of-atropus-the-world-born-dead | Cult of Atropus, the World Born Dead
+74. cult/cult-of-baalzebul | Cult of Baalzebul
+75. cult/cult-of-baphomet | Cult of Baphomet
+76. cult/cult-of-belzenlok | Cult of Belzenlok
+77. cult/cult-of-borem-of-the-lake-of-boiling-mud | Cult of Borem, of the Lake of Boiling Mud
+78. cult/cult-of-demogorgon | Cult of Demogorgon
+79. cult/cult-of-dispater | Cult of Dispater
+80. cult/cult-of-fierna | Cult of Fierna
+81. cult/cult-of-fraz-urbluu | Cult of Fraz-Urb'luu
+82. cult/cult-of-geryon | Cult of Geryon
+83. cult/cult-of-glasya | Cult of Glasya
+84. cult/cult-of-grazzt | Cult of Graz'zt
+85. cult/cult-of-haask-the-voice-of-hargut | Cult of Haask, the Voice of Hargut
+86. cult/cult-of-juiblex | Cult of Juiblex
+87. cult/cult-of-levistus | Cult of Levistus
+88. cult/cult-of-mammon | Cult of Mammon
+89. cult/cult-of-mephistopheles | Cult of Mephistopheles
+90. cult/cult-of-orcus | Cult of Orcus
+91. cult/cult-of-tharizdun-the-chained-god | Cult of Tharizdun, the Chained God
+92. cult/cult-of-tyranthraxus-the-flamed-one | Cult of Tyranthraxus, the Flamed One
+93. cult/cult-of-yeenoghu | Cult of Yeenoghu
+94. cult/cult-of-zariel | Cult of Zariel
+95. cult/cult-of-zuggtmoy | Cult of Zuggtmoy
+96. cult/cult-of-the-black-earth | Cult of the Black Earth
+97. cult/cult-of-the-crushing-wave | Cult of the Crushing Wave
+98. cult/cult-of-the-eternal-flame | Cult of the Eternal Flame
+99. cult/cult-of-the-howling-hatred | Cult of the Howling Hatred
+100. cult/demonic-boon-of-balor | Demonic Boon of Balor

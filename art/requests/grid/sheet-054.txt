@@ -1,0 +1,101 @@
+LEMBAR 054, 100 sel
+1. deity/kurtulmak | Kurtulmak
+2. deity/labelas-enoreth | Labelas Enoreth
+3. deity/laduguer-duergar | Laduguer (Duergar)
+4. deity/laduguer-dwarven | Laduguer (Dwarven)
+5. deity/laogzed | Laogzed
+6. deity/loki | Loki
+7. deity/lugh | Lugh
+8. deity/lunitari | Lunitari
+9. deity/luthic | Luthic
+10. deity/maglubiyet | Maglubiyet
+11. deity/majere | Majere
+12. deity/malyk | Malyk
+13. deity/manannan-mac-lir | Manannan mac Lir
+14. deity/marthammor-duin | Marthammor Duin
+15. deity/math-mathonwy | Math Mathonwy
+16. deity/melira-taralen | Melira Taralen
+17. deity/merrshaulk | Merrshaulk
+18. deity/milil-forgotten-realms | Milil (Forgotten Realms)
+19. deity/mishakal | Mishakal
+20. deity/mogis | Mogis
+21. deity/morgion | Morgion
+22. deity/morrigan | Morrigan
+23. deity/muamman-duathal | Muamman Duathal
+24. deity/mya | Mya
+25. deity/mythrien-sarath | Mythrien Sarath
+26. deity/naralis-analor | Naralis Analor
+27. deity/naviask | Naviask
+28. deity/nebelun-gnome | Nebelun (Gnome)
+29. deity/nebelun-gnomish | Nebelun (Gnomish)
+30. deity/nephthys | Nephthys
+31. deity/nerull | Nerull
+32. deity/nike | Nike
+33. deity/njord | Njord
+34. deity/nuada | Nuada
+35. deity/nuitari | Nuitari
+36. deity/nylea | Nylea
+37. deity/obad-hai | Obad-Hai
+38. deity/odin | Odin
+39. deity/odur | Odur
+40. deity/olidammara | Olidammara
+41. deity/olladra | Olladra
+42. deity/onatar | Onatar
+43. deity/osiris | Osiris
+44. deity/paladine | Paladine
+45. deity/pan | Pan
+46. deity/pharika | Pharika
+47. deity/phenax | Phenax
+48. deity/pholtus | Pholtus
+49. deity/poseidon | Poseidon
+50. deity/procan | Procan
+51. deity/ptah | Ptah
+52. deity/purphoros | Purphoros
+53. deity/quajath | Quajath
+54. deity/ralishaz | Ralishaz
+55. deity/rao | Rao
+56. deity/raven-queen | Raven Queen
+57. deity/re-horakhty | Re-Horakhty
+58. deity/rellavar-danuvien | Rellavar Danuvien
+59. deity/reorx | Reorx
+60. deity/rill-cleverthrush | Rill Cleverthrush
+61. deity/rillifane-rallathil-elven | Rillifane Rallathil (Elven)
+62. deity/rillifane-rallathil-nonhuman | Rillifane Rallathil (Nonhuman)
+63. deity/roknar | Roknar
+64. deity/sargonnas | Sargonnas
+65. deity/sarula-iliene | Sarula Iliene
+66. deity/segojan-earthcaller-gnome | Segojan Earthcaller (Gnome)
+67. deity/segojan-earthcaller-gnomish | Segojan Earthcaller (Gnomish)
+68. deity/sehanine-moonbow-elven | Sehanine Moonbow (Elven)
+69. deity/sehanine-moonbow-nonhuman | Sehanine Moonbow (Nonhuman)
+70. deity/sekolah | Sekolah
+71. deity/selvetarm | Selvetarm
+72. deity/sel-ne-faer-nian | Selûne (Faerûnian)
+73. deity/sel-ne-forgotten-realms | Selûne (Forgotten Realms)
+74. deity/semuanya | Semuanya
+75. deity/set | Set
+76. deity/shar-forgotten-realms | Shar (Forgotten Realms)
+77. deity/shargaas | Shargaas
+78. deity/sharindlar | Sharindlar
+79. deity/sheela-peryroyl | Sheela Peryroyl
+80. deity/shevarash | Shevarash
+81. deity/sheyanna-flaxenstrand | Sheyanna Flaxenstrand
+82. deity/shinare | Shinare
+83. deity/sif | Sif
+84. deity/sirrion | Sirrion
+85. deity/skadi | Skadi
+86. deity/skerrit | Skerrit
+87. deity/skoraeus-stonebones | Skoraeus Stonebones
+88. deity/sobek | Sobek
+89. deity/solinari | Solinari
+90. deity/solonor-thelandira | Solonor Thelandira
+91. deity/sseth | Sseth
+92. deity/st-cuthbert | St. Cuthbert
+93. deity/surtur-nonhuman | Surtur (Nonhuman)
+94. deity/surtur-norse | Surtur (Norse)
+95. deity/syrul | Syrul
+96. deity/takhisis | Takhisis
+97. deity/tarsellis-meunniduin | Tarsellis Meunniduin
+98. deity/tethrin-verald | Tethrin Veraldé
+99. deity/thard-harr | Thard Harr
+100. deity/tharmekh-l | Tharmekhûl

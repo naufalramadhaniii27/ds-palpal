@@ -1,0 +1,101 @@
+LEMBAR 088, 100 sel
+1. feature/opening-strategy | Opening Strategy | sub:House of Go|Opening Strategy
+2. feature/operatic-inspiration | Operatic Inspiration | sub:College of Opera|Operatic Inspiration
+3. feature/opportunist | Opportunist | sub:Way of Shadow|Opportunist
+4. feature/optional-rule-firearm-proficiency | Optional Rule: Firearm Proficiency
+5. feature/order-domain-spells | Order Domain Spells | sub:Order Domain|Order Domain Spells
+6. feature/order-of-the-avatar | Order of the Avatar
+7. feature/order-of-the-awakened | Order of the Awakened
+8. feature/order-of-the-immortal | Order of the Immortal
+9. feature/order-of-the-nomad | Order of the Nomad
+10. feature/order-of-the-soul-knife | Order of the Soul Knife
+11. feature/order-of-the-wu-jen | Order of the Wu Jen
+12. feature/orders-wrath | Order's Wrath | sub:Order Domain|Order's Wrath
+13. feature/origami-familiar | Origami Familiar | sub:College of Origami|Origami Familiar
+14. feature/origami-fortune | Origami Fortune | sub:College of Origami|Origami Fortune
+15. feature/osteoderms | Osteoderms | sp:Ankylier|Osteoderms
+16. feature/otherworldly-calm | Otherworldly Calm | sub:Eldritch Domain|Otherworldly Calm
+17. feature/otherworldly-eye | Otherworldly Eye | sub:Witchbane Hunter|Otherworldly Eye
+18. feature/otherworldly-glamour | Otherworldly Glamour | sub:Fey Wanderer (2014)|Otherworldly Glamour
+19. feature/otherworldly-patron | Otherworldly Patron
+20. feature/otherworldly-patron-feature | Otherworldly Patron feature
+21. feature/otherworldly-perception | Otherworldly Perception | sp:Kuo-Toa|Otherworldly Perception
+22. feature/otherworldly-presence | Otherworldly Presence | sp:Tiefling|Otherworldly Presence
+23. feature/otherworldly-resistance | Otherworldly Resistance | sp:Deep One Dwarf|Otherworldly Resistance
+24. feature/otherworldly-wings | Otherworldly Wings | sub:Divine Soul|Otherworldly Wings
+25. feature/outer-knowledge | Outer Knowledge | sub:College of the Mad God|Outer Knowledge
+26. feature/overawe-enemy | Overawe Enemy | sub:Oath of the Giving Grave|Overawe Enemy
+27. feature/overcharged-thralls | Overcharged Thralls | sub:Death Knight|Overcharged Thralls
+28. feature/overdesigned-scrap | Overdesigned Scrap | sub:Scrappers' Guild|Overdesigned Scrap
+29. feature/overloaded-charge | Overloaded Charge | sub:Mad Bomber|Overloaded Charge
+30. feature/overlord-spells | Overlord Spells | sub:Overlord|Overlord Spells
+31. feature/overpowering-remedy | Overpowering Remedy | sub:Circle of Roses|Overpowering Remedy
+32. feature/overture | Overture | sub:College of Opera|Overture
+33. feature/owls-eyes | Owl's Eyes | sub:Circle of Owls|Owl's Eyes
+34. feature/pack-tactics | Pack Tactics | sp:Kobold (Monster)|Pack Tactics
+35. feature/pact-boon | Pact Boon
+36. feature/pain-tolerance | Pain Tolerance | sub:Green Reaper|Pain Tolerance
+37. feature/painkiller-bomb-formula | Painkiller Bomb [Formula] | sub:Apothecary|Painkiller Bomb [Formula]
+38. feature/paint-bombs | Paint Bombs | sub:Pigmentist|Paint Bombs
+39. feature/painter | Painter | sub:Pigmentist|Painter
+40. feature/paladin-subclass | Paladin Subclass | cls:Paladin|Paladin Subclass
+41. feature/pale-master-spells | Pale Master Spells | sub:Pale Master|Pale Master Spells
+42. feature/palette-portals | Palette Portals | sub:Pigmentist|Palette Portals
+43. feature/pallid-aura | Pallid Aura | sub:Yellow Sign|Pallid Aura
+44. feature/panache | Panache | sub:Swashbuckler|Panache
+45. feature/pandemonium | Pandemonium | sub:Burden of Discord|Pandemonium
+46. feature/pantomime-dance-style | Pantomime [Dance Style] | sub:Mime|Pantomime [Dance Style]
+47. feature/paper-trinket | Paper Trinket | sub:College of Origami|Paper Trinket
+48. feature/paragon | Paragon | sub:Couatl Herald|Paragon
+49. feature/paragon-of-the-people | Paragon of the People | sub:Community Domain|Paragon of the People
+50. feature/paranoid-instincts | Paranoid Instincts | sub:Conspiracy Theorist|Paranoid Instincts
+51. feature/parliament-of-owls | Parliament of Owls | sub:Circle of Owls|Parliament of Owls
+52. feature/parry-and-riposte | Parry and Riposte | sub:Fencer|Parry and Riposte
+53. feature/partially-amphibious | Partially Amphibious | sp:Vedalken|Partially Amphibious
+54. feature/party-planner | Party Planner | sub:College of Adventurers|Party Planner
+55. feature/passage-through-the-dark | Passage Through the Dark | sub:Shadow Bloodline|Passage Through the Dark
+56. feature/paternal-proficiencies | Paternal Proficiencies | sub:Path of the Dad|Paternal Proficiencies
+57. feature/path-feature | Path Feature
+58. feature/path-feature-2 | Path feature
+59. feature/path-of-gore | Path of Gore | sub:Marauder Chapter|Path of Gore
+60. feature/path-of-the-golden-glower | Path of the Golden Glower | sub:Alkemancer|Path of the Golden Glower
+61. feature/path-of-the-kensei | Path of the Kensei | sub:Way of the Kensei|Path of the Kensei
+62. feature/path-to-the-grave | Path to the Grave | sub:Grave Domain|Path to the Grave
+63. feature/patient-defense | Patient Defense
+64. feature/patriotism | Patriotism | sub:Star-Spangled Banner|Patriotism
+65. feature/patterned-feathers | Patterned Feathers | sp:Strig|Patterned Feathers
+66. feature/pawn-storm | Pawn Storm | sub:House of Pawns|Pawn Storm
+67. feature/pawn-wall | Pawn Wall | sub:House of Pawns|Pawn Wall
+68. feature/peace-domain-spells | Peace Domain Spells | sub:Peace Domain|Peace Domain Spells
+69. feature/peacebringer | Peacebringer | sub:Couatl Herald|Peacebringer
+70. feature/peerless-skill | Peerless Skill | sub:College of Lore (2014)|Peerless Skill
+71. feature/percussive-maintenance | Percussive Maintenance | sub:Path of the Wrecker|Percussive Maintenance
+72. feature/perfect-form | Perfect Form | sub:Warrior of the Living Weapon|Perfect Form
+73. feature/perfect-self | Perfect Self
+74. feature/perfect-symbiosis | Perfect Symbiosis | sub:Bond of the Symbiote|Perfect Symbiosis
+75. feature/perfect-weapon | Perfect Weapon | sub:Forge Adept|Perfect Weapon
+76. feature/perfected-bond | Perfected Bond | sub:Drakewarden|Perfected Bond
+77. feature/perfectionist | Perfectionist | sub:Fey Ballerina|Perfectionist
+78. feature/performance-of-creation | Performance of Creation | sub:College of Creation|Performance of Creation
+79. feature/perilous-dodge | Perilous Dodge | sub:Bounty Hunter|Perilous Dodge
+80. feature/permafrost | Permafrost | sub:Path of the Glacier|Permafrost
+81. feature/permanent-spellhack | Permanent Spellhack | sub:Spellhacker|Permanent Spellhack
+82. feature/persistent-portals | Persistent Portals | sub:Portalweaver|Persistent Portals
+83. feature/persona-masks | Persona Masks | sub:College of Masks|Persona Masks
+84. feature/personal-symbiont | Personal Symbiont | sp:Ruinbound|Personal Symbiont
+85. feature/persuasive | Persuasive | sp:Verdan|Persuasive
+86. feature/pestilence-domain-spells | Pestilence Domain Spells | sub:Pestilence Domain|Pestilence Domain Spells
+87. feature/petticoat-plate | Petticoat Plate | sub:Courtiers' Guild|Petticoat Plate
+88. feature/phantasmal-creatures | Phantasmal Creatures | sub:Illusionist|Phantasmal Creatures
+89. feature/phantom-companion | Phantom Companion | sub:Haunted Sorcery|Phantom Companion
+90. feature/phantom-knife | Phantom Knife
+91. feature/phantom-possession | Phantom Possession | sub:Haunted Sorcery|Phantom Possession
+92. feature/pharaoh-spells | Pharaoh Spells | sub:Pharaoh|Pharaoh Spells
+93. feature/pheromone-bomb-formula | Pheromone Bomb [Formula] | sub:Amorist|Pheromone Bomb [Formula]
+94. feature/photonic-savant | Photonic Savant | sub:Lumimancer|Photonic Savant
+95. feature/physical-empowerment | Physical Empowerment | sub:Bond of the Wrathful Giant|Physical Empowerment
+96. feature/physical-specimen | Physical Specimen | sub:The Parasite Patron|Physical Specimen
+97. feature/physician | Physician | sub:Plague Doctor|Physician
+98. feature/physicians-studies | Physician's Studies | sub:Apothecary|Physician's Studies
+99. feature/pierce-the-veil | Pierce the Veil | sub:The Sibyl|Pierce the Veil
+100. feature/pierced-the-veil | Pierced the Veil | sub:The Sibyl|Pierced the Veil

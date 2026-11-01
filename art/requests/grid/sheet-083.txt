@@ -1,0 +1,101 @@
+LEMBAR 083, 100 sel
+1. feature/incandescent-strikes | Incandescent Strikes | sub:Oath of the Sun|Incandescent Strikes
+2. feature/incarnation-of-corruption | Incarnation of Corruption | sub:Circle of the Blighted|Incarnation of Corruption
+3. feature/incisive-sense | Incisive Sense | sp:Pallid Elf|Incisive Sense
+4. feature/indestructible-life | Indestructible Life | sub:The Undying|Indestructible Life
+5. feature/indomitable-three-uses | Indomitable (three uses)
+6. feature/indomitable-two-uses | Indomitable (two uses)
+7. feature/indomitable-improvement | Indomitable Improvement
+8. feature/inescapable-destruction | Inescapable Destruction | sub:Death Domain|Inescapable Destruction
+9. feature/inexorable-might | Inexorable Might | sub:Aristocratic|Inexorable Might
+10. feature/infamy | Infamy | sub:Rōnin|Infamy
+11. feature/infection | Infection | sub:Pestilence Domain|Infection
+12. feature/infectious-inspiration | Infectious Inspiration | sub:College of Eloquence|Infectious Inspiration
+13. feature/infectious-spread | Infectious Spread | sub:Vermin Lord|Infectious Spread
+14. feature/infernal-bargain | Infernal Bargain | sub:Infernum|Infernal Bargain
+15. feature/infernal-command | Infernal Command | sub:Diabolist|Infernal Command
+16. feature/infernal-legacy | Infernal Legacy | sp:Tiefling (2014)|Infernal Legacy
+17. feature/inferno-breath | Inferno Breath | sub:Fire Dancer|Inferno Breath
+18. feature/infest | Infest | sub:Carrion King|Infest
+19. feature/inflexible-mind | Inflexible Mind | sp:Vect|Inflexible Mind
+20. feature/infuse-elements | Infuse Elements | sub:Elemental Essence|Infuse Elements
+21. feature/infuse-item | Infuse Item
+22. feature/infusion-of-fortune | Infusion of Fortune | sub:College of Entropy|Infusion of Fortune
+23. feature/infusions-known | Infusions Known
+24. feature/ingenious-movement | Ingenious Movement
+25. feature/innate-necromancy | Innate Necromancy | sub:Nightgaunt|Innate Necromancy
+26. feature/innate-spellcasting | Innate Spellcasting | sp:Deep Gnome (Monster)|Innate Spellcasting
+27. feature/innate-toxicology | Innate Toxicology | sp:Limukin|Innate Toxicology
+28. feature/innkeepers-magic | Innkeeper's Magic | sp:Halfling (Mark of Hospitality)|Innkeeper's Magic
+29. feature/inquisition-domain-spells | Inquisition Domain Spells | sub:Inquisition Domain|Inquisition Domain Spells
+30. feature/insidious-smite | Insidious Smite | sub:Steel Magic|Insidious Smite
+31. feature/insightful-fighting | Insightful Fighting | sub:Inquisitive|Insightful Fighting
+32. feature/insightful-manipulator | Insightful Manipulator | sub:Mastermind|Insightful Manipulator
+33. feature/inspirational-dance | Inspirational Dance | sub:College of Choreography|Inspirational Dance
+34. feature/inspire-greatness | Inspire Greatness | sub:College of Wyrdsingers|Inspire Greatness
+35. feature/inspiring-battlecry | Inspiring Battlecry | sub:Knight Errant|Inspiring Battlecry
+36. feature/inspiring-chant-dance-style | Inspiring Chant [Dance Style] | sub:Cheerleader|Inspiring Chant [Dance Style]
+37. feature/inspiring-commander | Inspiring Commander | sub:Banneret|Inspiring Commander
+38. feature/inspiring-help | Inspiring Help
+39. feature/inspiring-help-improvement | Inspiring Help Improvement
+40. feature/inspiring-movement | Inspiring Movement | sub:College of Dance|Inspiring Movement
+41. feature/inspiring-surge | Inspiring Surge | sub:Purple Dragon Knight (Banneret)|Inspiring Surge
+42. feature/inspiring-tune-maneuver | Inspiring Tune [Maneuver] | sub:Troubadour|Inspiring Tune [Maneuver]
+43. feature/instinctive-charm | Instinctive Charm | sub:Enchanter|Instinctive Charm
+44. feature/instinctive-transformation | Instinctive Transformation | sub:Demon Brand|Instinctive Transformation
+45. feature/insubstantial | Insubstantial | sp:Disembodied|Insubstantial
+46. feature/insulating-ward | Insulating Ward | sub:Oath of the Hearth|Insulating Ward
+47. feature/insult-to-injury | Insult to Injury | sub:College of Jesters|Insult to Injury
+48. feature/integrated-gold-plating | Integrated Gold Plating | sp:Manikin|Integrated Gold Plating
+49. feature/integrated-protection | Integrated Protection | sp:Warforged (2014)|Integrated Protection
+50. feature/intercepting-shot | Intercepting Shot | sub:House of Darts|Intercepting Shot
+51. feature/intercepting-strike | Intercepting Strike | sub:Oath of the Gamma Knight|Intercepting Strike
+52. feature/internal-fortitude | Internal Fortitude | sub:Blood Mage|Internal Fortitude
+53. feature/interrogators-instinct | Interrogator's Instinct | sub:Detective|Interrogator's Instinct
+54. feature/intimidating-banter | Intimidating Banter | sub:Scofflaw|Intimidating Banter
+55. feature/intimidating-blow | Intimidating Blow | sub:Pugilist|Intimidating Blow
+56. feature/intoxicated-frenzy | Intoxicated Frenzy | sub:Way of the Drunken Master|Intoxicated Frenzy
+57. feature/intuitive-motion | Intuitive Motion | sp:Human (Mark of Passage)|Intuitive Motion
+58. feature/inured-to-undeath | Inured to Undeath | sub:School of Necromancy|Inured to Undeath
+59. feature/invisible-wall | Invisible Wall | sub:Mime|Invisible Wall
+60. feature/invoke-dragon-heart | Invoke Dragon Heart | sub:Dragon Mage|Invoke Dragon Heart
+61. feature/invoke-dragon-mask | Invoke Dragon Mask | sub:Dragon Mage|Invoke Dragon Mask
+62. feature/invoke-dragon-tail | Invoke Dragon Tail | sub:Dragon Mage|Invoke Dragon Tail
+63. feature/invoke-dragon-wings | Invoke Dragon Wings | sub:Dragon Mage|Invoke Dragon Wings
+64. feature/invulnerability | Invulnerability | sub:Red Magic|Invulnerability
+65. feature/iron-mind | Iron Mind | sub:Gloom Stalker (2014)|Iron Mind
+66. feature/iron-retribution | Iron Retribution | sub:Tower Banner|Iron Retribution
+67. feature/iron-wall-maneuver | Iron Wall [Maneuver] | sub:Tower Banner|Iron Wall [Maneuver]
+68. feature/irrational-retaliation | Irrational Retaliation | sub:Warrior of Pride|Irrational Retaliation
+69. feature/irresistible-mood | Irresistible Mood | sub:Feylost|Irresistible Mood
+70. feature/irresistible-strike | Irresistible Strike | sub:Elementalist|Irresistible Strike
+71. feature/it-was-foretold | It Was Foretold | sub:Prophecy Domain|It Was Foretold
+72. feature/its-alive | It's Alive! | sub:Xenoalchemist|It's Alive!
+73. feature/jest-dance-style | Jest [Dance Style] | sub:Harlequin|Jest [Dance Style]
+74. feature/juggernaut-protocol | Juggernaut Protocol | sub:Steel Shepherd|Juggernaut Protocol
+75. feature/just-a-prank | Just a Prank | sub:Burden of Levity|Just a Prank
+76. feature/karakala-lore | Karakala Lore | sp:Kalamer Landwalker (Merfolk)|Karakala Lore
+77. feature/keen-hearing-and-smell | Keen Hearing and Smell | sp:Grimlock|Keen Hearing and Smell
+78. feature/keen-senses | Keen Senses | sp:Lorwyn Elf|Keen Senses
+79. feature/keen-smell | Keen Smell | sp:Loxodon|Keen Smell
+80. feature/keeper-of-history | Keeper of History | sub:College of the Dirge Singer|Keeper of History
+81. feature/keeper-of-souls | Keeper of Souls | sub:Grave Domain (2014)|Keeper of Souls
+82. feature/kefnets-blessing | Kefnet's Blessing | sp:Aven (Ibis-Headed)|Kefnet's Blessing
+83. feature/keldon-resilience | Keldon Resilience | sp:Human (Keldon)|Keldon Resilience
+84. feature/kender-curiosity | Kender Curiosity | sp:Kender|Kender Curiosity
+85. feature/kenku-training | Kenku Training | sp:Kenku (2014)|Kenku Training
+86. feature/kenseis-shot | Kensei's Shot | sub:Way of the Kensei|Kensei's Shot
+87. feature/khenra-twins | Khenra Twins | sp:Khenra|Khenra Twins
+88. feature/khenra-weapon-training | Khenra Weapon Training | sp:Khenra|Khenra Weapon Training
+89. feature/ki | Ki
+90. feature/ki-empowered-strikes | Ki-Empowered Strikes
+91. feature/ki-fueled-attack | Ki-Fueled Attack
+92. feature/killer-instinct | Killer Instinct | sub:Exterminator|Killer Instinct
+93. feature/killing-spree | Killing Spree | sub:Path of the Slasher|Killing Spree
+94. feature/killing-stroke | Killing Stroke | sub:Rōnin|Killing Stroke
+95. feature/kin-to-beasts | Kin to Beasts | sub:Path of the Primal Spirit|Kin to Beasts
+96. feature/kindred-speech | Kindred Speech | sp:Feathren|Kindred Speech
+97. feature/kingslayer | Kingslayer | sub:Burden of Revolution|Kingslayer
+98. feature/kithkin-lineage | Kithkin Lineage | sp:Kithkin|Kithkin Lineage
+99. feature/knights-challenge | Knight's Challenge | sub:Knight Errant|Knight's Challenge
+100. feature/knights-ward | Knight's Ward | sub:House of Knights|Knight's Ward

@@ -1,0 +1,101 @@
+LEMBAR 048, 100 sel
+1. gear/jade-totem-with-diamond-eyes-river-heralds | Jade totem with diamond eyes (River Heralds)
+2. gear/jasper | Jasper
+3. gear/jet | Jet
+4. gear/jeweled-anklet | Jeweled anklet
+5. gear/jeweled-anklet-brazen-coalition | Jeweled anklet (Brazen Coalition)
+6. gear/jeweled-gold-crown | Jeweled gold crown
+7. gear/jeweled-platinum-ring | Jeweled platinum ring
+8. gear/keelboat | Keelboat
+9. gear/keg-of-alchemists-fire | Keg of Alchemist's Fire
+10. gear/khyber-trinket | Khyber Trinket
+11. gear/krash | Krash
+12. gear/ladder-10-foot | Ladder (10-foot)
+13. gear/lamprey-ship | Lamprey Ship
+14. gear/lapis-lazuli | Lapis Lazuli
+15. gear/large-gold-bracelet | Large gold bracelet
+16. gear/large-gold-bracelet-legion-of-dusk | Large gold bracelet (Legion of Dusk)
+17. gear/large-jade-totem-river-heralds | Large jade totem (River Heralds)
+18. gear/large-well-made-tapestry | Large well-made tapestry
+19. gear/large-well-made-tapestry-legion-of-dusk | Large well-made tapestry (Legion of Dusk)
+20. gear/laser-pistol | Laser Pistol
+21. gear/laser-rifle | Laser Rifle
+22. gear/life-support | Life Support
+23. gear/linen-1-sq-yd | Linen (1 sq. yd.)
+24. gear/living-ship | Living Ship
+25. gear/loaf-of-bread | Loaf of Bread
+26. gear/log-keeper | Log Keeper
+27. gear/lolths-sting | Lolth's Sting
+28. gear/longhorn | Longhorn
+29. gear/longship | Longship
+30. gear/lorehold-trinket | Lorehold Trinket
+31. gear/lute-crafted-of-exotic-wood-with-mother-of-pearl-inlay-and-zircon-gems-brazen-coalition | Lute crafted of exotic wood with mother-of-pearl inlay and zircon gems (Brazen Coalition)
+32. gear/magazine | Magazine
+33. gear/malachite | Malachite
+34. gear/malice | Malice
+35. gear/manipulators | Manipulators
+36. gear/map-or-scroll-case | Map or Scroll Case
+37. gear/marble-font-with-gold-inlay-legion-of-dusk | Marble font with gold inlay (Legion of Dusk)
+38. gear/marines-pack | Marine's Pack
+39. gear/mastercraft-instrument | Mastercraft Instrument
+40. gear/masterpiece-painting-in-mahogany-frame-with-gold-inlay-legion-of-dusk | Masterpiece painting in mahogany frame with gold inlay (Legion of Dusk)
+41. gear/mastiff | Mastiff
+42. gear/merchants-scale | Merchant's Scale
+43. gear/mess-kit | Mess Kit
+44. gear/midnight-tears | Midnight Tears
+45. gear/military-saddle | Military Saddle
+46. gear/miners-pick | Miner's Pick
+47. gear/modern-bullet | Modern Bullet
+48. gear/modern-bullets-10 | Modern Bullets (10)
+49. gear/monoplate-suit | Monoplate Suit
+50. gear/monster-hunters-pack | Monster Hunter's Pack
+51. gear/moonstone | Moonstone
+52. gear/moorbounder | Moorbounder
+53. gear/moss-agate | Moss Agate
+54. gear/mournland-trinket | Mournland Trinket
+55. gear/mule | Mule
+56. gear/muroosa-balm | Muroosa Balm
+57. gear/nanofiber-vest | Nanofiber Vest
+58. gear/nautiloid | Nautiloid
+59. gear/necklace-of-electrum-medallions-with-red-and-blue-tourmalines-brazen-coalition | Necklace of electrum medallions with red and blue tourmalines (Brazen Coalition)
+60. gear/necklace-of-jade-and-pink-pearls-river-heralds | Necklace of jade and pink pearls (River Heralds)
+61. gear/necklace-string-of-small-pink-pearls | Necklace string of small pink pearls
+62. gear/needler-pistol | Needler Pistol
+63. gear/nightspider | Nightspider
+64. gear/nobles-jewelry | Noble's Jewelry
+65. gear/noisemaker | Noisemaker
+66. gear/norlander-longship | Norlander Longship
+67. gear/obsidian | Obsidian
+68. gear/obsidian-statuette-with-gold-fittings-and-inlay | Obsidian statuette with gold fittings and inlay
+69. gear/oil-of-taggit | Oil of Taggit
+70. gear/old-masterpiece-painting | Old masterpiece painting
+71. gear/olisuba-leaf | Olisuba Leaf
+72. gear/oloore-root-teabag | Oloore Root Teabag
+73. gear/omnitool | Omnitool
+74. gear/onyx | Onyx
+75. gear/opal | Opal
+76. gear/orb | Orb
+77. gear/ox | Ox
+78. gear/pack-saddle | Pack Saddle
+79. gear/painted-gold-childs-sarcophagus | Painted gold child's sarcophagus
+80. gear/painted-gold-war-mask | Painted gold war mask
+81. gear/pair-of-engraved-bone-dice | Pair of engraved bone dice
+82. gear/pair-of-engraved-bone-dice-brazen-coalition | Pair of engraved bone dice (Brazen Coalition)
+83. gear/pale-tincture | Pale Tincture
+84. gear/paper-one-sheet | Paper (one sheet)
+85. gear/paper-cartridge-bullet | Paper Cartridge Bullet
+86. gear/paper-cartridge-bullet-armor-piercing | Paper Cartridge Bullet, Armor-Piercing
+87. gear/paper-cartridge-bullet-blessed | Paper Cartridge Bullet, Blessed
+88. gear/paper-cartridge-bullet-brutal | Paper Cartridge Bullet, Brutal
+89. gear/paper-cartridge-bullet-desecrated | Paper Cartridge Bullet, Desecrated
+90. gear/paper-cartridge-bullet-incendiary | Paper Cartridge Bullet, Incendiary
+91. gear/paralysis-pistol | Paralysis Pistol
+92. gear/parchment-one-sheet | Parchment (one sheet)
+93. gear/pearl | Pearl
+94. gear/pepper | Pepper
+95. gear/perfume-vial | Perfume (vial)
+96. gear/peridot | Peridot
+97. gear/pewter-mug-with-green-spinels-brazen-coalition | Pewter mug with green spinels (Brazen Coalition)
+98. gear/pig | Pig
+99. gear/pilots-seat | Pilot's Seat
+100. gear/pitcher | Pitcher

@@ -1,0 +1,101 @@
+LEMBAR 015, 100 sel
+1. feat/two-headed | Two-Headed
+2. feat/tyro-of-the-gauntlet | Tyro of the Gauntlet
+3. feat/unthreatening | Unthreatening
+4. feat/upgraded | Upgraded
+5. feat/uul-dhakaan | Uul Dhakaan
+6. feat/vampire-hunter | Vampire Hunter
+7. feat/vampire-touched | Vampire Touched
+8. feat/vampire-transformation-stage-1 | Vampire Transformation: Stage 1
+9. feat/vampire-transformation-stage-2 | Vampire Transformation: Stage 2
+10. feat/vampire-transformation-stage-3 | Vampire Transformation: Stage 3
+11. feat/vampire-transformation-stage-4 | Vampire Transformation: Stage 4
+12. feat/vampires-plaything | Vampire's Plaything
+13. feat/vampiric-exultation | Vampiric Exultation
+14. feat/versatile-passenger | Versatile Passenger
+15. feat/vigor-of-the-hill-giant | Vigor of the Hill Giant
+16. feat/vital-sacrifice | Vital Sacrifice
+17. feat/void-channeler | Void Channeler
+18. feat/void-scribe | Void Scribe
+19. feat/war-caster-2014 | War Caster (2014)
+20. feat/warlike-familiar | Warlike Familiar
+21. feat/warzone-nomad | Warzone Nomad
+22. feat/witch-hunter | Witch Hunter
+23. feat/wood-elf-magic | Wood Elf Magic
+24. feat/woodwise | Woodwise
+25. feat/worthless | Worthless
+26. feat/zhentarim-ruffian | Zhentarim Ruffian
+27. feat/zhentarim-tactics | Zhentarim Tactics
+28. spell/abduct | Abduct
+29. spell/aberrate | Aberrate
+30. spell/abhorrence | Abhorrence
+31. spell/abhorrent-apparition | Abhorrent Apparition
+32. spell/absolute-command | Absolute Command
+33. spell/absorbing-field | Absorbing Field
+34. spell/accelerate | Accelerate
+35. spell/accelerate-decelerate | Accelerate/Decelerate
+36. spell/accursed-act | Accursed Act
+37. spell/acid-gate | Acid Gate
+38. spell/acid-rain | Acid Rain
+39. spell/action | Action
+40. spell/acumen | Acumen
+41. spell/adjust-position | Adjust Position
+42. spell/adjust-positioning | Adjust Positioning
+43. spell/adrenaline-rush-healer-class | Adrenaline Rush (Healer class)
+44. spell/aerial-alacrity | Aerial Alacrity
+45. spell/afflict-line | Afflict Line
+46. spell/after-image | After Image
+47. spell/agonizing-mark | Agonizing Mark
+48. spell/alchemical-form | Alchemical Form
+49. spell/ale-dritch-blast | Ale-dritch Blast
+50. spell/allure | Allure
+51. spell/ally-aegis | Ally Aegis
+52. spell/alone | Alone
+53. spell/alter-arrows-fortune | Alter Arrow's Fortune
+54. spell/alter-time-flow | Alter Time Flow
+55. spell/altheas-travel-tent | Althea's Travel Tent
+56. spell/ambush-prey | Ambush Prey
+57. spell/amplify-gravity | Amplify Gravity
+58. spell/amplify-ley-field | Amplify Ley Field
+59. spell/amplify-light | Amplify Light
+60. spell/amputate | Amputate
+61. spell/analyze-device | Analyze Device
+62. spell/ancestors-strength | Ancestor's Strength
+63. spell/ancestral-bond | Ancestral Bond
+64. spell/anchoring-rope | Anchoring Rope
+65. spell/ancient-shade | Ancient Shade
+66. spell/angelic-guardian | Angelic Guardian
+67. spell/animal-spy | Animal Spy
+68. spell/animate-construct | Animate Construct
+69. spell/animate-ghoul | Animate Ghoul
+70. spell/animate-greater-undead | Animate Greater Undead
+71. spell/animated-object-swarm | Animated Object Swarm
+72. spell/animated-scroll | Animated Scroll
+73. spell/anomalous-object | Anomalous Object
+74. spell/antiballistics-field | Antiballistics Field
+75. spell/anticipate-arcana | Anticipate Arcana
+76. spell/anticipate-attack | Anticipate Attack
+77. spell/anticipate-weakness | Anticipate Weakness
+78. spell/antimatter-mine | Antimatter Mine
+79. spell/antivirus | Antivirus
+80. spell/arboreal-curse | Arboreal Curse
+81. spell/arc-blade | Arc Blade
+82. spell/arcane-aegis | Arcane Aegis
+83. spell/arcane-anomaly | Arcane Anomaly
+84. spell/arcane-parasite | Arcane Parasite
+85. spell/arcane-sight | Arcane Sight
+86. spell/arm-cannon | Arm Cannon
+87. spell/armored-heart | Armored Heart
+88. spell/armored-shell | Armored Shell
+89. spell/artifice-overcharge | Artifice Overcharge
+90. spell/as-you-were | As You Were
+91. spell/ashen-memories | Ashen Memories
+92. spell/aspect-of-death | Aspect of Death
+93. spell/aspect-of-the-ape | Aspect of the Ape
+94. spell/aspect-of-the-dragon | Aspect of the Dragon
+95. spell/aspect-of-the-firebird | Aspect of the Firebird
+96. spell/aspect-of-the-ram | Aspect of the Ram
+97. spell/aspect-of-the-serpent | Aspect of the Serpent
+98. spell/assisted-aim | Assisted Aim
+99. spell/astral-barrage | Astral Barrage
+100. spell/astrogation | Astrogation

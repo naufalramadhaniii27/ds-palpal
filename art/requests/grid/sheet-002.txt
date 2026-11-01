@@ -1,0 +1,101 @@
+LEMBAR 002, 100 sel
+1. generic/death | death
+2. generic/knowledge | knowledge
+3. generic/life | life
+4. generic/light | light
+5. generic/nature | nature
+6. generic/tempest | tempest
+7. generic/trickery | trickery
+8. generic/war | war
+9. generic/arcana | arcana
+10. generic/order | order
+11. generic/forge | forge
+12. generic/grave | grave
+13. generic/peace | peace
+14. generic/twilight | twilight
+15. generic/pantheon-forgotten-realms | pantheon forgotten realms
+16. generic/pantheon-greyhawk | pantheon greyhawk
+17. generic/pantheon-eberron | pantheon eberron
+18. generic/pantheon-dragonlance | pantheon dragonlance
+19. generic/pantheon-norse | pantheon norse
+20. generic/pantheon-greek | pantheon greek
+21. generic/pantheon-egyptian | pantheon egyptian
+22. generic/pantheon-celtic | pantheon celtic
+23. generic/recipe-bread | recipe bread
+24. generic/recipe-soup | recipe soup
+25. generic/recipe-stew | recipe stew
+26. generic/recipe-roast | recipe roast
+27. generic/recipe-dessert | recipe dessert
+28. generic/recipe-drink | recipe drink
+29. generic/recipe-fish | recipe fish
+30. generic/recipe-meat | recipe meat
+31. generic/recipe-vegetable | recipe vegetable
+32. generic/recipe-spice | recipe spice
+33. generic/book-rulebook | book rulebook
+34. generic/book-adventure | book adventure
+35. generic/book-supplement | book supplement
+36. generic/book-setting | book setting
+37. generic/book-magazine | book magazine
+38. generic/hazard-trap | hazard trap
+39. generic/hazard-pit | hazard pit
+40. generic/hazard-fire | hazard fire
+41. generic/hazard-gas | hazard gas
+42. generic/hazard-flood | hazard flood
+43. generic/hazard-collapse | hazard collapse
+44. generic/hazard-curse | hazard curse
+45. generic/hazard-storm | hazard storm
+46. generic/hazard-ward | hazard ward
+47. generic/hazard-fungus | hazard fungus
+48. generic/hazard-ice | hazard ice
+49. generic/hazard-lava | hazard lava
+50. generic/vehicle-ship | vehicle ship
+51. generic/vehicle-airship | vehicle airship
+52. generic/vehicle-cart | vehicle cart
+53. generic/vehicle-wagon | vehicle wagon
+54. generic/vehicle-sled | vehicle sled
+55. generic/vehicle-warship | vehicle warship
+56. generic/vehicle-steam-vehicle | vehicle steam vehicle
+57. generic/vehicle-war-machine | vehicle war machine
+58. generic/vehicle-rowboat | vehicle rowboat
+59. generic/disease-plague | disease plague
+60. generic/disease-fever | disease fever
+61. generic/disease-fungal-rot | disease fungal rot
+62. generic/disease-madness | disease madness
+63. generic/object-door | object door
+64. generic/object-statue | object statue
+65. generic/object-barrel | object barrel
+66. generic/object-chest | object chest
+67. generic/object-wall | object wall
+68. generic/object-window | object window
+69. generic/object-rope | object rope
+70. generic/psionic-talent | psionic talent
+71. generic/psionic-discipline | psionic discipline
+72. generic/psionic-order | psionic order
+73. generic/cult | cult
+74. generic/boon | boon
+75. generic/patron | patron
+76. generic/charopt-option | charopt option
+77. generic/charopt-gift | charopt gift
+78. generic/charopt-mark | charopt mark
+79. generic/deck-of-many-things | deck of many things
+80. generic/deck-harrow | deck harrow
+81. generic/deck-illusions | deck illusions
+82. generic/table-loot | table loot
+83. generic/table-encounter | table encounter
+84. generic/table-name | table name
+85. generic/table-treasure | table treasure
+86. generic/table-random | table random
+87. generic/rule-combat | rule combat
+88. generic/rule-exploration | rule exploration
+89. generic/rule-social | rule social
+90. generic/rule-rest | rule rest
+91. generic/rule-magic | rule magic
+92. generic/rule-travel | rule travel
+93. generic/rule-downtime | rule downtime
+94. generic/rule-conditions | rule conditions
+95. generic/lang-standard | lang standard
+96. generic/lang-rare | lang rare
+97. generic/lang-secret | lang secret
+98. generic/lang-script | lang script
+99. generic/lang-sign | lang sign
+100. generic/lang-thieves-cant | lang thieves cant

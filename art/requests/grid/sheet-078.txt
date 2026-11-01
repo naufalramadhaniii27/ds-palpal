@@ -1,0 +1,101 @@
+LEMBAR 078, 100 sel
+1. feature/eventides-splendor | Eventide's Splendor | sub:College of the Moon|Eventide's Splendor
+2. feature/ever-hospitable | Ever Hospitable | sp:Halfling (Mark of Hospitality)|Ever Hospitable
+3. feature/ever-prideful | Ever Prideful | sub:Warrior of Pride|Ever Prideful
+4. feature/ever-vigilant | Ever Vigilant | sub:Nightwatcher|Ever Vigilant
+5. feature/ever-vigilant-burden-of-atonement | Ever-Vigilant | sub:Burden of Atonement|Ever-Vigilant
+6. feature/everlasting | Everlasting | sp:Reborn|Everlasting
+7. feature/everything-on-black | Everything on Black | sub:House of Roulette|Everything on Black
+8. feature/evil-eye | Evil Eye | sub:Misfortune Bringer|Evil Eye
+9. feature/evocation-expert | Evocation Expert | sub:Bond of the Dragon Herald|Evocation Expert
+10. feature/evolution-domain-spells | Evolution Domain Spells | sub:Evolution Domain|Evolution Domain Spells
+11. feature/evolutionary | Evolutionary | sub:Evolution Domain|Evolutionary
+12. feature/exalted-presence | Exalted Presence | sub:Bond of the Guardian Angel|Exalted Presence
+13. feature/examine-specimen | Examine Specimen | sub:Xenoalchemist|Examine Specimen
+14. feature/exceptional-training | Exceptional Training | sub:Beast Master (2014)|Exceptional Training
+15. feature/excommunication | Excommunication | sub:Inquisitor|Excommunication
+16. feature/execution | Execution | sub:Path of the Slasher|Execution
+17. feature/exemplar | Exemplar | sub:Vow of the Martyr|Exemplar
+18. feature/exorcists-doctrines | Exorcist's Doctrines | sub:Inquisitor|Exorcist's Doctrines
+19. feature/exoskeleton | Exoskeleton | sub:Experiment X|Exoskeleton
+20. feature/exotic-ammunition | Exotic Ammunition | sub:Calibarons' Guild|Exotic Ammunition
+21. feature/expanded-spell-list | Expanded Spell List | sub:The Undying|Expanded Spell List
+22. feature/expansive-bond | Expansive Bond | sub:Peace Domain|Expansive Bond
+23. feature/expendable-parts | Expendable Parts | sub:Mastermaker|Expendable Parts
+24. feature/experimental-trials | Experimental Trials | sub:Cyber Surgeon|Experimental Trials
+25. feature/expert-climbers | Expert Climbers | sp:Mapach|Expert Climbers
+26. feature/expert-divination | Expert Divination | sub:School of Divination|Expert Divination
+27. feature/expert-forgery | Expert Forgery | sp:Kenku (2014)|Expert Forgery
+28. feature/explosive-armory | Explosive Armory | sub:Forgeknights' Guild|Explosive Armory
+29. feature/exsanguinate | Exsanguinate | sub:Circle of Blood|Exsanguinate
+30. feature/extended-magic | Extended Magic | sub:Timekeeper|Extended Magic
+31. feature/extort-truth | Extort Truth | sub:Way of the Cobalt Soul|Extort Truth
+32. feature/extra-attack-2 | Extra Attack (2)
+33. feature/extra-attack-3 | Extra Attack (3)
+34. feature/extra-attack-improvement | Extra Attack Improvement
+35. feature/extra-elemental-discipline | Extra Elemental Discipline | sub:Way of the Four Elements|Extra Elemental Discipline
+36. feature/extra-elemental-discipline-level-11 | Extra Elemental Discipline (level 11) | sub:Way of the Four Elements|Extra Elemental Discipline (lev
+37. feature/extra-elemental-discipline-level-17 | Extra Elemental Discipline (level 17) | sub:Way of the Four Elements|Extra Elemental Discipline (lev
+38. feature/extra-language | Extra Language | sp:High Elf|Extra Language
+39. feature/extract-aspects | Extract Aspects | sub:Way of the Cobalt Soul|Extract Aspects
+40. feature/extradimensional-acuity | Extradimensional Acuity | sub:Astral Griffon Patron|Extradimensional Acuity
+41. feature/extradimensional-mastery | Extradimensional Mastery | sub:Astral Griffon Patron|Extradimensional Mastery
+42. feature/eye-for-detail | Eye for Detail | sub:Inquisitive|Eye for Detail
+43. feature/eye-for-weakness | Eye for Weakness | sub:Inquisitive|Eye for Weakness
+44. feature/eye-of-twilight | Eye of Twilight | sub:Night Domain|Eye of Twilight
+45. feature/eyes-of-another-world | Eyes of Another World | sub:Occultist|Eyes of Another World
+46. feature/eyes-of-night | Eyes of Night | sub:Twilight Domain|Eyes of Night
+47. feature/eyes-of-the-cat | Eyes of the Cat | sub:Cat Domain|Eyes of the Cat
+48. feature/eyes-of-the-dark | Eyes of the Dark | sub:Shadow Magic|Eyes of the Dark
+49. feature/eyes-of-the-grave | Eyes of the Grave | sub:Grave Domain (2014)|Eyes of the Grave
+50. feature/face-of-rage | Face of Rage | sub:Path of the Fractured|Face of Rage
+51. feature/fade-from-view | Fade from View | sub:Burden of Anonymity|Fade from View
+52. feature/faerie-dust | Faerie Dust | sub:Bond of the Faerie Trickster|Faerie Dust
+53. feature/faerie-eidolon | Faerie Eidolon | sub:Bond of the Faerie Trickster|Faerie Eidolon
+54. feature/faerie-lineage | Faerie Lineage | sp:Faerie|Faerie Lineage
+55. feature/fair-and-foul | Fair and Foul | sub:Daemonologist|Fair and Foul
+56. feature/fairy-magic | Fairy Magic | sp:Faerie|Fairy Magic
+57. feature/faithful-hound | Faithful Hound | sub:Houndmaster|Faithful Hound
+58. feature/faithful-summons | Faithful Summons | sub:Circle of the Shepherd|Faithful Summons
+59. feature/false-authority | False Authority | sub:Purple Magic|False Authority
+60. feature/false-martyrdom | False Martyrdom | sub:Burden of Anonymity|False Martyrdom
+61. feature/familiar-doll | Familiar Doll | sub:Marionettist|Familiar Doll
+62. feature/fancy-footwork | Fancy Footwork | sub:Swashbuckler|Fancy Footwork
+63. feature/fashionable | Fashionable | sub:Courtiers' Guild|Fashionable
+64. feature/fast-friends | Fast Friends | sub:Troubadour|Fast Friends
+65. feature/fated | Fated | sp:Luma|Fated
+66. feature/fathomless-plunge | Fathomless Plunge | sub:The Fathomless|Fathomless Plunge
+67. feature/favored-enemy-and-natural-explorer-improvements | Favored Enemy and Natural Explorer improvements
+68. feature/favored-enemy-improvement | Favored Enemy improvement
+69. feature/favored-foe | Favored Foe
+70. feature/favored-by-the-gods | Favored by the Gods | sub:Divine Soul|Favored by the Gods
+71. feature/favorite-trick | Favorite Trick | sub:College of the Road|Favorite Trick
+72. feature/fearless | Fearless | sp:Kender|Fearless
+73. feature/fearsome-presence | Fearsome Presence | sub:The Predator|Fearsome Presence
+74. feature/feast-of-blood | Feast of Blood | sp:Vampire (Ixalan)|Feast of Blood
+75. feature/feathered-friends | Feathered Friends | sub:College of Birdsong|Feathered Friends
+76. feature/feathered-heels | Feathered Heels | sub:Sky Magic|Feathered Heels
+77. feature/feathren-ancestry | Feathren Ancestry | sp:Feathren|Feathren Ancestry
+78. feature/feed-on-life | Feed on Life | sub:Necrophage|Feed on Life
+79. feature/feeding-frenzy | Feeding Frenzy | sub:Path of the Fin|Feeding Frenzy
+80. feature/feline-agility | Feline Agility | sp:Tabaxi (2014)|Feline Agility
+81. feature/fell-the-leviathan | Fell the Leviathan | sub:Marauder Chapter|Fell the Leviathan
+82. feature/fencing-maneuvers | Fencing Maneuvers | sub:Fencer|Fencing Maneuvers
+83. feature/feral-limbs | Feral Limbs | sp:Scourgeborne|Feral Limbs
+84. feature/feral-pounce | Feral Pounce | sp:Lupin|Feral Pounce
+85. feature/ferment-spell | Ferment Spell | sub:Tyromancer|Ferment Spell
+86. feature/fernian-resistance | Fernian Resistance | sp:Aasimar (Fernian)|Fernian Resistance
+87. feature/ferocious-charger | Ferocious Charger | sub:Cavalier|Ferocious Charger
+88. feature/fester | Fester | sub:Pestilence Domain|Fester
+89. feature/fey | Fey | sp:Centaur (2014)|Fey
+90. feature/fey-ancestry | Fey Ancestry | sp:Boggart|Fey Ancestry
+91. feature/fey-moods | Fey Moods | sub:Feylost|Fey Moods
+92. feature/fey-presence | Fey Presence | sub:The Archfey (2014)|Fey Presence
+93. feature/fey-reinforcements | Fey Reinforcements | sub:Fey Wanderer (2014)|Fey Reinforcements
+94. feature/fey-spells | Fey Spells | sub:Bond of the Faerie Trickster|Fey Spells
+95. feature/fey-step | Fey Step | sp:Eladrin Elf|Fey Step
+96. feature/fey-suggestion | Fey Suggestion | sub:Bond of the Faerie Trickster|Fey Suggestion
+97. feature/fey-wanderer-magic | Fey Wanderer Magic | sub:Fey Wanderer (2014)|Fey Wanderer Magic
+98. feature/fey-wanderer-spells | Fey Wanderer Spells | sub:Fey Wanderer|Fey Wanderer Spells
+99. feature/field-projector | Field Projector | sub:Forceforger|Field Projector
+100. feature/field-of-blades | Field of Blades | sub:House of Knights|Field of Blades

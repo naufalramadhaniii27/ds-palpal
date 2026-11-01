@@ -1,0 +1,101 @@
+LEMBAR 085, 100 sel
+1. feature/magic-item-master | Magic Item Master
+2. feature/magic-item-recharge | Magic Item Recharge | sub:Arcane Maesters' Guild|Magic Item Recharge
+3. feature/magic-item-savant | Magic Item Savant
+4. feature/magic-item-tinker | Magic Item Tinker
+5. feature/magic-missile-savant | Magic Missile Savant | sub:Magic Missile Mage|Magic Missile Savant
+6. feature/magic-resistance | Magic Resistance | sp:Satyr (2014)|Magic Resistance
+7. feature/magic-slippers | Magic Slippers | sub:Fey Ballerina|Magic Slippers
+8. feature/magic-snare | Magic Snare | sub:Winter Trapper|Magic Snare
+9. feature/magic-users-nemesis | Magic-User's Nemesis | sub:Monster Slayer|Magic-User's Nemesis
+10. feature/magical-aegis | Magical Aegis | sub:Occultist Guild|Magical Aegis
+11. feature/magical-detection | Magical Detection | sp:Half-Elf (Mark of Detection)|Magical Detection
+12. feature/magical-discoveries | Magical Discoveries | sub:College of Lore|Magical Discoveries
+13. feature/magical-guidance | Magical Guidance
+14. feature/magical-inspiration | Magical Inspiration
+15. feature/magical-mastery | Magical Mastery | sub:Arcana Domain|Magical Mastery
+16. feature/magical-passage | Magical Passage | sp:Human (Mark of Passage)|Magical Passage
+17. feature/magical-reflection | Magical Reflection | sub:Bond of the Mirror Mage|Magical Reflection
+18. feature/magical-tinkering | Magical Tinkering
+19. feature/magician | Magician
+20. feature/magitech-upgrade | Magitech Upgrade | sub:Mechanauts' Guild|Magitech Upgrade
+21. feature/magnetic-manipulator | Magnetic Manipulator | sub:Magneticist|Magnetic Manipulator
+22. feature/magnetic-personality | Magnetic Personality | sub:Amorist|Magnetic Personality
+23. feature/magneticist-spells | Magneticist Spells | sub:Magneticist|Magneticist Spells
+24. feature/make-your-own-fate | Make Your Own Fate | sub:College of Wyrdsingers|Make Your Own Fate
+25. feature/makers-gift | Maker's Gift | sp:Human (Mark of Making)|Maker's Gift
+26. feature/makeshift-armor | Makeshift Armor | sub:Scrappers' Guild|Makeshift Armor
+27. feature/maleficium | Maleficium | sub:Occultist|Maleficium
+28. feature/malleable-illusions | Malleable Illusions | sub:School of Illusion|Malleable Illusions
+29. feature/maneuver-options | Maneuver Options | sub:House of Kings|Maneuver Options
+30. feature/maneuvers | Maneuvers
+31. feature/maniacal-influence | Maniacal Influence | sub:Yellow Sign|Maniacal Influence
+32. feature/manifest-aura | Manifest Aura | sub:Elemental Essence|Manifest Aura
+33. feature/manifest-blow | Manifest Blow | sub:Warrior of the Living Weapon|Manifest Blow
+34. feature/manifest-echo | Manifest Echo | sub:Echo Knight|Manifest Echo
+35. feature/manifest-inscriptions | Manifest Inscriptions | sub:Runechild|Manifest Inscriptions
+36. feature/manifest-mind | Manifest Mind | sub:Order of Scribes|Manifest Mind
+37. feature/manifestation | Manifestation | sub:Void Caster|Manifestation
+38. feature/manipulator | Manipulator | sub:Marionettist|Manipulator
+39. feature/mantle-of-inspiration | Mantle of Inspiration | sub:College of Glamour (2014)|Mantle of Inspiration
+40. feature/mantle-of-majesty | Mantle of Majesty | sub:College of Glamour (2014)|Mantle of Majesty
+41. feature/mantle-of-whispers | Mantle of Whispers | sub:College of Whispers|Mantle of Whispers
+42. feature/mantra | Mantra | sub:Path of Tranquility|Mantra
+43. feature/manuscript | Manuscript | sub:College of Calligraphy|Manuscript
+44. feature/many-roads-to-ruin | Many Roads to Ruin | sub:Circle of Entropy|Many Roads to Ruin
+45. feature/mapping-magic | Mapping Magic
+46. feature/marauder-momentum | Marauder Momentum | sub:Marauder Chapter|Marauder Momentum
+47. feature/marids-surge | Marid's Surge
+48. feature/marine-layer | Marine Layer | sub:Oath of the Open Sea|Marine Layer
+49. feature/mark-of-the-funeral-feast | Mark of the Funeral Feast | sub:Oath of the Giving Grave|Mark of the Funeral Feast
+50. feature/mark-of-the-heretic | Mark of the Heretic | sub:Oath of Zeal|Mark of the Heretic
+51. feature/mark-of-the-slasher | Mark of the Slasher | sub:Path of the Slasher|Mark of the Slasher
+52. feature/martial-advantage | Martial Advantage | sp:Hobgoblin (Monster)|Martial Advantage
+53. feature/martial-archetype | Martial Archetype
+54. feature/martial-archetype-feature | Martial Archetype feature
+55. feature/martial-arts-die | Martial Arts Die
+56. feature/martial-caster | Martial Caster | sub:Prescient Knight|Martial Caster
+57. feature/martial-form | Martial Form | sub:Warrior of the Living Weapon|Martial Form
+58. feature/martial-prodigy | Martial Prodigy | sp:Githyanki (2014)|Martial Prodigy
+59. feature/martial-recovery | Martial Recovery | sub:Dragon Banner|Martial Recovery
+60. feature/martial-role | Martial Role
+61. feature/martial-training | Martial Training | sp:Hobgoblin (2014)|Martial Training
+62. feature/martial-versatility | Martial Versatility
+63. feature/martyr-spells | Martyr Spells | sub:Vow of the Martyr|Martyr Spells
+64. feature/martyrs-endurance | Martyr's Endurance | sub:Vow of the Martyr|Martyr's Endurance
+65. feature/marvelous-pigments | Marvelous Pigments | sub:College of Paint|Marvelous Pigments
+66. feature/marvelous-troupe | Marvelous Troupe | sub:Troubadour|Marvelous Troupe
+67. feature/mask-of-civility | Mask of Civility | sub:Path of the Fractured|Mask of Civility
+68. feature/mask-of-the-wild | Mask of the Wild | sp:Wood Elf|Mask of the Wild
+69. feature/master-augmenter | Master Augmenter | sub:Vow of the Augmenter|Master Augmenter
+70. feature/master-duelist | Master Duelist | sub:Swashbuckler|Master Duelist
+71. feature/master-illustrator | Master Illustrator | sub:College of Paint|Master Illustrator
+72. feature/master-metalsmith | Master Metalsmith | sub:Ring Warden|Master Metalsmith
+73. feature/master-reshaper | Master Reshaper | sub:Bond of the Monster Shaper|Master Reshaper
+74. feature/master-scrivener | Master Scrivener | sub:Order of Scribes|Master Scrivener
+75. feature/master-transmuter | Master Transmuter | sub:Transmuter|Master Transmuter
+76. feature/master-of-chaos | Master of Chaos | sub:Entropist|Master of Chaos
+77. feature/master-of-dark-conjuration | Master of Dark Conjuration | sub:Master of Fiends|Master of Dark Conjuration
+78. feature/master-of-hexes | Master of Hexes | sub:The Hexblade|Master of Hexes
+79. feature/master-of-intrigue | Master of Intrigue | sub:Mastermind|Master of Intrigue
+80. feature/master-of-many-faces | Master of Many Faces | sub:College of Masks|Master of Many Faces
+81. feature/master-of-nature | Master of Nature | sub:Nature Domain|Master of Nature
+82. feature/master-of-puppets | Master of Puppets | sub:Marionettist|Master of Puppets
+83. feature/master-of-runes | Master of Runes | sub:Rune Knight|Master of Runes
+84. feature/master-of-seduction | Master of Seduction | sub:Lust Domain|Master of Seduction
+85. feature/master-of-tactics | Master of Tactics | sub:Mastermind|Master of Tactics
+86. feature/master-of-time | Master of Time | sub:Time Domain|Master of Time
+87. feature/master-of-the-endless-night | Master of the Endless Night | sub:School of Illumination|Master of the Endless Night
+88. feature/master-of-the-radiant-heavens | Master of the Radiant Heavens | sub:Illuminator|Master of the Radiant Heavens
+89. feature/masters-flourish | Master's Flourish | sub:College of Swords|Master's Flourish
+90. feature/mastery-of-death | Mastery of Death | sub:Way of the Long Death|Mastery of Death
+91. feature/matador-backstab | Matador Backstab | sub:Burden of Levity|Matador Backstab
+92. feature/material-enhancement | Material Enhancement | sub:Materializer|Material Enhancement
+93. feature/maverick-spells | Maverick Spells | sub:Maverick|Maverick Spells
+94. feature/mecha-configuration | Mecha Configuration | sub:Circle of Configuration|Mecha Configuration
+95. feature/mechanauts-apparatus | Mechanaut's Apparatus | sub:Mechanauts' Guild|Mechanaut's Apparatus
+96. feature/mechanical-arm | Mechanical Arm | sub:Clockworkers' Guild|Mechanical Arm
+97. feature/mechanical-nature | Mechanical Nature | sp:Autognome|Mechanical Nature
+98. feature/mechanized-attachments | Mechanized Attachments | sub:Clockworkers' Guild|Mechanized Attachments
+99. feature/meddling-kids | Meddling Kids | sub:Kid Sleuth|Meddling Kids
+100. feature/medical-intuition | Medical Intuition | sp:Halfling (Mark of Healing)|Medical Intuition

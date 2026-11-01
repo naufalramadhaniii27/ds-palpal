@@ -1,0 +1,101 @@
+LEMBAR 084, 100 sel
+1. feature/knightly-envoy | Knightly Envoy | sub:Banneret|Knightly Envoy
+2. feature/knock-out-cost-6d6 | Knock Out (Cost: 6d6)
+3. feature/knockout-maneuver | Knockout [Maneuver] | sub:Pugilist|Knockout [Maneuver]
+4. feature/knowledge-domain-spells | Knowledge Domain Spells | sub:Knowledge Domain|Knowledge Domain Spells
+5. feature/knowledge-from-a-past-life | Knowledge from a Past Life | sp:Reborn|Knowledge from a Past Life
+6. feature/kor-climbing | Kor Climbing | sp:Kor|Kor Climbing
+7. feature/lactose-intolerance | Lactose Intolerance | sub:Tyromancer|Lactose Intolerance
+8. feature/lag-spell | Lag Spell | sub:Chronomancer|Lag Spell
+9. feature/languages | Languages | sp:Human (2014)|Languages
+10. feature/large-form | Large Form | sp:Goliath|Large Form
+11. feature/larval-regeneration | Larval Regeneration | sub:The Parasite Patron|Larval Regeneration
+12. feature/last-laugh | Last Laugh | sub:College of Fools|Last Laugh
+13. feature/laughing-gas-bombs | Laughing Gas Bombs | sub:Venomsmith|Laughing Gas Bombs
+14. feature/lavastep-grit | Lavastep Grit | sp:Goblin (Lavastep Tribe)|Lavastep Grit
+15. feature/lazarus-bolt | Lazarus Bolt | sub:Cyber Surgeon|Lazarus Bolt
+16. feature/lead-paint | Lead Paint | sub:Runetagger|Lead Paint
+17. feature/lead-from-the-front | Lead from the Front | sub:House of Kings|Lead from the Front
+18. feature/leading-evasion | Leading Evasion | sub:College of Dance|Leading Evasion
+19. feature/leap-attack | Leap Attack | sub:Marauder Chapter|Leap Attack
+20. feature/leap-to-your-feet | Leap to Your Feet
+21. feature/learned | Learned | sp:Corvum|Learned
+22. feature/leech-conduit | Leech Conduit | sub:Vow of the Siphon|Leech Conduit
+23. feature/legacy-of-avernus | Legacy of Avernus | sp:Tiefling (Zariel)|Legacy of Avernus
+24. feature/legacy-of-cania | Legacy of Cania | sp:Tiefling (Mephistopheles)|Legacy of Cania
+25. feature/legacy-of-dis | Legacy of Dis | sp:Tiefling (Dispater)|Legacy of Dis
+26. feature/legacy-of-maladomini | Legacy of Maladomini | sp:Tiefling (Baalzebul)|Legacy of Maladomini
+27. feature/legacy-of-malbolge | Legacy of Malbolge | sp:Tiefling (Glasya)|Legacy of Malbolge
+28. feature/legacy-of-minauros | Legacy of Minauros | sp:Tiefling (Mammon)|Legacy of Minauros
+29. feature/legacy-of-nessus | Legacy of Nessus | sp:Tiefling (Asmodeus)|Legacy of Nessus
+30. feature/legacy-of-phlegethos | Legacy of Phlegethos | sp:Tiefling (Fierna)|Legacy of Phlegethos
+31. feature/legacy-of-stygia | Legacy of Stygia | sp:Tiefling (Levistus)|Legacy of Stygia
+32. feature/legacy-of-a-thousand-young | Legacy of a Thousand Young | sp:Accursed (Steinhardt)|Legacy of a Thousand Young
+33. feature/legen-dairy-resistance | Legen-Dairy Resistance | sub:Tyromancer|Legen-Dairy Resistance
+34. feature/legendary-interruption | Legendary Interruption | sub:Stoneheart Defender|Legendary Interruption
+35. feature/legion-of-one | Legion of One | sub:Echo Knight|Legion of One
+36. feature/leporine-senses | Leporine Senses | sp:Harengon (WBtW)|Leporine Senses
+37. feature/leviathan-will | Leviathan Will | sp:Locathah|Leviathan Will
+38. feature/ley-line-adept | Ley Line Adept | sub:Geomancy|Ley Line Adept
+39. feature/ley-line-manipulation | Ley Line Manipulation | sub:Geomancy|Ley Line Manipulation
+40. feature/ley-line-mastery | Ley Line Mastery | sub:Geomancy|Ley Line Mastery
+41. feature/ley-line-savant | Ley Line Savant | sub:Geomancy|Ley Line Savant
+42. feature/leyline-spells | Leyline Spells | sub:Leyline Magic|Leyline Spells
+43. feature/leyline-weaving | Leyline Weaving | sub:Leyline Magic|Leyline Weaving
+44. feature/life-bond | Life Bond | sub:White Necromancer|Life Bond
+45. feature/life-drain | Life Drain | sub:Bond of the Grave Caller|Life Drain
+46. feature/life-leech | Life Leech | sub:Vow of the Siphon|Life Leech
+47. feature/life-suit | Life Suit | sp:Nautilid|Life Suit
+48. feature/life-tether | Life Tether | sub:Black Magic|Life Tether
+49. feature/lifespan | Lifespan | sp:Pluvenn|Lifespan
+50. feature/light-bearer | Light Bearer | sp:Aasimar (Protector)|Light Bearer
+51. feature/light-of-hope | Light of Hope | sub:Salvation Chapter|Light of Hope
+52. feature/lightning-launcher | Lightning Launcher
+53. feature/lightning-step | Lightning Step | sub:Storm Sentinel|Lightning Step
+54. feature/limited-amphibiousness | Limited Amphibiousness | sp:Locathah|Limited Amphibiousness
+55. feature/limited-foresight | Limited Foresight | sub:Burden of Awakening|Limited Foresight
+56. feature/limited-telepathy | Limited Telepathy | sp:Verdan|Limited Telepathy
+57. feature/limited-wish | Limited Wish | sub:The Genie|Limited Wish
+58. feature/lingering-perfume | Lingering Perfume | sub:Circle of Roses|Lingering Perfume
+59. feature/lingering-seduction | Lingering Seduction | sub:Lust Domain|Lingering Seduction
+60. feature/live-fast | Live Fast | sub:Adrenaline Junkie|Live Fast
+61. feature/living-catalyst | Living Catalyst | sub:Living Crucible|Living Catalyst
+62. feature/living-cauldron | Living Cauldron | sub:Living Crucible|Living Cauldron
+63. feature/living-material | Living Material | sp:Manikin|Living Material
+64. feature/loaded-dice | Loaded Dice | sub:House of Dice|Loaded Dice
+65. feature/lone-wolf | Lone Wolf | sub:Rōnin|Lone Wolf
+66. feature/long-odds | Long Odds | sub:Entropist|Long Odds
+67. feature/long-limbed | Long-Limbed | sp:Bugbear (2014)|Long-Limbed
+68. feature/lord-of-the-flies | Lord of the Flies | sub:Carrion King|Lord of the Flies
+69. feature/lore-of-life-and-death | Lore of Life and Death | sub:White Necromancer|Lore of Life and Death
+70. feature/lore-of-the-waters | Lore of the Waters | sp:Merfolk (Ixalan, Blue)|Lore of the Waters
+71. feature/low-orbit-hardlight-cannon | Low Orbit Hardlight Cannon | sub:Lumimancer|Low Orbit Hardlight Cannon
+72. feature/loxodon-serenity | Loxodon Serenity | sp:Loxodon|Loxodon Serenity
+73. feature/loyal-redirection | Loyal Redirection | sub:Houndmaster|Loyal Redirection
+74. feature/lucid-dream | Lucid Dream | sub:Somnomancer|Lucid Dream
+75. feature/luck | Luck | sp:Kithkin|Luck
+76. feature/luck-stealer | Luck Stealer | sub:College of Entropy|Luck Stealer
+77. feature/lucky | Lucky | sp:Lightfoot Halfling|Lucky
+78. feature/lucky-crane | Lucky Crane | sub:College of Origami|Lucky Crane
+79. feature/lucky-footwork | Lucky Footwork | sp:Harengon (WBtW)|Lucky Footwork
+80. feature/lucky-number | Lucky Number | sub:House of Roulette|Lucky Number
+81. feature/luddite | Luddite | sub:Path of the Wrecker|Luddite
+82. feature/luma-subrace | Luma Subrace | sp:Luma|Luma Subrace
+83. feature/luminescent-aura | Luminescent Aura | sub:Moon Domain (Deep Magic)|Luminescent Aura
+84. feature/lunar-boons | Lunar Boons | sub:Lunar Sorcery|Lunar Boons
+85. feature/lunar-embodiment | Lunar Embodiment | sub:Lunar Sorcery|Lunar Embodiment
+86. feature/lunar-empowerment | Lunar Empowerment | sub:Lunar Sorcery|Lunar Empowerment
+87. feature/lunar-phenomenon | Lunar Phenomenon | sub:Lunar Sorcery|Lunar Phenomenon
+88. feature/lunar-spells | Lunar Spells | sub:Lunar Magic|Lunar Spells
+89. feature/macabre-modifications | Macabre Modifications | sub:Reanimator|Macabre Modifications
+90. feature/machine-code | Machine Code | sub:Circle of Configuration|Machine Code
+91. feature/machine-domain-spells | Machine Domain Spells | sub:Machine Domain|Machine Domain Spells
+92. feature/machinelike-precision | Machinelike Precision | sub:The Great Machine|Machinelike Precision
+93. feature/mad-melody | Mad Melody | sub:College of the Mad God|Mad Melody
+94. feature/mad-scientist | Mad Scientist | sub:Xenoalchemist|Mad Scientist
+95. feature/magazine | Magazine | sub:Calibarons' Guild|Magazine
+96. feature/mage-hunter | Mage Hunter | sub:Occultist Guild|Mage Hunter
+97. feature/magic-daggers | Magic Daggers | sub:House of Darts|Magic Daggers
+98. feature/magic-item-adept | Magic Item Adept
+99. feature/magic-item-collection | Magic Item Collection | sub:Antiquarian|Magic Item Collection
+100. feature/magic-item-crafting | Magic Item Crafting | sub:Arcane Maesters' Guild|Magic Item Crafting

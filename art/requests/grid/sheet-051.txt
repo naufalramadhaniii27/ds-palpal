@@ -1,0 +1,101 @@
+LEMBAR 051, 100 sel
+1. creature/animated-object | Animated Object
+2. creature/beast-of-the-land | Beast of the Land
+3. creature/beast-of-the-sea | Beast of the Sea
+4. creature/beast-of-the-sky | Beast of the Sky
+5. creature/bestial-spirit | Bestial Spirit
+6. creature/cackler | Cackler
+7. creature/category-1-krasis | Category 1 Krasis
+8. creature/cave-bear | Cave Bear
+9. creature/celestial-spirit | Celestial Spirit
+10. creature/construct-spirit | Construct Spirit
+11. creature/deck-defender | Deck Defender
+12. creature/draconic-spirit | Draconic Spirit
+13. creature/eldritch-cannon | Eldritch Cannon
+14. creature/eldritch-eddy | Eldritch Eddy
+15. creature/elemental-spirit | Elemental Spirit
+16. creature/fey-spirit | Fey Spirit
+17. creature/fiendish-spirit | Fiendish Spirit
+18. creature/galvanice-weird | Galvanice Weird
+19. creature/giant-canary | Giant Canary
+20. creature/giant-fly | Giant Fly
+21. creature/giant-insect | Giant Insect
+22. creature/guardian-wolf | Guardian Wolf
+23. creature/homunculus-servant | Homunculus Servant
+24. creature/orc-war-chief | Orc War Chief
+25. creature/otherworldly-steed | Otherworldly Steed
+26. creature/quipper | Quipper
+27. creature/reanimated-companion | Reanimated Companion
+28. creature/reigar | Reigar
+29. creature/steel-defender | Steel Defender
+30. creature/swarm-of-corrupted-rats | Swarm of Corrupted Rats
+31. creature/terran-magen | Terran Magen
+32. creature/undead-spirit | Undead Spirit
+33. creature/vestige-companion | Vestige Companion
+34. creature/veteran | Veteran
+35. creature/winged-thrull | Winged Thrull
+36. monster/the-demogorgon | The Demogorgon
+37. monster/deep-roth-mpmm | Deep Rothé (MPMM)
+38. monster/deep-roth-vgm | Deep Rothé (VGM)
+39. monster/iarno-glasstaff-albrek | Iarno "Glasstaff" Albrek
+40. monster/kupalu | Kupalué
+41. monster/kwayoth | Kwayothé
+42. monster/laiba-nana-rosse | Laiba "Nana" Rosse
+43. monster/lyzandra-lyzzie-calderos | Lyzandra "Lyzzie" Calderos
+44. monster/mattrim-threestrings-mereg | Mattrim "Threestrings" Mereg
+45. monster/m-rg-n | Môrgæn
+46. monster/rezran-snake-eyes-agrodro | Rezran "Snake Eyes" Agrodro
+47. monster/rosavalda-rose-durst | Rosavalda "Rose" Durst
+48. monster/roth-coa | Rothé (CoA)
+49. monster/roth-vgm | Rothé (VGM)
+50. monster/talisolvanar-tally-fellbranch | Talisolvanar "Tally" Fellbranch
+51. monster/thornboldt-thorn-durst | Thornboldt "Thorn" Durst
+52. monster/volothamp-volo-geddarm | Volothamp "Volo" Geddarm
+53. monster/zalkor | Zalkoré
+54. opt/sweeping-attack | Sweeping Attack | man|Sweeping Attack
+55. opt/tactical-assessment | Tactical Assessment | man|Tactical Assessment
+56. opt/trip-attack | Trip Attack | man|Trip Attack
+57. optfeat/arcane-propulsion-armor | Arcane Propulsion Armor
+58. optfeat/archery | Archery
+59. optfeat/armor-of-magical-strength | Armor of Magical Strength
+60. optfeat/aspect-of-the-moon | Aspect of the Moon
+61. optfeat/banishing-arrow | Banishing Arrow
+62. optfeat/banishing-shot | Banishing Shot
+63. optfeat/beast-speech | Beast Speech
+64. optfeat/beguiling-arrow | Beguiling Arrow
+65. optfeat/beguiling-influence | Beguiling Influence
+66. optfeat/beguiling-shot | Beguiling Shot
+67. optfeat/bewitching-whispers | Bewitching Whispers
+68. optfeat/blessed-warrior | Blessed Warrior
+69. optfeat/blind-fighting | Blind Fighting
+70. optfeat/bond-of-the-talisman | Bond of the Talisman
+71. optfeat/book-of-ancient-secrets | Book of Ancient Secrets
+72. optfeat/boots-of-the-winding-path | Boots of the Winding Path
+73. optfeat/brace | Brace
+74. optfeat/breath-of-winter | Breath of Winter
+75. optfeat/bursting-arrow | Bursting Arrow
+76. optfeat/bursting-shot | Bursting Shot
+77. optfeat/celebrated-in-house | Celebrated in House
+78. optfeat/chains-of-carceri | Chains of Carceri
+79. optfeat/clench-of-the-north-wind | Clench of the North Wind
+80. optfeat/cloak-of-flies | Cloak of Flies
+81. optfeat/cloud-rune | Cloud Rune
+82. optfeat/defense | Defense
+83. optfeat/dreadful-word | Dreadful Word
+84. optfeat/druidic-warrior | Druidic Warrior
+85. optfeat/dueling | Dueling
+86. optfeat/eldritch-sight | Eldritch Sight
+87. optfeat/elemental-attunement | Elemental Attunement
+88. optfeat/enfeebling-arrow | Enfeebling Arrow
+89. optfeat/enfeebling-shot | Enfeebling Shot
+90. optfeat/enhanced-arcane-focus | Enhanced Arcane Focus
+91. optfeat/enhanced-defense | Enhanced Defense
+92. optfeat/enhanced-weapon | Enhanced Weapon
+93. optfeat/eternal-mountain-defense | Eternal Mountain Defense
+94. optfeat/eyes-of-the-rune-keeper | Eyes of the Rune Keeper
+95. optfeat/fangs-of-the-fire-snake | Fangs of the Fire Snake
+96. optfeat/far-scribe | Far Scribe
+97. optfeat/favored-in-house | Favored in House
+98. optfeat/fire-rune | Fire Rune
+99. optfeat/fist-of-four-thunders | Fist of Four Thunders
+100. optfeat/flames-of-the-phoenix | Flames of the Phoenix

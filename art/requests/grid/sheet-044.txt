@@ -1,0 +1,101 @@
+LEMBAR 044, 100 sel
+1. item/vari-blaster | Vari-Blaster
+2. item/venombane-armor | Venombane Armor
+3. item/verminshroud-awakened | Verminshroud (Awakened)
+4. item/verminshroud-dormant | Verminshroud (Dormant)
+5. item/verminshroud-exalted | Verminshroud (Exalted)
+6. item/very-rare-molten-fire-forge | Very Rare Molten Fire Forge
+7. item/vial-of-stardust | Vial of Stardust
+8. item/vial-of-thought-capture | Vial of Thought Capture
+9. item/vicious-1-weapon | Vicious +1 Weapon
+10. item/vigilus | Vigilus
+11. item/vilesmog-bomb | Vilesmog Bomb
+12. item/vino-veritas | Vino Veritas
+13. item/visage-of-delight-and-disaster | Visage of Delight and Disaster
+14. item/vlagomirs-spark | Vlagomir's Spark
+15. item/voice-changer | Voice Changer
+16. item/void-ammunition | Void Ammunition
+17. item/void-beacon | Void Beacon
+18. item/volakhesh | Vola'khesh
+19. item/volcanic-boots | Volcanic Boots
+20. item/volt-gauntlets | Volt Gauntlets
+21. item/voltedge | Voltedge
+22. item/vox-helm | Vox Helm
+23. item/w-rec | W-REC
+24. item/wakened-dragons-wrath-weapon | Wakened Dragon's Wrath Weapon
+25. item/wand | Wand
+26. item/wand-of-celestial-prowess | Wand of Celestial Prowess
+27. item/wand-of-enthralling | Wand of Enthralling
+28. item/wand-of-silence | Wand of Silence
+29. item/wand-of-whispers | Wand of Whispers
+30. item/wand-of-the-poltergeist | Wand of the Poltergeist
+31. item/wand-of-the-war-mage-1 | Wand of the War Mage, +1
+32. item/wand-of-the-war-mage-2 | Wand of the War Mage, +2
+33. item/wand-of-the-war-mage-3 | Wand of the War Mage, +3
+34. item/wandering-eye | Wandering Eye
+35. item/war-staff | War Staff
+36. item/war-standard-of-battlecries | War Standard of Battlecries
+37. item/wardens-link | Warden's Link
+38. item/warding-brooch | Warding Brooch
+39. item/warding-channeling-wand | Warding Channeling Wand
+40. item/warding-dragonmark-channel | Warding Dragonmark Channel
+41. item/warding-dragonmark-reservoir | Warding Dragonmark Reservoir
+42. item/warmind-wand | Warmind Wand
+43. item/wave-swept-weapon | Wave-Swept Weapon
+44. item/wavebenders-leiomano | Wavebender's Leiomano
+45. item/weapon-wheel | Weapon Wheel
+46. item/weapon-of-agonizing-paralysis | Weapon of Agonizing Paralysis
+47. item/weapon-of-certain-death | Weapon of Certain Death
+48. item/weapon-of-mooring | Weapon of Mooring
+49. item/weapon-of-showmanship | Weapon of Showmanship
+50. item/weapon-of-spite | Weapon of Spite
+51. item/weapon-of-thrones-command | Weapon of Throne's Command
+52. item/webgrip-rucksack | Webgrip Rucksack
+53. item/whisper-awakened | Whisper (Awakened)
+54. item/whisper-dormant | Whisper (Dormant)
+55. item/whisper-exalted | Whisper (Exalted)
+56. item/whistle-of-freedom | Whistle of Freedom
+57. item/whistle-stick | Whistle-Stick
+58. item/white-chromatic-rose | White Chromatic Rose
+59. item/white-dragon-cape | White Dragon Cape
+60. item/wildmans-spinning-cleaver | Wildman's Spinning Cleaver
+61. item/wildroot | Wildroot
+62. item/will-of-the-talon-awakened | Will of the Talon (Awakened)
+63. item/will-of-the-talon-dormant | Will of the Talon (Dormant)
+64. item/will-of-the-talon-exalted | Will of the Talon (Exalted)
+65. item/wind-stones | Wind Stones
+66. item/windrazor | Windrazor
+67. item/windswept-wyvernplate | Windswept Wyvernplate
+68. item/wing-crest-shield | Wing Crest Shield
+69. item/winged-ammunition | Winged Ammunition
+70. item/winters-embrace | Winter's Embrace
+71. item/wisplight-lantern | Wisplight Lantern
+72. item/witchlight-watch | Witchlight Watch
+73. item/wongo | Wongo
+74. item/woodcutters-axe | Woodcutter's Axe
+75. item/wooden-chain-of-the-unbroken-circle | Wooden Chain of the Unbroken Circle
+76. item/wraps-of-aphaeleon | Wraps of Aphaeleon
+77. item/wraps-of-dyamak-awakened | Wraps of Dyamak (Awakened)
+78. item/wraps-of-dyamak-dormant | Wraps of Dyamak (Dormant)
+79. item/wraps-of-dyamak-exalted | Wraps of Dyamak (Exalted)
+80. item/wraps-of-unarmed-power-1 | Wraps of Unarmed Power, +1
+81. item/wraps-of-unarmed-power-2 | Wraps of Unarmed Power, +2
+82. item/wraps-of-unarmed-power-3 | Wraps of Unarmed Power, +3
+83. item/wraps-of-unarmed-prowess | Wraps of Unarmed Prowess
+84. item/wukka-nut | Wukka Nut
+85. item/wyllows-staff-of-flowers | Wyllow's Staff of Flowers
+86. item/wyvernwing | Wyvernwing
+87. item/yester-hill-axe | Yester Hill Axe
+88. item/yklwa | Yklwa
+89. item/yuan-ti-pureblood-transformation | Yuan-Ti Pureblood Transformation
+90. item/zafu-of-the-wandering-mind | Zafu of the Wandering Mind
+91. item/zeal | Zeal
+92. item/zephyr-armor | Zephyr Armor
+93. item/zhentarim-trinket | Zhentarim Trinket
+94. item/zipgun | Zipgun
+95. gear/ai-core | AI Core
+96. gear/abacus | Abacus
+97. gear/acid-vial | Acid (vial)
+98. gear/adamant-hardsuit | Adamant Hardsuit
+99. gear/adamantine-bar | Adamantine Bar
+100. gear/aerenal-trinket | Aerenal Trinket

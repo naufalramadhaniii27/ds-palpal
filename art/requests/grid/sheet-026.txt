@@ -1,0 +1,101 @@
+LEMBAR 026, 100 sel
+1. spell/summon-plant-grim-hollow | Summon Plant (Grim Hollow)
+2. spell/summon-plant-summoner-class | Summon Plant (Summoner class)
+3. spell/summon-sea-spirit | Summon Sea Spirit
+4. spell/summon-star | Summon Star
+5. spell/summon-titan | Summon Titan
+6. spell/suns-bounty | Sun's Bounty
+7. spell/supernal-smite | Supernal Smite
+8. spell/suppress-enchantment | Suppress Enchantment
+9. spell/surge-dampener | Surge Dampener
+10. spell/surprise-blessing | Surprise Blessing
+11. spell/suspend | Suspend
+12. spell/swift-exchange | Swift Exchange
+13. spell/swift-flight | Swift Flight
+14. spell/switch-attunement | Switch Attunement
+15. spell/sword-of-judgment | Sword of Judgment
+16. spell/symbol-of-sorcery | Symbol of Sorcery
+17. spell/synergize | Synergize
+18. spell/system-surge | System Surge
+19. spell/s-ance | Séance
+20. spell/talons-of-a-hungry-land | Talons of a Hungry Land
+21. spell/targeting-foreknowledge | Targeting Foreknowledge
+22. spell/technical-difficulties | Technical Difficulties
+23. spell/technomancy | Technomancy
+24. spell/telekinetic-parry | Telekinetic Parry
+25. spell/telekinetic-trip | Telekinetic Trip
+26. spell/terrifying-lash | Terrifying Lash
+27. spell/theft-of-vitae | Theft of Vitae
+28. spell/thin-the-ice | Thin the Ice
+29. spell/thorn-armor | Thorn Armor
+30. spell/thorn-cage | Thorn Cage
+31. spell/thousand-darts | Thousand Darts
+32. spell/throes-of-ecstasy | Throes of Ecstasy
+33. spell/thunder-bolt | Thunder Bolt
+34. spell/thunderclap-deep-magic | Thunderclap (Deep Magic)
+35. spell/thunderous-charge | Thunderous Charge
+36. spell/thunderous-echo | Thunderous Echo
+37. spell/thunderous-stampede | Thunderous Stampede
+38. spell/thunderous-wave | Thunderous Wave
+39. spell/thunderstorm | Thunderstorm
+40. spell/tick-stop | Tick Stop
+41. spell/tidal-barrier | Tidal Barrier
+42. spell/time-hop | Time Hop
+43. spell/time-jaunt | Time Jaunt
+44. spell/time-jump | Time Jump
+45. spell/time-loop | Time Loop
+46. spell/time-slippage | Time Slippage
+47. spell/time-step | Time Step
+48. spell/time-vortex | Time Vortex
+49. spell/time-in-a-bottle | Time in a Bottle
+50. spell/timeless-engine | Timeless Engine
+51. spell/timely-distraction | Timely Distraction
+52. spell/tireless-deep-magic | Tireless (Deep Magic)
+53. spell/tolling-doom | Tolling Doom
+54. spell/tome-curse | Tome Curse
+55. spell/tongue-tied | Tongue Tied
+56. spell/tongue-of-sand | Tongue of Sand
+57. spell/torrent-of-fire | Torrent of Fire
+58. spell/total-refreshment | Total Refreshment
+59. spell/touch-of-the-unliving | Touch of the Unliving
+60. spell/tracer | Tracer
+61. spell/tracking-beacon | Tracking Beacon
+62. spell/transfer-consciousness | Transfer Consciousness
+63. spell/transferred-spellhack | Transferred Spellhack
+64. spell/transient-bulwark | Transient Bulwark
+65. spell/transmogrification | Transmogrification
+66. spell/treasure-chasm | Treasure Chasm
+67. spell/tree-heal | Tree Heal
+68. spell/tree-running | Tree Running
+69. spell/tree-speak | Tree Speak
+70. spell/tremor | Tremor
+71. spell/trench | Trench
+72. spell/trick-question | Trick Question
+73. spell/triumph-of-ice | Triumph of Ice
+74. spell/true-light-of-revelation | True Light of Revelation
+75. spell/turbulence | Turbulence
+76. spell/twist-the-skein | Twist the Skein
+77. spell/umbral-storm | Umbral Storm
+78. spell/unbound-chamber | Unbound Chamber
+79. spell/uncanny-avoidance | Uncanny Avoidance
+80. spell/uncontrollable-transformation | Uncontrollable Transformation
+81. spell/undead-enthrallment | Undead Enthrallment
+82. spell/undermine-armor | Undermine Armor
+83. spell/unholy-defiance | Unholy Defiance
+84. spell/unleash-effigy | Unleash Effigy
+85. spell/unlock-potential | Unlock Potential
+86. spell/unluck-on-that | Unluck on That
+87. spell/unruly-item | Unruly Item
+88. spell/unseen-artisan | Unseen Artisan
+89. spell/unseen-strangler | Unseen Strangler
+90. spell/unshackled-magic | Unshackled Magic
+91. spell/upgraded-spellhack | Upgraded Spellhack
+92. spell/vampiric-claws | Vampiric Claws
+93. spell/vanishing-step | Vanishing Step
+94. spell/veil-of-dusk | Veil of Dusk
+95. spell/vibrating-humors | Vibrating Humors
+96. spell/vine-trestle | Vine Trestle
+97. spell/visage-of-madness | Visage of Madness
+98. spell/visage-of-the-dead | Visage of the Dead
+99. spell/viscous-sheath | Viscous Sheath
+100. spell/vital-mark | Vital Mark

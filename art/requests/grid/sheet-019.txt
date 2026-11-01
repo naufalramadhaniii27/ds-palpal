@@ -1,0 +1,101 @@
+LEMBAR 019, 100 sel
+1. spell/dragons-pride | Dragon's Pride
+2. spell/drain-item | Drain Item
+3. spell/dread-scarecrow | Dread Scarecrow
+4. spell/dread-wings | Dread Wings
+5. spell/drown-deep-magic | Drown (Deep Magic)
+6. spell/dryads-kiss | Dryad's Kiss
+7. spell/dying-of-the-light | Dying of the Light
+8. spell/dynamo-swarm | Dynamo Swarm
+9. spell/ear-worm | Ear Worm
+10. spell/ears-of-the-bat | Ears of the Bat
+11. spell/earth-wave | Earth Wave
+12. spell/earth-worm | Earth Worm
+13. spell/earthskimmer | Earthskimmer
+14. spell/earworm-melody | Earworm Melody
+15. spell/echoes-of-steel | Echoes of Steel
+16. spell/ectoplasm | Ectoplasm
+17. spell/eidetic-memory | Eidetic Memory
+18. spell/eldritch-communion | Eldritch Communion
+19. spell/eldritch-orb | Eldritch Orb
+20. spell/eldritch-rift | Eldritch Rift
+21. spell/electrify | Electrify
+22. spell/electromagical-pulse | Electromagical Pulse
+23. spell/elemental-body | Elemental Body
+24. spell/elemental-curse | Elemental Curse
+25. spell/elemental-exhalation | Elemental Exhalation
+26. spell/elemental-horns | Elemental Horns
+27. spell/elemental-strikes | Elemental Strikes
+28. spell/elemental-twist | Elemental Twist
+29. spell/elevated-sight | Elevated Sight
+30. spell/emanation-of-yoth | Emanation of Yoth
+31. spell/emmelines-essence-infusion | Emmeline's Essence Infusion
+32. spell/enchant-ring | Enchant Ring
+33. spell/encroaching-shadows | Encroaching Shadows
+34. spell/encrypt-decrypt | Encrypt / Decrypt
+35. spell/endow-attribute | Endow Attribute
+36. spell/energy-absorption | Energy Absorption
+37. spell/energy-foreknowledge | Energy Foreknowledge
+38. spell/enhance-familiar | Enhance Familiar
+39. spell/enhance-greed | Enhance Greed
+40. spell/enspelled-armament | Enspelled Armament
+41. spell/entomb | Entomb
+42. spell/entomb-in-ice | Entomb in Ice
+43. spell/entropic-damage-field | Entropic Damage Field
+44. spell/enumerate | Enumerate
+45. spell/erupting-lightning | Erupting Lightning
+46. spell/essence-instability | Essence Instability
+47. spell/ethereal-jaunt | Ethereal Jaunt
+48. spell/evercold | Evercold
+49. spell/exceptional-wit | Exceptional Wit
+50. spell/exhume | Exhume
+51. spell/exoskeleton | Exoskeleton
+52. spell/exsanguinate | Exsanguinate
+53. spell/exsanguinating-cloud | Exsanguinating Cloud
+54. spell/extract-essence | Extract Essence
+55. spell/extract-iron | Extract Iron
+56. spell/extract-knowledge | Extract Knowledge
+57. spell/exude-acid | Exude Acid
+58. spell/eye-of-anubis | Eye of Anubis
+59. spell/eye-of-ra | Eye of Ra
+60. spell/face-swap | Face Swap
+61. spell/failsafe-spellhack | Failsafe Spellhack
+62. spell/fall | Fall
+63. spell/fall-loop | Fall Loop
+64. spell/fault-line | Fault Line
+65. spell/feather-field | Feather Field
+66. spell/feather-travel | Feather Travel
+67. spell/feathered-reach | Feathered Reach
+68. spell/fey-crown | Fey Crown
+69. spell/fey-glamer | Fey Glamer
+70. spell/fiend-flesh | Fiend Flesh
+71. spell/fiendish-brand | Fiendish Brand
+72. spell/find-kin | Find Kin
+73. spell/find-the-flaw | Find the Flaw
+74. spell/finger-guns | Finger Guns
+75. spell/fire-darts | Fire Darts
+76. spell/fire-dragons-fury | Fire Dragon's Fury
+77. spell/fire-under-the-tongue | Fire Under the Tongue
+78. spell/firewalk | Firewalk
+79. spell/fist-of-iron | Fist of Iron
+80. spell/flame-wave | Flame Wave
+81. spell/flash-fever | Flash Fever
+82. spell/flashback | Flashback
+83. spell/flawed-reconstruction | Flawed Reconstruction
+84. spell/flawed-resurrection | Flawed Resurrection
+85. spell/flense | Flense
+86. spell/flesh-to-paper | Flesh to Paper
+87. spell/fleshcrawl | Fleshcrawl
+88. spell/flickering-fate | Flickering Fate
+89. spell/fling | Fling
+90. spell/fluctuating-alignment | Fluctuating Alignment
+91. spell/flurry-deep-magic | Flurry (Deep Magic)
+92. spell/fog-of-war | Fog of War
+93. spell/force-blast | Force Blast
+94. spell/force-buckler | Force Buckler
+95. spell/force-dart | Force Dart
+96. spell/force-weapon | Force Weapon
+97. spell/forceful-repurposing | Forceful Repurposing
+98. spell/forest-affinity | Forest Affinity
+99. spell/forest-native | Forest Native
+100. spell/forest-sanctuary | Forest Sanctuary

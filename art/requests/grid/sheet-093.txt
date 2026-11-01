@@ -1,0 +1,101 @@
+LEMBAR 093, 100 sel
+1. feature/slippery | Slippery | sp:Kuo-Toa|Slippery
+2. feature/slot-division | Slot Division | sub:Spellhacker|Slot Division
+3. feature/slumbering-legacy | Slumbering Legacy | sp:Deep One Dwarf|Slumbering Legacy
+4. feature/smash-hit | Smash Hit | sub:Path of Heavy Metal|Smash Hit
+5. feature/smoke-animals | Smoke Animals | sub:Fumaturge|Smoke Animals
+6. feature/smoke-mage | Smoke Mage | sub:Fumaturge|Smoke Mage
+7. feature/smoke-rings | Smoke Rings | sub:Fragrant Magic|Smoke Rings
+8. feature/snap-shot | Snap Shot | sub:Star Wolf|Snap Shot
+9. feature/sneaky | Sneaky | sp:Bugbear (2014)|Sneaky
+10. feature/sneaky-and-crafty | Sneaky and Crafty | sub:Trapper Guild|Sneaky and Crafty
+11. feature/snowclad | Snowclad | sub:Rimekeeper|Snowclad
+12. feature/sociable-start | Sociable Start | sub:Courtesan|Sociable Start
+13. feature/solar-flare | Solar Flare | sub:Oath of the Sun|Solar Flare
+14. feature/solidarity-domain-spells | Solidarity Domain Spells | sub:Solidarity Domain (PSA)|Solidarity Domain Spells
+15. feature/solidaritys-action | Solidarity's Action | sub:Solidarity Domain (PSA)|Solidarity's Action
+16. feature/solo-shredding | Solo Shredding | sub:Path of Heavy Metal|Solo Shredding
+17. feature/somnambulist | Somnambulist | sub:Somnomancer|Somnambulist
+18. feature/song-of-defense | Song of Defense | sub:Bladesinger|Song of Defense
+19. feature/song-of-life | Song of Life | sub:College of Cantors|Song of Life
+20. feature/song-of-rest-d10 | Song of Rest (d10)
+21. feature/song-of-rest-d12 | Song of Rest (d12)
+22. feature/song-of-rest-d6 | Song of Rest (d6)
+23. feature/song-of-rest-d8 | Song of Rest (d8)
+24. feature/song-of-sorrow | Song of Sorrow | sub:College of Dirges|Song of Sorrow
+25. feature/song-of-victory | Song of Victory | sub:Bladesinger|Song of Victory
+26. feature/sorcerer-subclass | Sorcerer Subclass | cls:Sorcerer|Sorcerer Subclass
+27. feature/sorcerous-origin | Sorcerous Origin | sub:Boreal Bloodline|Sorcerous Origin
+28. feature/sorcerous-origin-feature | Sorcerous Origin feature
+29. feature/sorcerous-versatility | Sorcerous Versatility
+30. feature/sorcery-points | Sorcery Points
+31. feature/sorrowful-fate | Sorrowful Fate | sub:College of Tragedy|Sorrowful Fate
+32. feature/soul-broker | Soul Broker | sub:Diabolist|Soul Broker
+33. feature/soul-doll | Soul Doll | sub:Toymaker|Soul Doll
+34. feature/soul-jar | Soul Jar | sub:Antiquarian|Soul Jar
+35. feature/soul-of-artifice | Soul of Artifice
+36. feature/soul-of-death | Soul of Death | sub:Bond of the Grave Caller|Soul of Death
+37. feature/soul-of-deceit | Soul of Deceit | sub:Mastermind|Soul of Deceit
+38. feature/soul-of-light | Soul of Light | sub:Oath of Radiance|Soul of Light
+39. feature/soul-of-the-forge | Soul of the Forge | sub:Forge Domain|Soul of the Forge
+40. feature/soul-searching-strike | Soul-Searching Strike | sub:Warrior of the Celestial|Soul-Searching Strike
+41. feature/soulsteel | Soulsteel | sub:Steel Magic|Soulsteel
+42. feature/sous-chef | Sous Chef | sub:Gastronomer|Sous Chef
+43. feature/spatial-exchange | Spatial Exchange | sub:Astral Domain|Spatial Exchange
+44. feature/spawn-pawn | Spawn Pawn | sub:The Parasite Patron|Spawn Pawn
+45. feature/speak-with-bugs | Speak With Bugs | sp:Hedge|Speak With Bugs
+46. feature/speak-with-frogs-and-toads | Speak with Frogs and Toads | sp:Bullywug|Speak with Frogs and Toads
+47. feature/speak-with-small-beasts | Speak with Small Beasts | sp:Forest Gnome|Speak with Small Beasts
+48. feature/speaker-of-steel | Speaker of Steel | sub:Circle of Configuration|Speaker of Steel
+49. feature/special-shots | Special Shots | sub:Big Game Hunter|Special Shots
+50. feature/specialized-design | Specialized Design | sp:Autognome|Specialized Design
+51. feature/spectral-defense | Spectral Defense | sub:Horizon Walker|Spectral Defense
+52. feature/spectral-form | Spectral Form
+53. feature/spectrum-analyzer | Spectrum Analyzer | sub:Dynamo Engineer|Spectrum Analyzer
+54. feature/speech-of-beast-and-leaf | Speech of Beast and Leaf | sp:Firbolg (2014)|Speech of Beast and Leaf
+55. feature/speech-of-the-woods | Speech of the Woods | sub:Circle of the Shepherd|Speech of the Woods
+56. feature/speed-burst | Speed Burst | sp:Naga|Speed Burst
+57. feature/spell-dynamos | Spell Dynamos | sub:Dynamo Engineer|Spell Dynamos
+58. feature/spell-inscription | Spell Inscription | sub:College of Calligraphy|Spell Inscription
+59. feature/spell-phreak | Spell Phreak | sub:Spellhacker|Spell Phreak
+60. feature/spell-recovery | Spell Recovery | sub:Burden of the End|Spell Recovery
+61. feature/spell-sculpting | Spell Sculpting | sub:House of Bishops|Spell Sculpting
+62. feature/spell-shield | Spell Shield | sub:Inquisition Domain|Spell Shield
+63. feature/spell-siphon | Spell Siphon | sub:The Parasite Patron|Spell Siphon
+64. feature/spell-tactics | Spell Tactics | sub:Mystic Strategist|Spell Tactics
+65. feature/spell-storing-item | Spell-Storing Item
+66. feature/spellbranding | Spellbranding | sub:Mage Brand|Spellbranding
+67. feature/spellfire-burst | Spellfire Burst | sub:Spellfire Sorcery|Spellfire Burst
+68. feature/spellfire-spells | Spellfire Spells | sub:Spellfire Sorcery|Spellfire Spells
+69. feature/spellhack-savant | Spellhack Savant | sub:Spellhacker|Spellhack Savant
+70. feature/spells-of-the-mark | Spells of the Mark | sp:Dwarf (Mark of Warding)|Spells of the Mark
+71. feature/spellsmith | Spellsmith | sp:Human (Mark of Making)|Spellsmith
+72. feature/spellwarp | Spellwarp | sub:Universalist|Spellwarp
+73. feature/spider-climb | Spider Climb | sp:Dhampir|Spider Climb
+74. feature/spin-the-wheel | Spin the Wheel | sub:House of Roulette|Spin the Wheel
+75. feature/spinning-shield | Spinning Shield | sub:House of Roulette|Spinning Shield
+76. feature/spiny-quills | Spiny Quills | sp:Hedge|Spiny Quills
+77. feature/spirit-animal-eidolon | Spirit Animal Eidolon | sub:Bond of the Spirit Animal|Spirit Animal Eidolon
+78. feature/spirit-animal-spells | Spirit Animal Spells | sub:Bond of the Spirit Animal|Spirit Animal Spells
+79. feature/spirit-dance | Spirit Dance | sub:Circle of the Spirits|Spirit Dance
+80. feature/spirit-guide | Spirit Guide | sub:Circle of the Spirits|Spirit Guide
+81. feature/spirit-projection | Spirit Projection | sub:The Undead|Spirit Projection
+82. feature/spirit-session | Spirit Session | sub:College of Spirits (2014)|Spirit Session
+83. feature/spirit-totem | Spirit Totem | sub:Circle of the Shepherd|Spirit Totem
+84. feature/spirit-walk | Spirit Walk | sub:Circle of the Spirits|Spirit Walk
+85. feature/spirit-of-the-mountain | Spirit of the Mountain | sub:Path of the Juggernaut|Spirit of the Mountain
+86. feature/spirited-start | Spirited Start | sub:Cheerleader|Spirited Start
+87. feature/spirits-from-beyond | Spirits from Beyond | sub:College of Spirits|Spirits from Beyond
+88. feature/spiritual-focus | Spiritual Focus | sub:College of Spirits (2014)|Spiritual Focus
+89. feature/spiteful-challenge | Spiteful Challenge | sub:Witchbane Hunter|Spiteful Challenge
+90. feature/splatter-bombs | Splatter Bombs | sub:Pigmentist|Splatter Bombs
+91. feature/splicer | Splicer | sub:Circle of Xenobiology|Splicer
+92. feature/splintered-summons | Splintered Summons | sub:Conjurer|Splintered Summons
+93. feature/split-enchantment | Split Enchantment | sub:Enchanter|Split Enchantment
+94. feature/split-up-gang | Split Up, Gang | sub:Kid Sleuth|Split Up, Gang
+95. feature/sports-fanatic | Sports Fanatic | sub:Siegeball Jersey|Sports Fanatic
+96. feature/spotlight-dance-style | Spotlight [Dance Style] | sub:Dramaturge|Spotlight [Dance Style]
+97. feature/spreading-spores | Spreading Spores | sub:Circle of Spores|Spreading Spores
+98. feature/spring-attack | Spring Attack | sp:Human (Kessig)|Spring Attack
+99. feature/spring-knees | Spring Knees | sub:Warrior of the Warped|Spring Knees
+100. feature/squad-warmup | Squad Warmup | sub:Cheerleader|Squad Warmup

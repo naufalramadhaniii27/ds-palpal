@@ -1,0 +1,101 @@
+LEMBAR 052, 100 sel
+1. optfeat/frost-rune | Frost Rune
+2. optfeat/ghostly-gaze | Ghostly Gaze
+3. optfeat/gift-of-the-ever-living-ones | Gift of the Ever-Living Ones
+4. optfeat/gong-of-the-summit | Gong of the Summit
+5. optfeat/grappling-strike | Grappling Strike
+6. optfeat/grasp-of-hadar | Grasp of Hadar
+7. optfeat/grasping-arrow | Grasping Arrow
+8. optfeat/grasping-shot | Grasping Shot
+9. optfeat/great-weapon-fighting | Great Weapon Fighting
+10. optfeat/helm-of-awareness | Helm of Awareness
+11. optfeat/hill-rune | Hill Rune
+12. optfeat/improved-pact-weapon | Improved Pact Weapon
+13. optfeat/interception | Interception
+14. optfeat/lance-of-lethargy | Lance of Lethargy
+15. optfeat/maddening-hex | Maddening Hex
+16. optfeat/mind-sharpener | Mind Sharpener
+17. optfeat/minions-of-chaos | Minions of Chaos
+18. optfeat/mire-the-mind | Mire the Mind
+19. optfeat/mist-stance | Mist Stance
+20. optfeat/pact-of-the-talisman | Pact of the Talisman
+21. optfeat/piercing-arrow | Piercing Arrow
+22. optfeat/piercing-shot | Piercing Shot
+23. optfeat/preeminent-in-house | Preeminent in House
+24. optfeat/protection | Protection
+25. optfeat/protection-of-the-talisman | Protection of the Talisman
+26. optfeat/quick-toss | Quick Toss
+27. optfeat/radiant-weapon | Radiant Weapon
+28. optfeat/rebuke-of-the-talisman | Rebuke of the Talisman
+29. optfeat/recognized-in-house | Recognized in House
+30. optfeat/relentless-hex | Relentless Hex
+31. optfeat/repeating-shot | Repeating Shot
+32. optfeat/replicate-magic-item | Replicate Magic Item
+33. optfeat/repulsion-shield | Repulsion Shield
+34. optfeat/resistant-armor | Resistant Armor
+35. optfeat/returning-weapon | Returning Weapon
+36. optfeat/ride-the-wind | Ride the Wind
+37. optfeat/river-of-hungry-flame | River of Hungry Flame
+38. optfeat/rush-of-the-gale-spirits | Rush of the Gale Spirits
+39. optfeat/sculptor-of-flesh | Sculptor of Flesh
+40. optfeat/seeking-arrow | Seeking Arrow
+41. optfeat/seeking-shot | Seeking Shot
+42. optfeat/shadow-arrow | Shadow Arrow
+43. optfeat/shadow-shot | Shadow Shot
+44. optfeat/shape-the-flowing-river | Shape the Flowing River
+45. optfeat/shroud-of-shadow | Shroud of Shadow
+46. optfeat/sign-of-ill-omen | Sign of Ill Omen
+47. optfeat/spell-refueling-ring | Spell-Refueling Ring
+48. optfeat/stone-rune | Stone Rune
+49. optfeat/storm-rune | Storm Rune
+50. optfeat/superior-technique | Superior Technique
+51. optfeat/sweeping-cinder-strike | Sweeping Cinder Strike
+52. optfeat/thief-of-five-fates | Thief of Five Fates
+53. optfeat/thrown-weapon-fighting | Thrown Weapon Fighting
+54. optfeat/tomb-of-levistus | Tomb of Levistus
+55. optfeat/tricksters-escape | Trickster's Escape
+56. optfeat/two-weapon-fighting | Two-Weapon Fighting
+57. optfeat/unarmed-fighting | Unarmed Fighting
+58. optfeat/unbroken-air | Unbroken Air
+59. optfeat/undying-servitude | Undying Servitude
+60. optfeat/voice-of-the-chain-master | Voice of the Chain Master
+61. optfeat/water-whip | Water Whip
+62. optfeat/wave-of-rolling-earth | Wave of Rolling Earth
+63. deity/abbathor | Abbathor
+64. deity/aegir | Aegir
+65. deity/aerdrie-faenya | Aerdrie Faenya
+66. deity/akadi | Akadi
+67. deity/alathrien-druanna | Alathrien Druanna
+68. deity/alobal-lorfiril | Alobal Lorfiril
+69. deity/angharradh | Angharradh
+70. deity/anubis | Anubis
+71. deity/apep | Apep
+72. deity/aphrodite | Aphrodite
+73. deity/apollo | Apollo
+74. deity/araleth-letheranil | Araleth Letheranil
+75. deity/arawai | Arawai
+76. deity/arawn | Arawn
+77. deity/ares | Ares
+78. deity/arms-of-the-betrayers | Arms of the Betrayers
+79. deity/artemis | Artemis
+80. deity/arvoreen | Arvoreen
+81. deity/athena | Athena
+82. deity/athreos | Athreos
+83. deity/aureon | Aureon
+84. deity/baervan-wildwanderer-gnome | Baervan Wildwanderer (Gnome)
+85. deity/baervan-wildwanderer-gnomish | Baervan Wildwanderer (Gnomish)
+86. deity/bahgtru | Bahgtru
+87. deity/balder | Balder
+88. deity/balinor | Balinor
+89. deity/baravar-cloakshadow-gnome | Baravar Cloakshadow (Gnome)
+90. deity/baravar-cloakshadow-gnomish | Baravar Cloakshadow (Gnomish)
+91. deity/bast | Bast
+92. deity/belenus | Belenus
+93. deity/beory | Beory
+94. deity/berei | Berei
+95. deity/berronar-truesilver | Berronar Truesilver
+96. deity/bes | Bes
+97. deity/bleredd | Bleredd
+98. deity/blibdoolpoolp | Blibdoolpoolp
+99. deity/boccob | Boccob
+100. deity/boldrei | Boldrei

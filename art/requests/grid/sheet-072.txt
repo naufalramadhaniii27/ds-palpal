@@ -1,0 +1,101 @@
+LEMBAR 072, 100 sel
+1. feature/bottled-respite | Bottled Respite
+2. feature/bountiful-healing | Bountiful Healing | sub:Vow of the Protector|Bountiful Healing
+3. feature/bounty-hunters-mark | Bounty Hunter's Mark | sub:Bounty Hunter|Bounty Hunter's Mark
+4. feature/braggart | Braggart | sub:College of Wyrdsingers|Braggart
+5. feature/brains-and-brawn | Brains and Brawn | sub:Path of the Fractured|Brains and Brawn
+6. feature/bravado | Bravado | sub:Spy|Bravado
+7. feature/brave | Brave | sp:Kithkin|Brave
+8. feature/breadth-of-knowledge | Breadth of Knowledge | sp:Human (Nephalia)|Breadth of Knowledge
+9. feature/break-free | Break Free | sub:Path of the Drifter|Break Free
+10. feature/breath-weapon | Breath Weapon | sp:Dragonborn (2014)|Breath Weapon
+11. feature/breath-of-the-dragon | Breath of the Dragon | sub:Way of the Ascendant Dragon|Breath of the Dragon
+12. feature/brew-cocktail | Brew Cocktail | sub:College of Bartending|Brew Cocktail
+13. feature/bringer-of-winters-wrath | Bringer of Winter's Wrath | sub:Winter Domain|Bringer of Winter's Wrath
+14. feature/brittle-bones | Brittle Bones | sp:Skeleton|Brittle Bones
+15. feature/broad-inspiration | Broad Inspiration | sub:College of the Dirge Singer|Broad Inspiration
+16. feature/bruised-ego | Bruised Ego | sub:Warrior of Pride|Bruised Ego
+17. feature/brutal-brawler | Brutal Brawler | sub:Scofflaw|Brutal Brawler
+18. feature/brutal-critical-1-die | Brutal Critical (1 die)
+19. feature/brutal-critical-2-dice | Brutal Critical (2 dice)
+20. feature/brutal-critical-3-dice | Brutal Critical (3 dice)
+21. feature/brutal-gunplay | Brutal Gunplay | sub:Path of the Dreadnought|Brutal Gunplay
+22. feature/built-for-success | Built for Success | sp:Autognome|Built for Success
+23. feature/bull-rush-maneuver | Bull Rush [Maneuver] | sub:Star-Spangled Banner|Bull Rush [Maneuver]
+24. feature/bullseye | Bullseye | sub:House of Darts|Bullseye
+25. feature/bulwark | Bulwark | sub:Purple Dragon Knight (Banneret)|Bulwark
+26. feature/burden-of-anonymity-spells | Burden of Anonymity Spells | sub:Burden of Anonymity|Burden of Anonymity Spells
+27. feature/burden-of-ascension-spells | Burden of Ascension Spells | sub:Burden of Ascension|Burden of Ascension Spells
+28. feature/burden-of-atonement-spells | Burden of Atonement Spells | sub:Burden of Atonement|Burden of Atonement Spells
+29. feature/burden-of-awakening-spells | Burden of Awakening Spells | sub:Burden of Awakening|Burden of Awakening Spells
+30. feature/burden-of-calamity-spells | Burden of Calamity Spells | sub:Burden of Calamity|Burden of Calamity Spells
+31. feature/burden-of-discord-spells | Burden of Discord Spells | sub:Burden of Discord|Burden of Discord Spells
+32. feature/burden-of-fame-spells | Burden of Fame Spells | sub:Burden of Fame|Burden of Fame Spells
+33. feature/burden-of-levity-spells | Burden of Levity Spells | sub:Burden of Levity|Burden of Levity Spells
+34. feature/burden-of-mercy-spells | Burden of Mercy Spells | sub:Burden of Mercy|Burden of Mercy Spells
+35. feature/burden-of-odyssey-spells | Burden of Odyssey Spells | sub:Burden of Odyssey|Burden of Odyssey Spells
+36. feature/burden-of-rebirth-spells | Burden of Rebirth Spells | sub:Burden of Rebirth|Burden of Rebirth Spells
+37. feature/burden-of-revolution-spells | Burden of Revolution Spells | sub:Burden of Revolution|Burden of Revolution Spells
+38. feature/burden-of-truth-spells | Burden of Truth Spells | sub:Burden of Truth|Burden of Truth Spells
+39. feature/burden-of-tyranny-spells | Burden of Tyranny Spells | sub:Burden of Tyranny|Burden of Tyranny Spells
+40. feature/burden-of-the-end-spells | Burden of the End Spells | sub:Burden of the End|Burden of the End Spells
+41. feature/burning-spirit | Burning Spirit | sub:Oath of the Hearth|Burning Spirit
+42. feature/burning-weapon | Burning weapon | sub:Oath of the Hearth|Burning weapon
+43. feature/cacophonous-melody | Cacophonous Melody | sub:College of the Mad God|Cacophonous Melody
+44. feature/call-of-the-grave | Call of the Grave | sub:College of Dirges|Call of the Grave
+45. feature/call-of-the-shadowseeds | Call of the Shadowseeds | sub:Circle of the Blighted|Call of the Shadowseeds
+46. feature/call-to-the-wave | Call to the Wave | sp:Water Genasi (2014)|Call to the Wave
+47. feature/calm-mind | Calm Mind | sub:Couatl Herald|Calm Mind
+48. feature/candy-land | Candy Land | sub:Gingerbread Magic|Candy Land
+49. feature/canister-colony | Canister Colony | sub:Nanite Magic|Canister Colony
+50. feature/cantrip | Cantrip | sp:High Elf|Cantrip
+51. feature/cantrip-formulas | Cantrip Formulas
+52. feature/cantrip-versatility | Cantrip Versatility
+53. feature/card-reading | Card Reading | sub:House of Cards|Card Reading
+54. feature/carrier | Carrier | sub:Pestilence Domain|Carrier
+55. feature/cartographer | Cartographer
+56. feature/cartographer-spells | Cartographer Spells
+57. feature/carve-maneuver | Carve [Maneuver] | sub:Gourmand|Carve [Maneuver]
+58. feature/cash-out | Cash Out | sub:House of Roulette|Cash Out
+59. feature/cats-claws | Cat's Claws | sp:Tabaxi (2014)|Cat's Claws
+60. feature/cats-talents | Cat's Talents | sp:Tabaxi (2014)|Cat's Talents
+61. feature/catastrophic-power | Catastrophic Power | sub:Circle of Entropy|Catastrophic Power
+62. feature/cauterizing-flames | Cauterizing Flames | sub:Circle of Wildfire|Cauterizing Flames
+63. feature/celebrity | Celebrity | sub:Burden of Fame|Celebrity
+64. feature/celerity-in-thought-and-action | Celerity in Thought and Action | sub:Speed Domain|Celerity in Thought and Action
+65. feature/celestial-connection | Celestial Connection | sub:Warrior of the Celestial|Celestial Connection
+66. feature/celestial-eidolon | Celestial Eidolon | sub:Bond of the Guardian Angel|Celestial Eidolon
+67. feature/celestial-emissary | Celestial Emissary | sub:Warrior of the Celestial|Celestial Emissary
+68. feature/celestial-legacy | Celestial Legacy | sp:Aasimar (Monster)|Celestial Legacy
+69. feature/celestial-resilience | Celestial Resilience | sub:The Celestial|Celestial Resilience
+70. feature/celestial-resistance | Celestial Resistance | sp:Aasimar (Monster)|Celestial Resistance
+71. feature/celestial-revelation | Celestial Revelation | sp:Aasimar (Fernian)|Celestial Revelation
+72. feature/celestial-spells | Celestial Spells | sub:Bond of the Guardian Angel|Celestial Spells
+73. feature/censuring-light | Censuring Light | sub:Burden of Mercy|Censuring Light
+74. feature/cerulean-reflection | Cerulean Reflection | sub:Blue Magic|Cerulean Reflection
+75. feature/cervan-subrace | Cervan Subrace | sp:Cervan|Cervan Subrace
+76. feature/chain-of-liberties | Chain of Liberties | sub:House of Go|Chain of Liberties
+77. feature/chalice | Chalice
+78. feature/challenge-maneuver | Challenge [Maneuver] | sub:Lion Banner|Challenge [Maneuver]
+79. feature/chameleon-carapace | Chameleon Carapace | sp:Thri-kreen|Chameleon Carapace
+80. feature/chameleon-skin | Chameleon Skin | sp:Troglodyte|Chameleon Skin
+81. feature/champion-challenge | Champion Challenge
+82. feature/changeling-instincts | Changeling Instincts | sp:Changeling (2014)|Changeling Instincts
+83. feature/channel-divinity-arcane-abjuration | Channel Divinity: Arcane Abjuration | sub:Arcana Domain (2014)|Channel Divinity: Arcane Abjuration
+84. feature/channel-divinity-artisans-blessing | Channel Divinity: Artisan's Blessing | sub:Forge Domain|Channel Divinity: Artisan's Blessing
+85. feature/channel-divinity-balm-of-peace | Channel Divinity: Balm of Peace | sub:Peace Domain|Channel Divinity: Balm of Peace
+86. feature/channel-divinity-banish-to-the-maze | Channel Divinity: Banish to the Maze | sub:Labyrinth Domain|Channel Divinity: Banish to the Maze
+87. feature/channel-divinity-blessed-brew | Channel Divinity: Blessed Brew | sub:Beer Domain|Channel Divinity: Blessed Brew
+88. feature/channel-divinity-blessing-of-the-full-moon | Channel Divinity: Blessing of the Full Moon | sub:Moon Domain|Channel Divinity: Blessing of the Full Moon
+89. feature/channel-divinity-blood-puppet | Channel Divinity: Blood Puppet | sub:Blood Domain|Channel Divinity: Blood Puppet
+90. feature/channel-divinity-blood-puppet-17th-level | Channel Divinity: Blood Puppet (17th Level) | sub:Blood Domain|Channel Divinity: Blood Puppet (17th Level)
+91. feature/channel-divinity-boot-and-rally | Channel Divinity: Boot and Rally | sub:Beer Domain|Channel Divinity: Boot and Rally
+92. feature/channel-divinity-burst-of-speed | Channel Divinity: Burst of Speed | sub:Speed Domain|Channel Divinity: Burst of Speed
+93. feature/channel-divinity-charm-animals-and-plants | Channel Divinity: Charm Animals and Plants | sub:Nature Domain|Channel Divinity: Charm Animals and Plants
+94. feature/channel-divinity-charmer-of-reptiles | Channel Divinity: Charmer of Reptiles | sub:Dragon Domain|Channel Divinity: Charmer of Reptiles
+95. feature/channel-divinity-community-watch | Channel Divinity: Community Watch | sub:Community Domain|Channel Divinity: Community Watch
+96. feature/channel-divinity-construct-mastery | Channel Divinity: Construct Mastery | sub:Clockwork Domain|Channel Divinity: Construct Mastery
+97. feature/channel-divinity-consuming-fervor | Channel Divinity: Consuming Fervor | sub:Zeal Domain (PSA)|Channel Divinity: Consuming Fervor
+98. feature/channel-divinity-crimson-bond | Channel Divinity: Crimson Bond | sub:Blood Domain|Channel Divinity: Crimson Bond
+99. feature/channel-divinity-damnation | Channel Divinity: Damnation | sub:Apocalypse Domain|Channel Divinity: Damnation
+100. feature/channel-divinity-dark-secrets | Channel Divinity: Dark Secrets | sub:Void Domain|Channel Divinity: Dark Secrets

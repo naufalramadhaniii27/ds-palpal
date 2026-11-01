@@ -1,0 +1,101 @@
+LEMBAR 066, 100 sel
+1. table/arcana-legendary | Arcana - Legendary
+2. table/arcana-rare | Arcana - Rare
+3. table/arcana-uncommon | Arcana - Uncommon
+4. table/arcana-very-rare | Arcana - Very Rare
+5. table/armaments-common | Armaments - Common
+6. table/armaments-legendary | Armaments - Legendary
+7. table/armaments-rare | Armaments - Rare
+8. table/armaments-uncommon | Armaments - Uncommon
+9. table/armaments-very-rare | Armaments - Very Rare
+10. table/beneficial-manifestations | Beneficial Manifestations
+11. table/by-level-levels-1-4 | By Level - Levels 1-4
+12. table/by-level-levels-11-16 | By Level - Levels 11-16
+13. table/by-level-levels-17-20 | By Level - Levels 17-20
+14. table/by-level-levels-5-10 | By Level - Levels 5-10
+15. table/damage-types | Damage Types
+16. table/derro-madness | Derro Madness
+17. table/detrimental-manifestations | Detrimental Manifestations
+18. table/dragon-hoard-adult | Dragon Hoard, Adult
+19. table/dragon-hoard-ancient | Dragon Hoard, Ancient
+20. table/dragon-hoard-wyrmling | Dragon Hoard, Wyrmling
+21. table/dragon-hoard-young | Dragon Hoard, Young
+22. table/implements-common | Implements - Common
+23. table/implements-legendary | Implements - Legendary
+24. table/implements-rare | Implements - Rare
+25. table/implements-uncommon | Implements - Uncommon
+26. table/implements-very-rare | Implements - Very Rare
+27. table/individual-treasure-challenge-0-4 | Individual Treasure, Challenge 0-4
+28. table/individual-treasure-challenge-11-16 | Individual Treasure, Challenge 11-16
+29. table/individual-treasure-challenge-17 | Individual Treasure, Challenge 17+
+30. table/individual-treasure-challenge-5-10 | Individual Treasure, Challenge 5-10
+31. table/magic-item-table-a | Magic Item Table A
+32. table/magic-item-table-b | Magic Item Table B
+33. table/magic-item-table-c | Magic Item Table C
+34. table/magic-item-table-d | Magic Item Table D
+35. table/magic-item-table-e | Magic Item Table E
+36. table/magic-item-table-f | Magic Item Table F
+37. table/magic-item-table-g | Magic Item Table G
+38. table/magic-item-table-h | Magic Item Table H
+39. table/magic-item-table-i | Magic Item Table I
+40. table/major-adaptations | Major Adaptations
+41. table/minor-adaptations | Minor Adaptations
+42. table/relics-common | Relics - Common
+43. table/relics-legendary | Relics - Legendary
+44. table/relics-rare | Relics - Rare
+45. table/relics-uncommon | Relics - Uncommon
+46. table/relics-very-rare | Relics - Very Rare
+47. table/treasure-hoard-challenge-0-4 | Treasure Hoard, Challenge 0-4
+48. table/treasure-hoard-challenge-11-16 | Treasure Hoard, Challenge 11-16
+49. table/treasure-hoard-challenge-17 | Treasure Hoard, Challenge 17+
+50. table/treasure-hoard-challenge-5-10 | Treasure Hoard, Challenge 5-10
+51. table/trinkets | Trinkets
+52. table/whirlpools-whirlpool-rank | Whirlpools; Whirlpool Rank
+53. table/who-created-it-or-was-intended-to-use-it | Who Created It or Was Intended to Use It?
+54. table/why-i-became-a-barbarian | Why I Became a Barbarian
+55. table/why-i-became-a-bard | Why I Became a Bard
+56. table/why-i-became-a-cleric | Why I Became a Cleric
+57. table/why-i-became-a-druid | Why I Became a Druid
+58. table/why-i-became-a-fighter | Why I Became a Fighter
+59. table/why-i-became-a-monk | Why I Became a Monk
+60. table/why-i-became-a-paladin | Why I Became a Paladin
+61. table/why-i-became-a-ranger | Why I Became a Ranger
+62. table/why-i-became-a-rogue | Why I Became a Rogue
+63. table/why-i-became-a-sorcerer | Why I Became a Sorcerer
+64. table/why-i-became-a-warlock | Why I Became a Warlock
+65. table/why-i-became-a-wizard | Why I Became a Wizard
+66. table/why-i-chose-the-acolyte-background | Why I Chose the Acolyte Background
+67. table/why-i-chose-the-charlatan-background | Why I Chose the Charlatan Background
+68. table/why-i-chose-the-criminal-background | Why I Chose the Criminal Background
+69. table/why-i-chose-the-entertainer-background | Why I Chose the Entertainer Background
+70. table/why-i-chose-the-folk-hero-background | Why I Chose the Folk Hero Background
+71. table/why-i-chose-the-guild-artisan-guild-merchant-background | Why I Chose the Guild Artisan (Guild Merchant) Background
+72. table/why-i-chose-the-hermit-background | Why I Chose the Hermit Background
+73. table/why-i-chose-the-noble-background | Why I Chose the Noble Background
+74. table/why-i-chose-the-outlander-background | Why I Chose the Outlander Background
+75. table/why-i-chose-the-sage-background | Why I Chose the Sage Background
+76. table/why-i-chose-the-sailor-background | Why I Chose the Sailor Background
+77. table/why-i-chose-the-soldier-background | Why I Chose the Soldier Background
+78. table/why-i-chose-the-urchin-background | Why I Chose the Urchin Background
+79. book/a-zib-for-your-thoughts | A Zib for Your Thoughts
+80. book/acquisitions-incorporated | Acquisitions Incorporated
+81. book/adventure-atlas-the-mortuary | Adventure Atlas: The Mortuary
+82. book/adventure-with-muk | Adventure with Muk
+83. book/adventurers-league | Adventurers League
+84. book/adventures-in-the-forgotten-realms-a-verdant-tomb | Adventures in the Forgotten Realms: A Verdant Tomb
+85. book/adventures-in-the-forgotten-realms-deepest-night | Adventures in the Forgotten Realms: Deepest Night
+86. book/adventures-in-the-forgotten-realms-from-cyan-depths | Adventures in the Forgotten Realms: From Cyan Depths
+87. book/adventures-in-the-forgotten-realms-in-scarlet-flames | Adventures in the Forgotten Realms: In Scarlet Flames
+88. book/adventures-in-the-forgotten-realms-the-hidden-page | Adventures in the Forgotten Realms: The Hidden Page
+89. book/arcana-unleashed | Arcana Unleashed
+90. book/arcana-unleashed-deadfall | Arcana Unleashed: Deadfall
+91. book/astarions-book-of-hungers | Astarion's Book of Hungers
+92. book/astral-adventurers-guide | Astral Adventurer's Guide
+93. book/baldurs-gate-descent-into-avernus | Baldur's Gate: Descent Into Avernus
+94. book/bigby-presents-glory-of-the-giants | Bigby Presents: Glory of the Giants
+95. book/boos-astral-menagerie | Boo's Astral Menagerie
+96. book/borderlands-quest-dagger-danger | Borderlands Quest: Dagger Danger!
+97. book/borderlands-quest-goblin-trouble | Borderlands Quest: Goblin Trouble
+98. book/candlekeep-mysteries | Candlekeep Mysteries
+99. book/chains-of-asmodeus | Chains of Asmodeus
+100. book/critical-role-call-of-the-netherdeep | Critical Role: Call of the Netherdeep

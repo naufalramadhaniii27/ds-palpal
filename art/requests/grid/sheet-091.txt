@@ -1,0 +1,101 @@
+LEMBAR 091, 100 sel
+1. feature/remedy-maneuver | Remedy [Maneuver] | sub:Plague Doctor|Remedy [Maneuver]
+2. feature/remnant-recharge | Remnant Recharge | sub:Wand Wizard|Remnant Recharge
+3. feature/reorder-events | Reorder Events | sub:College of Chronology|Reorder Events
+4. feature/reprogrammer | Reprogrammer | sub:Decommissioner|Reprogrammer
+5. feature/requisition | Requisition | sub:Coalition Arcanist|Requisition
+6. feature/reshape | Reshape | sub:Bond of the Monster Shaper|Reshape
+7. feature/resilience | Resilience | sp:Mapach|Resilience
+8. feature/resolute-hunter | Resolute Hunter | sub:Hunting Domain|Resolute Hunter
+9. feature/resolute-stance | Resolute Stance | sub:Path of the Juggernaut|Resolute Stance
+10. feature/resonant-frequency | Resonant Frequency | sub:Resonator|Resonant Frequency
+11. feature/resounding-strike | Resounding Strike | sub:Zeal Domain (PSA)|Resounding Strike
+12. feature/resourceful | Resourceful | sp:Near-Human|Resourceful
+13. feature/restriction-knighthood | Restriction: Knighthood
+14. feature/restriction-dwarves-only | Restriction—Dwarves Only
+15. feature/retaliatory-slam | Retaliatory Slam | sub:Steelsinger|Retaliatory Slam
+16. feature/retroactive-inspiration | Retroactive Inspiration | sub:College of Chronology|Retroactive Inspiration
+17. feature/retroactive-spell | Retroactive Spell | sub:Chronomancer|Retroactive Spell
+18. feature/reveler | Reveler | sp:Satyr (2014)|Reveler
+19. feature/reverb-explosions | Reverb Explosions | sub:Resonator|Reverb Explosions
+20. feature/revitalize | Revitalize | sub:Hunger Domain|Revitalize
+21. feature/revolutionary-spirit | Revolutionary Spirit | sub:Burden of Revolution|Revolutionary Spirit
+22. feature/rewind | Rewind | sub:Time Operative|Rewind
+23. feature/rhonass-blessing | Rhonas's Blessing | sub:Strength Domain (PSA)|Rhonas's Blessing
+24. feature/ride-them-down | Ride Them Down | sub:Highway Rider|Ride Them Down
+25. feature/ring-bond | Ring Bond | sub:Ring Warden|Ring Bond
+26. feature/ring-savant | Ring Savant | sub:Ring Warden|Ring Savant
+27. feature/rite-of-the-blood-moon | Rite of the Blood Moon | sub:Circle of Blood|Rite of the Blood Moon
+28. feature/roar | Roar | sub:Beastblood Guardian|Roar
+29. feature/rocker | Rocker | sub:Path of Heavy Metal|Rocker
+30. feature/rogue-subclass | Rogue Subclass | cls:Rogue|Rogue Subclass
+31. feature/roguish-archetype | Roguish Archetype
+32. feature/roguish-archetype-feature | Roguish Archetype feature
+33. feature/roll-the-bones | Roll the Bones | sub:House of Dice|Roll the Bones
+34. feature/rook-strike | Rook Strike | sub:House of Rooks|Rook Strike
+35. feature/root-magic | Root Magic | sp:Mandrake|Root Magic
+36. feature/root-network | Root Network | sub:Bond of the Shambling Plant|Root Network
+37. feature/roots-of-rock | Roots of Rock | sub:Stoneheart Defender|Roots of Rock
+38. feature/roses-thorns | Rose's Thorns | sub:Circle of Roses|Rose's Thorns
+39. feature/rot-and-violence | Rot and Violence | sub:Hollow Warden|Rot and Violence
+40. feature/rote-piety | Rote Piety | sub:Inquisitor|Rote Piety
+41. feature/rotten-seed | Rotten Seed | sub:Corpse Florist|Rotten Seed
+42. feature/royal-envoy | Royal Envoy | sub:Purple Dragon Knight (Banneret)|Royal Envoy
+43. feature/rubbery-body | Rubbery Body | sub:Warrior of the Warped|Rubbery Body
+44. feature/ruin-incarnate | Ruin Incarnate | sub:Circle of Entropy|Ruin Incarnate
+45. feature/ruinbound-mutations | Ruinbound Mutations | sp:Ruinbound|Ruinbound Mutations
+46. feature/rune-carver | Rune Carver | sub:Rune Knight|Rune Carver
+47. feature/runes | Runes | sub:Runetagger|Runes
+48. feature/runes-of-war | Runes of War | sub:Forge Adept|Runes of War
+49. feature/runic-juggernaut | Runic Juggernaut | sub:Rune Knight|Runic Juggernaut
+50. feature/runic-magic | Runic Magic | sub:Runechild|Runic Magic
+51. feature/runic-shield | Runic Shield | sub:Rune Knight|Runic Shield
+52. feature/runic-torrent | Runic Torrent | sub:Runechild|Runic Torrent
+53. feature/sacred-oath | Sacred Oath
+54. feature/sacred-oath-feature | Sacred Oath feature
+55. feature/sacrificial-burst | Sacrificial Burst | sub:Burden of Discord|Sacrificial Burst
+56. feature/sacrificial-dive | Sacrificial Dive | sub:Drone Jockey|Sacrificial Dive
+57. feature/sacrificial-familiar | Sacrificial Familiar | sub:Green Magic|Sacrificial Familiar
+58. feature/sacrificial-foresight | Sacrificial Foresight | sub:Burden of Truth|Sacrificial Foresight
+59. feature/sacrificial-resilience | Sacrificial Resilience | sub:Burden of Tyranny|Sacrificial Resilience
+60. feature/sacrificial-shenanigans | Sacrificial Shenanigans | sub:Burden of Levity|Sacrificial Shenanigans
+61. feature/sacrificial-slime | Sacrificial Slime | sub:Ooze Rancher|Sacrificial Slime
+62. feature/sacrificial-spell | Sacrificial Spell | sub:Burden of the End|Sacrificial Spell
+63. feature/sacrificial-thralls | Sacrificial Thralls | sub:Overlord|Sacrificial Thralls
+64. feature/saint-of-forge-and-fire | Saint of Forge and Fire | sub:Forge Domain|Saint of Forge and Fire
+65. feature/sainted-mantle | Sainted Mantle | sub:Godsworn|Sainted Mantle
+66. feature/sanctifying-light | Sanctifying Light | sub:Salvation Chapter|Sanctifying Light
+67. feature/sanctuary-vessel | Sanctuary Vessel | sub:The Genie|Sanctuary Vessel
+68. feature/sangromancy-savant | Sangromancy Savant | sub:Sangromancer|Sangromancy Savant
+69. feature/sanguine-burst | Sanguine Burst | sub:Blood Magic|Sanguine Burst
+70. feature/sanguine-recall | Sanguine Recall | sub:Blood Domain|Sanguine Recall
+71. feature/sanguine-vigor | Sanguine Vigor | sub:Sangromancer|Sanguine Vigor
+72. feature/sap-defenses | Sap Defenses | sub:Vow of the Siphon|Sap Defenses
+73. feature/savage-attacks | Savage Attacks | sp:Half-Orc|Savage Attacks
+74. feature/saving-face | Saving Face | sp:Hobgoblin (2014)|Saving Face
+75. feature/savior-spirits | Savior Spirits | sub:Circle of the Spirits|Savior Spirits
+76. feature/saviors-focus | Savior's Focus | sub:Salvation Chapter|Savior's Focus
+77. feature/scales-of-the-sea | Scales of the Sea | sub:Ocean Domain|Scales of the Sea
+78. feature/scallywag | Scallywag | sub:Jolly Roger|Scallywag
+79. feature/scarab-of-judgment | Scarab of Judgment | sub:Pharaoh|Scarab of Judgment
+80. feature/scathing-retort | Scathing Retort | sub:Troubadour|Scathing Retort
+81. feature/school-mastery | School Mastery | sub:Aristocratic|School Mastery
+82. feature/school-of-chaos | School of Chaos | sub:Chaos|School of Chaos
+83. feature/schr-dingers-defense | Schrödinger's Defense | sub:Quantum Mechanic|Schrödinger's Defense
+84. feature/scorching-steel | Scorching Steel | sub:Forgeknights' Guild|Scorching Steel
+85. feature/scrap-weapons | Scrap Weapons | sub:Scrappers' Guild|Scrap Weapons
+86. feature/scribe-scroll | Scribe Scroll | sub:Scroll Scribe|Scribe Scroll
+87. feature/scribes-insight | Scribe's Insight | sp:Gnome (Mark of Scribing)|Scribe's Insight
+88. feature/scrivener | Scrivener | sub:Scroll Scribe|Scrivener
+89. feature/scroll-codex | Scroll Codex | sub:Scroll Scribe|Scroll Codex
+90. feature/scroungecraft | Scroungecraft | sp:Mapach|Scroungecraft
+91. feature/sculpted-golem | Sculpted Golem | sub:College of Sculpture|Sculpted Golem
+92. feature/sculpted-sentinel | Sculpted Sentinel | sub:College of Sculpture|Sculpted Sentinel
+93. feature/sea | Sea
+94. feature/sea-elf-training | Sea Elf Training | sp:Sea Elf (2014)|Sea Elf Training
+95. feature/seafarer | Seafarer | sub:Storm Sentinel|Seafarer
+96. feature/seal-scribe | Seal Scribe | sub:Angelic Scribe|Seal Scribe
+97. feature/sear-imperfections | Sear Imperfections | sub:Purification Domain|Sear Imperfections
+98. feature/searing-arc-strike | Searing Arc Strike | sub:Way of the Sun Soul|Searing Arc Strike
+99. feature/searing-sunburst | Searing Sunburst | sub:Way of the Sun Soul|Searing Sunburst
+100. feature/searing-vengeance | Searing Vengeance | sub:The Celestial|Searing Vengeance

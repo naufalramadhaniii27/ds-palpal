@@ -1,0 +1,101 @@
+LEMBAR 071, 100 sel
+1. feature/bewitching-guile | Bewitching Guile | sp:Vulpin|Bewitching Guile
+2. feature/binding-contract | Binding Contract | sub:Infernum|Binding Contract
+3. feature/bio-serum | Bio-Serum | sub:Cyber Surgeon|Bio-Serum
+4. feature/biomimicry | Biomimicry | sp:Amoeboid|Biomimicry
+5. feature/biorhythm | Biorhythm | sub:Leyline Magic|Biorhythm
+6. feature/biotech-field | Biotech Field | sub:Cyber Surgeon|Biotech Field
+7. feature/birdsong | Birdsong | sub:College of Birdsong|Birdsong
+8. feature/bite | Bite | sp:Gnoll|Bite
+9. feature/bittersweet-perfume | Bittersweet Perfume | sub:Circle of Roses|Bittersweet Perfume
+10. feature/black-blood-healing | Black Blood Healing | sp:Verdan|Black Blood Healing
+11. feature/black-magic-spells | Black Magic Spells | sub:Black Magic|Black Magic Spells
+12. feature/black-powder-bomb-formula | Black Powder Bomb [Formula] | sub:Mad Bomber|Black Powder Bomb [Formula]
+13. feature/black-star | Black Star | sub:Void Domain|Black Star
+14. feature/blade-flourish | Blade Flourish | sub:College of Swords|Blade Flourish
+15. feature/bladesinger-styles | Bladesinger Styles
+16. feature/bladesong | Bladesong | sub:Bladesinger|Bladesong
+17. feature/blast-shield | Blast Shield | sub:Mad Bomber|Blast Shield
+18. feature/blaster-gauntlet | Blaster Gauntlet | sub:Coalition Arcanist|Blaster Gauntlet
+19. feature/blaster-veteran | Blaster Veteran | sub:Steel Shepherd|Blaster Veteran
+20. feature/blasting-specialty | Blasting Specialty | sub:Mad Bomber|Blasting Specialty
+21. feature/blaze-of-glory | Blaze of Glory | sub:Zeal Domain (PSA)|Blaze of Glory
+22. feature/blazing-revival | Blazing Revival | sub:Circle of Wildfire|Blazing Revival
+23. feature/blessed-healer | Blessed Healer | sub:Life Domain (2014)|Blessed Healer
+24. feature/blessing-of-moonlight | Blessing of Moonlight | sub:College of the Moon|Blessing of Moonlight
+25. feature/blessing-of-the-forge | Blessing of the Forge | sub:Forge Domain|Blessing of the Forge
+26. feature/blessing-of-the-gears | Blessing of the Gears | sub:Clockwork Domain|Blessing of the Gears
+27. feature/blessing-of-the-hearth | Blessing of the Hearth | sub:Community Domain|Blessing of the Hearth
+28. feature/blessing-of-the-moon | Blessing of the Moon | sub:Lunar Magic|Blessing of the Moon
+29. feature/blessing-of-the-moon-weaver | Blessing of the Moon Weaver | sp:Pallid Elf|Blessing of the Moon Weaver
+30. feature/blessing-of-the-raven-queen | Blessing of the Raven Queen | sp:Shadar-kai (2014)|Blessing of the Raven Queen
+31. feature/blessing-of-the-sea | Blessing of the Sea | sp:Kalamer Landwalker (Merfolk)|Blessing of the Sea
+32. feature/blessings-of-knowledge | Blessings of Knowledge | sub:Knowledge Domain|Blessings of Knowledge
+33. feature/blessings-of-the-sun | Blessings of the Sun | sp:Avia-Ra|Blessings of the Sun
+34. feature/blighted-shape | Blighted Shape | sub:Circle of the Blighted|Blighted Shape
+35. feature/blinding-flare | Blinding Flare | sub:Fire Dancer|Blinding Flare
+36. feature/blinding-rebuke | Blinding Rebuke | sub:Star Patron|Blinding Rebuke
+37. feature/blindsense | Blindsense
+38. feature/blindside | Blindside | sub:Scofflaw|Blindside
+39. feature/blindsight | Blindsight | sp:Grimlock|Blindsight
+40. feature/bloated-thralls | Bloated Thralls | sub:Plague Lord|Bloated Thralls
+41. feature/blood-ascendant-spells | Blood Ascendant Spells | sub:Blood Ascendant|Blood Ascendant Spells
+42. feature/blood-barrier | Blood Barrier | sub:Serophage|Blood Barrier
+43. feature/blood-boon | Blood Boon | sub:Circle of Blood|Blood Boon
+44. feature/blood-channeling | Blood Channeling | sub:Blood Magic|Blood Channeling
+45. feature/blood-frenzy | Blood Frenzy | sp:Sahuagin|Blood Frenzy
+46. feature/blood-fuel | Blood Fuel | sub:Serophage|Blood Fuel
+47. feature/blood-hex | Blood Hex | sub:Sanguine Chapter|Blood Hex
+48. feature/blood-knight | Blood Knight | sub:Oath of Slaughter|Blood Knight
+49. feature/blood-lust | Blood Lust | sub:Circle of Blood|Blood Lust
+50. feature/blood-mage | Blood Mage | sub:Blood Magic (Deep Magic)|Blood Mage
+51. feature/blood-magic | Blood Magic | sub:Blood Mage|Blood Magic
+52. feature/blood-moon-beam | Blood Moon Beam | sub:Lunar Magic|Blood Moon Beam
+53. feature/blood-moons-call | Blood Moon's Call | sp:Accursed (Steinhardt)|Blood Moon's Call
+54. feature/blood-savant | Blood Savant | sub:Blood Mage|Blood Savant
+55. feature/blood-sense | Blood Sense | sub:Path of the Fin|Blood Sense
+56. feature/blood-thirst | Blood Thirst | sp:Vampire (Ixalan)|Blood Thirst
+57. feature/blood-ties | Blood Ties | sub:Wretched Bloodline Sorcery|Blood Ties
+58. feature/blood-vision | Blood Vision | sub:Blood Mage|Blood Vision
+59. feature/blood-for-blood | Blood for Blood | sub:Sangromancer|Blood for Blood
+60. feature/blood-in-the-water | Blood in the Water | sub:Path of the Fin|Blood in the Water
+61. feature/blood-of-the-seer | Blood of the Seer | sub:Farseer|Blood of the Seer
+62. feature/blood-drunk | Blood-Drunk | sub:Path of the Slasher|Blood-Drunk
+63. feature/bloodcurdling-howl | Bloodcurdling Howl | sub:Path of the Abomination|Bloodcurdling Howl
+64. feature/bloodletting | Bloodletting | sub:Plague Doctor|Bloodletting
+65. feature/bloodletting-focus | Bloodletting Focus | sub:Blood Domain|Bloodletting Focus
+66. feature/bloodstitch | Bloodstitch | sub:Sanguine Thief|Bloodstitch
+67. feature/bloodthirst | Bloodthirst | sub:Scion of the Three|Bloodthirst
+68. feature/bloodthirst-aura | Bloodthirst Aura | sub:Oath of Slaughter|Bloodthirst Aura
+69. feature/bloody-blades | Bloody Blades | sub:Sanguine Thief|Bloody Blades
+70. feature/bloody-exit | Bloody Exit | sub:Sanguine Thief|Bloody Exit
+71. feature/bloody-rampage | Bloody Rampage | sub:Experiment X|Bloody Rampage
+72. feature/bloody-spectacle | Bloody Spectacle | sub:Dragon Banner|Bloody Spectacle
+73. feature/blue-magic-duplication | Blue Magic Duplication | sub:Blue Magic|Blue Magic Duplication
+74. feature/bluff | Bluff | sub:House of Cards|Bluff
+75. feature/body-double | Body Double | sub:Spy|Body Double
+76. feature/body-of-the-astral-self | Body of the Astral Self | sub:Way of the Astral Self|Body of the Astral Self
+77. feature/bogborne | Bogborne | sub:Path of the Swamp|Bogborne
+78. feature/bolas | Bolas | sub:Big Game Hunter|Bolas
+79. feature/bolster-familiar | Bolster Familiar | sub:Familiar Master|Bolster Familiar
+80. feature/bolstering-flames | Bolstering Flames
+81. feature/bond-of-fang-and-scale | Bond of Fang and Scale | sub:Drakewarden|Bond of Fang and Scale
+82. feature/bond-of-mutual-suffering | Bond of Mutual Suffering | sub:Blood Magic|Bond of Mutual Suffering
+83. feature/bond-of-mutual-suffering-14th-level | Bond of Mutual Suffering (14th Level) | sub:Blood Magic|Bond of Mutual Suffering (14th Level)
+84. feature/bond-of-shelter | Bond of Shelter | sub:Circle of the Warden|Bond of Shelter
+85. feature/bonded-ring-staff | Bonded Ring-Staff | sub:Ring Warden|Bonded Ring-Staff
+86. feature/bonus-cantrips | Bonus Cantrips | sub:The Celestial|Bonus Cantrips
+87. feature/bonus-disciplines | Bonus Disciplines
+88. feature/bonus-languages | Bonus Languages | sp:Pluvenn|Bonus Languages
+89. feature/bonus-proficiency | Bonus Proficiency | sub:Life Domain (2014)|Bonus Proficiency
+90. feature/bonus-unarmed-strike | Bonus Unarmed Strike
+91. feature/booby-trap | Booby Trap | sub:Trappers' Guild|Booby Trap
+92. feature/born-of-aether | Born of Aether | sp:Aetherborn|Born of Aether
+93. feature/born-of-madness | Born of Madness | sp:Scourgeborne|Born of Madness
+94. feature/born-to-serve | Born to Serve | sp:Manikin|Born to Serve
+95. feature/born-to-the-road | Born to the Road | sub:Travel Domain|Born to the Road
+96. feature/born-to-the-saddle | Born to the Saddle | sub:Cavalier|Born to the Saddle
+97. feature/borrowed-time | Borrowed Time | sub:Time Operative|Borrowed Time
+98. feature/borrowed-tongues-and-hides | Borrowed Tongues and Hides | sub:Daemonologist|Borrowed Tongues and Hides
+99. feature/botanical-lich-lichdom | Botanical Lich [Lichdom] | sub:Corpse Florist|Botanical Lich [Lichdom]
+100. feature/bottled-oozes | Bottled Oozes | sub:Ooze Rancher|Bottled Oozes

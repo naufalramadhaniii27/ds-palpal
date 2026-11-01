@@ -1,0 +1,101 @@
+LEMBAR 038, 100 sel
+1. item/manifest-charm-of-mabar-the-endless-night | Manifest Charm of Mabar, the Endless Night
+2. item/manifest-charm-of-risia-the-plain-of-ice | Manifest Charm of Risia, the Plain of Ice
+3. item/manifest-charm-of-shavarath-the-battleground | Manifest Charm of Shavarath, the Battleground
+4. item/manifest-charm-of-syrania-the-azure-sky | Manifest Charm of Syrania, the Azure Sky
+5. item/manifest-charm-of-thelanis-the-faerie-court | Manifest Charm of Thelanis, the Faerie Court
+6. item/manifest-charm-of-xoriat-the-realm-of-delirium | Manifest Charm of Xoriat, the Realm of Delirium
+7. item/manor-key | Manor Key
+8. item/mantle-of-the-pack-lord | Mantle of the Pack Lord
+9. item/marotte-of-chance | Marotte of Chance
+10. item/mask-of-dendallen | Mask of Dendallen
+11. item/mask-of-the-maestro | Mask of the Maestro
+12. item/mask-of-the-pact-bearer | Mask of the Pact Bearer
+13. item/master-machinists-marvelous-mallet | Master Machinist's Marvelous Mallet
+14. item/masters-amulet | Master's Amulet
+15. item/mastery-gem | Mastery Gem
+16. item/matchless-pipe | Matchless Pipe
+17. item/mechanical-limb | Mechanical Limb
+18. item/medani-dowser | Medani Dowser
+19. item/medi-spectacles | Medi Spectacles
+20. item/memento-of-the-shapeless | Memento of the Shapeless
+21. item/menga-leaves-1-ounce | Menga leaves (1 ounce)
+22. item/merry-berry | Merry Berry
+23. item/mind-blade | Mind Blade
+24. item/mind-carapace-armor | Mind Carapace Armor
+25. item/mind-flayer-skull | Mind Flayer Skull
+26. item/mirror-of-infinite-transpondence | Mirror of Infinite Transpondence
+27. item/mirrorlight-edge | Mirrorlight Edge
+28. item/mirrorlight-piercer | Mirrorlight Piercer
+29. item/mithral-1-armor | Mithral +1 Armor
+30. item/mizzium-armor | Mizzium Armor
+31. item/moa | Moa
+32. item/mockingblade | Mockingblade
+33. item/mogiss-devotee | Mogis's Devotee
+34. item/mogiss-disciple | Mogis's Disciple
+35. item/mogiss-votary | Mogis's Votary
+36. item/molten-bronze-skin | Molten Bronze Skin
+37. item/monocle-of-clarity | Monocle of Clarity
+38. item/monsterbane-lasher | Monsterbane Lasher
+39. item/monstrous-bite | Monstrous Bite
+40. item/monstrous-hide | Monstrous Hide
+41. item/monstrous-weapon | Monstrous Weapon
+42. item/moongold-ammunition | Moongold Ammunition
+43. item/moongold-weapon | Moongold Weapon
+44. item/moonswaddled-armor | Moonswaddled Armor
+45. item/morose-monocle | Morose Monocle
+46. item/mortal-coil | Mortal Coil
+47. item/motion-tracker | Motion Tracker
+48. item/mummy-rot-antidote | Mummy Rot Antidote
+49. item/murgaxors-elixir-of-life | Murgaxor's Elixir of Life
+50. item/muscle-graft | Muscle Graft
+51. item/mythcarver-awakened | Mythcarver (Awakened)
+52. item/mythcarver-dormant | Mythcarver (Dormant)
+53. item/mythcarver-exalted | Mythcarver (Exalted)
+54. item/nameless-cults | Nameless Cults
+55. item/nangnang | Nangnang
+56. item/nanobot-canister-deconstructive | Nanobot Canister (Deconstructive)
+57. item/nanobot-canister-reconstructive | Nanobot Canister (Reconstructive)
+58. item/nanobot-canister-transformative | Nanobot Canister (Transformative)
+59. item/necrolace | Necrolace
+60. item/necronomicon | Necronomicon
+61. item/necronomicon-ex-corvis | Necronomicon Ex Corvis
+62. item/needle-1 | Needle, +1
+63. item/needle-2 | Needle, +2
+64. item/needle-3 | Needle, +3
+65. item/nest-charm | Nest Charm
+66. item/net-of-maidens-hair | Net of Maiden's Hair
+67. item/nib | Nib
+68. item/nightcap | Nightcap
+69. item/nightmare-staff | Nightmare Staff
+70. item/nightstalkers-kanabo | Nightstalker's Kanabo
+71. item/nimblewright-detector | Nimblewright Detector
+72. item/ninth-quill-trinket | Ninth Quill Trinket
+73. item/nithing-pole | Nithing Pole
+74. item/nocturnal-eyes | Nocturnal Eyes
+75. item/null-chalk | Null Chalk
+76. item/nyleas-devotee | Nylea's Devotee
+77. item/nyleas-disciple | Nylea's Disciple
+78. item/nyleas-votary | Nylea's Votary
+79. item/oathbound-ring | Oathbound Ring
+80. item/obolaka | Obo'laka
+81. item/observatory-charm | Observatory Charm
+82. item/obviators-lenses | Obviator's Lenses
+83. item/oil | Oil
+84. item/oil-of-defoliation | Oil of Defoliation
+85. item/omenbringers-mantle | Omenbringer's Mantle
+86. item/ooze-infusion | Ooze Infusion
+87. item/orators-quill | Orator's Quill
+88. item/orb-of-damara | Orb of Damara
+89. item/orb-of-gonging | Orb of Gonging
+90. item/orb-of-shielding | Orb of Shielding
+91. item/orb-of-shielding-fernian-basalt | Orb of Shielding (Fernian Basalt)
+92. item/orb-of-shielding-irian-quartz | Orb of Shielding (Irian Quartz)
+93. item/orb-of-shielding-kythrian-skarn | Orb of Shielding (Kythrian Skarn)
+94. item/orb-of-shielding-lamannian-flint | Orb of Shielding (Lamannian Flint)
+95. item/orb-of-shielding-mabaran-obsidian | Orb of Shielding (Mabaran Obsidian)
+96. item/orb-of-shielding-risian-shale | Orb of Shielding (Risian Shale)
+97. item/orb-of-shielding-shavarran-chert | Orb of Shielding (Shavarran Chert)
+98. item/orb-of-shielding-xorian-marble | Orb of Shielding (Xorian Marble)
+99. item/order-of-the-gauntlet-trinket | Order of the Gauntlet Trinket
+100. item/ori-boots | Ori Boots

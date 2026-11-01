@@ -1,0 +1,101 @@
+LEMBAR 004, 100 sel
+1. species/accursed | Accursed
+2. species/accursed-steinhardt | Accursed (Steinhardt)
+3. species/air-genasi-2014 | Air Genasi (2014)
+4. species/amoeboid | Amoeboid
+5. species/ankylier | Ankylier
+6. species/arisen | Arisen
+7. species/aven-dominaria | Aven (Dominaria)
+8. species/aven-hawk-headed | Aven (Hawk-Headed)
+9. species/avia-ra | Avia-Ra
+10. species/bullywug | Bullywug
+11. species/cervan | Cervan
+12. species/child-of-seth | Child of Seth
+13. species/corvum | Corvum
+14. species/cursed-blood | Cursed-Blood
+15. species/custom-lineage | Custom Lineage
+16. species/deep-one-dwarf | Deep One Dwarf
+17. species/demidritch | Demidritch
+18. species/dhakaani-ghaaldar-hobgoblin | Dhakaani Ghaal'dar (Hobgoblin)
+19. species/dhakaani-golindar-goblin | Dhakaani Golin'dar (Goblin)
+20. species/dhakaani-guuldar-bugbear | Dhakaani Guul'dar (Bugbear)
+21. species/disembodied | Disembodied
+22. species/downcast | Downcast
+23. species/draconblood-dragonborn | Draconblood Dragonborn
+24. species/dreamer | Dreamer
+25. species/drow | Drow
+26. species/earth-genasi-2014 | Earth Genasi (2014)
+27. species/eladrin-elf | Eladrin Elf
+28. species/fairy-wbtw | Fairy (WBtW)
+29. species/feathren | Feathren
+30. species/fire-genasi-2014 | Fire Genasi (2014)
+31. species/forest-gnome | Forest Gnome
+32. species/gallus | Gallus
+33. species/geppettin | Geppettin
+34. species/ghostwise-halfling | Ghostwise Halfling
+35. species/gnoll | Gnoll
+36. species/gnoll-eberron | Gnoll (Eberron)
+37. species/goblin-grotag-tribe | Goblin (Grotag Tribe)
+38. species/goblin-ixalan | Goblin (Ixalan)
+39. species/goblin-lavastep-tribe | Goblin (Lavastep Tribe)
+40. species/goblin-tuktuk-tribe | Goblin (Tuktuk Tribe)
+41. species/grimlock | Grimlock
+42. species/grudgel | Grudgel
+43. species/harengon-wbtw | Harengon (WBtW)
+44. species/hedge | Hedge
+45. species/high-elf | High Elf
+46. species/hill-dwarf | Hill Dwarf
+47. species/jeholrak | Jeholrak
+48. species/jerbeen | Jerbeen
+49. species/jhorguntaal-half-orc | Jhorgun'taal (Half-Orc)
+50. species/kaladesh-elf-bishatar-and-tirahar | Kaladesh Elf (Bishatar and Tirahar)
+51. species/kaladesh-elf-vahadar | Kaladesh Elf (Vahadar)
+52. species/kalamer-landwalker-merfolk | Kalamer Landwalker (Merfolk)
+53. species/kithkin | Kithkin
+54. species/kuo-toa | Kuo-Toa
+55. species/laneshi | Laneshi
+56. species/lightfoot-halfling | Lightfoot Halfling
+57. species/limukin | Limukin
+58. species/lorwyn-changeling | Lorwyn Changeling
+59. species/lorwyn-elf | Lorwyn Elf
+60. species/lotusden-halfling | Lotusden Halfling
+61. species/luma | Luma
+62. species/mandrake | Mandrake
+63. species/manikin | Manikin
+64. species/manyhorn | Manyhorn
+65. species/mapach | Mapach
+66. species/mountain-dwarf | Mountain Dwarf
+67. species/nautilid | Nautilid
+68. species/near-human | Near-Human
+69. species/ogresh | Ogresh
+70. species/pallid-elf | Pallid Elf
+71. species/pluvenn | Pluvenn
+72. species/raptor | Raptor
+73. species/ravenite-dragonborn | Ravenite Dragonborn
+74. species/rock-gnome | Rock Gnome
+75. species/ruinbound | Ruinbound
+76. species/sahuagin | Sahuagin
+77. species/scourgeborne | Scourgeborne
+78. species/shifter-beasthide | Shifter (Beasthide)
+79. species/shifter-longtooth | Shifter (Longtooth)
+80. species/shifter-swiftstride | Shifter (Swiftstride)
+81. species/skath-ri | Skathári
+82. species/skeleton | Skeleton
+83. species/stout-halfling | Stout Halfling
+84. species/strig | Strig
+85. species/troglodyte | Troglodyte
+86. species/vampire-ixalan | Vampire (Ixalan)
+87. species/vampire-zendikar | Vampire (Zendikar)
+88. species/variant-human | Variant Human
+89. species/vect | Vect
+90. species/vulpin | Vulpin
+91. species/water-genasi-2014 | Water Genasi (2014)
+92. species/wechselkind | Wechselkind
+93. species/wood-elf | Wood Elf
+94. species/wrothian | Wrothian
+95. species/wulven | Wulven
+96. species/zendikar-elf-joraga | Zendikar Elf (Joraga)
+97. species/zendikar-elf-mul-daya | Zendikar Elf (Mul Daya)
+98. species/zendikar-elf-tajuru | Zendikar Elf (Tajuru)
+99. species/zombie | Zombie
+100. bg/academic | Academic

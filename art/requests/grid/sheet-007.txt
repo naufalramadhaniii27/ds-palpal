@@ -1,0 +1,101 @@
+LEMBAR 007, 100 sel
+1. sub/burden-of-revolution | Burden of Revolution
+2. sub/burden-of-truth | Burden of Truth
+3. sub/burden-of-tyranny | Burden of Tyranny
+4. sub/burden-of-the-end | Burden of the End
+5. sub/calibarons-guild | Calibarons' Guild
+6. sub/carrion-king | Carrion King
+7. sub/carver-guild | Carver Guild
+8. sub/cat-domain | Cat Domain
+9. sub/cavalier | Cavalier
+10. sub/chaos | Chaos
+11. sub/cheerleader | Cheerleader
+12. sub/chronomancer | Chronomancer
+13. sub/chronurgy-magic | Chronurgy Magic
+14. sub/circle-of-blood | Circle of Blood
+15. sub/circle-of-configuration | Circle of Configuration
+16. sub/circle-of-entropy | Circle of Entropy
+17. sub/circle-of-mutation | Circle of Mutation
+18. sub/circle-of-oaks | Circle of Oaks
+19. sub/circle-of-owls | Circle of Owls
+20. sub/circle-of-roses | Circle of Roses
+21. sub/circle-of-xenobiology | Circle of Xenobiology
+22. sub/circle-of-the-blighted | Circle of the Blighted
+23. sub/circle-of-the-forged | Circle of the Forged
+24. sub/circle-of-the-sea | Circle of the Sea
+25. sub/circle-of-the-unbroken | Circle of the Unbroken
+26. sub/circle-of-the-warden | Circle of the Warden
+27. sub/clockwork-mage | Clockwork Mage
+28. sub/clockwork-sorcery | Clockwork Sorcery
+29. sub/clockworkers-guild | Clockworkers' Guild
+30. sub/coalition-arcanist | Coalition Arcanist
+31. sub/college-of-adventurers | College of Adventurers
+32. sub/college-of-bartending | College of Bartending
+33. sub/college-of-birdsong | College of Birdsong
+34. sub/college-of-calligraphy | College of Calligraphy
+35. sub/college-of-cantors | College of Cantors
+36. sub/college-of-choreography | College of Choreography
+37. sub/college-of-chronology | College of Chronology
+38. sub/college-of-chronology-dark-matter | College of Chronology (Dark Matter)
+39. sub/college-of-cyberwave | College of Cyberwave
+40. sub/college-of-dirges | College of Dirges
+41. sub/college-of-entropy | College of Entropy
+42. sub/college-of-fools | College of Fools
+43. sub/college-of-jesters | College of Jesters
+44. sub/college-of-masks | College of Masks
+45. sub/college-of-opera | College of Opera
+46. sub/college-of-origami | College of Origami
+47. sub/college-of-paint | College of Paint
+48. sub/college-of-requiems | College of Requiems
+49. sub/college-of-sculpture | College of Sculpture
+50. sub/college-of-tragedy | College of Tragedy
+51. sub/college-of-wyrdsingers | College of Wyrdsingers
+52. sub/college-of-the-dirge-singer | College of the Dirge Singer
+53. sub/college-of-the-mad-god | College of the Mad God
+54. sub/college-of-the-road | College of the Road
+55. sub/community-domain | Community Domain
+56. sub/conspiracy-theorist | Conspiracy Theorist
+57. sub/containment-specialist | Containment Specialist
+58. sub/contortionist | Contortionist
+59. sub/corpse-florist | Corpse Florist
+60. sub/cosmic-magic | Cosmic Magic
+61. sub/couatl-herald | Couatl Herald
+62. sub/courtesan | Courtesan
+63. sub/courtiers-guild | Courtiers' Guild
+64. sub/crone | Crone
+65. sub/cyber-ninja | Cyber Ninja
+66. sub/cyber-surgeon | Cyber Surgeon
+67. sub/cyberghoul | Cyberghoul
+68. sub/cybernetic | Cybernetic
+69. sub/daemonologist | Daemonologist
+70. sub/daggermark | Daggermark
+71. sub/danseur-macabre | Danseur Macabre
+72. sub/darkness-domain | Darkness Domain
+73. sub/dead-mist-acolyte | Dead Mist Acolyte
+74. sub/death-knight | Death Knight
+75. sub/decommissioner | Decommissioner
+76. sub/demon-brand | Demon Brand
+77. sub/detective | Detective
+78. sub/devourer-guild | Devourer Guild
+79. sub/diabolist | Diabolist
+80. sub/digital-nomad | Digital Nomad
+81. sub/divine-soul | Divine Soul
+82. sub/doomsayer | Doomsayer
+83. sub/draconic-bloodline | Draconic Bloodline
+84. sub/draconic-sorcery | Draconic Sorcery
+85. sub/dragon-banner | Dragon Banner
+86. sub/dragon-domain | Dragon Domain
+87. sub/dragon-mage | Dragon Mage
+88. sub/drake-blooded | Drake-Blooded
+89. sub/dramaturge | Dramaturge
+90. sub/drone-jockey | Drone Jockey
+91. sub/dynamo-engineer | Dynamo Engineer
+92. sub/eagle-banner | Eagle Banner
+93. sub/eldritch-domain | Eldritch Domain
+94. sub/elemental-essence | Elemental Essence
+95. sub/elementalist | Elementalist
+96. sub/entropist | Entropist
+97. sub/entropy | Entropy
+98. sub/evolution-domain | Evolution Domain
+99. sub/experiment-x | Experiment X
+100. sub/exterminator | Exterminator

@@ -1,0 +1,101 @@
+LEMBAR 086, 100 sel
+1. feature/memory-of-flesh | Memory of Flesh | sub:Necrophage|Memory of Flesh
+2. feature/memory-of-one-thousand-steps | Memory of One Thousand Steps
+3. feature/menacing | Menacing | sp:Half-Orc|Menacing
+4. feature/menacing-stare | Menacing Stare | sub:Path of the Slasher|Menacing Stare
+5. feature/mental-discipline | Mental Discipline | sp:Githzerai (2014)|Mental Discipline
+6. feature/merciful-healing | Merciful Healing | sub:Burden of Mercy|Merciful Healing
+7. feature/merciless-onslaught | Merciless Onslaught | sub:Doomsayer|Merciless Onslaught
+8. feature/mercurial | Mercurial | sub:Feylost|Mercurial
+9. feature/merge-bodies | Merge Bodies | sub:Bond of the Symbiote|Merge Bodies
+10. feature/merge-with-stone | Merge with Stone | sp:Earth Genasi (2014)|Merge with Stone
+11. feature/messenger-of-the-void | Messenger of the Void | sub:Void Domain|Messenger of the Void
+12. feature/metal-shape | Metal Shape | sub:Clockwork Mage|Metal Shape
+13. feature/metal-slinger | Metal Slinger | sub:Magneticist|Metal Slinger
+14. feature/metallic-ancestry | Metallic Ancestry | sp:Dragonborn (Metallic)|Metallic Ancestry
+15. feature/metallic-breath-weapon | Metallic Breath Weapon | sp:Dragonborn (Metallic)|Metallic Breath Weapon
+16. feature/metallic-cloud | Metallic Cloud | sub:Magneticist|Metallic Cloud
+17. feature/metallic-control | Metallic Control | sub:Magneticist|Metallic Control
+18. feature/metalworker | Metalworker | sp:Ankylier|Metalworker
+19. feature/metamagic-mastery | Metamagic Mastery | sub:Aristocratic|Metamagic Mastery
+20. feature/metamagic-options | Metamagic Options
+21. feature/mettle | Mettle | sub:Tower Banner|Mettle
+22. feature/microsingularity | Microsingularity | sub:Singularity Patron|Microsingularity
+23. feature/mighty-summoner | Mighty Summoner | sub:Circle of the Shepherd|Mighty Summoner
+24. feature/mighty-swarm | Mighty Swarm | sub:Swarmkeeper|Mighty Swarm
+25. feature/militia-training | Militia Training | sp:Gallus|Militia Training
+26. feature/mimicry | Mimicry | sp:Kenku (Monster)|Mimicry
+27. feature/mind-blast | Mind Blast | sub:Bond of the Aberrant Psion|Mind Blast
+28. feature/mind-domain-spells | Mind Domain Spells | sub:Mind Domain|Mind Domain Spells
+29. feature/mind-hack | Mind Hack | sub:Infiltrator|Mind Hack
+30. feature/mind-link | Mind Link | sp:Kalashtar (2014)|Mind Link
+31. feature/mind-magic | Mind Magic | sub:Knowledge Domain|Mind Magic
+32. feature/mind-mastery | Mind Mastery | sub:Burden of Awakening|Mind Mastery
+33. feature/mind-of-mercury | Mind of Mercury | sub:Way of the Cobalt Soul|Mind of Mercury
+34. feature/mingle-with-the-wind | Mingle with the Wind | sp:Air Genasi (2014)|Mingle with the Wind
+35. feature/mini-portals | Mini Portals | sub:Portalweaver|Mini Portals
+36. feature/miniature-minions | Miniature Minions | sub:Toymaker|Miniature Minions
+37. feature/minor-alchemy | Minor Alchemy | sub:School of Transmutation|Minor Alchemy
+38. feature/minor-conjuration | Minor Conjuration | sub:School of Conjuration|Minor Conjuration
+39. feature/minor-creation | Minor Creation | sub:Materializer|Minor Creation
+40. feature/minor-miracle | Minor Miracle | sub:Holy Icon|Minor Miracle
+41. feature/minor-miracles | Minor Miracles | sub:College of Cantors|Minor Miracles
+42. feature/minor-wish | Minor Wish | sub:The Genie Lord|Minor Wish
+43. feature/miracle-serum | Miracle Serum | sub:Apothecary|Miracle Serum
+44. feature/mire-or-quicken-blood | Mire or Quicken Blood | sub:Blood Mage|Mire or Quicken Blood
+45. feature/mirror-eidolon | Mirror Eidolon | sub:Bond of the Mirror Mage|Mirror Eidolon
+46. feature/mirror-spells | Mirror Spells | sub:Bond of the Mirror Mage|Mirror Spells
+47. feature/mirthful-leaps | Mirthful Leaps | sp:Satyr (2014)|Mirthful Leaps
+48. feature/misdirection | Misdirection | sub:Mastermind|Misdirection
+49. feature/misfortunist | Misfortunist | sub:Misfortune Bringer|Misfortunist
+50. feature/mistborne-regeneration | Mistborne Regeneration | sub:Dead Mist Acolyte|Mistborne Regeneration
+51. feature/misty-pathways | Misty Pathways | sub:Feylost|Misty Pathways
+52. feature/misty-transposition | Misty Transposition | sub:Burden of Odyssey|Misty Transposition
+53. feature/misty-waltz | Misty Waltz | sub:Fey Ballerina|Misty Waltz
+54. feature/misty-wanderer | Misty Wanderer | sub:Fey Wanderer (2014)|Misty Wanderer
+55. feature/mithridatism | Mithridatism | sub:Venomsmith|Mithridatism
+56. feature/mnemonic-concentration | Mnemonic Concentration | sub:Protomancer|Mnemonic Concentration
+57. feature/mobile-flourish | Mobile Flourish
+58. feature/mobile-pursuer | Mobile Pursuer | sub:Absolute Chapter|Mobile Pursuer
+59. feature/mock-divinity | Mock Divinity | sub:Pharaoh|Mock Divinity
+60. feature/modify-magic | Modify Magic | sub:Arcana Domain|Modify Magic
+61. feature/modulation | Modulation | sub:College of Cyberwave|Modulation
+62. feature/momentary-stasis | Momentary Stasis | sub:Chronurgy Magic|Momentary Stasis
+63. feature/momentum | Momentum | sub:Acrobat|Momentum
+64. feature/monastic-tradition | Monastic Tradition
+65. feature/monastic-tradition-feature | Monastic Tradition feature
+66. feature/monk-subclass | Monk Subclass | cls:Monk|Monk Subclass
+67. feature/monster-meal | Monster Meal | sub:Gourmand|Monster Meal
+68. feature/monster-slayer | Monster Slayer | sub:Exterminator|Monster Slayer
+69. feature/monster-slayer-magic | Monster Slayer Magic | sub:Monster Slayer|Monster Slayer Magic
+70. feature/monster-hide-armor | Monster-Hide Armor | sub:Trapper Guild|Monster-Hide Armor
+71. feature/monstrous-brutality | Monstrous Brutality | sub:Path of the Abomination|Monstrous Brutality
+72. feature/monstrous-eidolon | Monstrous Eidolon | sub:Bond of the Monster Shaper|Monstrous Eidolon
+73. feature/monstrous-focus | Monstrous Focus | sub:Bond of the Monster Shaper|Monstrous Focus
+74. feature/monstrous-lineage | Monstrous Lineage | sp:Scourgeborne|Monstrous Lineage
+75. feature/monstrous-spells | Monstrous Spells | sub:Bond of the Monster Shaper|Monstrous Spells
+76. feature/moon-fire | Moon Fire | sub:Lunar Sorcery|Moon Fire
+77. feature/moons-grace | Moon's Grace | sub:Moon Domain (Deep Magic)|Moon's Grace
+78. feature/moons-inspiration | Moon's Inspiration | sub:College of the Moon|Moon's Inspiration
+79. feature/moonsight | Moonsight | sub:Lunar Magic|Moonsight
+80. feature/moonwalk-dance-style | Moonwalk [Dance Style] | sub:Moonwalker|Moonwalk [Dance Style]
+81. feature/mortal-metamagic | Mortal Metamagic | sub:Drake-Blooded|Mortal Metamagic
+82. feature/mortal-sacrifice | Mortal Sacrifice | sub:Bond of the Guardian Angel|Mortal Sacrifice
+83. feature/mote-of-potential | Mote of Potential | sub:College of Creation|Mote of Potential
+84. feature/mountain-born | Mountain Born | sp:Goliath (2014)|Mountain Born
+85. feature/mounted-scout | Mounted Scout | sub:Griffon Scout|Mounted Scout
+86. feature/muck-and-mire | Muck and Mire | sub:Path of the Swamp|Muck and Mire
+87. feature/mul-daya-magic | Mul Daya Magic | sp:Zendikar Elf (Mul Daya)|Mul Daya Magic
+88. feature/multiattack | Multiattack | sub:Hunter (2014)|Multiattack
+89. feature/multiattack-defense | Multiattack Defense
+90. feature/multidisciplinary-scholar | Multidisciplinary Scholar | sub:Universalist|Multidisciplinary Scholar
+91. feature/multidiscipline | Multidiscipline | sub:House of Pawns|Multidiscipline
+92. feature/multiplayer | Multiplayer | sub:Digital Nomad|Multiplayer
+93. feature/mummy-lord-lichdom | Mummy Lord [Lichdom] | sub:Pharaoh|Mummy Lord [Lichdom]
+94. feature/musclebound | Musclebound | sp:Manyhorn|Musclebound
+95. feature/musical-interlude | Musical Interlude | sub:Technicolor Magic|Musical Interlude
+96. feature/mutable-strike | Mutable Strike | sub:Warrior of the Living Weapon|Mutable Strike
+97. feature/mutagens | Mutagens | sub:Mutagenist|Mutagens
+98. feature/mutate-shape | Mutate Shape | sub:Circle of Mutation|Mutate Shape
+99. feature/mutated-blood | Mutated Blood | sub:Mutagenist|Mutated Blood
+100. feature/mutations | Mutations | sub:Experiment X|Mutations

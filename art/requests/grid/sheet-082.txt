@@ -1,0 +1,101 @@
+LEMBAR 082, 100 sel
+1. feature/hold-breath | Hold Breath | sp:Plasmoid|Hold Breath
+2. feature/hold-the-line | Hold the Line | sub:Cavalier|Hold the Line
+3. feature/hollow-warden-spells | Hollow Warden Spells | sub:Hollow Warden|Hollow Warden Spells
+4. feature/hologram-projector | Hologram Projector | sub:Hologrammer|Hologram Projector
+5. feature/holographic-burst | Holographic Burst | sub:Hologrammer|Holographic Burst
+6. feature/holy-denunciation | Holy Denunciation | sub:Justice Domain|Holy Denunciation
+7. feature/holy-symbol | Holy Symbol | sub:Pharaoh|Holy Symbol
+8. feature/homing-strikes | Homing Strikes
+9. feature/hone-the-blade | Hone the Blade
+10. feature/honed-spellfire | Honed Spellfire | sub:Spellfire Sorcery|Honed Spellfire
+11. feature/honeyed-words | Honeyed Words | sub:Courtesan|Honeyed Words
+12. feature/honorary-fiend | Honorary Fiend | sub:Bond of the Fiendish Chain|Honorary Fiend
+13. feature/hooked-claws | Hooked Claws | sp:Skathári|Hooked Claws
+14. feature/hooves | Hooves | sp:Centaur (2014)|Hooves
+15. feature/horde-breaker | Horde Breaker
+16. feature/horizon-walker-magic | Horizon Walker Magic | sub:Horizon Walker|Horizon Walker Magic
+17. feature/horned-repose | Horned Repose | sp:Manyhorn|Horned Repose
+18. feature/horns | Horns | sp:Minotaur (2014)|Horns
+19. feature/horrific-strike-maneuver | Horrific Strike [Maneuver] | sub:Skull Banner|Horrific Strike [Maneuver]
+20. feature/horse-lord | Horse Lord | sub:Highway Rider|Horse Lord
+21. feature/hound-of-ill-omen | Hound of Ill Omen | sub:Shadow Magic|Hound of Ill Omen
+22. feature/hounds-instincts | Hound's Instincts | sub:Houndmaster|Hound's Instincts
+23. feature/hour-of-reaping | Hour of Reaping | sub:Way of the Long Death|Hour of Reaping
+24. feature/howl | Howl | sp:Lupin|Howl
+25. feature/hundred-arrow-volley | Hundred-Arrow Volley | sub:Eagle Banner|Hundred-Arrow Volley
+26. feature/hungering-might | Hungering Might | sub:Hollow Warden|Hungering Might
+27. feature/hungry-jaws | Hungry Jaws | sp:Lizardfolk (2014)|Hungry Jaws
+28. feature/hunters-instincts | Hunter's Instincts | sp:Leonin|Hunter's Instincts
+29. feature/hunters-intuition | Hunter's Intuition | sp:Half-Orc (Mark of Finding)|Hunter's Intuition
+30. feature/hunters-lore | Hunter's Lore | sp:Lizardfolk (2014)|Hunter's Lore
+31. feature/hunters-prey | Hunter's Prey | sub:Hunter (2014)|Hunter's Prey
+32. feature/hunters-rime | Hunter's Rime | sub:Winter Walker|Hunter's Rime
+33. feature/hunters-sense | Hunter's Sense | sub:Monster Slayer|Hunter's Sense
+34. feature/hunters-senses | Hunter's Senses | sp:Gnoll (Eberron)|Hunter's Senses
+35. feature/hunters-training | Hunter's Training | sp:Raptor|Hunter's Training
+36. feature/hunter-gatherer | Hunter-Gatherer | sp:Limukin|Hunter-Gatherer
+37. feature/hunting-grounds | Hunting Grounds | sub:Beastblood Guardian|Hunting Grounds
+38. feature/hurl-through-hell | Hurl Through Hell | sub:The Fiend (2014)|Hurl Through Hell
+39. feature/hurricane-strike | Hurricane Strike | sub:Path of the Juggernaut|Hurricane Strike
+40. feature/hyperdrive | Hyperdrive | sub:Cybernetic|Hyperdrive
+41. feature/hyperintelligence | Hyperintelligence | sub:AI Futurist|Hyperintelligence
+42. feature/hypnotic-gaze | Hypnotic Gaze | sub:School of Enchantment|Hypnotic Gaze
+43. feature/hypnotic-presence | Hypnotic Presence | sub:Enchanter|Hypnotic Presence
+44. feature/hypnotize | Hypnotize | sub:Somnomancer|Hypnotize
+45. feature/i-cast-fist | I Cast Fist | sub:Path of the Muscle Wizard|I Cast Fist
+46. feature/ice-blast | Ice Blast | sub:Rimekeeper|Ice Blast
+47. feature/ice-sculpting | Ice Sculpting | sub:Wintercarvers' Guild|Ice Sculpting
+48. feature/icehaven-born | Icehaven Born | sp:Human (Keldon)|Icehaven Born
+49. feature/icicle-throw | Icicle Throw | sub:Path of the Frostrager|Icicle Throw
+50. feature/icy-body | Icy Body | sub:The Frozen One|Icy Body
+51. feature/illuminated-spells | Illuminated Spells | sub:College of Calligraphy|Illuminated Spells
+52. feature/illumination-magic-savant | Illumination Magic Savant | sub:Illuminator|Illumination Magic Savant
+53. feature/illumination-savant | Illumination Savant | sub:School of Illumination|Illumination Savant
+54. feature/illusion-expert | Illusion Expert | sub:Bond of the Mirror Mage|Illusion Expert
+55. feature/illusion-savant | Illusion Savant | sub:School of Illusion|Illusion Savant
+56. feature/illusions-of-permanence | Illusions of Permanence | sub:Illuminator|Illusions of Permanence
+57. feature/illusory-body | Illusory Body | sp:Deep One Dwarf|Illusory Body
+58. feature/illusory-decoy | Illusory Decoy | sub:Hologrammer|Illusory Decoy
+59. feature/illusory-reality | Illusory Reality | sub:School of Illusion|Illusory Reality
+60. feature/illusory-self | Illusory Self | sub:School of Illusion|Illusory Self
+61. feature/imbalance-humors | Imbalance Humors | sub:Plague Doctor|Imbalance Humors
+62. feature/imbue-ring | Imbue Ring | sub:Ring Warden|Imbue Ring
+63. feature/immortal-bulwark | Immortal Bulwark | sub:Bond of the Guardian Angel|Immortal Bulwark
+64. feature/immortal-durability | Immortal Durability
+65. feature/immortal-will | Immortal Will
+66. feature/impending-misfortune | Impending Misfortune | sub:College of Tragedy|Impending Misfortune
+67. feature/imperator-lichdom | Imperator [Lichdom] | sub:Death Knight|Imperator [Lichdom]
+68. feature/imperil | Imperil | sub:Red Magic|Imperil
+69. feature/implement-of-peace | Implement of Peace | sub:Peace Domain|Implement of Peace
+70. feature/imposing-presence | Imposing Presence | sp:Minotaur (2014)|Imposing Presence
+71. feature/impressionist | Impressionist | sub:Runetagger|Impressionist
+72. feature/imprinted-spellscar | Imprinted Spellscar | sub:Mage Brand|Imprinted Spellscar
+73. feature/improved-abjuration | Improved Abjuration | sub:School of Abjuration|Improved Abjuration
+74. feature/improved-armored-deflection | Improved Armored Deflection | sub:Steelsinger|Improved Armored Deflection
+75. feature/improved-bolas | Improved Bolas | sub:Big Game Hunter|Improved Bolas
+76. feature/improved-combat-superiority-d10 | Improved Combat Superiority (d10)
+77. feature/improved-combat-superiority-d12 | Improved Combat Superiority (d12) | sub:Battle Master (2014)|Improved Combat Superiority (d12)
+78. feature/improved-critical | Improved Critical | sub:Champion (2014)|Improved Critical
+79. feature/improved-defense | Improved Defense
+80. feature/improved-divine-smite | Improved Divine Smite
+81. feature/improved-field-projecter | Improved Field Projecter | sub:Forceforger|Improved Field Projecter
+82. feature/improved-illusions | Improved Illusions | sub:Illusionist|Improved Illusions
+83. feature/improved-life-tether | Improved Life Tether | sub:Vow of the Protector|Improved Life Tether
+84. feature/improved-mending | Improved Mending | sub:Clockwork Domain|Improved Mending
+85. feature/improved-minor-illusion | Improved Minor Illusion | sub:School of Illusion|Improved Minor Illusion
+86. feature/improved-radiant-shell | Improved Radiant Shell | sub:Luminaries' Guild|Improved Radiant Shell
+87. feature/improved-reanimation | Improved Reanimation | sub:Reanimator|Improved Reanimation
+88. feature/improved-reaper | Improved Reaper | sub:Death Domain|Improved Reaper
+89. feature/improved-sap-strength | Improved Sap Strength | sub:Vow of the Siphon|Improved Sap Strength
+90. feature/improved-second-wind | Improved Second Wind | sub:Bulwark Warrior|Improved Second Wind
+91. feature/improved-shillelagh | Improved Shillelagh | sub:Circle of the Unbroken|Improved Shillelagh
+92. feature/improved-shock-trooper | Improved Shock Trooper | sub:House of Lancers|Improved Shock Trooper
+93. feature/improved-slip-gate | Improved Slip Gate | sub:Jumper|Improved Slip Gate
+94. feature/improved-special-shots | Improved Special Shots | sub:Big Game Hunter|Improved Special Shots
+95. feature/improved-steal-luck | Improved Steal Luck | sub:Misfortune Bringer|Improved Steal Luck
+96. feature/improved-tricks | Improved Tricks | sub:College of the Road|Improved Tricks
+97. feature/improved-unholy-smite | Improved Unholy Smite | sub:Oath of the Giving Grave|Improved Unholy Smite
+98. feature/improved-ward | Improved Ward | sub:Night Domain|Improved Ward
+99. feature/improvisational-talent | Improvisational Talent | sub:College of Adventurers|Improvisational Talent
+100. feature/impulse-frame | Impulse Frame | sub:Space Marine|Impulse Frame

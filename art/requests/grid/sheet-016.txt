@@ -1,0 +1,101 @@
+LEMBAR 016, 100 sel
+1. spell/aundairs-silent-sanctum | Aundair's Silent Sanctum
+2. spell/aura-of-entropy | Aura of Entropy
+3. spell/aura-of-listlessness | Aura of Listlessness
+4. spell/aura-of-protection-or-destruction | Aura of Protection or Destruction
+5. spell/aura-of-wrath | Aura of Wrath
+6. spell/auspicious-warning | Auspicious Warning
+7. spell/automate | Automate
+8. spell/automation-barrage | Automation Barrage
+9. spell/autopilot | Autopilot
+10. spell/avoid-grievous-injury | Avoid Grievous Injury
+11. spell/avronins-astral-assembly | Avronin's Astral Assembly
+12. spell/awaken-machine | Awaken Machine
+13. spell/awaken-object | Awaken Object
+14. spell/babble | Babble
+15. spell/bad-timing | Bad Timing
+16. spell/ballistic-smite | Ballistic Smite
+17. spell/batsense | Batsense
+18. spell/battle-mind | Battle Mind
+19. spell/become-nightwing | Become Nightwing
+20. spell/bedazzling-charm | Bedazzling Charm
+21. spell/beguiling-bet | Beguiling Bet
+22. spell/benediction | Benediction
+23. spell/benign-dismemberment | Benign Dismemberment
+24. spell/bestial-fury-deep-magic | Bestial Fury (Deep Magic)
+25. spell/bestial-roar | Bestial Roar
+26. spell/bewilderment | Bewilderment
+27. spell/binding-oath | Binding Oath
+28. spell/binding-pledge | Binding Pledge
+29. spell/biting-arrow | Biting Arrow
+30. spell/bitter-chains | Bitter Chains
+31. spell/black-goats-blessing | Black Goat's Blessing
+32. spell/black-hand | Black Hand
+33. spell/black-hole | Black Hole
+34. spell/black-ribbons | Black Ribbons
+35. spell/black-sunshine | Black Sunshine
+36. spell/black-swan-storm | Black Swan Storm
+37. spell/black-well | Black Well
+38. spell/blade-of-my-brother | Blade of My Brother
+39. spell/blade-of-wrath | Blade of Wrath
+40. spell/blazing-chariot | Blazing Chariot
+41. spell/bleating-call | Bleating Call
+42. spell/bleed | Bleed
+43. spell/bless-the-dead | Bless the Dead
+44. spell/blessed-halo | Blessed Halo
+45. spell/blessed-rest | Blessed Rest
+46. spell/blind-ambush | Blind Ambush
+47. spell/blizzard | Blizzard
+48. spell/bloat | Bloat
+49. spell/blood-armor | Blood Armor
+50. spell/blood-bond | Blood Bond
+51. spell/blood-lure | Blood Lure
+52. spell/blood-offering | Blood Offering
+53. spell/blood-print | Blood Print
+54. spell/blood-puppet | Blood Puppet
+55. spell/blood-rush | Blood Rush
+56. spell/blood-scarab | Blood Scarab
+57. spell/blood-spoor | Blood Spoor
+58. spell/blood-tide | Blood Tide
+59. spell/blood-tide-deep-magic | Blood Tide (Deep Magic)
+60. spell/blood-wisp | Blood Wisp
+61. spell/blood-and-steel | Blood and Steel
+62. spell/blood-to-acid | Blood to Acid
+63. spell/bloodbane-rune | Bloodbane Rune
+64. spell/bloodhound | Bloodhound
+65. spell/bloodletter | Bloodletter
+66. spell/bloodshot | Bloodshot
+67. spell/bloody-hands | Bloody Hands
+68. spell/bloody-smite | Bloody Smite
+69. spell/bloom | Bloom
+70. spell/bludgeoning-horror | Bludgeoning Horror
+71. spell/blunder | Blunder
+72. spell/boil-blood | Boil Blood
+73. spell/boiling-blood | Boiling Blood
+74. spell/boiling-oil | Boiling Oil
+75. spell/bolster-undead-deep-magic | Bolster Undead (Deep Magic)
+76. spell/bolstering-brew | Bolstering Brew
+77. spell/bone-claws | Bone Claws
+78. spell/bone-cocoon | Bone Cocoon
+79. spell/bone-shield | Bone Shield
+80. spell/bones-of-stone | Bones of Stone
+81. spell/boneyard | Boneyard
+82. spell/booster-shot | Booster Shot
+83. spell/boreass-breath | Boreas's Breath
+84. spell/bottled-arcana | Bottled Arcana
+85. spell/bottomless-stomach | Bottomless Stomach
+86. spell/boulder-toss | Boulder Toss
+87. spell/bouncing-fireball | Bouncing Fireball
+88. spell/brawn-boost | Brawn Boost
+89. spell/breathtaking-wind | Breathtaking Wind
+90. spell/breeze-compass | Breeze Compass
+91. spell/brimstone | Brimstone
+92. spell/brimstone-infusion | Brimstone Infusion
+93. spell/brittle-bone-throw | Brittle Bone Throw
+94. spell/brittling | Brittling
+95. spell/broken-charge | Broken Charge
+96. spell/buff | Buff
+97. spell/burning-blade | Burning Blade
+98. spell/burning-radiance | Burning Radiance
+99. spell/burst-forth | Burst Forth
+100. spell/bury | Bury

@@ -1,0 +1,101 @@
+LEMBAR 061, 100 sel
+1. hazard/rolling-stone | Rolling Stone
+2. hazard/rot-grub | Rot Grub
+3. hazard/russet-mold | Russet Mold
+4. hazard/scything-blade-trap | Scything Blade Trap
+5. hazard/shadowbark | Shadowbark
+6. hazard/sinkhole | Sinkhole
+7. hazard/sleep-of-ages-trap | Sleep of Ages Trap
+8. hazard/slippery-ice | Slippery Ice
+9. hazard/sphere-of-annihilation | Sphere of Annihilation
+10. hazard/sphere-of-crushing-doom | Sphere of Crushing Doom
+11. hazard/spiked-pit | Spiked Pit
+12. hazard/strong-wind | Strong Wind
+13. hazard/suffocation | Suffocation
+14. hazard/thin-ice | Thin Ice
+15. hazard/thryms-howl | Thrym's Howl
+16. hazard/vicious-vine | Vicious Vine
+17. hazard/wild-magic-zone | Wild Magic Zone
+18. hazard/wildstorm | Wildstorm
+19. hazard/yellow-mold | Yellow Mold
+20. hazard/zlanic-chardalyn | Zlanic Chardalyn
+21. vehicle/acidic-bile-sprayer | Acidic Bile Sprayer
+22. vehicle/apparatus-of-kwalish | Apparatus of Kwalish
+23. vehicle/arcane-artillery | Arcane Artillery
+24. vehicle/astral-brig | Astral Brig
+25. vehicle/astral-skiff | Astral Skiff
+26. vehicle/bones-of-endless-toil | Bones of Endless Toil
+27. vehicle/canian-armor | Canian Armor
+28. vehicle/churning-hull | Churning Hull
+29. vehicle/clockwork-oars | Clockwork Oars
+30. vehicle/concussive-rounds | Concussive Rounds
+31. vehicle/death-vessel | Death Vessel
+32. vehicle/defiant-sails | Defiant Sails
+33. vehicle/dragon-sails | Dragon Sails
+34. vehicle/ever-full-sails | Ever-Full Sails
+35. vehicle/explosive-rounds | Explosive Rounds
+36. vehicle/flamethrower | Flamethrower
+37. vehicle/frost-locked-hull | Frost-Locked Hull
+38. vehicle/galley | Galley
+39. vehicle/gilded-death-armor | Gilded Death Armor
+40. vehicle/grasping-rounds | Grasping Rounds
+41. vehicle/guardian-figurehead | Guardian Figurehead
+42. vehicle/infernal-screamer | Infernal Screamer
+43. vehicle/keelboat | Keelboat
+44. vehicle/living-vessel | Living Vessel
+45. vehicle/longship | Longship
+46. vehicle/lyrandar-skyskiff | Lyrandar Skyskiff
+47. vehicle/necrotic-smoke-screen | Necrotic Smoke Screen
+48. vehicle/planar-raider | Planar Raider
+49. vehicle/red-dragon-figurehead | Red Dragon Figurehead
+50. vehicle/reinforced-hull | Reinforced Hull
+51. vehicle/rowboat | Rowboat
+52. vehicle/screaming-sails | Screaming Sails
+53. vehicle/scything-oars | Scything Oars
+54. vehicle/smugglers-banner | Smuggler's Banner
+55. vehicle/soul-spike-armor | Soul Spike Armor
+56. vehicle/stahlmaster | Stahlmaster
+57. vehicle/storm-giant-figurehead | Storm Giant Figurehead
+58. vehicle/styx-sprayer | Styx Sprayer
+59. vehicle/tashas-creeping-keelboat | Tasha's Creeping Keelboat
+60. vehicle/taskmasters-drums | Taskmaster's Drums
+61. vehicle/teleporter | Teleporter
+62. vehicle/venatrix | Venatrix
+63. vehicle/vigilant-watch | Vigilant Watch
+64. object/animated-ghaunadaur-statue | Animated Ghaunadaur Statue
+65. object/automatic-ballista | Automatic Ballista
+66. object/ballista | Ballista
+67. object/cannon | Cannon
+68. object/clockwork-trebuchet | Clockwork Trebuchet
+69. object/decrepit-mangonel | Decrepit Mangonel
+70. object/eldritch-cannon-flamethrower | Eldritch Cannon, Flamethrower
+71. object/eldritch-cannon-force-ballista | Eldritch Cannon, Force Ballista
+72. object/eldritch-cannon-protector | Eldritch Cannon, Protector
+73. object/enchanted-ballista | Enchanted Ballista
+74. object/flamethrower-coach | Flamethrower Coach
+75. object/forge-launcher | Forge Launcher
+76. object/generic-object | Generic Object
+77. object/gulthias-tree | Gulthias Tree
+78. object/ice-troll-heart | Ice Troll Heart
+79. object/lightning-cannon | Lightning Cannon
+80. object/ram | Ram
+81. object/siege-tower | Siege Tower
+82. object/storm-cannon | Storm Cannon
+83. object/suspended-cauldron | Suspended Cauldron
+84. object/the-head | The Head
+85. object/trebuchet | Trebuchet
+86. disease/arcane-blight | Arcane Blight
+87. disease/blinding-sickness | Blinding Sickness
+88. disease/bloodied | Bloodied
+89. disease/blue-mist-fever | Blue Mist Fever
+90. disease/bluerot | Bluerot
+91. disease/cackle-fever | Cackle Fever
+92. disease/concentration | Concentration
+93. disease/filth-fever | Filth Fever
+94. disease/flesh-rot | Flesh Rot
+95. disease/frigid-woe | Frigid Woe
+96. disease/ghoul-gut | Ghoul Gut
+97. disease/grackle-lung | Grackle-Lung
+98. disease/lichen-plague | Lichen Plague
+99. disease/mindfire | Mindfire
+100. disease/mudpox | Mudpox

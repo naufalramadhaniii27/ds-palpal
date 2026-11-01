@@ -1,0 +1,101 @@
+LEMBAR 056, 100 sel
+1. language/homarid | Homarid
+2. language/hook-horror | Hook Horror
+3. language/ice-toad | Ice Toad
+4. language/illuskan | Illuskan
+5. language/istarian | Istarian
+6. language/itzocan | Itzocan
+7. language/ixitxachitl | Ixitxachitl
+8. language/keldon | Keldon
+9. language/kenderspeak | Kenderspeak
+10. language/kharolian | Kharolian
+11. language/khenra | Khenra
+12. language/khur | Khur
+13. language/kothian | Kothian
+14. language/kraul | Kraul
+15. language/kruthik | Kruthik
+16. language/lantanese | Lantanese
+17. language/leonin | Leonin
+18. language/loross | Loross
+19. language/loxodon | Loxodon
+20. language/marquesian | Marquesian
+21. language/merfolk | Merfolk
+22. language/midani | Midani
+23. language/minotaur | Minotaur
+24. language/modron | Modron
+25. language/mulhorandi | Mulhorandi
+26. language/naga | Naga
+27. language/naush | Naush
+28. language/nerakese | Nerakese
+29. language/netherese | Netherese
+30. language/nordmaarian | Nordmaarian
+31. language/ogre | Ogre
+32. language/olman | Olman
+33. language/orc | Orc
+34. language/otyugh | Otyugh
+35. language/qualith | Qualith
+36. language/quori | Quori
+37. language/rashemi | Rashemi
+38. language/reghedjic | Reghedjic
+39. language/riedran | Riedran
+40. language/roushoum | Roushoum
+41. language/sahuagin | Sahuagin
+42. language/sespech | Sespech
+43. language/shaaran | Shaaran
+44. language/shou | Shou
+45. language/siren | Siren
+46. language/slaad | Slaad
+47. language/solamnic | Solamnic
+48. language/sphinx | Sphinx
+49. language/thayan | Thayan
+50. language/thorass | Thorass
+51. language/thri-kreen | Thri-kreen
+52. language/tlincalli | Tlincalli
+53. language/troglodyte | Troglodyte
+54. language/tuigan | Tuigan
+55. language/turmic | Turmic
+56. language/uluik | Uluik
+57. language/umber-hulk | Umber Hulk
+58. language/untheric | Untheric
+59. language/vampire | Vampire
+60. language/vedalken | Vedalken
+61. language/vegepygmy | Vegepygmy
+62. language/waelan | Waelan
+63. language/winter-wolf | Winter Wolf
+64. language/worg | Worg
+65. language/yeti | Yeti
+66. language/yikaria | Yikaria
+67. language/zemnian | Zemnian
+68. psionic/adaptive-body | Adaptive Body
+69. psionic/aura-sight | Aura Sight
+70. psionic/beacon | Beacon
+71. psionic/bestial-form | Bestial Form
+72. psionic/blade-meld | Blade Meld
+73. psionic/blind-spot | Blind Spot
+74. psionic/brute-force | Brute Force
+75. psionic/celerity | Celerity
+76. psionic/corrosive-metabolism | Corrosive Metabolism
+77. psionic/crown-of-despair | Crown of Despair
+78. psionic/crown-of-disgust | Crown of Disgust
+79. psionic/crown-of-rage | Crown of Rage
+80. psionic/delusion | Delusion
+81. psionic/diminution | Diminution
+82. psionic/energy-beam | Energy Beam
+83. psionic/giant-growth | Giant Growth
+84. psionic/intellect-fortress | Intellect Fortress
+85. psionic/iron-durability | Iron Durability
+86. psionic/light-step | Light Step
+87. psionic/mantle-of-awe | Mantle of Awe
+88. psionic/mantle-of-command | Mantle of Command
+89. psionic/mantle-of-courage | Mantle of Courage
+90. psionic/mantle-of-fear | Mantle of Fear
+91. psionic/mantle-of-fury | Mantle of Fury
+92. psionic/mantle-of-joy | Mantle of Joy
+93. psionic/mastery-of-air | Mastery of Air
+94. psionic/mastery-of-fire | Mastery of Fire
+95. psionic/mastery-of-force | Mastery of Force
+96. psionic/mastery-of-ice | Mastery of Ice
+97. psionic/mastery-of-light-and-darkness | Mastery of Light and Darkness
+98. psionic/mastery-of-water | Mastery of Water
+99. psionic/mastery-of-weather | Mastery of Weather
+100. psionic/mastery-of-wood-and-earth | Mastery of Wood and Earth
