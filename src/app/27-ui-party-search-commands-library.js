@@ -283,7 +283,10 @@ function libSpRefs(k){ var R=window.SPREF&&window.SPREF[String(k).toLowerCase()]
   var m=R.m, notes=[]; if(m){ if(m.ref&&m.ref.length) notes.push("Referenced in "+m.ref.join(", ")+"."); var av=[]; if(m.srd) av.push("the SRD 5.2.1"); if(m.br) av.push("the Basic Rules (5.5e/2024)"); if(av.length) notes.push("Available in "+av.join(" and ")+"."); }
   if(notes.length) h+='<p class="lib-ref lib-src">'+esc(notes.join(" "))+'</p>';
   return h?'<div class="lib-refs">'+h+'</div>':""; }
-function libDetail(c,k){ var d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} } d.h=libClean(d.h); } return d; }
+function libDetail(c,k){ var d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} }
+  d.h=libClean(d.h);
+  var fx=c==="item"?window.ITEMFIX:c==="language"?window.LANGFIX:c==="deck"?window.DECKFIX:null; if(fx&&fx[k]&&!/<p class="info-d">[^<]/.test(d.h)&&!/class="fblk/.test(d.h)) d.h=d.h.replace(/<p class="info-d"><\/p>/g,"")+richP(fx[k]);/* entries whose 5etools data is a template or a list of speakers */
+  d.h=libClean(d.h); } return d; }
 function libDetailRaw(c,k){ var h="",t=k,sub="",x,i;
   if(c==="spell"){ var o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
   if(c==="rule"){ var gl=GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d}); if(!gl){ if(!(window.QREFS&&window.QREFS.rule)) return null; var qr0=null; window.QREFS.rule.forEach(function(r){ if(r.n===k) qr0=r; }); if(!qr0) return null; var h0=libTiles(qr0.tl||[]); (qr0.p||[]).forEach(function(b){ h0+=(typeof b==="string")?'<p class="info-d">'+richP(b)+'</p>':libFeatBlock(esc(b[0]),b[1]); }); return {t:qr0.n,sub:qr0.sub||"Rule",h:h0}; } LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }

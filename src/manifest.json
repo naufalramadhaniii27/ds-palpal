@@ -592,6 +592,7 @@
     "data/q09-hbindex.js",
     "data/q20-hbnames.js",
     "data/q21-spellref.js",
+    "data/q22-textfix.js",
     "data/q01-reward.js",
     "data/q02-deity.js",
     "data/q03-loot.js",
