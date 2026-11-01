@@ -692,12 +692,16 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
    "close": "</script>",
    "files": [
-    "tg/00-open.wrap.js",
+    "tg/00-bridge.js",
     "tg/20-engine.js",
     "tg/25-sim.js",
-    "tg/30-ui-tg.js",
-    "tg/99-close.wrap.js"
-   ]
+    "tg/30-ui-tg.js"
+   ],
+   "pre": [
+    "tg/20-engine.js",
+    "tg/25-sim.js"
+   ],
+   "entry": "tg/30-ui-tg.js"
   },
   {
    "t": "text",

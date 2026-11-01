@@ -1,3 +1,4 @@
+import {A,esc,ico} from "./00-bridge.js";
 /* G7 TG1 to TG4 Training Ground screens. Plan: claude/rencana-kerja-training-ground.md parts 2, 5, 6 and 8.
    Setup (TG1): 1 Who goes in (characters of this device, or Try a class), 2 What waits for you (difficulty, creatures with counts),
    3 Who comes with you (up to 3 companions), 4 Where you train (arena). Field (TG2 to TG4): a grid drawn on a canvas, the turn order,

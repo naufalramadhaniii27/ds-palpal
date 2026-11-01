@@ -149,6 +149,11 @@ def assemble(srcdir):
             out.append(e["open"])
             if e.get("entry"):
                 # ES module block: esbuild bundles the entry and its imports into one IIFE (strict), the block keeps its tags
+                if e.get("pre"):
+                    # classic files that must stay plain scripts (they also run under node in tests): put first, UI bundle after
+                    out.append('"use strict";\n')
+                    for fn in e["pre"]:
+                        out.append(read(os.path.join(srcdir, fn)))
                 out.append(bundle(srcdir, e["entry"]))
                 out.append(e["close"])
                 continue
