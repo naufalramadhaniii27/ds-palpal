@@ -237,11 +237,12 @@ html.mi-off #sheet .sh-wm{opacity:.12}
 @keyframes nIco{0%{opacity:0;transform:translateY(-25px) scale(.1)}45%{opacity:1;transform:translateY(-25px) scale(1.22)}100%{opacity:1;transform:translateY(-25px) scale(1)}}
 @media (max-width:759px){
   .bnav{padding:28px 0 max(8px,env(safe-area-inset-bottom,0px));-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent);background:transparent!important;border-top:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  :root:root:root:root:root .bnav{background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}/* the older bar rules (skin, touch screens, light theme) all paint a solid bar: the SVG is the bar now */
   .bnav-in{isolation:isolate;padding:0 29px}
   .bnav button{position:relative;height:58px;gap:0;grid-row:1}
   .bnav button[data-go="0"]{grid-column:1}.bnav button[data-go="1"]{grid-column:2}.bnav button[data-go="2"]{grid-column:3}.bnav button[data-go="3"]{grid-column:4}.bnav button[data-go="4"]{grid-column:5}.bnav button[data-go="5"]{grid-column:6}.bnav button[data-go="6"]{grid-column:7}.bnav button[data-go="7"]{grid-column:8}.bnav button[data-go="8"]{grid-column:9}
   .nb-s{position:sticky;left:10px;grid-row:1;grid-column:1/-1;justify-self:start;margin:0 -19px;z-index:-1;pointer-events:none;overflow:visible}
-  .nb-f{fill:color-mix(in srgb,var(--panel) 80%,#fff 9%)}
+  .nb-f{fill:color-mix(in srgb,var(--panel) 80%,#fff 9%);fill-opacity:.95}
   .nb-l{fill:none;stroke:rgba(255,255,255,.12);stroke-width:1}
   .bnav button svg{position:relative;z-index:1}
   .bnav .bl{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:var(--ink);opacity:0;transform:translateY(5px);transition:opacity .16s,transform .16s;pointer-events:none}
