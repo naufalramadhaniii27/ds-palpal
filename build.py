@@ -6,10 +6,11 @@
   python3 build.py --verify-split  self test of the splitter: split index.html into a temp folder, rebuild from it, compare
   python3 build.py --split FILE DIR   one-time split of a built index.html into a source folder (old automatic names, kept for reference)
   python3 build.py --lint          node --check on every JS piece and on every assembled <script> block
+  python3 build.py --vendor-update rewrite vendor/pdf/SHA256SUMS after a library file was changed on purpose
 
 src/manifest.json lists the pieces in order. A piece is raw text. Joining all pieces gives index.html byte for byte.
 Edit the pieces in src/, then run this script. Do not edit index.html by hand. SOURCE-NOTES.md has the file map.
---check also runs --lint when node is installed.
+--check also runs --lint when node is installed, and compares the files in vendor/pdf with vendor/pdf/SHA256SUMS.
 """
 import base64, hashlib, json, os, re, subprocess, sys, tempfile
 
@@ -234,6 +235,41 @@ def sw_with(text, html):
     return new, h
 
 
+VENDOR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vendor", "pdf")
+
+
+def vendor_sums():
+    """sha256 of every .js file in vendor/pdf, as {name: hex}"""
+    out = {}
+    for fn in sorted(os.listdir(VENDOR)):
+        if fn.endswith(".js"):
+            with open(os.path.join(VENDOR, fn), "rb") as f:
+                out[fn] = hashlib.sha256(f.read()).hexdigest()
+    return out
+
+
+def vendor_check():
+    """The PDF libraries are loaded as they are, so a changed file must be noticed. Returns the list of problems."""
+    sums = os.path.join(VENDOR, "SHA256SUMS")
+    if not os.path.exists(sums):
+        return ["vendor/pdf/SHA256SUMS is missing (python3 build.py --vendor-update writes it)"]
+    want = {}
+    for line in read(sums).splitlines():
+        if line.strip():
+            h, name = line.split(None, 1)
+            want[name.strip().lstrip("*")] = h
+    have = vendor_sums()
+    bad = []
+    for name in sorted(set(want) | set(have)):
+        if name not in have:
+            bad.append("vendor/pdf/%s is listed in SHA256SUMS but the file is missing" % name)
+        elif name not in want:
+            bad.append("vendor/pdf/%s has no entry in SHA256SUMS" % name)
+        elif want[name] != have[name]:
+            bad.append("vendor/pdf/%s changed (sha256 %s, expected %s)" % (name, have[name][:16], want[name][:16]))
+    return bad
+
+
 def lint(srcdir):
     """node --check each JS piece (pieces named *.wrap.js only open or close an IIFE, so they are checked inside their block)
     and each assembled script block. Returns the number of failures, or None when node is missing."""
@@ -296,6 +332,10 @@ def main(argv):
             same = again == read(OUT)
             print("split", n, "entries; rebuilt equals index.html:", same)
             return 0 if same else 1
+    if "--vendor-update" in argv:
+        write(os.path.join(VENDOR, "SHA256SUMS"), "".join("%s  %s\n" % (h, n) for n, h in vendor_sums().items()))
+        print("wrote vendor/pdf/SHA256SUMS")
+        return 0
     if "--lint" in argv:
         return 1 if lint(SRC) else 0
     learn_lint()
@@ -309,7 +349,11 @@ def main(argv):
         ok_sw = sw == read(SW)
         print("index.html", "same" if ok_html else "DIFFERENT", "| sw.js", "same" if ok_sw else "DIFFERENT", "| hash", h)
         bad = lint(SRC)
-        return 0 if (ok_html and ok_sw and not bad) else 1
+        vb = vendor_check()
+        for m in vb:
+            print("vendor:", m)
+        print("vendor/pdf", "ok" if not vb else "FAILED")
+        return 0 if (ok_html and ok_sw and not bad and not vb) else 1
     write(OUT, html)
     write(SW, sw)
     print("built index.html %d bytes, sha256 %s, CACHE dnd-sheet-%s" % (len(html.encode("utf-8")), hashlib.sha256(html.encode("utf-8")).hexdigest(), h))

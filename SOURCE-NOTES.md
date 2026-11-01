@@ -332,3 +332,11 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | src/app/52-tg-bridge.js | Karakter pemain untuk mesin: `__app.tgRoster()`, `__app.tgTry(class, level)`, spell tingkat B dari SPELL_FX dan spCalc |
 | tools/learn_shots.py, img/learn/shots/ | Gambar builder asli dengan titik bernomor untuk Forge Your Hero (HP dan PC, tanpa art scene). Jalankan sesudah build bila tampilan builder berubah |
 | tests | receipts, time_machine, game_log, sync_merge_ui, builder_draft, g4_play, tg_engine.js (node), cloud_sync (wrangler) |
+
+## Pemeriksaan build dan CI
+
+| Pemeriksaan | Perintah | Catatan |
+|---|---|---|
+| Build sinkron dengan `index.html`, `sw.js`, hash CSP, lint, sidik jari vendor | `python3 build.py --check` | Gagal bila salah satu berbeda |
+| Sidik jari library PDF | `python3 build.py --vendor-update` | Menulis ulang `vendor/pdf/SHA256SUMS`. Jalankan hanya setelah mengganti library dengan sengaja |
+| CI sebelum merge | `.github/workflows/tests.yml` | Menjalankan build check, `tg_engine.js`, dan tujuh tes browser yang tidak butuh server |

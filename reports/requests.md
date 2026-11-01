@@ -59,3 +59,13 @@ Syarat user: minimum 60 fps, dipilih pada kondisi CPU 4x. Bukti dan angka ada di
 2. Batasi animasi dan transisi CSS global pada tier lemah. Ukuran: pindah tab 44 ke 53 fps.
 3. Telusuri pemicu layout pada klik pindah tab.
 Status: belum dikerjakan. Tidak ada perubahan di src/.
+
+## Request ke bagian API (functions/api): guard DEV_USER dan concurrency (2026-11-01, dari audit teknis dan bantahan)
+Bukti dan konteks ada di reports/bantahan-audit-teknis-20261101.md. Tidak ada perubahan di functions/ dari sesi ini.
+1. Guard jalur tanpa ACCESS_TEAM. Sekarang `who()` di functions/api/[[path]].js menerima DEV_USER bila ACCESS_TEAM kosong, di host mana pun. Usul: bila ACCESS_TEAM kosong, hanya localhost dan 127.0.0.1 yang boleh memakai jalur itu, selain itu `return null`. Kode contoh ada di bagian 5 dokumen bantahan. Guard yang diusulkan audit awal (tolak bila DEV_USER dan ACCESS_TEAM sama-sama ada) terbalik, jangan dipakai.
+2. Concurrency optimistis di sinkronisasi. Klien mengirim nomor revisi saat PUT, server menolak (409) bila revisi di server lebih baru, klien lalu menawarkan pilihan lewat ask(). Perkiraan 20 baris di API dan sebagian kecil di app/43-logic-cloud-sync.js. Butuh tes: tests/cloud_sync.py (perlu server lokal).
+3. Backup D1 harian (di luar repo): `wrangler d1 export dnd-sheet --remote --output backup-DATE.sql`, simpan 14 hari, beri tahu bila gagal. Perlu cron di mesin Anda atau di VPS.
+Status: belum dikerjakan.
+
+## Catatan untuk usulan "pisahkan data dari shell" (2026-11-01)
+Bila data jadi berkas terpisah, sw.js perlu mengunduhnya di latar belakang atau memasukkannya ke daftar cache pasang. Tanpa itu aplikasi tidak lagi sepenuhnya offline sebelum tiap data dibuka sekali. Hasilnya lebih cepat pada tampilan pertama, bukan unduhan total yang lebih kecil. Keputusan belum diambil.

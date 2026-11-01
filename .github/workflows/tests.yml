@@ -1,0 +1,40 @@
+# Tests before the merge, not after. Runs on every push and pull request (not on art or notes only).
+# It needs no secrets and no server: the build check, the name check, and the browser tests that open index.html from the checkout.
+name: tests
+on:
+  push:
+    paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
+  pull_request:
+    paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
+  workflow_dispatch:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build tools
+        run: npm ci --prefix tools/build
+      - name: Build is in sync (index.html, sw.js, CSP hashes, lint, vendor sums)
+        run: python3 build.py --check
+      - name: Install Playwright
+        run: |
+          pip install playwright==1.63.0
+          python -m playwright install --with-deps chromium
+      - name: Engine rules (node)
+        run: node tests/tg_engine.js 300
+      - name: Browser tests
+        run: |
+          fail=0
+          for t in names_lint csp_check version_label learn_links builder_draft scenarios golden_rules; do
+            echo "::group::$t"
+            python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
