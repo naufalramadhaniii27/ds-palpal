@@ -18873,5 +18873,3060 @@
 "id": "28-0048",
 "tag": "VIGNETTE",
 "batch": "batch-236"
+},
+"art/batch/icons/ui/act-action.png": {
+"id": "40-0001",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/act-bonus.png": {
+"id": "40-0002",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/act-free.png": {
+"id": "40-0003",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/act-limited.png": {
+"id": "40-0004",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/act-magic.png": {
+"id": "40-0005",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/act-reaction.png": {
+"id": "40-0006",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/adv.png": {
+"id": "40-0007",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/area-square.png": {
+"id": "40-0008",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/cls-homebrew.png": {
+"id": "40-0009",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/comp-m.png": {
+"id": "40-0010",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/comp-s.png": {
+"id": "40-0011",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/comp-v.png": {
+"id": "40-0012",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/cond-bleeding.png": {
+"id": "40-0013",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/cond-burning.png": {
+"id": "40-0014",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/cond-jinxed.png": {
+"id": "40-0015",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/creature.png": {
+"id": "40-0016",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/death-fail.png": {
+"id": "40-0017",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/death-success.png": {
+"id": "40-0018",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/def-condimmune.png": {
+"id": "40-0019",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/def-immunity.png": {
+"id": "40-0020",
+"tag": "ICON",
+"batch": "batch-237"
+},
+"art/batch/icons/ui/def-vulnerability.png": {
+"id": "40-0021",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d10.png": {
+"id": "40-0022",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d12.png": {
+"id": "40-0023",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d20.png": {
+"id": "40-0024",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d4.png": {
+"id": "40-0025",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d6.png": {
+"id": "40-0026",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/die-d8.png": {
+"id": "40-0027",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/dis.png": {
+"id": "40-0028",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/dmg-choice.png": {
+"id": "40-0029",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/empty-scroll.png": {
+"id": "40-0030",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/fx-attack.png": {
+"id": "40-0031",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/fx-auto.png": {
+"id": "40-0032",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/fx-reach.png": {
+"id": "40-0033",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/fx-save.png": {
+"id": "40-0034",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-backup.png": {
+"id": "40-0035",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-create.png": {
+"id": "40-0036",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-export.png": {
+"id": "40-0037",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-import.png": {
+"id": "40-0038",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-party.png": {
+"id": "40-0039",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/home-restore.png": {
+"id": "40-0040",
+"tag": "ICON",
+"batch": "batch-238"
+},
+"art/batch/icons/ui/hp-damage.png": {
+"id": "40-0041",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-ammo.png": {
+"id": "40-0042",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-armor.png": {
+"id": "40-0043",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-attuned.png": {
+"id": "40-0044",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-charge.png": {
+"id": "40-0045",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-container.png": {
+"id": "40-0046",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-equipped.png": {
+"id": "40-0047",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-gear.png": {
+"id": "40-0048",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-pack.png": {
+"id": "40-0049",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-potion.png": {
+"id": "40-0050",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-ring.png": {
+"id": "40-0051",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-rod.png": {
+"id": "40-0052",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-scroll.png": {
+"id": "40-0053",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-shield.png": {
+"id": "40-0054",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-staff.png": {
+"id": "40-0055",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-wand.png": {
+"id": "40-0056",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-weapon.png": {
+"id": "40-0057",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/item-wondrous.png": {
+"id": "40-0058",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/res-bardic.png": {
+"id": "40-0059",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/res-channel.png": {
+"id": "40-0060",
+"tag": "ICON",
+"batch": "batch-239"
+},
+"art/batch/icons/ui/res-focus.png": {
+"id": "40-0061",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-layonhands.png": {
+"id": "40-0062",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-rage.png": {
+"id": "40-0063",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-secondwind.png": {
+"id": "40-0064",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-sorcery.png": {
+"id": "40-0065",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-surge.png": {
+"id": "40-0066",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/res-wildshape.png": {
+"id": "40-0067",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/rest-long.png": {
+"id": "40-0068",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/rest-short.png": {
+"id": "40-0069",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sense-blindsight.png": {
+"id": "40-0070",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sense-darkvision.png": {
+"id": "40-0071",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sense-passive.png": {
+"id": "40-0072",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sense-tremorsense.png": {
+"id": "40-0073",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sense-truesight.png": {
+"id": "40-0074",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sk-automotive.png": {
+"id": "40-0075",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/sk-computer.png": {
+"id": "40-0076",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/speed-burrow.png": {
+"id": "40-0077",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/speed-climb.png": {
+"id": "40-0078",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/speed-fly.png": {
+"id": "40-0079",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/speed-swim.png": {
+"id": "40-0080",
+"tag": "ICON",
+"batch": "batch-240"
+},
+"art/batch/icons/ui/speed-walk.png": {
+"id": "40-0081",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/spellbook.png": {
+"id": "40-0082",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/src-background.png": {
+"id": "40-0083",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/src-class.png": {
+"id": "40-0084",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/src-feat.png": {
+"id": "40-0085",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/src-item.png": {
+"id": "40-0086",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/src-species.png": {
+"id": "40-0087",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-abilities.png": {
+"id": "40-0088",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-background.png": {
+"id": "40-0089",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-class.png": {
+"id": "40-0090",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-equipment.png": {
+"id": "40-0091",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-home.png": {
+"id": "40-0092",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-next.png": {
+"id": "40-0093",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/step-species.png": {
+"id": "40-0094",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-description.png": {
+"id": "40-0095",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-extras.png": {
+"id": "40-0096",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-features.png": {
+"id": "40-0097",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-inventory.png": {
+"id": "40-0098",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-main.png": {
+"id": "40-0099",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-notes.png": {
+"id": "40-0100",
+"tag": "ICON",
+"batch": "batch-241"
+},
+"art/batch/icons/ui/tab-skills.png": {
+"id": "40-0101",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tab-spells.png": {
+"id": "40-0102",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tag-concentration.png": {
+"id": "40-0103",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tag-ritual.png": {
+"id": "40-0104",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-cone.png": {
+"id": "40-0105",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-cube.png": {
+"id": "40-0106",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-cylinder.png": {
+"id": "40-0107",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-emanation.png": {
+"id": "40-0108",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-line.png": {
+"id": "40-0109",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-multi.png": {
+"id": "40-0110",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-object.png": {
+"id": "40-0111",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-point.png": {
+"id": "40-0112",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-self.png": {
+"id": "40-0113",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-single.png": {
+"id": "40-0114",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-special.png": {
+"id": "40-0115",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-sphere.png": {
+"id": "40-0116",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-summon.png": {
+"id": "40-0117",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-touch.png": {
+"id": "40-0118",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/tgt-wall.png": {
+"id": "40-0119",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/time-action.png": {
+"id": "40-0120",
+"tag": "ICON",
+"batch": "batch-242"
+},
+"art/batch/icons/ui/time-bonus.png": {
+"id": "40-0121",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/time-long.png": {
+"id": "40-0122",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/time-reaction.png": {
+"id": "40-0123",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-area.png": {
+"id": "40-0124",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-auto.png": {
+"id": "40-0125",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-bag.png": {
+"id": "40-0126",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-book.png": {
+"id": "40-0127",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-box.png": {
+"id": "40-0128",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-build.png": {
+"id": "40-0129",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-castle.png": {
+"id": "40-0130",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-cost.png": {
+"id": "40-0131",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-dice.png": {
+"id": "40-0132",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-feature.png": {
+"id": "40-0133",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-flag.png": {
+"id": "40-0134",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-gear.png": {
+"id": "40-0135",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-hand.png": {
+"id": "40-0136",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-levelup.png": {
+"id": "40-0137",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-prof.png": {
+"id": "40-0138",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-range.png": {
+"id": "40-0139",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-shield.png": {
+"id": "40-0140",
+"tag": "ICON",
+"batch": "batch-243"
+},
+"art/batch/icons/ui/ui-star.png": {
+"id": "40-0141",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-stealth.png": {
+"id": "40-0142",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-target.png": {
+"id": "40-0143",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-users.png": {
+"id": "40-0144",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-uses.png": {
+"id": "40-0145",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-weight.png": {
+"id": "40-0146",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/ui-xp.png": {
+"id": "40-0147",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-axe.png": {
+"id": "40-0148",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-bow.png": {
+"id": "40-0149",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-crossbow.png": {
+"id": "40-0150",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-dagger.png": {
+"id": "40-0151",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-hammer.png": {
+"id": "40-0152",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-spear.png": {
+"id": "40-0153",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-staff.png": {
+"id": "40-0154",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/ui/wp-sword.png": {
+"id": "40-0155",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/bg.png": {
+"id": "40-0156",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/class.png": {
+"id": "40-0157",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/creature.png": {
+"id": "40-0158",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/deck.png": {
+"id": "40-0159",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/deity.png": {
+"id": "40-0160",
+"tag": "ICON",
+"batch": "batch-244"
+},
+"art/batch/icons/library/disease.png": {
+"id": "40-0161",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/facility.png": {
+"id": "40-0162",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/feat.png": {
+"id": "40-0163",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/feature.png": {
+"id": "40-0164",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/gear.png": {
+"id": "40-0165",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/hazard.png": {
+"id": "40-0166",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/item.png": {
+"id": "40-0167",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/language.png": {
+"id": "40-0168",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/monster.png": {
+"id": "40-0169",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/object.png": {
+"id": "40-0170",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/opt.png": {
+"id": "40-0171",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/rule.png": {
+"id": "40-0172",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/species.png": {
+"id": "40-0173",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/spell.png": {
+"id": "40-0174",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/sub.png": {
+"id": "40-0175",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/table.png": {
+"id": "40-0176",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/library/vehicle.png": {
+"id": "40-0177",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/species/aarakocra.png": {
+"id": "40-0178",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/species/aasimar.png": {
+"id": "40-0179",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/species/air-genasi.png": {
+"id": "40-0180",
+"tag": "ICON",
+"batch": "batch-245"
+},
+"art/batch/icons/species/bugbear.png": {
+"id": "40-0181",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/centaur.png": {
+"id": "40-0182",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/changeling.png": {
+"id": "40-0183",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/custom.png": {
+"id": "40-0184",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/deep-gnome.png": {
+"id": "40-0185",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/dragonborn.png": {
+"id": "40-0186",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/duergar.png": {
+"id": "40-0187",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/dwarf.png": {
+"id": "40-0188",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/earth-genasi.png": {
+"id": "40-0189",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/eladrin.png": {
+"id": "40-0190",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/elf.png": {
+"id": "40-0191",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/fairy.png": {
+"id": "40-0192",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/firbolg.png": {
+"id": "40-0193",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/fire-genasi.png": {
+"id": "40-0194",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/githyanki.png": {
+"id": "40-0195",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/githzerai.png": {
+"id": "40-0196",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/gnome.png": {
+"id": "40-0197",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/goblin.png": {
+"id": "40-0198",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/goliath.png": {
+"id": "40-0199",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/halfling.png": {
+"id": "40-0200",
+"tag": "ICON",
+"batch": "batch-246"
+},
+"art/batch/icons/species/harengon.png": {
+"id": "40-0201",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/hobgoblin.png": {
+"id": "40-0202",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/human.png": {
+"id": "40-0203",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/kenku.png": {
+"id": "40-0204",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/kobold.png": {
+"id": "40-0205",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/lizardfolk.png": {
+"id": "40-0206",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/minotaur.png": {
+"id": "40-0207",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/orc.png": {
+"id": "40-0208",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/satyr.png": {
+"id": "40-0209",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/sea-elf.png": {
+"id": "40-0210",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/shadar-kai.png": {
+"id": "40-0211",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/shifter.png": {
+"id": "40-0212",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/tabaxi.png": {
+"id": "40-0213",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/tiefling.png": {
+"id": "40-0214",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/tortle.png": {
+"id": "40-0215",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/triton.png": {
+"id": "40-0216",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/verdan.png": {
+"id": "40-0217",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/water-genasi.png": {
+"id": "40-0218",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/species/yuan-ti.png": {
+"id": "40-0219",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/items/extra/airship.png": {
+"id": "40-0220",
+"tag": "ICON",
+"batch": "batch-247"
+},
+"art/batch/icons/items/extra/ale-mug.png": {
+"id": "40-0221",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/alexandrite.png": {
+"id": "40-0222",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/amber.png": {
+"id": "40-0223",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/amethyst.png": {
+"id": "40-0224",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/antimatter-rifle.png": {
+"id": "40-0225",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/aquamarine.png": {
+"id": "40-0226",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/arcane-study-charm.png": {
+"id": "40-0227",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/arrow-1.png": {
+"id": "40-0228",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/arrow-2.png": {
+"id": "40-0229",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/arrow-3.png": {
+"id": "40-0230",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/assassins-blood.png": {
+"id": "40-0231",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/automatic-rifle.png": {
+"id": "40-0232",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/azurite.png": {
+"id": "40-0233",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/banded-agate.png": {
+"id": "40-0234",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/bejeweled-gold-bracelet.png": {
+"id": "40-0235",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/bejeweled-ivory-drinking-horn-with-gold-filigree.png": {
+"id": "40-0236",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-cloud.png": {
+"id": "40-0237",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-fire.png": {
+"id": "40-0238",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-frost.png": {
+"id": "40-0239",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-hill.png": {
+"id": "40-0240",
+"tag": "ICON",
+"batch": "batch-248"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-stone.png": {
+"id": "40-0241",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/belt-of-giant-strength-storm.png": {
+"id": "40-0242",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/black-opal.png": {
+"id": "40-0243",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/black-pearl.png": {
+"id": "40-0244",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/black-sapphire.png": {
+"id": "40-0245",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/black-velvet-mask-stitched-with-silver-thread.png": {
+"id": "40-0246",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-health.png": {
+"id": "40-0247",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-magic-resistance.png": {
+"id": "40-0248",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-protection.png": {
+"id": "40-0249",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-understanding.png": {
+"id": "40-0250",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-valhalla.png": {
+"id": "40-0251",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-weapon-enhancement.png": {
+"id": "40-0252",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blessing-of-wound-closure.png": {
+"id": "40-0253",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/bloodstone.png": {
+"id": "40-0254",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blue-quartz.png": {
+"id": "40-0255",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blue-sapphire.png": {
+"id": "40-0256",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/blue-spinel.png": {
+"id": "40-0257",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/bolt-1.png": {
+"id": "40-0258",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/bolt-2.png": {
+"id": "40-0259",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/bolt-3.png": {
+"id": "40-0260",
+"tag": "ICON",
+"batch": "batch-249"
+},
+"art/batch/icons/items/extra/bomb.png": {
+"id": "40-0261",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/bottle-stopper-cork-embossed-with-gold-leaf-and-set-with-amethysts.png": {
+"id": "40-0262",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/box-of-turquoise-animal-figurines.png": {
+"id": "40-0263",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/brass-mug-with-jade-inlay.png": {
+"id": "40-0264",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/bread-loaf.png": {
+"id": "40-0265",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/bronze-crown.png": {
+"id": "40-0266",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/bundle-of-sheet-music-representing-the-lost-dirges-of-a-famous-composer.png": {
+"id": "40-0267",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/burnt-othur-fumes.png": {
+"id": "40-0268",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/canvas-1-sq-yd.png": {
+"id": "40-0269",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carnelian.png": {
+"id": "40-0270",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carriage.png": {
+"id": "40-0271",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carrion-crawler-mucus.png": {
+"id": "40-0272",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/cart.png": {
+"id": "40-0273",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carved-bone-statuette.png": {
+"id": "40-0274",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carved-ivory-statuette.png": {
+"id": "40-0275",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/carved-wooden-harp-with-ivory-inlay-and-zircon-gems.png": {
+"id": "40-0276",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/ceremonial-gold-armor-with-black-pearls.png": {
+"id": "40-0277",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/chalcedony.png": {
+"id": "40-0278",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/chariot.png": {
+"id": "40-0279",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/charm-of-animal-conjuring.png": {
+"id": "40-0280",
+"tag": "ICON",
+"batch": "batch-250"
+},
+"art/batch/icons/items/extra/charm-of-darkvision.png": {
+"id": "40-0281",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/charm-of-feather-falling.png": {
+"id": "40-0282",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/charm-of-heroism.png": {
+"id": "40-0283",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/charm-of-restoration.png": {
+"id": "40-0284",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/charm-of-the-slayer.png": {
+"id": "40-0285",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/charm-of-vitality.png": {
+"id": "40-0286",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cheese-wedge.png": {
+"id": "40-0287",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/chicken.png": {
+"id": "40-0288",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/chrysoberyl.png": {
+"id": "40-0289",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/chrysoprase.png": {
+"id": "40-0290",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cinnamon.png": {
+"id": "40-0291",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/citrine.png": {
+"id": "40-0292",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cloth-of-gold-vestments.png": {
+"id": "40-0293",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cloves.png": {
+"id": "40-0294",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/common-wine-bottle.png": {
+"id": "40-0295",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/copper-1-lb.png": {
+"id": "40-0296",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/copper-chalice-with-silver-filigree.png": {
+"id": "40-0297",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/coral.png": {
+"id": "40-0298",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cotton-cloth-1-sq-yd.png": {
+"id": "40-0299",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/cow.png": {
+"id": "40-0300",
+"tag": "ICON",
+"batch": "batch-251"
+},
+"art/batch/icons/items/extra/detailed-life-sized-dragonborn-skull-cast-in-electrum.png": {
+"id": "40-0301",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/diamond.png": {
+"id": "40-0302",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/dynamite-stick.png": {
+"id": "40-0303",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/embroidered-glove-set-with-jewel-chips.png": {
+"id": "40-0304",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/embroidered-silk-and-velvet-mantle-set-with-numerous-moonstones.png": {
+"id": "40-0305",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/embroidered-silk-handkerchief.png": {
+"id": "40-0306",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/emerald.png": {
+"id": "40-0307",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/energy-cell.png": {
+"id": "40-0308",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-armor-cantrip-or-level-1-spell.png": {
+"id": "40-0309",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-armor-level-2-or-3-spell.png": {
+"id": "40-0310",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-armor-level-4-or-5-spell.png": {
+"id": "40-0311",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-armor-level-6-7-or-8-spell.png": {
+"id": "40-0312",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-staff-cantrip-or-level-1-spell.png": {
+"id": "40-0313",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-staff-level-2-or-3-spell.png": {
+"id": "40-0314",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-staff-level-4-or-5-spell.png": {
+"id": "40-0315",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-staff-level-6-7-or-8-spell.png": {
+"id": "40-0316",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-weapon-cantrip-or-level-1-spell.png": {
+"id": "40-0317",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-weapon-level-2-or-3-spell.png": {
+"id": "40-0318",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-weapon-level-4-or-5-spell.png": {
+"id": "40-0319",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/enspelled-weapon-level-6-7-or-8-spell.png": {
+"id": "40-0320",
+"tag": "ICON",
+"batch": "batch-252"
+},
+"art/batch/icons/items/extra/essence-of-ether.png": {
+"id": "40-0321",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/eye-agate.png": {
+"id": "40-0322",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/eye-patch-decorated-with-tiny-blue-sapphires-and-moonstones.png": {
+"id": "40-0323",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/feed-1-day.png": {
+"id": "40-0324",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/fine-gold-chain-set-with-a-fire-opal.png": {
+"id": "40-0325",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/fine-wine-bottle.png": {
+"id": "40-0326",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/fire-opal.png": {
+"id": "40-0327",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/firearm-bullet-1.png": {
+"id": "40-0328",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/firearm-bullet-2.png": {
+"id": "40-0329",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/firearm-bullet-3.png": {
+"id": "40-0330",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/flour.png": {
+"id": "40-0331",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/galley.png": {
+"id": "40-0332",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/garnet.png": {
+"id": "40-0333",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gilded-royal-coach-or-funeral-barge.png": {
+"id": "40-0334",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/ginger.png": {
+"id": "40-0335",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-1-lb.png": {
+"id": "40-0336",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-bar-5-pound.png": {
+"id": "40-0337",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-birdcage-with-electrum-filigree.png": {
+"id": "40-0338",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-bracelet.png": {
+"id": "40-0339",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-circlet-set-with-four-aquamarines.png": {
+"id": "40-0340",
+"tag": "ICON",
+"batch": "batch-253"
+},
+"art/batch/icons/items/extra/gold-comb-shaped-like-a-dragon-with-red-garnets-as-eyes.png": {
+"id": "40-0341",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-cup-set-with-emeralds.png": {
+"id": "40-0342",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-idol.png": {
+"id": "40-0343",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-jewelry-box-with-platinum-filigree.png": {
+"id": "40-0344",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-locket-with-a-painted-portrait-inside.png": {
+"id": "40-0345",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-music-box.png": {
+"id": "40-0346",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-ring-set-with-bloodstones.png": {
+"id": "40-0347",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gold-statuette-set-with-rubies.png": {
+"id": "40-0348",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/grenade-fragmentation.png": {
+"id": "40-0349",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/grenade-launcher.png": {
+"id": "40-0350",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/grenade-smoke.png": {
+"id": "40-0351",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gunpowder-keg.png": {
+"id": "40-0352",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/gunpowder-powder-horn.png": {
+"id": "40-0353",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/handheld-mirror-set-in-a-painted-wooden-frame.png": {
+"id": "40-0354",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/hematite.png": {
+"id": "40-0355",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/horse-draft.png": {
+"id": "40-0356",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/horse-riding.png": {
+"id": "40-0357",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/hunting-rifle.png": {
+"id": "40-0358",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/iron-1-lb.png": {
+"id": "40-0359",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/jacinth.png": {
+"id": "40-0360",
+"tag": "ICON",
+"batch": "batch-254"
+},
+"art/batch/icons/items/extra/jade-game-board-with-gold-playing-pieces.png": {
+"id": "40-0361",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jade.png": {
+"id": "40-0362",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jasper.png": {
+"id": "40-0363",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jet.png": {
+"id": "40-0364",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jeweled-anklet.png": {
+"id": "40-0365",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jeweled-gold-crown.png": {
+"id": "40-0366",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/jeweled-platinum-ring.png": {
+"id": "40-0367",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/keelboat.png": {
+"id": "40-0368",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/lapis-lazuli.png": {
+"id": "40-0369",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/laser-pistol.png": {
+"id": "40-0370",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/laser-rifle.png": {
+"id": "40-0371",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/linen-1-sq-yd.png": {
+"id": "40-0372",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/lolths-sting.png": {
+"id": "40-0373",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/longship.png": {
+"id": "40-0374",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/malachite.png": {
+"id": "40-0375",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/malice.png": {
+"id": "40-0376",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/midnight-tears.png": {
+"id": "40-0377",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/moonstone.png": {
+"id": "40-0378",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/moss-agate.png": {
+"id": "40-0379",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/necklace-string-of-small-pink-pearls.png": {
+"id": "40-0380",
+"tag": "ICON",
+"batch": "batch-255"
+},
+"art/batch/icons/items/extra/needle-1.png": {
+"id": "40-0381",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/needle-2.png": {
+"id": "40-0382",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/needle-3.png": {
+"id": "40-0383",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/observatory-charm.png": {
+"id": "40-0384",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/obsidian-statuette-with-gold-fittings-and-inlay.png": {
+"id": "40-0385",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/obsidian.png": {
+"id": "40-0386",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/oil-of-taggit.png": {
+"id": "40-0387",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/old-masterpiece-painting.png": {
+"id": "40-0388",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/onyx.png": {
+"id": "40-0389",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/opal.png": {
+"id": "40-0390",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/painted-gold-war-mask.png": {
+"id": "40-0391",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/pair-of-engraved-bone-dice.png": {
+"id": "40-0392",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/pale-tincture.png": {
+"id": "40-0393",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/pearl.png": {
+"id": "40-0394",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/pepper.png": {
+"id": "40-0395",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/peridot.png": {
+"id": "40-0396",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/pig.png": {
+"id": "40-0397",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/platinum-1-lb.png": {
+"id": "40-0398",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/platinum-bracelet-set-with-an-emerald.png": {
+"id": "40-0399",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-cloud.png": {
+"id": "40-0400",
+"tag": "ICON",
+"batch": "batch-256"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-fire.png": {
+"id": "40-0401",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-frost.png": {
+"id": "40-0402",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-hill.png": {
+"id": "40-0403",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-stone.png": {
+"id": "40-0404",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/potion-of-giant-strength-storm.png": {
+"id": "40-0405",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/purple-worm-poison.png": {
+"id": "40-0406",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/quartz.png": {
+"id": "40-0407",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/reliquary-charm.png": {
+"id": "40-0408",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/revolver.png": {
+"id": "40-0409",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/rhodochrosite.png": {
+"id": "40-0410",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/rod-of-the-pact-keeper-1.png": {
+"id": "40-0411",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/rod-of-the-pact-keeper-2.png": {
+"id": "40-0412",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/rod-of-the-pact-keeper-3.png": {
+"id": "40-0413",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/ruby.png": {
+"id": "40-0414",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/saddle-exotic.png": {
+"id": "40-0415",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/saddle-military.png": {
+"id": "40-0416",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/saddle-riding.png": {
+"id": "40-0417",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/saffron.png": {
+"id": "40-0418",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/sailing-ship.png": {
+"id": "40-0419",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/salt.png": {
+"id": "40-0420",
+"tag": "ICON",
+"batch": "batch-257"
+},
+"art/batch/icons/items/extra/sanctuary-charm.png": {
+"id": "40-0421",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sanctum-charm.png": {
+"id": "40-0422",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sardonyx.png": {
+"id": "40-0423",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/semiautomatic-pistol.png": {
+"id": "40-0424",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/serpent-venom.png": {
+"id": "40-0425",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/set-of-gold-nesting-dolls.png": {
+"id": "40-0426",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sheep.png": {
+"id": "40-0427",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/shotgun.png": {
+"id": "40-0428",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silk-vestments-with-gold-embroidery.png": {
+"id": "40-0429",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silk.png": {
+"id": "40-0430",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-1-lb.png": {
+"id": "40-0431",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-and-gold-brooch.png": {
+"id": "40-0432",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-bar-2-pound.png": {
+"id": "40-0433",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-bar-5-pound.png": {
+"id": "40-0434",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-chalice-set-with-moonstones.png": {
+"id": "40-0435",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-ewer.png": {
+"id": "40-0436",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/silver-necklace-with-a-gemstone-pendant.png": {
+"id": "40-0437",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sled.png": {
+"id": "40-0438",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sling-bullet-1.png": {
+"id": "40-0439",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sling-bullet-2.png": {
+"id": "40-0440",
+"tag": "ICON",
+"batch": "batch-258"
+},
+"art/batch/icons/items/extra/sling-bullet-3.png": {
+"id": "40-0441",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/spinel.png": {
+"id": "40-0442",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/stabling-1-day.png": {
+"id": "40-0443",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/star-rose-quartz.png": {
+"id": "40-0444",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/star-ruby.png": {
+"id": "40-0445",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/star-sapphire.png": {
+"id": "40-0446",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/tiger-eye.png": {
+"id": "40-0447",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/topaz.png": {
+"id": "40-0448",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/torpor.png": {
+"id": "40-0449",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/tourmaline.png": {
+"id": "40-0450",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/truth-serum.png": {
+"id": "40-0451",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/turquoise.png": {
+"id": "40-0452",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wand-of-the-war-mage-1.png": {
+"id": "40-0453",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wand-of-the-war-mage-2.png": {
+"id": "40-0454",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wand-of-the-war-mage-3.png": {
+"id": "40-0455",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/warship.png": {
+"id": "40-0456",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/well-made-tapestry-that-is-10-feet-by-10-feet.png": {
+"id": "40-0457",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wheat.png": {
+"id": "40-0458",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wraps-of-unarmed-power-1.png": {
+"id": "40-0459",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wraps-of-unarmed-power-2.png": {
+"id": "40-0460",
+"tag": "ICON",
+"batch": "batch-259"
+},
+"art/batch/icons/items/extra/wraps-of-unarmed-power-3.png": {
+"id": "40-0461",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/items/extra/wyvern-poison.png": {
+"id": "40-0462",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/items/extra/yellow-sapphire.png": {
+"id": "40-0463",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/items/extra/zircon.png": {
+"id": "40-0464",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-barbarian-barbarian-subclass.png": {
+"id": "40-0465",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-bard-bard-subclass.png": {
+"id": "40-0466",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-cleric-cleric-subclass.png": {
+"id": "40-0467",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-druid-druid-subclass.png": {
+"id": "40-0468",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-fighter-fighter-subclass.png": {
+"id": "40-0469",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-monk-monk-subclass.png": {
+"id": "40-0470",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-paladin-paladin-subclass.png": {
+"id": "40-0471",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-ranger-ranger-subclass.png": {
+"id": "40-0472",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-rogue-rogue-subclass.png": {
+"id": "40-0473",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-sorcerer-sorcerer-subclass.png": {
+"id": "40-0474",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-warlock-warlock-subclass.png": {
+"id": "40-0475",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/cls-wizard-wizard-subclass.png": {
+"id": "40-0476",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/sp-aasimar-celestial-resistance.png": {
+"id": "40-0477",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/sp-aasimar-celestial-revelation.png": {
+"id": "40-0478",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/sp-aasimar-healing-hands.png": {
+"id": "40-0479",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/sp-aasimar-light-bearer.png": {
+"id": "40-0480",
+"tag": "ICON",
+"batch": "batch-260"
+},
+"art/batch/icons/features/extra/sp-dragonborn-breath-weapon.png": {
+"id": "40-0481",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-dragonborn-damage-resistance.png": {
+"id": "40-0482",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-dragonborn-draconic-flight.png": {
+"id": "40-0483",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-dwarf-dwarven-resilience.png": {
+"id": "40-0484",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-dwarf-dwarven-toughness.png": {
+"id": "40-0485",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-dwarf-stonecunning.png": {
+"id": "40-0486",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-elf-elven-lineage.png": {
+"id": "40-0487",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-elf-fey-ancestry.png": {
+"id": "40-0488",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-elf-keen-senses.png": {
+"id": "40-0489",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-elf-trance.png": {
+"id": "40-0490",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-gnome-gnomish-cunning.png": {
+"id": "40-0491",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-gnome-gnomish-lineage.png": {
+"id": "40-0492",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-goliath-giant-ancestry.png": {
+"id": "40-0493",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-goliath-large-form.png": {
+"id": "40-0494",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-goliath-powerful-build.png": {
+"id": "40-0495",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-halfling-brave.png": {
+"id": "40-0496",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-halfling-halfling-nimbleness.png": {
+"id": "40-0497",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-halfling-luck.png": {
+"id": "40-0498",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-halfling-naturally-stealthy.png": {
+"id": "40-0499",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-human-resourceful.png": {
+"id": "40-0500",
+"tag": "ICON",
+"batch": "batch-261"
+},
+"art/batch/icons/features/extra/sp-human-skillful.png": {
+"id": "40-0501",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/features/extra/sp-human-versatile.png": {
+"id": "40-0502",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/features/extra/sp-orc-adrenaline-rush.png": {
+"id": "40-0503",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/features/extra/sp-orc-relentless-endurance.png": {
+"id": "40-0504",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/features/extra/sp-tiefling-fiendish-legacy.png": {
+"id": "40-0505",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/features/extra/sp-tiefling-otherworldly-presence.png": {
+"id": "40-0506",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/ancient-altar.png": {
+"id": "40-0507",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/cabinet-of-curiosities.png": {
+"id": "40-0508",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/circus-tent.png": {
+"id": "40-0509",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/courtyard.png": {
+"id": "40-0510",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/dining-room.png": {
+"id": "40-0511",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/entertainment-salon.png": {
+"id": "40-0512",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/geothermal-vent.png": {
+"id": "40-0513",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/heist-planning-chamber.png": {
+"id": "40-0514",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/infirmary.png": {
+"id": "40-0515",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/lighthouse.png": {
+"id": "40-0516",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/lightning-generator.png": {
+"id": "40-0517",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/liminal-space.png": {
+"id": "40-0518",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/morgue.png": {
+"id": "40-0519",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/parlor.png": {
+"id": "40-0520",
+"tag": "ICON",
+"batch": "batch-262"
+},
+"art/batch/icons/bastion/rookery.png": {
+"id": "40-0521",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/bastion/s-ance-parlor.png": {
+"id": "40-0522",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/bastion/soup-kitchen.png": {
+"id": "40-0523",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/bastion/spirit-vault.png": {
+"id": "40-0524",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/bastion/storage.png": {
+"id": "40-0525",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/bastion/transmutation-vat.png": {
+"id": "40-0526",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/acidic-bile-sprayer.png": {
+"id": "40-0527",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/arcane-artillery.png": {
+"id": "40-0528",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/astral-brig.png": {
+"id": "40-0529",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/astral-skiff.png": {
+"id": "40-0530",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/battle-balloon.png": {
+"id": "40-0531",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/bones-of-endless-toil.png": {
+"id": "40-0532",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/canian-armor.png": {
+"id": "40-0533",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/churning-hull.png": {
+"id": "40-0534",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/clockwork-oars.png": {
+"id": "40-0535",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/concussive-rounds.png": {
+"id": "40-0536",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/death-vessel.png": {
+"id": "40-0537",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/defiant-sails.png": {
+"id": "40-0538",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/dragon-sails.png": {
+"id": "40-0539",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/ever-full-sails.png": {
+"id": "40-0540",
+"tag": "ICON",
+"batch": "batch-263"
+},
+"art/batch/icons/vehicles/explosive-rounds.png": {
+"id": "40-0541",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/flamethrower.png": {
+"id": "40-0542",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/frost-locked-hull.png": {
+"id": "40-0543",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/galley.png": {
+"id": "40-0544",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/gilded-death-armor.png": {
+"id": "40-0545",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/grasping-rounds.png": {
+"id": "40-0546",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/guardian-figurehead.png": {
+"id": "40-0547",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/infernal-screamer.png": {
+"id": "40-0548",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/keelboat.png": {
+"id": "40-0549",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/living-vessel.png": {
+"id": "40-0550",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/longship.png": {
+"id": "40-0551",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/lyrandar-skyskiff.png": {
+"id": "40-0552",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/mechanical-beholder.png": {
+"id": "40-0553",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/necrotic-smoke-screen.png": {
+"id": "40-0554",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/planar-raider.png": {
+"id": "40-0555",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/red-dragon-figurehead.png": {
+"id": "40-0556",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/reinforced-hull.png": {
+"id": "40-0557",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/sailing-ship.png": {
+"id": "40-0558",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/screaming-sails.png": {
+"id": "40-0559",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/scything-oars.png": {
+"id": "40-0560",
+"tag": "ICON",
+"batch": "batch-264"
+},
+"art/batch/icons/vehicles/smugglers-banner.png": {
+"id": "40-0561",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/soul-spike-armor.png": {
+"id": "40-0562",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/stahlmaster.png": {
+"id": "40-0563",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/storm-giant-figurehead.png": {
+"id": "40-0564",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/styx-sprayer.png": {
+"id": "40-0565",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/taskmasters-drums.png": {
+"id": "40-0566",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/teleporter.png": {
+"id": "40-0567",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/venatrix.png": {
+"id": "40-0568",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/vigilant-watch.png": {
+"id": "40-0569",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/vehicles/warship.png": {
+"id": "40-0570",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/animated-ghaunadaur-statue.png": {
+"id": "40-0571",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/automatic-ballista.png": {
+"id": "40-0572",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/ballista.png": {
+"id": "40-0573",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/cannon.png": {
+"id": "40-0574",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/clockwork-trebuchet.png": {
+"id": "40-0575",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/decrepit-mangonel.png": {
+"id": "40-0576",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/eldritch-cannon-flamethrower.png": {
+"id": "40-0577",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/eldritch-cannon-force-ballista.png": {
+"id": "40-0578",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/eldritch-cannon-protector.png": {
+"id": "40-0579",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/enchanted-ballista.png": {
+"id": "40-0580",
+"tag": "ICON",
+"batch": "batch-265"
+},
+"art/batch/icons/objects/flamethrower-coach.png": {
+"id": "40-0581",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/forge-launcher.png": {
+"id": "40-0582",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/generic-object.png": {
+"id": "40-0583",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/gulthias-tree.png": {
+"id": "40-0584",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/ice-troll-heart.png": {
+"id": "40-0585",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/lightning-cannon.png": {
+"id": "40-0586",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/mangonel.png": {
+"id": "40-0587",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/ram.png": {
+"id": "40-0588",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/siege-tower.png": {
+"id": "40-0589",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/storm-cannon.png": {
+"id": "40-0590",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/suspended-cauldron.png": {
+"id": "40-0591",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/the-head.png": {
+"id": "40-0592",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/icons/objects/trebuchet.png": {
+"id": "40-0593",
+"tag": "ICON",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/deep-roth-mpmm.png": {
+"id": "40-0594",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/deep-roth-vgm.png": {
+"id": "40-0595",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/iarno-glasstaff-albrek.png": {
+"id": "40-0596",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/kupalu.png": {
+"id": "40-0597",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/kwayoth.png": {
+"id": "40-0598",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/laiba-nana-rosse.png": {
+"id": "40-0599",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/lyzandra-lyzzie-calderos.png": {
+"id": "40-0600",
+"tag": "CREATURE",
+"batch": "batch-266"
+},
+"art/batch/creatures/extra/m-rg-n.png": {
+"id": "40-0601",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/mattrim-threestrings-mereg.png": {
+"id": "40-0602",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/rezran-snake-eyes-agrodro.png": {
+"id": "40-0603",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/rosavalda-rose-durst.png": {
+"id": "40-0604",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/roth-coa.png": {
+"id": "40-0605",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/roth-vgm.png": {
+"id": "40-0606",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/talisolvanar-tally-fellbranch.png": {
+"id": "40-0607",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/the-demogorgon.png": {
+"id": "40-0608",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/thornboldt-thorn-durst.png": {
+"id": "40-0609",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/volothamp-volo-geddarm.png": {
+"id": "40-0610",
+"tag": "CREATURE",
+"batch": "batch-267"
+},
+"art/batch/creatures/extra/zalkor.png": {
+"id": "40-0611",
+"tag": "CREATURE",
+"batch": "batch-267"
 }
 }
