@@ -94,15 +94,16 @@ lang = {}
 L = json.load(open(os.path.join(D, "languages.json"), encoding="utf-8"))["language"]
 for c, n in EMP:
     if c != "language": continue
-    rows = [x for x in L if x["name"] == n]; sp = []; sc = ""; ty = ""; en = ""
+    rows = [x for x in L if x["name"] == n]; sp = []; sc = ""; ty = ""; en = ""; og = ""
     for x in rows:
         for s in x.get("typicalSpeakers", []):
             s = hb.strip(s); s = re.sub(r"^\{@filter ", "", s)
             if s not in sp: sp.append(s)
-        sc = sc or x.get("script", ""); ty = ty or x.get("type", "")
+        sc = sc or x.get("script", ""); ty = ty or x.get("type", ""); og = og or x.get("origin", "")
         if x.get("entries") and not en: en = text(flat(x["entries"]))
+    if sc.lower() == "none": sc = ""
     t = en
-    if sp or sc: t = (t + "\n\n" if t else "") + ("Typical speakers: " + ", ".join(sp) + ". " if sp else "") + ("Written in the " + sc + " script." if sc else "")
+    if sp or sc or og: t = (t + "\n\n" if t else "") + (("Origin: " + og + ". ") if og else "") + ("Typical speakers: " + ", ".join(sp) + ". " if sp else "") + ("Written in the " + sc + " script." if sc else "")
     if not t:
         bk = {"TftYP": "Tales from the Yawning Portal"}; src = rows[0]["source"] if rows else ""
         t = ("This language appears in %s" % bk.get(src, "the source books")) + (" (page %s)" % rows[0]["page"] if rows and rows[0].get("page") else "") + ". The book gives no further description."
