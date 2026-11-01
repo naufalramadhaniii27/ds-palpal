@@ -1,0 +1,579 @@
+{
+ "perf_runs": 3,
+ "test_timeout": 1500,
+ "test_args": {
+  "tg_engine": "300",
+  "a11y_scan": "$AXE_JS"
+ },
+ "sections": [
+  {
+   "id": "logic",
+   "name": "Logic aturan",
+   "floor": 8,
+   "measures": [
+    {
+     "id": "golden_rules",
+     "test": "golden_rules",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "tg_engine",
+     "test": "tg_engine",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "fuzz_rules",
+     "test": "fuzz_rules",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "oracle_diff",
+     "cmd": "python3 tests/oracle_check.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "metamorphic_fail",
+     "cmd": "python3 tests/metamorphic.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "edition_leaks",
+     "cmd": "python3 tests/edition_isolation.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "effects_uncovered",
+     "cmd": "python3 tools/effect_coverage.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "rules_notes",
+     "file": "reports/rules-notes.md",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    }
+   ]
+  },
+  {
+   "id": "data",
+   "name": "Data dan Library",
+   "floor": 7,
+   "measures": [
+    {
+     "id": "q_lib",
+     "test": "q_lib",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "q_img",
+     "test": "q_img",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "search_hits_top5",
+     "cmd": "python3 tests/search_quality.py",
+     "base": null,
+     "target": 98
+    },
+    {
+     "id": "core_gaps",
+     "cmd": "python3 tools/core_gaps.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "entries_without_edition",
+     "cmd": "python3 tools/edition_tags_check.py",
+     "base": null,
+     "target": 0
+    }
+   ]
+  },
+  {
+   "id": "ui",
+   "name": "UI dan UX",
+   "floor": 7,
+   "measures": [
+    {
+     "id": "overflow_scan",
+     "test": "overflow_scan",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "overlap_scan",
+     "test": "overlap_scan",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "tidy",
+     "test": "tidy",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "blank_new",
+     "test": "blank_new",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "ux_tasks_over_limit",
+     "cmd": "python3 tests/ux_tasks.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "pattern_lint",
+     "cmd": "node tools/pattern_lint.js",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "ui_patterns_spec",
+     "file": "specs/ui-patterns.md",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    }
+   ]
+  },
+  {
+   "id": "visual",
+   "name": "Visual dan art",
+   "floor": 7,
+   "measures": [
+    {
+     "id": "class_art",
+     "test": "class_art",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "builder_art",
+     "test": "builder_art",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "icon_audit",
+     "cmd": "python3 tests/icon_audit.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "art_hard_violations",
+     "cmd": "python3 tools/art_stats.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "art_queue_left",
+     "cmd": "python3 tools/art_progress.py",
+     "base": 1044,
+     "target": 0
+    }
+   ]
+  },
+  {
+   "id": "perf",
+   "name": "Kinerja",
+   "floor": 6,
+   "measures": [
+    {
+     "id": "fcp_x4",
+     "perf": "390x844 cpu4x.fcp",
+     "base": null,
+     "target": 1500
+    },
+    {
+     "id": "ready_x4",
+     "perf": "390x844 cpu4x.ready",
+     "base": null,
+     "target": 2500
+    },
+    {
+     "id": "heap_home_raw_mb",
+     "perf": "390x844 cpu1x.heap_home_raw_mb",
+     "base": null,
+     "target": 30,
+     "gate": true
+    },
+    {
+     "id": "heap_tools_mb",
+     "perf": "390x844 cpu1x.heap_tools_mb",
+     "base": null,
+     "target": 60,
+     "gate": true
+    },
+    {
+     "id": "sheet_open_x4",
+     "perf": "390x844 cpu4x.sheet_open",
+     "base": null,
+     "target": 300
+    },
+    {
+     "id": "inp_heal_x4",
+     "perf": "390x844 cpu4x.inp_heal",
+     "base": null,
+     "target": 100
+    },
+    {
+     "id": "lib_find_ms",
+     "perf": "390x844 cpu1x.lib_find_ms",
+     "base": null,
+     "target": 50
+    },
+    {
+     "id": "split_first_brotli",
+     "bytes": "bytes_split_first_brotli",
+     "base": null,
+     "target": 1200000,
+     "gate": true
+    },
+    {
+     "id": "font_data_uri_kb",
+     "count": "font_data_uri_kb",
+     "base": 653,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "syncget",
+     "count": "syncget",
+     "base": 2,
+     "target": 0
+    }
+   ]
+  },
+  {
+   "id": "reliability",
+   "name": "Keandalan",
+   "floor": 7.5,
+   "measures": [
+    {
+     "id": "storage_idb",
+     "test": "storage_idb",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "self_heal",
+     "test": "self_heal",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "cloud_sync",
+     "test": "cloud_sync",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "chaos_violations",
+     "cmd": "python3 tests/chaos_storage.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "fail_modes_fail",
+     "cmd": "python3 tests/fail_modes.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "migrate_all_fail",
+     "cmd": "python3 tests/migrate_all.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "flaky_tests",
+     "cmd": "python3 tools/flake_hunt.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "opfs_recovery",
+     "cmd": "python3 tests/opfs_recovery.py",
+     "base": null,
+     "target": 0
+    }
+   ]
+  },
+  {
+   "id": "process",
+   "name": "Tes dan proses",
+   "floor": 7,
+   "measures": [
+    {
+     "id": "build_check_fail",
+     "count": "build_check_fail",
+     "base": null,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "ci_jobs",
+     "count": "ci_jobs",
+     "base": 1,
+     "target": 3,
+     "gate": true
+    },
+    {
+     "id": "ci_tests",
+     "count": "ci_tests",
+     "base": null,
+     "target": 45,
+     "gate": true
+    },
+    {
+     "id": "score_tool",
+     "file": "tools/score.py",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "perf_budget_in_ci",
+     "count": "perf_in_ci",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "score_history",
+     "file": "reports/skor-9-8.md",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    }
+   ]
+  },
+  {
+   "id": "code",
+   "name": "Kerapian kode",
+   "floor": 5,
+   "measures": [
+    {
+     "id": "css_patch_files",
+     "count": "css_patch_files",
+     "base": 7,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "important",
+     "count": "important",
+     "base": 807,
+     "target": 99,
+     "gate": true
+    },
+    {
+     "id": "lines_over_300",
+     "count": "lines_over_300",
+     "base": 1099,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "lines_over_2000",
+     "count": "lines_over_2000",
+     "base": 17,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "var_decl",
+     "count": "var_decl",
+     "base": 6595,
+     "target": 0
+    },
+    {
+     "id": "json_clone",
+     "count": "json_clone",
+     "base": 50,
+     "target": 0
+    },
+    {
+     "id": "then_calls",
+     "count": "then_calls",
+     "base": 152,
+     "target": 10
+    },
+    {
+     "id": "exec_command",
+     "count": "exec_command",
+     "base": 4,
+     "target": 0
+    },
+    {
+     "id": "navstack",
+     "count": "navstack",
+     "base": 46,
+     "target": 0
+    },
+    {
+     "id": "mutation_observer",
+     "count": "mutation_observer",
+     "base": 76,
+     "target": 0
+    },
+    {
+     "id": "tsc_errors",
+     "cmd": "python3 tools/tsc_gate.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "owners_missing",
+     "cmd": "python3 tools/owners_check.py",
+     "base": null,
+     "target": 0
+    }
+   ]
+  },
+  {
+   "id": "security",
+   "name": "Keamanan",
+   "floor": 8,
+   "measures": [
+    {
+     "id": "csp_check",
+     "test": "csp_check",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "api_dev_guard",
+     "test": "api_dev_guard",
+     "base": 0,
+     "target": 1,
+     "gate": true,
+     "bool": true
+    },
+    {
+     "id": "innerhtml_outside_lib",
+     "count": "innerhtml_outside_lib",
+     "base": 262,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "confirm_alert",
+     "count": "confirm_alert",
+     "base": 1,
+     "target": 0,
+     "gate": true
+    },
+    {
+     "id": "headers_check",
+     "cmd": "python3 tests/headers_check.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "api_limits",
+     "cmd": "python3 tests/api_limits.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "license_doc",
+     "file": "reports/lisensi.md",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    }
+   ]
+  },
+  {
+   "id": "a11y",
+   "name": "Aksesibilitas",
+   "floor": 7,
+   "measures": [
+    {
+     "id": "axe_serious",
+     "test": "a11y_scan",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "learn_a11y",
+     "test": "learn_a11y",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "scene_contrast",
+     "test": "scene_contrast",
+     "base": 0,
+     "target": 1,
+     "bool": true
+    },
+    {
+     "id": "a11y_tree_diff",
+     "cmd": "python3 tests/a11y_tree.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "keyboard_flow_fail",
+     "cmd": "python3 tests/keyboard_flow.py",
+     "base": null,
+     "target": 0
+    },
+    {
+     "id": "dialog_elements",
+     "count": "dialog_elements",
+     "base": 0,
+     "target": 12
+    },
+    {
+     "id": "abort_controllers",
+     "count": "abort_controllers",
+     "base": 0,
+     "target": 20
+    }
+   ]
+  }
+ ]
+}
