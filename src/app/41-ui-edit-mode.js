@@ -1,5 +1,25 @@
+import {ABN} from "./02-data-default-character.js";
+import {C,S,save} from "./04-logic-storage.js";
+import {$,$$,ask,esc,num,sg,toast} from "./05-logic-helpers.js";
+import {B,D,derive} from "./06-logic-derivation.js";
+import {__set_renderAbilities,__set_renderActions,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderActions,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";
+import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
+import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {openEditor} from "./14-ui-editor.js";
+import {__set_renderSpells,ico,renderSpells} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {cuK} from "./26-ui-customize.js";
+import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
+import {__set_renderAll,renderAll} from "./35-ui-combo.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"CU0",{get:function(){return CU0;},set:function(v){CU0=v;},configurable:true});
+Object.defineProperty(__R,"EDM",{get:function(){return EDM;},set:function(v){EDM=v;},configurable:true});
+Object.defineProperty(__R,"cuqBackH",{get:function(){return cuqBackH;},set:function(v){cuqBackH=v;},configurable:true});
+Object.defineProperty(__R,"cuqHTML",{get:function(){return cuqHTML;},set:function(v){cuqHTML=v;},configurable:true});
+Object.defineProperty(__R,"cuqOf",{get:function(){return cuqOf;},set:function(v){cuqOf=v;},configurable:true});
+Object.defineProperty(__R,"edmSet",{get:function(){return edmSet;},set:function(v){edmSet=v;},configurable:true});
 /* ===== v34 p01 RU85: Edit mode. Tap a number to set your own value (S.cust), Use calculated, Reset all, ask() after Apply ===== */
-var CU0={}, EDM=false, cuMT=0;
+export var CU0={}, EDM=false, cuMT=0;
 /* the S.cust key and field behind a number on the sheet (data-bd key), with its label, kind, and limits */
 function cuqOf(key){ var m, k=String(key||"");
   if((m=/^ab-([A-Z]{3})$/.exec(k))&&ABN[m[1]]) return {k:"n:"+k,f:"o",fb:"b",t:ABN[m[1]]+" score",kind:"int",min:1,max:30};
@@ -40,7 +60,7 @@ function cuqBack(key){ var q=cuqOf(key); if(!q||!cuqSet(q)) return; undoMark("Ca
   else { var o=S.cust[q.k]; delete o[q.f]; if(q.fb) delete o[q.fb]; if(!Object.keys(o).length) delete S.cust[q.k]; if(!Object.keys(S.cust).length) delete S.cust; }
   save(); renderAll(); if(sheetMode==="cuq") closeSheet(); else refreshEntry(); toastU(q.t+" uses the calculated value again."); }
 /* numbers set by you: [cust key, field] (names, notes, and item weights are not numbers on the sheet) */
-function cuNumList(){ var L=[], F={n:["o","b"],a:["ho","hb","db","do"],s:["dc","atk"]}, c=S.cust&&typeof S.cust==="object"?S.cust:{};
+export function cuNumList(){ var L=[], F={n:["o","b"],a:["ho","hb","db","do"],s:["dc","atk"]}, c=S.cust&&typeof S.cust==="object"?S.cust:{};
   Object.keys(c).forEach(function(k){ var f=F[k.charAt(0)]; if(!f||!c[k]||typeof c[k]!=="object") return; f.forEach(function(x){ if(c[k][x]!=null&&c[k][x]!=="") L.push([k,x]); }); });
   if(num(S.hpOver,0)>0) L.push(["hp","hpOver"]); return L; }
 function cuResetAll(){ var L=cuNumList(); if(!L.length){ toast("No numbers are set by you. Every number is calculated."); return; }
@@ -57,7 +77,7 @@ function cuMark(){ $$("[data-bd]").forEach(function(el){ if(el.closest("#sheet,#
 function cuMarkSoon(){ if(cuMT) return; cuMT=setTimeout(function(){ cuMT=0; try{ cuMark(); }catch(er){} },0); }
 ["renderAll","renderActions","renderSpells","renderSkillsPage","renderTiles","renderAbilities","syncHP"].forEach(function(n){ var f={renderAll:renderAll,renderActions:renderActions,renderSpells:renderSpells,renderSkillsPage:renderSkillsPage,renderTiles:renderTiles,renderAbilities:renderAbilities,syncHP:syncHP}[n];
   var w=function(){ var r=f.apply(this,arguments); cuMarkSoon(); return r; };
-  if(n==="renderAll") renderAll=w; else if(n==="renderActions") renderActions=w; else if(n==="renderSpells") renderSpells=w; else if(n==="renderSkillsPage") renderSkillsPage=w; else if(n==="renderTiles") renderTiles=w; else if(n==="renderAbilities") renderAbilities=w; else syncHP=w; });
+  if(n==="renderAll") __set_renderAll(w); else if(n==="renderActions") __set_renderActions(w); else if(n==="renderSpells") __set_renderSpells(w); else if(n==="renderSkillsPage") __set_renderSkillsPage(w); else if(n==="renderTiles") __set_renderTiles(w); else if(n==="renderAbilities") __set_renderAbilities(w); else __set_syncHP(w); });
 function edmBar(){ var w=document.getElementById("edmBar"); if(w) return w; w=document.createElement("div"); w.id="edmBar"; w.className="edm-bar"; w.setAttribute("role","region"); w.setAttribute("aria-label","Edit mode"); w.hidden=true;
   w.innerHTML='<div class="edm-t">'+ico("ui-pen","edm-i")+'<span><b>Edit mode</b><small id="edmN">Tap a number to change it.</small></span></div><div class="edm-b">'+
     '<button type="button" class="btn press" id="edFormBtn" aria-label="Edit details: names, lists, and text">'+ico("ui-file")+'<span>Details</span></button>'+
@@ -96,3 +116,5 @@ function cuAfterApply(before){ var after=cuSnap(), ch=[]; Object.keys(after).for
     if(S.cust&&!Object.keys(S.cust).length) delete S.cust; save(); renderAll(); toastU("Those numbers use the calculated values again."); }); }
 (function(f){ if(typeof f!=="function") return; window.__sheetApply=function(){ var before={}; try{ derive(); before=cuSnap(); }catch(er){} var r=f.apply(this,arguments); try{ cuAfterApply(before); }catch(er){} return r; }; })(window.__sheetApply);
 window.__edm=function(on){ if(on!=null) edmSet(!!on,true); return EDM; }; window.__cuNum=function(){ return cuNumList(); };
+
+export function __set_CU0(v){ return CU0=v; }

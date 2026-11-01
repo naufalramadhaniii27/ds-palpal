@@ -1,3 +1,20 @@
+import {C} from "./04-logic-storage.js";
+import {clamp,esc,sg} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";
+import {spEffect} from "./21-ui-tabs-pager.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"DT_ICON",{get:function(){return DT_ICON;},set:function(v){DT_ICON=v;},configurable:true});
+Object.defineProperty(__R,"dTxt",{get:function(){return dTxt;},set:function(v){dTxt=v;},configurable:true});
+Object.defineProperty(__R,"dtIcon",{get:function(){return dtIcon;},set:function(v){dtIcon=v;},configurable:true});
+Object.defineProperty(__R,"spAreaTxt",{get:function(){return spAreaTxt;},set:function(v){spAreaTxt=v;},configurable:true});
+Object.defineProperty(__R,"spCalc",{get:function(){return spCalc;},set:function(v){spCalc=v;},configurable:true});
+Object.defineProperty(__R,"spFx",{get:function(){return spFx;},set:function(v){spFx=v;},configurable:true});
+Object.defineProperty(__R,"spFxBlock",{get:function(){return spFxBlock;},set:function(v){spFxBlock=v;},configurable:true});
+Object.defineProperty(__R,"spLvRange",{get:function(){return spLvRange;},set:function(v){spLvRange=v;},configurable:true});
+Object.defineProperty(__R,"spLvSel",{get:function(){return spLvSel;},set:function(v){spLvSel=v;},configurable:true});
+Object.defineProperty(__R,"spRowLv",{get:function(){return spRowLv;},set:function(v){spRowLv=v;},configurable:true});
+Object.defineProperty(__R,"svgI",{get:function(){return svgI;},set:function(v){svgI=v;},configurable:true});
 /* ================= RD19 SPELL DATA (damage, area, material) ================= */
 /* Icons: damage types and area shapes, drawn as small inline SVG (D3: like D&D Beyond) */
 var DT_ICON={Fire:"M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 1 1 1 3 3 3 0-3-1-5 0-7z",Cold:"M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17M9 4l3 2 3-2M9 20l3-2 3 2",
@@ -7,10 +24,10 @@ var DT_ICON={Fire:"M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 1 1 1 3 3 3 0-3
  Bludgeoning:"M3 7h11v6H3zM14 9h3M17 6v8M8 13v8",Piercing:"M4 20L20 4M20 4h-7M20 4v7",Slashing:"M4 20L18 6l2-2-1 5-1 1M4 20l-1-3M4 20l3 1",Healing:"M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"};
 var AR_ICON={Sphere:"M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18zM3 12c3 3.5 15 3.5 18 0",Cube:"M12 2l9 5v10l-9 5-9-5V7zM12 12l9-5M12 12v10M12 12L3 7",Cone:"M3 12l18-9v18zM21 3c-2 3-2 15 0 18",
  Cylinder:"M5 6c0-2.7 14-2.7 14 0v12c0 2.7-14 2.7-14 0zM5 6c0 2.7 14 2.7 14 0",Line:"M2 12h20M2 9v6M22 9v6",Emanation:"M12 9a3 3 0 1 0 0 6a3 3 0 0 0 0-6zM12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18",Square:"M4 4h16v16H4zM4 12h16M12 4v16"};/* v19 RD21 */
-function svgI(d,cls,title){ return '<svg class="'+cls+'" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><path d="'+d+'"/></svg>'; }
-function dtIcon(t){ var L=String(t||"").split("|"); return (L.length>2&&typeof ICO!=="undefined"?svgI(ICO["dmg-choice"],"dti dt-choice","Choice of damage type: "+L.join(", ")):"")+L.map(function(x){ return DT_ICON[x]?svgI(DT_ICON[x],"dti dt-"+x.toLowerCase(),x):""; }).join(""); }/* v24 RU73 s */
+export function svgI(d,cls,title){ return '<svg class="'+cls+'" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><path d="'+d+'"/></svg>'; }
+export function dtIcon(t){ var L=String(t||"").split("|"); return (L.length>2&&typeof __R.ICO!=="undefined"?svgI(__R.ICO["dmg-choice"],"dti dt-choice","Choice of damage type: "+L.join(", ")):"")+L.map(function(x){ return DT_ICON[x]?svgI(DT_ICON[x],"dti dt-"+x.toLowerCase(),x):""; }).join(""); }/* v24 RU73 s */
 function arIcon(s){ return AR_ICON[s]?svgI(AR_ICON[s],"ari",s):""; }
-function dTxt(t){ var a=String(t||"").split("|"); return a.length>2?a.slice(0,-1).join(", ")+", or "+a[a.length-1]:a.join(" or "); }
+export function dTxt(t){ var a=String(t||"").split("|"); return a.length>2?a.slice(0,-1).join(", ")+", or "+a[a.length-1]:a.join(" or "); }
 /* dice helpers: "8d6" + 2 x "1d6" = "10d6"; different dice are added as a second term */
 function dAdd(a,b,k){ if(!k||!b) return a; var ma=/^(\d+)d(\d+)([+-]\d+)?$/.exec(a), mb=/^(\d+)d(\d+)$/.exec(b);
   if(ma&&mb&&ma[2]===mb[2]) return (+ma[1]+(+mb[1])*k)+"d"+ma[2]+(ma[3]||""); if(/^\d+$/.test(a)&&/^\d+$/.test(b)) return String(+a+(+b)*k);
@@ -18,8 +35,8 @@ function dAdd(a,b,k){ if(!k||!b) return a; var ma=/^(\d+)d(\d+)([+-]\d+)?$/.exec
 function dMul(a,t){ var m=/^(\d+)d(\d+)([+-]\d+)?$/.exec(a); return m&&t>1?(m[1]*t)+"d"+m[2]+(m[3]||""):a; }
 function dPlus(a,v){ if(!v) return a; var m=/^(.*?)([+-]\d+)$/.exec(a); if(m&&/d/.test(m[1])) return m[1]+sg(+m[2]+v); return a+sg(v); }
 /* spCalc: numbers of one spell at slot level lv (default: the spell level) and character level cl. fx from C.spells[] (builder) or SPELL_FX by name */
-function spFx(x){ return x&&(x.fx||(typeof SPELL_FX!=="undefined"&&SPELL_FX[x.n])||null); }
-function spCalc(x,lv,cl,smod){ var f=spFx(x); if(!f) return null; var L=x.l||0; lv=Math.max(L,lv||L); var ex=L?Math.max(0,lv-(f.upAt||L)):0, tier=cl>=17?4:cl>=11?3:cl>=5?2:1;
+export function spFx(x){ return x&&(x.fx||(typeof SPELL_FX!=="undefined"&&SPELL_FX[x.n])||null); }
+export function spCalc(x,lv,cl,smod){ var f=spFx(x); if(!f) return null; var L=x.l||0; lv=Math.max(L,lv||L); var ex=L?Math.max(0,lv-(f.upAt||L)):0, tier=cl>=17?4:cl>=11?3:cl>=5?2:1;
   var bon=(spDb(x)).reduce(function(s,b){ return s+(+b.v||0); },0);
   var parts=(f.dmg||[]).map(function(p,i){ var d=p[0]; if(f.cs&&!L) d=dMul(d,tier); if(p[2]&&ex) d=dAdd(d,p[2],ex); if(p[4]&&smod!=null) d=dPlus(d,smod); if(i===0&&bon) d=dPlus(d,bon);
     var t=p[1]; if(x.tx&&String(t).split("|").indexOf(x.tx)<0) t=t+"|"+x.tx; return {d:d,t:t,lab:p[3]||""}; });
@@ -31,21 +48,21 @@ function spCalc(x,lv,cl,smod){ var f=spFx(x); if(!f) return null; var L=x.l||0; 
 /* sheets applied before v15 have no db: Eldritch Blast takes the modifier its Actions row already adds (Agonizing Blast) */
 function spDb(x){ if(x.db) return x.db; if(x.fx||x.n!=="Eldritch Blast"||typeof C==="undefined") return []; var a=(C.attacks||[]).filter(function(q){return q.n===x.n&&!q.nomod;})[0]; return a&&D.mod?[{v:D.mod[a.ab]||0,s:"Agonizing Blast"}]:[]; }
 function spAreaTxt(a){ if(!a) return ""; return a[1]+" ft."+(a[0]==="Line"&&a[2]?" x "+a[2]+" ft.":a[0]==="Cylinder"&&a[2]?" x "+a[2]+" ft.":""); }
-function spRangeH(r,x){ var f=spFx(x), a=f&&f.area; return esc(String(r||"").replace(/ ft$/," ft."))+(a?'<span class="spar">/'+esc(spAreaTxt(a))+arIcon(a[0])+'</span>':''); }
-function spCompH(cmp,x){ var f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
+export function spRangeH(r,x){ var f=spFx(x), a=f&&f.area; return esc(String(r||"").replace(/ ft$/," ft."))+(a?'<span class="spar">/'+esc(spAreaTxt(a))+arIcon(a[0])+'</span>':''); }
+export function spCompH(cmp,x){ var f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
 /* Effect cell: count x first damage part with icon, or healing, or the old text summary */
-function spEffH(x,lv){ var c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ var p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
+export function spEffH(x,lv){ var c=spCalc(x,lv,D.level,__R.scOf(x).mod); if(c&&c.parts.length){ var p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
   if(c&&c.heal) return '<span class="speff">'+esc(c.heal)+dtIcon("Healing")+'</span>'; return esc(spEffect(x)); }
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
-function spPact(x){ var sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
+export function spPact(x){ var sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
 /* v22: the group a spell is shown in. Pact Magic only: spells cast with a Pact slot sit at the Pact slot level */
-function spGrpLv(x){ var sc=C.spellcasting||{}; if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return x.itc.lv; if(!x.l||!sc.pact) return x.l; return spPact(x)?spRowLv(x):x.l; }/* v36 p01: pact spells sit at the Pact level also with other slots */
-function spPactLv(){ var p=(C.spellcasting||{}).pact; if(!p) return 0; if(+p.lvl) return +p.lvl; var r=(D.res||[]).filter(function(q){return q.k==="pact"})[0], m=r&&/level (\d)/.exec(r.n||""); return m?+m[1]:0; }/* v36 p01 */
-function spRowLv(x){ if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return x.itc.lv; return spPact(x)?Math.max(x.l,spPactLv()||x.l):x.l; }
+export function spGrpLv(x){ var sc=C.spellcasting||{}; if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return x.itc.lv; if(!x.l||!sc.pact) return x.l; return spPact(x)?spRowLv(x):x.l; }/* v36 p01: pact spells sit at the Pact level also with other slots */
+export function spPactLv(){ var p=(C.spellcasting||{}).pact; if(!p) return 0; if(+p.lvl) return +p.lvl; var r=(D.res||[]).filter(function(q){return q.k==="pact"})[0], m=r&&/level (\d)/.exec(r.n||""); return m?+m[1]:0; }/* v36 p01 */
+export function spRowLv(x){ if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return x.itc.lv; return spPact(x)?Math.max(x.l,spPactLv()||x.l):x.l; }
 /* v15 Checker: the Lvl control stays inside the slots the character can use. Pact Magic: the Pact level only. Mystic Arcanum and once-per-rest casts: the spell level */
 function spLvRange(x){ var sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ var p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; var mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
-var spLvSel={};
-function spFxBlock(x,key){ var sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
+export var spLvSel={};
+function spFxBlock(x,key){ var sc=__R.scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   var h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
   if(c.up&&rg[1]>rg[0]) h+='<div class="splv"><button type="button" class="btn press" data-splv="-1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Lower spell level"'+(c.lv<=rg[0]?' disabled':'')+'>−</button><span>Lvl <b>'+c.lv+'</b></span><button type="button" class="btn press" data-splv="1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Higher spell level"'+(c.lv>=rg[1]?' disabled':'')+'>+</button></div>';
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';

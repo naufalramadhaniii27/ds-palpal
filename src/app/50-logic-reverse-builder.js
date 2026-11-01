@@ -1,3 +1,12 @@
+import {ABN} from "./02-data-default-character.js";
+import {C,__set_C} from "./04-logic-storage.js";
+import {esc,sg,toast} from "./05-logic-helpers.js";
+import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
+import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"rbOpen",{get:function(){return rbOpen;},set:function(v){rbOpen=v;},configurable:true});
 /* T11 G4 N1 Reverse Builder. The player writes goals ("AC at least 18, Stealth at least +7"), the app tries legal builds of the same class
    and level and lists the ones that reach every goal, with what changes against the build now.
    What it tries: every species and background of the build's rules set, the background's +2 and +1 on the abilities the goals need,
@@ -7,7 +16,7 @@
    It runs on the main thread, not in a Web Worker: the builder and derivation code live in the page. The result goes into the builder
    only when the player taps Use this build, and the old build stays as the backup build. */
 var RB={run:0};
-var RB_ARR=[15,14,13,12,10,8], RB_AB=["STR","DEX","CON","INT","WIS","CHA"];
+export var RB_ARR=[15,14,13,12,10,8], RB_AB=["STR","DEX","CON","INT","WIS","CHA"];
 function rbGoals(){ var g=[], q=function(s){ return document.querySelector("#sheetBody "+s); }, n=function(s){ var e=q(s); var v=e?parseInt(e.value,10):NaN; return isFinite(v)?v:null; };
   if(n("[data-rbg=ac]")!=null) g.push({k:"ac",min:n("[data-rbg=ac]"),l:"Armor Class"});
   if(n("[data-rbg=hp]")!=null) g.push({k:"hp",min:n("[data-rbg=hp]"),l:"Hit Points"});
@@ -25,11 +34,11 @@ function rbOrder(goals,c){ var w={}, add=function(k,v){ w[k]=(w[k]||0)+v; };
 /* the numbers of one try, from the real derivation */
 function rbEval(nb,goals,opts,bat){ var c2=null, t0=performance.now(); try{ c2=bat?bat.one(nb):window.__bldSheetFor(nb); }catch(e){ return null; } var t1=performance.now(); RB.st.bld+=t1-t0; if(!c2||!c2.abilities) return null;
   var keepC=C, keepD=D, keepB=B, keepCU=CU0, o={};
-  try{ C=c2; derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach(function(s,i){ o.sk[s.n]=D.skill[i]; }); o.sv=JSON.parse(JSON.stringify(D.save||{}));
+  try{ __set_C(c2); derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach(function(s,i){ o.sk[s.n]=D.skill[i]; }); o.sv=JSON.parse(JSON.stringify(D.save||{}));
     o.atk=null; (D.atk||[]).forEach(function(a){ if(a&&isFinite(a.hit)) o.atk=o.atk==null?a.hit:Math.max(o.atk,a.hit); });
     o.mod=JSON.parse(JSON.stringify(D.mod)); o.score=JSON.parse(JSON.stringify(D.score)); o.armorP=String((c2.profs||{}).armor||"");
     o.acBonus=((c2.ac||{}).bonus||[]).reduce(function(a,b){ return a+(+b.v||0); },0); o.acNow=String((c2.ac||{}).baseSrc||""); }
-  finally{ C=keepC; D=keepD; B=keepB; CU0=keepCU; }
+  finally{ __set_C(keepC); __set_D(keepD); __set_B(keepB); __set_CU0(keepCU); }
   /* other armor: base + Dexterity (all, up to +2, or none) + Shield 2 + the bonuses the build already has. Heavy armor needs its Strength */
   if(goals.some(function(g){ return g.k==="ac"; })&&opts&&opts.armor){ var best=null, P=o.armorP.toLowerCase();
     Object.keys(opts.armor).forEach(function(k){ var a=opts.armor[k]; if(P.indexOf(a.cat.toLowerCase())<0) return; if(a.str&&o.score.STR<a.str) return;
@@ -74,7 +83,7 @@ function rbFinal(r){ var nb=JSON.parse(JSON.stringify(r.nb)); if(r.o.alt){ nb.in
 function rbPlural(n,k){ if(k===1) return "one "+n; var w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
 function rbDuel(i,btn){ var r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel"); if(!r||!out) return; out.hidden=false;
   if(!window.__tgDuelPick){ if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} if(!window.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
-  var pc=null; try{ pc=tgPcFor(window.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
+  var pc=null; try{ pc=__R.tgPcFor(window.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
   btn.disabled=true; var run=RB.run, pct=function(x){ return Math.round(x*100); };
   var line=function(a,base,e1){ var g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
     return (a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
@@ -82,9 +91,9 @@ function rbDuel(i,btn){ var r=RB.res&&RB.res[i], out=btn.closest(".rb-c").queryS
   var fin=function(a,base,e1){ btn.disabled=false; if(run!==RB.run) return; if(!a||!base){ out.textContent="The creature list could not be loaded. Check the connection and try again."; return; } out.innerHTML=line(a,base,e1); };
   var go2=function(base){ var e1=window.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); window.__tgDuel(pc,base.g,function(a){ fin(a,base,e1); }); };
   if(RB.base&&RB.base.run===run){ go2(RB.base); return; }
-  var cur=null; try{ cur=tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
+  var cur=null; try{ cur=__R.tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
   out.textContent="Picking a fair group for your current build"; window.__tgDuelPick(cur,function(g){ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; window.__tgDuel(cur,g,function(b){ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); },function(n,m){ out.textContent="Your current build: "+n+" of "+m; }); },function(n,m){ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
-function rbOpen(){ navStack=[]; var go=function(){ var sk=(C.skills||[]).map(function(s){ return '<option>'+esc(s.n)+'</option>'; }).join(""), sv=RB_AB.map(function(k){ return '<option value="'+k+'">'+esc(ABN[k])+'</option>'; }).join("");
+function rbOpen(){ __set_navStack([]); var go=function(){ var sk=(C.skills||[]).map(function(s){ return '<option>'+esc(s.n)+'</option>'; }).join(""), sv=RB_AB.map(function(k){ return '<option value="'+k+'">'+esc(ABN[k])+'</option>'; }).join("");
     var f=function(k,l,ph){ return '<label class="rb-f"><span>'+l+' at least</span><input type="number" inputmode="numeric" data-rbg="'+k+'" placeholder="'+ph+'"></label>'; };
     openSheet("Find a build",'<p class="bk-f">Write what you want your '+esc(C.clsLabel||C.cls||"character")+' to reach at level '+D.level+'. The app tries every species, background and score layout of your rules set and shows the builds that get there.</p><div class="rb-g">'+f("ac","Armor Class",D.ac+2)+f("hp","Hit Points",D.hpmax+5)+f("init","Initiative",D.init+2)+f("atk","Best attack bonus","")+
       '<label class="rb-f"><span>Skill</span><select data-rbs="sk"><option value="">None</option>'+sk+'</select></label>'+f("sk","That skill","")+'<label class="rb-f"><span>Saving throw</span><select data-rbs="sv"><option value="">None</option>'+sv+'</select></label>'+f("sv","That save","")+

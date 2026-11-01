@@ -1,3 +1,20 @@
+import {C,S,save} from "./04-logic-storage.js";
+import {$,clamp,esc,num,toast} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {barColor,buzz,hpOpen,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
+import {activeConds,renderConds} from "./10-ui-conditions.js";
+import {sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
+import {ico,openRest} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {setOf} from "./25-ui-settings-appearance.js";
+import {PAL,__set_gsSel,condSet,fzScore,gsMark,gsRows,gsSel,gsSync,openSearch,palCmds,palFill} from "./27-ui-party-search-commands-library.js";
+import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
+import {cmbPipClick,cmbPipH,renderAll} from "./35-ui-combo.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"PIP",{get:function(){return PIP;},set:function(v){PIP=v;},configurable:true});
+Object.defineProperty(__R,"exhTo",{get:function(){return exhTo;},set:function(v){exhTo=v;},configurable:true});
+Object.defineProperty(__R,"ohSync",{get:function(){return ohSync;},set:function(v){ohSync=v;},configurable:true});
+Object.defineProperty(__R,"pipSync",{get:function(){return pipSync;},set:function(v){pipSync=v;},configurable:true});
+Object.defineProperty(__R,"wakeApply",{get:function(){return wakeApply;},set:function(v){wakeApply=v;},configurable:true});
 /* v30 p07: Exhaustion to a level (stepper and palette). Level 6 is death, leaving 6 brings Hit Points back (v29 RU127) */
 function exhTo(v,quiet){ var exh0=num(S.exh,0); S.exh=clamp(Math.round(num(v,0)),0,6);
   if(S.exh===6&&exh0<6){ S.exhPrev={hp:S.hp,tmp:S.tmp,ds:(S.ds||[0,0]).slice()}; S.hp=0; S.tmp=0; S.ds=[0,3]; }
@@ -15,7 +32,7 @@ document.addEventListener("keydown",function(e){ if(e.ctrlKey||e.metaKey||e.altK
   var k=e.key.length===1?e.key.toUpperCase():e.key, sel=k==="N"?"[data-hnew]":k==="B"?"[data-hbk=out]":k==="S"?"[data-hbk=info]":""; if(k==="/"){ var q=document.getElementById("homeQ"); if(q){ e.preventDefault(); q.focus(); } return; }
   if(!sel) return; var b=h.querySelector(".hbtns "+sel); if(b){ e.preventDefault(); b.click(); } });
 document.addEventListener("keydown",function(e){ var q=e.target; if(!q||q.id!=="gsQ") return;
-  if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); gsSync(); var L=gsRows(); if(!L.length) return; gsSel=(gsSel+(e.key==="ArrowDown"?1:-1)+L.length)%L.length; gsMark(true); return; }
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); gsSync(); var L=gsRows(); if(!L.length) return; __set_gsSel((gsSel+(e.key==="ArrowDown"?1:-1)+L.length)%L.length); gsMark(true); return; }
   if(e.key==="Enter"){ e.preventDefault(); gsSync(); var r=gsRows()[gsSel]; if(r) r.click(); return; }
   if(e.key==="Tab"&&!e.shiftKey){ var c0=$("#sheetBody .gs-c.sel"), pc=c0&&PAL[+c0.getAttribute("data-cmd")]; if(pc&&pc.fill&&q.value.trim().toLowerCase()+" "!==pc.fill){ e.preventDefault(); palFill(pc.fill); } } });
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-cmd],[data-gsfill]"); if(!b||!b.closest("#sheetBody")) return; e.preventDefault();
@@ -25,7 +42,7 @@ window.__fz=function(q,s){ return fzScore(String(q).toLowerCase(),s); };
 /* v30 p09 RU130: drag the HP number up or down to set the amount (Heal or Damage still decides), hold it or right-click for a quick menu */
 function hpAmtV(){ var v=parseInt(($("#hpAmt")||{}).value,10); return isNaN(v)?0:Math.max(0,v); }
 function hpAmtSet(n){ var v=n?String(n):""; ["hpAmt","qmAmt","ohAmt"].forEach(function(id){ var i=document.getElementById(id); if(i&&i.value!==v) i.value=v; }); }
-function qmClose(){ var w=document.getElementById("hpQm"); if(w){ w.remove(); document.removeEventListener("pointerdown",qmOut,true); document.removeEventListener("keydown",qmKey,true); } }
+export function qmClose(){ var w=document.getElementById("hpQm"); if(w){ w.remove(); document.removeEventListener("pointerdown",qmOut,true); document.removeEventListener("keydown",qmKey,true); } }
 function qmOut(e){ var w=document.getElementById("hpQm"); if(w&&!w.contains(e.target)) qmClose(); }
 function qmKey(e){ if(e.key==="Escape"){ e.stopPropagation(); qmClose(); } if(e.key==="Enter"&&e.target&&e.target.id==="qmAmt"){ e.preventDefault(); qmRun(e.shiftKey?"heal":"dmg"); } }
 function qmRun(k){ var i=document.getElementById("qmAmt"), n=i?Math.max(0,parseInt(i.value,10)||0):0; if(!n){ toast("Type an amount first."); if(i) i.focus(); return; }

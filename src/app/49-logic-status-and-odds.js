@@ -1,3 +1,27 @@
+import {STD_CONDS} from "./02-data-default-character.js";
+import {GLOSS} from "./03-data-glossary.js";
+import {C,S,__set_C,save} from "./04-logic-storage.js";
+import {ask,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
+import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
+import {renderConds} from "./10-ui-conditions.js";
+import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {zPack} from "./15-logic-roster-backup-files-snapshots.js";
+import {impText} from "./16-logic-import-chat-text-and-build-files.js";
+import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
+import {concOf} from "./32-logic-play-undo-actions.js";
+import {levelUp} from "./34-ui-situations.js";
+import {lintList} from "./40-ui-segments-notes-swipe-motion-panels.js";
+import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
+import {QRG} from "./42-logic-pwa-qr-icons-wallet.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;},configurable:true});
+Object.defineProperty(__R,"dnaRead",{get:function(){return dnaRead;},set:function(v){dnaRead=v;},configurable:true});
+Object.defineProperty(__R,"futureOpen",{get:function(){return futureOpen;},set:function(v){futureOpen=v;},configurable:true});
+Object.defineProperty(__R,"recapOpen",{get:function(){return recapOpen;},set:function(v){recapOpen=v;},configurable:true});
+Object.defineProperty(__R,"statusCopy",{get:function(){return statusCopy;},set:function(v){statusCopy=v;},configurable:true});
+Object.defineProperty(__R,"statusLine",{get:function(){return statusLine;},set:function(v){statusLine=v;},configurable:true});
+Object.defineProperty(__R,"statusText",{get:function(){return statusText;},set:function(v){statusText=v;},configurable:true});
 /* T11 G4 N17 status for a group chat: one short line to paste in WhatsApp or Discord.
    "Yudhi Kelapa (Fighter 4) | HP 32/44 +5 temp | AC 18 | Concentrating: Bless | Poisoned, Exhaustion 1"
    Pasting the line back in Import says what it is, it is not taken for a character (16 impText). */
@@ -11,21 +35,15 @@ function statusText(){ if(!C||!D) return ""; var hp=clamp(num(S.hp,0),0,D.hpmax)
   return out.join(" | "); }
 function statusCopy(){ var t=statusText(); if(!t) return; var done=function(){ toast("Status copied: "+t); };
   try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,function(){ statusShow(t); }); return; } }catch(e){} statusShow(t); }
-function statusShow(t){ navStack=[]; openSheet("Status for chat",'<p class="bk-f">Copy this line and paste it in your group chat.</p><textarea class="st-txt" readonly rows="3">'+esc(t)+'</textarea>',"status"); var a=document.querySelector("#sheetBody .st-txt"); if(a){ a.focus(); a.select(); } }
+function statusShow(t){ __set_navStack([]); openSheet("Status for chat",'<p class="bk-f">Copy this line and paste it in your group chat.</p><textarea class="st-txt" readonly rows="3">'+esc(t)+'</textarea>',"status"); var a=document.querySelector("#sheetBody .st-txt"); if(a){ a.focus(); a.select(); } }
 function statusLine(t){ return /^[^|\n]{1,120}\| HP \d+\/\d+/.test(String(t||"").trim()); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-status]"); if(!b) return; statusCopy(); });
 /* T11 G4 N9 rules check while playing. The builder checks a character while it is made (ruleIssues), this looks at the sheet in play.
    Each finding has a plain reason and, where one exists, a fix button. Shown as one small chip in the Conditions row when something is found.
    Rules: PHB 2024 Equipment (heavy armor Strength), Rules Glossary (Unconscious at 0 Hit Points, Exhaustion 6), magic items (attunement limit). */
-function lintList(){ var out=[]; if(!C||!D||!S) return out;
-  (C.inv||[]).forEach(function(i,ix){ if(!eqOn(i)) return; var m=/Requires Str (\d+)/i.exec(i.d||""); if(m&&D.score&&D.score.STR<+m[1]) out.push({k:"str-"+ix,t:"Heavy armor too heavy",x:i.n+" needs Strength "+m[1]+". Your Strength is "+D.score.STR+", so your Speed is 10 feet lower while you wear it.",fix:"inv",fl:"Open Inventory"}); });
-  var att=(C.inv||[]).filter(function(i){ return i.att&&eqOn(i); }).length, aM=attMaxC(); if(att>aM) out.push({k:"att",t:"Too many attuned items",x:"You can be attuned to "+aM+" magic items at a time. You have "+att+". Only the first "+aM+" work.",fix:"inv",fl:"Open Inventory"});
-  if(num(S.hp,1)===0&&!(S.cond&&S.cond.Unconscious)&&!(S.ds&&S.ds[1]>=3)) out.push({k:"unc",t:"0 Hit Points",x:"At 0 Hit Points you have the Unconscious condition until you regain a Hit Point.",fix:"unc",fl:"Add Unconscious"});
-  if(S.exh>=6) out.push({k:"exh",t:"Exhaustion 6",x:"At Exhaustion level 6 a creature dies. Lower it if this was a mistake.",fix:"exh",fl:"Lower to 5"});
-  var dup=(C.inv||[]).filter(function(i){ return eqOn(i)&&/^Shield\b/i.test(i.n); }).length; if(dup>1) out.push({k:"sh",t:"Two Shields",x:"Only one Shield gives its bonus to Armor Class.",fix:"inv",fl:"Open Inventory"});
-  return out; }
-function lintChip(){ var l=lintList(); if(!l.length) return ""; return '<button type="button" class="chip lint-c press" data-lint="1" aria-label="Rules check: '+l.length+(l.length===1?' thing':' things')+' to look at">'+(typeof ico==="function"?ico("ui-info"):"")+'Rules check '+l.length+'</button>'; }
-function lintOpen(){ var l=lintList(); navStack=[]; openSheet("Rules check",l.length?l.map(function(q){ return '<div class="lint-r"><b>'+esc(q.t)+'</b><p>'+esc(q.x)+'</p>'+(q.fix?'<button type="button" class="btn press" data-lfix="'+esc(q.fix)+'">'+esc(q.fl)+'</button>':'')+'</div>'; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
+
+
+function lintOpen(){ var l=lintList(); __set_navStack([]); openSheet("Rules check",l.length?l.map(function(q){ return '<div class="lint-r"><b>'+esc(q.t)+'</b><p>'+esc(q.x)+'</p>'+(q.fix?'<button type="button" class="btn press" data-lfix="'+esc(q.fix)+'">'+esc(q.fl)+'</button>':'')+'</div>'; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-lint],[data-lfix]"); if(!b) return;
   if(b.hasAttribute("data-lint")){ lintOpen(); return; }
   var f=b.getAttribute("data-lfix"); closeSheet();
@@ -55,7 +73,7 @@ function recapRows(o){ var r=[], sp=Object.keys(o.cast);
   if(o.rest.length) r.push(["Rests",o.rest.join(", ")]); if(o.level) r.push(["Level ups",String(o.level)]); if(o.coin) r.push(["Coins",(o.coin>0?"+":"")+o.coin+" gp"]);
   return r; }
 function recapWhen(o){ try{ var f={weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}; return new Date(o.from).toLocaleString(undefined,f)+" to "+new Date(o.to).toLocaleTimeString(undefined,{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
-function recapOpen(){ var o=recapData(); navStack=[];
+function recapOpen(){ var o=recapData(); __set_navStack([]);
   if(!o){ openSheet("Session recap",'<p class="bk-f">Nothing written yet. Rolls, damage, healing, spells and rests are written in the journal as you play, and the recap is made from them.</p>',"recap"); return; }
   var rows=recapRows(o);
   openSheet("Session recap",'<div class="rcp"><p class="rcp-w">'+esc((C&&C.name)||"Character")+'. '+esc(recapWhen(o))+'</p>'+(rows.length?'<dl>'+rows.map(function(x){ return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>'; }).join("")+'</dl>':'<p class="bk-f">This session has '+o.n+' journal lines and nothing to add up yet.</p>')+'</div><p><button type="button" class="btn press" data-recapimg="1">Save as picture</button></p>',"recap"); }
@@ -137,10 +155,10 @@ dnaCheck(); addEventListener("hashchange",dnaCheck);/* a link pasted into a tab 
 function futureData(){ if(!window.__bldSheetFor) return null; var b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return null;
   var tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
   try{ for(var L=tot;L<=20;L++){ var nb=JSON.parse(JSON.stringify(b)); nb.level=Math.max(1,main+(L-tot)); var c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
-      C=c2; derive(); var best=-99; (D.atk||[]).forEach(function(a){ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
+      __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach(function(a){ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
       var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach(function(n,i){ if(+n>0) top=i+1; });
       out.push({l:L,hp:D.hpmax,ac:D.ac,atk:best>-99?best:null,dc:c2.spellcasting?D.dc:null,slot:top,pb:D.pb}); } }
-  finally{ C=keepC; D=keepD; B=keepB; if(keepCU) CU0=keepCU; }
+  finally{ __set_C(keepC); __set_D(keepD); __set_B(keepB); if(keepCU) __set_CU0(keepCU); }
   return out; }
 function futureSVG(rows,key,label){ var pts=rows.filter(function(r){ return r[key]!=null; }); if(pts.length<2) return "";
   var W=320, H=120, px=28, py=14, lo=Math.min.apply(null,pts.map(function(r){ return r[key]; })), hi=Math.max.apply(null,pts.map(function(r){ return r[key]; })); if(hi===lo) hi=lo+1;
@@ -148,7 +166,7 @@ function futureSVG(rows,key,label){ var pts=rows.filter(function(r){ return r[ke
   var d=pts.map(function(r,i){ return (i?"L":"M")+x(r.l).toFixed(1)+" "+y(r[key]).toFixed(1); }).join("");
   return '<figure class="fut-g"><figcaption><b>'+esc(label)+'</b><span>'+pts[0][key]+' now, '+pts[pts.length-1][key]+' at level '+pts[pts.length-1].l+'</span></figcaption><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+' from level '+pts[0].l+' to '+pts[pts.length-1].l+'"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
     pts.filter(function(r,i){ return i===0||i===pts.length-1||r.l%4===0; }).map(function(r){ return '<circle cx="'+x(r.l).toFixed(1)+'" cy="'+y(r[key]).toFixed(1)+'" r="3.5" fill="currentColor"/><text x="'+x(r.l).toFixed(1)+'" y="'+(H-1)+'" text-anchor="middle">'+r.l+'</text>'; }).join("")+'</svg></figure>'; }
-function futureOpen(){ navStack=[]; var go=function(){ var rows=futureData();
+function futureOpen(){ __set_navStack([]); var go=function(){ var rows=futureData();
     if(!rows||rows.length<2){ openSheet("Future sheet",'<p class="bk-f">'+(D.level>=20?"Level 20 is the highest level.":"Open the builder once so the future sheet can use your choices.")+'</p>',"future"); return; }
     var t='<table class="fut-t"><thead><tr><th scope="col">Level</th><th scope="col">HP</th><th scope="col">AC</th><th scope="col">Attack</th>'+(rows[0].dc!=null?'<th scope="col">Spell DC</th><th scope="col">Top slot</th>':'')+'</tr></thead><tbody>'+rows.map(function(r){ return '<tr'+(r.l===D.level?' class="now"':'')+'><th scope="row">'+r.l+'</th><td>'+r.hp+'</td><td>'+r.ac+'</td><td>'+(r.atk!=null?sg(r.atk):"")+'</td>'+(rows[0].dc!=null?'<td>'+(r.dc!=null?r.dc:"")+'</td><td>'+(r.slot||"")+'</td>':'')+'</tr>'; }).join("")+'</tbody></table>';
     openSheet("Future sheet",'<p class="bk-f">Your character from level '+D.level+' to 20 with the choices made so far. Choices at new levels (ability scores, feats, spells) are not guessed, so the real numbers can be higher.</p><div class="fut">'+futureSVG(rows,"hp","Hit Points")+futureSVG(rows,"atk","Best attack bonus")+(rows[0].dc!=null?futureSVG(rows,"dc","Spell save DC"):"")+'</div><div class="fut-tw">'+t+'</div><p class="bk-btns"><button type="button" class="btn press" data-futlv="1">Plan the next level</button><button type="button" class="btn press" data-rbopen="1">Find a build for a goal</button></p>',"future"); };

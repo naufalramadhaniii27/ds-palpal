@@ -1,3 +1,25 @@
+import {PWA_BUILD} from "./01-logic-boot-flags-builder-loader.js";
+import {C,S,saveNow} from "./04-logic-storage.js";
+import {$$,ask,esc,num,sg,toast,toastPic} from "./05-logic-helpers.js";
+import {D,derive} from "./06-logic-derivation.js";
+import {REDUCE} from "./07-ui-theme-contrast-spring.js";
+import {renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {rGet,rSave} from "./14-ui-editor.js";
+import {chFile,chName,chSave,zPack} from "./15-logic-roster-backup-files-snapshots.js";
+import {impText} from "./16-logic-import-chat-text-and-build-files.js";
+import {moveTabInd,onMode} from "./21-ui-tabs-pager.js";
+import {COINS,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,ico,priceTxt} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ICO} from "./29-ui-ddb-look.js";
+import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
+import {__set_bldDot,bldDot} from "./35-ui-combo.js";
+import {cuNumList} from "./41-ui-edit-mode.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;},configurable:true});
+Object.defineProperty(__R,"coinsClean",{get:function(){return coinsClean;},set:function(v){coinsClean=v;},configurable:true});
+Object.defineProperty(__R,"pwaInstH",{get:function(){return pwaInstH;},set:function(v){pwaInstH=v;},configurable:true});
+Object.defineProperty(__R,"qrCan",{get:function(){return qrCan;},set:function(v){qrCan=v;},configurable:true});
+Object.defineProperty(__R,"qrScanOpen",{get:function(){return qrScanOpen;},set:function(v){qrScanOpen=v;},configurable:true});
+Object.defineProperty(__R,"qrSendOpen",{get:function(){return qrSendOpen;},set:function(v){qrSendOpen=v;},configurable:true});
 /* ===== v34 p03 RU82: installable app (manifest, service worker), update toast, open .bs files from the file manager ===== */
 var PWA_REG=null, PWA_GO=false;
 function pwaUpdToast(w){ var t=document.getElementById("pwaUpd"); if(!t){ t=document.createElement("div"); t.id="pwaUpd"; t.className="toast pwa-upd"; t.setAttribute("role","status"); t.setAttribute("aria-live","polite"); document.body.appendChild(t);
@@ -66,7 +88,7 @@ Object.assign(ICO,{
 
 ICO["ui-play"]="M8 5v14l11-7z"; ICO["ui-pause"]="M8 5v14M16 5v14";
 /* QR generator: byte mode, error correction L or M, versions 1 to 40 (ISO/IEC 18004 tables) */
-var QRG=(function(){
+export var QRG=(function(){
   var ECW={L:[-1,7,10,15,20,26,18,20,24,30,18,20,24,26,30,22,24,28,30,28,28,28,28,30,30,26,28,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
            M:[-1,10,16,26,18,24,16,18,22,22,26,30,22,22,24,24,28,28,26,26,26,26,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28]};
   var NB={L:[-1,1,1,1,1,1,2,2,2,2,4,4,4,4,4,6,6,6,6,7,8,8,9,9,10,12,12,12,13,14,15,16,17,18,19,19,20,21,22,24,25],
@@ -187,7 +209,7 @@ function bldPend(){ clearTimeout(BPD_T); BPD_T=setTimeout(function(){ var b=docu
   var on=L.length>0, m=b.querySelector(".bpend"); b.classList.toggle("pend",on); window.__bldPendList=L;
   if(on&&!m){ m=document.createElement("i"); m.className="bpend"; m.setAttribute("aria-hidden","true"); b.appendChild(m); } else if(!on&&m) m.remove();
   if(on){ b.setAttribute("aria-description","The builder and the sheet differ"); b.title="The builder and the sheet differ: "+L.slice(0,3).join(". ")+(L.length>3?"...":""); } else if(b.hasAttribute("aria-description")) b.removeAttribute("aria-description"); },250); }
-bldDot=(function(f){ return function(){ var r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot); if(window.__bldDot) window.__bldDot=bldDot;
+__set_bldDot((function(f){ return function(){ var r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot)); if(window.__bldDot) window.__bldDot=bldDot;
 document.addEventListener("bldready",function(){ bldPend(); if(window.__sp14Set&&C&&C.rs==="2014"&&(document.getElementById("bld")||{hidden:true}).hidden)window.__sp14Set(true);/* v92 */ });
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ moveTabInd(true); });

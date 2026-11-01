@@ -1,3 +1,6 @@
+import {S,save} from "./04-logic-storage.js";
+import {mq} from "./21-ui-tabs-pager.js";
+import {renderAll} from "./35-ui-combo.js";
 /* ===== fps probe: open the app with #fps at the end of the address to measure frame times on this device =====
    Runs only when the address has #fps. It opens the first character, switches every page, and (if you tick the box) deals 3 damage
    and heals 3, four times. Hit Points and temporary Hit Points are put back after the test. Nothing is sent anywhere. */

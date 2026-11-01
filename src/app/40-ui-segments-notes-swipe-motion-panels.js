@@ -1,3 +1,45 @@
+import {NOTE_FIELDS} from "./03-data-glossary.js";
+import {BAD,C,FROZEN,S,recover,save} from "./04-logic-storage.js";
+import {$,$$,attMaxC,eqOn,esc,num,rich} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {REDUCE,SPR,applyLook,spring} from "./07-ui-theme-contrast-spring.js";
+import {__set_renderActions,__set_renderFeat,__set_renderInv,__set_renderNotes,campName,featQ,invF,renderActions,renderFeat,renderInv,renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {__set_openSheet,__set_refreshEntry,__set_showEntry,lastFocus,openSheet,refreshEntry,sheet,showEntry} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {showHome} from "./15-logic-roster-backup-files-snapshots.js";
+import {syncPortrait} from "./20-ui-portrait.js";
+import {BCSS,PAGES,__set_goPage,__set_setTab,activeTab,bInd,curPage,goPage,moveTabInd,mq,onPagerScroll,pager,pgShow,setTab} from "./21-ui-tabs-pager.js";
+import {CONS1,__set_renderSpells,ico,invKey,renderSpells} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {cuNm} from "./26-ui-customize.js";
+import {CHAR_FIELDS,ICO,__set_renderExtras,renderExtras} from "./29-ui-ddb-look.js";
+import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
+import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
+import {renderAll} from "./35-ui-combo.js";
+import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
+Object.defineProperty(__R,"bIndSet",{get:function(){return bIndSet;},set:function(v){bIndSet=v;},configurable:true});
+Object.defineProperty(__R,"barTo",{get:function(){return barTo;},set:function(v){barTo=v;},configurable:true});
+Object.defineProperty(__R,"dockApply",{get:function(){return dockApply;},set:function(v){dockApply=v;},configurable:true});
+Object.defineProperty(__R,"dockOff",{get:function(){return dockOff;},set:function(v){dockOff=v;},configurable:true});
+Object.defineProperty(__R,"foldP",{get:function(){return foldP;},set:function(v){foldP=v;},configurable:true});
+Object.defineProperty(__R,"lintChip",{get:function(){return lintChip;},set:function(v){lintChip=v;},configurable:true});
+Object.defineProperty(__R,"morphStop",{get:function(){return morphStop;},set:function(v){morphStop=v;},configurable:true});
+Object.defineProperty(__R,"noteSec",{get:function(){return noteSec;},set:function(v){noteSec=v;},configurable:true});
+Object.defineProperty(__R,"pCur",{get:function(){return pCur;},set:function(v){pCur=v;},configurable:true});
+Object.defineProperty(__R,"renderDesc",{get:function(){return renderDesc;},set:function(v){renderDesc=v;},configurable:true});
+Object.defineProperty(__R,"shClosed",{get:function(){return shClosed;},set:function(v){shClosed=v;},configurable:true});
+Object.defineProperty(__R,"shDragEnd",{get:function(){return shDragEnd;},set:function(v){shDragEnd=v;},configurable:true});
+Object.defineProperty(__R,"shOpened",{get:function(){return shOpened;},set:function(v){shOpened=v;},configurable:true});
+/* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
+function lintChip(){ var l=lintList(); if(!l.length) return ""; return '<button type="button" class="chip lint-c press" data-lint="1" aria-label="Rules check: '+l.length+(l.length===1?' thing':' things')+' to look at">'+(typeof ico==="function"?ico("ui-info"):"")+'Rules check '+l.length+'</button>'; }
+export function lintList(){ var out=[]; if(!C||!D||!S) return out;
+  (C.inv||[]).forEach(function(i,ix){ if(!eqOn(i)) return; var m=/Requires Str (\d+)/i.exec(i.d||""); if(m&&D.score&&D.score.STR<+m[1]) out.push({k:"str-"+ix,t:"Heavy armor too heavy",x:i.n+" needs Strength "+m[1]+". Your Strength is "+D.score.STR+", so your Speed is 10 feet lower while you wear it.",fix:"inv",fl:"Open Inventory"}); });
+  var att=(C.inv||[]).filter(function(i){ return i.att&&eqOn(i); }).length, aM=attMaxC(); if(att>aM) out.push({k:"att",t:"Too many attuned items",x:"You can be attuned to "+aM+" magic items at a time. You have "+att+". Only the first "+aM+" work.",fix:"inv",fl:"Open Inventory"});
+  if(num(S.hp,1)===0&&!(S.cond&&S.cond.Unconscious)&&!(S.ds&&S.ds[1]>=3)) out.push({k:"unc",t:"0 Hit Points",x:"At 0 Hit Points you have the Unconscious condition until you regain a Hit Point.",fix:"unc",fl:"Add Unconscious"});
+  if(S.exh>=6) out.push({k:"exh",t:"Exhaustion 6",x:"At Exhaustion level 6 a creature dies. Lower it if this was a mistake.",fix:"exh",fl:"Lower to 5"});
+  var dup=(C.inv||[]).filter(function(i){ return eqOn(i)&&/^Shield\b/i.test(i.n); }).length; if(dup>1) out.push({k:"sh",t:"Two Shields",x:"Only one Shield gives its bonus to Armor Class.",fix:"inv",fl:"Open Inventory"});
+  return out; }
 /* ===== v31 p02 segments (B2) ===== */
 var SEGX={};
 function segKey(el){ var r=el.closest("[id]"); return (r?r.id:"")+"|"+Array.prototype.indexOf.call((r||document).querySelectorAll(".ifil"),el); }
@@ -20,11 +62,11 @@ function edgeRows(){ var els=document.querySelectorAll("#tabs,.bnav,.fr-tabs"), 
   for(i=0;i<X.length;i++){ el=X[i][0]; m=X[i][1]; el.classList.toggle("fit",m<=2); el.classList.toggle("ovf-l",X[i][2]>2); el.classList.toggle("ovf-r",m>2&&X[i][2]<m-2); } }
 setTimeout(edgeRows,600); setTimeout(edgeRows,2500); setTimeout(edgeRows,6000); document.addEventListener("click",function(){ setTimeout(edgeRows,350); },true);
 window.addEventListener("resize",function(){ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); if(typeof edgeRows==="function") edgeRows(); });
-renderActions=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("actBody")); return r; }; })(renderActions);
-renderInv=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("invBody")); return r; }; })(renderInv);
-renderFeat=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("featBody")); return r; }; })(renderFeat);
-renderSpells=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("spBody")); return r; }; })(renderSpells);
-renderExtras=(function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("extBody")); return r; }; })(renderExtras);
+__set_renderActions((function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("actBody")); return r; }; })(renderActions));
+__set_renderInv((function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("invBody")); return r; }; })(renderInv));
+__set_renderFeat((function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("featBody")); return r; }; })(renderFeat));
+__set_renderSpells((function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("spBody")); return r; }; })(renderSpells));
+__set_renderExtras((function(f){ return function(){ var r=f.apply(this,arguments); segFixL(document.getElementById("extBody")); return r; }; })(renderExtras));
 /* a page that was hidden while it rendered has no width yet: fix its segments when it shows */
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#tabs .tab,#bnav button"); if(t) setTimeout(function(){ segFix(document); },60); });
 /* ===== v31 p04 folded rules text (C4, C7, F1) ===== */
@@ -44,8 +86,8 @@ function foldFix(root){ Array.prototype.forEach.call((root||document).querySelec
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-fmore]");
   if(b){ e.preventDefault(); foldSet(b.getAttribute("data-fmore"),b.getAttribute("aria-expanded")!=="true"); return; }
   var p=e.target.closest&&e.target.closest("p.fold:not(.open)"); if(p&&!e.target.closest("button,a,input")&&!p.classList.contains("fits")) foldSet(p.getAttribute("data-fold"),true); });
-renderActions=(function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ foldFix(document.getElementById("actBody")); }); return r; }; })(renderActions);
-renderFeat=(function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ foldFix(document.getElementById("featBody")); }); return r; }; })(renderFeat);
+__set_renderActions((function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ foldFix(document.getElementById("actBody")); }); return r; }; })(renderActions));
+__set_renderFeat((function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ foldFix(document.getElementById("featBody")); }); return r; }; })(renderFeat));
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#tabs .tab,#bnav button"); if(t) setTimeout(function(){ foldFix(document); },80); });
 window.addEventListener("resize",function(){ Array.prototype.forEach.call(document.querySelectorAll("p.fold.fits"),function(p){ p.classList.remove("fits"); var b=p.nextElementSibling; if(b&&b.classList.contains("fmore")) b.hidden=false; }); foldFix(document); });
 /* ===== v31 p06 notes (B9, C8) ===== */
@@ -56,7 +98,7 @@ var GROW_CSS=!!(window.CSS&&CSS.supports&&CSS.supports("field-sizing","content")
 function growOne(t){ if(GROW_CSS||!t||!t.isConnected) return; t.style.height="auto"; t.style.height=(t.scrollHeight+2)+"px"; }
 function growAll(root){ if(GROW_CSS) return; Array.prototype.forEach.call((root||document).querySelectorAll("textarea.grow"),growOne); }
 document.addEventListener("input",function(e){ if(e.target&&e.target.classList&&e.target.classList.contains("grow")) growOne(e.target); });
-renderNotes=(function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ growAll(document.getElementById("notesBody")); growAll(document.getElementById("descBody")); }); return r; }; })(renderNotes);
+__set_renderNotes((function(f){ return function(){ var r=f.apply(this,arguments); requestAnimationFrame(function(){ growAll(document.getElementById("notesBody")); growAll(document.getElementById("descBody")); }); return r; }; })(renderNotes));
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#tabs .tab,#bnav button"); if(t) setTimeout(function(){ growAll(document); },80); });
 /* ===== v31 p07 description (B10, C8) ===== */
 var DESC_MORE=false;
@@ -85,10 +127,10 @@ function bIndTo(i){ if(BCSS){ if(REDUCE) return; var d=(curPage-i)*100; if(!d) r
 pager.addEventListener("touchstart",function(){ if(bInd.__a){ try{ bInd.__a.cancel(); }catch(er){} bInd.__a=null; } if(BSPR){ BSPR=0; onPagerScroll(); } },{passive:true});/* a finger on the pages takes the bar line back */
 function pageSlide(el,dir){ if(!el||REDUCE) return; var c=dir>0?"psl-r":"psl-l", busy=el.classList.contains("psl-l")||el.classList.contains("psl-r"); el.classList.remove("psl-l","psl-r"); clearTimeout(el.__psl);
   var go=function(){ el.classList.add(c); el.__psl=setTimeout(function(){ el.classList.remove("psl-l","psl-r"); },260); }; if(busy) requestAnimationFrame(go); else go(); }/* no forced layout: a running slide restarts on the next frame */
-goPage=function(i,smooth){ if(!mq.matches) return; pgShow(i); var from=curPage, w=pager.clientWidth; if(smooth&&i!==from&&Math.abs(pager.scrollLeft-from*w)<2){ pageSlide(document.getElementById(PAGES[i]), i>from?1:-1); bIndTo(i); }
-  pager.scrollTo({left:i*w, behavior:"auto"}); };
-setTab=(function(f){ return function(id,focus,instant){ var from=activeTab, ids=$$("#tabs .tab").map(function(t){ return t.getAttribute("data-tab"); }), a=ids.indexOf(from), b=ids.indexOf(id);
-  var r=f.apply(this,arguments); if(!instant&&!mq.matches&&id!==from&&a>=0&&b>=0){ var el=document.getElementById(id); if(el){ el.classList.remove("enter"); pageSlide(el,b>a?1:-1); } } return r; }; })(setTab);
+__set_goPage(function(i,smooth){ if(!mq.matches) return; pgShow(i); var from=curPage, w=pager.clientWidth; if(smooth&&i!==from&&Math.abs(pager.scrollLeft-from*w)<2){ pageSlide(document.getElementById(PAGES[i]), i>from?1:-1); bIndTo(i); }
+  pager.scrollTo({left:i*w, behavior:"auto"}); });
+__set_setTab((function(f){ return function(id,focus,instant){ var from=activeTab, ids=$$("#tabs .tab").map(function(t){ return t.getAttribute("data-tab"); }), a=ids.indexOf(from), b=ids.indexOf(id);
+  var r=f.apply(this,arguments); if(!instant&&!mq.matches&&id!==from&&a>=0&&b>=0){ var el=document.getElementById(id); if(el){ el.classList.remove("enter"); pageSlide(el,b>a?1:-1); } } return r; }; })(setTab));
 /* ===== v31 p12 card to detail (RU131 shared element) ===== */
 var MORPH=null, VTC=null;
 function morphSrc(inf){ if(inf.matches(".sp-r,.islot")) return inf; if(inf.matches(".iname")) return inf.closest(".irow")||inf;
@@ -100,9 +142,9 @@ function morphIn(card){ var root=document.documentElement, vt;
   card.classList.add("vt-src"); card.style.viewTransitionName="v31card"; root.classList.add("vt-card"); sheet.classList.add("vt-hold");
   try{ vt=document.startViewTransition(function(){ card.style.viewTransitionName=""; sheet.classList.remove("vt-hold"); sheet.style.viewTransitionName="v31card"; }); }catch(er){ morphEnd(); return; }
   VTC=vt; vt.finished.then(function(){ if(VTC===vt) morphEnd(); },function(){ if(VTC===vt) morphEnd(); }); }
-openSheet=(function(f){ return function(){ var m=MORPH; MORPH=null; morphStop();
+__set_openSheet((function(f){ return function(){ var m=MORPH; MORPH=null; morphStop();
   var ok=m&&m.el.isConnected&&performance.now()-m.t<400&&!sheet.classList.contains("on")&&document.startViewTransition&&!REDUCE;
-  if(ok) sheet.classList.add("vt-on"); var r=f.apply(this,arguments); if(ok) morphIn(m.el); return r; }; })(openSheet);
+  if(ok) sheet.classList.add("vt-on"); var r=f.apply(this,arguments); if(ok) morphIn(m.el); return r; }; })(openSheet));
 function morphStop(){ if(VTC){ try{ VTC.skipTransition(); }catch(er){} morphEnd(); } }
 /* ===== v31 p13 header shrinks on scroll (RU130) ===== */
 function pCur(i){ PAGES.forEach(function(p,k){ var el=document.getElementById(p); if(el) el.classList.toggle("pcur",k===i); }); }
@@ -155,7 +197,7 @@ function ovTop(){ var c=document.getElementById("ctxm"); if(c) return function()
 function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; var on=!!ovTop();
   if(on&&!OVG){ try{ history.pushState({csOv:1},""); OVG=true; }catch(e){} }
   else if(!on&&OVG){ OVG=false; if(history.state&&history.state.csOv){ OVSKIP++; try{ history.back(); }catch(e){ OVSKIP--; } } } }
-function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
+export function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
 window.addEventListener("popstate",function(){ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; var f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
 try{ if(history.state&&history.state.csOv) history.replaceState(null,""); }catch(e){}/* a reload while a popup was open: the held entry is plain again */
 window.__ovState=function(){ return {held:OVG, top:!!ovTop()}; };
@@ -227,8 +269,8 @@ function ordUI(list){ var o=ORDL[list], root=document.getElementById(o.body); if
   var fil=root.querySelector(".ifil"); if(fil) fil.parentNode.insertBefore(bar,fil.nextSibling); else root.insertBefore(bar,root.firstChild);
   if(!on) return; ordRuns(list).forEach(function(run){ if(run.length<2) return; run.forEach(function(r,i){ var h=document.createElement("button"); h.type="button"; h.className="dragh press"; h.setAttribute("data-ordl",list);
     h.setAttribute("aria-label","Move "+o.name(r)+", "+(i+1)+" of "+run.length+". Drag, or use the up and down arrow keys"); h.innerHTML=ico("ui-grip","dgi"); r.appendChild(h); r.classList.add("ordr"); }); }); }
-renderInv=(function(f){ return function(){ var r=f.apply(this,arguments); ordApply("inv"); ordUI("inv"); return r; }; })(renderInv);
-renderFeat=(function(f){ return function(){ var r=f.apply(this,arguments); ordApply("feat"); ordUI("feat"); return r; }; })(renderFeat);
+__set_renderInv((function(f){ return function(){ var r=f.apply(this,arguments); ordApply("inv"); ordUI("inv"); return r; }; })(renderInv));
+__set_renderFeat((function(f){ return function(){ var r=f.apply(this,arguments); ordApply("feat"); ordUI("feat"); return r; }; })(renderFeat));
 function ordRender(list){ if(list==="inv") renderInv(); else renderFeat(); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-ord]"); if(!b) return; var l=b.getAttribute("data-ord"); ORD_ON[l]=ORD_ON[l]?0:1; ordRender(l);
   var nb=document.querySelector('[data-ord="'+l+'"]'); if(nb) nb.focus({preventScroll:true}); if(ORD_ON[l]) ordLive("Reorder on. Drag a handle, or focus it and use the arrow keys."); });
@@ -272,14 +314,14 @@ document.addEventListener("keydown",function(e){ if(DRG&&e.key==="Escape"){ e.st
   var i=run.indexOf(row), j=k==="ArrowUp"?i-1:k==="ArrowDown"?i+1:k==="Home"?0:run.length-1; if(j<0||j>=run.length||j===i) return;
   var arr=run.slice(); arr.splice(i,1); arr.splice(j,0,row); var nm=ORDL[list].name(row), key=ORDL[list].key(row); ordCommit(list,run,arr,key); ordLive(nm+" moved to position "+(j+1)+" of "+run.length+"."); },true);
 /* ===== v31 p18 breakdown rows one by one (RU131) ===== */
-showEntry=(function(f){ return function(en){ var r=f.apply(this,arguments), b=$("#sheetBody"); b.classList.remove("stag");
-  if(en&&en.type==="bd"&&!REDUCE){ [].forEach.call(b.querySelectorAll(".bk-r,.bk-t"),function(x,i){ x.style.setProperty("--i",i); }); void b.offsetWidth; b.classList.add("stag"); } return r; }; })(showEntry);
-refreshEntry=(function(f){ return function(){ var b=$("#sheetBody"); if(b) b.classList.remove("stag"); return f.apply(this,arguments); }; })(refreshEntry);
+__set_showEntry((function(f){ return function(en){ var r=f.apply(this,arguments), b=$("#sheetBody"); b.classList.remove("stag");
+  if(en&&en.type==="bd"&&!REDUCE){ [].forEach.call(b.querySelectorAll(".bk-r,.bk-t"),function(x,i){ x.style.setProperty("--i",i); }); void b.offsetWidth; b.classList.add("stag"); } return r; }; })(showEntry));
+__set_refreshEntry((function(f){ return function(){ var b=$("#sheetBody"); if(b) b.classList.remove("stag"); return f.apply(this,arguments); }; })(refreshEntry));
 /* ===== v31 p19 scroll position per tab (RU132) ===== */
 var TABY={};
 function tabsTop(){ var d=document.querySelector(".detail"), t=$("#tabs"); if(!d||!t) return 0; var st=parseFloat(getComputedStyle(t).top)||0; return Math.max(0,Math.round(d.getBoundingClientRect().top+window.scrollY-st)); }
-setTab=(function(f){ return function(id,focus,instant){ var from=activeTab, pc=!mq.matches&&id!==from; if(pc) TABY[from]=window.scrollY;
-  var r=f.apply(this,arguments); if(pc){ var top=tabsTop(), y=TABY[id]; if(y!=null&&y>top){ window.scrollTo(0,y); var got=window.scrollY, again=function(){ if(activeTab===id&&window.scrollY===got&&Math.abs(got-y)>1){ window.scrollTo(0,y); got=window.scrollY; } }; requestAnimationFrame(again); setTimeout(again,120); setTimeout(again,300); } else if(window.scrollY>top) window.scrollTo(0,top); } return r; }; })(setTab);
+__set_setTab((function(f){ return function(id,focus,instant){ var from=activeTab, pc=!mq.matches&&id!==from; if(pc) TABY[from]=window.scrollY;
+  var r=f.apply(this,arguments); if(pc){ var top=tabsTop(), y=TABY[id]; if(y!=null&&y>top){ window.scrollTo(0,y); var got=window.scrollY, again=function(){ if(activeTab===id&&window.scrollY===got&&Math.abs(got-y)>1){ window.scrollTo(0,y); got=window.scrollY; } }; requestAnimationFrame(again); setTimeout(again,120); setTimeout(again,300); } else if(window.scrollY>top) window.scrollTo(0,top); } return r; }; })(setTab));
 /* ===== v31 p21 HP bars on the compositor ===== */
 var SPRE=null;
 /* the same spring as spring(), sampled once into a linear() easing, so the browser runs it off the main thread */

@@ -1,3 +1,15 @@
+import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
+import {num,toast} from "./05-logic-helpers.js";
+import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
+import {uiGet} from "./07-ui-theme-contrast-spring.js";
+import {rGet} from "./14-ui-editor.js";
+import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
+import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
+import {scAdj} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"tgPcFor",{get:function(){return tgPcFor;},set:function(v){tgPcFor=v;},configurable:true});
+Object.defineProperty(__R,"tgPcNow",{get:function(){return tgPcNow;},set:function(v){tgPcNow=v;},configurable:true});
 /* T11 G7 TG1: what the Training Ground needs from the sheet, through window.__app (the Training Ground is a deferred part, src/tg).
    A player character for the engine (src/tg/20-engine.js fromSheet): Armor Class, Hit Point maximum, Speed, Initiative, saves and attacks,
    from the same derivation as the sheet. The open character is read as it is. Another character of the roster, or a class to try
@@ -25,7 +37,7 @@ function tgPcNow(){ var at=[]; (C.attacks||[]).forEach(function(a,i){ var d=D.at
   var sp=tgSpells(), sl=((C.spellcasting||{}).slots||[]).map(function(n){ return +n||0; }), sca=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{};
   return {name:C.name||"Hero",ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
 /* c: a character object (C). Swaps it in, derives, reads, puts the open one back */
-function tgPcFor(c){ if(!c||!c.abilities) return null; var kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ C=c; derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ C=kC; D=kD; B=kB; CU0=kCU; } return out; }
+function tgPcFor(c){ if(!c||!c.abilities) return null; var kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
 function tgRoster(){ var r=rGet(), out=[]; if(!r||!r.chars) return out; Object.keys(r.chars).forEach(function(id){ var e=r.chars[id]; if(!e||e.ph) return;
     if(id===r.active&&!FROZEN){ var p=tgPcNow(); p.id=id; out.push(p); return; }
     var c=null; try{ c=JSON.parse(e.C||"null"); }catch(x){ c=null; } var p2=tgPcFor(c); if(p2){ p2.id=id; out.push(p2); } });

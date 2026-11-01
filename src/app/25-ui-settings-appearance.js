@@ -1,7 +1,20 @@
+import {C,S,snSetH} from "./04-logic-storage.js";
+import {hcBtn,hcNote,miSetH,themeHTML} from "./07-ui-theme-contrast-spring.js";
+import {spPact} from "./22-ui-spell-data-and-slots.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"applyLook2",{get:function(){return applyLook2;},set:function(v){applyLook2=v;},configurable:true});
+Object.defineProperty(__R,"carryOf",{get:function(){return carryOf;},set:function(v){carryOf=v;},configurable:true});
+Object.defineProperty(__R,"setOf",{get:function(){return setOf;},set:function(v){setOf=v;},configurable:true});
+Object.defineProperty(__R,"setPut",{get:function(){return setPut;},set:function(v){setPut=v;},configurable:true});
+Object.defineProperty(__R,"settingsHTML",{get:function(){return settingsHTML;},set:function(v){settingsHTML=v;},configurable:true});
+Object.defineProperty(__R,"spUpMax",{get:function(){return spUpMax;},set:function(v){spUpMax=v;},configurable:true});
+Object.defineProperty(__R,"spUpOk",{get:function(){return spUpOk;},set:function(v){spUpOk=v;},configurable:true});
+Object.defineProperty(__R,"spUpOn",{get:function(){return spUpOn;},set:function(v){spUpOn=v;},configurable:true});
 /* ================= v25: SETTINGS AND APPEARANCE (RU38 no. 6, no. 7) =================
    S.set (optional): enc "off" (weight not tracked), ab "score" (score big, modifier small), spUp 1 (a spell that gains from a higher slot is listed again
    under each higher slot level). S.frame and S.bdrop (optional): portrait frame and backdrop. Hit Points fixed or rolled stay in the build (B.hpMode). */
-function setOf(k){ return S.set&&S.set[k]!=null?String(S.set[k]):""; }
+export function setOf(k){ return S.set&&S.set[k]!=null?String(S.set[k]):""; }
 function setPut(k,v){ S.set=S.set&&typeof S.set==="object"?S.set:{}; if(v===""||v==null) delete S.set[k]; else S.set[k]=k==="spUp"?1:v; if(!Object.keys(S.set).length) delete S.set; }
 var FRAMES=[["","Plain"],["round","Round"],["double","Double line"],["gilded","Gilded"],["wood","Carved wood"],["outline","Outline"],["none","No border"]];
 var BDROPS=[["","None"],["dusk","Dusk"],["stars","Night sky"],["parchment","Parchment"],["stone","Stone wall"],["waves","Waves"],["leaves","Woodland"]];
@@ -24,10 +37,10 @@ function settingsHTML(){ var h='<h3 class="set-h">Appearance</h3>'+themeHTML();
   h+='<div class="info-h">High Contrast</div><div class="thg">'+hcBtn("auto","Auto","ui-auto")+hcBtn("on","On","ui-contrast")+hcBtn("off","Off","ui-close")+'</div><p class="info-d" id="hcNote">'+hcNote()+'</p>'+miSetH();/* v35 p01, v55 */
   h+='<div class="info-h">Keyboard</div><div class="thg thgw"><button type="button" class="thb thbi" data-keysopen="1">'+ico("ui-keys")+'Keyboard Shortcuts</button></div><p class="info-d">On a computer: 1 to 7 switch tabs, H heals, D takes damage, R rests, and / searches. Press ? on the sheet to see them all.</p>';
   h+=snSetH();/* v32 p33 */
-  h+='<h3 class="set-h">Help</h3><div class="thg"><button type="button" class="btn press" data-hlearn="tour">Tour the app</button><button type="button" class="btn press" data-tmopen="1">History</button><button type="button" class="btn press" data-hlearn="1">Learn to play D&amp;D</button><button type="button" class="btn press" data-cheat="1">Table cheat sheet</button><button type="button" class="btn press" data-wdopen="1">Which die do I roll?</button><button type="button" class="btn press" aria-pressed="'+(!!(typeof coachGet==="function"&&coachGet().on))+'" data-coach="1">Coach mode: '+((typeof coachGet==="function"&&coachGet().on)?"on":"off")+'</button></div>';/* T11 U52, U3, U7, U47 */
+  h+='<h3 class="set-h">Help</h3><div class="thg"><button type="button" class="btn press" data-hlearn="tour">Tour the app</button><button type="button" class="btn press" data-tmopen="1">History</button><button type="button" class="btn press" data-hlearn="1">Learn to play D&amp;D</button><button type="button" class="btn press" data-cheat="1">Table cheat sheet</button><button type="button" class="btn press" data-wdopen="1">Which die do I roll?</button><button type="button" class="btn press" aria-pressed="'+(!!(typeof __R.coachGet==="function"&&__R.coachGet().on))+'" data-coach="1">Coach mode: '+((typeof __R.coachGet==="function"&&__R.coachGet().on)?"on":"off")+'</button></div>';/* T11 U52, U3, U7, U47 */
   return h; }
 function setBtnI(k,v,label,ik){ var on=setOf(k)===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-set="'+k+':'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; }
-function applyLook2(){ var R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach(function(a){ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ wakeApply(); }catch(er){} }
+function applyLook2(){ var R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach(function(a){ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ __R.wakeApply(); }catch(er){} }
 /* carrying capacity by size (PHB 2024 Rules Glossary), Powerful Build one size larger */
 function hasFeatN(n){ return (C.features||[]).some(function(g){ return (g.items||[]).some(function(f){ return f.n===n; }); }); }
 function carryOf(str){ var SIZES=["Tiny","Small","Medium","Large","Huge","Gargantuan"], SIZE_MUL={Tiny:7.5,Small:15,Medium:15,Large:30,Huge:60,Gargantuan:120}, sz=String(C.size||""), s=SIZES.filter(function(z){ return sz.indexOf(z)>=0; })[0]||"Medium", pb=hasFeatN("Powerful Build"), s2=pb?SIZES[Math.min(5,SIZES.indexOf(s)+1)]:s;

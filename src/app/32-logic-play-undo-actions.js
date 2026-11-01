@@ -1,3 +1,61 @@
+import {ABN} from "./02-data-default-character.js";
+import {x14} from "./03-data-glossary.js";
+import {C,FROZEN,S,__set_C,__set_S,lsGet,lsSet,save,saveC} from "./04-logic-storage.js";
+import {$,__set_toastT,ask,bldGuard,bldSync,clamp,eqOn,esc,invAt,num,sg,toast,toastT,viaBld} from "./05-logic-helpers.js";
+import {D,derive} from "./06-logic-derivation.js";
+import {featAll,renderActions,renderTiles,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {flash,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
+import {renderConds} from "./10-ui-conditions.js";
+import {refreshEntry,sheet,showEntry} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {BKEY} from "./14-ui-editor.js";
+import {spLvSel,spPactLv,spRowLv} from "./22-ui-spell-data-and-slots.js";
+import {CONS1,ico,invKey,occOf,renderSpells,restRefresh,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {toastKind} from "./30-ui-icons.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"UNDO",{get:function(){return UNDO;},set:function(v){UNDO=v;},configurable:true});
+Object.defineProperty(__R,"UST",{get:function(){return UST;},set:function(v){UST=v;},configurable:true});
+Object.defineProperty(__R,"ammoBonus",{get:function(){return ammoBonus;},set:function(v){ammoBonus=v;},configurable:true});
+Object.defineProperty(__R,"ammoFor",{get:function(){return ammoFor;},set:function(v){ammoFor=v;},configurable:true});
+Object.defineProperty(__R,"ammoH",{get:function(){return ammoH;},set:function(v){ammoH=v;},configurable:true});
+Object.defineProperty(__R,"ammoPickH",{get:function(){return ammoPickH;},set:function(v){ammoPickH=v;},configurable:true});
+Object.defineProperty(__R,"chMaxH",{get:function(){return chMaxH;},set:function(v){chMaxH=v;},configurable:true});
+Object.defineProperty(__R,"chgApply",{get:function(){return chgApply;},set:function(v){chgApply=v;},configurable:true});
+Object.defineProperty(__R,"chgRows",{get:function(){return chgRows;},set:function(v){chgRows=v;},configurable:true});
+Object.defineProperty(__R,"clsLvls",{get:function(){return clsLvls;},set:function(v){clsLvls=v;},configurable:true});
+Object.defineProperty(__R,"concAuto",{get:function(){return concAuto;},set:function(v){concAuto=v;},configurable:true});
+Object.defineProperty(__R,"concCheck",{get:function(){return concCheck;},set:function(v){concCheck=v;},configurable:true});
+Object.defineProperty(__R,"concChip",{get:function(){return concChip;},set:function(v){concChip=v;},configurable:true});
+Object.defineProperty(__R,"concEnd",{get:function(){return concEnd;},set:function(v){concEnd=v;},configurable:true});
+Object.defineProperty(__R,"concHead",{get:function(){return concHead;},set:function(v){concHead=v;},configurable:true});
+Object.defineProperty(__R,"concOf",{get:function(){return concOf;},set:function(v){concOf=v;},configurable:true});
+Object.defineProperty(__R,"hasFeat",{get:function(){return hasFeat;},set:function(v){hasFeat=v;},configurable:true});
+Object.defineProperty(__R,"hdHeal",{get:function(){return hdHeal;},set:function(v){hdHeal=v;},configurable:true});
+Object.defineProperty(__R,"hpModH",{get:function(){return hpModH;},set:function(v){hpModH=v;},configurable:true});
+Object.defineProperty(__R,"hpSpellNote",{get:function(){return hpSpellNote;},set:function(v){hpSpellNote=v;},configurable:true});
+Object.defineProperty(__R,"hpWord",{get:function(){return hpWord;},set:function(v){hpWord=v;},configurable:true});
+Object.defineProperty(__R,"longExtraH",{get:function(){return longExtraH;},set:function(v){longExtraH=v;},configurable:true});
+Object.defineProperty(__R,"periOn",{get:function(){return periOn;},set:function(v){periOn=v;},configurable:true});
+Object.defineProperty(__R,"qtyAdj",{get:function(){return qtyAdj;},set:function(v){qtyAdj=v;},configurable:true});
+Object.defineProperty(__R,"recList",{get:function(){return recList;},set:function(v){recList=v;},configurable:true});
+Object.defineProperty(__R,"recSum",{get:function(){return recSum;},set:function(v){recSum=v;},configurable:true});
+Object.defineProperty(__R,"redoNow",{get:function(){return redoNow;},set:function(v){redoNow=v;},configurable:true});
+Object.defineProperty(__R,"restX",{get:function(){return restX;},set:function(v){restX=v;},configurable:true});
+Object.defineProperty(__R,"shortChg",{get:function(){return shortChg;},set:function(v){shortChg=v;},configurable:true});
+Object.defineProperty(__R,"shortExtraH",{get:function(){return shortExtraH;},set:function(v){shortExtraH=v;},configurable:true});
+Object.defineProperty(__R,"slotUsed",{get:function(){return slotUsed;},set:function(v){slotUsed=v;},configurable:true});
+Object.defineProperty(__R,"spCastH",{get:function(){return spCastH;},set:function(v){spCastH=v;},configurable:true});
+Object.defineProperty(__R,"spIx",{get:function(){return spIx;},set:function(v){spIx=v;},configurable:true});
+Object.defineProperty(__R,"spxBody",{get:function(){return spxBody;},set:function(v){spxBody=v;},configurable:true});
+Object.defineProperty(__R,"tmpFeatH",{get:function(){return tmpFeatH;},set:function(v){tmpFeatH=v;},configurable:true});
+Object.defineProperty(__R,"tmpSpellH",{get:function(){return tmpSpellH;},set:function(v){tmpSpellH=v;},configurable:true});
+Object.defineProperty(__R,"toastU",{get:function(){return toastU;},set:function(v){toastU=v;},configurable:true});
+Object.defineProperty(__R,"undoFix",{get:function(){return undoFix;},set:function(v){undoFix=v;},configurable:true});
+Object.defineProperty(__R,"undoLbl",{get:function(){return undoLbl;},set:function(v){undoLbl=v;},configurable:true});
+Object.defineProperty(__R,"undoMark",{get:function(){return undoMark;},set:function(v){undoMark=v;},configurable:true});
+Object.defineProperty(__R,"undoNow",{get:function(){return undoNow;},set:function(v){undoNow=v;},configurable:true});
+Object.defineProperty(__R,"undoTidy",{get:function(){return undoTidy;},set:function(v){undoTidy=v;},configurable:true});
+Object.defineProperty(__R,"useH",{get:function(){return useH;},set:function(v){useH=v;},configurable:true});
 /* ================= v21: PLAYING THE CHARACTER ================= */
 /* RU57: one step of undo. undoMark() keeps S, C, and the saved build as they were before an action; the toast of that action offers Undo */
 var UNDO=null;
@@ -5,11 +63,11 @@ var UNDO=null;
 var UST=[], RST=[], UMAX=20;
 function undoTidy(){ if(UST.length&&UST[UST.length-1]!==UNDO) UST.pop(); }/* UNDO=null right after undoMark takes that step back out */
 function undoFix(e){ if(!e||e.A!=null) return; e.A=JSON.stringify(S); e.CA=JSON.stringify(C); e.BA=lsGet(BKEY); if(e.CA===e.C) e.CA=e.C; }/* one copy of C when the step did not change it */
-function undoMark(lbl,join){ undoTidy(); var now=Date.now(), top=UST[UST.length-1];
+export function undoMark(lbl,join){ undoTidy(); var now=Date.now(), top=UST[UST.length-1];
   if(join&&top&&top.l===lbl&&top.j&&now-top.t<2000&&!RST.length){ top.t=now; top.A=null; UNDO=top; setTimeout(function(){ undoFix(top); },0); return; }
   var e={l:lbl,t:now,j:!!join,S:JSON.stringify(S),C:JSON.stringify(C),B:lsGet(BKEY)}; UST.push(e); if(UST.length>UMAX) UST.shift(); RST.length=0; UNDO=e; setTimeout(function(){ undoFix(e); },0); }
-function undoLbl(){ undoTidy(); var u=UST[UST.length-1]; return u?u.l:""; }
-function toastU(msg){ if(!UNDO){ toast(msg); return; } undoFix(UNDO);/* v21 M3: state right after the action */ var t=$("#toast"); var tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span><button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>'; t.setAttribute("data-kind",tk); t.classList.add("on","act"); clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove("on","act"); },6000); }
+export function undoLbl(){ undoTidy(); var u=UST[UST.length-1]; return u?u.l:""; }
+export function toastU(msg){ if(!UNDO){ toast(msg); return; } undoFix(UNDO);/* v21 M3: state right after the action */ var t=$("#toast"); var tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span><button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>'; t.setAttribute("data-kind",tk); t.classList.add("on","act"); clearTimeout(toastT); __set_toastT(setTimeout(function(){ t.classList.remove("on","act"); },6000)); }
 /* v21 M3, m1: only the fields the action changed go back. Changes made since (another tab, a condition) stay */
 function undoBack(cur,b0,a0){ var J1=function(x){ return JSON.stringify(x===undefined?null:x); };
   Object.keys(b0).concat(Object.keys(a0)).forEach(function(k){ if(k==="_app"||J1(b0[k])===J1(a0[k])) return; var b=b0[k], a=a0[k];
@@ -17,12 +75,12 @@ function undoBack(cur,b0,a0){ var J1=function(x){ return JSON.stringify(x===unde
     else if(b===undefined) delete cur[k]; else cur[k]=JSON.parse(JSON.stringify(b)); }); return cur; }
 /* re=false: back to before the step. re=true: Redo, forward to after it. Only the fields the step changed move */
 function undoApply(u,re){ undoFix(u); var note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
-  S=undoBack(S,JSON.parse(s0),JSON.parse(s1)); if(u.C!==u.CA) C=undoBack(C,JSON.parse(re?u.CA:u.C),JSON.parse(re?u.C:u.CA));
+  __set_S(undoBack(S,JSON.parse(s0),JSON.parse(s1))); if(u.C!==u.CA) __set_C(undoBack(C,JSON.parse(re?u.CA:u.C),JSON.parse(re?u.C:u.CA)));
   var b0=re?u.BA:u.B, b1=re?u.B:u.BA;
   if(b0!=null&&b0!==b1){ if(lsGet(BKEY)===b1){ lsSet(BKEY,b0); try{ if(window.__bldReload) window.__bldReload(); }catch(er){} } else note=" The build changed since then, so it was left as it is."; }
-  save(); if(u.C!==u.CA) saveC(); if(sheet.classList.contains("on")) closeSheet(); renderAll(true); return note; }
-function toastR(msg,btn){ var t=$("#toast"), tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span>'+(btn==="redo"?'<button type="button" class="tredo" data-redo="1">'+ico("ui-redo")+'Redo</button>':btn==="undo"?'<button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>':''); t.setAttribute("data-kind",tk); t.classList.add("on"); t.classList.toggle("act",!!btn); clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove("on","act"); },btn?6000:2400); }
-function undoNow(){ if(FROZEN) return; undoTidy(); var u=UST.pop(); if(!u){ toast("Nothing to undo."); return; } UNDO=UST[UST.length-1]||null; var note=undoApply(u,false); RST.push(u); toastR("Undone: "+u.l+"."+note,"redo"); }
+  save(); if(u.C!==u.CA) saveC(); if(sheet.classList.contains("on")) closeSheet(); __R.renderAll(true); return note; }
+function toastR(msg,btn){ var t=$("#toast"), tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span>'+(btn==="redo"?'<button type="button" class="tredo" data-redo="1">'+ico("ui-redo")+'Redo</button>':btn==="undo"?'<button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>':''); t.setAttribute("data-kind",tk); t.classList.add("on"); t.classList.toggle("act",!!btn); clearTimeout(toastT); __set_toastT(setTimeout(function(){ t.classList.remove("on","act"); },btn?6000:2400)); }
+export function undoNow(){ if(FROZEN) return; undoTidy(); var u=UST.pop(); if(!u){ toast("Nothing to undo."); return; } UNDO=UST[UST.length-1]||null; var note=undoApply(u,false); RST.push(u); toastR("Undone: "+u.l+"."+note,"redo"); }
 function redoNow(){ if(FROZEN) return; undoTidy(); var u=RST.pop(); if(!u){ toast("Nothing to redo."); return; } var note=undoApply(u,true); UST.push(u); UNDO=u; toastR("Redone: "+u.l+"."+note,"undo"); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-undo],[data-redo]"); if(b){ e.preventDefault(); e.stopPropagation(); if(b.hasAttribute("data-redo")) redoNow(); else undoNow(); } },true);
 document.addEventListener("keydown",function(e){ if(!(e.ctrlKey||e.metaKey)||e.altKey) return; var k=String(e.key).toLowerCase(); if(k!=="z"&&k!=="y") return;
@@ -33,15 +91,15 @@ window.__undoInfo=function(){ undoTidy(); return {u:UST.map(function(x){ return 
 
 /* class levels from C.clsLabel ("Fighter 3 / Wizard 2") */
 function clsLvls(){ var o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
-function lvOf(c){ return clsLvls()[c]||0; }
-function hasFeat(n){ return featAll().some(function(x){ return x.f.n===n; }); }
+export function lvOf(c){ return clsLvls()[c]||0; }
+export function hasFeat(n){ return featAll().some(function(x){ return x.f.n===n; }); }
 function hpWord(n){ return n===1?"Hit Point":"Hit Points"; }
 
 /* ---------- RU50 Concentration ---------- */
-var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
-function concOf(){ return S.conc&&S.conc.n?S.conc:null; }
+export var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
+export function concOf(){ return S.conc&&S.conc.n?S.conc:null; }
 function concSet(x,lv){ var o=concOf(), m=(o&&o.n!==x.n)?"Concentration on "+o.n+" ended. ":""; S.conc={n:x.n,l:lv||x.l||0}; return m+"Concentrating on "+x.n+"."; }
-function concEnd(why){ var o=concOf(); if(!o) return ""; delete S.conc; return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
+export function concEnd(why){ var o=concOf(); if(!o) return ""; delete S.conc; return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
 function concNotes(){ var n=[]; if(hasFeat("War Caster")) n.push("War Caster gives Advantage"); if(hasFeat("Eldritch Mind")) n.push("Eldritch Mind gives Advantage"); if(hasFeat("Bladesong")) n.push("while Bladesong is active, add your Intelligence modifier"); return n; }
 function concDC(d){ return Math.min(30,Math.max(10,Math.floor(d/2))); }
 function concCheck(d){ var o=concOf(); if(!o||!(d>0)) return; var dc=concDC(d), nt=concNotes();
@@ -50,7 +108,7 @@ function concCheck(d){ var o=concOf(); if(!o||!(d>0)) return; var dc=concDC(d), 
 /* a condition that includes Incapacitated, or 0 Hit Points, ends Concentration */
 function concAuto(){ var o=concOf(); if(!o) return; var why=S.hp===0?"0 Hit Points":INCAP.filter(function(k){ return S.cond[k]; })[0]; if(!why) return; var m=concEnd(why); save(); toast(m); }
 function spIx(n){ return (C.spells||[]).findIndex(function(x){ return x.n===n; }); }
-function concChip(){ var o=concOf(); if(!o) return ""; var i=spIx(o.n);
+export function concChip(){ var o=concOf(); if(!o) return ""; var i=spIx(o.n);
   return '<button type="button" class="chip on conc press"'+(i>=0?' data-info="sp:'+i+'"':'')+'>Concentrating: '+esc(o.n)+'</button><button type="button" class="chip conc-x press" data-concend="1" aria-label="End Concentration on '+esc(o.n)+'">✕</button>'; }
 /* header: a line under the name (phone: .mini, computer: .office) */
 function concHead(){ var o=concOf(); [".band .mini",".band .office > div"].forEach(function(sel,j){ var m=document.querySelector(sel); if(!m) return; var b=m.querySelector(".conch");
@@ -73,14 +131,14 @@ function spUses(x){ if(!x.l) return []; var src=String(x.src||""), rw=reWord(x.n
   rows=rows.filter(function(r){ return !(C.spells||[]).some(function(s){ return s.n!==x.n&&reWord(s.n).test(r.n); }); });/* v21 N1: a row named after another spell is not this one */
   var lr=rows.filter(function(r){ return /level (\d+) spell/.test(r.n); }); if(!lr.length) return rows; var want=x.gain||x.l, m=lr.filter(function(r){ return +(/level (\d+) spell/.exec(r.n)[1])===want; });
   return m.length?m.concat(rows.filter(function(r){ return !/level (\d+) spell/.test(r.n); })):rows; }
-function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
+export function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
 function spItemOpts(x){ var c=x.itc, r=(D.res||[]).filter(function(q){ return q.item&&q.f===c.it; })[0], o=[]; if(!r) return o; var left=r.max-used(r.k,r.max), lv0=c.lv;
   if(Array.isArray(c.c)){ for(var n=c.c[0];n<=c.c[1];n++){ var L=lv0+n-c.c[0]; o.push({k:r.k,lv:L,lab:c.it+", "+n+" charge"+(n>1?"s":"")+" (level "+L+")",left:left,free:1,need:n}); } }
   else o.push({k:r.k,lv:lv0,lab:c.it+", "+c.c+" charge"+(c.c===1?"":"s"),left:left,free:1,need:c.c});
   return o; }
-function qOk(q){ return q.left>=(q.need||1); }
-function ckOf(q){ return q.k+(q.need>1?"|"+q.need:""); }
-function spCastOpts(x){ var o=[], sc=C.spellcasting||{}; if(spAtWill(x)) return o; if(x.itc) return spItemOpts(x);
+export function qOk(q){ return q.left>=(q.need||1); }
+export function ckOf(q){ return q.k+(q.need>1?"|"+q.need:""); }
+export function spCastOpts(x){ var o=[], sc=C.spellcasting||{}; if(spAtWill(x)) return o; if(x.itc) return spItemOpts(x);
   for(var L=x.l;L<=9;L++){ var s=slotLeft("s"+L); if(s) o.push({k:"s"+L,lv:L,lab:"level "+L+" slot",left:s.left}); }
   var p=slotLeft("pact"); if(p&&sc.pact&&spPactLv()>=x.l) o.push({k:"pact",lv:spPactLv(),lab:"Pact slot (level "+spPactLv()+")",left:p.left});
   spUses(x).forEach(function(r){ o.push({k:r.k,lv:x.l,lab:r.n,left:r.max-used(r.k,r.max),free:1}); });
@@ -99,16 +157,16 @@ function spCastH(x,i){ var h='<div class="info-h">Cast</div><div class="spcast">
   if(x.rit&&x.l) h+='<button type="button" class="btn press" data-cast="'+i+'" data-ck="rit">Cast as a Ritual <small>no slot, 10 minutes longer</small></button>';
   if(x.conc){ var c=concOf(); h+=(c&&c.n===x.n)?'<button type="button" class="btn press" data-concend="1">End Concentration</button>':'<button type="button" class="btn press" data-concon="'+i+'">Concentrate on this spell</button>'; }
   return h+'</div>'+(x.conc?'<p class="muted spcn">Concentration spell. Casting it ends any other spell you concentrate on.</p>':''); }
-function castDo(i,k,lv,ok){ var x=(C.spells||[])[i]; if(!x) return; var s=null, nd=1; if(k&&k.indexOf("|")>0){ var kp=k.split("|"); k=kp[0]; nd=+kp[1]||1; }
-  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",function(){ castDo(i,k,lv,true); }); return; }/* v22 i4 */
+export function castDo(i,k,lv,ok){ var x=(C.spells||[])[i]; if(!x) return; var s=null, nd=1; if(k&&k.indexOf("|")>0){ var kp=k.split("|"); k=kp[0]; nd=+kp[1]||1; }
+  if(!ok&&__R.modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",function(){ castDo(i,k,lv,true); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); var msg="Cast "+x.n;
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; spLvSel[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; spLvSel[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) spLvSel[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
-  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} }
+  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ __R.cmbCast(x.n); save(); __R.cmbRe(); }catch(er){} }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
-function quickCast(i){ var x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
+export function quickCast(i){ var x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
   var o=spCastOpts(x), av=o.filter(qOk);
   if(av.length===1&&!x.rit){ castDo(i,ckOf(av[0]),av[0].lv); return; }
   if(!av.length&&!x.rit){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; }
@@ -118,7 +176,7 @@ document.addEventListener("click",function(e){ var st=e.target.closest&&e.target
   var b=e.target.closest&&e.target.closest("[data-cast]"); if(!b||b.disabled) return; e.preventDefault(); e.stopPropagation(); castDo(+b.getAttribute("data-cast"),b.getAttribute("data-ck")||"",+b.getAttribute("data-cl")||0); },true);
 
 /* ---------- RU55 Temporary Hit Points from features and spells ---------- */
-function tmpFeat(n,d){ var cl=clsLvls();
+export function tmpFeat(n,d){ var cl=clsLvls();
   if(n==="Dark One's Blessing") return {v:Math.max(1,D.mod.CHA+(cl.Warlock||0)),s:"Charisma modifier plus Warlock level, when you or someone within 10 feet drops an enemy to 0 Hit Points"};
   if(n==="Inspiring Leader"){ var ab=/\bWIS \+1/.test(d||"")?"WIS":/\bCHA \+1/.test(d||"")?"CHA":(D.mod.WIS>D.mod.CHA?"WIS":"CHA"); return {v:Math.max(0,D.level+D.mod[ab]),s:"character level plus "+ABN[ab]+" modifier, after a Short or Long Rest"}; }
   if(n==="Chef") return {v:D.pb,s:"Proficiency Bonus, when you eat a Bolstering Treat (Bonus Action)"};
@@ -133,7 +191,7 @@ function tmpSpellH(x,lv){ var L=Math.max(x.l||1,lv||x.l||1);
   if(x.n==="False Life"){ var add=4+5*(L-1); return '<div class="info-h">Temporary Hit Points</div><p class="info-d">2d4 + '+add+' at level '+L+'. Roll 2d4 and type the dice total.</p><div class="iuse"><input type="number" min="2" max="8" inputmode="numeric" data-tmpdice="'+add+'" placeholder="2d4" aria-label="2d4 total"><button type="button" class="btn pri press" data-tmproll="'+add+'" data-tmpsrc="'+esc(x.n)+'">Apply</button></div>'; }
   if(x.n==="Heroism"){ var m=Math.max(0,scOf(x).mod||0); return '<div class="info-h">Temporary Hit Points</div><p class="info-d">The target gains <b>'+m+'</b> (your spellcasting modifier) at the start of each of its turns.</p><div class="spcast">'+tmpBtn(m,x.n)+'</div>'; }
   return ""; }
-function tmpApply(v,src,join){ v=Math.max(0,Math.round(v)); if(!v){ toast("No Temporary Hit Points to apply."); return; }
+export function tmpApply(v,src,join){ v=Math.max(0,Math.round(v)); if(!v){ toast("No Temporary Hit Points to apply."); return; }
   var go=function(){ if(join&&UNDO) UNDO.A=null; else undoMark("Temporary Hit Points"); S.tmp=v; save(); syncHP(); refreshEntry(); toastU("Temporary Hit Points: "+v+" ("+src+")."); };
   if(S.tmp>0){ ask("You have "+S.tmp+" Temporary Hit Points. They do not stack with the "+v+" from "+src+". Keep the ones you have, or take the new ones?","Take "+v,go,["Keep "+S.tmp,function(){}]); return; }/* v21 i1, i4 */
   go(); }
@@ -149,7 +207,7 @@ function useH(it,ix){ var n=it.n, pm=/^Potion of Healing(?: \((Greater|Superior|
   if(CONS1.test(n)) return '<div class="info-h">Use</div>'+(q>0?'<p class="info-d">'+q+' left. Use 1 takes one away, Undo puts it back.</p><div class="ipk"><button type="button" class="btn pri press" data-use1="'+ix+'" data-potn="'+esc(it.key||it.n)+'">'+ico("ui-check")+'Use 1</button></div>':'<p class="muted">None left. Raise the Qty below when you get more.</p>');/* v32 RU134 */
   var a=ammoInfo(it); return a?ammoH(a):""; }
 function qtyAdj(nm,ix,d,lbl,after){ var it=invAt(nm,ix); if(!it) return; var q=Math.max(0,num(it.q,1)+d);
-  var go=function(){ undoMark(lbl); if(viaBld(nm)&&window.__bldSetQty) window.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { var i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); renderAll(); refreshEntry(); };
+  var go=function(){ undoMark(lbl); if(viaBld(nm)&&window.__bldSetQty) window.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { var i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); __R.renderAll(); refreshEntry(); };
   if(viaBld(nm)&&window.__bldSetQty) bldGuard(go); else go(); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-potgo],[data-scroll]"); if(!b) return; e.preventDefault(); e.stopPropagation(); var nm=b.getAttribute("data-potn");
   if(b.hasAttribute("data-scroll")){ var ix=+b.getAttribute("data-scroll"); qtyAdj(nm,ix,-1,"Use "+nm,function(){ toastU("Used "+nm+"."); }); return; }
@@ -175,7 +233,7 @@ document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.
   var d=b.getAttribute("data-ad"), nu=d==="half"?a.used-Math.floor(a.used/2):clamp(a.used+(+d),0,a.tot); undoMark(d==="1"?"Use ammunition":"Recover ammunition"); S.ammo=S.ammo||{}; S.ammo[k]=nu; if(!nu) delete S.ammo[k]; save(); refreshEntry();
   toastU(d==="1"?"Used 1 from "+it.n+". "+(a.tot-nu)+" left.":"Recovered "+(a.used-nu)+". "+(a.tot-nu)+" left."); },true);
 
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-ammoact]"); if(!b) return; e.preventDefault(); e.stopPropagation(); var kd=b.getAttribute("data-ammoact"), k=b.getAttribute("data-ak"); undoMark("Choose ammunition"); S.ammoAct=S.ammoAct||{}; S.ammoAct[kd]=k; save(); renderAll(); refreshEntry(); },true);/* v102 */
+document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-ammoact]"); if(!b) return; e.preventDefault(); e.stopPropagation(); var kd=b.getAttribute("data-ammoact"), k=b.getAttribute("data-ak"); undoMark("Choose ammunition"); S.ammoAct=S.ammoAct||{}; S.ammoAct[kd]=k; save(); __R.renderAll(); refreshEntry(); },true);/* v102 */
 /* ---------- RU44 charges rolled on dice ---------- */
 function chMaxH(r){ if(!r.dmax) return ""; var v=(S.chMax||{})[r.k]; return '<div class="chmax"><label>Starting '+(/Necklace of Fireballs/.test(r.n)?'beads':'charges')+' (roll '+esc(r.dmax)+')<input type="number" min="0" inputmode="numeric" data-chmax="'+esc(r.k)+'" value="'+(v!=null?v:"")+'" placeholder="up to '+r.max0+'"></label>'+(v==null?'<small class="muted">Roll '+esc(r.dmax)+' and type the result. Until then the sheet shows the highest possible number.</small>':'')+'</div>'; }
 document.addEventListener("change",function(e){ var t=e.target; if(!t.matches||!t.matches("[data-chmax]")) return; var k=t.getAttribute("data-chmax"); S.chMax=S.chMax||{}; if(t.value===""){ delete S.chMax[k]; } else S.chMax[k]=Math.max(0,Math.round(num(t.value,0))); save(); derive(); syncLU(); renderActions(); refreshEntry(); });

@@ -119,7 +119,7 @@
    "close": "\n}</script>",
    "files": [
     "fx/23-class-art-data.js",
-    "app/00-open.wrap.js",
+    "app/00-reg.js",
     "app/01-logic-boot-flags-builder-loader.js",
     "app/02-data-default-character.js",
     "app/03-data-glossary.js",
@@ -175,8 +175,12 @@
     "app/53-logic-number-map.js",
     "app/54-dev-fps-probe.js",
     "app/99-ui-backup-reminder-handlers.js",
-    "app/98-close.wrap.js"
-   ]
+    "app/main.js"
+   ],
+   "pre": [
+    "fx/23-class-art-data.js"
+   ],
+   "entry": "app/main.js"
   },
   {
    "t": "text",

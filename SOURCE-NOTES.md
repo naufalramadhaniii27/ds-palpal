@@ -32,14 +32,16 @@ Alur edit: ubah file di `src/`, jalankan `python3 build.py`, lalu `python3 build
 | `html/` | `head.html` (doctype, meta, head), `sheet-body.html` (markup sheet dan Home) | teks |
 | `css/` | Satu blok `<style>`. Font tertanam, dasar, mobile, cetak, skin D&D Beyond, patch per versi, CSS efek (`-fx-`) | `<style>` |
 | `boot/` | Skrip kecil sebelum aplikasi: debug overlay, reload, tanda kedatangan, splash builder, pemuat data tertunda | `<script>` masing-masing |
-| `app/` | Aplikasi sheet dan Home. Satu IIFE "use strict" dari `00-open.wrap.js` sampai `98-close.wrap.js`, lalu `99-` di luar IIFE | `<script>` |
+| `app/` | Aplikasi sheet dan Home. Modul ES, entry `main.js`, dibundel esbuild jadi satu IIFE strict | `<script>` |
 | `fx/` | Paket efek dan interaksi (MI core, F1 sampai F5, WOW, X, D, W, Y, Z, L, M, G, K). Tiap file berisi IIFE sendiri | `<script>` |
 | `data/` | Data aturan dan isi buku. Tiap file satu blok `<script type="text/x-defer" data-defer="...">`. `data/db4/` adalah satu blok yang dipecah per topik | x-defer |
-| `builder/` | Builder karakter. Satu IIFE dari `00-open.wrap.js` sampai `98-close.wrap.js`, dimuat tertunda (data-defer="builder") | x-defer |
+| `builder/` | Builder karakter. Modul ES, entry `main.js`, dibundel esbuild, dimuat tertunda (data-defer="builder") | x-defer |
 
 Peran di nama file `app/` dan `builder/`: `logic` (hitung, simpan, impor), `ui` (render dan interaksi), `data` (tabel tetap), `boot` (mulai). Peran ditentukan dari isi utama bagian itu. Kode lama tersusun per patch, jadi beberapa file `ui` masih memuat sedikit logic dan sebaliknya. Pemisahan penuh butuh pemindahan kode (mengubah urutan), di luar T0.
 
-File `*.wrap.js` hanya membuka atau menutup IIFE. File ini tidak lolos `node --check` sendirian dan dicek di dalam bloknya. Semua file JS lain lolos `node --check` sendiri.
+Blok modul (`app`, `builder`, `learn`, `tg`) punya kunci `entry` di `manifest.json`. `build.py` memanggil esbuild untuk membundel entry dan semua `import` jadi satu IIFE strict. File `pre` (kode klasik yang juga jalan di node atau harus global) ditaruh di depan bundel.
+Aturan modul: satu file hanya mengimpor file yang lebih awal di manifest, jadi urutan jalan sama dengan dulu. Nama yang dipakai file awal dari file akhir (hanya saat dipanggil) lewat `__R` di `00-reg.js`. Nilai yang ditulis dari file lain lewat fungsi `__set_Nama`. Fungsi yang dipakai saat muat harus ada di file yang sama atau lebih awal. `node tools/esm_codemod.js <blok>` mengecek aturan ini. `tests/names_lint.py` mengecek nama tanpa deklarasi.
+Blok `fx` tetap klasik: tiap file sudah satu closure sendiri dan tidak berbagi nama.
 
 ## Data dan storage
 

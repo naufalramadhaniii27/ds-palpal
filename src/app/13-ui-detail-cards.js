@@ -1,8 +1,22 @@
+import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
+import {GLOSS,gName} from "./03-data-glossary.js";
+import {C,S} from "./04-logic-storage.js";
+import {$,atkOn,eqOn,esc,fmtW,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";
+import {B,D,fill,richB,richP} from "./06-logic-derivation.js";
+import {aylH,aylSplit,spSum,used} from "./08-ui-render-sheet-and-actions.js";
+import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
+import {SWP,__set_SWP,__set_navStack,__set_sheetMode,lastFocus,navStack,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"featSpec",{get:function(){return featSpec;},set:function(v){featSpec=v;},configurable:true});
+Object.defineProperty(__R,"grpSpec",{get:function(){return grpSpec;},set:function(v){grpSpec=v;},configurable:true});
+Object.defineProperty(__R,"infoHTML",{get:function(){return infoHTML;},set:function(v){infoHTML=v;},configurable:true});
+Object.defineProperty(__R,"resSpec",{get:function(){return resSpec;},set:function(v){resSpec=v;},configurable:true});
+Object.defineProperty(__R,"xlink",{get:function(){return xlink;},set:function(v){xlink=v;},configurable:true});
 /* ================= DETAIL (info) BUILDERS ================= */
-function meta(c,s){ return '<div class="info-meta">'+(c?'<span class="info-cat">'+esc(c)+'</span>':'')+(s?'<span class="src">'+esc(s)+'</span>':'')+'</div>'; }
+export function meta(c,s){ return '<div class="info-meta">'+(c?'<span class="info-cat">'+esc(c)+'</span>':'')+(s?'<span class="src">'+esc(s)+'</span>':'')+'</div>'; }
 function tileBd(label,val,bd){ return '<button type="button" class="tile bd" data-bd="'+bd+'"><span class="k">'+label+'</span><span class="v" style="font-size:24px">'+val+'</span></button>'; }
-function tileH(label,html){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:15px">'+html+'</span></div>'; }
-function tileS(label,val){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:'+(String(val).length>8?'15px':'24px')+'">'+esc(val)+'</span></div>'; }
+export function tileH(label,html){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:15px">'+html+'</span></div>'; }
+export function tileS(label,val){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:'+(String(val).length>8?'15px':'24px')+'">'+esc(val)+'</span></div>'; }
 function featSpec(name){ var fs=C.features||[]; for(var g=0;g<fs.length;g++){ var it=fs[g].items||[]; for(var f=0;f<it.length;f++){ if(it[f].n===name) return "f:"+g+"."+f; } } return null; }
 function grpSpec(kind){
   var fs=C.features||[], want={species:/species/i, bg:/background/i}[kind];
@@ -13,7 +27,7 @@ function grpSpec(kind){
   return null;
 }
 function resSpec(r){ if(r.k==="hd"||r.n==="Hit Dice") return "g:Hit Point Dice"; if(GLOSS[r.n]) return "g:"+r.n; return featSpec(r.f||r.n)||featSpec(r.n); }
-function linkify(text){
+export function linkify(text){
   return esc(text).split(/(,\s*)/).map(function(part){
     var raw=part.replace(/&#39;/g,"'"), base=raw.replace(/\s*\(.*\)\s*$/,"").trim();
     return GLOSS[base] ? '<button type="button" class="lk" data-info="g:'+esc(base)+'">'+part+'</button>' : part;
@@ -27,7 +41,7 @@ function xlIdx(){
   var m={}, put=function(n,k){ n=String(n||"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length>2&&/^[A-Z]/.test(n)) m[n]=k; };
   if(typeof WEAPONS!=="undefined") Object.keys(WEAPONS).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","gear|"+n]); });
   if(typeof ARMOR!=="undefined") Object.keys(ARMOR).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","gear|"+n]); });
-  if(typeof LIB_RULES!=="undefined") Object.keys(LIB_RULES).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","rule|"+n]); });
+  if(typeof __R.LIB_RULES!=="undefined") Object.keys(__R.LIB_RULES).forEach(function(n){ if(n.indexOf(" ")>0) put(n,["lib","rule|"+n]); });
   ftk.forEach(function(n){ put(n,["lib","feat|"+n]); });
   sp.forEach(function(x){ put(x[0],["spn",x[0]]); });
   crs.forEach(function(c){ put(c.n,["cr",c.n]); });
@@ -72,7 +86,7 @@ window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:xlIdx};/* test
 function miHTML(n){
   var r=(typeof DMGI!=="undefined"?DMGI:[]).filter(function(x){ return x[0]===n; })[0];
   if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};
-  var h='<div class="dc dc-i">'+dcHead(ico("ui-hand","isch"),esc(r[1]+" • "+r[2]+(r[3]?" • Requires attunement":"")))+'</div><div class="idetail"><p class="info-d">'+kwChips(xlink(richP(r[4]),n))+'</p></div>';
+  var h='<div class="dc dc-i">'+dcHead(__R.ico("ui-hand","isch"),esc(r[1]+" • "+r[2]+(r[3]?" • Requires attunement":"")))+'</div><div class="idetail"><p class="info-d">'+kwChips(xlink(richP(r[4]),n))+'</p></div>';
   return {t:n, h:h};
 }
 var NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
@@ -89,13 +103,13 @@ function fKindIco(t){ return /^Bonus/.test(t)?"time-bonus":/^Reaction/.test(t)?"
 function dcItem(html){ var P={}, h=String(html||"");
   h=h.replace(/<dt>([^<]+)<\/dt>\s*<dd>([\s\S]*?)<\/dd>/g,function(m,k,v){ P[k]=v; return m; });
   var pick=P["Armor Class"]!=null?[["Armor Class","AC","ui-shield"],["Strength","Strength","ab-str"],["Stealth","Stealth","ui-stealth"],["Cost","Cost","ui-cost"]]:P["Damage"]!=null?[["Damage","Damage","hp-damage"],["Damage Type","Type","item-weapon"],["Proficient","Proficient","ui-prof"],["Cost","Cost","ui-cost"]]:[["Weight","Weight","ui-weight"],["Cost","Cost","ui-cost"]];
-  var cells=[], rest=h; pick.forEach(function(q){ if(P[q[0]]==null) return; cells.push([q[2],q[1],P[q[0]],q[0]==="Damage Type"&&DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]]?svgI(DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]],"ico dc-ci",""):""]); var re=new RegExp("<dt>"+q[0]+"</dt>\\s*<dd>[\\s\\S]*?</dd>"); rest=rest.replace(re,""); });
+  var cells=[], rest=h; pick.forEach(function(q){ if(P[q[0]]==null) return; cells.push([q[2],q[1],P[q[0]],q[0]==="Damage Type"&&__R.DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]]?__R.svgI(__R.DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]],"ico dc-ci",""):""]); var re=new RegExp("<dt>"+q[0]+"</dt>\\s*<dd>[\\s\\S]*?</dd>"); rest=rest.replace(re,""); });
   var kind=(/<i>([^<]{2,40})<\/i>/.exec(h)||[])[1]||"Item";
   rest=rest.replace(/<p>\s*<i>[^<]+<\/i>\s*<\/p>/,"");
-  return {h:dcHead(ico(P["Armor Class"]!=null?"ui-shield":"ui-hand","isch"),esc(kind))+(cells.length?dcStrip(cells):""), rest:rest}; }
-function dcHead(badge,sub){ return '<div class="dc-head"><span class="dc-badge">'+badge+'</span><div class="dc-sub">'+sub+'</div></div>'; }
-function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map(function(c){ return '<div class="dc-cell"><span class="dc-ico">'+(c[3]||ico(c[0],"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(c[1])+'</small><b>'+c[2]+'</b></div></div>'; }).join("")+'</div>'; }/* v38 p11 */
-function wCell(ik,lab,val,bd,raw){ var inner='<span class="dc-ico">'+(raw||ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd?'<button type="button" class="dc-cell bd" data-bd="'+bd+'">'+inner+'</button>':'<div class="dc-cell">'+inner+'</div>'; }/* v38 p14 */
+  return {h:dcHead(__R.ico(P["Armor Class"]!=null?"ui-shield":"ui-hand","isch"),esc(kind))+(cells.length?dcStrip(cells):""), rest:rest}; }
+export function dcHead(badge,sub){ return '<div class="dc-head"><span class="dc-badge">'+badge+'</span><div class="dc-sub">'+sub+'</div></div>'; }
+export function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map(function(c){ return '<div class="dc-cell"><span class="dc-ico">'+(c[3]||__R.ico(c[0],"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(c[1])+'</small><b>'+c[2]+'</b></div></div>'; }).join("")+'</div>'; }/* v38 p11 */
+function wCell(ik,lab,val,bd,raw){ var inner='<span class="dc-ico">'+(raw||__R.ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd?'<button type="button" class="dc-cell bd" data-bd="'+bd+'">'+inner+'</button>':'<div class="dc-cell">'+inner+'</div>'; }/* v38 p14 */
 function dcFoot(l,r){ return '<div class="dc-foot"><b>'+l+'</b><span>'+r+'</span></div>'; }
 
 /* v38 p10: spTgt */
@@ -120,16 +134,16 @@ var TGT_SIZE={Sphere:" ft radius",Cube:" ft cube",Cone:" ft cone",Line:" ft long
 function spTgtCell(x){ var o=spTgt(x), L=TGT_LAB[o.k]||["Target",o.k], big=/^(Sphere|Cube|Cone|Line|Cylinder|Emanation)$/.test(o.k), ik=big?"tgt-"+o.k.toLowerCase():"tgt-"+(o.k==="Single"?"single":o.k==="Multiple"?"multi":o.k.toLowerCase());
   return [ik,L[0],esc(L[1])+(o.n?'<span class="dc-sz">'+o.n+(TGT_SIZE[o.k]||" ft")+'</span>':'')]; }
 function spEffCell(x){ var sv=x.sv; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"]; return ["fx-auto","Effect","No roll"]; }
-function infoHTML(spec){
+export function infoHTML(spec){
   var i0=spec.indexOf(":"), t0=spec.slice(0,i0), k0=spec.slice(i0+1), prev=XL_SELF, me="";/* a name in its own dialog is not linked to itself */
   try{ if(t0==="spn"||t0==="mi") me=k0; else if(t0==="lib") me=k0.slice(k0.indexOf("|")+1); else if(t0==="cr") me=k0.split("|")[0]; else if(t0==="sp") me=((C.spells||[])[+k0]||{}).n||""; else if(t0==="it") me=((C.inv||[])[+k0]||{}).n||""; else if(t0==="f"){ var q=k0.split("."), g_=(C.features||[])[+q[0]]; me=((g_&&g_.items||[])[+q[1]]||{}).n||""; } }catch(e){ me=""; }
   XL_SELF=me; try{ return infoHTML0(spec); } finally{ XL_SELF=prev; }
 }
 function infoHTML0(spec){
   var i=spec.indexOf(":"), type=spec.slice(0,i), key=spec.slice(i+1), h="";
-  if(type==="spn") return spnHTML(key);/* v25 RU38 no. 3 */
+  if(type==="spn") return __R.spnHTML(key);/* v25 RU38 no. 3 */
   if(type==="mi") return miHTML(key);
-  if(type==="lib"){ var bar=key.indexOf("|"), ld=typeof libDetail==="function"&&libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'}; }
+  if(type==="lib"){ var bar=key.indexOf("|"), ld=typeof __R.libDetail==="function"&&__R.libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'}; }
   if(type==="g"){
     var g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
@@ -147,24 +161,24 @@ function infoHTML0(spec){
     if(fl.length) h+='<div class="info-h">Your features that mention this</div><div class="info-l">'+fl.map(function(x){ var f=C.features[x[0]].items[x[1]]; return '<button type="button" data-info="f:'+x[0]+'.'+x[1]+'">'+esc(f.n)+'<span>'+esc(f.s)+'</span></button>'; }).join("")+'</div>';
     return {t:key, h:h};
   }
-  if(type==="cr"){ var cp=key.split("|"), cc=crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:crBlock(cc,cp.slice(1).join("|"))}; }/* v23 RU36 no. 10 */
-  if(type==="xd"){ var xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'}; }
-  if(type==="sp"){ var x=(C.spells||[])[+key], sc=scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
-    var sch=String(x.sch||"").toLowerCase(), fxb=spFxBlock(x,key);
-    h='<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':ico("school-"+sch,"isch"),ico("school-"+sch,"isch")+'<i>'+(x.l?ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
+  if(type==="cr"){ var cp=key.split("|"), cc=__R.crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:__R.crBlock(cc,cp.slice(1).join("|"))}; }/* v23 RU36 no. 10 */
+  if(type==="xd"){ var xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+__R.tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'}; }
+  if(type==="sp"){ var x=(C.spells||[])[+key], sc=__R.scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
+    var sch=String(x.sch||"").toLowerCase(), fxb=__R.spFxBlock(x,key);
+    h='<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':__R.ico("school-"+sch,"isch"),__R.ico("school-"+sch,"isch")+'<i>'+(x.l?__R.ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
       dcStrip([[/^Bonus/.test(x.ct)?"time-bonus":/^Reaction/.test(x.ct)?"time-reaction":/^Action/.test(x.ct)?"time-action":"time-long","Time",esc(x.ct)+(x.rit?' <i class="sp-c rit">R</i>':'')],["fx-reach","Range",esc(String(x.r||"").replace(/ ft$/," ft."))],spTgtCell(x),[/^V/.test(x.cmp)?"comp-v":"comp-s","Components",esc(x.cmp)],[x.conc?"tag-concentration":"ui-moon","Duration",esc(x.dur)+(x.conc?' <i class="sp-c">C</i>':'')],spEffCell(x)],"dc-s6")+
-      spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||spFx(x).mat)+'</p>':'')+'</div>'+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
-      dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
+      spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(__R.spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||__R.spFx(x).mat)+'</p>':'')+'</div>'+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+__R.hpSpellNote(x)+__R.tmpSpellH(x,__R.spLvSel[x.n]!=null?__R.spLvSel[x.n]:__R.spRowLv(x))+'<div class="dc-use">'+__R.spCastH(x,+key)+__R.pinSpBtn(x)+'</div>'+
+      dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?__R.srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
     return {t:x.n, h:h}; }
-  if(type==="spx") return {t:"Spells cast on you", h:spxBody()};
+  if(type==="spx") return {t:"Spells cast on you", h:__R.spxBody()};
   if(type==="f"){
     var ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
-    var cl0=clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
-    var fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
-    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(srcPg(f.s,pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
+    var cl0=__R.clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
+    var fk=fKind(f), rl0=__R.resOf(f.n), r0=rl0[0];
+    h='<div class="dc dc-f">'+dcHead(__R.ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(__R.srcPg(f.s,__R.pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+__R.fch(__R.featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+__R.featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+__R.fch(__R.featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+__R.featSpL(gr,f);
     if(r0){ var lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+'</div>'+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
-    h+=tmpFeatH(f);/* v21 RU55 */
+    h+=__R.tmpFeatH(f);/* v21 RU55 */
     h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button></p></div>';
     return {t:f.n, h:h};
   }
@@ -175,33 +189,33 @@ function infoHTML0(spec){
   }
   if(type==="w"){
     var a=(C.attacks||[])[+key], d=D.atk[+key]; if(!a) return {t:"Attack", h:""};
-    h='<div class="dc dc-w">'+dcHead(ico("time-action","isch"),esc(a.dieSrc||"Attack"))+'<div class="dc-strip dc-s4 info-k">'+wCell("fx-attack","To hit",sg(d.hit),"ah-"+key)+wCell("hp-damage","Damage",esc(d.dmg),"ad-"+key)+wCell("fx-reach","Range",esc(a.range||"\u2014"))+wCell("item-weapon","Type",esc(a.type||"\u2014"),"",DT_ICON[String(a.type||"").split(/[ ,]/)[0]]?svgI(DT_ICON[String(a.type||"").split(/[ ,]/)[0]],"ico dc-ci",""):"")+'</div>';
+    h='<div class="dc dc-w">'+dcHead(__R.ico("time-action","isch"),esc(a.dieSrc||"Attack"))+'<div class="dc-strip dc-s4 info-k">'+wCell("fx-attack","To hit",sg(d.hit),"ah-"+key)+wCell("hp-damage","Damage",esc(d.dmg),"ad-"+key)+wCell("fx-reach","Range",esc(a.range||"\u2014"))+wCell("item-weapon","Type",esc(a.type||"\u2014"),"",__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]]?__R.svgI(__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]],"ico dc-ci",""):"")+'</div>';
     if(a.sub) h+='<div class="info-h">Properties</div><p class="info-d">'+linkify(a.sub)+'</p>';
     if(a.m) h+='<div class="info-h">Mastery: '+(GLOSS[a.m]?'<button type="button" class="lk" data-info="g:'+esc(a.m)+'">'+esc(a.m)+'</button>':esc(a.m))+'</div>'+(GLOSS[a.m]?'<p class="info-d">'+rich(GLOSS[a.m].d)+'</p>':'');
     if(a.note) h+='<div class="info-h">Notes</div><p class="info-d">'+esc(a.note)+'</p>';
-    h+=ammoPickH(a)+ammoH(ammoFor(a));/* v21 RU51, v102 magic ammunition */
+    h+=__R.ammoPickH(a)+__R.ammoH(__R.ammoFor(a));/* v21 RU51, v102 magic ammunition */
     if(GLOSS[a.n]) h+='<div class="info-h">Base weapon</div><p class="info-d">'+rich(GLOSS[a.n].d)+'</p>';
     return {t:a.n, h:h+'</div>'};
   }
   if(type==="it"){
     var it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ var dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ var dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(__R.srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     var base=GLOSS[it.n], q=num(it.q,1), w=num(it.w,0);
     h=meta(base?base.c:"Item", base?base.s:"")+'<div class="info-k">'+tileS("Quantity",q)+tileS("Weight",w?fmtW(q*w)+" lb":"\u2014")+(eqOn(it)?tileS("Status","Worn"):"")+'</div>';
     if(base) h+='<p class="info-d">'+rich(base.d)+'</p>';
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     var wl2=[]; (C.attacks||[]).forEach(function(a,ix){ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map(function(ix){ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+itemRes(it)+moveCtl(it,+key);
+    h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
     return {t:it.n, h:h};
   }
   return {t:"", h:""};
 }
-function closeSheet(){ SWP=null;/* v36 p18 */ SWP=null;/* v36 p18 */
-  hpDockBack();/* v30 */ morphStop();/* v31 p12 */
-  $("#scrim").classList.remove("on"); sheet.classList.remove("on"); dockOff(); shClosed();/* v31 p14, p16 */
+export function closeSheet(){ __set_SWP(null);/* v36 p18 */ __set_SWP(null);/* v36 p18 */
+  hpDockBack();/* v30 */ __R.morphStop();/* v31 p12 */
+  $("#scrim").classList.remove("on"); sheet.classList.remove("on"); __R.dockOff(); __R.shClosed();/* v31 p14, p16 */
   if(sheetMode==="edit") toast("Changes saved");
-  sheetMode=""; navStack=[]; $("#sheetBack").hidden=true;
+  __set_sheetMode(""); __set_navStack([]); $("#sheetBack").hidden=true;
   if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
 }
 $("#scrim").addEventListener("click",closeSheet);
@@ -210,7 +224,7 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape" && sheet.cl
 (function(){
   var head=$("#sheetHead"), startY=0, dy=0, lastY=0, lastT=0, vel=0, dragging=false;
   head.addEventListener("pointerdown",function(e){
-    if(!mq.matches || e.target.closest("button")) return;
+    if(!__R.mq.matches || e.target.closest("button")) return;
     dragging=true; head.setPointerCapture(e.pointerId);
     startY=lastY=e.clientY; lastT=performance.now(); dy=0; vel=0; sheet.classList.add("drag");
   });
@@ -221,20 +235,20 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape" && sheet.cl
     vel = (e.clientY-lastY)/Math.max(1,now-lastT); lastY=e.clientY; lastT=now;
     sheet.style.transform="translateY("+dy+"px)";
   });
-  function end(){ if(!dragging) return; dragging=false; sheet.classList.remove("drag"); var projected=dy+vel*180; shDragEnd(dy,vel,projected > sheet.offsetHeight*.35); }/* v31 p14: the finger speed goes into the spring */
+  function end(){ if(!dragging) return; dragging=false; sheet.classList.remove("drag"); var projected=dy+vel*180; __R.shDragEnd(dy,vel,projected > sheet.offsetHeight*.35); }/* v31 p14: the finger speed goes into the spring */
   head.addEventListener("pointerup",end); head.addEventListener("pointercancel",end);
 })();
 /* v33 p08: pull down from the content to close, on phones, when the content is at its top */
 (function(){ var body=$("#sheetBody"), y0=0, x0=0, dy=0, lastY=0, lastT=0, vel=0, st=0;/* st: 0 idle, 1 armed, 2 pulling, -1 scrolling */
   if(!body) return;
   function scroller(t){ for(var e=t; e&&e!==body; e=e.parentElement){ if(e.scrollHeight>e.clientHeight+1){ var o=getComputedStyle(e).overflowY; if(o==="auto"||o==="scroll") return e; } } return body; }
-  body.addEventListener("touchstart",function(e){ st=-1; if(!mq.matches||e.touches.length!==1||!sheet.classList.contains("on")) return; var t=e.target;
+  body.addEventListener("touchstart",function(e){ st=-1; if(!__R.mq.matches||e.touches.length!==1||!sheet.classList.contains("on")) return; var t=e.target;
     if(t.closest&&t.closest("input,textarea,select,[contenteditable=true],.dragh")) return; var sc=scroller(t); if(sc.scrollTop>0||body.scrollTop>0) return;
     y0=lastY=e.touches[0].clientY; x0=e.touches[0].clientX; lastT=performance.now(); dy=0; vel=0; st=1; },{passive:true});
   body.addEventListener("touchmove",function(e){ if(st<1) return; var t=e.touches[0], ddy=t.clientY-y0, ddx=t.clientX-x0;
     if(st===1){ if(Math.abs(ddx)>8&&Math.abs(ddx)>Math.abs(ddy)){ st=-1; return; } if(ddy<-4){ st=-1; return; } if(ddy<10) return; st=2; sheet.classList.add("drag"); y0=t.clientY; }
     if(e.cancelable) e.preventDefault(); var now=performance.now(); dy=Math.max(0,t.clientY-y0); vel=(t.clientY-lastY)/Math.max(1,now-lastT); lastY=t.clientY; lastT=now; sheet.style.transform="translateY("+dy+"px)"; },{passive:false});
-  function end(){ if(st===2){ sheet.classList.remove("drag"); shDragEnd(dy,vel,dy+vel*180>sheet.offsetHeight*.35); } st=0; }
+  function end(){ if(st===2){ sheet.classList.remove("drag"); __R.shDragEnd(dy,vel,dy+vel*180>sheet.offsetHeight*.35); } st=0; }
   body.addEventListener("touchend",end); body.addEventListener("touchcancel",end);
 })();
 

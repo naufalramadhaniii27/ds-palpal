@@ -1,3 +1,12 @@
+import {C,FROZEN,lsGet} from "./04-logic-storage.js";
+import {esc,toast} from "./05-logic-helpers.js";
+import {REDUCE,uiGet} from "./07-ui-theme-contrast-spring.js";
+import {sheet} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {rGet} from "./14-ui-editor.js";
+import {learnBand,learnGo,rPh,uiSet} from "./15-logic-roster-backup-files-snapshots.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"tourBanner",{get:function(){return tourBanner;},set:function(v){tourBanner=v;},configurable:true});
 /* ================= v24: TOUR (RU76) ================= */
 /* A short tour for new players. Home shows an inline offer once (cs-ui-tour); the tour only starts when the player asks, so it never covers the app */
 /* T11 U52: the tour now runs on the character's own sheet with the Learn spotlight (window.__spot, src/learn/46): HP, Armor Class,
@@ -50,7 +59,7 @@ document.addEventListener("keydown",function(e){ if(tourI>=0&&e.key==="Escape"){
 window.__tour={go:tourGo,state:function(){ return {i:tourI,keep:!!TOUR_KEEP}; }};
 
 /* v24 M1: what Home covers is inert, so Tab starts on Home. m2: Tab stays inside an open dialog */
-function homeInert(){ var h=document.getElementById("homeV"), on=!!(h&&!h.hidden); Array.prototype.slice.call(document.body.children).forEach(function(e){ if(e===h||/^(SCRIPT|STYLE)$/.test(e.tagName)||e.matches(".ask,.exp,#learn,#tg,#lrnSpot,#spotR,#toast,#pwaUpd,#qrSend,#qrScan,#bkp,#chf,#party,#rep,#lib,#tourC,#bld,.busy,#ps-wrap,.ps-wrap,#syBan,#frBar")/* v27: Party and Report dialogs sit over Home */) return;
+export function homeInert(){ var h=document.getElementById("homeV"), on=!!(h&&!h.hidden); Array.prototype.slice.call(document.body.children).forEach(function(e){ if(e===h||/^(SCRIPT|STYLE)$/.test(e.tagName)||e.matches(".ask,.exp,#learn,#tg,#lrnSpot,#spotR,#toast,#pwaUpd,#qrSend,#qrScan,#bkp,#chf,#party,#rep,#lib,#tourC,#bld,.busy,#ps-wrap,.ps-wrap,#syBan,#frBar")/* v27: Party and Report dialogs sit over Home */) return;
   if(on){ if(!e.inert){ e.inert=true; e.setAttribute("data-hinert","1"); } } else if(e.getAttribute("data-hinert")){ e.inert=false; e.removeAttribute("data-hinert"); } }); }
 (function(){ var mo=new MutationObserver(function(){ homeInert(); }); mo.observe(document.body,{childList:true}); var tie=function(){ var h=document.getElementById("homeV"); if(h&&!h.__ino){ h.__ino=1; new MutationObserver(homeInert).observe(h,{attributes:true,attributeFilter:["hidden"]}); homeInert(); } }; tie(); new MutationObserver(tie).observe(document.body,{childList:true}); })();
 document.addEventListener("keydown",function(e){ if(e.key!=="Tab") return; var L=Array.prototype.slice.call(document.querySelectorAll('.ask,#sheet.on,#bkp,#chf,#party,#rep')).filter(function(d){ return !d.hidden&&getComputedStyle(d).display!=="none"; }), D0=L[L.length-1]; if(!D0) return;

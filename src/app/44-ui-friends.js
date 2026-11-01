@@ -1,3 +1,10 @@
+import {C,DEF,FROZEN,S,__set_C,__set_FROZEN,__set_S,__set_cSaveT,__set_saveT,cSaveT,clone,saveT} from "./04-logic-storage.js";
+import {ask,esc,toast} from "./05-logic-helpers.js";
+import {applyLook} from "./07-ui-theme-contrast-spring.js";
+import {renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {syncPortrait} from "./20-ui-portrait.js";
+import {renderAll} from "./35-ui-combo.js";
+import {SY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";
 /* T8 stage 3b: Friends. Profile with name, @username and friend code, mutual follow, block, view-only sharing per character,
    copy requests, a simple feed of friends' characters, and an Admin tab for the owner of the app. Only when cloud backup is on.
    No popups for social events: a small dot on the Friends button marks new followers, requests and shares. */
@@ -115,9 +122,9 @@ function frChange(e){ var t=e.target; if(t.name==="vis"){ var p=FR.w.querySelect
 /* read-only view of a friend's character: the sheet shows it, nothing is saved, Close reloads your own */
 function frView(owner,id){ frApi("view/"+owner+"/"+encodeURIComponent(id)).then(function(v){ return syPicIn(owner,id,v.data).then(function(text){ var e,c2,s2;
     try{ e=JSON.parse(text); c2=JSON.parse(e.C); s2=JSON.parse(e.S||"null")||{}; if(!c2||!c2.abilities) throw 0; }catch(x){ toast("This character could not be read."); return; }
-    clearTimeout(saveT); clearTimeout(cSaveT); saveT=null; cSaveT=null; FROZEN="view"; FR.view={owner:owner,id:id,v:v};
+    clearTimeout(saveT); clearTimeout(cSaveT); __set_saveT(null); __set_cSaveT(null); __set_FROZEN("view"); FR.view={owner:owner,id:id,v:v};
     var o=clone(DEF); for(var k in s2) if(Object.prototype.hasOwnProperty.call(s2,k)) o[k]=s2[k]; if(!Array.isArray(o.ds)||o.ds.length!==2) o.ds=[0,0]; ["cond","notes","used"].forEach(function(k){ if(typeof o[k]!=="object"||!o[k]) o[k]={}; });
-    C=c2; S=o; document.documentElement.classList.add("fr-viewing"); if(FR.w){ FR.w.remove(); FR.w=null; } var hv=document.getElementById("homeV"); if(hv) hv.hidden=true; document.body.style.overflow="";
+    __set_C(c2); __set_S(o); document.documentElement.classList.add("fr-viewing"); if(FR.w){ FR.w.remove(); FR.w=null; } var hv=document.getElementById("homeV"); if(hv) hv.hidden=true; document.body.style.overflow="";
     try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(x){}
     var bar=document.createElement("div"); bar.id="frBar"; bar.className="fr-bar"; bar.setAttribute("role","status");
     bar.innerHTML='<span><b>'+esc(v.name)+'</b> by '+esc((v.by||{}).name||"a friend")+' · view only, changes are not kept</span>'+(owner!==(SY.me||{}).id&&v.copyOk?'<button type="button" class="btn press" data-frask="1"'+(v.requested?' disabled':'')+'>'+(v.requested?'Copy requested':'Request a copy')+'</button>':'')+'<button type="button" class="btn pri press" data-frclose="1">Close</button>';
@@ -139,7 +146,7 @@ function frButton(){ var on=SY.on&&SY.st!=="off", hb=document.querySelector("#ho
   b.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M16 11h6M19 8v6"/></svg><span class="hbt">Friends</span><i class="fr-dot" hidden></i>';
   var party=hb.querySelector("[data-hparty]"); if(party) party.insertAdjacentElement("afterend",b); else hb.appendChild(b); frDots(); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-friends]"); if(!b) return; e.preventDefault(); frOpen(); });
-(function(){ var _icon=syIcon; syIcon=function(){ _icon(); try{ frButton(); }catch(x){} }; })();
+(function(){ var _icon=syIcon; __set_syIcon(function(){ _icon(); try{ frButton(); }catch(x){} }); })();
 window.__friends=FR; window.__frOpen=frOpen;
 /* T11 Learn U12: the Learn funnel for the admin. Totals only, never a list of people (U30) */
 function frLearn(a){ var L=a.learn; if(!L||!L.started) return '<p class="sy-note">Learn: nobody with synced settings has started yet.</p>';

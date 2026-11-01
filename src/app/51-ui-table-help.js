@@ -1,3 +1,16 @@
+import {ABN} from "./02-data-default-character.js";
+import {C,FROZEN} from "./04-logic-storage.js";
+import {esc,num,sg,toast} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {uiGet} from "./07-ui-theme-contrast-spring.js";
+import {LEARN_LINK,__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
+import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
+import {RB_AB} from "./50-logic-reverse-builder.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"cheatOpen",{get:function(){return cheatOpen;},set:function(v){cheatOpen=v;},configurable:true});
+Object.defineProperty(__R,"coachGet",{get:function(){return coachGet;},set:function(v){coachGet=v;},configurable:true});
+Object.defineProperty(__R,"coachLine",{get:function(){return coachLine;},set:function(v){coachLine=v;},configurable:true});
+Object.defineProperty(__R,"wdOpen",{get:function(){return wdOpen;},set:function(v){wdOpen=v;},configurable:true});
 /* T11 Learn U7, U3, U47: help at the table, made from the character's own numbers.
    U7 "Which die do I roll?": pick what you are doing, get the die and the bonus of this character.
    U3 table cheat sheet: one short page for a running session (your turn, the actions, your numbers, a few rules).
@@ -11,13 +24,13 @@ function wdRows(){ var r=[], at=C.attacks||[];
   r.push({g:"Fight",t:"Initiative",d:"1d20 "+sg(D.init),n:"Once, when a fight starts"},{g:"Fight",t:"Death save",d:"1d20",n:"Only at 0 Hit Points, at the start of your turn. 10 or more is a success"});
   var hd=num(C.hitDie,10), cm=D.mod&&D.mod.CON||0; r.push({g:"Rest",t:"Hit Point Die",d:"1d"+hd+" "+sg(cm),n:"During a Short Rest, to heal"});
   return r; }
-function wdOpen(){ navStack=[]; var rows=wdRows(), gs=[]; rows.forEach(function(x){ if(gs.indexOf(x.g)<0) gs.push(x.g); });
+function wdOpen(){ __set_navStack([]); var rows=wdRows(), gs=[]; rows.forEach(function(x){ if(gs.indexOf(x.g)<0) gs.push(x.g); });
   openSheet("Which die do I roll?",'<p class="bk-f">Pick what you are doing. The die and the bonus come from '+esc(C.name||"your character")+'.</p><div class="wd-g" role="group" aria-label="What are you doing?">'+gs.map(function(g,i){ return '<button type="button" class="lib-chip'+(i?'':' on')+'" data-wdg="'+esc(g)+'">'+esc(g)+'</button>'; }).join("")+'</div><div class="wd-l">'+wdList(rows,gs[0])+'</div>',"wd"); }
 function wdList(rows,g){ return rows.filter(function(x){ return x.g===g; }).map(function(x){ return '<div class="wd-r"><b>'+esc(x.t)+'</b><span class="wd-d">'+esc(x.d)+'</span><small>'+esc(x.n)+'</small></div>'; }).join(""); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-wdg],[data-wdopen],[data-cheat]"); if(!b) return;
   if(b.hasAttribute("data-wdopen")){ wdOpen(); return; } if(b.hasAttribute("data-cheat")){ cheatOpen(); return; }
   var g=b.getAttribute("data-wdg"); Array.prototype.forEach.call(document.querySelectorAll("#sheetBody [data-wdg]"),function(x){ x.classList.toggle("on",x===b); }); var l=document.querySelector("#sheetBody .wd-l"); if(l) l.innerHTML=wdList(wdRows(),g); });
-function cheatOpen(){ navStack=[]; var sp=C.spellcasting?'<div><dt>Spell save DC</dt><dd>'+D.dc+'</dd></div><div><dt>Spell attack</dt><dd>'+sg(D.dc-8)+'</dd></div>':'';
+function cheatOpen(){ __set_navStack([]); var sp=C.spellcasting?'<div><dt>Spell save DC</dt><dd>'+D.dc+'</dd></div><div><dt>Spell attack</dt><dd>'+sg(D.dc-8)+'</dd></div>':'';
   var acts=[["Attack","One attack, more with Extra Attack"],["Dash","Extra movement equal to your Speed"],["Disengage","Moving does not trigger Opportunity Attacks this turn"],["Dodge","Attacks against you have Disadvantage"],["Help","A friend gets Advantage on one roll"],["Hide","Stealth check, DC 15, out of sight"],["Influence","Talk someone into something"],["Magic","Cast a spell or use a magic item"],["Ready","Act later, when a trigger happens"],["Search","Look for something, Wisdom check"],["Study","Recall or work out something, Intelligence check"],["Utilize","Use an object"]];
   openSheet("Table cheat sheet",'<div class="cht"><section><h3>Your numbers</h3><dl class="cht-n"><div><dt>Armor Class</dt><dd>'+D.ac+'</dd></div><div><dt>Hit Points</dt><dd>'+D.hpmax+'</dd></div><div><dt>Initiative</dt><dd>'+sg(D.init)+'</dd></div><div><dt>Speed</dt><dd>'+esc(String(D.speed||C.speed||30))+' ft</dd></div><div><dt>Passive Perception</dt><dd>'+esc(String(D.pas_per!=null?D.pas_per:""))+'</dd></div><div><dt>Proficiency</dt><dd>'+sg(D.pb)+'</dd></div>'+sp+'</dl></section>'+
     '<section><h3>Your turn</h3><ul><li><b>Move</b> up to your Speed, split as you like</li><li><b>One action</b> from the list below</li><li><b>One Bonus Action</b>, only if a feature or spell gives one</li><li><b>One Reaction</b> per round, also on other turns</li><li>Free: talk a little, use one object such as opening a door</li></ul></section>'+

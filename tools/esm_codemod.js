@@ -13,7 +13,8 @@ const espree=require('./build/node_modules/espree'), es=require('./build/node_mo
 const fs=require('fs'), path=require('path');
 const SRC=path.join(__dirname,'..','src'); const man=JSON.parse(fs.readFileSync(path.join(SRC,'manifest.json'),'utf8')).entries;
 const bi=+process.argv[2], WRITE=process.argv.includes('--write'); const e=man[bi];
-const files=e.files.filter(f=>f.endsWith('.js')&&!/wrap\.js$/.test(f));
+const wrapF=e.files.find(f=>/00-open\.wrap\.js$/.test(f)), wrapDir=wrapF.slice(0,wrapF.lastIndexOf('/')+1);
+const files=e.files.filter(f=>f.endsWith('.js')&&!/wrap\.js$/.test(f)&&f.startsWith(wrapDir)); // files before the wrapper (a global data piece) stay classic
 const idx=f=>files.indexOf(f);
 const PRE='(function(){'; let text=PRE, spans=[];
 files.forEach(f=>{const t=fs.readFileSync(path.join(SRC,f),'utf8'); spans.push({f,a:text.length,b:text.length+t.length,t}); text+=t+'\n';});
@@ -65,8 +66,16 @@ g.variables.forEach(v=>{
 const thisFns=new Set(); g.variables.forEach(v=>{ if(v.defs[0]&&v.defs[0].type==='FunctionName'){ let hit=false; (function w(n){ if(!n||typeof n!=='object'||hit)return; if(n.type==='ThisExpression')hit=true; if(n!==v.defs[0].node&&/^Function/.test(n.type))return; for(const k in n){ if(k==='parent'||k==='loc'||k==='range')continue; const c=n[k]; if(Array.isArray(c))c.forEach(w); else if(c&&typeof c.type==='string')w(c);} })(v.defs[0].node.body); if(hit) thisFns.add(v.name);} });
 files.forEach(f=>backOf[f].forEach(n=>{ if(thisFns.has(n)) problems.push('registry function uses this: '+n); }));
 // ---- load-time check: while file T loads (top level + functions it calls, transitively) it may use no name of a later file ----
-const fnOwner=sc=>{ let cur=sc.variableScope, owner=null;
-  while(cur&&cur!==g){ const b=cur.block; const iife=b.parent&&b.parent.type==='CallExpression'&&b.parent.callee===b&&(b.type==='FunctionExpression'||b.type==='ArrowFunctionExpression'); if(!iife) owner=cur; cur=cur.upper&&cur.upper.variableScope; }
+const SYNC=new Set(['forEach','map','filter','some','every','reduce','reduceRight','find','findIndex','findLast','flatMap','sort','replace','replaceAll','from']);
+const runsNow=b=>{ const q=b.parent; if(!q||q.type!=='CallExpression') return false; if(q.callee===b) return true; // IIFE
+  return q.arguments.indexOf(b)>=0&&q.callee.type==='MemberExpression'&&!q.callee.computed&&SYNC.has(q.callee.property.name); };
+const fnOwner=sc=>{ let cur=sc.variableScope, owner=null, deferred=false;
+  while(cur&&cur!==g){ const b=cur.block; const isFnExpr=b.type==='FunctionExpression'||b.type==='ArrowFunctionExpression';
+    if(isFnExpr&&runsNow(b)){ /* runs where it is written */ }
+    else if(isFnExpr&&!(b.parent&&b.parent.type==='VariableDeclarator'&&b.parent.id.type==='Identifier'&&cur.upper&&cur.upper.variableScope===g)) { deferred=true; owner=null; }
+    else owner=cur;
+    cur=cur.upper&&cur.upper.variableScope; }
+  if(deferred) return 'NONE';
   if(!owner) return 'TOP'; const b=owner.block;
   if(b.type==='FunctionDeclaration'&&b.id) return b.id.name;
   if(b.parent&&b.parent.type==='VariableDeclarator'&&b.parent.id.type==='Identifier') return b.parent.id.name;
@@ -76,10 +85,18 @@ const bodyRefs={}, bodyCalls={}, topRefs={}, topCalls={}; files.forEach(f=>{topR
 g.variables.forEach(v=>{ if(!v.defs.length) return; v.references.forEach(r=>{ const s=fileOf(r.identifier.range[0]); if(!s) return; const o=fnOwner(r.from); if(o==='NONE') return;
   const q=r.identifier.parent, isCall=q&&(q.type==='CallExpression'||q.type==='NewExpression')&&q.callee===r.identifier;
   if(o==='TOP'){ topRefs[s.f].add(v.name); if(isCall) topCalls[s.f].add(v.name); } else { (bodyRefs[o]=bodyRefs[o]||new Set()).add(v.name); if(isCall) (bodyCalls[o]=bodyCalls[o]||new Set()).add(v.name); } }); });
-let loadBad=0;
+let loadBad=0; const hoistNeed={}; const isFnName=n=>{ const v=g.set.get(n); return !!(v&&v.defs[0]&&v.defs[0].type==='FunctionName'); };
 files.forEach(T=>{ const seen=new Set(), vars=new Set(topRefs[T]); const stack=[...topCalls[T]];
   while(stack.length){ const f=stack.pop(); if(seen.has(f)) continue; seen.add(f); (bodyRefs[f]||[]).forEach(n=>vars.add(n)); (bodyCalls[f]||[]).forEach(c=>stack.push(c)); }
-  vars.forEach(n=>{ const Y=fileOfName[n]; if(Y&&idx(Y)>idx(T)){ loadBad++; problems.push('while loading '+T+' a name of a later file is used: '+n+' ('+Y+')'); } }); });
+  vars.forEach(n=>{ const Y=fileOfName[n]; if(!(Y&&idx(Y)>idx(T))) return;
+    // a variable of a later file is still undefined while loading, before and after; a function declaration used to be hoisted, a registry name is not
+    if(!isFnName(n)) return; loadBad++; hoistNeed[n]=hoistNeed[n]&&idx(hoistNeed[n])<idx(T)?hoistNeed[n]:T; problems.push('while loading '+T+' a function of a later file is used: '+n+' ('+Y+')'); }); });
+if(process.argv.includes('--hoist')){ // move each such function in front of the earliest file that needs it while loading, then run again
+  const byFile={}; Object.keys(hoistNeed).forEach(n=>{ const Y=fileOfName[n], T=hoistNeed[n]; const d=g.set.get(n).defs[0].node; const sp=fileOf(d.range[0]);
+    byFile[Y]=byFile[Y]||[]; byFile[Y].push({n,T,a:d.range[0]-sp.a,b:d.range[1]-sp.a,code:sp.t.slice(d.range[0]-sp.a,d.range[1]-sp.a)}); });
+  const adds={}; Object.keys(byFile).forEach(Y=>{ let t=spans.find(x=>x.f===Y).t; byFile[Y].sort((x,y)=>y.a-x.a).forEach(m=>{ t=t.slice(0,m.a)+t.slice(m.b); (adds[m.T]=adds[m.T]||[]).push(m.code); }); fs.writeFileSync(path.join(SRC,Y),t); });
+  Object.keys(adds).forEach(T=>{ fs.writeFileSync(path.join(SRC,T),'/* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */\n'+adds[T].join('\n')+'\n'+fs.readFileSync(path.join(SRC,T),'utf8')); });
+  console.log('hoisted',Object.keys(hoistNeed).length,'functions'); process.exit(0); }
 console.log('files',files.length,'forward exports',files.map(f=>exportsOf[f].size).reduce((a,b)=>a+b),'setters',Object.keys(setters).length,
   'registry names',files.map(f=>backOf[f].size).reduce((a,b)=>a+b),'problems',problems.length);
 problems.forEach(p=>console.log(' !',p));

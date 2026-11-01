@@ -1,3 +1,36 @@
+import {ABK} from "./02-data-default-character.js";
+import {x14} from "./03-data-glossary.js";
+import {C,S,save} from "./04-logic-storage.js";
+import {$,ask,atkOn,clamp,eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {boxes,featAll,renderNotes,used} from "./08-ui-render-sheet-and-actions.js";
+import {activeConds} from "./10-ui-conditions.js";
+import {__set_navStack,navStack,openSheet,refreshEntry,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";
+import {AK_ICON,akIcon,atkKind,ico,scOf,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {pinnedH} from "./27-ui-party-search-commands-library.js";
+import {INCAP,concChip,concEnd,concOf,hasFeat,lvOf,tmpApply,tmpFeat,toastU,undoMark} from "./32-logic-play-undo-actions.js";
+import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"cfFlags",{get:function(){return cfFlags;},set:function(v){cfFlags=v;},configurable:true});
+Object.defineProperty(__R,"cfSave",{get:function(){return cfSave;},set:function(v){cfSave=v;},configurable:true});
+Object.defineProperty(__R,"cfSkill",{get:function(){return cfSkill;},set:function(v){cfSkill=v;},configurable:true});
+Object.defineProperty(__R,"cfx",{get:function(){return cfx;},set:function(v){cfx=v;},configurable:true});
+Object.defineProperty(__R,"combatHTML",{get:function(){return combatHTML;},set:function(v){combatHTML=v;},configurable:true});
+Object.defineProperty(__R,"fmtN",{get:function(){return fmtN;},set:function(v){fmtN=v;},configurable:true});
+Object.defineProperty(__R,"jrnH",{get:function(){return jrnH;},set:function(v){jrnH=v;},configurable:true});
+Object.defineProperty(__R,"levelUp",{get:function(){return levelUp;},set:function(v){levelUp=v;},configurable:true});
+Object.defineProperty(__R,"modeChips",{get:function(){return modeChips;},set:function(v){modeChips=v;},configurable:true});
+Object.defineProperty(__R,"modeXdRows",{get:function(){return modeXdRows;},set:function(v){modeXdRows=v;},configurable:true});
+Object.defineProperty(__R,"noActH",{get:function(){return noActH;},set:function(v){noActH=v;},configurable:true});
+Object.defineProperty(__R,"saveCantripRows",{get:function(){return saveCantripRows;},set:function(v){saveCantripRows=v;},configurable:true});
+Object.defineProperty(__R,"sitAtk",{get:function(){return sitAtk;},set:function(v){sitAtk=v;},configurable:true});
+Object.defineProperty(__R,"sitCardH",{get:function(){return sitCardH;},set:function(v){sitCardH=v;},configurable:true});
+Object.defineProperty(__R,"sitDiceRows",{get:function(){return sitDiceRows;},set:function(v){sitDiceRows=v;},configurable:true});
+Object.defineProperty(__R,"sitNum",{get:function(){return sitNum;},set:function(v){sitNum=v;},configurable:true});
+Object.defineProperty(__R,"sitReset",{get:function(){return sitReset;},set:function(v){sitReset=v;},configurable:true});
+Object.defineProperty(__R,"xpBox",{get:function(){return xpBox;},set:function(v){xpBox=v;},configurable:true});
 /* v103 Situations */
 /* ===== v103: Situations. Features that depend on the moment (a turn, a place, an ally) get a toggle, a used box or a roll button.
    One table (SIT) drives everything. t: on = switch that changes tags and numbers, used = once-per-turn box, act = button, rem = one-line reminder.
@@ -83,7 +116,7 @@ function sitSt(){ if(!S.sit||typeof S.sit!=="object") S.sit={}; var s=S.sit; if(
 function sitRow(k){ return SIT.filter(function(r){ return r.k===k; })[0]; }
 var SIT_FORCE=false;
 function sitHave(r){ return SIT_FORCE||r.f.some(hasFeat); }
-window.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; renderAll(); },n:function(){ return SIT.length; }};/* test hook */
+window.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; __R.renderAll(); },n:function(){ return SIT.length; }};/* test hook */
 function sitPick(n){ var o=null; (C.features||[]).forEach(function(g){ (g.items||[]).forEach(function(f){ if(f.n!==n) return; var m=/\*\*Your choice\.\*\*\s*([^\n*]+)/.exec(String(f.d||f.full||"")); if(m) o=m[1].trim().replace(/\.$/,""); }); }); return o; }
 function sitOpts(r){ if(!r.o) return null; if(r.pick){ var p=sitPick(r.pick); if(p){ var m=r.o.filter(function(x){ return p.toLowerCase().indexOf(x.toLowerCase())===0||x.toLowerCase().indexOf(p.toLowerCase())===0; }); if(m.length) return m; } } return r.o; }
 function sitOpt(r,st){ var L=sitOpts(r); if(!L) return null; var v=(st||sitRead()).v[r.k]; return L.indexOf(v)>=0?v:L[0]; }
@@ -107,7 +140,7 @@ function sitFx(o){ var st=sitRead(); o.atkS=[]; o.dice=[]; SIT.forEach(function(
     if(r.dice){ var d=r.dice(); if(d) o.dice.push({k:r.k,n:r.n+" damage",dmg:d.dmg,type:d.type,used:!!st.used[r.k]}); } }); }
 /* the tags on one attack row: the common ones, plus the situation tags that fit this weapon */
 function sitAtk(a){ var f=D.cf||{}, base=(f.atk||[]).slice(), k=atkKind(a); (f.atkS||[]).forEach(function(x){ var ok=x.m==="all"||(x.m==="str"&&a.ab==="STR"&&k!=="spell")||(x.m==="melee"&&(k==="melee"||k==="unarmed"))||(x.m==="ranged"&&k==="ranged"); if(ok) base.push(x); }); return base; }
-function sitReset(kind){ var s=S.sit; if(!s) return false; var ch=false, rank={turn:1,short:2,long:3}[kind]||3;
+export function sitReset(kind){ var s=S.sit; if(!s) return false; var ch=false, rank={turn:1,short:2,long:3}[kind]||3;
   SIT.forEach(function(r){ var need=r.rs==="turn"?1:r.rs==="short"?2:3; if(rank<need) return; if(s.on&&s.on[r.k]){ delete s.on[r.k]; ch=true; } if(s.used&&s.used[r.k]){ delete s.used[r.k]; ch=true; } if(s.v&&s.v[r.k+"_r"]&&need<=rank){ delete s.v[r.k+"_r"]; ch=true; } });
   return ch; }
 function sitFind(r){ var fa=featAll(), x=null; r.f.forEach(function(n){ if(!x) x=fa.filter(function(q){ return q.f.n===n; })[0]; }); return x; }
@@ -136,16 +169,16 @@ function sitRoll(r,st){ var d=function(n){ return 1+Math.floor(Math.random()*n);
   if(r.roll==="surge"){ var a=d(20); if(a<20){ st.v.surge_r="Rolled "+a+": no surge."; } else { var b=d(100), i=Math.min(SIT_SURGE.length-1,Math.floor((b-1)/2)); st.v.surge_r="Rolled 20. Surge "+b+": "+SIT_SURGE[i]; } st.used[r.k]=1; return st.v.surge_r; }
   if(r.roll==="spirit"){ var bd=lvOf("Bard")>=15?12:lvOf("Bard")>=10?10:lvOf("Bard")>=5?8:6, n=d(bd), t=SIT_SPIRIT[Math.min(SIT_SPIRIT.length,n)-1].replace(/\{d\}/g,"d"+bd); st.v.spirit_r="d"+bd+" rolled "+n+". "+t; return st.v.spirit_r; } return ""; }
 function sitDo(spec){ var p=String(spec).split(":"), kind=p[0], k=p[1], r=sitRow(k), st;
-  if(kind==="grp"){ SIT_OPEN[k]=!sitOpenG(k); renderAll(); return; }
-  if(kind==="turn"){ undoMark("New turn"); var c=sitReset("turn"); save(); renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
+  if(kind==="grp"){ SIT_OPEN[k]=!sitOpenG(k); __R.renderAll(); return; }
+  if(kind==="turn"){ undoMark("New turn"); var c=sitReset("turn"); save(); __R.renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
   if(!r) return; st=sitSt();
-  if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; var L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
-  if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
-  if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; }
-  if(kind==="act"){ if(r.roll){ undoMark(r.n); var t=sitRoll(r,st); save(); renderAll(); toastU(t); return; }
+  if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; var L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); __R.renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
+  if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); __R.renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
+  if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); __R.renderAll(); return; }
+  if(kind==="act"){ if(r.roll){ undoMark(r.n); var t=sitRoll(r,st); save(); __R.renderAll(); toastU(t); return; }
     var res=(D.res||[]).filter(function(q){ return r.rx.test(q.n); })[0]; if(!res){ toast("No matching resource on this sheet."); return; } var left=res.max-used(res.k,res.max);
-    if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
-    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); renderAll(); toastU(res.n+": regained 1."); } }
+    if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); __R.renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
+    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); __R.renderAll(); toastU(res.n+": regained 1."); } }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-sit]"); if(!b) return; e.preventDefault(); e.stopPropagation(); sitDo(b.getAttribute("data-sit")); });
 
 function cfx(){ var o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[],res:[],fly:null,xd:[],dmgStr:0,atkW:0,init:[],ds:[]}, c=Object.assign({},S.cond||{});
@@ -187,13 +220,13 @@ function cfSave(k){ var f=D.cf||{}; return ((f.save||{})[k]||[]).slice(); }
 function modeChips(){ var av=modesAvail(); if(!av.length) return ""; return av.map(function(m){ var on=modeOn(m.k); return '<button type="button" class="chip mode'+(on?' on':'')+' press" data-mode="'+m.k+'" aria-pressed="'+on+'">'+esc(m.n)+'</button>'; }).join(""); }
 function modeUse(m){ return (D.res||[]).filter(function(r){ return m.use.test(r.n); })[0]; }
 function modeToggle(k){ var m=MODES.filter(function(x){ return x.k===k; })[0]; if(!m) return; S.mode=S.mode||{};
-  if(S.mode[k]){ undoMark("End "+m.n); delete S.mode[k]; save(); renderAll(); refreshEntry(); toastU(m.n+" ended."); return; }
+  if(S.mode[k]){ undoMark("End "+m.n); delete S.mode[k]; save(); __R.renderAll(); refreshEntry(); toastU(m.n+" ended."); return; }
   var go=function(useIt){ undoMark(m.n); var r=modeUse(m), msg=m.n+" is active.", wsT=null;
     if(m.g) MODES.forEach(function(x){ if(x.g===m.g&&x.k!==k) delete S.mode[x.k]; });
     S.mode[k]=1; if(useIt&&r){ S.used[r.k]=num(S.used[r.k],0)+1; msg+=" One use of "+r.n+" spent."; }
     if(k==="rage"&&concOf()) msg+=" "+concEnd("Rage");
     if(k==="wildshape"){ wsT=tmpFeat(hasFeat("Circle Forms")?"Circle Forms":"Wild Shape",""); if(wsT&&wsT.v&&!(S.tmp>0)){ S.tmp=wsT.v; msg+=" Temporary Hit Points: "+wsT.v+"."; wsT=null; } }
-    save(); renderAll(); refreshEntry(); toastU(msg);
+    save(); __R.renderAll(); refreshEntry(); toastU(msg);
     if(wsT&&wsT.v) tmpApply(wsT.v,"Wild Shape",true); };/* v22 M5: one Undo for the whole action */
   var r=modeUse(m), grp=m.g&&MODES.some(function(x){ return x.g===m.g&&modeOn(x.k); });
   if(grp){ go(false); return; }
@@ -221,11 +254,11 @@ function xpDlg(){ var ms=S.lvMode==="milestone"; return '<div id="xpDlg"><p clas
   (ms?'':'<div class="xpadd"><input type="number" min="0" inputmode="numeric" data-xpamt="1" placeholder="XP" aria-label="Experience points"><button type="button" class="btn pri press" data-xpadd="1">Add</button><button type="button" class="btn press" data-xpadd="-1">Remove</button></div>')+
   '<label class="ck"><input type="checkbox" data-xpmode="1"'+(ms?' checked':'')+'> Level by milestones instead of XP</label>'+(D.level<20?'<button type="button" class="btn press lvup" data-lvup="1">Level Up</button>':'')+'</div>'; }
 function xpBox(){ var f=$("#idF"); if(!f) return; var b=$("#xpBox"); if(!b){ b=document.createElement("div"); b.id="xpBox"; b.className="xpl"; f.parentNode.insertBefore(b,f.nextSibling); } b.innerHTML=xpH(); }
-function levelUp(){ if(D.level>=20){ toast("Level 20 is the highest level."); return; } if(window.__bldLevelUp) window.__bldLevelUp(); else { var bb=$("#bldBtn"); if(bb) bb.click(); } }
+export function levelUp(){ if(D.level>=20){ toast("Level 20 is the highest level."); return; } if(window.__bldLevelUp) window.__bldLevelUp(); else { var bb=$("#bldBtn"); if(bb) bb.click(); } }
 document.addEventListener("change",function(e){ var t=e.target; if(!t.matches||!t.matches("[data-xpmode]")) return; S.lvMode=t.checked?"milestone":"xp"; save(); xpBox(); var b=$("#sheetBody"); if(b&&sheetMode==="xp") b.innerHTML=xpDlg(); });
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("[data-xpopen],[data-xpadd],[data-lvup]"); if(!t||t.closest("#bld")) return;/* v22 p14: the builder's own Level Up */ e.preventDefault();
   if(t.hasAttribute("data-lvup")){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); return; }
-  if(t.hasAttribute("data-xpopen")){ navStack=[]; openSheet("Experience", xpDlg(), "xp"); return; }
+  if(t.hasAttribute("data-xpopen")){ __set_navStack([]); openSheet("Experience", xpDlg(), "xp"); return; }
   var inp=t.parentNode.querySelector("[data-xpamt]"), v=Math.floor(num(inp&&inp.value,0)); if(v<=0){ toast("Type an amount of XP first."); if(inp) inp.focus(); return; }
   undoMark(t.getAttribute("data-xpadd")==="1"?"Add XP":"Remove XP"); var before=Math.floor(num(S.xp,0)); S.xp=Math.max(0,before+(+t.getAttribute("data-xpadd"))*v); save(); xpBox(); var bd=$("#sheetBody"); if(bd&&sheetMode==="xp") bd.innerHTML=xpDlg();
   var nx=D.level<20?XPT[D.level]:null; toastU((S.xp>=before?"XP: "+fmtN(S.xp)+".":"XP: "+fmtN(S.xp)+".")+(nx!=null&&S.xp>=nx&&before<nx?" You reached level "+(D.level+1)+". Tap Level Up.":"")); });
@@ -246,7 +279,7 @@ document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.
   var ax=document.getElementById("j-addxp"); if(xp&&ax&&ax.checked) S.xp=Math.max(0,Math.floor(num(S.xp,0)))+xp; save(); renderNotes(); xpBox(); toastU("Journal entry added"+(xp&&ax&&ax.checked?", "+fmtN(xp)+" XP added":"")+"."); });
 
 /* ---------- RU62 combat view: one screen ---------- */
-function combatHTML(){ var h=combatHTML0().replace('</div>','</div>'+pinnedH()), c=cmbHTML(), m='<div class="info-h">Attacks</div>', i=h.indexOf(m); return i>=0?h.slice(0,i)+c+h.slice(i):h.replace(/<\/div>$/,c+'</div>'); }/* v27 RU35 no. 9: pinned skills on top */
+export function combatHTML(){ var h=combatHTML0().replace('</div>','</div>'+pinnedH()), c=__R.cmbHTML(), m='<div class="info-h">Attacks</div>', i=h.indexOf(m); return i>=0?h.slice(0,i)+c+h.slice(i):h.replace(/<\/div>$/,c+'</div>'); }/* v27 RU35 no. 9: pinned skills on top */
 function combatHTML0(){ var o=concOf(), atk=(C.attacks||[]).map(function(a,i){ if(!atkOn(a)) return ""; var d=D.atk[i]; return '<button type="button" class="cba" data-info="w:'+i+'"><b>'+esc(a.n)+'</b>'+cfFlags(sitAtk(a))+'<span>'+sg(d.hit)+'</span><span>'+esc(d.dmg)+' '+esc(a.type||"")+'</span></button>'; }).join("");
   var sl=(D.res||[]).filter(function(r){ return /^s\d$/.test(r.k)||r.k==="pact"; }), lu=(D.res||[]).filter(function(r){ return !/^s\d$|^pact$|^hd/.test(r.k); });
   return '<div id="cbv"><div class="cbh"><div><b>'+S.hp+'<small>/'+D.hpmax+'</small></b><span>HP'+(S.tmp?' +'+S.tmp+' temp':'')+'</span></div><div><b>'+D.ac+'</b><span>AC</span></div><div><b>'+sg(D.init)+'</b><span>Init</span></div><div><b>'+D.speed+'</b><span>Speed</span></div></div>'+

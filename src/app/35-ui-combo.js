@@ -1,3 +1,26 @@
+import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
+import {C,FROZEN,S,recover,save} from "./04-logic-storage.js";
+import {$,$$,ask,atkOn,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
+import {D,derive,fill} from "./06-logic-derivation.js";
+import {actOne,actSplit,featAll,renderAbilities,renderActions,renderFeat,renderIdentity,renderInv,renderSkillsPage,renderTiles,spellsBy,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
+import {renderConds} from "./10-ui-conditions.js";
+import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
+import {mq,setTab} from "./21-ui-tabs-pager.js";
+import {ico,openRest,renderSpells,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {libOpen,openSearch} from "./27-ui-party-search-commands-library.js";
+import {renderExtras} from "./29-ui-ddb-look.js";
+import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts,undoMark,undoNow} from "./32-logic-play-undo-actions.js";
+import {modeFix} from "./33-logic-play-rage-conditions.js";
+import {combatHTML,sitReset} from "./34-ui-situations.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"CF0",{get:function(){return CF0;},set:function(v){CF0=v;},configurable:true});
+Object.defineProperty(__R,"cmbCast",{get:function(){return cmbCast;},set:function(v){cmbCast=v;},configurable:true});
+Object.defineProperty(__R,"cmbHTML",{get:function(){return cmbHTML;},set:function(v){cmbHTML=v;},configurable:true});
+Object.defineProperty(__R,"cmbRe",{get:function(){return cmbRe;},set:function(v){cmbRe=v;},configurable:true});
+Object.defineProperty(__R,"goTab",{get:function(){return goTab;},set:function(v){goTab=v;},configurable:true});
+Object.defineProperty(__R,"keysOpen",{get:function(){return keysOpen;},set:function(v){keysOpen=v;},configurable:true});
+Object.defineProperty(__R,"renderAll",{get:function(){return renderAll;},set:function(v){renderAll=v;},configurable:true});
 /* v42 Combo: three shortcut lists of one Action, one Bonus Action, one Reaction. Options come from what the character has */
 var CMB_MOVE=["Move","Stand Up","Climb or Swim","Jump"], CMB_FREE=["Interact with an Object","Speak","Drop Prone"], CMB_DESC={"Move":"Spend up to your Speed to move on your turn. You can split it before and after your action.","Stand Up":"Standing up from Prone costs movement equal to half your Speed.","Climb or Swim":"Each foot of climbing or swimming costs 1 extra foot of movement, unless you have a Climb or Swim Speed.","Jump":"A running long jump covers feet equal to your Strength score. A high jump covers 3 plus your Strength modifier in feet. Both need a 10 foot run first.","Interact with an Object":"You get one free object interaction on your turn, such as drawing or stowing a weapon. A second one costs the Utilize action.","Speak":"You can say a few short phrases on your turn without using any action.","Drop Prone":"You can fall Prone on your turn. It costs no action and none of your Speed.","Two-Weapon Fighting":"When you take the Attack action and hit with a Light weapon, you can make one extra attack as a Bonus Action with a different Light weapon. Leave out your ability modifier on its damage unless the modifier is negative.","Hasted Action":"With Haste you get one extra action on each of your turns. It can only be used for one weapon attack, Dash, Disengage, Hide, or Utilize."};
 var CMB_SL=[["m","Movement","move"],["a","Action","action"],["x","Extra Action","extra"],["h","On Hit","onhit"],["b","Bonus Action","bonus"],["r","Reaction","reaction"],["f","Free","free"]], CMB_STD=["Dodge","Dash","Disengage","Help","Hide","Search","Ready","Grapple","Shove","Utilize","Influence","Study","Magic","Improvise"], cmbEdit=false;
@@ -60,7 +83,7 @@ function cmbUse(sl){ var st=cmbSteps(cmbCI()).filter(function(x){ return x.sl===
   cmbSetDone(sl,true); cmbFoc=""; save(); try{ syncLU(); }catch(er){} toast("Used "+it.n+"."+spent); cmbRe(); }
 function cmbQuick(i){ var x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; } var o=spCastOpts(x), av=o.filter(qOk);
   if(av.length>=1&&!x.rit&&(av.length===1||!av.some(function(q){ return q.free; }))){ castDo(i,ckOf(av[0]),av[0].lv); return; } if(!av.length&&!x.rit){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } showEntry({type:"info",spec:"sp:"+i},true); }
-function cmbRe(){ try{ var b=$("#sheetBody"); if(sheetMode==="combat"&&b){ var st=b.scrollTop, a=$("#cbAmt"), keep=a&&document.activeElement===a?a.value:null; b.innerHTML=combatHTML(); b.scrollTop=st; if(keep!=null){ var a2=$("#cbAmt"); if(a2){ a2.value=keep; } } } }catch(er){} try{ pipSync(); }catch(er){} }
+function cmbRe(){ try{ var b=$("#sheetBody"); if(sheetMode==="combat"&&b){ var st=b.scrollTop, a=$("#cbAmt"), keep=a&&document.activeElement===a?a.value:null; b.innerHTML=combatHTML(); b.scrollTop=st; if(keep!=null){ var a2=$("#cbAmt"); if(a2){ a2.value=keep; } } } }catch(er){} try{ __R.pipSync(); }catch(er){} }
 function cmbSetDone(sl,v){ S.cdn=S.cdn&&typeof S.cdn==="object"&&!Array.isArray(S.cdn)?S.cdn:{}; if(v) S.cdn[sl]=1; else delete S.cdn[sl]; if(!Object.keys(S.cdn).length) delete S.cdn; }
 function cmbCast(nm){ var ci=cmbCI(); CMB_SL.forEach(function(s){ if(cmbPick(ci,s[0])==="sp:"+nm){ cmbSetDone(s[0],true); cmbFoc=""; } }); }
 function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }
@@ -82,14 +105,14 @@ document.addEventListener("click",function(e){ var t=e.target, b=t.closest&&t.cl
 document.addEventListener("change",function(e){ var n=e.target.closest&&e.target.closest("[data-cmbnm]"); if(n){ var ci=cmbCI(), v=String(n.value||"").trim().slice(0,14); undoMark("Combo name"); S.combos=Array.isArray(S.combos)?S.combos:[]; while(S.combos.length<=ci) S.combos.push({}); S.combos[ci]=S.combos[ci]&&typeof S.combos[ci]==="object"?S.combos[ci]:{}; if(v&&v!=="Combo "+(ci+1)) S.combos[ci].n=v; else delete S.combos[ci].n; save(); cmbRe(); return; }
   var s=e.target.closest&&e.target.closest("[data-cmbsel]"); if(s) cmbAct("sel",[s.getAttribute("data-cmbsel"),s.value]); });
 /* mini window: compact rows */
-function cmbPipH(){ try{ var ci=cmbCI(), h='<span class="pp-k">Combo</span>'; for(var i=0;i<cmbN();i++) h+='<button type="button" class="pp-ct'+(i===ci?' on':'')+'" data-ppct="'+i+'">'+(i+1)+'</button>'; h+='<button type="button" class="pp-ct" data-ppcturn="1" title="New turn">New turn</button><div class="pp-cl">';
+export function cmbPipH(){ try{ var ci=cmbCI(), h='<span class="pp-k">Combo</span>'; for(var i=0;i<cmbN();i++) h+='<button type="button" class="pp-ct'+(i===ci?' on':'')+'" data-ppct="'+i+'">'+(i+1)+'</button>'; h+='<button type="button" class="pp-ct" data-ppcturn="1" title="New turn">New turn</button><div class="pp-cl">';
   CMB_SL.forEach(function(s){ var key=cmbPick(ci,s[0]); if(!key){ if("mxhf".indexOf(s[0])>=0) return; h+='<div class="pp-cr emp"><span class="pp-cs">'+s[1]+'</span><span class="pp-cn">Not set</span></div>'; return; }
     var it=cmbPool(s[0]).filter(function(o){ return o.k===key; })[0], dn=cmbDone(s[0]); if(!it){ h+='<div class="pp-cr emp"><span class="pp-cs">'+s[1]+'</span><span class="pp-cn">No longer available</span></div>'; return; }
     var sub="", a=it.k.indexOf("atk:")===0?(C.attacks||[])[it.i]:null, d=a?D.atk[it.i]:null, x=it.k.indexOf("sp:")===0?(C.spells||[])[it.i]:null;
     if(a&&d) sub=sg(d.hit)+" • "+d.dmg; else if(x) sub=(x.l?"Level "+x.l:"Cantrip")+" • "+(x.r||"");
     h+='<div class="pp-cr'+(dn?' dn':'')+'"><span class="pp-cs">'+s[1]+'</span><span class="pp-cn">'+esc(it.n)+(sub?'<small>'+esc(sub)+'</small>':'')+'</span>'+(x?'<button type="button" class="pp-cu" data-ppcast="'+it.i+'">Cast</button>':'')+'<button type="button" class="pp-cu" data-ppcdone="'+s[0]+'" aria-pressed="'+dn+'">'+(dn?'Used':'Use')+'</button></div>'; });
   return h+'</div>'; }catch(er){ return ""; } }
-function cmbPipClick(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
+export function cmbPipClick(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
   if(b.hasAttribute("data-ppct")){ cmbAct("tab",b.getAttribute("data-ppct")); return; }
   if(b.hasAttribute("data-ppcturn")){ cmbAct("turn"); return; }
   if(b.hasAttribute("data-ppcdone")){ var q=b.getAttribute("data-ppcdone"); if(cmbDone(q)) cmbAct("done",q); else cmbUse(q); return; }
@@ -106,7 +129,7 @@ document.addEventListener("keydown",function(e){ if(e.key==="Enter"&&e.target&&e
 
 /* ---------- RU77 keyboard shortcuts ---------- */
 var KEYS=[["Home: / N B S","On the character list: / searches, N creates a character, B backs up, S opens Settings. Ctrl+K also searches. Type a command word such as back or party, Enter runs it"],["1 to 7","Switch tabs: Actions, Spells, Inventory, Features, Description, Notes, Extras (in a narrow window, 1 to 9 follow the page buttons)"],["H","Heal the amount typed, or type an amount"],["D","Damage the amount typed, or type an amount"],["R","Rest"],["C","Conditions"],["K","Combat view"],["M","Main"],["S","Skills"],["A","Actions"],["P","Spells"],["I","Inventory"],["F","Features"],["B","Description"],["N","Notes"],["X","Extras"],["/","Search the sheet"],["L","Library: search every spell, item, feat, class and rule"],["Ctrl+K","Search and commands (Cmd+K on a Mac)"],["Ctrl+Z","Undo"],["Ctrl+Shift+Z","Redo (also Ctrl+Y)"],["?","This list"]];
-function keysOpen(){ navStack=[]; openSheet("Keyboard Shortcuts",'<div class="keys">'+KEYS.map(function(x){ return '<div><kbd>'+esc(x[0])+'</kbd><span>'+esc(x[1])+'</span></div>'; }).join("")+'</div><p class="muted">Shortcuts work when no text box is in use. In the amount box, Enter is Damage and Shift+Enter is Heal.</p>',"keys"); }
+function keysOpen(){ __set_navStack([]); openSheet("Keyboard Shortcuts",'<div class="keys">'+KEYS.map(function(x){ return '<div><kbd>'+esc(x[0])+'</kbd><span>'+esc(x[1])+'</span></div>'; }).join("")+'</div><p class="muted">Shortcuts work when no text box is in use. In the amount box, Enter is Damage and Shift+Enter is Heal.</p>',"keys"); }
 function goTab(i,id){ if(mq.matches){ var b=$('#bnav [data-go="'+i+'"]'); if(b) b.click(); } else if(id) setTab(id); else window.scrollTo({top:0}); }
 document.addEventListener("keydown",function(e){ if(e.ctrlKey||e.metaKey||e.altKey||e.defaultPrevented) return; var t=e.target, tg=(t&&t.tagName)||"";
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(tg)||(t&&t.isContentEditable)) return; if(document.querySelector(".ask, #recov, #homeV:not([hidden]), #bkp:not([hidden])")) return; var bld=$("#bld"); if(bld&&!bld.hidden) return;
@@ -125,12 +148,15 @@ document.addEventListener("keydown",function(e){ if(e.ctrlKey||e.metaKey||e.altK
 
 function CF0(){ return D.cf||{}; }
 /* v32 RU137: a blue dot on the Build button while the build of this character has open choices (same number as Still to choose) */
-function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n=0; try{ n=window.__bldOpenCount?(+window.__bldOpenCount()||0):0; }catch(e){ n=0; }
+export function bldDot(){ var b=document.getElementById("bldBtn"); if(!b) return; var n=0; try{ n=window.__bldOpenCount?(+window.__bldOpenCount()||0):0; }catch(e){ n=0; }
   var d=b.querySelector(".bdot"); if(n>0&&!d){ d=document.createElement("i"); d.className="bdot"; d.setAttribute("aria-hidden","true"); b.appendChild(d); } else if(!n&&d) d.remove();
   b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Build, open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 window.__bldDot=bldDot;
-function renderAll(instant){
+export function renderAll(instant){
   try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
   catch(e){ if(FROZEN!=="recover"){ recover("Drawing the sheet",e); setTimeout(function(){ throw e; },0); } }/* v18 RU78 */
 }
 
+
+export function __set_bldDot(v){ return bldDot=v; }
+export function __set_renderAll(v){ return renderAll=v; }

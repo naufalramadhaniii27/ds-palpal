@@ -1,3 +1,10 @@
+import {x14} from "./03-data-glossary.js";
+import {C,S,save} from "./04-logic-storage.js";
+import {ask,esc,num,toast} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {featAll} from "./08-ui-render-sheet-and-actions.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {__R} from "./00-reg.js";
 /* ================= v28: BASTION (RD22, DMG 2024 chapter 8) =================
    S.bastion (optional): {name, basic:[{k,sp}], fac:[{k, vast, ch:[...], ord}], def, turn, idle, mode ("orders" or "maintain"), log:[{n, t, o:[[facility, option]], m, ev, note, lost}]}.
    Data in BASTION (db4.js). Hirelings, costs, and days are shown; coins are not taken automatically (use Manage Coin). No dice are rolled (D4): the result is picked */
@@ -5,7 +12,7 @@ function bsOn(){ var b=S.bastion; if(!b||typeof b!=="object"||Array.isArray(b)) 
   b.basic=b.basic.filter(function(x){ return x&&typeof x==="object"&&typeof x.k==="string"; }); b.fac=b.fac.filter(function(x){ return x&&typeof x==="object"&&typeof x.k==="string"; }); b.log=b.log.filter(function(x){ return x&&typeof x==="object"; }); b.fac.forEach(function(f){ if(f.ch!=null&&!Array.isArray(f.ch)) delete f.ch; }); return b; }
 function bsSlots(lv){ var n=0; ((typeof BASTION!=="undefined"&&BASTION.slots)||[]).forEach(function(r){ if(lv>=r[0]) n=r[1]; }); return n; }
 function bsLv(){ return D.level||num(C.level,1); }
-function bsHasCls(L){ var lv=clsLvls(); return L.some(function(c){ return lv[c]; }); }
+function bsHasCls(L){ var lv=__R.clsLvls(); return L.some(function(c){ return lv[c]; }); }
 function bsPreOk(k){ if(!k) return true; var fe=featAll().map(function(x){ return x.f.n; });
   if(k==="arcane") return bsHasCls(["Bard","Sorcerer","Warlock","Wizard"]);
   if(k==="holy") return bsHasCls(["Cleric","Paladin","Druid","Ranger"]);
@@ -18,7 +25,7 @@ function bsCap(b){ return (b.fac||[]).filter(function(f){ return f.k==="Barrack"
 function bsSel(attr,opts,cur,ph){ return '<select class="bs-sel" '+attr+'>'+(ph?'<option value="">'+esc(ph)+'</option>':'')+opts.map(function(o){ var v=Array.isArray(o)?o[0]:o, t=Array.isArray(o)?o[1]:o; return '<option value="'+esc(v)+'"'+(String(cur)===String(v)?' selected':'')+'>'+esc(t)+'</option>'; }).join("")+'</select>'; }
 function bsGP(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")+" GP"; }
 var bsAddK="",bsAddB="Bedroom",bsAddS="Cramped",bsEv="",bsNote="",bsLost="";
-function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: Bastions are a 2024 Dungeon Master's Guide rule */ var b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
+export function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: Bastions are a 2024 Dungeon Master's Guide rule */ var b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
   if(!b) return h+'<div class="bs empty-note empty-st xempty">'+ico("ui-castle","es-i")+'<b>No Bastion yet</b><p class="bs-why">A Bastion is a home base that works for you between adventures: special facilities with hirelings who craft, harvest, recruit, research, and trade (DMG 2024, chapter 8). It usually comes at level 5'+(lv<5?'; your character is level '+lv+', so ask your DM first':'')+'.</p><button type="button" class="btn pri press" data-bs="setup">'+ico("ui-castle","ibt")+'Set Up Bastion</button></div>';/* v31 C9 */
   var slots=bsSlots(lv), nf=(b.fac||[]).length, cap=bsCap(b);
   h+='<div class="bs"><div class="bs-top"><label class="bs-nm"><span>Name</span><input data-bsf="name" value="'+esc(b.name||"")+'" placeholder="For example: The Lantern House" maxlength="60"></label>'+
@@ -59,36 +66,36 @@ function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: B
   if((b.log||[]).length) h+='<div class="info-h">Turn Log</div><div class="bs-log">'+b.log.slice().reverse().slice(0,30).map(function(e){ return '<div class="bs-le"><b>Turn '+e.n+'</b> <small>'+esc(e.t||"")+'</small><p>'+(e.m?'Maintain'+(e.ev?': '+esc(e.ev):'')+(e.lost?', '+e.lost+' defender'+(e.lost>1?'s':'')+' lost':''):(e.o&&e.o.length?e.o.map(function(o){ return esc(o[0])+': '+esc(o[1]); }).join("; "):'No orders'))+(e.note?'. '+esc(e.note):'')+'</p></div>'; }).join("")+'</div>';
   h+='<div class="bkpr"><button type="button" class="btn sm press rm" data-bs="drop">Give Up the Bastion</button></div></div>';
   return h; }
-function bsSave(msg,undo){ save(); renderExtras(); if(msg) (undo?toastU:toast)(msg); }
+function bsSave(msg,undo){ save(); __R.renderExtras(); if(msg) (undo?__R.toastU:toast)(msg); }
 function bsAct(a,t){ var b=bsOn(), BF=BASTION.f, i=t&&t.dataset&&t.dataset.i!=null?+t.dataset.i:-1;
-  if(a==="setup"){ undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; }
+  if(a==="setup"){ __R.undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; }
   if(!b) return;
   if(a==="def+"||a==="def-"){ b.def=Math.max(0,num(b.def,0)+(a==="def+"?1:-1)); bsSave(); return; }
-  if(a==="grow"){ var x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="rmbasic"){ var y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",function(){ undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; }
-  if(a==="addbasic"){ var ad=BASTION.add[bsAddS]; undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="addfac"){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); var nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; }
-  if(a==="rmfac"){ var f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",function(){ undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; }
-  if(a==="vast"){ var fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",function(){ undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; }
+  if(a==="grow"){ var x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; __R.undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; }
+  if(a==="rmbasic"){ var y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",function(){ __R.undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; }
+  if(a==="addbasic"){ var ad=BASTION.add[bsAddS]; __R.undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; }
+  if(a==="addfac"){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } __R.undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); var nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; }
+  if(a==="rmfac"){ var f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",function(){ __R.undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; }
+  if(a==="vast"){ var fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",function(){ __R.undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; }
   if(a==="ch"){ var fc=b.fac[i], dc=fc&&BF[fc.k]; if(!dc||!dc.ch) return; var L=fc.ch=fc.ch||[], v=t.dataset.v, j=L.indexOf(v), n=fc.vast?dc.ch[2]:dc.ch[1];
     if(j>=0) L.splice(j,1); else { if(n===1) L.length=0; else if(L.length>=n){ toast(dc.ch[0]+": "+n+" at most. Remove one first."); return; } L.push(v); } bsSave(); return; }
   if(a==="mode"){ b.mode=t.dataset.v; bsSave(); return; }
   if(a==="efa"){ b.efa=!bsEfa(b); bsSave(); return; }/* v61 */
   if(a==="turn"){ var maint=b.mode==="maintain", o=maint?[]:(b.fac||[]).filter(function(f){ return f.ord; }).map(function(f){ return [f.k,f.ord]; });
     if(maint&&!bsEv){ toast("Pick the Bastion event the DM rolled first."); return; }
-    undoMark("Bastion turn"); var e={n:num(b.turn,0)+1,t:new Date().toISOString().slice(0,10),o:o}, note=[];
+    __R.undoMark("Bastion turn"); var e={n:num(b.turn,0)+1,t:new Date().toISOString().slice(0,10),o:o}, note=[];
     if(maint){ e.m=1; e.ev=bsEv; var lost=Math.max(0,Math.round(num(bsLost,0))); if(lost){ e.lost=Math.min(lost,num(b.def,0)); b.def=Math.max(0,num(b.def,0)-lost); } }
-    var bfull=!maint&&(b.fac||[]).some(function(f){ return f.k==="Barrack"&&f.ord&&/^Recruit/.test(f.ord); })&&num(b.def,0)>=bsCap(b); if(bfull){ UNDO=null; toast("The Barracks are full. Clear the Recruit order on the Barrack first."); return; }/* v28 M3 */
+    var bfull=!maint&&(b.fac||[]).some(function(f){ return f.k==="Barrack"&&f.ord&&/^Recruit/.test(f.ord); })&&num(b.def,0)>=bsCap(b); if(bfull){ __R.UNDO=null; toast("The Barracks are full. Clear the Recruit order on the Barrack first."); return; }/* v28 M3 */
     (b.fac||[]).forEach(function(f){ if(!maint&&f.k==="Barrack"&&f.ord==="Recruit: Bastion Defenders"){ var room=bsCap(b)-num(b.def,0), add=Math.max(0,Math.min(4,room)); if(add){ b.def=num(b.def,0)+add; note.push(add+" defender"+(add>1?"s":"")+" recruited"); } } if(f.k==="War Room"&&f.ord==="Recruit: Lieutenant"&&!maint) note.push("one lieutenant joined"); });
     if(bsNote.trim()) note.push(bsNote.trim()); if(note.length) e.note=note.join(", ");
     b.idle=maint||o.length?0:num(b.idle,0)+1; b.turn=e.n; b.log=(b.log||[]).concat([e]).slice(-200); (b.fac||[]).forEach(function(f){ delete f.ord; }); bsEv=""; bsNote=""; bsLost="";
     bsSave("Bastion turn "+e.n+" done"+(e.note?": "+e.note:"")+".",1); return; }
-  if(a==="drop"){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",function(){ undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } }
+  if(a==="drop"){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",function(){ __R.undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } }
 document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("#extBody [data-bs]"); if(!t||t.disabled) return; e.preventDefault(); bsAct(t.dataset.bs,t); });
 document.addEventListener("change",function(e){ var t=e.target; if(!t.closest||!t.closest("#extBody .bs")) return; var b=bsOn(); if(!b) return;
   if(t.dataset.bso!=null){ var f=b.fac[+t.dataset.bso]; if(f){ if(f.k==="Barrack"&&/^Recruit/.test(t.value)&&num(b.def,0)>=bsCap(b)){ t.value=""; toast("The Barracks are full ("+bsCap(b)+" Bastion Defenders). This order cannot be given until there is room."); delete f.ord; bsSave(); return; }/* v28 M3 */ if(t.value) f.ord=t.value; else delete f.ord; bsSave(); } return; }
   if(t.dataset.bsg){ var gp=t.dataset.bsg.split(":"), gf=b.fac[+gp[0]]; if(gf){ var gl=Array.isArray(gf.ch)?gf.ch.slice():[]; gl[+gp[1]]=t.value; gl=gl.filter(function(x,k){ return x||k<+gp[1]; }); while(gl.length&&!gl[gl.length-1]) gl.pop(); if(gl.length) gf.ch=gl; else delete gf.ch; bsSave(); } return; }/* v28 M4 */
-  if(t.dataset.bsa==="b"){ bsAddB=t.value; return; } if(t.dataset.bsa==="s"){ bsAddS=t.value; renderExtras(); return; } if(t.dataset.bsa==="f"){ bsAddK=t.value; return; } if(t.dataset.bsa==="ev"){ bsEv=t.value; renderExtras(); return; }
+  if(t.dataset.bsa==="b"){ bsAddB=t.value; return; } if(t.dataset.bsa==="s"){ bsAddS=t.value; __R.renderExtras(); return; } if(t.dataset.bsa==="f"){ bsAddK=t.value; return; } if(t.dataset.bsa==="ev"){ bsEv=t.value; __R.renderExtras(); return; }
   if(t.dataset.bsf==="name"){ b.name=t.value.slice(0,60); save(); return; } });
 document.addEventListener("input",function(e){ var t=e.target; if(!t.closest||!t.closest("#extBody .bs")) return; if(t.dataset.bsa==="note") bsNote=t.value; if(t.dataset.bsa==="lost") bsLost=t.value; });
 

@@ -1,3 +1,16 @@
+import {CKEY,FROZEN,KEY,lsGet,lsSet} from "./04-logic-storage.js";
+import {$,__set_toastT,esc,toast,toastT} from "./05-logic-helpers.js";
+import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
+import {closeSheet} from "./13-ui-detail-cards.js";
+import {BKEY,rGet,rSave} from "./14-ui-editor.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {syText} from "./43-logic-cloud-sync.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"mgNotice",{get:function(){return mgNotice;},set:function(v){mgNotice=v;},configurable:true});
+Object.defineProperty(__R,"mgSet",{get:function(){return mgSet;},set:function(v){mgSet=v;},configurable:true});
+Object.defineProperty(__R,"syBaseGet",{get:function(){return syBaseGet;},set:function(v){syBaseGet=v;},configurable:true});
+Object.defineProperty(__R,"syBaseSet",{get:function(){return syBaseSet;},set:function(v){syBaseSet=v;},configurable:true});
+Object.defineProperty(__R,"syMerge",{get:function(){return syMerge;},set:function(v){syMerge=v;},configurable:true});
 /* T11 G3 N12 Merge per part. When this device and the cloud both changed one character since the last sync, the app compares three
    copies like git does: the last synced copy (base, kept per character under cs-sync-base-<id>), this device, and the cloud.
    A part changed on one side only is taken from that side. A part changed on both sides in different ways keeps this device's value,
@@ -57,11 +70,11 @@ function mgShow(v){ if(v===undefined||v===null||v==="") return "empty"; if(typeo
 function mgOpen(id){ var o=mgGet(id); if(!o){ if(typeof closeSheet==="function") closeSheet(); return; }
   var row=function(q,i){ var here=mgShow(mgCur(id,q.p)), there=mgShow(q.r===undefined?undefined:JSON.parse(q.r));
     return '<div class="mg-row"><span><b>'+esc(mgLabel(q.p))+'</b><small>'+(here!=null&&there!=null?'This device: '+esc(here)+'. Other device: '+esc(there)+'.':'Changed differently on both devices.')+'</small></span><button type="button" class="btn press" data-mgu="'+i+'" data-mgid="'+esc(id)+'">Use other device</button></div>'; };
-  navStack=[]; openSheet((o.name||"Character")+": changed on two devices",'<p class="bk-f">Everything else was combined. For these parts, this device\'s value is kept. Pick the other device\'s value where you want it. The full other copy also stays in the cloud history.</p>'+o.parts.map(row).join("")+'<p><button type="button" class="btn press" data-mgx="'+esc(id)+'">Keep this device for all</button></p>',"mg"); }
+  __set_navStack([]); openSheet((o.name||"Character")+": changed on two devices",'<p class="bk-f">Everything else was combined. For these parts, this device\'s value is kept. Pick the other device\'s value where you want it. The full other copy also stays in the cloud history.</p>'+o.parts.map(row).join("")+'<p><button type="button" class="btn press" data-mgx="'+esc(id)+'">Keep this device for all</button></p>',"mg"); }
 /* after a sync: one quiet notice per character that has parts to choose, the same toast shape as the update receipts */
 function mgNotice(){ var r=rGet(); if(!r||!r.chars) return; var ids=Object.keys(r.chars).filter(function(id){ return mgGet(id); }); if(!ids.length) return;
   var id=ids.indexOf(r.active)>=0?r.active:ids[0], o=mgGet(id); if(o.shown) return; o.shown=1; mgSet(id,o);
-  setTimeout(function(){ var t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>Combined changes from your other device. '+o.parts.length+(o.parts.length===1?' part was':' parts were')+' changed on both.</span><button type="button" class="tundo" data-mgo="'+esc(id)+'">Choose</button>'; t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove("on","act"); },9000); },1200); }
+  setTimeout(function(){ var t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>Combined changes from your other device. '+o.parts.length+(o.parts.length===1?' part was':' parts were')+' changed on both.</span><button type="button" class="tundo" data-mgo="'+esc(id)+'">Choose</button>'; t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(function(){ t.classList.remove("on","act"); },9000)); },1200); }
 document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-mgo],[data-mgu],[data-mgx]"); if(!b) return;
   if(b.hasAttribute("data-mgo")){ $("#toast").classList.remove("on","act"); mgOpen(b.getAttribute("data-mgo")); return; }
   if(b.hasAttribute("data-mgx")){ mgSet(b.getAttribute("data-mgx"),null); closeSheet(); return; }

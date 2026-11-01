@@ -1,5 +1,13 @@
+import {ABK,ABN} from "./02-data-default-character.js";
+import {C,FROZEN,lsSave,lsSet} from "./04-logic-storage.js";
+import {$,$$,eqOn,esc,num,sg} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {__set_navStack,navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"BKEY",{get:function(){return BKEY;},set:function(v){BKEY=v;},configurable:true});
+Object.defineProperty(__R,"rGet",{get:function(){return rGet;},set:function(v){rGet=v;},configurable:true});
 /* ================= EDITOR ================= */
-var edTab="id";
+export var edTab="id";
 var ED_TABS=[["id","Identity"],["ab","Abilities"],["sk","Skills"],["cb","Combat"],["at","Attacks"],["iv","Inventory"],["lu","Limited Use"],["ac","Actions"],["ft","Features"]];
 function inp(path,val,o){
   o=o||{};
@@ -54,7 +62,7 @@ function edHTML(){
       fld("Range",inp(p+".range",a.range))+fld("Mastery",inp(p+".m",a.m))+fld("Other hit bonus",inp(p+".misc",a.misc||0,{t:"n"}))+fld("Bonus source",inp(p+".miscSrc",a.miscSrc||""))+
       fld("Notes",inp(p+".note",a.note),"full")+'<div class="ed-f">'+inp(p+".prof",a.prof,{type:"check",label:"Proficient"})+'</div></div></div>';
   }).join("")+'<button type="button" class="ed-add" data-act="add" data-list="attacks" data-tpl="attack">+ Add attack</button></div>';
-  h+='<div class="ed-sec'+(edTab==="iv"?' on':'')+'" data-sec="iv"><div class="ed-grid" style="margin-bottom:12px">'+fld("Gold (GP)",inp("wallet.gp",coinsNow().gp,{t:"n"}))+fld("Equipment note",inp("equipNote",C.equipNote),"full")+'</div>'+(C.inv||[]).map(function(it,i){
+  h+='<div class="ed-sec'+(edTab==="iv"?' on':'')+'" data-sec="iv"><div class="ed-grid" style="margin-bottom:12px">'+fld("Gold (GP)",inp("wallet.gp",__R.coinsNow().gp,{t:"n"}))+fld("Equipment note",inp("equipNote",C.equipNote),"full")+'</div>'+(C.inv||[]).map(function(it,i){
     var p="inv."+i;
     return '<div class="ed-card"><div class="ed-ct"><b>'+esc(it.n||"Item")+'</b><button type="button" class="ed-del" data-act="del" data-list="inv" data-i="'+i+'">Remove</button></div><div class="ed-grid">'+
       fld("Name",inp(p+".n",it.n),"w2")+fld("Quantity",inp(p+".q",it.q,{t:"n"}))+fld("Weight each (lb)",inp(p+".w",it.w,{t:"n"}))+
@@ -84,7 +92,7 @@ function edHTML(){
   h+='<div class="ed-foot"><p>Saved automatically on this device.</p><button type="button" class="btn warn press" data-act="reset">Clear Build</button></div>';
   return h;
 }
-var TPL={
+export var TPL={
   bonus:function(){return {s:"",v:1}},
   attack:function(){return {n:"New attack",sub:"",ab:"STR",prof:true,die:"1d6",dieSrc:"",type:"",range:"5 ft",m:"",note:""}},
   item:function(){return {n:"New item",q:1,w:0,eq:false,d:""}},
@@ -93,10 +101,10 @@ var TPL={
   feature:function(){return {n:"New feature",s:"",d:""}},
   group:function(){return {g:"New group",items:[]}}
 };
-function getPath(o,path){ return path.split(".").reduce(function(a,k){ return a==null?a:a[k]; },o); }
-function setPath(o,path,v){ var ks=path.split("."), last=ks.pop(), t=ks.reduce(function(a,k){ if(a[k]==null) a[k]={}; return a[k]; },o); t[last]=v; }
+export function getPath(o,path){ return path.split(".").reduce(function(a,k){ return a==null?a:a[k]; },o); }
+export function setPath(o,path,v){ var ks=path.split("."), last=ks.pop(), t=ks.reduce(function(a,k){ if(a[k]==null) a[k]={}; return a[k]; },o); t[last]=v; }
 var rT2=null;
-function scheduleRender(){ clearTimeout(rT2); rT2=setTimeout(function(){ renderAll(); refreshEdLive(); },90); }
+export function scheduleRender(){ clearTimeout(rT2); rT2=setTimeout(function(){ __R.renderAll(); refreshEdLive(); },90); }
 function refreshEdLive(){
   if(sheetMode!=="edit") return;
   $$("#sheetBody .ed-card").forEach(function(){});
@@ -107,11 +115,13 @@ function refreshEdLive(){
   if(fresh.length===old.length) old.forEach(function(el,i){ if(el.innerHTML!==fresh[i].innerHTML) el.innerHTML=fresh[i].innerHTML; });
   body.scrollTop=st;
 }
-function rerenderEditor(){ var body=$("#sheetBody"), st=body.scrollTop; body.innerHTML=edHTML(); body.scrollTop=st; }
-function openEditor(){ navStack=[]; openSheet("Edit "+C.name, edHTML(), "edit", true); }
+export function rerenderEditor(){ var body=$("#sheetBody"), st=body.scrollTop; body.innerHTML=edHTML(); body.scrollTop=st; }
+export function openEditor(){ __set_navStack([]); openSheet("Edit "+C.name, edHTML(), "edit", true); }
 
-var RKEY="cs-roster-v1",BKEY="phb24-builder-v1";
-function rGet(){try{return JSON.parse(__store.getItem(RKEY))}catch(e){return null}}
-function rSave(r){return lsSave(RKEY,r)}/* v18 RU61: failure shows the caution bar */
-function setOrDel(k,v){if(FROZEN)return;if(v==null){try{__store.removeItem(k)}catch(e){}}else lsSet(k,v)}
-function rEnsure(){var r=rGet();if(!r||!r.chars||!r.chars[r.active]){var id="c"+Date.now();r={active:id,chars:{}};r.chars[id]=PUBLIC_FRESH?{name:"New Character",ph:1,created:Date.now(),t:Date.now()}:{name:C.name};}return r}
+export var RKEY="cs-roster-v1",BKEY="phb24-builder-v1";
+export function rGet(){try{return JSON.parse(__store.getItem(RKEY))}catch(e){return null}}
+export function rSave(r){return lsSave(RKEY,r)}/* v18 RU61: failure shows the caution bar */
+export function setOrDel(k,v){if(FROZEN)return;if(v==null){try{__store.removeItem(k)}catch(e){}}else lsSet(k,v)}
+export function rEnsure(){var r=rGet();if(!r||!r.chars||!r.chars[r.active]){var id="c"+Date.now();r={active:id,chars:{}};r.chars[id]=__R.PUBLIC_FRESH?{name:"New Character",ph:1,created:Date.now(),t:Date.now()}:{name:C.name};}return r}
+
+export function __set_edTab(v){ return edTab=v; }

@@ -1,3 +1,9 @@
+import {C} from "./04-logic-storage.js";
+import {$,$$,toast} from "./05-logic-helpers.js";
+import {D} from "./06-logic-derivation.js";
+import {buzz} from "./09-ui-hit-points-playbar-death-saves.js";
+import {takeRest} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {buildPrint} from "./36-ui-printable-sheet.js";
 /* ================= PDF EXPORT ================= */
 /* T11 A3: the PDF libraries come from this site (vendor/pdf), not a CDN: jsPDF 4.2.1 (fixes the 2026 advisories of the 2.x line) and
    html2canvas-pro 2.5.2 (maintained fork, reads modern colors such as color-mix and oklch). The service worker keeps them after the first use */

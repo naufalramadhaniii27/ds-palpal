@@ -1,6 +1,17 @@
+import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
+import {exSpd,gName} from "./03-data-glossary.js";
+import {C,S,clsLv} from "./04-logic-storage.js";
+import {$,atkOn,eqOn,esc,fmtW,num,senseList,sg} from "./05-logic-helpers.js";
+import {D,fill,richB} from "./06-logic-derivation.js";
+import {langText} from "./08-ui-render-sheet-and-actions.js";
+import {activeConds} from "./10-ui-conditions.js";
+import {COINS,coinsNow,invWeight} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {cuNm} from "./26-ui-customize.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"buildPrint",{get:function(){return buildPrint;},set:function(v){buildPrint=v;},configurable:true});
 /* ================= PRINTABLE SHEET ================= */
 function chk(n){var h="";for(var i=0;i<n;i++)h+='<span class="ps-chk"></span>';return h}
-function buildPrint(){
+export function buildPrint(){
   var notes = S.notes||{};
   function note(k,l,h){ var v=(notes[k]||"").trim(); return '<div class="ps-box"><div class="ps-h">'+l.toUpperCase()+'</div><div class="ps-note'+(v?'':' e')+'" data-nk="'+k+'" style="min-height:'+(h||36)+'px">'+(v?esc(v):'')+'</div></div>'; }
   var title = esc(C.name)+", "+esc(C.species)+" "+esc(clsLv())+(C.sub?" ("+esc(C.sub)+")":"");

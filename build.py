@@ -131,10 +131,15 @@ def bundle(srcdir, entry):
     if not os.path.exists(es):
         raise SystemExit("esbuild missing: run  npm ci --prefix tools/build")
     r = subprocess.run([es, os.path.join(srcdir, entry), "--bundle", "--format=iife", "--target=esnext", "--charset=utf8",
-                        "--legal-comments=none", "--log-level=error", '--banner:js="use strict";'], capture_output=True)
+                        "--legal-comments=none", "--log-level=error"], capture_output=True)
     if r.returncode:
         raise SystemExit("esbuild bundle failed for " + entry + ":\n" + r.stderr.decode("utf-8", "replace"))
-    return "\n" + r.stdout.decode("utf-8") 
+    out = r.stdout.decode("utf-8")
+    head = "(() => {\n"
+    if not out.startswith(head):
+        raise SystemExit("esbuild output for " + entry + " does not start as an IIFE")
+    # ES modules are strict; the directive sits inside the function so it also holds when the block is wrapped in a gate
+    return "\n" + head + '"use strict";\n' + out[len(head):]
 
 
 def assemble(srcdir):
@@ -151,7 +156,8 @@ def assemble(srcdir):
                 # ES module block: esbuild bundles the entry and its imports into one IIFE (strict), the block keeps its tags
                 if e.get("pre"):
                     # classic files that must stay plain scripts (they also run under node in tests): put first, UI bundle after
-                    out.append('"use strict";\n')
+                    if "data-gate" not in e["open"]:
+                        out.append('"use strict";\n')
                     for fn in e["pre"]:
                         out.append(read(os.path.join(srcdir, fn)))
                 out.append(bundle(srcdir, e["entry"]))

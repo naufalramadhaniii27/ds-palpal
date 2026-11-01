@@ -1,3 +1,12 @@
+import {C,CKEY,FROZEN,KEY,S,cSaveT,lsGet,lsSet,saveT} from "./04-logic-storage.js";
+import {ask,esc} from "./05-logic-helpers.js";
+import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
+import {BKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";
+import {curRaw,fmtT,rSnap,rawHash,snTake} from "./15-logic-roster-backup-files-snapshots.js";
+import {undoLbl} from "./32-logic-play-undo-actions.js";
+import {rcptDiff,rcptHTML,rcptNow} from "./46-logic-receipts.js";
+import {__R} from "./00-reg.js";
+Object.defineProperty(__R,"tmOpen",{get:function(){return tmOpen;},set:function(v){tmOpen=v;},configurable:true});
 /* T11 G3 N2 Time machine. The open character is kept as it was at many points in time: after a quiet minute following a change,
    at most one point per 10 minutes, the last 40 points per character. Each point keeps the build, sheet and state (portrait left out)
    with its number receipt (N3) and the last action name. History lists the points with what changed since the one before, compares any
@@ -21,9 +30,9 @@ function tmHTML(){ var id=(rGet()||{}).active, L=tmGet(id); if(!L.length) return
   return '<p class="bk-f">Your character at earlier moments, newest first. Compare any moment with now, or go back to it.</p><ul class="tml">'+L.map(function(p,i){ var prev=L[i+1], d=prev?rcptDiff(prev.r,p.r):[];
     return '<li><div class="tm-h"><b>'+esc(fmtT(p.t))+'</b><span>'+esc(p.why)+'</span></div>'+(d.length?'<small>'+d.slice(0,3).map(function(x){ return esc(x.l+" "+(x.from||"-")+" → "+(x.to||"-")); }).join("<br>")+(d.length>3?"<br>and "+(d.length-3)+" more":"")+'</small>':'')
       +'<div class="tm-a"><button type="button" class="btn press" data-tmc="'+i+'">Compare with now</button>'+(i?'<button type="button" class="btn press" data-tmr="'+i+'">Go back here</button>':'')+'</div></li>'; }).join("")+'</ul>'; }
-function tmOpen(){ navStack=[]; openSheet("History",tmHTML(),"tm"); }
+function tmOpen(){ __set_navStack([]); openSheet("History",tmHTML(),"tm"); }
 document.addEventListener("click",function(e){ var c=e.target.closest&&e.target.closest("[data-tmc],[data-tmr]"); if(!c) return; var id=(rGet()||{}).active, L=tmGet(id);
-  if(c.hasAttribute("data-tmc")){ var p=L[+c.getAttribute("data-tmc")]; if(!p) return; var d=rcptDiff(p.r,rcptNow()); navStack=[]; openSheet("Then and now",'<p class="bk-f">'+esc(fmtT(p.t))+' compared with now.</p>'+rcptHTML(d,"The numbers are the same."),"tm"); return; }
+  if(c.hasAttribute("data-tmc")){ var p=L[+c.getAttribute("data-tmc")]; if(!p) return; var d=rcptDiff(p.r,rcptNow()); __set_navStack([]); openSheet("Then and now",'<p class="bk-f">'+esc(fmtT(p.t))+' compared with now.</p>'+rcptHTML(d,"The numbers are the same."),"tm"); return; }
   var q=L[+c.getAttribute("data-tmr")]; if(!q) return; var dd=rcptDiff(rcptNow(),q.r), pv=dd.slice(0,6).map(function(x){ return x.l+": "+(x.from||"-")+" → "+(x.to||"-"); }).join("\n");
   ask("Go back to "+fmtT(q.t)+"? The character as it is now is kept as a snapshot first, so you can undo this."+(pv?"\n\nNumbers that change:\n"+pv:""),"Go Back",function(){ var r=rSnap(rEnsure()); snTake(id,"Before going back in History",r);
     var s=q.S; try{ var so=JSON.parse(s), co=JSON.parse(curRaw().S||"{}"); if(co.portrait){ so.portrait=co.portrait; s=JSON.stringify(so); } }catch(er){}
