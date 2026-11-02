@@ -56,7 +56,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B004 phone b | art/scenes-src/backgrounds/B004b-phone.png | 1x2 | augen-trust, azorius-functionary | done |
 | B005 PC | art/scenes-src/backgrounds/B005-pc.png | 2x2 | baldurs-gate-acolyte, baldurs-gate-charlatan, baldurs-gate-criminal, baldurs-gate-entertainer | done |
 | B005 phone a | art/scenes-src/backgrounds/B005a-phone.png | 1x2 | baldurs-gate-acolyte, baldurs-gate-charlatan | done |
-| B005 phone b | art/scenes-src/backgrounds/B005b-phone.png | 1x2 | baldurs-gate-criminal, baldurs-gate-entertainer | open |
+| B005 phone b | art/scenes-src/backgrounds/B005b-phone.png | 1x2 | baldurs-gate-criminal, baldurs-gate-entertainer | claimed by codex-b001-b011 2026-11-02T13:58+00:00 |
 | B006 PC | art/scenes-src/backgrounds/B006-pc.png | 2x2 | baldurs-gate-folk-hero, baldurs-gate-guild-artisan, baldurs-gate-hermit, baldurs-gate-noble | needs review: baker peel enters middle third after redo |
 | B006 phone a | art/scenes-src/backgrounds/B006a-phone.png | 1x2 | baldurs-gate-folk-hero, baldurs-gate-guild-artisan | done |
 | B006 phone b | art/scenes-src/backgrounds/B006b-phone.png | 1x2 | baldurs-gate-hermit, baldurs-gate-noble | done |
