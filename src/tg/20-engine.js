@@ -1,3 +1,4 @@
+// @ts-check
 /* G7 TG0 Training Ground engine, without any screen. Pure rules: the same seed and the same list of commands always give the same fight.
    Plan: claude/rencana-kerja-training-ground.md parts 5 and 6 (tier A: attacks, damage types, saves, basic conditions, movement on a grid,
    Dash, Disengage, Dodge, opportunity attacks, End Turn, Hit Points, death saves, Recharge). No enemy AI: the player gives every command.
@@ -143,7 +144,7 @@ var CMD={
   /* TG5: a spell of tier B. Leveled spells spend a slot of the chosen level (default: the lowest free one at or above the spell's level).
      atk: one spell attack per target (rays and beams are listed targets). save: damage rolled once, each target saves, half on a success when
      the spell says so. heal: dice + modifier per target. auto: Magic Missile style darts that always hit. Concentration ends the old one */
-  cast:function(st,c){ let u=U(st,now(st)), sp=null; (u.spells||[]).forEach((x) =>{ if(x.n===c.sp) sp=x; }); if(!sp) return fail(st,"no such spell"); if(!active(u)) return fail(st,"cannot act");
+  cast:function(st,c){ let u=U(st,now(st)), sp=/** @type {any} */(null); (u.spells||[]).forEach((x) =>{ if(x.n===c.sp) sp=x; }); if(!sp) return fail(st,"no such spell"); if(!active(u)) return fail(st,"cannot act");
     const slot=sp.time==="b"?"b":"a"; if(!u.turn[slot]) return fail(st,"no action left");
     if(sp.l>0&&u.turn.leveled) return fail(st,"one spell slot per turn");/* PHB 2024: only one spell slot can be spent on a turn */
     let lv=sp.l; if(sp.l>0){ lv=c.lvl||0; if(!lv){ for(let L=sp.l;L<=9;L++) if((u.slots[L-1]||0)>0){ lv=L; break; } } if(!lv||lv<sp.l||!(u.slots[lv-1]>0)) return fail(st,"no spell slot"); }
@@ -191,22 +192,22 @@ var CMD={
 /* T11 N20 odds lens: the exact chance to hit, to land a Critical Hit, the average damage and the chance to drop the target with one attack.
    The d20 with Advantage or Disadvantage, natural 1 and 20, damage dice convolved exactly (doubled dice on a crit), Resistance, Vulnerability
    and Immunity per damage part, Temporary Hit Points. Nothing is rolled and the state is not changed */
-function pmfDice(expr,crit){ let dist={0:1}; parse(expr).forEach((q) =>{ const add={};
-    if(q.f){ const n=q.n*(crit?2:1); for(let i=0;i<n;i++){ var nd={}; Object.keys(dist).forEach((k) =>{ for(let f=1;f<=q.f;f++){ const v=+k+q.s*f; nd[v]=(nd[v]||0)+dist[k]/q.f; } }); dist=nd; } }
+function pmfDice(expr,crit){ let dist=/** @type {Record<number,number>} */({0:1}); parse(expr).forEach((q) =>{ const add=/** @type {Record<number,number>} */({});
+    if(q.f){ const n=q.n*(crit?2:1); for(let i=0;i<n;i++){ var nd=/** @type {Record<number,number>} */({}); Object.keys(dist).forEach((k) =>{ for(let f=1;f<=q.f;f++){ const v=+k+q.s*f; nd[v]=(nd[v]||0)+dist[k]/q.f; } }); dist=nd; } }
     else { Object.keys(dist).forEach((k) =>{ add[+k+q.s*q.k]=dist[k]; }); dist=add; } });
-  const out={}; Object.keys(dist).forEach((k) =>{ const v=Math.max(0,+k); out[v]=(out[v]||0)+dist[k]; }); return out; }
-function pmfConv(a,b){ const o={}; Object.keys(a).forEach((x) =>{ Object.keys(b).forEach((y) =>{ const v=+x+(+y); o[v]=(o[v]||0)+a[x]*b[y]; }); }); return o; }
-function pmfDmg(t,a,crit){ let d={0:1}; (a.dmg||[]).forEach((q) =>{ const p=pmfDice(q[1],crit), m={}; Object.keys(p).forEach((v) =>{ const x=adjust(t,+v,q[2]); m[x]=(m[x]||0)+p[v]; }); d=pmfConv(d,m); }); return d; }
+  const out=/** @type {Record<number,number>} */({}); Object.keys(dist).forEach((k) =>{ const v=Math.max(0,+k); out[v]=(out[v]||0)+dist[k]; }); return out; }
+function pmfConv(a,b){ const o=/** @type {Record<number,number>} */({}); Object.keys(a).forEach((x) =>{ Object.keys(b).forEach((y) =>{ const v=+x+(+y); o[v]=(o[v]||0)+a[x]*b[y]; }); }); return o; }
+function pmfDmg(t,a,crit){ let d=/** @type {Record<number,number>} */({0:1}); (a.dmg||[]).forEach((q) =>{ const p=pmfDice(q[1],crit), m=/** @type {Record<number,number>} */({}); Object.keys(p).forEach((v) =>{ const x=adjust(t,+v,q[2]); m[x]=(m[x]||0)+p[v]; }); d=pmfConv(d,m); }); return d; }
 function odds(st,attId,tgtId,actName){ const att=st.units[attId], tgt=st.units[tgtId], a=findAct(att,actName); if(!att||!tgt||!a||a.k!=="atk") return null;
   let d=udist(att,tgt), ranged=!(a.mr==="m"||(a.mr==="mr"&&d<=(a.reach||5))), adv=advOf(st,att,tgt,ranged); if(ranged&&a.rng&&d>a.rng[0]) adv=adv>0?0:-1;
   const pv=function(v){ return adv>0?(v*v-(v-1)*(v-1))/400:adv<0?((21-v)*(21-v)-(20-v)*(20-v))/400:1/20; };
   let autoCrit=(tgt.cond.paralyzed||tgt.cond.unconscious||tgt.down)&&d<=5&&!ranged, pHit=0, pCrit=0;
   for(let v=1;v<=20;v++){ const h=v===20||(v!==1&&v+a.hit>=tgt.ac); if(!h) continue; if(v===20||autoCrit) pCrit+=pv(v); else pHit+=pv(v); }
   let N=pmfDmg(tgt,a,false), K=pmfDmg(tgt,a,true), need=tgt.hp+(tgt.tmp||0), avg=0, kill=0;
-  Object.keys(N).forEach((x) =>{ avg+=pHit*N[x]*x; if(+x>=need) kill+=pHit*N[x]; }); Object.keys(K).forEach((x) =>{ avg+=pCrit*K[x]*x; if(+x>=need) kill+=pCrit*K[x]; });
+  Object.keys(N).forEach((x) =>{ avg+=pHit*N[+x]*+x; if(+x>=need) kill+=pHit*N[x]; }); Object.keys(K).forEach((x) =>{ avg+=pCrit*K[+x]*+x; if(+x>=need) kill+=pCrit*K[x]; });
   return {hit:pHit+pCrit,crit:pCrit,avg:avg,kill:need>0?kill:0,adv:adv}; }
 /* a legendary action: only on another creature's turn, one use each (2024 stat blocks have no costs above 1) */
-function lgAct(u,n){ let a=null; (u.lg||[]).forEach((x) =>{ if(x.n===n) a=x; }); if(a&&a.ref){ const r=findAct(u,a.ref); if(r) return r; } return a; }
+function lgAct(u,n){ let a=/** @type {any} */(null); (u.lg||[]).forEach((x) =>{ if(x.n===n) a=x; }); if(a&&a.ref){ const r=findAct(u,a.ref); if(r) return r; } return a; }
 function lgUse(st,u,n){ if(!u.lgn) return "no legendary actions"; if(now(st)===u.id) return "not on its own turn"; if(u.dead||u.down||u.cond.incapacitated) return "cannot act"; if(!(u.lgLeft>0)) return "no legendary actions left";
   if(!(u.lg||[]).some((x) =>{ return x.n===n; })) return "no such legendary action"; u.lgLeft--; ev(st,{t:"lg",u:u.id,act:n,left:u.lgLeft}); return ""; }
 function inReach(f,u){ let r=5; (f.acts||[]).forEach((a) =>{ if(a.k==="atk"&&a.mr!=="r") r=Math.max(r,a.reach||5); }); return udist(f,u)<=r; }
@@ -226,4 +227,4 @@ function hash(st){ let t=JSON.stringify(st), h=2166136261>>>0; for(let i=0;i<t.l
 
 const TGE={odds:odds,pmfDice:pmfDice,lgAct:lgAct,create:create,step:step,replay:replay,hash:hash,fromCreature:fromCreature,fromSheet:fromSheet,reach:reach,dist:dist,udist:udist,adjust:adjust,parse:parse,rollExpr:rollExpr,now:now,foes:foes,active:active,speedLeft:speedLeft,inReach:inReach,findAct:findAct};
 if(typeof module!=="undefined"&&module.exports) module.exports=TGE; else root.TGE=TGE;
-})(typeof window!=="undefined"?window:this);
+})(/** @type {any} */(typeof window!=="undefined"?window:this));

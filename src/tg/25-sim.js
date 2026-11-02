@@ -1,3 +1,4 @@
+// @ts-check
 /* T11 N22 build duel: many headless fights with fixed seeds, to compare builds. Only this simulation has a simple pilot (walk to the
    nearest foe, use the best attack in reach, Multiattack first, a save action when nothing reaches). The Training Ground itself keeps
    no enemy AI: there the player gives every command (user decision 2026-10-29). Same seeds give the same result. */
@@ -41,5 +42,6 @@ function est(pc,c,k){ const st=TGE.create({seed:1,w:6,h:4,units:[TGE.fromSheet(p
   const D=best("pc","f0"), u=st.units.f0, multi=u.acts.filter((a) =>{ return a.k==="multi"&&a.ma&&a.ma.length; })[0];
   const F=multi?multi.ma.reduce((t,e) =>{ return t+e[1]*best("f0","pc",String(e[0]).split("|")); },0):best("f0","pc");
   const taken=D>0?F*(c.hp/D)*k*(k+1)/2:1e9, r=(pc.hp-taken)/Math.max(1,pc.hp); return {p:1/(1+Math.exp(-4.5*(r-0.25))),D:D,F:F,taken:taken}; }
+// @ts-ignore the node export of this file and of 20-engine.js refer to each other
 TGE.sim={pilot:pilot,fight:fight,duel:duel,est:est}; if(typeof module!=="undefined"&&module.exports&&!root.TGE) module.exports=TGE.sim;
 })(typeof window!=="undefined"?window:this);

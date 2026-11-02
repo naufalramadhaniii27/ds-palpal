@@ -30,6 +30,8 @@ jobs:
         run: npm ci --prefix tools/build
       - name: Build is in sync (index.html, sw.js, CSP hashes, lint, vendor sums)
         run: python3 build.py --check
+      - name: "Type gate (N46, no file may get more tsc errors than tools/ts-baseline.json)"
+        run: python3 tools/tsc_gate.py
       - name: Install Playwright
         run: |
           pip install playwright==$PLAYWRIGHT_VERSION brotli

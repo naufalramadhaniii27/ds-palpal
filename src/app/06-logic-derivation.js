@@ -1,3 +1,4 @@
+// @ts-check
 import {ABK,ABN} from "./02-data-default-character.js";
 import {x14} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
