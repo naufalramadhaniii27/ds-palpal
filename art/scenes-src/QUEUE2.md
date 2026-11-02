@@ -163,7 +163,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B040 phone a | art/scenes-src/backgrounds/B040a-phone.png | 1x2 | rashemi-wanderer, reconstructed-runaway | done |
 | B040 phone b | art/scenes-src/backgrounds/B040b-phone.png | 1x2 | recovered-cultist, reformed-cultist | done |
 | B041 PC | art/scenes-src/backgrounds/B041-pc.png | 2x2 | released-thrall, revelry-pirate, rewarded, rival-intern | done |
-| B041 phone a | art/scenes-src/backgrounds/B041a-phone.png | 1x2 | released-thrall, revelry-pirate | open |
+| B041 phone a | art/scenes-src/backgrounds/B041a-phone.png | 1x2 | released-thrall, revelry-pirate | claimed by codex-b034-b044 2026-11-02T13:53+00:00 |
 | B041 phone b | art/scenes-src/backgrounds/B041b-phone.png | 1x2 | rewarded, rival-intern | open |
 | B042 PC | art/scenes-src/backgrounds/B042-pc.png | 2x2 | ruined, rune-carver, salvager, savant | open |
 | B042 phone a | art/scenes-src/backgrounds/B042a-phone.png | 1x2 | ruined, rune-carver | open |
