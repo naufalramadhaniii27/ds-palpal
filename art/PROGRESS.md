@@ -5041,3 +5041,9 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 7 — pengamatan gaya
+Saya membuka dan melihat 14 ikon lama dari feats (lucky, alert, savage-attacker), conditions (blinded, charmed), item-categories (potion, ring), creature-types (dragon, undead), damage-types (fire), abilities (strength), dan items (breastplate, backpack, acid), serta sheet-001-a dan sheet-001-b di art-test2. Ikon lama mempunyai siluet jelas, tepian berwarna gelap mengikuti bahan, lipatan kain dan detail logam; sebagian contoh lama lebih jenuh dan berkilau daripada lembar yang disetujui. Patokan produksi sesi ini adalah kedua lembar art-test2: proporsi realistis, palet cokelat/emas/abu serta warna aksen redup, tekstur kulit/logam/batu dan ukiran halus, kontur tipis, pencahayaan lembut, serta objek terisolasi di atas transparansi. Hindari garis hitam tebal, bentuk emoji, dan kilau plastik.
+
+### Sesi 7 — lembar 008
+Selesai: sheet-008-a.png (sel 1–50) dan sheet-008-b.png (sel 51–100), PNG RGBA 2560×1280, kisi 10×5, sel 256 px. Resolusi asli empat panel terpakai masing-masing 1254×1254; objek diekstrak dari transparansi, diperkecil bila perlu, lalu dipusatkan dengan margin minimal 24 px, tanpa pembesaran. Panel 51–75 yang menambahkan teks ditolak dan dibuat ulang; panel 76–100 dibuat ulang menjadi persegi dan Mastermind diperbaiki menjadi bidak raja. Pemeriksaan visual dilakukan pada kedua hasil serta perbandingan sampel sel 3/9/13/24 dengan ikon lama pada ukuran sama dan pratinjau 24 px. Tidak ada kontur hitam tebal atau teks pada hasil final. Sel yang masih meragukan secara interpretasi: 23 (Grey Watchman: lentera berkerudung), 29 (Hologrammer: prisma), 69 (Mage Brand: besi cap), 89 (Nanite Magic: gugus kubus); efek cahaya sel 52/62/70/97/100 perlu ditinjau saat approval gaya. Validasi dimensi, mode RGBA, 100 sel terisi, dan margin tiap sel lulus.
