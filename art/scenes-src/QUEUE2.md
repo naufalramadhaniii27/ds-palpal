@@ -219,7 +219,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K014 | art/scenes-src/subclasses/K014.png | 4x4 cards | Fighter to Investigator | done |
 | K015 | art/scenes-src/subclasses/K015.png | 4x4 cards | Investigator to Martyr | done |
 | K016 | art/scenes-src/subclasses/K016.png | 4x4 cards | Martyr to Monk | done |
-| K017 | art/scenes-src/subclasses/K017.png | 4x4 cards | Monk | claimed by codex-k001-k033 2026-11-02T13:49+00:00 |
+| K017 | art/scenes-src/subclasses/K017.png | 4x4 cards | Monk | done |
 | K018 | art/scenes-src/subclasses/K018.png | 4x4 cards | Monk to Necromancer | open |
 | K019 | art/scenes-src/subclasses/K019.png | 4x4 cards | Necromancer to Paladin | open |
 | K020 | art/scenes-src/subclasses/K020.png | 4x4 cards | Paladin to Ranger | open |
