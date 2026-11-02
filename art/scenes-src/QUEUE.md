@@ -28,7 +28,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | done |
 | S04 PC | art/scenes-src/species/S04-pc.png | kalamer-landwalker, ruinbound, nautilid, amoeboid | done |
 | S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | done |
-| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | claimed by codex-scenes 2026-11-02T08:27:49+00:00 |
+| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | done |
 | S05 PC | art/scenes-src/species/S05-pc.png | geppettin, manikin, wechselkind, vect | open |
 | S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | open |
 | S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | open |
