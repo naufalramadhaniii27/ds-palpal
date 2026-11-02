@@ -79,7 +79,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B012 phone a | art/scenes-src/backgrounds/B012a-phone.png | 1x2 | cobalt-scholar, cosmic-dawn-experiment | done |
 | B012 phone b | art/scenes-src/backgrounds/B012b-phone.png | 1x2 | courtier, covenant-of-the-grave-recruit | done |
 | B013 PC | art/scenes-src/backgrounds/B013-pc.png | 2x2 | crucible-storm-chaser, cult-initiate, dead-magic-dweller, dimir-operative | done |
-| B013 phone a | art/scenes-src/backgrounds/B013a-phone.png | 1x2 | crucible-storm-chaser, cult-initiate | open |
+| B013 phone a | art/scenes-src/backgrounds/B013a-phone.png | 1x2 | crucible-storm-chaser, cult-initiate | claimed by codex-b012-b022 2026-11-02T13:07+00:00 |
 | B013 phone b | art/scenes-src/backgrounds/B013b-phone.png | 1x2 | dead-magic-dweller, dimir-operative | open |
 | B014 PC | art/scenes-src/backgrounds/B014-pc.png | 2x2 | disciple, discredited-neural-tuner, disgraced-raider, dragon-cultist | open |
 | B014 phone a | art/scenes-src/backgrounds/B014a-phone.png | 1x2 | disciple, discredited-neural-tuner | open |
