@@ -69,7 +69,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B009 PC | art/scenes-src/backgrounds/B009-pc.png | 2x2 | bejeweled-conclave-spy, boros-legionnaire, botanist, carouser | claimed by codex-b001-b011 2026-11-02T14:28+00:00 |
 | B009 phone a | art/scenes-src/backgrounds/B009a-phone.png | 1x2 | bejeweled-conclave-spy, boros-legionnaire | open |
 | B009 phone b | art/scenes-src/backgrounds/B009b-phone.png | 1x2 | botanist, carouser | open |
-| B010 PC | art/scenes-src/backgrounds/B010-pc.png | 2x2 | celebrity-adventurers-scion, changeling-traveler, chapter-knight, chondathan-freebooter | open |
+| B010 PC | art/scenes-src/backgrounds/B010-pc.png | 2x2 | celebrity-adventurers-scion, changeling-traveler, chapter-knight, chondathan-freebooter | claimed by codex-b034-b044 2026-11-02T14:32:34.023Z |
 | B010 phone a | art/scenes-src/backgrounds/B010a-phone.png | 1x2 | celebrity-adventurers-scion, changeling-traveler | open |
 | B010 phone b | art/scenes-src/backgrounds/B010b-phone.png | 1x2 | chapter-knight, chondathan-freebooter | open |
 | B011 PC | art/scenes-src/backgrounds/B011-pc.png | 2x2 | city-watch, clan-crafter, clasp-member, cloistered-scholar | open |
