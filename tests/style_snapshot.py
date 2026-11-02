@@ -52,6 +52,7 @@ async def take(path):
             elif var: seed += "localStorage.setItem('yudhi-kelapa-sheet-v1',JSON.stringify(%s));" % json.dumps(var)
             await ctx.add_init_script(seed + "sessionStorage.setItem('__s','1')}")
             if TRACE: await ctx.add_init_script(path=os.path.join(HERE, "lib", "trace.js"))
+            if TRACE and os.environ.get("CS_TRACE_NOLIB"): await ctx.add_init_script("window.__noLibIdx=true")
             await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(2500)
             await shoot(pg, vp + " home", res)

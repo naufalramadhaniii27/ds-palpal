@@ -115,3 +115,7 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Result: 34 parts, 185 globals, each owned by exactly one part (0 shared). 9 shared tables listed (AUTO, BACKGROUNDS, CLASSES, DMGI, FEATS, SPECIES, SPELLS, SPELL_FULL, SUB_FULL, each filled by 2 to 6 parts). Only one part removes registry keys (the applyPacks style one).
 - Caveat found: the Library index build reads most data parts in the background, so "core" is overstated (16 parts) in split-plan.md. True core needs a second trace with that build switched off. Not done yet.
 - Not done: the cross-check build with the plan and the guard (Fase 2.2).
+## N32 second trace (nilai-98/n32b)
+- Added test hook window.__noLibIdx (libIndex returns []), set only by CS_TRACE_NOLIB=1 in tests/style_snapshot.py. Result: reads under the last screen ("library") stay at 10,228,878 with or without the index. So the index is not the only background reader. Another reader (libXs and the library list) runs after the last screen mark.
+- Finding: the Proxy method cannot rank sheet screens. Sheet tabs show 0 to 1 reads of data globals, because app code keeps references taken before the proxies are installed (they are installed after "bldready"). Counting reads does not give the core tier.
+- Decision: for Fase 2.2 use a guard instead of counting. Make each deferred global a getter that logs the first read per screen and install it before app code runs. N33 and the loader plan wait for that guard.
