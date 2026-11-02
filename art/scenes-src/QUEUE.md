@@ -44,7 +44,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | done |
 | S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | done |
 | S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | done |
-| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | claimed by codex-phone-redo 2026-11-02 |
+| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | done |
 | S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | claimed by codex-phone-redo 2026-11-02 |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | done |
 | S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | claimed by codex-phone-redo 2026-11-02 |
