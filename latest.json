@@ -1,7 +1,7 @@
 {
- "commit": "41f836d4",
+ "commit": "aa2ba59c",
  "branch": "nilai-98/n44",
- "date": "2026-11-02 09:46",
+ "date": "2026-11-02 10:36",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -537,7 +537,7 @@
     },
     {
      "id": "var_decl",
-     "value": 187,
+     "value": 186,
      "base": 6595,
      "target": 0,
      "credit": 0.97,
@@ -634,10 +634,10 @@
     },
     {
      "id": "innerhtml_outside_lib",
-     "value": 257,
+     "value": 254,
      "base": 262,
      "target": 0,
-     "credit": 0.02,
+     "credit": 0.03,
      "gate": true,
      "note": ""
     },
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.11,
- "secs": 49
+ "secs": 39
 }
