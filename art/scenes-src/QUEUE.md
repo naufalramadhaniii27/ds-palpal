@@ -42,7 +42,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | done |
 | S08 PC | art/scenes-src/species/S08-pc.png | cursed-blood, demidritch, scourgeborne, wrothian | done |
 | S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | done |
-| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | claimed by codex-phone-redo 2026-11-02 |
+| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | done |
 | S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | done |
 | S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | claimed by codex-phone-redo 2026-11-02 |
 | S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | claimed by codex-phone-redo 2026-11-02 |
