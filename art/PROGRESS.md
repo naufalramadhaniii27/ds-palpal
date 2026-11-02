@@ -5087,3 +5087,11 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - File: `sheet-080-a.png`, `sheet-080-b.png`; PNG RGBA 2560 × 1280, 100 feature berurutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; artwork tidak diperbesar.
 - Semua sel dilihat; enam sampel dibandingkan pada ukuran sama dengan ikon lama dan pada 24 px. Kontur halus, warna lembut, bahan realistis. Wajah gnome/gith dewasa; Gingerbread Familiar terlihat sebagai benda kue bertekstur. Simbol sumber subclass/species dipertahankan.
 - Sel meragukan: 26 Genetic Library (buku heliks), 31 Gestalt Anchor (jangkar/kristal), 32 Ghaal'Shaarat (greatsword), 45 Gingerbread Familiar (kue kucing), 51 Gliding Wings/Skathári (sayap berselaput), 65 Go to Your Room (pintu), 82 Graveyard Tango (patung kerangka), 100 Grotag Tamer (cambuk). Sel-sel ini simbol ringkas, perlu tinjauan lore bila bentuk spesifik diwajibkan.
+
+### Sesi 9 — lembar 090 selesai
+- File: `sheet-090-a.png`, `sheet-090-b.png`; PNG RGBA 2560 × 1280 per file, 100 feature sesuai urutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; artwork hanya diperkecil.
+- Semua sel dilihat; enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Kontur tipis dan warna lembut; simbol psikis, radiant, reanimation, mekanis, dan healing dibedakan lewat bentuk/bahan. Tidak ada serpihan ikon tetangga.
+- Sel meragukan secara simbol: 17 Quantum Tunneling (orb/portal), 24 Raconteur (topeng), 34 Raise Cohort (panji), 55 Ravening Horde (maw spektral), 61 Reactive (tangan lentur), 64 Reactive Nanites (granula/cog), 75 Reclaim Potential (pedang/kristal), 82 Redemption Arc (hati/pelangi), 87 Reflected Positioning (cermin), 90 Regenerative (cakar tumbuh), 97 Relive the Past (cermin memori). Sumber subclass/species digunakan untuk menentukan fungsi.
+
+### Sesi 9 — pemeriksaan akhir
+Selesai berurutan: 010, 020, 030, 040, 050, 060, 070, 080, 090. Total 18 PNG RGBA, masing-masing 2560 × 1280, 900 sel terisi dengan hasil berbeda. Pemeriksaan alpha setiap sel memastikan seluruh artwork berada dalam margin minimal 24 px. Semua artwork diperkecil dari sumber generate, tidak diperbesar. Tiap lembar diperiksa visual dan dibandingkan dengan ikon lama sebelum commit/push tersendiri ke art-g9. Catatan interpretasi yang meragukan tercantum per lembar di atas.
