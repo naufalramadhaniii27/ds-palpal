@@ -5051,3 +5051,9 @@ Saya melihat langsung 14 ikon lama: lucky, alert, savage-attacker, blinded, char
 - Resolusi asli generate: empat panel 1254 × 1254 RGBA; revisi juga 1254 × 1254. Ikon dipotong dari panel lalu diperkecil bila perlu, tidak diperbesar; margin minimal 24 px diverifikasi per sel.
 - Pemeriksaan visual: delapan sampel dibandingkan berdampingan dengan ikon lama pada ukuran objek yang sama, juga ditinjau pada 24 px. Kontur, kejenuhan, dan tekstur mengikuti grid art-test2. Aura berlebihan pada panel 1 dan 3 digambar ulang; panel 4 digambar ulang untuk mencegah asap menyatu dengan sel lain. Sel 90 memakai revisi dengan tepat lima batu.
 - Sel yang meragukan: 86–94 memakai jumlah batu sebagai pembeda level tanpa teks; pada 24 px perbedaan jumlah batu berdekatan kurang jelas. Sel 83 memakai batu percikan sebagai simbol cantrip generik.
+
+### Sesi 2 — lembar 013 selesai
+- File sheet-013-a.png dan sheet-013-b.png: masing-masing 2560 × 1280 PNG RGBA; 100 sel sesuai urutan daftar.
+- Resolusi asli generate: panel dan revisi 1254 × 1254 RGBA; sel 10 digambar sendiri pada 1254 × 1254. Dirakit tanpa pembesaran, margin minimal 24 px terverifikasi.
+- Delapan sampel dibandingkan langsung dengan ikon lama pada ukuran objek yang sama dan 24 px. Semua panel direvisi untuk mengurangi aura dan kejenuhan; sel 71 digambar ulang menjadi kucing dewasa realistis; sel 10 digambar ulang agar bilah laser terbaca.
+- Sel yang meragukan: 13–14 (ley initiate/ley-bound), 28–31 (tahap lycanthrope), 62–65 (tahap ooze), dan 81–84 (tahap primordial) memiliki bentuk satu keluarga; detail tahap berdekatan berkurang pada 24 px. Simbol feat langka mengikuti fungsi dari namanya dalam daftar.
