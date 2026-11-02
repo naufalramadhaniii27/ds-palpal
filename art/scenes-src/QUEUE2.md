@@ -249,7 +249,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P11 | art/scenes-src/portraits/P11.png | 2x2 portraits | kender-a, kender-b, kenku-a, kenku-b | done |
 | P12 | art/scenes-src/portraits/P12.png | 2x2 portraits | khenra-a, khenra-b, khoravar-a, khoravar-b | done |
 | P13 | art/scenes-src/portraits/P13.png | 2x2 portraits | kithkin-a, kithkin-b, kobold-a, kobold-b | done |
-| P14 | art/scenes-src/portraits/P14.png | 2x2 portraits | kor-a, kor-b, kuo-toa-a, kuo-toa-b | claimed by codex-p01-p23 2026-11-02T13:28+00:00 |
+| P14 | art/scenes-src/portraits/P14.png | 2x2 portraits | kor-a, kor-b, kuo-toa-a, kuo-toa-b | done |
 | P15 | art/scenes-src/portraits/P15.png | 2x2 portraits | leonin-a, leonin-b, lizardfolk-a, lizardfolk-b | open |
 | P16 | art/scenes-src/portraits/P16.png | 2x2 portraits | naga-a, naga-b, owlin-a, owlin-b | open |
 | P17 | art/scenes-src/portraits/P17.png | 2x2 portraits | plasmoid-a, plasmoid-b, reborn-a, reborn-b | open |
