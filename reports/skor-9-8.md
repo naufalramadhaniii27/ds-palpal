@@ -72,3 +72,8 @@ Temuan produk:
 - Catatan desain, bukan bug: salinan karakter aktif di cs-roster-v1 tertinggal dari kunci sheet sampai karakter diganti (rSnap). Kunci sheet adalah sumber kebenaran. Tes membandingkan hanya keberadaan salinan itu.
 - Catatan UI: elemen hiasan di Home builder membawa atribut data-rs="2024" selain tombolnya. Tidak merusak, tapi selector `[data-rs]` ambigu. Tes memakai `button[data-rs]`.
 Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 kegagalan disuntikkan. Sesudah perbaikan seed 287 lolos 10 dari 10. Ulang 500 seed penuh dengan build baru: lihat baris berikutnya.
+
+## N44 html templates (in progress, branch nilai-98/n44)
+- src/app/lib/html.js: 7.9 KB source, 4.4 KB minified, 2.0 KB gzip (plan target 3 KB minified, not met, gzip is under). tests/html_lib.py 17/17.
+- Converted so far: death save pips, HP max button (src/app/09). Checked in browser at 390x844: pips render, tap sets aria-pressed, no page errors.
+- Left: about 198 innerHTML sites. Lint rule not added yet.

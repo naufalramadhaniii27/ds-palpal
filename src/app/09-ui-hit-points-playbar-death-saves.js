@@ -3,6 +3,7 @@ import {$,clamp,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__R} from "./00-reg.js";
+import {html,render} from "./lib/html.js";
 /* ================= HIT POINTS ================= */
 let flashT=null;
 export function buzz(ms){ try{ if(__store.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
@@ -27,7 +28,7 @@ export function syncHP(instant){
   (function(){ let g=document.getElementById("hpGhost"); if(!g&&bar.parentNode){ g=document.createElement("i"); g.id="hpGhost"; bar.parentNode.insertBefore(g,bar); } if(!g) return; const to=clamp(S.hp/D.hpmax,0,1), was=+(g.getAttribute("data-v")||to);
     g.style.transition=(instant||to>was)?"none":""; g.style.transform="scaleX("+to+")"; g.setAttribute("data-v",to); })();/* v29 RU120: the red trail follows the bar down a moment later */
   __R.barTo(tb, clamp(S.tmp/D.hpmax,0,1), instant);/* v31 p21 */
-  const hmx=$("#hpMax"); if(hmx.getAttribute("data-v")!==String(D.hpmax)||!hmx.firstElementChild){ hmx.setAttribute("data-v",D.hpmax); hmx.innerHTML = '<button type="button" class="bd" data-bd="hp" style="border-radius:6px;padding:0 4px">'+D.hpmax+'</button>'; }/* v30 p13 */
+  const hmx=$("#hpMax"); if(hmx.getAttribute("data-v")!==String(D.hpmax)||!hmx.firstElementChild){ hmx.setAttribute("data-v",D.hpmax); render(html`<button type="button" class="bd" data-bd="hp" style="border-radius:6px;padding:0 4px">${D.hpmax}</button>`,hmx); }/* v30 p13 */
   $("#hpChipV").textContent = S.hp + (S.tmp?"+"+S.tmp:"");
   (function(){ const tv=$("#tmpV"); if(!tv) return; if(tv.tagName==="INPUT"){ if(document.activeElement!==tv) tv.value=S.tmp; } else tv.textContent=S.tmp; })();/* v31 p96 */
   const ht=$("#hpTmp"); ht.textContent="+"+S.tmp+" temp"; ht.classList.toggle("on",S.tmp>0);
@@ -63,8 +64,8 @@ document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.clo
   if(t.id==="vbCond"){ __R.showEntry({type:"cond"},false); return; }
   if(t.id==="vbInsp"){ const ib=$("#insp"); if(ib) ib.click(); vbSync(); return; }
   hpOpen(); });
-function pipsHTML(n,max,lbl){ let h=""; for(let i=0;i<max;i++) h+='<button type="button" class="pip" aria-pressed="'+(i<n)+'" data-i="'+i+'" aria-label="'+lbl+' '+(i+1)+'"></button>'; return h; }
-export function syncDeath(){ $("#dsS").innerHTML = pipsHTML(S.ds[0],3,"Success"); $("#dsF").innerHTML = pipsHTML(S.ds[1],3,"Failure");
+const pips=(n,max,lbl) => html`${Array.from({length:max},(_,i) => html`<button type="button" class="pip" aria-pressed="${i<n}" data-i="${i}" aria-label="${lbl+" "+(i+1)}"></button>`)}`;
+export function syncDeath(){ render(pips(S.ds[0],3,"Success"),$("#dsS")); render(pips(S.ds[1],3,"Failure"),$("#dsF"));
   let dead=S.hp===0&&S.ds[1]>=3, v=document.querySelector(".vitals"), n=document.getElementById("deadNote"); if(v) v.classList.toggle("dead",dead);/* v29 RU127 */
   if(!n){ n=document.createElement("div"); n.id="deadNote"; n.className="dead-note"; const di=document.querySelector(".death-in"); if(di) di.insertBefore(n,di.firstChild); }
   n.innerHTML=dead?('<b>Dead</b><span>'+(S.exh>=6?'Exhaustion level 6':'Three failed death saves')+'. Heal or lower Exhaustion to undo.</span>'):""; n.hidden=!dead; if(S.hp!==0) DS_OVER=0; dsGuideSync();/* v32 p26 */ }
