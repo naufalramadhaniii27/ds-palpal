@@ -1,3 +1,5 @@
+> 2026-11-02: SUPERSEDED. Do not run these batches. Run art-tasks/grid/GRID.md instead (393 icons and emblems in 4 grid sheets). Entries already made as grid icons on art-g1..art-g10 are dropped. Species portraits are postponed.
+
 # QUEUE: every image still to make (v4, 2026-11-01)
 
 One prompt runs this whole list. The same prompt may run in several Codex sessions at the same time: each session claims one batch, finishes it, then claims the next. MASTER.md stays the rule book for every batch.
