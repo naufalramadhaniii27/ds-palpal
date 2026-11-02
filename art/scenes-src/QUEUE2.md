@@ -194,7 +194,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B050 phone b | art/scenes-src/backgrounds/B050b-phone.png | 1x2 | variant-guild-artisan, variant-noble | done |
 | B051 PC | art/scenes-src/backgrounds/B051-pc.png | 2x2 | variant-sailor, vizier, volstrucker-agent, wage-mage | done |
 | B051 phone a | art/scenes-src/backgrounds/B051a-phone.png | 1x2 | variant-sailor, vizier | done |
-| B051 phone b | art/scenes-src/backgrounds/B051b-phone.png | 1x2 | volstrucker-agent, wage-mage | open |
+| B051 phone b | art/scenes-src/backgrounds/B051b-phone.png | 1x2 | volstrucker-agent, wage-mage | claimed by codex-b045-b054 2026-11-02T13:52+00:00 |
 | B052 PC | art/scenes-src/backgrounds/B052-pc.png | 2x2 | ward-of-the-sheltering-hands, waterdhavian-noble, whitestone-rifle-corps, wildspacer | open |
 | B052 phone a | art/scenes-src/backgrounds/B052a-phone.png | 1x2 | ward-of-the-sheltering-hands, waterdhavian-noble | open |
 | B052 phone b | art/scenes-src/backgrounds/B052b-phone.png | 1x2 | whitestone-rifle-corps, wildspacer | open |
