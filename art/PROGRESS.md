@@ -5064,3 +5064,9 @@ Ikon lama diperiksa secara visual: lucky, alert, savage-attacker, blinded, charm
 - Resolusi asli generate per panel: 1402×1122, 1402×1122, 1254×1254, 1402×1122. Perakitan tanpa pembesaran; margin transparan minimum 24 px dan 100 sel terisi diperiksa.
 - Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
 - Sel meragukan/catatan: Sel 12 Wall of Time memakai ulang simbol jam pasir tanpa angka dari sel 12 lembar 007 (sumber panel 1254×1254), menggantikan dinding jam berangka. Sel 54,75,99 All-Purpose Tool berupa perkakas lipat sebagai salah satu bentuk transformasi alat. Sel interpretatif: 6 Voorish Sign,20 Weave Numen,21 Weiler’s Ward,50 Yellow Sign; ikon tanda tidak memakai teks. Tidak ada pembesaran.
+
+### Sesi 6 — lembar 037 selesai
+- File: sheet-037-a.png dan sheet-037-b.png; PNG RGBA 2560×1280, sel 256 px, urutan 1–100 sesuai art-lists.
+- Resolusi asli generate per panel: 1402×1122, 1266×1242, 1402×1122, 1402×1122. Perakitan tanpa pembesaran; margin transparan minimum 24 px dan 100 sel terisi diperiksa.
+- Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
+- Sel meragukan/catatan: Sel 31 Klothys memakai simbol benang takdir yang sama dengan sel 32. Sel 89 Magician’s Judge memakai ulang simbol pedang sel 95 lembar 027, sumber panel 1390×1132, menggantikan simbol palu yang keliru. Sel interpretatif/meragukan karena deskripsi sumber tidak tersedia: 10 Jax (orb perangkat),12 Joho’s Charm,13 Jora Charm,20 Karrek’s Bastion,61 Lazarus Unit,62 Leaping Legs,69 Light Drinker,78 Logic Unit,80 Love’s Embrace. Varian boon dan lentera dibedakan lewat ornamen, bukan teks.
