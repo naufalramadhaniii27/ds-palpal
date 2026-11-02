@@ -27,7 +27,7 @@ Species portraits (90) are postponed.
 |---|---|---|---|
 | G01 | 100 | app UI icons (replace every line icon) | open (redo v3: match old grid style, four 1254 square generates, rule 9) |
 | G02 | 100 | app UI icons, then species emblems | open (redo v3: match old grid style, four 1254 square generates, rule 9) |
-| G03 | 100 | species emblems and icons, features, items | open (redo v3: match old grid style, rule 9) |
+| G03 | 100 | species emblems and icons, features, items | claimed by Codex 2026-11-02 14:58 UTC |
 | G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | open (v3 rules: match old grid style, rule 9) |
 
 ## Prompt per image
