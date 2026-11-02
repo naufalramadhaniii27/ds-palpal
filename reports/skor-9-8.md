@@ -134,3 +134,10 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Measured JS heap at ready (CDP, after GC, 3 runs each, old sheet, 390x844): main 29.4 MB, now 24.8 MB. That is 4.6 MB (16 percent) lower. Parse time of 4.7 MB is no longer in the first load.
 - Not done yet: wotc5 and wotc14 (120 KB), the guard that counts reads of unloaded parts, other tiers. Full jobs run in CI.
 - CI run 41498142091 on f22-lazy: tests/split_dist.py failed ("1 parts still waiting": it counted the lazy script; fixed with :not([data-lazy]), now 35 parts, one lazy). Chaos seed 15 failed in CI ("key changed: yudhi-kelapa-sheet-v1, /tmp 2 -> 0"), passed twice locally with --seed 15. Same kind as the earlier CI-only seeds 13 and 29. Not caused by this change (storage code untouched). Watching the next run.
+## N33 first step: Library index memory (branch nilai-98/n33)
+- Heap snapshot (after the first Library search, 390x844): the index and its word lists add 35 MB (24.8 MB at ready, 64.5 MB after). Strings are 36.7 MB of the heap, 143,000 of them between 64 and 256 bytes. Most come from the 43,000 homebrew rows.
+- Two changes in libIndex(), same results: (1) the lowercase pack text for homebrew rows is built once per pack, not once per row; (2) the type line (field s) is stored once per distinct text (Map). Tried and dropped: replacing the bullet in search text (heap went up by 1 MB).
+- Result (tests/perf_budget.py --fast, median of 3): heap_tools_mb 65.68 -> 58.9 at 390x844, 65.78 -> 59.0 at 1250x850. Target was 60. heap_home_mb 24.8, heap_home_raw_mb 30.65 (target 30, from the q7 lazy part). Library search still gives the same first results for "fey protector". q_lib 34/34, lib_add 0 failed.
+- tests/perf-budget.json tightened: heap_home_mb 33 -> 27, raw 60 -> 33, tools 72 -> 62.
+- New test hooks: __libStats (index sizes) and __libIdx.
+- N33 columns for the big read-only tables were not needed to reach the heap targets. Not started: it needs the trade-off check again (7 MB QREFS, 2 MB WXS, 1.5 MB WXI).
