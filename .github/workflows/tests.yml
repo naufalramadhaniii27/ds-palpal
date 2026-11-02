@@ -32,6 +32,8 @@ jobs:
         run: python3 build.py --check
       - name: "Type gate (N46, no file may get more tsc errors than tools/ts-baseline.json)"
         run: python3 tools/tsc_gate.py
+      - name: HTML from strings (N44 ratchet)
+        run: python3 tools/html_gate.py
       - name: Install Playwright
         run: |
           pip install playwright==$PLAYWRIGHT_VERSION brotli
