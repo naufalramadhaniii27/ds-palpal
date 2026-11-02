@@ -16,7 +16,7 @@ Species portraits (90) are postponed.
 8. If a cell is wrong, redo the whole image once. If still wrong, write the cell numbers in the status as `needs review: cells ...`.
 9. Attach art-tasks/grid/style-ref.png (12 icons already in the app) as the ONLY style reference. Every cell must look like it belongs in that set. For ui icons, all cells of one image must look like one matching icon set.
 10. STYLE CHECK before saving (v1 of G01 failed all three):
-   a. Background is real transparency (alpha 0). No painted, blurred, colored or checkerboard background behind the icons.
+   a. Background is real transparency (alpha 0) and every icon is fully opaque (alpha 255 inside the outline). v1 had 0% opaque pixels: the whole sheet was semi-transparent, so icons look washed out and blurred colors show behind them. Check with Python before saving: at least 20% of pixels must have alpha 255. No painted, blurred, colored or checkerboard background.
    b. Same look as style-ref.png: soft thin brown-black outline, two or three soft cel tones, natural materials, gentle highlights. Not glossy mobile-game icons, not thick black outlines, not candy saturation, not neon glow.
    c. Physical props only. No arrows, plus signs, refresh circles, selection boxes or other flat UI symbols. Show an idea through a real object (a bonus action is a small winged boot, an added item is a pouch with a tag), as in style-ref.png.
 
