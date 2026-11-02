@@ -34,7 +34,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | done |
 | S06 PC | art/scenes-src/species/S06-pc.png | mandrake, accursed, arisen, disembodied | done |
 | S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | done |
-| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | open |
+| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | claimed by codex-scenes 2026-11-02T08:53:36+00:00 |
 | S07 PC | art/scenes-src/species/S07-pc.png | grudgel, laneshi, ogresh, wulven | open |
 | S07 phone a | art/scenes-src/species/S07a-phone.png | grudgel, laneshi | open |
 | S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | open |
