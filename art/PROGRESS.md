@@ -5058,3 +5058,9 @@ Ikon lama diperiksa secara visual: lucky, alert, savage-attacker, blinded, charm
 - Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
 - Sel meragukan/catatan: Panel sel 1–25 direvisi untuk melembutkan warna asam/permen. Sel 72 Mantelet digambar ulang menjadi perisai beroda, sel 79 Shuttle menjadi wahana ulang-alik, dan sel 95 Ring Servant menjadi cincin berwajah dengan asap pelayan. Sel interpretatif yang masih meragukan: 53 Closing In (belitan sulur), 59 Compelled Movement (figur bergerak), 90 Convoluted Dictum (gulungan dan lingkar sihir).
 - Resolusi asli pengganti: 1254×1254, 1774×887; diperkecil ke sel, tanpa pembesaran.
+
+### Sesi 6 — lembar 027 selesai
+- File: sheet-027-a.png dan sheet-027-b.png; PNG RGBA 2560×1280, sel 256 px, urutan 1–100 sesuai art-lists.
+- Resolusi asli generate per panel: 1402×1122, 1402×1122, 1254×1254, 1402×1122. Perakitan tanpa pembesaran; margin transparan minimum 24 px dan 100 sel terisi diperiksa.
+- Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
+- Sel meragukan/catatan: Sel 12 Wall of Time memakai ulang simbol jam pasir tanpa angka dari sel 12 lembar 007 (sumber panel 1254×1254), menggantikan dinding jam berangka. Sel 54,75,99 All-Purpose Tool berupa perkakas lipat sebagai salah satu bentuk transformasi alat. Sel interpretatif: 6 Voorish Sign,20 Weave Numen,21 Weiler’s Ward,50 Yellow Sign; ikon tanda tidak memakai teks. Tidak ada pembesaran.
