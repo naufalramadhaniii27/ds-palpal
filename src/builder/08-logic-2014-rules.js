@@ -7,65 +7,65 @@ export var RL14={"Cleric|Knowledge Domain (2014)":[1,1,2,6,8,17],"Cleric|Life Do
 export function subLv(cls){return R14()?(SUBLV14[cls]||3):3}
 export function subLbl(cls){return R14()?(SUBLBL14[cls]||SUBLABEL[cls]):SUBLABEL[cls]}
 export function sdn(n){return R14()?String(n).replace(/ \(2014\)$/,""):n}
-function rln(){if(RLN)return RLN;RLN={};(window.WXS||[]).forEach(function(x){var k=x.cls+"|"+x.name,l=RL14[k];if(!l)return;var m=RLN[k]=RLN[k]||{};x.arr.forEach(function(a,i){var n=a[1].toLowerCase();if(m[n]==null)m[n]=l[i]})});return RLN}
+function rln(){if(RLN)return RLN;RLN={};(window.WXS||[]).forEach((x) =>{const k=x.cls+"|"+x.name,l=RL14[k];if(!l)return;const m=RLN[k]=RLN[k]||{};x.arr.forEach((a,i) =>{const n=a[1].toLowerCase();if(m[n]==null)m[n]=l[i]})});return RLN}
 /* effective level of a subclass pick: the level of the feature it belongs to in the 2014 book */
-export function pEff(cn,sn,p){if(!R14()||!p.feature)return p.l;var m=rln()[cn+"|"+sn],v=m&&m[String(p.feature).toLowerCase()];return v!=null&&v<p.l&&p.l<=3?v:p.l}/* v91: only a pick of the subclass level moves with its feature. A later pick (maneuvers at 7) keeps its level */
+export function pEff(cn,sn,p){if(!R14()||!p.feature)return p.l;const m=rln()[cn+"|"+sn],v=m&&m[String(p.feature).toLowerCase()];return v!=null&&v<p.l&&p.l<=3?v:p.l}/* v91: only a pick of the subclass level moves with its feature. A later pick (maneuvers at 7) keeps its level */
 export var BASE14={},CF14SAVED={},KEYS14=["res","track","pick","asiX","fs","armor","weapons","tools","sk","eq","eqg"],MM14SAVED=null,LU14SAVED=null,ACT14SAVED=null,CA14SAVED=null,SN14O=null,INV14S=null,ISP14S=null,IPK14S=null,PACTB14=[],OPT14S={},AU14S={},SF14S={},SG14S={},FD14S=null,SN14={"Indomitable":"Reroll a failed save (Limited Use)","Diamond Soul":"Proficient in all saves. Spend 1 ki point to reroll a failed one"};
 function ov14(st,ob,k,v){if(!(k in st))st[k]=(k in ob)?ob[k]:undefined;if(v===undefined)delete ob[k];else ob[k]=v}
-function ov14undo(st,ob){Object.keys(st).forEach(function(k){if(st[k]===undefined)delete ob[k];else ob[k]=st[k]})}
-function cls14Tabs(on){ PACTB14=[];ov14undo(OPT14S,OPTS);OPT14S={};ov14undo(AU14S,AUTO);AU14S={};ov14undo(SF14S,SUB_FULL);SF14S={};ov14undo(SG14S,SUB_GRANT);SG14S={};if(FD14S){FDMG.length=0;FD14S.forEach(function(r){FDMG.push(r)});FD14S=null}if(INV14S){INVOCATIONS.length=0;INV14S.forEach(function(x){INVOCATIONS.push(x)});INV14S=null}
- if(ISP14S){Object.keys(INV_SPELLS).forEach(function(k){delete INV_SPELLS[k]});Object.assign(INV_SPELLS,ISP14S);ISP14S=null}
- if(IPK14S){Object.keys(INV_PICK).forEach(function(k){delete INV_PICK[k]});Object.assign(INV_PICK,IPK14S);IPK14S=null}
- if(MM14SAVED){METAMAGIC.length=0;MM14SAVED.forEach(function(x){METAMAGIC.push(x)});MM14SAVED=null}
- if(SN14O){SN14O.forEach(function(r){r[0][2]=r[1]});SN14O=null}
- if(LU14SAVED){LU_X.length=0;LU14SAVED.forEach(function(e){LU_X.push(e)});LU14SAVED=null}
- if(ACT14SAVED){Object.keys(ACT14SAVED).forEach(function(k){if(ACT14SAVED[k]===undefined)delete ACTS[k];else ACTS[k]=ACT14SAVED[k]});ACT14SAVED=null}
- if(CA14SAVED){Object.keys(CLS_AUTO).forEach(function(k){delete CLS_AUTO[k]});Object.assign(CLS_AUTO,CA14SAVED);CA14SAVED=null} if(!on)return;
- SN14O=[];if(typeof SAVE_NOTES!=="undefined")SAVE_NOTES.forEach(function(x){if(x[0]==="cf"&&SN14[x[1]]!=null){SN14O.push([x,x[2]]);x[2]=SN14[x[1]]}}); var cl=Object.keys(CLS14);
- if(typeof OPTS!=="undefined")cl.forEach(function(cn){Object.keys(CLS14[cn].opts||{}).forEach(function(k){ov14(OPT14S,OPTS,k,CLS14[cn].opts[k])})});
- var subN=[];cl.forEach(function(cn){Object.keys(CLS14[cn].subs||{}).forEach(function(s){subN.push(s)})});
- cl.forEach(function(cn){var mm=CLS14[cn].mm;if(mm&&typeof METAMAGIC!=="undefined"){MM14SAVED=METAMAGIC.slice();METAMAGIC.length=0;mm.forEach(function(x){if(!x[2]||(B.src&&B.src[x[2]]))METAMAGIC.push([x[0],x[1]])})}}); var wl14=CLS14.Warlock;if(wl14&&wl14.inv&&typeof INVOCATIONS!=="undefined"){var on14=function(s){return !s||(B.src&&B.src[s])};INV14S=INVOCATIONS.slice();INVOCATIONS.length=0;wl14.inv.forEach(function(x){if(on14(x[4])){var r=[x[0],x[1],x[2]];if(x[3])r.push(x[3]);INVOCATIONS.push(r)}});
-  ISP14S=Object.assign({},INV_SPELLS);Object.keys(INV_SPELLS).forEach(function(k){delete INV_SPELLS[k]});Object.assign(INV_SPELLS,wl14.invSp||{});
-  IPK14S=Object.assign({},INV_PICK);Object.keys(INV_PICK).forEach(function(k){delete INV_PICK[k]});PACTB14=(wl14.pact||[]).filter(function(x){return on14(x[2])}).map(function(x){return [x[0],x[1]]})}
- LU14SAVED=LU_X.slice();var keep=LU_X.filter(function(e){return !((e.src==="class"&&cl.indexOf(e.owner)>=0)||(e.src==="sub"&&subN.indexOf(e.owner)>=0))});LU_X.length=0;keep.forEach(function(e){LU_X.push(e)});
- ACT14SAVED={};cl.forEach(function(cn){Object.keys(ACTS).forEach(function(k){if((k.indexOf("cls|"+cn+"|")===0||Object.keys(CLS14[cn].subs||{}).some(function(s){return k.indexOf("sub|"+s+"|")===0}))&&!(k in ACT14SAVED)){ACT14SAVED[k]=ACTS[k];delete ACTS[k]}})});
- cl.forEach(function(cn){var d=CLS14[cn];Object.keys(d.acts||{}).forEach(function(n){var k="cls|"+cn+"|"+n;if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.acts[n]});
-  (d.lu||[]).forEach(function(e){LU_X.push(Object.assign({src:"class",owner:cn},e))});(d.subLU||[]).forEach(function(e){LU_X.push(e)});
-  Object.keys(d.subActs||{}).forEach(function(k){if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.subActs[k]});
-  Object.keys(d.subAuto||{}).forEach(function(s){ov14(AU14S,AUTO,s,d.subAuto[s])});Object.keys(d.subGrant||{}).forEach(function(s){ov14(SG14S,SUB_GRANT,s,d.subGrant[s])});
-  if(d.subs){Object.keys(SUB_FULL).forEach(function(k){if(Object.keys(d.subs).indexOf(k.split("|")[0])>=0)ov14(SF14S,SUB_FULL,k,undefined)});Object.keys(d.subFull||{}).forEach(function(k){ov14(SF14S,SUB_FULL,k,d.subFull[k])})}
-  if(d.fdmg&&typeof FDMG!=="undefined"){if(!FD14S)FD14S=FDMG.slice();for(var fi=FDMG.length-1;fi>=0;fi--){if(FDMG[fi][0]==="sub"&&Object.keys(d.subs||{}).indexOf(FDMG[fi][1])>=0)FDMG.splice(fi,1)}d.fdmg.forEach(function(r){FDMG.push(r)})}});
- CA14SAVED=Object.assign({},CLS_AUTO);Object.keys(CLS_AUTO).forEach(function(k){delete CLS_AUTO[k]});}
-var FS14={PHB:["Archery","Defense","Dueling","Great Weapon Fighting","Protection","Two-Weapon Fighting"],
+function ov14undo(st,ob){Object.keys(st).forEach((k) =>{if(st[k]===undefined)delete ob[k];else ob[k]=st[k]})}
+function cls14Tabs(on){ PACTB14=[];ov14undo(OPT14S,OPTS);OPT14S={};ov14undo(AU14S,AUTO);AU14S={};ov14undo(SF14S,SUB_FULL);SF14S={};ov14undo(SG14S,SUB_GRANT);SG14S={};if(FD14S){FDMG.length=0;FD14S.forEach((r) =>{FDMG.push(r)});FD14S=null}if(INV14S){INVOCATIONS.length=0;INV14S.forEach((x) =>{INVOCATIONS.push(x)});INV14S=null}
+ if(ISP14S){Object.keys(INV_SPELLS).forEach((k) =>{delete INV_SPELLS[k]});Object.assign(INV_SPELLS,ISP14S);ISP14S=null}
+ if(IPK14S){Object.keys(INV_PICK).forEach((k) =>{delete INV_PICK[k]});Object.assign(INV_PICK,IPK14S);IPK14S=null}
+ if(MM14SAVED){METAMAGIC.length=0;MM14SAVED.forEach((x) =>{METAMAGIC.push(x)});MM14SAVED=null}
+ if(SN14O){SN14O.forEach((r) =>{r[0][2]=r[1]});SN14O=null}
+ if(LU14SAVED){LU_X.length=0;LU14SAVED.forEach((e) =>{LU_X.push(e)});LU14SAVED=null}
+ if(ACT14SAVED){Object.keys(ACT14SAVED).forEach((k) =>{if(ACT14SAVED[k]===undefined)delete ACTS[k];else ACTS[k]=ACT14SAVED[k]});ACT14SAVED=null}
+ if(CA14SAVED){Object.keys(CLS_AUTO).forEach((k) =>{delete CLS_AUTO[k]});Object.assign(CLS_AUTO,CA14SAVED);CA14SAVED=null} if(!on)return;
+ SN14O=[];if(typeof SAVE_NOTES!=="undefined")SAVE_NOTES.forEach((x) =>{if(x[0]==="cf"&&SN14[x[1]]!=null){SN14O.push([x,x[2]]);x[2]=SN14[x[1]]}}); const cl=Object.keys(CLS14);
+ if(typeof OPTS!=="undefined")cl.forEach((cn) =>{Object.keys(CLS14[cn].opts||{}).forEach((k) =>{ov14(OPT14S,OPTS,k,CLS14[cn].opts[k])})});
+ const subN=[];cl.forEach((cn) =>{Object.keys(CLS14[cn].subs||{}).forEach((s) =>{subN.push(s)})});
+ cl.forEach((cn) =>{const mm=CLS14[cn].mm;if(mm&&typeof METAMAGIC!=="undefined"){MM14SAVED=METAMAGIC.slice();METAMAGIC.length=0;mm.forEach((x) =>{if(!x[2]||(B.src&&B.src[x[2]]))METAMAGIC.push([x[0],x[1]])})}}); const wl14=CLS14.Warlock;if(wl14&&wl14.inv&&typeof INVOCATIONS!=="undefined"){const on14=function(s){return !s||(B.src&&B.src[s])};INV14S=INVOCATIONS.slice();INVOCATIONS.length=0;wl14.inv.forEach((x) =>{if(on14(x[4])){const r=[x[0],x[1],x[2]];if(x[3])r.push(x[3]);INVOCATIONS.push(r)}});
+  ISP14S=Object.assign({},INV_SPELLS);Object.keys(INV_SPELLS).forEach((k) =>{delete INV_SPELLS[k]});Object.assign(INV_SPELLS,wl14.invSp||{});
+  IPK14S=Object.assign({},INV_PICK);Object.keys(INV_PICK).forEach((k) =>{delete INV_PICK[k]});PACTB14=(wl14.pact||[]).filter((x) =>{return on14(x[2])}).map((x) =>{return [x[0],x[1]]})}
+ LU14SAVED=LU_X.slice();const keep=LU_X.filter((e) =>{return !((e.src==="class"&&cl.indexOf(e.owner)>=0)||(e.src==="sub"&&subN.indexOf(e.owner)>=0))});LU_X.length=0;keep.forEach((e) =>{LU_X.push(e)});
+ ACT14SAVED={};cl.forEach((cn) =>{Object.keys(ACTS).forEach((k) =>{if((k.indexOf("cls|"+cn+"|")===0||Object.keys(CLS14[cn].subs||{}).some((s) =>{return k.indexOf("sub|"+s+"|")===0}))&&!(k in ACT14SAVED)){ACT14SAVED[k]=ACTS[k];delete ACTS[k]}})});
+ cl.forEach((cn) =>{const d=CLS14[cn];Object.keys(d.acts||{}).forEach((n) =>{const k="cls|"+cn+"|"+n;if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.acts[n]});
+  (d.lu||[]).forEach((e) =>{LU_X.push(Object.assign({src:"class",owner:cn},e))});(d.subLU||[]).forEach((e) =>{LU_X.push(e)});
+  Object.keys(d.subActs||{}).forEach((k) =>{if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.subActs[k]});
+  Object.keys(d.subAuto||{}).forEach((s) =>{ov14(AU14S,AUTO,s,d.subAuto[s])});Object.keys(d.subGrant||{}).forEach((s) =>{ov14(SG14S,SUB_GRANT,s,d.subGrant[s])});
+  if(d.subs){Object.keys(SUB_FULL).forEach((k) =>{if(Object.keys(d.subs).indexOf(k.split("|")[0])>=0)ov14(SF14S,SUB_FULL,k,undefined)});Object.keys(d.subFull||{}).forEach((k) =>{ov14(SF14S,SUB_FULL,k,d.subFull[k])})}
+  if(d.fdmg&&typeof FDMG!=="undefined"){if(!FD14S)FD14S=FDMG.slice();for(let fi=FDMG.length-1;fi>=0;fi--){if(FDMG[fi][0]==="sub"&&Object.keys(d.subs||{}).indexOf(FDMG[fi][1])>=0)FDMG.splice(fi,1)}d.fdmg.forEach((r) =>{FDMG.push(r)})}});
+ CA14SAVED=Object.assign({},CLS_AUTO);Object.keys(CLS_AUTO).forEach((k) =>{delete CLS_AUTO[k]});}
+const FS14={PHB:["Archery","Defense","Dueling","Great Weapon Fighting","Protection","Two-Weapon Fighting"],
  TCE:{Fighter:["Blind Fighting","Interception","Superior Technique","Thrown Weapon Fighting","Unarmed Fighting"],Paladin:["Blessed Warrior","Blind Fighting","Interception"],Ranger:["Blind Fighting","Druidic Warrior","Thrown Weapon Fighting"]},
  PHBC:{Fighter:1,Paladin:1,Ranger:1}};
-export function fs14List(cls){var o=[];if(!FS14.PHBC[cls])return o;FS14.PHB.forEach(function(n){var ok=cls==="Fighter"||(cls==="Paladin"&&["Defense","Dueling","Great Weapon Fighting","Protection"].indexOf(n)>=0)||(cls==="Ranger"&&["Archery","Defense","Dueling","Two-Weapon Fighting"].indexOf(n)>=0);if(ok)o.push(n)});
- if(B.src&&B.src.tce)(FS14.TCE[cls]||[]).forEach(function(n){o.push(n)});return o.filter(function(n){return FEATS[n]})}
+export function fs14List(cls){const o=[];if(!FS14.PHBC[cls])return o;FS14.PHB.forEach((n) =>{const ok=cls==="Fighter"||(cls==="Paladin"&&["Defense","Dueling","Great Weapon Fighting","Protection"].indexOf(n)>=0)||(cls==="Ranger"&&["Archery","Defense","Dueling","Two-Weapon Fighting"].indexOf(n)>=0);if(ok)o.push(n)});
+ if(B.src&&B.src.tce)(FS14.TCE[cls]||[]).forEach((n) =>{o.push(n)});return o.filter((n) =>{return FEATS[n]})}
 function cls14Feats(){if(!R14())return;
  FEATS["Great Weapon Fighting"]=Object.assign({},FEATS["Great Weapon Fighting"],{d:"When you roll a 1 or 2 on a damage die for an attack made with a Two-Handed or Versatile melee weapon held in two hands, you reroll the die and must use the new roll."});
  FEATS["Protection"]=Object.assign({},FEATS["Protection"],{d:"Reaction while wielding a Shield: impose Disadvantage on an attack roll against a creature other than you that is within 5 ft of you, if you can see the attacker."});
  FEATS["Superior Technique"]={cat:"F",d:"Learn one Battle Master maneuver. You gain one d6 superiority die, which returns on a Short or Long Rest."}}
 /* v95: what multiclassing gives, 2014 Player's Handbook (Multiclassing, Proficiencies table) and Tasha's for the Artificer */
-var MCG14={Barbarian:{armor:"Shields",weapons:"Simple, Martial"},Bard:{armor:"Light",sk:1,skFrom:"any",tools:"One Musical Instrument",toolPick:{n:1,cats:["music"]}},Cleric:{armor:"Light, Medium, Shields"},Druid:{armor:"Light, Medium, Shields"},Fighter:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Monk:{weapons:"Simple, Shortsword"},Paladin:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Ranger:{armor:"Light, Medium, Shields",weapons:"Simple, Martial",sk:1},Rogue:{armor:"Light",sk:1,tools:"Thieves' Tools"},Sorcerer:{},Warlock:{armor:"Light",weapons:"Simple"},Wizard:{},Artificer:{armor:"Light, Medium, Shields",tools:"Thieves' Tools, Tinker's Tools"}}, MCG14S=null;
-function mcg14(on){if(MCG14S){Object.keys(MCG14S).forEach(function(k){if(MCG14S[k]===null)delete MC_GRANT[k];else MC_GRANT[k]=MCG14S[k]});MCG14S=null}
- if(!on)return;MCG14S={};Object.keys(MCG14).forEach(function(k){MCG14S[k]=MC_GRANT[k]||null;MC_GRANT[k]=JSON.parse(JSON.stringify(MCG14[k]))})}
-function cls14Restore(){mcg14(false);if(CLASSES.Artificer&&CLASSES.Artificer.a14)delete CLASSES.Artificer;Object.keys(BASE14).forEach(function(cn){var c=CLASSES[cn],o=BASE14[cn];if(!c)return;KEYS14.forEach(function(k){if(o[k]===undefined)delete c[k];else c[k]=o[k]})});BASE14={};Object.keys(CF14SAVED).forEach(function(k){if(CF14SAVED[k]===undefined)delete CF_FULL[k];else CF_FULL[k]=CF14SAVED[k]});CF14SAVED={}}
-export function cls14Inject(n,o){var all=Object.keys(CLASSES).map(function(k){return [k,CLASSES[k]]});all.push([n,o]);all.sort(function(a,b){return a[0]<b[0]?-1:1});Object.keys(CLASSES).forEach(function(k){delete CLASSES[k]});all.forEach(function(r){CLASSES[r[0]]=r[1]})}
+let MCG14={Barbarian:{armor:"Shields",weapons:"Simple, Martial"},Bard:{armor:"Light",sk:1,skFrom:"any",tools:"One Musical Instrument",toolPick:{n:1,cats:["music"]}},Cleric:{armor:"Light, Medium, Shields"},Druid:{armor:"Light, Medium, Shields"},Fighter:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Monk:{weapons:"Simple, Shortsword"},Paladin:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Ranger:{armor:"Light, Medium, Shields",weapons:"Simple, Martial",sk:1},Rogue:{armor:"Light",sk:1,tools:"Thieves' Tools"},Sorcerer:{},Warlock:{armor:"Light",weapons:"Simple"},Wizard:{},Artificer:{armor:"Light, Medium, Shields",tools:"Thieves' Tools, Tinker's Tools"}}, MCG14S=null;
+function mcg14(on){if(MCG14S){Object.keys(MCG14S).forEach((k) =>{if(MCG14S[k]===null)delete MC_GRANT[k];else MC_GRANT[k]=MCG14S[k]});MCG14S=null}
+ if(!on)return;MCG14S={};Object.keys(MCG14).forEach((k) =>{MCG14S[k]=MC_GRANT[k]||null;MC_GRANT[k]=JSON.parse(JSON.stringify(MCG14[k]))})}
+function cls14Restore(){mcg14(false);if(CLASSES.Artificer&&CLASSES.Artificer.a14)delete CLASSES.Artificer;Object.keys(BASE14).forEach((cn) =>{const c=CLASSES[cn],o=BASE14[cn];if(!c)return;KEYS14.forEach((k) =>{if(o[k]===undefined)delete c[k];else c[k]=o[k]})});BASE14={};Object.keys(CF14SAVED).forEach((k) =>{if(CF14SAVED[k]===undefined)delete CF_FULL[k];else CF_FULL[k]=CF14SAVED[k]});CF14SAVED={}}
+export function cls14Inject(n,o){const all=Object.keys(CLASSES).map((k) =>{return [k,CLASSES[k]]});all.push([n,o]);all.sort((a,b) =>{return a[0]<b[0]?-1:1});Object.keys(CLASSES).forEach((k) =>{delete CLASSES[k]});all.forEach((r) =>{CLASSES[r[0]]=r[1]})}
 export function cls14Apply(){cls14Restore();cls14Tabs(R14());__set_SRC(R14()?"PHB-2014":"PHB-2024");if(!R14())return;mcg14(true);cls14Feats();
- var ad=CLS14.Artificer;if(ad&&ad.base){if(B.cls==="Artificer"||(B.mc||[]).some(function(m){return m.cls==="Artificer"}))B.src.tce=true;if(B.src&&B.src.tce&&!CLASSES.Artificer){var ao=Object.assign({},ad.base);ao.subs=JSON.parse(JSON.stringify(ad.subs||{}));ao.pickSub=JSON.parse(JSON.stringify(ad.pickSub||{}));cls14Inject("Artificer",ao)}}/* v90: the 2014 Artificer comes from Tasha's Cauldron of Everything */
-var b0=null;try{b0=JSON.parse(__R.BASE.subs)}catch(e){b0={}}
- var xs={};(window.WXS||[]).forEach(function(x){xs[x.cls+"|"+x.name]=x});
- Object.keys(CLASSES).forEach(function(cn){var c=CLASSES[cn],d=CLS14[cn];
-  if(d){var o=BASE14[cn]={};KEYS14.forEach(function(k){o[k]=c[k]});
-   var keep=(c.f||[]).filter(function(x){return x[3]&&x[3].hb}),names={};d.f.forEach(function(x){names[x[1]]=1});
-   c.f=d.f.map(function(x){return x.slice()}).concat(keep.filter(function(x){return !names[x[1]]})).sort(function(x,y){return x[0]-y[0]});
-   KEYS14.forEach(function(k){if(d[k]!==undefined)c[k]=JSON.parse(JSON.stringify(d[k]));else if(k==="pick"||k==="asiX"||k==="fs")delete c[k]});
-   Object.keys(CF_FULL).forEach(function(k){if(k.indexOf(cn+"|")===0&&CF14SAVED[k]===undefined)CF14SAVED[k]=CF_FULL[k]});
-   Object.keys(CF14SAVED).forEach(function(k){if(k.indexOf(cn+"|")===0)delete CF_FULL[k]});
-   Object.keys(d.full||{}).forEach(function(n){var k=cn+"|"+n;if(!(k in CF14SAVED))CF14SAVED[k]=CF_FULL[k];CF_FULL[k]=d.full[n]})}
-  if(!c.subs)return;var nb=c.a14?{}:(b0[cn]||{});
-  Object.keys(c.subs).forEach(function(sn){var key=cn+"|"+sn,rl=RL14[key],x=xs[key];
-   if(rl){c.subs[sn]=c.subs[sn].map(function(a,i){var b=a.slice();if(rl[i]!=null)b[0]=rl[i];return b});
-    LU_X.forEach(function(e,i){if(e.src==="sub"&&e.owner===sn&&e.lvl===3){var f=null;c.subs[sn].forEach(function(a){if(f==null&&a[1]===e.feature)f=a[0]});if(f!=null&&f<3)LU_X[i]=Object.assign({},e,{lvl:f})}});/* v91: a counter starts at the level of its feature */
-    if(cn==="Cleric"&&AUTO[sn]&&AUTO[sn][0]&&AUTO[sn][0][0]===3){var sp=String(AUTO[sn][0][1]).split(",");if(sp.length>=4)AUTO[sn]=[[1,sp.slice(0,sp.length-2).join(",")],[3,sp.slice(sp.length-2).join(",")]].concat(AUTO[sn].slice(1))}return}
+ const ad=CLS14.Artificer;if(ad&&ad.base){if(B.cls==="Artificer"||(B.mc||[]).some((m) =>{return m.cls==="Artificer"}))B.src.tce=true;if(B.src&&B.src.tce&&!CLASSES.Artificer){const ao=Object.assign({},ad.base);ao.subs=JSON.parse(JSON.stringify(ad.subs||{}));ao.pickSub=JSON.parse(JSON.stringify(ad.pickSub||{}));cls14Inject("Artificer",ao)}}/* v90: the 2014 Artificer comes from Tasha's Cauldron of Everything */
+let b0=null;try{b0=JSON.parse(__R.BASE.subs)}catch(e){b0={}}
+ const xs={};(window.WXS||[]).forEach((x) =>{xs[x.cls+"|"+x.name]=x});
+ Object.keys(CLASSES).forEach((cn) =>{const c=CLASSES[cn],d=CLS14[cn];
+  if(d){const o=BASE14[cn]={};KEYS14.forEach((k) =>{o[k]=c[k]});
+   const keep=(c.f||[]).filter((x) =>{return x[3]&&x[3].hb}),names={};d.f.forEach((x) =>{names[x[1]]=1});
+   c.f=d.f.map((x) =>{return x.slice()}).concat(keep.filter((x) =>{return !names[x[1]]})).sort((x,y) =>{return x[0]-y[0]});
+   KEYS14.forEach((k) =>{if(d[k]!==undefined)c[k]=JSON.parse(JSON.stringify(d[k]));else if(k==="pick"||k==="asiX"||k==="fs")delete c[k]});
+   Object.keys(CF_FULL).forEach((k) =>{if(k.indexOf(cn+"|")===0&&CF14SAVED[k]===undefined)CF14SAVED[k]=CF_FULL[k]});
+   Object.keys(CF14SAVED).forEach((k) =>{if(k.indexOf(cn+"|")===0)delete CF_FULL[k]});
+   Object.keys(d.full||{}).forEach((n) =>{const k=cn+"|"+n;if(!(k in CF14SAVED))CF14SAVED[k]=CF_FULL[k];CF_FULL[k]=d.full[n]})}
+  if(!c.subs)return;const nb=c.a14?{}:(b0[cn]||{});
+  Object.keys(c.subs).forEach((sn) =>{const key=cn+"|"+sn,rl=RL14[key],x=xs[key];
+   if(rl){c.subs[sn]=c.subs[sn].map((a,i) =>{const b=a.slice();if(rl[i]!=null)b[0]=rl[i];return b});
+    LU_X.forEach((e,i) =>{if(e.src==="sub"&&e.owner===sn&&e.lvl===3){let f=null;c.subs[sn].forEach((a) =>{if(f==null&&a[1]===e.feature)f=a[0]});if(f!=null&&f<3)LU_X[i]=Object.assign({},e,{lvl:f})}});/* v91: a counter starts at the level of its feature */
+    if(cn==="Cleric"&&AUTO[sn]&&AUTO[sn][0]&&AUTO[sn][0][0]===3){const sp=String(AUTO[sn][0][1]).split(",");if(sp.length>=4)AUTO[sn]=[[1,sp.slice(0,sp.length-2).join(",")],[3,sp.slice(sp.length-2).join(",")]].concat(AUTO[sn].slice(1))}return}
    if(nb[sn]||(x&&SRC14.indexOf(x.src)<0))delete c.subs[sn]})})}
