@@ -5072,3 +5072,8 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - File: `sheet-050-a.png`, `sheet-050-b.png`; PNG RGBA 2560 × 1280 per file, 100 sel berurutan; margin minimal 24 px; tidak ada artwork diperbesar.
 - Resolusi asli generate: empat panel 1254 × 1254; gambar ulang sel 75 Wasp Ship 1536 × 1024. Sel 75 awal terlihat seperti serangga dan diganti kapal kayu dengan layar bersayap. Semua sel dilihat; enam sampel dibandingkan pada ukuran sama dengan ikon lama dan pada 24 px, lalu hasil gambar ulang diperiksa kembali.
 - Sel meragukan: 45 Teleporters (alat cincin), 51 Tocken (perkusi lonceng kayu), 69 Ulcrun (vial), 85 Witherbloom Trinket (biji/tulang), 90 Xen'drik Trinket (batu ukir), 97 Zeal (vial); nama-nama ini memerlukan verifikasi lore. Kapal dan layanan stabling digambar sebagai miniatur tunggal tanpa latar pemandangan. Pantulan bintang pada sel 23–25 menjadi ciri batu sesuai namanya.
+
+### Sesi 9 — lembar 060 selesai
+- File: `sheet-060-a.png`, `sheet-060-b.png`; PNG RGBA 2560 × 1280 per file, 100 sel berurutan, margin minimal 24 px, tanpa pembesaran. Resolusi asli generate: empat panel 1254 × 1254.
+- Semua sel rule/hazard diperiksa; enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Kontur tipis, tekstur bahan terlihat, bayangan lembut. Efek kabut dan api tetap dalam sel setelah perakitan.
+- Sel meragukan secara simbol: 1 Stable (perban), 9 Swimming (tangan di air), 19 Tremorsense (batu/ring getaran), 26 Unoccupied Space (ubin), 46 Danse Macabre (patung kerangka), 73 Icon of the Lower Aerial Kingdoms (patung bersayap), 80 Morbid Memory (cermin retak). Simbol dipilih untuk fungsi; tidak menggambarkan seluruh adegan aturan.
