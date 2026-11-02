@@ -5080,3 +5080,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - sheet-056-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 per panel, tanpa pembesaran objek.
 - Bahasa memakai potret kepala realistis seperti sheet-001; psionic memakai benda atau efek fungsi. Qualith sel 35 diedit ulang menjadi kepala illithid bertentakel. Sampel dibandingkan langsung dengan ikon lama pada kanvas sama; kontur dan kejenuhan sesuai, detail anatomi dan pakaian tampak.
 - Sel meragukan: bahasa manusia fiktif (4–6, 8–10, 12–13, 16, 18, 20, 22, 25, 27–30, 32, 37–40, 42–44, 47, 49–50, 54–56, 58, 62, 67) memakai penutur representatif, bukan lambang bahasa baku; 81 Diminution figur mengecil dan 83 Giant Growth lengan membesar; kelompok mantle dibedakan bros dan bahan.
+
+### Lembar 066 — selesai
+- sheet-066-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos; generate asli 1774×887 tiap panel, tanpa pembesaran objek.
+- Tabel memakai simbol isi/fungsi; buku memakai jilid dan gambar sampul tanpa tulisan. Relics Very Rare sel 46 digambar ulang dari peti keliru menjadi medali safir. Perbandingan ukuran sama dengan ikon lama: garis lokal halus, tekstur dan warna tenang.
+- Sel meragukan: tabel tingkat/kelangkaan 1–9, 11–14, 18–30, 42–50 menggunakan tingkat ornamen; Magic Item Table A–I sel 31–39 memakai contoh benda berbeda tanpa huruf; gambar sampul buku 79–100 adalah interpretasi tema judul, bukan reproduksi sampul terbitan.
