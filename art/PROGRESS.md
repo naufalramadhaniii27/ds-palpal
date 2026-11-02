@@ -5095,3 +5095,11 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - sheet-086-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 tiap panel; tidak diperbesar.
 - Sumber subclass/ras dipakai untuk simbol fungsi. Sampel dibandingkan langsung dengan ikon lama pada ukuran sama: detail halus, kontur lokal tipis, kejenuhan bahan tenang.
 - Sel meragukan: 8 Mercurial wajah logam cair; 9 Merge Bodies tangan menyatu; 19/20 metamagic permata; 23 Mighty Summoner lambang hewan roh; 35 Mini Portals lambang portal ganda; 40/41 Minor Miracle(s) dua medali tangan; 59 Mock Divinity topeng; 64–66 monastic simbol tasbih/tangan/tongkat; 91 Multidiscipline bidak; 92 Multiplayer topeng ganda; 100 Mutations cakar bermutasi. Makna abstrak adalah tafsir fungsi berdasarkan sumber.
+
+### Lembar 096 — selesai
+- sheet-096-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 tiap panel; tidak diperbesar.
+- Feature dipilih dari fungsi dan sumber ras/subclass pada daftar. Sampel dibandingkan dengan ikon lama pada ukuran sama: tepi lokal tipis, detail bahan/anatomi terjaga. Pemeriksaan sampel 24 px dilakukan untuk semua lembar sesi.
+- Sel meragukan: 6 Thriller tangan kerangka; 26 Together Forever simpul tali hati; 28 Tongue of Sun and Moon medali lidah; 36/37 Sibyl/Sybil variasi medali mata; 45/46 pedang musikal; 61 Trip tongkat kait; 72/74/76 simbol pengusiran; 80/81 lambang ganda untuk twin; 84 Twisted Fate dadu retak tanpa angka; 96 Unarguable Wizardry lengan memegang tongkat. Tafsir simbol, bukan ilustrasi literal adegan.
+
+### Validasi akhir sesi 5
+Semua lembar 006, 016, 026, 036, 046, 056, 066, 076, 086, 096 dikerjakan berurutan dan di-commit/push bertahap ke art-g5. Total 20 PNG RGBA, masing-masing 2560×1280 dengan 10×5 sel 256 px; 1000 sel terisi dan seluruh batas alpha berjarak minimal 24 px dari tepi sel. Seluruh objek dipertahankan pada resolusi asli atau diperkecil, tidak diperbesar. Catatan gaya, resolusi generate asli, perbaikan, dan sel meragukan tercatat per lembar di atas.
