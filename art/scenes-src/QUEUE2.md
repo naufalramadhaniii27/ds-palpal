@@ -202,7 +202,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B053 phone a | art/scenes-src/backgrounds/B053a-phone.png | 1x2 | wind-touched, witchlight-hand | done |
 | B053 phone b | art/scenes-src/backgrounds/B053b-phone.png | 1x2 | witherbloom-student, worthless-husk | claimed by codex-b045-b054 2026-11-02T14:12+00:00 |
 | B054 PC | art/scenes-src/backgrounds/B054-pc.png | single | zhentarim-mercenary | needs review: non-graphic fallback after image safety rejection |
-| B054 phone a | art/scenes-src/backgrounds/B054a-phone.png | single | zhentarim-mercenary | open |
+| B054 phone a | art/scenes-src/backgrounds/B054a-phone.png | single | zhentarim-mercenary | claimed by codex-b001-b011 2026-11-02T15:06+00:00 |
 | K001 | art/scenes-src/subclasses/K001.png | 4x4 cards | Alchemist to Artificer | needs review: Maverick scroll has writing-like marks after redo |
 | K002 | art/scenes-src/subclasses/K002.png | 4x4 cards | Artificer to Barbarian | done |
 | K003 | art/scenes-src/subclasses/K003.png | 4x4 cards | Barbarian to Bard | done |
