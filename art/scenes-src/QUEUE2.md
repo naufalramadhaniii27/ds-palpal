@@ -107,7 +107,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B021 phone b | art/scenes-src/backgrounds/B021b-phone.png | 1x2 | grounded, gruul-anarch | done |
 | B022 PC | art/scenes-src/backgrounds/B022-pc.png | 2x2 | guild-artisan, harper, haunted, haunted-one | done |
 | B022 phone a | art/scenes-src/backgrounds/B022a-phone.png | 1x2 | guild-artisan, harper | done |
-| B022 phone b | art/scenes-src/backgrounds/B022b-phone.png | 1x2 | haunted, haunted-one | claimed by codex-b012-b022 2026-11-02T14:48:54.934Z |
+| B022 phone b | art/scenes-src/backgrounds/B022b-phone.png | 1x2 | haunted, haunted-one | done |
 | B023 PC | art/scenes-src/backgrounds/B023-pc.png | 2x2 | heretic, holo-influencer, horizon-weaver-initiate, house-agent | done |
 | B023 phone a | art/scenes-src/backgrounds/B023a-phone.png | 1x2 | heretic, holo-influencer | done |
 | B023 phone b | art/scenes-src/backgrounds/B023b-phone.png | 1x2 | horizon-weaver-initiate, house-agent | done |
