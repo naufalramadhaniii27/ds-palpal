@@ -5102,3 +5102,12 @@ Sel 25 double laser sword digambar ulang pada resolusi asli 1254 × 1254 RGBA un
 - Resolusi asli generate per panel: 1254 × 1254, 1254 × 1254, 1254 × 1254, 1254 × 1254 RGBA. Perakitan tanpa pembesaran; margin minimal 24 px dan semua sel terisi diverifikasi.
 - Pemeriksaan visual: delapan sampel berdampingan dengan ikon lama pada ukuran objek yang sama, ditambah pratinjau 24 px. Kontur halus, detail bahan dan kejenuhan diperiksa terhadap acuan.
 - Catatan/revisi dan sel yang meragukan: Acuan tambahan panel hasil revisi berwarna redup membantu menjaga bahan tetap realistis tanpa aura besar. Tidak ditemukan sampel yang perlu digambar ulang karena garis tebal atau bentuk kartun. Sel meragukan pada 24 px: 5–7 (varian Indomitable), 38–39 (Inspiring Help), dan 89–91 (Ki) memakai simbol satu keluarga dengan perubahan bahan atau aksen tanpa angka tertulis. Bentuk dipilih memakai nama dan sumber subclass/species pada daftar.
+
+### Sesi 2 — lembar 093 selesai
+- File sheet-093-a.png dan sheet-093-b.png: masing-masing 2560 × 1280 PNG RGBA, 10 × 5 sel 256 px, urutan 1–50 dan 51–100 sesuai daftar.
+- Resolusi asli generate per panel: 1254 × 1254, 1254 × 1254, 1254 × 1254, 1254 × 1254 RGBA. Perakitan tanpa pembesaran; margin minimal 24 px dan semua sel terisi diverifikasi.
+- Pemeriksaan visual: delapan sampel berdampingan dengan ikon lama pada ukuran objek yang sama, ditambah pratinjau 24 px. Kontur halus, detail bahan dan kejenuhan diperiksa terhadap acuan.
+- Catatan/revisi dan sel yang meragukan: Sel 26 Sorcerer Subclass dan sel 28 Sorcerous Origin feature dikoreksi menjadi simbol sihir bawaan/bloodline dalam panel asli 1774 × 887 RGBA. Varian Song of Rest tidak memakai angka atau nilai dadu; roulette memakai ruas warna kosong, Spell Inscription memakai quill/scroll tanpa tulisan. Sel meragukan pada 24 px: 20–23 (varian Song of Rest), 26–30 (keluarga simbol sorcery), dan 77–88 (keluarga simbol spirit); detail kecil memerlukan konteks nama. Semua 100 sel diperiksa lewat panel dan sampel perbandingan.
+
+### Status akhir sesi 2
+Selesai berurutan: 003, 013, 023, 033, 043, 053, 063, 073, 083, 093. Total 1.000 sel dalam 20 PNG RGBA berukuran 2560 × 1280. Tiap lembar telah di-commit dan di-push bertahap ke art-g2; koreksi gaya tambahan sel 25 lembar 033 juga telah di-push. Resolusi asli generate, tinjauan perbandingan dan sel meragukan dicatat pada masing-masing lembar di atas.
