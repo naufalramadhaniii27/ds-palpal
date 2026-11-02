@@ -630,7 +630,19 @@
   },
   {
    "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q7\">",
+   "open": "<script type=\"text/x-defer\" data-defer=\"q7s\">",
+   "close": "</script>",
+   "files": [
+    "data/q07-lazy-stub.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"q7\" data-lazy=\"1\">",
    "close": "</script>",
    "files": [
     "data/q07-bestiary.js"

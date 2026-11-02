@@ -4,13 +4,13 @@
    is read or after the first frame, and runs them in the same order. The text is the same, so the sha256 in the page's CSP still checks it. */
 (function(){ let t0=0;
   /* no cached list: a call while the page is still loading runs only the parts already parsed, the rest run later in order */
-  function list(){ return document.querySelectorAll('script[type="text/x-defer"]'); }
+  function list(){ return document.querySelectorAll('script[type="text/x-defer"]:not([data-lazy])'); }/* data-lazy parts wait for __lazyRun() */
   let TXT={}, ASK={}, DONE={}, FAILS={}, PEND=null, SYNC=false;/* fetched text by part name, fetches under way, parts run, failed tries, the step waiting for a file */
   function pname(s){ return s.getAttribute("data-defer"); }
   function ask(s){ const u=s.getAttribute("data-src"), n=pname(s); if(!u||ASK[n]||DONE[n]||TXT[n]!=null) return; ASK[n]=1;
     fetch(u,{credentials:"same-origin"}).then((r) =>{ if(!r.ok) throw new Error(String(r.status)); return r.text(); }).then((t) =>{ ASK[n]=0; if(DONE[n]) return; TXT[n]=t; if(PEND){ const f=PEND; PEND=null; f(); } },
       () =>{ ASK[n]=0; FAILS[n]=(FAILS[n]||0)+1; if(FAILS[n]<=20) setTimeout(() =>{ if(s.parentNode) ask(s); },Math.min(30000,1000*FAILS[n])); }); }
-  function askAll(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-src]'),ask); }
+  function askAll(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-src]:not([data-lazy])'),ask); }
   window.addEventListener("online",askAll); document.addEventListener("DOMContentLoaded",() =>{ if(t0) askAll(); },{once:true});
   /* __bldNeed() cannot wait, so a part that has not arrived is read with a synchronous request. The service worker or the HTTP cache answers it at once, except on a first visit */
   function syncGet(u){ try{ const q=new XMLHttpRequest(); q.open("GET",u,false); q.send(); if(q.status===200) return q.responseText; }catch(e){} return null; }
@@ -21,7 +21,12 @@
     if(u){ ask(s); t=TXT[n]; if(t==null&&SYNC) t=syncGet(u); if(t==null) return false; delete TXT[n]; DONE[n]=1; } else t=s.text;
     const H=window.__deferHook;/* N32: tests/lib/trace.js sets it, nothing else does */ if(H) H(0,n);
     const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; }
-  function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length||!(window.__gateDone)) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} }
+  /* Fase 2.2: a lazy part runs when its guard asks (window.__lazyRun). In the split build the file is read with a synchronous request, which the HTTP cache answers (warm() reads the file after the page is ready and keeps the text, so the request is only the fallback) */
+  const LAZY={};/* text of a lazy part, read after the page is ready: a synchronous request cannot reach the service worker cache, so offline it would fail */
+  window.__lazyRun=function(n){ const s=document.querySelector('script[type="text/x-defer"][data-lazy][data-defer="'+n+'"]'); if(!s) return false; const u=s.getAttribute("data-src"); let t=LAZY[n]!=null?LAZY[n]:u?syncGet(u):s.text; if(t==null) return false; delete LAZY[n];
+    const H=window.__deferHook; if(H) H(0,n); const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t; s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; };
+  function warm(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-lazy][data-src]'),(s) =>{ const n=s.getAttribute("data-defer"); fetch(s.getAttribute("data-src"),{credentials:"same-origin"}).then((r) =>{ return r.ok?r.text():null; }).then((t) =>{ if(t!=null&&s.parentNode) LAZY[n]=t; },() =>{}); }); }
+  function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length||!(window.__gateDone)) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} setTimeout(warm,2500); }
   window.__bldNeed=function(){ if(window.__deferDone) return; all(); if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",() =>{ all(); fin(); }); return; } fin(); };
   /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,
      or one larger part, then the browser handles taps and drawing. Before, each part waited for an idle moment (up to 400 ms), and

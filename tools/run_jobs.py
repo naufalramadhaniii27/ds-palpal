@@ -6,7 +6,7 @@ import os, subprocess, sys, time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOBS = {
  "A": [("build.py", "--check"), ("tests/tg_engine.js", "300"), ("tests/api_dev_guard.mjs", ""), ("tests/names_lint.py", ""), ("tools/tsc_gate.py", ""), ("tools/html_gate.py", ""), ("tests/csp_check.py", ""), ("tests/scenarios.py", ""), ("tests/golden_rules.py", ""), ("tests/version_label.py", ""), ("tests/split_dist.py", ""), ("tests/perf_budget.py", "tests/out/perf.json --fast --runs 3 --check tests/perf-budget.json")],
- "B": [(f"tests/{t}.py", "") for t in "fonts_dist overflow_scan overlap_scan tidy blank_new flow_home_sheet storage_idb self_heal fail_modes".split()] + [("tests/chaos_storage.py", "--seeds 50"), ("tests/migrate_all.py", "")],
+ "B": [(f"tests/{t}.py", "") for t in "fonts_dist lazy_parts overflow_scan overlap_scan tidy blank_new flow_home_sheet storage_idb self_heal fail_modes".split()] + [("tests/chaos_storage.py", "--seeds 50"), ("tests/migrate_all.py", "")],
  "C": [(f"tests/{t}.py", "") for t in "detail_img tg_ui tg_n2 g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map".split()] + [("tools/run_cloud_sync.sh", ""), ("tools/run_cloud_sync.sh", "tests/err_report.py")],
 }
 a = sys.argv[1:]; retry = "--retry" in a
