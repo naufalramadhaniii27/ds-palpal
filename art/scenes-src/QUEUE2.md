@@ -209,7 +209,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K004 | art/scenes-src/subclasses/K004.png | 4x4 cards | Bard | done |
 | K005 | art/scenes-src/subclasses/K005.png | 4x4 cards | Bard | done |
 | K006 | art/scenes-src/subclasses/K006.png | 4x4 cards | Captain to Cleric | done |
-| K007 | art/scenes-src/subclasses/K007.png | 4x4 cards | Cleric | claimed by codex-k001-k033 2026-11-02T13:09+00:00 |
+| K007 | art/scenes-src/subclasses/K007.png | 4x4 cards | Cleric | open |
 | K008 | art/scenes-src/subclasses/K008.png | 4x4 cards | Cleric | open |
 | K009 | art/scenes-src/subclasses/K009.png | 4x4 cards | Cleric to Craftsman | open |
 | K010 | art/scenes-src/subclasses/K010.png | 4x4 cards | Craftsman to Dancer | open |
