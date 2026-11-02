@@ -1,7 +1,7 @@
 {
- "commit": "576c3a97",
- "branch": "nilai-98/n40-fase1",
- "date": "2026-11-02 08:13",
+ "commit": "41f836d4",
+ "branch": "nilai-98/n44",
+ "date": "2026-11-02 09:46",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -458,7 +458,7 @@
     },
     {
      "id": "ci_tests",
-     "value": 30,
+     "value": 31,
      "base": null,
      "target": 45,
      "credit": 0.0,
@@ -497,7 +497,7 @@
   "code": {
    "name": "Kerapian kode",
    "floor": 5,
-   "score": 5.0,
+   "score": 5.41,
    "measures": [
     {
      "id": "css_patch_files",
@@ -519,10 +519,10 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1100,
+     "value": 1080,
      "base": 1099,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.02,
      "gate": true,
      "note": ""
     },
@@ -537,10 +537,10 @@
     },
     {
      "id": "var_decl",
-     "value": 6604,
+     "value": 187,
      "base": 6595,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.97,
      "gate": false,
      "note": ""
     },
@@ -596,7 +596,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "owners_missing",
@@ -612,7 +612,7 @@
   "security": {
    "name": "Keamanan",
    "floor": 8,
-   "score": 7.2,
+   "score": 7.21,
    "measures": [
     {
      "id": "csp_check",
@@ -634,10 +634,10 @@
     },
     {
      "id": "innerhtml_outside_lib",
-     "value": 262,
+     "value": 257,
      "base": 262,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.02,
      "gate": true,
      "note": ""
     },
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.07,
- "secs": 40
+ "average": 6.11,
+ "secs": 49
 }
