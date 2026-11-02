@@ -26,7 +26,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | done |
 | S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | done |
 | S03 PC | art/scenes-src/species/S03-pc.png | dhakaani-ghaaldar, dhakaani-golindar, dhakaani-guuldar, jhorguntaal | done |
-| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | claimed by codex-phone-redo 2026-11-02 |
+| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | done |
 | S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | claimed by codex-phone-redo 2026-11-02 |
 | S04 PC | art/scenes-src/species/S04-pc.png | kalamer-landwalker, ruinbound, nautilid, amoeboid | done |
 | S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | done |
