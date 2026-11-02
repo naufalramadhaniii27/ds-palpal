@@ -86,7 +86,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B014 phone b | art/scenes-src/backgrounds/B014b-phone.png | 1x2 | disgraced-raider, dragon-cultist | done |
 | B015 PC | art/scenes-src/backgrounds/B015-pc.png | 2x2 | emerald-enclave-caretaker, envoy, executioner, exile | done |
 | B015 phone a | art/scenes-src/backgrounds/B015a-phone.png | 1x2 | emerald-enclave-caretaker, envoy | done |
-| B015 phone b | art/scenes-src/backgrounds/B015b-phone.png | 1x2 | executioner, exile | claimed by codex-b012-b022 2026-11-02T13:36+00:00 |
+| B015 phone b | art/scenes-src/backgrounds/B015b-phone.png | 1x2 | executioner, exile | done |
 | B016 PC | art/scenes-src/backgrounds/B016-pc.png | 2x2 | explorer, exterminator, fabricated-mind, faceless | done |
 | B016 phone a | art/scenes-src/backgrounds/B016a-phone.png | 1x2 | explorer, exterminator | open |
 | B016 phone b | art/scenes-src/backgrounds/B016b-phone.png | 1x2 | fabricated-mind, faceless | open |
