@@ -5057,3 +5057,8 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - Resolusi asli generate: empat panel 1254 × 1254. Artwork hanya diperkecil, dengan margin minimal 24 px; efek transparan yang bersentuhan dipisahkan pada alpha yang lebih kuat sebelum perakitan.
 - Pemeriksaan: semua sel dilihat, enam sampel dibandingkan pada skala sama dengan ikon lama dan pada 24 px. Kontur tidak lebih tebal, warna es/angin lembut, tekstur kayu/logam/batu terbaca. Semua sel berisi dan tidak melewati batas.
 - Sel meragukan secara interpretasi: 25 Gahoul's Glorious Gothic (menara), 36 Giant's Jest (topeng), 37 Gift of Azathoth (mutiara bertentakel), 56 Grasp of the Tupilak (jimat tulang), 85 Hack System (pelat sirkuit), 99 Harry (elang). Seri hardlight 91–98 memakai bentuk ambar yang sama agar konsisten; perlu tinjauan khusus apakah warnanya terlalu pekat untuk preferensi akhir.
+
+### Sesi 9 — lembar 030 selesai
+- File: `sheet-030-a.png`, `sheet-030-b.png`; PNG RGBA 2560 × 1280 per file, 100 sel berurutan, margin minimal 24 px, tanpa pembesaran artwork.
+- Resolusi asli generate: empat panel 1254 × 1254. Semua sel diperiksa pada pratinjau, enam sampel dibandingkan dengan ikon lama pada ukuran sama serta pada 24 px; kontur halus, kain/logam/kulit bertekstur, warna lembut, dan tidak ada serpihan tetangga.
+- Sel meragukan: 8 Bob (tengkorak), 35 Borealus (pedang es), 43 Bounty Hunter Enforcer (hand crossbow), 57 Breath of Siberys (dragonshard), 60 Broken Vow (pedang patah), 63 Bug Smashers (sepatu), 82 Ceratopper (helm bertanduk). Seri Champion 83–97 dan Boon digambarkan sebagai simbol/jimat fungsi; perlu pemeriksaan lore sumber untuk nama-nama tersebut.
