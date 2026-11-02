@@ -11,6 +11,8 @@ Subjects: art/scenes-src/queue2-manifest.json. Templates and STYLE BLOCK: art/sc
 
 ## How to write each kind
 
+R03 (redo, phone 1x2): redo S10a with the phone template in QUEUE.md and the species manifest subjects for limukin and child-of-seth. Rule 6a is strict: one continuous view, one sky, one horizon at the very top, the fern ground runs straight down to the bottom edge.
+
 R (redo, PC 2x2): use the PC template in QUEUE.md with the manifest subject, and add: "The middle third of each panel is completely empty open space (sky, water, field or wall): no people, no bodies, no objects, no props."
 
 C (third-party classes, PC 2x2 + phone 1x2): use the QUEUE.md templates. The manifest subject is a starting idea: keep the class activity, add the place, palette and camera so the four panels differ.
@@ -27,6 +29,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 |---|---|---|---|---|
 | R01 PC | art/scenes-src/redo/R01-pc.png | 2x2 | mandrake, scourgeborne, ogresh, grudgel | open |
 | R02 PC | art/scenes-src/redo/R02-pc.png | 2x2 (cell 4 empty cream) | dhakaani-ghaaldar, nautilid, mapach | open |
+| R03 phone | art/scenes-src/redo/R03-phone.png | 1x2 | limukin, child-of-seth | open |
 | C01 PC | art/scenes-src/classes/C01-pc.png | 2x2 | necromancer, martyr, dancer, investigator | open |
 | C01 phone a | art/scenes-src/classes/C01a-phone.png | 1x2 | necromancer, martyr | open |
 | C01 phone b | art/scenes-src/classes/C01b-phone.png | 1x2 | dancer, investigator | open |

@@ -6298,6 +6298,19 @@
     "nautilid": "An adult cephalopod-headed humanoid in a bulky brass diving suit filled with green liquid stands on the open deck of a spiral-shelled sailing ship among bright pink and blue nebula clouds. A wounded adult crewmate grips a rope. Camera: wide, from the mast.",
     "mapach": "An adult Mapach, raccoon-folk with masked face and ringed tail, builds a makeshift splint from scrap in a bright junkyard market for an injured adult. Camera: close, eye level."
    }
+  },
+  {
+   "id": "R03",
+   "file": "art/scenes-src/redo/R03-phone.png",
+   "layout": "1x2 phone",
+   "names": [
+    "limukin",
+    "child-of-seth"
+   ],
+   "subjects": {
+    "limukin": "An adult Limukin, a small swift lizard-like hunter with venom-coated spear, stalks through a bright misty fern forest beside a wounded adult companion. Camera: medium, through the ferns.",
+    "child-of-seth": "An adult Child of Seth, a pterosaur folk with leathery membrane wings and a long head crest, glides over bright sea cliffs, carrying a bleeding adult. Camera: wide, from the cliff top."
+   }
   }
  ]
 }
