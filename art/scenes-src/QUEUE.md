@@ -50,7 +50,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | claimed by codex-phone-redo 2026-11-02 |
 | S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | claimed by codex-phone-redo 2026-11-02 |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
-| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | claimed by codex-phone-redo 2026-11-02 |
+| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | done |
 | S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | claimed by codex-phone-redo 2026-11-02 |
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | done |
 | S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | claimed by codex-phone-redo 2026-11-02 |
