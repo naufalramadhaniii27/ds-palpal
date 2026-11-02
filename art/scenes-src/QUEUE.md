@@ -33,7 +33,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | claimed by codex-phone-redo 2026-11-02 |
 | S05 PC | art/scenes-src/species/S05-pc.png | geppettin, manikin, wechselkind, vect | done |
 | S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | done |
-| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | claimed by codex-phone-redo 2026-11-02 |
+| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | done |
 | S06 PC | art/scenes-src/species/S06-pc.png | mandrake, accursed, arisen, disembodied | done |
 | S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | claimed by codex-phone-redo 2026-11-02 |
 | S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | claimed by codex-phone-redo 2026-11-02 |
