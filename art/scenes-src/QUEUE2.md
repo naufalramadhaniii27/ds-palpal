@@ -48,7 +48,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B002 PC | art/scenes-src/backgrounds/B002-pc.png | 2x2 | amnesiac, anthropologist, antiquarian, archaeologist | done |
 | B002 phone a | art/scenes-src/backgrounds/B002a-phone.png | 1x2 | amnesiac, anthropologist | done |
 | B002 phone b | art/scenes-src/backgrounds/B002b-phone.png | 1x2 | antiquarian, archaeologist | done |
-| B003 PC | art/scenes-src/backgrounds/B003-pc.png | 2x2 | archivist, aristocrat, artist, ashari | claimed by codex-b001-b011 2026-11-02T13:13+00:00 |
+| B003 PC | art/scenes-src/backgrounds/B003-pc.png | 2x2 | archivist, aristocrat, artist, ashari | done |
 | B003 phone a | art/scenes-src/backgrounds/B003a-phone.png | 1x2 | archivist, aristocrat | open |
 | B003 phone b | art/scenes-src/backgrounds/B003b-phone.png | 1x2 | artist, ashari | open |
 | B004 PC | art/scenes-src/backgrounds/B004-pc.png | 2x2 | astral-drifter, athlete, augen-trust, azorius-functionary | open |
