@@ -5079,3 +5079,9 @@ Ikon lama diperiksa secara visual: lucky, alert, savage-attacker, blinded, charm
 
 ### Sesi 6 — pemeriksaan ulang perakitan 007–047
 Lembar 007,017,027,037 dirakit ulang dari sumber generate yang sama dengan memisahkan komponen alpha objek secara utuh, sehingga ujung objek yang sedikit melintasi kisi sumber tidak terpotong; sambungan alpha sangat tipis dipisahkan. Sel pengganti tetap dipertahankan, dan simbol botol racun pada sel 4 lembar 047 diselaraskan kembali dengan sel 72 lembar 037. Tidak ada generate atau pembesaran baru; resolusi asli tetap sebagaimana catatan tiap lembar. Sampel kelima lembar dibandingkan dengan ikon lama, dan seluruh 500 sel kembali lolos ukuran RGBA 2560×1280 serta margin minimum 24 px.
+
+### Sesi 6 — lembar 057 selesai
+- File: sheet-057-a.png dan sheet-057-b.png; PNG RGBA 2560×1280, sel 256 px, urutan 1–100 sesuai art-lists.
+- Resolusi asli generate per panel: 1402×1122, 1402×1122, 1254×1254, 1402×1122. Perakitan tanpa pembesaran; margin transparan minimum 24 px dan 100 sel terisi diperiksa.
+- Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
+- Sel meragukan/catatan: Panel sel 76–100 semula tersusun 5/5/6/5/4; objek dikelompokkan berdasarkan posisi sebenarnya lalu disusun ulang berurutan. Sel 65 Climb onto a Bigger Creature digambar ulang menjadi tangan memegang sisik raksasa, sumber generate 1254×1254, menggantikan pendaki tebing. Dadu memakai sisi poligonal kosong tanpa angka. Sel interpretatif/meragukan: 21 Ability Score and Modifier,23 Action,24 Action Options,32 Alternatives to Epic Boons,44 Automatic Success,59 Challenge Rating,68 Condition,82 Customizing Ability Scores,83 Customizing Your Origin.
