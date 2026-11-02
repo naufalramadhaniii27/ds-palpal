@@ -1,0 +1,755 @@
+{
+ "commit": "a708ad27",
+ "branch": "main",
+ "date": "2026-11-02 18:25",
+ "mode": "quick",
+ "sections": {
+  "logic": {
+   "name": "Logic aturan",
+   "floor": 8,
+   "score": 6.8,
+   "measures": [
+    {
+     "id": "golden_rules",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "tg_engine",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "fuzz_rules",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "oracle_diff",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "metamorphic_fail",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "edition_leaks",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "effects_uncovered",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "rules_notes",
+     "value": 0,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  },
+  "data": {
+   "name": "Data dan Library",
+   "floor": 7,
+   "score": 5.0,
+   "measures": [
+    {
+     "id": "q_lib",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "q_img",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "search_hits_top5",
+     "value": null,
+     "base": null,
+     "target": 98,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "core_gaps",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "entries_without_edition",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    }
+   ]
+  },
+  "ui": {
+   "name": "UI dan UX",
+   "floor": 7,
+   "score": 4.75,
+   "measures": [
+    {
+     "id": "overflow_scan",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "overlap_scan",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "tidy",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "blank_new",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "ux_tasks_over_limit",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "pattern_lint",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "ui_patterns_spec",
+     "value": 0,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  },
+  "visual": {
+   "name": "Visual dan art",
+   "floor": 7,
+   "score": 5.0,
+   "measures": [
+    {
+     "id": "class_art",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "builder_art",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "icon_audit",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "art_hard_violations",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "art_queue_left",
+     "value": null,
+     "base": 1044,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    }
+   ]
+  },
+  "perf": {
+   "name": "Kinerja",
+   "floor": 6,
+   "score": 6.0,
+   "measures": [
+    {
+     "id": "fcp_x4",
+     "value": null,
+     "base": 2788,
+     "target": 1500,
+     "credit": 0.0,
+     "gate": false,
+     "note": "no perf run"
+    },
+    {
+     "id": "ready_x4",
+     "value": null,
+     "base": 2949,
+     "target": 2500,
+     "credit": 0.0,
+     "gate": false,
+     "note": "no perf run"
+    },
+    {
+     "id": "heap_home_raw_mb",
+     "value": null,
+     "base": 35.43,
+     "target": 30,
+     "credit": 0.0,
+     "gate": true,
+     "note": "no perf run"
+    },
+    {
+     "id": "heap_tools_mb",
+     "value": null,
+     "base": 65.62,
+     "target": 60,
+     "credit": 0.0,
+     "gate": true,
+     "note": "no perf run"
+    },
+    {
+     "id": "sheet_open_x4",
+     "value": null,
+     "base": 136,
+     "target": 300,
+     "credit": 0.0,
+     "gate": false,
+     "note": "no perf run"
+    },
+    {
+     "id": "inp_heal_x4",
+     "value": null,
+     "base": 184,
+     "target": 100,
+     "credit": 0.0,
+     "gate": false,
+     "note": "no perf run"
+    },
+    {
+     "id": "lib_find_ms",
+     "value": null,
+     "base": 174.6,
+     "target": 50,
+     "credit": 0.0,
+     "gate": false,
+     "note": "no perf run"
+    },
+    {
+     "id": "split_first_brotli",
+     "value": null,
+     "base": 916137,
+     "target": 1200000,
+     "credit": 0.0,
+     "gate": true,
+     "note": "no perf run"
+    },
+    {
+     "id": "font_data_uri_kb",
+     "value": 653,
+     "base": 653,
+     "target": 0,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "syncget",
+     "value": 2,
+     "base": 2,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  },
+  "reliability": {
+   "name": "Keandalan",
+   "floor": 7.5,
+   "score": 6.67,
+   "measures": [
+    {
+     "id": "storage_idb",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "self_heal",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "cloud_sync",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "chaos_violations",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "fail_modes_fail",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "migrate_all_fail",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "flaky_tests",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "opfs_recovery",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    }
+   ]
+  },
+  "process": {
+   "name": "Tes dan proses",
+   "floor": 7,
+   "score": 8.5,
+   "measures": [
+    {
+     "id": "build_check_fail",
+     "value": 0,
+     "base": null,
+     "target": 0,
+     "credit": 1.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "ci_jobs",
+     "value": 6,
+     "base": 1,
+     "target": 3,
+     "credit": 1.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "ci_tests",
+     "value": 32,
+     "base": null,
+     "target": 45,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "score_tool",
+     "value": 1,
+     "base": 0,
+     "target": 1,
+     "credit": 1.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "perf_budget_in_ci",
+     "value": 1,
+     "base": 0,
+     "target": 1,
+     "credit": 1.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "score_history",
+     "value": 1,
+     "base": 0,
+     "target": 1,
+     "credit": 1.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  },
+  "code": {
+   "name": "Kerapian kode",
+   "floor": 5,
+   "score": 5.41,
+   "measures": [
+    {
+     "id": "css_patch_files",
+     "value": 7,
+     "base": 7,
+     "target": 0,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "important",
+     "value": 807,
+     "base": 807,
+     "target": 99,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "lines_over_300",
+     "value": 1080,
+     "base": 1099,
+     "target": 0,
+     "credit": 0.02,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "lines_over_2000",
+     "value": 17,
+     "base": 17,
+     "target": 0,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "var_decl",
+     "value": 186,
+     "base": 6595,
+     "target": 0,
+     "credit": 0.97,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "json_clone",
+     "value": 50,
+     "base": 50,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "then_calls",
+     "value": 152,
+     "base": 152,
+     "target": 10,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "exec_command",
+     "value": 4,
+     "base": 4,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "navstack",
+     "value": 46,
+     "base": 46,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "mutation_observer",
+     "value": 76,
+     "base": 76,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "tsc_errors",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "owners_missing",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    }
+   ]
+  },
+  "security": {
+   "name": "Keamanan",
+   "floor": 8,
+   "score": 7.22,
+   "measures": [
+    {
+     "id": "csp_check",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "api_dev_guard",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
+    },
+    {
+     "id": "innerhtml_outside_lib",
+     "value": 247,
+     "base": 262,
+     "target": 0,
+     "credit": 0.06,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "confirm_alert",
+     "value": 1,
+     "base": 1,
+     "target": 0,
+     "credit": 0.0,
+     "gate": true,
+     "note": ""
+    },
+    {
+     "id": "headers_check",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "api_limits",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "license_doc",
+     "value": 0,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  },
+  "a11y": {
+   "name": "Aksesibilitas",
+   "floor": 7,
+   "score": 5.8,
+   "measures": [
+    {
+     "id": "axe_serious",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "learn_a11y",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "scene_contrast",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
+    },
+    {
+     "id": "a11y_tree_diff",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "keyboard_flow_fail",
+     "value": null,
+     "base": null,
+     "target": 0,
+     "credit": 0.0,
+     "gate": false,
+     "note": "tool missing"
+    },
+    {
+     "id": "dialog_elements",
+     "value": 0,
+     "base": 0,
+     "target": 12,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    },
+    {
+     "id": "abort_controllers",
+     "value": 0,
+     "base": 0,
+     "target": 20,
+     "credit": 0.0,
+     "gate": false,
+     "note": ""
+    }
+   ]
+  }
+ },
+ "average": 6.12,
+ "secs": 47
+}
