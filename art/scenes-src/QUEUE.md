@@ -51,7 +51,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | needs review: square corrected; asteroid details extend into quiet lower zone after redo |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
 | S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | done |
-| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | claimed by codex-phone-redo 2026-11-02 |
+| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | done |
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | done |
 | S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | done |
 | S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | done |
