@@ -5050,3 +5050,12 @@ Saya melihat langsung lucky, alert, savage-attacker, blinded, charmed, potion, r
 - Resolusi asli generate empat panel: 1254×1254, 1254×1254, 1275×1233, 1278×1230. Objek hanya diperkecil untuk margin minimal 24 px; tidak diperbesar.
 - Pemeriksaan: 100 sel terisi, margin alpha tiap sel lolos; beberapa simbol dibandingkan berdampingan dengan ikon lama pada kanvas sama. Kontur halus, warna lebih tenang, tekstur rinci konsisten dengan sheet-001.
 - Sel meragukan secara semantik: 21 Technical Support (kunci inggris), 23 Transformed Familiar (gagak), 40 Worthless Husk (topeng retak), 43 Absolute Chapter (kitab tersegel), 92 Atonement (salib berantai), 97 Levity (bobot berbulu). Nama abstrak ditafsirkan menjadi simbol tunggal; perlu tinjauan konteks sumber bila arti spesifik berbeda.
+
+### Perbaikan perakitan 006
+Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetangga pada tepi potongan. Resolusi, urutan, dan margin tetap terverifikasi.
+
+### Lembar 016 — selesai
+- PNG RGBA sheet-016-a/b.png masing-masing 2560×1280; 100 sel urut, margin alpha minimal 24 px terverifikasi.
+- Generate asli panel final: 1261×1247, 1263×1246, 1312×1199, 1280×1229. Hanya diperkecil dan diletakkan pada kanvas; tidak diperbesar.
+- Panel 1 digambar ulang karena simbol kartu mengandung huruf dan efek terlalu terang. Hasil final dibandingkan langsung dengan ikon lama pada ukuran sama; kontur tipis dan tekstur bahan terjaga.
+- Sel meragukan: 23 Benign Dismemberment ditafsirkan gauntlet terlepas; 72 Boil Blood dan 73 Boiling Blood cukup mirip; 85 Bottomless Stomach ditafsirkan kantong bermulut; 88 Brawn Boost memakai lengan karena nama spell. Sel-sel efek api lebih jenuh daripada benda biasa, sebanding dengan ikon fire lama.
