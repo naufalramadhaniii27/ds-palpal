@@ -5041,3 +5041,9 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 8 — acuan gaya (2026-11-02)
+Saya membuka dan melihat lucky, alert, savage-attacker; blinded, charmed; potion, ring; dragon, undead; fire; strength; serta tiga item acak (seed 8): charm-of-plant-command, decanter-of-endless-water, dust-of-sneezing-and-choking dari art-batch. Saya juga melihat sheet-001-a dan sheet-001-b dari art-test2. Ikon lama memiliki siluet tunggal yang jelas, garis kontur halus berwarna lebih gelap dari bahan, gradasi lukisan dan detail kecil; beberapa ikon lama lebih mengilap, tetapi patokan lembar 001 lebih tenang dengan warna tanah, logam kusam, kulit bertekstur, lipatan kain dan ukiran halus, proporsi realistis, tanpa garis hitam tebal atau bingkai stiker. Lembar sesi 8 mengikuti patokan 001: warna sedang dan lembut, highlight kecil, bayangan bawah halus, dan latar transparan; setiap simbol harus tetap terbaca pada 24 px.
+
+### Lembar 009 — sesi 8
+Selesai: `art/batch/icons/grids/sheet-009-a.png` dan `sheet-009-b.png`, masing-masing PNG RGBA 2560 × 1280 (10 × 5, sel 256 px), 100 sel sesuai urutan daftar art-lists. Empat panel generate asli masing-masing **1254 × 1254 px**; ikon dipisahkan berdasarkan komponen alfa, diperkecil bila perlu hingga maksimal 208 × 208, lalu ditempatkan pada sel 256 px tanpa pembesaran. Pemeriksaan otomatis: dimensi, RGBA, 100 sel terisi, padding transparan minimum 24 px, tanpa gambar melewati sel. Pemeriksaan visual: kedua bagian dan perbandingan enam sel dengan ikon lama pada kanvas 256 px serta pratinjau 24 px; garis berwarna tipis dan detail bahan sesuai acuan 001. Sel meragukan secara semantik karena nama homebrew tanpa sumber di daftar: 3 Gamma Knight (gauntlet energi hijau), 23 Dad (palu), 46 Protomancer (kristal), 78 Serophage (vial darah), 82 Siegeball Jersey (jersey), 91 Spellhacker (kunci magis); simbol dipilih dari nama. Tidak ada sel sisa.
