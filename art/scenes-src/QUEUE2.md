@@ -124,7 +124,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B027 phone a | art/scenes-src/backgrounds/B027a-phone.png | 1x2 | house-vadalis-heir, ice-fisher | done |
 | B027 phone b | art/scenes-src/backgrounds/B027b-phone.png | 1x2 | inheritor, initiate | done |
 | B028 PC | art/scenes-src/backgrounds/B028-pc.png | 2x2 | inquisitor, inquisitor-of-the-faithful, interpreter, investigator | done |
-| B028 phone a | art/scenes-src/backgrounds/B028a-phone.png | 1x2 | inquisitor, inquisitor-of-the-faithful | claimed by codex-b023-b033 2026-11-02T13:47+00:00 |
+| B028 phone a | art/scenes-src/backgrounds/B028a-phone.png | 1x2 | inquisitor, inquisitor-of-the-faithful | done |
 | B028 phone b | art/scenes-src/backgrounds/B028b-phone.png | 1x2 | interpreter, investigator | open |
 | B029 PC | art/scenes-src/backgrounds/B029-pc.png | 2x2 | izzet-engineer, knight-of-solamnia, knight-of-the-gauntlet, knight-of-the-order | open |
 | B029 phone a | art/scenes-src/backgrounds/B029a-phone.png | 1x2 | izzet-engineer, knight-of-solamnia | open |
