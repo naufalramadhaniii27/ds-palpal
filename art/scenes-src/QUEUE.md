@@ -48,7 +48,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | needs review: redo retains detailed forest in lower 55% |
 | S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | done |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
-| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | open |
+| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | claimed by codex-scenes 2026-11-02T09:43:52+00:00 |
 | S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | open |
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | open |
 | S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | open |
