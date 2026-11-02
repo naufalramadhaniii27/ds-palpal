@@ -182,7 +182,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B046 phone b | art/scenes-src/backgrounds/B046b-phone.png | 1x2 | soul-channeler, spacer | done |
 | B047 PC | art/scenes-src/backgrounds/B047-pc.png | 2x2 | spellfire-initiate, spirit-medium, syndicate-smuggler, technical-support | done |
 | B047 phone a | art/scenes-src/backgrounds/B047a-phone.png | 1x2 | spellfire-initiate, spirit-medium | done |
-| B047 phone b | art/scenes-src/backgrounds/B047b-phone.png | 1x2 | syndicate-smuggler, technical-support | open |
+| B047 phone b | art/scenes-src/backgrounds/B047b-phone.png | 1x2 | syndicate-smuggler, technical-support | claimed by codex-b045-b054 2026-11-02T13:12+00:00 |
 | B048 PC | art/scenes-src/backgrounds/B048-pc.png | 2x2 | technologist, transformed-familiar, urban-bounty-hunter, urchin | open |
 | B048 phone a | art/scenes-src/backgrounds/B048a-phone.png | 1x2 | technologist, transformed-familiar | open |
 | B048 phone b | art/scenes-src/backgrounds/B048b-phone.png | 1x2 | urban-bounty-hunter, urchin | open |
