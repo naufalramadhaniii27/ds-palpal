@@ -5065,3 +5065,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - Resolusi asli generate: dua panel 10×5 masing-masing 1774×887. Objek ditempatkan pada kanvas sel 256 px pada ukuran asli atau lebih kecil.
 - Dibandingkan berdampingan dengan ikon lama pada kanvas sama: kontur lokal halus, tekstur rinci, warna efek lebih terang daripada benda seperti dalam fire lama. Seluruh lembar dicek visual untuk urutan dan potongan.
 - Sel meragukan: 12 Swift Exchange dua bentuk berputar; 32 Throes of Ecstasy figur dalam efek; 42–48 keluarga efek waktu cukup serupa; 63 dan 91 Spellhack memakai kristal; 72 Trick Question tanda tanya sebagai simbol fungsi. Beberapa efek memakai simbol gabungan tunggal, bukan benda harfiah.
+
+### Lembar 036 — selesai
+- Dua PNG RGBA sheet-036-a/b.png 2560×1280; 100 sel urut, margin alpha minimal 24 px lolos. Generate asli panel a 1774×887 (setelah edit penghapusan kartu bertulisan), b 1774×887. Tidak ada pembesaran objek.
+- Dibandingkan dengan ikon lama pada ukuran sama: kontur tipis, bahan bertekstur, warna tenang. Varian item bertingkat mempertahankan bentuk dengan ornamen berbeda. Hat Trick diperbaiki melalui edit gambar agar tidak ada huruf kartu.
+- Sel meragukan: 7 Harbor Moon memakai lambang bulan; 19 Heart of the Sleeveless lambang hati; 23 Heaven's Herald terompet; 25–27 dan 94–96 berkat dewa memakai medali; 33 Helmsman's Shelter miniatur kapal; 54–56 Houseward jimat rumah; 65 I'jin figur kelinci; 86 Innocent Blood botol. Bentuk dari nama unik memerlukan tinjauan bila sumber menetapkan bentuk spesifik lain.
