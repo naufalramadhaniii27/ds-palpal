@@ -19,7 +19,7 @@ C (third-party classes, PC 2x2 + phone 1x2): use the QUEUE.md templates. The man
 
 B (backgrounds, PC 2x2 + phone 1x2): use the QUEUE.md templates. For each panel write the subject yourself from the manifest name and info: one adult whose daily life or past matches the background (their work, tools, clothes and place), caught in a moment of loss or danger in a bright world. Show the background, not a class. Vary species, age and gender across panels. Keep the subject you wrote for a PC panel and reuse it for its phone twin. For B054 (one panel) make one single PC image 2400x1344-shaped and one single phone image 9:16.
 
-K (subclass cards, 4x4): one image 16:9 (use the largest landscape size), a grid of 4 columns x 4 rows of 16:9 cards, separated by plain 16 px light cream gutters, no borders, numbers or labels. Each card is a small scene of one adult using that subclass's signature power, from the manifest class, subclass and features. The class must be readable from gear and pose. One clear figure, simple bright background, edges fade into cream paper. Small wound or grief detail allowed, no big gore. Cards in one sheet must differ in palette and pose. Unused cells (last sheet) stay plain cream.
+K (subclass cards, 4x4): one image 16:9 (use the largest landscape size), a grid of 4 columns x 4 rows of 16:9 cards, separated by plain 16 px light cream gutters, no borders, numbers or labels. Each card is a small scene of one adult using that subclass's signature power, from the manifest class, subclass and features. The class must be readable from gear and pose. One clear figure, simple bright background, edges fade into cream paper. Small wound or grief detail allowed, no big gore. Cards in one sheet must differ in palette and pose. Unused cells (last sheet) stay plain cream. Gutters are straight, even, flat cream bands of 16 px: no torn, rough or brushed card edges reaching into the gutter (K002 had rough edges and could not be cut automatically).
 
 P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portraits, plain 16 px cream gutters. Each portrait follows the manifest subject: head and shoulders, three-quarter view, plain flat dry-brush background in the listed colors, face in the upper middle, whole head and horns inside the middle 80% of height. Same STYLE BLOCK.
 
@@ -200,7 +200,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B052 phone b | art/scenes-src/backgrounds/B052b-phone.png | 1x2 | whitestone-rifle-corps, wildspacer | done |
 | B053 PC | art/scenes-src/backgrounds/B053-pc.png | 2x2 | wind-touched, witchlight-hand, witherbloom-student, worthless-husk | done |
 | B053 phone a | art/scenes-src/backgrounds/B053a-phone.png | 1x2 | wind-touched, witchlight-hand | done |
-| B053 phone b | art/scenes-src/backgrounds/B053b-phone.png | 1x2 | witherbloom-student, worthless-husk | claimed by codex-b045-b054 2026-11-02T14:12+00:00 |
+| B053 phone b | art/scenes-src/backgrounds/B053b-phone.png | 1x2 | witherbloom-student, worthless-husk | open (stale claim released) |
 | B054 PC | art/scenes-src/backgrounds/B054-pc.png | single | zhentarim-mercenary | needs review: non-graphic fallback after image safety rejection |
 | B054 phone a | art/scenes-src/backgrounds/B054a-phone.png | single | zhentarim-mercenary | done |
 | K001 | art/scenes-src/subclasses/K001.png | 4x4 cards | Alchemist to Artificer | needs review: Maverick scroll has writing-like marks after redo |
@@ -225,7 +225,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K020 | art/scenes-src/subclasses/K020.png | 4x4 cards | Paladin to Ranger | done |
 | K021 | art/scenes-src/subclasses/K021.png | 4x4 cards | Ranger to Rogue | done |
 | K022 | art/scenes-src/subclasses/K022.png | 4x4 cards | Rogue to Sorcerer | done |
-| K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | claimed by codex-k001-k033 2026-11-02T14:11+00:00 |
+| K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | open (stale claim released) |
 | K024 | art/scenes-src/subclasses/K024.png | 4x4 cards | Sorcerer to Summoner | open |
 | K025 | art/scenes-src/subclasses/K025.png | 4x4 cards | Summoner to Warden | open |
 | K026 | art/scenes-src/subclasses/K026.png | 4x4 cards | Warden to Warlock | open |
