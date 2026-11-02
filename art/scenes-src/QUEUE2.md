@@ -113,7 +113,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B023 phone b | art/scenes-src/backgrounds/B023b-phone.png | 1x2 | horizon-weaver-initiate, house-agent | done |
 | B024 PC | art/scenes-src/backgrounds/B024-pc.png | 2x2 | house-cannith-heir, house-deneith-heir, house-ghallanda-heir, house-jorasco-heir | done |
 | B024 phone a | art/scenes-src/backgrounds/B024a-phone.png | 1x2 | house-cannith-heir, house-deneith-heir | done |
-| B024 phone b | art/scenes-src/backgrounds/B024b-phone.png | 1x2 | house-ghallanda-heir, house-jorasco-heir | claimed by codex-b023-b033 2026-11-02T13:07+00:00 |
+| B024 phone b | art/scenes-src/backgrounds/B024b-phone.png | 1x2 | house-ghallanda-heir, house-jorasco-heir | done |
 | B025 PC | art/scenes-src/backgrounds/B025-pc.png | 2x2 | house-kundarak-heir, house-lyrandar-heir, house-medani-heir, house-orien-heir | open |
 | B025 phone a | art/scenes-src/backgrounds/B025a-phone.png | 1x2 | house-kundarak-heir, house-lyrandar-heir | open |
 | B025 phone b | art/scenes-src/backgrounds/B025b-phone.png | 1x2 | house-medani-heir, house-orien-heir | open |
