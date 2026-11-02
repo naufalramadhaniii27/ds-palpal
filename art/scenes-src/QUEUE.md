@@ -45,7 +45,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | done |
 | S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | done |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | done |
-| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | open |
+| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | claimed by codex-scenes 2026-11-02T09:29:00+00:00 |
 | S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | open |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | open |
 | S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | open |
