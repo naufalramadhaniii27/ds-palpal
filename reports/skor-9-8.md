@@ -105,3 +105,8 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Panel detail besar memakai gambar 5etools lebih dulu, lalu ikon Codex, lalu ikon generik (sudah dikerjakan di nilai-98/ui-detail-img, sheetIco/wm5 di src/app/12).
 - Angka: sekitar 470 ikon sudah dibuat Codex di art-batch tapi belum dipasang di main. 393 ikon ada di daftar tapi belum dibuat Codex (antrean grid G01 sampai G04).
 - Akibat untuk pemasangan akhir: pemasangan 1 Nov (tools/art_icons2.py) melewati ikon yang entrinya punya gambar 5etools. Itu dibalik: semua ikon Codex dipasang. Contoh yang terkena: Potion of Healing.
+
+## N44 ratchet
+- tools/html_gate.py counts innerHTML/outerHTML assignments and insertAdjacentHTML in src/ (not src/data, css, lib/html.js). Baseline 255 sites in 61 files (tools/html-baseline.json). A file may not get more. In Job A and CI. This is the number to bring to 0.
+- Bug found by detail_img while converting: render(raw(x), el) with a lone raw() threw "Invalid value used as weak map key" (render expected a template). The playbar icon commit (a few minutes on branch nilai-98/n44b, never merged) had that bug. Fixed in lib/html.js (a lone raw, string, number or array draws like html`${x}`), 3 new cases in tests/html_lib.py (20/20), and tests/detail_img.py now also checks playbar icons, pips, speeds and condition chips.
+- N44 sites now 248 (from 255 baseline): condition chips, playbar icons, swipe dots, sheet watermark.

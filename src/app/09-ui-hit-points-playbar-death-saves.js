@@ -3,7 +3,7 @@ import {$,clamp,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__R} from "./00-reg.js";
-import {html,render} from "./lib/html.js";
+import {html,raw,render} from "./lib/html.js";
 /* ================= HIT POINTS ================= */
 let flashT=null;
 export function buzz(ms){ try{ if(__store.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
@@ -40,14 +40,14 @@ export function syncHP(instant){
 /* v30 RU87, RU84: play bar on phones (HP, Temp HP, AC, conditions with Exhaustion, Concentration, Heroic Inspiration) */
 export function vbSync(){ if(__R.PIP) try{ __R.pipSync(); }catch(er){} __R.ohSync(); const vb=document.getElementById("vbar"); if(!vb||!D||!D.hpmax) return;
   try{ const hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), p=clamp(hp/D.hpmax,0,1);
-  const hasI=typeof __R.ICO==="object"&&!!__R.ICO; if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); $("#vbHpI").innerHTML=__R.ico("hp-heal","vb-hi"); $("#vbConc").innerHTML=__R.ico("tag-concentration"); $("#vbInsp").innerHTML=__R.ico("ui-star","vb-star"); }
+  const hasI=typeof __R.ICO==="object"&&!!__R.ICO; if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); render(raw(__R.ico("hp-heal","vb-hi")),$("#vbHpI")); render(raw(__R.ico("tag-concentration")),$("#vbConc")); render(raw(__R.ico("ui-star","vb-star")),$("#vbInsp")); }
   if(window.__miOdo&&window.__MI&&!window.__MI.rm()) window.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
   const b=$("#vbBar"); b.style.transform="scaleX("+p+")"; b.style.backgroundColor=barColor(p); b.setAttribute("data-lv",hpLv(p)); $("#vbTbar").style.transform="scaleX("+clamp(tp/D.hpmax,0,1)+")";
   $("#vbHp").setAttribute("aria-label","Hit Points "+hp+"/"+D.hpmax+(tp?" +"+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
   $("#vbAcV").textContent=D.ac; $("#vbAc").setAttribute("aria-label","Armor Class "+D.ac);
   const L=__R.activeConds().map((c) =>{ return c.k+(c.extra||""); }); if(S.exh) L.unshift("Exhaustion "+S.exh);
   const cb=$("#vbCond"), k0=S.exh?"exhaustion":(__R.activeConds()[0]||{}).k; cb.classList.toggle("on",L.length>0);
-  if(hasI) $("#vbCondI").innerHTML=L.length?(__R.ico("cond-"+String(k0).toLowerCase())||__R.ico("cond-exhaustion")):__R.ico("ui-plus");
+  if(hasI) render(raw(L.length?(__R.ico("cond-"+String(k0).toLowerCase())||__R.ico("cond-exhaustion")):__R.ico("ui-plus")),$("#vbCondI"));
   $("#vbCondT").textContent=L.length?L[0]+(L.length>1?" +"+(L.length-1):""):"Conditions";
   cb.classList.toggle("vb-none",!L.length);
   cb.setAttribute("aria-label",L.length?"Conditions: "+L.join(", ")+". Change conditions":"No conditions. Add a condition");
