@@ -165,7 +165,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B041 PC | art/scenes-src/backgrounds/B041-pc.png | 2x2 | released-thrall, revelry-pirate, rewarded, rival-intern | done |
 | B041 phone a | art/scenes-src/backgrounds/B041a-phone.png | 1x2 | released-thrall, revelry-pirate | done |
 | B041 phone b | art/scenes-src/backgrounds/B041b-phone.png | 1x2 | rewarded, rival-intern | done |
-| B042 PC | art/scenes-src/backgrounds/B042-pc.png | 2x2 | ruined, rune-carver, salvager, savant | open |
+| B042 PC | art/scenes-src/backgrounds/B042-pc.png | 2x2 | ruined, rune-carver, salvager, savant | claimed by codex-b034-b044 2026-11-02T13:57+00:00 |
 | B042 phone a | art/scenes-src/backgrounds/B042a-phone.png | 1x2 | ruined, rune-carver | open |
 | B042 phone b | art/scenes-src/backgrounds/B042b-phone.png | 1x2 | salvager, savant | open |
 | B043 PC | art/scenes-src/backgrounds/B043-pc.png | 2x2 | scion, scion-of-the-thaumaturge, scoundrel, security-guard | open |
