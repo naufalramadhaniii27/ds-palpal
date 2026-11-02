@@ -34,7 +34,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | C01 phone a | art/scenes-src/classes/C01a-phone.png | 1x2 | necromancer, martyr | done |
 | C01 phone b | art/scenes-src/classes/C01b-phone.png | 1x2 | dancer, investigator | done |
 | C02 PC | art/scenes-src/classes/C02-pc.png | 2x2 | witch, summoner, vagabond, craftsman | done |
-| C02 phone a | art/scenes-src/classes/C02a-phone.png | 1x2 | witch, summoner | claimed by codex-r-c-lane 2026-11-02T13:12+00:00 |
+| C02 phone a | art/scenes-src/classes/C02a-phone.png | 1x2 | witch, summoner | done |
 | C02 phone b | art/scenes-src/classes/C02b-phone.png | 1x2 | vagabond, craftsman | open |
 | C03 PC | art/scenes-src/classes/C03-pc.png | 2x2 | warden, captain, warmage, alchemist | open |
 | C03 phone a | art/scenes-src/classes/C03a-phone.png | 1x2 | warden, captain | open |
