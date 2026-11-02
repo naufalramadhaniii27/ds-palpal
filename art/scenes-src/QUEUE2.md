@@ -52,7 +52,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B003 phone a | art/scenes-src/backgrounds/B003a-phone.png | 1x2 | archivist, aristocrat | done |
 | B003 phone b | art/scenes-src/backgrounds/B003b-phone.png | 1x2 | artist, ashari | done |
 | B004 PC | art/scenes-src/backgrounds/B004-pc.png | 2x2 | astral-drifter, athlete, augen-trust, azorius-functionary | done |
-| B004 phone a | art/scenes-src/backgrounds/B004a-phone.png | 1x2 | astral-drifter, athlete | open |
+| B004 phone a | art/scenes-src/backgrounds/B004a-phone.png | 1x2 | astral-drifter, athlete | claimed by codex-b001-b011 2026-11-02T13:30+00:00 |
 | B004 phone b | art/scenes-src/backgrounds/B004b-phone.png | 1x2 | augen-trust, azorius-functionary | open |
 | B005 PC | art/scenes-src/backgrounds/B005-pc.png | 2x2 | baldurs-gate-acolyte, baldurs-gate-charlatan, baldurs-gate-criminal, baldurs-gate-entertainer | open |
 | B005 phone a | art/scenes-src/backgrounds/B005a-phone.png | 1x2 | baldurs-gate-acolyte, baldurs-gate-charlatan | open |
