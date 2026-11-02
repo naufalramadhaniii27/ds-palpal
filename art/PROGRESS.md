@@ -5041,3 +5041,12 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 5 — patokan gaya (2026-11-02)
+Saya melihat langsung lucky, alert, savage-attacker, blinded, charmed, potion, ring, dragon, undead, fire, strength, serta tiga item acak: holy-water, amethyst-lodestone, infernal-amulet di art-batch; juga sheet-001-a/b dari art-test2. Ciri yang dipakai: siluet realistis yang jelas, kontur tipis berwarna lokal lebih gelap, sapuan dan gradasi lembut, tekstur bahan kecil yang terbaca (lipit, serat, ukiran dan goresan), kilap terkendali serta bayangan lembut pada latar transparan. Lembar acuan lebih tenang dan bernuansa tanah daripada beberapa ikon lama yang lebih mengilap; acuan lembar menjadi patokan utama agar hasil bukan kartun atau stiker.
+
+### Lembar 006 — selesai
+- File: art/batch/icons/grids/sheet-006-a.png dan sheet-006-b.png; masing-masing PNG RGBA 2560×1280, sel 256×256, urutan 1–100 sesuai art-lists.
+- Resolusi asli generate empat panel: 1254×1254, 1254×1254, 1275×1233, 1278×1230. Objek hanya diperkecil untuk margin minimal 24 px; tidak diperbesar.
+- Pemeriksaan: 100 sel terisi, margin alpha tiap sel lolos; beberapa simbol dibandingkan berdampingan dengan ikon lama pada kanvas sama. Kontur halus, warna lebih tenang, tekstur rinci konsisten dengan sheet-001.
+- Sel meragukan secara semantik: 21 Technical Support (kunci inggris), 23 Transformed Familiar (gagak), 40 Worthless Husk (topeng retak), 43 Absolute Chapter (kitab tersegel), 92 Atonement (salib berantai), 97 Levity (bobot berbulu). Nama abstrak ditafsirkan menjadi simbol tunggal; perlu tinjauan konteks sumber bila arti spesifik berbeda.
