@@ -61,7 +61,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B006 phone a | art/scenes-src/backgrounds/B006a-phone.png | 1x2 | baldurs-gate-folk-hero, baldurs-gate-guild-artisan | done |
 | B006 phone b | art/scenes-src/backgrounds/B006b-phone.png | 1x2 | baldurs-gate-hermit, baldurs-gate-noble | done |
 | B007 PC | art/scenes-src/backgrounds/B007-pc.png | 2x2 | baldurs-gate-outlander, baldurs-gate-sage, baldurs-gate-sailor, baldurs-gate-soldier | done |
-| B007 phone a | art/scenes-src/backgrounds/B007a-phone.png | 1x2 | baldurs-gate-outlander, baldurs-gate-sage | open |
+| B007 phone a | art/scenes-src/backgrounds/B007a-phone.png | 1x2 | baldurs-gate-outlander, baldurs-gate-sage | claimed by codex-b001-b011 2026-11-02T14:05+00:00 |
 | B007 phone b | art/scenes-src/backgrounds/B007b-phone.png | 1x2 | baldurs-gate-sailor, baldurs-gate-soldier | open |
 | B008 PC | art/scenes-src/backgrounds/B008-pc.png | 2x2 | baldurs-gate-urchin, bandit-defector, beast-hunter, beggar | open |
 | B008 phone a | art/scenes-src/backgrounds/B008a-phone.png | 1x2 | baldurs-gate-urchin, bandit-defector | open |
