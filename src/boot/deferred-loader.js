@@ -19,7 +19,8 @@
   /* T7: the builder reads saved data and uses the sheet, so its parts wait until the store has loaded IndexedDB and the sheet scripts ran (boot/store-gate.js) */
   function run1(){ if(!(window.__gateDone)) return false; const s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ let u=s.getAttribute("data-src"), n=pname(s), t;
     if(u){ ask(s); t=TXT[n]; if(t==null&&SYNC) t=syncGet(u); if(t==null) return false; delete TXT[n]; DONE[n]=1; } else t=s.text;
-    const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); return true; }
+    const H=window.__deferHook;/* N32: tests/lib/trace.js sets it, nothing else does */ if(H) H(0,n);
+    const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; }
   function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length||!(window.__gateDone)) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} }
   window.__bldNeed=function(){ if(window.__deferDone) return; all(); if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",() =>{ all(); fin(); }); return; } fin(); };
   /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,
