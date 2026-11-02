@@ -65,6 +65,8 @@ def main():
     W, H = map(int, size.split('x'))
     im = Image.open(sheet).convert('RGB')
     bx = boxes(im)
+    if len(bx) > len(rest):
+        bx = bx[:len(rest)]  # trailing cells left empty on purpose
     if len(bx) != len(rest):
         raise SystemExit(f'{sheet}: found {len(bx)} panels, got {len(rest)} names')
     m = load(wts)
