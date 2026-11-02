@@ -1,0 +1,484 @@
+[
+ {
+  "id": "S01",
+  "theme": "fey and shadow",
+  "pc": {
+   "file": "art/scenes-src/species/S01-pc.png",
+   "layout": "2x2",
+   "names": [
+    "faerie",
+    "eladrin-2014",
+    "drow",
+    "shadar-kai-2014"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S01a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "faerie",
+     "eladrin-2014"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S01b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "drow",
+     "shadar-kai-2014"
+    ]
+   }
+  ],
+  "subjects": {
+   "faerie": "A tiny adult faerie with dragonfly wings, long antennae and glossy black eyes stands on a giant flower stem. One wing is torn and bleeding. A crushed flower-cup home lies beside her. Meadow of giant blossoms at dawn, pink and gold. Camera: macro, low among the stems.",
+   "eladrin-2014": "An adult autumn eladrin with copper-red hair, long pointed ears and bright fey eyes appears mid-teleport in a swirl of falling red leaves, dragging a bleeding adult companion. Feywild glade of crimson and gold trees, clear sky. Camera: wide, eye level.",
+   "drow": "An adult drow with dark violet-grey skin and white hair steps out of a cave mouth into blinding noon sun on an alpine meadow, shading her eyes, a bloody gash on her arm. Fresh blue and green palette. Camera: from inside the cave looking out.",
+   "shadar-kai-2014": "An adult shadar-kai, gaunt, ash-pale skin, black hair braided with raven feathers, kneels among silver dead trees on a lavender twilight moor, closing the eyes of a fallen adult. Ravens circle. Violet and teal palette, never grey. Camera: low, over the shoulder."
+  }
+ },
+ {
+  "id": "S02",
+  "theme": "deep and ancient",
+  "pc": {
+   "file": "art/scenes-src/species/S02-pc.png",
+   "layout": "2x2",
+   "names": [
+    "duergar-2014",
+    "yuan-ti-pureblood",
+    "dreamer",
+    "downcast"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S02a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "duergar-2014",
+     "yuan-ti-pureblood"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S02b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "dreamer",
+     "downcast"
+    ]
+   }
+  ],
+  "subjects": {
+   "duergar-2014": "An adult duergar, grey skin, bald head, long white beard, swells to giant size in a psionic surge inside a cavern forest of huge teal glowing mushrooms. A crushed mine cart and a bleeding adult miner lie nearby. Camera: low, looking up.",
+   "yuan-ti-pureblood": "An adult yuan-ti pureblood, human-looking but with slit snake eyes, green scale patches on neck and hands and a forked tongue, climbs sunlit jungle ziggurat steps with calm snakes around his feet. A wounded adult pilgrim rests on a step. Emerald and gold. Camera: high angle down the steps.",
+   "dreamer": "An adult Dreamer just woken from a cracked crystal stasis pod, frost and dust on ancient ornate robes, blinking at bright overgrown ruins. Other pods are shattered with dead sleepers inside. Jade and amber palette. Camera: inside the vault looking out.",
+   "downcast": "An adult Downcast, a fallen angel living as a mortal: faint broken halo, golden eyes, bandaged back with fresh blood where wings were cut, harvesting wheat. Golden field, wide blue sky. Camera: wide, from behind the wheat."
+  }
+ },
+ {
+  "id": "S03",
+  "theme": "Dhakaani clans of Eberron",
+  "pc": {
+   "file": "art/scenes-src/species/S03-pc.png",
+   "layout": "2x2",
+   "names": [
+    "dhakaani-ghaaldar",
+    "dhakaani-golindar",
+    "dhakaani-guuldar",
+    "jhorguntaal"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S03a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "dhakaani-ghaaldar",
+     "dhakaani-golindar"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S03b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "dhakaani-guuldar",
+     "jhorguntaal"
+    ]
+   }
+  ],
+  "subjects": {
+   "dhakaani-ghaaldar": "An adult hobgoblin warrior with red-orange skin in disciplined bronze-plated armor holds formation with a war band on a red stone mountain fortress wall. A wounded adult soldier is carried behind. Camera: wide, along the wall.",
+   "dhakaani-golindar": "A small adult goblin artisan with yellow-green skin hammers blue steel in an underground Dhakaani forge lit by teal crystals and white sparks. A burned adult apprentice sits with a bandaged hand. Camera: close, from the anvil.",
+   "dhakaani-guuldar": "An adult bugbear with very long arms and shaggy brown fur reaches over a log palisade in a snowy pine forest at bright morning, pulling a bleeding adult ally to safety. Camera: low, outside the palisade.",
+   "jhorguntaal": "An adult half-orc druid of the Shadow Marches, green-grey skin, bone and feather charms, wades a bright green bayou with mangroves and white herons, carrying a wounded adult tribe member. Camera: eye level from the water."
+  }
+ },
+ {
+  "id": "S04",
+  "theme": "sea and stars",
+  "pc": {
+   "file": "art/scenes-src/species/S04-pc.png",
+   "layout": "2x2",
+   "names": [
+    "kalamer-landwalker",
+    "ruinbound",
+    "nautilid",
+    "amoeboid"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S04a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "kalamer-landwalker",
+     "ruinbound"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S04b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "nautilid",
+     "amoeboid"
+    ]
+   }
+  ],
+  "subjects": {
+   "kalamer-landwalker": "An adult merfolk on a white beach mid-change, her shimmering blue tail splitting into legs, an adult islander helping her stand while another lies bleeding by a broken canoe. Turquoise lagoon, palm islands. Camera: wide, low on the sand.",
+   "ruinbound": "An adult humanoid with an iridescent purple alien symbiont grown over one arm and shoulder, pulsing, stands in bright sunlit ancient alien ruins of twisted stone. A dead adult explorer lies nearby. Camera: medium, slightly low.",
+   "nautilid": "An adult cephalopod-headed humanoid in a bulky brass diving suit filled with green liquid stands on the open deck of a spiral-shelled sailing ship among bright pink and blue nebula clouds. A wounded adult crewmate grips a rope. Camera: wide, from the mast.",
+   "amoeboid": "An adult translucent gelatinous humanoid, half of its body copying the shape of a nearby adult merchant, in a crowded bright starport market with hanging lanterns and blue sky dome. A bleeding adult guard lies by a toppled stall. Camera: medium, eye level."
+  }
+ },
+ {
+  "id": "S05",
+  "theme": "made bodies",
+  "pc": {
+   "file": "art/scenes-src/species/S05-pc.png",
+   "layout": "2x2",
+   "names": [
+    "geppettin",
+    "manikin",
+    "wechselkind",
+    "vect"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S05a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "geppettin",
+     "manikin"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S05b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "wechselkind",
+     "vect"
+    ]
+   }
+  ],
+  "subjects": {
+   "geppettin": "An adult-sized living marionette with carved wooden joints and a cracked porcelain face, cut strings hanging from its wrists, sits in a sunny toymaker's workshop full of half-made puppets. The old adult toymaker lies wounded on the floor. Camera: medium, low.",
+   "manikin": "An adult-sized jointed mannequin construct with two daggers set into its forearms stands backstage of a bright painted theater, red curtains, an adult actor bleeding on the boards. Camera: from the wings.",
+   "wechselkind": "A small doll-like adult Wechselkind with a cracked porcelain face and old, tired adult eyes sits on a sunlit attic windowsill of an old manor, dust motes, broken furniture. Adult figures argue below in the garden. Camera: inside the attic.",
+   "vect": "An adult humanoid robot of segmented blue-white plates, panels opening as it rearranges itself, works in a bright starship engine room with glowing cyan coils. An injured adult engineer leans on a rail. Camera: wide, over the railing."
+  }
+ },
+ {
+  "id": "S06",
+  "theme": "curse and root",
+  "pc": {
+   "file": "art/scenes-src/species/S06-pc.png",
+   "layout": "2x2",
+   "names": [
+    "mandrake",
+    "accursed",
+    "arisen",
+    "disembodied"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S06a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "mandrake",
+     "accursed"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S06b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "arisen",
+     "disembodied"
+    ]
+   }
+  ],
+  "subjects": {
+   "mandrake": "An adult mandrake, a plant humanoid with a root-woven body and spring-green leaves for hair, stands in a bright sunflower field beside a burned barn, a wounded adult farmer at its feet. Camera: low among the sunflowers.",
+   "accursed": "An adult Accursed with one arm blackened and cracked with glowing red veins stands at a bright spring crossroads under an empty gallows, villagers keeping their distance, a bloody bandage on the cursed hand. Camera: wide, eye level.",
+   "arisen": "An adult Arisen, a made body of mismatched limbs with fresh sutures, sits up on a stone table in a sunlit tower laboratory with tall windows and hanging herbs. The adult creator lies dead on the floor. Camera: high angle.",
+   "disembodied": "A blurred, hazy, translucent adult ghost stands beside their own fresh grave in a sunny hillside cemetery of white stones and wildflowers, mourners not seeing them. Camera: medium, from among the graves."
+  }
+ },
+ {
+  "id": "S07",
+  "theme": "grim folk",
+  "pc": {
+   "file": "art/scenes-src/species/S07-pc.png",
+   "layout": "2x2",
+   "names": [
+    "grudgel",
+    "laneshi",
+    "ogresh",
+    "wulven"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S07a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "grudgel",
+     "laneshi"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S07b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "ogresh",
+     "wulven"
+    ]
+   }
+  ],
+  "subjects": {
+   "grudgel": "An adult grudgel, stocky and broad-shouldered with grey-green skin, heavy brow and small tusks, stands calm and disciplined, holding a broken shield over a wounded adult comrade on a sunny rocky pass. Camera: low, from the rocks.",
+   "laneshi": "An adult Laneshi, an amphibious deep-sea humanoid with gills, webbed hands and glowing blue markings, wades out of a sunlit tidal cave carrying a drowned adult fisher. Turquoise and coral palette. Camera: from inside the cave.",
+   "ogresh": "A large, friendly adult Ogresh, twice human height, lifts a fallen roof beam off a collapsed bright village tavern while adult townsfolk pull a bleeding man free. Camera: wide, eye level.",
+   "wulven": "An adult Wulven, cursed with wolf traits, partly furred, lupine ears and muzzle, golden eyes, sits ashamed in a snowy pine forest under a bright blue moonlit sky beside torn bloody snow. Camera: medium, low."
+  }
+ },
+ {
+  "id": "S08",
+  "theme": "strange blood",
+  "pc": {
+   "file": "art/scenes-src/species/S08-pc.png",
+   "layout": "2x2",
+   "names": [
+    "cursed-blood",
+    "demidritch",
+    "scourgeborne",
+    "wrothian"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S08a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "cursed-blood",
+     "demidritch"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S08b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "scourgeborne",
+     "wrothian"
+    ]
+   }
+  ],
+  "subjects": {
+   "cursed-blood": "A small adult Cursed-Blood clings to a sunlit cliff wall, a ghostly face of their dead twin glowing faintly from their stomach. Below, a ruined bright hamlet and a wounded adult. Camera: side view on the cliff.",
+   "demidritch": "An adult Demidritch, skin like a starry nebula, one huge cosmic eye opening on the forehead, stands on a bright mountain observatory balcony, a bleeding adult astronomer at their feet. Camera: low, over the balcony rail.",
+   "scourgeborne": "An adult Scourgeborne with spider traits, extra small eyes, dark chitin plates and long fingers, crouches in a bright forest of white webs and green ferns, freeing a webbed bleeding adult traveller. Camera: medium, low.",
+   "wrothian": "An adult Wrothian, a lean predator humanoid with razor claws, sharp teeth and a faint violet psionic glow around the head, stands in a bright alien canyon of orange and teal stone, a fallen adult rival at its feet. Camera: wide."
+  }
+ },
+ {
+  "id": "S09",
+  "theme": "dinosaur folk I",
+  "pc": {
+   "file": "art/scenes-src/species/S09-pc.png",
+   "layout": "2x2",
+   "names": [
+    "pluvenn",
+    "manyhorn",
+    "jeholrak",
+    "ankylier"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S09a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "pluvenn",
+     "manyhorn"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S09b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "jeholrak",
+     "ankylier"
+    ]
+   }
+  ],
+  "subjects": {
+   "pluvenn": "An adult Pluvenn, a feathered raptor-like dinosaur folk with large curved hand claws, crouches on a fern-covered riverbank in a bright prehistoric valley, a wounded adult hunter beside. Camera: low in the ferns.",
+   "manyhorn": "An adult Manyhorn, a muscular horned ceratopsian folk with a wide head crest, hauls a cart from a mudslide in a bright jungle trade town while guild workers pull out an injured adult. Camera: wide.",
+   "jeholrak": "A small adult Jeholrak, a slim feathered dinosaur folk with a bright crest and hypnotic eyes, whispers to a dazed adult in a colorful canopy market while a bleeding rival lies hidden behind stalls. Camera: high angle.",
+   "ankylier": "An adult Ankylier, an armored ankylosaur folk with a clubbed tail, braces against a falling stone wall in a bright savanna village, shielding adult villagers, blood on its plates. Camera: low."
+  }
+ },
+ {
+  "id": "S10",
+  "theme": "dinosaur folk II and sky",
+  "pc": {
+   "file": "art/scenes-src/species/S10-pc.png",
+   "layout": "2x2",
+   "names": [
+    "limukin",
+    "child-of-seth",
+    "avia-ra",
+    "skathari"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S10a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "limukin",
+     "child-of-seth"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S10b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "avia-ra",
+     "skathari"
+    ]
+   }
+  ],
+  "subjects": {
+   "limukin": "An adult Limukin, a small swift lizard-like hunter with venom-coated spear, stalks through a bright misty fern forest beside a wounded adult companion. Camera: medium, through the ferns.",
+   "child-of-seth": "An adult Child of Seth, a pterosaur folk with leathery membrane wings and a long head crest, glides over bright sea cliffs, carrying a bleeding adult. Camera: wide, from the cliff top.",
+   "avia-ra": "An adult Avia-Ra, a falcon-headed humanoid sun priest in white and gold, raises a hand of healing light in a bright desert temple courtyard over a wounded adult pilgrim. Camera: low, from the temple steps.",
+   "skathari": "An adult Skathari, an insectoid humanoid with a glossy shell, hooked claws and membranous gliding wings, glides between floating asteroid rocks against a bright violet and blue nebula, a wounded adult crewmate on a rock. Camera: wide."
+  }
+ },
+ {
+  "id": "S11",
+  "theme": "Humblewood I",
+  "pc": {
+   "file": "art/scenes-src/species/S11-pc.png",
+   "layout": "2x2",
+   "names": [
+    "cervan",
+    "gallus",
+    "hedge",
+    "jerbeen"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S11a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "cervan",
+     "gallus"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S11b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "hedge",
+     "jerbeen"
+    ]
+   }
+  ],
+  "subjects": {
+   "cervan": "An adult Cervan, a deer-folk with antlers and soft brown fur, kneels to bandage a bleeding adult in a bright birch forest clearing beside a burned cart. Camera: medium, eye level.",
+   "gallus": "An adult Gallus, a proud pheasant-like birdfolk with bright copper and green plumage, flaps up onto a village rooftop to signal, while below adult villagers carry a wounded neighbour. Camera: wide, from the street.",
+   "hedge": "A small adult Hedge, hedgehog-folk with brown quills, curls into a spiky ball to shield a wounded adult friend in a bright mossy burrow entrance among roots. Camera: low.",
+   "jerbeen": "A small adult Jerbeen, jerboa-folk with long hind legs and big ears, leaps across a bright sandy canyon gap carrying a satchel of bandages to wounded adults. Camera: wide, side view."
+  }
+ },
+ {
+  "id": "S12",
+  "theme": "Humblewood II",
+  "pc": {
+   "file": "art/scenes-src/species/S12-pc.png",
+   "layout": "2x2",
+   "names": [
+    "luma",
+    "mapach",
+    "raptor",
+    "strig"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S12a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "luma",
+     "mapach"
+    ]
+   },
+   {
+    "file": "art/scenes-src/species/S12b-phone.png",
+    "layout": "1x2",
+    "names": [
+     "raptor",
+     "strig"
+    ]
+   }
+  ],
+  "subjects": {
+   "luma": "A small adult Luma, a bright songbird folk with jewel-blue feathers, sings over a wounded adult in a sunlit blossom tree village. Camera: medium, in the branches.",
+   "mapach": "An adult Mapach, raccoon-folk with masked face and ringed tail, builds a makeshift splint from scrap in a bright junkyard market for an injured adult. Camera: close, eye level.",
+   "raptor": "A small adult Raptor, hawk-folk with keen eyes and banded wings, perches on a bright cliff lookout, spotting smoke from a burning village far below, a bloody talon. Camera: over the shoulder.",
+   "strig": "An adult Strig, owl-folk with tufted ears and huge amber eyes, reads by daylight in a ruined bright library, a wounded adult scholar beside. Camera: medium, low."
+  }
+ },
+ {
+  "id": "S13",
+  "theme": "Humblewood III and Feathren",
+  "pc": {
+   "file": "art/scenes-src/species/S13-pc.png",
+   "layout": "1x2 stacked",
+   "names": [
+    "vulpin",
+    "feathren"
+   ]
+  },
+  "phone": [
+   {
+    "file": "art/scenes-src/species/S13a-phone.png",
+    "layout": "1x2",
+    "names": [
+     "vulpin",
+     "feathren"
+    ]
+   }
+  ],
+  "subjects": {
+   "vulpin": "An adult Vulpin, fox-folk with red fur and a sly smile, offers a hand to a wounded adult in a bright autumn orchard with a looted cart. Camera: medium, eye level.",
+   "feathren": "An adult Feathren, a feline folk with feathered wings and jay-blue feathers mixed into lion fur, guards a mountain shrine in bright morning light over a fallen adult. Camera: low."
+  }
+ }
+]
