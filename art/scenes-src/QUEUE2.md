@@ -159,7 +159,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B039 PC | art/scenes-src/backgrounds/B039-pc.png | 2x2 | programmer, purple-dragon-squire, quandrix-student, rakdos-cultist | done |
 | B039 phone a | art/scenes-src/backgrounds/B039a-phone.png | 1x2 | programmer, purple-dragon-squire | done |
 | B039 phone b | art/scenes-src/backgrounds/B039b-phone.png | 1x2 | quandrix-student, rakdos-cultist | done |
-| B040 PC | art/scenes-src/backgrounds/B040-pc.png | 2x2 | rashemi-wanderer, reconstructed-runaway, recovered-cultist, reformed-cultist | open |
+| B040 PC | art/scenes-src/backgrounds/B040-pc.png | 2x2 | rashemi-wanderer, reconstructed-runaway, recovered-cultist, reformed-cultist | claimed by codex-b034-b044 2026-11-02T13:37+00:00 |
 | B040 phone a | art/scenes-src/backgrounds/B040a-phone.png | 1x2 | rashemi-wanderer, reconstructed-runaway | open |
 | B040 phone b | art/scenes-src/backgrounds/B040b-phone.png | 1x2 | recovered-cultist, reformed-cultist | open |
 | B041 PC | art/scenes-src/backgrounds/B041-pc.png | 2x2 | released-thrall, revelry-pirate, rewarded, rival-intern | open |
