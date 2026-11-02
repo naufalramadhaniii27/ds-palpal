@@ -228,7 +228,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | needs review: straight gutters remain narrower than 16 px after whole-sheet redo |
 | K024 | art/scenes-src/subclasses/K024.png | 4x4 cards | Sorcerer to Summoner | needs review: gutter widths and flat fill still inconsistent after whole-sheet redo |
 | K025 | art/scenes-src/subclasses/K025.png | 4x4 cards | Summoner to Warden | needs review: gutters remain narrower than 16 px and textured after whole-sheet redo |
-| K026 | art/scenes-src/subclasses/K026.png | 4x4 cards | Warden to Warlock | open |
+| K026 | art/scenes-src/subclasses/K026.png | 4x4 cards | Warden to Warlock | claimed by codex-art-scenes 2026-11-02T18:58Z |
 | K027 | art/scenes-src/subclasses/K027.png | 4x4 cards | Warlock | open |
 | K028 | art/scenes-src/subclasses/K028.png | 4x4 cards | Warlock to Witch | open |
 | K029 | art/scenes-src/subclasses/K029.png | 4x4 cards | Witch to Wizard | open |
