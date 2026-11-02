@@ -44,7 +44,7 @@
 :root[data-skin="ddb"] #hpCur{color:#f4f7fa}/* no gradient text here: the rolling digits move inside it, and clipped text would freeze them at 0 */
 :root[data-skin="ddb"] :is(.tile,.ab){background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
 :root[data-skin="ddb"] .ab.key{background-image:linear-gradient(180deg,rgba(255,200,90,.16),rgba(255,200,90,0) 70%)!important;border-color:rgba(226,170,76,.7)!important;box-shadow:0 0 0 1px rgba(226,170,76,.4),0 0 24px rgba(226,170,76,.22),0 10px 22px -8px rgba(0,0,0,.55)!important}
-:root[data-skin="ddb"] .abox{background-color:color-mix(in srgb,var(--panel) 80%,#9fb4c8 20%)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)!important}
+:root[data-skin="ddb"] .abox{background-color:color-mix(in srgb,var(--panel) 80%,#9fb4c8 20%);border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)!important}
 :root[data-skin="ddb"] .abox.wide{box-shadow:inset 0 -2px 0 rgba(var(--pl-rgb),.65),0 6px 14px -6px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)!important}
 :root[data-skin="ddb"] .ifil{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);padding:4px}
 :root[data-skin="ddb"] .ifb.on{background:linear-gradient(180deg,#ffffff,#dfe5ea)!important;color:#14181b!important;box-shadow:0 4px 12px rgba(0,0,0,.35)!important}
@@ -60,12 +60,12 @@
 /* === Polish v3: hierarchy and depth === */
 :root[data-skin="ddb"] .photo{border-radius:16px!important;box-shadow:0 0 0 2px rgba(var(--pl-rgb),.65),0 0 0 5px rgba(var(--pl-rgb),.12),0 12px 28px -8px rgba(0,0,0,.7)!important;background-image:radial-gradient(circle at 50% 30%,rgba(255,255,255,.08),transparent 70%)}
 :root[data-skin="ddb"] .hp-big{text-shadow:none}
-:root[data-skin="ddb"] .arow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)!important;border-radius:14px;padding:10px 12px;margin:0 0 8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+:root[data-skin="ddb"] .arow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:10px 12px;margin:0 0 8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 :root[data-skin="ddb"] .fcat{position:relative;padding:2px 0 10px;margin-bottom:6px;border:0;letter-spacing:.04em}
 :root[data-skin="ddb"] .fcat::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;border-radius:4px;background:linear-gradient(90deg,rgb(var(--pl-rgb)),rgba(var(--pl-rgb),.2));box-shadow:0 0 10px rgba(var(--pl-rgb),.55)}
 :root[data-skin="ddb"] .fcat svg{color:rgb(var(--pl-rgb))}
 :root[data-skin="ddb"] .ahead{padding:0 12px;border:0;margin-bottom:6px;font-size:11px;letter-spacing:.14em;color:var(--muted);opacity:.85}
-:root[data-skin="ddb"] .abox:not(.wide){color:#fff!important;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02))!important;border-color:rgba(124,182,255,.35)!important}
+:root[data-skin="ddb"] .abox:not(.wide){color:#fff;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02))!important;border-color:rgba(124,182,255,.35)!important}
 :root[data-skin="ddb"] .abox.wide{background-image:linear-gradient(180deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),.03))!important;border-color:rgba(var(--pl-rgb),.4)!important}
 :root[data-skin="ddb"] .bnav{border-radius:20px 20px 0 0!important;border-top:1px solid rgba(255,255,255,.1)}
 :root[data-skin="ddb"] .bnav button.on{background:radial-gradient(60% 70% at 50% 100%,rgba(var(--pl-rgb),.28),transparent 70%);border-radius:16px}
