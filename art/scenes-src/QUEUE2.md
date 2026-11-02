@@ -253,7 +253,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P15 | art/scenes-src/portraits/P15.png | 2x2 portraits | leonin-a, leonin-b, lizardfolk-a, lizardfolk-b | done |
 | P16 | art/scenes-src/portraits/P16.png | 2x2 portraits | naga-a, naga-b, owlin-a, owlin-b | done |
 | P17 | art/scenes-src/portraits/P17.png | 2x2 portraits | plasmoid-a, plasmoid-b, reborn-a, reborn-b | done |
-| P18 | art/scenes-src/portraits/P18.png | 2x2 portraits | rimekin-a, rimekin-b, satyr-a, satyr-b | open |
+| P18 | art/scenes-src/portraits/P18.png | 2x2 portraits | rimekin-a, rimekin-b, satyr-a, satyr-b | claimed by codex-p01-p23 2026-11-02T13:37+00:00 |
 | P19 | art/scenes-src/portraits/P19.png | 2x2 portraits | shifter-a, shifter-b, simic-hybrid-a, simic-hybrid-b | open |
 | P20 | art/scenes-src/portraits/P20.png | 2x2 portraits | siren-a, siren-b, skeleton-a, skeleton-b | open |
 | P21 | art/scenes-src/portraits/P21.png | 2x2 portraits | tabaxi-a, tabaxi-b, thri-kreen-a, thri-kreen-b | open |
