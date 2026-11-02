@@ -5,6 +5,7 @@ import {B,D,derive,part} from "./06-logic-derivation.js";
 import {CHEV,boxes,esArt,renderInv,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,navStack,openSheet,refreshEntry,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
+import {html,render} from "./lib/html.js";
 import {doRest} from "./19-ui-global-click-delegation.js";
 import {setTab} from "./21-ui-tabs-pager.js";
 import {dtIcon,spEffH,spGrpLv,spPact,spRangeH,spRowLv,svgI} from "./22-ui-spell-data-and-slots.js";
@@ -78,13 +79,13 @@ function spSlotsH(l,rows){ if(!l) return ""; let o="", r=(D.res||[]).filter((q) 
   if(pr&&rows.some((p) =>{return spPact(p[0])})) o+='<span class="spsl"><small>PACT</small>'+boxes(used(pr.k,pr.max),pr.max,pr.k,pr.n)+'</span>';
   return o?'<span class="spslw">'+o+'</span>':""; }
 /* RU35 no. 7: Speed and Defenses, always shown */
-function renderSpeedDef(){ const e=document.getElementById("speeds"); if(e){ const sp=Object.assign({},C.speeds||{}); if(D.cf&&D.cf.fly&&!sp.fly) sp.fly=D.cf.fly;/* v22 */ let rows='<div class="sense"><span class="bonus">'+D.speed+'</span><span>Walking, ft</span></div>';
-    ["fly","swim","climb","burrow"].forEach((k) =>{ const x=sp[k]; if(!x) return; const v=x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:exSpd(num(x.v,0))); rows+='<div class="sense"><span class="bonus">'+v+'</span><span>'+{fly:"Fly",swim:"Swim",climb:"Climb",burrow:"Burrow"}[k]+', ft<small class="muted"> '+esc(x.s||"")+'</small></span></div>'; });
-    if(!["fly","swim","climb","burrow"].some((k) =>{return sp[k]})) rows+='<p class="muted dnone">No other speeds</p>'; e.innerHTML=rows; }
+function renderSpeedDef(){ const e=document.getElementById("speeds"); if(e){ const sp=Object.assign({},C.speeds||{}); if(D.cf&&D.cf.fly&&!sp.fly) sp.fly=D.cf.fly;/* v22 */
+    const KS=["fly","swim","climb","burrow"], NM={fly:"Fly",swim:"Swim",climb:"Climb",burrow:"Burrow"};
+    render(html`<div class="sense"><span class="bonus">${D.speed}</span><span>Walking, ft</span></div>${KS.filter((k) => sp[k]).map((k) =>{ const x=sp[k], v=x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:exSpd(num(x.v,0))); return html`<div class="sense"><span class="bonus">${v}</span><span>${NM[k]}, ft<small class="muted"> ${x.s||""}</small></span></div>`; })}${KS.some((k) => sp[k])?null:html`<p class="muted dnone">No other speeds</p>`}`,e); }
   const f=document.getElementById("defs"); if(f){ const L=(C.defenses||[]).concat(D.cf?D.cf.res:[]),/* v22 */ g=function(t){ return L.filter((d) =>{return d.t===t}); };
-    const sec=function(t,lbl,none){ const x=g(t); return '<h3 class="defh">'+lbl+'</h3>'+(x.length?x.map((d) =>{return '<div class="defl"><b>'+esc(d.v)+'</b><small>'+esc(d.s)+'</small></div>'}).join(""):'<p class="muted dnone">'+none+'</p>'); };
+    const sec=function(t,lbl,none){ const x=g(t); return html`<h3 class="defh">${lbl}</h3>${x.length?x.map((d) => html`<div class="defl"><b>${d.v}</b><small>${d.s}</small></div>`):html`<p class="muted dnone">${none}</p>`}`; };
     const oth=L.filter((d) =>{return ["Resistance","Immunity","Vulnerability"].indexOf(d.t)<0});
-    f.innerHTML=sec("Resistance","Resistances","No Resistances")+sec("Immunity","Immunities","No Immunities")+sec("Vulnerability","Vulnerabilities","No Vulnerabilities")+(oth.length?'<h3 class="defh">Other</h3>'+oth.map((d) =>{return '<div class="defl"><b>'+esc(d.t)+'</b> '+esc(d.v)+'<small>'+esc(d.s)+'</small></div>'}).join(""):""); } }
+    render(html`${sec("Resistance","Resistances","No Resistances")}${sec("Immunity","Immunities","No Immunities")}${sec("Vulnerability","Vulnerabilities","No Vulnerabilities")}${oth.length?html`<h3 class="defh">Other</h3>${oth.map((d) => html`<div class="defl"><b>${d.t}</b> ${d.v}<small>${d.s}</small></div>`)}`:null}`,f); } }
 /* RU35 no. 6: notes under Saving Throws */
 function saveNotesH(){ const n=(C.saveNotes||[]), b=(C.saveBonus||[]); if(!n.length&&!b.length) return ""; return '<div class="snotes">'+b.map((x) =>{return '<p><b>'+sg(num(x.v))+'</b> to all saving throws <small>'+esc(x.s)+'</small></p>'}).join("")+n.map((x) =>{return '<p>'+esc(x.t)+' <small>'+esc(x.s)+'</small></p>'}).join("")+'</div>'; }
 /* RU35 no. 8: containers. An item with "in" sits inside that container item. A magic container (CONTAINERS[2] set) has a fixed weight, its contents do not count */

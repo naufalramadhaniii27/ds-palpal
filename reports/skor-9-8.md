@@ -75,5 +75,5 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 
 ## N44 html templates (in progress, branch nilai-98/n44)
 - src/app/lib/html.js: 7.9 KB source, 4.4 KB minified, 2.0 KB gzip (plan target 3 KB minified, not met, gzip is under). tests/html_lib.py 17/17.
-- Converted so far: death save pips, HP max button (src/app/09). Checked in browser at 390x844: pips render, tap sets aria-pressed, no page errors.
+- Converted so far: death save pips, HP max button (src/app/09), speeds and defenses (src/app/23). Checked in browser at 390x844: pips render, tap sets aria-pressed, no page errors.
 - Left: about 198 innerHTML sites. Lint rule not added yet.
