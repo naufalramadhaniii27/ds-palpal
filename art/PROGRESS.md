@@ -5090,3 +5090,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - sheet-076-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 tiap panel, tidak diperbesar.
 - Feature memakai simbol fungsi berdasarkan sumber ras/subclass pada daftar. Sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama: detail bahan, tepi lokal halus, anatomi realistis; efek api lebih terang seperti fire lama.
 - Sel meragukan: 5 Dice of Fate dadu tanpa angka; 11/12 bola ramalan varian; 16 Disco of the Dead kaki kerangka dan bola tari sebagai satu lambang; 28/29 Divine Domain lambang ilahi; 43 penunjuk arah tanpa tulisan; 45 Double Joints tangan melingkar; 72–74 Druid tiga jimat; 77 Dual Augmentation sepasang gauntlet; 78 Dual Death pedang silang; 79 Dual Mind patung dua muka.
+
+### Lembar 086 — selesai
+- sheet-086-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 tiap panel; tidak diperbesar.
+- Sumber subclass/ras dipakai untuk simbol fungsi. Sampel dibandingkan langsung dengan ikon lama pada ukuran sama: detail halus, kontur lokal tipis, kejenuhan bahan tenang.
+- Sel meragukan: 8 Mercurial wajah logam cair; 9 Merge Bodies tangan menyatu; 19/20 metamagic permata; 23 Mighty Summoner lambang hewan roh; 35 Mini Portals lambang portal ganda; 40/41 Minor Miracle(s) dua medali tangan; 59 Mock Divinity topeng; 64–66 monastic simbol tasbih/tangan/tongkat; 91 Multidiscipline bidak; 92 Multiplayer topeng ganda; 100 Mutations cakar bermutasi. Makna abstrak adalah tafsir fungsi berdasarkan sumber.
