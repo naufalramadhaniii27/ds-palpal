@@ -41,7 +41,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S08 PC | art/scenes-src/species/S08-pc.png | cursed-blood, demidritch, scourgeborne, wrothian | done |
 | S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | done |
 | S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | needs review: redo lacks cream paper edge fade |
-| S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | claimed by codex-scenes 2026-11-02T09:17:55+00:00 |
+| S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | done |
 | S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | open |
 | S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | open |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | open |
