@@ -31,7 +31,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | R02 PC | art/scenes-src/redo/R02-pc.png | 2x2 (cell 4 empty cream) | dhakaani-ghaaldar, nautilid, mapach | needs review: fortress soldiers and ship props still enter center stripe after redo |
 | R03 phone | art/scenes-src/redo/R03-phone.png | 1x2 | limukin, child-of-seth | done |
 | C01 PC | art/scenes-src/classes/C01-pc.png | 2x2 | necromancer, martyr, dancer, investigator | done |
-| C01 phone a | art/scenes-src/classes/C01a-phone.png | 1x2 | necromancer, martyr | open |
+| C01 phone a | art/scenes-src/classes/C01a-phone.png | 1x2 | necromancer, martyr | claimed by codex-r-c-lane 2026-11-02T13:03+00:00 |
 | C01 phone b | art/scenes-src/classes/C01b-phone.png | 1x2 | dancer, investigator | open |
 | C02 PC | art/scenes-src/classes/C02-pc.png | 2x2 | witch, summoner, vagabond, craftsman | open |
 | C02 phone a | art/scenes-src/classes/C02a-phone.png | 1x2 | witch, summoner | open |
