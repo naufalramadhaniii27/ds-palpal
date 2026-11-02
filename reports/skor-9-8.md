@@ -105,3 +105,9 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Panel detail besar memakai gambar 5etools lebih dulu, lalu ikon Codex, lalu ikon generik (sudah dikerjakan di nilai-98/ui-detail-img, sheetIco/wm5 di src/app/12).
 - Angka: sekitar 470 ikon sudah dibuat Codex di art-batch tapi belum dipasang di main. 393 ikon ada di daftar tapi belum dibuat Codex (antrean grid G01 sampai G04).
 - Akibat untuk pemasangan akhir: pemasangan 1 Nov (tools/art_icons2.py) melewati ikon yang entrinya punya gambar 5etools. Itu dibalik: semua ikon Codex dipasang. Contoh yang terkena: Potion of Healing.
+
+## N32 part trace (branch nilai-98/n32)
+- src/boot/deferred-loader.js: two lines call window.__deferHook around each part (only tests/lib/trace.js sets it). tests/lib/trace.js records globals and registry key changes per part, then wraps part globals in a Proxy that counts reads per screen. tests/trace_screens.py runs the 74 screens of style_snapshot at 6 viewport/variant combinations. tools/split_plan.py writes reports/split-plan.md.
+- Result: 34 parts, 185 globals, each owned by exactly one part (0 shared). 9 shared tables listed (AUTO, BACKGROUNDS, CLASSES, DMGI, FEATS, SPECIES, SPELLS, SPELL_FULL, SUB_FULL, each filled by 2 to 6 parts). Only one part removes registry keys (the applyPacks style one).
+- Caveat found: the Library index build reads most data parts in the background, so "core" is overstated (16 parts) in split-plan.md. True core needs a second trace with that build switched off. Not done yet.
+- Not done: the cross-check build with the plan and the guard (Fase 2.2).
