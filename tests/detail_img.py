@@ -1,4 +1,5 @@
-"""Detail panel picture (sheet card): the 5etools picture comes first, then the Codex icon, then the generic one.
+"""Also covers the N44 template sites that draw on the sheet: playbar icons, condition chips, death save pips, speeds.
+Detail panel picture (sheet card): the 5etools picture comes first, then the Codex icon, then the generic one.
 Checks at 390x844 and 1250x850: Background Soldier and an inventory Potion of Healing use data/img/*.webp, Size uses img/icon/size/medium."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
@@ -16,6 +17,13 @@ with sync_playwright() as p:
         pg.evaluate("()=>{var b=[...document.querySelectorAll('button')].find(x=>/^continue$/i.test(x.textContent.trim())&&x.offsetParent);b&&b.click()}"); pg.wait_for_timeout(2500)
         def wm(): return pg.evaluate("()=>{var w=document.getElementById('shWm');return w?w.innerHTML:''}")
         def closeit(): pg.evaluate("()=>{var c=document.getElementById('sheetClose');c&&c.click()}"); pg.wait_for_timeout(500)
+        ic = pg.evaluate("()=>['vbHpI','vbConc','vbInsp','vbCondI'].map(i=>(document.getElementById(i)||{innerHTML:''}).innerHTML.length)")
+        check(vp + " playbar icons drawn", all(n > 50 for n in ic), ic)
+        check(vp + " death save pips drawn", pg.evaluate("()=>document.querySelectorAll('#dsS .pip').length+document.querySelectorAll('#dsF .pip').length") == 6)
+        check(vp + " speeds drawn", "Walking" in (pg.evaluate("()=>(document.getElementById('speeds')||{}).textContent") or ""))
+        pg.evaluate("()=>{var b=document.getElementById('condOpen');b&&b.click()}"); pg.wait_for_timeout(800)
+        pg.evaluate("()=>{var e=[...document.querySelectorAll('#sheetBody button,#sheetBody .chip,#sheetBody label')].find(x=>/^poisoned/i.test(x.textContent.trim()));e&&e.click()}"); pg.wait_for_timeout(600); closeit()
+        check(vp + " condition chip drawn after adding Poisoned", "Poisoned" in pg.evaluate("()=>[...document.querySelectorAll('#conds .chip')].map(x=>x.textContent.trim()).join('|')"))
         for t in ("Soldier", "Medium"):
             pg.evaluate("t=>{var e=[...document.querySelectorAll('button.tx,.tx')].find(x=>x.textContent.trim().startsWith(t)&&x.offsetParent);e&&e.click()}", t); pg.wait_for_timeout(1200)
             h1 = wm()

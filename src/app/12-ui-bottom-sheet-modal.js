@@ -6,6 +6,7 @@ import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {condHTML} from "./10-ui-conditions.js";
 import {bdHTML} from "./11-ui-breakdown.js";
 import {__R} from "./00-reg.js";
+import {html,raw,render} from "./lib/html.js";
 Object.defineProperty(__R,"navStack",{get:function(){return navStack;},set:function(v){navStack=v;},configurable:true});
 Object.defineProperty(__R,"openSheet",{get:function(){return openSheet;},set:function(v){openSheet=v;},configurable:true});
 Object.defineProperty(__R,"sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;},configurable:true});
@@ -39,7 +40,7 @@ export function sheetIco(t){ t=String(t||""); let h="", m;
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
   if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
-function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } w.innerHTML=sheetIco(t); }
+function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
 export function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */
   if(!sheet.classList.contains("on")) lastFocus=document.activeElement;
@@ -69,10 +70,10 @@ export function swpSet(el){ const c=el.closest("[id$='Body']")||document, sp=el.
 export function swpMove(d){ if(!SWP||navStack.length!==1) return false; const j=SWP.i+d; if(j<0||j>=SWP.list.length) return false; SWP.i=j; showEntry({type:"info",spec:SWP.list[j]},false); return true; }
 function swpSync(){ const b=$("#sheetBody"), old=b&&b.querySelector(".swp"); if(old) old.remove(); const en=navStack[navStack.length-1];
   if(!b||!SWP||navStack.length!==1||!en||en.type!=="info"||en.spec!==SWP.list[SWP.i]||sheetMode==="edit") return;
-  let n=SWP.list.length, i=SWP.i, a=Math.max(0,Math.min(i-3,n-7)), dots="";
-  for(let k=a;k<Math.min(n,a+7);k++) dots+='<i'+(k===i?' class="on"':'')+'></i>';
+  let n=SWP.list.length, i=SWP.i, a=Math.max(0,Math.min(i-3,n-7)); const dots=[];
+  for(let k=a;k<Math.min(n,a+7);k++) dots.push(html`<i class="${k===i?"on":""}"></i>`);
   const d=document.createElement("div"); d.className="swp"; d.setAttribute("role","group"); d.setAttribute("aria-label","Card "+(i+1)+" of "+n);
-  d.innerHTML='<button type="button" class="swp-b" data-swp="-1" aria-label="Previous card"'+(i?'':' disabled')+'>\u2039</button><span class="swp-d">'+dots+'</span><span class="swp-n">'+(i+1)+' / '+n+'</span><button type="button" class="swp-b" data-swp="1" aria-label="Next card"'+(i<n-1?'':' disabled')+'>\u203a</button>';
+  render(html`<button type="button" class="swp-b" data-swp="-1" aria-label="Previous card" ?disabled="${!i}">\u2039</button><span class="swp-d">${dots}</span><span class="swp-n">${i+1} / ${n}</span><button type="button" class="swp-b" data-swp="1" aria-label="Next card" ?disabled="${i>=n-1}">\u203a</button>`,d);
   b.insertBefore(d,b.firstChild); }
 document.addEventListener("keydown",(e) =>{ if(!SWP||!sheet.classList.contains("on")||sheetMode!=="info"||/INPUT|TEXTAREA|SELECT/.test((e.target||{}).tagName||"")) return; if(e.key==="ArrowRight"){ if(swpMove(1)) e.preventDefault(); } else if(e.key==="ArrowLeft"){ if(swpMove(-1)) e.preventDefault(); } });
 (function(){ let b=document.getElementById("sheetBody"), x0=0, y0=0, on=false; if(!b) return;

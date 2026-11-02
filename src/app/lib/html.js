@@ -102,7 +102,9 @@ function update(st, vals, first) {
 }
 /** @type {WeakMap<Element, any>} */ const R = new WeakMap();
 /** @param {{s: TemplateStringsArray, v: any[]}} r @param {Element} el */
+const HOLE = /** @type {any} */ (Object.assign(["", ""], { raw: ["", ""] }));
 export function render(r, el) {
+  if (r instanceof Raw || !r || typeof r !== "object" || Array.isArray(r) || typeof r.s === "string") r = { s: HOLE, v: [r] }; /* a lone raw(), string, number or array draws like html`${r}` */
   const st = R.get(el);
   if (st && st.s === r.s && st.first && st.first === el.firstChild && st.first.isConnected) { update(st.st, r.v); return; }
   const b = build(r), first = b.frag.firstChild; el.replaceChildren(b.frag); R.set(el, { s: r.s, st: b, first });

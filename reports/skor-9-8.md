@@ -108,3 +108,5 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 
 ## N44 ratchet
 - tools/html_gate.py counts innerHTML/outerHTML assignments and insertAdjacentHTML in src/ (not src/data, css, lib/html.js). Baseline 255 sites in 61 files (tools/html-baseline.json). A file may not get more. In Job A and CI. This is the number to bring to 0.
+- Bug found by detail_img while converting: render(raw(x), el) with a lone raw() threw "Invalid value used as weak map key" (render expected a template). The playbar icon commit (a few minutes on branch nilai-98/n44b, never merged) had that bug. Fixed in lib/html.js (a lone raw, string, number or array draws like html`${x}`), 3 new cases in tests/html_lib.py (20/20), and tests/detail_img.py now also checks playbar icons, pips, speeds and condition chips.
+- N44 sites now 248 (from 255 baseline): condition chips, playbar icons, swipe dots, sheet watermark.
