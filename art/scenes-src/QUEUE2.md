@@ -242,7 +242,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P04 | art/scenes-src/portraits/P04.png | 2x2 portraits | bullywug-a, bullywug-b, centaur-a, centaur-b | done |
 | P05 | art/scenes-src/portraits/P05.png | 2x2 portraits | changeling-a, changeling-b, fairy-a, fairy-b | done |
 | P06 | art/scenes-src/portraits/P06.png | 2x2 portraits | githzerai-a, githzerai-b, gnoll-a, gnoll-b | done |
-| P07 | art/scenes-src/portraits/P07.png | 2x2 portraits | goblin-a, goblin-b, grimlock-a, grimlock-b | claimed by codex-p01-p23 2026-11-02T13:07+00:00 |
+| P07 | art/scenes-src/portraits/P07.png | 2x2 portraits | goblin-a, goblin-b, grimlock-a, grimlock-b | done |
 | P08 | art/scenes-src/portraits/P08.png | 2x2 portraits | grung-a, grung-b, hadozee-a, hadozee-b | open |
 | P09 | art/scenes-src/portraits/P09.png | 2x2 portraits | harengon-a, harengon-b, hexblood-a, hexblood-b | open |
 | P10 | art/scenes-src/portraits/P10.png | 2x2 portraits | hobgoblin-a, hobgoblin-b, kalashtar-a, kalashtar-b | open |
