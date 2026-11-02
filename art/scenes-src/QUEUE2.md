@@ -191,7 +191,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B049 phone b | art/scenes-src/backgrounds/B049b-phone.png | 1x2 | vampire-survivor, variant-city-watch | done |
 | B050 PC | art/scenes-src/backgrounds/B050-pc.png | 2x2 | variant-criminal, variant-entertainer, variant-guild-artisan, variant-noble | done |
 | B050 phone a | art/scenes-src/backgrounds/B050a-phone.png | 1x2 | variant-criminal, variant-entertainer | done |
-| B050 phone b | art/scenes-src/backgrounds/B050b-phone.png | 1x2 | variant-guild-artisan, variant-noble | open |
+| B050 phone b | art/scenes-src/backgrounds/B050b-phone.png | 1x2 | variant-guild-artisan, variant-noble | claimed by codex-b045-b054 2026-11-02T13:41+00:00 |
 | B051 PC | art/scenes-src/backgrounds/B051-pc.png | 2x2 | variant-sailor, vizier, volstrucker-agent, wage-mage | open |
 | B051 phone a | art/scenes-src/backgrounds/B051a-phone.png | 1x2 | variant-sailor, vizier | open |
 | B051 phone b | art/scenes-src/backgrounds/B051b-phone.png | 1x2 | volstrucker-agent, wage-mage | open |
