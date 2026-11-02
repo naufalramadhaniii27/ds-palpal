@@ -93,7 +93,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B017 PC | art/scenes-src/backgrounds/B017-pc.png | 2x2 | faction-agent, failed-merchant, familiar-trainer, far-traveler | done |
 | B017 phone a | art/scenes-src/backgrounds/B017a-phone.png | 1x2 | faction-agent, failed-merchant | done |
 | B017 phone b | art/scenes-src/backgrounds/B017b-phone.png | 1x2 | familiar-trainer, far-traveler | done |
-| B018 PC | art/scenes-src/backgrounds/B018-pc.png | 2x2 | fey-blessed, fey-hostage, feylost, fisher | open |
+| B018 PC | art/scenes-src/backgrounds/B018-pc.png | 2x2 | fey-blessed, fey-hostage, feylost, fisher | claimed by codex-b012-b022 2026-11-02T13:55+00:00 |
 | B018 phone a | art/scenes-src/backgrounds/B018a-phone.png | 1x2 | fey-blessed, fey-hostage | open |
 | B018 phone b | art/scenes-src/backgrounds/B018b-phone.png | 1x2 | feylost, fisher | open |
 | B019 PC | art/scenes-src/backgrounds/B019-pc.png | 2x2 | flaming-fist-mercenary, folk-hero, free-swords-mercenary, galactic-colonist | open |
