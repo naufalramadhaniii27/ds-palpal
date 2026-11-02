@@ -5051,3 +5051,10 @@ Ikon lama diperiksa secara visual: lucky, alert, savage-attacker, blinded, charm
 - Resolusi asli generate: empat panel 1254×1254; pengganti sel 61 juga 1254×1254. Sel dipotong, hanya diperkecil bila perlu, kemudian ditempatkan pada kanvas 256 px tanpa pembesaran. Margin alpha minimum 24 px diverifikasi untuk 100 sel.
 - Pemeriksaan visual: sampel disandingkan dengan lucky, blinded, ring, dragon, dan burglars-pack pada ukuran sama serta 24 px; kontur tipis, palet lembut, tekstur sesuai lembar persetujuan. Sel 61 (Couatl Herald) digambar ulang karena versi awal terlalu menyerupai burung.
 - Sel meragukan: 15 Configuration, 21 Xenobiology, 30 Coalition Arcanist, 58 Contortionist memakai simbol interpretatif karena daftar hanya memberi nama; 46 Origami memakai lipatan bintang. Tidak ada sel yang ditandai lebih kartun atau bergaris lebih tebal dari acuan.
+
+### Sesi 6 — lembar 017 selesai
+- File: sheet-017-a.png dan sheet-017-b.png; PNG RGBA 2560×1280, sel 256 px, urutan 1–100 sesuai art-lists.
+- Resolusi asli generate per panel: 1254×1254, 1254×1254, 1254×1254, 1254×1254. Perakitan tanpa pembesaran; margin transparan minimum 24 px dan 100 sel terisi diperiksa.
+- Pemeriksaan visual: seluruh panel dilihat; sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama dan 24 px, memeriksa kontur, kejenuhan, detail.
+- Sel meragukan/catatan: Panel sel 1–25 direvisi untuk melembutkan warna asam/permen. Sel 72 Mantelet digambar ulang menjadi perisai beroda, sel 79 Shuttle menjadi wahana ulang-alik, dan sel 95 Ring Servant menjadi cincin berwajah dengan asap pelayan. Sel interpretatif yang masih meragukan: 53 Closing In (belitan sulur), 59 Compelled Movement (figur bergerak), 90 Convoluted Dictum (gulungan dan lingkar sihir).
+- Resolusi asli pengganti: 1254×1254, 1774×887; diperkecil ke sel, tanpa pembesaran.
