@@ -14,7 +14,8 @@ exec(open(os.path.join(HERE, "style_snapshot.py")).read().split("def diff(")[0])
 CH = open(os.path.join(HERE, "lib", "chaos.js"), encoding="utf-8").read()
 OBS = """(function(){window.__last='';window.addEventListener('cs-store-fail',function(){window.__last='fail'});window.addEventListener('cs-store-ok',function(){window.__last='ok'})})()"""
 KNOWN = [287]  # seeds that found a bug once (287: the mirror mark was not written again, an old IndexedDB copy won). They run first every time
-VOLATILE = ("cs-store-v1",)
+# cs-rcpt-v1 is written by a timer a few seconds after start (src/app/46) and rebuilt at every start. A tab closed in that window may lose it. CI seeds 13 and 29 hit this once (2026-11-02), not reproduced in 12 local runs
+VOLATILE = ("cs-store-v1", "cs-rcpt-v1")
 VOLATILE_PREFIX = ("cs-tm-",)
 
 
