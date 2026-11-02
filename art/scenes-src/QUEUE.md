@@ -20,42 +20,42 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 |---|---|---|---|
 | S01 PC | art/scenes-src/species/S01-pc.png | faerie, eladrin-2014, drow, shadar-kai-2014 | done |
 | S01 phone a | art/scenes-src/species/S01a-phone.png | faerie, eladrin-2014 | claimed by codex-phone-redo 2026-11-02 |
-| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | claimed by codex-phone-redo 2026-11-02 |
 | S02 PC | art/scenes-src/species/S02-pc.png | duergar-2014, yuan-ti-pureblood, dreamer, downcast | done |
-| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | claimed by codex-phone-redo 2026-11-02 |
+| S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | claimed by codex-phone-redo 2026-11-02 |
 | S03 PC | art/scenes-src/species/S03-pc.png | dhakaani-ghaaldar, dhakaani-golindar, dhakaani-guuldar, jhorguntaal | done |
-| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | claimed by codex-phone-redo 2026-11-02 |
+| S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | claimed by codex-phone-redo 2026-11-02 |
 | S04 PC | art/scenes-src/species/S04-pc.png | kalamer-landwalker, ruinbound, nautilid, amoeboid | done |
-| S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | claimed by codex-phone-redo 2026-11-02 |
+| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | claimed by codex-phone-redo 2026-11-02 |
 | S05 PC | art/scenes-src/species/S05-pc.png | geppettin, manikin, wechselkind, vect | done |
-| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | claimed by codex-phone-redo 2026-11-02 |
+| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | claimed by codex-phone-redo 2026-11-02 |
 | S06 PC | art/scenes-src/species/S06-pc.png | mandrake, accursed, arisen, disembodied | done |
-| S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | claimed by codex-phone-redo 2026-11-02 |
+| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | claimed by codex-phone-redo 2026-11-02 |
 | S07 PC | art/scenes-src/species/S07-pc.png | grudgel, laneshi, ogresh, wulven | done |
-| S07 phone a | art/scenes-src/species/S07a-phone.png | grudgel, laneshi | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S07 phone a | art/scenes-src/species/S07a-phone.png | grudgel, laneshi | claimed by codex-phone-redo 2026-11-02 |
+| S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | claimed by codex-phone-redo 2026-11-02 |
 | S08 PC | art/scenes-src/species/S08-pc.png | cursed-blood, demidritch, scourgeborne, wrothian | done |
-| S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | claimed by codex-phone-redo 2026-11-02 |
+| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | claimed by codex-phone-redo 2026-11-02 |
 | S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | done |
-| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | claimed by codex-phone-redo 2026-11-02 |
+| S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | claimed by codex-phone-redo 2026-11-02 |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | done |
-| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | claimed by codex-phone-redo 2026-11-02 |
+| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | claimed by codex-phone-redo 2026-11-02 |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
-| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | claimed by codex-phone-redo 2026-11-02 |
+| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | claimed by codex-phone-redo 2026-11-02 |
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | done |
-| S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
-| S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | claimed by codex-phone-redo 2026-11-02 |
+| S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | claimed by codex-phone-redo 2026-11-02 |
 | S13 PC | art/scenes-src/species/S13-pc.png | vulpin, feathren | done |
-| S13 phone a | art/scenes-src/species/S13a-phone.png | vulpin, feathren | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S13 phone a | art/scenes-src/species/S13a-phone.png | vulpin, feathren | claimed by codex-phone-redo 2026-11-02 |
 
 ## PC template (2x2)
 
