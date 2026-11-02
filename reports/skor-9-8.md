@@ -81,3 +81,4 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 ## Job A-C on M1 + N46 + N44 (branch nilai-98/n44, 2026-11-02)
 - tools/run_jobs.py A B C --retry: 32 tests, 0 failed, 2524 s. chaos_storage 50 seeds ok, migrate_all ok, tsc_gate ok, perf_budget ok.
 - Not yet run: style snapshot (tests/style_snapshot.py --variants), 2014 edition scenarios at both viewports by hand, 500-seed chaos on the final build, CI.
+- Style snapshot (--variants), origin/main vs nilai-98/n44: 74 screens, 64700 elements, 0 differences.
