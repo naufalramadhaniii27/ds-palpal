@@ -104,7 +104,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B020 phone b | art/scenes-src/backgrounds/B020b-phone.png | 1x2 | genie-touched, giant-foundling | done |
 | B021 PC | art/scenes-src/backgrounds/B021-pc.png | 2x2 | golgari-agent, grinner, grounded, gruul-anarch | done |
 | B021 phone a | art/scenes-src/backgrounds/B021a-phone.png | 1x2 | golgari-agent, grinner | done |
-| B021 phone b | art/scenes-src/backgrounds/B021b-phone.png | 1x2 | grounded, gruul-anarch | open |
+| B021 phone b | art/scenes-src/backgrounds/B021b-phone.png | 1x2 | grounded, gruul-anarch | claimed by codex-b012-b022 2026-11-02T14:39:44.245Z |
 | B022 PC | art/scenes-src/backgrounds/B022-pc.png | 2x2 | guild-artisan, harper, haunted, haunted-one | open |
 | B022 phone a | art/scenes-src/backgrounds/B022a-phone.png | 1x2 | guild-artisan, harper | open |
 | B022 phone b | art/scenes-src/backgrounds/B022b-phone.png | 1x2 | haunted, haunted-one | open |
