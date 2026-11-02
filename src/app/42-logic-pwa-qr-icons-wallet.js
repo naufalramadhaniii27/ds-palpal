@@ -190,7 +190,7 @@ function qrGot(R,raw){ if(!raw||QRR!==R) return; const msg=function(t){ const e=
   const i=+m[1], n=+m[2]; if(!n||i<1||i>n||n>QR_MAX) return; if(R.h!==m[3]){ R.h=m[3]; R.n=n; R.parts={}; }
   R.parts[i]=m[4]; const got=Object.keys(R.parts).length; msg("Parts read: "+got+" of "+n+". Keep the camera on the code.");
   const pg=document.getElementById("qrPg"); if(pg) render(html`${Array.from({length:n},(_,i) => html`<i class="${R.parts[i+1]!=null?"on":""}"></i>`)}`,pg);
-  if(got===n){ let t=""; for(k=1;k<=n;k++) t+=R.parts[k]; if(qrHash(t)!==R.h){ R.parts={}; msg("The parts did not match. Scan again from the first part."); return; } qrDone(t); } }
+  if(got===n){ let t=""; for(let k=1;k<=n;k++) t+=R.parts[k]; if(qrHash(t)!==R.h){ R.parts={}; msg("The parts did not match. Scan again from the first part."); return; } qrDone(t); } }
 function qrDone(t){ qrScanStop(); const b=document.getElementById("bkp"); if(b) b.remove(); toast("Code read. Opening the character..."); impText(t); }
 window.__qrScanOpen=qrScanOpen;
 /* ===== v34 p06: one wallet for the sheet and the builder ===== */
