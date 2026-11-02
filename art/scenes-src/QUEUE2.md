@@ -44,7 +44,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | C04 phone b | art/scenes-src/classes/C04b-phone.png | 1x2 | monster-hunter, healer | open |
 | B001 PC | art/scenes-src/backgrounds/B001-pc.png | 2x2 | aberrant-heir, academic, agent-of-augustine, agent-of-the-ninth-quill | done |
 | B001 phone a | art/scenes-src/backgrounds/B001a-phone.png | 1x2 | aberrant-heir, academic | done |
-| B001 phone b | art/scenes-src/backgrounds/B001b-phone.png | 1x2 | agent-of-augustine, agent-of-the-ninth-quill | claimed by codex-b001-b011 2026-11-02T12:59+00:00 |
+| B001 phone b | art/scenes-src/backgrounds/B001b-phone.png | 1x2 | agent-of-augustine, agent-of-the-ninth-quill | done |
 | B002 PC | art/scenes-src/backgrounds/B002-pc.png | 2x2 | amnesiac, anthropologist, antiquarian, archaeologist | open |
 | B002 phone a | art/scenes-src/backgrounds/B002a-phone.png | 1x2 | amnesiac, anthropologist | open |
 | B002 phone b | art/scenes-src/backgrounds/B002b-phone.png | 1x2 | antiquarian, archaeologist | open |
