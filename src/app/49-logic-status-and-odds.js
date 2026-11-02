@@ -25,74 +25,74 @@ Object.defineProperty(__R,"statusText",{get:function(){return statusText;},set:f
 /* T11 G4 N17 status for a group chat: one short line to paste in WhatsApp or Discord.
    "Yudhi Kelapa (Fighter 4) | HP 32/44 +5 temp | AC 18 | Concentrating: Bless | Poisoned, Exhaustion 1"
    Pasting the line back in Import says what it is, it is not taken for a character (16 impText). */
-function statusText(){ if(!C||!D) return ""; var hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), out=[];
+function statusText(){ if(!C||!D) return ""; const hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), out=[];
   out.push((C.name||"Character")+(C.clsLabel||C.cls?" ("+(C.clsLabel||(C.cls+" "+(C.level||1)))+")":""));
   out.push("HP "+hp+"/"+D.hpmax+(tp?" +"+tp+" temp":"")); out.push("AC "+D.ac);
-  var co=typeof concOf==="function"?concOf():null; if(co) out.push("Concentrating: "+co.n);
-  var cs=[]; STD_CONDS.forEach(function(k){ if(S.cond&&S.cond[k]) cs.push(k); }); if(S.exh) cs.push("Exhaustion "+S.exh); if(cs.length) out.push(cs.join(", "));
-  if(hp===0){ var d=S.ds||[0,0]; out.push("Death saves "+d[0]+" success, "+d[1]+" failure"); }
+  const co=typeof concOf==="function"?concOf():null; if(co) out.push("Concentrating: "+co.n);
+  const cs=[]; STD_CONDS.forEach((k) =>{ if(S.cond&&S.cond[k]) cs.push(k); }); if(S.exh) cs.push("Exhaustion "+S.exh); if(cs.length) out.push(cs.join(", "));
+  if(hp===0){ const d=S.ds||[0,0]; out.push("Death saves "+d[0]+" success, "+d[1]+" failure"); }
   if(S.insp) out.push("Heroic Inspiration");
   return out.join(" | "); }
-function statusCopy(){ var t=statusText(); if(!t) return; var done=function(){ toast("Status copied: "+t); };
-  try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,function(){ statusShow(t); }); return; } }catch(e){} statusShow(t); }
-function statusShow(t){ __set_navStack([]); openSheet("Status for chat",'<p class="bk-f">Copy this line and paste it in your group chat.</p><textarea class="st-txt" readonly rows="3">'+esc(t)+'</textarea>',"status"); var a=document.querySelector("#sheetBody .st-txt"); if(a){ a.focus(); a.select(); } }
+function statusCopy(){ const t=statusText(); if(!t) return; const done=function(){ toast("Status copied: "+t); };
+  try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,() =>{ statusShow(t); }); return; } }catch(e){} statusShow(t); }
+function statusShow(t){ __set_navStack([]); openSheet("Status for chat",'<p class="bk-f">Copy this line and paste it in your group chat.</p><textarea class="st-txt" readonly rows="3">'+esc(t)+'</textarea>',"status"); const a=document.querySelector("#sheetBody .st-txt"); if(a){ a.focus(); a.select(); } }
 function statusLine(t){ return /^[^|\n]{1,120}\| HP \d+\/\d+/.test(String(t||"").trim()); }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-status]"); if(!b) return; statusCopy(); });
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-status]"); if(!b) return; statusCopy(); });
 /* T11 G4 N9 rules check while playing. The builder checks a character while it is made (ruleIssues), this looks at the sheet in play.
    Each finding has a plain reason and, where one exists, a fix button. Shown as one small chip in the Conditions row when something is found.
    Rules: PHB 2024 Equipment (heavy armor Strength), Rules Glossary (Unconscious at 0 Hit Points, Exhaustion 6), magic items (attunement limit). */
 
 
-function lintOpen(){ var l=lintList(); __set_navStack([]); openSheet("Rules check",l.length?l.map(function(q){ return '<div class="lint-r"><b>'+esc(q.t)+'</b><p>'+esc(q.x)+'</p>'+(q.fix?'<button type="button" class="btn press" data-lfix="'+esc(q.fix)+'">'+esc(q.fl)+'</button>':'')+'</div>'; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-lint],[data-lfix]"); if(!b) return;
+function lintOpen(){ const l=lintList(); __set_navStack([]); openSheet("Rules check",l.length?l.map((q) =>{ return '<div class="lint-r"><b>'+esc(q.t)+'</b><p>'+esc(q.x)+'</p>'+(q.fix?'<button type="button" class="btn press" data-lfix="'+esc(q.fix)+'">'+esc(q.fl)+'</button>':'')+'</div>'; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-lint],[data-lfix]"); if(!b) return;
   if(b.hasAttribute("data-lint")){ lintOpen(); return; }
-  var f=b.getAttribute("data-lfix"); closeSheet();
+  const f=b.getAttribute("data-lfix"); closeSheet();
   if(f==="unc"){ S.cond.Unconscious=true; save(); renderConds(); toast("Unconscious added."); }
   else if(f==="exh"){ S.exh=5; save(); renderConds(); toast("Exhaustion is 5 now."); }
-  else if(f==="inv"){ var k=PAGES.indexOf("p-inv"); if(mq.matches&&k>=0) goPage(k,true); else setTab("p-inv",true,true); } });
+  else if(f==="inv"){ const k=PAGES.indexOf("p-inv"); if(mq.matches&&k>=0) goPage(k,true); else setTab("p-inv",true,true); } });
 /* T11 G4 N4 session recap, without AI and offline. Made from the journal of the character (mi-jr-<name>, fx 18): the last session is the run of
    entries with no gap longer than 4 hours. Totals: damage taken, healing, spells cast, rolls with natural 20s and 1s, conditions, rests, levels,
    coins, Concentration saves. The card can be kept as a picture (canvas, PNG), shared where the device can share files */
-function recapData(){ var J=window.__miJournal; if(!J) return null; var all=J.all(); if(!all.length) return null;
-  var ses=[all[0]]; for(var i=1;i<all.length;i++){ if(ses[ses.length-1].t-all[i].t>4*3600e3) break; ses.push(all[i]); }
-  var o={from:ses[ses.length-1].t,to:ses[0].t,n:ses.length,dmg:0,heal:0,cast:{},rolls:0,n20:0,n1:0,cond:[],rest:[],level:0,coin:0,cs:0,cb:0,fights:0};
-  ses.forEach(function(e){ var x=String(e.x||""), m;
+function recapData(){ const J=window.__miJournal; if(!J) return null; const all=J.all(); if(!all.length) return null;
+  const ses=[all[0]]; for(let i=1;i<all.length;i++){ if(ses[ses.length-1].t-all[i].t>4*3600e3) break; ses.push(all[i]); }
+  const o={from:ses[ses.length-1].t,to:ses[0].t,n:ses.length,dmg:0,heal:0,cast:{},rolls:0,n20:0,n1:0,cond:[],rest:[],level:0,coin:0,cs:0,cb:0,fights:0};
+  ses.forEach((e) =>{ let x=String(e.x||""), m;
     if((e.k==="dmg"||e.k==="hurt")&&(m=/Took (\d+)/.exec(x))) o.dmg+=+m[1]; else if(e.k==="heal"&&(m=/(\d+)/.exec(x))) o.heal+=+m[1];
-    else if(e.k==="cast"){ var s=x.replace(/^Cast /,""); o.cast[s]=(o.cast[s]||0)+1; }
+    else if(e.k==="cast"){ const s=x.replace(/^Cast /,""); o.cast[s]=(o.cast[s]||0)+1; }
     else if(e.k==="roll"){ o.rolls++; if(/natural 20/.test(x)) o.n20++; if(/natural 1\)/.test(x)) o.n1++; }
-    else if(e.k==="cond"&&/^Became /.test(x)){ var c=x.slice(7); if(o.cond.indexOf(c)<0) o.cond.push(c); }
+    else if(e.k==="cond"&&/^Became /.test(x)){ const c=x.slice(7); if(o.cond.indexOf(c)<0) o.cond.push(c); }
     else if(e.k==="rest") o.rest.push(x); else if(e.k==="level") o.level++; else if(e.k==="combat") o.fights++;
     else if(e.k==="coin"&&(m=/([+-]?\d+(\.\d+)?)/.exec(x))) o.coin+=+m[1];
     else if(e.k==="conc"){ if(/held/.test(x)) o.cs++; else o.cb++; } });
   o.coin=Math.round(o.coin*100)/100; return o; }
-function recapRows(o){ var r=[], sp=Object.keys(o.cast);
+function recapRows(o){ const r=[], sp=Object.keys(o.cast);
   if(o.fights) r.push(["Fights",String(o.fights)]); if(o.dmg) r.push(["Damage taken",String(o.dmg)]); if(o.heal) r.push(["Healing",String(o.heal)]);
-  if(sp.length) r.push(["Spells cast",sp.map(function(k){ return k+(o.cast[k]>1?" x"+o.cast[k]:""); }).join(", ")]);
+  if(sp.length) r.push(["Spells cast",sp.map((k) =>{ return k+(o.cast[k]>1?" x"+o.cast[k]:""); }).join(", ")]);
   if(o.rolls) r.push(["Rolls",o.rolls+(o.n20?", natural 20: "+o.n20:"")+(o.n1?", natural 1: "+o.n1:"")]);
   if(o.cs||o.cb) r.push(["Concentration saves",o.cs+" held, "+o.cb+" broken"]); if(o.cond.length) r.push(["Conditions",o.cond.join(", ")]);
   if(o.rest.length) r.push(["Rests",o.rest.join(", ")]); if(o.level) r.push(["Level ups",String(o.level)]); if(o.coin) r.push(["Coins",(o.coin>0?"+":"")+o.coin+" gp"]);
   return r; }
-function recapWhen(o){ try{ var f={weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}; return new Date(o.from).toLocaleString(undefined,f)+" to "+new Date(o.to).toLocaleTimeString(undefined,{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
-function recapOpen(){ var o=recapData(); __set_navStack([]);
+function recapWhen(o){ try{ const f={weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}; return new Date(o.from).toLocaleString(undefined,f)+" to "+new Date(o.to).toLocaleTimeString(undefined,{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
+function recapOpen(){ const o=recapData(); __set_navStack([]);
   if(!o){ openSheet("Session recap",'<p class="bk-f">Nothing written yet. Rolls, damage, healing, spells and rests are written in the journal as you play, and the recap is made from them.</p>',"recap"); return; }
-  var rows=recapRows(o);
-  openSheet("Session recap",'<div class="rcp"><p class="rcp-w">'+esc((C&&C.name)||"Character")+'. '+esc(recapWhen(o))+'</p>'+(rows.length?'<dl>'+rows.map(function(x){ return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>'; }).join("")+'</dl>':'<p class="bk-f">This session has '+o.n+' journal lines and nothing to add up yet.</p>')+'</div><p><button type="button" class="btn press" data-recapimg="1">Save as picture</button></p>',"recap"); }
+  const rows=recapRows(o);
+  openSheet("Session recap",'<div class="rcp"><p class="rcp-w">'+esc((C&&C.name)||"Character")+'. '+esc(recapWhen(o))+'</p>'+(rows.length?'<dl>'+rows.map((x) =>{ return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>'; }).join("")+'</dl>':'<p class="bk-f">This session has '+o.n+' journal lines and nothing to add up yet.</p>')+'</div><p><button type="button" class="btn press" data-recapimg="1">Save as picture</button></p>',"recap"); }
 /* the card as a PNG: plain canvas text, the theme colours of the sheet */
-function recapPic(){ var o=recapData(); if(!o) return; var rows=recapRows(o), W=1080, pad=72, lh=46, cv=document.createElement("canvas"), x=cv.getContext("2d"); if(!x) return;
-  var lines=[]; x.font="40px system-ui, sans-serif"; rows.forEach(function(r){ var words=r[1].split(" "), cur=""; var out=[]; words.forEach(function(w){ var t=cur?cur+" "+w:w; if(x.measureText(t).width>W-2*pad-40&&cur){ out.push(cur); cur=w; } else cur=t; }); if(cur) out.push(cur); lines.push([r[0],out]); });
-  var H=pad*2+160+lines.reduce(function(a,l){ return a+40+l[1].length*lh+24; },0); cv.width=W; cv.height=Math.max(H,600);
-  var cs=getComputedStyle(document.body), bg=cs.backgroundColor||"#1b1d22", fg=cs.color||"#f2efe8"; x.fillStyle=bg; x.fillRect(0,0,W,cv.height); x.fillStyle=fg;
+function recapPic(){ const o=recapData(); if(!o) return; const rows=recapRows(o), W=1080, pad=72, lh=46, cv=document.createElement("canvas"), x=cv.getContext("2d"); if(!x) return;
+  const lines=[]; x.font="40px system-ui, sans-serif"; rows.forEach((r) =>{ let words=r[1].split(" "), cur=""; const out=[]; words.forEach((w) =>{ const t=cur?cur+" "+w:w; if(x.measureText(t).width>W-2*pad-40&&cur){ out.push(cur); cur=w; } else cur=t; }); if(cur) out.push(cur); lines.push([r[0],out]); });
+  const H=pad*2+160+lines.reduce((a,l) =>{ return a+40+l[1].length*lh+24; },0); cv.width=W; cv.height=Math.max(H,600);
+  const cs=getComputedStyle(document.body), bg=cs.backgroundColor||"#1b1d22", fg=cs.color||"#f2efe8"; x.fillStyle=bg; x.fillRect(0,0,W,cv.height); x.fillStyle=fg;
   x.font="bold 60px Georgia, serif"; x.fillText((C&&C.name)||"Character",pad,pad+50); x.globalAlpha=.75; x.font="34px system-ui, sans-serif"; x.fillText("Session recap. "+recapWhen(o),pad,pad+110); x.globalAlpha=1;
-  var y=pad+190; lines.forEach(function(l){ x.globalAlpha=.7; x.font="600 30px system-ui, sans-serif"; x.fillText(l[0].toUpperCase(),pad,y); x.globalAlpha=1; y+=46; x.font="40px system-ui, sans-serif"; l[1].forEach(function(t){ x.fillText(t,pad,y); y+=lh; }); y+=24; });
-  var name=((C&&C.name)||"character").replace(/[^\w-]+/g,"-")+"-session.png";
-  cv.toBlob(function(b){ if(!b) return; try{ var f=new File([b],name,{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"Session recap"}).catch(function(){}); return; } }catch(e){}
-    var u=URL.createObjectURL(b), a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); toast("Picture saved: "+name); },"image/png"); }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-recapimg],[data-recap]"); if(!b) return; if(b.hasAttribute("data-recap")) recapOpen(); else recapPic(); });
+  let y=pad+190; lines.forEach((l) =>{ x.globalAlpha=.7; x.font="600 30px system-ui, sans-serif"; x.fillText(l[0].toUpperCase(),pad,y); x.globalAlpha=1; y+=46; x.font="40px system-ui, sans-serif"; l[1].forEach((t) =>{ x.fillText(t,pad,y); y+=lh; }); y+=24; });
+  const name=((C&&C.name)||"character").replace(/[^\w-]+/g,"-")+"-session.png";
+  cv.toBlob((b) =>{ if(!b) return; try{ const f=new File([b],name,{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"Session recap"}).catch(() =>{}); return; } }catch(e){}
+    const u=URL.createObjectURL(b), a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); toast("Picture saved: "+name); },"image/png"); }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-recapimg],[data-recap]"); if(!b) return; if(b.hasAttribute("data-recap")) recapOpen(); else recapPic(); });
 window.__recapOpen=recapOpen; window.__recapData=recapData;
 /* T11 G4 N15 ask the rules, without AI and offline. A hand-written table of intents maps the words of a question to Library rule entries.
    The answer is a short line written for this app and the rule entries to read in full. It never makes up an answer:
    a question that matches no intent gets the normal Library search only. Rules: PHB 2024 Playing the Game and Rules Glossary */
-var ASK=[
+const ASK=[
  [/\bhid(e|ing)\b|\bstealth\b|\bsneak/,"Take the Hide action: make a Dexterity (Stealth) check, DC 15, while out of sight or behind cover. On a success you have the Invisible condition until you make noise, attack, or are found.",["Hide","Invisible","Stealth"]],
  [/attack (twice|two times|more than once)|extra attack|two attacks|attack again/,"One Attack action is one attack. Extra Attack from your class lets you attack more times with the same action. A Light weapon also gives one more attack as a Bonus Action.",["Attack","Light","Bonus Action"]],
  [/\bgrap+l/,"Grapple is an Unarmed Strike option. The target makes a Strength or Dexterity save against 8 + your Strength modifier + Proficiency Bonus. On a failure it has the Grappled condition.",["Grapple","Grappled","Unarmed Strike"]],
@@ -126,56 +126,56 @@ var ASK=[
  [/frighten|scared|fear/,"Frightened: Disadvantage on checks and attacks while the source is in sight, and you cannot willingly move closer to it.",["Frightened"]],
  [/poison/,"Poisoned: Disadvantage on attack rolls and ability checks.",["Poisoned"]]];
 function askLike(q){ return /\?$/.test(q)||/^(how|can|what|when|why|do|does|is|are|should|who|which|where|if) /.test(q); }
-function askAnswer(q){ q=String(q||"").trim().toLowerCase(); if(q.length<6||!askLike(q)) return null; for(var i=0;i<ASK.length;i++) if(ASK[i][0].test(q)) return {a:ASK[i][1],r:ASK[i][2].filter(function(k){ return GLOSS[k]; })}; return null; }
-function askHTML(q){ var o=askAnswer(q); if(!o) return ""; return '<div class="qa"><b class="qa-h">Short answer</b><p>'+esc(o.a)+'</p>'+(o.r.length?'<div class="qa-r">'+o.r.map(function(k){ return '<button type="button" class="lib-chip" data-lib-open="rule|'+esc(k)+'">'+esc(k)+'</button>'; }).join("")+'</div>':'')+'</div>'; }
+function askAnswer(q){ q=String(q||"").trim().toLowerCase(); if(q.length<6||!askLike(q)) return null; for(let i=0;i<ASK.length;i++) if(ASK[i][0].test(q)) return {a:ASK[i][1],r:ASK[i][2].filter((k) =>{ return GLOSS[k]; })}; return null; }
+function askHTML(q){ const o=askAnswer(q); if(!o) return ""; return '<div class="qa"><b class="qa-h">Short answer</b><p>'+esc(o.a)+'</p>'+(o.r.length?'<div class="qa-r">'+o.r.map((k) =>{ return '<button type="button" class="lib-chip" data-lib-open="rule|'+esc(k)+'">'+esc(k)+'</button>'; }).join("")+'</div>':'')+'</div>'; }
 /* T11 G4 N11 Build DNA: the builder choices only (B), gzip (CompressionStream, T8) and base64url, in a link "#build=...".
    Opening the link asks first, then builds the character with the builder like an imported build (16 impBuild). Nothing is sent anywhere:
    the code lives in the part of the address after #, which browsers do not send to the server */
-function dnaLink(){ var b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return Promise.reject(new Error("Pick a class first."));
+function dnaLink(){ let b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return Promise.reject(new Error("Pick a class first."));
   b=JSON.parse(JSON.stringify(b)); delete b.cid; delete b._app;
-  return zPack(JSON.stringify({kind:"build",B:b})).then(function(z){ var code=z.slice(8).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); return location.origin+location.pathname+"#build="+code; }); }
-function dnaRead(code){ var b=String(code||"").replace(/-/g,"+").replace(/_/g,"/"); while(b.length%4) b+="="; return "DND24Z1:"+b; }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-dna]"); if(!b) return; e.preventDefault(); var how=b.getAttribute("data-dna");
-  dnaLink().then(function(u){ var bt=(window.__bldToast&&!document.getElementById("bld").hidden)?window.__bldToast:toast;
-    if(how==="share"&&navigator.share){ navigator.share({title:"D&D build",url:u}).catch(function(){}); return; }
-    if(how==="qr"){ var box=b.parentNode&&b.parentNode.parentNode&&b.parentNode.parentNode.querySelector(".dna-qr"); if(!box){ box=document.createElement("div"); box.className="dna-qr"; b.parentNode.insertAdjacentElement("afterend",box); }
-      var q=null; try{ q=QRG.make(u,"L",40); }catch(er){ q=null; } box.innerHTML=q?QRG.svg(q,"Build link code")+'<p class="fd bhint">Scan it with Open Character, Scan a code, on the other phone.</p>':'<p class="fd bhint">The link is too long for one code. Use Copy or Share.</p>'; return; }
-    var done=function(){ bt("Build link copied ("+u.length+" characters)."); };
-    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(done,function(){ bt("Copy did not work here. Use Share instead."); }); return; } }catch(er){} bt("Copy is not available here."); },
-    function(er){ (window.__bldToast||toast)(er.message||"The link could not be made."); }); });
+  return zPack(JSON.stringify({kind:"build",B:b})).then((z) =>{ const code=z.slice(8).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); return location.origin+location.pathname+"#build="+code; }); }
+function dnaRead(code){ let b=String(code||"").replace(/-/g,"+").replace(/_/g,"/"); while(b.length%4) b+="="; return "DND24Z1:"+b; }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dna]"); if(!b) return; e.preventDefault(); const how=b.getAttribute("data-dna");
+  dnaLink().then((u) =>{ const bt=(window.__bldToast&&!document.getElementById("bld").hidden)?window.__bldToast:toast;
+    if(how==="share"&&navigator.share){ navigator.share({title:"D&D build",url:u}).catch(() =>{}); return; }
+    if(how==="qr"){ let box=b.parentNode&&b.parentNode.parentNode&&b.parentNode.parentNode.querySelector(".dna-qr"); if(!box){ box=document.createElement("div"); box.className="dna-qr"; b.parentNode.insertAdjacentElement("afterend",box); }
+      let q=null; try{ q=QRG.make(u,"L",40); }catch(er){ q=null; } box.innerHTML=q?QRG.svg(q,"Build link code")+'<p class="fd bhint">Scan it with Open Character, Scan a code, on the other phone.</p>':'<p class="fd bhint">The link is too long for one code. Use Copy or Share.</p>'; return; }
+    const done=function(){ bt("Build link copied ("+u.length+" characters)."); };
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(done,() =>{ bt("Copy did not work here. Use Share instead."); }); return; } }catch(er){} bt("Copy is not available here."); },
+    (er) =>{ (window.__bldToast||toast)(er.message||"The link could not be made."); }); });
 /* a shared link opened: wait for the builder data, ask, then import */
-function dnaCheck(){ var m=/^#build=([A-Za-z0-9_-]{20,})$/.exec(location.hash||""); if(!m) return; var code=m[1];
+function dnaCheck(){ const m=/^#build=([A-Za-z0-9_-]{20,})$/.exec(location.hash||""); if(!m) return; const code=m[1];
   try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){}
-  var tries=0; (function wait(){ if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} if(!window.__bldSheetFor||!window.__bldNorm){ if(++tries<80) setTimeout(wait,250); else toast("The builder did not load, so the shared build cannot be opened."); return; }
-    ask("Open the build someone shared with you? It is added as a new character. Your other characters stay as they are.","Open Build",function(){ impText(dnaRead(code)); }); })(); }
+  let tries=0; (function wait(){ if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} if(!window.__bldSheetFor||!window.__bldNorm){ if(++tries<80) setTimeout(wait,250); else toast("The builder did not load, so the shared build cannot be opened."); return; }
+    ask("Open the build someone shared with you? It is added as a new character. Your other characters stay as they are.","Open Build",() =>{ impText(dnaRead(code)); }); })(); }
 dnaCheck(); addEventListener("hashchange",dnaCheck);/* a link pasted into a tab where the app is already open */
 /* T11 G4 N5 future sheet: the character from its level now up to 20, from the same builder and the same derivation as the sheet.
    Only the choices already made count: new choices at later levels (Ability Score Improvements, feats, spells, subclass) are not guessed.
    Hit Points use the fixed value per level. Lines for Hit Points, Armor Class, best attack bonus and spell save DC, and the highest spell slot */
-function futureData(){ if(!window.__bldSheetFor) return null; var b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return null;
-  var tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
-  try{ for(var L=tot;L<=20;L++){ var nb=JSON.parse(JSON.stringify(b)); nb.level=Math.max(1,main+(L-tot)); var c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
-      __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach(function(a){ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
-      var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach(function(n,i){ if(+n>0) top=i+1; });
+function futureData(){ if(!window.__bldSheetFor) return null; const b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return null;
+  const tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
+  try{ for(let L=tot;L<=20;L++){ const nb=JSON.parse(JSON.stringify(b)); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
+      __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
+      var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach((n,i) =>{ if(+n>0) top=i+1; });
       out.push({l:L,hp:D.hpmax,ac:D.ac,atk:best>-99?best:null,dc:c2.spellcasting?D.dc:null,slot:top,pb:D.pb}); } }
   finally{ __set_C(keepC); __set_D(keepD); __set_B(keepB); if(keepCU) __set_CU0(keepCU); }
   return out; }
-function futureSVG(rows,key,label){ var pts=rows.filter(function(r){ return r[key]!=null; }); if(pts.length<2) return "";
-  var W=320, H=120, px=28, py=14, lo=Math.min.apply(null,pts.map(function(r){ return r[key]; })), hi=Math.max.apply(null,pts.map(function(r){ return r[key]; })); if(hi===lo) hi=lo+1;
-  var x=function(l){ return px+(l-pts[0].l)/(pts[pts.length-1].l-pts[0].l||1)*(W-2*px); }, y=function(v){ return H-py-(v-lo)/(hi-lo)*(H-2*py); };
-  var d=pts.map(function(r,i){ return (i?"L":"M")+x(r.l).toFixed(1)+" "+y(r[key]).toFixed(1); }).join("");
+function futureSVG(rows,key,label){ const pts=rows.filter((r) =>{ return r[key]!=null; }); if(pts.length<2) return "";
+  let W=320, H=120, px=28, py=14, lo=Math.min.apply(null,pts.map((r) =>{ return r[key]; })), hi=Math.max.apply(null,pts.map((r) =>{ return r[key]; })); if(hi===lo) hi=lo+1;
+  const x=function(l){ return px+(l-pts[0].l)/(pts[pts.length-1].l-pts[0].l||1)*(W-2*px); }, y=function(v){ return H-py-(v-lo)/(hi-lo)*(H-2*py); };
+  const d=pts.map((r,i) =>{ return (i?"L":"M")+x(r.l).toFixed(1)+" "+y(r[key]).toFixed(1); }).join("");
   return '<figure class="fut-g"><figcaption><b>'+esc(label)+'</b><span>'+pts[0][key]+' now, '+pts[pts.length-1][key]+' at level '+pts[pts.length-1].l+'</span></figcaption><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+' from level '+pts[0].l+' to '+pts[pts.length-1].l+'"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
-    pts.filter(function(r,i){ return i===0||i===pts.length-1||r.l%4===0; }).map(function(r){ return '<circle cx="'+x(r.l).toFixed(1)+'" cy="'+y(r[key]).toFixed(1)+'" r="3.5" fill="currentColor"/><text x="'+x(r.l).toFixed(1)+'" y="'+(H-1)+'" text-anchor="middle">'+r.l+'</text>'; }).join("")+'</svg></figure>'; }
-function futureOpen(){ __set_navStack([]); var go=function(){ var rows=futureData();
+    pts.filter((r,i) =>{ return i===0||i===pts.length-1||r.l%4===0; }).map((r) =>{ return '<circle cx="'+x(r.l).toFixed(1)+'" cy="'+y(r[key]).toFixed(1)+'" r="3.5" fill="currentColor"/><text x="'+x(r.l).toFixed(1)+'" y="'+(H-1)+'" text-anchor="middle">'+r.l+'</text>'; }).join("")+'</svg></figure>'; }
+function futureOpen(){ __set_navStack([]); const go=function(){ const rows=futureData();
     if(!rows||rows.length<2){ openSheet("Future sheet",'<p class="bk-f">'+(D.level>=20?"Level 20 is the highest level.":"Open the builder once so the future sheet can use your choices.")+'</p>',"future"); return; }
-    var t='<table class="fut-t"><thead><tr><th scope="col">Level</th><th scope="col">HP</th><th scope="col">AC</th><th scope="col">Attack</th>'+(rows[0].dc!=null?'<th scope="col">Spell DC</th><th scope="col">Top slot</th>':'')+'</tr></thead><tbody>'+rows.map(function(r){ return '<tr'+(r.l===D.level?' class="now"':'')+'><th scope="row">'+r.l+'</th><td>'+r.hp+'</td><td>'+r.ac+'</td><td>'+(r.atk!=null?sg(r.atk):"")+'</td>'+(rows[0].dc!=null?'<td>'+(r.dc!=null?r.dc:"")+'</td><td>'+(r.slot||"")+'</td>':'')+'</tr>'; }).join("")+'</tbody></table>';
+    const t='<table class="fut-t"><thead><tr><th scope="col">Level</th><th scope="col">HP</th><th scope="col">AC</th><th scope="col">Attack</th>'+(rows[0].dc!=null?'<th scope="col">Spell DC</th><th scope="col">Top slot</th>':'')+'</tr></thead><tbody>'+rows.map((r) =>{ return '<tr'+(r.l===D.level?' class="now"':'')+'><th scope="row">'+r.l+'</th><td>'+r.hp+'</td><td>'+r.ac+'</td><td>'+(r.atk!=null?sg(r.atk):"")+'</td>'+(rows[0].dc!=null?'<td>'+(r.dc!=null?r.dc:"")+'</td><td>'+(r.slot||"")+'</td>':'')+'</tr>'; }).join("")+'</tbody></table>';
     openSheet("Future sheet",'<p class="bk-f">Your character from level '+D.level+' to 20 with the choices made so far. Choices at new levels (ability scores, feats, spells) are not guessed, so the real numbers can be higher.</p><div class="fut">'+futureSVG(rows,"hp","Hit Points")+futureSVG(rows,"atk","Best attack bonus")+(rows[0].dc!=null?futureSVG(rows,"dc","Spell save DC"):"")+'</div><div class="fut-tw">'+t+'</div><p class="bk-btns"><button type="button" class="btn press" data-futlv="1">Plan the next level</button><button type="button" class="btn press" data-rbopen="1">Find a build for a goal</button></p>',"future"); };
-  if(window.__bldSheetFor) go(); else { if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} var n=0; (function w(){ if(window.__bldSheetFor) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-futlv],[data-future]"); if(!b) return; if(b.hasAttribute("data-future")){ futureOpen(); return; } closeSheet(); if(typeof levelUp==="function") levelUp(); });
+  if(window.__bldSheetFor) go(); else { if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} let n=0; (function w(){ if(window.__bldSheetFor) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-futlv],[data-future]"); if(!b) return; if(b.hasAttribute("data-future")){ futureOpen(); return; } closeSheet(); if(typeof levelUp==="function") levelUp(); });
 /* T11 G4 D2 roll from more places: a death save and Hit Point Dice roll with the same dice as the rest of the sheet (3D when Motion allows),
    and the result goes through the same buttons and boxes as a number typed by hand, so the rules code stays one path */
-document.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("[data-dsroll],[data-hdroll]"); if(!b||!window.__miRoll||!window.__miRoll.roll) return; e.preventDefault(); if(b.__busy) return; b.__busy=1;
-  if(b.hasAttribute("data-dsroll")){ var L=(D.cf&&D.cf.ds)||[], a=L.some(function(x){ return x.t==="ADV"; }), d=L.some(function(x){ return x.t==="DIS"; }), mode=a&&!d?"adv":d&&!a?"dis":"";
-    window.__miRoll.roll({bon:0},mode,"Death Saving Throw",function(r){ b.__busy=0; var n=r.nat, k=n===20?"20":n===1?"1":n>=10?"s":"f"; setTimeout(function(){ var t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
-  var k=b.getAttribute("data-hdroll"), i=b.getAttribute("data-hdi"), die=+b.getAttribute("data-die")||8;
-  window.__miRoll.roll({dmg:"1d"+die},"","Hit Point Die",function(r){ b.__busy=0; var inp=document.querySelector('#restDlg [data-hdv="'+k+'"][data-hdi="'+i+'"]'); if(!inp) return; inp.value=String(r.v); inp.dispatchEvent(new Event("input",{bubbles:true})); }); });
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dsroll],[data-hdroll]"); if(!b||!window.__miRoll||!window.__miRoll.roll) return; e.preventDefault(); if(b.__busy) return; b.__busy=1;
+  if(b.hasAttribute("data-dsroll")){ const L=(D.cf&&D.cf.ds)||[], a=L.some((x) =>{ return x.t==="ADV"; }), d=L.some((x) =>{ return x.t==="DIS"; }), mode=a&&!d?"adv":d&&!a?"dis":"";
+    window.__miRoll.roll({bon:0},mode,"Death Saving Throw",(r) =>{ b.__busy=0; const n=r.nat, k=n===20?"20":n===1?"1":n>=10?"s":"f"; setTimeout(() =>{ const t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
+  const k=b.getAttribute("data-hdroll"), i=b.getAttribute("data-hdi"), die=+b.getAttribute("data-die")||8;
+  window.__miRoll.roll({dmg:"1d"+die},"","Hit Point Die",(r) =>{ b.__busy=0; const inp=document.querySelector('#restDlg [data-hdv="'+k+'"][data-hdi="'+i+'"]'); if(!inp) return; inp.value=String(r.v); inp.dispatchEvent(new Event("input",{bubbles:true})); }); });
