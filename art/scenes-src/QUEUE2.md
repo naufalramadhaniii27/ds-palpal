@@ -170,7 +170,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B042 phone b | art/scenes-src/backgrounds/B042b-phone.png | 1x2 | salvager, savant | done |
 | B043 PC | art/scenes-src/backgrounds/B043-pc.png | 2x2 | scion, scion-of-the-thaumaturge, scoundrel, security-guard | done |
 | B043 phone a | art/scenes-src/backgrounds/B043a-phone.png | 1x2 | scion, scion-of-the-thaumaturge | done |
-| B043 phone b | art/scenes-src/backgrounds/B043b-phone.png | 1x2 | scoundrel, security-guard | open |
+| B043 phone b | art/scenes-src/backgrounds/B043b-phone.png | 1x2 | scoundrel, security-guard | claimed by codex-b034-b044 2026-11-02T14:19:26.255Z |
 | B044 PC | art/scenes-src/backgrounds/B044-pc.png | 2x2 | seer-apprentice, selesnya-initiate, shadowmasters-exile, shadowmoor-expert | open |
 | B044 phone a | art/scenes-src/backgrounds/B044a-phone.png | 1x2 | seer-apprentice, selesnya-initiate | open |
 | B044 phone b | art/scenes-src/backgrounds/B044b-phone.png | 1x2 | shadowmasters-exile, shadowmoor-expert | open |
