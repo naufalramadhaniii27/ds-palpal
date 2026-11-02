@@ -240,7 +240,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P02 | art/scenes-src/portraits/P02.png | 2x2 portraits | autognome-a, autognome-b, aven-a, aven-b | done |
 | P03 | art/scenes-src/portraits/P03.png | 2x2 portraits | boggart-a, boggart-b, bugbear-a, bugbear-b | done |
 | P04 | art/scenes-src/portraits/P04.png | 2x2 portraits | bullywug-a, bullywug-b, centaur-a, centaur-b | done |
-| P05 | art/scenes-src/portraits/P05.png | 2x2 portraits | changeling-a, changeling-b, fairy-a, fairy-b | open |
+| P05 | art/scenes-src/portraits/P05.png | 2x2 portraits | changeling-a, changeling-b, fairy-a, fairy-b | claimed by codex-p01-p23 2026-11-02T13:00+00:00 |
 | P06 | art/scenes-src/portraits/P06.png | 2x2 portraits | githzerai-a, githzerai-b, gnoll-a, gnoll-b | open |
 | P07 | art/scenes-src/portraits/P07.png | 2x2 portraits | goblin-a, goblin-b, grimlock-a, grimlock-b | open |
 | P08 | art/scenes-src/portraits/P08.png | 2x2 portraits | grung-a, grung-b, hadozee-a, hadozee-b | open |
