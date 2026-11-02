@@ -1,4 +1,4 @@
-import {FROZEN} from "./04-logic-storage.js";
+import {C,FROZEN} from "./04-logic-storage.js";
 import {$} from "./05-logic-helpers.js";
 import {B} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
@@ -20,11 +20,22 @@ export function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(e
 /* T11 A1: the fallback to the normal size picture when an HD file is missing, without an inline onerror handler (the CSP allows no inline handlers) */
 document.addEventListener("error",(e) =>{ const t=e.target; if(t&&t.tagName==="IMG"&&t.getAttribute("data-fb")){ const f=t.getAttribute("data-fb"); t.removeAttribute("data-fb"); t.src=f; } },true);
 export function wmClass(n){ const k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
+/* the picture from 5etools for an entry (window.QIMG, same tables as the Library), found by title: "Background: X", "Species: X" or an item, spell, feat and so on by name. It goes before the Codex icon. */
+const QIM_CATS=["item","gear","spell","feat","bg","species","class","sub","deity","recipe","charopt","language","hazard","object","vehicle","optfeat","rule"];
+const qimN=(z) =>String(z||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+export function wm5(t){ const Q=window.QIMG; if(!Q||!t) return ""; let n=t, cats=QIM_CATS, m=/^(Background|Species): (.+)$/.exec(t);
+  if(m){ n=m[2]; cats=[m[1]==="Background"?"bg":"species"]; }
+  window.__qimN=window.__qimN||{};
+  for(let i=0;i<cats.length;i++){ const c=cats[i], tb=Q[c]; if(!tb) continue; let im=tb[n]||null;
+    if(!im){ if(!window.__qimN[c]){ const mp={}; Object.keys(tb).forEach((z) =>{ mp[qimN(z)]=tb[z]; }); window.__qimN[c]=mp; } im=window.__qimN[c][qimN(n)]||null; }
+    if(im) return '<img class="lib-im" loading="lazy" decoding="async" alt="" src="data/img/'+encodeURI(im)+'.webp">'; }
+  return ""; }
 export function sheetIco(t){ t=String(t||""); let h="", m;
+  h=wm5(t); if(h) return h;
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||__R.ico("src-class");
-  else if(/^Species: /.test(t)) h=__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
-  else if(/^Background: /.test(t)) h=__R.ico("src-background");
-  else if(t==="Size") h=__R.ico("creature");
+  else if(/^Species: /.test(t)) h=(window.__artIc&&window.__artIc("species",t.slice(9)))||__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
+  else if(/^Background: /.test(t)) h=(window.__artIc&&window.__artIc("background",t.slice(12)))||__R.ico("src-background");
+  else if(t==="Size") h=(window.__artIc&&window.__artIc("size",C.size))||__R.ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
   if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
