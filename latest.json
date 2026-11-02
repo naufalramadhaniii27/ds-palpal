@@ -1,7 +1,7 @@
 {
- "commit": "702f3563",
- "branch": "main",
- "date": "2026-11-02 03:05",
+ "commit": "576c3a97",
+ "branch": "nilai-98/n40-fase1",
+ "date": "2026-11-02 08:13",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -384,7 +384,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "chaos_violations",
@@ -393,7 +393,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "fail_modes_fail",
@@ -402,7 +402,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "migrate_all_fail",
@@ -411,7 +411,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "flaky_tests",
@@ -420,7 +420,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "opfs_recovery",
@@ -449,7 +449,7 @@
     },
     {
      "id": "ci_jobs",
-     "value": 5,
+     "value": 6,
      "base": 1,
      "target": 3,
      "credit": 1.0,
@@ -458,7 +458,7 @@
     },
     {
      "id": "ci_tests",
-     "value": 27,
+     "value": 30,
      "base": null,
      "target": 45,
      "credit": 0.0,
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1099,
+     "value": 1100,
      "base": 1099,
      "target": 0,
      "credit": 0.0,
@@ -537,7 +537,7 @@
     },
     {
      "id": "var_decl",
-     "value": 6595,
+     "value": 6604,
      "base": 6595,
      "target": 0,
      "credit": 0.0,
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.07,
- "secs": 48
+ "secs": 40
 }
