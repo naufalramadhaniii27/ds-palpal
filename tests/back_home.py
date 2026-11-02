@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """T11 A6: the Back gesture or button on the sheet returns to Home (and leaves the app only from Home). Also: Back with a detail
 panel open closes the panel first. 390x844 and 1250x850. Exit 1 on failure."""
-import asyncio, os, sys
+import json, asyncio, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.argv = [sys.argv[0]]
 __file__ = os.path.join(HERE, "style_snapshot.py"); exec(open(__file__).read().split("def diff(")[0])
 async def main():
@@ -10,7 +10,7 @@ async def main():
         b = await pw.chromium.launch()
         for w, h in [(390, 844), (1250, 850)]:
             ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block"); pg = await ctx.new_page()
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(1000)
             await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(600)
             el = await pg.query_selector("[data-info]"); await el.click(); await pg.wait_for_timeout(600)

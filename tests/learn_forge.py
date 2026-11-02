@@ -11,7 +11,7 @@ async def main():
         for w, h in [(390, 844), (1250, 850)]:
             vp = "%dx%d" % (w, h); ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block"); pg = await ctx.new_page(); errs = []
             pg.on("pageerror", lambda e: errs.append(str(e)))
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("#hlearnB [data-hlearn]", state="visible", timeout=30000); await pg.click("#hlearnB [data-hlearn]"); await pg.wait_for_selector("#learn", state="visible")
             await pg.evaluate("()=>[...document.querySelectorAll('#lrnB [data-lgo]')].find(b=>/Forge/.test(b.textContent)).click()"); await pg.wait_for_timeout(400)
             await pg.click('#lrnB [data-l="forge"]'); await pg.wait_for_timeout(300)

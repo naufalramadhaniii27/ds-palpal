@@ -20,7 +20,7 @@ async def main():
         for w, h in [(390, 844), (1250, 850)]:
             vp = "%dx%d" % (w, h); ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block", permissions=["clipboard-read", "clipboard-write"]); pg = await ctx.new_page(); errs = []
             pg.on("pageerror", lambda e: errs.append(str(e)))
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload(); await sheet(pg)
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url); await sheet(pg)
             # N10 odds
             await jsclick(pg, '[data-bd="save-STR"]'); await pg.wait_for_selector("#sheet .odds", state="visible", timeout=8000)
             od = await pg.evaluate("""()=>{ var t=document.querySelector('#sheetBody .bk-t b').textContent.replace('\\u2212','-'), r=[...document.querySelectorAll('#sheet .odds tbody tr')].map(x=>[...x.children].map(c=>c.textContent)); return {b:parseInt(t,10), r:r}; }""")

@@ -2,7 +2,7 @@
 """A3: PDF export builds a real PDF from this site's own libraries (no CDN), at 390x844 and 1250x850.
   python3 tests/pdf_export.py [OUTDIR] [--root DIR]
 Opens Yudhi, taps Export PDF, waits for the download, checks it starts with %PDF, has pages, and that no request left the local server."""
-import asyncio, os, sys, functools, http.server, socket, threading, re
+import json, asyncio, os, sys, functools, http.server, socket, threading, re
 from playwright.async_api import async_playwright
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); args = sys.argv[1:]
 if "--root" in args: i = args.index("--root"); ROOT = os.path.abspath(args[i + 1]); del args[i:i + 2]
@@ -22,7 +22,7 @@ async def main():
             ctx = await b.new_context(viewport={"width": w, "height": h}, accept_downloads=True); pg = await ctx.new_page(); errs = []; outside = []
             pg.on("pageerror", lambda e: errs.append(str(e)))
             pg.on("request", lambda r: outside.append(r.url) if not r.url.startswith(url.rsplit("/", 1)[0]) and not r.url.startswith(("data:", "blob:")) else None)
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v);}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(1200); await pg.click("[data-hview]")
             await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(1000)
             async with pg.expect_download(timeout=120000) as dl:

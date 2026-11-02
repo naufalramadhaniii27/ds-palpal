@@ -21,7 +21,7 @@ async def main():
         b = await pw.chromium.launch()
         for w, h in [(390, 844), (1250, 850)]:
             ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block", bypass_csp=True, reduced_motion="reduce"); pg = await ctx.new_page()
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.add_script_tag(content=AXE)
             async def scan(name):
                 await pg.wait_for_timeout(400); r = await pg.evaluate(SCAN); print("%dx%d %-10s violations: %s  small: %s" % (w, h, name, r["v"] or 0, r["small"] or 0))

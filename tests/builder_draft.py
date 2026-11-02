@@ -15,7 +15,7 @@ async def main():
         for w, h in [(390, 844), (1250, 850)]:
             vp = "%dx%d" % (w, h); ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block"); pg = await ctx.new_page(); errs = []
             pg.on("pageerror", lambda e: errs.append(str(e)))
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await opened(pg)
             cur = lambda: pg.evaluate("()=>document.querySelector('#steps .on').getAttribute('data-step')")
             await pg.click('#steps [data-step="abil"]'); await pg.wait_for_timeout(600)

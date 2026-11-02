@@ -1,5 +1,7 @@
 # Tests before the merge, not after. Runs on every push and pull request (not on art or notes only).
-# It needs no secrets and no server: the build check, the name check, and the browser tests that open index.html from the checkout.
+# Three jobs run side by side (A fast and required, B layout, C features), then the score job compares the numbers with the last accepted ones (N43).
+# Branch protection on main must list the three jobs and "score" as required checks (done in the repository settings by the owner).
+# No secrets and no server: everything opens index.html from the checkout.
 name: tests
 on:
   push:
@@ -7,25 +9,30 @@ on:
   pull_request:
     paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
   workflow_dispatch:
+  schedule:
+    - cron: "17 19 * * *"   # nightly: the long runs (1001 characters per edition, 500 chaos seeds, full score)
+
+env:
+  PLAYWRIGHT_VERSION: "1.63.0"
+
 jobs:
-  checks:
+  a-fast:
+    name: "Job A: fast and required"
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
+        with: { node-version: "22" }
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: { python-version: "3.12" }
       - name: Install build tools
         run: npm ci --prefix tools/build
       - name: Build is in sync (index.html, sw.js, CSP hashes, lint, vendor sums)
         run: python3 build.py --check
       - name: Install Playwright
         run: |
-          pip install playwright==1.63.0
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
           python -m playwright install --with-deps chromium
       - name: Engine rules (node)
         run: node tests/tg_engine.js 300
@@ -34,9 +41,120 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in names_lint csp_check version_label learn_links builder_draft scenarios golden_rules split_dist; do
+          for t in names_lint csp_check scenarios golden_rules version_label split_dist; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"
           done
           exit $fail
+      - name: Performance budget (bytes and heap only, the stable measures)
+        run: python3 tests/perf_budget.py tests/out/perf.json --fast --runs 3 --check tests/perf-budget.json
+
+  b-layout:
+    name: "Job B: layout and storage"
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install Playwright
+        run: |
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
+      - name: Browser tests
+        run: |
+          fail=0
+          for t in overflow_scan overlap_scan tidy blank_new flow_home_sheet storage_idb self_heal; do
+            echo "::group::$t"
+            python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
+
+  c-features:
+    name: "Job C: features"
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install Playwright
+        run: |
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
+      - name: Browser tests
+        run: |
+          fail=0
+          for t in tg_ui tg_n2 g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map; do
+            echo "::group::$t"
+            python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
+
+  score:
+    name: "Score: no measure may get worse (N43)"
+    needs: [a-fast, b-layout, c-features]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install build tools
+        run: npm ci --prefix tools/build && pip install brotli
+      - name: Quick score (counts and bytes, no browser)
+        run: python3 tools/score.py --quick --json tests/out/score.json --md
+      - name: Compare with the last accepted score
+        id: cmp
+        run: |
+          git fetch origin scores:scores 2>/dev/null || true
+          if git show scores:latest.json > tests/out/prev.json 2>/dev/null; then
+            python3 tools/score.py --quick --json tests/out/score.json --compare tests/out/prev.json | tee tests/out/cmp.txt || echo "worse=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "No earlier score on branch scores: this run becomes the first."
+          fi
+      - name: Find the commit that made it worse (git bisect run)
+        if: steps.cmp.outputs.worse == '1'
+        run: |
+          python3 tools/score_bisect.py tests/out/prev.json tests/out/cmp.txt | tee tests/out/bisect.txt
+          cat tests/out/bisect.txt >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+      - name: Save the score on branch scores (main and nilai-98 branches only)
+        if: success() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/nilai-98/'))
+        run: |
+          mkdir -p /tmp/scores && cp tests/out/score.json /tmp/scores/latest.json && cp tests/out/score.json /tmp/scores/${GITHUB_SHA}.json
+          git config user.name "score-bot" && git config user.email "score-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin scores >/dev/null 2>&1; then git checkout -q scores; else git checkout -q --orphan scores && git rm -rfq . ; fi
+          cp /tmp/scores/*.json . && git add *.json && git commit -qm "score ${GITHUB_SHA::8}" && git push -q origin scores
+
+  nightly:
+    name: "Nightly: long runs"
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install
+        run: |
+          npm ci --prefix tools/build
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
+          mkdir -p /tmp/axe && cd /tmp/axe && npm init -y >/dev/null && npm install axe-core@4.10.2
+      - name: Full score
+        run: AXE_JS=/tmp/axe/node_modules/axe-core/axe.min.js python3 tools/score.py --md --json tests/out/score-full.json
+      - uses: actions/upload-artifact@v4
+        with: { name: score-full, path: tests/out/score-full.json }

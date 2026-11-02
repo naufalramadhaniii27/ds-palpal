@@ -7,7 +7,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); A = sys.argv[1:]; SH = A[A.in
 __file__ = os.path.join(HERE, "style_snapshot.py"); exec(open(__file__).read().split("def diff(")[0])
 CK = "yudhi-kelapa-build-v3"; SK = "yudhi-kelapa-sheet-v1"
 async def fresh(pg, url):
-    await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+    await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
     await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(2500)
 async def main():
     srv, url = serve(); bad = []

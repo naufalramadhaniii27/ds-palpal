@@ -30,7 +30,7 @@
     var mc=new MessageChannel(), q=[]; mc.port1.onmessage=function(){ var f=q.shift(); if(f) f(); }; return function(f){ q.push(f); mc.port2.postMessage(0); }; })();
   function step(){ if(window.__deferDone) return; if(!(window.__gateDone)){ setTimeout(step,20); return; } var t=performance.now(), ran=false;
     while(run1()){ ran=true; if(performance.now()-t>10) break; }
-    if(!list().length){ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",fin,{once:true}); else fin(); return; }
+    if(!list().length){ if(document.readyState==="loading") setTimeout(step,40); else fin(); return; }/* the parser may still add parts: keep stepping until the page is read (before, one empty list while loading ended the chain and the builder never loaded) */
     if(!ran&&document.readyState==="loading"){ setTimeout(step,40); return; }/* the next part is still being read */
     if(!ran&&headWait(function(){ post(step); })) return;/* split build: the file of the next part has not arrived, its arrival starts the next step */
     post(step); }

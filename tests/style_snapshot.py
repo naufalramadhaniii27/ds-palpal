@@ -42,10 +42,12 @@ async def take(path):
         for w, h, vtag, var in runs:
             vp = "%dx%d%s" % (w, h, vtag)
             ctx = await b.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce", service_workers="block"); pg = await ctx.new_page()
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
-            if var == "hc": await pg.evaluate("()=>{ localStorage.setItem('cs-ui-hc', JSON.stringify({m:'on'})); }"); await pg.reload()
-            elif var:
-                await pg.evaluate("o=>{ var k='yudhi-kelapa-sheet-v1', s={}; try{ s=JSON.parse(localStorage.getItem(k)||'{}')||{}; }catch(e){} Object.assign(s,o); localStorage.setItem(k, JSON.stringify(s)); }", var); await pg.reload()
+            # seeded before the page runs: a reload after writing storage lets the old page write its own roster back on unload, which made two snapshots of one build differ
+            seed = "if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);localStorage.setItem('mi-fx','off');" % json.dumps(FIX)
+            if var == "hc": seed += "localStorage.setItem('cs-ui-hc',JSON.stringify({m:'on'}));"
+            elif var: seed += "localStorage.setItem('yudhi-kelapa-sheet-v1',JSON.stringify(%s));" % json.dumps(var)
+            await ctx.add_init_script(seed + "sessionStorage.setItem('__s','1')}")
+            await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(2500)
             await shoot(pg, vp + " home", res)
             await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(1500)

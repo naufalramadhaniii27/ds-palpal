@@ -201,7 +201,7 @@ async def extra(b, url, bad):
     """Motion off with the fallback paths forced (no anchor positioning), glossary card, the 3D dice in Learn"""
     ctx = await b.new_context(viewport={"width": 390, "height": 844}, service_workers="block", reduced_motion="reduce"); pg = await ctx.new_page(); errs = []
     pg.on("pageerror", lambda e: errs.append("pageerror " + str(e)))
-    await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+    await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
     await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.evaluate("()=>{ window.__lrnNoAnchor=1; }")
     await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="2"]'); await click(pg, "#lrnB [data-lg]"); await settle(pg)
     await click(pg, "#lrnB [data-lterm]"); await pg.wait_for_selector("#lrnPop.on", timeout=4000)
@@ -223,7 +223,7 @@ async def extra(b, url, bad):
     await ctx.close()
     # 3D dice in Learn (effects on), one roll
     ctx = await b.new_context(viewport={"width": 1250, "height": 850}, service_workers="block"); pg = await ctx.new_page()
-    await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','full');}", FIX); await pg.reload()
+    await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','full');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
     await pg.wait_for_selector("[data-hlearn]", state="attached", timeout=30000); await pg.click("[data-hlearn]"); await click(pg, '#lrnB [data-lgo="6"]')
     await click(pg, "#lrnB [data-lg]"); await click(pg, "#lrnNext"); await settle(pg, 400)
     await click(pg, '#lrnB [data-ld="20"]'); await pg.wait_for_function("()=>window.__learnState().s.r&&window.__learnState().s.r[20]", timeout=40000)

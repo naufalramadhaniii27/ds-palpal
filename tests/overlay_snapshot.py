@@ -24,7 +24,7 @@ async def main(path):
         for w, h in [(390, 844), (1250, 850)]:
             vp = "%dx%d" % (w, h)
             ctx = await b.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce", service_workers="block"); pg = await ctx.new_page()
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_function("()=>typeof window.__ask==='function'", timeout=30000); await pg.wait_for_timeout(1500)
             await pg.evaluate("()=>window.__ask('Delete this character?\\nIt cannot be undone.','Delete',function(){})"); await pg.wait_for_timeout(500)
             res[vp + " ask home"] = await pg.evaluate(SUB, [".ask", PROPS, SNAP]); await pg.keyboard.press("Escape")

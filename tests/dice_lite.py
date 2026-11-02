@@ -15,7 +15,7 @@ async def main():
             vp = "%dx%d" % (w, h); ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block"); pg = await ctx.new_page(); errs = []; reqs = []
             pg.on("pageerror", lambda e: errs.append(str(e))); pg.on("request", lambda r: reqs.append(r.url) if "vendor/dice" in r.url else None)
             pg.on("console", lambda m: errs.append(m.text) if "Content Security Policy" in m.text else None)
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','full');}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','full');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn", state="visible"); await pg.wait_for_timeout(500)
             await pg.evaluate("()=>document.addEventListener('securitypolicyviolation',function(e){ (window.__csp=window.__csp||[]).push(e.violatedDirective+' '+e.blockedURI); })")
             miss = await pg.evaluate("()=>{ var bad=[], flat=0, steps=0, n=0; [4,6,8,10,12,20].forEach(k=>{ for(var i=0;i<1000;i++){ var v=1+Math.floor(Math.random()*k), t=window.__dice3d.simTop(k,v); n++; steps+=t.steps; flat=Math.max(flat,t.flat); if(t.v!==v){ bad.push(k+':'+v+'->'+t.v); break; } } }); return {bad:bad, flat:flat, steps:Math.round(steps/n)}; }")

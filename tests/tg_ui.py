@@ -55,7 +55,7 @@ async def main():
             for mode in ("yudhi", "trial", "new"):
                 vp = "%dx%d %s" % (w, h, mode); ctx = await b.new_context(viewport={"width": w, "height": h}, service_workers="block"); pg = await ctx.new_page(); errs = []
                 pg.on("pageerror", lambda e: errs.append(str(e)))
-                await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX); await pg.reload()
+                await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url)
                 await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000)
                 if mode == "new":
                     await pg.evaluate("()=>document.querySelector('[data-hnew]').click()"); await pg.wait_for_timeout(4000)

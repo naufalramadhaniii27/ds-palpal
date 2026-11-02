@@ -32,7 +32,7 @@ async def main():
         for w, h in ((390, 844), (1250, 850)):
             tag = "%dx%d" % (w, h); ctx = await b.new_context(viewport={"width": w, "height": h}, accept_downloads=True); pg = await ctx.new_page(); errs = []
             await ctx.add_init_script(WATCH); pg.on("pageerror", lambda e: errs.append(str(e)))
-            await pg.goto(url); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v);}", FIX); await pg.reload()
+            await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',"+json.dumps(FIX)+");sessionStorage.setItem('__s','1')}"); await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(1500)
             active = await pg.evaluate("()=>{ try{ document.createElement('div').innerHTML='<b>x</b>'; }catch(e){} return !!(window.trustedTypes&&trustedTypes.defaultPolicy); }")
             if not active: bad.append(tag + " Trusted Types default policy not active")

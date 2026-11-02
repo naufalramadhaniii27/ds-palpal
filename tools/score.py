@@ -30,7 +30,7 @@ os.environ.setdefault("AXE_JS", "/home/claude/axe-tool/node_modules/axe-core/axe
 QUICK = opt("--quick"); NOTESTS = opt("--no-tests") or QUICK; NOPERF = opt("--no-perf") or QUICK
 ONLY = (opt("--only", True) or "").split(",") if "--only" in a else None
 OUT = opt("--json", True) or os.path.join(ROOT, "reports", "skor-9-8.json")
-PREV = opt("--compare", True); MD = opt("--md"); HIST = opt("--history")
+PREV = opt("--compare", True); MD = opt("--md"); HIST = opt("--history"); PROBE = opt("--probe", True); RESCORE = opt("--rescore", True); SETC0 = opt("--set-c0", True); LIMIT = opt("--limit", True)
 
 
 def sh(cmd, timeout=900):
@@ -138,15 +138,76 @@ def measure(m, ctx):
     return None, "unknown kind"
 
 
+def sec_score(sec, cr):
+    """floor + (10 - floor) * (mean credit - mean credit at baseline) / (1 - mean credit at baseline). The baseline run gives exactly the floor, all targets give 10."""
+    c0 = sum(m.get("c0", 0) for m in sec["measures"]) / len(sec["measures"]); c = sum(cr) / len(cr)
+    if c0 >= 1: return float(sec["floor"])
+    return max(0.0, min(10.0, sec["floor"] + (10 - sec["floor"]) * (c - c0) / (1 - c0)))
+
+
+def tool_missing(m):
+    if "cmd" in m:
+        parts = m["cmd"].split(); return len(parts) > 1 and not os.path.exists(os.path.join(ROOT, parts[1]))
+    return False
+
+
 def credit(m, v):
     if v is None: return 0.0
     base, tgt = m.get("base"), m.get("target")
-    if m.get("bool") or base is None or tgt is None: return 1.0 if v >= (tgt if tgt is not None else 1) else 0.0
+    if not m.get("bool") and tgt is not None:
+        down = base is not None and tgt < base or (base is None and m.get("dir") == "down") or (base is None and tgt == 0)
+        if down and v <= tgt: return 1.0
+        if not down and base is not None and tgt > base and v >= tgt: return 1.0
+    if m.get("bool") or tgt is None: return 1.0 if v >= (tgt if tgt is not None else 1) else 0.0
+    if base is None: return 0.0
     if base == tgt: return 1.0 if v == tgt else 0.0
     return max(0.0, min(1.0, (v - base) / (tgt - base)))
 
 
+def probe(spec, limit):
+    """git bisect run helper: python3 tools/score.py --probe SECTION.MEASURE --limit N. Exit 0 = not worse than the limit, 1 = worse."""
+    sid, mid = spec.split(".", 1)
+    for sec in TARGETS["sections"]:
+        if sec["id"] != sid: continue
+        for m in sec["measures"]:
+            if m["id"] != mid: continue
+            v, note = measure(m, {"tests": {}, "perf": None})
+            if v is None: print("cannot measure:", note); sys.exit(125)
+            down = m.get("target") is not None and m.get("base") is not None and m["target"] < m["base"]
+            worse = v > limit if down else v < limit
+            print("probe", spec, v, "limit", limit, "WORSE" if worse else "ok"); sys.exit(1 if worse else 0)
+    print("unknown measure", spec); sys.exit(125)
+
+
+def rescore(path):
+    """Recompute credits and section scores of a saved run with the current targets file (no tests, no browser)."""
+    res = json.load(open(path)); tot = []
+    for sec in TARGETS["sections"]:
+        old = res["sections"].get(sec["id"])
+        if not old: continue
+        by = {m["id"]: m for m in old["measures"]}; cr = []; rows = []
+        for m in sec["measures"]:
+            o = by.get(m["id"], {}); v = None if tool_missing(m) else o.get("value"); c = credit(m, v); cr.append(c)
+            rows.append({"id": m["id"], "value": v, "base": m.get("base"), "target": m.get("target"), "credit": round(c, 2), "gate": bool(m.get("gate")), "note": o.get("note", "")})
+        sc = sec_score(sec, cr); old.update({"floor": sec["floor"], "score": round(sc, 2), "measures": rows}); tot.append(sc)
+    res["average"] = round(sum(tot) / len(tot), 2); json.dump(res, open(path, "w"), indent=1, ensure_ascii=False)
+    print(render_md(res) if MD else "average %s" % res["average"]); sys.exit(0)
+
+
+def set_c0(path):
+    """Store the credit each measure has in the given run as its baseline credit (c0) in tools/score-targets.json."""
+    res = json.load(open(path)); by = {}
+    for sid, sec in res["sections"].items():
+        for m in sec["measures"]: by[(sid, m["id"])] = m["credit"]
+    for sec in TARGETS["sections"]:
+        for m in sec["measures"]: m["c0"] = by.get((sec["id"], m["id"]), 0)
+    json.dump(TARGETS, open(os.path.join(ROOT, "tools", "score-targets.json"), "w"), indent=1, ensure_ascii=False); print("c0 stored"); sys.exit(0)
+
+
 def main():
+    if SETC0: set_c0(SETC0)
+    if RESCORE: rescore(RESCORE)
+    if PROBE: probe(PROBE, float(LIMIT))
     ctx = {"tests": {}, "perf": None}
     t0 = time.time()
     if not NOTESTS:
@@ -177,7 +238,7 @@ def main():
         for m in sec["measures"]:
             v, note = measure(m, ctx); c = credit(m, v); cr.append(c)
             rows.append({"id": m["id"], "value": v, "base": m.get("base"), "target": m.get("target"), "credit": round(c, 2), "gate": bool(m.get("gate")), "note": note})
-        score = sec["floor"] + (10 - sec["floor"]) * (sum(cr) / len(cr))
+        score = sec_score(sec, cr)
         res["sections"][sec["id"]] = {"name": sec["name"], "floor": sec["floor"], "score": round(score, 2), "measures": rows}
         tot.append(score)
     res["average"] = round(sum(tot) / len(tot), 2) if tot else None

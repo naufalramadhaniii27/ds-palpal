@@ -40,7 +40,7 @@ async def fresh(b, w, h, url, sw="block"):
     pg.on("pageerror", lambda e: log["err"].append(str(e)))
     pg.on("console", lambda m: log["csp"].append(m.text[:160]) if ("Content Security Policy" in m.text or "Trusted Type" in m.text) else None)
     pg.on("request", lambda r: log["parts"].append(r.url) if "/p/" in r.url and r.url.endswith(".js") else None)
-    await pg.goto(url + "index.html"); await pg.evaluate("v=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx','off');}", FIX)
+    await pg.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3'," + json.dumps(FIX) + ");localStorage.setItem('mi-fx','off');sessionStorage.setItem('__s','1')}"); await pg.goto(url + "index.html")
     return ctx, pg, log
 
 
