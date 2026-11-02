@@ -60,23 +60,15 @@ Globals made by more than one part: 0
 
 ## Lazy candidates
 
-Parts that add no keys to a shared table and are read only by the Library (or by no screen): safe to load on demand, if a guard loads them before the first read. Reads made while another part loads are ignored.
+Parts that add no keys to a shared table, touch no shared object other than WX and QREFS (static scan of the part text), and are read only by the Library (or by no screen): safe to load on demand, if a guard loads them before the first read. Reads made while another part loads are ignored.
 
 | Part | Size KB |
 |---|---|
 | q7 | 4759 |
-| wotc11 | 974 |
-| wotc10 | 136 |
 | wotc14 | 111 |
-| wotc13 | 72 |
-| wotc8 | 66 |
-| wotc3 | 58 |
-| wotc15 | 23 |
-| wotc6 | 12 |
-| wotc4 | 11 |
 | wotc5 | 9 |
 
-Total 6239 KB of 20896 KB deferred data (30%).
+Total 4881 KB of 20896 KB deferred data (23%).
 
 ## Reading this plan
 

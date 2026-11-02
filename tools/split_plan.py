@@ -63,10 +63,16 @@ for _r in T:
 _lazy = []
 for _n, _p in parts.items():
     if _p["reg"] or _n in ("builder", "learn", "tg"): continue
+    _own = {g: o for o, q in parts.items() for g in q["globals"]}
+    _ext = ["QREFS", "SAVE_NOTES", "ITEM_SPELLS", "SPELLS", "FEATS", "CLASSES", "SPECIES", "BACKGROUNDS", "DMGI", "AUTO", "SPELL_FULL", "SUB_FULL", "FLUFF", "QIMG", "HBIDX", "OPTS", "CREATURES"]
+    _txt = _re.search(r'data-defer="%s"[^>]*>(.*?)</script>' % _n, _h, _re.S)
+    _refs = set(g for g in list(_own) + _ext if _txt and _re.search(r'(?<![\w$.])(window\.)?' + _re.escape(g) + r'\b', _txt.group(1)) and _own.get(g) != _n)
+    _okr = set(["WX", "QREFS"]) | set(g for g in _refs if g.startswith("WX"))
+    if _refs - _okr: continue
     if _use.get(_n, set()) <= {"library"} and _sz.get(_n): _lazy.append((_n, _sz[_n]))
 _tot = sum(_sz.values()) or 1
 out += ["", "## Lazy candidates", "",
-        "Parts that add no keys to a shared table and are read only by the Library (or by no screen): safe to load on demand, if a guard loads them before the first read. Reads made while another part loads are ignored.", "",
+        "Parts that add no keys to a shared table, touch no shared object other than WX and QREFS (static scan of the part text), and are read only by the Library (or by no screen): safe to load on demand, if a guard loads them before the first read. Reads made while another part loads are ignored.", "",
         "| Part | Size KB |", "|---|---|"]
 for _n, _b in sorted(_lazy, key=lambda x: -x[1]): out.append("| %s | %d |" % (_n, _b // 1024))
 out += ["", "Total %d KB of %d KB deferred data (%d%%)." % (sum(b for _, b in _lazy) // 1024, _tot // 1024, round(100 * sum(b for _, b in _lazy) / _tot))]
