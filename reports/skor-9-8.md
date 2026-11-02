@@ -86,3 +86,9 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Bug found by tsc_gate (CI Job A) in my N44 change: QR progress dots removal dropped the `var k` used by the final loop in qrScanStep. Fixed with `let k`. No test covers QR scan completion (gap, to add).
 - tests/cloud_sync.py: "A uploads its character" failed in CI 2 of 3 runs at 1250x850. Cause: seeding after first load raced with the first start, which uploaded a blank "New Character". Now seeded by an init script before the first script (same method as the other 24 tests). 3 local runs 39/39.
 - Local note: repeated runs of run_cloud_sync.sh fill the local D1 daily quota (HTTP 429) and stale workerd processes give HTTP 500. Fix: pkill -x workerd; rm -rf .wrangler/state.
+
+## M15 fonts as files (branch nilai-98/m15)
+- tools/split_dist.py: 20 base64 fonts in the CSS (22 files with unicode-range subsets) become dist/fonts/FAMILY-WEIGHT.HASH.woff2. Preload for Roboto 400 and 500 (Latin subset). sw.js stores all 22 at install and answers them from cache first. The single-file index.html of the project root is unchanged (fonts stay base64 there, as the plan says).
+- Hosting form index.html: 2,473,064 -> 1,805,538 bytes (-667,526, about -652 KB). gzip 521,847 bytes.
+- tests/fonts_dist.py 8/8 (no data URI left, 22 files, preloaded fonts requested first, all stored by the service worker, fonts load offline, no page errors). Added to Job A in CI and to tools/run_jobs.py Job B.
+- Style snapshot with --variants on dist vs single file: 74 screens, 64700 elements, 0 differences. csp_check, split_dist, scenarios, off_mode pass.
