@@ -16,9 +16,11 @@
   function own(k){ return k!==MARK; }
   function lsAll(){ var o={}; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k!=null&&own(k)) o[k]=localStorage.getItem(k); } }catch(e){} return o; }
   /* cs-store-v1 in localStorage: the keys whose mirror failed. Written at once, so the next start knows whether localStorage alone is complete */
-  function markSet(){ try{ localStorage.setItem(MARK,JSON.stringify({v:1,fail:Object.keys(FAIL)})); }catch(e){ try{ localStorage.removeItem(MARK); }catch(er){} } }
+  /* N40 (seed 287): when this write fails, the mark is removed and was never written again while no key changed its failed state, so the next start read an older IndexedDB copy over the newer localStorage one. MARKBAD makes the next successful mirror write, and the pagehide, write it again */
+  var MARKBAD=false;
+  function markSet(){ try{ localStorage.setItem(MARK,JSON.stringify({v:1,fail:Object.keys(FAIL)})); MARKBAD=false; }catch(e){ MARKBAD=true; try{ localStorage.removeItem(MARK); }catch(er){} } }
   function markGet(){ try{ var m=JSON.parse(localStorage.getItem(MARK)||"null"); return m&&m.v===1&&Array.isArray(m.fail)?m:null; }catch(e){ return null; } }
-  function lsPut(k,v){ try{ if(v==null) localStorage.removeItem(k); else localStorage.setItem(k,v); if(FAIL[k]){ delete FAIL[k]; failChanged(); } return true; }catch(e){ if(!FAIL[k]){ FAIL[k]=1; failChanged(); } return false; } }
+  function lsPut(k,v){ try{ if(v==null) localStorage.removeItem(k); else localStorage.setItem(k,v); if(FAIL[k]){ delete FAIL[k]; failChanged(); } else if(MARKBAD) markSet(); return true; }catch(e){ if(!FAIL[k]){ FAIL[k]=1; failChanged(); } return false; } }
   /* the list of failed mirror keys is written in the same transaction as the values, so a closed page never leaves a stale localStorage value that would win at the next start */
   var MDIRTY=false; function failChanged(){ markSet(); if(MODE!=="idb") return; MDIRTY=true; if(!QT) QT=setTimeout(flush,0); }
   function fire(name,detail){ try{ window.dispatchEvent(new CustomEvent(name,{detail:detail})); }catch(e){} }
@@ -107,6 +109,6 @@
           clearTimeout(timer); MODE="idb"; FAIL=fails; Object.keys(back).forEach(function(k){ if(own(k)&&typeof back[k]==="string") MEM.set(k,back[k]); });
           markSet(); bcOn(); dbReady(d); start(); }); }); }).catch(function(e){ clearTimeout(timer); store.why=String(e&&e.message||e); useLS(store.why); });
   }
-  addEventListener("pagehide",function(){ flush(); });
+  addEventListener("pagehide",function(){ if(MARKBAD) markSet(); flush(); });
   document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="hidden") flush(); });
 })();

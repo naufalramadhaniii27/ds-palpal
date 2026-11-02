@@ -70,7 +70,8 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
-    "boot/debug-overlay.js"
+    "boot/debug-overlay.js",
+    "boot/err-report.js"
    ]
   },
   {

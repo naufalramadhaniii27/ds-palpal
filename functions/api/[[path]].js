@@ -15,7 +15,10 @@ const SCHEMA = [
   "CREATE TABLE IF NOT EXISTS chars (owner TEXT NOT NULL, id TEXT NOT NULL, rev INTEGER NOT NULL, t INTEGER NOT NULL, name TEXT, sub TEXT, data TEXT, size INTEGER NOT NULL DEFAULT 0, deleted INTEGER NOT NULL DEFAULT 0, vt INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (owner, id))",
   "CREATE TABLE IF NOT EXISTS versions (owner TEXT NOT NULL, id TEXT NOT NULL, rev INTEGER NOT NULL, t INTEGER NOT NULL, name TEXT, data TEXT, size INTEGER NOT NULL DEFAULT 0, why TEXT, PRIMARY KEY (owner, id, rev))",
   "CREATE TABLE IF NOT EXISTS usage (owner TEXT NOT NULL, day TEXT NOT NULL, req INTEGER NOT NULL DEFAULT 0, wr INTEGER NOT NULL DEFAULT 0, rd INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (owner, day))",
-  "CREATE TABLE IF NOT EXISTS state (k TEXT PRIMARY KEY, v TEXT)"
+  "CREATE TABLE IF NOT EXISTS state (k TEXT PRIMARY KEY, v TEXT)",
+  // Fase 1.3: error summaries from the field. No user, no character data. errs counts the same report once a day and version, errdev limits one device to 50 reports a day
+  "CREATE TABLE IF NOT EXISTS errs (day TEXT NOT NULL, ver TEXT NOT NULL, kind TEXT NOT NULL, msg TEXT NOT NULL, src TEXT NOT NULL, n INTEGER NOT NULL DEFAULT 1, PRIMARY KEY (day, ver, kind, msg, src))",
+  "CREATE TABLE IF NOT EXISTS errdev (day TEXT NOT NULL, dev TEXT NOT NULL, n INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, dev))"
 ];
 
 /* added in schema 2. ALTER fails when the column is already there, so each runs on its own */
@@ -419,14 +422,43 @@ async function social(db, req, url, parts, m, u, me, mode) {
     try {
       learn = await db.prepare("SELECT COUNT(*) started, " + STOPS.map(k => "SUM(CASE WHEN json_extract(" + L + ", '$.done." + k + "') IS NOT NULL THEN 1 ELSE 0 END) " + k).join(", ") + ", SUM(CASE WHEN json_extract(" + L + ", '$.quiz.best') IS NOT NULL THEN 1 ELSE 0 END) quiz FROM users WHERE prefs IS NOT NULL AND json_valid(prefs) AND " + L + " IS NOT NULL AND json_valid(" + L + ")").first();
     } catch (e) { learn = null; }
+    let errors = null;
+    try {
+      const since = today(Date.now() - 6 * 864e5);
+      errors = { perVersion: (await db.prepare("SELECT ver, SUM(n) n, COUNT(*) kinds FROM errs WHERE day >= ? GROUP BY ver ORDER BY MAX(day) DESC, ver DESC LIMIT 12").bind(since).all()).results,
+                 top: (await db.prepare("SELECT ver, kind, msg, src, SUM(n) n FROM errs WHERE day >= ? GROUP BY ver, kind, msg, src ORDER BY n DESC LIMIT 8").bind(since).all()).results };
+    } catch (e) { errors = null; }
     await count(db, me, { rd: 40 });
-    return json({ mode, today: day, yesterday: y ? JSON.parse(y.v) : null, totals: tot, global: GLOBAL, storageLimit: 5 * 1024 * 1024 * 1024, people: top.results, learn, learnStops: STOPS });
+    return json({ errors, mode, today: day, yesterday: y ? JSON.parse(y.v) : null, totals: tot, global: GLOBAL, storageLimit: 5 * 1024 * 1024 * 1024, people: top.results, learn, learnStops: STOPS });
   }
   return null;
 }
 
 /* G5: the daily cycle for a Cron Trigger when the app runs on Workers (workers/worker.js). On Pages the first request of the day runs it */
 export async function dailyRun(env) { if (!env || !env.DB) return null; await ensure(env.DB); return daily(env.DB); }
+
+// Fase 1.3 POST /api/err : no sign-in. Text kept short, anything that looks like an email, an address or a long number is removed
+const ERR_DEV_DAY = 50, ERR_ALL_DAY = 5000;
+function errClean(x, n) { return String(x == null ? "" : x).replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+/g, "<email>").replace(/https?:\/\/[^\s)]+/g, "<url>").replace(/\d{6,}/g, "#").replace(/[\u0000-\u001f]+/g, " ").trim().slice(0, n); }
+async function errReport(req, env) {
+  if (!env.DB) return json({ ok: false }, 503);
+  let b; try { const t = await req.text(); if (t.length > 1500) return json({ error: "too-big" }, 413); b = JSON.parse(t); } catch (e) { return json({ error: "bad-request" }, 400); }
+  if (!b || typeof b !== "object" || !/^[a-z0-9]{8,24}$/.test(String(b.d || ""))) return json({ error: "bad-request" }, 400);
+  const kind = ["error", "promise", "csp", "crash"].includes(b.k) ? b.k : "error", ver = errClean(b.v, 16) || "?", msg = errClean(b.m, 160), src = errClean(b.s, 60).split("?")[0];
+  const db = env.DB; await ensure(db); const day = today();
+  const hd = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(day + ":" + b.d)))).slice(0, 6).map(x => x.toString(16).padStart(2, "0")).join("");
+  const dv = await db.prepare("SELECT n FROM errdev WHERE day = ? AND dev = ?").bind(day, hd).first();
+  if (dv && dv.n >= ERR_DEV_DAY) return json({ error: "limit" }, 429);
+  const all = await db.prepare("SELECT COALESCE(SUM(n),0) n FROM errs WHERE day = ?").bind(day).first();
+  if (all && all.n >= ERR_ALL_DAY) return json({ error: "limit" }, 429);
+  await db.batch([
+    db.prepare("INSERT INTO errdev (day, dev, n) VALUES (?, ?, 1) ON CONFLICT(day, dev) DO UPDATE SET n = n + 1").bind(day, hd),
+    db.prepare("INSERT INTO errs (day, ver, kind, msg, src, n) VALUES (?, ?, ?, ?, ?, 1) ON CONFLICT(day, ver, kind, msg, src) DO UPDATE SET n = n + 1").bind(day, ver, kind, msg, src),
+    db.prepare("DELETE FROM errs WHERE day < ?").bind(today(Date.now() - 30 * 864e5)),
+    db.prepare("DELETE FROM errdev WHERE day < ?").bind(today(Date.now() - 2 * 864e5))
+  ]);
+  return json({ ok: true }, 202);
+}
 
 export async function onRequest(ctx) {
   const { request: req, env } = ctx, url = new URL(req.url), path = url.pathname.replace(/^\/api\/?/, "").replace(/\/+$/, ""), parts = path ? path.split("/") : [];
@@ -435,6 +467,7 @@ export async function onRequest(ctx) {
     let aud = ""; try { const t = req.headers.get("cf-access-jwt-assertion"); if (t) { const a = JSON.parse(new TextDecoder().decode(b64u(t.split(".")[1]))).aud; aud = Array.isArray(a) ? a[0] : a; } } catch (e) {}
     return json({ ok: true, db: !!env.DB, aud, audSet: !!env.ACCESS_AUD });
   }
+  if (parts[0] === "err" && req.method === "POST" && parts.length === 1) return errReport(req, env);
   if (!env.DB) return json({ error: "no-db" }, 503);
   let email;
   try { email = await who(req, env); } catch (e) { return json({ error: "auth-unavailable" }, 503); }
