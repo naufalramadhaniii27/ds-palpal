@@ -5041,3 +5041,13 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 9 — studi gaya (2026-11-02)
+
+Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, ring; dragon, undead; fire; strength; serta tiga item breastplate, acid, dan antitoxin dari art-batch, lalu membandingkannya dengan sheet-001-a dan sheet-001-b dari art-test2. Ikon lama memakai kontur tipis berwarna gelap sesuai bahan, volume dengan sapuan warna berlapis, serta lipatan, sisik, ukiran, dan tekstur logam yang jelas. Grid yang disetujui lebih tenang: warna tanah, emas tua, baja kusam, kulit cokelat, kain redup; proporsi realistis, detail halus, kilap terbatas, bayangan lembut, siluet mudah dibaca, dan latar transparan. Patokan sesi ini adalah grid art-test2, dengan tepi halus tanpa garis hitam tebal, tanpa tampilan kartun atau stiker.
+
+### Sesi 9 — lembar 010 selesai
+- File: `art/batch/icons/grids/sheet-010-a.png` dan `sheet-010-b.png`; masing-masing RGBA 2560 × 1280, 10 × 5 sel berukuran 256 px, 100 sel sesuai urutan daftar art-lists.
+- Resolusi asli generate: empat panel 1254 × 1254; gambar ulang sel 20 (Tower Banner) 1024 × 1536. Semua artwork hanya diperkecil, tidak diperbesar; dipusatkan dengan margin minimal 24 px. Komponen objek utuh dipisahkan sebelum perakitan agar tidak terpotong pada kisi sumber dan tidak membawa serpihan tetangga.
+- Pemeriksaan: semua 100 sel dilihat pada pratinjau; enam sampel diletakkan berdampingan/di bawah ikon lama pada skala sama dan pada 24 px. Kontur halus, warna lebih tenang daripada beberapa ikon lama, tekstur tetap terlihat. Sel 20 digambar ulang karena lambang panji awal salah.
+- Sel meragukan secara interpretasi: 4 Tea Magic (cangkir), 5 Technicolor Magic (prisma), 26 Tyromancer (keju), 69 Yellow Sign (sigil abstrak), 72–75 tingkat transformasi aberrant (perkembangan tentakel/duri/mata). Simbol-simbol ini dipilih dari nama; kecocokan detail lore perlu peninjauan. Tidak ada sel kosong.
