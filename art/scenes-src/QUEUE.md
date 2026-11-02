@@ -30,7 +30,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | done |
 | S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | done |
 | S05 PC | art/scenes-src/species/S05-pc.png | geppettin, manikin, wechselkind, vect | done |
-| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | open |
+| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | claimed by codex-scenes 2026-11-02T08:38:04+00:00 |
 | S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | open |
 | S06 PC | art/scenes-src/species/S06-pc.png | mandrake, accursed, arisen, disembodied | open |
 | S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | open |
