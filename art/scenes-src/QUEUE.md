@@ -48,7 +48,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | done |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | done |
 | S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | needs review: square corrected; limukin foreground still reads as stacked jungle vignette after redo |
-| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | claimed by codex-phone-redo 2026-11-02 |
+| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | needs review: square corrected; asteroid details extend into quiet lower zone after redo |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
 | S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | done |
 | S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | claimed by codex-phone-redo 2026-11-02 |
