@@ -5059,3 +5059,9 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - Generate asli panel final: 1261×1247, 1263×1246, 1312×1199, 1280×1229. Hanya diperkecil dan diletakkan pada kanvas; tidak diperbesar.
 - Panel 1 digambar ulang karena simbol kartu mengandung huruf dan efek terlalu terang. Hasil final dibandingkan langsung dengan ikon lama pada ukuran sama; kontur tipis dan tekstur bahan terjaga.
 - Sel meragukan: 23 Benign Dismemberment ditafsirkan gauntlet terlepas; 72 Boil Blood dan 73 Boiling Blood cukup mirip; 85 Bottomless Stomach ditafsirkan kantong bermulut; 88 Brawn Boost memakai lengan karena nama spell. Sel-sel efek api lebih jenuh daripada benda biasa, sebanding dengan ikon fire lama.
+
+### Lembar 026 — selesai
+- File sheet-026-a/b.png: PNG RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px terverifikasi; objek tidak diperbesar.
+- Resolusi asli generate: dua panel 10×5 masing-masing 1774×887. Objek ditempatkan pada kanvas sel 256 px pada ukuran asli atau lebih kecil.
+- Dibandingkan berdampingan dengan ikon lama pada kanvas sama: kontur lokal halus, tekstur rinci, warna efek lebih terang daripada benda seperti dalam fire lama. Seluruh lembar dicek visual untuk urutan dan potongan.
+- Sel meragukan: 12 Swift Exchange dua bentuk berputar; 32 Throes of Ecstasy figur dalam efek; 42–48 keluarga efek waktu cukup serupa; 63 dan 91 Spellhack memakai kristal; 72 Trick Question tanda tanya sebagai simbol fungsi. Beberapa efek memakai simbol gabungan tunggal, bukan benda harfiah.
