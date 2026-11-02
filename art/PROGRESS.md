@@ -5062,3 +5062,6 @@ Selesai dua PNG RGBA 2560×1280, 100 sel, margin minimal 24 px. Generate asli: e
 
 ### Sesi 1 — sheet-052
 Selesai dua PNG RGBA 2560×1280, 100 sel, margin minimal 24 px, tanpa pembesaran. Generate asli: empat panel 1254×1254. Pemeriksaan visual semua panel/urutan dan perbandingan berdampingan dengan ikon lama serta art-test2 telah dilakukan; kontur, saturasi dan tekstur sesuai arah acuan. Dimensi/RGBA/margin lolos. Sel interpretatif/meragukan: 3, 17–20, 23, 25, 28–30, 36–39, 46, 52, 58, 60, serta 63–100 (simbol dewa; beberapa lambang dekoratif ditafsirkan dari identitas/domain, perlu tinjauan terhadap simbol kanonik sumber).
+
+### Sesi 1 — sheet-062
+Selesai dua PNG RGBA 2560×1280, 100 sel, margin minimal 24 px. Resolusi asli generate: empat panel 1254×1254; tidak diperbesar. Panel dan urutan diperiksa langsung, beberapa sel dibandingkan berdampingan dengan ikon lama dan acuan art-test2; format, alpha dan margin lolos. Penyakit memakai gejala/simbol, resep memakai sajian/minuman, termasuk nama yang sama dengan spell. Sel meragukan: 1–14 (simbol penyakit), 19, 21, 26–27, 31, 34, 39, 44, 46–49, 55–58, 62–65, 67–70, 79–80, 82, 85–86, 88–90, 92–93, 96, 100; tampilan resep bernama khusus perlu dicocokkan dengan komposisi sumber asli.
