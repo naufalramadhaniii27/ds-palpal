@@ -5062,3 +5062,8 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - File: `sheet-030-a.png`, `sheet-030-b.png`; PNG RGBA 2560 × 1280 per file, 100 sel berurutan, margin minimal 24 px, tanpa pembesaran artwork.
 - Resolusi asli generate: empat panel 1254 × 1254. Semua sel diperiksa pada pratinjau, enam sampel dibandingkan dengan ikon lama pada ukuran sama serta pada 24 px; kontur halus, kain/logam/kulit bertekstur, warna lembut, dan tidak ada serpihan tetangga.
 - Sel meragukan: 8 Bob (tengkorak), 35 Borealus (pedang es), 43 Bounty Hunter Enforcer (hand crossbow), 57 Breath of Siberys (dragonshard), 60 Broken Vow (pedang patah), 63 Bug Smashers (sepatu), 82 Ceratopper (helm bertanduk). Seri Champion 83–97 dan Boon digambarkan sebagai simbol/jimat fungsi; perlu pemeriksaan lore sumber untuk nama-nama tersebut.
+
+### Sesi 9 — lembar 040 selesai
+- File: `sheet-040-a.png`, `sheet-040-b.png`; PNG RGBA 2560 × 1280, 100 sel berurutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; tidak ada pembesaran.
+- Semua sel dilihat dan enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Cincin/rod dibedakan melalui ukiran, bahan, dan bentuk; kontur tipis, warna terkendali, detail tidak menjadi bingkai sel. Pemisahan komponen menghindari serpihan dan potongan ikon tetangga.
+- Sel meragukan: 4 Psionic Reach (rod), 21 Quickdraw (holster crossbow), 24 Radiance (pedang), 30 Raven's Slumber (liontin gagak), 32 Reap and Sew (bilah jahit), 46 Replacement (tangan prostetik), 47 Resistance Breaker (palu), 49 Resistance Suture (jarum). Nama-nama ini perlu verifikasi lore; item yang jelas seperti cincin, maul, armor, dan rod mengikuti bentuk bendanya.
