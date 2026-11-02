@@ -198,7 +198,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B052 PC | art/scenes-src/backgrounds/B052-pc.png | 2x2 | ward-of-the-sheltering-hands, waterdhavian-noble, whitestone-rifle-corps, wildspacer | done |
 | B052 phone a | art/scenes-src/backgrounds/B052a-phone.png | 1x2 | ward-of-the-sheltering-hands, waterdhavian-noble | done |
 | B052 phone b | art/scenes-src/backgrounds/B052b-phone.png | 1x2 | whitestone-rifle-corps, wildspacer | done |
-| B053 PC | art/scenes-src/backgrounds/B053-pc.png | 2x2 | wind-touched, witchlight-hand, witherbloom-student, worthless-husk | open |
+| B053 PC | art/scenes-src/backgrounds/B053-pc.png | 2x2 | wind-touched, witchlight-hand, witherbloom-student, worthless-husk | claimed by codex-b045-b054 2026-11-02T14:03+00:00 |
 | B053 phone a | art/scenes-src/backgrounds/B053a-phone.png | 1x2 | wind-touched, witchlight-hand | open |
 | B053 phone b | art/scenes-src/backgrounds/B053b-phone.png | 1x2 | witherbloom-student, worthless-husk | open |
 | B054 PC | art/scenes-src/backgrounds/B054-pc.png | single | zhentarim-mercenary | open |
