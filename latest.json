@@ -1,7 +1,7 @@
 {
- "commit": "e217cde5",
- "branch": "main",
- "date": "2026-11-02 11:57",
+ "commit": "3751baad",
+ "branch": "nilai-98/ui-detail-img",
+ "date": "2026-11-02 12:28",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.11,
- "secs": 31
+ "secs": 46
 }
