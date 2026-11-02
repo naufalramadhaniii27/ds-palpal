@@ -1,4 +1,4 @@
-"""Cut a scene sheet (2x2, 1x2 or 2x1) into panels and upscale them.
+"""Cut a scene sheet (any rows x columns with cream gutters) into panels and upscale them.
 
 Usage: python3 tools/art/sheet_cut.py SHEET.png WEIGHTS.pth OUTDIR name1 [name2 ...] [WxH]
 Panels are read row by row: left to right, then top to bottom.
@@ -17,19 +17,36 @@ from esr_up import load, run
 MIX = 0.7
 
 
-def gutter(a, axis, n):
-    """Return (start, end) of a flat cream band near the middle, or None."""
+def runs(a, axis, n):
+    """Flat cream bands between 3% and 97% of the side (gutters)."""
     s = a.std(axis=axis).mean(1)
-    idx = [i for i in range(int(n * .4), int(n * .6)) if s[i] < 6]
-    return (idx[0], idx[-1] + 1) if idx else None
+    flat = [s[i] < 6 for i in range(n)]
+    out, i = [], int(n * .03)
+    while i < int(n * .97):
+        if flat[i]:
+            j = i
+            while j < n and flat[j]:
+                j += 1
+            if j - i >= 4:
+                out.append((i, j))
+            i = j
+        else:
+            i += 1
+    return out
+
+
+def spans(g, n):
+    edges, x = [], 0
+    for a, b in g:
+        edges.append((x, a)); x = b
+    edges.append((x, n))
+    return [e for e in edges if e[1] - e[0] > n * .1]
 
 
 def boxes(im):
     a = np.asarray(im).astype(int)
     w, h = im.size
-    gx, gy = gutter(a, 0, w), gutter(a, 1, h)
-    xs = [(0, gx[0]), (gx[1], w)] if gx else [(0, w)]
-    ys = [(0, gy[0]), (gy[1], h)] if gy else [(0, h)]
+    xs, ys = spans(runs(a, 0, w), w), spans(runs(a, 1, h), h)
     return [(x0, y0, x1, y1) for (y0, y1) in ys for (x0, x1) in xs]
 
 
