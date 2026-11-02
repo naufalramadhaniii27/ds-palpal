@@ -30,6 +30,8 @@ jobs:
         run: npm ci --prefix tools/build
       - name: Build is in sync (index.html, sw.js, CSP hashes, lint, vendor sums)
         run: python3 build.py --check
+      - name: "Type gate (N46, no file may get more tsc errors than tools/ts-baseline.json)"
+        run: python3 tools/tsc_gate.py
       - name: Install Playwright
         run: |
           pip install playwright==$PLAYWRIGHT_VERSION brotli
@@ -65,12 +67,17 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in overflow_scan overlap_scan tidy blank_new flow_home_sheet storage_idb self_heal; do
+          for t in overflow_scan overlap_scan tidy blank_new flow_home_sheet storage_idb self_heal fail_modes migrate_all; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"
           done
           exit $fail
+      - name: Storage chaos, 50 seeds (a failing seed is repeated with --seed N, see reports/chaos-gagal.json)
+        run: python3 tests/chaos_storage.py --seeds 50
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: { name: chaos-gagal, path: reports/chaos-gagal.json, if-no-files-found: ignore }
 
   c-features:
     name: "Job C: features"
@@ -96,9 +103,28 @@ jobs:
           done
           exit $fail
 
+  c-cloud:
+    name: "Job C2: cloud sync and error reports (local D1)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install Playwright
+        run: |
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
+      - name: Cloud sync
+        run: bash tools/run_cloud_sync.sh
+      - name: Error reports
+        run: bash tools/run_cloud_sync.sh tests/err_report.py
+
   score:
     name: "Score: no measure may get worse (N43)"
-    needs: [a-fast, b-layout, c-features]
+    needs: [a-fast, b-layout, c-features, c-cloud]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -154,6 +180,10 @@ jobs:
           pip install playwright==$PLAYWRIGHT_VERSION brotli
           python -m playwright install --with-deps chromium
           mkdir -p /tmp/axe && cd /tmp/axe && npm init -y >/dev/null && npm install axe-core@4.10.2
+      - name: Storage chaos, 500 seeds
+        run: python3 tests/chaos_storage.py --seeds 500
+      - name: Repeat every test 3 times (flake hunt)
+        run: python3 tools/flake_hunt.py --runs 3
       - name: Full score
         run: AXE_JS=/tmp/axe/node_modules/axe-core/axe.min.js python3 tools/score.py --md --json tests/out/score-full.json
       - uses: actions/upload-artifact@v4

@@ -1,0 +1,20 @@
+{
+ "tg_engine": {
+  "job": "A",
+  "runs": 2,
+  "fail": 0,
+  "last": ""
+ },
+ "names_lint": {
+  "job": "A",
+  "runs": 2,
+  "fail": 0,
+  "last": ""
+ },
+ "number_map": {
+  "job": "C",
+  "runs": 2,
+  "fail": 0,
+  "last": ""
+ }
+}

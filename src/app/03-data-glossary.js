@@ -1,7 +1,7 @@
 import {HB_CONDS,HB_SRC} from "./02-data-default-character.js";
 import {__R} from "./00-reg.js";
 /* ================= GLOSSARY (paraphrased, not quoted) ================= */
-var RG="PHB-2024, Rules Glossary", EQ="PHB-2024, Equipment", PG="PHB-2024, Playing the Game";
+const RG="PHB-2024, Rules Glossary", EQ="PHB-2024, Equipment", PG="PHB-2024, Playing the Game";
 export var GLOSS={
   /* abilities */
   "Strength":{c:"Ability",s:PG,d:"Measures raw physical power. It drives melee attacks with most weapons, Unarmed Strike damage, the [[Grapple]] and [[Shove]] DC, the [[Athletics]] skill, Strength saving throws, and [[Carrying Capacity]]."},
@@ -123,8 +123,8 @@ export var GLOSS={
 window.__GLOSS=GLOSS;/* v93: the 2014 equipment words change a few entries */
 
 /* v94: 2014 rules words. gl14 lays the 2014 Rules Glossary entries over GLOSS (rests, Exhaustion, grapple, actions, conditions) and puts the 2024 ones back when off. The sheet follows C.rs, the builder follows the build */
-var GL14S=null,GL14ON=false;
-var GL14={
+let GL14S=null,GL14ON=false;
+const GL14={
  "Proficiency Bonus":{d:"A bonus set by your level. You add it to attack rolls with weapons you are proficient with, to ability checks with proficient skills, to proficient saving throws, and to the DCs of your spells and features."},
  "Hit Point Dice":{d:"Dice you spend during a [[Short Rest]] to heal. Roll each die you spend and add your Constitution modifier. A [[Long Rest]] gives back up to half of your total Hit Dice, and at least one."},
  "Heroic Inspiration":{d:"A reward the DM gives for good roleplay, clever play, or a moment that fits your character. Spend it to have [[Advantage]] on one attack roll, saving throw, or ability check, and decide before you roll. You either have it or you do not. You can give yours to another player."},
@@ -148,28 +148,28 @@ var GL14={
  "Incapacitated":{d:"You can't take actions or reactions."}
 };
 export function gl14(on){ if(typeof GLOSS==="undefined")return; on=!!on; if(on===GL14ON)return;
- if(on){ GL14S={}; var ks=Object.keys(GLOSS); Object.keys(GL14).forEach(function(k){ if(ks.indexOf(k)<0)ks.push(k); });
-  ks.forEach(function(k){ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ var o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   var nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
-   if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; var n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
- else if(GL14S){ Object.keys(GL14S).forEach(function(k){ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
+ if(on){ GL14S={}; const ks=Object.keys(GLOSS); Object.keys(GL14).forEach((k) =>{ if(ks.indexOf(k)<0)ks.push(k); });
+  ks.forEach((k) =>{ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ const o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   let nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
+   if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; const n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
+ else if(GL14S){ Object.keys(GL14S).forEach((k) =>{ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
 window.__gl14=gl14;
 export var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
 /* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */
-export function gName(g){ g=String(g==null?"":g); if(!(typeof __R.C!=="undefined"&&__R.C&&__R.C.rs==="2014"))return g; var m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
-export function athI(){ var s=__R.C.skills||[]; for(var i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
+export function gName(g){ g=String(g==null?"":g); if(!(typeof __R.C!=="undefined"&&__R.C&&__R.C.rs==="2014"))return g; const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
+export function athI(){ const s=__R.C.skills||[]; for(let i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
 export function x14n(n){ return n==="Magic"?"Cast a Spell":n==="Utilize"?"Use an Object":n; }
 export function x14(){ return typeof __R.C!=="undefined"&&!!__R.C&&__R.C.rs==="2014"; }
 /* Exhaustion: 2024 takes 2 from every D20 Test and 5 feet of Speed per level. 2014 has six levels with fixed effects */
-export function exSpd(v){ var e=(typeof __R.D!=="undefined"&&__R.D&&__R.D.exh)||0; return x14()?(e>=5?0:e>=2?Math.floor(v/2):v):Math.max(0,v-5*e); }
-export function exTxt(n){ if(!x14())return "D20 Tests −"+(2*n)+", Speed −"+(5*n)+" ft"; var a=[]; a.push(n>=3?"Disadvantage on ability checks, attack rolls, and saves":"Disadvantage on ability checks"); if(n>=5)a.push("Speed 0"); else if(n>=2)a.push("Speed halved"); if(n>=4)a.push("Hit Point maximum halved"); if(n>=6)a=["Dead"]; return a.join(", "); }
+export function exSpd(v){ const e=(typeof __R.D!=="undefined"&&__R.D&&__R.D.exh)||0; return x14()?(e>=5?0:e>=2?Math.floor(v/2):v):Math.max(0,v-5*e); }
+export function exTxt(n){ if(!x14())return "D20 Tests −"+(2*n)+", Speed −"+(5*n)+" ft"; let a=[]; a.push(n>=3?"Disadvantage on ability checks, attack rolls, and saves":"Disadvantage on ability checks"); if(n>=5)a.push("Speed 0"); else if(n>=2)a.push("Speed halved"); if(n>=4)a.push("Hit Point maximum halved"); if(n>=6)a=["Dead"]; return a.join(", "); }
 export function exHelp(){ return x14()?"Six levels, each adds to the last: 1 checks, 2 Speed halved, 3 attacks and saves, 4 Hit Points halved, 5 Speed 0, 6 death.":"Each level: −2 to D20 Tests and −5 ft Speed. Level 6 is death."; }
 /* Long Rest, 2014: Hit Dice come back up to half of the total (at least 1), the biggest dice first */
-export function hdPlan(){ var rows=__R.hdRows().slice().sort(function(a,b){ return __R.num(b.die,__R.num(__R.C.hitDie,10))-__R.num(a.die,__R.num(__R.C.hitDie,10)); }), tot=rows.reduce(function(t,r){return t+r.max},0), bud=Math.max(1,Math.floor(tot/2)), pl={}, sum=0;
- rows.forEach(function(r){ var u=__R.used(r.k,r.max), t=Math.min(u,bud); pl[r.k]=t; bud-=t; sum+=t; }); pl._n=sum; return pl; }
+export function hdPlan(){ let rows=__R.hdRows().slice().sort((a,b) =>{ return __R.num(b.die,__R.num(__R.C.hitDie,10))-__R.num(a.die,__R.num(__R.C.hitDie,10)); }), tot=rows.reduce((t,r) =>{return t+r.max},0), bud=Math.max(1,Math.floor(tot/2)), pl={}, sum=0;
+ rows.forEach((r) =>{ const u=__R.used(r.k,r.max), t=Math.min(u,bud); pl[r.k]=t; bud-=t; sum+=t; }); pl._n=sum; return pl; }
 /* features that resource and action names point to */
 GLOSS["Celurit (Sickle)"]=GLOSS["Sickle"];
-HB_CONDS.forEach(function(c){ GLOSS[c.k]={c:"Condition (homebrew)",s:HB_SRC,d:c.d}; });
-var FEAT_ALIAS={"Second Wind":"Second Wind","Action Surge":"Action Surge","Tactical Mind":"Tactical Mind"};
+HB_CONDS.forEach((c) =>{ GLOSS[c.k]={c:"Condition (homebrew)",s:HB_SRC,d:c.d}; });
+const FEAT_ALIAS={"Second Wind":"Second Wind","Action Surge":"Action Surge","Tactical Mind":"Tactical Mind"};
 
 export var NOTE_FIELDS = [
   {k:"backstory", l:"Backstory", h:"Write it in your own words", rows:6},

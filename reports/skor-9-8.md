@@ -58,3 +58,31 @@ Temuan dan perbaikan:
 - Bug tes: 25 tes menyiapkan data lewat goto, set storage, reload. Halaman lama menulis daftar karakter kembali saat reload, jadi karakter bisa menjadi New Character. Semua diganti init script yang dijaga sessionStorage (pola yang sama dengan style_snapshot).
 - Beda dokumen dan kode: lihat tabel di atas. Heap dokumen 54 MB, nyata 35,4 MB mentah, 29,3 MB sesudah GC.
 Sebelum/sesudah: skor baseline tidak berubah (perbaikan ini memperbaiki keandalan, bukan ukuran).
+
+### 2026-11-02 N40 + Fase 1 (gelombang 1, lanjutan)
+Alat baru (semua keluar dengan baris `SCORE n` untuk tools/score.py):
+- tests/lib/chaos.js + tests/chaos_storage.py: kegagalan put IndexedDB, transaksi dibatalkan, QuotaExceededError di localStorage, fetch putus atau lambat. Seed menentukan kegagalan dan urutan aksi. Seed gagal ditulis ke reports/chaos-gagal.json, `--seed N` mengulang. Seed yang pernah menemukan bug (KNOWN) selalu jalan lebih dulu.
+- tests/fail_modes.py: storage penuh, offline, dua tab, data rusak, tutup tab saat menulis, tanda cermin (cs-store-v1), ganti edisi 2024 ke 2014 dan sebaliknya. Dua ukuran layar. Dua perangkat tetap di tests/cloud_sync.py (lewat tools/run_cloud_sync.sh).
+- tests/migrate_all.py: build tiap APP_VER 102 sampai 113 (index.html dari git) menyimpan data Yudhi, build sekarang membukanya. Tidak ada layar pemulihan, teks sheet dan jumlah roster sama dengan baseline. Versi sebelum 102 tidak punya commit per angka di riwayat, jadi tidak diuji.
+- tools/flake_hunt.py (nama .py, bukan .sh seperti di rencana): ulang tiap tes N kali. Satu putaran penuh makan sekitar 40 menit, 10 putaran adalah run malam. Hasil 10 dari 10 belum dijalankan (lihat di bawah).
+- Laporan error: src/boot/err-report.js, POST /api/err tanpa login, tabel errs dan errdev di D1, email dan angka 6 digit ke atas dihapus, 50 per perangkat per hari, 5000 per hari total, tampil di halaman Admin. Hanya https atau cs-err-test=1, mati dengan cs-err-off=1. tests/err_report.py: 10 cek lolos di D1 lokal.
+Temuan produk:
+- Bug nyata (seed 287, 3 dari 8 ulangan sebelum perbaikan): bila tulis cs-store-v1 gagal, tanda dihapus dan tidak ditulis lagi selama tidak ada kunci yang berubah status gagalnya. Start berikutnya masuk jalur lambat dan salinan IndexedDB lama menang atas localStorage yang lebih baru (temp HP kembali ke nilai lama). Perbaikan di src/boot/store-gate.js: MARKBAD, tanda ditulis ulang pada tulis cermin berikutnya yang berhasil dan saat pagehide. 10 dari 10 lolos sesudahnya. Uji tetap: fail_modes "mirror mark" (gagal tanpa perbaikan, lolos dengan perbaikan).
+- Bug loader builder (gelombang 1): lihat entri sebelumnya.
+- Catatan desain, bukan bug: salinan karakter aktif di cs-roster-v1 tertinggal dari kunci sheet sampai karakter diganti (rSnap). Kunci sheet adalah sumber kebenaran. Tes membandingkan hanya keberadaan salinan itu.
+- Catatan UI: elemen hiasan di Home builder membawa atribut data-rs="2024" selain tombolnya. Tidak merusak, tapi selector `[data-rs]` ambigu. Tes memakai `button[data-rs]`.
+Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 kegagalan disuntikkan. Sesudah perbaikan seed 287 lolos 10 dari 10. Ulang 500 seed penuh dengan build baru: lihat baris berikutnya.
+
+## N44 html templates (in progress, branch nilai-98/n44)
+- src/app/lib/html.js: 7.9 KB source, 4.4 KB minified, 2.0 KB gzip (plan target 3 KB minified, not met, gzip is under). tests/html_lib.py 17/17.
+- Converted so far: death save pips, HP max button (src/app/09), speeds and defenses (src/app/23), update toast, QR play button and QR progress dots (src/app/42). render() redraws when something else overwrote the element. Checked in browser at 390x844: pips render, tap sets aria-pressed, no page errors.
+- Left: about 198 innerHTML sites. Lint rule not added yet.
+
+## Job A-C on M1 + N46 + N44 (branch nilai-98/n44, 2026-11-02)
+- tools/run_jobs.py A B C --retry: 32 tests, 0 failed, 2524 s. chaos_storage 50 seeds ok, migrate_all ok, tsc_gate ok, perf_budget ok.
+- Not yet run: style snapshot (tests/style_snapshot.py --variants), 2014 edition scenarios at both viewports by hand, 500-seed chaos on the final build, CI.
+- Style snapshot (--variants), origin/main vs nilai-98/n44: 74 screens, 64700 elements, 0 differences.
+- CI run 41413337680: Job C2 failed once at 'A uploads its character' (1250x850), rerun of the failed job passed. Treated as a flake of tests/cloud_sync.py (race between first start and seeding). Needs the Fase 1.1 flake hunt (10 runs).
+- Bug found by tsc_gate (CI Job A) in my N44 change: QR progress dots removal dropped the `var k` used by the final loop in qrScanStep. Fixed with `let k`. No test covers QR scan completion (gap, to add).
+- tests/cloud_sync.py: "A uploads its character" failed in CI 2 of 3 runs at 1250x850. Cause: seeding after first load raced with the first start, which uploaded a blank "New Character". Now seeded by an init script before the first script (same method as the other 24 tests). 3 local runs 39/39.
+- Local note: repeated runs of run_cloud_sync.sh fill the local D1 daily quota (HTTP 429) and stale workerd processes give HTTP 500. Fix: pkill -x workerd; rm -rf .wrangler/state.
