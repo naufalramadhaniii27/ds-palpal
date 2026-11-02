@@ -5096,3 +5096,9 @@ Saya melihat langsung 14 ikon lama: lucky, alert, savage-attacker, blinded, char
 
 ### Sesi 2 — koreksi gaya lembar 033 sel 25
 Sel 25 double laser sword digambar ulang pada resolusi asli 1254 × 1254 RGBA untuk mengganti bilah merah terang dengan bilah pucat bertepi rose-grey dan tanpa aura neon. Hanya sel 25 pada sheet-033-a.png yang diganti; ukuran 2560 × 1280, transparansi dan margin minimal 24 px tetap terverifikasi. Dibandingkan lagi dengan pistol dan glaive lama pada ukuran objek yang sama.
+
+### Sesi 2 — lembar 083 selesai
+- File sheet-083-a.png dan sheet-083-b.png: masing-masing 2560 × 1280 PNG RGBA, 10 × 5 sel 256 px, urutan 1–50 dan 51–100 sesuai daftar.
+- Resolusi asli generate per panel: 1254 × 1254, 1254 × 1254, 1254 × 1254, 1254 × 1254 RGBA. Perakitan tanpa pembesaran; margin minimal 24 px dan semua sel terisi diverifikasi.
+- Pemeriksaan visual: delapan sampel berdampingan dengan ikon lama pada ukuran objek yang sama, ditambah pratinjau 24 px. Kontur halus, detail bahan dan kejenuhan diperiksa terhadap acuan.
+- Catatan/revisi dan sel yang meragukan: Acuan tambahan panel hasil revisi berwarna redup membantu menjaga bahan tetap realistis tanpa aura besar. Tidak ditemukan sampel yang perlu digambar ulang karena garis tebal atau bentuk kartun. Sel meragukan pada 24 px: 5–7 (varian Indomitable), 38–39 (Inspiring Help), dan 89–91 (Ki) memakai simbol satu keluarga dengan perubahan bahan atau aksen tanpa angka tertulis. Bentuk dipilih memakai nama dan sumber subclass/species pada daftar.
