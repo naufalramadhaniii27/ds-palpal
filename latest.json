@@ -1,7 +1,7 @@
 {
- "commit": "a708ad27",
- "branch": "main",
- "date": "2026-11-02 18:25",
+ "commit": "271bc0bf",
+ "branch": "nilai-98/f22-lazy",
+ "date": "2026-11-02 18:55",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -345,7 +345,7 @@
     },
     {
      "id": "syncget",
-     "value": 2,
+     "value": 3,
      "base": 2,
      "target": 0,
      "credit": 0.0,
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1080,
+     "value": 1082,
      "base": 1099,
      "target": 0,
      "credit": 0.02,
@@ -555,7 +555,7 @@
     },
     {
      "id": "then_calls",
-     "value": 152,
+     "value": 154,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.12,
- "secs": 47
+ "secs": 33
 }
