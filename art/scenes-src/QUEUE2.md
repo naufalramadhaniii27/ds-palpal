@@ -134,7 +134,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B030 phone b | art/scenes-src/backgrounds/B030b-phone.png | 1x2 | lords-alliance-vassal, lorehold-student | done |
 | B031 PC | art/scenes-src/backgrounds/B031-pc.png | 2x2 | lorwyn-expert, low-worlder, luxonborn, lyceum-scholar | done |
 | B031 phone a | art/scenes-src/backgrounds/B031a-phone.png | 1x2 | lorwyn-expert, low-worlder | done |
-| B031 phone b | art/scenes-src/backgrounds/B031b-phone.png | 1x2 | luxonborn, lyceum-scholar | claimed by codex-b023-b033 2026-11-02T14:21:41.750Z |
+| B031 phone b | art/scenes-src/backgrounds/B031b-phone.png | 1x2 | luxonborn, lyceum-scholar | done |
 | B032 PC | art/scenes-src/backgrounds/B032-pc.png | 2x2 | lyceum-student, mage-of-high-sorcery, malenti, marine | open |
 | B032 phone a | art/scenes-src/backgrounds/B032a-phone.png | 1x2 | lyceum-student, mage-of-high-sorcery | open |
 | B032 phone b | art/scenes-src/backgrounds/B032b-phone.png | 1x2 | malenti, marine | open |
