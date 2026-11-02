@@ -53,7 +53,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | done |
 | S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | done |
 | S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | done |
-| S13 PC | art/scenes-src/species/S13-pc.png | vulpin, feathren | claimed by codex-scenes 2026-11-02T10:04:41+00:00 |
+| S13 PC | art/scenes-src/species/S13-pc.png | vulpin, feathren | done |
 | S13 phone a | art/scenes-src/species/S13a-phone.png | vulpin, feathren | open |
 
 ## PC template (2x2)
