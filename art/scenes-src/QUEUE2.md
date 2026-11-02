@@ -39,7 +39,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | C03 PC | art/scenes-src/classes/C03-pc.png | 2x2 | warden, captain, warmage, alchemist | done |
 | C03 phone a | art/scenes-src/classes/C03a-phone.png | 1x2 | warden, captain | done |
 | C03 phone b | art/scenes-src/classes/C03b-phone.png | 1x2 | warmage, alchemist | done |
-| C04 PC | art/scenes-src/classes/C04-pc.png | 2x2 | gadgeteer, jaeger, monster-hunter, healer | claimed by codex-r-c-lane 2026-11-02T13:24+00:00 |
+| C04 PC | art/scenes-src/classes/C04-pc.png | 2x2 | gadgeteer, jaeger, monster-hunter, healer | done |
 | C04 phone a | art/scenes-src/classes/C04a-phone.png | 1x2 | gadgeteer, jaeger | open |
 | C04 phone b | art/scenes-src/classes/C04b-phone.png | 1x2 | monster-hunter, healer | open |
 | B001 PC | art/scenes-src/backgrounds/B001-pc.png | 2x2 | aberrant-heir, academic, agent-of-augustine, agent-of-the-ninth-quill | done |
