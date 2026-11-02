@@ -14,29 +14,30 @@ Species portraits (90) are postponed.
 6. Save at art-tasks/grid-out/G0N-a.png and art-tasks/grid-out/G0N-b.png. Do not cut. Claude cuts by cell and names each icon from the sheet list.
 7. Mark the sheet `done`, commit `grid: G0N`, `git pull --rebase`, push.
 8. If a cell is wrong, redo the whole image once. If still wrong, write the cell numbers in the status as `needs review: cells ...`.
-9. Attach art-tasks/grid/style-ref.png (12 icons already in the app) as the ONLY style reference. Every cell must look like it belongs in that set. For ui icons, all cells of one image must look like one matching icon set.
+9. Attach art-tasks/grid/style-ref.png (12 icons from the old grid sheets on art-g1..art-g10, the approved look) as the ONLY style reference. Every cell must look like it belongs in that set.
+   METHOD (same as the old grid sheets, see art/PROGRESS.md on art-g1, "Sesi 1 sheet-002"): never draw 50 icons in one image. Make FOUR square generates per sheet, 1254x1254 RGBA, each holding 25 icons in a 5x5 layout: cells 1-25, 26-50, 51-75, 76-100. Do not upscale. Extract each object by alpha, scale it down only as needed, and place it centered in its 256x256 cell with at least 24 px margin. Then assemble G0N-a.png (cells 1-50) and G0N-b.png (cells 51-100) as before.
 10. STYLE CHECK before saving (v1 of G01 failed all three):
    a. Background is real transparency (alpha 0) and every icon is fully opaque (alpha 255 inside the outline). v1 had 0% opaque pixels: the whole sheet was semi-transparent, so icons look washed out and blurred colors show behind them. Check with Python before saving: at least 20% of pixels must have alpha 255. No painted, blurred, colored or checkerboard background.
-   b. Same look as style-ref.png: soft thin brown-black outline, two or three soft cel tones, natural materials, gentle highlights. Not glossy mobile-game icons, not thick black outlines, not candy saturation, not neon glow.
+   b. Same look as style-ref.png: calm, slightly realistic painted props. Palette of brown, dull gold, ivory, stone with medium accent colors. Fine painted texture, small carvings and folds that still read small, limited gloss, thin contour a little darker than the material (never thick black), soft shadows, magic as soft colored wisps. Not glossy mobile-game icons, not chunky cartoon shapes, not candy saturation, not neon.
    c. Physical props only. No arrows, plus signs, refresh circles, selection boxes or other flat UI symbols. Show an idea through a real object (a bonus action is a small winged boot, an added item is a pouch with a tag), as in style-ref.png.
 
 ## Status
 
 | Sheet | Cells | Content | Status |
 |---|---|---|---|
-| G01 | 100 | app UI icons (replace every line icon) | done; needs review: cells 1-100 (padding/style consistency); cells 30,33 (remaining aura), 51 (rod resembles fishing pole), 87 (ability symbolism), 97-99 (inventory/description/main subjects shifted); rule 10a passed after authorized alpha correction |
-| G02 | 100 | app UI icons, then species emblems | done; needs review: cells 1-100 (padding/style consistency); cells 55 (incense absent), 60 (metal sickle), 72 (key reads as figurine), 74 (bare glove), 76 (smile), 83 (element orbs), 94 (spirit eye absent), 95 (hoopak shape); rule 10a passed after authorized alpha correction |
-| G03 | 100 | species emblems and icons, features, items | claimed by codex-grid-g03-g04 2026-11-02 12:52 UTC (redo rule 10) |
-| G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | claimed by codex-grid-g03-g04 2026-11-02 12:48 UTC |
+| G01 | 100 | app UI icons (replace every line icon) | open (redo v3: match old grid style, four 1254 square generates, rule 9) |
+| G02 | 100 | app UI icons, then species emblems | open (redo v3: match old grid style, four 1254 square generates, rule 9) |
+| G03 | 100 | species emblems and icons, features, items | open (redo v3: match old grid style, rule 9) |
+| G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | open (v3 rules: match old grid style, rule 9) |
 
 ## Prompt per image
 
 ```
-Make ONE image: 2560x1280 PNG with a fully transparent background (alpha 0, nothing painted behind the icons), a grid of 10 columns x 5 rows, each cell 256x256. No grid lines, borders, numbers or labels. Each cell holds exactly one icon, centered, about 70% of the cell, inside the cell only. Cells are listed below in order: left to right, then top to bottom.
+Make ONE image: 1254x1254 PNG with a fully transparent background (alpha 0, nothing painted behind the icons), 25 icons in a 5x5 layout, well separated. No grid lines, borders, numbers or labels. Each cell holds exactly one icon, centered, about 70% of the cell, inside the cell only. Cells are listed below in order: left to right, then top to bottom.
 
 CELLS (copy from the sheet file, e.g. "1. art/batch/icons/ui/act-action.png | <subject>"; the path is only a name, never draw it)
 
-Style: exactly like the 12 icons in the attached style-ref.png (icons already in the app): Studio Ghibli anime prop, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones, natural wood, brass, cloth, leather, glass or stone materials, magic as soft glowing light. Every icon readable as one bold shape at 24x24 pixels. All 50 icons share one identical line weight, palette logic and lighting, as one matching set.
+Style: exactly like the 12 icons in the attached style-ref.png (the approved old grid icons): calm, slightly realistic painted fantasy prop, no gore. Thin contour a little darker than the material, fine painted texture, soft shadows, limited gloss, natural wood, brass, cloth, leather, glass or stone materials, magic as soft glowing light. Every icon readable as one bold shape at 24x24 pixels. All 25 icons share one identical line weight, palette logic and lighting, as one matching set.
 
 Every person is an adult. No video game badge, heraldic crest, chrome or spikes everywhere. Never include text, letters, numbers, writing-like runes, logos, watermarks, photorealism, 3D render look, neon colors, or copies of official D&D or Magic: The Gathering art. Book pages, scrolls, maps, signs and dice faces stay blank.
 ```
