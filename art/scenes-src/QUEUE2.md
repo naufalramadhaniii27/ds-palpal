@@ -251,8 +251,8 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P13 | art/scenes-src/portraits/P13.png | 2x2 portraits | kithkin-a, kithkin-b, kobold-a, kobold-b | done |
 | P14 | art/scenes-src/portraits/P14.png | 2x2 portraits | kor-a, kor-b, kuo-toa-a, kuo-toa-b | done |
 | P15 | art/scenes-src/portraits/P15.png | 2x2 portraits | leonin-a, leonin-b, lizardfolk-a, lizardfolk-b | done |
-| P16 | art/scenes-src/portraits/P16.png | 2x2 portraits | naga-a, naga-b, owlin-a, owlin-b | claimed by codex-p01-p23 2026-11-02T13:33+00:00 |
-| P17 | art/scenes-src/portraits/P17.png | 2x2 portraits | plasmoid-a, plasmoid-b, reborn-a, reborn-b | open |
+| P16 | art/scenes-src/portraits/P16.png | 2x2 portraits | naga-a, naga-b, owlin-a, owlin-b | open |
+| P17 | art/scenes-src/portraits/P17.png | 2x2 portraits | plasmoid-a, plasmoid-b, reborn-a, reborn-b | claimed by codex-p01-p23 2026-11-02T13:33+00:00 |
 | P18 | art/scenes-src/portraits/P18.png | 2x2 portraits | rimekin-a, rimekin-b, satyr-a, satyr-b | open |
 | P19 | art/scenes-src/portraits/P19.png | 2x2 portraits | shifter-a, shifter-b, simic-hybrid-a, simic-hybrid-b | open |
 | P20 | art/scenes-src/portraits/P20.png | 2x2 portraits | siren-a, siren-b, skeleton-a, skeleton-b | open |
