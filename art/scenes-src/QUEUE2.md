@@ -224,7 +224,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K019 | art/scenes-src/subclasses/K019.png | 4x4 cards | Necromancer to Paladin | done |
 | K020 | art/scenes-src/subclasses/K020.png | 4x4 cards | Paladin to Ranger | done |
 | K021 | art/scenes-src/subclasses/K021.png | 4x4 cards | Ranger to Rogue | done |
-| K022 | art/scenes-src/subclasses/K022.png | 4x4 cards | Rogue to Sorcerer | claimed by codex-k001-k033 2026-11-02T14:06+00:00 |
+| K022 | art/scenes-src/subclasses/K022.png | 4x4 cards | Rogue to Sorcerer | done |
 | K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | open |
 | K024 | art/scenes-src/subclasses/K024.png | 4x4 cards | Sorcerer to Summoner | open |
 | K025 | art/scenes-src/subclasses/K025.png | 4x4 cards | Summoner to Warden | open |
