@@ -109,7 +109,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B022 phone a | art/scenes-src/backgrounds/B022a-phone.png | 1x2 | guild-artisan, harper | open |
 | B022 phone b | art/scenes-src/backgrounds/B022b-phone.png | 1x2 | haunted, haunted-one | open |
 | B023 PC | art/scenes-src/backgrounds/B023-pc.png | 2x2 | heretic, holo-influencer, horizon-weaver-initiate, house-agent | done |
-| B023 phone a | art/scenes-src/backgrounds/B023a-phone.png | 1x2 | heretic, holo-influencer | claimed by codex-b023-b033 2026-11-02T12:54+00:00 |
+| B023 phone a | art/scenes-src/backgrounds/B023a-phone.png | 1x2 | heretic, holo-influencer | done |
 | B023 phone b | art/scenes-src/backgrounds/B023b-phone.png | 1x2 | horizon-weaver-initiate, house-agent | open |
 | B024 PC | art/scenes-src/backgrounds/B024-pc.png | 2x2 | house-cannith-heir, house-deneith-heir, house-ghallanda-heir, house-jorasco-heir | open |
 | B024 phone a | art/scenes-src/backgrounds/B024a-phone.png | 1x2 | house-cannith-heir, house-deneith-heir | open |
