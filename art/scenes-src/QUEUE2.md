@@ -255,7 +255,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | P17 | art/scenes-src/portraits/P17.png | 2x2 portraits | plasmoid-a, plasmoid-b, reborn-a, reborn-b | done |
 | P18 | art/scenes-src/portraits/P18.png | 2x2 portraits | rimekin-a, rimekin-b, satyr-a, satyr-b | done |
 | P19 | art/scenes-src/portraits/P19.png | 2x2 portraits | shifter-a, shifter-b, simic-hybrid-a, simic-hybrid-b | done |
-| P20 | art/scenes-src/portraits/P20.png | 2x2 portraits | siren-a, siren-b, skeleton-a, skeleton-b | open |
+| P20 | art/scenes-src/portraits/P20.png | 2x2 portraits | siren-a, siren-b, skeleton-a, skeleton-b | claimed by codex-p01-p23 2026-11-02T13:41+00:00 |
 | P21 | art/scenes-src/portraits/P21.png | 2x2 portraits | tabaxi-a, tabaxi-b, thri-kreen-a, thri-kreen-b | open |
 | P22 | art/scenes-src/portraits/P22.png | 2x2 portraits | tortle-a, tortle-b, triton-a, triton-b | open |
 | P23 | art/scenes-src/portraits/P23.png | 2x2 portraits | troglodyte-a, troglodyte-b | open |
