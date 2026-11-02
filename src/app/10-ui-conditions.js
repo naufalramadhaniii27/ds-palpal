@@ -4,6 +4,7 @@ import {S} from "./04-logic-storage.js";
 import {$,esc} from "./05-logic-helpers.js";
 import {vbSync} from "./09-ui-hit-points-playbar-death-saves.js";
 import {__R} from "./00-reg.js";
+import {html,raw,render} from "./lib/html.js";
 Object.defineProperty(__R,"activeConds",{get:function(){return activeConds;},set:function(v){activeConds=v;},configurable:true});
 Object.defineProperty(__R,"renderConds",{get:function(){return renderConds;},set:function(v){renderConds=v;},configurable:true});
 /* ================= CONDITIONS ================= */
@@ -17,10 +18,8 @@ export function renderConds(){
   const list=activeConds();
   __R.concAuto();/* v21 RU50 */ __R.modeClean(); __R.modeAuto();/* v22 M2, m3 */
   const any=list.length||S.exh;/* v30 B3, RU84: a titled row; Exhaustion is a chip too; empty is a clear Add condition button */
-  let h = '<span class="cond-l">Conditions</span>'+(typeof __R.lintChip==="function"?__R.lintChip():"")+__R.modeChips()+__R.concChip()+(S.exh?'<button type="button" class="chip on exh-c press" data-info="g:Exhaustion">Exhaustion '+S.exh+'</button>':'')+list.map((c) =>{return '<button type="button" class="chip on cnd press'+(c.hb?' hb':'')+'" data-info="g:'+c.k+'">'+(window.__artIc?window.__artIc("condition",c.k):"")+c.k+(c.extra||"")+'</button>'}).join("");
-  h += '<button type="button" class="chip add press" id="condOpen">'+(any?'Edit':'Add condition')+'</button>';
-  if(S.exh) h += '<button type="button" class="exh-note tx" data-info="g:Exhaustion">Exhaustion '+S.exh+': '+exTxt(S.exh)+'</button>';
-  $("#conds").innerHTML = h; __R.concHead(); vbSync();
+  const ex=(c) =>raw(c.extra||"");/* extra is already escaped text, other callers add it to strings */
+  render(html`<span class="cond-l">Conditions</span>${raw(typeof __R.lintChip==="function"?__R.lintChip():"")}${raw(__R.modeChips())}${raw(__R.concChip())}${S.exh?html`<button type="button" class="chip on exh-c press" data-info="g:Exhaustion">Exhaustion ${S.exh}</button>`:null}${list.map((c) =>html`<button type="button" class="chip on cnd press${c.hb?" hb":""}" data-info="${"g:"+c.k}">${raw(window.__artIc?window.__artIc("condition",c.k):"")}${c.k}${ex(c)}</button>`)}<button type="button" class="chip add press" id="condOpen">${any?"Edit":"Add condition"}</button>${S.exh?html`<button type="button" class="exh-note tx" data-info="g:Exhaustion">Exhaustion ${S.exh}: ${exTxt(S.exh)}</button>`:null}`,$("#conds")); __R.concHead(); vbSync();
 }
 export function condHTML(){
   let h = '<div class="exh"><div><b><button type="button" class="tx" data-info="g:Exhaustion">Exhaustion</button></b><small>'+exHelp()+'</small></div><span class="stepper"><button type="button" data-exh="-1" aria-label="Decrease">−</button><output>'+S.exh+'</output><button type="button" data-exh="1" aria-label="Increase">+</button></span></div>';
