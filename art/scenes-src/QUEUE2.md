@@ -174,7 +174,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B044 PC | art/scenes-src/backgrounds/B044-pc.png | 2x2 | seer-apprentice, selesnya-initiate, shadowmasters-exile, shadowmoor-expert | open |
 | B044 phone a | art/scenes-src/backgrounds/B044a-phone.png | 1x2 | seer-apprentice, selesnya-initiate | open |
 | B044 phone b | art/scenes-src/backgrounds/B044b-phone.png | 1x2 | shadowmasters-exile, shadowmoor-expert | open |
-| B045 PC | art/scenes-src/backgrounds/B045-pc.png | 2x2 | shipwright, siege-engineer, silverquill-student, simic-scientist | open |
+| B045 PC | art/scenes-src/backgrounds/B045-pc.png | 2x2 | shipwright, siege-engineer, silverquill-student, simic-scientist | claimed by codex-b045-b054 2026-11-02T12:46+00:00 |
 | B045 phone a | art/scenes-src/backgrounds/B045a-phone.png | 1x2 | shipwright, siege-engineer | open |
 | B045 phone b | art/scenes-src/backgrounds/B045b-phone.png | 1x2 | silverquill-student, simic-scientist | open |
 | B046 PC | art/scenes-src/backgrounds/B046-pc.png | 2x2 | sleuth, smuggler, soul-channeler, spacer | open |
