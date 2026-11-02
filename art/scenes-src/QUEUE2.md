@@ -149,7 +149,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B035 phone b | art/scenes-src/backgrounds/B035b-phone.png | 1x2 | mythalkeeper, natural | done |
 | B036 PC | art/scenes-src/backgrounds/B036-pc.png | 2x2 | one-of-the-taken, orzhov-representative, outlander, phantasmic-circus-trouper | done |
 | B036 phone a | art/scenes-src/backgrounds/B036a-phone.png | 1x2 | one-of-the-taken, orzhov-representative | done |
-| B036 phone b | art/scenes-src/backgrounds/B036b-phone.png | 1x2 | outlander, phantasmic-circus-trouper | open |
+| B036 phone b | art/scenes-src/backgrounds/B036b-phone.png | 1x2 | outlander, phantasmic-circus-trouper | claimed by codex-b034-b044 2026-11-02T13:11+00:00 |
 | B037 PC | art/scenes-src/backgrounds/B037-pc.png | 2x2 | physician, pioneer, pit-fighter, plaintiff | open |
 | B037 phone a | art/scenes-src/backgrounds/B037a-phone.png | 1x2 | physician, pioneer | open |
 | B037 phone b | art/scenes-src/backgrounds/B037b-phone.png | 1x2 | pit-fighter, plaintiff | open |
