@@ -128,7 +128,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B028 phone b | art/scenes-src/backgrounds/B028b-phone.png | 1x2 | interpreter, investigator | done |
 | B029 PC | art/scenes-src/backgrounds/B029-pc.png | 2x2 | izzet-engineer, knight-of-solamnia, knight-of-the-gauntlet, knight-of-the-order | done |
 | B029 phone a | art/scenes-src/backgrounds/B029a-phone.png | 1x2 | izzet-engineer, knight-of-solamnia | done |
-| B029 phone b | art/scenes-src/backgrounds/B029b-phone.png | 1x2 | knight-of-the-gauntlet, knight-of-the-order | claimed by codex-b023-b033 2026-11-02T13:59+00:00 |
+| B029 phone b | art/scenes-src/backgrounds/B029b-phone.png | 1x2 | knight-of-the-gauntlet, knight-of-the-order | done |
 | B030 PC | art/scenes-src/backgrounds/B030-pc.png | 2x2 | lapsed-inquisitor, lawyer, lords-alliance-vassal, lorehold-student | open |
 | B030 phone a | art/scenes-src/backgrounds/B030a-phone.png | 1x2 | lapsed-inquisitor, lawyer | open |
 | B030 phone b | art/scenes-src/backgrounds/B030b-phone.png | 1x2 | lords-alliance-vassal, lorehold-student | open |
