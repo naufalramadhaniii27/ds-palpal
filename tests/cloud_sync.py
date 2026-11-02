@@ -57,10 +57,9 @@ async def main():
                 if not c["deleted"]: api("chars/" + c["id"], "DELETE")
             # device A: an old sheet in localStorage, first start uploads it
             A, pa = await dev(b, vp, w, h, vp + " A")
-            await pa.goto(BASE + "/index.html"); await pa.wait_for_timeout(1500)
-            await pa.evaluate("v=>{localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}", YUDHI)
-            await pa.evaluate("()=>new Promise(r=>{var q=indexedDB.deleteDatabase('dnd-sheet');q.onsuccess=q.onerror=q.onblocked=()=>r()})")
-            await pa.reload(); await ready(pa); await sync(pa)
+            # seed before the first script runs (a fresh context has no database): the app never starts with an empty roster and uploads a blank character first
+            await A.add_init_script("(v=>{try{if(sessionStorage.getItem('t8seed'))return;sessionStorage.setItem('t8seed','1');localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}catch(e){}})(" + json.dumps(YUDHI) + ")")
+            await pa.goto(BASE + "/index.html"); await ready(pa); await sync(pa)
             srv = [c for c in api("chars")["chars"] if not c["deleted"]]
             check(vp + " A uploads its character", any(c["name"] == "Yudhi Kelapa" for c in srv), srv)
             st = await pa.evaluate("()=>[__sync.st, !!document.querySelector('.sy-b[data-st=ok]')]")

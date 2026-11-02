@@ -83,3 +83,6 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Not yet run: style snapshot (tests/style_snapshot.py --variants), 2014 edition scenarios at both viewports by hand, 500-seed chaos on the final build, CI.
 - Style snapshot (--variants), origin/main vs nilai-98/n44: 74 screens, 64700 elements, 0 differences.
 - CI run 41413337680: Job C2 failed once at 'A uploads its character' (1250x850), rerun of the failed job passed. Treated as a flake of tests/cloud_sync.py (race between first start and seeding). Needs the Fase 1.1 flake hunt (10 runs).
+- Bug found by tsc_gate (CI Job A) in my N44 change: QR progress dots removal dropped the `var k` used by the final loop in qrScanStep. Fixed with `let k`. No test covers QR scan completion (gap, to add).
+- tests/cloud_sync.py: "A uploads its character" failed in CI 2 of 3 runs at 1250x850. Cause: seeding after first load raced with the first start, which uploaded a blank "New Character". Now seeded by an init script before the first script (same method as the other 24 tests). 3 local runs 39/39.
+- Local note: repeated runs of run_cloud_sync.sh fill the local D1 daily quota (HTTP 429) and stale workerd processes give HTTP 500. Fix: pkill -x workerd; rm -rf .wrangler/state.
