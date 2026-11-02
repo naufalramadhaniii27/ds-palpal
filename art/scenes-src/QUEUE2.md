@@ -153,7 +153,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B037 PC | art/scenes-src/backgrounds/B037-pc.png | 2x2 | physician, pioneer, pit-fighter, plaintiff | done |
 | B037 phone a | art/scenes-src/backgrounds/B037a-phone.png | 1x2 | physician, pioneer | done |
 | B037 phone b | art/scenes-src/backgrounds/B037b-phone.png | 1x2 | pit-fighter, plaintiff | done |
-| B038 PC | art/scenes-src/backgrounds/B038-pc.png | 2x2 | planar-philosopher, pox-touched, prismari-student, prisoner | claimed by codex-b034-b044 2026-11-02T13:22+00:00 |
+| B038 PC | art/scenes-src/backgrounds/B038-pc.png | 2x2 | planar-philosopher, pox-touched, prismari-student, prisoner | done |
 | B038 phone a | art/scenes-src/backgrounds/B038a-phone.png | 1x2 | planar-philosopher, pox-touched | open |
 | B038 phone b | art/scenes-src/backgrounds/B038b-phone.png | 1x2 | prismari-student, prisoner | open |
 | B039 PC | art/scenes-src/backgrounds/B039-pc.png | 2x2 | programmer, purple-dragon-squire, quandrix-student, rakdos-cultist | open |
