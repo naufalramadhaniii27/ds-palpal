@@ -96,7 +96,7 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in tg_ui tg_n2 g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map; do
+          for t in detail_img tg_ui tg_n2 g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"

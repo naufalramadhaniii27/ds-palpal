@@ -93,3 +93,15 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - tests/fonts_dist.py 8/8 (no data URI left, 22 files, preloaded fonts requested first, all stored by the service worker, fonts load offline, no page errors). Added to Job A in CI and to tools/run_jobs.py Job B.
 - Style snapshot with --variants on dist vs single file: 74 screens, 64700 elements, 0 differences. csp_check, split_dist, scenarios, off_mode pass.
 - CI m15 run: chaos_storage seeds 13 and 29 failed with "key lost: cs-rcpt-v1" (12 local reruns of both seeds: 0 failures). The key is a receipt cache rebuilt on every start by a timer, so a tab closed in that window may lose it; no user data. Added to VOLATILE in tests/chaos_storage.py with the reason. Decision logged here, open to reversal if the receipt must be durable.
+
+## UI: detail panel picture (branch nilai-98/ui-detail-img, user report 2026-11-02 18:53)
+- Problem: sheet detail cards (Background: Soldier, Size, items such as Potion of Healing) showed a huge generic outline icon (book, paw), while the chip on the hero card showed the right picture. Cause: sheetIco() in src/app/12 used a fixed generic icon for Background and Size, and Codex icon lookup only (no 5etools picture).
+- Fix: order is now 5etools picture (window.QIMG, same tables as the Library, new wm5()), then the Codex icon (same as the chip: background, size, species), then the generic one.
+- tests/detail_img.py 8/8 (390x844 and 1250x850): Soldier uses data/img/backgrounds/XPHB/Soldier.webp, Size uses img/icon/size/medium, Potion of Healing uses data/img/items/XDMG/Potion of Healing.webp. In Job C and CI.
+- Not changed: small row icons in Inventory. Potion of Healing has no Codex icon in img/icon/item yet (the PNG is in art-batch, installed in the last step). A 5etools picture is a wide illustration, unreadable at 24 px, so rows wait for the Codex icons.
+
+## Aturan gambar (keputusan 2026-11-02 19:39, disepakati dengan sesi lain)
+- Ikon kecil (baris daftar, inventory, chip) selalu memakai ikon Codex bila ada, walaupun 5etools punya gambar entri itu. Alasan: gambar 5etools berbentuk ilustrasi lebar, tidak terbaca di 24 px.
+- Panel detail besar memakai gambar 5etools lebih dulu, lalu ikon Codex, lalu ikon generik (sudah dikerjakan di nilai-98/ui-detail-img, sheetIco/wm5 di src/app/12).
+- Angka: sekitar 470 ikon sudah dibuat Codex di art-batch tapi belum dipasang di main. 393 ikon ada di daftar tapi belum dibuat Codex (antrean grid G01 sampai G04).
+- Akibat untuk pemasangan akhir: pemasangan 1 Nov (tools/art_icons2.py) melewati ikon yang entrinya punya gambar 5etools. Itu dibalik: semua ikon Codex dipasang. Contoh yang terkena: Potion of Healing.
