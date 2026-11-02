@@ -29,7 +29,11 @@ def serve():
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=ROOT)); threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv, "http://127.0.0.1:%d/index.html" % port
 async def shoot(pg, name, res):
-    await pg.wait_for_timeout(700); res[name] = await pg.evaluate(SNAP, PROPS)
+    await pg.wait_for_timeout(700)
+    if TRACE: await pg.evaluate("n=>window.__traceMark&&window.__traceMark(n)", name)
+    res[name] = await pg.evaluate(SNAP, PROPS)
+TRACE = os.environ.get("CS_TRACE")  # N32: tests/trace_screens.py sets it; the run also records which part makes which global and which screen reads it
+TR = []
 VARIANTS = "--variants" in args
 if VARIANTS: args.remove("--variants")
 async def take(path):
@@ -47,6 +51,7 @@ async def take(path):
             if var == "hc": seed += "localStorage.setItem('cs-ui-hc',JSON.stringify({m:'on'}));"
             elif var: seed += "localStorage.setItem('yudhi-kelapa-sheet-v1',JSON.stringify(%s));" % json.dumps(var)
             await ctx.add_init_script(seed + "sessionStorage.setItem('__s','1')}")
+            if TRACE: await ctx.add_init_script(path=os.path.join(HERE, "lib", "trace.js"))
             await pg.goto(url)
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000); await pg.wait_for_timeout(2500)
             await shoot(pg, vp + " home", res)
@@ -69,9 +74,11 @@ async def take(path):
             await pg.keyboard.press("Escape"); await pg.wait_for_timeout(300)
             await pg.evaluate("()=>{ if(window.__bldNeed) window.__bldNeed(); }"); await pg.wait_for_function("()=>typeof window.__bldOpen==='function'", timeout=30000)
             await pg.evaluate("window.__bldOpen()"); await shoot(pg, vp + " builder", res)
+            if TRACE: TR.append({"run": vp, "trace": await pg.evaluate("()=>window.__trace")})
             await ctx.close()
         await b.close()
-    srv.shutdown(); json.dump(res, open(path, "w")); print("screens", len(res), "elements", sum(len(v) for v in res.values()))
+    srv.shutdown(); json.dump(res, open(path, "w"))
+    if TRACE: json.dump(TR, open(TRACE, "w")); print("screens", len(res), "elements", sum(len(v) for v in res.values()))
 def diff(a, b):
     A = json.load(open(a)); B = json.load(open(b)); bad = 0
     for scr in sorted(set(A) | set(B)):
