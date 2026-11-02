@@ -116,7 +116,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B024 phone b | art/scenes-src/backgrounds/B024b-phone.png | 1x2 | house-ghallanda-heir, house-jorasco-heir | done |
 | B025 PC | art/scenes-src/backgrounds/B025-pc.png | 2x2 | house-kundarak-heir, house-lyrandar-heir, house-medani-heir, house-orien-heir | done |
 | B025 phone a | art/scenes-src/backgrounds/B025a-phone.png | 1x2 | house-kundarak-heir, house-lyrandar-heir | done |
-| B025 phone b | art/scenes-src/backgrounds/B025b-phone.png | 1x2 | house-medani-heir, house-orien-heir | claimed by codex-b023-b033 2026-11-02T13:22+00:00 |
+| B025 phone b | art/scenes-src/backgrounds/B025b-phone.png | 1x2 | house-medani-heir, house-orien-heir | done |
 | B026 PC | art/scenes-src/backgrounds/B026-pc.png | 2x2 | house-phiarlan-heir, house-sivis-heir, house-tharashk-heir, house-thuranni-heir | open |
 | B026 phone a | art/scenes-src/backgrounds/B026a-phone.png | 1x2 | house-phiarlan-heir, house-sivis-heir | open |
 | B026 phone b | art/scenes-src/backgrounds/B026b-phone.png | 1x2 | house-tharashk-heir, house-thuranni-heir | open |
