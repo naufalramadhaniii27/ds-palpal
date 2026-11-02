@@ -5041,3 +5041,13 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 3 — pengamatan gaya (2026-11-02)
+
+Saya telah melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, ring; dragon, undead; fire; strength; serta tiga item acak cold-absorbing-tattoo, entertainers-pack, dan wildspace-orrery dari art-batch, ditambah sheet-001-a dan sheet-001-b dari art-test2. Ikon lama mempunyai siluet yang jelas, tepi tipis berwarna gelap sesuai bahan, gradasi sapuan cat dan rincian lipatan, ukiran, bulu, serta sisik. Beberapa ikon lama lebih cerah dan berkilau; patokan utama lembar baru adalah dua grid art-test2 yang lebih tenang: palet tanah dan warna lembut berkejenuhan sedang, anatomi realistis, mata proporsional, tekstur bahan halus, pantulan kecil, pemisahan bentuk lewat bayangan lembut, dan latar transparan tanpa bingkai atau garis hitam tebal.
+
+### Sesi 3 — lembar 004
+
+Selesai: `art/batch/icons/grids/sheet-004-a.png` (sel 1–50) dan `sheet-004-b.png` (sel 51–100), masing-masing PNG RGBA 2560 × 1280, 10 kolom × 5 baris, sel 256 px sesuai urutan art-lists. Resolusi asli generate: empat panel 5 × 5 masing-masing 1254 × 1254; gambar ulang Child of Seth 1336 × 1177; panel perbaikan 2 × 2 untuk Arisen, Harengon, Jerbeen dan Limukin 1254 × 1254. Tidak ada pembesaran; konten hanya diperkecil dan diberi padding transparan. Semua 100 bounding box alpha diperiksa, margin minimum 24 px. Fragmen dari sel tetangga dibersihkan. Child of Seth diperbaiki menjadi pterosaur, Jerbeen menjadi tikus bertelinga bulat dan Limukin menjadi dinosaurus bermoncong bergigi.
+
+Pemeriksaan visual: membandingkan naga, Arisen, bugbear dan Deep One Dwarf berdampingan dengan ikon lama pada ukuran konten sama; kontur baru tetap tipis, warna tenang, detail sisik/kain/bulu terlihat. Kedua lembar ditinjau pada latar terang dan gelap serta pratinjau sel 24 px. Sel meragukan pada 24 px: 1/2 Accursed mirip; 9 Avia-Ra menonjolkan hiasan solar dan profil avian yang samar; 17 Demidritch ciri eldritch halus; 29 Feathren ciri feline kurang menonjol; 55 Laneshi bisa terbaca sebagai elf air; beberapa varian elf/halfling terutama dibedakan oleh warna dan busana. Ini catatan keterbacaan, bukan klaim persetujuan.
