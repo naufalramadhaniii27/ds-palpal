@@ -58,7 +58,7 @@ async def main():
             vp = "%dx%d" % (w, h)
             # 1 and 2: cold load, then the same names as the single file
             ctx, pg, log = await fresh(b, w, h, url); log["parts"].clear(); await pg.reload(); await done(pg)
-            left = await pg.evaluate("()=>document.querySelectorAll('script[type=\"text/x-defer\"]').length")
+            left = await pg.evaluate("()=>document.querySelectorAll('script[type=\"text/x-defer\"]:not([data-lazy])').length")
             if left: bad.append("%s %d parts still waiting" % (vp, left))
             names = await pg.evaluate("()=>Object.getOwnPropertyNames(window).filter(k=>!/^(webkit|on)/.test(k)).sort().join('|')")
             if log["err"]: bad.append("%s page errors: %s" % (vp, log["err"][:2]))
@@ -74,7 +74,7 @@ async def main():
                 a, c = set(names.split("|")), set(names1.split("|"))
                 bad.append("%s window names differ. only split: %s. only single: %s" % (vp, sorted(a - c)[:8], sorted(c - a)[:8]))
             else:
-                print(vp, "ok: 34 parts, %d window names equal to the single file" % len(names.split("|")))
+                print(vp, "ok: 35 parts (one lazy), %d window names equal to the single file" % len(names.split("|")))
             # 3: __bldNeed while the files are slow
             ctx, pg, log = await fresh(b, w, h, url)
             async def slow(route):
@@ -105,7 +105,7 @@ async def main():
             n = await pg.evaluate("async()=>{ var ks=await caches.keys(), c=0; for(var k of ks){ var q=await caches.open(k); c+=(await q.keys()).filter(r=>/\\/p\\/.*\\.js$/.test(r.url)).length; } return c; }")
             if n >= 34: break
             await pg.wait_for_timeout(500)
-        if n < 34: bad.append("service worker stored %d of 34 parts" % n)
+        if n < 35: bad.append("service worker stored %d of 35 parts" % n)
         await pg.reload(); await pg.wait_for_timeout(1500)
         ctl = await pg.evaluate("()=>!!navigator.serviceWorker.controller")
         if not ctl: bad.append("page not controlled by the service worker")

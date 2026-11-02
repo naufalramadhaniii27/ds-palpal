@@ -15,7 +15,7 @@ What changes:
 Run it on the files that build.py wrote. It refuses to run when the page has no deferred part or the service worker text is not the expected one."""
 import base64, hashlib, os, re, sys
 
-PART_RE = re.compile(r'<script type="text/x-defer" data-defer="([A-Za-z0-9_-]+)">(.*?)</script>', re.S)
+PART_RE = re.compile(r'<script type="text/x-defer" data-defer="([A-Za-z0-9_-]+)"( data-lazy="1")?>(.*?)</script>', re.S)
 FONT_RE = re.compile(r"@font-face\{font-family:'?([^;']+?)'?;font-style:(\w+);font-weight:([0-9 ]+)([^}]*?)src:url\(data:font/woff2;base64,([A-Za-z0-9+/=]+)\)")
 PRELOAD = (("Roboto", "400"), ("Roboto", "500"))  # the sheet's first screen (Record skin): preloaded so the text does not wait for the CSS to find them
 CACHE_RE = re.compile(r'(var CACHE="dnd-sheet-)[0-9a-f]{16}(";)')
@@ -57,10 +57,10 @@ def split(html, sw):
     html, ffiles = fonts(html)
     parts = []
     def one(m):
-        name, body = m.group(1), m.group(2).encode("utf-8")
+        name, lazy, body = m.group(1), m.group(2) or "", m.group(3).encode("utf-8")
         rel = "p/%s.%s.js" % (name, hashlib.sha256(body).hexdigest()[:12])
         parts.append((rel, body))
-        return '<script type="text/x-defer" data-defer="%s" data-src="%s"></script>' % (name, rel)
+        return '<script type="text/x-defer" data-defer="%s"%s data-src="%s"></script>' % (name, lazy, rel)
     out = PART_RE.sub(one, html)
     if not parts:
         raise SystemExit("split_dist: no deferred part found in the page")
