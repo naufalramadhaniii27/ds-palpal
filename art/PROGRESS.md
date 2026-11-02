@@ -5051,3 +5051,9 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - Resolusi asli generate: empat panel 1254 × 1254; gambar ulang sel 20 (Tower Banner) 1024 × 1536. Semua artwork hanya diperkecil, tidak diperbesar; dipusatkan dengan margin minimal 24 px. Komponen objek utuh dipisahkan sebelum perakitan agar tidak terpotong pada kisi sumber dan tidak membawa serpihan tetangga.
 - Pemeriksaan: semua 100 sel dilihat pada pratinjau; enam sampel diletakkan berdampingan/di bawah ikon lama pada skala sama dan pada 24 px. Kontur halus, warna lebih tenang daripada beberapa ikon lama, tekstur tetap terlihat. Sel 20 digambar ulang karena lambang panji awal salah.
 - Sel meragukan secara interpretasi: 4 Tea Magic (cangkir), 5 Technicolor Magic (prisma), 26 Tyromancer (keju), 69 Yellow Sign (sigil abstrak), 72–75 tingkat transformasi aberrant (perkembangan tentakel/duri/mata). Simbol-simbol ini dipilih dari nama; kecocokan detail lore perlu peninjauan. Tidak ada sel kosong.
+
+### Sesi 9 — lembar 020 selesai
+- File: `sheet-020-a.png` dan `sheet-020-b.png` di folder grids; masing-masing PNG RGBA 2560 × 1280, 50 sel; 100 spell sesuai urutan.
+- Resolusi asli generate: empat panel 1254 × 1254. Artwork hanya diperkecil, dengan margin minimal 24 px; efek transparan yang bersentuhan dipisahkan pada alpha yang lebih kuat sebelum perakitan.
+- Pemeriksaan: semua sel dilihat, enam sampel dibandingkan pada skala sama dengan ikon lama dan pada 24 px. Kontur tidak lebih tebal, warna es/angin lembut, tekstur kayu/logam/batu terbaca. Semua sel berisi dan tidak melewati batas.
+- Sel meragukan secara interpretasi: 25 Gahoul's Glorious Gothic (menara), 36 Giant's Jest (topeng), 37 Gift of Azathoth (mutiara bertentakel), 56 Grasp of the Tupilak (jimat tulang), 85 Hack System (pelat sirkuit), 99 Harry (elang). Seri hardlight 91–98 memakai bentuk ambar yang sama agar konsisten; perlu tinjauan khusus apakah warnanya terlalu pekat untuk preferensi akhir.
