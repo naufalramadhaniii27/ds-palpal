@@ -138,7 +138,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B032 PC | art/scenes-src/backgrounds/B032-pc.png | 2x2 | lyceum-student, mage-of-high-sorcery, malenti, marine | done |
 | B032 phone a | art/scenes-src/backgrounds/B032a-phone.png | 1x2 | lyceum-student, mage-of-high-sorcery | done |
 | B032 phone b | art/scenes-src/backgrounds/B032b-phone.png | 1x2 | malenti, marine | done |
-| B033 PC | art/scenes-src/backgrounds/B033-pc.png | 2x2 | marked-for-death, medic, mercenary, mercenary-veteran | claimed by codex-b023-b033 2026-11-02T14:35:06.746Z |
+| B033 PC | art/scenes-src/backgrounds/B033-pc.png | 2x2 | marked-for-death, medic, mercenary, mercenary-veteran | done |
 | B033 phone a | art/scenes-src/backgrounds/B033a-phone.png | 1x2 | marked-for-death, medic | open |
 | B033 phone b | art/scenes-src/backgrounds/B033b-phone.png | 1x2 | mercenary, mercenary-veteran | open |
 | B034 PC | art/scenes-src/backgrounds/B034-pc.png | 2x2 | miner, mist-wanderer, moonwell-pilgrim, mulhorandi-tomb-raider | done |
