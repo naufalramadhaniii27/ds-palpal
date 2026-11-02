@@ -21,7 +21,7 @@ Species portraits (90) are postponed.
 | Sheet | Cells | Content | Status |
 |---|---|---|---|
 | G01 | 100 | app UI icons (replace every line icon) | done; needs review: cells 1-100 (spacing); cells 8 (internal grid), 63 (healing symbolism), 88 (background symbolism), 99 (page marks), 100 (notes shown as tools) |
-| G02 | 100 | app UI icons, then species emblems | open |
+| G02 | 100 | app UI icons, then species emblems | claimed by codex-grid-g01-g02 2026-11-02 12:49 UTC |
 | G03 | 100 | species emblems and icons, features, items | done; needs review: cells 1-100 (glow padding and cell alignment) |
 | G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | claimed by codex-grid-g03-g04 2026-11-02 12:48 UTC |
 
