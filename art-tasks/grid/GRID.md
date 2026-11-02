@@ -23,7 +23,7 @@ Species portraits (90) are postponed.
 | G01 | 100 | app UI icons (replace every line icon) | claimed by codex-grid-g01-g02 2026-11-02 12:44 UTC |
 | G02 | 100 | app UI icons, then species emblems | open |
 | G03 | 100 | species emblems and icons, features, items | done; needs review: cells 1-100 (glow padding and cell alignment) |
-| G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | open |
+| G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | claimed by codex-grid-g03-g04 2026-11-02 12:48 UTC |
 
 ## Prompt per image
 
