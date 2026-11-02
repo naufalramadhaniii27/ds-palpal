@@ -10,51 +10,52 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 3. One generate per sheet file. Save only the whole sheet at the path in the table. Do not crop, resize or upscale. Claude cuts and upscales later with tools/art/sheet_cut.py.
 4. After saving: set status to `done`, commit with message `scenes: <sheet id>`, `git pull --rebase`, push.
 5. If a panel breaks a rule (text, child, wrong species, copy of another panel), redo the whole sheet once. If it still fails, set status `needs review: <reason>` and move on.
-6. Do the PC sheet of a group before its phone sheets, and attach the PC sheet as reference when making the phone sheets.
-7. Always attach art/test/scene-sheet-test-01.png as style reference.
+6. Phone sheets must be a SQUARE canvas. A tall canvas makes panels 1:3.6 and they cannot be used. Before saving, check: width equals height.
+7. Do the PC sheet of a group before its phone sheets, and attach the PC sheet as reference when making the phone sheets.
+8. Always attach art/test/scene-sheet-test-01.png as style reference.
 
 ## Status
 
 | Sheet | File | Panels | Status |
 |---|---|---|---|
 | S01 PC | art/scenes-src/species/S01-pc.png | faerie, eladrin-2014, drow, shadar-kai-2014 | done |
-| S01 phone a | art/scenes-src/species/S01a-phone.png | faerie, eladrin-2014 | done |
-| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | done |
+| S01 phone a | art/scenes-src/species/S01a-phone.png | faerie, eladrin-2014 | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S02 PC | art/scenes-src/species/S02-pc.png | duergar-2014, yuan-ti-pureblood, dreamer, downcast | done |
-| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | done |
-| S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | done |
+| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S03 PC | art/scenes-src/species/S03-pc.png | dhakaani-ghaaldar, dhakaani-golindar, dhakaani-guuldar, jhorguntaal | done |
-| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | done |
-| S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | done |
+| S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S03 phone b | art/scenes-src/species/S03b-phone.png | dhakaani-guuldar, jhorguntaal | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S04 PC | art/scenes-src/species/S04-pc.png | kalamer-landwalker, ruinbound, nautilid, amoeboid | done |
-| S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | done |
-| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | done |
+| S04 phone a | art/scenes-src/species/S04a-phone.png | kalamer-landwalker, ruinbound | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S04 phone b | art/scenes-src/species/S04b-phone.png | nautilid, amoeboid | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S05 PC | art/scenes-src/species/S05-pc.png | geppettin, manikin, wechselkind, vect | done |
-| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | done |
-| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | done |
+| S05 phone a | art/scenes-src/species/S05a-phone.png | geppettin, manikin | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S05 phone b | art/scenes-src/species/S05b-phone.png | wechselkind, vect | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S06 PC | art/scenes-src/species/S06-pc.png | mandrake, accursed, arisen, disembodied | done |
-| S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | done |
-| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | done |
+| S06 phone a | art/scenes-src/species/S06a-phone.png | mandrake, accursed | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S06 phone b | art/scenes-src/species/S06b-phone.png | arisen, disembodied | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S07 PC | art/scenes-src/species/S07-pc.png | grudgel, laneshi, ogresh, wulven | done |
-| S07 phone a | art/scenes-src/species/S07a-phone.png | grudgel, laneshi | done |
-| S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | done |
+| S07 phone a | art/scenes-src/species/S07a-phone.png | grudgel, laneshi | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S07 phone b | art/scenes-src/species/S07b-phone.png | ogresh, wulven | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S08 PC | art/scenes-src/species/S08-pc.png | cursed-blood, demidritch, scourgeborne, wrothian | done |
-| S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | done |
-| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | needs review: redo lacks cream paper edge fade |
+| S08 phone a | art/scenes-src/species/S08a-phone.png | cursed-blood, demidritch | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S08 phone b | art/scenes-src/species/S08b-phone.png | scourgeborne, wrothian | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S09 PC | art/scenes-src/species/S09-pc.png | pluvenn, manyhorn, jeholrak, ankylier | done |
-| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | done |
-| S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | done |
+| S09 phone a | art/scenes-src/species/S09a-phone.png | pluvenn, manyhorn | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S09 phone b | art/scenes-src/species/S09b-phone.png | jeholrak, ankylier | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S10 PC | art/scenes-src/species/S10-pc.png | limukin, child-of-seth, avia-ra, skathari | done |
-| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | needs review: redo retains detailed forest in lower 55% |
-| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | done |
+| S10 phone a | art/scenes-src/species/S10a-phone.png | limukin, child-of-seth | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S10 phone b | art/scenes-src/species/S10b-phone.png | avia-ra, skathari | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S11 PC | art/scenes-src/species/S11-pc.png | cervan, gallus, hedge, jerbeen | done |
-| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | done |
-| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | needs review: redo retains foreground rocks and detailed foliage in lower 55% |
+| S11 phone a | art/scenes-src/species/S11a-phone.png | cervan, gallus | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S11 phone b | art/scenes-src/species/S11b-phone.png | hedge, jerbeen | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S12 PC | art/scenes-src/species/S12-pc.png | luma, mapach, raptor, strig | done |
-| S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | done |
-| S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | done |
+| S12 phone a | art/scenes-src/species/S12a-phone.png | luma, mapach | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
+| S12 phone b | art/scenes-src/species/S12b-phone.png | raptor, strig | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 | S13 PC | art/scenes-src/species/S13-pc.png | vulpin, feathren | done |
-| S13 phone a | art/scenes-src/species/S13a-phone.png | vulpin, feathren | done |
+| S13 phone a | art/scenes-src/species/S13a-phone.png | vulpin, feathren | open (redo: v1 was a tall 941x1672 sheet, panels 1:3.6, must be square) |
 
 ## PC template (2x2)
 
@@ -79,7 +80,7 @@ STYLE BLOCK
 Fill PANEL A and PANEL B from the manifest, in table order (left, right). Attach the group's PC sheet.
 
 ```
-Make ONE image: a 1x2 scene sheet, two portrait panels side by side, each about 9:16, separated by one plain 16 px light cream vertical gutter. No borders, frames, numbers or labels. Each panel is a complete phone app background, the portrait twin of the same species panel in the attached PC sheet: same place, same character, same palette, newly recomposed for portrait, not a crop. Both share one identical art style, line weight and paper texture. Each panel stays clearly different in place, color key and story.
+Make ONE SQUARE image (1:1, use the largest square size available, for example 1254x1254 or 1024x1024; never a tall portrait canvas): a 1x2 scene sheet, two portrait panels side by side, each exactly 9:16 and filling the full canvas height, separated by one plain 16 px light cream vertical gutter. No borders, frames, numbers or labels. Each panel is a complete phone app background, the portrait twin of the same species panel in the attached PC sheet: same place, same character, same palette, newly recomposed for portrait, not a crop. Both share one identical art style, line weight and paper texture. Each panel stays clearly different in place, color key and story.
 
 Panel A (left): PANEL A
 Panel B (right): PANEL B
