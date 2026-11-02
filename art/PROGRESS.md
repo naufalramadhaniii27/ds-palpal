@@ -5070,3 +5070,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - Dua PNG RGBA sheet-036-a/b.png 2560×1280; 100 sel urut, margin alpha minimal 24 px lolos. Generate asli panel a 1774×887 (setelah edit penghapusan kartu bertulisan), b 1774×887. Tidak ada pembesaran objek.
 - Dibandingkan dengan ikon lama pada ukuran sama: kontur tipis, bahan bertekstur, warna tenang. Varian item bertingkat mempertahankan bentuk dengan ornamen berbeda. Hat Trick diperbaiki melalui edit gambar agar tidak ada huruf kartu.
 - Sel meragukan: 7 Harbor Moon memakai lambang bulan; 19 Heart of the Sleeveless lambang hati; 23 Heaven's Herald terompet; 25–27 dan 94–96 berkat dewa memakai medali; 33 Helmsman's Shelter miniatur kapal; 54–56 Houseward jimat rumah; 65 I'jin figur kelinci; 86 Innocent Blood botol. Bentuk dari nama unik memerlukan tinjauan bila sumber menetapkan bentuk spesifik lain.
+
+### Lembar 046 — selesai
+- sheet-046-a/b.png PNG RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px terverifikasi. Generate asli 1774×887 per panel; tidak diperbesar.
+- Perbandingan dengan ikon lama pada ukuran sama: tekstur kain, ukiran kayu, batu dan logam halus, kontur lokal tipis, kilap terkendali. Nama jumlah amunisi divisualkan sebagai satu kelompok sejenis.
+- Sel meragukan: 27 Cloaking kain berjubah; 51 Deathdance dan 89 Eyescratch botol; 57 Dragon Shot pelet; 59 Dreamlily bunga; 95 Fighter Bay miniatur hanggar. Varian dinamit 64/65 dan feed 91/92 sengaja mirip dengan detail kecil berbeda.
