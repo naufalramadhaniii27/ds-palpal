@@ -5041,3 +5041,13 @@ art/batch/portraits/merfolk-b.png
 art/batch/portraits/minotaur-a.png
 art/batch/portraits/minotaur-b.png
 
+
+## Sesi 2 — acuan gaya
+
+Saya melihat langsung 14 ikon lama: lucky, alert, savage-attacker, blinded, charmed, potion, ring, dragon, undead, fire, strength, serta tiga item mace, pistol, dan glaive; juga sheet-001-a dan sheet-001-b dari art-test2. Ikon lama memiliki kontur halus berwarna cokelat atau warna bahan yang lebih gelap, tekstur sapuan lukisan, detail ukiran dan lipatan, volume melalui bayangan lembut, dan latar transparan. Dua grid yang disetujui lebih realistis dan redup: warna tanah, kuningan tua, baja berpatina, kulit dan kain bertekstur, kilap kecil terkendali, siluet jelas tanpa garis hitam tebal. Saya memakai kedua grid tersebut sebagai patokan utama untuk proporsi, kejenuhan, dan detail.
+
+### Sesi 2 — lembar 003 selesai
+- File: sheet-003-a.png (sel 1–50) dan sheet-003-b.png (sel 51–100); masing-masing 2560 × 1280, PNG RGBA, 10 × 5 sel 256 px.
+- Resolusi asli generate: empat panel 1254 × 1254 RGBA; revisi juga 1254 × 1254. Ikon dipotong dari panel lalu diperkecil bila perlu, tidak diperbesar; margin minimal 24 px diverifikasi per sel.
+- Pemeriksaan visual: delapan sampel dibandingkan berdampingan dengan ikon lama pada ukuran objek yang sama, juga ditinjau pada 24 px. Kontur, kejenuhan, dan tekstur mengikuti grid art-test2. Aura berlebihan pada panel 1 dan 3 digambar ulang; panel 4 digambar ulang untuk mencegah asap menyatu dengan sel lain. Sel 90 memakai revisi dengan tepat lima batu.
+- Sel yang meragukan: 86–94 memakai jumlah batu sebagai pembeda level tanpa teks; pada 24 px perbedaan jumlah batu berdekatan kurang jelas. Sel 83 memakai batu percikan sebagai simbol cantrip generik.
