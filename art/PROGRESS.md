@@ -5082,3 +5082,8 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - File: `sheet-070-a.png`, `sheet-070-b.png`; PNG RGBA 2560 × 1280 per file, 100 feature sesuai urutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; artwork hanya diperkecil.
 - Semua sel diperiksa; enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Armor/alat mengikuti bahan realistis; fitur astral memakai efek lembut dan bentuk ringkas. Tidak ada garis hitam tebal atau bingkai sel. Dadu 72–74 tanpa angka.
 - Sel meragukan secara simbol: 58 Baba Yaga [Lichdom] (mortar tengkorak), 61 Backup Dancers (marionette kerangka), 68 Bard College/Entropy (lute retak), 75 Bardic Versatility (lyre dengan pasak), 85 Bear Witness/Apocalypse (mata), 95 Belief is a Tool (palu), 100 Better Half (topeng dua sisi). Nama serta sumber subclass/species dipakai untuk interpretasi.
+
+### Sesi 9 — lembar 080 selesai
+- File: `sheet-080-a.png`, `sheet-080-b.png`; PNG RGBA 2560 × 1280, 100 feature berurutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; artwork tidak diperbesar.
+- Semua sel dilihat; enam sampel dibandingkan pada ukuran sama dengan ikon lama dan pada 24 px. Kontur halus, warna lembut, bahan realistis. Wajah gnome/gith dewasa; Gingerbread Familiar terlihat sebagai benda kue bertekstur. Simbol sumber subclass/species dipertahankan.
+- Sel meragukan: 26 Genetic Library (buku heliks), 31 Gestalt Anchor (jangkar/kristal), 32 Ghaal'Shaarat (greatsword), 45 Gingerbread Familiar (kue kucing), 51 Gliding Wings/Skathári (sayap berselaput), 65 Go to Your Room (pintu), 82 Graveyard Tango (patung kerangka), 100 Grotag Tamer (cambuk). Sel-sel ini simbol ringkas, perlu tinjauan lore bila bentuk spesifik diwajibkan.
