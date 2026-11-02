@@ -82,3 +82,4 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - tools/run_jobs.py A B C --retry: 32 tests, 0 failed, 2524 s. chaos_storage 50 seeds ok, migrate_all ok, tsc_gate ok, perf_budget ok.
 - Not yet run: style snapshot (tests/style_snapshot.py --variants), 2014 edition scenarios at both viewports by hand, 500-seed chaos on the final build, CI.
 - Style snapshot (--variants), origin/main vs nilai-98/n44: 74 screens, 64700 elements, 0 differences.
+- CI run 41413337680: Job C2 failed once at 'A uploads its character' (1250x850), rerun of the failed job passed. Treated as a flake of tests/cloud_sync.py (race between first start and seeding). Needs the Fase 1.1 flake hunt (10 runs).
