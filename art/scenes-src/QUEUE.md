@@ -23,7 +23,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 | S01 phone a | art/scenes-src/species/S01a-phone.png | faerie, eladrin-2014 | open (redo 2: 294ca1f8 still stacks two skies in both panels) |
 | S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | done |
 | S02 PC | art/scenes-src/species/S02-pc.png | duergar-2014, yuan-ti-pureblood, dreamer, downcast | done |
-| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | claimed by codex-phone-redo 2026-11-02 |
+| S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | done |
 | S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | claimed by codex-phone-redo 2026-11-02 |
 | S03 PC | art/scenes-src/species/S03-pc.png | dhakaani-ghaaldar, dhakaani-golindar, dhakaani-guuldar, jhorguntaal | done |
 | S03 phone a | art/scenes-src/species/S03a-phone.png | dhakaani-ghaaldar, dhakaani-golindar | claimed by codex-phone-redo 2026-11-02 |
