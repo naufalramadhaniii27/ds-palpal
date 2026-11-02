@@ -5085,3 +5085,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - sheet-066-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos; generate asli 1774×887 tiap panel, tanpa pembesaran objek.
 - Tabel memakai simbol isi/fungsi; buku memakai jilid dan gambar sampul tanpa tulisan. Relics Very Rare sel 46 digambar ulang dari peti keliru menjadi medali safir. Perbandingan ukuran sama dengan ikon lama: garis lokal halus, tekstur dan warna tenang.
 - Sel meragukan: tabel tingkat/kelangkaan 1–9, 11–14, 18–30, 42–50 menggunakan tingkat ornamen; Magic Item Table A–I sel 31–39 memakai contoh benda berbeda tanpa huruf; gambar sampul buku 79–100 adalah interpretasi tema judul, bukan reproduksi sampul terbitan.
+
+### Lembar 076 — selesai
+- sheet-076-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 tiap panel, tidak diperbesar.
+- Feature memakai simbol fungsi berdasarkan sumber ras/subclass pada daftar. Sampel dibandingkan berdampingan dengan ikon lama pada ukuran sama: detail bahan, tepi lokal halus, anatomi realistis; efek api lebih terang seperti fire lama.
+- Sel meragukan: 5 Dice of Fate dadu tanpa angka; 11/12 bola ramalan varian; 16 Disco of the Dead kaki kerangka dan bola tari sebagai satu lambang; 28/29 Divine Domain lambang ilahi; 43 penunjuk arah tanpa tulisan; 45 Double Joints tangan melingkar; 72–74 Druid tiga jimat; 77 Dual Augmentation sepasang gauntlet; 78 Dual Death pedang silang; 79 Dual Mind patung dua muka.
