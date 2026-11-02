@@ -10,6 +10,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 3. One generate per sheet file. Save only the whole sheet at the path in the table. Do not crop, resize or upscale. Claude cuts and upscales later with tools/art/sheet_cut.py.
 4. After saving: set status to `done`, commit with message `scenes: <sheet id>`, `git pull --rebase`, push.
 5. If a panel breaks a rule (text, child, wrong species, copy of another panel), redo the whole sheet once. If it still fails, set status `needs review: <reason>` and move on.
+6a. Each phone panel must be ONE continuous picture. If a panel shows a second sky, a second horizon or a seam across the middle (top and bottom look like two pictures), it fails: redo it.
 6. Phone sheets must be a SQUARE canvas. A tall canvas makes panels 1:3.6 and they cannot be used. Before saving, check: width equals height.
 7. Do the PC sheet of a group before its phone sheets, and attach the PC sheet as reference when making the phone sheets.
 8. Always attach art/test/scene-sheet-test-01.png as style reference.
@@ -84,6 +85,8 @@ Make ONE SQUARE image (1:1, use the largest square size available, for example 1
 
 Panel A (left): PANEL A
 Panel B (right): PANEL B
+
+ONE CONTINUOUS VIEW per panel: a single camera, a single sky and a single horizon line placed near the very top of the panel. Use a high camera looking down, so the ground the characters stand on runs from the top 45% straight down to the bottom edge toward the viewer, getting closer and simpler. Never stack two scenes, never repeat the sky, the horizon, a waterfall or the landscape lower in the panel, never a band or seam across the middle.
 
 Composition rule for every panel: all people, buildings and key details entirely in the top 45% of the panel, inside the middle 80% of the panel width. Bottom 55% is broad quiet ground (paving, water, sand, snow, grass or sky) with no faces, no people, no objects, slightly deeper color in the lowest 15%. All outer edges of each panel fade softly into loose brush strokes on light cream paper.
 
