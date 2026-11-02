@@ -5075,3 +5075,8 @@ Pemisahan panel diperiksa ulang untuk membuang serpihan kecil dari gambar tetang
 - sheet-046-a/b.png PNG RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px terverifikasi. Generate asli 1774×887 per panel; tidak diperbesar.
 - Perbandingan dengan ikon lama pada ukuran sama: tekstur kain, ukiran kayu, batu dan logam halus, kontur lokal tipis, kilap terkendali. Nama jumlah amunisi divisualkan sebagai satu kelompok sejenis.
 - Sel meragukan: 27 Cloaking kain berjubah; 51 Deathdance dan 89 Eyescratch botol; 57 Dragon Shot pelet; 59 Dreamlily bunga; 95 Fighter Bay miniatur hanggar. Varian dinamit 64/65 dan feed 91/92 sengaja mirip dengan detail kecil berbeda.
+
+### Lembar 056 — selesai
+- sheet-056-a/b.png RGBA 2560×1280, 100 sel urut, margin alpha minimal 24 px lolos. Generate asli 1774×887 per panel, tanpa pembesaran objek.
+- Bahasa memakai potret kepala realistis seperti sheet-001; psionic memakai benda atau efek fungsi. Qualith sel 35 diedit ulang menjadi kepala illithid bertentakel. Sampel dibandingkan langsung dengan ikon lama pada kanvas sama; kontur dan kejenuhan sesuai, detail anatomi dan pakaian tampak.
+- Sel meragukan: bahasa manusia fiktif (4–6, 8–10, 12–13, 16, 18, 20, 22, 25, 27–30, 32, 37–40, 42–44, 47, 49–50, 54–56, 58, 62, 67) memakai penutur representatif, bukan lambang bahasa baku; 81 Diminution figur mengecil dan 83 Giant Growth lengan membesar; kelompok mantle dibedakan bros dan bahan.
