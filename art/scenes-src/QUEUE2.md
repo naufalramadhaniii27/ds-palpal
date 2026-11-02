@@ -28,7 +28,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | Sheet | File | Layout | Panels | Status |
 |---|---|---|---|---|
 | R01 PC | art/scenes-src/redo/R01-pc.png | 2x2 | mandrake, scourgeborne, ogresh, grudgel | needs review: center stripe retains figures and detailed foreground after redo |
-| R02 PC | art/scenes-src/redo/R02-pc.png | 2x2 (cell 4 empty cream) | dhakaani-ghaaldar, nautilid, mapach | open |
+| R02 PC | art/scenes-src/redo/R02-pc.png | 2x2 (cell 4 empty cream) | dhakaani-ghaaldar, nautilid, mapach | claimed by codex-r-c-lane 2026-11-02T12:50+00:00 |
 | R03 phone | art/scenes-src/redo/R03-phone.png | 1x2 | limukin, child-of-seth | open |
 | C01 PC | art/scenes-src/classes/C01-pc.png | 2x2 | necromancer, martyr, dancer, investigator | open |
 | C01 phone a | art/scenes-src/classes/C01a-phone.png | 1x2 | necromancer, martyr | open |
