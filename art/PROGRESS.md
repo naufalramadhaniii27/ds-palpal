@@ -5077,3 +5077,8 @@ Saya melihat gambar lucky, alert, savage-attacker; blinded, charmed; potion, rin
 - File: `sheet-060-a.png`, `sheet-060-b.png`; PNG RGBA 2560 × 1280 per file, 100 sel berurutan, margin minimal 24 px, tanpa pembesaran. Resolusi asli generate: empat panel 1254 × 1254.
 - Semua sel rule/hazard diperiksa; enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Kontur tipis, tekstur bahan terlihat, bayangan lembut. Efek kabut dan api tetap dalam sel setelah perakitan.
 - Sel meragukan secara simbol: 1 Stable (perban), 9 Swimming (tangan di air), 19 Tremorsense (batu/ring getaran), 26 Unoccupied Space (ubin), 46 Danse Macabre (patung kerangka), 73 Icon of the Lower Aerial Kingdoms (patung bersayap), 80 Morbid Memory (cermin retak). Simbol dipilih untuk fungsi; tidak menggambarkan seluruh adegan aturan.
+
+### Sesi 9 — lembar 070 selesai
+- File: `sheet-070-a.png`, `sheet-070-b.png`; PNG RGBA 2560 × 1280 per file, 100 feature sesuai urutan, margin minimal 24 px. Resolusi asli generate: empat panel 1254 × 1254; artwork hanya diperkecil.
+- Semua sel diperiksa; enam sampel dibandingkan dengan ikon lama pada ukuran sama dan 24 px. Armor/alat mengikuti bahan realistis; fitur astral memakai efek lembut dan bentuk ringkas. Tidak ada garis hitam tebal atau bingkai sel. Dadu 72–74 tanpa angka.
+- Sel meragukan secara simbol: 58 Baba Yaga [Lichdom] (mortar tengkorak), 61 Backup Dancers (marionette kerangka), 68 Bard College/Entropy (lute retak), 75 Bardic Versatility (lyre dengan pasak), 85 Bear Witness/Apocalypse (mata), 95 Belief is a Tool (palu), 100 Better Half (topeng dua sisi). Nama serta sumber subclass/species dipakai untuk interpretasi.
