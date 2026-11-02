@@ -19,7 +19,7 @@ Subjects and file names: art/scenes-src/species-manifest.json. This file holds t
 |---|---|---|---|
 | S01 PC | art/scenes-src/species/S01-pc.png | faerie, eladrin-2014, drow, shadar-kai-2014 | done |
 | S01 phone a | art/scenes-src/species/S01a-phone.png | faerie, eladrin-2014 | done |
-| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | open |
+| S01 phone b | art/scenes-src/species/S01b-phone.png | drow, shadar-kai-2014 | claimed by codex-scenes 2026-11-02T08:00:18+00:00 |
 | S02 PC | art/scenes-src/species/S02-pc.png | duergar-2014, yuan-ti-pureblood, dreamer, downcast | open |
 | S02 phone a | art/scenes-src/species/S02a-phone.png | duergar-2014, yuan-ti-pureblood | open |
 | S02 phone b | art/scenes-src/species/S02b-phone.png | dreamer, downcast | open |
