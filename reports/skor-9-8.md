@@ -99,3 +99,9 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Fix: order is now 5etools picture (window.QIMG, same tables as the Library, new wm5()), then the Codex icon (same as the chip: background, size, species), then the generic one.
 - tests/detail_img.py 8/8 (390x844 and 1250x850): Soldier uses data/img/backgrounds/XPHB/Soldier.webp, Size uses img/icon/size/medium, Potion of Healing uses data/img/items/XDMG/Potion of Healing.webp. In Job C and CI.
 - Not changed: small row icons in Inventory. Potion of Healing has no Codex icon in img/icon/item yet (the PNG is in art-batch, installed in the last step). A 5etools picture is a wide illustration, unreadable at 24 px, so rows wait for the Codex icons.
+
+## Aturan gambar (keputusan 2026-11-02 19:39, disepakati dengan sesi lain)
+- Ikon kecil (baris daftar, inventory, chip) selalu memakai ikon Codex bila ada, walaupun 5etools punya gambar entri itu. Alasan: gambar 5etools berbentuk ilustrasi lebar, tidak terbaca di 24 px.
+- Panel detail besar memakai gambar 5etools lebih dulu, lalu ikon Codex, lalu ikon generik (sudah dikerjakan di nilai-98/ui-detail-img, sheetIco/wm5 di src/app/12).
+- Angka: sekitar 470 ikon sudah dibuat Codex di art-batch tapi belum dipasang di main. 393 ikon ada di daftar tapi belum dibuat Codex (antrean grid G01 sampai G04).
+- Akibat untuk pemasangan akhir: pemasangan 1 Nov (tools/art_icons2.py) melewati ikon yang entrinya punya gambar 5etools. Itu dibalik: semua ikon Codex dipasang. Contoh yang terkena: Potion of Healing.
