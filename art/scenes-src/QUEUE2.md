@@ -236,7 +236,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K031 | art/scenes-src/subclasses/K031.png | 4x4 cards | Wizard | open |
 | K032 | art/scenes-src/subclasses/K032.png | 4x4 cards | Wizard | open |
 | K033 | art/scenes-src/subclasses/K033.png | 4x4 cards (5 used) | Wizard | open |
-| P01 | art/scenes-src/portraits/P01.png | 2x2 portraits | aarakocra-a, aarakocra-b, aetherborn-a, aetherborn-b | claimed by codex-p01-p23 2026-11-02T12:49+00:00 |
+| P01 | art/scenes-src/portraits/P01.png | 2x2 portraits | aarakocra-a, aarakocra-b, aetherborn-a, aetherborn-b | done |
 | P02 | art/scenes-src/portraits/P02.png | 2x2 portraits | autognome-a, autognome-b, aven-a, aven-b | open |
 | P03 | art/scenes-src/portraits/P03.png | 2x2 portraits | boggart-a, boggart-b, bugbear-a, bugbear-b | open |
 | P04 | art/scenes-src/portraits/P04.png | 2x2 portraits | bullywug-a, bullywug-b, centaur-a, centaur-b | open |
