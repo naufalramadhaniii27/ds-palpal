@@ -1,7 +1,7 @@
 {
- "commit": "3751baad",
- "branch": "nilai-98/ui-detail-img",
- "date": "2026-11-02 12:28",
+ "commit": "ec6b398d",
+ "branch": "nilai-98/n34",
+ "date": "2026-11-02 12:56",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -510,10 +510,10 @@
     },
     {
      "id": "important",
-     "value": 807,
+     "value": 803,
      "base": 807,
      "target": 99,
-     "credit": 0.0,
+     "credit": 0.01,
      "gate": true,
      "note": ""
     },
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.11,
- "secs": 46
+ "secs": 32
 }
