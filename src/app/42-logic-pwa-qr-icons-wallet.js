@@ -14,6 +14,7 @@ import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_bldDot,bldDot} from "./35-ui-combo.js";
 import {cuNumList} from "./41-ui-edit-mode.js";
 import {__R} from "./00-reg.js";
+import {html,raw,render} from "./lib/html.js";
 Object.defineProperty(__R,"PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;},configurable:true});
 Object.defineProperty(__R,"coinsClean",{get:function(){return coinsClean;},set:function(v){coinsClean=v;},configurable:true});
 Object.defineProperty(__R,"pwaInstH",{get:function(){return pwaInstH;},set:function(v){pwaInstH=v;},configurable:true});
@@ -26,7 +27,7 @@ function pwaUpdToast(w){ let t=document.getElementById("pwaUpd"); if(!t){ t=docu
     t.addEventListener("click",(e) =>{ if(e.target.closest("[data-pwalater]")){ t.classList.remove("on"); return; } if(!e.target.closest("[data-pwareload]")) return;
       PWA_GO=true; try{ saveNow(); }catch(er){} try{ const h=document.getElementById("homeV"); if(!h||h.hidden) sessionStorage.setItem("cs-skip","1"); }catch(er){}
       const ww=t.__w||(PWA_REG&&PWA_REG.waiting); if(ww) ww.postMessage({type:"SKIP_WAITING"}); setTimeout(() =>{ __miReload(); },3000); }); }
-  t.__w=w; t.innerHTML=(toastPic("New version ready.")||ico("ui-redo","tico"))+'<span>New version ready.</span><button type="button" class="tundo" data-pwareload="1">'+ico("ui-redo")+'Reload</button><button type="button" class="tundo pwa-x" data-pwalater="1" aria-label="Later">'+ico("ui-close")+'</button>'; t.classList.add("on","act"); }
+  t.__w=w; render(html`${raw(toastPic("New version ready.")||ico("ui-redo","tico"))}<span>New version ready.</span><button type="button" class="tundo" data-pwareload="1">${raw(ico("ui-redo"))}Reload</button><button type="button" class="tundo pwa-x" data-pwalater="1" aria-label="Later">${raw(ico("ui-close"))}</button>`,t); t.classList.add("on","act"); }
 function pwaInit(){ if(!PWA_BUILD||!/^https?:$/.test(location.protocol)||!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.addEventListener("controllerchange",() =>{ if(PWA_GO) __miReload(); });
   navigator.serviceWorker.register("sw.js").then((reg) =>{ PWA_REG=reg; window.__pwaReg=reg;
@@ -162,7 +163,7 @@ function qrSendOpen(id){ const o=chFile(id), raw=JSON.stringify(o), nm=chName(o)
       if(a==="save"){ chSave(id); return; }
       if(a==="share"){ qrShare(QRS.txt,QRS.nm); } }); };
   zPack(raw).then(show,() =>{ show(raw); }); }
-function qrPlayBtn(){ const b=document.getElementById("qrPlay"); if(b){ b.innerHTML=ico(QRS.play?"ui-pause":"ui-play")+'<span>'+(QRS.play?"Pause":"Play")+'</span>'; b.setAttribute("aria-label",QRS.play?"Pause":"Play"); } }
+function qrPlayBtn(){ const b=document.getElementById("qrPlay"); if(b){ render(html`${raw(ico(QRS.play?"ui-pause":"ui-play"))}<span>${QRS.play?"Pause":"Play"}</span>`,b); b.setAttribute("aria-label",QRS.play?"Pause":"Play"); } }
 function qrDraw(){ const box=document.getElementById("qrBox"); if(!box||!QRS) return; let i=QRS.i, s=QRS.cache[i]; if(!s){ const q=QRG.make(QRS.fr[i],"L",40); s=QRS.cache[i]=q?QRG.svg(q,"Code "+(i+1)+" of "+QRS.fr.length):""; }
   box.innerHTML=s; box.setAttribute("data-i",String(i)); const n=document.getElementById("qrN"); if(n) n.textContent="Part "+(i+1)+" of "+QRS.fr.length; }
 function qrShare(txt,nm){ let f=null, f2=null, d=null; try{ f=new File([txt],nm,{type:"application/octet-stream"}); f2=new File([txt],nm.replace(/\.bs$/,"")+".txt",{type:"text/plain"}); }catch(e){}
@@ -188,7 +189,7 @@ function qrGot(R,raw){ if(!raw||QRR!==R) return; const msg=function(t){ const e=
   const m=/^DQ1:(\d+)\/(\d+):([a-z0-9]+):([\s\S]*)$/.exec(raw); if(!m){ msg("This code is not a character from this app."); return; }
   const i=+m[1], n=+m[2]; if(!n||i<1||i>n||n>QR_MAX) return; if(R.h!==m[3]){ R.h=m[3]; R.n=n; R.parts={}; }
   R.parts[i]=m[4]; const got=Object.keys(R.parts).length; msg("Parts read: "+got+" of "+n+". Keep the camera on the code.");
-  const pg=document.getElementById("qrPg"); if(pg){ let h=""; for(var k=1;k<=n;k++) h+='<i class="'+(R.parts[k]!=null?"on":"")+'"></i>'; pg.innerHTML=h; }
+  const pg=document.getElementById("qrPg"); if(pg) render(html`${Array.from({length:n},(_,i) => html`<i class="${R.parts[i+1]!=null?"on":""}"></i>`)}`,pg);
   if(got===n){ let t=""; for(k=1;k<=n;k++) t+=R.parts[k]; if(qrHash(t)!==R.h){ R.parts={}; msg("The parts did not match. Scan again from the first part."); return; } qrDone(t); } }
 function qrDone(t){ qrScanStop(); const b=document.getElementById("bkp"); if(b) b.remove(); toast("Code read. Opening the character..."); impText(t); }
 window.__qrScanOpen=qrScanOpen;

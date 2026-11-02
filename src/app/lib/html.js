@@ -104,8 +104,8 @@ function update(st, vals, first) {
 /** @param {{s: TemplateStringsArray, v: any[]}} r @param {Element} el */
 export function render(r, el) {
   const st = R.get(el);
-  if (st && st.s === r.s && el.firstChild) { update(st.st, r.v); return; }
-  const b = build(r); el.replaceChildren(b.frag); R.set(el, { s: r.s, st: b });
+  if (st && st.s === r.s && st.first && st.first === el.firstChild && st.first.isConnected) { update(st.st, r.v); return; }
+  const b = build(r), first = b.frag.firstChild; el.replaceChildren(b.frag); R.set(el, { s: r.s, st: b, first });
 }
 /** keyed list: items with the same key keep their place when the list changes. list(items, x => x.id, x => html`<li>${x.n}</li>`) */
 /** @param {any[]} items @param {(x:any,i:number)=>any} key @param {(x:any,i:number)=>any} fn */
