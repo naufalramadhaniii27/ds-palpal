@@ -146,7 +146,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B034 phone b | art/scenes-src/backgrounds/B034b-phone.png | 1x2 | moonwell-pilgrim, mulhorandi-tomb-raider | done |
 | B035 PC | art/scenes-src/backgrounds/B035-pc.png | 2x2 | mutated-commuter, myriad-operative, mythalkeeper, natural | done |
 | B035 phone a | art/scenes-src/backgrounds/B035a-phone.png | 1x2 | mutated-commuter, myriad-operative | done |
-| B035 phone b | art/scenes-src/backgrounds/B035b-phone.png | 1x2 | mythalkeeper, natural | claimed by codex-b034-b044 2026-11-02T13:03+00:00 |
+| B035 phone b | art/scenes-src/backgrounds/B035b-phone.png | 1x2 | mythalkeeper, natural | done |
 | B036 PC | art/scenes-src/backgrounds/B036-pc.png | 2x2 | one-of-the-taken, orzhov-representative, outlander, phantasmic-circus-trouper | open |
 | B036 phone a | art/scenes-src/backgrounds/B036a-phone.png | 1x2 | one-of-the-taken, orzhov-representative | open |
 | B036 phone b | art/scenes-src/backgrounds/B036b-phone.png | 1x2 | outlander, phantasmic-circus-trouper | open |
