@@ -72,7 +72,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B010 PC | art/scenes-src/backgrounds/B010-pc.png | 2x2 | celebrity-adventurers-scion, changeling-traveler, chapter-knight, chondathan-freebooter | done |
 | B010 phone a | art/scenes-src/backgrounds/B010a-phone.png | 1x2 | celebrity-adventurers-scion, changeling-traveler | done |
 | B010 phone b | art/scenes-src/backgrounds/B010b-phone.png | 1x2 | chapter-knight, chondathan-freebooter | done |
-| B011 PC | art/scenes-src/backgrounds/B011-pc.png | 2x2 | city-watch, clan-crafter, clasp-member, cloistered-scholar | claimed by codex-b001-b011 2026-11-02T14:50+00:00 |
+| B011 PC | art/scenes-src/backgrounds/B011-pc.png | 2x2 | city-watch, clan-crafter, clasp-member, cloistered-scholar | done |
 | B011 phone a | art/scenes-src/backgrounds/B011a-phone.png | 1x2 | city-watch, clan-crafter | open |
 | B011 phone b | art/scenes-src/backgrounds/B011b-phone.png | 1x2 | clasp-member, cloistered-scholar | open |
 | B012 PC | art/scenes-src/backgrounds/B012-pc.png | 2x2 | cobalt-scholar, cosmic-dawn-experiment, courtier, covenant-of-the-grave-recruit | done |
