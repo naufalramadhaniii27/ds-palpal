@@ -1,40 +1,40 @@
 # Split plan (N32)
 
-From reports/trace.json, 6 runs. Tiers: core 16, on demand 7, never read 6, changeable 1, no global 4.
+From reports/trace.json, 6 runs. Tiers: core 4, on demand 11, never read 14, changeable 1, no global 4.
 
 | Part | Tier | Globals | Examples | Registry keys added | Read on screens |
 |---|---|---|---|---|---|
-| builder | changeable | 61 | QLIVE, WXF_ALL, __bldArmor, __bldAsk ... | BACKGROUNDS, CLASSES, DMGI, FEATS, SPECIES | boot, library, more |
-| cffull | core | 1 | CF_FULL |  | library, more |
-| db1 | core | 13 | A6, ALLSK, ARMOR, BACKGROUNDS ... | BACKGROUNDS, FEATS, SPECIES | library, more |
-| db2 | core | 3 | CLASSES, MANEUVERS, OPTS | CLASSES | library, more |
-| db3 | core | 6 | INVOCATIONS, INV_PICK, METAMAGIC, PACT ... | CLASSES | library, more |
-| db4 | core | 46 | ACTS, ARMOR_GEN, ARMOR_RULE, ARR ... | AUTO, DMGI, SPECIES | library, more |
-| dmgi | core | 4 | DM14, DMGI, EQ14D, SETSC | DMGI | library, more |
-| efa | on demand | 8 | DM_LIST, DM_SP, EFA_CLS, EFA_LBL ... | AUTO, BACKGROUNDS, CLASSES, FEATS, SPECIES, SPELLS, SPELL_FULL, SUB_FULL | library |
-| hbpack | on demand | 1 | HB_BUILTIN |  | library |
-| itsp | on demand | 1 | ITEM_SPELLS |  | library |
-| learn | never read | 4 | __learnBack, __learnOpen, __learnState, __spot |  |  |
-| q1 | core | 11 | CRIMG, DECKFIX, FLUFF, HBIDX ... |  | library, more, tab6, tab7 |
+| builder | changeable | 61 | QLIVE, WXF_ALL, __bldArmor, __bldAsk ... | BACKGROUNDS, CLASSES, DMGI, FEATS, SPECIES | boot, library |
+| cffull | never read | 1 | CF_FULL |  |  |
+| db1 | never read | 13 | A6, ALLSK, ARMOR, BACKGROUNDS ... | BACKGROUNDS, FEATS, SPECIES |  |
+| db2 | never read | 3 | CLASSES, MANEUVERS, OPTS | CLASSES |  |
+| db3 | never read | 6 | INVOCATIONS, INV_PICK, METAMAGIC, PACT ... | CLASSES |  |
+| db4 | never read | 46 | ACTS, ARMOR_GEN, ARMOR_RULE, ARR ... | AUTO, DMGI, SPECIES |  |
+| dmgi | never read | 4 | DM14, DMGI, EQ14D, SETSC | DMGI |  |
+| efa | on demand | 8 | DM_LIST, DM_SP, EFA_CLS, EFA_LBL ... | AUTO, BACKGROUNDS, CLASSES, FEATS, SPECIES, SPELLS, SPELL_FULL, SUB_FULL | boot, library |
+| hbpack | never read | 1 | HB_BUILTIN |  |  |
+| itsp | never read | 1 | ITEM_SPELLS |  |  |
+| learn | core | 4 | __learnBack, __learnOpen, __learnState, __spot |  | boot, detail, home, library |
+| q1 | core | 11 | CRIMG, DECKFIX, FLUFF, HBIDX ... |  | boot, library, tab6, tab7 |
 | q7 | no global | 0 |  |  |  |
-| rs14 | never read | 1 | __rsTerm |  |  |
-| spells | core | 2 | SPELLS, SPELL_FX | SPELLS | library, more |
-| spfull | core | 1 | SPELL_FULL | SPELL_FULL | more |
-| subfull | core | 1 | SUB_FULL | SUB_FULL | library, more |
-| tg | never read | 10 | TGE, __tgBack, __tgDraw, __tgDrawStats ... |  |  |
-| tp1 | on demand | 2 | WXC, WXE | AUTO, FEATS, SPELL_FULL, SUB_FULL | library |
-| wotc1 | core | 1 | WX | FEATS, SPELL_FULL | library, more |
+| rs14 | core | 1 | __rsTerm |  | detail, home, tab0, tab1 |
+| spells | never read | 2 | SPELLS, SPELL_FX | SPELLS |  |
+| spfull | never read | 1 | SPELL_FULL | SPELL_FULL |  |
+| subfull | never read | 1 | SUB_FULL | SUB_FULL |  |
+| tg | core | 10 | TGE, __tgBack, __tgDraw, __tgDrawStats ... |  | boot, detail, home, library |
+| tp1 | on demand | 2 | WXC, WXE | AUTO, FEATS, SPELL_FULL, SUB_FULL | boot, library |
+| wotc1 | on demand | 1 | WX | FEATS, SPELL_FULL | boot, library |
 | wotc10 | no global | 0 |  |  |  |
-| wotc11 | on demand | 1 | WXWP |  | library |
+| wotc11 | on demand | 1 | WXWP |  | boot, library |
 | wotc12 | never read | 0 |  | SPELL_FULL |  |
 | wotc13 | no global | 0 |  |  |  |
-| wotc14 | on demand | 1 | WXW |  | library |
-| wotc15 | on demand | 1 | WXO |  | library |
-| wotc2 | core | 1 | WXS | AUTO, SUB_FULL | library, more |
-| wotc3 | core | 1 | WXI |  | library, more |
-| wotc4 | core | 1 | WXSP |  | library, more |
-| wotc5 | core | 1 | WXBG |  | library, more |
-| wotc6 | core | 1 | WXG |  | library, more |
+| wotc14 | on demand | 1 | WXW |  | boot, library |
+| wotc15 | on demand | 1 | WXO |  | boot, library |
+| wotc2 | on demand | 1 | WXS | AUTO, SUB_FULL | boot, library |
+| wotc3 | on demand | 1 | WXI |  | boot, library |
+| wotc4 | on demand | 1 | WXSP |  | boot, library |
+| wotc5 | on demand | 1 | WXBG |  | boot, library |
+| wotc6 | on demand | 1 | WXG |  | boot, library |
 | wotc7 | never read | 0 |  | FEATS |  |
 | wotc8 | no global | 0 |  |  |  |
 | wotc9 | never read | 0 |  | AUTO, SUB_FULL |  |

@@ -12,6 +12,13 @@
     for (var k in after) if (!before[k]) g.push(k);
     for (var r in ra) if (ra[r] !== (rb[r] || 0)) rd[r] = ra[r] - (rb[r] || 0);
     T.parts[n] = { globals: g, regDelta: rd }; T.order.push(n);
+    g.forEach(function (k) {
+      var d = Object.getOwnPropertyDescriptor(window, k); if (!d || !("value" in d) || !d.configurable) return;
+      var v = d.value, w = d.writable;
+      try { Object.defineProperty(window, k, { configurable: true, enumerable: d.enumerable,
+        get: function () { var o = T.reads[k] || (T.reads[k] = {}); o[T.screen] = (o[T.screen] || 0) + 1; return v; },
+        set: function (x) { v = x; } }); } catch (e) {}
+    });
   };
   window.__traceMark = function (s) { T.screen = s; };
   var wrap = function () {
@@ -23,5 +30,5 @@
       });
     });
   };
-  document.addEventListener("bldready", function () { setTimeout(wrap, 0); });
+  /* reads are counted by getters installed at part load (see __deferHook) */
 })();
