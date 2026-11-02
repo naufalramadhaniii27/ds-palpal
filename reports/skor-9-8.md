@@ -77,3 +77,7 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - src/app/lib/html.js: 7.9 KB source, 4.4 KB minified, 2.0 KB gzip (plan target 3 KB minified, not met, gzip is under). tests/html_lib.py 17/17.
 - Converted so far: death save pips, HP max button (src/app/09), speeds and defenses (src/app/23). Checked in browser at 390x844: pips render, tap sets aria-pressed, no page errors.
 - Left: about 198 innerHTML sites. Lint rule not added yet.
+
+## Job A-C on M1 + N46 + N44 (branch nilai-98/n44, 2026-11-02)
+- tools/run_jobs.py A B C --retry: 32 tests, 0 failed, 2524 s. chaos_storage 50 seeds ok, migrate_all ok, tsc_gate ok, perf_budget ok.
+- Not yet run: style snapshot (tests/style_snapshot.py --variants), 2014 edition scenarios at both viewports by hand, 500-seed chaos on the final build, CI.
