@@ -48,6 +48,28 @@ for n, p in parts.items():
     for g in p["globals"]: owners.setdefault(g, []).append(n)
 dup = {g: o for g, o in owners.items() if len(o) > 1}
 out += ["Globals made by more than one part: %d%s" % (len(dup), (" (" + ", ".join(sorted(dup)[:10]) + ")") if dup else "")]
+import re as _re
+_h = open(os.path.join(ROOT, "index.html")).read()
+_sz = {m.group(1): len(m.group(2)) for m in _re.finditer(r'<script type="text/x-defer" data-defer="([^"]+)"[^>]*>(.*?)</script>', _h, _re.S)}
+_use = {}
+for _r in T:
+    _tr = _r["trace"]
+    for _n, _p in _tr["parts"].items():
+        _u = _use.setdefault(_n, set())
+        for _g in _p["globals"]:
+            for _k in _tr["reads"].get(_g, {}):
+                _s = _k.split(" ", 2)[-1]
+                if _s not in ("load",): _u.add(_s)
+_lazy = []
+for _n, _p in parts.items():
+    if _p["reg"] or _n in ("builder", "learn", "tg"): continue
+    if _use.get(_n, set()) <= {"library"} and _sz.get(_n): _lazy.append((_n, _sz[_n]))
+_tot = sum(_sz.values()) or 1
+out += ["", "## Lazy candidates", "",
+        "Parts that add no keys to a shared table and are read only by the Library (or by no screen): safe to load on demand, if a guard loads them before the first read. Reads made while another part loads are ignored.", "",
+        "| Part | Size KB |", "|---|---|"]
+for _n, _b in sorted(_lazy, key=lambda x: -x[1]): out.append("| %s | %d |" % (_n, _b // 1024))
+out += ["", "Total %d KB of %d KB deferred data (%d%%)." % (sum(b for _, b in _lazy) // 1024, _tot // 1024, round(100 * sum(b for _, b in _lazy) / _tot))]
 out += ["", "## Reading this plan", "",
         "- Reads are counted against the screen that is open when they happen. The Library index is built in the background soon after the builder data has loaded, and it reads most data parts once. So a part read on `more` or `library` may be read only by that index build, not by the screen. Before moving a part to a later tier, run the trace again with the index build switched off (next step of Fase 2.2) and compare.",
         "- Parts read on `home` or a `tab` screen, with no index build, are the true core. In this run only q1 shows tab reads (tab6, tab7).",
