@@ -97,7 +97,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B018 phone a | art/scenes-src/backgrounds/B018a-phone.png | 1x2 | fey-blessed, fey-hostage | done |
 | B018 phone b | art/scenes-src/backgrounds/B018b-phone.png | 1x2 | feylost, fisher | done |
 | B019 PC | art/scenes-src/backgrounds/B019-pc.png | 2x2 | flaming-fist-mercenary, folk-hero, free-swords-mercenary, galactic-colonist | done |
-| B019 phone a | art/scenes-src/backgrounds/B019a-phone.png | 1x2 | flaming-fist-mercenary, folk-hero | claimed by codex-b012-b022 2026-11-02T14:10+00:00 |
+| B019 phone a | art/scenes-src/backgrounds/B019a-phone.png | 1x2 | flaming-fist-mercenary, folk-hero | done |
 | B019 phone b | art/scenes-src/backgrounds/B019b-phone.png | 1x2 | free-swords-mercenary, galactic-colonist | open |
 | B020 PC | art/scenes-src/backgrounds/B020-pc.png | 2x2 | gambler, gate-warden, genie-touched, giant-foundling | open |
 | B020 phone a | art/scenes-src/backgrounds/B020a-phone.png | 1x2 | gambler, gate-warden | open |
