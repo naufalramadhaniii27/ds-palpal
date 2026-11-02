@@ -173,7 +173,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | B043 phone b | art/scenes-src/backgrounds/B043b-phone.png | 1x2 | scoundrel, security-guard | done |
 | B044 PC | art/scenes-src/backgrounds/B044-pc.png | 2x2 | seer-apprentice, selesnya-initiate, shadowmasters-exile, shadowmoor-expert | done |
 | B044 phone a | art/scenes-src/backgrounds/B044a-phone.png | 1x2 | seer-apprentice, selesnya-initiate | done |
-| B044 phone b | art/scenes-src/backgrounds/B044b-phone.png | 1x2 | shadowmasters-exile, shadowmoor-expert | claimed by codex-b034-b044 2026-11-02T14:28:19.129Z |
+| B044 phone b | art/scenes-src/backgrounds/B044b-phone.png | 1x2 | shadowmasters-exile, shadowmoor-expert | done |
 | B045 PC | art/scenes-src/backgrounds/B045-pc.png | 2x2 | shipwright, siege-engineer, silverquill-student, simic-scientist | done |
 | B045 phone a | art/scenes-src/backgrounds/B045a-phone.png | 1x2 | shipwright, siege-engineer | done |
 | B045 phone b | art/scenes-src/backgrounds/B045b-phone.png | 1x2 | silverquill-student, simic-scientist | done |
