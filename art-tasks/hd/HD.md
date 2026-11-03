@@ -31,7 +31,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | open |
 | H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | open |
 | H05 | species/githzerai, species/gnome, species/goblin, species/goliath | open |
-| H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | claimed by codex-session-2 2026-11-03T01:31:53+00:00 |
+| H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | needs review: cells 1-4 alpha 255 coverage 0.07% after whole-sheet redo |
 | H07 | species/human, species/kalashtar, species/kenku, species/kobold | open |
 | H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | open |
 | H09 | species/minotaur, species/orc, species/owlin, species/reborn | open |
