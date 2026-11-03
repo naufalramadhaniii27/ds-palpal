@@ -90,7 +90,7 @@ def probe(gaps):
 def load():
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
-        b = p.chromium.launch(); pg = b.new_page(); errs = []
+        b = p.chromium.launch(); pg = b.new_page(); pg.set_default_navigation_timeout(180000); errs = []
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(800)
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
@@ -216,7 +216,7 @@ PROBE_JS = r"""
   return {name:"P",species:o.species||"Human",bg:"Soldier",bgMode:"21",bg2:"STR",bg1:"CON",cls:o.cls||"Fighter",sub:o.sub||"",level:o.level||8,ch:o.ch||{},method:"array",arr:arr,base:Object.assign({},ABS),src:src,eqC:"A",eqB:"A",size:"Medium",inv:o.inv,mc:[]}}
  const J=JSON.stringify;
  function parts(b,need){const C=window.__bldSheetFor(b),D=window.__deriveFor(C),o={};
-  const P={ac:()=>J([D.ac,C.ac]),hp:()=>J([D.hpmax,C.hpBonus]),init:()=>J([D.init,C.initBonus]),speed:()=>J([D.speed,C.speed]),
+  const P={ac:()=>J([D.ac,C.ac]),hp:()=>J([D.hpmax,C.hpBonus]),init:()=>J([D.init,C.initBonus]),speed:()=>J([D.speed,C.speed,C.speedSrc,C.moves]),
    save:()=>J([D.save,C.saveBonus,C.saves]),skill:()=>J([D.skill,C.skills]),resist:()=>J([C.defenses,C.res]),
    uses:()=>J([C.acts,C.actions,C.res]),fstyle:()=>J([C.attacks,C.ac]),
    choice:()=>J((window.__bldChoiceList(b)||[]).map(c=>[c.key,c.title,c.n]))};

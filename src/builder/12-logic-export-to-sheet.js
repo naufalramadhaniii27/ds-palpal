@@ -70,6 +70,7 @@ export function toSheet(){
  __R.gfx().forEach((e) =>{if(!e.acNoDex&&!(e.acArmAb&&ar))return;if(!__R.fxOk(e,ar,ESH,EA))return;C.ac.dex="";if(e.acArmAb&&ar)C.ac.bonus.push({s:ABN[e.acArmAb]+" modifier in place of Dexterity ("+e.lbl+")",v:mod(a.sc[e.acArmAb])})});
  activeFx().forEach((q) =>{if(q.fx.ac&&!q.arm&&q.t!=="Armor")C.ac.bonus.push({s:q.n+" (magic item"+(DMAP[q.n][3]?", attuned":"")+")",v:q.fx.ac})});/* M18 */
  const sbn=[];activeFx().forEach((q) =>{if(q.fx.save)sbn.push({s:q.n+" (magic item"+(DMAP[q.n][3]?", attuned":"")+")",v:q.fx.save})});__R.gfx().forEach((e) =>{if(e.saveBonus==null||!__R.fxOk(e,ar,ESH,EA))return;const v=__R.fxv(e.saveBonus,e);if(v)sbn.push({s:e.lbl,v:v})});const pal=clsLv("Paladin");if(pal>=6)sbn.push({s:"Aura of Protection (Paladin "+pal+")",v:Math.max(1,mod(a.sc.CHA))});/* RU35 no. 6: you are inside your own aura */
+ __R.gfx().forEach((e) =>{if(e.saveBonusNp==null||!__R.fxOk(e,ar,ESH,EA))return;const v=__R.fxv(e.saveBonusNp,e);if(v)sbn.push({s:e.lbl,v:v,np:1,t:(v>0?"+":"")+v+" to saving throws that do not use your Proficiency Bonus"})});/* fx engine v2: saveBonusNp, only the saves without proficiency */
  if(sbn.length)C.saveBonus=sbn;/* M18: new optional C.saveBonus [{s,v}], all saving throws */
  if(attMax()!==3)C.attMax=attMax();/* v19 RL43: optional, missing = 3 */
  (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Bracers of Defense"&&!EA&&!ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});

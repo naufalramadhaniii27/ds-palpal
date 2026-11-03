@@ -87,7 +87,7 @@ function renderSpeedDef(){ const e=document.getElementById("speeds"); if(e){ con
     const oth=L.filter((d) =>{return ["Resistance","Immunity","Vulnerability"].indexOf(d.t)<0});
     render(html`${sec("Resistance","Resistances","No Resistances")}${sec("Immunity","Immunities","No Immunities")}${sec("Vulnerability","Vulnerabilities","No Vulnerabilities")}${oth.length?html`<h3 class="defh">Other</h3>${oth.map((d) => html`<div class="defl"><b>${d.t}</b> ${d.v}<small>${d.s}</small></div>`)}`:null}`,f); } }
 /* RU35 no. 6: notes under Saving Throws */
-function saveNotesH(){ const n=(C.saveNotes||[]), b=(C.saveBonus||[]); if(!n.length&&!b.length) return ""; return '<div class="snotes">'+b.map((x) =>{return '<p><b>'+sg(num(x.v))+'</b> to all saving throws <small>'+esc(x.s)+'</small></p>'}).join("")+n.map((x) =>{return '<p>'+esc(x.t)+' <small>'+esc(x.s)+'</small></p>'}).join("")+'</div>'; }
+function saveNotesH(){ const n=(C.saveNotes||[]), b=(C.saveBonus||[]); if(!n.length&&!b.length) return ""; return '<div class="snotes">'+b.map((x) =>{return '<p><b>'+sg(num(x.v))+'</b> '+(x.np?'to saving throws that do not use your Proficiency Bonus':'to all saving throws')+' <small>'+esc(x.s)+'</small></p>'}).join("")+n.map((x) =>{return '<p>'+esc(x.t)+' <small>'+esc(x.s)+'</small></p>'}).join("")+'</div>'; }
 /* RU35 no. 8: containers. An item with "in" sits inside that container item. A magic container (CONTAINERS[2] set) has a fixed weight, its contents do not count */
 function ctOf(n){ const b=String(n||"").replace(/ \(.*\)$/,""); return (typeof CONTAINERS!=="undefined"?CONTAINERS:[]).filter((c) =>{ return c[0]===n||c[0]===b; })[0]||null; }
 export function invKey(i){ return i.key||i.n; }

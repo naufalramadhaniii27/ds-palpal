@@ -271,7 +271,8 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
    "close": "</script>",
    "files": [
-    "data/db3-phb-classes-b.js"
+    "data/db3-phb-classes-b.js",
+    "data/fx-B2-subclass.js"
    ]
   },
   {
