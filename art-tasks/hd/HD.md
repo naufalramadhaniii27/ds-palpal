@@ -26,29 +26,29 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 
 | Sheet | Icons | Status |
 |---|---|---|
-| H01 | species/aarakocra, species/aasimar, species/air-genasi, species/bugbear | needs review: cells 1–4; regenerated once; rule 5 alpha fails (0.038% opaque, edge/gap residue) |
-| H02 | species/centaur, species/changeling, species/custom, species/dhampir | needs review: cells 1–4; regenerated once; rule 5 alpha fails (opacity and edge/gap residue) |
-| H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | needs review: cells 1–4; regenerated once; rule 5 alpha fails; cell 4 includes face profile |
-| H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | needs review: cells 1–4; regenerated once; rule 5 alpha fails (opacity and gap residue) |
+| H01 | species/aarakocra, species/aasimar, species/air-genasi, species/bugbear | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H02 | species/centaur, species/changeling, species/custom, species/dhampir | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H05 | species/githzerai, species/gnome, species/goblin, species/goliath | claimed by codex-session-1 2026-11-03T01:43:20+00:00 |
-| H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | needs review: cells 1-4 alpha 255 coverage 0.07%; stray alpha at edges and quarter gaps after whole-sheet redo |
-| H07 | species/human, species/kalashtar, species/kenku, species/kobold | needs review: cells 1-4 alpha 255 coverage below 20%; stray alpha at edges and quarter gaps after whole-sheet redo |
-| H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | needs review: cells 1-4 alpha 255 coverage below 20%; stray alpha at edges and quarter gaps after whole-sheet redo |
+| H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H07 | species/human, species/kalashtar, species/kenku, species/kobold | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H09 | species/minotaur, species/orc, species/owlin, species/reborn | claimed by codex-session-2 2026-11-03T01:41:14+00:00 |
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | open |
-| H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | needs review: cells 1–4 alpha below 255 after whole-sheet retry |
+| H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | claimed by codex-session-3 2026-11-03T01:35:31+00:00 |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | open |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | open |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | open |
-| H16 | cat/condition, cat/creature, cat/cult, cat/deck | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.077%, below 20%; faint alpha residue in background/gaps; whole-sheet retry used) |
-| H17 | cat/deity, cat/disease, cat/facility, cat/feat | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.030%, below 20%; faint alpha residue in background/gaps; whole-sheet retry used) |
-| H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.054%, below 20%; faint alpha residue in background/gaps); cell 3 warning flame unclear; whole-sheet retry used |
+| H16 | cat/condition, cat/creature, cat/cult, cat/deck | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H19 | cat/item, cat/language, cat/monster, cat/object | claimed by codex-session-4 2026-11-03T01:41:40+00:00 |
 | H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | open |
-| H21 | cat/rule, cat/skill, cat/species, cat/spell | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
-| H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
-| H23 | size/small, size/medium, size/large, size/huge | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
+| H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
+| H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H24 | size/gargantuan, cat/book | claimed by codex-session-5 2026-11-03T01:41:27+00:00 |
 
 ## Prompt per sheet
