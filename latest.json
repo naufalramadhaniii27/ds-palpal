@@ -1,7 +1,7 @@
 {
- "commit": "9256ba4f",
- "branch": "nilai-98/n44c",
- "date": "2026-11-03 03:21",
+ "commit": "445c4a10",
+ "branch": "nilai-98/art-0012",
+ "date": "2026-11-03 03:57",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -519,16 +519,16 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1082,
+     "value": 1083,
      "base": 1099,
      "target": 0,
-     "credit": 0.02,
+     "credit": 0.01,
      "gate": true,
      "note": ""
     },
     {
      "id": "lines_over_2000",
-     "value": 18,
+     "value": 17,
      "base": 17,
      "target": 0,
      "credit": 0.0,
@@ -612,7 +612,7 @@
   "security": {
    "name": "Keamanan",
    "floor": 8,
-   "score": 7.36,
+   "score": 7.22,
    "measures": [
     {
      "id": "csp_check",
@@ -634,10 +634,10 @@
     },
     {
      "id": "innerhtml_outside_lib",
-     "value": 156,
+     "value": 247,
      "base": 262,
      "target": 0,
-     "credit": 0.4,
+     "credit": 0.06,
      "gate": true,
      "note": ""
     },
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.25,
- "secs": 37
+ "average": 6.24,
+ "secs": 46
 }
