@@ -56,7 +56,7 @@ export function snSetH(){ const id=__R.MYID||(__R.rGet()||{}).active, L=(__R.snG
    RU61: lsSet() reports a write that fails (storage full) with a caution bar, instead of losing it silently.
    RU74/RU78: FROZEN pauses all writes: "recover" while the recovery screen is open, "stale" when another tab switched the character. */
 /* APP_VER is the internal number stamped on saved data (always goes up). APP_LABEL is the version people see. 0.0.1 starts the public numbering (T7) */
-export var APP_VER=114, APP_LABEL="0.0.12", APP_DATE="2026-11-03", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
+export var APP_VER=115, APP_LABEL="0.0.13", APP_DATE="2026-11-03", FROZEN="", SAVE_FAIL=0, SNKEY="cs-snap-v1";
 export function lsGet(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
 export function lsSet(k,v){ if(FROZEN) return false; try{ __store.setItem(k,v); if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } unsavedSoon(k); __R.bcPost(k); return true; }catch(e){ SAVE_FAIL=1; saveWarn(); return false; } }
 export function lsSave(k,o){ if(o&&typeof o==="object"&&!Array.isArray(o)) o._app=Math.max(+o._app||0,APP_VER); return lsSet(k,JSON.stringify(o)); }

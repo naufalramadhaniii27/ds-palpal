@@ -1,0 +1,34 @@
+/* === Step 5: card art (divider, paper, level badge, app crest, scene wipe). All of it hangs on html.g0-art, set by fx/24 only when Art is on and the files load. Without the class every older rule stays as it was === */
+/* paper fibers: pale on dark panels, dark on light panels. Cool paper goes with the cool palettes, neutral with the rest */
+html[data-paper="cool"]{--g0p:url("img/g0/paper-cool-light.avif")}
+html[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-light.avif")}
+html[data-theme="light"][data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}
+html[data-theme="light"][data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}}
+html.g0-art:root[data-skin="ddb"] :is(#app .vitals,#app .card,#app .ihero){background-image:var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px);
+  background-size:30px auto,30px auto,30px auto,30px auto,256px 256px,100% 100%;
+  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat}
+html.g0-art:root[data-skin="ddb"] #app .idcard{background-image:radial-gradient(120% 80% at 0% 0%,rgba(var(--pl-rgb),.16),transparent 55%),var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px);
+  background-size:34px auto,34px auto,34px auto,34px auto,100% 100%,256px 256px,100% 100%;
+  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0,0 0;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat}
+/* detail sheet: the paper. The bottom edge stays clear because text scrolls under it */
+html.g0-art:root[data-skin="ddb"] #sheet{background-image:var(--g0p),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px);
+  background-size:34px auto,34px auto,256px 256px,100% 100%;
+  background-position:left 3px top 3px,right 3px top 3px,0 0,0 0;background-repeat:no-repeat,no-repeat,repeat,no-repeat}
+/* section line: the wooden divider in four pieces (two end caps, the centre knot, a rod stretched to the full width), so it spans any card without distorting the knot */
+html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{height:14px;top:-7px;border-radius:0;opacity:1;background-image:url("img/g0/divider-wood-l.avif"),url("img/g0/divider-wood-r.avif"),url("img/g0/divider-wood-c.avif"),url("img/g0/divider-wood-rod.avif");background-size:auto 100%,auto 100%,auto 100%,100% 100%;background-position:left center,right center,center,center;background-repeat:no-repeat}
+/* section headings in a detail sheet: the wooden divider takes the place of the old gold rule under the heading, one line only */
+html.g0-art:root[data-skin="ddb"] :is(.fgh,.sp-lv,.noteh,.info-h){background-image:url("img/g0/divider-wood-l.avif"),url("img/g0/divider-wood-r.avif"),url("img/g0/divider-wood-c.avif"),url("img/g0/divider-wood-rod.avif");background-size:auto 10px,auto 10px,auto 10px,100% 10px;background-position:left bottom,right bottom,center bottom,center bottom;background-repeat:no-repeat}
+/* level badge on the portrait */
+html.g0-art .mi-crest{clip-path:none;width:46px;height:56px;background:url("img/g0/badge-level.avif") center/contain no-repeat;padding-top:8px;box-sizing:border-box}
+html.g0-art .mi-crest::before{display:none}
+/* app crest: header symbol on a laptop and the Home title */
+html.g0-art #bandSym{background:url("img/g0/crest-app.avif") center/contain no-repeat}
+html.g0-art #bandSym>*{display:none}
+html.g0-art #homeV .hhead h1{min-height:48px}/* the crest changes the line box; keep the old height so the button row stays under the Settings button */
+html.g0-art #homeV .hhead h1::before{content:"";display:inline-block;width:1.05em;height:1.05em;vertical-align:-.2em;margin-right:.28em;background:url("img/g0/crest-app.avif") center/contain no-repeat}
+@media (max-width:480px){html.g0-art #homeV .hhead h1{font-size:calc(26px*var(--tz,1))}}
+/* scene change on a phone: the new picture opens along a brush stroke */
+@keyframes g0wipe{from{-webkit-mask-size:6% 100%;mask-size:6% 100%}to{-webkit-mask-size:700% 100%;mask-size:700% 100%}}
+@media (max-width:759px) and (prefers-reduced-motion:no-preference){html.g0-art .cls-art-l.on{-webkit-mask:url("img/g0/wipe-mask.avif") center/6% 100% no-repeat;mask:url("img/g0/wipe-mask.avif") center/6% 100% no-repeat;animation:g0wipe .9s ease-out both}}
+@media print{html.g0-art #bandSym,html.g0-art .mi-crest{background-image:none}}
