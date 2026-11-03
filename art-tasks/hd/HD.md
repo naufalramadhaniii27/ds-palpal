@@ -43,7 +43,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | open |
 | H16 | cat/condition, cat/creature, cat/cult, cat/deck | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.077%, below 20%; faint alpha residue in background/gaps; whole-sheet retry used) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.030%, below 20%; faint alpha residue in background/gaps; whole-sheet retry used) |
-| H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | open |
+| H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | claimed by codex-session-4 2026-11-03T01:38:37+00:00 |
 | H19 | cat/item, cat/language, cat/monster, cat/object | open |
 | H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | open |
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
