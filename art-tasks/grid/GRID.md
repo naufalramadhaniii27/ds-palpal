@@ -29,7 +29,7 @@ Species portraits (90) are postponed.
 | G02 | 100 | app UI icons, then species emblems | done (v3; alpha and margins pass) |
 | G03 | 100 | species emblems and icons, features, items | needs review: cells 39, 42, 50 (v3; physical-prop check after retry) |
 | G04 | 93 | items, library, rules, subclass and background emblems, vehicles, objects | needs review: cells 8, 91 (v3; blank-scroll and eight-ray checks after retry) |
-| G05 | 41 | remaining app UI icons (controls, toasts, backdrop and frame swatches) found unmapped on 2026-11-03 | claimed by Codex G05 2026-11-03 04:46 UTC (v3 method: two 1254 square generates, cells 1-25 in a 5x5, cells 26-41 in a 4x4, then assemble G05-a.png cells 1-41 like other sheets) |
+| G05 | 41 | remaining app UI icons (controls, toasts, backdrop and frame swatches) found unmapped on 2026-11-03 | done (v3; two 1254x1254 RGBA generates, 5x5 and 4x4; alpha and 24 px margins pass; cells 42-50 transparent) |
 
 ## Prompt per image
 
