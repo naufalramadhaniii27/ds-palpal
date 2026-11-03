@@ -349,3 +349,13 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 - `sw.js` hasil pecah menyimpan semua bagian saat install. Bagian yang sudah ada di cache lama disalin, tidak diunduh lagi. Permintaan `p/*.js` dijawab dari cache tanpa fetch ulang. `_headers` memberi `immutable` untuk `/p/*`.
 - Hasil ukur (`tests/measure_split.py`, 6 Mbps, 40 ms): tampilan pertama sama (1,8 detik) karena berkas tunggal sudah tampil saat HTML masih mengalir. Manfaatnya ada di rilis: satu bagian berubah berarti satu berkas diunduh, bukan seluruh halaman.
 - Tes: `python3 tests/split_dist.py` (nama window sama dengan berkas tunggal, 34 bagian sekali fetch, bagian rusak ditolak CSP, offline). Tes lain memakai `index.html` tunggal. Tes yang mengosongkan localStorage tepat setelah `goto` bisa balapan dengan boot di build terpecah karena event load datang lebih awal. Jalankan tes itu pada berkas tunggal.
+
+
+## Menambah fitur baru (checklist, wajib)
+Tujuan: tidak ada fitur yang punya angka atau pilihan di teks tetapi tidak dihitung builder.
+1. Tulis efek sebagai field data, bukan kode per nama. Engine membaca field ini secara umum, jadi data baru (tp*, homebrew) terhitung otomatis.
+2. Field class di `CLASSES[nama]`: `fs` (level Fighting Style), `wm` (jumlah Weapon Mastery per level), `pick` (pilihan; boleh memakai `when:{key,val}` agar pilihan muncul hanya bila pilihan lain terpilih), `fx` (efek).
+3. Bentuk `fx`: `{n, l, when:{key,val}, shAc:[[lvl,extra]], hp:"con+lvl", saveFrom:key, ac:[[lvl,val]], acAb, acMin, speed:[[lvl,kaki]], cond:"noHeavy"|"noArmor"|"armor", init:angka|kunci kemampuan, def:[jenis,teks]}`. Dibaca lewat `classFx()` (11-logic-derivation.js), dipakai di 12 (AC, speed, init, save), 14 (HP), 16 (defenses).
+4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
+5. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
+6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.

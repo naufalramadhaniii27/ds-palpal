@@ -3,7 +3,7 @@ import {un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
-import {clsParts} from "./11-logic-derivation.js";
+import {classFx,clsParts} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 import {__R} from "./00-reg.js";
@@ -79,6 +79,7 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
  (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring of Resistance")add("Resistance","One type (set by the ring)","Ring of Resistance");if(/^Mithral|^Adamantine Armor/.test(x.n)&&/Adamantine/.test(x.n))add("Note","Critical Hits against you become normal hits","Adamantine Armor")});
  const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
  allFeats().forEach((f) =>{if(f.n==="Boon of Energy Resistance"){const bt=B.ch["ber-"+(f.key||f.s)];if(Array.isArray(bt)&&bt.length)bt.forEach((t) =>{add("Resistance",t,"Boon of Energy Resistance")});else add("Resistance","Two damage types, not chosen yet","Boon of Energy Resistance")}/* v32 RL49 no. 18 */if(f.n==="Heavy Armor Master")add("Note","Reduce Bludgeoning, Piercing, Slashing damage by your Proficiency Bonus in Heavy armor","Heavy Armor Master")});
+ classFx().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.n+" ("+e.cls+" "+e.lv+")")});/* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */
  XFX.def(add);/* v62 */
  /* m5 (RL21): one line per type and value, sources joined in order. Class resources (Channel Divinity) are not touched */
  const out=[],at={};o.forEach((x) =>{const k=x.t+"|"+x.v;if(at[k]==null){at[k]=out.length;out.push({t:x.t,v:x.v,s:x.s})}else if((", "+out[at[k]].s+", ").indexOf(", "+x.s+", ")<0)out[at[k]].s+=", "+x.s});

@@ -23,6 +23,7 @@ export function toSheet(){
  clsParts().forEach((q) =>{const mt=q.mc?", multiclass":"";if(q.cls==="Monk"&&q.lv>=14)ABK.forEach((k) =>{if(!C.saves[k])C.saves[k]=(R14()?"Diamond Soul":"Disciplined Survivor")+" ("+SRC+", Monk 14"+mt+")"});
   if(q.cls==="Ranger"&&subAt("Ranger","Gloom Stalker")>=7){const imc={Intelligence:"INT",Charisma:"CHA"}[chOf("Ranger","p7opt")],im=!wisElse()&&!C.saves.WIS?"WIS":imc&&!C.saves[imc]?imc:["WIS","INT","CHA"].filter((k) =>{return !C.saves[k]})[0];/* v32 RL49 no. 30: the chosen save. Not chosen yet: the first free one, as before */if(im)C.saves[im]="Iron Mind ("+SRC+", Gloom Stalker 7"+mt+")"}/* V17-5 */
   if(q.cls==="Rogue"&&q.lv>=15){(R14()?["WIS"]:["WIS","CHA"]).forEach((k) =>{if(!C.saves[k])C.saves[k]="Slippery Mind ("+SRC+", Rogue 15"+mt+")"})}});
+ __R.classFx().forEach((e) =>{if(!e.saveFrom)return;const v=B.ch[e.pre+e.saveFrom],a=Array.isArray(v)?v:(v?[v]:[]);a.forEach((nm) =>{const k=ABK.filter((x) =>{return ABN[x]===nm})[0];if(k&&!C.saves[k])C.saves[k]=e.n+" ("+e.cls+" "+e.lv+")"})});/* generic: class fx.saveFrom */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});/* M17: FEATS.saveFromAsi */
  const prof={},exp={};
  function p(n,s){if(n&&!prof[n])prof[n]=s}
@@ -67,7 +68,7 @@ export function toSheet(){
  if(sbn.length)C.saveBonus=sbn;/* M18: new optional C.saveBonus [{s,v}], all saving throws */
  if(attMax()!==3)C.attMax=attMax();/* v19 RL43: optional, missing = 3 */
  (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Bracers of Defense"&&!EA&&!ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});
- if(ESH)C.ac.bonus.push({s:ESH+" ("+SRC+")",v:2+__R.baseOf(ESH).p});if(EAp)C.ac.bonus.push({s:EA+" (magic bonus)",v:EAp});
+ if(ESH)C.ac.bonus.push({s:ESH+" ("+SRC+")",v:2+__R.baseOf(ESH).p});if(ESH)__R.classFx().forEach((e) =>{if(!e.shAc)return;let ex=0;e.shAc.forEach((r) =>{if(e.lv>=r[0])ex=r[1]});if(ex)C.ac.bonus.push({s:e.n+" ("+e.cls+" "+e.lv+")",v:ex})});/* generic: class fx.shAc, extra AC while a Shield is held (Warden Tower Shield) */__R.classFx().forEach((e) =>{if(!e.ac&&!e.acAb)return;if(e.cond==="armor"&&!ar)return;if(e.cond==="noArmor"&&(ar||ESH))return;let v=0;(e.ac||[]).forEach((r) =>{if(e.lv>=r[0])v=r[1]});if(e.acAb)v+=Math.max(e.acMin||0,mod(a.sc[e.acAb]));if(v)C.ac.bonus.push({s:e.n+" ("+e.cls+" "+e.lv+")",v:v})});/* generic: class fx.ac [[class level, bonus]] and fx.acAb (add an ability modifier), cond armor or noArmor */if(EAp)C.ac.bonus.push({s:EA+" (magic bonus)",v:EAp});
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.dwAC&&!ESH&&EW.filter((n) =>{const w=WEAPONS[__R.baseOf(n).b];return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});/* v69 */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.ac&&ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});/* M17: FEATS.ac (with armor) */
  if(sp&&sp.acBonus&&!custom)C.ac.bonus.push({s:sp.acBonus.s,v:sp.acBonus.v});
@@ -78,6 +79,7 @@ export function toSheet(){
  if(clsLv("Barbarian")>=5&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Fast Movement"}
  if(umOn&&monkLv>=2){const um=CLASSES.Monk.track["Unarmored Movement"][monkLv-1];spd+=parseInt(um);spSrc+=", "+um+" Unarmored Movement"}
  if(clsLv("Ranger")>=6&&!R14()&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Roving"}/* M8 (RL8): not in Heavy armor (PHB 2024 p. 121) */
+ __R.classFx().forEach((e) =>{if(!e.speed)return;if(e.cond==="noHeavy"&&ar&&ar.cat==="Heavy")return;if(e.cond==="noArmor"&&(ar||ESH))return;let v=0;e.speed.forEach((r) =>{if(e.lv>=r[0])v=r[1]});if(v){spd+=v;spSrc+=", +"+v+" "+e.n}});/* generic: class fx.speed [[class level, feet]], cond noHeavy or noArmor */
  clsParts().forEach((q) =>{if(q.sub==="Oath of Glory (2014)"&&q.lv>=7){spd+=10;spSrc+=", +10 Aura of Alacrity"}if(q.sub==="Scout"&&q.cls==="Rogue"&&q.lv>=9){spd+=10;spSrc+=", +10 Superior Mobility"}});/* v71 */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
  /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
@@ -91,6 +93,7 @@ export function toSheet(){
  /* HP and init */
  C.hpBonus=__R.hpBonusList();/* M4 (RL10): same list as hpCalc() */
  clsParts().forEach((q) =>{if((q.sub==="Gloom Stalker"||q.sub==="Gloom Stalker (2014)")&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Dread Ambusher/.test(x.s)}))C.initBonus.push({s:"Dread Ambusher: Wisdom modifier (PHB-2024, Gloom Stalker 3)",v:mod(a.sc.WIS)})});/* v35 p06 */clsParts().forEach((q) =>{if(q.sub==="Swashbuckler"&&q.cls==="Rogue"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Rakish Audacity/.test(x.s)}))C.initBonus.push({s:"Rakish Audacity (Swashbuckler 3): Charisma modifier",v:mod(a.sc.CHA)})});/* v71 */clsParts().forEach((q) =>{if(q.sub==="War Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Tactical Wit/.test(x.s)}))C.initBonus.push({s:"Tactical Wit (War Magic): Intelligence modifier",v:mod(a.sc.INT)})})
+__R.classFx().forEach((e) =>{if(e.init==null)return;const iv=typeof e.init==="number"?e.init:mod(a.sc[e.init]);if(iv)C.initBonus.push({s:e.n+" ("+e.cls+" "+e.lv+")",v:iv})});/* generic: class fx.init = number or ability key */
 /* v73 */clsParts().forEach((q) =>{if(q.sub==="Chronurgy Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Temporal Awareness/.test(x.s)}))C.initBonus.push({s:"Temporal Awareness (Chronurgy Magic): Intelligence modifier",v:mod(a.sc.INT)})});/* v71 */clsParts().forEach((q) =>{if(q.sub==="Oath of the Watchers"&&q.lv>=7&&!C.initBonus.some((x) =>{return /^Aura of the Sentinel/.test(x.s)}))C.initBonus.push({s:"Aura of the Sentinel (Oath of the Watchers 7): Proficiency Bonus",v:pb})});/* v71 */feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});else if(F&&typeof F.init==="number")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:F.init});if(F&&F.pas){C.pasBon=C.pasBon||[];Object.keys(F.pas).forEach((k) =>{C.pasBon.push({k:k,v:F.pas[k],s:f.n+" feat ("+f.s+")"})})}/* v69 */if(F&&F.grappler)C.grappler=true});/* M17: FEATS.init, FEATS.grappler */
  (function(){const sx=spX();if(sx&&(sx.traits||[]).some((t) =>{return t[0]==="Hare-Trigger"})&&!C.initBonus.some((x) =>{return /^Hare-Trigger/.test(x.s)}))C.initBonus.push({s:"Hare-Trigger (Harengon): Proficiency Bonus",v:pb})})();/* v56: Harengon adds PB to Initiative */
  /* proficiencies */

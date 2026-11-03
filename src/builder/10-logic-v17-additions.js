@@ -68,7 +68,7 @@ function pactList(){const o=[],seen={};__R.ensureInv().forEach((x) =>{const w=WE
 /* v32: cls = the class that owns the choice (its skill list), sub = its subclass. p.key replaces the key "p"+level+kind, p.feature names the feature card */
 /* v35 p19: options already chosen at another level of the same kind (maneuver, metamagic) leave this list; this key's own picks stay */
 function pkOthers(key,re){const mine=B.ch[key]||[],o={};Object.keys(B.ch||{}).forEach((k) =>{if(k!==key&&re.test(k)&&Array.isArray(B.ch[k]))B.ch[k].forEach((n) =>{if(mine.indexOf(n)<0)o[n]=1})});return o}
-export function pk(p,src,cls,sub){const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
+export function pk(p,src,cls,sub,pre){if(p.when){/* generic: the pick shows only while another pick holds the value (when:{key,val}), e.g. Warden Stalwart Spirit */const wv=B.ch[(pre||"")+p.when.key],wa=Array.isArray(wv)?wv:(wv?[wv]:[]);if(wa.indexOf(p.when.val)<0)return null}const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
  if(p.k==="skill")return Object.assign(o,{t:"skills",n:p.n,from:p.from==="all"?ALLSK:p.from||(CLASSES[cls]||CL()).sk.from,title:p.title||"Extra class skill",ex:p.ex?1:0});
  if(p.k==="expertise")return Object.assign(o,{t:"exp",n:p.n,from:p.from,title:"Expertise",feature:p.feature||"Expertise"});
  if(p.yc)o.yc=1;if(p.ytx)o.ytx=1;const plv=__R.clsLv(cls||B.cls)||B.level;

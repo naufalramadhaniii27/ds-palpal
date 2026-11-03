@@ -38,6 +38,10 @@ export function resMax(r,a){const L=B.level;if(Array.isArray(r.max))return r.max
 /* M10: features of any class at its own level (classFeatures() = main class). clsParts(): main class first, then multiclass */
 export function featsOf(cls,L){const c=CLASSES[cls],seen={},out=[];c.f.forEach((x) =>{if(x[0]<=L){const k=x[1];if(seen[k]!=null&&x[1]!=="Expertise"&&x[1]!=="Improved Brutal Strike"){out[seen[k]]=x;return}seen[k]=out.length;out.push(x)}});return out}
 export function classFeatures(){return featsOf(B.cls,B.level)}
+/* Generic class effects from data: CLASSES[cls].fx = [{n,l,when:{key,val},shAc:[[lvl,extra]],hp:"con+lvl",saveFrom:key}]. An entry counts from class level l (default 1) and only while the pick named in when holds the value.
+   shAc = extra AC when a Shield is held, hp:"con+lvl" = Hit Point maximum rises by CON modifier plus class level, saveFrom = key of a pick that names a saving throw proficiency. Data brings new effects without code per name */
+export function classFx(){const out=[];let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];((c&&c.fx)||[]).forEach((e) =>{if(q.lv<(e.l||1))return;if(e.when){const v=B.ch[pre+e.when.key],a=Array.isArray(v)?v:(v?[v]:[]);if(a.indexOf(e.when.val)<0)return}out.push(Object.assign({cls:q.cls,lv:q.lv,mc:q.mc,pre:pre},e))})});return out}
+Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
 export function isThird3(x){return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}

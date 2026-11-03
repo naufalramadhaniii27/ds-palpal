@@ -45,7 +45,7 @@ function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],
  if(c.wm&&!R14())out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */
  if(c.fs&&m.lv>=c.fs){out.push({key:p+"fs",mc:i,lvl:c.fs,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:src(c.fs),feature:"Fighting Style"});
   const fv=B.ch[p+"fs"];if(fv==="Blessed Warrior"||fv==="Druidic Warrior"){const cl2=fv==="Blessed Warrior"?"Cleric":"Druid";out.push({key:p+"bwc",mc:i,lvl:c.fs,t:"multi",n:2,list:SPELLS.filter((x) =>{return !x[1]&&x[3].indexOf(cl2)>=0}).map((x) =>{return [x[0],x[11]]}),title:fv+" cantrips",src:src(c.fs),feature:"Fighting Style"})}}/* v32 RL49 no. 42 */
- (c.pick||[]).forEach((q) =>{if(m.lv>=q.l){const o=pk(q,m.cls+" "+q.l,m.cls);if(!o)return;o.key=p+o.key;o.mc=i;if(o.list===INVOCATIONS)o.lvCap=m.lv;/* v32: level of this class */if(o.t==="skills"||o.t==="exp")o.src=src(q.l);out.push(o)}});/* v32 RL49 no. 40: Primal Knowledge too */
+ (c.pick||[]).forEach((q) =>{if(m.lv>=q.l){const o=pk(q,m.cls+" "+q.l,m.cls,undefined,p);if(!o)return;o.key=p+o.key;o.mc=i;if(o.list===INVOCATIONS)o.lvCap=m.lv;/* v32: level of this class */if(o.t==="skills"||o.t==="exp")o.src=src(q.l);out.push(o)}});/* v32 RL49 no. 40: Primal Knowledge too */
  /* M10: Rogue 1 (Thieves' Cant: one more language) and Ranger 2 (Deft Explorer: two languages) also as a multiclass */
  if(m.cls==="Rogue"&&!R14())out.push({key:p+"langRogue",mc:i,lvl:1,t:"lang",n:1,from:LANGS,title:"Extra language",src:src(1),feature:"Thieves' Cant"});
  if(m.cls==="Ranger"&&m.lv>=2&&!R14())out.push({key:p+"langRanger",mc:i,lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:src(2),feature:"Deft Explorer"}); if(m.lv>=subLv(m.cls))out.push({key:p+"sub",mc:i,lvl:subLv(m.cls),t:"mcsub",title:subLbl(m.cls),src:src(subLv(m.cls))});
@@ -66,6 +66,7 @@ export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.leve
 /* M17: read from data. SPECIES.hpPerLevel (+hpName), CLASSES.*.hpSub[sub] {v per class level, from level l}, FEATS.hp (per level) and hpFlat */
 function hpBonusList(){const o=[],L=TL(),spx=SPECIES[B.species];if(spx&&spx.hpPerLevel)o.push({s:(spx.hpName||B.species)+" ("+(spx.hb||SRC)+")",v:spx.hpPerLevel*L});
  [[B.cls,B.sub,B.level,0]].concat(MCL().map((m) =>{return [m.cls,m.sub,m.lv,1]})).forEach((q) =>{const h=(CLASSES[q[0]].hpSub||{})[q[1]];if(h&&q[2]>=h.l)o.push({s:h.n+" ("+SRC+(q[3]?", "+q[0]+" "+q[2]+", multiclass":"")+")",v:h.v*q[2]})});
+ __R.classFx().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.n+" ("+e.cls+" "+e.lv+")",v:mod(abil().sc.CON)+e.lv})});/* generic: class fx.hp */
  allFeats().forEach((f) =>{const F=FEATS[f.n];if(F&&F.hp)o.push({s:f.n+" feat ("+f.s+")",v:F.hp*L});if(F&&F.hpFlat)o.push({s:f.n,v:F.hpFlat})});return o}
 function toSheetHpBonus(){return hpBonusList().reduce((t,x) =>{return t+x.v},0)}
 function casterLv(cls,sub,lv){const c=CLASSES[cls];if(c.caster==="full")return lv;if(c.caster==="half")return R14()&&!c.a14?Math.floor(lv/2):Math.ceil(lv/2);/* v92: 2014 Paladin and Ranger count half their levels rounded down */if(isThird3(sub))return Math.floor(lv/3);return 0}
