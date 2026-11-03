@@ -1,7 +1,7 @@
 {
- "commit": "c87fb0d5",
+ "commit": "9e3f547a",
  "branch": "nilai-98/n36",
- "date": "2026-11-03 02:18",
+ "date": "2026-11-03 02:27",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -183,7 +183,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "pattern_lint",
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.24,
- "secs": 48
+ "secs": 47
 }
