@@ -30,7 +30,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H02 | species/centaur, species/changeling, species/custom, species/dhampir | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H05 | species/githzerai, species/gnome, species/goblin, species/goliath | claimed by codex-session-1 2026-11-03T01:43:20+00:00 |
+| H05 | species/githzerai, species/gnome, species/goblin, species/goliath | needs review: cells 1–4; regenerated once; strict rule 5 alpha255 check fails (0.078% opaque and edge/gap residue; alpha mostly 252/253) |
 | H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H07 | species/human, species/kalashtar, species/kenku, species/kobold | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
