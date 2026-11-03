@@ -169,3 +169,11 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - `tests/a11y_tree.py` mengambil pohon aksesibilitas (CDP) di 74 layar.
 - Acuan: 17.756 kontrol, 6 tanpa nama (semua `combobox` di layar builder).
 - Acuan disimpan di `tests/a11y/tree.json` dan `tests/a11y/unnamed.json`. Jumlah tanpa nama tidak boleh naik.
+
+## N36: firewall edisi (versi ringan)
+
+- Kode nyata: edisi tidak disimpan per record. Data 2014 menimpa tabel hidup (`sp14Set`, `eq14Set`, `dm14Set`) lalu dikembalikan.
+- Karena itu tag `ed` per record dan `edCheck` belum dibuat. Itu butuh perubahan di semua titik derive dan belum dikerjakan.
+- Yang dikerjakan: `tests/edition_isolation.py`. Tes menyimpan hash 12 tabel hidup (2024), menyalakan 2014 (7 tabel berubah), mematikan, lalu membandingkan hash. Ditambah urutan acak nyala dan mati per seed (10 seed). Hasil: 0 kebocoran.
+- Urutan kunci objek bergeser setelah nyala-mati (`SPELL_FX`), nilainya sama. Hash tidak peduli urutan kunci.
+- Tes masuk Job A (`tools/run_jobs.py` dan `tests.yml`).
