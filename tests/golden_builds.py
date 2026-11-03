@@ -52,7 +52,7 @@ def main():
     with sync_playwright() as p:
         br = p.chromium.launch()
         pg = br.new_page(viewport={'width': 1250, 'height': 850})
-        errs = []
+        errs = []; pg.set_default_timeout(180000)
         pg.on('pageerror', lambda e: errs.append(str(e)))
         pg.goto('file://' + ROOT + '/index.html')
         pg.wait_for_timeout(1500)
@@ -107,6 +107,22 @@ def main():
                 got = D.get(k)
                 if got != v:
                     fails.append(f'{fn}: {k} = {got} expected {v} ({g.get("why","")})')
+            # optional "expectC": values read from the sheet (C) by a dotted path. A list is searched by its "n" or "m" key,
+            # e.g. "skills.History.p", "moves.climb.v", "ac.base". A missing value reads as null.
+            for path, v in (g.get('expectC') or {}).items():
+                n += 1
+                cur = C
+                for part in path.split('.'):
+                    if isinstance(cur, list):
+                        cur = next((x for x in cur if isinstance(x, dict) and part in (x.get('n'), x.get('m'))), None)
+                    elif isinstance(cur, dict):
+                        cur = cur.get(part)
+                    else:
+                        cur = None
+                    if cur is None:
+                        break
+                if cur != v:
+                    fails.append(f'{fn}: C.{path} = {cur} expected {v} ({g.get("why","")})')
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

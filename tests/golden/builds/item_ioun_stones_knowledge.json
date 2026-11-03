@@ -1,0 +1,76 @@
+{
+ "why": "Ioun stones of knowledge: proficiency in History, Nature or Religion, or +1 to checks with the skill when already proficient. History comes from the class pick here, so it gets +1, Nature and Religion become proficient.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "clsk": [
+    "History",
+    "Perception"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "llk": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Ioun Stone, Historical Knowledge",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Ioun Stone, Natural Knowledge",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Ioun Stone, Religious Knowledge",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "skills.History.p": 1,
+  "skills.History.misc": 1,
+  "skills.Nature.p": 1,
+  "skills.Nature.misc": null,
+  "skills.Religion.p": 1,
+  "skills.Religion.misc": null,
+  "skills.Arcana.p": null
+ }
+}

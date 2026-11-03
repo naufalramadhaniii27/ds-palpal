@@ -92,6 +92,18 @@ case('sub entry', {'sub': {'Champion': [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C
 ITEM = 'Ring of Protection'
 case('item not equipped gives nothing', {'item': {ITEM: [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'unequipped item counted'), {'inv': [{'n': ITEM, 'q': 1}]})
 case('item equipped and attuned', {'item': {ITEM: [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3 and has(C1['hpBonus'], 's', 'magic item, attuned'), json.dumps(C1['hpBonus'])), {'inv': [{'n': ITEM, 'q': 1, 'eq': 1}]})
+# batch D: acOver, acBase ability "cast", skillProfPlus, FXO override table, item entry on an item row without fx
+case('acBase acOver beats the worn armor', species({'n': 'T', 'acBase': [17, ''], 'acOver': True}), lambda C0, C1, D0, D1: ok(acsum(C0) == 16 and D1['ac'] == 17 and 'worn armor' in C1['ac']['baseSrc'], 'AC %s -> %s %s' % (D0['ac'], D1['ac'], C1['ac']['baseSrc'])))
+case('acBase acOver never lowers the AC', species({'n': 'T', 'acBase': [12, ''], 'acOver': True}), lambda C0, C1, D0, D1: ok(D1['ac'] == D0['ac'], 'AC %s -> %s' % (D0['ac'], D1['ac'])))
+case('acBase without acOver is ignored in armor', species({'n': 'T', 'acBase': [17, '']}), lambda C0, C1, D0, D1: ok(D1['ac'] == D0['ac'], 'AC %s -> %s' % (D0['ac'], D1['ac'])))
+case('acBase cast ability (Wizard INT 20)', species({'n': 'T', 'acBase': [10, '', 'cast']}), lambda C0, C1, D0, D1: ok(D0['ac'] == 12 and D1['ac'] == 15, 'AC %s -> %s' % (D0['ac'], D1['ac'])),
+     {'cls': 'Wizard', 'eqC': 'none', 'eqB': 'none', 'base': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}, 'arr': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}})
+case('acBase cast ability without a spellcasting class does nothing', species({'n': 'T', 'acBase': [10, '', 'cast']}), lambda C0, C1, D0, D1: ok(D1['ac'] == D0['ac'], 'AC %s -> %s' % (D0['ac'], D1['ac'])), NOARM)
+case('skillProfPlus gives proficiency', species({'n': 'T', 'skillProfPlus': ['Arcana']}), lambda C0, C1, D0, D1: ok(skill(C1, 'Arcana').get('p') == 1 and not skill(C1, 'Arcana').get('misc'), json.dumps(skill(C1, 'Arcana'))))
+case('skillProfPlus adds +1 when already proficient', species({'n': 'T', 'skillProfPlus': ['Athletics']}), lambda C0, C1, D0, D1: ok(skill(C1, 'Athletics').get('p') == 1 and skill(C1, 'Athletics').get('misc') == 1, json.dumps(skill(C1, 'Athletics'))))
+case('FXO fx:null drops the row fx', {'__fxo': {ITEM: {'fx': None}}}, lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) - 1, 'AC %s -> %s' % (acsum(C0), acsum(C1))), {'inv': [{'n': ITEM, 'q': 1, 'eq': 1}]})
+case('FXO fx replaces the row fx', {'__fxo': {ITEM: {'fx': {'ac': 3}}}}, lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2, 'AC %s -> %s' % (acsum(C0), acsum(C1))), {'inv': [{'n': ITEM, 'q': 1, 'eq': 1}]})
+case('GX.item entry on an item row without fx', {'item': {'Sprinting Legs': [{'n': 'T', 'speedAdd': 10}]}}, lambda C0, C1, D0, D1: ok(C1['speed'] == C0['speed'] + 10, 'speed %s -> %s' % (C0['speed'], C1['speed'])), {'inv': [{'n': 'Sprinting Legs', 'q': 1, 'eq': 1}], 'src': {'core': True, 'tvss': True}})
 
 
 def main():
@@ -107,7 +119,7 @@ def main():
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
         def run(b, gx):
-            pg.evaluate("g=>{window.GX=g}", gx)
+            pg.evaluate("g=>{window.FXO=g.__fxo||{};window.GX=g}", gx)
             C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
 

@@ -1,1314 +1,1034 @@
 {
-"by_design": {},
-"gaps": {
-"class|Artificer|Advanced Artifice": [
-"uses"
-],
-"class|Barbarian|Brutal Strike": [
-"choice"
-],
-"class|Barbarian|Feral Instinct": [
-"init"
-],
-"class|Captain|Cohort": [
-"choice"
-],
-"class|Craftsman|Armor Enchantment": [
-"speed",
-"resist"
-],
-"class|Craftsman|Customize Armor": [
-"speed"
-],
-"class|Craftsman|Magnum Opus": [
-"choice"
-],
-"class|Craftsman|Masterwork Armor": [
-"ac"
-],
-"class|Craftsman|Spellwrought Armor": [
-"save"
-],
-"class|Dancer|Dance Styles": [
-"choice"
-],
-"class|Dancer|Freestyle": [
-"choice"
-],
-"class|Healer|Expert Physician": [
-"choice"
-],
-"class|Investigator|Expertise": [
-"choice"
-],
-"class|Investigator|Exploit Weakness": [
-"choice"
-],
-"class|Martyr|Armor of Faith": [
-"ac",
-"choice"
-],
-"class|Rogue|Thieves' Cant": [
-"choice"
-],
-"class|Summoner|Shared Spellcasting": [
-"choice"
-],
-"feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": [
-"uses"
-],
-"feat|Ability Score Improvement|Ability Score Improvement": [
-"choice"
-],
-"feat|Artillerist (Dark Matter)|Artillerist (Dark Matter)": [
-"choice"
-],
-"feat|Athlete|Athlete": [
-"speed"
-],
-"feat|Battlecaster|Battlecaster": [
-"choice"
-],
-"feat|Blessed Warrior|Blessed Warrior": [
-"choice"
-],
-"feat|Clairvoyant Warrior|Clairvoyant Warrior": [
-"uses",
-"choice"
-],
-"feat|Conjuration Adept|Conjuration Adept": [
-"save"
-],
-"feat|Convincing Inquisitor|Convincing Inquisitor": [
-"init"
-],
-"feat|Deathbound|Deathbound": [
-"uses"
-],
-"feat|Dilettante|Dilettante": [
-"skill",
-"choice"
-],
-"feat|Dragonrider|Dragonrider": [
-"choice"
-],
-"feat|Dragonscarred|Dragonscarred": [
-"resist"
-],
-"feat|Dragonsmith|Dragonsmith": [
-"resist"
-],
-"feat|Druidic Warrior|Druidic Warrior": [
-"choice"
-],
-"feat|Echoing Soul|Echoing Soul": [
-"save",
-"speed"
-],
-"feat|Elemental Adept (2014)|Elemental Adept (2014)": [
-"resist",
-"choice"
-],
-"feat|Elemental Adept|Elemental Adept": [
-"resist"
-],
-"feat|Elemental Familiar|Elemental Familiar": [
-"resist"
-],
-"feat|Fey Transformation: Stage 4|Fey Transformation: Stage 4": [
-"resist"
-],
-"feat|Field Medic|Field Medic": [
-"uses"
-],
-"feat|Fiend Transformation: Stage 1|Fiend Transformation: Stage 1": [
-"resist"
-],
-"feat|Fiend Transformation: Stage 3|Fiend Transformation: Stage 3": [
-"uses"
-],
-"feat|Fiend Transformation: Stage 4|Fiend Transformation: Stage 4": [
-"resist"
-],
-"feat|Fighting Initiate|Fighting Initiate": [
-"fstyle"
-],
-"feat|Greater Mark of Storm|Greater Mark of Storm": [
-"speed"
-],
-"feat|Hag Transformation: Stage 1|Hag Transformation: Stage 1": [
-"ac",
-"save"
-],
-"feat|Insightful Collector|Insightful Collector": [
-"choice"
-],
-"feat|Lakshay: Oni|Lakshay: Oni": [
-"save",
-"skill"
-],
-"feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1": [
-"resist"
-],
-"feat|Lords' Alliance Agent|Lords' Alliance Agent": [
-"choice"
-],
-"feat|Lycanthrope Transformation: Stage 2|Lycanthrope Transformation: Stage 2": [
-"resist"
-],
-"feat|Lycanthrope Transformation: Stage 4|Lycanthrope Transformation: Stage 4": [
-"resist"
-],
-"feat|Mobile Combatant|Mobile Combatant": [
-"speed"
-],
-"feat|Multiscale|Multiscale": [
-"resist"
-],
-"feat|Ooze Transformation: Stage 1|Ooze Transformation: Stage 1": [
-"resist",
-"uses"
-],
-"feat|Otherworldly Familiar|Otherworldly Familiar": [
-"resist"
-],
-"feat|Poisoner (2014)|Poisoner (2014)": [
-"resist"
-],
-"feat|Primordial Transformation: Stage 1|Primordial Transformation: Stage 1": [
-"resist",
-"choice"
-],
-"feat|Quori Bond|Quori Bond": [
-"uses"
-],
-"feat|Resolution of the Syndicate|Resolution of the Syndicate": [
-"hp",
-"init"
-],
-"feat|Scion of the Outer Planes|Scion of the Outer Planes": [
-"resist"
-],
-"feat|Seraph Transformation: Stage 1|Seraph Transformation: Stage 1": [
-"resist"
-],
-"feat|Shadowsteel Adept|Shadowsteel Adept": [
-"save"
-],
-"feat|Silver-Tongued|Silver-Tongued": [
-"choice"
-],
-"feat|Specter Transformation: Stage 1|Specter Transformation: Stage 1": [
-"hp",
-"resist"
-],
-"feat|Spell Subterfuge|Spell Subterfuge": [
-"uses"
-],
-"feat|Spellfire Adept|Spellfire Adept": [
-"resist"
-],
-"feat|Star and Shadow Reader|Star and Shadow Reader": [
-"resist"
-],
-"feat|Superior Shifting|Superior Shifting": [
-"uses"
-],
-"feat|Technical|Technical": [
-"choice"
-],
-"feat|The Firm: Contractor|The Firm: Contractor": [
-"skill"
-],
-"feat|Transmutation Adept|Transmutation Adept": [
-"speed"
-],
-"feat|Unarmed Fighting|Unarmed Fighting": [
-"choice"
-],
-"feat|Vampire Transformation: Stage 1|Vampire Transformation: Stage 1": [
-"resist"
-],
-"feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3": [
-"resist"
-],
-"feat|Versatile Passenger|Versatile Passenger": [
-"save"
-],
-"feat|Worthless|Worthless": [
-"choice"
-],
-"feat|Zhentarim Ruffian|Zhentarim Ruffian": [
-"init"
-],
-"item|au|Arcanist's Bestiary": [
-"skill"
-],
-"item|bgg|Wayfarer's Boots": [
-"speed"
-],
-"item|bmt|Deck of Many More Things": [
-"ac",
-"skill"
-],
-"item|bmt|Deck of Wonder": [
-"hp",
-"init"
-],
-"item|bmt|Shield of the Tortoise": [
-"speed"
-],
-"item|cos|Dark Gift of Yog the Invincible": [
-"hp"
-],
-"item|cos|Shield of the Silver Dragon": [
-"init"
-],
-"item|dmg|+1 Soulbind Chains": [
-"ac"
-],
-"item|dmg|+2 Soulbind Chains": [
-"ac"
-],
-"item|dmg|+3 Soulbind Chains": [
-"ac"
-],
-"item|dmg|Amulet of the Spirit Caller": [
-"ac"
-],
-"item|dmg|Arcanist's Bestiary": [
-"skill"
-],
-"item|dmg|Barricade Shield": [
-"speed"
-],
-"item|dmg|Berserker Axe": [
-"hp"
-],
-"item|dmg|Black Dragon Mask": [
-"ac"
-],
-"item|dmg|Blue Dragon Mask": [
-"ac"
-],
-"item|dmg|Boots of the Vigilant": [
-"init"
-],
-"item|dmg|Cloak of Displacement": [
-"speed"
-],
-"item|dmg|Crown of Daffodils": [
-"skill"
-],
-"item|dmg|Dark Gift of Yog the Invincible": [
-"hp"
-],
-"item|dmg|Deck of Many More Things": [
-"ac",
-"skill"
-],
-"item|dmg|Deck of Several Things": [
-"skill"
-],
-"item|dmg|Deck of Wonder": [
-"hp",
-"init"
-],
-"item|dmg|Doublet of Dramatic Demise": [
-"speed"
-],
-"item|dmg|Draconic Rebirth": [
-"skill"
-],
-"item|dmg|Exo-Frame": [
-"ac"
-],
-"item|dmg|Greaves of Dendallen": [
-"speed"
-],
-"item|dmg|Green Dragon Mask": [
-"ac"
-],
-"item|dmg|Harkon's Bite": [
-"skill"
-],
-"item|dmg|Horseshoes of Speed": [
-"speed"
-],
-"item|dmg|Ionbreaker, the Tempest's Reach": [
-"init"
-],
-"item|dmg|Ioun Stone, Historical Knowledge": [
-"skill"
-],
-"item|dmg|Ioun Stone, Natural Knowledge": [
-"skill"
-],
-"item|dmg|Ioun Stone, Religious Knowledge": [
-"skill"
-],
-"item|dmg|Karametra's Devotee": [
-"ac"
-],
-"item|dmg|Kruphix's Disciple": [
-"ac"
-],
-"item|dmg|Loadstone": [
-"speed"
-],
-"item|dmg|Mageplate Cap": [
-"ac"
-],
-"item|dmg|Mirror of Life Trapping": [
-"ac"
-],
-"item|dmg|Mythallar Cloak": [
-"ac"
-],
-"item|dmg|Orator's Quill": [
-"ac"
-],
-"item|dmg|Personality Module": [
-"skill"
-],
-"item|dmg|Potion of Giant Size": [
-"hp"
-],
-"item|dmg|Red Dragon Mask": [
-"ac"
-],
-"item|dmg|Ring of Anchoring": [
-"speed"
-],
-"item|dmg|Ring of Temporal Salvation": [
-"hp"
-],
-"item|dmg|Rope of Entanglement": [
-"ac"
-],
-"item|dmg|Sanctified Cannon": [
-"speed"
-],
-"item|dmg|Scalehide Cream": [
-"ac"
-],
-"item|dmg|Scorpion Armor": [
-"init"
-],
-"item|dmg|Shield of Yggdrasil": [
-"speed"
-],
-"item|dmg|Shield of the Silver Dragon": [
-"init"
-],
-"item|dmg|Shield of the Tortoise": [
-"speed"
-],
-"item|dmg|Spellwoven Robe": [
-"ac"
-],
-"item|dmg|Sprinting Legs": [
-"speed"
-],
-"item|dmg|Switch": [
-"ac"
-],
-"item|dmg|Teeth of Dahlver-Nar": [
-"hp"
-],
-"item|dmg|Thayan Spell Tattoo": [
-"skill"
-],
-"item|dmg|The Infernal Machine of Lum the Mad": [
-"ac",
-"init"
-],
-"item|dmg|Thuranni Cloak": [
-"speed"
-],
-"item|dmg|Titan Armor": [
-"ac"
-],
-"item|dmg|Tloques' Berserker Battleaxe": [
-"hp"
-],
-"item|dmg|War Standard of Battlecries": [
-"init"
-],
-"item|dmg|Wayfarer's Boots": [
-"speed"
-],
-"item|dmg|White Dragon Mask": [
-"ac"
-],
-"item|egw|Ring of Temporal Salvation": [
-"hp"
-],
-"item|ftd|Draconic Rebirth": [
-"skill"
-],
-"item|hof|Thayan Spell Tattoo": [
-"skill"
-],
-"item|imr|The Infernal Machine of Lum the Mad": [
-"ac",
-"init"
-],
-"item|llk|Deck of Several Things": [
-"skill"
-],
-"item|llk|Ioun Stone, Historical Knowledge": [
-"skill"
-],
-"item|llk|Ioun Stone, Natural Knowledge": [
-"skill"
-],
-"item|llk|Ioun Stone, Religious Knowledge": [
-"skill"
-],
-"item|misc14|Black Dragon Mask": [
-"ac"
-],
-"item|misc14|Blue Dragon Mask": [
-"ac"
-],
-"item|misc14|Green Dragon Mask": [
-"ac"
-],
-"item|misc14|Red Dragon Mask": [
-"ac"
-],
-"item|misc14|White Dragon Mask": [
-"ac"
-],
-"item|mot|Karametra's Devotee": [
-"ac"
-],
-"item|mot|Kruphix's Disciple": [
-"ac"
-],
-"item|nf|Mythallar Cloak": [
-"ac"
-],
-"item|rhw|Harkon's Bite": [
-"skill"
-],
-"item|skt|Potion of Giant Size": [
-"hp"
-],
-"item|tce|Teeth of Dahlver-Nar": [
-"hp"
-],
-"item|tdcsr|Boots of the Vigilant": [
-"init"
-],
-"item|tdcsr|Doublet of Dramatic Demise": [
-"speed"
-],
-"item|tee24|Thuranni Cloak": [
-"speed"
-],
-"item|tftyp|Loadstone": [
-"speed"
-],
-"item|tftyp|Tloques' Berserker Battleaxe": [
-"hp"
-],
-"item|thhw|Crown of Daffodils": [
-"skill"
-],
-"item|tkdm|Scalehide Cream": [
-"ac"
-],
-"item|toa|Scorpion Armor": [
-"init"
-],
-"item|tsdm|Exo-Frame": [
-"ac"
-],
-"item|tsdm|Personality Module": [
-"skill"
-],
-"item|tsdm|Titan Armor": [
-"ac"
-],
-"item|tsgeh|Sanctified Cannon": [
-"speed"
-],
-"item|tsgs|Barricade Shield": [
-"speed"
-],
-"item|tsgs|Greaves of Dendallen": [
-"speed"
-],
-"item|tsgs|Ionbreaker, the Tempest's Reach": [
-"init"
-],
-"item|tsgs|Mageplate Cap": [
-"ac"
-],
-"item|tsgs|Orator's Quill": [
-"ac"
-],
-"item|tsgs|Ring of Anchoring": [
-"speed"
-],
-"item|tsgs|Shield of Yggdrasil": [
-"speed"
-],
-"item|tsgs|Spellwoven Robe": [
-"ac"
-],
-"item|tsgs|Switch": [
-"ac"
-],
-"item|tsgs|War Standard of Battlecries": [
-"init"
-],
-"item|tssm|+1 Soulbind Chains": [
-"ac"
-],
-"item|tssm|+2 Soulbind Chains": [
-"ac"
-],
-"item|tssm|+3 Soulbind Chains": [
-"ac"
-],
-"item|tssm|Amulet of the Spirit Caller": [
-"ac"
-],
-"item|tvss|Sprinting Legs": [
-"speed"
-],
-"species|Ankylier|Osteoderms": [
-"ac"
-],
-"species|Kalashtar|Severed from Dreams": [
-"skill"
-],
-"species|Lorwyn Changeling|Unpredictable Movement": [
-"init"
-],
-"species|Manikin|Electric Heart": [
-"resist"
-],
-"species|Manikin|Living Material": [
-"resist"
-],
-"species|Orc (Dark Matter)|Follow Through": [
-"uses"
-],
-"species|Pluvenn|Pneumatised and Feathered": [
-"resist"
-],
-"species|Ruinbound|Unnatural Resilience": [
-"resist"
-],
-"species|Shifter (Beasthide)|Shifting Feature": [
-"ac"
-],
-"species|Shifter (Swiftstride)|Shifting Feature": [
-"speed"
-],
-"species|Skathári|Gliding Wings": [
-"resist"
-],
-"species|Troglodyte|Stench": [
-"resist"
-],
-"species|Vampire (Ixalan)|Blood Thirst": [
-"hp"
-],
-"species|Vampire (Ixalan)|Feast of Blood": [
-"speed"
-],
-"species|Vampire (Zendikar)|Blood Thirst": [
-"hp"
-],
-"sub|Alchemist/Mad Bomber|Blast Shield": [
-"choice"
-],
-"sub|Alchemist/Mutagenist|Advanced Mutation": [
-"speed",
-"choice"
-],
-"sub|Alchemist/Pigmentist|Paint Bombs": [
-"choice"
-],
-"sub|Alchemist/Xenoalchemist|Mad Scientist": [
-"choice"
-],
-"sub|Alchemist/Xenoalchemist|Xenobiology": [
-"skill",
-"choice"
-],
-"sub|Artificer/Reanimator|Macabre Modifications": [
-"speed",
-"choice"
-],
-"sub|Artificer/Reanimator|Strange Modifications": [
-"choice"
-],
-"sub|Barbarian/Path of Wild Magic|Wild Surge": [
-"ac",
-"save"
-],
-"sub|Barbarian/Path of the Beast|Bestial Soul": [
-"choice"
-],
-"sub|Barbarian/Path of the Beast|Form of the Beast": [
-"ac"
-],
-"sub|Barbarian/Path of the Dad|Not Angry, Just Disappointed": [
-"choice"
-],
-"sub|Barbarian/Path of the Dad|Paternal Proficiencies": [
-"choice"
-],
-"sub|Barbarian/Path of the Drifter|Lone Wolf": [
-"init"
-],
-"sub|Barbarian/Path of the Fractured|Mask of Civility": [
-"skill"
-],
-"sub|Barbarian/Path of the Muscle Wizard|\"Cantrips\"": [
-"choice"
-],
-"sub|Barbarian/Path of the Slasher|Blood-Drunk": [
-"ac"
-],
-"sub|Barbarian/Path of the Slasher|Mark of the Slasher": [
-"choice"
-],
-"sub|Barbarian/Path of the Wild Heart|Power of the Wilds": [
-"speed"
-],
-"sub|Barbarian/Path of the Wrecker|Steel Shredder": [
-"choice"
-],
-"sub|Bard/College of Adventurers|Well-Rounded": [
-"skill"
-],
-"sub|Bard/College of Birdsong|Birdsong": [
-"speed"
-],
-"sub|Bard/College of Birdsong|Chorus of the Sky": [
-"speed"
-],
-"sub|Bard/College of Birdsong|Feathered Friends": [
-"speed"
-],
-"sub|Bard/College of Choreography|Fast Movement": [
-"speed"
-],
-"sub|Bard/College of Creation|Mote of Potential": [
-"choice"
-],
-"sub|Bard/College of Cyberwave|Modulation": [
-"choice"
-],
-"sub|Bard/College of Dance|Dazzling Footwork": [
-"ac"
-],
-"sub|Bard/College of Dance|Tandem Footwork": [
-"init"
-],
-"sub|Bard/College of Origami|Origami Familiar": [
-"speed"
-],
-"sub|Bard/College of Requiems|Chilling Melody": [
-"choice"
-],
-"sub|Bard/College of Spirits (2014)|Mystical Connection": [
-"choice"
-],
-"sub|Bard/College of Spirits|Mystical Connection": [
-"choice"
-],
-"sub|Bard/College of Spirits|Spirits from Beyond": [
-"choice"
-],
-"sub|Bard/College of Valor (2014)|Combat Inspiration": [
-"ac"
-],
-"sub|Bard/College of the Dirge Singer|Commanding Voice": [
-"choice"
-],
-"sub|Bard/College of the Mad God|Outer Knowledge": [
-"skill"
-],
-"sub|Captain/Eagle Banner|Hundred-Arrow Volley": [
-"choice"
-],
-"sub|Captain/Eagle Banner|Vantage Point": [
-"speed"
-],
-"sub|Captain/Experiment X|Apex Mutation": [
-"choice"
-],
-"sub|Captain/Experiment X|Arcane Mutation": [
-"choice"
-],
-"sub|Captain/Experiment X|Bloody Rampage": [
-"choice"
-],
-"sub|Captain/Experiment X|Mutations": [
-"choice"
-],
-"sub|Captain/Gourmand|Monster Meal": [
-"ac",
-"hp",
-"save",
-"speed",
-"resist"
-],
-"sub|Captain/Jolly Roger|Dirty Tactics": [
-"choice"
-],
-"sub|Captain/Rōnin|Lone Wolf": [
-"init"
-],
-"sub|Captain/Troubadour|Folk Musician": [
-"skill",
-"choice"
-],
-"sub|Captain/Yellow Sign|Eldritch Herald": [
-"skill"
-],
-"sub|Cleric/Clockwork Domain|Channel Magic": [
-"choice"
-],
-"sub|Cleric/Community Domain|Paragon of the People": [
-"resist"
-],
-"sub|Cleric/Darkness Domain|Shadow Shield": [
-"hp"
-],
-"sub|Cleric/Grave Domain (2014)|Keeper of Souls": [
-"choice"
-],
-"sub|Cleric/Hunting Domain|Resolute Hunter": [
-"choice"
-],
-"sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": [
-"speed"
-],
-"sub|Cleric/Void Domain|Channel Divinity: Dark Secrets": [
-"choice"
-],
-"sub|Craftsman/Arcane Maesters' Guild|Arcane Apprenticeship": [
-"choice"
-],
-"sub|Craftsman/Armigers' Guild|Tower Shield": [
-"ac"
-],
-"sub|Craftsman/Bladeworkers' Guild|Bane Weapons": [
-"choice"
-],
-"sub|Craftsman/Calibarons' Guild|Exotic Ammunition": [
-"uses",
-"choice"
-],
-"sub|Craftsman/Luminaries' Guild|Improved Radiant Shell": [
-"ac"
-],
-"sub|Dancer/Acrobat|Tumbling": [
-"speed"
-],
-"sub|Dancer/Cheerleader|Squad Warmup": [
-"choice"
-],
-"sub|Dancer/Courtesan|Beguiling Charm": [
-"choice"
-],
-"sub|Dancer/Fey Ballerina|Sublime Start": [
-"speed"
-],
-"sub|Dancer/Marionettist|Familiar Doll": [
-"choice"
-],
-"sub|Dancer/Moonwalker|Ethereal Moonwalk": [
-"speed",
-"resist"
-],
-"sub|Dancer/Moonwalker|Moonwalk [Dance Style]": [
-"speed"
-],
-"sub|Druid/Circle of Mutation|Endless Evolution": [
-"speed",
-"resist"
-],
-"sub|Druid/Circle of Roses|Overpowering Remedy": [
-"choice"
-],
-"sub|Druid/Circle of Stars|Twinkling Constellations": [
-"speed"
-],
-"sub|Druid/Circle of Xenobiology|Adaptive Resilience": [
-"save"
-],
-"sub|Druid/Circle of the Moon (2014)|Primal Strike": [
-"resist"
-],
-"sub|Druid/Circle of the Sea|Aquatic Affinity": [
-"speed"
-],
-"sub|Druid/Circle of the Sea|Stormborn": [
-"speed"
-],
-"sub|Druid/Circle of the Stars|Twinkling Constellations": [
-"speed"
-],
-"sub|Fighter/Champion|Additional Fighting Style": [
-"fstyle"
-],
-"sub|Fighter/Champion|Remarkable Athlete": [
-"init"
-],
-"sub|Fighter/Cybernetic|Cybernetic Crafts": [
-"choice"
-],
-"sub|Fighter/Prescient Knight|Anticipatory Strike": [
-"ac"
-],
-"sub|Fighter/Purple Dragon Knight (Banneret)|Bulwark": [
-"choice"
-],
-"sub|Fighter/Purple Dragon Knight (Banneret)|Inspiring Surge": [
-"choice"
-],
-"sub|Fighter/Space Marine|Sustained Flight": [
-"speed"
-],
-"sub|Gadgeteer/AI Futurist|Novel Intelligence": [
-"choice"
-],
-"sub|Gadgeteer/Drone Jockey|Omega Upgrade": [
-"ac"
-],
-"sub|Healer/Vow of the Martyr|Martyr's Endurance": [
-"hp"
-],
-"sub|Healer/Vow of the Protector|Tether of Protection": [
-"save"
-],
-"sub|Healer/Vow of the Protector|Warding Essence": [
-"choice"
-],
-"sub|Healer/Vow of the Siphon|Life Leech": [
-"choice"
-],
-"sub|Investigator/Archivist|Thesis": [
-"choice"
-],
-"sub|Investigator/Conspiracy Theorist|Connect the Dots": [
-"skill",
-"choice"
-],
-"sub|Investigator/Conspiracy Theorist|Trinkets": [
-"choice"
-],
-"sub|Investigator/Infernum|Infernal Bargain": [
-"choice"
-],
-"sub|Investigator/Inquisitor|Exorcist's Doctrines": [
-"ac"
-],
-"sub|Investigator/Kid Sleuth|Animal Sidekick": [
-"skill",
-"choice"
-],
-"sub|Investigator/Kid Sleuth|Split Up, Gang": [
-"choice"
-],
-"sub|Investigator/Medium|Trinkets": [
-"speed"
-],
-"sub|Jaeger/Sanguine Chapter|Blood Frenzy": [
-"speed"
-],
-"sub|Jaeger/Sanguine Chapter|Blood Hex": [
-"choice"
-],
-"sub|Martyr/Burden of Fame|Entourage": [
-"ac"
-],
-"sub|Martyr/Burden of Levity|Sacrificial Shenanigans": [
-"choice"
-],
-"sub|Martyr/Burden of Levity|Zany Misdirection": [
-"choice"
-],
-"sub|Martyr/Burden of Mercy|Anointed Healer": [
-"hp"
-],
-"sub|Martyr/Burden of Mercy|Balm": [
-"choice"
-],
-"sub|Martyr/Burden of Mercy|Virtuous Blessings": [
-"init",
-"choice"
-],
-"sub|Martyr/Burden of Revolution|Aura of Tenacity": [
-"init"
-],
-"sub|Martyr/Burden of Revolution|Rallying Strike": [
-"choice"
-],
-"sub|Monk/Warrior of the Celestial|Heavenborne": [
-"speed"
-],
-"sub|Monk/Warrior of the Elements|Elemental Epitome": [
-"resist"
-],
-"sub|Monk/Warrior of the Elements|Stride of the Elements": [
-"speed"
-],
-"sub|Monk/Warrior of the Living Weapon|Manifest Blow": [
-"choice"
-],
-"sub|Monk/Warrior of the Living Weapon|Perfect Form": [
-"ac"
-],
-"sub|Monk/Warrior of the Mystic Arts|Spellcasting": [
-"choice"
-],
-"sub|Monk/Way of the Drunken Master|Drunken Technique": [
-"speed"
-],
-"sub|Monk/Way of the Kensei|Agile Parry": [
-"ac"
-],
-"sub|Monster Hunter/Trapper Guild|Ambusher's Advantage": [
-"init"
-],
-"sub|Monster Hunter/Trapper Guild|Monster-Hide Armor": [
-"ac",
-"choice"
-],
-"sub|Necromancer/Blood Ascendant|Nosferatu [Lichdom]": [
-"hp",
-"speed"
-],
-"sub|Necromancer/Crone|Baba Yaga [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Dead Mist Acolyte|Dead Mist Lord [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Death Knight|Imperator [Lichdom]": [
-"resist"
-],
-"sub|Necromancer/Necrodancer|Backup Dancers": [
-"ac"
-],
-"sub|Necromancer/Pharaoh|Mummy Lord [Lichdom]": [
-"hp"
-],
-"sub|Necromancer/Plague Lord|Corpulent Lich [Lichdom]": [
-"choice"
-],
-"sub|Necromancer/Plague Lord|Necrotoxin": [
-"resist"
-],
-"sub|Necromancer/Reanimator|Spell-Stitching": [
-"hp"
-],
-"sub|Necromancer/Reaper|Harbinger [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Reaper|Wraith Flight": [
-"speed"
-],
-"sub|Necromancer/Toymaker|Clockwork Lich [Lichdom]": [
-"resist",
-"choice"
-],
-"sub|Necromancer/Toymaker|Miniature Minions": [
-"ac",
-"choice"
-],
-"sub|Paladin/Oath of Glory|Aura of Alacrity": [
-"speed"
-],
-"sub|Paladin/Oath of Redemption|Emissary of Redemption": [
-"resist"
-],
-"sub|Paladin/Oath of Thunder|Aura of Alacrity": [
-"init"
-],
-"sub|Paladin/Oath of the Watchers|Aura of the Sentinel": [
-"choice"
-],
-"sub|Ranger/Beast Master (2014)|Ranger's Companion": [
-"ac",
-"hp"
-],
-"sub|Ranger/Drakewarden|Bond of Fang and Scale": [
-"speed"
-],
-"sub|Ranger/Freerunner|Evasive Fighter": [
-"ac"
-],
-"sub|Ranger/Gloom Stalker (2014)|Dread Ambusher": [
-"speed"
-],
-"sub|Ranger/Swarmkeeper|Gathered Swarm": [
-"choice"
-],
-"sub|Ranger/Vampire Slayer|Defensive Tactics": [
-"hp"
-],
-"sub|Rogue/Assassin|Assassinate": [
-"init"
-],
-"sub|Rogue/Assassin|Envenom Weapons": [
-"resist"
-],
-"sub|Rogue/Cyber Ninja|Covert Techniques": [
-"ac"
-],
-"sub|Rogue/Phantom (2014)|Whispers of the Dead": [
-"choice"
-],
-"sub|Rogue/Phantom|Whispers of the Dead": [
-"choice"
-],
-"sub|Rogue/Thief|Second-Story Work": [
-"speed"
-],
-"sub|Sorcerer/Aberrant Sorcery|Psychic Defenses": [
-"save"
-],
-"sub|Sorcerer/Apocalypse Sorcery|Forbidden Magic": [
-"choice"
-],
-"sub|Sorcerer/Elemental Essence|Elemental Soul": [
-"speed"
-],
-"sub|Sorcerer/Frost Sorcery|Frozen Body": [
-"hp"
-],
-"sub|Sorcerer/Pyromancer (PSK)|Heart of Fire": [
-"choice"
-],
-"sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge": [
-"ac",
-"choice"
-],
-"sub|Sorcerer/Wild Magic|Spell Bombardment": [
-"choice"
-],
-"sub|Summoner/Bond of the Dragon Herald|Draconic Realisation": [
-"speed"
-],
-"sub|Summoner/Bond of the Elemental Spirit|Elemental Eidolon": [
-"ac",
-"speed",
-"choice"
-],
-"sub|Summoner/Bond of the Elemental Spirit|Elemental Remodement": [
-"speed"
-],
-"sub|Summoner/Bond of the Faerie Trickster|Faerie Eidolon": [
-"speed"
-],
-"sub|Summoner/Bond of the Fiendish Chain|Dark Versatility": [
-"choice"
-],
-"sub|Summoner/Bond of the Monster Shaper|Monstrous Eidolon": [
-"choice"
-],
-"sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting": [
-"choice"
-],
-"sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": [
-"choice"
-],
-"sub|Vagabond/Eagle Banner|Vantage Point": [
-"speed"
-],
-"sub|Vagabond/Experiment X|Apex Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Arcane Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Bloody Rampage": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Mutations": [
-"choice"
-],
-"sub|Vagabond/Gourmand|Monster Meal": [
-"ac",
-"hp",
-"save",
-"speed"
-],
-"sub|Vagabond/Jolly Roger|Dirty Tactics": [
-"choice"
-],
-"sub|Vagabond/Jolly Roger|Scallywag": [
-"speed"
-],
-"sub|Vagabond/Mage Brand|Spellbranding": [
-"choice"
-],
-"sub|Vagabond/Rōnin|Lone Wolf": [
-"init"
-],
-"sub|Vagabond/Yellow Sign|Eldritch Herald": [
-"skill"
-],
-"sub|Warden/Diabolist|Soul Broker": [
-"speed",
-"skill",
-"choice"
-],
-"sub|Warden/Drake-Blooded|Spellcasting": [
-"choice"
-],
-"sub|Warden/Godsworn|Anointed Block": [
-"save"
-],
-"sub|Warden/Stoneheart Defender|Stonewall": [
-"ac"
-],
-"sub|Warden/Storm Sentinel|Storm Wings": [
-"speed"
-],
-"sub|Warlock/Celestial Patron|Radiant Soul": [
-"choice"
-],
-"sub|Warlock/Star Patron|Supernova": [
-"choice"
-],
-"sub|Warlock/The Parasite Patron|Symbiotic Sentinel": [
-"init"
-],
-"sub|Warlock/Vestige Patron|Vestige Companion": [
-"hp"
-],
-"sub|Warmage/Coalition Arcanist|Requisition": [
-"choice"
-],
-"sub|Warmage/House of Bishops|Arcane Study": [
-"skill",
-"choice"
-],
-"sub|Warmage/House of Darts|Bullseye": [
-"choice"
-],
-"sub|Warmage/House of Darts|Dagger Climb": [
-"speed"
-],
-"sub|Warmage/House of Knights|Fighting Style": [
-"choice",
-"fstyle"
-],
-"sub|Warmage/House of Pawns|Fundamental Mastery": [
-"choice"
-],
-"sub|Warmage/House of Pawns|Multidiscipline": [
-"save"
-],
-"sub|Warmage/House of Pawns|Pawn Wall": [
-"resist"
-],
-"sub|Warmage/House of Pawns|Promotion": [
-"choice"
-],
-"sub|Warmage/House of Rooks|Arcane Acrobat": [
-"skill",
-"choice"
-],
-"sub|Witch/Gingerbread Magic|Gingerbread Familiar": [
-"hp"
-],
-"sub|Witch/Green Magic|Primal Ally": [
-"hp"
-],
-"sub|Witch/Sky Magic|Corvid Familiar": [
-"ac",
-"speed"
-],
-"sub|Witch/Sky Magic|Feathered Heels": [
-"speed"
-],
-"sub|Witch/White Magic|Talisman of Protection": [
-"save"
-],
-"sub|Witch/White Magic|Witch's Gift": [
-"ac"
-],
-"sub|Wizard/Alkemancer|Craft Minor Elixir": [
-"choice"
-],
-"sub|Wizard/Alkemancer|Essence Mastery": [
-"ac"
-],
-"sub|Wizard/Chronomancer|Retroactive Spell": [
-"init"
-],
-"sub|Wizard/Doomsayer|Terrible Power": [
-"choice"
-],
-"sub|Wizard/Familiar Master|Servitor's Agility": [
-"speed"
-],
-"sub|Wizard/Fumaturge|Smoke Animals": [
-"speed"
-],
-"sub|Wizard/Gastronomer|Monster Meal": [
-"ac"
-],
-"sub|Wizard/Graviturgy Magic|Gravity Well": [
-"choice"
-],
-"sub|Wizard/Illuminator|Omen of Warning": [
-"init"
-],
-"sub|Wizard/Leyline Magic|Thrum of the Land": [
-"choice"
-],
-"sub|Wizard/Materializer|Arcane Artisan": [
-"choice"
-],
-"sub|Wizard/Necrophage|Feed on Life": [
-"hp",
-"resist"
-],
-"sub|Wizard/School of Evocation|Overchannel": [
-"uses"
-],
-"sub|Wizard/School of Evocation|Sculpt Spells": [
-"choice"
-],
-"sub|Wizard/School of Illumination|Omen of Warning": [
-"init"
-],
-"sub|Wizard/School of Necromancy|Undead Thralls": [
-"hp"
-],
-"sub|Wizard/Somnomancer|Somnambulist": [
-"speed"
-],
-"sub|Wizard/Spellhacker|Counter-Hack": [
-"choice"
-],
-"sub|Wizard/Transmuter|Transmuter's Stone": [
-"save",
-"speed"
-],
-"sub|Wizard/Universalist|Multidisciplinary Scholar": [
-"skill"
-],
-"sub|Wizard/Wand Wizard|Arcane Duelist": [
-"choice"
-],
-"sub|Wizard/War Magic|Deflecting Shroud": [
-"choice"
-]
-}
+ "by_design": {
+  "item|bmt|Shield of the Tortoise": "AC +1 already counted (AC 13). Speed halved only while cursed",
+  "item|cos|Dark Gift of Yog the Invincible": "HP max +30 for 10 days only",
+  "item|dmg|Amulet of the Spirit Caller": "Charges boost a summoned creature, not the wearer",
+  "item|dmg|Barricade Shield": "Planted form once per dawn, Speed 0 only while expanded. Normal Shield AC 12 counted",
+  "item|dmg|Boots of the Vigilant": "d8 added to initiative once per dawn",
+  "item|dmg|Cloak of Displacement": "Disadvantage on attacks against you, suppressed after damage. 'speed' only from 'Speed is 0' clause",
+  "item|dmg|Crown of Daffodils": "+1 checks and saves only while a daffodil is in bloom (1d4 per dawn). Save +1 already counted unconditionally",
+  "item|dmg|Dark Gift of Yog the Invincible": "HP max +30 for 10 days only",
+  "item|dmg|Deck of Several Things": "Random draw deck",
+  "item|dmg|Doublet of Dramatic Demise": "Triggers at 0 hit points",
+  "item|dmg|Draconic Rebirth": "Gift that replaces species, not a constant number",
+  "item|dmg|Horseshoes of Speed": "Affects the mount, not the wearer",
+  "item|dmg|Ionbreaker, the Tempest's Reach": "+1d10 Initiative (dice, not a fixed bonus). +3 attack and damage already counted",
+  "item|dmg|Karametra's Devotee": "+1 AC for 1 minute, once per Long Rest",
+  "item|dmg|Kruphix's Disciple": "+2 AC against ranged attacks only while Mage Hand is near",
+  "item|dmg|Loadstone": "Curse acts only after Dash or Disengage",
+  "item|dmg|Mageplate Cap": "Mage Armor with 2 charges, base AC 15 + DEX only after spending a charge",
+  "item|dmg|Mirror of Life Trapping": "AC is the mirror's own",
+  "item|dmg|Mythallar Cloak": "Active only for 1 minute per charge",
+  "item|dmg|Orator's Quill": "Quill, no numbers on the wearer",
+  "item|dmg|Personality Module": "Two skills depend on the module's personality, no fixed values",
+  "item|dmg|Potion of Giant Size": "24 hours",
+  "item|dmg|Ring of Anchoring": "Breathing, forced movement and conditional curse",
+  "item|dmg|Ring of Temporal Salvation": "Triggers on death",
+  "item|dmg|Rope of Entanglement": "Rope, no numbers on the wearer",
+  "item|dmg|Sanctified Cannon": "Cannon weapon, Speed clause belongs to charged shot",
+  "item|dmg|Scalehide Cream": "Natural AC 15 + CON for 1 hour, one dose each",
+  "item|dmg|Shield of the Tortoise": "AC +1 already counted (AC 13). Speed halved only while cursed",
+  "item|dmg|Switch": "Wild Shape use, weapon form",
+  "item|dmg|Thayan Spell Tattoo": "Grants one fixed prepared spell, no skill",
+  "item|dmg|The Infernal Machine of Lum the Mad": "Artifact, effects by charge. Not a constant bonus",
+  "item|dmg|Thuranni Cloak": "Disadvantage on attacks against you, pauses after damage",
+  "item|dmg|War Standard of Battlecries": "+3 Initiative only while the standard is extended, charge based",
+  "item|egw|Ring of Temporal Salvation": "Triggers on death",
+  "item|ftd|Draconic Rebirth": "Gift that replaces species, not a constant number",
+  "item|hof|Thayan Spell Tattoo": "Grants one fixed prepared spell, no skill",
+  "item|imr|The Infernal Machine of Lum the Mad": "Artifact, effects by charge. Not a constant bonus",
+  "item|llk|Deck of Several Things": "Random draw deck",
+  "item|mot|Karametra's Devotee": "+1 AC for 1 minute, once per Long Rest",
+  "item|mot|Kruphix's Disciple": "+2 AC against ranged attacks only while Mage Hand is near",
+  "item|nf|Mythallar Cloak": "Active only for 1 minute per charge",
+  "item|skt|Potion of Giant Size": "24 hours",
+  "item|tdcsr|Boots of the Vigilant": "d8 added to initiative once per dawn",
+  "item|tdcsr|Doublet of Dramatic Demise": "Triggers at 0 hit points",
+  "item|tee24|Thuranni Cloak": "Disadvantage on attacks against you, pauses after damage",
+  "item|tftyp|Loadstone": "Curse acts only after Dash or Disengage",
+  "item|thhw|Crown of Daffodils": "+1 checks and saves only while a daffodil is in bloom (1d4 per dawn). Save +1 already counted unconditionally",
+  "item|tkdm|Scalehide Cream": "Natural AC 15 + CON for 1 hour, one dose each",
+  "item|tsdm|Personality Module": "Two skills depend on the module's personality, no fixed values",
+  "item|tsgeh|Sanctified Cannon": "Cannon weapon, Speed clause belongs to charged shot",
+  "item|tsgs|Barricade Shield": "Planted form once per dawn, Speed 0 only while expanded. Normal Shield AC 12 counted",
+  "item|tsgs|Ionbreaker, the Tempest's Reach": "+1d10 Initiative (dice, not a fixed bonus). +3 attack and damage already counted",
+  "item|tsgs|Mageplate Cap": "Mage Armor with 2 charges, base AC 15 + DEX only after spending a charge",
+  "item|tsgs|Orator's Quill": "Quill, no numbers on the wearer",
+  "item|tsgs|Ring of Anchoring": "Breathing, forced movement and conditional curse",
+  "item|tsgs|Switch": "Wild Shape use, weapon form",
+  "item|tsgs|War Standard of Battlecries": "+3 Initiative only while the standard is extended, charge based",
+  "item|tssm|Amulet of the Spirit Caller": "Charges boost a summoned creature, not the wearer"
+ },
+ "gaps": {
+  "class|Artificer|Advanced Artifice": [
+   "uses"
+  ],
+  "class|Barbarian|Brutal Strike": [
+   "choice"
+  ],
+  "class|Barbarian|Feral Instinct": [
+   "init"
+  ],
+  "class|Captain|Cohort": [
+   "choice"
+  ],
+  "class|Craftsman|Armor Enchantment": [
+   "speed",
+   "resist"
+  ],
+  "class|Craftsman|Customize Armor": [
+   "speed"
+  ],
+  "class|Craftsman|Magnum Opus": [
+   "choice"
+  ],
+  "class|Craftsman|Masterwork Armor": [
+   "ac"
+  ],
+  "class|Craftsman|Spellwrought Armor": [
+   "save"
+  ],
+  "class|Dancer|Dance Styles": [
+   "choice"
+  ],
+  "class|Dancer|Freestyle": [
+   "choice"
+  ],
+  "class|Healer|Expert Physician": [
+   "choice"
+  ],
+  "class|Investigator|Expertise": [
+   "choice"
+  ],
+  "class|Investigator|Exploit Weakness": [
+   "choice"
+  ],
+  "class|Martyr|Armor of Faith": [
+   "ac",
+   "choice"
+  ],
+  "class|Rogue|Thieves' Cant": [
+   "choice"
+  ],
+  "class|Summoner|Shared Spellcasting": [
+   "choice"
+  ],
+  "feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": [
+   "uses"
+  ],
+  "feat|Ability Score Improvement|Ability Score Improvement": [
+   "choice"
+  ],
+  "feat|Artillerist (Dark Matter)|Artillerist (Dark Matter)": [
+   "choice"
+  ],
+  "feat|Athlete|Athlete": [
+   "speed"
+  ],
+  "feat|Battlecaster|Battlecaster": [
+   "choice"
+  ],
+  "feat|Blessed Warrior|Blessed Warrior": [
+   "choice"
+  ],
+  "feat|Clairvoyant Warrior|Clairvoyant Warrior": [
+   "uses",
+   "choice"
+  ],
+  "feat|Conjuration Adept|Conjuration Adept": [
+   "save"
+  ],
+  "feat|Convincing Inquisitor|Convincing Inquisitor": [
+   "init"
+  ],
+  "feat|Deathbound|Deathbound": [
+   "uses"
+  ],
+  "feat|Dilettante|Dilettante": [
+   "skill",
+   "choice"
+  ],
+  "feat|Dragonrider|Dragonrider": [
+   "choice"
+  ],
+  "feat|Dragonscarred|Dragonscarred": [
+   "resist"
+  ],
+  "feat|Dragonsmith|Dragonsmith": [
+   "resist"
+  ],
+  "feat|Druidic Warrior|Druidic Warrior": [
+   "choice"
+  ],
+  "feat|Echoing Soul|Echoing Soul": [
+   "save",
+   "speed"
+  ],
+  "feat|Elemental Adept (2014)|Elemental Adept (2014)": [
+   "resist",
+   "choice"
+  ],
+  "feat|Elemental Adept|Elemental Adept": [
+   "resist"
+  ],
+  "feat|Elemental Familiar|Elemental Familiar": [
+   "resist"
+  ],
+  "feat|Fey Transformation: Stage 4|Fey Transformation: Stage 4": [
+   "resist"
+  ],
+  "feat|Field Medic|Field Medic": [
+   "uses"
+  ],
+  "feat|Fiend Transformation: Stage 1|Fiend Transformation: Stage 1": [
+   "resist"
+  ],
+  "feat|Fiend Transformation: Stage 3|Fiend Transformation: Stage 3": [
+   "uses"
+  ],
+  "feat|Fiend Transformation: Stage 4|Fiend Transformation: Stage 4": [
+   "resist"
+  ],
+  "feat|Fighting Initiate|Fighting Initiate": [
+   "fstyle"
+  ],
+  "feat|Greater Mark of Storm|Greater Mark of Storm": [
+   "speed"
+  ],
+  "feat|Hag Transformation: Stage 1|Hag Transformation: Stage 1": [
+   "ac",
+   "save"
+  ],
+  "feat|Insightful Collector|Insightful Collector": [
+   "choice"
+  ],
+  "feat|Lakshay: Oni|Lakshay: Oni": [
+   "save",
+   "skill"
+  ],
+  "feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1": [
+   "resist"
+  ],
+  "feat|Lords' Alliance Agent|Lords' Alliance Agent": [
+   "choice"
+  ],
+  "feat|Lycanthrope Transformation: Stage 2|Lycanthrope Transformation: Stage 2": [
+   "resist"
+  ],
+  "feat|Lycanthrope Transformation: Stage 4|Lycanthrope Transformation: Stage 4": [
+   "resist"
+  ],
+  "feat|Mobile Combatant|Mobile Combatant": [
+   "speed"
+  ],
+  "feat|Multiscale|Multiscale": [
+   "resist"
+  ],
+  "feat|Ooze Transformation: Stage 1|Ooze Transformation: Stage 1": [
+   "resist",
+   "uses"
+  ],
+  "feat|Otherworldly Familiar|Otherworldly Familiar": [
+   "resist"
+  ],
+  "feat|Poisoner (2014)|Poisoner (2014)": [
+   "resist"
+  ],
+  "feat|Primordial Transformation: Stage 1|Primordial Transformation: Stage 1": [
+   "resist",
+   "choice"
+  ],
+  "feat|Quori Bond|Quori Bond": [
+   "uses"
+  ],
+  "feat|Resolution of the Syndicate|Resolution of the Syndicate": [
+   "hp",
+   "init"
+  ],
+  "feat|Scion of the Outer Planes|Scion of the Outer Planes": [
+   "resist"
+  ],
+  "feat|Seraph Transformation: Stage 1|Seraph Transformation: Stage 1": [
+   "resist"
+  ],
+  "feat|Shadowsteel Adept|Shadowsteel Adept": [
+   "save"
+  ],
+  "feat|Silver-Tongued|Silver-Tongued": [
+   "choice"
+  ],
+  "feat|Specter Transformation: Stage 1|Specter Transformation: Stage 1": [
+   "hp",
+   "resist"
+  ],
+  "feat|Spell Subterfuge|Spell Subterfuge": [
+   "uses"
+  ],
+  "feat|Spellfire Adept|Spellfire Adept": [
+   "resist"
+  ],
+  "feat|Star and Shadow Reader|Star and Shadow Reader": [
+   "resist"
+  ],
+  "feat|Superior Shifting|Superior Shifting": [
+   "uses"
+  ],
+  "feat|Technical|Technical": [
+   "choice"
+  ],
+  "feat|The Firm: Contractor|The Firm: Contractor": [
+   "skill"
+  ],
+  "feat|Transmutation Adept|Transmutation Adept": [
+   "speed"
+  ],
+  "feat|Unarmed Fighting|Unarmed Fighting": [
+   "choice"
+  ],
+  "feat|Vampire Transformation: Stage 1|Vampire Transformation: Stage 1": [
+   "resist"
+  ],
+  "feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3": [
+   "resist"
+  ],
+  "feat|Versatile Passenger|Versatile Passenger": [
+   "save"
+  ],
+  "feat|Worthless|Worthless": [
+   "choice"
+  ],
+  "feat|Zhentarim Ruffian|Zhentarim Ruffian": [
+   "init"
+  ],
+  "species|Ankylier|Osteoderms": [
+   "ac"
+  ],
+  "species|Kalashtar|Severed from Dreams": [
+   "skill"
+  ],
+  "species|Lorwyn Changeling|Unpredictable Movement": [
+   "init"
+  ],
+  "species|Manikin|Electric Heart": [
+   "resist"
+  ],
+  "species|Manikin|Living Material": [
+   "resist"
+  ],
+  "species|Orc (Dark Matter)|Follow Through": [
+   "uses"
+  ],
+  "species|Pluvenn|Pneumatised and Feathered": [
+   "resist"
+  ],
+  "species|Ruinbound|Unnatural Resilience": [
+   "resist"
+  ],
+  "species|Shifter (Beasthide)|Shifting Feature": [
+   "ac"
+  ],
+  "species|Shifter (Swiftstride)|Shifting Feature": [
+   "speed"
+  ],
+  "species|Skathári|Gliding Wings": [
+   "resist"
+  ],
+  "species|Troglodyte|Stench": [
+   "resist"
+  ],
+  "species|Vampire (Ixalan)|Blood Thirst": [
+   "hp"
+  ],
+  "species|Vampire (Ixalan)|Feast of Blood": [
+   "speed"
+  ],
+  "species|Vampire (Zendikar)|Blood Thirst": [
+   "hp"
+  ],
+  "sub|Alchemist/Mad Bomber|Blast Shield": [
+   "choice"
+  ],
+  "sub|Alchemist/Mutagenist|Advanced Mutation": [
+   "speed",
+   "choice"
+  ],
+  "sub|Alchemist/Pigmentist|Paint Bombs": [
+   "choice"
+  ],
+  "sub|Alchemist/Xenoalchemist|Mad Scientist": [
+   "choice"
+  ],
+  "sub|Alchemist/Xenoalchemist|Xenobiology": [
+   "skill",
+   "choice"
+  ],
+  "sub|Artificer/Reanimator|Macabre Modifications": [
+   "speed",
+   "choice"
+  ],
+  "sub|Artificer/Reanimator|Strange Modifications": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of Wild Magic|Wild Surge": [
+   "ac",
+   "save"
+  ],
+  "sub|Barbarian/Path of the Beast|Bestial Soul": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of the Beast|Form of the Beast": [
+   "ac"
+  ],
+  "sub|Barbarian/Path of the Dad|Not Angry, Just Disappointed": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of the Dad|Paternal Proficiencies": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of the Drifter|Lone Wolf": [
+   "init"
+  ],
+  "sub|Barbarian/Path of the Fractured|Mask of Civility": [
+   "skill"
+  ],
+  "sub|Barbarian/Path of the Muscle Wizard|\"Cantrips\"": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of the Slasher|Blood-Drunk": [
+   "ac"
+  ],
+  "sub|Barbarian/Path of the Slasher|Mark of the Slasher": [
+   "choice"
+  ],
+  "sub|Barbarian/Path of the Wild Heart|Power of the Wilds": [
+   "speed"
+  ],
+  "sub|Barbarian/Path of the Wrecker|Steel Shredder": [
+   "choice"
+  ],
+  "sub|Bard/College of Adventurers|Well-Rounded": [
+   "skill"
+  ],
+  "sub|Bard/College of Birdsong|Birdsong": [
+   "speed"
+  ],
+  "sub|Bard/College of Birdsong|Chorus of the Sky": [
+   "speed"
+  ],
+  "sub|Bard/College of Birdsong|Feathered Friends": [
+   "speed"
+  ],
+  "sub|Bard/College of Choreography|Fast Movement": [
+   "speed"
+  ],
+  "sub|Bard/College of Creation|Mote of Potential": [
+   "choice"
+  ],
+  "sub|Bard/College of Cyberwave|Modulation": [
+   "choice"
+  ],
+  "sub|Bard/College of Dance|Dazzling Footwork": [
+   "ac"
+  ],
+  "sub|Bard/College of Dance|Tandem Footwork": [
+   "init"
+  ],
+  "sub|Bard/College of Origami|Origami Familiar": [
+   "speed"
+  ],
+  "sub|Bard/College of Requiems|Chilling Melody": [
+   "choice"
+  ],
+  "sub|Bard/College of Spirits (2014)|Mystical Connection": [
+   "choice"
+  ],
+  "sub|Bard/College of Spirits|Mystical Connection": [
+   "choice"
+  ],
+  "sub|Bard/College of Spirits|Spirits from Beyond": [
+   "choice"
+  ],
+  "sub|Bard/College of Valor (2014)|Combat Inspiration": [
+   "ac"
+  ],
+  "sub|Bard/College of the Dirge Singer|Commanding Voice": [
+   "choice"
+  ],
+  "sub|Bard/College of the Mad God|Outer Knowledge": [
+   "skill"
+  ],
+  "sub|Captain/Eagle Banner|Hundred-Arrow Volley": [
+   "choice"
+  ],
+  "sub|Captain/Eagle Banner|Vantage Point": [
+   "speed"
+  ],
+  "sub|Captain/Experiment X|Apex Mutation": [
+   "choice"
+  ],
+  "sub|Captain/Experiment X|Arcane Mutation": [
+   "choice"
+  ],
+  "sub|Captain/Experiment X|Bloody Rampage": [
+   "choice"
+  ],
+  "sub|Captain/Experiment X|Mutations": [
+   "choice"
+  ],
+  "sub|Captain/Gourmand|Monster Meal": [
+   "ac",
+   "hp",
+   "save",
+   "speed",
+   "resist"
+  ],
+  "sub|Captain/Jolly Roger|Dirty Tactics": [
+   "choice"
+  ],
+  "sub|Captain/Rōnin|Lone Wolf": [
+   "init"
+  ],
+  "sub|Captain/Troubadour|Folk Musician": [
+   "skill",
+   "choice"
+  ],
+  "sub|Captain/Yellow Sign|Eldritch Herald": [
+   "skill"
+  ],
+  "sub|Cleric/Clockwork Domain|Channel Magic": [
+   "choice"
+  ],
+  "sub|Cleric/Community Domain|Paragon of the People": [
+   "resist"
+  ],
+  "sub|Cleric/Darkness Domain|Shadow Shield": [
+   "hp"
+  ],
+  "sub|Cleric/Grave Domain (2014)|Keeper of Souls": [
+   "choice"
+  ],
+  "sub|Cleric/Hunting Domain|Resolute Hunter": [
+   "choice"
+  ],
+  "sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": [
+   "speed"
+  ],
+  "sub|Cleric/Void Domain|Channel Divinity: Dark Secrets": [
+   "choice"
+  ],
+  "sub|Craftsman/Arcane Maesters' Guild|Arcane Apprenticeship": [
+   "choice"
+  ],
+  "sub|Craftsman/Armigers' Guild|Tower Shield": [
+   "ac"
+  ],
+  "sub|Craftsman/Bladeworkers' Guild|Bane Weapons": [
+   "choice"
+  ],
+  "sub|Craftsman/Calibarons' Guild|Exotic Ammunition": [
+   "uses",
+   "choice"
+  ],
+  "sub|Craftsman/Luminaries' Guild|Improved Radiant Shell": [
+   "ac"
+  ],
+  "sub|Dancer/Acrobat|Tumbling": [
+   "speed"
+  ],
+  "sub|Dancer/Cheerleader|Squad Warmup": [
+   "choice"
+  ],
+  "sub|Dancer/Courtesan|Beguiling Charm": [
+   "choice"
+  ],
+  "sub|Dancer/Fey Ballerina|Sublime Start": [
+   "speed"
+  ],
+  "sub|Dancer/Marionettist|Familiar Doll": [
+   "choice"
+  ],
+  "sub|Dancer/Moonwalker|Ethereal Moonwalk": [
+   "speed",
+   "resist"
+  ],
+  "sub|Dancer/Moonwalker|Moonwalk [Dance Style]": [
+   "speed"
+  ],
+  "sub|Druid/Circle of Mutation|Endless Evolution": [
+   "speed",
+   "resist"
+  ],
+  "sub|Druid/Circle of Roses|Overpowering Remedy": [
+   "choice"
+  ],
+  "sub|Druid/Circle of Stars|Twinkling Constellations": [
+   "speed"
+  ],
+  "sub|Druid/Circle of Xenobiology|Adaptive Resilience": [
+   "save"
+  ],
+  "sub|Druid/Circle of the Moon (2014)|Primal Strike": [
+   "resist"
+  ],
+  "sub|Druid/Circle of the Sea|Aquatic Affinity": [
+   "speed"
+  ],
+  "sub|Druid/Circle of the Sea|Stormborn": [
+   "speed"
+  ],
+  "sub|Druid/Circle of the Stars|Twinkling Constellations": [
+   "speed"
+  ],
+  "sub|Fighter/Champion|Additional Fighting Style": [
+   "fstyle"
+  ],
+  "sub|Fighter/Champion|Remarkable Athlete": [
+   "init"
+  ],
+  "sub|Fighter/Cybernetic|Cybernetic Crafts": [
+   "choice"
+  ],
+  "sub|Fighter/Prescient Knight|Anticipatory Strike": [
+   "ac"
+  ],
+  "sub|Fighter/Purple Dragon Knight (Banneret)|Bulwark": [
+   "choice"
+  ],
+  "sub|Fighter/Purple Dragon Knight (Banneret)|Inspiring Surge": [
+   "choice"
+  ],
+  "sub|Fighter/Space Marine|Sustained Flight": [
+   "speed"
+  ],
+  "sub|Gadgeteer/AI Futurist|Novel Intelligence": [
+   "choice"
+  ],
+  "sub|Gadgeteer/Drone Jockey|Omega Upgrade": [
+   "ac"
+  ],
+  "sub|Healer/Vow of the Martyr|Martyr's Endurance": [
+   "hp"
+  ],
+  "sub|Healer/Vow of the Protector|Tether of Protection": [
+   "save"
+  ],
+  "sub|Healer/Vow of the Protector|Warding Essence": [
+   "choice"
+  ],
+  "sub|Healer/Vow of the Siphon|Life Leech": [
+   "choice"
+  ],
+  "sub|Investigator/Archivist|Thesis": [
+   "choice"
+  ],
+  "sub|Investigator/Conspiracy Theorist|Connect the Dots": [
+   "skill",
+   "choice"
+  ],
+  "sub|Investigator/Conspiracy Theorist|Trinkets": [
+   "choice"
+  ],
+  "sub|Investigator/Infernum|Infernal Bargain": [
+   "choice"
+  ],
+  "sub|Investigator/Inquisitor|Exorcist's Doctrines": [
+   "ac"
+  ],
+  "sub|Investigator/Kid Sleuth|Animal Sidekick": [
+   "skill",
+   "choice"
+  ],
+  "sub|Investigator/Kid Sleuth|Split Up, Gang": [
+   "choice"
+  ],
+  "sub|Investigator/Medium|Trinkets": [
+   "speed"
+  ],
+  "sub|Jaeger/Sanguine Chapter|Blood Frenzy": [
+   "speed"
+  ],
+  "sub|Jaeger/Sanguine Chapter|Blood Hex": [
+   "choice"
+  ],
+  "sub|Martyr/Burden of Fame|Entourage": [
+   "ac"
+  ],
+  "sub|Martyr/Burden of Levity|Sacrificial Shenanigans": [
+   "choice"
+  ],
+  "sub|Martyr/Burden of Levity|Zany Misdirection": [
+   "choice"
+  ],
+  "sub|Martyr/Burden of Mercy|Anointed Healer": [
+   "hp"
+  ],
+  "sub|Martyr/Burden of Mercy|Balm": [
+   "choice"
+  ],
+  "sub|Martyr/Burden of Mercy|Virtuous Blessings": [
+   "init",
+   "choice"
+  ],
+  "sub|Martyr/Burden of Revolution|Aura of Tenacity": [
+   "init"
+  ],
+  "sub|Martyr/Burden of Revolution|Rallying Strike": [
+   "choice"
+  ],
+  "sub|Monk/Warrior of the Celestial|Heavenborne": [
+   "speed"
+  ],
+  "sub|Monk/Warrior of the Elements|Elemental Epitome": [
+   "resist"
+  ],
+  "sub|Monk/Warrior of the Elements|Stride of the Elements": [
+   "speed"
+  ],
+  "sub|Monk/Warrior of the Living Weapon|Manifest Blow": [
+   "choice"
+  ],
+  "sub|Monk/Warrior of the Living Weapon|Perfect Form": [
+   "ac"
+  ],
+  "sub|Monk/Warrior of the Mystic Arts|Spellcasting": [
+   "choice"
+  ],
+  "sub|Monk/Way of the Drunken Master|Drunken Technique": [
+   "speed"
+  ],
+  "sub|Monk/Way of the Kensei|Agile Parry": [
+   "ac"
+  ],
+  "sub|Monster Hunter/Trapper Guild|Ambusher's Advantage": [
+   "init"
+  ],
+  "sub|Monster Hunter/Trapper Guild|Monster-Hide Armor": [
+   "ac",
+   "choice"
+  ],
+  "sub|Necromancer/Blood Ascendant|Nosferatu [Lichdom]": [
+   "hp",
+   "speed"
+  ],
+  "sub|Necromancer/Crone|Baba Yaga [Lichdom]": [
+   "speed"
+  ],
+  "sub|Necromancer/Dead Mist Acolyte|Dead Mist Lord [Lichdom]": [
+   "speed"
+  ],
+  "sub|Necromancer/Death Knight|Imperator [Lichdom]": [
+   "resist"
+  ],
+  "sub|Necromancer/Necrodancer|Backup Dancers": [
+   "ac"
+  ],
+  "sub|Necromancer/Pharaoh|Mummy Lord [Lichdom]": [
+   "hp"
+  ],
+  "sub|Necromancer/Plague Lord|Corpulent Lich [Lichdom]": [
+   "choice"
+  ],
+  "sub|Necromancer/Plague Lord|Necrotoxin": [
+   "resist"
+  ],
+  "sub|Necromancer/Reanimator|Spell-Stitching": [
+   "hp"
+  ],
+  "sub|Necromancer/Reaper|Harbinger [Lichdom]": [
+   "speed"
+  ],
+  "sub|Necromancer/Reaper|Wraith Flight": [
+   "speed"
+  ],
+  "sub|Necromancer/Toymaker|Clockwork Lich [Lichdom]": [
+   "resist",
+   "choice"
+  ],
+  "sub|Necromancer/Toymaker|Miniature Minions": [
+   "ac",
+   "choice"
+  ],
+  "sub|Paladin/Oath of Glory|Aura of Alacrity": [
+   "speed"
+  ],
+  "sub|Paladin/Oath of Redemption|Emissary of Redemption": [
+   "resist"
+  ],
+  "sub|Paladin/Oath of Thunder|Aura of Alacrity": [
+   "init"
+  ],
+  "sub|Paladin/Oath of the Watchers|Aura of the Sentinel": [
+   "choice"
+  ],
+  "sub|Ranger/Beast Master (2014)|Ranger's Companion": [
+   "ac",
+   "hp"
+  ],
+  "sub|Ranger/Drakewarden|Bond of Fang and Scale": [
+   "speed"
+  ],
+  "sub|Ranger/Freerunner|Evasive Fighter": [
+   "ac"
+  ],
+  "sub|Ranger/Gloom Stalker (2014)|Dread Ambusher": [
+   "speed"
+  ],
+  "sub|Ranger/Swarmkeeper|Gathered Swarm": [
+   "choice"
+  ],
+  "sub|Ranger/Vampire Slayer|Defensive Tactics": [
+   "hp"
+  ],
+  "sub|Rogue/Assassin|Assassinate": [
+   "init"
+  ],
+  "sub|Rogue/Assassin|Envenom Weapons": [
+   "resist"
+  ],
+  "sub|Rogue/Cyber Ninja|Covert Techniques": [
+   "ac"
+  ],
+  "sub|Rogue/Phantom (2014)|Whispers of the Dead": [
+   "choice"
+  ],
+  "sub|Rogue/Phantom|Whispers of the Dead": [
+   "choice"
+  ],
+  "sub|Rogue/Thief|Second-Story Work": [
+   "speed"
+  ],
+  "sub|Sorcerer/Aberrant Sorcery|Psychic Defenses": [
+   "save"
+  ],
+  "sub|Sorcerer/Apocalypse Sorcery|Forbidden Magic": [
+   "choice"
+  ],
+  "sub|Sorcerer/Elemental Essence|Elemental Soul": [
+   "speed"
+  ],
+  "sub|Sorcerer/Frost Sorcery|Frozen Body": [
+   "hp"
+  ],
+  "sub|Sorcerer/Pyromancer (PSK)|Heart of Fire": [
+   "choice"
+  ],
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge": [
+   "ac",
+   "choice"
+  ],
+  "sub|Sorcerer/Wild Magic|Spell Bombardment": [
+   "choice"
+  ],
+  "sub|Summoner/Bond of the Dragon Herald|Draconic Realisation": [
+   "speed"
+  ],
+  "sub|Summoner/Bond of the Elemental Spirit|Elemental Eidolon": [
+   "ac",
+   "speed",
+   "choice"
+  ],
+  "sub|Summoner/Bond of the Elemental Spirit|Elemental Remodement": [
+   "speed"
+  ],
+  "sub|Summoner/Bond of the Faerie Trickster|Faerie Eidolon": [
+   "speed"
+  ],
+  "sub|Summoner/Bond of the Fiendish Chain|Dark Versatility": [
+   "choice"
+  ],
+  "sub|Summoner/Bond of the Monster Shaper|Monstrous Eidolon": [
+   "choice"
+  ],
+  "sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting": [
+   "choice"
+  ],
+  "sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": [
+   "choice"
+  ],
+  "sub|Vagabond/Eagle Banner|Vantage Point": [
+   "speed"
+  ],
+  "sub|Vagabond/Experiment X|Apex Mutation": [
+   "choice"
+  ],
+  "sub|Vagabond/Experiment X|Arcane Mutation": [
+   "choice"
+  ],
+  "sub|Vagabond/Experiment X|Bloody Rampage": [
+   "choice"
+  ],
+  "sub|Vagabond/Experiment X|Mutations": [
+   "choice"
+  ],
+  "sub|Vagabond/Gourmand|Monster Meal": [
+   "ac",
+   "hp",
+   "save",
+   "speed"
+  ],
+  "sub|Vagabond/Jolly Roger|Dirty Tactics": [
+   "choice"
+  ],
+  "sub|Vagabond/Jolly Roger|Scallywag": [
+   "speed"
+  ],
+  "sub|Vagabond/Mage Brand|Spellbranding": [
+   "choice"
+  ],
+  "sub|Vagabond/Rōnin|Lone Wolf": [
+   "init"
+  ],
+  "sub|Vagabond/Yellow Sign|Eldritch Herald": [
+   "skill"
+  ],
+  "sub|Warden/Diabolist|Soul Broker": [
+   "speed",
+   "skill",
+   "choice"
+  ],
+  "sub|Warden/Drake-Blooded|Spellcasting": [
+   "choice"
+  ],
+  "sub|Warden/Godsworn|Anointed Block": [
+   "save"
+  ],
+  "sub|Warden/Stoneheart Defender|Stonewall": [
+   "ac"
+  ],
+  "sub|Warden/Storm Sentinel|Storm Wings": [
+   "speed"
+  ],
+  "sub|Warlock/Celestial Patron|Radiant Soul": [
+   "choice"
+  ],
+  "sub|Warlock/Star Patron|Supernova": [
+   "choice"
+  ],
+  "sub|Warlock/The Parasite Patron|Symbiotic Sentinel": [
+   "init"
+  ],
+  "sub|Warlock/Vestige Patron|Vestige Companion": [
+   "hp"
+  ],
+  "sub|Warmage/Coalition Arcanist|Requisition": [
+   "choice"
+  ],
+  "sub|Warmage/House of Bishops|Arcane Study": [
+   "skill",
+   "choice"
+  ],
+  "sub|Warmage/House of Darts|Bullseye": [
+   "choice"
+  ],
+  "sub|Warmage/House of Darts|Dagger Climb": [
+   "speed"
+  ],
+  "sub|Warmage/House of Knights|Fighting Style": [
+   "choice",
+   "fstyle"
+  ],
+  "sub|Warmage/House of Pawns|Fundamental Mastery": [
+   "choice"
+  ],
+  "sub|Warmage/House of Pawns|Multidiscipline": [
+   "save"
+  ],
+  "sub|Warmage/House of Pawns|Pawn Wall": [
+   "resist"
+  ],
+  "sub|Warmage/House of Pawns|Promotion": [
+   "choice"
+  ],
+  "sub|Warmage/House of Rooks|Arcane Acrobat": [
+   "skill",
+   "choice"
+  ],
+  "sub|Witch/Gingerbread Magic|Gingerbread Familiar": [
+   "hp"
+  ],
+  "sub|Witch/Green Magic|Primal Ally": [
+   "hp"
+  ],
+  "sub|Witch/Sky Magic|Corvid Familiar": [
+   "ac",
+   "speed"
+  ],
+  "sub|Witch/Sky Magic|Feathered Heels": [
+   "speed"
+  ],
+  "sub|Witch/White Magic|Talisman of Protection": [
+   "save"
+  ],
+  "sub|Witch/White Magic|Witch's Gift": [
+   "ac"
+  ],
+  "sub|Wizard/Alkemancer|Craft Minor Elixir": [
+   "choice"
+  ],
+  "sub|Wizard/Alkemancer|Essence Mastery": [
+   "ac"
+  ],
+  "sub|Wizard/Chronomancer|Retroactive Spell": [
+   "init"
+  ],
+  "sub|Wizard/Doomsayer|Terrible Power": [
+   "choice"
+  ],
+  "sub|Wizard/Familiar Master|Servitor's Agility": [
+   "speed"
+  ],
+  "sub|Wizard/Fumaturge|Smoke Animals": [
+   "speed"
+  ],
+  "sub|Wizard/Gastronomer|Monster Meal": [
+   "ac"
+  ],
+  "sub|Wizard/Graviturgy Magic|Gravity Well": [
+   "choice"
+  ],
+  "sub|Wizard/Illuminator|Omen of Warning": [
+   "init"
+  ],
+  "sub|Wizard/Leyline Magic|Thrum of the Land": [
+   "choice"
+  ],
+  "sub|Wizard/Materializer|Arcane Artisan": [
+   "choice"
+  ],
+  "sub|Wizard/Necrophage|Feed on Life": [
+   "hp",
+   "resist"
+  ],
+  "sub|Wizard/School of Evocation|Overchannel": [
+   "uses"
+  ],
+  "sub|Wizard/School of Evocation|Sculpt Spells": [
+   "choice"
+  ],
+  "sub|Wizard/School of Illumination|Omen of Warning": [
+   "init"
+  ],
+  "sub|Wizard/School of Necromancy|Undead Thralls": [
+   "hp"
+  ],
+  "sub|Wizard/Somnomancer|Somnambulist": [
+   "speed"
+  ],
+  "sub|Wizard/Spellhacker|Counter-Hack": [
+   "choice"
+  ],
+  "sub|Wizard/Transmuter|Transmuter's Stone": [
+   "save",
+   "speed"
+  ],
+  "sub|Wizard/Universalist|Multidisciplinary Scholar": [
+   "skill"
+  ],
+  "sub|Wizard/Wand Wizard|Arcane Duelist": [
+   "choice"
+  ],
+  "sub|Wizard/War Magic|Deflecting Shroud": [
+   "choice"
+  ]
+ }
 }

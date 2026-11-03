@@ -366,7 +366,7 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 |---|---|---|
 | `ac:[[lvl,val]]`, `acAb`, `acMin` | bonus AC per level class, atau modifier kemampuan | `{n:"Fighting Style",ac:[[1,1]],cond:"armor"}` |
 | `acAdd` | bonus AC (nilai angka) | `{acAdd:1,cond:"noShield"}` |
-| `acBase:[N,"full",ab]` | AC dasar tanpa armor: N, plus Dex bila "full", plus modifier ab. Dipakai bila lebih tinggi | `{acBase:[13,"full"]}` |
+| `acBase:[N,"full",ab]`, `acOver` | AC dasar tanpa armor: N, plus Dex bila "full", plus modifier ab (`"cast"` = modifier casting terbaik). Dipakai bila lebih tinggi. `acOver:true` juga berlaku saat armor dipakai (yang lebih tinggi dipakai, Titan Armor, Exo-Frame) | `{acBase:[13,"full"]}`, `{acBase:[10,"","cast"]}` |
 | `acDexAb:ab` | sama dengan `acBase:[10,"full",ab]` (Unarmored Defense) | `{acDexAb:"CON"}` |
 | `acMw:N` | +N AC bila armor yang dipakai bernama Masterwork | `{acMw:1}` |
 | `shAc:[[lvl,extra]]` | AC tambahan saat memegang Shield | Warden Tower Shield |
@@ -378,13 +378,14 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `mv:{climb,swim,fly}` | kecepatan lain: `"speed"` atau kaki. Tampil di speedSrc, juga `C.moves` | `{mv:{fly:"speed"}}` |
 | `res`, `imm`, `vul` | daftar tipe damage (Resistance, Immunity, Vulnerability) | `{res:["Fire"]}` |
 | `def:[jenis,teks]`, `defs:[[jenis,teks]]`, `advOn:[teks]` | baris defenses bebas; advantage pada teks | `{advOn:["saves against being Charmed"]}` |
-| `skillProf`, `skillExpert` | proficiency; Expertise (butuh proficiency) | `{skillProf:["Arcana"]}` |
+| `skillProf`, `skillExpert`, `skillProfPlus` | proficiency; Expertise (butuh proficiency); proficiency, atau +1 ke check skill itu bila sudah proficient (Ioun Stone) | `{skillProf:["Arcana"]}` |
 | `skillBonus:[[skill atau "*",nilai]]`, `chkBonus:[[ab,nilai]]` | bonus ke skill, atau ke semua skill satu kemampuan (kolom misc) | `{skillBonus:[["Stealth","pb"]]}` |
 | `langs`, `tools`, `weapons`, `armor` | bahasa dan proficiency tetap | `{tools:["Smith's Tools"]}` |
 | `spells:[[lvl,"A,B"]]`, `spCls` | spell selalu prepared; `spCls` menentukan kemampuan casting (default class entri, atau species) | `{spells:[[1,"Shield"]]}` |
 | `spAtk`, `spDc` (+ `spCls`) | bonus spell attack dan Spell Save DC | Soulbind Chains |
 | `pick:[{k,t,n,title,from,list,cats,cls}]` | pilihan di builder. `t`: skills, tool, lang, multi, cantrip. Disimpan di `B.ch["gx-"+k+"-"+kind+"-"+sumber]` | `{pick:[{k:"a",t:"skills",n:1,title:"Skill"}]}` |
 
+Override item (`window.FXO`, file `src/data/fx-D-item.js`): `FXO[nama item]={fx:{...}|null}` mengganti `fx` lama di baris DMGI tanpa mengubah data sumber (`fx:null` membuang efek yang salah hitung). Dibaca oleh `ovFx()` di `03-logic-magic-item-effects.js` (dipakai `activeFx()`, `itemFx()`, `baseOf()`). Entri `window.GX.item[nama]` kini berlaku juga untuk baris item yang tidak punya `fx`. Tes: `tests/fx_engine.py` (kasus FXO) dan `tests/golden/builds/item_*.json`.
 Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.

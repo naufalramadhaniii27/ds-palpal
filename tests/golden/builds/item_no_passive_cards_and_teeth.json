@@ -1,0 +1,86 @@
+{
+ "why": "Deck of Wonder, Deck of Many More Things and Teeth of Dahlver-Nar give only random card or tooth results, so carrying them changes nothing (the old rows wrongly gave +1 attack, ten resistances, Fire vulnerability, +2 AC and fly 30). Fighter 10: AC 12, HP 84, speed 30.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "bmt": true,
+   "tce": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Deck of Wonder",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Deck of Many More Things",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Teeth of Dahlver-Nar",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 12,
+  "hpmax": 84,
+  "speed": 30,
+  "save": {
+   "STR": 7,
+   "DEX": 2,
+   "CON": 6,
+   "INT": 1,
+   "WIS": 0,
+   "CHA": 3
+  },
+  "atk": [
+   {
+    "hit": 7,
+    "dmg": "1+3",
+    "rg": 0
+   }
+  ]
+ },
+ "expectC": {
+  "defenses": [],
+  "moves": null
+ }
+}
