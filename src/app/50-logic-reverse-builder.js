@@ -81,8 +81,9 @@ function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' ne
    The build is derived on a copy, nothing is saved. The current build is fought once per search and kept */
 function rbFinal(r){ const nb=JSON.parse(JSON.stringify(r.nb)); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
 function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
+let RB_DUEL_WAIT=false;
 function rbDuel(i,btn){ const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel"); if(!r||!out) return; out.hidden=false;
-  if(!window.__tgDuelPick){ if(window.__bldNeed&&!rbDuel.w){ rbDuel.w=1; const again=() =>{ rbDuel.w=0; rbDuel(i,btn); }; Promise.resolve(window.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!window.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
+  if(!window.__tgDuelPick){ if(window.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(window.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!window.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
   let pc=null; try{ pc=__R.tgPcFor(window.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
   btn.disabled=true; const run=RB.run, pct=function(x){ return Math.round(x*100); };
   const line=function(a,base,e1){ const g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
