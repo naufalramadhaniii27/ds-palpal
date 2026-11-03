@@ -1,0 +1,50 @@
+/* === Blended detail sheet (fx/27-blend-sheet.js). Everything hangs on #sheet.blend, so a sheet without a picture stays as it was === */
+#sheet{--bl-shh:min(82dvh,740px)}
+@media (max-width:759px){#sheet{--bl-shh:88dvh}}
+/* rarity chip: a pill in the colour of the rarity. The text is mixed toward the ink colour so it keeps contrast on dark and light panels */
+#sheet .rline{--rc:var(--muted);display:inline-flex;align-items:center;margin:6px 0;padding:3px 12px;border-radius:999px;border:1px solid var(--rc);background:color-mix(in srgb,var(--rc) 14%,transparent);color:color-mix(in srgb,var(--rc) 45%,var(--ink));font-style:normal;font-weight:700;font-size:calc(12px*var(--tz,1));letter-spacing:.04em}
+#sheet .rline.r-uncommon{--rc:#1fa83a}#sheet .rline.r-rare{--rc:#2f7fe0}#sheet .rline.r-veryrare{--rc:#9b4fd1}#sheet .rline.r-legendary{--rc:#e07b1a}#sheet .rline.r-artifact{--rc:#c2413b}#sheet .rline.r-common{--rc:#8b96a0}
+#sheet.blend{overflow:hidden}
+#sheet.blend .sh-h{position:absolute;top:0;left:0;right:0;height:var(--bl-hero,300px);z-index:6;display:block;padding:0;border-bottom:0 solid transparent!important;border-image:none!important;background:none;pointer-events:none;transition:background .25s}
+#sheet.blend .sh-h::before{top:8px}
+#sheet.blend .sh-h .xbtn{position:absolute;top:14px;right:12px;z-index:3;pointer-events:auto;background:rgba(10,14,18,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff}
+#sheet.blend .sh-h #sheetBack{right:auto;left:12px}
+#sheet.blend .sh-h>h2{position:absolute;left:16px;right:calc(16px + var(--bl-pw,0px));bottom:58px;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.7);font-size:calc(24px*var(--tz,1));line-height:1.1}
+#sheet.blend .bl-price{position:absolute;right:16px;bottom:60px;padding:3px 12px;border-radius:999px;background:rgba(10,14,18,.6);border:1px solid rgba(var(--bl-c,160,160,160),.8);color:#fff;font-weight:700;font-size:calc(13px*var(--tz,1));white-space:nowrap}
+#sheet.blend .bl-meta{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--ink);font-size:calc(13px*var(--tz,1));line-height:1.2}
+#sheet.blend .bl-meta .rline{margin:0}
+#sheet.blend.bl-compact .sh-h{height:auto;display:grid;padding:14px 16px;background:color-mix(in srgb,var(--panel) 93%,rgb(var(--bl-c,128,128,128)) 7%);border-bottom:1px solid transparent!important;border-image:linear-gradient(90deg,rgba(var(--bl-c,128,128,128),.85),rgba(var(--bl-c,128,128,128),0) 80%) 1!important;pointer-events:auto;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#sheet.blend.bl-compact .sh-h>h2{position:static;font-size:calc(15px*var(--tz,1));text-shadow:none}
+#sheet.blend.bl-compact .sh-h .xbtn{position:static;background:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+#sheet.blend.bl-compact .bl-price,#sheet.blend.bl-compact .bl-meta{display:none}
+#sheet.blend .bl-line{height:2px;margin:0 16px 4px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(var(--bl-c,160,160,160),.9),transparent);position:relative;z-index:2}
+#sheet.blend .sh-b{padding-top:0;position:relative;background:linear-gradient(180deg,rgba(var(--bl-c,128,128,128),.16),transparent 380px)}
+#sheet.blend #sheetBody>.sh-wm{position:relative;left:auto;top:auto;transform:none;display:block;width:auto;aspect-ratio:auto;height:calc(var(--bl-shh)*.52);margin:0 -16px;opacity:1;overflow:hidden;z-index:1;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
+#sheet.blend.bl-scn #sheetBody>.sh-wm{height:calc(var(--bl-shh)*.60);-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+#sheet.blend .swp{position:absolute;top:0;left:0;right:0;height:var(--bl-hero,300px);margin:0;pointer-events:none;z-index:5}
+#sheet.blend .swp-d{position:absolute;top:14px;left:50%;translate:-50% 0;display:flex;gap:5px;padding:3px 7px;border-radius:999px;background:rgba(10,14,18,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#sheet.blend .swp-n{display:none}
+#sheet.blend .swp-b{position:absolute;top:calc(var(--bl-hero,300px)*.42);width:44px;height:44px;border-radius:50%;pointer-events:auto;background:rgba(10,14,18,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:24px;line-height:1}
+#sheet.blend .swp-b[data-swp="-1"]{left:8px}#sheet.blend .swp-b[data-swp="1"]{right:8px}
+#sheet.blend .swp-b:disabled{opacity:.3}
+/* scene: full width, anchored to the top so faces stay in view; parallax moves it slower than the text */
+#sheet.blend.bl-scn #sheetBody>.sh-wm .bl-sc{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;object-fit:cover;object-position:center top;transform-origin:50% 0;translate:0 var(--bl-py,0px);scale:1;opacity:var(--bl-op,1)}
+/* transparent icon: blurred copy behind, soft glow, grain, the object floats */
+#sheet.blend.bl-ico #sheetBody>.sh-wm .bl-bg{position:absolute;inset:-30%;background:center/cover no-repeat;filter:blur(34px) saturate(1.35);opacity:.55;translate:0 calc(var(--bl-py,0px)*.5)}
+#sheet.blend.bl-ico #sheetBody>.sh-wm .bl-glow{position:absolute;left:50%;top:52%;width:72%;aspect-ratio:1;translate:-50% -50%;background:radial-gradient(closest-side,rgba(var(--bl-c,160,160,160),.5),transparent 72%);filter:blur(12px)}
+#sheet.blend.bl-ico #sheetBody>.sh-wm .bl-grain{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+#sheet.blend.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){position:absolute;left:50%;top:50%;margin:0;max-width:none;height:auto;translate:-50% calc(-50% + var(--bl-py,0px)*.2);opacity:var(--bl-op,1);filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+/* HD icons are 576 px: shown at most 192 css px wide, which is 3x sharp on a phone */
+#sheet.blend.bl-ico #sheetBody>.sh-wm img.art-ic{width:min(60%,192px)}
+#sheet.blend.bl-ico #sheetBody>.sh-wm img.art-sub{width:min(60%,192px)}
+#sheet.blend.bl-ico #sheetBody>.sh-wm img.lib-im{width:auto;height:min(78%,330px);max-width:86%;object-fit:contain}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes blImg{from{filter:blur(14px);scale:1.08}to{filter:blur(0);scale:1}}
+  @keyframes blIco{from{filter:blur(10px) drop-shadow(0 14px 22px rgba(0,0,0,.55));scale:1.12}to{filter:blur(0) drop-shadow(0 14px 22px rgba(0,0,0,.55));scale:1}}
+  @keyframes blUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes blFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  #sheet.blend.bl-in.bl-scn .bl-sc{animation:blImg .75s var(--ease-out,ease) both}
+  #sheet.blend.bl-in.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){animation:blIco .7s var(--ease-out,ease) both,blFloat 6s ease-in-out .8s infinite}
+  #sheet.blend.bl-in .sh-b>*:not(.sh-wm):not(.swp){animation:blUp .5s var(--ease-out,ease) both;animation-delay:calc(var(--i,0)*45ms + 140ms)}
+}
+@media print{#sheet.blend .sh-wm{display:none}}

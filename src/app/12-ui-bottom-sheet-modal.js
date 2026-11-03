@@ -40,7 +40,7 @@ export function sheetIco(t){ t=String(t||""); let h="", m;
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
   if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
-function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
+function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
 export function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */
   if(!sheet.classList.contains("on")) lastFocus=document.activeElement;
@@ -50,9 +50,13 @@ export function openSheet(title, html, mode, wide){
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
   try{ window.__artSheet&&window.__artSheet(mode,title); }catch(er){}
+  try{ window.__blendSheet&&window.__blendSheet(mode,title); }catch(er){}
   $("#scrim").classList.add("on"); sheet.classList.add("on"); __R.dockApply(mode,wide); __R.shOpened();/* v31 p14, p16 */
   setTimeout(() =>{ const b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
+/* Potion of Healing: drinking is a Bonus Action in the 2024 rules and an Action in the 2014 rules. The shared item text is written for 2024, so a 2014 character gets the 2014 wording */
+export function potEd(h){ if(typeof __R.C==="undefined"||!__R.C||__R.C.rs!=="2014") return h;
+  return String(h).replace("Drink it (Bonus Action) or give it to someone (Action) to regain","Drink it or give it to someone (Action) to regain").replace("Drink it as a Bonus Action, or give it to another creature as an action.","Drinking it or giving it to another creature takes an Action."); }
 function entryContent(en){
   if(en.type==="bd"){ const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"}; }/* v26 RU38 no. 2 */
   if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
@@ -61,7 +65,7 @@ function entryContent(en){
   if(en.type==="search"){ setTimeout(__R.gsMark,0); return {t:"Search", h:__R.gsHTML(), m:"search"}; }/* v27 RU66 *//* v25 RU38 no. 3 */
   if(en.type==="cuq"){ const cq=__R.cuqOf(en.key); return {t:cq?"Edit "+cq.t:"Edit", h:__R.cuqHTML(en.key), m:"cuq"}; }/* v34 RU85 */
   if(en.type==="cust") return {t:"Customize", h:__R.cuHTML(en.key,en.n), m:"cust"};/* v26 RU38 no. 2 */
-  const r=__R.cuDecor(en.spec,__R.infoHTML(en.spec)); return {t:r.t, h:r.h, m:"info"};
+  const r=__R.cuDecor(en.spec,__R.infoHTML(en.spec)); return {t:r.t, h:potEd(r.h), m:"info"};
 }
 export var SWP=null;/* v36 p18: {list:[spec], i} of the list the open card came from */
 export function swpSet(el){ const c=el.closest("[id$='Body']")||document, sp=el.getAttribute("data-info"), seen={}, L=[];
@@ -95,6 +99,7 @@ export function showEntry(en, push){
   if(open){
     sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
+    try{ window.__blendSheet&&window.__blendSheet(c.m,c.t); }catch(er){}/* paging inside an open sheet: rebuild the picture, title bits and colour for this entry */
     $("#sheetBack").hidden = navStack.length<2;
   } else openSheet(c.t, c.h, c.m);
   swpSync();/* v36 p18 */
@@ -102,12 +107,12 @@ export function showEntry(en, push){
 export function refreshEntry(){
   if(!navStack.length || !sheet.classList.contains("on") || sheetMode==="edit") return;
   const c=entryContent(navStack[navStack.length-1]), b=$("#sheetBody"), st=b.scrollTop;
-  setSheetTitle(c.t); const shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; swpSync();/* v36 p18 */
+  setSheetTitle(c.t); const shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; try{ window.__blendSheet&&window.__blendSheet(sheetMode,c.t,true); }catch(er){} swpSync();/* v36 p18 */
 }
 $("#sheetBack").addEventListener("click",() =>{
   if(navStack.length<2) return;
   hpDockBack(); navStack.pop(); const c=entryContent(navStack[navStack.length-1]);
-  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
+  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0; try{ window.__blendSheet&&window.__blendSheet(c.m,c.t); }catch(er){}
   b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
   $("#sheetBack").hidden = navStack.length<2; swpSync();/* v36 p18 */
 });

@@ -46,7 +46,7 @@
   function scnFind(m,n){ if(!m) return null; const k=bslug(n); if(m[k]) return m[k]; if(PARENT[k]&&m[PARENT[k]]) return m[PARENT[k]];
     const b=bslug(String(n||"").replace(/\s*\(.*$/,"").replace(/^variant\s+/i,"")); if(b&&m[b]) return m[b];
     const w=b.split("-").pop(); if(b.indexOf("half-")!==0&&FAMILY.indexOf(w)>=0&&m[w]) return m[w]; return null; }
-  window.__scnFind=scnFind; let lastB=null;
+  window.__scnFind=scnFind; window.__bslug=bslug; let lastB=null;
   window.__bldArt=function(step,B){ const bl=D.getElementById("bld"); if(!bl) return; let g=A.scn||{}, x=null;
     if(ls("mi-clsart")!=="off"){
       if(step==="class"&&B&&B.cls){ const s=A.scene&&A.scene[bslug(B.cls)]; if(s) x={pc:s.pc.p,phone:s.phone.p,c:s.c}; }
