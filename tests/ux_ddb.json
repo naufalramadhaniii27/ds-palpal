@@ -1,0 +1,10 @@
+{"_note": "taps = estimate for D&D Beyond mobile app from memory, not measured. budget = max taps allowed here (ratchet; lower it when the count improves).",
+ "open_character": {"taps": 1, "budget": 1},
+ "take_damage": {"taps": 3, "budget": 2},
+ "heal": {"taps": 3, "budget": 2},
+ "long_rest": {"taps": 3, "budget": 3},
+ "short_rest_open": {"taps": 3, "budget": 2},
+ "open_tab_skills": {"taps": 1, "budget": 1},
+ "open_tab_spells": {"taps": 1, "budget": 1},
+ "open_tab_inventory": {"taps": 1, "budget": 1},
+ "open_tab_features": {"taps": 1, "budget": 1}}
