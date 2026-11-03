@@ -45,12 +45,12 @@ function choiceList(){const cs=choices().map((c) =>{return {key:c.key,t:c.t,n:c.
  spellCounts().forEach((x) =>{if(x.open)cs.push({key:"spell:"+(x.key||x.m),t:"spell",n:x.n||1,title:x.m,feature:x.f||"",done:false,step:"class"})});
  casterParts().forEach((p) =>{if(p.xl&&p.xl.length)cs.push({key:"lists:"+p.cls,t:"lists",n:p.xl.length,list:p.xl,title:p.cls+" extra spell lists",feature:"Magical Secrets",done:true,step:"class"})});/* tests only: Magical Secrets */
  return cs}
-function withB(b,fn){const keep=B;if(!b)return fn();try{const x=JSON.parse(JSON.stringify(b));for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x));applyPacks();return fn()}finally{__set_B(keep);applyPacks()}}
+function withB(b,fn){const keep=B;if(!b)return fn();try{const x=structuredClone(b);for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x));applyPacks();return fn()}finally{__set_B(keep);applyPacks()}}
 window.__bldChoiceList=function(b){return withB(b,choiceList)};window.__bldHasSpell=function(n){return !!SMAP[n]&&!!SPELL_FULL[n]};window.__bldItems=function(b){return withB(b,() =>{return DMGI.map((r) =>{return r[0]})})};window.__bldQLive=function(b){return withB(b,() =>{const o={};Object.keys(window.QLIVE||{}).forEach((c) =>{o[c]=window.QLIVE[c].map((r) =>{return r.n})});return o})};/* test hooks: magic item names and Library reference rows while build b is open */
 window.__bldFeats=function(b){return withB(b,() =>{return Object.keys(FEATS)})};/* test hook: the feat names while build b is open (third party feats follow their source) */
 /* v32 RL49 no. 10d, tests only: show build b in the open builder without saving it (null: back to the saved build), and go to a step */
-let TKEEP=null;window.__bldTestSet=function(b){if(b){if(!TKEEP)TKEEP=B;const x=JSON.parse(JSON.stringify(b));for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x))}else if(TKEEP){__set_B(TKEEP);TKEEP=null}applyPacks();__set_openCards({});render()};
-window.__bldTestB=function(){return JSON.parse(JSON.stringify(B))};window.__bldTestItems=function(){return {dmgi:DMGI.map((x) =>{return x[0]}),gear:GEAR.map((x) =>{return x[0]}),weapons:Object.keys(WEAPONS),armor:Object.keys(ARMOR),price:typeof PRICE!=="undefined"?Object.keys(PRICE):[],spells:SPELLS.map((x) =>{return x[0]})}};/* v100: test hook for the audits *//* v95: test hook */window.__bldTestGo=function(s){__set_step(s);__set_pickCls(false);__set_pickSp(false);__set_clsTab("feat");render()};
+let TKEEP=null;window.__bldTestSet=function(b){if(b){if(!TKEEP)TKEEP=B;const x=structuredClone(b);for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x))}else if(TKEEP){__set_B(TKEEP);TKEEP=null}applyPacks();__set_openCards({});render()};
+window.__bldTestB=function(){return structuredClone(B)};window.__bldTestItems=function(){return {dmgi:DMGI.map((x) =>{return x[0]}),gear:GEAR.map((x) =>{return x[0]}),weapons:Object.keys(WEAPONS),armor:Object.keys(ARMOR),price:typeof PRICE!=="undefined"?Object.keys(PRICE):[],spells:SPELLS.map((x) =>{return x[0]})}};/* v100: test hook for the audits *//* v95: test hook */window.__bldTestGo=function(s){__set_step(s);__set_pickCls(false);__set_pickSp(false);__set_clsTab("feat");render()};
 /* v32 RU137: open choices of the build that belongs to the open character, same number as "Still to choose" in What's Next. 0 = none or no build */
 function openCount(){if(unList())return [["cls"],["species"],["bg"]].filter((x) =>{return un(x[0])}).length;
  return choices().filter((x) =>{return !isDone(x)}).length+ruleIssues().filter((x) =>{return x.open}).length}
@@ -88,19 +88,19 @@ window.__bldLists=function(){const subs={};Object.keys(CLASSES).forEach((c) =>{s
 window.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
   const bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&o.lv>=3)B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
-  out={b:JSON.parse(JSON.stringify(B)),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
+  out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
 window.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
 /* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */
 /* the build of the open character without opening the builder: the saved one when it is this character's, otherwise made from the sheet (like Build does) */
 function bldForSheet(){const st=window.__sheetState&&window.__sheetState();if(!st||!st.C)return null;let raw=savedRaw(),keep=B,out=null;
- try{if(raw!=null){const b=JSON.parse(raw);__set_B(b);if(own(st.C.name)||copyOf(st.C.name)){out=b}}if(!out){fromSheet(st);out=JSON.parse(JSON.stringify(B))}}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out}
+ try{if(raw!=null){const b=JSON.parse(raw);__set_B(b);if(own(st.C.name)||copyOf(st.C.name)){out=b}}if(!out){fromSheet(st);out=structuredClone(B)}}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out}
 window.__bldForSheet=bldForSheet;
 window.__bldOpts=function(){const r14=B.rs==="2014",ok=function(k){return r14?/\(2014\)/.test(k):!/\(2014\)/.test(k)};const bg={};Object.keys(BACKGROUNDS).filter(ok).forEach((k) =>{bg[k]={ab:(BACKGROUNDS[k].ab||[]).slice(),sk:(BACKGROUNDS[k].sk||[]).slice()}});
- const b0=bldForSheet()||JSON.parse(JSON.stringify(B));return {b:b0,species:Object.keys(SPECIES).filter(ok),bg:bg,armor:JSON.parse(JSON.stringify(ARMOR)),r14:r14}};
-window.__bldUse=function(nb,why){const now=JSON.stringify(B);saveBak(now);const b=JSON.parse(JSON.stringify(nb));for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));stamp();save();applyPacks();window.__bldOpen();go("abil");toast((why||"Build changed")+". The old build is kept as the backup build.")};
+ const b0=bldForSheet()||structuredClone(B);return {b:b0,species:Object.keys(SPECIES).filter(ok),bg:bg,armor:structuredClone(ARMOR),r14:r14}};
+window.__bldUse=function(nb,why){const now=JSON.stringify(B);saveBak(now);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));stamp();save();applyPacks();window.__bldOpen();go("abil");toast((why||"Build changed")+". The old build is kept as the backup build.")};
 /* G7 TG1 Try a class: the Quick Build of a class at a level, made on a copy (nothing saved, the open build is put back). Spells, choices and
    the kit are filled the way Quick Build fills them, so a caster has its spells */
 window.__bldQuickFor=function(cls,lv){const Q=QUICK[cls];if(!Q)return null;let keep=B,out=null;
  try{__set_B(NEWB());B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=SPECIES.Human?"Human":B.species;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
-  B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=JSON.parse(JSON.stringify(B))}
+  B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=structuredClone(B)}
  catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};

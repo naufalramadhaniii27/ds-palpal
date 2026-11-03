@@ -73,7 +73,7 @@ export function hbEdit(t,n){const p=hbMine();if(!hbHas(p,t,n))return;const f={t:
  if(t==="item"){const x=p.items.filter((y) =>{return y[0]===n})[0];f.type=x[1];f.rar=x[2];f.att=!!x[3];f.d=x[4]||"";f.fx=(x[5]&&x[5].fx)||{}}
  HBF=f;HBE=n;__R.render();const e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
 export function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",() =>{const p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter((q) =>{return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();__R.commit();toast("Removed "+n+".")})}
-export function hbCopy(cid,pid){const o=hbOthers().filter((x) =>{return x.cid===cid&&x.p.id===pid})[0];if(!o)return;let src=JSON.parse(JSON.stringify(o.p)),mine=(B.packs||[]).filter((q) =>{return q.id===pid})[0],n=0;
+export function hbCopy(cid,pid){const o=hbOthers().filter((x) =>{return x.cid===cid&&x.p.id===pid})[0];if(!o)return;let src=structuredClone(o.p),mine=(B.packs||[]).filter((q) =>{return q.id===pid})[0],n=0;
  if(!mine){B.packs=(B.packs||[]).concat([src]);n=hbList(src).length}
  else hbList(src).forEach((e) =>{if(hbHas(mine,e[0],e[1]))return;n++;if(e[0]==="species"){mine.species=mine.species||{};mine.species[e[1]]=src.species[e[1]]}if(e[0]==="feat"){mine.feats=mine.feats||{};mine.feats[e[1]]=src.feats[e[1]]}if(e[0]==="item"){mine.items=(mine.items||[]).concat(src.items.filter((x) =>{return x[0]===e[1]}))}});
  B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();__R.commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}

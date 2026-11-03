@@ -71,8 +71,8 @@ export function toastU(msg){ if(!UNDO){ toast(msg); return; } undoFix(UNDO);/* v
 /* v21 M3, m1: only the fields the action changed go back. Changes made since (another tab, a condition) stay */
 function undoBack(cur,b0,a0){ const J1=function(x){ return JSON.stringify(x===undefined?null:x); };
   Object.keys(b0).concat(Object.keys(a0)).forEach((k) =>{ if(k==="_app"||J1(b0[k])===J1(a0[k])) return; const b=b0[k], a=a0[k];
-    if(b&&a&&typeof b==="object"&&typeof a==="object"&&!Array.isArray(b)&&!Array.isArray(a)&&cur[k]&&typeof cur[k]==="object"&&!Array.isArray(cur[k])){ Object.keys(b).concat(Object.keys(a)).forEach((j) =>{ if(J1(b[j])===J1(a[j])) return; if(b[j]===undefined) delete cur[k][j]; else cur[k][j]=JSON.parse(JSON.stringify(b[j])); }); }
-    else if(b===undefined) delete cur[k]; else cur[k]=JSON.parse(JSON.stringify(b)); }); return cur; }
+    if(b&&a&&typeof b==="object"&&typeof a==="object"&&!Array.isArray(b)&&!Array.isArray(a)&&cur[k]&&typeof cur[k]==="object"&&!Array.isArray(cur[k])){ Object.keys(b).concat(Object.keys(a)).forEach((j) =>{ if(J1(b[j])===J1(a[j])) return; if(b[j]===undefined) delete cur[k][j]; else cur[k][j]=structuredClone(b[j]); }); }
+    else if(b===undefined) delete cur[k]; else cur[k]=structuredClone(b); }); return cur; }
 /* re=false: back to before the step. re=true: Redo, forward to after it. Only the fields the step changed move */
 function undoApply(u,re){ undoFix(u); let note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
   __set_S(undoBack(S,JSON.parse(s0),JSON.parse(s1))); if(u.C!==u.CA) __set_C(undoBack(C,JSON.parse(re?u.CA:u.C),JSON.parse(re?u.C:u.CA)));

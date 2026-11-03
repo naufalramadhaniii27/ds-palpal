@@ -135,7 +135,7 @@ export function eq14Set(on,force){if(typeof EQ14D==="undefined"||typeof WEAPONS=
   ARMOR_GEN=S.ag;EQ14SH=null;EQ14S=null}
  if(!on)return;
  const T={w:{},pr:{},pk:{},id:{},gc:{},ga:[],gl:{},gs:{},ag:ARMOR_GEN};EQ14S=T;
- const cp=function(o){return JSON.parse(JSON.stringify(o))};
+ const cp=function(o){return structuredClone(o)};
  Object.keys(WEAPONS).forEach((k) =>{const o=WEAPONS[k];if(o.m!==undefined||EQ14D.w[k]){T.w[k]=cp(o);delete o.m}});
  Object.keys(EQ14D.w).forEach((k) =>{const o=WEAPONS[k];if(o)Object.assign(o,EQ14D.w[k])});
  if(!WEAPONS.Net){T.w.Net=null;WEAPONS.Net=Object.assign({},EQ14D.net);T.pr.Net=PRICE.Net;PRICE.Net=EQ14D.pr.Net}
@@ -200,7 +200,7 @@ export function wxGate(){const W=window.WX;if(!W)return;wxXsp(W);wxItems();wxSpe
 /* P4: classes of third party books (window.WXC) are in CLASSES only while the book is on or the build uses the class. Sorted like the other classes */
 function wxClasses(){const W=window.WXC;if(!W)return;const used={};used[B.cls]=1;(B.mc||[]).forEach((m) =>{used[m.cls]=1});
  Object.keys(W).forEach((n) =>{const e=W[n],on=!!(B.src&&B.src[e.book])||!!used[n]||(window.WXS||[]).some((x) =>{return B.src&&B.src[x.src]&&([x.cls].concat(x.alt||[]).indexOf(n)>=0)});/* P5: a book that adds subclasses to a class of another third party book brings that class along */if(used[n]&&B.src)B.src[e.book]=true;
-  if(on&&!CLASSES[n]){const o=JSON.parse(JSON.stringify(e.rec));cls14Inject(n,o)}else if(!on&&CLASSES[n]&&CLASSES[n].tp===e.book)delete CLASSES[n]})}
+  if(on&&!CLASSES[n]){const o=structuredClone(e.rec);cls14Inject(n,o)}else if(!on&&CLASSES[n]&&CLASSES[n].tp===e.book)delete CLASSES[n]})}
 /* extra spell lists from chosen Dragonmark feats (Spells of the Mark). Reads B only, so it is safe inside casterParts */
 export function dmXl(){const o=[],L=window.DM_LIST;if(!L)return o;Object.keys(B.ch||{}).forEach((k) =>{const v=B.ch[k],n=v&&typeof v==="object"&&!Array.isArray(v)?v.feat:(k==="spfeat"?v:null);if(n&&L[n]&&o.indexOf(n)<0)o.push(n)});return o}
 export function featSpells(){const out=[];allFeats().forEach((f) =>{const q=FT_SP[f.n];if(!q||!f.key)return;out.push({n:q[0],f:f.n,k:"@ft:"+f.key});const v=B.ch["ft:"+f.key];if(Array.isArray(v)&&v[0])out.push({n:v[0],f:f.n,k:"@ft:"+f.key})});return out}

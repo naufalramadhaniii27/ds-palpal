@@ -262,7 +262,7 @@ export function snRestore(id,i){ const o=snGet(), x=(o.chars[id]||[])[i]; if(!x)
     toast("Snapshot restored"); chfOpen(id); const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(); }); }
 function snBack(id){ const r=rSnap(rEnsure()), x=(snGet().chars[id]||[])[0]; if(!x||r.chars[id]) return; const nm=x.name||cOf(x.C).name||"Character";
   ask("Bring back "+nm+" from the snapshot of "+fmtT(x.t)+"?","Bring Back",() =>{ r.chars[id]={name:nm,sub:(cOf(x.C).species||"")+" "+(cOf(x.C).clsLabel||""),B:fixCid(x.B,id),C:x.C,S:x.S,created:x.cr||Date.now(),t:Date.now()}; if(!rSave(r)) return; showHome(); toast(nm+" is back"); }); }
-function chCopy(id){ const r=rSnap(rEnsure()), src=r.chars[id]; if(!src) return; const did=newId(r), cp=JSON.parse(JSON.stringify(src));
+function chCopy(id){ const r=rSnap(rEnsure()), src=r.chars[id]; if(!src) return; const did=newId(r), cp=structuredClone(src);
   try{ const cc=JSON.parse(cp.C); cc.name=(cc.name||"Character")+" (copy)"; cp.C=JSON.stringify(cc); cp.name=cc.name; const bb=JSON.parse(cp.B||"null"); if(bb){ bb.name=cc.name; bb.cid=did; cp.B=JSON.stringify(bb); } }catch(er){}
   cp.created=Date.now(); cp.t=Date.now(); r.chars[did]=cp; if(!rSave(r)) return; const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); const hs=document.querySelector("#homeV .hslots b"); if(hs) hs.textContent=Object.keys(r.chars).length; toast("Copied: "+cp.name); }
 /* RU67: character file */

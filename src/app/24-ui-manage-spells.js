@@ -32,7 +32,7 @@ function spmLocal(){ const lv=__R.clsLvls(), out=[]; if(typeof CLASSES==="undefi
     out.push({cls:cls, ct:ct, pr:pr, max:mx, lists:[list], taken:(C.spells||[]).filter((x) =>{ return x.src===cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map((x) =>{ return x.n; })}); });
   return out; }
 /* the caster parts the panel shows: from the build when the build is this character's, else from the sheet. Sheet mode lists what the sheet has */
-function spmParts(M){ if(M.I&&M.b) return M.I.parts; const P=M.I?M.I.parts.map((p) =>{ const q=JSON.parse(JSON.stringify(p)); q.taken=(C.spells||[]).filter((x) =>{ return x.src===p.cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map((x) =>{ return x.n; }); return q; }):spmLocal(); return P; }
+function spmParts(M){ if(M.I&&M.b) return M.I.parts; const P=M.I?M.I.parts.map((p) =>{ const q=structuredClone(p); q.taken=(C.spells||[]).filter((x) =>{ return x.src===p.cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map((x) =>{ return x.n; }); return q; }):spmLocal(); return P; }
 function spmAlways(){ return (C.spells||[]).filter((x) =>{ return x.use==="Always prepared"; }).map((x) =>{ return x.n; }); }
 function spmCount(p){ let nc=0, np=0; p.taken.forEach((n) =>{ const x=spmRec(n); if(!x) return; if(x[1]) np++; else nc++; }); return {nc:nc, np:np}; }
 function spmMeta(x){ return (x[1]?ordL(x[1]):"Cantrip")+" • "+esc(x[2])+(x[8]?" • Concentration":"")+(x[9]?" • Ritual":""); }
@@ -59,7 +59,7 @@ function spmHTML(){ if(window.__sp14Set&&(document.getElementById("bld")||{hidde
   return '<div class="spm">'+h+'</div>'; }
 export function spClsJ(x){ return x[3].filter((c) =>{ return !/^(Mark of |Aberrant Dragonmark)/.test(c); }).join(", "); }/* v58: Dragonmark pseudo lists stay out of the class line */
 function spmEntry(x,cls){ const o={n:x[0],l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:(typeof SPELL_FULL!=="undefined"&&SPELL_FULL[x[0]])||"",cls:spClsJ(x),use:x[1]?"Prepared":"Cantrip",src:cls};
-  const F=typeof SPELL_FX!=="undefined"&&SPELL_FX[x[0]]; if(F){ const f=JSON.parse(JSON.stringify(F)); if(f.mat){ o.mat=f.mat; delete f.mat; } if(Object.keys(f).length) o.fx=f; }
+  const F=typeof SPELL_FX!=="undefined"&&SPELL_FX[x[0]]; if(F){ const f=structuredClone(F); if(f.mat){ o.mat=f.mat; delete f.mat; } if(Object.keys(f).length) o.fx=f; }
   if(typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell&&BOOKPG.phb.spell[x[0]]) o.pg=BOOKPG.phb.spell[x[0]]; return o; }
 function spmToggle(n,cls){ const M=spmMode(), P=spmParts(M), p=P.filter((q) =>{ return q.cls===cls; })[0], x=spmRec(n); if(!p||!x||FROZEN) return;
   const on=p.taken.indexOf(n)<0, c=spmCount(p);

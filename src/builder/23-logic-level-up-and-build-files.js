@@ -23,7 +23,7 @@ window.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
  if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv))err.push("level must be a whole number from 1 to 20");
  const tl=(lv||0)+(Array.isArray(b.mc)?b.mc.reduce((t,m) =>{return t+(+m.lv||0)},0):0);if(tl>20)err.push("total level "+tl+" is more than 20");
  if(err.length)return {err:err,warn:warn};
- try{__set_B(JSON.parse(JSON.stringify(BLANK)));B.src=b.src||{core:true,dmg:true};applyPacks();
+ try{__set_B(structuredClone(BLANK));B.src=b.src||{core:true,dmg:true};applyPacks();
   if(b.species&&!SPECIES[b.species]&&b.species!=="Custom")warn.push("species \""+b.species+"\"");
   const bg=BACKGROUNDS[b.bg];if(b.bg&&!bg)warn.push("background \""+b.bg+"\"");
   if(bg&&b.bgMode!=="111")["bg2","bg1"].forEach((k) =>{if(b[k]&&bg.ab.indexOf(b[k])<0)warn.push(b.bg+" cannot raise "+b[k])});
@@ -55,7 +55,7 @@ window.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  function num(v){if(typeof v==="number")return v;const m=/^\s*(-?\d+(?:\.\d+)?)/.exec(String(v==null?"":v));return m?+m[1]:NaN}
  function arr(v){return v==null||v===""?[]:Array.isArray(v)?v:[v]}
  try{
- b=JSON.parse(JSON.stringify(b0||{}));delete b.kind;delete b.app;delete b.format;
+ b=structuredClone(b0||{});delete b.kind;delete b.app;delete b.format;
  /* other field names a chat may use */
  [["class","cls"],["subclass","sub"],["background","bg"],["race","species"],["spells","sp"],["abilities","base"],["scores","base"],["items","inv"],["inventory","inv"],["equipment","inv"],["multiclass","mc"]].forEach((p) =>{if(b[p[1]]==null&&b[p[0]]!=null){b[p[1]]=b[p[0]];delete b[p[0]]}});
  const byName=b.choices&&typeof b.choices==="object"&&!Array.isArray(b.choices)?b.choices:null;delete b.choices;/* v34 p07 */
@@ -63,7 +63,7 @@ window.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  const lin=b.lin!=null?b.lin:b.lineage;delete b.lin;delete b.lineage;if(lin&&!b.ch.lin)b.ch.lin=lin;
  /* homebrew packs this build needs */
  const src0=b.src&&typeof b.src==="object"?b.src:{core:true,dmg:true};b.src=src0;
- function on(src){__set_B(JSON.parse(JSON.stringify(BLANK)));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
+ function on(src){__set_B(structuredClone(BLANK));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
  function names(){const o={sp:Object.keys(SPECIES),bg:Object.keys(BACKGROUNDS),ft:Object.keys(FEATS),subs:{}};Object.keys(CLASSES).forEach((c) =>{o.subs[c]=Object.keys(CLASSES[c].subs||{})});return o}
  on(src0);const N0=names(),ids=[];
  const cl=pick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+q(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
@@ -161,7 +161,7 @@ window.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  }finally{__set_B(keep);applyPacks()}
  return {err:err,notes:notes,b:b}};
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
-window.__bldAuto=function(nb){let keep=B,out=null;try{const b=JSON.parse(JSON.stringify(nb));for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=JSON.parse(JSON.stringify(B))}finally{__set_B(keep);applyPacks()}return out};
+window.__bldAuto=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=structuredClone(B)}finally{__set_B(keep);applyPacks()}return out};
 window.__bldFeatViol=function(b){return __R.withB(b,featViol)};
 function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
  const all=function(){let s=[],o=spLists();for(const k in o)s=s.concat(o[k]);return s};
@@ -171,7 +171,7 @@ function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpe
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
  const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
-window.__bldSheetFor=function(nb){let keep=B,out=null;try{const b=JSON.parse(JSON.stringify(nb));for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{__set_B(keep);applyPacks()}return out};
+window.__bldSheetFor=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
@@ -179,7 +179,7 @@ window.__bldSheetFor=function(nb){let keep=B,out=null;try{const b=JSON.parse(JSO
    not after every try. Same results as __bldSheetFor one by one (tests/rb_fast.py compares every try) */
 window.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
  function tag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
- return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}let out=null;try{const b=JSON.parse(JSON.stringify(nb)),z=clone(BLANK);for(const k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
+ return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}let out=null;try{const b=structuredClone(nb),z=clone(BLANK);for(const k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
    const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});const key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);
    if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else{B.src=JSON.parse(srcAfter);if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
    out=toSheet()}catch(e){out=null;last=null}finally{__set_B(keep)}return out},

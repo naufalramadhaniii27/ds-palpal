@@ -132,7 +132,7 @@ function askHTML(q){ const o=askAnswer(q); if(!o) return ""; return '<div class=
    Opening the link asks first, then builds the character with the builder like an imported build (16 impBuild). Nothing is sent anywhere:
    the code lives in the part of the address after #, which browsers do not send to the server */
 function dnaLink(){ let b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return Promise.reject(new Error("Pick a class first."));
-  b=JSON.parse(JSON.stringify(b)); delete b.cid; delete b._app;
+  b=structuredClone(b); delete b.cid; delete b._app;
   return zPack(JSON.stringify({kind:"build",B:b})).then((z) =>{ const code=z.slice(8).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); return location.origin+location.pathname+"#build="+code; }); }
 function dnaRead(code){ let b=String(code||"").replace(/-/g,"+").replace(/_/g,"/"); while(b.length%4) b+="="; return "DND24Z1:"+b; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dna]"); if(!b) return; e.preventDefault(); const how=b.getAttribute("data-dna");
@@ -154,7 +154,7 @@ dnaCheck(); addEventListener("hashchange",dnaCheck);/* a link pasted into a tab 
    Hit Points use the fixed value per level. Lines for Hit Points, Armor Class, best attack bonus and spell save DC, and the highest spell slot */
 function futureData(){ if(!window.__bldSheetFor) return null; const b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return null;
   const tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
-  try{ for(let L=tot;L<=20;L++){ const nb=JSON.parse(JSON.stringify(b)); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
+  try{ for(let L=tot;L<=20;L++){ const nb=structuredClone(b); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
       __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
       var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach((n,i) =>{ if(+n>0) top=i+1; });
       out.push({l:L,hp:D.hpmax,ac:D.ac,atk:best>-99?best:null,dc:c2.spellcasting?D.dc:null,slot:top,pb:D.pb}); } }

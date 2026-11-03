@@ -22,7 +22,7 @@ function bkpMerge(o){ let src=null; try{ src=JSON.parse(o.keys["cs-roster-v1"]||
   let r=rSnap(rEnsure()), add=0, same=0;
   list.forEach((p) =>{ const id=p[0], ch=p[1]||{}; if(ch.C==null) return; const ex=r.chars[id];
     if(ex&&ex.C===ch.C&&(ex.S||null)===(ch.S||null)&&(ex.B||null)===(ch.B||null)){ same++; return; }
-    const nid=ex?newId(r):id, e=JSON.parse(JSON.stringify(ch)); e.B=fixCid(ch.B==null?null:ch.B,nid); e.created=ch.created||Date.now(); e.t=Date.now(); r.chars[nid]=e; add++; });
+    const nid=ex?newId(r):id, e=structuredClone(/** @type {any} */(ch)); e.B=fixCid(ch.B==null?null:ch.B,nid); e.created=ch.created||Date.now(); e.t=Date.now(); r.chars[nid]=e; add++; });
   if(!rSave(r)) return; const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); const hs=document.querySelector("#homeV .hslots b"); if(hs) hs.textContent=Object.keys(r.chars).length;
   const bk=document.getElementById("bkp"); if(bk) bk.remove();
   toast(add?"Added "+add+" character"+(add===1?"":"s")+(same?". "+same+" already on this device":""):"All characters in this backup are already on this device"); }
