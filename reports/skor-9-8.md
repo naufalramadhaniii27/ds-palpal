@@ -197,3 +197,21 @@ Branch `nilai-98/art-0012`, dari main. Tidak membawa pekerjaan N44.
 | Belum dipasang di UI | 14 scene environment, 11 emblem species, 16 ikon konsep Learn, vignette Sela dan 12 vignette konsep, emblem build-complete dan play-complete, 1 creature (giant-fly). Semuanya sudah ada di antrean Codex tetapi belum punya titik pasang. Ikon konsep dan vignette tersimpan di img/ dan manifest |
 
 Uji (390x844 dan 1250x850): version_label 9/0, learn_a11y ok (axe 0 pelanggaran), learn_flow ok, scenarios 24/0, flow_home_sheet 16/0, tidy 14/0, class_art 0 gagal. `vignettes` gagal 3 sampai 4 cek (roll natural 20 dan 1) juga di main tanpa perubahan ini. Tes itu tidak ada di CI. Penyebab belum dicari.
+
+## Rilis 0.0.13 (build 115): art Codex terpasang, sheet detail blend (2026-11-03)
+
+Branch `nilai-98/art-0013`, dari main 096382e4. Koreksi atas 0.0.12 yang belum memasang art-hd, art-tasks/grid-cut, dan art-scenes.
+
+| Butir | Hasil |
+|---|---|
+| Ikon HD 576 px | Semua ikon di img/icon punya kembaran di img/hd/icon. Dipotong ke bentuk objek dengan margin seragam, jadi ukuran tampil sama |
+| Ikon baru | 202 ikon art-batch yang dulu dilewati karena ada gambar 5etools (131 item, 59 spell, 9 feat, 3 facility), 94 ikon gambar ulang (species, background, kategori library, size), 183 ikon grid |
+| Ikon UI | Tetap garis (keputusan pemilik). Art G01 sampai G05 tersimpan di art-tasks, peta key di art-tasks/grid/ico-map.json |
+| Scene | Species 121 (naik 80, termasuk 30 dari art-batch yang belum pernah dipasang), background 212 x 2, class third-party 16, potret 90, kartu subclass 517 |
+| Sheet detail blend | Art di atas panel memudar ke teks, tint dari gambar, chip rarity berwarna, scene untuk species, background, class dan entri Library (lib:species, lib:bg, lib:class). Gambar buku tidak ditampilkan ganda |
+| Card art | Tekstur kertas, divider kayu 4 potong (melebar penuh tanpa simpul melar), badge level, crest, wipe. Sudut card dibuang (keputusan pemilik) |
+| Aturan | Potion of Healing 2024: minum atau memberi ke makhluk dalam 5 feet adalah Bonus Action. 2014 tetap Action |
+| Gate | code.important 807, lines_over_300 1083, html_gate 248, tsc 279: sama dengan baseline |
+| Ukuran | Sekitar 231 MB gambar baru, semua dimuat lazy |
+
+Uji lokal (390x844 dan 1250x850): scenarios 24/0, art_install 100, detail_img 100, version_label 9/0, Job A, B, C semua lolos, perf budget ok. tg_ui gagal sekali karena timeout lalu lolos saat diulang. CI GitHub tidak jalan: tagihan akun gagal.
