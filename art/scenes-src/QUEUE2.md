@@ -233,7 +233,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K028 | art/scenes-src/subclasses/K028.png | 4x4 cards | Warlock to Witch | done |
 | K029 | art/scenes-src/subclasses/K029.png | 4x4 cards | Witch to Wizard | done |
 | K030 | art/scenes-src/subclasses/K030.png | 4x4 cards | Wizard | done |
-| K031 | art/scenes-src/subclasses/K031.png | 4x4 cards | Wizard | claimed by codex-art-scenes 2026-11-03 01:47 UTC |
+| K031 | art/scenes-src/subclasses/K031.png | 4x4 cards | Wizard | done |
 | K032 | art/scenes-src/subclasses/K032.png | 4x4 cards | Wizard | open |
 | K033 | art/scenes-src/subclasses/K033.png | 4x4 cards (5 used) | Wizard | open |
 | P01 | art/scenes-src/portraits/P01.png | 2x2 portraits | aarakocra-a, aarakocra-b, aetherborn-a, aetherborn-b | done |
