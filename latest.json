@@ -1,7 +1,7 @@
 {
- "commit": "9ed8cd82",
- "branch": "nilai-98/n33",
- "date": "2026-11-02 23:56",
+ "commit": "b9c38ec8",
+ "branch": "nilai-98/m12",
+ "date": "2026-11-03 01:20",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -260,7 +260,7 @@
   "perf": {
    "name": "Kinerja",
    "floor": 6,
-   "score": 6.0,
+   "score": 6.4,
    "measures": [
     {
      "id": "fcp_x4",
@@ -345,10 +345,10 @@
     },
     {
      "id": "syncget",
-     "value": 3,
+     "value": 0,
      "base": 2,
      "target": 0,
-     "credit": 0.0,
+     "credit": 1.0,
      "gate": false,
      "note": ""
     }
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1084,
+     "value": 1086,
      "base": 1099,
      "target": 0,
      "credit": 0.01,
@@ -555,7 +555,7 @@
     },
     {
      "id": "then_calls",
-     "value": 154,
+     "value": 160,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.12,
- "secs": 49
+ "average": 6.15,
+ "secs": 32
 }
