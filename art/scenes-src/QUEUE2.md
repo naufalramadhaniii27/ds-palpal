@@ -232,7 +232,7 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K027 | art/scenes-src/subclasses/K027.png | 4x4 cards | Warlock | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
 | K028 | art/scenes-src/subclasses/K028.png | 4x4 cards | Warlock to Witch | done |
 | K029 | art/scenes-src/subclasses/K029.png | 4x4 cards | Witch to Wizard | done |
-| K030 | art/scenes-src/subclasses/K030.png | 4x4 cards | Wizard | open |
+| K030 | art/scenes-src/subclasses/K030.png | 4x4 cards | Wizard | claimed by codex-art-scenes 2026-11-03 01:44 UTC |
 | K031 | art/scenes-src/subclasses/K031.png | 4x4 cards | Wizard | open |
 | K032 | art/scenes-src/subclasses/K032.png | 4x4 cards | Wizard | open |
 | K033 | art/scenes-src/subclasses/K033.png | 4x4 cards (5 used) | Wizard | open |
