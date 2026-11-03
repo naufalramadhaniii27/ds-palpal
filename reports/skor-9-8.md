@@ -162,3 +162,10 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 ## M8 (branch nilai-98/m11, batched with M11 and M12)
 - New src/app/lib/clipboard.js copyText(text, box): Clipboard API only. When it is refused or missing, the box text is selected and the answer is false, so the toast tells the person to copy by hand. The four execCommand("copy") sites (report, backup text, character text, builder export) now use it. execCommand left in src: 0 (was 4).
 - tests/clipboard_lib.py (node, fake navigator): allowed, refused, no API, no box. 100 percent. The four buttons themselves were not clicked in a browser test (no existing test covers them): gap.
+
+
+## N42: acuan pohon aksesibilitas
+
+- `tests/a11y_tree.py` mengambil pohon aksesibilitas (CDP) di 74 layar.
+- Acuan: 17.756 kontrol, 6 tanpa nama (semua `combobox` di layar builder).
+- Acuan disimpan di `tests/a11y/tree.json` dan `tests/a11y/unnamed.json`. Jumlah tanpa nama tidak boleh naik.
