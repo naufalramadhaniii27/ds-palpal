@@ -1,7 +1,7 @@
 {
- "commit": "1fc844fa",
- "branch": "nilai-98/m9m10",
- "date": "2026-11-03 01:51",
+ "commit": "0775c78c",
+ "branch": "nilai-98/n36",
+ "date": "2026-11-03 02:01",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -61,7 +61,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "effects_uncovered",
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.24,
- "secs": 39
+ "secs": 33
 }
