@@ -30,26 +30,26 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H02 | species/centaur, species/changeling, species/custom, species/dhampir | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H05 | species/githzerai, species/gnome, species/goblin, species/goliath | needs review: cells 1–4; regenerated once; strict rule 5 alpha255 check fails (0.078% opaque and edge/gap residue; alpha mostly 252/253) |
+| H05 | species/githzerai, species/gnome, species/goblin, species/goliath | done (Claude checked and cut, accepted) |
 | H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H07 | species/human, species/kalashtar, species/kenku, species/kobold | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H09 | species/minotaur, species/orc, species/owlin, species/reborn | needs review: cell 2 cord touches top edge after whole-sheet redo |
+| H09 | species/minotaur, species/orc, species/owlin, species/reborn | done (Claude checked and cut, accepted) |
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | done |
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H12 | background/custom, background/entertainer, background/farmer, background/guard | claimed by codex-session-3 2026-11-03T01:35:31+00:00 |
+| H12 | background/custom, background/entertainer, background/farmer, background/guard | open (stale claim released) |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | open |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | open |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | open |
 | H16 | cat/condition, cat/creature, cat/cult, cat/deck | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H19 | cat/item, cat/language, cat/monster, cat/object | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.082%, below 20%; alpha residue in background/gaps, strongest above cell 2); whole-sheet retry used |
-| H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.063%, below 20%; alpha residue in background/gaps, strongest around cell 3 waves); whole-sheet retry used |
+| H19 | cat/item, cat/language, cat/monster, cat/object | done (Claude checked and cut, accepted) |
+| H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | done (Claude checked and cut, accepted) |
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H24 | size/gargantuan, cat/book | needs review: cell 1 (background edge alpha; opaque coverage below 20%; one centered gargantuan icon per session request) |
+| H24 | size/gargantuan, cat/book | open (redo: v1 drew one dragon across both cells. Draw TWO separate icons: dragon head top-left, book top-right) |
 
 ## Prompt per sheet
 
