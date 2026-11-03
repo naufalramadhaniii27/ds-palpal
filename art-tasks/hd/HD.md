@@ -40,7 +40,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | done |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | needs review: cells 1–4 faint alpha residue in empty margins/gap; visible silhouettes separate, opacity passes revised rule 5 |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | needs review: cells 1–4 background alpha residue after whole-sheet retry; visible silhouettes separate, opacity passes revised rule 5 |
-| H15 | background/wayfarer, cat/background, cat/charopt, cat/class | done |
+| H15 | background/wayfarer, cat/background, cat/charopt, cat/class | needs review: cells 1–4 faint alpha-1 background residue after whole-sheet retry; visible silhouettes separate, opaque coverage 30.37% |
 | H16 | cat/condition, cat/creature, cat/cult, cat/deck | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
