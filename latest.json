@@ -1,7 +1,7 @@
 {
- "commit": "7a2f5011",
- "branch": "nilai-98/m11",
- "date": "2026-11-03 01:29",
+ "commit": "e02d73f9",
+ "branch": "main",
+ "date": "2026-11-03 01:40",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -497,7 +497,7 @@
   "code": {
    "name": "Kerapian kode",
    "floor": 5,
-   "score": 5.83,
+   "score": 5.41,
    "measures": [
     {
      "id": "css_patch_files",
@@ -519,10 +519,10 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1082,
+     "value": 1086,
      "base": 1099,
      "target": 0,
-     "credit": 0.02,
+     "credit": 0.01,
      "gate": true,
      "note": ""
     },
@@ -555,7 +555,7 @@
     },
     {
      "id": "then_calls",
-     "value": 161,
+     "value": 160,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -564,10 +564,10 @@
     },
     {
      "id": "exec_command",
-     "value": 0,
+     "value": 4,
      "base": 4,
      "target": 0,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
      "note": ""
     },
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.2,
- "secs": 48
+ "average": 6.15,
+ "secs": 27
 }
