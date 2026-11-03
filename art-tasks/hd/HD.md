@@ -28,7 +28,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 |---|---|---|
 | H01 | species/aarakocra, species/aasimar, species/air-genasi, species/bugbear | needs review: cells 1–4; regenerated once; rule 5 alpha fails (0.038% opaque, edge/gap residue) |
 | H02 | species/centaur, species/changeling, species/custom, species/dhampir | needs review: cells 1–4; regenerated once; rule 5 alpha fails (opacity and edge/gap residue) |
-| H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | open |
+| H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | claimed by codex-session-1 2026-11-03T01:37:28+00:00 |
 | H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | open |
 | H05 | species/githzerai, species/gnome, species/goblin, species/goliath | open |
 | H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | needs review: cells 1-4 alpha 255 coverage 0.07%; stray alpha at edges and quarter gaps after whole-sheet redo |
