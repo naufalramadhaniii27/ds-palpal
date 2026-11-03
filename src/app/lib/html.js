@@ -9,7 +9,7 @@
    on* attributes and javascript: addresses are refused. */
 const SAFE_URL = /^\s*(?:javascript|vbscript|data\s*:\s*text\/html)/i, URL_ATTR = /^(?:href|src|action|formaction|xlink:href|poster|data)$/i, PAIR = /\s*([A-Za-z_:][-\w:.]*)(?:\s*=\s*"([^"]*)")?/y;
 class Raw { constructor(s) { this.s = s; } }
-/** @param {any} s */ export const raw = s => new Raw(s == null ? "" : String(s));
+/** @param {any} s */ export const raw = s => (s && typeof s === "object" && typeof s.s !== "string" && s.s && s.v) ? s : new Raw(s == null ? "" : String(s)); /* a template passes through, so a builder that returns a template works in raw(...) and in html`${...}` */
 /** @param {TemplateStringsArray} s @param {...any} v */ export const html = (s, ...v) => ({ s, v, toString() { return markup(this); } });
 /* Older code still joins markup strings ('<div>' + fn() + '</div>'). A template turns into its escaped markup text when it is joined, so a builder can return a template
    before every caller has moved to render(). The text is the same as the string the builder returned before. */
