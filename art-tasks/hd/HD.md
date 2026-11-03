@@ -49,7 +49,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H24 | size/gargantuan, cat/book | open (redo: v1 drew one dragon across both cells. Draw TWO separate icons: dragon head top-left, book top-right) |
+| H24 | size/gargantuan, cat/book | claimed by codex-h12-h24 2026-11-03T02:55+00:00 |
 
 ## Prompt per sheet
 
