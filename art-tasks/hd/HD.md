@@ -5,11 +5,11 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 ## Rules
 
 1. Work only on branch art-tasks. Never touch main.
-2. Claim a sheet in the Status table (), commit, Already up to date., push. If the push fails, pull and continue.
+2. Claim a sheet in the Status table ("claimed by <session> <time>"), commit, git pull --rebase, push. If the push fails, pull and continue.
 3. Each sheet = ONE image: 1254x1254 PNG RGBA, real transparent background (alpha 0). 2x2 layout: cell 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right. Each icon centered in its quarter, about 70% of the quarter, with a wide empty transparent gap between icons. No grid lines, borders, numbers or labels. H24 has one icon only, centered on the whole canvas at about 70%.
 4. Attach art-tasks/hd/style-ref.png (8 approved art-batch icons, 1024 px originals) as the ONLY style reference. Every icon must look like it belongs in that set at full size: same painterly detail, same soft clean outline, same material rendering and lighting.
 5. Before saving, check with Python: background alpha 0, at least 20% of pixels alpha 255, no icon touches another quarter. Do not upscale and do not cut. Claude cuts and names the icons.
-6. Save art-tasks/hd-out/H0N.png (H01..H24). Mark the sheet  or , commit , Already up to date., push.
+6. Save art-tasks/hd-out/H0N.png (H01..H24). Mark the sheet "done" or "needs review: cells ...", commit "hd: H0N", git pull --rebase, push.
 7. If a cell is wrong, redo the whole image once. If still wrong, mark needs review.
 
 ## Lanes
@@ -53,7 +53,13 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 
 ## Prompt per sheet
 
-
+```
+Make ONE image: 1254x1254 PNG with a fully transparent background (alpha 0, nothing painted behind the icons). 2x2 layout, one icon per quarter, centered, about 70% of the quarter, wide empty gap between icons. No grid lines, borders, numbers or labels.
+CELLS (from the sheet list below, in order: top-left, top-right, bottom-left, bottom-right; the path is only a name, never draw it):
+<the 4 cell lines>
+Style: exactly like the 8 icons in the attached style-ref.png (approved app icons): Studio Ghibli anime prop, bright and warm, no gore. Soft clean hand-drawn anime outline, cel shading with two or three warm tones and fine painted detail, natural wood, brass, cloth, leather, glass or stone materials, magic as soft glowing light. One compact silhouette per icon, readable at 48x48 pixels. All 4 icons share one line weight, palette logic and lighting. Fully opaque icons, no glow haze over the background.
+Every person is an adult. No video game badge, heraldic crest, chrome or spikes everywhere. Never include text, letters, numbers, writing-like runes, logos, watermarks, photorealism, 3D render look, neon colors, or copies of official D&D or Magic: The Gathering art. Book pages, scrolls, maps, signs, cards and dice faces stay blank.
+```
 
 ## Sheet list
 
