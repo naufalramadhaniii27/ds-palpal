@@ -4,6 +4,7 @@ import {x14} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
 import {clamp,esc,mod,num,rich,senseList,sg} from "./05-logic-helpers.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"D",{get:function(){return D;},set:function(v){D=v;},configurable:true});
 /* ================= DERIVATION WITH SOURCES ================= */
 export var D = {}, B = {};
@@ -130,7 +131,7 @@ export function derive(){
 /* v33 p09: entries "**Name.** text" each in its own block (name on its own line, text below, space between). Also splits old saved text joined with spaces */
 function fBlkT(t){ return String(t==null?"":t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Still open\.)([^*\n]{1,80}?\.)\*\* /g,"$1\n\n**$2** "); }
 export function richB(t){ const parts=fBlkT(t).split(/\n\s*\n/).filter((p) =>{ return p.trim(); }); if(parts.length<2) return rich(t).replace(/ <strong>([^<]{1,60}:)<\/strong>/g,"<br><strong>$1</strong>");
-  return parts.map((p) =>{ const h=rich(p.trim()).replace(/ <strong>([^<]{1,60}:)<\/strong>/g,"<br><strong>$1</strong>"), m=/^<strong>([^<]{1,80}\.)<\/strong>\s*/.exec(h); return '<span class="fblk'+(m&&!/^(Your choice|Still open)\.$/.test(m[1])?" nm":"")+'">'+h+'</span>'; }).join(""); }
+  return parts.map((p) =>{ const h=rich(p.trim()).replace(/ <strong>([^<]{1,60}:)<\/strong>/g,"<br><strong>$1</strong>"), m=/^<strong>([^<]{1,80}\.)<\/strong>\s*/.exec(h); return html`<span class="fblk${m&&!/^(Your choice|Still open)\.$/.test(m[1])?" nm":""}">${rawHtml(h)}</span>`; }).join(""); }
 export function richP(t){ const b=richB(t); return /class="fblk/.test(b)?b:rich(t).replace(/ <strong>/g,"<br><strong>"); }
 export function fill(t){ return String(t||"").replace(/\{dc\}/g,D.dc).replace(/\{level\}/g,D.level).replace(/\{pb\}/g,sg(D.pb)).replace(/\{unarmed\}/g, (D.atk[0]?D.atk[0].dmg:"")); }
 

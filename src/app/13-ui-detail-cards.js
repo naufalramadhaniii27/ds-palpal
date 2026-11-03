@@ -7,6 +7,7 @@ import {aylH,aylSplit,spSum,used} from "./08-ui-render-sheet-and-actions.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {SWP,__set_SWP,__set_navStack,__set_sheetMode,lastFocus,navStack,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"featSpec",{get:function(){return featSpec;},set:function(v){featSpec=v;},configurable:true});
 Object.defineProperty(__R,"grpSpec",{get:function(){return grpSpec;},set:function(v){grpSpec=v;},configurable:true});
 Object.defineProperty(__R,"infoHTML",{get:function(){return infoHTML;},set:function(v){infoHTML=v;},configurable:true});
@@ -14,9 +15,9 @@ Object.defineProperty(__R,"resSpec",{get:function(){return resSpec;},set:functio
 Object.defineProperty(__R,"xlink",{get:function(){return xlink;},set:function(v){xlink=v;},configurable:true});
 /* ================= DETAIL (info) BUILDERS ================= */
 export function meta(c,s){ return '<div class="info-meta">'+(c?'<span class="info-cat">'+esc(c)+'</span>':'')+(s?'<span class="src">'+esc(s)+'</span>':'')+'</div>'; }
-function tileBd(label,val,bd){ return '<button type="button" class="tile bd" data-bd="'+bd+'"><span class="k">'+label+'</span><span class="v" style="font-size:24px">'+val+'</span></button>'; }
-export function tileH(label,html){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:15px">'+html+'</span></div>'; }
-export function tileS(label,val){ return '<div class="tile"><span class="k">'+label+'</span><span class="v" style="font-size:'+(String(val).length>8?'15px':'24px')+'">'+esc(val)+'</span></div>'; }
+function tileBd(label,val,bd){ return html`<button type="button" class="tile bd" data-bd="${bd}"><span class="k">${rawHtml(label)}</span><span class="v" style="font-size:24px">${rawHtml(val)}</span></button>`; }
+export function tileH(label,html){ return html`<div class="tile"><span class="k">${rawHtml(label)}</span><span class="v" style="font-size:15px">${rawHtml(html)}</span></div>`; }
+export function tileS(label,val){ return html`<div class="tile"><span class="k">${rawHtml(label)}</span><span class="v" style="font-size:${String(val).length>8?'15px':'24px'}">${val}</span></div>`; }
 function featSpec(name){ const fs=C.features||[]; for(let g=0;g<fs.length;g++){ const it=fs[g].items||[]; for(let f=0;f<it.length;f++){ if(it[f].n===name) return "f:"+g+"."+f; } } return null; }
 function grpSpec(kind){
   const fs=C.features||[], want={species:/species/i, bg:/background/i}[kind];
@@ -30,7 +31,7 @@ function resSpec(r){ if(r.k==="hd"||r.n==="Hit Dice") return "g:Hit Point Dice";
 export function linkify(text){
   return esc(text).split(/(,\s*)/).map((part) =>{
     const raw=part.replace(/&#39;/g,"'"), base=raw.replace(/\s*\(.*\)\s*$/,"").trim();
-    return GLOSS[base] ? '<button type="button" class="lk" data-info="g:'+esc(base)+'">'+part+'</button>' : part;
+    return GLOSS[base] ? html`<button type="button" class="lk" data-info="g:${base}">${rawHtml(part)}</button>` : rawHtml(part);
   }).join("");
 }
 /* x-link: names of spells, creatures and magic items in any rule text become links to their detail (spn:, cr:, mi:) */
@@ -107,10 +108,10 @@ function dcItem(html){ let P={}, h=String(html||"");
   const kind=(/<i>([^<]{2,40})<\/i>/.exec(h)||[])[1]||"Item";
   rest=rest.replace(/<p>\s*<i>[^<]+<\/i>\s*<\/p>/,"");
   return {h:dcHead(__R.ico(P["Armor Class"]!=null?"ui-shield":"ui-hand","isch"),esc(kind))+(cells.length?dcStrip(cells):""), rest:rest}; }
-export function dcHead(badge,sub){ return '<div class="dc-head"><span class="dc-badge">'+badge+'</span><div class="dc-sub">'+sub+'</div></div>'; }
-export function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map((c) =>{ return '<div class="dc-cell"><span class="dc-ico">'+(c[3]||__R.ico(c[0],"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(c[1])+'</small><b>'+c[2]+'</b></div></div>'; }).join("")+'</div>'; }/* v38 p11 */
-function wCell(ik,lab,val,bd,raw){ const inner='<span class="dc-ico">'+(raw||__R.ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd?'<button type="button" class="dc-cell bd" data-bd="'+bd+'">'+inner+'</button>':'<div class="dc-cell">'+inner+'</div>'; }/* v38 p14 */
-function dcFoot(l,r){ return '<div class="dc-foot"><b>'+l+'</b><span>'+r+'</span></div>'; }
+export function dcHead(badge,sub){ return html`<div class="dc-head"><span class="dc-badge">${rawHtml(badge)}</span><div class="dc-sub">${rawHtml(sub)}</div></div>`; }
+export function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map((c) =>{ return html`<div class="dc-cell"><span class="dc-ico">${rawHtml(c[3]||__R.ico(c[0],"dc-ci"))}</span><div class="dc-tx"><small>${c[1]}</small><b>${rawHtml(c[2])}</b></div></div>`; }).join("")+'</div>'; }/* v38 p11 */
+function wCell(ik,lab,val,bd,raw){ const inner='<span class="dc-ico">'+(raw||__R.ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd ? html`<button type="button" class="dc-cell bd" data-bd="${bd}">${rawHtml(inner)}</button>` : html`<div class="dc-cell">${rawHtml(inner)}</div>`; }/* v38 p14 */
+function dcFoot(l,r){ return html`<div class="dc-foot"><b>${rawHtml(l)}</b><span>${rawHtml(r)}</span></div>`; }
 
 /* v38 p10: spTgt */
 const SP_TGT_OVR={"Scorching Ray":"Multiple","Animate Dead":"Multiple","Create Undead":"Multiple","Speak with Dead":"Single","Find Traps":"Special","Dancing Lights":"Special","Prestidigitation":"Special","Thaumaturgy":"Special","Illusory Script":"Object","Create Food and Water":"Special","Teleportation Circle":"Special","Arcane Eye":"Special","Leomund's Secret Chest":"Object","Project Image":"Special","Arcane Gate":"Special","Gate":"Summon","Planar Ally":"Summon","Find Familiar":"Summon","Unseen Servant":"Summon","Phantom Steed":"Summon","Tenser's Floating Disk":"Summon","Mordenkainen's Faithful Hound":"Summon","Tasha's Bubbling Cauldron":"Object","Animate Objects":"Multiple","Passwall":"Special","Move Earth":"Special","Earthquake":"Special","Tsunami":"Special","Mirage Arcane":"Special","Guards and Wards":"Special","Forbiddance":"Special","Guardian of Faith":"Summon"};
@@ -156,9 +157,9 @@ function infoHTML0(spec){
       const on=!!S.cond[key]; h+='<div class="info-act"><button type="button" class="btn press" data-condtoggle="'+esc(key)+'">'+(on?'Remove '+esc(key):'Apply '+esc(key))+'</button></div>';
     }
     const wl=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===key||a.n===key+" (thrown)")&&atkOn(a)) wl.push(ix); }); /* RU15: Thrown Weapon Fighting adds a "<weapon> (thrown)" row */
-    if(wl.length) h+='<div class="info-h">On your sheet</div><div class="info-l">'+wl.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">'+esc(C.attacks[ix].n)+' attack<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
+    if(wl.length) h+='<div class="info-h">On your sheet</div><div class="info-l">'+wl.map((ix) =>{ return html`<button type="button" data-info="w:${ix}">${C.attacks[ix].n} attack<span>${rawHtml(sg(D.atk[ix].hit))} to hit, ${D.atk[ix].dmg}</span></button>`; }).join("")+'</div>';
     const fl=[]; (C.features||[]).forEach((gr,gi) =>{ (gr.items||[]).forEach((f,fi) =>{ if(String(f.d).indexOf("[["+key+"]]")>=0 || String(f.d).indexOf("[["+key+"|")>=0) fl.push([gi,fi]); }); });
-    if(fl.length) h+='<div class="info-h">Your features that mention this</div><div class="info-l">'+fl.map((x) =>{ const f=C.features[x[0]].items[x[1]]; return '<button type="button" data-info="f:'+x[0]+'.'+x[1]+'">'+esc(f.n)+'<span>'+esc(f.s)+'</span></button>'; }).join("")+'</div>';
+    if(fl.length) h+='<div class="info-h">Your features that mention this</div><div class="info-l">'+fl.map((x) =>{ const f=C.features[x[0]].items[x[1]]; return html`<button type="button" data-info="f:${x[0]}.${x[1]}">${f.n}<span>${f.s}</span></button>`; }).join("")+'</div>';
     return {t:key, h:h};
   }
   if(type==="cr"){ const cp=key.split("|"), cc=__R.crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:__R.crBlock(cc,cp.slice(1).join("|"))}; }/* v23 RU36 no. 10 */
@@ -184,7 +185,7 @@ function infoHTML0(spec){
   }
   if(type==="grp"){
     const G=(C.features||[])[+key]; if(!G) return {t:"Group", h:""};
-    h=meta("Features",'')+'<div class="info-l">'+(G.items||[]).map((f,fi) =>{ return '<button type="button" data-info="f:'+key+'.'+fi+'">'+esc(f.n)+'<span>'+esc(f.s)+'</span></button>'; }).join("")+'</div>'+(G.next?'<p class="bk-f">'+esc(G.next)+'</p>':'');
+    h=meta("Features",'')+'<div class="info-l">'+(G.items||[]).map((f,fi) =>{ return html`<button type="button" data-info="f:${key}.${fi}">${f.n}<span>${f.s}</span></button>`; }).join("")+'</div>'+(G.next?'<p class="bk-f">'+esc(G.next)+'</p>':'');
     return {t:G.g, h:h};
   }
   if(type==="w"){
@@ -205,7 +206,7 @@ function infoHTML0(spec){
     if(base) h+='<p class="info-d">'+rich(base.d)+'</p>';
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
-    if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
+    if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return html`<button type="button" data-info="w:${ix}">Attack with ${C.attacks[ix].n}<span>${rawHtml(sg(D.atk[ix].hit))} to hit, ${D.atk[ix].dmg}</span></button>`; }).join("")+'</div>';
     h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
     return {t:it.n, h:h};
   }

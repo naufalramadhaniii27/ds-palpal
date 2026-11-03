@@ -5,6 +5,7 @@ import {baseOf,ensureInv} from "./14-logic-multiclass-hp-shop.js";
 import {bI} from "./17-ui-step-builder.js";
 import {ctFree,invFind} from "./21-ui-rules-reference.js";
 import {__R} from "./00-reg.js";
+import { render as drawHtml, raw as rawHtml } from "../app/lib/html.js";
 Object.defineProperty(__R,"attN",{get:function(){return attN;},set:function(v){attN=v;},configurable:true});
 Object.defineProperty(__R,"bDeco",{get:function(){return bDeco;},set:function(v){bDeco=v;},configurable:true});
 /* v33 p02: header and footer icons (one line style, like the sheet) */
@@ -19,7 +20,7 @@ function bTxt(b){const t=(b.textContent||"").replace(/\s+/g," ").trim();for(let 
 function bDeco(root){const ICO=window.__ICO;if(!root||!ICO)return;const q=function(s){return Array.prototype.slice.call(root.querySelectorAll(s))},put=function(e,k,end){if(!k||e.querySelector("svg"))return;e.insertAdjacentHTML(end?"beforeend":"afterbegin",bI(k))};
  q(".chip").forEach((b) =>{if(b.querySelector("svg"))return;const on=b.classList.contains("on");if(b.classList.contains("clash")&&b.firstChild&&b.firstChild.nodeType===3)b.firstChild.nodeValue=b.firstChild.nodeValue.replace(/^\u26a0\s*/,"");put(b,on?"ui-check":b.classList.contains("clash")?"toast-warn":b.classList.contains("have")?"ui-check":"ui-plus")});
  q(".rad").forEach((b) =>{put(b,b.classList.contains("on")?"ui-radio-on":"fr-round")});
- q(".eqo .bcb").forEach((s) =>{if(!s.querySelector("svg"))s.innerHTML=bI(s.parentNode.classList.contains("on")?"item-equipped":"ui-box")});
+ q(".eqo .bcb").forEach((s) =>{if(!s.querySelector("svg"))drawHtml(rawHtml(bI(s.parentNode.classList.contains("on")?"item-equipped":"ui-box")), s)});
  q("[data-invt]").forEach((b) =>{put(b,BINV[b.getAttribute("data-invt")])});
  q("[data-invr],[data-custr]").forEach((b) =>{put(b,"item-wondrous")});q("[data-avar]").forEach((b) =>{put(b,b.getAttribute("data-k")==="0"?"ui-minus":"ui-star")});
  q("[data-setcls]").forEach((b) =>{const k=window.__icoCls?window.__icoCls(b.getAttribute("data-setcls")):"";put(b,ICO[k]?k:"src-class")});

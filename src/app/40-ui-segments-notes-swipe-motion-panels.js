@@ -109,7 +109,7 @@ function dField(id,lbl,val,attr,ta,ph){ const v=String(val||""); return '<div cl
 function renderDesc(){ const el=$("#descBody"); if(!el) return;
   const bgG=(C.features||[]).filter((g) =>{return /^Background/.test(g.g)})[0], miss=[], keep=function(v,name){ const e=!String(v||"").trim(); if(e) miss.push(name); return !e||DESC_MORE; };
   let h='<div class="dsec dcamp camp-f">'+dField("n-camp","Campaign",campName(),"",false,"Campaign name")+'<p class="dhint">Optional. Shown under your name, and My Characters can group by it.</p></div>';/* v30 RU133 */
-  h+='<h3 class="noteh">'+ico("src-background")+'Background'+(C.bg?': '+esc(C.bg):'')+'</h3>'+(bgG?bgG.items.map((it) =>{return '<p class="bgl"><b>'+esc(it.n)+'.</b> '+rich(String(it.d).replace(/\*\*Your choice\.\*\*\s*/,""))+'</p>'}).join(''):'<p class="muted">No background chosen yet.</p>');
+  h+='<h3 class="noteh">'+ico("src-background")+'Background'+(C.bg?': '+esc(C.bg):'')+'</h3>'+(bgG?bgG.items.map((it) =>{return html`<p class="bgl"><b>${it.n}.</b> ${rawHtml(rich(String(it.d).replace(/\*\*Your choice\.\*\*\s*/,"")))}</p>`}).join(''):'<p class="muted">No background chosen yet.</p>');
   const lg=[0,1,2].map((i) =>{ const v=S.lang[i]||""; if(i>0&&!keep(v,"Language "+(i+1))) return ""; return dField("n-lang"+i,i===0?"Language 1":"Language "+(i+1),v,'data-lang="'+i+'" aria-label="Language '+(i+1)+'"',false,i===0?"Common":"Language "+(i+1)); }).join("");
   h+='<h3 class="noteh">'+ico("ui-book")+'Languages</h3><p class="dhint">Common plus two of your choice. Rare or setting languages need DM approval.</p><div class="dgrid">'+lg+'</div>';
   const ch=(keep(S.align,"Alignment")?dField("n-align","Alignment",S.align||"","",false,"Optional in the 2024 rules"):"")+CHAR_FIELDS.map((f) =>{ const v=S.notes[f[0]]||""; return keep(v,f[1])?dField("n-"+f[0],f[1],v,'data-note="'+f[0]+'"',false):""; }).join("");
@@ -118,7 +118,7 @@ function renderDesc(){ const el=$("#descBody"); if(!el) return;
   if(pe) h+='<h3 class="noteh">'+ico("tab-description")+'Personality</h3><div class="dlist">'+pe+'</div>';
   if(miss.length) h+='<button type="button" class="dmore press" data-dmore="1" aria-expanded="'+DESC_MORE+'">'+ico(DESC_MORE?"ui-chev-d":"ui-plus","dmi")+'<span><b>'+(DESC_MORE?'Hide empty details':'Add details')+'</b><small>'+esc(miss.join(", "))+'</small></span></button>';
   h+='<div class="saved">Saved on this device as you type.</div>';
-  el.innerHTML=h; requestAnimationFrame(() =>{ growAll(el); }); }
+  drawHtml(rawHtml(h), el); requestAnimationFrame(() =>{ growAll(el); }); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dmore]"); if(!b) return; e.preventDefault(); DESC_MORE=!DESC_MORE; renderDesc();
   if(DESC_MORE){ const f=document.querySelector("#descBody .dfield.empty .dval"); if(f) try{ f.focus({preventScroll:false}); }catch(er){} } });
 /* ===== v31 p11 swipe + tab slide (RU112, D6, D2) ===== */
@@ -221,7 +221,7 @@ function ctxSpec(t){
   return null; }
 function ctxClose(){ const m=document.getElementById("ctxm"); if(m){ m.remove(); if(ctxClose.back&&ctxClose.back.focus) try{ ctxClose.back.focus({preventScroll:true}); }catch(e){} } ctxClose.back=null; }
 function ctxOpen(spec,x,y){ ctxClose(); const m=document.createElement("div"); m.id="ctxm"; m.className="ctxm"; m.setAttribute("role","menu"); m.setAttribute("aria-label",spec.t);
-  drawHtml(html`<div class="ctxh">${spec.t}</div>${rawHtml(spec.L.map((a,i) =>{ return '<button type="button" role="menuitem" class="ctxi'+(a[3]?' del':'')+'" data-ctxi="'+i+'"'+(a[2]?'':' disabled')+'>'+ico(a[1])+'<span>'+esc(a[0])+'</span></button>'; }).join(""))}`, m);
+  drawHtml(html`<div class="ctxh">${spec.t}</div>${rawHtml(spec.L.map((a,i) =>{ return html`<button type="button" role="menuitem" class="ctxi${a[3]?' del':''}" data-ctxi="${i}"${a[2]?'':' disabled'}>${rawHtml(ico(a[1]))}<span>${a[0]}</span></button>`; }).join(""))}`, m);
   document.body.appendChild(m); const w=m.offsetWidth, h=m.offsetHeight; m.style.left=Math.max(8,Math.min(x,innerWidth-w-8))+"px"; m.style.top=Math.max(8,Math.min(y,innerHeight-h-8))+"px";
   ctxClose.back=document.activeElement; m.__L=spec.L; const f=m.querySelector(".ctxi:not([disabled])"); if(f) f.focus({preventScroll:true}); }
 document.addEventListener("contextmenu",(e) =>{ if(mq.matches||e.shiftKey) return; const spec=ctxSpec(e.target); if(!spec) return; e.preventDefault(); ctxOpen(spec,e.clientX,e.clientY); });
@@ -269,7 +269,7 @@ function ordUI(list){ const o=ORDL[list], root=document.getElementById(o.body); 
   const bar=document.createElement("div"); bar.className="ordbar"; drawHtml(html`<span class="muted">${rawHtml(on?'Drag a handle, or focus it and use the arrow keys.':'')}</span><button type="button" class="btn press ordb" data-ord="${rawHtml(list)}" aria-pressed="${rawHtml(on)}">${rawHtml(ico(on?"ui-check":"ui-sort","ibt"))}${rawHtml(on?'Done':'Reorder')}</button>`, bar);
   const fil=root.querySelector(".ifil"); if(fil) fil.parentNode.insertBefore(bar,fil.nextSibling); else root.insertBefore(bar,root.firstChild);
   if(!on) return; ordRuns(list).forEach((run) =>{ if(run.length<2) return; run.forEach((r,i) =>{ const h=document.createElement("button"); h.type="button"; h.className="dragh press"; h.setAttribute("data-ordl",list);
-    h.setAttribute("aria-label","Move "+o.name(r)+", "+(i+1)+" of "+run.length+". Drag, or use the up and down arrow keys"); h.innerHTML=ico("ui-grip","dgi"); r.appendChild(h); r.classList.add("ordr"); }); }); }
+    h.setAttribute("aria-label","Move "+o.name(r)+", "+(i+1)+" of "+run.length+". Drag, or use the up and down arrow keys"); drawHtml(rawHtml(ico("ui-grip","dgi")), h); r.appendChild(h); r.classList.add("ordr"); }); }); }
 __set_renderInv((function(f){ return function(){ const r=f.apply(this,arguments); ordApply("inv"); ordUI("inv"); return r; }; })(renderInv));
 __set_renderFeat((function(f){ return function(){ const r=f.apply(this,arguments); ordApply("feat"); ordUI("feat"); return r; }; })(renderFeat));
 function ordRender(list){ if(list==="inv") renderInv(); else renderFeat(); }

@@ -47,7 +47,7 @@ var homeCamp="";
 function campOf(id,r){ const s=rS(id,r); if(s&&typeof s.camp==="string") return s.camp.trim(); const c=rC(id,r); return String(c&&c.office||"").trim(); }/* v30 RU133: S.camp first */
 function campList(r){ const o=[]; Object.keys(r.chars).forEach((id) =>{ if(r.chars[id].ph) return; const c=campOf(id,r); if(c&&o.indexOf(c)<0) o.push(c); }); return o.sort((a,b) =>{ return a.localeCompare(b); }); }
 function campSel(r){ const L=campList(r); if(!L.length){ homeCamp=""; return ""; } if(homeCamp&&homeCamp!=="-"&&L.indexOf(homeCamp)<0) homeCamp="";
-  return '<label class="hsort hcampf"><span>Campaign</span><select id="homeCamp"><option value="">All</option>'+L.map((c) =>{ return '<option value="'+esc(c)+'"'+(homeCamp===c?" selected":"")+'>'+esc(c)+'</option>'; }).join("")+'<option value="-"'+(homeCamp==="-"?" selected":"")+'>No campaign</option></select></label>'; }
+  return '<label class="hsort hcampf"><span>Campaign</span><select id="homeCamp"><option value="">All</option>'+L.map((c) =>{ return html`<option value="${c}"${homeCamp===c?" selected":""}>${c}</option>`; }).join("")+'<option value="-"'+(homeCamp==="-"?" selected":"")+'>No campaign</option></select></label>'; }
 function campKeep(id,r){ if(!homeCamp) return true; const c=campOf(id,r); return homeCamp==="-"?!c:c===homeCamp; }
 /* the backup of one campaign: the roster holds only its characters, the open slots hold the first of them */
 function bkpCamp(d){ if(!homeCamp) return d; let r=null; try{ r=JSON.parse(d[RKEY]); }catch(e){ r=null; } if(!r||!r.chars) return d;
@@ -106,7 +106,7 @@ function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<inp
   const mine=(C.spells||[]).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); if(al.length) G.push(["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]);
   const LK='<button type="button" class="btn sm press gs-lib" data-lib="'+esc(gsQ.trim())+'">Search the whole library for "'+esc(gsQ.trim())+'"</button>';
   if(!G.length) return h+cm+(PAL.length?'':'<p class="info-d">Nothing found for "'+esc(gsQ.trim())+'" in your sheet.</p>')+LK;
-  return h+cm+G.map((g) =>{ return '<div class="info-h">'+esc(g[0])+' ('+g[1].length+')</div><div class="gs-l">'+g[1].map((r) =>{ return '<button type="button" class="gs-r" data-info="'+esc(r[0])+'"><b>'+(r[3]?(ico(r[3],"gs-ri")||ico("ui-book","gs-ri")):'')+esc(r[1])+'</b><small>'+esc(r[2])+'</small></button>'; }).join("")+'</div>'; }).join("")+LK; }
+  return h+cm+G.map((g) =>{ return '<div class="info-h">'+esc(g[0])+' ('+g[1].length+')</div><div class="gs-l">'+g[1].map((r) =>{ return html`<button type="button" class="gs-r" data-info="${r[0]}"><b>${rawHtml(r[3]?(ico(r[3],"gs-ri")||ico("ui-book","gs-ri")):'')}${r[1]}</b><small>${r[2]}</small></button>`; }).join("")+'</div>'; }).join("")+LK; }
 /* v30 p07 RU130: commands. Each gives an icon, a title, a preview of what changes, and run() */
 const PAL_TABS=[[["main"],0,null,"Main","tab-main"],[["skills"],1,null,"Skills","tab-skills"],[["actions","attacks"],2,"p-actions","Actions","act-attack"],[["spells","spellbook"],3,"p-spells","Spells","tab-spells"],[["inventory","items","equipment"],4,"p-inv","Inventory","tab-inventory"],[["features","traits"],5,"p-feat","Features","tab-features"],[["description","background"],6,"p-desc","Description","tab-description"],[["notes","journal"],7,"p-notes","Notes","tab-notes"],[["extras","companions"],8,"p-ext","Extras","tab-extras"]];
 function palNeed(k){ const o={dmg:["hp-damage","Damage","dmg "],heal:["hp-heal","Heal","heal "],temp:["hp-temp","Temporary Hit Points","temp "],exh:["cond-exhaustion","Exhaustion","exhaustion "]}[k];
@@ -160,7 +160,7 @@ export function palCmds(q){ if(!q||FROZEN||!D||!D.hpmax) return []; const m=/^(.
   L.sort((a,b) =>{ return a[0]-b[0]||a[1]-b[1]; }); return L.slice(0,4).map((x) =>{ return x[2].f(); }); }
 function palRow(c,i){ return '<button type="button" class="gs-c press" id="gsc'+i+'" data-cmd="'+i+'">'+(ico(c.i,"gs-ci")||ico("ui-chev-r","gs-ci"))+'<span class="gs-ct"><b>'+esc(c.t)+'</b><small>'+esc(c.s||"")+'</small></span><kbd class="gs-k" aria-hidden="true">'+(c.fill?"Tab":"Enter")+'</kbd></button>'; }
 function palHelp(){ const ex=[["dmg 7","hp-damage"],["heal 5","hp-heal"],["temp 8","hp-temp"],["short rest","rest-short"],["poisoned","cond-poisoned"],["exhaustion 2","cond-exhaustion"],["spells","tab-spells"]], mac=/Mac|iPhone|iPad/.test(navigator.platform||"");
-  return '<p class="info-d gs-hint">Search spells, items, features, and rules, or type a command.'+(mq.matches?'':' '+(mac?'Cmd+K':'Ctrl+K')+' or / opens this. Arrow keys choose, Enter runs.')+'</p><div class="gs-ex" aria-label="Examples">'+ex.map((x) =>{ return '<button type="button" class="chip gs-x press" data-gsfill="'+esc(x[0])+'">'+ico(x[1])+'<span>'+esc(x[0])+'</span></button>'; }).join("")+'</div>'; }
+  return '<p class="info-d gs-hint">Search spells, items, features, and rules, or type a command.'+(mq.matches?'':' '+(mac?'Cmd+K':'Ctrl+K')+' or / opens this. Arrow keys choose, Enter runs.')+'</p><div class="gs-ex" aria-label="Examples">'+ex.map((x) =>{ return html`<button type="button" class="chip gs-x press" data-gsfill="${x[0]}">${rawHtml(ico(x[1]))}<span>${x[0]}</span></button>`; }).join("")+'</div>'; }
 export function gsRows(){ return $$("#sheetBody .gs-c, #sheetBody .gs-r"); }
 export function gsMark(scroll){ const L=gsRows(); if(gsSel>=L.length) gsSel=0; L.forEach((r,i) =>{ r.classList.toggle("sel",i===gsSel); }); if(scroll&&L[gsSel]) try{ L[gsSel].scrollIntoView({block:"nearest"}); }catch(er){} }
 export function palFill(v){ const q=$("#gsQ"); if(!q) return; q.value=v; gsQ=v; clearTimeout(__R.gsT); gsRefresh(); q.focus(); try{ q.setSelectionRange(v.length,v.length); }catch(er){} }
@@ -239,15 +239,15 @@ function libTag(t){ return String(t)
   .replace(/([^.])\.\.(?!\.)/g,"$1."); }
 /* stat block of a creature row: AC and HP, six ability cells, then one line per fact (a long value never sits in a narrow tile) */
 function libStat(tl){ const m={}, rest=[]; tl=tl.map((x) =>{ return x?[x[0],libVal(x[1])].concat(x.slice(2)):x; }); tl.forEach((x) =>{ if(!x||x[1]===""||x[1]==null) return; if(x[0]==="AC"||x[0]==="HP"||x[0]==="Abilities") m[x[0]]=String(x[1]); else rest.push(x); });
-  let h='<div class="cr-top">'+["AC","HP"].filter((k) =>{ return m[k]; }).map((k) =>{ return '<div><small>'+k+'</small><b>'+esc(libTag(m[k]))+'</b></div>'; }).join("")+'</div>', ab=[], re=/([A-Z]{3}) (\d+) \(([+\-\u2212]\d+)\)/g, x;
+  let h='<div class="cr-top">'+["AC","HP"].filter((k) =>{ return m[k]; }).map((k) =>{ return html`<div><small>${rawHtml(k)}</small><b>${libTag(m[k])}</b></div>`; }).join("")+'</div>', ab=[], re=/([A-Z]{3}) (\d+) \(([+\-\u2212]\d+)\)/g, x;
   while((x=re.exec(m.Abilities||""))) ab.push(x);
-  if(ab.length===6) h+='<div class="cr-ab">'+ab.map((a) =>{ return '<div><small>'+a[1]+'</small><b>'+a[2]+'</b><i>'+a[3]+'</i></div>'; }).join("")+'</div>'; else if(m.Abilities) rest.unshift(["Abilities",m.Abilities]);
-  return h+'<div class="cr-kv">'+rest.map((r) =>{ return '<div><span>'+esc(r[0])+'</span><b>'+esc(libTag(r[1]))+'</b></div>'; }).join("")+'</div>'; }
-function libFeatBlock(h4,txt){ return '<div class="info-h">'+h4+'</div><p class="info-d">'+richP(txt)+'</p>'; }
+  if(ab.length===6) h+='<div class="cr-ab">'+ab.map((a) =>{ return html`<div><small>${rawHtml(a[1])}</small><b>${rawHtml(a[2])}</b><i>${rawHtml(a[3])}</i></div>`; }).join("")+'</div>'; else if(m.Abilities) rest.unshift(["Abilities",m.Abilities]);
+  return h+'<div class="cr-kv">'+rest.map((r) =>{ return html`<div><span>${r[0]}</span><b>${libTag(r[1])}</b></div>`; }).join("")+'</div>'; }
+function libFeatBlock(h4,txt){ return html`<div class="info-h">${rawHtml(h4)}</div><p class="info-d">${rawHtml(richP(txt))}</p>`; }
 /* T4 item 23: Add to my sheet from the library (spell, magic item, gear). Entries carry lib:1 so they can be told apart from builder entries */
 function libPrice(c,k){ if(c!=="gear") return null; let p=(typeof PRICE!=="undefined"&&PRICE[k]!=null)?PRICE[k]:null; if(p==null){ GEAR.forEach((q) =>{ if(q[0]===k&&q[1]!=null) p=q[1]; }); } return p!=null&&p>0?p:null; }
 function libAddBtn(c,k){ if(!(c==="spell"||c==="item"||c==="gear")) return ""; const pr=libPrice(c,k), q=c==="spell"?"":'<label class="lib-qty"><span>Quantity</span><input type="number" min="1" max="99" value="1" inputmode="numeric" data-libqty aria-label="Quantity"></label>';
-  return '<div class="lib-add">'+q+'<button type="button" class="btn sm press" data-libadd="'+esc(c+"|"+k)+'"><span class="hbt">'+(c==="spell"?"Add to my sheet":"Add (free)")+'</span></button>'+(pr!=null?'<button type="button" class="btn sm press lib-buy" data-libbuy="'+esc(c+"|"+k)+'"><span class="hbt">Buy for '+esc(priceTxt(pr))+'</span></button>':'')+'</div>'; }
+  return html`<div class="lib-add">${rawHtml(q)}<button type="button" class="btn sm press" data-libadd="${c+"|"+k}"><span class="hbt">${rawHtml(c==="spell"?"Add to my sheet":"Add (free)")}</span></button>${pr!=null ? html`<button type="button" class="btn sm press lib-buy" data-libbuy="${c+"|"+k}"><span class="hbt">Buy for ${priceTxt(pr)}</span></button>` : ''}</div>`; }
 function libQty(){ const i=document.querySelector("[data-libqty]"), v=i?Math.floor(num(i.value,1)):1; return v<1?1:v>99?99:v; }
 function libItemFor(c,k){ let it=null; if(c==="item"){ DMGI.forEach((q) =>{ if(q[0]===k) it=q; }); if(!it) return null; return {n:k,q:1,w:0,eq:false,type:it[1],rar:it[2],d:String(it[4]||"").replace(/\*\*|\[\[|\]\]/g,""),lib:1}; }
   let w=WEAPONS[k], a=ARMOR[k], gr=null; GEAR.forEach((q) =>{ if(q[0]===k) gr=q; }); const pr=libPrice(c,k); it={n:k,q:1,w:Number((w&&w.w)||(a&&a.w)||(gr&&gr[2])||0)||0,eq:false,d:ITEMDESC[k]||"",lib:1}; if(pr!=null) it.cost=pr; return it; }
@@ -269,7 +269,7 @@ function libClean(h){ return typeof h!=="string"?h:h.replace(/\{#itemEntry [^}]*
 let LIB_IDS=null, LIB_IDSX=null;
 function libHas(c,n){ let ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix){ LIB_IDSX=ix; LIB_IDS={}; ix.forEach((e) =>{ LIB_IDS[e.c+"|"+e.k]=e.k; const q=e.k.indexOf(" ("); if(q>0&&!LIB_IDS[e.c+"|"+e.k.slice(0,q)]) LIB_IDS[e.c+"|"+e.k.slice(0,q)]=e.k; const nm=e.k.indexOf("|")>0&&e.c==="opt"?e.k.slice(e.k.indexOf("|")+1):e.k; const nk=e.c+"|~"+nm.toLowerCase().replace(/[^a-z0-9]/g,""); if(!LIB_IDS[nk]) LIB_IDS[nk]=e.k; }); } return LIB_IDS[c+"|"+n]||LIB_IDS[c+"|~"+String(n).toLowerCase().replace(/[^a-z0-9]/g,"")]||false; }/* exact name, name before a bracket, then the name without spaces, hyphens or case */
 /* a name that opens its Library entry when one exists, plain text otherwise */
-function libLnk(label,cands){ for(let i=0;i<cands.length;i++){ const key=cands[i][1]?libHas(cands[i][0],cands[i][1]):false; if(key) return '<button type="button" class="lnk" data-lib-open="'+esc(cands[i][0]+"|"+key)+'">'+esc(label)+'</button>'; } return '<span>'+esc(label)+'</span>'; }
+function libLnk(label,cands){ for(let i=0;i<cands.length;i++){ const key=cands[i][1]?libHas(cands[i][0],cands[i][1]):false; if(key) return html`<button type="button" class="lnk" data-lib-open="${cands[i][0]+"|"+key}">${label}</button>`; } return html`<span>${label}</span>`; }
 /* 5e.tools style lists under a spell: who can cast it and what grants it */
 function libSpRefs(k){ const R=window.SPREF&&window.SPREF[String(k).toLowerCase()]; if(!R) return ""; let h="";
   const row=function(lbl,list,fn){ if(!list||!list.length) return; const seen={}, out=[]; list.forEach((x) =>{ const o=fn(x), key=o[0]; if(seen[key]) return; seen[key]=1; out.push(o); }); out.sort((a,b) =>{ return a[0]<b[0]?-1:1; }); h+='<p class="lib-ref"><b>'+lbl+':</b> '+out.map((o) =>{ return libLnk(o[0],o[1]); }).join(", ")+'</p>'; };
@@ -281,7 +281,7 @@ function libSpRefs(k){ const R=window.SPREF&&window.SPREF[String(k).toLowerCase(
   row("Other options and features",R.o,(x) =>{ return [x[0],[["optfeat",x[0]],["opt",x[0]]]]; });
   const m=R.m, notes=[]; if(m){ if(m.ref&&m.ref.length) notes.push("Referenced in "+m.ref.join(", ")+"."); const av=[]; if(m.srd) av.push("the SRD 5.2.1"); if(m.br) av.push("the Basic Rules (5.5e/2024)"); if(av.length) notes.push("Available in "+av.join(" and ")+"."); }
   if(notes.length) h+='<p class="lib-ref lib-src">'+esc(notes.join(" "))+'</p>';
-  return h?'<div class="lib-refs">'+h+'</div>':""; }
+  return h ? html`<div class="lib-refs">${rawHtml(h)}</div>` : ""; }
 /* what an entry grants or connects to, built from the spell lookup and from background feats */
 let LIB_REV=null, LIB_REVX=null;
 function libNorm(n){ return String(n||"").toLowerCase().replace(/[^a-z0-9]/g,""); }
@@ -290,13 +290,13 @@ function libRev(){ let ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LI
   const S=window.SPREF||{}; Object.keys(S).forEach((key) =>{ const sp=nm[key]; if(!sp) return; const R=S[key]; (R.r||[]).forEach((x) =>{ add("species",x[0],sp); if(x[2]) add("species",x[2],sp); }); (R.b||[]).forEach((x) =>{ add("bg",x[0],sp); }); (R.f||[]).forEach((x) =>{ add("feat",x[0],sp); }); (R.s||[]).forEach((x) =>{ add("sub",x[0],sp); add("sub",x[3],sp); }); (R.o||[]).forEach((x) =>{ add("optfeat",x[0],sp); add("opt",x[0],sp); }); });
   try{ const B={}; Object.keys(BACKGROUNDS).forEach((n) =>{ B[n]=BACKGROUNDS[n].feat; }); const X=libX("b"); Object.keys(X).forEach((n) =>{ if(!B[n]) B[n]=(X[n].r||{}).feat; }); Object.keys(B).forEach((n) =>{ if(!B[n]) return; const k=libNorm(String(B[n]).replace(/\s*\(.*$/,"")); (rv.bgf[k]=rv.bgf[k]||[]).push(n); rv.bgf["bg|"+libNorm(n)]=B[n]; }); }catch(er){}
   return (LIB_REV=rv); }
-function libRelList(lbl,names,cat,keyOf){ if(!names||!names.length) return ""; let u=names.slice().sort(), more=u.length>40?u.length-40:0; u=u.slice(0,40); return '<p class="lib-ref"><b>'+lbl+':</b> '+u.map((n) =>{ return libLnk(n,[[cat,keyOf?keyOf(n):n]]); }).join(", ")+(more?' and '+more+' more':'')+'</p>'; }
+function libRelList(lbl,names,cat,keyOf){ if(!names||!names.length) return ""; let u=names.slice().sort(), more=u.length>40?u.length-40:0; u=u.slice(0,40); return html`<p class="lib-ref"><b>${rawHtml(lbl)}:</b> ${rawHtml(u.map((n) =>{ return libLnk(n,[[cat,keyOf?keyOf(n):n]]); }).join(", "))}${rawHtml(more?' and '+more+' more':'')}</p>`; }
 function libRel(c,k){ let rv=libRev(), h="", key=libNorm(k);
   if(c==="species"||c==="bg"||c==="feat"||c==="sub"||c==="optfeat"||c==="opt"){ const nk=c==="opt"?key.replace(/^(man|inv|mm)/,""):key; const al=String(k).replace(/\s*\(.*$/,""), m2=/^(\w+) (Elf|Dwarf|Gnome|Halfling|Orc|Tiefling)$/.exec(al); const sp=rv.sp[c+"|"+nk]||(c==="species"&&m2?rv.sp["species|"+libNorm(m2[2]+" ("+m2[1]+")")]:null)||(c==="species"?rv.sp["species|"+libNorm(String(k).replace(/\s*\(.*$/,""))]:null); h+=libRelList("Spells",sp,"spell"); }
   if(c==="bg"){ const f=rv.bgf["bg|"+key]; if(f) h=libRelList("Feat",[f],"feat")+h; }
   if(c==="feat"){ const bs=rv.bgf[libNorm(String(k).replace(/\s*\(.*$/,""))]; h+=libRelList("Backgrounds that grant it",bs,"bg"); }
   if(c==="sub"){ let own=null; try{ Object.keys(CLASSES).forEach((cn) =>{ if((CLASSES[cn].subs||{})[k]) own=cn; }); const X=libXs(); if(!own&&X[k]) own=X[k].cls; }catch(er){} if(!own){ let q=null; Object.keys(window.QREFS||{}).forEach((cc) =>{ if(!/^sub/.test(cc)) return; (window.QREFS[cc]||[]).forEach((r) =>{ if(r.n===k) q=r; }); }); if(q){ (q.tl||[]).forEach((t) =>{ if(t[0]==="Class") own=t[1]; }); if(!own) own="Artificer"; }} if(own) h=libRelList("Class",[own],"class")+h; }
-  return h?'<div class="lib-refs">'+h+'</div>':""; }
+  return h ? html`<div class="lib-refs">${rawHtml(h)}</div>` : ""; }
 function libDetail(c,k){ const d=libDetailRaw(c,k); if(d&&d.h){ if(c==="spell"){ try{ d.h+=libSpRefs(k); }catch(er){} } else { try{ d.h+=libRel(c,k); }catch(er){} }
   d.h=libClean(d.h);
   const fx=c==="item"?window.ITEMFIX:c==="language"?window.LANGFIX:c==="deck"?window.DECKFIX:null; if(fx&&fx[k]&&!/<p class="info-d">[^<]/.test(d.h)&&!/class="fblk/.test(d.h)) d.h=d.h.replace(/<p class="info-d"><\/p>/g,"")+richP(fx[k]);/* entries whose 5etools data is a template or a list of speakers */
@@ -314,13 +314,13 @@ function libDetailRaw(c,k){ let h="",t=k,sub="",x,i;
     if(dsc) h+='<p class="info-d">'+richP(dsc)+'</p>'; return {t:k,sub:sub,h:h}; }
   if(c==="feat"&&(FEATS[k]||(window.WXF_ALL&&window.WXF_ALL[k]&&window.WXF_ALL[k].f))){ const f=FEATS[k]||(window.WXF_ALL&&window.WXF_ALL[k]&&window.WXF_ALL[k].f); if(!f) return null; return {t:k,sub:LIB_FEATCAT[f.cat]||"Feat",h:meta(LIB_FEATCAT[f.cat]||"Feat","")+'<p class="info-d">'+richP((typeof FEAT_FULL!=="undefined"&&FEAT_FULL[k])||f.d)+'</p>'}; }
   if(c==="species"&&(SPECIES[k]||(libX("s")[k]&&libX("s")[k].r))){ const s=SPECIES[k]||(libX("s")[k]&&libX("s")[k].r); if(!s) return null; h=libTiles([["Size",s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":""]]);
-    if(s.lin&&s.lin.opts) h+='<div class="info-h">'+esc(s.lin.label)+'</div><ul class="lib-ul">'+s.lin.opts.map((o) =>{ return '<li>'+esc(o)+'</li>'; }).join("")+'</ul>';
+    if(s.lin&&s.lin.opts) h+='<div class="info-h">'+esc(s.lin.label)+'</div><ul class="lib-ul">'+s.lin.opts.map((o) =>{ return html`<li>${o}</li>`; }).join("")+'</ul>';
     (s.traits||[]).forEach((tr) =>{ h+=libFeatBlock(esc(tr[0]),tr[1]); }); return {t:k,sub:"Species",h:h}; }
   if(c==="bg"&&(BACKGROUNDS[k]||(libX("b")[k]&&libX("b")[k].r))){ const b=BACKGROUNDS[k]||(libX("b")[k]&&libX("b")[k].r); if(!b) return null; h=libTiles([["Ability Scores",(b.ab||[]).join(", ")],["Origin Feat",b.feat],["Skills",(b.sk||[]).join(", ")],["Tool",b.tool||""]])+'<div class="info-h">Starting Equipment</div><p class="info-d">'+esc(b.eq||"")+'</p>'; return {t:k,sub:"Background",h:h}; }
   if(c==="class"&&CLASSES[k]){ const cl=CLASSES[k]; h=libTiles([["Hit Die","d"+cl.hd],["Primary Ability",cl.prim],["Saving Throws",(cl.saves||[]).join(", ")],["Armor",cl.armor||"None"],["Weapons",cl.weapons||""],["Tools",cl.tools||""]]);
     if(cl.sk) h+='<p class="info-d">Skills: choose '+cl.sk.n+' from '+esc((cl.sk.from||[]).join(", "))+'.</p>';
-    h+='<div class="info-h">Features</div><div class="lib-fl">'+(cl.f||[]).map((f) =>{ return '<button type="button" class="lib-r" data-lib-open="feature|cls:'+esc(k+"|"+f[1])+'"><span class="lib-lv">'+f[0]+'</span><span class="lib-rt"><b>'+esc(f[1])+'</b><small>'+esc(String(f[2]).slice(0,110))+'</small></span></button>'; }).join("")+'</div>';
-    const sn=Object.keys(cl.subs||{}); if(sn.length) h+='<div class="info-h">Subclasses</div><div class="lib-fl">'+sn.map((n) =>{ return '<button type="button" class="lib-r" data-lib-open="sub|'+esc(n)+'"><span class="lib-rt"><b>'+(window.__artSub?window.__artSub(k,n):"")+esc(n)+'</b></span></button>'; }).join("")+'</div>';
+    h+='<div class="info-h">Features</div><div class="lib-fl">'+(cl.f||[]).map((f) =>{ return html`<button type="button" class="lib-r" data-lib-open="feature|cls:${k+"|"+f[1]}"><span class="lib-lv">${rawHtml(f[0])}</span><span class="lib-rt"><b>${f[1]}</b><small>${String(f[2]).slice(0,110)}</small></span></button>`; }).join("")+'</div>';
+    const sn=Object.keys(cl.subs||{}); if(sn.length) h+='<div class="info-h">Subclasses</div><div class="lib-fl">'+sn.map((n) =>{ return html`<button type="button" class="lib-r" data-lib-open="sub|${n}"><span class="lib-rt"><b>${rawHtml(window.__artSub?window.__artSub(k,n):"")}${n}</b></span></button>`; }).join("")+'</div>';
     if(cl.eq) h+='<div class="info-h">Starting Equipment</div><p class="info-d">'+esc((cl.eq||[]).join(" or "))+'</p>'; return {t:k,sub:"Class",h:h}; }
   if(c==="sub"&&(function(){ let o=null, xx=libXs()[k]; Object.keys(CLASSES).forEach((cn) =>{ if((CLASSES[cn].subs||{})[k]) o=cn; }); return o||(xx&&xx.cls); })()){ let own=null, xs=libXs()[k]; Object.keys(CLASSES).forEach((cn) =>{ if((CLASSES[cn].subs||{})[k]) own=cn; }); if(!own&&xs) own=xs.cls; if(!own) return null; h=meta(own+" Subclass",xs?xs.bk:"");/* T10: the emblem is the centred watermark now */
     (xs&&!((CLASSES[own]||{}).subs||{})[k]?xs.arr:CLASSES[own].subs[k]).forEach((f) =>{ const full=(typeof SUB_FULL!=="undefined"&&SUB_FULL[k+"|"+f[1]])||f[2]; h+='<div class="info-h">Level '+f[0]+': '+esc(f[1])+'</div><p class="info-d">'+richP(full)+'</p>'; }); return {t:k,sub:own+" Subclass",h:h}; }
@@ -338,15 +338,15 @@ function libDetailRaw(c,k){ let h="",t=k,sub="",x,i;
 const LIB_HB={}, LIB_HBP={};
 function libHbDraw(rows,hn,k){ const box=document.getElementById("libHb"); if(!box||!LIB.cur||LIB.cur.id!=="homebrew|"+k) return; let r=null; (rows||[]).forEach((x) =>{ if(x.n===hn) r=x; });
   if(!r){ drawHtml(html`<p class="info-d">This entry could not be found in its pack.</p>`, box); return; }
-  let h=(r.tl||[]).some((x) =>{ return x&&x[0]==="Abilities"; })?libStat(r.tl):libTiles(r.tl||[]); (r.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); box.innerHTML=h; }
+  let h=(r.tl||[]).some((x) =>{ return x&&x[0]==="Abilities"; })?libStat(r.tl):libTiles(r.tl||[]); (r.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); drawHtml(rawHtml(h), box); }
 function libHbLoad(hid,hn,k){ if(LIB_HB[hid]){ setTimeout(() =>{ libHbDraw(LIB_HB[hid],hn,k); },0); return; }
   if(!window.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) drawHtml(html`<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>`, box); }); }
 function libRecent(add){ let a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter((x) =>{ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
-function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
+function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0 ? rawHtml(esc(n)) : html`${n.slice(0,i)}<mark>${n.slice(i,i+q.length)}</mark>${n.slice(i+q.length)}`; }
 const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"feature",facility:"facility",rule:"rule",opt:"opt",optfeat:"optfeat",language:"language"};/* Codex icons by entry kind */
 const LIB_CATIC={sub:"subclass",bg:"background",opt:"option",homebrew:"homebrew"};
 function libCatIc(c){ const A=window.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||localStorage.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
-function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((window.__artIc&&LIB_ICO[e.c]&&window.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
+function libRow(e,q,showCat){ const ct=libCat(e.c); return html`<button type="button" class="lib-r" data-lib-open="${e.c+"|"+e.k}"><span class="lib-ri">${rawHtml((window.__artIc&&LIB_ICO[e.c]&&window.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")}</span><span class="lib-rt"><b>${rawHtml(libHi(e.n,q))}</b><small>${e.s}${rawHtml((function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })())}</small></span>${showCat ? html`<span class="lib-rc">${ct[1].replace(/ and .*/,"").replace(/s$/,"")}</span>` : ''}</button>`; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; const inv={}, voc=[];
   LIB.idx.forEach((e,i) =>{ const seen={}; (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach((w) =>{ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); }); LIB.inv=inv; LIB.voc=voc; LIB.fz={}; }
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
@@ -360,13 +360,13 @@ function libChips(){ let n=libCounts(), tot=0, q=LIB.q.trim().length>=2, h; Obje
   h='<button type="button" class="lib-chip'+(LIB.cat==="all"?' on':'')+'" data-lib-cat="all">All <small>'+tot+'</small></button>';
   LIB_CATS.forEach((c) =>{ if(!n[c[0]]) return; h+='<button type="button" class="lib-chip'+(LIB.cat===c[0]?' on':'')+'" data-lib-cat="'+c[0]+'">'+esc(c[1])+' <small>'+n[c[0]]+'</small></button>'; }); return h; }
 function libListHTML(){ let q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h="", i;
-  if(!LIB.idx) return '<p class="info-d lib-empty">Loading the library.</p>';
+  if(!LIB.idx) return html`<p class="info-d lib-empty">Loading the library.</p>`;
   if(q.length<2){
     if(LIB.cat!=="all"){ const L=LIB.idx.filter((e) =>{ return e.c===LIB.cat; }).sort((a,b) =>{ return a.n<b.n?-1:1; }); return libFlat(L.map((e) =>{ return [0,e]; }),"",L.length); }
     const rc=libRecent().map((id) =>{ let p=id.indexOf("|"), c=id.slice(0,p), k=id.slice(p+1), f=null; LIB.idx.forEach((e) =>{ if(e.c===c&&e.k===k) f=e; }); return f; }).filter(Boolean);
     if(rc.length) h+='<div class="info-h">Recent</div><div class="lib-l">'+rc.map((e) =>{ return libRow(e,"",true); }).join("")+'</div>';
-    const n=libCounts(); h+='<div class="info-h">Browse</div><div class="lib-tiles">'+LIB_CATS.filter((c) =>{ return n[c[0]]; }).map((c) =>{ return '<button type="button" class="lib-tile" data-lib-cat="'+c[0]+'">'+(ico(c[2],"gs-ri")||"")+'<b>'+esc(c[1])+'</b><small>'+n[c[0]]+'</small></button>'; }).join("")+'</div>';
-    return h+'<p class="bk-f">Type at least two letters. Try a spell, an item, a feat, a rule, or a word from a description.</p>'; }
+    const n=libCounts(); h+='<div class="info-h">Browse</div><div class="lib-tiles">'+LIB_CATS.filter((c) =>{ return n[c[0]]; }).map((c) =>{ return html`<button type="button" class="lib-tile" data-lib-cat="${c[0]}">${rawHtml(ico(c[2],"gs-ri")||"")}<b>${c[1]}</b><small>${rawHtml(n[c[0]])}</small></button>`; }).join("")+'</div>';
+    return html`${rawHtml(h)}<p class="bk-f">Type at least two letters. Try a spell, an item, a feat, a rule, or a word from a description.</p>`; }
   const ah=typeof __R.askHTML==="function"?__R.askHTML(LIB.q):"";/* T11 N15: a question gets a short answer from the intent table first */
   if(!LIB.res.length) return ah||'<p class="info-d lib-empty">Nothing found for "'+esc(LIB.q.trim())+'".</p>';
   h=ah;
@@ -374,7 +374,7 @@ function libListHTML(){ let q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h=
   const GR=[]; LIB_CATS.forEach((c,ci) =>{ const F=LIB.res.filter((r) =>{ return r[1].c===c[0]; }); if(F.length) GR.push([F[0][0],ci,c,F]); }); GR.sort((x,y) =>{ return x[0]-y[0]||x[1]-y[1]; });/* the group with the best name match comes first */
   GR.forEach((g) =>{ const c=g[2], F=g[3]; h+='<div class="info-h">'+esc(c[1])+' ('+F.length+')</div><div class="lib-l">'+F.slice(0,5).map((r) =>{ return libRow(r[1],q,false); }).join("")+'</div>'+(F.length>5?'<button type="button" class="lib-more" data-lib-cat="'+c[0]+'">Show all '+F.length+' in '+esc(c[1])+'</button>':''); });
   return h; }
-function libFlat(R,q,n){ return '<div class="lib-l">'+R.slice(0,LIB.lim).map((r) =>{ return libRow(r[1],q,false); }).join("")+'</div>'+(n>LIB.lim?'<button type="button" class="lib-more" data-lib-more="1">Show '+Math.min(60,n-LIB.lim)+' more of '+n+'</button>':''); }
+function libFlat(R,q,n){ return html`<div class="lib-l">${rawHtml(R.slice(0,LIB.lim).map((r) =>{ return libRow(r[1],q,false); }).join(""))}</div>${n>LIB.lim ? html`<button type="button" class="lib-more" data-lib-more="1">Show ${rawHtml(Math.min(60,n-LIB.lim))} more of ${rawHtml(n)}</button>` : ''}`; }
 function libDom(){ let w=document.getElementById("lib"); if(w) return w; w=document.createElement("div"); w.id="lib"; w.className="lib"; w.setAttribute("role","dialog"); w.setAttribute("aria-label","Library"); w.tabIndex=-1;
   drawHtml(html`<div class="lib-h" id="libH"><button type="button" class="lib-x" data-lib-x="back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><div class="lib-tt"><b id="libT">Library</b><small id="libS"></small></div><button type="button" class="lib-x" data-lib-x="close" aria-label="Close library">${rawHtml(ico("ui-close"))}</button></div><div class="lib-q"><input id="libQ" type="search" placeholder="Search spells, items, feats, rules" aria-label="Search the library" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><div class="lib-c" id="libC"></div><div class="lib-bd" id="libBd"></div>`, w);
   document.body.appendChild(w); libWire(w); return w; }
@@ -386,15 +386,15 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
     else if(c==="species") h=ico(__R.icoSp(k)||"sp-custom");
     else if(c==="bg") h=ico("src-background");
     else h=sheetIco(d.t); }catch(er){ h=""; } }
-  m.innerHTML=wmHd(h); }
+  drawHtml(rawHtml(wmHd(h)), m); }
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
-function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=__R.askHTML; __R.askHTML=null; const ai=window.__artIc; window.__artIc=null; try{ return libListHTML(); } finally{ __R.askHTML=a; window.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
+function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=__R.askHTML; __R.askHTML=null; const ai=window.__artIc; window.__artIc=null; try{ return libListHTML(); } finally{ __R.askHTML=a; window.__artIc=ai; } }catch(e2){ return html`<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>`; } } }
 function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */
   if(d){ const wm0=document.getElementById("libWm"); drawHtml(html`<div class="lib-dt">${rawHtml(d.h)}</div>`, bd); if(wm0) bd.insertBefore(wm0,bd.firstChild); bd.scrollTop=0; return; }
-  document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libSafe(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
+  drawHtml(rawHtml(LIB.idx?libChips():""), document.getElementById("libC")); drawHtml(rawHtml(libSafe()), bd); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ let rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
 function libGo(spec,push){ let p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);
   if(push!==false&&LIB.cur) LIB.hist.push(LIB.cur); else if(push!==false) { const bd=document.getElementById("libBd"); LIB.scroll=bd?bd.scrollTop:0; }
@@ -416,7 +416,7 @@ function libWire(w){ let drag=null;
     if(x==="close"){ libClose(); return; } if(x==="back"){ libBack(); return; }
     if(o){ libGo(o); return; }
     if(c){ LIB.cat=c; LIB.lim=60; LIB.scroll=0; libPaint(); return; }
-    if(b.hasAttribute("data-lib-more")){ LIB.lim+=60; const bd=document.getElementById("libBd"), st=bd.scrollTop; bd.innerHTML=libSafe(); bd.scrollTop=st; libMark(); } });
+    if(b.hasAttribute("data-lib-more")){ LIB.lim+=60; const bd=document.getElementById("libBd"), st=bd.scrollTop; drawHtml(rawHtml(libSafe()), bd); bd.scrollTop=st; libMark(); } });
   w.addEventListener("input",(e) =>{ if(e.target.id==="libQ") libInput(e.target.value); });
   const h=w.querySelector("#libH");
   h.addEventListener("pointerdown",(e) =>{ if(e.button>0||e.target.closest("button")||window.innerWidth<760) return; const r=w.getBoundingClientRect(); drag={x:e.clientX-r.left,y:e.clientY-r.top,id:e.pointerId}; try{ h.setPointerCapture(e.pointerId); }catch(er){} w.classList.add("mv"); });
@@ -440,11 +440,11 @@ window.__libIndex=function(){ const i=LIB.idx||libIndex(); return i.map((e) =>{ 
 window.__libIdx=function(){ return LIB.idx; };
 window.__libStats=function(){ if(!LIB.idx){ LIB.idx=libIndex(); LIB.inv=null; } libInv(); let po=0, tl=0; Object.keys(LIB.inv).forEach((w) =>{ po+=LIB.inv[w].length; }); let pl=0, n2=0; LIB.idx.forEach((e) =>{ tl+=e.t.length; pl+=(e.p||"").length; n2+=e.n.length+e.s.length; }); return {entries:LIB.idx.length,words:LIB.voc.length,postings:po,tchars:tl,pchars:pl,nschars:n2}; };/* test hook: sizes of the Library index */
 window.__libFind=function(q){ if(!LIB.idx){ LIB.idx=libIndex(); LIB.inv=null; } const o=LIB.q; LIB.q=q; libSearch(); const r=LIB.res.slice(0,6).map((x) =>{ return x[1].n+" ("+x[0]+")"; }); LIB.q=o; return r; };/* v101: test hook */
-window.__libScan=function(){ const idx=LIB.idx||libIndex(), res={}, box=document.createElement("div"), pats={tag:/\{@|\{=|\{#|\{\//,undef:/\bundefined\b|\[object|\bNaN\b/,esc:/&(amp|lt|gt|quot);|<\/?[a-z]+[ >]/i,dollar:/\$\{/,dbl:/\.\.(?!\.)|,,|\( ?\)|\[ ?\]/,empty:/^\s*$/}; idx.forEach((e) =>{ if(e.c==="homebrew") return; let d=null; try{ d=libDetail(e.c,e.k); }catch(er){ return; } if(!d||!d.h) return; box.innerHTML=d.h; const t=box.textContent||""; Object.keys(pats).forEach((k) =>{ if(pats[k].test(t)){ const r=res[k+"|"+e.c]=res[k+"|"+e.c]||{n:0,s:[]}; r.n++; if(r.s.length<4){ const m=pats[k].exec(t); r.s.push(e.n+" :: "+t.slice(Math.max(0,m.index-30),m.index+50).replace(/\s+/g," ")); } } }); }); return res; };/* test hook: scans detail text for leftover markup */
+window.__libScan=function(){ const idx=LIB.idx||libIndex(), res={}, box=document.createElement("div"), pats={tag:/\{@|\{=|\{#|\{\//,undef:/\bundefined\b|\[object|\bNaN\b/,esc:/&(amp|lt|gt|quot);|<\/?[a-z]+[ >]/i,dollar:/\$\{/,dbl:/\.\.(?!\.)|,,|\( ?\)|\[ ?\]/,empty:/^\s*$/}; idx.forEach((e) =>{ if(e.c==="homebrew") return; let d=null; try{ d=libDetail(e.c,e.k); }catch(er){ return; } if(!d||!d.h) return; drawHtml(rawHtml(d.h), box); const t=box.textContent||""; Object.keys(pats).forEach((k) =>{ if(pats[k].test(t)){ const r=res[k+"|"+e.c]=res[k+"|"+e.c]||{n:0,s:[]}; r.n++; if(r.s.length<4){ const m=pats[k].exec(t); r.s.push(e.n+" :: "+t.slice(Math.max(0,m.index-30),m.index+50).replace(/\s+/g," ")); } } }); }); return res; };/* test hook: scans detail text for leftover markup */
 window.__libAudit=function(){ const idx=LIB.idx||libIndex(), bad=[], cnt={}; idx.forEach((e) =>{ cnt[e.c]=(cnt[e.c]||0)+1; if(e.c==="homebrew") return; let d=null; try{ d=libDetail(e.c,e.k); }catch(er){ bad.push([e.c,e.k,String(er).slice(0,80)]); return; } if(!d||!d.t||!d.h||d.h.length<20) bad.push([e.c,e.k,"empty"]); }); return {n:idx.length,cnt:cnt,bad:bad.slice(0,20),nbad:bad.length}; };/* v101: test hook, opens every entry once */
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-lib]"); if(!b) return; e.preventDefault(); const v=b.getAttribute("data-lib"); libOpen(v?{q:v,fromSearch:1}:{}); });
-export function gsRefresh(){ if(sheetMode!=="search") return; const b=$("#sheetBody"), q=$("#gsQ"); if(!b) return; if(!q){ b.innerHTML=gsHTML(); return; }
-  const t=document.createElement("div"); t.innerHTML=gsHTML(); const ni=t.querySelector("#gsQ"); if(ni) ni.remove();
+export function gsRefresh(){ if(sheetMode!=="search") return; const b=$("#sheetBody"), q=$("#gsQ"); if(!b) return; if(!q){ drawHtml(rawHtml(gsHTML()), b); return; }
+  const t=document.createElement("div"); drawHtml(rawHtml(gsHTML()), t); const ni=t.querySelector("#gsQ"); if(ni) ni.remove();
   while(q.nextSibling) q.nextSibling.remove(); const f=document.createDocumentFragment(); while(t.firstChild) f.appendChild(t.firstChild); b.appendChild(f); gsMark(); }/* v29 RU126: keep the input, swap only the results */
 
 /* RU68: spell cards to print, several on an A4 page. Long rules text takes two card spaces */
@@ -455,7 +455,7 @@ function spCardH(x,i){ const xs=scOf(x), lv=x.l?ordL(x.l)+" "+x.sch:x.sch+" cant
     (hd?'<p class="spc-sv">'+esc(hd)+'</p>':'')+'<div class="spc-t">'+richP(full)+'</div><p class="spc-f">'+esc((x.src||"")+(x.pg?" • PHB-2024, pg. "+x.pg:""))+'</p></div>'; }
 export function printCards(){ const L=[],seen={}; (C.spells||[]).forEach((x) =>{ if(seen[x.n]) return; seen[x.n]=1; L.push(x); }); if(!L.length){ toast("No spells to print yet."); return; }
   L.sort((a,b) =>{ return (a.l||0)-(b.l||0)||(a.n<b.n?-1:1); }); const old=document.getElementById("spCards"); if(old) old.remove();
-  const w=document.createElement("div"); w.id="spCards"; w.setAttribute("aria-hidden","true"); w.innerHTML=L.map(spCardH).join(""); document.body.appendChild(w);
+  const w=document.createElement("div"); w.id="spCards"; w.setAttribute("aria-hidden","true"); drawHtml(rawHtml(L.map(spCardH).join("")), w); document.body.appendChild(w);
   const R=document.documentElement; R.setAttribute("data-print","cards"); const done=function(){ R.removeAttribute("data-print"); const c=document.getElementById("spCards"); if(c) c.remove(); window.removeEventListener("afterprint",done); };
   window.addEventListener("afterprint",done); try{ window.print(); }catch(e){} setTimeout(() =>{ if(!window.matchMedia||!window.matchMedia("print").matches) done(); },1500); }
 
@@ -522,7 +522,7 @@ export function pinToggle(n){ const a=Array.isArray(S.pin)?S.pin.slice():[], i=a
   Array.prototype.forEach.call(document.querySelectorAll(".pinfav[data-pin]"),(b) =>{ const on=pinOn(b.getAttribute("data-pin")); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on?"true":"false"); const t=b.querySelector(".hbt"); if(t) t.textContent=on?"In your favorites bar":"Add to favorites bar"; }); }
 function pinSpBtn(x){ const k="sp:"+x.n, on=pinOn(k); return '<button type="button" class="btn sm press pinfav'+(on?' on':'')+'" data-pin="'+esc(k)+'" aria-pressed="'+on+'"><span class="hbt">'+(on?"In your favorites bar":"Add to favorites bar")+'</span></button>'; }
 export function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; const SP=S.pin.map((n) =>{ if(String(n).indexOf("sp:")!==0) return null; let nm=n.slice(3), i=-1; (C.spells||[]).forEach((x,ix) =>{ if(i<0&&x.n===nm) i=ix; }); return i>=0?[nm,i,(C.spells[i].l||0)]:null; }).filter(Boolean), L=S.pin.map((n) =>{ let i=-1; (C.skills||[]).forEach((s,ix) =>{ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length&&!SP.length) return "";
-  return '<div class="pins" aria-label="Favorites">'+L.map((p) =>{ return '<button type="button" class="pinc bd" data-bd="sk-'+p[1]+'">'+esc(p[0])+' <b>'+sg(D.skill[p[1]])+'</b></button>'; }).join("")+SP.map((p) =>{ return '<button type="button" class="pinc pinsp" data-info="sp:'+p[1]+'">'+esc(p[0])+' <b>'+(p[2]?"L"+p[2]:"C")+'</b></button>'; }).join("")+'</div>'; }
+  return '<div class="pins" aria-label="Favorites">'+L.map((p) =>{ return html`<button type="button" class="pinc bd" data-bd="sk-${p[1]}">${p[0]} <b>${rawHtml(sg(D.skill[p[1]]))}</b></button>`; }).join("")+SP.map((p) =>{ return html`<button type="button" class="pinc pinsp" data-info="sp:${p[1]}">${p[0]} <b>${rawHtml(p[2]?"L"+p[2]:"C")}</b></button>`; }).join("")+'</div>'; }
 
 /* RU28: a sheet made by the builder of an older version (no C.bv) that the builder now makes differently. Shown once per app version, until dismissed or applied */
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!window.__bldMine||!window.__bldMine()) return ""; let d=[]; try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";

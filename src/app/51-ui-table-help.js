@@ -7,6 +7,7 @@ import {LEARN_LINK,__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet
 import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
 import {RB_AB} from "./50-logic-reverse-builder.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"cheatOpen",{get:function(){return cheatOpen;},set:function(v){cheatOpen=v;},configurable:true});
 Object.defineProperty(__R,"coachGet",{get:function(){return coachGet;},set:function(v){coachGet=v;},configurable:true});
 Object.defineProperty(__R,"coachLine",{get:function(){return coachLine;},set:function(v){coachLine=v;},configurable:true});
@@ -25,16 +26,16 @@ function wdRows(){ const r=[], at=C.attacks||[];
   const hd=num(C.hitDie,10), cm=D.mod&&D.mod.CON||0; r.push({g:"Rest",t:"Hit Point Die",d:"1d"+hd+" "+sg(cm),n:"During a Short Rest, to heal"});
   return r; }
 function wdOpen(){ __set_navStack([]); const rows=wdRows(), gs=[]; rows.forEach((x) =>{ if(gs.indexOf(x.g)<0) gs.push(x.g); });
-  openSheet("Which die do I roll?",'<p class="bk-f">Pick what you are doing. The die and the bonus come from '+esc(C.name||"your character")+'.</p><div class="wd-g" role="group" aria-label="What are you doing?">'+gs.map((g,i) =>{ return '<button type="button" class="lib-chip'+(i?'':' on')+'" data-wdg="'+esc(g)+'">'+esc(g)+'</button>'; }).join("")+'</div><div class="wd-l">'+wdList(rows,gs[0])+'</div>',"wd"); }
-function wdList(rows,g){ return rows.filter((x) =>{ return x.g===g; }).map((x) =>{ return '<div class="wd-r"><b>'+esc(x.t)+'</b><span class="wd-d">'+esc(x.d)+'</span><small>'+esc(x.n)+'</small></div>'; }).join(""); }
+  openSheet("Which die do I roll?",'<p class="bk-f">Pick what you are doing. The die and the bonus come from '+esc(C.name||"your character")+'.</p><div class="wd-g" role="group" aria-label="What are you doing?">'+gs.map((g,i) =>{ return html`<button type="button" class="lib-chip${i?'':' on'}" data-wdg="${g}">${g}</button>`; }).join("")+'</div><div class="wd-l">'+wdList(rows,gs[0])+'</div>',"wd"); }
+function wdList(rows,g){ return rows.filter((x) =>{ return x.g===g; }).map((x) =>{ return html`<div class="wd-r"><b>${x.t}</b><span class="wd-d">${x.d}</span><small>${x.n}</small></div>`; }).join(""); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-wdg],[data-wdopen],[data-cheat]"); if(!b) return;
   if(b.hasAttribute("data-wdopen")){ wdOpen(); return; } if(b.hasAttribute("data-cheat")){ cheatOpen(); return; }
-  const g=b.getAttribute("data-wdg"); Array.prototype.forEach.call(document.querySelectorAll("#sheetBody [data-wdg]"),(x) =>{ x.classList.toggle("on",x===b); }); const l=document.querySelector("#sheetBody .wd-l"); if(l) l.innerHTML=wdList(wdRows(),g); });
+  const g=b.getAttribute("data-wdg"); Array.prototype.forEach.call(document.querySelectorAll("#sheetBody [data-wdg]"),(x) =>{ x.classList.toggle("on",x===b); }); const l=document.querySelector("#sheetBody .wd-l"); if(l) drawHtml(rawHtml(wdList(wdRows(),g)), l); });
 function cheatOpen(){ __set_navStack([]); const sp=C.spellcasting?'<div><dt>Spell save DC</dt><dd>'+D.dc+'</dd></div><div><dt>Spell attack</dt><dd>'+sg(D.dc-8)+'</dd></div>':'';
   const acts=[["Attack","One attack, more with Extra Attack"],["Dash","Extra movement equal to your Speed"],["Disengage","Moving does not trigger Opportunity Attacks this turn"],["Dodge","Attacks against you have Disadvantage"],["Help","A friend gets Advantage on one roll"],["Hide","Stealth check, DC 15, out of sight"],["Influence","Talk someone into something"],["Magic","Cast a spell or use a magic item"],["Ready","Act later, when a trigger happens"],["Search","Look for something, Wisdom check"],["Study","Recall or work out something, Intelligence check"],["Utilize","Use an object"]];
   openSheet("Table cheat sheet",'<div class="cht"><section><h3>Your numbers</h3><dl class="cht-n"><div><dt>Armor Class</dt><dd>'+D.ac+'</dd></div><div><dt>Hit Points</dt><dd>'+D.hpmax+'</dd></div><div><dt>Initiative</dt><dd>'+sg(D.init)+'</dd></div><div><dt>Speed</dt><dd>'+esc(String(D.speed||C.speed||30))+' ft</dd></div><div><dt>Passive Perception</dt><dd>'+esc(String(D.pas_per!=null?D.pas_per:""))+'</dd></div><div><dt>Proficiency</dt><dd>'+sg(D.pb)+'</dd></div>'+sp+'</dl></section>'+
     '<section><h3>Your turn</h3><ul><li><b>Move</b> up to your Speed, split as you like</li><li><b>One action</b> from the list below</li><li><b>One Bonus Action</b>, only if a feature or spell gives one</li><li><b>One Reaction</b> per round, also on other turns</li><li>Free: talk a little, use one object such as opening a door</li></ul></section>'+
-    '<section><h3>Actions</h3><dl class="cht-a">'+acts.map((a) =>{ return '<div><dt>'+a[0]+'</dt><dd>'+a[1]+'</dd></div>'; }).join("")+'</dl></section>'+
+    '<section><h3>Actions</h3><dl class="cht-a">'+acts.map((a) =>{ return html`<div><dt>${rawHtml(a[0])}</dt><dd>${rawHtml(a[1])}</dd></div>`; }).join("")+'</dl></section>'+
     '<section><h3>Rolls</h3><ul><li>d20 + bonus, reach the number (DC or Armor Class)</li><li>Advantage: roll 2, keep the higher. Disadvantage: keep the lower. Both: roll 1</li><li>Attack 20: Critical Hit, damage dice twice. Attack 1: miss</li><li>0 Hit Points: death save each turn, 10 or more is a success, three of either ends it</li></ul></section></div><p><button type="button" class="btn press" data-wdopen="1">Which die do I roll?</button></p>',"cheat"); }
 /* U47 coach mode */
 const COACH={rooftops:"An ability check is a d20 plus a bonus, against a number the DM sets (the DC).",green:"Each ability score gives a modifier. The modifier, not the score, goes on your rolls.",

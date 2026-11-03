@@ -84,7 +84,7 @@ function syRun(why){
       sySet(sy);
       /* the open character changes: stop here. The live sheet in memory is the old one, so nothing may be sent until the page has reloaded */
       if(reload&&r.active){ SY.on=false; SY.busy=false; rLoad(rGet(),r.active,false); return "stop"; }
-      if(changedR&&typeof homeCards==="function"){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); }
+      if(changedR&&typeof homeCards==="function"){ const g=document.getElementById("hgrid"); if(g) drawHtml(rawHtml(homeCards(true)), g); }
       /* push: changed here, new here, deleted here */
       const L2=syLocal(), pushes=[];
       Object.keys(L2).forEach((id) =>{ const k=sy.c[id], s=srv[id], l=L2[id]; if(k&&k.h===l.h&&s&&!s.deleted) return;
@@ -139,15 +139,15 @@ function syOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(
   document.body.appendChild(w); const box=w.querySelector(".sy-list");
   function when(t){ try{ return new Date(t).toLocaleString(undefined,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
   function list(){ syApi("chars").then((j) =>{ const a=(j.chars||[]).filter((c) =>{ return !c.deleted; }), d=(j.chars||[]).filter((c) =>{ return c.deleted; });
-      box.innerHTML=(a.length?'<b class="sy-h">In the cloud</b>'+a.map((c) =>{ return '<div class="sy-row"><span><b>'+esc(c.name||"Unnamed")+'</b><small>'+esc(c.sub||"")+' · '+esc(when(c.t))+'</small></span><button type="button" class="btn press" data-syv="'+esc(c.id)+'">Versions</button></div>'; }).join(""):'<p class="sy-note">No characters in the cloud yet.</p>')+
-        (d.length?'<b class="sy-h">Recently deleted (kept 30 days)</b>'+d.map((c) =>{ return '<div class="sy-row"><span><b>'+esc(c.name||"Unnamed")+'</b><small>Deleted '+esc(when(c.deleted))+'</small></span><button type="button" class="btn press" data-syr="'+esc(c.id)+'">Restore</button></div>'; }).join(""):""); },
+      box.innerHTML=(a.length?'<b class="sy-h">In the cloud</b>'+a.map((c) =>{ return html`<div class="sy-row"><span><b>${c.name||"Unnamed"}</b><small>${c.sub||""} · ${when(c.t)}</small></span><button type="button" class="btn press" data-syv="${c.id}">Versions</button></div>`; }).join(""):'<p class="sy-note">No characters in the cloud yet.</p>')+
+        (d.length?'<b class="sy-h">Recently deleted (kept 30 days)</b>'+d.map((c) =>{ return html`<div class="sy-row"><span><b>${c.name||"Unnamed"}</b><small>Deleted ${when(c.deleted)}</small></span><button type="button" class="btn press" data-syr="${c.id}">Restore</button></div>`; }).join(""):""); },
     () =>{ drawHtml(html`<p class="sy-note">The cloud cannot be reached now. Everything is still saved on this device.</p>`, box); }); }
   function vers(id){ drawHtml(html`<p class="sy-note">Loading…</p>`, box); syApi("chars/"+encodeURIComponent(id)+"/versions").then((j) =>{ const v=j.versions||[];
-      drawHtml(html`<button type="button" class="btn press" data-syb="1">← All characters</button>${rawHtml(v.length?'<b class="sy-h">Earlier versions</b>'+v.map((x) =>{ return '<div class="sy-row"><span><b>'+esc(x.name||"Unnamed")+'</b><small>'+esc(when(x.t))+(x.why==="other-device"?" · from another device":"")+'</small></span><button type="button" class="btn press" data-syc="'+esc(id)+'" data-rev="'+x.rev+'">Restore as copy</button></div>'; }).join(""):'<p class="sy-note">No earlier versions yet. A version is kept at most once an hour while you edit.</p>')}`, box); },
+      drawHtml(html`<button type="button" class="btn press" data-syb="1">← All characters</button>${rawHtml(v.length?'<b class="sy-h">Earlier versions</b>'+v.map((x) =>{ return html`<div class="sy-row"><span><b>${x.name||"Unnamed"}</b><small>${when(x.t)}${rawHtml(x.why==="other-device"?" · from another device":"")}</small></span><button type="button" class="btn press" data-syc="${id}" data-rev="${x.rev}">Restore as copy</button></div>`; }).join(""):'<p class="sy-note">No earlier versions yet. A version is kept at most once an hour while you edit.</p>')}`, box); },
     () =>{ drawHtml(html`<p class="sy-note">The cloud cannot be reached now.</p>`, box); }); }
   function copy(text,label){ let e; try{ e=JSON.parse(text); }catch(x){ toast("This copy could not be read."); return; } const r=rSnap(rEnsure()), nid=newId(r);
     e.B=fixCid(e.B==null?null:e.B,nid); e.name=(e.name||"Character")+(label?" ("+label+")":""); try{ const cc=JSON.parse(e.C); cc.name=e.name; e.C=JSON.stringify(cc); }catch(x){}
-    e.created=Date.now(); e.t=Date.now(); delete e.ph; r.chars[nid]=e; if(!rSave(r)) return; w.remove(); toast("Restored as a new character: "+e.name+"."); const g=document.getElementById("hgrid"); if(g&&typeof homeCards==="function") g.innerHTML=homeCards(true); }
+    e.created=Date.now(); e.t=Date.now(); delete e.ph; r.chars[nid]=e; if(!rSave(r)) return; w.remove(); toast("Restored as a new character: "+e.name+"."); const g=document.getElementById("hgrid"); if(g&&typeof homeCards==="function") drawHtml(rawHtml(homeCards(true)), g); }
   w.addEventListener("click",(e) =>{ const t=e.target;
     if(t===w||t.closest("[data-syx]")){ w.remove(); return; }
     const b=t.closest("[data-syv],[data-syr],[data-syc],[data-syb]"); if(!b) return;

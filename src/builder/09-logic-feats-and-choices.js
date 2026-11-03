@@ -6,6 +6,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {SP14} from "./07-data-2014-spells.js";
 import {cls14Inject,fs14List,pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "../app/lib/html.js";
 Object.defineProperty(__R,"subAt",{get:function(){return subAt;},set:function(v){subAt=v;},configurable:true});
 /* 2014: the ability scores come from the race. sp.asi is fixed ({STR:2}), sp.asiPick {n,v,ex} lets the player choose n scores (choice key rasi) */
 export function raceBonus(){const o={};if(!R14())return o;const sp=spX();if(!sp)return o;function ad(k,v){if(k&&ABK.indexOf(k)>=0)o[k]=(o[k]||0)+v}if(sp.asi)Object.keys(sp.asi).forEach((k) =>{ad(k,sp.asi[k])});const ch=B.ch||{};if(sp.asiPick)(ch.rasi||[]).slice(0,sp.asiPick.n).forEach((k) =>{if((sp.asiPick.ex||[]).indexOf(k)<0)ad(k,sp.asiPick.v||1)});if(sp.asiFlex){if(ch.rasim==="+1, +1, +1")(ch.rasi||[]).slice(0,3).forEach((k) =>{ad(k,1)});else{const t2=(ch.rasi||[])[0];ad(t2,2);(ch.rasi1||[]).slice(0,1).forEach((k) =>{if(k!==t2)ad(k,1)})}}return o}
@@ -304,11 +305,11 @@ export function spTraitText(sp,t){const n=t[0],d=t[1],ch=B.ch||{},o=[];function 
  const open=(sp.skillPick&&n===sp.skillPick.label&&!(ch.spsk||[]).length)||(sp.featPick&&n==="Versatile"&&!ch.spfeat)||(sp.lin&&n===sp.lin.label&&!ch.lin)||(sp.opts&&n===sp.opts.label&&!(ch.spopt||[]).length)||(sp.toolPick&&n===sp.toolPick.label&&!(ch.sptool||[]).length)||(sp.wpPick&&n===sp.wpPick.label&&(ch.spwp||[]).length<sp.wpPick.n)||(sp.fx&&sp.fx.cantripTrait===n&&!(ch.spcan||[]).length);
  return o.length?d+" **Your choice.** "+o.join(" "):open?d+" **Still open.** Choose this in the builder.":d}
 export function linNote(sp){const sn=B.species;if(sn!=="Dragonborn"&&sn!=="Dragonborn (2014)")return "";const v=B.ch.lin||"",m=/^(\w+) \((\w+)\)$/.exec(v);
- if(!m)return '<p class="fd bhint">The dragon type sets the damage type of your Breath Weapon and of your Damage Resistance.</p>';
+ if(!m)return html`<p class="fd bhint">The dragon type sets the damage type of your Breath Weapon and of your Damage Resistance.</p>`;
  let col=m[1],dt=m[2],r14=sn==="Dragonborn (2014)",line=["Black","Blue","Brass","Bronze","Copper"].indexOf(col)>=0,con=["Green","Silver","White"].indexOf(col)>=0,t;
  if(r14)t='<b>Breath Weapon:</b> '+(line?'5 by 30 ft line':'15 ft cone')+', '+(con?'Constitution':'Dexterity')+' save, '+dt+' damage. <b>Damage Resistance:</b> '+dt+'.';
  else t='<b>Breath Weapon:</b> 15 ft cone or 30 ft line, Dexterity save, '+dt+' damage. <b>Damage Resistance:</b> '+dt+'.';
- return '<p class="fd" id="linNote">'+t+' The sheet applies both for you.</p>';}/* v100: the ancestry choice showed no effect */
+ return html`<p class="fd" id="linNote">${rawHtml(t)} The sheet applies both for you.</p>`;}/* v100: the ancestry choice showed no effect */
 export function spLinTrait(sp){return sp.traits.some((t) =>{return t[0]===sp.lin.label})}
 /* RD19: structured spell data on each C.spells entry (optional fields): fx (SPELL_FX without mat), mat (material text), db [{v,s}] flat damage
    bonus from features, tx alternative damage type from a feature. The sheet computes the dice at the chosen slot and character level */

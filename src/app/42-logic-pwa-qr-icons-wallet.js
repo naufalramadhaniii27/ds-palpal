@@ -162,7 +162,7 @@ function qrSendOpen(id){ const o=chFile(id), raw=JSON.stringify(o), nm=chName(o)
   zPack(raw).then(show,() =>{ show(raw); }); }
 function qrPlayBtn(){ const b=document.getElementById("qrPlay"); if(b){ render(html`${raw(ico(QRS.play?"ui-pause":"ui-play"))}<span>${QRS.play?"Pause":"Play"}</span>`,b); b.setAttribute("aria-label",QRS.play?"Pause":"Play"); } }
 function qrDraw(){ const box=document.getElementById("qrBox"); if(!box||!QRS) return; let i=QRS.i, s=QRS.cache[i]; if(!s){ const q=QRG.make(QRS.fr[i],"L",40); s=QRS.cache[i]=q?QRG.svg(q,"Code "+(i+1)+" of "+QRS.fr.length):""; }
-  box.innerHTML=s; box.setAttribute("data-i",String(i)); const n=document.getElementById("qrN"); if(n) n.textContent="Part "+(i+1)+" of "+QRS.fr.length; }
+  drawHtml(rawHtml(s), box); box.setAttribute("data-i",String(i)); const n=document.getElementById("qrN"); if(n) n.textContent="Part "+(i+1)+" of "+QRS.fr.length; }
 function qrShare(txt,nm){ let f=null, f2=null, d=null; try{ f=new File([txt],nm,{type:"application/octet-stream"}); f2=new File([txt],nm.replace(/\.bs$/,"")+".txt",{type:"text/plain"}); }catch(e){}
   if(f&&navigator.canShare&&navigator.canShare({files:[f]})) d={files:[f],title:nm}; else if(f2&&navigator.canShare&&navigator.canShare({files:[f2]})) d={files:[f2],title:nm}; else d={title:nm,text:txt};
   navigator.share(d).then(() =>{ toast("Shared: "+nm); },(e) =>{ if(e&&e.name==="AbortError") return; toast("Sharing did not work here. Use Save Character."); }); }

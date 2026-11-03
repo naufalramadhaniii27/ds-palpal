@@ -25,8 +25,8 @@ export function rcptDiff(a,b){ const out=[]; if(!a||!b) return out; Object.keys(
     out.push({k:k,l:y.l,from:x.v,to:y.v,why:why}); });
   Object.keys(a).forEach((k) =>{ if(!b[k]&&/^(ah-|ad-)/.test(k)) out.push({k:k,l:a[k].l,from:a[k].v,to:"",why:["Gone"]}); });
   return out; }
-export function rcptHTML(list,empty){ if(!list.length) return '<p class="rc-none">'+esc(empty||"No numbers change.")+'</p>';
-  return '<ul class="rcpt">'+list.map((d) =>{ return '<li><div class="rc-h"><b>'+esc(d.l)+'</b><span>'+(d.from?esc(d.from):"")+(d.from&&d.to?' → ':'')+(d.to?'<strong>'+esc(d.to)+'</strong>':'')+'</span></div>'+(d.why.length?'<small>'+d.why.map(esc).join("<br>")+'</small>':'')+'</li>'; }).join("")+'</ul>'; }
+export function rcptHTML(list,empty){ if(!list.length) return html`<p class="rc-none">${empty||"No numbers change."}</p>`;
+  return '<ul class="rcpt">'+list.map((d) =>{ return html`<li><div class="rc-h"><b>${d.l}</b><span>${rawHtml(d.from?esc(d.from):"")}${rawHtml(d.from&&d.to?' → ':'')}${d.to ? html`<strong>${d.to}</strong>` : ''}</span></div>${d.why.length ? html`<small>${rawHtml(d.why.map(esc).join("<br>"))}</small>` : ''}</li>`; }).join("")+'</ul>'; }
 window.__rcptPreview=function(newC){ if(FROZEN||!newC) return ""; const a=rcptNow(), b=rcptFor(newC); return b?rcptHTML(rcptDiff(a,b),"Nothing changes on your sheet."):""; };
 window.__rcptDiffFor=function(c){ const b=rcptFor(c); return b?rcptDiff(rcptNow(),b):[]; };
 window.__rcptRestoreText=function(c){ const l=window.__rcptDiffFor(c); if(!l.length) return ""; return l.slice(0,6).map((d) =>{ return d.l+": "+(d.from||"-")+" → "+(d.to||"-"); }).join("\n")+(l.length>6?"\n…and "+(l.length-6)+" more":""); };

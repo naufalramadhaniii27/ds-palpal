@@ -9,6 +9,7 @@ import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "../app/lib/html.js";
 Object.defineProperty(__R,"SMAP",{get:function(){return SMAP;},set:function(v){SMAP=v;},configurable:true});
 Object.defineProperty(__R,"spCmpB",{get:function(){return spCmpB;},set:function(v){spCmpB=v;},configurable:true});
 Object.defineProperty(__R,"spDmgB",{get:function(){return spDmgB;},set:function(v){spDmgB=v;},configurable:true});
@@ -43,7 +44,7 @@ function spRow(x,mine,full,I){const id="sp"+x[0],open=!!openCards[id];
  return '<div class="scard'+(open?" open":"")+'"><button type="button" class="sh" data-tog="'+esc(id)+'" aria-expanded="'+open+'">'+bI("school-"+String(x[2]||"").toLowerCase())+'<span class="snm"><b>'+esc(x[0])+(x[8]?'<i class="cd">C</i>':'')+(x[9]?'<i class="cd r">R</i>':'')+'</b><small>'+esc(meta)+'</small></span>'+right+'</button>'+btn+
   '<button type="button" class="schev" data-tog="'+esc(id)+'" aria-label="Details"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
   (open?'<div class="sdet">'+((SPELL_FULL[x[0]]||x[11])?'<p class="ssum">'+rtp(SPELL_FULL[x[0]]||x[11])+'</p>':'')+'<span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>School</b>'+esc(x[2])+'</span><span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack "+sg(I.atk):x[10]?x[10]+" save, DC "+I.dc:"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span>'+(mine?'<button type="button" class="sbtn rm" data-sp="'+esc(x[0])+'">Remove</button>':'')+'</div>':'')+'</div>'}
-function spSec(title,count,rows){return '<div class="sech"><b>'+title+'</b>'+(count!=null?' <span>('+count+')</span>':'')+'</div>'+rows}
+function spSec(title,count,rows){return html`<div class="sech"><b>${rawHtml(title)}</b>${count!=null ? html` <span>(${rawHtml(count)})</span>` : ''}</div>${rawHtml(rows)}`}
 function pickRows(list,taken,full,I,key){return list.map((x) =>{const on=taken.indexOf(x[0])>=0;return spRow(x,false,full&&!on,I).replace('data-sp="'+esc(x[0])+'"','data-pk="'+key+'" data-v="'+esc(x[0])+'"').replace(/>(Prepare|Learn)</,on?'>Chosen<':'>$1<').replace('class="sbtn"',on?'class="sbtn on"':'class="sbtn"')}).join("")}
 /* M9: one spell section per spellcasting class (PHB 2024 p. 44: each class prepares as if single-classed, with its own ability).
    One caster class: same layout as before. Two or more: a tab per class; DC, counts, list, highest spell level per class.
@@ -60,10 +61,10 @@ export function spInfoPart(p){const o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return n
 export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
  const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
  if(!I&&!auto.length&&!mis.length)return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>';
- if(multi)h+='<div class="subtabs">'+CP.map((p) =>{return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
+ if(multi)h+='<div class="subtabs">'+CP.map((p) =>{return html`<button type="button" class="${p===P?"on":""}" data-spcls="${p.cls}">${p.cls}</button>`}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
  if(I){h+='<div class="spstat"><div><b>'+K.dc+'</b><span>Save DC</span></div><div><b>'+sg(K.atk)+'</b><span>Spell Attack</span></div><div><b>'+K.ab+'</b><span>Ability</span></div></div>';
   if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map((n,i) =>{return ord(i+1)+' \u00d7'+n}).join(", ")+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'}
- if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map((k) =>{return '<button type="button" class="rad'+(B.ch.land===k?" on":"")+'" data-ch1="land" data-v="'+k+'"><b>'+k+'</b></button>'}).join("")+'</div><p class="fd bhint">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
+ if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map((k) =>{return html`<button type="button" class="rad${B.ch.land===k?" on":""}" data-ch1="land" data-v="${k}"><b>${rawHtml(k)}</b></button>`}).join("")+'</div><p class="fd bhint">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
  if(auto.length)h+=spSec("Always Prepared",auto.length,auto.map((a) =>{const x=SMAP[a.n];return x?spRow(x,true,false,RJ(a.k)).replace(/<button type="button" class="sbtn rm"[^>]*>(Remove|Unprepare|Unlearn)<\/button>/g,'').replace('<small>','<small>'+esc(a.src)+' \u2022 '):''}).join(""));
  if(clsLv("Warlock")>=11){const wl=clsLv("Warlock"),ma=[[11,6],[13,7],[15,8],[17,9]].filter((r) =>{return wl>=r[0]});
   h+=spSec("Mystic Arcanum",ma.length,ma.map((r) =>{const k="ma"+r[1],v=B.pk[k],opts=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0});
@@ -93,7 +94,7 @@ export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats
 function bookCard(mx){let own=bookOwn(),need=bookNeed(),sv=savVals(),pr=spLists().Wizard||[],lv=[],h="";for(let i=1;i<=mx;i++)lv.push(i);
  h+='<p class="fd bhint">Six level 1 spells to start, two more each Wizard level (of a level you have slots for). You prepare from it.'+(sv.length?" Savant spells are added free.":"")+'</p><p class="pick">Choose '+need+' ('+own.length+'/'+need+')</p>';
  lv.forEach((l) =>{const L=SPELLS.filter((x) =>{return x[1]===l&&x[3].indexOf("Wizard")>=0});h+='<p class="wgrp">Level '+l+'</p><div class="chips">'+L.map((x) =>{const n=x[0],s=sv.indexOf(n)>=0,on=own.indexOf(n)>=0||s,p2=pr.indexOf(n)>=0;
-  return '<button type="button" class="chip'+(on?" on":"")+'" data-book="'+esc(n)+'"'+(s?' data-bsav="1"':p2?' data-bprep="1"':"")+' title="'+esc(x[11])+'">'+esc(n)+(s?" <small>Savant</small>":p2?" <small>Prepared</small>":"")+'</button>'}).join("")+'</div>'});
+  return html`<button type="button" class="chip${on?" on":""}" data-book="${n}"${s?' data-bsav="1"':p2?' data-bprep="1"':""} title="${x[11]}">${n}${s ? html` <small>Savant</small>` : p2 ? html` <small>Prepared</small>` : ""}</button>`}).join("")+'</div>'});
  return card("book","Spellbook",own.length+" / "+need+" spells",h,{todo:own.length<need})}
 /* v19 RU47, RL45, RL46: what is still short (open) or wrong (bad). Items {step, tab, open, m} */
 export function plural(n,w){return n+" "+w+(n===1?"":"s")}

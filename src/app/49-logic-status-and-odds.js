@@ -44,7 +44,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
    Rules: PHB 2024 Equipment (heavy armor Strength), Rules Glossary (Unconscious at 0 Hit Points, Exhaustion 6), magic items (attunement limit). */
 
 
-function lintOpen(){ const l=lintList(); __set_navStack([]); openSheet("Rules check",l.length?l.map((q) =>{ return '<div class="lint-r"><b>'+esc(q.t)+'</b><p>'+esc(q.x)+'</p>'+(q.fix?'<button type="button" class="btn press" data-lfix="'+esc(q.fix)+'">'+esc(q.fl)+'</button>':'')+'</div>'; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
+function lintOpen(){ const l=lintList(); __set_navStack([]); openSheet("Rules check",l.length?l.map((q) =>{ return html`<div class="lint-r"><b>${q.t}</b><p>${q.x}</p>${q.fix ? html`<button type="button" class="btn press" data-lfix="${q.fix}">${q.fl}</button>` : ''}</div>`; }).join(""):'<p class="bk-f">Nothing to look at. The sheet follows the rules it can check.</p>',"lint"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-lint],[data-lfix]"); if(!b) return;
   if(b.hasAttribute("data-lint")){ lintOpen(); return; }
   const f=b.getAttribute("data-lfix"); closeSheet();
@@ -77,7 +77,7 @@ function recapWhen(o){ try{ const f={weekday:"short",day:"numeric",month:"short"
 function recapOpen(){ const o=recapData(); __set_navStack([]);
   if(!o){ openSheet("Session recap",'<p class="bk-f">Nothing written yet. Rolls, damage, healing, spells and rests are written in the journal as you play, and the recap is made from them.</p>',"recap"); return; }
   const rows=recapRows(o);
-  openSheet("Session recap",'<div class="rcp"><p class="rcp-w">'+esc((C&&C.name)||"Character")+'. '+esc(recapWhen(o))+'</p>'+(rows.length?'<dl>'+rows.map((x) =>{ return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>'; }).join("")+'</dl>':'<p class="bk-f">This session has '+o.n+' journal lines and nothing to add up yet.</p>')+'</div><p><button type="button" class="btn press" data-recapimg="1">Save as picture</button></p>',"recap"); }
+  openSheet("Session recap",'<div class="rcp"><p class="rcp-w">'+esc((C&&C.name)||"Character")+'. '+esc(recapWhen(o))+'</p>'+(rows.length?'<dl>'+rows.map((x) =>{ return html`<dt>${x[0]}</dt><dd>${x[1]}</dd>`; }).join("")+'</dl>':'<p class="bk-f">This session has '+o.n+' journal lines and nothing to add up yet.</p>')+'</div><p><button type="button" class="btn press" data-recapimg="1">Save as picture</button></p>',"recap"); }
 /* the card as a PNG: plain canvas text, the theme colours of the sheet */
 function recapPic(){ const o=recapData(); if(!o) return; const rows=recapRows(o), W=1080, pad=72, lh=46, cv=document.createElement("canvas"), x=cv.getContext("2d"); if(!x) return;
   const lines=[]; x.font="40px system-ui, sans-serif"; rows.forEach((r) =>{ let words=r[1].split(" "), cur=""; const out=[]; words.forEach((w) =>{ const t=cur?cur+" "+w:w; if(x.measureText(t).width>W-2*pad-40&&cur){ out.push(cur); cur=w; } else cur=t; }); if(cur) out.push(cur); lines.push([r[0],out]); });
@@ -128,7 +128,7 @@ const ASK=[
  [/poison/,"Poisoned: Disadvantage on attack rolls and ability checks.",["Poisoned"]]];
 function askLike(q){ return /\?$/.test(q)||/^(how|can|what|when|why|do|does|is|are|should|who|which|where|if) /.test(q); }
 function askAnswer(q){ q=String(q||"").trim().toLowerCase(); if(q.length<6||!askLike(q)) return null; for(let i=0;i<ASK.length;i++) if(ASK[i][0].test(q)) return {a:ASK[i][1],r:ASK[i][2].filter((k) =>{ return GLOSS[k]; })}; return null; }
-function askHTML(q){ const o=askAnswer(q); if(!o) return ""; return '<div class="qa"><b class="qa-h">Short answer</b><p>'+esc(o.a)+'</p>'+(o.r.length?'<div class="qa-r">'+o.r.map((k) =>{ return '<button type="button" class="lib-chip" data-lib-open="rule|'+esc(k)+'">'+esc(k)+'</button>'; }).join("")+'</div>':'')+'</div>'; }
+function askHTML(q){ const o=askAnswer(q); if(!o) return ""; return '<div class="qa"><b class="qa-h">Short answer</b><p>'+esc(o.a)+'</p>'+(o.r.length?'<div class="qa-r">'+o.r.map((k) =>{ return html`<button type="button" class="lib-chip" data-lib-open="rule|${k}">${k}</button>`; }).join("")+'</div>':'')+'</div>'; }
 /* T11 G4 N11 Build DNA: the builder choices only (B), gzip (CompressionStream, T8) and base64url, in a link "#build=...".
    Opening the link asks first, then builds the character with the builder like an imported build (16 impBuild). Nothing is sent anywhere:
    the code lives in the part of the address after #, which browsers do not send to the server */
@@ -166,7 +166,7 @@ function futureSVG(rows,key,label){ const pts=rows.filter((r) =>{ return r[key]!
   const x=function(l){ return px+(l-pts[0].l)/(pts[pts.length-1].l-pts[0].l||1)*(W-2*px); }, y=function(v){ return H-py-(v-lo)/(hi-lo)*(H-2*py); };
   const d=pts.map((r,i) =>{ return (i?"L":"M")+x(r.l).toFixed(1)+" "+y(r[key]).toFixed(1); }).join("");
   return '<figure class="fut-g"><figcaption><b>'+esc(label)+'</b><span>'+pts[0][key]+' now, '+pts[pts.length-1][key]+' at level '+pts[pts.length-1].l+'</span></figcaption><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+' from level '+pts[0].l+' to '+pts[pts.length-1].l+'"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
-    pts.filter((r,i) =>{ return i===0||i===pts.length-1||r.l%4===0; }).map((r) =>{ return '<circle cx="'+x(r.l).toFixed(1)+'" cy="'+y(r[key]).toFixed(1)+'" r="3.5" fill="currentColor"/><text x="'+x(r.l).toFixed(1)+'" y="'+(H-1)+'" text-anchor="middle">'+r.l+'</text>'; }).join("")+'</svg></figure>'; }
+    pts.filter((r,i) =>{ return i===0||i===pts.length-1||r.l%4===0; }).map((r) =>{ return html`<circle cx="${x(r.l).toFixed(1)}" cy="${y(r[key]).toFixed(1)}" r="3.5" fill="currentColor"/><text x="${x(r.l).toFixed(1)}" y="${H-1}" text-anchor="middle">${rawHtml(r.l)}</text>`; }).join("")+'</svg></figure>'; }
 function futureOpen(){ __set_navStack([]); const go=function(){ const rows=futureData();
     if(!rows||rows.length<2){ openSheet("Future sheet",'<p class="bk-f">'+(D.level>=20?"Level 20 is the highest level.":"Open the builder once so the future sheet can use your choices.")+'</p>',"future"); return; }
     const t='<table class="fut-t"><thead><tr><th scope="col">Level</th><th scope="col">HP</th><th scope="col">AC</th><th scope="col">Attack</th>'+(rows[0].dc!=null?'<th scope="col">Spell DC</th><th scope="col">Top slot</th>':'')+'</tr></thead><tbody>'+rows.map((r) =>{ return '<tr'+(r.l===D.level?' class="now"':'')+'><th scope="row">'+r.l+'</th><td>'+r.hp+'</td><td>'+r.ac+'</td><td>'+(r.atk!=null?sg(r.atk):"")+'</td>'+(rows[0].dc!=null?'<td>'+(r.dc!=null?r.dc:"")+'</td><td>'+(r.slot||"")+'</td>':'')+'</tr>'; }).join("")+'</tbody></table>';

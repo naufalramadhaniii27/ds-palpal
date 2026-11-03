@@ -6,6 +6,7 @@ import {curRaw,fmtT,rSnap,rawHash,snTake} from "./15-logic-roster-backup-files-s
 import {undoLbl} from "./32-logic-play-undo-actions.js";
 import {rcptDiff,rcptHTML,rcptNow} from "./46-logic-receipts.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"tmOpen",{get:function(){return tmOpen;},set:function(v){tmOpen=v;},configurable:true});
 /* T11 G3 N2 Time machine. The open character is kept as it was at many points in time: after a quiet minute following a change,
    at most one point per 10 minutes, the last 40 points per character. Each point keeps the build, sheet and state (portrait left out)
@@ -28,8 +29,7 @@ document.addEventListener("visibilitychange",() =>{ if(document.visibilityState=
 setTimeout(() =>{ try{ tmTake("Opened",false); }catch(e){} },4000);
 function tmHTML(){ const id=(rGet()||{}).active, L=tmGet(id); if(!L.length) return '<p class="rc-none">No history yet. Points are kept a minute after you change something.</p>';
   return '<p class="bk-f">Your character at earlier moments, newest first. Compare any moment with now, or go back to it.</p><ul class="tml">'+L.map((p,i) =>{ const prev=L[i+1], d=prev?rcptDiff(prev.r,p.r):[];
-    return '<li><div class="tm-h"><b>'+esc(fmtT(p.t))+'</b><span>'+esc(p.why)+'</span></div>'+(d.length?'<small>'+d.slice(0,3).map((x) =>{ return esc(x.l+" "+(x.from||"-")+" → "+(x.to||"-")); }).join("<br>")+(d.length>3?"<br>and "+(d.length-3)+" more":"")+'</small>':'')
-      +'<div class="tm-a"><button type="button" class="btn press" data-tmc="'+i+'">Compare with now</button>'+(i?'<button type="button" class="btn press" data-tmr="'+i+'">Go back here</button>':'')+'</div></li>'; }).join("")+'</ul>'; }
+    return html`<li><div class="tm-h"><b>${fmtT(p.t)}</b><span>${p.why}</span></div>${d.length ? html`<small>${rawHtml(d.slice(0,3).map((x) =>{ return esc(x.l+" "+(x.from||"-")+" → "+(x.to||"-")); }).join("<br>"))}${d.length>3 ? html`<br>and ${rawHtml(d.length-3)} more` : ""}</small>` : ''}<div class="tm-a"><button type="button" class="btn press" data-tmc="${i}">Compare with now</button>${i ? html`<button type="button" class="btn press" data-tmr="${i}">Go back here</button>` : ''}</div></li>`; }).join("")+'</ul>'; }
 function tmOpen(){ __set_navStack([]); openSheet("History",tmHTML(),"tm"); }
 document.addEventListener("click",(e) =>{ const c=e.target.closest&&e.target.closest("[data-tmc],[data-tmr]"); if(!c) return; const id=(rGet()||{}).active, L=tmGet(id);
   if(c.hasAttribute("data-tmc")){ const p=L[+c.getAttribute("data-tmc")]; if(!p) return; const d=rcptDiff(p.r,rcptNow()); __set_navStack([]); openSheet("Then and now",'<p class="bk-f">'+esc(fmtT(p.t))+' compared with now.</p>'+rcptHTML(d,"The numbers are the same."),"tm"); return; }

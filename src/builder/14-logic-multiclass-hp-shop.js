@@ -8,6 +8,7 @@ import {luMax,pk} from "./10-logic-v17-additions.js";
 import {abil,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "../app/lib/html.js";
 Object.defineProperty(__R,"MCL",{get:function(){return MCL;},set:function(v){MCL=v;},configurable:true});
 Object.defineProperty(__R,"TL",{get:function(){return TL;},set:function(v){TL=v;},configurable:true});
 Object.defineProperty(__R,"baseOf",{get:function(){return baseOf;},set:function(v){baseOf=v;},configurable:true});
@@ -96,9 +97,9 @@ export function eq14UI(){const c=B.cls&&CLASSES[B.cls],g=c&&c.eqg;if(!R14()||!g|
  let h='<h3 class="eqh">Your Kit, Line by Line</h3><div class="eqbox eqg14">';
  g.g.forEach((grp,gi) =>{const cur=eq14Key(grp,gi),ks=["a","b","c"].filter((k) =>{return grp[k]});
   if(grp._)h+='<p class="fd">'+esc(eq14Lbl(grp._))+'</p>';
-  else h+='<div class="eqln">'+ks.map((k,i) =>{return (i?'<p class="or">OR</p>':'')+'<button type="button" class="eqo'+(cur===k?" on":"")+'" data-eqg="'+gi+'" data-v="'+k+'"><span class="bcb"></span>('+k+') '+esc(eq14Lbl(grp[k])+(grp[k+"n"]?" ("+grp[k+"n"]+")":""))+'</button>'}).join("")+'</div>';
+  else h+='<div class="eqln">'+ks.map((k,i) =>{return html`${i ? html`<p class="or">OR</p>` : ''}<button type="button" class="eqo${cur===k?" on":""}" data-eqg="${gi}" data-v="${k}"><span class="bcb"></span>(${rawHtml(k)}) ${eq14Lbl(grp[k])+(grp[k+"n"]?" ("+grp[k+"n"]+")":"")}</button>`}).join("")+'</div>';
   grp[cur].forEach((it,ii) =>{if(it[0].charAt(0)!=="@")return;for(let j=0;j<it[1];j++){var lst=EQ14D.l[it[0].slice(1)],v=eq14Pick(it,gi,ii,j);h+='<label class="eqp"><span>'+esc(EQ14W[it[0].slice(1)].replace(/^./,(x) =>{return x.toUpperCase()}))+(it[1]>1?" "+(j+1):"")+'</span><select class="dd" data-eqp="'+gi+"_"+ii+"_"+j+'" aria-label="'+esc(EQ14W[it[0].slice(1)])+'">'+lst.map((n) =>{return '<option'+(n===v?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select></label>'}})});
- return h+'</div>'}
+ return html`${rawHtml(h)}</div>`}
 
 const SING={"Daggers":"Dagger","Javelins":"Javelin","Handaxes":"Handaxe","Arrows":"Arrows","Bolts":"Bolts","Pouches":"Pouch","Costumes":"Costume","Flasks":"Flask","Torches":"Torch","Ink Pens":"Ink Pen","Vials":"Vial","Candles":"Candle","Glass Bottles":"Glass Bottle"};
 function parseKit(t,src){const out=[];if(!t||/^\d+ GP$/.test(t))return out;t.split(/,\s*/).forEach((p) =>{p=p.trim();if(!p||/^\d+ GP$/.test(p))return;

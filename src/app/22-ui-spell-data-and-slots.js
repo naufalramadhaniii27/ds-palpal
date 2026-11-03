@@ -4,6 +4,7 @@ import {D} from "./06-logic-derivation.js";
 import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";
 import {spEffect} from "./21-ui-tabs-pager.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"DT_ICON",{get:function(){return DT_ICON;},set:function(v){DT_ICON=v;},configurable:true});
 Object.defineProperty(__R,"dTxt",{get:function(){return dTxt;},set:function(v){dTxt=v;},configurable:true});
 Object.defineProperty(__R,"dtIcon",{get:function(){return dtIcon;},set:function(v){dtIcon=v;},configurable:true});
@@ -51,8 +52,8 @@ function spAreaTxt(a){ if(!a) return ""; return a[1]+" ft."+(a[0]==="Line"&&a[2]
 export function spRangeH(r,x){ const f=spFx(x), a=f&&f.area; return esc(String(r||"").replace(/ ft$/," ft."))+(a?'<span class="spar">/'+esc(spAreaTxt(a))+arIcon(a[0])+'</span>':''); }
 export function spCompH(cmp,x){ const f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
 /* Effect cell: count x first damage part with icon, or healing, or the old text summary */
-export function spEffH(x,lv){ const c=spCalc(x,lv,D.level,__R.scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
-  if(c&&c.heal) return '<span class="speff">'+esc(c.heal)+dtIcon("Healing")+'</span>'; return esc(spEffect(x)); }
+export function spEffH(x,lv){ const c=spCalc(x,lv,D.level,__R.scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return html`<span class="speff">${rawHtml(c.n>1?c.n+'× ':'')}${p.d}${rawHtml(dtIcon(p.t))}</span>`; }
+  if(c&&c.heal) return html`<span class="speff">${c.heal}${rawHtml(dtIcon("Healing"))}</span>`; return esc(spEffect(x)); }
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
 export function spPact(x){ const sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
 /* v22: the group a spell is shown in. Pact Magic only: spells cast with a Pact slot sit at the Pact slot level */

@@ -6,6 +6,7 @@ import {__set_actF,__set_featF,__set_featQ,__set_invF,actF,featF,featQ,invF,rend
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,infoHTML} from "./13-ui-detail-cards.js";
 import {__R} from "./00-reg.js";
+import { render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"curPage",{get:function(){return curPage;},set:function(v){curPage=v;},configurable:true});
 Object.defineProperty(__R,"mq",{get:function(){return mq;},set:function(v){mq=v;},configurable:true});
 /* ================= TABS + PAGER ================= */
@@ -37,7 +38,7 @@ function iqSync(box){ const r=box.closest(".iqty-r"), a=r&&r.querySelector("[dat
 document.addEventListener("click",(e) =>{ const b=e.target.closest("[data-iqd],[data-iqa]"); if(!b||!b.closest("#sheet")) return; e.stopPropagation(); const box=b.closest(".iqty-r").querySelector(".iqi");
   if(b.dataset.iqd){ const v=parseInt(box.value,10); box.value=Math.max(0,(isNaN(v)?0:v)+(+b.dataset.iqd)); iqSync(box); return; }
   if(b.disabled) return; const nm=b.dataset.iqa, q=Math.max(0,parseInt(box.value,10)||0);
-  const bix=b.dataset.iix, fin=function(){ const ix=(bix!=null&&C.inv&&C.inv[+bix]&&(C.inv[+bix].key||C.inv[+bix].n)===nm)?+bix:(C.inv||[]).findIndex((x) =>{return (x.key||x.n)===nm}); if(ix>=0){ const r=infoHTML("it:"+ix); $("#sheetBody").innerHTML=r.h; if(navStack.length) navStack[navStack.length-1]={type:"info",spec:"it:"+ix}; }
+  const bix=b.dataset.iix, fin=function(){ const ix=(bix!=null&&C.inv&&C.inv[+bix]&&(C.inv[+bix].key||C.inv[+bix].n)===nm)?+bix:(C.inv||[]).findIndex((x) =>{return (x.key||x.n)===nm}); if(ix>=0){ const r=infoHTML("it:"+ix); drawHtml(rawHtml(r.h), $("#sheetBody")); if(navStack.length) navStack[navStack.length-1]={type:"info",spec:"it:"+ix}; }
     toast("Quantity set to "+q); };
   if(viaBld(nm)&&window.__bldSetQty){ bldGuard(() =>{ window.__bldSetQty(nm,q,__R.occOf(invAt(nm,bix))); fin(); }); return; } /* N1 */
   const it=invAt(nm,bix); if(!it) return; it.q=q; bldSync(nm,{q:q,occ:__R.occOf(it)}); saveC(); __R.renderAll(); fin(); },true);

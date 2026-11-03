@@ -3,6 +3,7 @@ import {FROZEN} from "./04-logic-storage.js";
 import {esc,sg} from "./05-logic-helpers.js";
 import {B,D} from "./06-logic-derivation.js";
 import {__R} from "./00-reg.js";
+import { html, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"nmHTML",{get:function(){return nmHTML;},set:function(v){nmHTML=v;},configurable:true});
 /* T11 N19 number map: which numbers feed a number, and which other numbers move with it. Made from the breakdowns (B) the sheet
    already keeps for every number, so it can never disagree with the sheet. An ability modifier or the Proficiency Bonus is a hub:
@@ -19,9 +20,9 @@ function nmSVG(hub,users){ const U=users.slice(0,12), n=U.length; if(!n) return 
   let s='<svg class="nm-g" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(nmName(hub))+' feeds '+n+' numbers">';
   U.forEach((k,i) =>{ const a=-Math.PI/2+i*2*Math.PI/n, x=cx+R*Math.cos(a)*1.35, y=cy+R*Math.sin(a); s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>'; });
   U.forEach((k,i) =>{ const a=-Math.PI/2+i*2*Math.PI/n, x=cx+R*Math.cos(a)*1.35, y=cy+R*Math.sin(a); s+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="15" class="u"/><text x="'+x.toFixed(1)+'" y="'+(y+4).toFixed(1)+'" text-anchor="middle">'+esc(nmVal(k))+'</text>'; });
-  return s+'<circle cx="'+cx+'" cy="'+cy+'" r="24" class="h"/><text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" class="ht">'+esc(nmVal(hub))+'</text></svg>'; }
+  return html`${rawHtml(s)}<circle cx="${cx}" cy="${cy}" r="24" class="h"/><text x="${cx}" y="${cy}${5}" text-anchor="middle" class="ht">${nmVal(hub)}</text></svg>`; }
 function nmHTML(key){ if(!B[key]||FROZEN) return ""; const hub=/^ab-|^pb$/.test(key);
   if(hub){ const us=nmUsers(key); if(!us.length) return ""; return '<details class="nm" open><summary>Number map</summary><p class="bk-f">'+esc(nmName(key))+' goes into '+us.length+' number'+(us.length===1?'':'s')+'. Change it and all of them move.</p>'+nmSVG(key,us)+'<div class="nm-l">'+us.map(nmChip).join("")+'</div></details>'; }
   const ins=nmInputs(key); if(!ins.length) return "";
-  return '<details class="nm"><summary>Number map</summary><p class="bk-f">Built from:</p><div class="nm-l">'+ins.map(nmChip).join("")+'</div>'+ins.map((s) =>{ const o=nmUsers(s).filter((k) =>{ return k!==key; }); return o.length?'<p class="bk-f">'+esc(nmName(s))+' also moves:</p><div class="nm-l">'+o.slice(0,10).map(nmChip).join("")+(o.length>10?'<span class="nm-more">and '+(o.length-10)+' more</span>':'')+'</div>':''; }).join("")+'</details>'; }
+  return '<details class="nm"><summary>Number map</summary><p class="bk-f">Built from:</p><div class="nm-l">'+ins.map(nmChip).join("")+'</div>'+ins.map((s) =>{ const o=nmUsers(s).filter((k) =>{ return k!==key; }); return o.length ? html`<p class="bk-f">${nmName(s)} also moves:</p><div class="nm-l">${rawHtml(o.slice(0,10).map(nmChip).join(""))}${o.length>10 ? html`<span class="nm-more">and ${rawHtml(o.length-10)} more</span>` : ''}</div>` : ''; }).join("")+'</details>'; }
 window.__numberMap=function(k){ return {inputs:nmInputs(k),users:nmUsers(k)}; };

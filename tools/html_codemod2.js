@@ -58,16 +58,22 @@ for (const file of files) {
     }
     needHtml = true; return "html`" + out + "`";
   }
+  const ONLY_RET = false;
   const attempt = (n, f) => { try { return f(); } catch (e) { totals.skipped++; console.log(file + ":" + n.loc.start.line + " skip: " + e.message); return null; } };
   /* post-order walk so inner sites are edited first */
-  const stack = [];
+  const stack = [], fnParents = [];
+  const inMap = () => { const p = fnParents[fnParents.length - 1]; return !!p && p.type === "CallExpression" && p.callee.type === "MemberExpression" && p.callee.property.name === "map"; };
+  const inReplace = () => { const p = fnParents[fnParents.length - 1]; return !!p && p.type === "CallExpression" && p.callee.type === "MemberExpression" && /^(replace|replaceAll)$/.test(p.callee.property.name); };
   const nameOf = (n, parent) => n.type === "FunctionDeclaration" && n.id ? n.id.name : (parent && parent.type === "VariableDeclarator" && parent.id.type === "Identifier") ? parent.id.name : (parent && parent.type === "Property" && parent.key.name) ? parent.key.name : (parent && parent.type === "AssignmentExpression" && parent.left.type === "MemberExpression" && parent.left.property.name) ? parent.left.property.name : "";
   const walk = (n, parent) => {
     if (!n || typeof n.type !== "string") return;
-    const isFn = /Function/.test(n.type); if (isFn) stack.push(nameOf(n, parent) || "");
+    const isFn = /Function/.test(n.type); if (isFn) { stack.push(nameOf(n, parent) || ""); fnParents.push(parent); }
     for (const k in n) { const v = n[k]; if (Array.isArray(v)) v.forEach(x => x && typeof x.type === "string" && walk(x, n)); else if (v && typeof v.type === "string") walk(v, n); }
-    if (isFn) stack.pop();
-    if (n.type === "ReturnStatement" && n.argument && isMarkup(n.argument) && !(n.argument.type === "CallExpression") && (!ONLY || ONLY.has(stack.slice().reverse().find(x => x) || "(anonymous)"))) { const c = attempt(n, () => conv(n.argument)); if (c) { edits.push({ s: n.argument.start, e: n.argument.end, t: c }); totals.ret++; const nm = stack.slice().reverse().find(x => x) || "(anonymous)"; NAMES[nm] = (NAMES[nm] || 0) + 1; } }
+    if (isFn) { stack.pop(); fnParents.pop(); }
+    if (n.type === "ReturnStatement" && n.argument && isMarkup(n.argument) && !(n.argument.type === "CallExpression") && !inReplace() && (!ONLY || (stack[stack.length - 1] === "" ? inMap() : ONLY.has(stack[stack.length - 1])))) { const c = attempt(n, () => conv(n.argument)); if (c) { edits.push({ s: n.argument.start, e: n.argument.end, t: c }); totals.ret++; const nm = stack.slice().reverse().find(x => x) || "(anonymous)"; NAMES[nm] = (NAMES[nm] || 0) + 1; } }
+    else if (n.type === "CallExpression" && n.callee.type === "MemberExpression" && !n.callee.computed && n.callee.property.name === "push" && n.arguments.length >= 1 && n.arguments.every(a => a.type !== "SpreadElement") && n.arguments.some(a => isMarkup(a) && a.type !== "CallExpression") && !ONLY_RET) {
+      n.arguments.forEach(a => { if (!(isMarkup(a) && a.type !== "CallExpression")) return; const c = attempt(n, () => conv(a)); if (c) { edits.push({ s: a.start, e: a.end, t: c }); totals.push = (totals.push || 0) + 1; } });
+    }
     else if (n.type === "ArrowFunctionExpression" && n.expression && isMarkup(n.body) && n.body.type !== "CallExpression") { const c = attempt(n, () => conv(n.body)); if (c) { edits.push({ s: n.body.start, e: n.body.end, t: c }); totals.arrow++; } }
     else if (n.type === "ExpressionStatement" && n.expression.type === "AssignmentExpression" && n.expression.operator === "=" && n.expression.left.type === "MemberExpression" && !n.expression.left.computed && n.expression.left.property.name === "innerHTML") {
       const a = n.expression, tgt = emit(a.left.object);
@@ -88,4 +94,4 @@ for (const file of files) {
     fs.writeFileSync(file, out);
   }
 }
-if (NAMES_OUT) { console.log(JSON.stringify(Object.keys(NAMES))); process.exit(0); } console.log("codemod2: returns " + totals.ret + ", arrows " + totals.arrow + ", innerHTML " + totals.inner + ", nested markup holes " + totals.hole + ", skipped " + totals.skipped);
+if (NAMES_OUT) { console.log(JSON.stringify(Object.keys(NAMES))); process.exit(0); } console.log("codemod2: returns " + totals.ret + ", arrows " + totals.arrow + ", innerHTML " + totals.inner + ", nested markup holes " + totals.hole + ", pushes " + (totals.push || 0) + ", skipped " + totals.skipped);

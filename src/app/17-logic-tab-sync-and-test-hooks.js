@@ -9,7 +9,7 @@ import {BKEY,RKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpKeyOk,homeCards,rLoad,rSnap,showHome,snGet,snTake,updUnsaved} from "./15-logic-roster-backup-files-snapshots.js";
 import {wnBanner} from "./16-logic-import-chat-text-and-build-files.js";
 import {__R} from "./00-reg.js";
-import { html, render as drawHtml } from "./lib/html.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"MYID",{get:function(){return MYID;},set:function(v){MYID=v;},configurable:true});
 Object.defineProperty(__R,"PUBLIC_FRESH",{get:function(){return PUBLIC_FRESH;},set:function(v){PUBLIC_FRESH=v;},configurable:true});
 Object.defineProperty(__R,"WN_FROM",{get:function(){return WN_FROM;},set:function(v){WN_FROM=v;},configurable:true});
@@ -47,7 +47,7 @@ function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return; const raw=
     if(pendC) c2=C; __set_C(c2); __set_S(s2); __set_S_BASE(remoteN); __set_S_RAW(lsGet(KEY)); if(pend) save(); if(pendC) saveC();
     try{ applyLook(); __R.renderAll(true); renderNotes(); __R.syncPortrait(); }catch(er){} if(sheet&&sheet.classList&&sheet.classList.contains("on")){ try{ refreshEntry(); }catch(er){} } return; }
   if(e.key===BKEY&&window.__bldReload){ window.__bldReload(); return; }
-  if(e.key===RKEY){ const w=document.getElementById("homeV"); if(w&&!w.hidden){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); } } }
+  if(e.key===RKEY){ const w=document.getElementById("homeV"); if(w&&!w.hidden){ const g=document.getElementById("hgrid"); if(g) drawHtml(rawHtml(homeCards(true)), g); } } }
 document.getElementById("rosterBtn").addEventListener("click",showHome);
 setTimeout(() =>{if(FROZEN)return;const r=rEnsure();Object.keys(r.chars).forEach((id) =>{if(!r.chars[id].created)r.chars[id].created=r.chars[id].t||Date.now()});rSave(r);MYID=r.active;startup(r);if(sessionStorage.getItem("cs-skip")==="1"){sessionStorage.removeItem("cs-skip");const ce=__store.getItem("cs-edit"),cn=__store.getItem("cs-new");if(ce)__store.removeItem("cs-edit");if(ce||cn){let tries=0,st=function(){(function go(){if(!window.__bldOpen&&window.__bldNeed)window.__bldNeed();if(cn&&!ce)return;if(window.__bldOpen)window.__bldOpen();else if(tries++<100)setTimeout(go,50)})()};/* v100: one frame first, so the message is on screen before the builder loads */if(window.requestAnimationFrame)requestAnimationFrame(() =>{setTimeout(st,0)});else setTimeout(st,30)}return}/* V18-7: the builder script may load after this timer */showHome()},0);
 /* V14-4: Apply keeps the game state (HANDOFF section 6). Damage taken stays the same when Hit Point maximum changes, used boxes stay (used() clamps to the new maximum) */

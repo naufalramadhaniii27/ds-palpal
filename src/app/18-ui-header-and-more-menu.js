@@ -11,6 +11,7 @@ import {TPL,__set_edTab,edTab,getPath,rEnsure,rGet,rerenderEditor,scheduleRender
 import {SN_BAD,rSnap,snGet,snRestore,snTake} from "./15-logic-roster-backup-files-snapshots.js";
 import {MYID} from "./17-logic-tab-sync-and-test-hooks.js";
 import {__R} from "./00-reg.js";
+import { render as drawHtml, raw as rawHtml } from "./lib/html.js";
 /* v30 C1: phone header. My Characters, Edit, Settings, and PDF sit in the More menu (computer: the same buttons in the header row) */
 /* v32 p36: full header only when it fits on one line, measured (phones keep their own header) */
 function hdrFits(){ const A=document.querySelector(".band .acts"), of=document.querySelector(".band .office"); if(!A) return true;
@@ -50,14 +51,14 @@ $("#sheetBody").addEventListener("click",(e) =>{
     if(e.target.closest("[data-keysopen]")){ __R.keysOpen(); return; }/* v32 p27 */
     const snb=e.target.closest("[data-snrs],[data-snnow]"); if(snb){ const sid=MYID||(rGet()||{}).active; if(snb.hasAttribute("data-snrs")){ snRestore(sid,+snb.getAttribute("data-snrs")); return; }
       if(SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; } const rr0=rSnap(rEnsure()), b0=(snGet().chars[sid]||[]), h0=b0[0]&&b0[0].h; snTake(sid,"Taken by hand",rr0); const b1=snGet().chars[sid]||[]; toast(b1[0]&&b1[0].h!==h0?"Snapshot taken":"No changes since the last snapshot");
-      const sb3=$("#sheetBody"), st3=sb3.scrollTop; sb3.innerHTML=__R.settingsHTML(); sb3.scrollTop=st3; return; }/* v32 p33 */
+      const sb3=$("#sheetBody"), st3=sb3.scrollTop; drawHtml(rawHtml(__R.settingsHTML()), sb3); sb3.scrollTop=st3; return; }/* v32 p33 */
     const tb=e.target.closest(".thb"); if(!tb) return; const dd=tb.dataset;
     if(dd.hpm){ let df=[]; try{ df=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ df=[]; } __R.undoMark("Hit Points setting"); const hm2=window.__bldHpMode&&window.__bldHpMode(dd.hpm,!df.length); if(!hm2){ __R.UNDO=null; return; }
       __R.renderAll(); __R.toastU("Hit Points: "+(dd.hpm==="roll"?"rolled":"fixed (average)")+"."+(df.length?" The sheet has its own edits, so it keeps its numbers until you press Build, then Apply.":" Maximum HP is "+D.hpmax+".")); }/* v25 RU38 no. 6 */
-    if(dd.hc){ hcSet(dd.hc); toast(dd.hc==="auto"?"High contrast follows your device. It is "+(hcOn()?"on":"off")+" now.":"High contrast is "+(hcOn()?"on":"off")+"."); const sb4=$("#sheetBody"), st4=sb4.scrollTop; sb4.innerHTML=__R.settingsHTML(); sb4.scrollTop=st4; return; }/* v35 p01 */
+    if(dd.hc){ hcSet(dd.hc); toast(dd.hc==="auto"?"High contrast follows your device. It is "+(hcOn()?"on":"off")+" now.":"High contrast is "+(hcOn()?"on":"off")+"."); const sb4=$("#sheetBody"), st4=sb4.scrollTop; drawHtml(rawHtml(__R.settingsHTML()), sb4); sb4.scrollTop=st4; return; }/* v35 p01 */
     if(dd.thm!=null){ S.theme=dd.thm; if(document.startViewTransition&&!REDUCE){ const vde=document.documentElement; vde.style.setProperty("--vtx",(e.clientX||innerWidth/2)+"px"); vde.style.setProperty("--vty",(e.clientY||innerHeight/2)+"px"); vde.classList.add("mi-themevt"); try{ const tvt=document.startViewTransition(() =>{ applyTheme(); }); const tve=function(){ vde.classList.remove("mi-themevt"); }; tvt.finished.then(tve,tve); }catch(er){ vde.classList.remove("mi-themevt"); applyTheme(); } } else applyTheme(); }/* v55: circular reveal */ if(dd.thc) S.color=dd.thc; if(dd.thk) S.skin=dd.thk; if(dd.ths) S.sym=dd.ths;
     if(dd.thf!=null){ if(dd.thf) S.frame=dd.thf; else delete S.frame; } if(dd.thd!=null){ if(dd.thd) S.bdrop=dd.thd; else delete S.bdrop; } if(dd.set){ const kv=dd.set.split(":"); __R.setPut(kv[0],kv[1]); __R.renderAll(); }/* v25 */
-    save(); applyLook(); const sb2=$("#sheetBody"), st2=sb2.scrollTop; sb2.innerHTML=__R.settingsHTML(); sb2.scrollTop=st2; return; }
+    save(); applyLook(); const sb2=$("#sheetBody"), st2=sb2.scrollTop; drawHtml(rawHtml(__R.settingsHTML()), sb2); sb2.scrollTop=st2; return; }
   if(sheetMode==="cond"){
     const c=e.target.closest("[data-c]");
     if(c){ const k=c.getAttribute("data-c"); __R.undoMark((S.cond[k]?"Remove ":"Add ")+k); if(S.cond[k]) delete S.cond[k]; else S.cond[k]=true; c.setAttribute("aria-pressed",!!S.cond[k]); if(c.classList.contains("chip")) c.classList.toggle("on",!!S.cond[k]); const cc=c.closest(".cc"); if(cc) cc.classList.toggle("on",!!S.cond[k]); save(); __R.renderAll(); return; }/* v22 RU53 */

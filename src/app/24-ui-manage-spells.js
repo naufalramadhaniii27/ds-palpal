@@ -6,6 +6,7 @@ import {tileH,tileS} from "./13-ui-detail-cards.js";
 import {spCompH,spRangeH} from "./22-ui-spell-data-and-slots.js";
 import {ico,ordL} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"spmCls",{get:function(){return spmCls;},set:function(v){spmCls=v;},configurable:true});
 Object.defineProperty(__R,"spmHTML",{get:function(){return spmHTML;},set:function(v){spmHTML=v;},configurable:true});
 Object.defineProperty(__R,"spmLv",{get:function(){return spmLv;},set:function(v){spmLv=v;},configurable:true});
@@ -37,12 +38,11 @@ function spmAlways(){ return (C.spells||[]).filter((x) =>{ return x.use==="Alway
 function spmCount(p){ let nc=0, np=0; p.taken.forEach((n) =>{ const x=spmRec(n); if(!x) return; if(x[1]) np++; else nc++; }); return {nc:nc, np:np}; }
 function spmMeta(x){ return (x[1]?ordL(x[1]):"Cantrip")+" • "+esc(x[2])+(x[8]?" • Concentration":"")+(x[9]?" • Ritual":""); }
 function spmRow(x,on,full,cls){ const lbl=on?"Remove":(x[1]&&!spKn(cls,C.sub,C.rs)?"Prepare":"Learn");
-  return '<div class="spm-r'+(on?' on':'')+'"><button type="button" class="spm-n" data-info="spn:'+esc(x[0])+'"><b>'+esc(x[0])+(x[8]?' <i class="sp-c">C</i>':'')+(x[9]?' <i class="sp-c rit">R</i>':'')+'</b><small>'+spmMeta(x)+'</small></button>'+
-    '<button type="button" class="btn sm spm-t'+(on?' rm':'')+'" data-spmt="'+esc(x[0])+'" data-spmc="'+esc(cls)+'"'+(!on&&full?' disabled aria-disabled="true"':'')+' aria-label="'+lbl+' '+esc(x[0])+'">'+lbl+'</button></div>'; }
+  return html`<div class="spm-r${on?' on':''}"><button type="button" class="spm-n" data-info="spn:${x[0]}"><b>${x[0]}${x[8] ? html` <i class="sp-c">C</i>` : ''}${x[9] ? html` <i class="sp-c rit">R</i>` : ''}</b><small>${rawHtml(spmMeta(x))}</small></button><button type="button" class="btn sm spm-t${on?' rm':''}" data-spmt="${x[0]}" data-spmc="${cls}"${!on&&full?' disabled aria-disabled="true"':''} aria-label="${lbl} ${x[0]}">${rawHtml(lbl)}</button></div>`; }
 function spmHTML(){ if(window.__sp14Set&&(document.getElementById("bld")||{hidden:true}).hidden)window.__sp14Set(C.rs==="2014");/* v92 */ const M=spmMode(), P=spmParts(M);
   if(!P.length) return '<p class="info-d">'+(C.cls?esc(C.cls)+' has no Spellcasting at level '+D.level+'.':'Build this character first: choose a class in the builder.')+' Spells from species, feats, and items are added by the builder.</p>';
   const p=P.filter((q) =>{ return q.cls===spmCls; })[0]||P[0]; spmCls=p.cls;
-  let h=P.length>1?'<div class="ifil spm-cls" role="tablist">'+P.map((q) =>{ return '<button type="button" role="tab" class="ifb'+(q===p?' on':'')+'" aria-selected="'+(q===p)+'" data-spmcls="'+esc(q.cls)+'">'+esc(q.cls)+'</button>'; }).join("")+'</div>':'';
+  let h=P.length>1?'<div class="ifil spm-cls" role="tablist">'+P.map((q) =>{ return html`<button type="button" role="tab" class="ifb${q===p?' on':''}" aria-selected="${q===p}" data-spmcls="${q.cls}">${q.cls}</button>`; }).join("")+'</div>':'';
   const n=spmCount(p), fc=n.nc>=p.ct, fp=n.np>=p.pr;
   const cnt=function(lab,a,b){ return '<div class="spm-c'+(a!==b?' short':'')+'"><b>'+a+' / '+b+'</b><span>'+lab+(a<b?' • '+(b-a)+' to choose':a>b?' • '+(a-b)+' too many':'')+'</span></div>'; };
   h+='<div class="spm-cnt">'+cnt("Cantrips",n.nc,p.ct)+cnt(spKn(p.cls,C.sub,C.rs)?"Spells Known":"Prepared Spells",n.np,p.pr)+'</div>';
@@ -51,7 +51,7 @@ function spmHTML(){ if(window.__sp14Set&&(document.getElementById("bld")||{hidde
   h+='<div class="info-h">'+(P.length>1?esc(p.cls)+' ':'')+'Spells ('+mine.length+')</div>'+(mine.length?mine.map((x) =>{ return spmRow(x,true,false,p.cls); }).join(""):'<p class="info-d">None yet. Add them below.</p>');
   const al=spmAlways(); if(al.length) h+='<p class="info-d spm-al">Always prepared, not counted: '+al.map(esc).join(", ")+'.</p>';
   h+='<div class="info-h">Add Spells</div><input class="sp-q" id="spmQ" type="search" placeholder="Search spell names" aria-label="Search spell names" value="'+esc(spmQ)+'">';
-  h+='<div class="ifil spm-lv">'+[["all","All"]].concat(Array.apply(null,{length:p.max+1}).map((_,i) =>{ return [String(i),i?ordL(i).replace(" Level",""):"Cantrip"]; })).map((f) =>{ return '<button type="button" class="ifb'+(String(spmLv)===f[0]?' on':'')+'" data-spml="'+f[0]+'">'+f[1]+'</button>'; }).join("")+'</div>';
+  h+='<div class="ifil spm-lv">'+[["all","All"]].concat(Array.apply(null,{length:p.max+1}).map((_,i) =>{ return [String(i),i?ordL(i).replace(" Level",""):"Cantrip"]; })).map((f) =>{ return html`<button type="button" class="ifb${String(spmLv)===f[0]?' on':''}" data-spml="${f[0]}">${rawHtml(f[1])}</button>`; }).join("")+'</div>';
   if(fp||fc) h+='<p class="info-d spm-full">'+(fc&&fp?'Cantrips and prepared spells are full':fc?'Cantrips are full':'Prepared spells are full')+'. Remove one to pick another.</p>';
   const q=spmQ.toLowerCase(), av=(typeof SPELLS==="undefined"?[]:SPELLS).filter((x) =>{ return p.lists.some((l) =>{ return x[3].indexOf(l)>=0; })&&(!p.book||!x[1]||p.book.indexOf(x[0])>=0||num(p.bookO,0)<num(p.bookN,0))/* v32: Wizard spellbook */&&x[1]<=p.max&&p.taken.indexOf(x[0])<0&&al.indexOf(x[0])<0&&(spmLv==="all"||String(x[1])===String(spmLv))&&(!q||x[0].toLowerCase().indexOf(q)>=0); })
     .sort((a,b) =>{ return a[1]-b[1]||(a[0]<b[0]?-1:1); });
@@ -70,7 +70,7 @@ function spmToggle(n,cls){ const M=spmMode(), P=spmParts(M), p=P.filter((q) =>{ 
     if(M.I&&window.__bldSpSet){ try{ window.__bldSpSet(n,cls,on,false); }catch(er){} } saveC(); __R.renderAll(); }
   spmRefresh(); __R.toastU((on?(x[1]?"Prepared ":"Learned "):"Removed ")+n+"."); }
 export function spmRefresh(){ if(sheetMode!=="spman") return; const b=$("#sheetBody"), st=b.scrollTop, qf=document.activeElement&&document.activeElement.id==="spmQ", sel=qf?document.activeElement.selectionStart:0;
-  b.innerHTML=spmHTML(); b.scrollTop=st; if(qf){ const q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
+  drawHtml(rawHtml(spmHTML()), b); b.scrollTop=st; if(qf){ const q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
 export function openSpMan(){ spmQ=""; spmLv="all"; __set_navStack([{type:"spman"}]); openSheet("Manage Spells", spmHTML(), "spman", true); }
 /* a spell that is not on the sheet yet: the rules text and the basic lines */
 export function spnHTML(n){ const x=spmRec(n)||(window.__wxSpRow&&window.__wxSpRow(n)); if(!x) return {t:n, h:'<p class="info-d">Not found.</p>'};

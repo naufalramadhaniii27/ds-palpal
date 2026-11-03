@@ -1,5 +1,6 @@
 import {A,lsGet,lsSet} from "./00-bridge.js";
 import {LEARN} from "./45-data-learn.js";
+import { render as drawHtml, raw as rawHtml } from "../app/lib/html.js";
 /* T11 Learn logic: progress, language, dice and the sheet spotlight (U41 Anchor Spotlight).
    Saved under cs-learn-v1 only ({v, lang, done:{stop:{t,skip}}, xp, quiz:{best,t}, last}). No other key is read or changed,
    and Learn never writes to a character. The key follows the person to other devices through the cloud settings (PF_KEYS in 43). */
@@ -54,7 +55,7 @@ export var SPOT=null;
 export function spotAnchor(){ return !window.__lrnNoAnchor&&window.CSS&&CSS.supports&&CSS.supports("anchor-name","--a")&&CSS.supports("top","anchor(--a bottom)"); }
 export function spotShow(el,html,onClose){ spotHide(true); const ring=document.createElement("div"), card=document.createElement("div"), r0=el.getBoundingClientRect(), tall=r0.height>innerHeight*.45, anc=spotAnchor()&&!tall;/* a part taller than half the screen: the card waits at the bottom */
   ring.id="spotR"; ring.className="spot-r"+(anc?" spot-anc":""); ring.setAttribute("aria-hidden","true");
-  card.id="lrnSpot"; card.className="spot-c noico"+(anc?" spot-anc":""); card.setAttribute("role","dialog"); card.setAttribute("aria-label",(el.getAttribute("aria-label")||"")); card.innerHTML=html;
+  card.id="lrnSpot"; card.className="spot-c noico"+(anc?" spot-anc":""); card.setAttribute("role","dialog"); card.setAttribute("aria-label",(el.getAttribute("aria-label")||"")); drawHtml(rawHtml(html), card);
   document.body.appendChild(ring); document.body.appendChild(card);
   if(anc){ el.style.setProperty("anchor-name","--spot"); }
   const place=function(){ if(anc) return; const r=el.getBoundingClientRect(), p=6; ring.style.left=(r.left-p)+"px"; ring.style.top=(r.top-p)+"px"; ring.style.width=(r.width+2*p)+"px"; ring.style.height=(r.height+2*p)+"px";

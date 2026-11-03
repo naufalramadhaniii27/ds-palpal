@@ -6,7 +6,7 @@ import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {condHTML} from "./10-ui-conditions.js";
 import {bdHTML} from "./11-ui-breakdown.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import { html, raw, render, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"navStack",{get:function(){return navStack;},set:function(v){navStack=v;},configurable:true});
 Object.defineProperty(__R,"openSheet",{get:function(){return openSheet;},set:function(v){openSheet=v;},configurable:true});
 Object.defineProperty(__R,"sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;},configurable:true});
@@ -45,7 +45,7 @@ export function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */
   if(!sheet.classList.contains("on")) lastFocus=document.activeElement;
   sheetMode=mode;
-  setSheetTitle(title); const shw=$("#shWm"); $("#sheetBody").innerHTML=html; if(shw) $("#sheetBody").insertBefore(shw,$("#sheetBody").firstChild); $("#sheetBody").scrollTop=0;/* the icon is a big picture at the top of the content */
+  setSheetTitle(title); const shw=$("#shWm"); drawHtml(rawHtml(html), $("#sheetBody")); if(shw) $("#sheetBody").insertBefore(shw,$("#sheetBody").firstChild); $("#sheetBody").scrollTop=0;/* the icon is a big picture at the top of the content */
   $("#sheetBack").hidden = navStack.length<2;
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
@@ -86,14 +86,14 @@ export var LEARN_LINK=[[/^(Athletics|Acrobatics|Sleight of Hand|Stealth|Arcana|H
   [/Bonus Action|Reaction|Opportunity Attack/i,"forest2"],[/Advantage|Disadvantage|Heroic Inspiration/i,"cliff"],[/Saving Throw/i,"camp2"],
   [/Prone|Poisoned|Grappled|Blinded|Charmed|Deafened|Frightened|Incapacitated|Invisible|Paralyzed|Petrified|Restrained|Stunned|Exhaustion|Condition/i,"meadow"],
   [/Concentration|Prepared/i,"tower2"],[/Cantrip|Spell Slot|Spellcasting|Spell Attack|Spell Save/i,"tower1"]];
-function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(let i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return '<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:'+LEARN_LINK[i][1]+'">'+__R.ico("ui-book")+'Learn this</button></div>'; return ""; }
+function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(let i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return html`<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:${LEARN_LINK[i][1]}">${rawHtml(__R.ico("ui-book"))}Learn this</button></div>`; return ""; }
 export function showEntry(en, push){
   hpDockBack();/* v30 */
   const open=sheet.classList.contains("on") && sheetMode!=="edit";
   if(push && open) navStack.push(en); else navStack=[en];
   let c=entryContent(en); c={t:c.t,h:(typeof __R.coachLine==="function"?__R.coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
   if(open){
-    sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
+    sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); drawHtml(rawHtml(c.h), b); if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
     $("#sheetBack").hidden = navStack.length<2;
   } else openSheet(c.t, c.h, c.m);
@@ -102,12 +102,12 @@ export function showEntry(en, push){
 export function refreshEntry(){
   if(!navStack.length || !sheet.classList.contains("on") || sheetMode==="edit") return;
   const c=entryContent(navStack[navStack.length-1]), b=$("#sheetBody"), st=b.scrollTop;
-  setSheetTitle(c.t); const shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; swpSync();/* v36 p18 */
+  setSheetTitle(c.t); const shw3=$("#shWm"); drawHtml(rawHtml(c.h+learnLink(c.t)), b); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; swpSync();/* v36 p18 */
 }
 $("#sheetBack").addEventListener("click",() =>{
   if(navStack.length<2) return;
   hpDockBack(); navStack.pop(); const c=entryContent(navStack[navStack.length-1]);
-  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
+  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); drawHtml(rawHtml(c.h), b); if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
   b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
   $("#sheetBack").hidden = navStack.length<2; swpSync();/* v36 p18 */
 });

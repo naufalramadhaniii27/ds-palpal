@@ -36,7 +36,7 @@ function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; cons
   q("i.sp-c").forEach((i) =>{ if(i.getAttribute("data-ico")) return; const r=i.classList.contains("rit"); i.setAttribute("data-ico","1"); i.setAttribute("title",r?"Ritual":"Concentration"); drawHtml(html`${rawHtml(ico(r?"tag-ritual":"tag-concentration"))}<span class="vh">${rawHtml(r?"R":"C")}</span>`, i); });
   q('#invBody [data-info^="it:"]').forEach((b) =>{ if(b.getAttribute("data-ico")) return; b.setAttribute("data-ico","1"); const it=(C.inv||[])[+b.getAttribute("data-info").slice(3)], nm=b.querySelector("b")||b; nm.insertAdjacentHTML("afterbegin",ico(icoItem(it)));
     if(it){ const st=[]; if(it.att&&eqOn(it)) st.push(["item-attuned","Attuned"]); /* v32 RU138: the checkbox alone shows Equipped */ if((D.res||[]).some((r) =>{ return r.f===it.n||r.f===it.key; })) st.push(["item-charge","Has charges or uses"]);
-      if(st.length) nm.insertAdjacentHTML("afterend",'<span class="ists">'+st.map((x) =>{ return '<span title="'+x[1]+'">'+ico(x[0],"ist")+'</span>'; }).join("")+'</span>'); } });/* v24 m4, m5, R2-1: outside the name, no text */
+      if(st.length) nm.insertAdjacentHTML("afterend",'<span class="ists">'+st.map((x) =>{ return html`<span title="${x[1]}">${rawHtml(ico(x[0],"ist"))}</span>`; }).join("")+'</span>'); } });/* v24 m4, m5, R2-1: outside the name, no text */
   q("#speeds .sense > span:last-child").forEach((s) =>{ const w=(s.firstChild&&s.firstChild.nodeValue||"").split(",")[0].trim(); if(ICO_SPEED[w]) icoPut(s,ICO_SPEED[w]); });
   q("#senses .sense > .tx").forEach((s) =>{ const t=s.textContent; ICO_SENSE.some((p) =>{ if(p[0].test(t)){ icoPut(s,p[1]); return true; } }); });
   q("#defs h3.defh").forEach((h) =>{ const k={Resistances:"def-resistance",Immunities:"def-immunity",Vulnerabilities:"def-vulnerability",Other:"def-condimmune"}[h.textContent.trim()]; if(k) icoPut(h,k); });
@@ -50,8 +50,8 @@ function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; cons
   q("#steps .st[data-step]").forEach((b) =>{ const k=ICO_STEP[b.getAttribute("data-step")]; if(k) icoPut(b,k); });
   q(".hbtns [data-hnew]").forEach((b) =>{ icoPut(b,"home-create"); }); q('.hbtns [data-hbk="open"]').forEach((b) =>{ icoPut(b,"home-import"); }); q('.hbtns [data-hbk="out"]').forEach((b) =>{ icoPut(b,"home-backup"); }); q('.hbtns [data-hbk="in"]').forEach((b) =>{ icoPut(b,"home-restore"); }); q('.hbtns [data-hparty]').forEach((b) =>{ icoPut(b,"home-party"); });/* v28 M1 */
   q("[data-hfile]").forEach((b) =>{ icoPut(b,"home-export"); });
-  q(".crow .cico").forEach((c) =>{ if(c.getAttribute("data-ico")) return; const m=/c-(\w\w)/.exec(c.className); if(m){ c.setAttribute("data-ico","1"); c.innerHTML=ico("coin-"+m[1]); } });
-  icoPut(document.querySelector(".hp-tmpc .tmp-l"),"hp-temp"); icoPut(document.querySelector('.hp-pre [data-hpadd="0"]'),"ui-close"); const phc=document.getElementById("phCls"); if(phc&&!phc.innerHTML&&C){ const ck0=icoCls(C.clsLabel||C.cls||""); if(ck0&&ICO[ck0]){ phc.innerHTML=ico(ck0); phc.hidden=false; } }/* v30 */
+  q(".crow .cico").forEach((c) =>{ if(c.getAttribute("data-ico")) return; const m=/c-(\w\w)/.exec(c.className); if(m){ c.setAttribute("data-ico","1"); drawHtml(rawHtml(ico("coin-"+m[1])), c); } });
+  icoPut(document.querySelector(".hp-tmpc .tmp-l"),"hp-temp"); icoPut(document.querySelector('.hp-pre [data-hpadd="0"]'),"ui-close"); const phc=document.getElementById("phCls"); if(phc&&!phc.innerHTML&&C){ const ck0=icoCls(C.clsLabel||C.cls||""); if(ck0&&ICO[ck0]){ drawHtml(rawHtml(ico(ck0)), phc); phc.hidden=false; } }/* v30 */
   icoAll(root);/* v29 RU121 */
   q(".hdrow").forEach((h) =>{ const m=/Hit Die: 1d(4|6|8|10|12|20)\b/.exec(h.textContent), b=h.querySelector("b"); if(m&&b) icoPut(b,"die-d"+m[1]); });
   }catch(er){}
