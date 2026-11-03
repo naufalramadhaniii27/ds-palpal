@@ -1,4 +1,12 @@
 {
+ "elearn": [
+  "build-complete",
+  "play-complete",
+  "rank-adventurer",
+  "rank-apprentice",
+  "rank-hero",
+  "rank-novice"
+ ],
  "emblem": {
   "artificer": {
    "c": "#382815",
@@ -268,18 +276,24 @@
    "arcane-study",
    "archive",
    "armory",
+   "barrack",
    "gaming-hall",
+   "garden",
    "greenhouse",
    "guildhall",
+   "library",
    "meditation-chamber",
    "menagerie",
+   "pub",
    "sacristy",
    "sanctum",
    "smithy",
    "storehouse",
    "theater",
    "training-area",
-   "trophy-room"
+   "trophy-room",
+   "war-room",
+   "workshop"
   ],
   "feat": [
    "ability-score-improvement",
@@ -1934,6 +1948,24 @@
    "thieves-cant",
    "undercommon"
   ],
+  "learn": [
+   "ability-check",
+   "action",
+   "advantage",
+   "armor-class",
+   "attack-roll",
+   "bonus-action",
+   "concentration",
+   "d20-test",
+   "disadvantage",
+   "hit-points",
+   "initiative",
+   "movement",
+   "proficiency",
+   "reaction",
+   "saving-throw",
+   "spell-slot"
+  ],
   "mastery": [
    "cleave-mastery",
    "graze-mastery",
@@ -3072,6 +3104,21 @@
     "pc": "img/scn/screen/journal-pc.avif",
     "phone": "img/scn/screen/journal-phone.avif"
    },
+   "learn": {
+    "c": "#886a41",
+    "pc": "img/scn/screen/learn-pc.avif",
+    "phone": "img/scn/screen/learn-phone.avif"
+   },
+   "learn-map": {
+    "c": "#849b67",
+    "pc": "img/scn/screen/learn-map-pc.avif",
+    "phone": "img/scn/screen/learn-map-phone.avif"
+   },
+   "learn-trial": {
+    "c": "#627762",
+    "pc": "img/scn/screen/learn-trial-pc.avif",
+    "phone": "img/scn/screen/learn-trial-phone.avif"
+   },
    "long-rest": {
     "c": "#757257",
     "o": {
@@ -3399,6 +3446,28 @@
    "journal",
    "notes",
    "spells"
+  ],
+  "learn": [
+   "abilities-skills",
+   "advantage",
+   "combat-turn",
+   "conditions",
+   "d20-test",
+   "explore-talk",
+   "hit-points-rests",
+   "learn-build",
+   "learn-play",
+   "owl-cheer",
+   "owl-explain",
+   "owl-think",
+   "owl-welcome",
+   "sela-applause",
+   "sela-laugh",
+   "sela-narrate",
+   "sela-smile",
+   "sela-tension",
+   "spells",
+   "what-is-dnd"
   ],
   "moment": [
    "death-save",
