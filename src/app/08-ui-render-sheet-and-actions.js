@@ -23,7 +23,7 @@ export function renderIdentity(){
   $("#idName").textContent = C.name;
   const f=[["Species",C.species,__R.grpSpec("species")],["Class",clsLv(),__R.grpSpec("class")],[(x14()&&SL14[String(C.cls||"").split(/[\s/,]/)[0]])||"Subclass",C.sub,__R.grpSpec("sub")],["Background",C.bg,__R.grpSpec("bg")],["Size",C.size,"g:Size"]];
   $("#idF").innerHTML = f.filter((x) =>{return x[1]}).map((x) =>{const em=idArt(x[0],x[1]);/* every chip gets a Codex picture, or none does */ return '<dt>'+x[0]+'</dt><dd'+(em?' data-ico="1"':'')+'>'+em+(x[2]?'<button type="button" class="tx" data-info="'+esc(x[2])+'">'+esc(x[1])+'</button>':esc(x[1]))+'</dd>'}).join("");
-  drawHtml(html`<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency ${rawHtml(sg(D.pb))}</button>`, $("#pbAside"));
+  drawHtml(html`<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">${"Proficiency "+sg(D.pb)}</button>`, $("#pbAside"));
   __R.xpBox();/* v22 RU63 */
 }
 function idArt(lbl,val){ const A=window.__ART; if(!A||!A.icon||(window.__idNoArt&&window.__idNoArt())) return ""; const sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];

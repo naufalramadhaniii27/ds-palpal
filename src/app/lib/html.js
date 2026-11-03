@@ -10,7 +10,29 @@
 const SAFE_URL = /^\s*(?:javascript|vbscript|data\s*:\s*text\/html)/i, URL_ATTR = /^(?:href|src|action|formaction|xlink:href|poster|data)$/i, PAIR = /\s*([A-Za-z_:][-\w:.]*)(?:\s*=\s*"([^"]*)")?/y;
 class Raw { constructor(s) { this.s = s; } }
 /** @param {any} s */ export const raw = s => new Raw(s == null ? "" : String(s));
-/** @param {TemplateStringsArray} s @param {...any} v */ export const html = (s, ...v) => ({ s, v });
+/** @param {TemplateStringsArray} s @param {...any} v */ export const html = (s, ...v) => ({ s, v, toString() { return markup(this); } });
+/* Older code still joins markup strings ('<div>' + fn() + '</div>'). A template turns into its escaped markup text when it is joined, so a builder can return a template
+   before every caller has moved to render(). The text is the same as the string the builder returned before. */
+const ESC = /** @type {Record<string,string>} */ ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" });
+/** @param {any} t */ const escText = t => String(t == null ? "" : t).replace(/[&<>"']/g, c => ESC[c]);
+/** @param {{s: TemplateStringsArray, v: any[]}} r @returns {string} */
+function markup(r) {
+  const kinds = scan(r.s); let out = r.s[0];
+  for (let i = 0; i < kinds.length; i++) out += hole(r.v[i], kinds[i]) + r.s[i + 1];
+  return out;
+}
+/** @param {any} v @param {string} k @returns {string} */
+function hole(v, k) {
+  if (k === "text") {
+    if (v == null || v === false || v === true) return "";
+    if (Array.isArray(v)) return v.map(x => hole(x, "text")).join("");
+    if (v instanceof Raw) return v.s;
+    if (typeof v === "object" && typeof v.s !== "string" && v.s) return markup(v);
+    return escText(v);
+  }
+  if (k === "list") return v == null ? "" : String(v);
+  return escText(v == null ? "" : String(v));
+}
 /** @type {WeakMap<TemplateStringsArray, any>} */ const PREP = new WeakMap();
 /* which kind of hole is after this piece of markup: "text", "attr" (inside a quoted value), "list" (inside a tag, between attributes), "area" (inside a textarea) */
 function scan(strs) {

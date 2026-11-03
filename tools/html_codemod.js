@@ -5,7 +5,7 @@
    node tools/html_codemod.js [--write] FILE...   prints one line per site: converted or skipped with the reason */
 const fs = require("fs"), path = require("path");
 const acorn = require(path.join(__dirname, "build/node_modules/acorn"));
-const args = process.argv.slice(2), WRITE = args.includes("--write"), files = args.filter(a => !a.startsWith("--"));
+const args = process.argv.slice(2), WRITE = args.includes("--write"), BRIDGE = args.includes("--bridge"), files = args.filter(a => !a.startsWith("--"));
 const lit = s => s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
 let total = 0, done = 0;
 for (const file of files) {
@@ -41,7 +41,8 @@ for (const file of files) {
   walk(ast, n => {
     if (n.type === "AssignmentExpression" && n.operator === "=" && n.left.type === "MemberExpression" && !n.left.computed && n.left.property.name === "innerHTML" && !stmts.has(n)) { total++; console.log(file + ":" + n.loc.start.line + " skip: value of the assignment is used"); return; }
     if (!stmts.has(n) || n.type !== "AssignmentExpression" || n.operator !== "=" || n.left.type !== "MemberExpression" || n.left.computed || n.left.property.name !== "innerHTML") return;
-    total++; const r = tpl(n.right), line = n.loc.start.line;
+    total++; let r = tpl(n.right); const line = n.loc.start.line;
+    if (r.skip && BRIDGE && r.skip === "no string literal") { needRaw = true; r = { code: "rawHtml(" + src.slice(n.right.start, n.right.end) + ")" }; }
     if (r.skip) { console.log(file + ":" + line + " skip: " + r.skip); return; }
     const target = src.slice(n.left.object.start, n.left.object.end);
     if (/[=;]|\bfunction\b/.test(target) && !/^[\w$.\[\]"'#()\s,-]+$/.test(target)) { console.log(file + ":" + line + " skip: complex target"); return; }
