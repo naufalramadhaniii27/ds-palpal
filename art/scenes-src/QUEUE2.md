@@ -19,7 +19,7 @@ C (third-party classes, PC 2x2 + phone 1x2): use the QUEUE.md templates. The man
 
 B (backgrounds, PC 2x2 + phone 1x2): use the QUEUE.md templates. For each panel write the subject yourself from the manifest name and info: one adult whose daily life or past matches the background (their work, tools, clothes and place), caught in a moment of loss or danger in a bright world. Show the background, not a class. Vary species, age and gender across panels. Keep the subject you wrote for a PC panel and reuse it for its phone twin. For B054 (one panel) make one single PC image 2400x1344-shaped and one single phone image 9:16.
 
-K (subclass cards, 4x4): one image 16:9 (use the largest landscape size), a grid of 4 columns x 4 rows of 16:9 cards, separated by plain 16 px light cream gutters, no borders, numbers or labels. Each card is a small scene of one adult using that subclass's signature power, from the manifest class, subclass and features. The class must be readable from gear and pose. One clear figure, simple bright background, edges fade into cream paper. Small wound or grief detail allowed, no big gore. Cards in one sheet must differ in palette and pose. Unused cells (last sheet) stay plain cream. Gutters are straight, even, flat cream bands of 16 px: no torn, rough or brushed card edges reaching into the gutter (K002 had rough edges and could not be cut automatically).
+K (subclass cards, 4x4): one image 16:9 (use the largest landscape size), a grid of 4 columns x 4 rows of 16:9 cards, separated by plain 16 px light cream gutters, no borders, numbers or labels. Each card is a small scene of one adult using that subclass's signature power, from the manifest class, subclass and features. The class must be readable from gear and pose. One clear figure, simple bright background, edges fade into cream paper. Small wound or grief detail allowed, no big gore. Cards in one sheet must differ in palette and pose. Unused cells (last sheet) stay plain cream. Gutters are straight, even, flat cream bands of 16 px: no torn, rough or brushed card edges reaching into the gutter (K002 had rough edges and could not be cut automatically). Gutters a little narrower than 16 px are fine: Claude cuts K sheets on a fixed 4x4 grid, so never redo a sheet only for gutter width.
 
 P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portraits, plain 16 px cream gutters. Each portrait follows the manifest subject: head and shoulders, three-quarter view, plain flat dry-brush background in the listed colors, face in the upper middle, whole head and horns inside the middle 80% of height. Same STYLE BLOCK.
 
@@ -225,11 +225,11 @@ P (species portraits, 2x2): one image 4:5 portrait canvas, 2x2 grid of 4:5 portr
 | K020 | art/scenes-src/subclasses/K020.png | 4x4 cards | Paladin to Ranger | done |
 | K021 | art/scenes-src/subclasses/K021.png | 4x4 cards | Ranger to Rogue | done |
 | K022 | art/scenes-src/subclasses/K022.png | 4x4 cards | Rogue to Sorcerer | done |
-| K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | needs review: straight gutters remain narrower than 16 px after whole-sheet redo |
-| K024 | art/scenes-src/subclasses/K024.png | 4x4 cards | Sorcerer to Summoner | needs review: gutter widths and flat fill still inconsistent after whole-sheet redo |
-| K025 | art/scenes-src/subclasses/K025.png | 4x4 cards | Summoner to Warden | needs review: gutters remain narrower than 16 px and textured after whole-sheet redo |
-| K026 | art/scenes-src/subclasses/K026.png | 4x4 cards | Warden to Warlock | needs review: gutter widths and flat fill still inconsistent after whole-sheet redo |
-| K027 | art/scenes-src/subclasses/K027.png | 4x4 cards | Warlock | needs review: gutters remain narrower than 16 px and textured after whole-sheet redo |
+| K023 | art/scenes-src/subclasses/K023.png | 4x4 cards | Sorcerer | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
+| K024 | art/scenes-src/subclasses/K024.png | 4x4 cards | Sorcerer to Summoner | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
+| K025 | art/scenes-src/subclasses/K025.png | 4x4 cards | Summoner to Warden | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
+| K026 | art/scenes-src/subclasses/K026.png | 4x4 cards | Warden to Warlock | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
+| K027 | art/scenes-src/subclasses/K027.png | 4x4 cards | Warlock | done (narrow gutters ok, Claude cut on a fixed 4x4 grid) |
 | K028 | art/scenes-src/subclasses/K028.png | 4x4 cards | Warlock to Witch | open |
 | K029 | art/scenes-src/subclasses/K029.png | 4x4 cards | Witch to Wizard | open |
 | K030 | art/scenes-src/subclasses/K030.png | 4x4 cards | Wizard | open |
