@@ -5,29 +5,36 @@
 (function(){ let t0=0;
   /* no cached list: a call while the page is still loading runs only the parts already parsed, the rest run later in order */
   function list(){ return document.querySelectorAll('script[type="text/x-defer"]:not([data-lazy])'); }/* data-lazy parts wait for __lazyRun() */
-  let TXT={}, ASK={}, DONE={}, FAILS={}, PEND=null, SYNC=false;/* fetched text by part name, fetches under way, parts run, failed tries, the step waiting for a file */
+  let TXT={}, ASK={}, DONE={}, FAILS={}, PEND=null, WAIT=[];/* fetched text by part name, fetches under way, parts run, failed tries, the step waiting for a file */
   function pname(s){ return s.getAttribute("data-defer"); }
   function ask(s){ const u=s.getAttribute("data-src"), n=pname(s); if(!u||ASK[n]||DONE[n]||TXT[n]!=null) return; ASK[n]=1;
-    fetch(u,{credentials:"same-origin"}).then((r) =>{ if(!r.ok) throw new Error(String(r.status)); return r.text(); }).then((t) =>{ ASK[n]=0; if(DONE[n]) return; TXT[n]=t; if(PEND){ const f=PEND; PEND=null; f(); } },
+    fetch(u,{credentials:"same-origin"}).then((r) =>{ if(!r.ok) throw new Error(String(r.status)); return r.text(); }).then((t) =>{ ASK[n]=0; if(DONE[n]) return; TXT[n]=t; if(PEND){ const f=PEND; PEND=null; f(); } const q=WAIT; WAIT=[]; q.forEach((f) =>{ f(); }); },
       () =>{ ASK[n]=0; FAILS[n]=(FAILS[n]||0)+1; if(FAILS[n]<=20) setTimeout(() =>{ if(s.parentNode) ask(s); },Math.min(30000,1000*FAILS[n])); }); }
   function askAll(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-src]:not([data-lazy])'),ask); }
   window.addEventListener("online",askAll); document.addEventListener("DOMContentLoaded",() =>{ if(t0) askAll(); },{once:true});
-  /* __bldNeed() cannot wait, so a part that has not arrived is read with a synchronous request. The service worker or the HTTP cache answers it at once, except on a first visit */
-  function syncGet(u){ try{ const q=new XMLHttpRequest(); q.open("GET",u,false); q.send(); if(q.status===200) return q.responseText; }catch(e){} return null; }
   function headWait(f){ const s=list()[0]; if(!s||!s.getAttribute("data-src")||TXT[pname(s)]!=null) return false; ask(s); PEND=f; return true; }
-  function all(){ SYNC=true; try{ while(run1()){} }finally{ SYNC=false; } }
-  /* T7: the builder reads saved data and uses the sheet, so its parts wait until the store has loaded IndexedDB and the sheet scripts ran (boot/store-gate.js) */
+    /* T7: the builder reads saved data and uses the sheet, so its parts wait until the store has loaded IndexedDB and the sheet scripts ran (boot/store-gate.js) */
   function run1(){ if(!(window.__gateDone)) return false; const s=list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ let u=s.getAttribute("data-src"), n=pname(s), t;
-    if(u){ ask(s); t=TXT[n]; if(t==null&&SYNC) t=syncGet(u); if(t==null) return false; delete TXT[n]; DONE[n]=1; } else t=s.text;
+    if(u){ ask(s); t=TXT[n]; if(t==null) return false; delete TXT[n]; DONE[n]=1; } else t=s.text;
     const H=window.__deferHook;/* N32: tests/lib/trace.js sets it, nothing else does */ if(H) H(0,n);
     const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; }
-  /* Fase 2.2: a lazy part runs when its guard asks (window.__lazyRun). In the split build the file is read with a synchronous request, which the HTTP cache answers (warm() reads the file after the page is ready and keeps the text, so the request is only the fallback) */
-  const LAZY={};/* text of a lazy part, read after the page is ready: a synchronous request cannot reach the service worker cache, so offline it would fail */
-  window.__lazyRun=function(n){ const s=document.querySelector('script[type="text/x-defer"][data-lazy][data-defer="'+n+'"]'); if(!s) return false; const u=s.getAttribute("data-src"); let t=LAZY[n]!=null?LAZY[n]:u?syncGet(u):s.text; if(t==null) return false; delete LAZY[n];
+  /* Fase 2.2: a lazy part runs when its guard asks (window.__lazyRun). It answers false when the text has not arrived: the guard then returns what it has, and the loader runs the part as soon as the file is in and calls the hook set by the guard (window.__lazyOn[name]). The page reads the files 2.5 s after it is ready (warm()), so a request to the Library normally finds the text already here */
+  const LAZY={}, LZ={}; window.__lazyOn={};
+  const WANT={};/* a part some code is waiting for; warm() only fetches */
+  function lazyAsk(s,quiet){ const n=s.getAttribute("data-defer"), u=s.getAttribute("data-src"); if(!quiet) WANT[n]=1; if(!u||LZ[n]||LAZY[n]!=null) return; LZ[n]=1;
+    fetch(u,{credentials:"same-origin"}).then((r) =>{ if(!r.ok) throw new Error(String(r.status)); return r.text(); }).then((t) =>{ LZ[n]=0; LAZY[n]=t; const f=window.__lazyOn[n]; if(f&&WANT[n]&&s.parentNode) try{ f(); }catch(e){} },() =>{ LZ[n]=0; }); }
+  window.__lazyRun=function(n){ const s=document.querySelector('script[type="text/x-defer"][data-lazy][data-defer="'+n+'"]'); if(!s) return true; const u=s.getAttribute("data-src"); const t=u?LAZY[n]:s.text; if(t==null){ lazyAsk(s); return false; } delete LAZY[n];
     const H=window.__deferHook; if(H) H(0,n); const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(t):t; s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; };
-  function warm(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-lazy][data-src]'),(s) =>{ const n=s.getAttribute("data-defer"); fetch(s.getAttribute("data-src"),{credentials:"same-origin"}).then((r) =>{ return r.ok?r.text():null; }).then((t) =>{ if(t!=null&&s.parentNode) LAZY[n]=t; },() =>{}); }); }
+  window.__lazyReady=function(n){ const s=document.querySelector('script[type="text/x-defer"][data-lazy][data-defer="'+n+'"]'); if(!s||!s.getAttribute("data-src")||LAZY[n]!=null) return true; lazyAsk(s); return false; };/* true when a read will not have to wait */
+  function warm(){ Array.prototype.forEach.call(document.querySelectorAll('script[type="text/x-defer"][data-lazy][data-src]'),(s) =>{ lazyAsk(s,true); }); }
   function fin(){ if(window.__deferDone||document.readyState==="loading"||list().length||!(window.__gateDone)) return; window.__deferDone=Math.round(performance.now()); try{ document.dispatchEvent(new Event("bldready")); }catch(e){} setTimeout(warm,2500); }
-  window.__bldNeed=function(){ if(window.__deferDone) return; all(); if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",() =>{ all(); fin(); }); return; } fin(); };
+  /* M7: __bldNeed() returns a Promise. A page with the parts inside it runs them at once, in this call. A split page asks for the files and runs the rest as they arrive (before, it blocked on a synchronous request) */
+  let NEEDP=null;
+  window.__bldNeed=function(){ if(window.__deferDone) return Promise.resolve(); if(NEEDP) return NEEDP;
+    NEEDP=new Promise((res) =>{ const tick=function(){ if(window.__deferDone){ res(); return; } if(!(window.__gateDone)){ setTimeout(tick,20); return; }
+      while(run1()){} const l=list(); if(!l.length){ if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",tick,{once:true}); return; } fin(); res(); return; }
+      const s0=l[0]; if(s0.getAttribute("data-src")&&TXT[pname(s0)]==null&&!(document.readyState==="loading"&&!s0.nextSibling)){ askAll(); WAIT.push(tick); return; } setTimeout(tick,40); };
+      tick(); }); return NEEDP; };
   /* T1: the parts run in short slices right after the first frame, while the page is still being read: about 10 ms of work per task,
      or one larger part, then the browser handles taps and drawing. Before, each part waited for an idle moment (up to 400 ms), and
      the first part waited for DOMContentLoaded, so the builder was ready 1 to 20 seconds after the sheet was on screen */
