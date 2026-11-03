@@ -31,8 +31,8 @@ function fight(units,seed,w,h){ let st=TGE.step(TGE.create({seed:seed,w:w||14,h:
   const pc=st.units.pc; return {won:st.over==="won",rounds:st.round,hp:pc?pc.hp:0,max:pc?pc.max:1}; }
 /* n fights of one hero against the same group, seeds seed0..seed0+n-1. Runs in slices so the screen stays usable; onDone gets the totals */
 function duel(pc,foes,n,seed0,onDone,onStep){ const units=[TGE.fromSheet(pc,"pc",[1,5])], k=0; foes.forEach((c,i) =>{ units.push(TGE.fromCreature(c,"f"+i,[11+(i%2)*2,1+Math.floor(i/2)*3],"foe")); });
-  let won=0, rounds=0, hp=0, i=0; (function slice(){ const end=Date.now()+30; while(i<n&&Date.now()<end){ const r=fight(units,seed0+i); if(r.won){ won++; hp+=r.hp/r.max; } rounds+=r.rounds; i++; }
-    if(onStep) onStep(i,n); if(i<n){ setTimeout(slice,0); return; } onDone({n:n,won:won,rate:won/n,rounds:rounds/n,hpLeft:won?hp/won:0}); })(); }
+  let won=0, rounds=0, hp=0, i=0; (function slice(){ const end=Date.now()+12; while(i<n&&Date.now()<end){ const r=fight(units,seed0+i); if(r.won){ won++; hp+=r.hp/r.max; } rounds+=r.rounds; i++; }
+    if(onStep) onStep(i,n); if(i<n){ if(root.scheduler&&typeof root.scheduler.postTask==="function") root.scheduler.postTask(slice,{priority:"user-visible"}); else setTimeout(slice,0); return; } onDone({n:n,won:won,rate:won/n,rounds:rounds/n,hpLeft:won?hp/won:0}); })(); }
 /* N30 quick estimate, no fights: the hero's best average damage per turn (exact odds, N20) against one foe, the foes' average per turn
    (Multiattack summed), foes fall one after another, so the hero takes F x (foe HP / D) x (k + k-1 + ... + 1). The margin
    (HP left as a share of HP) goes through a logistic curve fitted to 72 simulated groups (4 heroes, levels 3 and 4, 60 fights each):

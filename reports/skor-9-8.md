@@ -134,3 +134,25 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Measured JS heap at ready (CDP, after GC, 3 runs each, old sheet, 390x844): main 29.4 MB, now 24.8 MB. That is 4.6 MB (16 percent) lower. Parse time of 4.7 MB is no longer in the first load.
 - Not done yet: wotc5 and wotc14 (120 KB), the guard that counts reads of unloaded parts, other tiers. Full jobs run in CI.
 - CI run 41498142091 on f22-lazy: tests/split_dist.py failed ("1 parts still waiting": it counted the lazy script; fixed with :not([data-lazy]), now 35 parts, one lazy). Chaos seed 15 failed in CI ("key changed: yudhi-kelapa-sheet-v1, /tmp 2 -> 0"), passed twice locally with --seed 15. Same kind as the earlier CI-only seeds 13 and 29. Not caused by this change (storage code untouched). Watching the next run.
+## N33 first step: Library index memory (branch nilai-98/n33)
+- Heap snapshot (after the first Library search, 390x844): the index and its word lists add 35 MB (24.8 MB at ready, 64.5 MB after). Strings are 36.7 MB of the heap, 143,000 of them between 64 and 256 bytes. Most come from the 43,000 homebrew rows.
+- Two changes in libIndex(), same results: (1) the lowercase pack text for homebrew rows is built once per pack, not once per row; (2) the type line (field s) is stored once per distinct text (Map). Tried and dropped: replacing the bullet in search text (heap went up by 1 MB).
+- Result (tests/perf_budget.py --fast, median of 3): heap_tools_mb 65.68 -> 58.9 at 390x844, 65.78 -> 59.0 at 1250x850. Target was 60. heap_home_mb 24.8, heap_home_raw_mb 30.65 (target 30, from the q7 lazy part). Library search still gives the same first results for "fey protector". q_lib 34/34, lib_add 0 failed.
+- tests/perf-budget.json tightened: heap_home_mb 33 -> 27, raw 60 -> 33, tools 72 -> 62.
+- New test hooks: __libStats (index sizes) and __libIdx.
+- N33 columns for the big read-only tables were not needed to reach the heap targets. Not started: it needs the trade-off check again (7 MB QREFS, 2 MB WXS, 1.5 MB WXI).
+## M7 (branch nilai-98/m7, on top of n33)
+- syncGet and every synchronous request are gone from src/boot/deferred-loader.js (count 0). __bldNeed() returns a Promise: single-file page runs the parts inside the call, split page asks for the files and runs the rest as they arrive. Repeated calls share one Promise.
+- Callers changed to wait for the Promise: first tap that needs the builder (src/app/01), tgGo, learnGo, tourGo, rbDuel, the Training Ground trial button. Callers that already poll (49, 50:101, 17, library open) stay.
+- Lazy part q7 no longer uses a synchronous fallback. If the file has not arrived, the monster list is empty at that moment, the loader fetches it and the "qrefs" event makes the Library rebuild its index when it is in. libReady() now waits for q7 before the first index (up to the existing 12 s).
+- tests/split_dist.py case 3 now checks: __bldNeed gives a Promise, the call takes under 100 ms (measured 0 ms) while part files are slow (1.2 s each), the builder is ready when the Promise ends. tests/lazy_parts.py gained the early-read case (search right after ready, before the file is read): the search does not wait, and the monster is found after the file arrives. Both pass.
+- tour_flow failed once in the new-person step on n33 and on this branch, passed on the same code in 5 other runs. Not in CI. Flaky, not caused by M7 (passes on the commit before f22 and on f22 and n33).
+- Still to run: learn_flow (takes more than 10 minutes here, run in background), full CI.
+- CI run 41552041610 on m7: tsc gate WORSE in 31-ui-tour-and-focus.js and 50-logic-reverse-builder.js (a property on a function). Fixed with module variables, gate back at 279.
+- learn_flow: the CSP console error "Executing inline script violates ... script-src" also appears on the commit before f22 (then in the "new" scenario, on m7 in "applied"), so it is older than N33, lazy q7 and M7. A second failure on that old commit: "stop9 step5 sheet target missing for Yudhi". learn_flow is not in CI. Not fixed here. Source of the inline script not found yet (no violation in a manual Apply run).
+## M12 (branch nilai-98/m12, on top of m7)
+- New tests/long_tasks.py (long task observer plus long-animation-frame, CPU x1, 390 and 1250, Yudhi). Before: Find a build had 3 and 9 long tasks (up to 102 ms), the duel 1 and 2 (55 to 64 ms).
+- Changes: slice budget in Find a build 40 -> 14 ms, in the duel 30 -> 12 ms. The next slice runs through scheduler.postTask at user-visible priority, with a timer as fallback. scheduler.yield() was tried first: it ran five slices inside one animation frame (100 ms, no paint between them), so it was dropped.
+- After: duel 0 long tasks. Find a build 1 to 2 (54 to 79 ms). The rest is __bldOpts(): bldForSheet() ends with applyPacks(), 40 to 76 ms, builder logic. Not changed (needs the Logic owner and a check that applyPacks is not needed there). Test allows at most two, each under 100 ms.
+- Import of large files was not measured (no big fixture).
+- rb_duel, tg_ui, rb_fast pass.

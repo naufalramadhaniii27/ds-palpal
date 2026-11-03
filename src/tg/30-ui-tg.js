@@ -256,7 +256,7 @@ function wire(w){ w.addEventListener("click",(e) =>{ const b=e.target.closest("b
   if(b.getAttribute("aria-disabled")==="true"){ live(d.tg==="enter"?"Pick who goes in and at least one creature.":""); flash("Pick who goes in and at least one creature."); return; }
   if(d.tg==="close"){ close(); return; } if(d.tg==="back"){ back(); return; }
   if(d.tgpc!=null){ TG.pc=TG.pcs[+d.tgpc]; paint(); return; }
-  if(d.tg==="try"){ const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ live("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); live(p.name+" is ready."); }; if(window.__bldSheetFor) go(); else { if(window.__bldNeed) window.__bldNeed(); setTimeout(go,300); } return; }
+  if(d.tg==="try"){ const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ live("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); live(p.name+" is ready."); }; if(window.__bldSheetFor) go(); else if(window.__bldNeed) Promise.resolve(window.__bldNeed()).then(go,go); else setTimeout(go,300); return; }
   if(d.tgtier){ TG.tier=d.tgtier; TG.q=""; TG.lim=24; paint(); return; }
   if(d.tgf){ const n=(TG.foes[d.tgf]||0)+(+d.d); if(n>0&&nFoes()>=12&&+d.d>0){ flash("Up to 12 creatures."); return; } if(n<=0) delete TG.foes[d.tgf]; else TG.foes[d.tgf]=n; const l=document.getElementById("tgFoes"), sc=l?l.scrollTop:0; paint(); return; }
   if(d.tg==="balance"){ balance(); return; }

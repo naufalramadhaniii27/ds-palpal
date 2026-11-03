@@ -3,7 +3,7 @@
 390x844 and 1250x850, with the old Yudhi sheet. Checks:
   1 the sheet opens, every part runs in order, __deferDone is set, no page error, no CSP violation, each part is fetched once
   2 the window holds the same names as the single-file build (nothing lost, nothing added)
-  3 __bldNeed() right after the gate, while the part files are slow, still makes the builder ready (synchronous read)
+  3 __bldNeed() right after the gate, while the part files are slow, returns a Promise at once and makes the builder ready when it ends
   4 a part file that was changed on the way is refused by the CSP hash (nothing from it runs)
   5 offline: after the service worker stored the parts, a reload without network opens the sheet and the builder
 Also prints the byte counts. Exit 1 on any failure.   python3 tests/split_dist.py"""
@@ -75,15 +75,19 @@ async def main():
                 bad.append("%s window names differ. only split: %s. only single: %s" % (vp, sorted(a - c)[:8], sorted(c - a)[:8]))
             else:
                 print(vp, "ok: 35 parts (one lazy), %d window names equal to the single file" % len(names.split("|")))
-            # 3: __bldNeed while the files are slow
+            # 3: __bldNeed while the files are slow (M7: a Promise, no synchronous request)
             ctx, pg, log = await fresh(b, w, h, url)
             async def slow(route):
                 await asyncio.sleep(1.2); await route.continue_()
             await pg.route(re.compile(r"/p/.*\.js$"), slow)
             await pg.reload(); await pg.wait_for_function("()=>!!window.__gateDone", timeout=30000)
-            r = await pg.evaluate("()=>{ window.__bldNeed(); return [typeof window.__bldOpen, !!window.__deferDone]; }")
+            t0 = await pg.evaluate("()=>{ var t=performance.now(); var p=window.__bldNeed(); window.__needT=performance.now()-t; return [typeof (p&&p.then), typeof window.__bldOpen]; }")
+            r = await pg.evaluate("()=>window.__bldNeed().then(()=>[typeof window.__bldOpen, !!window.__deferDone])")
+            if t0 != ["function", "undefined"]: bad.append("%s __bldNeed should give a Promise and not block, gave %s" % (vp, t0))
+            nt = await pg.evaluate("()=>window.__needT")
+            if nt > 100: bad.append("%s __bldNeed blocked for %d ms" % (vp, nt))
             if r != ["function", True]: bad.append("%s __bldNeed with slow files gave %s" % (vp, r))
-            else: print(vp, "ok: __bldNeed read the missing parts at once")
+            else: print(vp, "ok: __bldNeed gives a Promise, does not block (%d ms), the builder is ready when it ends" % nt)
             await ctx.close()
             # 4: a changed part file
             ctx, pg, log = await fresh(b, w, h, url)
