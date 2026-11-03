@@ -141,3 +141,10 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - tests/perf-budget.json tightened: heap_home_mb 33 -> 27, raw 60 -> 33, tools 72 -> 62.
 - New test hooks: __libStats (index sizes) and __libIdx.
 - N33 columns for the big read-only tables were not needed to reach the heap targets. Not started: it needs the trade-off check again (7 MB QREFS, 2 MB WXS, 1.5 MB WXI).
+## M7 (branch nilai-98/m7, on top of n33)
+- syncGet and every synchronous request are gone from src/boot/deferred-loader.js (count 0). __bldNeed() returns a Promise: single-file page runs the parts inside the call, split page asks for the files and runs the rest as they arrive. Repeated calls share one Promise.
+- Callers changed to wait for the Promise: first tap that needs the builder (src/app/01), tgGo, learnGo, tourGo, rbDuel, the Training Ground trial button. Callers that already poll (49, 50:101, 17, library open) stay.
+- Lazy part q7 no longer uses a synchronous fallback. If the file has not arrived, the monster list is empty at that moment, the loader fetches it and the "qrefs" event makes the Library rebuild its index when it is in. libReady() now waits for q7 before the first index (up to the existing 12 s).
+- tests/split_dist.py case 3 now checks: __bldNeed gives a Promise, the call takes under 100 ms (measured 0 ms) while part files are slow (1.2 s each), the builder is ready when the Promise ends. tests/lazy_parts.py gained the early-read case (search right after ready, before the file is read): the search does not wait, and the monster is found after the file arrives. Both pass.
+- tour_flow failed once in the new-person step on n33 and on this branch, passed on the same code in 5 other runs. Not in CI. Flaky, not caused by M7 (passes on the commit before f22 and on f22 and n33).
+- Still to run: learn_flow (takes more than 10 minutes here, run in background), full CI.
