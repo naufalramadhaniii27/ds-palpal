@@ -1,3 +1,4 @@
+import {copyText} from "./lib/clipboard.js";
 import {ABK,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,exTxt} from "./03-data-glossary.js";
 import {APP_DATE,APP_LABEL,APP_VER,C,CKEY,DEF,FROZEN,KEY,S,__set_C,__set_S,clone,clsLv,lsGet,save,saveC} from "./04-logic-storage.js";
@@ -495,8 +496,7 @@ function reportOpen(){ const old=document.getElementById("rep"); if(old) old.rem
   const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
   const rn=w.querySelector("#repNotes"); if(rn) rn.addEventListener("change",() =>{ REP_NOTES=rn.checked; txt=reportText(); const ta=w.querySelector("#repTxt"); if(ta) ta.value=txt; });/* v28 I2 */
   w.addEventListener("click",(e) =>{ if(e.target===w){ w.remove(); return; } const b=e.target.closest("[data-rep]"); if(!b) return; if(b.dataset.rep==="close"){ w.remove(); return; }
-    const ta=document.getElementById("repTxt"); ta.focus(); ta.select(); let ok=false; try{ ok=document.execCommand("copy"); }catch(er){}
-    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() =>{ toast("Report copied. Paste it in your message."); },() =>{ toast(ok?"Report copied. Paste it in your message.":"Select the text and copy it."); }); else toast(ok?"Report copied. Paste it in your message.":"Select the text and copy it."); }); }
+    const ta=document.getElementById("repTxt"); copyText(txt,ta).then((ok) =>{ toast(ok?"Report copied. Paste it in your message.":"Select the text and copy it."); }); }); }
 
 /* RU75: a basic actor file for Foundry VTT (dnd5e system). Numbers come from this sheet; Foundry fills item and spell details only when they are dragged in from its own compendiums */
 const FVTT_SK={"Acrobatics":"acr","Animal Handling":"ani","Arcana":"arc","Athletics":"ath","Deception":"dec","History":"his","Insight":"ins","Intimidation":"itm","Investigation":"inv","Medicine":"med","Nature":"nat","Perception":"prc","Performance":"prf","Persuasion":"per","Religion":"rel","Sleight of Hand":"slt","Stealth":"ste","Survival":"sur"};
