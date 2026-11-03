@@ -47,7 +47,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H19 | cat/item, cat/language, cat/monster, cat/object | open |
 | H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | open |
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
-| H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | claimed by codex-session-5 2026-11-03T01:35:28+00:00 |
+| H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
 | H23 | size/small, size/medium, size/large, size/huge | open |
 | H24 | size/gargantuan | open |
 
