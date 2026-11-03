@@ -33,7 +33,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H05 | species/githzerai, species/gnome, species/goblin, species/goliath | open |
 | H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | needs review: cells 1-4 alpha 255 coverage 0.07%; stray alpha at edges and quarter gaps after whole-sheet redo |
 | H07 | species/human, species/kalashtar, species/kenku, species/kobold | needs review: cells 1-4 alpha 255 coverage below 20%; stray alpha at edges and quarter gaps after whole-sheet redo |
-| H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | open |
+| H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | claimed by codex-session-2 2026-11-03T01:38:10+00:00 |
 | H09 | species/minotaur, species/orc, species/owlin, species/reborn | open |
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | open |
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | needs review: cells 1–4 alpha below 255 after whole-sheet retry |
