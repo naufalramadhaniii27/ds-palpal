@@ -1,79 +1,79 @@
 {
- "why": "Craftsman 20 (VSS24): Chain Mail 16 + Shield 2 + Masterwork Armor (half of Masterwork Bonus +4, rounded up = +2) = 20. Spellwrought Armor adds the Masterwork Bonus +4 to every save.",
- "build": {
-  "name": "FxA",
-  "species": "Human",
-  "bg": "Soldier",
-  "bgMode": "21",
-  "bg2": "STR",
-  "bg1": "CON",
-  "cls": "Craftsman",
-  "sub": "Armigers' Guild",
-  "level": 20,
-  "base": {
-   "STR": 15,
-   "DEX": 14,
-   "CON": 13,
-   "INT": 12,
-   "WIS": 10,
-   "CHA": 8
+  "why": "Craftsman 20 (VSS24): Chain Mail 16 + Shield 2 + Masterwork Armor (half of Masterwork Bonus +4, rounded up = +2) = 20. Spellwrought Armor adds the Masterwork Bonus +4 to every save. Armigers' Guild Tower Shield (level 3) makes a Shield give +3 AC instead of +2, so the AC is 21.",
+  "build": {
+    "name": "FxA",
+    "species": "Human",
+    "bg": "Soldier",
+    "bgMode": "21",
+    "bg2": "STR",
+    "bg1": "CON",
+    "cls": "Craftsman",
+    "sub": "Armigers' Guild",
+    "level": 20,
+    "base": {
+      "STR": 15,
+      "DEX": 14,
+      "CON": 13,
+      "INT": 12,
+      "WIS": 10,
+      "CHA": 8
+    },
+    "ch": {},
+    "src": {
+      "core": true,
+      "tvss": true,
+      "tshl": true,
+      "tsdd": true,
+      "tsgeh": true,
+      "tsdm": true,
+      "tee24": true
+    },
+    "method": "array",
+    "arr": {
+      "STR": 15,
+      "DEX": 14,
+      "CON": 13,
+      "INT": 12,
+      "WIS": 10,
+      "CHA": 8
+    },
+    "hb": false,
+    "armor": "",
+    "shield": false,
+    "weps": [],
+    "eqC": "A",
+    "eqB": "B",
+    "size": "Medium",
+    "inv": [
+      {
+        "n": "Chain Mail, Masterwork",
+        "q": 1,
+        "eq": true
+      },
+      {
+        "n": "Shield",
+        "q": 1,
+        "eq": true
+      }
+    ]
   },
-  "ch": {},
-  "src": {
-   "core": true,
-   "tvss": true,
-   "tshl": true,
-   "tsdd": true,
-   "tsgeh": true,
-   "tsdm": true,
-   "tee24": true
+  "expect": {
+    "ac": 21
   },
-  "method": "array",
-  "arr": {
-   "STR": 15,
-   "DEX": 14,
-   "CON": 13,
-   "INT": 12,
-   "WIS": 10,
-   "CHA": 8
-  },
-  "hb": false,
-  "armor": "",
-  "shield": false,
-  "weps": [],
-  "eqC": "A",
-  "eqB": "B",
-  "size": "Medium",
-  "inv": [
-   {
-    "n": "Chain Mail, Masterwork",
-    "q": 1,
-    "eq": true
-   },
-   {
-    "n": "Shield",
-    "q": 1,
-    "eq": true
-   }
+  "expectC": [
+    {
+      "path": "ac.bonus",
+      "has": {
+        "s": "Masterwork Armor (Craftsman 20)",
+        "v": 2
+      }
+    },
+    {
+      "path": "saveBonus",
+      "has": {
+        "s": "Spellwrought Armor (Craftsman 20)",
+        "v": 4
+      }
+    }
   ]
- },
- "expect": {
-  "ac": 20
- },
- "expectC": [
-  {
-   "path": "ac.bonus",
-   "has": {
-    "s": "Masterwork Armor (Craftsman 20)",
-    "v": 2
-   }
-  },
-  {
-   "path": "saveBonus",
-   "has": {
-    "s": "Spellwrought Armor (Craftsman 20)",
-    "v": 4
-   }
-  }
- ]
 }

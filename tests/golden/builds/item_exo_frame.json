@@ -1,68 +1,73 @@
 {
- "why": "Exo-Frame: AC 18, Dexterity does not affect it. Advantage on Strength checks and saving throws.",
- "build": {
-  "name": "Golden",
-  "species": "Human",
-  "bg": "Soldier",
-  "bgMode": "21",
-  "bg2": "STR",
-  "bg1": "CON",
-  "cls": "Fighter",
-  "sub": "Champion",
-  "level": 10,
-  "base": {
-   "STR": 15,
-   "DEX": 14,
-   "CON": 13,
-   "INT": 12,
-   "WIS": 10,
-   "CHA": 16
+  "why": "Exo-Frame: AC 18, Dexterity does not affect it. Advantage on Strength checks and saving throws. The Fighter is a Champion 10, so the list also holds Remarkable Athlete (Advantage on Initiative rolls).",
+  "build": {
+    "name": "Golden",
+    "species": "Human",
+    "bg": "Soldier",
+    "bgMode": "21",
+    "bg2": "STR",
+    "bg1": "CON",
+    "cls": "Fighter",
+    "sub": "Champion",
+    "level": 10,
+    "base": {
+      "STR": 15,
+      "DEX": 14,
+      "CON": 13,
+      "INT": 12,
+      "WIS": 10,
+      "CHA": 16
+    },
+    "ch": {},
+    "src": {
+      "core": true,
+      "dmg": true,
+      "tsdm": true
+    },
+    "method": "array",
+    "arr": {
+      "STR": 15,
+      "DEX": 14,
+      "CON": 13,
+      "INT": 12,
+      "WIS": 10,
+      "CHA": 16
+    },
+    "hb": false,
+    "armor": "",
+    "shield": false,
+    "weps": [],
+    "eqC": "A",
+    "eqB": "B",
+    "size": "Medium",
+    "inv": [
+      {
+        "n": "Exo-Frame",
+        "q": 1,
+        "eq": true
+      }
+    ]
   },
-  "ch": {},
-  "src": {
-   "core": true,
-   "dmg": true,
-   "tsdm": true
+  "expect": {
+    "ac": 18
   },
-  "method": "array",
-  "arr": {
-   "STR": 15,
-   "DEX": 14,
-   "CON": 13,
-   "INT": 12,
-   "WIS": 10,
-   "CHA": 16
-  },
-  "hb": false,
-  "armor": "",
-  "shield": false,
-  "weps": [],
-  "eqC": "A",
-  "eqB": "B",
-  "size": "Medium",
-  "inv": [
-   {
-    "n": "Exo-Frame",
-    "q": 1,
-    "eq": true
-   }
-  ]
- },
- "expect": {
-  "ac": 18
- },
- "expectC": {
-  "defenses": [
-   {
-    "t": "Note",
-    "v": "Advantage on Strength checks",
-    "s": "Exo-Frame (magic item, attuned)"
-   },
-   {
-    "t": "Note",
-    "v": "Advantage on Strength saving throws",
-    "s": "Exo-Frame (magic item, attuned)"
-   }
-  ]
- }
+  "expectC": {
+    "defenses": [
+      {
+        "t": "Note",
+        "v": "Advantage on Initiative rolls",
+        "s": "Remarkable Athlete (Champion 10)"
+      },
+      {
+        "t": "Note",
+        "v": "Advantage on Strength checks",
+        "s": "Exo-Frame (magic item, attuned)"
+      },
+      {
+        "t": "Note",
+        "v": "Advantage on Strength saving throws",
+        "s": "Exo-Frame (magic item, attuned)"
+      }
+    ]
+  }
 }
