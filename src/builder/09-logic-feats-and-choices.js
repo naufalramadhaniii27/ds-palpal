@@ -215,12 +215,12 @@ function featList(q){if(Array.isArray(q.list))return q.list;
  if(q.list==="invocations"){const wl=wxCls().indexOf("Warlock")>=0;return INVOCATIONS.filter((x) =>{return wl||!/\*\*Prerequisite\.\*\*/.test(x[1])}).map((x) =>{return [x[0],""]})} if(q.list==="fstyle"&&R14())return fs14List(B.cls).map((n) =>{return [n,""]});
  if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
  if(q.list==="weapons")return wmKeys().map((n) =>{return [n,""]});if(q.list==="ritual1")return SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]});return []}
-/* fx engine v2: entry.pick = [{k, t: skills|tool|lang|multi|cantrip, n ("pb" allowed), title, from|list|cats, cls}]. Stored in B.ch["gx-"+k+"-"+kind+"-"+owner(+mc)].
+/* fx engine v2: entry.pick = [{k, t: skills|tool|lang|multi|cantrip, n ("pb" allowed), title, from|list|cats, cls, school}]. Stored in B.ch["gx-"+k+"-"+kind+"-"+owner(+mc)].
    skills become proficiencies, tool goes to tool proficiencies (toolChoices), lang to languages (XFX.lang), cantrip to the spell list (autoSpells), multi is only stored */
 export function gxPicks(){const out=[];__R.gfx().forEach((e) =>{(e.pick||[]).forEach((q) =>{const mcm=e.pre?/^m(\d+):/.exec(e.pre):null;
   const o={key:"gx-"+q.k+"-"+e.kind+"-"+e.okey+(mcm?"-m"+mcm[1]:""),lvl:e.l||1,t:q.t==="cantrip"?"multi":q.t,n:q.n==="pb"?pbOf(__R.TL()):q.n,title:e.owner+": "+q.title,src:e.lbl,feature:e.n};
   if(mcm)o.mc=+mcm[1];if(q.cats)o.cats=q.cats;if(q.from)o.from=q.from==="all"?ALLSK:q.from==="LANGS"?LANGS:q.from;if(q.t==="skills"&&!o.from)o.from=ALLSK;if(q.t==="lang"&&!o.from)o.from=LANGS;
-  if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return !x[1]&&(!q.cls||x[3].indexOf(q.cls)>=0)}).map((x) =>{return [x[0],x[11]]});else if(Array.isArray(q.list))o.list=q.list;
+  if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return !x[1]&&(!q.cls||x[3].indexOf(q.cls)>=0)&&(!q.school||x[2]===q.school)}).map((x) =>{return [x[0],x[11]]});else if(Array.isArray(q.list))o.list=q.list;
   o.gxc=q.t==="cantrip"?e.spCls||e.cls||"@species":"";out.push(o)})});return out}
 Object.defineProperty(__R,"gxPicks",{get:function(){return gxPicks;},configurable:true});
 function featPicks(){const out=[];allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;const fk=f.key||f.s,m=/^m(\d+):/.exec(fk),mc=m?+m[1]:undefined,lv=+((/feat(\d+)$/.exec(fk)||[0,1])[1]);

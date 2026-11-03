@@ -661,7 +661,8 @@
    "close": "</script>",
    "files": [
     "data/hbpack-builtin-homebrew.js",
-    "data/fx-A-class-species.js"
+    "data/fx-A-class-species.js",
+    "data/fx-B1-subclass.js"
    ]
   },
   {
