@@ -87,8 +87,10 @@ function fzD(a,b,max){ const la=a.length, lb=b.length; if(Math.abs(la-lb)>max) r
     if(low>max) return max+1; p2=p1; p1=cur; } return p1[lb]; }
 function fzMax(q){ return q.length<4?0:q.length<8?1:2; }
 /* 0 starts with q, 1 a word starts with q, 2 q inside, 3+ typo distance, -1 no match */
-export function fzScore(q,s){ s=String(s||"").toLowerCase(); if(!s||!q) return -1; const i=s.indexOf(q); if(i>=0) return i===0?0:/[^a-z0-9]/.test(s.charAt(i-1))?1:2;
-  const m=fzMax(q); if(!m) return -1; let w=s.split(/[^a-z0-9']+/).filter((x) =>{ return x.length>=3; }), n=q.split(" ").length, best=m+1, c=[s.replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim()];
+const FZC=new Map();/* S14 spike: per-name cache of the lowercased text, its words and its cleaned form */
+function fzZ(s0){ let z=FZC.get(s0); if(!z){ const t=String(s0||"").toLowerCase(); z={s:t,w:t.split(/[^a-z0-9']+/).filter((x) =>{ return x.length>=3; }),c0:t.replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim()}; if(FZC.size<120000) FZC.set(s0,z); } return z; }
+export function fzScore(q,s0){ if(!q) return -1; const z=fzZ(s0), s=z.s; if(!s) return -1; const i=s.indexOf(q); if(i>=0) return i===0?0:/[^a-z0-9]/.test(s.charAt(i-1))?1:2;
+  const m=fzMax(q); if(!m) return -1; let w=z.w, n=q.split(" ").length, best=m+1, c=[z.c0];
   if(n>1){ for(let k=0;k+n<=w.length;k++) c.push(w.slice(k,k+n).join(" ")); } else c=c.concat(w);
   for(let j=0;j<c.length&&best>0;j++){ let x=c[j], d=fzD(q,x,m); if(x.length>q.length) d=Math.min(d,fzD(q,x.slice(0,q.length),m)); if(d<best) best=d; }
   return best<=m?3+best:-1; }
@@ -176,7 +178,16 @@ const LIB_CATS=[["spell","Spells","tab-spells"],["item","Magic Items","tab-inven
 const LIB_FEATCAT={O:"Origin Feat",G:"General Feat",F:"Fighting Style Feat",E:"Epic Boon",B:"Epic Boon"};
 function libCat(id){ for(let i=0;i<LIB_CATS.length;i++) if(LIB_CATS[i][0]===id) return LIB_CATS[i]; return LIB_CATS[0]; }
 function libReady(){ return typeof SPELLS!=="undefined"&&typeof DMGI!=="undefined"&&typeof ITEMDESC!=="undefined"&&typeof CREATURES!=="undefined"&&(!window.__lazyReady||window.__lazyReady("q7")); }/* q7: the monster rows load before the first index */
-document.addEventListener("qrefs",() =>{ LIB.idx=null; LIB.inv=null; });
+document.addEventListener("qrefs",() =>{ LIB.idx=null; LIB.inv=null; LIB.hbL=0; LIB.hbCb=[]; });
+/* S29: a few seconds after the page is idle, build the Library names (50 ms), then the rest in slices. The first Library open and the first detail card then find everything ready. */
+function libPreWarm(){ if(window.__noLibIdx||LIB.idx||!libReady()) return; try{ const ix=LIB.idx=libIndex(true); LIB.inv=null; libWarmPipeline(ix); }catch(er){} }
+function libPreSched(ms){ setTimeout(() =>{ (window.requestIdleCallback||function(f){ setTimeout(f,50); })(libPreWarm,{timeout:6000}); },ms); }
+libPreSched(6000);
+document.addEventListener("qrefs",() =>{ libPreSched(2500); });
+let LIB_NMX=null;
+__R.libNames=function(){ if(LIB_NMX) return LIB_NMX; if(!libReady()) return null; try{ LIB_NMX=libIndex(true); }catch(er){ LIB_NMX=null; } return LIB_NMX; };/* S25: the autolink engine reads names without the 43,000 homebrew rows (50 ms, not 215 ms) */
+__R.libNamesPeek=function(){ return LIB_NMX; };
+document.addEventListener("qrefs",() =>{ LIB_NMX=null; });
 /* spells of books that are off: the rows sit in window.WX.src[].rows (the builder moves them into SPELLS only when the book is on). The Library lists them all as reference */
 let LIB_XSP=null;
 function libXsp(){ if(LIB_XSP) return LIB_XSP; const m={}, have={}; try{ SPELLS.forEach((r) =>{ have[r[0]]=1; }); (window.WX&&window.WX.src||[]).forEach((q) =>{ (q.rows||[]).forEach((r) =>{ if(r&&r[0]&&!have[r[0]]&&!m[r[0]]){ m[r[0]]=r; r.__bk=q.tag||q.id; } }); }); }catch(er){} return (LIB_XSP=m); }
@@ -206,7 +217,7 @@ document.addEventListener("qrefs",() =>{ LIB_BK=null; });
 /* Middle Finger of Vecna is the Mage Hand Press blog, so its packs are Mage Hand Press work. The book is named where it is known. */
 const LIB_HBO={"mfov-wd-4638":"Valda's Spire of Secrets","mfov-wm-e748":"Valda's Spire of Secrets","mfov-a-0657":"Valda's Spire of Secrets","mfovc-c79c":"Valda's Spire of Secrets","mfovw-a524":"Valda's Spire of Secrets","mfov-car-1c94":"Valda's Spire of Secrets","mfovbinder-467e":"Complete Binder","mfovbinderfoundry-c305":"Complete Binder"};
 function libHbBy(q){ let d=String(q.desc||"").replace(/\s*\(\d+ entries\)/,"").replace(/Mage Hand Press,\s*/,""); if(d.indexOf("Middle Finger of Vecna")>=0) d=d.replace("Middle Finger of Vecna","Middle Finger of Vecna (Mage Hand Press)"); const b=LIB_HBO[q.id]; return b?d+", book: "+b:d; }
-function libIndex(){ if(window.__noLibIdx) return []; const o=[], seen={}, sm=new Map(),/* one string for each distinct type line (43,000 homebrew rows share a few thousand) */ add=function(c,n,s,k,t){ if(!n) return; const id=c+"|"+k; if(seen[id]) return; seen[id]=1; s=s||""; o.push({c:c,n:String(n),s:sm.get(s)||(sm.set(s,s),s),k:k,t:String(t||"").toLowerCase()}); }, g=function(f){ try{ f(); }catch(er){} };
+function libIndex(noHb){ if(window.__noLibIdx) return []; const o=[], seen={}, sm=new Map(),/* one string for each distinct type line (43,000 homebrew rows share a few thousand) */ add=function(c,n,s,k,t){ if(!n) return; const id=c+"|"+k; if(seen[id]) return; seen[id]=1; s=s||""; o.push({c:c,n:String(n),s:sm.get(s)||(sm.set(s,s),s),k:k,t:String(t||"").toLowerCase()}); }, g=function(f){ try{ f(); }catch(er){} };
   g(() =>{ SPELLS.forEach((r) =>{ add("spell",r[0],(r[1]?ordL(r[1]):"Cantrip")+" • "+r[2]+" • "+spClsJ(r),r[0],r[11]+" "+((typeof SPELL_FULL!=="undefined"&&SPELL_FULL[r[0]])||"")); }); });
   g(() =>{ const X=libXsp(); Object.keys(X).forEach((n) =>{ const r=X[n]; add("spell",n,(r[1]?ordL(r[1]):"Cantrip")+" • "+r[2]+" • "+spClsJ(r)+" • "+(r.__bk||""),n,(r[11]||"")+" "+((typeof SPELL_FULL!=="undefined"&&SPELL_FULL[n])||"")); }); });
   g(() =>{ const X=libX("i"); Object.keys(X).forEach((n) =>{ const r=X[n].r; add("item",n,[r[2],r[1]].concat(r[3]?["Attunement"]:[]).concat([X[n].bk]).join(" • "),n,r[4]); }); });
@@ -227,10 +238,24 @@ function libIndex(){ if(window.__noLibIdx) return []; const o=[], seen={}, sm=ne
   g(() =>{ MANEUVERS.forEach((r) =>{ add("opt",r[0],"Battle Master maneuver","man|"+r[0],r[1]); }); INVOCATIONS.forEach((r) =>{ add("opt",r[0],"Eldritch Invocation"+(r[2]?" • Level "+r[2]+"+":""),"inv|"+r[0],r[1]); }); METAMAGIC.forEach((r) =>{ add("opt",r[0],"Metamagic option","mm|"+r[0],r[1]); }); });
   g(() =>{ (CREATURES.creatures||[]).forEach((c) =>{ add("creature",c.n,(c.size||"")+" "+(c.type||"")+(c.cr!=null?" • CR "+c.cr:""),c.n,c.type); }); });
   g(() =>{ const L=window.QREFS||{}; Object.keys(L).forEach((c) =>{ L[c].forEach((r) =>{ add(c,r.n,r.sub||"",r.n,r.tx||""); }); }); });
-  g(() =>{ const H=window.HBN, S=window.HBIDX, pc={}; if(!H||!S) return; H.forEach((r) =>{ const q=S[r[0]]; if(!q) return; add("homebrew",r[1],r[2]+((q.tag&&r[2].indexOf(q.tag)>=0)?"":" • "+(q.tag||q.name))+" • Homebrew",q.id+"|"+r[1],q.name+" "+r[2]); o[o.length-1].p=pc[r[0]]||(pc[r[0]]=(q.name+" "+libHbBy(q)).toLowerCase()); }); });/* one string per pack, not one per row (43,000 rows) */
+  g(() =>{ if(noHb) return; const H=window.HBN, S=window.HBIDX, pc={}; if(!H||!S) return; H.forEach((r) =>{ const q=S[r[0]]; if(!q) return; add("homebrew",r[1],r[2]+((q.tag&&r[2].indexOf(q.tag)>=0)?"":" • "+(q.tag||q.name))+" • Homebrew",q.id+"|"+r[1],q.name+" "+r[2]); o[o.length-1].p=pc[r[0]]||(pc[r[0]]=(q.name+" "+libHbBy(q)).toLowerCase()); }); });/* one string per pack, not one per row (43,000 rows) */
   g(() =>{ Object.keys(GLOSS).forEach((k) =>{ add("rule",k,(GLOSS[k].c||"Rule")+(GLOSS[k].s?" • "+GLOSS[k].s:""),k,GLOSS[k].d); }); });
   g(() =>{ Object.keys(LIB_RULES).forEach((k) =>{ if(!GLOSS[k]) add("rule",k,LIB_RULES[k].c+" • PHB-2024, Rules Glossary",k,LIB_RULES[k].d); }); });
+  if(!noHb) o.hbFull=true;/* S29: a full index holds the homebrew rows; a partial one gets them from libHbStart */
   return o; }
+/* S29: run the next slice right after the browser has had a chance to paint and handle input (setTimeout 0 waits 4 ms or more once nested) */
+const LIB_YQ=[]; let LIB_YC=null;
+function libYield(f){ try{ if(!LIB_YC){ LIB_YC=new MessageChannel(); LIB_YC.port1.onmessage=() =>{ const g=LIB_YQ.shift(); if(g) g(); }; } LIB_YQ.push(f); LIB_YC.port2.postMessage(0); }catch(er){ setTimeout(f,0); } }
+function libWarmPipeline(ix){ if(!ix||LIB.idx!==ix) return; if(ix.hbFull){ libInvWarm(); libIdsWarm(ix); return; } if(LIB.hbL) return;
+  setTimeout(() =>{ if(LIB.idx!==ix||ix.hbFull||LIB.hbL) return; libHbStart(ix,() =>{ if(LIB.idx!==ix) return; const cb=LIB.hbCb||[]; LIB.hbCb=[]; if(LIB.on&&!LIB.cur&&LIB.q.trim().length<2){ const c=document.getElementById("libC"); if(c) c.innerHTML=libChips(); } libInvWarm(); libIdsWarm(ix); cb.forEach((f) =>{ try{ f(); }catch(er){} }); }); },300); }
+function libWhenReady(cb){ const ix=LIB.idx; if(!ix) return; const step=() =>{ if(LIB.idx!==ix) return; if(!ix.hbFull){ (LIB.hbCb=LIB.hbCb||[]).push(step); libWarmPipeline(ix); return; } if(!LIB.inv){ libInvWarm(step); return; } cb(); }; step(); }
+/* S29: the 43,000 homebrew rows are added after the Library is on screen, in 8 ms slices (215 ms in one task became 50 ms plus slices). Same rows, same fields. */
+function libHbStart(ix,done){ const H=window.HBN, S=window.HBIDX; LIB.hbL=1; if(!H||!S){ ix.hbFull=true; LIB.hbL=0; done(); return; } const seen={}, N=H.length; let i=0;
+  (function step(){ if(LIB.idx!==ix) return; const t0=performance.now();
+    while(i<N&&performance.now()-t0<8){ const r=H[i++], q=S[r[0]]; if(!q) continue; const k=q.id+"|"+r[1], id="homebrew|"+k;
+      if(r[1]&&!seen[id]){ seen[id]=1; fzZ(String(r[1])); ix.push({c:"homebrew",n:String(r[1]),s:r[2]+((q.tag&&r[2].indexOf(q.tag)>=0)?"":" \u2022 "+(q.tag||q.name))+" \u2022 Homebrew",k:k,t:String(q.name+" "+r[2]).toLowerCase()}); }
+      if(ix.length) ix[ix.length-1].p=(q.name+" "+libHbBy(q)).toLowerCase(); }
+    if(i<N){ libYield(step); return; } ix.hbFull=true; LIB.hbL=0; done(); })(); }
 function libTiles(a){ return '<div class="info-k">'+a.filter((x) =>{ return x&&x[1]!==""&&x[1]!=null; }).map((x) =>{ const v=libTag(libVal(x[1])); return v.length>14?tileH(esc(x[0]),esc(v)):tileS(x[0],v); }).join("")+'</div>'; }
 /* bestiary rows: the source text keeps tags like {@variantrule Name|XPHB}. Show the name only */
 function libVal(v){ if(v==null||typeof v!=="object") return v; if(Array.isArray(v)) return v.map(libVal).join(", "); if(v.average!=null) return v.average+(v.formula?" ("+v.formula+")":""); if(v.special) return String(v.special); return Object.keys(v).map((k) =>{ return libVal(v[k]); }).join(" "); }
@@ -268,8 +293,12 @@ function libBuyDo(c,k){ const pr=libPrice(c,k); if(pr==null){ toast("This item h
   __R.toastU("Bought "+(qty>1?qty+" x ":"")+k+" for "+priceTxt(pr*qty)+". Paid "+ps+(cs?", change back: "+cs:"")+"."); if(sheetMode==="coin") coinRefresh(); }
 document.addEventListener("click",(e) =>{ const sh=e.target.closest&&e.target.closest("[data-invshop]"); if(sh){ e.preventDefault(); LIB.q=""; LIB.cur=null; LIB.hist=[]; LIB.cat="gear"; libOpen({}); return; } const bb=e.target.closest&&e.target.closest("[data-libbuy]"); if(bb){ e.preventDefault(); const w=bb.getAttribute("data-libbuy").split("|"); libBuyDo(w[0],w.slice(1).join("|")); return; } const b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); const v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
 function libClean(h){ return typeof h!=="string"?h:h.replace(/\{#itemEntry [^}]*\}\s*/g,"").replace(/([^.\/])\.\.(?![.\/])/g,"$1."); }
-let LIB_IDS=null, LIB_IDSX=null;
-function libHas(c,n){ let ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix){ LIB_IDSX=ix; LIB_IDS={}; ix.forEach((e) =>{ LIB_IDS[e.c+"|"+e.k]=e.k; const q=e.k.indexOf(" ("); if(q>0&&!LIB_IDS[e.c+"|"+e.k.slice(0,q)]) LIB_IDS[e.c+"|"+e.k.slice(0,q)]=e.k; const nm=e.k.indexOf("|")>0&&e.c==="opt"?e.k.slice(e.k.indexOf("|")+1):e.k; const nk=e.c+"|~"+nm.toLowerCase().replace(/[^a-z0-9]/g,""); if(!LIB_IDS[nk]) LIB_IDS[nk]=e.k; }); } return LIB_IDS[c+"|"+n]||LIB_IDS[c+"|~"+String(n).toLowerCase().replace(/[^a-z0-9]/g,"")]||false; }/* exact name, name before a bracket, then the name without spaces, hyphens or case */
+let LIB_IDS=null, LIB_IDSX=null, LIB_IDSN=0;
+function libIdsAdd(M,e){ M[e.c+"|"+e.k]=e.k; const q=e.k.indexOf(" ("); if(q>0&&!M[e.c+"|"+e.k.slice(0,q)]) M[e.c+"|"+e.k.slice(0,q)]=e.k; const nm=e.k.indexOf("|")>0&&e.c==="opt"?e.k.slice(e.k.indexOf("|")+1):e.k; const nk=e.c+"|~"+nm.toLowerCase().replace(/[^a-z0-9]/g,""); if(!M[nk]) M[nk]=e.k; }
+/* S29: the name lookup table (130 ms for 61,000 rows, paid by the first detail card) is built in slices while the screen is idle */
+function libIdsWarm(ix){ if(LIB_IDSX===ix&&LIB_IDSN===ix.length) return; const M={}, N=ix.length; let i=0;
+  (function step(){ if(LIB.idx!==ix||ix.length!==N) return; const t0=performance.now(); while(i<N&&performance.now()-t0<8){ libIdsAdd(M,ix[i]); i++; } if(i<N){ libYield(step); return; } if(LIB_IDSX!==ix||LIB_IDSN!==N){ LIB_IDS=M; LIB_IDSX=ix; LIB_IDSN=N; } })(); }
+function libHas(c,n){ let ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix||LIB_IDSN!==ix.length){ LIB_IDSX=ix; LIB_IDSN=ix.length; LIB_IDS={}; ix.forEach((e) =>{ libIdsAdd(LIB_IDS,e); }); } return LIB_IDS[c+"|"+n]||LIB_IDS[c+"|~"+String(n).toLowerCase().replace(/[^a-z0-9]/g,"")]||false; }/* exact name, name before a bracket, then the name without spaces, hyphens or case */
 /* a name that opens its Library entry when one exists, plain text otherwise */
 function libLnk(label,cands){ for(let i=0;i<cands.length;i++){ const key=cands[i][1]?libHas(cands[i][0],cands[i][1]):false; if(key) return '<button type="button" class="lnk" data-lib-open="'+esc(cands[i][0]+"|"+key)+'">'+esc(label)+'</button>'; } return '<span>'+esc(label)+'</span>'; }
 /* 5e.tools style lists under a spell: who can cast it and what grants it */
@@ -350,19 +379,39 @@ const LIB_CATIC={sub:"subclass",bg:"background",opt:"option",homebrew:"homebrew"
 function libCatIc(c){ const A=window.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||localStorage.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
 function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((window.__artIc&&LIB_ICO[e.c]&&window.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; const inv={}, voc=[];
-  LIB.idx.forEach((e,i) =>{ const seen={}; (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach((w) =>{ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); }); LIB.inv=inv; LIB.voc=voc; LIB.fz={}; }
+  LIB.idx.forEach((e,i) =>{ if(e.c==="homebrew") return;/* homebrew rows never use the typo index (see libMatch), so they stay out of it */ const seen={}; (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach((w) =>{ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); }); LIB.inv=inv; LIB.voc=voc; LIB.fz={}; }
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
-function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
+/* S27: the word index (about 900 ms in one go) is built in 12 ms slices after the Library opens, so the first search does not freeze the screen */
+function libInvWarm(done){ if(LIB.inv||!LIB.idx){ if(done) done(); return; } if(LIB.invW&&LIB.invW.ix===LIB.idx){ if(done) LIB.invW.cb.push(done); return; }
+  const ix=LIB.idx, inv={}, voc=[], N=ix.length, W=LIB.invW={ix:ix,cb:done?[done]:[]}; let i=0;
+  (function step(){ if(LIB.idx!==ix){ if(LIB.invW===W) LIB.invW=null; return; } const t0=performance.now();
+    while(i<N&&performance.now()-t0<12){ const e=ix[i], seen={}; if(e.c==="homebrew"){ i++; continue; } fzZ(e.n); (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach((w) =>{ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); i++; }
+    if(i<N){ libYield(step); return; } if(!LIB.inv){ LIB.inv=inv; LIB.voc=voc; LIB.fz={}; } LIB.invW=null; W.cb.forEach((f) =>{ try{ f(); }catch(er){} }); })(); }
+function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d;
+  /* S27: a word within m edits differs from t in at most 2m letters of the alphabet. A 26-bit letter mask rules out almost every word before the slow edit distance runs (same result, about 100 ms down to a few) */
+  let VM=LIB.vocM; if(!VM||LIB.vocMv!==voc){ LIB.vocMv=voc; VM=LIB.vocM=new Int32Array(voc.length); for(k=0;k<voc.length;k++){ let x=0; w=voc[k]; for(let c=0;c<w.length;c++){ const q=w.charCodeAt(c)-97; if(q>=0&&q<26) x|=1<<q; } VM[k]=x; } }
+  let tm=0; for(let c=0;c<t.length;c++){ const q=t.charCodeAt(c)-97; if(q>=0&&q<26) tm|=1<<q; }
+  for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; let x=VM[k]^tm; x=x-((x>>>1)&0x55555555); x=(x&0x33333333)+((x>>>2)&0x33333333); x=(((x+(x>>>4))&0x0f0f0f0f)*0x01010101)>>>24; if(x>2*m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); }
+  LIB.fz[t]=set; return set; }
+function libMatch(q,toks,e,i){ let v=fzScore(q,e.n); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } return v; }
+function libSort(res){ const ci=function(c){ for(let i=0;i<LIB_CATS.length;i++) if(LIB_CATS[i][0]===c) return i; return 99; };
+  res.sort((a,b) =>{ return a[0]-b[0]||a[1].n.length-b[1].n.length||ci(a[1].c)-ci(b[1].c)||(a[1].n<b[1].n?-1:1); }); }
 function libSearch(){ const q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), toks=q.split(" ").filter(Boolean); LIB.res=[]; if(q.length<2||!LIB.idx) return; libInv();
-  LIB.idx.forEach((e,i) =>{ let v=fzScore(q,e.n); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } if(v>=0) LIB.res.push([v,e]); });
-  const ci=function(c){ for(let i=0;i<LIB_CATS.length;i++) if(LIB_CATS[i][0]===c) return i; return 99; };
-  LIB.res.sort((a,b) =>{ return a[0]-b[0]||a[1].n.length-b[1].n.length||ci(a[1].c)-ci(b[1].c)||(a[1].n<b[1].n?-1:1); }); }
+  LIB.idx.forEach((e,i) =>{ const v=libMatch(q,toks,e,i); if(v>=0) LIB.res.push([v,e]); });
+  libSort(LIB.res); }
+/* S27: the same search in 8 ms slices. A new key stops the old run, so typing never waits for a search that is already out of date. About 100 ms of work per key at 1x CPU (400 ms at 4x) no longer blocks the keyboard. */
+let LIB_SQ=0;
+function libSearchAsync(done){ const q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), toks=q.split(" ").filter(Boolean), my=++LIB_SQ; if(q.length<2||!LIB.idx){ LIB.res=[]; done(); return; } libInv();
+  const ix=LIB.idx, res=[], N=ix.length; let i=0;
+  (function step(){ if(my!==LIB_SQ||LIB.idx!==ix) return; const t0=performance.now();
+    while(i<N&&performance.now()-t0<8){ const end=Math.min(N,i+400); for(;i<end;i++){ const v=libMatch(q,toks,ix[i],i); if(v>=0) res.push([v,ix[i]]); } }
+    if(i<N){ libYield(step); return; } libSort(res); LIB.res=res; done(); })(); }
 function libCounts(){ const n={}, q=LIB.q.trim(); if(q.length>=2) LIB.res.forEach((r) =>{ n[r[1].c]=(n[r[1].c]||0)+1; }); else (LIB.idx||[]).forEach((e) =>{ n[e.c]=(n[e.c]||0)+1; }); return n; }
 function libChips(){ let n=libCounts(), tot=0, q=LIB.q.trim().length>=2, h; Object.keys(n).forEach((k) =>{ tot+=n[k]; });
   h='<button type="button" class="lib-chip'+(LIB.cat==="all"?' on':'')+'" data-lib-cat="all">All <small>'+tot+'</small></button>';
   LIB_CATS.forEach((c) =>{ if(!n[c[0]]) return; h+='<button type="button" class="lib-chip'+(LIB.cat===c[0]?' on':'')+'" data-lib-cat="'+c[0]+'">'+esc(c[1])+' <small>'+n[c[0]]+'</small></button>'; }); return h; }
 function libListHTML(){ let q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h="", i;
-  if(!LIB.idx) return '<p class="info-d lib-empty">Loading the library.</p>';
+  if(!LIB.idx) return '<div class="lib-ld" role="status" aria-live="polite"><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><span class="lib-ldt">Loading the library</span></div>';
   if(q.length<2){
     if(LIB.cat!=="all"){ const L=LIB.idx.filter((e) =>{ return e.c===LIB.cat; }).sort((a,b) =>{ return a.n<b.n?-1:1; }); return libFlat(L.map((e) =>{ return [0,e]; }),"",L.length); }
     const rc=libRecent().map((id) =>{ let p=id.indexOf("|"), c=id.slice(0,p), k=id.slice(p+1), f=null; LIB.idx.forEach((e) =>{ if(e.c===c&&e.k===k) f=e; }); return f; }).filter(Boolean);
@@ -390,7 +439,7 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
     else h=sheetIco(d.t); }catch(er){ h=""; } }
   m.innerHTML=wmHd(h); }
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
-function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=__R.askHTML; __R.askHTML=null; const ai=window.__artIc; window.__artIc=null; try{ return libListHTML(); } finally{ __R.askHTML=a; window.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
+function libSafe(){ if(LIB.idx&&(!LIB.inv||!LIB.idx.hbFull)&&LIB.q.trim().length>=2) return '<div class="lib-ld" role="status" aria-live="polite"><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><i class="lib-ldb"></i><span class="lib-ldt">Searching the library</span></div>'; try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=__R.askHTML; __R.askHTML=null; const ai=window.__artIc; window.__artIc=null; try{ return libListHTML(); } finally{ __R.askHTML=a; window.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
 function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
@@ -403,7 +452,10 @@ function libGo(spec,push){ let p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.sl
   LIB.cur=d; d.id=spec; libRecent(spec); libPaint(); }
 function libBack(){ if(LIB.hist.length){ LIB.cur=LIB.hist.pop(); } else LIB.cur=null; libPaint(); }
 function libClose(){ const w=document.getElementById("lib"); if(!w) return; w.classList.remove("on"); LIB.on=0; setTimeout(() =>{ if(!LIB.on&&w.parentNode) w.hidden=true; },220); document.removeEventListener("keydown",libKey,true); }
-function libInput(v){ LIB.q=v; LIB.lim=60; if(LIB.cur){ LIB.cur=null; LIB.hist=[]; } libSearch(); LIB.scroll=0; libPaint(); }
+function libInput(v){ LIB.q=v; LIB.lim=60; if(LIB.cur){ LIB.cur=null; LIB.hist=[]; }
+  const bd=document.getElementById("libBd"), run=() =>{ if(bd) bd.classList.add("lib-busy"); libSearchAsync(() =>{ if(bd) bd.classList.remove("lib-busy"); if(!LIB.on||LIB.cur) return; LIB.scroll=0; libPaint(); }); };
+  if(LIB.idx&&LIB.q.trim().length>=2){ if(!LIB.inv||!LIB.idx.hbFull){ LIB.scroll=0; libPaint(); libWhenReady(() =>{ if(LIB.on&&!LIB.cur&&LIB.q.trim().length>=2) run(); }); return; } run(); return; }
+  LIB_SQ++; if(bd) bd.classList.remove("lib-busy"); libSearch(); LIB.scroll=0; libPaint(); }
 function libKey(e){ const w=document.getElementById("lib"); if(!w||!LIB.on) return; const inLib=w.contains(e.target);
   if(e.key==="Escape"&&(inLib||document.activeElement===document.body)){ e.preventDefault(); e.stopPropagation(); libClose(); return; }
   if(!inLib) return; const rs=document.querySelectorAll("#libBd .lib-r");
@@ -433,8 +485,8 @@ export function libOpen(o){ o=o||{}; const w=libDom(), first=!LIB.idx;
   requestAnimationFrame(() =>{ w.classList.add("on"); });
   document.removeEventListener("keydown",libKey,true); document.addEventListener("keydown",libKey,true);
   const qi=document.getElementById("libQ"); qi.value=LIB.q; libPaint();
-  const go=function(){ LIB.idx=libIndex(); LIB.inv=null; libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); };
-  if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(window.__bldNeed) window.__bldNeed(); }catch(er){} t(); }
+  const go=function(){ const ix=LIB.idx=libIndex(true); LIB.inv=null; libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); libWarmPipeline(ix); };
+  if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); libWarmPipeline(LIB.idx); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ requestAnimationFrame(() =>{ setTimeout(go,0); }); return; }/* S15 spike: paint the loading state first, then build the index */ LIB.tries++; setTimeout(t,80); }; try{ if(window.__bldNeed) window.__bldNeed(); }catch(er){} t(); }
   setTimeout(() =>{ try{ qi.focus({preventScroll:true}); if(window.innerWidth>=760) qi.select(); }catch(er){} },60); }
 const libDetail0=libDetail; libDetail=function(c,k){ const r=libDetail0(c,k); if(r&&window.FLUFF&&window.FLUFF[c]){ const t=window.FLUFF[c][k]||window.FLUFF[c][r.t]; if(t) r.h+=libFeatBlock("Lore",t); } if(r){ let im=null; if(window.QREFS&&window.QREFS[c]){ window.QREFS[c].forEach((q) =>{ if(q.n===k&&q.im) im=q.im; }); } if(!im&&window.QIMG&&window.QIMG[c]){ im=window.QIMG[c][k]||window.QIMG[c][r.t]||null; if(!im){ const qn=function(z){ return String(z||"").toLowerCase().replace(/[^a-z0-9]/g,""); }; window.__qimN=window.__qimN||{}; if(!window.__qimN[c]){ const mp={}; Object.keys(window.QIMG[c]).forEach((z) =>{ mp[qn(z)]=window.QIMG[c][z]; }); window.__qimN[c]=mp; } im=window.__qimN[c][qn(k)]||window.__qimN[c][qn(r.t)]||null; } } if(im) r.h='<img class="lib-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="" src="data/img/'+encodeURI(im)+'.webp" onerror="this.remove()">'+r.h; } return r; };
 window.__libHtml=function(c,k){ const d=libDetail(c,k); return d?d.h:null; };/* test hook */

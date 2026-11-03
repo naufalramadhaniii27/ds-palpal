@@ -71,7 +71,8 @@
  #sheetBody.hpdock .hp-h h2{visibility:hidden}
  #sheetBody.hpdock > #hpBox{gap:14px}
  #sheetBody #hpBox.m-hit{animation:v29hit .34s var(--ease-out)}
- .toast{bottom:calc(4px + env(safe-area-inset-bottom,0px))}
+ .toast{bottom:calc(102px + env(safe-area-inset-bottom,0px))}
+ .toast[data-hm]{bottom:calc(4px + env(safe-area-inset-bottom,0px))}
  .sheet.on ~ .toast{top:calc(12px + env(safe-area-inset-top,0px));bottom:auto}
 }
 @keyframes v30pop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}

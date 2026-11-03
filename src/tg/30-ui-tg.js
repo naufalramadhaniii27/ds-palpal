@@ -128,7 +128,7 @@ function evText(e){ switch(e.t){
 function flash(t){ const b=document.getElementById("tgMsg"); if(b){ b.textContent=t; b.classList.remove("on"); void b.offsetWidth; b.classList.add("on"); } }
 function hpPct(u){ return Math.max(0,Math.min(1,u.hp/u.max)); }
 function fieldHtml(){ const st=TG.st, u=cur();
-  const order='<ol class="tg-ord" aria-label="Turn order">'+st.order.map((id) =>{ const x=st.units[id]; return '<li class="'+x.side+(id===u.id?' now':'')+(x.dead?' out':'')+'"><button type="button" data-tgu="'+id+'" aria-label="'+esc(x.name)+', '+x.hp+' of '+x.max+' HP'+(id===u.id?', turn now':'')+'"><b>'+esc(ini(x.name))+'</b><i style="--p:'+(TG.hpPrev&&TG.hpPrev[id]!=null?TG.hpPrev[id]:hpPct(x))+'" data-p="'+hpPct(x)+'"></i></button></li>'; }).join("")+'</ol>';
+  const order='<ol class="tg-ord" aria-label="Turn order">'+st.order.map((id) =>{ const x=st.units[id]; return '<li class="'+x.side+(id===u.id?' now':'')+(x.dead?' out':'')+'"><button type="button" data-tgu="'+id+'" aria-label="'+esc(x.name)+', '+x.hp+' of '+x.max+' HP'+(id===u.id?', turn now':'')+'"><b>'+esc(ini(x.name))+'</b><i style="--tg-p:'+(TG.hpPrev&&TG.hpPrev[id]!=null?TG.hpPrev[id]:hpPct(x))+'" data-p="'+hpPct(x)+'"></i></button></li>'; }).join("")+'</ol>';
   let h=order+'<div class="tg-wrap" id="tgWrap"><canvas id="tgCv" tabindex="0" aria-label="Battle grid. Arrow keys move the cursor, Enter picks the square"></canvas></div><p class="tg-msg" id="tgMsg" role="status"></p>';
   h+=st.over?overHtml():panelHtml(u);
   h+='<details class="tg-log"'+(TG.logOpen?' open':'')+'><summary>The log</summary><ol>'+st.log.slice(-40).map(evText).filter(Boolean).reverse().map((t) =>{ return '<li>'+esc(t)+'</li>'; }).join("")+'</ol></details>';
@@ -239,7 +239,7 @@ document.addEventListener("visibilitychange",() =>{ if(document.visibilityState=
 window.__tgWake=function(){ return {want:WL.want,held:!!(WL.l&&WL.l!==1&&!WL.l.released)}; };
 /* the turn order is drawn again on each paint: the bar starts at the last value shown and moves to the new one on the next frame */
 function hpBars(){ const b=document.getElementById("tgB"); if(!b||!TG.st) return; const L=b.querySelectorAll(".tg-ord i[data-p]"); if(!L.length) return; TG.hpPrev=TG.hpPrev||{};
-  requestAnimationFrame(() =>{ L.forEach((i) =>{ i.style.setProperty("--p",i.getAttribute("data-p")); }); });
+  requestAnimationFrame(() =>{ L.forEach((i) =>{ i.style.setProperty("--tg-p",i.getAttribute("data-p")); }); });
   Object.keys(TG.st.units).forEach((id) =>{ TG.hpPrev[id]=hpPct(TG.st.units[id]); }); }
 function paint(){ wakeSync(); const b=document.getElementById("tgB"); if(!b) return; const s=document.getElementById("tgS"), t=document.getElementById("tgT");
   if(TG.view==="setup"){ t.textContent="Training Ground"; s.textContent="Practice fights. Your sheet never changes"; b.innerHTML=setupHtml(); }

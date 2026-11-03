@@ -48,9 +48,42 @@ function xlIdx(){
   mi.forEach((r) =>{ if(r&&r[0]) put(r[0],["mi",r[0]]); });
   XL_IDX=m; XL_KEY=key; return m;
 }
+/* S25: autolink v1. Candidates come from every Library name, the choice from a small learned model. Falls back to the v0 linker below while the Library index is not built. */
+const XL2_BLK=/^<\/?(?:p|div|li|ul|ol|dt|dd|dl|tr|td|th|h[1-6]|br|table|section)(?:[\s>/]|$)/i;
+function xl2Kind(cat,key){ const q=xlIdx()[String(key).replace(/['\u2019]/g,"\u0001")]; if(q&&((cat==="spell"&&q[0]==="spn")||(cat==="creature"&&q[0]==="cr")||(cat==="item"&&q[0]==="mi"))) return q; return ["lib",cat+"|"+key]; }
+/* the model learned on one sentence at a time (median 94 characters, longest 259): feed it sentences, never a whole page */
+function xl2Chunks(t){ const o=[], re=/[.!?]\s+|\n+/g; let s=0, m, e; const add=(a,b) =>{ while(b-a>260){ let k=t.lastIndexOf(" ",a+260); if(k<=a+60) k=a+260; o.push([a,k]); a=k; } if(b>a) o.push([a,b]); };
+  while((m=re.exec(t))){ e=m.index+(m[0].charAt(0)==="\n"?0:1); add(s,e); s=m.index+m[0].length; } add(s,t.length); return o; }
+function xlink2(h,self,mode){
+  if(typeof __R.xlRun!=="function"||!__R.xlReady()) return null;
+  const parts=h.split(/(<[^>]+>)/), nodes=[]; let full="", depth=0;
+  parts.forEach((p,i) =>{
+    if(p.charAt(0)==="<"){ if(/^<(button|a)[\s>]/i.test(p)) depth++; else if(/^<\/(button|a)>/i.test(p)) depth=Math.max(0,depth-1); if(XL2_BLK.test(p)) full+="\n"; return; }
+    if(!p) return;
+    const map=[]; let t="", r=0, q; const re=/&(?:amp|lt|gt|quot|#39);/g;
+    while((q=re.exec(p))){ for(;r<q.index;r++){ map.push(r); t+=p.charAt(r); } map.push(r); t+={"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'"}[q[0]]; r=q.index+q[0].length; }
+    for(;r<p.length;r++){ map.push(r); t+=p.charAt(r); }
+    nodes.push({i:i,s:full.length,e:full.length+t.length,map:map,raw:p,nolink:depth>0,add:[]}); full+=t;
+  });
+  if(full.length<3) return h;
+  const selfP=String(self||"").replace(/&#39;/g,"'");
+  const L=[], CH=xl2Chunks(full);
+  for(let c=0;c<CH.length;c++){ const r=__R.xlRun(full.slice(CH[c][0],CH[c][1])); if(r===null) return null; r.forEach((x) =>{ if(x[2]==="class"&&/^s? of the Coast/.test(full.slice(CH[c][0]+x[1],CH[c][0]+x[1]+16))) return;/* the publisher, not the class */ L.push([x[0]+CH[c][0],x[1]+CH[c][0],x[2],x[3],x[4]]); }); }
+  let ni=0;
+  L.forEach((x) =>{
+    const a=x[0], b=x[1], cat=x[2], key=x[3]; if(mode==="b"&&(cat==="spell"||cat==="feat")) return;
+    if(selfP&&full.slice(a,b)===selfP) return;
+    while(ni<nodes.length&&nodes[ni].e<=a) ni++; const nd=nodes[ni]; if(!nd||nd.nolink||a<nd.s||b>nd.e) return;
+    const k=xl2Kind(cat,key), nm_=k[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+    nd.add.push([nd.map[a-nd.s], b-nd.s<nd.map.length?nd.map[b-nd.s]:nd.raw.length, mode==="b"?'<button type="button" class="lnk" data-lnk="'+k[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+k[0]+':'+nm_+'">']);
+  });
+  nodes.forEach((nd) =>{ if(!nd.add.length) return; let o="", pos=0; nd.add.forEach((z) =>{ o+=nd.raw.slice(pos,z[0])+z[2]+nd.raw.slice(z[0],z[1])+"</button>"; pos=z[1]; }); parts[nd.i]=o+nd.raw.slice(pos); });
+  return parts.join("");
+}
 let XL_SELF="";
 function xlink(h,self,mode){
   self=self||XL_SELF; h=String(h==null?"":h); if(!h||h.indexOf("<")<0&&h.length<3) return h;
+  if(!window.__xlV0){ try{ const r2=xlink2(h,self,mode); if(r2!==null) return r2; }catch(er){} }
   let m=xlIdx(), depth=0, selfK=String(self||"").replace(/&#39;/g,"'").replace(/'/g,"\u0001");
   return h.split(/(<[^>]+>)/).map((p) =>{
     if(p.charAt(0)==="<"){ if(/^<(button|a)[\s>]/i.test(p)) depth++; else if(/^<\/(button|a)>/i.test(p)) depth=Math.max(0,depth-1); return p; }

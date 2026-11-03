@@ -22,8 +22,9 @@ function makePdfBlob(){
     const pages=$$(".ps-page",wrap), pdf=new window.jspdf.jsPDF({unit:"pt",format:"a4",orientation:"portrait",compress:true});
     const W=pdf.internal.pageSize.getWidth(), H=pdf.internal.pageSize.getHeight();
     let chain=Promise.resolve(), firstPage=true;
-    pages.forEach((pg) =>{
-      chain=chain.then(() =>{
+    const bt=document.querySelector("#busy span:last-child"), np=pages.length;/* S17 spike: progress text and a frame between pages */
+    pages.forEach((pg,pi) =>{
+      chain=chain.then(() =>{ if(bt) bt.textContent=np>1?"Building PDF, page "+(pi+1)+" of "+np:"Building PDF"; return new Promise((r) =>{ requestAnimationFrame(() =>{ setTimeout(r,0); }); }); }).then(() =>{
         const h2c=(window.html2canvas&&window.html2canvas.default)||window.html2canvas;/* html2canvas-pro sets a module object */
         return h2c(pg,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:1200,
           onclone:function(doc){ const w=doc.getElementById("psWrap"); if(w){ w.style.cssText="position:static;width:auto;height:auto;overflow:visible"; } doc.documentElement.removeAttribute("data-skin"); doc.documentElement.style.background="#fff"; doc.body.style.cssText="background:#fff;background-image:none"; }/* v38 p12: white paper in the PDF */
@@ -41,7 +42,7 @@ function makePdfBlob(){
         });
       });
     });
-    return chain.then(() =>{ return pdf.output("blob"); });
+    return chain.then(() =>{ if(bt) bt.textContent="Building PDF"; return pdf.output("blob"); });
   });
 }
 function printFallback(){ buildPrint(); setTimeout(() =>{ window.print(); },60); }

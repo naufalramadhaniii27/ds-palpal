@@ -53,4 +53,5 @@ import "./51-ui-table-help.js";
 import "./52-tg-bridge.js";
 import "./53-logic-number-map.js";
 import "./54-dev-fps-probe.js";
+import "./58-logic-autolink-v1.js";
 import "./99-ui-backup-reminder-handlers.js";
