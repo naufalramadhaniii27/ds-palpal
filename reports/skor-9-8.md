@@ -176,3 +176,10 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Uji negatif: aturan PB diubah salah, tes melapor rusak.
 - `tests/golden_rules.py` kini bisa diimpor (`__main__` guard).
 - Belum dikerjakan: oracle 2014, `rules.mjs` dari `books/`, golden per edisi. Folder `books/` tidak ada di workspace ini, jadi tabel 2014 tidak bisa dicek ke buku.
+
+## N39: robot hitung ketukan (versi pertama)
+
+- `tests/ux_tasks.py` (390x844, klik asli): 9 tugas, hasil di `reports/ux-ketukan.md`. Angka D&D Beyond di `tests/ux_ddb.json` adalah perkiraan saya, belum diukur.
+- Hasil: buka karakter 1, damage 2, heal 2, Long Rest 3 (menu, pilih, geser), Short Rest buka 2, empat tab 1 masing-masing. Semua lulus dan di bawah anggaran.
+- Bug nyata ditemukan robot: `<ul class="lrn">` di dialog rest memakai kelas yang sama dengan lapisan Learn (`.lrn`: fixed, inset 0, z-index 58, opacity 0). Daftar "After this rest you can also" tidak tampil dan menutupi penggeser Long Rest, jadi Long Rest tidak bisa diambil di layar sempit untuk karakter dengan catatan (contoh Weapon Mastery). Perbaikan: kelas diganti `rest-notes` (JS dan CSS). Robot sekarang lulus.
+- Belum dikerjakan: 10 tugas lengkap (cast spell, kondisi, tambah item, dan lain-lain), jalur buntu, perbandingan terukur dengan D&D Beyond.

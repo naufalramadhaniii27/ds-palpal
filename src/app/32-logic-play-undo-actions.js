@@ -291,7 +291,7 @@ function lrNotes(){ const cl=clsLvls(), o=[], r14=x14(), all=(r14?["Artificer","
 function longExtraH(){ let h="", lc=chgRows(["dawn","dusk","long"]);
   if(lc.length) h+='<div class="rx"><div class="info-h">Charges</div><p class="info-d">These items regain a rolled number of charges at dawn or dusk. Type each roll. Leave a box empty to change it later.</p>'+lc.map(chgRow).join("")+'</div>';
   if(num(S.hpMod,0)||num(S.hpOver,0)>0) h+='<label class="ck rx"><input type="checkbox" data-rhpreset="1"'+(restX.hpReset?' checked':'')+'> Reset Maximum HP changes (modifier '+sg(num(S.hpMod,0))+(num(S.hpOver,0)>0?', override '+S.hpOver:'')+')</label>';
-  const nt=lrNotes(); if(nt.length) h+='<div class="rx"><div class="info-h">After this rest you can also</div><ul class="lrn">'+nt.map((t) =>{ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul><button type="button" class="btn press" data-restbld="1">Open the Builder</button></div>';
+  const nt=lrNotes(); if(nt.length) h+='<div class="rx"><div class="info-h">After this rest you can also</div><ul class="rest-notes">'+nt.map((t) =>{ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul><button type="button" class="btn press" data-restbld="1">Open the Builder</button></div>';
   return h; }
 document.addEventListener("change",(e) =>{ const t=e.target; if(!t.closest||!t.closest("#restDlg")) return; const kind=t.closest("#restDlg").getAttribute("data-kind");
   if(t.matches("[data-rchef]")){ restX.chef=t.checked; restRefresh(kind); return; }
