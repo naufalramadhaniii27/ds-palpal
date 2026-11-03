@@ -45,7 +45,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H19 | cat/item, cat/language, cat/monster, cat/object | needs review: cells 1–4 (rule 5: alpha 255 coverage 0.082%, below 20%; alpha residue in background/gaps, strongest above cell 2); whole-sheet retry used |
-| H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | open |
+| H20 | cat/optfeat, cat/option, cat/psionic, cat/recipe | claimed by codex-session-4 2026-11-03T01:45:07+00:00 |
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
