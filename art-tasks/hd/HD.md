@@ -41,7 +41,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H13 | background/guide, background/hermit, background/merchant, background/noble | open |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | open |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | open |
-| H16 | cat/condition, cat/creature, cat/cult, cat/deck | claimed by codex-session-4 2026-11-03T01:32:03+00:00 |
+| H16 | cat/condition, cat/creature, cat/cult, cat/deck | needs review: cells 1–4 (alpha 255 coverage 0.077%, below 20%; whole-sheet retry used) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | open |
 | H18 | cat/feature, cat/gear, cat/hazard, cat/homebrew | open |
 | H19 | cat/item, cat/language, cat/monster, cat/object | open |
