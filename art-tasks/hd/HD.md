@@ -1,4 +1,4 @@
-# HD icon sheets H01 to H24 (93 icons)
+# HD icon sheets H01 to H24 (94 icons)
 
 These icons only exist at 128 px in the app and show blurry in the detail sheet. Redraw them large, in the same quality as the art-batch icons (rations, potion of healing and the rest).
 
@@ -6,9 +6,9 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 
 1. Work only on branch art-tasks. Never touch main.
 2. Claim a sheet in the Status table ("claimed by <session> <time>"), commit, git pull --rebase, push. If the push fails, pull and continue.
-3. Each sheet = ONE image: 1254x1254 PNG RGBA, real transparent background (alpha 0). 2x2 layout: cell 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right. Each icon centered in its quarter, about 70% of the quarter, with a wide empty transparent gap between icons. No grid lines, borders, numbers or labels. H24 has one icon only, centered on the whole canvas at about 70%.
+3. Each sheet = ONE image: 1254x1254 PNG RGBA, real transparent background (alpha 0). 2x2 layout: cell 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right. Each icon centered in its quarter, about 70% of the quarter, with a wide empty transparent gap between icons. No grid lines, borders, numbers or labels. H24 has two icons: cells 1 and 2 in the top quarters, the bottom half stays empty and transparent.
 4. Attach art-tasks/hd/style-ref.png (8 approved art-batch icons, 1024 px originals) as the ONLY style reference. Every icon must look like it belongs in that set at full size: same painterly detail, same soft clean outline, same material rendering and lighting.
-5. Before saving, check with Python: background alpha 0, at least 20% of pixels alpha 255, no icon touches another quarter. Do not upscale and do not cut. Claude cuts and names the icons.
+5. Before saving, check with Python: background alpha 0, at least 20% of pixels alpha 250 or more (the image tool writes 252 or 253 for solid pixels, that counts as opaque, never mark a sheet for review only because of 252 or 253), no icon touches another quarter. Do not upscale and do not cut. Claude cuts and names the icons.
 6. Save art-tasks/hd-out/H0N.png (H01..H24). Mark the sheet "done" or "needs review: cells ...", commit "hd: H0N", git pull --rebase, push.
 7. If a cell is wrong, redo the whole image once. If still wrong, mark needs review.
 
@@ -49,7 +49,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
 | H23 | size/small, size/medium, size/large, size/huge | needs review: cells 1–4 (background edge alpha; opaque coverage below 20%; central gutter alpha) |
-| H24 | size/gargantuan | claimed by codex-session-5 2026-11-03T01:41:27+00:00 |
+| H24 | size/gargantuan, cat/book | claimed by codex-session-5 2026-11-03T01:41:27+00:00 |
 
 ## Prompt per sheet
 
@@ -203,3 +203,4 @@ Every person is an adult. No video game badge, heraldic crest, chrome or spikes 
 
 ### H24
 1. size/gargantuan | Size Gargantuan: a massive dragon head rising from a mountain peak
+2. cat/book | Library category Books: a closed leather-bound book with brass corners and a ribbon bookmark, cover blank
