@@ -85,3 +85,10 @@
 :root[data-hc] #bld .abhex::after{background:var(--panel)}
 .dna-qr svg{width:min(100%,280px);height:auto;background:#fff;padding:8px;border-radius:8px}
 }
+/* subclass picture cards (Class step): one row you scroll sideways, picture is lazy, the name sits under it on the panel so it stays readable */
+#bld .sub-cards{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:10px 2px 6px;margin:2px 0 4px;-webkit-overflow-scrolling:touch}
+#bld .sub-card{flex:0 0 156px;scroll-snap-align:start;padding:0;border:1px solid var(--line-2);border-radius:10px;background:var(--panel);color:var(--text);overflow:hidden;text-align:left;cursor:pointer;display:flex;flex-direction:column}
+#bld .sub-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--panel-2,var(--panel))}
+#bld .sub-card span{display:block;padding:6px 8px 8px;font-size:calc(13px*var(--tz,1));line-height:1.25;min-height:2.6em}
+#bld .sub-card.on{border-color:var(--accent,#c9a24a);box-shadow:0 0 0 1px var(--accent,#c9a24a)}
+@media (min-width:760px){ #bld .sub-card{flex-basis:188px} }
