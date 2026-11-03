@@ -103,6 +103,18 @@ ITEM = 'Ring of Protection'
 case('item not equipped gives nothing', {'item': {ITEM: [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'unequipped item counted'), {'inv': [{'n': ITEM, 'q': 1}]})
 case('item equipped and attuned', {'item': {ITEM: [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3 and has(C1['hpBonus'], 's', 'magic item, attuned'), json.dumps(C1['hpBonus'])), {'inv': [{'n': ITEM, 'q': 1, 'eq': 1}]})
 
+# fx batch C: feat entries read their own picks (when), fixed ability increases (abUp), senses, weapon picks
+FEATWHEN = {'feat': {'Alert': [{'n': 'P', 'pick': [{'k': 'q', 't': 'multi', 'n': 1, 'title': 'Q', 'list': [['A', ''], ['B', '']]}]},
+                              {'n': 'TA', 'when': {'key': 'q', 'val': 'A'}, 'hpFlat': 3}, {'n': 'TB', 'when': {'key': 'q', 'val': 'B'}, 'hpFlat': 50}]}}
+case('feat when reads its gx pick (A held)', FEATWHEN, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3, 'hp %s -> %s' % (D0['hpmax'], D1['hpmax'])), {'ch': {'feat4': {'feat': 'Alert'}, 'gx-q-feat-feat4': ['A']}})
+case('feat when with no pick applies nothing', FEATWHEN, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'applied without the pick'), {'ch': {'feat4': {'feat': 'Alert'}}})
+case('feat when reads a native pick (key-slot)', {'feat': {'Alert': [{'n': 'T', 'when': {'key': 'nat', 'val': 'X'}, 'hpFlat': 4}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 4, 'native pick not read'), {'ch': {'feat4': {'feat': 'Alert'}, 'nat-feat4': ['X']}})
+case('abUp +1 CON', species({'n': 'T', 'abUp': [['CON', 1, 20]]}), lambda C0, C1, D0, D1: ok(D1['score']['CON'] == D0['score']['CON'] + 1, 'CON %s -> %s' % (D0['score']['CON'], D1['score']['CON'])))
+case('abUp respects its maximum', species({'n': 'T', 'abUp': [['STR', 5, 19]]}), lambda C0, C1, D0, D1: ok(D1['score']['STR'] == 19, 'STR %s' % D1['score']['STR']))
+case('sense Blindsight', species({'n': 'T', 'sense': [['Blindsight', 30, 'test']]}), lambda C0, C1, D0, D1: ok(any(x['n'] == 'Blindsight' and x['v'] == 30 for x in C1.get('senses') or []), json.dumps(C1.get('senses'))))
+case('speedAdd -5 reads as a penalty', species({'n': 'T', 'speedAdd': -5}), lambda C0, C1, D0, D1: ok(C1['speed'] == C0['speed'] - 5 and '+-5' not in C1['speedSrc'], C1['speedSrc']))
+case('weapon pick', {'feat': {'Alert': [{'n': 'T', 'pick': [{'k': 'w', 't': 'weapon', 'n': 1, 'title': 'Weapon'}]}]}}, lambda C0, C1, D0, D1: ok('Longsword' in C1['profs']['weapons'] and 'Longsword' not in C0['profs']['weapons'] and any(x[0] == 'Longsword' for x in C1['profSrc']['weapons']), json.dumps(C1['profs'])), {'cls': 'Wizard', 'ch': {'feat4': {'feat': 'Alert'}, 'gx-w-feat-feat4': ['Longsword']}})
+
 
 def main():
     fails, n = [], 0

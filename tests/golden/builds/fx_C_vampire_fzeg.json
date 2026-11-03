@@ -1,0 +1,61 @@
+{
+ "why": "Vampire Stage 1, Fzeg bloodline: STR +2 (maximum 20) and Speed +10. STR 17 becomes 19, Speed 30 becomes 40. Before: no change.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Vampire Transformation: Stage 1"
+   },
+   "trVampire1-feat4": [
+    "Fzeg Bloodline"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "score": {
+   "STR": 19,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "speed": 40
+ },
+ "expectC": {}
+}

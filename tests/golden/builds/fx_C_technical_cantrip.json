@@ -1,0 +1,58 @@
+{
+ "why": "Technical, Cantrip Device: one Wizard cantrip that deals no damage.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Technical"
+   },
+   "gx-ab-feat-feat4": [
+    "INT"
+   ],
+   "gx-sp-feat-feat4": [
+    "Blade Ward"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "spells": {
+   "in": "Blade Ward"
+  }
+ },
+ "expect": {}
+}

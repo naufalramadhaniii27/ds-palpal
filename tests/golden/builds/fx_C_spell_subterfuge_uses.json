@@ -1,0 +1,53 @@
+{
+ "why": "Spell Subterfuge: uses equal to the modifier of the raised ability, long rest.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Spell Subterfuge",
+    "a1": "INT"
+   }
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "res": {
+   "in": "Shrouding Spells"
+  }
+ },
+ "expect": {}
+}

@@ -33,16 +33,6 @@
 "feat|Athlete|Athlete": [
 "speed"
 ],
-"feat|Battlecaster|Battlecaster": [
-"choice"
-],
-"feat|Blessed Warrior|Blessed Warrior": [
-"choice"
-],
-"feat|Clairvoyant Warrior|Clairvoyant Warrior": [
-"uses",
-"choice"
-],
 "feat|Conjuration Adept|Conjuration Adept": [
 "save"
 ],
@@ -65,9 +55,6 @@
 "feat|Dragonsmith|Dragonsmith": [
 "resist"
 ],
-"feat|Druidic Warrior|Druidic Warrior": [
-"choice"
-],
 "feat|Echoing Soul|Echoing Soul": [
 "save",
 "speed"
@@ -87,9 +74,6 @@
 ],
 "feat|Field Medic|Field Medic": [
 "uses"
-],
-"feat|Fiend Transformation: Stage 1|Fiend Transformation: Stage 1": [
-"resist"
 ],
 "feat|Fiend Transformation: Stage 3|Fiend Transformation: Stage 3": [
 "uses"
@@ -146,9 +130,6 @@
 "resist",
 "choice"
 ],
-"feat|Quori Bond|Quori Bond": [
-"uses"
-],
 "feat|Resolution of the Syndicate|Resolution of the Syndicate": [
 "hp",
 "init"
@@ -156,33 +137,18 @@
 "feat|Scion of the Outer Planes|Scion of the Outer Planes": [
 "resist"
 ],
-"feat|Seraph Transformation: Stage 1|Seraph Transformation: Stage 1": [
-"resist"
-],
 "feat|Shadowsteel Adept|Shadowsteel Adept": [
 "save"
-],
-"feat|Silver-Tongued|Silver-Tongued": [
-"choice"
 ],
 "feat|Specter Transformation: Stage 1|Specter Transformation: Stage 1": [
 "hp",
 "resist"
-],
-"feat|Spell Subterfuge|Spell Subterfuge": [
-"uses"
 ],
 "feat|Spellfire Adept|Spellfire Adept": [
 "resist"
 ],
 "feat|Star and Shadow Reader|Star and Shadow Reader": [
 "resist"
-],
-"feat|Superior Shifting|Superior Shifting": [
-"uses"
-],
-"feat|Technical|Technical": [
-"choice"
 ],
 "feat|The Firm: Contractor|The Firm: Contractor": [
 "skill"

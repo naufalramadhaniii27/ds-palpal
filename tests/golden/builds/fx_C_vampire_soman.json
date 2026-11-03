@@ -1,0 +1,64 @@
+{
+ "why": "Vampire Stage 1, Soman bloodline: STR +1, DEX +1 (maximum 19) and a Climb Speed equal to Speed.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Vampire Transformation: Stage 1"
+   },
+   "trVampire1-feat4": [
+    "Soman Bloodline"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "score": {
+   "STR": 18,
+   "DEX": 15,
+   "CON": 14,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  }
+ },
+ "expectC": {
+  "moves": {
+   "in": "Soman Bloodline"
+  }
+ }
+}

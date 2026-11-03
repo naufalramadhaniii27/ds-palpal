@@ -391,6 +391,10 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `fsPick:1` | (hanya entri `sub`) pilihan Fighting Style feat dari subclass pada level `l`. Kunci `B.ch["sfs"+l]`, tipe `fs`, masuk `allFeats()`. Belum untuk multiclass | Warmage House of Knights: `{l:7,fsPick:1}` |
 | `pick` tipe `cantrip` + `slv:N` | daftar spell level N (default 0). Pilihan jadi spell selalu prepared pada kemampuan `spCls` | Summoner Shambling Plant: `{k:"s",t:"cantrip",cls:"Druid",slv:1,n:1}` |
 | `mv:{burrow:..}` | kunci kecepatan apa saja dibaca apa adanya | Elemental Soul Earth |
+| `abUp:[[ab,+N,maks]]` | kenaikan skor tetap, tidak melewati `maks` (default 20). Tampil di sumber skor | `{abUp:[["CON",1,20]]}` |
+| `sense:[[nama,kaki,teks]]` | sense di `C.senses` (dipakai bila lebih besar dari yang sudah ada) | `{sense:[["Blindsight",30,""]]}` |
+Perluasan batch C (feat): `pick` bertipe `weapon` (proficiency satu senjata, `wcats` default S dan M), `cantrip` boleh membawa filter `lvl` (level spell, default 0), `school`, `ct` (regex casting time), `nodmg:1` (tanpa damage). Entri feat membaca pick miliknya lewat `when:{key,val}`: pick gx (`gx-k-feat-slot`) atau pick bawaan FEATS (`key-slot`), lewat `fxCh`. `saveFrom` untuk feat memakai jalur yang sama. `spCls:"@asi"` memakai kemampuan yang dinaikkan feat, `spCls:"@abpick"` memakai kemampuan dari pick berkunci `ab`. Baris `LU_X` feat boleh memakai `max:"mod:@asi"` atau `"mod:@ab"`.
+
 
 Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
