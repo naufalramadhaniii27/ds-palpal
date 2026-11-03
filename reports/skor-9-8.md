@@ -150,3 +150,9 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Still to run: learn_flow (takes more than 10 minutes here, run in background), full CI.
 - CI run 41552041610 on m7: tsc gate WORSE in 31-ui-tour-and-focus.js and 50-logic-reverse-builder.js (a property on a function). Fixed with module variables, gate back at 279.
 - learn_flow: the CSP console error "Executing inline script violates ... script-src" also appears on the commit before f22 (then in the "new" scenario, on m7 in "applied"), so it is older than N33, lazy q7 and M7. A second failure on that old commit: "stop9 step5 sheet target missing for Yudhi". learn_flow is not in CI. Not fixed here. Source of the inline script not found yet (no violation in a manual Apply run).
+## M12 (branch nilai-98/m12, on top of m7)
+- New tests/long_tasks.py (long task observer plus long-animation-frame, CPU x1, 390 and 1250, Yudhi). Before: Find a build had 3 and 9 long tasks (up to 102 ms), the duel 1 and 2 (55 to 64 ms).
+- Changes: slice budget in Find a build 40 -> 14 ms, in the duel 30 -> 12 ms. The next slice runs through scheduler.postTask at user-visible priority, with a timer as fallback. scheduler.yield() was tried first: it ran five slices inside one animation frame (100 ms, no paint between them), so it was dropped.
+- After: duel 0 long tasks. Find a build 1 to 2 (54 to 79 ms). The rest is __bldOpts(): bldForSheet() ends with applyPacks(), 40 to 76 ms, builder logic. Not changed (needs the Logic owner and a check that applyPacks is not needed there). Test allows at most two, each under 100 ms.
+- Import of large files was not measured (no big fixture).
+- rb_duel, tg_ui, rb_fast pass.

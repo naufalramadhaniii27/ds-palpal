@@ -66,13 +66,13 @@ function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBo
   box.innerHTML='<p class="bk-f rb-prog" aria-live="polite">Trying builds: 0 of '+T.list.length+'</p>';
   /* N29: one batch for the whole search (builder tables set up only when they change), paused at the end of each slice */
   const bat=!RB.slow&&window.__bldSheetBatch?window.__bldSheetBatch():null;
-  (function slice(){ if(run!==RB.run){ if(bat) bat.end(); return; } const end=Date.now()+40;
+  (function slice(){ if(run!==RB.run){ if(bat) bat.end(); return; } const end=Date.now()+14;
     while(i<T.list.length&&Date.now()<end){ var t=T.list[i++], nb=rbBuild(opts.b,t,T.order), o=rbEval(nb,goals,opts,bat); if(!o) continue;
       var m=goals.map((g) =>{ return rbMeets(o,g); }), miss=m.filter((x) =>{ return !x.ok; }).length, gap=goals.reduce((a,g,j) =>{ return a+Math.max(0,g.min-(m[j].v==null?-99:m[j].v)); },0);
       let hs=JSON.stringify(o), hh=RB.st.h>>>0; for(let q=0;q<hs.length;q++){ hh^=hs.charCodeAt(q); hh=Math.imul(hh,16777619)>>>0; } RB.st.h=hh;/* N29: one fingerprint of every try's numbers */
       const rec={nb:nb,o:o,m:m,diff:rbDiff(opts.b,nb,o),gap:gap}; if(!miss) hits.push(rec); else near.push(rec); }
     const p=document.querySelector("#sheetBody .rb-prog"); if(p) p.textContent="Trying builds: "+i+" of "+T.list.length;
-    if(bat) bat.pause(); if(i<T.list.length){ setTimeout(slice,0); return; } if(bat) bat.end();
+    if(bat) bat.pause(); if(i<T.list.length){ rbYield(slice); return; } if(bat) bat.end();
     hits.sort((a,b) =>{ return a.diff.length-b.diff.length||b.o.hp-a.o.hp; }); near.sort((a,b) =>{ return a.gap-b.gap||a.diff.length-b.diff.length; });
     RB.st.t=Date.now()-t0; RB.res=hits.length?hits.slice(0,6):near.slice(0,3); RB.goals=goals; RB.ok=!!hits.length; RB.opts=opts;
     box.innerHTML='<p class="bk-f">'+T.list.length+' builds tried in '+((Date.now()-t0)/1000).toFixed(1)+' s. '+(hits.length?hits.length+' reach every goal'+(hits.length>6?', the 6 with the fewest changes are shown':'')+'.':'None reaches every goal. The closest ones:')+'</p>'+RB.res.map(rbCard).join(""); })(); }
@@ -81,6 +81,8 @@ function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' ne
    The build is derived on a copy, nothing is saved. The current build is fought once per search and kept */
 function rbFinal(r){ const nb=JSON.parse(JSON.stringify(r.nb)); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
 function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
+/* M12: scheduler.postTask at user-visible priority when the browser has it, else a timer. scheduler.yield() was tried: its continuations ran five slices in one frame (100 ms) and the page did not paint between them */
+const rbYield=(f) =>{ if(window.scheduler&&typeof window.scheduler.postTask==="function") window.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
 let RB_DUEL_WAIT=false;
 function rbDuel(i,btn){ const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel"); if(!r||!out) return; out.hidden=false;
   if(!window.__tgDuelPick){ if(window.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(window.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!window.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
