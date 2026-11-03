@@ -25,7 +25,11 @@
 .lrn-hoot.sm{width:56px;height:56px;border-width:2px}
 .lrn-hoot img,.lrn-hoot picture{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
 /* map */
-.lrn-hero{display:flex;gap:16px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.lrn-hero{display:flex;gap:16px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--panel);position:relative;isolation:isolate;overflow:hidden}
+.lrn-hbg{position:absolute;inset:0;z-index:-1;opacity:.15;pointer-events:none}
+.lrn-hbg img{width:100%;height:100%;object-fit:cover;display:block}
+.lrn-rank{position:absolute;top:10px;right:10px;width:48px;height:48px}
+.lrn-rank img{width:100%;height:100%;object-fit:contain;display:block}
 .lrn-hero h2{margin:0 0 4px;font-size:calc(22px*var(--tz,1));line-height:1.2;text-wrap:balance}
 .lrn-hero p{margin:0 0 10px;color:var(--muted)}
 .lrn-hero>div{flex:1;min-width:0}

@@ -65,6 +65,7 @@ export var LEARN={
     tapDie:{en:"Tap a die to roll it",id:"Ketuk dadu untuk melempar"},
     quizLock:{en:"Finish the five stops to open it.",id:"Selesaikan lima tempat untuk membukanya."},
     hootAlt:{en:"Hoot the owl, your guide",id:"Hoot si burung hantu, pemandumu"},
+    rank_novice:{en:"Rank: Novice",id:"Peringkat: Pemula"}, rank_apprentice:{en:"Rank: Apprentice",id:"Peringkat: Murid"}, rank_adventurer:{en:"Rank: Adventurer",id:"Peringkat: Petualang"}, rank_hero:{en:"Rank: Hero",id:"Peringkat: Pahlawan"},
     made:{en:"{t} reaches {dc}. You made it!",id:"{t} sampai ke {dc}. Berhasil!"},
     missed:{en:"{t} is short of {dc}. So close, roll again?",id:"{t} belum sampai {dc}. Hampir, lempar lagi?"},
     rolled:{en:"You rolled {d}. Now add your bonus.",id:"Dadumu {d}. Sekarang tambah bonusmu."},

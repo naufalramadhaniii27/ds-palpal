@@ -183,3 +183,17 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Hasil: buka karakter 1, damage 2, heal 2, Long Rest 3 (menu, pilih, geser), Short Rest buka 2, empat tab 1 masing-masing. Semua lulus dan di bawah anggaran.
 - Bug nyata ditemukan robot: `<ul class="lrn">` di dialog rest memakai kelas yang sama dengan lapisan Learn (`.lrn`: fixed, inset 0, z-index 58, opacity 0). Daftar "After this rest you can also" tidak tampil dan menutupi penggeser Long Rest, jadi Long Rest tidak bisa diambil di layar sempit untuk karakter dengan catatan (contoh Weapon Mastery). Perbaikan: kelas diganti `rest-notes` (JS dan CSS). Robot sekarang lulus.
 - Belum dikerjakan: 10 tugas lengkap (cast spell, kondisi, tambah item, dan lain-lain), jalur buntu, perbandingan terukur dengan D&D Beyond.
+
+## Rilis 0.0.12 (build 114): art Codex untuk Learn (2026-11-03)
+
+Branch `nilai-98/art-0012`, dari main. Tidak membawa pekerjaan N44.
+
+| Butir | Hasil |
+|---|---|
+| Audit art-batch lawan app | Ikon, potret, emblem subclass dan scene species sudah terpasang. Cek kelayakan (aturan: art Codex hanya untuk entri tanpa gambar 5etools) menemukan 6 ikon baru, sudah dipasang |
+| Art baru untuk layar Learn | 3 scene layar (learn, learn-map, learn-trial) x 2 ukuran, 20 vignette, 6 emblem rank, 16 ikon konsep. Total 2,1 MB AVIF. Alat: `tools/art_learn.py` (bisa dijalankan ulang) |
+| Pemasangan di UI | Hoot berganti pose (welcome di peta, explain di langkah dan forge, think di pertanyaan, cheer di layar selesai). Peta Learn punya latar scene dan emblem rank (Novice, Apprentice, Adventurer, Hero menurut kemajuan inti). Layar selesai memakai scene learn dan learn-trial |
+| Versi | APP_VER 114, label 0.0.12, tanggal 2026-11-03, entri What's new baru |
+| Belum dipasang di UI | 14 scene environment, 11 emblem species, 16 ikon konsep Learn, vignette Sela dan 12 vignette konsep, emblem build-complete dan play-complete, 1 creature (giant-fly). Semuanya sudah ada di antrean Codex tetapi belum punya titik pasang. Ikon konsep dan vignette tersimpan di img/ dan manifest |
+
+Uji (390x844 dan 1250x850): version_label 9/0, learn_a11y ok (axe 0 pelanggaran), learn_flow ok, scenarios 24/0, flow_home_sheet 16/0, tidy 14/0, class_art 0 gagal. `vignettes` gagal 3 sampai 4 cek (roll natural 20 dan 1) juga di main tanpa perubahan ini. Tes itu tidak ada di CI. Penyebab belum dicari.
