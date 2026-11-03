@@ -48,18 +48,18 @@ function cls14Feats(){if(!R14())return;
 /* v95: what multiclassing gives, 2014 Player's Handbook (Multiclassing, Proficiencies table) and Tasha's for the Artificer */
 let MCG14={Barbarian:{armor:"Shields",weapons:"Simple, Martial"},Bard:{armor:"Light",sk:1,skFrom:"any",tools:"One Musical Instrument",toolPick:{n:1,cats:["music"]}},Cleric:{armor:"Light, Medium, Shields"},Druid:{armor:"Light, Medium, Shields"},Fighter:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Monk:{weapons:"Simple, Shortsword"},Paladin:{armor:"Light, Medium, Shields",weapons:"Simple, Martial"},Ranger:{armor:"Light, Medium, Shields",weapons:"Simple, Martial",sk:1},Rogue:{armor:"Light",sk:1,tools:"Thieves' Tools"},Sorcerer:{},Warlock:{armor:"Light",weapons:"Simple"},Wizard:{},Artificer:{armor:"Light, Medium, Shields",tools:"Thieves' Tools, Tinker's Tools"}}, MCG14S=null;
 function mcg14(on){if(MCG14S){Object.keys(MCG14S).forEach((k) =>{if(MCG14S[k]===null)delete MC_GRANT[k];else MC_GRANT[k]=MCG14S[k]});MCG14S=null}
- if(!on)return;MCG14S={};Object.keys(MCG14).forEach((k) =>{MCG14S[k]=MC_GRANT[k]||null;MC_GRANT[k]=JSON.parse(JSON.stringify(MCG14[k]))})}
+ if(!on)return;MCG14S={};Object.keys(MCG14).forEach((k) =>{MCG14S[k]=MC_GRANT[k]||null;MC_GRANT[k]=structuredClone(MCG14[k])})}
 function cls14Restore(){mcg14(false);if(CLASSES.Artificer&&CLASSES.Artificer.a14)delete CLASSES.Artificer;Object.keys(BASE14).forEach((cn) =>{const c=CLASSES[cn],o=BASE14[cn];if(!c)return;KEYS14.forEach((k) =>{if(o[k]===undefined)delete c[k];else c[k]=o[k]})});BASE14={};Object.keys(CF14SAVED).forEach((k) =>{if(CF14SAVED[k]===undefined)delete CF_FULL[k];else CF_FULL[k]=CF14SAVED[k]});CF14SAVED={}}
 export function cls14Inject(n,o){const all=Object.keys(CLASSES).map((k) =>{return [k,CLASSES[k]]});all.push([n,o]);all.sort((a,b) =>{return a[0]<b[0]?-1:1});Object.keys(CLASSES).forEach((k) =>{delete CLASSES[k]});all.forEach((r) =>{CLASSES[r[0]]=r[1]})}
 export function cls14Apply(){cls14Restore();cls14Tabs(R14());__set_SRC(R14()?"PHB-2014":"PHB-2024");if(!R14())return;mcg14(true);cls14Feats();
- const ad=CLS14.Artificer;if(ad&&ad.base){if(B.cls==="Artificer"||(B.mc||[]).some((m) =>{return m.cls==="Artificer"}))B.src.tce=true;if(B.src&&B.src.tce&&!CLASSES.Artificer){const ao=Object.assign({},ad.base);ao.subs=JSON.parse(JSON.stringify(ad.subs||{}));ao.pickSub=JSON.parse(JSON.stringify(ad.pickSub||{}));cls14Inject("Artificer",ao)}}/* v90: the 2014 Artificer comes from Tasha's Cauldron of Everything */
+ const ad=CLS14.Artificer;if(ad&&ad.base){if(B.cls==="Artificer"||(B.mc||[]).some((m) =>{return m.cls==="Artificer"}))B.src.tce=true;if(B.src&&B.src.tce&&!CLASSES.Artificer){const ao=Object.assign({},ad.base);ao.subs=structuredClone(ad.subs||{});ao.pickSub=structuredClone(ad.pickSub||{});cls14Inject("Artificer",ao)}}/* v90: the 2014 Artificer comes from Tasha's Cauldron of Everything */
 let b0=null;try{b0=JSON.parse(__R.BASE.subs)}catch(e){b0={}}
  const xs={};(window.WXS||[]).forEach((x) =>{xs[x.cls+"|"+x.name]=x});
  Object.keys(CLASSES).forEach((cn) =>{const c=CLASSES[cn],d=CLS14[cn];
   if(d){const o=BASE14[cn]={};KEYS14.forEach((k) =>{o[k]=c[k]});
    const keep=(c.f||[]).filter((x) =>{return x[3]&&x[3].hb}),names={};d.f.forEach((x) =>{names[x[1]]=1});
    c.f=d.f.map((x) =>{return x.slice()}).concat(keep.filter((x) =>{return !names[x[1]]})).sort((x,y) =>{return x[0]-y[0]});
-   KEYS14.forEach((k) =>{if(d[k]!==undefined)c[k]=JSON.parse(JSON.stringify(d[k]));else if(k==="pick"||k==="asiX"||k==="fs")delete c[k]});
+   KEYS14.forEach((k) =>{if(d[k]!==undefined)c[k]=structuredClone(d[k]);else if(k==="pick"||k==="asiX"||k==="fs")delete c[k]});
    Object.keys(CF_FULL).forEach((k) =>{if(k.indexOf(cn+"|")===0&&CF14SAVED[k]===undefined)CF14SAVED[k]=CF_FULL[k]});
    Object.keys(CF14SAVED).forEach((k) =>{if(k.indexOf(cn+"|")===0)delete CF_FULL[k]});
    Object.keys(d.full||{}).forEach((n) =>{const k=cn+"|"+n;if(!(k in CF14SAVED))CF14SAVED[k]=CF_FULL[k];CF_FULL[k]=d.full[n]})}

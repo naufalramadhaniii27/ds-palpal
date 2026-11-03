@@ -59,7 +59,7 @@ export function toSheet(){
  if(sp&&sp.natAc&&!custom)acC.push({k:"nat",ac:{base:sp.natAc.base,baseSrc:"Natural Armor ("+B.species+", "+(sp.hb||SRC)+")",dex:"",bonus:sp.natAc.ab?[{s:ABN[sp.natAc.ab]+" modifier (Natural Armor)",v:mod(a.sc[sp.natAc.ab])}]:[]}});/* v36 p21 */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.unarmoredAC)acC.push({k:"ft"+f.n,ac:{base:F.unarmoredAC,baseSrc:f.n+" ("+f.s+")",dex:"full",bonus:[]}})});/* v69 */
  acC.push({k:"none",ac:{base:10,baseSrc:"Unarmored",dex:"full",bonus:[]}});const dmA=mod(a.sc.DEX);ACM=acC.map((x) =>{return {k:x.k,n:x.ac.baseSrc.replace(" ("+SRC+")","").replace("("+SRC+", ","("),v:x.ac.base+(x.ac.dex==="full"?dmA:0)+x.ac.bonus.reduce((t,b) =>{return t+b.v},0)}});
-  const pkA=acC.filter((x) =>{return x.k===B.acMode})[0];C.ac=JSON.parse(JSON.stringify((pkA||acC[0]).ac));if(pkA&&pkA!==acC[0])C.ac.baseSrc+=", chosen in the builder"}
+  const pkA=acC.filter((x) =>{return x.k===B.acMode})[0];C.ac=structuredClone((pkA||acC[0]).ac);if(pkA&&pkA!==acC[0])C.ac.baseSrc+=", chosen in the builder"}
  /* v19 RL42: Robe of the Archmagi with no armor on: base AC 15 + Dex, used when it beats the base from above */
  if(!ar)activeFx().forEach((q) =>{const f=q.fx;if(!f.acBase)return;const cur=C.ac.base+C.ac.bonus.reduce((t,b) =>{return t+b.v},0);if(f.acBase>cur)C.ac={base:f.acBase,baseSrc:q.n+" (no armor)",dex:"full",bonus:[]}});
  activeFx().forEach((q) =>{if(q.fx.ac&&!q.arm&&q.t!=="Armor")C.ac.bonus.push({s:q.n+" (magic item"+(DMAP[q.n][3]?", attuned":"")+")",v:q.fx.ac})});/* M18 */

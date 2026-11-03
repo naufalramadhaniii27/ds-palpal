@@ -1,3 +1,4 @@
+import {fmtInt} from "./lib/fmt.js";
 import {x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {ask,esc,num,toast} from "./05-logic-helpers.js";
@@ -23,7 +24,7 @@ function bsPreOk(k){ if(!k) return true; const fe=featAll().map((x) =>{ return x
 function bsEfa(b){ return b.efa!=null?!!b.efa:(C.cls==="Artificer"||/EFotA/.test(String(C.species||"")+String(C.bg||""))||/Heir$|^Archaeologist$|^Inquisitive$|^House Agent$/.test(String(C.bg||""))); }/* v61: Eberron facilities show when the Bastion says so, or the character is an Eberron one */
 function bsCap(b){ return (b.fac||[]).filter((f) =>{ return f.k==="Barrack"; }).reduce((t,f) =>{ return t+(f.vast?25:12); },0); }
 function bsSel(attr,opts,cur,ph){ return '<select class="bs-sel" '+attr+'>'+(ph?'<option value="">'+esc(ph)+'</option>':'')+opts.map((o) =>{ const v=Array.isArray(o)?o[0]:o, t=Array.isArray(o)?o[1]:o; return '<option value="'+esc(v)+'"'+(String(cur)===String(v)?' selected':'')+'>'+esc(t)+'</option>'; }).join("")+'</select>'; }
-function bsGP(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")+" GP"; }
+function bsGP(n){ return fmtInt(n)+" GP"; }
 let bsAddK="",bsAddB="Bedroom",bsAddS="Cramped",bsEv="",bsNote="",bsLost="";
 export function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: Bastions are a 2024 Dungeon Master's Guide rule */ let b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
   if(!b) return h+'<div class="bs empty-note empty-st xempty">'+ico("ui-castle","es-i")+'<b>No Bastion yet</b><p class="bs-why">A Bastion is a home base that works for you between adventures: special facilities with hirelings who craft, harvest, recruit, research, and trade (DMG 2024, chapter 8). It usually comes at level 5'+(lv<5?'; your character is level '+lv+', so ask your DM first':'')+'.</p><button type="button" class="btn pri press" data-bs="setup">'+ico("ui-castle","ibt")+'Set Up Bastion</button></div>';/* v31 C9 */

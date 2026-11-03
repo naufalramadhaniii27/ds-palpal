@@ -15,7 +15,7 @@ export function rcptNow(){ const o={}; Object.keys(B).forEach((k) =>{ if(!RCPT_K
     const l=/^ab-/.test(k)?ABN[k.slice(3)]+" score":String(b.t||k); o[k]={l:l,v:String(b.total),p:b.parts.map((p) =>{ return [String(p.l),String(p.v)]; })}; });
   return o; }
 /* the receipt of another build (a C from the builder or a backup), worked out with the same derivation and then put back */
-function rcptFor(c){ let C0=C, D0=D, B0=B, out=null; try{ __set_C(JSON.parse(JSON.stringify(c))); __set_B({}); derive(); out=rcptNow(); }catch(e){ out=null; } __set_C(C0); __set_D(D0); __set_B(B0); try{ derive(); }catch(e){} return out; }
+function rcptFor(c){ let C0=C, D0=D, B0=B, out=null; try{ __set_C(structuredClone(c)); __set_B({}); derive(); out=rcptNow(); }catch(e){ out=null; } __set_C(C0); __set_D(D0); __set_B(B0); try{ derive(); }catch(e){} return out; }
 export function rcptDiff(a,b){ const out=[]; if(!a||!b) return out; Object.keys(b).forEach((k) =>{ const x=a[k], y=b[k];
     if(!x){ if(/^(ah-|ad-)/.test(k)) out.push({k:k,l:y.l,from:"",to:y.v,why:["New"]}); return; }
     if(x.v===y.v) return; const why=[], am={}, bm={}; x.p.forEach((p) =>{ am[p[0]]=p[1]; }); y.p.forEach((p) =>{ bm[p[0]]=p[1]; });

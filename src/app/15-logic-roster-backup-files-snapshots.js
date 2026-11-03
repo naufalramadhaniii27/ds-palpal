@@ -1,3 +1,4 @@
+import {copyText} from "./lib/clipboard.js";
 import {LOGO_IMG} from "./01-logic-boot-flags-builder-loader.js";
 import {APP_DATE,APP_LABEL,APP_VER,C,CKEY,FROZEN,KEY,S,SAVE_FAIL,SNKEY,S_RAW,__set_S_RAW,cSaveT,clsLv,fmtAgo,lsGet,lsSave,lsSet,saveT} from "./04-logic-storage.js";
 import {ask,esc,toast} from "./05-logic-helpers.js";
@@ -144,7 +145,7 @@ function bkpOpen(mode){ const old=document.getElementById("bkp"); if(old) old.re
   const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);/* V14-11 */
   if(mode==="info") persistShow();
   let packed=null; if(mode==="out") zPack(txt).then((z) =>{ packed=z; const a=document.getElementById("bkpZ"); if(a) a.value=z; },() =>{ packed=txt; const a=document.getElementById("bkpZ"); if(a) a.value=txt; });
-  const copy=function(t,el){ if(el){ el.select(); } let ok=false; try{ ok=document.execCommand("copy"); }catch(er){} bkMark(); if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(() =>{ toast("Backup text copied"); },() =>{ toast(ok?"Backup text copied":"Select the text and copy it"); }); else toast(ok?"Backup text copied":"Select the text and copy it"); };
+  const copy=function(t,el){ bkMark(); copyText(t,el).then((ok) =>{ toast(ok?"Backup text copied":"Select the text and copy it"); }); };
   w.addEventListener("click",(e) =>{ const b=e.target.closest("[data-bkp]"); if(e.target===w){ w.remove(); return; } if(!b) return; const a=b.getAttribute("data-bkp");
     if(a==="close"){ w.remove(); return; }
     if(a==="goout"||a==="goin"){ w.remove(); bkpOpen(a==="goout"?"out":"in"); return; }
@@ -261,7 +262,7 @@ export function snRestore(id,i){ const o=snGet(), x=(o.chars[id]||[])[i]; if(!x)
     toast("Snapshot restored"); chfOpen(id); const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(); }); }
 function snBack(id){ const r=rSnap(rEnsure()), x=(snGet().chars[id]||[])[0]; if(!x||r.chars[id]) return; const nm=x.name||cOf(x.C).name||"Character";
   ask("Bring back "+nm+" from the snapshot of "+fmtT(x.t)+"?","Bring Back",() =>{ r.chars[id]={name:nm,sub:(cOf(x.C).species||"")+" "+(cOf(x.C).clsLabel||""),B:fixCid(x.B,id),C:x.C,S:x.S,created:x.cr||Date.now(),t:Date.now()}; if(!rSave(r)) return; showHome(); toast(nm+" is back"); }); }
-function chCopy(id){ const r=rSnap(rEnsure()), src=r.chars[id]; if(!src) return; const did=newId(r), cp=JSON.parse(JSON.stringify(src));
+function chCopy(id){ const r=rSnap(rEnsure()), src=r.chars[id]; if(!src) return; const did=newId(r), cp=structuredClone(src);
   try{ const cc=JSON.parse(cp.C); cc.name=(cc.name||"Character")+" (copy)"; cp.C=JSON.stringify(cc); cp.name=cc.name; const bb=JSON.parse(cp.B||"null"); if(bb){ bb.name=cc.name; bb.cid=did; cp.B=JSON.stringify(bb); } }catch(er){}
   cp.created=Date.now(); cp.t=Date.now(); r.chars[did]=cp; if(!rSave(r)) return; const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); const hs=document.querySelector("#homeV .hslots b"); if(hs) hs.textContent=Object.keys(r.chars).length; toast("Copied: "+cp.name); }
 /* RU67: character file */
@@ -301,7 +302,7 @@ function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) return; 
     if(a==="foundry"){ __R.foundryOut(id); return; }/* v27 RU75 */
     if(a==="send"){ __R.qrSendOpen(id); return; }/* v34 item 5 */
     if(a==="text"){ const t=JSON.stringify(chFile(id)); w.querySelector(".bkpt").hidden=false; zPack(t).then((z) =>{ txt=z; },() =>{ txt=t; }).then(() =>{ const ta=document.getElementById("chfTxt"); if(ta){ ta.value=txt; ta.focus(); ta.select(); } }); return; }
-    if(a==="copy"){ const ta=document.getElementById("chfTxt"); ta.select(); try{ document.execCommand("copy"); }catch(er){} if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt||ta.value).then(() =>{ toast("Character text copied"); },() =>{}); else toast("Character text copied"); return; }
+    if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) =>{ toast(ok?"Character text copied":"Select the text and copy it"); }); return; }
     if(a==="snap"&&SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; }
     if(a==="snap"){ const rr=rSnap(rEnsure()), before=(snGet().chars[id]||[]).length; snTake(id,"Taken by hand",rr); toast((snGet().chars[id]||[]).length>before||before>=5?"Snapshot taken":"No changes since the last snapshot"); chfOpen(id); return; } }); }
 /* import: backup or character file, plain or packed */

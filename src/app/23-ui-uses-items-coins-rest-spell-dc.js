@@ -227,7 +227,7 @@ function restHint(){ const hp=num(S.hp==null?D.hpmax:S.hp,0), miss=Math.max(0,D.
   const t=miss&&hl?"You are missing "+miss+" "+hpW(miss)+". You have "+hl+" Hit "+(hl>1?"Dice":"Die")+" left: tap a box below to spend one, then type the number rolled.":miss?"You are missing "+miss+" "+hpW(miss)+", but no Hit Dice are left. A Long Rest restores "+(x14()?"half of them, at least one":"them")+".":"Your Hit Points are full, so you do not need to spend Hit Dice.";
   return '<p class="rhint">'+ico("ui-info","rh-i")+'<span>'+esc(t)+'</span></p>'; }
 let RS0=null, REST_SUM=null;
-function restSnap(){ return {hp:S.hp==null?D.hpmax:S.hp, tmp:num(S.tmp,0), used:JSON.parse(JSON.stringify(S.used||{})), exh:num(S.exh,0), insp:!!S.insp, ds:(S.ds||[0,0]).slice(), mode:Object.keys(S.mode||{})}; }
+function restSnap(){ return {hp:S.hp==null?D.hpmax:S.hp, tmp:num(S.tmp,0), used:structuredClone(S.used||{}), exh:num(S.exh,0), insp:!!S.insp, ds:(S.ds||[0,0]).slice(), mode:Object.keys(S.mode||{})}; }
 function restDiff(a){ const o=[], hp=S.hp==null?D.hpmax:S.hp, MODE={rage:"Rage",sacred:"Sacred Weapon",wings:"Celestial wings",radiance:"Celestial radiance",shroud:"Celestial shroud",wild:"Wild Shape"};
   if(hp!==a.hp) o.push(["Hit Points",a.hp+" to "+hp]); if(a.tmp&&!num(S.tmp,0)) o.push(["Temporary Hit Points",a.tmp+" to 0"]);
   (D.res||[]).forEach((r) =>{ const u0=Math.min(r.max,num(a.used[r.k],0)), u1=used(r.k,r.max); if(u0===u1) return; const n=/^s(\d)$/.exec(r.k)?"Level "+r.k.slice(1)+" Spell Slots":r.k==="pact"?"Pact Magic slots":r.n;

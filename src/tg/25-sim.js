@@ -26,7 +26,7 @@ function pilot(st,id){ const cmds=[];
     if(!(a2&&go({t:"attack",target:tg.id,act:a2.n}))){ if(spell) go({t:"cast",sp:spell.n,targets:[tg.id]}); else if(save&&TGE.udist(me(),st.units[tg.id])<=30) go({t:"save",act:save.n,targets:[tg.id]}); else go({t:"dodge"}); } }
   if(!st.over) go({t:"end"}); return st; }
 /* one fight to the end (at most 40 rounds). Returns the result and the hero's Hit Points left */
-function fight(units,seed,w,h){ let st=TGE.step(TGE.create({seed:seed,w:w||14,h:h||10,units:JSON.parse(JSON.stringify(units))}),{t:"start"}), g=0;
+function fight(units,seed,w,h){ let st=TGE.step(TGE.create({seed:seed,w:w||14,h:h||10,units:structuredClone(units)}),{t:"start"}), g=0;
   while(!st.over&&st.round<=40&&g++<3000){ const id=TGE.now(st), before=st.n; st=pilot(st,id); if(st.n===before) st=TGE.step(st,{t:"end"}); }
   const pc=st.units.pc; return {won:st.over==="won",rounds:st.round,hp:pc?pc.hp:0,max:pc?pc.max:1}; }
 /* n fights of one hero against the same group, seeds seed0..seed0+n-1. Runs in slices so the screen stays usable; onDone gets the totals */

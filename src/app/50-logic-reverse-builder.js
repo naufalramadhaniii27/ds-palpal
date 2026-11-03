@@ -34,9 +34,9 @@ function rbOrder(goals,c){ const w={}, add=function(k,v){ w[k]=(w[k]||0)+v; };
 /* the numbers of one try, from the real derivation */
 function rbEval(nb,goals,opts,bat){ let c2=null, t0=performance.now(); try{ c2=bat?bat.one(nb):window.__bldSheetFor(nb); }catch(e){ return null; } const t1=performance.now(); RB.st.bld+=t1-t0; if(!c2||!c2.abilities) return null;
   const keepC=C, keepD=D, keepB=B, keepCU=CU0, o={};
-  try{ __set_C(c2); derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach((s,i) =>{ o.sk[s.n]=D.skill[i]; }); o.sv=JSON.parse(JSON.stringify(D.save||{}));
+  try{ __set_C(c2); derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach((s,i) =>{ o.sk[s.n]=D.skill[i]; }); o.sv=structuredClone(D.save||{});
     o.atk=null; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) o.atk=o.atk==null?a.hit:Math.max(o.atk,a.hit); });
-    o.mod=JSON.parse(JSON.stringify(D.mod)); o.score=JSON.parse(JSON.stringify(D.score)); o.armorP=String((c2.profs||{}).armor||"");
+    o.mod=structuredClone(D.mod); o.score=structuredClone(D.score); o.armorP=String((c2.profs||{}).armor||"");
     o.acBonus=((c2.ac||{}).bonus||[]).reduce((a,b) =>{ return a+(+b.v||0); },0); o.acNow=String((c2.ac||{}).baseSrc||""); }
   finally{ __set_C(keepC); __set_D(keepD); __set_B(keepB); __set_CU0(keepCU); }
   /* other armor: base + Dexterity (all, up to +2, or none) + Shield 2 + the bonuses the build already has. Heavy armor needs its Strength */
@@ -54,7 +54,7 @@ function rbTries(opts,goals,c){ const b0=opts.b, order=rbOrder(goals,c), out=[];
     const modes=opts.r14?[{bgMode:b0.bgMode||"111"}]:[{bgMode:"21",bg2:pref[0],bg1:pref[1]},{bgMode:"111"}];
     sps.forEach((sp) =>{ modes.forEach((m) =>{ out.push({species:sp,bg:bg,m:m}); }); }); });
   return {list:out,order:order}; }
-function rbBuild(b0,t,order){ const nb=JSON.parse(JSON.stringify(b0)); nb.species=t.species; nb.bg=t.bg; nb.bgMode=t.m.bgMode; nb.bg2=t.m.bg2||""; nb.bg1=t.m.bg1||"";
+function rbBuild(b0,t,order){ const nb=structuredClone(b0); nb.species=t.species; nb.bg=t.bg; nb.bgMode=t.m.bgMode; nb.bg2=t.m.bg2||""; nb.bg1=t.m.bg1||"";
   const base={}, arr={}; order.forEach((k,i) =>{ base[k]=RB_ARR[i]; arr[k]=String(RB_ARR[i]); }); nb.base=base; nb.arr=arr; nb.method="array";/* the Standard Array, as the builder stores it */ if(nb.unset) nb.unset=nb.unset.filter((x) =>{ return x!=="species"&&x!=="bg"&&x!=="abil"; }); return nb; }
 function rbDiff(b0,nb,o){ const d=[]; if(nb.species!==b0.species) d.push("Species "+nb.species); if(nb.bg!==b0.bg) d.push("Background "+nb.bg);
   if(nb.bgMode==="21") d.push("+2 "+nb.bg2+", +1 "+nb.bg1); else if(nb.bgMode!==b0.bgMode) d.push("+1 to each background ability");
@@ -79,7 +79,7 @@ function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBo
 function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' near')+'"><ul>'+(r.diff.length?r.diff.map((x) =>{ return '<li>'+esc(x)+'</li>'; }).join(""):'<li>Your build already does it</li>')+'</ul><p class="rb-v">'+g.map((q,j) =>{ const m=r.m[j]; return '<span class="'+(m.ok?'ok':'no')+'">'+esc(q.l)+' '+(m.v==null?'?':(q.k==="ac"||q.k==="hp"?m.v:sg(m.v)))+'</span>'; }).join("")+'</p>'+'<p class="rb-acts">'+(r.diff.length?'<button type="button" class="btn press" data-rbuse="'+i+'">Use this build</button>':'')+'<button type="button" class="btn press" data-rbduel="'+i+'">Test in fights</button></p><p class="bk-f rb-duel" aria-live="polite" hidden></p></div>'; }
 /* N22 build duel: 100 fights of this build and of the current one against the same group (src/tg/25-sim.js, window.__tgDuel).
    The build is derived on a copy, nothing is saved. The current build is fought once per search and kept */
-function rbFinal(r){ const nb=JSON.parse(JSON.stringify(r.nb)); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
+function rbFinal(r){ const nb=structuredClone(r.nb); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
 function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
 /* M12: scheduler.postTask at user-visible priority when the browser has it, else a timer. scheduler.yield() was tried: its continuations ran five slices in one frame (100 ms) and the page did not paint between them */
 const rbYield=(f) =>{ if(window.scheduler&&typeof window.scheduler.postTask==="function") window.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };

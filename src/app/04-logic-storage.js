@@ -1,9 +1,10 @@
+import { fmtAgo } from "./lib/fmt.js";
 import {DEFAULT} from "./02-data-default-character.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"C",{get:function(){return C;},set:function(v){C=v;},configurable:true});
 /* ================= STORAGE ================= */
 export function clsLv(){ return C.clsLabel||(C.cls+" "+__R.D.level); }
-export function clone(o){ return JSON.parse(JSON.stringify(o)); }
+export function clone(o){ return structuredClone(o); }
 export var CKEY = "yudhi-kelapa-build-v3", KEY = "yudhi-kelapa-sheet-v1";
 /* v18 RU78: data that cannot be read is listed in BAD. The app then shows the recovery screen and writes nothing, instead of replacing it with the default sheet */
 export var BAD=[];
@@ -43,7 +44,7 @@ export function saveNow(){ const cur=lsGet(KEY);
 let SN_AUTO_T=0, SN_HOUR=36e5, SN_T0=Date.now();
 function snAutoSoon(){ const n=Date.now(); if(FROZEN||n-SN_AUTO_T<6e4) return; SN_AUTO_T=n; setTimeout(snAuto,0); }
 function snAuto(){ try{ const r=__R.rGet(), id=r&&r.active; if(!id||(__R.MYID&&id!==__R.MYID)) return; const L=__R.snGet().chars[id]||[]; if(Date.now()-(L.length?Math.max(L[0].t,0):SN_T0)<SN_HOUR) return; __R.snTake(id,"Automatic copy",r);/* the first copy after an hour of play, then one an hour */ }catch(e){} }
-export function fmtAgo(t){ const s=Math.max(0,Math.round((Date.now()-t)/1000)), m=Math.round(s/60), h=Math.round(s/3600), d=Math.round(s/86400); return s<60?"just now":m<60?m+" min ago":h<24?h+" hour"+(h>1?"s":"")+" ago":d+" day"+(d>1?"s":"")+" ago"; }
+export { fmtAgo };
 export function snSetH(){ const id=__R.MYID||(__R.rGet()||{}).active, L=(__R.snGet().chars[id]||[]);
   return '<h3 class="set-h" data-ico="1">Backup History</h3><p class="info-d">Up to 5 copies of this character stay on this device: one after each hour of play, one a day, and one before Apply from the builder, Restore, and Open Character. Restore goes back to that point. The character as it is now is kept as a copy first, so you can return.</p>'+
    (__R.SN_BAD?'<p class="caution">The backup history on this device is damaged, so new copies are not saved. Back Up your characters to keep a safe copy.</p>':'')+

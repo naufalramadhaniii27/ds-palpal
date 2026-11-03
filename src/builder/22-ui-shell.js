@@ -1,3 +1,4 @@
+import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,attMax,un,unDone} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
@@ -132,7 +133,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.cat){__set_dbCat(d.cat);__set_dbQ("");render();return}
  if(t.id==="prev"||t.id==="next"){const ix=STEPS.map((s) =>{return s[0]}).indexOf(step)+(t.id==="next"?1:-1);if(STEPS[ix])go(STEPS[ix][0]);return}
  if(t.id==="expBtn2"){__R.toSheetApply(true);return}
- if(t.id==="expCopy"){const ta=$("#expTxt");ta.select();let ok=false;try{ok=document.execCommand("copy")}catch(er){}if(navigator.clipboard)navigator.clipboard.writeText(ta.value).then(() =>{toast("Copied")},() =>{toast(ok?"Copied":"Select the text and copy it")});else toast(ok?"Copied":"Select the text and copy it");return}
+ if(t.id==="expCopy"){const ta=$("#expTxt");copyText(ta.value,ta).then((ok) =>{toast(ok?"Copied":"Select the text and copy it")});return}
  if(t.id==="expClose"){$("#exp").hidden=true;return}
  if(t.id==="newBtn2"){/* RL40: a new character in My Characters. The open character keeps its build */if(window.__sheetNew){ask("Start a new character? "+B.name+" stays in My Characters.","Start new",() =>{window.__sheetNew()});return}ask("Start a new character? This clears the current build.","Start new",() =>{__set_B(NEWB());save();go("class")});return}
  if(t.id==="bakBtn"){restoreBak();return}});

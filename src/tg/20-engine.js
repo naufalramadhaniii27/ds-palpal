@@ -38,13 +38,13 @@ function fromSheet(p,id,pos){ const sv={}; ABL.forEach((k) =>{ sv[k]=p.saves&&p.
     pos:pos?pos.slice():[0,0],res:lc(p.res),imm:lc(p.imm),vul:lc(p.vul),ci:"",acts:(p.attacks||[]).map((a) =>{ return Object.assign({k:"atk",mr:a.rng?(a.reach?"mr":"r"):"m"},a); }),
     bonus:[],reacts:[],cond:{},used:{},dead:false,down:false,ds:{s:0,f:0},turn:fresh(),
     /* TG5 spells of tier B: {n, l, k "atk"|"save"|"heal"|"auto", time "a"|"b", c concentration, rng feet, sv, half, n rays or darts, by:{slot level:[[avg,dice,type],...]}, heal:{lvl:dice}} */
-    spells:(p.spells||[]).map((x) =>{ return JSON.parse(JSON.stringify(x)); }),slots:(p.slots||[]).slice(),satk:p.satk||0,sdc:p.sdc||10}; }
+    spells:(p.spells||[]).map((x) =>{ return structuredClone(x); }),slots:(p.slots||[]).slice(),satk:p.satk||0,sdc:p.sdc||10}; }
 function fresh(){ return {a:1,b:1,r:1,move:0,dash:0,dis:0,dodge:0,ma:null,oaLeft:[],leveled:0}; }
 
 /* ---------- the fight ---------- */
 function create(o){ const st={v:1,seed:o.seed>>>0,rng:o.seed>>>0,w:o.w||16,h:o.h||12,block:o.block||{},rough:o.rough||{},units:{},order:[],cur:-1,round:0,log:[],over:"",n:0};
   (o.units||[]).forEach((u) =>{ st.units[u.id]=u; }); return st; }
-function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function clone(o){ return structuredClone(o); }
 function U(st,id){ const u=st.units[id]; if(!u) throw new Error("no unit "+id); return u; }
 function now(st){ return st.order[st.cur]; }
 function alive(u){ return !u.dead; }

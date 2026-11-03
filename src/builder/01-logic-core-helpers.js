@@ -7,7 +7,7 @@ export function sg(n){return (n>=0?"+":"\u2212")+Math.abs(n)}
 export function pbOf(l){return 2+Math.floor((l-1)/4)}
 /* average of a damage die "1d8" (a flat "1" counts as 1). Used to pick the larger of two dice (B3, M7 and m2) */
 export function dieAvg(d){const m=/^(\d+)d(\d+)$/.exec(d||"");return m?(+m[1])*(+m[2]+1)/2:(+d||0)}
-export function clone(o){return JSON.parse(JSON.stringify(o))}
+export function clone(o){return structuredClone(o)}
 export function toast(m){const t=$("#btoast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(() =>{t.classList.remove("on")},2200)}
 export var ABK=["STR","DEX","CON","INT","WIS","CHA"],ABN={STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"};
 export var SRC="PHB-2024";

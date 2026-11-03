@@ -28,10 +28,27 @@ def serve():
         def log_message(self, *a): pass
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=ROOT)); threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv, "http://127.0.0.1:%d/index.html" % port
+AX = None  # N42: tests/a11y_tree.py sets a dict here, shoot() then also records the accessibility tree of the screen
+AX_ROLES = {"button", "link", "textbox", "checkbox", "radio", "tab", "switch", "combobox", "slider", "menuitem", "searchbox", "spinbutton", "option", "treeitem", "menuitemcheckbox", "menuitemradio", "listbox"}
+async def axtree(pg):
+    c = await pg.context.new_cdp_session(pg)
+    try:
+        r = await c.send("Accessibility.getFullAXTree")
+    finally:
+        await c.detach()
+    out = []
+    for n in r["nodes"]:
+        if n.get("ignored"): continue
+        role = (n.get("role") or {}).get("value", "")
+        if role not in AX_ROLES: continue
+        st = sorted("%s=%s" % (p["name"], p["value"].get("value")) for p in n.get("properties", []) if p["name"] in ("expanded", "selected", "checked", "disabled", "pressed", "required", "invalid"))
+        out.append([role, (n.get("name") or {}).get("value", ""), st])
+    return out
 async def shoot(pg, name, res):
     await pg.wait_for_timeout(700)
     if TRACE: await pg.evaluate("n=>window.__traceMark&&window.__traceMark(n)", name)
     res[name] = await pg.evaluate(SNAP, PROPS)
+    if AX is not None: AX[name] = await axtree(pg)
 TRACE = os.environ.get("CS_TRACE")  # N32: tests/trace_screens.py sets it; the run also records which part makes which global and which screen reads it
 TR = []
 VARIANTS = "--variants" in args

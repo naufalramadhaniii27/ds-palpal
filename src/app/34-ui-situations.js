@@ -1,3 +1,4 @@
+import {fmtInt} from "./lib/fmt.js";
 import {ABK} from "./02-data-default-character.js";
 import {x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
@@ -244,7 +245,7 @@ function modeXdRows(){ return ((D.cf||{}).xd||[]).map((x) =>{ return '<div class
 
 /* ---------- RU63 XP or milestones, RU52 Level Up ---------- */
 const XPT=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
-function fmtN(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
+function fmtN(n){ return fmtInt(n); }
 function xpH(){ const lv=D.level, ms=S.lvMode==="milestone", xp=Math.max(0,Math.floor(num(S.xp,0))), next=lv<20?XPT[lv]:null, prev=XPT[lv-1]||0, ready=!ms&&next!=null&&xp>=next, pct=next?clamp((xp-prev)/(next-prev)*100,0,100):100;
   return '<div class="xph"><b>Level '+lv+'</b>'+(ms?'<span>Milestones</span>':'<span>XP '+fmtN(xp)+(next!=null?' / '+fmtN(next):'')+'</span>')+'</div>'+
    (ms?'':'<div class="xpbar" role="progressbar" aria-label="Experience toward the next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(pct)+'"><i style="transform:scaleX('+(pct/100)+')"></i></div>')+

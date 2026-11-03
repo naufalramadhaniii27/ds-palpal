@@ -99,10 +99,10 @@ function editInput(el){
   /* RU31: Worn ticked in the Edit form on armor or a Shield of a hand-filled sheet: AC as the Inventory checkbox (RU29) */
   let wm=/^inv\.(\d+)\.eq$/.exec(path), wi=wm&&(C.inv||[])[+wm[1]], wfx=null;
   if(wi&&wi.att&&v&&!eqOn(wi)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); rerenderEditor(); return; }/* M18 */
-  if(wi&&!wi.key&&!eqLinked(wi)&&!!v!==eqOn(wi)&&window.__bldArmor){ try{ wfx=window.__bldArmor({C:JSON.parse(JSON.stringify(C)),lang:S.lang},wi.n,!!v); }catch(er){ wfx=null; } }
+  if(wi&&!wi.key&&!eqLinked(wi)&&!!v!==eqOn(wi)&&window.__bldArmor){ try{ wfx=window.__bldArmor({C:structuredClone(C),lang:S.lang},wi.n,!!v); }catch(er){ wfx=null; } }
   /* V14-2: worn armor or Shield renamed in the Edit form: its AC bonus is taken off first (as unticking it), the item is no longer worn */
   let rn=/^inv\.(\d+)\.n$/.exec(path), ri=rn&&(C.inv||[])[+rn[1]], rOld=ri&&ri.n, rfx=null;
-  if(ri&&!ri.key&&rOld!==v&&eqOn(ri)&&!eqLinked(ri)&&window.__bldArmor){ try{ rfx=window.__bldArmor({C:JSON.parse(JSON.stringify(C)),lang:S.lang},rOld,false); }catch(er){ rfx=null; } }
+  if(ri&&!ri.key&&rOld!==v&&eqOn(ri)&&!eqLinked(ri)&&window.__bldArmor){ try{ rfx=window.__bldArmor({C:structuredClone(C),lang:S.lang},rOld,false); }catch(er){ rfx=null; } }
   setPath(C,path,v);
   /* RU31: an item renamed in the Edit form is looked up again in the item database (type, checkbox, details). Unknown names stay Gear */
   const nm=/^inv\.(\d+)\.n$/.exec(path), ni=nm&&(C.inv||[])[+nm[1]]; if(ni&&!ni.key){ ["type","html","equippable","att","gear","cost"].forEach((f) =>{ delete ni[f]; }); const nmt=window.__itemMeta&&window.__itemMeta(v); if(nmt&&nmt.w) ni.w=nmt.w; }/* V14-9: weight from the tables */

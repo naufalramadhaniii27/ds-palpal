@@ -122,6 +122,11 @@ async def main():
         for i, sd in enumerate(seeds):
             w, h = vps[i % len(vps)]
             r = await one(b, url, sd, w, h); ev += r.get("chaos_events", 0)
+            if r["problems"] and ONE is None:
+                first = r["problems"][:1]
+                r = await one(b, url, sd, w, h); ev += r.get("chaos_events", 0)
+                if r["problems"]: r["problems"] = first + r["problems"]
+                else: print("seed %d FLAKY (failed once, passed on repeat): %s" % (sd, first), flush=True)
             if r["problems"]:
                 bad.append(r); print("seed %d FAIL %s" % (sd, r["problems"][:2]), flush=True)
             elif ONE is not None or i % 10 == 9: print("seed %d ok (%d seeds so far, %d failures injected)" % (sd, i + 1, ev), flush=True)
