@@ -198,6 +198,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/wotc14-gear-2014.js | data | 116.164 |
 | data/wotc15-class-options-2014.js | data | 24.689 |
 | data/hbpack-builtin-homebrew.js | data | 49.671 |
+| data/fx-A-class-species.js | data (fx, registry GX) | 4.271 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -360,7 +361,7 @@ Tujuan: tidak ada fitur yang punya angka atau pilihan di teks tetapi tidak dihit
 #### fx schema
 Syarat entri: `n` nama (default nama sumber), `l` level minimum (level class untuk cls dan sub, level karakter untuk sisanya), `when:{key,val}` aktif bila pilihan `key` berisi `val`, `cond` kondisi armor.
 Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci kemampuan (`"CON"` = modifier). `min` menjadi batas bawah hasil.
-`cond`: `noHeavy` (tanpa Heavy armor), `noArmor` (tanpa armor dan tanpa Shield), `noBody` (tanpa armor, Shield boleh), `noShield`, `shield`, `armor`.
+`cond`: `noHeavy` (tanpa Heavy armor), `noArmor` (tanpa armor dan tanpa Shield), `noBody` (tanpa armor, Shield boleh), `noShield`, `shield`, `armor`, `mwArmor` (armor yang dipakai bernama "<Armor>, Masterwork"; `baseOf` mengenali nama itu untuk armor, p = 0).
 
 | Field | Arti | Contoh |
 |---|---|---|
@@ -369,6 +370,8 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `acBase:[N,"full",ab]` | AC dasar tanpa armor: N, plus Dex bila "full", plus modifier ab. Dipakai bila lebih tinggi | `{acBase:[13,"full"]}` |
 | `acDexAb:ab` | sama dengan `acBase:[10,"full",ab]` (Unarmored Defense) | `{acDexAb:"CON"}` |
 | `acMw:N` | +N AC bila armor yang dipakai bernama Masterwork | `{acMw:1}` |
+| `acNoDex:true` | modifier Dex tidak ditambah ke AC (C.ac.dex menjadi kosong). Ditambah batch A | Ankylier Osteoderms |
+| `acArmAb:"WIS"` | saat memakai armor, modifier kemampuan itu ditambah ke AC sebagai ganti Dex (butuh `cond:"armor"`). Ditambah batch A | Martyr Anointed Armor |
 | `shAc:[[lvl,extra]]` | AC tambahan saat memegang Shield | Warden Tower Shield |
 | `saveBonus` | bonus ke semua saving throw | `{saveBonus:"halfPb"}` |
 | `saveFrom:key` | pilihan `key` memberi proficiency save | Warden Stalwart Spirit |

@@ -1,59 +1,26 @@
 {
-"by_design": {},
+"by_design": {
+"class|Artificer|Advanced Artifice": "Batch A triage: Batas attunement 5 sudah dihitung (attMax naik di Artificer 14, 03-logic-magic-item-effects.js). Sisanya aturan rest (regain Flash of Genius di Short Rest), tidak ada angka statis.",
+"class|Barbarian|Brutal Strike": "Batch A triage: Efek dipilih per serangan saat bermain, bersyarat Reckless Attack. Tidak ada angka statis di sheet.",
+"class|Captain|Cohort": "Batch A triage: Pilihan stat block cohort dari deskripsi class, tidak mengubah angka sheet.",
+"class|Craftsman|Armor Enchantment": "Batch A triage: Dipilih ulang tiap Long Rest (Resistance, Winged, dst). Perlu toggle di sheet, bukan pilihan builder.",
+"class|Craftsman|Customize Armor": "Batch A triage: Dipilih ulang tiap Long Rest dan hanya berlaku pada armor Masterwork. Perlu toggle di sheet.",
+"class|Craftsman|Magnum Opus": "Batch A triage: Pemberian satu item Very Rare atau Legendary pilihan pemain, sekali seumur hidup. Ditambah lewat inventaris.",
+"class|Dancer|Dance Styles": "Batch A triage: Gaya dipilih saat Dance dimulai dan bisa diganti Bonus Action. Dance Die dipakai saat bermain.",
+"class|Dancer|Freestyle": "Batch A triage: Dua gaya sekaligus saat Dance dimulai, pilihan per Dance.",
+"class|Investigator|Exploit Weakness": "Batch A triage: Sekali per giliran saat serangan mengenai, dipilih saat bermain.",
+"class|Rogue|Thieves' Cant": "Batch A triage, not a real gap: Builder sudah punya pilihan langRogue (1 bahasa) pada Rogue. Pindai salah menandai.",
+"class|Summoner|Shared Spellcasting": "Batch A triage: Eidolon merapal mantra memakai slot pemain, aturan bermain.",
+"species|Kalashtar|Severed from Dreams": "Batch A triage: Proficiency skill dipilih ulang tiap Long Rest, perlu toggle sheet.",
+"species|Lorwyn Changeling|Unpredictable Movement": "Batch A triage: Gerak saat Initiative, aturan bermain.",
+"species|Shifter (Beasthide)|Shifting Feature": "Batch A triage: Hanya saat shifted (aksi). Perlu toggle sheet. Spesies 2014 saja.",
+"species|Shifter (Swiftstride)|Shifting Feature": "Batch A triage: Hanya saat shifted. Spesies 2014 saja.",
+"species|Troglodyte|Stench": "Batch A triage: Aura saat bermain (save lawan). AC Natural Armor +1 sudah terhitung.",
+"species|Vampire (Ixalan)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Bukan angka statis. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
+"species|Vampire (Ixalan)|Feast of Blood": "Batch A triage: Efek sementara setelah menghisap. Spesies 2014 saja.",
+"species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja."
+},
 "gaps": {
-"class|Artificer|Advanced Artifice": [
-"uses"
-],
-"class|Barbarian|Brutal Strike": [
-"choice"
-],
-"class|Barbarian|Feral Instinct": [
-"init"
-],
-"class|Captain|Cohort": [
-"choice"
-],
-"class|Craftsman|Armor Enchantment": [
-"speed",
-"resist"
-],
-"class|Craftsman|Customize Armor": [
-"speed"
-],
-"class|Craftsman|Magnum Opus": [
-"choice"
-],
-"class|Craftsman|Masterwork Armor": [
-"ac"
-],
-"class|Craftsman|Spellwrought Armor": [
-"save"
-],
-"class|Dancer|Dance Styles": [
-"choice"
-],
-"class|Dancer|Freestyle": [
-"choice"
-],
-"class|Healer|Expert Physician": [
-"choice"
-],
-"class|Investigator|Expertise": [
-"choice"
-],
-"class|Investigator|Exploit Weakness": [
-"choice"
-],
-"class|Martyr|Armor of Faith": [
-"ac",
-"choice"
-],
-"class|Rogue|Thieves' Cant": [
-"choice"
-],
-"class|Summoner|Shared Spellcasting": [
-"choice"
-],
 "feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": [
 "uses"
 ],
@@ -579,51 +546,6 @@
 ],
 "item|tvss|Sprinting Legs": [
 "speed"
-],
-"species|Ankylier|Osteoderms": [
-"ac"
-],
-"species|Kalashtar|Severed from Dreams": [
-"skill"
-],
-"species|Lorwyn Changeling|Unpredictable Movement": [
-"init"
-],
-"species|Manikin|Electric Heart": [
-"resist"
-],
-"species|Manikin|Living Material": [
-"resist"
-],
-"species|Orc (Dark Matter)|Follow Through": [
-"uses"
-],
-"species|Pluvenn|Pneumatised and Feathered": [
-"resist"
-],
-"species|Ruinbound|Unnatural Resilience": [
-"resist"
-],
-"species|Shifter (Beasthide)|Shifting Feature": [
-"ac"
-],
-"species|Shifter (Swiftstride)|Shifting Feature": [
-"speed"
-],
-"species|Skathári|Gliding Wings": [
-"resist"
-],
-"species|Troglodyte|Stench": [
-"resist"
-],
-"species|Vampire (Ixalan)|Blood Thirst": [
-"hp"
-],
-"species|Vampire (Ixalan)|Feast of Blood": [
-"speed"
-],
-"species|Vampire (Zendikar)|Blood Thirst": [
-"hp"
 ],
 "sub|Alchemist/Mad Bomber|Blast Shield": [
 "choice"

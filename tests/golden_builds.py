@@ -107,6 +107,18 @@ def main():
                 got = D.get(k)
                 if got != v:
                     fails.append(f'{fn}: {k} = {got} expected {v} ({g.get("why","")})')
+            # expectC: checks on the sheet data C. {"path":"ac.bonus","has":{"s":..,"v":..}} (a list holds an item with these fields) or {"path":"ac.dex","eq":""}
+            for c in g.get('expectC', []):
+                n += 1
+                cur = C
+                for part in c['path'].split('.'):
+                    cur = cur.get(part) if isinstance(cur, dict) else None
+                if 'has' in c:
+                    good = isinstance(cur, list) and any(isinstance(x, dict) and all(x.get(a) == b for a, b in c['has'].items()) for x in cur)
+                else:
+                    good = cur == c['eq']
+                if not good:
+                    fails.append(f'{fn}: C.{c["path"]} = {json.dumps(cur)[:160]} expected {json.dumps(c.get("has", c.get("eq")))} ({g.get("why","")})')
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

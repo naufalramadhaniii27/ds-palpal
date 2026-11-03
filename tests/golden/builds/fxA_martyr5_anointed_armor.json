@@ -1,0 +1,73 @@
+{
+ "why": "Martyr 5 (VSS24) Anointed Armor: Scale Mail 14 + Wisdom 3 in place of Dexterity + Shield 2 = 19 (before the fix: Dex capped at +2 gave 18).",
+ "build": {
+  "name": "FxA",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Martyr",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-armorFaith-cls-Martyr": [
+    "Anointed Armor"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Scale Mail",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 19
+ },
+ "expectC": [
+  {
+   "path": "ac.dex",
+   "eq": ""
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "why": "Craftsman 20: armor that is not Masterwork gets neither the AC bonus nor the save bonus. Chain Mail 16 + Shield 2 = 18.",
+ "build": {
+  "name": "FxA",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Craftsman",
+  "sub": "Armigers' Guild",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Chain Mail",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 18
+ },
+ "expectC": [
+  {
+   "path": "saveBonus",
+   "eq": null
+  }
+ ]
+}

@@ -45,7 +45,7 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
 function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")return pbOf(L);if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
-function fxOk(e,ar,ESH){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;return true}
+function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;if(c==="mwArmor")return !!ar&&!!EA&&/, Masterwork/.test(EA);return true}
 function fxWhen(e,pre){if(!e.when)return true;const v=B.ch[pre+e.when.key],a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
  function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre))return;const en=e.n||owner;out.push(Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)}))})}

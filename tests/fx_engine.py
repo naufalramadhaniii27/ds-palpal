@@ -86,6 +86,16 @@ case('spAtk and spDc (Wizard)', {'cls': {'Wizard': [{'n': 'T', 'spAtk': 1, 'spDc
 case('level gate l below level', cls({'n': 'T', 'l': 9, 'hpFlat': 50}), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'applied below l'))
 case('when pick', cls({'n': 'T', 'hpFlat': 4, 'when': {'key': 'zz', 'val': 'x'}}), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 4, 'when pick did not match'), {'ch': {'zz': 'x'}})
 case('when pick not held', cls({'n': 'T', 'hpFlat': 4, 'when': {'key': 'zz', 'val': 'x'}}), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'applied without the pick'))
+
+# batch A fields: cond mwArmor, acNoDex, acArmAb
+MW = {'inv': [{'n': 'Chain Mail, Masterwork', 'q': 1, 'eq': True}]}
+PL = {'inv': [{'n': 'Chain Mail', 'q': 1, 'eq': True}]}
+W16 = {'base': {'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 8, 'WIS': 16, 'CHA': 8}, 'arr': {'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 8, 'WIS': 16, 'CHA': 8}}
+case('cond mwArmor, Masterwork armor worn', cls({'n': 'T', 'ac': [[1, 2]], 'saveBonus': 3, 'cond': 'mwArmor'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2 and has(C1.get('saveBonus') or [], 's', 'T (Fighter 5)'), 'ac %s -> %s, save %s' % (acsum(C0), acsum(C1), C1.get('saveBonus'))), MW)
+case('cond mwArmor, plain armor worn', cls({'n': 'T', 'ac': [[1, 2]], 'saveBonus': 3, 'cond': 'mwArmor'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) and not C1.get('saveBonus'), 'applied to plain armor'), PL)
+case('acNoDex', species({'n': 'T', 'acNoDex': True}), lambda C0, C1, D0, D1: ok(C0['ac'].get('dex') == 'full' and C1['ac'].get('dex') == '' and acsum(C1) == acsum(C0), 'dex %s -> %s' % (C0['ac'].get('dex'), C1['ac'].get('dex'))), NOARM)
+case('acArmAb WIS in armor', species({'n': 'T', 'acArmAb': 'WIS', 'cond': 'armor'}), lambda C0, C1, D0, D1: ok(C1['ac'].get('dex') == '' and acsum(C1) == acsum(C0) + 3 and has(C1['ac']['bonus'], 's', 'Wisdom modifier in place of Dexterity'), json.dumps(C1['ac'])), dict(W16, inv=[{'n': 'Scale Mail', 'q': 1, 'eq': True}]))
+case('acArmAb WIS, no armor does nothing', species({'n': 'T', 'acArmAb': 'WIS', 'cond': 'armor'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) and C1['ac'].get('dex') == C0['ac'].get('dex'), json.dumps(C1['ac'])), dict(W16, **NOARM))
 case('bg entry', {'bg': {'Soldier': [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3 and has(C1['hpBonus'], 's', 'T (Soldier background)'), 'bg entry'))
 case('feat entry', {'feat': {'Alert': [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3 and has(C1['hpBonus'], 's', 'T (Alert feat)'), 'feat entry'), {'ch': {'feat4': {'feat': 'Alert'}}})
 case('sub entry', {'sub': {'Champion': [{'n': 'T', 'hpFlat': 3}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 3 and has(C1['hpBonus'], 's', 'T (Champion 5)'), 'sub entry'), {'sub': 'Champion'})
