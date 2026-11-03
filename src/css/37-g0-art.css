@@ -1,0 +1,36 @@
+/* === Step 5: card art (corners, divider, paper, level badge, app crest, scene wipe). All of it hangs on html.g0-art, set by fx/24 only when Art is on and the files load. Without the class every older rule stays as it was === */
+html[data-corner="wood"]{--g0c-tl:url("img/g0/corner-wood-tl.avif");--g0c-tr:url("img/g0/corner-wood-tr.avif");--g0c-bl:url("img/g0/corner-wood-bl.avif");--g0c-br:url("img/g0/corner-wood-br.avif")}
+html[data-corner="metal"]{--g0c-tl:url("img/g0/corner-metal-tl.avif");--g0c-tr:url("img/g0/corner-metal-tr.avif");--g0c-bl:url("img/g0/corner-metal-bl.avif");--g0c-br:url("img/g0/corner-metal-br.avif")}
+html[data-corner="vine"]{--g0c-tl:url("img/g0/corner-vine-tl.avif");--g0c-tr:url("img/g0/corner-vine-tr.avif");--g0c-bl:url("img/g0/corner-vine-bl.avif");--g0c-br:url("img/g0/corner-vine-br.avif")}
+/* paper fibers: pale on dark panels, dark on light panels. Cool paper goes with the cool palettes, neutral with the rest */
+html[data-paper="cool"]{--g0p:url("img/g0/paper-cool-light.avif")}
+html[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-light.avif")}
+html[data-theme="light"][data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}
+html[data-theme="light"][data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}}
+html.g0-art:root[data-skin="ddb"] :is(#app .vitals,#app .card,#app .ihero){background-image:var(--g0c-tl),var(--g0c-tr),var(--g0c-bl),var(--g0c-br),var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px)!important;
+  background-size:30px auto,30px auto,30px auto,30px auto,256px 256px,100% 100%!important;
+  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0!important;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat!important}
+html.g0-art:root[data-skin="ddb"] #app .idcard{background-image:var(--g0c-tl),var(--g0c-tr),var(--g0c-bl),var(--g0c-br),radial-gradient(120% 80% at 0% 0%,rgba(var(--pl-rgb),.16),transparent 55%),var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px)!important;
+  background-size:34px auto,34px auto,34px auto,34px auto,100% 100%,256px 256px,100% 100%!important;
+  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0,0 0!important;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat!important}
+/* detail sheet: the two top corners and the paper. The bottom edge stays clear because text scrolls under it */
+html.g0-art:root[data-skin="ddb"] #sheet{background-image:var(--g0c-tl),var(--g0c-tr),var(--g0p),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px)!important;
+  background-size:34px auto,34px auto,256px 256px,100% 100%!important;
+  background-position:left 3px top 3px,right 3px top 3px,0 0,0 0!important;background-repeat:no-repeat,no-repeat,repeat,no-repeat!important}
+/* section line: the wooden divider sits on the old gold line, which stays as the long rule behind it */
+html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{height:14px;top:-7px;border-radius:0;opacity:1;background:url("img/g0/divider-wood.avif") center/auto 100% no-repeat,linear-gradient(90deg,transparent,var(--pl-acc),transparent) center/100% 2px no-repeat!important}
+html.g0-art .info-h{position:relative;padding-top:18px}
+html.g0-art .info-h::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:url("img/g0/divider-wood.avif") center/auto 100% no-repeat;pointer-events:none}
+/* level badge on the portrait */
+html.g0-art .mi-crest{clip-path:none;width:46px;height:56px;background:url("img/g0/badge-level.avif") center/contain no-repeat;padding-top:8px;box-sizing:border-box}
+html.g0-art .mi-crest::before{display:none}
+/* app crest: header symbol on a laptop and the Home title */
+html.g0-art #bandSym{background:url("img/g0/crest-app.avif") center/contain no-repeat}
+html.g0-art #bandSym>*{display:none}
+html.g0-art #homeV .hhead h1::before{content:"";display:inline-block;width:1.05em;height:1.05em;vertical-align:-.2em;margin-right:.28em;background:url("img/g0/crest-app.avif") center/contain no-repeat}
+@media (max-width:480px){html.g0-art #homeV .hhead h1{font-size:calc(26px*var(--tz,1))}}
+/* scene change on a phone: the new picture opens along a brush stroke */
+@keyframes g0wipe{from{-webkit-mask-size:6% 100%;mask-size:6% 100%}to{-webkit-mask-size:700% 100%;mask-size:700% 100%}}
+@media (max-width:759px) and (prefers-reduced-motion:no-preference){html.g0-art .cls-art-l.on{-webkit-mask:url("img/g0/wipe-mask.avif") center/6% 100% no-repeat;mask:url("img/g0/wipe-mask.avif") center/6% 100% no-repeat;animation:g0wipe .9s ease-out both}}
+@media print{html.g0-art #bandSym,html.g0-art .mi-crest{background-image:none}}

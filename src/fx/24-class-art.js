@@ -10,7 +10,12 @@
   const PAGE=["","","actions","spells","inventory","features","description","notes","extras"], TAB={"p-spells":"spells","p-inv":"inventory","p-feat":"features","p-desc":"description","p-notes":"notes","p-ext":"extras"};
   function tabId(){ if(PHONE.matches){ const b=D.querySelector("#bnav button.on"); return PAGE[b?+b.getAttribute("data-go"):0]||""; } const t=D.querySelector('#tabs .tab[aria-selected="true"]'); return (t&&TAB[t.getAttribute("data-tab")])||""; }
   function pick(c){ const t=tabId(), x=t&&A.scn&&A.scn.tab&&A.scn.tab[t]; if(x&&x.pc&&x.phone) return {pc:x.pc,ph:x.phone,c:x.c,o:x.o}; const s=A.scene[c]; return s?{pc:s.pc.p,ph:s.phone.p,c:s.c,o:s.o}:null; }
-  function apply(){ let c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); H.classList.toggle("home-art",ls("mi-clsart")!=="off"&&!!(A.g0&&A.g0["home-inn-phone"])); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
+  /* card art (css/37-g0-art.css): the class html.g0-art turns it on. Corner set follows the skin and palette */
+  const COOL={ocean:1,royal:1,slate:1}, VINE={forest:1,grove:1}; let g0ok=false;
+  function g0(){ const on=ls("mi-clsart")!=="off"&&g0ok&&!!(A.g0&&A.g0["corner-wood-tl"]), pal=H.getAttribute("data-pal")||"forest", skin=H.getAttribute("data-skin")||"ddb";
+    H.setAttribute("data-corner",skin==="record"?"wood":VINE[pal]?"vine":COOL[pal]?"metal":"wood"); H.setAttribute("data-paper",COOL[pal]?"cool":"neutral"); H.classList.toggle("g0-art",on); }
+  try{ if(A.g0&&A.g0["corner-wood-tl"]){ const pr=new Image(); pr.onload=function(){ g0ok=true; g0(); }; pr.src=A.g0["corner-wood-tl"]; new MutationObserver(g0).observe(H,{attributes:true,attributeFilter:["data-pal","data-skin"]}); } }catch(er){}
+  function apply(){ let c=H.getAttribute("data-mi-cls")||"", t=null; emb(c); g0(); H.classList.toggle("home-art",ls("mi-clsart")!=="off"&&!!(A.g0&&A.g0["home-inn-phone"])); if(ls("mi-clsart")!=="off"&&!homeOpen()) t=pick(c);
     if(!t){ H.classList.remove("cls-art"); return; }
     H.classList.add("cls-art"); const key=t.pc+"|"+t.ph; if(key===curKey) return; curKey=key;
     const im=new Image(); im.onload=im.onerror=function(){ if(curKey!==key) return; const ls_=layers(), n=on<0?0:1-on, e=ls_[n];
