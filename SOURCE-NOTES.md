@@ -384,6 +384,10 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `spells:[[lvl,"A,B"]]`, `spCls` | spell selalu prepared; `spCls` menentukan kemampuan casting (default class entri, atau species) | `{spells:[[1,"Shield"]]}` |
 | `spAtk`, `spDc` (+ `spCls`) | bonus spell attack dan Spell Save DC | Soulbind Chains |
 | `pick:[{k,t,n,title,from,list,cats,cls}]` | pilihan di builder. `t`: skills, tool, lang, multi, cantrip. Disimpan di `B.ch["gx-"+k+"-"+kind+"-"+sumber]` | `{pick:[{k:"a",t:"skills",n:1,title:"Skill"}]}` |
+| `abUp:[[ab,+N,maks]]` | kenaikan skor tetap, tidak melewati `maks` (default 20). Tampil di sumber skor | `{abUp:[["CON",1,20]]}` |
+| `sense:[[nama,kaki,teks]]` | sense di `C.senses` (dipakai bila lebih besar dari yang sudah ada) | `{sense:[["Blindsight",30,""]]}` |
+
+Perluasan batch C (feat): `pick` bertipe `weapon` (proficiency satu senjata, `wcats` default S dan M), `cantrip` boleh membawa filter `lvl` (level spell, default 0), `school`, `ct` (regex casting time), `nodmg:1` (tanpa damage). Entri feat membaca pick miliknya lewat `when:{key,val}`: pick gx (`gx-k-feat-slot`) atau pick bawaan FEATS (`key-slot`), lewat `fxCh`. `saveFrom` untuk feat memakai jalur yang sama. `spCls:"@asi"` memakai kemampuan yang dinaikkan feat, `spCls:"@abpick"` memakai kemampuan dari pick berkunci `ab`. Baris `LU_X` feat boleh memakai `max:"mod:@asi"` atau `"mod:@ab"`.
 
 Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.

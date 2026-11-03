@@ -23,7 +23,7 @@ export function toSheet(){
  clsParts().forEach((q) =>{const mt=q.mc?", multiclass":"";if(q.cls==="Monk"&&q.lv>=14)ABK.forEach((k) =>{if(!C.saves[k])C.saves[k]=(R14()?"Diamond Soul":"Disciplined Survivor")+" ("+SRC+", Monk 14"+mt+")"});
   if(q.cls==="Ranger"&&subAt("Ranger","Gloom Stalker")>=7){const imc={Intelligence:"INT",Charisma:"CHA"}[chOf("Ranger","p7opt")],im=!wisElse()&&!C.saves.WIS?"WIS":imc&&!C.saves[imc]?imc:["WIS","INT","CHA"].filter((k) =>{return !C.saves[k]})[0];/* v32 RL49 no. 30: the chosen save. Not chosen yet: the first free one, as before */if(im)C.saves[im]="Iron Mind ("+SRC+", Gloom Stalker 7"+mt+")"}/* V17-5 */
   if(q.cls==="Rogue"&&q.lv>=15){(R14()?["WIS"]:["WIS","CHA"]).forEach((k) =>{if(!C.saves[k])C.saves[k]="Slippery Mind ("+SRC+", Rogue 15"+mt+")"})}});
- __R.classFx().forEach((e) =>{if(!e.saveFrom)return;const v=B.ch[e.pre+e.saveFrom],a=Array.isArray(v)?v:(v?[v]:[]);a.forEach((nm) =>{const k=ABK.filter((x) =>{return ABN[x]===nm})[0];if(k&&!C.saves[k])C.saves[k]=e.lbl})});/* generic: fx.saveFrom */
+ __R.classFx().forEach((e) =>{if(!e.saveFrom)return;const v=__R.fxCh(e.saveFrom,e.pre,e.kind,e.okey),a=Array.isArray(v)?v:(v?[v]:[]);a.forEach((nm) =>{const k=ABK.filter((x) =>{return ABN[x]===nm})[0];if(k&&!C.saves[k])C.saves[k]=e.lbl})});/* generic: fx.saveFrom */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});/* M17: FEATS.saveFromAsi */
  const prof={},exp={};
  function p(n,s){if(n&&!prof[n])prof[n]=s}
@@ -82,7 +82,7 @@ export function toSheet(){
  if(clsLv("Barbarian")>=5&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Fast Movement"}
  if(umOn&&monkLv>=2){const um=CLASSES.Monk.track["Unarmored Movement"][monkLv-1];spd+=parseInt(um);spSrc+=", "+um+" Unarmored Movement"}
  if(clsLv("Ranger")>=6&&!R14()&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Roving"}/* M8 (RL8): not in Heavy armor (PHB 2024 p. 121) */
- __R.gfx().forEach((e) =>{if(!__R.fxOk(e,ar,ESH))return;let v=0;(e.speed||[]).forEach((r) =>{if(e.lv>=r[0])v=r[1]});if(e.speedAdd!=null)v+=__R.fxv(e.speedAdd,e);if(v){spd+=v;spSrc+=", +"+v+" "+e.lbl}if(e.speedSet&&spd<e.speedSet){spd=e.speedSet;spSrc+=", set to "+e.speedSet+" "+e.lbl}});/* generic: class fx.speed [[class level, feet]], cond noHeavy or noArmor */
+ __R.gfx().forEach((e) =>{if(!__R.fxOk(e,ar,ESH))return;let v=0;(e.speed||[]).forEach((r) =>{if(e.lv>=r[0])v=r[1]});if(e.speedAdd!=null)v+=__R.fxv(e.speedAdd,e);if(v){spd+=v;spSrc+=", "+(v>0?"+":"")+v+" "+e.lbl}if(e.speedSet&&spd<e.speedSet){spd=e.speedSet;spSrc+=", set to "+e.speedSet+" "+e.lbl}});/* generic: class fx.speed [[class level, feet]], cond noHeavy or noArmor */
  clsParts().forEach((q) =>{if(q.sub==="Oath of Glory (2014)"&&q.lv>=7){spd+=10;spSrc+=", +10 Aura of Alacrity"}if(q.sub==="Scout"&&q.cls==="Rogue"&&q.lv>=9){spd+=10;spSrc+=", +10 Superior Mobility"}});/* v71 */
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
  /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
@@ -128,6 +128,7 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls];ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
  XT.forEach((q) =>{ad("tools",q[0],q[1])});__R.gfx().forEach((e) =>{["armor","weapons","tools"].forEach((k) =>{(e[k]||[]).forEach((n) =>{ad(k,n,e.lbl)})})});/* fx engine v2 */
  (B.ch.spwep||[]).forEach((n) =>{ad("weapons",n,"Masterful")});if(pactW)ad("weapons",__R.baseOf(pactW).b,"Pact of the Blade");
+  __R.gxPicks().forEach((o) =>{if(!o.gxw)return;(B.ch[o.key]||[]).forEach((n) =>{ad("weapons",n,o.src);if(("," +C.profs.weapons+",").replace(/, /g,",").indexOf(","+n+",")<0)C.profs.weapons+=(C.profs.weapons?", ":"")+n})});/* fx engine v2: weapon proficiency picks */
  C.profSrc=PS;
  /* attacks */
  const wmSet=wmAll();C.attacks=[];/* v32 RL49: multiclass and Weapon Master too */
@@ -296,7 +297,8 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  /* v20 RD25: senses and Fly Speed from a species choice (Retromistika Mistikan ancestries) */
  /* v32 RL49 no. 28, 33: chosen Wild Shape forms and Primal Companion, read by Extras (optional fields) */
  CHT.forEach((q) =>{const v=B.ch[q.key];if(/^(m\d+:)?p2forms$/.test(q.key)&&Array.isArray(v)&&v.length)C.wsForms=v.slice();if(q.feature==="Primal Companion"&&typeof v==="string"&&v)C.companion=v});
- const SFq=__R.spOptFx();(SFq.senses||[]).forEach((x) =>{C.senses=(C.senses||[]).filter((y) =>{return y.n!==x[0]});C.senses.push({n:x[0],v:x[1],s:x[2]+" ("+spName+")",d:x[3]||""})});
+ __R.gfx().forEach((e) =>{(e.sense||[]).forEach((x) =>{const o=(C.senses||[]).filter((y) =>{return y.n===x[0]})[0];if(o){if(o.v>=x[1])return;C.senses=C.senses.filter((y) =>{return y!==o})}C.senses=(C.senses||[]).concat([{n:x[0],v:x[1],s:e.lbl,d:x[2]||""}])})});/* fx engine v2: sense [[name, feet, text]] */
+  const SFq=__R.spOptFx();(SFq.senses||[]).forEach((x) =>{C.senses=(C.senses||[]).filter((y) =>{return y.n!==x[0]});C.senses.push({n:x[0],v:x[1],s:x[2]+" ("+spName+")",d:x[3]||""})});
  XFX.senses(C);/* v62 */
  if(SFq.fly){C.speeds=C.speeds||{};C.speeds.fly={v:SFq.fly[0],s:SFq.fly[1]}}
  if(SFq.moves&&!custom&&sp){C.speeds=C.speeds||{};Object.keys(SFq.moves).forEach((k) =>{C.speeds[k]={v:SFq.moves[k],s:spName+" ("+(sp.hb||SRC)+")"+(SFq.movesNote&&k==="fly"?", "+SFq.movesNote:"")}})}/* v36 p21 */

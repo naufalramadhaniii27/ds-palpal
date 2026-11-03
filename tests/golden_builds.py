@@ -107,6 +107,17 @@ def main():
                 got = D.get(k)
                 if got != v:
                     fails.append(f'{fn}: {k} = {got} expected {v} ({g.get("why","")})')
+            # expectC: dotted path into the sheet data C. A value is compared as is. {"in": "text"} means the text occurs in the JSON of that value
+            for path, v in (g.get('expectC') or {}).items():
+                n += 1
+                cur = C
+                for part in path.split('.'):
+                    cur = cur.get(part) if isinstance(cur, dict) else None
+                if isinstance(v, dict) and 'in' in v:
+                    if v['in'] not in json.dumps(cur):
+                        fails.append(f'{fn}: C.{path} lacks "{v["in"]}" ({g.get("why","")})')
+                elif cur != v:
+                    fails.append(f'{fn}: C.{path} = {cur} expected {v} ({g.get("why","")})')
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

@@ -1,0 +1,55 @@
+{
+ "why": "The Firm: Contractor: Expertise in the chosen skill. Athletics (proficient from Soldier) becomes Expertise. Before: pick was not applied.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "The Firm: Contractor"
+   },
+   "gx-ex-feat-feat4": [
+    "Athletics"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "skills": {
+   "in": "Expertise from Expertise (The Firm: Contractor feat)"
+  }
+ },
+ "expect": {}
+}

@@ -1,0 +1,64 @@
+{
+ "why": "Primordial Transformation Stage 1: CON +1 (maximum 20) and Fire resistance from the element pick. CON 14 becomes 15. Before: no change.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Primordial Transformation: Stage 1"
+   },
+   "gx-el-feat-feat4": [
+    "Fire"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "score": {
+   "STR": 17,
+   "DEX": 14,
+   "CON": 15,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  }
+ },
+ "expectC": {
+  "defenses": {
+   "in": "\"v\": \"Fire\""
+  }
+ }
+}

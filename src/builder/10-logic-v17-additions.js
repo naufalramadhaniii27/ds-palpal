@@ -21,13 +21,13 @@ export function luMax(m,lv,a,pb){if(typeof m==="number")return m;if(Array.isArra
 /* RU40: one Limited Use row per LU_X entry the character has, plus magic item charges. f = the feature or item that grants it (boxes show under it too) */
 export function luRows(C,a,pb,feats){const TLv=__R.TL(),iv=invList();
  (typeof LU_X!=="undefined"?LU_X:[]).forEach((e) =>{let lv=0;
-  if(e.src==="feat"){if(!feats.some((f) =>{return f.n===e.owner}))return;lv=TLv}
+  let mx=e.max;if(e.src==="feat"){const ff=feats.filter((f) =>{return f.n===e.owner})[0];if(!ff)return;lv=TLv;if(mx==="mod:@asi")mx="mod:"+((ff.asi&&ff.asi.a1)||"CHA");else if(mx==="mod:@ab")mx="mod:"+(((B.ch["gx-ab-feat-"+(ff.key||ff.s)]||[])[0])||"INT")}/* mod:@asi = the ability the feat raised, mod:@ab = the ability picked (pick k "ab") */
   else if(e.src==="species"){const sp=spX();if(!sp||B.species!==e.owner)return;if(/Speak with Animals/.test(e.n)&&(B.ch.lin||"").indexOf("Forest")!==0)return;if(e.opt&&(B.ch.spopt||[]).indexOf(e.opt)<0)return;lv=TLv}/* v74: e.opt, only when that species option is chosen */
   else if(e.src==="bg"){if(B.bg!==e.owner)return;lv=TLv}/* tp: a background that tracks a use */
   else if(e.src==="class"){lv=__R.clsLv(e.owner);if(e.feature==="Eldritch Invocations"){const inv=e.n.split(":")[0];if(iv.indexOf(inv)<0)return}}
   else if(e.src==="sub"){const sc=subClsOf(e.owner);lv=sc?subAt(sc,e.owner):0}
   else if(e.src==="hbcls"){if(!(B.src||{})[e.pack])return;lv=__R.clsLv(e.owner)}/* v20 RD24: a pack's class feature */
-  if(!lv||lv<e.lvl)return;const m=luMax(e.max,lv,a,pb);if(!(m>0))return;
+  if(!lv||lv<e.lvl)return;const m=luMax(mx,lv,a,pb);if(!(m>0))return;
   let rs=e.reset==="dawn"?"long":e.reset==="init"?"short":e.reset;if(e.short6&&lv>=6)rs="short";
   const o={k:__R.resKey("x-",e.n,C.res),n:e.n,tag:e.tag||"",max:m,reset:rs,f:e.feature};if(e.pool)o.pool=1;if((e.src==="species"||e.src==="feat")&&e.owner)o.own=e.owner;/* v21 RU49 */if(e.reset==="init")o.tag=(o.tag?o.tag+", ":"")+"also regained when you roll Initiative";if(e.die)o.tag=(o.tag?o.tag+", ":"")+e.die;C.res.push(o)});
  __R.ensureInv().forEach((x) =>{const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);

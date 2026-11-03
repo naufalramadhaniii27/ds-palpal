@@ -26,6 +26,7 @@ export function abil(){
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});
  const AFX=activeFx();AFX.forEach((q) =>{const f=q.fx;if(f.abil){let k=f.abil[0],nv=Math.min(f.abil[2]||30,sc[k]+f.abil[1]);if(f.abil[1]<0){nv=Math.max(1,sc[k]+f.abil[1]);if(nv<sc[k]){src[k].push({s:q.n+" (magic item, "+f.abil[1]+")",v:nv-sc[k]});sc[k]=nv}}else if(nv>sc[k]){src[k].push({s:q.n+" (magic item, +"+f.abil[1]+", maximum "+(f.abil[2]||30)+")",v:nv-sc[k]});sc[k]=nv}}});
+ __R.gfx().forEach((e) =>{(e.abUp||[]).forEach((r) =>{const k=r[0];if(!src[k])return;const nv=Math.min(r[2]||20,sc[k]+r[1]);if(nv>sc[k]){src[k].push({s:e.lbl+" (maximum "+(r[2]||20)+")",v:nv-sc[k]});sc[k]=nv}})});/* fx engine v2: abUp [[ability, +N, maximum]] */
  AFX.forEach((q) =>{const f=q.fx;/* V16-4: increases first, then "becomes" */
   const s=f.setsc;if(s&&sc[s[0]]<s[1]){src[s[0]].push({s:q.n+" (magic item, sets score to "+s[1]+")",v:s[1]-sc[s[0]]});sc[s[0]]=s[1]}});/* M18: DMGI fx (setsc as the old SETSC table, abil for Ioun Stones and similar) */
  return {sc:sc,src:src}}
@@ -46,19 +47,22 @@ function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")r
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
 function fxOk(e,ar,ESH){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;return true}
-function fxWhen(e,pre){if(!e.when)return true;const v=B.ch[pre+e.when.key],a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
+/* fxCh: the stored pick "key" for an entry. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
+function fxCh(key,pre,kind,okey){let v=B.ch[pre+key];if(v==null&&kind==="feat"){v=B.ch["gx-"+key+"-feat-"+okey];if(v==null)v=B.ch[key+"-"+okey]}return v}
+function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
- function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre))return;const en=e.n||owner;out.push(Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)}))})}
+ function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;out.push(Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)}))})}
  let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
   put(((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),"cls",q.cls,q.lv,pre,(n) =>{return n+" ("+q.cls+" "+q.lv+")"});
   if(q.sub)put(((G.sub&&G.sub[q.sub])||[]),"sub",q.sub,q.lv,pre,(n) =>{return n+" ("+q.sub+" "+q.lv+")"})});
  const sp=un("species")?null:SPECIES[B.species];if(sp)put((sp.gx||[]).concat((G.species&&G.species[B.species])||[]),"species",B.species,TLv,"",(n) =>{return n+" ("+B.species+")"});
  const bg=bgX();if(bg)put((bg.gx||[]).concat((G.bg&&G.bg[B.bg])||[]),"bg",B.bg,TLv,"",(n) =>{return n+" ("+B.bg+" background)"});
- allFeats().forEach((f) =>{const F=FEATS[f.n];put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
+ allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";/* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]).map((e) =>{return e&&e.spCls==="@asi"?Object.assign({},e,{spCls:"@sub:"+fab}):e&&e.spCls==="@abpick"?Object.assign({},e,{spCls:"@sub:"+fpa}):e}),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
  activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
  return out}
 export function classFx(){return gfx()}
-export {fxv,fxVal,fxOk};
+export {fxv,fxVal,fxOk,fxCh};
+Object.defineProperty(__R,"fxCh",{get:function(){return fxCh;},configurable:true});
 Object.defineProperty(__R,"gfx",{get:function(){return gfx;},set:function(v){gfx=v;},configurable:true});
 Object.defineProperty(__R,"fxv",{get:function(){return fxVal;},configurable:true});
 Object.defineProperty(__R,"fxOk",{get:function(){return fxOk;},configurable:true});

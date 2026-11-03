@@ -1,0 +1,61 @@
+{
+ "why": "Clairvoyant Warrior: the chosen divination spell, cast with the chosen ability (WIS) and a use counter.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Clairvoyant Warrior"
+   },
+   "gx-ab-feat-feat4": [
+    "WIS"
+   ],
+   "gx-sp-feat-feat4": [
+    "Hunter's Mark"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "spells": {
+   "in": "Hunter's Mark"
+  },
+  "res": {
+   "in": "Combat Foresight spell"
+  }
+ },
+ "expect": {}
+}
