@@ -3,7 +3,7 @@
 :root[data-skin="ddb"]{--pl-r:16px;--pl-hi:linear-gradient(165deg,rgba(255,255,255,.085),rgba(255,255,255,.015) 45%,rgba(255,255,255,0));--pl-sh:0 14px 34px rgba(0,0,0,.42),0 2px 6px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08);--pl-bd:rgba(255,255,255,.085)}
 :root[data-skin="ddb"] body{background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.4px)!important;background-size:22px 22px!important;background-attachment:scroll!important}
 /* cards */
-:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){border-radius:var(--pl-r)!important;background-image:var(--pl-hi)!important;box-shadow:var(--pl-sh)!important;border-color:var(--pl-bd)!important}
+:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){border-radius:var(--pl-r)!important;box-shadow:var(--pl-sh)!important;border-color:var(--pl-bd)!important}
 :root[data-skin="ddb"] :is(.tile,.ab){border-radius:12px!important;background-image:linear-gradient(170deg,rgba(255,255,255,.06),rgba(255,255,255,0) 55%)!important;box-shadow:0 6px 16px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)!important}
 :root[data-skin="ddb"] .ab.key{box-shadow:0 0 0 1px rgba(226,170,76,.55),0 0 18px rgba(226,170,76,.18),0 6px 16px rgba(0,0,0,.25)!important}
 /* Heal / Damage like the mini window */
@@ -37,9 +37,10 @@
 :root[data-skin="ddb"] .acc{background-color:color-mix(in srgb,var(--panel) 92%,#fff 8%)!important}
 /* === Polish v2: bolder === */
 :root[data-skin="ddb"]{--pl-card:color-mix(in srgb,var(--panel) 88%,#9fb4c8 12%);--pl-acc:rgb(var(--pl-rgb))}
-:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){background-color:var(--pl-card)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 18px 40px -12px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.12)!important;position:relative}
+:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){background-color:var(--pl-card)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 18px 40px -12px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.12)!important;position:relative}
+:root[data-skin="ddb"]:not(.g0-art) :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero,.acc,#vbar){background-image:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px)!important}
 :root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{content:"";position:absolute;left:18px;right:18px;top:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--pl-acc),transparent);opacity:.75;pointer-events:none}
-:root[data-skin="ddb"] .vitals::before{background:linear-gradient(90deg,transparent,#38b06b,transparent)!important}
+:root[data-skin="ddb"]:not(.g0-art) .vitals::before{background:linear-gradient(90deg,transparent,#38b06b,transparent)!important}
 :root[data-skin="ddb"] .idcard .id-name,:root[data-skin="ddb"] #idName{background:linear-gradient(180deg,#ffffff,#c9d3dd);-webkit-background-clip:text;background-clip:text;color:transparent}
 :root[data-skin="ddb"] #hpCur{color:#f4f7fa}/* no gradient text here: the rolling digits move inside it, and clipped text would freeze them at 0 */
 :root[data-skin="ddb"] :is(.tile,.ab){background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}

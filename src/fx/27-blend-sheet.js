@@ -4,6 +4,7 @@
 (function(){
   const D=document, A=window.__ART||{}, RM=matchMedia("(prefers-reduced-motion:reduce)"), sh=D.getElementById("sheet"), body=D.getElementById("sheetBody"); if(!sh||!body) return;
   let raf=0, heroH=0;
+  function pic(c,u){ const i=D.createElement("img"); i.className=c; i.src=u; i.alt=""; i.decoding="async"; return i; }
   function ls(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
   function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
   /* title block over the fade: price chip on the right of the title, then one line of subtitle and the rarity chip */
@@ -11,12 +12,14 @@
     [].some.call(body.querySelectorAll("small"),(e) =>{ if(/^(cost|price)$/i.test(e.textContent.trim())){ cost=(e.parentNode.textContent||"").replace(e.textContent,"").trim(); return true; } return false; });
     if(cost&&cost.length<18){ const p=D.createElement("span"); p.className="bl-price"; p.textContent=cost; hd.appendChild(p); sh.style.setProperty("--bl-pw",(Math.ceil(p.offsetWidth)+12)+"px"); }
     const dc=body.querySelector(".dc"), ic=body.querySelector(".info-meta .info-cat"); let sub=dc?((dc.innerText||"").split("\n")[0]||"").trim():"", rl=body.querySelector(".rline");
-    if(!rl&&ic){ const rm=/^(Common|Uncommon|Rare|Very Rare|Legendary|Artifact)\b\s*(.*)$/i.exec((ic.textContent||"").trim()); if(rm){ rl=D.createElement("span"); rl.className="rline r-"+rm[1].toLowerCase().replace(/\s+/g,""); rl.textContent=rm[1]; if(!sub) sub=rm[2]; sh.classList.add("bl-im"); } }   /* Library entries: "Uncommon Wondrous Item" gives the chip and the subtitle */
+    if(!rl&&ic){ const rm=/^(Common|Uncommon|Rare|Very Rare|Legendary|Artifact)\b\s*(.*)$/i.exec((ic.textContent||"").trim()); if(rm){ rl=D.createElement("span"); rl.className="rline r-"+rm[1].toLowerCase().replace(/\s+/g,""); rl.textContent=rm[1]; if(!sub) sub=rm[2];
+      sh.classList.add("bl-im"); } }   /* Library entries: "Uncommon Wondrous Item" gives the chip and the subtitle */
     if((sub&&sub.length<42)||rl){ const m=D.createElement("div"); m.className="bl-meta"; if(sub&&sub.length<42){ const t=D.createElement("span"); t.textContent=sub; m.appendChild(t); } if(rl){ const c=rl.cloneNode(true); c.removeAttribute("id"); m.appendChild(c); } hd.appendChild(m); } }
   /* the scene of an entry that has no 5etools picture: species, background or a class */
   function sceneOf(title){ const t=String(title||""), g=A.scn||{}, f=window.__scnFind, sl=window.__bslug; let m;
     const sp=/^lib:([a-z]+)\|(.+)$/.exec(sh.dataset.spec||"");   /* a Library entry names its kind: lib:species|Drow, lib:bg|Acolyte, lib:class|Fighter */
-    if(sp&&f){ if(sp[1]==="species"||sp[1]==="race"){ const r=f(g.species,sp[2]); if(r) return r; } if(sp[1]==="bg"||sp[1]==="background"){ const r=f(g.background,sp[2]); if(r) return r; } if(sp[1]==="class"&&sl&&A.scene){ const s2=A.scene[sl(sp[2])]; if(s2) return {phone:s2.phone.p,pc:s2.pc.p,c:s2.c}; } }
+    if(sp&&f){ if(sp[1]==="species"||sp[1]==="race"){ const r=f(g.species,sp[2]); if(r) return r; } if(sp[1]==="bg"||sp[1]==="background"){ const r=f(g.background,sp[2]); if(r) return r; } if(sp[1]==="class"&&sl&&A.scene){ const s2=A.scene[sl(sp[2])];
+      if(s2) return {phone:s2.phone.p,pc:s2.pc.p,c:s2.c}; } }
     if((m=/^Species: (.+)$/.exec(t))&&f) return f(g.species,m[1]); if((m=/^Background: (.+)$/.exec(t))&&f) return f(g.background,m[1]);
     if(sl&&(m=/^(.+) Subclass: (.+)$/.exec(t))&&A.scard&&A.scard.indexOf(sl(m[1])+"-"+sl(m[2]))>=0){ const u="img/scard/"+sl(m[1])+"-"+sl(m[2])+".avif"; return {phone:u,pc:u}; }
     if(sl&&A.scene&&typeof CLASSES==="object"&&CLASSES[t]){ const s=A.scene[sl(t)]; return s?{phone:s.phone.p,pc:s.pc.p,c:s.c}:null; } return null; }
@@ -31,11 +34,11 @@
   window.__blendSheet=function(mode,title,keep){ off(); if(mode!=="info"||ls("mi-clsart")==="off") return; const wm=D.getElementById("shWm"); if(!wm||!wm.parentNode||wm.parentNode!==body) return;
     let img=wm.querySelector("img.art-ic,img.lib-im,img.art-sub"), sc=sceneOf(title);   /* species, class, background, subclass: the scene first */
     if(!sc&&img&&img.classList.contains("lib-im")&&window.__artIc){                     /* items and spells: the Codex icon (HD) instead of the book photo */
-      for(const c of ["spell","item"]){ const h=window.__artIc(c,title); if(h){ const m=/src="img\/icon\/([^"]+)"/.exec(h); if(m){ wm.innerHTML='<img class="art-ic" src="img/hd/icon/'+m[1]+'" data-fb="img/icon/'+m[1]+'" alt="" decoding="async">'; img=wm.querySelector("img"); break; } } } }
+      for(const c of ["spell","item"]){ const h=window.__artIc(c,title); if(h){ const m=/src="img\/icon\/([^"]+)"/.exec(h); if(m){ const ni=pic("art-ic","img/hd/icon/"+m[1]); ni.setAttribute("data-fb","img/icon/"+m[1]); wm.replaceChildren(ni); img=ni; break; } } } }
     if(!img&&!sc) return;                                   /* a line icon only: nothing to blend */
     wm.classList.remove("bl-s","bl-i"); wm.querySelectorAll(".bl-bg,.bl-glow,.bl-grain,.bl-sc").forEach((e) =>{ e.remove(); });
     let src="";
-    if(sc){ const u=sc.phone||sc.pc; src=u; wm.innerHTML='<img class="bl-sc" src="'+u+'" alt="" decoding="async" fetchpriority="high">'; wm.classList.add("bl-s"); sh.classList.add("bl-scn"); setC(hex2rgb(sc.c)); img=wm.querySelector("img"); }
+    if(sc){ const u=sc.phone||sc.pc; src=u; const ni=pic("bl-sc",u); ni.setAttribute("fetchpriority","high"); wm.replaceChildren(ni); wm.classList.add("bl-s"); sh.classList.add("bl-scn"); setC(hex2rgb(sc.c)); img=ni; }
     else { src=img.currentSrc||img.getAttribute("src")||""; wm.classList.add("bl-i"); sh.classList.add("bl-ico");
       ["bl-bg","bl-glow","bl-grain"].forEach((c) =>{ const e=D.createElement("i"); e.className=c; e.setAttribute("aria-hidden","true"); if(c==="bl-bg") e.style.backgroundImage='url("'+src+'")'; wm.insertBefore(e,wm.firstChild); }); }
     sh.classList.add("blend"); heroH=0;

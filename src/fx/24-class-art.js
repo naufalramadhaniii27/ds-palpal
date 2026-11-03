@@ -41,7 +41,8 @@
   function bslug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
   /* Variants share the scene of their parent: Hill Dwarf uses dwarf, Human (2014) and Custom Lineage use human, Variant Noble uses noble.
      Order: own scene, listed parent, name without the bracket or "Variant", last word when it is a core family. Half-X never falls back */
-  const PARENT={"custom-lineage":"human","variant-human":"human","hill-dwarf":"dwarf","mountain-dwarf":"dwarf","deep-one-dwarf":"dwarf","high-elf":"elf","wood-elf":"elf","eladrin-elf":"elf","pallid-elf":"elf","lightfoot-halfling":"halfling","stout-halfling":"halfling","ghostwise-halfling":"halfling","lotusden-halfling":"halfling","forest-gnome":"gnome","rock-gnome":"gnome","draconblood-dragonborn":"dragonborn","ravenite-dragonborn":"dragonborn"};
+  const PARENT={"custom-lineage":"human","variant-human":"human","hill-dwarf":"dwarf","mountain-dwarf":"dwarf","deep-one-dwarf":"dwarf","high-elf":"elf","wood-elf":"elf","eladrin-elf":"elf","pallid-elf":"elf","lightfoot-halfling":"halfling","stout-halfling":"halfling",
+    "ghostwise-halfling":"halfling","lotusden-halfling":"halfling","forest-gnome":"gnome","rock-gnome":"gnome","draconblood-dragonborn":"dragonborn","ravenite-dragonborn":"dragonborn"};
   const FAMILY=["elf","dwarf","halfling","gnome","human","dragonborn","orc","goblin","tiefling","aasimar","genasi","shifter"];
   function scnFind(m,n){ if(!m) return null; const k=bslug(n); if(m[k]) return m[k]; if(PARENT[k]&&m[PARENT[k]]) return m[PARENT[k]];
     const b=bslug(String(n||"").replace(/\s*\(.*$/,"").replace(/^variant\s+/i,"")); if(b&&m[b]) return m[b];
@@ -85,7 +86,9 @@
   function subCards(body){ const sel=body.querySelector("select[data-subsel]"), B=lastB; if(!sel||!B||!B.cls||!A.scard||!A.scard.length) return;
     const cl=bslug(B.cls), items=Array.prototype.map.call(sel.options,(o) =>{ return {v:o.value,t:o.textContent}; }).filter((o) =>{ return o.v&&A.scard.indexOf(cl+"-"+bslug(o.v))>=0; }); if(!items.length) return;
     const w=D.createElement("div"); w.className="sub-cards"; w.setAttribute("role","group"); w.setAttribute("aria-label","Subclass pictures");
-    w.innerHTML=items.map((o) =>{ const on=sel.value===o.v, k=cl+"-"+bslug(o.v); return '<button type="button" class="sub-card'+(on?" on":"")+'" data-subcard="'+o.v.replace(/"/g,"&quot;")+'" aria-pressed="'+on+'"><img src="img/scard/'+k+'.avif" alt="" width="512" height="288" loading="lazy" decoding="async"><span>'+o.t.replace(/[&<>"]/g,"")+'</span></button>'; }).join("");
+    items.forEach((o) =>{ const on=sel.value===o.v, k=cl+"-"+bslug(o.v), bt=D.createElement("button"), im=D.createElement("img"), sp=D.createElement("span");
+      bt.type="button"; bt.className="sub-card"+(on?" on":""); bt.setAttribute("data-subcard",o.v); bt.setAttribute("aria-pressed",String(on));
+      im.src="img/scard/"+k+".avif"; im.alt=""; im.width=512; im.height=288; im.loading="lazy"; im.decoding="async"; sp.textContent=o.t; bt.append(im,sp); w.appendChild(bt); });
     sel.parentNode.insertBefore(w,sel.nextSibling); }
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-subcard]"); if(!b) return; const sel=D.querySelector("#bld select[data-subsel]"); if(!sel) return; sel.value=b.getAttribute("data-subcard"); sel.dispatchEvent(new Event("change",{bubbles:true})); },true);
   function slug(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }

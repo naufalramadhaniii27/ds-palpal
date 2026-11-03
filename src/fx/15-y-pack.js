@@ -35,7 +35,8 @@
   const RAR={uncommon:"31,168,58",rare:"47,127,224",veryrare:"155,79,209",legendary:"224,123,26",artifact:"194,65,59"};
   const SCH={Abjuration:"79,163,255",Conjuration:"242,193,78",Divination:"201,214,226",Enchantment:"255,111,177",Evocation:"255,106,61",Illusion:"169,139,255",Necromancy:"111,208,140",Transmutation:"58,214,198"};
   const sh=D.getElementById("sheet"), sb=D.getElementById("sheetBody"), sq=0;
-  function heroWant(){ if(!sh.classList.contains("on")||!sb||sh.classList.contains("blend")) return "";/* the blended sheet has its own header and colour */ const rl=sb.querySelector(".rline"); if(rl){ const m=/r-([a-z]+)/.exec(rl.className); if(m&&RAR[m[1]]) return RAR[m[1]]+"|"+rl.textContent.split(/[\u2022,]/)[0].trim(); }
+  function heroWant(){ if(!sh.classList.contains("on")||!sb||sh.classList.contains("blend")) return "";/* the blended sheet has its own header and colour */ const rl=sb.querySelector(".rline"); if(rl){ const m=/r-([a-z]+)/.exec(rl.className);
+    if(m&&RAR[m[1]]) return RAR[m[1]]+"|"+rl.textContent.split(/[\u2022,]/)[0].trim(); }
     const t=(sb.textContent||"").slice(0,260); for(const k in SCH){ if(new RegExp("\\b"+k+"\\b").test(t)) return SCH[k]+"|"+k; } return ""; }
   function hero(){ if(!sh) return; const head=D.getElementById("sheetHead"); if(!head) return; let w=heroWant(), h2=D.getElementById("sheetTitle"), g=head.querySelector(".mi-hero-g"), tg=h2&&h2.querySelector(".mi-hero-t");
     if(w===(sh.getAttribute("data-mi-hero")||"")&&(!w||(g&&(tg||!h2)))) return;

@@ -38,9 +38,12 @@ export function sheetIco(t){ t=String(t||""); let h="", m;
   else if(/^Background: /.test(t)) h=(window.__artIc&&window.__artIc("background",t.slice(12)))||__R.ico("src-background");
   else if(t==="Size") h=(window.__artIc&&window.__artIc("size",C.size))||__R.ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
-  if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],alt[j]+cats[i][1]); }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
+  if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],
+    ["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],alt[j]+cats[i][1]);
+      }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
-function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
+function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span");
+  w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
 export function openSheet(title, html, mode, wide){
   hpDockBack();/* v30 */
   if(!sheet.classList.contains("on")) lastFocus=document.activeElement;
