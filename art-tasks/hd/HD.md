@@ -36,7 +36,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | open |
 | H09 | species/minotaur, species/orc, species/owlin, species/reborn | open |
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | open |
-| H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | claimed by codex-session-3 2026-11-03T01:31:55+00:00 |
+| H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | needs review: cells 1–4 alpha below 255 after whole-sheet retry |
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | open |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | open |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | open |
