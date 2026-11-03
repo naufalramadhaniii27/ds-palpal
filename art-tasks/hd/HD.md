@@ -49,7 +49,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H24 | size/gargantuan, cat/book | claimed by codex-session-5 2026-11-03T01:41:27+00:00 |
+| H24 | size/gargantuan, cat/book | needs review: cell 1 (background edge alpha; opaque coverage below 20%; one centered gargantuan icon per session request) |
 
 ## Prompt per sheet
 
