@@ -195,7 +195,7 @@ async def run(b, url, w, h, who, bad):
                         if x != y: bad.append("   %s: %s -> %s" % (k, json.dumps(x)[:160], json.dumps(y)[:160])); break
                     if len(A) != len(B): bad.append("   %s: %d -> %d items" % (k, len(A), len(B)))
     csp = await pg.evaluate("()=>window.__csp||[]")
-    for e in errs + csp: bad.append(tag + " " + e[:220])
+    for e in errs + csp: bad.append(tag + " " + e[:1200])
     await ctx.close()
 async def extra(b, url, bad):
     """Motion off with the fallback paths forced (no anchor positioning), glossary card, the 3D dice in Learn"""
