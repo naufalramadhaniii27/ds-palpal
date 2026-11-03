@@ -134,7 +134,7 @@ var ITEMDESC={
 "Ball Bearings":"Spill them to cover a 10-foot square. A creature moving through it makes a DC 10 Dexterity saving throw and falls Prone if it fails.",
 "Caltrops":"Scatter them over a 5-foot square. A creature entering it makes a DC 15 Dexterity saving throw. If it fails, it takes 1 Piercing damage and its Speed drops to 0 until its next turn starts.",
 "Manacles":"Bind a Small or Medium creature. Escaping requires a DC 20 Sleight of Hand check; breaking them a DC 25 Strength check.",
-"Potion of Healing":"Drink it (Bonus Action) or give it to someone (Action) to regain 2d4 + 2 Hit Points.",
+"Potion of Healing":"Drink it or give it to someone within 5 feet (Bonus Action) to regain 2d4 + 2 Hit Points.",
 "Thieves' Tools":"Lock picks and small tools. Used to pick locks and disarm traps.",
 "Traveler's Clothes":"Sturdy clothes for the road.",
 "Fine Clothes":"Expensive clothes for nobles and formal events.",

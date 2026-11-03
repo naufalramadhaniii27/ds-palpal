@@ -27,11 +27,11 @@ with sync_playwright() as p:
             m = pg.evaluate("()=>{var w=document.getElementById('shWm');if(!w)return null;return [...w.querySelectorAll('img')].map(i=>({src:i.currentSrc||i.src,nw:i.naturalWidth,cw:i.getBoundingClientRect().width}))}")
             check(vp + " Rations detail draws a picture", m, m)
             if m: check(vp + " Rations picture is the HD file", "img/hd/icon/" in m[0]["src"], m[0]); check(vp + " Rations natural width covers displayed width x DPR (%s)" % m[0], m[0]["nw"] >= m[0]["cw"] * dpr * 0.9, m[0])
-            pg.screenshot(path="/tmp/art-rations-%d.png" % w); check(vp + " no page errors, no failed image request", not errs and not bad, (errs, bad)); ctx.close()
+            pg.screenshot(path="/tmp/art-rations-%d.png" % w); check(vp + " no page errors, no failed image request", not errs and not [x for x in bad if "wipe-mask" not in x], (errs, bad)); ctx.close()
     if "scenes" in STEPS:
         man = json.load(open(os.path.join(ROOT, "img", "manifest.json")))
         sl = lambda n: __import__("re").sub(r"^-|-$", "", __import__("re").sub(r"[^a-z0-9]+", "-", __import__("re").sub(r"['\u2019]", "", n.lower())))
-        for k, v in (("species", 91), ("background", 228)):
+        for k, v in (("species", 121), ("background", 228)):
             have = man["scn"][k]; miss = [x for x in have if not (os.path.exists(os.path.join(ROOT, have[x]["pc"])) and os.path.exists(os.path.join(ROOT, have[x]["phone"])))]
             check("scenes %s: %d entries (expect %d), every file exists" % (k, len(have), v), len(have) == v and not miss, miss[:5])
         tp = ["alchemist","captain","craftsman","dancer","gadgeteer","healer","investigator","jaeger","martyr","monster-hunter","necromancer","summoner","vagabond","warden","warmage","witch"]
@@ -80,7 +80,7 @@ with sync_playwright() as p:
                 v = pg.evaluate("()=>{const c=[...document.querySelectorAll('#bld .sub-card')][1];const v=c.dataset.subcard;c.click();return v}"); pg.wait_for_timeout(900)
                 check(vp + " a card tap picks that subclass", pg.evaluate("(v)=>{const s=document.querySelector('#bld select[data-subsel]');return s&&s.value===v&&document.querySelector('#bld .sub-card.on')&&document.querySelector('#bld .sub-card.on').dataset.subcard===v}", v), v)
                 im = pg.evaluate("()=>{const i=document.querySelector('#bld .sub-card img');return [i.complete,i.naturalWidth,i.loading]}"); check(vp + " subclass card picture loads lazily (%s)" % im, im[2] == "lazy")
-            pg.screenshot(path="/tmp/art-class-%d.png" % w); check(vp + " scenes: no page errors, no failed image request", not errs and not bad, (errs[:2], bad[:3])); ctx.close()
+            pg.screenshot(path="/tmp/art-class-%d.png" % w); check(vp + " scenes: no page errors, no failed image request", not errs and not [x for x in bad if "wipe-mask" not in x], (errs[:2], bad[:3])); ctx.close()
     if "card" in STEPS:
         man = json.load(open(os.path.join(ROOT, "img", "manifest.json"))); keys = ["corner-%s-%s" % (c, k) for c in ("wood", "metal", "vine") for k in ("tl", "tr", "bl", "br")] + ["divider-wood", "badge-level", "crest-app", "paper-cool-light", "paper-cool-dark", "paper-neutral-light", "paper-neutral-dark", "wipe-mask"]
         check("card art: %d files listed and on disk" % len(keys), all(k in man["g0"] and os.path.exists(os.path.join(ROOT, man["g0"][k])) for k in keys), [k for k in keys if k not in man["g0"]])
@@ -98,7 +98,7 @@ with sync_playwright() as p:
             check(vp + " Art off drops the card art and keeps the old lines", pg.evaluate("()=>!document.documentElement.classList.contains('g0-art')&&!/g0\\//.test(getComputedStyle(document.querySelector('#app .vitals')||document.querySelector('#app .card')).backgroundImage)"))
             pg.evaluate("()=>{(window.__store||localStorage).removeItem('mi-clsart');window.__clsArt()}")
             bad = [x for x in bad if "wipe-mask" not in x]  # a mask image needs CORS, which file:// never grants. Over http it loads (checked once in a server run)
-            check(vp + " card: no page errors, no failed image request", not errs and not bad, (errs[:2], bad[:3])); ctx.close()
+            check(vp + " card: no page errors, no failed image request", not errs and not [x for x in bad if "wipe-mask" not in x], (errs[:2], bad[:3])); ctx.close()
     if "blend" in STEPS:
         OPEN = "(s)=>{const e=[...document.querySelectorAll('[data-info]')].find(x=>x.dataset.info===s&&x.offsetParent);if(!e)return false;e.click();return true}"
         CLOSE = "()=>document.querySelector('#sheet [data-close]').click()"
@@ -159,6 +159,6 @@ with sync_playwright() as p:
             c2 = b.new_context(viewport={"width": 390, "height": 844}); c2.add_init_script(seed); q2 = c2.new_page(); q2.goto("file://" + os.path.join(ROOT, "index.html")); q2.wait_for_timeout(3500); q2.evaluate("window.__bldNeed&&window.__bldNeed()"); q2.wait_for_timeout(2500)
             q2.evaluate("()=>{var b=[...document.querySelectorAll('button')].find(x=>/^continue$/i.test(x.textContent.trim())&&x.offsetParent);b&&b.click()}"); q2.wait_for_timeout(2000)
             q2.evaluate("()=>document.getElementById('t-inv').click()"); q2.wait_for_timeout(600); q2.evaluate("()=>{var e=[...document.querySelectorAll('#p-inv .iname')].find(x=>/Potion of Healing/.test(x.textContent));e&&e.click()}"); q2.wait_for_timeout(1800)
-            tx = q2.evaluate("()=>document.getElementById('sheetBody').innerText"); check("Potion of Healing text in a %s build says '%s'" % (rs, want), want in tx and (rs == "2014" or "Drink it as a Bonus Action" in tx or "Drink it (Bonus Action)" in tx), tx[:200]); c2.close()
+            tx = q2.evaluate("()=>document.getElementById('sheetBody').innerText"); check("Potion of Healing text in a %s build says '%s'" % (rs, want), want in tx and (rs == "2014" or ("within 5 feet" in tx and "as an action" not in tx and "(Action)" not in tx)), tx[:200]); c2.close()
     b.close()
 print("SCORE %d" % round(100 * sum(R) / len(R))); sys.exit(0 if all(R) else 1)

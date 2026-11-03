@@ -38,7 +38,7 @@ export function sheetIco(t){ t=String(t||""); let h="", m;
   else if(/^Background: /.test(t)) h=(window.__artIc&&window.__artIc("background",t.slice(12)))||__R.ico("src-background");
   else if(t==="Size") h=(window.__artIc&&window.__artIc("size",C.size))||__R.ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
-  if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""]]; for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],t+cats[i][1]); }/* art icons: spells, items, conditions, skills and the rest */
+  if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],alt[j]+cats[i][1]); }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
 function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span"); w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
 export function openSheet(title, html, mode, wide){
@@ -54,9 +54,9 @@ export function openSheet(title, html, mode, wide){
   $("#scrim").classList.add("on"); sheet.classList.add("on"); __R.dockApply(mode,wide); __R.shOpened();/* v31 p14, p16 */
   setTimeout(() =>{ const b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
-/* Potion of Healing: drinking is a Bonus Action in the 2024 rules and an Action in the 2014 rules. The shared item text is written for 2024, so a 2014 character gets the 2014 wording */
+/* Potion of Healing: drinking it or giving it to a creature within 5 feet is a Bonus Action in the 2024 rules, an Action in the 2014 rules. The shared item text is written for 2024, so a 2014 character gets the 2014 wording */
 export function potEd(h){ if(typeof __R.C==="undefined"||!__R.C||__R.C.rs!=="2014") return h;
-  return String(h).replace("Drink it (Bonus Action) or give it to someone (Action) to regain","Drink it or give it to someone (Action) to regain").replace("Drink it as a Bonus Action, or give it to another creature as an action.","Drinking it or giving it to another creature takes an Action."); }
+  return String(h).replace("Drink it or give it to someone within 5 feet (Bonus Action) to regain","Drink it or give it to someone (Action) to regain").replace("Drink it, or give it to a creature within 5 feet, as a Bonus Action.","Drinking it or giving it to another creature takes an Action."); }
 function entryContent(en){
   if(en.type==="bd"){ const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"}; }/* v26 RU38 no. 2 */
   if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
@@ -93,6 +93,7 @@ export var LEARN_LINK=[[/^(Athletics|Acrobatics|Sleight of Hand|Stealth|Arcana|H
 function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(let i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return '<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:'+LEARN_LINK[i][1]+'">'+__R.ico("ui-book")+'Learn this</button></div>'; return ""; }
 export function showEntry(en, push){
   hpDockBack();/* v30 */
+  sheet.dataset.spec=(en&&en.spec)||"";/* the blend reads the entry kind (lib:species|Drow) to pick a scene */
   const open=sheet.classList.contains("on") && sheetMode!=="edit";
   if(push && open) navStack.push(en); else navStack=[en];
   let c=entryContent(en); c={t:c.t,h:(typeof __R.coachLine==="function"?__R.coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */

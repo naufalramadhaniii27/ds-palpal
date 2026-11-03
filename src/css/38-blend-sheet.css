@@ -34,10 +34,10 @@
 #sheet.blend.bl-ico #sheetBody>.sh-wm .bl-glow{position:absolute;left:50%;top:52%;width:72%;aspect-ratio:1;translate:-50% -50%;background:radial-gradient(closest-side,rgba(var(--bl-c,160,160,160),.5),transparent 72%);filter:blur(12px)}
 #sheet.blend.bl-ico #sheetBody>.sh-wm .bl-grain{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 #sheet.blend.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){position:absolute;left:50%;top:50%;margin:0;max-width:none;height:auto;translate:-50% calc(-50% + var(--bl-py,0px)*.2);opacity:var(--bl-op,1);filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
-/* HD icons are 576 px: shown at most 192 css px wide, which is 3x sharp on a phone */
-#sheet.blend.bl-ico #sheetBody>.sh-wm img.art-ic{width:min(60%,192px)}
+/* HD icons are 576 px, trimmed to the object with an even 6% margin, so every icon reads the same size. Shown at most 210 css px wide (2.7x on a phone) */
+#sheet.blend.bl-ico #sheetBody>.sh-wm img.art-ic{width:min(58%,210px)}
 #sheet.blend.bl-ico #sheetBody>.sh-wm img.art-sub{width:min(60%,192px)}
-#sheet.blend.bl-ico #sheetBody>.sh-wm img.lib-im{width:auto;height:min(78%,330px);max-width:86%;object-fit:contain}
+#sheet.blend.bl-ico #sheetBody>.sh-wm img.lib-im{width:auto;height:min(62%,240px);max-width:70%;object-fit:contain}
 @media (prefers-reduced-motion:no-preference){
   @keyframes blImg{from{filter:blur(14px);scale:1.08}to{filter:blur(0);scale:1}}
   @keyframes blIco{from{filter:blur(10px) drop-shadow(0 14px 22px rgba(0,0,0,.55));scale:1.12}to{filter:blur(0) drop-shadow(0 14px 22px rgba(0,0,0,.55));scale:1}}
@@ -47,4 +47,6 @@
   #sheet.blend.bl-in.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){animation:blIco .7s var(--ease-out,ease) both,blFloat 6s ease-in-out .8s infinite}
   #sheet.blend.bl-in .sh-b>*:not(.sh-wm):not(.swp){animation:blUp .5s var(--ease-out,ease) both;animation-delay:calc(var(--i,0)*45ms + 140ms)}
 }
+/* the book picture of the entry is replaced by the art above, so it is not shown twice */
+#sheet.blend #sheetBody>img.lib-im,#sheet.blend.bl-im #sheetBody>.info-meta{display:none}
 @media print{#sheet.blend .sh-wm{display:none}}

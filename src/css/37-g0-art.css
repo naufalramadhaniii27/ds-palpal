@@ -20,8 +20,8 @@ html.g0-art:root[data-skin="ddb"] #sheet{background-image:var(--g0c-tl),var(--g0
   background-position:left 3px top 3px,right 3px top 3px,0 0,0 0!important;background-repeat:no-repeat,no-repeat,repeat,no-repeat!important}
 /* section line: the wooden divider sits on the old gold line, which stays as the long rule behind it */
 html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{height:14px;top:-7px;border-radius:0;opacity:1;background:url("img/g0/divider-wood.avif") center/auto 100% no-repeat,linear-gradient(90deg,transparent,var(--pl-acc),transparent) center/100% 2px no-repeat!important}
-html.g0-art .info-h{position:relative;padding-top:18px}
-html.g0-art .info-h::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:url("img/g0/divider-wood.avif") center/auto 100% no-repeat;pointer-events:none}
+/* section headings in a detail sheet: the wooden divider takes the place of the old gold rule under the heading, one line only */
+html.g0-art:root[data-skin="ddb"] :is(.fgh,.sp-lv,.noteh,.info-h){background-image:url("img/g0/divider-wood.avif")!important;background-size:auto 12px!important;background-position:left bottom!important;padding-bottom:16px!important}
 /* level badge on the portrait */
 html.g0-art .mi-crest{clip-path:none;width:46px;height:56px;background:url("img/g0/badge-level.avif") center/contain no-repeat;padding-top:8px;box-sizing:border-box}
 html.g0-art .mi-crest::before{display:none}
