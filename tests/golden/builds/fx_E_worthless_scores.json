@@ -1,0 +1,50 @@
+{
+ "why": "Worthless (Worthless Husk background): base 15,14,13,12,10,8 plus background DEX+2 CON+1 = 15,16,14,12,10,8 = 75. Lower the highest by 1 until 72: DEX 16 to 15 (74), then STR/DEX tie, first is STR 15 to 14 (73), DEX 15 to 14 (72). Then each -1: 13,13,13,11,9,7.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Worthless Husk",
+  "bgMode": "21",
+  "bg2": "DEX",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 1,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.STR": 13,
+  "D:score.DEX": 13,
+  "D:score.CON": 13,
+  "D:score.INT": 11,
+  "D:score.WIS": 9,
+  "D:score.CHA": 7
+ }
+}

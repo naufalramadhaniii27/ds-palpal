@@ -18,6 +18,11 @@ export function abil(){
  const sc={},src={};ABK.forEach((k) =>{sc[k]=+B.base[k]||10;src[k]=[]});
  const bg=bgX();  const rb=raceBonus();Object.keys(rb).forEach((k) =>{if(src[k])src[k].push({s:B.species+" (race)",v:rb[k]})});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach((k) =>{src[k].push({s:B.bg+" background ("+SRC+")",v:1})});
   else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)src[B.bg2].push({s:B.bg+" background ("+SRC+")",v:2});if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)src[B.bg1].push({s:B.bg+" background ("+SRC+")",v:1})}/* v22 P1: only the background's abilities (PHB 2024) */}
+ /* fx batch E: abCut {total,each} on a feat entry (Worthless). Applies to the scores built so far (base, species, background), before later feat increases. Lowers the highest score by 1 until the total is at most total, then lowers every score by each. A tie goes to the first ability in STR to CHA order */
+ {const G=(typeof window!=="undefined"&&window.GX)||{},cut=allFeats().map((f) =>{return ((G.feat&&G.feat[f.n])||[]).filter((e) =>{return e&&e.abCut})[0]}).filter(Boolean)[0];
+  if(cut){const t={},c=cut.abCut;let tot=0;ABK.forEach((k) =>{t[k]=sc[k]+src[k].reduce((n,b) =>{return n+b.v},0);tot+=t[k]});
+   let g=0;while(tot>c.total&&g++<200){let m=ABK[0];ABK.forEach((k) =>{if(t[k]>t[m])m=k});t[m]--;tot--;src[m].push({s:"Worthless (feat): total lowered to "+c.total,v:-1})}
+   ABK.forEach((k) =>{if(c.each&&t[k]>1)src[k].push({s:"Worthless (feat): every score lowered by "+c.each,v:-c.each})})}}
  allFeats().forEach((f) =>{const v=f.asi;if(!v)return;const F=FEATS[f.n];if(!F)return;
   asiOf(f,F).forEach((q) =>{src[q[0]].push({s:f.n+(F.asi2?"":" feat")+", "+f.s,v:q[1]})})});/* v19 RL46 (9): only abilities on the feat's list */
  if(B.level>=20&&B.cls==="Barbarian"){src.STR.push({s:"Primal Champion ("+SRC+", Barbarian 20)",v:4});src.CON.push({s:"Primal Champion ("+SRC+", Barbarian 20)",v:4})} if(B.level>=20&&B.cls==="Monk"&&!R14()){src.DEX.push({s:"Body and Mind ("+SRC+", Monk 20)",v:4});src.WIS.push({s:"Body and Mind ("+SRC+", Monk 20)",v:4})}

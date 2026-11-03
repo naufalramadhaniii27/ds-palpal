@@ -397,6 +397,17 @@ Perluasan batch C (feat): `pick` bertipe `weapon` (proficiency satu senjata, `wc
 
 
 Override item (`window.FXO`, file `src/data/fx-D-item.js`): `FXO[nama item]={fx:{...}|null}` mengganti `fx` lama di baris DMGI tanpa mengubah data sumber (`fx:null` membuang efek yang salah hitung). Dibaca oleh `ovFx()` di `03-logic-magic-item-effects.js` (dipakai `activeFx()`, `itemFx()`, `baseOf()`). Entri `window.GX.item[nama]` kini berlaku juga untuk baris item yang tidak punya `fx`. Tes: `tests/fx_engine.py` (kasus FXO) dan `tests/golden/builds/item_*.json`.
+Perluasan batch E (feat, `src/data/fx-E-feat.js`, dimuat sesudah fx-C-feat.js; entri C yang kurang lengkap diganti menurut nama lewat `rep()`, file C tidak diubah):
+| Field | Arti | Contoh |
+|---|---|---|
+| `darkAdd:N` | tambah N kaki ke `C.darkvision` yang sudah ada (tanpa itu jadi N) | Hag Green Sisterhood |
+| `darkTo:N` | Darkvision N kaki bila yang sekarang lebih kecil | Hag Red dan Sea Sisterhood |
+| `senseAdd:[[nama,kaki,teks]]` | sense selain Darkvision: tambah kaki ke sense yang ada, kalau tidak ada diberikan | Ooze Form Blindsight 30 |
+| `skillPE:[skill]` | proficiency, atau Expertise bila sudah proficient (dari sumber mana pun, diproses sesudah skillProf) | Hag Red Sisterhood, Vampire Strigoi |
+| `skillAb:[[skill,ab]]` | skill memakai modifier `ab` bila lebih tinggi dari kemampuan aslinya. Tampil sebagai bonus misc (selisih modifier, statis pada skor saat build) | Technical Mind Over Matter |
+| `abCut:{total,each}` | (entri feat) skor dari base, species, dan background diturunkan 1 per 1 pada skor tertinggi sampai total <= `total`, lalu semua turun `each`. Seri: urutan STR sampai CHA. Kenaikan feat tingkat 4 ke atas dihitung sesudahnya | Worthless |
+Teks saja (kondisional atau aktif): lihat komentar di kepala `fx-E-feat.js`. Worthless From the Ashes (kenaikan skor di level 4, 8, 12, 16, 19, maks 18) butuh pilihan per level, belum ada. Technical Mind Over Matter: satu pilihan skill, ganti pilihan itu tiap level.
+
 Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
