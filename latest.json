@@ -1,7 +1,7 @@
 {
- "commit": "61f7ce49",
- "branch": "main",
- "date": "2026-11-03 02:12",
+ "commit": "c87fb0d5",
+ "branch": "nilai-98/n36",
+ "date": "2026-11-03 02:18",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -52,7 +52,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "edition_leaks",
@@ -61,7 +61,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "effects_uncovered",
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.24,
- "secs": 40
+ "secs": 48
 }
