@@ -39,7 +39,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | claimed by codex-h12-h24 2026-11-03T02:50+00:00 |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | done |
-| H14 | background/sage, background/sailor, background/scribe, background/soldier | open |
+| H14 | background/sage, background/sailor, background/scribe, background/soldier | claimed by codex-session-3 2026-11-03T02:53:27+00:00 |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | open |
 | H16 | cat/condition, cat/creature, cat/cult, cat/deck | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
