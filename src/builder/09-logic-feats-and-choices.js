@@ -220,7 +220,7 @@ function featList(q){if(Array.isArray(q.list))return q.list;
 export function gxPicks(){const out=[];__R.gfx().forEach((e) =>{(e.pick||[]).forEach((q) =>{const mcm=e.pre?/^m(\d+):/.exec(e.pre):null;
   const o={key:"gx-"+q.k+"-"+e.kind+"-"+e.okey+(mcm?"-m"+mcm[1]:""),lvl:e.l||1,t:q.t==="cantrip"?"multi":q.t,n:q.n==="pb"?pbOf(__R.TL()):q.n,title:e.owner+": "+q.title,src:e.lbl,feature:e.n};
   if(mcm)o.mc=+mcm[1];if(q.cats)o.cats=q.cats;if(q.from)o.from=q.from==="all"?ALLSK:q.from==="LANGS"?LANGS:q.from;if(q.t==="skills"&&!o.from)o.from=ALLSK;if(q.t==="lang"&&!o.from)o.from=LANGS;
-  if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return !x[1]&&(!q.cls||x[3].indexOf(q.cls)>=0)}).map((x) =>{return [x[0],x[11]]});else if(Array.isArray(q.list))o.list=q.list;
+  if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return x[1]===(q.slv||0)&&(!q.cls||x[3].indexOf(q.cls)>=0)}).map((x) =>{return [x[0],x[11]]});else if(Array.isArray(q.list))o.list=q.list;
   o.gxc=q.t==="cantrip"?e.spCls||e.cls||"@species":"";out.push(o)})});return out}
 Object.defineProperty(__R,"gxPicks",{get:function(){return gxPicks;},configurable:true});
 function featPicks(){const out=[];allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;const fk=f.key||f.s,m=/^m(\d+):/.exec(fk),mc=m?+m[1]:undefined,lv=+((/feat(\d+)$/.exec(fk)||[0,1])[1]);
@@ -272,6 +272,7 @@ export function choices(noFeat){
  if(sp&&sp.wpPick)add({key:"spwp",lvl:1,t:"multi",n:sp.wpPick.n,list:Object.keys(WEAPONS).filter((n) =>{return WEAPONS[n].cat===sp.wpPick.cat&&!WEAPONS[n].xw&&!WEAPONS[n].nm}).map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:sp.wpPick.label+" weapons",src:B.species,feature:sp.wpPick.label});/* v74: species with a weapon choice (Hobgoblin) */
  if(SFX.weapon)add({key:"spwep",lvl:1,t:"multi",n:1,list:wmKeys().map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:"Masterful weapon",src:B.species});
  __R.subChoicesFor(B.sub).forEach((q) =>{if(L>=q.l)add(q.kind==="opt"?{key:"sc"+q.k,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:B.sub+" "+q.l,feature:q.feature}:{key:"sc"+q.k,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:B.sub+" "+q.l,feature:q.feature})});
+ if(typeof window!=="undefined"&&window.GX&&window.GX.sub&&B.sub)(window.GX.sub[B.sub]||[]).forEach((e) =>{if(e.fsPick&&L>=(e.l||1))add({key:"sfs"+(e.l||1),lvl:e.l||1,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:B.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});/* fx engine v2: fsPick = a Fighting Style feat choice from a subclass */
  if(c.wm&&!R14())add({key:"wm",lvl:1,t:"wm",n:c.wm[L-1],melee:B.cls==="Barbarian"?1:0,title:"Weapon Mastery",src:SRC+", "+B.cls,feature:"Weapon Mastery"});
  if(c.fs&&L>=c.fs)add({key:"fs"+c.fs,lvl:c.fs,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"});
  (c.pick||[]).forEach((p) =>{if(L>=p.l){const o1=__R.pk(p,B.cls+" "+p.l,B.cls);if(o1)add(o1)}}); if(L>=subLv(B.cls))add({key:"sub",lvl:subLv(B.cls),t:"sub",title:subLbl(B.cls),src:B.cls+" "+subLv(B.cls)});

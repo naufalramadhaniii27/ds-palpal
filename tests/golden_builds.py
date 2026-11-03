@@ -3,7 +3,7 @@
 Run: python3 tests/golden_builds.py [--root DIR]
 Part 1: formula checks for the 12 core classes at levels 1/5/10/20
         (HP, proficiency bonus, saving throw proficiencies).
-Part 2: fixed reference builds (tests/golden/*.json) with expected values.
+Part 2: fixed reference builds (tests/golden/builds/*.json) with expected values. An expect key "C:path" reads the sheet (C), "D:path" the derived numbers (D), value "~text" = contains.
 Exit code 1 on any mismatch."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
@@ -104,6 +104,21 @@ def main():
             C, D = run(g['build'])
             for k, v in g['expect'].items():
                 n += 1
+                if k[:2] in ('C:', 'D:'):
+                    # path into the sheet (C:) or the derived numbers (D:), e.g. "C:speedSrc", "D:skill.14". A string value starting with "~" means: the JSON of that part contains the text
+                    got = C if k[0] == 'C' else D
+                    for part in k[2:].split('.'):
+                        if isinstance(got, list):
+                            got = got[int(part)] if part.isdigit() and int(part) < len(got) else None
+                        else:
+                            got = got.get(part) if isinstance(got, dict) else None
+                    if isinstance(v, str) and v.startswith('~'):
+                        ok = v[1:] in json.dumps(got)
+                    else:
+                        ok = got == v
+                    if not ok:
+                        fails.append(f'{fn}: {k} = {json.dumps(got)[:160]} expected {v} ({g.get("why","")})')
+                    continue
                 got = D.get(k)
                 if got != v:
                     fails.append(f'{fn}: {k} = {got} expected {v} ({g.get("why","")})')

@@ -384,6 +384,10 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `spells:[[lvl,"A,B"]]`, `spCls` | spell selalu prepared; `spCls` menentukan kemampuan casting (default class entri, atau species) | `{spells:[[1,"Shield"]]}` |
 | `spAtk`, `spDc` (+ `spCls`) | bonus spell attack dan Spell Save DC | Soulbind Chains |
 | `pick:[{k,t,n,title,from,list,cats,cls}]` | pilihan di builder. `t`: skills, tool, lang, multi, cantrip. Disimpan di `B.ch["gx-"+k+"-"+kind+"-"+sumber]` | `{pick:[{k:"a",t:"skills",n:1,title:"Skill"}]}` |
+| `saveBonusNp` | bonus ke saving throw yang tidak memakai Proficiency Bonus (sheet melewati save yang proficient). Dikirim sebagai `C.saveBonus[{s,v,np:1,t}]`; `06-logic-derivation.js` dan `23-ui-...` membaca `np` | Warmage House of Pawns, Multidiscipline: `{saveBonusNp:"halfPb"}` |
+| `fsPick:1` | (hanya entri `sub`) pilihan Fighting Style feat dari subclass pada level `l`. Kunci `B.ch["sfs"+l]`, tipe `fs`, masuk `allFeats()`. Belum untuk multiclass | Warmage House of Knights: `{l:7,fsPick:1}` |
+| `pick` tipe `cantrip` + `slv:N` | daftar spell level N (default 0). Pilihan jadi spell selalu prepared pada kemampuan `spCls` | Summoner Shambling Plant: `{k:"s",t:"cantrip",cls:"Druid",slv:1,n:1}` |
+| `mv:{burrow:..}` | kunci kecepatan apa saja dibaca apa adanya | Elemental Soul Earth |
 
 Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.

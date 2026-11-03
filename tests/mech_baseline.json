@@ -1,5 +1,97 @@
 {
-"by_design": {},
+"by_design": {
+"sub|Monk/Warrior of the Living Weapon|Perfect Form": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Monk/Way of the Drunken Master|Drunken Technique": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Monk/Way of the Kensei|Agile Parry": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Monster Hunter/Trapper Guild|Monster-Hide Armor": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Blood Ascendant|Nosferatu [Lichdom]": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Crone|Baba Yaga [Lichdom]": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Necrodancer|Backup Dancers": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Pharaoh|Mummy Lord [Lichdom]": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Plague Lord|Corpulent Lich [Lichdom]": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Plague Lord|Necrotoxin": "Not a stat for the character (batch B2 review): Ignores poison resistance of targets; no self stat",
+"sub|Necromancer/Reanimator|Spell-Stitching": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Reaper|Wraith Flight": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Necromancer/Toymaker|Clockwork Lich [Lichdom]": "Condition immunities are counted (defenses). The remaining 'choice' hit is the word choose in a story clause, there is no build choice. Checked by tests/golden/builds/b2_toymaker.",
+"sub|Necromancer/Toymaker|Miniature Minions": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Paladin/Oath of Redemption|Emissary of Redemption": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Paladin/Oath of the Watchers|Aura of the Sentinel": "Already counted by the sheet (batch B2 review): init +PB muncul di sheet (diff init)",
+"sub|Ranger/Beast Master (2014)|Ranger's Companion": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Ranger/Drakewarden|Bond of Fang and Scale": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Ranger/Freerunner|Evasive Fighter": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Ranger/Gloom Stalker (2014)|Dread Ambusher": "Already counted by the sheet (batch B2 review): init +Wis muncul di sheet",
+"sub|Ranger/Swarmkeeper|Gathered Swarm": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Ranger/Vampire Slayer|Defensive Tactics": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Rogue/Assassin|Assassinate": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Rogue/Assassin|Envenom Weapons": "Not a stat for the character (batch B2 review): Ignores target resistance; no self stat",
+"sub|Rogue/Cyber Ninja|Covert Techniques": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Rogue/Phantom (2014)|Whispers of the Dead": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Rogue/Phantom|Whispers of the Dead": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Sorcerer/Aberrant Sorcery|Psychic Defenses": "Already counted by the sheet (batch B2 review): Resist Psychic muncul di def",
+"sub|Sorcerer/Apocalypse Sorcery|Forbidden Magic": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Sorcerer/Elemental Essence|Elemental Soul": "Counted once the Elemental Heritage pick is set (Air: Fly Speed and Lightning or Thunder immunity, Earth: Burrow Speed and Bludgeoning immunity, Fire: Speed +10 and Fire immunity, Water: Swim Speed and Cold immunity). The scan builds without the pick. Checked by tests/golden/builds/b2_ee_air, b2_ee_earth, b2_ee_fire, b2_ee_water.",
+"sub|Sorcerer/Pyromancer (PSK)|Heart of Fire": "Not a stat for the character (batch B2 review): Damage to others; keyword only",
+"sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Sorcerer/Wild Magic|Spell Bombardment": "Not a stat for the character (batch B2 review): Dice reroll; keyword only",
+"sub|Summoner/Bond of the Dragon Herald|Draconic Realisation": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Summoner/Bond of the Elemental Spirit|Elemental Eidolon": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Summoner/Bond of the Elemental Spirit|Elemental Remodement": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Summoner/Bond of the Faerie Trickster|Faerie Eidolon": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Summoner/Bond of the Fiendish Chain|Dark Versatility": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Summoner/Bond of the Monster Shaper|Monstrous Eidolon": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Experiment X|Apex Mutation": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Experiment X|Arcane Mutation": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Experiment X|Bloody Rampage": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Experiment X|Mutations": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Gourmand|Monster Meal": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Jolly Roger|Dirty Tactics": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Rōnin|Lone Wolf": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Vagabond/Yellow Sign|Eldritch Herald": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warden/Diabolist|Soul Broker": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warden/Godsworn|Anointed Block": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warden/Stoneheart Defender|Stonewall": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warden/Storm Sentinel|Storm Wings": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warlock/Celestial Patron|Radiant Soul": "Already counted by the sheet (batch B2 review): Resist Radiant muncul di def",
+"sub|Warlock/Star Patron|Supernova": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warlock/The Parasite Patron|Symbiotic Sentinel": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warlock/Vestige Patron|Vestige Companion": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/Coalition Arcanist|Requisition": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/House of Bishops|Arcane Study": "Counted through the two skill picks (fx pick). The scan builds without picks. Checked by tests/golden/builds/b2_bishops.",
+"sub|Warmage/House of Darts|Bullseye": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/House of Darts|Dagger Climb": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/House of Knights|Fighting Style": "Counted through the Fighting Style feat pick (fx fsPick, key sfs7). The scan builds without the pick. Checked by tests/golden/builds/b2_knights.",
+"sub|Warmage/House of Pawns|Fundamental Mastery": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/House of Pawns|Pawn Wall": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Warmage/House of Pawns|Promotion": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/Gingerbread Magic|Gingerbread Familiar": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/Green Magic|Primal Ally": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/Sky Magic|Corvid Familiar": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/Sky Magic|Feathered Heels": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/White Magic|Talisman of Protection": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Witch/White Magic|Witch's Gift": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Alkemancer|Craft Minor Elixir": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Alkemancer|Essence Mastery": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Chronomancer|Retroactive Spell": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Doomsayer|Terrible Power": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Familiar Master|Servitor's Agility": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Fumaturge|Smoke Animals": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Gastronomer|Monster Meal": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Graviturgy Magic|Gravity Well": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Illuminator|Omen of Warning": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Leyline Magic|Thrum of the Land": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Necrophage|Feed on Life": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/School of Evocation|Overchannel": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/School of Evocation|Sculpt Spells": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/School of Illumination|Omen of Warning": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/School of Necromancy|Undead Thralls": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Somnomancer|Somnambulist": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Spellhacker|Counter-Hack": "Counterspell is already always prepared (spell list, subclass table). The remaining 'choice' hit is the effect picked when casting it, an in-play choice. Checked by tests/golden/builds/b2_spellhacker.",
+"sub|Wizard/Transmuter|Transmuter's Stone": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/Universalist|Multidisciplinary Scholar": "Counted through the Expertise pick (fx pick). The scan builds without the pick. Checked by tests/golden/builds/b2_universalist.",
+"sub|Wizard/Wand Wizard|Arcane Duelist": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine",
+"sub|Wizard/War Magic|Deflecting Shroud": "Situational (batch B2 review): Conditional, activated, or about eidolon/familiar/thrall/ally/Advantage; text-only is fine"
+},
 "gaps": {
 "class|Artificer|Advanced Artifice": [
 "uses"
@@ -607,9 +699,6 @@
 "species|Shifter (Beasthide)|Shifting Feature": [
 "ac"
 ],
-"species|Shifter (Swiftstride)|Shifting Feature": [
-"speed"
-],
 "species|Skathári|Gliding Wings": [
 "resist"
 ],
@@ -618,9 +707,6 @@
 ],
 "species|Vampire (Ixalan)|Blood Thirst": [
 "hp"
-],
-"species|Vampire (Ixalan)|Feast of Blood": [
-"speed"
 ],
 "species|Vampire (Zendikar)|Blood Thirst": [
 "hp"
@@ -739,9 +825,6 @@
 ],
 "sub|Captain/Eagle Banner|Hundred-Arrow Volley": [
 "choice"
-],
-"sub|Captain/Eagle Banner|Vantage Point": [
-"speed"
 ],
 "sub|Captain/Experiment X|Apex Mutation": [
 "choice"
@@ -965,349 +1048,6 @@
 "speed"
 ],
 "sub|Monk/Warrior of the Living Weapon|Manifest Blow": [
-"choice"
-],
-"sub|Monk/Warrior of the Living Weapon|Perfect Form": [
-"ac"
-],
-"sub|Monk/Warrior of the Mystic Arts|Spellcasting": [
-"choice"
-],
-"sub|Monk/Way of the Drunken Master|Drunken Technique": [
-"speed"
-],
-"sub|Monk/Way of the Kensei|Agile Parry": [
-"ac"
-],
-"sub|Monster Hunter/Trapper Guild|Ambusher's Advantage": [
-"init"
-],
-"sub|Monster Hunter/Trapper Guild|Monster-Hide Armor": [
-"ac",
-"choice"
-],
-"sub|Necromancer/Blood Ascendant|Nosferatu [Lichdom]": [
-"hp",
-"speed"
-],
-"sub|Necromancer/Crone|Baba Yaga [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Dead Mist Acolyte|Dead Mist Lord [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Death Knight|Imperator [Lichdom]": [
-"resist"
-],
-"sub|Necromancer/Necrodancer|Backup Dancers": [
-"ac"
-],
-"sub|Necromancer/Pharaoh|Mummy Lord [Lichdom]": [
-"hp"
-],
-"sub|Necromancer/Plague Lord|Corpulent Lich [Lichdom]": [
-"choice"
-],
-"sub|Necromancer/Plague Lord|Necrotoxin": [
-"resist"
-],
-"sub|Necromancer/Reanimator|Spell-Stitching": [
-"hp"
-],
-"sub|Necromancer/Reaper|Harbinger [Lichdom]": [
-"speed"
-],
-"sub|Necromancer/Reaper|Wraith Flight": [
-"speed"
-],
-"sub|Necromancer/Toymaker|Clockwork Lich [Lichdom]": [
-"resist",
-"choice"
-],
-"sub|Necromancer/Toymaker|Miniature Minions": [
-"ac",
-"choice"
-],
-"sub|Paladin/Oath of Glory|Aura of Alacrity": [
-"speed"
-],
-"sub|Paladin/Oath of Redemption|Emissary of Redemption": [
-"resist"
-],
-"sub|Paladin/Oath of Thunder|Aura of Alacrity": [
-"init"
-],
-"sub|Paladin/Oath of the Watchers|Aura of the Sentinel": [
-"choice"
-],
-"sub|Ranger/Beast Master (2014)|Ranger's Companion": [
-"ac",
-"hp"
-],
-"sub|Ranger/Drakewarden|Bond of Fang and Scale": [
-"speed"
-],
-"sub|Ranger/Freerunner|Evasive Fighter": [
-"ac"
-],
-"sub|Ranger/Gloom Stalker (2014)|Dread Ambusher": [
-"speed"
-],
-"sub|Ranger/Swarmkeeper|Gathered Swarm": [
-"choice"
-],
-"sub|Ranger/Vampire Slayer|Defensive Tactics": [
-"hp"
-],
-"sub|Rogue/Assassin|Assassinate": [
-"init"
-],
-"sub|Rogue/Assassin|Envenom Weapons": [
-"resist"
-],
-"sub|Rogue/Cyber Ninja|Covert Techniques": [
-"ac"
-],
-"sub|Rogue/Phantom (2014)|Whispers of the Dead": [
-"choice"
-],
-"sub|Rogue/Phantom|Whispers of the Dead": [
-"choice"
-],
-"sub|Rogue/Thief|Second-Story Work": [
-"speed"
-],
-"sub|Sorcerer/Aberrant Sorcery|Psychic Defenses": [
-"save"
-],
-"sub|Sorcerer/Apocalypse Sorcery|Forbidden Magic": [
-"choice"
-],
-"sub|Sorcerer/Elemental Essence|Elemental Soul": [
-"speed"
-],
-"sub|Sorcerer/Frost Sorcery|Frozen Body": [
-"hp"
-],
-"sub|Sorcerer/Pyromancer (PSK)|Heart of Fire": [
-"choice"
-],
-"sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge": [
-"ac",
-"choice"
-],
-"sub|Sorcerer/Wild Magic|Spell Bombardment": [
-"choice"
-],
-"sub|Summoner/Bond of the Dragon Herald|Draconic Realisation": [
-"speed"
-],
-"sub|Summoner/Bond of the Elemental Spirit|Elemental Eidolon": [
-"ac",
-"speed",
-"choice"
-],
-"sub|Summoner/Bond of the Elemental Spirit|Elemental Remodement": [
-"speed"
-],
-"sub|Summoner/Bond of the Faerie Trickster|Faerie Eidolon": [
-"speed"
-],
-"sub|Summoner/Bond of the Fiendish Chain|Dark Versatility": [
-"choice"
-],
-"sub|Summoner/Bond of the Monster Shaper|Monstrous Eidolon": [
-"choice"
-],
-"sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting": [
-"choice"
-],
-"sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": [
-"choice"
-],
-"sub|Vagabond/Eagle Banner|Vantage Point": [
-"speed"
-],
-"sub|Vagabond/Experiment X|Apex Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Arcane Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Bloody Rampage": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Mutations": [
-"choice"
-],
-"sub|Vagabond/Gourmand|Monster Meal": [
-"ac",
-"hp",
-"save",
-"speed"
-],
-"sub|Vagabond/Jolly Roger|Dirty Tactics": [
-"choice"
-],
-"sub|Vagabond/Jolly Roger|Scallywag": [
-"speed"
-],
-"sub|Vagabond/Mage Brand|Spellbranding": [
-"choice"
-],
-"sub|Vagabond/Rōnin|Lone Wolf": [
-"init"
-],
-"sub|Vagabond/Yellow Sign|Eldritch Herald": [
-"skill"
-],
-"sub|Warden/Diabolist|Soul Broker": [
-"speed",
-"skill",
-"choice"
-],
-"sub|Warden/Drake-Blooded|Spellcasting": [
-"choice"
-],
-"sub|Warden/Godsworn|Anointed Block": [
-"save"
-],
-"sub|Warden/Stoneheart Defender|Stonewall": [
-"ac"
-],
-"sub|Warden/Storm Sentinel|Storm Wings": [
-"speed"
-],
-"sub|Warlock/Celestial Patron|Radiant Soul": [
-"choice"
-],
-"sub|Warlock/Star Patron|Supernova": [
-"choice"
-],
-"sub|Warlock/The Parasite Patron|Symbiotic Sentinel": [
-"init"
-],
-"sub|Warlock/Vestige Patron|Vestige Companion": [
-"hp"
-],
-"sub|Warmage/Coalition Arcanist|Requisition": [
-"choice"
-],
-"sub|Warmage/House of Bishops|Arcane Study": [
-"skill",
-"choice"
-],
-"sub|Warmage/House of Darts|Bullseye": [
-"choice"
-],
-"sub|Warmage/House of Darts|Dagger Climb": [
-"speed"
-],
-"sub|Warmage/House of Knights|Fighting Style": [
-"choice",
-"fstyle"
-],
-"sub|Warmage/House of Pawns|Fundamental Mastery": [
-"choice"
-],
-"sub|Warmage/House of Pawns|Multidiscipline": [
-"save"
-],
-"sub|Warmage/House of Pawns|Pawn Wall": [
-"resist"
-],
-"sub|Warmage/House of Pawns|Promotion": [
-"choice"
-],
-"sub|Warmage/House of Rooks|Arcane Acrobat": [
-"skill",
-"choice"
-],
-"sub|Witch/Gingerbread Magic|Gingerbread Familiar": [
-"hp"
-],
-"sub|Witch/Green Magic|Primal Ally": [
-"hp"
-],
-"sub|Witch/Sky Magic|Corvid Familiar": [
-"ac",
-"speed"
-],
-"sub|Witch/Sky Magic|Feathered Heels": [
-"speed"
-],
-"sub|Witch/White Magic|Talisman of Protection": [
-"save"
-],
-"sub|Witch/White Magic|Witch's Gift": [
-"ac"
-],
-"sub|Wizard/Alkemancer|Craft Minor Elixir": [
-"choice"
-],
-"sub|Wizard/Alkemancer|Essence Mastery": [
-"ac"
-],
-"sub|Wizard/Chronomancer|Retroactive Spell": [
-"init"
-],
-"sub|Wizard/Doomsayer|Terrible Power": [
-"choice"
-],
-"sub|Wizard/Familiar Master|Servitor's Agility": [
-"speed"
-],
-"sub|Wizard/Fumaturge|Smoke Animals": [
-"speed"
-],
-"sub|Wizard/Gastronomer|Monster Meal": [
-"ac"
-],
-"sub|Wizard/Graviturgy Magic|Gravity Well": [
-"choice"
-],
-"sub|Wizard/Illuminator|Omen of Warning": [
-"init"
-],
-"sub|Wizard/Leyline Magic|Thrum of the Land": [
-"choice"
-],
-"sub|Wizard/Materializer|Arcane Artisan": [
-"choice"
-],
-"sub|Wizard/Necrophage|Feed on Life": [
-"hp",
-"resist"
-],
-"sub|Wizard/School of Evocation|Overchannel": [
-"uses"
-],
-"sub|Wizard/School of Evocation|Sculpt Spells": [
-"choice"
-],
-"sub|Wizard/School of Illumination|Omen of Warning": [
-"init"
-],
-"sub|Wizard/School of Necromancy|Undead Thralls": [
-"hp"
-],
-"sub|Wizard/Somnomancer|Somnambulist": [
-"speed"
-],
-"sub|Wizard/Spellhacker|Counter-Hack": [
-"choice"
-],
-"sub|Wizard/Transmuter|Transmuter's Stone": [
-"save",
-"speed"
-],
-"sub|Wizard/Universalist|Multidisciplinary Scholar": [
-"skill"
-],
-"sub|Wizard/Wand Wizard|Arcane Duelist": [
-"choice"
-],
-"sub|Wizard/War Magic|Deflecting Shroud": [
 "choice"
 ]
 }

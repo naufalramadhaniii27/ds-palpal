@@ -1,0 +1,52 @@
+{
+ "why": "Warrior of the Mystic Arts 3, Spellcasting: two Sorcerer cantrips, Wisdom casting. Before: no spells on the sheet. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Monk",
+  "sub": "Warrior of the Mystic Arts",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-c-sub-Warrior of the Mystic Arts": [
+    "Fire Bolt",
+    "Ray of Frost"
+   ]
+  },
+  "src": {
+   "core": true,
+   "au": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:spells": "~Fire Bolt",
+  "C:spellcasting.ab": "WIS"
+ }
+}

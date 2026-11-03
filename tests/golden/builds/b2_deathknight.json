@@ -1,0 +1,46 @@
+{
+ "why": "Death Knight 20, Imperator: Resistance to Bludgeoning, Piercing, Slashing. Before: none. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Necromancer",
+  "sub": "Death Knight",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:defenses": "~Imperator"
+ }
+}
