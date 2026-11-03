@@ -157,4 +157,5 @@ async def main():
         if ch or len(g["hashes"]) != len(hashes): rc = 1
     if OUT: json.dump({"bad": bad[:50], "diffs": {k: v[:50] for k, v in diffs.items()}}, open(OUT, "w"))
     sys.exit(rc)
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

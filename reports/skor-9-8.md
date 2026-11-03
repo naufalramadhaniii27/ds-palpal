@@ -170,10 +170,9 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Acuan: 17.756 kontrol, 6 tanpa nama (semua `combobox` di layar builder).
 - Acuan disimpan di `tests/a11y/tree.json` dan `tests/a11y/unnamed.json`. Jumlah tanpa nama tidak boleh naik.
 
-## N36: firewall edisi (versi ringan)
+## N35: tes metamorfik (versi 2024)
 
-- Kode nyata: edisi tidak disimpan per record. Data 2014 menimpa tabel hidup (`sp14Set`, `eq14Set`, `dm14Set`) lalu dikembalikan.
-- Karena itu tag `ed` per record dan `edCheck` belum dibuat. Itu butuh perubahan di semua titik derive dan belum dikerjakan.
-- Yang dikerjakan: `tests/edition_isolation.py`. Tes menyimpan hash 12 tabel hidup (2024), menyalakan 2014 (7 tabel berubah), mematikan, lalu membandingkan hash. Ditambah urutan acak nyala dan mati per seed (10 seed). Hasil: 0 kebocoran.
-- Urutan kunci objek bergeser setelah nyala-mati (`SPELL_FX`), nilainya sama. Hash tidak peduli urutan kunci.
-- Tes masuk Job A (`tools/run_jobs.py` dan `tests.yml`).
+- `tests/metamorphic.py` (200 karakter acak, seed 1): ability+2 (178 kasus), level+1 (195), con+2 (180), proficiency skill (200), dex+2 terhadap AC (137), rename (200). 0 rusak.
+- Uji negatif: aturan PB diubah salah, tes melapor rusak.
+- `tests/golden_rules.py` kini bisa diimpor (`__main__` guard).
+- Belum dikerjakan: oracle 2014, `rules.mjs` dari `books/`, golden per edisi. Folder `books/` tidak ada di workspace ini, jadi tabel 2014 tidak bisa dicek ke buku.
