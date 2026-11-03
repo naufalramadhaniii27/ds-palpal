@@ -15,6 +15,7 @@ import {lintList} from "./40-ui-segments-notes-swipe-motion-panels.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {QRG} from "./42-logic-pwa-qr-icons-wallet.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;},configurable:true});
 Object.defineProperty(__R,"dnaRead",{get:function(){return dnaRead;},set:function(v){dnaRead=v;},configurable:true});
 Object.defineProperty(__R,"futureOpen",{get:function(){return futureOpen;},set:function(v){futureOpen=v;},configurable:true});
@@ -139,7 +140,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   dnaLink().then((u) =>{ const bt=(window.__bldToast&&!document.getElementById("bld").hidden)?window.__bldToast:toast;
     if(how==="share"&&navigator.share){ navigator.share({title:"D&D build",url:u}).catch(() =>{}); return; }
     if(how==="qr"){ let box=b.parentNode&&b.parentNode.parentNode&&b.parentNode.parentNode.querySelector(".dna-qr"); if(!box){ box=document.createElement("div"); box.className="dna-qr"; b.parentNode.insertAdjacentElement("afterend",box); }
-      let q=null; try{ q=QRG.make(u,"L",40); }catch(er){ q=null; } box.innerHTML=q?QRG.svg(q,"Build link code")+'<p class="fd bhint">Scan it with Open Character, Scan a code, on the other phone.</p>':'<p class="fd bhint">The link is too long for one code. Use Copy or Share.</p>'; return; }
+      let q=null; try{ q=QRG.make(u,"L",40); }catch(er){ q=null; } drawHtml(q ? html`${rawHtml(QRG.svg(q,"Build link code"))}<p class="fd bhint">Scan it with Open Character, Scan a code, on the other phone.</p>` : html`<p class="fd bhint">The link is too long for one code. Use Copy or Share.</p>`, box); return; }
     const done=function(){ bt("Build link copied ("+u.length+" characters)."); };
     try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(done,() =>{ bt("Copy did not work here. Use Share instead."); }); return; } }catch(er){} bt("Copy is not available here."); },
     (er) =>{ (window.__bldToast||toast)(er.message||"The link could not be made."); }); });

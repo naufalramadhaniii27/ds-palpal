@@ -3,6 +3,7 @@ import {esc,toast} from "./05-logic-helpers.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {fixCid,hashS,homeCards,newId,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 /* T8 stage 3: cloud backup and sync of characters (Cloudflare Pages Functions /api + D1).
    Off unless /api answers (local files, tests and other hosts keep working as before). Data stays on the device first, the server holds a copy.
    No popups for routine events: one small cloud button shows the state, its text appears when tapped.
@@ -115,7 +116,7 @@ function syBanners(){ const sy=syGet(), day=new Date().toISOString().slice(0,10)
   if(dirty&&sy.ok&&Date.now()-sy.ok>3*864e5&&sy.banOld!==day) syBan("old","Changes on this device have not been backed up for more than 3 days. Go online with the app open to back them up.");
   const me=SY.me||{}, lim=(me.limits||{}).bytes||0; if(lim&&me.bytes>=lim*.9&&sy.banFull!==day) syBan("full","Your cloud space is "+Math.round(me.bytes/lim*100)+"% full. Delete characters you no longer need, or new changes will stay only on this device."); }
 function syBan(k,msg){ if(document.getElementById("syBan")) return; const b=document.createElement("div"); b.id="syBan"; b.className="sy-ban"; b.setAttribute("role","status");
-  b.innerHTML='<span>'+esc(msg)+'</span><button type="button" aria-label="Close">\u00d7</button>'; document.body.appendChild(b);
+  drawHtml(html`<span>${msg}</span><button type="button" aria-label="Close">×</button>`, b); document.body.appendChild(b);
   b.querySelector("button").onclick=function(){ b.remove(); const q=syGet(); q[k==="old"?"banOld":"banFull"]=new Date().toISOString().slice(0,10); sySet(q); }; }
 function syAgain(){ const w=SY.again; if(w){ SY.again=""; setTimeout(() =>{ syRun(w); },0); } }
 const SY_ICO={ok:'<path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18z"/><path d="m9.5 13.5 2 2 3.5-3.5"/>',
@@ -131,19 +132,19 @@ export function syIcon(){ const on=SY.on&&SY.st!=="off";
   [["#moreBtn",0],[".hhead h1",1]].forEach((p) =>{ const a=document.querySelector(p[0]); if(!a) return; let host=a.parentNode, b=host.querySelector(":scope > .sy-b");
     if(!on){ if(b) b.remove(); return; } if(!b){ b=syBtn(); if(p[1]) a.insertAdjacentElement("afterend",b); else host.insertBefore(b,a); }
     if(b.getAttribute("data-st")===SY.st&&b.firstChild) return; b.setAttribute("data-st",SY.st); b.setAttribute("aria-label","Cloud backup: "+syMsg());
-    b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(SY_ICO[SY.st]||SY_ICO.ok)+'</svg>'; }); }
+    drawHtml(html`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${rawHtml(SY_ICO[SY.st]||SY_ICO.ok)}</svg>`, b); }); }
 /* cloud dialog: state, characters in the cloud, recycle bin, versions. Restoring always makes a new character, nothing is overwritten */
 function syOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(); const w=document.createElement("div"); w.id="bkp"; w.className="bkp sy-dlg"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","bkpT");
-  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="bkpT">Cloud backup</b><button type="button" class="bkpx" data-syx="1" aria-label="Close">×</button></div><p class="sy-st">'+esc(syMsg())+'</p><div class="sy-list"><p class="sy-note">Loading…</p></div></div>';
+  drawHtml(html`<div class="bkpb"><div class="bkph"><b id="bkpT">Cloud backup</b><button type="button" class="bkpx" data-syx="1" aria-label="Close">×</button></div><p class="sy-st">${syMsg()}</p><div class="sy-list"><p class="sy-note">Loading…</p></div></div>`, w);
   document.body.appendChild(w); const box=w.querySelector(".sy-list");
   function when(t){ try{ return new Date(t).toLocaleString(undefined,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
   function list(){ syApi("chars").then((j) =>{ const a=(j.chars||[]).filter((c) =>{ return !c.deleted; }), d=(j.chars||[]).filter((c) =>{ return c.deleted; });
       box.innerHTML=(a.length?'<b class="sy-h">In the cloud</b>'+a.map((c) =>{ return '<div class="sy-row"><span><b>'+esc(c.name||"Unnamed")+'</b><small>'+esc(c.sub||"")+' · '+esc(when(c.t))+'</small></span><button type="button" class="btn press" data-syv="'+esc(c.id)+'">Versions</button></div>'; }).join(""):'<p class="sy-note">No characters in the cloud yet.</p>')+
         (d.length?'<b class="sy-h">Recently deleted (kept 30 days)</b>'+d.map((c) =>{ return '<div class="sy-row"><span><b>'+esc(c.name||"Unnamed")+'</b><small>Deleted '+esc(when(c.deleted))+'</small></span><button type="button" class="btn press" data-syr="'+esc(c.id)+'">Restore</button></div>'; }).join(""):""); },
-    () =>{ box.innerHTML='<p class="sy-note">The cloud cannot be reached now. Everything is still saved on this device.</p>'; }); }
-  function vers(id){ box.innerHTML='<p class="sy-note">Loading…</p>'; syApi("chars/"+encodeURIComponent(id)+"/versions").then((j) =>{ const v=j.versions||[];
-      box.innerHTML='<button type="button" class="btn press" data-syb="1">← All characters</button>'+(v.length?'<b class="sy-h">Earlier versions</b>'+v.map((x) =>{ return '<div class="sy-row"><span><b>'+esc(x.name||"Unnamed")+'</b><small>'+esc(when(x.t))+(x.why==="other-device"?" · from another device":"")+'</small></span><button type="button" class="btn press" data-syc="'+esc(id)+'" data-rev="'+x.rev+'">Restore as copy</button></div>'; }).join(""):'<p class="sy-note">No earlier versions yet. A version is kept at most once an hour while you edit.</p>'); },
-    () =>{ box.innerHTML='<p class="sy-note">The cloud cannot be reached now.</p>'; }); }
+    () =>{ drawHtml(html`<p class="sy-note">The cloud cannot be reached now. Everything is still saved on this device.</p>`, box); }); }
+  function vers(id){ drawHtml(html`<p class="sy-note">Loading…</p>`, box); syApi("chars/"+encodeURIComponent(id)+"/versions").then((j) =>{ const v=j.versions||[];
+      drawHtml(html`<button type="button" class="btn press" data-syb="1">← All characters</button>${rawHtml(v.length?'<b class="sy-h">Earlier versions</b>'+v.map((x) =>{ return '<div class="sy-row"><span><b>'+esc(x.name||"Unnamed")+'</b><small>'+esc(when(x.t))+(x.why==="other-device"?" · from another device":"")+'</small></span><button type="button" class="btn press" data-syc="'+esc(id)+'" data-rev="'+x.rev+'">Restore as copy</button></div>'; }).join(""):'<p class="sy-note">No earlier versions yet. A version is kept at most once an hour while you edit.</p>')}`, box); },
+    () =>{ drawHtml(html`<p class="sy-note">The cloud cannot be reached now.</p>`, box); }); }
   function copy(text,label){ let e; try{ e=JSON.parse(text); }catch(x){ toast("This copy could not be read."); return; } const r=rSnap(rEnsure()), nid=newId(r);
     e.B=fixCid(e.B==null?null:e.B,nid); e.name=(e.name||"Character")+(label?" ("+label+")":""); try{ const cc=JSON.parse(e.C); cc.name=e.name; e.C=JSON.stringify(cc); }catch(x){}
     e.created=Date.now(); e.t=Date.now(); delete e.ph; r.chars[nid]=e; if(!rSave(r)) return; w.remove(); toast("Restored as a new character: "+e.name+"."); const g=document.getElementById("hgrid"); if(g&&typeof homeCards==="function") g.innerHTML=homeCards(true); }

@@ -11,6 +11,7 @@ import {spRowLv} from "./22-ui-spell-data-and-slots.js";
 import {ico,ordL,resOf,scAdj,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {bastionH} from "./28-ui-bastion.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"ICO",{get:function(){return ICO;},set:function(v){ICO=v;},configurable:true});
 Object.defineProperty(__R,"NOTE_MORE",{get:function(){return NOTE_MORE;},set:function(v){NOTE_MORE=v;},configurable:true});
 Object.defineProperty(__R,"clsOfG",{get:function(){return clsOfG;},set:function(v){clsOfG=v;},configurable:true});
@@ -126,12 +127,12 @@ function crStat(c,ctx){ const sel=crSel[c.n]||{}, v=(c.variants||[]).filter((q) 
   return o; }
 function crRowH(e){ const c=crOf(e.n), env=crEnv(e.ctx,c), o=crStat(c,e.ctx);
   return '<button type="button" class="crr" data-info="cr:'+esc(e.n)+'|'+esc(e.ctx)+'"><span class="crn"><b>'+(window.__artIc?window.__artIc("creature",String(o.type||"").split(/[\s(,]/)[0]):"")+esc(e.n)+'</b><small>'+esc(o.size+" "+o.type)+' • '+esc(e.why)+'</small></span><span><small>AC</small>'+esc(crExpr(o.ac,env))+'</span><span><small>HP</small>'+esc((function(){ const m=crHpMax(o,env); if(m==null||(S.crhp||{})[e.n+"|"+e.ctx]==null) return crExpr(o.hp,env); return crHpCur(e.n+"|"+e.ctx,m)+"/"+m; })())+'</span><span><small>CR</small>'+esc(o.cr||"—")+'</span></button>'; }
-export function renderExtras(){ renderExtras0(); const el=$("#extBody"); if(!el) return; let bh=""; try{ bh=bastionH(); }catch(er){ bh='<h3 class="fcat">Bastion</h3><p class="caution">The Bastion data on this sheet could not be shown. It is kept as it is. Use Report a problem on My Characters.</p>'; } el.innerHTML='<section class="xcard" id="xCr">'+el.innerHTML+'</section>'; if(bh)el.insertAdjacentHTML("beforeend",'<section class="xcard" id="xBs">'+bh+'</section>'); }/* v99: no empty card under Creatures when the rules have no Bastion (2014) *//* v31 C9: one card each *//* v28 I1 *//* v28 RD22 */
+export function renderExtras(){ renderExtras0(); const el=$("#extBody"); if(!el) return; let bh=""; try{ bh=bastionH(); }catch(er){ bh='<h3 class="fcat">Bastion</h3><p class="caution">The Bastion data on this sheet could not be shown. It is kept as it is. Use Report a problem on My Characters.</p>'; } drawHtml(html`<section class="xcard" id="xCr">${rawHtml(el.innerHTML)}</section>`, el); if(bh)el.insertAdjacentHTML("beforeend",'<section class="xcard" id="xBs">'+bh+'</section>'); }/* v99: no empty card under Creatures when the rules have no Bastion (2014) *//* v31 C9: one card each *//* v28 I1 *//* v28 RD22 */
 function renderExtras0(){ const el=$("#extBody"); if(!el) return; const L=crList();
   const G=[["all","All"],["fam","Familiar"],["ws","Wild Shape"],["comp","Companion"],["sum","Summons"]].filter((g) =>{ return g[0]==="all"||L.some((e) =>{ return e.grp===g[0]; }); });
   if(!G.some((g) =>{ return g[0]===crF; })) crF="all";
   let h='<h3 class="fcat">Creatures</h3>';
-  if(!L.length){ el.innerHTML=h+'<div class="empty-note empty-st xempty">'+esArt("paw")+'<b>No creatures yet</b><span>Your creatures will appear here. Find Familiar, Pact of the Chain, Wild Shape, a Beast Master companion, spells that summon a creature, and magic items that call one add them.</span></div>'; return; }/* v31 C9 */  if(L.length>5||crQ) h+='<div class="fsearch"><input id="crQ" type="search" placeholder="Search in Creatures" aria-label="Search in Creatures" value="'+esc(crQ)+'"></div>';/* v100: long lists (Wild Shape) need a search */
+  if(!L.length){ drawHtml(html`${rawHtml(h)}<div class="empty-note empty-st xempty">${rawHtml(esArt("paw"))}<b>No creatures yet</b><span>Your creatures will appear here. Find Familiar, Pact of the Chain, Wild Shape, a Beast Master companion, spells that summon a creature, and magic items that call one add them.</span></div>`, el); return; }/* v31 C9 */  if(L.length>5||crQ) h+='<div class="fsearch"><input id="crQ" type="search" placeholder="Search in Creatures" aria-label="Search in Creatures" value="'+esc(crQ)+'"></div>';/* v100: long lists (Wild Shape) need a search */
   h+='<div class="ifil">'+G.map((g) =>{ return '<button type="button" class="ifb'+(crF===g[0]?' on':'')+'" data-crf="'+g[0]+'">'+g[1]+'</button>'; }).join("")+'</div>';
   const R=(CREATURES.rules||{});
   if(L.some((e) =>{ return e.grp==="ws"; })&&(crF==="all"||crF==="ws")){ const ws=R.wildShape||{}, lv=__R.clsLvls().Druid||0, row=((ws.shapes||{}).rows||[]).filter((r) =>{ return r.lv<=lv; }).pop()||{};

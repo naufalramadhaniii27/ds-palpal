@@ -3,7 +3,7 @@ import {$,clamp,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import { html, raw, render, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 /* ================= HIT POINTS ================= */
 let flashT=null;
 export function buzz(ms){ try{ if(__store.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
@@ -68,7 +68,7 @@ const pips=(n,max,lbl) => html`${Array.from({length:max},(_,i) => html`<button t
 export function syncDeath(){ render(pips(S.ds[0],3,"Success"),$("#dsS")); render(pips(S.ds[1],3,"Failure"),$("#dsF"));
   let dead=S.hp===0&&S.ds[1]>=3, v=document.querySelector(".vitals"), n=document.getElementById("deadNote"); if(v) v.classList.toggle("dead",dead);/* v29 RU127 */
   if(!n){ n=document.createElement("div"); n.id="deadNote"; n.className="dead-note"; const di=document.querySelector(".death-in"); if(di) di.insertBefore(n,di.firstChild); }
-  n.innerHTML=dead?('<b>Dead</b><span>'+(S.exh>=6?'Exhaustion level 6':'Three failed death saves')+'. Heal or lower Exhaustion to undo.</span>'):""; n.hidden=!dead; if(S.hp!==0) DS_OVER=0; dsGuideSync();/* v32 p26 */ }
+  drawHtml(dead ? html`<b>Dead</b><span>${rawHtml(S.exh>=6?'Exhaustion level 6':'Three failed death saves')}. Heal or lower Exhaustion to undo.</span>` : html``, n); n.hidden=!dead; if(S.hp!==0) DS_OVER=0; dsGuideSync();/* v32 p26 */ }
 /* v32 p26 RU130: guide for Death Saving Throws (rules: PHB 2024, Death Saving Throws) */
 export var DS_OVER=0;
 function dsGuideH(){ const s=S.ds||[0,0], st=s[0]>=3, dead=s[1]>=3; if(S.hp!==0||dead) return "";

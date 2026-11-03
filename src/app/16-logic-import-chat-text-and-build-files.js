@@ -4,6 +4,7 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpCheck,bkpCount,bkpMake,bkpRestore,cOf,fixCid,fmtT,homeCards,newId,rLoad,rSnap,rawHash,snTake,uiSet,zUnpack} from "./15-logic-roster-backup-files-snapshots.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"impText",{get:function(){return impText;},set:function(v){impText=v;},configurable:true});
 Object.defineProperty(__R,"wnBanner",{get:function(){return wnBanner;},set:function(v){wnBanner=v;},configurable:true});
 Object.defineProperty(__R,"wnOpen",{get:function(){return wnOpen;},set:function(v){wnOpen=v;},configurable:true});
@@ -59,6 +60,6 @@ const WHATSNEW=[{v:113,l:"0.0.11",d:"2026-11-01",n:["The Library now finds all h
 function wnList(from){ return WHATSNEW.filter((x) =>{ return x.v>from&&x.l; }).map((x) =>{ return '<h4>Version '+x.l+' <small>'+x.d+'</small></h4><ul>'+x.n.map((t) =>{ return '<li>'+esc(t)+'</li>'; }).join("")+'</ul>'; }).join(""); }
 export function wnBanner(){ if(!__R.WN_SHOW) return ""; return '<div class="hwn" id="hwnB" role="status"><b>What\'s new in version '+APP_LABEL+'</b>'+wnList(__R.WN_FROM||APP_VER-1)+'<button type="button" class="btn press" data-hwn="ok">Got It</button></div>'; }
 function wnOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(); const w=document.createElement("div"); w.id="bkp"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
-  w.setAttribute("aria-labelledby","bkpT"); w.innerHTML='<div class="bkpb"><div class="bkph"><b id="bkpT">What\'s New</b><button type="button" class="bkpx" data-bkp="close" aria-label="Close">×</button></div>'+wnList(0)+'</div>'; document.body.appendChild(w);
+  w.setAttribute("aria-labelledby","bkpT"); drawHtml(html`<div class="bkpb"><div class="bkph"><b id="bkpT">What's New</b><button type="button" class="bkpx" data-bkp="close" aria-label="Close">×</button></div>${rawHtml(wnList(0))}</div>`, w); document.body.appendChild(w);
   w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-bkp]")) w.remove(); }); }
 window.__bkpMake=bkpMake; window.__bkpCheck=bkpCheck;

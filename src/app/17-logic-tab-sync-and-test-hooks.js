@@ -9,6 +9,7 @@ import {BKEY,RKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpKeyOk,homeCards,rLoad,rSnap,showHome,snGet,snTake,updUnsaved} from "./15-logic-roster-backup-files-snapshots.js";
 import {wnBanner} from "./16-logic-import-chat-text-and-build-files.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"MYID",{get:function(){return MYID;},set:function(v){MYID=v;},configurable:true});
 Object.defineProperty(__R,"PUBLIC_FRESH",{get:function(){return PUBLIC_FRESH;},set:function(v){PUBLIC_FRESH=v;},configurable:true});
 Object.defineProperty(__R,"WN_FROM",{get:function(){return WN_FROM;},set:function(v){WN_FROM=v;},configurable:true});
@@ -29,7 +30,7 @@ function startup(r){ const wv=+lsGet("cs-ui-ver")||0;
   if(lsGet(CKEY)!=null){ const L=(snGet().chars[r.active]||[]); if(!L.length||Date.now()-L[0].t>864e5) snTake(r.active,"Daily copy",r); }
   updUnsaved(); }
 function stale(){ if(FROZEN) return; __set_FROZEN("stale"); clearTimeout(saveT); clearTimeout(cSaveT); const w=document.createElement("div"); w.id="staleV"; w.className="bkp"; w.setAttribute("role","alertdialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","staleT");
-  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="staleT">Paused: open in another tab</b></div><p>This app is open in another tab, and that tab switched to a different character. To keep that character safe, this tab saves nothing until you reload it.</p><div class="bkpr"><button type="button" class="btn pri press" data-stale="1">Reload</button></div></div>';
+  drawHtml(html`<div class="bkpb"><div class="bkph"><b id="staleT">Paused: open in another tab</b></div><p>This app is open in another tab, and that tab switched to a different character. To keep that character safe, this tab saves nothing until you reload it.</p><div class="bkpr"><button type="button" class="btn pri press" data-stale="1">Reload</button></div></div>`, w);
   w.addEventListener("click",(e) =>{ if(e.target.closest("[data-stale]")){ sessionStorage.setItem("cs-skip","1"); __miReload(); } }); document.body.appendChild(w); }
 /* v32 p32 RU131: BroadcastChannel next to the storage event */
 let TABID=Math.random().toString(36).slice(2), BC=null, EXT_LAST={};

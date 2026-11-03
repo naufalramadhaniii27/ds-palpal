@@ -13,6 +13,7 @@ import {spLvSel,spPactLv,spRowLv} from "./22-ui-spell-data-and-slots.js";
 import {CONS1,ico,invKey,occOf,renderSpells,restRefresh,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {toastKind} from "./30-ui-icons.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"UNDO",{get:function(){return UNDO;},set:function(v){UNDO=v;},configurable:true});
 Object.defineProperty(__R,"UST",{get:function(){return UST;},set:function(v){UST=v;},configurable:true});
 Object.defineProperty(__R,"ammoBonus",{get:function(){return ammoBonus;},set:function(v){ammoBonus=v;},configurable:true});
@@ -67,7 +68,7 @@ export function undoMark(lbl,join){ undoTidy(); const now=Date.now(), top=UST[US
   if(join&&top&&top.l===lbl&&top.j&&now-top.t<2000&&!RST.length){ top.t=now; top.A=null; UNDO=top; setTimeout(() =>{ undoFix(top); },0); return; }
   const e={l:lbl,t:now,j:!!join,S:JSON.stringify(S),C:JSON.stringify(C),B:lsGet(BKEY)}; UST.push(e); if(UST.length>UMAX) UST.shift(); RST.length=0; UNDO=e; setTimeout(() =>{ undoFix(e); },0); }
 export function undoLbl(){ undoTidy(); const u=UST[UST.length-1]; return u?u.l:""; }
-export function toastU(msg){ if(!UNDO){ toast(msg); return; } undoFix(UNDO);/* v21 M3: state right after the action */ const t=$("#toast"); const tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span><button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>'; t.setAttribute("data-kind",tk); t.classList.add("on","act"); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },6000)); }
+export function toastU(msg){ if(!UNDO){ toast(msg); return; } undoFix(UNDO);/* v21 M3: state right after the action */ const t=$("#toast"); const tk=toastKind(msg); drawHtml(html`${rawHtml(ico("toast-"+tk,"tico"))}<span>${msg}</span><button type="button" class="tundo" data-undo="1">${rawHtml(ico("ui-undo"))}Undo</button>`, t); t.setAttribute("data-kind",tk); t.classList.add("on","act"); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },6000)); }
 /* v21 M3, m1: only the fields the action changed go back. Changes made since (another tab, a condition) stay */
 function undoBack(cur,b0,a0){ const J1=function(x){ return JSON.stringify(x===undefined?null:x); };
   Object.keys(b0).concat(Object.keys(a0)).forEach((k) =>{ if(k==="_app"||J1(b0[k])===J1(a0[k])) return; const b=b0[k], a=a0[k];
@@ -79,7 +80,7 @@ function undoApply(u,re){ undoFix(u); let note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
   const b0=re?u.BA:u.B, b1=re?u.B:u.BA;
   if(b0!=null&&b0!==b1){ if(lsGet(BKEY)===b1){ lsSet(BKEY,b0); try{ if(window.__bldReload) window.__bldReload(); }catch(er){} } else note=" The build changed since then, so it was left as it is."; }
   save(); if(u.C!==u.CA) saveC(); if(sheet.classList.contains("on")) closeSheet(); __R.renderAll(true); return note; }
-function toastR(msg,btn){ const t=$("#toast"), tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span>'+(btn==="redo"?'<button type="button" class="tredo" data-redo="1">'+ico("ui-redo")+'Redo</button>':btn==="undo"?'<button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>':''); t.setAttribute("data-kind",tk); t.classList.add("on"); t.classList.toggle("act",!!btn); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },btn?6000:2400)); }
+function toastR(msg,btn){ const t=$("#toast"), tk=toastKind(msg); drawHtml(html`${rawHtml(ico("toast-"+tk,"tico"))}<span>${msg}</span>${rawHtml(btn==="redo"?'<button type="button" class="tredo" data-redo="1">'+ico("ui-redo")+'Redo</button>':btn==="undo"?'<button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>':'')}`, t); t.setAttribute("data-kind",tk); t.classList.add("on"); t.classList.toggle("act",!!btn); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },btn?6000:2400)); }
 export function undoNow(){ if(FROZEN) return; undoTidy(); const u=UST.pop(); if(!u){ toast("Nothing to undo."); return; } UNDO=UST[UST.length-1]||null; const note=undoApply(u,false); RST.push(u); toastR("Undone: "+u.l+"."+note,"redo"); }
 function redoNow(){ if(FROZEN) return; undoTidy(); const u=RST.pop(); if(!u){ toast("Nothing to redo."); return; } const note=undoApply(u,true); UST.push(u); UNDO=u; toastR("Redone: "+u.l+"."+note,"undo"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-undo],[data-redo]"); if(b){ e.preventDefault(); e.stopPropagation(); if(b.hasAttribute("data-redo")) redoNow(); else undoNow(); } },true);
@@ -113,7 +114,7 @@ export function concChip(){ const o=concOf(); if(!o) return ""; const i=spIx(o.n
 /* header: a line under the name (phone: .mini, computer: .office) */
 function concHead(){ const o=concOf(); [".band .mini",".band .office > div"].forEach((sel,j) =>{ const m=document.querySelector(sel); if(!m) return; let b=m.querySelector(".conch");
   if(!o){ if(b) b.remove(); return; } if(!b){ b=document.createElement("button"); b.type="button"; b.className="conch press"; if(!j) b.id="concH"; m.appendChild(b); }
-  const i=spIx(o.n); if(i>=0) b.setAttribute("data-info","sp:"+i); else b.removeAttribute("data-info"); b.innerHTML='<i aria-hidden="true">C</i>'+esc(o.n); b.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); b.title="Concentrating on "+o.n; }); }
+  const i=spIx(o.n); if(i>=0) b.setAttribute("data-info","sp:"+i); else b.removeAttribute("data-info"); drawHtml(html`<i aria-hidden="true">C</i>${o.n}`, b); b.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); b.title="Concentrating on "+o.n; }); }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-concend],[data-concon]"); if(!t) return; e.preventDefault(); e.stopPropagation();
   if(t.hasAttribute("data-concend")){ const m=concEnd(); save(); renderConds(); refreshEntry(); if(m) toast(m); return; }
   const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return; const m2=concSet(x,spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);

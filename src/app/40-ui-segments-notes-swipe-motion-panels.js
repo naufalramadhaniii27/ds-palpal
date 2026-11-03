@@ -17,6 +17,7 @@ import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
 import {renderAll} from "./35-ui-combo.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
 Object.defineProperty(__R,"bIndSet",{get:function(){return bIndSet;},set:function(v){bIndSet=v;},configurable:true});
 Object.defineProperty(__R,"barTo",{get:function(){return barTo;},set:function(v){barTo=v;},configurable:true});
@@ -220,7 +221,7 @@ function ctxSpec(t){
   return null; }
 function ctxClose(){ const m=document.getElementById("ctxm"); if(m){ m.remove(); if(ctxClose.back&&ctxClose.back.focus) try{ ctxClose.back.focus({preventScroll:true}); }catch(e){} } ctxClose.back=null; }
 function ctxOpen(spec,x,y){ ctxClose(); const m=document.createElement("div"); m.id="ctxm"; m.className="ctxm"; m.setAttribute("role","menu"); m.setAttribute("aria-label",spec.t);
-  m.innerHTML='<div class="ctxh">'+esc(spec.t)+'</div>'+spec.L.map((a,i) =>{ return '<button type="button" role="menuitem" class="ctxi'+(a[3]?' del':'')+'" data-ctxi="'+i+'"'+(a[2]?'':' disabled')+'>'+ico(a[1])+'<span>'+esc(a[0])+'</span></button>'; }).join("");
+  drawHtml(html`<div class="ctxh">${spec.t}</div>${rawHtml(spec.L.map((a,i) =>{ return '<button type="button" role="menuitem" class="ctxi'+(a[3]?' del':'')+'" data-ctxi="'+i+'"'+(a[2]?'':' disabled')+'>'+ico(a[1])+'<span>'+esc(a[0])+'</span></button>'; }).join(""))}`, m);
   document.body.appendChild(m); const w=m.offsetWidth, h=m.offsetHeight; m.style.left=Math.max(8,Math.min(x,innerWidth-w-8))+"px"; m.style.top=Math.max(8,Math.min(y,innerHeight-h-8))+"px";
   ctxClose.back=document.activeElement; m.__L=spec.L; const f=m.querySelector(".ctxi:not([disabled])"); if(f) f.focus({preventScroll:true}); }
 document.addEventListener("contextmenu",(e) =>{ if(mq.matches||e.shiftKey) return; const spec=ctxSpec(e.target); if(!spec) return; e.preventDefault(); ctxOpen(spec,e.clientX,e.clientY); });
@@ -265,7 +266,7 @@ function ordApply(list){ const O=(S.order&&S.order[list])||[]; if(!O.length) ret
 function ordOk(list){ if(list==="inv") return invF==="all"&&(C.inv||[]).length>1; return !featQ&&(C.features||[]).length>0; }
 function ordUI(list){ const o=ORDL[list], root=document.getElementById(o.body); if(!root) return; const ok=ordOk(list), on=ok&&!!ORD_ON[list];
   root.classList.toggle("ord-on",on); if(!ok) return;
-  const bar=document.createElement("div"); bar.className="ordbar"; bar.innerHTML='<span class="muted">'+(on?'Drag a handle, or focus it and use the arrow keys.':'')+'</span><button type="button" class="btn press ordb" data-ord="'+list+'" aria-pressed="'+on+'">'+ico(on?"ui-check":"ui-sort","ibt")+(on?'Done':'Reorder')+'</button>';
+  const bar=document.createElement("div"); bar.className="ordbar"; drawHtml(html`<span class="muted">${rawHtml(on?'Drag a handle, or focus it and use the arrow keys.':'')}</span><button type="button" class="btn press ordb" data-ord="${rawHtml(list)}" aria-pressed="${rawHtml(on)}">${rawHtml(ico(on?"ui-check":"ui-sort","ibt"))}${rawHtml(on?'Done':'Reorder')}</button>`, bar);
   const fil=root.querySelector(".ifil"); if(fil) fil.parentNode.insertBefore(bar,fil.nextSibling); else root.insertBefore(bar,root.firstChild);
   if(!on) return; ordRuns(list).forEach((run) =>{ if(run.length<2) return; run.forEach((r,i) =>{ const h=document.createElement("button"); h.type="button"; h.className="dragh press"; h.setAttribute("data-ordl",list);
     h.setAttribute("aria-label","Move "+o.name(r)+", "+(i+1)+" of "+run.length+". Drag, or use the up and down arrow keys"); h.innerHTML=ico("ui-grip","dgi"); r.appendChild(h); r.classList.add("ordr"); }); }); }

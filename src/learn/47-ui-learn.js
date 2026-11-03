@@ -1,6 +1,7 @@
 import {A,esc,ico,ask,libOpen,buzz,ovQueue,homeInert,showHome} from "./00-bridge.js";
 import {LEARN} from "./45-data-learn.js";
 import {LRN,refreshLRN,lrnGet,lrnPut,lrnL,lrnF,lrnCore,lrnCoreDone,lrnFinish,lrnQuizDone,lrnExam,lrnRecapDue,lrnRecap,lrnD,lrnRoll,lrnBonus,lrnHasChar,spotAnchor,spotShow,spotHide,lrnFind,SPOT} from "./46-logic-learn.js";
+import { html, render as drawHtml, raw as rawHtml } from "../app/lib/html.js";
 /* T11 Learn UI: the map, the stops step by step, the final check, the glossary card and "Find it on your sheet".
    One root (#learn) over Home and the sheet. Every drag has a tap way, every button works with the keyboard, the step text is read out
    by a live region. Motion off and reduced motion: no transitions, the 2D die shows its number at once, no 3D dice. */
@@ -17,8 +18,7 @@ function pic(base,cls,alt){ if(!base) return ""; if(/\.avif$/.test(base)) return
 function hoot(sm){ return '<span class="lrn-hoot'+(sm?" sm":"")+'">'+pic(HOOT,"",U("hootAlt"))+'</span>'; }
 function dom(){ let w=document.getElementById("learn"); if(w) return w;
   w=document.createElement("div"); w.id="learn"; w.className="lrn noico";/* noico: the app does not add its own icons to Learn buttons */ w.hidden=true; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","lrnT"); w.tabIndex=-1;
-  w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-l="back" id="lrnBk">'+ic("ui-chev-l")+'</button><div class="lrn-tt"><b id="lrnT"></b><small id="lrnS"></small></div><span class="lrn-xp" id="lrnXp"></span><div class="lrn-lang" role="group" id="lrnLg"><button type="button" data-llang="en" lang="en">EN</button><button type="button" data-llang="id" lang="id">ID</button></div><button type="button" class="lrn-ib" data-l="close" id="lrnX">'+ic("ui-close")+'</button></header>'
-    +'<div class="lrn-b" id="lrnB"></div><p class="lrn-live sr" id="lrnLive" aria-live="polite"></p><div class="lrn-pop" id="lrnPop" role="dialog" aria-modal="false"></div>';
+  drawHtml(html`<header class="lrn-h"><button type="button" class="lrn-ib" data-l="back" id="lrnBk">${rawHtml(ic("ui-chev-l"))}</button><div class="lrn-tt"><b id="lrnT"></b><small id="lrnS"></small></div><span class="lrn-xp" id="lrnXp"></span><div class="lrn-lang" role="group" id="lrnLg"><button type="button" data-llang="en" lang="en">EN</button><button type="button" data-llang="id" lang="id">ID</button></div><button type="button" class="lrn-ib" data-l="close" id="lrnX">${rawHtml(ic("ui-close"))}</button></header><div class="lrn-b" id="lrnB"></div><p class="lrn-live sr" id="lrnLive" aria-live="polite"></p><div class="lrn-pop" id="lrnPop" role="dialog" aria-modal="false"></div>`, w);
   document.body.appendChild(w); wire(w); return w; }
 function head(){ let t="",s=""; if(V.view==="forge"){ t=lrnL(LEARN.places[V.p].name); s=lrnL(LEARN.places[V.p].goal); } else if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ const p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.recap?U("recap"):V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
   document.getElementById("lrnT").textContent=t; document.getElementById("lrnS").textContent=s; document.getElementById("lrnXp").textContent=LRN.xp+" "+U("xp");
@@ -170,7 +170,7 @@ function close(){ const w=document.getElementById("learn"); if(!w) return; popHi
 /* glossary card: a popover in the top layer, placed under the word with anchor positioning when the browser has it */
 let POPB=null;
 function popShow(btn){ const k=btn.getAttribute("data-lterm"), t=LEARN.terms[k], p=document.getElementById("lrnPop"); if(!t||!p) return; popHide();
-  p.innerHTML='<b class="lrn-pn">'+esc(lrnL(t.name))+'</b><small>'+esc(U("book"))+': '+esc(t.book)+'</small><p>'+esc(lrnL(t.say))+'</p><div class="lrn-acts"><button type="button" class="btn press" data-lib-q="'+esc(t.lib)+'">'+ic("ui-book")+esc(U("open"))+'</button><button type="button" class="btn pri press" data-l="pop">'+esc(U("done"))+'</button></div>';
+  drawHtml(html`<b class="lrn-pn">${lrnL(t.name)}</b><small>${U("book")}: ${t.book}</small><p>${lrnL(t.say)}</p><div class="lrn-acts"><button type="button" class="btn press" data-lib-q="${t.lib}">${rawHtml(ic("ui-book"))}${U("open")}</button><button type="button" class="btn pri press" data-l="pop">${U("done")}</button></div>`, p);
   p.setAttribute("aria-label",lrnL(t.name)); POPB=btn; if(spotAnchor()){ btn.style.setProperty("anchor-name","--lterm"); p.classList.add("anc"); } else p.classList.remove("anc");
   if(window.__topLayer) window.__topLayer(p); p.classList.add("on"); btn.setAttribute("aria-expanded","true"); const f=p.querySelector('[data-l="pop"]'); if(f) try{ f.focus({preventScroll:true}); }catch(e){} }
 function popHide(){ const p=document.getElementById("lrnPop"); if(!p||!p.classList.contains("on")) return; p.classList.remove("on"); try{ if(p.matches(":popover-open")) p.hidePopover(); }catch(e){} if(POPB){ POPB.style.removeProperty("anchor-name"); POPB.setAttribute("aria-expanded","false"); try{ POPB.focus({preventScroll:true}); }catch(e){} } POPB=null; }

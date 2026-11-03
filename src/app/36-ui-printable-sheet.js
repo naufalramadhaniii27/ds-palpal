@@ -8,6 +8,7 @@ import {activeConds} from "./10-ui-conditions.js";
 import {COINS,coinsNow,invWeight} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"buildPrint",{get:function(){return buildPrint;},set:function(v){buildPrint=v;},configurable:true});
 /* ================= PRINTABLE SHEET ================= */
 function chk(n){let h="";for(let i=0;i<n;i++)h+='<span class="ps-chk"></span>';return h}
@@ -96,7 +97,7 @@ function psSplit(){ const ps=document.getElementById("ps"); if(!ps) return; cons
   if(last&&last.scrollHeight>LIM+1){ const nt=last.querySelector('.ps-note[data-nk="session"]'); if(nt&&nt.textContent){ const ln=nt.textContent.split("\n"), keep=ln.slice(), rest=[];
     while(last.scrollHeight>LIM&&keep.length>1){ rest.unshift(keep.pop()); nt.textContent=keep.join("\n"); }
     let title=(last.querySelector(".ps-foot span")||{}).textContent||"", txt=rest.join("\n"), guard=0;
-    while(txt&&guard++<10){ const pg=document.createElement("div"); pg.className="ps-page grow"; pg.innerHTML='<div class="ps-box"><div class="ps-h">SESSION NOTES (CONTINUED)</div><div class="ps-note"></div></div><div class="ps-foot"><span>'+esc(title)+'</span><span></span></div>'; ps.appendChild(pg);
+    while(txt&&guard++<10){ const pg=document.createElement("div"); pg.className="ps-page grow"; drawHtml(html`<div class="ps-box"><div class="ps-h">SESSION NOTES (CONTINUED)</div><div class="ps-note"></div></div><div class="ps-foot"><span>${title}</span><span></span></div>`, pg); ps.appendChild(pg);
       const n2=pg.querySelector(".ps-note"); n2.textContent=txt; const l2=txt.split("\n"), k2=l2.slice(), r2=[]; while(pg.scrollHeight>LIM&&k2.length>1){ r2.unshift(k2.pop()); n2.textContent=k2.join("\n"); } txt=r2.join("\n"); } } }
   const all=Array.prototype.slice.call(ps.querySelectorAll(".ps-page")); all.forEach((p,i) =>{ const f=p.querySelectorAll(".ps-foot span"); if(f.length>1) f[f.length-1].textContent="Page "+(i+1)+" of "+all.length; }); }
 /* v24 M3: a page whose content runs a little past the page gets tighter, so nothing is cut and no extra sheet comes out */

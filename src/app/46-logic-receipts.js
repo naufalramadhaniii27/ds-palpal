@@ -6,6 +6,7 @@ import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {rGet} from "./14-ui-editor.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"rcptShow",{get:function(){return rcptShow;},set:function(v){rcptShow=v;},configurable:true});
 /* T11 G3 N3 Number receipts. The derivation already keeps where each number comes from (B, the breakdowns). Here every main number is
    kept as a receipt (label, total, parts). Two receipts compare into "what changed and why": after an app update (N3), before Apply
@@ -36,7 +37,7 @@ function rcptCheck(){ if(FROZEN||!C) return; let id=(rGet()||{}).active||"", st=
   Object.keys(st).forEach((k) =>{ if(!(rGet()||{chars:{}}).chars[k]) delete st[k]; });
   try{ __store.setItem("cs-rcpt-v1",JSON.stringify(st)); }catch(e){}
   if(!old||old.ver===APP_VER) return; const d=rcptDiff(old.r,now); if(!d.length) return; RCPT_LAST={ver:old.ver,list:d};
-  setTimeout(() =>{ const t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>After the update, '+d.length+' number'+(d.length>1?"s":"")+' changed.</span><button type="button" class="tundo" data-rcpt="1">See why</button>'; t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1500); }
+  setTimeout(() =>{ const t=$("#toast"); if(!t) return; drawHtml(html`${rawHtml(ico("toast-ok","tico"))}<span>After the update, ${rawHtml(d.length)} number${rawHtml(d.length>1?"s":"")} changed.</span><button type="button" class="tundo" data-rcpt="1">See why</button>`, t); t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1500); }
 function rcptShow(){ const l=RCPT_LAST?RCPT_LAST.list:[]; __set_navStack([]); openSheet("What changed",'<p class="bk-f">Numbers of this character that changed with the last app update, and the reason for each.</p>'+rcptHTML(l,"Nothing changed with the last update."),"rcpt"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-rcpt]"); if(!b) return; $("#toast").classList.remove("on","act"); rcptShow(); });
 window.__rcptNow=rcptNow; window.__rcptShow=rcptShow; window.__rcptCheck=rcptCheck;

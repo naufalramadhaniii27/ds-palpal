@@ -5,7 +5,7 @@ import {B,D,derive,part} from "./06-logic-derivation.js";
 import {CHEV,boxes,esArt,renderInv,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,navStack,openSheet,refreshEntry,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
-import {html,render} from "./lib/html.js";
+import { html, render, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 import {doRest} from "./19-ui-global-click-delegation.js";
 import {setTab} from "./21-ui-tabs-pager.js";
 import {dtIcon,spEffH,spGrpLv,spPact,spRangeH,spRowLv,svgI} from "./22-ui-spell-data-and-slots.js";
@@ -237,7 +237,7 @@ function restDiff(a){ const o=[], hp=S.hp==null?D.hpmax:S.hp, MODE={rage:"Rage",
   a.mode.forEach((k) =>{ if(!(S.mode&&S.mode[k])) o.push([MODE[k]||k,"ended"]); });
   return o; }
 function restSumToast(kind){ if(!RS0) return; const L=restDiff(RS0); REST_SUM={k:kind,L:L}; RS0=null; const t=$("#toast"); if(!t||!t.classList.contains("on")) return;
-  const b=document.createElement("button"); b.type="button"; b.className="tsum"; b.setAttribute("data-restsum","1"); b.innerHTML=ico("ui-info")+"Details"; t.appendChild(b); }
+  const b=document.createElement("button"); b.type="button"; b.className="tsum"; b.setAttribute("data-restsum","1"); drawHtml(html`${rawHtml(ico("ui-info"))}Details`, b); t.appendChild(b); }
 function restSumHTML(){ const s=REST_SUM; if(!s) return '<p class="info-d">No rest taken yet.</p>';
   return '<div id="restSum"><p class="info-d">'+(s.L.length?'What changed when you finished the '+(s.k==="short"?"Short":"Long")+' Rest:':'Nothing changed. Everything was already full.')+'</p>'+(s.L.length?'<div class="rsum">'+s.L.map((x) =>{ return '<div class="rsr">'+ico("ui-check","rli-i")+'<b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>'; }).join("")+'</div>':'')+'<p class="muted">Undo in the message that appeared after the rest puts everything back.</p></div>'; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-restsum]"); if(!b) return; e.preventDefault(); __set_navStack([]); openSheet((REST_SUM&&REST_SUM.k==="long"?"Long":"Short")+" Rest Summary",restSumHTML(),"restsum"); });
@@ -303,7 +303,7 @@ function spHead(sc){sc=scAdj(sc);let h=Array.isArray(sc.by)&&sc.by.length>1?spHe
 export function renderSpells(){const el=document.getElementById("spBody");if(!el)return;const L=C.spells||[],sc=C.spellcasting;
  /* RU20: a caster with no spells chosen still sees Modifier, Spell Attack, Save DC and slots (C.spellcasting), then the note */
  const MB='<div class="spm-bar">'+(L.length?'<button type="button" class="btn press spm-open" data-spcards="1">Print Cards</button>':'')+'<button type="button" class="btn press spm-open" data-spman="1">'+ico("spellbook","ibt")+'Manage Spells</button></div>';/* v27 RU68 *//* v25 RU38 no. 3 */
- if(!L.length){el.innerHTML=(sc?spHead(sc):'')+'<div class="empty-note empty-st">'+esArt("book")+'<b>No spells yet</b><span>'+(sc?'Add the cantrips and spells your class can cast. They show here with their slots.':'Spells from your class, species, feats, or magic items show up here.')+'</span><button type="button" class="btn pri press spm-open" data-spman="1">'+ico("tab-spells","ibt")+'Manage Spells</button></div>';return}/* v31 C5 */
+ if(!L.length){drawHtml(html`${rawHtml(sc?spHead(sc):'')}<div class="empty-note empty-st">${rawHtml(esArt("book"))}<b>No spells yet</b><span>${rawHtml(sc?'Add the cantrips and spells your class can cast. They show here with their slots.':'Spells from your class, species, feats, or magic items show up here.')}</span><button type="button" class="btn pri press spm-open" data-spman="1">${rawHtml(ico("tab-spells","ibt"))}Manage Spells</button></div>`, el);return}/* v31 C5 */
  let h=(sc?spHead(sc):'')+MB;
  h+='<input class="sp-q" id="spQ" type="search" placeholder="Search Spell Names, Casting Times, Damage Types" value="'+esc(spQ)+'">';
  const lvs=[],UP=__R.spUpOn(),UPX=__R.spUpMax();L.forEach((x) =>{const g=spGrpLv(x);if(lvs.indexOf(g)<0)lvs.push(g);if(UP&&__R.spUpOk(x))for(let u=g+1;u<=UPX;u++)if(lvs.indexOf(u)<0)lvs.push(u)});lvs.sort((a,b) =>{return a-b});/* v25 RU38 no. 6 */

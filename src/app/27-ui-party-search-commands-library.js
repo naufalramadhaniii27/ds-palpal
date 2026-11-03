@@ -15,6 +15,7 @@ import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,ico,icoCls,icoItem,
 import {spClsJ,spnHTML} from "./24-ui-manage-spells.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"LIBR",{get:function(){return LIBR;},set:function(v){LIBR=v;},configurable:true});
 Object.defineProperty(__R,"LIB_RULES",{get:function(){return LIB_RULES;},set:function(v){LIB_RULES=v;},configurable:true});
 Object.defineProperty(__R,"bkpCamp",{get:function(){return bkpCamp;},set:function(v){bkpCamp=v;},configurable:true});
@@ -64,10 +65,7 @@ function partyCard(s){ const hpPct=s.mx?Math.round(100*s.hp/s.mx):0;
     (s.ext!=null?'<div class="bkpr"><button type="button" class="btn press" data-pdel="'+s.ext+'">Remove from Party</button></div>':'')+'</div>'; }
 function partyOpen(){ const old=document.getElementById("party"); if(old) old.remove(); const w=document.createElement("div"); w.id="party"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","partyT");
   const draw=function(){ const L=partyRows();
-    w.innerHTML='<div class="bkpb pwide"><div class="bkph"><b id="partyT">Party'+(homeCamp&&homeCamp!=="-"?': '+esc(homeCamp):'')+'</b><button type="button" class="bkpx" data-pty="close" aria-label="Close">×</button></div>'+
-      '<p class="muted">Armor Class, Hit Points, Passive Perception, Spell DC, and conditions as last saved. '+(homeCamp?'Only the campaign picked on My Characters. ':'')+'A DM can add a player\'s character file: it is shown here only and does not change your characters.</p>'+
-      (L.length?'<div class="pgrid">'+L.map(partyCard).join("")+'</div>':'<p class="hempty">No characters to show.</p>')+
-      '<div class="bkpr"><label class="btn pri press bkpf">Add a Player\'s File<input type="file" id="partyFile" hidden></label></div></div>';
+    drawHtml(html`<div class="bkpb pwide"><div class="bkph"><b id="partyT">Party${rawHtml(homeCamp&&homeCamp!=="-"?': '+esc(homeCamp):'')}</b><button type="button" class="bkpx" data-pty="close" aria-label="Close">×</button></div><p class="muted">Armor Class, Hit Points, Passive Perception, Spell DC, and conditions as last saved. ${rawHtml(homeCamp?'Only the campaign picked on My Characters. ':'')}A DM can add a player's character file: it is shown here only and does not change your characters.</p>${rawHtml(L.length?'<div class="pgrid">'+L.map(partyCard).join("")+'</div>':'<p class="hempty">No characters to show.</p>')}<div class="bkpr"><label class="btn pri press bkpf">Add a Player's File<input type="file" id="partyFile" hidden></label></div></div>`, w);
     const f=w.querySelector("#partyFile"); if(f) f.addEventListener("change",() =>{ const fl=f.files&&f.files[0]; if(!fl) return; const rd=new FileReader(); rd.onload=function(){ partyAdd(String(rd.result||""),draw); f.value=""; }; rd.onerror=function(){ toast("This file could not be read."); }; rd.readAsText(fl); }); };
   draw(); document.body.appendChild(w);
   const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
@@ -339,10 +337,10 @@ function libDetailRaw(c,k){ let h="",t=k,sub="",x,i;
 /* homebrew rows live in data/hb/<id>.json; the entry is drawn when the file arrives */
 const LIB_HB={}, LIB_HBP={};
 function libHbDraw(rows,hn,k){ const box=document.getElementById("libHb"); if(!box||!LIB.cur||LIB.cur.id!=="homebrew|"+k) return; let r=null; (rows||[]).forEach((x) =>{ if(x.n===hn) r=x; });
-  if(!r){ box.innerHTML='<p class="info-d">This entry could not be found in its pack.</p>'; return; }
+  if(!r){ drawHtml(html`<p class="info-d">This entry could not be found in its pack.</p>`, box); return; }
   let h=(r.tl||[]).some((x) =>{ return x&&x[0]==="Abilities"; })?libStat(r.tl):libTiles(r.tl||[]); (r.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); box.innerHTML=h; }
 function libHbLoad(hid,hn,k){ if(LIB_HB[hid]){ setTimeout(() =>{ libHbDraw(LIB_HB[hid],hn,k); },0); return; }
-  if(!window.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) box.innerHTML='<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>'; }); }
+  if(!window.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) drawHtml(html`<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>`, box); }); }
 function libRecent(add){ let a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter((x) =>{ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
 function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
 const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"feature",facility:"facility",rule:"rule",opt:"opt",optfeat:"optfeat",language:"language"};/* Codex icons by entry kind */
@@ -378,7 +376,7 @@ function libListHTML(){ let q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), h=
   return h; }
 function libFlat(R,q,n){ return '<div class="lib-l">'+R.slice(0,LIB.lim).map((r) =>{ return libRow(r[1],q,false); }).join("")+'</div>'+(n>LIB.lim?'<button type="button" class="lib-more" data-lib-more="1">Show '+Math.min(60,n-LIB.lim)+' more of '+n+'</button>':''); }
 function libDom(){ let w=document.getElementById("lib"); if(w) return w; w=document.createElement("div"); w.id="lib"; w.className="lib"; w.setAttribute("role","dialog"); w.setAttribute("aria-label","Library"); w.tabIndex=-1;
-  w.innerHTML='<div class="lib-h" id="libH"><button type="button" class="lib-x" data-lib-x="back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><div class="lib-tt"><b id="libT">Library</b><small id="libS"></small></div><button type="button" class="lib-x" data-lib-x="close" aria-label="Close library">'+ico("ui-close")+'</button></div><div class="lib-q"><input id="libQ" type="search" placeholder="Search spells, items, feats, rules" aria-label="Search the library" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><div class="lib-c" id="libC"></div><div class="lib-bd" id="libBd"></div>';
+  drawHtml(html`<div class="lib-h" id="libH"><button type="button" class="lib-x" data-lib-x="back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><div class="lib-tt"><b id="libT">Library</b><small id="libS"></small></div><button type="button" class="lib-x" data-lib-x="close" aria-label="Close library">${rawHtml(ico("ui-close"))}</button></div><div class="lib-q"><input id="libQ" type="search" placeholder="Search spells, items, feats, rules" aria-label="Search the library" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><div class="lib-c" id="libC"></div><div class="lib-bd" id="libBd"></div>`, w);
   document.body.appendChild(w); libWire(w); return w; }
 function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.createElement("span"); m.id="libWm"; m.className="sh-wm"; m.setAttribute("aria-hidden","true"); w.insertBefore(m,document.getElementById("libBd")); }
   let h="";
@@ -395,7 +393,7 @@ function libPaint(){ const w=document.getElementById("lib"); if(!w) return; cons
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */
-  if(d){ const wm0=document.getElementById("libWm"); bd.innerHTML='<div class="lib-dt">'+d.h+'</div>'; if(wm0) bd.insertBefore(wm0,bd.firstChild); bd.scrollTop=0; return; }
+  if(d){ const wm0=document.getElementById("libWm"); drawHtml(html`<div class="lib-dt">${rawHtml(d.h)}</div>`, bd); if(wm0) bd.insertBefore(wm0,bd.firstChild); bd.scrollTop=0; return; }
   document.getElementById("libC").innerHTML=LIB.idx?libChips():""; bd.innerHTML=libSafe(); bd.scrollTop=LIB.scroll||0; LIB.sel=0; libMark(); }
 function libMark(){ let rs=document.querySelectorAll("#libBd .lib-r"), i; for(i=0;i<rs.length;i++) rs[i].classList.toggle("sel",i===LIB.sel&&!LIB.cur); }
 function libGo(spec,push){ let p=spec.indexOf("|"), c=spec.slice(0,p), k=spec.slice(p+1), d=null; try{ d=libDetail(c,k); }catch(er){ d=null; } if(!d){ toast("That entry is not available."); return; } d.h+=libAddBtn(c,k);

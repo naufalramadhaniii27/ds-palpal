@@ -1,6 +1,7 @@
 import { fmtAgo } from "./lib/fmt.js";
 import {DEFAULT} from "./02-data-default-character.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"C",{get:function(){return C;},set:function(v){C=v;},configurable:true});
 /* ================= STORAGE ================= */
 export function clsLv(){ return C.clsLabel||(C.cls+" "+__R.D.level); }
@@ -71,7 +72,7 @@ window.addEventListener("cs-store-ok",() =>{ if(SAVE_FAIL){ SAVE_FAIL=0; saveWar
 /* RU61: caution bar while writes fail. Hidden again by the next write that works */
 function saveWarn(){ let w=document.getElementById("saveWarn"); if(!SAVE_FAIL){ if(w) w.remove(); return; } if(w) return;
   w=document.createElement("div"); w.id="saveWarn"; w.className="savew"; w.setAttribute("role","alert");
-  w.innerHTML='<p><b>Changes are not being saved.</b> This browser has no storage space left for the app. Back up your characters now, then make room by removing portraits or characters you no longer need.</p><div class="savewr"><button type="button" class="btn press" data-sw="bk">Back Up</button><button type="button" class="btn press" data-sw="home">My Characters</button><button type="button" class="btn press" data-sw="x" aria-label="Hide this message">Hide</button></div>';
+  drawHtml(html`<p><b>Changes are not being saved.</b> This browser has no storage space left for the app. Back up your characters now, then make room by removing portraits or characters you no longer need.</p><div class="savewr"><button type="button" class="btn press" data-sw="bk">Back Up</button><button type="button" class="btn press" data-sw="home">My Characters</button><button type="button" class="btn press" data-sw="x" aria-label="Hide this message">Hide</button></div>`, w);
   w.addEventListener("click",(e) =>{ const b=e.target.closest("[data-sw]"); if(!b) return; const a=b.getAttribute("data-sw"); if(a==="x"){ w.remove(); return; } if(a==="bk"){ __R.bkpOpen("out"); return; } if(a==="home"){ __R.showHome(); } });
   document.body.appendChild(w); __R.toast("Could not save: storage is full"); }
 /* RU78: recovery screen. Shown when saved data cannot be read or the sheet cannot be drawn. Nothing is written while it is open */
@@ -82,10 +83,7 @@ export function recover(why,err){ const msg=String((err&&err.message)||err||why)
   if(w){ const p=w.querySelector(".recm"); if(p&&p.textContent.indexOf(msg)<0) p.textContent+=" | "+msg; return; }
   FROZEN="recover"; clearTimeout(saveT); clearTimeout(cSaveT);
   w=document.createElement("div"); w.id="recov"; w.className="bkp recov"; w.setAttribute("role","alertdialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","recovT");
-  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="recovT">This character could not be shown</b></div><p>Part of the saved data does not fit what this version of the app expects. <b>Nothing has been deleted</b>, and the app saves nothing while this message is open. Download a backup first, then choose what to do.</p><p class="muted recm">'+__R.esc(why)+': '+__R.esc(msg)+'</p>'+(typeof __R.healHTML==="function"?__R.healHTML():"")+
-   '<div class="bkpr"><button type="button" class="btn pri press" data-rec="dl">Download Backup</button><button type="button" class="btn press" data-rec="txt">Show as Text</button></div>'+
-   '<div class="bkpr"><button type="button" class="btn press" data-rec="view">Reset View</button><button type="button" class="btn press" data-rec="go">Continue Anyway</button></div>'+
-   '<p class="muted">Reset View clears only screen settings (open tab, dialogs) and loads the app again. Continue Anyway opens the app as it is. Parts that could not be read may then be replaced when you make changes.</p><textarea id="recTxt" readonly spellcheck="false" hidden></textarea></div>';
+  drawHtml(html`<div class="bkpb"><div class="bkph"><b id="recovT">This character could not be shown</b></div><p>Part of the saved data does not fit what this version of the app expects. <b>Nothing has been deleted</b>, and the app saves nothing while this message is open. Download a backup first, then choose what to do.</p><p class="muted recm">${rawHtml(__R.esc(why))}: ${rawHtml(__R.esc(msg))}</p>${rawHtml(typeof __R.healHTML==="function"?__R.healHTML():"")}<div class="bkpr"><button type="button" class="btn pri press" data-rec="dl">Download Backup</button><button type="button" class="btn press" data-rec="txt">Show as Text</button></div><div class="bkpr"><button type="button" class="btn press" data-rec="view">Reset View</button><button type="button" class="btn press" data-rec="go">Continue Anyway</button></div><p class="muted">Reset View clears only screen settings (open tab, dialogs) and loads the app again. Continue Anyway opens the app as it is. Parts that could not be read may then be replaced when you make changes.</p><textarea id="recTxt" readonly spellcheck="false" hidden></textarea></div>`, w);
   document.body.appendChild(w);
   w.addEventListener("click",(e) =>{ const b=e.target.closest("[data-rec]"); if(!b) return; const a=b.getAttribute("data-rec"), txt=JSON.stringify(rawBackup());
     if(a==="dl"){ try{ const bl=new Blob([txt],{type:"application/json"}), u=URL.createObjectURL(bl), l=document.createElement("a"); l.href=u; l.download=__R.bkpName().replace(/\.bs$/,"-recovery.json"); document.body.appendChild(l); l.click(); l.remove(); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); __R.toast("Download started. No file? Use Show as Text."); }catch(er){ __R.toast("Download is blocked here. Use Show as Text."); } return; }

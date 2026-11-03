@@ -14,7 +14,7 @@ import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_bldDot,bldDot} from "./35-ui-combo.js";
 import {cuNumList} from "./41-ui-edit-mode.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import { html, raw, render, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;},configurable:true});
 Object.defineProperty(__R,"coinsClean",{get:function(){return coinsClean;},set:function(v){coinsClean=v;},configurable:true});
 Object.defineProperty(__R,"pwaInstH",{get:function(){return pwaInstH;},set:function(v){pwaInstH=v;},configurable:true});
@@ -148,12 +148,9 @@ function qrSendOpen(id){ const o=chFile(id), raw=JSON.stringify(o), nm=chName(o)
   const show=function(txt){ const old=document.getElementById("qrSend"); if(old) old.remove(); qrStop();
     const fr=qrFrames(txt), w=document.createElement("div"); w.id="qrSend"; w.className="bkp qrd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","qrT");
     QRS={fr:fr||[], i:0, t:0, cache:{}, txt:txt, nm:nm, play:true}; window.__qrSent=QRS.fr.slice();
-    w.innerHTML='<div class="bkpb"><div class="bkph"><b id="qrT">'+ico("ui-qr")+'Send to Another Device</b><button type="button" class="bkpx" data-qrs="close" aria-label="Close">×</button></div>'+
-      (fr?'<p>On the other device, open <b>My Characters</b>, <b>Open Character</b>, then <b>Scan Code</b>. Hold this screen in front of its camera'+(fr.length>1?' until it has read all '+fr.length+' parts. They change by themselves.':'.')+'</p>'+
+    drawHtml(html`<div class="bkpb"><div class="bkph"><b id="qrT">${rawHtml(ico("ui-qr"))}Send to Another Device</b><button type="button" class="bkpx" data-qrs="close" aria-label="Close">×</button></div>${rawHtml(fr?'<p>On the other device, open <b>My Characters</b>, <b>Open Character</b>, then <b>Scan Code</b>. Hold this screen in front of its camera'+(fr.length>1?' until it has read all '+fr.length+' parts. They change by themselves.':'.')+'</p>'+
         '<div class="qr-box" id="qrBox"></div>'+(fr.length>1?'<p class="qr-n" id="qrN" aria-live="polite"></p><div class="bkpr qr-ctl"><button type="button" class="btn press" data-qrs="prev" aria-label="Previous part">'+ico("ui-chev-l")+'</button><button type="button" class="btn press" data-qrs="play" id="qrPlay" aria-label="Pause">'+ico("ui-pause")+'<span>Pause</span></button><button type="button" class="btn press" data-qrs="next" aria-label="Next part">'+ico("ui-chev-r")+'</button></div>':'')
-        :'<p class="hbkl warn">'+ico("toast-warn")+'This character is too large to send with codes. Share or save the file instead.</p>')+
-      '<h4 class="chfh">Or Send the File</h4><p class="muted">A file works on every device: send it in a chat or by mail, then use Open Character on the other device.</p><div class="bkpr">'+
-      (navigator.share?'<button type="button" class="btn pri press" data-qrs="share">'+ico("ui-share")+'<span>Share File</span></button>':'')+'<button type="button" class="btn press" data-qrs="save">'+ico("ui-save")+'<span>Save File</span></button></div></div>';
+        :'<p class="hbkl warn">'+ico("toast-warn")+'This character is too large to send with codes. Share or save the file instead.</p>')}<h4 class="chfh">Or Send the File</h4><p class="muted">A file works on every device: send it in a chat or by mail, then use Open Character on the other device.</p><div class="bkpr">${rawHtml(navigator.share?'<button type="button" class="btn pri press" data-qrs="share">'+ico("ui-share")+'<span>Share File</span></button>':'')}<button type="button" class="btn press" data-qrs="save">${rawHtml(ico("ui-save"))}<span>Save File</span></button></div></div>`, w);
     document.body.appendChild(w); if(fr) qrDraw(); if(fr&&fr.length>1) QRS.t=setInterval(() =>{ if(!document.getElementById("qrSend")){ qrStop(); return; } QRS.i=(QRS.i+1)%QRS.fr.length; qrDraw(); },REDUCE?1400:750);
     const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ qrStop(); w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
     w.addEventListener("click",(e) =>{ if(e.target===w){ qrStop(); w.remove(); return; } const b=e.target.closest("[data-qrs]"); if(!b) return; const a=b.getAttribute("data-qrs");
@@ -175,7 +172,7 @@ let QRR=null;
 function qrScanStop(){ if(!QRR) return; clearInterval(QRR.t); try{ (QRR.st&&QRR.st.getTracks()||[]).forEach((t) =>{ t.stop(); }); }catch(e){} window.__qrStream=QRR.st; QRR=null; const w=document.getElementById("qrScan"); if(w) w.remove(); }
 function qrScanOpen(){ if(!qrCan()){ toast("This browser cannot read codes. Paste the text instead."); return; } qrScanStop();
   const w=document.createElement("div"); w.id="qrScan"; w.className="bkp qrd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","qrST");
-  w.innerHTML='<div class="bkpb"><div class="bkph"><b id="qrST">'+ico("ui-camera")+'Scan Code</b><button type="button" class="bkpx" data-qrr="close" aria-label="Close">×</button></div><div class="qr-cam"><video id="qrVid" playsinline muted autoplay></video></div><p class="qr-n" id="qrRN" aria-live="polite">Starting the camera...</p><div class="qr-pg" id="qrPg"></div><div class="bkpr"><button type="button" class="btn press" data-qrr="close">'+ico("ui-close")+'<span>Cancel</span></button></div></div>';
+  drawHtml(html`<div class="bkpb"><div class="bkph"><b id="qrST">${rawHtml(ico("ui-camera"))}Scan Code</b><button type="button" class="bkpx" data-qrr="close" aria-label="Close">×</button></div><div class="qr-cam"><video id="qrVid" playsinline muted autoplay></video></div><p class="qr-n" id="qrRN" aria-live="polite">Starting the camera...</p><div class="qr-pg" id="qrPg"></div><div class="bkpr"><button type="button" class="btn press" data-qrr="close">${rawHtml(ico("ui-close"))}<span>Cancel</span></button></div></div>`, w);
   document.body.appendChild(w); QRR={parts:{}, n:0, h:"", t:0, st:null, busy:false};
   const R=QRR, msg=function(t){ const e=document.getElementById("qrRN"); if(e) e.textContent=t; };
   w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-qrr]")) qrScanStop(); });

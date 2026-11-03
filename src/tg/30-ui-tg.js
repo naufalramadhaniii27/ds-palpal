@@ -1,4 +1,5 @@
 import {A,esc,ico} from "./00-bridge.js";
+import { html, render as drawHtml, raw as rawHtml } from "../app/lib/html.js";
 /* G7 TG1 to TG4 Training Ground screens. Plan: claude/rencana-kerja-training-ground.md parts 2, 5, 6 and 8.
    Setup (TG1): 1 Who goes in (characters of this device, or Try a class), 2 What waits for you (difficulty, creatures with counts),
    3 Who comes with you (up to 3 companions), 4 Where you train (arena). Field (TG2 to TG4): a grid drawn on a canvas, the turn order,
@@ -32,7 +33,7 @@ function nFoes(){ return Object.keys(TG.foes).reduce((a,k) =>{ return a+TG.foes[
 function nAllies(){ return Object.keys(TG.allies).length; }
 function dom(){ let w=document.getElementById("tg"); if(w) return w;
   w=document.createElement("div"); w.id="tg"; w.className="lrn tg noico"; w.hidden=true; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","tgT"); w.tabIndex=-1;
-  w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-tg="back" id="tgBk" aria-label="Back">'+tgIc("ui-chev-l")+'</button><div class="lrn-tt"><b id="tgT">Training Ground</b><small id="tgS"></small></div><button type="button" class="lrn-ib" data-tg="close" aria-label="Close">'+tgIc("ui-close")+'</button></header><div class="lrn-b tg-b" id="tgB"></div><p class="lrn-live sr" id="tgLive" aria-live="polite"></p>';
+  drawHtml(html`<header class="lrn-h"><button type="button" class="lrn-ib" data-tg="back" id="tgBk" aria-label="Back">${rawHtml(tgIc("ui-chev-l"))}</button><div class="lrn-tt"><b id="tgT">Training Ground</b><small id="tgS"></small></div><button type="button" class="lrn-ib" data-tg="close" aria-label="Close">${rawHtml(tgIc("ui-close"))}</button></header><div class="lrn-b tg-b" id="tgB"></div><p class="lrn-live sr" id="tgLive" aria-live="polite"></p>`, w);
   document.body.appendChild(w); wire(w); return w; }
 function live(t){ const l=document.getElementById("tgLive"); if(l){ l.textContent=""; l.textContent=t; } }
 /* ---------- TG1 setup ---------- */
@@ -299,7 +300,7 @@ function open(){ const w=dom(); TG.opener=document.activeElement; try{ TG.pcs=A.
   if(!TG.pc&&TG.pcs.length) TG.pc=TG.pcs[0];
   w.hidden=false; if(TG.view!=="field") TG.view="setup"; paint(); requestAnimationFrame(() =>{ w.classList.add("on"); }); if(A.ovQueue) A.ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){}
   if(TG.view==="setup"&&!TG.st) fightLoad().then((rec) =>{ if(rec&&rec.start&&rec.cmds&&!w.hidden&&TG.view==="setup"){ TG.saved=rec; paint(); } });
-  if(!TG.cr) creatures().then(() =>{ if(!w.hidden&&TG.view==="setup") paint(); },() =>{ const l=document.getElementById("tgFoes"); if(l) l.innerHTML='<p class="bk-f">The creature list could not be loaded. Check the connection and open the Training Ground again.</p>'; }); }
+  if(!TG.cr) creatures().then(() =>{ if(!w.hidden&&TG.view==="setup") paint(); },() =>{ const l=document.getElementById("tgFoes"); if(l) drawHtml(html`<p class="bk-f">The creature list could not be loaded. Check the connection and open the Training Ground again.</p>`, l); }); }
 window.__tgOpen=open;
 /* N22 build duel: the same group for both builds, so results compare. A ladder of groups: for 1 to 4 copies of one creature and for the
    Low, Moderate and High budgets of the level (DMG 2024), the strongest SRD creature without legendary actions that has an attack and fits

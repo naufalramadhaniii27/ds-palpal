@@ -12,6 +12,7 @@ import {cuK} from "./26-ui-customize.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_renderAll,renderAll} from "./35-ui-combo.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"CU0",{get:function(){return CU0;},set:function(v){CU0=v;},configurable:true});
 Object.defineProperty(__R,"EDM",{get:function(){return EDM;},set:function(v){EDM=v;},configurable:true});
 Object.defineProperty(__R,"cuqBackH",{get:function(){return cuqBackH;},set:function(v){cuqBackH=v;},configurable:true});
@@ -46,7 +47,7 @@ function cuqHTML(key){ const q=cuqOf(key); if(!q) return '<p class="info-d">This
     '<div class="cu-btns"><button type="button" class="btn press pri" data-cuqsave="'+esc(key)+'">'+ico("ui-check")+'<span>Save</span></button>'+(set?'<button type="button" class="btn press" data-cuqback="'+esc(key)+'">'+ico("ui-undo")+'<span>Use calculated</span></button>':'')+'</div>'+
     '<p class="bk-f"><button type="button" class="lk" data-bd="'+esc(key)+'">'+ico("ui-info")+'How it is calculated</button></p></div>'; }
 function cuqBackH(key){ const q=cuqOf(key); if(!q||!cuqSet(q)) return ""; return '<div class="info-act cu-act"><button type="button" class="btn press" data-cuqback="'+esc(key)+'">'+ico("ui-undo")+'<span>Use calculated ('+esc(cuqFmt(q,cuqCalc(q,key)))+')</span></button></div>'; }
-function cuqErr(m){ const e=$("#cuqErr"), i=$("#cuqIn"); if(e){ e.innerHTML=ico("toast-warn")+'<span>'+esc(m)+'</span>'; e.hidden=false; } if(i){ i.setAttribute("aria-invalid","true"); try{ i.focus({preventScroll:true}); }catch(er){} } }
+function cuqErr(m){ const e=$("#cuqErr"), i=$("#cuqIn"); if(e){ drawHtml(html`${rawHtml(ico("toast-warn"))}<span>${m}</span>`, e); e.hidden=false; } if(i){ i.setAttribute("aria-invalid","true"); try{ i.focus({preventScroll:true}); }catch(er){} } }
 function cuqSave(key){ const q=cuqOf(key); if(!q) return; let i=$("#cuqIn"), raw=String(i&&i.value||"").trim(), v;
   if(raw===""){ cuqErr(cuqSet(q)?"Type a number, or tap Use calculated.":"Type a number first."); return; }
   if(q.kind==="dmg"){ if(!/^[0-9dD+\-−\s]+$/.test(raw)||!/\d/.test(raw)){ cuqErr("Use dice and numbers only, like 2d6+3."); return; } v=raw.replace(/\s+/g,"").replace(/D/g,"d").replace(/-/g,"−"); }
@@ -79,10 +80,7 @@ function cuMarkSoon(){ if(cuMT) return; cuMT=setTimeout(() =>{ cuMT=0; try{ cuMa
   const w=function(){ const r=f.apply(this,arguments); cuMarkSoon(); return r; };
   if(n==="renderAll") __set_renderAll(w); else if(n==="renderActions") __set_renderActions(w); else if(n==="renderSpells") __set_renderSpells(w); else if(n==="renderSkillsPage") __set_renderSkillsPage(w); else if(n==="renderTiles") __set_renderTiles(w); else if(n==="renderAbilities") __set_renderAbilities(w); else __set_syncHP(w); });
 function edmBar(){ let w=document.getElementById("edmBar"); if(w) return w; w=document.createElement("div"); w.id="edmBar"; w.className="edm-bar"; w.setAttribute("role","region"); w.setAttribute("aria-label","Edit mode"); w.hidden=true;
-  w.innerHTML='<div class="edm-t">'+ico("ui-pen","edm-i")+'<span><b>Edit mode</b><small id="edmN">Tap a number to change it.</small></span></div><div class="edm-b">'+
-    '<button type="button" class="btn press" id="edFormBtn" aria-label="Edit details: names, lists, and text">'+ico("ui-file")+'<span>Details</span></button>'+
-    '<button type="button" class="btn press" id="edmReset" aria-label="Reset all numbers to the calculated values">'+ico("ui-undo")+'<span>Reset all</span></button>'+
-    '<button type="button" class="btn press pri" id="edmDone" aria-label="Done, leave Edit mode">'+ico("ui-check")+'<span>Done</span></button></div>';
+  drawHtml(html`<div class="edm-t">${rawHtml(ico("ui-pen","edm-i"))}<span><b>Edit mode</b><small id="edmN">Tap a number to change it.</small></span></div><div class="edm-b"><button type="button" class="btn press" id="edFormBtn" aria-label="Edit details: names, lists, and text">${rawHtml(ico("ui-file"))}<span>Details</span></button><button type="button" class="btn press" id="edmReset" aria-label="Reset all numbers to the calculated values">${rawHtml(ico("ui-undo"))}<span>Reset all</span></button><button type="button" class="btn press pri" id="edmDone" aria-label="Done, leave Edit mode">${rawHtml(ico("ui-check"))}<span>Done</span></button></div>`, w);
   document.body.appendChild(w);
   w.addEventListener("click",(e) =>{ if(e.target.closest("#edFormBtn")){ edmSet(false,true); openEditor(); return; } if(e.target.closest("#edmReset")){ cuResetAll(); return; } if(e.target.closest("#edmDone")){ edmSet(false); } });
   return w; }

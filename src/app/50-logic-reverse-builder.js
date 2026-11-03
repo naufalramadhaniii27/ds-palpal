@@ -6,6 +6,7 @@ import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"rbOpen",{get:function(){return rbOpen;},set:function(v){rbOpen=v;},configurable:true});
 /* T11 G4 N1 Reverse Builder. The player writes goals ("AC at least 18, Stealth at least +7"), the app tries legal builds of the same class
    and level and lists the ones that reach every goal, with what changes against the build now.
@@ -60,10 +61,10 @@ function rbDiff(b0,nb,o){ const d=[]; if(nb.species!==b0.species) d.push("Specie
   if(nb.bgMode==="21") d.push("+2 "+nb.bg2+", +1 "+nb.bg1); else if(nb.bgMode!==b0.bgMode) d.push("+1 to each background ability");
   const bs=RB_AB.filter((k) =>{ return (b0.base||{})[k]!==nb.base[k]; }); if(bs.length) d.push("Scores "+RB_AB.map((k) =>{ return k+" "+nb.base[k]; }).join(", "));
   if(o.alt) d.push(o.alt.armor+(o.alt.shield?" and a Shield":"")); return d; }
-function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBody .rb-out"); if(!box) return; if(!goals.length){ box.innerHTML='<p class="bk-f">Fill in at least one goal.</p>'; return; }
-  const opts=window.__bldOpts&&window.__bldOpts(); if(!opts||!opts.b||!opts.b.cls){ box.innerHTML='<p class="bk-f">Open the builder once, then try again.</p>'; return; }
+function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBody .rb-out"); if(!box) return; if(!goals.length){ drawHtml(html`<p class="bk-f">Fill in at least one goal.</p>`, box); return; }
+  const opts=window.__bldOpts&&window.__bldOpts(); if(!opts||!opts.b||!opts.b.cls){ drawHtml(html`<p class="bk-f">Open the builder once, then try again.</p>`, box); return; }
   let run=++RB.run, T=rbTries(opts,goals,C), i=0, hits=[], near=[], t0=Date.now(); RB.st={n:0,bld:0,der:0,tries:T.list.length,t:0,h:2166136261};
-  box.innerHTML='<p class="bk-f rb-prog" aria-live="polite">Trying builds: 0 of '+T.list.length+'</p>';
+  drawHtml(html`<p class="bk-f rb-prog" aria-live="polite">Trying builds: 0 of ${rawHtml(T.list.length)}</p>`, box);
   /* N29: one batch for the whole search (builder tables set up only when they change), paused at the end of each slice */
   const bat=!RB.slow&&window.__bldSheetBatch?window.__bldSheetBatch():null;
   (function slice(){ if(run!==RB.run){ if(bat) bat.end(); return; } const end=Date.now()+14;
@@ -75,7 +76,7 @@ function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBo
     if(bat) bat.pause(); if(i<T.list.length){ rbYield(slice); return; } if(bat) bat.end();
     hits.sort((a,b) =>{ return a.diff.length-b.diff.length||b.o.hp-a.o.hp; }); near.sort((a,b) =>{ return a.gap-b.gap||a.diff.length-b.diff.length; });
     RB.st.t=Date.now()-t0; RB.res=hits.length?hits.slice(0,6):near.slice(0,3); RB.goals=goals; RB.ok=!!hits.length; RB.opts=opts;
-    box.innerHTML='<p class="bk-f">'+T.list.length+' builds tried in '+((Date.now()-t0)/1000).toFixed(1)+' s. '+(hits.length?hits.length+' reach every goal'+(hits.length>6?', the 6 with the fewest changes are shown':'')+'.':'None reaches every goal. The closest ones:')+'</p>'+RB.res.map(rbCard).join(""); })(); }
+    drawHtml(html`<p class="bk-f">${rawHtml(T.list.length)} builds tried in ${rawHtml(((Date.now()-t0)/1000).toFixed(1))} s. ${rawHtml(hits.length?hits.length+' reach every goal'+(hits.length>6?', the 6 with the fewest changes are shown':'')+'.':'None reaches every goal. The closest ones:')}</p>${rawHtml(RB.res.map(rbCard).join(""))}`, box); })(); }
 function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' near')+'"><ul>'+(r.diff.length?r.diff.map((x) =>{ return '<li>'+esc(x)+'</li>'; }).join(""):'<li>Your build already does it</li>')+'</ul><p class="rb-v">'+g.map((q,j) =>{ const m=r.m[j]; return '<span class="'+(m.ok?'ok':'no')+'">'+esc(q.l)+' '+(m.v==null?'?':(q.k==="ac"||q.k==="hp"?m.v:sg(m.v)))+'</span>'; }).join("")+'</p>'+'<p class="rb-acts">'+(r.diff.length?'<button type="button" class="btn press" data-rbuse="'+i+'">Use this build</button>':'')+'<button type="button" class="btn press" data-rbduel="'+i+'">Test in fights</button></p><p class="bk-f rb-duel" aria-live="polite" hidden></p></div>'; }
 /* N22 build duel: 100 fights of this build and of the current one against the same group (src/tg/25-sim.js, window.__tgDuel).
    The build is derived on a copy, nothing is saved. The current build is fought once per search and kept */

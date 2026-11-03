@@ -5,6 +5,7 @@ import {D} from "./06-logic-derivation.js";
 import {ico,icoCls,icoItem,icoText} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {ICO} from "./29-ui-ddb-look.js";
 import {__R} from "./00-reg.js";
+import { html, render as drawHtml, raw as rawHtml } from "./lib/html.js";
 Object.defineProperty(__R,"ICO_CAT",{get:function(){return ICO_CAT;},set:function(v){ICO_CAT=v;},configurable:true});
 Object.defineProperty(__R,"ICO_TXT",{get:function(){return ICO_TXT;},set:function(v){ICO_TXT=v;},configurable:true});
 Object.defineProperty(__R,"icoSp",{get:function(){return icoSp;},set:function(v){icoSp=v;},configurable:true});
@@ -32,7 +33,7 @@ function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; cons
   q("h3.fcat").forEach((h) =>{ const t=(h.firstChild&&h.firstChild.nodeType===3?h.firstChild.nodeValue:h.textContent).trim(); const k=ICO_FCAT[t]; if(k) icoPut(h,k); });
   const CND=STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).concat(["Exhaustion"]);
   q('#conds .chip[data-info^="g:"], .cc-t .tx[data-info^="g:"], .exh .tx[data-info="g:Exhaustion"]').forEach((b) =>{ const k=b.getAttribute("data-info").slice(2); if(CND.indexOf(k)>=0) icoPut(b,"cond-"+k.toLowerCase()); });
-  q("i.sp-c").forEach((i) =>{ if(i.getAttribute("data-ico")) return; const r=i.classList.contains("rit"); i.setAttribute("data-ico","1"); i.setAttribute("title",r?"Ritual":"Concentration"); i.innerHTML=ico(r?"tag-ritual":"tag-concentration")+'<span class="vh">'+(r?"R":"C")+'</span>'; });
+  q("i.sp-c").forEach((i) =>{ if(i.getAttribute("data-ico")) return; const r=i.classList.contains("rit"); i.setAttribute("data-ico","1"); i.setAttribute("title",r?"Ritual":"Concentration"); drawHtml(html`${rawHtml(ico(r?"tag-ritual":"tag-concentration"))}<span class="vh">${rawHtml(r?"R":"C")}</span>`, i); });
   q('#invBody [data-info^="it:"]').forEach((b) =>{ if(b.getAttribute("data-ico")) return; b.setAttribute("data-ico","1"); const it=(C.inv||[])[+b.getAttribute("data-info").slice(3)], nm=b.querySelector("b")||b; nm.insertAdjacentHTML("afterbegin",ico(icoItem(it)));
     if(it){ const st=[]; if(it.att&&eqOn(it)) st.push(["item-attuned","Attuned"]); /* v32 RU138: the checkbox alone shows Equipped */ if((D.res||[]).some((r) =>{ return r.f===it.n||r.f===it.key; })) st.push(["item-charge","Has charges or uses"]);
       if(st.length) nm.insertAdjacentHTML("afterend",'<span class="ists">'+st.map((x) =>{ return '<span title="'+x[1]+'">'+ico(x[0],"ist")+'</span>'; }).join("")+'</span>'); } });/* v24 m4, m5, R2-1: outside the name, no text */
