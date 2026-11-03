@@ -27,7 +27,7 @@
   function flush(){ QT=0; if(MODE!=="idb"||!DB||(!Q.size&&!MDIRTY)) return Promise.resolve(); const items=Array.from(Q.entries()), md=MDIRTY; Q.clear(); MDIRTY=false;
     return new Promise((res) =>{ try{ const tx=DB.transaction([KV,META],"readwrite"), st=tx.objectStore(KV);
       items.forEach((x) =>{ if(x[1]==null) st.delete(x[0]); else st.put(x[1],x[0]); }); if(md) tx.objectStore(META).put(Object.keys(FAIL),"lsFail");
-      tx.oncomplete=function(){ if(ERR){ ERR=""; fire("cs-store-ok"); } if(!store.estimate||Date.now()-store.estimate.t>3e4) est(); res(); };
+      tx.oncomplete=function(){ fire("cs-store-flushed"); if(ERR){ ERR=""; fire("cs-store-ok"); } if(!store.estimate||Date.now()-store.estimate.t>3e4) est(); res(); };
       tx.onerror=tx.onabort=function(){ ERR=String((tx.error&&tx.error.name)||"error"); if(md) MDIRTY=true; items.forEach((x) =>{ if(!Q.has(x[0])) Q.set(x[0],x[1]); }); fire("cs-store-fail",ERR); res(); };
     }catch(e){ ERR=String(e&&e.name||e); fire("cs-store-fail",ERR); res(); } }); }
   function queue(k,v){ if(MODE!=="idb") return; Q.set(k,v); if(!QT&&DB) QT=setTimeout(flush,0); }

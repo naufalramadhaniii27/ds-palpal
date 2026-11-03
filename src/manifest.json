@@ -10,7 +10,8 @@
    "close": "</script>",
    "files": [
     "boot/trusted-types.js",
-    "boot/store-gate.js"
+    "boot/store-gate.js",
+    "boot/opfs-copy.js"
    ]
   },
   {

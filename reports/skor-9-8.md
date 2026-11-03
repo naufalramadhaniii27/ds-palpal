@@ -183,3 +183,11 @@ Hasil 500 seed (sebelum perbaikan MARKBAD): 499 lolos, 1 gagal (seed 287), 3825 
 - Hasil: buka karakter 1, damage 2, heal 2, Long Rest 3 (menu, pilih, geser), Short Rest buka 2, empat tab 1 masing-masing. Semua lulus dan di bawah anggaran.
 - Bug nyata ditemukan robot: `<ul class="lrn">` di dialog rest memakai kelas yang sama dengan lapisan Learn (`.lrn`: fixed, inset 0, z-index 58, opacity 0). Daftar "After this rest you can also" tidak tampil dan menutupi penggeser Long Rest, jadi Long Rest tidak bisa diambil di layar sempit untuk karakter dengan catatan (contoh Weapon Mastery). Perbaikan: kelas diganti `rest-notes` (JS dan CSS). Robot sekarang lulus.
 - Belum dikerjakan: 10 tugas lengkap (cast spell, kondisi, tambah item, dan lain-lain), jalur buntu, perbandingan terukur dengan D&D Beyond.
+
+## N48 / M16: salinan OPFS
+
+- `src/boot/opfs-copy.js`: salinan semua kunci simpanan ke OPFS (`cs-copy.json`) setelah store flush, paling sering sekali per 30 detik. Tanpa `createWritable` modul tidak berbuat apa-apa.
+- Start tanpa data karakter dan ada salinan: dialog "Restore Copy" (`ask()`). Selama belum dijawab tidak ada penulisan, jadi salinan tidak tertimpa start kosong. "Not Now" atau Cancel menyimpan salinan lama sebagai `cs-copy-prev.json`.
+- `tests/opfs_copy.py` (13 cek): tulis, perubahan sampai ke salinan dalam 30 detik, hapus IndexedDB dan localStorage lewat CDP, tawaran muncul, Not Now, Restore Copy memulihkan data. 0 gagal.
+- `storage_idb` 39 cek, `self_heal`, `scenarios` 24 cek, chaos 9 seed: 0 gagal.
+- Batas: hapus semua data situs menghapus OPFS juga. Storage Buckets (`durability: strict`) belum dipakai.
