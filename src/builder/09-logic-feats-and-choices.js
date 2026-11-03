@@ -19,8 +19,10 @@ choices(true).forEach((c) =>{const v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat)f.pu
    (base, background, increases from feats of lower levels, each score at most 20). asiOf(f,F): the increases a chosen feat really gives (only abilities on
    the feat's list, so old data or a typo cannot raise another score). featViol(): every rule the chosen feats break [{k (choice key or source), m}] */
 /* v19 RL42: spell attack and save DC bonuses of active items. cls: only that class's spells (Rod of the Pact Keeper: Warlock) */
-export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;return t+v},0)}
-export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)}).map((q) =>{return q.n})}
+/* fx engine v2: gfx entries add spAtk and spDc (number, "pb", ability key) for the class named in spCls, or for every class when spCls is missing */
+function gxSp(k,cls){return __R.gfx().filter((e) =>{const v=k==="atk"?e.spAtk:e.spDc;return v!=null&&(!e.spCls||e.spCls===cls)})}
+export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;return t+v},0)+gxSp(k,cls).reduce((t,e) =>{return t+__R.fxv(k==="atk"?e.spAtk:e.spDc,e)},0)}
+export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)}).map((q) =>{return q.n}).concat(gxSp("atk",cls).concat(gxSp("dc",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}
 /* v19 RL41: chosen Elemental Affinity type ("" without Draconic Sorcery 6) */
 export function chOf(cls,key){if(B.cls===cls)return B.ch[key];let i=-1;__R.MCL().forEach((m,j) =>{if(m.cls===cls)i=j});return i<0?undefined:B.ch["m"+i+":"+key]}
 export function eaType(){return subAt("Sorcerer","Draconic Sorcery")>=6?(chOf("Sorcerer","p6opt")||""):""}
@@ -70,7 +72,7 @@ function wxDm(out,f,d,fk){const k="@dm:"+fk,pick=function(p){const v=B.ch["pk"+p
  if(d.runes){const rv=B.ch["rn-"+fk];if(Array.isArray(rv))rv.forEach((r) =>{const sn=d.runes[r];if(sn)out.push({n:sn,use:"Rune: 1/Long Rest free",f:f.n,k:k})})}/* v69 */}
 export var XFX={
  skills:function(feats,p,prof,exp){feats.forEach((f) =>{const F=FEATS[f.n],x=F&&F.fx;if(!x)return;(x.skills||[]).forEach((n) =>{p(n,f.n+" ("+f.s+")")});(x.exp||[]).forEach((n) =>{if(prof[n])exp[n]=f.n+" ("+f.s+")"})})},
- lang:function(lg){allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;((F.fx||{}).langs||[]).forEach((n) =>{if(lg.indexOf(n)<0)lg.push(n)});
+ lang:function(lg){__R.gfx().forEach((e) =>{(e.langs||[]).forEach((n) =>{if(lg.indexOf(n)<0)lg.push(n)})});gxPicks().forEach((o) =>{if(o.t!=="lang")return;const v=B.ch[o.key];if(Array.isArray(v))v.forEach((n) =>{if(lg.indexOf(n)<0)lg.push(n)})});allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;((F.fx||{}).langs||[]).forEach((n) =>{if(lg.indexOf(n)<0)lg.push(n)});
   (F.pick||[]).forEach((q) =>{if(q.t!=="lang")return;const v=B.ch[q.k+"-"+(f.key||f.s)];if(Array.isArray(v))v.forEach((n) =>{if(lg.indexOf(n)<0)lg.push(n)})})})},
  senses:function(C){allFeats().forEach((f) =>{const F=FEATS[f.n],x=F&&F.fx;if(!x||!x.senses)return;x.senses.forEach((r) =>{
   if(r[0]==="Darkvision"){if(C.darkvision>0&&r[3])C.darkvision+=r[3];else C.darkvision=Math.max(C.darkvision||0,r[1]);C.darkSrc=(C.darkSrc?C.darkSrc+", ":"")+f.n;return}
@@ -213,6 +215,14 @@ function featList(q){if(Array.isArray(q.list))return q.list;
  if(q.list==="invocations"){const wl=wxCls().indexOf("Warlock")>=0;return INVOCATIONS.filter((x) =>{return wl||!/\*\*Prerequisite\.\*\*/.test(x[1])}).map((x) =>{return [x[0],""]})} if(q.list==="fstyle"&&R14())return fs14List(B.cls).map((n) =>{return [n,""]});
  if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
  if(q.list==="weapons")return wmKeys().map((n) =>{return [n,""]});if(q.list==="ritual1")return SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]});return []}
+/* fx engine v2: entry.pick = [{k, t: skills|tool|lang|multi|cantrip, n ("pb" allowed), title, from|list|cats, cls}]. Stored in B.ch["gx-"+k+"-"+kind+"-"+owner(+mc)].
+   skills become proficiencies, tool goes to tool proficiencies (toolChoices), lang to languages (XFX.lang), cantrip to the spell list (autoSpells), multi is only stored */
+export function gxPicks(){const out=[];__R.gfx().forEach((e) =>{(e.pick||[]).forEach((q) =>{const mcm=e.pre?/^m(\d+):/.exec(e.pre):null;
+  const o={key:"gx-"+q.k+"-"+e.kind+"-"+e.okey+(mcm?"-m"+mcm[1]:""),lvl:e.l||1,t:q.t==="cantrip"?"multi":q.t,n:q.n==="pb"?pbOf(__R.TL()):q.n,title:e.owner+": "+q.title,src:e.lbl,feature:e.n};
+  if(mcm)o.mc=+mcm[1];if(q.cats)o.cats=q.cats;if(q.from)o.from=q.from==="all"?ALLSK:q.from==="LANGS"?LANGS:q.from;if(q.t==="skills"&&!o.from)o.from=ALLSK;if(q.t==="lang"&&!o.from)o.from=LANGS;
+  if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return !x[1]&&(!q.cls||x[3].indexOf(q.cls)>=0)}).map((x) =>{return [x[0],x[11]]});else if(Array.isArray(q.list))o.list=q.list;
+  o.gxc=q.t==="cantrip"?e.spCls||e.cls||"@species":"";out.push(o)})});return out}
+Object.defineProperty(__R,"gxPicks",{get:function(){return gxPicks;},configurable:true});
 function featPicks(){const out=[];allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;const fk=f.key||f.s,m=/^m(\d+):/.exec(fk),mc=m?+m[1]:undefined,lv=+((/feat(\d+)$/.exec(fk)||[0,1])[1]);
   if(F.skills){const o0={key:"skl-"+fk,fk:fk,lvl:1,t:"skills",n:F.skills,from:ALLSK,title:f.n+" feat: "+F.skills+(F.skTools?" skills or tools":" skills"),src:f.s,feature:f.n};if(F.skTools)o0.tools=1;if(mc!=null)o0.mc=mc;out.push(o0)}
   (F.pick||[]).forEach((q) =>{const o={key:q.k+"-"+fk,fk:fk,lvl:lv,t:q.t,n:q.n==="pb"?pbOf(__R.TL()):q.n==="pb2"?Math.floor(pbOf(__R.TL())/2):q.n,title:f.n+": "+q.title,src:f.s,feature:f.n};if(mc!=null)o.mc=mc;
@@ -279,7 +289,7 @@ export function choices(noFeat){
  if(invs.indexOf("Pact of the Blade")>=0)add(wx({key:"pactWep",t:"multi",n:1,list:__R.pactList(),title:"Pact of the Blade: pact weapon"},"Pact of the Blade"));/* M13 */ if(R14()){const lgn=((sp&&sp.lgn)||0)+(B.species==="Custom"?1:0)+((bgt&&bgt.lgn)||0);/* v99: a custom 2014 race gets one language of your choice next to Common */if(lgn>0)add({key:"lang",lvl:1,t:"lang",n:lgn,from:LANGS,title:"Languages",src:(sp?B.species:"Race")+(bgt&&bgt.lgn?", "+B.bg+" background":""),feature:"Languages"})}else add({key:"lang",lvl:1,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Character Origins",feature:"Languages"});/* v84 */
  if(B.cls==="Rogue"&&!R14())add({key:"langRogue",lvl:1,t:"lang",n:1,from:LANGS,title:"Extra language",src:SRC+", Rogue 1",feature:"Thieves' Cant"});
  if(B.cls==="Ranger"&&L>=2&&!R14())add({key:"langRanger",lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Ranger 2",feature:"Deft Explorer"});
- if(!noFeat)featPicks().forEach(add);/* M17: FEATS.skills. v32 RL49: FEATS.pick */
+ if(!noFeat){gxPicks().forEach(add);featPicks().forEach(add)}/* gxPicks reads gfx, which reads allFeats, which calls choices(true): so gx picks are skipped there *//* M17: FEATS.skills. v32 RL49: FEATS.pick */
  __R.mcChoices().forEach((o) =>{out.push(o)});
  hbSpellPicks().forEach((o) =>{out.push(o)});/* v20 RD24 */
  if(!noFeat)featSpellPicks().forEach((o) =>{out.push(o)});/* v21 i3 */

@@ -66,7 +66,7 @@ export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.leve
 /* M17: read from data. SPECIES.hpPerLevel (+hpName), CLASSES.*.hpSub[sub] {v per class level, from level l}, FEATS.hp (per level) and hpFlat */
 function hpBonusList(){const o=[],L=TL(),spx=SPECIES[B.species];if(spx&&spx.hpPerLevel)o.push({s:(spx.hpName||B.species)+" ("+(spx.hb||SRC)+")",v:spx.hpPerLevel*L});
  [[B.cls,B.sub,B.level,0]].concat(MCL().map((m) =>{return [m.cls,m.sub,m.lv,1]})).forEach((q) =>{const h=(CLASSES[q[0]].hpSub||{})[q[1]];if(h&&q[2]>=h.l)o.push({s:h.n+" ("+SRC+(q[3]?", "+q[0]+" "+q[2]+", multiclass":"")+")",v:h.v*q[2]})});
- __R.classFx().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.n+" ("+e.cls+" "+e.lv+")",v:mod(abil().sc.CON)+e.lv})});/* generic: class fx.hp */
+ __R.gfx().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.lbl,v:mod(abil().sc.CON)+e.lv});if(e.hpLvl!=null){const v=__R.fxv(e.hpLvl,e)*e.lv;if(v)o.push({s:e.lbl,v:v})}if(e.hpFlat!=null){const v=__R.fxv(e.hpFlat,e);if(v)o.push({s:e.lbl,v:v})}});/* generic: fx.hp "con+lvl", hpLvl per level of the source (class level for cls and sub, character level for the rest), hpFlat */
  allFeats().forEach((f) =>{const F=FEATS[f.n];if(F&&F.hp)o.push({s:f.n+" feat ("+f.s+")",v:F.hp*L});if(F&&F.hpFlat)o.push({s:f.n,v:F.hpFlat})});return o}
 function toSheetHpBonus(){return hpBonusList().reduce((t,x) =>{return t+x.v},0)}
 function casterLv(cls,sub,lv){const c=CLASSES[cls];if(c.caster==="full")return lv;if(c.caster==="half")return R14()&&!c.a14?Math.floor(lv/2):Math.ceil(lv/2);/* v92: 2014 Paladin and Ranger count half their levels rounded down */if(isThird3(sub))return Math.floor(lv/3);return 0}

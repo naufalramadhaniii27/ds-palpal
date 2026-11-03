@@ -355,7 +355,37 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 Tujuan: tidak ada fitur yang punya angka atau pilihan di teks tetapi tidak dihitung builder.
 1. Tulis efek sebagai field data, bukan kode per nama. Engine membaca field ini secara umum, jadi data baru (tp*, homebrew) terhitung otomatis.
 2. Field class di `CLASSES[nama]`: `fs` (level Fighting Style), `wm` (jumlah Weapon Mastery per level), `pick` (pilihan; boleh memakai `when:{key,val}` agar pilihan muncul hanya bila pilihan lain terpilih), `fx` (efek).
-3. Bentuk `fx`: `{n, l, when:{key,val}, shAc:[[lvl,extra]], hp:"con+lvl", saveFrom:key, ac:[[lvl,val]], acAb, acMin, speed:[[lvl,kaki]], cond:"noHeavy"|"noArmor"|"armor", init:angka|kunci kemampuan, def:[jenis,teks]}`. Dibaca lewat `classFx()` (11-logic-derivation.js), dipakai di 12 (AC, speed, init, save), 14 (HP), 16 (defenses).
+3. Efek memakai satu skema untuk semua sumber (fx engine v2). Letak entri: `CLASSES[cls].fx` (class), `window.GX.{cls,sub,species,bg,feat,item}[nama]` (daftar entri, dibaca lazy), array `gx` di `FEATS[n]`, `SPECIES[n]`, `BACKGROUNDS[n]`, dan di `DMGI[...][5].gx` (item). Semua dikumpulkan oleh `gfx()` (11-logic-derivation.js). `classFx()` sama dengan `gfx()` (nama lama dipertahankan). Setiap entri punya label sumber `lbl` yang tercatat di C (bonus AC, saveBonus, initBonus, hpBonus, defenses, speedSrc, misc/miscSrc skill, profSrc). Item hanya terhitung bila equipped (`eq`) dan attuned bila perlu (`activeFx()`).
+
+#### fx schema
+Syarat entri: `n` nama (default nama sumber), `l` level minimum (level class untuk cls dan sub, level karakter untuk sisanya), `when:{key,val}` aktif bila pilihan `key` berisi `val`, `cond` kondisi armor.
+Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci kemampuan (`"CON"` = modifier). `min` menjadi batas bawah hasil.
+`cond`: `noHeavy` (tanpa Heavy armor), `noArmor` (tanpa armor dan tanpa Shield), `noBody` (tanpa armor, Shield boleh), `noShield`, `shield`, `armor`.
+
+| Field | Arti | Contoh |
+|---|---|---|
+| `ac:[[lvl,val]]`, `acAb`, `acMin` | bonus AC per level class, atau modifier kemampuan | `{n:"Fighting Style",ac:[[1,1]],cond:"armor"}` |
+| `acAdd` | bonus AC (nilai angka) | `{acAdd:1,cond:"noShield"}` |
+| `acBase:[N,"full",ab]` | AC dasar tanpa armor: N, plus Dex bila "full", plus modifier ab. Dipakai bila lebih tinggi | `{acBase:[13,"full"]}` |
+| `acDexAb:ab` | sama dengan `acBase:[10,"full",ab]` (Unarmored Defense) | `{acDexAb:"CON"}` |
+| `acMw:N` | +N AC bila armor yang dipakai bernama Masterwork | `{acMw:1}` |
+| `shAc:[[lvl,extra]]` | AC tambahan saat memegang Shield | Warden Tower Shield |
+| `saveBonus` | bonus ke semua saving throw | `{saveBonus:"halfPb"}` |
+| `saveFrom:key` | pilihan `key` memberi proficiency save | Warden Stalwart Spirit |
+| `init`, `initAdv` | bonus Initiative; advantage pada Initiative (catatan di defenses) | `{init:"pb"}` |
+| `hp:"con+lvl"`, `hpLvl`, `hpFlat` | HP maksimum: CON + level; per level sumber; tetap | `{hpLvl:1}` |
+| `speed:[[lvl,kaki]]`, `speedAdd`, `speedSet` | tambah speed; set speed bila lebih tinggi | `{speedAdd:10,cond:"noHeavy"}` |
+| `mv:{climb,swim,fly}` | kecepatan lain: `"speed"` atau kaki. Tampil di speedSrc, juga `C.moves` | `{mv:{fly:"speed"}}` |
+| `res`, `imm`, `vul` | daftar tipe damage (Resistance, Immunity, Vulnerability) | `{res:["Fire"]}` |
+| `def:[jenis,teks]`, `defs:[[jenis,teks]]`, `advOn:[teks]` | baris defenses bebas; advantage pada teks | `{advOn:["saves against being Charmed"]}` |
+| `skillProf`, `skillExpert` | proficiency; Expertise (butuh proficiency) | `{skillProf:["Arcana"]}` |
+| `skillBonus:[[skill atau "*",nilai]]`, `chkBonus:[[ab,nilai]]` | bonus ke skill, atau ke semua skill satu kemampuan (kolom misc) | `{skillBonus:[["Stealth","pb"]]}` |
+| `langs`, `tools`, `weapons`, `armor` | bahasa dan proficiency tetap | `{tools:["Smith's Tools"]}` |
+| `spells:[[lvl,"A,B"]]`, `spCls` | spell selalu prepared; `spCls` menentukan kemampuan casting (default class entri, atau species) | `{spells:[[1,"Shield"]]}` |
+| `spAtk`, `spDc` (+ `spCls`) | bonus spell attack dan Spell Save DC | Soulbind Chains |
+| `pick:[{k,t,n,title,from,list,cats,cls}]` | pilihan di builder. `t`: skills, tool, lang, multi, cantrip. Disimpan di `B.ch["gx-"+k+"-"+kind+"-"+sumber]` | `{pick:[{k:"a",t:"skills",n:1,title:"Skill"}]}` |
+
+Catatan engine: pick dari entri feat tidak muncul di `choices(true)` (dipakai `allFeats`, mencegah rekursi). Tes unit: `python3 tests/fx_engine.py` (fixture kecil lewat `window.GX`, tanpa data asli).
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
-5. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
+5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.

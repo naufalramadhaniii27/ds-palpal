@@ -1,5 +1,5 @@
 import {ABK,SRC,mod,pbOf} from "./01-logic-core-helpers.js";
-import {activeFx,bgX} from "./03-logic-magic-item-effects.js";
+import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.js";
@@ -38,9 +38,30 @@ export function resMax(r,a){const L=B.level;if(Array.isArray(r.max))return r.max
 /* M10: features of any class at its own level (classFeatures() = main class). clsParts(): main class first, then multiclass */
 export function featsOf(cls,L){const c=CLASSES[cls],seen={},out=[];c.f.forEach((x) =>{if(x[0]<=L){const k=x[1];if(seen[k]!=null&&x[1]!=="Expertise"&&x[1]!=="Improved Brutal Strike"){out[seen[k]]=x;return}seen[k]=out.length;out.push(x)}});return out}
 export function classFeatures(){return featsOf(B.cls,B.level)}
-/* Generic class effects from data: CLASSES[cls].fx = [{n,l,when:{key,val},shAc:[[lvl,extra]],hp:"con+lvl",saveFrom:key}]. An entry counts from class level l (default 1) and only while the pick named in when holds the value.
-   shAc = extra AC when a Shield is held, hp:"con+lvl" = Hit Point maximum rises by CON modifier plus class level, saveFrom = key of a pick that names a saving throw proficiency. Data brings new effects without code per name */
-export function classFx(){const out=[];let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];((c&&c.fx)||[]).forEach((e) =>{if(q.lv<(e.l||1))return;if(e.when){const v=B.ch[pre+e.when.key],a=Array.isArray(v)?v:(v?[v]:[]);if(a.indexOf(e.when.val)<0)return}out.push(Object.assign({cls:q.cls,lv:q.lv,mc:q.mc,pre:pre},e))})});return out}
+/* Generic effects (fx engine v2). One entry schema for every source: CLASSES[cls].fx, window.GX.{cls,sub,species,bg,feat,item}[name], inline gx arrays on
+   FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
+   cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
+   gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
+function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")return pbOf(L);if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
+/* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
+function fxOk(e,ar,ESH){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;return true}
+function fxWhen(e,pre){if(!e.when)return true;const v=B.ch[pre+e.when.key],a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
+export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
+ function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre))return;const en=e.n||owner;out.push(Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)}))})}
+ let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
+  put(((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),"cls",q.cls,q.lv,pre,(n) =>{return n+" ("+q.cls+" "+q.lv+")"});
+  if(q.sub)put(((G.sub&&G.sub[q.sub])||[]),"sub",q.sub,q.lv,pre,(n) =>{return n+" ("+q.sub+" "+q.lv+")"})});
+ const sp=un("species")?null:SPECIES[B.species];if(sp)put((sp.gx||[]).concat((G.species&&G.species[B.species])||[]),"species",B.species,TLv,"",(n) =>{return n+" ("+B.species+")"});
+ const bg=bgX();if(bg)put((bg.gx||[]).concat((G.bg&&G.bg[B.bg])||[]),"bg",B.bg,TLv,"",(n) =>{return n+" ("+B.bg+" background)"});
+ allFeats().forEach((f) =>{const F=FEATS[f.n];put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
+ activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
+ return out}
+export function classFx(){return gfx()}
+export {fxv,fxVal,fxOk};
+Object.defineProperty(__R,"gfx",{get:function(){return gfx;},set:function(v){gfx=v;},configurable:true});
+Object.defineProperty(__R,"fxv",{get:function(){return fxVal;},configurable:true});
+Object.defineProperty(__R,"fxOk",{get:function(){return fxOk;},configurable:true});
 Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */

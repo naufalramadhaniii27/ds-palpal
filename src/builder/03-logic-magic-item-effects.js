@@ -13,7 +13,7 @@ export function byOk(by){if(!by)return true;const s=String(by),cls=Object.keys(C
  if(/Belt of Dwarvenkind/.test(s)&&(__R.B.inv||[]).some((x) =>{return x.eq&&x.n==="Belt of Dwarvenkind"}))return true;
  if(cls.length)return cls.some((c) =>{return __R.clsLv(c)>0});if(/Spellcaster/i.test(s))return __R.casterParts().length>0||__R.miFeats().length>0;
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n+"\\b").test(s)});if(sp.length)return sp.indexOf(__R.B.species)>=0;return true}
-export function activeFx(){let out=[],att=0,am=attMax();(__R.B.inv||[]).forEach((x) =>{if(!x.eq)return;const d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}const f=d[5]&&d[5].fx,bb=__R.baseOf(x.n).b;if(f)out.push({n:x.n,fx:f,arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
+export function activeFx(){let out=[],att=0,am=attMax();(__R.B.inv||[]).forEach((x) =>{if(!x.eq)return;const d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}const f=d[5]&&d[5].fx,g=(d[5]&&d[5].gx)||null,bb=__R.baseOf(x.n).b;if(f||g)out.push({n:x.n,fx:f||{},gx:g,att:!!d[3],arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
 export function htText(sp,size){const h=HEIGHT[sp]&&HEIGHT[sp][size];if(!h)return "";return "about "+h[0]+"\u2013"+h[1]+" ft tall (\u2248"+Math.round(h[0]*30.48)+"\u2013"+Math.round(h[1]*30.48)+" cm)"}
 export var BLANK={name:"New Hero",camp:"",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
  base:{STR:15,DEX:14,CON:13,INT:12,WIS:10,CHA:8},armor:"",shield:false,weps:[],ch:{},method:"manual",eqC:"A",eqB:"A",size:""};
