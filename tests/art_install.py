@@ -82,13 +82,13 @@ with sync_playwright() as p:
                 im = pg.evaluate("()=>{const i=document.querySelector('#bld .sub-card img');return [i.complete,i.naturalWidth,i.loading]}"); check(vp + " subclass card picture loads lazily (%s)" % im, im[2] == "lazy")
             pg.screenshot(path="/tmp/art-class-%d.png" % w); check(vp + " scenes: no page errors, no failed image request", not errs and not [x for x in bad if "wipe-mask" not in x], (errs[:2], bad[:3])); ctx.close()
     if "card" in STEPS:
-        man = json.load(open(os.path.join(ROOT, "img", "manifest.json"))); keys = ["corner-%s-%s" % (c, k) for c in ("wood", "metal", "vine") for k in ("tl", "tr", "bl", "br")] + ["divider-wood", "badge-level", "crest-app", "paper-cool-light", "paper-cool-dark", "paper-neutral-light", "paper-neutral-dark", "wipe-mask"]
+        man = json.load(open(os.path.join(ROOT, "img", "manifest.json"))); keys = ["divider-wood", "divider-wood-l", "badge-level", "crest-app", "paper-cool-light", "paper-cool-dark", "paper-neutral-light", "paper-neutral-dark", "wipe-mask"]
         check("card art: %d files listed and on disk" % len(keys), all(k in man["g0"] and os.path.exists(os.path.join(ROOT, man["g0"][k])) for k in keys), [k for k in keys if k not in man["g0"]])
         lum = lambda c: sum(((x / 255) ** 2.2) * f for x, f in zip(c, (0.2126, 0.7152, 0.0722)))
         for vp, w, hh, dpr in (("390x844", 390, 844, 2), ("1250x850", 1250, 850, 1)):
             ctx, pg, errs, bad = sheet_page(b, w, hh, dpr); pg.wait_for_timeout(1500)
             r = pg.evaluate("()=>{const h=document.documentElement,c=document.querySelector('#app .vitals')||document.querySelector('#app .card');const s=getComputedStyle(c);return {on:h.classList.contains('g0-art'),corner:h.dataset.corner,bg:s.backgroundImage.slice(0,200),color:s.color,bgc:s.backgroundColor,n:(s.backgroundImage.match(/url\\(/g)||[]).length}}")
-            check(vp + " card art is on, corner set %s, %d picture layers on a card" % (r["corner"], r["n"]), r["on"] and r["n"] >= 5, r)
+            check(vp + " card art is on (paper texture, no corners), %d picture layers on a card" % r["n"], r["on"] and r["n"] >= 1 and "corner" not in r["bg"], r)
             pc = [float(x) for x in __import__("re").findall(r"[\d.]+", r["color"])[:3]]; bc = [float(x) for x in __import__("re").findall(r"[\d.]+", r["bgc"])[:3]]
             worst = [min(255, v + (255 - v) * 0.14) for v in bc]; L1, L2 = lum(pc), lum(worst); ratio = (max(L1, L2) + .05) / (min(L1, L2) + .05)
             check(vp + " text contrast on the lightest paper fiber %.1f:1 (needs 4.5)" % ratio, ratio >= 4.5, (pc, worst))
