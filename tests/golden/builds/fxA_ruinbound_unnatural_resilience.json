@@ -1,0 +1,65 @@
+{
+ "why": "Ruinbound (EE24): Resistance to Poison damage and Advantage on saves to avoid or end the Poisoned condition.",
+ "build": {
+  "name": "FxA",
+  "species": "Ruinbound",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 1,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Poison"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Note",
+    "v": "Advantage on saving throws to avoid or end the Poisoned condition"
+   }
+  }
+ ]
+}

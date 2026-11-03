@@ -1,0 +1,88 @@
+{
+ "why": "Investigator 9 (VSS24): Expertise in two skills at level 2 and two more at level 9. Four skills show p = 2.",
+ "build": {
+  "name": "FxA",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Investigator",
+  "sub": "",
+  "level": 9,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-exp1-cls-Investigator": [
+    "Athletics",
+    "Intimidation"
+   ],
+   "gx-exp2-cls-Investigator": [
+    "Insight",
+    "Perception"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "skills",
+   "has": {
+    "n": "Athletics",
+    "p": 2
+   }
+  },
+  {
+   "path": "skills",
+   "has": {
+    "n": "Intimidation",
+    "p": 2
+   }
+  },
+  {
+   "path": "skills",
+   "has": {
+    "n": "Insight",
+    "p": 2
+   }
+  },
+  {
+   "path": "skills",
+   "has": {
+    "n": "Perception",
+    "p": 2
+   }
+  }
+ ]
+}

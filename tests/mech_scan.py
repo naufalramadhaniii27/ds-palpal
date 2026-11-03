@@ -94,7 +94,9 @@ def load():
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(800)
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
-        d = pg.evaluate("window.__bldData()"); b.close()
+        d = pg.evaluate("window.__bldData()")
+        d["gx"] = pg.evaluate("JSON.parse(JSON.stringify(window.GX||{}))")  # fx registry (src/data/fx-*.js): an entry named like the feature counts it
+        b.close()
     if errs:
         print("page errors:", errs[:3]); sys.exit(2)
     return d
@@ -120,6 +122,9 @@ def act_names(d, needle):
 def scan(d):
     gaps = {}
 
+    def gxb(kind, name):
+        return " " + blob((d.get("gx") or {}).get(kind, {}).get(name, ""))
+
     def flag(kind, owner, feat, text, ev, keycats=None, meta=None):
         c = cats(text, ITEM_CAT if kind == "item" else None)
         if not c:
@@ -136,7 +141,7 @@ def scan(d):
     # ---- class features
     for cn, c in d["classes"].items():
         st = {k: v for k, v in c.items() if k in ("pick", "res", "track", "fx", "ua", "acSub", "hpSub", "toolPick", "resSub", "xlists", "nslot", "smax")}
-        ev = blob(st) + " " + lu_names(d, cn) + " " + act_names(d, "cls|%s|" % cn) + " " + blob(d["clsAuto"].get(cn, ""))
+        ev = blob(st) + " " + lu_names(d, cn) + " " + act_names(d, "cls|%s|" % cn) + " " + blob(d["clsAuto"].get(cn, "")) + gxb("cls", cn)
         if c.get("fs"): ev += " fighting style"
         if c.get("wm"): ev += " weapon mastery"
         if c.get("cast") or c.get("caster"): ev += " spellcasting pact magic"
@@ -153,7 +158,7 @@ def scan(d):
                     st2[k] = c[k][sn]
             if w:
                 st2["wxs"] = {k: v for k, v in w.items() if k not in ("cls", "name", "src", "alt", "cantrips") and v not in ([], {}, "", None)}
-            ev2 = blob(st2) + " " + lu_names(d, sn) + " " + act_names(d, "|%s|" % sn) + " " + act_names(d, "sub|%s" % sn) + " " + blob(d["subGrant"].get(sn, "")) + " " + blob(d["auto"].get(sn, ""))
+            ev2 = blob(st2) + " " + lu_names(d, sn) + " " + act_names(d, "|%s|" % sn) + " " + act_names(d, "sub|%s" % sn) + " " + blob(d["subGrant"].get(sn, "")) + " " + blob(d["auto"].get(sn, "")) + gxb("sub", sn)
             for row in arr:
                 lvl, name = row[0], row[1]
                 text = d["sub"].get("%s|%s" % (sn, name)) or row[2]
@@ -162,7 +167,7 @@ def scan(d):
     # ---- species traits
     for sn, s in d["species"].items():
         keys = {k: v for k, v in s.items() if k not in STRUCT_SKIP and v not in ([], {}, "", None, 0)}
-        ev = blob(keys) + " " + blob(d["spAuto"].get(sn, "")) + " " + lu_names(d, sn) + " " + act_names(d, sn)
+        ev = blob(keys) + " " + blob(d["spAuto"].get(sn, "")) + " " + lu_names(d, sn) + " " + act_names(d, sn) + gxb("species", sn)
         kc = {"ac": s.get("natAc") or s.get("acBonus") or s.get("fx"), "hp": s.get("hpPerLevel") or s.get("fx"),
               "speed": s.get("fx") or s.get("linFx"), "resist": s.get("fx") or s.get("linRes") or s.get("linFx"),
               "skill": s.get("skills") or s.get("skillPick") or s.get("fx"), "save": s.get("saveProf") or s.get("fx"),
@@ -174,7 +179,7 @@ def scan(d):
     # ---- feats
     for fn, f in d["feats"].items():
         keys = {k: v for k, v in f.items() if k not in STRUCT_SKIP and v not in ([], {}, "", None)}
-        ev = blob(keys) + " " + lu_names(d, fn) + " " + act_names(d, "feat|" + fn)
+        ev = blob(keys) + " " + lu_names(d, fn) + " " + act_names(d, "feat|" + fn) + gxb("feat", fn)
         kc = {"ac": f.get("ac") or f.get("dwAC") or f.get("unarmoredAC") or f.get("med3") or f.get("fx"),
               "hp": f.get("hp") or f.get("hpFlat") or f.get("fx"), "save": f.get("saveFromAsi") or f.get("fx"),
               "speed": f.get("speed") or f.get("fx"), "init": f.get("init") or f.get("fx"),
@@ -199,7 +204,7 @@ def scan(d):
         kc = {"ac": fx.get("ac") or fx.get("acBase") or ex.get("base"), "save": fx.get("save"), "speed": fx.get("speed") or fx.get("fly") or fx.get("climb") or fx.get("swim"),
               "init": fx.get("init"), "resist": fx.get("res") or fx.get("resist"), "hp": fx.get("hp"), "skill": fx.get("skills") or fx.get("skill"),
               "uses": ex.get("ch") or fx.get("ch") or ex.get("uses"), "choice": ex.get("pick") or ex.get("base")}
-        flag("item", src, r[0], r[4], blob(ex), kc, {"src": src})
+        flag("item", src, r[0], r[4], blob(ex) + gxb("item", r[0]), kc, {"src": src})
     return gaps
 
 

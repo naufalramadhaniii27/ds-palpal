@@ -1,0 +1,64 @@
+{
+ "why": "Craftsman 5: Masterwork Bonus is +2, so half rounded up is +1. Chain Mail 16 + 1 = 17. No save bonus before level 18.",
+ "build": {
+  "name": "FxA",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Craftsman",
+  "sub": "Armigers' Guild",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Chain Mail, Masterwork",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17
+ },
+ "expectC": [
+  {
+   "path": "saveBonus",
+   "eq": null
+  }
+ ]
+}
