@@ -34,8 +34,8 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H06 | species/halfling, species/harengon, species/hexblood, species/hobgoblin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H07 | species/human, species/kalashtar, species/kenku, species/kobold | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H08 | species/leonin, species/lizardfolk, species/loxodon, species/lupin | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H09 | species/minotaur, species/orc, species/owlin, species/reborn | needs review: cells 1-4 alpha 255 coverage below 20%; stray alpha at edges and quarter gaps; cell 2 cord touches top edge after whole-sheet redo |
-| H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | open |
+| H09 | species/minotaur, species/orc, species/owlin, species/reborn | needs review: cell 2 cord touches top edge after whole-sheet redo |
+| H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | claimed by codex-session-2 2026-11-03T01:44:22+00:00 |
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | claimed by codex-session-3 2026-11-03T01:35:31+00:00 |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | open |
