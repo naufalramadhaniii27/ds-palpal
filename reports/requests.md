@@ -72,3 +72,11 @@ Status (2026-11-01, sesi yang sama):
 
 ## Catatan untuk usulan "pisahkan data dari shell" (2026-11-01)
 Bila data jadi berkas terpisah, sw.js perlu mengunduhnya di latar belakang atau memasukkannya ke daftar cache pasang. Tanpa itu aplikasi tidak lagi sepenuhnya offline sebelum tiap data dibuka sekali. Hasilnya lebih cepat pada tampilan pertama, bukan unduhan total yang lebih kecil. Keputusan belum diambil.
+
+## Request ke bagian Logic: Warden belum dihitung penuh di builder (2026-11-03, dari build Warforged Warden 10 Godsworn)
+Bukti: Warden 10 dengan Adamantine Plate 18, Shield, Warforged. Builder menghitung AC 21. Aturan buku memberi 24. Kode di src/builder/12-logic-export-to-sheet.js (area AC, baris sekitar 49-70) tidak membaca fitur Warden. Tidak ada perubahan di src/ dari sesi ini.
+1. Sentinel's Stand: builder tidak punya pilihan Stalwart Spirit, Steadfast Toughness, atau Tower Shield. Tower Shield: Shield memberi AC +3 (level 10: +4) sebagai ganti +2. Perlu pilihan di builder dan perhitungan AC otomatis.
+2. Fighting Style Warden: tidak ada pilihan. Fitur hanya tampil sebagai teks. Defense (+1 AC saat memakai armor) tidak dihitung. Warden boleh mengganti pilihan tiap naik level.
+3. Pilihan feat custom/homebrew: tidak ada. Fitur homebrew (contoh Retaliation) saat ini hanya bisa ditambah lewat data sheet manual.
+Dampak: AC di sheet hasil Apply lebih rendah dari aturan. Di berkas Warforged-Warden.bs, AC 24 diisi manual dan hilang bila Apply ulang.
+Status: belum dikerjakan.
