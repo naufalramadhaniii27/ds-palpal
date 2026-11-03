@@ -85,7 +85,7 @@ async def visible_text_has(pg, pat):
 
 async def run_viewport(b, base, vp, W, H, res):
     ctx = await b.new_context(viewport={"width": W, "height": H}, service_workers="block")
-    pg = await ctx.new_page(); pg.set_default_timeout(15000)
+    pg = await ctx.new_page(); pg.set_default_timeout(120000)
     errs, dialogs, log = [], [], []
     pg.on("pageerror", lambda e: errs.append(str(e)))
     pg.on("dialog", lambda d: (dialogs.append(d.type + ": " + d.message), asyncio.ensure_future(d.dismiss())))

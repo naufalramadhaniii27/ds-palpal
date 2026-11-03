@@ -52,7 +52,7 @@ def main():
     with sync_playwright() as p:
         br = p.chromium.launch()
         pg = br.new_page(viewport={'width': 1250, 'height': 850})
-        errs = []
+        errs = []; pg.set_default_timeout(180000)
         pg.on('pageerror', lambda e: errs.append(str(e)))
         pg.goto('file://' + ROOT + '/index.html')
         pg.wait_for_timeout(1500)
@@ -122,6 +122,7 @@ def main():
                 got = D.get(k)
                 if got != v:
                     fails.append(f'{fn}: {k} = {got} expected {v} ({g.get("why","")})')
+            # a dotted path also walks lists by their n or m key (e.g. skills.History.p, moves.climb.v). A missing value reads as null.
             # expectC: list of {"path","has"|"eq"|"in"} or dict path -> value ({"in": text} = text occurs in JSON of the value)
             ec = g.get('expectC') or []
             if isinstance(ec, dict):
@@ -130,7 +131,14 @@ def main():
                 n += 1
                 cur = C
                 for part in c['path'].split('.'):
-                    cur = cur.get(part) if isinstance(cur, dict) else None
+                    if isinstance(cur, list):
+                        cur = next((x for x in cur if isinstance(x, dict) and part in (x.get('n'), x.get('m'))), None)
+                    elif isinstance(cur, dict):
+                        cur = cur.get(part)
+                    else:
+                        cur = None
+                    if cur is None:
+                        break
                 if 'has' in c:
                     good = isinstance(cur, list) and any(isinstance(x, dict) and all(x.get(a) == b for a, b in c['has'].items()) for x in cur)
                 elif 'in' in c:

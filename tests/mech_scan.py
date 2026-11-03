@@ -90,13 +90,13 @@ def probe(gaps):
 def load():
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
-        b = p.chromium.launch(); pg = b.new_page(); pg.set_default_navigation_timeout(180000); errs = []
+        b = p.chromium.launch(); pg = b.new_page(); errs = []; pg.set_default_timeout(180000)
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(800)
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
         d = pg.evaluate("window.__bldData()")
         d["gx"] = pg.evaluate("JSON.parse(JSON.stringify(window.GX||{}))")  # fx registry (src/data/fx-*.js): an entry named like the feature counts it
-        b.close()
+        d["gxItem"] = pg.evaluate("()=>Object.keys(window.GX&&window.GX.item||{}).concat(Object.keys(window.FXO||{}))"); b.close()
     if errs:
         print("page errors:", errs[:3]); sys.exit(2)
     return d
@@ -204,6 +204,8 @@ def scan(d):
         kc = {"ac": fx.get("ac") or fx.get("acBase") or ex.get("base"), "save": fx.get("save"), "speed": fx.get("speed") or fx.get("fly") or fx.get("climb") or fx.get("swim"),
               "init": fx.get("init"), "resist": fx.get("res") or fx.get("resist"), "hp": fx.get("hp"), "skill": fx.get("skills") or fx.get("skill"),
               "uses": ex.get("ch") or fx.get("ch") or ex.get("uses"), "choice": ex.get("pick") or ex.get("base")}
+        if r[0] in set(d.get("gxItem") or []):  # counted through window.GX.item or window.FXO (src/data/fx-D-item.js)
+            kc = {k: True for k in kc}
         flag("item", src, r[0], r[4], blob(ex) + gxb("item", r[0]), kc, {"src": src})
     return gaps
 

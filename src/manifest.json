@@ -673,6 +673,18 @@
   },
   {
    "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
+   "close": "</script>",
+   "files": [
+    "data/fx-D-item.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
    "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
    "close": "</script>",
    "files": [

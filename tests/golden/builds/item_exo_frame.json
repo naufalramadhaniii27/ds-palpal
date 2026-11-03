@@ -1,0 +1,68 @@
+{
+ "why": "Exo-Frame: AC 18, Dexterity does not affect it. Advantage on Strength checks and saving throws.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Exo-Frame",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 18
+ },
+ "expectC": {
+  "defenses": [
+   {
+    "t": "Note",
+    "v": "Advantage on Strength checks",
+    "s": "Exo-Frame (magic item, attuned)"
+   },
+   {
+    "t": "Note",
+    "v": "Advantage on Strength saving throws",
+    "s": "Exo-Frame (magic item, attuned)"
+   }
+  ]
+ }
+}
