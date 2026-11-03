@@ -27,7 +27,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | Sheet | Icons | Status |
 |---|---|---|
 | H01 | species/aarakocra, species/aasimar, species/air-genasi, species/bugbear | needs review: cells 1–4; regenerated once; rule 5 alpha fails (0.038% opaque, edge/gap residue) |
-| H02 | species/centaur, species/changeling, species/custom, species/dhampir | open |
+| H02 | species/centaur, species/changeling, species/custom, species/dhampir | claimed by codex-session-1 2026-11-03T01:34:43+00:00 |
 | H03 | species/dragonborn, species/dwarf, species/earth-genasi, species/elf | open |
 | H04 | species/fairy, species/firbolg, species/fire-genasi, species/githyanki | open |
 | H05 | species/githzerai, species/gnome, species/goblin, species/goliath | open |
