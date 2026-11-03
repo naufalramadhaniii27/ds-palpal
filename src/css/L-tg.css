@@ -41,7 +41,7 @@
 .tg-ord li.foe button{border-color:#d9534f;background:#3a1d1d}.tg-ord li.ally button{border-color:#4caf6e;background:#1d3a26}
 .tg-ord li.now button{outline:3px solid var(--accent,#ffd666);outline-offset:2px}
 .tg-ord li.out button{opacity:.35}
-.tg-ord li i{position:absolute;left:4px;right:4px;bottom:-5px;height:4px;border-radius:2px;background:linear-gradient(90deg,#7bd88f calc(var(--p)*100%),rgba(255,255,255,.15) 0)}
+.tg-ord li i{position:absolute;left:4px;right:4px;bottom:-5px;height:4px;border-radius:2px;background:linear-gradient(90deg,#7bd88f calc(var(--tg-p)*100%),rgba(255,255,255,.15) 0)}
 .tg-wrap{overflow:auto;max-height:min(58vh,560px);border-radius:12px;border:1px solid var(--line-2);background:var(--tg-ground);overscroll-behavior:contain;touch-action:pan-x pan-y}
 .tg-wrap canvas{display:block}
 .tg-wrap canvas:focus-visible{outline:3px solid var(--accent,#ffd666);outline-offset:-3px}
@@ -92,9 +92,9 @@
 .tg-rp{margin-top:10px}
 .tg-rps input{width:100%;min-height:44px}
 .tg-rpl{margin:0;padding-left:1.2em;min-height:3em;line-height:1.45;font-size:calc(14px*var(--tz,1))}
-.tg-ord li i{transition:--p .45s cubic-bezier(.2,.7,.2,1)}
+.tg-ord li i{transition:--tg-p .45s cubic-bezier(.2,.7,.2,1)}
 @media (prefers-reduced-motion:reduce){ .tg-ord li i{transition:none} }
 html.mi-off .tg-ord li i{transition:none}
 }
-/* G7 queue 3: the HP bars in the turn order move smoothly. --p is a registered number, so the gradient stop can transition */
-@property --p{syntax:"<number>";inherits:false;initial-value:1}
+/* G7 queue 3: the HP bars in the turn order move smoothly. --tg-p is a registered number, so the gradient stop can transition */
+@property --tg-p{syntax:"<number>";inherits:false;initial-value:1}

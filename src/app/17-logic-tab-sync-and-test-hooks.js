@@ -78,5 +78,9 @@ window.__actProbe=function(C2){ let C0=C, S0=JSON.stringify(S), F0=actF, out=nul
 window.__sheetId=function(){ let r=rGet(); if(!r||!r.chars||!r.chars[r.active]){ r=rEnsure(); rSave(r); } return r.active; };
 /* RL40: "Start a new character" in the builder makes a new character in My Characters (as Create a Character). The open one keeps its build */
 window.__sheetNew=function(){ const r=rEnsure(); rSnap(r); const nid="c"+Date.now(); r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()}; sessionStorage.setItem("cs-skip","1"); rLoad(r,nid,true); };
-document.getElementById("bldBtn").addEventListener("click",() =>{ if(window.__bldOpen) window.__bldOpen(); });
+document.getElementById("bldBtn").addEventListener("click",() =>{ if(!window.__bldOpen) return;
+  /* S18 spike: show the loading cover first, open the builder one frame later, remove the cover after the builder painted */
+  let c=document.getElementById("bldLd"); if(!c){ c=document.createElement("div"); c.id="bldLd"; c.setAttribute("role","status"); c.setAttribute("aria-live","polite"); c.innerHTML='<div class="bl-bar"></div><div class="bl-c"><i></i><i></i><i></i><i></i></div><span>Opening the builder</span>'; document.body.appendChild(c); }
+  c.classList.add("on");
+  requestAnimationFrame(() =>{ setTimeout(() =>{ try{ window.__bldOpen(); }finally{ requestAnimationFrame(() =>{ requestAnimationFrame(() =>{ c.classList.remove("on"); }); }); } },0); }); });
 $("#editBtn").addEventListener("click",() =>{ __R.edmSet(!__R.EDM); });/* v34 RU85: Edit mode. The old form is in the bar (Details) */
