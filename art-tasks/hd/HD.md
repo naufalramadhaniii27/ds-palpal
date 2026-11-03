@@ -37,7 +37,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H09 | species/minotaur, species/orc, species/owlin, species/reborn | done (Claude checked and cut, accepted) |
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | done |
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H12 | background/custom, background/entertainer, background/farmer, background/guard | done |
+| H12 | background/custom, background/entertainer, background/farmer, background/guard | needs review: cells 1–4 faint alpha-1 residue in empty margins/gap; preserved concurrent sheet has separate visible silhouettes and 32.23% opaque coverage |
 | H13 | background/guide, background/hermit, background/merchant, background/noble | needs review: cells 1–4 faint alpha residue in empty margins/gap; visible silhouettes separate, opacity passes revised rule 5 |
 | H14 | background/sage, background/sailor, background/scribe, background/soldier | needs review: cells 1–4 background alpha residue after whole-sheet retry; visible silhouettes separate, opacity passes revised rule 5 |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | needs review: cells 1–4 faint alpha-1 background residue after whole-sheet retry; visible silhouettes separate, opaque coverage 30.37% |
