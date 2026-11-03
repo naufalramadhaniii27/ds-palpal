@@ -38,8 +38,8 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H10 | species/satyr, species/shifter, species/tiefling, species/water-genasi | done |
 | H11 | background/acolyte, background/artisan, background/charlatan, background/criminal | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H12 | background/custom, background/entertainer, background/farmer, background/guard | needs review: cells 1–4 faint alpha-1 residue in empty margins/gap; preserved concurrent sheet has separate visible silhouettes and 32.23% opaque coverage |
-| H13 | background/guide, background/hermit, background/merchant, background/noble | needs review: cells 1–4 faint alpha residue in empty margins/gap; visible silhouettes separate, opacity passes revised rule 5 |
-| H14 | background/sage, background/sailor, background/scribe, background/soldier | needs review: cells 1–4 background alpha residue after whole-sheet retry; visible silhouettes separate, opacity passes revised rule 5 |
+| H13 | background/guide, background/hermit, background/merchant, background/noble | done (Claude checked and cut, accepted) |
+| H14 | background/sage, background/sailor, background/scribe, background/soldier | done (Claude checked and cut, accepted) |
 | H15 | background/wayfarer, cat/background, cat/charopt, cat/class | needs review: cells 1–4 faint alpha-1 background residue after whole-sheet retry; visible silhouettes separate, opaque coverage 30.37% |
 | H16 | cat/condition, cat/creature, cat/cult, cat/deck | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H17 | cat/deity, cat/disease, cat/facility, cat/feat | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
@@ -49,7 +49,7 @@ These icons only exist at 128 px in the app and show blurry in the detail sheet.
 | H21 | cat/rule, cat/skill, cat/species, cat/spell | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H22 | cat/subclass, cat/table, cat/vehicle, size/tiny | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
 | H23 | size/small, size/medium, size/large, size/huge | done (Claude checked: alpha 252/253 is opaque, icons cut and accepted) |
-| H24 | size/gargantuan, cat/book | needs review: cells 1–2; separate dragon head and book after whole-sheet retry, opaque coverage 19.55% below 20%; 611 alpha-1 residue pixels in otherwise empty bottom half |
+| H24 | size/gargantuan, cat/book | done (Claude checked and cut, accepted) |
 
 ## Prompt per sheet
 
