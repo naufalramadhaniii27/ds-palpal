@@ -1,5 +1,103 @@
 {
-"by_design": {},
+"by_design": {
+"sub|Alchemist/Mad Bomber|Blast Shield": "Situational or false alarm: Resistance type is picked again after every rest. A per-rest choice, not a build choice",
+"sub|Alchemist/Mutagenist|Advanced Mutation": "Situational or false alarm: Mutation is picked each time a Mutagen is used",
+"sub|Alchemist/Pigmentist|Paint Bombs": "Situational or false alarm: Applies to a thrown Bomb, the colour is picked per throw",
+"sub|Alchemist/Xenoalchemist|Mad Scientist": "Grafts are not modelled: the builder has no graft list or install rules yet. The text is shown on the sheet.",
+"sub|Alchemist/Xenoalchemist|Xenobiology": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Artificer/Reanimator|Macabre Modifications": "Situational or false alarm: Picked each time a Reanimated Companion is created",
+"sub|Artificer/Reanimator|Strange Modifications": "Situational or false alarm: Picked each time a Reanimated Companion is created",
+"sub|Barbarian/Path of Wild Magic|Wild Surge": "Situational or false alarm: Random effect on entering Rage",
+"sub|Barbarian/Path of the Beast|Bestial Soul": "Situational or false alarm: Benefit is picked after every rest and the speeds are conditional",
+"sub|Barbarian/Path of the Beast|Form of the Beast": "Situational or false alarm: Form is picked each time you Rage",
+"sub|Barbarian/Path of the Dad|Not Angry, Just Disappointed": "Situational or false alarm: Picked per Rage",
+"sub|Barbarian/Path of the Drifter|Lone Wolf": "Situational or false alarm: Advantage on Initiative only when enemies outnumber allies. Conditional on the encounter",
+"sub|Barbarian/Path of the Fractured|Mask of Civility": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Barbarian/Path of the Muscle Wizard|\"Cantrips\"": "Situational or false alarm: Per hit choice",
+"sub|Barbarian/Path of the Slasher|Blood-Drunk": "Situational or false alarm: Triggered by dropping an enemy while Raging",
+"sub|Barbarian/Path of the Wild Heart|Power of the Wilds": "Situational or false alarm: Option picked each Rage",
+"sub|Barbarian/Path of the Wrecker|Steel Shredder": "Situational or false alarm: Per hit choice while Raging",
+"sub|Bard/College of Adventurers|Well-Rounded": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Bard/College of Birdsong|Birdsong": "Situational or false alarm: Fly Speed lasts until the end of the next turn after an Inspiration. Active effect",
+"sub|Bard/College of Birdsong|Chorus of the Sky": "Situational or false alarm: Active effect with a duration",
+"sub|Bard/College of Birdsong|Feathered Friends": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Bard/College of Creation|Mote of Potential": "Situational or false alarm: Applies when an Inspiration die is given or used",
+"sub|Bard/College of Cyberwave|Modulation": "Situational or false alarm: Module is picked at the start of each turn",
+"sub|Bard/College of Dance|Dazzling Footwork": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Bard/College of Dance|Tandem Footwork": "Situational or false alarm: Triggered when rolling Initiative by spending an Inspiration",
+"sub|Bard/College of Origami|Origami Familiar": "False alarm: Find Familiar is already added by the existing subclass auto spell list.",
+"sub|Bard/College of Spirits (2014)|Mystical Connection": "Situational or false alarm: Table roll, 2014 text",
+"sub|Bard/College of Spirits|Mystical Connection": "Situational or false alarm: Table roll",
+"sub|Bard/College of Spirits|Spirits from Beyond": "Situational or false alarm: Random spirit table, activated",
+"sub|Bard/College of Valor (2014)|Combat Inspiration": "Situational or false alarm: Reaction, 2014 text",
+"sub|Bard/College of the Dirge Singer|Commanding Voice": "Situational or false alarm: Reaction effect on others",
+"sub|Bard/College of the Mad God|Outer Knowledge": "Situational or false alarm: Skill is chosen by the GM after each Long Rest",
+"sub|Captain/Eagle Banner|Hundred-Arrow Volley": "Situational or false alarm: Per attack choice",
+"sub|Captain/Eagle Banner|Vantage Point": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Captain/Experiment X|Bloody Rampage": "Grants the Rampage maneuver or a free maneuver choice. Maneuver bookkeeping for subclass grants has no engine field yet.",
+"sub|Captain/Gourmand|Monster Meal": "Situational or false alarm: Cooked per Long Rest, benefits come from ingredients",
+"sub|Captain/Jolly Roger|Dirty Tactics": "Situational or false alarm: Per hit choice",
+"sub|Captain/Rōnin|Lone Wolf": "Situational or false alarm: Advantage on Initiative only when enemies outnumber allies",
+"sub|Captain/Yellow Sign|Eldritch Herald": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Cleric/Clockwork Domain|Channel Magic": "Situational or false alarm: Choice of one construct, not a sheet number",
+"sub|Cleric/Community Domain|Paragon of the People": "Situational or false alarm: Applies while a spell lasts",
+"sub|Cleric/Darkness Domain|Shadow Shield": "Situational or false alarm: Reaction type effect with a damage threshold",
+"sub|Cleric/Grave Domain (2014)|Keeper of Souls": "Situational or false alarm: Triggered on an enemy death",
+"sub|Cleric/Hunting Domain|Resolute Hunter": "Uses the 2014 Ranger Favored Enemy feature, which has no 2024 counterpart in the builder (2014 is out of scope).",
+"sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": "Situational or false alarm: Channel Divinity effect with a duration",
+"sub|Cleric/Void Domain|Channel Divinity: Dark Secrets": "Situational or false alarm: Channel Divinity effect",
+"sub|Craftsman/Bladeworkers' Guild|Bane Weapons": "Situational or false alarm: Rune choice after each Long Rest",
+"sub|Craftsman/Calibarons' Guild|Exotic Ammunition": "Situational or false alarm: Ammunition made per Long Rest, choice per piece",
+"sub|Craftsman/Luminaries' Guild|Improved Radiant Shell": "Situational or false alarm: Only while holding Temporary Hit Points",
+"sub|Dancer/Acrobat|Tumbling": "Situational or false alarm: Only while Agile Movement is the active Dance Style",
+"sub|Dancer/Cheerleader|Squad Warmup": "Situational or false alarm: Choice at the start of each Dance",
+"sub|Dancer/Courtesan|Beguiling Charm": "Situational or false alarm: Choice when Charming a creature",
+"sub|Dancer/Fey Ballerina|Sublime Start": "Situational or false alarm: Only on the first round of combat",
+"sub|Dancer/Marionettist|Familiar Doll": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Dancer/Moonwalker|Ethereal Moonwalk": "Situational or false alarm: Only while Moonwalk is active",
+"sub|Dancer/Moonwalker|Moonwalk [Dance Style]": "Situational or false alarm: Only while Moonwalk is active, the speed ends with the turn",
+"sub|Druid/Circle of Mutation|Endless Evolution": "Situational or false alarm: Mutation Points are spent in play",
+"sub|Druid/Circle of Roses|Overpowering Remedy": "Situational or false alarm: Per use effect",
+"sub|Druid/Circle of Stars|Twinkling Constellations": "Situational or false alarm: Only while the Dragon constellation is active",
+"sub|Druid/Circle of Xenobiology|Adaptive Resilience": "Situational or false alarm: Triggered after a failed save, lasts 10 minutes",
+"sub|Druid/Circle of the Moon (2014)|Primal Strike": "Situational or false alarm: Magical attacks, a rule and not a number",
+"sub|Druid/Circle of the Sea|Aquatic Affinity": "False alarm: the Swim Speed of Circle of the Sea level 6 is already counted (C.speeds.swim).",
+"sub|Druid/Circle of the Sea|Stormborn": "Situational or false alarm: Only while Wrath of the Sea is active",
+"sub|Druid/Circle of the Stars|Twinkling Constellations": "Situational or false alarm: Only while the Dragon constellation is active",
+"sub|Fighter/Champion|Additional Fighting Style": "False alarm: the Champion level 7 Fighting Style choice (p7fs) already exists in the builder.",
+"sub|Fighter/Champion|Remarkable Athlete": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Fighter/Cybernetic|Cybernetic Crafts": "Grafts are not modelled: the builder has no graft list or install rules yet. The text is shown on the sheet.",
+"sub|Fighter/Prescient Knight|Anticipatory Strike": "Situational or false alarm: Only after Action Surge",
+"sub|Fighter/Purple Dragon Knight (Banneret)|Bulwark": "Situational or false alarm: Reaction effect on allies",
+"sub|Fighter/Purple Dragon Knight (Banneret)|Inspiring Surge": "Situational or false alarm: Reaction effect on allies",
+"sub|Fighter/Space Marine|Sustained Flight": "Situational or false alarm: Only while the Impulse Pack flight is active",
+"sub|Gadgeteer/AI Futurist|Novel Intelligence": "Needs the AI Companion skill list as data. The list is not structured in the builder.",
+"sub|Gadgeteer/Drone Jockey|Omega Upgrade": "Situational or false alarm: Drone effects",
+"sub|Healer/Vow of the Protector|Tether of Protection": "Situational or false alarm: Bonus on allies for a short time",
+"sub|Healer/Vow of the Protector|Warding Essence": "Situational or false alarm: Per rest choice of resistances and conditions",
+"sub|Healer/Vow of the Siphon|Life Leech": "Situational or false alarm: Triggered on Harmful Tether",
+"sub|Investigator/Conspiracy Theorist|Connect the Dots": "Situational or false alarm: Skill chosen after every rest",
+"sub|Investigator/Conspiracy Theorist|Trinkets": "Situational or false alarm: Trinket abilities are used in play",
+"sub|Investigator/Infernum|Infernal Bargain": "Situational or false alarm: Bargain chosen after a Long Rest",
+"sub|Investigator/Inquisitor|Exorcist's Doctrines": "Situational or false alarm: AC comes from a cast spell, so it is conditional. The free grimoire spell is a spell grant",
+"sub|Investigator/Kid Sleuth|Animal Sidekick": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Investigator/Kid Sleuth|Split Up, Gang": "Situational or false alarm: Reaction effect on allies",
+"sub|Investigator/Medium|Trinkets": "Situational or false alarm: Trinket abilities are used in play, Fly Speed is only while a mirror effect lasts",
+"sub|Jaeger/Sanguine Chapter|Blood Frenzy": "Situational or false alarm: Only while Bloodied",
+"sub|Jaeger/Sanguine Chapter|Blood Hex": "Situational or false alarm: Per use choice",
+"sub|Martyr/Burden of Fame|Entourage": "Situational or false alarm: AC depends on the number of Charmed creatures nearby",
+"sub|Martyr/Burden of Levity|Sacrificial Shenanigans": "Situational or false alarm: Per use choice",
+"sub|Martyr/Burden of Levity|Zany Misdirection": "Situational or false alarm: Reaction effect",
+"sub|Martyr/Burden of Mercy|Anointed Healer": "Situational or false alarm: Triggered by casting a healing spell",
+"sub|Martyr/Burden of Mercy|Balm": "Situational or false alarm: Triggered by Miraculous Healing",
+"sub|Martyr/Burden of Mercy|Virtuous Blessings": "Situational or false alarm: Blessings are chosen after a Long Rest",
+"sub|Martyr/Burden of Revolution|Rallying Strike": "Situational or false alarm: Triggered by Sacrificial Strike",
+"sub|Monk/Warrior of the Celestial|Heavenborne": "Situational or false alarm: Flight is in short bursts and falls at turn end",
+"sub|Monk/Warrior of the Elements|Elemental Epitome": "Situational or false alarm: Only while Elemental Attunement is active",
+"sub|Monk/Warrior of the Elements|Stride of the Elements": "Situational or false alarm: Only while Elemental Attunement is active",
+"sub|Vagabond/Eagle Banner|Vantage Point": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC).",
+"sub|Vagabond/Yellow Sign|Eldritch Herald": "Counted by fx data (src/data/fx-B1-subclass.js, GX.sub). Verified with a build test and a golden or before/after check. The scan probe cannot see this kind of effect (a pick that needs a choice, a note such as advantage, a climb speed or a conditional AC)."
+},
 "gaps": {
 "class|Artificer|Advanced Artifice": [
 "uses"
@@ -625,348 +723,6 @@
 "species|Vampire (Zendikar)|Blood Thirst": [
 "hp"
 ],
-"sub|Alchemist/Mad Bomber|Blast Shield": [
-"choice"
-],
-"sub|Alchemist/Mutagenist|Advanced Mutation": [
-"speed",
-"choice"
-],
-"sub|Alchemist/Pigmentist|Paint Bombs": [
-"choice"
-],
-"sub|Alchemist/Xenoalchemist|Mad Scientist": [
-"choice"
-],
-"sub|Alchemist/Xenoalchemist|Xenobiology": [
-"skill",
-"choice"
-],
-"sub|Artificer/Reanimator|Macabre Modifications": [
-"speed",
-"choice"
-],
-"sub|Artificer/Reanimator|Strange Modifications": [
-"choice"
-],
-"sub|Barbarian/Path of Wild Magic|Wild Surge": [
-"ac",
-"save"
-],
-"sub|Barbarian/Path of the Beast|Bestial Soul": [
-"choice"
-],
-"sub|Barbarian/Path of the Beast|Form of the Beast": [
-"ac"
-],
-"sub|Barbarian/Path of the Dad|Not Angry, Just Disappointed": [
-"choice"
-],
-"sub|Barbarian/Path of the Dad|Paternal Proficiencies": [
-"choice"
-],
-"sub|Barbarian/Path of the Drifter|Lone Wolf": [
-"init"
-],
-"sub|Barbarian/Path of the Fractured|Mask of Civility": [
-"skill"
-],
-"sub|Barbarian/Path of the Muscle Wizard|\"Cantrips\"": [
-"choice"
-],
-"sub|Barbarian/Path of the Slasher|Blood-Drunk": [
-"ac"
-],
-"sub|Barbarian/Path of the Slasher|Mark of the Slasher": [
-"choice"
-],
-"sub|Barbarian/Path of the Wild Heart|Power of the Wilds": [
-"speed"
-],
-"sub|Barbarian/Path of the Wrecker|Steel Shredder": [
-"choice"
-],
-"sub|Bard/College of Adventurers|Well-Rounded": [
-"skill"
-],
-"sub|Bard/College of Birdsong|Birdsong": [
-"speed"
-],
-"sub|Bard/College of Birdsong|Chorus of the Sky": [
-"speed"
-],
-"sub|Bard/College of Birdsong|Feathered Friends": [
-"speed"
-],
-"sub|Bard/College of Choreography|Fast Movement": [
-"speed"
-],
-"sub|Bard/College of Creation|Mote of Potential": [
-"choice"
-],
-"sub|Bard/College of Cyberwave|Modulation": [
-"choice"
-],
-"sub|Bard/College of Dance|Dazzling Footwork": [
-"ac"
-],
-"sub|Bard/College of Dance|Tandem Footwork": [
-"init"
-],
-"sub|Bard/College of Origami|Origami Familiar": [
-"speed"
-],
-"sub|Bard/College of Requiems|Chilling Melody": [
-"choice"
-],
-"sub|Bard/College of Spirits (2014)|Mystical Connection": [
-"choice"
-],
-"sub|Bard/College of Spirits|Mystical Connection": [
-"choice"
-],
-"sub|Bard/College of Spirits|Spirits from Beyond": [
-"choice"
-],
-"sub|Bard/College of Valor (2014)|Combat Inspiration": [
-"ac"
-],
-"sub|Bard/College of the Dirge Singer|Commanding Voice": [
-"choice"
-],
-"sub|Bard/College of the Mad God|Outer Knowledge": [
-"skill"
-],
-"sub|Captain/Eagle Banner|Hundred-Arrow Volley": [
-"choice"
-],
-"sub|Captain/Eagle Banner|Vantage Point": [
-"speed"
-],
-"sub|Captain/Experiment X|Apex Mutation": [
-"choice"
-],
-"sub|Captain/Experiment X|Arcane Mutation": [
-"choice"
-],
-"sub|Captain/Experiment X|Bloody Rampage": [
-"choice"
-],
-"sub|Captain/Experiment X|Mutations": [
-"choice"
-],
-"sub|Captain/Gourmand|Monster Meal": [
-"ac",
-"hp",
-"save",
-"speed",
-"resist"
-],
-"sub|Captain/Jolly Roger|Dirty Tactics": [
-"choice"
-],
-"sub|Captain/Rōnin|Lone Wolf": [
-"init"
-],
-"sub|Captain/Troubadour|Folk Musician": [
-"skill",
-"choice"
-],
-"sub|Captain/Yellow Sign|Eldritch Herald": [
-"skill"
-],
-"sub|Cleric/Clockwork Domain|Channel Magic": [
-"choice"
-],
-"sub|Cleric/Community Domain|Paragon of the People": [
-"resist"
-],
-"sub|Cleric/Darkness Domain|Shadow Shield": [
-"hp"
-],
-"sub|Cleric/Grave Domain (2014)|Keeper of Souls": [
-"choice"
-],
-"sub|Cleric/Hunting Domain|Resolute Hunter": [
-"choice"
-],
-"sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": [
-"speed"
-],
-"sub|Cleric/Void Domain|Channel Divinity: Dark Secrets": [
-"choice"
-],
-"sub|Craftsman/Arcane Maesters' Guild|Arcane Apprenticeship": [
-"choice"
-],
-"sub|Craftsman/Armigers' Guild|Tower Shield": [
-"ac"
-],
-"sub|Craftsman/Bladeworkers' Guild|Bane Weapons": [
-"choice"
-],
-"sub|Craftsman/Calibarons' Guild|Exotic Ammunition": [
-"uses",
-"choice"
-],
-"sub|Craftsman/Luminaries' Guild|Improved Radiant Shell": [
-"ac"
-],
-"sub|Dancer/Acrobat|Tumbling": [
-"speed"
-],
-"sub|Dancer/Cheerleader|Squad Warmup": [
-"choice"
-],
-"sub|Dancer/Courtesan|Beguiling Charm": [
-"choice"
-],
-"sub|Dancer/Fey Ballerina|Sublime Start": [
-"speed"
-],
-"sub|Dancer/Marionettist|Familiar Doll": [
-"choice"
-],
-"sub|Dancer/Moonwalker|Ethereal Moonwalk": [
-"speed",
-"resist"
-],
-"sub|Dancer/Moonwalker|Moonwalk [Dance Style]": [
-"speed"
-],
-"sub|Druid/Circle of Mutation|Endless Evolution": [
-"speed",
-"resist"
-],
-"sub|Druid/Circle of Roses|Overpowering Remedy": [
-"choice"
-],
-"sub|Druid/Circle of Stars|Twinkling Constellations": [
-"speed"
-],
-"sub|Druid/Circle of Xenobiology|Adaptive Resilience": [
-"save"
-],
-"sub|Druid/Circle of the Moon (2014)|Primal Strike": [
-"resist"
-],
-"sub|Druid/Circle of the Sea|Aquatic Affinity": [
-"speed"
-],
-"sub|Druid/Circle of the Sea|Stormborn": [
-"speed"
-],
-"sub|Druid/Circle of the Stars|Twinkling Constellations": [
-"speed"
-],
-"sub|Fighter/Champion|Additional Fighting Style": [
-"fstyle"
-],
-"sub|Fighter/Champion|Remarkable Athlete": [
-"init"
-],
-"sub|Fighter/Cybernetic|Cybernetic Crafts": [
-"choice"
-],
-"sub|Fighter/Prescient Knight|Anticipatory Strike": [
-"ac"
-],
-"sub|Fighter/Purple Dragon Knight (Banneret)|Bulwark": [
-"choice"
-],
-"sub|Fighter/Purple Dragon Knight (Banneret)|Inspiring Surge": [
-"choice"
-],
-"sub|Fighter/Space Marine|Sustained Flight": [
-"speed"
-],
-"sub|Gadgeteer/AI Futurist|Novel Intelligence": [
-"choice"
-],
-"sub|Gadgeteer/Drone Jockey|Omega Upgrade": [
-"ac"
-],
-"sub|Healer/Vow of the Martyr|Martyr's Endurance": [
-"hp"
-],
-"sub|Healer/Vow of the Protector|Tether of Protection": [
-"save"
-],
-"sub|Healer/Vow of the Protector|Warding Essence": [
-"choice"
-],
-"sub|Healer/Vow of the Siphon|Life Leech": [
-"choice"
-],
-"sub|Investigator/Archivist|Thesis": [
-"choice"
-],
-"sub|Investigator/Conspiracy Theorist|Connect the Dots": [
-"skill",
-"choice"
-],
-"sub|Investigator/Conspiracy Theorist|Trinkets": [
-"choice"
-],
-"sub|Investigator/Infernum|Infernal Bargain": [
-"choice"
-],
-"sub|Investigator/Inquisitor|Exorcist's Doctrines": [
-"ac"
-],
-"sub|Investigator/Kid Sleuth|Animal Sidekick": [
-"skill",
-"choice"
-],
-"sub|Investigator/Kid Sleuth|Split Up, Gang": [
-"choice"
-],
-"sub|Investigator/Medium|Trinkets": [
-"speed"
-],
-"sub|Jaeger/Sanguine Chapter|Blood Frenzy": [
-"speed"
-],
-"sub|Jaeger/Sanguine Chapter|Blood Hex": [
-"choice"
-],
-"sub|Martyr/Burden of Fame|Entourage": [
-"ac"
-],
-"sub|Martyr/Burden of Levity|Sacrificial Shenanigans": [
-"choice"
-],
-"sub|Martyr/Burden of Levity|Zany Misdirection": [
-"choice"
-],
-"sub|Martyr/Burden of Mercy|Anointed Healer": [
-"hp"
-],
-"sub|Martyr/Burden of Mercy|Balm": [
-"choice"
-],
-"sub|Martyr/Burden of Mercy|Virtuous Blessings": [
-"init",
-"choice"
-],
-"sub|Martyr/Burden of Revolution|Aura of Tenacity": [
-"init"
-],
-"sub|Martyr/Burden of Revolution|Rallying Strike": [
-"choice"
-],
-"sub|Monk/Warrior of the Celestial|Heavenborne": [
-"speed"
-],
-"sub|Monk/Warrior of the Elements|Elemental Epitome": [
-"resist"
-],
-"sub|Monk/Warrior of the Elements|Stride of the Elements": [
-"speed"
-],
-"sub|Monk/Warrior of the Living Weapon|Manifest Blow": [
-"choice"
-],
 "sub|Monk/Warrior of the Living Weapon|Perfect Form": [
 "ac"
 ],
@@ -1125,21 +881,6 @@
 "sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": [
 "choice"
 ],
-"sub|Vagabond/Eagle Banner|Vantage Point": [
-"speed"
-],
-"sub|Vagabond/Experiment X|Apex Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Arcane Mutation": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Bloody Rampage": [
-"choice"
-],
-"sub|Vagabond/Experiment X|Mutations": [
-"choice"
-],
 "sub|Vagabond/Gourmand|Monster Meal": [
 "ac",
 "hp",
@@ -1157,9 +898,6 @@
 ],
 "sub|Vagabond/Rōnin|Lone Wolf": [
 "init"
-],
-"sub|Vagabond/Yellow Sign|Eldritch Herald": [
-"skill"
 ],
 "sub|Warden/Diabolist|Soul Broker": [
 "speed",

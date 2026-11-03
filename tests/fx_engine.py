@@ -154,6 +154,26 @@ def main():
                 fails.append('pick cantrip')
             if "Smith" not in json.dumps(C['profSrc']):
                 fails.append('pick tool')
+        # cantrip pick with school filter (B1): only cantrips of that school are offered
+        b = base_build()
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'S', 'pick': [
+            {'k': 's', 't': 'cantrip', 'n': 1, 'title': 'Necro', 'school': 'Necromancy'}]}]}})
+        ch = pg.evaluate("b=>window.__bldChoiceList(b)", b)
+        sc = [c for c in ch if str(c['key']).startswith('gx-s-')]
+        n += 2
+        names = [x[0] if isinstance(x, list) else x for x in (sc[0].get('list') or [])] if sc else []
+        if not names or 'Chill Touch' not in names or 'Fire Bolt' in names:
+            fails.append('pick cantrip school: got %s' % names[:6])
+        # multi pick that switches a second pick on (when): tool or language
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [
+            {'n': 'M', 'pick': [{'k': 'mode', 't': 'multi', 'n': 1, 'title': 'Mode', 'list': [['Tool', ''], ['Language', '']]}]},
+            {'n': 'M', 'when': {'key': 'gx-mode-species-Human', 'val': 'Language'}, 'pick': [{'k': 'l', 't': 'lang', 'n': 1, 'title': 'Lang'}]}]}})
+        b = base_build()
+        k0 = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if str(c['key']).startswith('gx-')]
+        b['ch']['gx-mode-species-Human'] = ['Language']
+        k1 = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if str(c['key']).startswith('gx-')]
+        if k0 != ['gx-mode-species-Human'] or 'gx-l-species-Human' not in k1:
+            fails.append('pick when: before %s after %s' % (k0, k1))
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

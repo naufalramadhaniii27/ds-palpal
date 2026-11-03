@@ -660,7 +660,8 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
    "close": "</script>",
    "files": [
-    "data/hbpack-builtin-homebrew.js"
+    "data/hbpack-builtin-homebrew.js",
+    "data/fx-B1-subclass.js"
    ]
   },
   {
