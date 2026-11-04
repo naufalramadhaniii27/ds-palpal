@@ -64,12 +64,10 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  window.FXO["Hazirawn"]={fx:{atk:2,dmg:2}};
  var HA=["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"];
  addV("Holy Avenger",HA,function(v){return {n:v,atkBonus:[{when:[v],note:"Against a Fiend or an Undead: extra 2d10 radiant damage on a hit."}]}});
- add("Gurt's Greataxe",{n:"Gurt's Greataxe",atkBonus:[{when:["Gurt's Greataxe"],note:"The axe deals 3d12 slashing on a hit (the row shows the base Greataxe die), plus an extra 2d12 slashing if the target is human."}]});
  add("Keranos's Devotee",{n:"Keranos's Devotee",atkBonus:[{when:"weapon",note:"Keranos's Devotee: once per turn on a hit, an extra 1d6 lightning (uses are in Resources)."}]});
  add("Malleus Macabre",{n:"Malleus Macabre",atkBonus:[{when:["Malleus Macabre"],crit:19}]});
  add("Fife of Dragonsong",{n:"Fife of Dragonsong",weapons:["Blowgun"],tools:["Fife"]});
  add("Mockingblade",{n:"Mockingblade",weapons:["Shortsword"]});
- add("Frozen Dagger",{n:"Frozen Dagger",atkBonus:[{when:["Frozen Dagger"],note:"Deals Cold damage instead of Piercing."}]});
  /* levelled bonuses: +1 at level 5, +2 at 11, +3 at 17 */
  ["Heretical Sunstaff of Ra","Justiciar's Gavel"].forEach(function(n){add(n,{n:n+" (Upgraded)",atkBonus:[{when:[n],atk:[[5,1],[11,2],[17,3]],dmg:[[5,1],[11,2],[17,3]]}]})});
 
@@ -133,7 +131,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
 
  /* Spells and proficiencies */
  add("Finger Gun Glove",{n:"Finger Gun Glove",spells:[[1,"Finger Guns"]]});
- add("Finger Picks",{n:"Finger Picks",tools:["Thieves' Tools"],defs:[["Note","Finger Picks: double your Proficiency Bonus on Thieves' Tools checks if you were already proficient"]]});
+ add("Finger Picks",{n:"Finger Picks",toolPE:["Thieves' Tools"]});/* fx engine v5: proficiency, or Expertise when already proficient */
  add("Fireweaver Gloves",{n:"Fireweaver Gloves",spells:[[1,"Produce Flame"]],defs:[["Note","Produce Flame from the gloves: +5 to hit, 1-hour duration"]]});
  add("Flamefriend Lantern",{n:"Flamefriend Lantern",spells:[[1,"Produce Flame"]],spCls:"@sub:WIS"});
  add("Forgemaster's Might",{n:"Forgemaster's Might",spells:[[1,"Mending"]],lu:[{n:"Creation (Forgemaster's Might)",max:1,reset:"dawn"},{n:"Fabricate (Forgemaster's Might)",max:1,reset:"dawn"}]});

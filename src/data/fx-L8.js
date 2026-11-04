@@ -68,7 +68,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  patch("Axe of the Mother Tree",{base:["Battleaxe","Greataxe"]});
  A("Axe of the Mother Tree",{n:"Upgraded Magic Item",atkBonus:[{when:["Axe of the Mother Tree","Axe of the Mother Tree (Battleaxe)","Axe of the Mother Tree (Greataxe)"],atk:LV135,dmg:LV135}]});
  A("Bounty Hunter's Vest",{n:"Tactical Nanofiber Vest",acBase:[12,"full"],acOver:true});
- A("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"],defs:[["Note","Reach is 5 ft greater on Melee weapon attacks and Unarmed Strikes"]]});
+ A("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"]});/* reach: fx-M1.js */
  A("Hacker Hands",{n:"Hacker Hands",lu:{n:"Hacker Hands: hacking reroll",max:1,reset:"long"}});
  window.FXO["Jetpack"]={fx:null};
  A("Overdrive Module",{n:"Overdrive Module",lu:{n:"Overdrive Module",max:1,reset:"long"}});

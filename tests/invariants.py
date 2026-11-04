@@ -96,7 +96,7 @@ CHECK = r"""(o)=>{
   const ct=(window.__bldCasterOf&&window.__bldCasterOf(C.cls,C.sub))||o.caster||'';
   const slots=(sc.slots||[]).slice(), L=C.level; let exp=null;
   if(ct==='full') exp=FULL[L-1]; else if(ct==='half') exp=FULL[Math.ceil(L/2)-1]; else if(ct==='third') exp=L>=3?FULL[Math.ceil(L/3)-1]:[]; else if(ct==='pact'||ct==='none') exp=[];
-  if(exp&&JSON.stringify(slots)!==JSON.stringify(exp)) V('slots-mismatch',C.cls+' ('+ct+') level '+L+': '+JSON.stringify(slots)+' expected '+JSON.stringify(exp));
+  if(exp&&!(C.defenses||[]).some(function(d){return /^Extra spell slot/.test(d.v||'')})&&JSON.stringify(slots)!==JSON.stringify(exp)) V('slots-mismatch',C.cls+' ('+ct+') level '+L+': '+JSON.stringify(slots)+' expected '+JSON.stringify(exp));
   if(ct==='pact'&&!(sc.pact&&sc.pact.n>=1)&&!(sc.pact&&sc.pact[0]>=1)) V('slots-pact','pact '+JSON.stringify(sc.pact));
   /* 6 links */
   links.forEach(k=>{ if(!window.__linkKnown(k)&&!known(k)) V('link-unknown',k); });

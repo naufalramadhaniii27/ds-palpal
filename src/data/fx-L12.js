@@ -23,7 +23,7 @@ add("Oath of the Sun",[{l:15,n:"Incandescent Strikes",defs:[["Note","Radiant Str
 add("Fey Wanderer (2014)",[{l:3,n:"Otherworldly Glamour",chkBonus:[["CHA","WIS"]],min:1}]);
 add("Fey Wanderer",[{l:3,n:"Otherworldly Glamour",chkBonus:[["CHA","WIS"]],min:1}]);
 add("Gloom Stalker",[{l:3,n:"Umbral Sight",darkNone:60,darkHave:{add:60}}]);
-add("Green Reaper",[{l:3,n:"Toxic Tradecraft",tools:["Poisoner's Kit"],defs:[["Note","Your Proficiency Bonus is doubled on checks with Poisoner's Kit (Expertise)"]]}]);
+add("Green Reaper",[{l:3,n:"Toxic Tradecraft",tools:["Poisoner's Kit"],toolExpert:["Poisoner's Kit"]}]);
 add("Hollow Warden",[{l:7,n:"Hungering Might",saveBonusAb:[["CON","WIS"]],min:1}]);
 add("Hunter (2014)",[{l:7,n:"Steel Will",when:{key:"p7hunt14b",val:"Steel Will"},advOn:["saves against being Frightened"]}]);
 add("Primordial Archer",[{l:3,n:"Herbal Lore",tools:["Herbalism Kit"]}].concat(["Acid","Cold","Fire","Lightning","Thunder"].map(function(t){return {l:7,n:"Weave the Elements ("+t+")",when:{key:"pa_weave",val:t},res:[t]}})));
@@ -38,7 +38,7 @@ add("Assassin",[{l:3,n:"Assassinate",initAdv:true}]);
 add("Highway Rider",[{l:3,n:"Trusty Mount",spCls:"@sub:INT",spells:[[3,"Find Steed"]]}]);
 add("Infiltrator",[{l:3,n:"Codebreaker",skillPE:["Data"]}]);
 add("Phantom",[{l:9,n:"Tokens of the Departed",lu:{n:"Soul Trinkets",max:[0,0,0,0,0,0,0,0,2,2,2,2,3,3,3,3,4,4,4,4],reset:"long",tag:"Refill to 2 after a Long Rest if you have fewer"}}]);
-add("Runetagger",[{l:3,n:"Impressionist",tools:["Calligrapher's Supplies","Painter's Supplies"],defs:[["Note","Expertise with Calligrapher's Supplies and Painter's Supplies (double Proficiency Bonus)"]]},
+add("Runetagger",[{l:3,n:"Impressionist",tools:["Calligrapher's Supplies","Painter's Supplies"],toolExpert:["Calligrapher's Supplies","Painter's Supplies"]},
  {l:9,n:"Escape Artist",advOn:["ability checks and saves to avoid or end the Grappled and Restrained conditions"]}]);
 window.THIRD_SUBS["Sanguine Thief"]={list:"Wizard",ab:"INT",cant:3};
 add("Sanguine Thief",[{l:3,n:"Stolen Power",lu:{n:"Sangromancy Dice",max:{f:"(lvl+1)/2"},reset:"long",die:"d8",tag:"One d8 per Sneak Attack die"}}]);

@@ -149,7 +149,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Adept)": {
+ "GX.item|D\u00e4mglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -157,7 +157,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Master)": {
+ "GX.item|D\u00e4mglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -224,10 +224,14 @@
  "GX.species|Manikin": {
   "files": [
    "fx-A-class-species.js",
-   "fx-L9.js"
+   "fx-L9.js",
+   "fx-M1.js"
   ],
-  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
+  "reason": "Competing AC bases: gfx() applies only the highest acBase, so the Strength path of fx-M1 (acCap) and the Dexterity path of fx-L9 do not add up.",
+  "shared": [
+   "acBase",
+   "acOver"
+  ]
  },
  "GX.species|Pluvenn": {
   "files": [
@@ -237,7 +241,7 @@
   "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.species|Skathári": {
+ "GX.species|Skath\u00e1ri": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -417,6 +421,126 @@
    "fx-F-sub.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|The Firm: Contractor": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Golem Arms": {
+  "files": [
+   "fx-L8.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Logic Unit": {
+  "files": [
+   "fx-L4.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Lucent Destroyer": {
+  "files": [
+   "fx-L2.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Ranseur of Torture": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Scourge of Shadow": {
+  "files": [
+   "fx-L2.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Starmetal Shield": {
+  "files": [
+   "fx-L9.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Storm Sickle": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Sword of Resonance": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Windvane": {
+  "files": [
+   "fx-L6.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Wooden Chain of the Unbroken Circle": {
+  "files": [
+   "fx-L9.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Champion (2014)": {
+  "files": [
+   "fx-L11.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Highway Rider": {
+  "files": [
+   "fx-L12.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Marauder Chapter": {
+  "files": [
+   "fx-L11.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Universalist": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  }
 }

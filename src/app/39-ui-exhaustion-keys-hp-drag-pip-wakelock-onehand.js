@@ -16,7 +16,7 @@ Object.defineProperty(__R,"ohSync",{get:function(){return ohSync;},set:function(
 Object.defineProperty(__R,"pipSync",{get:function(){return pipSync;},set:function(v){pipSync=v;},configurable:true});
 Object.defineProperty(__R,"wakeApply",{get:function(){return wakeApply;},set:function(v){wakeApply=v;},configurable:true});
 /* v30 p07: Exhaustion to a level (stepper and palette). Level 6 is death, leaving 6 brings Hit Points back (v29 RU127) */
-function exhTo(v,quiet){ const exh0=num(S.exh,0); S.exh=clamp(Math.round(num(v,0)),0,6);
+function exhTo(v,quiet){ const exh0=num(S.exh,0); S.exh=clamp(Math.round(num(v,0)),Math.min(5,Math.max(0,Math.round(num(C.exhMin,0)))),6);/* fx engine v5: a curse keeps a minimum */
   if(S.exh===6&&exh0<6){ S.exhPrev={hp:S.hp,tmp:S.tmp,ds:(S.ds||[0,0]).slice()}; S.hp=0; S.tmp=0; S.ds=[0,3]; }
   else if(exh0===6&&S.exh<6&&S.exhPrev){ S.hp=S.exhPrev.hp; S.tmp=S.exhPrev.tmp; S.ds=S.exhPrev.ds; delete S.exhPrev; }
   save(); renderAll(); renderConds(); syncHP(); if(S.exh===6&&!quiet) toast("Exhaustion 6: your character dies"); }

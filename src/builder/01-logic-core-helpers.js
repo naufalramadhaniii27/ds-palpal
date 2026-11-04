@@ -4,7 +4,8 @@ function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAl
 export function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,(c) =>{return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]})}
 export function mod(s){return Math.floor((s-10)/2)}
 export function sg(n){return (n>=0?"+":"\u2212")+Math.abs(n)}
-export function pbOf(l){return 2+Math.floor((l-1)/4)}
+/* fx engine v5: pbAdd (Ioun Stone of Mastery) raises the Proficiency Bonus; gfx() keeps PBADD current */let PBADD=0;export function setPbAdd(n){PBADD=n|0}export function getPbAdd(){return PBADD}
+export function pbOf(l){return 2+Math.floor((l-1)/4)+PBADD}
 /* average of a damage die "1d8" (a flat "1" counts as 1). Used to pick the larger of two dice (B3, M7 and m2) */
 export function dieAvg(d){const m=/^(\d+)d(\d+)$/.exec(d||"");return m?(+m[1])*(+m[2]+1)/2:(+d||0)}
 export function clone(o){return structuredClone(o)}
