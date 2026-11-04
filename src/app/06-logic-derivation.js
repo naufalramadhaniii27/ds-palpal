@@ -34,7 +34,7 @@ export function derive(){
   D.save={};
   ABK.forEach((k) =>{
     const src=C.saves&&C.saves[k], parts=[abPart(k)];
-    if(src) parts.push(part("Proficiency Bonus", pb, "Proficient from "+src));    (C.saveBonus||[]).forEach((b) =>{ if(b.np&&src) return; parts.push(part(b.s||"Bonus", num(b.v))); });/* M18 */
+    if(src) parts.push(part("Proficiency Bonus", pb, "Proficient from "+src));    (C.saveBonus||[]).forEach((b) =>{ if(b.np&&src) return; if(b.ab&&b.ab!==k) return;/* fx saveBonusAb: only that save */ parts.push(part(b.s||"Bonus", num(b.v))); });/* M18 */
     if(exhN) parts.push(exP());
     let t=parts.reduce((a,p) =>{return a+p.v},0); t=__R.cuApply("save-"+k,parts,t);/* v26 RU38 no. 2 */
     D.save[k]=t; B["save-"+k]={t:ABN[k]+" saving throw", parts:parts, total:sg(t), f:src?"":(C.saveBonus&&C.saveBonus.length?"Not proficient: the modifier and the bonuses above apply.":"Not proficient, so only the modifier applies.")};

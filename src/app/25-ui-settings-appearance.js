@@ -43,7 +43,7 @@ function setBtnI(k,v,label,ik){ const on=setOf(k)===v; return '<button type="but
 function applyLook2(){ const R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach((a) =>{ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ __R.wakeApply(); }catch(er){} }
 /* carrying capacity by size (PHB 2024 Rules Glossary), Powerful Build one size larger */
 function hasFeatN(n){ return (C.features||[]).some((g) =>{ return (g.items||[]).some((f) =>{ return f.n===n; }); }); }
-function carryOf(str){ const SIZES=["Tiny","Small","Medium","Large","Huge","Gargantuan"], SIZE_MUL={Tiny:7.5,Small:15,Medium:15,Large:30,Huge:60,Gargantuan:120}, sz=String(C.size||""), s=SIZES.filter((z) =>{ return sz.indexOf(z)>=0; })[0]||"Medium", pb=hasFeatN("Powerful Build"), s2=pb?SIZES[Math.min(5,SIZES.indexOf(s)+1)]:s;
+function carryOf(str){ const SIZES=["Tiny","Small","Medium","Large","Huge","Gargantuan"], SIZE_MUL={Tiny:7.5,Small:15,Medium:15,Large:30,Huge:60,Gargantuan:120}, sz=String(C.size||""), s=SIZES.filter((z) =>{ return sz.indexOf(z)>=0; })[0]||"Medium", pb=hasFeatN("Powerful Build")||!!C.carryBump/* fx carryBump: any source that counts you as one size larger */, s2=pb?SIZES[Math.min(5,SIZES.indexOf(s)+1)]:s;
   const bear=(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Aspect of the Beast"&&/\*\*Your choice\.\*\*\s*Bear/.test(String(i.d||"")); }); }), mul=bear?2:1;/* v102: Totem Warrior (2014), Aspect of the Beast: Bear doubles carrying capacity */
   return {v:SIZE_MUL[s2]*mul*str, m:SIZE_MUL[s2]*mul, s:s, pb:pb, bear:bear}; }
 /* spells listed again at higher slot levels */
