@@ -131,6 +131,10 @@ window.FXO=window.FXO||{};
  addS("Limukin",{n:"Bonus Languages",langs:["Archosauric"]});
  addS("Limukin",{n:"Innate Toxicology",res:["Poison"],advOn:["checks and saves to avoid or end the Poisoned condition"]});
  addS("Luma",{n:"Resilience (Sable)",when:{key:"lin",val:"Sable"},res:["Poison"],advOn:["saves against poison"]});
+ addS("Raptor",{n:"Agile (Mistral)",when:{key:"lin",val:"Mistral"},skillProf:["Acrobatics"]});
+ addS("Strig",{n:"Imposing (Stout)",when:{key:"lin",val:"Stout"},skillProf:["Intimidation"]});
+ addS("Strig",{n:"Survivor (Swift)",when:{key:"lin",val:"Swift"},skillProf:["Survival"]});
+ addS("Luma",{n:"Center of Attention (Sera)",when:{key:"lin",val:"Sera"},skillProf:["Performance"]});
  addS("Manikin",{n:"Born to Serve",defs:[["Note","Disadvantage on Wisdom (Insight) checks"]]});
  addS("Manikin",{n:"Integrated Gold Plating (Infiltrator)",when:{key:"lin",val:"Infiltrator"},acBase:[11,"full"],acOver:true,advOn:["Dexterity (Stealth) checks"]});
  addS("Manikin",{n:"Integrated Gold Plating (Sentinel)",when:{key:"lin",val:"Sentinel"},acBase:[13,"full"],acDexMax:2,acOver:true});
@@ -149,7 +153,7 @@ window.FXO=window.FXO||{};
  addS("Shifter (Beasthide)",{n:"Shifting Feature",toggle:{id:"shifter-shifted",label:"Shifted (+1 AC)",default:false},acAdd:1});
  addS("Shifter (Swiftstride)",{n:"Shifting Feature",toggle:{id:"shifter-shifted",label:"Shifted (+10 ft Speed)",default:false},speedAdd:10});
  addS("Skathári",{n:"Natural Armor",acBase:[13,"full"]});
- addS("Tortle (2014)",{n:"Shell Defense",toggle:{id:"tortle-shell",label:"In your shell (Shell Defense)",default:false},acAdd:4,speedMul:0,advOn:["Strength and Constitution saves"],defs:[["Note","In the shell: Prone, Speed 0, Disadvantage on Dexterity saves, no Reactions"]]});
+ addS("Tortle (2014)",{n:"Shell Defense",toggle:{id:"tortle-shell",label:"In your shell (Shell Defense)",default:false},acAdd:4,advOn:["Strength and Constitution saves"],defs:[["Note","In the shell: Prone, Speed 0, Disadvantage on Dexterity saves, no Reactions"]]});
  addS("Vect",{n:"Inflexible Mind",advOn:["saves to avoid or end the Charmed condition"]});
  addS("Vect",{n:"Thermalsight",sense:[["Thermalsight",60,""]]});
  addS("Vulpin",{n:"Evasive",saveBonusAb:[["DEX","INT"]]});
@@ -163,9 +167,6 @@ window.FXO=window.FXO||{};
  if((s=sp("tsdd","Child of Seth"))&&s.fx)s.fx.movesNote="20 ft while wearing Medium or Heavy armor";
  if((s=sp("tsgeh","Cursed-Blood"))&&s.fx)s.fx.movesNote=LIN_NOTE_ARMOR;
  if((s=sp("dmg14","Eladrin Elf")))s.lgn=1;
- if((s=sp("thhw","Raptor"))){s.linFx=s.linFx||{};s.linFx.Mistral=Object.assign({},s.linFx.Mistral,{skills:["Acrobatics"]})}
- if((s=sp("thhw","Strig"))){s.linFx=s.linFx||{};s.linFx.Stout=Object.assign({},s.linFx.Stout,{skills:["Intimidation"]});s.linFx.Swift=Object.assign({},s.linFx.Swift,{skills:["Survival"]})}
- if((s=sp("thhw","Luma"))){s.linFx=s.linFx||{};s.linFx.Sera=Object.assign({},s.linFx.Sera,{skills:["Performance"]})}
  /* Iggwilv's Cauldron: it has no charge pool (the ch row was the wand it can make); its properties are once-per-dawn uses written in the text */
  if(window.WXI)Object.keys(WXI).forEach(function(b){(WXI[b]||[]).forEach(function(r){if(r[0]==="Iggwilv's Cauldron"&&r[5]&&r[5].ch)delete r[5].ch})});
  /* Accursed (Steinhardt): spell table and Limited Use rows were keyed to "Accursed" */
