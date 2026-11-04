@@ -469,3 +469,8 @@ Belum dimodelkan (butuh perubahan model data atau UI): ganti dadu senjata (Silve
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.
+
+#### Ledger bin 7 (`src/data/fx-L7.js`, blok `fxd` sesudah fx-D-item.js)
+Perbaikan ledger shard 18 dan 19 (item buku 2014, gifts Theros, Tal'Dorei, Eberron). Skema sama dengan fx-D-item: `window.FXO[item]` mengganti fx baris lama, `window.GX.item[item]` menambah entri. Pola baru yang dipakai: pool `lu` pada item (muncul bila item equipped), `resToImm` untuk Dragon Mask (fx lama `res` dibuang agar tidak menaikkan dirinya sendiri), `abPick` untuk Champion gifts (up 2, max 22), pick `multi` plus entri `when` untuk Nightbringer, `toggle` untuk Wingwear, Ghost Step, Star Razor.
+Empat baris data asli diubah karena `ch` tidak punya override: Iggwilv's Horn 4 pakai, Staff of Ruling 3, Ephixis 4 panah dusk, Mastix 3 dusk (`src/data/wotc11-magic-items-2014.js`).
+Tidak bisa: lihat `reports/ledger-skipped-L7.md`.
