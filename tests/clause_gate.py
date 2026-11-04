@@ -1,0 +1,1056 @@
+#!/usr/bin/env python3
+"""Clause gate (REPORT MODE): per-sentence number conservation for every database text.
+
+  python3 tests/clause_gate.py                 selftest, then scan the real data, write reports/clause-gate-report.md and tests/clause_gate_baseline.json
+  python3 tests/clause_gate.py --selftest      only the synthetic cases and the mutation test (no browser, a few seconds)
+  python3 tests/clause_gate.py --data F.json   read the rule tables from a cache file instead of opening index.html
+  python3 tests/clause_gate.py --save-data F   write the loaded tables to F (the load takes about 75 s)
+  python3 tests/clause_gate.py --audit N SEED  print N flagged and N unflagged mechanical sentences (stratified, fixed seed) for a manual check
+  python3 tests/clause_gate.py --root DIR      another checkout (same as mech_scan.py)
+  python3 tests/clause_gate.py --no-write      do not write the report and the baseline
+
+Why: tests/mech_scan.py asks "does this FEATURE have a way to count" (by name and by keyword). A feature with two mechanical sentences passes when one of them
+has a record. This gate asks the question per SENTENCE. Steps:
+  1. every text of the universe mech_scan reads (class, subclass, species trait, feat, magic item, third party and homebrew rows) plus spells is split into sentences,
+     each with a stable id (kind|owner|feature#n) and a text hash;
+  2. each sentence is read for numbers, dice, DC, distances, durations, percents and mechanical keyword classes (AC, HP, SAVE, ADV, DIS, RES, IMM, SPEED, SENSE,
+     PROF, SLOT, RESOURCE, ATK, DMG, DC, INIT, SPELL, ABIL, CHOICE);
+  3. a sentence is COVERED when every keyword class has its own engine atom and every number is explained by the atoms of the feature. Atoms come from the data the
+     sheet derivation reads: GX entries (cls/sub/species/feat/item), FXO, the structured fields of the records, LU_X, AUTO / SUB_GRANT / SP_AUTO / CLS_AUTO,
+     SAVE_NOTES, ACTS (action card), FDMG, ITEM_SPELLS, SPELL_FX. An atom covers ONE sentence per class (this is what stops the Tower Shield case: one record
+     must not cover a second mechanical sentence of the same feature). A sentence is also INFO when a documented tag says so (tests/mech_baseline.json by_design,
+     an ACTS action card for a damage / DC / dice sentence = ACTIVATE) or ALLOW (tests/clause_gate_allow.json: id, hash, reason, expires);
+  4. everything else that is mechanical is UNCOVERED. The gate only reports. It never fails a build (exit code 0), only the selftest can return 1.
+
+The gate changes nothing in src/ and no fx data. It reuses mech_scan.py (loader window.__bldData, CAT / ITEM_CAT, GX_CAT, STRUCT_SKIP, the LU_X helper)
+and tests/fx_overlap_loader.js (FXO and GX per file, no browser).
+"""
+import hashlib, json, os, random, re, subprocess, sys, time, collections
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+args = sys.argv[1:]
+
+
+def opt(name, n=0):
+    """pop --name (and n values) from args"""
+    if name in args:
+        i = args.index(name)
+        v = args[i + 1:i + 1 + n]
+        del args[i:i + 1 + n]
+        return v if n else True
+    return None
+
+
+_r = opt("--root", 1)
+if _r:
+    ROOT = os.path.abspath(_r[0])
+sys.path.insert(0, HERE)
+_save_argv = sys.argv
+sys.argv = [sys.argv[0]]
+import mech_scan as M  # noqa: E402  (reuse: CAT, ITEM_CAT, GX_CAT, STRUCT_SKIP, blob, lu_names, load pattern)
+sys.argv = _save_argv
+
+OUT_MD = os.path.join(ROOT, "reports", "clause-gate-report.md")
+OUT_BASE = os.path.join(HERE, "clause_gate_baseline.json")
+ALLOW = os.path.join(HERE, "clause_gate_allow.json")
+MBASE = os.path.join(HERE, "mech_baseline.json")
+
+# ---------------------------------------------------------------------------------------------------------------- loading
+EXTRA_JS = """()=>{const J=o=>JSON.parse(JSON.stringify(o===undefined?null:o));const o={};
+ const names={spellFull:'SPELL_FULL',spellFx:'SPELL_FX',spellRows:'SPELLS',itemDesc:'ITEMDESC',fxo:'FXO',fdmg:'FDMG',itemSpells:'ITEM_SPELLS'};
+ for(const k in names){try{o[k]=J(eval(names[k]))}catch(e){o[k]=null}}return o}"""
+
+
+def load():
+    """Same page and hook as mech_scan.load(), plus the tables the gate needs that __bldData does not return (spell text, FXO, FDMG, ITEMDESC ...)."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        b = p.chromium.launch(); pg = b.new_page(); errs = []; pg.set_default_timeout(180000)
+        pg.on("pageerror", lambda e: errs.append(str(e)))
+        pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(800)
+        pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
+        d = pg.evaluate("window.__bldData()")
+        d["gx"] = pg.evaluate("JSON.parse(JSON.stringify(window.GX||{}))")
+        d["gxItem"] = pg.evaluate("()=>Object.keys(window.GX&&window.GX.item||{}).concat(Object.keys(window.FXO||{}))")
+        d.update(pg.evaluate(EXTRA_JS)); b.close()
+    if errs:
+        print("page errors:", errs[:3]); sys.exit(2)
+    return d
+
+
+def fx_files():
+    m = json.load(open(os.path.join(ROOT, "src", "manifest.json")))
+    out = []
+
+    def walk(x):
+        if isinstance(x, dict):
+            for v in x.values(): walk(v)
+        elif isinstance(x, list):
+            for v in x: walk(v)
+        elif isinstance(x, str) and re.search(r"(^|/)data/fx-[^/]*\.js$", x):
+            out.append(x)
+    walk(m)
+    return out
+
+
+def fx_owner_files():
+    """tests/fx_overlap_loader.js (node vm, no browser): which fx file defines each GX.kind|name and FXO|name. Used for the per-file attribution only."""
+    try:
+        fl = [os.path.join(ROOT, "src", f) for f in fx_files()]
+        r = subprocess.run(["node", os.path.join(HERE, "fx_overlap_loader.js"), json.dumps(fl)], capture_output=True, text=True, timeout=120)
+        return json.loads(r.stdout)["owners"] if r.returncode == 0 else {}
+    except Exception:
+        return {}
+
+
+# ---------------------------------------------------------------------------------------------------------------- sentences
+ABBR = {"e.g", "i.e", "vs", "ft", "lb", "lbs", "no", "cf", "approx", "dr", "mr", "mrs", "st", "lv", "lvl", "etc"}
+
+
+def clean(text):
+    t = text if isinstance(text, str) else json.dumps(text, ensure_ascii=False)
+    t = re.sub(r"\[\[([^\]|]*)(?:\|([^\]]*))?\]\]", lambda m: m.group(2) or m.group(1), t)
+    t = re.sub(r"\*\*([^*]+?)\*\*", r"\1", t)
+    t = t.replace("’", "'").replace("−", "-").replace("–", "-")
+    return t
+
+
+def split_sentences(text):
+    t = clean(text)
+    out = []
+    for para in re.split(r"[\n•]+| - (?=[A-Z])", t):
+        para = para.strip()
+        if not para:
+            continue
+        last = 0
+        for m in re.finditer(r"[.!?]+[\"')\]]*\s+", para):
+            before = para[last:m.start()].rsplit(" ", 1)[-1].lower().rstrip(".")
+            nxt = para[m.end():m.end() + 1]
+            if before in ABBR and not (nxt.isupper() and before in ("etc",)):
+                continue
+            if not (nxt.isupper() or nxt.isdigit() or nxt in "\"'([+"):
+                continue
+            out.append(para[last:m.end()].strip()); last = m.end()
+        if para[last:].strip():
+            out.append(para[last:].strip())
+    return [s for s in out if len(s) > 1]
+
+
+def norm(s):
+    return re.sub(r"\s+", " ", s.lower()).strip()
+
+
+def shash(s):
+    return hashlib.sha1(norm(s).encode("utf-8")).hexdigest()[:8]
+
+
+# ---------------------------------------------------------------------------------------------------------------- numbers
+WORDN = {"two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10", "eleven": "11", "twelve": "12",
+         "fifteen": "15", "twenty": "20", "thirty": "30", "sixty": "60", "hundred": "100"}
+WORD_RX = re.compile(r"\b(" + "|".join(WORDN) + r")\b(?![- ](?:handed|sided|dimensional|way))", re.I)
+ONE_UNIT = re.compile(r"\bone (minute|hour|day|round|use|charge|week|mile|foot)\b")
+SPECIAL = [(re.compile(r"\bhalf\b"), "half"), (re.compile(r"\b(double|twice|doubles|doubled)\b"), "double"), (re.compile(r"\b(triple|thrice)\b"), "3"),
+           (re.compile(r"\bproficiency bonus\b"), "pb")]
+# spans that are not mechanics of the sheet (level gates, prices, weights, page and table references, years, challenge ratings, 1 action)
+IGN = [re.compile(p) for p in (
+    r"\blevels? \d+(?:(?:\s*,\s*and\s+|\s*,\s*|\s+and\s+|\s+or\s+|\s+to\s+|\s*-\s*)(?:level )?\d+)*",
+    r"\bat \d{1,2}\b(?! ?(?:feet|ft|foot|minutes?|hours?|rounds?|percent|%|gp|charges?|d\d))", r"\b(?:minimum(?: of)?|at least|maximum of|max\.?|up to a maximum of)\s*\+?\d+", r"\bhalf as much\b",
+    r"\b(?:roll(?:s|ed)? an? |on an? |rolls? of |result of )\d{1,2}\b(?! ?(?:feet|ft))", r"\b\d+(?:st|nd|rd|th)(?:-| )levels?(?! spell| slot| or lower| or higher)(?:\s*(?:,|and|or)\s*\d+(?:st|nd|rd|th))*",
+    r"\bat \d+(?:st|nd|rd|th)\b", r"\b\d[\d,]*(?:\.\d+)? ?(?:gp|sp|cp|pp|ep)\b", r"\b\d[\d,]*(?:\.\d+)? ?(?:lb|lbs|pounds?)\b\.?",
+    r"\b(?:page|pages|p\.|pp\.|chapter|table|appendix|cr|challenge rating|section) ?\d+(?:/\d+)?", r"\b(?:19|20)\d\d\b", r"\b1 (?:bonus action|action|reaction)\b",
+    r"\b\d+ ?(?:gp|sp|cp)\b")]
+DICE = re.compile(r"\b(\d*)d(100|20|12|10|8|6|4)\b")
+UNIT_DIST = re.compile(r"(\d[\d,]*)[- ]?(?:feet|foot|ft\.?|miles?|yards?|inches)\b")
+UNIT_DUR = re.compile(r"(\d+)[- ](?:rounds?|minutes?|hours?|days?|turns?|weeks?|months?|years?|seconds?)\b")
+PCT = re.compile(r"(\d+(?:\.\d+)?) ?(?:%|percent)")
+SIGNED = re.compile(r"(?<![\w.])[+-]\s?(\d+)\b")
+PLAIN = re.compile(r"(?<![\w.])(\d[\d,]*(?:\.\d+)?)(?![\w])")
+
+
+def tokens(text):
+    """Number tokens of one sentence: list of (token, kind). kind: dice, dist, dur, pct, num. Level gates, prices, weights, pages and years are dropped."""
+    t = clean(text).lower()
+    for rx in IGN:
+        t = rx.sub(" ", t)
+    out, seen = [], set()
+
+    def add(tok, kind):
+        if (tok, kind) not in seen:
+            seen.add((tok, kind)); out.append((tok, kind))
+    for m in DICE.finditer(t):
+        add("%sd%s" % (m.group(1) or "1", m.group(2)), "dice")
+    t2 = DICE.sub(" ", t)
+    for m in UNIT_DIST.finditer(t2): add(m.group(1).replace(",", ""), "dist")
+    for m in UNIT_DUR.finditer(t2): add(m.group(1), "dur")
+    for m in PCT.finditer(t2): add(m.group(1), "pct")
+    t3 = UNIT_DUR.sub(" ", UNIT_DIST.sub(" ", PCT.sub(" ", t2)))
+    for m in PLAIN.finditer(t3): add(m.group(1).replace(",", ""), "num")
+    for m in WORD_RX.finditer(t3): add(WORDN[m.group(1).lower()], "num")
+    for m in ONE_UNIT.finditer(t3): add("1", "dur" if m.group(1) in ("minute", "hour", "day", "round", "week") else "num")
+    for rx, tok in SPECIAL:
+        if rx.search(t3): add(tok, "num")
+    return out
+
+
+def nums_in(o, out=None):
+    """All numbers, dice and the word-like tokens of a record value, as strings."""
+    if out is None:
+        out = set()
+    if isinstance(o, bool) or o is None:
+        return out
+    if isinstance(o, (int, float)):
+        v = abs(o)
+        out.add(str(int(v)) if float(v).is_integer() else str(v))
+        if v == 0.5: out.add("half")
+        if v == 2: out.add("double")
+    elif isinstance(o, str):
+        low = o.lower()
+        for m in DICE.finditer(low): out.add("%sd%s" % (m.group(1) or "1", m.group(2)))
+        for m in re.finditer(r"\d+(?:\.\d+)?", DICE.sub(" ", low)): out.add(m.group(0))
+        if re.search(r"\bpb\b|prof", low): out.add("pb")
+        if "half" in low: out.add("half")
+        for w, n in WORDN.items():
+            if re.search(r"\b%s\b" % w, low): out.add(n)
+    elif isinstance(o, (list, tuple)):
+        for x in o: nums_in(x, out)
+    elif isinstance(o, dict):
+        for k, v in o.items():
+            if isinstance(k, str) and re.fullmatch(r"\d+", k): out.add(k)
+            nums_in(v, out)
+    return out
+
+
+# ---------------------------------------------------------------------------------------------------------------- keyword classes
+def R(p):
+    return re.compile(p)
+
+
+XCAT = {  # supplements to mech_scan.CAT (which has ac, hp, save, speed, init, skill, resist, uses, choice, fstyle)
+    "ADV": R(r"\badvantage\b"), "DIS": R(r"\bdisadvantage\b"),
+    "RES": R(r"\bresistan(?:ce|t)\b|\bvulnerab"), "IMM": R(r"\bimmun(?:e|ity)\b"),
+    "SPEED": R(r"\bspeed\b|\b(?:flying|swimming|climbing|burrowing) (?:speed|at)\b|\b(?:gain|have|has|with) an? (?:flying|fly|swimming|swim|climbing|climb|burrowing|burrow)\b|\bhover\b"),
+    "SENSE": R(r"\b(?:darkvision|blindsight|tremorsense|truesight|devil's sight)\b|\bsee in (?:magical )?darkness\b|\bpassive perception\b"),
+    "PROF": R(r"\bproficien(?:t|cy)\b(?! bonus)|\bexpertise\b|\blanguages?\b[^.]{0,30}\b(?:learn|know|speak|add)\b"),
+    "SLOT": R(r"\bspell slots?\b|\bslot level\b|\bregain[^.]{0,30}\bslots?\b"),
+    "RESOURCE": R(r"\b(?:\d+|one|two|three|four|five|six|no|all|any|remaining|expended|extra|additional|equal to[^.]{0,40}|number of) uses?\b|\buses? (?:remaining|left|per|of)\b|\bcharges?\b|\bexpend(?:s|ed|ing)?\b|\bregains?\b|\brecharge[sd]?\b|\b(?:short|long) rest\b|\bat dawn\b|\bper (?:day|dawn)\b|\b(?:once|twice) per\b|\b(?:focus|sorcery|ki|psi) points?\b"),
+    "ATK": R(r"(?:\+\d+|bonus|add|plus|extra|additional|increase)[^.]{0,40}\battack (?:rolls?|bonus)|\battack (?:rolls?|bonus)[^.]{0,40}(?:\+\d|bonus|increase)|\bextra attack\b|\battack twice\b|\btwo attacks\b|\bspell attack\b|\b(?:to hit|attack modifier)\b"),
+    "DMG": R(r"\b\d*d\d+\b[^.]{0,40}\bdamage\b|\bdamage\b[^.]{0,40}\b\d*d\d+\b|(?:\+\d+|extra|additional|bonus)[^.]{0,20}\bdamage\b|\bdamage rolls?\b[^.]{0,30}(?:\+\d|bonus)"),
+    "DC": R(r"\bdc\b|\bsave dc\b|\bdifficulty class\b"),
+    "SPELL": R(r"\bcantrips?\b|\balways (?:have|has)[^.]{0,30}prepared\b|\bcast (?:the |it |that |this )?[a-z' ]{0,30}spell|\byou (?:know|learn)[^.]{0,30}(?:spell|cantrip)|\bspell list\b|\bwithout (?:expending|using|a) (?:a )?(?:spell )?slot|\bprepared spells?\b"),
+    "ACB": R(r"\bbase (?:armor class|ac)\b|\b(?:armor class|ac) (?:is|equals|becomes) \d"),
+    "ABIL": R(r"\b(?:raise|increase)\s+(?:one |an |your )?(?:ability score|strength|dexterity|constitution|intelligence|wisdom|charisma)\b|\b(?:strength|dexterity|constitution|intelligence|wisdom|charisma|ability) score\b[^.]{0,40}(?:increase|raise|\+\d|becomes|maximum|set|equal)|(?:increase|raise)[^.]{0,30}(?:strength|dexterity|constitution|intelligence|wisdom|charisma|ability) score"),
+}
+CAT_MAP = {"ac": "AC", "hp": "HP", "save": "SAVE", "speed": "SPEED", "init": "INIT", "skill": "PROF", "resist": None, "uses": "RESOURCE", "choice": "CHOICE", "fstyle": "CHOICE"}
+ATOM_CLASSES = {"AC", "HP", "SAVE", "ADV", "DIS", "RES", "IMM", "SPEED", "SENSE", "PROF", "SLOT", "RESOURCE", "ATK", "DMG", "DC", "INIT", "SPELL", "ABIL", "CHOICE"}
+STAT = {"AC", "HP", "SAVE", "SPEED", "SENSE", "PROF", "SLOT", "INIT", "ABIL", "RES", "IMM"}
+ACT_OK = {"DMG", "DC", "RESOURCE", "ADV", "DIS", "ATK", "SAVE_ROLL"}
+ACT_FORM = R(r"\b(?:as an action|as a bonus action|as a reaction|as a magic action|bonus action|magic action|reaction|use your action|command word|activate[sd]?|spend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?|points?)|expend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?)|\d+ charges?)\b")
+TABLE_FORM = R(r"^(?:table\b|\(?\d+(?:[-\u2013]\d+)?\)?\s*[:.]\s|\d+(?:[-\u2013]\d+)? [A-Z])|\b(?:column|table)\b[^.]{0,60}\b(?:shows?|lists?|gives?|details?)\b|\b(?:shows?|lists?)\b[^.]{0,60}\b(?:column|table)\b|\(slot level|\broll an? d\d+ for\b")
+POOL_RX = R(r"\b(?:has|have|holds?|contains?|with) (?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) (?:\w+ )?(?:charges?|uses)\b|\bregains? [^.]{0,40}(?:charges?|uses)\b|\bcharges?\b[^.]{0,40}\b(?:dawn|regain|recharge)\b|\bnumber of times equal to\b|\bpool\b[^.]{0,60}\b(?:dice|die|points?)\b")
+ROLL_FORM = R(r"\b(?:saving throw|save|saves)\b[^.]{0,160}\b(?:fail|succeed|success|take|takes|half)\b|\b(?:fail|succeed|success|make|makes|must make)\b[^.]{0,160}\b(?:saving throw|save|check)\b|\bdc \d+|\bon a (?:failed|successful|hit|miss)\b|\bhalf as much\b")
+ACTION_RX = R(r"\b(?:as an action|as a bonus action|as a reaction|as a magic action|bonus action|reaction|magic action|use your action|take the [a-z ]+ action)\b")
+CLASS_ORDER = ["AC", "HP", "SAVE", "ADV", "DIS", "RES", "IMM", "SPEED", "SENSE", "PROF", "SLOT", "RESOURCE", "ATK", "DMG", "DC", "INIT", "SPELL", "ABIL", "CHOICE"]
+
+
+def classes(text, kind=None):
+    t = clean(text).lower()
+    out = set()
+    for k, rx in M.CAT.items():
+        if rx.search(t):
+            if k == "resist":
+                out.add("IMM" if re.search(r"\bimmun", t) else "RES")
+                if re.search(r"\bresistance to\b", t): out.add("RES")
+            elif CAT_MAP.get(k): out.add(CAT_MAP[k])
+    if kind == "item":
+        for k, rx in M.ITEM_CAT.items():
+            if rx.search(t):
+                out.add({"ac": "AC", "save": "SAVE", "hp": "HP", "speed": "SPEED", "init": "INIT", "resist": "RES", "skill": "PROF"}[k])
+    t_slot = re.sub(r"\b(?:without|no need for|instead of)\s+(?:expending |using |spending |needing |a |an |any |one |of |your )*(?:spell )?slots?\b|\b(?:or|and) with (?:a |any |your )?(?:spell )?slots?\b|\bcast (?:it|them|each|that)[^.]{0,30}\b(?:with|using) (?:a |any )?(?:spell )?slots?\b", " ", t)
+    for k, rx in XCAT.items():
+        if rx.search(t_slot if k == "SLOT" else t):
+            out.add("AC" if k == "ACB" else k)
+    return out
+
+
+# ---------------------------------------------------------------------------------------------------------------- atoms
+FIELD_CLS = collections.defaultdict(set)
+
+
+def reg(cls, *keys):
+    for k in keys:
+        FIELD_CLS[k].add(cls)
+
+
+reg("AC", "ac", "acAdd", "acBase", "acDexAb", "acMw", "acArmAb", "acOver", "shAc", "acNoDex", "acAb", "acMin", "acCap", "acDexMax", "natAc", "acBonus", "dwAC", "unarmoredAC", "med3", "acSub", "ua", "mw")
+reg("HP", "hp", "hpLvl", "hpFlat", "hpPerLevel", "hpSub")
+reg("SAVE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "saveFromAsi", "saveNote", "save", "advOn")
+reg("ADV", "advOn", "initAdv", "saveNote", "noSurprise", "def", "defs", "adv")
+reg("DIS", "saveNote", "def", "defs")
+reg("RES", "res", "imm", "vul", "resToImm", "def", "defs", "condImm", "linRes", "saveNote", "resBy")
+reg("IMM", "imm", "condImm", "resToImm", "def", "defs")
+reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
+reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise")
+reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
+    "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf")
+reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
+reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
+reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
+reg("DMG", "dmg", "atkDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
+reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
+reg("INIT", "init", "initAdv", "initDie")
+reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
+reg("ABIL", "abUp", "abDown", "abSet", "abCut", "abPick", "abUpPick", "abil", "asi", "asi2", "asiPick", "asiFlex", "asiX")
+reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs")
+
+
+class Atom:
+    __slots__ = ("cls", "vals", "src", "weak", "i")
+
+    def __init__(self, cls, vals, src, weak=False):
+        self.cls, self.vals, self.src, self.weak, self.i = cls, set(vals), src, weak, 0
+
+
+def atoms_from(e, src, weak=False, extra=()):
+    """One atom per (class, field) of a record dict (a GX entry, a fx dict, a structured field). Value numbers = numbers inside that field and the entry's `min`."""
+    out = []
+    if not isinstance(e, dict):
+        return out
+    for k, v in e.items():
+        cl = FIELD_CLS.get(k)
+        if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
+            continue
+        vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
+        for c in cl:
+            out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
+    return out
+
+
+def mentions(obj, name):
+    """Parts of a structured field (list of dicts, dict of name -> value) that name the feature."""
+    nm = name.lower()
+    if isinstance(obj, list):
+        return [x for x in obj if nm in M.blob(x)]
+    if isinstance(obj, dict):
+        return [{k: v} for k, v in obj.items() if nm in str(k).lower() or nm in M.blob(v)]
+    return [obj] if nm in M.blob(obj) else []
+
+
+def gx_match(entries, name, text):
+    """mech_scan.gxcov rule: an entry counts for the feature when it is named like it or named in its text."""
+    out, t, f = [], (text or "").lower(), name.lower()
+    for e in entries or []:
+        if not isinstance(e, dict):
+            continue
+        en = (e.get("n") or "").lower()
+        base = re.sub(r"\s*\(.*\)\s*$", "", en).split(":")[0].strip()
+        if en == f or (base and len(base) > 3 and (base in t or base in f)) or (f and f in en):
+            out.append(e)
+    return out
+
+
+def spell_atoms(auto, text, src):
+    """AUTO / SUB_GRANT / SP_AUTO / CLS_AUTO rows [[lvl, "A,B"]]: a row counts for the sentences that name one of its spells."""
+    out, t = [], clean(text).lower()
+    for rows in auto:
+        for r in rows or []:
+            if not isinstance(r, (list, tuple)) or len(r) < 2 or not isinstance(r[1], str):
+                continue
+            names = [x.strip().lower() for x in r[1].split(",") if x.strip()]
+            if any(n in t for n in names):
+                out.append(Atom("SPELL", nums_in(r[0]) | nums_in(r[1]), src))
+    return out
+
+
+def lu_atoms(D, owner, name, kind_ok=None):
+    out = []
+    for e in D.get("lu_by_owner", {}).get(owner, []):
+        if (e.get("feature") or "").lower() == name.lower() or name.lower() in (e.get("n") or "").lower():
+            out.append(Atom("RESOURCE", nums_in([e.get("max"), e.get("lvl"), e.get("tag")]), "LU_X"))
+    return out
+
+
+def sn_atoms(D, name, owner):
+    out = []
+    for row in D.get("saveNotes") or []:
+        if len(row) >= 3 and isinstance(row[1], str) and row[1].lower() == name.lower() and (len(row) < 4 or not row[3] or row[3] == owner):
+            cl = (classes(row[2]) & {"ADV", "DIS", "RES", "IMM", "SAVE"}) | {"ADV", "SAVE"}
+            for c in cl:
+                out.append(Atom(c, nums_in(row[2]), "SAVE_NOTES"))
+    return out
+
+
+def calc_note_names():
+    """Names in the table T of calcNote() (src/builder/16-logic-feature-numbers.js): the sheet writes the level numbers of these features into their note from code, not from a record.
+    Read-only parse of the source; the atoms are wildcards (the numbers come from the class tables at run time)."""
+    try:
+        src = open(os.path.join(ROOT, "src", "builder", "16-logic-feature-numbers.js"), encoding="utf-8").read()
+        i = src.index("const T={"); j = src.index("calcNote", i + 10) if "calcNote" in src[i + 10:] else len(src)
+        return set(re.findall(r'"([^"]+)":function', src[i:i + 9000]))
+    except Exception:
+        return set()
+
+
+def build_index(D):
+    D["calc_names"] = calc_note_names()
+    D["lu_by_owner"] = collections.defaultdict(list)
+    for e in D.get("lu") or []:
+        D["lu_by_owner"][e.get("owner")].append(e)
+    D["fdmg_by"] = collections.defaultdict(list)
+    for r in D.get("fdmg") or []:
+        if isinstance(r, list) and len(r) > 3:
+            D["fdmg_by"][(r[1], r[2])].append(r)
+    D["acts_set"] = set((D.get("acts") or {}).keys())
+    return D
+
+
+# ---------------------------------------------------------------------------------------------------------------- universe
+def features(D):
+    """Yield feature contexts: dict(kind, owner, name, book, text, lvl, atoms, acts) for the universe mech_scan reads, plus spells. Atoms are built here (data side)."""
+    gx = D.get("gx") or {}
+    fxo = D.get("fxo") or {}
+    seen = collections.Counter()
+
+    def mk(kind, owner, name, book, text, lvl, atoms, acts):
+        key = "%s|%s|%s" % (kind, owner, name)
+        if name in D["calc_names"] and kind in ("class", "sub", "species", "feat"):
+            atoms = atoms + [Atom(c, {"*"}, "calcNote") for c in ("RESOURCE", "DC", "DMG", "HP", "ATK")]
+        seen[key] += 1
+        if seen[key] > 1:
+            key += "~%d" % seen[key]
+        return {"key": key, "kind": kind, "owner": owner, "name": name, "book": book or "core", "text": text if isinstance(text, str) else json.dumps(text, ensure_ascii=False) if text else "",
+                "lvl": lvl, "atoms": atoms, "acts": acts}
+
+    # class features
+    for cn, c in D["classes"].items():
+        st = {k: v for k, v in c.items() if k in ("pick", "res", "track", "fx", "ua", "acSub", "hpSub", "toolPick", "resSub", "xlists", "nslot", "smax")}
+        book = D["srcOf"]["cls"].get(cn, "core")
+        for row in c.get("f", []):
+            lvl, name = row[0], row[1]
+            text = D["cf"].get("%s|%s" % (cn, name)) or row[2]
+            at = []
+            for e in gx_match((gx.get("cls") or {}).get(cn), name, text):
+                at += atoms_from(e, "GX.cls|" + cn)
+            for k, v in st.items():
+                for part in mentions(v, name):
+                    at += atoms_from({k: part}, "cls." + cn)
+            if c.get("fs") and "fighting style" in name.lower(): at.append(Atom("CHOICE", nums_in(c.get("fs")), "cls.fs"))
+            if c.get("wm") and "weapon mastery" in name.lower(): at += [Atom("CHOICE", nums_in(c["wm"]), "cls.wm"), Atom("ATK", nums_in(c["wm"]), "cls.wm")]
+            at += lu_atoms(D, cn, name)
+            if name.lower() in ("spellcasting", "pact magic") and (c.get("cast") or c.get("caster")):  # slots, prepared spells and cantrip counts are class tables, read by the slot code
+                at += [Atom(k, {"*"}, "cls.cast") for k in ("SLOT", "SPELL", "CHOICE", "RESOURCE", "DC", "ATK", "ABIL")]
+            ca = D["clsAuto"].get(cn)
+            if isinstance(ca, dict):
+                for rows in ca.values():
+                    at += spell_atoms([rows], text, "CLS_AUTO")
+            elif isinstance(ca, list):
+                at += spell_atoms([ca], text, "CLS_AUTO")
+            for r in D["fdmg_by"].get((cn, name), []):
+                at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
+            yield mk("class", cn, name, book, text, lvl, at, "cls|%s|%s" % (cn, name) in D["acts_set"])
+        # subclass features
+        for sn, arr in (c.get("subs") or {}).items():
+            w = next((x for x in D["wxs"] if x["name"] == sn and x["cls"] == cn), None)
+            sbook = (w or {}).get("src", "") or book
+            for row in arr:
+                lvl, name = row[0], row[1]
+                text = D["sub"].get("%s|%s" % (sn, name)) or row[2]
+                at = []
+                for e in gx_match((gx.get("sub") or {}).get(sn), name, text):
+                    at += atoms_from(e, "GX.sub|" + sn)
+                for k in ("pickSub", "resSub", "acSub", "hpSub"):
+                    if isinstance(c.get(k), dict) and sn in c[k]:
+                        for part in mentions(c[k][sn], name):
+                            at += atoms_from({k: part}, "sub." + sn)
+                if w:
+                    for k, v in w.items():
+                        if k in ("cls", "name", "src", "alt") or v in ([], {}, "", None):
+                            continue
+                        for part in (mentions(v, name) if isinstance(v, (list, dict)) else []):
+                            at += atoms_from({k: part}, "wxs." + sn)
+                at += lu_atoms(D, sn, name)
+                for src_name, tbl in (("AUTO", D["auto"].get(sn)), ("SUB_GRANT", D["subGrant"].get(sn))):
+                    if isinstance(tbl, list):
+                        at += spell_atoms([tbl], text, src_name)
+                    elif isinstance(tbl, dict):
+                        for rows in tbl.values():
+                            at += spell_atoms([rows], text, src_name)
+                for r in D["fdmg_by"].get((sn, name), []):
+                    at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
+                yield mk("sub", "%s/%s" % (cn, sn), name, sbook, text, lvl, at, ("sub|%s|%s" % (sn, name)) in D["acts_set"])
+    # species traits
+    sk = {"natAc", "acBonus", "hpPerLevel", "speed", "dark", "skills", "skillPick", "saveProf", "opts", "lin", "toolPick", "featPick", "wpPick", "asiPick", "asiFlex", "spAbTrait",
+          "linRes", "linFx", "fly", "swim", "climb", "burrow", "movesNote", "sense", "res", "imm", "cantrips"}
+    for sn, s in D["species"].items():
+        book = D["srcOf"]["species"].get(sn, "core")
+        own = []
+        for k, v in s.items():
+            if k in sk and v not in ([], {}, "", None, 0):
+                own += atoms_from({k: v}, "species." + sn, weak=True)
+        for e in (s.get("fx") or []) if isinstance(s.get("fx"), list) else []:
+            own += atoms_from(e, "species.fx|" + sn, weak=True)
+        for t in s.get("traits", []):
+            name, text = t[0], t[1]
+            at = list(own)
+            for e in gx_match((gx.get("species") or {}).get(sn), name, text):
+                at += atoms_from(e, "GX.species|" + sn)
+            at += lu_atoms(D, sn, name) + sn_atoms(D, name, sn)
+            sp = D["spAuto"].get(sn)
+            if isinstance(sp, dict):
+                for rows in sp.values():
+                    at += spell_atoms([rows], text, "SP_AUTO")
+            for r in D["fdmg_by"].get((sn, name), []):
+                at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
+            yield mk("species", sn, name, book, text, None, at, ("sp|%s|%s" % (sn, name)) in D["acts_set"])
+    # feats
+    for fn, f in D["feats"].items():
+        keys = {k: v for k, v in f.items() if (k not in M.STRUCT_SKIP or k in ("asi",)) and k not in ("hb", "cat", "d", "full", "pre", "preSp", "preBg", "kind", "rep", "cls", "dt", "pas", "fi", "resBy") and v not in ([], {}, "", None)}
+        at = []
+        for k, v in keys.items():
+            at += atoms_from({k: v}, "feat." + fn)
+        for e in (gx.get("feat") or {}).get(fn, []):
+            at += atoms_from(e, "GX.feat|" + fn)
+        at += lu_atoms(D, fn, fn) + sn_atoms(D, fn, fn)
+        text = f.get("full") or f.get("d")
+        yield mk("feat", fn, fn, D["srcOf"]["feats"].get(fn) or f.get("hb") or "core", text, None, at, ("feat|" + fn) in D["acts_set"])
+    # magic items
+    def item_rows():
+        for r in D["dmgi"]:
+            yield "dmg", r
+        for book, rows in D["wxi"].items():
+            for r in rows:
+                yield book, r
+    for src, r in item_rows():
+        if not isinstance(r, list) or len(r) < 5 or not isinstance(r[4], str):
+            continue
+        name = r[0]
+        ex = r[5] if len(r) > 5 and isinstance(r[5], dict) else {}
+        fx = ex.get("fx")
+        fxo_null = name in fxo and (fxo[name] or {}).get("fx") is None
+        if name in fxo:  # FXO replaces the fx of the row (ovFx in 03-logic-magic-item-effects.js)
+            fx = (fxo[name] or {}).get("fx")
+        at = []
+        if isinstance(fx, dict):
+            at += atoms_from(fx, "FXO|" + name if name in fxo else "item.fx|" + name)
+        for k in ("ch", "by", "xd", "wp"):
+            if ex.get(k) not in (None, "", [], {}):
+                at += atoms_from({k: ex[k]}, "item.ex|" + name) or [Atom("RESOURCE", nums_in(ex[k]), "item.ex.%s" % k)]
+        if ex.get("pick"):
+            at.append(Atom("CHOICE", nums_in(ex["pick"]), "item.pick"))
+        for e in (gx.get("item") or {}).get(name, []):
+            at += atoms_from(e, "GX.item|" + name)
+        isp = (D.get("itemSpells") or {}).get(name)
+        if isinstance(isp, dict):
+            at += atoms_from({"sp": isp.get("sp")}, "ITEM_SPELLS") if isp.get("sp") else []
+            if isp.get("atk") is not None: at.append(Atom("ATK", nums_in(isp["atk"]), "ITEM_SPELLS.atk"))
+            if isp.get("dc") is not None: at.append(Atom("DC", nums_in(isp["dc"]), "ITEM_SPELLS.dc"))
+            for k, v in isp.items():
+                if k not in ("sp", "atk", "dc") and v not in (None, [], {}, ""):
+                    at.append(Atom("RESOURCE", nums_in(v), "ITEM_SPELLS.%s" % k))
+        at += lu_atoms(D, name, name)
+        text = r[4]
+        extra = (D.get("itemDesc") or {}).get(name)
+        if isinstance(extra, str) and extra and extra not in text:
+            text = text + " " + extra
+        if fxo_null:  # documented override: FXO[name]={fx:null} drops the fx of the row on purpose (SOURCE-NOTES, "Override item")
+            at.append(Atom("*", {"*"}, "FXO_NULL"))
+        yield mk("item", src, name, src, text, None, at, False)
+    # spells
+    sfx = D.get("spellFx") or {}
+    rows = {r[0]: r for r in (D.get("spellRows") or []) if isinstance(r, list) and r}
+    for name, text in sorted((D.get("spellFull") or {}).items()):
+        at = []
+        e = sfx.get(name) or {}
+        if e.get("dmg"): at.append(Atom("DMG", nums_in(e["dmg"]), "SPELL_FX.dmg"))
+        for k, v in e.items():
+            if k not in ("dmg",) and v not in (None, [], {}, ""):
+                at.append(Atom("DC" if k in ("save", "dc") else "SPELL", nums_in(v), "SPELL_FX.%s" % k))
+        r = rows.get(name)
+        if r:
+            at.append(Atom("SPELL", nums_in([r[1], r[5], r[7]]), "SPELLS.row"))
+            at.append(Atom("DC", nums_in(r[10]), "SPELLS.row")) if len(r) > 10 and r[10] else None
+        yield mk("spell", "spells", name, "spells", text, None, [a for a in at if a], False)
+
+
+# ---------------------------------------------------------------------------------------------------------------- analysis
+def sentence_info(text, kind):
+    ks = classes(text, kind)
+    toks = tokens(text)
+    return ks, toks
+
+
+def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
+    """Result for every sentence of one feature. Pure function of (ctx, atoms): used by the real run, the synthetic cases and the mutation test.
+    Returns list of dict(sid, h, text, K, toks, status, why, unexplained, used)."""
+    atoms = ctx["atoms"] if atoms is None else atoms
+    key = ctx["key"]
+    sents = split_sentences(ctx["text"])
+    res = []
+    all_vals = set()
+    for a in atoms:
+        all_vals |= a.vals
+    if ctx.get("lvl") is not None:
+        all_vals |= {str(ctx["lvl"])}
+    for i, s in enumerate(sents):
+        ks, toks = sentence_info(s, ctx["kind"])
+        need = ks & ATOM_CLASSES
+        w_ = re.findall(r"[A-Za-z']+", s)
+        if not toks and (len(w_) <= 3 or (len(w_) <= 9 and all(x[0].isupper() or x.lower() in ("of", "the", "your", "a", "an", "and", "to", "in", "for", "on", "or") for x in w_))):
+            ks = set()  # a label such as "Cantrip.", "Cantrip Upgrade." or "Changing Your Prepared Spells."
+        mech = bool(ks) or bool(toks)
+        nk = sorted({"NUM-" + k.upper() if k != "num" else "NUM" for t, k in toks})
+        res.append({"nk": nk, "sid": "%s#%d" % (key, i + 1), "h": shash(s), "text": s, "K": sorted(ks), "toks": toks, "mech": mech, "need": need, "status": None, "why": "", "unexplained": [], "used": []})
+    # info and allow first
+    bd = (by_design or {}).get(key)
+    fxo_null = any(a.src == "FXO_NULL" for a in atoms)
+    for r in res:
+        if not r["mech"]:
+            r["status"] = "inert"; continue
+        if fxo_null:
+            r["status"] = "info"; r["why"] = "FXO_NULL"; continue
+        al = (allow or {}).get(r["sid"])
+        if al:
+            if al.get("h") != r["h"]:
+                r["note"] = "allow entry is stale (hash changed)"
+            elif al.get("expires") and today and al["expires"] < today:
+                r["note"] = "allow entry expired"
+            elif al.get("reason"):
+                r["status"] = "allow"; r["why"] = al["reason"]; continue
+        if bd:
+            r["status"] = "info"; r["why"] = "BY_DESIGN"; continue
+        if ctx["acts"] and r["need"] <= ACT_OK and r["toks"] and not (r["need"] & STAT) \
+                and (ACTION_RX.search(r["text"].lower()) or r["need"] & {"DMG", "DC", "RESOURCE"}):
+            r["status"] = "info"; r["why"] = "ACTIVATE"; continue
+    # info by form (heuristic, listed apart as FORM:*): an activated effect (action, charges) or a roll made at the table (save, DC, check) with no stat class
+    for r in res:
+        if r["status"] is not None:
+            continue
+        low = r["text"].lower()
+        if ctx["kind"] == "spell":
+            if not any(a.cls in r["need"] for a in atoms):
+                r["status"] = "info"; r["why"] = "SPELL_TEXT"
+            continue
+        if TABLE_FORM.search(low) or len(r["toks"]) >= 5:
+            r["status"] = "info"; r["why"] = "FORM:TABLE"; continue
+        if r["need"] & STAT or POOL_RX.search(low):  # a stat, or the size / refill of a pool (needs a charges or uses record)
+            continue
+        if ACT_FORM.search(low):
+            r["status"] = "info"; r["why"] = "FORM:ACTIVATE"
+        elif ROLL_FORM.search(low):
+            r["status"] = "info"; r["why"] = "FORM:ROLL"
+    # greedy assignment of atoms to (sentence, class): best number match first, then earliest sentence
+    cand = []
+    for r in res:
+        if r["status"] is not None:
+            continue
+        sv = {t for t, k in r["toks"]}
+        for c in r["need"]:
+            for j, a in enumerate(atoms):
+                if a.cls != c:
+                    continue
+                score = len(sv & a.vals)
+                if a.weak and sv and score == 0:
+                    continue
+                cand.append((-score, res.index(r), c, j, a.weak))
+    cand.sort()
+    used_atoms, got = set(), set()
+    for ns, ri, c, j, weak in cand:
+        if (ri, c) in got:
+            continue
+        if j in used_atoms and not atoms[j].weak:
+            continue
+        got.add((ri, c))
+        if not atoms[j].weak: used_atoms.add(j)
+        res[ri]["used"].append(j)
+    for ri, r in enumerate(res):
+        if r["status"] is not None:
+            continue
+        spell_txt = ctx["kind"] == "spell"
+        missing = sorted(c for c in r["need"] if (ri, c) not in got)
+        if "CHOICE" in missing and any((ri, c) in got for c in ("PROF", "SPELL", "ABIL", "RES", "IMM", "SPEED", "SENSE")):
+            missing.remove("CHOICE")  # a pick that the other atom already carries ("two tools of your choice")
+        assigned = set()
+        for j in r["used"]:
+            assigned |= atoms[j].vals
+        for j, a in enumerate(atoms):  # other atoms of the classes this sentence needs that no other sentence has claimed
+            if a.cls in r["need"] and (a.weak or j not in used_atoms):
+                assigned |= a.vals
+        wild = "*" in all_vals
+        # dist and dur numbers: any atom of the feature explains them (records rarely keep units). dice, plain numbers, percents: the atoms assigned to this sentence,
+        # or any atom of the feature when the sentence has no atom class of its own (so a lone "1" is not explained by an unrelated record)
+        unexpl = []
+        for t, k in r["toks"]:
+            pool = all_vals if (k in ("dist", "dur") or not r["need"]) else assigned
+            if "*" in pool or t in pool or wild and r["used"]:
+                continue
+            unexpl.append(t)
+        r["unexplained"] = unexpl
+        if not missing and not unexpl:
+            r["status"] = "covered"
+        elif spell_txt:  # spell text is reference text: the sheet reads only SPELL_FX; what has no record stays SPELL_TEXT info and is counted apart
+            r["status"] = "info"; r["why"] = "SPELL_TEXT"
+        else:
+            r["status"] = "uncovered"
+            if missing and unexpl: r["why"] = "no record for %s; number %s unexplained" % (",".join(missing), ",".join(unexpl))
+            elif missing: r["why"] = "no record for " + ",".join(missing)
+            else: r["why"] = "number %s no record explains" % ",".join(unexpl)
+        r["missing"] = missing
+        if r.get("note"):
+            r["why"] = r["note"] + "; " + r["why"]
+    return res
+
+
+def load_by_design():
+    try:
+        return json.load(open(MBASE, encoding="utf-8")).get("by_design", {})
+    except Exception:
+        return {}
+
+
+def load_known_gaps():
+    try:
+        return set(json.load(open(MBASE, encoding="utf-8")).get("gaps", {}))
+    except Exception:
+        return set()
+
+
+def load_allow():
+    try:
+        return json.load(open(ALLOW, encoding="utf-8")).get("entries", {})
+    except Exception:
+        return {}
+
+
+# ---------------------------------------------------------------------------------------------------------------- selftest
+def synth(kind, owner, name, text, atoms, acts=False, lvl=None):
+    return {"key": "%s|%s|%s" % (kind, owner, name), "kind": kind, "owner": owner, "name": name, "book": "synthetic", "text": text, "lvl": lvl, "atoms": atoms, "acts": acts}
+
+
+def selftest():
+    fails = []
+
+    def check(label, cond, extra=""):
+        print("  %s %s %s" % ("ok  " if cond else "FAIL", label, extra))
+        if not cond: fails.append(label)
+    print("selftest (synthetic):")
+    S1 = "While you hold a Shield, it gives you +3 AC instead of +2."
+    S2 = "While you hold a Shield, you also gain a +1 bonus to saving throws against spells."
+    ts_atoms = lambda: [Atom("AC", {"3", "2", "1"}, "GX.sub|Armigers' Guild.shAc")]
+    # 1 Tower Shield: two mechanical sentences, only the first has a record
+    c1 = synth("sub", "Fighter/Armigers", "Tower Shield", S1 + " " + S2, ts_atoms())
+    r = analyze(c1)
+    check("1 Tower Shield: sentence 1 covered", r[0]["status"] == "covered", r[0]["why"])
+    check("1 Tower Shield: sentence 2 flagged", r[1]["status"] == "uncovered", r[1]["why"])
+    # 1b the same feature with the second record present
+    c1b = synth("sub", "Fighter/Armigers", "Tower Shield", S1 + " " + S2, ts_atoms() + [Atom("SAVE", {"1"}, "GX.sub.saveBonus"), Atom("ADV", set(), "x")][:1])
+    r = analyze(c1b)
+    check("1b both records present -> both covered", all(x["status"] == "covered" for x in r), str([x["why"] for x in r]))
+    # 1c the one-record-two-sentences trap: a single AC atom must not cover a second AC sentence
+    c1c = synth("sub", "X", "Y", "You gain +2 AC. While wielding a Shield you gain another +2 bonus to AC.", [Atom("AC", {"2"}, "ac")])
+    r = analyze(c1c)
+    check("2 one atom, two AC sentences -> second flagged", [x["status"] for x in r] == ["covered", "uncovered"], str([x["status"] for x in r]))
+    # 3 number mismatch: record says 1, text says +2
+    c3 = synth("feat", "F", "F", "Your Armor Class increases by 2.", [Atom("AC", {"1"}, "ac")])
+    r = analyze(c3)
+    check("3 number not conserved (text 2, record 1) -> flagged", r[0]["status"] == "uncovered" and r[0]["unexplained"] == ["2"], r[0]["why"])
+    # 4 by_design info tag
+    c4 = synth("class", "Cleric", "Divine Order", "You gain +2 AC when you are in the right mood.", [])
+    r = analyze(c4, by_design={c4["key"]: "story rule"})
+    check("4 documented informational tag (by_design) -> info", r[0]["status"] == "info", r[0]["why"])
+    # 5 allowlist: valid, stale hash, expired
+    sid = c4["key"] + "#1"
+    h = shash("You gain +2 AC when you are in the right mood.")
+    r = analyze(c4, allow={sid: {"h": h, "reason": "DM decides", "expires": "2099-01-01"}}, today="2026-11-05")
+    check("5a allowlist entry with hash -> allow", r[0]["status"] == "allow")
+    r = analyze(c4, allow={sid: {"h": "deadbeef", "reason": "DM decides", "expires": "2099-01-01"}}, today="2026-11-05")
+    check("5b allowlist entry with changed hash -> flagged (stale)", r[0]["status"] == "uncovered" and "stale" in r[0]["why"], r[0]["why"])
+    r = analyze(c4, allow={sid: {"h": h, "reason": "DM decides", "expires": "2020-01-01"}}, today="2026-11-05")
+    check("5c expired allowlist entry -> flagged", r[0]["status"] == "uncovered" and "expired" in r[0]["why"], r[0]["why"])
+    # 6 inert sentence and level gate only
+    c6 = synth("species", "S", "T", "You feel at home in the forest. At level 5 you are stronger in spirit.", [])
+    r = analyze(c6)
+    check("6 inert sentence and a level gate are not mechanical", all(x["status"] == "inert" for x in r), str([x["status"] for x in r]))
+    # 7 dice / DC / distance / duration conservation
+    c7 = synth("item", "dmg", "Wand", "It deals 3d6 fire damage in a 20-foot radius for 10 minutes. DC 15 Dexterity save.", [Atom("DMG", {"3d6", "20", "10", "15"}, "d")])
+    r = analyze(c7)
+    check("7 dice, distance, duration explained by atoms -> covered; DC save sentence = info FORM:ROLL", r[0]["status"] == "covered" and r[1]["why"] == "FORM:ROLL", str([(x["status"], x["why"]) for x in r]))
+    c7c = synth("class", "C", "F", "Your spell save DC increases by 1.", [])
+    r = analyze(c7c)
+    check("7c a DC bonus sentence is not excused as a roll -> flagged", r[0]["status"] == "uncovered" and "DC" in r[0]["why"], r[0]["why"])
+    c7b = synth("item", "dmg", "Wand", "It deals 3d6 fire damage in a 20-foot radius for 10 minutes.", [Atom("DMG", {"2d6", "20", "10"}, "d")])
+    r = analyze(c7b)
+    check("7b dice 3d6 vs record 2d6 -> flagged", r[0]["status"] == "uncovered" and "3d6" in r[0]["unexplained"], r[0]["why"])
+    # 8 ACTIVATE
+    c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
+    r = analyze(c8)
+    check("8 action card + damage sentence -> info ACTIVATE", r[0]["status"] == "info" and r[0]["why"] == "ACTIVATE", r[0]["why"])
+    c8b = synth("feat", "F", "F", "As a bonus action you gain a +2 bonus to AC.", [], acts=True)
+    r = analyze(c8b)
+    check("8b action card does NOT excuse an AC sentence", r[0]["status"] == "uncovered", r[0]["why"])
+    # mutation on the synthetic cases
+    print("mutation test (synthetic): remove the record, the gate must flag")
+    for lab, c in (("Tower Shield sentence 1", c1), ("both records", c1b), ("dice item", c7b)):
+        base = analyze(c)
+        cov = [x for x in base if x["status"] == "covered"]
+        for x in cov:
+            kill = analyze(c, atoms=[a for j, a in enumerate(c["atoms"]) if j not in x["used"]])
+            y = next(z for z in kill if z["sid"] == x["sid"])
+            check("mutation %s %s: record removed -> flagged" % (lab, x["sid"].rsplit("#", 1)[1]), y["status"] == "uncovered", y["why"])
+    return fails
+
+
+# ---------------------------------------------------------------------------------------------------------------- scan and report
+def scan(D, by_design, allow, today):
+    feats = list(features(D))
+    results, ctxs = [], {}
+    for ctx in feats:
+        rs = analyze(ctx, by_design, allow, today=today)
+        for r in rs:
+            r["kind"], r["book"], r["owner"], r["name"] = ctx["kind"], ctx["book"], ctx["owner"], ctx["name"]
+            r["fkey"] = ctx["key"]
+            results.append(r)
+        ctxs[ctx["key"]] = ctx
+    return feats, results, ctxs
+
+
+def atom_key(src):
+    base, _, last = src.rpartition(".")
+    return base if last in FIELD_CLS or last in ("ch", "by", "xd", "wp", "pick", "row", "atk", "dc") else src
+
+
+def sources_of(results, ctxs, owners):
+    fam, files = collections.Counter(), collections.Counter()
+    for r in results:
+        if r["status"] != "covered":
+            continue
+        at = ctxs[r["fkey"]]["atoms"]
+        srcs = {at[j].src for j in r["used"]} or {a.src for a in at if a.vals & {t for t, k in r["toks"]}}
+        for x in {x.split("|")[0].split(".")[0] for x in srcs}: fam[x] += 1
+        fs = set()
+        for x in srcs:
+            for fl in owners.get(atom_key(x), []): fs.add(fl)
+        for x in fs: files[x] += 1
+    return fam, files
+
+
+def mutation_real(feats, results, by_design, allow, today, n=300, seed=7):
+    """Sample covered sentences (fixed seed). Two mutations per sentence:
+    record: remove the atoms the sentence used and their siblings from the same record (same source up to the last dot), as if the fx entry were deleted;
+    class:  remove every atom of the classes the sentence needs (the feature has no record at all for that class).
+    A sentence that has no atom class (numbers only) loses every atom that explains one of its numbers.
+    The gate must flag the sentence after the mutation. Returns (tested, killed_record, killed_class, survivors)."""
+    rnd = random.Random(seed)
+    fmap = {c["key"]: c for c in feats}
+    cov = [r for r in results if r["status"] == "covered" and r["kind"] != "spell"]  # a spell without a record is SPELL_TEXT info by design, so it cannot be flagged
+    rnd.shuffle(cov)
+    tested = kr = kc = 0
+    survivors = []
+    for r in cov[:n]:
+        ctx = fmap[r["fkey"]]
+        at = ctx["atoms"]
+        sv = {t for t, k in r["toks"]}
+        if r["need"]:
+            srcs = {at[j].src.rsplit(".", 1)[0] for j in r["used"]}
+            rm_rec = set(r["used"]) | {j for j, a in enumerate(at) if a.src.rsplit(".", 1)[0] in srcs and a.cls in r["need"]}
+            rm_cls = {j for j, a in enumerate(at) if a.cls in r["need"]}
+        else:
+            rm_rec = rm_cls = {j for j, a in enumerate(at) if a.vals & sv or "*" in a.vals}
+        if not rm_rec:
+            continue
+        tested += 1
+        for rm, label in ((rm_rec, "record"), (rm_cls, "class")):
+            rs = analyze(ctx, by_design, allow, today=today, atoms=[a for j, a in enumerate(at) if j not in rm])
+            y = next(z for z in rs if z["sid"] == r["sid"])
+            if y["status"] == "uncovered":
+                if label == "record": kr += 1
+                else: kc += 1
+            else:
+                survivors.append((label, r["sid"], r["text"][:120], y["status"]))
+    return tested, kr, kc, survivors
+
+
+def pct(a, b):
+    return "%.1f%%" % (100.0 * a / b) if b else "0%"
+
+
+def summarize(results, known_gaps):
+    S = {}
+    S["total"] = len(results)
+    S["by_status"] = collections.Counter(r["status"] for r in results)
+    mech = [r for r in results if r["mech"]]
+    S["mechanical"] = len(mech)
+    S["covered"] = sum(1 for r in mech if r["status"] == "covered")
+    S["info"] = collections.Counter(r["why"] for r in mech if r["status"] == "info")
+    S["allow"] = sum(1 for r in mech if r["status"] == "allow")
+    unc = [r for r in mech if r["status"] == "uncovered"]
+    S["uncovered"] = len(unc)
+    S["unc_num"] = [r for r in unc if r["toks"]]
+    S["unc_kw"] = [r for r in unc if r["K"]]  # has a mechanical keyword class
+    S["unc_numonly"] = [r for r in unc if not r["K"]]  # only a number (distance, duration, dice ...): often flavor or an activated effect, kept apart
+    S["unc_unexplained"] = [r for r in unc if r["unexplained"]]
+    S["unc_missing"] = [r for r in unc if r["missing"]]
+    S["by_class"] = collections.Counter(c for r in unc for c in (r["K"] or r["nk"] or ["NUM"]))
+    S["by_class_all"] = collections.Counter(c for r in mech for c in (r["K"] or r["nk"] or ["NUM"]))
+    S["by_book"] = collections.defaultdict(lambda: collections.Counter())
+    S["by_kind"] = collections.defaultdict(lambda: collections.Counter())
+    for r in mech:
+        S["by_book"][r["book"]][r["status"]] += 1
+        S["by_kind"][r["kind"]][r["status"]] += 1
+    S["known_gap"] = sum(1 for r in unc if r["fkey"] in known_gaps)
+    S["unc"] = unc
+    return S
+
+
+def top_class_of(r):
+    ks = r["K"]
+    for c in CLASS_ORDER:
+        if c in ks:
+            return c
+    return ks[0] if ks else (r["nk"][0] if r["nk"] else "NUM")
+
+
+def write_outputs(S, mut, selftest_ok, rt, today, results):
+    os.makedirs(os.path.dirname(OUT_MD), exist_ok=True)
+    L = []
+    w = L.append
+    w("# Laporan clause gate (mode laporan, %s)\n" % today)
+    w("Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build. Dijalankan sebagai langkah laporan dengan `continue-on-error`.\n")
+    w("## Ringkasan\n")
+    w("| Ukuran | Jumlah |\n|---|---|")
+    w("| Kalimat di seluruh teks | %d |" % S["total"])
+    w("| Kalimat mekanik (kelas kata kunci atau angka) | %d (%s) |" % (S["mechanical"], pct(S["mechanical"], S["total"])))
+    w("| Covered (atom engine per kelas dan semua angka terjelaskan) | %d |" % S["covered"])
+    w("| Info (tag terdokumentasi) | %d (%s) |" % (sum(S["info"].values()), ", ".join("%s %d" % kv for kv in S["info"].most_common())))
+    w("| Allow (tests/clause_gate_allow.json) | %d |" % S["allow"])
+    w("| Uncovered | %d |" % S["uncovered"])
+    w("| Uncovered dengan angka | %d |" % len(S["unc_num"]))
+    w("| Uncovered dengan kelas kata kunci mekanik | %d |" % len(S["unc_kw"]))
+    w("| Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | %d |" % len(S["unc_numonly"]))
+    w("| Angka yang tidak dijelaskan record mana pun | %d kalimat |" % len(S["unc_unexplained"]))
+    w("| Kelas tanpa atom (record tidak ada untuk kelas itu) | %d kalimat |" % len(S["unc_missing"]))
+    w("| Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | %d |" % S["known_gap"])
+    w("| Waktu | muat data %.0f s, analisis %.0f s |\n" % (rt["load"], rt["scan"]))
+    w("Uji mutasi pada data nyata (seed 7): %d kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): %d ditangkap (%s). Hapus semua atom kelas yang dibutuhkan: %d ditangkap (%s). Selftest sintetis: %s.\n" % (mut[0], mut[1], pct(mut[1], mut[0]), mut[2], pct(mut[2], mut[0]), "lulus" if selftest_ok else "GAGAL"))
+    w("Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti \"treat the Shield as part of your armor\" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.\n")
+    w("## Cara membaca, dan pemeriksaan manual (2026-11-05)\n")
+    w("- Info `SPELL_TEXT`: teks spell hanya dibaca sheet lewat SPELL_FX, jadi spell tanpa record dihitung info, bukan uncovered. `FORM:*` adalah heuristik bentuk kalimat (aksi atau charges, lemparan save atau DC, tabel). Keduanya bisa menyembunyikan kalimat yang sebenarnya perlu record.")
+    w("- `FXO_NULL`: item yang `FXO[nama]={fx:null}` (efek lama dibuang dengan sengaja, tercatat di SOURCE-NOTES).")
+    w("- Pemeriksaan manual 60 kalimat uncovered acak (berstrata per jenis sumber, seed 20261108): sekitar 12 benar-benar celah record (20 persen), jadi sekitar 80 persen false positive. Kalimat berkelas kata kunci: 11 dari 41 benar (27 persen). Kalimat hanya angka: 1 dari 19 benar (5 persen), hampir semuanya flavor, tabel, atau efek aktif.")
+    w("- Sumber false positive terbanyak: efek aktif tanpa kata aksi (rider damage, reroll), tabel kelas (slot, invocations), aturan istirahat tanpa angka, durasi dan jarak cerita, dan bonus kondisional yang memang tidak dihitung sheet.")
+    w("- Pemeriksaan manual 58 kalimat tidak ditandai (covered atau info), seed sama: 2 yang mencurigakan (3 persen), yaitu angka yang hanya cocok longgar dengan atom lain (Agent of Order, Circle Forms). Pada putaran audit sebelumnya (sebelum POOL_RX dan aturan ACTS diperketat) 6 dari 60 lolos salah, terutama jumlah charges item yang tersembunyi di bawah FORM:ACTIVATE. Kalimat inert tidak diambil sampelnya.\n")
+    w("## Sumber atom yang menutup kalimat covered\n")
+    w("| Sumber | Kalimat covered |\n|---|---|")
+    for k, n in S["fam"].most_common():
+        w("| %s | %d |" % (k, n))
+    if S["files"]:
+        w("\nBerkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: " + ", ".join("%s %d" % kv for kv in S["files"].most_common(12)) + ".\n")
+    w("## Hitungan per kelas (kalimat bisa masuk beberapa kelas)\n")
+    w("| Kelas | Mekanik | Uncovered | Uncovered % |\n|---|---|---|---|")
+    for c, n in sorted(S["by_class"].items(), key=lambda kv: -kv[1]):
+        w("| %s | %d | %d | %s |" % (c, S["by_class_all"][c], n, pct(n, S["by_class_all"][c])))
+    w("\n## Per jenis sumber\n")
+    w("| Jenis | Mekanik | Covered | Info | Allow | Uncovered |\n|---|---|---|---|---|---|")
+    for k, c in sorted(S["by_kind"].items()):
+        w("| %s | %d | %d | %d | %d | %d |" % (k, sum(c.values()), c["covered"], c["info"], c["allow"], c["uncovered"]))
+    w("\n## Per buku\n")
+    w("| Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |\n|---|---|---|---|---|---|")
+    for k, c in sorted(S["by_book"].items(), key=lambda kv: -kv[1]["uncovered"]):
+        n = sum(c.values())
+        w("| %s | %d | %d | %d | %d | %s |" % (k, n, c["covered"], c["info"], c["uncovered"], pct(c["uncovered"], n)))
+    unc_by = collections.defaultdict(list)
+    for r in S["unc"]:
+        unc_by[top_class_of(r)].append(r)
+    w("\n## Kalimat numerik uncovered, urut per kelas (kelas utama = urutan prioritas AC, HP, SAVE ...)\n")
+    w("| Kelas utama | Uncovered | Dengan angka |\n|---|---|---|")
+    order = sorted(unc_by, key=lambda c: -len(unc_by[c]))
+    for c in order:
+        w("| %s | %d | %d |" % (c, len(unc_by[c]), sum(1 for r in unc_by[c] if r["toks"])))
+    rnd = random.Random(20261105)
+    w("\n## Contoh 40 kalimat per kelas teratas (seed tetap)\n")
+    for c in order[:10]:
+        pool = [r for r in unc_by[c] if r["toks"]] or unc_by[c]
+        smp = rnd.sample(pool, min(40, len(pool)))
+        w("\n### %s (%d uncovered)\n" % (c, len(unc_by[c])))
+        for r in sorted(smp, key=lambda r: r["sid"]):
+            w("- `%s` %s | %s" % (r["sid"], r["text"][:220].replace("|", "/"), r["why"]))
+    w("\n## Kalimat dengan angka yang tidak dijelaskan record mana pun (30 contoh per jenis, daftar penuh ada di baseline)\n")
+    byk = collections.defaultdict(list)
+    for r in S["unc_unexplained"]:
+        byk[r["kind"]].append(r)
+    for k in sorted(byk):
+        w("\n### %s (%d)\n" % (k, len(byk[k])))
+        for r in rnd.sample(byk[k], min(30, len(byk[k]))):
+            w("- `%s` %s | angka: %s" % (r["sid"], r["text"][:200].replace("|", "/"), ",".join(r["unexplained"])))
+    if mut[3]:
+        w("\n## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)\n")
+        for lab, sid, t, st in mut[3][:30]:
+            w("- %s `%s` %s -> %s" % (lab, sid, t, st))
+    open(OUT_MD, "w", encoding="utf-8").write("\n".join(L) + "\n")
+    base = {"generated": today, "note": "Report mode. uncovered = mechanical sentences without a covering record; value = text hash. Not used to fail a build.",
+            "totals": {"sentences": S["total"], "mechanical": S["mechanical"], "covered": S["covered"], "info": sum(S["info"].values()), "allow": S["allow"],
+                       "uncovered": S["uncovered"], "uncovered_with_numbers": len(S["unc_num"]), "uncovered_keyword": len(S["unc_kw"]), "uncovered_number_only": len(S["unc_numonly"]), "numbers_unexplained": len(S["unc_unexplained"])},
+            "by_class_uncovered": dict(S["by_class"]), "by_kind": {k: dict(v) for k, v in S["by_kind"].items()},
+            "by_book": {k: dict(v) for k, v in S["by_book"].items()},
+            "uncovered": {r["sid"]: r["h"] for r in sorted(S["unc"], key=lambda r: r["sid"])},
+            "numbers_unexplained": sorted(r["sid"] for r in S["unc_unexplained"])}
+    json.dump(base, open(OUT_BASE, "w", encoding="utf-8"), separators=(",", ":"), ensure_ascii=False, sort_keys=True)
+
+
+def audit(results, n, seed):
+    rnd = random.Random(seed)
+    mech = [r for r in results if r["mech"]]
+    unc = [r for r in mech if r["status"] == "uncovered"]
+    cov = [r for r in mech if r["status"] in ("covered", "info")]
+
+    def strat(pool, n):
+        g = collections.defaultdict(list)
+        for r in pool: g[r["kind"]].append(r)
+        out, keys = [], sorted(g)
+        while len(out) < n and any(g.values()):
+            for k in keys:
+                if g[k] and len(out) < n:
+                    out.append(g[k].pop(rnd.randrange(len(g[k]))))
+        return out
+    for lab, pool in (("FLAGGED", unc), ("UNFLAGGED", cov)):
+        print("=====", lab)
+        for r in strat(pool, n):
+            print("[%s] %s | K=%s | toks=%s | %s %s | atoms=%s" % (r["sid"], r["text"][:300], ",".join(r["K"]), ",".join(t for t, k in r["toks"]), r["status"], r["why"], r.get("used")))
+
+
+def main():
+    t0 = time.time()
+    fails = selftest()
+    if "--selftest" in args:
+        print("selftest", "FAILED" if fails else "OK")
+        return 1 if fails else 0
+    dpath = opt("--data", 1)
+    spath = opt("--save-data", 1)
+    D = json.load(open(dpath[0], encoding="utf-8")) if dpath else load()
+    if spath:
+        json.dump(D, open(spath[0], "w", encoding="utf-8"), ensure_ascii=False)
+    owners = fx_owner_files()
+    t_load = time.time() - t0
+    build_index(D)
+    t1 = time.time()
+    by_design, allow = load_by_design(), load_allow()
+    today = time.strftime("%Y-%m-%d")
+    feats, results, ctxs = scan(D, by_design, allow, today)
+    S = summarize(results, load_known_gaps())
+    S["fam"], S["files"] = sources_of(results, ctxs, owners)
+    mut = mutation_real(feats, results, by_design, allow, today)
+    rt = {"load": t_load, "scan": time.time() - t1}
+    if "--audit" in args:
+        i = args.index("--audit"); audit(results, int(args[i + 1]), int(args[i + 2]))
+    print("sentences %d, mechanical %d, covered %d, info %d, allow %d, uncovered %d (with numbers %d, numbers unexplained %d)" % (
+        S["total"], S["mechanical"], S["covered"], sum(S["info"].values()), S["allow"], S["uncovered"], len(S["unc_num"]), len(S["unc_unexplained"])))
+    print("mutation on real data: %d tested, record-level caught %d, class-level caught %d" % (mut[0], mut[1], mut[2]))
+    print("top uncovered classes:", S["by_class"].most_common(10))
+    print("runtime: load %.0fs, scan %.0fs" % (rt["load"], rt["scan"]))
+    if "--no-write" not in args:
+        write_outputs(S, mut, not fails, rt, today, results)
+        print("wrote", OUT_MD, "and", OUT_BASE)
+    return 1 if fails else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
