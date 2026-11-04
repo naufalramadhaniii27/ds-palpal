@@ -119,6 +119,9 @@ def act_names(d, needle):
     return " ".join(k for k in d["acts"] if needle.lower() in k.lower()).lower()
 
 
+ALL = []
+
+
 def scan(d):
     gaps = {}
 
@@ -127,6 +130,8 @@ def scan(d):
 
     def flag(kind, owner, feat, text, ev, keycats=None, meta=None):
         c = cats(text, ITEM_CAT if kind == "item" else None)
+        ALL.append({"key": "%s|%s|%s" % (kind, owner, feat), "kind": kind, "text": text if isinstance(text, str) else json.dumps(text, ensure_ascii=False), "cats": sorted(c) if c else [],
+                    "counted": bool(feat.lower() in ev) if feat else False, "ev": (ev or "")[:400] + (gxb(kind, feat)[:200] if kind in ("cls", "sub", "feat", "item", "species") else "")})  # --dump: every feature, also those without a mechanical keyword
         if not c:
             return
         key = "%s|%s|%s" % (kind, owner, feat)
@@ -248,6 +253,14 @@ PROBE_JS = r"""
 def main():
     d = load()
     gaps = scan(d)
+    if "--dump" in args:  # python3 tests/mech_scan.py --dump OUT.json : every feature (key, text, cats, counted) for the coverage ledger
+        out = args[args.index("--dump") + 1]
+        seen = {}
+        for r in ALL:
+            seen.setdefault(r["key"], r)
+        json.dump(sorted(seen.values(), key=lambda r: r["key"]), open(out, "w", encoding="utf-8"), ensure_ascii=False)
+        print("dumped %d features to %s" % (len(seen), out))
+        return 0
     gaps = probe(gaps)
     base = json.load(open(BASE, encoding="utf-8")) if os.path.exists(BASE) else {"by_design": {}, "gaps": {}}
     known = set(base["by_design"]) | set(base["gaps"])
