@@ -1,0 +1,66 @@
+{
+ "why": "Medium Fortelling: two d20s recorded after a Long Rest",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Investigator",
+  "sub": "Medium",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgs": true,
+   "tkdm": true,
+   "thhw": true,
+   "tdcsr": true,
+   "xge": true,
+   "tce": true,
+   "phb14": true,
+   "au": true,
+   "hof": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "res.Foretelling rolls.max",
+   "eq": 2
+  }
+ ]
+}

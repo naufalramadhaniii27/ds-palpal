@@ -526,3 +526,5 @@ Berkas `src/data/fx-L8.js`, blok `fxd` sesudah `fx-D-item.js` (jadi sesudah `fx-
 Tes: `tests/golden/builds/fx_L8_*.json`. Yang tidak bisa dimodelkan: `reports/ledger-skipped-L8.md`.
 #### fx batch L10 (`src/data/fx-L10.js`, cabang claude/w-L10)
 Ledger fixes for shards 25 to 28 as `GX.sub` / `GX.species` data, loaded after fx-G. Uses only existing v4 fields. Also changes `LU_X` reset to `short1` for three Dancer features and empties `AUTO["Greenleaf College"]`. Skipped rows: `reports/ledger-skipped-L10.md`. Goldens: `tests/golden/builds/fx_L10_*.json`.
+#### fx ledger bin L11 (`src/data/fx-L11.js`, hbpack, after fx-G)
+Subclass rows from ledger shards 29 to 31 (Dancer, Druid, Fighter, Gadgeteer, Healer, Investigator, Jaeger, Martyr, Monk, Monster Hunter, Necromancer). Uses `GX.sub`, `THIRD_SUBS` (Prescient Knight, Occultist Guild, Warrior of the Mystic Arts) and corrects tp data in place (`LU_X` Bio-Serum reset, `AUTO` of Discord, Augmenter, Protector). Toggles: blood-moon, ruin-incarnate, wrath-of-the-sea, bloodied, elem-attune, perfect-form, astral-awakened. Goldens `tests/golden/builds/fx_L11_*.json`. Skipped rows: `reports/ledger-skipped-L11.md`.

@@ -1,0 +1,79 @@
+{
+ "why": "Stride of the Elements: Fly and Swim Speed = Speed while Attunement is active",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Monk",
+  "sub": "Warrior of the Elements",
+  "level": 11,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgs": true,
+   "tkdm": true,
+   "thhw": true,
+   "tdcsr": true,
+   "xge": true,
+   "tce": true,
+   "phb14": true,
+   "au": true,
+   "hof": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "moves",
+   "has": {
+    "m": "fly",
+    "v": 50
+   }
+  },
+  {
+   "path": "moves",
+   "has": {
+    "m": "swim",
+    "v": 50
+   }
+  }
+ ],
+ "fxT": {
+  "elem-attune": true
+ }
+}

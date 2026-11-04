@@ -68,7 +68,6 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
   if(sub==="War Domain"&&lv>=17)add("Resistance","Bludgeoning, Piercing, Slashing","Avatar of Battle");
   if(sub==="Celestial Patron"&&lv>=6)add("Resistance","Radiant","Radiant Soul");
   if(sub==="Archfey Patron"&&lv>=10)add("Immunity","Charmed","Beguiling Defenses");
-  if(sub==="Circle of the Sea"&&lv>=10)add("Resistance","Cold, Lightning, Thunder","Stormborn");
   if(sub==="Circle of the Land"&&lv>=10)add("Immunity","Poisoned","Nature's Ward")}
  cl(B.cls,L,B.sub);MCL().forEach((m) =>{cl(m.cls,m.lv,m.sub)});
  /* v32 RL49 no. 38: a homebrew subclass choice with dres (Calon Arang: Immunity) adds each chosen type */

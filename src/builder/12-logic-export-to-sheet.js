@@ -227,7 +227,6 @@ __R.gfx().forEach((e) =>{if(e.init==null||(e.cond&&!__R.fxOk(e,ar,ESH,EA)))retur
   if(subAt("Rogue","Thief")>=3)sp("climb","Second-Story Work (Thief 3)");
   if(invList().indexOf("Gift of the Depths")>=0)sp("swim","Gift of the Depths");
   if(subAt("Druid","Circle of the Sea")>=6)sp("swim","Aquatic Affinity (Circle of the Sea 6)");
-  if(subAt("Druid","Circle of the Sea")>=10)sp("fly","Stormborn, while Wrath of the Sea is active");
   if(subAt("Barbarian","Path of the Wild Heart")>=6){const aw=chOf("Barbarian","p6opt");if(aw==="Panther")sp("climb","Aspect of the Wilds (Panther)");else if(aw==="Salmon")sp("swim","Aspect of the Wilds (Salmon)");else if(!aw){sp("climb","Aspect of the Wilds, if you chose Panther");sp("swim","Aspect of the Wilds, if you chose Salmon")}}/* v32 RL49 no. 31 */
   if(spX()&&B.species==="Aasimar"&&__R.TL()>=3)sp("fly","Celestial Revelation, Heavenly Wings, while transformed")})();
  const cf=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}).map((x) =>{let d=x[2];
