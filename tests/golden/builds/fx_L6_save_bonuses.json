@@ -1,0 +1,78 @@
+{
+ "why": "Timepiece of Travel +1 Dexterity saves only (Fighter DEX save 2 becomes 3). Wheel of Stars +1 Wisdom saves plus Dragon Queen's Will +4 Wisdom saves (0 + 1 + 4 = 5). Ioun Stone of Vitality +1 to death saves only (STR save stays 6).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "ai": true,
+   "dsotdq": true,
+   "imr": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Timepiece of Travel",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Wheel of Stars",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Dragon Queen's Will",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Ioun Stone of Vitality",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:save.DEX": 3,
+  "D:save.WIS": 5,
+  "D:save.STR": 6
+ },
+ "expectC": {
+  "saveNotes": {
+   "in": "death saving throws"
+  }
+ }
+}

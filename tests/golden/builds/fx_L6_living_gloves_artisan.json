@@ -1,0 +1,62 @@
+{
+ "why": "Living Gloves choosing artisan's tools: Smith's Tools proficiency.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "gx-gl-item-Living Gloves": [
+    "Artisan's Tools"
+   ],
+   "gx-art-item-Living Gloves": [
+    "Smith's Tools"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "erlw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Living Gloves",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "profs.tools": "Smith's Tools"
+ }
+}

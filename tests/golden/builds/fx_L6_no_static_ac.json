@@ -1,0 +1,67 @@
+{
+ "why": "Platinum Scarf (+1 shield only while a scale is used), Tasha's Creeping Keelboat (+1 AC for creatures on the boat) and War Horn of Valor (+1 AC only until your next turn) do not raise worn AC. AC stays 12.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "ftd": true,
+   "misc14": true,
+   "bgg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Platinum Scarf",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Tasha's Creeping Keelboat",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "War Horn of Valor",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 12
+ },
+ "expectC": {}
+}

@@ -1,0 +1,63 @@
+{
+ "why": "Ruin's Wake (Awakened): +2 attack and damage, extra 2d8 piercing (Dormant 1d8, Awakened 2d8), speaks Abyssal and Orc.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "egw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Ruin's Wake (Awakened)",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Ruin's Wake (Awakened).xdice": {
+   "in": "2d8"
+  },
+  "attacks.Ruin's Wake (Awakened).misc": 2,
+  "lang": [
+   "Common",
+   "Abyssal",
+   "Orc"
+  ]
+ }
+}
