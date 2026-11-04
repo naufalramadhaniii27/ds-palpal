@@ -1,7 +1,7 @@
 import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,gName} from "./03-data-glossary.js";
-import {C,S} from "./04-logic-storage.js";
-import {$,atkOn,eqOn,esc,fmtW,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";
+import {C,S,save,saveC} from "./04-logic-storage.js";
+import {$,atkOn,eqOn,esc,fmtW,invAt,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";
 import {B,D,fill,richB,richP} from "./06-logic-derivation.js";
 import {aylH,aylSplit,spSum,used} from "./08-ui-render-sheet-and-actions.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
@@ -199,14 +199,14 @@ function infoHTML0(spec){
   }
   if(type==="it"){
     const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(__R.srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(__R.srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     const base=GLOSS[it.n], q=num(it.q,1), w=num(it.w,0);
     h=meta(base?base.c:"Item", base?base.s:"")+'<div class="info-k">'+tileS("Quantity",q)+tileS("Weight",w?fmtW(q*w)+" lb":"\u2014")+(eqOn(it)?tileS("Status","Worn"):"")+'</div>';
     if(base) h+='<p class="info-d">'+rich(base.d)+'</p>';
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
+    h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
     return {t:it.n, h:h};
   }
   return {t:"", h:""};
@@ -252,3 +252,12 @@ document.addEventListener("keydown",(e) =>{ if(e.key==="Escape" && sheet.classLi
   body.addEventListener("touchend",end); body.addEventListener("touchcancel",end);
 })();
 
+/* FX toggles UI: Masterwork switch for armor and weapons (inventory flag "mw", missing = off) */
+function mwBase(n){ return String(n||"").replace(/, (?:\+\d|Masterwork(?: \(\d+\))?)$/,"").replace(/ \([^()]*\)$/,""); }
+export function mwEligible(it){ if(!it) return false; if(it.mw!=null) return true; const b=mwBase(it.n);
+  try{ return (typeof ARMOR!=="undefined"&&!!ARMOR[b]&&b!=="Shield")||(typeof WEAPONS!=="undefined"&&!!WEAPONS[b]); }catch(er){ return false; } }
+export function mwH(it,ix){ if(!mwEligible(it)) return ""; const on=!!it.mw;
+  return '<div class="mwsw"><div class="mwsw-t"><b>Masterwork</b><small>Counts this '+(typeof ARMOR!=="undefined"&&ARMOR[mwBase(it.n)]?'armor':'weapon')+' as Masterwork for the rules that ask for it.</small></div><button type="button" role="switch" class="fxsw press'+(on?' on':'')+'" aria-checked="'+on+'" aria-label="Masterwork" data-imw="'+esc(it.key||it.n)+'" data-iix="'+ix+'"><i></i></button></div>'; }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-imw]"); if(!b) return; e.preventDefault(); e.stopPropagation();
+  const it=invAt(b.getAttribute("data-imw"),b.getAttribute("data-iix")); if(!it) return; __R.undoMark((it.mw?"Remove":"Add")+" Masterwork");
+  it.mw=!it.mw; b.setAttribute("aria-checked",!!it.mw); b.classList.toggle("on",!!it.mw); saveC(); __R.renderAll(); },true);
