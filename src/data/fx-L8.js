@@ -45,7 +45,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  A("Dämglesvir (Master)",{n:"Dämglesvir (Master)",lu:[{n:"Dämglesvir: sweeping strike",max:"pb",reset:"long"},{n:"Dämglesvir: slay (100 HP or less)",max:1,reset:"long"}]});
  /* Full Moon Extract: the Strength 19 of the old row stays (taken = equipped), the advantage only counts while the 1 hour effect is on */
  A("Full Moon Extract",{n:"Full Moon Extract",toggle:{id:"full-moon-extract",label:"Full Moon Extract active (1 hour)",default:false},advOn:["Strength checks","Strength saving throws"]});
- A("Indorius's Crown (Master)",{n:"Indorius's Crown (Master)",defs:[["Note","After a Charisma check you can replace the roll with a 14"]],lu:{n:"Crown: Dominate Monster or Power Word Stun",max:1,reset:"long",tag:"After one, not both again"}});/* fx-int: the curse, advantages and Command Reaction use of Indorius's Crown are in fx-L4 */
+/* fx-int: the curse, advantages and Command Reaction use of Indorius's Crown are in fx-L4 */
  A("Sun Shades",{n:"Sun Shades",defs:[["Note","The goggles block your Darkvision while worn (ignore any Darkvision shown)"]]});
  /* tiered artifacts: Ulmyr's Eye */
 
@@ -70,7 +70,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  A("Bounty Hunter's Vest",{n:"Tactical Nanofiber Vest",acBase:[12,"full"],acOver:true});
  A("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"],defs:[["Note","Reach is 5 ft greater on Melee weapon attacks and Unarmed Strikes"]]});
  A("Hacker Hands",{n:"Hacker Hands",lu:{n:"Hacker Hands: hacking reroll",max:1,reset:"long"}});
- A("Heavy Legs",{n:"Heavy Legs",carryBump:true});
  window.FXO["Jetpack"]={fx:null};
  A("Overdrive Module",{n:"Overdrive Module",lu:{n:"Overdrive Module",max:1,reset:"long"}});
  A("Personality Module",{n:"Personality Module",pick:[{k:"sk",t:"skills",n:2,title:"Skills of the module"},{k:"lg",t:"lang",n:2,title:"Languages of the module"}]});

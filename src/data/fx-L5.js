@@ -20,7 +20,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
 
  /* ---------- shard 12 ---------- */
  W("Necronomicon Ex Corvis",null);add("Necronomicon Ex Corvis",{n:"Abyssal Secrets",abUp:[["INT",2,30]],abDown:[["WIS",-1,1]]});
- reg("Nepenthe");add("Nepenthe",{n:"Nepenthe aura",toggle:{id:"nepenthe-drawn",label:"Holding the drawn Nepenthe (aura)",default:true},advOn:["saving throws against spells and other magical effects (you and friendly creatures in the aura)"]});
  add("Nether Scroll of Azumar",{n:"Nether Scroll of Azumar",abUp:[["INT",2,22]],advOn:["saving throws against spells and other magical effects"]});
  W("Netherese Ring of Protection",{ac:1,save:1});
  /* Nightbringer: the immunity is one chosen type, and every benefit needs an evil alignment */
@@ -107,7 +106,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  W("Ruidium Shield",{res:["Psychic"],swim:"walk"});
  adv("Scarab of Protection",["saving throws against spells"]);
  [1,2,3].forEach(function(v){var n="Scholar's Cap +"+v;reg(n);add(n,{n:n,saveBonusAb:[["INT",v]],chkBonus:[["INT",v]]})});
- add("Seafarer's Jacket",{n:"Seafarer's Jacket",tools:["Navigator's Tools"]});
  W("Second Skin",null);add("Second Skin",{n:"Second Skin",acBase:[14,"full"],acOver:true});
  add("Septum Ring of the Great Minotaur",{n:"Septum Ring of the Great Minotaur",abUp:[["STR",2,22]],advOn:["Strength checks"],carryBump:true});
  RIDER("Serpent's Fang","1d10","Poison","Hit with the sword");
@@ -158,7 +156,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  add("Stonemaker War Pick",{n:"Stonemaker War Pick",lu:{n:"Petrification charges (roll 1d6 + 1 when found)",max:7,reset:"none"}});
  adv("Stonespeaker Crystal",["Intelligence (Investigation) checks"]);
  add("Storm Sickle",{n:"Storm Sickle",weapons:["Sickle"],atkDice:[{when:"Storm Sickle",d:"1d4",t:"Lightning",note:"Hit with the sickle"}]});
- RIDER("Stormstruck Staff","1","Lightning","Hit with the staff (1d6 while the crystal glows)");
  add("Straitjacket",{n:"Straitjacket",acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
  add("Strig Feather Robe",{n:"Strig Feather Robe",abPick:{k:"a",from:["INT","CHA"],set:22}});
  add("Sun Blade",{n:"Sun Blade",atkBonus:[{when:"Sun Blade",note:"Deals Radiant damage instead of Slashing. Finesse."}]});

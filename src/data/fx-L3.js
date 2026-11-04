@@ -38,7 +38,6 @@
 
  /* Senses and darkvision */
  add("Circlet of Barbed Vision (Exalted)",{sense:[["Truesight",60,""]]});
- add("Dagger of Blindsight",{sense:[["Blindsight",30,""]]});
  add("Draconic Senses",{sense:[["Blindsight",10,""]]});
  add("Eye of Dendallen",{darkNone:60,darkHave:{add:30}});
  var DV="Intelligence (Investigation) and Wisdom (Perception) checks that rely on sight";
@@ -71,7 +70,6 @@
  add("Crown of Horns",{imm:["Necrotic"]});
  add("Claw of the Wyrm Rune",{def:["Resistance","Damage from any dragon's breath weapon (while the claw is displayed on your person)"]});
  add("Dark Gift of Savnok the Inscrutable",{imm:["Psychic"],condImm:["Charmed"],defs:[["Immunity","Effects that sense your emotions or read your thoughts, and Divination spells (Mind Blank)"]]});
- add("Burrowing Adaptation",{mv:{burrow:"speedHalf"}});
 
  /* Attack riders */
  add("Bracers of Archery",{weapons:["Longbow","Shortbow"],atkBonus:[{when:["Longbow","Shortbow"],dmg:2}]});

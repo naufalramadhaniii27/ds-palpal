@@ -30,7 +30,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Ioun Stone, Language Knowledge",{n:"Ioun Stone, Language Knowledge",pick:[{k:"l",t:"lang",n:1,title:"One extra language (your DM picks it)"}]});
 
  /* ---- Senses ---- */
- add("Vanrak's Mithral Shirt",{n:"Vanrak's Mithral Shirt",darkTo:60});
  tiers("Verminshroud",function(){return {n:"Verminshroud",darkAdd:60,advOn:["Wisdom (Perception) checks that rely on smell"]}});
  tiers("Wreath of the Prism",function(){return {n:"Wreath of the Prism",darkAdd:60}});
  add("Thermalsight Eyes",{n:"Thermalsight Eyes",sense:[["Thermalsight",30,""]]});
@@ -42,7 +41,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  FXO["The Thorn of Kren"]={fx:null};
  FXO["Amethyst Lodestone"]={fx:null};
  add("The Codicil of White",{n:"The Codicil of White",res:["Cold"]});
- add("Witchlight Vane",{n:"Witchlight Vane",vul:["Lightning"],condImm:["Blinded","Deafened","Petrified","Stunned"],atkDice:[{when:"Witchlight Vane",d:"1d8",t:"radiant"}]});
  add("Yuan-Ti Pureblood Transformation",{n:"Yuan-Ti Pureblood Transformation",advOn:["saving throws against spells and other magical effects"]});
  tiers("Grimoire Infinitus",function(i){var e={n:"Grimoire Infinitus",prepAdd:i+1,spCls:"Wizard"};if(i===1||i===2)e.advOn=["saving throws against spells and magical effects"];return e});
  ["Aspirant","Adept","Master"].forEach(function(t,i){var n="Ulmyr's Eye ("+t+")";
@@ -52,7 +50,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Weapon of Warning",{n:"Weapon of Warning",defs:[["Note","You and allies within 30 feet have Advantage on Initiative rolls while you are attuned and it is within reach"]]});
 
  /* ---- Skills, tools, weapons ---- */
-   add("Thornpiercer",{n:"Thornpiercer",atkDice:[{when:"Thornpiercer",d:"1d4",t:"piercing"}]});
  var GK="gx-gl-item-Living Gloves";
  add("Thayan Spell Tattoo",{n:"Thayan Spell Tattoo",pick:[1,2,3].map(function(l){return {k:"s"+l,t:"cantrip",lvl:l,n:1,opt:1,title:"Tattoo spell, level "+l+" (fill only the level of your tattoo)"}})});
 
@@ -61,7 +58,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Tome of Leadership and Influence",{n:"Tome of Leadership and Influence",abUp:[["CHA",2,30]]});
  add("Tome of Understanding",{n:"Tome of Understanding",abUp:[["WIS",2,30]]});
  add("Unkh",{n:"Unkh",abSet:[["CON",23]]});
- add("Tectonic Gauntlets",{n:"Tectonic Gauntlets",speedAdd:-5,abDown:[["INT",-4,7]],unarmed:{die:"1d8",t:"Bludgeoning"}});
  FXO["Ioun Stone of Vitality"]={fx:null};
  FXO["Tasha's Creeping Keelboat"]={fx:null};
  FXO["The Infernal Machine of Lum the Mad"]={fx:null};
@@ -81,7 +77,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Calimemnon Crystal",{n:"Calimemnon Crystal",mv:{fly:30}});
 
  /* ---- Extra damage ---- */
- add("Voltedge",{n:"Voltedge",atkDice:[{when:"Voltedge",d:"1d6",t:"lightning"}]});
  add("Wand of Orcus",{n:"Wand of Orcus",atkDice:[{when:"Wand of Orcus",d:"2d12",t:"necrotic"}]});
  /* Vicious Weapon: the base-weapon aliases are separate inventory names */
  ["Vicious Weapon"].concat(["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"].map(function(b){return "Vicious Weapon ("+b+")"})).forEach(function(n){add(n,{n:n,atkDice:[{when:n,d:"2d6",t:"(same type as the weapon)"}]})});
@@ -89,7 +84,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  /* ---- Limited use ---- */
  add("Tankard of Plenty",{n:"Tankard of Plenty",lu:{n:"Tankard of Plenty",max:3,reset:"dawn"}});
  add("Thassa's Devotee",{n:"Thassa's Devotee",lu:{n:"Fog Cloud (Thassa's Devotee)",max:"mod:INT",reset:"long"}});
- add("Visage of Delight and Disaster",{n:"Visage of Delight and Disaster",lu:{n:"Bardic Inspiration (Visage, d10)",max:2,reset:"short"}});
  add("Orc Stone",{n:"Orc Stone",lu:{n:"Orc Stone",max:3,reset:"none",tag:"Turns to dust after the third use"}});
  add("Yuan-Ti Pureblood Transformation",{n:"Yuan-Ti Pureblood Transformation"});
  add("Yuan-Ti Pureblood Transformation",{n:"Yuan-Ti Pureblood Transformation",l:3,lu:{n:"Suggestion (Yuan-ti)",max:1,reset:"long"}});

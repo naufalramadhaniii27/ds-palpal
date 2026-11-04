@@ -85,7 +85,7 @@
   "res.Platinum Scarf scales.max": 3,
   "res.Orc Stone.max": 3,
   "res.Orc Stone.reset": "none",
-  "res.Bardic Inspiration (Visage, d10).max": 2,
-  "res.Bardic Inspiration (Visage, d10).reset": "short"
+  "res.Bardic Inspiration (Visage).max": 2,
+  "res.Bardic Inspiration (Visage).reset": "short"
  }
 }

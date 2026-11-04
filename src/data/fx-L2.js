@@ -78,7 +78,6 @@
  /* ---------- Resistances, immunities, vulnerabilities, conditions ---------- */
  add("Canian Fork",{n:"Canian Fork",vul:["Radiant"]});
  add("Amulet of Appearance",{n:"Amulet of Appearance",condImm:["Frightened","Poisoned"]});
- add("Blast Scepter",{n:"Blast Scepter",res:["Fire","Lightning"]});
  add("Dark Gift of Delban, the Star of Ice and Hate",{n:"Ring of Warmth",res:["Cold"]});
  add("Dark Gift of Drizlash, the Nine-Eyed Spider",{n:"Dark Gift of Drizlash",mv:{climb:"speed"}});
  add("Dark Gift of Great Taar Haak, the Five-Headed Destroyer",{n:"Dark Gift of Great Taar Haak",abSet:[["STR",25]]});   /* Belt of Fire Giant Strength: 25. The gift lasts 10 days: text */
