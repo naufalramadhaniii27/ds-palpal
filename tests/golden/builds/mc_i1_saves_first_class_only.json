@@ -1,0 +1,57 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Rogue 3 + Cleric 3, level 6, PB 3. Saving throw proficiencies come from the first class only (PHB 2024, Multiclassing): Rogue = DEX, INT. DEX 2+3 = 5, INT 1+3 = 4, STR 3, CON 2, WIS 0 (Cleric WIS not granted), CHA -1 (not granted).",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Rogue",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Cleric",
+    "sub": "",
+    "lv": 3
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:save.DEX": 5,
+  "D:save.INT": 4,
+  "D:save.STR": 3,
+  "D:save.CON": 2,
+  "D:save.WIS": 0,
+  "D:save.CHA": -1
+ }
+}

@@ -26,7 +26,7 @@ export function ord(n){const s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%
 export function profSkills(){let s=[],bg=bgX();if(bg)s=s.concat(bg.sk);choices().forEach((c) =>{if(c.t==="skills"&&Array.isArray(B.ch[c.key]))s=s.concat(B.ch[c.key])});return s.filter((x,i) =>{return s.indexOf(x)===i&&(SKILLS[x]||packSkills().some((p) =>{return p.n===x}))})}
 /* v32 RL49: tools the character has from somewhere else (name -> source), for the overlap mark on tool chips */
 function toolTaken(key){const o={},c=CL(),bg=bgX(),add=function(t,s){String(t||"").split(/,\s*/).forEach((n) =>{if(n&&!o[n])o[n]=s})};
- if(!c.toolPick)add(c.tools,B.cls);if(bg&&!bg.toolPick)add(bg.tool,B.bg+" background");grantTools().forEach((q) =>{add(q[0],q[1])});MCL().forEach((m) =>{const g=MC_GRANT[m.cls];if(!g.toolPick)add(g.tools,m.cls)});
+ if(!c.toolPick)add(c.tools,B.cls);if(bg&&!bg.toolPick)add(bg.tool,B.bg+" background");grantTools().forEach((q) =>{add(q[0],q[1])});MCL().forEach((m) =>{const g=MC_GRANT[m.cls]||{};if(!g.toolPick)add(g.tools,m.cls)});
  choices().forEach((x) =>{if(x.key===key)return;const v=B.ch[x.key];if(Array.isArray(v)&&(x.t==="tool"||(x.t==="skills"&&x.tools)))v.forEach((n) =>{if(!SKILLS[n]&&!o[n])o[n]=x.feature||x.title})});return o}
 function toolChips(c,cats){const v=B.ch[c.key]||[],tk=toolTaken(c.key);return cats.map((k) =>{return '<p class="wgrp">'+esc(TOOL_CAT[k])+'</p><div class="chips">'+TOOLS[k].map((n) =>{const on=v.indexOf(n)>=0,cl=!on&&tk[n];
   return '<button type="button" class="chip'+(on?" on":"")+(cl?" clash":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'"'+(cl?' data-clash="'+esc(cl)+'"':"")+'>'+(cl?"\u26a0 ":"")+esc(n)+(cl?" ("+esc(cl)+")":"")+'</button>'}).join("")+'</div>'}).join("")}

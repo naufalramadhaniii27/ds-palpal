@@ -1,0 +1,73 @@
+{
+ "why": "Same scores as mc_j1 (INT 17 +3, CHA 14 +2). Sorcerer 3 + Wizard 6 (Spellhacker), level 9, PB 2+(9-1)//4 = 4. Sorcerer (first class) uses CHA: DC 8+4+2 = 14, attack 4+2 = 6. Wizard uses INT: DC 8+4+3 = 15, attack 4+3 = 7. Counter-Hack gives Counterspell always prepared with spCls Wizard, so it uses INT.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Sage",
+  "bgMode": "21",
+  "bg2": "INT",
+  "bg1": "CON",
+  "cls": "Sorcerer",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Wizard",
+    "sub": "Spellhacker",
+    "lv": 6
+   }
+  ],
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 15,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 15,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spellcasting.by.Sorcerer.dc",
+   "eq": 14
+  },
+  {
+   "path": "spellcasting.by.Sorcerer.atk",
+   "eq": 6
+  },
+  {
+   "path": "spellcasting.by.Wizard.dc",
+   "eq": 15
+  },
+  {
+   "path": "spellcasting.by.Wizard.atk",
+   "eq": 7
+  },
+  {
+   "path": "spells.Counterspell.ab",
+   "eq": "INT"
+  }
+ ]
+}

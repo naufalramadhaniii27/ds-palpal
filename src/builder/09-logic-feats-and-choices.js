@@ -11,10 +11,11 @@ Object.defineProperty(__R,"subAt",{get:function(){return subAt;},set:function(v)
 export function raceBonus(){const o={};if(!R14())return o;const sp=spX();if(!sp)return o;function ad(k,v){if(k&&ABK.indexOf(k)>=0)o[k]=(o[k]||0)+v}if(sp.asi)Object.keys(sp.asi).forEach((k) =>{ad(k,sp.asi[k])});const ch=B.ch||{};if(sp.asiPick)(ch.rasi||[]).slice(0,sp.asiPick.n).forEach((k) =>{if((sp.asiPick.ex||[]).indexOf(k)<0)ad(k,sp.asiPick.v||1)});if(sp.asiFlex){if(ch.rasim==="+1, +1, +1")(ch.rasi||[]).slice(0,3).forEach((k) =>{ad(k,1)});else{const t2=(ch.rasi||[])[0];ad(t2,2);(ch.rasi1||[]).slice(0,1).forEach((k) =>{if(k!==t2)ad(k,1)})}}return o}
 export function asiLevels(){const c=CL(),a=R14()?[4,8,12,16,19].concat(c.asiX||[]):[4,8,12,16].concat(c.asiX||[]);/* 2014: level 19 is a normal improvement, no Epic Boon */return a.filter((x,i) =>{return a.indexOf(x)===i}).sort((x,y) =>{return x-y})}
 export function featChosen(exceptKey){const out=[];Object.keys(B.ch).forEach((k) =>{if(k===exceptKey)return;const v=B.ch[k];if(v&&typeof v==="object"&&v.feat)out.push(v.feat);if(k==="spfeat"&&v)out.push(v)});const bg=bgX();if(bg&&!R14())out.push(bgFeatN(bg));return out}
-export function allFeats(){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&__R.spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
+/* allFeats(raw): every feat the build holds. Without raw, a second copy of a feat that cannot be repeated (FEATS.rep missing: two Fighting Style picks of Defense from two classes) is dropped, so the sheet counts it once; the first pick, in level order, stays. raw=true keeps all (featViol, scoreAt, saveTaken report the duplicate) */
+export function allFeats(raw){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&__R.spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
 choices(true).forEach((c) =>{const v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat)f.push({n:v.feat,s:c.src,asi:v,key:c.key});if(c.t==="fs"&&v)f.push({n:v,s:c.src});if(c.t==="ofeat"&&c.inv&&v)f.push({n:v,s:"Origin feat (Lessons of the First Ones)",key:c.key})});
  f.slice().forEach((x) =>{const F=FEATS[x.n];if(F&&F.fi){const v=B.ch[F.fi+"-"+(x.key||x.s)];if(Array.isArray(v)&&v[0]&&FEATS[v[0]])f.push({n:v[0],s:x.n})}});/* v69: Fighting Initiate (2014) */
- return f}
+ if(raw)return f;const seen={};return f.filter((x) =>{const F=FEATS[x.n];if(!F||F.rep)return true;if(seen[x.n])return false;seen[x.n]=1;return true})}
 /* v19 RL46: feat rules (PHB 2024, Feats chapter). choiceLvl(): level of each choice key. scoreAt(lvl,key): scores before the feat at that level is taken
    (base, background, increases from feats of lower levels, each score at most 20). asiOf(f,F): the increases a chosen feat really gives (only abilities on
    the feat's list, so old data or a typo cannot raise another score). featViol(): every rule the chosen feats break [{k (choice key or source), m}] */
@@ -228,7 +229,7 @@ export function gxPicks(){const out=[];__R.gfx().forEach((e) =>{(e.pick||[]).con
   if(mcm)o.mc=+mcm[1];if(q.t==="item")o.gxi=1;if(q.opt)o.opt=1;if(q.defT){o.defT=q.defT;if(q.dpre)o.dpre=q.dpre}/* fx v3a: text pick becomes a Defenses line *//* optional pick (isDone accepts none) */if(q.yc)o.yc=1;/* shown as "Your choice." under the feature on the sheet (ycOf) */if(q.cats)o.cats=q.cats;if(q.from)o.from=q.from==="all"?ALLSK:q.from==="LANGS"?LANGS:q.from;if(q.t==="skills"&&!o.from)o.from=ALLSK;if(q.t==="lang"&&!o.from)o.from=LANGS;
   if(q.t==="cantrip")o.list=SPELLS.filter((x) =>{return x[1]===(q.lvl??q.slv??0)&&(!q.cls||x[3].indexOf(q.cls)>=0)&&(!q.school||x[2]===q.school)&&(!q.ct||new RegExp(q.ct).test(x[4]))&&(!q.nodmg||!/\d+d\d+|damage/i.test(x[11]))}).map((x) =>{return [x[0],x[11]]});
   else if(q.t==="weapon"){o.t="multi";o.gxw=1;o.list=Object.keys(WEAPONS).filter((n) =>{return (q.wcats||["S","M"]).indexOf(WEAPONS[n].cat)>=0&&!WEAPONS[n].xw&&!WEAPONS[n].nm}).map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]})}else if(Array.isArray(q.list))o.list=q.list;
-  o.gxc=q.t==="cantrip"?e.spCls||e.cls||"@species":"";out.push(o)})});return out}
+  o.gxc=q.t==="cantrip"?e.spCls||e.ocls||e.cls||"@species":"";out.push(o)})});return out}
 Object.defineProperty(__R,"gxPicks",{get:function(){return gxPicks;},configurable:true});
 function featPicks(){const out=[];allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;const fk=f.key||f.s,m=/^m(\d+):/.exec(fk),mc=m?+m[1]:undefined,lv=+((/feat(\d+)$/.exec(fk)||[0,1])[1]);
   if(F.skills){const o0={key:"skl-"+fk,fk:fk,lvl:1,t:"skills",n:F.skills,from:ALLSK,title:f.n+" feat: "+F.skills+(F.skTools?" skills or tools":" skills"),src:f.s,feature:f.n};if(F.skTools)o0.tools=1;if(mc!=null)o0.mc=mc;out.push(o0)}
@@ -245,13 +246,13 @@ export function kitTool(x){if(!x||!x.kit)return "";const g={"Gaming Set":["game"
  const v=x.src===B.bg+" kit"?B.ch.bgTool:x.src===B.cls+" kit"?B.ch.clsTool:null;return (v||[]).filter((n) =>{return g.some((k) =>{return TOOLS[k].indexOf(n)>=0})})[0]||""}
 export function choiceLvl(){const m={};choices(true).forEach((c) =>{m[c.key]=c.lvl});return m}
 export function asiOf(f,F){const v=f.asi||{},o=[];if(!F)return o;if(F.asi2){if(v.a1&&A6.indexOf(v.a1)>=0)o.push([v.a1,v.a1===v.a2?2:1]);if(v.a2&&v.a2!==v.a1&&A6.indexOf(v.a2)>=0)o.push([v.a2,1])}else if(F.asi&&v.a1&&F.asi.indexOf(v.a1)>=0)o.push([v.a1,1]);return o}
-export function scoreAt(lvl,key){const sc={},lv=choiceLvl(),bg=bgX(),AF=allFeats(),me=AF.findIndex((f) =>{return f.key===key});ABK.forEach((k) =>{sc[k]=+B.base[k]||10});  const rb0=raceBonus();Object.keys(rb0).forEach((k) =>{if(sc[k]!=null)sc[k]+=rb0[k]});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach((k) =>{sc[k]++});else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)sc[B.bg2]+=2;if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)sc[B.bg1]++}}
+export function scoreAt(lvl,key){const sc={},lv=choiceLvl(),bg=bgX(),AF=allFeats(true),me=AF.findIndex((f) =>{return f.key===key});ABK.forEach((k) =>{sc[k]=+B.base[k]||10});  const rb0=raceBonus();Object.keys(rb0).forEach((k) =>{if(sc[k]!=null)sc[k]+=rb0[k]});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach((k) =>{sc[k]++});else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)sc[B.bg2]+=2;if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)sc[B.bg1]++}}
  AF.forEach((f,i) =>{if(!f.asi||!f.key||f.key===key||/^Boon of/.test(f.n))return;const l=lv[f.key]||1;if(l>lvl||(l===lvl&&(me<0||i>me)))return;/* v19 V19-2 */asiOf(f,FEATS[f.n]).forEach((p) =>{sc[p[0]]=Math.min(20,sc[p[0]]+p[1])})});
  return sc}
 /* saving throws a Resilient pick may not take: the main class's saves, and abilities other Resilient picks already took */
-export function saveTaken(key){const o=CL().saves.slice();allFeats().forEach((f) =>{const F=FEATS[f.n];if(F&&F.saveFromAsi&&f.key!==key&&f.asi&&f.asi.a1&&o.indexOf(f.asi.a1)<0)o.push(f.asi.a1)});return o}
+export function saveTaken(key){const o=CL().saves.slice();allFeats(true).forEach((f) =>{const F=FEATS[f.n];if(F&&F.saveFromAsi&&f.key!==key&&f.asi&&f.asi.a1&&o.indexOf(f.asi.a1)<0)o.push(f.asi.a1)});return o}
 export function featViol(){const out=[],seen={},lv=choiceLvl();
- allFeats().forEach((f) =>{const F=FEATS[f.n];if(!F)return;const k=f.key||f.s,lvl=lv[f.key]||1,v=f.asi||{},s0=seen[f.n];
+ allFeats(true).forEach((f) =>{const F=FEATS[f.n];if(!F)return;const k=f.key||f.s,lvl=lv[f.key]||1,v=f.asi||{},s0=seen[f.n];
   if(s0&&!F.rep)out.push({k:k,m:/^Magic Initiate/.test(f.n)?f.n+" is taken twice. Magic Initiate can repeat only with a different spell list":f.n+" is taken twice, but it can be taken only once"});
   if(F.dt&&v.dt&&s0&&s0.indexOf(v.dt)>=0)out.push({k:k,m:f.n+" needs a different damage type each time. "+v.dt+" is taken already"});
   seen[f.n]=(s0||[]).concat(v.dt?[v.dt]:[]);

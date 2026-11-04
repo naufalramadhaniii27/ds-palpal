@@ -260,6 +260,28 @@ case('v4 custom skill Data via skillPE twice = Expertise', {'species': {'Human':
 case('v4 skill pick (pe) on an entry', species({'n': 'T', 'pick': [{'k': 's', 't': 'pe', 'n': 1, 'title': 'Skill', 'from': ['Athletics', 'Arcana']}]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Athletics').get('p') == 2 and skill(C1, 'Arcana').get('p') != 2, 'pe pick'), {'ch': {'gx-s-species-Human': ['Athletics']}})
 # third caster and class spell list expansion
 case('v4 THIRD_SUBS makes a subclass a third caster', {'__third': {'Champion': {'list': 'Cleric', 'ab': 'WIS', 'cant': 2}}}, lambda C0, C1, D0, D1: ok(C1['spellcasting'] and C1['spellcasting']['ab'] == 'WIS' and not C0.get('spellcasting'), json.dumps(C1.get('spellcasting'))), {'sub': 'Champion'})
+# ---- multiclass: entries of a second class (fixtures; the base build is Fighter 5, mc adds the second class)
+MC_W = {'cls': 'Fighter', 'level': 5, 'mc': [{'cls': 'Wizard', 'sub': '', 'lv': 3}]}
+MC_WI = dict(MC_W, base={'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 16, 'WIS': 10, 'CHA': 8}, arr={'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 16, 'WIS': 10, 'CHA': 8})
+MC_SW = dict(MC_WI, cls='Sorcerer', level=3, mc=[{'cls': 'Wizard', 'sub': '', 'lv': 2}], bg='Sage', bg2='INT', bg1='CON',
+             base={'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 15, 'WIS': 10, 'CHA': 14}, arr={'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 15, 'WIS': 10, 'CHA': 14})
+case('mc: hpLvl of a second-class entry uses that class level (3), not the character level (8)', {'cls': {'Wizard': [{'n': 'T', 'hpLvl': 2}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 6, 'hp %s -> %s' % (D0['hpmax'], D1['hpmax'])), MC_W)
+case('mc: hp con+lvl of a second-class entry', {'cls': {'Wizard': [{'n': 'T', 'hp': 'con+lvl'}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + D1['mod']['CON'] + 3, 'hp %s -> %s' % (D0['hpmax'], D1['hpmax'])), MC_W)
+case('mc: species hpLvl uses the character level (8)', species({'n': 'T', 'hpLvl': 1}), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 8, 'hp %s -> %s' % (D0['hpmax'], D1['hpmax'])), MC_W)
+case('mc: ac table of a second-class entry (class level 3)', {'cls': {'Wizard': [{'n': 'T', 'ac': [[1, 1], [3, 2], [5, 3]]}]}}, lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2, 'AC %s -> %s' % (acsum(C0), acsum(C1))), MC_W)
+case('mc: speed table of a second-class entry (class level 3)', {'cls': {'Wizard': [{'n': 'T', 'speed': [[1, 5], [3, 10], [6, 15]]}]}}, lambda C0, C1, D0, D1: ok(C1['speed'] == C0['speed'] + 10, 'speed %s -> %s' % (C0['speed'], C1['speed'])), MC_W)
+case('mc: level gate l uses the class level of the second class', {'cls': {'Wizard': [{'n': 'T', 'l': 4, 'hpFlat': 50}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'applied at Wizard 3 with l 4 (character level 8)'), MC_W)
+case('mc: init pb uses the character level (8: PB 3)', {'cls': {'Wizard': [{'n': 'T', 'init': 'pb'}]}}, lambda C0, C1, D0, D1: ok(D1['init'] == D0['init'] + 3, 'init %s -> %s' % (D0['init'], D1['init'])), MC_W)
+case('mc: toggle of a second-class entry, on', {'cls': {'Wizard': [tg({'n': 'T', 'acAdd': 2})]}}, lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2 and tgids(C1) == ['t1'], 'ac %s -> %s %s' % (acsum(C0), acsum(C1), tgids(C1))), dict(MC_W, __fxT={'t1': True}))
+case('mc: toggle of a second-class entry, off', {'cls': {'Wizard': [tg({'n': 'T', 'acAdd': 2})]}}, lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) and tgids(C1) == ['t1'], 'ac %s -> %s %s' % (acsum(C0), acsum(C1), tgids(C1))), MC_W)
+case('mc: when pick of a second-class entry reads m0:key', {'cls': {'Wizard': [{'n': 'T', 'when': {'key': 'zz', 'val': 'x'}, 'hpFlat': 4}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 4, 'when pick m0:zz not read'), dict(MC_W, ch={'m0:zz': 'x'}))
+case('mc: when pick without the prefix does not count for the second class', {'cls': {'Wizard': [{'n': 'T', 'when': {'key': 'zz', 'val': 'x'}, 'hpFlat': 4}]}}, lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'main-class key used'), dict(MC_W, ch={'zz': 'x'}))
+case('mc: saveFrom pick of a second-class entry', {'cls': {'Wizard': [{'n': 'T', 'saveFrom': 'sv'}]}}, lambda C0, C1, D0, D1: ok(C1['saves'].get('WIS') and not C0['saves'].get('WIS'), json.dumps(C1['saves'])), dict(MC_W, ch={'m0:sv': ['Wisdom']}))
+case('mc: spells of a second-class cls entry use that class ability (spCls default = class)', {'cls': {'Wizard': [{'n': 'T', 'spells': [[1, 'Shield']]}]}}, lambda C0, C1, D0, D1: ok([s.get('ab') for s in C1['spells'] if s['n'] == 'Shield'] == ['INT'], json.dumps([(s['n'], s.get('ab')) for s in C1['spells']])), MC_SW)
+case('mc: spells of a second-class cls entry, explicit spCls wins', {'cls': {'Wizard': [{'n': 'T', 'spells': [[1, 'Shield']], 'spCls': '@sub:CHA'}]}}, lambda C0, C1, D0, D1: ok([s.get('ab') for s in C1['spells'] if s['n'] == 'Shield'] == ['CHA'], json.dumps([(s['n'], s.get('ab')) for s in C1['spells']])), MC_SW)
+case('mc: spells of a main-class cls entry use that class ability', {'cls': {'Sorcerer': [{'n': 'T', 'spells': [[1, 'Shield']]}]}}, lambda C0, C1, D0, D1: ok([s.get('ab') for s in C1['spells'] if s['n'] == 'Shield'] == ['CHA'], json.dumps([(s['n'], s.get('ab')) for s in C1['spells']])), MC_SW)
+case('mc: spells of a second-class sub entry use the class of the sub (Evoker is a Wizard sub)', {'sub': {'Evoker': [{'n': 'T', 'l': 3, 'spells': [[3, 'Shield']]}]}}, lambda C0, C1, D0, D1: ok([s.get('ab') for s in C1['spells'] if s['n'] == 'Shield'] == ['INT'], json.dumps([(s['n'], s.get('ab')) for s in C1['spells']])), dict(MC_SW, mc=[{'cls': 'Wizard', 'sub': 'Evoker', 'lv': 3}]))
+case('mc: spDc without spCls counts for every class, with spCls only for that class', {'cls': {'Wizard': [{'n': 'T', 'spDc': 2, 'spCls': 'Wizard'}]}}, lambda C0, C1, D0, D1: ok([x['dc'] for x in C1['spellcasting']['by'] if x['n'] == 'Wizard'][0] == [x['dc'] for x in C0['spellcasting']['by'] if x['n'] == 'Wizard'][0] + 2 and [x['dc'] for x in C1['spellcasting']['by'] if x['n'] == 'Sorcerer'][0] == [x['dc'] for x in C0['spellcasting']['by'] if x['n'] == 'Sorcerer'][0], json.dumps(C1['spellcasting']['by'])), MC_SW)
 
 
 def main():
@@ -508,6 +530,65 @@ def main():
         n += 3
         if 'Note A' not in tx or 'Note B' in tx or 'Note C' not in tx:
             fails.append('SAVE_NOTES owner: %s' % tx)
+        # ---- multiclass with the real data (a fresh page: the fixtures above replaced window.GX)
+        pg2 = br.new_page(viewport={'width': 1250, 'height': 850})
+        pg2.set_default_timeout(180000)
+        pg2.on('pageerror', lambda e: errs.append(str(e)))
+        pg2.goto('file://' + ROOT + '/index.html')
+        pg2.wait_for_timeout(1500)
+        pg2.evaluate("window.__bldNeed && window.__bldNeed()")
+        pg2.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
+        pg2.evaluate("ids=>ids.forEach(k=>window.__setSrc(k,true))", ['tvss'])
+
+        def mcb(cls, level, mc, ch=None, inv=None):
+            b = base_build()
+            b.update({'cls': cls, 'level': level, 'mc': mc, 'ch': ch or {}, 'eqC': 'none', 'eqB': 'none'})
+            b['src'] = {'core': True, 'tvss': True}
+            if inv:
+                b['inv'] = inv
+            return b
+        CM = [{'n': 'Chain Mail', 'q': 1, 'eq': True}]
+        KN = [{'cls': 'Warmage', 'sub': 'House of Knights', 'lv': 7}]
+        # a class without an MC_GRANT entry (Warmage) as a second class used to throw in toSheet
+        try:
+            Cw = pg2.evaluate("b=>window.__bldSheetFor(b)", mcb('Fighter', 5, KN, {'m0:sfs7': 'Defense'}, CM))
+            err = ''
+        except Exception as ex:
+            Cw, err = None, str(ex)[:160]
+        n += 1
+        if err:
+            fails.append('Warmage as second class throws: %s' % err)
+        # fsPick on the subclass of a second class: the choice m0:sfs7 exists, and not before Warmage 7
+        for lv, want in ((7, True), (6, False)):
+            keys = [c['key'] for c in pg2.evaluate("b=>window.__bldChoiceList(b)", mcb('Fighter', 5, [{'cls': 'Warmage', 'sub': 'House of Knights', 'lv': lv}], None, CM))]
+            n += 1
+            if ('m0:sfs7' in keys) != want:
+                fails.append('fsPick m0:sfs7 offered=%s at Warmage %d, expected %s' % ('m0:sfs7' in keys, lv, want))
+        if Cw:
+            D = pg2.evaluate("c=>window.__deriveFor(c)", Cw)
+            n += 1
+            if D['ac'] != 17:
+                fails.append('fsPick Defense in the second class: AC %s expected 17 (Chain Mail 16 + 1)' % D['ac'])
+        # the same Fighting Style feat from two classes counts once
+        for fs1, want in (('Defense', 17), ('Archery', 17), (None, 17)):
+            C2 = pg2.evaluate("b=>window.__bldSheetFor(b)", mcb('Fighter', 5, KN, dict({'m0:sfs7': 'Defense'}, **({'fs1': fs1} if fs1 else {})), CM))
+            n += 1
+            if acsum(C2) != want:
+                fails.append('Defense from two picks (fs1=%s): AC %s expected %s' % (fs1, acsum(C2), want))
+        # Attacks per Action on the sheet: Extra Attack from several classes does not add up, Two Extra Attacks is the Fighter exception
+        def apa(b):
+            C = pg2.evaluate("b=>window.__bldSheetFor(b)", b)
+            pg2.evaluate("c=>window.__sheetApply(c,'t')", C)
+            pg2.wait_for_timeout(400)
+            return pg2.evaluate("()=>{const e=[...document.querySelectorAll('.apa')].map(x=>x.textContent).filter(Boolean);return e.length?e[e.length-1]:''}")
+        for nm, b, want in (('Fighter 5 + Paladin 5', mcb('Fighter', 5, [{'cls': 'Paladin', 'sub': '', 'lv': 5}]), 2),
+                            ('Fighter 11 + Barbarian 5', mcb('Fighter', 11, [{'cls': 'Barbarian', 'sub': '', 'lv': 5}]), 3),
+                            ('Barbarian 5 + Monk 5', mcb('Barbarian', 5, [{'cls': 'Monk', 'sub': '', 'lv': 5}]), 2),
+                            ('Fighter 4 + Paladin 4', mcb('Fighter', 4, [{'cls': 'Paladin', 'sub': '', 'lv': 4}]), 1)):
+            got = apa(b)
+            n += 1
+            if ('Attacks per Action: %d' % want) not in got:
+                fails.append('Attacks per Action %s: "%s" expected %d' % (nm, got, want))
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

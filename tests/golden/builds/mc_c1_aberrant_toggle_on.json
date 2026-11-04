@@ -1,0 +1,76 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Rogue 3 + Fighter 4, level 7, PB 3. The Aberrant Horror Transformation feat comes from the Fighter ASI slot (m0:feat4). Studded Leather 12 + DEX 2 = 14. Chitinous Shell on: AC +2 = 16, Speed 30-10 = 20. HP: Rogue d8 level 1 = 8+2 = 10, Rogue levels 2-3 = 2x(5+2) = 14, Fighter 4x(6+2) = 32, total 56.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Rogue",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Fighter",
+    "sub": "",
+    "lv": 4
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "m0:feat4": {
+    "feat": "Aberrant Horror Transformation: Stage 1"
+   }
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Studded Leather Armor",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 16,
+  "speed": 20,
+  "hpmax": 56
+ },
+ "fxT": {
+  "aberrant-chitinous": true
+ }
+}

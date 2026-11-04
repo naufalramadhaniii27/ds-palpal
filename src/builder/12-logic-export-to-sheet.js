@@ -119,7 +119,7 @@ __R.gfx().forEach((e) =>{if(e.init==null||(e.cond&&!__R.fxOk(e,ar,ESH,EA)))retur
  if(optAny("Warden")){armor+=", Medium";weapons+=", Martial"}
  if(B.sub==="College of Valor"&&L>=3){armor+=", Medium, Shields";weapons+=", Martial"}
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.armor)armor+=", "+F.armor;if(F&&F.weapons)weapons+=", "+F.weapons;if(/^Tavern Brawler/.test(f.n))weapons+=", Improvised";if(F&&F.wpPick){const wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach((n) =>{weapons+=", "+n})}});/* v69 */
- __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls];if(g.armor)armor+=(armor?", ":"")+g.armor;if(g.weapons)weapons+=", "+g.weapons;const gt=tp(g.tools,g.toolPick,"m"+mi+":tool");if(gt)tools.push(gt)});
+ __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls]||{};if(g.armor)armor+=(armor?", ":"")+g.armor;if(g.weapons)weapons+=", "+g.weapons;const gt=tp(g.tools,g.toolPick,"m"+mi+":tool");if(gt)tools.push(gt)});
  if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach((n) =>{weapons+=", "+n});
  if(sp&&sp.profs&&!custom){if(sp.profs.armor)armor+=", "+sp.profs.armor;if(sp.profs.weapons)weapons+=", "+sp.profs.weapons;if(sp.profs.tools)tools.push(sp.profs.tools)}/* v74: species proficiencies (2014 species) */
  XT.forEach((q) =>{tools.push(q[0])});
@@ -135,7 +135,7 @@ __R.gfx().forEach((e) =>{if(e.init==null||(e.cond&&!__R.fxOk(e,ar,ESH,EA)))retur
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.armor)ad("armor",F.armor,f.n);if(F&&F.weapons)ad("weapons",F.weapons,f.n);if(/^Tavern Brawler/.test(f.n))ad("weapons","Improvised",f.n);if(F&&F.wpPick){const wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach((n) =>{ad("weapons",n,f.n)})}});/* v69 */
  if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach((n) =>{ad("weapons",n,B.species+" ("+(sp.hb||SRC)+")")});
  if(sp&&sp.profs&&!custom){var spl=B.species+" ("+(sp.hb||SRC)+")";if(sp.profs.armor)ad("armor",sp.profs.armor,spl);if(sp.profs.weapons)ad("weapons",sp.profs.weapons,spl);if(sp.profs.tools)ad("tools",sp.profs.tools,spl)}/* v74 */
- __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls];ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
+ __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls]||{};ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
  XT.forEach((q) =>{ad("tools",q[0],q[1])});__R.gfx().forEach((e) =>{["armor","weapons","tools"].forEach((k) =>{(e[k]||[]).forEach((n) =>{ad(k,n,e.lbl)})})});/* fx engine v2 */
  (B.ch.spwep||[]).forEach((n) =>{ad("weapons",n,"Masterful")});if(pactW)ad("weapons",__R.baseOf(pactW).b,"Pact of the Blade");
   __R.gxPicks().forEach((o) =>{if(!o.gxw)return;(B.ch[o.key]||[]).forEach((n) =>{ad("weapons",n,o.src);if(("," +C.profs.weapons+",").replace(/, /g,",").indexOf(","+n+",")<0)C.profs.weapons+=(C.profs.weapons?", ":"")+n})});/* fx engine v2: weapon proficiency picks */
