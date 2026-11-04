@@ -468,6 +468,20 @@ def main():
         n += 1
         if not xl or xl[0]['list'] != 'Cleric' or xl[0]['ab'] != 'WIS':
             fails.append('THIRD_SUBS: caster part %s' % xl)
+        # no re-entry blow-up: gfx reads choices, choices read casterParts, casterParts read gfx(true) (dmXl) and attMax. A level 20 caster must build fast
+        import time
+        b = base_build()
+        b['cls'] = 'Wizard'
+        b['sub'] = 'Evoker'
+        b['level'] = 20
+        b['eqC'] = 'none'
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'L', 'spListAdd': {'cls': 'Wizard', 'spells': ['Foresight']}, 'attune': 4}]}})
+        t0 = time.time()
+        for _ in range(3):
+            pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        n += 1
+        if time.time() - t0 > 10:
+            fails.append('level 20 Wizard with spListAdd + attune: %.1f s for 3 sheets (re-entry loop?)' % (time.time() - t0))
         # prepAdd / cantAdd: extra prepared spells and cantrips, limited by spCls
         b = base_build()
         b['cls'] = 'Wizard'
