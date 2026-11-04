@@ -44,5 +44,5 @@ export function renderFxT(){ const el=$("#fxT"); if(!el) return; const L=fxList(
   el.innerHTML='<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>'; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-fxt]"); if(!b) return; e.preventDefault(); e.stopPropagation();
   const id=b.getAttribute("data-fxt"), t=fxList().filter((x) =>x.id===id)[0]; if(!t) return; const nv=!t.on;
-  __R.undoMark((nv?"Turn on ":"Turn off ")+t.label); S.fxT=S.fxT&&typeof S.fxT==="object"?S.fxT:{}; S.fxT[id]=nv; save(); __R.renderAll();
+  __R.undoMark((nv?"Turn on ":"Turn off ")+t.label); S.fxT=S.fxT&&typeof S.fxT==="object"?S.fxT:{}; S.fxT[id]=nv; save(); try{ if(window.__bldFxToggle) window.__bldFxToggle(id,nv); }catch(_){ } __R.renderAll();
   const nb=document.querySelector('[data-fxt="'+id.replace(/"/g,'\\"')+'"]'); if(nb) nb.focus({preventScroll:true}); },true);
