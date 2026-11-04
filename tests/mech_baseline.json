@@ -18,7 +18,9 @@
 "species|Troglodyte|Stench": "Batch A triage: Aura saat bermain (save lawan). AC Natural Armor +1 sudah terhitung.",
 "species|Vampire (Ixalan)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Bukan angka statis. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
 "species|Vampire (Ixalan)|Feast of Blood": "Batch A triage: Efek sementara setelah menghisap. Spesies 2014 saja.",
-"species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja."
+"species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
+"sub|Bard/College of Origami|Origami Familiar": "Batch F triage: Find Familiar is already always prepared through the subclass spell data (source College of Origami). The scan hit is the familiar's Fly Speed 60 ft and 1 HP, which belong to the familiar, not to the character.",
+"sub|Fighter/Champion|Additional Fighting Style": "Batch F triage: counted by the native pick CLASSES.Fighter.pickSub.Champion {l:7,k:'fs'} (choice key p7fs, a Fighting Style feat that goes through allFeats). Golden: fsub_champion7_extra_fs (Defense: AC 17 against 16 without the pick)."
 },
 "gaps": {
 "feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": [
@@ -404,9 +406,6 @@
 "sub|Bard/College of Dance|Tandem Footwork": [
 "init"
 ],
-"sub|Bard/College of Origami|Origami Familiar": [
-"speed"
-],
 "sub|Bard/College of Spirits (2014)|Mystical Connection": [
 "choice"
 ],
@@ -451,9 +450,6 @@
 "hp"
 ],
 "sub|Cleric/Grave Domain (2014)|Keeper of Souls": [
-"choice"
-],
-"sub|Cleric/Hunting Domain|Resolute Hunter": [
 "choice"
 ],
 "sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": [
@@ -507,20 +503,8 @@
 "sub|Druid/Circle of the Moon (2014)|Primal Strike": [
 "resist"
 ],
-"sub|Druid/Circle of the Sea|Aquatic Affinity": [
-"speed"
-],
-"sub|Druid/Circle of the Sea|Stormborn": [
-"speed"
-],
 "sub|Druid/Circle of the Stars|Twinkling Constellations": [
 "speed"
-],
-"sub|Fighter/Champion|Additional Fighting Style": [
-"fstyle"
-],
-"sub|Fighter/Cybernetic|Cybernetic Crafts": [
-"choice"
 ],
 "sub|Fighter/Prescient Knight|Anticipatory Strike": [
 "ac"
@@ -533,9 +517,6 @@
 ],
 "sub|Fighter/Space Marine|Sustained Flight": [
 "speed"
-],
-"sub|Gadgeteer/AI Futurist|Novel Intelligence": [
-"choice"
 ],
 "sub|Gadgeteer/Drone Jockey|Omega Upgrade": [
 "ac"
@@ -639,10 +620,6 @@
 ],
 "sub|Necromancer/Reanimator|Spell-Stitching": [
 "hp"
-],
-"sub|Necromancer/Toymaker|Clockwork Lich [Lichdom]": [
-"resist",
-"choice"
 ],
 "sub|Necromancer/Toymaker|Miniature Minions": [
 "ac",

@@ -301,6 +301,7 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  /* v20 RD25: senses and Fly Speed from a species choice (Retromistika Mistikan ancestries) */
  /* v32 RL49 no. 28, 33: chosen Wild Shape forms and Primal Companion, read by Extras (optional fields) */
  CHT.forEach((q) =>{const v=B.ch[q.key];if(/^(m\d+:)?p2forms$/.test(q.key)&&Array.isArray(v)&&v.length)C.wsForms=v.slice();if(q.feature==="Primal Companion"&&typeof v==="string"&&v)C.companion=v});
+ __R.gfx().forEach((e) =>{if(e.size){const SZ=["Tiny","Small","Medium","Large","Huge","Gargantuan"];if(SZ.indexOf(C.size)<SZ.indexOf(e.size))C.size=e.size}});/* fx: size "Large" = you become Large if smaller (Exo-Frame) */
  __R.gfx().forEach((e) =>{(e.sense||[]).forEach((x) =>{const o=(C.senses||[]).filter((y) =>{return y.n===x[0]})[0];if(o){if(o.v>=x[1])return;C.senses=C.senses.filter((y) =>{return y!==o})}C.senses=(C.senses||[]).concat([{n:x[0],v:x[1],s:e.lbl,d:x[2]||""}])})});/* fx engine v2: sense [[name, feet, text]] */
   const SFq=__R.spOptFx();(SFq.senses||[]).forEach((x) =>{C.senses=(C.senses||[]).filter((y) =>{return y.n!==x[0]});C.senses.push({n:x[0],v:x[1],s:x[2]+" ("+spName+")",d:x[3]||""})});
  XFX.senses(C);/* v62 */

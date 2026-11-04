@@ -1,0 +1,56 @@
+{
+ "why": "Cybernetic Fighter 3, Cybernetic Crafts: two Construct grafts of your choice, stored and shown as Your choice under the feature (the grafts are inventory items, a pick cannot add them).",
+ "build": {
+  "name": "fsub_cybernetic3_crafts",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Cybernetic",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-graft-sub-Cybernetic": [
+    "Black Box",
+    "Heart of Steel"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "features",
+   "in": "Your choice.** Black Box, Heart of Steel."
+  }
+ ]
+}

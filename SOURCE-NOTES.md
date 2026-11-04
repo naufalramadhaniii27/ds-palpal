@@ -199,6 +199,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/wotc15-class-options-2014.js | data | 24.689 |
 | data/hbpack-builtin-homebrew.js | data | 49.671 |
 | data/fx-A-class-species.js | data (fx, registry GX) | 4.271 |
+| data/fx-F-sub.js | data (fx, registry GX.sub, batch F) | 7.814 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -391,8 +392,10 @@ Nilai angka boleh: angka, `"pb"`, `"halfPb"`, `"lvl"`, `"halfLvl"`, atau kunci k
 | `fsPick:1` | (hanya entri `sub`) pilihan Fighting Style feat dari subclass pada level `l`. Kunci `B.ch["sfs"+l]`, tipe `fs`, masuk `allFeats()`. Belum untuk multiclass | Warmage House of Knights: `{l:7,fsPick:1}` |
 | `pick` tipe `cantrip` + `slv:N` | daftar spell level N (default 0). Pilihan jadi spell selalu prepared pada kemampuan `spCls` | Summoner Shambling Plant: `{k:"s",t:"cantrip",cls:"Druid",slv:1,n:1}` |
 | `mv:{burrow:..}` | kunci kecepatan apa saja dibaca apa adanya | Elemental Soul Earth |
+| `size:"Large"` | (item) ukuran karakter naik ke ukuran itu bila lebih kecil (Tiny, Small, Medium, Large, Huge, Gargantuan). Tulis ke `C.size` di `12-logic-export-to-sheet.js`, ikut kapasitas bawaan. Batch F | Exo-Frame: `{size:"Large"}` |
 | `abUp:[[ab,+N,maks]]` | kenaikan skor tetap, tidak melewati `maks` (default 20). Tampil di sumber skor | `{abUp:[["CON",1,20]]}` |
 | `sense:[[nama,kaki,teks]]` | sense di `C.senses` (dipakai bila lebih besar dari yang sudah ada) | `{sense:[["Blindsight",30,""]]}` |
+Perluasan batch F (`src/data/fx-F-sub.js`, subclass): `pick` boleh membawa `opt:1` (pilihan opsional, `isDone` menerima kosong, dipakai pilihan bahasa musuh favorit Resolute Hunter) dan `yc:1` (pilihan tersimpan ditampilkan sebagai "Your choice." di bawah fitur subclass lewat `ycOf`; untuk pilihan `multi` yang hanya dicatat: grafts Cybernetic Crafts dan Mad Scientist, Novel Intelligence, Bloody Rampage, musuh favorit). Pilihan graft tidak menambah item ke inventory. Fitur yang sudah dihitung asli tidak diberi entri fx: Origami Familiar (spell subclass), Champion Additional Fighting Style (pick asli `p7fs`). Keduanya dicatat di `by_design`.
 Perluasan batch C (feat): `pick` bertipe `weapon` (proficiency satu senjata, `wcats` default S dan M), `cantrip` boleh membawa filter `lvl` (level spell, default 0), `school`, `ct` (regex casting time), `nodmg:1` (tanpa damage). Entri feat membaca pick miliknya lewat `when:{key,val}`: pick gx (`gx-k-feat-slot`) atau pick bawaan FEATS (`key-slot`), lewat `fxCh`. `saveFrom` untuk feat memakai jalur yang sama. `spCls:"@asi"` memakai kemampuan yang dinaikkan feat, `spCls:"@abpick"` memakai kemampuan dari pick berkunci `ab`. Baris `LU_X` feat boleh memakai `max:"mod:@asi"` atau `"mod:@ab"`.
 
 
