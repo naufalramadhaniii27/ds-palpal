@@ -1,0 +1,53 @@
+{
+ "why": "Deathseeker: 60 ft sense",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Witch",
+  "sub": "Blood Magic",
+  "level": 6,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "senses",
+   "has": {
+    "n": "Deathseeker",
+    "v": 60
+   }
+  }
+ ]
+}
