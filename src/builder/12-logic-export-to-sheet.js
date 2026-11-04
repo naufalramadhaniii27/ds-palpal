@@ -91,7 +91,7 @@ export function toSheet(){
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
  /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
  if(ar&&ar.str&&a.sc.STR<ar.str){spd=Math.max(0,spd-10);spSrc+=", \u221210 "+EA+" (needs Str "+ar.str+", yours is "+a.sc.STR+")"}
- __R.gfx().forEach((e) =>{if(!e.mv||!__R.fxOk(e,ar,ESH,EA))return;Object.keys(e.mv).forEach((m) =>{const v=e.mv[m],t=v==="speed"?"equal to your Speed ("+spd+" ft)":(v+" ft");spSrc+=", "+m.charAt(0).toUpperCase()+m.slice(1)+" Speed "+t+" ("+e.lbl+")";(C.moves=C.moves||[]).push({m:m,v:v==="speed"?spd:+v,s:e.lbl})})});/* fx engine v2: mv {climb,swim,fly}: "speed" or feet. Sheet shows it in speedSrc, C.moves is optional */
+ __R.gfx().forEach((e) =>{if(!e.mv||!__R.fxOk(e,ar,ESH,EA))return;Object.keys(e.mv).forEach((m) =>{if(e.speedAddIf&&e.speedAddIf[m]!=null)return;/* fx v3a: handled in the late pass */const v=e.mv[m],t=v==="speed"?"equal to your Speed ("+spd+" ft)":(v+" ft");spSrc+=", "+m.charAt(0).toUpperCase()+m.slice(1)+" Speed "+t+" ("+e.lbl+")";(C.moves=C.moves||[]).push({m:m,v:v==="speed"?spd:+v,s:e.lbl})})});/* fx engine v2: mv {climb,swim,fly}: "speed" or feet. Sheet shows it in speedSrc, C.moves is optional */
  C.speed=spd;C.speedSrc=spSrc;if(R14())C.rs="2014";/* v82 */
  const dk=custom?+B.cSpecies.dark:Math.max(sp.dark||0,SFX2.dark||0);/* RL36 d, M17: Drow Darkvision 120 and Wood Elf Speed 35 come from SPECIES.Elf.linFx (spOptFx) */
  /* m4 (RL20): name the source that gives Darkvision: species or pack, plus the pack option or lineage when that raised it */
@@ -313,6 +313,33 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  /* v20 RD25: Leyak Form Sharp Claws (The Leyak Queen 3): Simple melee, Finesse, Force. Grand Leyak (level 10) Deadly Claws: 1d10 */
  const lq=subAt("Warlock","The Leyak Queen");if(lq>=3){const dc=lq>=10&&((B.ch.scgrand||[]).indexOf("Deadly Claws")>=0||(__R.MCL().some((m,i) =>{return ((B.ch["m"+i+":scgrand"])||[]).indexOf("Deadly Claws")>=0}))),fab=a.sc.DEX>a.sc.STR?"DEX":"STR";
   C.attacks.push({n:"Sharp Claws",sub:"Leyak Form only \u2022 Finesse",ab:fab,prof:true,die:dc?"1d10":"1d8",dieSrc:dc?"Deadly Claws (Grand Leyak)":"Leyak Form (The Leyak Queen 3)",type:"Force",range:"5 ft",m:"",note:"Only while your Leyak Form is active. While it is, you can also make this attack as a Bonus Action."})}
+ /* fx engine v3a late pass: resToImm, speedAddIf, atkAb, atkDice, text picks (SOURCE-NOTES.md, "fx schema", v3a) */
+ (function(){const G=__R.gfx(),hasW=function(r){return !!WEAPONS[__R.baseOf(r.n).b]},isSp=function(r){return /^Cantrip/.test(r.sub||"")};
+  const hit=function(r,k){return r.n===k||__R.baseOf(r.n).b===k||(r.n||"").replace(/ \(thrown\)$/,"")===k},
+   pickRows=function(kind){return C.attacks.filter(function(r){return kind==="unarmed"?r.n==="Unarmed Strike":kind==="weapon"?hasW(r)&&r.n!=="Unarmed Strike":kind==="spell"?isSp(r):hit(r,kind)})};
+  const spdTxt=function(k){return k.charAt(0).toUpperCase()+k.slice(1)+" Speed"};
+  G.forEach(function(e){if(e.cond&&!__R.fxOk(e,ar,ESH,EA))return;
+   /* resToImm: Resistance to each type, or Immunity when a Resistance to that type is already held from another source */
+   (e.resToImm||[]).forEach(function(t){const def=C.defenses=C.defenses||[],ix=def.findIndex(function(x){return x.t==="Resistance"&&x.v===t});
+    if(ix>=0){def.splice(ix,1);def.push({t:"Immunity",v:t,s:e.lbl+" (you already had Resistance to "+t+")"})}
+    else if(def.some(function(x){return x.t==="Resistance"&&new RegExp("(^|, )"+t+"(,|$)").test(x.v)}))def.push({t:"Immunity",v:t,s:e.lbl+" (you already had Resistance to "+t+")"});
+    else def.push({t:"Resistance",v:t,s:e.lbl})});
+   /* speedAddIf {swim:10}: +10 ft to that Speed if you already have it from another source, else the entry's own mv grants it */
+   Object.keys(e.speedAddIf||{}).forEach(function(k){const n=+e.speedAddIf[k],sk=C.speeds&&C.speeds[k],mv=(C.moves||[]).filter(function(x){return x.m===k&&x.s!==e.lbl})[0];
+    if(sk){const cur=sk.v==="walk"?C.speed:+sk.v;C.speeds[k]={v:cur+n,s:sk.s+"; +"+n+" ft "+e.lbl}}
+    else if(mv){mv.v+=n;mv.s=mv.s+"; "+e.lbl}
+    else if(e.mv&&e.mv[k]!=null){const v=e.mv[k];C.speeds=C.speeds||{};C.speeds[k]={v:v==="speed"?"walk":+v,s:e.lbl};(C.moves=C.moves||[]).push({m:k,v:v==="speed"?C.speed:+v,s:e.lbl})}
+    if(sk||mv)C.speedSrc+=", +"+n+" ft "+spdTxt(k)+" ("+e.lbl+", you already have it)";else if(e.mv&&e.mv[k]!=null)C.speedSrc+=", "+spdTxt(k)+" "+(e.mv[k]==="speed"?"equal to your Speed ("+C.speed+" ft)":e.mv[k]+" ft")+" ("+e.lbl+")"});
+   /* atkAb {kind, ab, opt, note}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
+   if(e.atkAb){const q=e.atkAb;pickRows(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null)return;const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
+     if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
+     else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
+   /* atkDice [{when:"weapon|spell|unarmed|<name>", d:"1d10", t:"type", note}]: extra damage dice on matching attack rows, or a Note under Defenses when no row exists */
+   (e.atkDice||[]).forEach(function(x){const rows=pickRows(x.when);
+    if(rows.length)rows.forEach(function(r){(r.xdice=r.xdice||[]).push({d:x.d,t:x.t||"",s:e.lbl});r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(x.t?" "+x.t:"")+" ("+e.lbl+")."});
+    else{C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}})});
+  /* text picks with defT: the typed text becomes a Defenses line */
+  (__R.gxPicks?__R.gxPicks():[]).forEach(function(o){if(o.t!=="text"||!o.defT)return;const v=B.ch[o.key];if(typeof v==="string"&&v.trim()){C.defenses=C.defenses||[];C.defenses.push({t:o.defT,v:(o.dpre?o.dpre+": ":"")+v.trim(),s:o.src})}})})();
  /* v20 RD24: Variant Combat Rules (Aurvidya): Combat Maneuver Roll */
  if(__R.enabledPacks().some((p) =>{return p.cmr})&&clsParts().some((q) =>{return /^(Barbarian|Fighter|Monk|Paladin|Ranger|Rogue)$/.test(q.cls)})){const sm=mod(a.sc.STR),dm=mod(a.sc.DEX),rb=pb+Math.max(sm,dm);
   C.actions.push({c:"Actions",n:"Combat Maneuver Roll",hb:1,t:"Variant rule (Aurvidya)",d:"Instead of letting a target save against a nonmagical maneuver of a martial feature that calls for a Strength or Dexterity saving throw, roll d20 "+(rb<0?"\u2212"+(-rb):"+"+rb)+" (Proficiency Bonus plus your Strength or Dexterity modifier). It works if the total meets the target's DC: 8 + its Proficiency Bonus + its Strength modifier + its Dexterity modifier. Your own DC against such a roll is "+(8+pb+sm+dm)+"."})}
