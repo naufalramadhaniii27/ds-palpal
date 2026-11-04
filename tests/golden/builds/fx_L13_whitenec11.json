@@ -1,0 +1,72 @@
+{
+ "why": "Lore: Medicine doubled PB 2*4 = 8 (WIS 0); Spare the Dying, Animate Dead, Create Undead, Warding Bond",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "White Necromancer",
+  "level": 11,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:skill.9": 8
+ },
+ "expectC": [
+  {
+   "path": "spells",
+   "has": {
+    "n": "Spare the Dying"
+   }
+  },
+  {
+   "path": "spells",
+   "has": {
+    "n": "Animate Dead"
+   }
+  },
+  {
+   "path": "spells",
+   "has": {
+    "n": "Create Undead"
+   }
+  },
+  {
+   "path": "spells",
+   "has": {
+    "n": "Warding Bond"
+   }
+  }
+ ]
+}

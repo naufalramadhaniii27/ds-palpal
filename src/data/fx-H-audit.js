@@ -20,7 +20,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{
  addS("Pharaoh",{n:"Magic Resistance",l:20,advOn:["saves against spells and other magical effects"]});
  addS("Oath of Redemption",{n:"Emissary of Redemption",l:20,def:["Resistance","All damage dealt by other creatures (ends against a creature once you attack it, cast a spell on it or deal it damage, until you finish a Long Rest)"]});
  addS("Storm Sentinel",{n:"Storm Wings",l:6,mv:{fly:"speed"}});
- addS("The Parasite Patron",{n:"Symbiotic Sentinel",l:6,initAdv:true,advOn:["saves to avoid or end the Charmed and Frightened conditions"],defs:[["Note","You cannot be surprised"]]});
  addS("Blood Ascendant",{n:"Nosferatu",l:20,speedMul:2,mv:{climb:"speed"}});
  /* Feats */
  addF("Lycanthrope Transformation: Stage 2",{n:"Silver Sensitivity",def:["Vulnerability","Bludgeoning, Piercing and Slashing damage from silvered weapons (no Resistance to it)"]});

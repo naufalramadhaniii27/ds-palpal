@@ -1,0 +1,57 @@
+{
+ "why": "Elemental Savant: Fire focus language Ignan",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Elementalist",
+  "level": 3,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {
+   "elem_focus": [
+    "Fire"
+   ],
+   "gx-flFire-sub-Elementalist": [
+    "Ignan"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Ignan"
+  }
+ ]
+}
