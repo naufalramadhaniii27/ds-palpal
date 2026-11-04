@@ -1,0 +1,69 @@
+{
+ "why": "Shadowsteel Ghoul Stage 1 flaw: lose 2 points in one ability. STR 15 plus 2 from Soldier is 17, minus 2 is 15 (modifier +2).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 4,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Shadowsteel Ghoul Transformation: Stage 1"
+   },
+   "trShadowsteelGhoul1-feat4": [
+    "Shadowsteel Curser"
+   ],
+   "gx-lose-feat-feat4": [
+    "Strength"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tsdm": true,
+   "tvss": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "abilities.STR.bonus": {
+   "in": "Shadowsteel Ghoul"
+  }
+ }
+}

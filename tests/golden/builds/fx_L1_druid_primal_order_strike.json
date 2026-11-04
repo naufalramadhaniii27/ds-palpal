@@ -1,0 +1,66 @@
+{
+ "why": "Druid 15 Primal Strike 1d8 plus Improved 1d8 (2d8), Magician Arcana and Nature +1 (WIS mod 0, minimum +1), Druidic language.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Druid",
+  "sub": "Circle of the Land",
+  "level": 15,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "p7opt": "Primal Strike",
+   "p1opt": "Magician"
+  },
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tsdm": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Quarterstaff.xdice": {
+   "in": "Improved Elemental Fury"
+  },
+  "skills.Nature.misc": 1,
+  "lang": {
+   "in": "Druidic"
+  }
+ }
+}

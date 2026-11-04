@@ -1,0 +1,91 @@
+{
+ "why": "Ooze stages 1 to 4: Speed 30 - 5 x 4 = 10, vulnerable to Radiant, Acid immunity, Fire resistance, Ooze Form PB 5 + 1 = 6 uses.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 16,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Ooze Transformation: Stage 1"
+   },
+   "trOoze1-feat4": [
+    "Slimy Mien"
+   ],
+   "feat8": {
+    "feat": "Ooze Transformation: Stage 2"
+   },
+   "trOoze2-feat8": [
+    "Viscous Durability"
+   ],
+   "gx-vd-feat-feat8": [
+    "Fire"
+   ],
+   "feat12": {
+    "feat": "Ooze Transformation: Stage 3"
+   },
+   "trOoze3-feat12": [
+    "Engulf"
+   ],
+   "feat16": {
+    "feat": "Ooze Transformation: Stage 4"
+   },
+   "trOoze4-feat16": [
+    "Legion of Slime"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tsdm": true,
+   "tvss": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "speed": 10
+ },
+ "expectC": {
+  "defenses": {
+   "in": "Radiant"
+  },
+  "res.Ooze Form.max": 6,
+  "res.Legion of Slime.max": 1
+ }
+}
