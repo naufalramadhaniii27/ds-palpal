@@ -90,7 +90,7 @@ export function pk(p,src,cls,sub,pre){if(p.when){/* generic: the pick shows only
  if(p.k==="opt")return Object.assign(o,{t:"opt",list:p.list,title:p.title||p.list});
  if(p.k==="fs")return Object.assign(o,{t:"fs",title:"Additional Fighting Style"});
  if(p.k==="maneuver"){const mx=pkOthers(o.key,/maneuver$/);return Object.assign(o,{t:"multi",n:p.n,list:MANEUVERS.filter((x) =>{return !mx[x[0]]}),title:"Maneuvers",feature:"Combat Superiority"})}
- if(p.k==="metamagic"){const mm=pkOthers(o.key,/metamagic$/);return Object.assign(o,{t:"multi",n:p.n,list:METAMAGIC.filter((x) =>{return !mm[x[0]]}),title:"Metamagic",feature:"Metamagic"})} if(p.k==="invocation")return Object.assign(o,{t:"multi",n:p.n,list:INVOCATIONS,title:"Eldritch Invocations",minLvl:1});
+ if(p.k==="metamagic"){const mm=pkOthers(o.key,/metamagic$/);return Object.assign(o,{t:"multi",n:p.n,list:METAMAGIC.filter((x) =>{return !mm[x[0]]}),title:"Metamagic",feature:"Metamagic"})} if(p.k==="invocation"){const iv=pkOthers(o.key,/invocation$/);/* one invocation is not taken in two slots unless it says Repeatable */return Object.assign(o,{t:"multi",n:p.n,list:INVOCATIONS.filter((x) =>{return !iv[x[0]]||/Repeatable/i.test(x[1])}),title:"Eldritch Invocations",minLvl:1})}
  if(p.k==="pact")return Object.assign(o,{t:"multi",n:1,list:PACTB14,title:"Pact Boon",feature:"Pact Boon"});/* v90 */
  return o}
 /* v32 RL49: helpers of the new choices */

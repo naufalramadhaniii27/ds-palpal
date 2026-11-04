@@ -31,6 +31,17 @@ with sync_playwright() as p:
                 for i in items: s2[i] = s2.get(i, 0) + 1
                 for k, v in s2.items():
                     if v > 1: fails.append('%s L%d: feature %s/%s x%d' % (cl, lv, gname, k, v))
+    # regression cases from tests/invariants.py (fast): a subclass table that lists features twice, one invocation in two slots, a species with its own Creature Type
+    src = pg.evaluate("()=>{const s={core:true,dmg:true,efa:true};(window.WX&&window.WX.src||[]).forEach(x=>{s[x.id]=true});return s}")
+    for what, o in (('Prescient Knight L3', {'cls': 'Fighter', 'sub': 'Prescient Knight', 'lv': 3}), ('Warlock L10 invocations', {'cls': 'Warlock', 'lv': 10}), ('species Ankylier', {'cls': 'Fighter', 'lv': 1, 'sp': 'Ankylier'})):
+        o = dict({'sp': 'Human', 'bg': 'Acolyte', 'arr': [15, 14, 13, 12, 10, 8], 'b2': 0, 'b1': 0, 'sub': '', 'src': src, 'anySub': True}, **o)
+        feat = pg.evaluate("o=>{const r=window.__bldFuzz(o);return r.err?[['error',r.err]]:r.c.features.map(g=>[g.g,g.items.map(i=>i.n+' @'+(i.s||'')+(/Repeatable/i.test(i.d)?' R':''))])}", o); n += 1
+        for gname, items in feat:
+            if gname == 'error': fails.append('%s: %s' % (what, str(items)[:80])); continue
+            s2 = {}
+            for i in items: s2[i] = s2.get(i, 0) + 1
+            for k, v in s2.items():
+                if v > 1 and not k.endswith(' R'): fails.append('%s: %s/%s x%d' % (what, gname, k, v))
     b.close()
 print('dup_check %s (%d builds)' % ('FAIL' if fails else 'OK', n))
 for f in sorted(set(fails))[:40]: print('  -', f)
