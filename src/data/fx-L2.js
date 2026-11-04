@@ -69,8 +69,6 @@
 
  /* ---------- Scoped attack bonuses ---------- */
  add("Arcanist's Bowstaff",{n:"Arcanist's Bowstaff",atkAb:{kind:"Arcanist's Bowstaff",ab:"INT"}});
- add("Ancestral Laser Sword",{n:"Ancestral Laser Sword",atkBonus:[{when:["Laser Sword","Laser Greatsword"],atk:[[5,1],[11,2],[17,3]],dmg:[[5,1],[11,2],[17,3]]}]});   /* Upgraded Magic Item: character level 5, 11, 17 */
- add("Axe of the Mother Tree",{n:"Axe of the Mother Tree",atkBonus:[{when:["Battleaxe","Greataxe"],atk:[[5,1],[11,2],[17,3]],dmg:[[5,1],[11,2],[17,3]]}]});
  each([1,2,3],function(n){add("Arcane Carbine +"+n,{n:"Arcane Carbine",spDc:n})});   /* the spell attack bonus is already in the row */
  add("Scourge of Shadow",{n:"Scourge of Shadow",init:"CHA",initAdv:true,res:["Radiant","Necrotic"],atkBonus:[{when:"Scourge of Shadow",crit:18,note:"Damage is 3d4 Slashing instead of the whip's regular damage (3d6 on a critical hit)."}]});
  add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",atkBonus:[{when:"Ruby Rod of Asmodeus",note:"All damage dealt with the rod is converted to Necrotic."}]});
@@ -111,7 +109,6 @@
  add("Delver's Claws",{n:"Delver's Claws",sense:[["Blindsight",15,""]]});
  add("Belashyrra's Beholder Crown",{n:"Belashyrra's Beholder Crown",darkTo:120});
  add("Rogue's Mantle",{n:"Rogue's Mantle",darkNone:60,darkHave:{add:60}});
- add("Bloodscryer Oculus",{n:"Bloodscryer Oculus",advOn:["sight-based Wisdom (Perception) checks"]});
  add("Watchful Helm",{n:"Watchful Helm",advOn:["Wisdom (Perception) checks that rely on sight"]});
  add("Blackrazor",{n:"Blackrazor",sense:[["Blindsight",30,""]]});
  add("Axe of the Dwarvish Lords",{n:"Axe of the Dwarvish Lords",tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
@@ -132,6 +129,5 @@
  add("Crown of Whirling Comets",{n:"Star Flight",toggle:{id:"comets-flight",label:"Crown of Whirling Comets: Star Flight (10 minutes)"},mv:{fly:"speed"}});
  add("Amethyst Lodestone",{n:"Amethyst Lodestone",advOn:["Strength saving throws"]});
  add("Amethyst Lodestone",{n:"Flight",toggle:{id:"lodestone-flight",label:"Amethyst Lodestone: flight (10 minutes)"},mv:{fly:"speed"}});
- add("Battlechef's Splendid Saucepan",{n:"Saucepan Helmet",toggle:{id:"saucepan-helmet",label:"Battlechef's Splendid Saucepan: worn as a helmet"},acAdd:1,cond:"noHeavy"});
  add("Warrior's Passkey",{n:"Sword Form",toggle:{id:"passkey-sword",label:"Warrior's Passkey: sword form"},defs:[["Note","Sword form: magic longsword, you are proficient, +1 to attack and damage rolls, a hit deals an extra 1d10 Force damage"]]});
 })();

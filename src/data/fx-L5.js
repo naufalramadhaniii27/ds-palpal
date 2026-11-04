@@ -19,7 +19,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  var RIDER=function(n,d,t,note){reg(n);add(n,{n:n,atkDice:[{when:n,d:d,t:t,note:note}]})};
 
  /* ---------- shard 12 ---------- */
- reg("Necronomicon");add("Necronomicon",{n:"Ability scores",abUp:[["INT",2,24]],abDown:[["WIS",-2,3]],langs:["Void Speech"]});
  W("Necronomicon Ex Corvis",null);add("Necronomicon Ex Corvis",{n:"Abyssal Secrets",abUp:[["INT",2,30]],abDown:[["WIS",-1,1]]});
  reg("Nepenthe");add("Nepenthe",{n:"Nepenthe aura",toggle:{id:"nepenthe-drawn",label:"Holding the drawn Nepenthe (aura)",default:true},advOn:["saving throws against spells and other magical effects (you and friendly creatures in the aura)"]});
  add("Nether Scroll of Azumar",{n:"Nether Scroll of Azumar",abUp:[["INT",2,22]],advOn:["saving throws against spells and other magical effects"]});
@@ -116,7 +115,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  add("Shaarat'doovol, the Blade of Truth",{n:"Unyielding Duty",toggle:{id:"shaarat-favors",label:"The blade favors you"},sense:[["Truesight",90,""]],res:["Psychic"],condImm:["Charmed","Frightened"]});
  adv("Shadow Ward",["Dexterity (Stealth) checks"]);
  add("Shadowfell Brand Tattoo",{n:"Shadow Essence",darkNone:60,darkHave:{add:60},advOn:["Dexterity (Stealth) checks"]});
- add("Shagambi",{n:"Shagambi",extraAttack:2});
  W("Shard of Xeluan",{spellAtk:1,abil:["STR",4,22]});
  add("Shield Emitter",{n:"Shield Emitter",lu:{n:"Shield Emitter",max:1,reset:"dawn"}});
  add("Shield Module",{n:"Shield Module",lu:{n:"Shield (Shield Module)",max:1,reset:"long"},spells:[[1,"Shield"]]});

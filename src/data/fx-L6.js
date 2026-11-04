@@ -39,7 +39,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Thassa's Disciple",{n:"Thassa's Disciple",advOn:["saving throws against being Charmed or Restrained"]});
  add("Traction Spikes",{n:"Traction Spikes",advOn:["saving throws to avoid the Prone condition"],defs:[["Note","You ignore Difficult Terrain"]]});
  add("Ventilating Lungs",{n:"Ventilating Lungs",advOn:["saving throws against harmful gases (cloudkill, stinking cloud, inhaled poisons, gaseous breath weapons)"]});
- add("The Thorn of Kren",{n:"The Thorn of Kren",advOn:["Wisdom (Perception) and Wisdom (Survival) checks"],atkBonus:[{when:["unarmed","natural"],atk:2,dmg:2}]});
  FXO["The Thorn of Kren"]={fx:null};
  FXO["Amethyst Lodestone"]={fx:null};
  add("The Codicil of White",{n:"The Codicil of White",res:["Cold"]});

@@ -1,0 +1,68 @@
+{
+ "why": "Necronomicon: Intelligence +2 (max 24) = 14, Wisdom -2 (min 3) = 8, Void Speech",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Necronomicon",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.INT": 2,
+  "D:mod.WIS": -1
+ },
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Void Speech"
+  }
+ ]
+}

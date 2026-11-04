@@ -58,5 +58,8 @@
    "path": "moves",
    "in": "\"v\": 30"
   }
- ]
+ ],
+ "fxT": {
+  "cogwork-wings": true
+ }
 }

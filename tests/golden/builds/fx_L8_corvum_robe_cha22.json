@@ -1,0 +1,66 @@
+{
+ "why": "Corvum Feather Robe: the chosen ability (Charisma) becomes 22 (modifier +6); +1 to saves",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "gx-a-item-Corvum Feather Robe": [
+    "Charisma"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Corvum Feather Robe",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.CHA": 6
+ },
+ "expectC": []
+}

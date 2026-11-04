@@ -114,5 +114,8 @@
   "defenses": {
    "in": "Piercing"
   }
+ },
+ "fxT": {
+  "iron-elixir": true
  }
 }

@@ -22,7 +22,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Festerwood Vizard",{n:"Festerwood Vizard",sense:[["Blindsight",10,""]]});
  add("Fin Symbiote",{n:"Fin Symbiote",advOn:["Constitution saving throws"]});
  add("Ghallanda Cauldron",{n:"Ghallanda Cauldron",advOn:["ability checks with Cook's Utensils"]});
- add("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"]});
  add("Greater Silver Sword",{n:"Greater Silver Sword",advOn:["Intelligence, Wisdom and Charisma saving throws (while held)"]});
  add("Helm of Perfect Potential",{n:"Master of Guile",advOn:["Charisma (Deception) checks","Wisdom (Insight) checks"]});
  add("Helm of Telepathy",{n:"Helm of Telepathy",sense:[["Telepathy",30,""]]});
@@ -125,7 +124,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Nangnang",{n:"Nangnang",mv:{climb:"speed"}});
  add("Flesh of Dendallen",{n:"Flesh of Dendallen",vul:["Radiant"]});
  add("Infernal Plate Armor",{n:"Infernal Plate Armor",vul:["Force","Lightning","Psychic","Radiant","Thunder"]});
- add("Iron Elixir",{n:"Iron Elixir",res:["Bludgeoning","Piercing","Slashing"],speedAdd:-10,defs:[["Note","Damage threshold 5. Disadvantage on Dexterity saving throws and checks that nothing can cancel."]]});
+ add("Iron Elixir",{n:"Iron Elixir",toggle:{id:"iron-elixir",label:"Iron Elixir drunk",default:false},res:["Bludgeoning","Piercing","Slashing"],speedAdd:-10,defs:[["Note","Damage threshold 5. Disadvantage on Dexterity saving throws and checks that nothing can cancel."]]});
  add("Helm of Underwater Action",{n:"Helm of Underwater Action",darkTo:60});
  /* Scores */
  add("I'jin",{n:"I'jin",abSet:[["DEX",23]]});

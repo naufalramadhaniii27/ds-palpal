@@ -29,7 +29,7 @@
  add("Charm of Dhakaan",{langs:["Goblin"]});
  add("Charm of Xen'drik",{langs:["Giant"]});
  add("Dragon Queen's Will",{langs:["Draconic"],saveBonusAb:[["WIS",4]]});
- ["Dragon Tamer Lance","Dragon's Call","Dragon-Kindled Edge","Draconic Longsword"].forEach(function(n){add(n,{langs:["Draconic"]})});
+ ["Dragon's Call","Draconic Longsword"].forEach(function(n){add(n,{langs:["Draconic"]})});
  add("Drown",{langs:["Aquan"],atkDice:[{when:"Drown",d:"1d8",t:"Cold"}]});
  add("Earworm",{langs:["Deep Speech"]});
  add("Efreeti Chain",{langs:["Primordial"]});
@@ -68,7 +68,6 @@
 
  /* Resistances, immunities, vulnerabilities, skills */
  add("Boon of Resilience",{def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical weapons"]});
- add("Bracelet of Rock Magic",{condImm:["Petrified"]});
  add("Crown of Horns",{imm:["Necrotic"]});
  add("Claw of the Wyrm Rune",{def:["Resistance","Damage from any dragon's breath weapon (while the claw is displayed on your person)"]});
  add("Dark Gift of Savnok the Inscrutable",{imm:["Psychic"],condImm:["Charmed"],defs:[["Immunity","Effects that sense your emotions or read your thoughts, and Divination spells (Mind Blank)"]]});
@@ -84,7 +83,6 @@
  add("Exo-Frame",{weapons:["Battlefist"]});
 
  /* Resources */
- add("Brambleheart Quiver",{lu:{n:"Thorned Arrows",max:4,reset:"dawn",tag:"Regrow 1d3 + 1 at dawn"}});
  add("Breathing Bubble",{lu:{n:"Breathable air (minutes)",max:60,reset:"dawn"}});
  add("Ceratopper",{lu:{n:"Polymorph (Triceratops)",max:1,reset:"none",tag:"Not again for 2 days"}});
  add("Ephara's Devotee",{lu:{n:"Comprehend Languages",max:"mod:INT",reset:"long"}});
@@ -100,8 +98,8 @@
  FXO["Cogwork Wings"]={fx:null};
  var CW="gx-w-item-Cogwork Wings";
  add("Cogwork Wings",{n:"Wings in motion",pick:[{k:"w",t:"multi",n:1,title:"Your total weight with gear",list:[["Under 150 lb",""],["150 to 250 lb",""],["Over 250 lb",""]]}],lu:{n:"Flight time (minutes)",max:60,reset:"none",tag:"Regains 10 minutes per 4 hours not in use"}});
- add("Cogwork Wings",{n:"Wings in motion (under 150 lb)",when:{key:CW,val:"Under 150 lb"},mv:{fly:60}});
- add("Cogwork Wings",{n:"Wings in motion (150 to 250 lb)",when:{key:CW,val:"150 to 250 lb"},mv:{fly:30}});
+ add("Cogwork Wings",{n:"Wings in motion (under 150 lb)",when:{key:CW,val:"Under 150 lb"},toggle:{id:"cogwork-wings",label:"Cogwork Wings flapping (1 hour total flight)",default:false},mv:{fly:60}});
+ add("Cogwork Wings",{n:"Wings in motion (150 to 250 lb)",when:{key:CW,val:"150 to 250 lb"},toggle:{id:"cogwork-wings",label:"Cogwork Wings flapping (1 hour total flight)",default:false},mv:{fly:30}});
 
  /* Fixed save DCs on cast-from-item spells */
  dc("Boon of the Fire Soul",15);dc("Boon of the Stormborn",15);

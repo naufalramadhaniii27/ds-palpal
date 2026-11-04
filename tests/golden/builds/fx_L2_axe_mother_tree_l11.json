@@ -1,5 +1,5 @@
 {
- "why": "Axe of the Mother Tree: +2 at character level 11.",
+ "why": "Axe of the Mother Tree: +2 at character level 11. (fx-int: the item itself is the Battleaxe row, fx-L8 base alias)",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -44,16 +44,11 @@
     "n": "Axe of the Mother Tree",
     "q": 1,
     "eq": true
-   },
-   {
-    "n": "Battleaxe",
-    "q": 1,
-    "eq": true
    }
   ]
  },
  "expect": {},
  "expectC": {
-  "attacks.Battleaxe.misc": 2
+  "attacks.Axe of the Mother Tree.misc": 2
  }
 }
