@@ -41,7 +41,7 @@
  add("Arcanist's Bestiary",{n:"Extensive Knowledge",pick:[{k:"sk",t:"skills",n:1,title:"Skill",from:["Arcana","History","Nature","Religion"]}]});
 
  /* Armor-like items without a base armor row */
- add("Exo-Frame",{n:"Exo-Frame",acBase:[18,""],acOver:true,advOn:["Strength checks","Strength saving throws"]});
+ add("Exo-Frame",{n:"Exo-Frame",acBase:[18,""],acOver:true,size:"Large",advOn:["Strength checks","Strength saving throws"]});
  add("Titan Armor",{n:"Titan Armor",acBase:[17,""],acOver:true});
  add("Spellwoven Robe",{n:"Spellwoven Robe",acBase:[10,"","cast"]});
 })();

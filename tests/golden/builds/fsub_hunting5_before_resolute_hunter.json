@@ -1,0 +1,48 @@
+{
+ "why": "Hunting Domain 5: Resolute Hunter comes at 6, so no Survival or recall Advantage notes and no language yet.",
+ "build": {
+  "name": "fsub_hunting5_before_resolute_hunter",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Hunting Domain",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:defenses.0.s": "Forest Master",
+  "C:defenses.1": null
+ }
+}

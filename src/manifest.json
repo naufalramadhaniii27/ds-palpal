@@ -665,7 +665,8 @@
    "files": [
     "data/hbpack-builtin-homebrew.js",
     "data/fx-A-class-species.js",
-    "data/fx-B1-subclass.js"
+    "data/fx-B1-subclass.js",
+    "data/fx-F-sub.js"
    ]
   },
   {
