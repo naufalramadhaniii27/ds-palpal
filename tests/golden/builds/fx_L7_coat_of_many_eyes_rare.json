@@ -1,0 +1,58 @@
+{
+ "why": "Coat of Many Eyes (Rare): +1 AC (studded leather 12+2+1 = 15), darkvision 120, sees invisible to 120 ft.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Coat of Many Eyes (Rare)",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 15
+ },
+ "expectC": {
+  "darkvision": 120,
+  "senses.See Invisible.v": 120
+ }
+}

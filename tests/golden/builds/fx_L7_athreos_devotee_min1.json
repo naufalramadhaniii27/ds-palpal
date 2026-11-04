@@ -1,0 +1,55 @@
+{
+ "why": "Athreos's Devotee: Wisdom modifier uses, minimum once. WIS 10 = +0 gives 1.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "mot": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Athreos's Devotee",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "res.Gentle Repose.max": 1
+ }
+}
