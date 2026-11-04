@@ -1,0 +1,62 @@
+{
+ "why": "Keeper of History: proficiency (not Expertise) when not yet proficient",
+ "build": {
+  "name": "P",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Bard",
+  "sub": "College of the Dirge Singer",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 14,
+   "CHA": 10
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tkdm": true,
+   "efa": true,
+   "tdcsr": true,
+   "tdcg": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 14,
+   "CHA": 10
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "skills.History.p": 1,
+  "skills.Performance.p": 1
+ }
+}

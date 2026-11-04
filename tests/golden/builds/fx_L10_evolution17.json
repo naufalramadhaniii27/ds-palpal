@@ -1,0 +1,61 @@
+{
+ "why": "High Evolutionary: +2 to every score (STR 17 to 19 = mod 4, CHA 10 to 12 = mod 1)",
+ "build": {
+  "name": "P",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Evolution Domain",
+  "level": 17,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 14,
+   "CHA": 10
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tkdm": true,
+   "efa": true,
+   "tdcsr": true,
+   "tdcg": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 14,
+   "CHA": 10
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:mod.STR": 4,
+  "D:mod.CHA": 1
+ }
+}
