@@ -1,0 +1,69 @@
+{
+ "why": "Staff of the Forgotten One: proficiency bonus doubled on Arcana and History (Sage proficient in both)",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Sage",
+  "bgMode": "21",
+  "bg2": "INT",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Staff of the Forgotten One",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "skills.Arcana.p",
+   "eq": 2
+  },
+  {
+   "path": "skills.History.p",
+   "eq": 2
+  }
+ ]
+}

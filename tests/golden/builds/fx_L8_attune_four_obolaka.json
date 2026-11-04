@@ -1,0 +1,88 @@
+{
+ "why": "Four attuned items fit with Obo'laka (limit 4)",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Jora Charm",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Rod of Wild Dominion",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Fin Symbiote",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Cloak of the Stygian Bat",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Obo'laka",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Note",
+    "v": "Advantage on Wisdom (Perception) checks that rely on hearing"
+   }
+  }
+ ]
+}
