@@ -1,0 +1,53 @@
+{
+ "why": "Athlete: Climb Speed equal to Speed (30 ft.). Before: no Climb Speed.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Athlete",
+    "a1": "STR"
+   }
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "moves": {
+   "in": "Athlete"
+  }
+ },
+ "expect": {}
+}

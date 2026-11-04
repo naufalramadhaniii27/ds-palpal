@@ -1,0 +1,66 @@
+{
+ "why": "Nether Scroll of Azumar: Intelligence +2 to a maximum of 22, advantage on saves against spells and other magical effects. INT 21 gains only 1.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 21,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 21,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Nether Scroll of Azumar",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.INT": 6
+ },
+ "expectC": [
+  {
+   "path": "abilities.INT.bonus",
+   "has": {
+    "v": 1
+   }
+  },
+  {
+   "path": "saveNotes",
+   "in": "against spells and other magical effects"
+  }
+ ]
+}

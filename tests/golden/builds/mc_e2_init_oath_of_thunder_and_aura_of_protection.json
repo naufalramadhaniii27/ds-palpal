@@ -1,0 +1,61 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Fighter 4 + Paladin 7 (Oath of Thunder), level 11, PB 2+(11-1)//4 = 4. Aura of Alacrity (Paladin 7) adds the proficiency bonus of the whole character (4) to Initiative: DEX 2 + 4 = 6. Aura of Protection (Paladin 6+) adds the CHA modifier (minimum +1; CHA is -1, so +1) to all saves: STR 3+4+1 = 8, CON 2+4+1 = 7, DEX 2+1 = 3, INT 1+1 = 2, WIS 0+1 = 1, CHA -1+1 = 0. HP: Fighter 12 + 3x8 = 36, Paladin d10 7x(6+2) = 56, total 92.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 4,
+  "mc": [
+   {
+    "cls": "Paladin",
+    "sub": "Oath of Thunder",
+    "lv": 7
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "init": 6,
+  "pb": 4,
+  "hpmax": 92,
+  "D:save.STR": 8,
+  "D:save.CON": 7,
+  "D:save.DEX": 3,
+  "D:save.INT": 2,
+  "D:save.WIS": 1,
+  "D:save.CHA": 0
+ }
+}

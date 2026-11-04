@@ -1,0 +1,62 @@
+{
+ "why": "Black Dragon Mask: Resistance to acid, darkvision 60, speaks Draconic, Legendary Resistance 1 per day.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Black Dragon Mask",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "defenses": {
+   "in": "Acid"
+  },
+  "darkvision": 60,
+  "lang": {
+   "in": "Draconic"
+  },
+  "res.Legendary Resistance.max": 1
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "why": "Gifts: Votary advantage against Poisoned and immunity to disease (Pharika), advantage against being knocked prone (Purphoros), Papazotl cannot be surprised and has advantage on Wisdom checks.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Nylea's Votary",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Pharika's Votary",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Purphoros's Votary",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Papazotl",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "saveNotes",
+   "in": "against the Poisoned condition"
+  },
+  {
+   "path": "saveNotes",
+   "in": "knocked prone"
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Immunity",
+    "v": "Disease"
+   }
+  },
+  {
+   "path": "defenses",
+   "in": "Cannot be surprised"
+  },
+  {
+   "path": "defenses",
+   "in": "Advantage on Wisdom checks"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "why": "Scores: STR 15+2 = 17, DEX 14, CON 14+1 = 15 (+2), INT 8, WIS 16 (+3), CHA 8. Barbarian 3 + Monk 3, level 6. Unarmored Defense of two classes does not add up; one applies. Barbarian: 10 + DEX 2 + CON 2 = 14. Monk: 10 + DEX 2 + WIS 3 = 15. Automatic = main class first = 14 (the builder card \"Armor Class without Armor\" offers the higher one). Speed: 30 + Monk Unarmored Movement 10 (Monk 3) = 40.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Barbarian",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Monk",
+    "sub": "",
+    "lv": 3
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "ac": 14,
+  "speed": 40
+ }
+}

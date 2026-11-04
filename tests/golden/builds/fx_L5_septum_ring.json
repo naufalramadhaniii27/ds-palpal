@@ -1,0 +1,70 @@
+{
+ "why": "Septum Ring of the Great Minotaur: Strength +2 (maximum 22), advantage on Strength checks, carrying capacity doubles. STR 18 + 2 (Soldier background) + 2 = 22 (+6).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 18,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 18,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Septum Ring of the Great Minotaur",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.STR": 6
+ },
+ "expectC": [
+  {
+   "path": "abilities.STR.bonus",
+   "has": {
+    "v": 2
+   }
+  },
+  {
+   "path": "carryBump",
+   "eq": true
+  },
+  {
+   "path": "defenses",
+   "in": "Advantage on Strength checks"
+  }
+ ]
+}

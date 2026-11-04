@@ -1,0 +1,52 @@
+{
+ "why": "Angelic Wrath: Conjure Celestial in spellbook",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Angelic Scribe",
+  "level": 14,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "has": {
+    "n": "Conjure Celestial"
+   }
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "why": "Specter stages 1 to 4: Haunting Flight fly 30 then Draining Flight 60, Ghastly Touch PB 5 + 1 = 6.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 16,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Specter Transformation: Stage 1"
+   },
+   "trSpecter1-feat4": [
+    "Ghastly Touch"
+   ],
+   "feat8": {
+    "feat": "Specter Transformation: Stage 2"
+   },
+   "trSpecter2-feat8": [
+    "Haunting Flight"
+   ],
+   "feat12": {
+    "feat": "Specter Transformation: Stage 3"
+   },
+   "trSpecter3-feat12": [
+    "Draining Flight"
+   ],
+   "feat16": {
+    "feat": "Specter Transformation: Stage 4"
+   },
+   "trSpecter4-feat16": [
+    "Possession"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tsdm": true,
+   "tvss": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "res.Ghastly Touch.max": 6,
+  "moves": {
+   "in": "Draining Flight"
+  }
+ }
+}

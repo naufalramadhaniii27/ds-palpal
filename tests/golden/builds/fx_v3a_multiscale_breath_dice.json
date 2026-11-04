@@ -1,0 +1,70 @@
+{
+ "why": "Multiscale Improved Breath Weapon: extra 1d10 shown as a Defenses note (no attack row)",
+ "build": {
+  "name": "fx_v3a_multiscale_breath_dice",
+  "species": "Dragonborn",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "CON",
+  "bg1": "STR",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Multiscale"
+   }
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "cSpecies": {
+   "name": "",
+   "speed": 30,
+   "dark": 0,
+   "size": "Medium"
+  },
+  "cSub": "",
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "+1d10"
+  }
+ ]
+}

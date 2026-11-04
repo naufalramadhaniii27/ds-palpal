@@ -1,0 +1,67 @@
+{
+ "why": "Tloques Berserker Battleaxe: +2 attack and damage, HP maximum +1 per level while attuned. 84 + 10 = 94, Battleaxe hit +9, 1d8+5.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tftyp": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Tloques' Berserker Battleaxe",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 12,
+  "hpmax": 94,
+  "atk": [
+   {
+    "hit": 7,
+    "dmg": "1+3",
+    "rg": 0
+   },
+   {
+    "hit": 9,
+    "dmg": "1d8+5",
+    "rg": 0
+   }
+  ]
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "why": "Vagabond Pugilist 17: Unarmed Strike die 1d12 (1d6 at 3, 1d8 at 5, 1d10 at 11, 1d12 at 17).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Vagabond",
+  "sub": "Pugilist",
+  "level": 17,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "attacks.Unarmed Strike.die",
+   "eq": "1d12"
+  }
+ ]
+}

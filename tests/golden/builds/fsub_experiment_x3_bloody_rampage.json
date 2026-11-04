@@ -1,0 +1,55 @@
+{
+ "why": "Experiment X Vagabond 3, Bloody Rampage: the maneuver learned (Rampage, or another one if Rampage is already known), stored and shown as Your choice. The Bloodied trigger is text only.",
+ "build": {
+  "name": "fsub_experiment_x3_bloody_rampage",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Vagabond",
+  "sub": "Experiment X",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-rampage-sub-Experiment X": [
+    "Whirlwind"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "features",
+   "in": "Your choice.** Whirlwind."
+  }
+ ]
+}

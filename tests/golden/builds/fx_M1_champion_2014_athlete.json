@@ -1,0 +1,67 @@
+{
+ "why": "Champion (2014) level 7, Remarkable Athlete: half PB rounded up (PB 3, so 2) to Strength, Dexterity and Constitution checks without proficiency. Acrobatics (DEX) +2, Athletics (proficient from Soldier) none.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion (2014)",
+  "level": 7,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghg": true,
+   "toa": true,
+   "tftyp": true,
+   "tkdm": true,
+   "thhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "skills.Acrobatics.misc",
+   "eq": 2
+  }
+ ]
+}

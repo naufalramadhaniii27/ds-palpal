@@ -1,0 +1,62 @@
+{
+ "why": "Snicker-Snack: proficiency with greatswords, Charisma for attack and damage. CHA 18 (+4) beats STR 17 (+3).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 18
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 18
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Snicker-Snack",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "attacks.Snicker-Snack.ab",
+   "eq": "CHA"
+  },
+  {
+   "path": "profSrc.weapons",
+   "in": "Greatsword"
+  }
+ ]
+}

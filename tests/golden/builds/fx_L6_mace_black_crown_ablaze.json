@@ -1,0 +1,64 @@
+{
+ "why": "Mace of the Black Crown (Exalted) ablaze: extra 3d6 fire (toggle), +3 attack and damage, resistance to poison and fire.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "egw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Mace of the Black Crown (Exalted)",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Mace of the Black Crown (Exalted).misc": 3,
+  "attacks.Mace of the Black Crown (Exalted).xdice": {
+   "in": "3d6"
+  },
+  "defenses": {
+   "in": "Fire"
+  }
+ },
+ "fxT": {
+  "black-crown-ablaze": true
+ }
+}

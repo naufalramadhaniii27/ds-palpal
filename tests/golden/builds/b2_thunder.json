@@ -1,0 +1,46 @@
+{
+ "why": "Oath of Thunder 7, Aura of Alacrity: add Proficiency Bonus (+3) to Initiative. Before: 2, after: 5. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Paladin",
+  "sub": "Oath of Thunder",
+  "level": 7,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "init": 5
+ }
+}

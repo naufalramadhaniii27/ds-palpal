@@ -47,6 +47,7 @@
     "css/26-fx-g-pack.css",
     "css/27-fx-k-pack.css",
     "css/28-connected-home-sheet.css",
+    "css/29-fx-toggles.css",
     "css/29-motion-off.css",
     "css/30-tap-44.css",
     "css/31-home-hero.css",
@@ -271,7 +272,8 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
    "close": "</script>",
    "files": [
-    "data/db3-phb-classes-b.js"
+    "data/db3-phb-classes-b.js",
+    "data/fx-B2-subclass.js"
    ]
   },
   {
@@ -580,7 +582,9 @@
     "data/tp12-tsgs.js",
     "data/tp13-tsdm.js",
     "data/tp14-tkdm.js",
-    "data/tp15-thhw.js"
+    "data/tp15-thhw.js",
+    "data/fx-C-feat.js",
+    "data/fx-E-feat.js"
    ]
   },
   {
@@ -660,7 +664,38 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
    "close": "</script>",
    "files": [
-    "data/hbpack-builtin-homebrew.js"
+    "data/hbpack-builtin-homebrew.js",
+    "data/fx-A-class-species.js",
+    "data/fx-B1-subclass.js",
+    "data/fx-F-sub.js",
+    "data/fx-G-engine.js",
+    "data/fx-H-audit.js",
+    "data/fx-L1.js",
+    "data/fx-L4.js",
+    "data/fx-L5.js",
+    "data/fx-L9.js",
+    "data/fx-L10.js",
+    "data/fx-L11.js",
+    "data/fx-L12.js",
+    "data/fx-L13.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
+   "close": "</script>",
+   "files": [
+    "data/fx-D-item.js",
+    "data/fx-L2.js",
+    "data/fx-L3.js",
+    "data/fx-L6.js",
+    "data/fx-L7.js",
+    "data/fx-L8.js",
+    "data/fx-M1.js"
    ]
   },
   {

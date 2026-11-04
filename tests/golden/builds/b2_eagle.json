@@ -1,0 +1,46 @@
+{
+ "why": "Eagle Banner 6, Vantage Point: Climb Speed equal to Speed. Before: none. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Vagabond",
+  "sub": "Eagle Banner",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:speedSrc": "~Climb Speed equal to your Speed"
+ }
+}

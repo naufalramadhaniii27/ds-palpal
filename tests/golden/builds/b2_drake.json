@@ -1,0 +1,54 @@
+{
+ "why": "Drake-Blooded 10, Spellcasting: two Sorcerer cantrips and one more at Warden level 10. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warden",
+  "sub": "Drake-Blooded",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-c-sub-Drake-Blooded": [
+    "Fire Bolt",
+    "True Strike"
+   ],
+   "gx-c10-sub-Drake-Blooded": [
+    "Ray of Frost"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:spells": "~Ray of Frost"
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Fighter 11 + Barbarian 5, level 16, PB 5. The sheet lists Extra Attack (Fighter 5), Two Extra Attacks (Fighter 11) and Extra Attack (Barbarian 5). Extra Attack from more than one class does not add up (PHB 2024, Multiclassing); Two Extra Attacks is the Fighter exception, so the Attack action gives 3 attacks, not 4 or 5. The count is shown by the sheet app (tests/fx_engine.py reads \"Attacks per Action\"). Here: the Attack action line mentions Extra Attack, and the three features are present.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 11,
+  "mc": [
+   {
+    "cls": "Barbarian",
+    "sub": "",
+    "lv": 5
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "pb": 5
+ },
+ "expectC": [
+  {
+   "path": "features",
+   "in": "\"n\": \"Extra Attack\", \"s\": \"PHB-2024, Fighter 5\""
+  },
+  {
+   "path": "features",
+   "in": "\"n\": \"Two Extra Attacks\", \"s\": \"PHB-2024, Fighter 11\""
+  },
+  {
+   "path": "features",
+   "in": "\"n\": \"Extra Attack\", \"s\": \"PHB-2024, Barbarian 5\""
+  },
+  {
+   "path": "actions.Attack.d",
+   "in": "per Extra Attack"
+  }
+ ]
+}

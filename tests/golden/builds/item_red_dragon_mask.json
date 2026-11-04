@@ -1,0 +1,68 @@
+{
+ "why": "Red Dragon Mask: resistance to fire damage, and Draconic Majesty adds the Charisma modifier to AC while wearing no armor (a Shield is fine). CHA 16 (+3): 10 + 2 DEX + 3 = 15, with Shield 17. The Fighter is a Champion 10, so the list also holds Remarkable Athlete (Advantage on Initiative rolls).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Red Dragon Mask",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 15
+ },
+ "expectC": {
+  "defenses": [
+   {
+    "t": "Note",
+    "v": "Advantage on Initiative rolls",
+    "s": "Remarkable Athlete (Champion 10)"
+   },
+   {
+    "t": "Resistance",
+    "v": "Fire",
+    "s": "Damage Absorption (Red Dragon Mask) (magic item, attuned)"
+   }
+  ]
+ }
+}

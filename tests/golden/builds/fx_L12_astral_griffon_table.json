@@ -1,0 +1,54 @@
+{
+ "why": "Warlock Astral Griffon 9: always prepared Legend Lore and Passwall at level 9 (book table), and Mordenkainen's Private Sanctum at 7.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warlock",
+  "sub": "Astral Griffon Patron",
+  "level": 9,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "Passwall"
+  },
+  {
+   "path": "spells",
+   "in": "Private Sanctum"
+  }
+ ]
+}

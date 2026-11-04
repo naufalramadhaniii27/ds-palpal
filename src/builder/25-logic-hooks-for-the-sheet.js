@@ -5,7 +5,7 @@ import {R14} from "./05-logic-choice-model-ruleset.js";
 import {RL14} from "./08-logic-2014-rules.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
-import {casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {fxtSet,casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -39,7 +39,7 @@ window.__bldSpInfo=function(){if(!bldMine())return null;const CP=casterParts();i
 /* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */
 window.__bldSpSet=function(n,cls,on,soft){if(!bldMine())return false;const L=spLists();if(((L[cls]||[]).indexOf(n)>=0)!==!!on)spToggle(n,cls);save();if(soft&&window.__sheetSoft)window.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 /* v25 RU38 no. 6: Hit Points fixed (average) or rolled, from Settings. m null: read */
-window.__bldRs=function(){return R14()};window.__bldSpCnt=function(){return casterParts().map((q) =>{const K=spInfoPart(q);return K&&{cls:q.cls,ct:K.ct,pr:K.pr,kn:K.kn,max:K.max}}).filter(Boolean)};window.__bldSpMsgs=function(){return spellCounts().map((m) =>{return m.m})};/* v92: test hooks */window.__rl14=function(){return RL14};window.__bldSpTest=function(n,o){snap();const s=JSON.parse(BASE.sp);if(o)s[n]=o;else delete s[n];BASE.sp=JSON.stringify(s);applyPacks()};/* v82 test hook */window.__bldMine=bldMine;/* v27 RU28 */
+window.__bldRs=function(){return R14()};window.__bldXl=function(){return casterParts().map((q) =>{return {cls:q.cls,list:q.list,ab:q.ab,xl:q.xl}})};/* fx engine v4 test hook: caster parts with their spell lists */window.__bldSpCnt=function(){return casterParts().map((q) =>{const K=spInfoPart(q);return K&&{cls:q.cls,ct:K.ct,pr:K.pr,kn:K.kn,max:K.max}}).filter(Boolean)};window.__bldSpMsgs=function(){return spellCounts().map((m) =>{return m.m})};/* v92: test hooks */window.__rl14=function(){return RL14};window.__bldSpTest=function(n,o){snap();const s=JSON.parse(BASE.sp);if(o)s[n]=o;else delete s[n];BASE.sp=JSON.stringify(s);applyPacks()};/* v82 test hook */window.__bldMine=bldMine;/* v27 RU28 */
 /* v32 RL49: every choice of the build with its state. Spell picks of the Spells tab come from spellCounts (key "spell:...") */
 function choiceList(){const cs=choices().map((c) =>{return {key:c.key,t:c.t,n:c.n||1,title:c.title,src:c.src,feature:c.feature||"",lvl:c.lvl,mc:c.mc,fk:c.fk||"",cats:c.cats||null,from:c.from&&c.from.length?(typeof c.from[0]==="string"?c.from:c.from.map((x) =>{return x[0]})):null,list:c.list&&typeof c.list!=="string"?c.list.map((x) =>{return Array.isArray(x)?x[0]:x}):c.list?(OPTS[c.list]||[]).map((x) =>{return x[0]}):null,done:isDone(c),step:choiceStep(c)}});
  spellCounts().forEach((x) =>{if(x.open)cs.push({key:"spell:"+(x.key||x.m),t:"spell",n:x.n||1,title:x.m,feature:x.f||"",done:false,step:"class"})});
@@ -60,6 +60,10 @@ window.__bldHpMode=function(m,soft){if(!bldMine())return null;if(m==null)return 
 window.__bldHas=function(name,owner){ensureInv();return own(owner)&&B.inv.some((x) =>{return x.n===name})};
 /* RL40: the sheet name was edited (Edit form). The saved build of the same character takes the new name */
 window.__bldRename=function(from,to){if(!to||B.name===to||!own(from)||savedRaw()==null)return false;B.name=to;save();return true};
+/* fx engine v3b: toggle fx. The sheet keeps the state in S.fxT {id:bool} and exposes it as window.__sheetState().fxT. This hook rebuilds the sheet of the saved build after a toggle changed. (id,on) may be given when S.fxT is not written yet. Returns false: not a builder-made sheet */
+window.__bldFxToggle=function(id,on){const st=window.__sheetState&&window.__sheetState();if(!st||!st.C||!own(st.C.name))return false;const m=Object.assign({},st.fxT||{});if(id!=null)m[id]=!!on;fxtSet(m);try{if(window.__sheetSoft)window.__sheetSoft(toSheet())}finally{fxtSet(null)}return true};
+/* Masterwork flag of an inventory row (B.inv[].mw, copied to C.inv[].mw). Counts for cond mwArmor while the armor is worn */
+window.__bldSetMw=function(name,occ,on){ensureInv();const i=invFind(name,occ);if(i<0)return false;if(on)B.inv[i].mw=1;else delete B.inv[i].mw;save();if(window.__sheetSoft)window.__sheetSoft(toSheet());return true};
 window.__bldEquip=function(){window.__bldOpen();go("equip")};
 /* v23 RU38 no. 4: Manage Proficiencies and Manage Feats open the builder at a step */
 window.__bldGo=function(s){window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)"))return;if(STEPS.some((x) =>{return x[0]===s}))go(s)};
@@ -85,9 +89,12 @@ applyPacks();render();
    (class, species, background, standard array order, level, subclass), fills the remaining choices the Quick Build way, and returns the build, the sheet
    object, the rule issues and the unfinished list. The open build is put back afterwards, nothing is saved */
 window.__bldLists=function(){const subs={};Object.keys(CLASSES).forEach((c) =>{subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter((c) =>{return CLASSES[c]}),sp:Object.keys(SPECIES).filter((s) =>{return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter((b) =>{return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort((a,b) =>{return b-a})}};
-window.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
+/* test hook (tests/mech_scan.py, tests/audit_logic.py): every rules table with all sources on, as plain JSON. Read only, the open build is put back */
+window.__bldData=function(){const b=structuredClone(BLANK);b.name="Data";b.cls="Fighter";b.level=1;b.src={core:true,dmg:true,efa:true};(window.WX&&window.WX.src||[]).forEach((x) =>{b.src[x.id]=true});
+ return withB(b,() =>{const J=function(o){return JSON.parse(JSON.stringify(o===undefined?null:o))};return {classes:J(CLASSES),cf:J(typeof CF_FULL!=="undefined"?CF_FULL:{}),sub:J(typeof SUB_FULL!=="undefined"?SUB_FULL:{}),feats:J(FEATS),species:J(SPECIES),bgs:J(BACKGROUNDS),dmgi:J(DMGI),wxi:J(window.WXI||{}),auto:J(typeof AUTO!=="undefined"?AUTO:{}),lu:J(typeof LU_X!=="undefined"?LU_X:[]),acts:J(typeof ACTS!=="undefined"?ACTS:{}),saveNotes:J(typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]),clsAuto:J(typeof CLS_AUTO!=="undefined"?CLS_AUTO:{}),spAuto:J(typeof SP_AUTO!=="undefined"?SP_AUTO:{}),subGrant:J(typeof SUB_GRANT!=="undefined"?SUB_GRANT:{}),wxs:J(window.WXS||[]).map(function(x){delete x.arr;delete x.full;return x}),srcOf:(function(){const o={species:{},feats:{},items:{},cls:{}};(window.WX&&window.WX.src||[]).forEach((x) =>{(x.species||[]).forEach((n) =>{o.species[n]=x.id});(x.feats||[]).forEach((n) =>{o.feats[n]=x.id});(x.items||[]).forEach((n) =>{o.items[n]=x.id})});Object.keys(window.WXC||{}).forEach((n) =>{o.cls[n]=window.WXC[n].book});return o})()}})};
+window.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];if(o.src)B.src=Object.assign({},B.src,o.src);/* tests/invariants.py: extra sources */applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
   const bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
-  B.level=o.lv;if(o.sub&&o.lv>=3)B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
+  B.level=o.lv;if(o.sub&&(o.lv>=3||o.anySub))B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
   out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
 window.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
 /* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */

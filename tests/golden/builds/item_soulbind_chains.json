@@ -1,0 +1,56 @@
+{
+ "why": "+2 Soulbind Chains: +2 to spell attack rolls and to the save DC of Summoner spells. Summoner 5, INT 10: DC 11 -> 13, attack +3 -> +5.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Summoner",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 8,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 10,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tssm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 8,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 10,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "+2 Soulbind Chains",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "spellcasting.dc": 13,
+  "spellcasting.atk": 5
+ }
+}

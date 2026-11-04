@@ -1,0 +1,58 @@
+{
+ "why": "byOk ignores case: the row says attunement by 'a cleric or paladin' (lower case), so a Cleric gets the +1 spell save DC and spell attack of the +1 Fate Dealer's Deck. Cleric 5, WIS 16 (+3), PB 3: DC 8+3+3+1 = 15.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "+1 Fate Dealer's Deck",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spellcasting.dc",
+   "eq": 15
+  }
+ ]
+}

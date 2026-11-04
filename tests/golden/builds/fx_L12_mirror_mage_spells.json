@@ -1,0 +1,58 @@
+{
+ "why": "Summoner Mirror Mage 17: always prepared Mirror Spells table (Misty Step at 5, Counterspell at 9, Circle of Power at 17).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Summoner",
+  "sub": "Bond of the Mirror Mage",
+  "level": 17,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tssm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "Circle of Power"
+  },
+  {
+   "path": "spells",
+   "in": "Counterspell"
+  },
+  {
+   "path": "spells",
+   "in": "Misty Step"
+  }
+ ]
+}

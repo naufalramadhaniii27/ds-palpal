@@ -1,0 +1,73 @@
+{
+ "why": "Toymaker 20, Clockwork Lich [Lichdom]: Construct body and three spell immunities (defenses lines, spells chosen when the body is built). The six condition immunities are in b2_toymaker. (v3a: the three spells are now a typed text pick, not a placeholder line.)",
+ "build": {
+  "name": "fsub_toymaker20_clockwork_lich",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Necromancer",
+  "sub": "Toymaker",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-spimm-sub-Toymaker": "Shield, Counterspell, Fireball"
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Immunity",
+    "v": "Spells: Shield, Counterspell, Fireball",
+    "s": "Clockwork Lich [Lichdom] (Toymaker 20)"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Note",
+    "v": "Your type is Construct instead of Undead (Clockwork Body)",
+    "s": "Clockwork Lich [Lichdom] (Toymaker 20)"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Immunity",
+    "v": "Conditions: Blinded, Charmed, Deafened, Frightened, Paralyzed, Stunned",
+    "s": "Clockwork Lich (Toymaker 20)"
+   }
+  }
+ ]
+}

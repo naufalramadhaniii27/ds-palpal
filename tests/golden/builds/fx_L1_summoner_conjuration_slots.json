@@ -1,0 +1,58 @@
+{
+ "why": "Summoner 5: two Conjuration Expert slot rows.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Summoner",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tsdm": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "res.Conjuration Expert slot (lower).max": 1,
+  "res.Conjuration Expert slot (higher).max": 1
+ }
+}

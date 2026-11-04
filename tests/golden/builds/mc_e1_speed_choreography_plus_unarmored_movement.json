@@ -1,0 +1,56 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Bard 6 (College of Choreography) + Monk 2, level 8, PB 3. Speed 30 + Fast Movement (Choreography: +15 ft total at Bard level 6) + Unarmored Movement (Monk 2: +10 ft, no armor or Shield) = 55. The two features have different names, so they add up. AC: Monk Unarmored Defense (second class) 10 + DEX 2 + WIS 0 = 12. HP: Bard d8 level 1 = 8+2 = 10, levels 2-6 = 5x(5+2) = 35, Monk 2x7 = 14, total 59.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Bard",
+  "sub": "College of Choreography",
+  "level": 6,
+  "mc": [
+   {
+    "cls": "Monk",
+    "sub": "",
+    "lv": 2
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "speed": 55,
+  "ac": 12,
+  "hpmax": 59,
+  "pb": 3
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "why": "Aura of Tenacity: add WIS modifier (min +1) to Initiative. DEX 2 + WIS 2 = 4",
+ "build": {
+  "name": "b1_martyr_revolution6_init",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "CON",
+  "bg1": "STR",
+  "cls": "Martyr",
+  "sub": "Burden of Revolution",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "cSpecies": {
+   "name": "",
+   "speed": 30,
+   "dark": 0,
+   "size": "Medium"
+  },
+  "cSub": "",
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "init": 4
+ }
+}

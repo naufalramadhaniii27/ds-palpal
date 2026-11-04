@@ -1,0 +1,56 @@
+{
+ "why": "Druidic Warrior: two Druid cantrips as Ranger spells.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Ranger",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Druidic Warrior"
+   },
+   "gx-c-feat-feat4": [
+    "Guidance",
+    "Starry Wisp"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "spells": {
+   "in": "Starry Wisp"
+  }
+ },
+ "expect": {}
+}

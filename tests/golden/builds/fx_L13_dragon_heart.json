@@ -1,0 +1,50 @@
+{
+ "why": "Invoke Dragon heart on: Mask AC +INT 3; Wings Speed +10 and Fly = Speed; Heart WIS/CHA saves +INT 3 (WIS 0+3, CHA 2+3); Tail immune to Grappled (WIS save 0 + PB 3 (Wizard proficiency) + INT 3 = 6)",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Dragon Mage",
+  "level": 6,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:save.WIS": 6,
+  "D:save.CHA": 5
+ },
+ "fxT": {
+  "dragon-heart": true
+ }
+}

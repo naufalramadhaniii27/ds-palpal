@@ -1,0 +1,61 @@
+{
+ "why": "Craftsman 5, Chain Mail with the Masterwork flag (mw) counts like the name \", Masterwork\": AC 16 + 1 = 17",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Craftsman",
+  "sub": "Armigers' Guild",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Chain Mail",
+    "q": 1,
+    "eq": true,
+    "mw": 1
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17
+ }
+}

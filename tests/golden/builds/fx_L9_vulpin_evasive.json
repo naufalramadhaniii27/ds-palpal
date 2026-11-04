@@ -1,0 +1,55 @@
+{
+ "why": "Vulpin Evasive: add INT modifier (+1) to DEX saves. DEX 14 modifier +2, +1 = 3.",
+ "build": {
+  "name": "fx_L9",
+  "species": "Vulpin",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:save.DEX": 3
+ }
+}

@@ -1,0 +1,88 @@
+{
+ "why": "Hunting Domain 16, Resolute Hunter: favored enemy at 6, more at 10 and 16 (stored picks), a language each (optional pick, counted), Advantage on Wisdom (Survival) tracking and Intelligence recall checks (Note lines).",
+ "build": {
+  "name": "fsub_hunting16_resolute_hunter",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Hunting Domain",
+  "level": 16,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-fe1-sub-Hunting Domain": [
+    "Undead"
+   ],
+   "gx-fl1-sub-Hunting Domain": [
+    "Elvish"
+   ],
+   "gx-fe2-sub-Hunting Domain": [
+    "Fiends"
+   ],
+   "gx-fl2-sub-Hunting Domain": [
+    "Dwarvish"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Elvish"
+  },
+  {
+   "path": "lang",
+   "in": "Dwarvish"
+  },
+  {
+   "path": "features",
+   "in": "Your choice.** Undead"
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Note",
+    "v": "Advantage on Wisdom (Survival) checks to track your favored enemies",
+    "s": "Resolute Hunter (Hunting Domain 16)"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Note",
+    "v": "Advantage on Intelligence checks to recall information about your favored enemies",
+    "s": "Resolute Hunter (Hunting Domain 16)"
+   }
+  }
+ ]
+}

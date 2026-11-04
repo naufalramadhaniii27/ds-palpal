@@ -1,0 +1,63 @@
+{
+ "why": "Aquanaut: Swim Speed equal to Speed (30).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Aquanaut"
+   }
+  },
+  "src": {
+   "core": true,
+   "tsdm": true,
+   "tvss": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "moves": {
+   "in": "swim"
+  }
+ }
+}

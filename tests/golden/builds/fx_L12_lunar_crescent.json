@@ -1,0 +1,58 @@
+{
+ "why": "Lunar Sorcery 14, Crescent Moon phase: Resistance to Necrotic and Radiant (Lunar Empowerment). Waxing and Waning at 6 gives 3 free spells (one per phase).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Sorcerer",
+  "sub": "Lunar Sorcery",
+  "level": 14,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "p3opt": [
+    "Crescent Moon"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dsotdq": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "Radiant"
+  },
+  {
+   "path": "res.Waxing and Waning: free spells.max",
+   "eq": 3
+  }
+ ]
+}

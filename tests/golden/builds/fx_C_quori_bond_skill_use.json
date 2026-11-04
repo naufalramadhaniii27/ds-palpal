@@ -1,0 +1,59 @@
+{
+ "why": "Quori Bond, Kalaraq: 1d4 on Perception checks and a once per long rest spell use (the spell itself already worked).",
+ "build": {
+  "name": "Golden",
+  "species": "Kalashtar",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Quori Bond",
+    "a1": "WIS"
+   },
+   "pkq1-feat4": [
+    "Mind Spike"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expectC": {
+  "defenses": {
+   "in": "Add 1d4 to Perception checks"
+  },
+  "res": {
+   "in": "Quori Bond spell"
+  }
+ },
+ "expect": {}
+}

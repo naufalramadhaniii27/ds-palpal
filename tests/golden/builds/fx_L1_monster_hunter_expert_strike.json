@@ -1,0 +1,66 @@
+{
+ "why": "Monster Hunter 6: Intelligence modifier (+1 at INT 12) added to attack and damage of weapons and Unarmed Strike; Beast grimoire gives Sylvan.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Monster Hunter",
+  "sub": "",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "monsterhunter0_1": [
+    "Beast",
+    "Fiend"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tsdm": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Longsword.misc": 1,
+  "attacks.Longsword.dmgBonus": 1,
+  "lang": {
+   "in": "Sylvan"
+  }
+ }
+}

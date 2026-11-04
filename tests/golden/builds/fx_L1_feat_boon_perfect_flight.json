@@ -1,0 +1,63 @@
+{
+ "why": "Boon of Perfect Flight: Fly 40 ft.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Boon of Perfect Flight"
+   }
+  },
+  "src": {
+   "core": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "moves": {
+   "in": "fly"
+  }
+ }
+}

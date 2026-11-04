@@ -1,0 +1,54 @@
+{
+ "why": "Spellwoven Robe: with no armor, base AC 10 + spellcasting ability modifier. Wizard 10, INT 18 (+4), DEX 8 (-1): 14 instead of 9.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 10,
+  "base": {
+   "STR": 8,
+   "DEX": 8,
+   "CON": 13,
+   "INT": 18,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 8,
+   "DEX": 8,
+   "CON": 13,
+   "INT": 18,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Spellwoven Robe",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 14
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "why": "Vampire Stage 1, Strigoi Bloodline on a Criminal (Stealth already known): DEX 14 + 2 (background) + 2 (bloodline) = 18, and Stealth becomes Expertise (p=2).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Criminal",
+  "bgMode": "21",
+  "bg2": "DEX",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Vampire Transformation: Stage 1"
+   },
+   "trVampire1-feat4": [
+    "Strigoi Bloodline"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.DEX": 18
+ },
+ "expectC": {
+  "skills.Stealth.p": 2
+ }
+}

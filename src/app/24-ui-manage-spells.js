@@ -21,10 +21,10 @@ function spmRec(n){ if(typeof SPELLS==="undefined") return null; for(let i=0;i<S
 function spmMode(){ let I=null, d=[]; try{ I=window.__bldSpInfo?window.__bldSpInfo():null; }catch(er){ I=null; }
   if(I){ try{ d=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ d=[]; } } return {b:!!I&&!d.length, I:I}; }
 /* limits worked out from the sheet when there is no build: class levels (clsLabel), cantrips and prepared spells from the class tables */
-function isThird3(x){ return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"; }/* v101: the sheet script has no access to the builder helper of the same name, so a sheet without a build could not open Manage Spells */
+function isThird3(x){ if(window.THIRD_SUBS&&window.THIRD_SUBS[x]) return true; /* fx engine v4 */ return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"; }/* v101: the sheet script has no access to the builder helper of the same name, so a sheet without a build could not open Manage Spells */
 function spmLocal(){ const lv=__R.clsLvls(), out=[]; if(typeof CLASSES==="undefined") return out;
   Object.keys(lv).forEach((cls) =>{ const c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3; if(!c||!L||(!c.caster&&!third)) return;
-    let ct=0, pr=0, mx=0;    if(third){ ct=(/^Arcane Trickster/.test(C.sub)?3:2)+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+    let ct=0, pr=0, mx=0;    if(third){ ct=((window.THIRD_SUBS&&window.THIRD_SUBS[C.sub]&&window.THIRD_SUBS[C.sub].cant!=null)?window.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
     else { const cc=CANT[cls]; ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0; if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
       if(C.rs==="2014"){ if((cls==="Paladin"||cls==="Ranger")&&L<2) return; const q14=pr14(cls,L,(typeof D!=="undefined"&&D.mod&&D.mod[c.cast])||0); if(q14) pr=q14.pr; }/* v92 */
       mx=c.caster==="pact"?(PACT[L-1]||[0,0])[1]:(c.caster==="full"?SLOTS_FULL[L-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(L/2)-1]:SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }

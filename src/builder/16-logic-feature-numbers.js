@@ -3,14 +3,14 @@ import {un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
-import {clsParts} from "./11-logic-derivation.js";
+import {classFx,clsParts} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"calcNote",{get:function(){return calcNote;},set:function(v){calcNote=v;},configurable:true});
 Object.defineProperty(__R,"defenses",{get:function(){return defenses;},set:function(v){defenses=v;},configurable:true});
 /* ---------- level-based numbers for feature text ---------- */
-function calcNote(name,cls,L,a){const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)};
+function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=__R.fxv(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
  const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
  const T={
@@ -36,7 +36,7 @@ function calcNote(name,cls,L,a){const pb=pbOf(TL()),m=function(k){return mod(a.s
   "Clairvoyant Combatant":function(){return "Wisdom save DC "+dc("CHA")},
   "Combat Superiority":function(){return rv("Superiority Dice","Battle Master")+" Superiority Dice ("+(L>=18?"d12":L>=10?"d10":"d8")+"), save DC "+(8+pb+Math.max(m("STR"),m("DEX")))},
   "Psionic Power":function(){return rv("Psionic Energy Dice","Psi Warrior")+" Psionic Energy Dice"},
-  "Breath Weapon":function(){return "Dexterity save DC "+(8+pb+m("CON"))+", "+(L>=17?4:L>=11?3:L>=5?2:1)+"d10, "+pb+" uses"},
+  "Breath Weapon":function(){return "Dexterity save DC "+dc("CON")+", "+(L>=17?4:L>=11?3:L>=5?2:1)+"d10, "+pb+" uses"},
   "Healing Hands":function(){return pb+"d4 Hit Points"},
   "Relentless Rage":function(){return "Drops to "+(2*L)+" Hit Points on success"},
   "Divine Intervention":function(){return "Once per Long Rest"},
@@ -68,7 +68,6 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
   if(sub==="War Domain"&&lv>=17)add("Resistance","Bludgeoning, Piercing, Slashing","Avatar of Battle");
   if(sub==="Celestial Patron"&&lv>=6)add("Resistance","Radiant","Radiant Soul");
   if(sub==="Archfey Patron"&&lv>=10)add("Immunity","Charmed","Beguiling Defenses");
-  if(sub==="Circle of the Sea"&&lv>=10)add("Resistance","Cold, Lightning, Thunder","Stormborn");
   if(sub==="Circle of the Land"&&lv>=10)add("Immunity","Poisoned","Nature's Ward")}
  cl(B.cls,L,B.sub);MCL().forEach((m) =>{cl(m.cls,m.lv,m.sub)});
  /* v32 RL49 no. 38: a homebrew subclass choice with dres (Calon Arang: Immunity) adds each chosen type */
@@ -79,6 +78,7 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
  (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring of Resistance")add("Resistance","One type (set by the ring)","Ring of Resistance");if(/^Mithral|^Adamantine Armor/.test(x.n)&&/Adamantine/.test(x.n))add("Note","Critical Hits against you become normal hits","Adamantine Armor")});
  const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
  allFeats().forEach((f) =>{if(f.n==="Boon of Energy Resistance"){const bt=B.ch["ber-"+(f.key||f.s)];if(Array.isArray(bt)&&bt.length)bt.forEach((t) =>{add("Resistance",t,"Boon of Energy Resistance")});else add("Resistance","Two damage types, not chosen yet","Boon of Energy Resistance")}/* v32 RL49 no. 18 */if(f.n==="Heavy Armor Master")add("Note","Reduce Bludgeoning, Piercing, Slashing damage by your Proficiency Bonus in Heavy armor","Heavy Armor Master")});
+ __R.gfx().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */
  XFX.def(add);/* v62 */
  /* m5 (RL21): one line per type and value, sources joined in order. Class resources (Channel Divinity) are not touched */
  const out=[],at={};o.forEach((x) =>{const k=x.t+"|"+x.v;if(at[k]==null){at[k]=out.length;out.push({t:x.t,v:x.v,s:x.s})}else if((", "+out[at[k]].s+", ").indexOf(", "+x.s+", ")<0)out[at[k]].s+=", "+x.s});

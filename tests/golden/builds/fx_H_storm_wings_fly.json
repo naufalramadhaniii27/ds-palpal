@@ -1,0 +1,49 @@
+{
+ "why": "Warden Storm Sentinel 6, Storm Wings: Fly Speed equal to Speed (30 ft).",
+ "build": {
+  "name": "Golden H",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warden",
+  "sub": "Storm Sentinel",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "speed": 30
+ },
+ "expectC": {
+  "moves.fly.v": 30
+ }
+}

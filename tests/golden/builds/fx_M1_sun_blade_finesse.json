@@ -1,0 +1,81 @@
+{
+ "why": "Sun Blade: Radiant damage instead of Slashing, and Finesse. DEX 18 (+4) beats STR 12 (+1), so the attack uses Dexterity.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 10,
+   "DEX": 18,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghg": true,
+   "toa": true,
+   "tftyp": true,
+   "tkdm": true,
+   "thhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 18,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Sun Blade",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "attacks.Sun Blade.type",
+   "eq": "Radiant"
+  },
+  {
+   "path": "attacks.Sun Blade.ab",
+   "eq": "DEX"
+  },
+  {
+   "path": "attacks.Sun Blade.sub",
+   "in": "Finesse"
+  }
+ ]
+}

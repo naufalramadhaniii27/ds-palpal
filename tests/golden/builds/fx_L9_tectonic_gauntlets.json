@@ -1,0 +1,63 @@
+{
+ "why": "Tectonic Gauntlets curse: Speed drops by 5 (30 to 25), INT drops by 4 (12 to 8, minimum 7, modifier -1).",
+ "build": {
+  "name": "fx_L9",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Tectonic Gauntlets",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "speed": 25,
+  "D:mod.INT": -1
+ }
+}

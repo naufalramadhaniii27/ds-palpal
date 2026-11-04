@@ -1,0 +1,58 @@
+{
+ "why": "Hag Stage 1, Red Sisterhood on a Noble (Persuasion already known): Persuasion becomes Expertise (p=2), Deception proficiency (p=1), Darkvision 60 ft.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Noble",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CHA",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Hag Transformation: Stage 1"
+   },
+   "gx-hs-feat-feat4": [
+    "Strength"
+   ],
+   "trHag1-feat4": [
+    "The Red Sisterhood"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "skills.Persuasion.p": 2,
+  "skills.Deception.p": 1,
+  "darkvision": 60
+ }
+}

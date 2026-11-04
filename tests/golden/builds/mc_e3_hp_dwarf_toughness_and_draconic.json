@@ -1,0 +1,65 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Dwarf Fighter 3 + Sorcerer 4 (Draconic Sorcery), level 7. Dwarven Toughness: +1 HP per character level = 7. Draconic Resilience: +1 HP per Sorcerer level = 4 (+3 at level 3 and +1 for level 4). Base HP: Fighter level 1 = 10+2 = 12, levels 2-3 = 2x8 = 16, Sorcerer d6 4x(4+2) = 24, = 52. Total 52+7+4 = 63. Leather Armor 11+2 = 13 so no unarmored AC option competes.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Dwarf",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Sorcerer",
+    "sub": "Draconic Sorcery",
+    "lv": 4
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Leather Armor",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "hpmax": 63,
+  "ac": 13
+ },
+ "expectC": {
+  "hpBonus": {
+   "in": "Draconic Resilience"
+  }
+ }
+}

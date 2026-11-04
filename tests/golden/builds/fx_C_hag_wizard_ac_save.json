@@ -1,0 +1,68 @@
+{
+ "why": "Hag Transformation Stage 1 on a Wizard 8 with no armor: AC 13 + DEX 2 = 15, STR saving throw proficiency from the pick (3 + PB 3 = 6), Sea Sisterhood Swim Speed. Before: AC 12, STR save 3.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Hag Transformation: Stage 1"
+   },
+   "gx-hs-feat-feat4": [
+    "Strength"
+   ],
+   "trHag1-feat4": [
+    "The Sea Sisterhood"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "ac": 15,
+  "save": {
+   "STR": 6,
+   "DEX": 2,
+   "CON": 2,
+   "INT": 4,
+   "WIS": 3,
+   "CHA": -1
+  }
+ },
+ "expectC": {
+  "moves": {
+   "in": "swim"
+  }
+ }
+}

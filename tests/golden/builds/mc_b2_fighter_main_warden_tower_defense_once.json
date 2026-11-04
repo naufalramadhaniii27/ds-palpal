@@ -1,0 +1,72 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Fighter 2 + Warden 10 (Godsworn), level 12. The Warden is the second class: Tower Shield counts from the Warden level (10: +2). Both classes pick Defense; it counts once. AC: Plate 18 + Shield 2 + Tower Shield 2 + Defense 1 = 23 (not 24). HP: Fighter level 1 = 12, Fighter level 2 = 8, Warden 10x(6+2) = 80, total 100.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 2,
+  "mc": [
+   {
+    "cls": "Warden",
+    "sub": "Godsworn",
+    "lv": 10
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "fs1": "Defense",
+   "m0:fs": "Defense",
+   "m0:stand": [
+    "Tower Shield"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Plate Armor",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 23,
+  "hpmax": 100
+ }
+}

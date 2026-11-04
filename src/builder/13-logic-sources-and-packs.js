@@ -54,7 +54,7 @@ function spOptFx(){const sp=spX(),fx={};if(!sp)return fx;Object.keys(sp.fx||{}).
 function spHasFeat(){const sp=spX();return !!(sp&&(sp.featPick||spOptFx().feat))}
 /* always-prepared spells. Tables AUTO, LAND, CLS_AUTO, SP_AUTO are in db4.js (M17) */
 /* M9: k = source key for the spellcasting ability (class name, "@species", "@spcan"), see spellAb() */
-export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){const LL=lv||L;(tab||[]).forEach((r) =>{if(r[0]<=LL)r[1].split(",").forEach((n) =>{if(!out.some((o) =>{return o.n===n}))out.push({n:n,src:src,k:k,g:r[0]})/* v21 M1: level the spell is gained at */})})}
+export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){const LL=lv||L;(tab||[]).forEach((r) =>{if(r[0]<=LL)r[1].split(",").forEach((n) =>{n=n.trim();if(!n)return;/* fx engine v4: an empty placeholder like [[3,""]] adds nothing */if(!out.some((o) =>{return o.n===n}))out.push({n:n,src:src,k:k,g:r[0]})/* v21 M1: level the spell is gained at */})})}
  add(CLS_AUTO[B.cls],B.cls,0,B.cls);if(B.sub&&B.sub!=="__custom")add(AUTO[B.sub],B.sub,0,B.cls);
  if(B.sub==="Circle of the Land"&&B.ch.land)add(LAND[B.ch.land],"Circle of the Land ("+B.ch.land+")",0,B.cls);
  /* v32 RL49: Circle of the Land as a multiclass, Magical Discoveries (College of Lore 6), High Elf cantrip */
@@ -62,6 +62,7 @@ export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){c
  clsParts().forEach((q,i) =>{if(q.sub==="Illusionist"&&q.lv>=3)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p3illcan"]||[]).forEach((n) =>{add([[1,n]],"Improved Illusions",q.lv,q.cls)})});
  clsParts().forEach((q,i) =>{if(q.sub==="College of Lore"&&q.lv>=6)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p6disc"]||[]).forEach((n) =>{add([[1,n]],"Magical Discoveries",q.lv,q.cls)})});
  sbAuto(add);/* v63 */
+ __R.gfx().forEach((e) =>{if(e.spells)add(e.spells,e.lbl,e.lv,e.spCls||e.ocls||e.cls||"@species")});/* fx engine v2: spells [[level, "A,B"]] always prepared */(function(){(__R.gxPicks?__R.gxPicks():[]).forEach((o) =>{if(!o.gxc)return;(B.ch[o.key]||[]).forEach((n) =>{add([[1,n]],o.src,0,o.gxc)})})})();
  const S=un("species")?null:SP_AUTO[B.species];if(S){const k=Object.keys(S).filter((k) =>{return k===""||(B.ch.lin||"").indexOf(k)===0})[0];if(k!=null)add(S[k],B.species+(k?" ("+k+")":""),__R.TL(),"@species")}/* M5 (RL9): species spells use the character level (PHB 2024 p. 190, 197) */
  __R.MCL().forEach((m) =>{add(CLS_AUTO[m.cls],m.cls,m.lv,m.cls);if(m.sub)add(AUTO[m.sub],m.sub,m.lv,m.cls)});
  (B.ch.spcan||[]).forEach((n) =>{add([[1,n]],B.species+" ("+(spOptFx().cantripLabel||"Limited Spellcaster")+")",0,"@spcan")});

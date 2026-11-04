@@ -1,0 +1,66 @@
+{
+ "why": "Worthless: INT 11, +2 four times, maximum 18 (13, 15, 17, 18, 18)",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Worthless Husk",
+  "bgMode": "21",
+  "bg2": "DEX",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 19,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-ash4-feat-Origin feat (Worthless Husk)": [
+    "INT +2"
+   ],
+   "gx-ash8-feat-Origin feat (Worthless Husk)": [
+    "INT +2"
+   ],
+   "gx-ash12-feat-Origin feat (Worthless Husk)": [
+    "INT +2"
+   ],
+   "gx-ash16-feat-Origin feat (Worthless Husk)": [
+    "INT +2"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.INT": 18
+ }
+}
