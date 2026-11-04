@@ -12,4 +12,4 @@ Notes:
 - The fetch from origin filled the disk (a 4.6 GB tmp_pack). It was removed. All w-* branches in the local repo equal origin (checked with ls-remote), so no fetch was needed.
 - Duplicate effects: L2..L8 define many of the same item names. Resolved per merge by dropping the duplicate (kept the fuller or toggled entry), then fixing golden fixtures to the kept toggle ids and pick keys. New tests/fx_overlap.py (+ tests/fx_overlap_loader.js) lists the rest. Still to do: tests/fx_overlap_allow.json for disjoint pairs (Dragon Masks, Exo-Frame, Ionbreaker, Couatl Herald's Mantle, Damglesvir, Pigskin Armor, Dekella, Indorius's Crown Master) and the pre-existing fx-A..G pairs; add it to .github/workflows/tests.yml.
 - wotc11-magic-items-2014.js and manifest/SOURCE-NOTES were merged by union; tp*.js edits not yet logged (reports/tp-direct-edits.md pending).
-- Helper scripts used for the dedupe are in tools/ (apply3.py, drop.py, auto.py ...) and may be removed before the final PR.
+- Helper scripts used for the dedupe live in the scratchpad, not in the repo.
