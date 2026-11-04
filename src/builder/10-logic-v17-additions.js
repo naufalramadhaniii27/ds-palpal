@@ -119,7 +119,7 @@ function invPicks(){const out=[],iv=invList(),wl=__R.clsLv("Warlock");if(!wl||ty
 export function agOn(n){const v=B.ch.invab;if(Array.isArray(v)&&v.length)return v.indexOf(n)>=0;return n==="Eldritch Blast"&&invList().indexOf("Agonizing Blast")>=0}
 /* the values of choices with yc (shown as "Your choice." under the feature on the sheet). mc: multiclass index or undefined */
 export function ycOf(CH,feature,mc){let o=[],tx=[];CH.forEach((c) =>{if(!c.yc||c.feature!==feature||c.mc!==mc)return;const v=B.ch[c.key];if(Array.isArray(v)){o=o.concat(v);if(c.ytx&&Array.isArray(c.list))v.forEach((n) =>{const r=c.list.filter((x) =>{return x[0]===n})[0];if(r&&r[1])tx.push("**"+n+".** "+r[1])})}else if(v&&typeof v==="string")o.push(v)});/* v81: ytx adds the text of each chosen option before the choice line */return o.length?(tx.length?" "+tx.join(" "):"")+" **Your choice.** "+o.join(", ")+".":""}
-export function isDone(c){const v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)return v==null||(Array.isArray(v)&&v.length<=c.n);/* v32: optional choice (War Bond) *//* v32: a default counts as chosen */
+export function isDone(c){const v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)return v==null||v===""||(Array.isArray(v)&&v.length<=c.n)||c.t==="text";/* v32: optional choice (War Bond) *//* v32: a default counts as chosen */
  if(c.t==="skills"||c.t==="exp"||c.t==="multi"||c.t==="wm"||c.t==="lang"||c.t==="tool"||c.t==="pe")return Array.isArray(v)&&v.length===c.n;
  if(c.t==="sub")return !!B.sub;
  if(c.t==="mcsub")return !!(B.mc[c.mc]&&B.mc[c.mc].sub);
