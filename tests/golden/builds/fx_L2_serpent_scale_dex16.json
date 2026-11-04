@@ -1,0 +1,53 @@
+{
+ "why": "Serpent Scale Armor: scale mail 14 with the full Dexterity modifier. DEX 16 (+3): 14 + 3 = 17 (plain scale mail: 14 + 2 = 16).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 16,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "cm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 16,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Serpent Scale Armor",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17
+ }
+}
