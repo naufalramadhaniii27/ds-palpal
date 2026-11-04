@@ -1,15 +1,5 @@
-# fx-int status (paused by request)
+# fx-int status (release candidate 1)
 
-Branch claude/fx-int, worktree /home/claude/w-int, base claude/w-eng.
-
-Merged and committed (golden_builds passed after each): w-mc, w-inv, w-fixmiss, w-L1, w-L2, w-L3, w-L4, w-L5, w-L6, w-L7, w-L8.
-Next merge: claude/w-L9, then L10..L13, then uiux-autolink-all, w-retro, w-audit (all exist on origin).
-
-Last test: tests/golden_builds.py OK, 973 checks (after L8). fx_engine.py last run OK, 201 checks, after w-fixmiss only.
-Not yet run on the merged tree: fx_engine, mech_scan, dup_check, invariants, e2e_fx_toggle, scenarios, perf, --check/--lint.
-
-Notes:
-- The fetch from origin filled the disk (a 4.6 GB tmp_pack). It was removed. All w-* branches in the local repo equal origin (checked with ls-remote), so no fetch was needed.
-- Duplicate effects: L2..L8 define many of the same item names. Resolved per merge by dropping the duplicate (kept the fuller or toggled entry), then fixing golden fixtures to the kept toggle ids and pick keys. New tests/fx_overlap.py (+ tests/fx_overlap_loader.js) lists the rest. Still to do: tests/fx_overlap_allow.json for disjoint pairs (Dragon Masks, Exo-Frame, Ionbreaker, Couatl Herald's Mantle, Damglesvir, Pigskin Armor, Dekella, Indorius's Crown Master) and the pre-existing fx-A..G pairs; add it to .github/workflows/tests.yml.
-- wotc11-magic-items-2014.js and manifest/SOURCE-NOTES were merged by union; tp*.js edits not yet logged (reports/tp-direct-edits.md pending).
-- Helper scripts used for the dedupe live in the scratchpad, not in the repo.
+Merged: w-mc, w-inv, w-fixmiss, w-L1 to w-L13. Not merged: uiux-autolink-all, w-retro, w-audit.
+Last test run on the final tree: build, --check, --lint ok. golden_builds 1241 ok. fx_engine 201 ok. mech_scan 0 new (241 known). dup_check ok. invariants 2220 builds, 0 violations. fx_overlap ok. e2e_fx_toggle ok. scenarios 24 checks, 0 failed. perf budget ok. names_lint, csp_check, golden_rules, version_label, split_dist, fonts_dist, lazy_parts, edition_isolation, metamorphic ok.
+See reports/release-notes-rc1.md.

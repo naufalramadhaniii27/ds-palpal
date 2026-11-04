@@ -110,9 +110,14 @@ async def run_viewport(b, base, vp, W, H, res):
 
     # 2. Build, then Apply to Sheet. SCEN_WAIT_BUILD=ms waits first (to compare runs where the builder finished loading in the background)
     if os.environ.get("SCEN_WAIT_BUILD"): await pg.wait_for_timeout(int(os.environ["SCEN_WAIT_BUILD"]))
+    # the builder loads in the background: wait until its code is there (no fixed guess, slow machines and parallel runs need longer)
+    await pg.wait_for_function("typeof window.__bldOpen==='function'", timeout=180000)
     await js_click(pg, "#bldBtn"); await pg.wait_for_timeout(4000)
     await answer_asks(pg, log)
     n = await sheet_numbers(pg)
+    for _ in range(40):  # the builder may open late under load; the assert below is unchanged
+        if n["builderOpen"]: break
+        await pg.wait_for_timeout(1000); await answer_asks(pg, log); n = await sheet_numbers(pg)
     chk("s2 builder opens", n["builderOpen"], json.dumps(n))
     await pg.screenshot(path=os.path.join(OUT, "%s-s2-builder.png" % vp))
     await js_click(pg, "#b-toSheet"); await pg.wait_for_timeout(2500)
@@ -132,6 +137,9 @@ async def run_viewport(b, base, vp, W, H, res):
     await pg.wait_for_timeout(5000)
     await answer_asks(pg, log)
     n = await sheet_numbers(pg)
+    for _ in range(40):  # the builder may open late under load; the assert below is unchanged
+        if n["builderOpen"]: break
+        await pg.wait_for_timeout(1000); await answer_asks(pg, log); n = await sheet_numbers(pg)
     chk("s3 Create a Character opens the builder", created and n["builderOpen"], json.dumps(n))
     await pg.select_option("#qbCls", "Fighter")
     await js_click(pg, "[data-qb]"); await pg.wait_for_timeout(2500)

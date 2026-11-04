@@ -1,0 +1,422 @@
+{
+ "GX.cls|Craftsman": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Druid": {
+  "files": [
+   "fx-L1.js",
+   "fx-L5.js"
+  ],
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Investigator": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Martyr": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Hag Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js"
+  ],
+  "reason": "fx-E-feat replaces the fx-C Sea Sisterhood entry (rep()); the final list holds one swim entry (mv is the same key and value, idempotent).",
+  "shared": [
+   "mv"
+  ]
+ },
+ "GX.feat|Multiscale": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js"
+  ],
+  "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Ooze Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx-E-feat replaces the fx-C Sluggish and Ooze Form entries (rep()); the final list holds Sluggish once. fx-L1 adds the limited-use pool.",
+  "shared": [
+   "speedAdd"
+  ]
+ },
+ "GX.feat|Primordial Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Seraph Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Specter Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js",
+   "fx-G-engine.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx-E-feat replaces the fx-C Spectral Form entry (rep()). fx-G adds the toggled Incorporeal Movement resistance, fx-L1 adds the limited-use pool of the same name (res vs lu, different fields).",
+  "shared": [
+   "res"
+  ]
+ },
+ "GX.feat|Technical": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js"
+  ],
+  "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Vampire Transformation: Stage 1": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-E-feat.js",
+   "fx-G-engine.js"
+  ],
+  "reason": "fx-E-feat replaces the fx-C bloodline entries (rep()); fx-G adds the Sanguine Curse toggle.",
+  "shared": [
+   "abUp",
+   "mv",
+   "speedAdd"
+  ]
+ },
+ "GX.feat|Worthless": {
+  "files": [
+   "fx-E-feat.js",
+   "fx-G-engine.js"
+  ],
+  "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Black Dragon Mask": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L7.js"
+  ],
+  "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.item|Blue Dragon Mask": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L7.js"
+  ],
+  "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.item|Couatl Herald's Mantle": {
+  "files": [
+   "fx-L3.js",
+   "fx-L8.js"
+  ],
+  "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Dekella, Bident of Thassa": {
+  "files": [
+   "fx-L3.js",
+   "fx-L7.js"
+  ],
+  "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Dämglesvir (Adept)": {
+  "files": [
+   "fx-L3.js",
+   "fx-L8.js"
+  ],
+  "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Dämglesvir (Master)": {
+  "files": [
+   "fx-L3.js",
+   "fx-L8.js"
+  ],
+  "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Exo-Frame": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L3.js"
+  ],
+  "reason": "fx-D-item gives AC base, size and advantages, fx-L3/L8 add the Battlefist weapon proficiency (different fields).",
+  "shared": []
+ },
+ "GX.item|Green Dragon Mask": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L7.js"
+  ],
+  "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.item|Ionbreaker, the Tempest's Reach": {
+  "files": [
+   "fx-H-audit.js",
+   "fx-L4.js"
+  ],
+  "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Pigskin Armor": {
+  "files": [
+   "fx-L5.js",
+   "fx-L8.js"
+  ],
+  "reason": "fx-L5 only notes light armor, fx-L8 gives the AC base (different fields).",
+  "shared": []
+ },
+ "GX.item|Red Dragon Mask": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L7.js"
+  ],
+  "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.item|White Dragon Mask": {
+  "files": [
+   "fx-D-item.js",
+   "fx-L7.js"
+  ],
+  "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.species|Ankylier": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L9.js"
+  ],
+  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Manikin": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L9.js"
+  ],
+  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Pluvenn": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L9.js"
+  ],
+  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Skathári": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-L9.js"
+  ],
+  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Adrenaline Junkie": {
+  "files": [
+   "fx-L10.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Bond of the Shambling Plant": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of the Sea": {
+  "files": [
+   "fx-F-sub.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx-F-sub Aquatic Affinity (level 6, swim) and fx-L11 Stormborn (level 10, toggled fly and resistances) are different features.",
+  "shared": [
+   "mv"
+  ]
+ },
+ "GX.sub|College of Adventurers": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Choreography": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Dance": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx-B1 Dazzling Footwork gives the unarmored AC, fx-L10 adds unarmed ability and the Performance advantage to the same feature name (different fields).",
+  "shared": []
+ },
+ "GX.sub|Cybernetic": {
+  "files": [
+   "fx-F-sub.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Death Knight": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Elemental Essence": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Experiment X": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Frost Sorcery": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|House of Bishops": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|House of Knights": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|House of Pawns": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|House of Rooks": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Hunting Domain": {
+  "files": [
+   "fx-F-sub.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Storm Sentinel": {
+  "files": [
+   "fx-H-audit.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx-H-audit Storm Wings (level 6, fly) and fx-L12 Seafarer (level 3, swim and resistance pick) are different features.",
+  "shared": [
+   "mv"
+  ]
+ },
+ "GX.sub|Toymaker": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "fx-B2 counts the condition immunities, fx-F adds the Construct note and the spell immunity pick (both are defs lines, different text).",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Trapper Guild": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Warrior of the Living Weapon": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Xenoalchemist": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ }
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Split build for hosting (option B in reports/rencana-kerja-engine.md). index.html stays the single-file result of the project.
-This tool makes a second form from it: the 34 deferred parts (builder, rules data, Learn, Training Ground) become files named
+This tool makes a second form from it: the 35 deferred parts (builder, rules data, Learn, Training Ground) become files named
 p/NAME.HASH.js, so the first download is the sheet alone (about 1 MB gzip instead of 4 MB). Python standard library only.
 
   python3 tools/split_dist.py SRC_INDEX SRC_SW OUTDIR     write OUTDIR/index.html, OUTDIR/sw.js and OUTDIR/p/*.js

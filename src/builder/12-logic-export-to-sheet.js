@@ -124,6 +124,7 @@ __R.gfx().forEach((e) =>{if(e.init==null||(e.cond&&!__R.fxOk(e,ar,ESH,EA)))retur
  if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach((n) =>{weapons+=", "+n});
  if(sp&&sp.profs&&!custom){if(sp.profs.armor)armor+=", "+sp.profs.armor;if(sp.profs.weapons)weapons+=", "+sp.profs.weapons;if(sp.profs.tools)tools.push(sp.profs.tools)}/* v74: species proficiencies (2014 species) */
  XT.forEach((q) =>{tools.push(q[0])});
+ /* fx armor, weapons, tools: counted in C.profs (and so in the proficiency of the attack rows and the armor check), not only listed in profSrc */__R.gfx().forEach((e) =>{(e.armor||[]).forEach((n) =>{armor+=(armor?", ":"")+n});(e.weapons||[]).forEach((n) =>{weapons+=", "+n});(e.tools||[]).forEach((n) =>{tools.push(n)})});
  armor=armor.split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i}).join(", ");weapons=weapons.split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i}).join(", ");
  tools=tools.join(", ").split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i});/* v32: each tool once */
  C.profs={armor:armor||"None",weapons:weapons,tools:tools.join(", ")||"None"};

@@ -122,7 +122,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  W("Shield of the Uven Rune",{imm:["Cold"]});
  add("Shoulder Cannon",{n:"Shoulder Cannon",lu:{n:"Shoulder Cannon",max:1,reset:"dawn"}});
  add("Shroud of Ending",{n:"Blessings of Tyton",saveNote:["Advantage on death saving throws and on saves against effects that would kill you outright"],def:["Immunity","Disease"],defs:[["Note","You see in darkness as if it were bright light"]]});
- add("Signet Rings of the Fey Court",{n:"Signet Rings of the Fey Court",spells:[[1,"Druidcraft"]],defs:[["Note","Elf's Trance, if you lack it"]]});
 
  /* ---------- shard 14 ---------- */
  ["Awakened","Dormant","Exalted"].forEach(function(s){var n="Silken Spite ("+s+")";reg(n);

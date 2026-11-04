@@ -41,7 +41,6 @@ window.FXO=window.FXO||{};
  /* tvss grafts */
  addI("Burrowing Adaptation",{n:"Burrowing Adaptation",mv:{burrow:"speedHalf"}});
  addI("Heavy Legs",{n:"Heavy Legs",carryBump:true});
- addI("Monstrous Bite",{n:"Monstrous Bite",atkAb:{kind:"unarmed",ab:"DEX"},unarmed:{die:"1d6",t:"Piercing"}});
  W.FXO["Monstrous Hide"]={fx:null};
  addI("Monstrous Hide",{n:"Monstrous Hide",acBase:[13,"full"],acOver:true});
  addI("Monstrous Weapon",{n:"Monstrous Weapon",atkAb:{kind:"unarmed",ab:"DEX"},defs:[["Note","Unarmed Strike can deal Slashing damage by tier (tier table is in the book)"]]});

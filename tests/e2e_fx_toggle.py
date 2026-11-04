@@ -14,9 +14,10 @@ with sync_playwright() as p:
     b=p.chromium.launch()
     for name,w,h in [('390x844',390,844),('1250x850',1250,850)]:
         ctx=b.new_context(viewport={'width':w,'height':h});pg=ctx.new_page();errs=[];pg.on('pageerror',lambda e:errs.append(str(e)))
-        pg.set_default_timeout(15000)
-        pg.goto(url);pg.wait_for_timeout(1500)
-        pg.wait_for_function("typeof window.__bldSheetFor==='function'")
+        pg.set_default_timeout(90000)
+        pg.goto(url,wait_until='domcontentloaded',timeout=180000);pg.wait_for_timeout(1500)
+        pg.evaluate("window.__bldNeed&&window.__bldNeed()")
+        pg.wait_for_function("typeof window.__bldSheetFor==='function'",timeout=180000)
         # save builder state, make the sheet from it
         pg.evaluate("b=>{__store.setItem('phb24-builder-v1',JSON.stringify(b))}",g)
         pg.reload();pg.wait_for_timeout(2000)

@@ -1,5 +1,5 @@
 {
- "why": "Staff of the Forgotten One: proficiency bonus doubled on Arcana and History (Sage proficient in both)",
+ "why": "Staff of the Forgotten One: proficiency bonus doubled on Arcana and History (Sage proficient in both) (fx-int: the row needs attunement by a sorcerer, warlock or wizard, written in lower case; byOk now reads it, so the build is a Wizard instead of a Fighter. Expected values unchanged.)",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -7,8 +7,8 @@
   "bgMode": "21",
   "bg2": "INT",
   "bg1": "CON",
-  "cls": "Fighter",
-  "sub": "",
+  "cls": "Wizard",
+  "sub": "Evoker",
   "level": 5,
   "base": {
    "STR": 15,

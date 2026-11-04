@@ -3,7 +3,7 @@
 
 Loads every data/fx-*.js file of src/manifest.json in manifest order (node vm, no browser) and records which file adds or changes
 each name in GX.cls, GX.sub, GX.species, GX.bg, GX.feat, GX.item and FXO. The same name defined by more than one file for the same
-kind fails, unless tests/fx_overlap_allow.json lists it with the files and a reason (a documented override or disjoint effects).
+kind fails, unless tests/fx_overlap_allow.json lists it with the files, the effect fields they share and a reason (a documented override or disjoint effects).
 Reason: entries from two files are both applied by gfx(), so an additive field (acAdd, saveBonus, hpFlat, darkAdd, ...) defined
 twice counts twice.
 
@@ -53,28 +53,31 @@ def eff_keys(entries):
 
 
 def main():
+    import itertools
     data = load()
     allow = json.load(open(ALLOW)) if os.path.exists(ALLOW) else {}
-    bad, shown = [], 0
+    bad = []
     over = {k: v for k, v in data['owners'].items() if len(v) > 1}
     for k, files in sorted(over.items()):
         det = data['detail'][k]
-        shared = set.intersection(*[eff_keys(det[f]) for f in files]) if len(files) > 1 else set()
+        shared = set()
+        for a, b in itertools.combinations(files, 2):
+            shared |= eff_keys(det[a]) & eff_keys(det[b])
         al = allow.get(k)
-        ok = bool(al) and al.get('reason') and set(files) <= set(al.get('files', files))
+        ok = bool(al) and bool(al.get('reason')) and set(files) <= set(al.get('files', [])) and shared <= set(al.get('shared', []))
         if '--list' in sys.argv:
             print('%s %-50s %s shared=%s' % ('ok ' if ok else 'BAD', k, files, sorted(shared)))
         if not ok:
             bad.append((k, files, sorted(shared)))
-    stale = [k for k in allow if k not in over]
-    for k in stale:
+    for k in [k for k in allow if k not in over]:
         print('note: allowlist entry no longer needed: ' + k)
     for f, e in data['errors'].items():
         print('load error in %s: %s' % (f, e))
+        bad.append((f, [], []))
     if bad:
         for k, files, sh in bad:
             print('OVERLAP %s defined by %s%s' % (k, ', '.join(files), ('  (shared effect fields: %s)' % ', '.join(sh)) if sh else ''))
-        print('fx_overlap FAIL: %d name(s) defined by more than one file (%d allowed)' % (len(bad), len(over) - len(bad)))
+        print('fx_overlap FAIL: %d problem(s). Remove the duplicate, or add the name to tests/fx_overlap_allow.json with files, shared fields and a reason.' % len(bad))
         sys.exit(1)
     print('fx_overlap OK: %d names in %d fx files, %d documented overlaps' % (len(data['owners']), len(fx_files()), len(over)))
 
