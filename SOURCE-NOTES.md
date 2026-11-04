@@ -201,6 +201,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/fx-A-class-species.js | data (fx, registry GX) | 4.271 |
 | data/fx-F-sub.js | data (fx, registry GX.sub, batch F) | 7.814 |
 | data/fx-G-engine.js | data (fx, engine v3b: toggle, pickLv, item) | 4.600 |
+| data/fx-L5.js | data (fx, ledger fixes L5: 124 magic items, Necronomicon to Sword of Zariel) | 20.000 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -469,3 +470,6 @@ Belum dimodelkan (butuh perubahan model data atau UI): ganti dadu senjata (Silve
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.
+
+#### fx batch L5 (ledger fixes, items Necronomicon to Sword of Zariel)
+Berkas: `src/data/fx-L5.js` (blok hbpack, sesudah fx-G). `FXO[item]` mengganti fx lama baris, `GX.item[item]` menambah entri. Tiap entri punya `_L5:1` supaya muat dua kali tidak menghitung dua kali. Pola pilihan di item: entri berisi `pick:[{k,t:"multi"}]`, entri saudara memakai `when:{key:"gx-<k>-item-<nama item>",val}`. Kelas `GX.cls.Druid` dipakai untuk Squasher (`atkAb` pada baris bernama Squasher). Switch: lihat `reports/ledger-fixes-L5.md`. Yang belum bisa: `reports/ledger-skipped-L5.md`. Golden: `tests/golden/builds/fx_L5_*.json`, dibuat oleh `tools/gen_fx_L5_goldens.py`. Empat baris data diubah langsung (Staff of Ruling, Stonemaker War Pick, Star Razor Awakened dan Exalted, Pigskin Armor), dicatat di laporan.
