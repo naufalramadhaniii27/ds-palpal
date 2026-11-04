@@ -5,12 +5,13 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {XFX,allFeats,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,optAny,pactWeapon,saveNotes,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
-import {ATKC,__set_ATKC,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
+import {fxToggles,ATKC,__set_ATKC,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"toSheet",{get:function(){return toSheet;},set:function(v){toSheet=v;},configurable:true});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 export function toSheet(){
+ __R.syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
  const c=CL(),L=B.level,TLv=__R.TL(),a=abil(),pb=pbOf(TLv),sp=SPECIES[B.species],custom=B.species==="Custom";
  const spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  const subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
@@ -176,7 +177,7 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  });
  /* inventory */
  __set_ATKC(C.attacks);/* RL31 */
- try{ if(C.profs)__R.PROFC=C.profs; C.inv=__R.ensureInv().map((x) =>{const it={n:kitTool(x)||x.n,key:x.n,q:__R.qOf(x),w:__R.itemW(kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq},west=__R.itemWEst(x.n)?(it.west=1):0/* v27 RD20 */,bn=__R.baseOf(x.n).b,rr=__R.rarityOf(x),dm=DMAP[x.n];if(dm&&dm[3]){it.att=1}if(rr)it.rar=rr;if(__R.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */if(ARMOR[bn]){const A=ARMOR[bn];it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+__R.baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!WEAPONS[bn])it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");try{it.type=__R.itemType(x.n,x);it.cost=PRICE[x.n]!=null?PRICE[x.n]:__R.itemCost(__R.baseOf(kitTool(x)||x.n).b);/* v20 M1 */if(!window.__inTS){window.__inTS=1;try{it.html=__R.itemDetail(x.n,x)}finally{window.__inTS=0}}it.equippable=__R.equippable(x.n)||!!(DMAP[x.n]&&DMAP[x.n][1]!=="Potion")}catch(e){}return it});
+ try{ if(C.profs)__R.PROFC=C.profs; C.inv=__R.ensureInv().map((x) =>{const it={n:kitTool(x)||x.n,key:x.n,q:__R.qOf(x),w:__R.itemW(kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq},west=__R.itemWEst(x.n)?(it.west=1):0/* v27 RD20 */,bn=__R.baseOf(x.n).b,rr=__R.rarityOf(x),dm=DMAP[x.n];if(dm&&dm[3]){it.att=1}if(x.mw)it.mw=true;/* Masterwork flag of the row (cond mwArmor) */if(rr)it.rar=rr;if(__R.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */if(ARMOR[bn]){const A=ARMOR[bn];it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+__R.baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!WEAPONS[bn])it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");try{it.type=__R.itemType(x.n,x);it.cost=PRICE[x.n]!=null?PRICE[x.n]:__R.itemCost(__R.baseOf(kitTool(x)||x.n).b);/* v20 M1 */if(!window.__inTS){window.__inTS=1;try{it.html=__R.itemDetail(x.n,x)}finally{window.__inTS=0}}it.equippable=__R.equippable(x.n)||!!(DMAP[x.n]&&DMAP[x.n][1]!=="Potion")}catch(e){}return it});
  }finally{ __set_ATKC(null); }/* RL36 b */
  C.gp=__R.gpNow();
  /* m4 (RL20): "none" = no starting package (items set by hand or imported from the sheet), not option A or 50 GP */
@@ -349,6 +350,7 @@ __R.gfx().forEach((e) =>{if(e.init==null)return;const iv=__R.fxv(e.init,e);if(iv
  /* v33 p09: one entry per paragraph. A bold entry name that starts a sentence in the middle of a text starts a new paragraph (blank line). Your choice and Still open stay inline */
  (C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{if(typeof f.d==="string")f.d=fBlk(f.d);if(typeof f.full==="string")f.full=fBlk(f.full)})});
  if(R14())(function w(o){if(!o||typeof o!=="object")return;Object.keys(o).forEach((k) =>{const v=o[k];if(typeof v==="string"){if(v.indexOf("PHB-2024")>=0)o[k]=v.replace(/PHB-2024/g,"PHB-2014")}else w(v)})})(C);/* v85: the book of the 2014 rules */
+ C.fxToggles=fxToggles();/* toggle fx available to this character; state is S.fxT on the sheet */
  return C}
 function fBlk(t){return String(t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Still open\.)([^*\n]{1,80}?\.)\*\* /g,"$1\n\n**$2** ")}
 /* v32 RL51 actsFor */

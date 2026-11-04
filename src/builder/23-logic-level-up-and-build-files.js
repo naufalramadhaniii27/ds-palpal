@@ -4,7 +4,7 @@ import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOwn} from "./10-logic-v17-additions.js";
-import {casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {fxtSet,casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,allPacks,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
@@ -171,7 +171,7 @@ function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpe
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
  const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
-window.__bldSheetFor=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{__set_B(keep);applyPacks()}return out};
+window.__bldSheetFor=function(nb,fxT){let keep=B,out=null;try{fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{fxtSet(null);__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or

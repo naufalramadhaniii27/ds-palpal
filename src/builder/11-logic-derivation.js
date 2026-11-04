@@ -31,7 +31,9 @@ export function abil(){
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});
  const AFX=activeFx();AFX.forEach((q) =>{const f=q.fx;if(f.abil){let k=f.abil[0],nv=Math.min(f.abil[2]||30,sc[k]+f.abil[1]);if(f.abil[1]<0){nv=Math.max(1,sc[k]+f.abil[1]);if(nv<sc[k]){src[k].push({s:q.n+" (magic item, "+f.abil[1]+")",v:nv-sc[k]});sc[k]=nv}}else if(nv>sc[k]){src[k].push({s:q.n+" (magic item, +"+f.abil[1]+", maximum "+(f.abil[2]||30)+")",v:nv-sc[k]});sc[k]=nv}}});
- __R.gfx().forEach((e) =>{(e.abUp||[]).forEach((r) =>{const k=r[0];if(!src[k])return;const nv=Math.min(r[2]||20,sc[k]+r[1]);if(nv>sc[k]){src[k].push({s:e.lbl+" (maximum "+(r[2]||20)+")",v:nv-sc[k]});sc[k]=nv}})});/* fx engine v2: abUp [[ability, +N, maximum]] */
+ __R.gfx().forEach((e) =>{const up=(r) =>{const k=r[0];if(!src[k])return;const nv=Math.min(r[2]||20,sc[k]+fxv(r[1],e));if(nv>sc[k]){src[k].push({s:e.lbl+" (maximum "+(r[2]||20)+")",v:nv-sc[k]});sc[k]=nv}};(e.abUp||[]).forEach(up);
+  /* abUpPick {max}: each pickLv pick of the entry holds text like "STR +2" or "STR +1, DEX +1"; every part raises that score (not above max). Levels in pickLv order */
+  if(e.abUpPick)(e.pickLv||[]).forEach((q) =>{if(e.lv<q.lv)return;const v=B.ch[gxKey(e,q.k)],t=Array.isArray(v)?v.join(" "):(v||""),re=/\b(STR|DEX|CON|INT|WIS|CHA)\s*\+(\d+)/g;let m;while((m=re.exec(t)))up([m[1],+m[2],e.abUpPick.max])})});/* fx engine v2: abUp [[ability, +N, maximum]] */
  AFX.forEach((q) =>{const f=q.fx;/* V16-4: increases first, then "becomes" */
   const s=f.setsc;if(s&&sc[s[0]]<s[1]){src[s[0]].push({s:q.n+" (magic item, sets score to "+s[1]+")",v:s[1]-sc[s[0]]});sc[s[0]]=s[1]}});/* M18: DMGI fx (setsc as the old SETSC table, abil for Ioun Stones and similar) */
  return {sc:sc,src:src}}
@@ -48,15 +50,19 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
    FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
    cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
    gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
-function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")return pbOf(L);if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")return pbOf(L);if(v==="rage"){const bl=__R.clsLv("Barbarian");return bl>=16?4:bl>=9?3:2}/* Rage Damage bonus of the Barbarian levels */if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
-function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;if(c==="mwArmor")return !!ar&&!!EA&&/, Masterwork/.test(EA);return true}
+function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;if(c==="mwArmor")return !!ar&&!!EA&&(/, Masterwork/.test(EA)||(B.inv||[]).some((x) =>{return x.eq&&x.mw&&x.n===EA}));return true}
 /* fxCh: the stored pick "key" for an entry. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
 function fxCh(key,pre,kind,okey){let v=B.ch[pre+key];if(v==null&&kind==="feat"){v=B.ch["gx-"+key+"-feat-"+okey];if(v==null)v=B.ch[key+"-"+okey]}return v}
 function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
- function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;out.push(Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)}))})}
+ const FXT=fxtMap();
+ function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)});
+  /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
+  if(e.toggle){const st=FXT[e.toggle.id];o.tgOn=st==null?!!e.toggle.default:!!st;if(!o.tgOn){const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});o=k}}
+  out.push(o)})}
  let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
   put(((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),"cls",q.cls,q.lv,pre,(n) =>{return n+" ("+q.cls+" "+q.lv+")"});
   if(q.sub)put(((G.sub&&G.sub[q.sub])||[]),"sub",q.sub,q.lv,pre,(n) =>{return n+" ("+q.sub+" "+q.lv+")"})});
@@ -66,6 +72,14 @@ export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{
  activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
  return out}
 export function classFx(){return gfx()}
+/* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
+const TGKEEP=["n","l","when","pick","pickLv","toggle","kind","owner","lv","pre","okey","idx","lbl"];
+let FXTO=null;export function fxtSet(m){FXTO=m||null}
+function fxtMap(){if(FXTO)return FXTO;try{const st=typeof window!=="undefined"&&window.__sheetState&&window.__sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
+/* gx pick key of pick k of an entry (same rule as gxPicks) */
+export function gxKey(e,k){const m=e.pre?/^m(\d+):/.exec(e.pre):null;return "gx-"+k+"-"+e.kind+"-"+e.okey+(m?"-m"+m[1]:"")}
+/* C.fxToggles: every toggle available to the character */
+export function fxToggles(){const seen={},out=[];gfx().forEach((e) =>{if(!e.toggle||seen[e.toggle.id])return;seen[e.toggle.id]=1;out.push({id:e.toggle.id,label:e.toggle.label||e.n,on:!!e.tgOn,src:e.lbl})});return out}
 export {fxv,fxVal,fxOk,fxCh};
 Object.defineProperty(__R,"fxCh",{get:function(){return fxCh;},configurable:true});
 Object.defineProperty(__R,"gfx",{get:function(){return gfx;},set:function(v){gfx=v;},configurable:true});

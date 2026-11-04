@@ -72,3 +72,14 @@ Status (2026-11-01, sesi yang sama):
 
 ## Catatan untuk usulan "pisahkan data dari shell" (2026-11-01)
 Bila data jadi berkas terpisah, sw.js perlu mengunduhnya di latar belakang atau memasukkannya ke daftar cache pasang. Tanpa itu aplikasi tidak lagi sepenuhnya offline sebelum tiap data dibuka sekali. Hasilnya lebih cepat pada tampilan pertama, bukan unduhan total yang lebih kecil. Keputusan belum diambil.
+
+## UI/UX: toggle fx and Masterwork flag (from Logic, fx engine v3b, 2026-11-04)
+Logic side is done (branch claude/fx-engine-v3b). Names below are fixed, do not rename.
+1. Toggle list. `C.fxToggles = [{id, label, on:boolean, src}]` lists every toggle fx the character has (for example Chitinous Shell, Slimy Form, Incorporeal Movement, the Sanguine Curse, Raging for Path of the Abomination). `on` is the current state. `src` is the source label. Show one switch per row, for example in Defenses or a small "States" strip. Hide the strip when the list is empty.
+2. State. The state is saved in the sheet state as `S.fxT = {[id]: true|false}` (missing id = the entry default, false). Save it with the normal sheet save. Do not rename and do not store it in C.
+3. Expose it. Add `fxT:S.fxT` to the object returned by `window.__sheetState()` (src/app/17-logic-tab-sync-and-test-hooks.js). The builder reads the state there.
+4. On a switch tap: write `S.fxT[id]=on`, save, then call `window.__bldFxToggle(id,on)` (it rebuilds the sheet through `__sheetSoft`, the same way `__bldToggleEq` does) and re-render. It returns false when the sheet is not a builder-made one (hand-filled sheet): then show a toast such as "Open Build and Apply to use this switch." and keep S.fxT as set.
+5. Rage link (optional). Toggle id `rage` (Path of the Abomination: Large size, STR and DEX plus the Rage Damage bonus) should follow the sheet Rage mode. When the Rage mode turns on or off, set `S.fxT.rage` and call `window.__bldFxToggle("rage",on)`.
+6. Masterwork. Inventory rows have `mw: true|false` (field `mw` on the row in `C.inv`, absent = false). Show a Masterwork on/off control on armor rows. On tap call `window.__bldSetMw(name, occ, on)` (same arguments as `__bldSetQty`, `occ` from `__R.occOf`). The AC bonus of Craftsman Masterwork Armor counts while the worn armor row has `mw` (the name suffix ", Masterwork" still works).
+7. Inventory rows added by a pick (Cybernetic Crafts, Mad Scientist grafts) carry `px` in the builder inventory (`B.inv[].px`). The sheet does not need it.
+Test without the UI: in Playwright set `S.fxT` and call `window.__bldFxToggle(id,on)`, or call `window.__bldSheetFor(build, {id:true})`.
