@@ -203,6 +203,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/fx-G-engine.js | data (fx, engine v3b: toggle, pickLv, item) | 4.600 |
 | data/fx-H-audit.js | data (fx, batch H: hasil audit silang gaps, item, sub, feat) | 3.274 |
 | data/fx-L4.js | data (fx, ledger bin 4: items Eye of Vecna to Necklace of Adaptation, GX.item and FXO) | 14.000 |
+| data/fx-L5.js | data (fx, ledger fixes L5: 124 magic items, Necronomicon to Sword of Zariel) | 20.000 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -504,3 +505,5 @@ Fixes for the ledger verdicts MISS, MISS_TOGGLE and MISMATCH of shards 00 to 03.
 Berkas `src/data/fx-L3.js` (blok fxd, sesudah fx-D-item.js). Memakai field v4 untuk item: abUp, abPick, abDown (dengan `when` pada pilihan), abSet, langs, sense, darkNone/darkHave, advOn, saveNote, saveBonusAb, atkBonus, atkDice (when = nama baris item), unarmed, lu, toggle. `ITEM_SPELLS[item].dc` diisi untuk DC tetap. Banyak spec ledger salah karena baris spell sudah ada di ITEM_SPELLS. Yang belum bisa: `reports/ledger-skipped-L3.md`.
 #### fx batch L4 (ledger bin 4)
 Berkas `src/data/fx-L4.js` (sesudah fx-G). Item DMG dan sumber lain dari "Eye of Vecna" sampai "Necklace of Adaptation": `GX.item[nama]` untuk MISS, `FXO[nama]` untuk MISMATCH (fx lama diganti atau dibuang). Entri item dicari dengan nama baris persis, jadi item dengan daftar base memakai satu entri per nama varian ("Frost Brand (Greatsword)"). Saklar baru: runic-focus, flying-chariot, ghost-step, jetpack, moon-card, night, feral-guardian-transformed. Pilihan baru: tier Many Keyholes Dagger, Living Gloves, Logic Unit. Dua edit data kecil: `Iggwilv's Horn` ch menjadi 4 pakai per fajar (wotc11) dan `Marotte of Chance` diberi base Club (tp15). Yang belum bisa: `reports/ledger-skipped-L4.md`. Tes: `tests/golden/builds/fx_L4_*.json`.
+#### fx batch L5 (ledger fixes, items Necronomicon to Sword of Zariel)
+Berkas: `src/data/fx-L5.js` (blok hbpack, sesudah fx-G). `FXO[item]` mengganti fx lama baris, `GX.item[item]` menambah entri. Tiap entri punya `_L5:1` supaya muat dua kali tidak menghitung dua kali. Pola pilihan di item: entri berisi `pick:[{k,t:"multi"}]`, entri saudara memakai `when:{key:"gx-<k>-item-<nama item>",val}`. Kelas `GX.cls.Druid` dipakai untuk Squasher (`atkAb` pada baris bernama Squasher). Switch: lihat `reports/ledger-fixes-L5.md`. Yang belum bisa: `reports/ledger-skipped-L5.md`. Golden: `tests/golden/builds/fx_L5_*.json`, dibuat oleh `tools/gen_fx_L5_goldens.py`. Empat baris data diubah langsung (Staff of Ruling, Stonemaker War Pick, Star Razor Awakened dan Exalted, Pigskin Armor), dicatat di laporan.

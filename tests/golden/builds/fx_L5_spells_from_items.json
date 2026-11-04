@@ -1,0 +1,76 @@
+{
+ "why": "Item spells: Chill Touch (Ominous Staff of Skulls), Druidcraft (Petal Dancer Ward), Mage Hand (Spell Duelist's Trophy).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Ominous Staff of Skulls",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Petal Dancer Ward",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Spell Duelist's Trophy",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"n\": \"Chill Touch\""
+  },
+  {
+   "path": "spells",
+   "in": "\"n\": \"Druidcraft\""
+  },
+  {
+   "path": "spells",
+   "in": "\"n\": \"Mage Hand\""
+  }
+ ]
+}

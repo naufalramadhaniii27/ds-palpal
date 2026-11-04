@@ -1,0 +1,85 @@
+{
+ "why": "Piety gifts: uses equal to the ability modifier (minimum 1) per long rest. WIS 16 = 3 (Nylea), CHA 14 = 2 (Phenax), INT 16 = 3 (Purphoros).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 16,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 16,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Nylea's Devotee",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Phenax's Devotee",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Purphoros's Devotee",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Pharika's Disciple",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "res.Hunter's Mark (Nylea's Devotee).max",
+   "eq": 3
+  },
+  {
+   "path": "res.Disguise Self (Phenax's Devotee).max",
+   "eq": 2
+  },
+  {
+   "path": "res.Shield of Faith (Purphoros's Devotee).max",
+   "eq": 3
+  },
+  {
+   "path": "res.Pharika's Disciple: heal or weaken.max",
+   "eq": 3
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "why": "Stone of Good Luck: +1 to ability checks (Athletics misc +1) and saves; Stone of Ill Luck would be -2.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Stone of Good Luck",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "C:saveBonus.0.v": 1
+ },
+ "expectC": [
+  {
+   "path": "skills.Athletics.misc",
+   "eq": 1
+  }
+ ]
+}
