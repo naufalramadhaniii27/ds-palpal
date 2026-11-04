@@ -178,6 +178,90 @@ case('atkAb keeps the ability when lower', species({'n': 'T', 'atkAb': {'kind': 
 case('atkAb opt:1 only adds a note', species({'n': 'T', 'atkAb': {'kind': 'unarmed', 'ab': 'INT', 'opt': 1}}), lambda C0, C1, D0, D1: ok(atk(C1, 'Unarmed Strike')['ab'] == 'STR' and 'Intelligence' in atk(C1, 'Unarmed Strike')['note'], atk(C1, 'Unarmed Strike')['note']), {'base': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}, 'arr': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}})
 
 
+# ---- fx engine v4 (reports: ledger of MISS rows). Each case: one new field, a baseline run without it
+def sn(C):
+    return [x['t'] for x in C.get('saveNotes') or []]
+
+
+def row(C, n):
+    return [r for r in C['attacks'] if r['n'] == n][0]
+
+
+def res(C, n):
+    return [r for r in C['res'] if r['n'] == n]
+
+
+# initiative: ability with minimum, steps, cond, die and no-surprise notes
+case('v4 init ability with min (CHA -1, min 1)', species({'n': 'T', 'init': 'CHA', 'min': 1}), lambda C0, C1, D0, D1: ok(D1['init'] == D0['init'] + 1, 'init %s -> %s' % (D0['init'], D1['init'])))
+case('v4 init steps [[1,1],[5,2]] at level 5', species({'n': 'T', 'init': [[1, 1], [5, 2]]}), lambda C0, C1, D0, D1: ok(D1['init'] == D0['init'] + 2, 'init %s -> %s' % (D0['init'], D1['init'])))
+case('v4 init cond noArmor, armor worn', species({'n': 'T', 'init': 2, 'cond': 'noArmor'}), lambda C0, C1, D0, D1: ok(D1['init'] == D0['init'], 'init counted with armor'))
+case('v4 init cond noArmor, no armor', species({'n': 'T', 'init': 2, 'cond': 'noArmor'}), lambda C0, C1, D0, D1: ok(D1['init'] == D0['init'] + 2, 'init %s -> %s' % (D0['init'], D1['init'])), NOARM)
+case('v4 initDie note', species({'n': 'T', 'initDie': '1d10'}), lambda C0, C1, D0, D1: ok('Add 1d10 to Initiative rolls' in defs(C1, 'Note'), json.dumps(C1['defenses'])))
+case('v4 noSurprise note', species({'n': 'T', 'noSurprise': True}), lambda C0, C1, D0, D1: ok('Cannot be surprised' in defs(C1, 'Note'), json.dumps(C1['defenses'])))
+case('v4 condImm row', species({'n': 'T', 'condImm': ['Charmed']}), lambda C0, C1, D0, D1: ok('Charmed (condition)' in defs(C1, 'Immunity'), json.dumps(C1['defenses'])))
+# save advantage as a line under Saving Throws
+case('v4 advOn about saves also lands in saveNotes', species({'n': 'T', 'advOn': ['saves against being Charmed', 'Stealth checks']}), lambda C0, C1, D0, D1: ok('Advantage on saves against being Charmed' in sn(C1) and 'Advantage on Stealth checks' not in sn(C1) and 'Advantage on Stealth checks' in defs(C1, 'Note'), json.dumps(C1.get('saveNotes'))))
+case('v4 saveNote line', species({'n': 'T', 'saveNote': ['+1 bonus to death saving throws']}), lambda C0, C1, D0, D1: ok('+1 bonus to death saving throws' in sn(C1), json.dumps(C1.get('saveNotes'))))
+# ability scores
+case('v4 abSet raises a lower score', species({'n': 'T', 'abSet': [['INT', 22]]}), lambda C0, C1, D0, D1: ok(D1['score']['INT'] == 22 and D0['score']['INT'] < 22, 'INT %s' % D1['score']['INT']))
+case('v4 abSet never lowers', species({'n': 'T', 'abSet': [['STR', 10]]}), lambda C0, C1, D0, D1: ok(D1['score']['STR'] == D0['score']['STR'], 'STR %s' % D1['score']['STR']))
+case('v4 abSet after an increase (abUp then set 23)', species({'n': 'T', 'abUp': [['CON', 1, 20]], 'abSet': [['CON', 23]]}), lambda C0, C1, D0, D1: ok(D1['score']['CON'] == 23, 'CON %s' % D1['score']['CON']))
+case('v4 abPick set 22 (picked Charisma)', species({'n': 'T', 'abPick': {'k': 'a', 'from': ['INT', 'CHA'], 'set': 22}}), lambda C0, C1, D0, D1: ok(D1['score']['CHA'] == 22 and D1['score']['INT'] == D0['score']['INT'], 'CHA %s INT %s' % (D1['score']['CHA'], D1['score']['INT'])), {'ch': {'gx-a-species-Human': ['Charisma']}})
+case('v4 abPick set without a pick does nothing', species({'n': 'T', 'abPick': {'k': 'a', 'from': ['INT', 'CHA'], 'set': 22}}), lambda C0, C1, D0, D1: ok(D1['score']['CHA'] == D0['score']['CHA'] and D1['score']['INT'] == D0['score']['INT'], 'changed'))
+case('v4 abPick up 2 (Dexterity 14 -> 16)', species({'n': 'T', 'abPick': {'k': 'a', 'from': ['DEX', 'WIS'], 'up': 2, 'max': 22}}), lambda C0, C1, D0, D1: ok(D1['score']['DEX'] == D0['score']['DEX'] + 2 and D1['score']['WIS'] == D0['score']['WIS'], 'DEX %s' % D1['score']['DEX']), {'ch': {'gx-a-species-Human': ['Dexterity']}})
+case('v4 abPick up stops at max', species({'n': 'T', 'abPick': {'k': 'a', 'from': ['DEX', 'WIS'], 'up': 2, 'max': 15}}), lambda C0, C1, D0, D1: ok(D1['score']['DEX'] == 15, 'DEX %s' % D1['score']['DEX']), {'ch': {'gx-a-species-Human': ['Dexterity']}})
+case('v4 abDown with minimum 7', species({'n': 'T', 'abDown': [['INT', -4, 7]]}), lambda C0, C1, D0, D1: ok(D1['score']['INT'] == D0['score']['INT'] - 4, 'INT %s' % D1['score']['INT']))
+case('v4 abDown stops at its minimum', species({'n': 'T', 'abDown': [['INT', -4, 10]]}), lambda C0, C1, D0, D1: ok(D1['score']['INT'] == 10, 'INT %s' % D1['score']['INT']))
+# skill bonus from an ability modifier with a floor
+case('v4 skillBonus row minimum (WIS 0, min 1)', species({'n': 'T', 'skillBonus': [['Arcana', 'WIS', 1]]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Arcana').get('misc') == 1, str(skill(C1, 'Arcana'))))
+case('v4 skillBonus entry min:1 (CHA -1)', species({'n': 'T', 'min': 1, 'skillBonus': [['Persuasion', 'CHA']]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Persuasion').get('misc') == 1, str(skill(C1, 'Persuasion'))))
+case('v4 skillBonus ability above the floor', species({'n': 'T', 'skillBonus': [['Athletics', 'STR', 1]]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Athletics').get('misc') == 3, str(skill(C1, 'Athletics'))))
+# per-ability save bonus
+case('v4 saveBonusAb only on that save', species({'n': 'T', 'saveBonusAb': [['INT', 1]]}), lambda C0, C1, D0, D1: ok(D1['save']['INT'] == D0['save']['INT'] + 1 and D1['save']['WIS'] == D0['save']['WIS'] and C1['saveBonus'][0]['ab'] == 'INT', json.dumps(C1.get('saveBonus'))))
+# DC bonus on a feature note
+case("v4 dcAdd {Monk's Focus: 2}", {'cls': {'Monk': [{'n': 'T', 'dcAdd': {"Monk's Focus": 2}}]}}, lambda C0, C1, D0, D1: ok('save DC 14' in json.dumps(C0) and 'save DC 16' in json.dumps(C1), 'no DC change'), {'cls': 'Monk', 'eqC': 'none', 'base': {'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 8, 'WIS': 16, 'CHA': 8}, 'arr': {'STR': 10, 'DEX': 14, 'CON': 13, 'INT': 8, 'WIS': 16, 'CHA': 8}, 'bg2': 'DEX', 'bg1': 'WIS'})
+# spell tables
+case('v4 spells table gated by level', species({'n': 'T', 'spells': [[1, 'Shield'], [9, 'Fireball']]}), lambda C0, C1, D0, D1: ok(any(x['n'] == 'Shield' for x in C1['spells']) and not any(x['n'] == 'Fireball' for x in C1['spells']), [x['n'] for x in C1['spells']]))
+case('v4 spells table ignores empty placeholders', species({'n': 'T', 'spells': [[1, ''], [1, ',Shield,']]}), lambda C0, C1, D0, D1: ok(any(x['n'] == 'Shield' for x in C1['spells']) and not any(not x['n'] for x in C1['spells']), [x['n'] for x in C1['spells']]))
+# level-scaled attack and damage bonus, unarmed die, extra attack
+case('v4 atkBonus steps on melee rows', species({'n': 'T', 'atkBonus': [{'when': 'melee', 'atk': [[1, 1], [5, 2]], 'dmg': [[5, 3]]}]}), lambda C0, C1, D0, D1: ok(row(C1, 'Greatsword').get('misc', 0) == row(C0, 'Greatsword').get('misc', 0) + 2 and row(C1, 'Greatsword')['dmgBonus'] == row(C0, 'Greatsword')['dmgBonus'] + 3 and row(C1, 'Javelin').get('misc', 0) == row(C0, 'Javelin').get('misc', 0) + 2, json.dumps(row(C1, 'Greatsword'))))
+case('v4 atkBonus ranged leaves melee rows alone', species({'n': 'T', 'atkBonus': [{'when': 'ranged', 'atk': 1}]}), lambda C0, C1, D0, D1: ok(row(C1, 'Greatsword').get('misc', 0) == row(C0, 'Greatsword').get('misc', 0), 'melee row changed'))
+case('v4 atkBonus ability + unarmed + crit note', species({'n': 'T', 'atkBonus': [{'when': ['unarmed', 'natural'], 'atk': 'STR', 'dmg': 'STR', 'crit': 19}]}), lambda C0, C1, D0, D1: ok(row(C1, 'Unarmed Strike')['misc'] == 3 and row(C1, 'Unarmed Strike')['dmgBonus'] == 3 and 'Critical hit on 19-20' in row(C1, 'Unarmed Strike')['note'], json.dumps(row(C1, 'Unarmed Strike'))))
+case('v4 unarmed die steps', species({'n': 'T', 'unarmed': {'die': [[1, '1d6'], [5, '1d8']], 't': 'Slashing'}}), lambda C0, C1, D0, D1: ok(row(C1, 'Unarmed Strike')['die'] == '1d8' and row(C1, 'Unarmed Strike')['type'] == 'Slashing', json.dumps(row(C1, 'Unarmed Strike'))))
+case('v4 unarmed die never lowers Martial Arts', {'species': {'Human': [{'n': 'T', 'unarmed': {'die': '1d4'}}]}}, lambda C0, C1, D0, D1: ok(row(C1, 'Unarmed Strike')['die'] == row(C0, 'Unarmed Strike')['die'], row(C1, 'Unarmed Strike')['die']), {'cls': 'Monk', 'eqC': 'none'})
+case('v4 extraAttack 2 changes the Attack action', species({'n': 'T', 'extraAttack': 2}), lambda C0, C1, D0, D1: ok(C1['actions'][0]['d'].startswith('Make two attacks') and C0['actions'][0]['d'].startswith('Make one attack'), C1['actions'][0]['d'][:60]), {'cls': 'Wizard', 'eqC': 'none'})
+# AC: Dex cap, new cond values
+case('v4 acBase Dex capped at 2 (15 + Dex max 2)', species({'n': 'T', 'acBase': [15, 'full'], 'acDexMax': 2, 'cond': 'noBody'}), lambda C0, C1, D0, D1: ok(D1['ac'] == 15 + 2 and C1['ac']['dex'] == 'max2', json.dumps(C1['ac'])), dict(NOARM, base={'STR': 15, 'DEX': 18, 'CON': 13, 'INT': 12, 'WIS': 10, 'CHA': 8}, arr={'STR': 15, 'DEX': 18, 'CON': 13, 'INT': 12, 'WIS': 10, 'CHA': 8}))
+case('v4 cond heavy: Chain Mail worn', species({'n': 'T', 'acAdd': 1, 'cond': 'heavy'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 1, 'ac %s -> %s' % (acsum(C0), acsum(C1))))
+case('v4 cond heavy: no armor', species({'n': 'T', 'acAdd': 1, 'cond': 'heavy'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0), 'counted without armor'), NOARM)
+case('v4 cond lightNone: no armor', species({'n': 'T', 'acAdd': 1, 'cond': 'lightNone'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 1, 'not counted'), NOARM)
+case('v4 cond lightNone: heavy armor', species({'n': 'T', 'acAdd': 1, 'cond': 'lightNone'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0), 'counted in heavy armor'))
+case('v4 cond medium: Scale Mail', species({'n': 'T', 'acAdd': 1, 'cond': 'medium'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 1, 'not counted'), {'inv': [{'n': 'Scale Mail', 'q': 1, 'eq': True}]})
+# carrying capacity by field
+case('v4 carryBump doubles capacity, size stays', species({'n': 'T', 'carryBump': True}), lambda C0, C1, D0, D1: ok(D1['carry'] == 2 * D0['carry'] and C1['size'] == C0['size'], 'carry %s -> %s size %s' % (D0['carry'], D1['carry'], C1['size'])))
+# darkvision: stacking vs set
+case('v4 darkNone gives 60 when none', species({'n': 'T', 'darkNone': 60, 'darkHave': {'to': 120}}), lambda C0, C1, D0, D1: ok(C1['darkvision'] == 60, C1['darkvision']), {'species': 'Human'})
+case('v4 darkHave to 120 when Darkvision exists', {'species': {'Human': [{'n': 'A', 'darkAdd': 60}, {'n': 'T', 'darkNone': 60, 'darkHave': {'to': 120}}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 120, C1['darkvision']))
+case('v4 darkHave add 30 when Darkvision exists', {'species': {'Human': [{'n': 'A', 'darkAdd': 60}, {'n': 'T', 'darkNone': 60, 'darkHave': {'add': 30}}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 90, C1['darkvision']))
+case('v4 darkAdd stacks, darkTo sets', {'species': {'Human': [{'n': 'A', 'darkAdd': 30}, {'n': 'B', 'darkAdd': 30}, {'n': 'C', 'darkTo': 40}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 60, C1['darkvision']))
+# movement from Speed
+case('v4 mv fly speed2 (double Speed)', species({'n': 'T', 'mv': {'fly': 'speed2'}}), lambda C0, C1, D0, D1: ok(C1['moves'][0]['v'] == 2 * C1['speed'], json.dumps(C1.get('moves'))))
+# limited use rows from an entry
+case('v4 lu pb uses per long rest', species({'n': 'T', 'lu': {'n': 'Zap', 'max': 'pb', 'reset': 'long'}}), lambda C0, C1, D0, D1: ok(len(res(C1, 'Zap')) == 1 and res(C1, 'Zap')[0]['max'] == 3 and res(C1, 'Zap')[0]['reset'] == 'long' and not res(C0, 'Zap'), json.dumps(res(C1, 'Zap'))))
+case('v4 lu mod:WIS has at least 1 use', species({'n': 'T', 'lu': {'n': 'Zap', 'max': 'mod:WIS', 'reset': 'short'}}), lambda C0, C1, D0, D1: ok(res(C1, 'Zap')[0]['max'] == 1 and res(C1, 'Zap')[0]['reset'] == 'short', json.dumps(res(C1, 'Zap'))))
+case('v4 lu array by level and dusk reset', {'cls': {'Fighter': [{'n': 'T', 'lu': [{'n': 'Zap', 'max': [0, 0, 0, 0, 2], 'reset': 'dusk'}, {'n': 'Zip', 'max': 1, 'reset': 'dawn'}]}]}}, lambda C0, C1, D0, D1: ok(res(C1, 'Zap')[0]['max'] == 2 and res(C1, 'Zap')[0]['reset'] == 'long' and res(C1, 'Zip')[0]['reset'] == 'long', json.dumps(res(C1, 'Zap'))))
+case('v4 lu below the entry level gives nothing', cls({'n': 'T', 'l': 9, 'lu': {'n': 'Zap', 'max': 1}}), lambda C0, C1, D0, D1: ok(not res(C1, 'Zap'), 'row below l'))
+# attunement limit from an entry
+case('v4 attune 5 raises the limit', species({'n': 'T', 'attune': 5}), lambda C0, C1, D0, D1: ok(C1.get('attMax') == 5 and not C0.get('attMax'), str(C1.get('attMax'))))
+# custom skills outside the 18
+case('v4 custom skill Technology (proficiency + CON bonus min 1)', species({'n': 'T', 'skillProf': ['Technology'], 'skillBonus': [['Technology', 'CON', 1]]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Technology').get('p') == 1 and skill(C1, 'Technology')['ab'] == 'INT' and skill(C1, 'Technology').get('misc') == 2 and not any(s['n'] == 'Technology' for s in C0['skills']), json.dumps([s for s in C1['skills'] if s['n'] == 'Technology'])))
+case('v4 custom skill Data via skillPE twice = Expertise', {'species': {'Human': [{'n': 'A', 'skillProf': ['Data']}, {'n': 'T', 'skillPE': ['Data']}]}}, lambda C0, C1, D0, D1: ok(skill(C1, 'Data').get('p') == 2, json.dumps(skill(C1, 'Data'))))
+# proficiency-or-expertise pick as a gx pick
+case('v4 skill pick (pe) on an entry', species({'n': 'T', 'pick': [{'k': 's', 't': 'pe', 'n': 1, 'title': 'Skill', 'from': ['Athletics', 'Arcana']}]}), lambda C0, C1, D0, D1: ok(skill(C1, 'Athletics').get('p') == 2 and skill(C1, 'Arcana').get('p') != 2, 'pe pick'), {'ch': {'gx-s-species-Human': ['Athletics']}})
+# third caster and class spell list expansion
+case('v4 THIRD_SUBS makes a subclass a third caster', {'__third': {'Champion': {'list': 'Cleric', 'ab': 'WIS', 'cant': 2}}}, lambda C0, C1, D0, D1: ok(C1['spellcasting'] and C1['spellcasting']['ab'] == 'WIS' and not C0.get('spellcasting'), json.dumps(C1.get('spellcasting'))), {'sub': 'Champion'})
+
+
 def main():
     fails, n = [], 0
     with sync_playwright() as p:
@@ -191,7 +275,7 @@ def main():
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
         def run(b, gx, fxT=None):
-            pg.evaluate("g=>{window.FXO=g.__fxo||{};window.GX=g}", gx)
+            pg.evaluate("g=>{window.FXO=g.__fxo||{};window.THIRD_SUBS=g.__third||undefined;window.GX=g}", gx)
             C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
 
@@ -351,6 +435,65 @@ def main():
             n += 1
             if acsum(C) - acsum(C0) != want or bool(C['inv'][[x['n'] for x in C['inv']].index('Chain Mail')].get('mw')) != bool(flag):
                 fails.append('mw flag %s: ac %s vs %s' % (flag, acsum(C), acsum(C0)))
+        # ---- v4: abPick offers its own pick (list = the abilities), spListAdd pseudo lists, third caster lists, SAVE_NOTES owner
+        b = base_build()
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'L', 'abPick': {'k': 'a', 'from': ['INT', 'CHA'], 'set': 22}}]}})
+        chs = [c for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if c['key'] == 'gx-a-species-Human']
+        n += 1
+        if not chs or chs[0]['t'] != 'multi' or chs[0]['list'] != ['Intelligence', 'Charisma']:
+            fails.append('abPick: own pick not offered %s' % chs)
+        b = base_build()
+        b['cls'] = 'Wizard'
+        b['eqC'] = 'none'
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'L', 'spListAdd': [{'cls': 'Wizard', 'spells': ['Foresight']}, {'cls': 'Cleric', 'spells': ['Time Stop']}, {'from': 'Cleric', 'school': 'Divination', 'lvl': 1}]}]}})
+        both = pg.evaluate("b=>{window.__bldTestSet(b);try{const xl=window.__bldXl();return {xl:xl,mem:{fs:SPELLS.filter(x=>x[0]==='Foresight')[0][3],ts:SPELLS.filter(x=>x[0]==='Time Stop')[0][3],dv:SPELLS.filter(x=>x[2]==='Divination'&&x[1]===1&&x[3].indexOf('Cleric')>=0).map(x=>x[3].some(c=>c.indexOf('fx:species:Human:0:2')===0))}}}finally{window.__bldTestSet(null)}}", b)
+        xl = both['xl']
+        names = xl[0]['xl'] if xl else []
+        n += 3
+        if 'fx:species:Human:0:0' not in names or not any(x.startswith('fx:species:Human:0:2') for x in names) or any(x.startswith('fx:species:Human:0:1') for x in names):
+            fails.append('spListAdd: lists of the Wizard %s' % names)
+        mem = both['mem']
+        if 'fx:species:Human:0:0' not in mem['fs'] or any(m.startswith('fx:species:Human:0:1') for m in mem['ts']) or not mem['dv'] or not all(mem['dv']):
+            fails.append('spListAdd: spell rows %s' % mem)
+        pg.evaluate("g=>{window.GX=g}", {})
+        xl = pg.evaluate("b=>{window.__bldTestSet(b);try{return window.__bldXl()}finally{window.__bldTestSet(null)}}", b)
+        n += 1
+        if any(x.startswith('fx:') for x in xl[0]['xl']):
+            fails.append('spListAdd: lists stay on without the entry %s' % xl[0]['xl'])
+        b = base_build()
+        b['sub'] = 'Champion'
+        pg.evaluate("g=>{window.THIRD_SUBS=g;window.GX={}}", {'Champion': {'list': 'Cleric', 'ab': 'WIS', 'cant': 2}})
+        xl = pg.evaluate("b=>{window.__bldTestSet(b);try{return window.__bldXl()}finally{window.__bldTestSet(null)}}", b)
+        pg.evaluate("()=>{window.THIRD_SUBS=undefined}")
+        n += 1
+        if not xl or xl[0]['list'] != 'Cleric' or xl[0]['ab'] != 'WIS':
+            fails.append('THIRD_SUBS: caster part %s' % xl)
+        # prepAdd / cantAdd: extra prepared spells and cantrips, limited by spCls
+        b = base_build()
+        b['cls'] = 'Wizard'
+        b['eqC'] = 'none'
+        cnt = "b=>{window.__bldTestSet(b);try{return window.__bldSpCnt()}finally{window.__bldTestSet(null)}}"
+        pg.evaluate("g=>{window.GX=g}", {})
+        c0 = pg.evaluate(cnt, b)
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'P', 'prepAdd': 'pb', 'cantAdd': 1}, {'n': 'Q', 'prepAdd': 5, 'spCls': 'Cleric'}]}})
+        c1 = pg.evaluate(cnt, b)
+        n += 2
+        if c1[0]['pr'] != c0[0]['pr'] + 3 or c1[0]['ct'] != c0[0]['ct'] + 1:
+            fails.append('prepAdd/cantAdd: %s -> %s' % (c0, c1))
+        pg.evaluate("g=>{window.GX=g}", {'cls': {'Wizard': [{'n': 'P', 'prepAdd': [[1, 1], [5, 2]]}], 'Fighter': [{'n': 'Z', 'prepAdd': 9}]}})
+        c1 = pg.evaluate(cnt, b)
+        if c1[0]['pr'] != c0[0]['pr'] + 2:
+            fails.append('prepAdd steps (class entry): %s -> %s' % (c0, c1))
+        # SAVE_NOTES with an owner (4th item): the Elf row does not count for a Human, the row without an owner keeps the old match by name
+        pg.evaluate("()=>{SAVE_NOTES.push(['trait','Resourceful','Note A','Human'],['trait','Resourceful','Note B','Elf'],['trait','Skillful','Note C'])}")
+        try:
+            C = pg.evaluate("b=>window.__bldSheetFor(b)", base_build())
+        finally:
+            pg.evaluate("()=>{SAVE_NOTES.length-=3}")
+        tx = [x['t'] for x in C.get('saveNotes') or []]
+        n += 3
+        if 'Note A' not in tx or 'Note B' in tx or 'Note C' not in tx:
+            fails.append('SAVE_NOTES owner: %s' % tx)
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))
