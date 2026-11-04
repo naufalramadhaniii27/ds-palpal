@@ -1,0 +1,61 @@
+{
+ "why": "Same build with a Shield held and acMode \"uax\". The Monk Unarmored Defense needs no Shield, so that option is gone; the Barbarian one allows a Shield: 10 + DEX 2 + CON 2 = 14, + Shield 2 = 16. Unarmored Movement also stops with a Shield: Speed 30.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Barbarian",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Monk",
+    "sub": "",
+    "lv": 3
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ],
+  "acMode": "uax"
+ },
+ "expect": {
+  "ac": 16,
+  "speed": 30
+ }
+}

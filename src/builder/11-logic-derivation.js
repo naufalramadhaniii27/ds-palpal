@@ -59,13 +59,13 @@ function fxCh(key,pre,kind,okey){let v=B.ch[pre+key];if(v==null&&kind==="feat"){
 function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
  const FXT=fxtMap();
- function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)});
+ function put(list,kind,owner,lv,pre,lblOf,okey,ocls){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en),ocls:ocls});/* ocls: the class of a cls or sub entry, the default spellcasting class (spCls) */
   /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
   if(e.toggle){const st=FXT[e.toggle.id];o.tgOn=st==null?!!e.toggle.default:!!st;if(!o.tgOn){const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});o=k}}
   out.push(o)})}
  let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
-  put(((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),"cls",q.cls,q.lv,pre,(n) =>{return n+" ("+q.cls+" "+q.lv+")"});
-  if(q.sub)put(((G.sub&&G.sub[q.sub])||[]),"sub",q.sub,q.lv,pre,(n) =>{return n+" ("+q.sub+" "+q.lv+")"})});
+  put(((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),"cls",q.cls,q.lv,pre,(n) =>{return n+" ("+q.cls+" "+q.lv+")"},undefined,q.cls);
+  if(q.sub)put(((G.sub&&G.sub[q.sub])||[]),"sub",q.sub,q.lv,pre,(n) =>{return n+" ("+q.sub+" "+q.lv+")"},undefined,q.cls)});
  const sp=un("species")?null:SPECIES[B.species];if(sp)put((sp.gx||[]).concat((G.species&&G.species[B.species])||[]),"species",B.species,TLv,"",(n) =>{return n+" ("+B.species+")"});
  const bg=bgX();if(bg)put((bg.gx||[]).concat((G.bg&&G.bg[B.bg])||[]),"bg",B.bg,TLv,"",(n) =>{return n+" ("+B.bg+" background)"});
  allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";/* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]).map((e) =>{return e&&e.spCls==="@asi"?Object.assign({},e,{spCls:"@sub:"+fab}):e&&e.spCls==="@abpick"?Object.assign({},e,{spCls:"@sub:"+fpa}):e}),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
@@ -73,7 +73,7 @@ export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{
  return out}
 export function classFx(){return gfx()}
 /* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
-const TGKEEP=["n","l","when","pick","pickLv","toggle","kind","owner","lv","pre","okey","idx","lbl"];
+const TGKEEP=["n","l","when","pick","pickLv","toggle","kind","owner","lv","pre","okey","idx","lbl","ocls"];
 let FXTO=null;export function fxtSet(m){FXTO=m||null}
 function fxtMap(){if(FXTO)return FXTO;try{const st=typeof window!=="undefined"&&window.__sheetState&&window.__sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
 /* gx pick key of pick k of an entry (same rule as gxPicks) */

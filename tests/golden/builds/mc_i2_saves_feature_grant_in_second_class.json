@@ -1,0 +1,58 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Fighter 5 + Rogue 15, level 20, PB 6. First class Fighter: STR 3+6 = 9, CON 2+6 = 8. The Rogue core saves (DEX, INT) are not granted: DEX 2, INT 1. Slippery Mind is a Rogue 15 feature (not a starting proficiency), so it applies: WIS 0+6 = 6, CHA -1+6 = 5.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "mc": [
+   {
+    "cls": "Rogue",
+    "sub": "",
+    "lv": 15
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "pb": 6,
+  "D:save.STR": 9,
+  "D:save.CON": 8,
+  "D:save.DEX": 2,
+  "D:save.INT": 1,
+  "D:save.WIS": 6,
+  "D:save.CHA": 5
+ }
+}

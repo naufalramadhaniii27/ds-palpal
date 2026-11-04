@@ -62,7 +62,7 @@ export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){c
  clsParts().forEach((q,i) =>{if(q.sub==="Illusionist"&&q.lv>=3)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p3illcan"]||[]).forEach((n) =>{add([[1,n]],"Improved Illusions",q.lv,q.cls)})});
  clsParts().forEach((q,i) =>{if(q.sub==="College of Lore"&&q.lv>=6)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p6disc"]||[]).forEach((n) =>{add([[1,n]],"Magical Discoveries",q.lv,q.cls)})});
  sbAuto(add);/* v63 */
- __R.gfx().forEach((e) =>{if(e.spells)add(e.spells,e.lbl,e.lv,e.spCls||e.cls||"@species")});/* fx engine v2: spells [[level, "A,B"]] always prepared */(function(){(__R.gxPicks?__R.gxPicks():[]).forEach((o) =>{if(!o.gxc)return;(B.ch[o.key]||[]).forEach((n) =>{add([[1,n]],o.src,0,o.gxc)})})})();
+ __R.gfx().forEach((e) =>{if(e.spells)add(e.spells,e.lbl,e.lv,e.spCls||e.ocls||e.cls||"@species")});/* fx engine v2: spells [[level, "A,B"]] always prepared */(function(){(__R.gxPicks?__R.gxPicks():[]).forEach((o) =>{if(!o.gxc)return;(B.ch[o.key]||[]).forEach((n) =>{add([[1,n]],o.src,0,o.gxc)})})})();
  const S=un("species")?null:SP_AUTO[B.species];if(S){const k=Object.keys(S).filter((k) =>{return k===""||(B.ch.lin||"").indexOf(k)===0})[0];if(k!=null)add(S[k],B.species+(k?" ("+k+")":""),__R.TL(),"@species")}/* M5 (RL9): species spells use the character level (PHB 2024 p. 190, 197) */
  __R.MCL().forEach((m) =>{add(CLS_AUTO[m.cls],m.cls,m.lv,m.cls);if(m.sub)add(AUTO[m.sub],m.sub,m.lv,m.cls)});
  (B.ch.spcan||[]).forEach((n) =>{add([[1,n]],B.species+" ("+(spOptFx().cantripLabel||"Limited Spellcaster")+")",0,"@spcan")});

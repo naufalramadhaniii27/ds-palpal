@@ -38,9 +38,9 @@ export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
 export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}
 /* M10: every B.ch key that holds languages: lang, langRogue, langRanger, and m<i>:langRogue / m<i>:langRanger for a multiclass */
 export function langKeys(){return ["lang","langRogue","langRanger"].concat(Object.keys(B.ch||{}).filter((k) =>{return /^m\d+:lang(Rogue|Ranger)$/.test(k)||/^(m\d+:)?p\d+(lang|slang)\w*$/.test(k)}))}/* v63: subclass language picks */
-export function mcReqFail(cls){const a=abil().sc;return MC_REQ[cls].filter((g) =>{return !g.some((k) =>{return a[k]>=13})}).map((g) =>{return g.join(" or ")+" 13"}).join(", ")}
+export function mcReqFail(cls){const a=abil().sc;return (MC_REQ[cls]||[]).filter((g) =>{return !g.some((k) =>{return a[k]>=13})}).map((g) =>{return g.join(" or ")+" 13"}).join(", ")}
 function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],p="m"+i+":",src=function(l){return SRC+", "+m.cls+" "+l+" (multiclass)"};
- const g=MC_GRANT[m.cls];if(g.sk)out.push({key:p+"sk",mc:i,lvl:1,t:"skills",n:1,from:g.skFrom==="any"?ALLSK:c.sk.from,title:m.cls+" multiclass skill",src:src(1)});
+ const g=MC_GRANT[m.cls]||{};/* a class without an mcg entry (Warmage, Necromancer, Investigator) grants nothing */if(g.sk)out.push({key:p+"sk",mc:i,lvl:1,t:"skills",n:1,from:g.skFrom==="any"?ALLSK:c.sk.from,title:m.cls+" multiclass skill",src:src(1)});
  if(g.toolPick)out.push({key:p+"tool",mc:i,lvl:1,t:"tool",n:g.toolPick.n,cats:g.toolPick.cats,title:m.cls+" multiclass tool",src:src(1),feature:"Multiclass Proficiencies"});/* v32 RL49 */
  if(c.wm&&!R14())out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */
  if(c.fs&&m.lv>=c.fs){out.push({key:p+"fs",mc:i,lvl:c.fs,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:src(c.fs),feature:"Fighting Style"});
@@ -51,6 +51,7 @@ function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],
  if(m.cls==="Ranger"&&m.lv>=2&&!R14())out.push({key:p+"langRanger",mc:i,lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:src(2),feature:"Deft Explorer"}); if(m.lv>=subLv(m.cls))out.push({key:p+"sub",mc:i,lvl:subLv(m.cls),t:"mcsub",title:subLbl(m.cls),src:src(subLv(m.cls))});
  const ps=c.pickSub&&c.pickSub[m.sub];(ps||[]).forEach((q) =>{const el=pEff(m.cls,m.sub,q);if(m.lv>=el){const o=pk(q,m.sub+" "+el,m.cls,m.sub);if(!o)return;o.lvl=el;o.key=p+o.key;o.mc=i;out.push(o)}});
  if(m.sub)subChoicesFor(m.sub).forEach((q) =>{if(m.lv>=q.l)out.push(q.kind==="opt"?{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:m.sub+" "+q.l,feature:q.feature}:{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:m.sub+" "+q.l,feature:q.feature})});/* v20 M2 */
+ /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&typeof window!=="undefined"&&window.GX&&window.GX.sub)(window.GX.sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});
  [4,8,12,16].concat(c.asiX||[]).forEach((l) =>{if(m.lv>=l)out.push({key:p+"feat"+l,mc:i,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+m.cls+" "+l+")"})});
  if(m.lv>=19)out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})});
  return out}

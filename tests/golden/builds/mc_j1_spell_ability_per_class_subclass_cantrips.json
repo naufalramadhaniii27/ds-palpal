@@ -1,0 +1,82 @@
+{
+ "why": "Scores: base STR 10 DEX 14 CON 13 INT 15 WIS 10 CHA 14 plus Sage (INT +2, CON +1) = INT 17 (+3), CHA 14 (+2), CON 14. Wizard 4 + Warden 3 (Drake-Blooded), level 7, PB 3. Wizard spells use INT: DC 8+3+3 = 14, attack 3+3 = 6. Drake-Blooded Spellcasting uses CHA (spCls @sub:CHA): DC 8+3+2 = 13, attack 3+2 = 5. Its two Sorcerer cantrips (Fire Bolt, Ray of Frost) are cast with CHA, not INT.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Sage",
+  "bgMode": "21",
+  "bg2": "INT",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 4,
+  "mc": [
+   {
+    "cls": "Warden",
+    "sub": "Drake-Blooded",
+    "lv": 3
+   }
+  ],
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 15,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {
+   "gx-c-sub-Drake-Blooded-m0": [
+    "Fire Bolt",
+    "Ray of Frost"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 15,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spellcasting.by.Wizard.dc",
+   "eq": 14
+  },
+  {
+   "path": "spellcasting.by.Wizard.atk",
+   "eq": 6
+  },
+  {
+   "path": "spellcasting.by.Spellcasting (Drake-Blooded 3).ab",
+   "eq": "CHA"
+  },
+  {
+   "path": "spellcasting.by.Spellcasting (Drake-Blooded 3).dc",
+   "eq": 13
+  },
+  {
+   "path": "spellcasting.by.Spellcasting (Drake-Blooded 3).atk",
+   "eq": 5
+  },
+  {
+   "path": "spells.Ray of Frost.ab",
+   "eq": "CHA"
+  }
+ ]
+}

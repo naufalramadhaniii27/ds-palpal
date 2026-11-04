@@ -1,0 +1,64 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). INT is 14. Fighter 5 + Warmage 7 (House of Knights). Both Fighting Style picks are Defense (Fighter fs1 and the Warmage subclass m0:sfs7). A Fighting Style feat cannot be taken twice (PHB 2024, Feats: a feat can be taken only once unless it says Repeatable), so +1 AC counts once: Chain Mail 16 + 1 = 17, not 18. The builder lists the double pick as a violation. HP as mc_a1 = 93.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "mc": [
+   {
+    "cls": "Warmage",
+    "sub": "House of Knights",
+    "lv": 7
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "fs1": "Defense",
+   "m0:sfs7": "Defense"
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Chain Mail",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17,
+  "hpmax": 93
+ }
+}

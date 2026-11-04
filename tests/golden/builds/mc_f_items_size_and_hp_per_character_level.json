@@ -1,0 +1,68 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Fighter 3 + Wizard 4, level 7. Exo-Frame (worn): AC 18, Dexterity does not apply, size Large. Berserker Axe (attuned): HP max +1 per character level = 7 (not per class level). HP: Fighter 12 + 2x8 = 28, Wizard d6 4x(4+2) = 24, = 52, plus 7 = 59.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 3,
+  "mc": [
+   {
+    "cls": "Wizard",
+    "sub": "",
+    "lv": 4
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Exo-Frame",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Berserker Axe",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "hpmax": 59,
+  "ac": 18,
+  "C:size": "Large"
+ }
+}
