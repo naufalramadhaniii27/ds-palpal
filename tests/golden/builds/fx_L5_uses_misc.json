@@ -1,0 +1,85 @@
+{
+ "why": "Ring of Djinni Summoning once per 24 hours, Shield Emitter and Shoulder Cannon once until dawn, Sorting Beast Identify once until dawn.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Ring of Djinni Summoning",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shield Emitter",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shoulder Cannon",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Sorting Beast",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "res.Call a Djinni.max",
+   "eq": 1
+  },
+  {
+   "path": "res.Shield Emitter.max",
+   "eq": 1
+  },
+  {
+   "path": "res.Shoulder Cannon.max",
+   "eq": 1
+  },
+  {
+   "path": "res.Identify (Sorting Beast).max",
+   "eq": 1
+  }
+ ]
+}

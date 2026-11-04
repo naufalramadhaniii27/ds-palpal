@@ -1,0 +1,70 @@
+{
+ "why": "Silken Spite (Awakened): Abyssal, Elvish, Undercommon, darkvision 60 ft, four spells once each per dawn.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Silken Spite (Awakened)",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Undercommon"
+  },
+  {
+   "path": "darkvision",
+   "eq": 60
+  },
+  {
+   "path": "res.Cloudkill (Silken Spite).max",
+   "eq": 1
+  },
+  {
+   "path": "res.Web (Silken Spite).max",
+   "eq": 1
+  }
+ ]
+}

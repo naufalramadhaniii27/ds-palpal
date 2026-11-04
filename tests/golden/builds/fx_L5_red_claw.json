@@ -1,0 +1,67 @@
+{
+ "why": "Red Claw's Regalia: Constitution +2 (maximum 22), advantage on Constitution saves, resistance to fire. CON 13 to 15 (+2).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Red Claw's Regalia",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.CON": 3
+ },
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Fire"
+   }
+  },
+  {
+   "path": "saveNotes",
+   "in": "Constitution"
+  }
+ ]
+}

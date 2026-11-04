@@ -1,0 +1,71 @@
+{
+ "why": "Ring of Air Elemental Command after helping slay an air elemental: resistance to lightning and a Fly Speed equal to your Speed (30).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Ring of Air Elemental Command",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Lightning"
+   }
+  },
+  {
+   "path": "moves",
+   "has": {
+    "m": "fly",
+    "v": 30
+   }
+  }
+ ],
+ "fxT": {
+  "ring-air-slain": true
+ }
+}
