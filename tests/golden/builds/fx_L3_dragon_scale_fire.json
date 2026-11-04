@@ -1,0 +1,65 @@
+{
+ "why": "Dragon Scale Mail with a Red dragon: Resistance to Fire, advantage on saves vs breath weapons.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-r-item-Dragon Scale Mail": [
+    "Fire"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Dragon Scale Mail",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "\"Fire\""
+  },
+  {
+   "path": "saveNotes",
+   "in": "breath weapons"
+  }
+ ]
+}
