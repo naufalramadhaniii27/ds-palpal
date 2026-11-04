@@ -57,7 +57,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  rider("Khrusor, Spear of Heliod","2d8","radiant");
  rider("Lash of Immolation","1d6","fire");
  rider("Lute of Thunderous Thumping","2d8","thunder");
- rider("Mastix, Whip of Erebos","2d8","necrotic");
  rider("Ironfang","1d8","thunder");
  rider("Ionbreaker, the Tempest's Reach","1d8","lightning (ranged hit on your turn)");
  add("Festerwood Logger",{n:"Festerwood Logger",atkBonus:[{when:["Festerwood Logger"],note:"The extra acid damage is maximized against plants, Plant creatures and wooden objects."}]});
@@ -128,7 +127,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Infernal Plate Armor",{n:"Infernal Plate Armor",vul:["Force","Lightning","Psychic","Radiant","Thunder"]});
  add("Iron Elixir",{n:"Iron Elixir",res:["Bludgeoning","Piercing","Slashing"],speedAdd:-10,defs:[["Note","Damage threshold 5. Disadvantage on Dexterity saving throws and checks that nothing can cancel."]]});
  add("Helm of Underwater Action",{n:"Helm of Underwater Action",darkTo:60});
- add("Green Dragon Mask",{n:"Dragon Sight and Tongue",darkNone:60,darkHave:{add:60},langs:["Draconic"],lu:{n:"Legendary Resistance (Green Dragon Mask)",max:1,reset:"dawn"}});
  /* Scores */
  add("I'jin",{n:"I'jin",abSet:[["DEX",23]]});
  add("Kubazan",{n:"Kubazan",abSet:[["STR",23]]});

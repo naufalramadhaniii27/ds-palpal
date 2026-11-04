@@ -27,7 +27,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  /* Nightbringer: the immunity is one chosen type, and every benefit needs an evil alignment */
  W("Nightbringer",{atk:3,dmg:3});
  (function(n){var tg={id:"nightbringer-evil",label:"Evil alignment (Nightbringer benefits)"};
-  add(n,{n:n,toggle:tg,condImm:["Charmed","Frightened"],darkNone:60,darkHave:{add:60},pick:[{k:"imm",t:"multi",n:1,title:"Damage immunity (choose when you attune)",list:["Acid","Cold","Fire","Lightning","Poison"].map(function(t){return [t,""]})}]});
+  add(n,{n:n,toggle:tg,condImm:["Charmed","Frightened"],darkNone:60,darkHave:{add:60},atkDice:[{when:"Nightbringer",d:"4d4",t:"radiant"}],pick:[{k:"imm",t:"multi",n:1,title:"Damage immunity (choose when you attune)",list:["Acid","Cold","Fire","Lightning","Poison"].map(function(t){return [t,""]})}]});
   ["Acid","Cold","Fire","Lightning","Poison"].forEach(function(t){add(n,{n:n,toggle:tg,when:{key:"gx-imm-item-"+n,val:t},imm:[t]})})})("Nightbringer");
  W("Niko's Mace",null);
  W("Nimbus Coronet",null);
@@ -74,11 +74,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
 
  /* ---------- shard 13 ---------- */
  add("Red Claw's Regalia",{n:"Red Claw's Regalia",abUp:[["CON",2,22]],advOn:["Constitution saving throws"]});
- W("Red Dragon Mask",null);
- add("Red Dragon Mask",{n:"Damage Absorption",resToImm:["Fire"]});
- add("Red Dragon Mask",{n:"Dragon Sight",darkNone:60,darkHave:{add:60}});
- add("Red Dragon Mask",{n:"Dragon Tongue",langs:["Draconic"]});
- add("Red Dragon Mask",{n:"Legendary Resistance",lu:{n:"Legendary Resistance (Red Dragon Mask)",max:1,reset:"long"}});
  RIDER("Red Wizard Blade","3d12","Necrotic","Melee hit with the dagger");
  resPick("Resistance Plating",T6,"Damage type (picked by the GM or rolled)");
  resPick("Resistance Suture",T6,"Damage type the donor was immune to");

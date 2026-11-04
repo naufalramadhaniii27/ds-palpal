@@ -1,0 +1,68 @@
+{
+ "why": "Nightbringer: immunity to one chosen damage type (Fire), 4d4 radiant on a hit, darkvision +60.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "gx-imm-item-Nightbringer": [
+    "Fire"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Nightbringer",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "defenses": {
+   "in": "Fire"
+  },
+  "darkvision": 60,
+  "attacks.Nightbringer.xdice": {
+   "in": "4d4"
+  }
+ },
+ "fxT": {
+  "nightbringer-evil": true
+ }
+}

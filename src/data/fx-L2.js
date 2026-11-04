@@ -111,7 +111,6 @@
  add("Delver's Claws",{n:"Delver's Claws",sense:[["Blindsight",15,""]]});
  add("Belashyrra's Beholder Crown",{n:"Belashyrra's Beholder Crown",darkTo:120});
  add("Rogue's Mantle",{n:"Rogue's Mantle",darkNone:60,darkHave:{add:60}});
- add("Blessing of Dumathoin",{n:"Blessing of Dumathoin",darkNone:60});
  add("Bloodscryer Oculus",{n:"Bloodscryer Oculus",advOn:["sight-based Wisdom (Perception) checks"]});
  add("Watchful Helm",{n:"Watchful Helm",advOn:["Wisdom (Perception) checks that rely on sight"]});
  add("Blackrazor",{n:"Blackrazor",sense:[["Blindsight",30,""]]});

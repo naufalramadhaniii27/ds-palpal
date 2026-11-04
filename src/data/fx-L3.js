@@ -46,12 +46,9 @@
   if(t!=="Dormant")e.sense=[["See Invisible",60,"Also sees into the Ethereal Plane"]];
   if(t==="Exalted")e.defs.push(["Note","Automatically detects illusions you can see and succeeds on saving throws against them"]);
   add(n,e)});
- add("Coat of Many Eyes (Uncommon)",{advOn:["Wisdom (Perception) checks that rely on sight"]});
- ["Rare","Very Rare"].forEach(function(t){add("Coat of Many Eyes ("+t+")",{advOn:["Wisdom (Perception) checks that rely on sight"],sense:[["See Invisible",120,""]]})});
 
  /* Advantage notes and save notes */
  var MAG="saving throws against spells and other magical effects";
- add("Breastplate of Kamvuul Norek",{advOn:[MAG]});
  add("Cloak of the Mausgeist",{advOn:[MAG,"Wisdom (Perception) checks that rely on hearing"]});
  add("Cloak of the Stygian Bat",{advOn:["Wisdom (Perception) checks that rely on hearing"]});
  add("Cap of Bravery",{advOn:["saving throws to avoid or end the Frightened condition (you and allies in a 30-foot Emanation)"]});
@@ -76,7 +73,6 @@
  add("Claw of the Wyrm Rune",{def:["Resistance","Damage from any dragon's breath weapon (while the claw is displayed on your person)"]});
  add("Dark Gift of Savnok the Inscrutable",{imm:["Psychic"],condImm:["Charmed"],defs:[["Immunity","Effects that sense your emotions or read your thoughts, and Divination spells (Mind Blank)"]]});
  add("Burrowing Adaptation",{mv:{burrow:"speedHalf"}});
- add("Crawling Gauntlet",{unarmed:{die:"1d6",t:"Slashing",force:1}});
 
  /* Attack riders */
  add("Bracers of Archery",{weapons:["Longbow","Shortbow"],atkBonus:[{when:["Longbow","Shortbow"],dmg:2}]});
@@ -84,7 +80,6 @@
  add("Butcher's Bib",{atkBonus:[{when:["Battleaxe","Glaive","Greataxe","Greatsword","Halberd","Handaxe","Longsword","Scimitar","Sickle","Whip"],crit:19}]});
  add("Ephixis, Bow of Nylea",{atkBonus:[{when:"Ephixis, Bow of Nylea",crit:19,note:"No Disadvantage at long range."}]});
  add("Devotee's Censer",{atkDice:[{when:"Devotee's Censer",d:"1d8",t:"Radiant"}]});
- add("Dragontooth Dagger",{atkDice:[{when:"Dragontooth Dagger",d:"1d6",t:"Acid"}]});
  add("Dyrrn's Tentacle Whip",{atkDice:[{when:"Dyrrn's Tentacle Whip",d:"1d6",t:"Psychic"}]});
  add("Exo-Frame",{weapons:["Battlefist"]});
 

@@ -34,8 +34,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  tiers("Verminshroud",function(){return {n:"Verminshroud",darkAdd:60,advOn:["Wisdom (Perception) checks that rely on smell"]}});
  tiers("Wreath of the Prism",function(){return {n:"Wreath of the Prism",darkAdd:60}});
  add("Thermalsight Eyes",{n:"Thermalsight Eyes",sense:[["Thermalsight",30,""]]});
- add("White Dragon Mask",{n:"White Dragon Mask",darkAdd:60,langs:["Draconic"],resToImm:["Cold"]});
- FXO["White Dragon Mask"]={fx:null};
 
  /* ---- Advantage and condition notes ---- */
  add("Thassa's Disciple",{n:"Thassa's Disciple",advOn:["saving throws against being Charmed or Restrained"]});
