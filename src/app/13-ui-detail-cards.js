@@ -43,14 +43,17 @@ const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;
 const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;/* the word after a level 2 name that makes it a term */
 function xlRules(){ return typeof __R.LIB_RULES!=="undefined"?__R.LIB_RULES:{}; }
 let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
+function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
+const XL_EMPTY=(function(){ const e={}; Object.defineProperty(e,"__f",{value:{}}); return e; })();/* before the data parts are all in, the index would be built twice; it stays empty and the page is linked once when the data is ready */
 function xlIdx(){
+  if(!window.__deferDone) return XL_EMPTY;
   const tn=Date.now(); if(XL_IDX&&tn-XL_KT<250) return XL_IDX;/* the check below walks every table: once in a quarter second is enough */
   XL_KT=tn;
   const crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], Q=window.QREFS||{}, rl=xlRules(), cl=typeof CLASSES!=="undefined"?CLASSES:{}, spc=typeof SPECIES!=="undefined"?SPECIES:{}, bgs=typeof BACKGROUNDS!=="undefined"?BACKGROUNDS:{};
   let qn=0; ["rule","optfeat","facility","hazard","disease","vehicle","object","language","feature","sub"].forEach((q) =>{ qn+=(Q[q]||[]).length; });/* never "monster": it is a lazy getter that inflates 4,500 rows */
   const key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length+"|"+Object.keys(GLOSS).length+"|"+Object.keys(rl).length+"|"+Object.keys(cl).length+"|"+Object.keys(spc).length+"|"+Object.keys(bgs).length+"|"+qn+"|"+(typeof GEAR!=="undefined"?GEAR.length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).length:0)+"|"+(typeof ARMOR!=="undefined"?Object.keys(ARMOR).join(",").length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).join(",").length:0);
   if(XL_IDX&&key===XL_KEY) return XL_IDX;
-  const m={}, F={}, reg=function(n){ const sp=n.indexOf(" "), w=sp>0?n.slice(0,sp):n, c=sp>0?n.split(" ").length:1; if(!(F[w]>=c)) F[w]=c; };/* F: first word of each name, and how many words the longest name has */
+  const m={}, F={}, reg=function(n){ const sp=n.indexOf(" "); let c=1; for(let q=sp;q>0;q=n.indexOf(" ",q+1)) c++; const w=sp>0?n.slice(0,sp):n; if(!(F[w]>=c)) F[w]=c; };/* F: first word of each name, and how many words the longest name has */
   Object.defineProperty(m,"__f",{value:F});
   const put=function(n,k,lv,nm){ n=String(n||""); if(XL_DIRTY.test(n)) n=n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||/^(?:Tiny|Small|Medium|Large|Huge|Gargantuan)$/.test(n)) return; const multi=n.indexOf(" ")>0; if(nm&&!multi) return; lv=multi?0:(lv==null?1:lv); m[n]=[k[0],k[1],lv]; reg(n);
     if(lv<2&&!/s$/.test(n)&&!m[n+"s"]){ m[n+"s"]=[k[0],k[1],lv]; reg(n+"s"); } };/* plural: Long Rests, Saving Throws, Bonus Actions */
@@ -70,12 +73,12 @@ function xlIdx(){
   Object.keys(cl).forEach((c) =>{ put(c,["lib","class|"+c],1); Object.keys(cl[c].subs||{}).forEach((s) =>{ put(s,["lib","sub|"+s],1); }); });
   (Q.sub||[]).forEach((r) =>{ put(r.n,["lib","sub|"+r.n],1); });
   Object.keys(GLOSS).forEach((n) =>{ const c=String(GLOSS[n].c||""), gear=XL_GEARC.test(c); put(n,["g",n],XL_FIRM[n]||/^Condition/.test(c)?0:/^Skill|^Ability/.test(c)||gear?1:2); });
-  Object.keys(rl).forEach((n) =>{ const k0=String(n).replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"); if(!(m[k0]&&m[k0][2]<2)) put(n,["lib","rule|"+n],2); });
-  (Q.rule||[]).forEach((r) =>{ if(!m[String(r.n).replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001")]) put(r.n,["lib","rule|"+r.n],0,1); });
+  Object.keys(rl).forEach((n) =>{ const k0=xlClean(n); if(!(m[k0]&&m[k0][2]<2)) put(n,["lib","rule|"+n],2); });
+  (Q.rule||[]).forEach((r) =>{ if(!m[xlClean(r.n)]) put(r.n,["lib","rule|"+r.n],0,1); });
   if(typeof WEAPONS!=="undefined") Object.keys(WEAPONS).forEach((n) =>{ put(n,["lib","gear|"+n],1); });
   if(typeof ARMOR!=="undefined") Object.keys(ARMOR).forEach((n) =>{ put(n,["lib","gear|"+n],1); });
   ftk.forEach((n) =>{ put(n,["lib","feat|"+n],1); });
-  sp.forEach((x) =>{ const k0=String(x[0]).replace(/\s+/g," ").trim().replace(/'/g,"\u0001"), old=m[k0]; put(x[0],["spn",x[0]],1); if(old&&m[k0]&&m[k0][0]==="spn") m[k0][3]=old; });
+  sp.forEach((x) =>{ const n0=String(x[0]), k0=XL_DIRTY.test(n0)?n0.replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n0, old=m[k0]; put(x[0],["spn",x[0]],1); if(old&&m[k0]&&m[k0][0]==="spn") m[k0][3]=old; });
   crs.forEach((c) =>{ put(c.n,["cr",c.n],1); });
   mi.forEach((r) =>{ if(r&&r[0]) put(r[0],["mi",r[0]],1); });
   const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
@@ -168,7 +171,7 @@ function xlDom(el){
   return cnt;
 }
 function xlFlush(){
-  XL_T=0; if(!XL_FORCE){ const ap=document.getElementById("app"), hv=document.getElementById("homeV"); if(ap&&(!ap.offsetParent||(hv&&hv.offsetParent))){ XL_T=setTimeout(xlFlush,700); return; } }/* Home is showing: the sheet is not drawn, so wait. The index is not built until a sheet is open */
+  XL_T=0; if(!window.__deferDone&&!XL_FORCE){ XL_T=setTimeout(xlFlush,300); return; } if(!XL_FORCE){ const ap=document.getElementById("app"), hv=document.getElementById("homeV"); if(document.documentElement.classList.contains("st-wait")||(ap&&(!ap.offsetParent||(hv&&hv.offsetParent)))){ XL_T=setTimeout(xlFlush,700); return; } }/* Home is showing: the sheet is not drawn, so wait. The index is not built until a sheet is open */
   XL_FORCE=0; const q=Array.from(XL_Q); XL_Q=new Set(); if(!q.length) return;
   if(XL_OBS) XL_OBS.disconnect();/* our own edits must not queue again */
   try{ q.forEach((el) =>{ if(el.isConnected) xlDom(el); }); }catch(er){ try{ console.error("xl",er); }catch(e2){} }
@@ -183,6 +186,7 @@ function xlStart(){
   ["#app","#sheetBody"].forEach((s) =>{ const e=document.querySelector(s); if(e) xlQueue(e); });
 }
 if(document.body) xlStart(); else document.addEventListener("DOMContentLoaded",xlStart);
+document.addEventListener("bldready",() =>{ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); });/* the data is in: link what was drawn while the index was empty */
 window.__xlDom=xlDom;window.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };window.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
 window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules};/* test hook */
 function miHTML(n){
