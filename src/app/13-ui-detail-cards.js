@@ -42,13 +42,18 @@ const XL_FIRM={"Advantage":1,"Disadvantage":1,"Darkvision":1,"Initiative":1,"Exh
 const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;/* glossary gear words: a plain name, may start a sentence */
 const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;/* the word after a level 2 name that makes it a term */
 function xlRules(){ return typeof __R.LIB_RULES!=="undefined"?__R.LIB_RULES:{}; }
+let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
 function xlIdx(){
+  const tn=Date.now(); if(XL_IDX&&tn-XL_KT<250) return XL_IDX;/* the check below walks every table: once in a quarter second is enough */
+  XL_KT=tn;
   const crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], Q=window.QREFS||{}, rl=xlRules(), cl=typeof CLASSES!=="undefined"?CLASSES:{}, spc=typeof SPECIES!=="undefined"?SPECIES:{}, bgs=typeof BACKGROUNDS!=="undefined"?BACKGROUNDS:{};
   let qn=0; ["rule","optfeat","facility","hazard","disease","vehicle","object","language","feature","sub"].forEach((q) =>{ qn+=(Q[q]||[]).length; });/* never "monster": it is a lazy getter that inflates 4,500 rows */
   const key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length+"|"+Object.keys(GLOSS).length+"|"+Object.keys(rl).length+"|"+Object.keys(cl).length+"|"+Object.keys(spc).length+"|"+Object.keys(bgs).length+"|"+qn+"|"+(typeof GEAR!=="undefined"?GEAR.length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).length:0)+"|"+(typeof ARMOR!=="undefined"?Object.keys(ARMOR).join(",").length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).join(",").length:0);
   if(XL_IDX&&key===XL_KEY) return XL_IDX;
-  const m={}, put=function(n,k,lv,nm){ n=String(n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||/^(?:Tiny|Small|Medium|Large|Huge|Gargantuan)$/.test(n)) return; const multi=n.indexOf(" ")>0; if(nm&&!multi) return; lv=multi?0:(lv==null?1:lv); m[n]=[k[0],k[1],lv];
-    if(lv<2&&!/s$/.test(n)&&!m[n+"s"]) m[n+"s"]=[k[0],k[1],lv]; };/* plural: Long Rests, Saving Throws, Bonus Actions */
+  const m={}, F={}, reg=function(n){ const sp=n.indexOf(" "), w=sp>0?n.slice(0,sp):n, c=sp>0?n.split(" ").length:1; if(!(F[w]>=c)) F[w]=c; };/* F: first word of each name, and how many words the longest name has */
+  Object.defineProperty(m,"__f",{value:F});
+  const put=function(n,k,lv,nm){ n=String(n||""); if(XL_DIRTY.test(n)) n=n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||/^(?:Tiny|Small|Medium|Large|Huge|Gargantuan)$/.test(n)) return; const multi=n.indexOf(" ")>0; if(nm&&!multi) return; lv=multi?0:(lv==null?1:lv); m[n]=[k[0],k[1],lv]; reg(n);
+    if(lv<2&&!/s$/.test(n)&&!m[n+"s"]){ m[n+"s"]=[k[0],k[1],lv]; reg(n+"s"); } };/* plural: Long Rests, Saving Throws, Bonus Actions */
   const one=function(list,type,pre,lv){ list.forEach((n) =>{ put(n,[type,pre+n],lv); }); };
   /* lowest priority first, later puts replace earlier ones */
   (Q.facility||[]).forEach((r) =>{ put(r.n,["lib","facility|"+r.n],1); });
@@ -76,32 +81,37 @@ function xlIdx(){
   const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
   return m;
 }
-let XL_SELF="", XL_CM=null, XL_CK="";
+let XL_SELF="", XL_CM=null, XL_CK=-1;
 /* the index plus the open character's own features: a feature name printed on its own card (Interrupt: Used:) opens that feature */
 function xlMap(){
-  const m=xlIdx(), fs=C.features||[]; let key=String((D&&D.res||[]).length);
-  fs.forEach((g) =>{ key+="|"+(g.items||[]).length; });
+  const m=xlIdx(), fs=C.features||[]; let key=(D&&D.res||[]).length;
+  for(let i=0;i<fs.length;i++) key=(key*131+(fs[i].items||[]).length+1)%1000000007;/* a number, not a string: this runs on every text */
   if(XL_CM&&XL_CM.__b===m&&XL_CK===key) return XL_CM;
-  const o=Object.create(m); Object.defineProperty(o,"__b",{value:m});
-  fs.forEach((g,gi) =>{ (g.items||[]).forEach((f,fi) =>{ const n=String(f.n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length>2&&/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)&&!(n in o)) o[n]=["f",gi+"."+fi,n.indexOf(" ")>0?0:3]; }); });
-  (D&&D.res||[]).forEach((r) =>{ const n=String(r.n||"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||(n in o)) return; let sp=null; try{ sp=resSpec(r); }catch(er){} if(sp){ const i=sp.indexOf(":"); o[n]=[sp.slice(0,i),sp.slice(i+1),n.indexOf(" ")>0?0:3]; } });
+  const o=Object.create(m), F=Object.create(m.__f), reg=(n) =>{ const w=n.split(" ")[0], c=n.split(" ").length; if(!(F[w]>=c)) F[w]=c; }; Object.defineProperty(o,"__b",{value:m}); Object.defineProperty(o,"__f",{value:F});
+  fs.forEach((g,gi) =>{ (g.items||[]).forEach((f,fi) =>{ const n=String(f.n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length>2&&/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)&&!(n in o)) o[n]=["f",gi+"."+fi,n.indexOf(" ")>0?0:3]; reg(n); }); });
+  (D&&D.res||[]).forEach((r) =>{ const n=String(r.n||"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||(n in o)) return; let sp=null; try{ sp=resSpec(r); }catch(er){} if(sp){ const i=sp.indexOf(":"); o[n]=[sp.slice(0,i),sp.slice(i+1),n.indexOf(" ")>0?0:3]; reg(n); } });
   XL_CM=o; XL_CK=key; return o;
 }
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
 function xlScan(t,atStart,selfK,mode,m){
-  const tk=[], re=/[A-Za-z0-9+\u0001’-]+/g, res=[]; let q;
-  while((q=re.exec(t))) tk.push([q.index,q.index+q[0].length]);
+  const ta=[], tb=[], res=[], F=m.__f, n0=t.length; let p=0;/* word starts and ends, found by character code: no match arrays are made */
+  while(p<n0){
+    let c=t.charCodeAt(p);
+    if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45){ const s0=p; p++; while(p<n0){ c=t.charCodeAt(p); if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45) p++; else break; } ta.push(s0); tb.push(p); }
+    else p++;
+  }
   let i=0;
-  while(i<tk.length){
-    const a=tk[i][0], ch=t.charAt(a); let hit=null, len=0;
+  while(i<ta.length){
+    const a=ta[i], ch=t.charAt(a); let hit=null, len=0;
     if(ch>="A"&&ch<="Z"){
-      for(let L=Math.min(6,tk.length-i);L>=1;L--){
-        let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tk[j-1][1],tk[j][0])!==" "){ ok=false; break; } }
+      const mx=F?F[t.slice(a,tb[i])]:6;/* the longest name that starts with this word; none: nothing to look up */
+      for(let L=Math.min(6,mx||0,ta.length-i);L>=1;L--){
+        let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
         if(!ok) continue;
-        const ph=t.slice(a,tk[i+L-1][1]); let k=m[ph]; if(!k) continue;
+        const ph=t.slice(a,tb[i+L-1]); let k=m[ph]; if(!k) continue;
         if(ph===selfK) break;
         if(L===1||ph.indexOf(" ")<0){
-          const e0=tk[i+L-1][1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
+          const e0=tb[i+L-1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
           if(pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]) break;/* part of a longer proper name, such as "Gamma Knight" */
           if(k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())) k=k[3];/* a spell that shares its name with a rule word (Light, Slow, Darkness): the rule word unless a spell is meant */
           if(k[2]===3&&!/^[\s.,:;)]|^$/.test(t.slice(e0,e0+1))) break;/* a one-word feature of this character: a link when it stands alone or before a colon */
@@ -118,7 +128,7 @@ function xlScan(t,atStart,selfK,mode,m){
         hit=kk; len=L; break;
       }
     }
-    if(hit){ res.push([a,tk[i+len-1][1],hit]); i+=len; } else i++;
+    if(hit){ res.push([a,tb[i+len-1],hit]); i+=len; } else i++;
   }
   return res;
 }
@@ -174,7 +184,7 @@ function xlStart(){
 }
 if(document.body) xlStart(); else document.addEventListener("DOMContentLoaded",xlStart);
 window.__xlDom=xlDom;window.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };window.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
-window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:xlIdx,rules:xlRules};/* test hook */
+window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules};/* test hook */
 function miHTML(n){
   const r=(typeof DMGI!=="undefined"?DMGI:[]).filter((x) =>{ return x[0]===n; })[0];
   if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};
