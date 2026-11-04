@@ -680,7 +680,8 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
    "close": "</script>",
    "files": [
-    "data/fx-D-item.js"
+    "data/fx-D-item.js",
+    "data/fx-L3.js"
    ]
   },
   {
