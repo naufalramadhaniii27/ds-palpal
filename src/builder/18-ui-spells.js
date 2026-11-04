@@ -4,7 +4,7 @@ import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {chOf,choices,dmXl,featViol,hbSpellPicks,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,savVals} from "./10-logic-v17-additions.js";
-import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb} from "./11-logic-derivation.js";
+import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb,thirdOf} from "./11-logic-derivation.js";
 import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
@@ -18,12 +18,14 @@ Object.defineProperty(__R,"xl14",{get:function(){return xl14;},set:function(v){x
 export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach((x) =>{SMAP[x[0]]=x});
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];const o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
+/* fx engine v4: prepAdd N (extra prepared or known spells) and cantAdd N (extra cantrips) on any entry. N: number, "pb", ability key or [[level, n]] steps. spCls limits it to that class (class and subclass entries count only for their own class) */
+function spFxN(field,cls){let t=0;try{__R.gfx().forEach((e) =>{if(e[field]==null)return;if(e.kind==="cls"&&e.owner!==cls)return;if(e.kind==="sub"&&!(CLASSES[cls].subs||{})[e.owner])return;if(e.spCls&&!/^@/.test(e.spCls)&&e.spCls!==cls)return;t+=__R.fxv(e[field],e)})}catch(er){}return t}
 function spInfoOne(cls,sub,L){let c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
  if(!c.caster&&!c.nslot&&!third)return null;let ct=0,pr=0;
- if(third){ct=(/^Arcane Trickster/.test(sub)?3:2)+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
+ if(third){ct=thirdOf(sub).cant+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
  else{const cc=CANT[cls];ct=cc?cc.slice(1).reduce((a,l) =>{return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
   if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;const q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */}
- return {smax:c.smax?c.smax[L-1]:0,list:third?"Wizard":cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl()),ab:third?"INT":c.cast,ct:ct,pr:pr,kn:kn}}
+ return {smax:c.smax?c.smax[L-1]:0,list:third?thirdOf(sub).list:cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(cls)),ab:third?thirdOf(sub).ab:c.cast,ct:ct+spFxN("cantAdd",cls),pr:pr+spFxN("prepAdd",cls),kn:kn}}
 export function spInfo(){const parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map((m) =>{return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;let ct=0,pr=0,lists=[];parts.forEach((p) =>{ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach((l) =>{if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach((q) =>{const po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
