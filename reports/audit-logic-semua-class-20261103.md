@@ -47,3 +47,52 @@ Sumber JSON yang dipakai `tools/tp_build.py` tidak ada di repo, jadi `src/data/t
 ## Tes
 - `python3 build.py`, `--lint` (0 gagal), `tests/scenarios.py` (24 cek, 0 gagal, 390x844 dan 1250x850), `tests/golden_builds.py` (148 cek), `tests/mech_scan.py` (0 baru).
 - `python3 build.py --check` lolos. CI penuh belum dijalankan di sesi ini.
+
+## Pembaruan 2026-11-04: penutupan temuan dan upgrade mesin fx
+
+Branch: claude/fx-all. Hasil triase 419 kandidat: 142 REAL, 240 situasional, 37 salah deteksi.
+
+### Penutupan per batch
+| Batch | File data | Hasil |
+|---|---|---|
+| A class dan species | `src/data/fx-A-class-species.js` | 13 dari 13 diperbaiki |
+| B1 subclass | `src/data/fx-B1-subclass.js` | 24 dari 32 pada awalnya, sisanya ditutup di batch F dan G |
+| B2 subclass | `src/data/fx-B2-subclass.js` | 23 dari 23 |
+| C feat | `src/data/fx-C-feat.js` | 20 dari 21, sisanya di batch E |
+| D item | `src/data/fx-D-item.js` | 53 ditangani |
+| E feat | `src/data/fx-E-feat.js` | Hag, Ooze, Vampire Stage 1, Technical Mind Over Matter, Worthless (skor) |
+| F subclass dan item | `src/data/fx-F-sub.js` | Aquatic Affinity, Resolute Hunter, Clockwork Lich, Exo-Frame Large, grafts dicatat sebagai pilihan |
+| G mesin | `src/data/fx-G-engine.js` | Kasus toggle, pickLv, pilihan item, Masterwork |
+
+Dua koreksi golden saat penggabungan: Armigers' Guild Tower Shield (Shield memberi +3 AC, teks VSS24) membuat golden Craftsman jadi AC 19 dan 21. Fighter Champion 10 memunculkan catatan Advantage Initiative (Remarkable Athlete) di daftar defenses empat golden item.
+
+### Upgrade mesin (celah yang menyebabkan miss)
+| Celah | Field | Kasus |
+|---|---|---|
+| Status sementara | `toggle:{id,label,default}`, `C.fxToggles`, `S.fxT` | Aberrant Horror, Specter, Vampire, Path of the Abomination |
+| Pilihan per level | `pickLv`, `abUpPick` | Worthless: From the Ashes |
+| Pilihan yang menambah item | pick `t:"item"` | Cybernetic Crafts, Mad Scientist |
+| Aturan "bila sudah punya" | `resToImm`, `speedAddIf` | Specter, Hag Sea |
+| Dadu tambahan | `atkDice` | Multiscale |
+| Ganti stat serangan | `atkAb` | Mad Scientist (catatan), belum ada data yang mengubah angka |
+| Pilihan teks bebas | pick `t:"text"` | Clockwork Lich |
+| Masterwork | flag `mw` pada baris inventaris, cond `mwArmor` | Craftsman |
+
+Dokumentasi field ada di `SOURCE-NOTES.md`.
+
+### Belum tertangani
+- Fitur dengan efek hanya teks karena bersyarat atau aktif: From the Ashes (kini punya pick, tapi catatan UI per level), bagian bersyarat Transformation, Contractor Backstabber, Resolution Quick Strike.
+- Mad Scientist dan Cybernetic Crafts: stat serangan Intelligence hanya catatan, teks aturan bersyarat.
+- Pilihan Fighting Style dari subclass (`fsPick`) dan efek bersyarat (`when`) belum diuji untuk multiclass.
+- 215 situasional dan 36 salah deteksi dinilai dari teks, belum diaudit silang oleh pihak lain.
+- Sumber `tp*.js` tidak punya JSON di repo. `tools/tp_build.py` akan menghapus edit di sana. Semua perbaikan ada di `fx-*.js`.
+- Folder `books/` tidak ada di workspace ini. Angka dibaca dari data repo.
+
+### Hasil tes (branch gabungan)
+build, `--check`, `--lint` lolos. golden_builds 381 check. fx_engine 109 check. mech_scan 0 baru (257 gap diketahui, 21 by design). scenarios 24 check, 0 gagal di 390x844 dan 1250x850. `tests/e2e_fx_toggle.py` lolos.
+
+### Pengaman agar kasus seperti Warden tidak terulang
+1. Efek fitur ditulis sebagai data `fx` dan dihitung satu mesin.
+2. `tests/mech_scan.py` gagal bila ada gap baru di luar baseline.
+3. Setiap perbaikan wajib punya golden di `tests/golden/builds/`.
+4. `.github/workflows/tests.yml` menjalankan semua tes di setiap push.
