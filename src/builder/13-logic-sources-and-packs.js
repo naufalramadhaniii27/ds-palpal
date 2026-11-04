@@ -54,7 +54,7 @@ function spOptFx(){const sp=spX(),fx={};if(!sp)return fx;Object.keys(sp.fx||{}).
 function spHasFeat(){const sp=spX();return !!(sp&&(sp.featPick||spOptFx().feat))}
 /* always-prepared spells. Tables AUTO, LAND, CLS_AUTO, SP_AUTO are in db4.js (M17) */
 /* M9: k = source key for the spellcasting ability (class name, "@species", "@spcan"), see spellAb() */
-export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){const LL=lv||L;(tab||[]).forEach((r) =>{if(r[0]<=LL)r[1].split(",").forEach((n) =>{if(!out.some((o) =>{return o.n===n}))out.push({n:n,src:src,k:k,g:r[0]})/* v21 M1: level the spell is gained at */})})}
+export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){const LL=lv||L;(tab||[]).forEach((r) =>{if(r[0]<=LL)r[1].split(",").forEach((n) =>{n=n.trim();if(!n)return;/* fx engine v4: an empty placeholder like [[3,""]] adds nothing */if(!out.some((o) =>{return o.n===n}))out.push({n:n,src:src,k:k,g:r[0]})/* v21 M1: level the spell is gained at */})})}
  add(CLS_AUTO[B.cls],B.cls,0,B.cls);if(B.sub&&B.sub!=="__custom")add(AUTO[B.sub],B.sub,0,B.cls);
  if(B.sub==="Circle of the Land"&&B.ch.land)add(LAND[B.ch.land],"Circle of the Land ("+B.ch.land+")",0,B.cls);
  /* v32 RL49: Circle of the Land as a multiclass, Magical Discoveries (College of Lore 6), High Elf cantrip */

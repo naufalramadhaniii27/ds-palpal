@@ -14,6 +14,9 @@ Object.defineProperty(__R,"spLists",{get:function(){return spLists;},set:functio
 Object.defineProperty(__R,"spRec",{get:function(){return spRec;},set:function(v){spRec=v;},configurable:true});
 Object.defineProperty(__R,"spellAb",{get:function(){return spellAb;},set:function(v){spellAb=v;},configurable:true});
 /* ---------- derivation ---------- */
+const ABFULL={STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"};
+/* abilities named in a stored pick value (array of names, or text): "Strength", "STR", "WIS +1" */
+export function abOfPick(v){const t=Array.isArray(v)?v.join(" "):String(v||""),o=[];ABK.forEach((k) =>{if(new RegExp("\\b"+k+"\\b|\\b"+ABFULL[k]+"\\b","i").test(t))o.push(k)});return o}
 export function abil(){
  const sc={},src={};ABK.forEach((k) =>{sc[k]=+B.base[k]||10;src[k]=[]});
  const bg=bgX();  const rb=raceBonus();Object.keys(rb).forEach((k) =>{if(src[k])src[k].push({s:B.species+" (race)",v:rb[k]})});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach((k) =>{src[k].push({s:B.bg+" background ("+SRC+")",v:1})});
@@ -31,11 +34,16 @@ export function abil(){
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});
  const AFX=activeFx();AFX.forEach((q) =>{const f=q.fx;if(f.abil){let k=f.abil[0],nv=Math.min(f.abil[2]||30,sc[k]+f.abil[1]);if(f.abil[1]<0){nv=Math.max(1,sc[k]+f.abil[1]);if(nv<sc[k]){src[k].push({s:q.n+" (magic item, "+f.abil[1]+")",v:nv-sc[k]});sc[k]=nv}}else if(nv>sc[k]){src[k].push({s:q.n+" (magic item, +"+f.abil[1]+", maximum "+(f.abil[2]||30)+")",v:nv-sc[k]});sc[k]=nv}}});
- __R.gfx().forEach((e) =>{const up=(r) =>{const k=r[0];if(!src[k])return;const nv=Math.min(r[2]||20,sc[k]+fxv(r[1],e));if(nv>sc[k]){src[k].push({s:e.lbl+" (maximum "+(r[2]||20)+")",v:nv-sc[k]});sc[k]=nv}};(e.abUp||[]).forEach(up);
+ const GF=__R.gfx();GF.forEach((e) =>{const up=(r) =>{const k=r[0];if(!src[k])return;const nv=Math.min(r[2]||20,sc[k]+fxv(r[1],e));if(nv>sc[k]){src[k].push({s:e.lbl+" (maximum "+(r[2]||20)+")",v:nv-sc[k]});sc[k]=nv}};(e.abUp||[]).forEach(up);
+  /* fx engine v4: abDown [[ability, -N, minimum]] (curses; minimum default 1). abPick {up,max}: the picked ability goes up by up, not above max (default 20) */
+  (e.abDown||[]).forEach((r) =>{const k=r[0];if(!src[k])return;const nv=Math.max(r[2]!=null?r[2]:1,sc[k]+fxv(r[1],e));if(nv<sc[k]){src[k].push({s:e.lbl+" (minimum "+(r[2]!=null?r[2]:1)+")",v:nv-sc[k]});sc[k]=nv}});
+  if(e.abPick&&e.abPick.up)abOfPick(B.ch[gxKey(e,e.abPick.k)]).slice(0,e.abPick.n||1).forEach((k) =>{up([k,e.abPick.up,e.abPick.max])});
   /* abUpPick {max}: each pickLv pick of the entry holds text like "STR +2" or "STR +1, DEX +1"; every part raises that score (not above max). Levels in pickLv order */
   if(e.abUpPick)(e.pickLv||[]).forEach((q) =>{if(e.lv<q.lv)return;const v=B.ch[gxKey(e,q.k)],t=Array.isArray(v)?v.join(" "):(v||""),re=/\b(STR|DEX|CON|INT|WIS|CHA)\s*\+(\d+)/g;let m;while((m=re.exec(t)))up([m[1],+m[2],e.abUpPick.max])})});/* fx engine v2: abUp [[ability, +N, maximum]] */
  AFX.forEach((q) =>{const f=q.fx;/* V16-4: increases first, then "becomes" */
   const s=f.setsc;if(s&&sc[s[0]]<s[1]){src[s[0]].push({s:q.n+" (magic item, sets score to "+s[1]+")",v:s[1]-sc[s[0]]});sc[s[0]]=s[1]}});/* M18: DMGI fx (setsc as the old SETSC table, abil for Ioun Stones and similar) */
+ /* fx engine v4: abSet [[ability, value]] and abPick {set}: the score becomes value when it is lower (after every increase, like setsc). Works for every source */
+ GF.forEach((e) =>{const set=(k,v) =>{if(src[k]&&sc[k]<v){src[k].push({s:e.lbl+" (sets score to "+v+")",v:v-sc[k]});sc[k]=v}};(e.abSet||[]).forEach((r) =>{set(r[0],r[1])});if(e.abPick&&e.abPick.set)abOfPick(B.ch[gxKey(e,e.abPick.k)]).slice(0,e.abPick.n||1).forEach((k) =>{set(k,e.abPick.set)})});
  return {sc:sc,src:src}}
 export function slotsFor(){const c=CL(),L=B.level,t=c.caster;
  if(t==="full")return SLOTS_FULL[L-1];if(t==="half")return SLOTS_FULL[Math.ceil(L/2)-1];
@@ -50,16 +58,16 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
    FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
    cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
    gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
-function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();if(v==="pb")return pbOf(L);if(v==="rage"){const bl=__R.clsLv("Barbarian");return bl>=16?4:bl>=9?3:2}/* Rage Damage bonus of the Barbarian levels */if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}if(v==="pb")return pbOf(L);if(v==="rage"){const bl=__R.clsLv("Barbarian");return bl>=16?4:bl>=9?3:2}/* Rage Damage bonus of the Barbarian levels */if(v==="halfPb")return Math.floor(pbOf(L)/2);if(v==="lvl")return e&&e.lv!=null?e.lv:L;if(v==="halfLvl")return Math.floor((e&&e.lv!=null?e.lv:L)/2);if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
-function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;if(c==="mwArmor")return !!ar&&!!EA&&(/, Masterwork/.test(EA)||(B.inv||[]).some((x) =>{return x.eq&&x.mw&&x.n===EA}));return true}
+function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;/* fx engine v4: heavy, medium, light (that armor is worn), lightNone (no armor or Light armor), noMedHeavy (same as lightNone) */if(c==="heavy")return !!ar&&ar.cat==="Heavy";if(c==="medium")return !!ar&&ar.cat==="Medium";if(c==="light")return !!ar&&ar.cat==="Light";if(c==="lightNone"||c==="noMedHeavy")return !ar||ar.cat==="Light";if(c==="mwArmor")return !!ar&&!!EA&&(/, Masterwork/.test(EA)||(B.inv||[]).some((x) =>{return x.eq&&x.mw&&x.n===EA}));return true}
 /* fxCh: the stored pick "key" for an entry. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
 function fxCh(key,pre,kind,okey){let v=B.ch[pre+key];if(v==null&&kind==="feat"){v=B.ch["gx-"+key+"-feat-"+okey];if(v==null)v=B.ch[key+"-"+okey]}return v}
 function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
-export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
+export function gfx(noItem){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
  const FXT=fxtMap();
- function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)});
+ function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;/* fx engine v4: abPick {k,from:[ab],up,max,set} gets its own pick (one ability from the list) unless the entry already has a pick with that k */if(e.abPick&&e.abPick.from&&!(e.pick||[]).some((q) =>{return q.k===e.abPick.k}))e=Object.assign({},e,{pick:(e.pick||[]).concat([{k:e.abPick.k,t:"multi",n:e.abPick.n||1,title:e.abPick.title||"Ability score",list:e.abPick.from.map((k) =>{return [ABFULL[k]||k,""]})}])});const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)});
   /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
   if(e.toggle){const st=FXT[e.toggle.id];o.tgOn=st==null?!!e.toggle.default:!!st;if(!o.tgOn){const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});o=k}}
   out.push(o)})}
@@ -69,11 +77,11 @@ export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{
  const sp=un("species")?null:SPECIES[B.species];if(sp)put((sp.gx||[]).concat((G.species&&G.species[B.species])||[]),"species",B.species,TLv,"",(n) =>{return n+" ("+B.species+")"});
  const bg=bgX();if(bg)put((bg.gx||[]).concat((G.bg&&G.bg[B.bg])||[]),"bg",B.bg,TLv,"",(n) =>{return n+" ("+B.bg+" background)"});
  allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";/* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]).map((e) =>{return e&&e.spCls==="@asi"?Object.assign({},e,{spCls:"@sub:"+fab}):e&&e.spCls==="@abpick"?Object.assign({},e,{spCls:"@sub:"+fpa}):e}),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
- activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
+ if(!noItem)activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
  return out}
 export function classFx(){return gfx()}
 /* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
-const TGKEEP=["n","l","when","pick","pickLv","toggle","kind","owner","lv","pre","okey","idx","lbl"];
+const TGKEEP=["n","l","when","pick","pickLv","toggle","abPick","kind","owner","lv","pre","okey","idx","lbl"];
 let FXTO=null;export function fxtSet(m){FXTO=m||null}
 function fxtMap(){if(FXTO)return FXTO;try{const st=typeof window!=="undefined"&&window.__sheetState&&window.__sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
 /* gx pick key of pick k of an entry (same rule as gxPicks) */
@@ -88,8 +96,9 @@ Object.defineProperty(__R,"fxOk",{get:function(){return fxOk;},configurable:true
 Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
-export function isThird3(x){return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
-export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:"Wizard",ab:c.caster?c.cast:"INT",xl:(R14()&&q.cls==="Bard"?__R.xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl())/* v32: Magical Secrets */}}).filter(Boolean)}
+export function isThird3(x){if(typeof window!=="undefined"&&window.THIRD_SUBS&&window.THIRD_SUBS[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
+export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?__R.xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
+export function thirdOf(sub){const t=(typeof window!=="undefined"&&window.THIRD_SUBS&&window.THIRD_SUBS[sub])||{};return {list:t.list||"Wizard",ab:t.ab||"INT",cant:t.cant!=null?t.cant:(/^Arcane Trickster/.test(sub)?3:2)}}
 /* M9: chosen spells per caster class. B.sp = first caster class (old builds), B.spm[cls] = other classes. A B.sp spell that is not on the first
    class list but is on another caster class list belongs to that class (read only, B is not changed) */
 export var SPX=null;export function spRec(n){if(!SPX){SPX={};SPELLS.forEach((x) =>{SPX[x[0]]=x})}return SPX[n]}
