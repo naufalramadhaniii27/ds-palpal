@@ -55,8 +55,8 @@ function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
 function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;if(c==="noHeavy")return !(ar&&ar.cat==="Heavy");if(c==="noArmor")return !(ar||ESH);if(c==="noBody")return !ar;if(c==="noShield")return !ESH;if(c==="shield")return !!ESH;if(c==="armor")return !!ar;if(c==="mwArmor")return !!ar&&!!EA&&(/, Masterwork/.test(EA)||(B.inv||[]).some((x) =>{return x.eq&&x.mw&&x.n===EA}));return true}
 /* fxCh: the stored pick "key" for an entry. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
-function fxCh(key,pre,kind,okey){let v=B.ch[pre+key];if(v==null&&kind==="feat"){v=B.ch["gx-"+key+"-feat-"+okey];if(v==null)v=B.ch[key+"-"+okey]}return v}
-function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
+function fxCh(key,pre,kind,okey,any){let v=B.ch[pre+key];if(v==null&&kind==="feat"){v=B.ch["gx-"+key+"-feat-"+okey];if(v==null)v=B.ch[key+"-"+okey];if(v==null&&any){const k0=key+"-";Object.keys(B.ch).some((k) =>{if(k.indexOf(k0)===0&&B.ch[k]!=null){v=B.ch[k];return true}return false})}}return v}/* fx batch H: when.any = also read the pick from another feat slot (Fey Stage 4 reads the Court of the Stage 1 feat) */
+function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey,e.when.any),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 export function gfx(){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
  const FXT=fxtMap();
  function put(list,kind,owner,lv,pre,lblOf,okey){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en)});

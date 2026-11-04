@@ -668,7 +668,8 @@
     "data/fx-A-class-species.js",
     "data/fx-B1-subclass.js",
     "data/fx-F-sub.js",
-    "data/fx-G-engine.js"
+    "data/fx-G-engine.js",
+    "data/fx-H-audit.js"
    ]
   },
   {

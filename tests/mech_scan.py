@@ -41,12 +41,24 @@ CAT = {
 # Items: only a passive, numeric statement counts. Activated effects, charges and story text are not read here.
 ITEM_CAT = {
     "ac": re.compile(r"(\+\d+|bonus)[^.]{0,30}(to|on) (your )?(ac|armor class)|base (ac|armor class)|(ac|armor class) (is|becomes|equals) \d"),
-    "save": re.compile(r"(\+\d+|bonus)[^.]{0,20}(to|on) (all )?saving throws\b(?![^.]{0,12}\bdcs?\b)"),
+    "save": re.compile(r"(\+\d+|bonus)[^.]{0,20}(to|on) (all )?saving throws\b(?![^.]{0,12}\bdcs?\b)|\bsaving throws?[^.]{0,20}\b(each )?(get|gets|gain|gains|have|has) an? \+\d|(ability|skill) checks?[^.]{0,30}and[^.]{0,20}saving throws?[^.]{0,30}(\+\d|\bbonus (to|on)\b)"),
     "hp": re.compile(r"hit point maximum (increases|is increased|rises)|(your )?hit point maximum (is|becomes)"),
     "speed": re.compile(r"your (walking )?speed (is|becomes|increases|increased)|speed increases by|(\+\d+|bonus)[^.]{0,20}to your speed"),
     "init": re.compile(r"(\+\d+|bonus)[^.]{0,20}(to|on) (your )?initiative|(add|plus)[^.]{0,30}to (your )?initiative"),
     "resist": re.compile(r"(while|when) (you are )?(wearing|holding|carrying|attuned)[^.]{0,80}you have resistance to"),
-    "skill": re.compile(r"(\+\d+|bonus)[^.]{0,20}(to|on) (your )?(ability checks?|skill checks?)|proficien\w* (in|with) [^.]{0,30}\bskills?\b"),
+    "skill": re.compile(r"(\+\d+|bonus)[^.]{0,20}(to|on) (your |all )?(ability checks?|skill checks?)|proficien\w* (in|with) [^.]{0,30}\bskills?\b|(ability|skill) checks?\b[^.]{0,60}\b(each )?(get|gets|gain|gains|have|has) an? \+\d|(ability|skill) checks?\b[^.]{0,30}\+\d+ bonus"),
+}
+# fx registry fields (window.GX entries) -> the category of mechanics they count. An entry named in the text of a feature (or named like it) counts that feature
+# for these categories (e.g. Aberrant Horror Stage 1 is counted by the entries "Chitinous Shell" and "Slimy Form").
+GX_CAT = {
+    "ac": ("ac", "acAdd", "acBase", "acDexAb", "acMw", "acArmAb", "acOver", "shAc", "acNoDex", "acAb", "acMin"),
+    "hp": ("hp", "hpLvl", "hpFlat"),
+    "save": ("saveBonus", "saveBonusNp", "saveFrom", "advOn"),
+    "speed": ("speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv"),
+    "init": ("init", "initAdv"),
+    "skill": ("skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "skillPE", "skillAb"),
+    "resist": ("res", "imm", "vul", "resToImm", "def", "defs"),
+    "choice": ("pick", "pickLv", "abUpPick", "fsPick"),
 }
 # Words that make a statement a rule for the table instead of the sheet. Used only for Speed/choice noise.
 STRUCT_SKIP = {"cat", "d", "full", "hb", "pre", "name", "src", "alt", "lbl", "tp", "traits", "type", "size", "lgf", "lgn", "asi", "eq", "f", "subs", "sk", "armor", "weapons", "tools", "hd", "prim", "saves"}
@@ -125,7 +137,22 @@ def scan(d):
     def gxb(kind, name):
         return " " + blob((d.get("gx") or {}).get(kind, {}).get(name, ""))
 
-    def flag(kind, owner, feat, text, ev, keycats=None, meta=None):
+    def gxcov(gk, name, feat, text):
+        """Categories counted by the fx entries of `name` (GX[gk][name]) that are named in the feature text or are named like the feature."""
+        out, t, f = set(), (text or "").lower(), feat.lower()
+        for e in ((d.get("gx") or {}).get(gk, {}) or {}).get(name, []) or []:
+            if not isinstance(e, dict):
+                continue
+            en = (e.get("n") or "").lower()
+            base = re.sub(r"\s*\(.*\)\s*$", "", en).split(":")[0].strip()
+            if not (en == f or (base and len(base) > 3 and (base in t or base in f)) or (f and f in en)):
+                continue
+            for cat, ks in GX_CAT.items():
+                if any(k in e for k in ks):
+                    out.add(cat)
+        return out
+
+    def flag(kind, owner, feat, text, ev, keycats=None, meta=None, cov=()):
         c = cats(text, ITEM_CAT if kind == "item" else None)
         if not c:
             return
@@ -134,7 +161,7 @@ def scan(d):
         if nm and nm in ev:
             return
         keycats = keycats or {}
-        miss = [k for k in c if not keycats.get(k)]
+        miss = [k for k in c if not keycats.get(k) and k not in cov]
         if miss:
             gaps[key] = {"cats": miss, "meta": dict(meta or {}, kind=kind, owner=owner, feat=feat)}
 
@@ -148,7 +175,7 @@ def scan(d):
         for row in c.get("f", []):
             lvl, name = row[0], row[1]
             text = d["cf"].get("%s|%s" % (cn, name)) or row[2]
-            flag("class", cn, name, text, ev, None, {"cls": cn, "lvl": lvl, "src": d["srcOf"]["cls"].get(cn, "")})
+            flag("class", cn, name, text, ev, None, {"cls": cn, "lvl": lvl, "src": d["srcOf"]["cls"].get(cn, "")}, gxcov("cls", cn, name, text))
         # ---- subclass features of this class
         for sn, arr in (c.get("subs") or {}).items():
             w = next((x for x in d["wxs"] if x["name"] == sn and x["cls"] == cn), None)
@@ -162,7 +189,7 @@ def scan(d):
             for row in arr:
                 lvl, name = row[0], row[1]
                 text = d["sub"].get("%s|%s" % (sn, name)) or row[2]
-                flag("sub", "%s/%s" % (cn, sn), name, text, ev2, None, {"cls": cn, "sub": sn, "src": (w or {}).get("src", "") or d["srcOf"]["cls"].get(cn, "")})
+                flag("sub", "%s/%s" % (cn, sn), name, text, ev2, None, {"cls": cn, "sub": sn, "src": (w or {}).get("src", "") or d["srcOf"]["cls"].get(cn, "")}, gxcov("sub", sn, name, text))
 
     # ---- species traits
     for sn, s in d["species"].items():
@@ -174,7 +201,7 @@ def scan(d):
               "choice": s.get("opts") or s.get("lin") or s.get("skillPick") or s.get("toolPick") or s.get("featPick") or s.get("wpPick") or s.get("asiPick") or s.get("asiFlex") or s.get("spAbTrait") or s.get("fx"),
               "init": s.get("fx"), "uses": s.get("fx")}
         for t in s.get("traits", []):
-            flag("species", sn, t[0], t[1], ev, kc, {"src": d["srcOf"]["species"].get(sn, "")})
+            flag("species", sn, t[0], t[1], ev, kc, {"src": d["srcOf"]["species"].get(sn, "")}, gxcov("species", sn, t[0], t[1]))
 
     # ---- feats
     for fn, f in d["feats"].items():
@@ -187,7 +214,7 @@ def scan(d):
               "resist": f.get("res") or f.get("fx"), "uses": f.get("resK") or f.get("luckN") or f.get("res") or lu_names(d, fn),
               "choice": f.get("pick") or f.get("asi") or f.get("wpPick") or f.get("needs") or f.get("fx"),
               "fstyle": f.get("fx") or f.get("rngHit") or f.get("meleeDmg1h") or f.get("thrownDmg") or f.get("ac") or f.get("attacks")}
-        flag("feat", fn, fn, f.get("full") or f.get("d"), ev, kc, {"src": d["srcOf"]["feats"].get(fn, "")})
+        flag("feat", fn, fn, f.get("full") or f.get("d"), ev, kc, {"src": d["srcOf"]["feats"].get(fn, "")}, gxcov("feat", fn, fn, f.get("full") or f.get("d")))
 
     # ---- magic items (DMG and third party rows: [name, type, rarity, attune, text, extra])
     def item_rows():

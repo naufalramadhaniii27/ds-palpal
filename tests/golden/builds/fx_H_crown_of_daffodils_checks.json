@@ -1,0 +1,56 @@
+{
+ "why": "Crown of Daffodils: +1 to ability checks (every skill, Initiative) and saving throws. Fighter 8: Initiative 2 to 3, Athletics 6 to 7, STR save 6 to 7.",
+ "build": {
+  "name": "Golden H",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "thhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Crown of Daffodils",
+    "q": 1,
+    "eq": true,
+    "att": true
+   }
+  ]
+ },
+ "expect": {
+  "init": 3,
+  "D:skill.3": 7,
+  "D:save.STR": 7
+ }
+}

@@ -92,6 +92,7 @@ export function toSheet(){
  feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
  /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
  if(ar&&ar.str&&a.sc.STR<ar.str){spd=Math.max(0,spd-10);spSrc+=", \u221210 "+EA+" (needs Str "+ar.str+", yours is "+a.sc.STR+")"}
+ __R.gfx().forEach((e) =>{if(!e.speedMul||!__R.fxOk(e,ar,ESH,EA)||!spd)return;spd=Math.floor(spd*e.speedMul);spSrc+=", \u00d7"+e.speedMul+" "+e.lbl});/* fx batch H: speedMul = Speed multiplied (Nosferatu: doubled). After the additions and the armor cut, before mv "speed" is read */
  __R.gfx().forEach((e) =>{if(!e.mv||!__R.fxOk(e,ar,ESH,EA))return;Object.keys(e.mv).forEach((m) =>{if(e.speedAddIf&&e.speedAddIf[m]!=null)return;/* fx v3a: handled in the late pass */const v=e.mv[m],t=v==="speed"?"equal to your Speed ("+spd+" ft)":(v+" ft");spSrc+=", "+m.charAt(0).toUpperCase()+m.slice(1)+" Speed "+t+" ("+e.lbl+")";(C.moves=C.moves||[]).push({m:m,v:v==="speed"?spd:+v,s:e.lbl})})});/* fx engine v2: mv {climb,swim,fly}: "speed" or feet. Sheet shows it in speedSrc, C.moves is optional */
  C.speed=spd;C.speedSrc=spSrc;if(R14())C.rs="2014";/* v82 */
  const dk=custom?+B.cSpecies.dark:Math.max(sp.dark||0,SFX2.dark||0);/* RL36 d, M17: Drow Darkvision 120 and Wood Elf Speed 35 come from SPECIES.Elf.linFx (spOptFx) */
