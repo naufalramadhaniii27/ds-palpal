@@ -14,12 +14,24 @@ Sumber: halaman Notion "Valeria's Fieldbook of Retromistika (Playtest)" dan "Pub
 ## Sudah sama dengan halaman
 Mistikan, Retron, 7 subclass lama (nama), Bleeding, Burning, Jinxed, skill Automotive dan Computer.
 
+## Lanjutan 2026-11-04 (halaman dibaca ulang lewat Chrome, semua toggle dibuka)
+| Item | Hasil |
+|---|---|
+| Hymns, Mystical Instrumentalist | Kerusakan diubah menjadi Necrotic, mengabaikan Resistance dan Immunity, melewati Temp HP (sebelumnya "lose Hit Points") |
+| Pencak Silat | Ditulis ulang sesuai halaman: tambah Dexterous Attacks dan Unarmored Defense (L3), Martial Stances L7 (Reaction, Second Wind, DC, Temp HP), Steel Skin menggantikan Low Fighting Stance (L10), Killing Blow juga untuk Grappled dan tanpa Heavy (L15, termasuk baris FDMG), L18 Paralyzed dan ganti stance gratis |
+| School of Modernity, Funky Playlist | Label "Tuned In" dan "In the Groove" dihapus (tidak ada di halaman) |
+| Barong, Hymns (selain di atas), Joystick, Aerobics, Leyak Queen, Modernity (selain di atas), 3 subclass baru | Level, nama, dan isi cocok dengan halaman |
+| Creatures | Ditambah Banaspati (tengah), Cruiser Motorcycle, Guardian Spirit |
+| Daftar aksi | Tidak berubah |
+
 ## Belum diverifikasi atau belum ada
-1. Isi 7 subclass lama tidak dibandingkan baris demi baris dengan halaman terbaru.
-2. Sub-halaman "Cruiser Motorcycle" (Oath of the Law) dan "Guardian Spirit" (Khodam Sorcery) tidak terbaca. Stat block keduanya belum ada.
-3. Halaman menampilkan satu label "Banaspati" di antara Greater dan Lesser tanpa isi terbaca.
-4. Bagian History dan Society di Public Lore hanya berupa judul.
-5. Teks "2014's Version" pada subclass tidak dimasukkan (aplikasi 2024 saja).
+1. History dan Society di Public Lore. URL halaman Public Lore tidak ada di laporan atau sesi ini, jadi tidak dibaca. Lore di pack tidak diubah.
+2. Mesin tidak menghitung angka berikut (hanya teks): Dexterous Attacks dan Unarmored Defense Pencak Silat (pilihan Str atau Dex belum ada di skema acBase), Steel Skin, stance L7 dan L18, bonus AC Circle of the Feathers. Tidak ada fx baru, jadi tidak ada golden build baru.
+3. Cunning Eye (Pencak Silat, pilih Perception atau Medicine) tidak ada di halaman sekarang. Dipertahankan karena sheet Yudhi memakainya. Perlu keputusan Naufal.
+4. Fitur tetap bernama "Martial Stances" (halaman L7 menulis "Martial Stance", L18 menulis "Martial Stances") agar kunci aksi lama tidak berubah.
+5. Misfortune Bringer: aplikasi menulis save "against your spell save DC", halaman tidak menyebut DC.
+6. Defensive Stance: "same target" pada halaman ditulis sebagai penyerang yang sama. Perlu konfirmasi penulis.
+7. Teks "2014's Version" dicatat saja, tidak dimasukkan (aplikasi 2024 saja): Feathers Avian Shape L2, Oath Remote Smite sekali per giliran, Khodam Manifest Spirit L1, Leyak Queen L1 dan Leyak Form L1 dan Mystical Resilience L6, Modernity fitur L3 jadi L2, Pencak Silat Martial Stance memakai jumlah PB per Short atau Long Rest, plus ancestry 2014 pada Mistikan dan Retron.
 
 ## Angka di halaman yang tidak konsisten (keputusan yang diambil)
 | Entri | Di halaman | Dipakai | Alasan |
@@ -30,3 +42,6 @@ Mistikan, Retron, 7 subclass lama (nama), Bleeding, Burning, Jinxed, skill Autom
 | Weakened Ahool Bite/Claw | +7 dan damage 10 (2d6 + 3) | sama | Mod STR +4 tidak cocok dengan "+ 3". Disalin apa adanya |
 | Toyol Perception | +5, pasif 16 | sama | Pasif 16 tidak cocok dengan +5 (harusnya 15). Disalin apa adanya |
 | Khodam, Spiritual Missile | "half as much Force damage equal to d12s" | ditulis "half of the Force damage rolled" | Kalimat sumber ambigu. Perlu konfirmasi penulis |
+| Banaspati (tengah), HP | 43 (7d8 + 24) | sama | 7d8 + 24 tidak cocok dengan rata-rata 43 dan CON +2. Disalin apa adanya |
+| Cruiser, kecepatan | "30 ft plus ten times Charisma modifier (minimum of ten)" | ditulis "minimum 10" | Tidak jelas apakah minimum berlaku pada tambahan atau total |
+| Cruiser Ram | "5 + PB", 9 (1d6 + 5) | sama | Bonus serang = DEX +5 ditambah PB |
