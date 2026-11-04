@@ -1,0 +1,56 @@
+{
+ "why": "Adamantine Armor: a Critical Hit against you counts as a normal hit.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Adamantine Armor",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "defenses": {
+   "in": "Critical Hits against you become normal hits"
+  }
+ }
+}

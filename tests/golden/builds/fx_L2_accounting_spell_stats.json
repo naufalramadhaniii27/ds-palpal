@@ -1,0 +1,55 @@
+{
+ "why": "Accounting and Valuation of All Things: +3 to spell attack and spell save DC. Wizard 5, INT 12: DC 8+3+1+3 = 15, attack 3+1+3 = 7.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "coa": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Accounting and Valuation of All Things",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "spellcasting.dc": 15,
+  "spellcasting.atk": 7
+ }
+}
