@@ -466,6 +466,9 @@ Kode: `11-logic-derivation.js` (`fxv`, `fxOk`, `abil`, `gfx(noItem)`, `thirdOf`)
 Aturan tambahan: `autoSpells` melewati nama kosong. `gfx(true)` mengembalikan entri tanpa item (dipakai `attMax` dan `dmXl` karena keduanya jalan di dalam `activeFx`). `window.__bldXl()` (hook tes) mengembalikan bagian caster dengan daftar spell.
 Belum dimodelkan (butuh perubahan model data atau UI): ganti dadu senjata (Silver Eagle 2d6, Oversized Longbow), jangkauan atau reach, kunci Exhaustion, `wmAdd` (tambahan Weapon Mastery), Two-Weapon Fighting off-hand, pilihan Expertise sebagai ganti dua proficiency, tabel spell known khusus per subclass di luar tabel EK, hitungan prepared yang bukan penambahan, efek bersyarat per bentuk (pakai `toggle`).
 
+#### fx batch L9 (ledger bin 9, `src/data/fx-L9.js`)
+Dimuat di blok hbpack sesudah fx-G-engine.js. Isi: item (GX.item dan FXO), species (GX.species), dan tambalan data buku di tempat: `WXSP[buku][species]` (movesNote, lgn, linFx), `LU_X`, `SAVE_NOTES`, `SP_AUTO`, dan `ch` Iggwilv's Cauldron di `WXI`. Pola: toggle bersama untuk satu sakelar (`nautilid-suit`, `shifter-shifted`), pilihan season dan Resistance Suture lewat `when:{key:"gx-...",val}`. Yang tidak bisa: reports/ledger-skipped-L9.md.
+
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.
