@@ -1,5 +1,5 @@
 {
- "why": "Toymaker 20, Clockwork Lich [Lichdom]: Construct body and three spell immunities (defenses lines, spells chosen when the body is built). The six condition immunities are in b2_toymaker.",
+ "why": "Toymaker 20, Clockwork Lich [Lichdom]: Construct body and three spell immunities (defenses lines, spells chosen when the body is built). The six condition immunities are in b2_toymaker. (v3a: the three spells are now a typed text pick, not a placeholder line.)",
  "build": {
   "name": "fsub_toymaker20_clockwork_lich",
   "species": "Human",
@@ -18,7 +18,9 @@
    "WIS": 10,
    "CHA": 8
   },
-  "ch": {},
+  "ch": {
+   "gx-spimm-sub-Toymaker": "Shield, Counterspell, Fireball"
+  },
   "src": {
    "core": true,
    "dmg": true,
@@ -47,7 +49,7 @@
    "path": "defenses",
    "has": {
     "t": "Immunity",
-    "v": "Three spells of your choice, picked when you build the clockwork body",
+    "v": "Spells: Shield, Counterspell, Fireball",
     "s": "Clockwork Lich [Lichdom] (Toymaker 20)"
    }
   },

@@ -16,4 +16,8 @@ rep("Vampire Transformation: Stage 1",["Strigoi Bloodline"],[{n:"Strigoi Bloodli
 rep("Worthless",[],[{n:"Worthless",abCut:{total:72,each:1}}]);
 var SK=["Acrobatics","Animal Handling","Arcana","Athletics","Deception","History","Insight","Intimidation","Investigation","Medicine","Nature","Perception","Performance","Persuasion","Religion","Sleight of Hand","Stealth","Survival"];
 rep("Technical",[],[{n:"Mind Over Matter",pick:[{k:"mom",t:"multi",n:1,title:"Mind Over Matter skill (swap it at each level)",list:SK.map(function(s){return [s,""]})}]}].concat(SK.map(function(s){return {n:"Mind Over Matter: "+s,when:{key:"mom",val:s},skillAb:[[s,"INT"]]}})));
+/* fx engine v3a: "if you already have" rules, extra damage dice */
+rep("Specter Transformation: Stage 1",["Spectral Form"],[{n:"Spectral Form",resToImm:["Necrotic"]}]);/* Resistance to Necrotic damage, or Immunity if you already had that Resistance */
+rep(HAG,["The Sea Sisterhood"],[{n:"The Sea Sisterhood",when:{key:"trHag1",val:"The Sea Sisterhood"},mv:{swim:"speed"},speedAddIf:{swim:10}}]);/* Swim Speed equal to your Speed (or +10 feet if you already have one) */
+rep("Multiscale",[],[{n:"Improved Breath Weapon",atkDice:[{when:"Breath Weapon",d:"1d10",t:"damage of the type set by your Draconic Ancestry",note:"Breath Weapon (Improved Breath Weapon)"}]}]);/* no attack row for the Breath Weapon, so a Defenses note */
 })();

@@ -72,3 +72,11 @@ Status (2026-11-01, sesi yang sama):
 
 ## Catatan untuk usulan "pisahkan data dari shell" (2026-11-01)
 Bila data jadi berkas terpisah, sw.js perlu mengunduhnya di latar belakang atau memasukkannya ke daftar cache pasang. Tanpa itu aplikasi tidak lagi sepenuhnya offline sebelum tiap data dibuka sekali. Hasilnya lebih cepat pada tampilan pertama, bukan unduhan total yang lebih kecil. Keputusan belum diambil.
+
+## Request ke bagian UI/UX: pilihan teks bebas `t:"text"` (fx engine v3a, 2026-11-04)
+Engine sudah menyimpan dan menampilkan pilihan bertipe `text`. `choiceBody(c)` di src/builder/17-ui-step-builder.js belum punya cabang untuk `c.t==="text"`, jadi kartu pilihan tidak menampilkan kolom isian.
+1. Tambah cabang `c.t==="text"` di `choiceBody`: satu `<input class="btx" type="text">` (atau textarea pendek) yang menulis string ke `B.ch[c.key]` (bukan array). Judul dari `c.title`. String kosong berarti belum dipilih (`isDone` memakai `!!v`).
+2. Contoh nyata: Toymaker 20, Clockwork Lich, kunci `gx-spimm-sub-Toymaker` (tiga spell kebal).
+3. Sheet: baris Defenses (Immunity, "Spells: ...") sudah dibuat engine lewat `defT`. Bagian "Your choice." di fitur memakai `ycOf` yang sudah menerima string.
+4. Atribut baru di baris serangan `C.attacks[i]`, opsional: `xdice:[{d,t,s}]` (dadu damage tambahan) dan `abSrc`. Catatan teks sudah ikut di `note`, jadi UI tidak wajib berubah. Bila ingin kolom damage menampilkan dadu tambahan, baca `xdice`.
+Status: UI belum dikerjakan. Tanpa langkah 1, pemain tidak bisa mengisi pilihan teks di builder (nilai bisa diisi lewat impor).

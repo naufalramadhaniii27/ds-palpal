@@ -128,6 +128,27 @@ case('speedAdd -5 reads as a penalty', species({'n': 'T', 'speedAdd': -5}), lamb
 case('weapon pick', {'feat': {'Alert': [{'n': 'T', 'pick': [{'k': 'w', 't': 'weapon', 'n': 1, 'title': 'Weapon'}]}]}}, lambda C0, C1, D0, D1: ok('Longsword' in C1['profs']['weapons'] and 'Longsword' not in C0['profs']['weapons'] and any(x[0] == 'Longsword' for x in C1['profSrc']['weapons']), json.dumps(C1['profs'])), {'cls': 'Wizard', 'ch': {'feat4': {'feat': 'Alert'}, 'gx-w-feat-feat4': ['Longsword']}})
 
 
+# fx engine v3a: resToImm, speedAddIf, atkDice, atkAb, text pick
+def defs(C, t):
+    return [x['v'] for x in C.get('defenses', []) if x['t'] == t]
+
+
+def atk(C, n):
+    return [r for r in C['attacks'] if r['n'] == n][0]
+
+
+case('resToImm without earlier Resistance = Resistance', species({'n': 'T', 'resToImm': ['Necrotic']}), lambda C0, C1, D0, D1: ok('Necrotic' in defs(C1, 'Resistance') and 'Necrotic' not in defs(C1, 'Immunity'), json.dumps(C1['defenses'])))
+case('resToImm with earlier Resistance = Immunity', {'species': {'Human': [{'n': 'A', 'res': ['Necrotic']}, {'n': 'T', 'resToImm': ['Necrotic']}]}}, lambda C0, C1, D0, D1: ok('Necrotic' in defs(C1, 'Immunity') and 'Necrotic' not in defs(C1, 'Resistance'), json.dumps(C1['defenses'])))
+case('speedAddIf grants the base speed when absent', species({'n': 'T', 'mv': {'swim': 'speed'}, 'speedAddIf': {'swim': 10}}), lambda C0, C1, D0, D1: ok(C1['speeds']['swim']['v'] == 'walk' and any(m['m'] == 'swim' for m in C1['moves']), json.dumps(C1.get('speeds'))))
+case('speedAddIf adds +10 when the speed exists', {'species': {'Human': [{'n': 'A', 'mv': {'swim': 20}}, {'n': 'T', 'mv': {'swim': 'speed'}, 'speedAddIf': {'swim': 10}}]}}, lambda C0, C1, D0, D1: ok([m['v'] for m in C1['moves'] if m['m'] == 'swim'] == [30], json.dumps(C1.get('moves'))))
+case('speedAddIf adds +10 to a C.speeds entry', {'species': {'Human': [{'n': 'T', 'mv': {'swim': 'speed'}, 'speedAddIf': {'swim': 10}}]}}, lambda C0, C1, D0, D1: ok(C1['speeds']['swim']['v'] == C1['speed'] + 10, json.dumps(C1.get('speeds')) + ' speed ' + str(C1['speed'])), {'ch': {}, 'cls': 'Ranger', 'level': 6})
+case('atkDice unarmed puts dice on the row', species({'n': 'T', 'atkDice': [{'when': 'unarmed', 'd': '1d6', 't': 'Fire'}]}), lambda C0, C1, D0, D1: ok(atk(C1, 'Unarmed Strike').get('xdice') == [{'d': '1d6', 't': 'Fire', 's': 'T (Human)'}] and '+1d6 Fire' in atk(C1, 'Unarmed Strike')['note'], json.dumps(atk(C1, 'Unarmed Strike'))))
+case('atkDice without a matching row becomes a Note', species({'n': 'T', 'atkDice': [{'when': 'Breath Weapon', 'd': '1d10', 't': 'Fire'}]}), lambda C0, C1, D0, D1: ok('Extra damage on Breath Weapon: +1d10 Fire' in defs(C1, 'Note'), json.dumps(defs(C1, 'Note'))))
+case('atkAb replaces the ability when higher', species({'n': 'T', 'atkAb': {'kind': 'unarmed', 'ab': 'INT'}}), lambda C0, C1, D0, D1: ok(atk(C1, 'Unarmed Strike')['ab'] == 'INT' and atk(C0, 'Unarmed Strike')['ab'] == 'STR', atk(C1, 'Unarmed Strike')['ab']), {'base': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}, 'arr': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}})
+case('atkAb keeps the ability when lower', species({'n': 'T', 'atkAb': {'kind': 'unarmed', 'ab': 'INT'}}), lambda C0, C1, D0, D1: ok(atk(C1, 'Unarmed Strike')['ab'] == 'STR', atk(C1, 'Unarmed Strike')['ab']))
+case('atkAb opt:1 only adds a note', species({'n': 'T', 'atkAb': {'kind': 'unarmed', 'ab': 'INT', 'opt': 1}}), lambda C0, C1, D0, D1: ok(atk(C1, 'Unarmed Strike')['ab'] == 'STR' and 'Intelligence' in atk(C1, 'Unarmed Strike')['note'], atk(C1, 'Unarmed Strike')['note']), {'base': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}, 'arr': {'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 20, 'WIS': 10, 'CHA': 8}})
+
+
 def main():
     fails, n = [], 0
     with sync_playwright() as p:
@@ -208,6 +229,21 @@ def main():
         k1 = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if str(c['key']).startswith('gx-')]
         if k0 != ['gx-mode-species-Human'] or 'gx-l-species-Human' not in k1:
             fails.append('pick when: before %s after %s' % (k0, k1))
+        # text pick (v3a): free text stored in B.ch as a string, shown as a Defenses line
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'X', 'pick': [{'k': 'tx', 't': 'text', 'n': 1, 'title': 'Spells', 'yc': 1, 'defT': 'Immunity', 'dpre': 'Spells'}]}]}})
+        b = base_build()
+        ch = [c for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if c['key'] == 'gx-tx-species-Human']
+        n += 3
+        if not ch or ch[0]['t'] != 'text':
+            fails.append('text pick: not offered as t:text: %s' % ch)
+        b['ch']['gx-tx-species-Human'] = 'Shield, Fireball'
+        C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        if 'Spells: Shield, Fireball' not in [x['v'] for x in C['defenses'] if x['t'] == 'Immunity']:
+            fails.append('text pick: no Immunity line: %s' % json.dumps(C['defenses'])[:200])
+        b['ch']['gx-tx-species-Human'] = ''
+        C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        if any('Spells' in x['v'] for x in C['defenses']):
+            fails.append('text pick: empty text still shown')
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))
