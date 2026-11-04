@@ -469,3 +469,6 @@ Belum dimodelkan (butuh perubahan model data atau UI): ganti dadu senjata (Silve
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.
+
+#### fx batch L10 (`src/data/fx-L10.js`, cabang claude/w-L10)
+Ledger fixes for shards 25 to 28 as `GX.sub` / `GX.species` data, loaded after fx-G. Uses only existing v4 fields. Also changes `LU_X` reset to `short1` for three Dancer features and empties `AUTO["Greenleaf College"]`. Skipped rows: `reports/ledger-skipped-L10.md`. Goldens: `tests/golden/builds/fx_L10_*.json`.
