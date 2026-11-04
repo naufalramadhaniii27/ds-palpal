@@ -1,0 +1,57 @@
+{
+ "why": "Not raging: STR 17, DEX 14, Medium",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Barbarian",
+  "sub": "Path of the Abomination",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.STR": 17,
+  "D:score.DEX": 14
+ },
+ "expectC": {
+  "size": "Medium"
+ }
+}

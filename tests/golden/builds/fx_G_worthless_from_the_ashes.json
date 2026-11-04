@@ -1,0 +1,66 @@
+{
+ "why": "Worthless level 19: base 13,13,13,11,9,7 after the cut (see fx_E_worthless_scores). Level 4 STR +2 = 15, level 8 CON +1 DEX +1 = 14,14, level 12 STR +2 = 17. Levels 16 and 19 unpicked",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Worthless Husk",
+  "bgMode": "21",
+  "bg2": "DEX",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 19,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-ash4-feat-Origin feat (Worthless Husk)": [
+    "STR +2"
+   ],
+   "gx-ash8-feat-Origin feat (Worthless Husk)": [
+    "CON +1, DEX +1"
+   ],
+   "gx-ash12-feat-Origin feat (Worthless Husk)": [
+    "STR +2"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.STR": 17,
+  "D:score.DEX": 14,
+  "D:score.CON": 14,
+  "D:score.INT": 11
+ }
+}

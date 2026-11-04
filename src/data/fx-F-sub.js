@@ -6,7 +6,7 @@
 window.GX=window.GX||{};GX.sub=GX.sub||{};
 (function(){
  var S=GX.sub,add=function(n,e){S[n]=(S[n]||[]).concat(e)};
- /* Record-only lists. The grafts are inventory items (tp13-tsdm, tp03-tvss); a pick cannot add an item, so it only stores the choice. */
+ /* Graft lists. The grafts are inventory items (tp13-tsdm, tp03-tvss). Pick t:"item" stores the choice and adds the items to the inventory (engine v3b); a graft whose item data is not loaded stays record-only. */
  var CONSTRUCT_GRAFTS=[
   ["Android Skin", "External slot graft."],
   ["Cantrip Module", "Head slot graft."],
@@ -64,15 +64,15 @@ window.GX=window.GX||{};GX.sub=GX.sub||{};
   {n:"Resolute Hunter",l:16,pick:[{k:"fe3",t:"multi",n:1,yc:1,list:FOES,title:"Third favored enemy"},{k:"fl3",t:"lang",n:1,opt:1,title:"Language of the third favored enemy (if it speaks one)"}]}]);
  /* Druid, Circle of the Sea. Aquatic Affinity: Swim Speed equal to your Speed (stated without a condition). The 10-ft Emanation of Wrath of the Sea is text only (it needs Wild Shape to be active). */
  add("Circle of the Sea",[{n:"Aquatic Affinity",l:6,mv:{swim:"speed"}}]);
- /* Fighter, Cybernetic. Cybernetic Crafts: two Common or Uncommon Construct grafts. Stored choice only; add the grafts to the inventory. Graft slots and free installation are text only. */
- add("Cybernetic",[{n:"Cybernetic Crafts",l:3,pick:[{k:"graft",t:"multi",n:2,yc:1,list:CONSTRUCT_GRAFTS,title:"Two Construct grafts"}]}]);
+ /* Fighter, Cybernetic. Cybernetic Crafts: two Common or Uncommon Construct grafts. Stored choice, the grafts are added to the inventory (t item). Graft slots and free installation are text only. */
+ add("Cybernetic",[{n:"Cybernetic Crafts",l:3,pick:[{k:"graft",t:"item",n:2,yc:1,list:CONSTRUCT_GRAFTS,title:"Two Construct grafts"}]}]);
  /* Gadgeteer, AI Futurist. Novel Intelligence: one more skill from the AI Companion list (Arcana, Data, History, Investigation, Nature, Religion, Technology).
     The skill gives Advantage on Intelligence checks with it, not proficiency, so this is a stored choice only (a "skills" pick would grant proficiency). Translator: the AI knows all languages (the AI, not you), text only. */
  add("AI Futurist",[{n:"Novel Intelligence",l:3,pick:[{k:"aiskill",t:"multi",n:1,yc:1,list:[["Arcana",""],["Data",""],["History",""],["Investigation",""],["Nature",""],["Religion",""],["Technology",""]],title:"Bonus AI Companion skill"}]}]);
  /* Necromancer, Toymaker. Clockwork Lich [Lichdom]. The six condition immunities are counted in fx-B2-subclass.js. Added here: the Construct body and the three spell immunities, as defenses lines (the spells are picked when the body is built, free text). */
  add("Toymaker",[{n:"Clockwork Lich [Lichdom]",l:20,defs:[["Note","Your type is Construct instead of Undead (Clockwork Body)"]],pick:[{k:"spimm",t:"text",n:1,yc:1,defT:"Immunity",dpre:"Spells",title:"Three spells you are immune to (type their names)"}]}]);
  /* Alchemist, Xenoalchemist. Mad Scientist: two Common or Uncommon monstrous grafts. Intelligence for graft Unarmed Strikes and the Alchemist save DC for graft saves are text only (no attack-stat substitution field). */
- add("Xenoalchemist",[{n:"Mad Scientist",l:3,pick:[{k:"graft",t:"multi",n:2,yc:1,list:MONSTROUS_GRAFTS,title:"Two monstrous grafts"}]}]);
+ add("Xenoalchemist",[{n:"Mad Scientist",l:3,pick:[{k:"graft",t:"item",n:2,yc:1,list:MONSTROUS_GRAFTS,title:"Two monstrous grafts"}]}]);
  /* Intelligent Grafts: Intelligence may replace Strength or Dexterity only for Unarmed Strikes that a graft improves (Monstrous Bite, Monstrous Weapon). The text is conditional, so atkAb is a note (opt:1), not a changed stat. */
  ["Monstrous Bite","Monstrous Weapon"].forEach(function(g){add("Xenoalchemist",[{n:"Mad Scientist: "+g,l:3,when:{key:"gx-graft-sub-Xenoalchemist",val:g},atkAb:{kind:"unarmed",ab:"INT",opt:1,note:"Intelligent Grafts ("+g+"): you can use Intelligence instead of Strength or Dexterity for the attack and damage of Unarmed Strikes that this graft improves"}}])});
  /* Vagabond, Experiment X (also Captain and Gunslinger by cross-compatibility, same subclass name). Bloody Rampage: learn Rampage, or another maneuver if you already know it. Stored choice only.

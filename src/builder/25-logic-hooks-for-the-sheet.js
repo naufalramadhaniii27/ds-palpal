@@ -5,7 +5,7 @@ import {R14} from "./05-logic-choice-model-ruleset.js";
 import {RL14} from "./08-logic-2014-rules.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
-import {casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {fxtSet,casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -60,6 +60,10 @@ window.__bldHpMode=function(m,soft){if(!bldMine())return null;if(m==null)return 
 window.__bldHas=function(name,owner){ensureInv();return own(owner)&&B.inv.some((x) =>{return x.n===name})};
 /* RL40: the sheet name was edited (Edit form). The saved build of the same character takes the new name */
 window.__bldRename=function(from,to){if(!to||B.name===to||!own(from)||savedRaw()==null)return false;B.name=to;save();return true};
+/* fx engine v3b: toggle fx. The sheet keeps the state in S.fxT {id:bool} and exposes it as window.__sheetState().fxT. This hook rebuilds the sheet of the saved build after a toggle changed. (id,on) may be given when S.fxT is not written yet. Returns false: not a builder-made sheet */
+window.__bldFxToggle=function(id,on){const st=window.__sheetState&&window.__sheetState();if(!st||!st.C||!own(st.C.name))return false;const m=Object.assign({},st.fxT||{});if(id!=null)m[id]=!!on;fxtSet(m);try{if(window.__sheetSoft)window.__sheetSoft(toSheet())}finally{fxtSet(null)}return true};
+/* Masterwork flag of an inventory row (B.inv[].mw, copied to C.inv[].mw). Counts for cond mwArmor while the armor is worn */
+window.__bldSetMw=function(name,occ,on){ensureInv();const i=invFind(name,occ);if(i<0)return false;if(on)B.inv[i].mw=1;else delete B.inv[i].mw;save();if(window.__sheetSoft)window.__sheetSoft(toSheet());return true};
 window.__bldEquip=function(){window.__bldOpen();go("equip")};
 /* v23 RU38 no. 4: Manage Proficiencies and Manage Feats open the builder at a step */
 window.__bldGo=function(s){window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)"))return;if(STEPS.some((x) =>{return x[0]===s}))go(s)};
