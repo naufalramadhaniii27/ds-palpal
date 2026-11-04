@@ -1,0 +1,55 @@
+{
+ "why": "Stone of Good Luck: ability checks and saving throws each get +1. Fighter 8: Initiative 2 to 3, Athletics 6 to 7, STR save 6 to 7. Before: saves only.",
+ "build": {
+  "name": "Golden H",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Stone of Good Luck",
+    "q": 1,
+    "eq": true,
+    "att": true
+   }
+  ]
+ },
+ "expect": {
+  "init": 3,
+  "D:skill.3": 7,
+  "D:save.STR": 7
+ }
+}

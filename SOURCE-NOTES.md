@@ -201,6 +201,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/fx-A-class-species.js | data (fx, registry GX) | 4.271 |
 | data/fx-F-sub.js | data (fx, registry GX.sub, batch F) | 7.814 |
 | data/fx-G-engine.js | data (fx, engine v3b: toggle, pickLv, item) | 4.600 |
+| data/fx-H-audit.js | data (fx, batch H: hasil audit silang gaps, item, sub, feat) | 3.274 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -421,6 +422,17 @@ Perluasan v3a (engine, `12-logic-export-to-sheet.js` "late pass" sesudah seranga
 | `atkAb:{kind,ab,opt,note}` | kemampuan pengganti untuk bonus serangan dan modifier damage pada baris `kind` (`unarmed`, `weapon`, `spell`, atau nama). Dipakai bila modifiernya lebih tinggi, `r.ab` diganti dan `r.abSrc` diisi. `opt:1` = hanya catatan di baris (untuk teks "can use" yang bersyarat), kemampuan tidak diganti | Mad Scientist: `atkAb:{kind:"unarmed",ab:"INT",opt:1}` per graft Monstrous Bite dan Monstrous Weapon |
 | `pick` tipe `text` | pilihan teks bebas, tersimpan sebagai string di `B.ch[key]`. `yc:1` menampilkannya di fitur ("Your choice."), `defT:"Immunity"` (atau Resistance, Note, dst.) dan `dpre:"Spells"` membuat baris Defenses "Spells: <teks>". Teks kosong tidak ditampilkan. Kolom isian di builder butuh UI (reports/requests.md) | Toymaker Clockwork Lich: `{k:"spimm",t:"text",n:1,yc:1,defT:"Immunity",dpre:"Spells"}` |
 Catatan v3a: Cybernetic Crafts tidak menyebut Intelligence di teksnya, jadi tidak ada `atkAb` untuk subclass itu. Mad Scientist hanya untuk Unarmed Strike yang diperbaiki graft, jadi `opt:1`. `when:{key}` untuk pilihan subclass memakai kunci lengkap (`gx-graft-sub-Xenoalchemist`).
+
+#### fx batch H (audit silang `mech_baseline.json`)
+Berkas: `src/data/fx-H-audit.js` (blok hbpack, sesudah fx-G). Isi: hasil audit 257 key "gaps" (laporan `reports/audit-silang-situasional-20261104.md` untuk sampel 80, `reports/audit-sisa-177-20261104.md` untuk sisanya). Hanya aturan tetap tanpa aksi, pemicu atau pilihan saat bermain yang dihitung. Dua tambahan engine kecil:
+| Field | Arti | Contoh |
+|---|---|---|
+| `speedMul:N` | Speed dikali N sesudah semua tambahan dan potongan armor, sebelum `mv:"speed"` dibaca (jadi Climb sama dengan Speed yang sudah dikali). Tampil di `speedSrc` sebagai "×N". Kode: `12-logic-export-to-sheet.js` | Necromancer Blood Ascendant Nosferatu: `{speedMul:2,mv:{climb:"speed"}}` |
+| `when:{key,val,any:1}` | `any:1` (entri feat) membaca pilihan `key` juga dari slot feat lain. Dipakai bila pilihan dibuat di feat yang berbeda dari feat pemilik entri. Kode: `fxCh()` di `11-logic-derivation.js` | Fey Stage 4 membaca Court dari pilihan `trFey1` di Fey Stage 1 |
+Pola yang dipakai tanpa perubahan engine: `mv:{fly:"speed"}` untuk item dan subclass (Ionbreaker Zephyr Step, Warrior of the Celestial Heavenborne, Storm Sentinel Storm Wings), `chkBonus` untuk keenam kemampuan plus `init:1` untuk bonus +1 ke ability check (Crown of Daffodils, Stone of Good Luck; bonus save tetap dari `fx.save` di baris item), `advOn` untuk Advantage save (Pharaoh Magic Resistance, Parasite Symbiotic Sentinel), `initAdv`, `def` bertipe Vulnerability atau Resistance (Lycanthrope Silver Sensitivity, Oath of Redemption Emissary), `darkAdd` (Star and Shadow Reader), `vul` per Court (Fey Stage 4).
+Sengaja tetap teks: klausa per makhluk pada Emissary of Redemption (Resistance hilang terhadap makhluk yang kamu serang atau kenai spell sampai Long Rest, sheet tidak melacak target, jadi baris Defenses memuat syaratnya dalam kata), batas "short bursts" Heavenborne, hover maksimal 20 ft Zephyr Step, Regeneration dan aturan sinar matahari Nosferatu.
+Tes: `tests/golden/builds/fx_H_*.json`.
+Pemindai: `tests/mech_scan.py` kini mengenali (1) entri `window.GX` yang namanya disebut dalam teks fitur atau bernama sama (kategori ditentukan dari field entri, tabel `GX_CAT`), jadi fitur yang dihitung lewat nama sub-efek tidak lagi masuk gaps, dan (2) frasa item "+1 bonus to ability checks and saving throws" dan "ability checks and saving throws each get a +1" (sebelumnya Stone of Good Luck lolos).
 
 #### fx engine v3b (toggle, pickLv, abUpPick, item, Masterwork)
 Berkas data: `src/data/fx-G-engine.js` (di blok hbpack, sesudah fx-F). Kode: `gfx()`, `abil()`, `fxOk()` di `11-logic-derivation.js`, `gxPicks()` di `09-...`, `syncPickItems()` di `14-...`, hook di `25-...`.

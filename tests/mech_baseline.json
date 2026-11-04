@@ -11,6 +11,8 @@
 "class|Investigator|Exploit Weakness": "Batch A triage: Sekali per giliran saat serangan mengenai, dipilih saat bermain.",
 "class|Rogue|Thieves' Cant": "Batch A triage, not a real gap: Builder sudah punya pilihan langRogue (1 bahasa) pada Rogue. Pindai salah menandai.",
 "class|Summoner|Shared Spellcasting": "Batch A triage: Eidolon merapal mantra memakai slot pemain, aturan bermain.",
+"feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": "Cross audit 2026-11-04: Counted under the sub-effect names Chitinous Shell and Slimy Form (GX.feat, toggles, src/data/fx-G-engine.js). The 'uses' hit is the mutation rule (1 minute, one at a time), which is what the toggles model.",
+"feat|Ooze Transformation: Stage 1|Ooze Transformation: Stage 1": "Cross audit 2026-11-04: Counted under Ooze Form (senseAdd Blindsight 30, src/data/fx-E-feat.js) and the Speed 25 entry. The remaining hits are the Slimy Mien and manifest rules, activated and timed.",
 "species|Kalashtar|Severed from Dreams": "Batch A triage: Proficiency skill dipilih ulang tiap Long Rest, perlu toggle sheet.",
 "species|Lorwyn Changeling|Unpredictable Movement": "Batch A triage: Gerak saat Initiative, aturan bermain.",
 "species|Shifter (Beasthide)|Shifting Feature": "Batch A triage: Hanya saat shifted (aksi). Perlu toggle sheet. Spesies 2014 saja.",
@@ -20,12 +22,10 @@
 "species|Vampire (Ixalan)|Feast of Blood": "Batch A triage: Efek sementara setelah menghisap. Spesies 2014 saja.",
 "species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
 "sub|Bard/College of Origami|Origami Familiar": "Batch F triage: Find Familiar is already always prepared through the subclass spell data (source College of Origami). The scan hit is the familiar's Fly Speed 60 ft and 1 HP, which belong to the familiar, not to the character.",
-"sub|Fighter/Champion|Additional Fighting Style": "Batch F triage: counted by the native pick CLASSES.Fighter.pickSub.Champion {l:7,k:'fs'} (choice key p7fs, a Fighting Style feat that goes through allFeats). Golden: fsub_champion7_extra_fs (Defense: AC 17 against 16 without the pick)."
+"sub|Fighter/Champion|Additional Fighting Style": "Batch F triage: counted by the native pick CLASSES.Fighter.pickSub.Champion {l:7,k:'fs'} (choice key p7fs, a Fighting Style feat that goes through allFeats). Golden: fsub_champion7_extra_fs (Defense: AC 17 against 16 without the pick).",
+"sub|Rogue/Assassin|Assassinate": "Cross audit 2026-11-04: Advantage on Initiative is counted by the PADV table (src/app/33-logic-play-rage-conditions.js, row Assassinate). The scan looks for the feature name in structured fields and does not read PADV."
 },
 "gaps": {
-"feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": [
-"uses"
-],
 "feat|Ability Score Improvement|Ability Score Improvement": [
 "choice"
 ],
@@ -68,9 +68,6 @@
 "feat|Elemental Familiar|Elemental Familiar": [
 "resist"
 ],
-"feat|Fey Transformation: Stage 4|Fey Transformation: Stage 4": [
-"resist"
-],
 "feat|Field Medic|Field Medic": [
 "uses"
 ],
@@ -86,10 +83,6 @@
 "feat|Greater Mark of Storm|Greater Mark of Storm": [
 "speed"
 ],
-"feat|Hag Transformation: Stage 1|Hag Transformation: Stage 1": [
-"ac",
-"save"
-],
 "feat|Insightful Collector|Insightful Collector": [
 "choice"
 ],
@@ -103,28 +96,17 @@
 "feat|Lords' Alliance Agent|Lords' Alliance Agent": [
 "choice"
 ],
-"feat|Lycanthrope Transformation: Stage 2|Lycanthrope Transformation: Stage 2": [
-"resist"
-],
 "feat|Lycanthrope Transformation: Stage 4|Lycanthrope Transformation: Stage 4": [
 "resist"
 ],
 "feat|Mobile Combatant|Mobile Combatant": [
 "speed"
 ],
-"feat|Ooze Transformation: Stage 1|Ooze Transformation: Stage 1": [
-"resist",
-"uses"
-],
 "feat|Otherworldly Familiar|Otherworldly Familiar": [
 "resist"
 ],
 "feat|Poisoner (2014)|Poisoner (2014)": [
 "resist"
-],
-"feat|Primordial Transformation: Stage 1|Primordial Transformation: Stage 1": [
-"resist",
-"choice"
 ],
 "feat|Resolution of the Syndicate|Resolution of the Syndicate": [
 "hp",
@@ -155,9 +137,6 @@
 "feat|Unarmed Fighting|Unarmed Fighting": [
 "choice"
 ],
-"feat|Vampire Transformation: Stage 1|Vampire Transformation: Stage 1": [
-"resist"
-],
 "feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3": [
 "resist"
 ],
@@ -185,9 +164,6 @@
 "item|dmg|Cloak of Displacement": [
 "speed"
 ],
-"item|dmg|Crown of Daffodils": [
-"skill"
-],
 "item|dmg|Dark Gift of Yog the Invincible": [
 "hp"
 ],
@@ -202,9 +178,6 @@
 ],
 "item|dmg|Horseshoes of Speed": [
 "speed"
-],
-"item|dmg|Ionbreaker, the Tempest's Reach": [
-"init"
 ],
 "item|dmg|Karametra's Devotee": [
 "ac"
@@ -307,9 +280,6 @@
 "item|tftyp|Loadstone": [
 "speed"
 ],
-"item|thhw|Crown of Daffodils": [
-"skill"
-],
 "item|tkdm|Scalehide Cream": [
 "ac"
 ],
@@ -321,9 +291,6 @@
 ],
 "item|tsgs|Barricade Shield": [
 "speed"
-],
-"item|tsgs|Ionbreaker, the Tempest's Reach": [
-"init"
 ],
 "item|tsgs|Mageplate Cap": [
 "ac"
@@ -571,9 +538,6 @@
 "sub|Martyr/Burden of Revolution|Rallying Strike": [
 "choice"
 ],
-"sub|Monk/Warrior of the Celestial|Heavenborne": [
-"speed"
-],
 "sub|Monk/Warrior of the Elements|Elemental Epitome": [
 "resist"
 ],
@@ -619,9 +583,6 @@
 "ac",
 "choice"
 ],
-"sub|Paladin/Oath of Redemption|Emissary of Redemption": [
-"resist"
-],
 "sub|Paladin/Oath of the Watchers|Aura of the Sentinel": [
 "choice"
 ],
@@ -643,9 +604,6 @@
 ],
 "sub|Ranger/Vampire Slayer|Defensive Tactics": [
 "hp"
-],
-"sub|Rogue/Assassin|Assassinate": [
-"init"
 ],
 "sub|Rogue/Assassin|Envenom Weapons": [
 "resist"
@@ -721,17 +679,11 @@
 "sub|Warden/Stoneheart Defender|Stonewall": [
 "ac"
 ],
-"sub|Warden/Storm Sentinel|Storm Wings": [
-"speed"
-],
 "sub|Warlock/Celestial Patron|Radiant Soul": [
 "choice"
 ],
 "sub|Warlock/Star Patron|Supernova": [
 "choice"
-],
-"sub|Warlock/The Parasite Patron|Symbiotic Sentinel": [
-"init"
 ],
 "sub|Warlock/Vestige Patron|Vestige Companion": [
 "hp"
