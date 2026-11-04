@@ -160,6 +160,10 @@ document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;co
  if(d.fk){const o=B.ch[d.fk]||{};o[d.fp]=t.value;if(d.fp==="feat"){delete o.a1;delete o.a2;delete o.dt}B.ch[d.fk]=o;commit()}});
 document.addEventListener("input",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(Object.assign(hbRead(),{}));});/* v26: keep what is typed in Create Homebrew */
 document.addEventListener("change",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(hbRead());});
+let chtxT=0;
+function chtxSave(t){const k=t.dataset.chtx,v=t.value.replace(/\s+/g," ").trim();if(v)B.ch[k]=v;else delete B.ch[k];save()}
+document.addEventListener("input",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);chtxT=setTimeout(() =>{chtxSave(t)},350)});
+document.addEventListener("change",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);const was=!!B.ch[t.dataset.chtx];chtxSave(t);if(was!==!!B.ch[t.dataset.chtx])render()});/* fx v3a: text pick, saved while typing, redrawn only when done state flips */
 document.addEventListener("input",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target;
  if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
  if(t.id==="cpIn"){B.camp=t.value;save();return}
