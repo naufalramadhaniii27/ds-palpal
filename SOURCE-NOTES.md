@@ -201,6 +201,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | data/fx-A-class-species.js | data (fx, registry GX) | 4.271 |
 | data/fx-F-sub.js | data (fx, registry GX.sub, batch F) | 7.814 |
 | data/fx-G-engine.js | data (fx, engine v3b: toggle, pickLv, item) | 4.600 |
+| data/fx-L4.js | data (fx, ledger bin 4: items Eye of Vecna to Necklace of Adaptation, GX.item and FXO) | 14.000 |
 | builder/00-open.wrap.js | pembungkus IIFE | 28 |
 | builder/01-logic-core-helpers.js | Logic | 2.048 |
 | builder/02-data-magic-item-summaries.js | Data | 58.046 |
@@ -469,3 +470,6 @@ Belum dimodelkan (butuh perubahan model data atau UI): ganti dadu senjata (Silve
 4. Jalankan `python3 tests/mech_scan.py`. Tes memindai teks semua fitur (class, subclass, species, feat, item) dan gagal bila ada fitur bermekanik tanpa jalur hitung yang tidak ada di `tests/mech_baseline.json`. Perbaiki dengan field data. Bila memang tidak bisa dihitung, daftarkan di `by_design` dengan alasan. Jangan menambah ke `gaps` untuk fitur baru.
 5. Tambah kasus di `tests/fx_engine.py` bila memperluas skema. Tambah build acuan di `tests/golden/builds/*.json` (`build`, `expect`, `why`) dengan angka dari buku. Jalankan `python3 tests/golden_builds.py`.
 6. Data tp*.js dibuat oleh `tools/tp_build.py` dari JSON sumber yang tidak ada di repo. Sampai sumber itu kembali, edit `src/data/tp*.js` langsung dan catat di reports/.
+
+#### fx batch L4 (ledger bin 4)
+Berkas `src/data/fx-L4.js` (sesudah fx-G). Item DMG dan sumber lain dari "Eye of Vecna" sampai "Necklace of Adaptation": `GX.item[nama]` untuk MISS, `FXO[nama]` untuk MISMATCH (fx lama diganti atau dibuang). Entri item dicari dengan nama baris persis, jadi item dengan daftar base memakai satu entri per nama varian ("Frost Brand (Greatsword)"). Saklar baru: runic-focus, flying-chariot, ghost-step, jetpack, moon-card, night, feral-guardian-transformed. Pilihan baru: tier Many Keyholes Dagger, Living Gloves, Logic Unit. Dua edit data kecil: `Iggwilv's Horn` ch menjadi 4 pakai per fajar (wotc11) dan `Marotte of Chance` diberi base Club (tp15). Yang belum bisa: `reports/ledger-skipped-L4.md`. Tes: `tests/golden/builds/fx_L4_*.json`.
