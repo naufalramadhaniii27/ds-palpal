@@ -18,7 +18,7 @@
 
  /* ---------- Old row fx that was wrong or only true on a trigger ---------- */
  W.FXO["Banner of the Krig Rune"]={fx:null};              /* row had +1 AC and +1 attack: those belong to the Gift of Battle area (a place), not to carrying the banner */
- W.FXO["Ruidium Shield"]={fx:{res:["psychic"],swim:"walk"}};   /* row had AC +2: the text lists no AC bonus (the base shield gives +2) */
+/* row had AC +2: the text lists no AC bonus (the base shield gives +2) */
  W.FXO["Ring of Red Fury"]={fx:{swim:"walk"}};            /* row had paralyzed and restrained immunity always: only during Ruidium Rage (toggle below) */
  W.FXO["Nimbus Coronet"]={fx:null};                       /* row had Fly 60 always: only in cloud form */
  W.FXO["Shield of the Blazing Dreadnought"]={fx:null};    /* row had Fire immunity always: only while the shield is active */
@@ -30,15 +30,14 @@
  W.FXO["Amethyst Lodestone"]={fx:null};                   /* row had Fly always: 1 charge, 10 minutes */
  W.FXO["Ring of Air Elemental Command"]={fx:null};        /* row had Fly and Lightning resistance always: only after helping slay an air elemental */
  W.FXO["Ring of Earth Elemental Command"]={fx:null};      /* row had Acid resistance always: only after helping slay an earth elemental */
- W.FXO["Ring of Fire Elemental Command"]={fx:{res:["fire"]}};   /* Fire resistance is the base ring, Fire immunity needs the slain elemental (toggle below) */
+/* Fire resistance is the base ring, Fire immunity needs the slain elemental (toggle below) */
  W.FXO["Armor of Zombie Flesh"]={fx:null};                /* row had Hide Armor plus 2 (Dex capped at 2): the text says AC 14 + Dexterity modifier (acBase below) */
  /* Deck of Wonder and Deck of Many More Things: fx:null already in fx-D-item.js (random card results). Verified again in tests/golden/builds/fx_L2_*.json */
 
  /* ---------- Cantrips and spells cast from the item (always prepared while the item counts) ---------- */
  each(["Budding Blossom Rod","Flowering Blossom Rod","Somniferous Blossom Rod"],function(n){add(n,{n:n,spells:[[1,"Druidcraft"]]})});   /* Plant Growth (Overgrowth only) and the later rod spells are charged or once per dawn: text */
- each(["Chattering Staff of Skulls","Ominous Staff of Skulls","Pulverizing Staff of Skulls"],function(n){add(n,{n:n,spells:[[1,"Chill Touch"]]})});
+ each(["Chattering Staff of Skulls"],function(n){add(n,{n:n,spells:[[1,"Chill Touch"]]})});
  add("Diamond Staff",{n:"Diamond Staff",spells:[[1,"Detect Magic,Light,Tongues"]]});   /* the three charge cost 0 spells; the others cost charges */
- add("Spell Duelist's Trophy",{n:"Spell Duelist's Trophy",spells:[[1,"Mage Hand"]]});
  add("Bigby's Beneficent Bracelet",{n:"Bigby's Beneficent Bracelet",spells:[[1,"Mage Hand"]]});
  add("Lucent Destroyer",{n:"Lucent Destroyer",spells:[[1,"Dancing Lights"]],atkBonus:[{when:"Lucent Destroyer",note:"Damage is Radiant instead of Piercing, no ammunition, no Loading property."}]});
  add("Sanctum Amulet",{n:"Sanctum Amulet",spells:[[1,"Spare the Dying"]]});
@@ -52,12 +51,8 @@
 
  /* ---------- Extra damage dice on a hit ---------- */
  function dice(item,d,t,note){add(item,{n:item,atkDice:[{when:item,d:d,t:t,note:note}]})}
- dice("Grave Reaper","2d8","Necrotic");
  dice("Adze of Annam","3d12","Force");
- dice("Lash of Immolation","1d6","Fire");        /* 2d6 when the rune is invoked: once per dawn, text */
- dice("Fate Cutter Shears","1d6","Force");
- dice("Sun Staff","1d8","Fire");
- dice("Serpent's Fang","1d10","Poison");
+/* 2d6 when the rune is invoked: once per dawn, text */
  dice("Astral Sea Piercer","1d4","Force");
  dice("Bloodaxe","1d6","Necrotic");              /* not against Constructs or Undead: the note says so */
  add("Bloodaxe",{n:"Bloodaxe",atkBonus:[{when:"Bloodaxe",note:"The extra Necrotic damage does not apply to Constructs and Undead."}]});
@@ -78,44 +73,32 @@
  add("Axe of the Mother Tree",{n:"Axe of the Mother Tree",atkBonus:[{when:["Battleaxe","Greataxe"],atk:[[5,1],[11,2],[17,3]],dmg:[[5,1],[11,2],[17,3]]}]});
  each([1,2,3],function(n){add("Arcane Carbine +"+n,{n:"Arcane Carbine",spDc:n})});   /* the spell attack bonus is already in the row */
  add("Scourge of Shadow",{n:"Scourge of Shadow",init:"CHA",initAdv:true,res:["Radiant","Necrotic"],atkBonus:[{when:"Scourge of Shadow",crit:18,note:"Damage is 3d4 Slashing instead of the whip's regular damage (3d6 on a critical hit)."}]});
- add("Ranseur of Torture",{n:"Ranseur of Torture",atkBonus:[{when:"Ranseur of Torture",note:"Damage is 2d10 Piercing instead of the pike's regular damage."}]});
  add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",atkBonus:[{when:"Ruby Rod of Asmodeus",note:"All damage dealt with the rod is converted to Necrotic."}]});
  add("True-Ice Shards (Rapier)",{n:"True-Ice Shards (Rapier)",atkBonus:[{when:"True-Ice Shards (Rapier)",note:"Damage is 1d8 Cold instead of the rapier's regular damage."}]});
  add("True-Ice Shards (Dagger)",{n:"True-Ice Shards (Dagger)",atkBonus:[{when:"True-Ice Shards (Dagger)",note:"Damage is 1d6 Cold instead of the dagger's regular damage."}]});
 
  /* ---------- Resistances, immunities, vulnerabilities, conditions ---------- */
- add("Obsidian Flint Dragon Plate",{n:"Obsidian Flint Dragon Plate",res:["Poison"],advOn:["ability checks and saving throws made to avoid or end the grappled condition on yourself"]});
- add("Shield of the Hidden Lord",{n:"Shield of the Hidden Lord",res:["Fire"]});
  add("Canian Fork",{n:"Canian Fork",vul:["Radiant"]});
- add("Infernal Plate Armor",{n:"Infernal Plate Armor",vul:["Force","Lightning","Psychic","Radiant","Thunder"]});
- add("Infernal Amulet",{n:"Infernal Amulet",spAtk:2,spDc:2,saveNote:["Disadvantage on Strength saving throws (curse)"],defs:[["Note","Disadvantage on Strength checks (curse)"]]});
  add("Amulet of Appearance",{n:"Amulet of Appearance",condImm:["Frightened","Poisoned"]});
- add("Stonebreaker's Breastplate",{n:"Stonebreaker's Breastplate",def:["Immunity","Being knocked prone"]});
  add("Blast Scepter",{n:"Blast Scepter",res:["Fire","Lightning"]});
  add("Dark Gift of Delban, the Star of Ice and Hate",{n:"Ring of Warmth",res:["Cold"]});
  add("Dark Gift of Drizlash, the Nine-Eyed Spider",{n:"Dark Gift of Drizlash",mv:{climb:"speed"}});
  add("Dark Gift of Great Taar Haak, the Five-Headed Destroyer",{n:"Dark Gift of Great Taar Haak",abSet:[["STR",25]]});   /* Belt of Fire Giant Strength: 25. The gift lasts 10 days: text */
- add("Dark Gift of Savnok the Inscrutable",{n:"Dark Gift of Savnok",imm:["Psychic"],condImm:["Charmed"]});   /* Mind Blank */
+/* Mind Blank */
  add("Dark Gift of Seriach, the Hell Hound Whisperer",{n:"Dark Gift of Seriach",langs:["Infernal"]});
  add("Dark Gift of Yog the Invincible",{n:"Dark Gift of Yog",hpFlat:30});
  add("Dark Gift of Yrrga, the Eye of Shadows",{n:"Dark Gift of Yrrga",sense:[["Truesight",60,""]]});
- add("Fragment of Deception",{n:"Fragment of Deception",defs:[["Note","Disadvantage on Wisdom checks (drawback)"]]});
- add("Fragment of Loathing",{n:"Fragment of Loathing",defs:[["Note","Disadvantage on Charisma checks (drawback)"]]});
- add("Fragment of Pity",{n:"Fragment of Pity",saveNote:["Disadvantage on death saving throws (drawback)"]});
  each(["Black","Blue","Brass","Bronze","Copper","Gold","Green","Red","Silver","White"],function(c){
   add(c+" Dragon Scale Mail",{n:c+" Dragon Scale Mail",advOn:["saving throws against the Frightful Presence and breath weapons of dragons"]})});
  add("Boon of Magic Resistance",{n:"Boon of Magic Resistance",advOn:["saving throws against spells and other magical effects"]});
  add("Blessing of Magic Resistance",{n:"Blessing of Magic Resistance",advOn:["saving throws against spells and other magical effects"]});
  add("Boon of Perfect Health",{n:"Boon of Perfect Health",advOn:["Constitution saving throws"],defs:[["Immunity","Disease"]]});
- add("Boon of Resilience",{n:"Boon of Resilience",defs:[["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical weapons"]]});
  add("Boon of Undetectability",{n:"Boon of Undetectability",skillBonus:[["Stealth",10]],defs:[["Note","Divination magic, including scrying sensors, can't detect or target you"]]});
  add("Boon of the Unfettered",{n:"Boon of the Unfettered",advOn:["ability checks to resist being grappled"]});
  add("Amulet of Protection from Turning",{n:"Amulet of Protection from Turning",advOn:["saving throws against effects that turn undead"]});
  add("Battlechef Buckler",{n:"Battlechef Buckler",advOn:["saving throws against Fire damage"]});
  add("Big Bertha",{n:"Big Bertha",advOn:["saving throws against the Frightened condition and against Madness"]});
  add("Blessed Reliquary",{n:"Blessed Reliquary",advOn:["saving throws caused by Undead"],defs:[["Note","Blessed Reliquary: you can use each Channel Divinity feature one additional time"]],lu:{n:"Turn Undead: targets have Disadvantage on their saves",max:1,reset:"long"}});
- add("Ioun Stone, Awareness",{n:"Ioun Stone, Awareness",noSurprise:true});
- add("Ascendant Dragon-Touched Focus",{n:"Ascendant Dragon-Touched Focus",initAdv:true});
  /* Armor of Resistance and Armor of Vulnerability: the Dungeon Master picks or rolls the type, the player records it with a pick */
  var TYPES=["Acid","Cold","Fire","Force","Lightning","Necrotic","Poison","Psychic","Radiant","Thunder"];
  add("Armor of Resistance",{n:"Armor of Resistance",pick:[{k:"t",t:"multi",n:1,yc:1,title:"Damage type of the Resistance (set by your DM)",list:TYPES.map(function(t){return [t,""]})}]});
@@ -125,10 +108,7 @@
 
  /* ---------- Languages, tools, skills, senses, speed, other numbers ---------- */
  add("Charm of Many Tongues",{n:"Charm of Many Tongues",langs:["All languages"],skillProf:["Deception","Persuasion"],skillExpert:["Deception","Persuasion"]});
- add("Sword of Zariel",{n:"Sword of Zariel",langs:["Celestial"],mv:{fly:90},sense:[["Truesight",60,""]],defs:[["Note","The wings let you hover"]]});
  add("Delver's Claws",{n:"Delver's Claws",sense:[["Blindsight",15,""]]});
- add("Helm of Perfect Potential",{n:"Helm of Perfect Potential",advOn:["Charisma (Deception) and Wisdom (Insight) checks"]});
- add("Orb of Skoraeus",{n:"Orb of Skoraeus",darkTo:120});
  add("Belashyrra's Beholder Crown",{n:"Belashyrra's Beholder Crown",darkTo:120});
  add("Rogue's Mantle",{n:"Rogue's Mantle",darkNone:60,darkHave:{add:60}});
  add("Blessing of Dumathoin",{n:"Blessing of Dumathoin",darkNone:60});
@@ -137,7 +117,6 @@
  add("Blackrazor",{n:"Blackrazor",sense:[["Blindsight",30,""]]});
  add("Axe of the Dwarvish Lords",{n:"Axe of the Dwarvish Lords",tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
  add("Belt of Dwarvenkind",{n:"Belt of Dwarvenkind",langs:["Dwarvish"]});
- each(["Dormant","Awakened","Exalted"],function(s){add("Blade of Broken Mirrors ("+s+")",{n:"Blade of Broken Mirrors",langs:["Abyssal"]})});
  add("Accounting and Valuation of All Things",{n:"Accounting and Valuation of All Things",spAtk:3,spDc:3});
  add("Arcane Resonator",{n:"Arcane Resonator",attune:4});
  add("Athreos's Devotee",{n:"Athreos's Devotee",lu:{n:"Gentle Repose (no Material components)",max:"mod:WIS",reset:"long"}});
@@ -149,24 +128,11 @@
  add("Serpent Scale Armor",{n:"Serpent Scale Armor",acBase:[14,"full"],acOver:true,defs:[["Note","Serpent Scale Armor does not impose Disadvantage on Dexterity (Stealth) checks"]]});
 
  /* ---------- Toggles: the effect is true only after a trigger ---------- */
- add("Nimbus Coronet",{n:"Cloud Form",toggle:{id:"nimbus-cloud",label:"Nimbus Coronet: cloud form (1 minute)"},mv:{fly:60},res:BPS});
- add("Shield of the Blazing Dreadnought",{n:"Blazing Soul",toggle:{id:"dreadnought-active",label:"Shield of the Blazing Dreadnought: active (1 minute)"},imm:["Fire"]});
  add("War Horn of Valor",{n:"War Horn Rune",toggle:{id:"war-horn-rune",label:"War Horn of Valor: rune invoked (until the start of your next turn)"},acAdd:1});
  each(["Bloodrage Greataxe"],function(n){add(n,{n:n+" (half Hit Points or fewer)",toggle:{id:"bloodied",label:"At half Hit Points or fewer"},atkBonus:[{when:n,atk:2,dmg:2}]})});
  add("Crown of Whirling Comets",{n:"Star Flight",toggle:{id:"comets-flight",label:"Crown of Whirling Comets: Star Flight (10 minutes)"},mv:{fly:"speed"}});
- add("Hammer of Runic Focus",{n:"Hammer of Runic Focus",toggle:{id:"runic-circle",label:"Standing inside the rune circle (1 minute)"},atkBonus:[{when:"Hammer of Runic Focus",atk:3,dmg:3}]});
- add("Moon Card",{n:"Wolf Form",toggle:{id:"moon-card-wolf",label:"Moon Card: wolflike form (1 minute)"},res:BPS,atkDice:[{when:["weapon","unarmed"],d:"1d6",t:"Force",note:"Moon Card wolf form"}]});
  add("Amethyst Lodestone",{n:"Amethyst Lodestone",advOn:["Strength saving throws"]});
  add("Amethyst Lodestone",{n:"Flight",toggle:{id:"lodestone-flight",label:"Amethyst Lodestone: flight (10 minutes)"},mv:{fly:"speed"}});
- add("Ring of Red Fury",{n:"Ruidium Rage",toggle:{id:"ruidium-rage",label:"Ring of Red Fury: Ruidium Rage (1 minute)"},condImm:["Paralyzed","Restrained"],advOn:["Strength checks and Strength saving throws"]});
- add("Ring of Air Elemental Command",{n:"Ring of Air Elemental Command",langs:["Auran"]});
- add("Ring of Air Elemental Command",{n:"Air Elemental Slain",toggle:{id:"ring-air-slain",label:"Ring of Air Elemental Command: you helped slay an air elemental"},mv:{fly:"speed"},res:["Lightning"]});
- add("Ring of Earth Elemental Command",{n:"Ring of Earth Elemental Command",langs:["Terran"]});
- add("Ring of Earth Elemental Command",{n:"Earth Elemental Slain",toggle:{id:"ring-earth-slain",label:"Ring of Earth Elemental Command: you helped slay an earth elemental"},res:["Acid"]});
- add("Ring of Fire Elemental Command",{n:"Ring of Fire Elemental Command",langs:["Ignan"]});
- add("Ring of Fire Elemental Command",{n:"Fire Elemental Slain",toggle:{id:"ring-fire-slain",label:"Ring of Fire Elemental Command: you helped slay a fire elemental"},imm:["Fire"]});
- add("Ring of Water Elemental Command",{n:"Ring of Water Elemental Command",langs:["Aquan"]});
- add("Ring of Water Elemental Command",{n:"Water Elemental Slain",toggle:{id:"ring-water-slain",label:"Ring of Water Elemental Command: you helped slay a water elemental"},mv:{swim:"speed"},defs:[["Note","You can breathe underwater"]]});
  add("Battlechef's Splendid Saucepan",{n:"Saucepan Helmet",toggle:{id:"saucepan-helmet",label:"Battlechef's Splendid Saucepan: worn as a helmet"},acAdd:1,cond:"noHeavy"});
  add("Warrior's Passkey",{n:"Sword Form",toggle:{id:"passkey-sword",label:"Warrior's Passkey: sword form"},defs:[["Note","Sword form: magic longsword, you are proficient, +1 to attack and damage rolls, a hit deals an extra 1d10 Force damage"]]});
 })();

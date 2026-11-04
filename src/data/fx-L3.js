@@ -21,7 +21,6 @@
  [["Affliction","DEX","WIS"],["Deception","DEX","CHA"],["Destiny","STR","WIS"],["Harvests","CON","WIS"],["Horizons","CON","INT"],["Slaughter","STR","CON"],["Storms","INT","WIS"],["Victory","STR","CHA"],["the Dead","CON","WIS"],["the Forge","STR","INT"],["the Hunt","DEX","WIS"],["the Passage","INT","WIS"],["the Polis","INT","CHA"],["the Sea","DEX","INT"],["the Sun","STR","WIS"]].forEach(function(c){
   add("Champion of "+c[0],{abPick:{k:"a",from:[c[1],c[2]],up:2,max:22,title:"Ability score to raise by 2 (maximum 22)"}})});
  add("Corvum Feather Robe",{n:"Feather Robe",abPick:{k:"a",from:["INT","CHA"],set:22,title:"Ability score that becomes 22"}});
- add("Dark Gift of Great Taar Haak, the Five-Headed Destroyer",{abSet:[["STR",25]]});
  /* fx-int: Boon of Undetectability, Crown of Daffodils (fx-H-audit), Dimensional Loop (fx-L1) and Dark Gift of Yog (fx-L2) are already defined in the earlier file; the copies here counted twice. */
 
  /* Languages */
@@ -29,8 +28,6 @@
  add("Charm of Ashtakala",{langs:["Abyssal","Infernal"]});
  add("Charm of Dhakaan",{langs:["Goblin"]});
  add("Charm of Xen'drik",{langs:["Giant"]});
- add("Charm of Many Tongues",{langs:["All languages"],skillProf:["Deception","Persuasion"],skillExpert:["Deception","Persuasion"]});
- add("Dark Gift of Seriach, the Hell Hound Whisperer",{langs:["Infernal"]});
  add("Dragon Queen's Will",{langs:["Draconic"],saveBonusAb:[["WIS",4]]});
  ["Dragon Tamer Lance","Dragon's Call","Dragon-Kindled Edge","Draconic Longsword"].forEach(function(n){add(n,{langs:["Draconic"]})});
  add("Drown",{langs:["Aquan"],atkDice:[{when:"Drown",d:"1d8",t:"Cold"}]});
@@ -38,13 +35,10 @@
  add("Efreeti Chain",{langs:["Primordial"]});
  add("Demon Armor",{langs:["Abyssal"],unarmed:{die:"1d8",t:"Slashing",force:1},atkBonus:[{when:"unarmed",atk:1,dmg:1}]});
  FXO["Chronolometer"]={fx:null};
- add("Chronolometer",{saveBonusAb:[["INT",1]],pick:[{k:"l",t:"lang",n:1,title:"Language you gain while attuned"}]});
 
  /* Senses and darkvision */
  add("Circlet of Barbed Vision (Exalted)",{sense:[["Truesight",60,""]]});
  add("Dagger of Blindsight",{sense:[["Blindsight",30,""]]});
- add("Dark Gift of Yrrga, the Eye of Shadows",{sense:[["Truesight",60,""]]});
- add("Delver's Claws",{sense:[["Blindsight",15,""]]});
  add("Draconic Senses",{sense:[["Blindsight",10,""]]});
  add("Eye of Dendallen",{darkNone:60,darkHave:{add:30}});
  var DV="Intelligence (Investigation) and Wisdom (Perception) checks that rely on sight";
@@ -57,11 +51,9 @@
 
  /* Advantage notes and save notes */
  var MAG="saving throws against spells and other magical effects";
- add("Boon of Magic Resistance",{advOn:[MAG]});
  add("Breastplate of Kamvuul Norek",{advOn:[MAG]});
  add("Cloak of the Mausgeist",{advOn:[MAG,"Wisdom (Perception) checks that rely on hearing"]});
  add("Cloak of the Stygian Bat",{advOn:["Wisdom (Perception) checks that rely on hearing"]});
- add("Boon of Perfect Health",{advOn:["Constitution saving throws"],defs:[["Immunity","Disease"]]});
  add("Cap of Bravery",{advOn:["saving throws to avoid or end the Frightened condition (you and allies in a 30-foot Emanation)"]});
  add("Cloak of Shadows",{advOn:["Dexterity (Stealth) checks"],defs:[["Note","Creatures making a Wisdom (Perception) check to notice you have Disadvantage"]]});
  add("Circlet of the Huntsman's Third Eye",{advOn:["Wisdom (Survival) checks"]});
@@ -80,12 +72,9 @@
  /* Resistances, immunities, vulnerabilities, skills */
  add("Boon of Resilience",{def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical weapons"]});
  add("Bracelet of Rock Magic",{condImm:["Petrified"]});
- add("Canian Fork",{vul:["Radiant"]});
  add("Crown of Horns",{imm:["Necrotic"]});
  add("Claw of the Wyrm Rune",{def:["Resistance","Damage from any dragon's breath weapon (while the claw is displayed on your person)"]});
- add("Dark Gift of Delban, the Star of Ice and Hate",{res:["Cold"]});
  add("Dark Gift of Savnok the Inscrutable",{imm:["Psychic"],condImm:["Charmed"],defs:[["Immunity","Effects that sense your emotions or read your thoughts, and Divination spells (Mind Blank)"]]});
- add("Dark Gift of Drizlash, the Nine-Eyed Spider",{mv:{climb:"speed"}});
  add("Burrowing Adaptation",{mv:{burrow:"speedHalf"}});
  add("Crawling Gauntlet",{unarmed:{die:"1d6",t:"Slashing",force:1}});
 

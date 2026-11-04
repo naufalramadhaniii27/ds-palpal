@@ -1,0 +1,68 @@
+{
+ "why": "Wingwear: flying speed 30 ft only while gliding (toggle). Amethyst Lodestone: flying speed equal to walking speed (30) for 10 minutes (toggle), advantage on Strength saves while carried.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "pota": true,
+   "ftd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Wingwear",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Amethyst Lodestone",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "moves.fly.v": 30,
+  "saveNotes": {
+   "in": "Strength saving throws"
+  }
+ },
+ "fxT": {
+  "wingwear-glide": true,
+  "amethyst-flight": true
+ }
+}

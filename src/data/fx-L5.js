@@ -41,7 +41,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  add("Ominous Staff of Skulls",{n:"Chill Touch (staff)",spells:[[1,"Chill Touch"]]});
  add("Orb of Damara",{n:"Flight",mv:{fly:60},defs:[["Note","You can hover while flying"]]});
  add("Orb of Skoraeus",{n:"Orb of Skoraeus",saveNote:["+2 bonus to Constitution saving throws to maintain concentration"],darkTo:120,defs:[["Note","Divine Sight: you see normally in magical and nonmagical darkness to 120 feet"]]});
- W("Orb of the Veil",null);add("Orb of the Veil",{n:"Orb of the Veil",abUp:[["WIS",2,22]],darkNone:60,darkHave:{add:60}});
+ W("Orb of the Veil",null);add("Orb of the Veil",{n:"Orb of the Veil",abUp:[["WIS",2,22]],darkNone:60,darkHave:{add:60},advOn:["Wisdom checks to find hidden doors and paths"]});
  W("Orcsplitter",{atk:2,dmg:2,condImm:["Frightened"]});
  add("Ouroboros Rapier",{n:"Ouroboros Rapier",atkBonus:[{when:"Ouroboros Rapier",note:"Each 8 rolled on a damage die adds 1d8 Poison damage."}]});
  add("Papazotl",{n:"Papazotl",advOn:["Wisdom checks"],noSurprise:true,defs:[["Note","You never take damage from falling"]]});
@@ -110,18 +110,12 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
  adv("Robe of the Archmagi",["saving throws against spells and other magical effects"]);
  adv("Rod of Wild Dominion",["Wisdom (Animal Handling) and Wisdom (Survival) checks"]);
  /* fx-int: Rogue's Mantle is already defined in fx-L2 */
- W("Rotor of Return",null);add("Rotor of Return",{n:"Rotor of Return",saveBonusAb:[["CON",1]]});
  W("Ruidium Shield",{res:["Psychic"],swim:"walk"});
- RIDER("Ruin's Wake (Awakened)","2d8","Piercing","Hit with the spear");
- RIDER("Ruin's Wake (Dormant)","1d8","Piercing","Hit with the spear");
- RIDER("Ruin's Wake (Exalted)","2d8","Piercing","Hit with the spear");
  adv("Scarab of Protection",["saving throws against spells"]);
  [1,2,3].forEach(function(v){var n="Scholar's Cap +"+v;reg(n);add(n,{n:n,saveBonusAb:[["INT",v]],chkBonus:[["INT",v]]})});
- add("Scourge of Shadow",{n:"Scourge of Shadow",atkBonus:[{when:"Scourge of Shadow",note:"The whip deals 3d4 slashing damage instead of its regular damage. A good creature takes an extra 4d4 necrotic."}]});
  add("Seafarer's Jacket",{n:"Seafarer's Jacket",tools:["Navigator's Tools"]});
  W("Second Skin",null);add("Second Skin",{n:"Second Skin",acBase:[14,"full"],acOver:true});
  add("Septum Ring of the Great Minotaur",{n:"Septum Ring of the Great Minotaur",abUp:[["STR",2,22]],advOn:["Strength checks"],carryBump:true});
- add("Serpent Scale Armor",{n:"Serpent Scale Armor",acBase:[14,"full"],acOver:true});
  RIDER("Serpent's Fang","1d10","Poison","Hit with the sword");
  W("Shaarat'doovol, the Blade of Truth",{atk:3,dmg:3});
  add("Shaarat'doovol, the Blade of Truth",{n:"Unyielding Duty",toggle:{id:"shaarat-favors",label:"The blade favors you"},sense:[["Truesight",90,""]],res:["Psychic"],condImm:["Charmed","Frightened"]});
@@ -145,8 +139,6 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
   if(s!=="Dormant")add(n,{n:"Silken Spite spells",lu:["Cloudkill","Darkness","Levitate","Web"].map(function(x){return {n:x+" (Silken Spite)",max:1,reset:"long",tag:"save DC "+(s==="Exalted"?17:15)}})})});
  add("Silver Eagle Weapon",{n:"Silver Eagle Weapon",atkBonus:[{when:"Silver Eagle Weapon",note:"It deals 2d6 damage on a hit instead of its normal dice. A Critical Hit does not double the dice."}]});
  add("Sirensong Silencer",{n:"Sirensong Silencer",toggle:{id:"sirensong-on",label:"Ear cuff put on",default:true},advOn:["saves to avoid or end the Charmed condition"]});
- add("Slumbering Dragon-Touched Focus",{n:"Slumbering Dragon-Touched Focus",initAdv:true});
- add("Stirring Dragon-Touched Focus",{n:"Stirring Dragon-Touched Focus",initAdv:true});
  add("Slumbering Scaled Ornament",{n:"Slumbering Scaled Ornament",advOn:["saving throws to avoid being charmed or frightened or to end those conditions"]});
  add("Snicker-Snack",{n:"Snicker-Snack",weapons:["Greatsword"],atkAb:{kind:"Snicker-Snack",ab:"CHA"}});
  RIDER("Snuff","1d6","Psychic","Hit with the sickle");
@@ -168,12 +160,10 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
   add(n,{n:n,when:{key:"gx-md-item-"+n,val:"Fused (Greataxe)"},atkDice:[{when:n,d:"2d6",t:"Fire",note:"Fused axe hit"}]});
   add(n,{n:n,when:{key:"gx-md-item-"+n,val:"Fissioned (two Battleaxes)"},atkDice:[{when:n,d:"1d6",t:"Cold",note:"Fissioned axe hit (each Battleaxe)"}]})})("Starmetal Solar Axe");
  RIDER("Starmetal Striker","1d4","Cold","Hit with the hammer");
- add("Stone of Good Luck",{n:"Stone of Good Luck",chkBonus:AB6.map(function(a){return [a,1]}),init:1});
  add("Stone of Ill Luck",{n:"Stone of Ill Luck",chkBonus:AB6.map(function(a){return [a,-2]}),init:-2});
  add("Stonebreaker's Breastplate",{n:"Stonebreaker's Breastplate",condImm:["Prone"]});
  add("Stonemaker War Pick",{n:"Stonemaker War Pick",lu:{n:"Petrification charges (roll 1d6 + 1 when found)",max:7,reset:"none"}});
  adv("Stonespeaker Crystal",["Intelligence (Investigation) checks"]);
- add("Stonky's ring",{n:"Stonky's ring",spells:[[1,"Telekinesis"]]});
  add("Storm Sickle",{n:"Storm Sickle",weapons:["Sickle"],atkDice:[{when:"Storm Sickle",d:"1d4",t:"Lightning",note:"Hit with the sickle"}]});
  RIDER("Stormstruck Staff","1","Lightning","Hit with the staff (1d6 while the crystal glows)");
  add("Straitjacket",{n:"Straitjacket",acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
@@ -191,6 +181,5 @@ window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.
 
  /* a second load, or an entry added by name elsewhere: keep exactly one copy of each entry written here */
  Object.keys(GX.item).forEach(function(n){var seen=[],out=[];GX.item[n].forEach(function(e){if(e&&e._L5){var k=JSON.stringify(e);if(seen.indexOf(k)>=0)return;seen.push(k)}out.push(e)});GX.item[n]=out});
- /* Stone of Good Luck: an entry of another batch with the same check bonus would double it */
- GX.item["Stone of Good Luck"]=(GX.item["Stone of Good Luck"]||[]).filter(function(e){return e._L5||!(e&&e.chkBonus)});
+ /* fx-int: Stone of Good Luck lives in fx-H-audit.js only (the L5 copy and its filter are removed) */
 })();

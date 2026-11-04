@@ -90,9 +90,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
   add(n,{n:"Infiltrator's Key",tools:["Thieves' Tools"],advOn:["ability checks to open locks (key as thieves' tools)","Dexterity (Stealth) checks to move silently"]});
   if(t!=="Dormant")add(n,{n:"Infiltrator's Key spells",lu:{n:"Key spell (Alter Self, Invisibility, Knock or Pass without Trace)",max:4,reset:"dawn",tag:"One use per spell"}});
   if(t==="Exalted")add(n,{n:"Infiltrator's Key opening",lu:[{n:"Key spell (Dimension Door, Gaseous Form or Mislead)",max:3,reset:"dawn",tag:"One use per spell"}]})});
- /* Hide of the Feral Guardian: AC bonus always, melee bonus only while transformed */
- [["Dormant",1],["Awakened",2],["Exalted",3]].forEach(function(t){var n="Hide of the Feral Guardian ("+t[0]+")";window.FXO[n]={fx:{ac:t[1]}};
-  add(n,{n:"Hide of the Feral Guardian",toggle:{id:"feral-guardian-transformed",label:"Transformed (polymorph or similar)"},atkBonus:[{when:"melee",atk:t[1],dmg:t[1]}]})});
+ /* fx-int: Hide of the Feral Guardian (AC row and melee bonus while transformed) is defined in fx-L6 */
  /* Hammer of Runic Focus: +3 only inside the rune circle */
  window.FXO["Hammer of Runic Focus"]={fx:null};
  add("Hammer of Runic Focus",{n:"Hammer of Runic Focus",toggle:{id:"runic-focus",label:"Inside the rune circle"},atkBonus:[{when:["Hammer of Runic Focus"],atk:3,dmg:3}]});
@@ -110,9 +108,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  /* Mace of the Black Crown */
  window.FXO["Mace of the Black Crown (Dormant)"]={fx:{atk:1,dmg:1}};
  window.FXO["Mace of the Black Crown (Awakened)"]={fx:{atk:2,dmg:2,res:["Poison"]}};
- ["Dormant","Awakened","Exalted"].forEach(function(t){add("Mace of the Black Crown ("+t+")",{n:"Mace of the Black Crown",langs:["Infernal"]})});
  /* Languages */
- ["Dormant","Awakened","Exalted"].forEach(function(t){add("Grovelthrash ("+t+")",{n:"Grovelthrash",langs:["Abyssal","Infernal"]});add("Lash of Shadows ("+t+")",{n:"Lash of Shadows",langs:["Abyssal","Draconic"]})});
  /* Many Keyholes Dagger: +1 base, +2 Ten, +3 Many (choose the tier) */
  var MK=["Dagger","Club","Greatclub","Handaxe","Javelin","Light Hammer","Mace","Quarterstaff","Sickle","Spear","Battleaxe","Longsword","Rapier","Scimitar","Warhammer"];
  window.FXO["Many Keyholes Dagger"]={fx:null};
@@ -150,11 +146,9 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Hat Trick",{n:"Hat Trick",spells:[[1,"Prestidigitation"]],defs:[["Note","Hat Trick: Prestidigitation only for the sensory effect or minor creation (illusory image) options"]]});
  add("Hat of Disguise",{n:"Hat of Disguise",spells:[[1,"Disguise Self"]]});
  add("Liar's Lyre",{n:"Liar's Lyre",tools:["Lyre"]});
- add("Lucent Destroyer",{n:"Lucent Destroyer",spells:[[1,"Dancing Lights"]]});
  add("Grip of Dendallen",{n:"Grip of Dendallen",unarmed:{die:"1d6",t:"Necrotic",force:1},lu:{n:"Grip spell (Blight, Contagion or Vampiric Touch)",max:3,reset:"dusk",tag:"One use per spell"},defs:[["Note","Disadvantage on Charisma checks (curse)"]]});
 
  /* Prepared spells */
- [["Dormant",1],["Awakened",2],["Exalted",3]].forEach(function(t){var n="Grimoire Infinitus ("+t[0]+")";add(n,{n:"Grimoire Infinitus",prepAdd:t[1],spCls:"Wizard"});if(t[1]>1)add(n,{n:"Grimoire Infinitus (Awakened)",advOn:["saving throws against spells and magical effects (while you carry the book)"]})});
 
  /* Limited use pools */
  ["Aspirant","Adept","Master"].forEach(function(t,i){var n="Hearthfire Breastplate ("+t+")";

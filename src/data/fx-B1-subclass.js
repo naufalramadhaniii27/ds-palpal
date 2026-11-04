@@ -20,7 +20,6 @@ window.GX=window.GX||{};GX.sub=GX.sub||{};
  add("College of Choreography",[{n:"Fast Movement",l:3,speed:[[3,10],[6,15],[14,20]]}]);
  add("College of Dance",[{n:"Dazzling Footwork",l:3,acBase:[10,"full","CHA"],cond:"noArmor"}]);
  add("College of Requiems",[{n:"Chilling Melody",l:3,spCls:"Bard",pick:[{k:"cantrips",t:"cantrip",n:2,school:"Necromancy",title:"Two Necromancy cantrips"}]}]);
- add("Eagle Banner",[{n:"Vantage Point",l:6,mv:{climb:"speed"}}]);
  add("Troubadour",[{n:"Folk Musician",l:3,skillProf:["Performance"],skillExpert:["Performance"],pick:[{k:"instr",t:"tool",n:2,cats:["music"],title:"Two Musical Instruments"}]}]);
  add("Yellow Sign",[{n:"Eldritch Herald",l:3,advOn:["saves to avoid or end the Charmed and Frightened conditions"]}]);
  add("Arcane Maesters' Guild",[{n:"Arcane Apprenticeship",l:3,spCls:"@sub:INT",spells:[[3,"True Strike"]],pick:[{k:"cantrips",t:"cantrip",n:2,cls:"Wizard",title:"Two Wizard cantrips"}]}]);
