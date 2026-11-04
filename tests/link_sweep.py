@@ -158,6 +158,7 @@ async def main():
                     await pg.evaluate("t=>{ localStorage.setItem('yudhi-kelapa-build-v3', t); }", YUDHI)
                     await pg.reload(); await pg.wait_for_function("()=>!!window.__bldSheetFor&&!!window.__xl", timeout=90000); await pg.wait_for_timeout(2500)
                     await pg.evaluate("()=>{ var b=document.querySelector('[data-hview]'); if(b&&b.offsetParent) b.click(); }"); await pg.wait_for_timeout(1500)
+                names = await pg.evaluate(JS_NAMES, {})  # the names that exist in this state: a pack item is in the database only while its source is on
                 await pg.evaluate("n=>{window.__LSN=n}", names)
                 await pg.wait_for_timeout(800)
                 async def sweep(where, root=None, own=""):

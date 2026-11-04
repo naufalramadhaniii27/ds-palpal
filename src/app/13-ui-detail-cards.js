@@ -44,8 +44,8 @@ const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rule
 function xlRules(){ return typeof __R.LIB_RULES!=="undefined"?__R.LIB_RULES:{}; }
 function xlIdx(){
   const crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], Q=window.QREFS||{}, rl=xlRules(), cl=typeof CLASSES!=="undefined"?CLASSES:{}, spc=typeof SPECIES!=="undefined"?SPECIES:{}, bgs=typeof BACKGROUNDS!=="undefined"?BACKGROUNDS:{};
-  let qn=0; for(const q in Q) qn+=(Q[q]||[]).length;
-  const key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length+"|"+Object.keys(GLOSS).length+"|"+Object.keys(rl).length+"|"+Object.keys(cl).length+"|"+Object.keys(spc).length+"|"+Object.keys(bgs).length+"|"+qn+"|"+(typeof GEAR!=="undefined"?GEAR.length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).length:0)+"|"+(typeof ARMOR!=="undefined"?Object.keys(ARMOR).length:0);
+  let qn=0; ["rule","optfeat","facility","hazard","disease","vehicle","object","language","feature","sub"].forEach((q) =>{ qn+=(Q[q]||[]).length; });/* never "monster": it is a lazy getter that inflates 4,500 rows */
+  const key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length+"|"+Object.keys(GLOSS).length+"|"+Object.keys(rl).length+"|"+Object.keys(cl).length+"|"+Object.keys(spc).length+"|"+Object.keys(bgs).length+"|"+qn+"|"+(typeof GEAR!=="undefined"?GEAR.length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).length:0)+"|"+(typeof ARMOR!=="undefined"?Object.keys(ARMOR).join(",").length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).join(",").length:0);
   if(XL_IDX&&key===XL_KEY) return XL_IDX;
   const m={}, put=function(n,k,lv,nm){ n=String(n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001").replace(/’/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||/^(?:Tiny|Small|Medium|Large|Huge|Gargantuan)$/.test(n)) return; const multi=n.indexOf(" ")>0; if(nm&&!multi) return; lv=multi?0:(lv==null?1:lv); m[n]=[k[0],k[1],lv];
     if(lv<2&&!/s$/.test(n)&&!m[n+"s"]) m[n+"s"]=[k[0],k[1],lv]; };/* plural: Long Rests, Saving Throws, Bonus Actions */
@@ -73,7 +73,7 @@ function xlIdx(){
   sp.forEach((x) =>{ const k0=String(x[0]).replace(/\s+/g," ").trim().replace(/'/g,"\u0001"), old=m[k0]; put(x[0],["spn",x[0]],1); if(old&&m[k0]&&m[k0][0]==="spn") m[k0][3]=old; });
   crs.forEach((c) =>{ put(c.n,["cr",c.n],1); });
   mi.forEach((r) =>{ if(r&&r[0]) put(r[0],["mi",r[0]],1); });
-  const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ const ap=document.getElementById("app"); if(ap) xlQueue(ap); }/* the data changed (a source was switched): link the page again */
+  const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
   return m;
 }
 let XL_SELF="", XL_CM=null, XL_CK="";
@@ -83,8 +83,8 @@ function xlMap(){
   fs.forEach((g) =>{ key+="|"+(g.items||[]).length; });
   if(XL_CM&&XL_CM.__b===m&&XL_CK===key) return XL_CM;
   const o=Object.create(m); Object.defineProperty(o,"__b",{value:m});
-  fs.forEach((g,gi) =>{ (g.items||[]).forEach((f,fi) =>{ const n=String(f.n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length>2&&/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)&&!o.hasOwnProperty(n)) o[n]=["f",gi+"."+fi,n.indexOf(" ")>0?0:3]; }); });
-  (D&&D.res||[]).forEach((r) =>{ const n=String(r.n||"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||o.hasOwnProperty(n)) return; let sp=null; try{ sp=resSpec(r); }catch(er){} if(sp){ const i=sp.indexOf(":"); o[n]=[sp.slice(0,i),sp.slice(i+1),n.indexOf(" ")>0?0:3]; } });
+  fs.forEach((g,gi) =>{ (g.items||[]).forEach((f,fi) =>{ const n=String(f.n||"").replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length>2&&/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)&&!(n in o)) o[n]=["f",gi+"."+fi,n.indexOf(" ")>0?0:3]; }); });
+  (D&&D.res||[]).forEach((r) =>{ const n=String(r.n||"").replace(/\s+/g," ").trim().replace(/['\u2019]/g,"\u0001"); if(n.length<3||!/^[A-Z][A-Za-z0-9+\u0001 -]*$/.test(n)||(n in o)) return; let sp=null; try{ sp=resSpec(r); }catch(er){} if(sp){ const i=sp.indexOf(":"); o[n]=[sp.slice(0,i),sp.slice(i+1),n.indexOf(" ")>0?0:3]; } });
   XL_CM=o; XL_CK=key; return o;
 }
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
@@ -140,7 +140,7 @@ function xlink(h,self,mode){
    gets its links here. A mutation observer queues what the page adds; one pass links the names in the plain text nodes. It never touches text inside
    a button, link, input, heading or any element that already opens something, and it never changes a saved value. */
 const XL_SKIP="a,button,input,textarea,select,option,script,style,svg,canvas,label,summary,h1,h2,h3,[contenteditable],[data-info],[data-bd],[data-lib-open],[data-lnk],[data-xl-off],[role=button],[role=tab],[role=menuitem],[role=option],[role=link],.fcat,#speeds,.toast,#toasts,.lk,.lnk,.ask,.swp";
-let XL_Q=new Set(), XL_T=0, XL_OBS=null;
+let XL_Q=new Set(), XL_T=0, XL_OBS=null, XL_FORCE=0;
 function xlDomRoot(el){ if(el.closest("#bld")) return "b"; if(el.closest("#sheetBody")) return "s"; if(el.closest("#libBd")) return "s"; if(el.closest("#app")) return "a"; return ""; }
 function xlDom(el){
   const k=xlDomRoot(el); if(!k||(el.closest&&el.closest(XL_SKIP))) return 0;
@@ -158,7 +158,8 @@ function xlDom(el){
   return cnt;
 }
 function xlFlush(){
-  XL_T=0; const q=Array.from(XL_Q); XL_Q=new Set(); if(!q.length) return;
+  XL_T=0; if(!XL_FORCE){ const ap=document.getElementById("app"), hv=document.getElementById("homeV"); if(ap&&(!ap.offsetParent||(hv&&hv.offsetParent))){ XL_T=setTimeout(xlFlush,700); return; } }/* Home is showing: the sheet is not drawn, so wait. The index is not built until a sheet is open */
+  XL_FORCE=0; const q=Array.from(XL_Q); XL_Q=new Set(); if(!q.length) return;
   if(XL_OBS) XL_OBS.disconnect();/* our own edits must not queue again */
   try{ q.forEach((el) =>{ if(el.isConnected) xlDom(el); }); }catch(er){ try{ console.error("xl",er); }catch(e2){} }
   if(XL_OBS) XL_OBS.observe(document.body,{childList:true,subtree:true});
@@ -172,7 +173,7 @@ function xlStart(){
   ["#app","#sheetBody"].forEach((s) =>{ const e=document.querySelector(s); if(e) xlQueue(e); });
 }
 if(document.body) xlStart(); else document.addEventListener("DOMContentLoaded",xlStart);
-window.__xlDom=xlDom;window.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };window.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } xlFlush(); };/* test hook: link now */
+window.__xlDom=xlDom;window.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };window.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
 window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:xlIdx,rules:xlRules};/* test hook */
 function miHTML(n){
   const r=(typeof DMGI!=="undefined"?DMGI:[]).filter((x) =>{ return x[0]===n; })[0];
