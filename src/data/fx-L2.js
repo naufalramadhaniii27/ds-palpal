@@ -39,7 +39,7 @@
  each(["Chattering Staff of Skulls"],function(n){add(n,{n:n,spells:[[1,"Chill Touch"]]})});
  add("Diamond Staff",{n:"Diamond Staff",spells:[[1,"Detect Magic,Light,Tongues"]]});   /* the three charge cost 0 spells; the others cost charges */
  add("Bigby's Beneficent Bracelet",{n:"Bigby's Beneficent Bracelet",spells:[[1,"Mage Hand"]]});
- add("Lucent Destroyer",{n:"Lucent Destroyer",spells:[[1,"Dancing Lights"]],atkBonus:[{when:"Lucent Destroyer",note:"Damage is Radiant instead of Piercing, no ammunition, no Loading property."}]});
+ add("Lucent Destroyer",{n:"Lucent Destroyer",spells:[[1,"Dancing Lights"]],atkBonus:[{when:"Lucent Destroyer",note:"No ammunition and no Loading property."}]});
  add("Sanctum Amulet",{n:"Sanctum Amulet",spells:[[1,"Spare the Dying"]]});
  add("Stonky's ring",{n:"Stonky's ring",spells:[[1,"Telekinesis"]],defs:[["Note","Telekinesis from the ring targets only objects that are not worn or carried"]]});
  add("Boon of the Fire Soul",{n:"Boon of the Fire Soul",spells:[[1,"Burning Hands"]],defs:[["Note","Burning Hands (Boon of the Fire Soul): save DC 15, at will, no spell slot, no components"]]});
@@ -70,7 +70,7 @@
  /* ---------- Scoped attack bonuses ---------- */
  add("Arcanist's Bowstaff",{n:"Arcanist's Bowstaff",atkAb:{kind:"Arcanist's Bowstaff",ab:"INT"}});
  each([1,2,3],function(n){add("Arcane Carbine +"+n,{n:"Arcane Carbine",spDc:n})});   /* the spell attack bonus is already in the row */
- add("Scourge of Shadow",{n:"Scourge of Shadow",init:"CHA",initAdv:true,res:["Radiant","Necrotic"],atkBonus:[{when:"Scourge of Shadow",crit:18,note:"Damage is 3d4 Slashing instead of the whip's regular damage (3d6 on a critical hit)."}]});
+ add("Scourge of Shadow",{n:"Scourge of Shadow",init:"CHA",initAdv:true,res:["Radiant","Necrotic"],atkBonus:[{when:"Scourge of Shadow",crit:18,note:"On a critical hit the whip deals 3d6."}]});
  add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",atkBonus:[{when:"Ruby Rod of Asmodeus",note:"All damage dealt with the rod is converted to Necrotic."}]});
  add("True-Ice Shards (Rapier)",{n:"True-Ice Shards (Rapier)",atkBonus:[{when:"True-Ice Shards (Rapier)",note:"Damage is 1d8 Cold instead of the rapier's regular damage."}]});
  add("True-Ice Shards (Dagger)",{n:"True-Ice Shards (Dagger)",atkBonus:[{when:"True-Ice Shards (Dagger)",note:"Damage is 1d6 Cold instead of the dagger's regular damage."}]});

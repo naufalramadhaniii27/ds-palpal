@@ -1,0 +1,70 @@
+{
+ "why": "Wooden Chain of the Unbroken Circle with WIS 12 (+1): the bonus is +1 (below the cap). 13 + 2 + 1 = 16.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Druid",
+  "sub": "Circle of the Land",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 12,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghg": true,
+   "toa": true,
+   "tftyp": true,
+   "tkdm": true,
+   "thhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 12,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Wooden Chain of the Unbroken Circle",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:ac": 16
+ },
+ "expectC": []
+}

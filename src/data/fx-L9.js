@@ -13,7 +13,7 @@ window.FXO=window.FXO||{};
  var AB=["STR","DEX","CON","INT","WIS","CHA"];
 
  /* ---------- Items ---------- */
- addI("Seafarer's Jacket",{n:"Seafarer's Jacket",tools:["Navigator's Tools"],defs:[["Note","Expertise with Navigator's Tools if you already had proficiency with them"]]});
+ addI("Seafarer's Jacket",{n:"Seafarer's Jacket",toolPE:["Navigator's Tools"]});/* fx engine v5 */
  addI("Shadow Drinker",{n:"Shadow Drinker (Curse)",vul:["Radiant"]});
  addI("Shaedenstaff",{n:"Shaedenstaff",advOn:["saves against mental stress effects"]});
  addI("Signet Rings of the Fey Court",{n:"Signet Rings of the Fey Court",spCls:"@species",spells:[[0,"Druidcraft"]],defs:[["Note","Elf's Trance (gained if you lack it)"]]});

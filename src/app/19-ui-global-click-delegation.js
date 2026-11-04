@@ -32,7 +32,7 @@ export function doRest(kind,quiet){ __R.sitReset(kind==='short'?'short':'long');
     S.used[r.k]=u;
   });
   if(kind==="short"){ if(!quiet) toast("Short Rest: uses restored."); }
-  else { const before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>0) S.exh--; if(S.hp>before) flash("healed"); if(__R.hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
+  else { const before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>Math.max(0,num(D.exhMin,0))) S.exh--; if(S.hp>before) flash("healed"); if(__R.hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
   if(kind!=="short"&&ex0>0){ try{ __R.renderAll(); }catch(er){} }/* v94: a lower Exhaustion level changes Speed, checks, and (2014) the Hit Point maximum, so the sheet is worked out again */
 }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-campadd]"); if(!b) return; e.preventDefault(); const t=[].slice.call(document.querySelectorAll("[data-tab='p-desc'],[data-go='6']")).filter((x) =>{ return x.offsetParent; })[0]; if(t) t.click(); setTimeout(() =>{ const i=$("#n-camp"); if(i){ i.scrollIntoView({block:"center"}); i.focus(); } },450); });/* T10 */

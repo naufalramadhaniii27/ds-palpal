@@ -11,13 +11,13 @@ export function part(l,v,note){ return {l:l, v:v, note:note||""}; }
 export function derive(){
   D = {}; B = {}; __R.CU0 = {};/* v34 RU85 */
   const lvl = clamp(Math.round(num(C.level,1)),1,20);
-  const pb = 2 + Math.floor((lvl-1)/4);
+  const pbA = clamp(Math.round(num(C.pbAdd,0)),0,6), pb = 2 + Math.floor((lvl-1)/4) + pbA;/* fx engine v5: C.pbAdd */
   D.level = lvl; D.pb = pb;
   /* v19 RL44: Exhaustion (PHB 2024 Rules Glossary): each level takes 2 from every D20 Test (ability checks, saving throws, attack rolls, Initiative)
      and 5 feet from Speed. Passive scores are not D20 Tests and stay the same */
-  const exh=clamp(Math.round(num(S.exh,0)),0,6); D.exh=exh; const xr=x14(), exhN=xr?0:exh; D.exhN=exhN;/* v94: 2014 Exhaustion has no number on D20 Tests */
+  const exMin=clamp(Math.round(num(C.exhMin,0)),0,5); if(exMin>num(S.exh,0)) S.exh=exMin;/* fx engine v5: C.exhMin, Exhaustion that cannot be removed (curse) */ const exh=clamp(Math.round(num(S.exh,0)),0,6); D.exh=exh; D.exhMin=exMin; const xr=x14(), exhN=xr?0:exh; D.exhN=exhN;/* v94: 2014 Exhaustion has no number on D20 Tests */
   function exP(){ return part("Exhaustion level "+exh, -2*exh, "Every D20 Test is 2 lower for each Exhaustion level"); }
-  B.pb = {t:"Proficiency Bonus", parts:[part("Character level "+lvl, pb, "Levels 1 to 4 give +2, 5 to 8 give +3, 9 to 12 give +4, 13 to 16 give +5, 17 to 20 give +6")], total:sg(pb), f:"Set by total character level (PHB-2024, Character Advancement)."};
+  B.pb = {t:"Proficiency Bonus", parts:[part("Character level "+lvl, pb-pbA, "Levels 1 to 4 give +2, 5 to 8 give +3, 9 to 12 give +4, 13 to 16 give +5, 17 to 20 give +6")].concat(pbA?[part("Magic item or feature", pbA, "Adds to your Proficiency Bonus")]:[]), total:sg(pb), f:"Set by total character level (PHB-2024, Character Advancement)."};
 
   D.score={}; D.mod={};
   ABK.forEach((k) =>{
