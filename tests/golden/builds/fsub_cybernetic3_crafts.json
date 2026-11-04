@@ -1,5 +1,5 @@
 {
- "why": "Cybernetic Fighter 3, Cybernetic Crafts: two Construct grafts of your choice, stored and shown as Your choice under the feature (the grafts are inventory items, a pick cannot add them).",
+ "why": "Cybernetic Fighter 3, Cybernetic Crafts: two Construct grafts. Stored as Your choice, and (engine v3b, pick t item) added to the inventory: Black Box and Heart of Steel",
  "build": {
   "name": "fsub_cybernetic3_crafts",
   "species": "Human",
@@ -51,6 +51,18 @@
   {
    "path": "features",
    "in": "Your choice.** Black Box, Heart of Steel."
+  },
+  {
+   "path": "inv",
+   "has": {
+    "n": "Black Box"
+   }
+  },
+  {
+   "path": "inv",
+   "has": {
+    "n": "Heart of Steel"
+   }
   }
  ]
 }

@@ -4,6 +4,7 @@ Run: python3 tests/golden_builds.py [--root DIR]
 Part 1: formula checks for the 12 core classes at levels 1/5/10/20
         (HP, proficiency bonus, saving throw proficiencies).
 Part 2: fixed reference builds (tests/golden/builds/*.json) with expected values. An expect key "C:path" reads the sheet (C), "D:path" the derived numbers (D), value "~text" = contains.
+Optional key fxT: toggle state {id: bool} (sheet state S.fxT) passed to the builder.
 Exit code 1 on any mismatch."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
@@ -59,8 +60,8 @@ def main():
         pg.evaluate("window.__bldNeed && window.__bldNeed()")
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
-        def run(b):
-            C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        def run(b, fxT=None):
+            C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
 
         # part 1
@@ -101,7 +102,7 @@ def main():
                 continue
             g = json.load(open(os.path.join(gdir, fn)))
             pg.evaluate("ids=>ids.forEach(k=>window.__setSrc(k,true))", [k for k, v in g['build']['src'].items() if v and k != 'core'])
-            C, D = run(g['build'])
+            C, D = run(g['build'], g.get('fxT'))
             for k, v in g['expect'].items():
                 n += 1
                 if k[:2] in ('C:', 'D:'):

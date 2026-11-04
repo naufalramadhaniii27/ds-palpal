@@ -35,6 +35,7 @@ def skill(C, n):
 
 
 CASES = []
+ABIL_K = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
 NOARM = {'eqC': 'none', 'eqB': 'none'}
 
 
@@ -53,6 +54,34 @@ def cls(e):
 def ok(cond, msg):
     return '' if cond else msg
 
+
+# ---- fx engine v3b: toggle states (S.fxT), passed as the second argument of __bldSheetFor
+def tg(e, id='t1', default=False):
+    return dict(e, toggle={'id': id, 'label': 'Test state', 'default': default})
+
+
+def tgids(C):
+    return [x['id'] for x in C.get('fxToggles', [])]
+
+
+case('toggle off: AC unchanged, listed as off', species(tg({'n': 'T', 'acAdd': 2})), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) and tgids(C1) == ['t1'] and C1['fxToggles'][0]['on'] is False, json.dumps(C1.get('fxToggles'))))
+case('toggle on: AC +2', species(tg({'n': 'T', 'acAdd': 2})), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2 and C1['fxToggles'][0]['on'] is True, 'ac %s -> %s' % (acsum(C0), acsum(C1))), {'__fxT': {'t1': True}})
+case('toggle default true, switched off', species(tg({'n': 'T', 'acAdd': 2}, default=True)), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0), 'counted'), {'__fxT': {'t1': False}})
+case('toggle default true, state missing', species(tg({'n': 'T', 'acAdd': 2}, default=True)), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2, 'not counted'))
+case('toggle on: speed -10 and AC +2, cond noHeavy', species(tg({'n': 'T', 'acAdd': 2, 'speedAdd': -10, 'cond': 'noHeavy'})), lambda C0, C1, D0, D1: ok(C1['speed'] == C0['speed'] - 10 and acsum(C1) == acsum(C0) + 2, 'speed %s ac %s' % (C1['speed'], acsum(C1))), dict(NOARM, __fxT={'t1': True}))
+case('toggle on, heavy armor: nothing', species(tg({'n': 'T', 'acAdd': 2, 'speedAdd': -10, 'cond': 'noHeavy'})), lambda C0, C1, D0, D1: ok(C1['speed'] == C0['speed'] and acsum(C1) == acsum(C0), 'counted with heavy armor'), {'eqC': 'A', '__fxT': {'t1': True}})
+case('toggle on: resistance', species(tg({'n': 'T', 'res': ['Fire']})), lambda C0, C1, D0, D1: ok(any(x.get('t') == 'Resistance' and x.get('v') == 'Fire' for x in C1['defenses']), 'no resistance'), {'__fxT': {'t1': True}})
+case('toggle off: no resistance', species(tg({'n': 'T', 'res': ['Fire']})), lambda C0, C1, D0, D1: ok(not any(x.get('v') == 'Fire' for x in C1['defenses']), 'resistance while off'))
+case('toggle on: save bonus', species(tg({'n': 'T', 'saveBonus': 1})), lambda C0, C1, D0, D1: ok(D1['save']['WIS'] == D0['save']['WIS'] + 1, 'save'), {'__fxT': {'t1': True}})
+case('toggle off: save bonus', species(tg({'n': 'T', 'saveBonus': 1})), lambda C0, C1, D0, D1: ok(D1['save']['WIS'] == D0['save']['WIS'], 'save counted'))
+case('toggle on: skill proficiency', species(tg({'n': 'T', 'skillProf': ['Arcana']})), lambda C0, C1, D0, D1: ok(skill(C1, 'Arcana').get('p') == 1, 'no proficiency'), {'__fxT': {'t1': True}})
+case('toggle off: skill proficiency', species(tg({'n': 'T', 'skillProf': ['Arcana']})), lambda C0, C1, D0, D1: ok(skill(C1, 'Arcana').get('p') != 1, 'proficiency while off'))
+case('toggle on: hpFlat 7', species(tg({'n': 'T', 'hpFlat': 7})), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'] + 7, 'hp'), {'__fxT': {'t1': True}})
+case('toggle off: hpFlat 7', species(tg({'n': 'T', 'hpFlat': 7})), lambda C0, C1, D0, D1: ok(D1['hpmax'] == D0['hpmax'], 'hp counted'))
+case('toggle bloodied model (state flag, abUp)', species(tg({'n': 'T', 'abUp': [['STR', 2, 20]]}, id='bloodied')), lambda C0, C1, D0, D1: ok(D1['score']['STR'] == D0['score']['STR'] + 2, 'STR'), {'__fxT': {'bloodied': True}})
+case('toggle on: size Large', species(tg({'n': 'T', 'size': 'Large'})), lambda C0, C1, D0, D1: ok(C1['size'] == 'Large', C1['size']), {'__fxT': {'t1': True}})
+case('toggle abUp "rage" value (Rage Damage)', {'cls': {'Fighter': [tg({'n': 'T', 'abUp': [['STR', 'rage', 29]]}, id='rage')]}}, lambda C0, C1, D0, D1: ok(D1['score']['STR'] == D0['score']['STR'] + 2, 'STR %s -> %s' % (D0['score']['STR'], D1['score']['STR'])), {'__fxT': {'rage': True}})
+case('toggle same id in two entries is one switch', species([tg({'n': 'A', 'acAdd': 1}), tg({'n': 'B', 'speedAdd': 5})]) if False else {'species': {'Human': [tg({'n': 'A', 'acAdd': 1}), tg({'n': 'B', 'speedAdd': 5})]}}, lambda C0, C1, D0, D1: ok(len(C1['fxToggles']) == 1 and acsum(C1) == acsum(C0) + 1 and C1['speed'] == C0['speed'] + 5, json.dumps(C1['fxToggles'])), {'__fxT': {'t1': True}})
 
 case('acAdd +2', species({'n': 'T', 'acAdd': 2}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 2 and has(C1['ac']['bonus'], 's', 'T (Human)'), 'ac %s -> %s' % (acsum(C0), acsum(C1))))
 case('acAdd pb', species({'n': 'T', 'acAdd': 'pb'}), lambda C0, C1, D0, D1: ok(acsum(C1) == acsum(C0) + 3, 'ac %s -> %s' % (acsum(C0), acsum(C1))))
@@ -140,21 +169,24 @@ def main():
         pg.evaluate("window.__bldNeed && window.__bldNeed()")
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
-        def run(b, gx):
+        def run(b, gx, fxT=None):
             pg.evaluate("g=>{window.FXO=g.__fxo||{};window.GX=g}", gx)
-            C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+            C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
 
         for name, gx, tweak, check in CASES:
             b = base_build()
+            fxT = None
             for k, v in (tweak or {}).items():
-                if k == 'ch':
+                if k == '__fxT':
+                    fxT = v
+                elif k == 'ch':
                     b['ch'].update(v)
                 else:
                     b[k] = v
             try:
                 C0, D0 = run(b, {})
-                C1, D1 = run(b, gx)
+                C1, D1 = run(b, gx, fxT)
                 err = check(C0, C1, D0, D1)
             except Exception as ex:
                 err = 'exception %s' % ex
@@ -208,6 +240,81 @@ def main():
         k1 = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if str(c['key']).startswith('gx-')]
         if k0 != ['gx-mode-species-Human'] or 'gx-l-species-Human' not in k1:
             fails.append('pick when: before %s after %s' % (k0, k1))
+
+        # ---- v3b: toggle entry keeps its pick while off
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'T', 'toggle': {'id': 't1', 'label': 'x'}, 'acAdd': 1, 'pick': [{'k': 'a', 't': 'skills', 'n': 1, 'title': 'Skill'}]}]}})
+        n += 1
+        k = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", base_build()) if str(c['key']).startswith('gx-a-')]
+        if not k:
+            fails.append('toggle off hides its pick')
+        # ---- v3b: pickLv (one pick per level, level gated) with abUpPick
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'Asc', 'abUpPick': {'max': 20}, 'pickLv': [
+            {'lv': 2, 'k': 'u2', 't': 'multi', 'n': 1, 'title': 'L2', 'list': [['STR +2', ''], ['DEX +1, CON +1', '']]},
+            {'lv': 4, 'k': 'u4', 't': 'multi', 'n': 1, 'title': 'L4', 'list': [['STR +2', ''], ['DEX +1, CON +1', '']]},
+            {'lv': 9, 'k': 'u9', 't': 'multi', 'n': 1, 'title': 'L9', 'list': [['STR +2', '']]}]}]}})
+        b = base_build()
+        keys = [c['key'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if str(c['key']).startswith('gx-u')]
+        n += 1
+        if keys != ['gx-u2-species-Human', 'gx-u4-species-Human']:
+            fails.append('pickLv: level 5 should offer u2 and u4 only, got %s' % keys)
+        b['ch']['gx-u2-species-Human'] = ['STR +2']
+        b['ch']['gx-u4-species-Human'] = ['DEX +1, CON +1']
+        b['ch']['gx-u9-species-Human'] = ['STR +2']
+        C0 = pg.evaluate("b=>window.__bldSheetFor(Object.assign({},b,{ch:{}}))", b)
+        C1 = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        D0 = pg.evaluate("c=>window.__deriveFor(c)", C0)
+        D1 = pg.evaluate("c=>window.__deriveFor(c)", C1)
+        n += 1
+        d = {a: D1['score'][a] - D0['score'][a] for a in ABIL_K}
+        if d != {'STR': 2, 'DEX': 1, 'CON': 1, 'INT': 0, 'WIS': 0, 'CHA': 0}:
+            fails.append('pickLv abUpPick: %s (level 9 pick must not count at level 5)' % d)
+        # the maximum: STR 15 + background 2 = 17, base raised to 19 here, +2 stops at 20
+        b['ch'] = {'gx-u2-species-Human': ['STR +2']}
+        b['base']['STR'] = 17
+        C2 = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        D2 = pg.evaluate("c=>window.__deriveFor(c)", C2)
+        n += 1
+        if D2['score']['STR'] != 20:
+            fails.append('abUpPick maximum 20: STR %s' % D2['score']['STR'])
+        # ---- v3b: item pick adds inventory rows, and removes them when the pick changes
+        pg.evaluate("ids=>ids.forEach(k=>window.__setSrc(k,true))", ['dmg', 'tsdm'])
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'Gr', 'pick': [{'k': 'g', 't': 'item', 'n': 2, 'title': 'Grafts', 'list': [['Black Box', ''], ['Heart of Steel', ''], ['No Such Item Xyz', '']]}]}]}})
+        b = base_build()
+        b['src']['tsdm'] = True
+        gk = 'gx-g-species-Human'
+        ch = [c for c in pg.evaluate("b=>window.__bldChoiceList(b)", b) if c['key'] == gk]
+        n += 1
+        if not ch or ch[0]['t'] != 'multi':
+            fails.append('item pick: not offered as a choice')
+        b['ch'][gk] = ['Black Box', 'No Such Item Xyz']
+        C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        names = [x['n'] for x in C['inv']]
+        n += 2
+        if 'Black Box' not in names:
+            fails.append('item pick: Black Box not in inventory %s' % names)
+        if 'No Such Item Xyz' in names:
+            fails.append('item pick: an unknown item was added (must stay record-only)')
+        b['ch'][gk] = ['Heart of Steel']
+        C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+        names = [x['n'] for x in C['inv']]
+        n += 2
+        if 'Black Box' in names or 'Heart of Steel' not in names:
+            fails.append('item pick change: inventory %s' % names)
+        # removed by the player by hand: it does not come back while the pick is unchanged; a plain item of the player is never removed
+        b2 = pg.evaluate("b=>{const k=structuredClone(b);window.__bldSheetFor(k);return k}", b)
+        # ---- v3b: Masterwork row flag (cond mwArmor)
+        MWGX = {'species': {'Human': [{'n': 'Mw', 'cond': 'mwArmor', 'acAdd': 3}]}}
+        for flag, want in ((None, 0), (1, 3)):
+            b = base_build()
+            b['inv'] = [{'n': 'Chain Mail', 'q': 1, 'eq': True}]
+            if flag:
+                b['inv'][0]['mw'] = 1
+            pg.evaluate("g=>{window.GX=g}", MWGX)
+            C = pg.evaluate("b=>window.__bldSheetFor(b)", b)
+            C0 = pg.evaluate("b=>{window.GX={};return window.__bldSheetFor(b)}", b)
+            n += 1
+            if acsum(C) - acsum(C0) != want or bool(C['inv'][[x['n'] for x in C['inv']].index('Chain Mail')].get('mw')) != bool(flag):
+                fails.append('mw flag %s: ac %s vs %s' % (flag, acsum(C), acsum(C0)))
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))
