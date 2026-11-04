@@ -1,0 +1,58 @@
+{
+ "why": "Warden Steel Shepherd 3, CON 14: Technology proficient with +2 (CON modifier), Machine Code language, Technomancy cantrip.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warden",
+  "sub": "Steel Shepherd",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "skills.Technology.misc",
+   "eq": 2
+  },
+  {
+   "path": "lang",
+   "in": "Machine Code"
+  },
+  {
+   "path": "spells",
+   "in": "Technomancy"
+  }
+ ]
+}

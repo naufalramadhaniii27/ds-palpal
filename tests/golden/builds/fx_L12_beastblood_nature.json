@@ -1,0 +1,58 @@
+{
+ "why": "Warden Beastblood Guardian 3 picks Nature with CON 14: +2 to Nature checks (CON modifier, minimum +1) and proficiency.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warden",
+  "sub": "Beastblood Guardian",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-sk-sub-Beastblood Guardian": [
+    "Nature"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "skills.Nature.misc",
+   "eq": 2
+  },
+  {
+   "path": "skills.Nature.p",
+   "eq": 1
+  }
+ ]
+}

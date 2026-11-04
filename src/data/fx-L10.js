@@ -79,13 +79,9 @@ window.GX=window.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
   {l:6,n:"Land's Stride",advOn:["saves against plants magically made or shaped to hinder movement"],defs:[["Note","Nonmagical Difficult Terrain costs no extra movement"]]}]);
  /* Captain (names shared with Vagabond, same text) */
  add("Adrenaline Junkie",[{l:6,n:"Live Fast",defs:[["Note","No damage from falls of 60 ft or less"]]}]);
- add("Daggermark",[{l:3,n:"Covert Tactics",init:"CHA",min:1}]);
  add("Demon Brand",[{l:6,n:"Blindsight",sense:[["Blindsight",30,""]]}]);
  add("Gourmand",[{l:3,n:"Fine Cuisine",spCls:"@sub:WIS",spells:[[3,"Gentle Repose"]],defs:[["Note","Gentle Repose can be cast only as a Ritual"]]}]);
  add("Holy Icon",[{l:3,n:"Theological Studies",spCls:"@sub:CHA",skillBonus:[["Religion","CHA",1]],pick:[{k:"c",t:"cantrip",n:2,cls:"Cleric",title:"Two Cleric cantrips"}]}]);
- add("Knight Errant",[{l:3,n:"Chivalrous Oath",advOn:["saves to avoid or end the Charmed and Frightened conditions"]}]);
- add("Pugilist",[{l:3,n:"Hand-to-Hand",acDexAb:"CON",cond:"noBody",unarmed:{die:[[3,"1d6"],[5,"1d8"],[11,"1d10"],[17,"1d12"]]}}]);
- add("Siegeball Jersey",[SK(3,"Sports Fanatic",["Athletics"],"CHA")]);
  add("Star-Spangled Banner",[{l:10,n:"Freedom of Movement",spCls:"@sub:CHA",spells:[[10,"Freedom of Movement"]]}]);
  /* Cleric */
  add("Apocalypse Domain",[{l:3,n:"Ranting Ruin",spCls:"Cleric",spells:[[3,"Vicious Mockery"]],pick:[{k:"skill",t:"skills",n:1,from:["Arcana","Survival"],title:"Ranting Ruin skill"}]}]);

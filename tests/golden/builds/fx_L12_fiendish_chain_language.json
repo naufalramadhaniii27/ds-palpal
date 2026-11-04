@@ -1,0 +1,58 @@
+{
+ "why": "Summoner Bond of the Fiendish Chain 10: Infernal language from the Honorary Fiend choice and Advantage on Charmed and Frightened saves (Protection of the Lower Planes).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Summoner",
+  "sub": "Bond of the Fiendish Chain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-hf-sub-Bond of the Fiendish Chain": [
+    "Infernal"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tssm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Infernal"
+  },
+  {
+   "path": "saveNotes",
+   "in": "Charmed and Frightened"
+  }
+ ]
+}
