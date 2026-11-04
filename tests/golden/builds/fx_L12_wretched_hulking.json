@@ -1,0 +1,56 @@
+{
+ "why": "Sorcerer Wretched Bloodline Hulking 20: HP maximum rises by 1 and by 1 per Sorcerer level (20), so 21 more than the same build without the curse (122 without, 143 with).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Sorcerer",
+  "sub": "Wretched Bloodline Sorcery",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "wcurse": [
+    "Hulking"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tghp": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "hpmax": 143
+ },
+ "expectC": [
+  {
+   "path": "carryBump",
+   "eq": true
+  }
+ ]
+}

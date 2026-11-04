@@ -1,0 +1,57 @@
+{
+ "why": "Rogue Sanguine Thief 7: third caster slots 4/2 (same table as the Eldritch Knight) and Sangromancy Dice = Sneak Attack dice = 4 at level 7.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Rogue",
+  "sub": "Sanguine Thief",
+  "level": 7,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tghp": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spellcasting.slots",
+   "eq": [
+    4,
+    2
+   ]
+  },
+  {
+   "path": "res.Sangromancy Dice.max",
+   "eq": 4
+  }
+ ]
+}
