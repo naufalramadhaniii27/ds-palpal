@@ -25,7 +25,7 @@ Mistikan, Retron, 7 subclass lama (nama), Bleeding, Burning, Jinxed, skill Autom
 | Daftar aksi | Tidak berubah |
 
 ## Belum diverifikasi atau belum ada
-1. History dan Society di Public Lore. URL halaman Public Lore tidak ada di laporan atau sesi ini, jadi tidak dibaca. Lore di pack tidak diubah.
+1. History dan Society di Public Lore: SELESAI, dicek 2026-11-04. Halaman Public Lore dibaca ulang (toggle History dan Society terbuka). Pembaca di app sudah memuat 8 bagian: A Young World, What to Expect, Origins, Calendar: BC and AD, The Two Reksas, The War and the Peace, Society, Daily Life. Isinya mencakup kalender BC/AD, dua era Reksa, Coalescence, perang 200 tahun, tahun sekarang AD 485, kehidupan harian, ketegangan, dan roh hidup bersama mortal. Tidak ada kalimat 10 kata berurutan yang sama dengan halaman (diuji dengan skrip, run terpanjang 8 kata). Tidak ada singkatan selain BC dan AD, nama era di dunia itu, dan keduanya dijelaskan sekali di teks. Tidak ada perubahan kode.
 2. Mesin tidak menghitung angka berikut (hanya teks): Dexterous Attacks dan Unarmored Defense Pencak Silat (pilihan Str atau Dex belum ada di skema acBase), Steel Skin, stance L7 dan L18, bonus AC Circle of the Feathers. Tidak ada fx baru, jadi tidak ada golden build baru.
 3. Cunning Eye (Pencak Silat, pilih Perception atau Medicine) tidak ada di halaman sekarang. Dipertahankan karena sheet Yudhi memakainya. Perlu keputusan Naufal.
 4. Fitur tetap bernama "Martial Stances" (halaman L7 menulis "Martial Stance", L18 menulis "Martial Stances") agar kunci aksi lama tidak berubah.
