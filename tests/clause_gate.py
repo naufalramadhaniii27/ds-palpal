@@ -160,7 +160,7 @@ IGN = [re.compile(p) for p in (
     r"\bat \d+(?:st|nd|rd|th)\b", r"\b\d[\d,]*(?:\.\d+)? ?(?:gp|sp|cp|pp|ep)\b", r"\b\d[\d,]*(?:\.\d+)? ?(?:lb|lbs|pounds?)\b\.?",
     r"\b(?:page|pages|p\.|pp\.|chapter|table|appendix|cr|challenge rating|section) ?\d+(?:/\d+)?", r"\b(?:19|20)\d\d\b", r"\b1 (?:bonus action|action|reaction)\b",
     r"\b\d+ ?(?:gp|sp|cp)\b")]
-DICE = re.compile(r"\b(\d*)d(100|20|12|10|8|6|4)\b")
+DICE = re.compile(r"\b(\d*)d(100|20|12|10|8|6|4|3)\b")
 UNIT_DIST = re.compile(r"(\d[\d,]*)[- ]?(?:feet|foot|ft\.?|miles?|yards?|inches)\b")
 UNIT_DUR = re.compile(r"(\d+)[- ](?:rounds?|minutes?|hours?|days?|turns?|weeks?|months?|years?|seconds?)\b")
 PCT = re.compile(r"(\d+(?:\.\d+)?) ?(?:%|percent)")
@@ -572,6 +572,129 @@ def features(D):
         yield mk("spell", "spells", name, "spells", text, None, [a for a in at if a], False)
 
 
+# ---------------------------------------------------------------------------------------------------------------- explicit informational rules (reason codes)
+# Every rule below turns an UNCOVERED sentence into INFO with a code. None of them touches the number-conservation check of analyze(): a sentence reaches this
+# pass only after the atoms and the numbers were compared and failed. A rule may use an atom of the feature (STD:*), never invents one. Each code has a reason.
+REASONS = collections.OrderedDict([
+    ("STD:ASI", "Feat ability score line 'raise X by 1, to a maximum of 20 (30)': the +1 and the cap are the standard ASI rule of the builder; the feat has an ability atom (asi / asiPick) that names the abilities."),
+    ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
+    ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
+    ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
+    ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
+    ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
+    ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
+    ("ACTIVE:OTHERS", "Effect placed on another creature (target, enemy, ally, 'its next turn') or a timed effect that ends by itself: the sheet tracks the character, not the target or a combat clock."),
+    ("ACTIVE:TIMED_IMM", "'A creature that succeeds is immune to this power for 24 hours': immunity of the target to the power, not of the character."),
+    ("ACTIVE:TRIGGER", "Triggered or optional effect with no stat of the character: save-or-suffer, reroll, replace-a-roll, spend-a-resource riders and spell options, decided at play. Rider dice on your own weapon hit stay flagged (atkDice exists)."),
+    ("ACTIVE:REACTION", "Reaction or action that gives a temporary resistance, speed or similar for one attack or one turn: a combat action, not a standing stat."),
+    ("COND:PLAY_STATE", "Bonus that exists only in a play state the sheet does not track (Bloodied is a toggle only where a record exists; flanking, cover, allies near, first round, mounted, underwater, next attack): the sheet does not compute it on purpose (SOURCE-NOTES, fx batch H)."),
+    ("COND:ATTACK_ROLL_ADV", "Advantage or disadvantage on a single attack roll (per attack, per target): decided at the table."),
+    ("NUMONLY:ROLL", "Number-only sentence about a die rolled at play (reroll, d20, healing roll, table roll): no stat class."),
+    ("NUMONLY:GEOMETRY", "Number-only sentence whose numbers are only distances, areas or durations of an effect or a story: no stat class."),
+    ("NUMONLY:TABLE", "Number-only fragment of a table or list (no verb): a row of a table the sheet prints from its own tables."),
+    ("NUMONLY:FLAVOR", "Number-only sentence about lore, quantity, price, weight or a count of things: no stat class."),
+    ("NUMONLY:ZERO", "Number-only sentence about dropping to 0 Hit Points, 0 speed of a target or similar rule text: no stat class."),
+    ("NUMONLY:TEXT", "Number-only sentence with unsigned numbers and no stat word in a sentence that has no sign (+/-) or 'increases by': prose; a signed bonus without a stat word stays flagged."),
+])
+NONSTAT = {"DMG", "DC", "ATK", "RESOURCE", "SPELL", "CHOICE", "ADV", "DIS", "SAVE_ROLL", "SLOT"}
+RX_ASI = R(r"\b(?:raise|increase)\b[^.]{0,90}\bby 1\b[^.]{0,40}\bmaximum of (?:20|30)\b")
+RX_AC10 = R(r"\b10 (?:plus|\+)")
+RX_TABLE_NAME = R(r"^(?:spellcasting|pact magic|eldritch invocations?|cantrips?|spell slots?|spells known|prepared spells|the (?:[a-z]+ )?table)$")
+RX_TABLE_SENT = R(r"\b(?:swap|replace|exchange)\b[^.]{0,40}\b(?:cantrip|spell)\b|\brules below\b|\bspell list\b|\bspell slots? (?:of|per|at) (?:each|every|a new)|\b(?:new|higher) level of spell slots\b|\bchoose (?:two|three|four|five|six|\d+) (?:level \d+ )?[a-z]+ (?:cantrips|spells)\b|\bpick one invocation\b|\binvocations?\b[^.]{0,40}\b(?:known|table|list|learn|swap|replace)\b|\bcantrips? (?:known|column)\b|\bprepared spells? (?:column|table)\b|\byour list holds\b|\bspellbook\b|\bto start\b|\bat higher levels\b|\bupcast|\bhigher-level slot")
+RX_REST = R(r"\b(?:long|short) rest\b|\bat dawn\b|\bdawn\b|\bregains?\b|\brecharge[sd]?\b|\bexpended\b|\bper day\b|\bdaily\b|\bunlimited\b|\bcharges?\b|\buses?\b|\bexpend\b")
+RX_OBJ = R(r"\bobject with ac\b|\b(?:stone|cube|crystal|orb|construct|statue|barrier|wall|panel|object|summon|familiar|creature|spirit|pet|mount|companion|drone|turret|totem|device|item|it|they) (?:has|have|with|gains?|gain)\b[^.]{0,20}\b(?:ac|armor class|\d+ hit points)\b|\bhas ac \d+")
+RX_ITEMSENSE = R(r"^(?:it|the (?:weapon|sword|item|blade|staff|armor|shield|axe|lance|hammer|dagger|bow|rod|wand|cloak)) (?:also )?(?:has|have) (?:hearing|blindsight|darkvision|truesight|normal vision)")
+RX_OTHER_SUBJ = R(r"^(?:the )?(?:target|targets|creature|creatures|a creature|an enemy|each enemy|enemies|that creature|the creature|one creature|each creature|any creature|ally|allies|an ally|each ally|that ally|it|its|their|they|those|the chosen|the affected|the struck|the hit|opponents?|attackers?|the attacker|a spellcaster|a hit|a failed|a successful|on a (?:failed|successful) (?:save|saving throw)|if (?:the target|it|a creature|the creature)|until (?:the (?:start|end) of )?(?:its|their|the target's))\b")
+RX_24H = R(r"\bimmune to\b[^.]{0,60}\b(?:for|the next) (?:the next )?(?:24 hours|a day|1 day|one day|hour)\b|\bimmune to this (?:power|effect|property|ability|spell)\b")
+RX_TRIG = R(r"\bwhen you (?:hit|take|use|cast|roll|make|reduce|score|drop|fail|succeed|miss|are hit|are targeted|see|finish)\b|\bwhenever\b|\beach time\b|\bon an? (?:hit|miss|failed|successful|critical|natural)\b|\bif the target\b|\bthe next (?:attack|time|d20|saving|roll|spell|damage)\b|\buntil (?:the (?:start|end)|your next|the beginning)\b|\bat the (?:start|end) of\b|\byou can (?:add|roll|reroll|re-roll|replace|expend|spend|force|cause|impose|give|swap|push|redirect|reduce|halve|prevent|negate|extend|spread|divide)\b|\bas part of\b|\b(?:fails?|succeeds?) (?:on )?(?:its|the|a|their|that)\b|\b(?:target|creature|enemy) (?:takes?|must|can't|cannot|is|has|becomes|gains?|suffers?|regains?)\b|\bsaving throw against (?:your|the|this)\b|\bregains? hit points\b|\bwithin the next\b|\bcritical hit\b|\bspend (?:one|a|\\d+)\b")
+RX_RIDER = R(r"\b(?:extra|additional)\b[^.]{0,40}\d+d\d+[^.]{0,40}\bdamage\b|\bdeals? \d+d\d+[^.]{0,30}\b(?:extra|additional|more)\b|\b\d+d\d+[^.]{0,30}\bextra damage\b")
+RX_RIDER_HIT = R(r"\byou hit\b|\bhit(?:s|ting)? (?:a creature |it |the target )?with (?:an? |this |the )?(?:weapon |melee |ranged )?(?:attack|weapon)|\bwhen (?:it|the weapon) hits\b|\bon a hit\b|\bweapon attack\b|\bwhen you hit\b")
+RX_PLAY = R(r"\bbloodied\b|\braging\b|\bwhile (?:you are )?(?:prone|mounted|flying|hidden|surprised|concentrating|underwater|transformed|in (?:bright|dim) light|in darkness|flanking|wearing no|incapacitated|unconscious|frightened|charmed)\b|\bwithin \d+ (?:feet|ft)\b[^.]{0,30}\b(?:of|from) (?:you|an ally|a|the|one|another)\b|\bfirst round\b|\bagainst (?:a |an |any )?(?:creature|creatures|undead|fiends?|aberrations?|dragons?|giants?|constructs?|beasts?|humanoids?|monstrosities|oozes|plants?|celestials?|fey|elementals?|aligned|evil|good|spellcasters?|the (?:target|creature|attacker))\b|\bwhile you have cover\b|\bhalf cover\b|\bthree-quarters cover\b|\bnext (?:attack|turn)\b|\bduring that time\b|\bduring this time\b|\bfor the duration\b|\bthat turn\b|\bthis turn\b|\buntil the end\b|\bwhen you are (?:hit|bloodied|targeted|reduced|attacked)\b|\bwhile (?:an? )?(?:ally|creature|enemy|enemies|allies)\b|\bfor the next\b|\bwhen you (?:roll|expend|spend)\b")
+RX_ATKROLL = R(r"\battack rolls?\b[^.]{0,60}\b(?:against|made|by)\b|\bnext attack\b|\bon (?:that|its|the|this|your next) attack\b|\bthe attack\b|\bon the attack\b|\bagainst you\b|\bagainst the\b")
+RX_DCREF = R(r"\b(?:spell )?save dc\b|\bsaving throw dc\b|\buse your\b[^.]{0,20}\bdc\b|\bthe dc\b|\bdifficulty class\b|\bdc is\b")
+RX_STATUS = R(r"\bimmune to (?:the )?(?:frightened|charmed|poisoned|paralyzed|stunned|blinded|deafened|exhaustion|disease|petrified|restrained|prone|grappled|incapacitated)\b")
+RX_OWN_STAT = R(r"\byou (?:have|gain|are|can see|know)\b|\byour\b[^.]{0,30}\b(?:speed|ac|armor class|hit points|score)\b")
+RX_FRAGMENT_VERB = R(r"\b(?:is|are|was|were|can|could|may|must|has|have|had|gain|gains|deal|deals|take|takes|become|becomes|use|uses|cast|casts|add|adds|roll|rolls|make|makes|regain|regains|see|sees|know|knows|learn|learns|choose|chooses|pick|picks|get|gets|grant|grants|lose|loses|increase|increases|decrease|decreases|reduce|reduces|equal|equals|ends|end|lasts|last|rises|drops|drop|ignore|ignores|treat|treats|count|counts|move|moves|fly|flies|speak|speaks|wear|wears|hold|holds|carry|carries|require|requires|need|needs|let|lets|allow|allows|turn|turns|appear|appears|shed|sheds|spread|spreads|wake|wakes|work|works|apply|applies|do|does|cause|causes|suffer|suffers|fail|fails|succeed|succeeds|hit|hits|miss|misses|stay|stays|remain|remains)\b")
+RX_FLAVOR = R(r"\bin the world of\b|\bknown to exist\b|\blots of\b|\bgallons?\b|\busually\b|\bfor sale\b|\bcost[s]?\b|\bweighs?\b|\bhundred\b|\bcentur(?:y|ies)\b|\bfound\b|\bcreated\b|\bforged\b|\bhistory\b|\blegend\b|\bonly (?:one|two|three|four|five|six|seven|eight|nine|ten) \b|\bof these\b|\bsized?\b|\bcarri(?:es|ed)\b|\bweight\b|\bcarry\b|\bpounds?\b|\bbarrels?\b|\bvolume\b|\bcubic\b|\bhalf-life\b|\bage\b|\byears? old\b")
+RX_SIGNED = R(r"(?<![\w])[+-]\s?\d|\b(?:increases?|decreases?|rises?|reduced|raises?|lowers?|bonus|penalty)\b[^.]{0,30}\b(?:by )?\d")
+
+
+def excuse(r, ctx, atoms):
+    """Return (code, why) when an uncovered sentence is informational by an explicit rule, else None. Called only for sentences that failed the atom and number comparison."""
+    t = r["text"].lower()
+    need, toks, kind = r["need"], r["toks"], ctx["kind"]
+    name = ctx["name"].lower()
+    nokind = set(need)
+    unexpl = set(r.get("unexplained") or [])
+    has = lambda c: any(a.cls == c for a in atoms)
+    own_rider = bool(RX_RIDER.search(t) and RX_RIDER_HIT.search(t) and not re.search(r"\bsaving throw\b|\bsave\b|\b(?:target|creature) (?:takes|must)\b", t))
+    # standard constants explained by an atom of the same class (the class atom must exist, only the standard number is missing)
+    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1"} and RX_ASI.search(t) and has("ABIL"):
+        return "STD:ASI"
+    if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
+        return "STD:AC10"
+    if need:
+        # number conservation is not loosened: a feature that HAS an atom of a needed class but whose numbers disagree with the text stays flagged
+        if unexpl and any(a.cls in need for a in atoms):
+            return None
+        if toks and POOL_RX.search(t) and "RESOURCE" in need:  # the size or refill of a pool (has 7 charges, regains 1d6 at dawn) always needs a charges / uses record
+            return None
+        if need <= {"SLOT", "SPELL", "CHOICE", "RESOURCE", "ABIL", "PROF"} and kind in ("class", "sub") and (RX_TABLE_NAME.match(name) or "spellcasting" in name or "invocation" in name or "pact" in name) and RX_TABLE_SENT.search(t):
+            return "TABLE:CLASS"
+        if need <= {"SLOT", "SPELL", "CHOICE"} and RX_TABLE_SENT.search(t) and kind in ("class", "sub") and re.search(r"savant|spellcasting|invocation|spell mastery|pact|magical secrets", name) and ("cantrip" in t or "spellbook" in t or "slots of a" in t or "level of spell slots" in t or "invocation" in t):
+            return "TABLE:CLASS"
+        if need <= {"RESOURCE", "CHOICE"} and not toks and "RESOURCE" in need and RX_REST.search(t) and not RX_SIGNED.search(t):
+            return "REST:NONUM"
+        if need <= {"DC", "SAVE"} and not toks and RX_DCREF.search(t):
+            return "DC:REFERENCE"
+        if need & {"AC", "RES", "IMM", "HP"} and RX_OBJ.search(t) and not re.search(r"\byou (?:have|gain)\b", t):
+            return "OBJECT:STATS"
+        if "SENSE" in need and RX_ITEMSENSE.search(t):
+            return "ITEM:SENSES"
+        if "IMM" in need and RX_24H.search(t):
+            return "ACTIVE:TIMED_IMM"
+        if need & {"RES", "IMM"} and re.search(r"\bignores? resistance|\bresistance to [a-z]+ damage doesn't apply|\bdoesn't apply to this damage|\bbypass|\bovercom", t):
+            return "ACTIVE:OTHERS"
+        # effects on others
+        subj_ok = RX_OTHER_SUBJ.search(t) and (not (need & STAT) or (not re.match(r"^(?:it|its|their|they|those)\b", t) and not re.search(r"\battuned|\bpossession\b|\bwearer\b|\bbearer\b|\bgrants?\b|\bwhile you (?:wear|hold|wield)", t)))
+        if need <= (NONSTAT | {"RES", "IMM", "SPEED", "AC", "SENSE"}) and not own_rider and subj_ok and not RX_OWN_STAT.search(t) and not RX_STATUS.search(t):
+            return "ACTIVE:OTHERS"
+        if need <= {"ADV", "DIS"} and not toks and (re.search(r"\b(?:target|creature|enemy|ally|allies|it|its|that creature)\b[^.]{0,30}\b(?:has|have|gains?)\b[^.]{0,20}\b(?:dis)?advantage", t) or re.search(r"\b(?:against|targeting) (?:you|the|that|it)\b", t)):
+            return "ACTIVE:OTHERS"
+        if need <= {"ADV", "DIS"} and RX_ATKROLL.search(t) and not re.search(r"\bsaving throws?\b|\bability checks?\b|\bskill\b|\binitiative\b", t):
+            return "COND:ATTACK_ROLL_ADV"
+        # reactions and actions that give a temporary stat
+        if need & {"RES", "IMM", "SPEED", "AC"} and need <= (NONSTAT | {"RES", "IMM", "SPEED", "AC"}) and re.search(r"\b(?:use your reaction|as a reaction|reaction to|bonus action|as an action|as a magic action|magic action)\b", t) and re.search(r"\b(?:this turn|until the (?:start|end)|that attack|the next|for 1 minute|for the next|until you|for the duration)\b", t):
+            return "ACTIVE:REACTION"
+        # triggered / optional effects without a stat of the character (rider dice on your own weapon hit stay flagged)
+        if need <= NONSTAT and RX_TRIG.search(t) and not own_rider:
+            return "ACTIVE:TRIGGER"
+        # conditions in play that the sheet does not compute (not equip states: hold / wear / wield / attune stay flagged)
+        own_adv = need <= {"ADV", "DIS"} and re.search(r"\byou(?: and [a-z ]+)? (?:have|has) (?:dis)?advantage on (?:[a-z ]+ )?(?:saving throws?|saves?|ability checks?|checks?|initiative|[a-z]+ \([a-z ]+\) checks?)", t)
+        if need <= (NONSTAT | {"SPEED", "AC", "SAVE", "RES"}) and not own_rider and not own_adv and RX_PLAY.search(t) and not re.search(r"\bwhile (?:you )?(?:are )?(?:wearing|wielding|holding|carrying|attuned|using this|you have this|you wear|you wield|you hold)\b", t) and not re.search(r"\bresistance to\b[^.]{0,30}\bdamage\b", t) and not re.search(r"\bspeed (?:of|is|equal)|\bfly(?:ing)? speed|\bclimb|\bswim", t):
+            return "COND:PLAY_STATE"
+        return None
+    # number-only (no keyword class)
+    if not toks:
+        return None
+    kinds = {k for _, k in toks}
+    if RX_SIGNED.search(t) and not RX_FLAVOR.search(t) and not re.search(r"\broll|\bd20\b|\bdie\b|\bdice\b", t):
+        return None
+    if re.search(r"\broll(?:s|ed)?\b|\bd20\b|\bd100\b|\bdie\b|\bdice\b|\breroll|\bd\d+\b|\bhit point dice\b|\btemporary hit points\b|\bheals?\b|\bregains?\b", t) or "dice" in kinds:
+        return "NUMONLY:ROLL"
+    if re.search(r"\b(?:drops?|reduced|falls?) to 0\b|\b0 hit points\b|\bspeed (?:is |becomes )?0\b|\bat 0\b", t):
+        return "NUMONLY:ZERO"
+    if kinds <= {"dist", "dur"}:
+        return "NUMONLY:GEOMETRY"
+    if RX_FLAVOR.search(t):
+        return "NUMONLY:FLAVOR"
+    if not RX_FRAGMENT_VERB.search(t) or len(re.findall(r"[A-Za-z']+", t)) <= 6 or re.match(r"^[a-z' ()/-]{0,40}[:,]", t) and len(re.findall(r"\d", t)) >= 1 and t.count(",") >= 2:
+        return "NUMONLY:TABLE"
+    if kinds <= {"num", "dist", "dur", "pct"} and not RX_SIGNED.search(t):
+        return "NUMONLY:TEXT"
+    return None
+
+
 # ---------------------------------------------------------------------------------------------------------------- analysis
 def sentence_info(text, kind):
     ks = classes(text, kind)
@@ -695,6 +818,10 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
             elif missing: r["why"] = "no record for " + ",".join(missing)
             else: r["why"] = "number %s no record explains" % ",".join(unexpl)
         r["missing"] = missing
+        if r["status"] == "uncovered" and not r.get("note"):
+            ex = excuse(r, ctx, atoms)
+            if ex:
+                r["status"] = "info"; r["why"] = ex; continue
         if r.get("note"):
             r["why"] = r["note"] + "; " + r["why"]
     return res
@@ -787,6 +914,40 @@ def selftest():
     c8b = synth("feat", "F", "F", "As a bonus action you gain a +2 bonus to AC.", [], acts=True)
     r = analyze(c8b)
     check("8b action card does NOT excuse an AC sentence", r[0]["status"] == "uncovered", r[0]["why"])
+    # 9 explicit informational rules (reason codes): positive cases, and the cases that must stay flagged
+    def st(kind, name, text, atoms=(), owner="X", acts=False):
+        return analyze(synth(kind, owner, name, text, list(atoms), acts))[0]
+    r = st("feat", "Cold Caster", "Raise Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.", [Atom("ABIL", {"INT", "WIS", "CHA"}, "feat.asi")])
+    check("9a STD:ASI with an ability atom -> info", r["status"] == "info" and r["why"] == "STD:ASI", r["why"])
+    r = st("feat", "Cold Caster", "Raise Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.", [])
+    check("9b STD:ASI without any ability atom -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("feat", "Odd Feat", "Raise Strength by 2, to a maximum of 22.", [Atom("ABIL", {"STR"}, "feat.asi")])
+    check("9c ASI line with other numbers (2, 22) -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("item", "Wand", "The wand regains all its expended charges at dawn.")
+    check("9d REST:NONUM -> info", r["status"] == "info" and r["why"] == "REST:NONUM", r["why"])
+    r = st("item", "Wand", "The wand has 7 charges and regains 1d6 of them at dawn.")
+    check("9e rest sentence WITH numbers -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("species", "Martial Advantage", "Once per turn you deal an extra 2d6 damage to a creature you hit with a weapon attack if it is within 5 ft of an ally of yours.")
+    check("9f rider dice on your own weapon hit -> flagged (atkDice exists)", r["status"] == "uncovered", r["why"])
+    r = st("sub", "Spectral Strike", "The target takes 3d6 force damage and its speed is 0 until the end of its next turn.")
+    check("9g effect on another creature -> info ACTIVE:OTHERS", r["status"] == "info" and r["why"].startswith("ACTIVE") or r["status"] == "info" and r["why"].startswith("FORM"), r["why"])
+    r = st("feat", "Boon", "You have Resistance to Lightning and Thunder damage.")
+    check("9h own resistance without a record -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("species", "Keen Eyes", "You have Darkvision with a range of 120 feet.")
+    check("9i own sense without a record -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("item", "Lamp", "It sheds Bright Light in a 20-foot radius for 10 minutes.")
+    check("9j geometry / duration only -> info NUMONLY:GEOMETRY", r["status"] == "info" and r["why"] == "NUMONLY:GEOMETRY", r["why"])
+    r = st("item", "Charm", "You gain a +2 bonus to the thing.")
+    check("9k signed bonus with no stat word -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("class", "Spellcasting", "When you gain a Rogue level, you can swap one cantrip for another Wizard cantrip.")
+    check("9l class table sentence -> info TABLE:CLASS", r["status"] == "info" and r["why"] == "TABLE:CLASS", r["why"])
+    r = st("item", "Stone", "A stone has AC 24, 10 hit points, and resistance to all damage.")
+    check("9m object stat block -> info OBJECT:STATS", r["status"] == "info" and r["why"] == "OBJECT:STATS", r["why"])
+    r = st("item", "Ring", "While wearing the ring you gain a +1 bonus to AC.")
+    check("9n equip-state AC bonus without a record -> flagged", r["status"] == "uncovered", r["why"])
+    r = st("sub", "Resilience", "While you wear no armor, your base Armor Class equals 10 + your Dexterity modifier + your Charisma modifier.", [Atom("AC", {"CHA"}, "sub.ua")])
+    check("9o STD:AC10 with an AC atom -> info", r["status"] == "info" and r["why"] == "STD:AC10", r["why"])
+    check("9p every reason code is documented", all(REASONS.get(c) for c in ("STD:ASI", "STD:AC10", "TABLE:CLASS", "REST:NONUM", "DC:REFERENCE", "OBJECT:STATS", "ITEM:SENSES", "ACTIVE:OTHERS", "ACTIVE:TIMED_IMM", "ACTIVE:TRIGGER", "ACTIVE:REACTION", "COND:PLAY_STATE", "COND:ATTACK_ROLL_ADV", "NUMONLY:ROLL", "NUMONLY:GEOMETRY", "NUMONLY:TABLE", "NUMONLY:FLAVOR", "NUMONLY:ZERO", "NUMONLY:TEXT")))
     # mutation on the synthetic cases
     print("mutation test (synthetic): remove the record, the gate must flag")
     for lab, c in (("Tower Shield sentence 1", c1), ("both records", c1b), ("dice item", c7b)):
@@ -833,7 +994,7 @@ def sources_of(results, ctxs, owners):
     return fam, files
 
 
-def mutation_real(feats, results, by_design, allow, today, n=300, seed=7):
+def mutation_real(feats, results, by_design, allow, today, n=300, seed=7, stat_only=False):
     """Sample covered sentences (fixed seed). Two mutations per sentence:
     record: remove the atoms the sentence used and their siblings from the same record (same source up to the last dot), as if the fx entry were deleted;
     class:  remove every atom of the classes the sentence needs (the feature has no record at all for that class).
@@ -841,7 +1002,7 @@ def mutation_real(feats, results, by_design, allow, today, n=300, seed=7):
     The gate must flag the sentence after the mutation. Returns (tested, killed_record, killed_class, survivors)."""
     rnd = random.Random(seed)
     fmap = {c["key"]: c for c in feats}
-    cov = [r for r in results if r["status"] == "covered" and r["kind"] != "spell"]  # a spell without a record is SPELL_TEXT info by design, so it cannot be flagged
+    cov = [r for r in results if r["status"] == "covered" and r["kind"] != "spell" and (not stat_only or r["need"] & STAT)]  # a spell without a record is SPELL_TEXT info by design, so it cannot be flagged
     rnd.shuffle(cov)
     tested = kr = kc = 0
     survivors = []
@@ -865,7 +1026,7 @@ def mutation_real(feats, results, by_design, allow, today, n=300, seed=7):
                 if label == "record": kr += 1
                 else: kc += 1
             else:
-                survivors.append((label, r["sid"], r["text"][:120], y["status"]))
+                survivors.append((label, r["sid"], r["text"][:120], y["status"] + (":" + y["why"] if y["status"] == "info" else ""), sorted(r["need"])))
     return tested, kr, kc, survivors
 
 
@@ -931,6 +1092,9 @@ def write_outputs(S, mut, selftest_ok, rt, today, results):
     w("| Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | %d |" % S["known_gap"])
     w("| Waktu | muat data %.0f s, analisis %.0f s |\n" % (rt["load"], rt["scan"]))
     w("Uji mutasi pada data nyata (seed 7): %d kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): %d ditangkap (%s). Hapus semua atom kelas yang dibutuhkan: %d ditangkap (%s). Selftest sintetis: %s.\n" % (mut[0], mut[1], pct(mut[1], mut[0]), mut[2], pct(mut[2], mut[0]), "lulus" if selftest_ok else "GAGAL"))
+    ms = S.get("mut_stat")
+    if ms:
+        w("Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): %d diuji, record dihapus: %d ditangkap (%s), semua atom kelas dihapus: %d ditangkap (%s). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.\n" % (ms[0], ms[1], pct(ms[1], ms[0]), ms[2], pct(ms[2], ms[0])))
     w("Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti \"treat the Shield as part of your armor\" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.\n")
     w("## Cara membaca, dan pemeriksaan manual (2026-11-05)\n")
     w("- Info `SPELL_TEXT`: teks spell hanya dibaca sheet lewat SPELL_FX, jadi spell tanpa record dihitung info, bukan uncovered. `FORM:*` adalah heuristik bentuk kalimat (aksi atau charges, lemparan save atau DC, tabel). Keduanya bisa menyembunyikan kalimat yang sebenarnya perlu record.")
@@ -983,7 +1147,7 @@ def write_outputs(S, mut, selftest_ok, rt, today, results):
             w("- `%s` %s | angka: %s" % (r["sid"], r["text"][:200].replace("|", "/"), ",".join(r["unexplained"])))
     if mut[3]:
         w("\n## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)\n")
-        for lab, sid, t, st in mut[3][:30]:
+        for lab, sid, t, st, nd in mut[3][:30]:
             w("- %s `%s` %s -> %s" % (lab, sid, t, st))
     open(OUT_MD, "w", encoding="utf-8").write("\n".join(L) + "\n")
     base = {"generated": today, "note": "Report mode. uncovered = mechanical sentences without a covering record; value = text hash. Not used to fail a build.",
@@ -1038,12 +1202,15 @@ def main():
     S = summarize(results, load_known_gaps())
     S["fam"], S["files"] = sources_of(results, ctxs, owners)
     mut = mutation_real(feats, results, by_design, allow, today)
+    mut_stat = mutation_real(feats, results, by_design, allow, today, stat_only=True)
     rt = {"load": t_load, "scan": time.time() - t1}
     if "--audit" in args:
         i = args.index("--audit"); audit(results, int(args[i + 1]), int(args[i + 2]))
     print("sentences %d, mechanical %d, covered %d, info %d, allow %d, uncovered %d (with numbers %d, numbers unexplained %d)" % (
         S["total"], S["mechanical"], S["covered"], sum(S["info"].values()), S["allow"], S["uncovered"], len(S["unc_num"]), len(S["unc_unexplained"])))
     print("mutation on real data: %d tested, record-level caught %d, class-level caught %d" % (mut[0], mut[1], mut[2]))
+    print("mutation on real data, stat classes only (AC HP SAVE SPEED SENSE PROF SLOT INIT ABIL RES IMM): %d tested, record-level caught %d, class-level caught %d" % (mut_stat[0], mut_stat[1], mut_stat[2]))
+    S["mut_stat"] = mut_stat
     print("top uncovered classes:", S["by_class"].most_common(10))
     print("runtime: load %.0fs, scan %.0fs" % (rt["load"], rt["scan"]))
     if "--no-write" not in args:
