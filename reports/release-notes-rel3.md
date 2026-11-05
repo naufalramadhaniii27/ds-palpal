@@ -18,7 +18,7 @@ Branch `claude/rel3`. Base: `origin/main` at 33bd000e (Release 2, PR 4). Merged 
 | Merge of origin/main into rel3 | Clean, no conflict |
 | Merge of clause-gate2 | Conflicts only in `index.html`, `sw.js` (resolved with `git checkout --ours`, then `python3 build.py`), `src/manifest.json` (kept both `data/fx-M2.js` and `data/fx-N1.js`), `tests/fx_overlap_allow.json` (union of both sides) |
 | `SOURCE-NOTES.md`, `tests/golden` | Merged automatically, no conflict |
-| Double counting M2 and N1 | `tests/fx_overlap.py` passes. No name appears in both fx-M2 and fx-N1, so no entry was removed and no new allow entry was needed. 98 documented overlaps after the merge (65 in main before, 72 on the M2 side, 91 on the N1 side). Two keys were changed on one side only and one on both sides (`GX.item|Exo-Frame`, kept the M2 text because it lists fx-M2) |
+| Double counting M2 and N1 | `tests/fx_overlap.py` passes. No name appears in both fx-M2 and fx-N1, so no entry was removed and no new allow entry was needed. 98 documented overlaps after the merge (65 in main before, 72 on the M2 side, 91 on the N1 side). Two keys differed between the sides: `GX.cls|Martyr` (only the N1 side changed it, took N1) and `GX.item|Exo-Frame` (only the M2 side changed it, kept M2 because it lists fx-M2) |
 | Part count in `tests/split_dist.py` | 35 parts plus one lazy part (36 files in `p/`). The check passes at both viewports with no change to the test, so no new deferred part came from M2 or N1 |
 | `tp*.js` | Not touched |
 
