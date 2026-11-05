@@ -26,9 +26,26 @@
  "GX.cls|Martyr": {
   "files": [
    "fx-A-class-species.js",
-   "fx-L1.js"
+   "fx-L1.js",
+   "fx-N1.js"
   ],
-  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.cls|Ranger": {
+  "files": [
+   "fx-L1.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.feat|Forest Sage": {
+  "files": [
+   "fx-L1.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds the spell pick; fx-L1 has skillAb only.",
   "shared": []
  },
  "GX.feat|Hag Transformation: Stage 1": {
@@ -96,6 +113,14 @@
   "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.feat|The Firm: Contractor": {
+  "files": [
+   "fx-C-feat.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
  "GX.feat|Vampire Transformation: Stage 1": {
   "files": [
    "fx-C-feat.js",
@@ -125,6 +150,14 @@
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
   "shared": []
  },
+ "GX.item|Blessed Reliquary": {
+  "files": [
+   "fx-L2.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds cdAdd; fx-L2 has advOn, a Defenses note and the Turn Undead lu row.",
+  "shared": []
+ },
  "GX.item|Blue Dragon Mask": {
   "files": [
    "fx-D-item.js",
@@ -149,7 +182,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Adept)": {
+ "GX.item|Dämglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -157,7 +190,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Master)": {
+ "GX.item|Dämglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -172,6 +205,14 @@
    "fx-M2.js"
   ],
   "reason": "fx-M2 adds grantItem; fx-D-item has the AC base, size and advantage, fx-L3 the Battlefist proficiency.",
+  "shared": []
+ },
+ "GX.item|Golem Arms": {
+  "files": [
+   "fx-L8.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
  "GX.item|Green Dragon Mask": {
@@ -190,12 +231,36 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.item|Logic Unit": {
+  "files": [
+   "fx-L4.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Lucent Destroyer": {
+  "files": [
+   "fx-L2.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
  "GX.item|Pigskin Armor": {
   "files": [
    "fx-L5.js",
    "fx-L8.js"
   ],
   "reason": "fx-L5 only notes light armor, fx-L8 gives the AC base (different fields).",
+  "shared": []
+ },
+ "GX.item|Ranseur of Torture": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
  "GX.item|Red Dragon Mask": {
@@ -206,12 +271,60 @@
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
   "shared": []
  },
+ "GX.item|Scourge of Shadow": {
+  "files": [
+   "fx-L2.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Starmetal Shield": {
+  "files": [
+   "fx-L9.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Storm Sickle": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Sword of Resonance": {
+  "files": [
+   "fx-L5.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
  "GX.item|White Dragon Mask": {
   "files": [
    "fx-D-item.js",
    "fx-L7.js"
   ],
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
+  "shared": []
+ },
+ "GX.item|Windvane": {
+  "files": [
+   "fx-L6.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Wooden Chain of the Unbroken Circle": {
+  "files": [
+   "fx-L9.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
  "GX.species|Ankylier": {
@@ -221,6 +334,50 @@
   ],
   "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
+ },
+ "GX.species|Corvum": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Deep One Dwarf": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.species|Dhakaani Guul'dar (Bugbear)": {
+  "files": [
+   "fx-M1.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Feathren": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Limukin": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
  },
  "GX.species|Manikin": {
   "files": [
@@ -234,6 +391,24 @@
    "acOver"
   ]
  },
+ "GX.species|Mapach": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.species|Nautilid": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
  "GX.species|Pluvenn": {
   "files": [
    "fx-A-class-species.js",
@@ -242,12 +417,28 @@
   "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.species|Skath\u00e1ri": {
+ "GX.species|Raptor": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Skathári": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
   ],
   "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Strig": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Adrenaline Junkie": {
@@ -258,12 +449,36 @@
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.sub|Apocalypse Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
  "GX.sub|Bond of the Shambling Plant": {
   "files": [
    "fx-B2-subclass.js",
    "fx-L12.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Burden of Awakening": {
+  "files": [
+   "fx-L11.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds wmAdd for Mind Mastery; fx-L11 has other features.",
+  "shared": []
+ },
+ "GX.sub|Champion (2014)": {
+  "files": [
+   "fx-L11.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Circle of the Sea": {
@@ -308,12 +523,28 @@
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.sub|Darkness Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
  "GX.sub|Death Knight": {
   "files": [
    "fx-B2-subclass.js",
    "fx-L11.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Drake-Blooded": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Elemental Essence": {
@@ -338,6 +569,22 @@
    "fx-L12.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Highway Rider": {
+  "files": [
+   "fx-L12.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Hollow Warden": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|House of Bishops": {
@@ -380,6 +627,114 @@
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.sub|Knight Errant": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Marauder Chapter": {
+  "files": [
+   "fx-L11.js",
+   "fx-M1.js"
+  ],
+  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Mountain Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Occultist Guild": {
+  "files": [
+   "fx-L11.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds the Occult Knowledge pick at level 10; fx-L11 has Magical Aegis (level 15) and the third caster table. spCls is a source key per entry, not additive.",
+  "shared": [
+   "spCls"
+  ]
+ },
+ "GX.sub|Path of the Dad": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Path of the Slasher": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds the Blood-Drunk toggle (acAdd, saveBonus); fx-B1 has the Mark of the Slasher pick.",
+  "shared": []
+ },
+ "GX.sub|Path of the Wild Heart": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Peace Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Phantom": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Plague Doctor": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Reaper": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "mv"
+  ]
+ },
+ "GX.sub|Samurai": {
+  "files": [
+   "fx-L11.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Star-Spangled Banner": {
+  "files": [
+   "fx-L10.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx-M2 adds wmAdd for Patriotism; fx-L10 has Freedom of Movement.",
+  "shared": []
+ },
  "GX.sub|Storm Sentinel": {
   "files": [
    "fx-H-audit.js",
@@ -408,132 +763,12 @@
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Warrior of the Living Weapon": {
+ "GX.sub|Travel Domain": {
   "files": [
-   "fx-B1-subclass.js",
-   "fx-L11.js"
+   "fx-L10.js",
+   "fx-N1.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Xenoalchemist": {
-  "files": [
-   "fx-B1-subclass.js",
-   "fx-F-sub.js"
-  ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.feat|The Firm: Contractor": {
-  "files": [
-   "fx-C-feat.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Golem Arms": {
-  "files": [
-   "fx-L8.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Logic Unit": {
-  "files": [
-   "fx-L4.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Lucent Destroyer": {
-  "files": [
-   "fx-L2.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Ranseur of Torture": {
-  "files": [
-   "fx-L5.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Scourge of Shadow": {
-  "files": [
-   "fx-L2.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Starmetal Shield": {
-  "files": [
-   "fx-L9.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Storm Sickle": {
-  "files": [
-   "fx-L5.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Sword of Resonance": {
-  "files": [
-   "fx-L5.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Windvane": {
-  "files": [
-   "fx-L6.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Wooden Chain of the Unbroken Circle": {
-  "files": [
-   "fx-L9.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Champion (2014)": {
-  "files": [
-   "fx-L11.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Highway Rider": {
-  "files": [
-   "fx-L12.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Marauder Chapter": {
-  "files": [
-   "fx-L11.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Universalist": {
@@ -544,54 +779,20 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
- "GX.feat|Forest Sage": {
+ "GX.sub|Verdant Protector": {
   "files": [
-   "fx-L1.js",
-   "fx-M2.js"
+   "fx-L12.js",
+   "fx-N1.js"
   ],
-  "reason": "fx-M2 adds the spell pick; fx-L1 has skillAb only.",
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.item|Blessed Reliquary": {
-  "files": [
-   "fx-L2.js",
-   "fx-M2.js"
-  ],
-  "reason": "fx-M2 adds cdAdd; fx-L2 has advOn, a Defenses note and the Turn Undead lu row.",
-  "shared": []
- },
- "GX.sub|Burden of Awakening": {
-  "files": [
-   "fx-L11.js",
-   "fx-M2.js"
-  ],
-  "reason": "fx-M2 adds wmAdd for Mind Mastery; fx-L11 has other features.",
-  "shared": []
- },
- "GX.sub|Occultist Guild": {
-  "files": [
-   "fx-L11.js",
-   "fx-M2.js"
-  ],
-  "reason": "fx-M2 adds the Occult Knowledge pick at level 10; fx-L11 has Magical Aegis (level 15) and the third caster table. spCls is a source key per entry, not additive.",
-  "shared": [
-   "spCls"
-  ]
- },
- "GX.sub|Path of the Slasher": {
+ "GX.sub|Warrior of the Living Weapon": {
   "files": [
    "fx-B1-subclass.js",
-   "fx-M2.js"
+   "fx-L11.js"
   ],
-  "reason": "fx-M2 adds the Blood-Drunk toggle (acAdd, saveBonus); fx-B1 has the Mark of the Slasher pick.",
-  "shared": []
- },
- "GX.sub|Star-Spangled Banner": {
-  "files": [
-   "fx-L10.js",
-   "fx-M2.js"
-  ],
-  "reason": "fx-M2 adds wmAdd for Patriotism; fx-L10 has Freedom of Movement.",
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Way of the Kensei": {
@@ -600,6 +801,24 @@
    "fx-M2.js"
   ],
   "reason": "fx-M2 adds the Agile Parry toggle (acAdd); fx-L11 has the Kensei weapon picks.",
+  "shared": []
+ },
+ "GX.sub|White Necromancer": {
+  "files": [
+   "fx-L13.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "skillExpert"
+  ]
+ },
+ "GX.sub|Xenoalchemist": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  }
 }

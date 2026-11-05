@@ -53,6 +53,13 @@ jobs:
           exit $fail
       - name: Performance budget (bytes and heap only, the stable measures)
         run: python3 tests/perf_budget.py tests/out/perf.json --fast --runs 3 --check tests/perf-budget.json
+      - name: "Clause gate (REPORT ONLY: per-sentence number conservation, never fails the build, see reports/clause-gate-report.md)"
+        continue-on-error: true
+        run: python3 tests/clause_gate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with: { name: clause-gate-report, path: "reports/clause-gate-report.md", if-no-files-found: ignore }
 
   b-layout:
     name: "Job B: layout and storage"
