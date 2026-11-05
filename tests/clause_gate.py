@@ -58,7 +58,7 @@ MBASE = os.path.join(HERE, "mech_baseline.json")
 
 # ---------------------------------------------------------------------------------------------------------------- loading
 EXTRA_JS = """()=>{const J=o=>JSON.parse(JSON.stringify(o===undefined?null:o));const o={};
- const names={spellFull:'SPELL_FULL',spellFx:'SPELL_FX',spellRows:'SPELLS',itemDesc:'ITEMDESC',fxo:'FXO',fdmg:'FDMG',itemSpells:'ITEM_SPELLS'};
+ const names={spellFull:'SPELL_FULL',spellFx:'SPELL_FX',spellRows:'SPELLS',itemDesc:'ITEMDESC',fxo:'FXO',fdmg:'FDMG',itemSpells:'ITEM_SPELLS',defSp:'DEF_SP'};
  for(const k in names){try{o[k]=J(eval(names[k]))}catch(e){o[k]=null}}return o}"""
 
 
@@ -435,7 +435,7 @@ def features(D):
                 for part in mentions(v, name):
                     at += atoms_from({k: part}, "cls." + cn)
             if c.get("fs") and "fighting style" in name.lower(): at.append(Atom("CHOICE", nums_in(c.get("fs")), "cls.fs"))
-            if c.get("wm") and "weapon mastery" in name.lower(): at += [Atom("CHOICE", nums_in(c["wm"]), "cls.wm"), Atom("ATK", nums_in(c["wm"]), "cls.wm")]
+            if c.get("wm") and "weapon mastery" in name.lower(): at += [Atom("CHOICE", nums_in(c["wm"]), "cls.wm"), Atom("ATK", nums_in(c["wm"]), "cls.wm"), Atom("PROF", nums_in(c["wm"]), "cls.wm")]
             at += lu_atoms(D, cn, name)
             if name.lower() in ("spellcasting", "pact magic") and (c.get("cast") or c.get("caster")):  # slots, prepared spells and cantrip counts are class tables, read by the slot code
                 at += [Atom(k, {"*"}, "cls.cast") for k in ("SLOT", "SPELL", "CHOICE", "RESOURCE", "DC", "ATK", "ABIL")]
@@ -489,6 +489,10 @@ def features(D):
                 own += atoms_from({k: v}, "species." + sn, weak=True)
         for e in (s.get("fx") or []) if isinstance(s.get("fx"), list) else []:
             own += atoms_from(e, "species.fx|" + sn, weak=True)
+        for x in (D.get("defSp") or {}).get(sn, []):  # DEF_SP (src/data/db4/01-...): the species Defenses table read by defenses() in 16-logic-feature-numbers.js
+            if isinstance(x, list) and x and x[0] in ("Resistance", "Immunity", "Vulnerability"):
+                own.append(Atom("RES" if x[0] != "Immunity" else "IMM", nums_in(x[1:]), "species.DEF_SP|" + sn, True))
+                if x[0] == "Immunity": own.append(Atom("RES", nums_in(x[1:]), "species.DEF_SP|" + sn, True))
         for t in s.get("traits", []):
             name, text = t[0], t[1]
             at = list(own)
@@ -577,6 +581,7 @@ def features(D):
 # pass only after the atoms and the numbers were compared and failed. A rule may use an atom of the feature (STD:*), never invents one. Each code has a reason.
 REASONS = collections.OrderedDict([
     ("STD:ASI", "Feat ability score line 'raise X by 1, to a maximum of 20 (30)': the +1 and the cap are the standard ASI rule of the builder; the feat has an ability atom (asi / asiPick) that names the abilities."),
+    ("STD:SUBCLASS_PICK", "'Choose a X subclass': the subclass picker of the builder; no fx record."),
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
     ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
@@ -597,14 +602,14 @@ REASONS = collections.OrderedDict([
     ("NUMONLY:TEXT", "Number-only sentence with unsigned numbers and no stat word in a sentence that has no sign (+/-) or 'increases by': prose; a signed bonus without a stat word stays flagged."),
 ])
 NONSTAT = {"DMG", "DC", "ATK", "RESOURCE", "SPELL", "CHOICE", "ADV", "DIS", "SAVE_ROLL", "SLOT"}
-RX_ASI = R(r"\b(?:raise|increase)\b[^.]{0,90}\bby 1\b[^.]{0,40}\bmaximum of (?:20|30)\b")
+RX_ASI = R(r"\b(?:raise|increase|add 1 to)\b[^.]{0,90}\b(?:by 1|add 1 to it)\b[^.]{0,40}\bmaximum(?: of)? (?:20|30)\b|\bchoose an ability score and add 1 to it \(maximum (?:20|30)\)")
 RX_AC10 = R(r"\b10 (?:plus|\+)")
 RX_TABLE_NAME = R(r"^(?:spellcasting|pact magic|eldritch invocations?|cantrips?|spell slots?|spells known|prepared spells|the (?:[a-z]+ )?table)$")
-RX_TABLE_SENT = R(r"\b(?:swap|replace|exchange)\b[^.]{0,40}\b(?:cantrip|spell)\b|\brules below\b|\bspell list\b|\bspell slots? (?:of|per|at) (?:each|every|a new)|\b(?:new|higher) level of spell slots\b|\bchoose (?:two|three|four|five|six|\d+) (?:level \d+ )?[a-z]+ (?:cantrips|spells)\b|\bpick one invocation\b|\binvocations?\b[^.]{0,40}\b(?:known|table|list|learn|swap|replace)\b|\bcantrips? (?:known|column)\b|\bprepared spells? (?:column|table)\b|\byour list holds\b|\bspellbook\b|\bto start\b|\bat higher levels\b|\bupcast|\bhigher-level slot")
+RX_TABLE_SENT = R(r"\b(?:swap|replace|exchange)\b[^.]{0,40}\b(?:cantrip|spell)\b|\brules below\b|\bspell list\b|\bspell slots? (?:of|per|at) (?:each|every|a new)|\b(?:new|higher) level of spell slots\b|\bchoose (?:two|three|four|five|six|\d+) (?:level \d+ )?[a-z]+ (?:cantrips|spells)\b|\byou know (?:two|three|four|five|\d+) [a-z]+ cantrips\b|\bpick one invocation\b|\binvocations?\b[^.]{0,40}\b(?:known|table|list|learn|swap|replace)\b|\bcantrips? (?:known|column)\b|\bprepared spells? (?:column|table)\b|\byour list holds\b|\bspellbook\b|\bto start\b|\bat higher levels\b|\bupcast|\bhigher-level slot")
 RX_REST = R(r"\b(?:long|short) rest\b|\bat dawn\b|\bdawn\b|\bregains?\b|\brecharge[sd]?\b|\bexpended\b|\bper day\b|\bdaily\b|\bunlimited\b|\bcharges?\b|\buses?\b|\bexpend\b")
 RX_OBJ = R(r"\bobject with ac\b|\b(?:stone|cube|crystal|orb|construct|statue|barrier|wall|panel|object|summon|familiar|creature|spirit|pet|mount|companion|drone|turret|totem|device|item|it|they) (?:has|have|with|gains?|gain)\b[^.]{0,20}\b(?:ac|armor class|\d+ hit points)\b|\bhas ac \d+")
 RX_ITEMSENSE = R(r"^(?:it|the (?:weapon|sword|item|blade|staff|armor|shield|axe|lance|hammer|dagger|bow|rod|wand|cloak)) (?:also )?(?:has|have) (?:hearing|blindsight|darkvision|truesight|normal vision)")
-RX_OTHER_SUBJ = R(r"^(?:the )?(?:target|targets|creature|creatures|a creature|an enemy|each enemy|enemies|that creature|the creature|one creature|each creature|any creature|ally|allies|an ally|each ally|that ally|it|its|their|they|those|the chosen|the affected|the struck|the hit|opponents?|attackers?|the attacker|a spellcaster|a hit|a failed|a successful|on a (?:failed|successful) (?:save|saving throw)|if (?:the target|it|a creature|the creature)|until (?:the (?:start|end) of )?(?:its|their|the target's))\b")
+RX_OTHER_SUBJ = R(r"^(?:the )?(?:target|targets|creature|creatures|a creature|an enemy|each enemy|enemies|that creature|the creature|one creature|each creature|any creature|ally|allies|an ally|each ally|that ally|it|its|their|they|those|the chosen|the affected|the struck|the hit|opponents?|attackers?|the attacker|a spellcaster|a hit|a failed|a successful|on a (?:failed|successful|failure|success)(?: save| saving throw)?|if (?:the target|it|a creature|the creature)|until (?:the (?:start|end) of )?(?:its|their|the target's))\b")
 RX_24H = R(r"\bimmune to\b[^.]{0,60}\b(?:for|the next) (?:the next )?(?:24 hours|a day|1 day|one day|hour)\b|\bimmune to this (?:power|effect|property|ability|spell)\b")
 RX_TRIG = R(r"\bwhen you (?:hit|take|use|cast|roll|make|reduce|score|drop|fail|succeed|miss|are hit|are targeted|see|finish)\b|\bwhenever\b|\beach time\b|\bon an? (?:hit|miss|failed|successful|critical|natural)\b|\bif the target\b|\bthe next (?:attack|time|d20|saving|roll|spell|damage)\b|\buntil (?:the (?:start|end)|your next|the beginning)\b|\bat the (?:start|end) of\b|\byou can (?:add|roll|reroll|re-roll|replace|expend|spend|force|cause|impose|give|swap|push|redirect|reduce|halve|prevent|negate|extend|spread|divide)\b|\bas part of\b|\b(?:fails?|succeeds?) (?:on )?(?:its|the|a|their|that)\b|\b(?:target|creature|enemy) (?:takes?|must|can't|cannot|is|has|becomes|gains?|suffers?|regains?)\b|\bsaving throw against (?:your|the|this)\b|\bregains? hit points\b|\bwithin the next\b|\bcritical hit\b|\bspend (?:one|a|\\d+)\b")
 RX_RIDER = R(r"\b(?:extra|additional)\b[^.]{0,40}\d+d\d+[^.]{0,40}\bdamage\b|\bdeals? \d+d\d+[^.]{0,30}\b(?:extra|additional|more)\b|\b\d+d\d+[^.]{0,30}\bextra damage\b")
@@ -631,6 +636,8 @@ def excuse(r, ctx, atoms):
     # standard constants explained by an atom of the same class (the class atom must exist, only the standard number is missing)
     if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1"} and RX_ASI.search(t) and has("ABIL"):
         return "STD:ASI"
+    if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
+        return "STD:SUBCLASS_PICK"
     if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
         return "STD:AC10"
     if need:

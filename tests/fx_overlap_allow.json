@@ -26,9 +26,10 @@
  "GX.cls|Martyr": {
   "files": [
    "fx-A-class-species.js",
-   "fx-L1.js"
+   "fx-L1.js",
+   "fx-N1.js"
   ],
-  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.feat|Hag Transformation: Stage 1": {
@@ -149,7 +150,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Adept)": {
+ "GX.item|Dämglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -157,7 +158,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Master)": {
+ "GX.item|Dämglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -241,7 +242,7 @@
   "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.species|Skath\u00e1ri": {
+ "GX.species|Skathári": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -542,5 +543,223 @@
   ],
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
+ },
+ "GX.cls|Ranger": {
+  "files": [
+   "fx-L1.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Corvum": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Deep One Dwarf": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.species|Dhakaani Guul'dar (Bugbear)": {
+  "files": [
+   "fx-M1.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Feathren": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Limukin": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.species|Mapach": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.species|Nautilid": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Raptor": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.species|Strig": {
+  "files": [
+   "fx-L9.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Apocalypse Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Darkness Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Drake-Blooded": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Hollow Warden": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Knight Errant": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Mountain Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Path of the Dad": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Path of the Wild Heart": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Peace Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Phantom": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Plague Doctor": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Reaper": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "mv"
+  ]
+ },
+ "GX.sub|Samurai": {
+  "files": [
+   "fx-L11.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Travel Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Verdant Protector": {
+  "files": [
+   "fx-L12.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|White Necromancer": {
+  "files": [
+   "fx-L13.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": [
+   "skillExpert"
+  ]
  }
 }
