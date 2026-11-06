@@ -47,6 +47,17 @@
   #sheet.blend.bl-in.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){animation:blIco .7s var(--ease-out,ease) both,blFloat 6s ease-in-out .8s infinite}
   #sheet.blend.bl-in .sh-b>*:not(.sh-wm):not(.swp){animation:blUp .5s var(--ease-out,ease) both;animation-delay:calc(var(--i,0)*45ms + 140ms)}
 }
+/* creature picture swap: a small rounded thumbnail under the close button */
+#sheet.blend .sh-wm .bl-swap{position:absolute;right:14px;top:calc(var(--bl-hh,81px) + 6px);width:64px;height:64px;border-radius:14px;border:2px solid rgba(255,255,255,.28);background:#1b1f25 center/cover no-repeat;box-shadow:0 8px 18px rgba(0,0,0,.5);z-index:4;cursor:pointer;pointer-events:auto;padding:0}
+#sheet.blend .sh-wm .bl-swap:focus-visible{outline:2px solid var(--pl-acc,#d6a24a);outline-offset:2px}
+#sheet.blend .sh-wm img.bl-xf,.mon-sw img.bl-xf{opacity:0;transition:opacity .2s}
+.mon-sw{position:relative;display:block;width:100%;--hw:min(44%,180px)}
+.mon-sw:has(img.tok){--hw:min(35%,120px)}
+.mon-sw img{transition:opacity .25s}
+.mon-sw img.mon-alt{border-radius:14px}
+.mon-sw .bl-swap{position:absolute;right:max(4px,calc(50% - var(--hw) - 10px));bottom:14px;width:58px;height:58px;border-radius:14px;border:2px solid rgba(255,255,255,.28);background:#1b1f25 center/cover no-repeat;box-shadow:0 8px 18px rgba(0,0,0,.5);cursor:pointer;padding:0}
+.mon-sw .bl-swap:focus-visible{outline:2px solid var(--pl-acc,#d6a24a);outline-offset:2px}
+#sheet.blend .sh-wm img.lib-im{transition:opacity .25s}
 /* the book picture of the entry is replaced by the art above, so it is not shown twice */
 #sheet.blend #sheetBody>img.lib-im,#sheet.blend.bl-im #sheetBody>.info-meta{display:none}
 @media print{#sheet.blend .sh-wm{display:none}}

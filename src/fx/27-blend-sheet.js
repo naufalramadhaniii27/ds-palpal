@@ -5,6 +5,15 @@
   const D=document, A=window.__ART||{}, RM=matchMedia("(prefers-reduced-motion:reduce)"), sh=D.getElementById("sheet"), body=D.getElementById("sheetBody"); if(!sh||!body) return;
   let raf=0, heroH=0;
   function pic(c,u){ const i=D.createElement("img"); i.className=c; i.src=u; i.alt=""; i.decoding="async"; return i; }
+  /* creatures: the 5etools picture stays first, a small Codex painting in the corner swaps the two with a crossfade (owner, option B) */
+  function mslug(t){ return String(t||"").toLowerCase().replace(/\s*\([^)]*\)\s*$/,"").replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+  function monSwap(wm,img,title,orig){ const k=mslug(title); if(!(A.mon||[]).includes(k)) return;
+    const cu="img/hd/mon/"+k+".avif", th="img/mon/"+k+".avif", b=D.createElement("button"); let alt=false;
+    b.type="button"; b.className="bl-swap"; b.setAttribute("aria-pressed","false"); b.setAttribute("aria-label","Show the painted version"); b.style.backgroundImage='url("'+th+'")';
+    b.addEventListener("click",(ev) =>{ ev.stopPropagation(); alt=!alt; const to=alt?cu:orig, bg=wm.querySelector(".bl-bg");
+      img.classList.add("bl-xf"); setTimeout(() =>{ img.src=to; if(bg) bg.style.backgroundImage='url("'+to+'")'; img.classList.remove("bl-xf"); },RM.matches?0:200);
+      b.style.backgroundImage='url("'+(alt?orig:th)+'")'; b.setAttribute("aria-pressed",String(alt)); b.setAttribute("aria-label",alt?"Show the book picture":"Show the painted version"); });
+    wm.appendChild(b); }
   function ls(k){ try{ return __store.getItem(k); }catch(e){ return null; } }
   function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
   /* title block over the fade: price chip on the right of the title, then one line of subtitle and the rarity chip */
@@ -41,10 +50,20 @@
     if(sc){ const u=sc.phone||sc.pc; src=u; const ni=pic("bl-sc",u); ni.setAttribute("fetchpriority","high"); wm.replaceChildren(ni); wm.classList.add("bl-s"); sh.classList.add("bl-scn"); setC(hex2rgb(sc.c)); img=ni; }
     else { src=img.currentSrc||img.getAttribute("src")||""; wm.classList.add("bl-i"); sh.classList.add("bl-ico");
       ["bl-bg","bl-glow","bl-grain"].forEach((c) =>{ const e=D.createElement("i"); e.className=c; e.setAttribute("aria-hidden","true"); if(c==="bl-bg") e.style.backgroundImage='url("'+src+'")'; wm.insertBefore(e,wm.firstChild); }); }
+    if(!sc&&img.classList.contains("lib-im")&&/bestiary\//.test(src)) monSwap(wm,img,title,src);
     sh.classList.add("blend"); heroH=0;
     const ln=D.createElement("div"); ln.className="bl-line"; ln.setAttribute("aria-hidden","true"); wm.after(ln); titleBits(); sh.style.setProperty("--bl-hero",wm.offsetHeight+"px"); sh.style.setProperty("--bl-hh",(D.getElementById("sheetHead").offsetHeight||81)+"px");
     const done=() =>{ heroH=wm.offsetHeight||1; const m=measure(img); if(m) setC(m); sync(); };
     if(img.complete&&img.naturalWidth) done(); else img.addEventListener("load",done,{once:true});
     [].forEach.call(body.children,(e,i) =>{ e.style.setProperty("--i",String(Math.min(i,9))); });
     if(!keep) body.scrollTop=0; sync(); if(!RM.matches&&!keep){ sh.classList.remove("bl-in"); void sh.offsetWidth; sh.classList.add("bl-in"); } };
+  /* creature pictures outside the blended hero (Library detail, creature cards): same swap, the 5etools picture first */
+  function wrapMon(im){ if(im.closest(".sh-wm,.mon-sw")||!/bestiary\//.test(im.getAttribute("src")||"")) return; const fn=decodeURIComponent(((im.getAttribute("src")||"").split("/").pop()||"").replace(/\.[a-z0-9]+$/i,"")); let k=mslug(im.getAttribute("alt")); if(!(A.mon||[]).includes(k)) k=mslug(fn); if(!k||!(A.mon||[]).includes(k)) return;   /* the alt text, else the 5etools file name (Owlbear.webp) */
+    const tok=im.classList.contains("tok"), w=D.createElement("span"); w.className="mon-sw"; im.parentNode.insertBefore(w,im); w.appendChild(im); const orig=im.getAttribute("src"), cu="img/hd/mon/"+k+".avif", th="img/mon/"+k+".avif", b=D.createElement("button"); let alt=false;
+    b.type="button"; b.className="bl-swap"; b.setAttribute("aria-pressed","false"); b.setAttribute("aria-label","Show the painted version"); b.style.backgroundImage='url("'+th+'")';
+    b.addEventListener("click",(ev) =>{ ev.stopPropagation(); ev.preventDefault(); alt=!alt; im.classList.add("bl-xf"); setTimeout(() =>{ im.src=alt?cu:orig; im.classList.toggle("mon-alt",alt); if(tok) im.classList.toggle("tok",!alt); im.classList.remove("bl-xf"); },RM.matches?0:200);
+      b.style.backgroundImage='url("'+(alt?orig:th)+'")'; b.setAttribute("aria-pressed",String(alt)); b.setAttribute("aria-label",alt?"Show the book picture":"Show the painted version"); });
+    w.appendChild(b); }
+  function scanMon(root){ if(!A.mon||!root.querySelectorAll) return; root.querySelectorAll('img.lib-im[src*="bestiary/"]').forEach(wrapMon); }
+  new MutationObserver((ms) =>{ ms.forEach((m) =>{ m.addedNodes.forEach((n) =>{ if(n.nodeType===1){ if(n.matches&&n.matches('img.lib-im')) wrapMon(n); else scanMon(n); } }); }); }).observe(D.body,{childList:true,subtree:true});
 })();
