@@ -102,3 +102,9 @@ Seen in the builder at Rules edition 2014 with Retromistika on (Sorcerer 7, Mist
 1. Level 4 feat dropdown (class step, `feat4`) lists 2024 feats mixed with 2014 feats: Alert, Crafter, Healer, Lucky, Musician, Savage Attacker, Skilled, Tough, Actor, Athlete, Chef, Grappler, War Caster, Telekinetic, Speedy and more next to Alert (2014), Actor (2014), War Caster (2014) and so on. At 2014 the list should only hold the 2014 feats (plus Ability Score Improvement and the Blessed Warrior, Druidic Warrior style picks only if they belong to 2014). Owner: Logic or UI/UX (the filter that builds the feat list for `feat4`).
 2. Khodam Sorcery text (src/data/hbpack-builtin-homebrew.js, Retromistika subclass) and the Mistikan ancestry text use 2024 wording at 2014: "Magic action", "Emanation", "Bonus Action" rules. In 2014 the same effects should say "action" and "within 10 feet". The sheet Actions tab also shows the 2024 action list at 2014 (Influence, Magic, Study, Utilize). Owner: Data (text variants for 2014) and Logic (action list by edition).
 3. Species list at 2014 only shows species that carry `asi`, `asiPick` or `asiFlex` (sp14List). Any homebrew species added later needs one of these fields or it will not appear at 2014.
+
+## 2026-11-06, art 0.0.14: data gap
+
+| Dari | Ke | Permintaan | Catatan |
+|---|---|---|---|
+| Art | Data | Tambah Bastion facility Stable (DMG 2024, special facility level 9) ke data facility | Ikon sudah terpasang di img/icon/facility/stable.avif dan HD, muncul otomatis saat entrinya ada |
