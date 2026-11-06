@@ -1,0 +1,80 @@
+{
+ "why": "Quicksmithing: two 1st-level Ritual spells from any class list, Intelligence. Alarm and Identify are always prepared from the feat.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Quicksmithing",
+    "a1": "INT"
+   },
+   "gx-rit-feat-feat4": [
+    "Alarm",
+    "Identify"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghg": true,
+   "toa": true,
+   "tftyp": true,
+   "tkdm": true,
+   "thhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells.Alarm.src",
+   "in": "Quicksmithing"
+  },
+  {
+   "path": "spells.Identify.src",
+   "in": "Quicksmithing"
+  }
+ ]
+}

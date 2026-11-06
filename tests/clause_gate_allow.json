@@ -1,0 +1,4 @@
+{
+  "note": "Allowlist for tests/clause_gate.py (report mode). One entry per sentence id: {\"h\": text hash (8 hex, printed in the baseline), \"reason\": why no record is needed, \"owner\": who decided, \"expires\": \"YYYY-MM-DD\"}. A changed text (hash) or an expired date makes the entry stale and the sentence is flagged again.",
+  "entries": {}
+}
