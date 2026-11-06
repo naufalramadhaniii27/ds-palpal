@@ -6372,6 +6372,20 @@
    }
   }
  },
+ "ui": {
+  "brush-underline": "img/ui/brush-underline.avif",
+  "frame-dialog": "img/ui/frame-dialog.avif",
+  "parchment-tooltip": "img/ui/parchment-tooltip.avif",
+  "ribbon-dialog": "img/ui/ribbon-dialog.avif",
+  "scroll-toast": "img/ui/scroll-toast.avif",
+  "seal-wax": "img/ui/seal-wax.avif",
+  "sprite-candle": "img/ui/sprite-candle.avif",
+  "sprite-damage": "img/ui/sprite-damage.avif",
+  "sprite-heal": "img/ui/sprite-heal.avif",
+  "sprite-levelup": "img/ui/sprite-levelup.avif",
+  "sprite-loader-d20": "img/ui/sprite-loader-d20.avif",
+  "sprite-save": "img/ui/sprite-save.avif"
+ },
  "vig": {
   "empty": [
    "characters",

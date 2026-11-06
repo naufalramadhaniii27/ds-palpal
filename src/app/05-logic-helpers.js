@@ -27,11 +27,11 @@ export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); cons
 function topLayer(el){ try{ if(el&&el.showPopover&&el.isConnected){ if(!el.hasAttribute("popover")) el.setAttribute("popover","manual"); if(el.matches(":popover-open")) el.hidePopover(); el.showPopover(); } }catch(e){} return el; }
 window.__topLayer=topLayer;
 export function ask(msg,ok,cb,alt){ const w=document.createElement("div"); w.className="ask"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");/* v18: alt = [label, callback] adds a third choice */
-  w.innerHTML='<div class="askb"><p'+(/\n/.test(msg)?' class="askl"':'')+'>'+esc(msg)+'</p><div class="askr'+(alt?' ask3':'')+'"><button type="button" class="btn press" data-no="1">Cancel</button>'+(alt?'<button type="button" class="btn press" data-alt="1">'+esc(alt[0])+'</button>':'')+'<button type="button" class="btn pri press" data-yes="1">'+esc(ok)+'</button></div></div>';
+  w.innerHTML='<div class="askb"><div class="ask-rib" aria-hidden="true"><span>'+esc(ok)+'</span></div><p'+(/\n/.test(msg)?' class="askl"':'')+'>'+esc(msg)+'</p><div class="askr'+(alt?' ask3':'')+'"><button type="button" class="btn press" data-no="1">Cancel</button>'+(alt?'<button type="button" class="btn press" data-alt="1">'+esc(alt[0])+'</button>':'')+'<button type="button" class="btn pri press" data-yes="1">'+esc(ok)+'</button></div></div>';
   const prev=document.activeElement;
   function close(){ w.remove(); document.removeEventListener("keydown",onKey,true); if(prev&&prev.focus) try{prev.focus({preventScroll:true})}catch(e){} }
   function onKey(e){ if(e.key==="Escape"){ e.stopPropagation(); close(); } }
-  w.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(e.target===w||(b&&b.dataset.no)){ close(); return; } if(b&&b.dataset.yes){ close(); cb(); } if(b&&b.dataset.alt&&alt){ close(); alt[1](); } });
+  w.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(e.target===w||(b&&b.dataset.no)){ close(); return; } if(b&&b.dataset.yes){ if(document.documentElement.classList.contains("decor-art")&&!matchMedia("(prefers-reduced-motion:reduce)").matches){ w.classList.add("ask-seal"); w.style.pointerEvents="none"; setTimeout(() =>{ close(); cb(); },380); } else { close(); cb(); } }/* the wax seal stamps before the dialog closes */ if(b&&b.dataset.alt&&alt){ close(); alt[1](); } });
   document.addEventListener("keydown",onKey,true);
   document.body.appendChild(w); topLayer(w); const y=w.querySelector("[data-yes]"); if(y) y.focus({preventScroll:true}); }
 
