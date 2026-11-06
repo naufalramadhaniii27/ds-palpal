@@ -1,4 +1,4 @@
-/* === Painted interface pieces (owner 2026-11-06): parchment toast with a wax seal, a framed confirm dialog with a ribbon, a parchment
+/* === Painted interface pieces (owner 2026-11-06): a framed confirm dialog with a ribbon, a parchment
    tooltip, a brush stroke under Home headings, and painted sprite effects (heal, damage, level up, saved, loading, resting).
    Sprites are 4x4 sheets drawn on a canvas with a crossfade between frames and an eased scale and fade, so they move smoothly at the
    screen's frame rate instead of stepping. Off with Art off. Under prefers-reduced-motion the pieces stay, the motion is skipped. === */
@@ -31,13 +31,6 @@
   /* Hit Points: heal and damage play over the number */
   addEventListener("hpfx",(e) =>{ const k=e.detail==="heal"?"heal":e.detail==="dmg"?"damage":""; if(!k) return; let el=D.getElementById("hpCur"); if(!el||!el.offsetParent) el=D.getElementById("vbHpV"); if(!el) return;
     const r=el.getBoundingClientRect(); sprite(k,r.left+r.width/2+scrollX,r.top+r.height/2+scrollY,Math.max(150,r.height*2.6),k==="damage"?760:1000); });
-  /* toast: unrolls, the seal stamps; saving and resting add their sprite in place of the seal */
-  const toast=D.getElementById("toast");
-  if(toast) new MutationObserver(() =>{ if(!toast.classList.contains("on")||!H.classList.contains("decor-art")||toast._dc===toast.textContent) return; toast._dc=toast.textContent;
-    toast.classList.remove("dc-in"); void toast.offsetWidth; toast.classList.add("dc-in");
-    const m=toast.textContent||"", k=/backup|saved|copied|download started|synced|exported/i.test(m)?"save":/rest taken|short rest|long rest/i.test(m)?"candle":"";
-    toast.classList.toggle("dc-spr-on",!!k); if(k){ const h=D.createElement("span"); h.className="dc-th"; toast.insertBefore(h,toast.firstChild); sprite(k,0,0,52,k==="candle"?1600:1100,{host:h}); setTimeout(() =>{ h.remove(); toast.classList.remove("dc-spr-on"); },2300); }
-    setTimeout(() =>{ toast._dc=""; },2600); }).observe(toast,{attributes:true,attributeFilter:["class"],childList:true});
   /* loading lines get the spinning d20 */
   function loaders(root){ if(!H.classList.contains("decor-art")||!root.querySelectorAll) return; root.querySelectorAll("p.lib-empty,p.sy-note").forEach((p) =>{ if(p._dc||!/^Loading/i.test(p.textContent.trim())) return; p._dc=1; p.classList.add("dc-load"); const h=D.createElement("span"); h.className="dc-ld"; p.insertBefore(h,p.firstChild); const s=sprite("loader-d20",0,0,40,1400,{host:h,loop:true});
     const mo=new MutationObserver(() =>{ if(!p.isConnected||!/^Loading/i.test(p.textContent.trim())){ if(s) s.stop(); mo.disconnect(); } }); mo.observe(D.body,{childList:true,subtree:true}); }); }

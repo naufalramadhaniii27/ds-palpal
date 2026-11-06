@@ -2,18 +2,6 @@
 /* sprite canvas */
 .dc-spr{position:absolute;z-index:var(--z-cover,2147483000);pointer-events:none}
 .dc-th .dc-spr,.dc-ld .dc-spr{position:static;display:block}
-/* toast: a parchment scroll that unrolls from the middle, the wax seal stamps a beat later */
-:root.decor-art #toast{background:url("img/ui/scroll-toast.avif") center/100% 100% no-repeat;border:0;color:#3b2a14;padding:16px 48px 16px 54px;min-height:66px;box-shadow:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45));font-weight:600;text-shadow:none}
-:root.decor-art #toast svg.tico{display:none}
-:root.decor-art #toast::before{content:"";position:absolute;left:18px;top:50%;width:34px;height:34px;margin-top:-17px;background:url("img/ui/seal-wax.avif") center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
-:root.decor-art #toast[data-kind="error"]{color:#7a1d14}
-:root.decor-art #toast[data-kind="warn"]{color:#6b4a0c}
-:root.decor-art #toast .tundo,:root.decor-art #toast .tsum{color:#3b2a14}
-:root.decor-art #toast.dc-spr-on::before{opacity:0}
-:root.decor-art #toast .dc-th{position:absolute;left:8px;top:50%;margin-top:-26px;width:52px;height:52px}
-:root.decor-art #toast.dc-in{animation:dcUnroll .62s cubic-bezier(.22,1,.36,1) both}
-:root.decor-art #toast.dc-in::before{animation:dcStamp .5s cubic-bezier(.3,1.6,.45,1) .34s both}
-@keyframes dcUnroll{0%{clip-path:inset(0 46% 0 46% round 8px);transform:translate(-50%,10px) scale(.98);opacity:.2}55%{opacity:1}100%{clip-path:inset(0 0 0 0 round 0);transform:translate(-50%,0);opacity:1}}
 @keyframes dcStamp{0%{transform:scale(1.9) rotate(-28deg);opacity:0}70%{opacity:1}100%{transform:none;opacity:1}}
 /* confirm dialog: the painted frame drawn as a border image (corners stay crisp at any size), a ribbon carrying the action word on the top edge */
 :root.decor-art .ask .askb{position:relative;border-style:solid;border-color:transparent;border-width:34px 27px;border-image:url("img/ui/frame-dialog.avif") 76 60 / 34px 27px / 0 stretch;border-radius:0;background:var(--panel) padding-box;box-shadow:none;filter:drop-shadow(0 26px 40px rgba(0,0,0,.55));padding:24px 16px 12px;width:min(460px,100%);outline:0}
@@ -37,5 +25,4 @@
 /* loading line */
 .dc-load{display:flex;align-items:center;gap:10px}
 .dc-ld{width:40px;height:40px;flex:none}
-@media (prefers-reduced-motion:reduce){:root.decor-art #toast.dc-in,:root.decor-art #toast.dc-in::before,:root.decor-art .ask,:root.decor-art .ask .askb,:root.decor-art .ask .askb .ask-rib,:root.decor-art .ask.ask-seal .askb::after{animation:none}:root.decor-art .ask.ask-seal .askb::after{opacity:1}}
-:root.decor-art #toast .mi-fuse{left:58px;right:52px;bottom:13px;background:linear-gradient(90deg,#7a4a16,#c27a24);opacity:.75}
+@media (prefers-reduced-motion:reduce){:root.decor-art .ask,:root.decor-art .ask .askb,:root.decor-art .ask .askb .ask-rib,:root.decor-art .ask.ask-seal .askb::after{animation:none}:root.decor-art .ask.ask-seal .askb::after{opacity:1}}
