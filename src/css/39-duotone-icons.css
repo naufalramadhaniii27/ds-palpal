@@ -1,0 +1,32 @@
+/* === Duotone line icons (owner 2026-11-06). A finer line in the text colour leaning toward the colour of the meaning,
+   plus a soft fill of the same shape. data-ic picks the colour: damage types, heal, damage, conditions, magic, senses, gold, resources.
+   Big watermark icons keep their thin line. === */
+:root{--ic-def:#e2b866}
+:root[data-skin] :is(svg.ico,svg.dti,svg.ari,svg.aki,svg[fill="none"][stroke="currentColor"]):not(.noduo){--ic:var(--ic-def);stroke:color-mix(in srgb,currentColor 64%,var(--ic));stroke-width:1.6}
+:root[data-skin] :is(svg.ico,svg.dti,svg.ari,svg.aki,svg[fill="none"][stroke="currentColor"]):not(.noduo) :is(path,circle,rect,ellipse,polygon){fill:var(--ic);fill-opacity:.2}
+:root[data-skin] :is(#sheet,#lib) .sh-wm svg.ico{stroke-width:1.1}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="fire"]{--ic:#ff7a3d}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="cold"]{--ic:#7fd3ff}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="lightning"]{--ic:#ffe25a}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="thunder"]{--ic:#b9a6ff}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="acid"]{--ic:#b5e655}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="poison"]{--ic:#8ee06b}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="necrotic"]{--ic:#9dff8a}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="radiant"]{--ic:#ffe9a6}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="force"]{--ic:#d79bff}
+:root[data-skin] :is(svg.ico,svg.dti)[data-ic="psychic"]{--ic:#ff8ad8}
+:root[data-skin] :is(svg.ico,svg.dti):is([data-ic="slashing"],[data-ic="piercing"],[data-ic="bludgeoning"]){--ic:#c9d2dc}
+:root[data-skin] svg.ico[data-ic="heal"]{--ic:#6fe08f}
+:root[data-skin] svg.ico[data-ic="dmg"]{--ic:#ff6b6b}
+:root[data-skin] svg.ico[data-ic="temp"]{--ic:#7fd3ff}
+:root[data-skin] svg.ico[data-ic="warn"]{--ic:#ffc35a}
+:root[data-skin] svg.ico[data-ic="cond"]{--ic:#c8a0ff}
+:root[data-skin] svg.ico[data-ic="arcane"]{--ic:#9ec9ff}
+:root[data-skin] svg.ico[data-ic="sense"]{--ic:#a8e0d0}
+:root[data-skin] svg.ico[data-ic="gold"]{--ic:#f2c75c}
+:root[data-skin] svg.ico[data-ic="res"]{--ic:#ffb36b}
+/* light theme: darker tints so the fill and line stay visible on cream */
+:root[data-theme="light"]{--ic-def:#a8741f}
+:root[data-theme="light"] :is(svg.ico,svg.dti,svg.ari) path{fill-opacity:.16}
+/* dot glyphs (More, grip) are drawn as tiny stroked points: keep them bold */
+:root[data-skin] svg:has(path[d*="h.01"]),:root[data-skin] svg:has(path[d*="v.01"]){stroke-width:2.6}

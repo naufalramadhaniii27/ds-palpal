@@ -57,7 +57,13 @@ export function icoItem(it){ if(!it) return "item-gear"; const n=it.n||"", t=Str
   if(/^Potion|^Elixir|^Oil of|^Philter/.test(n)) return "item-potion"; if(/^Ring\b|Ring of/.test(n)) return "item-ring"; if(/^Spell Scroll|Scroll/.test(n)) return "item-scroll";
   if(/^Rod\b|Rod of/.test(n)) return "item-rod"; if(/^Staff\b|Staff of/.test(n)) return "item-staff"; if(/^Wand\b|Wand of/.test(n)) return "item-wand"; if(it.rar||/Wondrous/.test(t)) return "item-wondrous"; return "item-gear"; }
 export function icoCls(t){ const m=/\b(Artificer|Barbarian|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Warlock|Wizard)\b/.exec(t||""); return m?"cls-"+m[1].toLowerCase():""; }
-export function ico(k,cls,label){ const d=__R.ICO[k]; if(!d) return ""; return '<svg class="ico '+(cls||"")+'" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(label?'role="img" aria-label="'+esc(label)+'"><title>'+esc(label)+'</title>':'aria-hidden="true" focusable="false">')+'<path d="'+d+'"/></svg>'; }
+/* duotone line icons (owner 2026-11-06): a finer line plus a soft fill in the colour of the meaning, set by data-ic */
+const IC_DT={acid:1,bludgeoning:1,cold:1,fire:1,force:1,lightning:1,necrotic:1,piercing:1,poison:1,psychic:1,radiant:1,slashing:1,thunder:1};
+export function icTint(k){ k=String(k||""); const p=k.split("-")[0], r=k.slice(p.length+1);
+  if(p==="dt") return IC_DT[r]?r:"";
+  if(k==="hp-heal"||k==="death-success"||k==="toast-ok") return "heal"; if(k==="hp-damage"||k==="death-fail"||k==="toast-error") return "dmg"; if(k==="hp-temp") return "temp"; if(k==="toast-warn") return "warn";
+  return ({cond:"cond",school:"arcane",sense:"sense",speed:"sense",coin:"gold",res:"res",tag:"arcane",def:"res"})[p]||""; }
+export function ico(k,cls,label){ const d=__R.ICO[k]; if(!d) return ""; const t=icTint(k); return '<svg class="ico '+(cls||"")+'"'+(t?' data-ic="'+t+'"':'')+' viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(label?'role="img" aria-label="'+esc(label)+'"><title>'+esc(label)+'</title>':'aria-hidden="true" focusable="false">')+'<path d="'+d+'"/></svg>'; }
 /* ================= v17 ================= */
 /* RU40: every Limited Use row of a feature (several rows can belong to one feature, f = feature or item name) */
 export function resOf(name){ return (D.res||[]).filter((q) =>{ return q.n===name||q.f===name; }); }
