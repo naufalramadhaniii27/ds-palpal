@@ -1,0 +1,125 @@
+{
+ "why": "2014 Mistikan Sorcerer 7 (Shia Ancestry, Khodam Sorcery): flexible increase +2 CHA +1 CON then ASI +2 CHA gives CHA 20 and CON 17; PB 3; HP 6+3 + 6*(4+3) = 51; DC 8+3+5 = 16, attack +3+5 = 8; slots 4/3/3/1",
+ "build": {
+  "name": "Golden",
+  "species": "Mistikan",
+  "bg": "Hermit (2014)",
+  "bgMode": "111",
+  "cls": "Sorcerer",
+  "sub": "Khodam Sorcery",
+  "level": 7,
+  "rs": "2014",
+  "base": {
+   "STR": 8,
+   "DEX": 13,
+   "CON": 16,
+   "INT": 9,
+   "WIS": 11,
+   "CHA": 16
+  },
+  "ch": {
+   "clsk": [
+    "Insight",
+    "Persuasion"
+   ],
+   "p3metamagic": [
+    "Quickened Spell",
+    "Twinned Spell"
+   ],
+   "feat4": {
+    "feat": "Ability Score Improvement",
+    "a1": "CHA",
+    "a2": "CHA"
+   },
+   "rasi": [
+    "CHA"
+   ],
+   "rasi1": [
+    "CON"
+   ],
+   "rasim": "+2 and +1",
+   "lin": "Shia Ancestry (sea)",
+   "lang": [
+    "Elvish"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "phb14": true,
+   "retromistika": true
+  },
+  "method": "manual",
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "A",
+  "size": "Medium"
+ },
+ "expect": {
+  "pb": 3,
+  "hpmax": 51,
+  "init": 1,
+  "speed": 30,
+  "D:score.STR": 8,
+  "D:score.DEX": 13,
+  "D:score.CON": 17,
+  "D:score.INT": 9,
+  "D:score.WIS": 11,
+  "D:score.CHA": 20,
+  "D:mod.CON": 3,
+  "D:mod.CHA": 5,
+  "D:save.CON": 6,
+  "D:save.CHA": 8,
+  "D:skill.10": 2
+ },
+ "expectC": [
+  {
+   "path": "spellcasting.dc",
+   "eq": 16
+  },
+  {
+   "path": "spellcasting.atk",
+   "eq": 8
+  },
+  {
+   "path": "spellcasting.slots",
+   "eq": [
+    4,
+    3,
+    3,
+    1
+   ]
+  },
+  {
+   "path": "species",
+   "eq": "Mistikan (Shia Ancestry)"
+  },
+  {
+   "path": "senses",
+   "in": "Sonar Sense"
+  },
+  {
+   "path": "features",
+   "in": "Amphibious"
+  },
+  {
+   "path": "features",
+   "in": "Aquatic Transport"
+  },
+  {
+   "path": "features",
+   "in": "Manifest Spirit"
+  },
+  {
+   "path": "features",
+   "in": "Spiritual Missile"
+  },
+  {
+   "path": "features",
+   "in": "Rapid Protector"
+  }
+ ]
+}
