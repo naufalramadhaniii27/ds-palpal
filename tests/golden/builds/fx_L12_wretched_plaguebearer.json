@@ -1,0 +1,58 @@
+{
+ "why": "Wretched Curse Plaguebearer: Resistance to Necrotic and Immunity to the Poisoned condition.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Sorcerer",
+  "sub": "Wretched Bloodline Sorcery",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "wcurse": [
+    "Plaguebearer"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tghp": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "Necrotic"
+  },
+  {
+   "path": "defenses",
+   "in": "Poisoned"
+  }
+ ]
+}

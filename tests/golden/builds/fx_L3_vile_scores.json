@@ -1,0 +1,67 @@
+{
+ "why": "Book of Vile Darkness: raise one score by 2 (max 24), lower another by 2 (min 3). STR 17 (15 + background 2) -> 19, INT 12->10, Exhaustion immunity.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-up-item-Book of Vile Darkness": [
+    "Strength"
+   ],
+   "gx-dn-item-Book of Vile Darkness": [
+    "Intelligence"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Book of Vile Darkness",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:score.STR": 19,
+  "D:score.INT": 10
+ },
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "Exhaustion"
+  }
+ ]
+}

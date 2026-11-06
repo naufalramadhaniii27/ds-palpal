@@ -4,7 +4,7 @@ import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {chOf,choices,dmXl,featViol,hbSpellPicks,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,savVals} from "./10-logic-v17-additions.js";
-import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb} from "./11-logic-derivation.js";
+import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb,thirdOf} from "./11-logic-derivation.js";
 import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
@@ -18,16 +18,18 @@ Object.defineProperty(__R,"xl14",{get:function(){return xl14;},set:function(v){x
 export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach((x) =>{SMAP[x[0]]=x});
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];const o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
+/* fx engine v4: prepAdd N (extra prepared or known spells) and cantAdd N (extra cantrips) on any entry. N: number, "pb", ability key or [[level, n]] steps. spCls limits it to that class (class and subclass entries count only for their own class) */
+function spFxN(field,cls){let t=0;try{__R.gfx().forEach((e) =>{if(e[field]==null)return;if(e.kind==="cls"&&e.owner!==cls)return;if(e.kind==="sub"&&!(CLASSES[cls].subs||{})[e.owner])return;if(e.spCls&&!/^@/.test(e.spCls)&&e.spCls!==cls)return;t+=__R.fxv(e[field],e)})}catch(er){}return t}
 function spInfoOne(cls,sub,L){let c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
  if(!c.caster&&!c.nslot&&!third)return null;let ct=0,pr=0;
- if(third){ct=(/^Arcane Trickster/.test(sub)?3:2)+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
+ if(third){ct=thirdOf(sub).cant+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
  else{const cc=CANT[cls];ct=cc?cc.slice(1).reduce((a,l) =>{return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
   if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;const q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */}
- return {smax:c.smax?c.smax[L-1]:0,list:third?"Wizard":cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl()),ab:third?"INT":c.cast,ct:ct,pr:pr,kn:kn}}
+ return {smax:c.smax?c.smax[L-1]:0,list:third?thirdOf(sub).list:cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(cls)),ab:third?thirdOf(sub).ab:c.cast,ct:ct+spFxN("cantAdd",cls),pr:pr+spFxN("prepAdd",cls),kn:kn}}
 export function spInfo(){const parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map((m) =>{return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;let ct=0,pr=0,lists=[];parts.forEach((p) =>{ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach((l) =>{if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach((q) =>{const po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
- let SA=slotsAll(),max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach((p) =>{if(p.smax>max)max=p.smax});/* P4: casters without slots */
+ let SA=slotsAll();if(SA.slots)SA=Object.assign({},SA,{slots:__R.slotAddApply(SA.slots)});/* fx engine v6: extra slots of items and features (slotAdd) show in the spell step */let max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach((p) =>{if(p.smax>max)max=p.smax});/* P4: casters without slots */
  const ab=parts[0].ab,a=abil(),dc=8+pbOf(TL())+mod(a.sc[ab]);
  const sl=SA.slots&&SA.pact?null:SA.pact?{pact:SA.pact.n,lvl:SA.pact.lvl}:SA.slots;
  return {list:lists[0],lists:lists,ab:ab,ct:ct,pr:pr,kn:parts.length===1?(parts[0].kn||0):0,max:max,dc:dc,atk:dc-8,sl:sl,SA:SA}}
@@ -62,7 +64,7 @@ export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats
  if(!I&&!auto.length&&!mis.length)return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>';
  if(multi)h+='<div class="subtabs">'+CP.map((p) =>{return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
  if(I){h+='<div class="spstat"><div><b>'+K.dc+'</b><span>Save DC</span></div><div><b>'+sg(K.atk)+'</b><span>Spell Attack</span></div><div><b>'+K.ab+'</b><span>Ability</span></div></div>';
-  if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map((n,i) =>{return ord(i+1)+' \u00d7'+n}).join(", ")+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'}
+  if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map((n,i) =>{return ord(i+1)+' \u00d7'+n}).join(", ")+((I.SA.slots.fxAdd||[]).length?' <small>(includes '+I.SA.slots.fxAdd.map((x) =>{return '+'+x[1]+' level '+x[0]+' from '+esc(x[2])}).join("; ")+')</small>':'')+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'}
  if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map((k) =>{return '<button type="button" class="rad'+(B.ch.land===k?" on":"")+'" data-ch1="land" data-v="'+k+'"><b>'+k+'</b></button>'}).join("")+'</div><p class="fd bhint">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
  if(auto.length)h+=spSec("Always Prepared",auto.length,auto.map((a) =>{const x=SMAP[a.n];return x?spRow(x,true,false,RJ(a.k)).replace(/<button type="button" class="sbtn rm"[^>]*>(Remove|Unprepare|Unlearn)<\/button>/g,'').replace('<small>','<small>'+esc(a.src)+' \u2022 '):''}).join(""));
  if(clsLv("Warlock")>=11){const wl=clsLv("Warlock"),ma=[[11,6],[13,7],[15,8],[17,9]].filter((r) =>{return wl>=r[0]});

@@ -1,0 +1,74 @@
+{
+ "why": "Sword of Zariel: Celestial, Fly Speed 90 ft with hover, Truesight 60 ft, Charisma 20 (+5).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Sword of Zariel",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "D:mod.CHA": 5
+ },
+ "expectC": [
+  {
+   "path": "lang",
+   "in": "Celestial"
+  },
+  {
+   "path": "moves",
+   "has": {
+    "m": "fly",
+    "v": 90
+   }
+  },
+  {
+   "path": "senses",
+   "has": {
+    "n": "Truesight",
+    "v": 60
+   }
+  }
+ ]
+}

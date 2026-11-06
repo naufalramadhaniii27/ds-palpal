@@ -1,0 +1,54 @@
+{
+ "why": "Resolution of the Syndicate, Resilient: HP maximum rises by the character level in total (level at gain, then +1 per later level). Fighter 8 base 68, so 76. Before the fix the HP stayed 68.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Resolution of the Syndicate"
+   }
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "hpmax": 76
+ },
+ "expectC": {
+  "hpBonus": {
+   "in": "Resilient (Resolution of the Syndicate feat)"
+  }
+ }
+}

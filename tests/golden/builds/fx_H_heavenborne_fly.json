@@ -1,0 +1,49 @@
+{
+ "why": "Warrior of the Celestial 17, Heavenborne Limited Flight: Fly Speed equal to Speed (Monk 17 Speed 55 ft).",
+ "build": {
+  "name": "Golden H",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Monk",
+  "sub": "Warrior of the Celestial",
+  "level": 17,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "speed": 55
+ },
+ "expectC": {
+  "moves.fly.v": 55
+ }
+}

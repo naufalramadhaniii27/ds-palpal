@@ -1,0 +1,100 @@
+{
+ "why": "Stormborn: Fly Speed = Speed and Resistance Cold/Lightning/Thunder only while Wrath of the Sea is active",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Druid",
+  "sub": "Circle of the Sea",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgs": true,
+   "tkdm": true,
+   "thhw": true,
+   "tdcsr": true,
+   "xge": true,
+   "tce": true,
+   "phb14": true,
+   "au": true,
+   "hof": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "moves",
+   "has": {
+    "m": "swim",
+    "v": 30
+   }
+  },
+  {
+   "path": "moves",
+   "has": {
+    "m": "fly",
+    "v": 30
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Cold"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Lightning"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Resistance",
+    "v": "Thunder"
+   }
+  }
+ ],
+ "fxT": {
+  "wrath-of-the-sea": true
+ }
+}

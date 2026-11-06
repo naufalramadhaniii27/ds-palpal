@@ -1,0 +1,68 @@
+{
+ "why": "Hide of the Feral Guardian (Awakened): +2 AC always (studded leather 12 + DEX 2 + 2 = 16); +2 to melee attack and damage only while transformed (toggle on).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "egw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [
+   "Longsword"
+  ],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Hide of the Feral Guardian (Awakened)",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Longsword",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 16
+ },
+ "expectC": {
+  "attacks.Longsword.misc": 2,
+  "attacks.Longsword.dmgBonus": 2
+ },
+ "fxT": {
+  "feral-guardian-transformed": true
+ }
+}

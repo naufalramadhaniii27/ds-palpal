@@ -1,0 +1,71 @@
+{
+ "why": "2014 Retron Fighter 5 (Quick, Limited Darkvision): flexible +1/+1/+1 on STR DEX CON gives 16/14/15; HP 10+2 + 4*(6+2) = 44; PB 3; Speed 30+10 = 40; Darkvision 30",
+ "build": {
+  "name": "Golden",
+  "species": "Retron",
+  "bg": "Soldier (2014)",
+  "bgMode": "111",
+  "cls": "Fighter",
+  "sub": "Champion (2014)",
+  "level": 5,
+  "rs": "2014",
+  "base": {
+   "STR": 15,
+   "DEX": 13,
+   "CON": 14,
+   "INT": 8,
+   "WIS": 12,
+   "CHA": 10
+  },
+  "ch": {
+   "rasim": "+1, +1, +1",
+   "rasi": [
+    "STR",
+    "DEX",
+    "CON"
+   ],
+   "spopt": [
+    "Quick",
+    "Limited Darkvision"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "phb14": true,
+   "retromistika": true
+  },
+  "method": "manual",
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "A",
+  "size": "Medium"
+ },
+ "expect": {
+  "pb": 3,
+  "hpmax": 44,
+  "init": 2,
+  "speed": 40,
+  "D:score.STR": 16,
+  "D:score.DEX": 14,
+  "D:score.CON": 15,
+  "D:score.INT": 8,
+  "D:score.WIS": 12,
+  "D:score.CHA": 10,
+  "D:mod.STR": 3,
+  "D:mod.CON": 2
+ },
+ "expectC": [
+  {
+   "path": "darkvision",
+   "eq": 30
+  },
+  {
+   "path": "species",
+   "eq": "Retron"
+  }
+ ]
+}

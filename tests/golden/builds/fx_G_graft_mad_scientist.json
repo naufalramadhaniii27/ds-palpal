@@ -1,0 +1,65 @@
+{
+ "why": "Alchemist Xenoalchemist 3, Mad Scientist: two monstrous grafts join the inventory",
+ "build": {
+  "name": "fsub_cybernetic3_crafts",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Alchemist",
+  "sub": "Xenoalchemist",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-graft-sub-Xenoalchemist": [
+    "Heart of Steel",
+    "Nocturnal Eyes"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "inv",
+   "has": {
+    "n": "Heart of Steel"
+   }
+  },
+  {
+   "path": "inv",
+   "has": {
+    "n": "Nocturnal Eyes"
+   }
+  }
+ ]
+}

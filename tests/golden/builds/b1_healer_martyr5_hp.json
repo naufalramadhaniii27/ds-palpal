@@ -1,0 +1,62 @@
+{
+ "why": "Martyr's Endurance: HP max +3 at level 3, +1 per Healer level after (5 total). Base 37 + 5 = 42",
+ "build": {
+  "name": "b1_healer_martyr5_hp",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "CON",
+  "bg1": "STR",
+  "cls": "Healer",
+  "sub": "Vow of the Martyr",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "cSpecies": {
+   "name": "",
+   "speed": 30,
+   "dark": 0,
+   "size": "Medium"
+  },
+  "cSub": "",
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "hpmax": 42
+ }
+}

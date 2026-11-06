@@ -1,0 +1,66 @@
+{
+ "why": "Harkon's Bite: +1 to ability checks and saving throws. Fighter 10 saves +1 each, and every skill gets +1 in the misc column.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Champion",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "rhw": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Harkon's Bite",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "save": {
+   "STR": 8,
+   "DEX": 3,
+   "CON": 7,
+   "INT": 2,
+   "WIS": 1,
+   "CHA": 4
+  }
+ },
+ "expectC": {
+  "skills.Athletics.misc": 1,
+  "skills.Stealth.misc": 1,
+  "skills.Arcana.misc": 1
+ }
+}

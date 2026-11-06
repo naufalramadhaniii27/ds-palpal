@@ -1,0 +1,80 @@
+{
+ "why": "Fighter 6 + Rogue 6, character level 12, PB 4. From the Ashes (Worthless Husk origin feat) gates its picks by character level (4, 8, 12, 16, 19), not by class level. Scores: base 15,14,13,12,10,8 + background DEX +2 CON +1 = 15,16,14,12,10,8 (75). Worthless lowers the highest until total 72 (DEX 15, STR 14, DEX 14) then each -1: 13,13,13,11,9,7. Picks: level 4 STR +2 = 15, level 8 CON +1 DEX +1 = 14 and 14, level 12 STR +2 = 17. The level 16 pick (STR +2) is stored but not counted at level 12, so STR stays 17. A class-level gate would stop at Fighter 6 or Rogue 6 and lose levels 8 and 12. HP: Fighter level 1 = 10+2 = 12, levels 2-6 = 5x8 = 40, Rogue 6x(5+2) = 42, total 94.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Worthless Husk",
+  "bgMode": "21",
+  "bg2": "DEX",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 6,
+  "mc": [
+   {
+    "cls": "Rogue",
+    "sub": "",
+    "lv": 6
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-ash4-feat-Origin feat (Worthless Husk)": [
+    "STR +2"
+   ],
+   "gx-ash8-feat-Origin feat (Worthless Husk)": [
+    "CON +1, DEX +1"
+   ],
+   "gx-ash12-feat-Origin feat (Worthless Husk)": [
+    "STR +2"
+   ],
+   "gx-ash16-feat-Origin feat (Worthless Husk)": [
+    "STR +2"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.STR": 17,
+  "D:score.DEX": 14,
+  "D:score.CON": 14,
+  "D:score.INT": 11,
+  "D:score.WIS": 9,
+  "D:score.CHA": 7,
+  "hpmax": 94,
+  "pb": 4
+ }
+}

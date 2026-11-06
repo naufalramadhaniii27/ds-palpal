@@ -1,0 +1,61 @@
+{
+ "why": "Embedded Armor graft (base AC 13 + Dex when unarmored) is added equipped by the pick: AC 13 + 2 = 15 with no armor",
+ "build": {
+  "name": "fsub_cybernetic3_crafts",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Cybernetic",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-graft-sub-Cybernetic": [
+    "Black Box",
+    "Embedded Armor"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "ac": 15
+ },
+ "expectC": [
+  {
+   "path": "inv",
+   "has": {
+    "n": "Embedded Armor",
+    "eq": true
+   }
+  }
+ ]
+}

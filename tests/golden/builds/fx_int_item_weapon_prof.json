@@ -1,0 +1,67 @@
+{
+ "why": "fx weapons from an item count as weapon proficiency: Mockingblade (attunement by a Bard) gives Shortsword proficiency, so the Shortsword attack row of a Bard (Simple weapons only) is proficient.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Bard",
+  "sub": "College of Lore",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Mockingblade",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shortsword",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "profs.weapons",
+   "in": "Shortsword"
+  },
+  {
+   "path": "attacks.Shortsword.prof",
+   "eq": true
+  }
+ ]
+}

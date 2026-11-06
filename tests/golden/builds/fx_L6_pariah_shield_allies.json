@@ -1,0 +1,59 @@
+{
+ "why": "Pariah's Shield: +1 AC per two allies within 5 ft, max +3, on top of the Shield. AC 10 + DEX 2 + Shield 2 = 14, six allies = 17 (fx-int: pick of fx-L5).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "gx-al-item-Pariah's Shield": [
+    "6 or more allies (+3 AC)"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "ggr": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Pariah's Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17
+ },
+ "expectC": {}
+}

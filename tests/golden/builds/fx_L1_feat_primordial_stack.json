@@ -1,0 +1,94 @@
+{
+ "why": "Primordial stages 1 to 4 with Fire first: Primeval Body Fire turns Fire resistance into Immunity, Dual Nature Water gives Cold, Elemental Mastery Air gives Lightning.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 16,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Primordial Transformation: Stage 1"
+   },
+   "gx-el-feat-feat4": [
+    "Fire"
+   ],
+   "feat8": {
+    "feat": "Primordial Transformation: Stage 2"
+   },
+   "trPrimordial2-feat8": [
+    "Dual Nature"
+   ],
+   "gx-el2-feat-feat8": [
+    "Water"
+   ],
+   "feat12": {
+    "feat": "Primordial Transformation: Stage 3"
+   },
+   "trPrimordial3-feat12": [
+    "Primeval Body"
+   ],
+   "gx-pbd-feat-feat12": [
+    "Fire"
+   ],
+   "feat16": {
+    "feat": "Primordial Transformation: Stage 4"
+   },
+   "trPrimordial4-feat16": [
+    "Elemental Mastery"
+   ],
+   "gx-el4-feat-feat16": [
+    "Air"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tsdm": true,
+   "tvss": true,
+   "tshl": true,
+   "tsgeh": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghp": true,
+   "tsgs": true,
+   "tssm": true,
+   "tsae": true,
+   "tkdm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "defenses": {
+   "in": "Immunity"
+  },
+  "res.Elemental Mastery.max": 2
+ }
+}

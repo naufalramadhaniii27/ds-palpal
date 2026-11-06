@@ -1,0 +1,53 @@
+{
+ "why": "Bond of the Shambling Plant 3, Natural Spellcasting: one Druid cantrip and one level 1 Druid spell, always prepared. Rules: PHB 2024 and the homebrew book text in src/data.",
+ "build": {
+  "name": "Golden B2",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Summoner",
+  "sub": "Bond of the Shambling Plant",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-c-sub-Bond of the Shambling Plant": [
+    "Druidcraft"
+   ],
+   "gx-s-sub-Bond of the Shambling Plant": [
+    "Goodberry"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tssm": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "C:spells": "~Goodberry"
+ }
+}

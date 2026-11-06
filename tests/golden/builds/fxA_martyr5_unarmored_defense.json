@@ -1,0 +1,62 @@
+{
+ "why": "Martyr 5 Unarmored Defense: 10 + Dex 2 + Wis 3 + Shield 2 = 17.",
+ "build": {
+  "name": "FxA",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Martyr",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-armorFaith-cls-Martyr": [
+    "Unarmored Defense"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgeh": true,
+   "tsdm": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 8,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17
+ }
+}

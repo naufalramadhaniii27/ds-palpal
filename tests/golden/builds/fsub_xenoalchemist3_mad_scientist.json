@@ -1,0 +1,56 @@
+{
+ "why": "Xenoalchemist 3, Mad Scientist: two monstrous grafts of your choice, stored and shown as Your choice. Intelligence for graft Unarmed Strikes is text only.",
+ "build": {
+  "name": "fsub_xenoalchemist3_mad_scientist",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Alchemist",
+  "sub": "Xenoalchemist",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-graft-sub-Xenoalchemist": [
+    "Monstrous Weapon",
+    "Prehensile Tail"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "features",
+   "in": "Your choice.** Monstrous Weapon, Prehensile Tail."
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "why": "Necromancer Reanimator 20: Gruesome Physicality sets STR, DEX and CON to 20 (modifier +5), Damage Resistance gives Resistance to Bludgeoning, Piercing and Slashing (text of Patchwork Golem).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Necromancer",
+  "sub": "Reanimator",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:mod.STR": 5,
+  "D:mod.DEX": 5,
+  "D:mod.CON": 5
+ },
+ "expectC": [
+  {
+   "path": "defenses",
+   "in": "Slashing"
+  }
+ ]
+}

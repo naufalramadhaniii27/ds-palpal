@@ -1,0 +1,71 @@
+{
+ "why": "Mad Scientist with Monstrous Bite: Unarmed Strike row says Intelligence may be used",
+ "build": {
+  "name": "fx_v3a_mad_scientist_int_note",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "CON",
+  "bg1": "STR",
+  "cls": "Alchemist",
+  "sub": "Xenoalchemist",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "ch": {
+   "gx-graft-sub-Xenoalchemist": [
+    "Monstrous Bite",
+    "Heavy Legs"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "cSpecies": {
+   "name": "",
+   "speed": 30,
+   "dark": 0,
+   "size": "Medium"
+  },
+  "cSub": "",
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "attacks.Unarmed Strike.note",
+   "in": "Intelligent Grafts (Monstrous Bite)"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "why": "Nightbringer, evil alignment: immune to Charmed and Frightened, one chosen damage type (Fire here), darkvision 60 ft.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Cleric",
+  "sub": "Life Domain",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {
+   "gx-imm-item-Nightbringer": [
+    "Fire"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Nightbringer",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Immunity",
+    "v": "Fire"
+   }
+  },
+  {
+   "path": "defenses",
+   "has": {
+    "t": "Immunity",
+    "v": "Charmed (condition)"
+   }
+  },
+  {
+   "path": "darkvision",
+   "eq": 60
+  }
+ ],
+ "fxT": {
+  "nightbringer-evil": true
+ }
+}

@@ -1,7 +1,7 @@
 import {ABK} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
 import {C,S,__set_C,save} from "./04-logic-storage.js";
-import {$,clamp,esc,rich,sg,toast} from "./05-logic-helpers.js";
+import {$,clamp,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
 import {boxes,esArt,used} from "./08-ui-render-sheet-and-actions.js";
@@ -65,7 +65,9 @@ function profNames(t){ return String(t||"None").split(/,\s*/).map((x) =>{ return
 function profsH(){ const P=C.profSrc;
   const body=P?'<h3>Armor</h3><p class="prl">'+profRows(P.armor||[])+'</p><h3>Weapons</h3><p class="prl">'+profRows(P.weapons||[])+'</p><h3>Tools</h3><p class="prl">'+profRows(P.tools||[])+'</p>'
     :'<h3>Armor</h3><p>'+esc(profNames(C.profs.armor))+'</p><h3>Weapons</h3><p>'+esc(profNames(C.profs.weapons))+'</p><h3>Tools</h3><p>'+linkify(C.profs.tools||"None")+'</p>';
-  return body+'<h3><button type="button" class="tx" data-info="g:Languages">Languages</button></h3><p id="langLine"></p>'+(C.cls?'<p class="fman"><button type="button" class="btn press" data-bldgo="class">Manage Proficiencies</button></p>':''); }
+  /* fx engine v6: tool check rows. Each tool with Expertise (C.toolExp) shows the bonus to add to its ability check: double the Proficiency Bonus. The ability modifier is the one your DM names for the check */
+  const te=(C.toolExp||[]).length?'<h3>Tool checks</h3><div class="toolrolls">'+(C.toolExp||[]).map((t) =>{ const v=2*num(D.pb,2); return '<div class="sense"><span class="bonus">+'+v+'</span><span>'+linkify(t.n)+' <small>(Expertise, plus the ability modifier for the check)</small></span></div>'; }).join("")+'</div>':'';
+  return body+te+'<h3><button type="button" class="tx" data-info="g:Languages">Languages</button></h3><p id="langLine"></p>'+(C.cls?'<p class="fman"><button type="button" class="btn press" data-bldgo="class">Manage Proficiencies</button></p>':''); }
 /* RU38 no. 4: Manage buttons open the builder at a step */
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bldgo]"); if(!b) return; e.preventDefault(); if(window.__bldGo) window.__bldGo(b.getAttribute("data-bldgo")); else if(window.__bldOpen) window.__bldOpen(); });
 
@@ -157,7 +159,7 @@ function crHpH(key,max){ const cur=crHpCur(key,max), pc=max?Math.round(100*cur/m
    '<div class="crhp-c"><input class="crhp-in" type="number" inputmode="numeric" min="0" step="1" placeholder="HP" aria-label="Hit Points amount">'+bt("dmg","Damage","dmg")+bt("heal","Heal","heal")+bt("full","Full","full")+'</div></div>'; }
 function crBlock(c,ctx){ let env=crEnv(ctx,c), o=crStat(c,ctx), T=function(s){ return rich(crText(s,env)); }, h="";
   const sp=/^sp:/.test(ctx)?ctx.slice(3):"", sel=crSel[c.n]||{}, im=window.CRIMG&&window.CRIMG[c.n];
-  if(im) h+='<img class="lib-im cr-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="'+esc(c.n)+'" src="data/img/'+encodeURI(im)+'.webp" onerror="this.remove()">';/* picture first, large */
+  if(im) h+='<img class="lib-im cr-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="'+esc(c.n)+'" src="data/img/'+encodeURI(im)+'.webp">';/* picture first, large */
   h+='<div class="dc dc-c">'+dcHead(ico("creature","isch"),esc(o.size+" "+o.type+(o.al?", "+o.al:""))+' • '+esc(srcPg(o.src||"PHB-2024",o.pg)));
   if(sp) h+='<div class="crsp"><span class="crsp-l">Spell level <small>from '+esc(sp)+'</small></span><div class="crsp-s"><button type="button" class="btn press crsl" data-crsl="-1" data-crn="'+esc(c.n)+'" aria-label="Lower spell level">−</button><b>'+env.SL+'</b><button type="button" class="btn press crsl" data-crsl="1" data-crn="'+esc(c.n)+'" aria-label="Higher spell level">+</button></div></div>';
   if((c.variants||[]).length) h+='<div class="ifil crvar">'+c.variants.map((q) =>{ return '<button type="button" class="ifb'+(sel.v===q.v?' on':'')+'" data-crv="'+esc(q.v)+'" data-crn="'+esc(c.n)+'">'+esc(q.v)+'</button>'; }).join("")+'</div>';

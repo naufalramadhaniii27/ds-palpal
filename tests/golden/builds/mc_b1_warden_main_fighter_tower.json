@@ -1,0 +1,73 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). Warden 10 (Godsworn) + Fighter 2, level 12, PB 4. AC: Plate 18 + Shield 2 + Tower Shield (Warden level 10: +2 more) 2 + Defense 1 (Warden Fighting Style) = 23; the Fighter picks Dueling. HP: Warden d10 level 1 = 10+2 = 12, levels 2-10 = 9x(6+2) = 72, Fighter 2x(6+2) = 16, total 100.",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warden",
+  "sub": "Godsworn",
+  "level": 10,
+  "mc": [
+   {
+    "cls": "Fighter",
+    "sub": "",
+    "lv": 2
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "fs1": "Defense",
+   "stand": [
+    "Tower Shield"
+   ],
+   "m0:fs": "Dueling"
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Plate Armor",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Shield",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 23,
+  "hpmax": 100,
+  "pb": 4
+ }
+}

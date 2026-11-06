@@ -1,0 +1,68 @@
+{
+ "why": "The Thorn of Kren: +2 attack and damage with unarmed strikes (and advantage on Perception and Survival). Wyrmreaver Gauntlets: unarmed strike +1d6 force.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "thhw": true,
+   "bgg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "The Thorn of Kren",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Wyrmreaver Gauntlets",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Unarmed Strike.misc": 2,
+  "attacks.Unarmed Strike.dmgBonus": 2,
+  "attacks.Unarmed Strike.xdice": {
+   "in": "Force"
+  },
+  "defenses": {
+   "in": "Survival"
+  }
+ }
+}

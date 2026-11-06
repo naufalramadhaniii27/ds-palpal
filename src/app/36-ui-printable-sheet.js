@@ -43,7 +43,7 @@ export function buildPrint(){
       '<div class="ps-row" style="margin-top:10px">'+stats+'</div>'+
       '<div class="ps-cols">'+
         '<div style="width:220px;flex:none">'+
-          '<div class="ps-box"><div class="ps-h">SAVING THROWS</div>'+saves+(C.saveBonus||[]).concat(C.saveNotes||[]).map((x) =>{ return '<div class="ps-p" style="margin:3px 0 0;font-size:9.5px">'+(x.t?esc(x.t):sg(num(x.v))+' to all saving throws')+' ('+esc(x.s)+')</div>'; }).join('')+'</div>'+
+          '<div class="ps-box"><div class="ps-h">SAVING THROWS</div>'+saves+(C.saveBonus||[]).concat(C.saveNotes||[]).map((x) =>{ return '<div class="ps-p" style="margin:3px 0 0;font-size:9.5px">'+(x.t?esc(x.t):sg(num(x.v))+(x.ab?' to '+x.ab+' saving throws':' to all saving throws'))+' ('+esc(x.s)+')</div>'; }).join('')+'</div>'+
           '<div class="ps-box"><div class="ps-h">SENSES</div>'+senses+'</div>'+
           '<div class="ps-box"><div class="ps-h">PROFICIENCIES</div>'+
             '<div class="ps-p"><b>Armor</b> '+esc(C.profs.armor)+'</div><div class="ps-p"><b>Weapons</b> '+esc(C.profs.weapons)+'</div><div class="ps-p"><b>Tools</b> '+esc(C.profs.tools)+'</div>'+

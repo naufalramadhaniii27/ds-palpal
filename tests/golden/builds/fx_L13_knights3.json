@@ -1,0 +1,66 @@
+{
+ "why": "Martial Training adds Heavy armor and Shields; Mystical Armament: Force Buckler plus the picked blade cantrip, no Hold Person",
+ "build": {
+  "name": "Golden L13",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warmage",
+  "sub": "House of Knights",
+  "level": 3,
+  "base": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "ch": {
+   "gx-bl-sub-House of Knights": [
+    "Arc Blade"
+   ]
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 10,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 16,
+   "WIS": 10,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "profs.armor",
+   "in": "Heavy"
+  },
+  {
+   "path": "spells",
+   "has": {
+    "n": "Force Buckler"
+   }
+  },
+  {
+   "path": "spells",
+   "has": {
+    "n": "Arc Blade"
+   }
+  }
+ ]
+}

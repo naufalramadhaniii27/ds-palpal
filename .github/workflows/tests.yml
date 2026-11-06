@@ -45,7 +45,7 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in names_lint csp_check scenarios golden_rules version_label split_dist fonts_dist lazy_parts edition_isolation metamorphic; do
+          for t in names_lint csp_check scenarios golden_rules golden_builds fx_engine fx_overlap mech_scan dup_check invariants e2e_fx_toggle version_label split_dist fonts_dist lazy_parts edition_isolation metamorphic; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"
@@ -53,6 +53,13 @@ jobs:
           exit $fail
       - name: Performance budget (bytes and heap only, the stable measures)
         run: python3 tests/perf_budget.py tests/out/perf.json --fast --runs 3 --check tests/perf-budget.json
+      - name: "Clause gate (REPORT ONLY: per-sentence number conservation, never fails the build, see reports/clause-gate-report.md)"
+        continue-on-error: true
+        run: python3 tests/clause_gate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with: { name: clause-gate-report, path: "reports/clause-gate-report.md", if-no-files-found: ignore }
 
   b-layout:
     name: "Job B: layout and storage"

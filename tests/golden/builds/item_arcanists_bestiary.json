@@ -1,0 +1,64 @@
+{
+ "why": "Arcanist's Bestiary: proficiency in one skill of Arcana, History, Nature or Religion chosen when attuning. Wizard 10 picks Nature.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 10,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "clsk": [
+    "Insight",
+    "Medicine"
+   ],
+   "gx-sk-item-Arcanist's Bestiary": [
+    "Nature"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "au": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Arcanist's Bestiary",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "skills.Nature.p": 1,
+  "skills.History.p": null
+ }
+}

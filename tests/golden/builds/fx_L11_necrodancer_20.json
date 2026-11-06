@@ -1,0 +1,69 @@
+{
+ "why": "Thriller: DEX and CHA +4, max 25; Footloose Acrobatics/Performance + INT",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Necromancer",
+  "sub": "Necrodancer",
+  "level": 20,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tghp": true,
+   "tvss": true,
+   "tsdm": true,
+   "tsgeh": true,
+   "tee24": true,
+   "tshl": true,
+   "tsdd": true,
+   "tsgs": true,
+   "tkdm": true,
+   "thhw": true,
+   "tdcsr": true,
+   "xge": true,
+   "tce": true,
+   "phb14": true,
+   "au": true,
+   "hof": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "D:score.DEX": 18,
+  "D:score.CHA": 12
+ },
+ "expectC": [
+  {
+   "path": "skills.Acrobatics.misc",
+   "eq": 1
+  }
+ ]
+}

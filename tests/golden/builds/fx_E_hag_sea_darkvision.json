@@ -1,0 +1,59 @@
+{
+ "why": "Hag Transformation Stage 1, Sea Sisterhood: Darkvision 60 ft. and a Swim Speed equal to Speed.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "Evoker",
+  "level": 8,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Hag Transformation: Stage 1"
+   },
+   "gx-hs-feat-feat4": [
+    "Strength"
+   ],
+   "trHag1-feat4": [
+    "The Sea Sisterhood"
+   ]
+  },
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": {
+  "darkvision": 60,
+  "moves": {
+   "in": "swim"
+  }
+ }
+}

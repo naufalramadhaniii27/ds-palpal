@@ -1,0 +1,71 @@
+{
+ "why": "Butcher's Bib: slashing weapon attacks crit on 19-20 (Longsword is slashing). Vicious Weapon: extra 2d6 damage of the weapon's type.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [
+   "Longsword"
+  ],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Butcher's Bib",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Vicious Weapon (Longsword)",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Longsword",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "attacks.Longsword.note": {
+   "in": "Critical hit on 19-20"
+  },
+  "attacks.Vicious Weapon (Longsword).xdice": {
+   "in": "2d6"
+  }
+ }
+}

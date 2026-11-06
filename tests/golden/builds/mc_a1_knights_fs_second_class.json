@@ -1,0 +1,73 @@
+{
+ "why": "Scores: base STR 15 DEX 14 CON 13 INT 12 WIS 10 CHA 8 plus Soldier (STR +2, CON +1) = STR 17 (+3), DEX 14 (+2), CON 14 (+2), INT 12 (+1), WIS 10 (0), CHA 8 (-1). INT is 14 here. Fighter 5 + Warmage 7 (House of Knights), character level 12, PB 2+(12-1)//4 = 4. House of Knights 7 gives a Fighting Style feat of choice (m0:sfs7 = Defense, the Fighter picked Archery). AC: Chain Mail 16 + Defense 1 = 17 (Defense only counts with armor). HP: Fighter level 1 = 10+2 = 12, Fighter levels 2-5 = 4x(6+2) = 32, Warmage d8 7 levels = 7x(5+2) = 49, total 93. Saves only from the first class: STR 3+4 = 7, CON 2+4 = 6, INT 2 (no proficiency from Warmage).",
+ "build": {
+  "name": "Golden MC",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 5,
+  "mc": [
+   {
+    "cls": "Warmage",
+    "sub": "House of Knights",
+    "lv": 7
+   }
+  ],
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {
+   "fs1": "Archery",
+   "m0:sfs7": "Defense"
+  },
+  "src": {
+   "core": true,
+   "tvss": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 14,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Chain Mail",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {
+  "ac": 17,
+  "hpmax": 93,
+  "pb": 4,
+  "D:save.STR": 7,
+  "D:save.CON": 6,
+  "D:save.INT": 2
+ },
+ "expectC": {
+  "features": {
+   "in": "Fighting Style"
+  }
+ }
+}

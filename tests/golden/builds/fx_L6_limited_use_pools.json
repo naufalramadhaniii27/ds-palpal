@@ -1,0 +1,91 @@
+{
+ "why": "Tankard of Plenty 3 per day, Thassa's Devotee Fog Cloud uses = INT mod (12 gives +1, minimum 1), Frightful Presence uses = PB (3 at level 5), Platinum Scarf 3 scales, Orc Stone 3 uses never reset, Visage of Delight and Disaster 2 d10 dice (short rest).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "Battle Master",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "mot": true,
+   "ftd": true,
+   "idrotf": true,
+   "tsgs": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Tankard of Plenty",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Thassa's Devotee",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Frightful Presence",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Platinum Scarf",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Orc Stone",
+    "q": 1,
+    "eq": true
+   },
+   {
+    "n": "Visage of Delight and Disaster",
+    "q": 1,
+    "eq": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": {
+  "res.Tankard of Plenty.max": 3,
+  "res.Fog Cloud (Thassa's Devotee).max": 1,
+  "res.Frightful Presence.max": 3,
+  "res.Platinum Scarf scales.max": 3,
+  "res.Orc Stone.max": 3,
+  "res.Orc Stone.reset": "none",
+  "res.Bardic Inspiration (Visage).max": 2,
+  "res.Bardic Inspiration (Visage).reset": "short"
+ }
+}

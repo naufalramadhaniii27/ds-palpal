@@ -1,0 +1,62 @@
+{
+ "why": "Fast Movement: Speed +15 ft at Bard level 6 (30 + 15 = 45)",
+ "build": {
+  "name": "b1_bard_choreography6_speed",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "CON",
+  "bg1": "STR",
+  "cls": "Bard",
+  "sub": "College of Choreography",
+  "level": 6,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true
+  },
+  "cSpecies": {
+   "name": "",
+   "speed": 30,
+   "dark": 0,
+   "size": "Medium"
+  },
+  "cSub": "",
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 14,
+   "INT": 10,
+   "WIS": 14,
+   "CHA": 14
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "none",
+  "size": "Medium"
+ },
+ "expect": {
+  "speed": 45
+ }
+}

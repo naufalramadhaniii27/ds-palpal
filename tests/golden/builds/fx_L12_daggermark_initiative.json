@@ -1,0 +1,55 @@
+{
+ "why": "Vagabond Daggermark 3 with CHA 8: Initiative gets CHA modifier with a minimum of +1, and proficiency in Sleight of Hand and Stealth.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Vagabond",
+  "sub": "Daggermark",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 8
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium"
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "initBonus",
+   "has": {
+    "v": 1
+   }
+  },
+  {
+   "path": "skills.Stealth.p",
+   "eq": 1
+  }
+ ]
+}

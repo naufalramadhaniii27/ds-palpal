@@ -21,15 +21,18 @@ export function luMax(m,lv,a,pb){if(typeof m==="number")return m;if(Array.isArra
 /* RU40: one Limited Use row per LU_X entry the character has, plus magic item charges. f = the feature or item that grants it (boxes show under it too) */
 export function luRows(C,a,pb,feats){const TLv=__R.TL(),iv=invList();
  (typeof LU_X!=="undefined"?LU_X:[]).forEach((e) =>{let lv=0;
-  if(e.src==="feat"){if(!feats.some((f) =>{return f.n===e.owner}))return;lv=TLv}
+  let mx=e.max;if(e.src==="feat"){const ff=feats.filter((f) =>{return f.n===e.owner})[0];if(!ff)return;lv=TLv;if(mx==="mod:@asi")mx="mod:"+((ff.asi&&ff.asi.a1)||"CHA");else if(mx==="mod:@ab")mx="mod:"+(((B.ch["gx-ab-feat-"+(ff.key||ff.s)]||[])[0])||"INT")}/* mod:@asi = the ability the feat raised, mod:@ab = the ability picked (pick k "ab") */
   else if(e.src==="species"){const sp=spX();if(!sp||B.species!==e.owner)return;if(/Speak with Animals/.test(e.n)&&(B.ch.lin||"").indexOf("Forest")!==0)return;if(e.opt&&(B.ch.spopt||[]).indexOf(e.opt)<0)return;lv=TLv}/* v74: e.opt, only when that species option is chosen */
   else if(e.src==="bg"){if(B.bg!==e.owner)return;lv=TLv}/* tp: a background that tracks a use */
   else if(e.src==="class"){lv=__R.clsLv(e.owner);if(e.feature==="Eldritch Invocations"){const inv=e.n.split(":")[0];if(iv.indexOf(inv)<0)return}}
   else if(e.src==="sub"){const sc=subClsOf(e.owner);lv=sc?subAt(sc,e.owner):0}
   else if(e.src==="hbcls"){if(!(B.src||{})[e.pack])return;lv=__R.clsLv(e.owner)}/* v20 RD24: a pack's class feature */
-  if(!lv||lv<e.lvl)return;const m=luMax(e.max,lv,a,pb);if(!(m>0))return;
+  if(!lv||lv<e.lvl)return;const m=luMax(mx,lv,a,pb);if(!(m>0))return;
   let rs=e.reset==="dawn"?"long":e.reset==="init"?"short":e.reset;if(e.short6&&lv>=6)rs="short";
   const o={k:__R.resKey("x-",e.n,C.res),n:e.n,tag:e.tag||"",max:m,reset:rs,f:e.feature};if(e.pool)o.pool=1;if((e.src==="species"||e.src==="feat")&&e.owner)o.own=e.owner;/* v21 RU49 */if(e.reset==="init")o.tag=(o.tag?o.tag+", ":"")+"also regained when you roll Initiative";if(e.die)o.tag=(o.tag?o.tag+", ":"")+e.die;C.res.push(o)});
+ /* fx engine v4: lu on any gfx entry = limited-use rows. lu:{n,max,reset,tag?,pool?,die?,f?,short6?} or an array of them. max: number, array by level (index = source level - 1), "pb", "pb2", "lvl", "half", "mod:WIS" (at least 1), or {f:"formula"} (see luMax); the level is the source level (class level for class and subclass, character level otherwise). reset: long, short, dawn, dusk, none, init */
+ __R.gfx().forEach((e) =>{if(!e.lu)return;(Array.isArray(e.lu)?e.lu:[e.lu]).forEach((q) =>{const lv=e.lv;let mx=q.max;if(typeof mx==="string"&&/^mod:@/.test(mx))mx="mod:"+((e.spCls&&/^@sub:/.test(e.spCls)?e.spCls.slice(5):"")||"CHA");const m=luMax(mx,lv,a,pb);if(!(m>0))return;let rs=q.reset==="dawn"||q.reset==="dusk"?"long":q.reset==="init"?"short":(q.reset||"long");if(q.short6&&lv>=6)rs="short";
+  const o={k:__R.resKey("x-",q.n||e.n,C.res),n:q.n||e.n,tag:q.tag||"",max:m,reset:rs,f:q.f||e.n};if(q.pool)o.pool=1;if(e.kind==="species"||e.kind==="feat")o.own=e.owner;if(q.reset==="init")o.tag=(o.tag?o.tag+", ":"")+"also regained when you roll Initiative";if(q.reset==="dusk"||q.reset==="dawn")o.tag=(o.tag?o.tag+", ":"")+"back at "+q.reset;if(q.die)o.tag=(o.tag?o.tag+", ":"")+q.die;C.res.push(o)})});
  __R.ensureInv().forEach((x) =>{const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);
   if(dym){C.res.push({k:__R.resKey("i-",x.n,C.res),n:x.n,tag:"Each use is back after "+dym[1]+" "+dym[2]+". Tick it back when the time has passed."+(ch[3]?" "+ch[3]+".":""),max:mx,reset:"none",f:x.n,item:1});return}/* v56: Figurine of Wondrous Power and other items with a wait in days */
   const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];
@@ -51,9 +54,10 @@ export function xdmgRows(a,pb){const out=[],TLv=__R.TL(),iv=invList(),SA=__R.slo
   out.push({n:r[2],sub:kind==="inv"?"Eldritch Invocation":kind==="sp"?B.species:own,dmg:dice,type:ty.split("|").join(" or "),note:r[6],save:r[7]||"",dc:r[7]?8+mod(a.sc[r[8]])+pb:null,lv:lv})});
  return out}
 /* RU35 no. 6: notes under Saving Throws (Advantage and bonuses from features, feats, species, items) */
-export function saveNotes(feats){const o=[],seen={},fn=feats.map((f) =>{return f.n}),iv=invList(),sp=spX(),tr=sp?sp.traits.map((t) =>{return t[0]}):[],cf=[];
- __R.clsParts().forEach((q) =>{__R.featsOf(q.cls,q.lv).forEach((x) =>{cf.push(x[1])});const s=q.sub||(q.cls===B.cls?B.sub:"");if(s&&CLASSES[q.cls].subs[s])CLASSES[q.cls].subs[s].forEach((x) =>{if(x[0]<=q.lv)cf.push(x[1])})});
- (typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]).forEach((s) =>{if(!s[2]||seen[s[1]+s[2]])return;const has=s[0]==="feat"?fn.indexOf(s[1])>=0:s[0]==="inv"?iv.indexOf(s[1])>=0:s[0]==="trait"?tr.indexOf(s[1])>=0:cf.indexOf(s[1])>=0;if(has){seen[s[1]+s[2]]=1;o.push({t:s[2],s:s[1]})}});
+export function saveNotes(feats){const o=[],seen={},fn=feats.map((f) =>{return f.n}),iv=invList(),sp=spX(),tr=sp?sp.traits.map((t) =>{return t[0]}):[],cf=[],cfo={};
+ __R.clsParts().forEach((q) =>{__R.featsOf(q.cls,q.lv).forEach((x) =>{cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(q.cls)});const s=q.sub||(q.cls===B.cls?B.sub:"");if(s&&CLASSES[q.cls].subs[s])CLASSES[q.cls].subs[s].forEach((x) =>{if(x[0]<=q.lv){cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(s,q.cls)}})});
+ /* fx engine v4: a SAVE_NOTES row may carry a 4th item, the owner (species name for a trait, class or subclass name for a class feature, feat name for a feat). With it the row counts only for that owner; without it the old match by name alone stays. Two sources with a feature of the same name (Kalashtar and Githzerai "Mental Discipline") no longer share a note */
+ (typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]).forEach((s) =>{if(!s[2]||seen[s[1]+s[2]+(s[3]||"")])return;let has=s[0]==="feat"?fn.indexOf(s[1])>=0:s[0]==="inv"?iv.indexOf(s[1])>=0:s[0]==="trait"?tr.indexOf(s[1])>=0:cf.indexOf(s[1])>=0;if(has&&s[3]){const w=s[3];has=s[0]==="trait"?B.species===w:s[0]==="feat"?fn.indexOf(w)>=0:s[0]==="inv"?true:(cfo[s[1]]||[]).indexOf(w)>=0}if(has){seen[s[1]+s[2]+(s[3]||"")]=1;o.push({t:s[2],s:s[1]})}});
  activeFx().forEach((q) =>{(q.fx.adv||[]).forEach((k) =>{if(/save|Concentration/i.test(k))o.push({t:"Advantage: "+k,s:q.n})})});
  return o}
 export function invList(){let iv=[];Object.keys(B.ch||{}).forEach((k) =>{if(/invocation$/.test(k))iv=iv.concat(B.ch[k]||[])});return iv}
@@ -68,7 +72,7 @@ function pactList(){const o=[],seen={};__R.ensureInv().forEach((x) =>{const w=WE
 /* v32: cls = the class that owns the choice (its skill list), sub = its subclass. p.key replaces the key "p"+level+kind, p.feature names the feature card */
 /* v35 p19: options already chosen at another level of the same kind (maneuver, metamagic) leave this list; this key's own picks stay */
 function pkOthers(key,re){const mine=B.ch[key]||[],o={};Object.keys(B.ch||{}).forEach((k) =>{if(k!==key&&re.test(k)&&Array.isArray(B.ch[k]))B.ch[k].forEach((n) =>{if(mine.indexOf(n)<0)o[n]=1})});return o}
-export function pk(p,src,cls,sub){const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
+export function pk(p,src,cls,sub,pre){if(p.when){/* generic: the pick shows only while another pick holds the value (when:{key,val}), e.g. Warden Stalwart Spirit */const wv=B.ch[(pre||"")+p.when.key],wa=Array.isArray(wv)?wv:(wv?[wv]:[]);if(wa.indexOf(p.when.val)<0)return null}const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
  if(p.k==="skill")return Object.assign(o,{t:"skills",n:p.n,from:p.from==="all"?ALLSK:p.from||(CLASSES[cls]||CL()).sk.from,title:p.title||"Extra class skill",ex:p.ex?1:0});
  if(p.k==="expertise")return Object.assign(o,{t:"exp",n:p.n,from:p.from,title:"Expertise",feature:p.feature||"Expertise"});
  if(p.yc)o.yc=1;if(p.ytx)o.ytx=1;const plv=__R.clsLv(cls||B.cls)||B.level;
@@ -90,7 +94,7 @@ export function pk(p,src,cls,sub){const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:
  if(p.k==="opt")return Object.assign(o,{t:"opt",list:p.list,title:p.title||p.list});
  if(p.k==="fs")return Object.assign(o,{t:"fs",title:"Additional Fighting Style"});
  if(p.k==="maneuver"){const mx=pkOthers(o.key,/maneuver$/);return Object.assign(o,{t:"multi",n:p.n,list:MANEUVERS.filter((x) =>{return !mx[x[0]]}),title:"Maneuvers",feature:"Combat Superiority"})}
- if(p.k==="metamagic"){const mm=pkOthers(o.key,/metamagic$/);return Object.assign(o,{t:"multi",n:p.n,list:METAMAGIC.filter((x) =>{return !mm[x[0]]}),title:"Metamagic",feature:"Metamagic"})} if(p.k==="invocation")return Object.assign(o,{t:"multi",n:p.n,list:INVOCATIONS,title:"Eldritch Invocations",minLvl:1});
+ if(p.k==="metamagic"){const mm=pkOthers(o.key,/metamagic$/);return Object.assign(o,{t:"multi",n:p.n,list:METAMAGIC.filter((x) =>{return !mm[x[0]]}),title:"Metamagic",feature:"Metamagic"})} if(p.k==="invocation"){const iv=pkOthers(o.key,/invocation$/);/* one invocation is not taken in two slots unless it says Repeatable */return Object.assign(o,{t:"multi",n:p.n,list:INVOCATIONS.filter((x) =>{return !iv[x[0]]||/Repeatable/i.test(x[1])}),title:"Eldritch Invocations",minLvl:1})}
  if(p.k==="pact")return Object.assign(o,{t:"multi",n:1,list:PACTB14,title:"Pact Boon",feature:"Pact Boon"});/* v90 */
  return o}
 /* v32 RL49: helpers of the new choices */
@@ -119,7 +123,7 @@ function invPicks(){const out=[],iv=invList(),wl=__R.clsLv("Warlock");if(!wl||ty
 export function agOn(n){const v=B.ch.invab;if(Array.isArray(v)&&v.length)return v.indexOf(n)>=0;return n==="Eldritch Blast"&&invList().indexOf("Agonizing Blast")>=0}
 /* the values of choices with yc (shown as "Your choice." under the feature on the sheet). mc: multiclass index or undefined */
 export function ycOf(CH,feature,mc){let o=[],tx=[];CH.forEach((c) =>{if(!c.yc||c.feature!==feature||c.mc!==mc)return;const v=B.ch[c.key];if(Array.isArray(v)){o=o.concat(v);if(c.ytx&&Array.isArray(c.list))v.forEach((n) =>{const r=c.list.filter((x) =>{return x[0]===n})[0];if(r&&r[1])tx.push("**"+n+".** "+r[1])})}else if(v&&typeof v==="string")o.push(v)});/* v81: ytx adds the text of each chosen option before the choice line */return o.length?(tx.length?" "+tx.join(" "):"")+" **Your choice.** "+o.join(", ")+".":""}
-export function isDone(c){const v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)return v==null||(Array.isArray(v)&&v.length<=c.n);/* v32: optional choice (War Bond) *//* v32: a default counts as chosen */
+export function isDone(c){const v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)return v==null||v===""||(Array.isArray(v)&&v.length<=c.n)||c.t==="text";/* v32: optional choice (War Bond) *//* v32: a default counts as chosen */
  if(c.t==="skills"||c.t==="exp"||c.t==="multi"||c.t==="wm"||c.t==="lang"||c.t==="tool"||c.t==="pe")return Array.isArray(v)&&v.length===c.n;
  if(c.t==="sub")return !!B.sub;
  if(c.t==="mcsub")return !!(B.mc[c.mc]&&B.mc[c.mc].sub);
