@@ -1,7 +1,0 @@
-/* === Painted interface pieces, :root.decor-art (src/fx/28-decor-art.js). Each piece keeps the app's own colours around it. === */
-/* sprite canvas */
-.dc-spr{position:absolute;z-index:var(--z-cover,2147483000);pointer-events:none}
-.dc-th .dc-spr,.dc-ld .dc-spr{position:static;display:block}
-/* loading line */
-.dc-load{display:flex;align-items:center;gap:10px}
-.dc-ld{width:40px;height:40px;flex:none}
