@@ -1,5 +1,5 @@
-/* === Painted interface pieces (owner 2026-11-06): a framed confirm dialog with a ribbon, a parchment
-   tooltip, a brush stroke under Home headings, and painted sprite effects (heal, damage, level up, saved, loading, resting).
+/* === Painted interface pieces (owner 2026-11-06, toast, framed dialog, parchment tooltip and brush
+   stroke removed 2026-11-07, the owner found them out of place in the modern app): painted sprite effects (heal, damage, level up, saved, loading, resting).
    Sprites are 4x4 sheets drawn on a canvas with a crossfade between frames and an eased scale and fade, so they move smoothly at the
    screen's frame rate instead of stepping. Off with Art off. Under prefers-reduced-motion the pieces stay, the motion is skipped. === */
 (function(){

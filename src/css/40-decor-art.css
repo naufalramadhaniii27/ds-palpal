@@ -2,27 +2,6 @@
 /* sprite canvas */
 .dc-spr{position:absolute;z-index:var(--z-cover,2147483000);pointer-events:none}
 .dc-th .dc-spr,.dc-ld .dc-spr{position:static;display:block}
-@keyframes dcStamp{0%{transform:scale(1.9) rotate(-28deg);opacity:0}70%{opacity:1}100%{transform:none;opacity:1}}
-/* confirm dialog: the painted frame drawn as a border image (corners stay crisp at any size), a ribbon carrying the action word on the top edge */
-:root.decor-art .ask .askb{position:relative;border-style:solid;border-color:transparent;border-width:34px 27px;border-image:url("img/ui/frame-dialog.avif") 76 60 / 34px 27px / 0 stretch;border-radius:0;background:var(--panel) padding-box;box-shadow:none;filter:drop-shadow(0 26px 40px rgba(0,0,0,.55));padding:24px 16px 12px;width:min(460px,100%);outline:0}
-:root.decor-art .ask .askb .ask-rib{position:absolute;left:50%;top:-58px;width:min(330px,96%);aspect-ratio:8/1;transform:translateX(-50%);background:url("img/ui/ribbon-dialog.avif") center/100% 100% no-repeat;display:grid;place-items:center;padding:2.2% 0 0;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
-:root.decor-art .ask .askb .ask-rib span{font:700 clamp(14px,4vw,17px)/1 var(--f-disp,"Cinzel",serif);letter-spacing:.08em;color:#fff1d2;text-shadow:0 1px 0 #5e140c,0 2px 6px rgba(0,0,0,.55);max-width:62%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ask .askb .ask-rib{display:none}
-:root.decor-art .ask .askb .ask-rib{display:grid}
-:root.decor-art .ask{animation:dcFade .35s ease-out both}
-:root.decor-art .ask .askb{animation:dcFrame .6s cubic-bezier(.2,1.2,.3,1) both}
-:root.decor-art .ask .askb .ask-rib{animation:dcRib .55s cubic-bezier(.2,1.3,.3,1) .12s both}
-:root.decor-art .ask .askb::after{content:"";position:absolute;right:-6px;bottom:-8px;width:74px;height:74px;background:url("img/ui/seal-wax.avif") center/contain no-repeat;opacity:0;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}
-:root.decor-art .ask.ask-seal .askb::after{animation:dcStamp .42s cubic-bezier(.3,1.6,.45,1) both}
-@keyframes dcFade{from{opacity:0;backdrop-filter:blur(0)}to{opacity:1}}
-@keyframes dcFrame{0%{transform:translateY(18px) scale(.9);opacity:0;filter:blur(6px) drop-shadow(0 26px 40px rgba(0,0,0,.55))}100%{transform:none;opacity:1;filter:blur(0) drop-shadow(0 26px 40px rgba(0,0,0,.55))}}
-@keyframes dcRib{0%{transform:translate(-50%,-26px) scaleX(.6);opacity:0}100%{transform:translateX(-50%);opacity:1}}
-/* tooltip: parchment */
-:root.decor-art .mi-tip{background:url("img/ui/parchment-tooltip.avif") center/100% 100% no-repeat;color:#3b2a14;border:0;box-shadow:none;padding:12px 24px 12px 18px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
-:root.decor-art .mi-tip::after{display:none}
-/* Home headings: a gold brush stroke under the title */
-:root.decor-art #homeV .hhead h1{background:url("img/ui/brush-underline.avif") left bottom/min(220px,70%) 14px no-repeat;padding-bottom:14px}
 /* loading line */
 .dc-load{display:flex;align-items:center;gap:10px}
 .dc-ld{width:40px;height:40px;flex:none}
-@media (prefers-reduced-motion:reduce){:root.decor-art .ask,:root.decor-art .ask .askb,:root.decor-art .ask .askb .ask-rib,:root.decor-art .ask.ask-seal .askb::after{animation:none}:root.decor-art .ask.ask-seal .askb::after{opacity:1}}
