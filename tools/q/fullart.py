@@ -8,7 +8,9 @@ their 2024 art. Run after qbuild.py / crimg.py:
 import json, os, sys, glob, re
 from PIL import Image
 IMG, SRC = sys.argv[1], sys.argv[2]
+LIST = sys.argv[3] if len(sys.argv) > 3 else None   # with a full file list (git ls-tree), only print the pictures needed
 full = set()
+if LIST: full = set(l.strip()[:-5] for l in open(LIST) if l.strip().endswith(".webp"))
 for dp, _, fs in os.walk(os.path.join(IMG, "bestiary")):
     for f in fs:
         if f.endswith(".webp") and "/tokens" not in dp: full.add(os.path.relpath(os.path.join(dp, f), IMG)[:-5])
@@ -16,6 +18,11 @@ F = {}
 for p in glob.glob(os.path.join(SRC, "data/bestiary/fluff-bestiary-*.json")):
     for x in json.load(open(p, encoding="utf-8")).get("monsterFluff", []): F[(x["name"], x["source"])] = x
 def imgs(x, d=0):
+    c = x.get("_copy") or {}
+    mi = ((c.get("_mod") or {}).get("images") or {})   # a copy may add its own picture (Adult Gold Dragon -> Gold Dragon.webp)
+    mi = mi if isinstance(mi, list) else [mi]
+    own = [i["href"]["path"][:-5] for m in mi for i in (m.get("items") or []) if isinstance(i, dict) and i.get("href", {}).get("type") == "internal" and "/tokens/" not in i["href"]["path"]]
+    if own: return own
     if x.get("images"): return [i["href"]["path"][:-5] for i in x["images"] if i.get("href", {}).get("type") == "internal" and "/tokens/" not in i["href"]["path"]]
     c = x.get("_copy")
     if c and d < 6:
@@ -23,11 +30,13 @@ def imgs(x, d=0):
         if y: return imgs(y, d + 1)
     return []
 def pick(name, src):
+    name = re.sub(r" \([A-Za-z0-9]+\)$", "", name)   # Library names of older copies carry the book: "Adult Gold Dragon (MM)"
     c = [p for p in imgs(F.get((name, src), {})) if p in full]
     if not c and "bestiary/%s/%s" % (src, name) in full: c = ["bestiary/%s/%s" % (src, name)]
     return c[0] if c else None
 used = set()
 def conv(rel):
+    if LIST: used.add(rel); return
     dst = os.path.join("data/img", rel + ".webp")
     if not os.path.exists(dst):
         os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -40,12 +49,22 @@ for r in rows:
     if "/tokens/" in im:
         f = pick(r["n"], im.split("/")[2])
         if f: conv(f); r["im"] = f; n1 += 1
-open(p, "w", encoding="utf-8").write(s[:i] + json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + s[j:])
+# same creature in another book: an older copy with only a token borrows the full picture of the newer one (Goblin (MM) -> XMM Goblin)
+base = lambda n: re.sub(r" \([A-Za-z0-9]+\)$", "", n).lower()
+art = {}
+for r in rows:
+    im = r.get("im") or ""
+    if im and "/tokens/" not in im and (base(r["n"]) not in art or "/XMM/" in im): art[base(r["n"])] = im
+for r in rows:
+    im = r.get("im") or ""
+    if "/tokens/" in im and base(r["n"]) in art: r["im"] = art[base(r["n"])]; n1 += 1
+LIST or open(p, "w", encoding="utf-8").write(s[:i] + json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + s[j:])
 # CRIMG
 p = "src/data/q12-crimg.js"; s = open(p, encoding="utf-8").read(); a = s.index("{"); b = s.rindex("}") + 1; cr = json.loads(s[a:b]); n2 = 0
 for k, v in cr.items():
     if "/tokens/" in v or v.startswith("bestiary/MM/"):
         f = pick(k, "XMM") or ("/tokens/" in v and pick(k, v.split("/")[2]))
         if f: conv(f); cr[k] = f; n2 += 1
-open(p, "w", encoding="utf-8").write(s[:a] + json.dumps(cr, ensure_ascii=False, separators=(",", ":")) + s[b:])
+LIST or open(p, "w", encoding="utf-8").write(s[:a] + json.dumps(cr, ensure_ascii=False, separators=(",", ":")) + s[b:])
+if LIST: print("\n".join("/" + u + ".webp" for u in sorted(used)))
 print(n1, "Library rows and", n2, "creature pictures now use full art,", len(used), "pictures")

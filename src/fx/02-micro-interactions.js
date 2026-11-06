@@ -144,7 +144,7 @@
     floatTxt(p.x,p.r.top,parts.join("  "),add?"#ffc93c":"#e5a04b"); if(add&&MI.full()) burst(p.x,p.y,{n:12,shape:"mi-coin",colors:["#ffc93c"],dist:70,dur:950,grav:true}); },true);
 
   /* level up fanfare */
-  function levelFx(lv){ if(!MI.full()) return; const x=innerWidth/2, y=innerHeight*.38; ring(x,y,"#ffc93c",220); if(window.__decorFx) window.__decorFx("levelup",x+scrollX,y+scrollY,Math.min(360,innerWidth*.8)); if(window.__miWow) window.__miWow.level(x,y);
+  function levelFx(lv){ if(!MI.full()) return; const x=innerWidth/2, y=innerHeight*.38; ring(x,y,"#ffc93c",220); if(window.__miWow) window.__miWow.level(x,y);
     burst(x,y,{n:26,colors:["#ffd166","#ffc93c","#fff3b0","#ffffff"],shape:"mi-star",dist:190,dur:1500,scale:1.4,grav:true});
     setTimeout(() =>{ burst(x,y,{n:18,colors:["#ffd166","#7cb6ff","#ffffff"],shape:"mi-spark",dist:150,dur:1100}); },250);
     const b=document.createElement("div"); b.className="mi-lv"; b.setAttribute("aria-hidden","true"); b.innerHTML=(window.__artVig?window.__artVig("moment",lv>=20?"level-20":"level-up",120):"")+"<b>Level "+lv+"</b><span>Level up!</span>"; document.body.appendChild(b);

@@ -232,3 +232,5 @@ Branch `nilai-98/art-0014`, dari main sesudah 0.0.13.
 | Perbaikan | Teks Potion of Healing 2014 tidak berubah sejak autolink membungkus "Bonus Action" dengan tautan glosarium (gagal juga di main). potEd sekarang mengizinkan tag di sekitar kata itu |
 
 Uji lokal (390x844 dan 1250x850): scenarios 24/0, art_install 100, detail_img 100, sub_art 0 gagal, version_label 9/0, overlap_scan 1 pasangan di 1250 (Action Surge, sama di main). Skenario dekorasi dicek lewat screenshot: dialog, segel, toast, heal, damage, loader. Tidak ada page error. CI GitHub tidak jalan: tagihan akun gagal.
+
+2026-11-07: art dekorasi dilepas semua atas permintaan owner (toast, dialog berbingkai, tooltip, sapuan kuas, sprite heal dan damage yang terasa lag). src/fx/28-decor-art.js dan src/css/40-decor-art.css tidak lagi ada di manifest. File dan img/ui masih ada, menunggu izin hapus. Swap monster 5etools dan Codex tetap.

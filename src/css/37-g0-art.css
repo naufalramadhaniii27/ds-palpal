@@ -22,6 +22,10 @@ html.g0-art:root[data-skin="ddb"] :is(.fgh,.sp-lv,.noteh,.info-h){background-ima
 /* level badge on the portrait */
 html.g0-art .mi-crest{clip-path:none;width:46px;height:56px;background:url("img/g0/badge-level.avif") center/contain no-repeat;padding-top:8px;box-sizing:border-box}
 html.g0-art .mi-crest::before{display:none}
+/* the number and the word read as part of the painted badge: condensed display face, a gold fill with a dark engraved edge, the small word kept inside the inner panel (owner 2026-11-07) */
+html.g0-art .mi-crest b,html.g0-art .mi-crest small{font-family:"Barlow Condensed","Roboto Condensed",var(--f-nar,system-ui);background:linear-gradient(180deg,#fff4cc 0%,#f2c766 55%,#b9822a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 #2a1704) drop-shadow(0 0 2px rgba(0,0,0,.55))}
+html.g0-art .mi-crest b{font-weight:700;font-size:19px;line-height:.9;letter-spacing:0}
+html.g0-art .mi-crest small{font-weight:700;font-size:6px;line-height:1;letter-spacing:.22em;margin:1px 0 0 .22em}
 /* app crest: header symbol on a laptop and the Home title */
 html.g0-art #bandSym{background:url("img/g0/crest-app.avif") center/contain no-repeat}
 html.g0-art #bandSym>*{display:none}
