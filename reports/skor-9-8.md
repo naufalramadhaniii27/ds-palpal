@@ -215,3 +215,20 @@ Branch `nilai-98/art-0013`, dari main 096382e4. Koreksi atas 0.0.12 yang belum m
 | Ukuran | Sekitar 231 MB gambar baru, semua dimuat lazy |
 
 Uji lokal (390x844 dan 1250x850): scenarios 24/0, art_install 100, detail_img 100, version_label 9/0, Job A, B, C semua lolos, perf budget ok. tg_ui gagal sekali karena timeout lalu lolos saat diulang. CI GitHub tidak jalan: tagihan akun gagal.
+
+## Rilis 0.0.14 (build 116): gambar makhluk penuh, ikon duotone, art dekorasi (2026-11-06)
+
+Branch `nilai-98/art-0014`, dari main sesudah 0.0.13.
+
+| Butir | Hasil |
+|---|---|
+| Gambar makhluk | Gambar penuh 5etools menggantikan token di 553 baris Library dan 174 kartu makhluk (318 gambar, tools/q/fullart.py, peta dari file fluff 5etools). 1389 baris tetap token karena 5etools tidak punya gambar penuhnya |
+| Opsi B monster | Gambar buku tampil dulu, thumbnail Codex di pojok menukar dengan crossfade. 170 gambar Codex (img/mon, img/hd/mon) |
+| Ikon garis | Duotone (src/css/39-duotone-icons.css), warna per jenis ikon |
+| Art dekorasi | Toast perkamen dengan segel lilin, dialog ask() dengan bingkai border-image dan pita berisi label tombol, segel menempel saat Yes, sprite heal, damage, level up, save, rest, loader d20 (canvas, crossfade antar frame). Tooltip perkamen, sapuan kuas di judul Home. Mati saat Art off, gerak dimatikan saat reduced motion |
+| Emblem | 18 subclass dan 5 species |
+| Ikon yang gagal dipetakan | 7 diperbaiki (mount-saddle, piwafwi, reliquary, eldritch-cannon, steel-defender, stable). Data facility Stable diminta di reports/requests.md |
+| Gate | !important CSS 811 sama dengan main. html_gate 250 (baseline 248) dan tsc 283 (baseline 279) memburuk di src/app/10-ui-conditions.js dan src/builder/11-logic-derivation.js. Kedua file identik dengan main (commit fx engine v6), bukan dari rilis ini |
+| Perbaikan | Teks Potion of Healing 2014 tidak berubah sejak autolink membungkus "Bonus Action" dengan tautan glosarium (gagal juga di main). potEd sekarang mengizinkan tag di sekitar kata itu |
+
+Uji lokal (390x844 dan 1250x850): scenarios 24/0, art_install 100, detail_img 100, sub_art 0 gagal, version_label 9/0, overlap_scan 1 pasangan di 1250 (Action Surge, sama di main). Skenario dekorasi dicek lewat screenshot: dialog, segel, toast, heal, damage, loader. Tidak ada page error. CI GitHub tidak jalan: tagihan akun gagal.

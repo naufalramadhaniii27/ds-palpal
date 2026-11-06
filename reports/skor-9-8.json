@@ -1,40 +1,40 @@
 {
- "commit": "56bf3bfc",
- "branch": "nilai-98/n43-fase0",
- "date": "2026-11-02 07:20",
- "mode": "full",
+ "commit": "54e5c29e",
+ "branch": "nilai-98/art-0014",
+ "date": "2026-11-06 22:20",
+ "mode": "quick",
  "sections": {
   "logic": {
    "name": "Logic aturan",
    "floor": 8,
-   "score": 8.0,
+   "score": 6.8,
    "measures": [
     {
      "id": "golden_rules",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 56.4s"
+     "note": "skipped"
     },
     {
      "id": "tg_engine",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 18.3s"
+     "note": "skipped"
     },
     {
      "id": "fuzz_rules",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
-     "note": "pass in 38.1s"
+     "note": "skipped"
     },
     {
      "id": "oracle_diff",
@@ -52,7 +52,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "edition_leaks",
@@ -61,7 +61,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "effects_uncovered",
@@ -86,25 +86,25 @@
   "data": {
    "name": "Data dan Library",
    "floor": 7,
-   "score": 7.0,
+   "score": 5.0,
    "measures": [
     {
      "id": "q_lib",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 8.1s"
+     "note": "skipped"
     },
     {
      "id": "q_img",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 11.3s"
+     "note": "skipped"
     },
     {
      "id": "search_hits_top5",
@@ -138,43 +138,43 @@
   "ui": {
    "name": "UI dan UX",
    "floor": 7,
-   "score": 7.0,
+   "score": 4.75,
    "measures": [
     {
      "id": "overflow_scan",
-     "value": 1,
-     "base": 0,
-     "target": 1,
-     "credit": 1.0,
-     "gate": true,
-     "note": "pass in 60.8s"
-    },
-    {
-     "id": "overlap_scan",
-     "value": 0,
+     "value": null,
      "base": 0,
      "target": 1,
      "credit": 0.0,
      "gate": true,
-     "note": "FAIL in 120.6s"
+     "note": "skipped"
+    },
+    {
+     "id": "overlap_scan",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": true,
+     "note": "skipped"
     },
     {
      "id": "tidy",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 35.0s"
+     "note": "skipped"
     },
     {
      "id": "blank_new",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
-     "note": "pass in 21.9s"
+     "note": "skipped"
     },
     {
      "id": "ux_tasks_over_limit",
@@ -183,7 +183,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "pattern_lint",
@@ -208,25 +208,25 @@
   "visual": {
    "name": "Visual dan art",
    "floor": 7,
-   "score": 7.0,
+   "score": 5.0,
    "measures": [
     {
      "id": "class_art",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
-     "note": "pass in 16.6s"
+     "note": "skipped"
     },
     {
      "id": "builder_art",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
-     "note": "pass in 17.4s"
+     "note": "skipped"
     },
     {
      "id": "icon_audit",
@@ -260,79 +260,79 @@
   "perf": {
    "name": "Kinerja",
    "floor": 6,
-   "score": 6.0,
+   "score": 6.4,
    "measures": [
     {
      "id": "fcp_x4",
-     "value": 2788,
+     "value": null,
      "base": 2788,
      "target": 1500,
      "credit": 0.0,
      "gate": false,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "ready_x4",
-     "value": 2949.0,
+     "value": null,
      "base": 2949,
      "target": 2500,
      "credit": 0.0,
      "gate": false,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "heap_home_raw_mb",
-     "value": 35.43,
+     "value": null,
      "base": 35.43,
      "target": 30,
      "credit": 0.0,
      "gate": true,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "heap_tools_mb",
-     "value": 65.62,
+     "value": null,
      "base": 65.62,
      "target": 60,
      "credit": 0.0,
      "gate": true,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "sheet_open_x4",
-     "value": 136,
+     "value": null,
      "base": 136,
      "target": 300,
      "credit": 0.0,
      "gate": false,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "inp_heal_x4",
-     "value": 184,
+     "value": null,
      "base": 184,
      "target": 100,
      "credit": 0.0,
      "gate": false,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "lib_find_ms",
-     "value": 174.6,
+     "value": null,
      "base": 174.6,
      "target": 50,
      "credit": 0.0,
      "gate": false,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "split_first_brotli",
-     "value": 916137,
+     "value": null,
      "base": 916137,
      "target": 1200000,
      "credit": 0.0,
      "gate": true,
-     "note": ""
+     "note": "no perf run"
     },
     {
      "id": "font_data_uri_kb",
@@ -345,10 +345,10 @@
     },
     {
      "id": "syncget",
-     "value": 2,
+     "value": 0,
      "base": 2,
      "target": 0,
-     "credit": 0.0,
+     "credit": 1.0,
      "gate": false,
      "note": ""
     }
@@ -357,25 +357,25 @@
   "reliability": {
    "name": "Keandalan",
    "floor": 7.5,
-   "score": 7.5,
+   "score": 6.67,
    "measures": [
     {
      "id": "storage_idb",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 63.9s"
+     "note": "skipped"
     },
     {
      "id": "self_heal",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 55.6s"
+     "note": "skipped"
     },
     {
      "id": "cloud_sync",
@@ -384,7 +384,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "FAIL in 0.6s"
+     "note": "skipped"
     },
     {
      "id": "chaos_violations",
@@ -393,7 +393,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "fail_modes_fail",
@@ -402,7 +402,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "migrate_all_fail",
@@ -411,7 +411,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "flaky_tests",
@@ -420,7 +420,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "opfs_recovery",
@@ -436,7 +436,7 @@
   "process": {
    "name": "Tes dan proses",
    "floor": 7,
-   "score": 7.0,
+   "score": 8.5,
    "measures": [
     {
      "id": "build_check_fail",
@@ -449,7 +449,7 @@
     },
     {
      "id": "ci_jobs",
-     "value": 5,
+     "value": 6,
      "base": 1,
      "target": 3,
      "credit": 1.0,
@@ -458,7 +458,7 @@
     },
     {
      "id": "ci_tests",
-     "value": 27,
+     "value": 33,
      "base": null,
      "target": 45,
      "credit": 0.0,
@@ -485,10 +485,10 @@
     },
     {
      "id": "score_history",
-     "value": 0,
+     "value": 1,
      "base": 0,
      "target": 1,
-     "credit": 0.0,
+     "credit": 1.0,
      "gate": false,
      "note": ""
     }
@@ -497,7 +497,7 @@
   "code": {
    "name": "Kerapian kode",
    "floor": 5,
-   "score": 5.0,
+   "score": 6.23,
    "measures": [
     {
      "id": "css_patch_files",
@@ -510,7 +510,7 @@
     },
     {
      "id": "important",
-     "value": 807,
+     "value": 811,
      "base": 807,
      "target": 99,
      "credit": 0.0,
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1099,
+     "value": 1174,
      "base": 1099,
      "target": 0,
      "credit": 0.0,
@@ -537,25 +537,25 @@
     },
     {
      "id": "var_decl",
-     "value": 6595,
+     "value": 186,
      "base": 6595,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.97,
      "gate": false,
      "note": ""
     },
     {
      "id": "json_clone",
-     "value": 50,
+     "value": 1,
      "base": 50,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.98,
      "gate": false,
      "note": ""
     },
     {
      "id": "then_calls",
-     "value": 152,
+     "value": 161,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -564,10 +564,10 @@
     },
     {
      "id": "exec_command",
-     "value": 4,
+     "value": 0,
      "base": 4,
      "target": 0,
-     "credit": 0.0,
+     "credit": 1.0,
      "gate": false,
      "note": ""
     },
@@ -582,7 +582,7 @@
     },
     {
      "id": "mutation_observer",
-     "value": 76,
+     "value": 83,
      "base": 76,
      "target": 0,
      "credit": 0.0,
@@ -596,7 +596,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "owners_missing",
@@ -612,32 +612,32 @@
   "security": {
    "name": "Keamanan",
    "floor": 8,
-   "score": 8.0,
+   "score": 7.22,
    "measures": [
     {
      "id": "csp_check",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 100.9s"
+     "note": "skipped"
     },
     {
      "id": "api_dev_guard",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": true,
-     "note": "pass in 0.1s"
+     "note": "skipped"
     },
     {
      "id": "innerhtml_outside_lib",
-     "value": 262,
+     "value": 249,
      "base": 262,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.05,
      "gate": true,
      "note": ""
     },
@@ -682,34 +682,34 @@
   "a11y": {
    "name": "Aksesibilitas",
    "floor": 7,
-   "score": 7.0,
+   "score": 5.8,
    "measures": [
     {
      "id": "axe_serious",
-     "value": 1,
-     "base": 0,
-     "target": 1,
-     "credit": 1.0,
-     "gate": false,
-     "note": "pass in 72.2s"
-    },
-    {
-     "id": "learn_a11y",
-     "value": 0,
+     "value": null,
      "base": 0,
      "target": 1,
      "credit": 0.0,
      "gate": false,
-     "note": "FAIL in 0.2s"
+     "note": "skipped"
+    },
+    {
+     "id": "learn_a11y",
+     "value": null,
+     "base": 0,
+     "target": 1,
+     "credit": 0.0,
+     "gate": false,
+     "note": "skipped"
     },
     {
      "id": "scene_contrast",
-     "value": 1,
+     "value": null,
      "base": 0,
      "target": 1,
-     "credit": 1.0,
+     "credit": 0.0,
      "gate": false,
-     "note": "pass in 40.1s"
+     "note": "skipped"
     },
     {
      "id": "a11y_tree_diff",
@@ -718,7 +718,7 @@
      "target": 0,
      "credit": 0.0,
      "gate": false,
-     "note": "tool missing"
+     "note": "skipped"
     },
     {
      "id": "keyboard_flow_fail",
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.95,
- "secs": 1406
+ "average": 6.24,
+ "secs": 41
 }

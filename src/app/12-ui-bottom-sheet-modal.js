@@ -59,7 +59,8 @@ export function openSheet(title, html, mode, wide){
 }
 /* Potion of Healing: drinking it or giving it to a creature within 5 feet is a Bonus Action in the 2024 rules, an Action in the 2014 rules. The shared item text is written for 2024, so a 2014 character gets the 2014 wording */
 export function potEd(h){ if(typeof __R.C==="undefined"||!__R.C||__R.C.rs!=="2014") return h;
-  return String(h).replace("Drink it or give it to someone within 5 feet (Bonus Action) to regain","Drink it or give it to someone (Action) to regain").replace("Drink it, or give it to a creature within 5 feet, as a Bonus Action.","Drinking it or giving it to another creature takes an Action."); }
+  const T="(?:<[^>]*>)*";/* the words may carry glossary links (autolink), so tags around them are allowed */
+  return String(h).replace(new RegExp("Drink it or give it to someone within 5 feet \\("+T+"Bonus Action"+T+"\\) to regain"),"Drink it or give it to someone (Action) to regain").replace(new RegExp("Drink it, or give it to a creature within 5 feet, as a "+T+"Bonus Action"+T+"\\."),"Drinking it or giving it to another creature takes an Action."); }
 function entryContent(en){
   if(en.type==="bd"){ const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"}; }/* v26 RU38 no. 2 */
   if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
