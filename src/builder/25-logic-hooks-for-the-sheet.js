@@ -11,7 +11,7 @@ import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
 import {STEPS,__set_openCards,__set_pickCls,__set_pickSp,__set_step,openCards,pickCls,pickSp,step} from "./17-ui-step-builder.js";
-import {SMAP,__set_clsTab,choiceStep,clsTab,ruleIssues,spInfoPart,spellCounts} from "./18-ui-spells.js";
+import {SMAP,__set_clsTab,choiceStep,clsTab,ruleIssues,spInfo,spInfoPart,spellCounts} from "./18-ui-spells.js";
 import {itemDetail,itemType} from "./20-ui-steps-equipment-next.js";
 import {ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt} from "./21-ui-rules-reference.js";
 import {copyOf,go,own,render,stamp} from "./22-ui-shell.js";
@@ -34,6 +34,7 @@ window.__bldDiff=function(P){if(!P||!own(P.name))return [];const N=toSheet(),los
 window.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
 function bldMine(){const st=window.__sheetState&&window.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}
+/* fx engine v6 test hook: the slot table the builder spell step shows (with slotAdd), for the build that is set with __bldTestSet */window.__bldSpellSlots=function(){const I=spInfo();return I&&I.SA&&I.SA.slots?{slots:I.SA.slots.slice(),add:(I.SA.slots.fxAdd||[]).map((x) =>{return [x[0],x[1],x[2]]})}:null};
 window.__bldSpInfo=function(){if(!bldMine())return null;const CP=casterParts();if(!CP.length)return null;const SLs=spLists();
  return {parts:CP.map((p) =>{const K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]},o={cls:p.cls,ct:K.ct,pr:K.pr,kn:K.kn||0,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()};if(p.cls==="Wizard"){o.book=bookOf();o.bookO=bookOwn().length;o.bookN=bookNeed()}return o}),/* v32: Wizard spellbook */auto:autoSpells().map((a) =>{return a.n})}};
 /* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */

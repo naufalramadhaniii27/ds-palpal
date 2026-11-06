@@ -293,6 +293,28 @@ case('v5 slotAdd high with max 3 (Wizard 5 has level 3)', species({'n': 'T', 'sl
 case('v5 slotAdd on a non caster does nothing', species({'n': 'T', 'slotAdd': [{'lvl': 1}]}), lambda C0, C1, D0, D1: ok(not C1.get('spellcasting'), json.dumps(C1.get('spellcasting'))))
 case('v5 exhLock sets the minimum Exhaustion', species({'n': 'T', 'exhLock': 3}), lambda C0, C1, D0, D1: ok(C1.get('exhMin') == 3 and D1.get('exh') == 3 and not C0.get('exhMin') and 'cannot be removed' in json.dumps(C1['defenses']), 'exhMin %s exh %s' % (C1.get('exhMin'), D1.get('exh'))))
 
+# ---- fx engine v6 (branch claude/w-eng3): luBump, cdAdd, offHand, sizeSet, dieStep (the other v6 fields have direct checks in main)
+def resrow(C, n):
+    return [r for r in C['res'] if r['n'] == n][0]
+
+
+CLR = {'cls': 'Cleric', 'sub': 'Life Domain', 'eqC': 'none', 'eqB': 'none'}
+case('v6 luBump adds a use to a named class resource', species({'n': 'T', 'luBump': [{'match': 'Second Wind', 'add': 2}]}), lambda C0, C1, D0, D1: ok(resrow(C1, 'Second Wind')['max'] == resrow(C0, 'Second Wind')['max'] + 2 and 'T' in resrow(C1, 'Second Wind')['tag'], json.dumps(resrow(C1, 'Second Wind'))))
+case('v6 luBump on a pool that does not exist does nothing', species({'n': 'T', 'luBump': [{'match': 'No Such Pool', 'add': 1}]}), lambda C0, C1, D0, D1: ok(json.dumps(C1['res']) == json.dumps(C0['res']), 'res changed'))
+case('v6 luBump off with the toggle off, on with it on', species(tg({'n': 'T', 'luBump': [{'match': 'Second Wind', 'add': 1}]})), lambda C0, C1, D0, D1: ok(resrow(C1, 'Second Wind')['max'] == resrow(C0, 'Second Wind')['max'] + 1, json.dumps(resrow(C1, 'Second Wind'))), {'__fxT': {'t1': True}})
+case('v6 cdAdd adds one use of Channel Divinity', species({'n': 'T', 'cdAdd': 1}), lambda C0, C1, D0, D1: ok(resrow(C1, 'Channel Divinity')['max'] == resrow(C0, 'Channel Divinity')['max'] + 1, json.dumps(resrow(C1, 'Channel Divinity'))), CLR)
+case('v6 cdAdd on a character without Channel Divinity does nothing', species({'n': 'T', 'cdAdd': 1}), lambda C0, C1, D0, D1: ok(json.dumps(C1['res']) == json.dumps(C0['res']), 'res changed'))
+LW = {'weps': ['Shortsword', 'Greatsword', 'Dagger', 'Longsword']}
+case('v6 offHand: an off-hand row for each Light melee weapon, none for others', species({'n': 'T', 'offHand': True}), lambda C0, C1, D0, D1: ok(row(C1, 'Shortsword (off-hand)')['sub'].endswith('Off-hand') and row(C1, 'Dagger (off-hand)')['die'] == '1d4' and not any(r['n'] in ('Greatsword (off-hand)', 'Longsword (off-hand)') for r in C1['attacks']) and len(C1['attacks']) == len(C0['attacks']) + 2, json.dumps([r['n'] for r in C1['attacks']])), LW)
+case('v6 offHand adds the ability modifier (no nomod flag)', species({'n': 'T', 'offHand': True}), lambda C0, C1, D0, D1: ok(not row(C1, 'Shortsword (off-hand)').get('nomod') and row(C1, 'Shortsword (off-hand)')['ab'] == row(C1, 'Shortsword')['ab'], json.dumps(row(C1, 'Shortsword (off-hand)'))), LW)
+case('v6 offHand twice does not double the rows', {'species': {'Human': [{'n': 'A', 'offHand': True}, {'n': 'B', 'offHand': True}]}}, lambda C0, C1, D0, D1: ok(len([r for r in C1['attacks'] if r['n'].endswith('(off-hand)')]) == 2, json.dumps([r['n'] for r in C1['attacks']])), LW)
+case('v6 sizeSet makes the size smaller', species({'n': 'T', 'sizeSet': 'Tiny'}), lambda C0, C1, D0, D1: ok(C0['size'] == 'Medium' and C1['size'] == 'Tiny', C1['size']))
+case('v6 sizeSet wins over a raising size of another entry', {'species': {'Human': [{'n': 'A', 'size': 'Large'}, {'n': 'B', 'sizeSet': 'Small'}]}}, lambda C0, C1, D0, D1: ok(C1['size'] == 'Small', C1['size']))
+case('v6 size still only raises without sizeSet', species({'n': 'T', 'size': 'Small'}), lambda C0, C1, D0, D1: ok(C1['size'] == 'Medium', C1['size']))
+case('v6 dieStep -1: d12/2d6 to d10, d8 to d6, d4 stays, Unarmed Strike untouched', species({'n': 'T', 'dieStep': [{'when': 'weapon', 'n': -1}]}), lambda C0, C1, D0, D1: ok(row(C1, 'Greatsword')['die'] == '1d10' and row(C1, 'Longsword')['die'] == '1d6' and row(C1, 'Dagger')['die'] == '1d4' and row(C1, 'Unarmed Strike')['die'] == row(C0, 'Unarmed Strike')['die'] and 'one step down' in row(C1, 'Greatsword')['dieSrc'], json.dumps([row(C1, 'Greatsword')['die'], row(C1, 'Longsword')['die'], row(C1, 'Dagger')['die']])), LW)
+case('v6 dieStep +1 raises one step, d12 stays', species({'n': 'T', 'dieStep': [{'when': 'weapon', 'n': 1}]}), lambda C0, C1, D0, D1: ok(row(C1, 'Longsword')['die'] == '1d10' and row(C1, 'Dagger')['die'] == '1d6' and row(C1, 'Greatsword')['die'] == '1d12', json.dumps([row(C1, 'Longsword')['die'], row(C1, 'Dagger')['die'], row(C1, 'Greatsword')['die']])), LW)
+case('v6 dieStep leaves dice like 3d12 alone', {'species': {'Human': [{'n': 'A', 'dieReplace': [{'when': 'Greatsword', 'd': '3d12'}]}, {'n': 'B', 'dieStep': [{'when': 'weapon', 'n': -1}]}]}}, lambda C0, C1, D0, D1: ok(row(C1, 'Greatsword')['die'] == '3d12', row(C1, 'Greatsword')['die']), LW)
+
 # ---- multiclass: entries of a second class (fixtures; the base build is Fighter 5, mc adds the second class)
 MC_W = {'cls': 'Fighter', 'level': 5, 'mc': [{'cls': 'Wizard', 'sub': '', 'lv': 3}]}
 MC_WI = dict(MC_W, base={'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 16, 'WIS': 10, 'CHA': 8}, arr={'STR': 15, 'DEX': 14, 'CON': 13, 'INT': 16, 'WIS': 10, 'CHA': 8})
@@ -563,6 +585,110 @@ def main():
         n += 3
         if 'Note A' not in tx or 'Note B' in tx or 'Note C' not in tx:
             fails.append('SAVE_NOTES owner: %s' % tx)
+        # ---- v6: spell filters on picks (rit, schools, names, lvMin/lvMax, cls string/list/@pick, spCls @pick), wmAdd, grantItem, builder slot table, Exhaustion release, tool check rows
+        def gxlist(gx, tw=None, key_re='gx-'):
+            pg.evaluate("g=>{window.GX=g}", gx)
+            bb = base_build()
+            if tw:
+                bb.update(tw)
+            chs = [c for c in pg.evaluate("b=>window.__bldChoiceList(b)", bb) if str(c['key']).startswith(key_re)]
+            return [x[0] if isinstance(x, list) else x for x in (chs[0].get('list') or [])] if chs else None
+        def sp1(pick, tw=None):
+            return gxlist({'species': {'Human': [{'n': 'S', 'pick': [dict({'k': 's', 't': 'spell', 'n': 1, 'title': 'Spell'}, **pick)]}]}}, tw)
+        L = sp1({'lvl': 1, 'rit': 1})
+        n += 1
+        if not L or 'Alarm' not in L or 'Detect Magic' not in L or 'Fireball' in L or 'Magic Missile' in L:
+            fails.append('v6 spell filter rit + lvl 1: %s' % (L or [])[:6])
+        L = sp1({'lvl': 1, 'rit': 1, 'cls': 'Wizard'})
+        L2 = sp1({'lvl': 1, 'rit': 1, 'cls': ['Cleric', 'Wizard']})
+        n += 1
+        if not L or not L2 or 'Alarm' not in L or 'Purify Food and Drink' in L or 'Purify Food and Drink' not in L2 or len(L2) <= len(L):
+            fails.append('v6 spell filter cls string vs list: %s %s' % (len(L or []), len(L2 or [])))
+        L = sp1({'t': 'cantrip', 'schools': ['Divination', 'Enchantment']})
+        n += 1
+        if not L or 'Guidance' not in L or 'Friends' not in L or 'Fire Bolt' in L:
+            fails.append('v6 spell filter schools: %s' % (L or [])[:8])
+        L = sp1({'t': 'cantrip', 'names': ['Fire Bolt', 'Ray of Frost', 'Eldritch Blast'], 'cls': 'Wizard'})
+        n += 1
+        if sorted(L or []) != ['Fire Bolt', 'Ray of Frost']:
+            fails.append('v6 spell filter names + cls: %s' % L)
+        L = sp1({'lvMin': 2, 'lvMax': 3, 'cls': 'Wizard', 'rit': 1})
+        n += 1
+        if not L or 'Gentle Repose' not in L or 'Alarm' in L or 'Leomund\'s Tiny Hut' not in L:
+            fails.append('v6 spell filter lvMin/lvMax: %s' % (L or [])[:8])
+        L = sp1({'lvMin': 1, 'lvMax': 'half', 'cls': 'Wizard'})
+        n += 1
+        if not L or 'Wall of Fire' in L or 'Fireball' not in L or 'Shield' not in L or 'Misty Step' not in L:
+            fails.append('v6 spell filter lvMax "half" at level 5 (up to level 3): %s' % (L or [])[:8])
+        # cls "@pick:cp": the class chosen in the entry's own pick; no choice yet = clsAll
+        GXP = {'feat': {'Alert': [{'n': 'R', 'spCls': '@pick:cp', 'pick': [{'k': 'cp', 't': 'multi', 'n': 1, 'title': 'Class', 'list': [['Cleric', ''], ['Wizard', '']]}, {'k': 'sp', 't': 'spell', 'n': 1, 'title': 'Ritual', 'lvl': 1, 'rit': 1, 'cls': '@pick:cp', 'clsAll': ['Cleric', 'Wizard']}]}]}}
+        for ch, want in (({}, 'both'), ({'gx-cp-feat-feat4': ['Wizard']}, 'wiz'), ({'gx-cp-feat-feat4': ['Cleric']}, 'cle')):
+            pg.evaluate("g=>{window.GX=g}", GXP)
+            bb = base_build(); bb['ch'] = dict({'feat4': {'feat': 'Alert'}}, **ch)
+            chs = [c for c in pg.evaluate("b=>window.__bldChoiceList(b)", bb) if c['key'] == 'gx-sp-feat-feat4']
+            LL = [x[0] if isinstance(x, list) else x for x in (chs[0]['list'] if chs else [])]
+            n += 1
+            ok1 = bool(LL) and (('Purify Food and Drink' in LL and 'Alarm' in LL) if want == 'both' else ('Alarm' in LL and 'Purify Food and Drink' not in LL) if want == 'wiz' else ('Purify Food and Drink' in LL and 'Alarm' not in LL))
+            if not ok1:
+                fails.append('v6 cls @pick:cp (%s): %s' % (want, LL[:8]))
+        # the picked spell is always prepared for the class named by spCls "@pick:cp"
+        pg.evaluate("g=>{window.GX=g}", GXP)
+        bb = base_build(); bb['ch'] = {'feat4': {'feat': 'Alert'}, 'gx-cp-feat-feat4': ['Wizard'], 'gx-sp-feat-feat4': ['Alarm']}
+        Cs = pg.evaluate("b=>window.__bldSheetFor(b)", bb)
+        n += 1
+        if not any(x['n'] == 'Alarm' for x in Cs.get('spells', [])):
+            fails.append('v6 picked ritual spell is not on the sheet: %s' % [x['n'] for x in Cs.get('spells', [])])
+        # wmAdd: one more Weapon Mastery weapon (the class slot), only while the entry counts
+        def wmn(gx, ch=None, tw=None):
+            pg.evaluate("g=>{window.GX=g}", gx)
+            bb = base_build(); bb.update(tw or {}); bb['ch'] = dict(ch or {})
+            return [c['n'] for c in pg.evaluate("b=>window.__bldChoiceList(b)", bb) if c['key'] == 'wm'][0]
+        w0 = wmn({})
+        w1 = wmn({'species': {'Human': [{'n': 'W', 'wmAdd': 2}]}})
+        w2 = wmn({'species': {'Human': [tg({'n': 'W', 'wmAdd': 1})]}})
+        n += 3
+        if w1 != w0 + 2:
+            fails.append('v6 wmAdd 2: %s -> %s' % (w0, w1))
+        if w2 != w0:
+            fails.append('v6 wmAdd with the toggle off changed the count: %s -> %s' % (w0, w2))
+        # grantItem: the item joins B.inv while the entry counts and leaves with it (toggle off); an item the player already owns stays
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [tg({'n': 'G', 'grantItem': [{'n': 'Handaxe', 'q': 2}]})]}})
+        bb = base_build()
+        res = pg.evaluate("""b=>{const k=structuredClone(b);const a=window.__bldSheetFor(k,{t1:true});const ia=a.inv.filter(x=>x.n==='Handaxe').map(x=>x.q);const a2=window.__bldSheetFor(k,{});const ib=a2.inv.filter(x=>x.n==='Handaxe').length;const a3=window.__bldSheetFor(k,{t1:true});const ic=a3.inv.filter(x=>x.n==='Handaxe').map(x=>x.q);return [ia,ib,ic]}""", bb)
+        n += 1
+        if res != [[2], 0, [2]]:
+            fails.append('v6 grantItem on/off/on: %s' % res)
+        bb = base_build(); bb['inv'] = [{'n': 'Handaxe', 'q': 1, 'eq': True}]
+        res = pg.evaluate("""b=>{const k=structuredClone(b);const a=window.__bldSheetFor(k,{t1:true});const ia=a.inv.filter(x=>x.n==='Handaxe').map(x=>x.q);const a2=window.__bldSheetFor(k,{});return [ia,a2.inv.filter(x=>x.n==='Handaxe').map(x=>x.q)]}""", bb)
+        n += 1
+        if res != [[1], [1]]:
+            fails.append('v6 grantItem keeps an item the player owns: %s' % res)
+        # builder spell step: slotAdd shows in the slot table (Wizard 17, level 9 slot + 1)
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'B', 'slotAdd': [{'lvl': 9, 'ifHave': 1}, {'lvl': 'high', 'max': 3}]}]}})
+        bb = base_build(); bb.update({'cls': 'Wizard', 'sub': 'Evoker', 'level': 17, 'eqC': 'none', 'eqB': 'none'})
+        res = pg.evaluate("b=>{window.__bldTestSet(b);const a=window.__bldSpellSlots();window.__bldTestSet(null);return a}", bb)
+        pg.evaluate("g=>{window.GX=g}", {})
+        bb2 = dict(bb)
+        res0 = pg.evaluate("b=>{window.__bldTestSet(b);const a=window.__bldSpellSlots();window.__bldTestSet(null);return a}", bb2)
+        n += 1
+        if not res or not res0 or res['slots'][8] != res0['slots'][8] + 1 or res['slots'][2] != res0['slots'][2] + 1 or len(res['add']) != 2:
+            fails.append('v6 builder slot table: %s vs %s' % (res, res0))
+        # Exhaustion lock: raised by the lock, released when the lock goes away (the levels the player had stay)
+        pg.evaluate("g=>{window.GX=g}", {})
+        bb = base_build()
+        res = pg.evaluate("""async b=>{const C0=window.__bldSheetFor(b);const C1=structuredClone(C0);C1.exhMin=3;
+          window.__sheetApply(C1,'t');await new Promise(r=>setTimeout(r,250));const s1=structuredClone([window.__sheetState().exh,window.__sheetState().exhLk]);
+          window.__sheetApply(C0,'t');await new Promise(r=>setTimeout(r,250));const s2=structuredClone([window.__sheetState().exh,window.__sheetState().exhLk]);return [s1,s2]}""", bb)
+        n += 1
+        if res != [[3, {'min': 3, 'add': 3}], [0, None]]:
+            fails.append('v6 exhLock release: %s' % res)
+        # tool check rows on the sheet: double the Proficiency Bonus for a tool with Expertise
+        pg.evaluate("g=>{window.GX=g}", {'species': {'Human': [{'n': 'A', 'tools': ["Thieves' Tools"]}, {'n': 'T', 'toolExpert': ["Thieves' Tools"]}]}})
+        res = pg.evaluate("""async b=>{const C=window.__bldSheetFor(b);window.__sheetApply(C,'t');await new Promise(r=>setTimeout(r,400));const el=document.getElementById('profs');return el?el.innerText:''}""", base_build())
+        n += 1
+        if 'TOOL CHECKS' not in res.upper() or '+6' not in res:
+            fails.append('v6 tool check rows: %s' % res[:200])
+        pg.evaluate("g=>{window.GX=g}", {})
         # ---- multiclass with the real data (a fresh page: the fixtures above replaced window.GX)
         pg2 = br.new_page(viewport={'width': 1250, 'height': 850})
         pg2.set_default_timeout(180000)
@@ -622,6 +748,14 @@ def main():
             n += 1
             if ('Attacks per Action: %d' % want) not in got:
                 fails.append('Attacks per Action %s: "%s" expected %d' % (nm, got, want))
+        # v6 wmAdd with the real data: Captain has 2 masteries, Star-Spangled Banner (Patriotism, level 3) gives a third
+        for sub, want in (('', 2), ('Star-Spangled Banner', 3)):
+            b = mcb('Captain', 5, None)
+            b['sub'] = sub
+            wmv = [c['n'] for c in pg2.evaluate("b=>window.__bldChoiceList(b)", b) if c['key'] == 'wm']
+            n += 1
+            if wmv != [want]:
+                fails.append('v6 wmAdd Captain %s: %s expected %s' % (sub or 'no subclass', wmv, want))
         br.close()
         if errs:
             fails.append('page errors: ' + '; '.join(errs[:3]))

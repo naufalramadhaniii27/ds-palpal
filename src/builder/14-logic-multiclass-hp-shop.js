@@ -78,6 +78,8 @@ export function slotsAll(){const parts=[{cls:B.cls,sub:B.sub,lv:B.level}].concat
  if(cast.length===1){const p=cast[0],c=CLASSES[p.cls];slots=c.caster==="full"?SLOTS_FULL[p.lv-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(p.lv/2)-1]:p.lv>=3?SLOTS_FULL[Math.ceil(p.lv/3)-1]:null}
  else if(cast.length>1){const s=cast.reduce((t,p) =>{return t+casterLv(p.cls,p.sub,p.lv)},0);slots=s>0?SLOTS_FULL[Math.min(20,s)-1]:null}
  return {slots:slots,pact:pact}}
+/* fx engine v6: slotAdd [{lvl,n,ifHave,max}] of the active entries applied to a slot array (the sheet does the same on C.spellcasting.slots). Returns a new array, the input is not changed. Used by the builder spell step */
+export function slotAddApply(slots){if(!slots)return slots;let sl=slots.slice(),add=[];__R.gfx().forEach((e) =>{if(e.cond)return;(Array.isArray(e.slotAdd)?e.slotAdd:e.slotAdd?[e.slotAdd]:[]).forEach((q) =>{let lv=q.lvl;if(lv==="high"){lv=0;sl.forEach((n,i) =>{if(n>0&&(!q.max||i+1<=q.max))lv=i+1})}if(!lv||lv>9)return;if(q.ifHave&&!(sl[lv-1]>0))return;while(sl.length<lv)sl.push(0);sl[lv-1]+=q.n||1;add.push([lv,q.n||1,e.lbl])})});sl.fxAdd=add;return sl}
 export function mcResMax(r,a,L){if(Array.isArray(r.max))return r.max[L-1];if(r.max&&r.max.f)return luMax(r.max,L,a,pbOf(TL()));if(r.max==="lvl")return L<2&&r.min2?0:L;if(r.max==="lvl5")return L*5;/* m6 */if(typeof r.max==="string"&&r.max.indexOf("mod:")===0)return Math.max(1,mod(a.sc[r.max.slice(4)]));return r.max}
 /* shop: gp prices */
 export function gpBase(){const bg=bgX(),t=clsKitText();return (B.eqC==="none"||un("eqC")||un("cls")?0:/^\d+ GP$/.test(t)?parseInt(t):kitGP(t))+(bg&&B.eqB!=="none"&&!un("eqB")?(B.eqB==="A"?bg.gp:50):0)}/* V14-5: nothing before it is chosen */
@@ -133,9 +135,11 @@ export function ensureInv(){normInv();if(!B.inv){B.inv=[];if(B.armor)B.inv.push(
 /* fx pick t:"item": the chosen items join B.inv (row tag px = pick key) when the pick is made and leave when the pick changes. B.px[key] lists the names already added, so an item the player deleted by hand does not come back. Names without item data stay record-only */
 let pxBusy=false;
 export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want={};__R.gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
+ /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq={};__R.gfx().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
  const px=B.px||(B.px={});Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});
- Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null)return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(window.GX&&window.GX.item&&window.GX.item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:1,eq:has||equippable(n),px:k})})});
+ Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(window.GX&&window.GX.item&&window.GX.item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
+Object.defineProperty(__R,"slotAddApply",{get:function(){return slotAddApply;},configurable:true});
 Object.defineProperty(__R,"syncPickItems",{get:function(){return syncPickItems;},configurable:true});
 function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq})[0];return a?a.n:""}
 function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq})[0];return s?s.n:""}

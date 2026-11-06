@@ -1,0 +1,68 @@
+{
+ "why": "Circle of the Feathers: Swift Glide +2 AC and Enchanted Wings +2 more at Druid 14 while Avian Shape is active. Base AC 12, with the state on 16.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Druid",
+  "sub": "Circle of the Feathers",
+  "level": 14,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "misc14": true,
+   "tvss": true,
+   "tghp": true,
+   "tshl": true,
+   "tsgs": true,
+   "tsdm": true,
+   "tsae": true,
+   "tsgeh": true,
+   "tssm": true,
+   "tsdd": true,
+   "tee24": true,
+   "tghg": true,
+   "toa": true,
+   "tftyp": true,
+   "tkdm": true,
+   "thhw": true,
+   "retromistika": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 16,
+   "CHA": 8
+  },
+  "hb": true,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "none",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {
+  "D:ac": 16
+ },
+ "expectC": [],
+ "fxT": {
+  "avian-shape": true
+ }
+}

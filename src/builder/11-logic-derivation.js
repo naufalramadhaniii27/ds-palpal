@@ -79,7 +79,7 @@ function gfx0(noItem){const out=[],G=(typeof window!=="undefined"&&window.GX)||{
  const sp=un("species")?null:SPECIES[B.species];if(sp)put((sp.gx||[]).concat((G.species&&G.species[B.species])||[]),"species",B.species,TLv,"",(n) =>{return n+" ("+B.species+")"});
  const bg=bgX();if(bg)put((bg.gx||[]).concat((G.bg&&G.bg[B.bg])||[]),"bg",B.bg,TLv,"",(n) =>{return n+" ("+B.bg+" background)"});
  allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";/* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */put(((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]).map((e) =>{return e&&e.spCls==="@asi"?Object.assign({},e,{spCls:"@sub:"+fab}):e&&e.spCls==="@abpick"?Object.assign({},e,{spCls:"@sub:"+fpa}):e}),"feat",f.n,TLv,"",(n) =>{return n+" ("+f.n+" feat)"},f.key||f.s)});
- if(!noItem)activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
+ if(!noItem)activeFx().forEach((q) =>{put((q.gx||[]).concat((G.item&&G.item[q.n])||[]).map((e) =>{return e&&e.spCls==="@abpick"?Object.assign({},e,{spCls:"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}):e}),"item",q.n,TLv,"",(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"})});
  return out}
 export function classFx(){return gfx()}
 /* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
