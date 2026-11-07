@@ -31,7 +31,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'src/app/*.js'))):
     t = code_of(open(f, encoding='utf-8').read())
     for m in re.finditer(r'\bwindow\.([A-Za-z_$][\w$]*)', t):
         if m.group(1) not in BROWSER: chk('static %s window.%s' % (b, m.group(1)), False, 'use env.%s' % m.group(1))
-    pre = 'PGE' if b.startswith('29-') else 'env'   # file 29 has local variables named env (the creature spell environment): it imports env as PGE
+    pre = 'PGE' if b.startswith('29') else 'env'   # file 29 has local variables named env (the creature spell environment): it imports env as PGE
     for m in re.finditer(r'(?<![\w.\-/$])' + pre + r'\.([A-Za-z_$][\w$]*)', t): used.add(m.group(1))
 chk('static: window access of the sheet only through env', True)
 chk('static: every env name used is declared in 00-env.js', not (used - bound), str(sorted(used - bound)[:10]))

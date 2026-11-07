@@ -600,3 +600,13 @@ Code: `09-logic-feats-and-choices.js` (`gxPicks()` spell filters, `choices()` wm
 | Tool check rows | The Proficiencies panel lists `Tool checks` for each tool in `C.toolExp`: double the Proficiency Bonus, plus the ability modifier the DM names | Finger Picks, Seafarer's Jacket |
 AC states need no new field: the toggle (v3b) with `acAdd` covers Agile Parry, Evasive Fighter, Anticipatory Strike, Blood-Drunk (`acAdd:"rage"`, `saveBonus:"rage"`) and Circle of the Feathers (Swift Glide and Enchanted Wings share the toggle `avian-shape`). The Feathers Fly Speed (5 x Wisdom modifier) is not set: `mv` takes a fixed number.
 Limits: the attack-roll cantrip filter of Spell Sniper (2014) is a name list (PHB cantrips), the data has no attack flag. Spells that are ritual-only (Ritual Caster 2014) are marked by a Defenses note, the sheet still treats them as always prepared. Rows still skipped: `reports/ledger-m2.md`.
+
+## SOLID stage 9 (sheet UI, boot, Training Ground, Learn)
+
+Analisis dan angka: `reports/solid-s9-analysis.md`. Ringkas:
+
+- Env: `app/00-env.js` (juga API browser), `boot/boot-env.js` (const `BootEnv` di skrip klasik pertama), `tg/00-env.js`, `learn/00-env.js`. Kode di area itu tidak memakai `window.` langsung. Sisa: pembungkus UMD `tg/20-engine.js` dan `tg/25-sim.js`.
+- File besar dipecah berurutan: 08 jadi 08, 08b, 08c. 15 jadi 15, 15b, 15c, 15d. 16 jadi 16, 16b (data catatan rilis), 16c. 29 jadi 29, 29b, 29c (tabel ikon). 32 jadi 32, 32b, 32c, 32d. 34 jadi 34, 34b, 34c. Impor file lain sudah diarahkan ke pemilik nama.
+- Registry baru di `app/06a-logic-ui-registry.js`: SEARCHGRP (grup hasil Search, `gsHTML`), OVERLAY (lapisan Back, `ovTop`, urutan daftar = urutan z), PANEL (halaman sheet, `PAGES` dan perintah "go to").
+- `__R`: 5 nama jadi impor. Sisa 275 nama, alasan di bagian 6 laporan.
+
