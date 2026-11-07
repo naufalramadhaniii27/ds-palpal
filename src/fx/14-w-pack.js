@@ -1,9 +1,9 @@
 /* === W pack: the wow pass. Class sigil, metal shield, sheet cascade, tab slide, campfire, crack, rune circle, equip flight, card flip, 3D tilt with glare. Motion is transform and opacity only, every layer removes itself === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const D=document, WIDE=matchMedia("(min-width: 760px)"), FINE=matchMedia("(hover: hover) and (pointer: fine)");
   function full(){ return MI.full(); }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
+  function nf(fn){ (FXENV.__miNF||setTimeout)(fn); }
   function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
   function vis(e){ return e&&e.getClientRects().length; }
   function fx(cls,html,ms){ const e=D.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(() =>{ rm(e); },ms||2300); return e; }
@@ -14,7 +14,7 @@
   D.body.appendChild(defs);
 
   /* W1 class sigil: a large, faint copy of the class icon behind the ID card */
-  function sigil(){ const card=D.querySelector("#app .idcard"); if(!card) return; let src=window.__miIcon?{outerHTML:window.__miIcon()}:card.querySelector(".ph-cls svg"), w=card.querySelector(":scope>.mi-sig");
+  function sigil(){ const card=D.querySelector("#app .idcard"); if(!card) return; let src=FXENV.__miIcon?{outerHTML:FXENV.__miIcon()}:card.querySelector(".ph-cls svg"), w=card.querySelector(":scope>.mi-sig");
     if(!src){ rm(w); return; } const k=src.outerHTML; if(w&&w.__k===k) return;
     if(!w){ w=D.createElement("i"); w.className="mi-sig"; w.setAttribute("aria-hidden","true"); card.appendChild(w); } w.__k=k; w.innerHTML=k; }
   let sq=0, sObs=new MutationObserver(() =>{ if(!sq){ sq=1; nf(() =>{ sq=0; sigil(); bindSig(); }); } }), sBound=null;
@@ -30,7 +30,7 @@
     c.animate([{transform:"perspective(1100px) rotateY(-100deg) scale(.92)",opacity:0},{transform:"perspective(1100px) rotateY(12deg) scale(1.02)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
     const s=c.querySelector(":scope>.mi-sig"); if(s) s.animate([{opacity:0,transform:"rotate(-24deg) scale(.6)"},{opacity:1,transform:"rotate(-12deg) scale(1)"}],{duration:1100,delay:350,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"}); }
   const hv=D.getElementById("homeV");
-  window.__miCascade=cascade;
+  FXENV.__miCascade=cascade;
   function boot(){ if(D.documentElement.classList.contains("mi-cx")) return; if(vis(D.querySelector("#app .idcard"))&&!vis(hv)) nf(() =>{ nf(cascade); }); }
   if(D.readyState==="complete") boot(); else addEventListener("load",boot,{once:true});
   if(hv){ let hw=hv.hidden; new MutationObserver(() =>{ const h=hv.hidden; if(h&&!hw) nf(() =>{ nf(cascade); }); hw=h; }).observe(hv,{attributes:true,attributeFilter:["hidden"]}); }
@@ -45,7 +45,7 @@
       el.animate([{transform:"translateX("+(dir*34)+"px)",opacity:.15},{transform:"none",opacity:1}],{duration:360,easing:"cubic-bezier(.2,.8,.2,1)"}); }); },true);
 
   /* M5 Short Rest: a campfire flares in the middle of the screen, under the embers */
-  const W=window.__miWow;
+  const W=FXENV.__miWow;
   if(W&&W.rest){ const r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); if(k!=="long"&&full()) fire(); }; }
   function fire(){ const f=fx("mi-fire",'<s></s><i></i><i></i><i></i><b></b><b></b>',2200);
     f.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.7)"},{opacity:1,transform:"translate(-50%,-50%) scale(1.45)",offset:.22},{opacity:1,transform:"translate(-50%,-50%) scale(1.5)",offset:.7},{opacity:0,transform:"translate(-50%,-62%) scale(1.35)"}],{duration:1700,easing:"ease-out"}).onfinish=function(){ rm(f); };
@@ -71,7 +71,7 @@
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest(".ichk[data-ieqs]"); if(!b||!full()) return; const key=b.getAttribute("data-ieqs"), row=b.closest(".irow"), ic=row&&row.querySelector(".iname svg"), r0=(ic||b).getBoundingClientRect();
     const armor=row&&/armor|shield/i.test(row.textContent), icon=ic?ic.outerHTML:"";
     nf(() =>{ nf(() =>{ const now=D.querySelector('.ichk[data-ieqs="'+CSS.escape(key)+'"]'); if(!now||!now.classList.contains("on")) return; let tg=null; if(armor) Array.prototype.some.call(D.querySelectorAll(".tile.ac,#vbar .vb"),(t) =>{ if(vis(t)&&(t.classList.contains("ac")||t.classList.contains("vb-ac"))){ const q=t.getBoundingClientRect(); if(q.top>=0&&q.bottom<=innerHeight&&q.left>=0&&q.right<=innerWidth){ tg=t; return true; } } });
-      if(window.__miBurst) window.__miBurst(r0.left+r0.width/2,r0.top+r0.height/2,{n:10,colors:["#ffd166","#ffffff","rgb("+(getComputedStyle(D.documentElement).getPropertyValue("--pl-rgb")||"214,69,59")+")"],dist:42,dur:600});
+      if(FXENV.__miBurst) FXENV.__miBurst(r0.left+r0.width/2,r0.top+r0.height/2,{n:10,colors:["#ffd166","#ffffff","rgb("+(getComputedStyle(D.documentElement).getPropertyValue("--pl-rgb")||"214,69,59")+")"],dist:42,dur:600});
       if(!tg||!icon) return; const q=tg.getBoundingClientRect(), g=fx("mi-eqf",icon,1500), dx=q.left+q.width/2-(r0.left+r0.width/2), dy=q.top+q.height/2-(r0.top+r0.height/2);
       g.style.left=(r0.left+r0.width/2)+"px"; g.style.top=(r0.top+r0.height/2)+"px";
       g.animate([{transform:"translate(-50%,-50%) scale(1)",opacity:1},{transform:"translate(calc(-50% + "+dx*.5+"px),calc(-50% + "+(dy*.5-60)+"px)) scale(1.6) rotate(-12deg)",opacity:1,offset:.45},{transform:"translate(calc(-50% + "+dx+"px),calc(-50% + "+dy+"px)) scale(.6)",opacity:.2}],{duration:720,easing:"cubic-bezier(.4,0,.2,1)"}).onfinish=function(){ rm(g);

@@ -2,7 +2,7 @@
  "files": {
   "app/13-ui-detail-cards.js": 418,
   "app/27b-ui-library.js": 307,
-  "builder/09-logic-feats-and-choices.js": 354,
+  "builder/09-logic-feats-and-choices.js": 353,
   "fx/02-micro-interactions.js": 361,
   "learn/45-data-learn.js": 491,
   "tg/30-ui-tg.js": 327
@@ -484,10 +484,6 @@
    10,
    26
   ],
-  "builder/09-logic-feats-and-choices.js::gxPicks": [
-   9,
-   73
-  ],
   "builder/09-logic-feats-and-choices.js::hbSpellPicks": [
    5,
    21
@@ -499,10 +495,6 @@
   "builder/09-logic-feats-and-choices.js::spFxTo": [
    9,
    35
-  ],
-  "builder/09-logic-feats-and-choices.js::spTraitText": [
-   15,
-   83
   ],
   "builder/09-logic-feats-and-choices.js::wxAb": [
    7,
@@ -562,7 +554,7 @@
   ],
   "builder/13-logic-sources-and-packs.js::autoSpells": [
    16,
-   48
+   47
   ],
   "builder/14-logic-multiclass-hp-shop.js::baseOf": [
    1,
@@ -825,8 +817,8 @@
    122
   ],
   "fx/16-z-pack-dice-sound-hover.js::(anon)": [
-   202,
-   361
+   196,
+   351
   ],
   "fx/16-z-pack-dice-sound-hover.js::bar": [
    8,
@@ -845,8 +837,8 @@
    54
   ],
   "fx/18-m-pack-rolls-concentration.js::(anon)": [
-   144,
-   235
+   138,
+   225
   ],
   "fx/19-g-pack-cinematic.js::(anon)": [
    103,
@@ -879,18 +871,6 @@
   "fx/25-dice3d.js::throwDice": [
    25,
    30
-  ],
-  "fx/27-blend-sheet.js::(anon)": [
-   67,
-   126
-  ],
-  "fx/27-blend-sheet.js::__blendSheet": [
-   17,
-   30
-  ],
-  "fx/27-blend-sheet.js::sceneOf": [
-   7,
-   28
   ],
   "learn/47-ui-learn.js::(anon)": [
    230,

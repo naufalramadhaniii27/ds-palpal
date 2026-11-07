@@ -1,3 +1,4 @@
+import {genv} from "./00-env.js";
 import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
@@ -18,7 +19,7 @@ Object.defineProperty(__R,"toSheetApply",{get:function(){return toSheetApply;},s
 Object.defineProperty(__R,"unList",{get:function(){return unList;},set:function(v){unList=v;},configurable:true});
 /* v22 RU52: Level Up from the sheet. Opens the build of this character and raises the main class one level. New choices show the usual marks */
 /* v22 P1: names and numbers of a build file. err stops the import, warn is shown before it */
-window.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
+genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
  if(!b.cls||!CLASSES[b.cls])err.push("unknown class \""+(b.cls||"")+"\"");
  if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv))err.push("level must be a whole number from 1 to 20");
  const tl=(lv||0)+(Array.isArray(b.mc)?b.mc.reduce((t,m) =>{return t+(+m.lv||0)},0):0);if(tl>20)err.push("total level "+tl+" is more than 20");
@@ -39,7 +40,7 @@ window.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
    (case, spaces, punctuation, a typo of one or two letters, a short form like "Berserker"), numbers written as text become numbers,
    scores stay 3 to 20, the background bonus goes only to the background's abilities (PHB 2024), and a homebrew source turns on
    when a name comes from it. What changes is listed in "notes" so the player sees it before the build opens. err stops the import */
-window.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
+genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  function nk(s){return String(s==null?"":s).toLowerCase().replace(/[‘’`]/g,"'").replace(/[^a-z0-9+]/g,"")}
  function lev(a,c,mx){if(Math.abs(a.length-c.length)>mx)return mx+1;let d=[],i,j;for(i=0;i<=a.length;i++){d[i]=[i]}for(j=0;j<=c.length;j++)d[0][j]=j;
   for(i=1;i<=a.length;i++)for(j=1;j<=c.length;j++){d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===c[j-1]?0:1));if(i>1&&j>1&&a[i-1]===c[j-2]&&a[i-2]===c[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[a.length][c.length]}
@@ -161,8 +162,8 @@ window.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  }finally{__set_B(keep);applyPacks()}
  return {err:err,notes:notes,b:b}};
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
-window.__bldAuto=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=structuredClone(B)}finally{__set_B(keep);applyPacks()}return out};
-window.__bldFeatViol=function(b){return __R.withB(b,featViol)};
+genv.__bldAuto=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=structuredClone(B)}finally{__set_B(keep);applyPacks()}return out};
+genv.__bldFeatViol=function(b){return __R.withB(b,featViol)};
 function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
  const all=function(){let s=[],o=spLists();for(const k in o)s=s.concat(o[k]);return s};
  cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b),n=function(K){return K?SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max}).length:0};return n(ka)-n(kb)}).forEach((P) =>{const K=spInfoPart(P);if(!K)return;/* the class with the shortest list picks first, so a shared spell does not leave it short */const L=SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max});
@@ -171,13 +172,13 @@ function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpe
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
  const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
-window.__bldSheetFor=function(nb,fxT){let keep=B,out=null;try{fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{fxtSet(null);__set_B(keep);applyPacks()}return out};
+genv.__bldSheetFor=function(nb,fxT){let keep=B,out=null;try{fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{fxtSet(null);__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
    scores, the tables stay the same, so the second set-up is skipped, and the open character's tables are set up once per slice of work (pause) and at the end,
    not after every try. Same results as __bldSheetFor one by one (tests/rb_fast.py compares every try) */
-window.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
+genv.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
  function tag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
  return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}let out=null;try{const b=structuredClone(nb),z=clone(BLANK);for(const k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
    const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});const key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);
@@ -187,13 +188,13 @@ window.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=
   pause:function(){if(last===null)return;__set_B(keep);const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});const key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);if(key!==last)applyPacks();last=null},
   end:function(){if(done)return;done=true;__set_B(keep);applyPacks()}}};
 /* v74 test hook: reads a sheet back without saving. Returns the species, lineage and sources the builder would hold */
-window.__bldRound=function(C){let keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map((x) =>{return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
-window.__bldLevelUp=function(){const st0=window.__sheetState&&window.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(window.__bldOpen)window.__bldOpen();return}/* v22 i3 */window.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
+genv.__bldRound=function(C){let keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map((x) =>{return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
+genv.__bldLevelUp=function(){const st0=genv.__sheetState&&genv.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(genv.__bldOpen)genv.__bldOpen();return}/* v22 i3 */genv.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
  if(!B.cls){toast("Choose a class first.");return}/* v22 i3 */
- const st=window.__sheetState&&window.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){__set_step("class");render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
+ const st=genv.__sheetState&&genv.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){__set_step("class");render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
  if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();__set_step("class");applyPacks();render();
  toast("Level "+TL()+": "+B.cls+" "+B.level+". New choices are marked. To level another class instead, change it in the Class step. Apply when you are done.")};
-window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&window.__sheetCamp){const sc1=window.__sheetCamp();if(sc1){B.camp=sc1;save()}}const ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";const st=window.__sheetState&&window.__sheetState();
+genv.__bldOpen=function(){if(genv.__bldBusyOff)genv.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&genv.__sheetCamp){const sc1=genv.__sheetCamp();if(sc1){B.camp=sc1;save()}}const ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";const st=genv.__sheetState&&genv.__sheetState();
  const load=function(more){const miss=fromSheet(st);stamp();save();__set_step("class");toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
  if(st&&st.C){const raw=savedRaw();
   /* no saved build yet (old manual sheet): nothing to lose, import as before */
@@ -208,7 +209,7 @@ window.__bldOpen=function(){if(window.__bldBusyOff)window.__bldBusyOff();documen
     ask("The sheet ("+(st.C.name||"Character")+", level "+(+st.C.level||1)+") does not match your saved build ("+B.name+", level "+TL()+ml+"). Load the build from the sheet? This replaces the saved choices, spells, and multiclass. A backup copy stays on this device. Cancel keeps the saved build.","Load from sheet",() =>{saveBak(raw);load()});return}
    if(B.cid!==sid()||copyOf(st.C.name)){stamp();save()}}}
  try{stepBack()}catch(e){}applyPacks();render()};
-function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(window.__bldDot)window.__bldDot()}/* v32 RU137 */
+function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(genv.__bldDot)genv.__bldDot()}/* v32 RU137 */
 /* RU30: what a new character still has to choose before Apply: "class, species, and background" */
 export function unList(){const m=[["cls","class"],["species","species"],["bg","background"]].filter((x) =>{return un(x[0])}).map((x) =>{return x[1]});return m.length>1?m.slice(0,-1).join(", ")+(m.length>2?",":"")+" and "+m[m.length-1]:m.join("")}
 /* RU30: sheet of a new character before its first Apply: name and level only, nothing from the unchosen defaults */
@@ -216,11 +217,11 @@ export function blankC(){const C=toSheet();["species","cls","sub","bg","size","c
  C.hitDie=0;C.hpPerLevel=[];C.hpBonus=[];C.initBonus=[];C.pasBon=[];C.saves={};C.skills=(C.skills||[]).map((s) =>{return {n:s.n,ab:s.ab}});C.lang=[];
  C.ac={base:10,baseSrc:"Unarmored",dex:"full",bonus:[]};C.speed=30;C.darkvision=0;C.profs={armor:"",weapons:"",tools:""};C.profSrc={armor:[],weapons:[],tools:[]};C.acts=[];
  C.attacks=[];C.inv=[];C.gp=0;C.res=[];C.actions=[];C.features=[];C.defenses=[];C.spells=[];delete C.spellcasting;delete C.dcAb;delete C.dcSrc;return C}
-function toSheetApply(review){const miss=unList();if(miss){toast("Choose your "+miss+" first");return}const C=toSheet(),cur=window.__sheetName?window.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
-const go=function(){if(window.__sheetApply)window.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&window.__coinsPending){const pc=B.coins;delete B.coins;save();window.__coinsPending(pc)}closeBld()};
+function toSheetApply(review){const miss=unList();if(miss){toast("Choose your "+miss+" first");return}const C=toSheet(),cur=genv.__sheetName?genv.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
+const go=function(){if(genv.__sheetApply)genv.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&genv.__coinsPending){const pc=B.coins;delete B.coins;save();genv.__coinsPending(pc)}closeBld()};
  if(review===true&&RI.length){ask("Apply this build to the sheet?"+imsg,"Apply",() =>{toSheetApply(false)});return}
  /* M3 / RU4: manual sheet entries that Apply drops (Logic manualLost). Cancel keeps the sheet. Nothing is carried over */
- const st=window.__sheetState?window.__sheetState():null,lost=manualLost(st&&st.C,C),lt=[];
+ const st=genv.__sheetState?genv.__sheetState():null,lost=manualLost(st&&st.C,C),lt=[];
  if(lost.attacks.length)lt.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)lt.push("Limited Use: "+lost.res.join(", "));
  const lmsg=lt.length?" The sheet also has entries the builder does not produce. Apply removes them: "+lt.join(". ")+". They are not carried over.":"";
  if(cur&&cur!==C.name)ask("Replace the current sheet ("+cur+") with "+C.name+"? Notes stay, but HP, used resources, and the build are replaced."+lmsg+imsg,"Replace sheet",go);

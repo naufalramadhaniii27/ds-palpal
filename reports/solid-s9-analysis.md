@@ -1,6 +1,6 @@
 # SOLID stage 9: sheet UI (src/app), boot, Training Ground, Learn
 
-Scope: `src/app`, `src/boot`, `src/tg`, `src/learn` on origin/main 5b0a3a01 (after stage 6). Not touched: `src/builder`, `src/fx`, `src/data`, `src/css`, `src/html`.
+Scope: `src/app`, `src/boot`, `src/tg`, `src/learn` on origin/main 416df4b9 (after stages 6 and 8). Not touched: `src/builder`, `src/fx`, `src/data`, `src/css`, `src/html`.
 Hard constraint: identical behavior. Old global names stay alive as aliases (the builder, fx packs, tests and the Training Ground still read `window.NAME`).
 
 ## 1. Measurement (before and after)
@@ -11,9 +11,9 @@ Hard constraint: identical behavior. Old global names stay alive as aliases (the
 | guard_window, `src/boot` | 54 | 0 (`boot/boot-env.js` is the env module, exempt) |
 | guard_window, `src/learn` | 24 | 0 |
 | guard_window, `src/tg` | 29 | 4 (see 3, UMD engine) |
-| guard_window, all of `src/` | 1446 | 1231 |
-| guard_size violations (files and functions over budget) | 252 | 247 |
-| guard_deps back-edges | 146 | 167 (structural, see 4) |
+| guard_window, all of `src/` | 911 | 696 |
+| guard_size violations (files and functions over budget) | 247 | 242 |
+| guard_deps back-edges | 137 | 158 (structural, see 4) |
 | guard_dispatch, guard_dup | 1, 1 | 1, 1 |
 | `__R` names / uses in `src/app` | 280 / 775 | 275 / 767 |
 | Files in `src/app` (without `main.js`) | 72 | 83 |
@@ -52,7 +52,7 @@ Method: `/tmp` tool (acorn plus eslint-scope), pieces are contiguous ranges of t
 
 Evaluation order was checked with a DFS simulation of the import graph (`main.js`): the only modules that move are the pure ones (15b, 15c, 15d, 25, 26, 33 and files that import them).
 
-guard_deps rises from 146 to 167 only because the same back-edges now name more files (same effect as in stage 3, 140 to 146). No new name edge was added. The baseline was updated for that reason, after the window and size totals went down. `tools/ts-baseline.json` and `tools/html-baseline.json` were updated too: the split files carried the old errors of their parent (tsc 250 before and after, html sites 250 before and after; the CI gate wants every new file listed).
+guard_deps rises from 137 to 158 only because the same back-edges now name more files (same effect as in stage 3, 140 to 146). No new name edge was added. The baseline was updated for that reason, after the window and size totals went down. `tools/ts-baseline.json` and `tools/html-baseline.json` were updated too: the split files carried the old errors of their parent (tsc 250 before and after, html sites 250 before and after; the CI gate wants every new file listed).
 
 ## 5. O and L: registries
 

@@ -1,25 +1,19 @@
 /* === M pack: what the map asked for. Conditions in rolls, Concentration prompt, school and damage-type effects, weapon streaks,
    rounds, 4d6 in the builder, coins, XP, equip and attune sounds, journal, roll sharing, dice looks, phone tilt, pattern labels, heartbeat === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const D=document, FINE=matchMedia("(hover: hover) and (pointer: fine)");
   function full(){ return MI.full(); }
   function calm(){ return MI.rm()||MI.mode==="off"; }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
-  function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
-  function vis(e){ return e&&e.getClientRects().length; }
-  function esc(t){ return String(t).replace(/[&<>"]/g,(c) =>{ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
-  function fx(cls,html,ms){ const e=D.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(() =>{ rm(e); },ms||2300); return e; }
-  function ls(k,v){ try{ if(v===undefined) return __store.getItem(k); __store.setItem(k,v); }catch(e){ return null; } }
-  function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
+  const {nf,rm,vis,esc,fx,ls,st}=FXH;
   function who(){ const s=st(); return (s&&s.C&&s.C.name)||"char"; }
-  function play(k){ if(window.__miSnd) window.__miSnd(k); }
-  const MIr=window.__miRoll=window.__miRoll||{};
+  function play(k){ if(FXENV.__miSnd) FXENV.__miSnd(k); }
+  const MIr=FXENV.__miRoll=FXENV.__miRoll||{};
 
   /* journal: what happened, kept per character, newest first */
   const J={ key:function(){ return "mi-jr-"+who(); }, all:function(){ try{ return JSON.parse(ls(this.key())||"[]")||[]; }catch(e){ return []; } },
     add:function(kind,txt){ const a=this.all(); a.unshift({t:Date.now(),k:kind,x:txt}); ls(this.key(),JSON.stringify(a.slice(0,400))); } };
-  window.__miJournal=J;
+  FXENV.__miJournal=J;
 
   /* conditions that change a d20 roll (2024 rules) */
   function conds(){ const o={}; Array.prototype.forEach.call(D.querySelectorAll('#conds .chip.cnd[data-info^="g:"]'),(c) =>{ o[c.getAttribute("data-info").slice(2)]=1; }); return o; }
@@ -91,7 +85,7 @@
   /* T11 G6 B2: the 24 dice land together on the 3D table (25-dice3d) when effects are on, then each ability takes its four */
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest(".mi-4d6"); if(!b) return; e.preventDefault(); e.stopPropagation(); if(b.__busy) return; b.__busy=1; let AB=["STR","DEX","CON","INT","WIS","CHA"], i=0, log=[], pool=null;
     const go=function(v){ pool=v&&v.length===24?v.slice():null; b.__busy=0; next(); };
-    if(window.__dice3d&&!calm()){ const L=[]; for(let z=0;z<24;z++) L.push(6); window.__dice3d.roll(L).then(go,() =>{ go(null); }); } else go(null);
+    if(FXENV.__dice3d&&!calm()){ const L=[]; for(let z=0;z<24;z++) L.push(6); FXENV.__dice3d.roll(L).then(go,() =>{ go(null); }); } else go(null);
     function next(){ if(i>=AB.length){ J.add("build","Rolled abilities: "+log.join(", ")); return; } const k=AB[i++], inp=D.querySelector('#bld input[data-b="base.'+k+'"]'); if(!inp){ next(); return; }
       const r=pool?pool.splice(0,4):[d6(),d6(),d6(),d6()], lo=Math.min.apply(null,r), tot=r.reduce((a,b) =>{ return a+b; },0)-lo, q=inp.getBoundingClientRect(); log.push(k+" "+tot); play("dice");
       if(!calm()){ const g=fx("mi-4d",r.map((v) =>{ return '<i class="'+(v===lo?"lo":"")+'">'+v+'</i>'; }).join(""),1500); g.style.left=(q.left+q.width/2)+"px"; g.style.top=(q.top-8)+"px";
@@ -117,7 +111,7 @@
     else { const amt=+((D.getElementById("hpAmt")||{}).value||0); if(amt>0) J.add(t.id==="healBtn"?"heal":"hurt",(t.id==="healBtn"?"Healed ":"Took ")+amt+(t.id==="healBtn"?" HP":" damage")); } },true);
   let cdE=D.getElementById("conds"), cSet=null; function cNow(){ return Object.keys(conds()).sort().join("|"); }
   if(cdE){ cSet=cNow(); new MutationObserver(() =>{ const n=cNow(); if(cSet!==null&&n!==cSet){ const a=n?n.split("|"):[], b=cSet?cSet.split("|"):[]; a.filter((x) =>{ return b.indexOf(x)<0; }).forEach((x) =>{ J.add("cond","Became "+x); play("cond"); }); b.filter((x) =>{ return a.indexOf(x)<0; }).forEach((x) =>{ J.add("cond","No longer "+x); }); } cSet=n; }).observe(cdE,{childList:true}); }
-  const W=window.__miWow; if(W){ if(W.rest){ const r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); J.add("rest",k==="long"?"Long Rest":"Short Rest"); }; } if(W.level){ const l0=W.level; W.level=function(){ l0.apply(this,arguments); J.add("level","Level up"); }; } }
+  const W=FXENV.__miWow; if(W){ if(W.rest){ const r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); J.add("rest",k==="long"?"Long Rest":"Short Rest"); }; } if(W.level){ const l0=W.level; W.level=function(){ l0.apply(this,arguments); J.add("level","Level up"); }; } }
 
   /* heartbeat when Hit Points fall to a quarter or less */
   function hpPct(){ const c=D.getElementById("hpCur"), m=D.getElementById("hpMax"); const a=c?parseInt((c.textContent||"").replace(/[^\d-]/g,""),10):NaN, b=m?parseInt((m.textContent||"").replace(/[^\d]/g,""),10):NaN; return a>=0&&b>0?a/b:null; }
@@ -125,7 +119,7 @@
 
   /* phone tilt: the cards lean a little with the phone. Off unless turned on in Settings */
   let tilt=null; function tiltOn(){ return (ls("mi-gyro")||"off")==="on"; }
-  function tiltSet(on){ if(on&&!tilt&&window.DeviceOrientationEvent&&!FINE.matches){ let bx=0,by=0,q=0; tilt=function(e){ if(e.beta==null) return; bx=Math.max(-1,Math.min(1,(e.gamma||0)/30)); by=Math.max(-1,Math.min(1,((e.beta||0)-40)/30)); if(!q){ q=1; requestAnimationFrame(() =>{ q=0; const a=D.getElementById("app"); if(a){ a.style.setProperty("--gx",(bx*4).toFixed(1)+"px"); a.style.setProperty("--gy",(by*4).toFixed(1)+"px"); } }); } };
+  function tiltSet(on){ if(on&&!tilt&&FXENV.DeviceOrientationEvent&&!FINE.matches){ let bx=0,by=0,q=0; tilt=function(e){ if(e.beta==null) return; bx=Math.max(-1,Math.min(1,(e.gamma||0)/30)); by=Math.max(-1,Math.min(1,((e.beta||0)-40)/30)); if(!q){ q=1; requestAnimationFrame(() =>{ q=0; const a=D.getElementById("app"); if(a){ a.style.setProperty("--gx",(bx*4).toFixed(1)+"px"); a.style.setProperty("--gy",(by*4).toFixed(1)+"px"); } }); } };
       const go=function(){ addEventListener("deviceorientation",tilt,{passive:true}); D.documentElement.classList.add("mi-gyro"); };
       if(typeof DeviceOrientationEvent.requestPermission==="function") DeviceOrientationEvent.requestPermission().then((r) =>{ if(r==="granted") go(); }).catch(() =>{}); else go(); }
     if(!on&&tilt){ removeEventListener("deviceorientation",tilt); tilt=null; D.documentElement.classList.remove("mi-gyro"); } }
@@ -139,7 +133,7 @@
     if(b.hasAttribute("data-midice")) ls("mi-dice-"+who(),b.getAttribute("data-midice")); if(b.hasAttribute("data-migyro")){ ls("mi-gyro",b.getAttribute("data-migyro")); tiltSet(b.getAttribute("data-migyro")==="on"); } if(b.hasAttribute("data-mipat")) ls("mi-pat",b.getAttribute("data-mipat"));
     const a=b.attributes[0]&&Array.prototype.filter.call(b.attributes,(x) =>{ return /^data-mi(dice|gyro|pat)$/.test(x.name); })[0]; if(a) Array.prototype.forEach.call(D.querySelectorAll("["+a.name+"]"),(x) =>{ const on=x===b; x.classList.toggle("on",on); x.setAttribute("aria-pressed",on); });
     applyPrefs(); play("click"); },true);
-  window.__miPrefH=function(){ const g=function(k,d){ return ls(k)||d; }, B=function(a,v,cur,l){ const on=cur===v; return '<button type="button" class="thb'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+l+'</button>'; }, dc=dice();
+  FXENV.__miPrefH=function(){ const g=function(k,d){ return ls(k)||d; }, B=function(a,v,cur,l){ const on=cur===v; return '<button type="button" class="thb'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+l+'</button>'; }, dc=dice();
     return '<div class="info-h">Dice</div><div class="thg">'+B("data-midice","class",dc,"Class colour")+B("data-midice","metal",dc,"Metal")+B("data-midice","crystal",dc,"Crystal")+B("data-midice","bone",dc,"Bone")+'</div><p class="info-d">For this character.</p>'+
       (FINE.matches?'':'<div class="info-h">Tilt with phone</div><div class="thg">'+B("data-migyro","on",g("mi-gyro","off"),"On")+B("data-migyro","off",g("mi-gyro","off"),"Off")+'</div><p class="info-d">The cards lean a little as you tilt the phone.</p>')+
       '<div class="info-h">Pattern labels</div><div class="thg">'+B("data-mipat","on",g("mi-pat","off"),"On")+B("data-mipat","off",g("mi-pat","off"),"Off")+'</div><p class="info-d">Short labels next to colours: spell schools and item rarity, so nothing depends on colour alone.</p>'; };

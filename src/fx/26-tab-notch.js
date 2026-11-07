@@ -24,12 +24,12 @@
     const k=cj.toFixed(1)+"|"+d.toFixed(3)+"|"+W; if(k===key) return 0; key=k; const p=shape(cj,d); fill.setAttribute("d",p[0]); line.setAttribute("d",p[1]); return 1; }
   function loop(){ run=1; const moved=draw(); still=moved?0:still+1; if(still<14) requestAnimationFrame(loop); else run=0; }
   function kick(){ still=0; if(!run) requestAnimationFrame(loop); }
-  window.addEventListener("resize",() =>{ W=0; kick(); });
+  FXENV.addEventListener("resize",() =>{ W=0; kick(); });
   if(pager) pager.addEventListener("scroll",kick,{passive:true});
   nav.addEventListener("click",kick);
   bar.addEventListener("scroll",kick,{passive:true});
-  if(window.MutationObserver) new MutationObserver(kick).observe(nav,{attributes:true,subtree:true,attributeFilter:["class"]});
+  if(FXENV.MutationObserver) new MutationObserver(kick).observe(nav,{attributes:true,subtree:true,attributeFilter:["class"]});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(() =>{ W=0; kick(); });
   setTimeout(() =>{ W=0; kick(); },400); kick();
-  window.__nbDraw=function(){ W=0; key=""; return draw(); };/* test hook */
+  FXENV.__nbDraw=function(){ W=0; key=""; return draw(); };/* test hook */
 })();

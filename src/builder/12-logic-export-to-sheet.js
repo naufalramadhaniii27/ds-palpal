@@ -5,8 +5,9 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {XFX,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,optAny,pactWeapon,saveNotes,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
-import {fxToggles,ATKC,__set_ATKC,fxCh,fxOk,fxVal,gfx,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
+import {fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 import {__R} from "./00-reg.js";
+import {MCL,TL,baseOf,effArmor,effShield,effWeps,hpCalc,packSkills,spOptFx,subGrant,syncPickItems} from "./01b-logic-late-ports.js";
 import {QRY,provideQueries} from "./01a-logic-query-registry.js";
 import {runSheet} from "./12a-logic-sheet-registry.js";
 import "./12c-logic-sheet-handlers-core.js";
@@ -34,16 +35,16 @@ provideQueries({byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,ge
  pactWeapon:pactWeapon,fxOk:fxOk,casterParts:casterParts,dmapRow:function(n){return DMAP[n]},sbWx:function(sub,cls){return typeof sbWx==="function"?sbWx(sub,cls):null}});
 /* the inputs of a build: read once, in the order the old code read them (abil() settles pbAdd before pb is taken) */
 function sheetInputs(){
- QRY.syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
- const c=CL(),L=B.level,TLv=QRY.TL(),a=abil(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
+ syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
+ const c=CL(),L=B.level,TLv=TL(),a=abil(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
  const spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  const subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
  const bg=bgDef(B.bg),feats=allFeats();
- const hpList=QRY.hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}});
- const G=gfx(),CH=choices(),SG=QRY.subGrant(B.sub),parts=clsParts();
- const EA=QRY.effArmor(),ESH=QRY.effShield(),EW0=QRY.effWeps(),BO=QRY.baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=QRY.MCL(),AFX=activeFx(),SFX=QRY.spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
+ const hpList=hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}});
+ const G=fxList(),CH=choices(),SG=subGrant(B.sub),parts=clsParts();
+ const EA=effArmor(),ESH=effShield(),EW0=effWeps(),BO=baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=MCL(),AFX=activeFx(),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
  const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
- return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:QRY.packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+ return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
 /* solid:orchestrator toSheet */
 export function toSheet(){
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */
