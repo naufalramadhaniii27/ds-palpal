@@ -8,6 +8,8 @@ import "./06-logic-derivation.js";
 import "./06a-logic-ui-registry.js";
 import "./07-ui-theme-contrast-spring.js";
 import "./08-ui-render-sheet-and-actions.js";
+import "./08b-ui-render-summaries-actions.js";
+import "./08c-ui-render-inventory-features-notes.js";
 import "./09-ui-hit-points-playbar-death-saves.js";
 import "./10-ui-conditions.js";
 import "./11-ui-breakdown.js";

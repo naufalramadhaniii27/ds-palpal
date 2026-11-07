@@ -2,7 +2,7 @@ import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
 import {C,FROZEN,S,recover,save} from "./04-logic-storage.js";
 import {$,$$,ask,atkOn,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,fill} from "./06-logic-derivation.js";
-import {actOne,actSplit,featAll,renderAbilities,renderActions,renderFeat,renderIdentity,renderInv,renderSkillsPage,renderTiles,spellsBy,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {actOne,actSplit,featAll,renderActions,spellsBy,syncLU} from "./08b-ui-render-summaries-actions.js";import {renderAbilities,renderIdentity,renderSkillsPage,renderTiles,used} from "./08-ui-render-sheet-and-actions.js";import {renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";

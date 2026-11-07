@@ -3,7 +3,7 @@ import {APP_VER,C,CKEY,DEF,FROZEN,KEY,S,SPEND,S_BASE,S_RAW,__set_C,__set_FROZEN,
 import {$,ask,clamp,num,toast} from "./05-logic-helpers.js";
 import {D,__set_D,derive} from "./06-logic-derivation.js";
 import {applyLook} from "./07-ui-theme-contrast-spring.js";
-import {__set_actF,actF,campName,renderActions,renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {__set_actF,actF,renderActions} from "./08b-ui-render-summaries-actions.js";import {campName} from "./08-ui-render-sheet-and-actions.js";import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {refreshEntry,sheet} from "./12-ui-bottom-sheet-modal.js";
 import {BKEY,RKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpKeyOk,homeCards,rLoad,rSnap,showHome,snGet,snTake,updUnsaved} from "./15-logic-roster-backup-files-snapshots.js";

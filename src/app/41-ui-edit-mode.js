@@ -2,7 +2,7 @@ import {ABN} from "./02-data-default-character.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,ask,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
-import {__set_renderAbilities,__set_renderActions,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderActions,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderAbilities,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";
 import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";

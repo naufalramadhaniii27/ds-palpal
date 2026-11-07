@@ -136,6 +136,8 @@
     "app/06a-logic-ui-registry.js",
     "app/07-ui-theme-contrast-spring.js",
     "app/08-ui-render-sheet-and-actions.js",
+    "app/08b-ui-render-summaries-actions.js",
+    "app/08c-ui-render-inventory-features-notes.js",
     "app/09-ui-hit-points-playbar-death-saves.js",
     "app/10-ui-conditions.js",
     "app/11-ui-breakdown.js",

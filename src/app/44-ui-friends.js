@@ -1,7 +1,7 @@
 import {C,DEF,FROZEN,S,__set_C,__set_FROZEN,__set_S,__set_cSaveT,__set_saveT,cSaveT,clone,saveT} from "./04-logic-storage.js";
 import {ask,esc,toast} from "./05-logic-helpers.js";
 import {applyLook} from "./07-ui-theme-contrast-spring.js";
-import {renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {renderAll} from "./35-ui-combo.js";
 import {SY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";import {env} from "./00-env.js";

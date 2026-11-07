@@ -4,7 +4,7 @@ import {C,S,__set_C,save} from "./04-logic-storage.js";
 import {$,clamp,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
-import {boxes,esArt,used} from "./08-ui-render-sheet-and-actions.js";
+import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {esArt} from "./08c-ui-render-inventory-features-notes.js";
 import {navStack,refreshEntry} from "./12-ui-bottom-sheet-modal.js";
 import {dcHead,dcStrip,linkify} from "./13-ui-detail-cards.js";
 import {spRowLv} from "./22-ui-spell-data-and-slots.js";

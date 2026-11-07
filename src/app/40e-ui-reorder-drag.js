@@ -3,7 +3,7 @@ import {env} from "./00-env.js";/* Responsibility: drag to reorder the inventory
 import {C,S,save} from "./04-logic-storage.js";
 import {$} from "./05-logic-helpers.js";
 import {REDUCE,SPR,spring} from "./07-ui-theme-contrast-spring.js";
-import {__set_renderFeat,__set_renderInv,featQ,invF,renderFeat,renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderFeat,__set_renderInv,featQ,invF,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {__set_refreshEntry,__set_showEntry,refreshEntry,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {mq} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";

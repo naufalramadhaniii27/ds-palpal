@@ -3,7 +3,7 @@ import {x14} from "./03-data-glossary.js";
 import {C,FROZEN,S,__set_C,__set_S,lsGet,lsSet,save,saveC} from "./04-logic-storage.js";
 import {$,__set_toastT,ask,bldGuard,bldSync,clamp,eqOn,esc,invAt,num,sg,toast,toastT,viaBld,hpWord} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
-import {featAll,renderActions,renderTiles,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {featAll,renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {renderTiles,used} from "./08-ui-render-sheet-and-actions.js";
 import {flash,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {refreshEntry,sheet,showEntry} from "./12-ui-bottom-sheet-modal.js";

@@ -3,7 +3,7 @@ import {C,S,saveNow} from "./04-logic-storage.js";
 import {$$,ask,esc,num,sg,toast,toastPic} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
-import {renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {rGet,rSave} from "./14-ui-editor.js";
 import {chFile,chName,chSave,zPack} from "./15-logic-roster-backup-files-snapshots.js";
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";

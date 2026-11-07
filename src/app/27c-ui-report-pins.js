@@ -5,7 +5,7 @@ import {ABK} from "./02-data-default-character.js";
 import {APP_DATE,APP_LABEL,APP_VER,C,DEF,S,__set_C,__set_S,clone,lsGet,save} from "./04-logic-storage.js";
 import {eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,richP} from "./06-logic-derivation.js";
-import {featAll} from "./08-ui-render-sheet-and-actions.js";
+import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {BKEY,rEnsure} from "./14-ui-editor.js";
 import {dlFile,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {coinsNow} from "./23c-ui-coins.js";import {ordL,scOf} from "./23e-ui-spells-dc.js";

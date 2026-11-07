@@ -4,7 +4,7 @@ import {x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {$,ask,atkOn,clamp,eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
-import {boxes,featAll,renderNotes,used} from "./08-ui-render-sheet-and-actions.js";
+import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {featAll} from "./08b-ui-render-summaries-actions.js";import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {activeConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,refreshEntry,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";

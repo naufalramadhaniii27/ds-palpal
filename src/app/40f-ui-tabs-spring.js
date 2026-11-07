@@ -3,7 +3,7 @@ import {env} from "./00-env.js";/* Responsibility: scroll per tab and the HP bar
 import {BAD,recover} from "./04-logic-storage.js";
 import {$} from "./05-logic-helpers.js";
 import {REDUCE,applyLook} from "./07-ui-theme-contrast-spring.js";
-import {renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {__set_setTab,activeTab,mq,setTab} from "./21-ui-tabs-pager.js";
 import {renderAll} from "./35-ui-combo.js";

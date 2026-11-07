@@ -4,7 +4,7 @@ import {APP_DATE,APP_LABEL,APP_VER,C,CKEY,FROZEN,KEY,S,SAVE_FAIL,SNKEY,S_RAW,__s
 import {ask,esc,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {PALS,dataUri,uiGet} from "./07-ui-theme-contrast-spring.js";
-import {esArt} from "./08-ui-render-sheet-and-actions.js";
+import {esArt} from "./08c-ui-render-inventory-features-notes.js";
 import {BKEY,RKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"SN_BAD",{get:function(){return SN_BAD;},set:function(v){SN_BAD=v;},configurable:true});

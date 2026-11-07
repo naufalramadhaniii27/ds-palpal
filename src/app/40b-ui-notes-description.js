@@ -3,7 +3,7 @@ import {env} from "./00-env.js";/* Responsibility: notes sections and the Descri
 import {NOTE_FIELDS} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
 import {$,esc,rich} from "./05-logic-helpers.js";
-import {__set_renderNotes,campName,renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderNotes,renderNotes} from "./08c-ui-render-inventory-features-notes.js";import {campName} from "./08-ui-render-sheet-and-actions.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {CHAR_FIELDS} from "./29-ui-ddb-look.js";
 import {__R} from "./00-reg.js";

@@ -3,7 +3,7 @@ import {GLOSS,exTxt} from "./03-data-glossary.js";
 import {C,CKEY,DEF,FROZEN,KEY,S,__set_C,__set_S,clone,clsLv,save} from "./04-logic-storage.js";
 import {$,$$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
-import {featAll} from "./08-ui-render-sheet-and-actions.js";
+import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {__set_navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {BKEY,RKEY,rEnsure,rSave} from "./14-ui-editor.js";

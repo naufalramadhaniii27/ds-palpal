@@ -1,7 +1,7 @@
 import {env} from "./00-env.js";import {C,S} from "./04-logic-storage.js";
 import {attMaxC,eqOn,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
-import {__set_renderActions,__set_renderFeat,__set_renderInv,renderActions,renderFeat,renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";import {__set_renderFeat,__set_renderInv,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {__set_renderExtras,renderExtras} from "./29-ui-ddb-look.js";

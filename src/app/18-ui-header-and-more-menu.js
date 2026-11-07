@@ -3,7 +3,7 @@ import {C,S,__set_C,clone,save,saveC} from "./04-logic-storage.js";
 import {$,$$,armorFx,ask,attCount,attMaxC,bldSync,clamp,eqLinked,eqOn,num,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {REDUCE,applyLook,applyTheme,hcOn,hcSet} from "./07-ui-theme-contrast-spring.js";
-import {renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";

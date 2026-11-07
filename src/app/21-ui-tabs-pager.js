@@ -2,7 +2,7 @@ import {C,S,save,saveC} from "./04-logic-storage.js";
 import {$,$$,armorFx,attCount,attMaxC,bldGuard,bldSync,clamp,eqLinked,eqOn,invAt,num,toast,viaBld} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
-import {__set_actF,__set_featF,__set_featQ,__set_invF,actF,featF,featQ,invF,renderActions,renderFeat,renderInv,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {__set_actF,actF,renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {__set_featF,__set_featQ,__set_invF,featF,featQ,invF,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,infoHTML} from "./13-ui-detail-cards.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
