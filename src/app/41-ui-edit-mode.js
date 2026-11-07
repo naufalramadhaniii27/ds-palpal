@@ -7,11 +7,11 @@ import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {openEditor} from "./14-ui-editor.js";
-import {__set_renderSpells,ico,renderSpells} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {cuK} from "./26-ui-customize.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_renderAll,renderAll} from "./35-ui-combo.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"CU0",{get:function(){return CU0;},set:function(v){CU0=v;},configurable:true});
 Object.defineProperty(__R,"EDM",{get:function(){return EDM;},set:function(v){EDM=v;},configurable:true});
 Object.defineProperty(__R,"cuqBackH",{get:function(){return cuqBackH;},set:function(v){cuqBackH=v;},configurable:true});
@@ -91,7 +91,7 @@ function edmPos(){ const bar=document.getElementById("edmBar"); if(!bar||bar.hid
   if(nb&&nb.offsetParent){ const r=nb.getBoundingClientRect(); if(r.height&&r.top<window.innerHeight) off=Math.max(12,Math.round(window.innerHeight-r.top+8)); }
   bar.style.bottom="calc("+off+"px + env(safe-area-inset-bottom,0px)*"+(off>12?0:1)+")"; document.body.style.setProperty("--edmh",(bar.offsetHeight+off+12)+"px"); }
 function edmSet(on,quiet){ EDM=!!on; document.body.classList.toggle("edm",EDM); const b=$("#editBtn"); if(b) b.setAttribute("aria-pressed",String(EDM));
-  if(window.__moreSet) window.__moreSet(false);
+  if(env.__moreSet) env.__moreSet(false);
   const bar=edmBar(); bar.hidden=!EDM; if(EDM){ cuMark(); edmPos(); } }
 window.addEventListener("resize",() =>{ if(EDM) edmPos(); });
 /* in Edit mode a tap on a number opens its editor instead of the breakdown */
@@ -114,7 +114,7 @@ function cuAfterApply(before){ const after=cuSnap(), ch=[]; Object.keys(after).f
   ask("Apply changed the calculated value behind "+(ch.length>1?ch.length+" numbers":"a number")+" you set:\n"+ch.map((k) =>{ return cuLbl(k)+": calculated "+fm(k,before[k])+" is now "+fm(k,after[k]); }).join("\n")+"\nCancel keeps your numbers.","Use New",() =>{
     undoMark("Use calculated values"); ch.forEach((k) =>{ if(k==="hp"){ delete S.hpOver; return; } const i=k.lastIndexOf("|"), ck=k.slice(0,i), f=k.slice(i+1), o=S.cust&&S.cust[ck]; if(!o) return; delete o[f]; if(f==="o") delete o.b; if(f==="ho") delete o.hb; if(f==="do") delete o.db; if(!Object.keys(o).length) delete S.cust[ck]; });
     if(S.cust&&!Object.keys(S.cust).length) delete S.cust; save(); renderAll(); toastU("Those numbers use the calculated values again."); }); }
-(function(f){ if(typeof f!=="function") return; window.__sheetApply=function(){ let before={}; try{ derive(); before=cuSnap(); }catch(er){} const r=f.apply(this,arguments); try{ cuAfterApply(before); }catch(er){} return r; }; })(window.__sheetApply);
-window.__edm=function(on){ if(on!=null) edmSet(!!on,true); return EDM; }; window.__cuNum=function(){ return cuNumList(); };
+(function(f){ if(typeof f!=="function") return; env.__sheetApply=function(){ let before={}; try{ derive(); before=cuSnap(); }catch(er){} const r=f.apply(this,arguments); try{ cuAfterApply(before); }catch(er){} return r; }; })(env.__sheetApply);
+env.__edm=function(on){ if(on!=null) edmSet(!!on,true); return EDM; }; env.__cuNum=function(){ return cuNumList(); };
 
 export function __set_CU0(v){ return CU0=v; }

@@ -1,18 +1,18 @@
 import {ABN} from "./02-data-default-character.js";
 import {x14} from "./03-data-glossary.js";
 import {C,FROZEN,S,__set_C,__set_S,lsGet,lsSet,save,saveC} from "./04-logic-storage.js";
-import {$,__set_toastT,ask,bldGuard,bldSync,clamp,eqOn,esc,invAt,num,sg,toast,toastT,viaBld} from "./05-logic-helpers.js";
+import {$,__set_toastT,ask,bldGuard,bldSync,clamp,eqOn,esc,invAt,num,sg,toast,toastT,viaBld,hpWord} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {featAll,renderActions,renderTiles,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
 import {flash,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {refreshEntry,sheet,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {BKEY} from "./14-ui-editor.js";
 import {spLvSel,spPactLv,spRowLv} from "./22-ui-spell-data-and-slots.js";
-import {CONS1,ico,invKey,occOf,renderSpells,restRefresh,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {CONS1,invKey,occOf} from "./23b-ui-items-containers.js";import {restRefresh} from "./23d-ui-rest.js";import {renderSpells,scOf} from "./23e-ui-spells-dc.js";
 import {toastKind} from "./30-ui-icons.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"UNDO",{get:function(){return UNDO;},set:function(v){UNDO=v;},configurable:true});
 Object.defineProperty(__R,"UST",{get:function(){return UST;},set:function(v){UST=v;},configurable:true});
 Object.defineProperty(__R,"ammoBonus",{get:function(){return ammoBonus;},set:function(v){ammoBonus=v;},configurable:true});
@@ -33,7 +33,6 @@ Object.defineProperty(__R,"hasFeat",{get:function(){return hasFeat;},set:functio
 Object.defineProperty(__R,"hdHeal",{get:function(){return hdHeal;},set:function(v){hdHeal=v;},configurable:true});
 Object.defineProperty(__R,"hpModH",{get:function(){return hpModH;},set:function(v){hpModH=v;},configurable:true});
 Object.defineProperty(__R,"hpSpellNote",{get:function(){return hpSpellNote;},set:function(v){hpSpellNote=v;},configurable:true});
-Object.defineProperty(__R,"hpWord",{get:function(){return hpWord;},set:function(v){hpWord=v;},configurable:true});
 Object.defineProperty(__R,"longExtraH",{get:function(){return longExtraH;},set:function(v){longExtraH=v;},configurable:true});
 Object.defineProperty(__R,"periOn",{get:function(){return periOn;},set:function(v){periOn=v;},configurable:true});
 Object.defineProperty(__R,"qtyAdj",{get:function(){return qtyAdj;},set:function(v){qtyAdj=v;},configurable:true});
@@ -77,8 +76,8 @@ function undoBack(cur,b0,a0){ const J1=function(x){ return JSON.stringify(x===un
 function undoApply(u,re){ undoFix(u); let note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
   __set_S(undoBack(S,JSON.parse(s0),JSON.parse(s1))); if(u.C!==u.CA) __set_C(undoBack(C,JSON.parse(re?u.CA:u.C),JSON.parse(re?u.C:u.CA)));
   const b0=re?u.BA:u.B, b1=re?u.B:u.BA;
-  if(b0!=null&&b0!==b1){ if(lsGet(BKEY)===b1){ lsSet(BKEY,b0); try{ if(window.__bldReload) window.__bldReload(); }catch(er){} } else note=" The build changed since then, so it was left as it is."; }
-  save(); if(u.C!==u.CA) saveC(); if(sheet.classList.contains("on")) closeSheet(); __R.renderAll(true); return note; }
+  if(b0!=null&&b0!==b1){ if(lsGet(BKEY)===b1){ lsSet(BKEY,b0); try{ if(env.__bldReload) env.__bldReload(); }catch(er){} } else note=" The build changed since then, so it was left as it is."; }
+  save(); if(u.C!==u.CA) saveC(); closeSheetIfOn(); __R.renderAll(true); return note; }
 function toastR(msg,btn){ const t=$("#toast"), tk=toastKind(msg); t.innerHTML=ico("toast-"+tk,"tico")+'<span>'+esc(msg)+'</span>'+(btn==="redo"?'<button type="button" class="tredo" data-redo="1">'+ico("ui-redo")+'Redo</button>':btn==="undo"?'<button type="button" class="tundo" data-undo="1">'+ico("ui-undo")+'Undo</button>':''); t.setAttribute("data-kind",tk); t.classList.add("on"); t.classList.toggle("act",!!btn); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },btn?6000:2400)); }
 export function undoNow(){ if(FROZEN) return; undoTidy(); const u=UST.pop(); if(!u){ toast("Nothing to undo."); return; } UNDO=UST[UST.length-1]||null; const note=undoApply(u,false); RST.push(u); toastR("Undone: "+u.l+"."+note,"redo"); }
 function redoNow(){ if(FROZEN) return; undoTidy(); const u=RST.pop(); if(!u){ toast("Nothing to redo."); return; } const note=undoApply(u,true); UST.push(u); UNDO=u; toastR("Redone: "+u.l+"."+note,"undo"); }
@@ -87,13 +86,12 @@ document.addEventListener("keydown",(e) =>{ if(!(e.ctrlKey||e.metaKey)||e.altKey
   const t=e.target, tg=(t&&t.tagName)||"", ty=String(t&&t.type||"").toLowerCase(); if(tg==="TEXTAREA"||tg==="SELECT"||(t&&t.isContentEditable)||(tg==="INPUT"&&/^(text|search|email|url|tel|password|)$/.test(ty))) return;
   if(document.querySelector(".ask, #recov, #homeV:not([hidden])")) return; const bl=$("#bld"); if(bl&&!bl.hidden) return;
   e.preventDefault(); if(k==="y"||e.shiftKey) redoNow(); else undoNow(); });
-window.__undoInfo=function(){ undoTidy(); return {u:UST.map((x) =>{ return x.l; }),r:RST.map((x) =>{ return x.l; })}; };
+env.__undoInfo=function(){ undoTidy(); return {u:UST.map((x) =>{ return x.l; }),r:RST.map((x) =>{ return x.l; })}; };
 
 /* class levels from C.clsLabel ("Fighter 3 / Wizard 2") */
 function clsLvls(){ let o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
 export function lvOf(c){ return clsLvls()[c]||0; }
 export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); }
-function hpWord(n){ return n===1?"Hit Point":"Hit Points"; }
 
 /* ---------- RU50 Concentration ---------- */
 export var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
@@ -207,8 +205,8 @@ function useH(it,ix){ const n=it.n, pm=/^Potion of Healing(?: \((Greater|Superio
   if(CONS1.test(n)) return '<div class="info-h">Use</div>'+(q>0?'<p class="info-d">'+q+' left. Use 1 takes one away, Undo puts it back.</p><div class="ipk"><button type="button" class="btn pri press" data-use1="'+ix+'" data-potn="'+esc(it.key||it.n)+'">'+ico("ui-check")+'Use 1</button></div>':'<p class="muted">None left. Raise the Qty below when you get more.</p>');/* v32 RU134 */
   const a=ammoInfo(it); return a?ammoH(a):""; }
 function qtyAdj(nm,ix,d,lbl,after){ const it=invAt(nm,ix); if(!it) return; const q=Math.max(0,num(it.q,1)+d);
-  const go=function(){ undoMark(lbl); if(viaBld(nm)&&window.__bldSetQty) window.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { const i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); __R.renderAll(); refreshEntry(); };
-  if(viaBld(nm)&&window.__bldSetQty) bldGuard(go); else go(); }
+  const go=function(){ undoMark(lbl); if(viaBld(nm)&&env.__bldSetQty) env.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { const i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); __R.renderAll(); refreshEntry(); };
+  if(viaBld(nm)&&env.__bldSetQty) bldGuard(go); else go(); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-potgo],[data-scroll]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const nm=b.getAttribute("data-potn");
   if(b.hasAttribute("data-scroll")){ const ix=+b.getAttribute("data-scroll"); qtyAdj(nm,ix,-1,"Use "+nm,() =>{ toastU("Used "+nm+"."); }); return; }
   const ix2=+b.getAttribute("data-potgo"), inp=$("#sheetBody [data-potv]"), v=Math.floor(num(inp&&inp.value,0)); if(v<1){ toast("Type the total you rolled."); if(inp) inp.focus(); return; }

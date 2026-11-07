@@ -5,7 +5,7 @@ import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {rGet} from "./14-ui-editor.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"rcptShow",{get:function(){return rcptShow;},set:function(v){rcptShow=v;},configurable:true});
 /* T11 G3 N3 Number receipts. The derivation already keeps where each number comes from (B, the breakdowns). Here every main number is
    kept as a receipt (label, total, parts). Two receipts compare into "what changed and why": after an app update (N3), before Apply
@@ -26,9 +26,9 @@ export function rcptDiff(a,b){ const out=[]; if(!a||!b) return out; Object.keys(
   return out; }
 export function rcptHTML(list,empty){ if(!list.length) return '<p class="rc-none">'+esc(empty||"No numbers change.")+'</p>';
   return '<ul class="rcpt">'+list.map((d) =>{ return '<li><div class="rc-h"><b>'+esc(d.l)+'</b><span>'+(d.from?esc(d.from):"")+(d.from&&d.to?' → ':'')+(d.to?'<strong>'+esc(d.to)+'</strong>':'')+'</span></div>'+(d.why.length?'<small>'+d.why.map(esc).join("<br>")+'</small>':'')+'</li>'; }).join("")+'</ul>'; }
-window.__rcptPreview=function(newC){ if(FROZEN||!newC) return ""; const a=rcptNow(), b=rcptFor(newC); return b?rcptHTML(rcptDiff(a,b),"Nothing changes on your sheet."):""; };
-window.__rcptDiffFor=function(c){ const b=rcptFor(c); return b?rcptDiff(rcptNow(),b):[]; };
-window.__rcptRestoreText=function(c){ const l=window.__rcptDiffFor(c); if(!l.length) return ""; return l.slice(0,6).map((d) =>{ return d.l+": "+(d.from||"-")+" → "+(d.to||"-"); }).join("\n")+(l.length>6?"\n…and "+(l.length-6)+" more":""); };
+env.__rcptPreview=function(newC){ if(FROZEN||!newC) return ""; const a=rcptNow(), b=rcptFor(newC); return b?rcptHTML(rcptDiff(a,b),"Nothing changes on your sheet."):""; };
+env.__rcptDiffFor=function(c){ const b=rcptFor(c); return b?rcptDiff(rcptNow(),b):[]; };
+env.__rcptRestoreText=function(c){ const l=env.__rcptDiffFor(c); if(!l.length) return ""; return l.slice(0,6).map((d) =>{ return d.l+": "+(d.from||"-")+" → "+(d.to||"-"); }).join("\n")+(l.length>6?"\n…and "+(l.length-6)+" more":""); };
 /* N3 after an update: the numbers of this character are compared with the ones kept by the last app version */
 let RCPT_LAST=null;
 function rcptCheck(){ if(FROZEN||!C) return; let id=(rGet()||{}).active||"", st={}; try{ st=JSON.parse(lsGet("cs-rcpt-v1")||"{}")||{}; }catch(e){ st={}; }
@@ -36,8 +36,8 @@ function rcptCheck(){ if(FROZEN||!C) return; let id=(rGet()||{}).active||"", st=
   Object.keys(st).forEach((k) =>{ if(!(rGet()||{chars:{}}).chars[k]) delete st[k]; });
   try{ __store.setItem("cs-rcpt-v1",JSON.stringify(st)); }catch(e){}
   if(!old||old.ver===APP_VER) return; const d=rcptDiff(old.r,now); if(!d.length) return; RCPT_LAST={ver:old.ver,list:d};
-  setTimeout(() =>{ const t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>After the update, '+d.length+' number'+(d.length>1?"s":"")+' changed.</span><button type="button" class="tundo" data-rcpt="1">See why</button>'; t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1500); }
+  setTimeout(() =>{ const t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>After the update, '+d.length+' number'+(d.length>1?"s":"")+' changed.</span><button type="button" class="tundo" data-rcpt="1">See why</button>'; t.classList.add("on","act"); if(env.__topLayer) env.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1500); }
 function rcptShow(){ const l=RCPT_LAST?RCPT_LAST.list:[]; __set_navStack([]); openSheet("What changed",'<p class="bk-f">Numbers of this character that changed with the last app update, and the reason for each.</p>'+rcptHTML(l,"Nothing changed with the last update."),"rcpt"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-rcpt]"); if(!b) return; $("#toast").classList.remove("on","act"); rcptShow(); });
-window.__rcptNow=rcptNow; window.__rcptShow=rcptShow; window.__rcptCheck=rcptCheck;
+env.__rcptNow=rcptNow; env.__rcptShow=rcptShow; env.__rcptCheck=rcptCheck;
 setTimeout(() =>{ try{ rcptCheck(); }catch(e){} },2500);

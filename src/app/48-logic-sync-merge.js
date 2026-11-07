@@ -5,7 +5,7 @@ import {closeSheet} from "./13-ui-detail-cards.js";
 import {BKEY,rGet,rSave} from "./14-ui-editor.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {syText} from "./43-logic-cloud-sync.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"mgNotice",{get:function(){return mgNotice;},set:function(v){mgNotice=v;},configurable:true});
 Object.defineProperty(__R,"mgSet",{get:function(){return mgSet;},set:function(v){mgSet=v;},configurable:true});
 Object.defineProperty(__R,"syBaseGet",{get:function(){return syBaseGet;},set:function(v){syBaseGet=v;},configurable:true});
@@ -74,9 +74,9 @@ function mgOpen(id){ const o=mgGet(id); if(!o){ if(typeof closeSheet==="function
 /* after a sync: one quiet notice per character that has parts to choose, the same toast shape as the update receipts */
 function mgNotice(){ const r=rGet(); if(!r||!r.chars) return; const ids=Object.keys(r.chars).filter((id) =>{ return mgGet(id); }); if(!ids.length) return;
   const id=ids.indexOf(r.active)>=0?r.active:ids[0], o=mgGet(id); if(o.shown) return; o.shown=1; mgSet(id,o);
-  setTimeout(() =>{ const t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>Combined changes from your other device. '+o.parts.length+(o.parts.length===1?' part was':' parts were')+' changed on both.</span><button type="button" class="tundo" data-mgo="'+esc(id)+'">Choose</button>'; t.classList.add("on","act"); if(window.__topLayer) window.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1200); }
+  setTimeout(() =>{ const t=$("#toast"); if(!t) return; t.innerHTML=ico("toast-ok","tico")+'<span>Combined changes from your other device. '+o.parts.length+(o.parts.length===1?' part was':' parts were')+' changed on both.</span><button type="button" class="tundo" data-mgo="'+esc(id)+'">Choose</button>'; t.classList.add("on","act"); if(env.__topLayer) env.__topLayer(t); clearTimeout(toastT); __set_toastT(setTimeout(() =>{ t.classList.remove("on","act"); },9000)); },1200); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-mgo],[data-mgu],[data-mgx]"); if(!b) return;
   if(b.hasAttribute("data-mgo")){ $("#toast").classList.remove("on","act"); mgOpen(b.getAttribute("data-mgo")); return; }
   if(b.hasAttribute("data-mgx")){ mgSet(b.getAttribute("data-mgx"),null); closeSheet(); return; }
   const id=b.getAttribute("data-mgid"); if(mgUse(id,+b.getAttribute("data-mgu"))) return; if(mgGet(id)) mgOpen(id); else { closeSheet(); toast("Done. Both devices will match after the next backup."); } });
-window.__syMerge={merge:syMerge,open:mgOpen,get:mgGet,base:syBaseGet};
+env.__syMerge={merge:syMerge,open:mgOpen,get:mgGet,base:syBaseGet};

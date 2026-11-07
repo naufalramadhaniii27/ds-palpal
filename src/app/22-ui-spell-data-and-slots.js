@@ -3,7 +3,7 @@ import {clamp,esc,sg} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";
 import {spEffect} from "./21-ui-tabs-pager.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"DT_ICON",{get:function(){return DT_ICON;},set:function(v){DT_ICON=v;},configurable:true});
 Object.defineProperty(__R,"dTxt",{get:function(){return dTxt;},set:function(v){dTxt=v;},configurable:true});
 Object.defineProperty(__R,"dtIcon",{get:function(){return dtIcon;},set:function(v){dtIcon=v;},configurable:true});
@@ -75,4 +75,4 @@ function spFxBlock(x,key){ const sc=__R.scOf(x), rg=spLvRange(x), lv=clamp(spLvS
 document.addEventListener("click",(e) =>{ const b=e.target.closest("[data-splv]"); if(!b) return; e.stopPropagation(); e.preventDefault();
   const n=b.getAttribute("data-spn"), base=+b.getAttribute("data-spb"), x=(C.spells||[]).filter((q) =>{return q.n===n})[0]; if(!x) return;
   const cur=spLvSel[n]!=null?spLvSel[n]:spRowLv(x); spLvSel[n]=clamp(cur+(+b.getAttribute("data-splv")),base,+b.getAttribute("data-spt")||9); refreshEntry(); },true);
-window.__spCalc=spCalc; window.__spRangeH=spRangeH; window.__spCompH=spCompH; window.__dtIcon=dtIcon; window.__dTxt=dTxt;
+env.__spCalc=spCalc; env.__spRangeH=spRangeH; env.__spCompH=spCompH; env.__dtIcon=dtIcon; env.__dTxt=dTxt;

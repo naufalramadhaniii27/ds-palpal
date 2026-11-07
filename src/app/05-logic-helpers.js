@@ -1,7 +1,7 @@
 import {ABK} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"ask",{get:function(){return ask;},set:function(v){ask=v;},configurable:true});
 Object.defineProperty(__R,"esc",{get:function(){return esc;},set:function(v){esc=v;},configurable:true});
 Object.defineProperty(__R,"num",{get:function(){return num;},set:function(v){num=v;},configurable:true});
@@ -18,14 +18,16 @@ export function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
 export function fmtW(n){return (Math.round(n*10)/10).toString()}
 export function mod(s){return Math.floor((s-10)/2)}
 export var toastT=null;
-export function toastPic(msg){ if(!window.__artVig) return ""; const m=String(msg||""), id=/^Download started|^Backup text copied/.test(m)?"backup-done":/not a character|can't be read|newer version of the app|code is not a character/.test(m)?"import-failed":/^New version ready/.test(m)?"update":""; return id?window.__artVig("state",id,28):""; }
-export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); const tk=typeof __R.toastKind==="function"?__R.toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof __R.ico==="function"?__R.ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(() =>{t.classList.remove("on")},2400); } window.__toast=toast;/* test hook */
+export function hpWord(n){ return n===1?"Hit Point":"Hit Points"; }
+Object.defineProperty(__R,"hpWord",{get:function(){return hpWord;},configurable:true});
+export function toastPic(msg){ if(!env.__artVig) return ""; const m=String(msg||""), id=/^Download started|^Backup text copied/.test(m)?"backup-done":/not a character|can't be read|newer version of the app|code is not a character/.test(m)?"import-failed":/^New version ready/.test(m)?"update":""; return id?env.__artVig("state",id,28):""; }
+export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); const tk=typeof __R.toastKind==="function"?__R.toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof __R.ico==="function"?__R.ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(() =>{t.classList.remove("on")},2400); } env.__toast=toast;/* test hook */
 /* ask(): dialog konfirmasi DOM versi sheet. Pengganti confirm(), yang diblokir di artifact. Tanda tangan sama dengan ask() di builder: ask(pesan, labelOk, cb). Cancel, klik di luar kotak, atau Escape menutup tanpa memanggil cb. */
 /* T11 A5: the top layer. Dialogs and the toast open as manual popovers, so they sit above every z-index (sheet panels, the dice tray,
    effects) without a z-index race. A manual popover never closes by itself, Escape and clicks stay with the caller. Browsers without
    popovers keep the old fixed position and z-index. The look stays the same: the popover defaults of the browser are reset in 02-hero.css */
 function topLayer(el){ try{ if(el&&el.showPopover&&el.isConnected){ if(!el.hasAttribute("popover")) el.setAttribute("popover","manual"); if(el.matches(":popover-open")) el.hidePopover(); el.showPopover(); } }catch(e){} return el; }
-window.__topLayer=topLayer;
+env.__topLayer=topLayer;
 export function ask(msg,ok,cb,alt){ const w=document.createElement("div"); w.className="ask"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");/* v18: alt = [label, callback] adds a third choice */
   w.innerHTML='<div class="askb"><p'+(/\n/.test(msg)?' class="askl"':'')+'>'+esc(msg)+'</p><div class="askr'+(alt?' ask3':'')+'"><button type="button" class="btn press" data-no="1">Cancel</button>'+(alt?'<button type="button" class="btn press" data-alt="1">'+esc(alt[0])+'</button>':'')+'<button type="button" class="btn pri press" data-yes="1">'+esc(ok)+'</button></div></div>';
   const prev=document.activeElement;
@@ -63,12 +65,12 @@ export function armorFx(fx,it){ const j=JSON.stringify; if(!fx||j(C.ac)!==j(fx.b
   const sk=(C.skills||[]).filter((k) =>{return k.n==="Stealth"})[0]; if(sk&&(sk.dis||"")===fx.b0.stealth){ if(fx.b1.stealth) sk.dis=fx.b1.stealth; else delete sk.dis; }
   (C.inv||[]).forEach((x) =>{ if(x!==it&&fx.off.indexOf(x.key||x.n)>=0) x.eq=false; });
   return true; }
-export function viaBld(nm){ const it=(C.inv||[]).filter((x) =>{return (x.key||x.n)===nm})[0]; return !!(it&&it.key&&window.__bldHas&&window.__bldHas(nm,C.name)); }
+export function viaBld(nm){ const it=(C.inv||[]).filter((x) =>{return (x.key||x.n)===nm})[0]; return !!(it&&it.key&&env.__bldHas&&env.__bldHas(nm,C.name)); }
 /* N2: hand-filled sheet path also updates the saved build of the same character (B.inv only), so a later Apply keeps the change */
-export function bldSync(nm,ch){ try{ if(window.__bldSync) window.__bldSync(nm,C.name,ch); }catch(e){} }
+export function bldSync(nm,ch){ try{ if(env.__bldSync) env.__bldSync(nm,C.name,ch); }catch(e){} }
 /* N1: a builder-made sheet that differs from the builder (Edit changes, or builder changes not applied yet) asks before an Inventory action rebuilds it.
    No difference (sheet just applied): no dialog. Cancel: nothing changes */
-export function bldGuard(go){ let d=[]; try{ if(window.__bldDiff) d=window.__bldDiff(C)||[]; }catch(e){ d=[]; } if(!d.length){ go(); return; }
+export function bldGuard(go){ let d=[]; try{ if(env.__bldDiff) d=env.__bldDiff(C)||[]; }catch(e){ d=[]; } if(!d.length){ go(); return; }
   ask("The sheet and the builder differ. "+d.join(". ")+". Changing this item rebuilds the sheet from the builder, so these sheet entries are replaced. Cancel keeps the sheet as it is.","Continue",go); }
 /* RU17-3: the item an Inventory button points at. data-iix (index in C.inv) wins when that item still has the name, else the first item with the name */
 export function invAt(nm,ix){ const L=C.inv||[], it=(ix!=null&&ix!==""&&L[+ix]&&(L[+ix].key||L[+ix].n)===nm)?L[+ix]:null; return it||L.filter((x) =>{return (x.key||x.n)===nm})[0]||null; }

@@ -2,8 +2,8 @@ import {C} from "./04-logic-storage.js";
 import {$,$$,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {buzz} from "./09-ui-hit-points-playbar-death-saves.js";
-import {takeRest} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {buildPrint} from "./36-ui-printable-sheet.js";
+import {takeRest} from "./23d-ui-rest.js";
+import {buildPrint} from "./36-ui-printable-sheet.js";import {env} from "./00-env.js";
 /* ================= PDF EXPORT ================= */
 /* T11 A3: the PDF libraries come from this site (vendor/pdf), not a CDN: jsPDF 4.2.1 (fixes the 2026 advisories of the 2.x line) and
    html2canvas-pro 2.5.2 (maintained fork, reads modern colors such as color-mix and oklch). The service worker keeps them after the first use */
@@ -19,12 +19,12 @@ function makePdfBlob(){
   buildPrint();
   const wrap=$("#psWrap");
   return (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() =>{
-    const pages=$$(".ps-page",wrap), pdf=new window.jspdf.jsPDF({unit:"pt",format:"a4",orientation:"portrait",compress:true});
+    const pages=$$(".ps-page",wrap), pdf=new env.jspdf.jsPDF({unit:"pt",format:"a4",orientation:"portrait",compress:true});
     const W=pdf.internal.pageSize.getWidth(), H=pdf.internal.pageSize.getHeight();
     let chain=Promise.resolve(), firstPage=true;
     pages.forEach((pg) =>{
       chain=chain.then(() =>{
-        const h2c=(window.html2canvas&&window.html2canvas.default)||window.html2canvas;/* html2canvas-pro sets a module object */
+        const h2c=(env.html2canvas&&env.html2canvas.default)||env.html2canvas;/* html2canvas-pro sets a module object */
         return h2c(pg,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:1200,
           onclone:function(doc){ const w=doc.getElementById("psWrap"); if(w){ w.style.cssText="position:static;width:auto;height:auto;overflow:visible"; } doc.documentElement.removeAttribute("data-skin"); doc.documentElement.style.background="#fff"; doc.body.style.cssText="background:#fff;background-image:none"; }/* v38 p12: white paper in the PDF */
         }).then((cv) =>{

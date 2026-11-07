@@ -2,7 +2,7 @@ import {ABN} from "./02-data-default-character.js";
 import {FROZEN} from "./04-logic-storage.js";
 import {esc,sg} from "./05-logic-helpers.js";
 import {B,D} from "./06-logic-derivation.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"nmHTML",{get:function(){return nmHTML;},set:function(v){nmHTML=v;},configurable:true});
 /* T11 N19 number map: which numbers feed a number, and which other numbers move with it. Made from the breakdowns (B) the sheet
    already keeps for every number, so it can never disagree with the sheet. An ability modifier or the Proficiency Bonus is a hub:
@@ -24,4 +24,4 @@ function nmHTML(key){ if(!B[key]||FROZEN) return ""; const hub=/^ab-|^pb$/.test(
   if(hub){ const us=nmUsers(key); if(!us.length) return ""; return '<details class="nm" open><summary>Number map</summary><p class="bk-f">'+esc(nmName(key))+' goes into '+us.length+' number'+(us.length===1?'':'s')+'. Change it and all of them move.</p>'+nmSVG(key,us)+'<div class="nm-l">'+us.map(nmChip).join("")+'</div></details>'; }
   const ins=nmInputs(key); if(!ins.length) return "";
   return '<details class="nm"><summary>Number map</summary><p class="bk-f">Built from:</p><div class="nm-l">'+ins.map(nmChip).join("")+'</div>'+ins.map((s) =>{ const o=nmUsers(s).filter((k) =>{ return k!==key; }); return o.length?'<p class="bk-f">'+esc(nmName(s))+' also moves:</p><div class="nm-l">'+o.slice(0,10).map(nmChip).join("")+(o.length>10?'<span class="nm-more">and '+(o.length-10)+' more</span>':'')+'</div>':''; }).join("")+'</details>'; }
-window.__numberMap=function(k){ return {inputs:nmInputs(k),users:nmUsers(k)}; };
+env.__numberMap=function(k){ return {inputs:nmInputs(k),users:nmUsers(k)}; };

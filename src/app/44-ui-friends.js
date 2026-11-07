@@ -4,7 +4,7 @@ import {applyLook} from "./07-ui-theme-contrast-spring.js";
 import {renderNotes} from "./08-ui-render-sheet-and-actions.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {renderAll} from "./35-ui-combo.js";
-import {SY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";
+import {SY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";import {env} from "./00-env.js";
 /* T8 stage 3b: Friends. Profile with name, @username and friend code, mutual follow, block, view-only sharing per character,
    copy requests, a simple feed of friends' characters, and an Admin tab for the owner of the app. Only when cloud backup is on.
    No popups for social events: a small dot on the Friends button marks new followers, requests and shares. */
@@ -150,7 +150,7 @@ function frButton(){ const on=SY.on&&SY.st!=="off", hb=document.querySelector("#
   const party=hb.querySelector("[data-hparty]"); if(party) party.insertAdjacentElement("afterend",b); else hb.appendChild(b); frDots(); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-friends]"); if(!b) return; e.preventDefault(); frOpen(); });
 (function(){ const _icon=syIcon; __set_syIcon(() =>{ _icon(); try{ frButton(); }catch(x){} }); })();
-window.__friends=FR; window.__frOpen=frOpen;
+env.__friends=FR; env.__frOpen=frOpen;
 /* T11 Learn U12: the Learn funnel for the admin. Totals only, never a list of people (U30) */
 function frLearn(a){ const L=a.learn; if(!L||!L.started) return '<p class="sy-note">Learn: nobody with synced settings has started yet.</p>';
   const nm={apptour:"App Tour",tavern:"Tavern",rooftops:"Rooftops",forest:"Forest",campsite:"Campsite",market:"Market",forge:"Forge Your Hero",bridge:"Crumbling Bridge"};

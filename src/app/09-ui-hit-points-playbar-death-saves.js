@@ -3,7 +3,7 @@ import {$,clamp,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
 /* ================= HIT POINTS ================= */
 let flashT=null;
 export function buzz(ms){ try{ if(__store.getItem("mi-bz")==="off") return; }catch(e){} try{ if(navigator.vibrate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)) navigator.vibrate(ms||8); }catch(e){} }/* v29: short haptic tap on phones */
@@ -15,7 +15,7 @@ export function flash(cls){ const el=$("#hpCur"), vc=cls==="hit"?"m-hit":"m-heal
   clearTimeout(flashT); flashT=setTimeout(() =>{ el.classList.remove(cls); xs.forEach((x) =>{ if(x) x.classList.remove("m-hit","m-heal"); }); },700); }
 /* v50: a number rises from the Hit Points and fades. The sign stays, so the meaning does not rest on colour alone */
 export function hpFloat(txt,kind){ if(REDUCE||!document.body.animate) return; let el=$("#hpCur"); if(!el||!el.offsetParent) el=document.getElementById("vbHpV"); if(!el||!el.getBoundingClientRect) return; const r=el.getBoundingClientRect(); if((!r.width&&!r.height)||r.bottom<0||r.top>innerHeight) return;
-  const f=document.createElement("i"); f.className="hpf hpf-"+kind; f.textContent=txt; f.setAttribute("aria-hidden","true"); f.style.left=Math.round(r.left+r.width/2)+"px"; f.style.top=Math.round(r.top)+"px"; document.body.appendChild(f); setTimeout(() =>{ if(window.__miEcho) window.__miEcho(f); },0);/* v55 echo */
+  const f=document.createElement("i"); f.className="hpf hpf-"+kind; f.textContent=txt; f.setAttribute("aria-hidden","true"); f.style.left=Math.round(r.left+r.width/2)+"px"; f.style.top=Math.round(r.top)+"px"; document.body.appendChild(f); setTimeout(() =>{ if(env.__miEcho) env.__miEcho(f); },0);/* v55 echo */
   const a=f.animate([{transform:"translate(-50%,0) scale(.7)",opacity:0},{transform:"translate(-50%,-14px) scale(1.08)",opacity:1,offset:.25},{transform:"translate(-50%,-44px) scale(1)",opacity:0}],{duration:1000,easing:"cubic-bezier(.2,.8,.2,1)",fill:"forwards"});
   a.onfinish=a.oncancel=function(){ if(f.parentNode) f.parentNode.removeChild(f); }; setTimeout(() =>{ if(f.parentNode) f.parentNode.removeChild(f); },1500); }
 export function barColor(p){ return p>.5 ? "var(--good)" : (p>.25 ? "var(--warn)" : "var(--bad)"); }
@@ -23,7 +23,7 @@ function hpLv(p){ return p>.5?"ok":p>.25?"mid":"low"; }/* v32 p27 RU113: the lev
 export function syncHP(instant){
   S.hp = clamp(S.hp,0,D.hpmax); S.tmp = Math.max(0,S.tmp);
   const cur=$("#hpCur"), bar=$("#hpBar"), tb=$("#tmpBar");
-  if(window.__miOdo&&window.__MI&&!window.__MI.rm()) window.__miOdo(cur,S.hp); else spring("hpNum", S.hp, (x) =>{ const r=String(Math.round(x)); if(cur.textContent!==r) cur.textContent=r; }, {k:140, instant:instant});/* v55: odometer *//* v30 p13: write only what changed */
+  if(env.__miOdo&&env.__MI&&!env.__MI.rm()) env.__miOdo(cur,S.hp); else spring("hpNum", S.hp, (x) =>{ const r=String(Math.round(x)); if(cur.textContent!==r) cur.textContent=r; }, {k:140, instant:instant});/* v55: odometer *//* v30 p13: write only what changed */
   __R.barTo(bar, clamp(S.hp/D.hpmax,0,1), instant, barColor(S.hp/D.hpmax));/* v31 p21: compositor spring */ bar.setAttribute("data-lv",hpLv(S.hp/D.hpmax));/* v32 p27 RU113 */
   (function(){ let g=document.getElementById("hpGhost"); if(!g&&bar.parentNode){ g=document.createElement("i"); g.id="hpGhost"; bar.parentNode.insertBefore(g,bar); } if(!g) return; const to=clamp(S.hp/D.hpmax,0,1), was=+(g.getAttribute("data-v")||to);
     g.style.transition=(instant||to>was)?"none":""; g.style.transform="scaleX("+to+")"; g.setAttribute("data-v",to); })();/* v29 RU120: the red trail follows the bar down a moment later */
@@ -41,7 +41,7 @@ export function syncHP(instant){
 export function vbSync(){ if(__R.PIP) try{ __R.pipSync(); }catch(er){} __R.ohSync(); const vb=document.getElementById("vbar"); if(!vb||!D||!D.hpmax) return;
   try{ const hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), p=clamp(hp/D.hpmax,0,1);
   const hasI=typeof __R.ICO==="object"&&!!__R.ICO; if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); render(raw(__R.ico("hp-heal","vb-hi")),$("#vbHpI")); render(raw(__R.ico("tag-concentration")),$("#vbConc")); render(raw(__R.ico("ui-star","vb-star")),$("#vbInsp")); }
-  if(window.__miOdo&&window.__MI&&!window.__MI.rm()) window.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
+  if(env.__miOdo&&env.__MI&&!env.__MI.rm()) env.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
   const b=$("#vbBar"); b.style.transform="scaleX("+p+")"; b.style.backgroundColor=barColor(p); b.setAttribute("data-lv",hpLv(p)); $("#vbTbar").style.transform="scaleX("+clamp(tp/D.hpmax,0,1)+")";
   $("#vbHp").setAttribute("aria-label","Hit Points "+hp+"/"+D.hpmax+(tp?" +"+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
   $("#vbAcV").textContent=D.ac; $("#vbAc").setAttribute("aria-label","Armor Class "+D.ac);
@@ -75,8 +75,8 @@ function dsGuideH(){ const s=S.ds||[0,0], st=s[0]>=3, dead=s[1]>=3; if(S.hp!==0|
   const ic=function(k,c){ return (typeof __R.ICO==="object"&&__R.ICO)?__R.ico(k,c):""; }, b=function(k,ik,t,sm){ return '<button type="button" class="btn press dsb dsb-'+k+'" data-dsr="'+k+'">'+ic(ik,"dsb-i")+'<span><b>'+t+'</b>'+(sm?'<small>'+sm+'</small>':'')+'</span></button>'; };
   let h='<div class="dsg" id="dsGuide">';
   if(DS_OVER>0) h+='<div class="caution dsg-mass"><span>Massive damage: '+DS_OVER+' damage was left over after you dropped to 0, which is at least your Hit Point maximum ('+D.hpmax+'). By the rules your character dies.</span><button type="button" class="btn press dsb" data-dsr="dead">'+ic("death-fail","dsb-i")+'<span><b>Mark as Dead</b></span></button></div>';
-  if(st) h+='<p class="dsg-t">'+(window.__artVig?window.__artVig("moment","stabilized",72):"")+'<b>Stable.</b> You stop making Death Saving Throws but stay Unconscious. Without healing you regain 1 Hit Point after 1d4 hours.</p>';
-  else h+='<p class="dsg-t"><b>Death Saving Throw.</b> At the start of each of your turns, roll a d20 and tap the result. Three successes: Stable. Three failures: you die.'+((D.cf&&D.cf.ds||[]).length?' '+__R.cfFlags(D.cf.ds)+(function(){ const L=D.cf.ds, a=L.filter((x) =>{ return x.t==="ADV"; }), d=L.filter((x) =>{ return x.t==="DIS"; }); return ' '+(a.length&&d.length?'Advantage and Disadvantage cancel out, so you roll normally':'You roll with '+(a.length?'Advantage':'Disadvantage'))+' ('+esc(L.map((x) =>{ return x.s; }).join(", "))+').'; })():'')+'</p><div class="dsg-b">'+b("s","death-success","10 or higher","Success")+b("f","death-fail","9 or lower","Failure")+b("1","death-fail","Rolled a 1","Two failures")+b("20","hp-heal","Rolled a 20","Regain 1 Hit Point")+'</div>'+(window.__miRoll&&window.__miRoll.roll?'<p><button type="button" class="btn pri press dsb-roll" data-dsroll="1">Roll the death save for me</button></p>':'');
+  if(st) h+='<p class="dsg-t">'+(env.__artVig?env.__artVig("moment","stabilized",72):"")+'<b>Stable.</b> You stop making Death Saving Throws but stay Unconscious. Without healing you regain 1 Hit Point after 1d4 hours.</p>';
+  else h+='<p class="dsg-t"><b>Death Saving Throw.</b> At the start of each of your turns, roll a d20 and tap the result. Three successes: Stable. Three failures: you die.'+((D.cf&&D.cf.ds||[]).length?' '+__R.cfFlags(D.cf.ds)+(function(){ const L=D.cf.ds, a=L.filter((x) =>{ return x.t==="ADV"; }), d=L.filter((x) =>{ return x.t==="DIS"; }); return ' '+(a.length&&d.length?'Advantage and Disadvantage cancel out, so you roll normally':'You roll with '+(a.length?'Advantage':'Disadvantage'))+' ('+esc(L.map((x) =>{ return x.s; }).join(", "))+').'; })():'')+'</p><div class="dsg-b">'+b("s","death-success","10 or higher","Success")+b("f","death-fail","9 or lower","Failure")+b("1","death-fail","Rolled a 1","Two failures")+b("20","hp-heal","Rolled a 20","Regain 1 Hit Point")+'</div>'+(env.__miRoll&&env.__miRoll.roll?'<p><button type="button" class="btn pri press dsb-roll" data-dsroll="1">Roll the death save for me</button></p>':'');
   h+='<p class="dsg-t2">Hit while at 0 Hit Points?</p><div class="dsg-b">'+b("d","hp-damage","Damage","One failure")+b("c","hp-damage","Critical Hit","Two failures")+'</div></div>';
   return h; }
 function dsGuideSync(){ const di=document.querySelector(".death-in"); if(!di) return; const g=document.getElementById("dsGuide"), h=dsGuideH();

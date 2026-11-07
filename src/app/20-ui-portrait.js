@@ -2,12 +2,12 @@ import {C,S,save} from "./04-logic-storage.js";
 import {$,toast} from "./05-logic-helpers.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"syncPortrait",{get:function(){return syncPortrait;},set:function(v){syncPortrait=v;},configurable:true});
 /* ================= PORTRAIT ================= */
 export function syncPortrait(){ const p=$("#photo"), pc=$("#phCls"); if(pc){ const ck=__R.icoCls(C.clsLabel||C.cls||""); pc.innerHTML=(ck&&typeof __R.ICO==="object"&&__R.ICO&&__R.ICO[ck])?__R.ico(ck):""; pc.hidden=!pc.innerHTML; }/* v30 B4 */ if(S.portrait&&/^(data:image\/|blob:|https?:)/.test(S.portrait)){ p.style.backgroundImage='url("'+S.portrait+'")'; p.classList.add("has"); p.setAttribute("aria-label","Change portrait"); } else { p.style.backgroundImage=""; p.classList.remove("has"); p.setAttribute("aria-label","Add portrait"); } }
 /* Portrait picker: upload your own picture or pick one of the art portraits. Art portraits are stored the same way as an uploaded photo (a small JPEG in S.portrait), so saves, backups and exports need no change. */
-function ppList(){ const A=window.__ART&&window.__ART.portrait; if(!A||!A.length) return []; const sp=String(C.species||"").toLowerCase(), mine=A.filter((id) =>{ return sp.indexOf(id.replace(/-[ab]$/,""))>=0; }); return mine.concat(A.filter((id) =>{ return mine.indexOf(id)<0; })); }
+function ppList(){ const A=env.__ART&&env.__ART.portrait; if(!A||!A.length) return []; const sp=String(C.species||"").toLowerCase(), mine=A.filter((id) =>{ return sp.indexOf(id.replace(/-[ab]$/,""))>=0; }); return mine.concat(A.filter((id) =>{ return mine.indexOf(id)<0; })); }
 function ppOpen(){ const L=ppList(); if(!L.length){ $("#avFile").click(); return; }
   const nm=function(id){ const b=id.replace(/-[ab]$/,""); return b.charAt(0).toUpperCase()+b.slice(1)+" "+id.slice(-1).toUpperCase(); };
   const h='<div class="pp-act"><button type="button" class="btn press" data-pp-up="1">'+__R.ico("ui-camera")+'Upload a photo</button>'+(S.portrait?'<button type="button" class="btn press" data-pp-rm="1">Remove portrait</button>':'')+'</div><div class="info-h">Art portraits</div><div class="pp-g">'+L.map((id) =>{ return '<button type="button" class="pp-i" data-pp="'+id+'" aria-label="Use portrait '+nm(id)+'"><img src="img/portrait/'+id+'.avif" alt="" width="96" height="120" loading="lazy" decoding="async"><span>'+nm(id)+'</span></button>'; }).join("")+'</div>';

@@ -4,14 +4,14 @@ import {C,S,clsLv} from "./04-logic-storage.js";
 import {$,$$,actOn,atkOn,attMaxC,clamp,eqInvOf,eqOn,esc,fmtW,num,rich,senseList,sg} from "./05-logic-helpers.js";
 import {D,fill,richP} from "./06-logic-derivation.js";
 import {renderStamp} from "./07-ui-theme-contrast-spring.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"renderNotes",{get:function(){return renderNotes;},set:function(v){renderNotes=v;},configurable:true});
 Object.defineProperty(__R,"used",{get:function(){return used;},set:function(v){used=v;},configurable:true});
 /* ================= RENDER ================= */
 export function campName(){ const v=(S&&typeof S.camp==="string")?S.camp:((C&&C.office)||""); return String(v).trim(); }/* v30 RU133 */
 /* T1: the hidden empty place of a first public visit (ph) holds the sample build, so the tab keeps the page title until a real character is open */
 const TITLE0=document.title;
-function phOpen(){ try{ const r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!window.__publicFresh; const a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
+function phOpen(){ try{ const r=JSON.parse(__store.getItem("cs-roster-v1")); if(!r||!r.chars) return !!env.__publicFresh; const a=r.chars[r.active]; return !!(a&&a.ph); }catch(e){ return false; } }
 export function renderIdentity(){
   document.title = phOpen() ? TITLE0 : C.name+" | "+C.species+" "+clsLv();
   const cpn=campName(), mcp=$("#miniCamp"), icp=$("#idCamp"); if(mcp) mcp.textContent=cpn; if(icp){ icp.hidden=false; icp.innerHTML=cpn?__R.ico("ui-flag")+'<span>'+esc(cpn)+'</span>':'<button type="button" class="camp-add" data-campadd="1">'+__R.ico("ui-flag")+'<span>Add campaign</span></button>';/* T10: an empty campaign offers itself */ }
@@ -25,13 +25,13 @@ export function renderIdentity(){
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   __R.xpBox();/* v22 RU63 */
 }
-function idArt(lbl,val){ const A=window.__ART; if(!A||!A.icon||(window.__idNoArt&&window.__idNoArt())) return ""; const sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];
+function idArt(lbl,val){ const A=env.__ART; if(!A||!A.icon||(env.__idNoArt&&env.__idNoArt())) return ""; const sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];
   const im=function(u){ return '<img class="art-sub" src="'+u+'.avif" width="24" height="24" alt="" decoding="async">'; }, has=function(c,k){ return A.icon[c]&&A.icon[c].indexOf(k)>=0; };
   if(lbl==="Class"){ const ck=cls.toLowerCase(); if(A.emblem&&A.emblem[ck]) return im("img/emblem/"+ck); return has("cat","class")?im("img/icon/cat/class"):""; }
   if(lbl==="Species"){ const k=sl(val); return has("species",k)?im("img/icon/species/"+k):has("species","custom")?im("img/icon/species/custom"):""; }
   if(lbl==="Background"){ const b=sl(val); return has("background",b)?im("img/icon/background/"+b):has("background","custom")?im("img/icon/background/custom"):""; }
   if(lbl==="Size"){ const z=sl(val); return has("size",z)?im("img/icon/size/"+z):""; }
-  const e=window.__artSub?window.__artSub(cls,val,24):""; return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
+  const e=env.__artSub?env.__artSub(cls,val,24):""; return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
 export function renderAbilities(){
   const SC=__R.setOf("ab")==="score";/* v25 RU38 no. 6: score on top */
   $("#abil").innerHTML = ABK.map((k) =>{
@@ -248,14 +248,14 @@ export function syncLU(){
 }
 export var invF="all";
 export function renderInv(){
-  (C.inv||[]).forEach((i) =>{ if(i.type==null&&window.__itemMeta){ const mt=window.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
+  (C.inv||[]).forEach((i) =>{ if(i.type==null&&env.__itemMeta){ const mt=env.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
   const L=C.inv||[], total=__R.invWeight(), enc=__R.setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=__R.coinsNow();
   const head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-description="Opens Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small> <span>'+enc+'</span></div>'+__R.coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+__R.ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+__R.ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
   let fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map((f) =>{return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   const keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
   const row=function(i,ix,sub){ const q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=__R.ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
-    return '<div class="irow'+(sub?' isub':'')+'"><span class="iact">'+(i.equippable?'<button type="button" class="ichk'+(eqOn(i)?' on':'')+'" data-ieqs="'+esc(i.key||i.n)+'" data-iix="'+ix+'" aria-label="Toggle '+esc(i.n)+'"></button>':'<span class="muted">--</span>')+'</span><button type="button" class="iname" data-info="it:'+ix+'"><b class="'+rc+'">'+(window.__artIc?window.__artIc("item",i.n):"")+esc(__R.cuNm("i:"+__R.invKey(i),i.n))+'</b><small>'+esc((i.type||"Gear").toUpperCase())+(i.rar?' \u2022 '+esc(i.rar.toUpperCase()):'')+(ct?' \u2022 CONTAINER':'')+(i.mw?' \u2022 MASTERWORK':'')+'</small><span>'+(ww?fmtW(ww)+' lb.':'--')+'</span></button><span class="iq">'+q+'</span><span class="ic">'+(i.cost!=null?i.cost:'--')+'</span></div>'; };
+    return '<div class="irow'+(sub?' isub':'')+'"><span class="iact">'+(i.equippable?'<button type="button" class="ichk'+(eqOn(i)?' on':'')+'" data-ieqs="'+esc(i.key||i.n)+'" data-iix="'+ix+'" aria-label="Toggle '+esc(i.n)+'"></button>':'<span class="muted">--</span>')+'</span><button type="button" class="iname" data-info="it:'+ix+'"><b class="'+rc+'">'+(env.__artIc?env.__artIc("item",i.n):"")+esc(__R.cuNm("i:"+__R.invKey(i),i.n))+'</b><small>'+esc((i.type||"Gear").toUpperCase())+(i.rar?' \u2022 '+esc(i.rar.toUpperCase()):'')+(ct?' \u2022 CONTAINER':'')+(i.mw?' \u2022 MASTERWORK':'')+'</small><span>'+(ww?fmtW(ww)+' lb.':'--')+'</span></button><span class="iq">'+q+'</span><span class="ic">'+(i.cost!=null?i.cost:'--')+'</span></div>'; };
   const byK={}; L.forEach((i) =>{ byK[__R.invKey(i)]=i; });
   const inCt=function(i){ const p=i.in&&byK[i.in]; return p&&p!==i&&__R.ctOf(p.n)?p:null; };
   const att=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&eqOn(p[0]); }), need=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&!eqOn(p[0]); });
@@ -312,7 +312,7 @@ export function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyo
   $("#notesBody").innerHTML = html; __R.renderDesc();
 }
 /* T3 item 17: small original illustrations for empty states. Lines in the muted color, sparks in the accent color. Drawn once, no image files */
-export function esArt(k){ const V={chest:"items",book:"spells",paw:"creatures",hero:"characters"}[k], R=window.__ART&&window.__ART.vig&&window.__ART.vig.empty;
+export function esArt(k){ const V={chest:"items",book:"spells",paw:"creatures",hero:"characters"}[k], R=env.__ART&&env.__ART.vig&&env.__ART.vig.empty;
   if(V&&R&&R.indexOf(V)>=0&&(function(){try{return __store.getItem("mi-clsart")!=="off"}catch(e){return true}})()) return '<img class="es-art es-img" src="img/vig/empty/'+V+'.avif" width="128" height="128" alt="" decoding="async" loading="lazy">';
   const A={
   chest:'<path d="M18 46h60v28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z"/><path d="M18 46V38a14 14 0 0 1 14-14h32a14 14 0 0 1 14 14v8"/><path d="M18 56h60"/><rect x="42" y="50" width="12" height="14" rx="2"/><circle cx="48" cy="57" r="1.6" class="es-f"/>',

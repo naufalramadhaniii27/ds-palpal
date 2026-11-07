@@ -2,7 +2,7 @@ import {C,S,snSetH} from "./04-logic-storage.js";
 import {hcBtn,hcNote,miSetH,themeHTML} from "./07-ui-theme-contrast-spring.js";
 import {spPact} from "./22-ui-spell-data-and-slots.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"applyLook2",{get:function(){return applyLook2;},set:function(v){applyLook2=v;},configurable:true});
 Object.defineProperty(__R,"carryOf",{get:function(){return carryOf;},set:function(v){carryOf=v;},configurable:true});
 Object.defineProperty(__R,"setOf",{get:function(){return setOf;},set:function(v){setOf=v;},configurable:true});
@@ -24,7 +24,7 @@ function settingsHTML(){ let h='<h3 class="set-h">Appearance</h3>'+themeHTML();
   h+='<div class="info-h">Portrait Frame</div><div class="thg">'+FRAMES.map((f) =>{ return lookBtn("thf",S.frame,f[0],f[1],'<span class="frsw" data-fr="'+f[0]+'" aria-hidden="true"></span>'); }).join("")+'</div>';
   h+='<div class="info-h">Backdrop</div><div class="thg">'+BDROPS.map((f) =>{ return lookBtn("thd",S.bdrop,f[0],f[1],'<span class="bdsw" data-bd0="'+f[0]+'" aria-hidden="true"></span>'); }).join("")+'</div><p class="info-d">The backdrop sits behind the sheet. It is not printed.</p>';
   h+='<h3 class="set-h">Rules</h3><div class="info-h">Carrying Capacity</div><div class="thg">'+setBtn("enc","","Track weight")+setBtn("enc","off","Do not track")+'</div><p class="info-d">Your capacity is your Strength score times 15 pounds for a Small or Medium creature (half for Tiny, double for each size above Medium). Powerful Build counts as one size larger. Do not track hides the weight warning in Inventory.</p>';
-  let hm=null; try{ hm=window.__bldHpMode?window.__bldHpMode():null; }catch(er){ hm=null; }
+  let hm=null; try{ hm=env.__bldHpMode?env.__bldHpMode():null; }catch(er){ hm=null; }
   h+='<div class="info-h">Hit Points</div>'+(hm?'<div class="thg"><button type="button" class="thb'+(hm!=="roll"?" on":"")+'" data-hpm="avg" aria-pressed="'+(hm!=="roll")+'">Fixed (average)</button><button type="button" class="thb'+(hm==="roll"?" on":"")+'" data-hpm="roll" aria-pressed="'+(hm==="roll")+'">Rolled</button></div><p class="info-d">'+(hm==="roll"?'Enter each roll in the builder. Empty rolls count as the average. <button type="button" class="lk" data-hpgo="1">Enter rolls</button>':'Each level after the first adds the average of your Hit Die plus your Constitution modifier.')+'</p>':'<p class="info-d">This sheet has no build, so its Hit Points are typed in. Change them with Edit.</p>');
   h+='<h3 class="set-h">Display</h3><div class="info-h">Ability Scores</div><div class="thg">'+setBtn("ab","","Modifier on top")+setBtn("ab","score","Score on top")+'</div>';
   h+='<div class="info-h">Spells</div><div class="thg">'+setBtn("spUp","","Each spell once")+setBtn("spUp","1","Also at higher slot levels")+'</div><p class="info-d">With higher slot levels on, a spell that gets stronger with a higher slot is listed again under each higher level you have slots for, with its effect at that level.</p>';

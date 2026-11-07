@@ -2,7 +2,7 @@ import {CKEY,FROZEN,KEY,lsGet} from "./04-logic-storage.js";
 import {esc,toast} from "./05-logic-helpers.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {fixCid,hashS,homeCards,newId,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* T8 stage 3: cloud backup and sync of characters (Cloudflare Pages Functions /api + D1).
    Off unless /api answers (local files, tests and other hosts keep working as before). Data stays on the device first, the server holds a copy.
    No popups for routine events: one small cloud button shows the state, its text appears when tapped.
@@ -78,7 +78,7 @@ function syRun(why){
           const res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; sy.c[id]={rev:full.rev,h:h,fresh:1}; __R.syBaseSet(id,full.data); if(ph&&text!==full.data){ sy.p=sy.p||{}; sy.p[id]=ph[1]; } }); }));
     });
     return Promise.all(jobs).then(() =>{
-      if(changedR){ window.__publicFresh=0; /* the builder must not blank the sheet of a character that just came from the cloud */ if(!r.active||!r.chars[r.active]||r.chars[r.active].ph){ const ids=Object.keys(r.chars).filter((x) =>{ return !r.chars[x].ph; }); r.active=ids[0]||r.active; reload=!!ids.length; }
+      if(changedR){ env.__publicFresh=0; /* the builder must not blank the sheet of a character that just came from the cloud */ if(!r.active||!r.chars[r.active]||r.chars[r.active].ph){ const ids=Object.keys(r.chars).filter((x) =>{ return !r.chars[x].ph; }); r.active=ids[0]||r.active; reload=!!ids.length; }
         if(!rSave(r)) throw {local:1}; }
       sySet(sy);
       /* the open character changes: stop here. The live sheet in memory is the old one, so nothing may be sent until the page has reloaded */
@@ -160,7 +160,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 function syFlush(){ if(Date.now()-(SY.fl||0)<1500) return; SY.fl=Date.now(); syLog("flush"); if(!SY.on||SY.mode==="pause"||!navigator.onLine||FROZEN) return; const sy=syGet(), L=syLocal();
   Object.keys(L).forEach((id) =>{ const k=sy.c[id], l=L[id]; if(!k||k.h===l.h||l.text.length>60000) return;
     try{ fetch("/api/chars/"+encodeURIComponent(id)+"?base="+k.rev+"&t="+Date.now(),{method:"PUT",keepalive:true,credentials:"same-origin",headers:{"content-type":"text/plain;charset=UTF-8","x-name":encodeURIComponent(l.name.slice(0,80)),"x-sub":encodeURIComponent(l.sub.slice(0,120)),"x-sum":encodeURIComponent(l.sum||"")},body:l.text}); }catch(x){} }); }
-function syStart(){ if(SY.on||!/^https?:$/.test(location.protocol)||window.__noSync) return;
+function syStart(){ if(SY.on||!/^https?:$/.test(location.protocol)||env.__noSync) return;
   syApi("me").then((me) =>{ const sy=syGet(); if(sy.u&&sy.u!==me.id){ SY.on=false; return; } if(!sy.u){ sy.u=me.id; sySet(sy); }
       SY.me=me; SY.mode=me.mode||"normal"; SY.on=true; syState("busy"); syRun("start");
       setInterval(() =>{ syRun("tick"); },10000);
@@ -171,8 +171,8 @@ function syStart(){ if(SY.on||!/^https?:$/.test(location.protocol)||window.__noS
         new MutationObserver(watch).observe(document.body,{childList:true}); watch(); } },
     () =>{ SY.on=false; });
 }
-window.__sync=SY; window.__syncRun=syRun; window.__syncBanners=syBanners; window.__syncLocal=function(){ const L=syLocal(), o={}; Object.keys(L).forEach((k) =>{ o[k]=L[k].h; }); return o; };
+env.__sync=SY; env.__syncRun=syRun; env.__syncBanners=syBanners; env.__syncLocal=function(){ const L=syLocal(), o={}; Object.keys(L).forEach((k) =>{ o[k]=L[k].h; }); return o; };
 /* starts after the builder has loaded: it may store the open character once more while it starts, and that must not look like an edit */
-(function(){ const go=function(){ setTimeout(syStart,800); }; if(window.__deferDone) go(); else { document.addEventListener("bldready",go,{once:true}); setTimeout(() =>{ if(!SY.on) syStart(); },20000); } })();
+(function(){ const go=function(){ setTimeout(syStart,800); }; if(env.__deferDone) go(); else { document.addEventListener("bldready",go,{once:true}); setTimeout(() =>{ if(!SY.on) syStart(); },20000); } })();
 
 export function __set_syIcon(v){ return syIcon=v; }

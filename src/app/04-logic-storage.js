@@ -1,6 +1,6 @@
 import { fmtAgo } from "./lib/fmt.js";
 import {DEFAULT} from "./02-data-default-character.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"C",{get:function(){return C;},set:function(v){C=v;},configurable:true});
 /* ================= STORAGE ================= */
 export function clsLv(){ return C.clsLabel||(C.cls+" "+__R.D.level); }
@@ -64,7 +64,7 @@ export function newerApp(o){ return !!o&&typeof o==="object"&&(+o._app||0)>APP_V
 /* v18 RU67: "Unsaved changes" = the open character differs from what Save Character last wrote. Marks live in cs-ui-files (this device only) */
 let unsT=null;
 function unsavedSoon(k){ if(k!==CKEY&&k!==KEY&&k!==__R.BKEY) return; clearTimeout(unsT); unsT=setTimeout(__R.updUnsaved,400); }
-window.__lsSet=lsSet; window.__lsSave=lsSave; window.__appVer=APP_VER; window.__appLabel=APP_LABEL;
+env.__lsSet=lsSet; env.__lsSave=lsSave; env.__appVer=APP_VER; env.__appLabel=APP_LABEL;
 /* T7: with IndexedDB a write that fails is known only after the transaction ends. The store reports it here, the same caution bar shows */
 window.addEventListener("cs-store-fail",() =>{ SAVE_FAIL=1; saveWarn(); });
 window.addEventListener("cs-store-ok",() =>{ if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } });
@@ -93,7 +93,7 @@ export function recover(why,err){ const msg=String((err&&err.message)||err||why)
     if(a==="txt"){ const ta=document.getElementById("recTxt"); ta.value=txt; ta.hidden=false; ta.focus(); ta.select(); return; }
     if(a==="view"){ try{ sessionStorage.clear(); ["cs-new","cs-edit"].forEach((k) =>{ __store.removeItem(k); }); }catch(er){} sessionStorage.setItem("cs-skip","0"); __miReload(); return; }
     if(a==="go"){ __R.ask("Open the app with the data as it is? Parts that could not be read may be replaced when you make changes. Download a backup first if you have not.","Continue",() =>{ FROZEN=""; w.remove(); BAD=[]; try{ __R.applyLook(); __R.renderAll(true); __R.renderNotes(); __R.syncPortrait(); }catch(er){ recover("render",er); } }); } }); }
-window.__recover=recover;
+env.__recover=recover;
 
 
 export function __set_C(v){ return C=v; }

@@ -5,7 +5,7 @@ import {$,atkOn,eqOn,esc,fmtW,num,senseList,sg} from "./05-logic-helpers.js";
 import {D,fill,richB} from "./06-logic-derivation.js";
 import {langText} from "./08-ui-render-sheet-and-actions.js";
 import {activeConds} from "./10-ui-conditions.js";
-import {COINS,coinsNow,invWeight} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {invWeight} from "./23b-ui-items-containers.js";import {COINS,coinsNow} from "./23c-ui-coins.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"buildPrint",{get:function(){return buildPrint;},set:function(v){buildPrint=v;},configurable:true});

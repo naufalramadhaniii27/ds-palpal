@@ -4,12 +4,12 @@ import {D} from "./06-logic-derivation.js";
 import {barColor,buzz,hpOpen,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {activeConds,renderConds} from "./10-ui-conditions.js";
 import {sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {ico,openRest} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {openRest} from "./23d-ui-rest.js";
 import {setOf} from "./25-ui-settings-appearance.js";
 import {PAL,__set_gsSel,condSet,fzScore,gsMark,gsRows,gsSel,gsSync,openSearch,palCmds,palFill} from "./27-ui-party-search-commands-library.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {cmbPipClick,cmbPipH,renderAll} from "./35-ui-combo.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"PIP",{get:function(){return PIP;},set:function(v){PIP=v;},configurable:true});
 Object.defineProperty(__R,"exhTo",{get:function(){return exhTo;},set:function(v){exhTo=v;},configurable:true});
 Object.defineProperty(__R,"ohSync",{get:function(){return ohSync;},set:function(v){ohSync=v;},configurable:true});
@@ -37,8 +37,8 @@ document.addEventListener("keydown",(e) =>{ const q=e.target; if(!q||q.id!=="gsQ
   if(e.key==="Tab"&&!e.shiftKey){ const c0=$("#sheetBody .gs-c.sel"), pc=c0&&PAL[+c0.getAttribute("data-cmd")]; if(pc&&pc.fill&&q.value.trim().toLowerCase()+" "!==pc.fill){ e.preventDefault(); palFill(pc.fill); } } });
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-cmd],[data-gsfill]"); if(!b||!b.closest("#sheetBody")) return; e.preventDefault();
   if(b.hasAttribute("data-gsfill")){ palFill(b.getAttribute("data-gsfill")); return; } const c=PAL[+b.getAttribute("data-cmd")]; if(!c) return; if(c.fill){ palFill(c.fill); return; } if(c.run) c.run(); });
-window.__pal=function(q){ return palCmds(String(q||"").trim().toLowerCase()).map((c) =>{ return c.t+" | "+(c.s||""); }); };
-window.__fz=function(q,s){ return fzScore(String(q).toLowerCase(),s); };
+env.__pal=function(q){ return palCmds(String(q||"").trim().toLowerCase()).map((c) =>{ return c.t+" | "+(c.s||""); }); };
+env.__fz=function(q,s){ return fzScore(String(q).toLowerCase(),s); };
 /* v30 p09 RU130: drag the HP number up or down to set the amount (Heal or Damage still decides), hold it or right-click for a quick menu */
 function hpAmtV(){ const v=parseInt(($("#hpAmt")||{}).value,10); return isNaN(v)?0:Math.max(0,v); }
 function hpAmtSet(n){ const v=n?String(n):""; ["hpAmt","qmAmt","ohAmt"].forEach((id) =>{ const i=document.getElementById(id); if(i&&i.value!==v) i.value=v; }); }
@@ -107,22 +107,22 @@ function pipAct(k){ const d=PIP&&PIP.document; if(!d) return; let i=d.getElement
   if(k==="cond"){ try{ window.focus(); }catch(er){} showEntry({type:"cond"},false); return; }
   if(!n){ i.focus(); return; } const a=$("#hpAmt"); if(!a) return; a.value=String(n); const b=k==="heal"?$("#healBtn"):k==="dmg"?$("#dmgBtn"):$("[data-tmpset]"); if(b) b.click(); i.value=""; i.focus(); }
 function pipOpen(){ if(PIP){ try{ PIP.close(); }catch(er){} return; } if(!window.documentPictureInPicture) return;
-  documentPictureInPicture.requestWindow({width:340,height:470}).then((w) =>{ PIP=w; window.__pipWin=w; const d=w.document;
+  documentPictureInPicture.requestWindow({width:340,height:470}).then((w) =>{ PIP=w; env.__pipWin=w; const d=w.document;
     const st=d.createElement("style"); st.textContent=pipFonts()+PIP_CSS; d.head.appendChild(st); const sv=d.createElement("style"); sv.id="ppVars"; sv.textContent=pipVars(); d.head.appendChild(sv);
     ["data-theme","data-skin"].forEach((a) =>{ const v=document.documentElement.getAttribute(a); if(v) d.documentElement.setAttribute(a,v); });
-    d.body.innerHTML=pipHTML(); if(window.__miPip) try{ window.__miPip(w); }catch(er){} d.addEventListener("click",cmbPipClick);
+    d.body.innerHTML=pipHTML(); if(env.__miPip) try{ env.__miPip(w); }catch(er){} d.addEventListener("click",cmbPipClick);
     d.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(!b) return; if(b.hasAttribute("data-ppc")){ condSet(b.getAttribute("data-ppc"),false); return; } if(b.hasAttribute("data-ppexh")){ undoMark("Exhaustion"); exhTo(num(S.exh,0)-1,true); toastU("Exhaustion "+S.exh+"."); return; } const k=b.getAttribute("data-pp"); if(k) pipAct(k); });
     d.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target.id==="ppAmt"){ e.preventDefault(); pipAct(e.shiftKey?"heal":"dmg"); } });
-    w.addEventListener("pagehide",() =>{ PIP=null; window.__pipWin=null; const pb=$("#pipBtn"); if(pb) pb.setAttribute("aria-pressed","false"); });
+    w.addEventListener("pagehide",() =>{ PIP=null; env.__pipWin=null; const pb=$("#pipBtn"); if(pb) pb.setAttribute("aria-pressed","false"); });
     const pb=$("#pipBtn"); if(pb) pb.setAttribute("aria-pressed","true"); pipSync(); },() =>{ toast("The mini window could not open. Try again from the Mini Window button."); }); }
-(function(){ const pb=$("#pipBtn"); if(!pb) return; if(window.documentPictureInPicture&&typeof documentPictureInPicture.requestWindow==="function"){ pb.hidden=false; pb.title="Mini window"; pb.addEventListener("click",() =>{ if(window.__moreSet) try{ window.__moreSet(false); }catch(er){} pipOpen(); }); } else pb.remove(); })();
+(function(){ const pb=$("#pipBtn"); if(!pb) return; if(window.documentPictureInPicture&&typeof documentPictureInPicture.requestWindow==="function"){ pb.hidden=false; pb.title="Mini window"; pb.addEventListener("click",() =>{ if(env.__moreSet) try{ env.__moreSet(false); }catch(er){} pipOpen(); }); } else pb.remove(); })();
 /* v30 p11 RU131: Keep screen on (Screen Wake Lock). Asked again each time the page shows, let go when the setting is off */
 let WL=null, WLp=false;
 function wakeApply(){ const api=!!(navigator.wakeLock&&typeof navigator.wakeLock.request==="function"), want=api&&setOf("wake")==="1"&&document.visibilityState==="visible";
   if(want&&!WL&&!WLp){ WLp=true; try{ navigator.wakeLock.request("screen").then((l) =>{ WLp=false; WL=l; try{ l.addEventListener("release",() =>{ if(WL===l) WL=null; }); }catch(er){} if(setOf("wake")!=="1"){ WL=null; try{ l.release(); }catch(er){} } },() =>{ WLp=false; WL=null; }); }catch(er){ WLp=false; } }
   else if(!want&&WL){ const l=WL; WL=null; try{ l.release(); }catch(er){} } }
 document.addEventListener("visibilitychange",() =>{ try{ wakeApply(); }catch(er){} });
-window.__wake=function(){ return {on:setOf("wake")==="1",held:!!WL}; };
+env.__wake=function(){ return {on:setOf("wake")==="1",held:!!WL}; };
 /* v30 p11 RU131: one-handed mode, a thumb bar on phones */
 function ohSync(){ const o=document.getElementById("ohAmt"), a=document.getElementById("hpAmt"); if(o&&a&&o.value!==a.value&&document.activeElement!==o) o.value=a.value; }
 (function(){ const d=document.getElementById("ohDock"); if(!d) return;
@@ -140,7 +140,7 @@ function ohSync(){ const o=document.getElementById("ohAmt"), a=document.getEleme
 
 /* T4 item 26: offline note. The app keeps working offline, the note says where the data is. It sits at the top of Home and on the Settings dialog, and a toast announces the change */
 (function(){ function net(){ const on=navigator.onLine!==false; document.documentElement.classList.toggle("is-off",!on); let h=document.getElementById("homeV"), n=document.getElementById("offNote");
-    if(h&&!on&&!n){ const w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.innerHTML=(window.__artVig?window.__artVig("state","offline",44):"")+"<span>You are offline. Your characters are saved on this device and everything keeps working.</span>"; w.insertBefore(n,w.firstChild); } }
+    if(h&&!on&&!n){ const w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.innerHTML=(env.__artVig?env.__artVig("state","offline",44):"")+"<span>You are offline. Your characters are saved on this device and everything keeps working.</span>"; w.insertBefore(n,w.firstChild); } }
     else if(n&&on) n.remove(); }
   window.addEventListener("online",() =>{ net(); try{ toast("Back online"); }catch(er){} }); window.addEventListener("offline",() =>{ net(); try{ toast("Offline: everything is saved on this device"); }catch(er){} });
-  window.__net=net; setInterval(() =>{ const h=document.getElementById("homeV"); if(h&&!h.hidden&&document.documentElement.classList.contains("is-off")&&!document.getElementById("offNote")) net(); },1500); net(); })();
+  env.__net=net; setInterval(() =>{ const h=document.getElementById("homeV"); if(h&&!h.hidden&&document.documentElement.classList.contains("is-off")&&!document.getElementById("offNote")) net(); },1500); net(); })();

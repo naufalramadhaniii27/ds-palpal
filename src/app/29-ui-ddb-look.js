@@ -8,9 +8,9 @@ import {boxes,esArt,used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack,refreshEntry} from "./12-ui-bottom-sheet-modal.js";
 import {dcHead,dcStrip,linkify} from "./13-ui-detail-cards.js";
 import {spRowLv} from "./22-ui-spell-data-and-slots.js";
-import {ico,ordL,resOf,scAdj,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL,scAdj,scOf} from "./23e-ui-spells-dc.js";
 import {bastionH} from "./28-ui-bastion.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env as PGE} from "./00-env.js";
 Object.defineProperty(__R,"ICO",{get:function(){return ICO;},set:function(v){ICO=v;},configurable:true});
 Object.defineProperty(__R,"NOTE_MORE",{get:function(){return NOTE_MORE;},set:function(v){NOTE_MORE=v;},configurable:true});
 Object.defineProperty(__R,"clsOfG",{get:function(){return clsOfG;},set:function(v){clsOfG=v;},configurable:true});
@@ -69,7 +69,7 @@ function profsH(){ const P=C.profSrc;
   const te=(C.toolExp||[]).length?'<h3>Tool checks</h3><div class="toolrolls">'+(C.toolExp||[]).map((t) =>{ const v=2*num(D.pb,2); return '<div class="sense"><span class="bonus">+'+v+'</span><span>'+linkify(t.n)+' <small>(Expertise, plus the ability modifier for the check)</small></span></div>'; }).join("")+'</div>':'';
   return body+te+'<h3><button type="button" class="tx" data-info="g:Languages">Languages</button></h3><p id="langLine"></p>'+(C.cls?'<p class="fman"><button type="button" class="btn press" data-bldgo="class">Manage Proficiencies</button></p>':''); }
 /* RU38 no. 4: Manage buttons open the builder at a step */
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bldgo]"); if(!b) return; e.preventDefault(); if(window.__bldGo) window.__bldGo(b.getAttribute("data-bldgo")); else if(window.__bldOpen) window.__bldOpen(); });
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bldgo]"); if(!b) return; e.preventDefault(); if(PGE.__bldGo) PGE.__bldGo(b.getAttribute("data-bldgo")); else if(PGE.__bldOpen) PGE.__bldOpen(); });
 
 /* RU36 no. 8, RU38 no. 5: Description tab. Characteristics are optional fields in S.notes ("ch_" keys), old data reads as before */
 export var CHAR_FIELDS=[["ch_gender","Gender"],["ch_age","Age"],["ch_height","Height"],["ch_weight","Weight"],["ch_eyes","Eyes"],["ch_hair","Hair"],["ch_skin","Skin"],["ch_faith","Faith"]];
@@ -113,7 +113,7 @@ function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATUR
   Object.keys(SPL).forEach((sn) =>{ const x=crSpell(sn); if(!x) return; const o=SPL[sn]; if(sn==="Find Familiar") return; [].concat(o.creature||[],o.creatures||[]).forEach((n) =>{ add(n,sn,"sp:"+sn,"sum"); }); });
   const IT=CREATURES.items||{}; (C.inv||[]).forEach((i) =>{ const o=IT[i.n]; if(!o) return; o.creatures.forEach((n) =>{ add(n,i.n,"it:"+i.n,"sum"); }); });/* v56: magic items that call a creature */
   return out; }
-window.__crFor=function(c){ const o=C; __set_C(c); try{ return crList().map((e) =>{ const h=crBlock(crOf(e.n),e.ctx); return {n:e.n,ctx:e.ctx,len:h.length,ac:/Armor Class|AC/.test(h)}; }); } finally{ __set_C(o); } };/* test hook */
+PGE.__crFor=function(c){ const o=C; __set_C(c); try{ return crList().map((e) =>{ const h=crBlock(crOf(e.n),e.ctx); return {n:e.n,ctx:e.ctx,len:h.length,ac:/Armor Class|AC/.test(h)}; }); } finally{ __set_C(o); } };/* test hook */
 function crEnv(ctx,c){ const lv=__R.clsLvls(), env={SL:0,LV:0,PB:D.pb,MOD:0,DC:0,ATK:0};
   if(ctx==="bm"){ const s=scCls("Ranger"); env.LV=lv.Ranger||D.level; env.MOD=D.mod.WIS; env.DC=s.dc||(8+D.pb+D.mod.WIS); env.ATK=s.atk!=null?s.atk:(D.pb+D.mod.WIS); }
   else if(ctx==="vp"){ const sw=scCls("Warlock"); env.LV=lv.Warlock||D.level; env.MOD=D.mod.CHA; env.DC=sw.dc||(8+D.pb+D.mod.CHA); env.ATK=sw.atk!=null?sw.atk:(D.pb+D.mod.CHA); }/* v64 */
@@ -127,7 +127,7 @@ function crStat(c,ctx){ const sel=crSel[c.n]||{}, v=(c.variants||[]).filter((q) 
   const it=ctx&&/^it:/.test(ctx)&&((CREATURES.items||{})[ctx.slice(3)]||{}).override; if(it&&it[c.n]) Object.keys(it[c.n]).forEach((k) =>{ o[k]=it[c.n][k]; });/* v56 */
   return o; }
 function crRowH(e){ const c=crOf(e.n), env=crEnv(e.ctx,c), o=crStat(c,e.ctx);
-  return '<button type="button" class="crr" data-info="cr:'+esc(e.n)+'|'+esc(e.ctx)+'"><span class="crn"><b>'+(window.__artIc?window.__artIc("creature",String(o.type||"").split(/[\s(,]/)[0]):"")+esc(e.n)+'</b><small>'+esc(o.size+" "+o.type)+' • '+esc(e.why)+'</small></span><span><small>AC</small>'+esc(crExpr(o.ac,env))+'</span><span><small>HP</small>'+esc((function(){ const m=crHpMax(o,env); if(m==null||(S.crhp||{})[e.n+"|"+e.ctx]==null) return crExpr(o.hp,env); return crHpCur(e.n+"|"+e.ctx,m)+"/"+m; })())+'</span><span><small>CR</small>'+esc(o.cr||"—")+'</span></button>'; }
+  return '<button type="button" class="crr" data-info="cr:'+esc(e.n)+'|'+esc(e.ctx)+'"><span class="crn"><b>'+(PGE.__artIc?PGE.__artIc("creature",String(o.type||"").split(/[\s(,]/)[0]):"")+esc(e.n)+'</b><small>'+esc(o.size+" "+o.type)+' • '+esc(e.why)+'</small></span><span><small>AC</small>'+esc(crExpr(o.ac,env))+'</span><span><small>HP</small>'+esc((function(){ const m=crHpMax(o,env); if(m==null||(S.crhp||{})[e.n+"|"+e.ctx]==null) return crExpr(o.hp,env); return crHpCur(e.n+"|"+e.ctx,m)+"/"+m; })())+'</span><span><small>CR</small>'+esc(o.cr||"—")+'</span></button>'; }
 export function renderExtras(){ renderExtras0(); const el=$("#extBody"); if(!el) return; let bh=""; try{ bh=bastionH(); }catch(er){ bh='<h3 class="fcat">Bastion</h3><p class="caution">The Bastion data on this sheet could not be shown. It is kept as it is. Use Report a problem on My Characters.</p>'; } el.innerHTML='<section class="xcard" id="xCr">'+el.innerHTML+'</section>'; if(bh)el.insertAdjacentHTML("beforeend",'<section class="xcard" id="xBs">'+bh+'</section>'); }/* v99: no empty card under Creatures when the rules have no Bastion (2014) *//* v31 C9: one card each *//* v28 I1 *//* v28 RD22 */
 function renderExtras0(){ const el=$("#extBody"); if(!el) return; const L=crList();
   const G=[["all","All"],["fam","Familiar"],["ws","Wild Shape"],["comp","Companion"],["sum","Summons"]].filter((g) =>{ return g[0]==="all"||L.some((e) =>{ return e.grp===g[0]; }); });
@@ -158,7 +158,7 @@ function crHpH(key,max){ const cur=crHpCur(key,max), pc=max?Math.round(100*cur/m
   return '<div class="crhp '+st+'"><div class="crhp-t"><span class="crhp-l">'+ico("hp-heal","dc-ci")+'Hit Points</span><b><span class="crhp-n">'+cur+'</span><i> / '+max+'</i></b></div><div class="crhp-bar"><i style="width:'+pc+'%"></i></div>'+(cur<=0?'<p class="crhp-d">0 Hit Points. This creature is down.</p>':'')+
    '<div class="crhp-c"><input class="crhp-in" type="number" inputmode="numeric" min="0" step="1" placeholder="HP" aria-label="Hit Points amount">'+bt("dmg","Damage","dmg")+bt("heal","Heal","heal")+bt("full","Full","full")+'</div></div>'; }
 function crBlock(c,ctx){ let env=crEnv(ctx,c), o=crStat(c,ctx), T=function(s){ return rich(crText(s,env)); }, h="";
-  const sp=/^sp:/.test(ctx)?ctx.slice(3):"", sel=crSel[c.n]||{}, im=window.CRIMG&&window.CRIMG[c.n];
+  const sp=/^sp:/.test(ctx)?ctx.slice(3):"", sel=crSel[c.n]||{}, im=PGE.CRIMG&&PGE.CRIMG[c.n];
   if(im) h+='<img class="lib-im cr-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="'+esc(c.n)+'" src="data/img/'+encodeURI(im)+'.webp">';/* picture first, large */
   h+='<div class="dc dc-c">'+dcHead(ico("creature","isch"),esc(o.size+" "+o.type+(o.al?", "+o.al:""))+' • '+esc(srcPg(o.src||"PHB-2024",o.pg)));
   if(sp) h+='<div class="crsp"><span class="crsp-l">Spell level <small>from '+esc(sp)+'</small></span><div class="crsp-s"><button type="button" class="btn press crsl" data-crsl="-1" data-crn="'+esc(c.n)+'" aria-label="Lower spell level">−</button><b>'+env.SL+'</b><button type="button" class="btn press crsl" data-crsl="1" data-crn="'+esc(c.n)+'" aria-label="Higher spell level">+</button></div></div>';

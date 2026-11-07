@@ -14,7 +14,7 @@ import {levelUp} from "./34-ui-situations.js";
 import {lintList} from "./40-ui-segments-notes-swipe-motion-panels.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {QRG} from "./42-logic-pwa-qr-icons-wallet.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;},configurable:true});
 Object.defineProperty(__R,"dnaRead",{get:function(){return dnaRead;},set:function(v){dnaRead=v;},configurable:true});
 Object.defineProperty(__R,"futureOpen",{get:function(){return futureOpen;},set:function(v){futureOpen=v;},configurable:true});
@@ -53,7 +53,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 /* T11 G4 N4 session recap, without AI and offline. Made from the journal of the character (mi-jr-<name>, fx 18): the last session is the run of
    entries with no gap longer than 4 hours. Totals: damage taken, healing, spells cast, rolls with natural 20s and 1s, conditions, rests, levels,
    coins, Concentration saves. The card can be kept as a picture (canvas, PNG), shared where the device can share files */
-function recapData(){ const J=window.__miJournal; if(!J) return null; const all=J.all(); if(!all.length) return null;
+function recapData(){ const J=env.__miJournal; if(!J) return null; const all=J.all(); if(!all.length) return null;
   const ses=[all[0]]; for(let i=1;i<all.length;i++){ if(ses[ses.length-1].t-all[i].t>4*3600e3) break; ses.push(all[i]); }
   const o={from:ses[ses.length-1].t,to:ses[0].t,n:ses.length,dmg:0,heal:0,cast:{},rolls:0,n20:0,n1:0,cond:[],rest:[],level:0,coin:0,cs:0,cb:0,fights:0};
   ses.forEach((e) =>{ let x=String(e.x||""), m;
@@ -88,7 +88,7 @@ function recapPic(){ const o=recapData(); if(!o) return; const rows=recapRows(o)
   cv.toBlob((b) =>{ if(!b) return; try{ const f=new File([b],name,{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"Session recap"}).catch(() =>{}); return; } }catch(e){}
     const u=URL.createObjectURL(b), a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); toast("Picture saved: "+name); },"image/png"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-recapimg],[data-recap]"); if(!b) return; if(b.hasAttribute("data-recap")) recapOpen(); else recapPic(); });
-window.__recapOpen=recapOpen; window.__recapData=recapData;
+env.__recapOpen=recapOpen; env.__recapData=recapData;
 /* T11 G4 N15 ask the rules, without AI and offline. A hand-written table of intents maps the words of a question to Library rule entries.
    The answer is a short line written for this app and the rule entries to read in full. It never makes up an answer:
    a question that matches no intent gets the normal Library search only. Rules: PHB 2024 Playing the Game and Rules Glossary */
@@ -131,30 +131,30 @@ function askHTML(q){ const o=askAnswer(q); if(!o) return ""; return '<div class=
 /* T11 G4 N11 Build DNA: the builder choices only (B), gzip (CompressionStream, T8) and base64url, in a link "#build=...".
    Opening the link asks first, then builds the character with the builder like an imported build (16 impBuild). Nothing is sent anywhere:
    the code lives in the part of the address after #, which browsers do not send to the server */
-function dnaLink(){ let b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return Promise.reject(new Error("Pick a class first."));
+function dnaLink(){ let b=env.__bldForSheet?env.__bldForSheet():null; if(!b||!b.cls) return Promise.reject(new Error("Pick a class first."));
   b=structuredClone(b); delete b.cid; delete b._app;
   return zPack(JSON.stringify({kind:"build",B:b})).then((z) =>{ const code=z.slice(8).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); return location.origin+location.pathname+"#build="+code; }); }
 function dnaRead(code){ let b=String(code||"").replace(/-/g,"+").replace(/_/g,"/"); while(b.length%4) b+="="; return "DND24Z1:"+b; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dna]"); if(!b) return; e.preventDefault(); const how=b.getAttribute("data-dna");
-  dnaLink().then((u) =>{ const bt=(window.__bldToast&&!document.getElementById("bld").hidden)?window.__bldToast:toast;
+  dnaLink().then((u) =>{ const bt=(env.__bldToast&&!document.getElementById("bld").hidden)?env.__bldToast:toast;
     if(how==="share"&&navigator.share){ navigator.share({title:"D&D build",url:u}).catch(() =>{}); return; }
     if(how==="qr"){ let box=b.parentNode&&b.parentNode.parentNode&&b.parentNode.parentNode.querySelector(".dna-qr"); if(!box){ box=document.createElement("div"); box.className="dna-qr"; b.parentNode.insertAdjacentElement("afterend",box); }
       let q=null; try{ q=QRG.make(u,"L",40); }catch(er){ q=null; } box.innerHTML=q?QRG.svg(q,"Build link code")+'<p class="fd bhint">Scan it with Open Character, Scan a code, on the other phone.</p>':'<p class="fd bhint">The link is too long for one code. Use Copy or Share.</p>'; return; }
     const done=function(){ bt("Build link copied ("+u.length+" characters)."); };
     try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(done,() =>{ bt("Copy did not work here. Use Share instead."); }); return; } }catch(er){} bt("Copy is not available here."); },
-    (er) =>{ (window.__bldToast||toast)(er.message||"The link could not be made."); }); });
+    (er) =>{ (env.__bldToast||toast)(er.message||"The link could not be made."); }); });
 /* a shared link opened: wait for the builder data, ask, then import */
 function dnaCheck(){ const m=/^#build=([A-Za-z0-9_-]{20,})$/.exec(location.hash||""); if(!m) return; const code=m[1];
   try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){}
-  let tries=0; (function wait(){ if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} if(!window.__bldSheetFor||!window.__bldNorm){ if(++tries<80) setTimeout(wait,250); else toast("The builder did not load, so the shared build cannot be opened."); return; }
+  let tries=0; (function wait(){ if(env.__bldNeed) try{ env.__bldNeed(); }catch(e){} if(!env.__bldSheetFor||!env.__bldNorm){ if(++tries<80) setTimeout(wait,250); else toast("The builder did not load, so the shared build cannot be opened."); return; }
     ask("Open the build someone shared with you? It is added as a new character. Your other characters stay as they are.","Open Build",() =>{ impText(dnaRead(code)); }); })(); }
 dnaCheck(); addEventListener("hashchange",dnaCheck);/* a link pasted into a tab where the app is already open */
 /* T11 G4 N5 future sheet: the character from its level now up to 20, from the same builder and the same derivation as the sheet.
    Only the choices already made count: new choices at later levels (Ability Score Improvements, feats, spells, subclass) are not guessed.
    Hit Points use the fixed value per level. Lines for Hit Points, Armor Class, best attack bonus and spell save DC, and the highest spell slot */
-function futureData(){ if(!window.__bldSheetFor) return null; const b=window.__bldForSheet?window.__bldForSheet():null; if(!b||!b.cls) return null;
+function futureData(){ if(!env.__bldSheetFor) return null; const b=env.__bldForSheet?env.__bldForSheet():null; if(!b||!b.cls) return null;
   const tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
-  try{ for(let L=tot;L<=20;L++){ const nb=structuredClone(b); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
+  try{ for(let L=tot;L<=20;L++){ const nb=structuredClone(b); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=env.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
       __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
       var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach((n,i) =>{ if(+n>0) top=i+1; });
       out.push({l:L,hp:D.hpmax,ac:D.ac,atk:best>-99?best:null,dc:c2.spellcasting?D.dc:null,slot:top,pb:D.pb}); } }
@@ -170,12 +170,12 @@ function futureOpen(){ __set_navStack([]); const go=function(){ const rows=futur
     if(!rows||rows.length<2){ openSheet("Future sheet",'<p class="bk-f">'+(D.level>=20?"Level 20 is the highest level.":"Open the builder once so the future sheet can use your choices.")+'</p>',"future"); return; }
     const t='<table class="fut-t"><thead><tr><th scope="col">Level</th><th scope="col">HP</th><th scope="col">AC</th><th scope="col">Attack</th>'+(rows[0].dc!=null?'<th scope="col">Spell DC</th><th scope="col">Top slot</th>':'')+'</tr></thead><tbody>'+rows.map((r) =>{ return '<tr'+(r.l===D.level?' class="now"':'')+'><th scope="row">'+r.l+'</th><td>'+r.hp+'</td><td>'+r.ac+'</td><td>'+(r.atk!=null?sg(r.atk):"")+'</td>'+(rows[0].dc!=null?'<td>'+(r.dc!=null?r.dc:"")+'</td><td>'+(r.slot||"")+'</td>':'')+'</tr>'; }).join("")+'</tbody></table>';
     openSheet("Future sheet",'<p class="bk-f">Your character from level '+D.level+' to 20 with the choices made so far. Choices at new levels (ability scores, feats, spells) are not guessed, so the real numbers can be higher.</p><div class="fut">'+futureSVG(rows,"hp","Hit Points")+futureSVG(rows,"atk","Best attack bonus")+(rows[0].dc!=null?futureSVG(rows,"dc","Spell save DC"):"")+'</div><div class="fut-tw">'+t+'</div><p class="bk-btns"><button type="button" class="btn press" data-futlv="1">Plan the next level</button><button type="button" class="btn press" data-rbopen="1">Find a build for a goal</button></p>',"future"); };
-  if(window.__bldSheetFor) go(); else { if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} let n=0; (function w(){ if(window.__bldSheetFor) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
+  if(env.__bldSheetFor) go(); else { if(env.__bldNeed) try{ env.__bldNeed(); }catch(e){} let n=0; (function w(){ if(env.__bldSheetFor) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-futlv],[data-future]"); if(!b) return; if(b.hasAttribute("data-future")){ futureOpen(); return; } closeSheet(); if(typeof levelUp==="function") levelUp(); });
 /* T11 G4 D2 roll from more places: a death save and Hit Point Dice roll with the same dice as the rest of the sheet (3D when Motion allows),
    and the result goes through the same buttons and boxes as a number typed by hand, so the rules code stays one path */
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dsroll],[data-hdroll]"); if(!b||!window.__miRoll||!window.__miRoll.roll) return; e.preventDefault(); if(b.__busy) return; b.__busy=1;
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dsroll],[data-hdroll]"); if(!b||!env.__miRoll||!env.__miRoll.roll) return; e.preventDefault(); if(b.__busy) return; b.__busy=1;
   if(b.hasAttribute("data-dsroll")){ const L=(D.cf&&D.cf.ds)||[], a=L.some((x) =>{ return x.t==="ADV"; }), d=L.some((x) =>{ return x.t==="DIS"; }), mode=a&&!d?"adv":d&&!a?"dis":"";
-    window.__miRoll.roll({bon:0},mode,"Death Saving Throw",(r) =>{ b.__busy=0; const n=r.nat, k=n===20?"20":n===1?"1":n>=10?"s":"f"; setTimeout(() =>{ const t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
+    env.__miRoll.roll({bon:0},mode,"Death Saving Throw",(r) =>{ b.__busy=0; const n=r.nat, k=n===20?"20":n===1?"1":n>=10?"s":"f"; setTimeout(() =>{ const t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
   const k=b.getAttribute("data-hdroll"), i=b.getAttribute("data-hdi"), die=+b.getAttribute("data-die")||8;
-  window.__miRoll.roll({dmg:"1d"+die},"","Hit Point Die",(r) =>{ b.__busy=0; const inp=document.querySelector('#restDlg [data-hdv="'+k+'"][data-hdi="'+i+'"]'); if(!inp) return; inp.value=String(r.v); inp.dispatchEvent(new Event("input",{bubbles:true})); }); });
+  env.__miRoll.roll({dmg:"1d"+die},"","Hit Point Die",(r) =>{ b.__busy=0; const inp=document.querySelector('#restDlg [data-hdv="'+k+'"][data-hdi="'+i+'"]'); if(!inp) return; inp.value=String(r.v); inp.dispatchEvent(new Event("input",{bubbles:true})); }); });

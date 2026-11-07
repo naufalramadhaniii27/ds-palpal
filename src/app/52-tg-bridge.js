@@ -5,9 +5,9 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {rGet} from "./14-ui-editor.js";
 import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
 import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
-import {scAdj} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {scAdj} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"tgPcFor",{get:function(){return tgPcFor;},set:function(v){tgPcFor=v;},configurable:true});
 Object.defineProperty(__R,"tgPcNow",{get:function(){return tgPcNow;},set:function(v){tgPcNow=v;},configurable:true});
 /* T11 G7 TG1: what the Training Ground needs from the sheet, through window.__app (the Training Ground is a deferred part, src/tg).
@@ -43,6 +43,6 @@ function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object
     let c=null; try{ c=JSON.parse(e.C||"null"); }catch(x){ c=null; } const p2=tgPcFor(c); if(p2){ p2.id=id; out.push(p2); } });
   return out; }
 /* a class to try: the builder makes a level N character with its first choices (Human, Soldier, standard scores) */
-function tgTry(cls,level,sub){ if(!window.__bldSheetFor) return null; const lv=Math.max(1,Math.min(20,level|0||1)), nb=(window.__bldQuickFor&&window.__bldQuickFor(cls,lv))||{cls:cls,level:lv,sub:sub||"",species:"Human",bg:"Soldier",unset:[]}; nb.name="Trial "+cls;
-  let c2=null; try{ c2=window.__bldSheetFor(nb); }catch(e){ c2=null; } const p=tgPcFor(c2); if(p){ p.name=cls+" "+nb.level; p.trial=1; } return p; }
-window.__app.tgRoster=tgRoster; window.__app.tgTry=tgTry; window.__app.uiGet=uiGet; window.__app.uiSet=uiSet; window.__app.toast=toast;
+function tgTry(cls,level,sub){ if(!env.__bldSheetFor) return null; const lv=Math.max(1,Math.min(20,level|0||1)), nb=(env.__bldQuickFor&&env.__bldQuickFor(cls,lv))||{cls:cls,level:lv,sub:sub||"",species:"Human",bg:"Soldier",unset:[]}; nb.name="Trial "+cls;
+  let c2=null; try{ c2=env.__bldSheetFor(nb); }catch(e){ c2=null; } const p=tgPcFor(c2); if(p){ p.name=cls+" "+nb.level; p.trial=1; } return p; }
+env.__app.tgRoster=tgRoster; env.__app.tgTry=tgTry; env.__app.uiGet=uiGet; env.__app.uiSet=uiSet; env.__app.toast=toast;

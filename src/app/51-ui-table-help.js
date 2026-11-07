@@ -6,7 +6,7 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {LEARN_LINK,__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
 import {RB_AB} from "./50-logic-reverse-builder.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"cheatOpen",{get:function(){return cheatOpen;},set:function(v){cheatOpen=v;},configurable:true});
 Object.defineProperty(__R,"coachGet",{get:function(){return coachGet;},set:function(v){coachGet=v;},configurable:true});
 Object.defineProperty(__R,"coachLine",{get:function(){return coachLine;},set:function(v){coachLine=v;},configurable:true});
@@ -48,4 +48,4 @@ function coachLine(title){ if(FROZEN) return ""; const o=coachGet(); if(!o.on) r
   o.seen[k]=Date.now(); uiSet("cs-coach",o); return '<p class="coach" role="note"><b>Coach</b> '+esc(COACH[k])+'</p>'; }
 function coachToggle(){ const o=coachGet(); o.on=o.on?0:1; uiSet("cs-coach",o); return o.on; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-coach]"); if(!b) return; const on=coachToggle(); b.setAttribute("aria-pressed",String(!!on)); b.textContent="Coach mode: "+(on?"on":"off"); toast(on?"Coach mode on. The first time you open a rule, one short line explains it.":"Coach mode off."); });
-window.__whichDie=function(){ wdOpen(); }; window.__cheatOpen=function(){ cheatOpen(); };
+env.__whichDie=function(){ wdOpen(); }; env.__cheatOpen=function(){ cheatOpen(); };

@@ -10,7 +10,7 @@ import {closeSheet} from "./13-ui-detail-cards.js";
 import {TPL,__set_edTab,edTab,getPath,rEnsure,rGet,rerenderEditor,scheduleRender,setPath} from "./14-ui-editor.js";
 import {SN_BAD,rSnap,snGet,snRestore,snTake} from "./15-logic-roster-backup-files-snapshots.js";
 import {MYID} from "./17-logic-tab-sync-and-test-hooks.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* v30 C1: phone header. My Characters, Edit, Settings, and PDF sit in the More menu (computer: the same buttons in the header row) */
 /* v32 p36: full header only when it fits on one line, measured (phones keep their own header) */
 function hdrFits(){ const A=document.querySelector(".band .acts"), of=document.querySelector(".band .office"); if(!A) return true;
@@ -25,9 +25,9 @@ function hdrFits(){ const A=document.querySelector(".band .acts"), of=document.q
 let HDR_RAF=0;
 function hdrFit(){ HDR_RAF=0; const R=document.documentElement; if(__R.mq.matches){ R.removeAttribute("data-hdrc"); return; }
   const bd=document.querySelector(".band .band-in"); if(!bd||!bd.getBoundingClientRect().width) return;/* header not shown (builder open): measure when it shows */
-  const was=R.hasAttribute("data-hdrc"); if(was) R.removeAttribute("data-hdrc"); const ok=hdrFits(); if(!ok){ R.setAttribute("data-hdrc","1"); } else if(was){ const mm=document.getElementById("moreMenu"); if(mm&&mm.classList.contains("open")&&window.__moreSet) window.__moreSet(false); } }
+  const was=R.hasAttribute("data-hdrc"); if(was) R.removeAttribute("data-hdrc"); const ok=hdrFits(); if(!ok){ R.setAttribute("data-hdrc","1"); } else if(was){ const mm=document.getElementById("moreMenu"); if(mm&&mm.classList.contains("open")&&env.__moreSet) env.__moreSet(false); } }
 function hdrSoon(){ if(!HDR_RAF) HDR_RAF=requestAnimationFrame(hdrFit); }
-window.__hdrFit=function(){ hdrFit(); return document.documentElement.hasAttribute("data-hdrc"); };
+env.__hdrFit=function(){ hdrFit(); return document.documentElement.hasAttribute("data-hdrc"); };
 window.addEventListener("resize",hdrSoon); try{ __R.mq.addEventListener("change",hdrSoon); }catch(e){}
 try{ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(hdrSoon); if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener("loadingdone",hdrSoon); }catch(e){}
 (function(){ const A=document.querySelector(".band .acts"), O=document.querySelector(".band .office"); try{ const mo=new MutationObserver(hdrSoon); if(A) mo.observe(A,{attributes:true,subtree:true,attributeFilter:["hidden"]}); if(O) mo.observe(O,{childList:true,subtree:true,characterData:true}); mo.observe(document.documentElement,{attributes:true,attributeFilter:["data-tsize","data-skin"]}); }catch(e){}
@@ -35,7 +35,7 @@ try{ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(hdrSoon)
 hdrSoon(); setTimeout(hdrSoon,400);
 (function(){ const mb=$("#moreBtn"), mm=$("#moreMenu"); if(!mb||!mm) return;
   function set(on){ mm.classList.toggle("open",!!on); mb.setAttribute("aria-expanded",on?"true":"false"); }
-  window.__moreSet=set;
+  env.__moreSet=set;
   mb.addEventListener("click",() =>{ const on=!mm.classList.contains("open"); set(on); });
   document.addEventListener("click",(e) =>{ if(!mm.classList.contains("open")||(e.target.closest&&e.target.closest("#moreBtn"))) return; set(false); });
   document.addEventListener("keydown",(e) =>{ if(e.key==="Escape"&&mm.classList.contains("open")){ set(false); try{ mb.focus({preventScroll:true}); }catch(er){} } });
@@ -46,13 +46,13 @@ $("#sheetBody").addEventListener("click",(e) =>{
   if(sheetMode==="cust"){ const cb2=e.target.closest("[data-cusave],[data-cureset]"); if(cb2){ __R.cuSave(cb2.dataset.cusave||cb2.dataset.cureset, !!cb2.dataset.cureset); } return; }/* v26 RU38 no. 2 */
   if(sheetMode==="spman"){ if(e.target.closest("[data-info]")) return; const sb=e.target.closest("button"); if(!sb) return; const sd=sb.dataset;/* v25 RU38 no. 3 */
     if(sd.spmt){ if(sb.disabled) return; __R.spmToggle(sd.spmt,sd.spmc); return; } if(sd.spmcls){ __R.spmCls=sd.spmcls; __R.spmLv="all"; __R.spmRefresh(); return; } if(sd.spml!=null){ __R.spmLv=sd.spml; __R.spmRefresh(); return; } return; }
-  if(sheetMode==="theme"){ if(e.target.closest("[data-hpgo]")){ closeSheet(); if(window.__bldGo) window.__bldGo("class"); return; }
+  if(sheetMode==="theme"){ if(e.target.closest("[data-hpgo]")){ closeSheet(); if(env.__bldGo) env.__bldGo("class"); return; }
     if(e.target.closest("[data-keysopen]")){ __R.keysOpen(); return; }/* v32 p27 */
     const snb=e.target.closest("[data-snrs],[data-snnow]"); if(snb){ const sid=MYID||(rGet()||{}).active; if(snb.hasAttribute("data-snrs")){ snRestore(sid,+snb.getAttribute("data-snrs")); return; }
       if(SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; } const rr0=rSnap(rEnsure()), b0=(snGet().chars[sid]||[]), h0=b0[0]&&b0[0].h; snTake(sid,"Taken by hand",rr0); const b1=snGet().chars[sid]||[]; toast(b1[0]&&b1[0].h!==h0?"Snapshot taken":"No changes since the last snapshot");
       const sb3=$("#sheetBody"), st3=sb3.scrollTop; sb3.innerHTML=__R.settingsHTML(); sb3.scrollTop=st3; return; }/* v32 p33 */
     const tb=e.target.closest(".thb"); if(!tb) return; const dd=tb.dataset;
-    if(dd.hpm){ let df=[]; try{ df=window.__bldDiff?window.__bldDiff(C)||[]:[]; }catch(er){ df=[]; } __R.undoMark("Hit Points setting"); const hm2=window.__bldHpMode&&window.__bldHpMode(dd.hpm,!df.length); if(!hm2){ __R.UNDO=null; return; }
+    if(dd.hpm){ let df=[]; try{ df=env.__bldDiff?env.__bldDiff(C)||[]:[]; }catch(er){ df=[]; } __R.undoMark("Hit Points setting"); const hm2=env.__bldHpMode&&env.__bldHpMode(dd.hpm,!df.length); if(!hm2){ __R.UNDO=null; return; }
       __R.renderAll(); __R.toastU("Hit Points: "+(dd.hpm==="roll"?"rolled":"fixed (average)")+"."+(df.length?" The sheet has its own edits, so it keeps its numbers until you press Build, then Apply.":" Maximum HP is "+D.hpmax+".")); }/* v25 RU38 no. 6 */
     if(dd.hc){ hcSet(dd.hc); toast(dd.hc==="auto"?"High contrast follows your device. It is "+(hcOn()?"on":"off")+" now.":"High contrast is "+(hcOn()?"on":"off")+"."); const sb4=$("#sheetBody"), st4=sb4.scrollTop; sb4.innerHTML=__R.settingsHTML(); sb4.scrollTop=st4; return; }/* v35 p01 */
     if(dd.thm!=null){ S.theme=dd.thm; if(document.startViewTransition&&!REDUCE){ const vde=document.documentElement; vde.style.setProperty("--vtx",(e.clientX||innerWidth/2)+"px"); vde.style.setProperty("--vty",(e.clientY||innerHeight/2)+"px"); vde.classList.add("mi-themevt"); try{ const tvt=document.startViewTransition(() =>{ applyTheme(); }); const tve=function(){ vde.classList.remove("mi-themevt"); }; tvt.finished.then(tve,tve); }catch(er){ vde.classList.remove("mi-themevt"); applyTheme(); } } else applyTheme(); }/* v55: circular reveal */ if(dd.thc) S.color=dd.thc; if(dd.thk) S.skin=dd.thk; if(dd.ths) S.sym=dd.ths;
@@ -99,17 +99,17 @@ function editInput(el){
   /* RU31: Worn ticked in the Edit form on armor or a Shield of a hand-filled sheet: AC as the Inventory checkbox (RU29) */
   let wm=/^inv\.(\d+)\.eq$/.exec(path), wi=wm&&(C.inv||[])[+wm[1]], wfx=null;
   if(wi&&wi.att&&v&&!eqOn(wi)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); rerenderEditor(); return; }/* M18 */
-  if(wi&&!wi.key&&!eqLinked(wi)&&!!v!==eqOn(wi)&&window.__bldArmor){ try{ wfx=window.__bldArmor({C:structuredClone(C),lang:S.lang},wi.n,!!v); }catch(er){ wfx=null; } }
+  if(wi&&!wi.key&&!eqLinked(wi)&&!!v!==eqOn(wi)&&env.__bldArmor){ try{ wfx=env.__bldArmor({C:structuredClone(C),lang:S.lang},wi.n,!!v); }catch(er){ wfx=null; } }
   /* V14-2: worn armor or Shield renamed in the Edit form: its AC bonus is taken off first (as unticking it), the item is no longer worn */
   let rn=/^inv\.(\d+)\.n$/.exec(path), ri=rn&&(C.inv||[])[+rn[1]], rOld=ri&&ri.n, rfx=null;
-  if(ri&&!ri.key&&rOld!==v&&eqOn(ri)&&!eqLinked(ri)&&window.__bldArmor){ try{ rfx=window.__bldArmor({C:structuredClone(C),lang:S.lang},rOld,false); }catch(er){ rfx=null; } }
+  if(ri&&!ri.key&&rOld!==v&&eqOn(ri)&&!eqLinked(ri)&&env.__bldArmor){ try{ rfx=env.__bldArmor({C:structuredClone(C),lang:S.lang},rOld,false); }catch(er){ rfx=null; } }
   setPath(C,path,v);
   /* RU31: an item renamed in the Edit form is looked up again in the item database (type, checkbox, details). Unknown names stay Gear */
-  const nm=/^inv\.(\d+)\.n$/.exec(path), ni=nm&&(C.inv||[])[+nm[1]]; if(ni&&!ni.key){ ["type","html","equippable","att","gear","cost"].forEach((f) =>{ delete ni[f]; }); const nmt=window.__itemMeta&&window.__itemMeta(v); if(nmt&&nmt.w) ni.w=nmt.w; }/* V14-9: weight from the tables */
+  const nm=/^inv\.(\d+)\.n$/.exec(path), ni=nm&&(C.inv||[])[+nm[1]]; if(ni&&!ni.key){ ["type","html","equippable","att","gear","cost"].forEach((f) =>{ delete ni[f]; }); const nmt=env.__itemMeta&&env.__itemMeta(v); if(nmt&&nmt.w) ni.w=nmt.w; }/* V14-9: weight from the tables */
   if(rfx){ const racd=armorFx(rfx,ri); ri.eq=false; bldSync(rOld,{del:1}); saveC(); scheduleRender(); toast(racd?"Unequipped "+rOld+". Armor Class is now "+(derive(),D.ac)+".":"Unequipped "+rOld+"."); return; }
   if(wfx&&armorFx(wfx,wi)){ saveC(); scheduleRender(); toast((wi.eq?"Equipped. ":"Unequipped. ")+"Armor Class is now "+(derive(),D.ac)+"."); return; }
   /* RL40: a new name typed here also renames the saved build of this character */
-  if(path==="name"&&v&&oldNm!==v){ try{ if(window.__bldRename) window.__bldRename(oldNm,v); }catch(er){} }
+  if(path==="name"&&v&&oldNm!==v){ try{ if(env.__bldRename) env.__bldRename(oldNm,v); }catch(er){} }
   /* RU18-2: Qty and Worn of an item, edited here, also go to the saved build of the same character (as N2) */
   const im=/^inv\.(\d+)\.(q|eq)$/.exec(path), ii=im&&(C.inv||[])[+im[1]]; if(ii) bldSync(ii.key||ii.n, im[2]==="q"?{q:v,occ:__R.occOf(ii)}:{eq:!!v,occ:__R.occOf(ii)});
   saveC(); scheduleRender();
