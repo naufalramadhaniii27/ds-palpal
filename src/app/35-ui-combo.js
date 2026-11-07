@@ -2,17 +2,17 @@ import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
 import {C,FROZEN,S,recover,save} from "./04-logic-storage.js";
 import {$,$$,ask,atkOn,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,fill} from "./06-logic-derivation.js";
-import {actOne,actSplit,featAll,renderAbilities,renderActions,renderFeat,renderIdentity,renderInv,renderSkillsPage,renderTiles,spellsBy,syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {actOne,actSplit,featAll,renderActions,spellsBy,syncLU} from "./08b-ui-render-summaries-actions.js";import {renderAbilities,renderIdentity,renderSkillsPage,renderTiles,used} from "./08-ui-render-sheet-and-actions.js";import {renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {openRest} from "./23d-ui-rest.js";import {renderSpells} from "./23e-ui-spells-dc.js";
 import {openSearch} from "./27-ui-party-search-commands-library.js";import {libOpen} from "./27b-ui-library.js";
-import {renderExtras} from "./29-ui-ddb-look.js";
-import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts,undoMark,undoNow} from "./32-logic-play-undo-actions.js";
+import {renderExtras} from "./29b-ui-creatures-extras.js";
+import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";import {undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
-import {combatHTML,sitReset} from "./34-ui-situations.js";
+import {combatHTML} from "./34c-ui-experience-journal-combat-view.js";import {sitReset} from "./34-ui-situations.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"CF0",{get:function(){return CF0;},set:function(v){CF0=v;},configurable:true});
 Object.defineProperty(__R,"cmbCast",{get:function(){return cmbCast;},set:function(v){cmbCast=v;},configurable:true});
@@ -116,7 +116,7 @@ export function cmbPipClick(e){ const b=e.target.closest&&e.target.closest("butt
   if(b.hasAttribute("data-ppct")){ cmbAct("tab",b.getAttribute("data-ppct")); return; }
   if(b.hasAttribute("data-ppcturn")){ cmbAct("turn"); return; }
   if(b.hasAttribute("data-ppcdone")){ const q=b.getAttribute("data-ppcdone"); if(cmbDone(q)) cmbAct("done",q); else cmbUse(q); return; }
-  if(b.hasAttribute("data-ppcast")){ try{ window.focus(); }catch(er){} quickCast(+b.getAttribute("data-ppcast")); } }
+  if(b.hasAttribute("data-ppcast")){ try{ env.focus(); }catch(er){} quickCast(+b.getAttribute("data-ppcast")); } }
 function openCombat(){ showEntry({type:"combat"},false); }
 document.addEventListener("click",(e) =>{ const t=e.target;
   const cb=t.closest&&t.closest("[data-cbhp]"); if(cb){ e.preventDefault(); const v=$("#cbAmt"); $("#hpAmt").value=v?v.value:""; (cb.getAttribute("data-cbhp")==="heal"?$("#healBtn"):$("#dmgBtn")).click(); }
@@ -130,7 +130,7 @@ document.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target&&e.targ
 /* ---------- RU77 keyboard shortcuts ---------- */
 const KEYS=[["Home: / N B S","On the character list: / searches, N creates a character, B backs up, S opens Settings. Ctrl+K also searches. Type a command word such as back or party, Enter runs it"],["1 to 7","Switch tabs: Actions, Spells, Inventory, Features, Description, Notes, Extras (in a narrow window, 1 to 9 follow the page buttons)"],["H","Heal the amount typed, or type an amount"],["D","Damage the amount typed, or type an amount"],["R","Rest"],["C","Conditions"],["K","Combat view"],["M","Main"],["S","Skills"],["A","Actions"],["P","Spells"],["I","Inventory"],["F","Features"],["B","Description"],["N","Notes"],["X","Extras"],["/","Search the sheet"],["L","Library: search every spell, item, feat, class and rule"],["Ctrl+K","Search and commands (Cmd+K on a Mac)"],["Ctrl+Z","Undo"],["Ctrl+Shift+Z","Redo (also Ctrl+Y)"],["?","This list"]];
 function keysOpen(){ __set_navStack([]); openSheet("Keyboard Shortcuts",'<div class="keys">'+KEYS.map((x) =>{ return '<div><kbd>'+esc(x[0])+'</kbd><span>'+esc(x[1])+'</span></div>'; }).join("")+'</div><p class="muted">Shortcuts work when no text box is in use. In the amount box, Enter is Damage and Shift+Enter is Heal.</p>',"keys"); }
-function goTab(i,id){ if(mq.matches){ const b=$('#bnav [data-go="'+i+'"]'); if(b) b.click(); } else if(id) setTab(id); else window.scrollTo({top:0}); }
+function goTab(i,id){ if(mq.matches){ const b=$('#bnav [data-go="'+i+'"]'); if(b) b.click(); } else if(id) setTab(id); else env.scrollTo({top:0}); }
 document.addEventListener("keydown",(e) =>{ if(e.ctrlKey||e.metaKey||e.altKey||e.defaultPrevented) return; const t=e.target, tg=(t&&t.tagName)||"";
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(tg)||(t&&t.isContentEditable)) return; if(document.querySelector(".ask, #recov, #homeV:not([hidden]), #bkp:not([hidden])")) return; const bld=$("#bld"); if(bld&&!bld.hidden) return;
   const k=e.key.length===1?e.key.toUpperCase():e.key, open=sheet.classList.contains("on");

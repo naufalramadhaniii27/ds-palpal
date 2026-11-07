@@ -5,9 +5,9 @@ import {ABK} from "./02-data-default-character.js";
 import {APP_DATE,APP_LABEL,APP_VER,C,DEF,S,__set_C,__set_S,clone,lsGet,save} from "./04-logic-storage.js";
 import {eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,richP} from "./06-logic-derivation.js";
-import {featAll} from "./08-ui-render-sheet-and-actions.js";
+import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {BKEY,rEnsure} from "./14-ui-editor.js";
-import {dlFile,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
+import {dlFile} from "./15c-logic-file-state-compress.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {coinsNow} from "./23c-ui-coins.js";import {ordL,scOf} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
@@ -31,18 +31,18 @@ function spCardH(x,i){ const xs=scOf(x), lv=x.l?ordL(x.l)+" "+x.sch:x.sch+" cant
 export function printCards(){ const L=[],seen={}; (C.spells||[]).forEach((x) =>{ if(seen[x.n]) return; seen[x.n]=1; L.push(x); }); if(!L.length){ toast("No spells to print yet."); return; }
   L.sort((a,b) =>{ return (a.l||0)-(b.l||0)||(a.n<b.n?-1:1); }); const old=document.getElementById("spCards"); if(old) old.remove();
   const w=document.createElement("div"); w.id="spCards"; w.setAttribute("aria-hidden","true"); w.innerHTML=L.map(spCardH).join(""); document.body.appendChild(w);
-  const R=document.documentElement; R.setAttribute("data-print","cards"); const done=function(){ R.removeAttribute("data-print"); const c=document.getElementById("spCards"); if(c) c.remove(); window.removeEventListener("afterprint",done); };
-  window.addEventListener("afterprint",done); try{ window.print(); }catch(e){} setTimeout(() =>{ if(!window.matchMedia||!window.matchMedia("print").matches) done(); },1500); }
+  const R=document.documentElement; R.setAttribute("data-print","cards"); const done=function(){ R.removeAttribute("data-print"); const c=document.getElementById("spCards"); if(c) c.remove(); env.removeEventListener("afterprint",done); };
+  env.addEventListener("afterprint",done); try{ env.print(); }catch(e){} setTimeout(() =>{ if(!env.matchMedia||!env.matchMedia("print").matches) done(); },1500); }
 /* RU71: a report for the person who keeps the app. Nothing is sent from here: the text is copied, the player chooses where to paste it */
 const ERRLOG=[];
-window.addEventListener("error",(e) =>{ ERRLOG.push({t:new Date().toISOString(),m:String(e.message||"").slice(0,300),f:String(e.filename||"").slice(-60)+":"+(e.lineno||0)}); if(ERRLOG.length>20) ERRLOG.shift(); });
+env.addEventListener("error",(e) =>{ ERRLOG.push({t:new Date().toISOString(),m:String(e.message||"").slice(0,300),f:String(e.filename||"").slice(-60)+":"+(e.lineno||0)}); if(ERRLOG.length>20) ERRLOG.shift(); });
 /* Reporting: a blocked script, style or connection (Content Security Policy) is listed in the problem report with the rule and the file, so it shows up without opening the console */
 document.addEventListener("securitypolicyviolation",(e) =>{ ERRLOG.push({t:new Date().toISOString(),m:"CSP blocked "+String(e.effectiveDirective||e.violatedDirective||"").slice(0,40)+": "+String(e.blockedURI||"").slice(0,80),f:String(e.sourceFile||"").slice(-60)+":"+(e.lineNumber||0)}); if(ERRLOG.length>20) ERRLOG.shift(); });
-window.addEventListener("unhandledrejection",(e) =>{ ERRLOG.push({t:new Date().toISOString(),m:String(e.reason&&e.reason.message||e.reason||"").slice(0,300)}); if(ERRLOG.length>20) ERRLOG.shift(); });
+env.addEventListener("unhandledrejection",(e) =>{ ERRLOG.push({t:new Date().toISOString(),m:String(e.reason&&e.reason.message||e.reason||"").slice(0,300)}); if(ERRLOG.length>20) ERRLOG.shift(); });
 let REP_NOTES=false;
 /* v28 I2: notes and journal only when ticked */
 function reportText(){ const s2=clone(S); if(s2.portrait) s2.portrait="(portrait left out)"; if(!REP_NOTES){ if(s2.notes) s2.notes="(notes left out)"; if(s2.journal) s2.journal="(journal left out)"; } let b=null; try{ b=JSON.parse(lsGet(BKEY)||"null"); }catch(e){ b=null; }
-  return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appLabel:APP_LABEL,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:window.innerWidth+"x"+window.innerHeight,
+  return JSON.stringify({kind:"problem-report",app:"dnd2024-sheet-builder",appVer:APP_VER,appLabel:APP_LABEL,appDate:APP_DATE,made:new Date().toISOString(),browser:navigator.userAgent,screen:env.innerWidth+"x"+env.innerHeight,
     storage:(function(){ let n=0; try{ for(let i=0;i<__store.length;i++){ const k=__store.key(i); n+=k.length+String(__store.getItem(k)||"").length; } }catch(e){} return Math.round(n/1024)+" KB"; })(),
     errors:ERRLOG, perf:PERF, sheet:C, state:s2, build:b, trail:repTrail()},null,1); }
 /* T11 N18: the last actions (from the undo list) with the state before the first one and after each one, so tests/replay_report.py can play them back.
@@ -58,8 +58,8 @@ env.__reportText=function(){ return reportText(); };
    They go into the problem report, nothing is sent anywhere */
 var PERF={loaf:[],ev:[]};
 (function(){ const keep=function(L,x){ L.push(x); L.sort((a,b) =>{ return b.d-a.d; }); if(L.length>10) L.length=10; };
-  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ const sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
-  try{ if(window.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(e.duration>=100){ const t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
+  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ const sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
+  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(e.duration>=100){ const t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
 })();
 function reportOpen(){ const old=document.getElementById("rep"); if(old) old.remove(); const w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");
   let txt=reportText();

@@ -1,7 +1,7 @@
 import {CKEY,FROZEN,KEY,lsGet} from "./04-logic-storage.js";
 import {esc,toast} from "./05-logic-helpers.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
-import {fixCid,hashS,homeCards,newId,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
+import {fixCid,hashS,newId} from "./15c-logic-file-state-compress.js";import {homeCards,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* T8 stage 3: cloud backup and sync of characters (Cloudflare Pages Functions /api + D1).
    Off unless /api answers (local files, tests and other hosts keep working as before). Data stays on the device first, the server holds a copy.
@@ -165,9 +165,9 @@ function syStart(){ if(SY.on||!/^https?:$/.test(location.protocol)||env.__noSync
       SY.me=me; SY.mode=me.mode||"normal"; SY.on=true; syState("busy"); syRun("start");
       setInterval(() =>{ syRun("tick"); },10000);
       document.addEventListener("visibilitychange",() =>{ if(document.hidden){ syFlush(); return; } syRun("show"); });
-      window.addEventListener("online",() =>{ syRun("show"); }); window.addEventListener("offline",() =>{ syState("offline"); });
-      window.addEventListener("pagehide",syFlush);
-      if(window.MutationObserver){ const watch=function(){ const hv=document.getElementById("homeV"); if(hv&&!hv.__syo){ hv.__syo=1; new MutationObserver(syIcon).observe(hv,{childList:true,subtree:true}); } syIcon(); };
+      env.addEventListener("online",() =>{ syRun("show"); }); env.addEventListener("offline",() =>{ syState("offline"); });
+      env.addEventListener("pagehide",syFlush);
+      if(env.MutationObserver){ const watch=function(){ const hv=document.getElementById("homeV"); if(hv&&!hv.__syo){ hv.__syo=1; new MutationObserver(syIcon).observe(hv,{childList:true,subtree:true}); } syIcon(); };
         new MutationObserver(watch).observe(document.body,{childList:true}); watch(); } },
     () =>{ SY.on=false; });
 }

@@ -1,11 +1,10 @@
 import {S,save} from "./04-logic-storage.js";
 import {toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
-import {INCAP,hasFeat,lvOf} from "./32-logic-play-undo-actions.js";
+import {INCAP,hasFeat,lvOf} from "./32b-logic-play-concentration-casting.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"modeAuto",{get:function(){return modeAuto;},set:function(v){modeAuto=v;},configurable:true});
 Object.defineProperty(__R,"modeClean",{get:function(){return modeClean;},set:function(v){modeClean=v;},configurable:true});
-Object.defineProperty(__R,"modeOn",{get:function(){return modeOn;},set:function(v){modeOn=v;},configurable:true});
 /* ================= v22: PLAYING THE CHARACTER 2 ================= */
 /* RU53, RU56: what active conditions and modes do to the numbers. D.cf = cfx() */
 export var MODES=[{k:"rage",n:"Rage",f:"Rage",use:/^Rage$/},{k:"wildshape",n:"Wild Shape",f:"Wild Shape",use:/^Wild Shape$/},{k:"sacred",n:"Sacred Weapon",f:"Sacred Weapon",use:/^Channel Divinity$/},

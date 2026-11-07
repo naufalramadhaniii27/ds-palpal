@@ -82,7 +82,7 @@ function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' ne
 function rbFinal(r){ const nb=structuredClone(r.nb); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
 function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
 /* M12: scheduler.postTask at user-visible priority when the browser has it, else a timer. scheduler.yield() was tried: its continuations ran five slices in one frame (100 ms) and the page did not paint between them */
-const rbYield=(f) =>{ if(window.scheduler&&typeof window.scheduler.postTask==="function") window.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
+const rbYield=(f) =>{ if(env.scheduler&&typeof env.scheduler.postTask==="function") env.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
 let RB_DUEL_WAIT=false;
 function rbDuel(i,btn){ const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel"); if(!r||!out) return; out.hidden=false;
   if(!env.__tgDuelPick){ if(env.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(env.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!env.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }

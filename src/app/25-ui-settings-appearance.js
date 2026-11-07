@@ -8,9 +8,6 @@ Object.defineProperty(__R,"carryOf",{get:function(){return carryOf;},set:functio
 Object.defineProperty(__R,"setOf",{get:function(){return setOf;},set:function(v){setOf=v;},configurable:true});
 Object.defineProperty(__R,"setPut",{get:function(){return setPut;},set:function(v){setPut=v;},configurable:true});
 Object.defineProperty(__R,"settingsHTML",{get:function(){return settingsHTML;},set:function(v){settingsHTML=v;},configurable:true});
-Object.defineProperty(__R,"spUpMax",{get:function(){return spUpMax;},set:function(v){spUpMax=v;},configurable:true});
-Object.defineProperty(__R,"spUpOk",{get:function(){return spUpOk;},set:function(v){spUpOk=v;},configurable:true});
-Object.defineProperty(__R,"spUpOn",{get:function(){return spUpOn;},set:function(v){spUpOn=v;},configurable:true});
 /* ================= v25: SETTINGS AND APPEARANCE (RU38 no. 6, no. 7) =================
    S.set (optional): enc "off" (weight not tracked), ab "score" (score big, modifier small), spUp 1 (a spell that gains from a higher slot is listed again
    under each higher slot level). S.frame and S.bdrop (optional): portrait frame and backdrop. Hit Points fixed or rolled stay in the build (B.hpMode). */
@@ -47,7 +44,7 @@ function carryOf(str){ const SIZES=["Tiny","Small","Medium","Large","Huge","Garg
   const bear=(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Aspect of the Beast"&&/\*\*Your choice\.\*\*\s*Bear/.test(String(i.d||"")); }); }), mul=bear?2:1;/* v102: Totem Warrior (2014), Aspect of the Beast: Bear doubles carrying capacity */
   return {v:SIZE_MUL[s2]*mul*str, m:SIZE_MUL[s2]*mul, s:s, pb:pb, bear:bear}; }
 /* spells listed again at higher slot levels */
-function spUpOn(){ return setOf("spUp")==="1"; }
-function spUpMax(){ return ((C.spellcasting||{}).slots||[]).length; }
-function spUpOk(x){ return !!x.l&&!x.itc&&!spPact(x)&&!/Long Rest|At will/.test(x.use||"")&&/Higher-Level Spell Slot/.test(x.full||""); }
+export function spUpOn(){ return setOf("spUp")==="1"; }
+export function spUpMax(){ return ((C.spellcasting||{}).slots||[]).length; }
+export function spUpOk(x){ return !!x.l&&!x.itc&&!spPact(x)&&!/Long Rest|At will/.test(x.use||"")&&/Higher-Level Spell Slot/.test(x.full||""); }
 

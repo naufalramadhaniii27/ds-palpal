@@ -1,10 +1,7 @@
 {
  "files": {
-  "app/08-ui-render-sheet-and-actions.js": 336,
   "app/13-ui-detail-cards.js": 418,
-  "app/15-logic-roster-backup-files-snapshots.js": 309,
   "app/27b-ui-library.js": 307,
-  "app/32-logic-play-undo-actions.js": 303,
   "builder/09-logic-feats-and-choices.js": 353,
   "fx/02-micro-interactions.js": 361,
   "learn/45-data-learn.js": 491,
@@ -35,33 +32,33 @@
    118,
    177
   ],
-  "app/08-ui-render-sheet-and-actions.js::actEnt": [
-   5,
-   44
-  ],
-  "app/08-ui-render-sheet-and-actions.js::actSplit": [
-   13,
-   30
-  ],
   "app/08-ui-render-sheet-and-actions.js::idArt": [
    7,
    22
   ],
-  "app/08-ui-render-sheet-and-actions.js::renderActions": [
+  "app/08b-ui-render-summaries-actions.js::actEnt": [
+   5,
+   44
+  ],
+  "app/08b-ui-render-summaries-actions.js::actSplit": [
+   13,
+   30
+  ],
+  "app/08b-ui-render-summaries-actions.js::renderActions": [
    25,
    56
   ],
-  "app/08-ui-render-sheet-and-actions.js::renderFeat": [
+  "app/08b-ui-render-summaries-actions.js::spSum": [
+   11,
+   25
+  ],
+  "app/08c-ui-render-inventory-features-notes.js::renderFeat": [
    23,
    37
   ],
-  "app/08-ui-render-sheet-and-actions.js::renderInv": [
+  "app/08c-ui-render-inventory-features-notes.js::renderInv": [
    30,
    60
-  ],
-  "app/08-ui-render-sheet-and-actions.js::spSum": [
-   11,
-   25
   ],
   "app/09-ui-hit-points-playbar-death-saves.js::vbSync": [
    16,
@@ -107,25 +104,9 @@
    69,
    32
   ],
-  "app/15-logic-roster-backup-files-snapshots.js::bkpCheck": [
-   9,
-   36
-  ],
-  "app/15-logic-roster-backup-files-snapshots.js::bkpOpen": [
-   28,
-   43
-  ],
   "app/15-logic-roster-backup-files-snapshots.js::charInfo": [
    2,
    27
-  ],
-  "app/15-logic-roster-backup-files-snapshots.js::chfOpen": [
-   27,
-   44
-  ],
-  "app/15-logic-roster-backup-files-snapshots.js::healFind": [
-   8,
-   33
   ],
   "app/15-logic-roster-backup-files-snapshots.js::homeCards1": [
    8,
@@ -134,6 +115,22 @@
   "app/15-logic-roster-backup-files-snapshots.js::showHome": [
    25,
    65
+  ],
+  "app/15b-logic-backup.js::bkpCheck": [
+   9,
+   36
+  ],
+  "app/15b-logic-backup.js::bkpOpen": [
+   28,
+   43
+  ],
+  "app/15d-logic-snapshots-character-files.js::chfOpen": [
+   27,
+   44
+  ],
+  "app/15d-logic-snapshots-character-files.js::healFind": [
+   8,
+   33
   ],
   "app/16-logic-import-chat-text-and-build-files.js::bkpMerge": [
    10,
@@ -203,10 +200,6 @@
    8,
    21
   ],
-  "app/27-ui-party-search-commands-library.js::gsHTML": [
-   16,
-   36
-  ],
   "app/27-ui-party-search-commands-library.js::palCmds": [
    7,
    25
@@ -271,18 +264,6 @@
    24,
    68
   ],
-  "app/29-ui-ddb-look.js::crBlock": [
-   15,
-   31
-  ],
-  "app/29-ui-ddb-look.js::crEnv": [
-   7,
-   39
-  ],
-  "app/29-ui-ddb-look.js::crList": [
-   18,
-   57
-  ],
   "app/29-ui-ddb-look.js::featNums": [
    10,
    28
@@ -295,7 +276,19 @@
    5,
    33
   ],
-  "app/29-ui-ddb-look.js::renderExtras0": [
+  "app/29b-ui-creatures-extras.js::crBlock": [
+   15,
+   31
+  ],
+  "app/29b-ui-creatures-extras.js::crEnv": [
+   7,
+   39
+  ],
+  "app/29b-ui-creatures-extras.js::crList": [
+   18,
+   57
+  ],
+  "app/29b-ui-creatures-extras.js::renderExtras0": [
    15,
    44
   ],
@@ -311,21 +304,21 @@
    28,
    52
   ],
-  "app/32-logic-play-undo-actions.js::spUses": [
+  "app/32b-logic-play-concentration-casting.js::spUses": [
    9,
    22
-  ],
-  "app/34-ui-situations.js::cfx": [
-   29,
-   50
-  ],
-  "app/34-ui-situations.js::modeToggle": [
-   14,
-   27
   ],
   "app/34-ui-situations.js::sitDo": [
    11,
    22
+  ],
+  "app/34b-ui-combat-effects-modes.js::cfx": [
+   29,
+   50
+  ],
+  "app/34b-ui-combat-effects-modes.js::modeToggle": [
+   14,
+   27
   ],
   "app/35-ui-combo.js::cmbBody": [
    7,
@@ -362,10 +355,6 @@
   "app/40b-ui-notes-description.js::renderDesc": [
    13,
    23
-  ],
-  "app/40d-ui-overlays-context-dock.js::ovTop": [
-   11,
-   25
   ],
   "app/40e-ui-reorder-drag.js::ordMove": [
    8,

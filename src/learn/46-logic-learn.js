@@ -1,4 +1,4 @@
-import {A,lsGet,lsSet} from "./00-bridge.js";
+import {env} from "./00-env.js";import {A,lsGet,lsSet} from "./00-bridge.js";
 import {LEARN} from "./45-data-learn.js";
 /* T11 Learn logic: progress, language, dice and the sheet spotlight (U41 Anchor Spotlight).
    Saved under cs-learn-v1 only ({v, lang, done:{stop:{t,skip}}, xp, quiz:{best,t}, last}). No other key is read or changed,
@@ -37,9 +37,9 @@ export function lrnRecap(){ const old=Date.now()-864e5, qs=[];
 
 /* dice: the 3D dice of the sheet (25-dice3d) when effects are on, numbers from crypto otherwise. Always answers, never throws */
 export function lrnD(n){ const a=new Uint32Array(1); try{ crypto.getRandomValues(a); }catch(e){ a[0]=Math.floor(Math.random()*4294967295); } return 1+a[0]%n; }
-function lrnCalm(){ const M=window.__MI; return !M||(M.rm&&M.rm())||M.mode==="off"; }
+function lrnCalm(){ const M=env.__MI; return !M||(M.rm&&M.rm())||M.mode==="off"; }
 export function lrnRoll(list){ const flat=function(){ return list.map(lrnD); };
-  if(window.__dice3d&&!lrnCalm()&&!window.__lrnFlat) return window.__dice3d.roll(list).then((v) =>{ return v&&v.length===list.length?{v:v,three:1}:{v:flat()}; },() =>{ return {v:flat()}; });
+  if(env.__dice3d&&!lrnCalm()&&!env.__lrnFlat) return env.__dice3d.roll(list).then((v) =>{ return v&&v.length===list.length?{v:v,three:1}:{v:flat()}; },() =>{ return {v:flat()}; });
   return Promise.resolve({v:flat()}); }
 
 /* the character's numbers, from the same derivation the sheet shows (D in 06) */
@@ -51,7 +51,7 @@ export function lrnHasChar(){ const C=A.C&&A.C(); return !!(C&&C.name!=null&&!(A
    The ring follows the element with CSS anchor positioning where the browser has it (Baseline 2026), and with a measured
    position (resize, scroll) where it does not. The label card sits beside the ring. window.__lrnNoAnchor forces the fallback (tests) */
 export var SPOT=null;
-export function spotAnchor(){ return !window.__lrnNoAnchor&&window.CSS&&CSS.supports&&CSS.supports("anchor-name","--a")&&CSS.supports("top","anchor(--a bottom)"); }
+export function spotAnchor(){ return !env.__lrnNoAnchor&&env.CSS&&CSS.supports&&CSS.supports("anchor-name","--a")&&CSS.supports("top","anchor(--a bottom)"); }
 export function spotShow(el,html,onClose){ spotHide(true); const ring=document.createElement("div"), card=document.createElement("div"), r0=el.getBoundingClientRect(), tall=r0.height>innerHeight*.45, anc=spotAnchor()&&!tall;/* a part taller than half the screen: the card waits at the bottom */
   ring.id="spotR"; ring.className="spot-r"+(anc?" spot-anc":""); ring.setAttribute("aria-hidden","true");
   card.id="lrnSpot"; card.className="spot-c noico"+(anc?" spot-anc":""); card.setAttribute("role","dialog"); card.setAttribute("aria-label",(el.getAttribute("aria-label")||"")); card.innerHTML=html;
@@ -60,13 +60,13 @@ export function spotShow(el,html,onClose){ spotHide(true); const ring=document.c
   const place=function(){ if(anc) return; const r=el.getBoundingClientRect(), p=6; ring.style.left=(r.left-p)+"px"; ring.style.top=(r.top-p)+"px"; ring.style.width=(r.width+2*p)+"px"; ring.style.height=(r.height+2*p)+"px";
     if(tall){ card.style.left=Math.max(12,(innerWidth-card.offsetWidth)/2)+"px"; card.style.top=Math.max(12,innerHeight-card.offsetHeight-96)+"px"; return; }
     const below=r.bottom+180<innerHeight; card.style.left=Math.max(12,Math.min(innerWidth-card.offsetWidth-12,r.left+r.width/2-card.offsetWidth/2))+"px"; card.style.top=(below?r.bottom+14:Math.max(12,r.top-card.offsetHeight-14))+"px"; };
-  if(window.__topLayer){ window.__topLayer(ring); window.__topLayer(card); }
+  if(env.__topLayer){ env.__topLayer(ring); env.__topLayer(card); }
   place(); addEventListener("resize",place); addEventListener("scroll",place,true);
   SPOT={el:el,ring:ring,card:card,place:place,onClose:onClose};
   const b=card.querySelector("button"); if(b) try{ b.focus({preventScroll:true}); }catch(e){} return SPOT; }
 export function spotHide(quiet){ const s=SPOT; if(!s) return; SPOT=null; removeEventListener("resize",s.place); removeEventListener("scroll",s.place,true);
   try{ s.el.style.removeProperty("anchor-name"); }catch(e){} s.ring.remove(); s.card.remove(); if(!quiet&&s.onClose) s.onClose(); }
-window.__spot={show:spotShow,hide:spotHide,on:function(){ return !!SPOT; },find:function(s){ return lrnFind(s); }};
+env.__spot={show:spotShow,hide:spotHide,on:function(){ return !!SPOT; },find:function(s){ return lrnFind(s); }};
 
 /* finds the element a stop points at on the sheet, and turns to its page or tab first. Answers null when it is not on this sheet */
 function lrnVisible(el){ if(!el||!el.isConnected) return false; const r=el.getBoundingClientRect(); return r.width>0&&r.height>0&&r.right>0&&r.left<innerWidth&&getComputedStyle(el).visibility!=="hidden"; }/* a page of the phone pager beside the screen does not count */

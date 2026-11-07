@@ -2,7 +2,7 @@
    Touches page globals only through env (none used here). Shared names with other modules come from the imports below, late names through __R. */
 import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,esc,num,toast} from "./05-logic-helpers.js";
-import {CHEV,renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {CHEV,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {__R} from "./00-reg.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";

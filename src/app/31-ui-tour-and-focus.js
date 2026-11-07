@@ -4,7 +4,7 @@ import {REDUCE,uiGet} from "./07-ui-theme-contrast-spring.js";
 import {sheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {rGet} from "./14-ui-editor.js";
-import {learnBand,learnGo,rPh,uiSet} from "./15-logic-roster-backup-files-snapshots.js";
+import {learnBand,learnGo,rPh} from "./15-logic-roster-backup-files-snapshots.js";import {uiSet} from "./15c-logic-file-state-compress.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"tourBanner",{get:function(){return tourBanner;},set:function(v){tourBanner=v;},configurable:true});
 /* ================= v24: TOUR (RU76) ================= */
@@ -21,7 +21,7 @@ const TOURS=[["sel:#hpBox","Your Hit Points. Type a number, then tap Damage or H
  ["sel:#bnav","Actions, Spells, Inventory, Features and Notes live here. Swipe or tap to move.",null,"sel:#tabs"],
  ['sel:[data-rest="menu"]',"Rest after a fight. Short and Long Rests bring back HP and uses.",null,'sel:[data-rest="short"]'],
  ["sel:#moreBtn","More holds Settings, the Library and Export PDF. Settings can start this tour again.",null,"sel:#themeBtn","Settings changes the look and the rules. It can start this tour again."]];
-function tourWide(){ return window.matchMedia&&matchMedia("(min-width:760px)").matches; }
+function tourWide(){ return env.matchMedia&&matchMedia("(min-width:760px)").matches; }
 let tourI=-1, TOUR_KEEP=null, TOUR_WAIT=null, TOUR_OPT=null;/* TOUR_OPT: words in the Learn language and what to do at the end (Learn passes them) */
 function tourT(i){ const o=TOUR_OPT, st=TOURS[i]; if(o&&o.texts&&o.texts[i]) return tourWide()&&o.wide&&o.wide[i]?o.wide[i]:o.texts[i]; return tourWide()&&st[4]?st[4]:st[1]; }
 function tourU(k,en){ const o=TOUR_OPT; return o&&o.ui&&o.ui[k]?o.ui[k]:en; }

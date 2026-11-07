@@ -2,7 +2,7 @@ import {C,CKEY,FROZEN,KEY,S,cSaveT,lsGet,lsSet,saveT} from "./04-logic-storage.j
 import {ask,esc} from "./05-logic-helpers.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {BKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";
-import {curRaw,fmtT,rSnap,rawHash,snTake} from "./15-logic-roster-backup-files-snapshots.js";
+import {curRaw,fmtT,rawHash} from "./15c-logic-file-state-compress.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";import {snTake} from "./15d-logic-snapshots-character-files.js";
 import {undoLbl} from "./32-logic-play-undo-actions.js";
 import {rcptDiff,rcptHTML,rcptNow} from "./46-logic-receipts.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";

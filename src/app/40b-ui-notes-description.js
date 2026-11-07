@@ -1,9 +1,9 @@
-/* Responsibility: notes sections and the Description page. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {env} from "./00-env.js";/* Responsibility: notes sections and the Description page. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env (none used here). Shared names with other modules come from the imports below, late names through __R. */
 import {NOTE_FIELDS} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
 import {$,esc,rich} from "./05-logic-helpers.js";
-import {__set_renderNotes,campName,renderNotes} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderNotes,renderNotes} from "./08c-ui-render-inventory-features-notes.js";import {campName} from "./08-ui-render-sheet-and-actions.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {CHAR_FIELDS} from "./29-ui-ddb-look.js";
 import {__R} from "./00-reg.js";
@@ -13,7 +13,7 @@ Object.defineProperty(__R,"renderDesc",{get:function(){return renderDesc;},set:f
 const NOTE_ICO={org:"ui-flag",allies:"ui-users",enemies:"sk-intimidation",backstory:"ui-book",other:"ui-pen",session:"tab-notes"};
 function noteSec(f){ return '<section class="nsec"><label class="nsec-h" for="n-'+f.k+'">'+ico(NOTE_ICO[f.k]||"tab-notes","nsec-i")+'<span><b>'+f.l+'</b><small>'+esc(f.h)+'</small></span></label><textarea id="n-'+f.k+'" class="nsec-t grow" data-note="'+f.k+'" rows="2" placeholder="Write here">'+esc(S.notes[f.k]||"")+'</textarea></section>'; }
 /* boxes grow with their text; browsers without field-sizing get the height from JavaScript */
-const GROW_CSS=!!(window.CSS&&CSS.supports&&CSS.supports("field-sizing","content"));
+const GROW_CSS=!!(env.CSS&&CSS.supports&&CSS.supports("field-sizing","content"));
 function growOne(t){ if(GROW_CSS||!t||!t.isConnected) return; t.style.height="auto"; t.style.height=(t.scrollHeight+2)+"px"; }
 function growAll(root){ if(GROW_CSS) return; Array.prototype.forEach.call((root||document).querySelectorAll("textarea.grow"),growOne); }
 document.addEventListener("input",(e) =>{ if(e.target&&e.target.classList&&e.target.classList.contains("grow")) growOne(e.target); });

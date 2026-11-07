@@ -66,8 +66,8 @@ let unsT=null;
 function unsavedSoon(k){ if(k!==CKEY&&k!==KEY&&k!==__R.BKEY) return; clearTimeout(unsT); unsT=setTimeout(__R.updUnsaved,400); }
 env.__lsSet=lsSet; env.__lsSave=lsSave; env.__appVer=APP_VER; env.__appLabel=APP_LABEL;
 /* T7: with IndexedDB a write that fails is known only after the transaction ends. The store reports it here, the same caution bar shows */
-window.addEventListener("cs-store-fail",() =>{ SAVE_FAIL=1; saveWarn(); });
-window.addEventListener("cs-store-ok",() =>{ if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } });
+env.addEventListener("cs-store-fail",() =>{ SAVE_FAIL=1; saveWarn(); });
+env.addEventListener("cs-store-ok",() =>{ if(SAVE_FAIL){ SAVE_FAIL=0; saveWarn(); } });
 /* RU61: caution bar while writes fail. Hidden again by the next write that works */
 function saveWarn(){ let w=document.getElementById("saveWarn"); if(!SAVE_FAIL){ if(w) w.remove(); return; } if(w) return;
   w=document.createElement("div"); w.id="saveWarn"; w.className="savew"; w.setAttribute("role","alert");

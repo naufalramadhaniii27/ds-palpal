@@ -1,4 +1,4 @@
-import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
+import {env} from "./00-env.js";import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
 import {exSpd,gName} from "./03-data-glossary.js";
 import {C,S,clsLv} from "./04-logic-storage.js";
 import {$,atkOn,eqOn,esc,fmtW,num,senseList,sg} from "./05-logic-helpers.js";
@@ -103,4 +103,4 @@ function psSplit(){ const ps=document.getElementById("ps"); if(!ps) return; cons
 function psFit(){ Array.prototype.slice.call(document.querySelectorAll("#ps .ps-page")).forEach((p) =>{ const lim=function(){ return p.classList.contains("grow")?1123:p.clientHeight; }; if(p.scrollHeight<=lim()) return;/* R2-3: a growing page must fit one A4 sheet too */
   p.style.paddingTop="20px"; p.style.paddingBottom="20px"; let n=+((/ps-t(\d)/.exec(p.className)||[0,0])[1]); while(p.scrollHeight>lim()&&n<6){ p.classList.remove("ps-t"+n); n++; p.classList.add("ps-t"+Math.min(n,4)); Array.prototype.slice.call(p.querySelectorAll(".ps-note")).forEach((x) =>{ const h=parseFloat(x.style.minHeight)||0; if(h>28) x.style.minHeight=Math.round(h*.82)+"px"; }); }/* writing space shrinks a little too */ });
   if(!psFit.w&&document.fonts&&document.fonts.status!=="loaded"&&document.fonts.ready){ psFit.w=1; document.fonts.ready.then(() =>{ psFit(); }); } }
-window.addEventListener("beforeprint",() =>{ try{ psFit(); }catch(e){} });/* fonts that load late make the text taller */
+env.addEventListener("beforeprint",() =>{ try{ psFit(); }catch(e){} });/* fonts that load late make the text taller */

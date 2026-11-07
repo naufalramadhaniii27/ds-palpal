@@ -1,10 +1,10 @@
-import {C,S} from "./04-logic-storage.js";
+import {env} from "./00-env.js";import {C,S} from "./04-logic-storage.js";
 import {attMaxC,eqOn,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
-import {__set_renderActions,__set_renderFeat,__set_renderInv,renderActions,renderFeat,renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";import {__set_renderFeat,__set_renderInv,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
-import {__set_renderExtras,renderExtras} from "./29-ui-ddb-look.js";
+import {__set_renderExtras,renderExtras} from "./29b-ui-creatures-extras.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
 Object.defineProperty(__R,"foldP",{get:function(){return foldP;},set:function(v){foldP=v;},configurable:true});
@@ -42,7 +42,7 @@ setTimeout(edgeRows,600);
 setTimeout(edgeRows,2500);
 setTimeout(edgeRows,6000);
 document.addEventListener("click",() =>{ setTimeout(edgeRows,350); },true);
-window.addEventListener("resize",() =>{ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); if(typeof edgeRows==="function") edgeRows(); });
+env.addEventListener("resize",() =>{ Array.prototype.forEach.call(document.querySelectorAll(".ifil"),segEdge); if(typeof edgeRows==="function") edgeRows(); });
 __set_renderActions((function(f){ return function(){ const r=f.apply(this,arguments); segFixL(document.getElementById("actBody")); return r; }; })(renderActions));
 __set_renderInv((function(f){ return function(){ const r=f.apply(this,arguments); segFixL(document.getElementById("invBody")); return r; }; })(renderInv));
 __set_renderFeat((function(f){ return function(){ const r=f.apply(this,arguments); segFixL(document.getElementById("featBody")); return r; }; })(renderFeat));
@@ -70,5 +70,5 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 __set_renderActions((function(f){ return function(){ const r=f.apply(this,arguments); requestAnimationFrame(() =>{ foldFix(document.getElementById("actBody")); }); return r; }; })(renderActions));
 __set_renderFeat((function(f){ return function(){ const r=f.apply(this,arguments); requestAnimationFrame(() =>{ foldFix(document.getElementById("featBody")); }); return r; }; })(renderFeat));
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("#tabs .tab,#bnav button"); if(t) setTimeout(() =>{ foldFix(document); },80); });
-window.addEventListener("resize",() =>{ Array.prototype.forEach.call(document.querySelectorAll("p.fold.fits"),(p) =>{ p.classList.remove("fits"); const b=p.nextElementSibling; if(b&&b.classList.contains("fmore")) b.hidden=false; }); foldFix(document); });
+env.addEventListener("resize",() =>{ Array.prototype.forEach.call(document.querySelectorAll("p.fold.fits"),(p) =>{ p.classList.remove("fits"); const b=p.nextElementSibling; if(b&&b.classList.contains("fmore")) b.hidden=false; }); foldFix(document); });
 

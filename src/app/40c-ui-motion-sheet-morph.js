@@ -48,7 +48,7 @@ function pCur(i){ PAGES.forEach((p,k) =>{ const el=document.getElementById(p); i
 pCur(curPage);
 (function(){ const band=document.querySelector(".band"), app=document.getElementById("app"); if(!band||!app) return;
   function setH(){ const h=band.offsetHeight; if(h) app.style.setProperty("--bandh",h+"px"); }
-  setH(); if(window.ResizeObserver) new ResizeObserver(setH).observe(band); else window.addEventListener("resize",setH); })();
+  setH(); if(env.ResizeObserver) new ResizeObserver(setH).observe(band); else env.addEventListener("resize",setH); })();
 /* ===== v31 p14 popup spring (RU130) ===== */
 function shApply(p){ const s=SPR.sheet; if(s&&s.t===0&&p>0&&p<.012){ s.x=0; s.v=0; }
   let q=Math.max(-.2,Math.min(1.2,p)), t;

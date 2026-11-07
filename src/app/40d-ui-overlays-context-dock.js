@@ -9,35 +9,37 @@ import {moveTabInd,mq} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {CONS1,invKey} from "./23b-ui-items-containers.js";
 import {cuNm} from "./26-ui-customize.js";
-import {ICO} from "./29-ui-ddb-look.js";
+import {ICO} from "./29c-data-ddb-icons.js";
 import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
-import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
+import {ckOf,qOk,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
 import {__R} from "./00-reg.js";
 import {env} from "./00-env.js";
-import {CTXSRC} from "./06a-logic-ui-registry.js";
+import {CTXSRC,OVERLAY} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"dockApply",{get:function(){return dockApply;},set:function(v){dockApply=v;},configurable:true});
 Object.defineProperty(__R,"dockOff",{get:function(){return dockOff;},set:function(v){dockOff=v;},configurable:true});
 let OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
-window.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
+env.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
 /* a reload or page change is under way: going back in history now would cancel it */
-function ovTop(){ const c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
-  const a=document.querySelectorAll("body > .ask"); if(a.length){ const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
-  if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
-  if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
-  const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; }/* T11 G6 T5 */
-  const q=document.getElementById("hpQm"); if(q) return function(){ qmClose(); };
-  const k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter((w) =>{ return !w.hidden&&w.querySelector(".bkpx"); }); if(k.length){ const z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }
-  if(sheet.classList.contains("on")) return function(){ const bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); };
-  /* T11 A6: on the character sheet itself (no popup, builder closed, not a friend's view), Back goes to Home instead of leaving the app */
-  const hv=document.getElementById("homeV"); if(hv&&hv.hidden&&!(bl&&!bl.hidden)&&!FROZEN&&typeof showHome==="function") return function(){ showHome(); };
-  return null; }
+/* Overlays in the order Back closes them, top first (SOLID stage 9, O). One entry per layer in OVERLAY: top() answers the function that closes the layer, or null when it is not open. The order of the add calls is the z-order. */
+OVERLAY.add("context-menu", {top:function(){ const c=document.getElementById("ctxm"); return c?function(){ c.remove(); }:null; }});
+OVERLAY.add("ask", {top:function(){ const a=document.querySelectorAll("body > .ask"); if(!a.length) return null; const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }});
+OVERLAY.add("training-ground", {top:function(){ if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; } return null; }});/* G7 Training Ground: field to setup, setup closes */
+OVERLAY.add("learn", {top:function(){ if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; } return null; }});/* T11 Learn: glossary card, sheet spotlight, then one step back */
+OVERLAY.add("builder", {top:function(){ const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; } return null; }});/* T11 G6 T5 */
+OVERLAY.add("hp-quick-menu", {top:function(){ const q=document.getElementById("hpQm"); return q?function(){ qmClose(); }:null; }});
+OVERLAY.add("backup-window", {top:function(){ const k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter((w) =>{ return !w.hidden&&w.querySelector(".bkpx"); }); if(!k.length) return null; const z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }});
+OVERLAY.add("sheet", {top:function(){ return sheet.classList.contains("on")?function(){ const bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); }:null; }});
+/* T11 A6: on the character sheet itself (no popup, builder closed, not a friend's view), Back goes to Home instead of leaving the app */
+OVERLAY.add("home", {top:function(){ const bl=document.getElementById("bld"), hv=document.getElementById("homeV"); return hv&&hv.hidden&&!(bl&&!bl.hidden)&&!FROZEN&&typeof showHome==="function"?function(){ showHome(); }:null; }});
+/* solid:orchestrator ovTop */
+function ovTop(){ const L=OVERLAY.list(); for(let i=0;i<L.length;i++){ const f=L[i].top(); if(f) return f; } return null; }
 function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; const on=!!ovTop();
   if(on&&!OVG){ try{ history.pushState({csOv:1},""); OVG=true; }catch(e){} }
   else if(!on&&OVG){ OVG=false; if(history.state&&history.state.csOv){ OVSKIP++; try{ history.back(); }catch(e){ OVSKIP--; } } } }
 Object.defineProperty(__R,"ovQueue",{get:function(){return ovQueue;},configurable:true});
 export function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
-window.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
+env.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
 try{ if(history.state&&history.state.csOv) history.replaceState(null,""); }catch(e){}
 /* a reload while a popup was open: the held entry is plain again */
 env.__ovState=function(){ return {held:OVG, top:!!ovTop()}; };
@@ -78,20 +80,20 @@ document.addEventListener("keydown",(e) =>{ const m=document.getElementById("ctx
   if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); const b=Array.prototype.slice.call(m.querySelectorAll(".ctxi:not([disabled])")), i=b.indexOf(document.activeElement); if(b.length) b[(i+(e.key==="ArrowDown"?1:-1)+b.length)%b.length].focus(); } },true);
 document.addEventListener("pointerdown",(e) =>{ const m=document.getElementById("ctxm"); if(m&&!m.contains(e.target)) ctxClose(); },true);
 document.addEventListener("scroll",() =>{ if(document.getElementById("ctxm")) ctxClose(); },true);
-window.addEventListener("resize",() =>{ ctxClose(); });
+env.addEventListener("resize",() =>{ ctxClose(); });
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("#ctxm [data-ctxi]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const m=document.getElementById("ctxm"), a=m&&m.__L&&m.__L[+b.getAttribute("data-ctxi")]; ctxClose.back=null; ctxClose(); if(a&&a[2]) a[2](); },true);
 /* ===== v31 p16 two panels on a computer (RU131) ===== */
 const DOCKW=400;
-function dockFits(){ const tz=(+document.documentElement.getAttribute("data-tsize")||100)/100; return !mq.matches&&window.innerWidth>=1100&&window.innerWidth-DOCKW>=Math.max(700,760*tz); }
+function dockFits(){ const tz=(+document.documentElement.getAttribute("data-tsize")||100)/100; return !mq.matches&&env.innerWidth>=1100&&env.innerWidth-DOCKW>=Math.max(700,760*tz); }
 /* v35 p13: with Text Size 115 or 130 the side panel docks only when the sheet keeps room, else it floats over */
 function dockable(mode){ return mode==="info"||mode==="bd"; }
-function dockAnchor(){ let a=lastFocus&&lastFocus.isConnected&&lastFocus.closest&&lastFocus.closest("#pager")?lastFocus:null; if(!a){ const e=document.elementFromPoint(Math.max(10,(window.innerWidth-DOCKW)/3),window.innerHeight/2); a=e&&e.closest&&e.closest("#pager")?e:null; } return a; }
+function dockAnchor(){ let a=lastFocus&&lastFocus.isConnected&&lastFocus.closest&&lastFocus.closest("#pager")?lastFocus:null; if(!a){ const e=document.elementFromPoint(Math.max(10,(env.innerWidth-DOCKW)/3),env.innerHeight/2); a=e&&e.closest&&e.closest("#pager")?e:null; } return a; }
 function dockLayout(on){ const root=document.documentElement; if(root.classList.contains("dk")===on) return; const a=dockAnchor(), y0=a?a.getBoundingClientRect().top:0;
-  root.classList.toggle("dk",on); root.classList.toggle("dkn",on&&window.innerWidth-DOCKW<1000); if(on) root.style.setProperty("--dockw",DOCKW+"px");
-  if(a&&a.isConnected){ const y1=a.getBoundingClientRect().top; if(Math.abs(y1-y0)>1) window.scrollBy(0,y1-y0); } moveTabInd(true); }
+  root.classList.toggle("dk",on); root.classList.toggle("dkn",on&&env.innerWidth-DOCKW<1000); if(on) root.style.setProperty("--dockw",DOCKW+"px");
+  if(a&&a.isConnected){ const y1=a.getBoundingClientRect().top; if(Math.abs(y1-y0)>1) env.scrollBy(0,y1-y0); } moveTabInd(true); }
 function dockApply(mode,wide){ const on=dockable(mode)&&!wide&&dockFits(); sheet.classList.toggle("dock",on); sheet.setAttribute("aria-modal",on?"false":"true"); if(on) $("#scrim").classList.remove("on"); dockLayout(on); }
 function dockOff(){ dockLayout(false); }
-window.addEventListener("resize",() =>{ if(!sheet.classList.contains("on")||!sheet.classList.contains("dock")) return; if(!dockFits()){ sheet.classList.remove("dock"); sheet.setAttribute("aria-modal","true"); $("#scrim").classList.add("on"); dockLayout(false); } else { document.documentElement.classList.toggle("dkn",window.innerWidth-DOCKW<1000); } });
+env.addEventListener("resize",() =>{ if(!sheet.classList.contains("on")||!sheet.classList.contains("dock")) return; if(!dockFits()){ sheet.classList.remove("dock"); sheet.setAttribute("aria-modal","true"); $("#scrim").classList.add("on"); dockLayout(false); } else { document.documentElement.classList.toggle("dkn",env.innerWidth-DOCKW<1000); } });
 /* ===== v31 p17 drag to reorder (RU131) ===== */
 ICO_TXT.unshift([/^On Hit$/i,"ui-target"]);
 ICO_FCAT["On Hit"]="ui-target";

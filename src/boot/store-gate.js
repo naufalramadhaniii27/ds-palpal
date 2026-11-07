@@ -23,7 +23,7 @@
   function lsPut(k,v){ try{ if(v==null) localStorage.removeItem(k); else localStorage.setItem(k,v); if(FAIL[k]){ delete FAIL[k]; failChanged(); } else if(MARKBAD) markSet(); return true; }catch(e){ if(!FAIL[k]){ FAIL[k]=1; failChanged(); } return false; } }
   /* the list of failed mirror keys is written in the same transaction as the values, so a closed page never leaves a stale localStorage value that would win at the next start */
   let MDIRTY=false; function failChanged(){ markSet(); if(MODE!=="idb") return; MDIRTY=true; if(!QT) QT=setTimeout(flush,0); }
-  function fire(name,detail){ try{ window.dispatchEvent(new CustomEvent(name,{detail:detail})); }catch(e){} }
+  function fire(name,detail){ try{ BootEnv.dispatchEvent(new CustomEvent(name,{detail:detail})); }catch(e){} }
   function flush(){ QT=0; if(MODE!=="idb"||!DB||(!Q.size&&!MDIRTY)) return Promise.resolve(); const items=Array.from(Q.entries()), md=MDIRTY; Q.clear(); MDIRTY=false;
     return new Promise((res) =>{ try{ const tx=DB.transaction([KV,META],"readwrite"), st=tx.objectStore(KV);
       items.forEach((x) =>{ if(x[1]==null) st.delete(x[0]); else st.put(x[1],x[0]); }); if(md) tx.objectStore(META).put(Object.keys(FAIL),"lsFail");
@@ -46,12 +46,12 @@
   };
   var WDB=[];
   Object.defineProperty(store,"length",{get:function(){ return MEM.size; }});
-  window.__store=store;
+  BootEnv.__store=store;
   function est(){ try{ if(navigator.storage&&navigator.storage.estimate) navigator.storage.estimate().then((e) =>{ store.estimate={usage:e.usage||0,quota:e.quota||0,t:Date.now()}; },() =>{}); }catch(e){} }
   /* other tabs: the localStorage event and this channel both update the copy in memory before the app's own listeners run */
-  window.addEventListener("storage",(e) =>{ if(MODE!=="idb"||!e.key||!own(e.key)) return; if(e.newValue==null) MEM.delete(e.key); else MEM.set(e.key,e.newValue); });
+  BootEnv.addEventListener("storage",(e) =>{ if(MODE!=="idb"||!e.key||!own(e.key)) return; if(e.newValue==null) MEM.delete(e.key); else MEM.set(e.key,e.newValue); });
   function bcOn(){ try{ if(BC||typeof BroadcastChannel!=="function") return; BC=new BroadcastChannel("cs-store"); BC.onmessage=function(m){ const d=m&&m.data; if(!d||d.from===TAB||!d.k) return; const old=MEM.has(d.k)?MEM.get(d.k):null; if(old===d.v) return;
-      if(d.v==null) MEM.delete(d.k); else MEM.set(d.k,d.v); try{ window.dispatchEvent(new StorageEvent("storage",{key:d.k,oldValue:old,newValue:d.v})); }catch(e){} }; }catch(e){ BC=null; } }
+      if(d.v==null) MEM.delete(d.k); else MEM.set(d.k,d.v); try{ BootEnv.dispatchEvent(new StorageEvent("storage",{key:d.k,oldValue:old,newValue:d.v})); }catch(e){} }; }catch(e){ BC=null; } }
   function useLS(why){ if(MODE) return; MODE="ls"; const o=lsAll(); Object.keys(o).forEach((k) =>{ MEM.set(k,o[k]); }); store.why=why||""; start(); }
   function start(){ if(DONE) return; DONE=true; store.t=Math.round(performance.now()); est(); const w=WAIT; WAIT=[]; w.forEach((f) =>{ try{ f(); }catch(e){ setTimeout(() =>{ throw e; }); } }); run(); }
   /* run the gated scripts in page order, each as a classic script. The first one runs at once, the rest one per task, as the page parser does
@@ -62,10 +62,10 @@
      the first at once, the rest one per task (timers a script sets run before the next one, as between inline scripts). A block the parser
      has not finished reading is left to the parser, which now runs it inline. The short script after the last block calls __gateRun */
   function one(){ const s=document.querySelector('script[data-gate]:not([data-ran])'); if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;
-    s.setAttribute("data-ran","1"); const x=document.createElement("script"); x.text=window.__ttLoader?window.__ttLoader.createScript(s.text):s.text;/* T11 A1: Trusted Types */ s.parentNode.insertBefore(x,s.nextSibling); return true; }
-  function gateEnd(){ if(window.__gateAll&&!window.__gateDone){ window.__gateDone=1; document.documentElement.classList.remove("st-wait"); fire("cs-gate-done"); } }
-  function run(){ if(!DONE||RUN) return; window.__storeHold=0; RUN=true; (function next(){ if(!one()){ RUN=false; if(!document.querySelector('script[data-gate]:not([data-ran])')) gateEnd(); return; } setTimeout(next,0); })(); }
-  window.__gateRun=function(){ window.__gateAll=1; run(); };
+    s.setAttribute("data-ran","1"); const x=document.createElement("script"); x.text=BootEnv.__ttLoader?BootEnv.__ttLoader.createScript(s.text):s.text;/* T11 A1: Trusted Types */ s.parentNode.insertBefore(x,s.nextSibling); return true; }
+  function gateEnd(){ if(BootEnv.__gateAll&&!BootEnv.__gateDone){ BootEnv.__gateDone=1; document.documentElement.classList.remove("st-wait"); fire("cs-gate-done"); } }
+  function run(){ if(!DONE||RUN) return; BootEnv.__storeHold=0; RUN=true; (function next(){ if(!one()){ RUN=false; if(!document.querySelector('script[data-gate]:not([data-ran])')) gateEnd(); return; } setTimeout(next,0); })(); }
+  BootEnv.__gateRun=function(){ BootEnv.__gateAll=1; run(); };
   function openDB(){ return new Promise((res,rej) =>{ let rq; try{ rq=indexedDB.open(DBN,1); }catch(e){ rej(e); return; }
     rq.onupgradeneeded=function(){ const d=rq.result; if(!d.objectStoreNames.contains(KV)) d.createObjectStore(KV); if(!d.objectStoreNames.contains(META)) d.createObjectStore(META); };
     rq.onsuccess=function(){ res(rq.result); }; rq.onerror=function(){ rej(rq.error); }; rq.onblocked=function(){ rej(new Error("blocked")); }; }); }
@@ -78,7 +78,7 @@
     Object.keys(kv).forEach((k) =>{ st.put(kv[k],k); }); (del||[]).forEach((k) =>{ st.delete(k); }); Object.keys(meta).forEach((k) =>{ mt.put(meta[k],k); });
     tx.oncomplete=function(){ res(); }; tx.onerror=tx.onabort=function(){ rej(tx.error); }; }); }
   function dbReady(d){ DB=d; d.onversionchange=function(){ try{ d.close(); }catch(e){} }; const w=WDB; WDB=[]; w.forEach((f) =>{ f(); }); if(Q.size||MDIRTY) flush(); }
-  if(!window.indexedDB){ useLS("none"); return; }
+  if(!BootEnv.indexedDB){ useLS("none"); return; }
   const mk=markGet();
   if(mk&&!mk.fail.length&&lsAll()&&localStorage.length>1){
     /* fast start: localStorage holds every key. IndexedDB is brought level with memory in the background */
@@ -90,7 +90,7 @@
       .catch((e) =>{ store.why=String(e&&e.message||e); MODE="ls"; Q.clear(); });/* no IndexedDB after all: localStorage only, as before */
   } else {
     /* slow start: the gated blocks wait, the empty sheet markup stays hidden (4 s at most) */
-    window.__storeHold=1; document.documentElement.classList.add("st-wait"); setTimeout(() =>{ document.documentElement.classList.remove("st-wait"); },4000);
+    BootEnv.__storeHold=1; document.documentElement.classList.add("st-wait"); setTimeout(() =>{ document.documentElement.classList.remove("st-wait"); },4000);
     const timer=setTimeout(() =>{ useLS("timeout"); },2500);
     openDB().then((d) =>{
       return readAll(d).then((r) =>{ const idb=r.kv, meta=r.meta, ls=lsAll(), lsKeys=Object.keys(ls), fails={}, put={}, del=[], m={};

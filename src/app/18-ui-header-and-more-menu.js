@@ -3,12 +3,12 @@ import {C,S,__set_C,clone,save,saveC} from "./04-logic-storage.js";
 import {$,$$,armorFx,ask,attCount,attMaxC,bldSync,clamp,eqLinked,eqOn,num,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {REDUCE,applyLook,applyTheme,hcOn,hcSet} from "./07-ui-theme-contrast-spring.js";
-import {renderInv} from "./08-ui-render-sheet-and-actions.js";
+import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {TPL,__set_edTab,edTab,getPath,rEnsure,rGet,rerenderEditor,scheduleRender,setPath} from "./14-ui-editor.js";
-import {SN_BAD,rSnap,snGet,snRestore,snTake} from "./15-logic-roster-backup-files-snapshots.js";
+import {SN_BAD,snGet,snRestore,snTake} from "./15d-logic-snapshots-character-files.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {MYID} from "./17-logic-tab-sync-and-test-hooks.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* v30 C1: phone header. My Characters, Edit, Settings, and PDF sit in the More menu (computer: the same buttons in the header row) */
@@ -28,10 +28,10 @@ function hdrFit(){ HDR_RAF=0; const R=document.documentElement; if(__R.mq.matche
   const was=R.hasAttribute("data-hdrc"); if(was) R.removeAttribute("data-hdrc"); const ok=hdrFits(); if(!ok){ R.setAttribute("data-hdrc","1"); } else if(was){ const mm=document.getElementById("moreMenu"); if(mm&&mm.classList.contains("open")&&env.__moreSet) env.__moreSet(false); } }
 function hdrSoon(){ if(!HDR_RAF) HDR_RAF=requestAnimationFrame(hdrFit); }
 env.__hdrFit=function(){ hdrFit(); return document.documentElement.hasAttribute("data-hdrc"); };
-window.addEventListener("resize",hdrSoon); try{ __R.mq.addEventListener("change",hdrSoon); }catch(e){}
+env.addEventListener("resize",hdrSoon); try{ __R.mq.addEventListener("change",hdrSoon); }catch(e){}
 try{ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(hdrSoon); if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener("loadingdone",hdrSoon); }catch(e){}
 (function(){ const A=document.querySelector(".band .acts"), O=document.querySelector(".band .office"); try{ const mo=new MutationObserver(hdrSoon); if(A) mo.observe(A,{attributes:true,subtree:true,attributeFilter:["hidden"]}); if(O) mo.observe(O,{childList:true,subtree:true,characterData:true}); mo.observe(document.documentElement,{attributes:true,attributeFilter:["data-tsize","data-skin"]}); }catch(e){}
-  try{ let bd=document.querySelector(".band .band-in"), lw=-1; if(bd&&window.ResizeObserver) new ResizeObserver(() =>{ const w=Math.round(bd.getBoundingClientRect().width); if(w!==lw){ lw=w; hdrSoon(); } }).observe(bd); }catch(e){} })();
+  try{ let bd=document.querySelector(".band .band-in"), lw=-1; if(bd&&env.ResizeObserver) new ResizeObserver(() =>{ const w=Math.round(bd.getBoundingClientRect().width); if(w!==lw){ lw=w; hdrSoon(); } }).observe(bd); }catch(e){} })();
 hdrSoon(); setTimeout(hdrSoon,400);
 (function(){ const mb=$("#moreBtn"), mm=$("#moreMenu"); if(!mb||!mm) return;
   function set(on){ mm.classList.toggle("open",!!on); mb.setAttribute("aria-expanded",on?"true":"false"); }

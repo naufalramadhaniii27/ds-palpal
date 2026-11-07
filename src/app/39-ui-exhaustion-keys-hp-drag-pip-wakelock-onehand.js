@@ -51,7 +51,7 @@ function qmOpen(el){ qmClose(); if(!D||!D.hpmax) return; const w=document.create
   w.innerHTML='<div class="qm-h">'+ico("hp-heal","qm-hi")+'<b>'+num(S.hp,0)+'</b><span>/ '+D.hpmax+(S.tmp?' <i>+'+S.tmp+' temp</i>':'')+'</span><button type="button" class="qm-x press" data-qm="x" aria-label="Close">'+ico("ui-close")+'</button></div>'+
     '<div class="qm-a"><input id="qmAmt" type="number" inputmode="numeric" min="0" placeholder="Amount" aria-label="Amount" value="'+(a||"")+'"><button type="button" class="qm-p press" data-qmadd="1" aria-label="Add 1">'+ico("ui-plus")+'1</button><button type="button" class="qm-p press" data-qmadd="5" aria-label="Add 5">'+ico("ui-plus")+'5</button><button type="button" class="qm-p press" data-qmadd="10" aria-label="Add 10">'+ico("ui-plus")+'10</button></div>'+
     '<div class="qm-b"><button type="button" class="btn press qm-heal" data-qm="heal">'+ico("hp-heal")+'Heal</button><button type="button" class="btn press qm-dmg" data-qm="dmg">'+ico("hp-damage")+'Damage</button><button type="button" class="btn press qm-tmp" data-qm="temp">'+ico("hp-temp")+'Temp HP</button></div>';
-  document.body.appendChild(w); const r=el.getBoundingClientRect(), W=w.offsetWidth, H=w.offsetHeight, vw=document.documentElement.clientWidth, vh=window.innerHeight, x=Math.max(12,Math.min(vw-W-12,r.left+r.width/2-W/2));
+  document.body.appendChild(w); const r=el.getBoundingClientRect(), W=w.offsetWidth, H=w.offsetHeight, vw=document.documentElement.clientWidth, vh=env.innerHeight, x=Math.max(12,Math.min(vw-W-12,r.left+r.width/2-W/2));
   w.style.left=x+"px"; if(r.top>H+20) w.style.top=Math.round(r.top-H-8)+"px"; else w.style.top=Math.round(Math.min(vh-H-12,r.bottom+8))+"px";
   w.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(!b) return; if(b.hasAttribute("data-qmadd")){ const q=document.getElementById("qmAmt"); hpAmtSet((parseInt(q.value,10)||0)+(+b.getAttribute("data-qmadd"))); return; } const k=b.getAttribute("data-qm"); if(k==="x"){ qmClose(); return; } if(k) qmRun(k); });
   w.addEventListener("input",(e) =>{ if(e.target.id==="qmAmt"){ const v=parseInt(e.target.value,10); const h=$("#hpAmt"); if(h) h.value=isNaN(v)?"":String(Math.max(0,v)); } });
@@ -104,9 +104,9 @@ function pipSync(){ const w=PIP; if(!w||!D||!D.hpmax) return; const d=w.document
 function pipAmt(){ const i=PIP&&PIP.document.getElementById("ppAmt"); const n=i?parseInt(i.value,10):0; return isNaN(n)?0:Math.max(0,n); }
 function pipAct(k){ const d=PIP&&PIP.document; if(!d) return; let i=d.getElementById("ppAmt"), n=pipAmt();
   if(k==="minus"||k==="plus"){ n=Math.max(0,n+(k==="plus"?1:-1)); i.value=n?String(n):""; return; }
-  if(k==="cond"){ try{ window.focus(); }catch(er){} showEntry({type:"cond"},false); return; }
+  if(k==="cond"){ try{ env.focus(); }catch(er){} showEntry({type:"cond"},false); return; }
   if(!n){ i.focus(); return; } const a=$("#hpAmt"); if(!a) return; a.value=String(n); const b=k==="heal"?$("#healBtn"):k==="dmg"?$("#dmgBtn"):$("[data-tmpset]"); if(b) b.click(); i.value=""; i.focus(); }
-function pipOpen(){ if(PIP){ try{ PIP.close(); }catch(er){} return; } if(!window.documentPictureInPicture) return;
+function pipOpen(){ if(PIP){ try{ PIP.close(); }catch(er){} return; } if(!env.documentPictureInPicture) return;
   documentPictureInPicture.requestWindow({width:340,height:470}).then((w) =>{ PIP=w; env.__pipWin=w; const d=w.document;
     const st=d.createElement("style"); st.textContent=pipFonts()+PIP_CSS; d.head.appendChild(st); const sv=d.createElement("style"); sv.id="ppVars"; sv.textContent=pipVars(); d.head.appendChild(sv);
     ["data-theme","data-skin"].forEach((a) =>{ const v=document.documentElement.getAttribute(a); if(v) d.documentElement.setAttribute(a,v); });
@@ -115,7 +115,7 @@ function pipOpen(){ if(PIP){ try{ PIP.close(); }catch(er){} return; } if(!window
     d.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target.id==="ppAmt"){ e.preventDefault(); pipAct(e.shiftKey?"heal":"dmg"); } });
     w.addEventListener("pagehide",() =>{ PIP=null; env.__pipWin=null; const pb=$("#pipBtn"); if(pb) pb.setAttribute("aria-pressed","false"); });
     const pb=$("#pipBtn"); if(pb) pb.setAttribute("aria-pressed","true"); pipSync(); },() =>{ toast("The mini window could not open. Try again from the Mini Window button."); }); }
-(function(){ const pb=$("#pipBtn"); if(!pb) return; if(window.documentPictureInPicture&&typeof documentPictureInPicture.requestWindow==="function"){ pb.hidden=false; pb.title="Mini window"; pb.addEventListener("click",() =>{ if(env.__moreSet) try{ env.__moreSet(false); }catch(er){} pipOpen(); }); } else pb.remove(); })();
+(function(){ const pb=$("#pipBtn"); if(!pb) return; if(env.documentPictureInPicture&&typeof documentPictureInPicture.requestWindow==="function"){ pb.hidden=false; pb.title="Mini window"; pb.addEventListener("click",() =>{ if(env.__moreSet) try{ env.__moreSet(false); }catch(er){} pipOpen(); }); } else pb.remove(); })();
 /* v30 p11 RU131: Keep screen on (Screen Wake Lock). Asked again each time the page shows, let go when the setting is off */
 let WL=null, WLp=false;
 function wakeApply(){ const api=!!(navigator.wakeLock&&typeof navigator.wakeLock.request==="function"), want=api&&setOf("wake")==="1"&&document.visibilityState==="visible";
@@ -142,5 +142,5 @@ function ohSync(){ const o=document.getElementById("ohAmt"), a=document.getEleme
 (function(){ function net(){ const on=navigator.onLine!==false; document.documentElement.classList.toggle("is-off",!on); let h=document.getElementById("homeV"), n=document.getElementById("offNote");
     if(h&&!on&&!n){ const w=h.querySelector(".hwrap"); if(w){ n=document.createElement("div"); n.id="offNote"; n.className="hbkl"; n.setAttribute("role","status"); n.innerHTML=(env.__artVig?env.__artVig("state","offline",44):"")+"<span>You are offline. Your characters are saved on this device and everything keeps working.</span>"; w.insertBefore(n,w.firstChild); } }
     else if(n&&on) n.remove(); }
-  window.addEventListener("online",() =>{ net(); try{ toast("Back online"); }catch(er){} }); window.addEventListener("offline",() =>{ net(); try{ toast("Offline: everything is saved on this device"); }catch(er){} });
+  env.addEventListener("online",() =>{ net(); try{ toast("Back online"); }catch(er){} }); env.addEventListener("offline",() =>{ net(); try{ toast("Offline: everything is saved on this device"); }catch(er){} });
   env.__net=net; setInterval(() =>{ const h=document.getElementById("homeV"); if(h&&!h.hidden&&document.documentElement.classList.contains("is-off")&&!document.getElementById("offNote")) net(); },1500); net(); })();

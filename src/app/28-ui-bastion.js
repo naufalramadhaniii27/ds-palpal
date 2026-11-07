@@ -3,7 +3,7 @@ import {x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {ask,esc,num,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
-import {featAll} from "./08-ui-render-sheet-and-actions.js";
+import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__R} from "./00-reg.js";
 /* ================= v28: BASTION (RD22, DMG 2024 chapter 8) =================

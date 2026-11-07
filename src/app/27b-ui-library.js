@@ -191,7 +191,7 @@ function libHbDraw(rows,hn,k){ const box=document.getElementById("libHb"); if(!b
   if(!r){ box.innerHTML='<p class="info-d">This entry could not be found in its pack.</p>'; return; }
   let h=(r.tl||[]).some((x) =>{ return x&&x[0]==="Abilities"; })?libStat(r.tl):libTiles(r.tl||[]); (r.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); box.innerHTML=h; }
 function libHbLoad(hid,hn,k){ if(LIB_HB[hid]){ setTimeout(() =>{ libHbDraw(LIB_HB[hid],hn,k); },0); return; }
-  if(!window.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) box.innerHTML='<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>'; }); }
+  if(!env.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) box.innerHTML='<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>'; }); }
 function libRecent(add){ let a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter((x) =>{ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
 function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
 const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"feature",facility:"facility",rule:"rule",opt:"opt",optfeat:"optfeat",language:"language",vehicle:"vehicle",object:"object"};
@@ -271,21 +271,21 @@ function libWire(w){ let drag=null;
     if(b.hasAttribute("data-lib-more")){ LIB.lim+=60; const bd=document.getElementById("libBd"), st=bd.scrollTop; bd.innerHTML=libSafe(); bd.scrollTop=st; libMark(); } });
   w.addEventListener("input",(e) =>{ if(e.target.id==="libQ") libInput(e.target.value); });
   const h=w.querySelector("#libH");
-  h.addEventListener("pointerdown",(e) =>{ if(e.button>0||e.target.closest("button")||window.innerWidth<760) return; const r=w.getBoundingClientRect(); drag={x:e.clientX-r.left,y:e.clientY-r.top,id:e.pointerId}; try{ h.setPointerCapture(e.pointerId); }catch(er){} w.classList.add("mv"); });
-  h.addEventListener("pointermove",(e) =>{ if(!drag||e.pointerId!==drag.id) return; const W=w.offsetWidth, H=w.offsetHeight, x=Math.max(8-W+120,Math.min(window.innerWidth-120,e.clientX-drag.x)), y=Math.max(0,Math.min(window.innerHeight-48,e.clientY-drag.y)); w.style.left=x+"px"; w.style.top=y+"px"; w.style.right="auto"; w.style.bottom="auto"; });
+  h.addEventListener("pointerdown",(e) =>{ if(e.button>0||e.target.closest("button")||env.innerWidth<760) return; const r=w.getBoundingClientRect(); drag={x:e.clientX-r.left,y:e.clientY-r.top,id:e.pointerId}; try{ h.setPointerCapture(e.pointerId); }catch(er){} w.classList.add("mv"); });
+  h.addEventListener("pointermove",(e) =>{ if(!drag||e.pointerId!==drag.id) return; const W=w.offsetWidth, H=w.offsetHeight, x=Math.max(8-W+120,Math.min(env.innerWidth-120,e.clientX-drag.x)), y=Math.max(0,Math.min(env.innerHeight-48,e.clientY-drag.y)); w.style.left=x+"px"; w.style.top=y+"px"; w.style.right="auto"; w.style.bottom="auto"; });
   const end=function(e){ if(!drag) return; drag=null; w.classList.remove("mv"); try{ __store.setItem("cs-lib-pos",JSON.stringify([parseInt(w.style.left,10),parseInt(w.style.top,10)])); }catch(er){} };
   h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end); }
 export function libOpen(o){ o=o||{}; const w=libDom(), first=!LIB.idx;
   try{ if(typeof closeSheet==="function"&&document.getElementById("sheet")&&document.getElementById("sheet").classList.contains("on")&&o.fromSearch) closeSheet(); }catch(er){}
   const hv=document.getElementById("homeV"); w.style.zIndex=hv&&!hv.hidden?"60":"";
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
-  if(window.innerWidth>=760&&!w.style.left){ let p=null; try{ p=JSON.parse(__store.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<window.innerWidth-100&&p[1]>=0&&p[1]<window.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,window.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
+  if(env.innerWidth>=760&&!w.style.left){ let p=null; try{ p=JSON.parse(__store.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<env.innerWidth-100&&p[1]>=0&&p[1]<env.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,env.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
   requestAnimationFrame(() =>{ w.classList.add("on"); });
   document.removeEventListener("keydown",libKey,true); document.addEventListener("keydown",libKey,true);
   const qi=document.getElementById("libQ"); qi.value=LIB.q; libPaint();
   const go=function(){ LIB.idx=libIndex(); LIB.inv=null; libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); };
   if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(env.__bldNeed) env.__bldNeed(); }catch(er){} t(); }
-  setTimeout(() =>{ try{ qi.focus({preventScroll:true}); if(window.innerWidth>=760) qi.select(); }catch(er){} },60); }
+  setTimeout(() =>{ try{ qi.focus({preventScroll:true}); if(env.innerWidth>=760) qi.select(); }catch(er){} },60); }
 const libDetail0=libDetail;
 libDetail=function(c,k){ const r=libDetail0(c,k); if(r&&env.FLUFF&&env.FLUFF[c]){ const t=env.FLUFF[c][k]||env.FLUFF[c][r.t]; if(t) r.h+=libFeatBlock("Lore",t); } if(r){ let im=null; if(env.QREFS&&env.QREFS[c]){ env.QREFS[c].forEach((q) =>{ if(q.n===k&&q.im) im=q.im; }); } if(!im&&env.QIMG&&env.QIMG[c]){ im=env.QIMG[c][k]||env.QIMG[c][r.t]||null; if(!im){ const qn=function(z){ return String(z||"").toLowerCase().replace(/[^a-z0-9]/g,""); }; env.__qimN=env.__qimN||{}; if(!env.__qimN[c]){ const mp={}; Object.keys(env.QIMG[c]).forEach((z) =>{ mp[qn(z)]=env.QIMG[c][z]; }); env.__qimN[c]=mp; } im=env.__qimN[c][qn(k)]||env.__qimN[c][qn(r.t)]||null; } } if(im) r.h='<img class="lib-im'+(im.indexOf("/tokens/")>0?' tok':'')+'" loading="lazy" decoding="async" alt="" src="data/img/'+encodeURI(im)+'.webp">'+r.h; } return r; };
 env.__libHtml=function(c,k){ const d=libDetail(c,k); return d?d.h:null; };

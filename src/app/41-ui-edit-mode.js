@@ -2,7 +2,7 @@ import {ABN} from "./02-data-default-character.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,ask,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
-import {__set_renderAbilities,__set_renderActions,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderActions,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";
+import {__set_renderAbilities,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";
 import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
@@ -88,15 +88,15 @@ function edmBar(){ let w=document.getElementById("edmBar"); if(w) return w; w=do
   return w; }
 function edmCount(){ const n=document.getElementById("edmN"); if(!n) return; const c=cuNumList().length; n.textContent=c?c+" number"+(c>1?"s":"")+" set by you. Tap one to change it.":"Tap a number to change it."; }
 function edmPos(){ const bar=document.getElementById("edmBar"); if(!bar||bar.hidden) return; let nb=document.getElementById("bnav"), off=12;
-  if(nb&&nb.offsetParent){ const r=nb.getBoundingClientRect(); if(r.height&&r.top<window.innerHeight) off=Math.max(12,Math.round(window.innerHeight-r.top+8)); }
+  if(nb&&nb.offsetParent){ const r=nb.getBoundingClientRect(); if(r.height&&r.top<env.innerHeight) off=Math.max(12,Math.round(env.innerHeight-r.top+8)); }
   bar.style.bottom="calc("+off+"px + env(safe-area-inset-bottom,0px)*"+(off>12?0:1)+")"; document.body.style.setProperty("--edmh",(bar.offsetHeight+off+12)+"px"); }
 function edmSet(on,quiet){ EDM=!!on; document.body.classList.toggle("edm",EDM); const b=$("#editBtn"); if(b) b.setAttribute("aria-pressed",String(EDM));
   if(env.__moreSet) env.__moreSet(false);
   const bar=edmBar(); bar.hidden=!EDM; if(EDM){ cuMark(); edmPos(); } }
-window.addEventListener("resize",() =>{ if(EDM) edmPos(); });
+env.addEventListener("resize",() =>{ if(EDM) edmPos(); });
 /* in Edit mode a tap on a number opens its editor instead of the breakdown */
 document.addEventListener("click",(e) =>{ if(!EDM) return; const t=e.target.closest&&e.target.closest("[data-bd]"); if(!t||t.closest("#sheet,#edmBar")) return; const k=t.getAttribute("data-bd"); if(!cuqOf(k)) return;
-  e.preventDefault(); e.stopPropagation(); showEntry({type:"cuq",key:k},false); setTimeout(() =>{ const i=$("#cuqIn"); if(i&&window.matchMedia&&window.matchMedia("(hover:hover)").matches) try{ i.focus({preventScroll:true}); i.select(); }catch(er){} },120); },true);
+  e.preventDefault(); e.stopPropagation(); showEntry({type:"cuq",key:k},false); setTimeout(() =>{ const i=$("#cuqIn"); if(i&&env.matchMedia&&env.matchMedia("(hover:hover)").matches) try{ i.focus({preventScroll:true}); i.select(); }catch(er){} },120); },true);
 document.addEventListener("click",(e) =>{ const s=e.target.closest&&e.target.closest("[data-cuqsave]"); if(s){ cuqSave(s.getAttribute("data-cuqsave")); return; }
   const b=e.target.closest&&e.target.closest("[data-cuqback]"); if(b){ cuqBack(b.getAttribute("data-cuqback")); } });
 document.addEventListener("keydown",(e) =>{ const t=e.target;

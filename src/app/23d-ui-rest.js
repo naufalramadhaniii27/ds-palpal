@@ -4,7 +4,7 @@ import {hdPlan,x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {$,esc,num,sg,toast,hpWord} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
-import {syncLU,used} from "./08-ui-render-sheet-and-actions.js";
+import {syncLU} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {doRest} from "./19-ui-global-click-delegation.js";

@@ -20,7 +20,7 @@ export var PWA_BUILD=true;
       const bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";
       if(sp) sp.textContent="Opening the builder"; if(bz){ bz.style.transition="none"; bz.classList.add("on"); }
       const run=function(){ let p; try{ p=env.__bldNeed(); }catch(x){ p=null; } Promise.resolve(p).catch(() =>{}).then(() =>{ if(bz){ bz.classList.remove("on"); bz.style.transition=""; } if(sp) sp.textContent=old; try{ t.click(); }catch(x){} }); };/* M7: __bldNeed() gives a Promise */
-      if(window.requestAnimationFrame) requestAnimationFrame(() =>{ setTimeout(run,0); }); else setTimeout(run,30);
+      if(env.requestAnimationFrame) requestAnimationFrame(() =>{ setTimeout(run,0); }); else setTimeout(run,30);
       return; }
     env.__bldNeed(); }
   ["click","input","change","keydown","submit"].forEach((n) =>{ document.addEventListener(n,need,true); }); })();/* v34 RU82: true in the public build with manifest and sw.js */

@@ -15,7 +15,6 @@ Object.defineProperty(__R,"cuNum",{get:function(){return cuNum;},set:function(v)
 Object.defineProperty(__R,"cuOf",{get:function(){return cuOf;},set:function(v){cuOf=v;},configurable:true});
 Object.defineProperty(__R,"cuSave",{get:function(){return cuSave;},set:function(v){cuSave=v;},configurable:true});
 Object.defineProperty(__R,"cuSpeed",{get:function(){return cuSpeed;},set:function(v){cuSpeed=v;},configurable:true});
-Object.defineProperty(__R,"cuW",{get:function(){return cuW;},set:function(v){cuW=v;},configurable:true});
 /* ================= v26: CUSTOMIZE (RU38 no. 2) =================
    S.cust (optional): {key: fields}. It sits in the play state, so Apply from the builder keeps it. Keys and fields:
    "n:<number>" numbers (ac, init, speed, save-STR, sk:<skill name>, pas-per, pas-ins, pas-inv): o override, b bonus, note.
@@ -33,7 +32,7 @@ function cuFmtK(k,v){ return /^(save-|sk:|init|spatk)/.test(k)?sg(v):String(v); 
 function cuSpeed(sp,parts){ const c=cuK("n:speed"); if(!c) return sp; __R.CU0["n:speed|o"]=sp; const b=cuNum(c.b), o=cuNum(c.o);
   if(b){ parts.push({l:"Customize: bonus", v:(b>0?"+":"−")+Math.abs(b)+" ft", note:c.note||"Set with Customize", raw:true}); sp=Math.max(0,sp+b); }
   if(o!=null){ parts.push({l:"Set by you", v:o+" ft", note:"Calculated value: "+__R.CU0["n:speed|o"]+" ft. Your number replaces it.", raw:true}); sp=Math.max(0,o); } return sp; }
-function cuW(i){ const c=cuK("i:"+invKey(i)), w=c?cuNum(c.w):null; return w!=null?w:num(i.w,0); }
+export function cuW(i){ const c=cuK("i:"+invKey(i)), w=c?cuNum(c.w):null; return w!=null?w:num(i.w,0); }
 /* the customize key of a popup (info spec or breakdown key), with the original name */
 function cuOf(type,key){ const i=+key;
   if(type==="w"||type==="ah"||type==="ad"){ const a=(C.attacks||[])[i]; return a?{k:"a:"+a.n, n:a.n, kind:"a"}:null; }

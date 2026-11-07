@@ -3,7 +3,7 @@ import {S,save} from "./04-logic-storage.js";
 import {$,$$,clamp,esc,num,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
-import {renderIdentity,renderTiles,syncLU,syncLang,used} from "./08-ui-render-sheet-and-actions.js";
+import {renderIdentity,renderTiles,syncLang,used} from "./08-ui-render-sheet-and-actions.js";import {syncLU} from "./08b-ui-render-summaries-actions.js";
 import {DS_OVER,__set_DS_OVER,flash,hpFloat,hpOpen,syncDeath,syncHP,vbSync} from "./09-ui-hit-points-playbar-death-saves.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {refreshEntry,sheet,sheetMode,showEntry,swpMove,swpSet} from "./12-ui-bottom-sheet-modal.js";
