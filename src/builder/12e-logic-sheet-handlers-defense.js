@@ -47,12 +47,15 @@ registerSheetGroup({id:"ac-unarmored",group:"armorClass",phase:"ac",order:20,rea
 /* v19 RL42: Robe of the Archmagi with no armor on: base AC 15 + Dex, used when it beats the base from above */
 registerSheetGroup({id:"item-ac-base",group:"armorClass",phase:"ac",order:30,reads:["i.ar","i.AFX"],writes:["C.ac"],
  run:function(ctx){const C=ctx.C;if(ctx.i.ar)return null;ctx.i.AFX.forEach((q) =>{const f=q.fx;if(!f.acBase)return;const cur=C.ac.base+C.ac.bonus.reduce((t,b) =>{return t+b.v},0);if(f.acBase>cur)C.ac={base:f.acBase,baseSrc:q.n+" (no armor)",dex:"full",bonus:[]}});return ctx.patch()}});
+function acbPick(I,Q,a,ar,e){const b0=e.acBase||(e.acDexAb?[10,"full",e.acDexAb]:null);if(!b0||(ar&&!e.acOver)||!Q.fxOk(e,ar,I.ESH,I.EA))return null;const b=b0.slice();if(b[2]==="cast"){let best=null;Q.casterParts().forEach((p) =>{if(!best||mod(a.sc[p.ab])>mod(a.sc[best]))best=p.ab});if(!best)return null;b[2]=best}
+  return b}
+function acbOne(C,I,Q,e){const a=I.a,ar=I.ar;const b=acbPick(I,Q,a,ar,e);if(!b)return;
+  const dx0=mod(a.sc.DEX),dx=e.acDexMax!=null?Math.min(dx0,e.acDexMax):dx0,ab=b[2]?Math.min(mod(a.sc[b[2]]),e.acCap!=null?e.acCap:99):0,nb=b[0]+(b[1]==="full"?dx:0)+ab,cur=C.ac.base+(C.ac.dex==="full"?dx0:C.ac.dex==="max2"?Math.min(2,dx0):0)+C.ac.bonus.reduce((t,x) =>{return t+x.v},0);
+  if(nb>cur)C.ac={base:b[0],baseSrc:e.lbl+(ar?" (used instead of the worn armor)":" (no armor)"),dex:b[1]==="full"?(e.acDexMax===2?"max2":"full"):"",bonus:b[2]?[{s:ABN[b[2]]+" modifier ("+e.n+")",v:ab}]:[]}}
 /* fx engine v2: acBase [base, "full" for Dex, ability key] or acDexAb "CON" (10 + Dex + ability) replace the base AC while no armor is worn, when higher.
    acBase ability "cast" = best spellcasting ability; acOver = also counts while armor is worn (the better one is used). fx engine v4: acDexMax 2 = the Dex modifier counts at most +2 in this base (Medium-armor style, sheet mode "max2") */
 registerSheetGroup({id:"fx-ac-base",group:"armorClass",phase:"ac",order:40,reads:["i.G","i.ar","i.ESH","i.EA","i.a","q.fxOk","q.casterParts"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,a=I.a,ar=I.ar;I.G.forEach((e) =>{const b0=e.acBase||(e.acDexAb?[10,"full",e.acDexAb]:null);if(!b0||(ar&&!e.acOver)||!Q.fxOk(e,ar,I.ESH,I.EA))return;const b=b0.slice();if(b[2]==="cast"){let best=null;Q.casterParts().forEach((p) =>{if(!best||mod(a.sc[p.ab])>mod(a.sc[best]))best=p.ab});if(!best)return;b[2]=best}
-  const dx0=mod(a.sc.DEX),dx=e.acDexMax!=null?Math.min(dx0,e.acDexMax):dx0,ab=b[2]?Math.min(mod(a.sc[b[2]]),e.acCap!=null?e.acCap:99):0,nb=b[0]+(b[1]==="full"?dx:0)+ab,cur=C.ac.base+(C.ac.dex==="full"?dx0:C.ac.dex==="max2"?Math.min(2,dx0):0)+C.ac.bonus.reduce((t,x) =>{return t+x.v},0);
-  if(nb>cur)C.ac={base:b[0],baseSrc:e.lbl+(ar?" (used instead of the worn armor)":" (no armor)"),dex:b[1]==="full"?(e.acDexMax===2?"max2":"full"):"",bonus:b[2]?[{s:ABN[b[2]]+" modifier ("+e.n+")",v:ab}]:[]}});return ctx.patch()}});
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;I.G.forEach((e) =>{acbOne(C,I,Q,e)});return ctx.patch()}});
 /* fx engine v2: acNoDex (the Dex modifier is not added to AC) and acArmAb "WIS" (while wearing armor, add that ability modifier to AC in place of the Dex modifier). Runs after the base AC is settled */
 registerSheetGroup({id:"fx-ac-nodex",group:"armorClass",phase:"ac",order:50,reads:["i.G","i.ar","i.ESH","i.EA","i.a","q.fxOk"],writes:["C.ac"],
  run:function(ctx){const I=ctx.i,C=ctx.C,ar=I.ar;I.G.forEach((e) =>{if(!e.acNoDex&&!(e.acArmAb&&ar))return;if(!ctx.q.fxOk(e,ar,I.ESH,I.EA))return;C.ac.dex="";if(e.acArmAb&&ar)C.ac.bonus.push({s:ABN[e.acArmAb]+" modifier in place of Dexterity ("+e.lbl+")",v:Math.min(mod(I.a.sc[e.acArmAb]),e.acCap!=null?e.acCap:99)})});return ctx.patch()}});
