@@ -2,19 +2,18 @@ import {DMAP,dmapAlias,spX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {cls14Apply} from "./08-logic-2014-rules.js";
-import {DM14M,DM14ON,DM14S,__set_DM14M,__set_DM14ON,__set_DM14S,allFeats,dm14Set,eq14Set,sbAuto,sp14Set,wxGate} from "./09-logic-feats-and-choices.js";
-import {clsParts} from "./11-logic-derivation.js";
+import {DM14M,DM14ON,DM14S,__set_DM14M,__set_DM14ON,__set_DM14S,allFeats,dm14Set,eq14Set,gxPicks,sbAuto,sp14Set,wxGate} from "./09-logic-feats-and-choices.js";
+import {clsParts,fxList} from "./11-logic-derivation.js";
 import {__R} from "./00-reg.js";
+import {MCL,TL,bindLate} from "./01b-logic-late-ports.js";
 import {efaCls,efaNames,gl14,exposeSourceHelpers,packTables} from "./00-env.js";
 import {runPackSteps} from "./13a-logic-pack-registry.js";
 import "./13b-logic-pack-handlers.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
 Object.defineProperty(__R,"BASE",{get:function(){return BASE;},set:function(v){BASE=v;},configurable:true});
-Object.defineProperty(__R,"enabledPacks",{get:function(){return enabledPacks;},set:function(v){enabledPacks=v;},configurable:true});
-Object.defineProperty(__R,"miFeats",{get:function(){return miFeats;},set:function(v){miFeats=v;},configurable:true});
 Object.defineProperty(__R,"spHasFeat",{get:function(){return spHasFeat;},set:function(v){spHasFeat=v;},configurable:true});
-Object.defineProperty(__R,"spOptFx",{get:function(){return spOptFx;},set:function(v){spOptFx=v;},configurable:true});
 Object.defineProperty(__R,"subChoicesFor",{get:function(){return subChoicesFor;},set:function(v){subChoicesFor=v;},configurable:true});
+bindLate({enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the late ports of this file (01b-logic-late-ports.js) */
 provideQueries({autoSpells,enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the sheet queries (toSheet state.q) of this file */
 /* ---------- sources & homebrew packs ---------- */
 export var PACK_TEMPLATE={id:"my-homebrew",name:"My Homebrew",desc:"Short description",species:{"Example Folk":{size:"Medium",speed:30,dark:60,traits:[["Trait Name","What it does."]]}},subclasses:{"Rogue":{"Example Archetype":[[3,"Feature","What it does."]]}},feats:{"Example Feat":{cat:"G",pre:"Level 4+",asi:["STR","DEX"],d:"What it does."}},backgrounds:{"Example Background":{ab:["STR","DEX","CON"],feat:"Alert",sk:["Athletics","Stealth"],tool:"Thieves' Tools",eq:"Dagger, 15 GP",gp:15}},skills:{"Example Skill":"INT"},items:[["Example Ring","Ring","Rare",1,"What it does."]]};
@@ -40,16 +39,16 @@ export function autoSpells(){const L=B.level,out=[];function add(tab,src,lv,k){c
  add(CLS_AUTO[B.cls],B.cls,0,B.cls);if(B.sub&&B.sub!=="__custom")add(AUTO[B.sub],B.sub,0,B.cls);
  if(B.sub==="Circle of the Land"&&B.ch.land)add(LAND[B.ch.land],"Circle of the Land ("+B.ch.land+")",0,B.cls);
  /* v32 RL49: Circle of the Land as a multiclass, Magical Discoveries (College of Lore 6), High Elf cantrip */
- __R.MCL().forEach((m,i) =>{const ld=B.ch["m"+i+":land"];if(m.sub==="Circle of the Land"&&ld&&LAND[ld])add(LAND[ld],"Circle of the Land ("+ld+")",m.lv,m.cls)});
+ MCL().forEach((m,i) =>{const ld=B.ch["m"+i+":land"];if(m.sub==="Circle of the Land"&&ld&&LAND[ld])add(LAND[ld],"Circle of the Land ("+ld+")",m.lv,m.cls)});
  clsParts().forEach((q,i) =>{if(q.sub==="Illusionist"&&q.lv>=3)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p3illcan"]||[]).forEach((n) =>{add([[1,n]],"Improved Illusions",q.lv,q.cls)})});
  clsParts().forEach((q,i) =>{if(q.sub==="College of Lore"&&q.lv>=6)(B.ch[(q.mc?"m"+(i-1)+":":"")+"p6disc"]||[]).forEach((n) =>{add([[1,n]],"Magical Discoveries",q.lv,q.cls)})});
  sbAuto(add);/* v63 */
- __R.gfx().forEach((e) =>{if(e.spells)add(e.spells,e.lbl,e.lv,e.spCls||e.ocls||e.cls||"@species")});/* fx engine v2: spells [[level, "A,B"]] always prepared */(function(){(__R.gxPicks?__R.gxPicks():[]).forEach((o) =>{if(!o.gxc)return;(B.ch[o.key]||[]).forEach((n) =>{add([[1,n]],o.src,0,o.gxc)})})})();
- const S=un("species")?null:SP_AUTO[B.species];if(S){const k=Object.keys(S).filter((k) =>{return k===""||(B.ch.lin||"").indexOf(k)===0})[0];if(k!=null)add(S[k],B.species+(k?" ("+k+")":""),__R.TL(),"@species")}/* M5 (RL9): species spells use the character level (PHB 2024 p. 190, 197) */
- __R.MCL().forEach((m) =>{add(CLS_AUTO[m.cls],m.cls,m.lv,m.cls);if(m.sub)add(AUTO[m.sub],m.sub,m.lv,m.cls)});
+ fxList().forEach((e) =>{if(e.spells)add(e.spells,e.lbl,e.lv,e.spCls||e.ocls||e.cls||"@species")});/* fx engine v2: spells [[level, "A,B"]] always prepared */(function(){gxPicks().forEach((o) =>{if(!o.gxc)return;(B.ch[o.key]||[]).forEach((n) =>{add([[1,n]],o.src,0,o.gxc)})})})();
+ const S=un("species")?null:SP_AUTO[B.species];if(S){const k=Object.keys(S).filter((k) =>{return k===""||(B.ch.lin||"").indexOf(k)===0})[0];if(k!=null)add(S[k],B.species+(k?" ("+k+")":""),TL(),"@species")}/* M5 (RL9): species spells use the character level (PHB 2024 p. 190, 197) */
+ MCL().forEach((m) =>{add(CLS_AUTO[m.cls],m.cls,m.lv,m.cls);if(m.sub)add(AUTO[m.sub],m.sub,m.lv,m.cls)});
  (B.ch.spcan||[]).forEach((n) =>{add([[1,n]],B.species+" ("+(spOptFx().cantripLabel||"Limited Spellcaster")+")",0,"@spcan")});
  (B.ch.bwc||[]).forEach((n) =>{add([[1,n]],B.ch["fs"+CL().fs]||"Fighting Style",0,B.cls)});
- __R.MCL().forEach((m,i) =>{(B.ch["m"+i+":bwc"]||[]).forEach((n) =>{add([[1,n]],B.ch["m"+i+":fs"]||"Fighting Style",m.lv,m.cls)})});/* v32 RL49 no. 42 */(B.ch.tomeC||[]).concat(B.ch.tomeR||[]).forEach((n) =>{add([[1,n]],"Pact of the Tome",0,"Warlock")});
+ MCL().forEach((m,i) =>{(B.ch["m"+i+":bwc"]||[]).forEach((n) =>{add([[1,n]],B.ch["m"+i+":fs"]||"Fighting Style",m.lv,m.cls)})});/* v32 RL49 no. 42 */(B.ch.tomeC||[]).concat(B.ch.tomeR||[]).forEach((n) =>{add([[1,n]],"Pact of the Tome",0,"Warlock")});
  const hc=(B.ch.hecan||[])[0],hs=spX();if(hc&&hs&&hs.linCan)out.forEach((o) =>{if(o.k==="@species"&&o.n===hs.linCan[Object.keys(hs.linCan)[0]].def)o.n=hc});
  return out}
 export function miFeats(){return allFeats().filter((f) =>{return /^Magic Initiate \((?!2014)/.test(f.n)}).map((f,i) =>{return {key:"mi"+i,cls:/\((\w+)\)/.exec(f.n)[1],src:f.s}})}

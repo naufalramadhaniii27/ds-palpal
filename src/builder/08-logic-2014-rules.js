@@ -1,3 +1,4 @@
+import {genv} from "./00-env.js";
 import {SRC,__set_SRC} from "./01-logic-core-helpers.js";
 import {B} from "./04-logic-storage.js";
 import {R14,SRC14,SUBLBL14,SUBLV14} from "./05-logic-choice-model-ruleset.js";
@@ -7,7 +8,7 @@ export var RL14={"Cleric|Knowledge Domain (2014)":[1,1,2,6,8,17],"Cleric|Life Do
 export function subLv(cls){return R14()?(SUBLV14[cls]||3):3}
 export function subLbl(cls){return R14()?(SUBLBL14[cls]||SUBLABEL[cls]):SUBLABEL[cls]}
 export function sdn(n){return R14()?String(n).replace(/ \(2014\)$/,""):n}
-function rln(){if(RLN)return RLN;RLN={};(window.WXS||[]).forEach((x) =>{const k=x.cls+"|"+x.name,l=RL14[k];if(!l)return;const m=RLN[k]=RLN[k]||{};x.arr.forEach((a,i) =>{const n=a[1].toLowerCase();if(m[n]==null)m[n]=l[i]})});return RLN}
+function rln(){if(RLN)return RLN;RLN={};(genv.WXS||[]).forEach((x) =>{const k=x.cls+"|"+x.name,l=RL14[k];if(!l)return;const m=RLN[k]=RLN[k]||{};x.arr.forEach((a,i) =>{const n=a[1].toLowerCase();if(m[n]==null)m[n]=l[i]})});return RLN}
 /* effective level of a subclass pick: the level of the feature it belongs to in the 2014 book */
 export function pEff(cn,sn,p){if(!R14()||!p.feature)return p.l;const m=rln()[cn+"|"+sn],v=m&&m[String(p.feature).toLowerCase()];return v!=null&&v<p.l&&p.l<=3?v:p.l}/* v91: only a pick of the subclass level moves with its feature. A later pick (maneuvers at 7) keeps its level */
 export var BASE14={},CF14SAVED={},KEYS14=["res","track","pick","asiX","fs","armor","weapons","tools","sk","eq","eqg"],MM14SAVED=null,LU14SAVED=null,ACT14SAVED=null,CA14SAVED=null,SN14O=null,INV14S=null,ISP14S=null,IPK14S=null,PACTB14=[],OPT14S={},AU14S={},SF14S={},SG14S={},FD14S=null,SN14={"Indomitable":"Reroll a failed save (Limited Use)","Diamond Soul":"Proficient in all saves. Spend 1 ki point to reroll a failed one"};
@@ -54,7 +55,7 @@ export function cls14Inject(n,o){const all=Object.keys(CLASSES).map((k) =>{retur
 export function cls14Apply(){cls14Restore();cls14Tabs(R14());__set_SRC(R14()?"PHB-2014":"PHB-2024");if(!R14())return;mcg14(true);cls14Feats();
  const ad=CLS14.Artificer;if(ad&&ad.base){if(B.cls==="Artificer"||(B.mc||[]).some((m) =>{return m.cls==="Artificer"}))B.src.tce=true;if(B.src&&B.src.tce&&!CLASSES.Artificer){const ao=Object.assign({},ad.base);ao.subs=structuredClone(ad.subs||{});ao.pickSub=structuredClone(ad.pickSub||{});cls14Inject("Artificer",ao)}}/* v90: the 2014 Artificer comes from Tasha's Cauldron of Everything */
 let b0=null;try{b0=JSON.parse(__R.BASE.subs)}catch(e){b0={}}
- const xs={};(window.WXS||[]).forEach((x) =>{xs[x.cls+"|"+x.name]=x});
+ const xs={};(genv.WXS||[]).forEach((x) =>{xs[x.cls+"|"+x.name]=x});
  Object.keys(CLASSES).forEach((cn) =>{const c=CLASSES[cn],d=CLS14[cn];
   if(d){const o=BASE14[cn]={};KEYS14.forEach((k) =>{o[k]=c[k]});
    const keep=(c.f||[]).filter((x) =>{return x[3]&&x[3].hb}),names={};d.f.forEach((x) =>{names[x[1]]=1});

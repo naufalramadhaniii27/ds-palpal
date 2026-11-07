@@ -209,6 +209,8 @@
    "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
    "close": "\n}</script>",
    "files": [
+    "fx/00-fx-env.js",
+    "fx/00b-fx-shared.js",
     "fx/01-core-router-and-switch.js",
     "fx/02-micro-interactions.js",
     "fx/03-f1-card-light-and-morph.js",
@@ -727,6 +729,7 @@
     "builder/00-env.js",
     "builder/01-logic-core-helpers.js",
     "builder/01a-logic-query-registry.js",
+    "builder/01b-logic-late-ports.js",
     "builder/02-data-magic-item-summaries.js",
     "builder/03-logic-magic-item-effects.js",
     "builder/04-logic-storage.js",

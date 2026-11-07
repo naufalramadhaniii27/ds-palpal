@@ -8,7 +8,7 @@
   function stampRGB0(){ const t=document.createElement("i"); t.style.color="var(--stamp)"; document.body.appendChild(t); const m=/(\d+),\s*(\d+),\s*(\d+)/.exec(getComputedStyle(t).color)||[0,200,200,210]; t.remove(); return m[1]+","+m[2]+","+m[3]; }
   function kindRGB(el){ const v=el.getAttribute("data-info"); return (v&&KIND[v.split(":")[0]])||stampRGB(); }
   /* on wide screens the app grows the side panel from the button itself, so our flight would fight it: there, only on phones */
-  const WIDE=window.matchMedia?matchMedia("(min-width: 760px)"):null;
+  const WIDE=FXENV.matchMedia?matchMedia("(min-width: 760px)"):null;
   function ok(el){ return el&&!(WIDE&&WIDE.matches)&&el.closest("#app")&&!el.closest("#sheet,#homeV,#bld,.ask,#moreMenu,#hpQm"); }
   function vis(r){ return r&&r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth; }
   let pend=null, open=null, GP=[], GR=new WeakMap();

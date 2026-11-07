@@ -1,3 +1,4 @@
+import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,attMax,un,unDone} from "./03-logic-magic-item-effects.js";
@@ -34,10 +35,10 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  if(s==="bg")return !(R14()||B.bgMode==="111"||(B.bg2&&B.bg1))||cs.some((c) =>{return choiceStep(c)==="bg"&&!isDone(c)});
  if(s==="species")return cs.some((c) =>{return choiceStep(c)==="species"&&!isDone(c)});
  return false}
-export function render(){try{window.__bldArt&&window.__bldArt(step,B)}catch(e){}try{const hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
+export function render(){try{genv.__bldArt&&genv.__bldArt(step,B)}catch(e){}try{const hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
  $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
  /* T10: which campaign the character belongs to. Optional. A non-empty value goes to the sheet on Apply */
- if(!$("#cpIn")){if(!B.camp&&window.__sheetCamp){const sc0=window.__sheetCamp();if(sc0){B.camp=sc0;save()}}const nr=$("#nameRow");if(nr){const cr=document.createElement("div");cr.className="bnm";cr.id="campRow";cr.innerHTML='<label for="cpIn">Campaign</label><input class="btx" id="cpIn" autocomplete="off" placeholder="Optional, for example Lost Mine">';nr.parentNode.insertBefore(cr,nr.nextSibling)}}
+ if(!$("#cpIn")){if(!B.camp&&genv.__sheetCamp){const sc0=genv.__sheetCamp();if(sc0){B.camp=sc0;save()}}const nr=$("#nameRow");if(nr){const cr=document.createElement("div");cr.className="bnm";cr.id="campRow";cr.innerHTML='<label for="cpIn">Campaign</label><input class="btx" id="cpIn" autocomplete="off" placeholder="Optional, for example Lost Mine">';nr.parentNode.insertBefore(cr,nr.nextSibling)}}
  if($("#cpIn")&&$("#cpIn").value!==(B.camp||"")&&document.activeElement!==$("#cpIn"))$("#cpIn").value=B.camp||"";
  let csP=null;try{csP=choices()}catch(e){}
  $("#steps").innerHTML=STEPS.map((s) =>{let pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");const nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
@@ -46,7 +47,7 @@ export function render(){try{window.__bldArt&&window.__bldArt(step,B)}catch(e){}
  try{let dn=0,tt=0;STEPS.forEach((x) =>{let pr=null;try{pr=stepProg(x[0],csP)}catch(e){}if(pr){dn+=pr[0];tt+=pr[1]}});let pb=$("#bprog");if(!pb){pb=document.createElement("div");pb.id="bprog";pb.setAttribute("role","progressbar");pb.setAttribute("aria-label","Choices made");$("#steps").insertAdjacentElement("afterend",pb)}
   const pc=tt?Math.round(dn*100/tt):0;pb.style.setProperty("--p",pc+"%");pb.setAttribute("aria-valuenow",pc);pb.setAttribute("aria-valuemin","0");pb.setAttribute("aria-valuemax","100")}catch(e){}
  const f={home:renderHome,class:renderClass,bg:renderBg,species:renderSpecies,abil:renderAbil,equip:renderEquip,next:renderNext,rules:renderRules}[step];
- $("#body").innerHTML=f();try{__R.bDeco($("#body"))}catch(e){}try{window.__bldBanner&&window.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{window.__bldCards&&window.__bldCards($("#body"))}catch(e){}if(step==="next"){try{if(window.__rcptPreview&&!__R.unList().length){const pv=window.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
+ $("#body").innerHTML=f();try{__R.bDeco($("#body"))}catch(e){}try{genv.__bldBanner&&genv.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{genv.__bldCards&&genv.__bldCards($("#body"))}catch(e){}if(step==="next"){try{if(genv.__rcptPreview&&!__R.unList().length){const pv=genv.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
  const i=STEPS.map((s) =>{return s[0]}).indexOf(step);$("#prev").disabled=i===0;$("#next").disabled=i===STEPS.length-1;
  /* T11 G6 B1: Name and Campaign live on the Home step only (they took about 100 px above every step on a phone) */
  const hm=step==="home";$("#nameRow").hidden=!hm;$("#nameRow").style.display=hm?"":"none";const cr2=$("#campRow");if(cr2){cr2.hidden=!hm;cr2.style.display=hm?"":"none"}}
@@ -58,19 +59,19 @@ function missBar(){const bd=$("#body");if(!bd||step==="rules"||step==="home")ret
  const h=bd.querySelector(".bld-hero")||bd.querySelector("h2.ttl");if(h&&h.parentNode===bd)bd.insertBefore(d,h.nextSibling);else bd.insertBefore(d,bd.firstChild)}
 document.addEventListener("click",(e) =>{const b=e.target.closest&&e.target.closest("[data-miss]");if(!b)return;let a=document.querySelector("#body .acc.todo");if(!a)return;
  if(!a.classList.contains("open")){const hh=a.querySelector(".acc-h");if(hh)hh.click();a=document.querySelector('#body .acc[data-acc="'+a.getAttribute("data-acc")+'"]')||a}
- try{a.scrollIntoView({block:"center",behavior:(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)?"auto":"smooth"})}catch(er){}const f=a.querySelector(".acc-b button,.acc-b select,.acc-b input");if(f)try{f.focus({preventScroll:true})}catch(er){}});
+ try{a.scrollIntoView({block:"center",behavior:(genv.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)?"auto":"smooth"})}catch(er){}const f=a.querySelector(".acc-b button,.acc-b select,.acc-b input");if(f)try{f.focus({preventScroll:true})}catch(er){}});
 /* T11 G6 T5: the Back button of the phone walks back through the builder steps, and closes the builder from the first step */
-window.__bldBack=function(){const o=STEPS.map((x) =>{return x[0]}),i=o.indexOf(step);if(i>0){go(o[i-1]);return true}const c=document.getElementById("b-close");if(c)c.click();return true};
+genv.__bldBack=function(){const o=STEPS.map((x) =>{return x[0]}),i=o.indexOf(step);if(i>0){go(o[i-1]);return true}const c=document.getElementById("b-close");if(c)c.click();return true};
 /* T11 G6 T9 draft: the step in use is kept with the build (cs-bld-step), so a closed tab or a reload opens the builder where it was left.
    The choices themselves were already saved on every change (save() in 04), this adds the place */
 function stepKeep(s){try{__store.setItem("cs-bld-step",JSON.stringify({k:B.cid||B.name||"",s:s,t:Date.now()}))}catch(e){}}
-export function stepBack(){if(window.__bldStepDone)return;window.__bldStepDone=1;let o=null;try{o=JSON.parse(__store.getItem("cs-bld-step")||"null")}catch(e){}
+export function stepBack(){if(genv.__bldStepDone)return;genv.__bldStepDone=1;let o=null;try{o=JSON.parse(__store.getItem("cs-bld-step")||"null")}catch(e){}
  if(!o||o.k!==(B.cid||B.name||"")||o.s===step||o.s==="rules"||!STEPS.some((x) =>{return x[0]===o.s})||Date.now()-o.t>30*864e5)return;
  __set_step(o.s);const nm=(STEPS.filter((x) =>{return x[0]===o.s})[0]||[])[1];setTimeout(() =>{toast("Back where you left off: "+nm+" step.")},300)}
 export function go(s){const o=STEPS.map((x) =>{return x[0]}),d=o.indexOf(s)-o.indexOf(step);
  /* T11 G6 T4: a View Transition between steps where the browser has it (the old step slides out, the new one in). Otherwise the slide below */
- const rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(document.startViewTransition&&!rm&&d&&!document.documentElement.classList.contains("mi-off")){document.documentElement.dataset.bdir=d>0?"f":"b";try{document.startViewTransition(() =>{__set_step(s);__set_pickCls(false);__set_pickSp(false);render();window.scrollTo(0,0)});return}catch(e){}}
- __set_step(s);stepKeep(s);__set_pickCls(false);__set_pickSp(false);render();window.scrollTo(0,0);/* v55: slide in from the side you move toward */try{const bd=$("#body");if(bd&&d&&bd.animate&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))bd.animate([{opacity:0,transform:"translateX("+(d>0?28:-28)+"px)"},{opacity:1,transform:"none"}],{duration:window.__miT?__miT(300):260,easing:window.__miSpring||"cubic-bezier(.2,.8,.2,1)"})}catch(e){}}
+ const rm=genv.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(document.startViewTransition&&!rm&&d&&!document.documentElement.classList.contains("mi-off")){document.documentElement.dataset.bdir=d>0?"f":"b";try{document.startViewTransition(() =>{__set_step(s);__set_pickCls(false);__set_pickSp(false);render();genv.scrollTo(0,0)});return}catch(e){}}
+ __set_step(s);stepKeep(s);__set_pickCls(false);__set_pickSp(false);render();genv.scrollTo(0,0);/* v55: slide in from the side you move toward */try{const bd=$("#body");if(bd&&d&&bd.animate&&!(genv.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))bd.animate([{opacity:0,transform:"translateX("+(d>0?28:-28)+"px)"},{opacity:1,transform:"none"}],{duration:genv.__miT?__miT(300):260,easing:genv.__miSpring||"cubic-bezier(.2,.8,.2,1)"})}catch(e){}}
 function setB(path,val){let ks=path.split("."),o=B;while(ks.length>1)o=o[ks.shift()];o[ks[0]]=val}
 function commit(){save();render()}
 document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;const sm=e.target.closest("summary[data-lgsum]");if(sm){__set_lgOpen(!sm.parentNode.open);return}/* v96 v98: remember the fold across redraws; the browser still toggles it */const t=e.target.closest("button");if(!t)return;const d=t.dataset;
@@ -96,10 +97,10 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.iunpack!=null){const upx=B.inv[+d.iunpack],upn=upx&&upx.n;if(!upx)return;if(qOf(upx)<1){toast("Qty is 0, so there is nothing to unpack.");return}const upc=unpackAt(+d.iunpack);commit();toast(upc?"Unpacked "+upn+" into a "+PACKS[upx.alias&&PACKS[upx.alias]?upx.alias:upn][0]+" with its items.":"Nothing to unpack.");return}/* v32 RU134 */
  if(d.aq){addQty[d.aq]=Math.max(1,(addQty[d.aq]||1)+(+d.d));render();return}
  if(d.ibuy){const bq=Math.max(1,+d.qty||1),bp=itemCost(d.ibuy);if(bp==null||!(bp>0)){toast("This item has no listed price. Use Add.");return}
-  let mc2=false;try{mc2=__R.bldMine()}catch(er){}const live2=!!(mc2&&window.__coinsGet),wal=live2?window.__coinsGet():bCoins(gpNow()),pr=window.__coinPay?window.__coinPay(wal,Math.round(bp*100*bq)):null;
-  if(!pr){toast("Not enough coin. It costs "+(window.__priceTxt?window.__priceTxt(bp*bq):bp*bq+" gp")+(window.__coinCp?" and you have "+(Math.round(window.__coinCp(wal))/100)+" gp in all.":"."));return}
-  if(live2&&window.__coinsPut)window.__coinsPut(pr.c,"Buy "+d.ibuy);else B.coins=pr.c;
-  const pu=window.__coinList?window.__coinList(pr.use):"",ch=window.__coinList?window.__coinList(pr.chg):"";__set_bMsg("Bought "+(bq>1?bq+" \u00d7 ":"")+d.ibuy+" for "+(window.__priceTxt?window.__priceTxt(bp*bq):bp*bq+" gp")+(pu?". Paid "+pu:"")+(ch?", change back: "+ch:"")+".");d.iadd=d.ibuy}
+  let mc2=false;try{mc2=__R.bldMine()}catch(er){}const live2=!!(mc2&&genv.__coinsGet),wal=live2?genv.__coinsGet():bCoins(gpNow()),pr=genv.__coinPay?genv.__coinPay(wal,Math.round(bp*100*bq)):null;
+  if(!pr){toast("Not enough coin. It costs "+(genv.__priceTxt?genv.__priceTxt(bp*bq):bp*bq+" gp")+(genv.__coinCp?" and you have "+(Math.round(genv.__coinCp(wal))/100)+" gp in all.":"."));return}
+  if(live2&&genv.__coinsPut)genv.__coinsPut(pr.c,"Buy "+d.ibuy);else B.coins=pr.c;
+  const pu=genv.__coinList?genv.__coinList(pr.use):"",ch=genv.__coinList?genv.__coinList(pr.chg):"";__set_bMsg("Bought "+(bq>1?bq+" \u00d7 ":"")+d.ibuy+" for "+(genv.__priceTxt?genv.__priceTxt(bp*bq):bp*bq+" gp")+(pu?". Paid "+pu:"")+(ch?", change back: "+ch:"")+".");d.iadd=d.ibuy}
  if(d.iadd&&PACKS[d.iadd]){ensureInv();const pq=+d.qty||1,PK=PACKS[d.iadd];for(let pk3=0;pk3<pq;pk3++)packOut(d.iadd,B.inv).forEach((y) =>{B.inv.push(y)});addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(pq>1?pq+" \u00d7 ":"")+d.iadd+": a "+PK[0]+" with "+PK[1].length+" kinds of items inside");__set_bMsg("");return}/* v32 RU134 */
  if(d.iadd){ensureInv();const ex=B.inv.filter((y) =>{return y.n===d.iadd&&!y.kit})[0],qq=+d.qty||1;if(ex&&!equippable(d.iadd))ex.q+=qq;else{let eq=equippable(d.iadd);if(ARMOR[d.iadd]&&B.inv.some((y) =>{return ARMOR[y.n]&&y.eq}))eq=false;const lib=(B.custLib||[]).filter((c) =>{return c.n===d.iadd})[0];B.inv.push(lib?{n:d.iadd,q:qq,eq:false,rar:lib.rar,desc:lib.desc,type:lib.type}:{n:d.iadd,q:qq,eq:DMAP[d.iadd]?false:eq})}addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(qq>1?qq+" \u00d7 ":"")+d.iadd);__set_bMsg("");return}
  if(d.avar){addVar[d.avar]=+d.k;render();return}
@@ -135,7 +136,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(t.id==="expBtn2"){__R.toSheetApply(true);return}
  if(t.id==="expCopy"){const ta=$("#expTxt");copyText(ta.value,ta).then((ok) =>{toast(ok?"Copied":"Select the text and copy it")});return}
  if(t.id==="expClose"){$("#exp").hidden=true;return}
- if(t.id==="newBtn2"){/* RL40: a new character in My Characters. The open character keeps its build */if(window.__sheetNew){ask("Start a new character? "+B.name+" stays in My Characters.","Start new",() =>{window.__sheetNew()});return}ask("Start a new character? This clears the current build.","Start new",() =>{__set_B(NEWB());save();go("class")});return}
+ if(t.id==="newBtn2"){/* RL40: a new character in My Characters. The open character keeps its build */if(genv.__sheetNew){ask("Start a new character? "+B.name+" stays in My Characters.","Start new",() =>{genv.__sheetNew()});return}ask("Start a new character? This clears the current build.","Start new",() =>{__set_B(NEWB());save();go("class")});return}
  if(t.id==="bakBtn"){restoreBak();return}});
 document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target,d=t.dataset;
  if(d.iin!=null){const it2=B.inv[+d.iin],XD=/^(Bag of Holding|Heward's Handy Haversack|Portable Hole)\b/;if(!it2)return;if(t.value&&XD.test(it2.n)&&XD.test(t.value)){toast("Putting "+it2.n+" inside "+t.value+" tears both apart and opens a rift to the Astral Plane. Not moved.");render();return}if(t.value)it2.in=t.value;else delete it2.in;commit();return}/* v27 RU46 */
@@ -147,7 +148,7 @@ document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;co
  if(d.mcsub!=null){B.mc[+d.mcsub].sub=t.value;commit();return}
  if(d.hpr){B.hpr=B.hpr||{};const hv=parseInt(t.value);if(hv>0)B.hpr[d.hpr]=hv;else delete B.hpr[d.hpr];commit();return}if(d.srcck){B.src=B.src||{core:true,dmg:true};if(d.srcck==='dmg')B.src.dmg=t.checked;else B.src[d.srcck]=t.checked;applyPacks();commit();return}
  if(d.coin){const co={};document.querySelectorAll("#bld [data-coin]").forEach((x) =>{const v=Math.floor(+x.value||0);co[x.dataset.coin]=v>0?v:0});let mc=false;try{mc=__R.bldMine()}catch(er){}
-  if(mc&&window.__coinsPut){window.__coinsPut(co,"Coins in the builder");render();return}B.coins=co;commit();return}/* v34 p06 */
+  if(mc&&genv.__coinsPut){genv.__coinsPut(co,"Coins in the builder");render();return}B.coins=co;commit();return}/* v34 p06 */
  if(d.gp){B.gpOverride=t.value;commit();return}
  if(d.invp){__set_invP(t.checked);render();return}
  if(t.id==="custt"){cust.t=t.value;return}
@@ -177,7 +178,7 @@ document.addEventListener("input",(e) =>{if(!e.target.closest("#bld"))return;con
 /* RL40: the builder belongs to the character open on the sheet. B.cid = that character's id in My Characters (sheet.js __sheetId).
    own(name): the saved build is this character's. With cid: same id. Without cid (builds saved before v13): same name, as before.
    copyOf(name): a build copied with its sheet before v13 ("Name (copy)"). stamp(): write the id into B (caller saves) */
-export function sid(){try{return window.__sheetId?window.__sheetId()||"":""}catch(e){return ""}}
+export function sid(){try{return genv.__sheetId?genv.__sheetId()||"":""}catch(e){return ""}}
 export function own(nm){const id=sid();return B.cid&&id?B.cid===id:B.name===nm}
 export function copyOf(nm){const n=B.name||"";return !B.cid&&!!nm&&nm.indexOf(n)===0&&/^( \(copy\))+$/.test(nm.slice(n.length))}
 export function stamp(){const id=sid();if(id)B.cid=id}

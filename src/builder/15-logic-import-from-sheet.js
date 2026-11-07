@@ -1,3 +1,4 @@
+import {genv} from "./00-env.js";
 import {ABK,clone} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP} from "./03-logic-magic-item-effects.js";
 import {B,__set_B} from "./04-logic-storage.js";
@@ -17,11 +18,11 @@ export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.nam
  let spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
  (function(){let best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
-  Object.keys(SPECIES).forEach(chk);if(window.WXSP)Object.keys(WXSP).forEach((id) =>{Object.keys(WXSP[id]).forEach(chk)});allPacks().forEach((pk) =>{if(pk.species)Object.keys(pk.species).forEach(chk)});
+  Object.keys(SPECIES).forEach(chk);if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{Object.keys(WXSP[id]).forEach(chk)});allPacks().forEach((pk) =>{if(pk.species)Object.keys(pk.species).forEach(chk)});
   if(best){sp=best;spRest=spFull.slice(best.length)}})();
  if(!SPECIES[sp]){allPacks().forEach((p) =>{if(p.species&&p.species[sp])nb.src[p.id]=true})}
  /* v67: a species, background or subclass of a WotC source keeps its source on when the sheet is read back */
- if(window.WXSP)Object.keys(WXSP).forEach((id) =>{if(WXSP[id][sp])nb.src[id]=true});if(window.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg])nb.src[id]=true});if(window.WXS)WXS.forEach((x) =>{if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(window.WXO){const fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach((id) =>{const g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach((r) =>{if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(window.WXG)Object.keys(WXG).forEach((id) =>{WXG[id].forEach((r) =>{if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some((q) =>{return q[0]===r[0]}))nb.src[id]=true})});
+ if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{if(WXSP[id][sp])nb.src[id]=true});if(genv.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg])nb.src[id]=true});if(genv.WXS)WXS.forEach((x) =>{if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(genv.WXO){const fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach((id) =>{const g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach((r) =>{if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(genv.WXG)Object.keys(WXG).forEach((id) =>{WXG[id].forEach((r) =>{if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some((q) =>{return q[0]===r[0]}))nb.src[id]=true})});
  __set_B(nb);applyPacks();
  if(SPECIES[sp]){B.species=sp;if(SPECIES[sp].opts){const so=[];(C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{SPECIES[sp].opts.list.forEach((o) =>{if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}const lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){const o=SPECIES[sp].lin.opts.filter((x) =>{return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}/* v82: 2014 race ability picks come back from the race bonus on the sheet */if(C.rs==="2014"&&SPECIES[sp].asiFlex&&C.abilities){const f2=[],f1=[];Object.keys(C.abilities).forEach((k) =>{let a=C.abilities[k],t=0;((a&&a.bonus)||[]).forEach((x) =>{if(x.s===sp+" (race)")t+=x.v});if(t===2)f2.push(k);else if(t===1)f1.push(k)});if(f2.length===1&&f1.length===1){B.ch.rasi=f2;B.ch.rasi1=f1}else if(f1.length===3){B.ch.rasim="+1, +1, +1";B.ch.rasi=f1}}if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){const rp=[];Object.keys(C.abilities).forEach((k) =>{const a=C.abilities[k];if(a&&(a.bonus||[]).some((x) =>{return x.s===sp+" (race)"})&&!(SPECIES[sp].asi&&SPECIES[sp].asi[k])&&rp.indexOf(k)<0)rp.push(k)});if(rp.length)B.ch.rasi=rp.slice(0,SPECIES[sp].asiPick.n)}}
  else{B.species="Custom";B.cSpecies={name:sp||"Custom",speed:+C.speed||30,dark:+C.darkvision||0,size:C.size||"Medium"};miss.push("species")}
@@ -33,7 +34,7 @@ export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.nam
  if(C.sub){if(!CL().subs[C.sub])allPacks().forEach((p) =>{if(p.subclasses&&p.subclasses[B.cls]&&p.subclasses[B.cls][C.sub]){B.src[p.id]=true}});applyPacks();if(CL().subs[C.sub])B.sub=C.sub;else{B.sub="__custom";B.cSub=C.sub}}
  if(B.mc){B.mc.forEach((m) =>{if(m.sub&&!CLASSES[m.cls].subs[m.sub])allPacks().forEach((p) =>{if(p.subclasses&&p.subclasses[m.cls]&&p.subclasses[m.cls][m.sub])B.src[p.id]=true})});
   applyPacks();B.mc.forEach((m) =>{if(m.sub&&!CLASSES[m.cls].subs[m.sub]){m.sub="";miss.push("multiclass subclass")}})}
- if(!BACKGROUNDS[C.bg]&&window.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg]){B.src[id]=true;BACKGROUNDS[C.bg]=WXBG[id][C.bg]}});/* v67 */
+ if(!BACKGROUNDS[C.bg]&&genv.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg]){B.src[id]=true;BACKGROUNDS[C.bg]=WXBG[id][C.bg]}});/* v67 */
  if(BACKGROUNDS[C.bg])B.bg=C.bg;else miss.push("background");
  ABK.forEach((k) =>{const a=(C.abilities||{})[k];if(a)B.base[k]=+a.base||10});
  const bgb=[];ABK.forEach((k) =>{((C.abilities[k]||{}).bonus||[]).forEach((b) =>{if(B.bg&&b.s.indexOf(B.bg)===0)bgb.push([k,+b.v])})});

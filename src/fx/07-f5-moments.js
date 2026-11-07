@@ -11,15 +11,15 @@
       box.style.setProperty("--mi-cover",solid(t.parentElement)); box.style.setProperty("--mi-tint",alpha(own)>0&&alpha(own)<.95?own:"transparent"); }); }
   covers(); new MutationObserver(() =>{ requestAnimationFrame(covers); }).observe(html,{attributes:true,attributeFilter:["data-theme","data-skin","data-hc"]});
   /* Bell Toggle: the switch swings like a struck bell, with one ring */
-  window.__miBell=function(el,col){ if(!el||MI.rm()) return; const r=el.getBoundingClientRect(); if(!r.width) return;
+  FXENV.__miBell=function(el,col){ if(!el||MI.rm()) return; const r=el.getBoundingClientRect(); if(!r.width) return;
     el.animate([{transform:"rotate(0)"},{transform:"rotate(-14deg)"},{transform:"rotate(11deg)"},{transform:"rotate(-7deg)"},{transform:"rotate(4deg)"},{transform:"none"}],{duration:620,easing:"ease-out"});
-    if(window.__miRing) window.__miRing(r.left+r.width/2,r.top+r.height/2,col||"#ffcf4a",Math.max(r.width,r.height)*1.6); MI.buzz("medium"); };
+    if(FXENV.__miRing) FXENV.__miRing(r.left+r.width/2,r.top+r.height/2,col||"#ffcf4a",Math.max(r.width,r.height)*1.6); MI.buzz("medium"); };
   MI.on("click",(e) =>{ const t=e.target.closest&&e.target.closest("#insp,#vbInsp"); if(!t||e.target.closest(".ib")) return; const id=t.id;
-    setTimeout(() =>{ const n=document.getElementById(id); if(n&&n.getAttribute("aria-pressed")==="true"){ window.__miBell(n,"#ffcf4a"); if(window.__miWow) window.__miWow.coin(n); } },30); },true);
+    setTimeout(() =>{ const n=document.getElementById(id); if(n&&n.getAttribute("aria-pressed")==="true"){ FXENV.__miBell(n,"#ffcf4a"); if(FXENV.__miWow) FXENV.__miWow.coin(n); } },30); },true);
   /* STABLE draws itself in, DEAD glitches; both once, when the state starts */
   let dsWas="";
   function dsCheck(){ const s=document.querySelector(".dsg-t b"), d=document.querySelector("#deadNote:not([hidden]) b"), k=d?"dead":(s&&/Stable/.test(s.textContent)?"stable":""); if(k===dsWas) return; dsWas=k; if(MI.rm()||!k) return;
-    if(window.__miWow&&window.__miWow.ds) window.__miWow.ds(k);
+    if(FXENV.__miWow&&FXENV.__miWow.ds) FXENV.__miWow.ds(k);
     if(k==="stable"){ const g=MI.ghost(s); if(!g) return; g.style.background="transparent"; g.style.color="transparent"; g.style.webkitTextStroke="1px #4cc27a"; g.style.clipPath="inset(0 100% 0 0)";
       g.animate([{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0 0 0)",offset:.6},{clipPath:"inset(0 0 0 0)",opacity:1},{opacity:0}],{duration:1100,easing:"ease-out",fill:"forwards"}).onfinish=function(){ g.remove(); };
       s.animate([{opacity:0},{opacity:0,offset:.45},{opacity:1}],{duration:900}); }
@@ -30,7 +30,7 @@
   /* Decay Card: when a held Delete goes through, the card crumbles (a copy shrinks, blurs and sheds dust) */
   MI.on("click",(e) =>{ const b=e.target.closest&&e.target.closest("#homeV [data-hdel]"); if(!b||b.dataset.heldDone!=="1"||MI.rm()) return; const card=b.closest(".hcard"), g=MI.ghost(card); if(!g) return; const r=card.getBoundingClientRect();
     g.style.overflow="hidden"; g.animate([{transform:"none",opacity:1},{transform:"translateY(6px) scale(.97)",opacity:.8,offset:.35},{transform:"translateY(26px) scale(.9) rotate(-1.5deg)",opacity:0}],{duration:700,easing:"ease-in",fill:"forwards"}).onfinish=function(){ g.remove(); };
-    if(window.__miBurst) for(let k=0;k<3;k++) window.__miBurst(r.left+r.width*(.2+.3*k),r.top+r.height*.6,{n:7,colors:["#8a8f96","#5d636b","#b9bec5"],dist:60,dur:900,grav:true}); MI.buzz("heavy"); },true);
+    if(FXENV.__miBurst) for(let k=0;k<3;k++) FXENV.__miBurst(r.left+r.width*(.2+.3*k),r.top+r.height*.6,{n:7,colors:["#8a8f96","#5d636b","#b9bec5"],dist:60,dur:900,grav:true}); MI.buzz("heavy"); },true);
   /* Lattice Loader in the Building PDF box */
   const sp=document.querySelector(".busy .spin"); if(sp){ sp.classList.add("mi-lat"); sp.innerHTML=[0,1,2,3,4,5,6,7,8].map((i) =>{ return '<i style="animation-delay:'+(((i%3)+((i/3)|0))*90)+'ms"></i>'; }).join(""); }
   /* Status Mark on Back Up: a ring turns into an arc, then a check */
@@ -42,7 +42,7 @@
     p.animate([{strokeDashoffset:100},{strokeDashoffset:0}],{duration:320,delay:560,easing:EASE,fill:"forwards"});
     m.animate([{opacity:1},{opacity:1,offset:.8},{opacity:0}],{duration:1500,fill:"forwards"}).onfinish=function(){ m.remove(); ic.style.opacity=""; }; setTimeout(() =>{ m.remove(); ic.style.opacity=""; },1800); },true);
   /* Echo Text: the rising Hit Point number leaves two fading echoes */
-  window.__miEcho=function(f){ if(!MI.full()) return; const a=f.getAnimations&&f.getAnimations()[0]; if(!a) return; const kf=a.effect.getKeyframes(), t=a.effect.getTiming();
+  FXENV.__miEcho=function(f){ if(!MI.full()) return; const a=f.getAnimations&&f.getAnimations()[0]; if(!a) return; const kf=a.effect.getKeyframes(), t=a.effect.getTiming();
     [1,2].forEach((n) =>{ const e=f.cloneNode(true); e.style.opacity=""; document.body.appendChild(e);
       const an=e.animate(kf.map((k) =>{ const o={transform:k.transform,offset:k.offset}; if(k.opacity!=null) o.opacity=k.opacity*(n===1?.45:.22); return o; }),{duration:t.duration,easing:t.easing,delay:n*70,fill:"both"}); an.onfinish=function(){ e.remove(); }; setTimeout(() =>{ e.remove(); },1600); }); };
   /* Sticker Peel: a condition removed in the dialog peels off the sheet when the dialog closes */
@@ -61,8 +61,8 @@
 
 /* --- F6.2: warm tooltip (mouse only). One pooled bubble replaces the native title. --- */
 (function(){
-  if(!window.__MI||!document.body||!(window.matchMedia&&matchMedia("(hover: hover) and (pointer: fine)").matches)) return;
-  let MI=window.__MI, tip=null, cur=null, tm=0;
+  if(!FXENV.__MI||!document.body||!(FXENV.matchMedia&&matchMedia("(hover: hover) and (pointer: fine)").matches)) return;
+  let MI=FXENV.__MI, tip=null, cur=null, tm=0;
   function hide(){ clearTimeout(tm); cur=null; if(tip) tip.classList.remove("on"); }
   MI.on("pointerover",(e) =>{ if(e.pointerType!=="mouse") return; const t=e.target.closest&&(e.target.closest("header.band button,header.band a,#moreMenu button")||e.target.closest("[title],[data-mi-tip]")); if(!t||t===cur||t.closest("svg")&&!t.closest("button")) return;
     if(!t.hasAttribute("data-mi-tip")){ const s=t.getAttribute("title")||t.getAttribute("aria-label")||(t.textContent||"").replace(/\s+/g," ").trim(); if(!s) return;
@@ -78,17 +78,17 @@
 
 /* --- Builder: answer the tap at once. A cover paints first, then the builder is built under it, then it slides in. --- */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const T0=Date.now();
-  function wrap(){ const o=window.__bldOpen; if(!o||o.__mi) return; const w=function(){ const self=this, a=arguments, bd=document.getElementById("bld");
+  function wrap(){ const o=FXENV.__bldOpen; if(!o||o.__mi) return; const w=function(){ const self=this, a=arguments, bd=document.getElementById("bld");
       if(MI.rm()||!bd||!bd.hidden) return o.apply(self,a);
-      if(Date.now()-T0<3000){ const res=o.apply(self,a); if(window.__miWow&&window.__miWow.welcome) window.__miWow.welcome(); return res; }/* at start-up (a new character) the app opens the Builder itself, in order: never delay that, only greet */
+      if(Date.now()-T0<3000){ const res=o.apply(self,a); if(FXENV.__miWow&&FXENV.__miWow.welcome) FXENV.__miWow.welcome(); return res; }/* at start-up (a new character) the app opens the Builder itself, in order: never delay that, only greet */
       const cv=document.createElement("div"); cv.className="mi-bcov"; cv.setAttribute("aria-hidden","true"); cv.innerHTML="<i></i><i></i><i></i>"; document.body.appendChild(cv);
       cv.animate([{opacity:0},{opacity:1}],{duration:140,fill:"forwards"});
       __miNF(() =>{ setTimeout(() =>{ try{ o.apply(self,a); }finally{
         bd.animate([{opacity:0,transform:"translateY(22px) scale(.99)"},{opacity:1,transform:"none"}],{duration:380,easing:"cubic-bezier(.2,.8,.2,1)"});
         cv.animate([{opacity:1},{opacity:0}],{duration:260,fill:"forwards"}).onfinish=function(){ cv.remove(); }; setTimeout(() =>{ cv.remove(); },1500); } },0); }); };
-    w.__mi=1; window.__bldOpen=w; }
-  if(document.readyState==="complete") wrap(); else window.addEventListener("load",wrap); setTimeout(wrap,1500);
+    w.__mi=1; FXENV.__bldOpen=w; }
+  if(document.readyState==="complete") wrap(); else FXENV.addEventListener("load",wrap); setTimeout(wrap,1500);
 })();
 

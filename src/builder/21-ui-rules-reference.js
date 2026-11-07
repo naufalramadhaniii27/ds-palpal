@@ -1,3 +1,4 @@
+import {genv} from "./00-env.js";
 import {ABK,esc,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
@@ -132,7 +133,7 @@ export function quickBuild(cls,sp){const Q=QUICK[cls];if(!Q){toast("Choose a cla
  const go=function(){const keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};__set_B(NEWB());if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
   B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();/* v99: the class is set, so a class that comes from a source (Artificer) loads before the kit is read */B.species=SPECIES[sp]?sp:(R14()?"Human (2014)":"Human");B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
   if(R14()){B.bg=BACKGROUNDS[QB_BG14[cls]]?QB_BG14[cls]:"Acolyte (2014)";B.bgMode="111";B.bg2="";B.bg1=""}else{B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1}/* v99: a 2014 Quick Build uses a 2014 background, no ability score picks from it */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);qbFill();qbSpells();qbMI();qbBook();save();go2()};
- var go2=function(){__set_step("next");__set_pickCls(false);__set_pickSp(false);__R.render();window.scrollTo(0,0);const RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
+ var go2=function(){__set_step("next");__set_pickCls(false);__set_pickSp(false);__R.render();genv.scrollTo(0,0);const RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
  if(!un("cls")&&B.cls)ask("Replace this build with a Quick Build of a "+(SPECIES[sp]?sp.replace(/ \(2014\)$/,""):"Human")+" "+cls+"? The name stays. The choices, spells, and equipment of the build are replaced. Nothing changes on the sheet until you Apply.","Quick Build",go);else go()}
 
 /* v27 i2: choose how AC is set when no armor is worn. Shown when two rules can set it, or when one was chosen before */

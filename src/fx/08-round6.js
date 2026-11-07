@@ -1,7 +1,7 @@
 /* === Round 6: the final list. Every effect here moves only transform and opacity, adds nothing it does not take away itself,
    and has a hard stop in CSS (miKill) for anything it adds. === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body||!document.body.animate) return;
   const EASE="cubic-bezier(.2,.8,.2,1)", POP="cubic-bezier(.3,1.5,.5,1)";
   function C(el){ const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2,r:r}; }
   function vis(r){ return r&&r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth; }
@@ -42,7 +42,7 @@
         r.animate([{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:260,delay:n*32,easing:EASE,fill:"backwards"}); return ++n>=8; }); }); },true);
 
   /* B5 Heading reveal: a page title rises in the first time it comes on screen (the class stays, so nothing is left to undo) */
-  if(window.IntersectionObserver){ var hio=new IntersectionObserver(((es) =>{ es.forEach((en) =>{ if(!en.isIntersecting) return; hio.unobserve(en.target); if(!MI.rm()) en.target.classList.add("mi-hd"); }); }),{threshold:.6});
+  if(FXENV.IntersectionObserver){ var hio=new IntersectionObserver(((es) =>{ es.forEach((en) =>{ if(!en.isIntersecting) return; hio.unobserve(en.target); if(!MI.rm()) en.target.classList.add("mi-hd"); }); }),{threshold:.6});
     Array.prototype.forEach.call(document.querySelectorAll(".ptitle"),(h) =>{ hio.observe(h); }); }
 
   /* B7 Stepper: a Builder step that becomes complete pops its badge */

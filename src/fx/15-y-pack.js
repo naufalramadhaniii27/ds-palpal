@@ -1,12 +1,12 @@
 /* === Y pack: class motif, level crest, load meter, hero sheet, splash, gem shatter and refill, skull, nav bounce, header shrink === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const D=document;
   function full(){ return MI.full(); }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
+  function nf(fn){ (FXENV.__miNF||setTimeout)(fn); }
   function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
   function vis(e){ return e&&e.getClientRects().length; }
-  function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
+  function st(){ try{ return FXENV.__sheetState?FXENV.__sheetState():null; }catch(e){ return null; } }
   function fx(cls,html,ms){ const e=D.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(() =>{ rm(e); },ms||2300); return e; }
 
   /* T1 motif and T2 level crest on the ID card, re-added when the app redraws the card */
@@ -49,10 +49,10 @@
   /* M11 opening a character: its sigil and name, once per character per session */
   /* T1: no splash over the builder. Create a Character and Edit reload and then open the builder (cs-skip with cs-new or cs-edit) */
   const html0=D.documentElement;
-  function bldSoon(){ const b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(window.__bldBusyOff) return true;
+  function bldSoon(){ const b=D.getElementById("bld"); if(b&&!b.hidden) return true; if(FXENV.__bldBusyOff) return true;
     try{ return sessionStorage.getItem("cs-skip")==="1"&&(__store.getItem("cs-new")==="1"||__store.getItem("cs-edit")==="1"); }catch(e){ return false; } }
   function splash(){ if(!full()||bldSoon()||html0.classList.contains("mi-cx")) return;/* T1: the connected move from Home replaces the splash */ const s=st(), id=s&&(s.id||(s.C&&s.C.name)); if(!id) return; const k="mi-spl-"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){ return; }
-    const ic=window.__miIcon?{outerHTML:window.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
+    const ic=FXENV.__miIcon?{outerHTML:FXENV.__miIcon()}:D.querySelector("#app .idcard .ph-cls svg"), nm=(s.C&&s.C.name)||"", cl=((s.C&&s.C.cls)||"")+(s.C&&s.C.level?" • Level "+s.C.level:"");
     const e=D.createElement("div"); e.className="mi-splash"; e.setAttribute("aria-hidden","true"); e.innerHTML='<div class="s">'+(ic?ic.outerHTML:"")+'</div><b></b><small></small>'; e.querySelector("b").textContent=nm; e.querySelector("small").textContent=cl; D.body.appendChild(e);
     e.querySelector(".s").animate([{transform:"scale(.6) rotate(-20deg)",opacity:0},{transform:"scale(1) rotate(0)",opacity:1,offset:.4},{transform:"scale(1.05)",opacity:1}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"});
     e.animate([{opacity:1},{opacity:1,offset:.55},{opacity:0}],{duration:1500,easing:"ease-in"}).onfinish=function(){ rm(e); }; setTimeout(() =>{ rm(e); },2300);
@@ -65,7 +65,7 @@
     nf(() =>{ nf(() =>{ const n=D.querySelector('.spsl .bx[data-k="'+CSS.escape(k||"")+'"][data-i="'+CSS.escape(i||"")+'"]'); if(!n||was||n.getAttribute("aria-pressed")!=="true") return; const x=r.left+r.width/2, y=r.top+r.height/2;
       for(let j=0;j<9;j++){ (function(j){ const s=fx("mi-gsh","",1200), a=Math.PI*2*j/9+Math.random()*.5, d=18+Math.random()*26; s.animate([{transform:"translate("+x+"px,"+y+"px) rotate(0)",opacity:1},{transform:"translate("+(x+Math.cos(a)*d)+"px,"+(y+Math.sin(a)*d+14)+"px) rotate("+(200+Math.random()*200)+"deg) scale(.5)",opacity:0}],{duration:620+Math.random()*240,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish=function(){ rm(s); }; })(j); }
       MI.buzz("light"); }); }); },true);
-  const W=window.__miWow; if(W&&W.rest){ const r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); if(k==="long"&&full()) setTimeout(() =>{ let i=0; Array.prototype.forEach.call(D.querySelectorAll(".spsl .bx,.lu .bx"),(b) =>{ if(!vis(b)) return; b.animate([{transform:"scale(.6)",opacity:.3},{transform:"scale(1.18)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:520,delay:Math.min(i++,24)*40,easing:"cubic-bezier(.3,1.5,.5,1)",fill:"backwards"}); }); },700); }; }
+  const W=FXENV.__miWow; if(W&&W.rest){ const r0=W.rest; W.rest=function(k){ r0.apply(this,arguments); if(k==="long"&&full()) setTimeout(() =>{ let i=0; Array.prototype.forEach.call(D.querySelectorAll(".spsl .bx,.lu .bx"),(b) =>{ if(!vis(b)) return; b.animate([{transform:"scale(.6)",opacity:.3},{transform:"scale(1.18)",opacity:1,offset:.6},{transform:"none",opacity:1}],{duration:520,delay:Math.min(i++,24)*40,easing:"cubic-bezier(.3,1.5,.5,1)",fill:"backwards"}); }); },700); }; }
 
   /* M17 Exhaustion goes up: a skull pops from its note */
   let cd=D.getElementById("conds"), exPrev=null; function exN(){ const n=cd&&cd.querySelector(".exh-note"), m=n&&/Exhaustion\s+(\d)/.exec(n.textContent); return m?+m[1]:0; }
