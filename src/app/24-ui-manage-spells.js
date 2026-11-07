@@ -4,7 +4,7 @@ import {D,richP} from "./06-logic-derivation.js";
 import {__set_navStack,navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {tileH,tileS} from "./13-ui-detail-cards.js";
 import {spCompH,spRangeH} from "./22-ui-spell-data-and-slots.js";
-import {ico,ordL} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL} from "./23e-ui-spells-dc.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"spmCls",{get:function(){return spmCls;},set:function(v){spmCls=v;},configurable:true});
 Object.defineProperty(__R,"spmHTML",{get:function(){return spmHTML;},set:function(v){spmHTML=v;},configurable:true});

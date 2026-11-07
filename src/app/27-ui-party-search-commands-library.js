@@ -10,7 +10,7 @@ import {BKEY,RKEY,rEnsure,rSave} from "./14-ui-editor.js";
 import {cOf,learnGo,rSnap,tgGo,zUnpack} from "./15-logic-roster-backup-files-snapshots.js";
 import {chCheck,jsonLoose} from "./16-logic-import-chat-text-and-build-files.js";
 import {mq} from "./21-ui-tabs-pager.js";
-import {ico,icoItem,invKey,openRest,ordL,scAdj} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico,icoItem} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {invKey} from "./23b-ui-items-containers.js";import {openRest} from "./23d-ui-rest.js";import {ordL,scAdj} from "./23e-ui-spells-dc.js";
 import {spClsJ} from "./24-ui-manage-spells.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";

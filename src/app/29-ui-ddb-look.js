@@ -8,7 +8,7 @@ import {boxes,esArt,used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack,refreshEntry} from "./12-ui-bottom-sheet-modal.js";
 import {dcHead,dcStrip,linkify} from "./13-ui-detail-cards.js";
 import {spRowLv} from "./22-ui-spell-data-and-slots.js";
-import {ico,ordL,resOf,scAdj,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL,scAdj,scOf} from "./23e-ui-spells-dc.js";
 import {bastionH} from "./28-ui-bastion.js";
 import {__R} from "./00-reg.js";import {env as PGE} from "./00-env.js";
 Object.defineProperty(__R,"ICO",{get:function(){return ICO;},set:function(v){ICO=v;},configurable:true});

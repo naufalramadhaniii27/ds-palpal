@@ -7,7 +7,7 @@ import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {openEditor} from "./14-ui-editor.js";
-import {__set_renderSpells,ico,renderSpells} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {cuK} from "./26-ui-customize.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_renderAll,renderAll} from "./35-ui-combo.js";

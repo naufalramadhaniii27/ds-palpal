@@ -4,7 +4,7 @@ import {esc,num,rich,toast} from "./05-logic-helpers.js";
 import {richP} from "./06-logic-derivation.js";
 import {sheetIco,sheetMode,wmClass,wmHd} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,meta,tileH,tileS} from "./13-ui-detail-cards.js";
-import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,ico,icoCls,ordL,priceTxt} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico,icoCls} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,priceTxt} from "./23c-ui-coins.js";import {ordL} from "./23e-ui-spells-dc.js";
 import {spClsJ,spnHTML} from "./24-ui-manage-spells.js";
 import {__R} from "./00-reg.js";
 import {env} from "./00-env.js";

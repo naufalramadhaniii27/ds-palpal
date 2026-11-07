@@ -10,7 +10,7 @@ import {refreshEntry,sheet,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {BKEY} from "./14-ui-editor.js";
 import {spLvSel,spPactLv,spRowLv} from "./22-ui-spell-data-and-slots.js";
-import {CONS1,ico,invKey,occOf,renderSpells,restRefresh,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {CONS1,invKey,occOf} from "./23b-ui-items-containers.js";import {restRefresh} from "./23d-ui-rest.js";import {renderSpells,scOf} from "./23e-ui-spells-dc.js";
 import {toastKind} from "./30-ui-icons.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"UNDO",{get:function(){return UNDO;},set:function(v){UNDO=v;},configurable:true});

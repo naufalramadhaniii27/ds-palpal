@@ -6,7 +6,7 @@ import {D,derive,richP} from "./06-logic-derivation.js";
 import {featAll} from "./08-ui-render-sheet-and-actions.js";
 import {BKEY,rEnsure} from "./14-ui-editor.js";
 import {dlFile,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
-import {coinsNow,ordL,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {coinsNow} from "./23c-ui-coins.js";import {ordL,scOf} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
 import {env} from "./00-env.js";

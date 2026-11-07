@@ -3,7 +3,7 @@ import {$,$$,esc,num,sg} from "./05-logic-helpers.js";
 import {B,part} from "./06-logic-derivation.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
-import {invKey} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {invKey} from "./23b-ui-items-containers.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"cuApply",{get:function(){return cuApply;},set:function(v){cuApply=v;},configurable:true});
 Object.defineProperty(__R,"cuBtn",{get:function(){return cuBtn;},set:function(v){cuBtn=v;},configurable:true});

@@ -5,7 +5,7 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {rGet} from "./14-ui-editor.js";
 import {uiSet} from "./15-logic-roster-backup-files-snapshots.js";
 import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
-import {scAdj} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {scAdj} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"tgPcFor",{get:function(){return tgPcFor;},set:function(v){tgPcFor=v;},configurable:true});

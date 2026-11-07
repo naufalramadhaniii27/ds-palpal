@@ -4,7 +4,7 @@ import {D} from "./06-logic-derivation.js";
 import {barColor,buzz,hpOpen,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {activeConds,renderConds} from "./10-ui-conditions.js";
 import {sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {ico,openRest} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {openRest} from "./23d-ui-rest.js";
 import {setOf} from "./25-ui-settings-appearance.js";
 import {PAL,__set_gsSel,condSet,fzScore,gsMark,gsRows,gsSel,gsSync,openSearch,palCmds,palFill} from "./27-ui-party-search-commands-library.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";

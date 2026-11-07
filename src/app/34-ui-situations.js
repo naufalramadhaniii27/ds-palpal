@@ -9,7 +9,7 @@ import {activeConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,refreshEntry,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";
-import {AK_ICON,akIcon,atkKind,ico,scOf,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {AK_ICON,akIcon,atkKind,ico,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";
 import {pinnedH} from "./27c-ui-report-pins.js";
 import {INCAP,concChip,concEnd,concOf,hasFeat,lvOf,tmpApply,tmpFeat,toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";

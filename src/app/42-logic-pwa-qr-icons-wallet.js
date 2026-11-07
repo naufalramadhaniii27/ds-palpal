@@ -8,7 +8,7 @@ import {rGet,rSave} from "./14-ui-editor.js";
 import {chFile,chName,chSave,zPack} from "./15-logic-roster-backup-files-snapshots.js";
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";
 import {moveTabInd,onMode} from "./21-ui-tabs-pager.js";
-import {COINS,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,ico,priceTxt} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {COINS,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt} from "./23c-ui-coins.js";
 import {ICO} from "./29-ui-ddb-look.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_bldDot,bldDot} from "./35-ui-combo.js";

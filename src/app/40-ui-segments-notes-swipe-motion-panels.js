@@ -9,7 +9,7 @@ import {closeSheet} from "./13-ui-detail-cards.js";
 import {showHome} from "./15-logic-roster-backup-files-snapshots.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {BCSS,PAGES,__set_goPage,__set_setTab,activeTab,bInd,curPage,goPage,moveTabInd,mq,onPagerScroll,pager,pgShow,setTab} from "./21-ui-tabs-pager.js";
-import {CONS1,__set_renderSpells,ico,invKey,renderSpells} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {CONS1,invKey} from "./23b-ui-items-containers.js";import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
 import {CHAR_FIELDS,ICO,__set_renderExtras,renderExtras} from "./29-ui-ddb-look.js";
 import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
