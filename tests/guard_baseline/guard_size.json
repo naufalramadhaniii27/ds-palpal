@@ -1,12 +1,10 @@
 {
  "files": {
   "app/08-ui-render-sheet-and-actions.js": 336,
-  "app/13-ui-detail-cards.js": 370,
+  "app/13-ui-detail-cards.js": 418,
   "app/15-logic-roster-backup-files-snapshots.js": 309,
-  "app/23-ui-uses-items-coins-rest-spell-dc.js": 326,
-  "app/27-ui-party-search-commands-library.js": 556,
-  "app/32-logic-play-undo-actions.js": 305,
-  "app/40-ui-segments-notes-swipe-motion-panels.js": 337,
+  "app/27b-ui-library.js": 307,
+  "app/32-logic-play-undo-actions.js": 303,
   "builder/09-logic-feats-and-choices.js": 354,
   "fx/02-micro-interactions.js": 361,
   "learn/45-data-learn.js": 491,
@@ -77,13 +75,17 @@
    12,
    21
   ],
-  "app/13-ui-detail-cards.js::infoHTML": [
-   5,
-   21
+  "app/13-ui-detail-cards.js::render#12": [
+   12,
+   22
   ],
-  "app/13-ui-detail-cards.js::infoHTML0": [
-   72,
-   127
+  "app/13-ui-detail-cards.js::render#4": [
+   17,
+   23
+  ],
+  "app/13-ui-detail-cards.js::render#7": [
+   9,
+   26
   ],
   "app/13-ui-detail-cards.js::spTgt": [
    14,
@@ -173,21 +175,21 @@
    9,
    34
   ],
-  "app/23-ui-uses-items-coins-rest-spell-dc.js::longRec": [
+  "app/23d-ui-rest.js::longRec": [
    5,
    25
   ],
-  "app/23-ui-uses-items-coins-rest-spell-dc.js::renderSpells": [
-   14,
-   47
-  ],
-  "app/23-ui-uses-items-coins-rest-spell-dc.js::restHTML": [
+  "app/23d-ui-rest.js::restHTML": [
    21,
    27
   ],
-  "app/23-ui-uses-items-coins-rest-spell-dc.js::takeRest": [
+  "app/23d-ui-rest.js::takeRest": [
    18,
    41
+  ],
+  "app/23e-ui-spells-dc.js::renderSpells": [
+   14,
+   47
   ],
   "app/24-ui-manage-spells.js::spmHTML": [
    18,
@@ -201,65 +203,65 @@
    8,
    21
   ],
-  "app/27-ui-party-search-commands-library.js::(anon)#4": [
-   4,
-   22
-  ],
-  "app/27-ui-party-search-commands-library.js::(anon)#5": [
-   18,
-   40
-  ],
-  "app/27-ui-party-search-commands-library.js::foundryOf": [
-   14,
-   24
-  ],
   "app/27-ui-party-search-commands-library.js::gsHTML": [
    16,
    36
   ],
-  "app/27-ui-party-search-commands-library.js::libBook": [
-   10,
-   30
-  ],
-  "app/27-ui-party-search-commands-library.js::libDetail#2": [
-   1,
-   23
-  ],
-  "app/27-ui-party-search-commands-library.js::libDetailRaw": [
-   33,
-   169
-  ],
-  "app/27-ui-party-search-commands-library.js::libIndex": [
-   25,
-   69
-  ],
-  "app/27-ui-party-search-commands-library.js::libKey": [
-   6,
-   21
-  ],
-  "app/27-ui-party-search-commands-library.js::libOpen": [
-   11,
-   28
-  ],
-  "app/27-ui-party-search-commands-library.js::libRel": [
-   6,
-   32
-  ],
-  "app/27-ui-party-search-commands-library.js::libRev": [
-   5,
-   21
-  ],
-  "app/27-ui-party-search-commands-library.js::libSearch": [
-   4,
-   28
-  ],
-  "app/27-ui-party-search-commands-library.js::libWire": [
-   15,
-   26
-  ],
   "app/27-ui-party-search-commands-library.js::palCmds": [
    7,
    25
+  ],
+  "app/27b-ui-library.js::libBook": [
+   10,
+   30
+  ],
+  "app/27b-ui-library.js::libDetail#2": [
+   1,
+   23
+  ],
+  "app/27b-ui-library.js::libDetailRaw": [
+   33,
+   169
+  ],
+  "app/27b-ui-library.js::libIndex": [
+   25,
+   69
+  ],
+  "app/27b-ui-library.js::libKey": [
+   6,
+   21
+  ],
+  "app/27b-ui-library.js::libOpen": [
+   11,
+   28
+  ],
+  "app/27b-ui-library.js::libRel": [
+   6,
+   32
+  ],
+  "app/27b-ui-library.js::libRev": [
+   5,
+   21
+  ],
+  "app/27b-ui-library.js::libSearch": [
+   4,
+   28
+  ],
+  "app/27b-ui-library.js::libWire": [
+   15,
+   26
+  ],
+  "app/27c-ui-report-pins.js::(anon)#2": [
+   4,
+   22
+  ],
+  "app/27c-ui-report-pins.js::(anon)#3": [
+   18,
+   40
+  ],
+  "app/27c-ui-report-pins.js::foundryOf": [
+   14,
+   24
   ],
   "app/28-ui-bastion.js::bastionH": [
    41,
@@ -353,25 +355,21 @@
    12,
    22
   ],
-  "app/40-ui-segments-notes-swipe-motion-panels.js::ctxSpec": [
-   12,
-   27
-  ],
   "app/40-ui-segments-notes-swipe-motion-panels.js::lintList": [
    7,
    21
   ],
-  "app/40-ui-segments-notes-swipe-motion-panels.js::ordMove": [
-   8,
-   28
+  "app/40b-ui-notes-description.js::renderDesc": [
+   13,
+   23
   ],
-  "app/40-ui-segments-notes-swipe-motion-panels.js::ovTop": [
+  "app/40d-ui-overlays-context-dock.js::ovTop": [
    11,
    25
   ],
-  "app/40-ui-segments-notes-swipe-motion-panels.js::renderDesc": [
-   13,
-   23
+  "app/40e-ui-reorder-drag.js::ordMove": [
+   8,
+   28
   ],
   "app/41-ui-edit-mode.js::cuqOf": [
    13,
@@ -895,7 +893,7 @@
   ],
   "fx/27-blend-sheet.js::(anon)": [
    67,
-   125
+   126
   ],
   "fx/27-blend-sheet.js::__blendSheet": [
    17,

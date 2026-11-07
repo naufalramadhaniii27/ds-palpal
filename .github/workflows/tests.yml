@@ -51,9 +51,8 @@ jobs:
             echo "::endgroup::"
           done
           exit $fail
-      - name: "SOLID guards (stage 4: window, dispatch, deps, size, dup; REPORT MODE first, see reports/solid-guards.md; switch to --enforce when stages 2 and 3 are merged)"
-        continue-on-error: true
-        run: python3 tests/guard_all.py
+      - name: "SOLID guards (window, dispatch, deps, size, dup; fails only on NEW violations over tests/guard_baseline, see reports/solid-guards.md)"
+        run: python3 tests/guard_all.py --enforce
       - name: Performance budget (bytes and heap only, the stable measures)
         run: python3 tests/perf_budget.py tests/out/perf.json --fast --runs 3 --check tests/perf-budget.json
       - name: "Clause gate (REPORT ONLY: per-sentence number conservation, never fails the build, see reports/clause-gate-report.md)"
