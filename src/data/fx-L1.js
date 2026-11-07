@@ -2,7 +2,7 @@
    Registry window.GX (fx engine v4, SOURCE-NOTES.md "fx schema" and "fx engine v4"). Every rule below was read again in the feature text before it was written.
    Where the ledger spec named a field that does not exist, or said "not carried" for something the sheet already counts, the text and the real sheet output decide.
    Not done here (engine has no field): see reports/ledger-skipped-L1.md. Section 1 classes, section 2 feats, section 3 items. */
-window.GX=window.GX||{};window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
 (function(){
  var A3=["INT","WIS","CHA"].map(function(k){return [{INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"}[k],""]});
@@ -260,7 +260,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
 
  /* ===== 3. Items (Acquisitions Incorporated devices) =====
     The old row fx {save:1} counted +1 to every saving throw. The text gives +1 to one ability's saves only, so the row fx is dropped (FXO) and a saveBonusAb entry takes its place */
- function oneSave(item,ab,extra){window.FXO[item]={fx:null};add("item",item,[Object.assign({n:item,saveBonusAb:[[ab,1]]},extra||{})])}
+ function oneSave(item,ab,extra){DataEnv.slot.FXO[item]={fx:null};add("item",item,[Object.assign({n:item,saveBonusAb:[[ab,1]]},extra||{})])}
  oneSave("Chronolometer","INT",{pick:[{k:"lg",t:"lang",n:1,title:"A language you do not know"}]});
  oneSave("Dimensional Loop","STR",{darkNone:60,darkHave:{add:30}});
  oneSave("Far Gear","CHA",{advOn:["Charisma (Intimidation) checks"]});

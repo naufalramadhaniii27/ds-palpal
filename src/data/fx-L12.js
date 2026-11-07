@@ -3,10 +3,10 @@
    Every value was re-read in the feature text (SUB_FULL). Differences from the ledger specs are listed in reports/ledger-skipped-L12.md.
    MISMATCH rows are overridden here by changing the global rows (AUTO, LU_X) that the source files filled, so no source file is edited for them. */
 (function(){
-var G=window.GX=window.GX||{};var S=G.sub=G.sub||{};
+var G=DataEnv.slot.GX=DataEnv.slot.GX||{};var S=G.sub=G.sub||{};
 function add(k,list){S[k]=(S[k]||[]).concat(list)}
 var BPS=["Bludgeoning","Piercing","Slashing"];
-window.THIRD_SUBS=window.THIRD_SUBS||{};
+DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};
 function lux(owner,n,fn){if(typeof LU_X==="undefined")return;LU_X.forEach(function(e){if(e.src==="sub"&&e.owner===owner&&e.n===n)fn(e)})}
 function sk(k){return "gx-"+k}
 /* ---------- Necromancer ---------- */
@@ -40,7 +40,7 @@ add("Infiltrator",[{l:3,n:"Codebreaker",skillPE:["Data"]}]);
 add("Phantom",[{l:9,n:"Tokens of the Departed",lu:{n:"Soul Trinkets",max:[0,0,0,0,0,0,0,0,2,2,2,2,3,3,3,3,4,4,4,4],reset:"long",tag:"Refill to 2 after a Long Rest if you have fewer"}}]);
 add("Runetagger",[{l:3,n:"Impressionist",tools:["Calligrapher's Supplies","Painter's Supplies"],toolExpert:["Calligrapher's Supplies","Painter's Supplies"]},
  {l:9,n:"Escape Artist",advOn:["ability checks and saves to avoid or end the Grappled and Restrained conditions"]}]);
-window.THIRD_SUBS["Sanguine Thief"]={list:"Wizard",ab:"INT",cant:3};
+DataEnv.slot.THIRD_SUBS["Sanguine Thief"]={list:"Wizard",ab:"INT",cant:3};
 add("Sanguine Thief",[{l:3,n:"Stolen Power",lu:{n:"Sangromancy Dice",max:{f:"(lvl+1)/2"},reset:"long",die:"d8",tag:"One d8 per Sneak Attack die"}}]);
 /* Scout walking Speed +10 is already built in (12-logic-export-to-sheet.js); only the Climb and Swim part is added here */
 add("Scout",[{l:9,n:"Superior Mobility (Climb, Swim)",speedAddIf:{climb:10,swim:10}}]);
@@ -116,7 +116,7 @@ add("Stoneheart Defender",[{l:6,n:"Roots of Rock",defs:[["Immunity","Prone condi
 add("Storm Sentinel",[{l:3,n:"Seafarer",mv:{swim:"speed"},pick:[{k:"st",t:"multi",n:1,title:"Storm Resistance",list:[["Lightning",""],["Thunder",""]]}]},
  {l:3,n:"Seafarer (Lightning)",when:{key:sk("st-sub-Storm Sentinel"),val:"Lightning"},res:["Lightning"]},{l:3,n:"Seafarer (Thunder)",when:{key:sk("st-sub-Storm Sentinel"),val:"Thunder"},res:["Thunder"]}]);
 add("Witchbane Hunter",[{l:6,n:"Otherworldly Eye",sense:[["See Invisibility",0,"You see creatures and objects that have the Invisible condition, and into the Ethereal Plane"]]}]);
-window.THIRD_SUBS["Drake-Blooded"]={list:"Sorcerer",ab:"CHA",cant:2};
+DataEnv.slot.THIRD_SUBS["Drake-Blooded"]={list:"Sorcerer",ab:"CHA",cant:2};
 /* ---------- Warlock ---------- */
 if(typeof AUTO!=="undefined"){AUTO["Astral Griffon Patron"]=[[3,"Identify,Magic Missile,Locate Object,Rope Trick"],[5,"Blink,Clairvoyance"],[7,"Mordenkainen's Private Sanctum,Leomund's Secret Chest"],[9,"Legend Lore,Passwall"]];
  ["The Frozen One","The Genie Lord","The Sibyl"].forEach(function(k){delete AUTO[k]})}

@@ -8,7 +8,7 @@
    weapon rows for items without a base weapon (Boomerang Shield, Arcane Propulsion Arm, Battlechef's Splendid Saucepan, Warrior's Passkey), range doubling (Extended Barrel), +1 to Proficiency Bonus (Ioun Stone of Mastery),
    a 9th level slot (Boon of High Magic), no Stealth disadvantage (Serpent Scale Armor). */
 (function(){
- var W=window;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
+ var W=DataEnv.slot;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
  function add(n,e){(G[n]=G[n]||[]).push(e)}
  function each(list,f){list.forEach(f)}
  var NM="Bludgeoning, Piercing and Slashing";

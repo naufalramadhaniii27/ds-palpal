@@ -1,9 +1,10 @@
+DataEnv.declare("__fxM2");
 /* fx data M2 (engine wave 3, fx engine v6): rows of reports/ledger-skipped-all.md that the v6 fields unlock.
    Fields used (SOURCE-NOTES.md, "fx engine v6"): spell filters on picks (rit, schools, names, lvMin/lvMax, cls "@pick:k", spCls "@pick:k"), cdAdd, luBump, offHand, wmAdd, sizeSet, dieStep, grantItem, toggle AC (v3b field), toolExpert rows on the sheet.
    Tables: window.GX.item / sub / feat. Items count only while equipped (and attuned when needed). Still skipped: reports/ledger-m2.md. */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};
 (function(){
- if(window.__fxM2)return;window.__fxM2=1;
+ if(DataEnv.slot.__fxM2)return;DataEnv.slot.__fxM2=1;
  function put(t,n,e){(GX[t][n]=GX[t][n]||[]).push(e)}
  function I(n,e){e.n=e.n||n;put("item",n,e)}
  function S(n,e){put("sub",n,e)}

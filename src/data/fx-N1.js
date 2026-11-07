@@ -1,10 +1,11 @@
+DataEnv.declare("__fxN1");
 /* fx data N1 (gate batch N1): rows that tests/clause_gate.py flagged as real gaps (keyword class RES, IMM, ADV, SPEED, SENSE, AC, PROF) and that the CURRENT engine (fx engine v5, fx-M1 era) can express.
    Each entry was read against the feature text in the data and checked on the sheet before and after (tests/golden/builds/fx_N1_*.json). Only fields that exist in SOURCE-NOTES.md are used: res, imm, def, advOn, condImm, skillProf, skillExpert, skillPE, pick (skills, multi), mv, speedMul, darkTo, darkNone, darkHave, atkDice, acAdd, toggle.
    Forms that last a minute or an hour (Rage of the Gods, Umbral Form ...) are toggles, like the other play states of fx engine v3b. Items count only while equipped (and attuned when needed).
    Not in this file: rows that need a new engine field, listed in reports/gate-engine-needs.md. Names that the engine wave 3 file fx-M2.js uses (Star-Spangled Banner, Two-Weapon Fighting, ...) are left out on purpose. */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.species=GX.species||{};GX.feat=GX.feat||{};GX.cls=GX.cls||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.species=GX.species||{};GX.feat=GX.feat||{};GX.cls=GX.cls||{};
 (function(){
- if(window.__fxN1)return;window.__fxN1=1;
+ if(DataEnv.slot.__fxN1)return;DataEnv.slot.__fxN1=1;
  function put(t,n,e){(GX[t][n]=GX[t][n]||[]).push(e)}
  function F(n,e){put("feat",n,e)}
  function SP(n,e){put("species",n,e)}

@@ -1,3 +1,4 @@
+DataEnv.declare("DM_LIST","EFA_CLS","EFA_LBL","EFA_NAMES","EFA_PAGES","EFA_PLANS","EFA_READY");
 
 /* v56: Eberron: Forge of the Artificer (EFotA). Class Artificer, 5 subclasses, 5 species, 13 Dragonmark feats. Source: the book, own wording */
 (function(){
@@ -26,7 +27,7 @@ var LBL=E.lbl;
    {l:14,k:"plans",n:1,key:"p14plans",feature:"Replicate Magic Item",title:"Magic item plan (level 14)",yc:1},
    {l:18,k:"plans",n:1,key:"p18plans",feature:"Replicate Magic Item",title:"Magic item plan (level 18)",yc:1}],
   subs:E.subs,pickSub:E.subPick};
- CLASSES.Artificer=A;window.EFA_CLS=A;
+ CLASSES.Artificer=A;DataEnv.slot.EFA_CLS=A;
  SUBLABEL.Artificer="Artificer Subclass";
  CANT.Artificer=[2,10,14];
  PREP.Artificer=PREP.Paladin.slice();
@@ -43,9 +44,9 @@ var LBL=E.lbl;
  [E.clsActs,E.subActs,E.speciesActs,E.featActs].forEach(function(o){Object.keys(o).forEach(function(k){ACTS[k]=o[k]})});
  E.fdmg.forEach(function(r){FDMG.push(r)});
  QUICK.Artificer=E.quick.Artificer;
- if(window.__ICO)window.__ICO["cls-artificer"]="M14.5 3.5a4.5 4.5 0 0 0-4 6.3L3.5 16.8a1.8 1.8 0 0 0 2.5 2.5l7-7a4.5 4.5 0 0 0 6.3-4l-3 3-2.6-.7-.7-2.6z";
+ if(DataEnv.slot.__ICO)DataEnv.slot.__ICO["cls-artificer"]="M14.5 3.5a4.5 4.5 0 0 0-4 6.3L3.5 16.8a1.8 1.8 0 0 0 2.5 2.5l7-7a4.5 4.5 0 0 0 6.3-4l-3 3-2.6-.7-.7-2.6z";
  /* plan tables for the Replicate Magic Item picker */
- window.EFA_PLANS=E.plans;
+ DataEnv.slot.EFA_PLANS=E.plans;
 })();
 /* species */
 (function(){
@@ -58,16 +59,16 @@ var LBL=E.lbl;
 (function(){
  var sorc=function(lv){return SPELLS.filter(function(x){return x[1]===lv&&x[3].indexOf("Sorcerer")>=0}).map(function(x){return [x[0],x[11]]})};
  Object.keys(E.feats).forEach(function(n){var d=E.feats[n];(d.pick||[]).forEach(function(q){if(q.list==="SORC0")q.list=sorc(0);else if(q.list==="SORC1")q.list=sorc(1)});FEATS[n]=d});
- window.DM_SP=E.dmSp;
+ DataEnv.slot.DM_SP=E.dmSp;
  /* Spells of the Mark: spell names per mark, used as extra spell lists */
  var L={};Object.keys(E.dmSp).forEach(function(n){var t=E.dmSp[n].table||[];if(!t.length)return;var o=[];t.forEach(function(r){r[1].split(",").forEach(function(s){o.push(s)})});L[n]=o});
- window.DM_LIST=L;
+ DataEnv.slot.DM_LIST=L;
  /* each mark is a pseudo spell list, used as an extra list when the feat is taken */
  (function(){var SM={};SPELLS.forEach(function(x){SM[x[0]]=x});Object.keys(L).forEach(function(n){L[n].forEach(function(sn){var x=SM[sn];if(x&&x[3].indexOf(n)<0)x[3].push(n)})})})();
- window.EFA_LBL=LBL;
- window.EFA_READY=1;/* v58: the Sources row shows */
- window.EFA_PAGES=E.pages;
- window.EFA_NAMES={subs:Object.keys(E.subs),species:Object.keys(E.species),feats:Object.keys(E.feats)};
+ DataEnv.slot.EFA_LBL=LBL;
+ DataEnv.slot.EFA_READY=1;/* v58: the Sources row shows */
+ DataEnv.slot.EFA_PAGES=E.pages;
+ DataEnv.slot.EFA_NAMES={subs:Object.keys(E.subs),species:Object.keys(E.species),feats:Object.keys(E.feats)};
  if(typeof BOOKPG!=="undefined")BOOKPG.efa=E.pages;
 })();
 
@@ -82,10 +83,10 @@ var LBL=E.lbl;
   (d.lu||[]).forEach(function(e){LU_X.push({"src":"feat","owner":n,"feature":n,"n":e.n,"lvl":1,"max":e.max,"reset":e.reset,"tag":e.tag})});
   if(d.acts&&d.acts.length)ACTS["feat|"+n]=d.acts;
   delete d.lu;delete d.acts;FEATS[n]=d;names.push(n)});
- window.DM_SP["Boon of Siberys"]={siberys:1};
+ DataEnv.slot.DM_SP["Boon of Siberys"]={siberys:1};
  var all=Object.keys(BACKGROUNDS).map(function(k){return [k,BACKGROUNDS[k]]});Object.keys(X.bgs).forEach(function(k){all.push([k,X.bgs[k]])});
  all.sort(function(a,b){return a[0]<b[0]?-1:1});Object.keys(BACKGROUNDS).forEach(function(k){delete BACKGROUNDS[k]});all.forEach(function(r){BACKGROUNDS[r[0]]=r[1]});
- window.EFA_NAMES.feats=window.EFA_NAMES.feats.concat(names);window.EFA_NAMES.bgs=Object.keys(X.bgs);
+ DataEnv.slot.EFA_NAMES.feats=DataEnv.slot.EFA_NAMES.feats.concat(names);DataEnv.slot.EFA_NAMES.bgs=Object.keys(X.bgs);
 })();
 
 /* v61: EFotA Bastion special facilities */

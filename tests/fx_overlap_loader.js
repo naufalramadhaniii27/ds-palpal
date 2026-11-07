@@ -15,6 +15,8 @@ function snap(){const s={};const G=ctx.GX||{};
  for(const k of Object.keys(G)){const o=G[k];s['GX.'+k]={};if(o&&typeof o==='object')for(const n of Object.keys(o))s['GX.'+k][n]=JSON.stringify(o[n])}
  s['FXO']={};const F=ctx.FXO||{};for(const n of Object.keys(F))s['FXO'][n]=JSON.stringify(F[n]);
  return s}
+/* stage 7: the data door (src/data/00-data-env.js) runs first, as it does in part db1 */
+vm.runInContext(fs.readFileSync(require('path').join(require('path').dirname(files[0]),'00-data-env.js'),'utf8'),ctx,{filename:'00-data-env.js'});
 let prev=snap();
 for(const f of files){
  SRCL[f]=fs.readFileSync(f,'utf8').split('\n');

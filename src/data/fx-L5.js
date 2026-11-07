@@ -3,7 +3,7 @@
    Entries carry _L5:1 so loading this file twice, or after another file that added the same entry by name, never counts a bonus twice.
    Switches (toggle): states that need an action, a place or a decision at the table (hood up, cloud form, ruidium rage, evil alignment, a slain elemental).
    Text only on purpose or not possible yet: reports/ledger-skipped-L5.md. */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 (function(){
  function add(n,e){e._L5=1;var L=GX.item[n]=(GX.item[n]||[]);L.push(e)}
  /* drop entries of an earlier load of this file, and other-file entries of the same effect that this file replaces (opts.n + key) */

@@ -5,7 +5,7 @@
    - Oath of Redemption Emissary of Redemption: the Resistance is on, but it ends against each creature you attack, cast a spell on or damage until a Long Rest. The sheet does not track targets, so the row says so in words.
    - Heavenborne and Storm Wings: the Fly Speed is a fixed rule, shown as a move. That you fall if you end the turn aloft (Heavenborne) or that it lasts until the end of the turn (Storm Wings) is play and stays in the feature text.
    - Zephyr Step hover (max 20 ft above the ground), Mummy Lord Whirlwind of Sand, Nosferatu Regeneration and the sunlight rules: timed or place based. */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};
 (function(){
  function addI(n,e){(GX.item[n]=GX.item[n]||[]).push(e)}
  function addS(n,e){GX.sub[n]=(GX.sub[n]||[]).concat(e)}
