@@ -145,11 +145,15 @@ def run(b, base, vp, W, H, h, errs):
 
     if 'A' in SCEN: scenario('A', YUDHI, stepA)
     if 'B' in SCEN:
-        g = json.load(open(os.path.join(HERE, 'golden', 'builds', GOLD))); e = (g if isinstance(g, list) else [g])[0]
-        ctx = b.new_context(viewport={'width': W, 'height': H}, service_workers='block'); pg = ctx.new_page(); pg.set_default_timeout(180000)
-        pg.goto(base); pg.wait_for_function("()=>!!window.__deferDone"); pg.wait_for_timeout(1500)
-        C = pg.evaluate("async (a)=>{ if(window.__bldNeed) await window.__bldNeed(); return JSON.stringify(window.__bldSheetFor(a[0],a[1])) }", [e['build'], e.get('fxT')])
-        ctx.close()
+        cache = os.environ.get('SNAP_C_CACHE')   # the derived sheet of the golden build, made once and reused (it depends on how much of the data has loaded)
+        if cache and os.path.exists(cache): C = open(cache).read()
+        else:
+            g = json.load(open(os.path.join(HERE, 'golden', 'builds', GOLD))); e = (g if isinstance(g, list) else [g])[0]
+            ctx = b.new_context(viewport={'width': W, 'height': H}, service_workers='block'); pg = ctx.new_page(); pg.set_default_timeout(180000)
+            pg.goto(base); pg.wait_for_function("()=>!!window.__deferDone"); pg.wait_for_timeout(4000)
+            C = pg.evaluate("async (a)=>{ if(window.__bldNeed) await window.__bldNeed(); return JSON.stringify(window.__bldSheetFor(a[0],a[1])) }", [e['build'], e.get('fxT')])
+            ctx.close()
+            if cache: open(cache, 'w').write(C)
         scenario('B', C, stepB)
     if 'C' in SCEN: scenario('C', None, stepC)
 
