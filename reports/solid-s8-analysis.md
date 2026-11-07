@@ -60,7 +60,20 @@ File `09` tetap 352 baris (baseline 354), tidak naik.
 
 ## 3. Bukti
 
-Lihat laporan akhir di pesan agen (hash, angka tes sebelum dan sesudah).
+| Tes | Sebelum (origin/main) | Sesudah |
+|---|---|---|
+| solid_snapshot penuh | a893fba7ab867bb0, 2997 build | a893fba7ab867bb0, 2997 build, 0 error halaman |
+| solid_snapshot --golden | 76cc2943d6bf0384, 777 build | 76cc2943d6bf0384 |
+| solid_ui_snapshot | 18c6e679b5a4fc47, 280 langkah | 18c6e679b5a4fc47 identik |
+| golden_builds, fx_engine | 1479, 265 | 1479, 265 |
+| solid_contract, solid_ui_contract | lulus | 4767 cek lulus, 231 cek lulus |
+| invariants | lulus | 2220 build, 0 pelanggaran |
+| scenarios | lulus | 24 cek, 0 gagal |
+| perf_budget (--fast --runs 3) | dalam anggaran | budget ok, heap raw 34,44 MB (batas 35) |
+| e2e_fx_toggle, csp_check, lazy_parts, names_lint | lulus | lulus (lazy_parts skor 97) |
+| split_dist | gagal sesekali (`__bldPendList` hanya di versi pecah, pernah terjadi di origin/main juga) | lulus pada ulangan, gagal sekali pada run pertama dengan pesan yang sama dan satu keterlambatan 720 ms di 390 |
+
+Catatan: satu run penuh solid_ui_snapshot saat mesin dibebani proses lain memberi 7 langkah berbeda (scenario B, 1250, overlay). Ulangan scenario B tanpa beban identik dengan origin/main, dan ulangan penuh sendirian identik (18c6e679b5a4fc47). Penyebabnya waktu, bukan isi.
 
 ## 4. Hal yang diputuskan
 
