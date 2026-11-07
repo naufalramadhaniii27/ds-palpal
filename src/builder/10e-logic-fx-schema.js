@@ -8,7 +8,7 @@ import {typeOk} from "./01-logic-core-helpers.js";
 export const FX_FIELDS={
  l:"number",
  n:"string",
- spCls:"string",
+ "spCls":"string",
  pick:"array",
  init:"array|number|string",
  when:"object",

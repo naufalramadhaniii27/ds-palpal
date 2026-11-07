@@ -49,12 +49,12 @@ export function copyOf(v){return v&&typeof v==="object"?structuredClone(v):v}
 function lazy(o,k,src,t){const own=function(v){Object.defineProperty(o,k,{value:v,writable:true,configurable:true,enumerable:true});t[k]=1;return v};
  Object.defineProperty(o,k,{configurable:true,enumerable:true,get:function(){return own(copyOf(src[k]))},set:function(v){own(v)}})}
 /* strict mode (tests): a read of a key the handler did not declare throws */
-function guard(o,h,ns){const ok={};h._r.forEach((x) =>{if(x[0]===ns)ok[x[1]]=1});
+function sliceGuard(o,h,ns){const ok={};h._r.forEach((x) =>{if(x[0]===ns)ok[x[1]]=1});
  return new Proxy(o,{get:function(t,k,r){if(typeof k==="string"&&!OWN(ok,k))throw new Error("sheet handler "+h.id+" read "+ns+"."+k+" outside its slice");return Reflect.get(t,k,r)}})}
 /* the slice of the state one handler gets. `writes` keys are lazy private copies, the rest are the state's own values */
 export function makeCtx(st,h,part){const ctx={i:{},q:{},C:{},l:{},p:part},t={C:{},l:{}};
  h._r.forEach((x) =>{const ns=x[0],k=x[1];if((ns==="C"||ns==="l")&&h._w[ns+"."+k])lazy(ctx[ns],k,st[ns],t[ns]);else ctx[ns][k]=st[ns][k]});
- if(sheetStrict())["i","q","C","l"].forEach((ns) =>{ctx[ns]=guard(ctx[ns],h,ns)});
+ if(sheetStrict())["i","q","C","l"].forEach((ns) =>{ctx[ns]=sliceGuard(ctx[ns],h,ns)});
  ctx.patch=function(){const p={C:{},l:{}};let any=false;
   ["C","l"].forEach((ns) =>{Object.keys(t[ns]).forEach((k) =>{const d=Object.getOwnPropertyDescriptor(ctx[ns],k);p[ns][k]=d&&OWN(d,"value")?d.value:undefined;any=true})});
   return any?p:null};
