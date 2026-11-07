@@ -5,7 +5,8 @@ import {R14} from "./05-logic-choice-model-ruleset.js";
 import {RL14} from "./08-logic-2014-rules.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
-import {fxtSet,casterParts,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {fxtSet,casterParts,manualLost,spLists,spToggle,gfx} from "./11-logic-derivation.js";
+import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from "./10a-logic-fx-registry.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -112,3 +113,5 @@ window.__bldQuickFor=function(cls,lv){const Q=QUICK[cls];if(!Q)return null;let k
  try{__set_B(NEWB());B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();B.species=SPECIES.Human?"Human":B.species;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
   B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=structuredClone(B)}
  catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
+/* SOLID stage 1 test hook (tests/solid_contract.py): the handler registries, the sources, the phase names and the effect list of the build set with __bldTestSet. Read only, no stored data */
+window.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),sheet:allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),sheet:fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return gfx(noItem)}}};

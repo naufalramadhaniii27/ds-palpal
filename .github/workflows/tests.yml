@@ -45,7 +45,7 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in names_lint csp_check scenarios golden_rules golden_builds fx_engine fx_overlap mech_scan dup_check invariants e2e_fx_toggle version_label split_dist fonts_dist lazy_parts edition_isolation metamorphic; do
+          for t in names_lint csp_check scenarios golden_rules golden_builds fx_engine fx_overlap solid_contract mech_scan dup_check invariants e2e_fx_toggle version_label split_dist fonts_dist lazy_parts edition_isolation metamorphic; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"
