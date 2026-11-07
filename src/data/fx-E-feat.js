@@ -4,7 +4,7 @@
    Primordial Elemental Affinity riders (Air advantage, Earth temp HP, Fire damage, Water healing), Specter and Vampire Fanged Bite / Claw / Ghastly Touch / Incorporeal Movement, Vampire curse flaws,
    Multiscale Improved Breath Weapon (+1d10), Contractor Backstabber (1d4 to 2d4), Resolution Quick Strike, Worthless From the Ashes (score increases at 4, 8, 12, 16, 19 need a choice each time). */
 (function(){
-window.GX=window.GX||{};GX.feat=GX.feat||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.feat=GX.feat||{};
 function rep(feat,names,list){GX.feat[feat]=(GX.feat[feat]||[]).filter(function(e){return names.indexOf(e.n)<0}).concat(list)}
 var HAG="Hag Transformation: Stage 1";
 rep(HAG,["The Red Sisterhood"],[

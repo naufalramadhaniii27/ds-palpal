@@ -7,7 +7,7 @@
    Not done here (engine has no field, see reports/ledger-skipped-L7.md): weapon dice replacement (Gurt's Greataxe), a weapon row added by an item (Claws of the Umber Hulk), a weapon property added by an item (Windvane finesse).
    Teeth of Dahlver-Nar was already fixed by FXO in fx-D-item.js (the ledger read the raw row). */
 (function(){
- var W=window;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
+ var W=DataEnv.slot;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
  function add(n,e){(G[n]=G[n]||[]).push(e)}
  function ov(n,fx){W.FXO[n]={fx:fx}}
  var A2=function(s){return [s,""]};

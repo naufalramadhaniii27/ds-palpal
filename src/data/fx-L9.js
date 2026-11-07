@@ -4,10 +4,10 @@
    - window.FXO[item] replaces the old row fx (Splitter, Starmetal Shield, Monstrous Hide, Nocturnal Eyes, Badge of the Watch, Shield of the Uven Rune).
    - window.WXSP[book][species] fields patched in place (movesNote, lgn, linFx), LU_X / SAVE_NOTES / SP_AUTO rows fixed by name. This file loads after every book block (hbpack).
    Not modelled (engine has no field, see reports/ledger-skipped-L9.md): weapon dice replacement, reach, Expertise alternatives, tool Expertise, AC modifier caps, Kefnet's Blessing (half Proficiency only on checks without it). */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.species=GX.species||{};
-window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.species=GX.species||{};
+DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 (function(){
- var W=window;
+ var W=DataEnv.slot;
  function addI(n,e){(GX.item[n]=GX.item[n]||[]).push(e)}
  function addS(n,e){GX.species[n]=(GX.species[n]||[]).concat(e)}
  var AB=["STR","DEX","CON","INT","WIS","CHA"];
@@ -141,14 +141,14 @@ window.FXO=window.FXO||{};
  addS("Wrothian",{n:"Psychic Resistance",res:["Psychic"]});
 
  /* ---------- Patches to book data (in place, this file loads after the books) ---------- */
- function sp(book,name){return window.WXSP&&WXSP[book]&&WXSP[book][name]}
+ function sp(book,name){return DataEnv.slot.WXSP&&WXSP[book]&&WXSP[book][name]}
  var s;
  if((s=sp("dmg14","Aarakocra (Monster)"))&&s.fx)s.fx.movesNote=LIN_NOTE_ARMOR;
  if((s=sp("tsdd","Child of Seth"))&&s.fx)s.fx.movesNote="20 ft while wearing Medium or Heavy armor";
  if((s=sp("tsgeh","Cursed-Blood"))&&s.fx)s.fx.movesNote=LIN_NOTE_ARMOR;
  if((s=sp("dmg14","Eladrin Elf")))s.lgn=1;
  /* Iggwilv's Cauldron: it has no charge pool (the ch row was the wand it can make); its properties are once-per-dawn uses written in the text */
- if(window.WXI)Object.keys(WXI).forEach(function(b){(WXI[b]||[]).forEach(function(r){if(r[0]==="Iggwilv's Cauldron"&&r[5]&&r[5].ch)delete r[5].ch})});
+ if(DataEnv.slot.WXI)Object.keys(WXI).forEach(function(b){(WXI[b]||[]).forEach(function(r){if(r[0]==="Iggwilv's Cauldron"&&r[5]&&r[5].ch)delete r[5].ch})});
  /* Accursed (Steinhardt): spell table and Limited Use rows were keyed to "Accursed" */
  if(typeof SP_AUTO!=="undefined"&&SP_AUTO["Accursed"]&&!SP_AUTO["Accursed (Steinhardt)"])SP_AUTO["Accursed (Steinhardt)"]=SP_AUTO["Accursed"];
  if(typeof LU_X!=="undefined")LU_X.forEach(function(e){if(e.src==="species"&&e.owner==="Accursed"&&e.feature==="Legacy of a Thousand Young")e.owner="Accursed (Steinhardt)"});

@@ -5,7 +5,7 @@
    Encyclopedia Sanguine, Bracers of Defense AC, Embedded Armor Dex, Deck of Wonder and Deck of Many More Things already dropped in fx-D-item.js). They need no data here.
    Not modelled (engine gaps) are listed in reports/ledger-skipped-L3.md. */
 (function(){
- var W=window;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
+ var W=DataEnv.slot;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
  function add(n,e){(G[n]=G[n]||[]).push(Object.assign({n:n},e))}
  var AB6=["STR","DEX","CON","INT","WIS","CHA"],ABN={STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"};
  function dc(n,v){if(typeof ITEM_SPELLS!=="undefined"&&ITEM_SPELLS[n])ITEM_SPELLS[n].dc=v}

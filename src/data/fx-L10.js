@@ -1,6 +1,6 @@
 /* fx data batch L10: ledger fixes (shards 25 to 28). Registry GX.sub / GX.species. Schema: SOURCE-NOTES.md, "fx engine v4" and "fx batch L10".
    Not done (engine gap or missing book table) is listed in reports/ledger-skipped-L10.md. */
-window.GX=window.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
 (function(){
  function add(n,e){GX.sub[n]=(GX.sub[n]||[]).concat(e)}
  var BPS=["Bludgeoning","Piercing","Slashing"];
@@ -138,7 +138,7 @@ window.GX=window.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
  add("Dramaturge",[{l:3,n:"Spellcasting",spCls:"@sub:CHA",pick:[{k:"c",t:"cantrip",n:2,cls:"Bard",title:"Two Bard cantrips"}]},{l:10,n:"Spellcasting (third cantrip)",spCls:"@sub:CHA",pick:[{k:"c10",t:"cantrip",n:1,cls:"Bard",title:"Extra Bard cantrip"}]}]);
  add("Fencer",[SK(3,"Panache",["Persuasion"],"DEX")]);
  /* limited-use rows with a wrong reset: a Short Rest returns one use */
- if(window.LU_X)window.LU_X.forEach(function(r){if(r.src==="sub"&&((r.owner==="Contortionist"&&r.feature==="Twisting Redirection")||(r.owner==="Fencer"&&r.feature==="Parry and Riposte")||(r.owner==="Fey Ballerina"&&r.feature==="Misty Waltz")))r.reset="short1"});
+ if(DataEnv.slot.LU_X)DataEnv.slot.LU_X.forEach(function(r){if(r.src==="sub"&&((r.owner==="Contortionist"&&r.feature==="Twisting Redirection")||(r.owner==="Fencer"&&r.feature==="Parry and Riposte")||(r.owner==="Fey Ballerina"&&r.feature==="Misty Waltz")))r.reset="short1"});
  /* Greenleaf College: the spells only join the Bard list, they are not always prepared */
- if(window.AUTO)window.AUTO["Greenleaf College"]=[];
+ if(DataEnv.slot.AUTO)DataEnv.slot.AUTO["Greenleaf College"]=[];
 })();

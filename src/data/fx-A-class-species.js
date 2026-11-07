@@ -2,7 +2,7 @@
    Registry window.GX (fx engine v2, see SOURCE-NOTES.md "fx schema"). This file is separate from tp*.js so a tp_build run does not remove it.
    Values checked against the feature text of each source (VSS24, SHL, DDD24, GEH24, DM24, EE24) and the PHB 2024 Barbarian. */
 (function(){
-var G=window.GX=window.GX||{};
+var G=DataEnv.slot.GX=DataEnv.slot.GX||{};
 G.cls=G.cls||{};G.species=G.species||{};
 function add(kind,name,list){G[kind][name]=(G[kind][name]||[]).concat(list)}
 

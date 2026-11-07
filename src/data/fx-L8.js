@@ -6,15 +6,15 @@
    - ITEM_SPELLS[name]: spells an item lets you cast (cost 0 = at will). Spells from Guidance, Ray of Frost, Druidcraft, Find Familiar and Shield were already there.
    - Row data of the tp and wotc item tables (window.WXI): only base, wp (own weapon rows) and nothing else are added where the item has no attack row yet (patch()).
    Not modelled (needs engine fields, see reports/ledger-skipped-L8.md): damage type of a weapon row, blaster mods that target one chosen blaster, tool Expertise, bonus only without proficiency, Channel Divinity extra use, Darkvision removal, auto-added inventory items, one extra attack on top of Extra Attack. */
-window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 (function(){
  var G=GX.item;
  function A(n,e){(G[n]=G[n]||[]).push(e)}
  /* has(name,key): another file (fx-H-audit) already gave this item that key */
  function has(n,k){return (G[n]||[]).some(function(e){return e&&e[k]!=null})}
- function rows(n){var o=[];Object.keys(window.WXI||{}).forEach(function(id){(window.WXI[id]||[]).forEach(function(r){if(r&&r[0]===n)o.push(r)})});return o}
+ function rows(n){var o=[];Object.keys(DataEnv.slot.WXI||{}).forEach(function(id){(DataEnv.slot.WXI[id]||[]).forEach(function(r){if(r&&r[0]===n)o.push(r)})});return o}
  function patch(n,m){rows(n).forEach(function(r){r[5]=Object.assign({},r[5]||{},m)})}
- function own(n,wp){patch(n,{wp:wp});window.WXWP=(window.WXWP||[]).concat([n])}
+ function own(n,wp){patch(n,{wp:wp});DataEnv.slot.WXWP=(DataEnv.slot.WXWP||[]).concat([n])}
  function sp(n,list){if(typeof ITEM_SPELLS==="undefined")return;var o=ITEM_SPELLS[n]=ITEM_SPELLS[n]||{sp:[]};list.forEach(function(q){if(!o.sp.some(function(x){return x[0]===q[0]}))o.sp.push(q)})}
  var AB6=["STR","DEX","CON","INT","WIS","CHA"];
  function ab(v){return AB6.map(function(a){return [a,v]})}
@@ -53,7 +53,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  /* the old rows say "Sorcerer, warlock or wizard" in lower case, so only a Sorcerer passed the attunement check */
  ["Corvum","Gallus","Luma","Raptor","Strig"].forEach(function(r){patch(r+" Feather Robe",{by:"Sorcerer, Warlock or Wizard"})});/* fx-int: the abPick of the five Feather Robes is defined in fx-L3, fx-L4 and fx-L5 */
  if(!has("Crown of Daffodils","chkBonus"))A("Crown of Daffodils",{n:"Crown of Daffodils",chkBonus:ab(1),init:1});
- window.FXO["Necronomicon Ex Corvis"]={fx:null};
+ DataEnv.slot.FXO["Necronomicon Ex Corvis"]={fx:null};
  A("The Thorn of Kren",{n:"The Thorn of Kren",advOn:["Wisdom (Perception) checks","Wisdom (Survival) checks"],unarmed:{die:"1d8",t:"Piercing"},atkBonus:[{when:["unarmed","natural"],atk:2,dmg:2,note:"Vicious Nature: does not stack with other magic item bonuses. The Bite can be used as a Bonus Action each turn."}]});
 
  /* ---- Kibbles and Deep Magic (tkdm) ---- */
@@ -70,7 +70,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  A("Bounty Hunter's Vest",{n:"Tactical Nanofiber Vest",acBase:[12,"full"],acOver:true});
  A("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"]});/* reach: fx-M1.js */
  A("Hacker Hands",{n:"Hacker Hands",lu:{n:"Hacker Hands: hacking reroll",max:1,reset:"long"}});
- window.FXO["Jetpack"]={fx:null};
+ DataEnv.slot.FXO["Jetpack"]={fx:null};
  A("Overdrive Module",{n:"Overdrive Module",lu:{n:"Overdrive Module",max:1,reset:"long"}});
  A("Personality Module",{n:"Personality Module",pick:[{k:"sk",t:"skills",n:2,title:"Skills of the module"},{k:"lg",t:"lang",n:2,title:"Languages of the module"}]});
  A("Un's Codex",{n:"Magic Resistance",toggle:{id:"un-codex-magic-res",label:"Un's Codex: Magic Resistance unlocked",default:false},advOn:["saves against spells and other magical effects"]});

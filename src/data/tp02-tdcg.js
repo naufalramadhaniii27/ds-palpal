@@ -23,21 +23,21 @@ var GR=[["Wind glider",200,0,"Other","A harness-and-wing glider that takes 1 min
 var WPW={};
 var MST={};
 var CL={};
-window.WXBG=window.WXBG||{};window.WXBG[SRC.id]=Object.assign(window.WXBG[SRC.id]||{},BG);
+DataEnv.slot.WXBG=DataEnv.slot.WXBG||{};DataEnv.slot.WXBG[SRC.id]=Object.assign(DataEnv.slot.WXBG[SRC.id]||{},BG);
 Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TOOL_ONE[k]=TL[k].one});
 SRC.backgrounds=Object.keys(BG);
-window.DM_SP=window.DM_SP||{};Object.keys(FDM).forEach(function(k){window.DM_SP[k]=FDM[k]});
+DataEnv.slot.DM_SP=DataEnv.slot.DM_SP||{};Object.keys(FDM).forEach(function(k){DataEnv.slot.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
 SRC.feats=Object.keys(FT);
-window.WXI=window.WXI||{};window.WXI[SRC.id]=IT;
-window.WXWP=(window.WXWP||[]).concat(WPN);
+DataEnv.slot.WXI=DataEnv.slot.WXI||{};DataEnv.slot.WXI[SRC.id]=IT;
+DataEnv.slot.WXWP=(DataEnv.slot.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
 SRC.items=IT.map(function(r){return r[0]});
-if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
-if(Object.keys(WPW).length){window.WXW=window.WXW||{};window.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
-window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
+if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
+if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
+DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};DataEnv.slot.WXSP[SRC.id]=Object.assign(DataEnv.slot.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
 SRC.species=Object.keys(SPC);
-window.WXS=(window.WXS||[]).concat(D);
+DataEnv.slot.WXS=(DataEnv.slot.WXS||[]).concat(D);
 D.forEach(function(s){[s.cls].concat(s.alt||[]).forEach(function(cn){var c=CLASSES[cn];if(c){c.subs=c.subs||{};c.subs[s.name]=s.arr;
  c.pickSub=c.pickSub||{};if(s.pick.length)c.pickSub[s.name]=s.pick}SUBLABEL[cn]=SUBLABEL[cn]||(cn+" Subclass")});
  Object.keys(s.full).forEach(function(k){SUB_FULL[k]=s.full[k]});
@@ -46,7 +46,7 @@ D.forEach(function(s){[s.cls].concat(s.alt||[]).forEach(function(cn){var c=CLASS
  s.lu.forEach(function(e){LU_X.push(e)});
  Object.keys(s.acts).forEach(function(k){ACTS[k]=s.acts[k]});
  (s.sn||[]).forEach(function(r){SAVE_NOTES.push(r)})});
-window.WXE=(window.WXE||[]).concat(EX);
-window.WX=window.WX||{src:[]};
-if(!window.WX.src.some(function(x){return x.id===SRC.id}))window.WX.src.push(SRC);
+DataEnv.slot.WXE=(DataEnv.slot.WXE||[]).concat(EX);
+DataEnv.slot.WX=DataEnv.slot.WX||{src:[]};
+if(!DataEnv.slot.WX.src.some(function(x){return x.id===SRC.id}))DataEnv.slot.WX.src.push(SRC);
 })();

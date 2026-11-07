@@ -7,15 +7,15 @@
    Toggles: bladesong (Bladesinger, Bladesinging), conc (War Magic Durable Magic), dragon-mask/heart/wings/tail, fam-climb/fam-swim, feed-on-life.
    Spec differences (code and text win): Familiar Master Servitor's Agility is level 6 in the data, not 10. Pawn Storm and Covert Magic are level 7. Deathseeker and Turquoise Efficiency are level 6. Doomsayer Power from Darkness is level 14.
    Not done here (engine fields missing): reports/ledger-skipped-L13.md. */
-window.GX=window.GX||{};GX.sub=GX.sub||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
 (function(){
  function add(k,list){GX.sub[k]=(GX.sub[k]||[]).concat(list)}
- var G=function(n){return typeof window[n]!=="undefined"?window[n]:null};
- function wxs(sub,cls){return (window.WXS||[]).filter(function(x){return x.name===sub&&x.cls===cls})}
+ var G=function(n){return DataEnv.has(n)?DataEnv.get(n):null};
+ function wxs(sub,cls){return (DataEnv.slot.WXS||[]).filter(function(x){return x.name===sub&&x.cls===cls})}
  function luFind(owner,feature){return (typeof LU_X!=="undefined"?LU_X:[]).filter(function(e){return e.owner===owner&&e.feature===feature})}
  /* ---------- Warmage ---------- */
- window.THIRD_SUBS=window.THIRD_SUBS||{};
- window.THIRD_SUBS["House of Bishops"]={list:"Wizard",ab:"INT",cant:0};
+ DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};
+ DataEnv.slot.THIRD_SUBS["House of Bishops"]={list:"Wizard",ab:"INT",cant:0};
  add("House of Bishops",[{l:3,n:"Spellcasting",defs:[["Note","Warmage Edge also improves damage rolls of level 1+ Wizard spells as if they were cantrips (Magic Missile: one dart only)"]]}]);
  add("House of Cards",[{l:3,n:"Bluff",skillBonus:[["Deception","INT",1]]}]);
  add("House of Pawns",[{l:7,n:"Pawn Storm",init:"INT",min:1}]);
@@ -99,7 +99,7 @@ window.GX=window.GX||{};GX.sub=GX.sub||{};
   {l:3,n:"Full-Blooded",lu:[{n:"Sangromancy Dice",max:{f:"lvl+1"},reset:"long",die:"d12",tag:"Short Rest returns one"}]},
   {l:6,n:"Sanguine Vigor",hpLvl:1}]);
  add("School of Evocation",[{l:14,n:"Overchannel",lu:[{n:"Overchannel",max:1,reset:"long",tag:"First use free"}]}]);
- if(window.CLASSES&&CLASSES.Wizard){var ps=CLASSES.Wizard.pickSub=CLASSES.Wizard.pickSub||{};
+ if(DataEnv.slot.CLASSES&&CLASSES.Wizard){var ps=CLASSES.Wizard.pickSub=CLASSES.Wizard.pickSub||{};
   if(!(ps["School of Illusion"]||[]).some(function(p){return p.key==="p3illcan2"}))ps["School of Illusion"]=(ps["School of Illusion"]||[]).concat([{l:3,k:"cantrip",key:"p3illcan2",cond:"minill",list:"Wizard",n:1,feature:"Improved Minor Illusion",title:"Improved Minor Illusion: a Wizard cantrip (you knew Minor Illusion already)",yc:1}])}
  wxs("School of Illusion","Wizard").forEach(function(x){if(!(x.cantrips||[]).some(function(c){return c[0]==="p3illcan2"}))x.cantrips=(x.cantrips||[]).concat([["p3illcan2","Improved Minor Illusion",3]])});/* the picked cantrip joins the list through sbAuto (WXS.cantrips) */
  add("School of Transmutation",[{l:14,n:"Master Transmuter",lu:[{n:"Master Transmuter",max:1,reset:"long",tag:"Action"}]}]);

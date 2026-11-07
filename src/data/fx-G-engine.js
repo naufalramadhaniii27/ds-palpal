@@ -4,7 +4,7 @@
    Eldritch Limbs is an attack option (text only). Specter Incorporeal Movement and the Vampire Sanguine Curse are timed or place based states.
    Barbarian Path of the Abomination: while Raging the size is Large and STR and DEX rise by the Rage Damage bonus (maximum 29).
    Worthless From the Ashes: +2 to one score or +1 to two scores at levels 4, 8, 12, 16, 19 (maximum 18), one pick per level. */
-window.GX=window.GX||{};GX.feat=GX.feat||{};GX.sub=GX.sub||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.feat=GX.feat||{};GX.sub=GX.sub||{};
 (function(){
  function addF(n,e){GX.feat[n]=(GX.feat[n]||[]).concat(e)}
  addF("Aberrant Horror Transformation: Stage 1",[

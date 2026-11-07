@@ -2,7 +2,7 @@
    Registry: window.GX.sub["<Subclass>"] = [entries]. Entry l = class level. Schema: SOURCE-NOTES.md, "fx schema".
    Values re-checked against the feature text in src/data (wotc02, db3, tp03, tp05, tp10, tp12, tp13, tp14). */
 (function(){
-var G=window.GX=window.GX||{};var S=G.sub=G.sub||{};
+var G=DataEnv.slot.GX=DataEnv.slot.GX||{};var S=G.sub=G.sub||{};
 function add(k,list){S[k]=(S[k]||[]).concat(list)}
 var BPS=["Bludgeoning","Piercing","Slashing"];
 /* Monk */

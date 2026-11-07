@@ -264,6 +264,7 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
    "close": "</script>",
    "files": [
+    "data/00-data-env.js",
     "data/db1-phb-skills-species-backgrounds-feats-weapons.js"
    ]
   },

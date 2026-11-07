@@ -32,7 +32,7 @@ for f in files:
         for nm in m.group(1).split(','):
             nm = nm.split(' as ')[-1].strip()
             if nm: add(nm, f)
-    for m in re.finditer(r'\bwindow\s*\.\s*([A-Za-z_$][\w$]*)\s*=(?!=)', c): add(m.group(1), f)
+    for m in re.finditer(r'\b(?:window|DataEnv\s*\.\s*slot)\s*\.\s*([A-Za-z_$][\w$]*)\s*=(?!=)', c): add(m.group(1), f)
     raw = read(o['root'], f)
     for m in re.finditer(r'defineProperty\(\s*__R\s*,\s*"(\w+)"', raw): add(m.group(1), f)
     for m in re.finditer(r'\b__R\s*\.\s*(\w+)\s*=(?!=)', c): add(m.group(1), f)

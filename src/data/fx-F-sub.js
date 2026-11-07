@@ -3,7 +3,7 @@
    Not here on purpose: College of Origami "Origami Familiar" (Find Familiar is already always prepared through the subclass spell data, source "College of Origami"; the scan hit was the familiar's Fly Speed, which is not the character's),
    Champion "Additional Fighting Style" (the native pick CLASSES.Fighter.pickSub.Champion {l:7,k:"fs"}, key p7fs, already counts it; see by_design in the baseline),
    Exo-Frame and Harkon's Bite (fx-D-item.js; Exo-Frame gets "size" there), Toymaker immunities to conditions (fx-B2-subclass.js). */
-window.GX=window.GX||{};GX.sub=GX.sub||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
 (function(){
  var S=GX.sub,add=function(n,e){S[n]=(S[n]||[]).concat(e)};
  /* Graft lists. The grafts are inventory items (tp13-tsdm, tp03-tvss). Pick t:"item" stores the choice and adds the items to the inventory (engine v3b); a graft whose item data is not loaded stays record-only. */
