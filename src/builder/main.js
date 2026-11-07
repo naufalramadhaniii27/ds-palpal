@@ -16,6 +16,7 @@ import "./10c-logic-fx-handlers-ability.js";
 import "./10d-logic-fx-rules-cond-value.js";
 import "./11-logic-derivation.js";
 import "./11b-logic-fx-sources.js";
+import "./11c-logic-fx-handlers-sheet.js";
 import "./12-logic-export-to-sheet.js";
 import "./13-logic-sources-and-packs.js";
 import "./14-logic-multiclass-hp-shop.js";
