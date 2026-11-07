@@ -1,4 +1,5 @@
 /* Entry of the module block: every file in the order it used to be joined. */
+import "./00-env.js";
 import "./01-logic-core-helpers.js";
 import "./02-data-magic-item-summaries.js";
 import "./03-logic-magic-item-effects.js";
@@ -9,7 +10,13 @@ import "./07-data-2014-spells.js";
 import "./08-logic-2014-rules.js";
 import "./09-logic-feats-and-choices.js";
 import "./10-logic-v17-additions.js";
+import "./10a-logic-fx-registry.js";
+import "./10b-logic-fx-handlers-entry.js";
+import "./10c-logic-fx-handlers-ability.js";
+import "./10d-logic-fx-rules-cond-value.js";
 import "./11-logic-derivation.js";
+import "./11b-logic-fx-sources.js";
+import "./11c-logic-fx-handlers-sheet.js";
 import "./12-logic-export-to-sheet.js";
 import "./13-logic-sources-and-packs.js";
 import "./14-logic-multiclass-hp-shop.js";

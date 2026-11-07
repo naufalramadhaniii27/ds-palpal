@@ -247,6 +247,21 @@ File di manifest yang belum tercatat di tabel utama. Urutan ikut manifest. Catat
 | fx/22-home-hero.js | efek | 1.030 |
 | fx/24-class-art.js | efek | 7.217 |
 
+## Mesin efek: handler dan registry (SOLID tahap 1)
+
+Aturan per kelompok field efek ada di handler kecil yang murni. Orkestrator hanya mengulang dan menggabung patch. Hasil hitung tidak berubah (bukti: `tests/solid_snapshot.py`, hash dari C dan D untuk semua golden dan semua build invarian).
+
+| File | Isi |
+|---|---|
+| builder/00-env.js | Satu-satunya tempat mesin membaca `window.*` (GX, FXO, `__sheetState`, THIRD_SUBS, `__inTS`, `__appVer`, XSK, EFA_*). Nama global lama tetap |
+| builder/10a-logic-fx-registry.js | Kontrak handler (teks di kepala file), registry `entry`, `ability`, `sheet`, daftar sumber, `runFxPhase`, `foldFxPhase` |
+| builder/10b-logic-fx-handlers-entry.js | Handler entri: gate level, gate when, alias spCls, pick abPick, toggle |
+| builder/10c-logic-fx-handlers-ability.js | Handler skor kemampuan: abCut, abil item, abUp, abDown, abPick, abUpPick, setsc, abSet |
+| builder/11b-logic-fx-sources.js | Sumber entri: kelas dan subkelas, spesies, background, feat, item |
+| builder/11c-logic-fx-handlers-sheet.js | Handler sheet (dipindah dari `toSheet()`): speed, speedMul, darkvision, init |
+
+Menambah kelompok field baru: tulis satu handler dan daftarkan di file handler yang cocok (atau file baru di manifest sebelum 11). Tidak ada orkestrator yang diubah. `tests/solid_contract.py` mengecek kontrak. Yang belum dipindah: lihat bagian Deferred di `reports/solid-s1-analysis.md`.
+
 ## Seni gambar (T6)
 
 | Tempat | Isi |

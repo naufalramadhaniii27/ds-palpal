@@ -6,6 +6,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {SP14} from "./07-data-2014-spells.js";
 import {cls14Inject,fs14List,pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {__R} from "./00-reg.js";
+import {gx} from "./00-env.js";
 Object.defineProperty(__R,"subAt",{get:function(){return subAt;},set:function(v){subAt=v;},configurable:true});
 /* 2014: the ability scores come from the race. sp.asi is fixed ({STR:2}), sp.asiPick {n,v,ex} lets the player choose n scores (choice key rasi) */
 export function raceBonus(){const o={};if(!R14())return o;const sp=spX();if(!sp)return o;function ad(k,v){if(k&&ABK.indexOf(k)>=0)o[k]=(o[k]||0)+v}if(sp.asi)Object.keys(sp.asi).forEach((k) =>{ad(k,sp.asi[k])});const ch=B.ch||{};if(sp.asiPick)(ch.rasi||[]).slice(0,sp.asiPick.n).forEach((k) =>{if((sp.asiPick.ex||[]).indexOf(k)<0)ad(k,sp.asiPick.v||1)});if(sp.asiFlex){if(ch.rasim==="+1, +1, +1")(ch.rasi||[]).slice(0,3).forEach((k) =>{ad(k,1)});else{const t2=(ch.rasi||[])[0];ad(t2,2);(ch.rasi1||[]).slice(0,1).forEach((k) =>{if(k!==t2)ad(k,1)})}}return o}
@@ -283,7 +284,7 @@ export function choices(noFeat){
  if(sp&&sp.wpPick)add({key:"spwp",lvl:1,t:"multi",n:sp.wpPick.n,list:Object.keys(WEAPONS).filter((n) =>{return WEAPONS[n].cat===sp.wpPick.cat&&!WEAPONS[n].xw&&!WEAPONS[n].nm}).map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:sp.wpPick.label+" weapons",src:B.species,feature:sp.wpPick.label});/* v74: species with a weapon choice (Hobgoblin) */
  if(SFX.weapon)add({key:"spwep",lvl:1,t:"multi",n:1,list:wmKeys().map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:"Masterful weapon",src:B.species});
  __R.subChoicesFor(B.sub).forEach((q) =>{if(L>=q.l)add(q.kind==="opt"?{key:"sc"+q.k,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:B.sub+" "+q.l,feature:q.feature}:{key:"sc"+q.k,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:B.sub+" "+q.l,feature:q.feature})});
- if(typeof window!=="undefined"&&window.GX&&window.GX.sub&&B.sub)(window.GX.sub[B.sub]||[]).forEach((e) =>{if(e.fsPick&&L>=(e.l||1))add({key:"sfs"+(e.l||1),lvl:e.l||1,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:B.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});/* fx engine v2: fsPick = a Fighting Style feat choice from a subclass */
+ if(gx().sub&&B.sub)(gx().sub[B.sub]||[]).forEach((e) =>{if(e.fsPick&&L>=(e.l||1))add({key:"sfs"+(e.l||1),lvl:e.l||1,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:B.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});/* fx engine v2: fsPick = a Fighting Style feat choice from a subclass */
  if(c.wm&&!R14())add({key:"wm",lvl:1,t:"wm",n:c.wm[L-1],melee:B.cls==="Barbarian"?1:0,title:"Weapon Mastery",src:SRC+", "+B.cls,feature:"Weapon Mastery"});
  if(c.fs&&L>=c.fs)add({key:"fs"+c.fs,lvl:c.fs,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"});
  (c.pick||[]).forEach((p) =>{if(L>=p.l){const o1=__R.pk(p,B.cls+" "+p.l,B.cls);if(o1)add(o1)}}); if(L>=subLv(B.cls))add({key:"sub",lvl:subLv(B.cls),t:"sub",title:subLbl(B.cls),src:B.cls+" "+subLv(B.cls)});
