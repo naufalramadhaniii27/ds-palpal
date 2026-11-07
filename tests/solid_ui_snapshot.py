@@ -47,6 +47,7 @@ NORM = r"""()=>{
   let t=ser(document.documentElement);
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
   t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');/* icons are added in idle time (timing), relative and clock times move */
+  t=t.replace(/'sha256-[A-Za-z0-9+\/=]+'/g,"'HASH'");/* the CSP meta lists the script hashes: they change with every code change */
   t=t.replace(/ mi-lite\b/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* mi-lite: a load dependent perf mode */
   return t }"""
 STORE = r"""()=>{ const o={}; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); o[k]=localStorage.getItem(k) }
