@@ -39,15 +39,18 @@ NORM = r"""()=>{
     let a=Array.from(n.attributes).map(x=>x.name+'='+x.value).sort().join(' ');
     let h='<'+n.tagName+' '+a+'>';
     if(n.tagName==='INPUT'||n.tagName==='TEXTAREA'||n.tagName==='SELECT') h+='[v='+n.value+']';
-    h+=Array.from(n.childNodes).map(ser).join('');
+    if(n.id==='homeV'&&n.hasAttribute('hidden')) return h+'</'+n.tagName+'>';/* Home is built when it is first shown; its content while hidden depends on timing */
+    let kids=Array.from(n.childNodes).map(ser); if(n.tagName==='BODY') kids.sort();/* parts added to the page later (builder, Home) land in a different order from run to run */
+    h+=kids.join('');
     return h+'</'+n.tagName+'>';
   };
   let t=ser(document.documentElement);
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
+  t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');/* icons are added in idle time (timing), relative and clock times move */
   t=t.replace(/ mi-lite\b/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* mi-lite: a load dependent perf mode */
   return t }"""
 STORE = r"""()=>{ const o={}; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); o[k]=localStorage.getItem(k) }
-  const bad=/^(__seeded|cs-snap|cs-undo|mi-|cs-log|cs-recent|cs-lib-recent|cs-tl|cs-time)/;
+  const bad=/^(__seeded|cs-snap|cs-undo|mi-|cs-log|cs-recent|cs-lib-recent|cs-tl|cs-tm|cs-time)/;
   const r={}; Object.keys(o).sort().forEach(k=>{ if(bad.test(k)) return; r[k.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS')]=o[k].replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO') });
   return JSON.stringify(r) }"""
 
@@ -88,7 +91,9 @@ def run(b, base, vp, W, H, h, errs):
             if DUMP: open(os.path.join(DUMP, ('%s %s store' % (vp, name)).replace(' ', '_') + '.json'), 'w').write(st)
             h['%s %s store' % (vp, name)] = sha(st)
         def ready():
-            pg.wait_for_function("()=>!!window.__deferDone", timeout=180000); pg.wait_for_timeout(2500)
+            pg.wait_for_function("()=>!!window.__deferDone", timeout=180000)
+            pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("()=>typeof window.__bldOpen==='function'", timeout=180000)  # the builder shell is added to the page when it loads: wait so the order of the page parts is the same in every run
+            pg.wait_for_timeout(2500)
         def click(sel):
             return pg.evaluate("(s)=>{var e=document.querySelector(s); if(!e) return false; e.click(); return true}", sel)
         def tabs(t0):
@@ -120,6 +125,8 @@ def run(b, base, vp, W, H, h, errs):
             ctx.close()
 
     def stepA(pg, snap, tabs, overlays, click, asks):
+        try: pg.wait_for_selector('#homeV .hwrap', state='attached', timeout=30000)
+        except Exception: pass
         snap('A home'); click('[data-hview]'); pg.wait_for_timeout(2500)
         snap('A sheet'); tabs('A'); overlays('A')
     def stepB(pg, snap, tabs, overlays, click, asks):
