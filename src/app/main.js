@@ -27,6 +27,8 @@ import "./24-ui-manage-spells.js";
 import "./25-ui-settings-appearance.js";
 import "./26-ui-customize.js";
 import "./27-ui-party-search-commands-library.js";
+import "./27b-ui-library.js";
+import "./27c-ui-report-pins.js";
 import "./28-ui-bastion.js";
 import "./29-ui-ddb-look.js";
 import "./30-ui-icons.js";

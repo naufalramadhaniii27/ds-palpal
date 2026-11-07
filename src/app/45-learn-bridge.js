@@ -7,7 +7,7 @@ import {closeSheet} from "./13-ui-detail-cards.js";
 import {learnBand,showHome} from "./15-logic-roster-backup-files-snapshots.js";
 import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {libOpen} from "./27-ui-party-search-commands-library.js";
+import {libOpen} from "./27b-ui-library.js";
 import {homeInert} from "./31-ui-tour-and-focus.js";
 import {ovQueue} from "./40-ui-segments-notes-swipe-motion-panels.js";import {env} from "./00-env.js";
 /* T11 Learn: the app code runs inside one closure, so Learn (src/learn, a deferred part) reaches it only through this bridge:

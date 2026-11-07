@@ -10,7 +10,7 @@ import {__set_navStack,navStack,openSheet,refreshEntry,sheet,sheetMode} from "./
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";
 import {AK_ICON,akIcon,atkKind,ico,scOf,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {pinnedH} from "./27-ui-party-search-commands-library.js";
+import {pinnedH} from "./27c-ui-report-pins.js";
 import {INCAP,concChip,concEnd,concOf,hasFeat,lvOf,tmpApply,tmpFeat,toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";

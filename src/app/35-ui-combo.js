@@ -8,7 +8,7 @@ import {renderConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico,openRest,renderSpells,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {libOpen,openSearch} from "./27-ui-party-search-commands-library.js";
+import {openSearch} from "./27-ui-party-search-commands-library.js";import {libOpen} from "./27b-ui-library.js";
 import {renderExtras} from "./29-ui-ddb-look.js";
 import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts,undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";

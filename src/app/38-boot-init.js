@@ -2,7 +2,7 @@ import {APP_VER,BAD,S,lsGet,save} from "./04-logic-storage.js";
 import {showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {RKEY} from "./14-ui-editor.js";
 import {__set_spmQ,openSpMan,spmQ,spmRefresh} from "./24-ui-manage-spells.js";
-import {__set_gsQ,gsQ,gsRefresh,openSearch,pinToggle,printCards} from "./27-ui-party-search-commands-library.js";
+import {__set_gsQ,gsQ,gsRefresh,openSearch} from "./27-ui-party-search-commands-library.js";import {pinToggle,printCards} from "./27c-ui-report-pins.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"gsT",{get:function(){return gsT;},set:function(v){gsT=v;},configurable:true});
 /* ================= INIT ================= */
