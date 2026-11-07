@@ -24,6 +24,8 @@ def attempt():
     sh("git", "fetch", "-q", "origin", "main", cwd=REPO)
     if not os.path.exists(os.path.join(WT, ".git")): sh("git", "worktree", "add", "-q", "-B", "art-release", WT, "origin/main", cwd=REPO)
     sh("git", "checkout", "-q", "-B", "art-release", "origin/main"); sh("git", "reset", "-q", "--hard", "origin/main"); sh("git", "clean", "-qfd", "img", "src")
+    nm = os.path.join(WT, "tools/build/node_modules")
+    if not os.path.exists(nm): sh("npm", "ci", "--silent", "--prefix", "tools/build", t=900)   # esbuild for build.py
     base = sh("git", "rev-parse", "HEAD").stdout.strip()
     print(sh("python3", "tools/art_codex_q.py", AT).stdout.strip())
     if not sh("git", "status", "--porcelain").stdout.strip(): print("nothing to install"); return "done"
