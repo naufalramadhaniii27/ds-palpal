@@ -21,3 +21,7 @@ if(FEATS["Boon of Skill"]){FEATS["Boon of Skill"].pick=[{k:"bsk",t:"exp",n:1,fro
 if(FEATS["Boon of Energy Resistance"])FEATS["Boon of Energy Resistance"].pick=[{k:"ber",t:"multi",n:2,list:[["Acid","Resistance to Acid damage."],["Cold","Resistance to Cold damage."],["Fire","Resistance to Fire damage."],["Lightning","Resistance to Lightning damage."],["Necrotic","Resistance to Necrotic damage."],["Poison","Resistance to Poison damage."],["Psychic","Resistance to Psychic damage."],["Radiant","Resistance to Radiant damage."],["Thunder","Resistance to Thunder damage."]],dres:"Resistance",title:"2 damage types"}];
 
 export function __set_SRC(v){ return SRC=v; }
+
+/* shared by the state schema (12b) and the effect-entry schema (10e): does value v fit the type word desc? "string" "number" "boolean" "array" "object" "any", "a|b" = either, trailing "?" also allows undefined and null */
+export function typeOk(desc,v){const opt=/\?$/.test(desc);if(v===undefined||v===null)return opt||desc==="any";
+ return desc.replace(/\?$/,"").split("|").some((t) =>{return t==="any"||(t==="array"?Array.isArray(v):t==="object"?typeof v==="object"&&!Array.isArray(v):typeof v===t)})}

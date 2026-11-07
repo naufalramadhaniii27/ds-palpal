@@ -64,6 +64,7 @@ function step(st,h,part){const ctx=makeCtx(st,h,part),p=h.run(ctx),tr=sheetTrace
 /* the loop of toSheet(): phases in order, handlers of a phase in order, a "part" loop runs its handlers once per class part */
 /* what a looping handler goes over: scope "part" = the class parts, scope "each" = the list at `over` ("i.key" or "l.key", read when the loop starts) */
 function overList(st,h){if(h.scope==="part")return st.parts;const m=/^(i|l)\.(\w+)$/.exec(h.over||"");return m?(st[m[1]][m[2]]||[]):[]}
+/* solid:orchestrator runPhases */
 export function runPhases(st,phases){phases.forEach((ph) =>{const hs=sheetHandlers(ph);let n=0;
  while(n<hs.length){const h=hs[n];
   if(h.scope!=="build"){let m=n;while(m<hs.length&&hs[m].scope===h.scope&&hs[m].loop===h.loop&&hs[m].over===h.over)m++;const grp=hs.slice(n,m),list=overList(st,h);list.forEach((q) =>{grp.forEach((g) =>{step(st,g,q)})});n=m}

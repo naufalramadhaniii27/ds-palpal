@@ -216,7 +216,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | builder/09-logic-feats-and-choices.js | Logic | 47.909 |
 | builder/10-logic-v17-additions.js | Logic | 18.011 |
 | builder/11-logic-derivation.js | Logic | 10.560 |
-| builder/12-logic-export-to-sheet.js | Logic | 62.539 |
+| builder/12-logic-export-to-sheet.js | Logic | 6.506 |
 | builder/13-logic-sources-and-packs.js | Logic | 10.199 |
 | builder/14-logic-multiclass-hp-shop.js | Logic | 20.075 |
 | builder/15-logic-import-from-sheet.js | Logic | 13.865 |
@@ -261,6 +261,20 @@ Aturan per kelompok field efek ada di handler kecil yang murni. Orkestrator hany
 | builder/11c-logic-fx-handlers-sheet.js | Handler sheet (dipindah dari `toSheet()`): speed, speedMul, darkvision, init |
 
 Menambah kelompok field baru: tulis satu handler dan daftarkan di file handler yang cocok (atau file baru di manifest sebelum 11). Tidak ada orkestrator yang diubah. `tests/solid_contract.py` mengecek kontrak. Yang belum dipindah: lihat bagian Deferred di `reports/solid-s1-analysis.md`.
+
+## toSheet(): handler dan registry (SOLID tahap 2)
+
+`toSheet()` hanya membangun masukan (`sheetInputs()`) lalu menjalankan fase. Setiap kelompok field dan setiap aturan kelas adalah handler di registry. Kontrak ada di kepala `12a-logic-sheet-registry.js`, tipe nilai di `12b-logic-sheet-schema.js` (state C dan lokal l) dan `10e-logic-fx-schema.js` (satu skema untuk entri efek). Bukti: `tests/solid_snapshot.py` (hash sama) dan `tests/solid_contract.py`.
+
+| File | Isi |
+|---|---|
+| builder/12-logic-export-to-sheet.js | `QRY` (fungsi baca murni), `sheetInputs()`, `toSheet()` (penanda ORCH) |
+| builder/12a-logic-sheet-registry.js | Kontrak, `registerSheetGroup`, `registerSheetRule`, `runPhases`, irisan (`makeCtx`), mode ketat |
+| builder/12b-logic-sheet-schema.js | Skema state: kunci C dan l beserta tipenya, `patchProblems` |
+| builder/12c sampai 12l | Handler per fase: dasar dan save, skill dan bahasa, AC dan bonus, speed dan indera dan init, proficiency, serangan, inventaris dan resource dan aksi, fitur, mantra, late pass dan penutup |
+| builder/10e-logic-fx-schema.js | Skema entri efek: semua field yang boleh dan tipenya |
+
+Menambah kelompok field atau aturan kelas: satu panggilan `registerSheetGroup()` atau `registerSheetRule()` (aturan kelas wajib punya `about`). Handler menyatakan `reads` dan `writes`, menerima hanya irisan itu, dan mengembalikan patch lewat `ctx.patch()`. Urutan: fase, lalu `order`, lalu urutan daftar. `scope:"part"` mengulang per bagian kelas, `scope:"each"` mengulang per elemen (`over`). Tes: `window.__sheetStrict=true` membuat pembacaan di luar irisan melempar galat.
 
 ## Seni gambar (T6)
 

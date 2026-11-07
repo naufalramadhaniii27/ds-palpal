@@ -1,3 +1,4 @@
+import {typeOk} from "./01-logic-core-helpers.js";
 /* ==========================================================================================================================================
    toSheet() state schema, SOLID stage 2 (L). ONE table says which keys the sheet C and the locals l may hold and what type each value has.
    A handler patch ({C:{...}, l:{...}}, see 12a-logic-sheet-registry.js) is valid when every key is in this table and every value has its type.
@@ -12,8 +13,6 @@ export const SHEET_C={v:"number",bv:"number",name:"string",species:"string",cls:
 export const SHEET_L={};
 /* register the locals of a handler file (called at load by the handler file that owns them) */
 export function defineLocals(o){Object.keys(o).forEach((k) =>{if(Object.prototype.hasOwnProperty.call(SHEET_L,k)&&SHEET_L[k]!==o[k])throw new Error("sheet schema: local "+k+" is defined twice");SHEET_L[k]=o[k]})}
-export function typeOk(desc,v){const opt=/\?$/.test(desc);if(v===undefined||v===null)return opt||desc==="any";
- return desc.replace(/\?$/,"").split("|").some((t) =>{return t==="any"||(t==="array"?Array.isArray(v):t==="object"?typeof v==="object"&&!Array.isArray(v):typeof v===t)})}
 /* problems of a patch (empty list = valid). `writes` is the handler's own list */
 export function patchProblems(h,p){const bad=[];
  if(p===null||p===undefined)return bad;
