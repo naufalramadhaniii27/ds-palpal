@@ -9,31 +9,16 @@ import {abil,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {__R} from "./00-reg.js";
 import {gx} from "./00-env.js";
+import {provideQueries} from "./01a-logic-query-registry.js";
 Object.defineProperty(__R,"MCL",{get:function(){return MCL;},set:function(v){MCL=v;},configurable:true});
 Object.defineProperty(__R,"TL",{get:function(){return TL;},set:function(v){TL=v;},configurable:true});
 Object.defineProperty(__R,"baseOf",{get:function(){return baseOf;},set:function(v){baseOf=v;},configurable:true});
-Object.defineProperty(__R,"clsKitText",{get:function(){return clsKitText;},set:function(v){clsKitText=v;},configurable:true});
-Object.defineProperty(__R,"effArmor",{get:function(){return effArmor;},set:function(v){effArmor=v;},configurable:true});
-Object.defineProperty(__R,"effShield",{get:function(){return effShield;},set:function(v){effShield=v;},configurable:true});
-Object.defineProperty(__R,"effWeps",{get:function(){return effWeps;},set:function(v){effWeps=v;},configurable:true});
 Object.defineProperty(__R,"ensureInv",{get:function(){return ensureInv;},set:function(v){ensureInv=v;},configurable:true});
-Object.defineProperty(__R,"eqIdx",{get:function(){return eqIdx;},set:function(v){eqIdx=v;},configurable:true});
-Object.defineProperty(__R,"equippable",{get:function(){return equippable;},set:function(v){equippable=v;},configurable:true});
-Object.defineProperty(__R,"gpNow",{get:function(){return gpNow;},set:function(v){gpNow=v;},configurable:true});
-Object.defineProperty(__R,"hpBonusList",{get:function(){return hpBonusList;},set:function(v){hpBonusList=v;},configurable:true});
-Object.defineProperty(__R,"hpCalc",{get:function(){return hpCalc;},set:function(v){hpCalc=v;},configurable:true});
-Object.defineProperty(__R,"itemCost",{get:function(){return itemCost;},set:function(v){itemCost=v;},configurable:true});
 Object.defineProperty(__R,"itemW",{get:function(){return itemW;},set:function(v){itemW=v;},configurable:true});
-Object.defineProperty(__R,"itemWEst",{get:function(){return itemWEst;},set:function(v){itemWEst=v;},configurable:true});
 Object.defineProperty(__R,"kitItems",{get:function(){return kitItems;},set:function(v){kitItems=v;},configurable:true});
-Object.defineProperty(__R,"langKeys",{get:function(){return langKeys;},set:function(v){langKeys=v;},configurable:true});
 Object.defineProperty(__R,"mcChoices",{get:function(){return mcChoices;},set:function(v){mcChoices=v;},configurable:true});
-Object.defineProperty(__R,"mcResMax",{get:function(){return mcResMax;},set:function(v){mcResMax=v;},configurable:true});
-Object.defineProperty(__R,"monkRule",{get:function(){return monkRule;},set:function(v){monkRule=v;},configurable:true});
-Object.defineProperty(__R,"qOf",{get:function(){return qOf;},set:function(v){qOf=v;},configurable:true});
-Object.defineProperty(__R,"rarityOf",{get:function(){return rarityOf;},set:function(v){rarityOf=v;},configurable:true});
 Object.defineProperty(__R,"slotsAll",{get:function(){return slotsAll;},set:function(v){slotsAll=v;},configurable:true});
-Object.defineProperty(__R,"wpNamed",{get:function(){return wpNamed;},set:function(v){wpNamed=v;},configurable:true});
+provideQueries({MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
 /* ---------- multiclass, HP, shop ---------- */
 export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
 export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}
@@ -141,7 +126,6 @@ export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();con
  Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
 Object.defineProperty(__R,"slotAddApply",{get:function(){return slotAddApply;},configurable:true});
-Object.defineProperty(__R,"syncPickItems",{get:function(){return syncPickItems;},configurable:true});
 function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq})[0];return a?a.n:""}
 function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq})[0];return s?s.n:""}
 function effWeps(){const w=[];ensureInv().forEach((x) =>{if(WEAPONS[baseOf(x.n).b]&&x.eq&&w.indexOf(x.n)<0)w.push(x.n)});return w}

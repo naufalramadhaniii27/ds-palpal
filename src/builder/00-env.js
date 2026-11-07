@@ -52,3 +52,12 @@ export function bookPages(){return typeof BOOKPG!=="undefined"?BOOKPG:undefined}
 export function sheetTrace(){return typeof window!=="undefined"&&window.__sheetTrace}
 /* test hook: window.__sheetStrict = true makes a toSheet handler throw when it reads a state key it did not declare */
 export function sheetStrict(){return typeof window!=="undefined"&&!!window.__sheetStrict}
+/* ---------- stage 5 (D): the tables the pack appliers rebuild (13b-logic-pack-handlers.js). They are the same objects as the bare global names; the appliers change them in place ---------- */
+export function packTables(){return {SPECIES:SPECIES,BACKGROUNDS:BACKGROUNDS,FEATS:FEATS,CLASSES:CLASSES,PRICE:PRICE,AUTO:AUTO,DMGI:DMGI,CF_FULL:CF_FULL}}
+/* test hook: window.__packStrict = true makes a pack step throw when it reads a table or a service it did not declare, or leaves a table with the wrong type */
+export function packStrict(){return typeof window!=="undefined"&&!!window.__packStrict}
+/* helpers for the tests and the sheet, on window under their old names (v38 p13, v65, v75). dmap is the magic item table of 03 (a module variable, not a global), setSrc turns a source on or off */
+export function exposeSourceHelpers(dmap,setSrc){
+ expose("__setSrc",setSrc);expose("__hasItem",function(n){return !!dmap[n]});expose("__hasSp",function(n){return !!SPECIES[n]});expose("__hasBg",function(n){return !!BACKGROUNDS[n]});
+ expose("__hasGear",function(n){return GEAR.some((g) =>{return g[0]===n})});expose("__spellNames",function(){return SPELLS.map((x) =>{return x[0]})});
+ expose("__hasAny",function(n){return !!(dmap[n]||ARMOR[n]||WEAPONS[n]||GEAR.some((g) =>{return g[0]===n})||POTIONS.some((q) =>{return q[0]===n}))})}

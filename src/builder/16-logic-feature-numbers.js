@@ -7,8 +7,8 @@ import {classFx,clsParts} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"calcNote",{get:function(){return calcNote;},set:function(v){calcNote=v;},configurable:true});
-Object.defineProperty(__R,"defenses",{get:function(){return defenses;},set:function(v){defenses=v;},configurable:true});
+import {provideQueries} from "./01a-logic-query-registry.js";
+provideQueries({calcNote,defenses});
 /* ---------- level-based numbers for feature text ---------- */
 function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=__R.fxv(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */

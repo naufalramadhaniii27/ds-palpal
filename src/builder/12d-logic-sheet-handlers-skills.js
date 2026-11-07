@@ -57,12 +57,14 @@ registerSheetRule({id:"bard-2-jack",group:"skills",about:"Bard 2: Jack of All Tr
 registerSheetGroup({id:"skill-sub-bonus",group:"skills",phase:"skills",order:140,reads:["i.a","q.xfxPost"],writes:["C.skills"],
  run:function(ctx){const C=ctx.C;ctx.q.xfxPost(C,ctx.i.a);return ctx.patch()}});
 /* fx engine v2, v4, v5, batch E: skillBonus, chkBonus, skillBonusNp, chkBonusNp, skillAb */
+/* [field, which skills a row hits]. skillBonusNp and chkBonusNp (fx engine v5): only skills without proficiency (Logic Unit, Remarkable Athlete: value "halfPbUp") */
+const SB_ROWS=[["skillBonus",function(s,r){return r[0]==="*"||s.n===r[0]}],["chkBonus",function(s,r){return s.ab===r[0]}],["skillBonusNp",function(s,r){return !s.p&&(r[0]==="*"||s.n===r[0])}],["chkBonusNp",function(s,r){return !s.p&&s.ab===r[0]}]];
+function sbSkillAb(C,a,e){/* fx batch E: skillAb [[skill, ability]] uses that ability's modifier for the skill when higher (shown as a misc bonus) */(e.skillAb||[]).forEach((r) =>{C.skills.forEach((s) =>{if(s.n===r[0]&&a.sc[r[1]]!=null&&a.sc[s.ab]!=null){const d=mod(a.sc[r[1]])-mod(a.sc[s.ab]);if(d>0)addMisc(s,d,e.lbl+" ("+r[1]+" modifier instead of "+s.ab+") +"+d)}})})}
+function sbOne(C,a,fxv,e){const add=function(s,v){if(!v)return;addMisc(s,v,e.lbl+" "+(v>0?"+":"")+v)};
+  const rv=function(r){let v=fxv(r[1],e);if(r[2]!=null&&v<r[2])v=r[2];return v};
+  SB_ROWS.forEach(function(t){(e[t[0]]||[]).forEach((r) =>{C.skills.forEach((s) =>{if(t[1](s,r))add(s,rv(r))})})});sbSkillAb(C,a,e)}
 registerSheetGroup({id:"fx-skill-bonus",group:"skills",phase:"skills",order:150,reads:["i.G","i.a","q.fxv"],writes:["C.skills"],
- run:function(ctx){const C=ctx.C,a=ctx.i.a,fxv=ctx.q.fxv;ctx.i.G.forEach((e) =>{const add=function(s,v){if(!v)return;addMisc(s,v,e.lbl+" "+(v>0?"+":"")+v)};
-  /* fx engine v4: a row may carry a minimum as a third item, [skill, value, min] (Thaumaturge: [["Arcana","WIS",1]] = Wisdom modifier, at least +1) */const rv=function(r){let v=fxv(r[1],e);if(r[2]!=null&&v<r[2])v=r[2];return v};
-  (e.skillBonus||[]).forEach((r) =>{C.skills.forEach((s) =>{if(r[0]==="*"||s.n===r[0])add(s,rv(r))})});(e.chkBonus||[]).forEach((r) =>{C.skills.forEach((s) =>{if(s.ab===r[0])add(s,rv(r))})});
-  /* fx engine v5: skillBonusNp [[skill or "*", value]] and chkBonusNp [[ability, value]]: only skills without proficiency (Logic Unit, Remarkable Athlete: value "halfPbUp") */(e.skillBonusNp||[]).forEach((r) =>{C.skills.forEach((s) =>{if(!s.p&&(r[0]==="*"||s.n===r[0]))add(s,rv(r))})});(e.chkBonusNp||[]).forEach((r) =>{C.skills.forEach((s) =>{if(!s.p&&s.ab===r[0])add(s,rv(r))})});
-  /* fx batch E: skillAb [[skill, ability]] uses that ability's modifier for the skill when higher (shown as a misc bonus) */(e.skillAb||[]).forEach((r) =>{C.skills.forEach((s) =>{if(s.n===r[0]&&a.sc[r[1]]!=null&&a.sc[s.ab]!=null){const d=mod(a.sc[r[1]])-mod(a.sc[s.ab]);if(d>0)addMisc(s,d,e.lbl+" ("+r[1]+" modifier instead of "+s.ab+") +"+d)}})})});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C,a=ctx.i.a,fxv=ctx.q.fxv;ctx.i.G.forEach((e) =>{sbOne(C,a,fxv,e)});return ctx.patch()}});
 /* fx engine v2: skillProfPlus on a skill the character already has: +1 to its checks */
 registerSheetGroup({id:"fx-skill-plus",group:"skills",phase:"skills",order:160,reads:["l.pplus"],writes:["C.skills"],
  run:function(ctx){const C=ctx.C;ctx.l.pplus.forEach((r) =>{C.skills.forEach((s) =>{if(s.n===r[0])addMisc(s,1,r[1].lbl+" +1")})});return ctx.patch()}});
