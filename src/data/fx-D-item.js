@@ -4,7 +4,7 @@
    - window.GX.item[item]: fx engine v2 entries (equipped, and attuned when the item needs it). Same schema as every other source (SOURCE-NOTES.md, "fx schema").
    Values were checked against the item text of each row. */
 (function(){
- var W=window;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
+ var W=DataEnv.slot;W.FXO=W.FXO||{};W.GX=W.GX||{};var G=W.GX.item=W.GX.item||{};
  function add(n,e){(G[n]=G[n]||[]).push(e)}
  /* Wrong effects. These items only act through a table roll or a one-time card result, so nothing is added to the sheet while carried. */
  W.FXO["Deck of Wonder"]={fx:null};            /* row had +1 attack and damage, +1 saves and resistance to ten types: all are random card results */

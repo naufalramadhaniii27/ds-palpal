@@ -2,7 +2,7 @@
    Own file, registry pattern of fx-H-audit.js: window.GX.sub[name]. Loaded in the hbpack block after the tp files, so it may also correct data they registered (LU_X, AUTO).
    Rule texts were re-read in the tp and wotc09 rows before writing; where the ledger spec differed, the text won (reports/ledger-skipped-L11.md lists them).
    Toggles: ids blood-moon, ruin-incarnate, wrath-of-the-sea, bloodied, elem-attune, perfect-form, astral-awakened, impulse-frame, hide-armor. */
-window.GX=window.GX||{};GX.sub=GX.sub||{};window.THIRD_SUBS=window.THIRD_SUBS||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};
 (function(){
  function A(n,e){GX.sub[n]=(GX.sub[n]||[]).concat(e)}
  var BL={id:"bloodied",label:"Bloodied"},BM={id:"blood-moon",label:"Blood Moon active"};

@@ -8,7 +8,7 @@
    - Mace of the Black Crown: Awakened gives poison resistance only, Exalted adds fire resistance, Dormant gives none.
    Text only on purpose (conditional or timed): curses, activated forms, Dormant extra damage of Grovelthrash, Gamma Pendant complete form.
    Not modelled (needs engine, listed in reports/ledger-skipped-L4.md): granted attack rows (Flensing Claws), reach, range multiplier, weapon dice replacement (Gurt's Greataxe), damage type override (Frozen Dagger, Lucent Destroyer), Proficiency Bonus +1 (Ioun Mastery), item spellbook list (Libram), armor flag override (Mithral Armor), Jack-of-all-trades style bonus (Logic Unit), Monstrous Weapon tier table. */
-window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 (function(){
  function add(n,e){(GX.item[n]=GX.item[n]||[]).push(e)}
  function nm(n,bases){return [n].concat((bases||[]).map(function(b){return n+" ("+b+")"}))}
@@ -61,7 +61,7 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
  add("Festerwood Logger",{n:"Festerwood Logger",atkBonus:[{when:["Festerwood Logger"],note:"The extra acid damage is maximized against plants, Plant creatures and wooden objects."}]});
  add("Hand of Vecna",{n:"Icy Touch",atkDice:[{when:"melee",d:"2d8",t:"cold (weapon held in the hand, and melee spell attacks with the hand)"}]});
  add("Hazirawn",{n:"Hazirawn (attuned)",atkDice:[{when:["Hazirawn"],d:"2d6",t:"necrotic"}]});
- window.FXO["Hazirawn"]={fx:{atk:2,dmg:2}};
+ DataEnv.slot.FXO["Hazirawn"]={fx:{atk:2,dmg:2}};
  var HA=["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"];
  addV("Holy Avenger",HA,function(v){return {n:v,atkBonus:[{when:[v],note:"Against a Fiend or an Undead: extra 2d10 radiant damage on a hit."}]}});
  add("Keranos's Devotee",{n:"Keranos's Devotee",atkBonus:[{when:"weapon",note:"Keranos's Devotee: once per turn on a hit, an extra 1d6 lightning (uses are in Resources)."}]});
@@ -73,43 +73,43 @@ window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
 
  /* Wrong old fx: replaced */
  /* fx-int: Far Gear is already defined in fx-L1 */
- window.FXO["Ioun Stone of Vitality"]={fx:null};
+ DataEnv.slot.FXO["Ioun Stone of Vitality"]={fx:null};
  add("Ioun Stone of Vitality",{n:"Ioun Stone of Vitality",saveNote:["+1 bonus to death saving throws"]});
- window.FXO["Ioun Stone, Self-Preservation"]={fx:null};
+ DataEnv.slot.FXO["Ioun Stone, Self-Preservation"]={fx:null};
  add("Ioun Stone, Self-Preservation",{n:"Ioun Stone, Self-Preservation",saveBonusAb:[["INT",1]]});
- window.FXO["Insignia of Claws"]={fx:null};
+ DataEnv.slot.FXO["Insignia of Claws"]={fx:null};
  add("Insignia of Claws",{n:"Insignia of Claws",atkBonus:[{when:["unarmed","natural"],atk:1,dmg:1}]});
- window.FXO["Leather Golem Armor"]={fx:{ac:1,res:["Lightning"]}};
+ DataEnv.slot.FXO["Leather Golem Armor"]={fx:{ac:1,res:["Lightning"]}};
  add("Leather Golem Armor",{n:"Leather Golem Armor",saveNote:["+1 bonus to saving throws against spells and other magical effects"]});
  /* Infiltrator's Key: no bonus at Dormant, +1 only in dagger form from Awakened (text), nothing on the sheet */
- ["Dormant","Awakened","Exalted"].forEach(function(t){var n="Infiltrator's Key ("+t+")";window.FXO[n]={fx:null};
+ ["Dormant","Awakened","Exalted"].forEach(function(t){var n="Infiltrator's Key ("+t+")";DataEnv.slot.FXO[n]={fx:null};
   add(n,{n:"Infiltrator's Key",tools:["Thieves' Tools"],advOn:["ability checks to open locks (key as thieves' tools)","Dexterity (Stealth) checks to move silently"]});
   if(t!=="Dormant")add(n,{n:"Infiltrator's Key spells",lu:{n:"Key spell (Alter Self, Invisibility, Knock or Pass without Trace)",max:4,reset:"dawn",tag:"One use per spell"}});
   if(t==="Exalted")add(n,{n:"Infiltrator's Key opening",lu:[{n:"Key spell (Dimension Door, Gaseous Form or Mislead)",max:3,reset:"dawn",tag:"One use per spell"}]})});
  /* fx-int: Hide of the Feral Guardian (AC row and melee bonus while transformed) is defined in fx-L6 */
  /* Hammer of Runic Focus: +3 only inside the rune circle */
- window.FXO["Hammer of Runic Focus"]={fx:null};
+ DataEnv.slot.FXO["Hammer of Runic Focus"]={fx:null};
  add("Hammer of Runic Focus",{n:"Hammer of Runic Focus",toggle:{id:"runic-focus",label:"Inside the rune circle"},atkBonus:[{when:["Hammer of Runic Focus"],atk:3,dmg:3}]});
  /* Timed forms as switches */
- window.FXO["Flying Chariot"]={fx:null};
+ DataEnv.slot.FXO["Flying Chariot"]={fx:null};
  add("Flying Chariot",{n:"Flying Chariot",toggle:{id:"flying-chariot",label:"Riding or pulling the chariot"},acAdd:1});
- window.FXO["Ghost Step Tattoo"]={fx:null};
+ DataEnv.slot.FXO["Ghost Step Tattoo"]={fx:null};
  add("Ghost Step Tattoo",{n:"Ghostly Form",toggle:{id:"ghost-step",label:"Ghostly Form (until end of your next turn)"},condImm:["Grappled","Restrained"],def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical attacks"]});
- window.FXO["Jetpack"]={fx:null};
+ DataEnv.slot.FXO["Jetpack"]={fx:null};
  add("Jetpack",{n:"Jetpack",toggle:{id:"jetpack",label:"Jetpack active (10 minutes)"},mv:{fly:"speed"}});
- window.FXO["Moon Card"]={fx:null};
+ DataEnv.slot.FXO["Moon Card"]={fx:null};
  add("Moon Card",{n:"Moon Card",toggle:{id:"moon-card",label:"Wolflike form (1 minute)"},res:["Bludgeoning","Piercing","Slashing"],atkDice:[{when:["weapon","unarmed"],d:"1d6",t:"force"}]});
  add("Moonswaddled Armor",{n:"Moonswaddled Armor",toggle:{id:"night",label:"Dusk to dawn"},acAdd:1});
 
  /* Mace of the Black Crown */
- window.FXO["Mace of the Black Crown (Dormant)"]={fx:{atk:1,dmg:1}};
- window.FXO["Mace of the Black Crown (Awakened)"]={fx:{atk:2,dmg:2,res:["Poison"]}};
+ DataEnv.slot.FXO["Mace of the Black Crown (Dormant)"]={fx:{atk:1,dmg:1}};
+ DataEnv.slot.FXO["Mace of the Black Crown (Awakened)"]={fx:{atk:2,dmg:2,res:["Poison"]}};
  /* Languages */
  /* Many Keyholes Dagger: +1 base, +2 Ten, +3 Many (choose the tier) */
  var MK=["Dagger","Club","Greatclub","Handaxe","Javelin","Light Hammer","Mace","Quarterstaff","Sickle","Spear","Battleaxe","Longsword","Rapier","Scimitar","Warhammer"];
- window.FXO["Many Keyholes Dagger"]={fx:null};
+ DataEnv.slot.FXO["Many Keyholes Dagger"]={fx:null};
  nm("Many Keyholes Dagger",MK).forEach(function(v){var K="gx-tier-item-"+v,W=[v];
-  window.FXO[v]={fx:null};
+  DataEnv.slot.FXO[v]={fx:null};
   add(v,{n:"Keyholes",atkBonus:[{when:W,atk:1,dmg:1}],pick:[{k:"tier",t:"multi",n:1,opt:1,title:"Keyholes (leave empty for Three)",list:[["Ten","Bonus +2"],["Many","Bonus +3"]]}]});
   add(v,{n:"Ten keyholes",when:{key:K,val:"Ten"},atkBonus:[{when:W,atk:1,dmg:1}]});
   add(v,{n:"Many keyholes",when:{key:K,val:"Many"},atkBonus:[{when:W,atk:2,dmg:2}]})});

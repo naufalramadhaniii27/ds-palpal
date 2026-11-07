@@ -1,6 +1,6 @@
 /* fx data batch B1: subclass effects that the mechanics scan found as REAL gaps.
    Registry GX.sub[subclass] = list of fx entries (schema: SOURCE-NOTES.md, "fx schema"). */
-window.GX=window.GX||{};GX.sub=GX.sub||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
 (function(){
  var S=GX.sub,add=function(n,e){S[n]=(S[n]||[]).concat(e)};
  add("Xenoalchemist",[{n:"Xenobiology",l:3,advOn:["ability checks to identify or research monsters"],pick:[{k:"skill",t:"skills",n:1,from:["Arcana","Nature","Medicine"],title:"Xenobiology skill"}]}]);

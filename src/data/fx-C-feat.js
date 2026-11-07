@@ -2,7 +2,7 @@
    A feat entry reads its own picks with when:{key,val} (gx pick k, or the native FEATS pick key). Picks made here are stored as gx-<k>-feat-<slot>.
    spCls "@asi" = ability the feat raised, "@abpick" = ability chosen with pick k "ab". Rows for limited uses go to LU_X (max "mod:@asi" or "mod:@ab" use the same two abilities). */
 (function(){
-window.GX=window.GX||{};GX.feat=GX.feat||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.feat=GX.feat||{};
 var ABL=[["INT",""],["WIS",""],["CHA",""]];
 function res(key,label,map){return Object.keys(map).map(function(v){return {n:label+": "+v,when:{key:key,val:v},res:[map[v]]}})}
 var F={

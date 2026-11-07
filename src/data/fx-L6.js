@@ -8,7 +8,7 @@
    - Ruin's Wake: the extra piercing is 1d8 (Dormant) and 2d8 (Awakened, Exalted).
    - Mace of the Black Crown: poison Resistance starts at Awakened, fire at Exalted (the row had both from Dormant).
    - Wooden Chain of the Unbroken Circle needs a capped AC ability bonus: see reports/ledger-skipped-L6.md. */
-window.GX=window.GX||{};GX.item=GX.item||{};window.FXO=window.FXO||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv.slot.FXO||{};
 (function(){
  function add(n,e){(GX.item[n]=GX.item[n]||[]).push(e)}
  function tiers(base,f){["Dormant","Awakened","Exalted"].forEach(function(t,i){var e=f(i,t);if(e)[].concat(e).forEach(function(x){if(x.n===base)x.n=base+" ("+t+")";add(base+" ("+t+")",x)})})}

@@ -1,10 +1,11 @@
+DataEnv.declare("__fxM1");
 /* fx data M1 (engine wave 2, fx engine v5): rows of reports/ledger-skipped-all.md that the new fields unlock.
    Fields used (SOURCE-NOTES.md, "fx engine v5"): dieReplace, reach, acCap, toolPE / toolExpert (entries edited in place in fx-L4, fx-L9, fx-L12), chkBonusNp, saveProf, attackRow, pbAdd, slotAdd, exhLock.
    Tables: window.GX.item / sub / species / feat. Items count only while equipped (and attuned when needed).
    Stale note-only entries for the same rows were removed from fx-L2, fx-L4, fx-L5, fx-L8 (Gurt's Greataxe, Frozen Dagger, Sun Blade, Sunsword) or shortened (Ranseur of Torture, Scourge of Shadow, Lucent Destroyer), so nothing is shown twice. Still skipped: reports/ledger-skipped-all.md. */
-window.GX=window.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.species=GX.species||{};GX.feat=GX.feat||{};
+DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.species=GX.species||{};GX.feat=GX.feat||{};
 (function(){
- if(window.__fxM1)return;window.__fxM1=1;
+ if(DataEnv.slot.__fxM1)return;DataEnv.slot.__fxM1=1;
  function put(t,n,e){(GX[t][n]=GX[t][n]||[]).push(e)}
  function I(n,e){e.n=e.n||n;put("item",n,e)}
  function S(n,e){put("sub",n,e)}
