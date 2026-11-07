@@ -1,0 +1,1038 @@
+{
+ "files": {
+  "app/08-ui-render-sheet-and-actions.js": 336,
+  "app/13-ui-detail-cards.js": 370,
+  "app/15-logic-roster-backup-files-snapshots.js": 309,
+  "app/23-ui-uses-items-coins-rest-spell-dc.js": 326,
+  "app/27-ui-party-search-commands-library.js": 556,
+  "app/32-logic-play-undo-actions.js": 305,
+  "app/40-ui-segments-notes-swipe-motion-panels.js": 337,
+  "builder/09-logic-feats-and-choices.js": 354,
+  "builder/12-logic-export-to-sheet.js": 474,
+  "fx/02-micro-interactions.js": 361,
+  "learn/45-data-learn.js": 491,
+  "tg/30-ui-tg.js": 327
+ },
+ "funcs": {
+  "app/01-logic-boot-flags-builder-loader.js::(anon)": [
+   20,
+   37
+  ],
+  "app/01-logic-boot-flags-builder-loader.js::need": [
+   19,
+   37
+  ],
+  "app/03-data-glossary.js::gl14": [
+   5,
+   30
+  ],
+  "app/04-logic-storage.js::loadS": [
+   12,
+   24
+  ],
+  "app/05-logic-helpers.js::armorFx": [
+   11,
+   23
+  ],
+  "app/06-logic-derivation.js::derive": [
+   118,
+   177
+  ],
+  "app/08-ui-render-sheet-and-actions.js::actEnt": [
+   5,
+   44
+  ],
+  "app/08-ui-render-sheet-and-actions.js::actSplit": [
+   13,
+   30
+  ],
+  "app/08-ui-render-sheet-and-actions.js::idArt": [
+   7,
+   22
+  ],
+  "app/08-ui-render-sheet-and-actions.js::renderActions": [
+   25,
+   56
+  ],
+  "app/08-ui-render-sheet-and-actions.js::renderFeat": [
+   23,
+   37
+  ],
+  "app/08-ui-render-sheet-and-actions.js::renderInv": [
+   30,
+   60
+  ],
+  "app/08-ui-render-sheet-and-actions.js::spSum": [
+   11,
+   25
+  ],
+  "app/09-ui-hit-points-playbar-death-saves.js::vbSync": [
+   16,
+   26
+  ],
+  "app/12-ui-bottom-sheet-modal.js::sheetIco": [
+   11,
+   27
+  ],
+  "app/13-ui-detail-cards.js::(anon)#3": [
+   12,
+   21
+  ],
+  "app/13-ui-detail-cards.js::infoHTML": [
+   5,
+   21
+  ],
+  "app/13-ui-detail-cards.js::infoHTML0": [
+   72,
+   127
+  ],
+  "app/13-ui-detail-cards.js::spTgt": [
+   14,
+   23
+  ],
+  "app/13-ui-detail-cards.js::xlIdx": [
+   39,
+   70
+  ],
+  "app/13-ui-detail-cards.js::xlMap": [
+   9,
+   24
+  ],
+  "app/13-ui-detail-cards.js::xlScan": [
+   39,
+   67
+  ],
+  "app/14-ui-editor.js::edHTML": [
+   69,
+   32
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::bkpCheck": [
+   9,
+   36
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::bkpOpen": [
+   28,
+   43
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::charInfo": [
+   2,
+   27
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::chfOpen": [
+   27,
+   44
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::healFind": [
+   8,
+   33
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::homeCards1": [
+   8,
+   27
+  ],
+  "app/15-logic-roster-backup-files-snapshots.js::showHome": [
+   25,
+   65
+  ],
+  "app/16-logic-import-chat-text-and-build-files.js::bkpMerge": [
+   10,
+   28
+  ],
+  "app/16-logic-import-chat-text-and-build-files.js::impBuild": [
+   12,
+   45
+  ],
+  "app/16-logic-import-chat-text-and-build-files.js::impChar": [
+   10,
+   25
+  ],
+  "app/17-logic-tab-sync-and-test-hooks.js::extChange": [
+   10,
+   34
+  ],
+  "app/18-ui-header-and-more-menu.js::editInput": [
+   24,
+   50
+  ],
+  "app/18-ui-header-and-more-menu.js::hdrFits": [
+   9,
+   24
+  ],
+  "app/19-ui-global-click-delegation.js::(anon)": [
+   22,
+   42
+  ],
+  "app/19-ui-global-click-delegation.js::doRest": [
+   11,
+   23
+  ],
+  "app/22-ui-spell-data-and-slots.js::spCalc": [
+   9,
+   47
+  ],
+  "app/23-ui-uses-items-coins-rest-spell-dc.js::icoItem": [
+   9,
+   34
+  ],
+  "app/23-ui-uses-items-coins-rest-spell-dc.js::longRec": [
+   5,
+   25
+  ],
+  "app/23-ui-uses-items-coins-rest-spell-dc.js::renderSpells": [
+   14,
+   47
+  ],
+  "app/23-ui-uses-items-coins-rest-spell-dc.js::restHTML": [
+   21,
+   27
+  ],
+  "app/23-ui-uses-items-coins-rest-spell-dc.js::takeRest": [
+   18,
+   41
+  ],
+  "app/24-ui-manage-spells.js::spmHTML": [
+   18,
+   42
+  ],
+  "app/24-ui-manage-spells.js::spmLocal": [
+   9,
+   40
+  ],
+  "app/24-ui-manage-spells.js::spmToggle": [
+   8,
+   21
+  ],
+  "app/27-ui-party-search-commands-library.js::(anon)#4": [
+   4,
+   22
+  ],
+  "app/27-ui-party-search-commands-library.js::(anon)#5": [
+   18,
+   40
+  ],
+  "app/27-ui-party-search-commands-library.js::foundryOf": [
+   14,
+   24
+  ],
+  "app/27-ui-party-search-commands-library.js::gsHTML": [
+   16,
+   36
+  ],
+  "app/27-ui-party-search-commands-library.js::libBook": [
+   10,
+   30
+  ],
+  "app/27-ui-party-search-commands-library.js::libDetail#2": [
+   1,
+   23
+  ],
+  "app/27-ui-party-search-commands-library.js::libDetailRaw": [
+   33,
+   169
+  ],
+  "app/27-ui-party-search-commands-library.js::libIndex": [
+   25,
+   69
+  ],
+  "app/27-ui-party-search-commands-library.js::libKey": [
+   6,
+   21
+  ],
+  "app/27-ui-party-search-commands-library.js::libOpen": [
+   11,
+   28
+  ],
+  "app/27-ui-party-search-commands-library.js::libRel": [
+   6,
+   32
+  ],
+  "app/27-ui-party-search-commands-library.js::libRev": [
+   5,
+   21
+  ],
+  "app/27-ui-party-search-commands-library.js::libSearch": [
+   4,
+   28
+  ],
+  "app/27-ui-party-search-commands-library.js::libWire": [
+   15,
+   26
+  ],
+  "app/27-ui-party-search-commands-library.js::palCmds": [
+   7,
+   25
+  ],
+  "app/28-ui-bastion.js::bastionH": [
+   41,
+   85
+  ],
+  "app/28-ui-bastion.js::bsAct": [
+   24,
+   68
+  ],
+  "app/29-ui-ddb-look.js::crBlock": [
+   15,
+   31
+  ],
+  "app/29-ui-ddb-look.js::crEnv": [
+   7,
+   39
+  ],
+  "app/29-ui-ddb-look.js::crList": [
+   18,
+   57
+  ],
+  "app/29-ui-ddb-look.js::featNums": [
+   10,
+   28
+  ],
+  "app/29-ui-ddb-look.js::featSpL": [
+   7,
+   22
+  ],
+  "app/29-ui-ddb-look.js::pgGuess": [
+   5,
+   33
+  ],
+  "app/29-ui-ddb-look.js::renderExtras0": [
+   15,
+   44
+  ],
+  "app/30-ui-icons.js::(anon)": [
+   7,
+   24
+  ],
+  "app/30-ui-icons.js::icoAll": [
+   14,
+   27
+  ],
+  "app/30-ui-icons.js::icoDecorate": [
+   28,
+   52
+  ],
+  "app/32-logic-play-undo-actions.js::spUses": [
+   9,
+   22
+  ],
+  "app/34-ui-situations.js::cfx": [
+   29,
+   50
+  ],
+  "app/34-ui-situations.js::modeToggle": [
+   14,
+   27
+  ],
+  "app/34-ui-situations.js::sitDo": [
+   11,
+   22
+  ],
+  "app/35-ui-combo.js::cmbBody": [
+   7,
+   23
+  ],
+  "app/35-ui-combo.js::cmbHTML": [
+   16,
+   39
+  ],
+  "app/35-ui-combo.js::cmbPool": [
+   11,
+   35
+  ],
+  "app/36-ui-printable-sheet.js::buildPrint": [
+   80,
+   66
+  ],
+  "app/37-ui-pdf-export-hold-slide-confirm.js::(anon)#2": [
+   21,
+   31
+  ],
+  "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js::(anon)": [
+   16,
+   35
+  ],
+  "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js::(anon)#3": [
+   12,
+   22
+  ],
+  "app/40-ui-segments-notes-swipe-motion-panels.js::ctxSpec": [
+   12,
+   27
+  ],
+  "app/40-ui-segments-notes-swipe-motion-panels.js::lintList": [
+   7,
+   21
+  ],
+  "app/40-ui-segments-notes-swipe-motion-panels.js::ordMove": [
+   8,
+   28
+  ],
+  "app/40-ui-segments-notes-swipe-motion-panels.js::ovTop": [
+   11,
+   25
+  ],
+  "app/40-ui-segments-notes-swipe-motion-panels.js::renderDesc": [
+   13,
+   23
+  ],
+  "app/41-ui-edit-mode.js::cuqOf": [
+   13,
+   26
+  ],
+  "app/42-logic-pwa-qr-icons-wallet.js::(anon)#2": [
+   47,
+   103
+  ],
+  "app/42-logic-pwa-qr-icons-wallet.js::make": [
+   30,
+   87
+  ],
+  "app/42-logic-pwa-qr-icons-wallet.js::qrSendOpen": [
+   19,
+   25
+  ],
+  "app/42-logic-pwa-qr-icons-wallet.js::show": [
+   17,
+   25
+  ],
+  "app/43-logic-cloud-sync.js::syLocal": [
+   9,
+   30
+  ],
+  "app/43-logic-cloud-sync.js::syOpen": [
+   22,
+   28
+  ],
+  "app/43-logic-cloud-sync.js::syRun": [
+   61,
+   118
+  ],
+  "app/44-ui-friends.js::frView": [
+   11,
+   25
+  ],
+  "app/48-logic-sync-merge.js::mgUse": [
+   8,
+   21
+  ],
+  "app/48-logic-sync-merge.js::syMerge": [
+   11,
+   24
+  ],
+  "app/49-logic-status-and-odds.js::recapData": [
+   12,
+   25
+  ],
+  "app/50-logic-reverse-builder.js::rbDuel": [
+   12,
+   26
+  ],
+  "app/50-logic-reverse-builder.js::rbEval": [
+   14,
+   32
+  ],
+  "app/50-logic-reverse-builder.js::rbSearch": [
+   16,
+   25
+  ],
+  "app/52-tg-bridge.js::tgPcNow": [
+   6,
+   27
+  ],
+  "app/52-tg-bridge.js::tgSpells": [
+   10,
+   49
+  ],
+  "app/54-dev-fps-probe.js::(anon)": [
+   45,
+   51
+  ],
+  "app/54-dev-fps-probe.js::run": [
+   23,
+   28
+  ],
+  "boot/debug-overlay.js::(anon)": [
+   12,
+   22
+  ],
+  "boot/deferred-loader.js::(anon)": [
+   48,
+   76
+  ],
+  "boot/err-report.js::(anon)": [
+   13,
+   41
+  ],
+  "boot/store-gate.js::(anon)": [
+   102,
+   132
+  ],
+  "builder/08-logic-2014-rules.js::cls14Apply": [
+   18,
+   46
+  ],
+  "builder/08-logic-2014-rules.js::cls14Tabs": [
+   23,
+   56
+  ],
+  "builder/09-logic-feats-and-choices.js::(anon)": [
+   10,
+   35
+  ],
+  "builder/09-logic-feats-and-choices.js::allFeats": [
+   4,
+   23
+  ],
+  "builder/09-logic-feats-and-choices.js::choices": [
+   43,
+   113
+  ],
+  "builder/09-logic-feats-and-choices.js::dm14Set": [
+   13,
+   24
+  ],
+  "builder/09-logic-feats-and-choices.js::eq14Set": [
+   22,
+   32
+  ],
+  "builder/09-logic-feats-and-choices.js::featViol": [
+   10,
+   26
+  ],
+  "builder/09-logic-feats-and-choices.js::gxPicks": [
+   9,
+   73
+  ],
+  "builder/09-logic-feats-and-choices.js::hbSpellPicks": [
+   5,
+   21
+  ],
+  "builder/09-logic-feats-and-choices.js::sp14Set": [
+   17,
+   30
+  ],
+  "builder/09-logic-feats-and-choices.js::spFxTo": [
+   9,
+   35
+  ],
+  "builder/09-logic-feats-and-choices.js::spTraitText": [
+   15,
+   83
+  ],
+  "builder/09-logic-feats-and-choices.js::wxAb": [
+   7,
+   21
+  ],
+  "builder/09-logic-feats-and-choices.js::wxGate": [
+   4,
+   30
+  ],
+  "builder/09-logic-feats-and-choices.js::wxList": [
+   4,
+   22
+  ],
+  "builder/09-logic-feats-and-choices.js::wxPicks": [
+   5,
+   21
+  ],
+  "builder/10-logic-v17-additions.js::invPicks": [
+   5,
+   21
+  ],
+  "builder/10-logic-v17-additions.js::isDone": [
+   7,
+   30
+  ],
+  "builder/10-logic-v17-additions.js::luRows": [
+   19,
+   101
+  ],
+  "builder/10-logic-v17-additions.js::pk": [
+   25,
+   78
+  ],
+  "builder/10-logic-v17-additions.js::saveNotes": [
+   6,
+   25
+  ],
+  "builder/10-logic-v17-additions.js::xdmgRows": [
+   12,
+   31
+  ],
+  "builder/11-logic-derivation.js::abil": [
+   20,
+   31
+  ],
+  "builder/11-logic-derivation.js::keepResKeys": [
+   9,
+   25
+  ],
+  "builder/11-logic-derivation.js::manualLost": [
+   8,
+   30
+  ],
+  "builder/11-logic-derivation.js::spellAb": [
+   7,
+   27
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#10": [
+   6,
+   40
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#11": [
+   6,
+   36
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#15": [
+   54,
+   168
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#30": [
+   5,
+   23
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#31": [
+   5,
+   22
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#5": [
+   70,
+   247
+  ],
+  "builder/12-logic-export-to-sheet.js::(anon)#52": [
+   13,
+   63
+  ],
+  "builder/12-logic-export-to-sheet.js::actAtk": [
+   14,
+   25
+  ],
+  "builder/12-logic-export-to-sheet.js::actsFor": [
+   18,
+   42
+  ],
+  "builder/12-logic-export-to-sheet.js::toSheet": [
+   420,
+   1389
+  ],
+  "builder/13-logic-sources-and-packs.js::applyPacks": [
+   20,
+   35
+  ],
+  "builder/13-logic-sources-and-packs.js::autoSpells": [
+   16,
+   48
+  ],
+  "builder/13-logic-sources-and-packs.js::efaGate": [
+   3,
+   23
+  ],
+  "builder/14-logic-multiclass-hp-shop.js::baseOf": [
+   1,
+   21
+  ],
+  "builder/14-logic-multiclass-hp-shop.js::dbItems0": [
+   10,
+   28
+  ],
+  "builder/14-logic-multiclass-hp-shop.js::mcChoices": [
+   16,
+   45
+  ],
+  "builder/14-logic-multiclass-hp-shop.js::syncPickItems": [
+   5,
+   30
+  ],
+  "builder/15-logic-import-from-sheet.js::(anon)#4": [
+   17,
+   81
+  ],
+  "builder/15-logic-import-from-sheet.js::fromSheet": [
+   70,
+   309
+  ],
+  "builder/16-logic-feature-numbers.js::calcNote": [
+   40,
+   42
+  ],
+  "builder/16-logic-feature-numbers.js::cl": [
+   14,
+   32
+  ],
+  "builder/16-logic-feature-numbers.js::defenses": [
+   33,
+   82
+  ],
+  "builder/17-ui-step-builder.js::armorAt": [
+   4,
+   23
+  ],
+  "builder/17-ui-step-builder.js::chips": [
+   3,
+   26
+  ],
+  "builder/17-ui-step-builder.js::choiceBody": [
+   34,
+   98
+  ],
+  "builder/17-ui-step-builder.js::preFail": [
+   14,
+   33
+  ],
+  "builder/17-ui-step-builder.js::showRef": [
+   4,
+   28
+  ],
+  "builder/18-ui-spells.js::renderSpells": [
+   31,
+   76
+  ],
+  "builder/18-ui-spells.js::spInfoOne": [
+   6,
+   28
+  ],
+  "builder/18-ui-spells.js::spRow": [
+   7,
+   28
+  ],
+  "builder/18-ui-spells.js::spellCounts": [
+   9,
+   33
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::mcBlock": [
+   12,
+   24
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::renderBg": [
+   15,
+   37
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::renderClass": [
+   45,
+   83
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::renderHome": [
+   15,
+   50
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::renderSpecies": [
+   22,
+   77
+  ],
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js::srcLists": [
+   12,
+   51
+  ],
+  "builder/20-ui-steps-equipment-next.js::itemDetail": [
+   9,
+   66
+  ],
+  "builder/20-ui-steps-equipment-next.js::renderEquip": [
+   23,
+   106
+  ],
+  "builder/20-ui-steps-equipment-next.js::renderNext": [
+   17,
+   21
+  ],
+  "builder/21-ui-rules-reference.js::hbForm": [
+   10,
+   25
+  ],
+  "builder/21-ui-rules-reference.js::hbSave": [
+   10,
+   33
+  ],
+  "builder/21-ui-rules-reference.js::qbPick": [
+   14,
+   61
+  ],
+  "builder/21-ui-rules-reference.js::qbSpells": [
+   7,
+   30
+  ],
+  "builder/22-ui-shell.js::(anon)": [
+   21,
+   37
+  ],
+  "builder/22-ui-shell.js::render": [
+   16,
+   51
+  ],
+  "builder/23-logic-level-up-and-build-files.js::__bldCheck": [
+   17,
+   58
+  ],
+  "builder/23-logic-level-up-and-build-files.js::__bldNorm": [
+   121,
+   313
+  ],
+  "builder/23-logic-level-up-and-build-files.js::__bldOpen": [
+   15,
+   27
+  ],
+  "builder/23-logic-level-up-and-build-files.js::__bldSheetBatch": [
+   9,
+   22
+  ],
+  "builder/23-logic-level-up-and-build-files.js::item": [
+   5,
+   21
+  ],
+  "builder/23-logic-level-up-and-build-files.js::qbSpMC": [
+   8,
+   30
+  ],
+  "builder/24-ui-icons.js::bDeco": [
+   13,
+   38
+  ],
+  "builder/25-logic-hooks-for-the-sheet.js::__bldArmor": [
+   10,
+   23
+  ],
+  "builder/25-logic-hooks-for-the-sheet.js::__bldDiff": [
+   1,
+   22
+  ],
+  "fx/01-core-router-and-switch.js::(anon)": [
+   38,
+   66
+  ],
+  "fx/02-micro-interactions.js::(anon)": [
+   121,
+   127
+  ],
+  "fx/02-micro-interactions.js::(anon)#11": [
+   90,
+   88
+  ],
+  "fx/02-micro-interactions.js::(anon)#12": [
+   22,
+   29
+  ],
+  "fx/02-micro-interactions.js::(anon)#3": [
+   65,
+   73
+  ],
+  "fx/02-micro-interactions.js::(anon)#6": [
+   53,
+   66
+  ],
+  "fx/02-micro-interactions.js::parts": [
+   15,
+   36
+  ],
+  "fx/02-micro-interactions.js::scan": [
+   11,
+   29
+  ],
+  "fx/02-micro-interactions.js::state": [
+   15,
+   24
+  ],
+  "fx/03-f1-card-light-and-morph.js::(anon)": [
+   70,
+   76
+  ],
+  "fx/04-f2-odometer-hp-bar-scrub.js::(anon)": [
+   46,
+   63
+  ],
+  "fx/05-f3-indicator-dock-toast.js::(anon)": [
+   28,
+   28
+  ],
+  "fx/06-f4-reveal-on-scroll.js::(anon)": [
+   36,
+   40
+  ],
+  "fx/07-f5-moments.js::(anon)": [
+   59,
+   70
+  ],
+  "fx/07-f5-moments.js::(anon)#4": [
+   15,
+   28
+  ],
+  "fx/08-round6.js::(anon)": [
+   78,
+   79
+  ],
+  "fx/09-wow-pack.js::(anon)": [
+   64,
+   42
+  ],
+  "fx/10-x-pack.js::(anon)": [
+   73,
+   81
+  ],
+  "fx/11-d-pack.js::(anon)": [
+   44,
+   49
+  ],
+  "fx/13-class-colour-hp-ring.js::(anon)": [
+   21,
+   39
+  ],
+  "fx/13-class-colour-hp-ring.js::hp": [
+   7,
+   22
+  ],
+  "fx/14-w-pack.js::(anon)": [
+   90,
+   116
+  ],
+  "fx/15-y-pack.js::(anon)": [
+   80,
+   122
+  ],
+  "fx/16-z-pack-dice-sound-hover.js::(anon)": [
+   202,
+   361
+  ],
+  "fx/16-z-pack-dice-sound-hover.js::bar": [
+   8,
+   22
+  ],
+  "fx/16-z-pack-dice-sound-hover.js::build": [
+   9,
+   41
+  ],
+  "fx/16-z-pack-dice-sound-hover.js::makeCard": [
+   20,
+   39
+  ],
+  "fx/17-l-pack-webgl-sky.js::(anon)": [
+   40,
+   54
+  ],
+  "fx/18-m-pack-rolls-concentration.js::(anon)": [
+   144,
+   235
+  ],
+  "fx/19-g-pack-cinematic.js::(anon)": [
+   103,
+   143
+  ],
+  "fx/20-k-pack-character-colour-icon.js::(anon)": [
+   27,
+   46
+  ],
+  "fx/21-connected-home-sheet.js::(anon)": [
+   76,
+   81
+  ],
+  "fx/24-class-art.js::(anon)": [
+   101,
+   168
+  ],
+  "fx/24-class-art.js::__bldArt": [
+   14,
+   35
+  ],
+  "fx/25-dice3d.js::(anon)": [
+   180,
+   183
+  ],
+  "fx/25-dice3d.js::simulate": [
+   28,
+   49
+  ],
+  "fx/25-dice3d.js::throwDice": [
+   25,
+   30
+  ],
+  "fx/27-blend-sheet.js::(anon)": [
+   67,
+   125
+  ],
+  "fx/27-blend-sheet.js::__blendSheet": [
+   17,
+   30
+  ],
+  "fx/27-blend-sheet.js::sceneOf": [
+   7,
+   28
+  ],
+  "learn/47-ui-learn.js::(anon)": [
+   230,
+   474
+  ],
+  "learn/47-ui-learn.js::drawFrame": [
+   8,
+   27
+  ],
+  "learn/47-ui-learn.js::step": [
+   14,
+   25
+  ],
+  "learn/47-ui-learn.js::wire": [
+   42,
+   131
+  ],
+  "tg/20-engine.js::(anon)": [
+   220,
+   418
+  ],
+  "tg/20-engine.js::advOf": [
+   8,
+   31
+  ],
+  "tg/20-engine.js::attack": [
+   15,
+   41
+  ],
+  "tg/20-engine.js::cast": [
+   19,
+   63
+  ],
+  "tg/20-engine.js::odds": [
+   8,
+   27
+  ],
+  "tg/20-engine.js::reach": [
+   9,
+   25
+  ],
+  "tg/20-engine.js::save": [
+   9,
+   29
+  ],
+  "tg/25-sim.js::(anon)": [
+   43,
+   93
+  ],
+  "tg/25-sim.js::pilot": [
+   21,
+   63
+  ],
+  "tg/30-ui-tg.js::draw": [
+   13,
+   31
+  ],
+  "tg/30-ui-tg.js::duelLadder": [
+   5,
+   21
+  ],
+  "tg/30-ui-tg.js::evText": [
+   23,
+   38
+  ],
+  "tg/30-ui-tg.js::panelHtml": [
+   20,
+   66
+  ],
+  "tg/30-ui-tg.js::setupHtml": [
+   12,
+   25
+  ],
+  "tg/30-ui-tg.js::tapCell": [
+   9,
+   35
+  ],
+  "tg/30-ui-tg.js::wire": [
+   41,
+   97
+  ]
+ }
+}
