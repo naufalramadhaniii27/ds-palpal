@@ -6,7 +6,7 @@ import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {condHTML} from "./10-ui-conditions.js";
 import {bdHTML} from "./11-ui-breakdown.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
+import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";import {ENTRY} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"navStack",{get:function(){return navStack;},set:function(v){navStack=v;},configurable:true});
 Object.defineProperty(__R,"openSheet",{get:function(){return openSheet;},set:function(v){openSheet=v;},configurable:true});
 Object.defineProperty(__R,"sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;},configurable:true});
@@ -61,14 +61,31 @@ export function openSheet(title, html, mode, wide){
 export function potEd(h){ if(typeof __R.C==="undefined"||!__R.C||__R.C.rs!=="2014") return h;
   const T="(?:<[^>]*>)*";/* the words may carry glossary links (autolink), so tags around them are allowed */
   return String(h).replace(new RegExp("Drink it or give it to someone within 5 feet \\("+T+"Bonus Action"+T+"\\) to regain"),"Drink it or give it to someone (Action) to regain").replace(new RegExp("Drink it, or give it to a creature within 5 feet, as a "+T+"Bonus Action"+T+"\\."),"Drinking it or giving it to another creature takes an Action."); }
+ENTRY.add("bd", {content:function(en){
+  const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"};
+}});
+ENTRY.add("cond", {content:function(en){
+  return {t:"Conditions", h:condHTML(), m:"cond"};
+}});
+ENTRY.add("combat", {content:function(en){
+  return {t:"Combat", h:__R.combatHTML(), m:"combat"};
+}});
+ENTRY.add("spman", {content:function(en){
+  return {t:"Manage Spells", h:__R.spmHTML(), m:"spman"};
+}});
+ENTRY.add("search", {content:function(en){
+  setTimeout(__R.gsMark,0); return {t:"Search", h:__R.gsHTML(), m:"search"};
+}});
+ENTRY.add("cuq", {content:function(en){
+  const cq=__R.cuqOf(en.key); return {t:cq?"Edit "+cq.t:"Edit", h:__R.cuqHTML(en.key), m:"cuq"};
+}});
+ENTRY.add("cust", {content:function(en){
+  return {t:"Customize", h:__R.cuHTML(en.key,en.n), m:"cust"};
+}});
+/* The sheet entry types that are not registered above are info cards (DETAIL registry) */
+/* solid:orchestrator entryContent */
 function entryContent(en){
-  if(en.type==="bd"){ const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"}; }/* v26 RU38 no. 2 */
-  if(en.type==="cond") return {t:"Conditions", h:condHTML(), m:"cond"};
-  if(en.type==="combat") return {t:"Combat", h:__R.combatHTML(), m:"combat"};/* v22 RU62 */
-  if(en.type==="spman") return {t:"Manage Spells", h:__R.spmHTML(), m:"spman"};
-  if(en.type==="search"){ setTimeout(__R.gsMark,0); return {t:"Search", h:__R.gsHTML(), m:"search"}; }/* v27 RU66 *//* v25 RU38 no. 3 */
-  if(en.type==="cuq"){ const cq=__R.cuqOf(en.key); return {t:cq?"Edit "+cq.t:"Edit", h:__R.cuqHTML(en.key), m:"cuq"}; }/* v34 RU85 */
-  if(en.type==="cust") return {t:"Customize", h:__R.cuHTML(en.key,en.n), m:"cust"};/* v26 RU38 no. 2 */
+  const e=ENTRY.get(en.type); if(e) return e.content(en);
   const r=__R.cuDecor(en.spec,__R.infoHTML(en.spec)); return {t:r.t, h:potEd(r.h), m:"info"};
 }
 export var SWP=null;/* v36 p18: {list:[spec], i} of the list the open card came from */

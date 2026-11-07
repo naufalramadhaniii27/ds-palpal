@@ -6,7 +6,7 @@ import {B,D,fill,richB,richP} from "./06-logic-derivation.js";
 import {aylH,aylSplit,spSum,used} from "./08-ui-render-sheet-and-actions.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {SWP,__set_SWP,__set_navStack,__set_sheetMode,lastFocus,navStack,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"featSpec",{get:function(){return featSpec;},set:function(v){featSpec=v;},configurable:true});
 Object.defineProperty(__R,"grpSpec",{get:function(){return grpSpec;},set:function(v){grpSpec=v;},configurable:true});
 Object.defineProperty(__R,"infoHTML",{get:function(){return infoHTML;},set:function(v){infoHTML=v;},configurable:true});
@@ -242,16 +242,30 @@ function spTgtCell(x){ const o=spTgt(x), L=TGT_LAB[o.k]||["Target",o.k], big=/^(
 function spEffCell(x){ const sv=x.sv; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"]; return ["fx-auto","Effect","No roll"]; }
 export function infoHTML(spec){
   let i0=spec.indexOf(":"), t0=spec.slice(0,i0), k0=spec.slice(i0+1), prev=XL_SELF, me="";/* a name in its own dialog is not linked to itself */
-  try{ if(t0==="spn"||t0==="mi") me=k0; else if(t0==="lib"||t0==="g") me=t0==="g"?k0:k0.slice(k0.lastIndexOf("|")+1); else if(t0==="cr") me=k0.split("|")[0]; else if(t0==="sp") me=((C.spells||[])[+k0]||{}).n||""; else if(t0==="it") me=((C.inv||[])[+k0]||{}).n||""; else if(t0==="f"){ const q=k0.split("."), g_=(C.features||[])[+q[0]]; me=((g_&&g_.items||[])[+q[1]]||{}).n||""; } }catch(e){ me=""; }
+  try{ const d0=DETAIL.get(t0); if(d0&&d0.self) me=d0.self(k0); }catch(e){ me=""; }
   XL_SELF=me; try{ return infoHTML0(spec); } finally{ XL_SELF=prev; }
 }
-function infoHTML0(spec){
-  let i=spec.indexOf(":"), type=spec.slice(0,i), key=spec.slice(i+1), h="";
-  if(type==="spn") return __R.spnHTML(key);/* v25 RU38 no. 3 */
-  if(type==="mi") return miHTML(key);
-  if(type==="lib"){ const bar=key.indexOf("|"), ld=typeof __R.libDetail==="function"&&__R.libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'}; }
-  if(type==="g"){
-    const g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
+DETAIL.add("spn", {
+  render:function(key){ let h="";
+  return __R.spnHTML(key);
+  },
+  self:function(k){ return ((k) =>k)(k); }
+});
+DETAIL.add("mi", {
+  render:function(key){ let h="";
+  return miHTML(key);
+  },
+  self:function(k){ return ((k) =>k)(k); }
+});
+DETAIL.add("lib", {
+  render:function(key){ let h="";
+  const bar=key.indexOf("|"), ld=typeof __R.libDetail==="function"&&__R.libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'};
+  },
+  self:function(k){ return ((k) =>k.slice(k.lastIndexOf("|")+1))(k); }
+});
+DETAIL.add("g", {
+  render:function(key){ let h="";
+  const g=GLOSS[key]; if(!g) return {t:key, h:'<p class="info-d">No details yet.</p>'};
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
     const ak=ABK.filter((k) =>{return ABN[k]===key})[0];
     if(ak) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Score",D.score[ak],"ab-"+ak)+tileBd("Modifier",sg(D.mod[ak]),"ab-"+ak)+tileBd("Saving throw",sg(D.save[ak]),"save-"+ak)+'</div>';
@@ -266,19 +280,40 @@ function infoHTML0(spec){
     const fl=[]; (C.features||[]).forEach((gr,gi) =>{ (gr.items||[]).forEach((f,fi) =>{ if(String(f.d).indexOf("[["+key+"]]")>=0 || String(f.d).indexOf("[["+key+"|")>=0) fl.push([gi,fi]); }); });
     if(fl.length) h+='<div class="info-h">Your features that mention this</div><div class="info-l">'+fl.map((x) =>{ const f=C.features[x[0]].items[x[1]]; return '<button type="button" data-info="f:'+x[0]+'.'+x[1]+'">'+esc(f.n)+'<span>'+esc(f.s)+'</span></button>'; }).join("")+'</div>';
     return {t:key, h:h};
+  },
+  self:function(k){ return ((k) =>k)(k); }
+});
+DETAIL.add("cr", {
+  render:function(key){ let h="";
+  const cp=key.split("|"), cc=__R.crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:__R.crBlock(cc,cp.slice(1).join("|"))};
+  },
+  self:function(k){ return ((k) =>k.split("|")[0])(k); }
+});
+DETAIL.add("xd", {
+  render:function(key){ let h="";
+  const xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+__R.tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'};
   }
-  if(type==="cr"){ const cp=key.split("|"), cc=__R.crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:__R.crBlock(cc,cp.slice(1).join("|"))}; }/* v23 RU36 no. 10 */
-  if(type==="xd"){ const xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+__R.tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'}; }
-  if(type==="sp"){ const x=(C.spells||[])[+key], sc=__R.scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
+});
+DETAIL.add("sp", {
+  render:function(key){ let h="";
+  const x=(C.spells||[])[+key], sc=__R.scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
     const sch=String(x.sch||"").toLowerCase(), fxb=__R.spFxBlock(x,key);
     h='<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':__R.ico("school-"+sch,"isch"),__R.ico("school-"+sch,"isch")+'<i>'+(x.l?__R.ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
       dcStrip([[/^Bonus/.test(x.ct)?"time-bonus":/^Reaction/.test(x.ct)?"time-reaction":/^Action/.test(x.ct)?"time-action":"time-long","Time",esc(x.ct)+(x.rit?' <i class="sp-c rit">R</i>':'')],["fx-reach","Range",esc(String(x.r||"").replace(/ ft$/," ft."))],spTgtCell(x),[/^V/.test(x.cmp)?"comp-v":"comp-s","Components",esc(x.cmp)],[x.conc?"tag-concentration":"ui-moon","Duration",esc(x.dur)+(x.conc?' <i class="sp-c">C</i>':'')],spEffCell(x)],"dc-s6")+
       spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(__R.spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||__R.spFx(x).mat)+'</p>':'')+'</div>'+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+__R.hpSpellNote(x)+__R.tmpSpellH(x,__R.spLvSel[x.n]!=null?__R.spLvSel[x.n]:__R.spRowLv(x))+'<div class="dc-use">'+__R.spCastH(x,+key)+__R.pinSpBtn(x)+'</div>'+
       dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?__R.srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
-    return {t:x.n, h:h}; }
-  if(type==="spx") return {t:"Spells cast on you", h:__R.spxBody()};
-  if(type==="f"){
-    const ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
+    return {t:x.n, h:h};
+  },
+  self:function(k){ return ((k) =>((C.spells||[])[+k]||{}).n||"")(k); }
+});
+DETAIL.add("spx", {
+  render:function(key){ let h="";
+  return {t:"Spells cast on you", h:__R.spxBody()};
+  }
+});
+DETAIL.add("f", {
+  render:function(key){ let h="";
+  const ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
     const cl0=__R.clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
     const fk=fKind(f), rl0=__R.resOf(f.n), r0=rl0[0];
@@ -287,14 +322,19 @@ function infoHTML0(spec){
     h+=__R.tmpFeatH(f);/* v21 RU55 */
     h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button></p></div>';
     return {t:f.n, h:h};
-  }
-  if(type==="grp"){
-    const G=(C.features||[])[+key]; if(!G) return {t:"Group", h:""};
+  },
+  self:function(k){ return ((k) =>{ const q=k.split("."), g_=(C.features||[])[+q[0]]; return ((g_&&g_.items||[])[+q[1]]||{}).n||""; })(k); }
+});
+DETAIL.add("grp", {
+  render:function(key){ let h="";
+  const G=(C.features||[])[+key]; if(!G) return {t:"Group", h:""};
     h=meta("Features",'')+'<div class="info-l">'+(G.items||[]).map((f,fi) =>{ return '<button type="button" data-info="f:'+key+'.'+fi+'">'+esc(f.n)+'<span>'+esc(f.s)+'</span></button>'; }).join("")+'</div>'+(G.next?'<p class="bk-f">'+esc(G.next)+'</p>':'');
     return {t:G.g, h:h};
   }
-  if(type==="w"){
-    const a=(C.attacks||[])[+key], d=D.atk[+key]; if(!a) return {t:"Attack", h:""};
+});
+DETAIL.add("w", {
+  render:function(key){ let h="";
+  const a=(C.attacks||[])[+key], d=D.atk[+key]; if(!a) return {t:"Attack", h:""};
     h='<div class="dc dc-w">'+dcHead(__R.ico("time-action","isch"),esc(a.dieSrc||"Attack"))+'<div class="dc-strip dc-s4 info-k">'+wCell("fx-attack","To hit",sg(d.hit),"ah-"+key)+wCell("hp-damage","Damage",esc(d.dmg),"ad-"+key)+wCell("fx-reach","Range",esc(a.range||"\u2014"))+wCell("item-weapon","Type",esc(a.type||"\u2014"),"",__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]]?__R.svgI(__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]],"ico dc-ci",""):"")+'</div>';
     if(a.sub) h+='<div class="info-h">Properties</div><p class="info-d">'+linkify(a.sub)+'</p>';
     if(a.m) h+='<div class="info-h">Mastery: '+(GLOSS[a.m]?'<button type="button" class="lk" data-info="g:'+esc(a.m)+'">'+esc(a.m)+'</button>':esc(a.m))+'</div>'+(GLOSS[a.m]?'<p class="info-d">'+rich(GLOSS[a.m].d)+'</p>':'');
@@ -303,8 +343,10 @@ function infoHTML0(spec){
     if(GLOSS[a.n]) h+='<div class="info-h">Base weapon</div><p class="info-d">'+rich(GLOSS[a.n].d)+'</p>';
     return {t:a.n, h:h+'</div>'};
   }
-  if(type==="it"){
-    const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
+});
+DETAIL.add("it", {
+  render:function(key){ let h="";
+  const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
     if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(__R.srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     const base=GLOSS[it.n], q=num(it.q,1), w=num(it.w,0);
     h=meta(base?base.c:"Item", base?base.s:"")+'<div class="info-k">'+tileS("Quantity",q)+tileS("Weight",w?fmtW(q*w)+" lb":"\u2014")+(eqOn(it)?tileS("Status","Worn"):"")+'</div>';
@@ -314,8 +356,13 @@ function infoHTML0(spec){
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
     h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
     return {t:it.n, h:h};
-  }
-  return {t:"", h:""};
+  },
+  self:function(k){ return ((k) =>((C.inv||[])[+k]||{}).n||"")(k); }
+});
+/* solid:orchestrator renderDetail */
+function infoHTML0(spec){
+  const i=spec.indexOf(":"), d=DETAIL.get(spec.slice(0,i));
+  return d?d.render(spec.slice(i+1)):{t:"", h:""};
 }
 export function closeSheet(){ __set_SWP(null);/* v36 p18 */ __set_SWP(null);/* v36 p18 */
   hpDockBack();/* v30 */ __R.morphStop();/* v31 p12 */

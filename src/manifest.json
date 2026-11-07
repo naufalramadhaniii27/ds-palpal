@@ -132,6 +132,7 @@
     "app/04-logic-storage.js",
     "app/05-logic-helpers.js",
     "app/06-logic-derivation.js",
+    "app/06a-logic-ui-registry.js",
     "app/07-ui-theme-contrast-spring.js",
     "app/08-ui-render-sheet-and-actions.js",
     "app/09-ui-hit-points-playbar-death-saves.js",

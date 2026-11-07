@@ -16,7 +16,7 @@ import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
 import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
 import {renderAll} from "./35-ui-combo.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {CTXSRC} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
 Object.defineProperty(__R,"bIndSet",{get:function(){return bIndSet;},set:function(v){bIndSet=v;},configurable:true});
 Object.defineProperty(__R,"barTo",{get:function(){return barTo;},set:function(v){barTo=v;},configurable:true});
@@ -206,18 +206,26 @@ function ctxFire(attrs){ const b=document.createElement("button"); b.type="butto
 function ctxBoxes(scope){ const bx=Array.prototype.slice.call(scope.querySelectorAll(".bx[data-k]")); if(!bx.length) return []; const on=bx.filter((b) =>{ return b.getAttribute("aria-pressed")==="true"||b.classList.contains("on"); }), off=bx.filter((b) =>{ return on.indexOf(b)<0; }), L=[];
   if(off.length) L.push(["Use 1","ui-check",function(){ off[0].click(); }]); else L.push(["Use 1 (none left)","ui-check",null]);
   if(on.length) L.push(["Regain 1","ui-undo",function(){ on[on.length-1].click(); }]); return L; }
-function ctxSpec(t){
-  const row=t.closest&&t.closest("#invBody .irow"); if(row){ const nb=row.querySelector('[data-info^="it:"]'); if(!nb) return null; const ix=+nb.getAttribute("data-info").slice(3), it=(C.inv||[])[ix]; if(!it) return null;
+CTXSRC.add("inventory-row", {sel:"#invBody .irow", build:function(row){
+  const nb=row.querySelector('[data-info^="it:"]'); if(!nb) return null; const ix=+nb.getAttribute("data-info").slice(3), it=(C.inv||[])[ix]; if(!it) return null;
     const L=[["Details","ui-info",function(){ nb.click(); }]], ck=row.querySelector("[data-ieqs]"); if(ck) L.push([eqOn(it)?"Unequip":"Equip",eqOn(it)?"ui-close":"ui-check",function(){ ck.click(); }]);
     if(CONS1.test(it.n)) L.push([num(it.q,1)>0?"Use 1":"Use 1 (none left)","ui-check",num(it.q,1)>0?function(){ ctxFire({"data-use1":ix,"data-potn":it.key||it.n}); }:null]);
-    L.push(["Delete","ui-trash",function(){ ctxFire({"data-idel":it.key||it.n,"data-iix":ix,"data-sure":"1"}); },1]); return {t:cuNm("i:"+invKey(it),it.n),L:L,el:row}; }
-  const sp=t.closest&&t.closest('#spBody .sp-r[data-info^="sp:"]'); if(sp){ const i=+sp.getAttribute("data-info").slice(3), x=(C.spells||[])[i]; if(!x) return null; const L2=[["Details","ui-info",function(){ sp.click(); }]];
+    L.push(["Delete","ui-trash",function(){ ctxFire({"data-idel":it.key||it.n,"data-iix":ix,"data-sure":"1"}); },1]); return {t:cuNm("i:"+invKey(it),it.n),L:L,el:row};
+}});
+CTXSRC.add("spell-row", {sel:'#spBody .sp-r[data-info^="sp:"]', build:function(sp){
+  const i=+sp.getAttribute("data-info").slice(3), x=(C.spells||[])[i]; if(!x) return null; const L2=[["Details","ui-info",function(){ sp.click(); }]];
     if(spAtWill(x)) L2.push(["Cast","tab-spells",function(){ ctxFire({"data-cast":i,"data-ck":""}); }]);
     else { const o=spCastOpts(x); if(!o.length) L2.push(["Cast (no slots left)","tab-spells",null]); o.forEach((q) =>{ L2.push([(q.free?"Use ":"Cast with ")+q.lab+" ("+q.left+" left)","tab-spells",qOk(q)?function(){ ctxFire({"data-cast":i,"data-ck":ckOf(q),"data-cl":q.lv}); }:null]); }); }
-    return {t:x.n,L:L2,el:sp}; }
-  const fi=t.closest&&t.closest("#featBody .fitem"); if(fi){ const tx=fi.querySelector('.tx[data-info^="f:"]'); if(!tx) return null; return {t:tx.textContent,L:[["Details","ui-info",function(){ tx.click(); }]].concat(ctxBoxes(fi)),el:fi}; }
-  const ar=t.closest&&t.closest("#actBody .arow, #actBody .rs"); if(ar){ const ax=ar.querySelector(".tx[data-info],[data-info]"); if(!ax) return null; return {t:ax.textContent,L:[["Details","ui-info",function(){ ax.click(); }]].concat(ctxBoxes(ar)),el:ar}; }
-  return null; }
+    return {t:x.n,L:L2,el:sp};
+}});
+CTXSRC.add("feature-item", {sel:"#featBody .fitem", build:function(fi){
+  const tx=fi.querySelector('.tx[data-info^="f:"]'); if(!tx) return null; return {t:tx.textContent,L:[["Details","ui-info",function(){ tx.click(); }]].concat(ctxBoxes(fi)),el:fi};
+}});
+CTXSRC.add("action-row", {sel:"#actBody .arow, #actBody .rs", build:function(ar){
+  const ax=ar.querySelector(".tx[data-info],[data-info]"); if(!ax) return null; return {t:ax.textContent,L:[["Details","ui-info",function(){ ax.click(); }]].concat(ctxBoxes(ar)),el:ar};
+}});
+/* solid:orchestrator ctxSpec */
+function ctxSpec(t){ const L=CTXSRC.list(); for(let i=0;i<L.length;i++){ const el=t.closest&&t.closest(L[i].sel); if(el) return L[i].build(el); } return null; }
 function ctxClose(){ const m=document.getElementById("ctxm"); if(m){ m.remove(); if(ctxClose.back&&ctxClose.back.focus) try{ ctxClose.back.focus({preventScroll:true}); }catch(e){} } ctxClose.back=null; }
 function ctxOpen(spec,x,y){ ctxClose(); const m=document.createElement("div"); m.id="ctxm"; m.className="ctxm"; m.setAttribute("role","menu"); m.setAttribute("aria-label",spec.t);
   m.innerHTML='<div class="ctxh">'+esc(spec.t)+'</div>'+spec.L.map((a,i) =>{ return '<button type="button" role="menuitem" class="ctxi'+(a[3]?' del':'')+'" data-ctxi="'+i+'"'+(a[2]?'':' disabled')+'>'+ico(a[1])+'<span>'+esc(a[0])+'</span></button>'; }).join("");

@@ -14,7 +14,7 @@ import {mq} from "./21-ui-tabs-pager.js";
 import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,ico,icoCls,icoItem,invKey,openRest,ordL,priceTxt,scAdj,scOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {spClsJ,spnHTML} from "./24-ui-manage-spells.js";
 import {cuNm} from "./26-ui-customize.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {PALWORD} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"LIBR",{get:function(){return LIBR;},set:function(v){LIBR=v;},configurable:true});
 Object.defineProperty(__R,"LIB_RULES",{get:function(){return LIB_RULES;},set:function(v){LIB_RULES=v;},configurable:true});
 Object.defineProperty(__R,"bkpCamp",{get:function(){return bkpCamp;},set:function(v){bkpCamp=v;},configurable:true});
@@ -127,32 +127,58 @@ function palCond(k){ const on=!S.cond[k]; return {i:"cond-"+k.toLowerCase(),t:(o
 function palVerb(h){ let V={dmg:["dmg","damage","dam","d","hit","hurt","-"],heal:["heal","h","hp","+","healing","cure"],temp:["temp","tmp","thp","temporary","temp hp","temporary hp","temporary hit points"],exh:["exh","exhaustion","exhausted","exhaust"]}, r="";
   Object.keys(V).forEach((k) =>{ if(!r&&V[k].indexOf(h)>=0) r=k; }); if(r||h.length<4) return r;
   Object.keys(V).forEach((k) =>{ if(!r&&V[k].some((w) =>{ return w.length>=4&&fzScore(h,w)>=0; })) r=k; }); return r; }
-function palWords(){ const W=[
-  {k:["damage","dmg"],f:function(){ return palNeed("dmg"); }},{k:["heal","healing"],f:function(){ return palNeed("heal"); }},{k:["temp","temporary hit points","thp"],f:function(){ return palNeed("temp"); }},
-  {k:["short rest","rest short"],f:function(){ return {i:"rest-short",t:"Short Rest",s:"Opens the Short Rest window. Nothing changes until you take the rest",run:function(){ openRest("short"); }}; }},
-  {k:["long rest","rest long"],f:function(){ return {i:"rest-long",t:"Long Rest",s:"Opens the Long Rest window. Nothing changes until you take the rest",run:function(){ openRest("long"); }}; }},
-  {k:["rest"],f:function(){ return {i:"rest-short",t:"Rest",s:"Choose a Short Rest or a Long Rest",run:function(){ openRest("menu"); }}; }},
-  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); const b=$("#insp"); if(b) b.click(); __R.toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }},
-  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.levelUp(); }}; }},
-  {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }},
-  {k:["exhaustion"],f:function(){ return palNeed("exh"); }},
-  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ __R.tmOpen(); }}; }},
-  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tgGo(); }}; }},
-  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ __R.wdOpen(); }}; }},
-  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ __R.cheatOpen(); }}; }},
-  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ __R.rbOpen(); }}; }},
-  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ __R.futureOpen(); }}; }},
-  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ __R.recapOpen(); }}; }},
-  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:__R.statusText().slice(0,80),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.statusCopy(); }}; }},
-  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ __R.rcptShow(); }}; }},
-  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }},
-  {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }},
-  {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ const b=$("#themeBtn"); if(b) b.click(); }}; }},
-  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.undoNow(); }}; }},
-  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ if(sheet.classList.contains("on")) closeSheet(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}];
-  PAL_TABS.forEach((t) =>{ W.push({k:t[0],f:function(){ return {i:t[4],t:"Go to "+t[3],s:"Open the "+t[3]+" page",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.goTab(t[1],t[2]); }}; }}); });
-  STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).forEach((k) =>{ W.push({k:[k.toLowerCase()],f:function(){ return palCond(k); }}); });
-  return W; }
+PALWORD.add("damage", {words:function(){ return [
+  {k:["damage","dmg"],f:function(){ return palNeed("dmg"); }}]; }});
+PALWORD.add("heal", {words:function(){ return [
+  {k:["heal","healing"],f:function(){ return palNeed("heal"); }}]; }});
+PALWORD.add("temp", {words:function(){ return [
+  {k:["temp","temporary hit points","thp"],f:function(){ return palNeed("temp"); }}]; }});
+PALWORD.add("short rest", {words:function(){ return [
+  {k:["short rest","rest short"],f:function(){ return {i:"rest-short",t:"Short Rest",s:"Opens the Short Rest window. Nothing changes until you take the rest",run:function(){ openRest("short"); }}; }}]; }});
+PALWORD.add("long rest", {words:function(){ return [
+  {k:["long rest","rest long"],f:function(){ return {i:"rest-long",t:"Long Rest",s:"Opens the Long Rest window. Nothing changes until you take the rest",run:function(){ openRest("long"); }}; }}]; }});
+PALWORD.add("rest", {words:function(){ return [
+  {k:["rest"],f:function(){ return {i:"rest-short",t:"Rest",s:"Choose a Short Rest or a Long Rest",run:function(){ openRest("menu"); }}; }}]; }});
+PALWORD.add("inspiration", {words:function(){ return [
+  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); const b=$("#insp"); if(b) b.click(); __R.toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }}]; }});
+PALWORD.add("level up", {words:function(){ return [
+  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.levelUp(); }}; }}]; }});
+PALWORD.add("conditions", {words:function(){ return [
+  {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }}]; }});
+PALWORD.add("exhaustion", {words:function(){ return [
+  {k:["exhaustion"],f:function(){ return palNeed("exh"); }}]; }});
+PALWORD.add("history", {words:function(){ return [
+  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ __R.tmOpen(); }}; }}]; }});
+PALWORD.add("training ground", {words:function(){ return [
+  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tgGo(); }}; }}]; }});
+PALWORD.add("which die", {words:function(){ return [
+  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ __R.wdOpen(); }}; }}]; }});
+PALWORD.add("cheat sheet", {words:function(){ return [
+  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ __R.cheatOpen(); }}; }}]; }});
+PALWORD.add("find a build", {words:function(){ return [
+  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ __R.rbOpen(); }}; }}]; }});
+PALWORD.add("future", {words:function(){ return [
+  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ __R.futureOpen(); }}; }}]; }});
+PALWORD.add("recap", {words:function(){ return [
+  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ __R.recapOpen(); }}; }}]; }});
+PALWORD.add("status", {words:function(){ return [
+  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:__R.statusText().slice(0,80),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.statusCopy(); }}; }}]; }});
+PALWORD.add("what changed", {words:function(){ return [
+  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ __R.rcptShow(); }}; }}]; }});
+PALWORD.add("tour", {words:function(){ return [
+  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }}]; }});
+PALWORD.add("learn", {words:function(){ return [
+  {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }}]; }});
+PALWORD.add("settings", {words:function(){ return [
+  {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ const b=$("#themeBtn"); if(b) b.click(); }}; }}]; }});
+PALWORD.add("undo", {words:function(){ return [
+  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.undoNow(); }}; }}]; }});
+PALWORD.add("redo", {words:function(){ return [
+  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ if(sheet.classList.contains("on")) closeSheet(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}]; }});
+PALWORD.add("tabs", {words:function(){ const W=[]; PAL_TABS.forEach((t) =>{ W.push({k:t[0],f:function(){ return {i:t[4],t:"Go to "+t[3],s:"Open the "+t[3]+" page",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.goTab(t[1],t[2]); }}; }}); }); return W; }});
+PALWORD.add("condition-toggles", {words:function(){ const W=[]; STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).forEach((k) =>{ W.push({k:[k.toLowerCase()],f:function(){ return palCond(k); }}); }); return W; }});
+/* solid:orchestrator palWords */
+function palWords(){ const W=[]; PALWORD.list().forEach((p) =>{ p.words().forEach((w) =>{ W.push(w); }); }); return W; }
 export function palCmds(q){ if(!q||FROZEN||!D||!D.hpmax) return []; const m=/^(.*?)\s*([+-]?\d{1,4})$/.exec(q);
   if(m){ const hd=m[1].trim(), n=Math.abs(parseInt(m[2],10)), sg0=/^[+-]/.test(m[2])?m[2].charAt(0):"";
     if(!hd) return [sg0==="+"?null:palDmg(n),sg0==="-"?null:palHeal(n)].filter((x) =>{ return x&&x.run; });

@@ -5,6 +5,7 @@ import "./03-data-glossary.js";
 import "./04-logic-storage.js";
 import "./05-logic-helpers.js";
 import "./06-logic-derivation.js";
+import "./06a-logic-ui-registry.js";
 import "./07-ui-theme-contrast-spring.js";
 import "./08-ui-render-sheet-and-actions.js";
 import "./09-ui-hit-points-playbar-death-saves.js";
