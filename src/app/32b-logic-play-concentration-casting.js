@@ -1,15 +1,15 @@
-/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
-import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {featAll,syncLU} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {renderConds} from "./10-ui-conditions.js";import {refreshEntry,showEntry} from "./12-ui-bottom-sheet-modal.js";import {spLvSel,spPactLv,spRowLv} from "./22-ui-spell-data-and-slots.js";import {renderSpells} from "./23e-ui-spells-dc.js";import {__R} from "./00-reg.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
-Object.defineProperty(__R,"clsLvls",{get:function(){return clsLvls;},set:function(v){clsLvls=v;},configurable:true});
-Object.defineProperty(__R,"concAuto",{get:function(){return concAuto;},set:function(v){concAuto=v;},configurable:true});
-Object.defineProperty(__R,"concCheck",{get:function(){return concCheck;},set:function(v){concCheck=v;},configurable:true});
-Object.defineProperty(__R,"concChip",{get:function(){return concChip;},set:function(v){concChip=v;},configurable:true});
-Object.defineProperty(__R,"concEnd",{get:function(){return concEnd;},set:function(v){concEnd=v;},configurable:true});
-Object.defineProperty(__R,"concHead",{get:function(){return concHead;},set:function(v){concHead=v;},configurable:true});
-Object.defineProperty(__R,"concOf",{get:function(){return concOf;},set:function(v){concOf=v;},configurable:true});
-Object.defineProperty(__R,"hasFeat",{get:function(){return hasFeat;},set:function(v){hasFeat=v;},configurable:true});
-Object.defineProperty(__R,"spCastH",{get:function(){return spCastH;},set:function(v){spCastH=v;},configurable:true});
-Object.defineProperty(__R,"spIx",{get:function(){return spIx;},set:function(v){spIx=v;},configurable:true});
+import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
+import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
+bindLive("clsLvls",{get:function(){return clsLvls;}});
+bindLive("concAuto",{get:function(){return concAuto;}});
+bindLive("concCheck",{get:function(){return concCheck;}});
+bindLive("concChip",{get:function(){return concChip;}});
+bindLive("concEnd",{get:function(){return concEnd;}});
+bindLive("concHead",{get:function(){return concHead;}});
+bindLive("concOf",{get:function(){return concOf;}});
+bindLive("hasFeat",{get:function(){return hasFeat;}});
+bindLive("spCastH",{get:function(){return spCastH;}});
+bindLive("spIx",{get:function(){return spIx;}});
 export function clsLvls(){ let o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
 export function lvOf(c){ return clsLvls()[c]||0; }
 export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); }
@@ -35,7 +35,7 @@ function concHead(){ const o=concOf(); [".band .mini",".band .office > div"].for
   const i=spIx(o.n); if(i>=0) b.setAttribute("data-info","sp:"+i); else b.removeAttribute("data-info"); b.innerHTML='<i aria-hidden="true">C</i>'+esc(o.n); b.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); b.title="Concentrating on "+o.n; }); }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-concend],[data-concon]"); if(!t) return; e.preventDefault(); e.stopPropagation();
   if(t.hasAttribute("data-concend")){ const m=concEnd(); save(); renderConds(); refreshEntry(); if(m) toast(m); return; }
-  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return; const m2=concSet(x,spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
+  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return; const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
 
 /* ---------- RU49 Cast and Use ---------- */
 export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:r.max-used(r.k,r.max)}:null; }
@@ -80,10 +80,10 @@ export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; let
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); let msg="Cast "+x.n;
-  if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; spLvSel[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; spLvSel[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) spLvSel[x.n]=+lv; } }
+  if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
-  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ __R.cmbCast(x.n); save(); __R.cmbRe(); }catch(er){} }
+  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
 export function quickCast(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
   const o=spCastOpts(x), av=o.filter(qOk);

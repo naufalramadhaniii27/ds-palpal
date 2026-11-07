@@ -1,10 +1,10 @@
-/* Responsibility: experience and level up, the journal and the Combat View body. Split out of the former single file 34 in SOLID stage 9 (S); runs in the same order as before. */
-import {fmtInt} from "./lib/fmt.js";import {C,S,save} from "./04-logic-storage.js";import {$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";import {activeConds} from "./10-ui-conditions.js";import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";import {closeSheetIfOn} from "./13-ui-detail-cards.js";import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {pinnedH} from "./27c-ui-report-pins.js";import {concChip,concOf} from "./32b-logic-play-concentration-casting.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {sitAtk,sitCombatH} from "./34-ui-situations.js";import {cfFlags,modeChips,noActH} from "./34b-ui-combat-effects-modes.js";
-Object.defineProperty(__R,"combatHTML",{get:function(){return combatHTML;},set:function(v){combatHTML=v;},configurable:true});
-Object.defineProperty(__R,"fmtN",{get:function(){return fmtN;},set:function(v){fmtN=v;},configurable:true});
-Object.defineProperty(__R,"jrnH",{get:function(){return jrnH;},set:function(v){jrnH=v;},configurable:true});
-Object.defineProperty(__R,"levelUp",{get:function(){return levelUp;},set:function(v){levelUp=v;},configurable:true});
-Object.defineProperty(__R,"xpBox",{get:function(){return xpBox;},set:function(v){xpBox=v;},configurable:true});
+import {bindLive,cmbHTML} from "./00a-reg-late-ports.js";/* Responsibility: experience and level up, the journal and the Combat View body. Split out of the former single file 34 in SOLID stage 9 (S); runs in the same order as before. */
+import {fmtInt} from "./lib/fmt.js";import {C,S,save} from "./04-logic-storage.js";import {$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";import {activeConds} from "./10-ui-conditions.js";import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";import {closeSheetIfOn} from "./13-ui-detail-cards.js";import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {pinnedH} from "./27c-ui-report-pins.js";import {concChip,concOf} from "./32b-logic-play-concentration-casting.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {env} from "./00-env.js";import {sitAtk,sitCombatH} from "./34-ui-situations.js";import {cfFlags,modeChips,noActH} from "./34b-ui-combat-effects-modes.js";
+bindLive("combatHTML",{get:function(){return combatHTML;}});
+bindLive("fmtN",{get:function(){return fmtN;}});
+bindLive("jrnH",{get:function(){return jrnH;}});
+bindLive("levelUp",{get:function(){return levelUp;}});
+bindLive("xpBox",{get:function(){return xpBox;}});
 const XPT=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
 function fmtN(n){ return fmtInt(n); }
 function xpH(){ const lv=D.level, ms=S.lvMode==="milestone", xp=Math.max(0,Math.floor(num(S.xp,0))), next=lv<20?XPT[lv]:null, prev=XPT[lv-1]||0, ready=!ms&&next!=null&&xp>=next, pct=next?clamp((xp-prev)/(next-prev)*100,0,100):100;
@@ -41,7 +41,7 @@ document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.clo
   const ax=document.getElementById("j-addxp"); if(xp&&ax&&ax.checked) S.xp=Math.max(0,Math.floor(num(S.xp,0)))+xp; save(); renderNotes(); xpBox(); toastU("Journal entry added"+(xp&&ax&&ax.checked?", "+fmtN(xp)+" XP added":"")+"."); });
 
 /* ---------- RU62 combat view: one screen ---------- */
-export function combatHTML(){ const h=combatHTML0().replace('</div>','</div>'+pinnedH()), c=__R.cmbHTML(), m='<div class="info-h">Attacks</div>', i=h.indexOf(m); return i>=0?h.slice(0,i)+c+h.slice(i):h.replace(/<\/div>$/,c+'</div>'); }/* v27 RU35 no. 9: pinned skills on top */
+export function combatHTML(){ const h=combatHTML0().replace('</div>','</div>'+pinnedH()), c=cmbHTML(), m='<div class="info-h">Attacks</div>', i=h.indexOf(m); return i>=0?h.slice(0,i)+c+h.slice(i):h.replace(/<\/div>$/,c+'</div>'); }/* v27 RU35 no. 9: pinned skills on top */
 function combatHTML0(){ const o=concOf(), atk=(C.attacks||[]).map((a,i) =>{ if(!atkOn(a)) return ""; const d=D.atk[i]; return '<button type="button" class="cba" data-info="w:'+i+'"><b>'+esc(a.n)+'</b>'+cfFlags(sitAtk(a))+'<span>'+sg(d.hit)+'</span><span>'+esc(d.dmg)+' '+esc(a.type||"")+'</span></button>'; }).join("");
   const sl=(D.res||[]).filter((r) =>{ return /^s\d$/.test(r.k)||r.k==="pact"; }), lu=(D.res||[]).filter((r) =>{ return !/^s\d$|^pact$|^hd/.test(r.k); });
   return '<div id="cbv"><div class="cbh"><div><b>'+S.hp+'<small>/'+D.hpmax+'</small></b><span>HP'+(S.tmp?' +'+S.tmp+' temp':'')+'</span></div><div><b>'+D.ac+'</b><span>AC</span></div><div><b>'+sg(D.init)+'</b><span>Init</span></div><div><b>'+D.speed+'</b><span>Speed</span></div></div>'+

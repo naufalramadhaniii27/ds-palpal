@@ -1,4 +1,4 @@
-import {ABN} from "./02-data-default-character.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {C,FROZEN} from "./04-logic-storage.js";
 import {esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
@@ -6,11 +6,11 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {LEARN_LINK,__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {uiSet} from "./15c-logic-file-state-compress.js";
 import {RB_AB} from "./50-logic-reverse-builder.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"cheatOpen",{get:function(){return cheatOpen;},set:function(v){cheatOpen=v;},configurable:true});
-Object.defineProperty(__R,"coachGet",{get:function(){return coachGet;},set:function(v){coachGet=v;},configurable:true});
-Object.defineProperty(__R,"coachLine",{get:function(){return coachLine;},set:function(v){coachLine=v;},configurable:true});
-Object.defineProperty(__R,"wdOpen",{get:function(){return wdOpen;},set:function(v){wdOpen=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("cheatOpen",{get:function(){return cheatOpen;}});
+bindLive("coachGet",{get:function(){return coachGet;}});
+bindLive("coachLine",{get:function(){return coachLine;}});
+bindLive("wdOpen",{get:function(){return wdOpen;}});
 /* T11 Learn U7, U3, U47: help at the table, made from the character's own numbers.
    U7 "Which die do I roll?": pick what you are doing, get the die and the bonus of this character.
    U3 table cheat sheet: one short page for a running session (your turn, the actions, your numbers, a few rules).

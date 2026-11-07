@@ -1,16 +1,16 @@
-import {CKEY,FROZEN,KEY,lsGet,lsSet} from "./04-logic-storage.js";
+import {bindLive,lateGet,__set_navStack,openSheet,closeSheet,rGet,rSave,ico} from "./00a-reg-late-ports.js";import {CKEY,FROZEN,KEY,lsGet,lsSet} from "./04-logic-storage.js";
 import {$,__set_toastT,esc,toast,toastT} from "./05-logic-helpers.js";
-import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
-import {BKEY,rGet,rSave} from "./14-ui-editor.js";
-import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+
+
+
+
 import {syText} from "./43-logic-cloud-sync.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"mgNotice",{get:function(){return mgNotice;},set:function(v){mgNotice=v;},configurable:true});
-Object.defineProperty(__R,"mgSet",{get:function(){return mgSet;},set:function(v){mgSet=v;},configurable:true});
-Object.defineProperty(__R,"syBaseGet",{get:function(){return syBaseGet;},set:function(v){syBaseGet=v;},configurable:true});
-Object.defineProperty(__R,"syBaseSet",{get:function(){return syBaseSet;},set:function(v){syBaseSet=v;},configurable:true});
-Object.defineProperty(__R,"syMerge",{get:function(){return syMerge;},set:function(v){syMerge=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("mgNotice",{get:function(){return mgNotice;}});
+bindLive("mgSet",{get:function(){return mgSet;}});
+bindLive("syBaseGet",{get:function(){return syBaseGet;}});
+bindLive("syBaseSet",{get:function(){return syBaseSet;}});
+bindLive("syMerge",{get:function(){return syMerge;}});
 /* T11 G3 N12 Merge per part. When this device and the cloud both changed one character since the last sync, the app compares three
    copies like git does: the last synced copy (base, kept per character under cs-sync-base-<id>), this device, and the cloud.
    A part changed on one side only is taken from that side. A part changed on both sides in different ways keeps this device's value,
@@ -54,7 +54,7 @@ function mgGet(id){ try{ const o=JSON.parse(__store.getItem(SYM+id)||"null"); re
 function mgSet(id,o){ try{ if(!o||!o.parts.length) __store.removeItem(SYM+id); else __store.setItem(SYM+id,JSON.stringify(o)); }catch(e){} }
 /* the other device's value of one part, written into the character. The open character is written to its slots and the page reloads */
 function mgUse(id,i){ const o=mgGet(id); if(!o) return; const q=o.parts[i]; if(!q) return; const r=rGet(); if(!r||!r.chars||!r.chars[id]) return;
-  let act=id===r.active&&!FROZEN, slot={B:BKEY,C:CKEY,S:KEY}[q.p[0]], cur;
+  let act=id===r.active&&!FROZEN, slot={B:lateGet("BKEY"),C:CKEY,S:KEY}[q.p[0]], cur;
   try{ cur=act&&slot?JSON.parse(lsGet(slot)||"null"):JSON.parse(r.chars[id][q.p[0]]||"null"); }catch(e){ cur=null; }
   if(q.p.length===1){ cur=q.r===undefined?null:JSON.parse(q.r); }
   else { if(!mgPlain(cur)) return; let o2=cur; for(let j=1;j<q.p.length-1;j++){ if(!mgPlain(o2[q.p[j]])) o2[q.p[j]]={}; o2=o2[q.p[j]]; } const last=q.p[q.p.length-1]; if(q.r===undefined) delete o2[last]; else o2[last]=JSON.parse(q.r); }
@@ -62,7 +62,7 @@ function mgUse(id,i){ const o=mgGet(id); if(!o) return; const q=o.parts[i]; if(!
   if(act&&slot){ if(cur==null) lsSet(slot,""); else lsSet(slot,JSON.stringify(cur)); location.reload(); return true; }
   r.chars[id][q.p[0]]=cur==null?null:JSON.stringify(cur); rSave(r); return false; }
 /* the value of a part here, for the choice list. Short plain values are shown, longer ones are described */
-function mgCur(id,p){ let r=rGet(), act=r&&id===r.active&&!FROZEN, slot={B:BKEY,C:CKEY,S:KEY}[p[0]], o;
+function mgCur(id,p){ let r=rGet(), act=r&&id===r.active&&!FROZEN, slot={B:lateGet("BKEY"),C:CKEY,S:KEY}[p[0]], o;
   try{ o=act&&slot?JSON.parse(lsGet(slot)||"null"):JSON.parse(((r&&r.chars&&r.chars[id])||{})[p[0]]||"null"); }catch(e){ return undefined; }
   for(let j=1;j<p.length;j++){ if(!o||typeof o!=="object") return undefined; o=o[p[j]]; } return o; }
 function mgShow(v){ if(v===undefined||v===null||v==="") return "empty"; if(typeof v==="number"||typeof v==="boolean") return String(v);

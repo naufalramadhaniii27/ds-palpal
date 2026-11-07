@@ -1,13 +1,13 @@
-import {GLOSS} from "./03-data-glossary.js";import {C,S} from "./04-logic-storage.js";import {esc,num,sg} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {linkify} from "./13-ui-detail-cards.js";import {resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL,scAdj} from "./23e-ui-spells-dc.js";import {__R} from "./00-reg.js";import {env as PGE} from "./00-env.js";
-Object.defineProperty(__R,"NOTE_MORE",{get:function(){return NOTE_MORE;},set:function(v){NOTE_MORE=v;},configurable:true});
-Object.defineProperty(__R,"clsOfG",{get:function(){return clsOfG;},set:function(v){clsOfG=v;},configurable:true});
-Object.defineProperty(__R,"fch",{get:function(){return fch;},set:function(v){fch=v;},configurable:true});
-Object.defineProperty(__R,"featNums",{get:function(){return featNums;},set:function(v){featNums=v;},configurable:true});
-Object.defineProperty(__R,"featSpL",{get:function(){return featSpL;},set:function(v){featSpL=v;},configurable:true});
-Object.defineProperty(__R,"pgGuess",{get:function(){return pgGuess;},set:function(v){pgGuess=v;},configurable:true});
-Object.defineProperty(__R,"profsH",{get:function(){return profsH;},set:function(v){profsH=v;},configurable:true});
-Object.defineProperty(__R,"scCls",{get:function(){return scCls;},set:function(v){scCls=v;},configurable:true});
-Object.defineProperty(__R,"srcPg",{get:function(){return srcPg;},set:function(v){srcPg=v;},configurable:true});
+import {bindLive,clsLvls} from "./00a-reg-late-ports.js";import {GLOSS} from "./03-data-glossary.js";import {C,S} from "./04-logic-storage.js";import {esc,num,sg} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {boxes,used} from "./08-ui-render-sheet-and-actions.js";import {linkify} from "./13-ui-detail-cards.js";import {resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL,scAdj} from "./23e-ui-spells-dc.js";import {env as PGE} from "./00-env.js";
+bindLive("NOTE_MORE",{get:function(){return NOTE_MORE;},set:function(v){NOTE_MORE=v;}});
+bindLive("clsOfG",{get:function(){return clsOfG;}});
+bindLive("fch",{get:function(){return fch;}});
+bindLive("featNums",{get:function(){return featNums;}});
+bindLive("featSpL",{get:function(){return featSpL;}});
+bindLive("pgGuess",{get:function(){return pgGuess;}});
+bindLive("profsH",{get:function(){return profsH;}});
+bindLive("scCls",{get:function(){return scCls;}});
+bindLive("srcPg",{get:function(){return srcPg;}});
 /* ================= v23: D&D BEYOND LOOK 2 ================= */
 /* RU36 no. 1: source with the printed page, "PHB-2024, pg. 153, Warlock 1" */
 export function srcPg(s,pg,book){ s=String(s||""); if(!pg) return s; const b=book||(/^DMG/.test(s)?"DMG-2024":/^MoM/.test(s)?"MoM":"PHB-2024");/* v36 p21 */ return s.indexOf(b)===0?b+", pg. "+pg+s.slice(b.length):(s?s+", ":"")+b+", pg. "+pg; }
@@ -22,7 +22,7 @@ export function scCls(cl){ const sc=scAdj(C.spellcasting||{}); if(cl&&Array.isAr
 function clsOfG(g){ const m=/^(\w+)(?: Subclass:| \(multiclass)/.exec(g||""); if(m) return m[1]; return g&&CLS_NAMES.indexOf(g)>=0?g:(C.cls||""); }
 var CLS_NAMES=["Artificer","Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Warlock","Wizard"];
 /* RU36 no. 4: numbers worked out for this character, in bold after the words that name them. Only text, never inside tags */
-function featNums(h,cl){ const sc=scCls(cl), lv=__R.clsLvls(), B1=function(v){ return ' (<b class="fnum">'+v+'</b>)'; }, AB={Strength:"STR",Dexterity:"DEX",Constitution:"CON",Intelligence:"INT",Wisdom:"WIS",Charisma:"CHA"}, MUL={twice:2,"three times":3,"four times":4,"five times":5,"ten times":10,half:0.5};
+function featNums(h,cl){ const sc=scCls(cl), lv=clsLvls(), B1=function(v){ return ' (<b class="fnum">'+v+'</b>)'; }, AB={Strength:"STR",Dexterity:"DEX",Constitution:"CON",Intelligence:"INT",Wisdom:"WIS",Charisma:"CHA"}, MUL={twice:2,"three times":3,"four times":4,"five times":5,"ten times":10,half:0.5};
   const RX=/\b(?:(twice|three times|four times|five times|ten times|half) )?([Yy]our) (Proficiency Bonus|(Barbarian|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Warlock|Wizard|character) level|(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) modifier|spell save DC|spell attack (?:modifier|bonus))(?: divided by (\d+))?((?: \((?:round(?:ed)? (?:up|down)|minimum(?: of)? (?:[+-]?\d+|once|one|two)[^)]*)\))*)(?:,? rounded (up|down))?(?! \()/g;
   return String(h).split(/(<[^>]+>)/).map((t,i) =>{ if(i%2) return t;
     return t.replace(RX,(m,mul,yo,what,cls,ab,div,par,rnd) =>{ let v, sign=false;

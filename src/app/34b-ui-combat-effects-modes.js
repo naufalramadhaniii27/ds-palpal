@@ -1,13 +1,13 @@
-/* Responsibility: combat effect numbers, condition flags and mode toggles of the Situations panel. Split out of the former single file 34 in SOLID stage 9 (S); runs in the same order as before. */
-import {ABK} from "./02-data-default-character.js";import {x14} from "./03-data-glossary.js";import {C,S,save} from "./04-logic-storage.js";import {ask,eqOn,esc,num} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";import {AK_ICON,akIcon,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";import {INCAP,concEnd,concOf,hasFeat} from "./32b-logic-play-concentration-casting.js";import {tmpApply,tmpFeat} from "./32c-logic-play-temp-features-ammo.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";import {__R} from "./00-reg.js";import {sitFx} from "./34-ui-situations.js";
-Object.defineProperty(__R,"cfFlags",{get:function(){return cfFlags;},set:function(v){cfFlags=v;},configurable:true});
-Object.defineProperty(__R,"cfSave",{get:function(){return cfSave;},set:function(v){cfSave=v;},configurable:true});
-Object.defineProperty(__R,"cfSkill",{get:function(){return cfSkill;},set:function(v){cfSkill=v;},configurable:true});
-Object.defineProperty(__R,"cfx",{get:function(){return cfx;},set:function(v){cfx=v;},configurable:true});
-Object.defineProperty(__R,"modeChips",{get:function(){return modeChips;},set:function(v){modeChips=v;},configurable:true});
-Object.defineProperty(__R,"modeXdRows",{get:function(){return modeXdRows;},set:function(v){modeXdRows=v;},configurable:true});
-Object.defineProperty(__R,"noActH",{get:function(){return noActH;},set:function(v){noActH=v;},configurable:true});
-Object.defineProperty(__R,"saveCantripRows",{get:function(){return saveCantripRows;},set:function(v){saveCantripRows=v;},configurable:true});
+import {bindLive,renderAll} from "./00a-reg-late-ports.js";/* Responsibility: combat effect numbers, condition flags and mode toggles of the Situations panel. Split out of the former single file 34 in SOLID stage 9 (S); runs in the same order as before. */
+import {ABK} from "./02-data-default-character.js";import {x14} from "./03-data-glossary.js";import {C,S,save} from "./04-logic-storage.js";import {ask,eqOn,esc,num} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";import {AK_ICON,akIcon,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";import {INCAP,concEnd,concOf,hasFeat} from "./32b-logic-play-concentration-casting.js";import {tmpApply,tmpFeat} from "./32c-logic-play-temp-features-ammo.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";import {sitFx} from "./34-ui-situations.js";
+bindLive("cfFlags",{get:function(){return cfFlags;}});
+bindLive("cfSave",{get:function(){return cfSave;}});
+bindLive("cfSkill",{get:function(){return cfSkill;}});
+bindLive("cfx",{get:function(){return cfx;}});
+bindLive("modeChips",{get:function(){return modeChips;}});
+bindLive("modeXdRows",{get:function(){return modeXdRows;}});
+bindLive("noActH",{get:function(){return noActH;}});
+bindLive("saveCantripRows",{get:function(){return saveCantripRows;}});
 function cfx(){ const o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[],res:[],fly:null,xd:[],dmgStr:0,atkW:0,init:[],ds:[]}, c=Object.assign({},S.cond||{});
   if(c.Petrified) delete c.Poisoned;/* v22 m2: Petrified gives Immunity to the Poisoned condition */
   if(c.Invisible) o.init.push({t:"ADV",s:"Invisible when you roll Initiative"}); INCAP.forEach((k) =>{ if(c[k]) o.init.push({t:"DIS",s:k+" when you roll Initiative"}); });/* v22 m1 */
@@ -47,13 +47,13 @@ function cfSave(k){ const f=D.cf||{}; return ((f.save||{})[k]||[]).slice(); }
 export function modeChips(){ const av=modesAvail(); if(!av.length) return ""; return av.map((m) =>{ const on=modeOn(m.k); return '<button type="button" class="chip mode'+(on?' on':'')+' press" data-mode="'+m.k+'" aria-pressed="'+on+'">'+esc(m.n)+'</button>'; }).join(""); }
 function modeUse(m){ return (D.res||[]).filter((r) =>{ return m.use.test(r.n); })[0]; }
 function modeToggle(k){ const m=MODES.filter((x) =>{ return x.k===k; })[0]; if(!m) return; S.mode=S.mode||{};
-  if(S.mode[k]){ undoMark("End "+m.n); delete S.mode[k]; save(); __R.renderAll(); refreshEntry(); toastU(m.n+" ended."); return; }
+  if(S.mode[k]){ undoMark("End "+m.n); delete S.mode[k]; save(); renderAll(); refreshEntry(); toastU(m.n+" ended."); return; }
   const go=function(useIt){ undoMark(m.n); let r=modeUse(m), msg=m.n+" is active.", wsT=null;
     if(m.g) MODES.forEach((x) =>{ if(x.g===m.g&&x.k!==k) delete S.mode[x.k]; });
     S.mode[k]=1; if(useIt&&r){ S.used[r.k]=num(S.used[r.k],0)+1; msg+=" One use of "+r.n+" spent."; }
     if(k==="rage"&&concOf()) msg+=" "+concEnd("Rage");
     if(k==="wildshape"){ wsT=tmpFeat(hasFeat("Circle Forms")?"Circle Forms":"Wild Shape",""); if(wsT&&wsT.v&&!(S.tmp>0)){ S.tmp=wsT.v; msg+=" Temporary Hit Points: "+wsT.v+"."; wsT=null; } }
-    save(); __R.renderAll(); refreshEntry(); toastU(msg);
+    save(); renderAll(); refreshEntry(); toastU(msg);
     if(wsT&&wsT.v) tmpApply(wsT.v,"Wild Shape",true); };/* v22 M5: one Undo for the whole action */
   const r=modeUse(m), grp=m.g&&MODES.some((x) =>{ return x.g===m.g&&modeOn(x.k); });
   if(grp){ go(false); return; }

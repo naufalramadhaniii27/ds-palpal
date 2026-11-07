@@ -1,4 +1,4 @@
-import {env} from "./00-env.js";import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {env} from "./00-env.js";import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
 import {exSpd,gName} from "./03-data-glossary.js";
 import {C,S,clsLv} from "./04-logic-storage.js";
 import {$,atkOn,eqOn,esc,fmtW,num,senseList,sg} from "./05-logic-helpers.js";
@@ -7,8 +7,8 @@ import {langText} from "./08-ui-render-sheet-and-actions.js";
 import {activeConds} from "./10-ui-conditions.js";
 import {invWeight} from "./23b-ui-items-containers.js";import {COINS,coinsNow} from "./23c-ui-coins.js";
 import {cuNm} from "./26-ui-customize.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"buildPrint",{get:function(){return buildPrint;},set:function(v){buildPrint=v;},configurable:true});
+
+bindLive("buildPrint",{get:function(){return buildPrint;}});
 /* ================= PRINTABLE SHEET ================= */
 function chk(n){let h="";for(let i=0;i<n;i++)h+='<span class="ps-chk"></span>';return h}
 export function buildPrint(){

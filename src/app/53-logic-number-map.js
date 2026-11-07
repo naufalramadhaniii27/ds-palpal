@@ -1,9 +1,9 @@
-import {ABN} from "./02-data-default-character.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {FROZEN} from "./04-logic-storage.js";
 import {esc,sg} from "./05-logic-helpers.js";
 import {B,D} from "./06-logic-derivation.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"nmHTML",{get:function(){return nmHTML;},set:function(v){nmHTML=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("nmHTML",{get:function(){return nmHTML;}});
 /* T11 N19 number map: which numbers feed a number, and which other numbers move with it. Made from the breakdowns (B) the sheet
    already keeps for every number, so it can never disagree with the sheet. An ability modifier or the Proficiency Bonus is a hub:
    tapping it shows every number that uses it, around a small diagram. Any other number shows what it is built from and what shares

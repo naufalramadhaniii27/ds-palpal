@@ -1,4 +1,4 @@
-/* Responsibility: spell cards to print, the bug report, the Foundry export, pinned skills and the old sheet notice. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {bindLive,clsLvls,lateGet,renderAll,undoFix,undoTidy} from "./00a-reg-late-ports.js";/* Responsibility: spell cards to print, the bug report, the Foundry export, pinned skills and the old sheet notice. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __bldDiff, __bldMine, __reportText. Shared names with other modules come from the imports below, late names through __R. */
 import {copyText} from "./lib/clipboard.js";
 import {ABK} from "./02-data-default-character.js";
@@ -10,16 +10,16 @@ import {BKEY,rEnsure} from "./14-ui-editor.js";
 import {dlFile} from "./15c-logic-file-state-compress.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {coinsNow} from "./23c-ui-coins.js";import {ordL,scOf} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
-import {__R} from "./00-reg.js";
+
 import {env} from "./00-env.js";
 import {rC,rS} from "./27-ui-party-search-commands-library.js";
 import {libAddDo} from "./27b-ui-library.js";
-Object.defineProperty(__R,"foundryOut",{get:function(){return foundryOut;},set:function(v){foundryOut=v;},configurable:true});
-Object.defineProperty(__R,"oldNoteH",{get:function(){return oldNoteH;},set:function(v){oldNoteH=v;},configurable:true});
-Object.defineProperty(__R,"pinOn",{get:function(){return pinOn;},set:function(v){pinOn=v;},configurable:true});
-Object.defineProperty(__R,"pinSpBtn",{get:function(){return pinSpBtn;},set:function(v){pinSpBtn=v;},configurable:true});
-Object.defineProperty(__R,"pinnedH",{get:function(){return pinnedH;},set:function(v){pinnedH=v;},configurable:true});
-Object.defineProperty(__R,"reportOpen",{get:function(){return reportOpen;},set:function(v){reportOpen=v;},configurable:true});
+bindLive("foundryOut",{get:function(){return foundryOut;}});
+bindLive("oldNoteH",{get:function(){return oldNoteH;}});
+bindLive("pinOn",{get:function(){return pinOn;}});
+bindLive("pinSpBtn",{get:function(){return pinSpBtn;}});
+bindLive("pinnedH",{get:function(){return pinnedH;}});
+bindLive("reportOpen",{get:function(){return reportOpen;}});
 /* v29 RU126: keep the input, swap only the results */
 
 /* RU68: spell cards to print, several on an A4 page. Long rules text takes two card spaces */
@@ -47,9 +47,9 @@ function reportText(){ const s2=clone(S); if(s2.portrait) s2.portrait="(portrait
     errors:ERRLOG, perf:PERF, sheet:C, state:s2, build:b, trail:repTrail()},null,1); }
 /* T11 N18: the last actions (from the undo list) with the state before the first one and after each one, so tests/replay_report.py can play them back.
    Portrait, notes and journal are left out the same way as in the state above */
-function repTrail(){ try{ if(typeof __R.undoTidy==="function") __R.undoTidy(); const L=(typeof __R.UST!=="undefined"?__R.UST:[]).slice(-10); if(!L.length) return null;
+function repTrail(){ try{ if(typeof lateGet("undoTidy")==="function") undoTidy(); const L=(typeof lateGet("UST")!=="undefined"?lateGet("UST"):[]).slice(-10); if(!L.length) return null;
   const cut=function(js){ if(!js) return null; let o; try{ o=JSON.parse(js); }catch(e){ return null; } if(o&&typeof o==="object"){ if(o.portrait) o.portrait="(portrait left out)"; if(!REP_NOTES){ if(o.notes) o.notes="(notes left out)"; if(o.journal) o.journal="(journal left out)"; } } return o; };
-  L.forEach((e) =>{ if(typeof __R.undoFix==="function") __R.undoFix(e); });
+  L.forEach((e) =>{ if(typeof lateGet("undoFix")==="function") undoFix(e); });
   return {start:{state:cut(L[0].S), sheet:cut(L[0].C), build:cut(L[0].B)}, steps:L.map((e) =>{ return {l:e.l, t:new Date(e.t).toISOString(), state:cut(e.A), sheet:e.CA!==e.C?cut(e.CA):undefined, build:e.BA!==e.B?cut(e.BA):undefined}; })};
   }catch(err){ return {error:String(err)}; } }
 env.__reportText=function(){ return reportText(); };
@@ -76,7 +76,7 @@ const FVTT_SK={"Acrobatics":"acr","Animal Handling":"ani","Arcana":"arc","Athlet
 function foundryOf(Cc,Ss){ let c0=C,s0=S,out=null; try{ __set_C(Cc); __set_S(Object.assign(clone(DEF),Ss||{})); ["cond","notes","used"].forEach((k) =>{ if(typeof S[k]!=="object"||!S[k]) S[k]={}; }); derive();
   const ab={}; ABK.forEach((k) =>{ ab[k.toLowerCase()]={value:D.score[k],proficient:C.saves&&C.saves[k]?1:0}; });
   const sk={}; (C.skills||[]).forEach((s) =>{ const k=FVTT_SK[s.n]; if(k) sk[k]={value:num(s.p,0),ability:String(s.ab||"").toLowerCase()}; });
-  const cz=coinsNow(), lv=__R.clsLvls(), items=[];
+  const cz=coinsNow(), lv=clsLvls(), items=[];
   Object.keys(lv).forEach((cl) =>{ items.push({name:cl,type:"class",system:{levels:lv[cl],identifier:cl.toLowerCase()}}); });
   (C.inv||[]).forEach((x) =>{ const w=WEAPONS_T(x); items.push({name:x.n,type:w?"weapon":/Armor|Shield/.test(x.type||"")?"equipment":"loot",system:{quantity:num(x.q,1),weight:{value:num(x.w,0),units:"lb"},equipped:!!eqOn(x),attuned:!!x.att&&!!eqOn(x)}}); });
   (C.spells||[]).forEach((x) =>{ items.push({name:x.n,type:"spell",system:{level:num(x.l,0),preparation:{mode:/Always/.test(x.use||"")?"always":"prepared",prepared:true}}}); });
@@ -92,7 +92,7 @@ function foundryOut(id){ const r=rSnap(rEnsure()), o=foundryOf(rC(id,r),rS(id,r)
   const nm=String(o.name).replace(/[^A-Za-z0-9 _-]+/g,"").trim().replace(/\s+/g,"-")||"character"; dlFile(JSON.stringify(o,null,1),"fvtt-"+nm+".json",(ok) =>{ toast(ok?"Download started: fvtt-"+nm+".json. In Foundry, right-click a character and choose Import Data.":"Download is blocked here."); }); }
 /* RU35 no. 9: pinned skills (S.pin, optional) show at the top of the Main tab and in Combat view */
 function pinOn(n){ return Array.isArray(S.pin)&&S.pin.indexOf(n)>=0; }
-export function pinToggle(n){ const a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); __R.renderAll();
+export function pinToggle(n){ const a=Array.isArray(S.pin)?S.pin.slice():[], i=a.indexOf(n); if(i>=0) a.splice(i,1); else a.push(n); if(a.length) S.pin=a; else delete S.pin; save(); renderAll();
   Array.prototype.forEach.call(document.querySelectorAll(".pinfav[data-pin]"),(b) =>{ const on=pinOn(b.getAttribute("data-pin")); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on?"true":"false"); const t=b.querySelector(".hbt"); if(t) t.textContent=on?"In your favorites bar":"Add to favorites bar"; }); }
 function pinSpBtn(x){ const k="sp:"+x.n, on=pinOn(k); return '<button type="button" class="btn sm press pinfav'+(on?' on':'')+'" data-pin="'+esc(k)+'" aria-pressed="'+on+'"><span class="hbt">'+(on?"In your favorites bar":"Add to favorites bar")+'</span></button>'; }
 export function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; const SP=S.pin.map((n) =>{ if(String(n).indexOf("sp:")!==0) return null; let nm=n.slice(3), i=-1; (C.spells||[]).forEach((x,ix) =>{ if(i<0&&x.n===nm) i=ix; }); return i>=0?[nm,i,(C.spells[i].l||0)]:null; }).filter(Boolean), L=S.pin.map((n) =>{ let i=-1; (C.skills||[]).forEach((s,ix) =>{ if(s.n===n) i=ix; }); return i>=0?[n,i]:null; }).filter(Boolean); if(!L.length&&!SP.length) return "";

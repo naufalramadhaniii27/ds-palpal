@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {slotAddApply} from "./14-logic-multiclass-hp-shop.js";import {genv} from "./00-env.js";
 import {ABK,ABN,esc,mod,pbOf,sg} from "./01-logic-core-helpers.js";
 import {bgX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
@@ -9,12 +9,12 @@ import {abil,casterParts,clsLv,clsParts,fxList,fxVal,isThird3,spLists,spellAb,th
 import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"SMAP",{get:function(){return SMAP;},set:function(v){SMAP=v;},configurable:true});
-Object.defineProperty(__R,"spCmpB",{get:function(){return spCmpB;},set:function(v){spCmpB=v;},configurable:true});
-Object.defineProperty(__R,"spDmgB",{get:function(){return spDmgB;},set:function(v){spDmgB=v;},configurable:true});
-Object.defineProperty(__R,"spRngB",{get:function(){return spRngB;},set:function(v){spRngB=v;},configurable:true});
-Object.defineProperty(__R,"xl14",{get:function(){return xl14;},set:function(v){xl14=v;},configurable:true});
+bindLive("__set_clsTab",{get:function(){return __set_clsTab;}});bindLive("choiceStep",{get:function(){return choiceStep;}});bindLive("clsTab",{get:function(){return clsTab;}});bindLive("issueText",{get:function(){return issueText;}});bindLive("ruleIssues",{get:function(){return ruleIssues;}});bindLive("spInfo",{get:function(){return spInfo;}});bindLive("spInfoPart",{get:function(){return spInfoPart;}});bindLive("spellCounts",{get:function(){return spellCounts;}});
+bindLive("SMAP",{get:function(){return SMAP;},set:function(v){SMAP=v;}});
+bindLive("spCmpB",{get:function(){return spCmpB;}});
+bindLive("spDmgB",{get:function(){return spDmgB;}});
+bindLive("spRngB",{get:function(){return spRngB;}});
+bindLive("xl14",{get:function(){return xl14;}});
 /* ---------- spells ---------- */
 export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach((x) =>{SMAP[x[0]]=x});
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
@@ -30,7 +30,7 @@ function spInfoOne(cls,sub,L){let c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
 export function spInfo(){const parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map((m) =>{return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;let ct=0,pr=0,lists=[];parts.forEach((p) =>{ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach((l) =>{if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach((q) =>{const po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
- let SA=slotsAll();if(SA.slots)SA=Object.assign({},SA,{slots:__R.slotAddApply(SA.slots)});/* fx engine v6: extra slots of items and features (slotAdd) show in the spell step */let max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach((p) =>{if(p.smax>max)max=p.smax});/* P4: casters without slots */
+ let SA=slotsAll();if(SA.slots)SA=Object.assign({},SA,{slots:slotAddApply(SA.slots)});/* fx engine v6: extra slots of items and features (slotAdd) show in the spell step */let max=Math.max(SA.slots?SA.slots.length:0,SA.pact?SA.pact.lvl:0);parts.forEach((p) =>{if(p.smax>max)max=p.smax});/* P4: casters without slots */
  const ab=parts[0].ab,a=abil(),dc=8+pbOf(TL())+mod(a.sc[ab]);
  const sl=SA.slots&&SA.pact?null:SA.pact?{pact:SA.pact.n,lvl:SA.pact.lvl}:SA.slots;
  return {list:lists[0],lists:lists,ab:ab,ct:ct,pr:pr,kn:parts.length===1?(parts[0].kn||0):0,max:max,dc:dc,atk:dc-8,sl:sl,SA:SA}}

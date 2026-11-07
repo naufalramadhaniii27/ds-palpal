@@ -1,2 +1,2 @@
-/* Registry for names that an earlier file calls in a later file (only at run time, never while loading). The owner file defines each name here. */
+/* Retired in SOLID stage 10: no file imports __R any more. Its names moved to the late ports (app/00a-reg-late-ports.js). The file stays only because deleting a file needs the owner's permission; it can go together with its line in manifest.json. */
 export var __R={};

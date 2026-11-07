@@ -1,17 +1,17 @@
-import {C,FROZEN,saveC} from "./04-logic-storage.js";
+import {bindLive,clsLvls,renderAll,srcPg,toastU,undoMark} from "./00a-reg-late-ports.js";import {C,FROZEN,saveC} from "./04-logic-storage.js";
 import {$,esc,num,toast} from "./05-logic-helpers.js";
 import {D,richP} from "./06-logic-derivation.js";
 import {__set_navStack,navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {tileH,tileS} from "./13-ui-detail-cards.js";
 import {spCompH,spRangeH} from "./22-ui-spell-data-and-slots.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL} from "./23e-ui-spells-dc.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"spmCls",{get:function(){return spmCls;},set:function(v){spmCls=v;},configurable:true});
-Object.defineProperty(__R,"spmHTML",{get:function(){return spmHTML;},set:function(v){spmHTML=v;},configurable:true});
-Object.defineProperty(__R,"spmLv",{get:function(){return spmLv;},set:function(v){spmLv=v;},configurable:true});
-Object.defineProperty(__R,"spmRefresh",{get:function(){return spmRefresh;},set:function(v){spmRefresh=v;},configurable:true});
-Object.defineProperty(__R,"spmToggle",{get:function(){return spmToggle;},set:function(v){spmToggle=v;},configurable:true});
-Object.defineProperty(__R,"spnHTML",{get:function(){return spnHTML;},set:function(v){spnHTML=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("spmCls",{get:function(){return spmCls;},set:function(v){spmCls=v;}});
+bindLive("spmHTML",{get:function(){return spmHTML;}});
+bindLive("spmLv",{get:function(){return spmLv;},set:function(v){spmLv=v;}});
+bindLive("spmRefresh",{get:function(){return spmRefresh;}});
+bindLive("spmToggle",{get:function(){return spmToggle;}});
+bindLive("spnHTML",{get:function(){return spnHTML;}});
 /* ================= v25: MANAGE SPELLS (RU38 no. 3) =================
    The Spells tab opens a panel that adds, prepares, and removes spells of the character's spellcasting classes, with the cantrip and prepared limits.
    Build mode: the sheet matches its build (__bldDiff empty). Changes go to the build, the sheet is rebuilt (toSheet), numbers come from the builder.
@@ -22,7 +22,7 @@ function spmMode(){ let I=null, d=[]; try{ I=env.__bldSpInfo?env.__bldSpInfo():n
   if(I){ try{ d=env.__bldDiff?env.__bldDiff(C)||[]:[]; }catch(er){ d=[]; } } return {b:!!I&&!d.length, I:I}; }
 /* limits worked out from the sheet when there is no build: class levels (clsLabel), cantrips and prepared spells from the class tables */
 function isThird3(x){ if(env.THIRD_SUBS&&env.THIRD_SUBS[x]) return true; /* fx engine v4 */ return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"; }/* v101: the sheet script has no access to the builder helper of the same name, so a sheet without a build could not open Manage Spells */
-function spmLocal(){ const lv=__R.clsLvls(), out=[]; if(typeof CLASSES==="undefined") return out;
+function spmLocal(){ const lv=clsLvls(), out=[]; if(typeof CLASSES==="undefined") return out;
   Object.keys(lv).forEach((cls) =>{ const c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3; if(!c||!L||(!c.caster&&!third)) return;
     let ct=0, pr=0, mx=0;    if(third){ ct=((env.THIRD_SUBS&&env.THIRD_SUBS[C.sub]&&env.THIRD_SUBS[C.sub].cant!=null)?env.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
     else { const cc=CANT[cls]; ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0; if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
@@ -64,11 +64,11 @@ function spmEntry(x,cls){ const o={n:x[0],l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6
 function spmToggle(n,cls){ const M=spmMode(), P=spmParts(M), p=P.filter((q) =>{ return q.cls===cls; })[0], x=spmRec(n); if(!p||!x||FROZEN) return;
   const on=p.taken.indexOf(n)<0, c=spmCount(p);
   if(on&&(x[1]?c.np>=p.pr:c.nc>=p.ct)){ toast((x[1]?"Prepared spells":"Cantrips")+" are full. Remove one first."); return; }
-  __R.undoMark((on?"Add ":"Remove ")+n);
+  undoMark((on?"Add ":"Remove ")+n);
   if(M.b){ if(!env.__bldSpSet(n,cls,on,true)) return; }
   else { const L=C.spells=C.spells||[]; if(on) L.push(spmEntry(x,cls)); else { for(let i=L.length-1;i>=0;i--) if(L[i].n===n&&L[i].src===cls&&/^(Prepared|Cantrip)$/.test(L[i].use)){ L.splice(i,1); break; } }
-    if(M.I&&env.__bldSpSet){ try{ env.__bldSpSet(n,cls,on,false); }catch(er){} } saveC(); __R.renderAll(); }
-  spmRefresh(); __R.toastU((on?(x[1]?"Prepared ":"Learned "):"Removed ")+n+"."); }
+    if(M.I&&env.__bldSpSet){ try{ env.__bldSpSet(n,cls,on,false); }catch(er){} } saveC(); renderAll(); }
+  spmRefresh(); toastU((on?(x[1]?"Prepared ":"Learned "):"Removed ")+n+"."); }
 export function spmRefresh(){ if(sheetMode!=="spman") return; const b=$("#sheetBody"), st=b.scrollTop, qf=document.activeElement&&document.activeElement.id==="spmQ", sel=qf?document.activeElement.selectionStart:0;
   b.innerHTML=spmHTML(); b.scrollTop=st; if(qf){ const q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
 export function openSpMan(){ spmQ=""; spmLv="all"; __set_navStack([{type:"spman"}]); openSheet("Manage Spells", spmHTML(), "spman", true); }
@@ -77,7 +77,7 @@ export function spnHTML(n){ const x=spmRec(n)||(env.__wxSpRow&&env.__wxSpRow(n))
   const o=spmEntry(x,""), full=o.full||o.sum;
   let h='<p class="info-d">'+ico("school-"+String(x[2]).toLowerCase(),"isch")+'<i>'+(x[1]?ordL(x[1])+" ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i> • '+esc(spClsJ(x))+'</p>'+
     '<div class="info-k">'+tileS("Casting Time",x[4]+(x[9]?" or Ritual":""))+tileH("Range",spRangeH(x[5],o))+tileH("Components",spCompH(x[6],o))+tileS("Duration",(x[8]?"Concentration, ":"")+x[7])+'</div><p class="info-d">'+richP(full)+'</p>';
-  if(o.pg) h+='<p class="bk-f">'+esc(__R.srcPg("PHB-2024",o.pg))+'</p>';
+  if(o.pg) h+='<p class="bk-f">'+esc(srcPg("PHB-2024",o.pg))+'</p>';
   return {t:n, h:h}; }
 
 

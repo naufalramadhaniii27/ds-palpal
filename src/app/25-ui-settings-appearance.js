@@ -1,13 +1,13 @@
-import {C,S,snSetH} from "./04-logic-storage.js";
+import {bindLive,coachGet,lateGet,wakeApply} from "./00a-reg-late-ports.js";import {C,S,snSetH} from "./04-logic-storage.js";
 import {hcBtn,hcNote,miSetH,themeHTML} from "./07-ui-theme-contrast-spring.js";
 import {spPact} from "./22-ui-spell-data-and-slots.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"applyLook2",{get:function(){return applyLook2;},set:function(v){applyLook2=v;},configurable:true});
-Object.defineProperty(__R,"carryOf",{get:function(){return carryOf;},set:function(v){carryOf=v;},configurable:true});
-Object.defineProperty(__R,"setOf",{get:function(){return setOf;},set:function(v){setOf=v;},configurable:true});
-Object.defineProperty(__R,"setPut",{get:function(){return setPut;},set:function(v){setPut=v;},configurable:true});
-Object.defineProperty(__R,"settingsHTML",{get:function(){return settingsHTML;},set:function(v){settingsHTML=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("applyLook2",{get:function(){return applyLook2;}});
+bindLive("carryOf",{get:function(){return carryOf;}});
+bindLive("setOf",{get:function(){return setOf;}});
+bindLive("setPut",{get:function(){return setPut;}});
+bindLive("settingsHTML",{get:function(){return settingsHTML;}});
 /* ================= v25: SETTINGS AND APPEARANCE (RU38 no. 6, no. 7) =================
    S.set (optional): enc "off" (weight not tracked), ab "score" (score big, modifier small), spUp 1 (a spell that gains from a higher slot is listed again
    under each higher slot level). S.frame and S.bdrop (optional): portrait frame and backdrop. Hit Points fixed or rolled stay in the build (B.hpMode). */
@@ -34,10 +34,10 @@ function settingsHTML(){ let h='<h3 class="set-h">Appearance</h3>'+themeHTML();
   h+='<div class="info-h">High Contrast</div><div class="thg">'+hcBtn("auto","Auto","ui-auto")+hcBtn("on","On","ui-contrast")+hcBtn("off","Off","ui-close")+'</div><p class="info-d" id="hcNote">'+hcNote()+'</p>'+miSetH();/* v35 p01, v55 */
   h+='<div class="info-h">Keyboard</div><div class="thg thgw"><button type="button" class="thb thbi" data-keysopen="1">'+ico("ui-keys")+'Keyboard Shortcuts</button></div><p class="info-d">On a computer: 1 to 7 switch tabs, H heals, D takes damage, R rests, and / searches. Press ? on the sheet to see them all.</p>';
   h+=snSetH();/* v32 p33 */
-  h+='<h3 class="set-h">Help</h3><div class="thg"><button type="button" class="btn press" data-hlearn="tour">Tour the app</button><button type="button" class="btn press" data-tmopen="1">History</button><button type="button" class="btn press" data-hlearn="1">Learn to play D&amp;D</button><button type="button" class="btn press" data-cheat="1">Table cheat sheet</button><button type="button" class="btn press" data-wdopen="1">Which die do I roll?</button><button type="button" class="btn press" aria-pressed="'+(!!(typeof __R.coachGet==="function"&&__R.coachGet().on))+'" data-coach="1">Coach mode: '+((typeof __R.coachGet==="function"&&__R.coachGet().on)?"on":"off")+'</button></div>';/* T11 U52, U3, U7, U47 */
+  h+='<h3 class="set-h">Help</h3><div class="thg"><button type="button" class="btn press" data-hlearn="tour">Tour the app</button><button type="button" class="btn press" data-tmopen="1">History</button><button type="button" class="btn press" data-hlearn="1">Learn to play D&amp;D</button><button type="button" class="btn press" data-cheat="1">Table cheat sheet</button><button type="button" class="btn press" data-wdopen="1">Which die do I roll?</button><button type="button" class="btn press" aria-pressed="'+(!!(typeof lateGet("coachGet")==="function"&&coachGet().on))+'" data-coach="1">Coach mode: '+((typeof lateGet("coachGet")==="function"&&coachGet().on)?"on":"off")+'</button></div>';/* T11 U52, U3, U7, U47 */
   return h; }
 function setBtnI(k,v,label,ik){ const on=setOf(k)===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-set="'+k+':'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; }
-function applyLook2(){ const R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach((a) =>{ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ __R.wakeApply(); }catch(er){} }
+function applyLook2(){ const R=document.documentElement; [["data-frame",S.frame],["data-bdrop",S.bdrop],["data-abtop",setOf("ab")],["data-oneh",setOf("oneh")],["data-tsize",setOf("fs")],["data-cb",setOf("cb")]].forEach((a) =>{ if(a[1]) R.setAttribute(a[0],a[1]); else R.removeAttribute(a[0]); }); try{ wakeApply(); }catch(er){} }
 /* carrying capacity by size (PHB 2024 Rules Glossary), Powerful Build one size larger */
 function hasFeatN(n){ return (C.features||[]).some((g) =>{ return (g.items||[]).some((f) =>{ return f.n===n; }); }); }
 function carryOf(str){ const SIZES=["Tiny","Small","Medium","Large","Huge","Gargantuan"], SIZE_MUL={Tiny:7.5,Small:15,Medium:15,Large:30,Huge:60,Gargantuan:120}, sz=String(C.size||""), s=SIZES.filter((z) =>{ return sz.indexOf(z)>=0; })[0]||"Medium", pb=hasFeatN("Powerful Build")||!!C.carryBump/* fx carryBump: any source that counts you as one size larger */, s2=pb?SIZES[Math.min(5,SIZES.indexOf(s)+1)]:s;

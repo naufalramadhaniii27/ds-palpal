@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {bindLive,commit,render,sid} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,esc,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
@@ -12,15 +12,15 @@ import {applyPacks,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {__set_pickCls,__set_pickSp,__set_step,ask,card,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
 import {SMAP,issueText,plural,ruleIssues,spInfo} from "./18-ui-spells.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"acModeCard",{get:function(){return acModeCard;},set:function(v){acModeCard=v;},configurable:true});
-Object.defineProperty(__R,"bCt",{get:function(){return bCt;},set:function(v){bCt=v;},configurable:true});
-Object.defineProperty(__R,"bInN",{get:function(){return bInN;},set:function(v){bInN=v;},configurable:true});
-Object.defineProperty(__R,"bInvOrder",{get:function(){return bInvOrder;},set:function(v){bInvOrder=v;},configurable:true});
-Object.defineProperty(__R,"binIn",{get:function(){return binIn;},set:function(v){binIn=v;},configurable:true});
-Object.defineProperty(__R,"hbForm",{get:function(){return hbForm;},set:function(v){hbForm=v;},configurable:true});
-Object.defineProperty(__R,"qbCard",{get:function(){return qbCard;},set:function(v){qbCard=v;},configurable:true});
-Object.defineProperty(__R,"sp14List",{get:function(){return sp14List;},set:function(v){sp14List=v;},configurable:true});
+bindLive("ctFree",{get:function(){return ctFree;}});bindLive("invFind",{get:function(){return invFind;}});bindLive("qbBook",{get:function(){return qbBook;}});bindLive("qbFill",{get:function(){return qbFill;}});bindLive("qbMI",{get:function(){return qbMI;}});bindLive("qbSpells",{get:function(){return qbSpells;}});bindLive("quickBuild",{get:function(){return quickBuild;}});bindLive("unpackAt",{get:function(){return unpackAt;}});
+bindLive("acModeCard",{get:function(){return acModeCard;}});
+bindLive("bCt",{get:function(){return bCt;}});
+bindLive("bInN",{get:function(){return bInN;}});
+bindLive("bInvOrder",{get:function(){return bInvOrder;}});
+bindLive("binIn",{get:function(){return binIn;}});
+bindLive("hbForm",{get:function(){return hbForm;}});
+bindLive("qbCard",{get:function(){return qbCard;}});
+bindLive("sp14List",{get:function(){return sp14List;}});
 /* ---------- rules ---------- */
 export function renderRules(){const cats=["Classes","Subclasses","Species","Backgrounds","Feats","Weapons","Armor","Options"],it=dbItems();
  return '<h2 class="ttl">Rules Database</h2><input class="btx" id="dbq" type="search" placeholder="Search name or rule text" value="'+esc(dbQ)+'"><div class="chips cats">'+cats.map((c) =>{return '<button type="button" class="chip'+(c===dbCat&&!dbQ?" on":"")+'" data-cat="'+c+'">'+c+'</button>'}).join("")+'</div><p class="pick">'+it.length+' entries'+(dbQ?' across all categories':'')+'</p>'+
@@ -49,7 +49,7 @@ function hbForm(){let f=HBF,h='<div class="hbmk"><div class="radios h">'+[["spec
  const O=hbOthers();if(O.length)h+='<p class="flab">Homebrew of your other characters</p><div class="hblist">'+O.map((o) =>{return '<div class="hbrow"><span><b>'+esc(o.p.name)+'</b><small>'+esc(o.who)+': '+esc(hbCount(o.p))+'</small></span><button type="button" class="bdg add" data-hbcopy="'+esc(o.cid+"|"+o.p.id)+'">Add to this character</button></div>'}).join("")+'</div>';
  return h}
 /* user packs (not built in) of the other characters in My Characters that have something this build does not */
-function hbOthers(){let out=[],r=null;try{r=JSON.parse(__store.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;const me=__R.sid();
+function hbOthers(){let out=[],r=null;try{r=JSON.parse(__store.getItem("cs-roster-v1")||"null")}catch(e){r=null}if(!r||!r.chars)return out;const me=sid();
  Object.keys(r.chars).forEach((id) =>{if(id===me||id===r.active)return;let b=null;try{b=JSON.parse(r.chars[id].B||"null")}catch(e){b=null}if(!b||!Array.isArray(b.packs))return;
   b.packs.forEach((p) =>{if(!p||!p.id||HB_BUILTIN[p.id])return;const mine=(B.packs||[]).filter((q) =>{return q.id===p.id})[0];if(hbList(p).some((e) =>{return !hbHas(mine,e[0],e[1])}))out.push({cid:id,who:r.chars[id].name||"Character",p:p})})});return out}
 export function hbRead(){const g=function(id){const e=document.getElementById(id);return e?String(e.value||"").trim():""},f={t:HBF.t,n:g("hb-n").slice(0,60)};
@@ -59,25 +59,25 @@ export function hbRead(){const g=function(id){const e=document.getElementById(id
  return f}
 function hbRemove(p,t,n){if(!p)return;if(t==="species")delete (p.species||{})[n];if(t==="feat")delete (p.feats||{})[n];if(t==="item")p.items=(p.items||[]).filter((x) =>{return x[0]!==n})}
 export function hbSave(){let f=hbRead(),p=hbMine();HBF=f;
- if(!f.n){toast("Give it a name first.");__R.render();return}
- const taken=f.t==="species"?SPECIES[f.n]:f.t==="feat"?FEATS[f.n]:DMAP[f.n];if(taken&&f.n!==HBE&&!hbHas(p,f.t,f.n)){toast("That name is already used. Pick another name.");__R.render();return}
- if(f.t!=="species"&&!f.d){toast("Write what it does.");__R.render();return}
+ if(!f.n){toast("Give it a name first.");render();return}
+ const taken=f.t==="species"?SPECIES[f.n]:f.t==="feat"?FEATS[f.n]:DMAP[f.n];if(taken&&f.n!==HBE&&!hbHas(p,f.t,f.n)){toast("That name is already used. Pick another name.");render();return}
+ if(f.t!=="species"&&!f.d){toast("Write what it does.");render();return}
  if(!p){p={id:HB_ID,name:"My Homebrew",desc:"Species, feats, and magic items you made"};B.packs=(B.packs||[]).concat([p])}
  if(HBE&&HBE!==f.n){hbRemove(p,f.t,HBE);if(f.t==="species"&&B.species===HBE)B.species=f.n}
  if(f.t==="species"){p.species=p.species||{};p.species[f.n]={size:f.size,speed:f.speed,dark:f.dark,traits:String(f.traits||"").split(/\n+/).map((l) =>{const m=/^\s*([^:]{1,60}):\s*(.+)$/.exec(l);return m?[m[1].trim(),m[2].trim()]:l.trim()?["Trait",l.trim()]:null}).filter(Boolean)}}
  if(f.t==="feat"){p.feats=p.feats||{};const o={cat:f.cat,d:f.d};if(f.pre)o.pre=f.pre;if(f.asi.length)o.asi=f.asi;if(f.rep)o.rep=1;p.feats[f.n]=o}
  if(f.t==="item"){p.items=(p.items||[]).filter((x) =>{return x[0]!==f.n});const x=[f.n,f.type,f.rar,f.att?1:0,f.d||""];if(Object.keys(f.fx).length)x.push({fx:f.fx});p.items.push(x)}
- B.src=B.src||{core:true,dmg:true};B.src[HB_ID]=true;const was=HBE;HBE="";HBF={t:f.t};applyPacks();__R.commit();toast((was?"Saved ":"Created ")+f.n+". It is in My Homebrew"+(f.t==="species"?", in the Species step.":f.t==="feat"?", in the feat lists.":", in Equipment, Magic Items."))}
+ B.src=B.src||{core:true,dmg:true};B.src[HB_ID]=true;const was=HBE;HBE="";HBF={t:f.t};applyPacks();commit();toast((was?"Saved ":"Created ")+f.n+". It is in My Homebrew"+(f.t==="species"?", in the Species step.":f.t==="feat"?", in the feat lists.":", in Equipment, Magic Items."))}
 export function hbEdit(t,n){const p=hbMine();if(!hbHas(p,t,n))return;const f={t:t,n:n};
  if(t==="species"){const s=p.species[n];f.size=s.size;f.speed=s.speed;f.dark=s.dark;f.traits=(s.traits||[]).map((x) =>{return Array.isArray(x)?x[0]+": "+x[1]:String(x)}).join("\n")}
  if(t==="feat"){const o=p.feats[n];f.cat=o.cat;f.pre=o.pre||"";f.asi=o.asi||[];f.rep=!!o.rep;f.d=o.d||""}
  if(t==="item"){const x=p.items.filter((y) =>{return y[0]===n})[0];f.type=x[1];f.rar=x[2];f.att=!!x[3];f.d=x[4]||"";f.fx=(x[5]&&x[5].fx)||{}}
- HBF=f;HBE=n;__R.render();const e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
-export function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",() =>{const p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter((q) =>{return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();__R.commit();toast("Removed "+n+".")})}
+ HBF=f;HBE=n;render();const e=document.getElementById("hb-n");if(e)e.scrollIntoView({block:"center"})}
+export function hbDel(t,n){ask("Remove "+n+" from My Homebrew? A character that uses it falls back to a core choice the next time the builder opens.","Remove",() =>{const p=hbMine();hbRemove(p,t,n);if(p&&!hbList(p).length){B.packs=(B.packs||[]).filter((q) =>{return q.id!==HB_ID});delete (B.src||{})[HB_ID]}if(HBE===n){HBE="";HBF={t:t}}applyPacks();commit();toast("Removed "+n+".")})}
 export function hbCopy(cid,pid){const o=hbOthers().filter((x) =>{return x.cid===cid&&x.p.id===pid})[0];if(!o)return;let src=structuredClone(o.p),mine=(B.packs||[]).filter((q) =>{return q.id===pid})[0],n=0;
  if(!mine){B.packs=(B.packs||[]).concat([src]);n=hbList(src).length}
  else hbList(src).forEach((e) =>{if(hbHas(mine,e[0],e[1]))return;n++;if(e[0]==="species"){mine.species=mine.species||{};mine.species[e[1]]=src.species[e[1]]}if(e[0]==="feat"){mine.feats=mine.feats||{};mine.feats[e[1]]=src.feats[e[1]]}if(e[0]==="item"){mine.items=(mine.items||[]).concat(src.items.filter((x) =>{return x[0]===e[1]}))}});
- B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();__R.commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}
+ B.src=B.src||{core:true,dmg:true};B.src[pid]=true;applyPacks();commit();toast("Added "+plural(n,"entry").replace("entrys","entries")+" from "+o.who+".")}
 
 /* v27 RU65: Quick Build for new players. Pick a class and a species; the builder fills a level 1 character: Standard Array by class (PHB 2024 table),
    a background whose abilities fit the class (+2 and +1), class and background equipment (option A), skills, languages, Weapon Mastery, class options,
@@ -133,7 +133,7 @@ export function quickBuild(cls,sp){const Q=QUICK[cls];if(!Q){toast("Choose a cla
  const go=function(){const keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};__set_B(NEWB());if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
   B.cls=cls;B.sub="";B.level=1;B.mc=[];applyPacks();/* v99: the class is set, so a class that comes from a source (Artificer) loads before the kit is read */B.species=SPECIES[sp]?sp:(R14()?"Human (2014)":"Human");B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=Q.arr[i];B.arr[k]=String(Q.arr[i])});
   if(R14()){B.bg=BACKGROUNDS[QB_BG14[cls]]?QB_BG14[cls]:"Acolyte (2014)";B.bgMode="111";B.bg2="";B.bg1=""}else{B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1}/* v99: a 2014 Quick Build uses a 2014 background, no ability score picks from it */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);qbFill();qbSpells();qbMI();qbBook();save();go2()};
- var go2=function(){__set_step("next");__set_pickCls(false);__set_pickSp(false);__R.render();genv.scrollTo(0,0);const RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
+ var go2=function(){__set_step("next");__set_pickCls(false);__set_pickSp(false);render();genv.scrollTo(0,0);const RI=ruleIssues();toast("Quick Build ready: "+B.species.replace(/ \(2014\)$/,"")+" "+cls+" 1."+(RI.length?" Still to check: "+issueText(RI.slice(0,2))+".":" Check What's Next, then Apply."))};
  if(!un("cls")&&B.cls)ask("Replace this build with a Quick Build of a "+(SPECIES[sp]?sp.replace(/ \(2014\)$/,""):"Human")+" "+cls+"? The name stays. The choices, spells, and equipment of the build are replaced. Nothing changes on the sheet until you Apply.","Quick Build",go);else go()}
 
 /* v27 i2: choose how AC is set when no armor is worn. Shown when two rules can set it, or when one was chosen before */

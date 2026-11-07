@@ -1,27 +1,27 @@
-import {STD_CONDS} from "./02-data-default-character.js";
+import {bindLive,lateGet,renderConds,__set_navStack,openSheet,closeSheet,goPage,setTab,levelUp,lintList,__set_CU0} from "./00a-reg-late-ports.js";import {STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
 import {C,S,__set_C,save} from "./04-logic-storage.js";
 import {ask,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
-import {renderConds} from "./10-ui-conditions.js";
-import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+
+
+
 import {zPack} from "./15c-logic-file-state-compress.js";
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";
-import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
+
 import {concOf} from "./32b-logic-play-concentration-casting.js";
-import {levelUp} from "./34c-ui-experience-journal-combat-view.js";
-import {lintList} from "./40-ui-segments-notes-swipe-motion-panels.js";
-import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
+
+
+
 import {QRG} from "./42-logic-pwa-qr-icons-wallet.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;},configurable:true});
-Object.defineProperty(__R,"dnaRead",{get:function(){return dnaRead;},set:function(v){dnaRead=v;},configurable:true});
-Object.defineProperty(__R,"futureOpen",{get:function(){return futureOpen;},set:function(v){futureOpen=v;},configurable:true});
-Object.defineProperty(__R,"recapOpen",{get:function(){return recapOpen;},set:function(v){recapOpen=v;},configurable:true});
-Object.defineProperty(__R,"statusCopy",{get:function(){return statusCopy;},set:function(v){statusCopy=v;},configurable:true});
-Object.defineProperty(__R,"statusLine",{get:function(){return statusLine;},set:function(v){statusLine=v;},configurable:true});
-Object.defineProperty(__R,"statusText",{get:function(){return statusText;},set:function(v){statusText=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;}});
+bindLive("dnaRead",{get:function(){return dnaRead;}});
+bindLive("futureOpen",{get:function(){return futureOpen;}});
+bindLive("recapOpen",{get:function(){return recapOpen;}});
+bindLive("statusCopy",{get:function(){return statusCopy;}});
+bindLive("statusLine",{get:function(){return statusLine;}});
+bindLive("statusText",{get:function(){return statusText;}});
 /* T11 G4 N17 status for a group chat: one short line to paste in WhatsApp or Discord.
    "Yudhi Kelapa (Fighter 4) | HP 32/44 +5 temp | AC 18 | Concentrating: Bless | Poisoned, Exhaustion 1"
    Pasting the line back in Import says what it is, it is not taken for a character (16 impText). */
@@ -49,7 +49,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   const f=b.getAttribute("data-lfix"); closeSheet();
   if(f==="unc"){ S.cond.Unconscious=true; save(); renderConds(); toast("Unconscious added."); }
   else if(f==="exh"){ S.exh=5; save(); renderConds(); toast("Exhaustion is 5 now."); }
-  else if(f==="inv"){ const k=PAGES.indexOf("p-inv"); if(mq.matches&&k>=0) goPage(k,true); else setTab("p-inv",true,true); } });
+  else if(f==="inv"){ const k=lateGet("PAGES").indexOf("p-inv"); if(lateGet("mq").matches&&k>=0) goPage(k,true); else setTab("p-inv",true,true); } });
 /* T11 G4 N4 session recap, without AI and offline. Made from the journal of the character (mi-jr-<name>, fx 18): the last session is the run of
    entries with no gap longer than 4 hours. Totals: damage taken, healing, spells cast, rolls with natural 20s and 1s, conditions, rests, levels,
    coins, Concentration saves. The card can be kept as a picture (canvas, PNG), shared where the device can share files */
@@ -153,7 +153,7 @@ dnaCheck(); addEventListener("hashchange",dnaCheck);/* a link pasted into a tab 
    Only the choices already made count: new choices at later levels (Ability Score Improvements, feats, spells, subclass) are not guessed.
    Hit Points use the fixed value per level. Lines for Hit Points, Armor Class, best attack bonus and spell save DC, and the highest spell slot */
 function futureData(){ if(!env.__bldSheetFor) return null; const b=env.__bldForSheet?env.__bldForSheet():null; if(!b||!b.cls) return null;
-  const tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof CU0!=="undefined"?CU0:null;
+  const tot=D.level, main=+b.level||1, out=[], keepC=C, keepD=D, keepB=B, keepCU=typeof lateGet("CU0")!=="undefined"?lateGet("CU0"):null;
   try{ for(let L=tot;L<=20;L++){ const nb=structuredClone(b); nb.level=Math.max(1,main+(L-tot)); let c2=null; try{ c2=env.__bldSheetFor(nb); }catch(e){ c2=null; } if(!c2) continue;
       __set_C(c2); derive(); var best=-99; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) best=Math.max(best,a.hit); });
       var sl=((c2.spellcasting||{}).slots||[]), top=0; sl.forEach((n,i) =>{ if(+n>0) top=i+1; });

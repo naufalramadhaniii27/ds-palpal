@@ -1,9 +1,9 @@
-import {ABN} from "./02-data-default-character.js";
+import {cuqOf,hpModH,infoHTML,lateGet,nmHTML,showEntry} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
 import {esc,sg} from "./05-logic-helpers.js";
 import {B} from "./06-logic-derivation.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {env} from "./00-env.js";
 /* ================= BREAKDOWN ================= */
 function bdAbout(key){
   let m=key.match(/^(ab|save|sk|ah|ad)-(.+)$/), spec=null, label="";
@@ -13,7 +13,7 @@ function bdAbout(key){
   else { const map={ac:"Armor Class",init:"Initiative",speed:"Speed",pb:"Proficiency Bonus",hp:"Hit Points",carry:"Carrying Capacity",dc:"Grapple",dark:"Darkvision","pas-per":"Passive Perception","pas-ins":"Insight","pas-inv":"Investigation"}; if(map[key]){ spec="g:"+map[key]; label=map[key]; } }
   return spec ? '<p class="bk-about"><button type="button" class="lk" data-info="'+esc(spec)+'">What is '+esc(label)+'?</button></p>' : '';
 }
-env.__miInfo=function(s){ try{ return __R.infoHTML(s); }catch(e){ return null; } }; env.__miBd=function(k){ try{ return B[k]||null; }catch(e){ return null; } };
+env.__miInfo=function(s){ try{ return infoHTML(s); }catch(e){ return null; } }; env.__miBd=function(k){ try{ return B[k]||null; }catch(e){ return null; } };
 /* T11 G4 N10 odds: the exact chance to reach common targets with this bonus, plain, with Advantage and with Disadvantage.
    Checks and saves: d20 + bonus at or above the DC (2024: a 1 or 20 on a check or save is not automatic).
    Attacks: a natural 20 always hits and a natural 1 always misses. Shown as whole percents, worked out, not estimated */
@@ -30,8 +30,8 @@ export function bdHTML(key){
     const cls = p.raw ? "" : (p.v<0?" neg":(p.v===0?" zero":""));
     return '<div class="bk-r"><b>'+esc(p.l)+'</b>'+(p.note?'<small>'+esc(p.note)+'</small>':'')+'<span class="v'+cls+'">'+v+'</span></div>';
   }).join("");
-  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+oddsHTML(key)+(typeof __R.nmHTML==="function"?__R.nmHTML(key):"")+(key==="hp"?__R.hpModH()+'<p class="bk-btns"><button type="button" class="btn press" data-status="1">Copy status for chat</button><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+(key==="pb"?'<p><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+bdAbout(key)+
-    (/^sense-/.test(key)?'<p class="bk-f" style="color:var(--faint)">Set by the builder. Change it there, then Apply.</p>':(__R.cuqOf(key)?'<p class="bk-f" style="color:var(--faint)">To set your own number, turn on Edit mode and tap it.</p>':'<p class="bk-f" style="color:var(--faint)">Change any of these in Edit.</p>'));
+  return '<div class="bk">'+rows+'</div><div class="bk-t"><span>'+(b.totalLabel||"Total")+'</span><b>'+esc(b.total)+'</b></div>'+(b.f?'<p class="bk-f">'+b.f+'</p>':'')+oddsHTML(key)+(typeof lateGet("nmHTML")==="function"?nmHTML(key):"")+(key==="hp"?hpModH()+'<p class="bk-btns"><button type="button" class="btn press" data-status="1">Copy status for chat</button><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+(key==="pb"?'<p><button type="button" class="btn press" data-future="1">Levels up to 20</button></p>':'')+bdAbout(key)+
+    (/^sense-/.test(key)?'<p class="bk-f" style="color:var(--faint)">Set by the builder. Change it there, then Apply.</p>':(cuqOf(key)?'<p class="bk-f" style="color:var(--faint)">To set your own number, turn on Edit mode and tap it.</p>':'<p class="bk-f" style="color:var(--faint)">Change any of these in Edit.</p>'));
 }
-function showBD(key){ if(!B[key]) return; __R.showEntry({type:"bd",key:key},false); }
+function showBD(key){ if(!B[key]) return; showEntry({type:"bd",key:key},false); }
 

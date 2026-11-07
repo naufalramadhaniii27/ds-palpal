@@ -1,8 +1,8 @@
-import {APP_VER,CKEY,KEY} from "./04-logic-storage.js";import {ask,num,toast} from "./05-logic-helpers.js";import {uiGet} from "./07-ui-theme-contrast-spring.js";import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";import {bkpCheck,bkpCount,bkpRestore} from "./15b-logic-backup.js";import {cOf,fixCid,fmtT,newId,rawHash,uiSet,zUnpack} from "./15c-logic-file-state-compress.js";import {homeCards,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";import {snTake} from "./15d-logic-snapshots-character-files.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"impText",{get:function(){return impText;},set:function(v){impText=v;},configurable:true});
+import {bindLive,coinsClean,dnaRead,lateGet,statusLine,uiGet,rEnsure,rGet,rSave} from "./00a-reg-late-ports.js";import {APP_VER,CKEY,KEY} from "./04-logic-storage.js";import {ask,num,toast} from "./05-logic-helpers.js";import {bkpCheck,bkpCount,bkpRestore} from "./15b-logic-backup.js";import {cOf,fixCid,fmtT,newId,rawHash,uiSet,zUnpack} from "./15c-logic-file-state-compress.js";import {homeCards,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";import {snTake} from "./15d-logic-snapshots-character-files.js";import {env} from "./00-env.js";
+bindLive("impText",{get:function(){return impText;}});
 export function jsonLoose(t){ try{ return JSON.parse(t); }catch(e){} let s=String(t).replace(/```[a-zA-Z]*\s*/g,"").replace(/```/g,""), i=s.indexOf("{"), j=s.lastIndexOf("}"); if(i<0||j<i) return null; s=s.slice(i,j+1);
   try{ return JSON.parse(s); }catch(e){} s=s.replace(/[\u201c\u201d]/g,'"').replace(/,\s*([}\]])/g,"$1"); try{ return JSON.parse(s); }catch(e){ return null; } }
-export function impText(txt){ const dm=/#build=([A-Za-z0-9_-]{20,})/.exec(String(txt||"")); if(dm&&typeof __R.dnaRead==="function") txt=__R.dnaRead(dm[1]);/* T11 N11: a build link, pasted or scanned */ if(typeof __R.statusLine==="function"&&__R.statusLine(txt)){ toast("This is a status line from a chat, not a character: "+String(txt).trim().slice(0,140)); return; } zUnpack(txt).then((t) =>{ const o=jsonLoose(t); if(!o){ toast("This text is not a character, a backup, or a build. Check that all of it was pasted."); return; } impObj(o); },(e) =>{ toast((e&&e.message)||"This text could not be unpacked."); }); }
+export function impText(txt){ const dm=/#build=([A-Za-z0-9_-]{20,})/.exec(String(txt||"")); if(dm&&typeof lateGet("dnaRead")==="function") txt=dnaRead(dm[1]);/* T11 N11: a build link, pasted or scanned */ if(typeof lateGet("statusLine")==="function"&&statusLine(txt)){ toast("This is a status line from a chat, not a character: "+String(txt).trim().slice(0,140)); return; } zUnpack(txt).then((t) =>{ const o=jsonLoose(t); if(!o){ toast("This text is not a character, a backup, or a build. Check that all of it was pasted."); return; } impObj(o); },(e) =>{ toast((e&&e.message)||"This text could not be unpacked."); }); }
 function impObj(o){ if(o&&o.kind==="character") return impChar(o); if(o&&typeof o==="object"&&(o.kind==="build"||(!o.kind&&!o.keys&&typeof o.C!=="string"&&(o.cls||o["class"])))) return impBuild(o.kind==="build"?(o.B||o):o, o);/* v22 RU80 */ const err=bkpCheck(o); if(err){ toast(err); return; }
   if((+o.appVer||0)>APP_VER) toast("This backup was made with a newer version of the app. Parts this version does not know are kept.");
   const n=bkpCount(o), m=Object.keys((rGet()||{chars:{}}).chars||{}).length;
@@ -10,7 +10,7 @@ function impObj(o){ if(o&&o.kind==="character") return impChar(o); if(o&&typeof 
 /* RU42: merge. A character with a new id is added. The same id with the same data is skipped. The same id with other data is added as another character */
 function bkpMerge(o){ let src=null; try{ src=JSON.parse(o.keys["cs-roster-v1"]||"null"); }catch(e){}
   const list=[]; if(src&&src.chars) Object.keys(src.chars).forEach((id) =>{ list.push([id,src.chars[id]]); });
-  else if(o.keys[CKEY]) list.push(["c"+Date.now(),{name:cOf(o.keys[CKEY]).name||"Character",C:o.keys[CKEY],S:o.keys[KEY]||null,B:o.keys[BKEY]||null}]);
+  else if(o.keys[CKEY]) list.push(["c"+Date.now(),{name:cOf(o.keys[CKEY]).name||"Character",C:o.keys[CKEY],S:o.keys[KEY]||null,B:o.keys[lateGet("BKEY")]||null}]);
   let r=rSnap(rEnsure()), add=0, same=0;
   list.forEach((p) =>{ const id=p[0], ch=p[1]||{}; if(ch.C==null) return; const ex=r.chars[id];
     if(ex&&ex.C===ch.C&&(ex.S||null)===(ch.S||null)&&(ex.B||null)===(ch.B||null)){ same++; return; }
@@ -20,7 +20,7 @@ function bkpMerge(o){ let src=null; try{ src=JSON.parse(o.keys["cs-roster-v1"]||
   toast(add?"Added "+add+" character"+(add===1?"":"s")+(same?". "+same+" already on this device":""):"All characters in this backup are already on this device"); }
 /* v22 RU80: a build file. The builder works out the sheet. The character is added, then the builder opens to show what is missing or breaks a rule */
 function impBuild(b,o){ if(typeof b==="string"){ try{ b=JSON.parse(b); }catch(e){ b=null; } } if(!b||typeof b!=="object"||!(b.cls||b["class"])){ toast("This build has no class, so it cannot be opened."); return; }
-  if(!(o&&"_coins" in o)){ const cz=b.coins&&typeof b.coins==="object"?b.coins:(typeof b.gp==="number"||/^\d+(\.\d+)?$/.test(String(b.gp==null?"":b.gp))?{gp:+b.gp}:null); o=Object.assign({},o||{},{_coins:cz?__R.coinsClean(cz):null}); }/* v34 p06 */
+  if(!(o&&"_coins" in o)){ const cz=b.coins&&typeof b.coins==="object"?b.coins:(typeof b.gp==="number"||/^\d+(\.\d+)?$/.test(String(b.gp==null?"":b.gp))?{gp:+b.gp}:null); o=Object.assign({},o||{},{_coins:cz?coinsClean(cz):null}); }/* v34 p06 */
   delete b.coins; if(typeof b.gp!=="undefined") delete b.gp;
   if(!env.__bldSheetFor||!env.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
   if(!(o&&o._ok)){ const nm0=env.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */

@@ -1,10 +1,10 @@
-import {S,save} from "./04-logic-storage.js";
+import {bindLive,renderAll} from "./00a-reg-late-ports.js";import {S,save} from "./04-logic-storage.js";
 import {toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {INCAP,hasFeat,lvOf} from "./32b-logic-play-concentration-casting.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"modeAuto",{get:function(){return modeAuto;},set:function(v){modeAuto=v;},configurable:true});
-Object.defineProperty(__R,"modeClean",{get:function(){return modeClean;},set:function(v){modeClean=v;},configurable:true});
+
+bindLive("modeAuto",{get:function(){return modeAuto;}});
+bindLive("modeClean",{get:function(){return modeClean;}});
 /* ================= v22: PLAYING THE CHARACTER 2 ================= */
 /* RU53, RU56: what active conditions and modes do to the numbers. D.cf = cfx() */
 export var MODES=[{k:"rage",n:"Rage",f:"Rage",use:/^Rage$/},{k:"wildshape",n:"Wild Shape",f:"Wild Shape",use:/^Wild Shape$/},{k:"sacred",n:"Sacred Weapon",f:"Sacred Weapon",use:/^Channel Divinity$/},
@@ -14,7 +14,7 @@ export function modeOn(k){ return !!(S.mode&&S.mode[k])&&modesAvail().some((m) =
 export function modeFix(){ const a=JSON.stringify(S.mode||{}); modeClean(); modeAuto(); return JSON.stringify(S.mode||{})!==a; }
 function modeClean(){ if(!S.mode) return; const av=modesAvail().map((m) =>{ return m.k; }), gone=Object.keys(S.mode).filter((k) =>{ return av.indexOf(k)<0; }); if(!gone.length) return; gone.forEach((k) =>{ delete S.mode[k]; }); save(); }
 /* v22 m3: Rage ends with the Incapacitated condition (0 Hit Points gives Unconscious) */
-function modeAuto(){ if(!modeOn("rage")) return; const why=S.hp===0?"0 Hit Points":INCAP.filter((k) =>{ return S.cond[k]; })[0]; if(!why) return; delete S.mode.rage; save(); toast("Rage ended ("+why+")."); setTimeout(() =>{ try{ __R.renderAll(); }catch(er){} },0); }/* v22 N1 */
+function modeAuto(){ if(!modeOn("rage")) return; const why=S.hp===0?"0 Hit Points":INCAP.filter((k) =>{ return S.cond[k]; })[0]; if(!why) return; delete S.mode.rage; save(); toast("Rage ended ("+why+")."); setTimeout(() =>{ try{ renderAll(); }catch(er){} },0); }/* v22 N1 */
 export var HEAVY=/^(Ring Mail|Chain Mail|Splint Armor|Plate Armor)\b/;
 export function rageDmg(){ const l=lvOf("Barbarian"); return l>=16?4:l>=9?3:2; }
 /* v56: passive Advantage from features. One table drives the ADV tags on Initiative, skills, saves and Death Saving Throws.

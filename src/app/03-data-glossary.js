@@ -1,5 +1,5 @@
-import {HB_CONDS,HB_SRC} from "./02-data-default-character.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {hdRows,lateGet,num,used} from "./00a-reg-late-ports.js";import {HB_CONDS,HB_SRC} from "./02-data-default-character.js";
+import {env} from "./00-env.js";
 /* ================= GLOSSARY (paraphrased, not quoted) ================= */
 const RG="PHB-2024, Rules Glossary", EQ="PHB-2024, Equipment", PG="PHB-2024, Playing the Game";
 export var GLOSS={
@@ -155,17 +155,17 @@ export function gl14(on){ if(typeof GLOSS==="undefined")return; on=!!on; if(on==
 env.__gl14=gl14;
 export var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
 /* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */
-export function gName(g){ g=String(g==null?"":g); if(!(typeof __R.C!=="undefined"&&__R.C&&__R.C.rs==="2014"))return g; const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
-export function athI(){ const s=__R.C.skills||[]; for(let i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
+export function gName(g){ g=String(g==null?"":g); if(!(typeof lateGet("C")!=="undefined"&&lateGet("C")&&lateGet("C").rs==="2014"))return g; const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
+export function athI(){ const s=lateGet("C").skills||[]; for(let i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
 export function x14n(n){ return n==="Magic"?"Cast a Spell":n==="Utilize"?"Use an Object":n; }
-export function x14(){ return typeof __R.C!=="undefined"&&!!__R.C&&__R.C.rs==="2014"; }
+export function x14(){ return typeof lateGet("C")!=="undefined"&&!!lateGet("C")&&lateGet("C").rs==="2014"; }
 /* Exhaustion: 2024 takes 2 from every D20 Test and 5 feet of Speed per level. 2014 has six levels with fixed effects */
-export function exSpd(v){ const e=(typeof __R.D!=="undefined"&&__R.D&&__R.D.exh)||0; return x14()?(e>=5?0:e>=2?Math.floor(v/2):v):Math.max(0,v-5*e); }
+export function exSpd(v){ const e=(typeof lateGet("D")!=="undefined"&&lateGet("D")&&lateGet("D").exh)||0; return x14()?(e>=5?0:e>=2?Math.floor(v/2):v):Math.max(0,v-5*e); }
 export function exTxt(n){ if(!x14())return "D20 Tests −"+(2*n)+", Speed −"+(5*n)+" ft"; let a=[]; a.push(n>=3?"Disadvantage on ability checks, attack rolls, and saves":"Disadvantage on ability checks"); if(n>=5)a.push("Speed 0"); else if(n>=2)a.push("Speed halved"); if(n>=4)a.push("Hit Point maximum halved"); if(n>=6)a=["Dead"]; return a.join(", "); }
 export function exHelp(){ return x14()?"Six levels, each adds to the last: 1 checks, 2 Speed halved, 3 attacks and saves, 4 Hit Points halved, 5 Speed 0, 6 death.":"Each level: −2 to D20 Tests and −5 ft Speed. Level 6 is death."; }
 /* Long Rest, 2014: Hit Dice come back up to half of the total (at least 1), the biggest dice first */
-export function hdPlan(){ let rows=__R.hdRows().slice().sort((a,b) =>{ return __R.num(b.die,__R.num(__R.C.hitDie,10))-__R.num(a.die,__R.num(__R.C.hitDie,10)); }), tot=rows.reduce((t,r) =>{return t+r.max},0), bud=Math.max(1,Math.floor(tot/2)), pl={}, sum=0;
- rows.forEach((r) =>{ const u=__R.used(r.k,r.max), t=Math.min(u,bud); pl[r.k]=t; bud-=t; sum+=t; }); pl._n=sum; return pl; }
+export function hdPlan(){ let rows=hdRows().slice().sort((a,b) =>{ return num(b.die,num(lateGet("C").hitDie,10))-num(a.die,num(lateGet("C").hitDie,10)); }), tot=rows.reduce((t,r) =>{return t+r.max},0), bud=Math.max(1,Math.floor(tot/2)), pl={}, sum=0;
+ rows.forEach((r) =>{ const u=used(r.k,r.max), t=Math.min(u,bud); pl[r.k]=t; bud-=t; sum+=t; }); pl._n=sum; return pl; }
 /* features that resource and action names point to */
 GLOSS["Celurit (Sickle)"]=GLOSS["Sickle"];
 HB_CONDS.forEach((c) =>{ GLOSS[c.k]={c:"Condition (homebrew)",s:HB_SRC,d:c.d}; });

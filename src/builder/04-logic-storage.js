@@ -1,8 +1,8 @@
-import {genv} from "./00-env.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {KEY,clone} from "./01-logic-core-helpers.js";
 import {BLANK,cleanCh} from "./03-logic-magic-item-effects.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"B",{get:function(){return B;},set:function(v){B=v;},configurable:true});
+
+bindLive("B",{get:function(){return B;},set:function(v){B=v;}});
 /* v18 RU78: a build that cannot be read opens the recovery screen (sheet.js) instead of being replaced by a blank one */
 export function loadB(){try{const r=__store.getItem(KEY);if(r){const p=JSON.parse(r);if(p&&p.cls){for(const k in BLANK)if(p[k]==null)p[k]=clone(BLANK)[k];return cleanCh(p)}if(!p||typeof p!=="object"||Array.isArray(p))throw new Error("the saved build has a shape this version does not know")}}catch(e){if(genv.__recover)genv.__recover("Build",e)}return clone(BLANK)}
 export var B=loadB();

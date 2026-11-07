@@ -1,11 +1,11 @@
-/* Responsibility: snapshots (take, restore, heal) and character files (copy, save, open). Split out of the former single file 15 in SOLID stage 9 (S); runs in the same order as before. */
-import {copyText} from "./lib/clipboard.js";import {APP_VER,CKEY,FROZEN,KEY,SNKEY,cSaveT,fmtAgo,lsGet,lsSet,saveT} from "./04-logic-storage.js";import {ask,esc,toast} from "./05-logic-helpers.js";import {uiGet} from "./07-ui-theme-contrast-spring.js";import {BKEY,RKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {homeCards,rSnap,showHome} from "./15-logic-roster-backup-files-snapshots.js";import {packOut} from "./15b-logic-backup.js";import {askPersist,cOf,chRaw,dlFile,fileAgo,fileMark,fileStale,fixCid,fmtT,newId,rawHash,remindCfg,uiSet,updUnsaved,zPack} from "./15c-logic-file-state-compress.js";
-Object.defineProperty(__R,"BIN_OPEN",{get:function(){return BIN_OPEN;},set:function(v){BIN_OPEN=v;},configurable:true});
-Object.defineProperty(__R,"SN_BAD",{get:function(){return SN_BAD;},set:function(v){SN_BAD=v;},configurable:true});
-Object.defineProperty(__R,"healHTML",{get:function(){return healHTML;},set:function(v){healHTML=v;},configurable:true});
-Object.defineProperty(__R,"healUse",{get:function(){return healUse;},set:function(v){healUse=v;},configurable:true});
-Object.defineProperty(__R,"snGet",{get:function(){return snGet;},set:function(v){snGet=v;},configurable:true});
-Object.defineProperty(__R,"snTake",{get:function(){return snTake;},set:function(v){snTake=v;},configurable:true});
+import {bindLive,foundryOut,ico,lateGet,qrSendOpen,uiGet,rEnsure,rGet,rSave,setOrDel} from "./00a-reg-late-ports.js";/* Responsibility: snapshots (take, restore, heal) and character files (copy, save, open). Split out of the former single file 15 in SOLID stage 9 (S); runs in the same order as before. */
+import {copyText} from "./lib/clipboard.js";import {APP_VER,CKEY,FROZEN,KEY,SNKEY,cSaveT,fmtAgo,lsGet,lsSet,saveT} from "./04-logic-storage.js";import {ask,esc,toast} from "./05-logic-helpers.js";import {env} from "./00-env.js";import {homeCards,rSnap,showHome} from "./15-logic-roster-backup-files-snapshots.js";import {packOut} from "./15b-logic-backup.js";import {askPersist,cOf,chRaw,dlFile,fileAgo,fileMark,fileStale,fixCid,fmtT,newId,rawHash,remindCfg,uiSet,updUnsaved,zPack} from "./15c-logic-file-state-compress.js";
+bindLive("BIN_OPEN",{get:function(){return BIN_OPEN;},set:function(v){BIN_OPEN=v;}});
+bindLive("SN_BAD",{get:function(){return SN_BAD;},set:function(v){SN_BAD=v;}});
+bindLive("healHTML",{get:function(){return healHTML;}});
+bindLive("healUse",{get:function(){return healUse;}});
+bindLive("snGet",{get:function(){return snGet;}});
+bindLive("snTake",{get:function(){return snTake;}});
 const SN_MAX=900000;
 export var BIN_OPEN=false;
 export var SN_BAD=false;
@@ -22,7 +22,7 @@ function healOkS(raw){ try{ const p=JSON.parse(raw); return !!(p&&typeof p==="ob
 function healFind(){ const curC=lsGet(CKEY), curS=lsGet(KEY), needC=curC!=null&&!healOkC(curC), needS=curS!=null&&!healOkS(curS); if(!needC&&!needS) return null;
   const L=[], add=function(src,t,c,st){ if(needC&&!healOkC(c)) return; if(!needC&&needS&&!healOkS(st)) return; L.push({src:src,t:t||0,C:needC?c:null,S:needS&&healOkS(st)?st:null}); };
   try{ add("the second copy on this device",0,localStorage.getItem(CKEY),localStorage.getItem(KEY)); }catch(e){}
-  let r=null; try{ r=JSON.parse(lsGet(RKEY)||"null"); }catch(e){ r=null; } const e0=r&&r.chars&&r.active&&r.chars[r.active]; if(e0) add("the character list",e0.t,e0.C,e0.S);
+  let r=null; try{ r=JSON.parse(lsGet(lateGet("RKEY"))||"null"); }catch(e){ r=null; } const e0=r&&r.chars&&r.active&&r.chars[r.active]; if(e0) add("the character list",e0.t,e0.C,e0.S);
   if(r&&r.active){ const o=snGet(); (o.chars[r.active]||[]).forEach((x) =>{ add("a snapshot ("+x.why+")",x.t,typeof x.C==="string"?x.C:JSON.stringify(x.C),x.S); }); }
   if(!L.length) return {needC:needC,needS:needS,none:1};
   const first=L[0].src.indexOf("second copy")===0?L[0]:null, rest=L.filter((x) =>{ return x!==first; }).sort((a,b) =>{ return b.t-a.t; });
@@ -46,7 +46,7 @@ export function snRestore(id,i){ const o=snGet(), x=(o.chars[id]||[])[i]; if(!x)
   ask("Go back to the copy from "+fmtT(x.t)+" ("+x.why+")? The character as it is now is kept as a snapshot first, so you can undo this."+(pv?"\n\nNumbers that change:\n"+pv:""),"Restore Snapshot",() =>{ const r=rSnap(rEnsure()); snTake(id,"Before going back to a snapshot",r);
     let cur=chRaw(id,r), s=x.S; try{ const so=JSON.parse(s), co=cOf(cur.S); if(co.portrait){ so.portrait=co.portrait; s=JSON.stringify(so); } }catch(e){}
     const e=r.chars[id]; e.B=x.B; e.C=x.C; e.S=s; e.name=x.name||e.name; e.t=Date.now(); if(!rSave(r)) return;
-    if(id===r.active){ clearTimeout(cSaveT); clearTimeout(saveT); setOrDel(BKEY,x.B); lsSet(CKEY,x.C); lsSet(KEY,s); sessionStorage.setItem("cs-skip","1"); __miReload(); return; }
+    if(id===r.active){ clearTimeout(cSaveT); clearTimeout(saveT); setOrDel(lateGet("BKEY"),x.B); lsSet(CKEY,x.C); lsSet(KEY,s); sessionStorage.setItem("cs-skip","1"); __miReload(); return; }
     toast("Snapshot restored"); chfOpen(id); const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(); }); }
 export function snBack(id){ const r=rSnap(rEnsure()), x=(snGet().chars[id]||[])[0]; if(!x||r.chars[id]) return; const nm=x.name||cOf(x.C).name||"Character";
   ask("Bring back "+nm+" from the snapshot of "+fmtT(x.t)+"?","Bring Back",() =>{ r.chars[id]={name:nm,sub:(cOf(x.C).species||"")+" "+(cOf(x.C).clsLabel||""),B:fixCid(x.B,id),C:x.C,S:x.S,created:x.cr||Date.now(),t:Date.now()}; if(!rSave(r)) return; showHome(); toast(nm+" is back"); }); }
@@ -74,7 +74,7 @@ export function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) r
    '<div class="chfopt"><label for="chfRem">Backup reminder</label><select id="chfRem" data-chfrem="1"><option value="7"'+(rc.days===7?' selected':'')+'>After 7 days</option><option value="30"'+(rc.days===30?' selected':'')+'>After 30 days</option><option value="0"'+(rc.days===0?' selected':'')+'>Off</option></select>'+
    ((env.showSaveFilePicker&&!/Mobi|Android/i.test(navigator.userAgent))?'<label class="chfauto"><input type="checkbox" data-chfauto="1"'+(rc.auto?' checked':'')+'> Keep this file updated automatically (after you save it once in this window)</label>':'')+'</div>'+
    '<div class="bkpr"><button type="button" class="btn pri press" data-chf="save">Save Character</button><button type="button" class="btn press" data-chf="text">Show as Text</button></div>'+
-   '<div class="bkpr"><button type="button" class="btn press" data-chf="send">'+__R.ico("ui-qr")+'<span>Send to Another Device</span></button></div>'+
+   '<div class="bkpr"><button type="button" class="btn press" data-chf="send">'+ico("ui-qr")+'<span>Send to Another Device</span></button></div>'+
    '<div class="bkpt" hidden><textarea id="chfTxt" readonly spellcheck="false">Packing...</textarea><div class="bkpr"><button type="button" class="btn press" data-chf="copy">Copy Text</button></div></div>'+
    '<h4 class="chfh">Other Apps</h4><p class="muted">A basic file for Foundry VTT (dnd5e system): ability scores, saves, skills, Hit Points, Armor Class, Speed, coins, class levels, and the names of items, spells, and features. In Foundry, right-click a character and choose Import Data.</p><div class="bkpr"><button type="button" class="btn press" data-chf="foundry">Export for Foundry VTT</button></div>'+
    '<h4 class="chfh">Snapshots</h4><p class="muted">The last 5 versions of this character, kept on this device. One is taken after each hour of play, before Apply from the builder, Restore, and Open Character, and once a day.</p>'+
@@ -87,8 +87,8 @@ export function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) r
     if(a==="close"){ w.remove(); return; }
     if(a==="save"){ chSave(id); return; }
     if(a==="dup"){ chCopy(id); w.remove(); return; }
-    if(a==="foundry"){ __R.foundryOut(id); return; }/* v27 RU75 */
-    if(a==="send"){ __R.qrSendOpen(id); return; }/* v34 item 5 */
+    if(a==="foundry"){ foundryOut(id); return; }/* v27 RU75 */
+    if(a==="send"){ qrSendOpen(id); return; }/* v34 item 5 */
     if(a==="text"){ const t=JSON.stringify(chFile(id)); w.querySelector(".bkpt").hidden=false; zPack(t).then((z) =>{ txt=z; },() =>{ txt=t; }).then(() =>{ const ta=document.getElementById("chfTxt"); if(ta){ ta.value=txt; ta.focus(); ta.select(); } }); return; }
     if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) =>{ toast(ok?"Character text copied":"Select the text and copy it"); }); return; }
     if(a==="snap"&&SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; }

@@ -8,7 +8,7 @@ import {__set_refreshEntry,__set_showEntry,refreshEntry,showEntry} from "./12-ui
 import {mq} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {invKey} from "./23b-ui-items-containers.js";
-import {__R} from "./00-reg.js";
+
 let ORD_ON={inv:0,feat:0}, DRG=null;
 function ordLive(t){ let l=document.getElementById("v31live"); if(!l){ l=document.createElement("div"); l.id="v31live"; l.className="sr"; l.setAttribute("aria-live","polite"); document.body.appendChild(l); } l.textContent=""; setTimeout(() =>{ l.textContent=t; },30); }
 function ordKeyInv(row){ const b=row.querySelector(".iname[data-info]"), ix=b?+b.getAttribute("data-info").slice(3):-1, L=C.inv||[], it=L[ix]; if(!it) return null; let k=invKey(it), n=0; for(let j=0;j<ix;j++){ if(invKey(L[j])===k) n++; } return "i:"+k+"#"+n; }

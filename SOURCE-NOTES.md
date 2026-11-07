@@ -41,7 +41,7 @@ Alur edit: ubah file di `src/`, jalankan `python3 build.py`, lalu `python3 build
 Peran di nama file `app/` dan `builder/`: `logic` (hitung, simpan, impor), `ui` (render dan interaksi), `data` (tabel tetap), `boot` (mulai). Peran ditentukan dari isi utama bagian itu. Kode lama tersusun per patch, jadi beberapa file `ui` masih memuat sedikit logic dan sebaliknya. Pemisahan penuh butuh pemindahan kode (mengubah urutan), di luar T0.
 
 Blok modul (`app`, `builder`, `learn`, `tg`) punya kunci `entry` di `manifest.json`. `build.py` memanggil esbuild untuk membundel entry dan semua `import` jadi satu IIFE strict. File `pre` (kode klasik yang juga jalan di node atau harus global) ditaruh di depan bundel.
-Aturan modul: satu file hanya mengimpor file yang lebih awal di manifest, jadi urutan jalan sama dengan dulu. Nama yang dipakai file awal dari file akhir (hanya saat dipanggil) lewat `__R` di `00-reg.js`. Nilai yang ditulis dari file lain lewat fungsi `__set_Nama`. Fungsi yang dipakai saat muat harus ada di file yang sama atau lebih awal. `node tools/esm_codemod.js <blok>` mengecek aturan ini. `tests/names_lint.py` mengecek nama tanpa deklarasi.
+Aturan modul: satu file hanya mengimpor file yang lebih awal di manifest, jadi urutan jalan sama dengan dulu. Nama yang dipakai file awal dari file akhir (hanya saat dipanggil) lewat port akhir: `app/00a-reg-late-ports.js` dan `builder/01b-logic-late-ports.js` (tahap 10, `__R` sudah tidak dipakai). Pemilik mendaftar sekali dengan `bindLive("Nama",{get:function(){return Nama;}})`, pembaca mengimpor `Nama` dari file port (fungsi) atau memanggil `lateGet("Nama")` (nilai). Nilai yang ditulis dari file lain lewat fungsi `__set_Nama`. Fungsi yang dipakai saat muat harus ada di file yang sama atau lebih awal. `node tools/esm_codemod.js <blok>` mengecek aturan ini. `tests/names_lint.py` mengecek nama tanpa deklarasi.
 Blok `fx` tetap klasik: tiap file sudah satu closure sendiri dan tidak berbagi nama.
 
 ## Data dan storage
@@ -284,7 +284,8 @@ Builder dan fx tidak membaca `window.*` langsung lagi (di luar modul env). `genv
 | File | Isi |
 |---|---|
 | builder/00-env.js | Accessor sempit tahap 1 sampai 5 (`gx`, `classDef`, `packTables`, ...) dan `genv` (tahap 8): tabel data, hook dan jembatan builder, metode browser |
-| builder/00-reg.js | `__R`, kantong lama untuk nama yang dipakai file lebih awal dan dimiliki file lebih akhir. 14 nama (MCL, TL, baseOf, itemW, slotsAll, ensureInv, miFeats, spOptFx, fxCh, fxv, gfx, gxPicks, itemType, enabledPacks) sudah keluar dari sini, sisanya tinggal |
+| builder/00-reg.js | `__R`, kantong lama. Sejak tahap 10 tidak ada file yang mengimpornya (isinya pindah ke port akhir di `01b-logic-late-ports.js`). File dibiarkan karena penghapusan butuh izin |
+| app/00a-reg-late-ports.js | Port akhir sheet (tahap 10): `bindLive`, `lateGet`, `lateSet`, dan satu fungsi pembungkus per nama fungsi. Tanpa impor, dimuat paling awal, tidak punya efek samping |
 | builder/01a-logic-query-registry.js | `QRY` dan `provideQueries`: fungsi baca murni yang diberikan ke handler `toSheet()` sebagai `ctx.q`. Pemilik fungsi mendaftar sekali, nama ganda melempar error |
 | builder/01b-logic-late-ports.js | Port akhir (tahap 8): fungsi milik file lebih akhir yang dipanggil file lebih awal (saat jalan, bukan saat muat). Satu export bernama per fungsi, daftar nama tertutup, pemilik memanggil `bindLate({...})` sekali. File yang lebih akhir dari pemilik mengimpor langsung dari pemilik. `sheetInputs()` memakai port ini, bukan `QRY.*` |
 | builder/11-logic-derivation.js | `fxList()` (entri efek dengan item) dan `fxListBase()` (tanpa item) menggantikan `gfx(noItem)` untuk pemanggil luar. `gfx` tidak diekspor lagi |
@@ -626,5 +627,5 @@ Analisis dan angka: `reports/solid-s9-analysis.md`. Ringkas:
 - Env: `app/00-env.js` (juga API browser), `boot/boot-env.js` (const `BootEnv` di skrip klasik pertama), `tg/00-env.js`, `learn/00-env.js`. Kode di area itu tidak memakai `window.` langsung. Sisa: pembungkus UMD `tg/20-engine.js` dan `tg/25-sim.js`.
 - File besar dipecah berurutan: 08 jadi 08, 08b, 08c. 15 jadi 15, 15b, 15c, 15d. 16 jadi 16, 16b (data catatan rilis), 16c. 29 jadi 29, 29b, 29c (tabel ikon). 32 jadi 32, 32b, 32c, 32d. 34 jadi 34, 34b, 34c. Impor file lain sudah diarahkan ke pemilik nama.
 - Registry baru di `app/06a-logic-ui-registry.js`: SEARCHGRP (grup hasil Search, `gsHTML`), OVERLAY (lapisan Back, `ovTop`, urutan daftar = urutan z), PANEL (halaman sheet, `PAGES` dan perintah "go to").
-- `__R`: 5 nama jadi impor. Sisa 275 nama, alasan di bagian 6 laporan.
+- `__R`: tahap 9 menyisakan 275 nama di app dan 49 di builder. Tahap 10 menghapus semua pemakaian: nama dengan pembaca lebih awal pindah ke port akhir (`app/00a-reg-late-ports.js`, `builder/01b-logic-late-ports.js`), `hpWord` dan `slotAddApply` jadi impor, `classFx` dan `kitItems` dibuang karena tidak ada pembacanya. Lihat `reports/solid-s10-analysis.md`.
 

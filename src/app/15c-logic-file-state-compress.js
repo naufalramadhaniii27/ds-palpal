@@ -1,12 +1,12 @@
-/* Responsibility: unsaved marks, file reminders, compression, storage info and the Home info card. Split out of the former single file 15 in SOLID stage 9 (S); runs in the same order as before. */
-import {APP_VER,C,FROZEN,S,lsGet} from "./04-logic-storage.js";import {esc} from "./05-logic-helpers.js";import {uiGet} from "./07-ui-theme-contrast-spring.js";import {BKEY,rGet} from "./14-ui-editor.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {BIN_OPEN,FH,chSave,snGet} from "./15d-logic-snapshots-character-files.js";
-Object.defineProperty(__R,"fmtT",{get:function(){return fmtT;},set:function(v){fmtT=v;},configurable:true});
-Object.defineProperty(__R,"uiSet",{get:function(){return uiSet;},set:function(v){uiSet=v;},configurable:true});
-Object.defineProperty(__R,"updUnsaved",{get:function(){return updUnsaved;},set:function(v){updUnsaved=v;},configurable:true});
+import {bindLive,lateGet,uiGet,rGet} from "./00a-reg-late-ports.js";/* Responsibility: unsaved marks, file reminders, compression, storage info and the Home info card. Split out of the former single file 15 in SOLID stage 9 (S); runs in the same order as before. */
+import {APP_VER,C,FROZEN,S,lsGet} from "./04-logic-storage.js";import {esc} from "./05-logic-helpers.js";import {env} from "./00-env.js";import {BIN_OPEN,FH,chSave,snGet} from "./15d-logic-snapshots-character-files.js";
+bindLive("fmtT",{get:function(){return fmtT;}});
+bindLive("uiSet",{get:function(){return uiSet;}});
+bindLive("updUnsaved",{get:function(){return updUnsaved;}});
 export function hashS(s){ let h=2166136261; s=String(s||""); for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return (h>>>0).toString(36)+s.length.toString(36); }
 export function rawHash(x){ return hashS((x.B||"")+"\u0001"+(x.C||"")+"\u0001"+(x.S||"")); }
 /* the open character as it will be saved (memory is newer than storage for up to 200 ms) */
-export function curRaw(){ [C,S].forEach((o) =>{ o._app=Math.max(+o._app||0,APP_VER); }); return {B:lsGet(BKEY),C:JSON.stringify(C),S:JSON.stringify(S)}; }
+export function curRaw(){ [C,S].forEach((o) =>{ o._app=Math.max(+o._app||0,APP_VER); }); return {B:lsGet(lateGet("BKEY")),C:JSON.stringify(C),S:JSON.stringify(S)}; }
 export function chRaw(id,r){ r=r||rGet()||{chars:{}}; if(id===r.active&&!FROZEN) return curRaw(); const c=(r.chars||{})[id]||{}; return {B:c.B==null?null:c.B,C:c.C==null?null:c.C,S:c.S==null?null:c.S}; }
 
 export function uiSet(k,o){ try{ __store.setItem(k,JSON.stringify(o)); }catch(e){} }
@@ -51,7 +51,7 @@ export function techInfo(){ const q=bkState(), bk=q.bk, u=q.u, pct=q.pct, full=q
     (full?'<span class="hbkw">Storage is almost full. Back up, then remove portraits or characters you no longer need.</span>':'')+'</div>'+pwaNote(); }
 /* T4 item 27: how to install the app. Hidden once it runs as an installed app */
 function pwaNote(){ let st=false; try{ st=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true; }catch(er){} if(st) return '<div class="hbkl"><span>This app is installed on your device.</span></div>';
-  return '<div class="hbkl"><span>Install: '+((typeof __R.PWA_EV!=="undefined"&&__R.PWA_EV)?'press Install App on the Home screen, or use the Install command in the search.':'in Chrome or Edge use the install icon in the address bar. In Safari use Share, then Add to Home Screen.')+' An installed app opens faster and works offline.</span></div>'; }
+  return '<div class="hbkl"><span>Install: '+((typeof lateGet("PWA_EV")!=="undefined"&&lateGet("PWA_EV"))?'press Install App on the Home screen, or use the Install command in the search.':'in Chrome or Edge use the install icon in the address bar. In Safari use Share, then Add to Home Screen.')+' An installed app opens faster and works offline.</span></div>'; }
 export function homeInfo(){ let q=bkState(), r=q.r, warnH="";
   if(q.warn||q.full) warnH='<div class="hbkl warn" role="status">'+(q.full&&env.__artVig?env.__artVig("state","storage-full",44):"")+'<span class="hbkw">'+(q.full?'Storage is almost full. Back up, then remove portraits or characters you no longer need.':(q.bk.t?'Your last backup is '+q.days+' days old and there are changes since then.':'You have no backup yet. Back up your characters so they are safe if this browser\'s data is cleared.'))+'</span><button type="button" class="hlink" data-hbk="out">Back Up</button><button type="button" class="hlink" data-hbk="info">Details</button></div>';
   return warnH+

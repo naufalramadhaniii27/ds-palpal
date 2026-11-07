@@ -6,7 +6,7 @@ import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
 import {classFx,clsParts,fxList,fxVal} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
-import {__R} from "./00-reg.js";
+
 import {provideQueries} from "./01a-logic-query-registry.js";
 provideQueries({calcNote,defenses});
 /* ---------- level-based numbers for feature text ---------- */

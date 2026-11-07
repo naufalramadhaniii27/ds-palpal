@@ -1,12 +1,12 @@
-import {C,FROZEN,lsGet} from "./04-logic-storage.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {C,FROZEN,lsGet} from "./04-logic-storage.js";
 import {esc,toast} from "./05-logic-helpers.js";
 import {REDUCE,uiGet} from "./07-ui-theme-contrast-spring.js";
 import {sheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {rGet} from "./14-ui-editor.js";
 import {learnBand,learnGo,rPh} from "./15-logic-roster-backup-files-snapshots.js";import {uiSet} from "./15c-logic-file-state-compress.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"tourBanner",{get:function(){return tourBanner;},set:function(v){tourBanner=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("tourBanner",{get:function(){return tourBanner;}});
 /* ================= v24: TOUR (RU76) ================= */
 /* A short tour for new players. Home shows an inline offer once (cs-ui-tour); the tour only starts when the player asks, so it never covers the app */
 /* T11 U52: the tour now runs on the character's own sheet with the Learn spotlight (window.__spot, src/learn/46): HP, Armor Class,
