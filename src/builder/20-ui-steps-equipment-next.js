@@ -12,9 +12,9 @@ import {MCL,TL,baseOf,clsKitText0,ensureInv,eq14UI,eqIdx,equippable,gpBase,gpNow
 import {__set_step,ask,bI,card,fmtGp,mfullH,openCards,rt,step} from "./17-ui-step-builder.js";
 import {ruleIssues} from "./18-ui-spells.js";
 import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"PROFC",{get:function(){return PROFC;},set:function(v){PROFC=v;},configurable:true});
-Object.defineProperty(__R,"itemDetail",{get:function(){return itemDetail;},set:function(v){itemDetail=v;},configurable:true});
+import {provideQueries} from "./01a-logic-query-registry.js";
 Object.defineProperty(__R,"itemType",{get:function(){return itemType;},set:function(v){itemType=v;},configurable:true});
+provideQueries({itemDetail,typeOfItem:itemType,profcSet:function(p){PROFC=p}});/* the sheet queries (toSheet state.q) of this file */
 /* ---------- step: equipment ---------- */
 export var bMsg="",invQ="",invT="",invR="",invP=false,addQty={},addVar={},cust={n:"",r:"Uncommon",d:"",t:"Wondrous Item"};
 export function itemType(n,x){if(x&&x.type)return x.type;if(DMAP[n])return DMAP[n][1];if(scrollOf(n))return "Scroll";n=baseOf(n).b;if(POTIONS.some((p) =>{return p[0]===n}))return "Potion";if(WEAPONS[n]){const w=WEAPONS[n];return (w.cat==="S"?"Simple":"Martial")+" "+(w.k==="M"?"Melee":"Ranged")+" Weapon"}if(ARMOR[n])return ARMOR[n].cat+" Armor";if(n==="Shield")return "Shield";return MOUNTT[n]||"Gear"}

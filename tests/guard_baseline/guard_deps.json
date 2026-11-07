@@ -91,7 +91,7 @@
  "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
  "builder/11-logic-derivation.js -> app/08-ui-render-sheet-and-actions.js": 1,
  "builder/11-logic-derivation.js -> builder/18-ui-spells.js": 1,
- "builder/12-logic-export-to-sheet.js -> builder/20-ui-steps-equipment-next.js": 2,
+ "builder/12-logic-export-to-sheet.js -> builder/20-ui-steps-equipment-next.js": 1,
  "builder/13-logic-sources-and-packs.js -> builder/18-ui-spells.js": 1,
  "builder/15-logic-import-from-sheet.js -> builder/17-ui-step-builder.js": 1,
  "builder/23-logic-level-up-and-build-files.js -> builder/17-ui-step-builder.js": 1,
