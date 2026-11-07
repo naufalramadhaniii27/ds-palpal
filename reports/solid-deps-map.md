@@ -40,19 +40,19 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | builder/23-logic-level-up-and-build-files.js (logic) | builder/22-ui-shell.js (ui) | 3: render, stamp, stepBack | yes |
 | learn/45-data-learn.js (data) | tg/30-ui-tg.js (ui) | 3: back, close, open | yes |
 | app/04-logic-storage.js (logic) | app/14-ui-editor.js (ui) | 2: BKEY, rGet | yes |
-| app/05-logic-helpers.js (logic) | app/27b-ui-library.js (ui) | 2: LIBR, LIB_RULES | yes |
 | app/05-logic-helpers.js (logic) | app/13-ui-detail-cards.js (ui) | 2: featSpec, xlink | yes |
+| app/05-logic-helpers.js (logic) | app/27b-ui-library.js (ui) | 2: LIBR, LIB_RULES | yes |
 | app/06-logic-derivation.js (logic) | app/25-ui-settings-appearance.js (ui) | 2: carryOf, setOf | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/16c-ui-whats-new-and-hooks.js (ui) | 2: wnBanner, wnOpen | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 2: PALS, dataUri | yes |
 | app/15c-logic-file-state-compress.js (logic) | app/14-ui-editor.js (ui) | 2: BKEY, rGet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: refreshEntry, sheet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 2: campName, used | yes |
-| app/32b-logic-play-concentration-casting.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: featAll, syncLU | yes |
-| app/32b-logic-play-concentration-casting.js (logic) | app/35-ui-combo.js (ui) | 2: cmbCast, cmbRe | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: refreshEntry, showEntry | yes |
-| app/32d-logic-play-hp-rest-recovery.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: renderActions, syncLU | yes |
+| app/32b-logic-play-concentration-casting.js (logic) | app/35-ui-combo.js (ui) | 2: cmbCast, cmbRe | yes |
+| app/32b-logic-play-concentration-casting.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: featAll, syncLU | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 2: renderTiles, used | yes |
+| app/32d-logic-play-hp-rest-recovery.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: renderActions, syncLU | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/14-ui-editor.js (ui) | 2: rGet, rSave | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/21-ui-tabs-pager.js (ui) | 2: moveTabInd, onMode | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/35-ui-combo.js (ui) | 2: __set_bldDot, bldDot | yes |
@@ -67,33 +67,33 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | builder/25-logic-hooks-for-the-sheet.js (logic) | builder/20-ui-steps-equipment-next.js (ui) | 2: itemDetail, itemType | yes |
 | builder/25-logic-hooks-for-the-sheet.js (logic) | builder/22-ui-shell.js (ui) | 2: render, stamp | yes |
 | learn/46-logic-learn.js (logic) | app/21-ui-tabs-pager.js (ui) | 2: goPage, setTab | yes |
-| app/03-data-glossary.js (data) | app/23d-ui-rest.js (ui) | 1: hdRows | yes |
 | app/03-data-glossary.js (data) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/04-logic-storage.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: applyLook | yes |
+| app/03-data-glossary.js (data) | app/23d-ui-rest.js (ui) | 1: hdRows | yes |
 | app/04-logic-storage.js (logic) | app/20-ui-portrait.js (ui) | 1: syncPortrait | yes |
 | app/04-logic-storage.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
-| app/04-logic-storage.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderNotes | yes |
 | app/04-logic-storage.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/05-logic-helpers.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
-| app/05-logic-helpers.js (logic) | tg/30-ui-tg.js (ui) | 1: close | yes |
+| app/04-logic-storage.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderNotes | yes |
+| app/04-logic-storage.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: applyLook | yes |
 | app/05-logic-helpers.js (logic) | fx/24-class-art.js (ui) | 1: __artVig | yes |
+| app/05-logic-helpers.js (logic) | tg/30-ui-tg.js (ui) | 1: close | yes |
+| app/05-logic-helpers.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
 | app/06-logic-derivation.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: atkKind | yes |
 | app/06-logic-derivation.js (logic) | app/23e-ui-spells-dc.js (ui) | 1: scAdj | yes |
 | app/06-logic-derivation.js (logic) | app/34-ui-situations.js (ui) | 1: sitNum | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | app/31-ui-tour-and-focus.js (ui) | 1: tourBanner | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: esArt | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | fx/01-core-router-and-switch.js (ui) | 1: __MI | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/27b-ui-library.js (ui) | 1: libOpen | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: esArt | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/27c-ui-report-pins.js (ui) | 1: reportOpen | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: icoCls | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | app/31-ui-tour-and-focus.js (ui) | 1: tourBanner | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | fx/01-core-router-and-switch.js (ui) | 1: __MI | yes |
 | app/15b-logic-backup.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | app/15b-logic-backup.js (logic) | app/27-ui-party-search-commands-library.js (ui) | 1: bkpCamp | yes |
-| app/15c-logic-file-state-compress.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
 | app/15c-logic-file-state-compress.js (logic) | fx/24-class-art.js (ui) | 1: __artVig | yes |
 | app/15c-logic-file-state-compress.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| app/15c-logic-file-state-compress.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
 | app/15d-logic-snapshots-character-files.js (logic) | tg/30-ui-tg.js (ui) | 1: close | yes |
-| app/15d-logic-snapshots-character-files.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
 | app/15d-logic-snapshots-character-files.js (logic) | app/27c-ui-report-pins.js (ui) | 1: foundryOut | yes |
+| app/15d-logic-snapshots-character-files.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
 | app/16-logic-import-chat-text-and-build-files.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: applyLook | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/16c-ui-whats-new-and-hooks.js (ui) | 1: wnBanner | yes |
@@ -101,22 +101,22 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/41-ui-edit-mode.js (ui) | 1: edmSet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderNotes | yes |
-| app/32-logic-play-undo-actions.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
 | app/32-logic-play-undo-actions.js (logic) | app/14-ui-editor.js (ui) | 1: BKEY | yes |
 | app/32-logic-play-undo-actions.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/32-logic-play-undo-actions.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheetIfOn | yes |
-| app/32b-logic-play-concentration-casting.js (logic) | app/10-ui-conditions.js (ui) | 1: renderConds | yes |
+| app/32-logic-play-undo-actions.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | app/23e-ui-spells-dc.js (ui) | 1: scOf | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | builder/24-ui-icons.js (ui) | 1: __bldSetQty | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
+| app/32b-logic-play-concentration-casting.js (logic) | app/10-ui-conditions.js (ui) | 1: renderConds | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | app/23e-ui-spells-dc.js (ui) | 1: scOf | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | builder/24-ui-icons.js (ui) | 1: __bldSetQty | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/09-ui-hit-points-playbar-death-saves.js (ui) | 1: syncHP | yes |
-| app/32d-logic-play-hp-rest-recovery.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/23d-ui-rest.js (ui) | 1: restRefresh | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/09-ui-hit-points-playbar-death-saves.js (ui) | 1: syncHP | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheet | yes |
+| app/32d-logic-play-hp-rest-recovery.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
 | app/33-logic-play-rage-conditions.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: REDUCE | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderInv | yes |
@@ -143,13 +143,13 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/wotc02-subclasses-2025.js (data) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
 | data/wotc13-creature-stat-blocks.js (data) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
 | data/fx-C-feat.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| data/hbpack-builtin-homebrew.js (data) | builder/13-logic-sources-and-packs.js (logic) | 1: autoSpells | yes |
 | data/hbpack-builtin-homebrew.js (data) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
+| data/hbpack-builtin-homebrew.js (data) | builder/13-logic-sources-and-packs.js (logic) | 1: autoSpells | yes |
 | data/fx-B1-subclass.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L1.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L4.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| data/fx-L5.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L5.js (data) | builder/11-logic-derivation.js (logic) | 1: abil | yes |
+| data/fx-L5.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L9.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L10.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L11.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
@@ -163,24 +163,24 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/fx-M2.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/09-logic-feats-and-choices.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | builder/09-logic-feats-and-choices.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 1: MAN_SUM | yes |
-| builder/10-logic-v17-additions.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| builder/10-logic-v17-additions.js (logic) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
 | builder/10-logic-v17-additions.js (logic) | builder/20-ui-steps-equipment-next.js (ui) | 1: itemType | yes |
+| builder/10-logic-v17-additions.js (logic) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
+| builder/10-logic-v17-additions.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/10a-logic-fx-registry.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
 | builder/10b-logic-fx-handlers-entry.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| builder/11-logic-derivation.js (logic) | builder/18-ui-spells.js (ui) | 1: xl14 | yes |
 | builder/11-logic-derivation.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| builder/11-logic-derivation.js (logic) | builder/18-ui-spells.js (ui) | 1: xl14 | yes |
 | builder/12-logic-export-to-sheet.js (logic) | builder/20-ui-steps-equipment-next.js (ui) | 1: itemDetail | yes |
 | builder/13-logic-sources-and-packs.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/15-logic-import-from-sheet.js (logic) | builder/17-ui-step-builder.js (ui) | 1: featOpts | yes |
 | builder/23-logic-level-up-and-build-files.js (logic) | builder/17-ui-step-builder.js (ui) | 1: __set_step | yes |
-| builder/25-logic-hooks-for-the-sheet.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
 | builder/25-logic-hooks-for-the-sheet.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
+| builder/25-logic-hooks-for-the-sheet.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
 | learn/45-data-learn.js (data) | builder/20-ui-steps-equipment-next.js (ui) | 1: hint | yes |
-| learn/46-logic-learn.js (logic) | tg/30-ui-tg.js (ui) | 1: place | yes |
-| learn/46-logic-learn.js (logic) | fx/01-core-router-and-switch.js (ui) | 1: __MI | yes |
 | learn/46-logic-learn.js (logic) | builder/17-ui-step-builder.js (ui) | 1: card | yes |
+| learn/46-logic-learn.js (logic) | tg/30-ui-tg.js (ui) | 1: place | yes |
 | learn/46-logic-learn.js (logic) | fx/25-dice3d.js (ui) | 1: __dice3d | yes |
+| learn/46-logic-learn.js (logic) | fx/01-core-router-and-switch.js (ui) | 1: __MI | yes |
 | tg/20-engine.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | tg/25-sim.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | data/rs14-2014-wording.js (data) | builder/25-logic-hooks-for-the-sheet.js (logic) | 1: __bldRs | yes |
