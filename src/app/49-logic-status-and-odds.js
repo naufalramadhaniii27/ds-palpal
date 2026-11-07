@@ -5,7 +5,7 @@ import {ask,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {zPack} from "./15c-logic-file-state-compress.js";
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";
 import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
@@ -13,7 +13,7 @@ import {concOf} from "./32b-logic-play-concentration-casting.js";
 import {levelUp} from "./34c-ui-experience-journal-combat-view.js";
 import {lintList} from "./40-ui-segments-notes-swipe-motion-panels.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
-import {QRG} from "./42-logic-pwa-qr-icons-wallet.js";
+import {QRG} from "./42b-logic-qr-generator.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"askHTML",{get:function(){return askHTML;},set:function(v){askHTML=v;},configurable:true});
 Object.defineProperty(__R,"dnaRead",{get:function(){return dnaRead;},set:function(v){dnaRead=v;},configurable:true});
@@ -53,9 +53,10 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 /* T11 G4 N4 session recap, without AI and offline. Made from the journal of the character (mi-jr-<name>, fx 18): the last session is the run of
    entries with no gap longer than 4 hours. Totals: damage taken, healing, spells cast, rolls with natural 20s and 1s, conditions, rests, levels,
    coins, Concentration saves. The card can be kept as a picture (canvas, PNG), shared where the device can share files */
-function recapData(){ const J=env.__miJournal; if(!J) return null; const all=J.all(); if(!all.length) return null;
-  const ses=[all[0]]; for(let i=1;i<all.length;i++){ if(ses[ses.length-1].t-all[i].t>4*3600e3) break; ses.push(all[i]); }
-  const o={from:ses[ses.length-1].t,to:ses[0].t,n:ses.length,dmg:0,heal:0,cast:{},rolls:0,n20:0,n1:0,cond:[],rest:[],level:0,coin:0,cs:0,cb:0,fights:0};
+function recapData(){
+ const {J}=recapDataStep1(); if(!J) return null;
+ const {all}=recapDataStep2(J); if(!all.length) return null;
+  const {ses, o}=recapDataStep3(all);
   ses.forEach((e) =>{ let x=String(e.x||""), m;
     if((e.k==="dmg"||e.k==="hurt")&&(m=/Took (\d+)/.exec(x))) o.dmg+=+m[1]; else if(e.k==="heal"&&(m=/(\d+)/.exec(x))) o.heal+=+m[1];
     else if(e.k==="cast"){ const s=x.replace(/^Cast /,""); o.cast[s]=(o.cast[s]||0)+1; }
@@ -64,7 +65,23 @@ function recapData(){ const J=env.__miJournal; if(!J) return null; const all=J.a
     else if(e.k==="rest") o.rest.push(x); else if(e.k==="level") o.level++; else if(e.k==="combat") o.fights++;
     else if(e.k==="coin"&&(m=/([+-]?\d+(\.\d+)?)/.exec(x))) o.coin+=+m[1];
     else if(e.k==="conc"){ if(/held/.test(x)) o.cs++; else o.cb++; } });
-  o.coin=Math.round(o.coin*100)/100; return o; }
+  recapDataStep4(o); return o; }
+function recapDataStep1(){
+const J=env.__miJournal;
+  return /** @type {any} */ ({J});
+}
+function recapDataStep2(J){
+const all=J.all();
+  return /** @type {any} */ ({all});
+}
+function recapDataStep3(all){
+  const ses=[all[0]]; for(let i=1;i<all.length;i++){ if(ses[ses.length-1].t-all[i].t>4*3600e3) break; ses.push(all[i]); }
+  const o={from:ses[ses.length-1].t,to:ses[0].t,n:ses.length,dmg:0,heal:0,cast:{},rolls:0,n20:0,n1:0,cond:[],rest:[],level:0,coin:0,cs:0,cb:0,fights:0};
+  return /** @type {any} */ ({ses, o});
+}
+function recapDataStep4(o){
+  o.coin=Math.round(o.coin*100)/100;
+}
 function recapRows(o){ const r=[], sp=Object.keys(o.cast);
   if(o.fights) r.push(["Fights",String(o.fights)]); if(o.dmg) r.push(["Damage taken",String(o.dmg)]); if(o.heal) r.push(["Healing",String(o.heal)]);
   if(sp.length) r.push(["Spells cast",sp.map((k) =>{ return k+(o.cast[k]>1?" x"+o.cast[k]:""); }).join(", ")]);

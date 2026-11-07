@@ -16,16 +16,23 @@ export function saveC(){ clearTimeout(cSaveT); cSaveT=setTimeout(() =>{ cSaveT=n
 
 export var DEF = {hp:null, tmp:0, used:{}, insp:false, ds:[0,0], cond:{}, exh:0, burn:1, jinx:"", notes:{}, lang:["Common","",""], portrait:"", theme:"", align:"", color:"forest", sym:"star", skin:"ddb", coins:null, coinBase:null, lifestyle:""};/* V17-1: RU37 fields */
 export function loadS(sync){
-  const o = clone(DEF);
+  const {o}=loadSStep1();
   try{ const raw = __store.getItem(KEY); if(raw){ const p = JSON.parse(raw); if(!p||typeof p!=="object"||Array.isArray(p)) throw new Error("the saved play state has a shape this version does not know");
     const old=!p.used && (p.sw!=null||p.as!=null);
     /* RL47: every field is kept, also fields written by a newer version of the app (only the four counters of the first format are converted) */
     for(const k in p){ if(Object.prototype.hasOwnProperty.call(p,k)&&!(old&&/^(sw|as|hd|kit)$/.test(k))) o[k]=p[k]; }
     if(old){ o.used={sw:p.sw||0, as:p.as||0, hd:p.hd||0, kit:p.kit||0}; } } }catch(e){ if(sync) return null; BAD.push("Play state: "+((e&&e.message)||e)); }
+  loadSStep2(o);
+  return o;
+}
+function loadSStep1(){
+  const o = clone(DEF);
+  return /** @type {any} */ ({o});
+}
+function loadSStep2(o){
   if(!Array.isArray(o.ds)||o.ds.length!==2) o.ds=[0,0];
   if(!Array.isArray(o.lang)) o.lang=["Common","",""];
   ["cond","notes","used"].forEach((k) =>{ if(typeof o[k]!=="object"||!o[k]) o[k]={}; });
-  return o;
 }
 export var S = loadS();
 export var saveT=null;

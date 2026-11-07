@@ -12,6 +12,14 @@ Object.defineProperty(__R,"buildPrint",{get:function(){return buildPrint;},set:f
 /* ================= PRINTABLE SHEET ================= */
 function chk(n){let h="";for(let i=0;i<n;i++)h+='<span class="ps-chk"></span>';return h}
 export function buildPrint(){
+  const {foot, avStyle, abil, stats, saves, skills, note}=buildPrintStep1();
+  const _buildPrintStep2=buildPrintStep2();
+  const {senses, atk, atkMore, atkHead, extraAtkH, res, alignTxt}=_buildPrintStep2;
+  let {condTxt}=_buildPrintStep2;
+  const {page1, left, right, inv, totalW, featBox}=buildPrintStep3(avStyle, alignTxt, abil, stats, saves, senses, skills, res, condTxt, atk, foot, extraAtkH);
+  buildPrintStep4(left, featBox, atkMore, atkHead, inv, totalW, right, foot, alignTxt, note, page1);
+}
+function buildPrintStep1(){
   const notes = S.notes||{};
   function note(k,l,h){ const v=(notes[k]||"").trim(); return '<div class="ps-box"><div class="ps-h">'+l.toUpperCase()+'</div><div class="ps-note'+(v?'':' e')+'" data-nk="'+k+'" style="min-height:'+(h||36)+'px">'+(v?esc(v):'')+'</div></div>'; }
   const title = esc(C.name)+", "+esc(C.species)+" "+esc(clsLv())+(C.sub?" ("+esc(C.sub)+")":"");
@@ -22,6 +30,9 @@ export function buildPrint(){
     .map((s) =>{return '<div class="ps-st"><div class="a">'+s[0]+'</div><div class="v">'+s[1]+'</div><div class="n">'+s[2]+'</div></div>'}).join("");
   const saves = ABK.map((k) =>{const on=!!(C.saves&&C.saves[k]); return '<div class="ps-r"><span class="d'+(on?' on':'')+'"></span><span class="t">'+ABN[k]+'</span><span class="b">'+sg(D.save[k])+'</span></div>'}).join("");
   const skills = C.skills.map((s,i) =>{const p=num(s.p,0), f=s.dis?' <span style="color:#b3342b;font-size:9px;font-weight:700">DIS</span>':(s.hb?' <span style="color:#9c650f;font-size:9px;font-weight:700">HB</span>':''); return '<div class="ps-r"><span class="d'+(p?' on':'')+'"></span><span class="g">'+s.ab+'</span><span class="t">'+esc(s.n)+f+'</span><span class="b">'+sg(D.skill[i])+'</span></div>'}).join("");
+  return /** @type {any} */ ({foot, avStyle, abil, stats, saves, skills, note});
+}
+function buildPrintStep2(){
   const senses = [["Passive Perception",D.pas_per],["Passive Insight",D.pas_ins],["Passive Investigation",D.pas_inv]].concat(num(C.darkvision,0)?[["Darkvision",num(C.darkvision)+" ft"]]:[]).concat(senseList().map((x) =>{return [esc(x[0].n),num(x[0].v,0)+" ft"]})).map((s) =>{return '<div class="ps-r"><span class="t">'+s[0]+'</span><span class="b">'+s[1]+'</span></div>'}).join("");
   const ATK_MAX=7, atkAll=(C.attacks||[]).map((a,i) =>{return [a,i]}).filter((x) =>{return atkOn(x[0])});
   function atkRow(a,i){return '<tr><td><b>'+esc(cuNm("a:"+a.n,a.n))+'</b><div style="color:#808c84;font-size:9.5px">'+esc(a.sub||"")+'</div></td><td>'+esc(a.range||"")+'</td><td class="nb">'+sg(D.atk[i].hit)+'</td><td class="nb">'+esc(D.atk[i].dmg)+' <span style="font:400 9.5px Archivo,Arial;color:#535f57">'+esc(a.type||"")+'</span></td><td>'+(a.m?'<b>'+esc(a.m)+'</b>. ':'')+esc(a.note||"")+'</td></tr>'}
@@ -36,6 +47,9 @@ export function buildPrint(){
   let condTxt = conds.length ? conds.map((c) =>{return c.k+(c.extra||"")}).join(", ") : "None";
   if(S.exh) condTxt += (conds.length?", ":"")+"Exhaustion "+S.exh;
   const alignTxt = (S.align||"").trim() ? esc(S.align.trim()) : "";
+  return /** @type {any} */ ({senses, atk, atkMore, atkHead, extraAtkH, res, condTxt, alignTxt});
+}
+function buildPrintStep3(avStyle, alignTxt, abil, stats, saves, senses, skills, res, condTxt, atk, foot, extraAtkH){
   const page1 =
     '<div class="ps-page">'+
       '<div class="ps-head"><div class="ps-av"'+avStyle+'>PHOTO</div><div><div class="ps-name">'+esc(C.name)+'</div><div class="ps-line"><b>'+esc(C.species)+'</b> &nbsp; <b>'+esc(clsLv())+'</b>'+(C.sub?' ('+esc(C.sub)+')':'')+' &nbsp; '+esc(C.bg)+(alignTxt?' &nbsp; '+alignTxt:'')+'</div></div><div class="ps-right">'+esc(C.office||"")+'<br>Silak Jenggala one-shot<br>D&amp;D 2024 with Retromistika Playtest</div></div>'+
@@ -65,6 +79,9 @@ export function buildPrint(){
   const inv = (C.inv||[]).map((i) =>{const q=num(i.q,1),w=num(i.w,0); return '<div class="ps-r"><span class="t">'+esc(i.n)+(q>1?' ×'+q:'')+(eqOn(i)?' <span style="color:#2c7549;font-size:9px;font-weight:700">WORN</span>':'')+'</span><span class="b" style="font-weight:400;font-size:10.5px">'+(w?fmtW(q*w)+' lb':'—')+'</span></div>'}).join("");
   const totalW = invWeight();
   const hb = HB_CONDS.map((c) =>{return '<div class="ps-ft"><h5>'+c.k+'<span>'+HB_SRC+'</span></h5><p>'+c.d+'</p></div>'}).join("");
+  return /** @type {any} */ ({page1, left, right, inv, totalW, featBox});
+}
+function buildPrintStep4(left, featBox, atkMore, atkHead, inv, totalW, right, foot, alignTxt, note, page1){
   const page2 =
     '<div class="ps-page grow">'+
       '<div class="ps-cols" style="margin-top:0">'+

@@ -25,6 +25,11 @@ let DESC_MORE=false;
 function dField(id,lbl,val,attr,ta,ph){ const v=String(val||""); return '<div class="dfield'+(v.trim()?'':' empty')+(ta?' long':'')+'"><label for="'+id+'">'+lbl+'</label>'+
   (ta?'<textarea id="'+id+'" class="dval grow" '+attr+' rows="1" placeholder="'+esc(ph||"Tap to write")+'">'+esc(v)+'</textarea>':'<input id="'+id+'" class="dval field" '+attr+' value="'+esc(v)+'" placeholder="'+esc(ph||"Tap to write")+'" autocomplete="off">')+'</div>'; }
 function renderDesc(){ const el=$("#descBody"); if(!el) return;
+  const _renderDescStep1=renderDescStep1();
+  const {miss}=_renderDescStep1;
+  let {h}=_renderDescStep1;
+  ({h}=renderDescStep2(miss, h, el)); }
+function renderDescStep1(){
   const bgG=(C.features||[]).filter((g) =>{return /^Background/.test(g.g)})[0], miss=[], keep=function(v,name){ const e=!String(v||"").trim(); if(e) miss.push(name); return !e||DESC_MORE; };
   let h='<div class="dsec dcamp camp-f">'+dField("n-camp","Campaign",campName(),"",false,"Campaign name")+'<p class="dhint">Optional. Shown under your name, and My Characters can group by it.</p></div>';/* v30 RU133 */
   h+='<h3 class="noteh">'+ico("src-background")+'Background'+(C.bg?': '+esc(C.bg):'')+'</h3>'+(bgG?bgG.items.map((it) =>{return '<p class="bgl"><b>'+esc(it.n)+'.</b> '+rich(String(it.d).replace(/\*\*Your choice\.\*\*\s*/,""))+'</p>'}).join(''):'<p class="muted">No background chosen yet.</p>');
@@ -34,8 +39,13 @@ function renderDesc(){ const el=$("#descBody"); if(!el) return;
   h+='<h3 class="noteh">Characteristics</h3><div class="dgrid">'+ch+'<div class="dfield ro"><span class="dlbl">Size</span><p class="chsz">'+esc(C.size||"Medium")+'</p></div></div>';
   const pe=NOTE_FIELDS.filter((f) =>{ return /^(personality|ideal|bond|flaw|appearance)$/.test(f.k); }).map((f) =>{ const v=S.notes[f.k]||""; return keep(v,f.l)?dField("n-"+f.k,f.l,v,'data-note="'+f.k+'"',true,f.h):""; }).join("");
   if(pe) h+='<h3 class="noteh">'+ico("tab-description")+'Personality</h3><div class="dlist">'+pe+'</div>';
+  return /** @type {any} */ ({miss, h});
+}
+function renderDescStep2(miss, h, el){
   if(miss.length) h+='<button type="button" class="dmore press" data-dmore="1" aria-expanded="'+DESC_MORE+'">'+ico(DESC_MORE?"ui-chev-d":"ui-plus","dmi")+'<span><b>'+(DESC_MORE?'Hide empty details':'Add details')+'</b><small>'+esc(miss.join(", "))+'</small></span></button>';
   h+='<div class="saved">Saved on this device as you type.</div>';
-  el.innerHTML=h; requestAnimationFrame(() =>{ growAll(el); }); }
+  el.innerHTML=h; requestAnimationFrame(() =>{ growAll(el); });
+  return /** @type {any} */ ({h});
+}
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dmore]"); if(!b) return; e.preventDefault(); DESC_MORE=!DESC_MORE; renderDesc();
   if(DESC_MORE){ const f=document.querySelector("#descBody .dfield.empty .dval"); if(f) try{ f.focus({preventScroll:false}); }catch(er){} } });

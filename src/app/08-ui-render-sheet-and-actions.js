@@ -18,13 +18,27 @@ export function renderIdentity(){
   $("#pbAside").innerHTML = '<button type="button" class="bd" data-bd="pb" style="border-radius:6px;padding:0 4px">Proficiency '+sg(D.pb)+'</button>';
   __R.xpBox();/* v22 RU63 */
 }
-function idArt(lbl,val){ const A=env.__ART; if(!A||!A.icon||(env.__idNoArt&&env.__idNoArt())) return ""; const sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];
-  const im=function(u){ return '<img class="art-sub" src="'+u+'.avif" width="24" height="24" alt="" decoding="async">'; }, has=function(c,k){ return A.icon[c]&&A.icon[c].indexOf(k)>=0; };
+function idArt(lbl,val){
+ const {A}=idArtStep1(); if(!A||!A.icon||(env.__idNoArt&&env.__idNoArt())) return "";
+ const {sl, cls, im, has}=idArtStep2(A);
   if(lbl==="Class"){ const ck=cls.toLowerCase(); if(A.emblem&&A.emblem[ck]) return im("img/emblem/"+ck); return has("cat","class")?im("img/icon/cat/class"):""; }
   if(lbl==="Species"){ const k=sl(val); return has("species",k)?im("img/icon/species/"+k):has("species","custom")?im("img/icon/species/custom"):""; }
   if(lbl==="Background"){ const b=sl(val); return has("background",b)?im("img/icon/background/"+b):has("background","custom")?im("img/icon/background/custom"):""; }
   if(lbl==="Size"){ const z=sl(val); return has("size",z)?im("img/icon/size/"+z):""; }
-  const e=env.__artSub?env.__artSub(cls,val,24):""; return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
+  const {e}=idArtStep3(cls, val); return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
+function idArtStep1(){
+const A=env.__ART;
+  return /** @type {any} */ ({A});
+}
+function idArtStep2(A){
+const sl=function(n){ return String(n||"").toLowerCase().replace(/['\u2019]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }, cls=String(C.cls||"").split(/[\s\/,]/)[0];
+  const im=function(u){ return '<img class="art-sub" src="'+u+'.avif" width="24" height="24" alt="" decoding="async">'; }, has=function(c,k){ return A.icon[c]&&A.icon[c].indexOf(k)>=0; };
+  return /** @type {any} */ ({sl, cls, im, has});
+}
+function idArtStep3(cls, val){
+  const e=env.__artSub?env.__artSub(cls,val,24):"";
+  return /** @type {any} */ ({e});
+}
 export function renderAbilities(){
   const SC=__R.setOf("ab")==="score";/* v25 RU38 no. 6: score on top */
   $("#abil").innerHTML = ABK.map((k) =>{

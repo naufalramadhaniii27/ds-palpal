@@ -147,11 +147,16 @@ const GL14={
  "Grappled":{d:"Your [[Speed]] is 0 and you can't gain bonuses to it. The condition ends if the grappler is [[Incapacitated]], or if something moves you out of the grappler's reach. You can use your action to escape: your Strength ([[Athletics]]) or Dexterity ([[Acrobatics]]) check must beat the grappler's Strength ([[Athletics]]) check."},
  "Incapacitated":{d:"You can't take actions or reactions."}
 };
-export function gl14(on){ if(typeof GLOSS==="undefined")return; on=!!on; if(on===GL14ON)return;
+export function gl14(on){ if(typeof GLOSS==="undefined")return;
+ ({on}=gl14Step1(on)); if(on===GL14ON)return;
  if(on){ GL14S={}; const ks=Object.keys(GLOSS); Object.keys(GL14).forEach((k) =>{ if(ks.indexOf(k)<0)ks.push(k); });
   ks.forEach((k) =>{ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ const o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   let nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
    if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; const n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
  else if(GL14S){ Object.keys(GL14S).forEach((k) =>{ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
+function gl14Step1(on){
+on=!!on;
+  return /** @type {any} */ ({on});
+}
 env.__gl14=gl14;
 export var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
 /* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */

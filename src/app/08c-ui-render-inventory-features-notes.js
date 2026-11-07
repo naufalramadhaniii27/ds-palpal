@@ -3,16 +3,30 @@ import {NOTE_FIELDS,gName} from "./03-data-glossary.js";import {C} from "./04-lo
 Object.defineProperty(__R,"renderNotes",{get:function(){return renderNotes;},set:function(v){renderNotes=v;},configurable:true});
 export var invF="all";
 export function renderInv(){
+  const _renderInvStep1=renderInvStep1();
+  const {L, head, keep}=_renderInvStep1;
+  let {fil}=_renderInvStep1;
+  const {row, inCt}=renderInvStep2(L);
+  let {attH, body}=renderInvStep3(L, row);
+  ({body, fil, attH}=renderInvStep4(L, head, fil, attH, body, inCt, keep, row));
+}
+function renderInvStep1(){
   (C.inv||[]).forEach((i) =>{ if(i.type==null&&env.__itemMeta){ const mt=env.__itemMeta(i.n); if(mt){ i.type=mt.type; if(i.cost==null) i.cost=mt.cost; i.equippable=mt.equippable; i.html=i.html||mt.html; if(mt.att) i.att=1; if(mt.equippable) i.gear=1; } else i.type="Gear"; } });
   /* RU35 no. 8: weight counts container rules (a magic container weighs the same full or empty) */
   const L=C.inv||[], total=__R.invWeight(), enc=__R.setOf("enc")==="off"?"WEIGHT NOT TRACKED":total>D.carry?"ENCUMBERED":"UNENCUMBERED", cz=__R.coinsNow();
   const head='<div class="ihero"><div class="iwt" role="button" tabindex="0" data-info="g:Carrying Capacity" aria-description="Opens Carrying Capacity"><b>'+fmtW(total)+'</b> <small>lb.</small> <span>'+enc+'</span></div>'+__R.coinStrip(cz)+'<button type="button" class="ibtn ibshop" data-invshop="1">'+__R.ico("coin-gp","ibt")+'Shop: Add or Buy Gear</button>'+(L.length?'<button type="button" class="ibtn" data-invman="1">'+__R.ico("tab-inventory","ibt")+'Manage Inventory</button>':'')+'</div>';/* v31 RU123, C6 */
   let fil='<div class="ifil">'+[["all","All"],["equip","Equipment"],["att","Attunement"],["other","Other Possessions"]].map((f) =>{return '<button type="button" class="ifb'+(invF===f[0]?' on':'')+'" data-invf="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
   const keep=function(i){ if(invF==="equip")return i.gear; if(invF==="att")return i.att; if(invF==="other")return !(i.gear||i.att); return true; };
+  return /** @type {any} */ ({L, head, fil, keep});
+}
+function renderInvStep2(L){
   const row=function(i,ix,sub){ const q=num(i.q,1), w=num(i.w,0), rc=i.rar?' r-'+i.rar.toLowerCase().replace(/\s+/g,''):'', ct=__R.ctOf(i.n), ww=ct&&ct[2]!=null?ct[2]:w;
     return '<div class="irow'+(sub?' isub':'')+'"><span class="iact">'+(i.equippable?'<button type="button" class="ichk'+(eqOn(i)?' on':'')+'" data-ieqs="'+esc(i.key||i.n)+'" data-iix="'+ix+'" aria-label="Toggle '+esc(i.n)+'"></button>':'<span class="muted">--</span>')+'</span><button type="button" class="iname" data-info="it:'+ix+'"><b class="'+rc+'">'+(env.__artIc?env.__artIc("item",i.n):"")+esc(__R.cuNm("i:"+__R.invKey(i),i.n))+'</b><small>'+esc((i.type||"Gear").toUpperCase())+(i.rar?' \u2022 '+esc(i.rar.toUpperCase()):'')+(ct?' \u2022 CONTAINER':'')+(i.mw?' \u2022 MASTERWORK':'')+'</small><span>'+(ww?fmtW(ww)+' lb.':'--')+'</span></button><span class="iq">'+q+'</span><span class="ic">'+(i.cost!=null?i.cost:'--')+'</span></div>'; };
   const byK={}; L.forEach((i) =>{ byK[__R.invKey(i)]=i; });
   const inCt=function(i){ const p=i.in&&byK[i.in]; return p&&p!==i&&__R.ctOf(p.n)?p:null; };
+  return /** @type {any} */ ({row, inCt});
+}
+function renderInvStep3(L, row){
   const att=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&eqOn(p[0]); }), need=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&!eqOn(p[0]); });
   let attH="";
   if(L.some((i) =>{return i.att})&&(invF==="all"||invF==="att")){
@@ -21,6 +35,9 @@ export function renderInv(){
     if(invF==="att") attH+='<div class="ieq"><b>Items Requiring Attunement</b><span>'+need.length+'</span></div>'+(need.length?'<div class="ihead"><span></span><span>Weight</span><span>Qty</span><span>Cost (GP)</span></div>'+need.map((p) =>{return row(p[0],p[1])}).join(""):'<p class="muted dnone">Every item that needs attunement is attuned.</p>');
   }
   let body="";
+  return /** @type {any} */ ({attH, body});
+}
+function renderInvStep4(L, head, fil, attH, body, inCt, keep, row){
   if(invF!=="att"){
     const main=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return !inCt(p[0])&&keep(p[0]); });
     body='<div class="ieq"><b>Equipment ('+L.filter((i) =>{return !inCt(i)}).length+')</b><span>'+fmtW(L.filter((i) =>{return !inCt(i)}).reduce((t,i) =>{return t+__R.itemW(i)},0))+' lb.</span></div><div class="ihead"><span></span><span>Weight</span><span>Qty</span><span>Cost (GP)</span></div>'+main.map((p) =>{return row(p[0],p[1])}).join("");
@@ -31,15 +48,16 @@ export function renderInv(){
   }
   if(!L.length){ fil=""; attH=""; body='<div class="empty-note empty-st">'+esArt("chest")+'<b>No items yet</b><span>Buy or add weapons, armor, and gear. Your coins stay above.</span><button type="button" class="btn pri press" data-invman="1">'+__R.ico("tab-inventory","ibt")+'Manage Inventory</button></div>'; }/* v31 C6 */
   $("#invBody").innerHTML=head+fil+attH+body+(C.equipNote?'<p class="next inote">'+__R.ico("item-gear")+'<span>'+esc(C.equipNote).replace(/\. (?=[A-Z])/g,".<br>")+'</span></p>':'')/* v33 p05 (F2) */;
+  return /** @type {any} */ ({body, fil, attH});
 }
 export var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 export var featQ="",featF="all";
 function featCat(g){ if(/^Species/.test(g)) return "species"; if(/^Feats/.test(g)) return "feats"; if(/^Background/.test(g)) return "bg"; return "class"; }
 function actChip(t){ return /\bBonus Action\b/.test(t)?"1 Bonus Action":/\bReaction\b/.test(t)?"1 Reaction":/\bMagic action\b|\bas an action\b|\bUtilize action\b/i.test(t)?"1 Action":""; }
 export function renderFeat(){
-  const q=featQ.toLowerCase(), groups=(C.features||[]);
-  const head='<div class="fsearch"><input id="featQ" type="search" placeholder="Search in Features" value="'+esc(featQ)+'"></div><div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
-  let order=[["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]], h="";
+  const _renderFeatStep1=renderFeatStep1();
+  const {q, groups, head, order}=_renderFeatStep1;
+  let {h}=_renderFeatStep1;
   order.forEach((o) =>{
     if(featF!=="all"&&featF!==o[0]) return;
     const body=groups.map((g,gi) =>{ if(featCat(g.g)!==o[0]) return "";
@@ -56,8 +74,18 @@ export function renderFeat(){
     }).join("");
     if(body) h+='<h3 class="fcat">'+o[1]+(o[0]==="feats"&&C.cls?'<button type="button" class="btn press fmanb" data-bldgo="class">Manage Feats</button>':'')+'</h3>'+body;/* v23 RU38 no. 4 */
   });
+  ({h}=renderFeatStep2(h, head));
+}
+function renderFeatStep1(){
+  const q=featQ.toLowerCase(), groups=(C.features||[]);
+  const head='<div class="fsearch"><input id="featQ" type="search" placeholder="Search in Features" value="'+esc(featQ)+'"></div><div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
+  let order=[["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]], h="";
+  return /** @type {any} */ ({q, groups, head, order, h});
+}
+function renderFeatStep2(h, head){
   if(!h) h='<p class="empty-note">No features match your search.</p>';
   $("#featBody").innerHTML=head+h;
+  return /** @type {any} */ ({h});
 }
 export function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Background and Characteristics are on the Description tab */
   const nf=function(k){ return NOTE_FIELDS.filter((f) =>{ return f.k===k; })[0]; };

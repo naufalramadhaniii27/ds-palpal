@@ -71,17 +71,25 @@ export function sumH(o,cl,yc){ return '<div class="sum">'+(o.rest?'<p class="sum
   (o.o.length?'<div class="sum-o">'+o.o.map(sumChip).join("")+'</div>':'')+
   (o.m.length?'<div class="sum-m">'+o.m.map(sumFoot).join("")+'</div>':'')+(o.yc?'<p class="sum-d">'+__R.fch(richP(fill(o.yc)))+'</p>':'')+'</div>'; }
 /* spell popup: the same blocks from spCalc and the spell row numbers */
-export function spSum(x){ const sc=__R.scOf(x), rg=__R.spLvRange(x), lv=clamp(__R.spLvSel[x.n]!=null?__R.spLvSel[x.n]:__R.spRowLv(x),rg[0],rg[1]), c=__R.spCalc(x,lv,D.level,sc.mod), o={p:"",k:[],o:[],m:[]}, full=String(x.full||x.sum||"");
+export function spSum(x){
+ const {c, o, full}=spSumStep1(x);
+  if(!o.k.length) return "";
+  spSumStep2(x, o, c, full);
+  return '<div class="sum-sp">'+sumPill(o.p)+sumH(o,"")+'</div>'; }
+function spSumStep1(x){
+const sc=__R.scOf(x), rg=__R.spLvRange(x), lv=clamp(__R.spLvSel[x.n]!=null?__R.spLvSel[x.n]:__R.spRowLv(x),rg[0],rg[1]), c=__R.spCalc(x,lv,D.level,sc.mod), o={p:"",k:[],o:[],m:[]}, full=String(x.full||x.sum||"");
   o.p=/^Bonus/.test(x.ct)?"Bonus Action":/^Reaction/.test(x.ct)?"Reaction":/^Action/.test(x.ct)?"Action":"";
   if(x.sv==="ATK") o.k.push({l:"To hit",n:sg(sc.atk)}); else if(x.sv) o.k.push({l:"Save",n:x.sv+" "+sc.dc,ab:x.sv});
   if(c&&c.parts.length){ const p=c.parts[0], ty=String(p.t).split("|"); o.k.push({l:"Damage",n:(c.n>1?c.n+"× ":"")+p.d,t:ty.length>1?"choice":__R.dTxt(ty[0])}); }
   else if(c&&c.heal) o.k.push({l:"Heal",n:c.heal});
-  if(!o.k.length) return "";
+  return /** @type {any} */ ({c, o, full});
+}
+function spSumStep2(x, o, c, full){
   if(x.sv&&x.sv!=="ATK"){ const cd=SUM_COND.filter((n) =>{ return new RegExp("\\b(has|have|gains?) the "+n+" condition|\\b"+n+" condition").test(full); })[0];
     if(c&&c.parts.length) o.o.push({f:1,t:"full damage"+(cd?", "+cd:"")}); else if(cd) o.o.push({f:1,t:cd});
     if(/half as much damage|half damage/i.test(full)) o.o.push({f:0,t:"half damage"}); }
   if(x.r) o.m.push(String(x.r).replace(/ ft$/," ft")); const fx=__R.spFx(x); if(fx&&fx.area) o.m.push(fx.area[0]+" "+__R.spAreaTxt(fx.area).replace(/\.$/,""));
-  return '<div class="sum-sp">'+sumPill(o.p)+sumH(o,"")+'</div>'; }
+}
 
 export function aylH(a,cls){ return a?'<p class="fayl"><strong>At your level:</strong> '+__R.featNums(rich(fill(a)),cls)+'.</p>':""; }
 function actKind(t){ if(/\bas a Bonus Action\b|^As a Bonus Action|\bBonus Action to\b|\bBonus Action\b,? (?:you|choose)/i.test(t)) return "bonus"; if(/\btake a Reaction\b|\bas a Reaction\b|\bReaction\b to /.test(t)) return "reaction"; if(/\bAs a Magic action\b|\bas a Magic action\b|\bAs an action\b/i.test(t)) return "action"; if(/\bOnce per turn when you hit\b|when you hit a creature/i.test(t)) return "action"; return ""; }
@@ -112,38 +120,73 @@ var MAN_SUM={"Paladin's Smite":"Bonus Action: right after you hit with a melee w
  "Maneuvering Attack":"Add the die to damage and move an ally. Damage +(Superiority Die). A willing ally who sees or hears you uses its Reaction to move up to half its Speed without provoking the target.",
  "Sweeping Attack":"Hit a second creature within your reach and 5 ft of the first target, if the original roll would hit it. Damage (Superiority Die), same damage type. Melee, weapon or Unarmed Strike."};
 
-export function actSplit(feats){ const kinds={action:[],onhit:[],bonus:[],reaction:[],other:[]}, ak={}, ents=Array.isArray(C.acts)?C.acts:[];
+export function actSplit(feats){
+ const {kinds, ak}=actSplitStep1(feats);
+  actSplitStep2(feats, kinds, ak);
+  return kinds; }
+function actSplitStep1(feats){
+const kinds={action:[],onhit:[],bonus:[],reaction:[],other:[]}, ak={}, ents=Array.isArray(C.acts)?C.acts:[];
   (C.features||[]).forEach((g) =>{ (Array.isArray(g.ak)?g.ak:[]).forEach((n) =>{ ak[g.g+"|"+n]=1; }); });
   feats.forEach((x) =>{ if(/^Background/.test(x.g)) return; const hasRes=__R.resOf(x.f.n).length>0;
     if(ak[x.g+"|"+x.f.n]){ const mine=ents.filter((e) =>{ return !e.it&&e.f===x.f.n&&e.g===x.g; }); mine.forEach((e) =>{ if(kinds[e.k]) kinds[e.k].push({e:e,x:x}); }); if(!mine.length&&hasRes) kinds.other.push({x:x}); return; }
     const hw=(C.actions||[]).filter((a) =>{ return a.n===x.f.n&&CMAP[a.c]; })[0]; if(hw){ kinds[CMAP[hw.c]].push({x:x}); return; }/* a hand-written entry of the same name sets the category */
     const k=actKind(x.t); if(k) kinds[k].push({x:x}); else if(hasRes) kinds.other.push({x:x}); });
   ents.forEach((e) =>{ if(!e.it||!kinds[e.k]) return; const i=eqInvOf(e.it); if(i&&!eqOn(i)) return; kinds[e.k].push({e:e}); });
+  return /** @type {any} */ ({kinds, ak});
+}
+function actSplitStep2(feats, kinds, ak){
   /* v35 p18: On Hit. Effects already listed under Action or Other move when their text says a hit triggers them; class, subclass, species and
      feat features with no group yet join when the text says the same */
   ["action","other"].forEach((k) =>{ kinds[k]=kinds[k].filter((o) =>{ if(o.e&&o.e.it) return true; const t=o.e?(o.e.d!=null?o.e.d:(o.x?o.x.t:"")):o.x.t; if(actHit(t)){ kinds.onhit.push(o); return false; } return true; }); });
   const seen={}; ["action","onhit","bonus","reaction","other"].forEach((k) =>{ kinds[k].forEach((o) =>{ if(o.x) seen[o.x.gi+"."+o.x.fi]=1; }); });
   feats.forEach((x) =>{ if(/^Background/.test(x.g)||seen[x.gi+"."+x.fi]||ak[x.g+"|"+x.f.n]) return; if(actHit(x.t)) kinds.onhit.push({x:x}); });
-  return kinds; }
-function actEnt(e,x,chip){ const rl=__R.resOf(e.it?e.n:e.f); if(e.u) __R.resOf(e.u).forEach((r) =>{ if(!rl.some((q) =>{ return q.k===r.k; })) rl.push(r); });
+}
+function actEnt(e,x,chip){
+ const {rl}=actEntStep1(e);
   if(e.it){ const ix=(C.inv||[]).findIndex((i) =>{ return (i.key||i.n)===e.it; });
     return '<div class="aitem" data-act="'+e.k+'"><h4>'+(ix>=0?'<button type="button" class="tx" data-info="it:'+ix+'">'+esc(e.n)+'</button>':esc(e.n))+' <span class="muted">(Magic item)</span></h4>'+(e.d?__R.foldP(rich(fill(e.d)),"ai:"+e.k+":"+e.n,e.d):'')+(rl.length?__R.resBoxes(rl):'')+'</div>'; }
-  let t=e.d!=null?e.d:(x?(x.f.d||x.t):""), same=e.n===e.f, ay="", sx=0; if(e.d==null&&x){ const cs=aylSplit(t,__R.clsOfG(x.g)); t=cs.t; ay=aylH(cs.a,__R.clsOfG(x.g)); }/* v35 p15 */ let so=(e.d==null&&x)?sumParse(t):null;/* v35 p17 */ if(x&&(e.f==="Maneuvers known"||shortX(e.n,x.g))&&MAN_SUM[e.n]){ t=aylSplit(MAN_SUM[e.n],__R.clsOfG(x.g)).t; so=sumParse(t); sx=1; }/* v35 p18 */ if(x&&FATK[e.n]) so=fatkSum(e.n);/* v36 p11 */
+  const _actEntStep2=actEntStep2(e, x);
+  const {same}=_actEntStep2;
+  let {t, ay, sx, so}=_actEntStep2;
   return '<div class="aitem" data-act="'+e.k+'"><h4>'+(x?'<button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(e.n)+'</button>':esc(e.n))+(!same?(e.f==="Maneuvers known"?'':' <span class="muted">('+esc(e.f)+')</span>'):(chip&&!(so&&so.p)?' <span class="muted">('+chip+')</span>':''))+sumPill(so&&so.p)+(so&&rl.length&&e.f!=="Maneuvers known"?__R.resPips(rl):'')+'</h4>'+(so?sumH(so,__R.clsOfG(x.g)):(e.d==null&&x&&x.f.full)?sumText(t,__R.clsOfG(x.g)):__R.foldP(richP(fill(t)),same&&x?"a:"+x.gi+"."+x.fi:"ae:"+e.f+":"+e.n,t,!!(sx||(e.d==null&&x&&x.f.full))))+ay+(e.f==="Maneuvers known"&&rl.length?__R.manCost(rl):(rl.length?__R.resTail(rl,so):''))+'</div>'; }
+function actEntStep1(e){
+const rl=__R.resOf(e.it?e.n:e.f); if(e.u) __R.resOf(e.u).forEach((r) =>{ if(!rl.some((q) =>{ return q.k===r.k; })) rl.push(r); });
+  return /** @type {any} */ ({rl});
+}
+function actEntStep2(e, x){
+  let t=e.d!=null?e.d:(x?(x.f.d||x.t):""), same=e.n===e.f, ay="", sx=0; if(e.d==null&&x){ const cs=aylSplit(t,__R.clsOfG(x.g)); t=cs.t; ay=aylH(cs.a,__R.clsOfG(x.g)); }/* v35 p15 */ let so=(e.d==null&&x)?sumParse(t):null;/* v35 p17 */ if(x&&(e.f==="Maneuvers known"||shortX(e.n,x.g))&&MAN_SUM[e.n]){ t=aylSplit(MAN_SUM[e.n],__R.clsOfG(x.g)).t; so=sumParse(t); sx=1; }/* v35 p18 */ if(x&&FATK[e.n]) so=fatkSum(e.n);/* v36 p11 */
+  return /** @type {any} */ ({t, same, ay, sx, so});
+}
 export function actOne(o,chip){ return o.e?actEnt(o.e,o.x,chip):actItem(o.x,chip); }
 /* hand-written C.actions entries of a category (the editor offers all four). Entries that repeat a feature, the Opportunity Attack line, or the spell list are left out */
 const ACT_STD=["Attack","Dash","Disengage","Dodge","Grapple","Help","Hide","Improvise","Influence","Magic","Ready","Search","Shove","Study","Utilize","Opportunity Attack","Two-Weapon Fighting","Interact with an Object"];
 function actStdList(a){ const p=String(a.n||"").split(/\s*,\s*/); return p.length>1&&p.every((x) =>{ return ACT_STD.indexOf(x)>=0; }); }/* v35 p09: shown in Actions in Combat */
 function actPlain(c,feats){ return (C.actions||[]).filter((a) =>{ return (a.c||"")===c&&actOn(a)&&!actStdList(a)&&!feats.some((x) =>{return x.f.n===a.n})&&!(c==="Reactions"&&a.n==="Opportunity Attack")&&!(a.n==="Spells"&&/casting time$/.test(a.t||"")); }).map((a) =>{return '<div class="aitem"><h4>'+esc(a.n)+'</h4>'+__R.foldP(rich(fill(a.d)),"c:"+a.n,a.d)+'</div>'}).join(""); }
 export function renderActions(){
+  const _renderActionsStep1=renderActionsStep1();
+  const {feats, kinds, aprIco}=_renderActionsStep1;
+  let {apa}=_renderActionsStep1;
+  const {rowsOf, AH}=renderActionsStep2(aprIco);
+  const _renderActionsStep3=renderActionsStep3(rowsOf, apa, AH, kinds, feats);
+  const {show, bRows, rRows}=_renderActionsStep3;
+  let {h}=_renderActionsStep3;
+  ({h}=renderActionsStep4(show, h, bRows, AH, kinds, feats, rRows));
+}
+function renderActionsStep1(){
   const feats=featAll(), kinds=actSplit(feats);
   let apa=1; feats.forEach((x) =>{ if(x.f.n==="Extra Attack") apa=Math.max(apa,2); if(x.f.n==="Two Extra Attacks") apa=Math.max(apa,3); if(x.f.n==="Three Extra Attacks") apa=Math.max(apa,4); if(x.f.n==="Extra Attack (2)") apa=Math.max(apa,3); if(x.f.n==="Extra Attack (3)") apa=Math.max(apa,4); if(x.f.n==="Thirsting Blade") apa=Math.max(apa,2); if(x.f.n==="Devouring Blade") apa=Math.max(apa,3); });
   const aprIco=function(t){ return __R.ico(/Ammunition/i.test(t)?"item-ammo":/Two-Handed|Versatile/i.test(t)?"ui-hand":/Reach|Thrown/i.test(t)?"ui-range":/Heavy/i.test(t)?"ui-weight":/Bonus Action/i.test(t)?"time-bonus":/Loading/i.test(t)?"ui-pause":/Finesse|Light/i.test(t)?"item-weapon":"ui-info","apr-i"); };/* v36 p12 */
+  return /** @type {any} */ ({feats, kinds, apa, aprIco});
+}
+function renderActionsStep2(aprIco){
   const aprChips=function(a){ const L=String(a.sub||"").split(/\s*[,\u2022]\s*/).filter(Boolean).map((t) =>{ return '<span class="apc">'+aprIco(t)+'<span>'+esc(t)+'</span></span>'; }); if(a.m) L.push('<span class="apc ap-m">'+__R.ico("item-weapon","apr-i")+'<span>Mastery: '+esc(a.m)+'</span></span>'); const amq=__R.ammoBonus(a); if(amq) L.push(amq.on?'<span class="apc ap-m"><span>'+sg(amq.on.n)+' ammo</span></span>':((S.ammoAct||{})[amq.kd]==="none"?'<span class="apc"><span>No magic ammo</span></span>':'<span class="apc ap-w"><span>Pick ammo</span></span>'));/* v102 */ return L.length?'<span class="apr">'+L.join("")+'</span>':""; };
   const atkRow=function(a,i){ const d=D.atk[i];
     return '<div class="arow"'+(a.act?' data-act="'+esc(a.act)+'"':'')+'><div class="an">'+__R.akIcon(__R.atkKind(a))+'<button type="button" class="tx" data-info="w:'+i+'">'+esc(__R.cuNm("a:"+a.n,a.n))+'</button>'+aprChips(a)+__R.cfFlags(__R.sitAtk(a))+'<span class="arng">'+__R.ico("ui-range","apr-i")+esc(a.range||"--")+'</span></div><button type="button" class="abox bd" data-bd="ah-'+i+'">'+sg(d.hit)+'</button><button type="button" class="abox wide bd" data-bd="ad-'+i+'">'+esc(d.dmg)+'<small>'+__R.tyIcon(a.type)+esc(a.type||"")+'</small></button></div>'; };
   const rowsOf=function(act){ return (C.attacks||[]).map((a,i) =>{ if(!atkOn(a)) return ""; if(act!=="*"&&(a.act||"")!==act) return ""; return atkRow(a,i); }).join(""); };
   const AH='<div class="ahead"><span>Range</span><span>Hit/DC</span><span>Damage</span></div>';
+  return /** @type {any} */ ({rowsOf, AH});
+}
+function renderActionsStep3(rowsOf, apa, AH, kinds, feats){
   const rows=rowsOf(actF==="attack"?"*":"")+
     (C.xdmg||[]).map((x,i) =>{ return '<div class="arow xd"><div class="an">'+__R.akIcon("feature")+'<button type="button" class="tx" data-info="xd:'+i+'">'+esc(String(x.n).replace(/ \([^)]*\)$/,""))+'</button>'+(/ \([^)]*\)$/.test(x.n)?'<span class="muted anp">'+esc(/ (\([^)]*\))$/.exec(x.n)[1])+'</span>':'')+'<small>'+esc(String(x.sub||"").toUpperCase().slice(0,40))+'</small><span class="arng">--</span></div><span class="abox">'+(x.save?esc(x.save)+'<small>'+x.dc+'</small>':'--')+'</span><span class="abox wide">'+esc(x.dmg)+__R.tyIcon(x.type)+'<small>'+esc(x.type)+'</small></span></div>'; }).join("");/* RU35 no. 5 */
   const tabs='<div class="ifil">'+[["all","All"],["attack","Attack"],["action","Action"],["onhit","On Hit"],["bonus","Bonus Action"],["reaction","Reaction"],["other","Other"],["limited","Limited Use"]].map((f) =>{return '<button type="button" class="ifb'+(actF===f[0]?' on':'')+'" data-actf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
@@ -154,11 +197,15 @@ export function renderActions(){
   if(show("attack")||show("action")) h+='<h3 class="fcat">Actions <span class="apa">• Attacks per Action: '+apa+'</span></h3>'+AH+rows+__R.saveCantripRows()+__R.modeXdRows()+__R.sitDiceRows();/* v22 RU43, RU56 */
   if(show("action")) h+=combat(["Attack","Dash","Disengage","Dodge","Grapple","Help","Hide","Improvise","Influence","Magic","Ready","Search","Shove","Study","Utilize"])+kinds.action.map((o) =>{return actOne(o,"")}).join("")+actPlain("Actions",feats);
   if(show("onhit")&&kinds.onhit.length) h+='<h3 class="fcat fcat-onhit">On Hit</h3><div class="aonhit">'+kinds.onhit.map((o) =>{return actOne(o,"")}).join("")+'</div>';/* v35 p18 */
+  return /** @type {any} */ ({show, h, bRows, rRows});
+}
+function renderActionsStep4(show, h, bRows, AH, kinds, feats, rRows){
   if(show("bonus")) h+='<h3 class="fcat">Bonus Actions</h3>'+(bRows?AH+bRows:'')+((C.attacks||[]).some((a) =>{return atkOn(a)&&/Light/.test(a.sub||"")})?combat(["Two-Weapon Fighting"]):'')+spLine(spellsBy(/^Bonus/))+kinds.bonus.map((o) =>{return actOne(o,"1 Bonus Action")}).join("")+actPlain("Bonus Actions",feats);
   if(show("reaction")) h+='<h3 class="fcat">Reactions</h3>'+(rRows?AH+rRows:'')+combat(["Opportunity Attack"])+spLine(spellsBy(/^Reaction/))+kinds.reaction.map((o) =>{return actOne(o,"1 Reaction")}).join("")+actPlain("Reactions",feats);
   if(show("other")) h+='<h3 class="fcat">Other</h3>'+combat(["Interact with an Object"])+spLine(spellsBy(/minute|hour|Ritual/i))+kinds.other.map((o) =>{return actOne(o,"Special")}).join("")+actPlain("Other",feats);
   if(show("limited")||actF==="all") h+=(D.res.length?'<h3 class="fcat">Limited Use</h3><div class="lu" id="lu">'+D.res.map((r) =>{ const rsp=__R.resSpec(r); return '<div class="rs"><div class="rs-h"><b>'+(rsp?'<button type="button" class="tx" data-info="'+esc(rsp)+'">'+esc(r.n)+'</button>':esc(r.n))+'</b><span>'+esc(r.tag)+'</span></div><div class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n,r.pool)+'</div><div class="sub" id="sub-'+r.k+'">'+luSub(r)+'</div></div>'; }).join("")+'</div><div class="rests"><button class="btn press" type="button" data-rest="short">Short Rest</button><button class="btn press" type="button" data-rest="long">Long Rest</button></div>':'');
   $("#actBody").innerHTML=h;
+  return /** @type {any} */ ({h});
 }
 export function syncLU(){
   D.res.forEach((r) =>{

@@ -2,7 +2,7 @@ import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,esc,num,sg} from "./05-logic-helpers.js";
 import {B,part} from "./06-logic-derivation.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {invKey} from "./23b-ui-items-containers.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"cuApply",{get:function(){return cuApply;},set:function(v){cuApply=v;},configurable:true});

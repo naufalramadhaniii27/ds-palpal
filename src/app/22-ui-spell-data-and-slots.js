@@ -36,15 +36,35 @@ function dMul(a,t){ const m=/^(\d+)d(\d+)([+-]\d+)?$/.exec(a); return m&&t>1?(m[
 function dPlus(a,v){ if(!v) return a; const m=/^(.*?)([+-]\d+)$/.exec(a); if(m&&/d/.test(m[1])) return m[1]+sg(+m[2]+v); return a+sg(v); }
 /* spCalc: numbers of one spell at slot level lv (default: the spell level) and character level cl. fx from C.spells[] (builder) or SPELL_FX by name */
 export function spFx(x){ return x&&(x.fx||(typeof SPELL_FX!=="undefined"&&SPELL_FX[x.n])||null); }
-export function spCalc(x,lv,cl,smod){ const f=spFx(x); if(!f) return null; const L=x.l||0; lv=Math.max(L,lv||L); const ex=L?Math.max(0,lv-(f.upAt||L)):0, tier=cl>=17?4:cl>=11?3:cl>=5?2:1;
+export function spCalc(x,lv,cl,smod){ const f=spFx(x); if(!f) return null;
+ const _spCalcStep1=spCalcStep1(x, lv, f, cl);
+ const {L, ex, tier, bon}=_spCalcStep1;
+ lv=_spCalcStep1.lv;
+  const _spCalcStep2=spCalcStep2(f, ex, L, tier, smod, bon, x);
+  const {parts}=_spCalcStep2;
+  let {heal}=_spCalcStep2;
+ const _spCalcStep3=spCalcStep3(f, tier, ex, L, heal, smod, x, lv);
+ const {n, unit, up}=_spCalcStep3;
+ heal=_spCalcStep3.heal;
+  return {parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))}; }
+function spCalcStep1(x, lv, f, cl){
+const L=x.l||0; lv=Math.max(L,lv||L); const ex=L?Math.max(0,lv-(f.upAt||L)):0, tier=cl>=17?4:cl>=11?3:cl>=5?2:1;
   const bon=(spDb(x)).reduce((s,b) =>{ return s+(+b.v||0); },0);
+  return /** @type {any} */ ({L, ex, tier, bon, lv});
+}
+function spCalcStep2(f, ex, L, tier, smod, bon, x){
   const parts=(f.dmg||[]).map((p,i) =>{ let d=p[0]; if(f.cs&&!L) d=dMul(d,tier); if(p[2]&&ex) d=dAdd(d,p[2],ex); if(p[4]&&smod!=null) d=dPlus(d,smod); if(i===0&&bon) d=dPlus(d,bon);
     let t=p[1]; if(x.tx&&String(t).split("|").indexOf(x.tx)<0) t=t+"|"+x.tx; return {d:d,t:t,lab:p[3]||""}; });
   if(f.upx&&ex){ const um=/^(\d+)d(\d+)$/.exec(f.upx[0]); if(um) parts.push({d:(um[1]*ex)+"d"+um[2],t:f.upx[1],lab:f.upx[2]||""}); }/* v19 RD21 */
-  let heal=null; if(f.heal){ heal=dAdd(f.heal[0],f.heal[2],ex); if(f.heal[1]&&smod!=null) heal=dPlus(heal,smod); (x.hb||[]).forEach((b) =>{ heal=dPlus(heal,(+b.v||0)+(b.lv?lv:0)); }); }
+  let heal=null;
+  return /** @type {any} */ ({parts, heal});
+}
+function spCalcStep3(f, tier, ex, L, heal, smod, x, lv){
+if(f.heal){ heal=dAdd(f.heal[0],f.heal[2],ex); if(f.heal[1]&&smod!=null) heal=dPlus(heal,smod); (x.hb||[]).forEach((b) =>{ heal=dPlus(heal,(+b.v||0)+(b.lv?lv:0)); }); }
   const n=f.beam?tier:f.cnt?(+f.cnt[0]+(+f.cnt[2]||0)*ex):0, unit=f.beam?"beam":f.cnt?f.cnt[1]:"";
   const up=L&&(!!f.upx||(f.dmg||[]).some((p) =>{return p[2];})||(f.cnt&&f.cnt[2])||(f.heal&&f.heal[2]));
-  return {parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))}; }
+  return /** @type {any} */ ({n, unit, up, heal});
+}
 /* sheets applied before v15 have no db: Eldritch Blast takes the modifier its Actions row already adds (Agonizing Blast) */
 function spDb(x){ if(x.db) return x.db; if(x.fx||x.n!=="Eldritch Blast"||typeof C==="undefined") return []; const a=(C.attacks||[]).filter((q) =>{return q.n===x.n&&!q.nomod;})[0]; return a&&D.mod?[{v:D.mod[a.ab]||0,s:"Agonizing Blast"}]:[]; }
 function spAreaTxt(a){ if(!a) return ""; return a[1]+" ft."+(a[0]==="Line"&&a[2]?" x "+a[2]+" ft.":a[0]==="Cylinder"&&a[2]?" x "+a[2]+" ft.":""); }

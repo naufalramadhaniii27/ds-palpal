@@ -126,6 +126,10 @@ env.__wake=function(){ return {on:setOf("wake")==="1",held:!!WL}; };
 /* v30 p11 RU131: one-handed mode, a thumb bar on phones */
 function ohSync(){ const o=document.getElementById("ohAmt"), a=document.getElementById("hpAmt"); if(o&&a&&o.value!==a.value&&document.activeElement!==o) o.value=a.value; }
 (function(){ const d=document.getElementById("ohDock"); if(!d) return;
+  uiExhaustionKeysHpDragPipWakelockOnehandAnonStep1(d);
+  document.addEventListener("click",(e) =>{ if(e.target.closest&&e.target.closest("[data-hpadd]")) ohSync(); });
+})();
+function uiExhaustionKeysHpDragPipWakelockOnehandAnonStep1(d){
   d.innerHTML='<button type="button" class="oh-b oh-sq press" data-oh="minus" aria-label="Lower the amount">'+ico("ui-minus")+'</button><input id="ohAmt" class="oh-amt" type="number" inputmode="numeric" min="0" placeholder="0" aria-label="Amount"><button type="button" class="oh-b oh-sq press" data-oh="plus" aria-label="Raise the amount">'+ico("ui-plus")+'</button>'+
     '<button type="button" class="oh-b oh-heal press" data-oh="heal">'+ico("hp-heal")+'<span>Heal</span></button><button type="button" class="oh-b oh-dmg press" data-oh="dmg">'+ico("hp-damage")+'<span>Damage</span></button>'+
     '<button type="button" class="oh-b press" data-oh="rest" aria-label="Short Rest or Long Rest">'+ico("rest-short")+'<span>Rest</span></button><button type="button" class="oh-b press" data-oh="search" aria-label="Search and commands">'+ico("ui-search")+'<span>Search</span></button>';
@@ -135,8 +139,7 @@ function ohSync(){ const o=document.getElementById("ohAmt"), a=document.getEleme
     if(!n){ toast("Type an amount first."); i.focus(); return; } const a=$("#hpAmt"); if(!a) return; a.value=String(n); (k==="heal"?$("#healBtn"):$("#dmgBtn")).click(); hpAmtSet(0); });
   d.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target.id==="ohAmt"){ e.preventDefault(); const b=d.querySelector(e.shiftKey?'[data-oh="heal"]':'[data-oh="dmg"]'); if(b) b.click(); } });
   document.addEventListener("input",(e) =>{ const t=e.target; if(!t) return; if(t.id==="ohAmt"){ const v=parseInt(t.value,10), a=$("#hpAmt"); if(a) a.value=isNaN(v)?"":String(Math.max(0,v)); } else if(t.id==="hpAmt") ohSync(); });
-  document.addEventListener("click",(e) =>{ if(e.target.closest&&e.target.closest("[data-hpadd]")) ohSync(); });
-})();
+}
 
 /* T4 item 26: offline note. The app keeps working offline, the note says where the data is. It sits at the top of Home and on the Settings dialog, and a toast announces the change */
 (function(){ function net(){ const on=navigator.onLine!==false; document.documentElement.classList.toggle("is-off",!on); let h=document.getElementById("homeV"), n=document.getElementById("offNote");

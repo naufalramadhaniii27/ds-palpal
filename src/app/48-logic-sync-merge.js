@@ -1,7 +1,7 @@
 import {CKEY,FROZEN,KEY,lsGet,lsSet} from "./04-logic-storage.js";
 import {$,__set_toastT,esc,toast,toastT} from "./05-logic-helpers.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {BKEY,rGet,rSave} from "./14-ui-editor.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {syText} from "./43-logic-cloud-sync.js";
@@ -33,7 +33,14 @@ function mgObj(b,l,r,path,out,depth){ const m={}, seen={};
   return m; }
 /* base, local and cloud texts of one roster entry. Answers {text, parts} or null when a text cannot be read */
 function syMerge(bt,lt,rt){ let b,l,r; try{ b=JSON.parse(bt); l=JSON.parse(lt); r=JSON.parse(rt); }catch(e){ return null; }
-  if(!mgPlain(b)||!mgPlain(l)||!mgPlain(r)) return null; let parts=[], out={};
+  if(!mgPlain(b)||!mgPlain(l)||!mgPlain(r)) return null;
+ const _syMergeStep1=syMergeStep1(b, l, r);
+ const {out}=_syMergeStep1;
+ let {parts}=_syMergeStep1;
+  syMergeStep2(out);
+  return {text:syText(out),parts:parts}; }
+function syMergeStep1(b, l, r){
+let parts=[], out={};
   const keys={}; [b,l,r].forEach((o) =>{ Object.keys(o).forEach((k) =>{ keys[k]=1; }); });
   Object.keys(keys).forEach((k) =>{ const bv=b[k], lv=l[k], rv=r[k];
     if(lv===rv){ if(lv!==undefined) out[k]=lv; return; } if(lv===bv){ if(rv!==undefined) out[k]=rv; return; } if(rv===bv){ if(lv!==undefined) out[k]=lv; return; }
@@ -41,8 +48,11 @@ function syMerge(bt,lt,rt){ let b,l,r; try{ b=JSON.parse(bt); l=JSON.parse(lt); 
     let bo=null, lo=null, ro=null; try{ bo=JSON.parse(bv||"null"); lo=JSON.parse(lv||"null"); ro=JSON.parse(rv||"null"); }catch(e){}
     if(mgPlain(lo)&&mgPlain(ro)){ const pp=[]; out[k]=JSON.stringify(mgObj(mgPlain(bo)?bo:{},lo,ro,[k],pp,0)); parts=parts.concat(pp); }
     else { out[k]=lv; parts.push({p:[k],r:rv===undefined?undefined:JSON.stringify(rv)}); } });
+  return /** @type {any} */ ({parts, out});
+}
+function syMergeStep2(out){
   try{ const c=JSON.parse(out.C||"null"); if(c&&c.name) out.name=c.name; }catch(e){}
-  return {text:syText(out),parts:parts}; }
+}
 /* words for a part, plain enough for the choice list */
 const MG_S={hp:"Hit points",tmp:"Temporary HP",used:"Used uses and slots",insp:"Heroic Inspiration",ds:"Death saves",cond:"Conditions",exh:"Exhaustion",notes:"Notes",lang:"Languages",portrait:"Portrait",coins:"Coins",align:"Alignment",theme:"Look",color:"Colour",lifestyle:"Lifestyle"};
 const MG_C={name:"Name",level:"Level",abilities:"Ability scores",inv:"Inventory",gp:"Gold",attacks:"Attacks",features:"Features",skills:"Skills",saves:"Saving throws",profs:"Proficiencies",ac:"Armor Class",actions:"Actions",res:"Resources",equipNote:"Equipment note"};
@@ -54,13 +64,19 @@ function mgGet(id){ try{ const o=JSON.parse(__store.getItem(SYM+id)||"null"); re
 function mgSet(id,o){ try{ if(!o||!o.parts.length) __store.removeItem(SYM+id); else __store.setItem(SYM+id,JSON.stringify(o)); }catch(e){} }
 /* the other device's value of one part, written into the character. The open character is written to its slots and the page reloads */
 function mgUse(id,i){ const o=mgGet(id); if(!o) return; const q=o.parts[i]; if(!q) return; const r=rGet(); if(!r||!r.chars||!r.chars[id]) return;
-  let act=id===r.active&&!FROZEN, slot={B:BKEY,C:CKEY,S:KEY}[q.p[0]], cur;
-  try{ cur=act&&slot?JSON.parse(lsGet(slot)||"null"):JSON.parse(r.chars[id][q.p[0]]||"null"); }catch(e){ cur=null; }
+  const _mgUseStep1=mgUseStep1(id, r, q);
+  const {act, slot}=_mgUseStep1;
+  let {cur}=_mgUseStep1;
   if(q.p.length===1){ cur=q.r===undefined?null:JSON.parse(q.r); }
   else { if(!mgPlain(cur)) return; let o2=cur; for(let j=1;j<q.p.length-1;j++){ if(!mgPlain(o2[q.p[j]])) o2[q.p[j]]={}; o2=o2[q.p[j]]; } const last=q.p[q.p.length-1]; if(q.r===undefined) delete o2[last]; else o2[last]=JSON.parse(q.r); }
   o.parts.splice(i,1); mgSet(id,o);
   if(act&&slot){ if(cur==null) lsSet(slot,""); else lsSet(slot,JSON.stringify(cur)); location.reload(); return true; }
   r.chars[id][q.p[0]]=cur==null?null:JSON.stringify(cur); rSave(r); return false; }
+function mgUseStep1(id, r, q){
+  let act=id===r.active&&!FROZEN, slot={B:BKEY,C:CKEY,S:KEY}[q.p[0]], cur;
+  try{ cur=act&&slot?JSON.parse(lsGet(slot)||"null"):JSON.parse(r.chars[id][q.p[0]]||"null"); }catch(e){ cur=null; }
+  return /** @type {any} */ ({act, slot, cur});
+}
 /* the value of a part here, for the choice list. Short plain values are shown, longer ones are described */
 function mgCur(id,p){ let r=rGet(), act=r&&id===r.active&&!FROZEN, slot={B:BKEY,C:CKEY,S:KEY}[p[0]], o;
   try{ o=act&&slot?JSON.parse(lsGet(slot)||"null"):JSON.parse(((r&&r.chars&&r.chars[id])||{})[p[0]]||"null"); }catch(e){ return undefined; }

@@ -41,15 +41,22 @@ document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.clo
 export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:r.max-used(r.k,r.max)}:null; }
 function reWord(n){ return new RegExp("(^|[^A-Za-z])"+String(n).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^A-Za-z]|$)"); }
 /* Limited Use rows that pay for a free cast of x (species, feat, or feature rows: same source, or the spell named in the row) */
-function spUses(x){ if(!x.l) return []; const src=String(x.src||""), rw=reWord(x.n);
+function spUses(x){ if(!x.l) return [];
+ const _spUsesStep1=spUsesStep1(x);
+ const {ex}=_spUsesStep1;
+ let {rows}=_spUsesStep1; if(ex.length) return ex;
+  rows=rows.filter((r) =>{ return !(C.spells||[]).some((s) =>{ return s.n!==x.n&&reWord(s.n).test(r.n); }); });/* v21 N1: a row named after another spell is not this one */
+  const lr=rows.filter((r) =>{ return /level (\d+) spell/.test(r.n); }); if(!lr.length) return rows; const want=x.gain||x.l, m=lr.filter((r) =>{ return +(/level (\d+) spell/.exec(r.n)[1])===want; });
+  return m.length?m.concat(rows.filter((r) =>{ return !/level (\d+) spell/.test(r.n); })):rows; }
+function spUsesStep1(x){
+const src=String(x.src||""), rw=reWord(x.n);
   let rows=(D.res||[]).filter((r) =>{ if(/^s\d$|^pact$|^hd/.test(r.k)||r.item) return false; const f=r.f||"", own=r.own||"";
     const same=!!src&&((f&&(f===src||src.indexOf(f)===0||f.indexOf(src)===0))||(own&&src.indexOf(own)===0));
     return rw.test(r.n)||(same&&(f===src||/\bspell\b|Arcanum/i.test(r.n))); });
   /* v21 M1: a row naming the spell wins. Otherwise a "level N spell" row: N is the character level the species spell came at, or the spell level for a feat */
-  const ex=rows.filter((r) =>{ return rw.test(r.n); }); if(ex.length) return ex;
-  rows=rows.filter((r) =>{ return !(C.spells||[]).some((s) =>{ return s.n!==x.n&&reWord(s.n).test(r.n); }); });/* v21 N1: a row named after another spell is not this one */
-  const lr=rows.filter((r) =>{ return /level (\d+) spell/.test(r.n); }); if(!lr.length) return rows; const want=x.gain||x.l, m=lr.filter((r) =>{ return +(/level (\d+) spell/.exec(r.n)[1])===want; });
-  return m.length?m.concat(rows.filter((r) =>{ return !/level (\d+) spell/.test(r.n); })):rows; }
+  const ex=rows.filter((r) =>{ return rw.test(r.n); });
+  return /** @type {any} */ ({rows, ex});
+}
 export function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
 function spItemOpts(x){ const c=x.itc, r=(D.res||[]).filter((q) =>{ return q.item&&q.f===c.it; })[0], o=[]; if(!r) return o; const left=r.max-used(r.k,r.max), lv0=c.lv;
   if(Array.isArray(c.c)){ for(let n=c.c[0];n<=c.c[1];n++){ const L=lv0+n-c.c[0]; o.push({k:r.k,lv:L,lab:c.it+", "+n+" charge"+(n>1?"s":"")+" (level "+L+")",left:left,free:1,need:n}); } }

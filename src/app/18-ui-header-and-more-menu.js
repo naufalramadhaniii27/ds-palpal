@@ -6,7 +6,7 @@ import {REDUCE,applyLook,applyTheme,hcOn,hcSet} from "./07-ui-theme-contrast-spr
 import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {renderConds} from "./10-ui-conditions.js";
 import {sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {TPL,__set_edTab,edTab,getPath,rEnsure,rGet,rerenderEditor,scheduleRender,setPath} from "./14-ui-editor.js";
 import {SN_BAD,snGet,snRestore,snTake} from "./15d-logic-snapshots-character-files.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {MYID} from "./17-logic-tab-sync-and-test-hooks.js";
@@ -14,14 +14,18 @@ import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* v30 C1: phone header. My Characters, Edit, Settings, and PDF sit in the More menu (computer: the same buttons in the header row) */
 /* v32 p36: full header only when it fits on one line, measured (phones keep their own header) */
 function hdrFits(){ const A=document.querySelector(".band .acts"), of=document.querySelector(".band .office"); if(!A) return true;
-  const vis=function(e){ const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).display!=="none"; };
-  const lines=function(el){ let tops={}, w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), n, k=0; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); Array.prototype.forEach.call(r.getClientRects(),(q) =>{ if(q.width>0&&!tops[Math.round(q.top)]){ tops[Math.round(q.top)]=1; k++; } }); } return k; };
-  const txtOut=function(b){ let br=b.getBoundingClientRect(), w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT), n, out=false; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); Array.prototype.forEach.call(r.getClientRects(),(q) =>{ if(q.width>0&&(q.left<br.left-.5||q.right>br.right+.5||q.top<br.top-.5||q.bottom>br.bottom+.5)) out=true; }); } return out; };/* the label leaves its button (a dot drawn outside, like the Build dot, does not count) */
+  const {vis, lines, txtOut}=hdrFitsStep1();
   if(A.scrollWidth>A.clientWidth+1) return false;
   const bs=Array.prototype.slice.call(A.querySelectorAll("button")).filter(vis);
   for(let i=0;i<bs.length;i++){ const b=bs[i]; if(lines(b)>1||txtOut(b)||b.getBoundingClientRect().right>innerWidth+.5) return false; }
   if(of&&vis(of)){ const ob=of.querySelector("b"); if(ob&&lines(ob)>1) return false; if(of.getBoundingClientRect().right>A.getBoundingClientRect().left-4) return false; }
   return true; }
+function hdrFitsStep1(){
+  const vis=function(e){ const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).display!=="none"; };
+  const lines=function(el){ let tops={}, w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), n, k=0; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); Array.prototype.forEach.call(r.getClientRects(),(q) =>{ if(q.width>0&&!tops[Math.round(q.top)]){ tops[Math.round(q.top)]=1; k++; } }); } return k; };
+  const txtOut=function(b){ let br=b.getBoundingClientRect(), w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT), n, out=false; while((n=w.nextNode())){ if(!n.textContent.trim()) continue; const r=document.createRange(); r.selectNodeContents(n); Array.prototype.forEach.call(r.getClientRects(),(q) =>{ if(q.width>0&&(q.left<br.left-.5||q.right>br.right+.5||q.top<br.top-.5||q.bottom>br.bottom+.5)) out=true; }); } return out; };/* the label leaves its button (a dot drawn outside, like the Build dot, does not count) */
+  return /** @type {any} */ ({vis, lines, txtOut});
+}
 let HDR_RAF=0;
 function hdrFit(){ HDR_RAF=0; const R=document.documentElement; if(__R.mq.matches){ R.removeAttribute("data-hdrc"); return; }
   const bd=document.querySelector(".band .band-in"); if(!bd||!bd.getBoundingClientRect().width) return;/* header not shown (builder open): measure when it shows */
@@ -99,15 +103,29 @@ function editInput(el){
   /* RU31: Worn ticked in the Edit form on armor or a Shield of a hand-filled sheet: AC as the Inventory checkbox (RU29) */
   let wm=/^inv\.(\d+)\.eq$/.exec(path), wi=wm&&(C.inv||[])[+wm[1]], wfx=null;
   if(wi&&wi.att&&v&&!eqOn(wi)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); rerenderEditor(); return; }/* M18 */
+  const _editInputStep1=editInputStep1(wi, v, path, wfx);
+  const {ri, rOld, ni}=_editInputStep1;
+  let {rfx}=_editInputStep1;
+  wfx=_editInputStep1.wfx;
+ editInputStep2(ni, v);
+  if(rfx){ const racd=armorFx(rfx,ri); ri.eq=false; bldSync(rOld,{del:1}); saveC(); scheduleRender(); toast(racd?"Unequipped "+rOld+". Armor Class is now "+(derive(),D.ac)+".":"Unequipped "+rOld+"."); return; }
+  if(wfx&&armorFx(wfx,wi)){ saveC(); scheduleRender(); toast((wi.eq?"Equipped. ":"Unequipped. ")+"Armor Class is now "+(derive(),D.ac)+"."); return; }
+  editInputStep3(path, v, oldNm);
+}
+function editInputStep1(wi, v, path, wfx){
   if(wi&&!wi.key&&!eqLinked(wi)&&!!v!==eqOn(wi)&&env.__bldArmor){ try{ wfx=env.__bldArmor({C:structuredClone(C),lang:S.lang},wi.n,!!v); }catch(er){ wfx=null; } }
   /* V14-2: worn armor or Shield renamed in the Edit form: its AC bonus is taken off first (as unticking it), the item is no longer worn */
   let rn=/^inv\.(\d+)\.n$/.exec(path), ri=rn&&(C.inv||[])[+rn[1]], rOld=ri&&ri.n, rfx=null;
   if(ri&&!ri.key&&rOld!==v&&eqOn(ri)&&!eqLinked(ri)&&env.__bldArmor){ try{ rfx=env.__bldArmor({C:structuredClone(C),lang:S.lang},rOld,false); }catch(er){ rfx=null; } }
   setPath(C,path,v);
   /* RU31: an item renamed in the Edit form is looked up again in the item database (type, checkbox, details). Unknown names stay Gear */
-  const nm=/^inv\.(\d+)\.n$/.exec(path), ni=nm&&(C.inv||[])[+nm[1]]; if(ni&&!ni.key){ ["type","html","equippable","att","gear","cost"].forEach((f) =>{ delete ni[f]; }); const nmt=env.__itemMeta&&env.__itemMeta(v); if(nmt&&nmt.w) ni.w=nmt.w; }/* V14-9: weight from the tables */
-  if(rfx){ const racd=armorFx(rfx,ri); ri.eq=false; bldSync(rOld,{del:1}); saveC(); scheduleRender(); toast(racd?"Unequipped "+rOld+". Armor Class is now "+(derive(),D.ac)+".":"Unequipped "+rOld+"."); return; }
-  if(wfx&&armorFx(wfx,wi)){ saveC(); scheduleRender(); toast((wi.eq?"Equipped. ":"Unequipped. ")+"Armor Class is now "+(derive(),D.ac)+"."); return; }
+  const nm=/^inv\.(\d+)\.n$/.exec(path), ni=nm&&(C.inv||[])[+nm[1]];
+  return /** @type {any} */ ({ri, rOld, rfx, ni, wfx});
+}
+function editInputStep2(ni, v){
+if(ni&&!ni.key){ ["type","html","equippable","att","gear","cost"].forEach((f) =>{ delete ni[f]; }); const nmt=env.__itemMeta&&env.__itemMeta(v); if(nmt&&nmt.w) ni.w=nmt.w; }/* V14-9: weight from the tables */
+}
+function editInputStep3(path, v, oldNm){
   /* RL40: a new name typed here also renames the saved build of this character */
   if(path==="name"&&v&&oldNm!==v){ try{ if(env.__bldRename) env.__bldRename(oldNm,v); }catch(er){} }
   /* RU18-2: Qty and Worn of an item, edited here, also go to the saved build of the same character (as N2) */

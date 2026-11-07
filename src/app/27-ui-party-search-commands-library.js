@@ -5,7 +5,7 @@ import {$,$$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {__set_navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
+import {closeSheet,closeSheetIfOn} from "./13b-ui-detail-spell-targets-render.js";
 import {BKEY,RKEY,rEnsure,rSave} from "./14-ui-editor.js";
 import {cOf,zUnpack} from "./15c-logic-file-state-compress.js";import {learnGo,rSnap,tgGo} from "./15-logic-roster-backup-files-snapshots.js";
 import {chCheck,jsonLoose} from "./16-logic-import-chat-text-and-build-files.js";
@@ -175,9 +175,14 @@ export function palCmds(q){ if(!q||FROZEN||!D||!D.hpmax) return []; const m=/^(.
   if(m){ const hd=m[1].trim(), n=Math.abs(parseInt(m[2],10)), sg0=/^[+-]/.test(m[2])?m[2].charAt(0):"";
     if(!hd) return [sg0==="+"?null:palDmg(n),sg0==="-"?null:palHeal(n)].filter((x) =>{ return x&&x.run; });
     const v=palVerb(hd); return v==="dmg"?[palDmg(n)]:v==="heal"?[palHeal(n)]:v==="temp"?[palTemp(n)]:v==="exh"?[palExh(n)]:[]; }
-  if(q.length<2) return []; const L=[];
+  if(q.length<2) return [];
+ const {L}=palCmdsStep1(q); return L.slice(0,4).map((x) =>{ return x[2].f(); }); }
+function palCmdsStep1(q){
+const L=[];
   palWords().forEach((c) =>{ let b=-1; c.k.forEach((k) =>{ const v=k===q?0:k.indexOf(q)===0?1:k.indexOf(" "+q)>0&&q.length>=3?2:q.length>=4?fzScore(q,k):-1; if(v>=0&&(b<0||v<b)) b=v; }); if(b>=0) L.push([b,L.length,c]); });
-  L.sort((a,b) =>{ return a[0]-b[0]||a[1]-b[1]; }); return L.slice(0,4).map((x) =>{ return x[2].f(); }); }
+  L.sort((a,b) =>{ return a[0]-b[0]||a[1]-b[1]; });
+  return /** @type {any} */ ({L});
+}
 function palRow(c,i){ return '<button type="button" class="gs-c press" id="gsc'+i+'" data-cmd="'+i+'">'+(ico(c.i,"gs-ci")||ico("ui-chev-r","gs-ci"))+'<span class="gs-ct"><b>'+esc(c.t)+'</b><small>'+esc(c.s||"")+'</small></span><kbd class="gs-k" aria-hidden="true">'+(c.fill?"Tab":"Enter")+'</kbd></button>'; }
 function palHelp(){ const ex=[["dmg 7","hp-damage"],["heal 5","hp-heal"],["temp 8","hp-temp"],["short rest","rest-short"],["poisoned","cond-poisoned"],["exhaustion 2","cond-exhaustion"],["spells","tab-spells"]], mac=/Mac|iPhone|iPad/.test(navigator.platform||"");
   return '<p class="info-d gs-hint">Search spells, items, features, and rules, or type a command.'+(mq.matches?'':' '+(mac?'Cmd+K':'Ctrl+K')+' or / opens this. Arrow keys choose, Enter runs.')+'</p><div class="gs-ex" aria-label="Examples">'+ex.map((x) =>{ return '<button type="button" class="chip gs-x press" data-gsfill="'+esc(x[0])+'">'+ico(x[1])+'<span>'+esc(x[0])+'</span></button>'; }).join("")+'</div>'; }

@@ -24,13 +24,21 @@ document.addEventListener("click",(e) =>{
   const rest=e.target.closest("[data-rest]"); if(rest){ __R.openRest(rest.getAttribute("data-rest")); return; }/* RU41 */
   const pip=e.target.closest("#dsS .pip, #dsF .pip"); if(pip){ __R.undoMark("Death Saving Throw"); const which=pip.parentNode.id==="dsS"?0:1, pi=+pip.getAttribute("data-i"); S.ds[which]=(S.ds[which]===pi+1)?pi:pi+1; save(); syncDeath(); if(S.ds[0]===3) toast("Stable at 0 Hit Points"); if(S.ds[1]===3) toast("Three failures. Your character dies"); return; }
 });
-export function doRest(kind,quiet){ __R.sitReset(kind==='short'?'short':'long'); const ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach((k) =>{ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
+export function doRest(kind,quiet){
+ const {ex0}=doRestStep1(kind);
+  doRestStep2(kind, ex0, quiet);
+}
+function doRestStep1(kind){
+__R.sitReset(kind==='short'?'short':'long'); const ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach((k) =>{ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
   D.res.forEach((r) =>{
     let u=num(S.used[r.k],0);
     if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1") u=Math.max(0,u-1); }    else if(hp14&&hp14[r.k]!=null) u=Math.max(0,u-hp14[r.k]);/* v94: 2014, half of the Hit Dice come back */
     else { if(r.reset!=="none") u=0; }
     S.used[r.k]=u;
   });
+  return /** @type {any} */ ({ex0});
+}
+function doRestStep2(kind, ex0, quiet){
   if(kind==="short"){ if(!quiet) toast("Short Rest: uses restored."); }
   else { const before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>Math.max(0,num(D.exhMin,0))) S.exh--; if(S.hp>before) flash("healed"); if(__R.hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
   if(kind!=="short"&&ex0>0){ try{ __R.renderAll(); }catch(er){} }/* v94: a lower Exhaustion level changes Speed, checks, and (2014) the Hit Point maximum, so the sheet is worked out again */
@@ -44,10 +52,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   else if(t.id==="n-camp"){ S.camp=t.value; save(); renderIdentity(); }/* v30 RU133 */
 }); });
 (function(){
-  const inp=$("#hpAmt");
-  function amt(){ const v=parseInt(inp.value,10); return isNaN(v)?0:Math.max(0,v); }
-  function nudge(){ inp.focus(); inp.classList.remove("nudge"); void inp.offsetWidth; inp.classList.add("nudge"); clearTimeout(nudge.t); nudge.t=setTimeout(() =>{ inp.classList.remove("nudge"); },900); }
-  $("#healBtn").addEventListener("click",() =>{ const a=amt(); if(!a){nudge();return;} __R.undoMark("Healing"); const wasZero=S.hp===0, before=S.hp; S.hp=Math.min(D.hpmax,S.hp+a); if(wasZero) S.ds=[0,0]; if(S.hp>before){ flash("healed"); hpFloat("+"+(S.hp-before),"heal"); } inp.value=""; save(); syncHP(); __R.toastU("Healed "+(S.hp-before)+" "+__R.hpWord(S.hp-before)+"."); });
+  const {inp, nudge, amt}=uiGlobalClickDelegationAnonStep1();
   $("#dmgBtn").addEventListener("click",() =>{ let a=amt(); if(!a){nudge();return;} __R.undoMark("Damage"); const a0=a, fromTmp=Math.min(S.tmp,a); S.tmp-=fromTmp; a-=fromTmp; const before=S.hp; S.hp=Math.max(0,S.hp-a); if(S.hp<before){ flash("hit"); hpFloat("\u2212"+(before-S.hp),"dmg"); } else if(fromTmp) hpFloat("\u2212"+fromTmp+" temp","tmp"); inp.value="";
     let cm="", z0=before===0&&a>0&&S.ds&&S.ds[1]<3&&!(S.exh>=6); if(z0){ S.ds=S.ds.slice(); if(S.ds[0]>=3) S.ds[0]=0; S.ds[1]=Math.min(3,S.ds[1]+1); }/* v32 p26: damage at 0 Hit Points is a failure */
     if(before>0&&S.hp===0) __set_DS_OVER(Math.max(0,a-before)>=D.hpmax?a-before:0);
@@ -56,6 +61,16 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
     else if(z0) __R.toastU("Took "+a0+" damage at 0 Hit Points: one Death Saving Throw failure ("+S.ds[1]+" of 3)."+(S.ds[1]>=3?" Your character dies.":" A Critical Hit counts as two: use Critical Hit under Death Saves."));
     else __R.toastU("Took "+a0+" damage"+(fromTmp?" ("+fromTmp+" from Temporary Hit Points)":"")+".");
     if(__R.concOf()) __R.concCheck(a0); });/* v21 RU57, RU50 */
+  uiGlobalClickDelegationAnonStep2(inp, amt);
+})();
+function uiGlobalClickDelegationAnonStep1(){
+  const inp=$("#hpAmt");
+  function amt(){ const v=parseInt(inp.value,10); return isNaN(v)?0:Math.max(0,v); }
+  function nudge(){ inp.focus(); inp.classList.remove("nudge"); void inp.offsetWidth; inp.classList.add("nudge"); clearTimeout(nudge.t); nudge.t=setTimeout(() =>{ inp.classList.remove("nudge"); },900); }
+  $("#healBtn").addEventListener("click",() =>{ const a=amt(); if(!a){nudge();return;} __R.undoMark("Healing"); const wasZero=S.hp===0, before=S.hp; S.hp=Math.min(D.hpmax,S.hp+a); if(wasZero) S.ds=[0,0]; if(S.hp>before){ flash("healed"); hpFloat("+"+(S.hp-before),"heal"); } inp.value=""; save(); syncHP(); __R.toastU("Healed "+(S.hp-before)+" "+__R.hpWord(S.hp-before)+"."); });
+  return /** @type {any} */ ({inp, nudge, amt});
+}
+function uiGlobalClickDelegationAnonStep2(inp, amt){
   inp.addEventListener("keydown",(e) =>{ if(e.key==="Enter"){ e.preventDefault(); (e.shiftKey?$("#healBtn"):$("#dmgBtn")).click(); } });
   $$("[data-tmp]").forEach((b) =>{ b.addEventListener("click",() =>{ __R.undoMark("Temporary Hit Points",1); S.tmp=Math.max(0,S.tmp+(+b.getAttribute("data-tmp"))); save(); syncHP(); }); });
   /* v30 B6: +1, +5, +10 add to the amount, the last button clears it. B7: Set puts the typed amount into Temporary HP */
@@ -64,5 +79,5 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
     function commit(){ const v=Math.max(0,Math.floor(+tv.value||0)); if(v===S.tmp){ tv.value=S.tmp; return; } __R.undoMark("Temporary Hit Points"); S.tmp=v; save(); syncHP(); __R.toastU("Temporary Hit Points: "+v+"."); }
     tv.addEventListener("change",commit); tv.addEventListener("keydown",(e) =>{ if(e.key==="Enter"){ e.preventDefault(); tv.blur(); } }); tv.addEventListener("focus",() =>{ try{ tv.select(); }catch(er){} }); })();
   $$("[data-tmpset]").forEach((b) =>{ b.addEventListener("click",() =>{ const a=amt(); if(!a){ toast("Type an amount first, then press Set."); return; } __R.undoMark("Temporary Hit Points"); S.tmp=a; inp.value=""; save(); syncHP(); __R.toastU("Temporary Hit Points: "+a+"."); }); });
-})();
+}
 

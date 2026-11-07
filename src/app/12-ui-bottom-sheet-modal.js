@@ -33,15 +33,23 @@ export function wm5(t){ const Q=env.QIMG; if(!Q||!t) return ""; let n=t, cats=QI
   return ""; }
 export function sheetIco(t){ t=String(t||""); let h="", m;
   h=wm5(t); if(h) return h;
+  ({m, h}=sheetIcoStep1(m, t, h));
+  ({h}=sheetIcoStep2(h, t));
+  return wmHd(h); }
+function sheetIcoStep1(m, t, h){
   if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(env.__artSub&&env.__artSub(m[1],m[2],320))||__R.ico("src-class");
   else if(/^Species: /.test(t)) h=(env.__artIc&&env.__artIc("species",t.slice(9)))||__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
   else if(/^Background: /.test(t)) h=(env.__artIc&&env.__artIc("background",t.slice(12)))||__R.ico("src-background");
   else if(t==="Size") h=(env.__artIc&&env.__artIc("size",C.size))||__R.ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
+  return /** @type {any} */ ({m, h});
+}
+function sheetIcoStep2(h, t){
   if(!h&&env.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],
     ["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=env.__artIc(cats[i][0],alt[j]+cats[i][1]);
       }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
-  return wmHd(h); }
+  return /** @type {any} */ ({h});
+}
 function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span");
   w.id="shWm"; w.className="sh-wm"; w.setAttribute("aria-hidden","true"); $("#sheet").insertBefore(w,$("#sheetBody")); } render(raw(sheetIco(t)),w); }
 export function openSheet(title, html, mode, wide){

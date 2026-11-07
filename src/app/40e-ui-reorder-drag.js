@@ -48,14 +48,22 @@ document.addEventListener("pointerdown",(e) =>{ const h=e.target.closest&&e.targ
   DRG={h:h,list:list,row:row,run:run,from:from,to:from,y0:e.clientY,st0:sc?sc.scrollTop:env.scrollY,sc:sc,tops:rects.map((b) =>{ return b.top; }),hs:rects.map((b) =>{ return b.height; }),y:e.clientY,raf:0};
   row.classList.add("dragging"); });
 function ordShift(i,v){ const r=DRG.run[i]; spring("ordm|"+i,v,(x) =>{ r.style.transform=Math.abs(x)<.3?"":"translateY("+x.toFixed(1)+"px)"; },{k:420,zeta:.8}); }
-function ordMove(){ if(!DRG) return; const D2=DRG, st=D2.sc?D2.sc.scrollTop:env.scrollY, dy=D2.y-D2.y0+(st-D2.st0), f=D2.from, hf=D2.hs[f];
+function ordMove(){ if(!DRG) return;
+ const {D2}=ordMoveStep1();
+  ordMoveStep2(D2); }
+function ordMoveStep1(){
+const D2=DRG, st=D2.sc?D2.sc.scrollTop:env.scrollY, dy=D2.y-D2.y0+(st-D2.st0), f=D2.from, hf=D2.hs[f];
   D2.row.style.transform="translateY("+dy.toFixed(1)+"px)";
   let c=D2.tops[f]+hf/2+dy, to=f; for(let i=0;i<D2.run.length;i++){ const mid=D2.tops[i]+D2.hs[i]/2; if(i>f&&c>mid) to=i; if(i<f&&c<mid&&to===f) to=i; }
   if(to!==D2.to){ D2.to=to; const step=(f<D2.run.length-1?D2.tops[f+1]-D2.tops[f]:hf+(D2.tops[f]-(f?D2.tops[f-1]+D2.hs[f-1]:D2.tops[f]))); const gap=Math.max(0,(f<D2.run.length-1?D2.tops[f+1]-(D2.tops[f]+hf):0)), sh=hf+gap;
     for(let j=0;j<D2.run.length;j++){ if(j===f) continue; ordShift(j,(f<to&&j>f&&j<=to)?-sh:(f>to&&j>=to&&j<f)?sh:0); } }
+  return /** @type {any} */ ({D2});
+}
+function ordMoveStep2(D2){
   /* near the edge of the scrolling area: scroll on */
   const top=D2.sc?D2.sc.getBoundingClientRect().top+(mq.matches?parseFloat(getComputedStyle(D2.sc).scrollPaddingTop)||0:0):72, bot=D2.sc?D2.sc.getBoundingClientRect().bottom:env.innerHeight, sp=D2.y<top+48?-10:D2.y>bot-48?10:0;
-  if(sp){ if(D2.sc) D2.sc.scrollTop+=sp; else env.scrollBy(0,sp); D2.raf=requestAnimationFrame(ordMove); } else D2.raf=0; }
+  if(sp){ if(D2.sc) D2.sc.scrollTop+=sp; else env.scrollBy(0,sp); D2.raf=requestAnimationFrame(ordMove); } else D2.raf=0;
+}
 document.addEventListener("pointermove",(e) =>{ if(!DRG) return; if(!DRG.row.isConnected){ DRG=null; return; } DRG.y=e.clientY; if(!DRG.raf) DRG.raf=requestAnimationFrame(ordMove); });
 function ordEnd(cancel){ const D2=DRG; if(!D2) return; if(D2.raf) cancelAnimationFrame(D2.raf); D2.row.classList.remove("dragging");
   D2.run.forEach((r,i) =>{ const s=SPR["ordm|"+i]; if(s){ if(s.raf) cancelAnimationFrame(s.raf); delete SPR["ordm|"+i]; } });
