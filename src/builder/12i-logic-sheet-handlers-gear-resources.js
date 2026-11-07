@@ -5,7 +5,7 @@ import {registerSheetGroup} from "./12a-logic-sheet-registry.js";
 /* ---------- inventory ---------- */
 /* one row per item. Item texts are built by the service q.withItemContext (it sets the attack rows and the proficiencies that the item text reads and clears
    them afterwards) and q.itemHtml (the detail text, built once, never inside itself) */
-registerSheetGroup({id:"inventory-rows",group:"inventory",phase:"inventory",order:10,reads:["C.attacks","C.profs","q.withItemContext","q.ensureInv","q.kitTool","q.qOf","q.itemW","q.itemWEst","q.baseOf","q.rarityOf","q.dmapRow","q.equippable","q.itemType","q.itemCost","q.itemHtml"],writes:["C.inv"],
+registerSheetGroup({id:"inventory-rows",group:"inventory",phase:"inventory",order:10,reads:["C.attacks","C.profs","q.withItemContext","q.ensureInv","q.kitTool","q.qOf","q.itemW","q.itemWEst","q.baseOf","q.rarityOf","q.dmapRow","q.equippable","q.typeOfItem","q.itemCost","q.itemHtml"],writes:["C.inv"],
  run:function(ctx){const Q=ctx.q,C=ctx.C;
   C.inv=Q.withItemContext(ctx.C.attacks,ctx.C.profs,function(){return Q.ensureInv().map(function(x){const it={n:Q.kitTool(x)||x.n,key:x.n,q:Q.qOf(x),w:Q.itemW(Q.kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq};if(Q.itemWEst(x.n))it.west=1;/* v27 RD20 */const bn=Q.baseOf(x.n).b,rr=Q.rarityOf(x),dm=Q.dmapRow(x.n);
    if(dm&&dm[3]){it.att=1}if(x.mw)it.mw=true;/* Masterwork flag of the row (cond mwArmor) */if(rr)it.rar=rr;if(Q.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */
