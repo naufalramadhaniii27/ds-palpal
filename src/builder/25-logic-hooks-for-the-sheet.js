@@ -12,6 +12,8 @@ import {allSheetHandlers,SHEET_PHASES,registerSheetGroup,registerSheetRule,makeC
 import {SHEET_C,SHEET_L,patchProblems} from "./12b-logic-sheet-schema.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {allPackSteps,registerPackStep,PACK_PHASES,PACK_TABLES} from "./13a-logic-pack-registry.js";
+import {queryNames} from "./01a-logic-query-registry.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
 import {STEPS,__set_openCards,__set_pickCls,__set_pickSp,__set_step,openCards,pickCls,pickSp,step} from "./17-ui-step-builder.js";
@@ -117,4 +119,4 @@ window.__bldQuickFor=function(cls,lv){const Q=QUICK[cls];if(!Q)return null;let k
   B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=structuredClone(B)}
  catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 /* SOLID stage 1 test hook (tests/solid_contract.py): the handler registries, the sources, the phase names and the effect list of the build set with __bldTestSet. Read only, no stored data */
-window.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),sheet:allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),sheet:fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return gfx(noItem)},sheet:{groups:allSheetHandlers("group"),rules:allSheetHandlers("rule"),phases:SHEET_PHASES.slice(),registerGroup:registerSheetGroup,registerRule:registerSheetRule,makeCtx:makeCtx,applyPatch:applyPatch,schema:{C:SHEET_C,l:SHEET_L},patchProblems:patchProblems},entrySchema:{fields:FX_FIELDS,problems:fxEntryProblems}}};
+window.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),sheet:allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),sheet:fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return gfx(noItem)},sheet:{groups:allSheetHandlers("group"),rules:allSheetHandlers("rule"),phases:SHEET_PHASES.slice(),registerGroup:registerSheetGroup,registerRule:registerSheetRule,makeCtx:makeCtx,applyPatch:applyPatch,schema:{C:SHEET_C,l:SHEET_L},patchProblems:patchProblems},entrySchema:{fields:FX_FIELDS,problems:fxEntryProblems},pack:{steps:allPackSteps(),phases:PACK_PHASES.slice(),tables:PACK_TABLES,register:registerPackStep},queries:queryNames()}};

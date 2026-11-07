@@ -27,18 +27,22 @@ import {sheetTrace,sheetStrict} from "./00-env.js";
 export const SHEET_PHASES=["base","saves","skills","lang","gear","ac","savebonus","acbonus","speed","senses","init","profs","attacks","inventory","resources","actions","features","spells","late","post"];
 const LIST=[];let SEQ=0,CACHE={};
 const OWN=function(o,k){return Object.prototype.hasOwnProperty.call(o,k)};
-function reg(kind,h){
+function regBase(kind,h){
  if(!h||typeof h.id!=="string"||typeof h.group!=="string"||typeof h.run!=="function"||!Array.isArray(h.reads)||!Array.isArray(h.writes))throw new Error("sheet registry: a handler needs id, group, reads[], writes[] and run()");
  if(SHEET_PHASES.indexOf(h.phase)<0)throw new Error("sheet registry: phase "+h.phase+" of "+h.id);
  if(typeof h.order!=="number"||!isFinite(h.order))throw new Error("sheet registry: order of "+h.id+" must be a number");
  if(LIST.some((x) =>{return x.id===h.id}))throw new Error("sheet registry: duplicate handler "+h.id);
- if(kind==="rule"&&typeof h.about!=="string")throw new Error("sheet registry: a class rule needs about (the rule it implements), "+h.id);
- const w={},r=[];h.reads.concat(h.writes).forEach((s) =>{const m=/^(i|q|C|l)\.([\w$]+)$/.exec(s);if(!m)throw new Error("sheet registry: bad key "+s+" in "+h.id);if(OWN(w,s))return;w[s]=1;r.push([m[1],m[2]])});
+ if(kind==="rule"&&typeof h.about!=="string")throw new Error("sheet registry: a class rule needs about (the rule it implements), "+h.id);}
+function regKeys(h){const w={},r=[];h.reads.concat(h.writes).forEach((s) =>{const m=/^(i|q|C|l)\.([\w$]+)$/.exec(s);if(!m)throw new Error("sheet registry: bad key "+s+" in "+h.id);if(OWN(w,s))return;w[s]=1;r.push([m[1],m[2]])});
  h.writes.forEach((s) =>{if(!/^(C|l)\./.test(s))throw new Error("sheet registry: "+h.id+" writes "+s+" (only C.* and l.* can be written)")});
- h.kind=kind;h._r=r;h._w={};h.writes.forEach((s) =>{h._w[s]=1});h._seq=SEQ++;h.scope=h.scope||"build";
+ return r}
+function regScope(h){
  if(h.scope!=="build"&&h.scope!=="part"&&h.scope!=="each")throw new Error("sheet registry: scope of "+h.id);
  if(h.scope!=="build"&&typeof h.loop!=="string")throw new Error("sheet registry: a looping handler needs loop, "+h.id);
- if(h.scope==="each"&&!/^(i|l)\.\w+$/.test(h.over||""))throw new Error("sheet registry: scope each needs over (i.key or l.key), "+h.id);
+ if(h.scope==="each"&&!/^(i|l)\.\w+$/.test(h.over||""))throw new Error("sheet registry: scope each needs over (i.key or l.key), "+h.id);}
+function reg(kind,h){regBase(kind,h);const r=regKeys(h);
+ h.kind=kind;h._r=r;h._w={};h.writes.forEach((s) =>{h._w[s]=1});h._seq=SEQ++;h.scope=h.scope||"build";
+ regScope(h);
  LIST.push(h);CACHE={};return h}
 export function registerSheetGroup(h){return reg("group",h)}
 export function registerSheetRule(h){return reg("rule",h)}

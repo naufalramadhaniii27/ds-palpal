@@ -84,7 +84,6 @@ export {fxv,fxVal,fxOk,fxCh};
 Object.defineProperty(__R,"fxCh",{get:function(){return fxCh;},configurable:true});
 Object.defineProperty(__R,"gfx",{get:function(){return gfx;},set:function(v){gfx=v;},configurable:true});
 Object.defineProperty(__R,"fxv",{get:function(){return fxVal;},configurable:true});
-Object.defineProperty(__R,"fxOk",{get:function(){return fxOk;},configurable:true});
 Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */

@@ -8,7 +8,6 @@
   "app/32-logic-play-undo-actions.js": 305,
   "app/40-ui-segments-notes-swipe-motion-panels.js": 337,
   "builder/09-logic-feats-and-choices.js": 354,
-  "builder/12-logic-export-to-sheet.js": 474,
   "fx/02-micro-interactions.js": 361,
   "learn/45-data-learn.js": 491,
   "tg/30-ui-tg.js": 327
@@ -574,57 +573,9 @@
    7,
    27
   ],
-  "builder/12-logic-export-to-sheet.js::(anon)#10": [
-   6,
-   40
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#11": [
-   6,
-   36
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#15": [
-   54,
-   168
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#30": [
-   5,
-   23
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#31": [
-   5,
-   22
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#5": [
-   70,
-   247
-  ],
-  "builder/12-logic-export-to-sheet.js::(anon)#52": [
-   13,
-   63
-  ],
-  "builder/12-logic-export-to-sheet.js::actAtk": [
-   14,
-   25
-  ],
-  "builder/12-logic-export-to-sheet.js::actsFor": [
-   18,
-   42
-  ],
-  "builder/12-logic-export-to-sheet.js::toSheet": [
-   420,
-   1389
-  ],
-  "builder/13-logic-sources-and-packs.js::applyPacks": [
-   20,
-   35
-  ],
   "builder/13-logic-sources-and-packs.js::autoSpells": [
    16,
    48
-  ],
-  "builder/13-logic-sources-and-packs.js::efaGate": [
-   3,
-   23
   ],
   "builder/14-logic-multiclass-hp-shop.js::baseOf": [
    1,

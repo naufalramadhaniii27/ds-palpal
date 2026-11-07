@@ -8,6 +8,11 @@ Checks:
  4 purity (browser): every handler runs on every real effect entry (the GX registry, the magic item rows, built entries) with deep frozen inputs, twice:
    same input gives the same patch, the inputs are not changed (a write to a frozen object throws in strict code), the patch is a fresh plain object.
  5 open for extension (browser): a handler registered at run time (no orchestrator edit) is applied by gfx() to a test entry.
+ 6 stage 5 static: no handler or helper of 12/13a/13b is over the 20 branch budget; 12-logic-export-to-sheet.js holds no adapter that calls __R (only the toSheet export);
+   13-logic-sources-and-packs.js sets nothing on window (00-env.js does); the pack steps (13b) import only the registry, no window, no bare global names.
+ 7 stage 5 browser: the query registry (01a) provides every q.<name> a sheet handler reads; the pack registry (13a) has the schema, every step is well formed; applyPacks() under the strict
+   slice (a step reads only its uses, writes keep the table type) gives the same tables as without it for every source on and off; a step added at run time is
+   applied without editing applyPacks (O); bad steps are refused and an undeclared read, a wrong table type are caught (negative controls); the window helpers of 13 (__setSrc ...) work.
 Run: python3 tests/solid_contract.py [--root DIR]. Exit 1 on any failure."""
 import json, os, re, sys
 from playwright.sync_api import sync_playwright
@@ -63,6 +68,34 @@ for nm in ['for(', 'switch', 'forEach', 'if(']:
     tb = [b for b in blocks if b[0] == 'toSheet'][0][1]
     ok(nm not in re.sub(r'/\*.*?\*/', '', tb, flags=re.S).replace(' ', ''), 'the toSheet orchestrator contains %s' % nm)
 
+# 6 stage 5 static
+sys.path.insert(0, HERE)
+from guard_lib import stripped, find_functions, manifest_files
+import re as _re
+BRX = _re.compile(r'\bif\b|\bcase\b|\bfor\b|\bwhile\b|\bcatch\b|&&|\|\||\?(?![.?:])')
+for _f in manifest_files(ROOT):
+    if not _re.match(r'builder/(12[a-z]?-|13[ab]-|01a-)', _f): continue
+    _c = stripped(ROOT, _f)
+    for _x in find_functions(_c):
+        _b = len(BRX.findall(_c[_x[3]:_x[4]]))
+        ok(_b <= 20, '%s: function %s has %d branches (budget 20)' % (_f, _x[0], _b))
+_d12 = _re.sub(r'/\*.*?\*/', '', rd('12-logic-export-to-sheet.js'), flags=_re.S)
+ok(len(_re.findall(r'__R\b', _d12)) == 2 and 'Object.defineProperty(__R,"toSheet"' in _d12, '12-logic-export-to-sheet.js may use __R only to export toSheet (the q adapters are gone)')
+ok('provideQueries({' in _d12 and 'return __R.' not in _d12, '12-logic-export-to-sheet.js must register its queries with provideQueries and hold no adapter')
+for _f in ['14-logic-multiclass-hp-shop.js', '16-logic-feature-numbers.js', '20-ui-steps-equipment-next.js', '13-logic-sources-and-packs.js']:
+    ok('provideQueries(' in rd(_f), '%s must provide its sheet queries with provideQueries' % _f)
+_d13 = _re.sub(r'/\*.*?\*/', '', rd('13-logic-sources-and-packs.js'), flags=_re.S)
+ok(not _re.search(r'\bwindow\b|\bexpose\(', _d13), '13-logic-sources-and-packs.js sets nothing on window (exposeSourceHelpers in 00-env.js does)')
+ok('exposeSourceHelpers(DMAP,' in _d13 and 'export function exposeSourceHelpers' in rd('00-env.js'), 'the window helpers (__setSrc ...) are published by 00-env.js')
+ok('solid:orchestrator applyPacks' in rd('13-logic-sources-and-packs.js') and 'solid:orchestrator runPackSteps' in rd('13a-logic-pack-registry.js'), 'applyPacks and runPackSteps carry the orchestrator marker')
+_t13 = rd('13-logic-sources-and-packs.js'); _o13 = _t13[_t13.index('solid:orchestrator applyPacks */'):_t13.index('export function packSkills')]
+ok(not _re.search(r'\bif\b|\bfor\b|\bswitch\b|forEach', _re.sub(r'/\*.*?\*/', '', _o13, flags=_re.S)), 'applyPacks() only prepares the state and runs the steps')
+_h13 = rd('13b-logic-pack-handlers.js'); _b13 = _re.sub(r'/\*.*?\*/', '', _h13, flags=_re.S)
+for m in _re.finditer(r'^import\s.*?from\s+"([^"]+)"', _h13, _re.M): ok(m.group(1) == './13a-logic-pack-registry.js', '13b imports %s (only the pack registry is allowed)' % m.group(1))
+for bad in [r'\bwindow\b', r'\bdocument\b', r'\blocalStorage\b', r'\bDate\b', r'Math\.random', r'\b__R\b', r'\bfetch\b', r'\bperformance\b']:
+    ok(not _re.search(bad, _b13), '13b uses %s (pack steps are pure over their slice)' % bad)
+for g in BARE:
+    ok(not _re.search(r'(?<![\w.$"\'])%s\b(?!["\']\s*:)' % g, _re.sub(r'"[^"\n]*"', '""', _b13)), '13b reads the global %s (use ctx.T)' % g)
 # 3 + 4 + 5 browser
 JS = r"""(BL) => { 'use strict';
   const R = window.__fxRegistry(); const out = {fails: [], n: 0, info: {}};
@@ -230,14 +263,68 @@ builds = []
 for _f in _files[::max(1, len(_files) // 30)][:30]:
     _g = json.load(open(_f)); _e = _g if isinstance(_g, dict) else _g[0]
     builds.append([_e['build'], _e.get('fxT')])
+JS5 = r"""()=>{
+  const R=window.__fxRegistry(), P=R.pack, out={fails:[],n:0}; const C=(c,m)=>{out.n++; if(!c) out.fails.push(m)};
+  // query registry: every q.<name> a handler reads is provided
+  const qn=new Set(R.queries); C(qn.size===R.queries.length,'duplicate query names');
+  const reads=new Set(); R.sheet.groups.concat(R.sheet.rules).forEach(h=>h.reads.concat(h.writes).forEach(s=>{if(/^q\./.test(s))reads.add(s.slice(2))}));
+  reads.forEach(n=>C(qn.has(n),'q.'+n+' is read by a sheet handler but no module provides it'));
+  ['baseOf','fxv','fxOk','calcNote','defenses','itemDetail','typeOfItem','profcSet','autoSpells','enabledPacks','miFeats','packSkills','spOptFx','subGrant','MCL','TL','syncPickItems','hpCalc','effArmor','gxPicks','fxCh'].forEach(n=>C(qn.has(n),'query '+n+' not provided'));
+  C(R.queries.every(n=>/^[A-Za-z_$][\w$]*$/.test(n)),'bad query name');
+  // pack registry shape
+  const steps=P.steps, ids=new Set(steps.map(s=>s.id)); C(ids.size===steps.length,'duplicate pack step ids'); C(steps.length>=25,'pack steps: '+steps.length);
+  C(JSON.stringify(P.phases)==='["reset","pack","post"]','pack phases');
+  P.phases.forEach(ph=>C(steps.some(s=>s.phase===ph),'no pack step in phase '+ph));
+  steps.forEach(s=>{
+    C(typeof s.about==='string'&&s.about.length>5,s.id+': about'); C(s.run.length===1,s.id+': run(ctx) takes one parameter');
+    s.uses.forEach(u=>{const m=/^(T|q)\.(\w+)$/.exec(u); C(!!m,s.id+': bad use '+u); if(m&&m[1]==='T') C(m[2] in P.tables,s.id+': unknown table '+u)});
+    s.writes.forEach(w=>C(/^T\./.test(w)&&s.uses.indexOf(w)>=0,s.id+': writes '+w+' outside uses'));
+    if(s.phase==='pack') C(s.writes.every(w=>w!=='T.B')&&!s.uses.some(u=>/^q\./.test(u)),s.id+': a pack step touches B or a service');
+  });
+  // equivalence: the tables after applyPacks, strict slice and checks on or off, for every source on and off
+  const dig=()=>{const keys=o=>Object.keys(o).sort();
+    return JSON.stringify([keys(SPECIES),keys(BACKGROUNDS),keys(FEATS),Object.keys(CLASSES),Object.keys(CLASSES).map(c=>[c,Object.keys(CLASSES[c].subs||{}).length,(CLASSES[c].f||[]).length]),keys(PRICE).length,keys(AUTO).length,DMGI.map(x=>x[0]),keys(CF_FULL).length])};
+  const ids2=(window.WX&&window.WX.src||[]).map(x=>x.id).concat(['mom','efa']); const seen={};
+  const snapAll=()=>{const o={};['core','dmg'].concat(ids2).forEach(k=>{o[k]=1}); return Object.keys(o)};
+  const res={plain:[],strict:[]};
+  const seq=[]; snapAll().forEach(k=>{seq.push([k,true]);seq.push([k,false]);}); snapAll().forEach(k=>seq.push([k,true]));
+  [false,true].forEach(strict=>{ snapAll().forEach(k=>window.__setSrc(k,k==='core'||k==='dmg')); window.__packStrict=strict; try{ seq.forEach(([k,v])=>{ window.__setSrc(k,v); res[strict?'strict':'plain'].push(dig()) }) }catch(e){ out.fails.push('applyPacks threw (strict='+strict+'): '+String(e).slice(0,200)) } finally{ window.__packStrict=false } });
+  C(res.plain.length===seq.length&&res.strict.length===seq.length,'sequence lengths '+res.plain.length+'/'+res.strict.length);
+  C(res.plain.every((d,i)=>d===res.strict[i]),'applyPacks under the strict slice differs from the plain run');
+  C(new Set(res.plain).size>=3,'the source toggles changed nothing: the equivalence test is empty');
+  // O: a step added at run time is applied, applyPacks is not edited
+  let hits=0; const S1={id:'t-extra-post',phase:'post',order:5,about:'test step added at run time',uses:['T.FEATS'],writes:['T.FEATS'],run:function(ctx){hits++;ctx.T.FEATS.__zzExtra={cat:'G'}}};
+  P.register(S1); window.__packStrict=true; try{ window.__setSrc('core',true) }catch(e){ out.fails.push('applyPacks threw with the extra step: '+e) } finally{ window.__packStrict=false }
+  C(hits>=1&&!!FEATS.__zzExtra,'a step registered at run time was not applied'); S1.run=function(){}; window.__setSrc('core',true); C(!FEATS.__zzExtra,'the next applyPacks must rebuild FEATS without the test entry');
+  // bad steps are refused
+  const base=()=>({id:'t-bad-'+Math.random(),phase:'post',order:1,about:'bad step',uses:['T.FEATS'],writes:[],run:function(ctx){}});
+  const bad=(mut,msg)=>{const h=base(); mut(h); let t=false; try{P.register(h)}catch(e){t=true} C(t,msg)};
+  bad(h=>{h.phase='nope'},'a step with an unknown phase was accepted'); bad(h=>{h.uses=['T.NOPE']},'a step that uses an unknown table was accepted');
+  bad(h=>{h.writes=['T.PRICE']},'a step that writes a table outside uses was accepted'); bad(h=>{h.about=undefined},'a step without about was accepted');
+  bad(h=>{h.order='x'},'a step with a bad order was accepted'); bad(h=>{h.uses=['window.x']},'a step with a bad key was accepted');
+  let dup=false; try{P.register(S1)}catch(e){dup=true} C(dup,'a duplicate step id was accepted');
+  // negative controls: an undeclared read and a wrong table type are caught in strict mode
+  const N1={id:'t-neg-read',phase:'post',order:6,about:'reads a table it did not declare',uses:['T.FEATS'],writes:[],run:function(ctx){ctx.T.PRICE}}; P.register(N1);
+  window.__packStrict=true; let caught=false; try{ window.__setSrc('core',true) }catch(e){ caught=/outside its slice/.test(String(e)) } finally{ window.__packStrict=false }
+  C(caught,'strict mode did not catch an undeclared table read'); N1.run=function(){};
+  const N2={id:'t-neg-type',phase:'post',order:7,about:'replaces a table instead of changing it in place',uses:['T.DMGI'],writes:['T.DMGI'],run:function(ctx){ctx.T.DMGI=null}}; P.register(N2);
+  window.__packStrict=true; caught=false; try{ window.__setSrc('core',true) }catch(e){ caught=/replaced DMGI/.test(String(e)) } finally{ window.__packStrict=false }
+  C(caught,'strict mode did not catch a table replaced instead of changed in place'); N2.run=function(){};
+  window.__setSrc('core',true); C(Array.isArray(DMGI)&&DMGI.length>0,'DMGI must be intact after the negative controls');
+  // window helpers
+  ['__setSrc','__hasItem','__hasSp','__hasBg','__hasGear','__spellNames','__hasAny'].forEach(n=>C(typeof window[n]==='function',n+' is not published'));
+  C(window.__hasSp('Human')===true&&window.__hasSp('Nope')===false,'__hasSp'); C(window.__hasBg('Soldier')===true,'__hasBg'); C(window.__hasGear(GEAR[0][0])===true,'__hasGear');
+  C(window.__spellNames().length===SPELLS.length,'__spellNames'); C(window.__hasAny('Longsword')===true&&window.__hasAny('zz-none')===false,'__hasAny'); C(window.__hasItem(DMGI[0][0])===true,'__hasItem');
+  return out }"""
 with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1250, 'height': 850}); pg.set_default_timeout(300000)
     errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     pg.goto('file://' + os.path.join(ROOT, 'index.html')); pg.wait_for_timeout(1500)
     pg.evaluate("window.__bldNeed && window.__bldNeed()")
     pg.wait_for_function("()=>!!window.__fxRegistry&&!!window.__bldTestSet")
-    r = pg.evaluate(JS, builds); b.close()
-n += r['n']
+    r = pg.evaluate(JS, builds); r5 = pg.evaluate(JS5); b.close()
+n += r['n'] + r5['n']
+for m in r5['fails'][:40]: fails.append(m); print('FAIL', m)
 for m in r['fails'][:40]: fails.append(m); print('FAIL', m)
 if len(r['fails']) > 40: print('... %d more' % (len(r['fails']) - 40))
 # orchestrators name no field of any handler (distinctive names only: the structural fields the loop itself carries are not handler fields)
