@@ -5,12 +5,22 @@ import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__set_actF,actF,renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {__set_featF,__set_featQ,__set_invF,featF,featQ,invF,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,infoHTML} from "./13-ui-detail-cards.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {PANEL} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"curPage",{get:function(){return curPage;},set:function(v){curPage=v;},configurable:true});
 Object.defineProperty(__R,"mq",{get:function(){return mq;},set:function(v){mq=v;},configurable:true});
 /* ================= TABS + PAGER ================= */
 export var mq = env.matchMedia("(max-width:759px)");
-export var PAGES = ["p-main","p-skills","p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"];/* v23 */
+/* Pages in order (SOLID stage 9, O): one entry per page in PANEL. The Search sheet builds its "go to" commands from these entries. */
+PANEL.add("p-main", {label:"Main", icon:"tab-main", words:["main"]});
+PANEL.add("p-skills", {label:"Skills", icon:"tab-skills", words:["skills"]});
+PANEL.add("p-actions", {label:"Actions", icon:"act-attack", words:["actions","attacks"], tab:"p-actions"});
+PANEL.add("p-spells", {label:"Spells", icon:"tab-spells", words:["spells","spellbook"], tab:"p-spells"});
+PANEL.add("p-inv", {label:"Inventory", icon:"tab-inventory", words:["inventory","items","equipment"], tab:"p-inv"});
+PANEL.add("p-feat", {label:"Features", icon:"tab-features", words:["features","traits"], tab:"p-feat"});
+PANEL.add("p-desc", {label:"Description", icon:"tab-description", words:["description","background"], tab:"p-desc"});
+PANEL.add("p-notes", {label:"Notes", icon:"tab-notes", words:["notes","journal"], tab:"p-notes"});
+PANEL.add("p-ext", {label:"Extras", icon:"tab-extras", words:["extras","companions"], tab:"p-ext"});
+export var PAGES = PANEL.keys();/* v23 */
 export var activeTab = "p-actions";
 export function setTab(id, focus, instant){
   if(!instant&&!setTab.vt&&setTab.morph&&document.startViewTransition&&!mq.matches&&!(env.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&id!==activeTab){ setTab.vt=1; const vt=document.startViewTransition(() =>{ setTab(id,focus,true); }); vt.finished.then(() =>{ setTab.vt=0; },() =>{ setTab.vt=0; }); return; }/* v29: smooth morph between tabs */

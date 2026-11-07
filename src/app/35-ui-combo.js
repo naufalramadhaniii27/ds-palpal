@@ -9,10 +9,10 @@ import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-
 import {mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {openRest} from "./23d-ui-rest.js";import {renderSpells} from "./23e-ui-spells-dc.js";
 import {openSearch} from "./27-ui-party-search-commands-library.js";import {libOpen} from "./27b-ui-library.js";
-import {renderExtras} from "./29-ui-ddb-look.js";
-import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts,undoMark,undoNow} from "./32-logic-play-undo-actions.js";
+import {renderExtras} from "./29b-ui-creatures-extras.js";
+import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";import {undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
-import {combatHTML,sitReset} from "./34-ui-situations.js";
+import {combatHTML} from "./34c-ui-experience-journal-combat-view.js";import {sitReset} from "./34-ui-situations.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"CF0",{get:function(){return CF0;},set:function(v){CF0=v;},configurable:true});
 Object.defineProperty(__R,"cmbCast",{get:function(){return cmbCast;},set:function(v){cmbCast=v;},configurable:true});

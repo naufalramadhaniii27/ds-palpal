@@ -16,6 +16,13 @@
    CTXSRC  key = id of a long-press menu source.
            entry { sel:string, build(el) -> {t:string, L:[[label, icon, fn|null, danger?]], el:Element} | null }
            The first source whose selector matches the pressed target wins, even when build answers null.
+   SEARCHGRP key = id of a result group of the Search sheet (SOLID stage 9). Registration order is the order the groups show.
+           entry { build(ctx) -> [title:string, rows:[[spec, name, sub, icon?]]] | null    ctx = {q, sc(names,texts), pick(list,f)}
+           null when the group has no row for the query. spec is a data-info spec ("sp:3", "it:0" ...) }
+   OVERLAY key = id of an overlay layer that the Back key and the history entry close (SOLID stage 9). Registration order is the z-order, top layer first.
+           entry { top() -> function | null    the function that closes the layer, or null when the layer is not open. top() has no side effect except what the layer's own back hook does }
+   PANEL   key = id of a page of the sheet ("p-main", "p-inv" ...). Registration order is the page order (index 0, 1, 2 ...). The tab buttons are markup (sheet-body.html) and stay there.
+           entry { label:string, icon:string, words:[string] (Search commands "go to ..."), tab?:string (id for setTab, absent for the pages that are no tabs) }
    No entry reads window.*: shared page state comes from env (00-env.js). */
 import {env} from "./00-env.js";
 export function makeRegistry(name, req){
@@ -41,4 +48,7 @@ export const DETAIL=makeRegistry("detail", {render:"function", self:"function?"}
 export const ENTRY=makeRegistry("entry", {content:"function"});
 export const PALWORD=makeRegistry("palword", {words:"function"});
 export const CTXSRC=makeRegistry("ctxsrc", {sel:"string", build:"function"});
-env.__uiReg={detail:DETAIL, entry:ENTRY, palword:PALWORD, ctxsrc:CTXSRC};/* read by tests/solid_ui_contract.py */
+export const PANEL=makeRegistry("panel", {label:"string", icon:"string", words:"array", tab:"string?"});
+export const OVERLAY=makeRegistry("overlay", {top:"function"});
+export const SEARCHGRP=makeRegistry("searchgrp", {build:"function"});
+env.__uiReg={detail:DETAIL, entry:ENTRY, palword:PALWORD, ctxsrc:CTXSRC, searchgrp:SEARCHGRP, overlay:OVERLAY, panel:PANEL};/* read by tests/solid_ui_contract.py */

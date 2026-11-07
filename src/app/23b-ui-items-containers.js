@@ -8,7 +8,7 @@ import {closeSheet} from "./13-ui-detail-cards.js";
 import {setTab} from "./21-ui-tabs-pager.js";
 import {__R} from "./00-reg.js";
 import {env} from "./00-env.js";
-import {ctOf,ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
+import {ctOf,ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {cuW} from "./26-ui-customize.js";
 Object.defineProperty(__R,"ctCap",{get:function(){return ctCap;},set:function(v){ctCap=v;},configurable:true});
 Object.defineProperty(__R,"ctH",{get:function(){return ctH;},set:function(v){ctH=v;},configurable:true});
 Object.defineProperty(__R,"ctLoad",{get:function(){return ctLoad;},set:function(v){ctLoad=v;},configurable:true});
@@ -37,7 +37,7 @@ function ctCap(c,ct){ const m=/\(([^()]+'s Pack)(?: \d+)?\)$/.exec(c&&c.n||""), 
   return Math.max(ct[1], P[1].reduce((t,x) =>{ const g=gearOf(x[0]); return t+(g?g[2]:0)*x[1]; },0)); }
 /* a container popup lists what is inside; each line opens that item */
 function ctH(it,ix){ if(!ctOf(it.n)) return ""; const k=invKey(it), L=(C.inv||[]).map((x,i) =>{ return [x,i]; }).filter((p) =>{ return p[0]!==it&&p[0].in===k; });
-  return '<div class="info-h">Inside ('+L.length+')</div>'+(L.length?'<div class="info-l">'+L.map((p) =>{ const q=num(p[0].q,1); return '<button type="button" data-info="it:'+p[1]+'">'+esc(__R.cuNm("i:"+invKey(p[0]),p[0].n))+'<span>Qty '+q+' • '+fmtW(q*__R.cuW(p[0]))+' lb.</span></button>'; }).join("")+'</div>':'<p class="muted">Empty. Open an item and use Move to put it here.</p>'); }
+  return '<div class="info-h">Inside ('+L.length+')</div>'+(L.length?'<div class="info-l">'+L.map((p) =>{ const q=num(p[0].q,1); return '<button type="button" data-info="it:'+p[1]+'">'+esc(__R.cuNm("i:"+invKey(p[0]),p[0].n))+'<span>Qty '+q+' • '+fmtW(q*cuW(p[0]))+' lb.</span></button>'; }).join("")+'</div>':'<p class="muted">Empty. Open an item and use Move to put it here.</p>'); }
 var ctShut={};
 export var CONS1=/^(Torch|Candle|Rations \(1 day\)|Oil \(flask\))$/;
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-unpack]"); if(!b) return; e.preventDefault(); e.stopPropagation();
@@ -50,9 +50,9 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   const left=Math.max(0,num(it.q,1)-1), lb=it.n; if(num(it.q,1)<1){ toast("None left."); return; } __R.qtyAdj(nm,ix,-1,"Use "+lb,() =>{ __R.toastU("Used 1 "+lb+". "+left+" left."); }); },true);
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("#invBody [data-ctog]"); if(!b) return; const k=b.getAttribute("data-ctog"); ctShut[k]=!ctShut[k]; renderInv();
   const nb=Array.prototype.slice.call(document.querySelectorAll("#invBody [data-ctog]")).filter((x) =>{ return x.getAttribute("data-ctog")===k; })[0]; if(nb) nb.focus({preventScroll:true}); });
-function itemW(i){ const c=ctOf(i.n); if(c&&c[2]!=null) return c[2]*num(i.q,1); return num(i.q,1)*__R.cuW(i); }
+function itemW(i){ const c=ctOf(i.n); if(c&&c[2]!=null) return c[2]*num(i.q,1); return num(i.q,1)*cuW(i); }
 export function invWeight(){ const L=C.inv||[], byK={}; L.forEach((i) =>{ byK[invKey(i)]=i; }); return L.reduce((t,i) =>{ const p=i.in&&byK[i.in], pc=p&&ctOf(p.n); if(pc&&pc[2]!=null) return t; return t+itemW(i); },0); }
-function ctLoad(c){ return (C.inv||[]).filter((i) =>{ return i.in===invKey(c); }).reduce((t,i) =>{ return t+num(i.q,1)*__R.cuW(i); },0); }
+function ctLoad(c){ return (C.inv||[]).filter((i) =>{ return i.in===invKey(c); }).reduce((t,i) =>{ return t+num(i.q,1)*cuW(i); },0); }
 function moveCtl(it,ix){ const cs=(C.inv||[]).filter((c) =>{ return c!==it&&ctOf(c.n)&&c.in!==invKey(it); }); if(!cs.length&&!it.in) return "";
   return '<div class="imv"><label class="muted" for="imove">Move to</label><select id="imove" data-imove="'+ix+'"><option value="">Equipment (not in a container)</option>'+cs.map((c) =>{ return '<option value="'+esc(invKey(c))+'"'+(it.in===invKey(c)?' selected':'')+'>'+esc(c.n)+'</option>'; }).join("")+'</select></div>'; }
 const XDIM=/^(Bag of Holding|Heward's Handy Haversack|Portable Hole)\b/;

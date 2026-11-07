@@ -7,7 +7,7 @@ import {__set_actF,actF,renderActions} from "./08b-ui-render-summaries-actions.j
 import {refreshEntry,sheet} from "./12-ui-bottom-sheet-modal.js";
 import {BKEY,RKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpKeyOk} from "./15b-logic-backup.js";import {homeCards,rLoad,rSnap,showHome} from "./15-logic-roster-backup-files-snapshots.js";import {snGet,snTake} from "./15d-logic-snapshots-character-files.js";import {updUnsaved} from "./15c-logic-file-state-compress.js";
-import {wnBanner} from "./16-logic-import-chat-text-and-build-files.js";
+import {wnBanner} from "./16c-ui-whats-new-and-hooks.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"MYID",{get:function(){return MYID;},set:function(v){MYID=v;},configurable:true});
 Object.defineProperty(__R,"PUBLIC_FRESH",{get:function(){return PUBLIC_FRESH;},set:function(v){PUBLIC_FRESH=v;},configurable:true});

@@ -3,7 +3,7 @@ import {C} from "./04-logic-storage.js";
 import {eqOn} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {ico,icoCls,icoItem,icoText} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {ICO} from "./29-ui-ddb-look.js";
+import {ICO} from "./29c-data-ddb-icons.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"ICO_CAT",{get:function(){return ICO_CAT;},set:function(v){ICO_CAT=v;},configurable:true});
 Object.defineProperty(__R,"ICO_TXT",{get:function(){return ICO_TXT;},set:function(v){ICO_TXT=v;},configurable:true});

@@ -9,29 +9,31 @@ import {moveTabInd,mq} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {CONS1,invKey} from "./23b-ui-items-containers.js";
 import {cuNm} from "./26-ui-customize.js";
-import {ICO} from "./29-ui-ddb-look.js";
+import {ICO} from "./29c-data-ddb-icons.js";
 import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
-import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
+import {ckOf,qOk,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
 import {__R} from "./00-reg.js";
 import {env} from "./00-env.js";
-import {CTXSRC} from "./06a-logic-ui-registry.js";
+import {CTXSRC,OVERLAY} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"dockApply",{get:function(){return dockApply;},set:function(v){dockApply=v;},configurable:true});
 Object.defineProperty(__R,"dockOff",{get:function(){return dockOff;},set:function(v){dockOff=v;},configurable:true});
 let OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
 env.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
 /* a reload or page change is under way: going back in history now would cancel it */
-function ovTop(){ const c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
-  const a=document.querySelectorAll("body > .ask"); if(a.length){ const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
-  if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
-  if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
-  const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; }/* T11 G6 T5 */
-  const q=document.getElementById("hpQm"); if(q) return function(){ qmClose(); };
-  const k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter((w) =>{ return !w.hidden&&w.querySelector(".bkpx"); }); if(k.length){ const z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }
-  if(sheet.classList.contains("on")) return function(){ const bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); };
-  /* T11 A6: on the character sheet itself (no popup, builder closed, not a friend's view), Back goes to Home instead of leaving the app */
-  const hv=document.getElementById("homeV"); if(hv&&hv.hidden&&!(bl&&!bl.hidden)&&!FROZEN&&typeof showHome==="function") return function(){ showHome(); };
-  return null; }
+/* Overlays in the order Back closes them, top first (SOLID stage 9, O). One entry per layer in OVERLAY: top() answers the function that closes the layer, or null when it is not open. The order of the add calls is the z-order. */
+OVERLAY.add("context-menu", {top:function(){ const c=document.getElementById("ctxm"); return c?function(){ c.remove(); }:null; }});
+OVERLAY.add("ask", {top:function(){ const a=document.querySelectorAll("body > .ask"); if(!a.length) return null; const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }});
+OVERLAY.add("training-ground", {top:function(){ if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; } return null; }});/* G7 Training Ground: field to setup, setup closes */
+OVERLAY.add("learn", {top:function(){ if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; } return null; }});/* T11 Learn: glossary card, sheet spotlight, then one step back */
+OVERLAY.add("builder", {top:function(){ const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; } return null; }});/* T11 G6 T5 */
+OVERLAY.add("hp-quick-menu", {top:function(){ const q=document.getElementById("hpQm"); return q?function(){ qmClose(); }:null; }});
+OVERLAY.add("backup-window", {top:function(){ const k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter((w) =>{ return !w.hidden&&w.querySelector(".bkpx"); }); if(!k.length) return null; const z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }});
+OVERLAY.add("sheet", {top:function(){ return sheet.classList.contains("on")?function(){ const bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); }:null; }});
+/* T11 A6: on the character sheet itself (no popup, builder closed, not a friend's view), Back goes to Home instead of leaving the app */
+OVERLAY.add("home", {top:function(){ const bl=document.getElementById("bld"), hv=document.getElementById("homeV"); return hv&&hv.hidden&&!(bl&&!bl.hidden)&&!FROZEN&&typeof showHome==="function"?function(){ showHome(); }:null; }});
+/* solid:orchestrator ovTop */
+function ovTop(){ const L=OVERLAY.list(); for(let i=0;i<L.length;i++){ const f=L[i].top(); if(f) return f; } return null; }
 function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; const on=!!ovTop();
   if(on&&!OVG){ try{ history.pushState({csOv:1},""); OVG=true; }catch(e){} }
   else if(!on&&OVG){ OVG=false; if(history.state&&history.state.csOv){ OVSKIP++; try{ history.back(); }catch(e){ OVSKIP--; } } } }

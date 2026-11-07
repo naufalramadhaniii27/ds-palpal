@@ -4,7 +4,7 @@ import {D} from "./06-logic-derivation.js";
 import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";import {__set_renderFeat,__set_renderInv,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
-import {__set_renderExtras,renderExtras} from "./29-ui-ddb-look.js";
+import {__set_renderExtras,renderExtras} from "./29b-ui-creatures-extras.js";
 import {__R} from "./00-reg.js";
 Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
 Object.defineProperty(__R,"foldP",{get:function(){return foldP;},set:function(v){foldP=v;},configurable:true});

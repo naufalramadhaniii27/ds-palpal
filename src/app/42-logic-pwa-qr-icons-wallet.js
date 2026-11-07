@@ -9,7 +9,7 @@ import {chFile,chName,chSave} from "./15d-logic-snapshots-character-files.js";im
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";
 import {moveTabInd,onMode} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {COINS,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt} from "./23c-ui-coins.js";
-import {ICO} from "./29-ui-ddb-look.js";
+import {ICO} from "./29c-data-ddb-icons.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_bldDot,bldDot} from "./35-ui-combo.js";
 import {cuNumList} from "./41-ui-edit-mode.js";

@@ -14,7 +14,7 @@ import {ico,icoItem} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {in
 import {spClsJ} from "./24-ui-manage-spells.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
-import {PALWORD} from "./06a-logic-ui-registry.js";
+import {PALWORD,PANEL,SEARCHGRP} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"bkpCamp",{get:function(){return bkpCamp;},set:function(v){bkpCamp=v;},configurable:true});
 Object.defineProperty(__R,"campKeep",{get:function(){return campKeep;},set:function(v){campKeep=v;},configurable:true});
 Object.defineProperty(__R,"campSel",{get:function(){return campSel;},set:function(v){campSel=v;},configurable:true});
@@ -83,6 +83,14 @@ export function fzScore(q,s){ s=String(s||"").toLowerCase(); if(!s||!q) return -
   for(let j=0;j<c.length&&best>0;j++){ let x=c[j], d=fzD(q,x,m); if(x.length>q.length) d=Math.min(d,fzD(q,x.slice(0,q.length),m)); if(d<best) best=d; }
   return best<=m?3+best:-1; }
 export var gsSel=0, PAL=[], gsShown=null;
+/* Search result groups (SOLID stage 9, O): one entry per group in SEARCHGRP, in the order the groups show. gsHTML only asks each entry for its rows. */
+SEARCHGRP.add("spells",{build:function(x){ const pick=x.pick, sc=x.sc; const sp=pick((C.spells||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("s:"+p[0].n,"")],[p[0].sum]); }); return sp.length?["Your Spells",sp.slice(0,30).map((p) =>{ return ['sp:'+p[1],cuNm("s:"+p[0].n,p[0].n),(p[0].l?ordL(p[0].l):"Cantrip")+" • "+(p[0].use||""),"school-"+String(p[0].sch||"").toLowerCase()]; })]:null; }});
+SEARCHGRP.add("attacks",{build:function(x){ const pick=x.pick, sc=x.sc; const at=pick((C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((p) =>{ return atkOn(p[0]); }),(p) =>{ return sc([p[0].n,cuNm("a:"+p[0].n,"")]); }); return at.length?["Attacks",at.map((p) =>{ return ['w:'+p[1],cuNm("a:"+p[0].n,p[0].n),sg(D.atk[p[1]].hit)+" to hit, "+D.atk[p[1]].dmg,"act-attack"]; })]:null; }});
+SEARCHGRP.add("inventory",{build:function(x){ const pick=x.pick, sc=x.sc; const iv=pick((C.inv||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("i:"+invKey(p[0]),"")]); }); return iv.length?["Inventory",iv.slice(0,30).map((p) =>{ return ['it:'+p[1],cuNm("i:"+invKey(p[0]),p[0].n),(p[0].type||"Item")+(num(p[0].q,1)>1?" ×"+num(p[0].q,1):""),typeof icoItem==="function"?icoItem(p[0]):"tab-inventory"]; })]:null; }});
+SEARCHGRP.add("features",{build:function(x){ const pick=x.pick, sc=x.sc; const ft=pick(featAll(),(x) =>{ return sc([x.f.n],[x.t]); }); return ft.length?["Features and Traits",ft.slice(0,30).map((x) =>{ return ['f:'+x.gi+'.'+x.fi,x.f.n,x.g,"ui-feature"]; })]:null; }});
+SEARCHGRP.add("rules",{build:function(x){ const pick=x.pick, sc=x.sc; const gl=pick(Object.keys(GLOSS).sort(),(k) =>{ return sc([k]); }); return gl.length?["Rules and Conditions",gl.slice(0,30).map((k) =>{ return ['g:'+k,k,GLOSS[k].c||"Rule",__R.ICO["cond-"+k.toLowerCase()]?"cond-"+k.toLowerCase():"ui-book"]; })]:null; }});
+SEARCHGRP.add("other-spells",{build:function(x){ const pick=x.pick, sc=x.sc; const mine=(C.spells||[]).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); return al.length?["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]:null; }});
+/* solid:orchestrator gsHTML */
 function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<input class="sp-q" id="gsQ" type="search" placeholder="Search, or type: dmg 7, heal 5" aria-label="Search the sheet or type a command" autocomplete="off" enterkeyhint="go" spellcheck="false" value="'+esc(gsQ)+'">';
   gsShown=gsQ; PAL=palCmds(q); gsSel=0; const cm=PAL.length?'<div class="gs-cl" aria-label="Commands">'+PAL.map(palRow).join("")+'</div>':'';
   if(q.length<2) return h+cm+(PAL.length?'':palHelp());
@@ -90,17 +98,11 @@ function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<inp
   /* best score of the names, 6 when only the longer text has it, -1 none. Rows keep their order inside one score */
   const sc=function(names,texts){ let b=-1; names.forEach((n) =>{ const v=fzScore(q,n); if(v>=0&&(b<0||v<b)) b=v; }); if(b<0&&(texts||[]).some(hit)) b=6; return b; };
   const pick=function(list,f){ const o=[]; list.forEach((x,i) =>{ const v=f(x); if(v>=0) o.push([v,i,x]); }); o.sort((a,b) =>{ return a[0]-b[0]||a[1]-b[1]; }); return o.map((r) =>{ return r[2]; }); };
-  const sp=pick((C.spells||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("s:"+p[0].n,"")],[p[0].sum]); }); if(sp.length) G.push(["Your Spells",sp.slice(0,30).map((p) =>{ return ['sp:'+p[1],cuNm("s:"+p[0].n,p[0].n),(p[0].l?ordL(p[0].l):"Cantrip")+" • "+(p[0].use||""),"school-"+String(p[0].sch||"").toLowerCase()]; })]);
-  const at=pick((C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((p) =>{ return atkOn(p[0]); }),(p) =>{ return sc([p[0].n,cuNm("a:"+p[0].n,"")]); }); if(at.length) G.push(["Attacks",at.map((p) =>{ return ['w:'+p[1],cuNm("a:"+p[0].n,p[0].n),sg(D.atk[p[1]].hit)+" to hit, "+D.atk[p[1]].dmg,"act-attack"]; })]);
-  const iv=pick((C.inv||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("i:"+invKey(p[0]),"")]); }); if(iv.length) G.push(["Inventory",iv.slice(0,30).map((p) =>{ return ['it:'+p[1],cuNm("i:"+invKey(p[0]),p[0].n),(p[0].type||"Item")+(num(p[0].q,1)>1?" ×"+num(p[0].q,1):""),typeof icoItem==="function"?icoItem(p[0]):"tab-inventory"]; })]);
-  const ft=pick(featAll(),(x) =>{ return sc([x.f.n],[x.t]); }); if(ft.length) G.push(["Features and Traits",ft.slice(0,30).map((x) =>{ return ['f:'+x.gi+'.'+x.fi,x.f.n,x.g,"ui-feature"]; })]);
-  const gl=pick(Object.keys(GLOSS).sort(),(k) =>{ return sc([k]); }); if(gl.length) G.push(["Rules and Conditions",gl.slice(0,30).map((k) =>{ return ['g:'+k,k,GLOSS[k].c||"Rule",__R.ICO["cond-"+k.toLowerCase()]?"cond-"+k.toLowerCase():"ui-book"]; })]);
-  const mine=(C.spells||[]).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); if(al.length) G.push(["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]);
+  const ctx={q:q,sc:sc,pick:pick}; SEARCHGRP.list().forEach((g) =>{ const r=g.build(ctx); if(r) G.push(r); });
   const LK='<button type="button" class="btn sm press gs-lib" data-lib="'+esc(gsQ.trim())+'">Search the whole library for "'+esc(gsQ.trim())+'"</button>';
   if(!G.length) return h+cm+(PAL.length?'':'<p class="info-d">Nothing found for "'+esc(gsQ.trim())+'" in your sheet.</p>')+LK;
   return h+cm+G.map((g) =>{ return '<div class="info-h">'+esc(g[0])+' ('+g[1].length+')</div><div class="gs-l">'+g[1].map((r) =>{ return '<button type="button" class="gs-r" data-info="'+esc(r[0])+'"><b>'+(r[3]?(ico(r[3],"gs-ri")||ico("ui-book","gs-ri")):'')+esc(r[1])+'</b><small>'+esc(r[2])+'</small></button>'; }).join("")+'</div>'; }).join("")+LK; }
 /* v30 p07 RU130: commands. Each gives an icon, a title, a preview of what changes, and run() */
-const PAL_TABS=[[["main"],0,null,"Main","tab-main"],[["skills"],1,null,"Skills","tab-skills"],[["actions","attacks"],2,"p-actions","Actions","act-attack"],[["spells","spellbook"],3,"p-spells","Spells","tab-spells"],[["inventory","items","equipment"],4,"p-inv","Inventory","tab-inventory"],[["features","traits"],5,"p-feat","Features","tab-features"],[["description","background"],6,"p-desc","Description","tab-description"],[["notes","journal"],7,"p-notes","Notes","tab-notes"],[["extras","companions"],8,"p-ext","Extras","tab-extras"]];
 function palNeed(k){ const o={dmg:["hp-damage","Damage","dmg "],heal:["hp-heal","Heal","heal "],temp:["hp-temp","Temporary Hit Points","temp "],exh:["cond-exhaustion","Exhaustion","exhaustion "]}[k];
   return {i:o[0],t:o[1],s:k==="exh"?"Now "+num(S.exh,0)+". Type a level from 0 to 6, for example exhaustion 2":"Type an amount, for example "+o[2]+(k==="heal"?"5":k==="temp"?"8":"7"),fill:o[2]}; }
 function palHp(k,n){ closeSheetIfOn(); const inp=$("#hpAmt"); if(!inp) return; inp.value=String(n); const b=k==="heal"?$("#healBtn"):k==="dmg"?$("#dmgBtn"):$("[data-tmpset]"); if(b) b.click(); }
@@ -165,7 +167,7 @@ PALWORD.add("undo", {words:function(){ return [
   {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ closeSheetIfOn(); __R.undoNow(); }}; }}]; }});
 PALWORD.add("redo", {words:function(){ return [
   {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ closeSheetIfOn(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}]; }});
-PALWORD.add("tabs", {words:function(){ const W=[]; PAL_TABS.forEach((t) =>{ W.push({k:t[0],f:function(){ return {i:t[4],t:"Go to "+t[3],s:"Open the "+t[3]+" page",run:function(){ closeSheetIfOn(); __R.goTab(t[1],t[2]); }}; }}); }); return W; }});
+PALWORD.add("tabs", {words:function(){ const W=[]; PANEL.keys().forEach((id,ix) =>{ const t=PANEL.get(id); W.push({k:t.words,f:function(){ return {i:t.icon,t:"Go to "+t.label,s:"Open the "+t.label+" page",run:function(){ closeSheetIfOn(); __R.goTab(ix,t.tab||null); }}; }}); }); return W; }});
 PALWORD.add("condition-toggles", {words:function(){ const W=[]; STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).forEach((k) =>{ W.push({k:[k.toLowerCase()],f:function(){ return palCond(k); }}); }); return W; }});
 /* solid:orchestrator palWords */
 function palWords(){ const W=[]; PALWORD.list().forEach((p) =>{ p.words().forEach((w) =>{ W.push(w); }); }); return W; }
