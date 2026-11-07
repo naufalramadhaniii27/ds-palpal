@@ -1,11 +1,11 @@
 /* === X pack: more screen-wide moments. Same rules as the WOW pack. === */
 (function(){
-  const MI=window.__MI, W=window.__miWow; if(!MI||!W||!document.body.animate) return;
+  const MI=FXENV.__MI, W=FXENV.__miWow; if(!MI||!W||!document.body.animate) return;
   function full(){ return MI.full(); }
   function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
   function add(cls,html){ const e=document.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; document.body.appendChild(e); setTimeout(() =>{ rm(e); },2600); return e; }
   function C(el){ const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2,r:r}; }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
+  function nf(fn){ (FXENV.__miNF||setTimeout)(fn); }
   function later(fn){ nf(() =>{ nf(fn); }); }
   let FL=null;
   function flash(bg,peak,dur){ if(!full()) return; if(!FL){ FL=document.createElement("div"); FL.className="mi-flash mi-flash2"; FL.setAttribute("aria-hidden","true"); document.body.appendChild(FL); }
@@ -22,13 +22,13 @@
         box.animate([{transform:"none"},{transform:"translateY(10px) scale(.97)",offset:.25},{transform:"translateY(-3px)",offset:.55},{transform:"none"}],{duration:620,easing:"cubic-bezier(.2,.7,.3,1)"}); MI.buzz("heavy"); }
       else if(from0){ const col=add("mi-revive"); col.style.left=p.x+"px"; col.style.top=p.y+"px";
         col.animate([{transform:"translate(-50%,-100%) scaleY(.1)",opacity:0},{transform:"translate(-50%,-100%) scaleY(1)",opacity:1,offset:.35},{transform:"translate(-50%,-110%) scaleY(1.1)",opacity:0}],{duration:1300,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(col); };
-        flash(edge("255,201,60",.55),.7,900); if(window.__miBurst) window.__miBurst(p.x,p.y,{n:16,colors:["#ffd166","#fff3b0","#4cc27a"],shape:"mi-star",dist:110,dur:1100}); MI.buzz("success"); } }).observe(hb,{attributes:true,attributeFilter:["class"]});
+        flash(edge("255,201,60",.55),.7,900); if(FXENV.__miBurst) FXENV.__miBurst(p.x,p.y,{n:16,colors:["#ffd166","#fff3b0","#4cc27a"],shape:"mi-star",dist:110,dur:1100}); MI.buzz("success"); } }).observe(hb,{attributes:true,attributeFilter:["class"]});
 
   /* X3 Temporary Hit Points go up: a blue shield ring closes round the box and a sheen crosses it */
   let tmpPrev=null; function tmpVal(){ const t=document.getElementById("tmpV"); return t?(+t.value||0):0; } tmpPrev=tmpVal();
   function tmpCheck(){ const v=tmpVal(); if(tmpPrev!=null&&v>tmpPrev&&full()){ const box=hpBox(); if(box){ const p=C(box), s=add("mi-shield"); s.style.left=p.r.left+"px"; s.style.top=p.r.top+"px"; s.style.width=p.r.width+"px"; s.style.height=p.r.height+"px";
         s.animate([{transform:"scale(1.15)",opacity:0},{transform:"scale(1)",opacity:1,offset:.4},{transform:"scale(1.02)",opacity:0}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(s); };
-        if(window.__miRing) window.__miRing(p.x,p.y,"#7cb6ff",Math.max(p.r.width,p.r.height)); MI.buzz("medium"); } } tmpPrev=v; }
+        if(FXENV.__miRing) FXENV.__miRing(p.x,p.y,"#7cb6ff",Math.max(p.r.width,p.r.height)); MI.buzz("medium"); } } tmpPrev=v; }
   MI.on("click",(e) =>{ if(e.target.closest&&e.target.closest("[data-tmp],[data-tmpapply],[data-tmpset],[data-tmproll],[data-tmpdice]")) later(tmpCheck); },true);
   MI.on("change",(e) =>{ if(e.target&&e.target.id==="tmpV") later(tmpCheck); },true);
 
@@ -37,7 +37,7 @@
   const cbvChk=function(){ const on=!!document.querySelector("#sheet.on #cbv"); if(on&&!cbvWas&&full()){ sweep("mi-blade","",1); flash(edge("229,57,53",.6),.6,700); MI.buzz("medium"); } cbvWas=on; }; if(sh){ const cbvMO=new MutationObserver(cbvChk); cbvMO.observe(sh,{attributes:true,attributeFilter:["class"]}); const sbd=document.getElementById("sheetBody"); if(sbd) cbvMO.observe(sbd,{childList:true}); }
   MI.on("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-cmbturn]"); if(!t||!full()) return; sweep("mi-turn","Next Turn",1); MI.buzz("medium"); },true);
   MI.on("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-cmbuse]"); if(!t||!full()) return; const p=C(t);
-    if(window.__miRing) window.__miRing(p.x,p.y,"#ff8a3d",140); if(window.__miBurst) window.__miBurst(p.x,p.y,{n:14,colors:["#ff8a3d","#ffd166","#ffffff"],shape:"mi-spark",dist:80,dur:650}); flash(edge("255,138,61",.45),.5,600); MI.buzz("heavy"); },true);
+    if(FXENV.__miRing) FXENV.__miRing(p.x,p.y,"#ff8a3d",140); if(FXENV.__miBurst) FXENV.__miBurst(p.x,p.y,{n:14,colors:["#ff8a3d","#ffd166","#ffffff"],shape:"mi-spark",dist:80,dur:650}); flash(edge("255,138,61",.45),.5,600); MI.buzz("heavy"); },true);
 
   /* X7 Apply to Sheet: a wave of light crosses the screen and a check lands in the middle */
   let apWait=null;

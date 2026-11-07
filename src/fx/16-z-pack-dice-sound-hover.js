@@ -1,16 +1,10 @@
 /* === Z pack: dice rolls with history, sound, hover cards, level-up gains, Hit Die result, builder stamps and class sweep, share card === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const D=document, FINE=matchMedia("(hover: hover) and (pointer: fine)");
   function full(){ return MI.full(); }
   function calm(){ return MI.rm()||MI.mode==="off"; }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
-  function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
-  function vis(e){ return e&&e.getClientRects().length; }
-  function esc(t){ return String(t).replace(/[&<>"]/g,(c) =>{ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
-  function fx(cls,html,ms){ const e=D.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(() =>{ rm(e); },ms||2300); return e; }
-  function ls(k,v){ try{ if(v===undefined) return __store.getItem(k); __store.setItem(k,v); }catch(e){ return null; } }
-  function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
+  const {nf,rm,vis,esc,fx,ls,st}=FXH;
 
   /* X1 sound: made on the fly with Web Audio, nothing to download. On by default, Settings turns it off */
   function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
@@ -39,32 +33,32 @@
     page:function(){ noise(0,.12,3200,.12); noise(.05,.1,1800,.08); }
   };
   function play(k){ if(!snd()) return; try{ SND[k]&&SND[k](); }catch(e){} }
-  window.__miSnd=play;
+  FXENV.__miSnd=play;
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-misnd]"); if(!b) return; ls("mi-snd",b.getAttribute("data-misnd"));
     Array.prototype.forEach.call(D.querySelectorAll("[data-misnd]"),(x) =>{ const on=x===b; x.classList.toggle("on",on); x.setAttribute("aria-pressed",on); }); if(b.getAttribute("data-misnd")==="on") play("heal"); },true);
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("#dmgBtn,#healBtn"); if(!b) return; const amt=+((D.getElementById("hpAmt")||{}).value||0); if(amt>0) play(b.id==="healBtn"?"heal":"hurt"); },true);
-  const W=window.__miWow; if(W){ if(W.level){ const l0=W.level; W.level=function(){ l0.apply(this,arguments); play("level"); }; } if(W.rest){ const r0=W.rest; W.rest=function(){ r0.apply(this,arguments); play("rest"); }; } if(W.cast){ const c0=W.cast; W.cast=function(){ c0.apply(this,arguments); play("cast"); }; } }
+  const W=FXENV.__miWow; if(W){ if(W.level){ const l0=W.level; W.level=function(){ l0.apply(this,arguments); play("level"); }; } if(W.rest){ const r0=W.rest; W.rest=function(){ r0.apply(this,arguments); play("rest"); }; } if(W.cast){ const c0=W.cast; W.cast=function(){ c0.apply(this,arguments); play("cast"); }; } }
 
   /* X2 rolls: the breakdown of a bonus or a damage gets Roll buttons. X3 natural 20 and natural 1 have their own moment. X4 the last 30 rolls stay in a drawer */
   let last=null;
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bd]"); if(b&&!b.closest("#sheet")) last={k:b.getAttribute("data-bd"),el:b,t:Date.now(),txt:(b.textContent||"").replace(/\s+/g," ")}; },true);
   function rollSpec(k,el,txt){ if(!k) return null;
-    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); return m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(window.__miRoll&&window.__miRoll.dtype)?window.__miRoll.dtype(txt):""}:null; }
+    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); return m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(FXENV.__miRoll&&FXENV.__miRoll.dtype)?FXENV.__miRoll.dtype(txt):""}:null; }
     if(/^(ah-|save-|sk-|ab-|init$|spatk$)/.test(k)){ let src=txt; if(/^ab-/.test(k)){ const mm=el&&el.querySelector(".m"); src=mm?mm.textContent:txt; } const n=/([+−-]\s?\d+)/.exec(src); return n?{bon:parseInt(n[1].replace(/−/,"-").replace(/\s/,""),10)}:null; }
     return null; }
-  function d(n){ const a=new Uint32Array(1); (window.crypto||{getRandomValues:function(x){ x[0]=Math.random()*4294967295; return x; }}).getRandomValues(a); return 1+a[0]%n; }
+  function d(n){ const a=new Uint32Array(1); (FXENV.crypto||{getRandomValues:function(x){ x[0]=Math.random()*4294967295; return x; }}).getRandomValues(a); return 1+a[0]%n; }
   function parseDmg(x){ let terms=[], re=/([+-]?)(\d*)d(\d+)|([+-]?)(\d+)/g, m; while((m=re.exec(x))){ if(m[3]) terms.push({s:m[1]==="-"?-1:1,n:+(m[2]||1),f:+m[3]}); else terms.push({s:m[4]==="-"?-1:1,k:+m[5]}); } return terms; }
   /* T11 G3 D3 Game Log: the rolls are kept per character (mi-rl-<character>, the last 50), not only for this visit. Every roll also
      goes to the journal of the character, so the journal is the full game log and can be saved as text */
-  let H=[], HK=""; function rk(){ const J=window.__miJournal; return J&&J.key?J.key().replace(/^mi-jr-/,"mi-rl-"):"mi-rl-"; }
+  let H=[], HK=""; function rk(){ const J=FXENV.__miJournal; return J&&J.key?J.key().replace(/^mi-jr-/,"mi-rl-"):"mi-rl-"; }
   function hload(){ HK=rk(); try{ H=JSON.parse(ls(HK)||"[]")||[]; }catch(e){ H=[]; } }
   function save(){ if(!HK) HK=rk(); ls(HK,JSON.stringify(H.slice(0,50))); }
-  window.__miRollKey=function(){ return HK||rk(); };
+  FXENV.__miRollKey=function(){ return HK||rk(); };
   /* T11 D2: the dice a roll needs, in order. With 3D dice (25-dice3d) the values are decided first and the dice on screen
      land on them. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
   function diceOf(spec,mode){ if(spec.dmg){ const L=[]; parseDmg(spec.dmg).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
   function doRoll(spec,mode,label,cb){ const need=diceOf(spec,mode), go=function(vals,three){ const r=finish(spec,mode,label,vals); r.three=!!three; after(r); if(cb) cb(r); };
-    if(window.__dice3d&&!calm()&&need.length&&need.length<=12){ window.__dice3d.roll(need).then((v) =>{ go(v&&v.length===need.length?v:need.map((f) =>{ return d(f); }),!!v); },() =>{ go(need.map((f) =>{ return d(f); }),false); }); return null; }
+    if(FXENV.__dice3d&&!calm()&&need.length&&need.length<=12){ FXENV.__dice3d.roll(need).then((v) =>{ go(v&&v.length===need.length?v:need.map((f) =>{ return d(f); }),!!v); },() =>{ go(need.map((f) =>{ return d(f); }),false); }); return null; }
     const r=finish(spec,mode,label,need.map((f) =>{ return d(f); })); after(r); if(cb) cb(r); return r; }
   function finish(spec,mode,label,vals){ let r={l:label,t:Date.now()}, vi=0; if(spec.dtype) r.dt=spec.dtype;
     if(spec.dmg){ let terms=parseDmg(spec.dmg), tot=0, parts=[], dice=[]; terms.forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++){ const v=vals[vi++]; dice.push(v); tot+=q.s*v; } parts.push((q.s<0?"-":"")+n+"d"+q.f); } else { tot+=q.s*q.k; parts.push((q.s<0?"-":"+")+q.k); } });
@@ -72,24 +66,24 @@
     else { const a=vals[0], b=vals[1]||vals[0], use=mode==="adv"?Math.max(a,b):mode==="dis"?Math.min(a,b):a; r.nat=use; r.v=use+spec.bon; r.d=(mode?("["+a+", "+b+"] "+(mode==="adv"?"advantage":"disadvantage")+" "):"")+use+(spec.bon<0?" − "+(-spec.bon):" + "+spec.bon); r.k=use===20?"nat20":use===1?"nat1":"d20"; }
     return r; }
   function after(r){ const label=r.l;
-    if(rk()!==HK) hload(); H.unshift(r); H=H.slice(0,50); save(); show(r); hist(); if(window.__miJournal) window.__miJournal.add("roll",label+": "+r.v+(r.k==="nat20"?" (natural 20)":r.k==="nat1"?" (natural 1)":"")); if(r.dt&&window.__miRoll&&window.__miRoll.fxDamage) setTimeout(() =>{ window.__miRoll.fxDamage(r.dt); },650); }
-  (window.__miRoll=window.__miRoll||{}).roll=doRoll;
+    if(rk()!==HK) hload(); H.unshift(r); H=H.slice(0,50); save(); show(r); hist(); if(FXENV.__miJournal) FXENV.__miJournal.add("roll",label+": "+r.v+(r.k==="nat20"?" (natural 20)":r.k==="nat1"?" (natural 1)":"")); if(r.dt&&FXENV.__miRoll&&FXENV.__miRoll.fxDamage) setTimeout(() =>{ FXENV.__miRoll.fxDamage(r.dt); },650); }
+  (FXENV.__miRoll=FXENV.__miRoll||{}).roll=doRoll;
   const D20='<svg viewBox="0 0 100 100"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';
   function show(r){ play("dice"); const big=r.k==="nat20"||r.k==="nat1";
-    if(calm()){ if(window.__miToast) window.__miToast(r.l+": "+r.v); return; }
-    const o=fx("mi-roll-o mi-roll-"+r.k+(r.three?" mi-roll-3d":""),(big&&window.__artVig?window.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+(r.three?"":'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div>')+'<div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
+    if(calm()){ if(FXENV.__miToast) FXENV.__miToast(r.l+": "+r.v); return; }
+    const o=fx("mi-roll-o mi-roll-"+r.k+(r.three?" mi-roll-3d":""),(big&&FXENV.__artVig?FXENV.__artVig("moment",r.k==="nat20"?"natural-20":"natural-1",104):"")+(r.three?"":'<div class="dz">'+D20+'<b>'+(r.nat||"")+'</b></div>')+'<div class="rv"><small>'+esc(r.l)+'</small><strong>'+r.v+'</strong><em>'+esc(r.d)+'</em>'+(r.k==="nat20"?'<i>Natural 20</i>':r.k==="nat1"?'<i>Natural 1</i>':r.k==="crit"?'<i>Critical damage</i>':'')+'</div>',2300);
     const dz=o.querySelector(".dz"), rv=o.querySelector(".rv");
     if(r.three) o.style.setProperty("top","20%","important");/* T11 D2: above the 3D dice, which land in the middle (the app layer sets top with !important) */
     if(dz) dz.animate([{transform:"translateY(-40vh) rotate(-540deg) scale(.5)",opacity:0},{transform:"translateY(12px) rotate(-20deg) scale(1.05)",opacity:1,offset:.6},{transform:"translateY(-6px) rotate(8deg)",offset:.78},{transform:"none",opacity:1}],{duration:820,easing:"cubic-bezier(.2,.8,.2,1)"});
     rv.animate([{opacity:0,transform:"translateY(14px) scale(.9)"},{opacity:1,transform:"none"}],{duration:380,delay:r.three?0:700,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});
     o.animate([{opacity:1},{opacity:1,offset:.82},{opacity:0}],{duration:2100,easing:"linear"}).onfinish=function(){ rm(o); };
-    if(r.k==="nat20"){ setTimeout(() =>{ play("crit"); MI.buzz("success"); if(window.__miBurst) window.__miBurst(innerWidth/2,innerHeight*.42,{n:28,colors:["#ffe7a3","#ffd166","#ffffff","#e2aa4c"],shape:"mi-star",dist:180,dur:1100}); },650); }
+    if(r.k==="nat20"){ setTimeout(() =>{ play("crit"); MI.buzz("success"); if(FXENV.__miBurst) FXENV.__miBurst(innerWidth/2,innerHeight*.42,{n:28,colors:["#ffe7a3","#ffd166","#ffffff","#e2aa4c"],shape:"mi-star",dist:180,dur:1100}); },650); }
     if(r.k==="nat1"){ setTimeout(() =>{ play("fail"); MI.buzz("heavy"); o.animate([{transform:"none"},{transform:"translateX(-10px)"},{transform:"translateX(8px)"},{transform:"translateX(-4px)"},{transform:"none"}],{duration:380,easing:"ease-out"}); },650); }
     if(!big) MI.buzz("light"); }
   function bar(){ const sh=D.getElementById("sheet"), body=D.getElementById("sheetBody"); if(!sh||!body||!sh.classList.contains("on")||!last||Date.now()-last.t>4000) return; if(body.querySelector(".mi-roll")) return;
     const spec=rollSpec(last.k,last.el,last.txt); if(!spec) return; const lab=((D.getElementById("sheetTitle")||{}).textContent||"Roll").replace(/\s+/g," ").trim().slice(0,60);
     let h=spec.dmg?'<button type="button" class="mi-rb pri" data-mr="">'+DI+'Roll '+esc(spec.dmg)+'</button><button type="button" class="mi-rb" data-mr="crit">Critical</button>':'<button type="button" class="mi-rb pri" data-mr="">'+DI+'Roll d20 '+(spec.bon<0?"−"+(-spec.bon):"+"+spec.bon)+'</button><button type="button" class="mi-rb" data-mr="adv">Advantage</button><button type="button" class="mi-rb" data-mr="dis">Disadvantage</button>';
-    let hint=(!spec.dmg&&window.__miRoll&&window.__miRoll.hint)?window.__miRoll.hint(last.k):null, hh="";
+    let hint=(!spec.dmg&&FXENV.__miRoll&&FXENV.__miRoll.hint)?FXENV.__miRoll.hint(last.k):null, hh="";
     if(hint){ if(hint.fail.length) hh='<p class="mi-rhint bad">Automatic failure: '+esc(hint.fail.join(", "))+'</p>'; else hh='<p class="mi-rhint">'+(hint.mode==="dis"?"Disadvantage":hint.mode==="adv"?"Advantage":"Advantage and disadvantage cancel")+' from '+esc(hint.dis.concat(hint.adv).join(", "))+'</p>'; }
     h+='<button type="button" class="mi-rb" data-mrself="1">I rolled myself</button>';/* T11 D2: real dice at the table */
     const w=D.createElement("div"); w.className="mi-roll"; w.innerHTML=hh+'<div class="mi-rbs">'+h+'</div><div class="mi-rres" aria-live="polite"></div>'; w.__spec=spec; w.__lab=lab; w.__mode=hint?hint.mode:""; body.insertBefore(w,body.firstChild);
@@ -114,13 +108,13 @@
     hb.querySelector("b").textContent=H[0].v; if(dr&&dr.classList.contains("on")) fill(); }
   function fill(){ const l=dr.querySelector(".mi-rhl"); l.innerHTML=H.map((r) =>{ const tm=new Date(r.t); return '<div class="mi-rhr '+r.k+'"><b>'+r.v+'</b><span><i>'+esc(r.l)+'</i><small>'+esc(r.d)+' • '+("0"+tm.getHours()).slice(-2)+":"+("0"+tm.getMinutes()).slice(-2)+'</small></span></div>'; }).join(""); }
   function openH(){ if(rk()!==HK) hload(); if(!dr){ dr=D.createElement("div"); dr.className="mi-rh"; dr.setAttribute("role","dialog"); dr.setAttribute("aria-label","Roll history"); dr.innerHTML='<div class="mi-rhx"></div><div class="mi-rhp"><div class="mi-rhh"><b>Rolls</b><button type="button" class="mi-rhc" data-mrj="1">Journal</button><button type="button" class="mi-rhc" data-mrc="1">Clear</button><button type="button" class="mi-rhc" data-mrx="1">Done</button></div><div class="mi-rhl"></div></div>'; D.body.appendChild(dr);
-      dr.addEventListener("click",(e) =>{ if(e.target.closest("[data-mrj]")){ jour(); e.stopPropagation(); return; } if(e.target.closest("[data-mre]")){ jexp(); e.stopPropagation(); return; } if(e.target.closest("[data-mrr]")){ closeH(); e.stopPropagation(); if(window.__recapOpen) window.__recapOpen(); return; } if(e.target.closest(".mi-rhx,[data-mrx]")) closeH(); else if(e.target.closest("[data-mrc]")){ H=[]; save(); closeH(); rm(hb); hb=null; } e.stopPropagation(); });
+      dr.addEventListener("click",(e) =>{ if(e.target.closest("[data-mrj]")){ jour(); e.stopPropagation(); return; } if(e.target.closest("[data-mre]")){ jexp(); e.stopPropagation(); return; } if(e.target.closest("[data-mrr]")){ closeH(); e.stopPropagation(); if(FXENV.__recapOpen) FXENV.__recapOpen(); return; } if(e.target.closest(".mi-rhx,[data-mrx]")) closeH(); else if(e.target.closest("[data-mrc]")){ H=[]; save(); closeH(); rm(hb); hb=null; } e.stopPropagation(); });
       ["pointerdown","touchstart","touchmove"].forEach((t) =>{ dr.addEventListener(t,(e) =>{ e.stopPropagation(); },{passive:true}); }); }
     fill(); dr.classList.add("on"); }
   function closeH(){ if(dr) dr.classList.remove("on"); }
-  function jour(){ const J=window.__miJournal, l=dr.querySelector(".mi-rhl"), hb=dr.querySelector(".mi-rhh b"), on=dr.classList.toggle("jr"); hb.textContent=on?"Journal":"Rolls"; dr.querySelector("[data-mrj]").textContent=on?"Rolls":"Journal";
-    if(!on){ fill(); return; } let a=J?J.all():[], day=""; l.innerHTML=(a.length?a.map((x) =>{ const d=new Date(x.t), ds=d.toLocaleDateString(), h=(ds!==day?'<div class="mi-jd">'+esc(ds)+'</div>':""); day=ds; return h+'<div class="mi-jr mi-jr-'+esc(x.k)+'"><i>'+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+'</i><span>'+esc(x.x)+'</span></div>'; }).join(""):'<p class="mi-jd">Nothing yet. Damage, healing, big rolls, rests and level ups are written here.</p>')+(a.length?'<button type="button" class="mi-rhc mi-jexp" data-mre="1">Save as text</button>'+(window.__recapOpen?'<button type="button" class="mi-rhc mi-jexp" data-mrr="1">Session recap</button>':''):''); }
-  function jexp(){ const J=window.__miJournal; if(!J) return; const c=st(), nm=(c&&c.C&&c.C.name)||"Character", t=nm+" \u2014 Journal\n\n"+J.all().slice().reverse().map((x) =>{ const d=new Date(x.t); return d.toLocaleString()+"  "+x.x; }).join("\n"); const b=new Blob([t],{type:"text/plain"}), u=URL.createObjectURL(b), a=D.createElement("a"); a.href=u; a.download=nm.replace(/[^\w\- ]+/g,"")+" journal.txt"; D.body.appendChild(a); a.click(); rm(a); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); }
+  function jour(){ const J=FXENV.__miJournal, l=dr.querySelector(".mi-rhl"), hb=dr.querySelector(".mi-rhh b"), on=dr.classList.toggle("jr"); hb.textContent=on?"Journal":"Rolls"; dr.querySelector("[data-mrj]").textContent=on?"Rolls":"Journal";
+    if(!on){ fill(); return; } let a=J?J.all():[], day=""; l.innerHTML=(a.length?a.map((x) =>{ const d=new Date(x.t), ds=d.toLocaleDateString(), h=(ds!==day?'<div class="mi-jd">'+esc(ds)+'</div>':""); day=ds; return h+'<div class="mi-jr mi-jr-'+esc(x.k)+'"><i>'+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+'</i><span>'+esc(x.x)+'</span></div>'; }).join(""):'<p class="mi-jd">Nothing yet. Damage, healing, big rolls, rests and level ups are written here.</p>')+(a.length?'<button type="button" class="mi-rhc mi-jexp" data-mre="1">Save as text</button>'+(FXENV.__recapOpen?'<button type="button" class="mi-rhc mi-jexp" data-mrr="1">Session recap</button>':''):''); }
+  function jexp(){ const J=FXENV.__miJournal; if(!J) return; const c=st(), nm=(c&&c.C&&c.C.name)||"Character", t=nm+" \u2014 Journal\n\n"+J.all().slice().reverse().map((x) =>{ const d=new Date(x.t); return d.toLocaleString()+"  "+x.x; }).join("\n"); const b=new Blob([t],{type:"text/plain"}), u=URL.createObjectURL(b), a=D.createElement("a"); a.href=u; a.download=nm.replace(/[^\w\- ]+/g,"")+" journal.txt"; D.body.appendChild(a); a.click(); rm(a); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); }
   addEventListener("keydown",(e) =>{ if(e.key==="Escape"&&dr&&dr.classList.contains("on")){ closeH(); e.stopPropagation(); } },true);
   setTimeout(() =>{ hload(); if(H.length) hist(); },0);
 
@@ -129,13 +123,13 @@
     function hide(){ clearTimeout(tm); cur=null; if(card) card.classList.remove("on"); }
     function txt(h){ const t=D.createElement("div"); t.innerHTML=h; Array.prototype.forEach.call(t.querySelectorAll(".dc-head,.dc-badge,svg,button,.bk-f"),(x) =>{ x.remove(); }); let parts=[], w=D.createTreeWalker(t,NodeFilter.SHOW_TEXT), n; while((n=w.nextNode())&&parts.join(" ").length<300){ const x=n.nodeValue.replace(/\s+/g," ").trim(); if(x) parts.push(x); } const s=parts.join(" \u00b7 ").replace(/ \u00b7 ([,.;:])/g,"$1"); return s.length>260?s.slice(0,257).replace(/\s+\S*$/,"")+"…":s; }
     function build(t){ let k=t.getAttribute("data-info")||"", b=t.getAttribute("data-bd")||"", h="";
-      if(/^(sp|it|f):/.test(k)&&window.__miInfo){ const r=window.__miInfo(k); if(!r||!r.h) return ""; const t2=D.createElement("div"); t2.innerHTML=r.h; let sub=t2.querySelector(".dc-sub"), cells=[].slice.call(t2.querySelectorAll(".dc-cell")).filter((c) =>{ const v=c.querySelector("b"); return v&&v.textContent.trim(); }).slice(0,4), pp=null;
+      if(/^(sp|it|f):/.test(k)&&FXENV.__miInfo){ const r=FXENV.__miInfo(k); if(!r||!r.h) return ""; const t2=D.createElement("div"); t2.innerHTML=r.h; let sub=t2.querySelector(".dc-sub"), cells=[].slice.call(t2.querySelectorAll(".dc-cell")).filter((c) =>{ const v=c.querySelector("b"); return v&&v.textContent.trim(); }).slice(0,4), pp=null;
           [].some.call(t2.querySelectorAll("p"),(x) =>{ if(!x.classList.contains("rule")&&!x.classList.contains("bk-f")&&(x.textContent||"").trim().length>20){ pp=x; return true; } });
           let ds=pp?(pp.textContent||"").replace(/\s+/g," ").trim():""; if(ds.length>200) ds=ds.slice(0,197).replace(/\s+\S*$/,"")+"\u2026";
           h='<b>'+esc(r.t||"")+'</b>'+(sub?'<small>'+esc(sub.textContent.replace(/\s+/g," ").trim())+'</small>':'')+(cells.length?'<div class="mi-hcg">'+cells.map((c) =>{ return '<span><i>'+esc((c.querySelector("small")||{}).textContent||"")+'</i>'+esc(c.querySelector("b").textContent.replace(/\s+/g," ").trim())+'</span>'; }).join("")+'</div>':'')+(ds?'<p>'+esc(ds)+'</p>':''); if(!sub&&!cells.length&&!ds) return ""; }
       else if(/^ab-/.test(b)){ const ab=b.slice(3), rows=[]; Array.prototype.forEach.call(D.querySelectorAll("#skills .row"),(r) =>{ const a=r.querySelector(".ab3"); if(a&&a.textContent.trim()===ab){ const nmEl=r.querySelector(".nm"),nmC=nmEl?nmEl.cloneNode(true):null; if(nmC) [].forEach.call(nmC.querySelectorAll(".flag,svg"),(x) =>{ x.remove(); }); rows.push('<li><span>'+esc(nmC?nmC.textContent.trim():"")+'</span><em>'+esc(((r.querySelector(".bonus")||{}).textContent||"").trim())+'</em></li>'); } });
         const sv=D.querySelector('#saves [data-bd="save-'+ab+'"]'); h='<b>'+esc(ab)+' feeds</b><ul>'+(sv?'<li><span>Saving throw</span><em>'+esc(sv.textContent.trim())+'</em></li>':"")+rows.join("")+'</ul>'; if(!rows.length&&!sv) return ""; }
-      else if(/^(ah|ad)-/.test(b)&&window.__miBd){ const bd=window.__miBd(b); if(!bd||!bd.parts) return ""; h='<b>'+(b[1]==="h"?"Attack roll":"Damage")+'</b><ul>'+bd.parts.map((p) =>{ return '<li><span>'+esc(p.l)+'</span><em>'+esc(p.raw?p.v:(p.v<0?"−"+(-p.v):"+"+p.v))+'</em></li>'; }).join("")+'</ul>'; }
+      else if(/^(ah|ad)-/.test(b)&&FXENV.__miBd){ const bd=FXENV.__miBd(b); if(!bd||!bd.parts) return ""; h='<b>'+(b[1]==="h"?"Attack roll":"Damage")+'</b><ul>'+bd.parts.map((p) =>{ return '<li><span>'+esc(p.l)+'</span><em>'+esc(p.raw?p.v:(p.v<0?"−"+(-p.v):"+"+p.v))+'</em></li>'; }).join("")+'</ul>'; }
       return h; }
     const SEL='#app .sp-r[data-info],#app .iname[data-info],#app .fitem .tx[data-info^="f:"],#abil .ab[data-bd],#app .abox[data-bd]';
     MI.on("pointerover",(e) =>{ if(e.pointerType!=="mouse") return; const t=e.target.closest&&e.target.closest(SEL); if(!t||t===cur) return; hide(); cur=t;

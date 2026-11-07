@@ -28,13 +28,13 @@
   '.pp-cu{border-radius:999px!important;padding:0 14px!important;background:color-mix(in srgb,var(--acc) 22%,var(--panel-2));border-color:color-mix(in srgb,var(--acc) 45%,transparent)}.pp-cu[aria-pressed="true"]{background:var(--panel-2);color:var(--muted);border-color:var(--line-2)}',
   ':root[data-theme="light"] .pp-hero,:root[data-theme="light"] .pp-ctrl,:root[data-theme="light"] #ppCond,:root[data-theme="light"] #ppCmb{box-shadow:0 6px 18px rgba(0,0,0,.08)}',
   '@media (prefers-reduced-motion:reduce){button{transition:none}.pp-bar i{transition:none}}'].join("");
-  window.__miPip=function(w){ const d=w.document; if(!d||!d.body) return;
+  FXENV.__miPip=function(w){ const d=w.document; if(!d||!d.body) return;
     const st=d.createElement("style"); st.id="miPip"; st.textContent=CSS; d.head.appendChild(st);
     const top=d.querySelector(".pp-top"), bar=d.querySelector(".pp-bar"), rows=d.querySelectorAll(".pp-row");
     if(top&&bar){ const h=d.createElement("div"); h.className="pp-hero"; top.parentNode.insertBefore(h,top); h.appendChild(top); h.appendChild(bar); const fl=d.createElement("i"); fl.className="pp-fl"; h.appendChild(fl); }
     if(rows.length){ const c=d.createElement("div"); c.className="pp-ctrl"; rows[0].parentNode.insertBefore(c,rows[0]); Array.prototype.forEach.call(rows,(r) =>{ c.appendChild(r); }); }
     /* motion: the number pops and the card flashes when Hit Points change */
-    let hp=d.getElementById("ppHp"), prev=null, MI=window.__MI;
+    let hp=d.getElementById("ppHp"), prev=null, MI=FXENV.__MI;
     if(hp&&hp.animate) new w.MutationObserver(() =>{ const v=+hp.textContent; if(prev===null||isNaN(v)){ prev=v; return; } if(v===prev) return; const down=v<prev; prev=v; if(MI&&MI.rm()) return;
       hp.animate(down?[{transform:"none"},{transform:"translateX(-5px) scale(1.08)"},{transform:"translateX(4px)"},{transform:"translateX(-2px)"},{transform:"none"}]:[{transform:"scale(1)"},{transform:"scale(1.18)",offset:.35},{transform:"none"}],{duration:down?380:420,easing:"ease-out"});
       const f=d.querySelector(".pp-fl"); if(f){ f.style.background=down?"radial-gradient(120% 90% at 20% 30%,rgba(229,57,53,.42),transparent 70%)":"radial-gradient(120% 90% at 20% 30%,rgba(76,194,122,.42),transparent 70%)"; f.animate([{opacity:0},{opacity:1,offset:.2},{opacity:0}],{duration:650,easing:"ease-out"}); } }).observe(hp,{childList:true,characterData:true,subtree:true});

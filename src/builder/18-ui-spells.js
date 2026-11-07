@@ -1,10 +1,11 @@
+import {genv} from "./00-env.js";
 import {ABK,ABN,esc,mod,pbOf,sg} from "./01-logic-core-helpers.js";
 import {bgX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {chOf,choices,dmXl,featViol,hbSpellPicks,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,savVals} from "./10-logic-v17-additions.js";
-import {abil,casterParts,clsLv,clsParts,isThird3,spLists,spellAb,thirdOf} from "./11-logic-derivation.js";
+import {abil,casterParts,clsLv,clsParts,fxList,fxVal,isThird3,spLists,spellAb,thirdOf} from "./11-logic-derivation.js";
 import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
@@ -19,7 +20,7 @@ export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach((x) =>{SMAP[x[
 /* v92: 2014 Magical Secrets. A Bard takes spells from any class list at level 10 (Lore: from level 6) */
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];const o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
 /* fx engine v4: prepAdd N (extra prepared or known spells) and cantAdd N (extra cantrips) on any entry. N: number, "pb", ability key or [[level, n]] steps. spCls limits it to that class (class and subclass entries count only for their own class) */
-function spFxN(field,cls){let t=0;try{__R.gfx().forEach((e) =>{if(e[field]==null)return;if(e.kind==="cls"&&e.owner!==cls)return;if(e.kind==="sub"&&!(CLASSES[cls].subs||{})[e.owner])return;if(e.spCls&&!/^@/.test(e.spCls)&&e.spCls!==cls)return;t+=__R.fxv(e[field],e)})}catch(er){}return t}
+function spFxN(field,cls){let t=0;try{fxList().forEach((e) =>{if(e[field]==null)return;if(e.kind==="cls"&&e.owner!==cls)return;if(e.kind==="sub"&&!(CLASSES[cls].subs||{})[e.owner])return;if(e.spCls&&!/^@/.test(e.spCls)&&e.spCls!==cls)return;t+=fxVal(e[field],e)})}catch(er){}return t}
 function spInfoOne(cls,sub,L){let c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
  if(!c.caster&&!c.nslot&&!third)return null;let ct=0,pr=0;
  if(third){ct=thirdOf(sub).cant+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
@@ -35,9 +36,9 @@ export function spInfo(){const parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL
  return {list:lists[0],lists:lists,ab:ab,ct:ct,pr:pr,kn:parts.length===1?(parts[0].kn||0):0,max:max,dc:dc,atk:dc-8,sl:sl,SA:SA}}
 function spX2(x){return {n:x[0],l:x[1],fx:typeof SPELL_FX!=="undefined"?SPELL_FX[x[0]]:null}}
 /* RD19: builder damage line at the spell level and the character level, Range/Area, material */
-function spDmgB(x){const c=window.__spCalc&&window.__spCalc(spX2(x),x[1],TL(),null);if(!c||(!c.parts.length&&!c.heal))return "";return '<span class="w"><b>'+(c.parts.length?"Damage":"Healing")+'</b>'+(c.n>1?c.n+' '+c.unit+'s, each ':'')+c.parts.map((p) =>{return esc(p.d)+' '+esc(window.__dTxt(p.t))+window.__dtIcon(p.t)+(p.lab?' ('+esc(p.lab)+')':'')}).join(" + ")+(c.heal?esc(c.heal)+(SPELL_FX[x[0]].heal[1]?' + your spellcasting modifier':'')+window.__dtIcon("Healing"):'')+'</span>'}
-function spRngB(x){return window.__spRangeH?window.__spRangeH(x[5],spX2(x)):esc(x[5])}
-function spCmpB(x){return window.__spCompH?window.__spCompH(x[6],spX2(x)):esc(x[6])}
+function spDmgB(x){const c=genv.__spCalc&&genv.__spCalc(spX2(x),x[1],TL(),null);if(!c||(!c.parts.length&&!c.heal))return "";return '<span class="w"><b>'+(c.parts.length?"Damage":"Healing")+'</b>'+(c.n>1?c.n+' '+c.unit+'s, each ':'')+c.parts.map((p) =>{return esc(p.d)+' '+esc(genv.__dTxt(p.t))+genv.__dtIcon(p.t)+(p.lab?' ('+esc(p.lab)+')':'')}).join(" + ")+(c.heal?esc(c.heal)+(SPELL_FX[x[0]].heal[1]?' + your spellcasting modifier':'')+genv.__dtIcon("Healing"):'')+'</span>'}
+function spRngB(x){return genv.__spRangeH?genv.__spRangeH(x[5],spX2(x)):esc(x[5])}
+function spCmpB(x){return genv.__spCompH?genv.__spCompH(x[6],spX2(x)):esc(x[6])}
 function spRow(x,mine,full,I){const id="sp"+x[0],open=!!openCards[id];
  const meta=(x[1]?ord(x[1])+" Level":"Cantrip")+(x[8]?" \u2022 Concentration":"")+(x[9]?" \u2022 Ritual":"");
  const right=x[10]==="ATK"?'<span class="bsv"><small>TO<br>HIT</small><b>'+sg(I.atk)+'</b></span>':x[10]?'<span class="bsv"><small>'+x[10]+'</small><b>'+I.dc+'</b></span>':'';

@@ -277,6 +277,24 @@ Menambah kelompok field baru: tulis satu handler dan daftarkan di file handler y
 
 Menambah kelompok field atau aturan kelas: satu panggilan `registerSheetGroup()` atau `registerSheetRule()` (aturan kelas wajib punya `about`). Handler menyatakan `reads` dan `writes`, menerima hanya irisan itu, dan mengembalikan patch lewat `ctx.patch()`. Urutan: fase, lalu `order`, lalu urutan daftar. `scope:"part"` mengulang per bagian kelas, `scope:"each"` mengulang per elemen (`over`). Tes: `window.__sheetStrict=true` membuat pembacaan di luar irisan melempar galat.
 
+## Env, port akhir, registry paket (SOLID tahap 8)
+
+Builder dan fx tidak membaca `window.*` langsung lagi (di luar modul env). `genv.NAMA` dan `FXENV.NAMA` adalah properti yang sama dengan `window.NAMA`: getter membaca saat dipakai, setter menulis. Nama window lama tetap hidup. Metode browser (`matchMedia`, `fetch`, `scrollTo`, `addEventListener`, `requestAnimationFrame`) dikembalikan terikat ke `window`. `tools/lint_names.js` menganggap `FXENV.X=`, `genv.X=` dan `env.X=` sebagai deklarasi, sama dengan `window.X=`.
+
+| File | Isi |
+|---|---|
+| builder/00-env.js | Accessor sempit tahap 1 sampai 5 (`gx`, `classDef`, `packTables`, ...) dan `genv` (tahap 8): tabel data, hook dan jembatan builder, metode browser |
+| builder/00-reg.js | `__R`, kantong lama untuk nama yang dipakai file lebih awal dan dimiliki file lebih akhir. 14 nama (MCL, TL, baseOf, itemW, slotsAll, ensureInv, miFeats, spOptFx, fxCh, fxv, gfx, gxPicks, itemType, enabledPacks) sudah keluar dari sini, sisanya tinggal |
+| builder/01a-logic-query-registry.js | `QRY` dan `provideQueries`: fungsi baca murni yang diberikan ke handler `toSheet()` sebagai `ctx.q`. Pemilik fungsi mendaftar sekali, nama ganda melempar error |
+| builder/01b-logic-late-ports.js | Port akhir (tahap 8): fungsi milik file lebih akhir yang dipanggil file lebih awal (saat jalan, bukan saat muat). Satu export bernama per fungsi, daftar nama tertutup, pemilik memanggil `bindLate({...})` sekali. File yang lebih akhir dari pemilik mengimpor langsung dari pemilik. `sheetInputs()` memakai port ini, bukan `QRY.*` |
+| builder/11-logic-derivation.js | `fxList()` (entri efek dengan item) dan `fxListBase()` (tanpa item) menggantikan `gfx(noItem)` untuk pemanggil luar. `gfx` tidak diekspor lagi |
+| builder/13a-logic-pack-registry.js | Registry langkah paket untuk `applyPacks()` (tahap 5): `registerPackStep`, fase `reset`, `pack`, `post`, kontrak L dan I, mode ketat `packStrict`. Dijalankan oleh `runPackSteps` |
+| builder/13b-logic-pack-handlers.js | Langkah paket: satu langkah per tabel aturan (SPECIES, BACKGROUNDS, FEATS, CLASSES, PRICE, AUTO, DMGI, CF_FULL). Urutan dalam fase sama dengan fungsi lama |
+| fx/00-fx-env.js | `FXENV`, versi `genv` untuk paket fx. Skrip klasik, pertama di blok fx |
+| fx/00b-fx-shared.js | `FXH`: fungsi kecil yang dulu disalin di paket Z dan M (`nf`, `rm`, `vis`, `esc`, `fx`, `ls`, `st`). Blok 12 baris ganda di fx/16 dan fx/18 hilang |
+| fx/27-blend-sheet.js | Sheet detail berpadu gambar. Dipecah jadi 11 closure kecil yang berbagi `BLEND.K` (warna, geser makhluk, kunci makhluk, scene, judul, gambar hero, gulir dan settle, pintu masuk `__blendSheet`). Urutan kerja DOM tidak berubah |
+| fx/23-class-art-data.js | Tidak disentuh: dimuat sebelum bundel app (di luar blok fx), jadi belum ada `FXENV` saat jalan |
+
 ## Seni gambar (T6)
 
 | Tempat | Isi |

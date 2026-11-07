@@ -5,6 +5,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.js";
 import {luMax} from "./10-logic-v17-additions.js";
 import {__R} from "./00-reg.js";
+import {MCL,TL,baseOf,bindLate,spOptFx} from "./01b-logic-late-ports.js";
 import {gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 import {abOfPick,chPick,fxSources,runFxPhase,foldFxPhase,fxCondRule,fxValueRule} from "./10a-logic-fx-registry.js";
 import "./10d-logic-fx-rules-cond-value.js";
@@ -35,7 +36,7 @@ export function abil(){
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});
  const AFX=activeFx();runFxPhase("ability","item-raise",AFX,actx,apply);/* M18: DMGI fx (abil for Ioun Stones and similar) */
- const GF=__R.gfx();runFxPhase("ability","raise",GF,actx,apply);/* fx engine v2/v4: abUp, abDown, abPick up, abUpPick */
+ const GF=gfx();runFxPhase("ability","raise",GF,actx,apply);/* fx engine v2/v4: abUp, abDown, abPick up, abUpPick */
  runFxPhase("ability","item-set",AFX,actx,apply);/* V16-4: increases first, then "becomes" (setsc) */
  runFxPhase("ability","set",GF,actx,apply);/* fx engine v4: abSet and abPick set, after every increase */
  /*ORCH-END abil*/
@@ -44,7 +45,7 @@ export function slotsFor(){const c=CL(),L=B.level,t=c.caster;
  if(t==="full")return SLOTS_FULL[L-1];if(t==="half")return SLOTS_FULL[Math.ceil(L/2)-1];
  if(t==="pact"){const p=PACT[L-1];return {pact:p[0],lvl:p[1]}}
  if(isThird3(B.sub)&&L>=3)return SLOTS_FULL[Math.ceil(L/3)-1];return null}
-export function resMax(r,a){const L=B.level;if(Array.isArray(r.max))return r.max[L-1];if(r.max&&r.max.f)return luMax(r.max,L,a,pbOf(__R.TL()));if(r.max==="lvl")return L<2&&r.min2?0:L;if(r.max==="lvl5")return L*5;
+export function resMax(r,a){const L=B.level;if(Array.isArray(r.max))return r.max[L-1];if(r.max&&r.max.f)return luMax(r.max,L,a,pbOf(TL()));if(r.max==="lvl")return L<2&&r.min2?0:L;if(r.max==="lvl5")return L*5;
  if(typeof r.max==="string"&&r.max.indexOf("mod:")===0)return Math.max(1,mod(a.sc[r.max.slice(4)]));return r.max}
 /* M10: features of any class at its own level (classFeatures() = main class). clsParts(): main class first, then multiclass */
 export function featsOf(cls,L){const c=CLASSES[cls],seen={},out=[];c.f.forEach((x) =>{if(x[0]<=L){const k=x[1];if(seen[k]!=null&&x[1]!=="Expertise"&&x[1]!=="Improved Brutal Strike"){out[seen[k]]=x;return}seen[k]=out.length;out.push(x)}});return out}
@@ -53,16 +54,16 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
    FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
    cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
    gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
-function fxv(v,e){if(typeof v==="number")return v;const L=__R.TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return __R.clsLv("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxv(v,e){if(typeof v==="number")return v;const L=TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return __R.clsLv("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
 function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;const f=fxCondRule(c);return f?f(ar,ESH,EA,B.inv||[]):true}/* cond words: tables in 10d */
 /* fxCh: the stored pick "key" for an entry. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
 function fxCh(key,pre,kind,okey,any){return chPick(B.ch,key,pre,kind,okey,any)}
 /* fx engine v5: gfx() settles pbAdd first. The full list (items too) sums the numeric pbAdd of its entries and, when that differs from the value pbOf() uses, builds the list again once so "pb" values inside the entries are right */
-export function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((e) =>{if(typeof e.pbAdd==="number")n+=e.pbAdd});if(n===getPbAdd())return r;setPbAdd(n);return gfx0(noItem)}
+function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((e) =>{if(typeof e.pbAdd==="number")n+=e.pbAdd});if(n===getPbAdd())return r;setPbAdd(n);return gfx0(noItem)}
 /*ORCH-BEGIN gfx0: sources (11b-logic-fx-sources.js) say where entries come from, "entry" handlers (10b-logic-fx-handlers-entry.js) gate, prepare and finish each one. This loop knows no source kind and no field */
-function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:__R.TL(),G:gx(),noItem:!!noItem};
+function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem};
  fxSources().forEach((s) =>{if(s.items&&noItem)return;
   s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias},ch:ctx0.ch,fxT:ctx0.fxT};
    (d.list||[]).forEach((e,i) =>{if(!e)return;e=foldFxPhase("entry","gate",e,ctx);if(e===null)return;e=foldFxPhase("entry","prepare",e,ctx);const en=e.n||d.owner;
@@ -73,6 +74,10 @@ function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:__R.TL()
 /* the raw GX.feat entries of the feats the character has, in feat order (input of the abil "pre-asi" phase) */
 function featRawFx(){const G=gx(),out=[];allFeats().forEach((f) =>{((G.feat&&G.feat[f.n])||[]).forEach((e) =>{out.push(e)})});return out}
 export function classFx(){return gfx()}
+/* narrow views of gfx() (no flag argument): every active entry with the item entries, and without them */
+export function fxList(){return gfx()}
+export function fxListBase(){return gfx(true)}
+bindLate({fxList,fxListBase,fxCh,fxVal});/* the late ports of this file (01b-logic-late-ports.js) */
 /* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
 let FXTO=null;export function fxtSet(m){FXTO=m||null}
 function fxtMap(){if(FXTO)return FXTO;try{const st=sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
@@ -81,11 +86,8 @@ export function gxKey(e,k){const m=e.pre?/^m(\d+):/.exec(e.pre):null;return "gx-
 /* C.fxToggles: every toggle available to the character */
 export function fxToggles(){const seen={},out=[];gfx().forEach((e) =>{if(!e.toggle||seen[e.toggle.id])return;seen[e.toggle.id]=1;out.push({id:e.toggle.id,label:e.toggle.label||e.n,on:!!e.tgOn,src:e.lbl})});return out}
 export {fxv,fxVal,fxOk,fxCh};
-Object.defineProperty(__R,"fxCh",{get:function(){return fxCh;},configurable:true});
-Object.defineProperty(__R,"gfx",{get:function(){return gfx;},set:function(v){gfx=v;},configurable:true});
-Object.defineProperty(__R,"fxv",{get:function(){return fxVal;},configurable:true});
 Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
-export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
+export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
 export function isThird3(x){const ts=thirdSubs();if(ts&&ts[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
 export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?__R.xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
@@ -105,7 +107,7 @@ function spAbility(){const sp=SPECIES[B.species];if(!sp||!sp.spAb)return null;if
 /* M9: ability for a spell source. key: class name, "@species", "@spcan" (Limited Spellcaster), "@mi:<B.pk key>" (Magic Initiate) */
 export function spellAb(key,sc){const cp=casterParts(),cast=cp.length?cp[0].ab:null;sc=sc||abil().sc;
  if(key==="@species")return spAbility()||cast||["INT","WIS","CHA"].reduce((b,k) =>{return sc[k]>sc[b]?k:b},"INT");
- if(key==="@spcan")return __R.spOptFx().spAb||"CHA";if(/^@sub:/.test(key))return key.slice(5)||"CHA";/* v63 */
+ if(key==="@spcan")return spOptFx().spAb||"CHA";if(/^@sub:/.test(key))return key.slice(5)||"CHA";/* v63 */
  if(key==="@dmcon")return "CON";if(/^@dm:/.test(key)){const dv=B.ch["dab-"+key.slice(4)],wa=wxAb(key.slice(4));if(wa)return wa;return (Array.isArray(dv)&&dv[0])||"INT"}/* v58 */
  if(/^@mi:/.test(key)){const v=(B.pk||{})[key.slice(4)];return (v&&v.ab)||"WIS"}
  if(/^@ft:/.test(key)){const ff=allFeats().filter((x) =>{return x.key===key.slice(4)})[0];return (ff&&ff.asi&&ff.asi.a1)||"CHA"}/* v21 i3: the ability the feat raised */
@@ -135,7 +137,7 @@ export function keepResKeys(C){try{const st=sheetState(),P=st&&st.C;
    a name in any CLASSES res/resSub, Luck Points, Hit Dice, Pact Slots, Spell Slots. Read only. Errors are swallowed (empty lists). */
 export function manualLost(P,C){const out={attacks:[],res:[]};try{if(!P||!C)return out;
  const SM={};SPELLS.forEach((x) =>{SM[x[0]]=1});
- const isWep=function(n){n=String(n||"");if(WEAPONS[__R.baseOf(n).b])return true;const t=/^(.+) \(thrown\)$/.exec(n);if(t&&WEAPONS[__R.baseOf(t[1]).b])return true;const pm=/\(([^)]+)\)/.exec(n);return !!(pm&&WEAPONS[pm[1]])};
+ const isWep=function(n){n=String(n||"");if(WEAPONS[baseOf(n).b])return true;const t=/^(.+) \(thrown\)$/.exec(n);if(t&&WEAPONS[baseOf(t[1]).b])return true;const pm=/\(([^)]+)\)/.exec(n);return !!(pm&&WEAPONS[pm[1]])};
  const newA={};(C.attacks||[]).forEach((a) =>{if(a&&a.n)newA[a.n]=1});
  (P.attacks||[]).forEach((a) =>{if(!a||!a.n||newA[a.n])return;if(a.n==="Unarmed Strike"||isWep(a.n)||SM[a.n])return;out.attacks.push(a.n)});
  const known={"Luck Points":1,"Hit Dice":1};Object.keys(CLASSES).forEach((c) =>{const k=CLASSES[c];(k.res||[]).forEach((r) =>{known[r.n]=1});Object.keys(k.resSub||{}).forEach((s) =>{(k.resSub[s]||[]).forEach((r) =>{known[r.n]=1})})});

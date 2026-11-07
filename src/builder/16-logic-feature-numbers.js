@@ -3,14 +3,14 @@ import {un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
-import {classFx,clsParts} from "./11-logic-derivation.js";
+import {classFx,clsParts,fxList,fxVal} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 import {__R} from "./00-reg.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
 provideQueries({calcNote,defenses});
 /* ---------- level-based numbers for feature text ---------- */
-function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=__R.fxv(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
+function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
  const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
  const T={
@@ -78,7 +78,7 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
  (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring of Resistance")add("Resistance","One type (set by the ring)","Ring of Resistance");if(/^Mithral|^Adamantine Armor/.test(x.n)&&/Adamantine/.test(x.n))add("Note","Critical Hits against you become normal hits","Adamantine Armor")});
  const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
  allFeats().forEach((f) =>{if(f.n==="Boon of Energy Resistance"){const bt=B.ch["ber-"+(f.key||f.s)];if(Array.isArray(bt)&&bt.length)bt.forEach((t) =>{add("Resistance",t,"Boon of Energy Resistance")});else add("Resistance","Two damage types, not chosen yet","Boon of Energy Resistance")}/* v32 RL49 no. 18 */if(f.n==="Heavy Armor Master")add("Note","Reduce Bludgeoning, Piercing, Slashing damage by your Proficiency Bonus in Heavy armor","Heavy Armor Master")});
- __R.gfx().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */
+ fxList().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */
  XFX.def(add);/* v62 */
  /* m5 (RL21): one line per type and value, sources joined in order. Class resources (Channel Divinity) are not touched */
  const out=[],at={};o.forEach((x) =>{const k=x.t+"|"+x.v;if(at[k]==null){at[k]=out.length;out.push({t:x.t,v:x.v,s:x.s})}else if((", "+out[at[k]].s+", ").indexOf(", "+x.s+", ")<0)out[at[k]].s+=", "+x.s});

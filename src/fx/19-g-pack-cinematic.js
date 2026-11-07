@@ -1,7 +1,7 @@
 /* === G pack: on a laptop it opens like a game. A cinematic title, a frame around the screen, a game cursor with a spark trail, interface sounds,
    music made on the fly, a 3D d20, a sky that answers your Hit Points and the music, a camera shake, night before a Long Rest, level up cards === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body.animate) return;
   const D=document, LAP=matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1100px)"), RM=matchMedia("(prefers-reduced-motion: reduce)");
   function lap(){ return LAP.matches&&!RM.matches&&MI.mode==="full"; }
   function full(){ return MI.full(); }
@@ -9,8 +9,8 @@
   function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
   function vis(e){ return e&&e.getClientRects().length; }
   function ls(k,v){ try{ if(v===undefined) return __store.getItem(k); __store.setItem(k,v); }catch(e){ return null; } }
-  function st(){ try{ return window.__sheetState?window.__sheetState():null; }catch(e){ return null; } }
-  function play(k){ if(window.__miSnd) window.__miSnd(k); }
+  function st(){ try{ return FXENV.__sheetState?FXENV.__sheetState():null; }catch(e){ return null; } }
+  function play(k){ if(FXENV.__miSnd) FXENV.__miSnd(k); }
   function layer(cls,html,ms){ const e=D.createElement("div"); e.className=cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; D.body.appendChild(e); setTimeout(() =>{ rm(e); },ms); return e; }
   function sync(){ D.documentElement.classList.toggle("mi-lap",lap()); }
   sync(); if(LAP.addEventListener) LAP.addEventListener("change",sync); new MutationObserver(sync).observe(D.documentElement,{attributes:true,attributeFilter:["class"]});
@@ -45,7 +45,7 @@
   D.addEventListener("visibilitychange",() =>{ if(!AC) return; if(D.hidden) AC.suspend(); else if(scene!=="off"){ AC.resume(); next=AC.currentTime+.1; } });
   addEventListener("pointerdown",function once(){ removeEventListener("pointerdown",once,true); if(scene!=="off"&&LAP.matches) music(scene); },true);
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-mimus]"); if(!b) return; Array.prototype.forEach.call(D.querySelectorAll("[data-mimus]"),(x) =>{ const on=x===b; x.classList.toggle("on",on); x.setAttribute("aria-pressed",on); }); music(b.getAttribute("data-mimus")); },true);
-  window.__miMusicH=function(){ if(!LAP.matches) return ""; const B=function(v,l){ const on=scene===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-mimus="'+v+'" aria-pressed="'+on+'">'+l+'</button>'; };
+  FXENV.__miMusicH=function(){ if(!LAP.matches) return ""; const B=function(v,l){ const on=scene===v; return '<button type="button" class="thb'+(on?" on":"")+'" data-mimus="'+v+'" aria-pressed="'+on+'">'+l+'</button>'; };
     return '<div class="info-h">Music</div><div class="thg">'+B("off","Off")+B("tavern","Tavern")+B("dungeon","Dungeon")+B("forest","Forest")+B("battle","Battle")+'</div><p class="info-d">Made on the fly, nothing to download. The sky follows the music.</p>'; };
   /* heartbeat keeps going on a laptop while Hit Points stay at a quarter or less */
   const hbT=0; function hpPct(){ const c=D.getElementById("hpCur"), m=D.getElementById("hpMax"); const a=c?parseInt((c.textContent||"").replace(/[^\d-]/g,""),10):NaN, b=m?parseInt((m.textContent||"").replace(/[^\d]/g,""),10):NaN; return a>=0&&b>0?a/b:null; }
@@ -53,10 +53,10 @@
 
   /* G10 the sky answers: danger from Hit Points, colour from the music */
   const SCN={off:null,tavern:[1,.62,.3],dungeon:[.35,.42,.75],forest:[.35,.8,.45],battle:[.95,.25,.2]};
-  function skyScene(){ if(window.__miSky) window.__miSky({scene:SCN[scene]||null}); }
-  const hpE=D.getElementById("hpBox"); if(hpE) new MutationObserver(() =>{ const p=hpPct(); if(window.__miSky&&p!=null) window.__miSky({danger:p<=0?1:p<=.25?.85:p<=.5?.35:0}); }).observe(hpE,{childList:true,subtree:true,characterData:true});
-  setTimeout(() =>{ skyScene(); const p=hpPct(); if(window.__miSky&&p!=null) window.__miSky({danger:p<=0?1:p<=.25?.85:p<=.5?.35:0}); },600);
-  addEventListener("pointermove",(e) =>{ if(e.pointerType==="mouse"&&window.__miSky) window.__miSky({mx:e.clientX/innerWidth,my:e.clientY/innerHeight}); },{passive:true});
+  function skyScene(){ if(FXENV.__miSky) FXENV.__miSky({scene:SCN[scene]||null}); }
+  const hpE=D.getElementById("hpBox"); if(hpE) new MutationObserver(() =>{ const p=hpPct(); if(FXENV.__miSky&&p!=null) FXENV.__miSky({danger:p<=0?1:p<=.25?.85:p<=.5?.35:0}); }).observe(hpE,{childList:true,subtree:true,characterData:true});
+  setTimeout(() =>{ skyScene(); const p=hpPct(); if(FXENV.__miSky&&p!=null) FXENV.__miSky({danger:p<=0?1:p<=.25?.85:p<=.5?.35:0}); },600);
+  addEventListener("pointermove",(e) =>{ if(e.pointerType==="mouse"&&FXENV.__miSky) FXENV.__miSky({mx:e.clientX/innerWidth,my:e.clientY/innerHeight}); },{passive:true});
 
   /* G12 a heavy hit shakes the whole view on a laptop */
   function stage(){ const p=D.getElementById("p-main"); if(!p) return null; let e=p; while(e.parentElement&&e.parentElement.id!=="app") e=e.parentElement; return e; }
@@ -82,7 +82,7 @@
   new MutationObserver((ms) =>{ ms.forEach((m) =>{ Array.prototype.forEach.call(m.addedNodes,(n) =>{ if(n.classList&&n.classList.contains("mi-roll-o")){ const dz=n.querySelector(".dz"); if(dz) die3d(dz); } }); }); }).observe(D.body,{childList:true});
 
   /* I4 Long Rest: night falls, the stars turn, "8 hours later", then dawn */
-  const W=window.__miWow; if(W&&W.rest){ const r0=W.rest; W.rest=function(k){ const self=this, args=arguments; if(k!=="long"||calm()){ r0.apply(self,args); return; }
+  const W=FXENV.__miWow; if(W&&W.rest){ const r0=W.rest; W.rest=function(k){ const self=this, args=arguments; if(k!=="long"||calm()){ r0.apply(self,args); return; }
       const n=layer("mi-night",'<div class="sky"></div><div class="moon"></div><b>8 hours later</b>',3400), sk=n.querySelector(".sky"), mo=n.querySelector(".moon"), tx=n.querySelector("b");
       n.animate([{opacity:0},{opacity:1,offset:.2},{opacity:1,offset:.75},{opacity:0}],{duration:3000,easing:"ease-in-out"}).onfinish=function(){ rm(n); };
       sk.animate([{transform:"rotate(0deg) scale(1.2)"},{transform:"rotate(18deg) scale(1.2)"}],{duration:3000,easing:"linear"});
