@@ -128,7 +128,7 @@ Honest note on L: the check found that all 12 cards answer `{t,h}` even for a mi
 
 | Before | After | Notes |
 |---|---|---|
-| 27 (117,507 bytes, 6 jobs) | 27 party, campaigns, search, command words (about 43 KB) / 27b library (about 75 KB) / 27c spell cards print, report, Foundry, pins | Late names that the head used only through `Object.defineProperty(__R, ...)` moved with their owner |
+| 27 (117,507 bytes, 6 jobs) | 27 party, campaigns, search, command words (27 KB) / 27b library (75 KB) / 27c spell cards print, report, Foundry, pins | Late names that the head used only through `Object.defineProperty(__R, ...)` moved with their owner |
 | 23 (54,727 bytes, 7 jobs) | 23 icons, resources, speeds / 23b containers and packs / 23c coins / 23d rest / 23e spell DC and spells | `ctOf` stayed in 23 (the head uses it) |
 | 40 (48,675 bytes, 8 jobs) | 40 lint, segments, folds / 40b notes and description / 40c page motion, sheet spring, morph / 40d overlays, long-press, dock / 40e reorder / 40f tab scroll, bar spring | two late calls (`ovQueue`, `springEase`) go through `__R`, the existing pattern |
 
@@ -145,7 +145,7 @@ Left as is: see 1.3.
 
 ## 3. Proof of identical behavior
 
-`tests/solid_ui_snapshot.py`: three scenarios (old Yudhi sheet, a golden build applied as the active sheet, a new character from Home), viewports 390x844 and 1250x850, per scenario all 7 tabs and 13 overlays (search, command palette `dmg 7`, search `fire`, library, library `fireball`, more menu, theme, edit mode, heal, spell/feature/item/action detail cards, breakdown, rest) = 280 steps, DOM and localStorage hashed after the page is quiet (two equal reads 500 ms apart). Normalized: timestamps and clock texts, relative times, the CSP script hashes (they change with any code change), icon SVGs added in idle time, the load dependent `mi-lite` class, the order of the parts added later to `body`, the hidden Home content.
+`tests/solid_ui_snapshot.py`: three scenarios (old Yudhi sheet, a golden build applied as the active sheet, a new character from Home), viewports 390x844 and 1250x850, per scenario all 7 tabs and 16 overlay steps (search, command palette `dmg 7`, search `fire`, library, library `fireball`, more menu, theme, edit mode, heal, spell/feature/item/action detail cards, breakdown, rest) = 280 steps, DOM and localStorage hashed after the page is quiet (two equal reads 500 ms apart). Normalized: timestamps and clock texts, relative times, the CSP script hashes (they change with any code change), icon SVGs added in idle time, the load dependent `mi-lite` class, the order of the parts added later to `body`, the hidden Home content.
 
 | State | Total hash (280 steps) |
 |---|---|
