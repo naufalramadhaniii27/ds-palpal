@@ -1,4 +1,4 @@
-import {S,save} from "./04-logic-storage.js";
+import {env} from "./00-env.js";import {S,save} from "./04-logic-storage.js";
 import {mq} from "./21-ui-tabs-pager.js";
 import {renderAll} from "./35-ui-combo.js";
 /* ===== fps probe: open the app with #fps at the end of the address to measure frame times on this device =====
@@ -25,7 +25,7 @@ import {renderAll} from "./35-ui-combo.js";
   async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); const st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
   async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; let withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
     try{
-      lines.push("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(window.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB");
+      lines.push("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(env.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB");
       lines.push("Browser "+navigator.userAgent.replace(/^Mozilla\/5.0 /,"").slice(0,110));
       const hv=document.querySelector("[data-hview]"); if(visible(hv)){ hv.click(); }
       const ok=await waitFor(() =>{ return visible(document.getElementById("dmgBtn")); },8000); if(!ok){ lines.push("Open a character first, then press Start again."); out.textContent=lines.join("\n"); return; }

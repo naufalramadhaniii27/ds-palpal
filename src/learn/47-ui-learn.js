@@ -1,4 +1,4 @@
-import {A,esc,ico,ask,libOpen,buzz,ovQueue,homeInert,showHome} from "./00-bridge.js";
+import {env} from "./00-env.js";import {A,esc,ico,ask,libOpen,buzz,ovQueue,homeInert,showHome} from "./00-bridge.js";
 import {LEARN} from "./45-data-learn.js";
 import {LRN,refreshLRN,lrnGet,lrnPut,lrnL,lrnF,lrnCore,lrnCoreDone,lrnFinish,lrnQuizDone,lrnExam,lrnRecapDue,lrnRecap,lrnD,lrnRoll,lrnBonus,lrnHasChar,spotAnchor,spotShow,spotHide,lrnFind,SPOT} from "./46-logic-learn.js";
 /* T11 Learn UI: the map, the stops step by step, the final check, the glossary card and "Find it on your sheet".
@@ -46,7 +46,7 @@ function mapHtml(){ let core=lrnCore(), n=lrnCoreDone(), h='<section class="lrn-
   h+='<button type="button" class="lrn-quizc'+(open?"":" lock")+(q&&q.best!=null?" done":"")+'" data-lquiz="1"'+(open?"":' aria-disabled="true"')+'>'+ic("ui-star")+'<span><b>'+esc(U("quiz"))+'</b><small>'+esc(open?U("quizSub"):U("quizLock"))+'</small></span>'+(q&&q.best!=null?'<span class="lrn-st">'+q.best+' / '+LEARN.quiz.length+'</span>':'')+'</button>';
   h+='<h3 class="lrn-sh">'+esc(U("forgeSec"))+'</h3><p class="lrn-ss">'+esc(U("forgeSub"))+'</p><ul class="lrn-path lrn-app">'; LEARN.places.forEach((p,k) =>{ if(p.kind==="forge") h+=stopCard(p,k,0); }); h+='</ul>';
   h+='<h3 class="lrn-sh">'+esc(U("bonus"))+'</h3><p class="lrn-ss">'+esc(U("bonusSub"))+'</p><ul class="lrn-path lrn-bonus">'; LEARN.places.forEach((p,k) =>{ if(!p.core&&!p.app&&p.kind!=="forge") h+=stopCard(p,k,0); }); h+='</ul>';
-  if(lrnHasChar()&&window.__whichDie){ h+='<h3 class="lrn-sh">'+esc(U("tableSec"))+'</h3><p class="lrn-ss">'+esc(U("tableSub"))+'</p><div class="lrn-tools">'+[["wd","wdT","wdS","ui-dice"],["cheat","chT","chS","ui-book"]].map((x) =>{ return '<button type="button" class="lrn-quizc" data-l="tool" data-tool="'+x[0]+'">'+ic(x[3])+'<span><b>'+esc(U(x[1]))+'</b><small>'+esc(U(x[2]))+'</small></span></button>'; }).join("")+'</div>'; }/* T11 U7 and U3 */
+  if(lrnHasChar()&&env.__whichDie){ h+='<h3 class="lrn-sh">'+esc(U("tableSec"))+'</h3><p class="lrn-ss">'+esc(U("tableSub"))+'</p><div class="lrn-tools">'+[["wd","wdT","wdS","ui-dice"],["cheat","chT","chS","ui-book"]].map((x) =>{ return '<button type="button" class="lrn-quizc" data-l="tool" data-tool="'+x[0]+'">'+ic(x[3])+'<span><b>'+esc(U(x[1]))+'</b><small>'+esc(U(x[2]))+'</small></span></button>'; }).join("")+'</div>'; }/* T11 U7 and U3 */
   if(n>0&&n<core.length) h+='<p class="lrn-break">'+esc(U("takeBreak"))+'</p>';
   return h; }
 
@@ -152,9 +152,9 @@ function quizHtml(){ const Q=V.Q;
 /* ===== moving around ===== */
 function goPlace(k){ if(LEARN.places[k].kind==="tour"){ runTour(k); return; } if(LEARN.places[k].kind==="forge"){ V={view:"forge",p:k,s:{}}; paint(); return; } if(LEARN.places[k].kind==="exam"){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnExam(),exam:k}; paint(); return; } V={view:"place",p:k,i:0,ok:false,s:{}}; okInit(); paint(); }
 /* the App Tour: Learn steps aside, the tour of src/app/31 runs on the sheet in the Learn language, then Learn comes back with the map */
-function runTour(k){ const p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!window.__tour) return; V={view:"map",p:0,i:0,ok:false,s:{}};
+function runTour(k){ const p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!env.__tour) return; V={view:"map",p:0,i:0,ok:false,s:{}};
   const hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden); w.classList.remove("on"); w.hidden=true; ovQueue();
-  window.__tour.go({texts:T.steps.map((x) =>{ return lrnL(x.t); }),wide:T.steps.map((x) =>{ return x.w?lrnL(x.w):""; }),create:lrnL(T.create),
+  env.__tour.go({texts:T.steps.map((x) =>{ return lrnL(x.t); }),wide:T.steps.map((x) =>{ return x.w?lrnL(x.w):""; }),create:lrnL(T.create),
     ui:{step:lrnL(T.ui.step),of:lrnL(T.ui.of),skip:lrnL(T.ui.skip),back:lrnL(T.ui.back),next:lrnL(T.ui.next),skipThis:lrnL(T.ui.skipThis),done:lrnL(T.ui.done)},
     done:function(full){ if(full) lrnFinish(p.id,false); if(home&&typeof showHome==="function") showHome(); w.hidden=false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint("instant"); show(w); }}); }
 function okInit(){ const st=LEARN.places[V.p].steps[V.i]; V.ok=st.t==="sheet"||st.t==="card"; if(st.t==="show") V.ok=true;/* Next walks through the frames */ }
@@ -174,7 +174,7 @@ let POPB=null;
 function popShow(btn){ const k=btn.getAttribute("data-lterm"), t=LEARN.terms[k], p=document.getElementById("lrnPop"); if(!t||!p) return; popHide();
   p.innerHTML='<b class="lrn-pn">'+esc(lrnL(t.name))+'</b><small>'+esc(U("book"))+': '+esc(t.book)+'</small><p>'+esc(lrnL(t.say))+'</p><div class="lrn-acts"><button type="button" class="btn press" data-lib-q="'+esc(t.lib)+'">'+ic("ui-book")+esc(U("open"))+'</button><button type="button" class="btn pri press" data-l="pop">'+esc(U("done"))+'</button></div>';
   p.setAttribute("aria-label",lrnL(t.name)); POPB=btn; if(spotAnchor()){ btn.style.setProperty("anchor-name","--lterm"); p.classList.add("anc"); } else p.classList.remove("anc");
-  if(window.__topLayer) window.__topLayer(p); p.classList.add("on"); btn.setAttribute("aria-expanded","true"); const f=p.querySelector('[data-l="pop"]'); if(f) try{ f.focus({preventScroll:true}); }catch(e){} }
+  if(env.__topLayer) env.__topLayer(p); p.classList.add("on"); btn.setAttribute("aria-expanded","true"); const f=p.querySelector('[data-l="pop"]'); if(f) try{ f.focus({preventScroll:true}); }catch(e){} }
 function popHide(){ const p=document.getElementById("lrnPop"); if(!p||!p.classList.contains("on")) return; p.classList.remove("on"); try{ if(p.matches(":popover-open")) p.hidePopover(); }catch(e){} if(POPB){ POPB.style.removeProperty("anchor-name"); POPB.setAttribute("aria-expanded","false"); try{ POPB.focus({preventScroll:true}); }catch(e){} } POPB=null; }
 /* "Find it on your sheet": Learn steps aside, the sheet of the open character comes forward with a ring and a label, Back returns */
 function toSheet(st){ const w=document.getElementById("learn"), hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden);
@@ -199,14 +199,14 @@ function wire(w){
     if(d.l==="forge"){ const nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return; }
     if(d.lrecap){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return; }
     if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); const c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return; }
-    if(d.l==="tool"){ const tk=d.tool; close(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") window.__whichDie(); else if(window.__cheatOpen) window.__cheatOpen(); },60); return; }
+    if(d.l==="tool"){ const tk=d.tool; close(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") env.__whichDie(); else if(env.__cheatOpen) env.__cheatOpen(); },60); return; }
     if(d.l==="close"){ close(); return; } if(d.l==="back"){ back(); return; } if(d.l==="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; }
     if(d.l==="pop"){ popHide(); return; }
     if(d.l==="next"){ next(); return; }
     if(d.l==="skip"){ const p=LEARN.places[V.p]; ask(U("skipAsk"),U("skipOk"),() =>{ lrnFinish(p.id,true); V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); }); return; }
     if(d.l==="replay"){ S.f=0; paint(false); return; }
     if(d.l==="sheet"&&st){ toSheet(st); return; }
-    if(d.l==="hero"){ close(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(window.__bldOpen) window.__bldOpen(); return; }
+    if(d.l==="hero"){ close(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(env.__bldOpen) env.__bldOpen(); return; }
     if(d.lg!=null&&st){ S.pick=+d.lg; paint(false); setOk(true); return; }
     if(d.lp!=null&&st){ const o=st.opts[+d.lp]; S.res=S.res||{}; S.fb=o.fb; if(o.ok){ S.res[+d.lp]="good"; S.hint=0; if(typeof buzz==="function") buzz(12); paint(false); setOk(true); } else { S.res[+d.lp]="try"; S.hint=st.hint?1:0; paint(false); setOk(!!V.ok||Object.keys(S.res).some((k) =>{ return S.res[k]==="good"; })); } return; }
     if(d.l==="roll"||d.l==="reroll"){ if(S.busy) return; S.busy=1; if(d.l==="reroll"){ S.stage=0; } paint(false); lrnRoll([20]).then((r) =>{ S.busy=0; S.die=r.v[0]; S.stage=1; paint(false); }); return; }
@@ -229,8 +229,8 @@ function wire(w){
   document.getElementById("lrnPop").addEventListener("keydown",(e) =>{ if(e.key==="Escape"){ e.stopPropagation(); popHide(); } });
 }
 /* the Back button of the phone: glossary card, then the sheet spotlight, then one step back in Learn (40-ui ovTop asks this first) */
-window.__learnBack=function(){ const p=document.getElementById("lrnPop"); if(p&&p.classList.contains("on")) return popHide; if(SPOT) return function(){ spotHide(); }; const w=document.getElementById("learn"); if(w&&!w.hidden) return back; return null; };
-window.__learnOpen=open;
-window.__learnState=function(){ return {view:V.view,p:V.p,i:V.i,ok:V.ok,s:V.s,fin:V.fin,qi:V.qi,qd:V.qd,lrn:LRN}; };
+env.__learnBack=function(){ const p=document.getElementById("lrnPop"); if(p&&p.classList.contains("on")) return popHide; if(SPOT) return function(){ spotHide(); }; const w=document.getElementById("learn"); if(w&&!w.hidden) return back; return null; };
+env.__learnOpen=open;
+env.__learnState=function(){ return {view:V.view,p:V.p,i:V.i,ok:V.ok,s:V.s,fin:V.fin,qi:V.qi,qd:V.qd,lrn:LRN}; };
 try{ if(location.hash==="#learn") setTimeout(() =>{ open(); },0); }catch(e){}
 })();

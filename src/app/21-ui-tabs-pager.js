@@ -9,11 +9,11 @@ import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"curPage",{get:function(){return curPage;},set:function(v){curPage=v;},configurable:true});
 Object.defineProperty(__R,"mq",{get:function(){return mq;},set:function(v){mq=v;},configurable:true});
 /* ================= TABS + PAGER ================= */
-export var mq = window.matchMedia("(max-width:759px)");
+export var mq = env.matchMedia("(max-width:759px)");
 export var PAGES = ["p-main","p-skills","p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"];/* v23 */
 export var activeTab = "p-actions";
 export function setTab(id, focus, instant){
-  if(!instant&&!setTab.vt&&setTab.morph&&document.startViewTransition&&!mq.matches&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&id!==activeTab){ setTab.vt=1; const vt=document.startViewTransition(() =>{ setTab(id,focus,true); }); vt.finished.then(() =>{ setTab.vt=0; },() =>{ setTab.vt=0; }); return; }/* v29: smooth morph between tabs */
+  if(!instant&&!setTab.vt&&setTab.morph&&document.startViewTransition&&!mq.matches&&!(env.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&id!==activeTab){ setTab.vt=1; const vt=document.startViewTransition(() =>{ setTab(id,focus,true); }); vt.finished.then(() =>{ setTab.vt=0; },() =>{ setTab.vt=0; }); return; }/* v29: smooth morph between tabs */
   activeTab=id;
   $$("#tabs .tab").forEach((t) =>{ const on=t.getAttribute("data-tab")===id; t.setAttribute("aria-selected",on); t.tabIndex=on?0:-1; if(on&&focus) t.focus(); });
   ["p-actions","p-spells","p-inv","p-feat","p-desc","p-notes","p-ext"].forEach((p) =>{ const el=document.getElementById(p), on=p===id;
@@ -52,13 +52,13 @@ $("#featBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-
 $("#spBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-spf]"); if(!b) return; e.stopPropagation(); __R.spF=b.getAttribute("data-spf"); __R.renderSpells(); });
 $("#spBody").addEventListener("input",(e) =>{ const t=e.target; if(t.id!=="spQ") return; __R.spQ=t.value; const pos=t.selectionStart; __R.renderSpells(); const qq=document.getElementById("spQ"); if(qq){ qq.focus(); qq.setSelectionRange(pos,pos);} });
 export var pager=$("#pager"), bInd=$("#bInd"), navBtns=$$("#bnav button"), curPage=0, raf=0;
-export var BCSS=!!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline","--a")&&CSS.supports("timeline-scope","--a")&&Element.prototype.animate);/* P1: scroll timeline drives the bar line */
+export var BCSS=!!(env.CSS&&CSS.supports&&CSS.supports("animation-timeline","--a")&&CSS.supports("timeline-scope","--a")&&Element.prototype.animate);/* P1: scroll timeline drives the bar line */
 if(BCSS) document.documentElement.classList.add("bi-css");
 /* P2 frame rate: pages far from the view are not painted. A page keeps visibility:hidden until it is within one page of the view.
    goPage, focus() and scrollIntoView() show the page first, so a jump never lands on a blank page */
 let PGCULL=null;
 const PGCULL_ON=false;/* off: on a real phone the first visit to a far page painted late (frames of 120 to 150 ms in the fps test, A/B 2026-10-30). The server benchmark liked it, the phone did not */
-function pgOn(){ if(!PGCULL_ON||PGCULL||!window.IntersectionObserver) return; PGCULL=new IntersectionObserver(((es) =>{ if(!mq.matches) return; es.forEach((e) =>{ e.target.style.visibility=e.isIntersecting?"":"hidden"; }); }),{root:pager,rootMargin:"0px 100% 0px 100%"});
+function pgOn(){ if(!PGCULL_ON||PGCULL||!env.IntersectionObserver) return; PGCULL=new IntersectionObserver(((es) =>{ if(!mq.matches) return; es.forEach((e) =>{ e.target.style.visibility=e.isIntersecting?"":"hidden"; }); }),{root:pager,rootMargin:"0px 100% 0px 100%"});
   PAGES.forEach((id) =>{ const el=document.getElementById(id); if(el) PGCULL.observe(el); }); }
 function pgOff(){ if(PGCULL){ PGCULL.disconnect(); PGCULL=null; } PAGES.forEach((id) =>{ const el=document.getElementById(id); if(el&&el.style.visibility) el.style.visibility=""; }); }
 export function pgShow(i){ for(let k=i-1;k<=i+1;k++){ const el=document.getElementById(PAGES[k]); if(el&&el.style.visibility) el.style.visibility=""; } }
@@ -88,7 +88,7 @@ document.addEventListener("click",(e) =>{ if(!PGWARM&&e.target.closest&&e.target
 setTimeout(() =>{ pgWarmTry(0); },2500);
 if(mq.addEventListener) mq.addEventListener("change",onMode); else if(mq.addListener) mq.addListener(onMode);
 let rT=null;
-window.addEventListener("resize",() =>{ clearTimeout(rT); rT=setTimeout(() =>{ if(mq.matches) goPage(curPage,false); else moveTabInd(true); },80); });
+env.addEventListener("resize",() =>{ clearTimeout(rT); rT=setTimeout(() =>{ if(mq.matches) goPage(curPage,false); else moveTabInd(true); },80); });
 
 export function spEffect(sp){const m=/(\d+d\d+(?:\s*\+\s*\d+)?)\s+([A-Z][a-z]+)/.exec(sp.sum||"");if(m)return m[1]+" "+m[2];const c=/\b(Blinded|Charmed|Frightened|Incapacitated|Invisible|Paralyzed|Poisoned|Prone|Restrained|Stunned|Unconscious)\b/.exec(sp.sum||"");return c?c[1]:"Utility"}
 

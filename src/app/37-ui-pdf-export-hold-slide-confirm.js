@@ -14,7 +14,7 @@ const LIBS = [
 let libsP=null;
 function loadScript(src){ return new Promise((res,rej) =>{ const s=document.createElement("script"); s.src=src; s.async=true; s.onload=res; s.onerror=function(){rej(new Error("load "+src))}; document.head.appendChild(s); }); }
 function loadLibs(){ if(!libsP){ libsP = loadScript(LIBS[0]).then(() =>{return loadScript(LIBS[1])}); libsP.catch(() =>{libsP=null}); } return libsP; }
-const downloadsP = (window.claude && typeof window.claude.use==="function") ? window.claude.use("downloads").catch(() =>{return null}) : Promise.resolve(null);
+const downloadsP = (env.claude && typeof env.claude.use==="function") ? env.claude.use("downloads").catch(() =>{return null}) : Promise.resolve(null);
 function makePdfBlob(){
   buildPrint();
   const wrap=$("#psWrap");
@@ -44,7 +44,7 @@ function makePdfBlob(){
     return chain.then(() =>{ return pdf.output("blob"); });
   });
 }
-function printFallback(){ buildPrint(); setTimeout(() =>{ window.print(); },60); }
+function printFallback(){ buildPrint(); setTimeout(() =>{ env.print(); },60); }
 $("#pdfBtn").addEventListener("click",() =>{
   const busy=$("#busy");
   downloadsP.then((dl) =>{
@@ -80,7 +80,7 @@ $("#pdfBtn").addEventListener("click",() =>{
   document.addEventListener("pointerdown",(e) =>{ if(e.button>0) return; const b=e.target.closest&&e.target.closest(".holdc"); if(b) start(b); });
   /* on the button the click comes right after pointerup, so the reset waits one tick and the click still sees the finished hold */
   document.addEventListener("pointerup",(e) =>{ const b=e.target.closest&&e.target.closest(".holdc"); if(b&&b===active) setTimeout(cancel,0); else cancel(); });
-  document.addEventListener("pointercancel",cancel); window.addEventListener("blur",cancel);
+  document.addEventListener("pointercancel",cancel); env.addEventListener("blur",cancel);
   document.addEventListener("scroll",cancel,true);
   document.addEventListener("contextmenu",(e) =>{ if(e.target.closest&&e.target.closest(".holdc")) e.preventDefault(); });
 })();

@@ -180,9 +180,9 @@ export function newId(r){ let id; do{ id="c"+Date.now()+Math.floor(Math.random()
 export function fixCid(b,id){ if(b==null) return null; try{ const o=JSON.parse(b); if(o&&typeof o==="object"&&o.cid&&o.cid!==id){ o.cid=id; return JSON.stringify(o); } }catch(e){} return b; }
 export function cOf(raw){ try{ return JSON.parse(raw)||{}; }catch(e){ return {}; } }
 /* (e) packed text: gzip + base64 with a prefix. Plain JSON stays accepted everywhere */
-export function zPack(s){ if(!window.CompressionStream) return Promise.reject(new Error("no CompressionStream"));
+export function zPack(s){ if(!env.CompressionStream) return Promise.reject(new Error("no CompressionStream"));
   return new Response(new Blob([s]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer().then((b) =>{ let u=new Uint8Array(b), t="", i; for(i=0;i<u.length;i+=32768) t+=String.fromCharCode.apply(null,u.subarray(i,i+32768)); return "DND24Z1:"+btoa(t); }); }
-export function zUnpack(s){ s=String(s||"").trim(); if(s.indexOf("DND24Z1:")!==0) return Promise.resolve(s); if(!window.DecompressionStream) return Promise.reject(new Error("This browser cannot unpack packed text. Use the file instead."));
+export function zUnpack(s){ s=String(s||"").trim(); if(s.indexOf("DND24Z1:")!==0) return Promise.resolve(s); if(!env.DecompressionStream) return Promise.reject(new Error("This browser cannot unpack packed text. Use the file instead."));
   try{ var b=atob(s.slice(8).replace(/\s+/g,"")), u=new Uint8Array(b.length); for(let i=0;i<b.length;i++) u[i]=b.charCodeAt(i); }catch(e){ return Promise.reject(new Error("This packed text is damaged.")); }
   return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text().catch(() =>{ throw new Error("This packed text is damaged."); }); }
 /* (c) ask the browser to keep the app's storage (no prompt in most browsers) */
@@ -275,7 +275,7 @@ function chSave2(id,o,txt){ const nm=chName(o);
   const mark=function(msg){ const f=uiGet("cs-ui-files"); f[id]={h:rawHash(o),t:Date.now()}; uiSet("cs-ui-files",f); updUnsaved(); toast(msg); if(document.getElementById("chf")) chfOpen(id); const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); };
   const dl=function(){ dlFile(txt,nm,(ok) =>{ if(ok) mark("Download started: "+nm); else { toast("Download is blocked here. Use Show as Text."); } }); };
   /* Chrome and Edge on a computer: write the same file again (File System Access API). Elsewhere every Save downloads a new file */
-  if(window.showSaveFilePicker&&window.isSecureContext&&!/Mobi|Android/i.test(navigator.userAgent)){ const hp=FH[id]?Promise.resolve(FH[id]):window.showSaveFilePicker({suggestedName:nm,types:[{description:"Character file",accept:{"application/octet-stream":[".bs"]}}]});
+  if(env.showSaveFilePicker&&env.isSecureContext&&!/Mobi|Android/i.test(navigator.userAgent)){ const hp=FH[id]?Promise.resolve(FH[id]):env.showSaveFilePicker({suggestedName:nm,types:[{description:"Character file",accept:{"application/octet-stream":[".bs"]}}]});
     hp.then((h) =>{ FH[id]=h; return h.createWritable().then((w) =>{ return w.write(txt).then(() =>{ return w.close(); }); }).then(() =>{ mark("Saved to "+h.name); }); }).catch((e) =>{ if(e&&e.name==="AbortError") return; delete FH[id]; dl(); }); return; }
   dl(); }
 function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) return; const old=document.getElementById("chf"); if(old) old.remove(); const w=document.createElement("div"); w.id="chf"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","chfT");
@@ -284,7 +284,7 @@ function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) return; 
    '<p>Save this character in its own file (.bs). The text inside is packed, so other apps cannot open it directly. Open Character on any device adds it back, next to the characters already there.</p>'+
    '<p class="muted">Last saved to a file: <b>'+(fm?fmtT(fm.t):'never')+'</b>'+(uns?' <span class="hunsv">File out of date</span>':'')+'</p>'+(uns?'<p class="hunsv-x">Your last file backup was '+fileAgo(fm)+' and the character changed since. Your progress is kept on this device automatically. Press Save Character to refresh the backup file.</p>':(chg?'<p class="muted">Changed since the last file save. Your progress is kept on this device automatically, so this is only a backup reminder.</p>':''))+
    '<div class="chfopt"><label for="chfRem">Backup reminder</label><select id="chfRem" data-chfrem="1"><option value="7"'+(rc.days===7?' selected':'')+'>After 7 days</option><option value="30"'+(rc.days===30?' selected':'')+'>After 30 days</option><option value="0"'+(rc.days===0?' selected':'')+'>Off</option></select>'+
-   ((window.showSaveFilePicker&&!/Mobi|Android/i.test(navigator.userAgent))?'<label class="chfauto"><input type="checkbox" data-chfauto="1"'+(rc.auto?' checked':'')+'> Keep this file updated automatically (after you save it once in this window)</label>':'')+'</div>'+
+   ((env.showSaveFilePicker&&!/Mobi|Android/i.test(navigator.userAgent))?'<label class="chfauto"><input type="checkbox" data-chfauto="1"'+(rc.auto?' checked':'')+'> Keep this file updated automatically (after you save it once in this window)</label>':'')+'</div>'+
    '<div class="bkpr"><button type="button" class="btn pri press" data-chf="save">Save Character</button><button type="button" class="btn press" data-chf="text">Show as Text</button></div>'+
    '<div class="bkpr"><button type="button" class="btn press" data-chf="send">'+__R.ico("ui-qr")+'<span>Send to Another Device</span></button></div>'+
    '<div class="bkpt" hidden><textarea id="chfTxt" readonly spellcheck="false">Packing...</textarea><div class="bkpr"><button type="button" class="btn press" data-chf="copy">Copy Text</button></div></div>'+

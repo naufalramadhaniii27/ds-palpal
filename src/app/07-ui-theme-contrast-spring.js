@@ -6,7 +6,7 @@ Object.defineProperty(__R,"applyLook",{get:function(){return applyLook;},set:fun
 export function uiGet(k){ try{ return JSON.parse(__store.getItem(k)||"null")||{}; }catch(e){ return {}; } }
 /* ================= THEME ================= */
 export function applyTheme(){ if(S.theme==="light"||S.theme==="dark") document.documentElement.setAttribute("data-theme",S.theme); else document.documentElement.removeAttribute("data-theme"); }
-function currentDark(){ if(S.theme) return S.theme==="dark"; return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches; }
+function currentDark(){ if(S.theme) return S.theme==="dark"; return env.matchMedia && env.matchMedia("(prefers-color-scheme: dark)").matches; }
 const SYMS={star:["Star",'<path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/>'],
  sword:["Sword",'<path d="M14.5 3.5H20v5.5L9 20l-5-5z"/><path d="m6 13 5 5"/><path d="m3 21 3-3"/>'],
  roots:["Roots",'<path d="M12 2v7"/><path d="M12 9c-3 0-5 2-6 5s-3 4-4 4"/><path d="M12 9c3 0 5 2 6 5s3 4 4 4"/><path d="M12 9v6c0 3-2 5-4 7"/><path d="M12 15c0 3 2 5 4 7"/>'],
@@ -49,7 +49,7 @@ $("#themeBtn").addEventListener("click",() =>{ __R.navStack=[]; __R.openSheet("S
 applyTheme();
 /* v35 p01: high contrast. A device setting in cs-ui-hc {m:"auto"|"on"|"off"}, the same for every character. Auto follows the system
    (prefers-contrast: more, forced-colors: active). On sets data-hc on <html>; the colors live in sheet.css (v35 p01). */
-const HC_MQ=window.matchMedia?[window.matchMedia("(prefers-contrast: more)"),window.matchMedia("(forced-colors: active)")]:[];
+const HC_MQ=env.matchMedia?[env.matchMedia("(prefers-contrast: more)"),env.matchMedia("(forced-colors: active)")]:[];
 function hcMode(){ const m=uiGet("cs-ui-hc").m; return m==="on"||m==="off"?m:"auto"; }
 function hcSys(){ return HC_MQ.some((q) =>{ return q.matches; }); }
 export function hcOn(){ const m=hcMode(); return m==="on"||(m==="auto"&&hcSys()); }
@@ -68,7 +68,7 @@ env.__hc=function(){ return {mode:hcMode(), sys:hcSys(), on:hcOn(), attr:documen
 env.__ask=function(m,o,c,a){ return ask(m,o,c,a); };
 
 /* ================= SPRING ================= */
-export var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+export var REDUCE = env.matchMedia && env.matchMedia("(prefers-reduced-motion: reduce)").matches;
 export var SPR = {};
 export function spring(key, target, apply, opt){
   opt = opt || {};

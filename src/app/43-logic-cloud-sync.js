@@ -165,9 +165,9 @@ function syStart(){ if(SY.on||!/^https?:$/.test(location.protocol)||env.__noSync
       SY.me=me; SY.mode=me.mode||"normal"; SY.on=true; syState("busy"); syRun("start");
       setInterval(() =>{ syRun("tick"); },10000);
       document.addEventListener("visibilitychange",() =>{ if(document.hidden){ syFlush(); return; } syRun("show"); });
-      window.addEventListener("online",() =>{ syRun("show"); }); window.addEventListener("offline",() =>{ syState("offline"); });
-      window.addEventListener("pagehide",syFlush);
-      if(window.MutationObserver){ const watch=function(){ const hv=document.getElementById("homeV"); if(hv&&!hv.__syo){ hv.__syo=1; new MutationObserver(syIcon).observe(hv,{childList:true,subtree:true}); } syIcon(); };
+      env.addEventListener("online",() =>{ syRun("show"); }); env.addEventListener("offline",() =>{ syState("offline"); });
+      env.addEventListener("pagehide",syFlush);
+      if(env.MutationObserver){ const watch=function(){ const hv=document.getElementById("homeV"); if(hv&&!hv.__syo){ hv.__syo=1; new MutationObserver(syIcon).observe(hv,{childList:true,subtree:true}); } syIcon(); };
         new MutationObserver(watch).observe(document.body,{childList:true}); watch(); } },
     () =>{ SY.on=false; });
 }

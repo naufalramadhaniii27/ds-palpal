@@ -116,7 +116,7 @@ export function cmbPipClick(e){ const b=e.target.closest&&e.target.closest("butt
   if(b.hasAttribute("data-ppct")){ cmbAct("tab",b.getAttribute("data-ppct")); return; }
   if(b.hasAttribute("data-ppcturn")){ cmbAct("turn"); return; }
   if(b.hasAttribute("data-ppcdone")){ const q=b.getAttribute("data-ppcdone"); if(cmbDone(q)) cmbAct("done",q); else cmbUse(q); return; }
-  if(b.hasAttribute("data-ppcast")){ try{ window.focus(); }catch(er){} quickCast(+b.getAttribute("data-ppcast")); } }
+  if(b.hasAttribute("data-ppcast")){ try{ env.focus(); }catch(er){} quickCast(+b.getAttribute("data-ppcast")); } }
 function openCombat(){ showEntry({type:"combat"},false); }
 document.addEventListener("click",(e) =>{ const t=e.target;
   const cb=t.closest&&t.closest("[data-cbhp]"); if(cb){ e.preventDefault(); const v=$("#cbAmt"); $("#hpAmt").value=v?v.value:""; (cb.getAttribute("data-cbhp")==="heal"?$("#healBtn"):$("#dmgBtn")).click(); }
@@ -130,7 +130,7 @@ document.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target&&e.targ
 /* ---------- RU77 keyboard shortcuts ---------- */
 const KEYS=[["Home: / N B S","On the character list: / searches, N creates a character, B backs up, S opens Settings. Ctrl+K also searches. Type a command word such as back or party, Enter runs it"],["1 to 7","Switch tabs: Actions, Spells, Inventory, Features, Description, Notes, Extras (in a narrow window, 1 to 9 follow the page buttons)"],["H","Heal the amount typed, or type an amount"],["D","Damage the amount typed, or type an amount"],["R","Rest"],["C","Conditions"],["K","Combat view"],["M","Main"],["S","Skills"],["A","Actions"],["P","Spells"],["I","Inventory"],["F","Features"],["B","Description"],["N","Notes"],["X","Extras"],["/","Search the sheet"],["L","Library: search every spell, item, feat, class and rule"],["Ctrl+K","Search and commands (Cmd+K on a Mac)"],["Ctrl+Z","Undo"],["Ctrl+Shift+Z","Redo (also Ctrl+Y)"],["?","This list"]];
 function keysOpen(){ __set_navStack([]); openSheet("Keyboard Shortcuts",'<div class="keys">'+KEYS.map((x) =>{ return '<div><kbd>'+esc(x[0])+'</kbd><span>'+esc(x[1])+'</span></div>'; }).join("")+'</div><p class="muted">Shortcuts work when no text box is in use. In the amount box, Enter is Damage and Shift+Enter is Heal.</p>',"keys"); }
-function goTab(i,id){ if(mq.matches){ const b=$('#bnav [data-go="'+i+'"]'); if(b) b.click(); } else if(id) setTab(id); else window.scrollTo({top:0}); }
+function goTab(i,id){ if(mq.matches){ const b=$('#bnav [data-go="'+i+'"]'); if(b) b.click(); } else if(id) setTab(id); else env.scrollTo({top:0}); }
 document.addEventListener("keydown",(e) =>{ if(e.ctrlKey||e.metaKey||e.altKey||e.defaultPrevented) return; const t=e.target, tg=(t&&t.tagName)||"";
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(tg)||(t&&t.isContentEditable)) return; if(document.querySelector(".ask, #recov, #homeV:not([hidden]), #bkp:not([hidden])")) return; const bld=$("#bld"); if(bld&&!bld.hidden) return;
   const k=e.key.length===1?e.key.toUpperCase():e.key, open=sheet.classList.contains("on");

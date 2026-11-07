@@ -9,6 +9,7 @@
    "open": "<script>",
    "close": "</script>",
    "files": [
+    "boot/boot-env.js",
     "boot/trusted-types.js",
     "boot/store-gate.js"
    ]
@@ -785,6 +786,7 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
    "close": "</script>",
    "files": [
+    "learn/00-env.js",
     "learn/00-bridge.js",
     "learn/45-data-learn.js",
     "learn/46-logic-learn.js",
@@ -801,6 +803,7 @@
    "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
    "close": "</script>",
    "files": [
+    "tg/00-env.js",
     "tg/00-bridge.js",
     "tg/20-engine.js",
     "tg/25-sim.js",

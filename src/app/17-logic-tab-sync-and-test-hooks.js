@@ -36,7 +36,7 @@ let TABID=Math.random().toString(36).slice(2), BC=null, EXT_LAST={};
 try{ if(typeof BroadcastChannel==="function"){ BC=new BroadcastChannel("cs-sync"); BC.onmessage=function(m){ const d=m&&m.data; if(!d||d.from===TABID||!d.k) return; extChange(d.k,"bc"); }; } }catch(e){ BC=null; }
 function bcPost(k){ if(!BC) return; try{ if(bkpKeyOk(k)) BC.postMessage({k:k,from:TABID}); }catch(e){} }
 env.__bcOn=function(){ return !!BC; };
-window.addEventListener("storage",(e) =>{ extChange(e.key,"st"); });
+env.addEventListener("storage",(e) =>{ extChange(e.key,"st"); });
 function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return; const raw=lsGet(key); if(EXT_LAST[key]===raw) return; EXT_LAST[key]=raw; const e={key:key};
   if(key===CKEY||key===KEY){ EXT_LAST[key===KEY?CKEY:KEY]=lsGet(key===KEY?CKEY:KEY); }
   let r=null; try{ r=JSON.parse(lsGet(RKEY)||"null"); }catch(er){} if(r&&r.active&&MYID&&r.active!==MYID){ stale(); return; }
@@ -48,7 +48,7 @@ function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return; const raw=
   if(e.key===BKEY&&env.__bldReload){ env.__bldReload(); return; }
   if(e.key===RKEY){ const w=document.getElementById("homeV"); if(w&&!w.hidden){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); } } }
 document.getElementById("rosterBtn").addEventListener("click",showHome);
-setTimeout(() =>{if(FROZEN)return;const r=rEnsure();Object.keys(r.chars).forEach((id) =>{if(!r.chars[id].created)r.chars[id].created=r.chars[id].t||Date.now()});rSave(r);MYID=r.active;startup(r);if(sessionStorage.getItem("cs-skip")==="1"){sessionStorage.removeItem("cs-skip");const ce=__store.getItem("cs-edit"),cn=__store.getItem("cs-new");if(ce)__store.removeItem("cs-edit");if(ce||cn){let tries=0,st=function(){(function go(){if(!env.__bldOpen&&env.__bldNeed)env.__bldNeed();if(cn&&!ce)return;if(env.__bldOpen)env.__bldOpen();else if(tries++<100)setTimeout(go,50)})()};/* v100: one frame first, so the message is on screen before the builder loads */if(window.requestAnimationFrame)requestAnimationFrame(() =>{setTimeout(st,0)});else setTimeout(st,30)}return}/* V18-7: the builder script may load after this timer */showHome()},0);
+setTimeout(() =>{if(FROZEN)return;const r=rEnsure();Object.keys(r.chars).forEach((id) =>{if(!r.chars[id].created)r.chars[id].created=r.chars[id].t||Date.now()});rSave(r);MYID=r.active;startup(r);if(sessionStorage.getItem("cs-skip")==="1"){sessionStorage.removeItem("cs-skip");const ce=__store.getItem("cs-edit"),cn=__store.getItem("cs-new");if(ce)__store.removeItem("cs-edit");if(ce||cn){let tries=0,st=function(){(function go(){if(!env.__bldOpen&&env.__bldNeed)env.__bldNeed();if(cn&&!ce)return;if(env.__bldOpen)env.__bldOpen();else if(tries++<100)setTimeout(go,50)})()};/* v100: one frame first, so the message is on screen before the builder loads */if(env.requestAnimationFrame)requestAnimationFrame(() =>{setTimeout(st,0)});else setTimeout(st,30)}return}/* V18-7: the builder script may load after this timer */showHome()},0);
 /* V14-4: Apply keeps the game state (HANDOFF section 6). Damage taken stays the same when Hit Point maximum changes, used boxes stay (used() clamps to the new maximum) */
 /* v18 RL47: a sheet written by a newer version keeps the fields this version does not produce */
 function keepNewer(p){ if(newerApp(C)) Object.keys(C).forEach((k) =>{ if(!(k in p)) p[k]=C[k]; }); return p; }

@@ -39,7 +39,7 @@ function pwaInit(){ if(!PWA_BUILD||!/^https?:$/.test(location.protocol)||!("serv
   }).catch((e) =>{ env.__pwaErr=String(e&&e.message||e); }); }
 pwaInit();
 /* item 6: a .bs file opened from the file manager (installed app, file_handlers) */
-if("launchQueue" in window&&window.launchQueue&&typeof window.launchQueue.setConsumer==="function"){ window.launchQueue.setConsumer((p) =>{ const fs=p&&p.files||[]; if(!fs.length) return;
+if(env.launchQueue&&typeof env.launchQueue.setConsumer==="function"){ env.launchQueue.setConsumer((p) =>{ const fs=p&&p.files||[]; if(!fs.length) return;
   Promise.all(fs.slice(0,1).map((h) =>{ return h.getFile().then((f) =>{ return f.text(); }); })).then((t) =>{ if(t[0]) impText(t[0]); }).catch(() =>{ toast("This file could not be read."); }); }); }
 /* v34 temuan: the hidden empty place of a first public visit (ph, v24 p08) is removed when another character opens. After Apply it holds a real
    character, so it stops being a placeholder */
@@ -48,8 +48,8 @@ if("launchQueue" in window&&window.launchQueue&&typeof window.launchQueue.setCon
 var PWA_EV=null;
 function pwaInstH(){ return PWA_EV?'<button type="button" class="btn press pwa-inst" data-pwainst="1">'+ico("ui-plus")+'<span>Install App</span></button>':''; }
 function pwaInstSync(){ $$(".happ").forEach((a) =>{ const b=a.querySelector("[data-pwainst]"); if(PWA_EV&&!b) a.insertAdjacentHTML("beforeend",pwaInstH()); else if(!PWA_EV&&b) b.remove(); }); }
-window.addEventListener("beforeinstallprompt",(e) =>{ e.preventDefault(); PWA_EV=e; pwaInstSync(); });
-window.addEventListener("appinstalled",() =>{ PWA_EV=null; pwaInstSync(); toast("D&D Sheet is installed. Open it from your home screen or app list."); });
+env.addEventListener("beforeinstallprompt",(e) =>{ e.preventDefault(); PWA_EV=e; pwaInstSync(); });
+env.addEventListener("appinstalled",() =>{ PWA_EV=null; pwaInstSync(); toast("D&D Sheet is installed. Open it from your home screen or app list."); });
 document.addEventListener("click",(e) =>{ if(!e.target.closest||!e.target.closest("[data-pwainst]")||!PWA_EV) return; const ev=PWA_EV; try{ ev.prompt(); }catch(er){}
   Promise.resolve(ev.userChoice).then((c) =>{ if(c&&c.outcome==="accepted"){ PWA_EV=null; pwaInstSync(); } else toast("Not installed. You can install it later from here."); },() =>{}); });
 env.__pwa=function(){ return {build:PWA_BUILD, reg:!!PWA_REG, ctl:!!(navigator.serviceWorker&&navigator.serviceWorker.controller)}; };
@@ -170,7 +170,7 @@ function qrShare(txt,nm){ let f=null, f2=null, d=null; try{ f=new File([txt],nm,
   if(f&&navigator.canShare&&navigator.canShare({files:[f]})) d={files:[f],title:nm}; else if(f2&&navigator.canShare&&navigator.canShare({files:[f2]})) d={files:[f2],title:nm}; else d={title:nm,text:txt};
   navigator.share(d).then(() =>{ toast("Shared: "+nm); },(e) =>{ if(e&&e.name==="AbortError") return; toast("Sharing did not work here. Use Save Character."); }); }
 /* receive: camera + BarcodeDetector (Chrome on Android and Mac, Safari 17 on Mac). Elsewhere paste the text */
-function qrCan(){ return typeof window.BarcodeDetector==="function"&&!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia); }
+function qrCan(){ return typeof env.BarcodeDetector==="function"&&!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia); }
 let QRR=null;
 function qrScanStop(){ if(!QRR) return; clearInterval(QRR.t); try{ (QRR.st&&QRR.st.getTracks()||[]).forEach((t) =>{ t.stop(); }); }catch(e){} env.__qrStream=QRR.st; QRR=null; const w=document.getElementById("qrScan"); if(w) w.remove(); }
 function qrScanOpen(){ if(!qrCan()){ toast("This browser cannot read codes. Paste the text instead."); return; } qrScanStop();
@@ -180,7 +180,7 @@ function qrScanOpen(){ if(!qrCan()){ toast("This browser cannot read codes. Past
   const R=QRR, msg=function(t){ const e=document.getElementById("qrRN"); if(e) e.textContent=t; };
   w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-qrr]")) qrScanStop(); });
   const esc1=function(e){ if(e.key==="Escape"&&document.getElementById("qrScan")){ e.stopPropagation(); qrScanStop(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
-  let det=null; try{ det=new window.BarcodeDetector({formats:["qr_code"]}); }catch(e){ msg("This browser cannot read codes. Paste the text instead."); return; }
+  let det=null; try{ det=new env.BarcodeDetector({formats:["qr_code"]}); }catch(e){ msg("This browser cannot read codes. Paste the text instead."); return; }
   navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}).then((st) =>{ if(QRR!==R){ st.getTracks().forEach((t) =>{ t.stop(); }); return; } R.st=st; env.__qrStream=st; const v=document.getElementById("qrVid"); v.srcObject=st; try{ v.play(); }catch(e){} msg("Point the camera at the code on the other device.");
     R.t=setInterval(() =>{ if(QRR!==R||R.busy) return; R.busy=true; det.detect(v).then((L) =>{ R.busy=false; (L||[]).forEach((c) =>{ qrGot(R,String(c.rawValue||"")); }); },() =>{ R.busy=false; }); },150);
   },(e) =>{ msg(e&&e.name==="NotAllowedError"?"The camera is blocked. Allow it in the browser, or paste the text instead.":"No camera found. Paste the text instead."); }); }

@@ -1,4 +1,4 @@
-/* some phone browsers ignore location.reload() on a page opened from a file: try it, then load the same address again */window.__miReload=function(){ const u=String(location.href).split("#")[0], T=[
+/* some phone browsers ignore location.reload() on a page opened from a file: try it, then load the same address again */BootEnv.__miReload=function(){ const u=String(location.href).split("#")[0], T=[
   function(){ location.reload(); },
   function(){ history.go(0); },
   function(){ location.assign(u); },

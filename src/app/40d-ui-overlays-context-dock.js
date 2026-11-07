@@ -19,7 +19,7 @@ import {CTXSRC} from "./06a-logic-ui-registry.js";
 Object.defineProperty(__R,"dockApply",{get:function(){return dockApply;},set:function(v){dockApply=v;},configurable:true});
 Object.defineProperty(__R,"dockOff",{get:function(){return dockOff;},set:function(v){dockOff=v;},configurable:true});
 let OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
-window.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
+env.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
 /* a reload or page change is under way: going back in history now would cancel it */
 function ovTop(){ const c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
   const a=document.querySelectorAll("body > .ask"); if(a.length){ const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
@@ -37,7 +37,7 @@ function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; const on=!!ovTop();
   else if(!on&&OVG){ OVG=false; if(history.state&&history.state.csOv){ OVSKIP++; try{ history.back(); }catch(e){ OVSKIP--; } } } }
 Object.defineProperty(__R,"ovQueue",{get:function(){return ovQueue;},configurable:true});
 export function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
-window.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
+env.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
 try{ if(history.state&&history.state.csOv) history.replaceState(null,""); }catch(e){}
 /* a reload while a popup was open: the held entry is plain again */
 env.__ovState=function(){ return {held:OVG, top:!!ovTop()}; };
@@ -78,20 +78,20 @@ document.addEventListener("keydown",(e) =>{ const m=document.getElementById("ctx
   if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); const b=Array.prototype.slice.call(m.querySelectorAll(".ctxi:not([disabled])")), i=b.indexOf(document.activeElement); if(b.length) b[(i+(e.key==="ArrowDown"?1:-1)+b.length)%b.length].focus(); } },true);
 document.addEventListener("pointerdown",(e) =>{ const m=document.getElementById("ctxm"); if(m&&!m.contains(e.target)) ctxClose(); },true);
 document.addEventListener("scroll",() =>{ if(document.getElementById("ctxm")) ctxClose(); },true);
-window.addEventListener("resize",() =>{ ctxClose(); });
+env.addEventListener("resize",() =>{ ctxClose(); });
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("#ctxm [data-ctxi]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const m=document.getElementById("ctxm"), a=m&&m.__L&&m.__L[+b.getAttribute("data-ctxi")]; ctxClose.back=null; ctxClose(); if(a&&a[2]) a[2](); },true);
 /* ===== v31 p16 two panels on a computer (RU131) ===== */
 const DOCKW=400;
-function dockFits(){ const tz=(+document.documentElement.getAttribute("data-tsize")||100)/100; return !mq.matches&&window.innerWidth>=1100&&window.innerWidth-DOCKW>=Math.max(700,760*tz); }
+function dockFits(){ const tz=(+document.documentElement.getAttribute("data-tsize")||100)/100; return !mq.matches&&env.innerWidth>=1100&&env.innerWidth-DOCKW>=Math.max(700,760*tz); }
 /* v35 p13: with Text Size 115 or 130 the side panel docks only when the sheet keeps room, else it floats over */
 function dockable(mode){ return mode==="info"||mode==="bd"; }
-function dockAnchor(){ let a=lastFocus&&lastFocus.isConnected&&lastFocus.closest&&lastFocus.closest("#pager")?lastFocus:null; if(!a){ const e=document.elementFromPoint(Math.max(10,(window.innerWidth-DOCKW)/3),window.innerHeight/2); a=e&&e.closest&&e.closest("#pager")?e:null; } return a; }
+function dockAnchor(){ let a=lastFocus&&lastFocus.isConnected&&lastFocus.closest&&lastFocus.closest("#pager")?lastFocus:null; if(!a){ const e=document.elementFromPoint(Math.max(10,(env.innerWidth-DOCKW)/3),env.innerHeight/2); a=e&&e.closest&&e.closest("#pager")?e:null; } return a; }
 function dockLayout(on){ const root=document.documentElement; if(root.classList.contains("dk")===on) return; const a=dockAnchor(), y0=a?a.getBoundingClientRect().top:0;
-  root.classList.toggle("dk",on); root.classList.toggle("dkn",on&&window.innerWidth-DOCKW<1000); if(on) root.style.setProperty("--dockw",DOCKW+"px");
-  if(a&&a.isConnected){ const y1=a.getBoundingClientRect().top; if(Math.abs(y1-y0)>1) window.scrollBy(0,y1-y0); } moveTabInd(true); }
+  root.classList.toggle("dk",on); root.classList.toggle("dkn",on&&env.innerWidth-DOCKW<1000); if(on) root.style.setProperty("--dockw",DOCKW+"px");
+  if(a&&a.isConnected){ const y1=a.getBoundingClientRect().top; if(Math.abs(y1-y0)>1) env.scrollBy(0,y1-y0); } moveTabInd(true); }
 function dockApply(mode,wide){ const on=dockable(mode)&&!wide&&dockFits(); sheet.classList.toggle("dock",on); sheet.setAttribute("aria-modal",on?"false":"true"); if(on) $("#scrim").classList.remove("on"); dockLayout(on); }
 function dockOff(){ dockLayout(false); }
-window.addEventListener("resize",() =>{ if(!sheet.classList.contains("on")||!sheet.classList.contains("dock")) return; if(!dockFits()){ sheet.classList.remove("dock"); sheet.setAttribute("aria-modal","true"); $("#scrim").classList.add("on"); dockLayout(false); } else { document.documentElement.classList.toggle("dkn",window.innerWidth-DOCKW<1000); } });
+env.addEventListener("resize",() =>{ if(!sheet.classList.contains("on")||!sheet.classList.contains("dock")) return; if(!dockFits()){ sheet.classList.remove("dock"); sheet.setAttribute("aria-modal","true"); $("#scrim").classList.add("on"); dockLayout(false); } else { document.documentElement.classList.toggle("dkn",env.innerWidth-DOCKW<1000); } });
 /* ===== v31 p17 drag to reorder (RU131) ===== */
 ICO_TXT.unshift([/^On Hit$/i,"ui-target"]);
 ICO_FCAT["On Hit"]="ui-target";
