@@ -8,255 +8,48 @@ import {agOn,invList,luRows,optAny,pactWeapon,saveNotes,wisElse,wmAll,xdmgRows,y
 import {fxToggles,ATKC,__set_ATKC,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 import {__R} from "./00-reg.js";
 import {runFxPhase} from "./10a-logic-fx-registry.js";
+import {runPhases} from "./12a-logic-sheet-registry.js";
+import "./12c-logic-sheet-handlers-core.js";
+import "./12d-logic-sheet-handlers-skills.js";
+import "./12e-logic-sheet-handlers-defense.js";
+import "./12f-logic-sheet-handlers-movement.js";
+import "./12g-logic-sheet-handlers-profs.js";
+import "./12h-logic-sheet-handlers-attacks.js";
+import "./12i-logic-sheet-handlers-gear-resources.js";
+import "./12j-logic-sheet-handlers-features.js";
 import "./11c-logic-fx-handlers-sheet.js";
-import {appVer,xsk,setInTS,inTS} from "./00-env.js";
+import {appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef} from "./00-env.js";
 Object.defineProperty(__R,"toSheet",{get:function(){return toSheet;},set:function(v){toSheet=v;},configurable:true});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
-export function toSheet(){
+/* the pure reads a handler may ask for (state.q): the old code reached them through __R and the helpers of 01 to 11 */
+const QRY={spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,calcNote:function(n,c,l,a){return __R.calcNote(n,c,l,a)},defenses:function(a){return __R.defenses(a)},ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)__R.PROFC=profs;return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+ itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:__R.itemDetail(n,x)}}finally{setInTS(0)}},
+ kitTool:kitTool,qOf:function(x){return __R.qOf(x)},itemW:function(n){return __R.itemW(n)},itemWEst:function(n){return __R.itemWEst(n)},rarityOf:function(x){return __R.rarityOf(x)},equippable:function(n){return __R.equippable(n)},itemType:function(n,x){return __R.itemType(n,x)},itemCost:function(b){return __R.itemCost(b)},
+ gpNow:function(){return __R.gpNow()},eqIdx:function(){return __R.eqIdx()},clsKitText:function(){return __R.clsKitText()},resMax:resMax,resKey:resKey,luRows:luRows,mcResMax:function(r,a,l){return __R.mcResMax(r,a,l)},slugK:slugK,slotsAll:function(){return __R.slotsAll()},keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNotes(f)},xdmgRows:xdmgRows,
+ wpNamed:function(w,b){return __R.wpNamed(w,b)},bgTl:bgTl,optAny:optAny,gxPicks:function(){return __R.gxPicks()},hpBonusList:function(){return __R.hpBonusList()},fxCh:function(k,pre,kind,okey,any){return __R.fxCh(k,pre,kind,okey,any)},fxv:function(v,e){return __R.fxv(v,e)},subAt:subAt,chOf:chOf,wisElse:wisElse,clsLv:clsLv,spX:spX,bgX:bgX,langKeys:function(){return __R.langKeys()},
+ xfxSkills:function(feats,p,prof,exp){XFX.skills(feats,p,prof,exp)},xfxPost:function(C,a){XFX.post(C,a)},xfxLang:function(lg){XFX.lang(lg)},
+ baseOf:function(n){return __R.baseOf(n)},pactWeapon:pactWeapon,ensureInv:function(){return __R.ensureInv()},monkRule:function(w,nm){return __R.monkRule(w,nm)},fxOk:function(e,ar,ESH,EA){return __R.fxOk(e,ar,ESH,EA)},casterParts:casterParts,dmapRow:function(n){return DMAP[n]},sbWx:function(sub,cls){return typeof sbWx==="function"?sbWx(sub,cls):null}};
+/* the inputs of a build: read once, in the order the old code read them (abil() settles pbAdd before pb is taken) */
+function sheetInputs(){
  __R.syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
- const c=CL(),L=B.level,TLv=__R.TL(),a=abil(),pb=pbOf(TLv),sp=SPECIES[B.species],custom=B.species==="Custom";
+ const c=CL(),L=B.level,TLv=__R.TL(),a=abil(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
  const spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  const subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
- const bg=BACKGROUNDS[B.bg],feats=allFeats();
- const C={v:3,bv:appVer(),/* v27 RU28: the app version whose builder made this sheet */name:B.name,species:spName+(B.ch.lin?" ("+B.ch.lin.split(" (")[0]+")":""),cls:B.cls,sub:subName||"",bg:B.bg,size:custom?B.cSpecies.size:(sp.size.indexOf("or")>0?(B.size||"Medium"):sp.size),office:"",camp:B.camp||"",cardNo:"",level:TLv,hitDie:c.hd,hpPerLevel:__R.hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}}),abilities:{},rolledNote:"Built with PHB 2024 Builder",saves:{},skills:[],initBonus:[],hpBonus:[],grappler:false};
- ABK.forEach((k) =>{C.abilities[k]={base:+B.base[k]||10,bonus:a.src[k].map((b) =>{return {s:b.s,v:b.v}})}});
- c.saves.forEach((k) =>{C.saves[k]=B.cls+" class ("+SRC+")"});
- if(sp&&sp.saveProf&&!custom)sp.saveProf.forEach((k) =>{if(!C.saves[k])C.saves[k]=B.species+" ("+(sp.hb||SRC)+")"});/* v74: species saving throw proficiency (Keldon Human) */
- /* M10: also from a multiclass Monk 14 or Rogue 15 */
- clsParts().forEach((q) =>{const mt=q.mc?", multiclass":"";if(q.cls==="Monk"&&q.lv>=14)ABK.forEach((k) =>{if(!C.saves[k])C.saves[k]=(R14()?"Diamond Soul":"Disciplined Survivor")+" ("+SRC+", Monk 14"+mt+")"});
-  if(q.cls==="Ranger"&&subAt("Ranger","Gloom Stalker")>=7){const imc={Intelligence:"INT",Charisma:"CHA"}[chOf("Ranger","p7opt")],im=!wisElse()&&!C.saves.WIS?"WIS":imc&&!C.saves[imc]?imc:["WIS","INT","CHA"].filter((k) =>{return !C.saves[k]})[0];/* v32 RL49 no. 30: the chosen save. Not chosen yet: the first free one, as before */if(im)C.saves[im]="Iron Mind ("+SRC+", Gloom Stalker 7"+mt+")"}/* V17-5 */
-  if(q.cls==="Rogue"&&q.lv>=15){(R14()?["WIS"]:["WIS","CHA"]).forEach((k) =>{if(!C.saves[k])C.saves[k]="Slippery Mind ("+SRC+", Rogue 15"+mt+")"})}});
- __R.classFx().forEach((e) =>{if(!e.saveFrom)return;const v=__R.fxCh(e.saveFrom,e.pre,e.kind,e.okey),a=Array.isArray(v)?v:(v?[v]:[]);a.forEach((nm) =>{const k=ABK.filter((x) =>{return ABN[x]===nm})[0];if(k&&!C.saves[k])C.saves[k]=e.lbl})});/* generic: fx.saveFrom */
- /* fx engine v5: saveProf [ab] = a fixed saving throw proficiency from any source (no pick) */__R.classFx().forEach((e) =>{(e.saveProf||[]).forEach((k) =>{if(ABK.indexOf(k)>=0&&!C.saves[k])C.saves[k]=e.lbl})});
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});/* M17: FEATS.saveFromAsi */
- const prof={},exp={};
- function p(n,s){if(n&&!prof[n])prof[n]=s}
- if(bg)bg.sk.forEach((n) =>{p(n,B.bg+" background ("+SRC+")")});
- const CHT0=choices();CHT0.forEach((ch) =>{const v=B.ch[ch.key];if(ch.t==="skills"&&Array.isArray(v))v.forEach((n) =>{p(n,ch.title+", "+ch.src);if(ch.ex)exp[n]=ch.feature+" ("+ch.src+")"/* v63 */});if(ch.t==="exp"&&Array.isArray(v))v.forEach((n) =>{exp[n]=ch.src})});
- const SG=__R.subGrant(B.sub);if(SG&&SG.skills)SG.skills.forEach((q) =>{if(L>=q[0])p(q[1],B.sub+" "+q[0])});
- if(sp&&sp.skills)sp.skills.forEach((n) =>{p(n,B.species+" ("+(sp.hb||SRC)+")")});
- /* v32 RL49: Keen Mind, Observant: proficiency, or Expertise when you have it already. Boon of Skill: every skill */
- CHT0.forEach((ch) =>{const v=B.ch[ch.key];if(ch.t==="pe"&&Array.isArray(v))v.forEach((n) =>{if(prof[n])exp[n]=ch.feature+" ("+ch.src+")";else p(n,ch.title+", "+ch.src)})});
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.allSk)ALLSK.forEach((n) =>{p(n,f.n+" ("+f.s+")")})});XFX.skills(feats,p,prof,exp);/* v62 */__R.gfx().forEach((e) =>{(e.skillProf||[]).forEach((n) =>{p(n,e.lbl)})});/* fx engine v2 */
- clsParts().forEach((q) =>{const g=typeof SUB_GRANT!=="undefined"&&SUB_GRANT[q.sub];if(g&&g.skills)g.skills.forEach((s) =>{if(q.lv>=s[0])p(s[1],g.f+" ("+q.sub+" "+s[0]+")")})});/* v32 */
- __R.gfx().forEach((e) =>{(e.skillExpert||[]).forEach((n) =>{if(prof[n])exp[n]=e.lbl})});/* fx engine v2: Expertise needs the proficiency */__R.gfx().forEach((e) =>{(e.skillPE||[]).forEach((n) =>{if(prof[n])exp[n]=e.lbl;else p(n,e.lbl)})});/* fx batch E: skillPE = proficiency, or Expertise when already proficient (Red Sisterhood, Strigoi) */
- const PPLUS=[];__R.gfx().forEach((e) =>{(e.skillProfPlus||[]).forEach((n) =>{if(prof[n])PPLUS.push([n,e]);else p(n,e.lbl)})});/* skillProfPlus: proficiency, or a +1 bonus to checks with the skill when already proficient (Ioun stones) */
- ALLSK.forEach((n) =>{const o={n:n,ab:SKILLS[n]};if(prof[n]){o.p=1;o.src=prof[n]}if(exp[n]){o.p=2;o.src=(prof[n]||"")+"; Expertise from "+exp[n]}C.skills.push(o)});
- __R.packSkills().forEach((s) =>{const o={n:s.n,ab:s.ab,hb:1};if(s.d)o.hbd=s.d;if(prof[s.n]){o.p=1;o.src=prof[s.n]}C.skills.push(o)});
- /* fx engine v4: extra skills outside the 18 core ones (Technology, Data). A row is added only when an entry names the skill (skillProf, skillExpert, skillPE, skillBonus, skillAb) or a pick gave proficiency, so ordinary sheets are unchanged. The registry is window.XSK {name:{ab,d}}; the two defaults below are used when it is missing. The row is flagged hb like a pack skill */
- {const XS=Object.assign({Technology:{ab:"INT",d:"Technology (Dark Matter)"},Data:{ab:"INT",d:"Data (Dark Matter)"}},xsk()),want={};__R.gfx().forEach((e) =>{["skillProf","skillExpert","skillPE"].forEach((f) =>{(e[f]||[]).forEach((n) =>{want[n]=1})});(e.skillBonus||[]).forEach((r) =>{want[r[0]]=1});(e.skillAb||[]).forEach((r) =>{want[r[0]]=1})});
-  Object.keys(prof).concat(Object.keys(want)).forEach((n) =>{if(!XS[n]||C.skills.some((s) =>{return s.n===n}))return;const o={n:n,ab:XS[n].ab,hb:1};if(XS[n].d)o.hbd=XS[n].d;if(prof[n]){o.p=1;o.src=prof[n]}if(exp[n]&&prof[n]){o.p=2;o.src=prof[n]+"; Expertise from "+exp[n]}C.skills.push(o)})}
- if(clsLv("Bard")>=2&&Math.floor(pb/2))C.skills.forEach((s) =>{if(!s.p){s.misc=(s.misc||0)+Math.floor(pb/2);s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+"Jack of All Trades (PHB-2024, Bard 2)"}});/* v35 p07 */XFX.post(C,a);/* v63 */__R.gfx().forEach((e) =>{const add=function(s,v){if(!v)return;s.misc=(s.misc||0)+v;s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+e.lbl+" "+(v>0?"+":"")+v};/* fx engine v4: a row may carry a minimum as a third item, [skill, value, min] (Thaumaturge: [["Arcana","WIS",1]] = Wisdom modifier, at least +1) */const rv=function(r){let v=__R.fxv(r[1],e);if(r[2]!=null&&v<r[2])v=r[2];return v};(e.skillBonus||[]).forEach((r) =>{C.skills.forEach((s) =>{if(r[0]==="*"||s.n===r[0])add(s,rv(r))})});(e.chkBonus||[]).forEach((r) =>{C.skills.forEach((s) =>{if(s.ab===r[0])add(s,rv(r))})});/* fx engine v5: skillBonusNp [[skill or "*", value]] and chkBonusNp [[ability, value]]: only skills without proficiency (Logic Unit, Remarkable Athlete: value "halfPbUp") */(e.skillBonusNp||[]).forEach((r) =>{C.skills.forEach((s) =>{if(!s.p&&(r[0]==="*"||s.n===r[0]))add(s,rv(r))})});(e.chkBonusNp||[]).forEach((r) =>{C.skills.forEach((s) =>{if(!s.p&&s.ab===r[0])add(s,rv(r))})});(e.skillAb||[]).forEach((r) =>{C.skills.forEach((s) =>{if(s.n===r[0]&&a.sc[r[1]]!=null&&a.sc[s.ab]!=null){const d=mod(a.sc[r[1]])-mod(a.sc[s.ab]);if(d>0){s.misc=(s.misc||0)+d;s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+e.lbl+" ("+r[1]+" modifier instead of "+s.ab+") +"+d}}})})});/* fx batch E: skillAb [[skill, ability]] uses that ability's modifier for the skill when higher (shown as a misc bonus) */PPLUS.forEach((r) =>{C.skills.forEach((s) =>{if(s.n===r[0]){s.misc=(s.misc||0)+1;s.miscSrc=(s.miscSrc?s.miscSrc+"; ":"")+r[1].lbl+" +1"}})});/* fx engine v2: skillBonus [[skill or "*", value]], chkBonus [[ability, value]] */
- const lg=["Common"];if(R14()){const sl0=spX(),bl0=bgX();((sl0&&sl0.lgf)||[]).concat((bl0&&bl0.lgf)||[]).forEach((x) =>{if(lg.indexOf(x)<0)lg.push(x)})}__R.langKeys().forEach((k) =>{(B.ch[k]||[]).forEach((x) =>{if(lg.indexOf(x)<0)lg.push(x)})});if(clsLv("Druid")&&lg.indexOf("Druidic")<0)lg.push("Druidic");if(clsLv("Rogue")&&lg.indexOf("Thieves' Cant")<0)lg.push("Thieves' Cant");XFX.lang(lg);C.lang=lg;/* M10: any class. v62: feat languages */
- /* armor */
- let EA=__R.effArmor(),ESH=__R.effShield(),EW=__R.effWeps(),KIT=__R.kitItems(),EAp=__R.baseOf(EA).p,ar=ARMOR[__R.baseOf(EA).b];
- /* M13: a pact weapon that is not in the inventory is conjured in your hand, so it counts as an active weapon */
- let pactW=pactWeapon(),pactWw=pactW&&WEAPONS[__R.baseOf(pactW).b];if(pactWw&&pactWw.k==="M"&&EW.indexOf(pactW)<0&&!__R.ensureInv().some((x) =>{return x.n===pactW}))EW=EW.concat([pactW]);else if(!(pactWw&&pactWw.k==="M"))pactW="";
- /* M6 (RL7): Martial Arts (die, Dexterous Attacks) and Unarmored Movement work only with no armor and no Shield (PHB 2024 p. 101-102).
-    RL35 1b: Martial Arts also needs "unarmed or only Monk weapons": an active weapon that is not Simple Melee or Martial Melee Light turns it off.
-    Unarmored Movement keeps the armor and Shield check only. M10: Monk level from the main class or a multiclass */
- /* M4 (RL10): Draconic Resilience AC also from a multiclass Sorcerer level 3+. Same place in the AC order as before.
-    M17: read from data. CLASSES.*.ua (Unarmored Defense of the main class) and CLASSES.*.acSub[sub] (main class first, then multiclass) */
- let uaM=c.ua&&(c.ua.shield||!ESH)?c.ua:null,acS=null,uaX=null;__R.MCL().forEach((m) =>{const u=CLASSES[m.cls].ua;if(u&&(u.shield||!ESH)&&m.lv>=u.l&&!uaX)uaX={u:u,cls:m.cls}});/* M10: multiclass Unarmored Defense, after the old order */[[B.cls,B.sub,L,0]].concat(__R.MCL().map((m) =>{return [m.cls,m.sub,m.lv,1]})).forEach((q) =>{const s=(CLASSES[q[0]].acSub||{})[q[1]];if(s&&q[2]>=s.l&&!acS)acS={s:s,cls:q[0],lv:q[2],mc:q[3]}});
- const monkLv=clsLv("Monk"),umOn=monkLv>0&&!ar&&!ESH,monkW=function(w,nm){return __R.monkRule(w,nm)};
- const maOn=umOn&&!EW.some((n) =>{const w=WEAPONS[__R.baseOf(n).b];return w&&!monkW(w,__R.baseOf(n).b)}),maDie=monkLv?CLASSES.Monk.track["Martial Arts Die"][monkLv-1].replace("d","1d"):"";
- ACM=[];/* v27 i2 */
- if(ar){let mam=null;feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.med3&&ar.cat==="Medium")mam=F});/* v69: Medium Armor Master */let adx=ar.dex;if(mam&&adx==="max2"&&(mam.med3===1||a.sc.DEX>=mam.med3))adx="max3";
-  C.ac={base:ar.ac,baseSrc:EA+", "+ar.cat+" armor ("+SRC+")",dex:adx,bonus:[]};if(ar.dis&&!(mam&&mam.medStealth))C.skills.forEach((s) =>{if(s.n==="Stealth")s.dis=EA})}
- else{const acC=[];/* v27 i2: the ways to set AC without armor, in the old rule order. B.acMode picks one, empty = the first */if(uaM)acC.push({k:"ua",ac:{base:10,baseSrc:uaM.n+" ("+SRC+", "+B.cls+" "+uaM.l+")",dex:"full",bonus:[{s:ABN[uaM.ab]+" modifier ("+uaM.n+")",v:mod(a.sc[uaM.ab])}]}});
- if(acS)acC.push({k:"acs",ac:{base:acS.s.base||10,baseSrc:acS.s.n+" ("+SRC+(acS.mc?", "+acS.cls+" "+acS.lv+", multiclass":"")+")",dex:"full",bonus:acS.s.ab?[{s:ABN[acS.s.ab]+" modifier ("+acS.s.n+")",v:mod(a.sc[acS.s.ab])}]:[]}});
- if(uaX)acC.push({k:"uax",ac:{base:10,baseSrc:uaX.u.n+" ("+SRC+", "+uaX.cls+" "+uaX.u.l+", multiclass)",dex:"full",bonus:[{s:ABN[uaX.u.ab]+" modifier ("+uaX.u.n+")",v:mod(a.sc[uaX.u.ab])}]}});
- if(sp&&sp.natAc&&!custom)acC.push({k:"nat",ac:{base:sp.natAc.base,baseSrc:"Natural Armor ("+B.species+", "+(sp.hb||SRC)+")",dex:"",bonus:sp.natAc.ab?[{s:ABN[sp.natAc.ab]+" modifier (Natural Armor)",v:mod(a.sc[sp.natAc.ab])}]:[]}});/* v36 p21 */
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.unarmoredAC)acC.push({k:"ft"+f.n,ac:{base:F.unarmoredAC,baseSrc:f.n+" ("+f.s+")",dex:"full",bonus:[]}})});/* v69 */
- acC.push({k:"none",ac:{base:10,baseSrc:"Unarmored",dex:"full",bonus:[]}});const dmA=mod(a.sc.DEX);ACM=acC.map((x) =>{return {k:x.k,n:x.ac.baseSrc.replace(" ("+SRC+")","").replace("("+SRC+", ","("),v:x.ac.base+(x.ac.dex==="full"?dmA:0)+x.ac.bonus.reduce((t,b) =>{return t+b.v},0)}});
-  const pkA=acC.filter((x) =>{return x.k===B.acMode})[0];C.ac=structuredClone((pkA||acC[0]).ac);if(pkA&&pkA!==acC[0])C.ac.baseSrc+=", chosen in the builder"}
- /* v19 RL42: Robe of the Archmagi with no armor on: base AC 15 + Dex, used when it beats the base from above */
- if(!ar)activeFx().forEach((q) =>{const f=q.fx;if(!f.acBase)return;const cur=C.ac.base+C.ac.bonus.reduce((t,b) =>{return t+b.v},0);if(f.acBase>cur)C.ac={base:f.acBase,baseSrc:q.n+" (no armor)",dex:"full",bonus:[]}});
- /* fx engine v2: acBase [base, "full" for Dex, ability key] or acDexAb "CON" (10 + Dex + ability) replace the base AC while no armor is worn, when higher */
- __R.gfx().forEach((e) =>{const b0=e.acBase||(e.acDexAb?[10,"full",e.acDexAb]:null);if(!b0||(ar&&!e.acOver)||!__R.fxOk(e,ar,ESH,EA))return;const b=b0.slice();if(b[2]==="cast"){let best=null;__R.casterParts().forEach((p) =>{if(!best||mod(a.sc[p.ab])>mod(a.sc[best]))best=p.ab});if(!best)return;b[2]=best}/* acBase ability "cast" = best spellcasting ability; acOver = also counts while armor is worn (the better one is used) *//* fx engine v4: acDexMax 2 = the Dex modifier counts at most +2 in this base (Medium-armor style, sheet mode "max2") */const dx0=mod(a.sc.DEX),dx=e.acDexMax!=null?Math.min(dx0,e.acDexMax):dx0,ab=b[2]?Math.min(mod(a.sc[b[2]]),e.acCap!=null?e.acCap:99):0,nb=b[0]+(b[1]==="full"?dx:0)+ab,cur=C.ac.base+(C.ac.dex==="full"?dx0:C.ac.dex==="max2"?Math.min(2,dx0):0)+C.ac.bonus.reduce((t,x) =>{return t+x.v},0);if(nb>cur)C.ac={base:b[0],baseSrc:e.lbl+(ar?" (used instead of the worn armor)":" (no armor)"),dex:b[1]==="full"?(e.acDexMax===2?"max2":"full"):"",bonus:b[2]?[{s:ABN[b[2]]+" modifier ("+e.n+")",v:ab}]:[]}});
- /* fx engine v2: acNoDex (the Dex modifier is not added to AC) and acArmAb "WIS" (while wearing armor, add that ability modifier to AC in place of the Dex modifier). Runs after the base AC is settled */
- __R.gfx().forEach((e) =>{if(!e.acNoDex&&!(e.acArmAb&&ar))return;if(!__R.fxOk(e,ar,ESH,EA))return;C.ac.dex="";if(e.acArmAb&&ar)C.ac.bonus.push({s:ABN[e.acArmAb]+" modifier in place of Dexterity ("+e.lbl+")",v:Math.min(mod(a.sc[e.acArmAb]),e.acCap!=null?e.acCap:99)})});
- activeFx().forEach((q) =>{if(q.fx.ac&&!q.arm&&q.t!=="Armor")C.ac.bonus.push({s:q.n+" (magic item"+(DMAP[q.n][3]?", attuned":"")+")",v:q.fx.ac})});/* M18 */
- const sbn=[];activeFx().forEach((q) =>{if(q.fx.save)sbn.push({s:q.n+" (magic item"+(DMAP[q.n][3]?", attuned":"")+")",v:q.fx.save})});__R.gfx().forEach((e) =>{if(e.saveBonus==null||!__R.fxOk(e,ar,ESH,EA))return;const v=__R.fxv(e.saveBonus,e);if(v)sbn.push({s:e.lbl,v:v})});const pal=clsLv("Paladin");if(pal>=6)sbn.push({s:"Aura of Protection (Paladin "+pal+")",v:Math.max(1,mod(a.sc.CHA))});/* RU35 no. 6: you are inside your own aura */
- __R.gfx().forEach((e) =>{if(e.saveBonusNp==null||!__R.fxOk(e,ar,ESH,EA))return;const v=__R.fxv(e.saveBonusNp,e);if(v)sbn.push({s:e.lbl,v:v,np:1,t:(v>0?"+":"")+v+" to saving throws that do not use your Proficiency Bonus"})});/* fx engine v2: saveBonusNp, only the saves without proficiency */
- /* fx engine v4: saveBonusAb [[ability, value]] = bonus to that one saving throw (item "+1 to Intelligence saving throws"). Entry {s,v,ab}; the sheet adds it to that save only */__R.gfx().forEach((e) =>{if(!e.saveBonusAb||(e.cond&&!__R.fxOk(e,ar,ESH,EA)))return;e.saveBonusAb.forEach((r) =>{const v=__R.fxv(r[1],e);if(v)sbn.push({s:e.lbl,v:v,ab:r[0]})})});
- if(sbn.length)C.saveBonus=sbn;/* M18: new optional C.saveBonus [{s,v}], all saving throws */
- if(attMax()!==3)C.attMax=attMax();/* v19 RL43: optional, missing = 3 */
- (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Bracers of Defense"&&!EA&&!ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});
- if(ESH)C.ac.bonus.push({s:ESH+" ("+SRC+")",v:2+__R.baseOf(ESH).p});if(ESH)__R.classFx().forEach((e) =>{if(!e.shAc)return;let ex=0;e.shAc.forEach((r) =>{if(e.lv>=r[0])ex=r[1]});if(ex)C.ac.bonus.push({s:e.lbl,v:ex})});/* generic: fx.shAc, extra AC while a Shield is held (Warden Tower Shield) */__R.gfx().forEach((e) =>{if(!e.ac&&!e.acAb&&e.acAdd==null&&!e.acMw)return;if(!__R.fxOk(e,ar,ESH,EA))return;let v=0;(e.ac||[]).forEach((r) =>{if(e.lv>=r[0])v=r[1]});if(e.acAb)v+=Math.max(e.acMin||0,mod(a.sc[e.acAb]));if(e.acAdd!=null)v+=__R.fxv(e.acAdd,e);if(e.acMw&&/Masterwork/.test(EA||""))v+=e.acMw;if(e.acCap!=null&&v>e.acCap)v=e.acCap;/* fx engine v5: acCap = the entry adds at most this much AC (Wooden Chain: Wisdom modifier, max +2) */if(v)C.ac.bonus.push({s:e.lbl,v:v})});/* generic: class fx.ac [[class level, bonus]] and fx.acAb (add an ability modifier), cond armor or noArmor */if(EAp)C.ac.bonus.push({s:EA+" (magic bonus)",v:EAp});
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.dwAC&&!ESH&&EW.filter((n) =>{const w=WEAPONS[__R.baseOf(n).b];return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});/* v69 */
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.ac&&ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});/* M17: FEATS.ac (with armor) */
- if(sp&&sp.acBonus&&!custom)C.ac.bonus.push({s:sp.acBonus.s,v:sp.acBonus.v});
- {const Wsb=typeof sbWx==="function"?sbWx(B.sub,B.cls):null;if(Wsb&&Wsb.acb&&!custom&&L>=(Wsb.acb.l||1))C.ac.bonus.push({s:Wsb.acb.s,v:Wsb.acb.v})}/* third party: a flat Armor Class bonus a subclass gives from a level (acb:{l,v,s}) */
- {const SFa=__R.spOptFx();if(SFa.acBonus&&!custom&&L>=(SFa.acBonus.l||1))C.ac.bonus.push({s:SFa.acBonus.s,v:SFa.acBonus.v})}/* v74: AC bonus from a species option (Simic Hybrid Carapace) *//* v58: species bonus to AC (Warforged Integrated Protection) */
- /* speed and senses */
- let SFX2=__R.spOptFx(),spd=custom?+B.cSpecies.speed:(SFX2.speedSet||sp.speed),spSrc=spName+" ("+(custom?"homebrew":(sp.hb||SRC))+")";if(SFX2.speed){spd+=SFX2.speed;spSrc+=", +"+SFX2.speed+" Quick"}
- if(clsLv("Barbarian")>=5&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Fast Movement"}
- if(umOn&&monkLv>=2){const um=CLASSES.Monk.track["Unarmored Movement"][monkLv-1];spd+=parseInt(um);spSrc+=", "+um+" Unarmored Movement"}
- if(clsLv("Ranger")>=6&&!R14()&&!(ar&&ar.cat==="Heavy")){spd+=10;spSrc+=", +10 Roving"}/* M8 (RL8): not in Heavy armor (PHB 2024 p. 121) */
- const SH={ok:(e) =>{return __R.fxOk(e,ar,ESH,EA)},val:__R.fxv,get spd(){return spd},get dark(){return {vision:C.darkvision,src:C.darkSrc}}},shApply=(p) =>{if(p.spd!=null)spd=p.spd;if(p.srcAdd)spSrc+=p.srcAdd;if(p.dark){C.darkvision=p.dark.vision;C.darkSrc=p.dark.src}(p.initBonus||[]).forEach((x) =>{C.initBonus.push(x)})};/* effect handlers of registry "sheet": 11c-logic-fx-handlers-sheet.js */runFxPhase("sheet","speed",__R.gfx(),SH,shApply);/* generic: class fx.speed [[class level, feet]], cond noHeavy or noArmor */
- clsParts().forEach((q) =>{if(q.sub==="Oath of Glory (2014)"&&q.lv>=7){spd+=10;spSrc+=", +10 Aura of Alacrity"}if(q.sub==="Scout"&&q.cls==="Rogue"&&q.lv>=9){spd+=10;spSrc+=", +10 Superior Mobility"}});/* v71 */
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.speed){spd+=F.speed;spSrc+=", +"+F.speed+" "+f.n}});/* M17: FEATS.speed */
- /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
- if(ar&&ar.str&&a.sc.STR<ar.str){spd=Math.max(0,spd-10);spSrc+=", \u221210 "+EA+" (needs Str "+ar.str+", yours is "+a.sc.STR+")"}
- runFxPhase("sheet","speed-mul",__R.gfx(),SH,shApply);/* fx batch H: speedMul = Speed multiplied (Nosferatu: doubled). After the additions and the armor cut, before mv "speed" is read */
- __R.gfx().forEach((e) =>{if(!e.mv||!__R.fxOk(e,ar,ESH,EA))return;Object.keys(e.mv).forEach((m) =>{if(e.speedAddIf&&e.speedAddIf[m]!=null)return;/* fx v3a: handled in the late pass *//* fx engine v4: mv value "speed2" = double your Speed, "speedHalf" = half your Speed (rounded down), next to "speed" and feet */const v=e.mv[m],mvn=v==="speed"?spd:v==="speed2"?spd*2:v==="speedHalf"?Math.floor(spd/2):+v,t=v==="speed"?"equal to your Speed ("+spd+" ft)":v==="speed2"?"double your Speed ("+mvn+" ft)":v==="speedHalf"?"half your Speed ("+mvn+" ft)":(v+" ft");spSrc+=", "+m.charAt(0).toUpperCase()+m.slice(1)+" Speed "+t+" ("+e.lbl+")";(C.moves=C.moves||[]).push({m:m,v:mvn,s:e.lbl})})});/* fx engine v2: mv {climb,swim,fly}: "speed" or feet. Sheet shows it in speedSrc, C.moves is optional */
- C.speed=spd;C.speedSrc=spSrc;if(R14())C.rs="2014";/* v82 */
- const dk=custom?+B.cSpecies.dark:Math.max(sp.dark||0,SFX2.dark||0);/* RL36 d, M17: Drow Darkvision 120 and Wood Elf Speed 35 come from SPECIES.Elf.linFx (spOptFx) */
- /* m4 (RL20): name the source that gives Darkvision: species or pack, plus the pack option or lineage when that raised it */
- let dkOpt="";if(!custom&&(SFX2.dark||0)>(sp.dark||0)){(B.ch.spopt||[]).forEach((n) =>{const o=sp.opts&&sp.opts.list.filter((x) =>{return x[0]===n})[0];if(o&&o[2].dark&&!dkOpt)dkOpt=n});if(!dkOpt&&sp.linFx&&B.ch.lin)dkOpt=B.ch.lin.split(" (")[0]}
- C.darkvision=dk;C.darkSrc=dk?spName+(dkOpt?", "+dkOpt:"")+" ("+(custom?"homebrew":(sp.hb||SRC))+")":"";
- if(subAt("Barbarian","Path of the Wild Heart")>=6&&chOf("Barbarian","p6opt")==="Owl"){C.darkvision=dk?dk+60:60;C.darkSrc=(C.darkSrc?C.darkSrc+", +60 ":"")+"Aspect of the Wilds (Owl)"}/* v32 RL49 no. 31 */
- runFxPhase("sheet","darkvision",__R.gfx(),SH,shApply);/* fx batch E and v4: darkAdd, darkTo, darkNone, darkHave */
- /* HP and init */
- C.hpBonus=__R.hpBonusList();/* M4 (RL10): same list as hpCalc() */
- clsParts().forEach((q) =>{if((q.sub==="Gloom Stalker"||q.sub==="Gloom Stalker (2014)")&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Dread Ambusher/.test(x.s)}))C.initBonus.push({s:"Dread Ambusher: Wisdom modifier (PHB-2024, Gloom Stalker 3)",v:mod(a.sc.WIS)})});/* v35 p06 */clsParts().forEach((q) =>{if(q.sub==="Swashbuckler"&&q.cls==="Rogue"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Rakish Audacity/.test(x.s)}))C.initBonus.push({s:"Rakish Audacity (Swashbuckler 3): Charisma modifier",v:mod(a.sc.CHA)})});/* v71 */clsParts().forEach((q) =>{if(q.sub==="War Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Tactical Wit/.test(x.s)}))C.initBonus.push({s:"Tactical Wit (War Magic): Intelligence modifier",v:mod(a.sc.INT)})})
-runFxPhase("sheet","init",__R.gfx(),SH,shApply);/* generic: class fx.init = number or ability key */
-/* v73 */clsParts().forEach((q) =>{if(q.sub==="Chronurgy Magic"&&q.cls==="Wizard"&&q.lv>=3&&!C.initBonus.some((x) =>{return /^Temporal Awareness/.test(x.s)}))C.initBonus.push({s:"Temporal Awareness (Chronurgy Magic): Intelligence modifier",v:mod(a.sc.INT)})});/* v71 */clsParts().forEach((q) =>{if(q.sub==="Oath of the Watchers"&&q.lv>=7&&!C.initBonus.some((x) =>{return /^Aura of the Sentinel/.test(x.s)}))C.initBonus.push({s:"Aura of the Sentinel (Oath of the Watchers 7): Proficiency Bonus",v:pb})});/* v71 */feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});else if(F&&typeof F.init==="number")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:F.init});if(F&&F.pas){C.pasBon=C.pasBon||[];Object.keys(F.pas).forEach((k) =>{C.pasBon.push({k:k,v:F.pas[k],s:f.n+" feat ("+f.s+")"})})}/* v69 */if(F&&F.grappler)C.grappler=true});/* M17: FEATS.init, FEATS.grappler */
- (function(){const sx=spX();if(sx&&(sx.traits||[]).some((t) =>{return t[0]==="Hare-Trigger"})&&!C.initBonus.some((x) =>{return /^Hare-Trigger/.test(x.s)}))C.initBonus.push({s:"Hare-Trigger (Harengon): Proficiency Bonus",v:pb})})();/* v56: Harengon adds PB to Initiative */
- /* proficiencies */
- /* v32 RL49: a tool "of your choice" in the data (toolPick) is replaced by the tools chosen in the builder (none chosen: nothing) */
- const CHT=choices(),tp=function(txt,pick,key){if(!pick)return txt;const v=B.ch[key];return Array.isArray(v)?v.join(", "):""},XT=toolChoices(CHT).concat(grantTools(feats));
- let armor=c.armor,weapons=c.weapons,tools=[tp(c.tools,c.toolPick,"clsTool"),bg?bgTl(bg,tp):""].filter((x) =>{return x&&x!=="None"});/* v95: a background with no tool says "None", which is no tool */
- if(SG&&SG.armor)SG.armor.forEach((q) =>{if(L>=q[0])armor+=", "+q[1]});if(SG&&SG.weapons)SG.weapons.forEach((q) =>{if(L>=q[0])weapons+=", "+q[1]});if(SG&&SG.tools)SG.tools.forEach((q) =>{if(L>=q[0])tools.push(q[1])});(B.ch.spwep||[]).forEach((n) =>{weapons+=", "+n+" (Masterful)"});if(pactW)weapons+=", "+__R.baseOf(pactW).b+" (Pact Weapon)";/* M13 */
- if(optAny("Protector")){armor+=", Heavy";weapons+=", Martial"}/* v32: multiclass Cleric too */
- if(optAny("Warden")){armor+=", Medium";weapons+=", Martial"}
- if(B.sub==="College of Valor"&&L>=3){armor+=", Medium, Shields";weapons+=", Martial"}
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.armor)armor+=", "+F.armor;if(F&&F.weapons)weapons+=", "+F.weapons;if(/^Tavern Brawler/.test(f.n))weapons+=", Improvised";if(F&&F.wpPick){const wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach((n) =>{weapons+=", "+n})}});/* v69 */
- __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls]||{};if(g.armor)armor+=(armor?", ":"")+g.armor;if(g.weapons)weapons+=", "+g.weapons;const gt=tp(g.tools,g.toolPick,"m"+mi+":tool");if(gt)tools.push(gt)});
- if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach((n) =>{weapons+=", "+n});
- if(sp&&sp.profs&&!custom){if(sp.profs.armor)armor+=", "+sp.profs.armor;if(sp.profs.weapons)weapons+=", "+sp.profs.weapons;if(sp.profs.tools)tools.push(sp.profs.tools)}/* v74: species proficiencies (2014 species) */
- XT.forEach((q) =>{tools.push(q[0])});
- /* fx armor, weapons, tools: counted in C.profs (and so in the proficiency of the attack rows and the armor check), not only listed in profSrc */__R.gfx().forEach((e) =>{(e.armor||[]).forEach((n) =>{armor+=(armor?", ":"")+n});(e.weapons||[]).forEach((n) =>{weapons+=", "+n});(e.tools||[]).forEach((n) =>{tools.push(n)})});
- armor=armor.split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i}).join(", ");weapons=weapons.split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i}).join(", ");
- tools=tools.join(", ").split(/,\s*/).filter((x,i,a) =>{return x&&a.indexOf(x)===i});/* v32: each tool once */
- C.profs={armor:armor||"None",weapons:weapons,tools:tools.join(", ")||"None"};
- /* v23 RU36 no. 7: each proficiency with where it comes from */
- const PS={armor:[],weapons:[],tools:[]},ad=function(k,str,s){String(str||"").split(/,\s*/).forEach((n) =>{n=n.replace(/ \((Masterful|Pact Weapon)\)$/,"");if(!n||n==="None"||PS[k].some((x) =>{return x[0]===n}))return;PS[k].push([n,s])})};
- ad("armor",c.armor,B.cls);ad("weapons",c.weapons,B.cls);ad("tools",tp(c.tools,c.toolPick,"clsTool"),B.cls);if(bg)ad("tools",bgTl(bg,tp),B.bg);
- if(SG&&SG.armor)SG.armor.forEach((q) =>{if(L>=q[0])ad("armor",q[1],B.sub)});if(SG&&SG.weapons)SG.weapons.forEach((q) =>{if(L>=q[0])ad("weapons",q[1],B.sub)});if(SG&&SG.tools)SG.tools.forEach((q) =>{if(L>=q[0])ad("tools",q[1],B.sub)});
- ["Protector","Warden"].forEach((o) =>{if(optAny(o)){ad("armor",o==="Protector"?"Heavy":"Medium",o);ad("weapons","Martial",o)}});
- if(B.sub==="College of Valor"&&L>=3){ad("armor","Medium, Shields",B.sub);ad("weapons","Martial",B.sub)}
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&F.armor)ad("armor",F.armor,f.n);if(F&&F.weapons)ad("weapons",F.weapons,f.n);if(/^Tavern Brawler/.test(f.n))ad("weapons","Improvised",f.n);if(F&&F.wpPick){const wv=B.ch[F.wpPick+"-"+(f.key||f.s)];if(Array.isArray(wv))wv.forEach((n) =>{ad("weapons",n,f.n)})}});/* v69 */
- if(sp&&sp.wpPick&&!custom)(B.ch.spwp||[]).forEach((n) =>{ad("weapons",n,B.species+" ("+(sp.hb||SRC)+")")});
- if(sp&&sp.profs&&!custom){var spl=B.species+" ("+(sp.hb||SRC)+")";if(sp.profs.armor)ad("armor",sp.profs.armor,spl);if(sp.profs.weapons)ad("weapons",sp.profs.weapons,spl);if(sp.profs.tools)ad("tools",sp.profs.tools,spl)}/* v74 */
- __R.MCL().forEach((m,mi) =>{const g=MC_GRANT[m.cls]||{};ad("armor",g.armor,m.cls+" (multiclass)");ad("weapons",g.weapons,m.cls+" (multiclass)");ad("tools",tp(g.tools,g.toolPick,"m"+mi+":tool"),m.cls+" (multiclass)")});
- XT.forEach((q) =>{ad("tools",q[0],q[1])});__R.gfx().forEach((e) =>{["armor","weapons","tools"].forEach((k) =>{(e[k]||[]).forEach((n) =>{ad(k,n,e.lbl)})})});/* fx engine v2 */
- (B.ch.spwep||[]).forEach((n) =>{ad("weapons",n,"Masterful")});if(pactW)ad("weapons",__R.baseOf(pactW).b,"Pact of the Blade");
-  __R.gxPicks().forEach((o) =>{if(!o.gxw)return;(B.ch[o.key]||[]).forEach((n) =>{ad("weapons",n,o.src);if(("," +C.profs.weapons+",").replace(/, /g,",").indexOf(","+n+",")<0)C.profs.weapons+=(C.profs.weapons?", ":"")+n})});/* fx engine v2: weapon proficiency picks */
- C.profSrc=PS;
- /* attacks */
- const wmSet=wmAll();C.attacks=[];/* v32 RL49: multiclass and Weapon Master too */
- let ud="1",udSrc="Unarmed Strike ("+SRC+")";
- if(maOn){ud=maDie;udSrc="Martial Arts ("+SRC+", Monk)"}
- feats.forEach((f) =>{if(f.n==="Unarmed Fighting"){/* m2 (RL18): d8 when no weapon and no Shield is active, else d6. The larger of this and Martial Arts is used */const uf=(EW.length||ESH)?"1d6":"1d8";if(dieAvg(uf)>dieAvg(ud)){ud=uf;udSrc="Unarmed Fighting ("+f.s+")"+(uf==="1d8"?": d8, no weapon or Shield held":": d6 while holding a weapon or Shield")}}else if(f.n==="Tavern Brawler"&&ud==="1"){ud="1d4";udSrc="Tavern Brawler ("+f.s+")"}});
- const SG2=__R.subGrant(B.sub);if(SG2&&SG2.unarmed){SG2.unarmed.forEach((q) =>{if(L>=q[0]){ud=ESH?q[2]:q[1];udSrc=B.sub+" "+q[0]+(ESH?" (holding a Shield)":"")}})}
- /* RL35 3a: Unarmed Fighting d8 on a Monk keeps Dexterous Attacks (Dex). RL35 4b (RL34): Grapple and Shove DC may use Dex too, written as C.dcAb */
- if(maOn&&a.sc.DEX>a.sc.STR){C.dcAb="DEX";C.dcSrc="Martial Arts: Dexterous Attacks ("+SRC+", Monk)"}
- const maOff=umOn&&!maOn?EW.filter((n) =>{const w=WEAPONS[__R.baseOf(n).b];return w&&!monkW(w,__R.baseOf(n).b)}):[];/* RL35 1b: say why Martial Arts is off */
- C.attacks.push({n:"Unarmed Strike",sub:"",ab:maOn&&a.sc.DEX>a.sc.STR?"DEX":"STR",prof:true,die:ud,dieSrc:udSrc,type:"Bludgeoning",range:"5 ft",m:"",note:(maOff.length?"Martial Arts is off while "+maOff.join(" and ")+(maOff.length>1?" are":" is")+" active (not a Monk weapon). Unequip "+(maOff.length>1?"them":"it")+" to use Martial Arts. ":"")+"Damage, Grapple, or Shove."});
- /* C3: Fighting Style bonuses come from FEATS fields (Archery rngHit, Dueling meleeDmg1h, Thrown Weapon Fighting thrownDmg), PHB 2024 p. 209-210.
-    They are written as named sources in misc/miscSrc/dmgBonus; the sheet adds them up. Dueling auto rule: exactly one active weapon, melee, not Two-Handed
-    (a Shield is allowed). B.duelMode "on" applies Dueling to every one-handed melee weapon, "off" never; missing or "auto" = the rule (toggle for UI/UX later). */
- const FSB={},FSS={},FSseen={};feats.forEach((f) =>{const F=FEATS[f.n];if(!F||FSseen[f.n])return;FSseen[f.n]=1;["rngHit","meleeDmg1h","thrownDmg"].forEach((k) =>{if(F[k]){FSB[k]=(FSB[k]||0)+F[k];FSS[k]=(FSS[k]?FSS[k]+"; ":"")+"Fighting Style: "+f.n+" ("+f.s+")"}})});
- const duelW=WEAPONS[__R.baseOf(EW[0]||"").b],duelAuto=EW.length===1&&!!duelW&&duelW.k==="M"&&!/Two-Handed/.test(duelW.p);
- const duelOn=!!FSB.meleeDmg1h&&(B.duelMode==="on"||(B.duelMode!=="off"&&duelAuto));
- const hasGWF=feats.some((f) =>{return f.n==="Great Weapon Fighting"}),hasTWF=feats.some((f) =>{return f.n==="Two-Weapon Fighting"});
- EW.forEach((n) =>{const BO=__R.baseOf(n),w=WEAPONS[BO.b];if(!w)return;let ab="STR";
-  if(w.k==="R")ab="DEX";else if(/Finesse/.test(w.p)||(maOn&&(w.cat==="S"||/Light/.test(w.p))))ab=a.sc.DEX>a.sc.STR?"DEX":"STR";
-  const isPact=!!pactW&&n===pactW;if(isPact&&a.sc.CHA>=a.sc[ab])ab="CHA";/* M13: only the bonded weapon, Charisma when it is at least as high */
-  const pr=isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||__R.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p));
-  const m=wmSet.indexOf(BO.b)>=0?w.m:"";
-  let flow=!!(SG2&&L>=3&&(SG2.flowing||[]).indexOf(BO.b)>=0),die=flow?ud:w.d,dieSrc=flow?B.sub+", Flowing Blades (base "+w.d+")":BO.b+" ("+SRC+")";
-  /* M7 (RL7): Monk weapon (Simple Melee, Martial Melee with Light) uses the Martial Arts die when it is larger (owner decision) */
-  if(maOn&&!flow&&w.k==="M"&&(w.cat==="S"||/Light/.test(w.p))&&dieAvg(maDie)>dieAvg(die)){dieSrc="Martial Arts die ("+SRC+", Monk "+monkLv+"), base "+BO.b+" "+die;die=maDie}
-  let hit=BO.p,dmg=BO.mw?0:BO.p,srcs=BO.p?[n+(BO.mw?" (Masterwork, attack rolls only)":" (magic weapon)")]:[],note=(BO.p&&!BO.mw?"Add +"+BO.p+" to damage rolls. ":"")+(m?MASTERY[m]:""),thrown=/Thrown/.test(w.p),oneH=w.k==="M"&&!/Two-Handed/.test(w.p);
-  {const XD=typeof DMAP!=="undefined"&&DMAP[n]&&DMAP[n][5]&&DMAP[n][5].xd;if(XD&&XD.length)note+=(note?" ":"")+"Extra damage: "+XD.join("; ")+"."}/* tp: riders of named weapons */
-  if(w.k==="R"&&FSB.rngHit){hit+=FSB.rngHit;srcs.push(FSS.rngHit+": +"+FSB.rngHit+" to hit with Ranged weapons")}
-  if(w.k==="R"&&thrown&&FSB.thrownDmg){dmg+=FSB.thrownDmg;srcs.push(FSS.thrownDmg+": +"+FSB.thrownDmg+" damage, Thrown weapon")}
-  if(oneH&&duelOn){dmg+=FSB.meleeDmg1h;srcs.push(FSS.meleeDmg1h+": +"+FSB.meleeDmg1h+" damage, one melee weapon and no other weapon");note="Dueling: +"+FSB.meleeDmg1h+" damage while this is your only weapon (a Shield is fine). "+note}
-  else if(oneH&&FSB.meleeDmg1h&&B.duelMode!=="off")note="Dueling not applied: another weapon is active. To apply it anyway, set Dueling bonus to Always on under your Dueling choice in the builder. "+note;/* RL30 */
-  if(hasGWF&&w.k==="M"&&/Two-Handed|Versatile/.test(w.p))note+=(note?" ":"")+"Great Weapon Fighting: with two hands, treat a 1 or 2 on a damage die as a 3.";
-  if(hasTWF&&/Light/.test(w.p))note+=(note?" ":"")+"Two-Weapon Fighting: add your ability modifier to the damage of the extra Light weapon attack.";
-  if(isPact)note="Pact of the Blade: "+(ab==="CHA"?"uses Charisma":"you can use Charisma")+"; can deal Necrotic, Psychic, or Radiant damage. "+note;
-  C.attacks.push({n:n,sub:isPact?(w.p?w.p+" \u2022 ":"")+"Pact Weapon":w.p,ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:hit,miscSrc:srcs.join("; "),dmgBonus:dmg,type:w.t,range:w.r?(w.k==="M"?"5 ft, "+w.r+" ft":w.r+" ft"):(/Reach \(20/.test(w.p)?"20 ft":/Reach/.test(w.p)?"10 ft":"5 ft"),m:m,note:note});
-  /* Thrown Weapon Fighting: a melee weapon with Thrown gets a second row for the throw. Same ability (PHB 2024, Thrown property). The melee row keeps no thrown bonus */
-  if(w.k==="M"&&thrown&&FSB.thrownDmg){const ts=BO.p?[n+(BO.mw?" (Masterwork)":" (magic weapon)")]:[];ts.push(FSS.thrownDmg+": +"+FSB.thrownDmg+" damage, Thrown weapon");
-   C.attacks.push({n:n+" (thrown)",sub:w.p+" \u2022 ranged attack",ab:ab,prof:!!pr,die:die,dieSrc:dieSrc,misc:BO.p,miscSrc:ts.join("; "),dmgBonus:(BO.mw?0:BO.p)+FSB.thrownDmg,type:w.t,range:w.r+" ft",m:m,note:"Thrown Weapon Fighting: +"+FSB.thrownDmg+" damage when you throw it. "+(BO.p&&!BO.mw?"Add +"+BO.p+" to damage rolls. ":"")+(m?MASTERY[m]:"")})}
- });
- /* inventory */
- __set_ATKC(C.attacks);/* RL31 */
- try{ if(C.profs)__R.PROFC=C.profs; C.inv=__R.ensureInv().map((x) =>{const it={n:kitTool(x)||x.n,key:x.n,q:__R.qOf(x),w:__R.itemW(kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq},west=__R.itemWEst(x.n)?(it.west=1):0/* v27 RD20 */,bn=__R.baseOf(x.n).b,rr=__R.rarityOf(x),dm=DMAP[x.n];if(dm&&dm[3]){it.att=1}if(x.mw)it.mw=true;/* Masterwork flag of the row (cond mwArmor) */if(rr)it.rar=rr;if(__R.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */if(ARMOR[bn]){const A=ARMOR[bn];it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+__R.baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!WEAPONS[bn])it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");try{it.type=__R.itemType(x.n,x);it.cost=PRICE[x.n]!=null?PRICE[x.n]:__R.itemCost(__R.baseOf(kitTool(x)||x.n).b);/* v20 M1 */if(!inTS()){setInTS(1);try{it.html=__R.itemDetail(x.n,x)}finally{setInTS(0)}}it.equippable=__R.equippable(x.n)||!!(DMAP[x.n]&&DMAP[x.n][1]!=="Potion")}catch(e){}return it});
- }finally{ __set_ATKC(null); }/* RL36 b */
- C.gp=__R.gpNow();
- /* m4 (RL20): "none" = no starting package (items set by hand or imported from the sheet), not option A or 50 GP */
- C.equipNote=(B.eqC==="none"?B.cls+" starting equipment: none (items added by hand)":B.cls+" option "+"ABC"[__R.eqIdx()]+": "+__R.clsKitText())+". "+(B.eqB==="none"?B.bg+" starting equipment: none (items added by hand)":B.bg+" option "+B.eqB+": "+(B.eqB==="A"&&bg?bg.eq:"50 GP"))+".";
- /* resources */
- C.res=[];const rs=(c.res||[]).concat((c.resSub&&c.resSub[B.sub])||[]);
- rs.forEach((r) =>{const m=resMax(r,a);if(m>0){const o={k:resKey("r-",r.n,C.res),n:r.n,tag:r.tag,max:m,reset:(r.short5&&L>=5)?"short":r.reset};if(r.pool)o.pool=1;/* m6: a pool of points (Lay on Hands) */C.res.push(o)}});
- feats.forEach((f) =>{const F=FEATS[f.n];if(F&&(F.res==="luck"||F.luckN))C.res.push({k:"luck",n:"Luck Points",tag:f.n,max:F.luckN||pb,reset:"long",f:f.n})});
- luRows(C,a,pb,feats);/* RU40 *//* M17: FEATS.res */
- /* N4 (RL39): Hit Dice per die type (PHB 2024 p. 44). One class: as before. Multiclass: one row per die, main class die keeps key "hd" */
- if(!__R.MCL().length)C.res.push({k:"hd",n:"Hit Dice",tag:"",max:0,reset:"long",auto:"level"});
- else{const hdc={},hdo=[];clsParts().forEach((q) =>{const d=CLASSES[q.cls].hd;if(hdc[d]==null){hdc[d]=0;hdo.push(d)}hdc[d]+=q.lv});
-  hdo.forEach((d,i) =>{C.res.push({k:i?"hd-d"+d:"hd",n:"Hit Dice",tag:"",max:hdc[d],reset:"long",die:d})})}
- __R.MCL().forEach((m,mi) =>{const mc=CLASSES[m.cls];(mc.res||[]).concat((mc.resSub&&mc.resSub[m.sub])||[]).forEach((r) =>{const mx=__R.mcResMax(r,a,m.lv);if(mx>0){const o={k:resKey("m-"+slugK(m.cls)+"-",r.n,C.res),n:r.n,tag:r.tag+" ("+m.cls+")",max:mx,reset:(r.short5&&m.lv>=5)?"short":r.reset};if(r.pool)o.pool=1;C.res.push(o)}})});
- const RESF={"Ki Points":"Ki","Sorcery Points":"Font of Magic","Focus Points":"Monk's Focus","Superiority Dice":"Combat Superiority","Psionic Energy Dice":"Psionic Power"};C.res.forEach((r) =>{if(!r.f&&RESF[r.n])r.f=RESF[r.n]});/* V17-8: also multiclass rows */
- var SA=__R.slotsAll();
- if(SA.pact)C.res.push({k:"pact",n:"Pact Slots (level "+SA.pact.lvl+")",tag:"Short Rest",max:SA.pact.n,reset:"short"});
- if(SA.slots)SA.slots.forEach((n,i) =>{C.res.push({k:"s"+(i+1),n:"Spell Slots, level "+(i+1),tag:"Long Rest",max:n,reset:"long"})});
- keepResKeys(C);
- /* actions */
- C.actions=[{c:"Actions",n:"Attack",t:"Weapon or Unarmed",d:"Make one attack"+(clsParts().some((q) =>{return q.lv>=5&&/Fighter|Barbarian|Monk|Paladin|Ranger/.test(q.cls)})?" per Extra Attack":"")+". With an [[Unarmed Strike]], choose Damage, [[Grapple]] (DC {dc}), or [[Shove]] (DC {dc})."},
-  {c:"Actions",n:"Dash, Disengage, Dodge, Help, Hide, Influence, Magic, Ready, Search, Study, Utilize",t:"Standard",d:"Available to every creature."},
-  {c:"Reactions",n:"Opportunity Attack",t:"Reaction",d:"When a creature you can see leaves your reach, make one melee attack against it."}];
- clsParts().forEach((q) =>{featsOf(q.cls,q.lv).forEach((x) =>{if(/^Bonus Action/.test(x[2]))C.actions.push({c:"Bonus Actions",n:x[1],t:q.cls+" "+x[0],d:x[2]});else if(/^Reaction/.test(x[2]))C.actions.push({c:"Reactions",n:x[1],t:q.cls+" "+x[0],d:x[2]})})});/* M10: multiclass too */
- (B.inv||[]).forEach((x) =>{const m=/^(Arrow|Bolt|Firearm Bullet|Needle|Sling Bullet), \+(\d)$/.exec(x.n);if(!m||!x.eq||!DMAP[x.n])return;const use={Arrow:/bow$/i,Bolt:/Crossbow/,"Firearm Bullet":/Musket|Pistol/,Needle:/Blowgun/,"Sling Bullet":/^Sling/}[m[1]];
-  C.attacks.forEach((t) =>{const bn=__R.baseOf(t.n).b;if(WEAPONS[bn]&&WEAPONS[bn].k==="R"&&use.test(bn))t.note="With "+x.n+": +"+m[2]+" to attack and damage rolls. "+(t.note||"")})});/* v16: magic ammunition */
- activeFx().forEach((q) =>{if(/^(Wraps of Unarmed Power|Wraps of Dyamak)/.test(q.n)&&(q.fx.atk||q.fx.dmg)){const u=C.attacks.filter((t) =>{return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});/* M18 */
- const sno=saveNotes(feats);if(sno.length)C.saveNotes=sno;const xd=xdmgRows(a,pb);if(xd.length)C.xdmg=xd;/* RU35 no. 5, 6 */
- /* features */
- C.features=[];
- const spItems=custom?[{n:"Homebrew species",s:"Homebrew",d:"Fill in the traits from your setting."}]:sp.traits.map((t) =>{return {n:t[0],s:(sp.hb||SRC)+", "+B.species,d:spTraitText(sp,t)}});
- if(!custom&&/or/.test(sp.size))spItems.push({n:"Size",s:(sp.hb||SRC)+", "+B.species,d:"You can be Medium or Small, chosen when you create the character. **Your choice.** "+(B.size||"Medium")+(htText(B.species,B.size||"Medium")?", "+htText(B.species,B.size||"Medium"):"")+"."});/* RU34 */
- if(B.ch.lin&&!(sp&&sp.lin&&(spLinTrait(sp)||sp.traits.some((t) =>{return /ancestr|lineage|legacy/i.test(t[1])}))))spItems.push({n:"Chosen: "+B.ch.lin,s:(sp&&sp.hb||SRC)+", "+B.species,d:(sp&&sp.hb&&sp.linText&&sp.linText[B.ch.lin])||"Your lineage or ancestry choice."});/* v36 p21 */
- spItems.forEach((it) =>{it.d+=__R.calcNote(it.n,B.cls,TLv,a)});C.features.push({g:"Species: "+spName,items:spItems});
- C.defenses=__R.defenses(a);
- /* RU35 no. 7: Resistances and Immunities from magic items in use, and extra speeds */
- C.itemAdv=[];activeFx().forEach((q) =>{(q.fx.adv||[]).forEach((k) =>{if(!/sav(e|ing)|Concentration/i.test(k))C.itemAdv.push({k:k,s:q.n});else{C.saveNotes=C.saveNotes||[];C.saveNotes.push({t:"Advantage on "+(/^advantage/i.test(k)?k.replace(/^advantage\s*(on\s*)?/i,""):k),s:q.n})}})});/* v65: Advantage from items on Initiative and skills, read by cfx */
- activeFx().forEach((q) =>{const f=q.fx;if(f.dark){const dv=+f.dark||0;/* v101: item darkvision. Robe of Eyes sets 120. Goggles of Night and the Axe of the Dwarvish Lords give the range, or add it to Darkvision you already have */if(/^Robe of Eyes/.test(q.n))C.darkvision=Math.max(C.darkvision||0,dv);else C.darkvision=(C.darkvision||0)+dv;C.darkSrc=(C.darkSrc?C.darkSrc+", ":"")+q.n}(f.res||[]).forEach((t) =>{C.defenses.push({t:"Resistance",v:t,s:q.n})});(f.imm||[]).forEach((t) =>{C.defenses.push({t:"Immunity",v:t,s:q.n})});(f.condImm||[]).forEach((t) =>{C.defenses.push({t:"Immunity",v:t+" (condition)",s:q.n})});(f.vul||[]).forEach((t) =>{C.defenses.push({t:"Vulnerability",v:t,s:q.n})});/* v76 */
-  ["fly","swim","climb","burrow"].forEach((k) =>{if(f[k]){C.speeds=C.speeds||{};const v=f[k]==="walk"?"walk":+f[k];C.speeds[k]={v:v,s:q.n}}})});
- (function(){const sp=function(k,s){C.speeds=C.speeds||{};if(!C.speeds[k])C.speeds[k]={v:"walk",s:s}};/* V17-4: speeds from class features */
-  if(clsLv("Ranger")>=6&&!R14()){sp("climb","Roving (Ranger 6)");sp("swim","Roving (Ranger 6)")}
-  if(subAt("Rogue","Thief")>=3)sp("climb","Second-Story Work (Thief 3)");
-  if(invList().indexOf("Gift of the Depths")>=0)sp("swim","Gift of the Depths");
-  if(subAt("Druid","Circle of the Sea")>=6)sp("swim","Aquatic Affinity (Circle of the Sea 6)");
-  if(subAt("Barbarian","Path of the Wild Heart")>=6){const aw=chOf("Barbarian","p6opt");if(aw==="Panther")sp("climb","Aspect of the Wilds (Panther)");else if(aw==="Salmon")sp("swim","Aspect of the Wilds (Salmon)");else if(!aw){sp("climb","Aspect of the Wilds, if you chose Panther");sp("swim","Aspect of the Wilds, if you chose Salmon")}}/* v32 RL49 no. 31 */
-  if(spX()&&B.species==="Aasimar"&&__R.TL()>=3)sp("fly","Celestial Revelation, Heavenly Wings, while transformed")})();
- const cf=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}).map((x) =>{let d=x[2];
-  const fsv=B.ch["fs"+c.fs],FSF=fsv?FEATS[fsv]:null;if(x[1]==="Fighting Style"&&fsv)d="You chose **"+fsv+"**. "+(FSF?FSF.d:"This Fighting Style is not in your active sources. Pick it again in the builder.");const fx=(x[1]==="Fighting Style"&&FSF)?FSF.full:"";
-  if(x[1]==="Weapon Mastery"&&wmSet.length)d="Masteries: "+wmSet.map((n) =>{return n+" ("+WEAPONS[n].m+")"}).join(", ")+". Swap one on a Long Rest.";
-  if(x[1]==="Divine Order"&&B.ch.p1opt||x[1]==="Primal Order"&&B.ch.p1opt)d="You chose **"+B.ch.p1opt+"**. "+d;
-  if(x[1]==="Blessed Strikes"&&B.ch.p7opt||x[1]==="Elemental Fury"&&B.ch.p7opt)d="You chose **"+B.ch.p7opt+"**. "+d;
-  if(x[1]==="Eldritch Invocations"){let iv=[];Object.keys(B.ch).forEach((k) =>{if(/invocation$/.test(k))iv=iv.concat(B.ch[k]||[])});if(iv.length)d="Known: "+iv.join(", ")+". "+d}
-  if(x[1]==="Metamagic"){let mm=[];Object.keys(B.ch).forEach((k) =>{if(/metamagic$/.test(k))mm=mm.concat(B.ch[k]||[])});if(mm.length)d="Known: "+mm.join(", ")+". "+d}
-  d+=ycOf(CHT,x[1],undefined);/* v32 */d+=__R.calcNote(x[1],B.cls,L,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+B.cls+" "+x[0],d:d,full:fx||(CF_FULL[B.cls+"|"+x[1]]?CF_FULL[B.cls+"|"+x[1]]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a):"")}}).filter((x) =>{return !/Subclass$|Ability Score|Epic Boon/.test(x.n)});
- const tr=c.track;if(tr)Object.keys(tr).forEach((k) =>{if(!tr[k][L-1])return;const tx="At level "+L+": "+tr[k][L-1]+".",ex=cf.filter((y) =>{return y.n===k})[0];/* a class table column named like a feature (Warden Interrupt) joins that feature, else the sheet got a second card and a second action */if(ex){if(ex.d.indexOf(tx)<0)ex.d+=" "+tx}else cf.push({n:k,s:SRC+", "+B.cls+" table",d:tx})});
- const sl=slotsFor();if(sl&&!__R.MCL().length)cf.push({n:"Spell Slots",s:SRC+", "+B.cls,d:sl.pact?sl.pact+" Pact slots at level "+sl.lvl+".":sl.map((n,i) =>{return "L"+(i+1)+": "+n}).join(", ")});
- C.features.push({g:B.cls,items:cf});
- if(B.sub&&B.sub!=="__custom"){const sf=c.subs[B.sub].filter((x) =>{return x[0]<=L}).map((x) =>{return {n:x[1],s:SRC+", "+B.sub+" "+x[0],d:x[2]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a),full:SUB_FULL[B.sub+"|"+x[1]]?SUB_FULL[B.sub+"|"+x[1]]+ycOf(CHT,x[1],undefined)+__R.calcNote(x[1],B.cls,L,a):""}});
-  let man=[];Object.keys(B.ch).forEach((k) =>{if(/maneuver$/.test(k))man=man.concat(B.ch[k]||[])});if(man.length)sf.push({n:"Maneuvers known",s:SRC+", Battle Master",d:man.map((n) =>{const m=MANEUVERS.filter((x) =>{return x[0]===n})[0];return "**"+n+".** "+(m?m[1]:"")}).join("\n\n")});
-  const nx=c.subs[B.sub].filter((x) =>{return x[0]>L})[0];
-  C.features.push({g:B.cls+" Subclass: "+B.sub,items:sf,next:nx?B.cls+" level "+nx[0]+" unlocks "+nx[1]+".":""})}
- else if(B.sub==="__custom")C.features.push({g:B.cls+" Subclass: "+subName,items:[{n:"Homebrew subclass",s:"Homebrew",d:"Add the subclass features from your setting."}]});
- /* M10: multiclass features get the level note (calcNote with the class level) and the full text, like the main class */
- __R.MCL().forEach((m,mi) =>{const mc=CLASSES[m.cls],seen={},it=[],mk=function(x,s,full){const cn=__R.calcNote(x[1],m.cls,m.lv,a);return {n:x[1],s:(x[3]&&x[3].hb?x[3].hb:SRC)+", "+s+" "+x[0],d:x[2]+ycOf(CHT,x[1],mi)+cn,full:full?full+ycOf(CHT,x[1],mi)+cn:""}};mc.f.forEach((x) =>{if(x[0]<=m.lv&&!/Subclass$|Ability Score|Epic Boon/.test(x[1])){const o=mk(x,m.cls,CF_FULL[m.cls+"|"+x[1]]);if(seen[x[1]]!=null&&x[1]!=="Expertise"){it[seen[x[1]]]=o;return}seen[x[1]]=it.length;it.push(o)}});
-  if(m.sub&&mc.subs[m.sub])mc.subs[m.sub].forEach((x) =>{if(x[0]<=m.lv)it.push(mk(x,m.sub,SUB_FULL[m.sub+"|"+x[1]]))});
-  C.features.push({g:m.cls+" (multiclass "+m.lv+")"+(m.sub?": "+m.sub:""),items:it})});
- if(__R.MCL().length){C.clsLabel=[B.cls+" "+L].concat(__R.MCL().map((m) =>{return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}
- C.features.push({g:"Feats",items:feats.map((f) =>{const F=FEATS[f.n]||{};let ex="";if(f.asi){const v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}const fk2=f.key||f.s;CHT0.forEach((q) =>{const pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,(ch) =>{return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */return {n:f.n,s:f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s/* m4 (RL20): no "PHB-2024, PHB-2024" */,d:(F.d||"")+ex,full:F.full?F.full+(ex?" **Your choice.**"+ex:""):""}})});/* v19: the chosen increase and damage type also under the full text */
- if(bg)C.features.push({g:"Background: "+B.bg,items:[{n:"Ability Scores",s:SRC+", "+B.bg,d:B.bgMode==="111"?bg.ab.join(" +1, ")+" +1.":(B.bg2||"?")+" +2, "+(B.bg1||"?")+" +1."},{n:"Proficiencies",s:SRC+", "+B.bg,d:"Skills: "+bg.sk.concat(Array.isArray(B.ch.bgsk)?B.ch.bgsk:[]).join(" and ")+(bg.skPick&&!(Array.isArray(B.ch.bgsk)&&B.ch.bgsk.length)?" (+"+bg.skPick.n+" of your choice, not chosen yet)":"")+". Tool: "+(bg.toolPick?((B.ch.bgTool||[]).join(", ")||"not chosen yet")+" ("+TOOL_ONE[bg.toolPick.cats[0]]+", your pick)":bg.tool)+"."},{n:"Equipment",s:SRC+", "+B.bg,d:"Option A: "+bg.eq+"."}].concat((bg.bf||[]).map((f) =>{return {n:f[0],s:SRC+", "+B.bg,d:f[1]}}))});
+ const bg=bgDef(B.bg),feats=allFeats();
+ const hpList=__R.hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}});
+ const G=__R.gfx(),CH=choices(),SG=__R.subGrant(B.sub),parts=clsParts();
+ const EA=__R.effArmor(),ESH=__R.effShield(),EW0=__R.effWeps(),BO=__R.baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=__R.MCL(),AFX=activeFx(),SFX=__R.spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
+ return {i:{B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:__R.packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+export function toSheet(){
+ const T=sheetInputs();
+ runPhases(T,["base","saves","skills","lang","gear","ac","savebonus","acbonus","speed","senses","init","profs","attacks","inventory","resources","actions","features"]);
+ const C=T.C,{c,L,TLv,a,pb,sp,custom,spName,subName,bg,feats}=T.i;
+ const CHT0=T.i.CH,SG=T.i.SG;
+ const {EA,ESH,ar}=T.i;
+ ACM=T.l.acm;/* v27 i2 */
+ const CHT=T.i.CH,weapons=T.l.weapons;
+ const wmSet=T.i.wmSet;
  {const SM={};SPELLS.forEach((x) =>{SM[x[0]]=x});
   let invs=[];Object.keys(B.ch).forEach((k) =>{if(/invocation$/.test(k))invs=invs.concat(B.ch[k]||[])});
   /* M9: every spell has a source key (class, "@species", "@spcan", "@mi:<key>") and that source's ability (spellAb). C.spellcasting keeps the main
