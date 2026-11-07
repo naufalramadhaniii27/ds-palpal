@@ -739,6 +739,7 @@
     "builder/12h-logic-sheet-handlers-attacks.js",
     "builder/12i-logic-sheet-handlers-gear-resources.js",
     "builder/12j-logic-sheet-handlers-features.js",
+    "builder/12k-logic-sheet-handlers-spells.js",
     "builder/12-logic-export-to-sheet.js",
     "builder/13-logic-sources-and-packs.js",
     "builder/14-logic-multiclass-hp-shop.js",

@@ -27,6 +27,7 @@ import "./12g-logic-sheet-handlers-profs.js";
 import "./12h-logic-sheet-handlers-attacks.js";
 import "./12i-logic-sheet-handlers-gear-resources.js";
 import "./12j-logic-sheet-handlers-features.js";
+import "./12k-logic-sheet-handlers-spells.js";
 import "./12-logic-export-to-sheet.js";
 import "./13-logic-sources-and-packs.js";
 import "./14-logic-multiclass-hp-shop.js";

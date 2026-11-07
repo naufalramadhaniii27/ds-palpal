@@ -1,4 +1,4 @@
-import {ABK,ABN,SRC,dieAvg,getPbAdd,mod,pbOf} from "./01-logic-core-helpers.js";
+import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf} from "./01-logic-core-helpers.js";
 import {DMAP,activeFx,attMax,bgX,byOk,htText,spX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
@@ -17,13 +17,14 @@ import "./12g-logic-sheet-handlers-profs.js";
 import "./12h-logic-sheet-handlers-attacks.js";
 import "./12i-logic-sheet-handlers-gear-resources.js";
 import "./12j-logic-sheet-handlers-features.js";
+import "./12k-logic-sheet-handlers-spells.js";
 import "./11c-logic-fx-handlers-sheet.js";
-import {appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef} from "./00-env.js";
+import {spellRows,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef} from "./00-env.js";
 Object.defineProperty(__R,"toSheet",{get:function(){return toSheet;},set:function(v){toSheet=v;},configurable:true});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R and the helpers of 01 to 11 */
-const QRY={spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,calcNote:function(n,c,l,a){return __R.calcNote(n,c,l,a)},defenses:function(a){return __R.defenses(a)},ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)__R.PROFC=profs;return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+const QRY={spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,miFeats:function(){return __R.miFeats()},autoSpells:function(){return typeof __R.autoSpells==="function"?__R.autoSpells():[]},spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,enabledPacks:function(){return __R.enabledPacks()},hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,calcNote:function(n,c,l,a){return __R.calcNote(n,c,l,a)},defenses:function(a){return __R.defenses(a)},ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)__R.PROFC=profs;return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
  itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:__R.itemDetail(n,x)}}finally{setInTS(0)}},
  kitTool:kitTool,qOf:function(x){return __R.qOf(x)},itemW:function(n){return __R.itemW(n)},itemWEst:function(n){return __R.itemWEst(n)},rarityOf:function(x){return __R.rarityOf(x)},equippable:function(n){return __R.equippable(n)},itemType:function(n,x){return __R.itemType(n,x)},itemCost:function(b){return __R.itemCost(b)},
  gpNow:function(){return __R.gpNow()},eqIdx:function(){return __R.eqIdx()},clsKitText:function(){return __R.clsKitText()},resMax:resMax,resKey:resKey,luRows:luRows,mcResMax:function(r,a,l){return __R.mcResMax(r,a,l)},slugK:slugK,slotsAll:function(){return __R.slotsAll()},keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNotes(f)},xdmgRows:xdmgRows,
@@ -40,68 +41,17 @@ function sheetInputs(){
  const hpList=__R.hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}});
  const G=__R.gfx(),CH=choices(),SG=__R.subGrant(B.sub),parts=clsParts();
  const EA=__R.effArmor(),ESH=__R.effShield(),EW0=__R.effWeps(),BO=__R.baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=__R.MCL(),AFX=activeFx(),SFX=__R.spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
- return {i:{B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:__R.packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+ const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
+ return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:__R.packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
 export function toSheet(){
  const T=sheetInputs();
- runPhases(T,["base","saves","skills","lang","gear","ac","savebonus","acbonus","speed","senses","init","profs","attacks","inventory","resources","actions","features"]);
+ runPhases(T,["base","saves","skills","lang","gear","ac","savebonus","acbonus","speed","senses","init","profs","attacks","inventory","resources","actions","features","spells"]);
  const C=T.C,{c,L,TLv,a,pb,sp,custom,spName,subName,bg,feats}=T.i;
  const CHT0=T.i.CH,SG=T.i.SG;
  const {EA,ESH,ar}=T.i;
  ACM=T.l.acm;/* v27 i2 */
  const CHT=T.i.CH,weapons=T.l.weapons;
  const wmSet=T.i.wmSet;
- {const SM={};SPELLS.forEach((x) =>{SM[x[0]]=x});
-  let invs=[];Object.keys(B.ch).forEach((k) =>{if(/invocation$/.test(k))invs=invs.concat(B.ch[k]||[])});
-  /* M9: every spell has a source key (class, "@species", "@spcan", "@mi:<key>") and that source's ability (spellAb). C.spellcasting keeps the main
-     ability (first caster class, else Magic Initiate, else species). C.spellcasting.by and C.spells[].ab are written only when 2+ abilities differ */
-  var SA=__R.slotsAll(),CPs=casterParts(),castAb=CPs.length?CPs[0].ab:null,SLs=spLists(),mis=__R.miFeats(),miK=Object.keys(B.pk||{}).filter((k) =>{return /^mi/.test(k)});
-  var spl=(typeof __R.autoSpells==="function"?__R.autoSpells():[]),spAbE=spellAb("@species",a.sc);
-  const ab=castAb||(miK.length?spellAb("@mi:"+miK[0],a.sc):null)||(spl.some((q) =>{return q.k==="@species"})?spAbE:null)||(spl.some((q) =>{return q.k==="@spcan"})?spellAb("@spcan",a.sc):null)||(spl.some((q) =>{return /^@sub:/.test(q.k)})?spellAb(spl.filter((q) =>{return /^@sub:/.test(q.k)})[0].k,a.sc):null)||(function(){const q=dmSpells()[0]||featSpells()[0];return q&&q.k?spellAb(q.k,a.sc):null})()/* feat spells with their own ability (Field Medic: Wisdom) on a non-caster */||"CHA",scm=mod(a.sc[ab]),mainSc=CPs.length?CPs[0].cls:"",sdc=8+pb+scm+spItemB("dc",mainSc),satk=pb+scm+spItemB("atk",mainSc);/* v19 RL42 */
-  const list=[],seen={},bysrc=[];function addS(n,use,src,k){const x=SM[n],kk=k||"";if(!x||seen[n+use+"|"+kk])return;seen[n+use+"|"+kk]=1;const sab=k?spellAb(k,a.sc):ab;if(!bysrc.some((b) =>{return b.k===kk}))bysrc.push({k:kk,n:/^@/.test(kk)?src:kk,ab:sab});
-   const o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:SPELL_FULL[n]||"",cls:spClsJ(x),use:use,src:src,_ab:sab};spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */list.push(o)}
-  CPs.forEach((p) =>{if(!bysrc.some((b) =>{return b.k===p.cls}))bysrc.push({k:p.cls,n:p.cls,ab:p.ab})});
-  spl.forEach((q) =>{addS(q.n,"Always prepared",q.src,q.k);if(q.k==="@species"&&q.g>1){const o=list.filter((s) =>{return s.n===q.n})[0];if(o)o.gain=q.g}});/* v21 M1 */
-  featSpells().forEach((q) =>{addS(q.n,"1/Long Rest free",q.f,q.k)});/* v21 i3 */
-  dmSpells().forEach((q) =>{addS(q.n,q.use,q.f,q.k)});/* v58: Dragonmark feats */
-  CHT0.forEach((q) =>{const v=B.ch[q.key];if(/^rc-/.test(q.key)&&Array.isArray(v))v.slice(0,q.n).forEach((n) =>{addS(n,"Always prepared",q.feature,"@ft:"+q.fk)})});/* v32 RL49 no. 16 */
-  CPs.forEach((p) =>{(SLs[p.cls]||[]).forEach((n) =>{if(list.some((s) =>{return s.n===n&&s.use==="Always prepared"&&spl.some((q) =>{return q.n===n&&q.k===p.cls})}))return;/* v22: once, as Always prepared */addS(n,SM[n]&&!SM[n][1]?"Cantrip":"Prepared",p.cls,p.cls)})});
-  const pk=B.pk||{};Object.keys(pk).forEach((k) =>{const mn=(mis.filter((m) =>{return m.key===k})[0]||{}).cls,ms="Magic Initiate"+(mn?" ("+mn+")":"");if(/^ma/.test(k)&&pk[k])addS(pk[k],"1/Long Rest","Mystic Arcanum","Warlock");if(/^mi/.test(k)){const mi0=list.length;(pk[k].c||[]).forEach((n) =>{addS(n,"Cantrip","Magic Initiate","@mi:"+k)});(pk[k].s||[]).forEach((n) =>{addS(n,"1/Long Rest free","Magic Initiate","@mi:"+k)});list.slice(mi0).forEach((o) =>{o.mi=ms});/* v23 M2: which Magic Initiate feat */bysrc.forEach((b) =>{if(b.k==="@mi:"+k)b.n=ms})}});
-  invs.forEach((n) =>{const q=INV_SPELLS[n];if(q)addS(typeof q==="string"?q:q[0],typeof q==="string"?"At will":q[1],n,"Warlock")});
-  __R.enabledPacks().forEach((p) =>{Object.keys(p.clsSpells||{}).forEach((c) =>{(p.clsSpells[c]||[]).forEach((q) =>{if(clsLv(c)>=q[0])addS(q[1],q[2],q[3],c)})});
-   Object.keys(p.spellPick||{}).forEach((c) =>{const q=p.spellPick[c],v=B.ch[q.key];if(clsLv(c)>=q.l&&Array.isArray(v)&&v[0]&&hbPickOk(q.key,v[0]))addS(v[0],q.use,q.feature,c)})});/* v20 RD24 *//* M17: INV_SPELLS in db4.js */
-  if(clsLv("Warlock")>=9&&!R14())addS("Contact Other Plane","1/Long Rest free","Contact Patron","Warlock");
-  CHT.forEach((q) =>{const v=B.ch[q.key];if(!Array.isArray(v)||!/^(m\d+:)?p(18sm[12]|20sig)$/.test(q.key))return;v.forEach((n) =>{if(q.list.some((x) =>{return x[0]===n}))addS(n,/sig$/.test(q.key)?"1/Short Rest free":"At will",q.feature,"Wizard")})});/* v32 RL49 no. 36, 37 *//* M10: multiclass Warlock too */
-  list.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:1)});
-  /* m14 (RL17): a caster class (castAb) writes C.spellcasting even with no spell chosen yet; C.spells is then [] */
-  if(list.length||castAb){C.spells=list;C.spellcasting={ab:ab,dc:sdc,atk:satk,mod:scm,slots:SA.slots||[],pact:SA.pact||null};
-   const abs=[];bysrc.forEach((b) =>{if(abs.indexOf(b.ab)<0)abs.push(b.ab)});
-   const isrc=spItemSrc(mainSc);if(isrc.length)C.spellcasting.items=isrc;/* v19 RL42: names of the items in the numbers */
-   if(abs.length>1){C.spellcasting.by=bysrc.map((b) =>{const m2=mod(a.sc[b.ab]);return {n:b.n,ab:b.ab,mod:m2,dc:8+pb+m2+spItemB("dc",b.k),atk:pb+m2+spItemB("atk",b.k)}});list.forEach((s) =>{s.ab=s._ab})}
-   const bonusN=list.filter((s) =>{return /^Bonus Action/.test(s.ct)}).map((s) =>{return s.n}),reN=list.filter((s) =>{return /^Reaction/.test(s.ct)}).map((s) =>{return s.n});
-   if(bonusN.length)C.actions.push({c:"Bonus Actions",n:"Spells",t:"Bonus Action casting time",d:bonusN.join(", ")+". See the Spells tab."});
-   if(reN.length)C.actions.push({c:"Reactions",n:"Spells",t:"Reaction casting time",d:reN.join(", ")+". See the Spells tab."});
-   const tier=TLv>=17?4:TLv>=11?3:TLv>=5?2:1;
-   list.forEach((s) =>{if(s.l||s.sv!=="ATK")return;const P=s.fx&&s.fx.dmg&&s.fx.dmg[0],pm=P&&/^(\d+)d(\d+)$/.exec(P[0]),m=pm?[0,pm[1],pm[2],P[1].split("|").join(" or ")]:/(\d+)d(\d+)\s+([A-Z][a-z]+)/.exec(s.sum);if(!m)return;/* RD19 */const eb=s.n==="Eldritch Blast",cnt=eb?1:(+m[1])*tier,ag=agOn(s.n);
-    C.attacks.push({n:s.n,sub:"Cantrip"+(eb?" \u2022 "+tier+" beam"+(tier>1?"s":""):""),ab:s._ab||ab,prof:true,die:cnt+"d"+m[2],dieSrc:s.n+(eb?"":" (scales with level)"),nomod:!(ag||(s.db&&s.db.length)),/* v15: Potent Spellcasting, Empowered Evocation add the modifier, as Agonizing Blast */type:m[3],range:(function(){const sp=(B.ch.invspear||[]).indexOf(s.n)>=0&&/^(\d+) ft$/.exec(s.r||"");return sp?(+sp[1]+30*clsLv("Warlock"))+" ft (Eldritch Spear)":s.r})(),m:"",misc:spItemB("atk",s.src)||undefined,miscSrc:spItemB("atk",s.src)?spItemSrc(s.src).join(", "):undefined,note:((B.ch.invrepel||[]).indexOf(s.n)>=0?"Repelling Blast: on a hit, push a Large or smaller target up to 10 ft away. ":"")+(ag?"Agonizing Blast adds your "+(s._ab||ab)+" modifier. ":(s.db||[]).map((b) =>{return b.s+" adds "+(b.v<0?"":"+")+b.v+". "}).join(""))+s.sum})});}
-  (C.spells||[]).forEach((s) =>{delete s._ab});
-  /* v58: spells that magic items let you cast (ITEM_SPELLS). use is "At will" when free, else "Item" and itc says what it costs */
-  if(typeof ITEM_SPELLS!=="undefined"){const ISL=[];__R.ensureInv().forEach((x) =>{const it=ITEM_SPELLS[x.n],d=DMAP[x.n];if(!it||!d)return;if(d[3]&&!x.eq)return;
-   it.sp.forEach((q) =>{const sp=SM[q[0]];if(!sp)return;const cost=q[1],vr=Array.isArray(cost),pl=q[3],src=x.n+(pl?" ("+pl+")":"");if(ISL.some((y) =>{return y.n===q[0]&&y.src===src}))return;
-    const lv=typeof q[2]==="number"&&q[2]?q[2]:sp[1];
-    const o={n:q[0],l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:SPELL_FULL[q[0]]||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
-    if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;spFxTo(o,"",a);ISL.push(o)})});
-   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}}
-  /* v21 M2: Mystic Arcanum and Contact Patron, once per Long Rest without a slot. v23 m1-r3: the shared "Mystic Arcanum" row only counts the arcana that have no own row yet */
-  const maN=(C.spells||[]).filter((s) =>{return s.src==="Mystic Arcanum"}).length;if(maN)C.res=C.res.filter((r) =>{if(r.n==="Mystic Arcanum"&&+r.max>=1){r.max=+r.max-maN;return r.max>0}return true});/* m1-r4: the arcana not chosen yet keep a shared row */
-  (C.spells||[]).forEach((s) =>{const one=s.src==="Contact Patron"&&C.res.filter((r) =>{return r.n===s.src&&+r.max===1})[0];if(one){one.n=s.src+": "+s.n;one.f=one.f||s.src;return}/* v23 m3-r2: one counter, named after the spell */if(/^(Mystic Arcanum|Contact Patron)$/.test(s.src)&&!C.res.some((r) =>{return r.f===s.src&&r.n.indexOf(s.n)>=0}))C.res.push({k:resKey("x-",s.src+" "+s.n,C.res),n:s.src+": "+s.n,tag:"1/Long Rest spell",max:1,reset:"long",f:s.src})});
-  let mmk=[];Object.keys(B.ch).forEach((k) =>{if(/metamagic$/.test(k))mmk=mmk.concat(B.ch[k]||[])});if(mmk.length)C.features.push({g:"Metamagic Options",items:mmk.map((n) =>{const o=METAMAGIC.filter((x) =>{return x[0]===n})[0];return {n:n,s:SRC+", Sorcerer",d:o?o[1]:""}})});/* RD18 */
-  if(invs.length){let lfoN=0;C.features.push({g:"Eldritch Invocations",items:invs.map((n) =>{let o=INVOCATIONS.filter((x) =>{return x[0]===n})[0]||PACTB14.filter((x) =>{return x[0]===n})[0],q=typeof INV_PICK!=="undefined"&&INV_PICK[n],y="";
-   if(q&&q.feat){lfoN++;y=B.ch[q.key+lfoN]||""}else if(q)y=(B.ch[q.key]||[]).join(", ");return {n:n,s:SRC+", Warlock",d:(o?o[1]:"")+(y?" **Your choice.** "+y+".":"")}})})}/* v32 RL49 */
-  /* m3 (RL19): Devil's Sight is its own sense, not Darkvision (PHB 2024 p. 155). New optional field C.senses [{n, v (ft), s, d}] */
-  if(invs.indexOf("Devil's Sight")>=0)C.senses=(C.senses||[]).concat([{n:"Devil's Sight",v:120,s:"Eldritch Invocation ("+SRC+", Warlock)",d:"You see normally in Dim Light and in Darkness, magical or not, out to 120 ft."}]);
-  /* M13: Pact of the Blade is applied to the chosen weapon only, in the attack loop above (before the inventory, RL36 c) */
-  if(invs.indexOf("Thirsting Blade")>=0||invs.indexOf("Devouring Blade")>=0)C.actions[0].d="Make "+(invs.indexOf("Devouring Blade")>=0?"three":"two")+" attacks with your pact weapon (Thirsting Blade), or one attack otherwise. "+C.actions[0].d;
- }
  /* v20 RD25: senses and Fly Speed from a species choice (Retromistika Mistikan ancestries) */
  /* v32 RL49 no. 28, 33: chosen Wild Shape forms and Primal Companion, read by Extras (optional fields) */
  CHT.forEach((q) =>{const v=B.ch[q.key];if(/^(m\d+:)?p2forms$/.test(q.key)&&Array.isArray(v)&&v.length)C.wsForms=v.slice();if(q.feature==="Primal Companion"&&typeof v==="string"&&v)C.companion=v});
