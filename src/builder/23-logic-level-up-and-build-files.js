@@ -40,21 +40,62 @@ genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
    (case, spaces, punctuation, a typo of one or two letters, a short form like "Berserker"), numbers written as text become numbers,
    scores stay 3 to 20, the background bonus goes only to the background's abilities (PHB 2024), and a homebrew source turns on
    when a name comes from it. What changes is listed in "notes" so the player sees it before the build opens. err stops the import */
-genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
- function nk(s){return String(s==null?"":s).toLowerCase().replace(/[‘’`]/g,"'").replace(/[^a-z0-9+]/g,"")}
- function lev(a,c,mx){if(Math.abs(a.length-c.length)>mx)return mx+1;let d=[],i,j;for(i=0;i<=a.length;i++){d[i]=[i]}for(j=0;j<=c.length;j++)d[0][j]=j;
+ function bnNk(s){return String(s==null?"":s).toLowerCase().replace(/[‘’`]/g,"'").replace(/[^a-z0-9+]/g,"")}
+ function bnLev(a,c,mx){if(Math.abs(a.length-c.length)>mx)return mx+1;let d=[],i,j;for(i=0;i<=a.length;i++){d[i]=[i]}for(j=0;j<=c.length;j++)d[0][j]=j;
   for(i=1;i<=a.length;i++)for(j=1;j<=c.length;j++){d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===c[j-1]?0:1));if(i>1&&j>1&&a[i-1]===c[j-2]&&a[i-2]===c[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[a.length][c.length]}
  /* the name in the list for v: {v, near} or null. part: a short or long form that fits one name only */
- function pick(v,list,part,wide){if(v==null||v==="")return null;v=String(v).trim().replace(/\s+/g," ");if(list.indexOf(v)>=0)return {v:v};const k=nk(v);if(!k)return null;
-  let m=list.filter((x) =>{return nk(x)===k});if(m.length===1)return {v:m[0]};
-  if(part&&k.length>=4){m=list.filter((x) =>{const y=nk(x);return y.length>k.length?y.indexOf(k)>=0:wide&&k.indexOf(y)>=0&&y.length>=4});if(m.length===1)return {v:m[0],near:1}}
-  if(k.length>=6){let mx=1,best=mx+1,bm=[];list.forEach((x) =>{const e=lev(k,nk(x),mx);if(e<best){best=e;bm=[x]}else if(e===best)bm.push(x)});if(best<=mx&&bm.length===1)return {v:bm[0],near:1}}
+ function bnPick(v,list,part,wide){if(v==null||v==="")return null;v=String(v).trim().replace(/\s+/g," ");if(list.indexOf(v)>=0)return {v:v};const k=bnNk(v);if(!k)return null;
+  let m=list.filter((x) =>{return bnNk(x)===k});if(m.length===1)return {v:m[0]};
+  if(part&&k.length>=4){m=list.filter((x) =>{const y=bnNk(x);return y.length>k.length?y.indexOf(k)>=0:wide&&k.indexOf(y)>=0&&y.length>=4});if(m.length===1)return {v:m[0],near:1}}
+  if(k.length>=6){let mx=1,best=mx+1,bm=[];list.forEach((x) =>{const e=bnLev(k,bnNk(x),mx);if(e<best){best=e;bm=[x]}else if(e===best)bm.push(x)});if(best<=mx&&bm.length===1)return {v:bm[0],near:1}}
   return null}
- function q(s){return "\""+s+"\""}
- function said(v,r){if(r&&r.near)notes.push(q(v)+" is read as "+q(r.v))}
- function abl(v){if(v==null||v==="")return "";const k=nk(v).slice(0,3).toUpperCase();return ABK.indexOf(k)>=0?k:null}
- function num(v){if(typeof v==="number")return v;const m=/^\s*(-?\d+(?:\.\d+)?)/.exec(String(v==null?"":v));return m?+m[1]:NaN}
- function arr(v){return v==null||v===""?[]:Array.isArray(v)?v:[v]}
+ function bnQ(s){return "\""+s+"\""}
+ function bnAbl(v){if(v==null||v==="")return "";const k=bnNk(v).slice(0,3).toUpperCase();return ABK.indexOf(k)>=0?k:null}
+ function bnNum(v){if(typeof v==="number")return v;const m=/^\s*(-?\d+(?:\.\d+)?)/.exec(String(v==null?"":v));return m?+m[1]:NaN}
+ function bnArr(v){return v==null||v===""?[]:Array.isArray(v)?v:[v]}
+function saidIn(notes){return function(v,r){if(r&&r.near)notes.push(bnQ(v)+" is read as "+bnQ(r.v))}}
+function normScores(b,notes){
+ const bs=b.base&&typeof b.base==="object"?b.base:null,nb={};
+ if(bs){Object.keys(bs).forEach((k) =>{const a=bnAbl(k);if(a)nb[a]=bs[k]});ABK.forEach((a) =>{let v=nb[a];if(v==null||v===""||isNaN(bnNum(v))){notes.push(ABN[a]+" score is missing, so it is 10");nb[a]=10;return}
+  v=Math.round(bnNum(v));if(v>20){notes.push(ABN[a]+" "+nb[a]+" becomes 20, the highest score");v=20}else if(v<3){notes.push(ABN[a]+" "+nb[a]+" becomes 3, the lowest score");v=3}nb[a]=v});b.base=nb;if(!b.method)b.method="manual"}}
+function normBgBonus(b,notes){
+ const bm=String(b.bgMode==null?"21":b.bgMode).replace(/[^0-9]/g,"");b.bgMode=(bm==="111"||b.rs==="2014")?"111":"21";
+ const bgo=b.bg&&BACKGROUNDS[b.bg];
+ if(b.bgMode==="21"){const a2=bnAbl(b.bg2),a1=bnAbl(b.bg1);b.bg2=a2||"";b.bg1=a1||"";
+  if(bgo){const ab=bgo.ab,sc=b.base||BLANK.base,best=function(no){return ab.filter((x) =>{return x!==no}).sort((x,y) =>{return (sc[y]||0)-(sc[x]||0)})[0]};
+   if(b.bg2&&ab.indexOf(b.bg2)<0){const n2=best(b.bg1&&ab.indexOf(b.bg1)>=0?b.bg1:"");notes.push(b.bg+" cannot raise "+b.bg2+", so the +2 goes to "+n2);b.bg2=n2}
+   if(b.bg1&&(ab.indexOf(b.bg1)<0||b.bg1===b.bg2)){const n1=best(b.bg2);notes.push(b.bg1===b.bg2?"The +1 cannot go to "+b.bg1+" again, so it goes to "+n1:b.bg+" cannot raise "+b.bg1+", so the +1 goes to "+n1);b.bg1=n1}}}}
+function normSpells(b,notes,said){const SN=Object.keys(lateGet("SMAP")),gone=[];
+ function spl(list){const out=[];bnArr(list).forEach((n) =>{const r=bnPick(n,SN);if(!r){if(n)gone.push(n);return}said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)});return out}
+ b.sp=spl(b.sp);if(b.spm&&typeof b.spm==="object"){const sm={};Object.keys(b.spm).forEach((c) =>{const r=bnPick(c,Object.keys(CLASSES));if(r)sm[r.v]=spl(b.spm[c])});b.spm=sm}
+ if(b.pk&&typeof b.pk==="object")Object.keys(b.pk).forEach((k) =>{const p=b.pk[k];if(!p||typeof p!=="object")return;if(p.c)p.c=spl(p.c);if(p.s)p.s=spl(p.s);if(p.ab!=null){const a=bnAbl(p.ab);if(a)p.ab=a;else delete p.ab}});
+ if(gone.length)notes.push("Not in the 2024 spell list, so removed: "+gone.join(", "));}
+function normChoiceLists(b,notes,said,FT){const ch=b.ch;
+ function lst(key,list,what){if(ch[key]==null)return;const bad=[],out=[];bnArr(ch[key]).forEach((n) =>{const r=bnPick(n,list);if(r){said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(n)});ch[key]=out;if(bad.length)notes.push(what+" not in the app, so removed: "+bad.join(", "))}
+ lst("clsk",Object.keys(SKILLS),"Skills");lst("lang",LANGS.map((x) =>{return x[0]}),"Languages");lst("wm",wmKeys(),"Weapon Mastery weapons");
+ Object.keys(ch).forEach((k) =>{const v=ch[k];
+  if(/^(m\d+:)?(feat\d+|fs\d+)$|^spfeat$/.test(k)){const o=v&&typeof v==="object"&&!Array.isArray(v)?v:null,f=o?o.feat:v;if(f==null||f==="")return;let r=bnPick(f,FT);
+   if(!r&&/^magic initiate$/i.test(String(f).trim())&&o&&o.list){r=bnPick("Magic Initiate ("+o.list+")",FT)}
+   if(!r){notes.push("Feat "+bnQ(f)+" is not in the app, so it is left for you to choose");delete ch[k];return}said(f,r);if(o){o.feat=r.v;["a1","a2","a"].forEach((x) =>{if(o[x]!=null){const a=bnAbl(o[x]);if(a)o[x]=a;else delete o[x]}})}else ch[k]=r.v}});}
+ function itemSpecial(s,IN){const p=/^Potion of (Greater|Superior|Supreme) Healing$/i.exec(s);if(p)return {v:"Potion of Healing ("+p[1].charAt(0).toUpperCase()+p[1].slice(1).toLowerCase()+")"};if(/^(rope|rope, (hempen|silk)( \(50 feet\))?|(hempen|silk) rope)$/i.test(s)&&IN.indexOf("Rope")>=0)return {v:"Rope",near:s.toLowerCase()!=="rope"?1:0};return null}
+function itemName(n,IN,SN){const s=String(n).trim().replace(/\s+/g," ");if(IN.indexOf(s)>=0)return {v:s};let m=/^Spell Scroll \((.+)\)$/i.exec(s);if(m){const r=bnPick(m[1],SN);return r?{v:"Spell Scroll ("+r.v+")",near:r.near}:null}
+  m=/^\+(\d)\s+(.+)$/.exec(s)||/^(.+?),?\s*\+(\d)$/.exec(s);if(m){const pl=/^\+/.test(s)?m[1]:m[2],bn=itemName(/^\+/.test(s)?m[2]:m[1],IN,SN);if(bn){const c=bn.v+", +"+pl;if(DMAP[c]||WEAPONS[bn.v]||ARMOR[bn.v]||bn.v==="Shield")return {v:c,near:bn.near}}}
+  const sp=itemSpecial(s,IN);if(sp)return sp;
+  let r2=bnPick(s,IN);if(r2)return r2;const ak=bnNk(s+" Armor");r2=Object.keys(ARMOR).filter((x) =>{return bnNk(x)===ak})[0];if(r2)return {v:r2,near:1};
+  const pre=GEAR.map((x) =>{return x[0]}).filter((x) =>{return /\)$/.test(x)&&bnNk(x).indexOf(bnNk(s))===0});/* bundles such as "Arrows (20)" */return pre.length===1&&bnNk(s).length>=5?{v:pre[0],near:1}:null}
+function normInvRow(x,IN,SN,said,plain){if(typeof x==="string")x={n:x};if(!x||typeof x!=="object")return null;const n=x.n!=null?x.n:x.name;if(n==null||n==="")return null;
+  let o={n:String(n).trim()},qv=x.q!=null?x.q:x.qty!=null?x.qty:x.quantity!=null?x.quantity:x.count;qv=bnNum(qv);o.q=qv>=1?Math.floor(qv):1;o.eq=!!(x.eq!=null?x.eq:x.equipped);
+  Object.keys(x).forEach((k) =>{if(["n","name","q","qty","quantity","count","eq","equipped"].indexOf(k)<0)o[k]=x[k]});
+  const eq0=x.eq!=null||x.equipped!=null,r=itemName(o.n,IN,SN);if(r){const bu=/\((\d+)\)$/.exec(r.v);if(bu&&!/\(\d+\)$/.test(o.n)&&o.q>=+bu[1]&&o.q%+bu[1]===0)o.q=o.q/+bu[1];said(o.n,r);o.n=r.v}else plain.push(o.n);return {o:o,eq0:eq0}}
+function normInvEquip(o,eq0,st){if(!eq0){const bo=baseOf(o.n).b;/* not said: weapons, the first armor, and a Shield are worn */if(WEAPONS[bo]||bo==="Shield")o.eq=true;else if(ARMOR[bo]&&!st.arm){o.eq=true;st.arm=1}}else if(o.eq&&ARMOR[baseOf(o.n).b])st.arm=1;}
+function normItems(b,notes,said,SN){
+ const IN=[].concat(Object.keys(WEAPONS),Object.keys(ARMOR),["Shield"],Object.keys(DMAP),GEAR.map((x) =>{return x[0]}),Object.keys(PRICE),POTIONS.map((x) =>{return x[0]})).filter((x,i,a) =>{return a.indexOf(x)===i});
+ const plain=[];
+ if(b.inv!=null){const st={arm:0};b.inv=bnArr(b.inv).map((x) =>{const row=normInvRow(x,IN,SN,said,plain);if(!row)return null;normInvEquip(row.o,row.eq0,st);return row.o}).filter(Boolean);
+  if(plain.length)notes.push("Not in the app item lists, so kept as plain gear with no weight or cost: "+plain.join(", "));
+  if(b.eqC==null)b.eqC="none";if(b.eqB==null)b.eqB="none"}}
+genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
+ const said=saidIn(notes);
  try{
  b=structuredClone(b0||{});delete b.kind;delete b.app;delete b.format;
  /* other field names a chat may use */
@@ -67,48 +108,37 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  function on(src){__set_B(structuredClone(BLANK));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
  function names(){const o={sp:Object.keys(SPECIES),bg:Object.keys(BACKGROUNDS),ft:Object.keys(FEATS),subs:{}};Object.keys(CLASSES).forEach((c) =>{o.subs[c]=Object.keys(CLASSES[c].subs||{})});return o}
  on(src0);const N0=names(),ids=[];
- const cl=pick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+q(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
- function need(v,list,part,wide){return v&&!pick(v,list,part,wide)}
+ const cl=bnPick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+bnQ(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
+ function need(v,list,part,wide){return v&&!bnPick(v,list,part,wide)}
  let want=[];if(need(b.species,N0.sp))want.push(["sp",b.species]);if(need(b.bg,N0.bg,1,1))want.push(["bg",b.bg]);if(need(b.sub,N0.subs[b.cls]||[],1))want.push(["sub",b.sub]);
- if(want.length)allPacks().forEach((p) =>{if(src0[p.id])return;const s=Object.assign({},src0);s[p.id]=true;on(s);const N=names(),hit=want.filter((w) =>{return w[0]==="sp"?pick(w[1],N.sp):w[0]==="bg"?pick(w[1],N.bg,1,1):pick(w[1],N.subs[b.cls]||[],1)});
-  if(hit.length){src0[p.id]=true;notes.push("The "+p.name+" source is turned on for "+hit.map((w) =>{return q(w[1])}).join(", "));want=want.filter((w) =>{return hit.indexOf(w)<0})}});
+ if(want.length)allPacks().forEach((p) =>{if(src0[p.id])return;const s=Object.assign({},src0);s[p.id]=true;on(s);const N=names(),hit=want.filter((w) =>{return w[0]==="sp"?bnPick(w[1],N.sp):w[0]==="bg"?bnPick(w[1],N.bg,1,1):bnPick(w[1],N.subs[b.cls]||[],1)});
+  if(hit.length){src0[p.id]=true;notes.push("The "+p.name+" source is turned on for "+hit.map((w) =>{return bnQ(w[1])}).join(", "));want=want.filter((w) =>{return hit.indexOf(w)<0})}});
  on(src0);const L=names();
  /* level and multiclass */
- const lv=b.level==null||b.level===""?1:num(b.level);if(b.level==null||b.level==="")notes.push("Level is missing, so it is 1");
+ const lv=b.level==null||b.level===""?1:bnNum(b.level);if(b.level==null||b.level==="")notes.push("Level is missing, so it is 1");
  if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv)){err.push("level must be a whole number from 1 to 20");return {err:err,notes:notes,b:b}}b.level=lv;
- b.mc=arr(b.mc).filter((m) =>{if(!m||typeof m!=="object")return false;const r=pick(m.cls||m.class,Object.keys(CLASSES));if(!r){notes.push("Multiclass "+q(m.cls||m.class||"")+" is removed. It is not a 2024 class");return false}
-  said(m.cls||m.class,r);m.cls=r.v;delete m["class"];let l=m.lv==null?num(m.level):num(m.lv);delete m.level;if(!(l>=1&&Math.floor(l)===l)){notes.push("Multiclass "+m.cls+" has no level, so it is 1");l=1}m.lv=l;
-  if(m.sub){const s=pick(m.sub,L.subs[m.cls]||[],1);if(s){said(m.sub,s);m.sub=s.v}else{notes.push("Subclass "+q(m.sub)+" is not a "+m.cls+" subclass, so it is left for you to choose");m.sub=""}}return true});
+ b.mc=bnArr(b.mc).filter((m) =>{if(!m||typeof m!=="object")return false;const r=bnPick(m.cls||m.class,Object.keys(CLASSES));if(!r){notes.push("Multiclass "+bnQ(m.cls||m.class||"")+" is removed. It is not a 2024 class");return false}
+  said(m.cls||m.class,r);m.cls=r.v;delete m["class"];let l=m.lv==null?bnNum(m.level):bnNum(m.lv);delete m.level;if(!(l>=1&&Math.floor(l)===l)){notes.push("Multiclass "+m.cls+" has no level, so it is 1");l=1}m.lv=l;
+  if(m.sub){const s=bnPick(m.sub,L.subs[m.cls]||[],1);if(s){said(m.sub,s);m.sub=s.v}else{notes.push("Subclass "+bnQ(m.sub)+" is not a "+m.cls+" subclass, so it is left for you to choose");m.sub=""}}return true});
  const tl=b.level+b.mc.reduce((t,m) =>{return t+m.lv},0);if(tl>20){err.push("total level "+tl+" is more than 20");return {err:err,notes:notes,b:b}}
  /* species, lineage, background, subclass */
  b.unset=b.unset&&typeof b.unset==="object"?b.unset:{};
- if(b.species){let sr=pick(b.species,L.sp);
+ if(b.species){let sr=bnPick(b.species,L.sp);
   if(!sr&&b.species!=="Custom"){/* "Wood Elf", "Tiefling (Infernal)", "Red Dragonborn": species plus lineage */const t0=String(b.species);L.sp.forEach((s) =>{if(sr)return;const o=(SPECIES[s].lin||{}).opts;if(!o)return;
-    if(nk(t0).indexOf(nk(s))<0&&nk(t0)!=="drow")return;const rest=nk(t0).replace(nk(s),"");const lo=o.filter((x) =>{const y=nk(x);return rest.length>=3&&y.indexOf(rest)===0});if(lo.length===1&&(nk(t0).indexOf(nk(s))>=0||lo.length===1)){sr={v:s,near:1};b.ch.lin=lo[0]}});
-   if(sr)notes.push(q(t0)+" is read as "+sr.v+", "+String(b.ch.lin).replace(/ \(.*$/,""))}
+    if(bnNk(t0).indexOf(bnNk(s))<0&&bnNk(t0)!=="drow")return;const rest=bnNk(t0).replace(bnNk(s),"");const lo=o.filter((x) =>{const y=bnNk(x);return rest.length>=3&&y.indexOf(rest)===0});if(lo.length===1&&(bnNk(t0).indexOf(bnNk(s))>=0||lo.length===1)){sr={v:s,near:1};b.ch.lin=lo[0]}});
+   if(sr)notes.push(bnQ(t0)+" is read as "+sr.v+", "+String(b.ch.lin).replace(/ \(.*$/,""))}
   else said(b.species,sr);
-  if(sr)b.species=sr.v;else if(b.species!=="Custom"){notes.push("Species "+q(b.species)+" is not in the app, so it is left for you to choose");delete b.species;b.unset.species=1}}
- if(b.species&&SPECIES[b.species]&&b.ch.lin){const lo2=(SPECIES[b.species].lin||{}).opts||[],k2=nk(b.ch.lin),lr=lo2.filter((x) =>{return x===b.ch.lin})[0]||lo2.filter((x) =>{return nk(x).indexOf(k2)===0||nk(x.replace(/ \(.*$/,""))===k2})[0];
-  if(lr)b.ch.lin=lr;else{notes.push(q(b.ch.lin)+" is not a "+b.species+" option, so it is left for you to choose");delete b.ch.lin}}
- if(b.bg){const br=pick(b.bg,L.bg,1,1);if(br){said(b.bg,br);b.bg=br.v}else{notes.push("Background "+q(b.bg)+" is not in the app, so it is left for you to choose");delete b.bg;b.unset.bg=1}}
- if(b.sub){const ur=pick(b.sub,L.subs[b.cls]||[],1);if(ur){said(b.sub,ur);b.sub=ur.v}else{notes.push("Subclass "+q(b.sub)+" is not a "+b.cls+" subclass, so it is left for you to choose");b.sub=""}}
+  if(sr)b.species=sr.v;else if(b.species!=="Custom"){notes.push("Species "+bnQ(b.species)+" is not in the app, so it is left for you to choose");delete b.species;b.unset.species=1}}
+ if(b.species&&SPECIES[b.species]&&b.ch.lin){const lo2=(SPECIES[b.species].lin||{}).opts||[],k2=bnNk(b.ch.lin),lr=lo2.filter((x) =>{return x===b.ch.lin})[0]||lo2.filter((x) =>{return bnNk(x).indexOf(k2)===0||bnNk(x.replace(/ \(.*$/,""))===k2})[0];
+  if(lr)b.ch.lin=lr;else{notes.push(bnQ(b.ch.lin)+" is not a "+b.species+" option, so it is left for you to choose");delete b.ch.lin}}
+ if(b.bg){const br=bnPick(b.bg,L.bg,1,1);if(br){said(b.bg,br);b.bg=br.v}else{notes.push("Background "+bnQ(b.bg)+" is not in the app, so it is left for you to choose");delete b.bg;b.unset.bg=1}}
+ if(b.sub){const ur=bnPick(b.sub,L.subs[b.cls]||[],1);if(ur){said(b.sub,ur);b.sub=ur.v}else{notes.push("Subclass "+bnQ(b.sub)+" is not a "+b.cls+" subclass, so it is left for you to choose");b.sub=""}}
  /* ability scores */
- const bs=b.base&&typeof b.base==="object"?b.base:null,nb={};
- if(bs){Object.keys(bs).forEach((k) =>{const a=abl(k);if(a)nb[a]=bs[k]});ABK.forEach((a) =>{let v=nb[a];if(v==null||v===""||isNaN(num(v))){notes.push(ABN[a]+" score is missing, so it is 10");nb[a]=10;return}
-  v=Math.round(num(v));if(v>20){notes.push(ABN[a]+" "+nb[a]+" becomes 20, the highest score");v=20}else if(v<3){notes.push(ABN[a]+" "+nb[a]+" becomes 3, the lowest score");v=3}nb[a]=v});b.base=nb;if(!b.method)b.method="manual"}
+ normScores(b,notes);
  /* background bonus: only the background's three abilities */
- const bm=String(b.bgMode==null?"21":b.bgMode).replace(/[^0-9]/g,"");b.bgMode=(bm==="111"||b.rs==="2014")?"111":"21";
- const bgo=b.bg&&BACKGROUNDS[b.bg];
- if(b.bgMode==="21"){const a2=abl(b.bg2),a1=abl(b.bg1);b.bg2=a2||"";b.bg1=a1||"";
-  if(bgo){const ab=bgo.ab,sc=b.base||BLANK.base,best=function(no){return ab.filter((x) =>{return x!==no}).sort((x,y) =>{return (sc[y]||0)-(sc[x]||0)})[0]};
-   if(b.bg2&&ab.indexOf(b.bg2)<0){const n2=best(b.bg1&&ab.indexOf(b.bg1)>=0?b.bg1:"");notes.push(b.bg+" cannot raise "+b.bg2+", so the +2 goes to "+n2);b.bg2=n2}
-   if(b.bg1&&(ab.indexOf(b.bg1)<0||b.bg1===b.bg2)){const n1=best(b.bg2);notes.push(b.bg1===b.bg2?"The +1 cannot go to "+b.bg1+" again, so it goes to "+n1:b.bg+" cannot raise "+b.bg1+", so the +1 goes to "+n1);b.bg1=n1}}}
+ normBgBonus(b,notes);
  /* spells */
- const SN=Object.keys(lateGet("SMAP")),gone=[];
- function spl(list){const out=[];arr(list).forEach((n) =>{const r=pick(n,SN);if(!r){if(n)gone.push(n);return}said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)});return out}
- b.sp=spl(b.sp);if(b.spm&&typeof b.spm==="object"){const sm={};Object.keys(b.spm).forEach((c) =>{const r=pick(c,Object.keys(CLASSES));if(r)sm[r.v]=spl(b.spm[c])});b.spm=sm}
- if(b.pk&&typeof b.pk==="object")Object.keys(b.pk).forEach((k) =>{const p=b.pk[k];if(!p||typeof p!=="object")return;if(p.c)p.c=spl(p.c);if(p.s)p.s=spl(p.s);if(p.ab!=null){const a=abl(p.ab);if(a)p.ab=a;else delete p.ab}});
- if(gone.length)notes.push("Not in the 2024 spell list, so removed: "+gone.join(", "));
+ normSpells(b,notes,said);
  /* choices: skills, languages, Weapon Mastery, feats */
  const FT=L.ft;
  /* v34 p07: choices by feature name ({"Eldritch Invocations":[...],"Fighting Style":"Defense"}). Raw builder keys still work */
@@ -116,48 +146,31 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
   const cands=function(c){if(c.t==="feat"||c.t==="fs"||c.t==="ofeat")return FT;if(c.t==="tool")return c.cats?[].concat.apply([],c.cats.map((k) =>{return TOOLS[k]||[]})):toolAll();if(c.t==="sub")return L.subs[b.cls]||[];
    if(c.t==="lang")return c.from||LANGS.map((x) =>{return x[0]});if(c.t==="skills"||c.t==="exp")return c.from||Object.keys(SKILLS);if(c.t==="wm")return c.from||wmKeys();return c.list||c.from||null};
   const one=function(c){return /^(feat|fs|ofeat|opt|sub|mcsub|lin)$/.test(c.t)};
-  const put=function(c,vals,name){const cl=cands(c),out=[],bad=[];vals.forEach((v) =>{if(v&&typeof v==="object"){out.push(v);return}const r=cl?pick(v,cl,1):{v:String(v)};if(r){said(v,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(v)});
-   if(bad.length)notes.push(name+": "+bad.map(q).join(", ")+" "+(bad.length>1?"are":"is")+" not an option there, so it is left for you to choose");if(!out.length)return;
+  const put=function(c,vals,name){const cl=cands(c),out=[],bad=[];vals.forEach((v) =>{if(v&&typeof v==="object"){out.push(v);return}const r=cl?bnPick(v,cl,1):{v:String(v)};if(r){said(v,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(v)});
+   if(bad.length)notes.push(name+": "+bad.map(bnQ).join(", ")+" "+(bad.length>1?"are":"is")+" not an option there, so it is left for you to choose");if(!out.length)return;
    if(c.t==="sub"){if(!b.sub)b.sub=out[0];return}if(c.t==="mcsub"){const mcx=(b.mc||[])[c.mc];if(mcx&&!mcx.sub)mcx.sub=out[0];return}
    if(c.t==="feat"){const o=out[0];ch0[c.key]=typeof o==="object"?o:{feat:o};return}if(one(c)){ch0[c.key]=typeof out[0]==="object"?out[0].feat:out[0];return}ch0[c.key]=out.slice(0,c.n)};
   var ch0=b.ch;
   /* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
   left=left.filter((name) =>{const v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};let i=0;while(b.pk["mi"+i])i++;
-   const ab=v.ab||v.ability;b.pk["mi"+i]={c:arr(v.c||v.cantrips||[]),s:arr(v.s||v.spells||v.spell||[]),ab:ab?(abl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
+   const ab=v.ab||v.ability;b.pk["mi"+i]={c:bnArr(v.c||v.cantrips||[]),s:bnArr(v.s||v.spells||v.spell||[]),ab:ab?(bnAbl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
   for(let pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=withB(b,choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map((c) =>{return c.key});
    left=left.filter((name) =>{const val=byName[name];if(KS.indexOf(name)>=0){ch0[name]=val;return false}
-    const nn=nk(name),lab=function(c){const t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
-    let E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return nk(x)===nn})});
-    if(!E.length&&nn.length>=6)E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return lev(nk(x),nn,2)<=2})});
+    const nn=bnNk(name),lab=function(c){const t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
+    let E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return bnNk(x)===nn})});
+    if(!E.length&&nn.length>=6)E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return bnLev(bnNk(x),nn,2)<=2})});
     if(!E.length)return true;
     E.sort((a,c) =>{return (a.lvl||0)-(c.lvl||0)});const got=E.map(() =>{return []}),rest=[];
     /* each value goes to the first entry (lowest level) that has room and offers it, so level 5 picks land at level 5 */
-    arr(val).forEach((v) =>{const placed=E.some((c,i) =>{if(got[i].length>=(one(c)?1:c.n))return false;if(v&&typeof v==="object"){if(/^(feat|fs|ofeat)$/.test(c.t)){got[i].push(v);return true}return false}const cl=cands(c);if(cl&&!pick(v,cl,1))return false;got[i].push(v);return true});if(!placed)rest.push(v)});
+    bnArr(val).forEach((v) =>{const placed=E.some((c,i) =>{if(got[i].length>=(one(c)?1:c.n))return false;if(v&&typeof v==="object"){if(/^(feat|fs|ofeat)$/.test(c.t)){got[i].push(v);return true}return false}const cl=cands(c);if(cl&&!bnPick(v,cl,1))return false;got[i].push(v);return true});if(!placed)rest.push(v)});
     E.forEach((c,i) =>{put(c,got[i],name)});
-    if(rest.length)notes.push(name+": more picks than this build has, so left out: "+rest.map((v) =>{return typeof v==="object"?JSON.stringify(v):q(v)}).join(", "));
+    if(rest.length)notes.push(name+": more picks than this build has, so left out: "+rest.map((v) =>{return typeof v==="object"?JSON.stringify(v):bnQ(v)}).join(", "));
     return false})}
-  left.forEach((name) =>{if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){ch0[name]=byName[name];return}notes.push(q(name)+" is not a choice for this build, so it is left out")})}
+  left.forEach((name) =>{if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){ch0[name]=byName[name];return}notes.push(bnQ(name)+" is not a choice for this build, so it is left out")})}
  const ch=b.ch;
- function lst(key,list,what){if(ch[key]==null)return;const bad=[],out=[];arr(ch[key]).forEach((n) =>{const r=pick(n,list);if(r){said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(n)});ch[key]=out;if(bad.length)notes.push(what+" not in the app, so removed: "+bad.join(", "))}
- lst("clsk",Object.keys(SKILLS),"Skills");lst("lang",LANGS.map((x) =>{return x[0]}),"Languages");lst("wm",wmKeys(),"Weapon Mastery weapons");
- Object.keys(ch).forEach((k) =>{const v=ch[k];
-  if(/^(m\d+:)?(feat\d+|fs\d+)$|^spfeat$/.test(k)){const o=v&&typeof v==="object"&&!Array.isArray(v)?v:null,f=o?o.feat:v;if(f==null||f==="")return;let r=pick(f,FT);
-   if(!r&&/^magic initiate$/i.test(String(f).trim())&&o&&o.list){r=pick("Magic Initiate ("+o.list+")",FT)}
-   if(!r){notes.push("Feat "+q(f)+" is not in the app, so it is left for you to choose");delete ch[k];return}said(f,r);if(o){o.feat=r.v;["a1","a2","a"].forEach((x) =>{if(o[x]!=null){const a=abl(o[x]);if(a)o[x]=a;else delete o[x]}})}else ch[k]=r.v}});
+ normChoiceLists(b,notes,said,FT);
  /* items: names from the app lists, "+1 Longsword", "Plate" for "Plate Armor"; an unknown item stays as plain gear */
- const IN=[].concat(Object.keys(WEAPONS),Object.keys(ARMOR),["Shield"],Object.keys(DMAP),GEAR.map((x) =>{return x[0]}),Object.keys(PRICE),POTIONS.map((x) =>{return x[0]})).filter((x,i,a) =>{return a.indexOf(x)===i}),plain=[];
- function item(n){const s=String(n).trim().replace(/\s+/g," ");if(IN.indexOf(s)>=0)return {v:s};let m=/^Spell Scroll \((.+)\)$/i.exec(s);if(m){const r=pick(m[1],SN);return r?{v:"Spell Scroll ("+r.v+")",near:r.near}:null}
-  m=/^\+(\d)\s+(.+)$/.exec(s)||/^(.+?),?\s*\+(\d)$/.exec(s);if(m){const pl=/^\+/.test(s)?m[1]:m[2],bn=item(/^\+/.test(s)?m[2]:m[1]);if(bn){const c=bn.v+", +"+pl;if(DMAP[c]||WEAPONS[bn.v]||ARMOR[bn.v]||bn.v==="Shield")return {v:c,near:bn.near}}}
-  const p=/^Potion of (Greater|Superior|Supreme) Healing$/i.exec(s);if(p)return {v:"Potion of Healing ("+p[1].charAt(0).toUpperCase()+p[1].slice(1).toLowerCase()+")"};if(/^(rope|rope, (hempen|silk)( \(50 feet\))?|(hempen|silk) rope)$/i.test(s)&&IN.indexOf("Rope")>=0)return {v:"Rope",near:s.toLowerCase()!=="rope"?1:0};
-  let r2=pick(s,IN);if(r2)return r2;const ak=nk(s+" Armor");r2=Object.keys(ARMOR).filter((x) =>{return nk(x)===ak})[0];if(r2)return {v:r2,near:1};
-  const pre=GEAR.map((x) =>{return x[0]}).filter((x) =>{return /\)$/.test(x)&&nk(x).indexOf(nk(s))===0});/* bundles such as "Arrows (20)" */return pre.length===1&&nk(s).length>=5?{v:pre[0],near:1}:null}
- if(b.inv!=null){let arm=0;b.inv=arr(b.inv).map((x) =>{if(typeof x==="string")x={n:x};if(!x||typeof x!=="object")return null;const n=x.n!=null?x.n:x.name;if(n==null||n==="")return null;
-  let o={n:String(n).trim()},qv=x.q!=null?x.q:x.qty!=null?x.qty:x.quantity!=null?x.quantity:x.count;qv=num(qv);o.q=qv>=1?Math.floor(qv):1;o.eq=!!(x.eq!=null?x.eq:x.equipped);
-  Object.keys(x).forEach((k) =>{if(["n","name","q","qty","quantity","count","eq","equipped"].indexOf(k)<0)o[k]=x[k]});
-  const eq0=x.eq!=null||x.equipped!=null,r=item(o.n);if(r){const bu=/\((\d+)\)$/.exec(r.v);if(bu&&!/\(\d+\)$/.test(o.n)&&o.q>=+bu[1]&&o.q%+bu[1]===0)o.q=o.q/+bu[1];said(o.n,r);o.n=r.v}else plain.push(o.n);
-  if(!eq0){const bo=baseOf(o.n).b;/* not said: weapons, the first armor, and a Shield are worn */if(WEAPONS[bo]||bo==="Shield")o.eq=true;else if(ARMOR[bo]&&!arm){o.eq=true;arm=1}}else if(o.eq&&ARMOR[baseOf(o.n).b])arm=1;return o}).filter(Boolean);
-  if(plain.length)notes.push("Not in the app item lists, so kept as plain gear with no weight or cost: "+plain.join(", "));
-  if(b.eqC==null)b.eqC="none";if(b.eqB==null)b.eqB="none"}
+ const SN=Object.keys(lateGet("SMAP"));normItems(b,notes,said,SN);
  if(!Object.keys(b.unset).length)delete b.unset;
  }finally{__set_B(keep);applyPacks()}
  return {err:err,notes:notes,b:b}};
