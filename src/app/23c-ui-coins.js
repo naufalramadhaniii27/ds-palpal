@@ -1,3 +1,5 @@
+/* Responsibility: coins: strip, conversion, pay and the Manage Coin sheet. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env (none used here). Shared names with other modules come from the imports below, late names through __R. */
 import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,esc,num,toast} from "./05-logic-helpers.js";
 import {CHEV,renderInv} from "./08-ui-render-sheet-and-actions.js";

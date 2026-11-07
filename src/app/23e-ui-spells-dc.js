@@ -1,3 +1,5 @@
+/* Responsibility: spell attack and save DC, spell list and its render. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env: __artIc. Shared names with other modules come from the imports below, late names through __R. */
 import {C} from "./04-logic-storage.js";
 import {esc,num,sg} from "./05-logic-helpers.js";
 import {B,D,part} from "./06-logic-derivation.js";

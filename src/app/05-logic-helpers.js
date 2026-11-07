@@ -18,6 +18,8 @@ export function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
 export function fmtW(n){return (Math.round(n*10)/10).toString()}
 export function mod(s){return Math.floor((s-10)/2)}
 export var toastT=null;
+export function hpWord(n){ return n===1?"Hit Point":"Hit Points"; }
+Object.defineProperty(__R,"hpWord",{get:function(){return hpWord;},configurable:true});
 export function toastPic(msg){ if(!env.__artVig) return ""; const m=String(msg||""), id=/^Download started|^Backup text copied/.test(m)?"backup-done":/not a character|can't be read|newer version of the app|code is not a character/.test(m)?"import-failed":/^New version ready/.test(m)?"update":""; return id?env.__artVig("state",id,28):""; }
 export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); const tk=typeof __R.toastKind==="function"?__R.toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof __R.ico==="function"?__R.ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(() =>{t.classList.remove("on")},2400); } env.__toast=toast;/* test hook */
 /* ask(): dialog konfirmasi DOM versi sheet. Pengganti confirm(), yang diblokir di artifact. Tanda tangan sama dengan ask() di builder: ask(pesan, labelOk, cb). Cancel, klik di luar kotak, atau Escape menutup tanpa memanggil cb. */

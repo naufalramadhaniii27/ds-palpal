@@ -364,6 +364,7 @@ function infoHTML0(spec){
   const i=spec.indexOf(":"), d=DETAIL.get(spec.slice(0,i));
   return d?d.render(spec.slice(i+1)):{t:"", h:""};
 }
+export function closeSheetIfOn(){ if(sheet.classList.contains("on")) closeSheet(); }
 export function closeSheet(){ __set_SWP(null);/* v36 p18 */ __set_SWP(null);/* v36 p18 */
   hpDockBack();/* v30 */ __R.morphStop();/* v31 p12 */
   $("#scrim").classList.remove("on"); sheet.classList.remove("on"); __R.dockOff(); __R.shClosed();/* v31 p14, p16 */

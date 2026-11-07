@@ -1,3 +1,5 @@
+/* Responsibility: item packs, containers and the weight of the inventory. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env: __bldUnpack. Shared names with other modules come from the imports below, late names through __R. */
 import {C,saveC} from "./04-logic-storage.js";
 import {ask,bldGuard,bldSync,esc,fmtW,invAt,num,toast,viaBld} from "./05-logic-helpers.js";
 import {renderInv} from "./08-ui-render-sheet-and-actions.js";

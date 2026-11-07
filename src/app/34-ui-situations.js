@@ -7,7 +7,7 @@ import {D} from "./06-logic-derivation.js";
 import {boxes,featAll,renderNotes,used} from "./08-ui-render-sheet-and-actions.js";
 import {activeConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,refreshEntry,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";
 import {AK_ICON,akIcon,atkKind,ico,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";
 import {pinnedH} from "./27c-ui-report-pins.js";
@@ -258,7 +258,7 @@ function xpBox(){ const f=$("#idF"); if(!f) return; let b=$("#xpBox"); if(!b){ b
 export function levelUp(){ if(D.level>=20){ toast("Level 20 is the highest level."); return; } if(env.__bldLevelUp) env.__bldLevelUp(); else { const bb=$("#bldBtn"); if(bb) bb.click(); } }
 document.addEventListener("change",(e) =>{ const t=e.target; if(!t.matches||!t.matches("[data-xpmode]")) return; S.lvMode=t.checked?"milestone":"xp"; save(); xpBox(); const b=$("#sheetBody"); if(b&&sheetMode==="xp") b.innerHTML=xpDlg(); });
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-xpopen],[data-xpadd],[data-lvup]"); if(!t||t.closest("#bld")) return;/* v22 p14: the builder's own Level Up */ e.preventDefault();
-  if(t.hasAttribute("data-lvup")){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); return; }
+  if(t.hasAttribute("data-lvup")){ closeSheetIfOn(); levelUp(); return; }
   if(t.hasAttribute("data-xpopen")){ __set_navStack([]); openSheet("Experience", xpDlg(), "xp"); return; }
   const inp=t.parentNode.querySelector("[data-xpamt]"), v=Math.floor(num(inp&&inp.value,0)); if(v<=0){ toast("Type an amount of XP first."); if(inp) inp.focus(); return; }
   undoMark(t.getAttribute("data-xpadd")==="1"?"Add XP":"Remove XP"); const before=Math.floor(num(S.xp,0)); S.xp=Math.max(0,before+(+t.getAttribute("data-xpadd"))*v); save(); xpBox(); const bd=$("#sheetBody"); if(bd&&sheetMode==="xp") bd.innerHTML=xpDlg();

@@ -5,7 +5,7 @@ import {$,$$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {featAll} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {BKEY,RKEY,rEnsure,rSave} from "./14-ui-editor.js";
 import {cOf,learnGo,rSnap,tgGo,zUnpack} from "./15-logic-roster-backup-files-snapshots.js";
 import {chCheck,jsonLoose} from "./16-logic-import-chat-text-and-build-files.js";
@@ -103,7 +103,7 @@ function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<inp
 const PAL_TABS=[[["main"],0,null,"Main","tab-main"],[["skills"],1,null,"Skills","tab-skills"],[["actions","attacks"],2,"p-actions","Actions","act-attack"],[["spells","spellbook"],3,"p-spells","Spells","tab-spells"],[["inventory","items","equipment"],4,"p-inv","Inventory","tab-inventory"],[["features","traits"],5,"p-feat","Features","tab-features"],[["description","background"],6,"p-desc","Description","tab-description"],[["notes","journal"],7,"p-notes","Notes","tab-notes"],[["extras","companions"],8,"p-ext","Extras","tab-extras"]];
 function palNeed(k){ const o={dmg:["hp-damage","Damage","dmg "],heal:["hp-heal","Heal","heal "],temp:["hp-temp","Temporary Hit Points","temp "],exh:["cond-exhaustion","Exhaustion","exhaustion "]}[k];
   return {i:o[0],t:o[1],s:k==="exh"?"Now "+num(S.exh,0)+". Type a level from 0 to 6, for example exhaustion 2":"Type an amount, for example "+o[2]+(k==="heal"?"5":k==="temp"?"8":"7"),fill:o[2]}; }
-function palHp(k,n){ if(sheet.classList.contains("on")) closeSheet(); const inp=$("#hpAmt"); if(!inp) return; inp.value=String(n); const b=k==="heal"?$("#healBtn"):k==="dmg"?$("#dmgBtn"):$("[data-tmpset]"); if(b) b.click(); }
+function palHp(k,n){ closeSheetIfOn(); const inp=$("#hpAmt"); if(!inp) return; inp.value=String(n); const b=k==="heal"?$("#healBtn"):k==="dmg"?$("#dmgBtn"):$("[data-tmpset]"); if(b) b.click(); }
 function palDmg(n){ if(!n) return palNeed("dmg"); const hp=num(S.hp,0), tp=num(S.tmp,0), ft=Math.min(tp,n), h2=Math.max(0,hp-(n-ft));
   return {i:"hp-damage",t:"Take "+n+" damage",s:"Hit Points "+hp+" to "+h2+(ft?", Temporary "+tp+" to "+(tp-ft):"")+(h2===0&&hp>0?". Death Saving Throws start":""),run:function(){ palHp("dmg",n); }}; }
 function palHeal(n){ if(!n) return palNeed("heal"); const hp=num(S.hp,0), h2=Math.min(D.hpmax,hp+n);
@@ -111,8 +111,8 @@ function palHeal(n){ if(!n) return palNeed("heal"); const hp=num(S.hp,0), h2=Mat
 function palTemp(n){ if(!n) return palNeed("temp"); const tp=num(S.tmp,0);
   return {i:"hp-temp",t:"Temporary Hit Points "+n,s:"Temporary "+tp+" to "+n+(tp>n?". They do not add up, the new number replaces the old":""),run:function(){ palHp("temp",n); }}; }
 function palExh(n){ n=clamp(n,0,6); const e0=num(S.exh,0);
-  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?exTxt(n):"No penalty"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.undoMark("Exhaustion"); __R.exhTo(n,true); __R.toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
-export function condSet(k,on){ if(sheet.classList.contains("on")) closeSheet(); __R.undoMark((on?"Add ":"Remove ")+k); if(on) S.cond[k]=true; else delete S.cond[k]; save(); __R.renderAll(); __R.toastU(k+(on?" is on.":" is off.")); }
+  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?exTxt(n):"No penalty"),run:function(){ closeSheetIfOn(); __R.undoMark("Exhaustion"); __R.exhTo(n,true); __R.toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
+export function condSet(k,on){ closeSheetIfOn(); __R.undoMark((on?"Add ":"Remove ")+k); if(on) S.cond[k]=true; else delete S.cond[k]; save(); __R.renderAll(); __R.toastU(k+(on?" is on.":" is off.")); }
 function palCond(k){ const on=!S.cond[k]; return {i:"cond-"+k.toLowerCase(),t:(on?"Turn on ":"Turn off ")+k,s:"Condition, now "+(on?"off":"on"),run:function(){ condSet(k,on); }}; }
 function palVerb(h){ let V={dmg:["dmg","damage","dam","d","hit","hurt","-"],heal:["heal","h","hp","+","healing","cure"],temp:["temp","tmp","thp","temporary","temp hp","temporary hp","temporary hit points"],exh:["exh","exhaustion","exhausted","exhaust"]}, r="";
   Object.keys(V).forEach((k) =>{ if(!r&&V[k].indexOf(h)>=0) r=k; }); if(r||h.length<4) return r;
@@ -130,9 +130,9 @@ PALWORD.add("long rest", {words:function(){ return [
 PALWORD.add("rest", {words:function(){ return [
   {k:["rest"],f:function(){ return {i:"rest-short",t:"Rest",s:"Choose a Short Rest or a Long Rest",run:function(){ openRest("menu"); }}; }}]; }});
 PALWORD.add("inspiration", {words:function(){ return [
-  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ if(sheet.classList.contains("on")) closeSheet(); const b=$("#insp"); if(b) b.click(); __R.toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }}]; }});
+  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ closeSheetIfOn(); const b=$("#insp"); if(b) b.click(); __R.toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }}]; }});
 PALWORD.add("level up", {words:function(){ return [
-  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.levelUp(); }}; }}]; }});
+  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ closeSheetIfOn(); __R.levelUp(); }}; }}]; }});
 PALWORD.add("conditions", {words:function(){ return [
   {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }}]; }});
 PALWORD.add("exhaustion", {words:function(){ return [
@@ -140,7 +140,7 @@ PALWORD.add("exhaustion", {words:function(){ return [
 PALWORD.add("history", {words:function(){ return [
   {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ __R.tmOpen(); }}; }}]; }});
 PALWORD.add("training ground", {words:function(){ return [
-  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ if(sheet.classList.contains("on")) closeSheet(); tgGo(); }}; }}]; }});
+  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ closeSheetIfOn(); tgGo(); }}; }}]; }});
 PALWORD.add("which die", {words:function(){ return [
   {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ __R.wdOpen(); }}; }}]; }});
 PALWORD.add("cheat sheet", {words:function(){ return [
@@ -152,20 +152,20 @@ PALWORD.add("future", {words:function(){ return [
 PALWORD.add("recap", {words:function(){ return [
   {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ __R.recapOpen(); }}; }}]; }});
 PALWORD.add("status", {words:function(){ return [
-  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:__R.statusText().slice(0,80),run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.statusCopy(); }}; }}]; }});
+  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:__R.statusText().slice(0,80),run:function(){ closeSheetIfOn(); __R.statusCopy(); }}; }}]; }});
 PALWORD.add("what changed", {words:function(){ return [
   {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ __R.rcptShow(); }}; }}]; }});
 PALWORD.add("tour", {words:function(){ return [
-  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); }}; }}]; }});
+  {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ closeSheetIfOn(); learnGo({place:"apptour"}); }}; }}]; }});
 PALWORD.add("learn", {words:function(){ return [
-  {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ if(sheet.classList.contains("on")) closeSheet(); learnGo(); }}; }}]; }});
+  {k:["learn","learn to play","rules","tutorial","belajar"],f:function(){ return {i:"ui-book",t:"Learn to play",s:"Hoot's Training Grounds: D&D by playing",run:function(){ closeSheetIfOn(); learnGo(); }}; }}]; }});
 PALWORD.add("settings", {words:function(){ return [
   {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ const b=$("#themeBtn"); if(b) b.click(); }}; }}]; }});
 PALWORD.add("undo", {words:function(){ return [
-  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.undoNow(); }}; }}]; }});
+  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ closeSheetIfOn(); __R.undoNow(); }}; }}]; }});
 PALWORD.add("redo", {words:function(){ return [
-  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ if(sheet.classList.contains("on")) closeSheet(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}]; }});
-PALWORD.add("tabs", {words:function(){ const W=[]; PAL_TABS.forEach((t) =>{ W.push({k:t[0],f:function(){ return {i:t[4],t:"Go to "+t[3],s:"Open the "+t[3]+" page",run:function(){ if(sheet.classList.contains("on")) closeSheet(); __R.goTab(t[1],t[2]); }}; }}); }); return W; }});
+  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ closeSheetIfOn(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}]; }});
+PALWORD.add("tabs", {words:function(){ const W=[]; PAL_TABS.forEach((t) =>{ W.push({k:t[0],f:function(){ return {i:t[4],t:"Go to "+t[3],s:"Open the "+t[3]+" page",run:function(){ closeSheetIfOn(); __R.goTab(t[1],t[2]); }}; }}); }); return W; }});
 PALWORD.add("condition-toggles", {words:function(){ const W=[]; STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).forEach((k) =>{ W.push({k:[k.toLowerCase()],f:function(){ return palCond(k); }}); }); return W; }});
 /* solid:orchestrator palWords */
 function palWords(){ const W=[]; PALWORD.list().forEach((p) =>{ p.words().forEach((w) =>{ W.push(w); }); }); return W; }

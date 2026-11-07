@@ -1,6 +1,8 @@
+/* Responsibility: short and long rest: dialog, recovery, summary and takeRest. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env: __coinTotal, __coinsFor, __coinsNow, __ico, __icoCls, __icoItem, __icoText, __miRoll, __openRest. Shared names with other modules come from the imports below, late names through __R. */
 import {hdPlan,x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
-import {$,esc,num,sg,toast} from "./05-logic-helpers.js";
+import {$,esc,num,sg,toast,hpWord} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
 import {syncLU,used} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
@@ -26,10 +28,10 @@ function restHTML(kind){ let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-k
       h+='<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">';
       for(let i=0;i<left;i++){ const on=sel[i]!=null; h+='<button type="button" class="bx" aria-pressed="'+on+'" data-hdk="'+r.k+'" data-hdi="'+i+'" aria-label="Spend Hit Die '+(i+1)+'"></button>'; }
       h+='</div>'+(left?'':'<p class="muted">No Hit Dice left. A Long Rest restores '+(x14()?'half of them, at least one':'them')+'.</p>');
-      sel.forEach((v,i) =>{ if(v==null) return; const heal=v?__R.hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(env.__miRoll&&env.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpW(heal):'type the number rolled')+'</span></label>'; });
+      sel.forEach((v,i) =>{ if(v==null) return; const heal=v?__R.hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(env.__miRoll&&env.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpWord(heal):'type the number rolled')+'</span></label>'; });
       h+='</div>'; });
     h+=__R.shortExtraH();/* v21 */
-    h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpW(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(__R.periOn()?', then doubled':'')+')</p>';
+    h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpWord(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(__R.periOn()?', then doubled':'')+')</p>';
     if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Short Rest.</p>';
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
   const rec=longRec();/* v32 p25: the same list as the Long Rest card */
@@ -47,7 +49,7 @@ function longRec(){ let sl=(D.res||[]).filter((r) =>{return /^s\d$/.test(r.k)||r
   return rec; }
 function hdLeft(){ return hdRows().reduce((t,r) =>{ return t+Math.max(0,r.max-used(r.k,r.max)); },0); }
 function shortRec(){ const o=[], miss=Math.max(0,D.hpmax-num(S.hp==null?D.hpmax:S.hp,0)), hl=hdLeft();
-  if(miss&&hl) o.push("Spend up to "+hl+" Hit "+(hl>1?"Dice":"Die")+" to heal ("+miss+" "+hpW(miss)+" missing)"); else if(!hl) o.push(["No Hit Dice left to spend",1]); else o.push(["Hit Points are full",1]);
+  if(miss&&hl) o.push("Spend up to "+hl+" Hit "+(hl>1?"Dice":"Die")+" to heal ("+miss+" "+hpWord(miss)+" missing)"); else if(!hl) o.push(["No Hit Dice left to spend",1]); else o.push(["Hit Points are full",1]);
   shortList().forEach((r) =>{ if(used(r.k,r.max)) o.push(r.n+(r.reset==="short1"?" (one use)":"")); });
   if(o.length===1&&typeof o[0]!=="string"&&!shortList().some((r) =>{ return used(r.k,r.max); })) o.push(["No uses to get back",1]);
   return o; }
@@ -55,7 +57,7 @@ function recUL(L){ return '<div class="rlist" role="list">'+L.map((x) =>{ const 
 function restCards(){ const z=S.hp!=null&&S.hp<1, card=function(k,t,d,L){ return '<button type="button" class="restm rcard press" data-rest="'+k+'"><span class="rc-h"><span class="rc-i">'+ico(k==="short"?"rest-short":"rest-long")+'</span><span class="rc-t"><b>'+t+'</b><small>'+d+'</small></span>'+ico("ui-chev-r","rc-go")+'</span>'+recUL(L)+'</button>'; };
   return (z?'<p class="caution">You need at least 1 Hit Point to rest. Heal first, or make Death Saving Throws.</p>':'')+'<div class="rcards">'+card("short","Short Rest","1 hour",shortRec())+card("long","Long Rest","8 hours",longRec().length?longRec():[["Everything is already full",1]])+'</div>'; }
 function restHint(){ const hp=num(S.hp==null?D.hpmax:S.hp,0), miss=Math.max(0,D.hpmax-hp), hl=hdLeft(); if(hp<1) return "";
-  const t=miss&&hl?"You are missing "+miss+" "+hpW(miss)+". You have "+hl+" Hit "+(hl>1?"Dice":"Die")+" left: tap a box below to spend one, then type the number rolled.":miss?"You are missing "+miss+" "+hpW(miss)+", but no Hit Dice are left. A Long Rest restores "+(x14()?"half of them, at least one":"them")+".":"Your Hit Points are full, so you do not need to spend Hit Dice.";
+  const t=miss&&hl?"You are missing "+miss+" "+hpWord(miss)+". You have "+hl+" Hit "+(hl>1?"Dice":"Die")+" left: tap a box below to spend one, then type the number rolled.":miss?"You are missing "+miss+" "+hpWord(miss)+", but no Hit Dice are left. A Long Rest restores "+(x14()?"half of them, at least one":"them")+".":"Your Hit Points are full, so you do not need to spend Hit Dice.";
   return '<p class="rhint">'+ico("ui-info","rh-i")+'<span>'+esc(t)+'</span></p>'; }
 let RS0=null, REST_SUM=null;
 function restSnap(){ return {hp:S.hp==null?D.hpmax:S.hp, tmp:num(S.tmp,0), used:structuredClone(S.used||{}), exh:num(S.exh,0), insp:!!S.insp, ds:(S.ds||[0,0]).slice(), mode:Object.keys(S.mode||{})}; }
@@ -82,9 +84,8 @@ document.addEventListener("click",(e) =>{ const t=e.target, dlg=t.closest&&t.clo
 document.addEventListener("change",(e) =>{ const t=e.target; if(t.matches&&t.matches("[data-rauto]")){ restAuto=t.checked; return; } });
 /* V17-3: a typed die value updates its line and the total in place. The dialog is not rebuilt, so focus and the next click stay */
 document.addEventListener("input",(e) =>{ const t=e.target; if(!t.matches||!t.matches("#restDlg [data-hdv]")) return; let k=t.getAttribute("data-hdv"), i=+t.getAttribute("data-hdi"), r=hdRows().filter((q) =>{return q.k===k})[0], die=r?num(r.die,num(C.hitDie,10)):12, v=Math.floor(num(t.value,0)), cm=D.mod.CON;
-  v=v>=1?Math.min(die,v):0; (restSel[k]||(restSel[k]=[]))[i]=v; const sp=t.parentNode.querySelector(".hdh"); if(sp) sp.textContent=v?"+"+__R.hdHeal(v)+" "+hpW(__R.hdHeal(v)):"type the number rolled";
-  let tot=0; Object.keys(restSel).forEach((q) =>{ (restSel[q]||[]).forEach((x) =>{ if(x) tot+=__R.hdHeal(x); }); }); const te=document.getElementById("restTot"); if(te) te.textContent="Healing: "+tot+" "+hpW(tot); });
-function hpW(n){ return n===1?"Hit Point":"Hit Points"; }
+  v=v>=1?Math.min(die,v):0; (restSel[k]||(restSel[k]=[]))[i]=v; const sp=t.parentNode.querySelector(".hdh"); if(sp) sp.textContent=v?"+"+__R.hdHeal(v)+" "+hpWord(__R.hdHeal(v)):"type the number rolled";
+  let tot=0; Object.keys(restSel).forEach((q) =>{ (restSel[q]||[]).forEach((x) =>{ if(x) tot+=__R.hdHeal(x); }); }); const te=document.getElementById("restTot"); if(te) te.textContent="Healing: "+tot+" "+hpWord(tot); });
 function hdCls(die){ return (String(C.clsLabel||"").match(/[A-Z][A-Za-z']+ \d+/g)||[]).filter((x) =>{ const c=(typeof CLASSES!=="undefined")&&CLASSES[x.replace(/ \d+$/,"")]; return c&&num(c.hd,0)===die; }).join(", "); }
 export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least 1 Hit Point to rest."); return; }
   if(kind==="short"){ let cm=D.mod.CON, heal=0, spent=0, miss=0; Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(v===0) miss++; }); });
@@ -99,7 +100,7 @@ export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least
     const before=S.hp==null?D.hpmax:S.hp; if(restAuto&&heal) S.hp=Math.min(D.hpmax,before+heal);
     doRest("short",true); const rec=[]; rl.forEach((q,i) =>{ const s=__R.recSum(i); if(!s) return; const m=__R.restX.rec[i]; Object.keys(m).forEach((L) =>{ S.used["s"+L]=Math.max(0,num(S.used["s"+L],0)-num(m[L],0)); }); S.used[q.r.k]=num(S.used[q.r.k],0)+1; rec.push(q.n+": "+s+" slot level"+(s>1?"s":"")+" recovered."); });
     const nc=__R.chgApply(__R.shortChg()); save(); syncLU(); closeSheet();
-    __R.toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpW(S.hp-before)+" regained.":", "+heal+" "+hpW(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; })()); restSumToast("short"); return; }
+    __R.toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; })()); restSumToast("short"); return; }
   __R.undoMark("Long Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */ const lc=__R.chgRows(["dawn","dusk","long"]), hr=__R.restX.hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0);
   if(hr){ delete S.hpMod; delete S.hpOver; derive(); }
   doRest("long",true); const nc2=__R.chgApply(lc); if(nc2){ save(); syncLU(); } closeSheet(); const LD=restDiff(RS0), ln=restNames(LD), hpx=LD.filter((x) =>{ return x[0]==="Hit Points"; })[0];

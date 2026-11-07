@@ -1,3 +1,5 @@
+/* Responsibility: the Library window: index of every rules entry, search, detail, add and buy. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env: DECKFIX, FLUFF, HBIDX, HBN, ITEMFIX, LANGFIX, QIMG, QREFS, SPREF, WX, WXF_ALL, WXS, __ART, __artIc, __artSub, __bldNeed, __lazyReady, __libAudit, __libFind, __libHtml, __libIdx, __libIndex, __libScan, __libStats, __linkKnown, __noLibIdx, __qimN, __wxSpRow. Shared names with other modules come from the imports below, late names through __R. */
 import {GLOSS} from "./03-data-glossary.js";
 import {C,S,saveC} from "./04-logic-storage.js";
 import {esc,num,rich,toast} from "./05-logic-helpers.js";

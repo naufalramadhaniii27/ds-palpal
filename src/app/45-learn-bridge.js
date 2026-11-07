@@ -9,7 +9,7 @@ import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {libOpen} from "./27b-ui-library.js";
 import {homeInert} from "./31-ui-tour-and-focus.js";
-import {ovQueue} from "./40-ui-segments-notes-swipe-motion-panels.js";import {env} from "./00-env.js";
+import {ovQueue} from "./40d-ui-overlays-context-dock.js";import {env} from "./00-env.js";
 /* T11 Learn: the app code runs inside one closure, so Learn (src/learn, a deferred part) reaches it only through this bridge:
    the open character and its derived numbers (read only), and the helpers Learn shares with the sheet */
 env.__app={ esc:esc, ico:ico, lsGet:lsGet, lsSet:lsSet, ask:ask, libOpen:libOpen, ovQueue:ovQueue, homeInert:homeInert, showHome:showHome, buzz:buzz,

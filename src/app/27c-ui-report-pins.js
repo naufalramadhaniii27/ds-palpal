@@ -1,3 +1,5 @@
+/* Responsibility: spell cards to print, the bug report, the Foundry export, pinned skills and the old sheet notice. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+   Touches page globals only through env: __bldDiff, __bldMine, __reportText. Shared names with other modules come from the imports below, late names through __R. */
 import {copyText} from "./lib/clipboard.js";
 import {ABK} from "./02-data-default-character.js";
 import {APP_DATE,APP_LABEL,APP_VER,C,DEF,S,__set_C,__set_S,clone,lsGet,save} from "./04-logic-storage.js";

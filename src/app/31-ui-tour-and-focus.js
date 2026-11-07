@@ -2,7 +2,7 @@ import {C,FROZEN,lsGet} from "./04-logic-storage.js";
 import {esc,toast} from "./05-logic-helpers.js";
 import {REDUCE,uiGet} from "./07-ui-theme-contrast-spring.js";
 import {sheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {rGet} from "./14-ui-editor.js";
 import {learnBand,learnGo,rPh,uiSet} from "./15-logic-roster-backup-files-snapshots.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
@@ -32,7 +32,7 @@ function tourGo(o){ TOUR_OPT=o||null; if(!env.__spot&&env.__bldNeed&&!TOUR_BLD){
   if(!tourHasChar()){ const c=document.querySelector("#homeV .hcreate"); if(c){ env.__spot.show(c,'<p class="tourn">Tour</p><p>'+esc(o&&o.create||"Make a character first. Create a Character opens the builder.")+'</p><div class="tourb"><button type="button" class="btn pri press" data-tour="done">OK</button></div>',tourQuit); } else tourFin(false); return; }
   const jk=env.__miJournal&&env.__miJournal.key?env.__miJournal.key():"mi-jr-"+(rGet().active||"");/* the journal key of fx/18 */ TOUR_KEEP={jk:jk,j:lsGet(jk),rk:env.__miRollKey?env.__miRollKey():"",r:(function(){ try{ return env.__miRollKey?__store.getItem(env.__miRollKey()):null; }catch(e){ return null; } })()};
   const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; homeInert(); }
-  if(sheet.classList.contains("on")) closeSheet(); tourShow(0); }
+  closeSheetIfOn(); tourShow(0); }
 function tourCard(i){ const st=TOURS[i], last=i===TOURS.length-1; return '<p class="tourn">'+esc(tourU("step","Step"))+' '+(i+1)+' '+esc(tourU("of","of"))+' '+TOURS.length+'</p><p>'+esc(tourT(i))+'</p><div class="tourb">'+(last?'':'<button type="button" class="btn press" data-tour="skip">'+esc(tourU("skip","Skip tour"))+'</button>')+(i?'<button type="button" class="btn press" data-tour="back">'+esc(tourU("back","Back"))+'</button>':'')+(last?'<button type="button" class="btn pri press" data-tour="done">'+esc(tourU("done","Done"))+'</button>':'<button type="button" class="btn pri press" data-tour="next">'+esc(st[2]?tourU("skipThis","Skip this"):tourU("next","Next"))+'</button>')+'</div>'; }
 function tourShow(i){ tourI=i; tourUnwait(); const st=TOURS[i], S=env.__spot; if(!S) return; const el=S.find(tourWide()&&st[3]?st[3]:st[0])||S.find(st[0]);
   if(!el){ if(i<TOURS.length-1){ tourShow(i+1); } else tourEnd(); return; }
@@ -40,7 +40,7 @@ function tourShow(i){ tourI=i; tourUnwait(); const st=TOURS[i], S=env.__spot; if
   setTimeout(() =>{ if(tourI!==i) return; S.show(el,tourCard(i),tourQuit); tourWait(st[2]); },REDUCE?0:300); }
 /* steps that wait for a real tap: the breakdown opens (bd), the result of a roll shows (roll) */
 function tourWait(k){ if(!k) return; let done=false, go=function(){ if(done) return; done=true; tourUnwait(); const n=tourI+1;
-    if(k==="roll"){ setTimeout(() =>{ if(tourI<0) return; if(sheet.classList.contains("on")) closeSheet(); setTimeout(() =>{ if(tourI>=0) tourShow(n); },350); },2600); } else setTimeout(() =>{ if(tourI>=0) tourShow(n); },450); };
+    if(k==="roll"){ setTimeout(() =>{ if(tourI<0) return; closeSheetIfOn(); setTimeout(() =>{ if(tourI>=0) tourShow(n); },350); },2600); } else setTimeout(() =>{ if(tourI>=0) tourShow(n); },450); };
   if(k==="roll"){ let rkk=env.__miRollKey?env.__miRollKey():"", r0=null; try{ r0=__store.getItem(rkk); }catch(e){} const iv=setInterval(() =>{ let r1=null; try{ r1=__store.getItem(rkk); }catch(e){} if(r1!==r0) go(); },250); TOUR_WAIT={disconnect:function(){ clearInterval(iv); }}; return; }/* a roll lands in the roll history, with or without effects */
   const mo=new MutationObserver(() =>{ if(sheet.classList.contains("on")&&sheet.querySelector("[data-mr]")) go(); });
   mo.observe(sheet,{attributes:true,attributeFilter:["class"],childList:true,subtree:true}); TOUR_WAIT=mo; }
@@ -54,8 +54,8 @@ function tourEnd(fromSpot,full){ tourUnwait(); const was=tourI; tourI=-1; uiSet(
   if(was>=0&&sheet.classList.contains("on")) closeSheet();
   const c=document.getElementById("tourC"); if(c) c.remove(); document.querySelectorAll(".tour-hl").forEach((e) =>{ e.classList.remove("tour-hl"); }); tourBand(); tourFin(full&&was===TOURS.length-1); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-tour]"); if(!b) return; const a=b.getAttribute("data-tour");
-  if(a==="go"){ if(sheet.classList.contains("on")) closeSheet(); learnGo({place:"apptour"}); } else if(a==="next") tourShow(Math.min(TOURS.length-1,tourI+1)); else if(a==="back") tourShow(Math.max(0,tourI-1)); else if(a==="done"&&tourI<0){ if(env.__spot&&env.__spot.on()) env.__spot.hide(); } else tourEnd(false,a==="done"); });
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-hlearn]"); if(!b||b.closest("#homeV")) return; if(tourI>=0) tourEnd(); if(sheet.classList.contains("on")) closeSheet(); if(typeof learnGo==="function") var hv=b.getAttribute("data-hlearn"); learnGo(hv==="tour"?{place:"apptour"}:/^place:/.test(hv)?{place:hv.slice(6)}:undefined); });/* Learn to play from the tour card or Settings */
+  if(a==="go"){ closeSheetIfOn(); learnGo({place:"apptour"}); } else if(a==="next") tourShow(Math.min(TOURS.length-1,tourI+1)); else if(a==="back") tourShow(Math.max(0,tourI-1)); else if(a==="done"&&tourI<0){ if(env.__spot&&env.__spot.on()) env.__spot.hide(); } else tourEnd(false,a==="done"); });
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-hlearn]"); if(!b||b.closest("#homeV")) return; if(tourI>=0) tourEnd(); closeSheetIfOn(); if(typeof learnGo==="function") var hv=b.getAttribute("data-hlearn"); learnGo(hv==="tour"?{place:"apptour"}:/^place:/.test(hv)?{place:hv.slice(6)}:undefined); });/* Learn to play from the tour card or Settings */
 document.addEventListener("keydown",(e) =>{ if(tourI>=0&&e.key==="Escape"){ e.stopPropagation(); tourEnd(); } },true);
 env.__tour={go:tourGo,state:function(){ return {i:tourI,keep:!!TOUR_KEEP}; }};
 
