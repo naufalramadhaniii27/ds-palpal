@@ -324,13 +324,13 @@
    5,
    30
   ],
-  "builder/15-logic-import-from-sheet.js::(anon)#4": [
+  "builder/15-logic-import-from-sheet.js::(anon)": [
    17,
    81
   ],
   "builder/15-logic-import-from-sheet.js::fromSheet": [
-   70,
-   309
+   62,
+   202
   ],
   "builder/16-logic-feature-numbers.js::calcNote": [
    40,
@@ -445,8 +445,8 @@
    58
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldNorm": [
-   121,
-   313
+   80,
+   162
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldOpen": [
    15,
@@ -455,10 +455,6 @@
   "builder/23-logic-level-up-and-build-files.js::__bldSheetBatch": [
    9,
    22
-  ],
-  "builder/23-logic-level-up-and-build-files.js::item": [
-   5,
-   21
   ],
   "builder/23-logic-level-up-and-build-files.js::qbSpMC": [
    8,
