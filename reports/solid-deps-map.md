@@ -30,8 +30,8 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | builder/23-logic-level-up-and-build-files.js (logic) | builder/18-ui-spells.js (ui) | 4: SMAP, issueText, ruleIssues, spInfoPart | yes |
 | builder/23-logic-level-up-and-build-files.js (logic) | builder/21-ui-rules-reference.js (ui) | 4: qbBook, qbFill, qbMI, qbSpells | yes |
 | app/06-logic-derivation.js (logic) | app/26-ui-customize.js (ui) | 3: cuApply, cuNum, cuSpeed | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | app/27-ui-party-search-commands-library.js (ui) | 3: campKeep, campSel, partyOpen | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/14-ui-editor.js (ui) | 3: BKEY, rEnsure, rSave | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | app/27-ui-party-search-commands-library.js (ui) | 3: campKeep, campSel, partyOpen | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 3: __set_actF, actF, renderActions | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/22-ui-spell-data-and-slots.js (ui) | 3: spLvSel, spPactLv, spRowLv | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/23b-ui-items-containers.js (ui) | 3: CONS1, invKey, occOf | yes |
@@ -48,9 +48,9 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/15c-logic-file-state-compress.js (logic) | app/14-ui-editor.js (ui) | 2: BKEY, rGet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: refreshEntry, sheet | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 2: campName, used | yes |
+| app/32b-logic-play-concentration-casting.js (logic) | app/35-ui-combo.js (ui) | 2: cmbCast, cmbRe | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: refreshEntry, showEntry | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: featAll, syncLU | yes |
-| app/32b-logic-play-concentration-casting.js (logic) | app/35-ui-combo.js (ui) | 2: cmbCast, cmbRe | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 2: renderTiles, used | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 2: renderActions, syncLU | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/14-ui-editor.js (ui) | 2: rGet, rSave | yes |
@@ -61,32 +61,32 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/48-logic-sync-merge.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: __set_navStack, openSheet | yes |
 | app/49-logic-status-and-odds.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: __set_navStack, openSheet | yes |
 | app/50-logic-reverse-builder.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 2: __set_navStack, openSheet | yes |
-| builder/09-logic-feats-and-choices.js (logic) | builder/17-ui-step-builder.js (ui) | 2: featOpts, preFail | yes |
 | builder/09-logic-feats-and-choices.js (logic) | builder/18-ui-spells.js (ui) | 2: SMAP, spCls | yes |
 | builder/09-logic-feats-and-choices.js (logic) | tg/30-ui-tg.js (ui) | 2: live, open | yes |
+| builder/09-logic-feats-and-choices.js (logic) | builder/17-ui-step-builder.js (ui) | 2: featOpts, preFail | yes |
 | builder/25-logic-hooks-for-the-sheet.js (logic) | builder/22-ui-shell.js (ui) | 2: render, stamp | yes |
 | learn/46-logic-learn.js (logic) | app/21-ui-tabs-pager.js (ui) | 2: goPage, setTab | yes |
 | app/03-data-glossary.js (data) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | app/03-data-glossary.js (data) | app/23d-ui-rest.js (ui) | 1: hdRows | yes |
 | app/04-logic-storage.js (logic) | app/20-ui-portrait.js (ui) | 1: syncPortrait | yes |
-| app/04-logic-storage.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/04-logic-storage.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/04-logic-storage.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: applyLook | yes |
+| app/04-logic-storage.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/04-logic-storage.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderNotes | yes |
-| app/05-logic-helpers.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
+| app/04-logic-storage.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | app/05-logic-helpers.js (logic) | tg/30-ui-tg.js (ui) | 1: close | yes |
-| app/06-logic-derivation.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: atkKind | yes |
+| app/05-logic-helpers.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
 | app/06-logic-derivation.js (logic) | app/23e-ui-spells-dc.js (ui) | 1: scAdj | yes |
 | app/06-logic-derivation.js (logic) | app/34-ui-situations.js (ui) | 1: sitNum | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: esArt | yes |
+| app/06-logic-derivation.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: atkKind | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/27c-ui-report-pins.js (ui) | 1: reportOpen | yes |
-| app/15-logic-roster-backup-files-snapshots.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: icoCls | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/27b-ui-library.js (ui) | 1: libOpen | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: esArt | yes |
 | app/15-logic-roster-backup-files-snapshots.js (logic) | app/31-ui-tour-and-focus.js (ui) | 1: tourBanner | yes |
-| app/15b-logic-backup.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
+| app/15-logic-roster-backup-files-snapshots.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: icoCls | yes |
 | app/15b-logic-backup.js (logic) | app/27-ui-party-search-commands-library.js (ui) | 1: bkpCamp | yes |
-| app/15c-logic-file-state-compress.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| app/15b-logic-backup.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | app/15c-logic-file-state-compress.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
+| app/15c-logic-file-state-compress.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | app/15d-logic-snapshots-character-files.js (logic) | app/27c-ui-report-pins.js (ui) | 1: foundryOut | yes |
 | app/15d-logic-snapshots-character-files.js (logic) | tg/30-ui-tg.js (ui) | 1: close | yes |
 | app/15d-logic-snapshots-character-files.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: uiGet | yes |
@@ -98,20 +98,20 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/17-logic-tab-sync-and-test-hooks.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderNotes | yes |
 | app/32-logic-play-undo-actions.js (logic) | app/14-ui-editor.js (ui) | 1: BKEY | yes |
-| app/32-logic-play-undo-actions.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
-| app/32-logic-play-undo-actions.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheetIfOn | yes |
 | app/32-logic-play-undo-actions.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
+| app/32-logic-play-undo-actions.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheetIfOn | yes |
+| app/32-logic-play-undo-actions.js (logic) | app/30-ui-icons.js (ui) | 1: toastKind | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/10-ui-conditions.js (ui) | 1: renderConds | yes |
 | app/32b-logic-play-concentration-casting.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
-| app/32c-logic-play-temp-features-ammo.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/09-ui-hit-points-playbar-death-saves.js (ui) | 1: syncHP | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| app/32c-logic-play-temp-features-ammo.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
 | app/32c-logic-play-temp-features-ammo.js (logic) | app/23e-ui-spells-dc.js (ui) | 1: scOf | yes |
-| app/32d-logic-play-hp-rest-recovery.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/09-ui-hit-points-playbar-death-saves.js (ui) | 1: syncHP | yes |
-| app/32d-logic-play-hp-rest-recovery.js (logic) | app/23d-ui-rest.js (ui) | 1: restRefresh | yes |
+| app/32d-logic-play-hp-rest-recovery.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: refreshEntry | yes |
 | app/32d-logic-play-hp-rest-recovery.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheet | yes |
+| app/32d-logic-play-hp-rest-recovery.js (logic) | app/23d-ui-rest.js (ui) | 1: restRefresh | yes |
 | app/33-logic-play-rage-conditions.js (logic) | app/35-ui-combo.js (ui) | 1: renderAll | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/07-ui-theme-contrast-spring.js (ui) | 1: REDUCE | yes |
 | app/42-logic-pwa-qr-icons-wallet.js (logic) | app/08c-ui-render-inventory-features-notes.js (ui) | 1: renderInv | yes |
@@ -123,8 +123,8 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/47-logic-time-machine.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | app/48-logic-sync-merge.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheet | yes |
 | app/48-logic-sync-merge.js (logic) | app/23-ui-uses-items-coins-rest-spell-dc.js (ui) | 1: (import) | yes |
-| app/48-logic-sync-merge.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | app/48-logic-sync-merge.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
+| app/48-logic-sync-merge.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | app/49-logic-status-and-odds.js (logic) | app/10-ui-conditions.js (ui) | 1: renderConds | yes |
 | app/49-logic-status-and-odds.js (logic) | app/13-ui-detail-cards.js (ui) | 1: closeSheet | yes |
 | app/49-logic-status-and-odds.js (logic) | app/34c-ui-experience-journal-combat-view.js (ui) | 1: levelUp | yes |
@@ -142,8 +142,8 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/fx-B1-subclass.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L1.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L4.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| data/fx-L5.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L5.js (data) | builder/11-logic-derivation.js (logic) | 1: abil | yes |
+| data/fx-L5.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L9.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L10.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L11.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
@@ -155,21 +155,21 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/fx-L7.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L7.js (data) | builder/11-logic-derivation.js (logic) | 1: abil | yes |
 | data/fx-M2.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| builder/09-logic-feats-and-choices.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | builder/09-logic-feats-and-choices.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 1: MAN_SUM | yes |
+| builder/09-logic-feats-and-choices.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | builder/10-logic-v17-additions.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/10-logic-v17-additions.js (logic) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
 | builder/10a-logic-fx-registry.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
 | builder/10b-logic-fx-handlers-entry.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| builder/11-logic-derivation.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | builder/11-logic-derivation.js (logic) | builder/18-ui-spells.js (ui) | 1: xl14 | yes |
+| builder/11-logic-derivation.js (logic) | app/08-ui-render-sheet-and-actions.js (ui) | 1: used | yes |
 | builder/12-logic-export-to-sheet.js (logic) | builder/20-ui-steps-equipment-next.js (ui) | 1: itemDetail | yes |
 | builder/13-logic-sources-and-packs.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/15-logic-import-from-sheet.js (logic) | builder/17-ui-step-builder.js (ui) | 1: featOpts | yes |
 | builder/23-logic-level-up-and-build-files.js (logic) | builder/17-ui-step-builder.js (ui) | 1: __set_step | yes |
 | builder/25-logic-hooks-for-the-sheet.js (logic) | builder/20-ui-steps-equipment-next.js (ui) | 1: itemDetail | yes |
-| builder/25-logic-hooks-for-the-sheet.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | builder/25-logic-hooks-for-the-sheet.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
+| builder/25-logic-hooks-for-the-sheet.js (logic) | tg/30-ui-tg.js (ui) | 1: open | yes |
 | learn/45-data-learn.js (data) | builder/20-ui-steps-equipment-next.js (ui) | 1: hint | yes |
 | learn/46-logic-learn.js (logic) | builder/17-ui-step-builder.js (ui) | 1: card | yes |
 | learn/46-logic-learn.js (logic) | tg/30-ui-tg.js (ui) | 1: place | yes |

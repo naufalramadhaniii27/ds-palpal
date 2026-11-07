@@ -14,17 +14,34 @@ function mcFromSheet(C,main){const parts=String(C.clsLabel||"").split(" / ").map
  const subs={};(C.features||[]).forEach((g) =>{const m=/^([A-Za-z]+) \(multiclass \d+\)(?:: (.+))?$/.exec(g.g||"");if(m)subs[m[1]]=m[2]||""});
  const out=[];parts.slice(1).forEach((p) =>{if(!p||!CLASSES[p.cls]||p.cls===main||out.some((x) =>{return x.cls===p.cls}))return;out.push({cls:p.cls,lv:Math.max(1,Math.min(20,p.lv)),sub:subs[p.cls]||""})});
  return out}
+function fsBestSpecies(spFull){let best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
+  Object.keys(SPECIES).forEach(chk);if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{Object.keys(WXSP[id]).forEach(chk)});allPacks().forEach((pk) =>{if(pk.species)Object.keys(pk.species).forEach(chk)});
+ return best}
+function fsSrcSpecies(nb,C,sp){if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{if(WXSP[id][sp])nb.src[id]=true});if(genv.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg])nb.src[id]=true});if(genv.WXS)WXS.forEach((x) =>{if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});}
+function fsSrcOptions(nb,C){/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(genv.WXO){const fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach((id) =>{const g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach((r) =>{if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(genv.WXG)Object.keys(WXG).forEach((id) =>{WXG[id].forEach((r) =>{if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some((q) =>{return q[0]===r[0]}))nb.src[id]=true})});}
+function fsSpOpts(sp,C){if(SPECIES[sp].opts){const so=[];(C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{SPECIES[sp].opts.list.forEach((o) =>{if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}}
+function fsSpLin(sp,spRest){const lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){const o=SPECIES[sp].lin.opts.filter((x) =>{return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}}
+function fsSpAsiFlex(sp,C){/* v82: 2014 race ability picks come back from the race bonus on the sheet */if(C.rs==="2014"&&SPECIES[sp].asiFlex&&C.abilities){const f2=[],f1=[];Object.keys(C.abilities).forEach((k) =>{let a=C.abilities[k],t=0;((a&&a.bonus)||[]).forEach((x) =>{if(x.s===sp+" (race)")t+=x.v});if(t===2)f2.push(k);else if(t===1)f1.push(k)});if(f2.length===1&&f1.length===1){B.ch.rasi=f2;B.ch.rasi1=f1}else if(f1.length===3){B.ch.rasim="+1, +1, +1";B.ch.rasi=f1}}}
+function fsSpAsiPick(sp,C){if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){const rp=[];Object.keys(C.abilities).forEach((k) =>{const a=C.abilities[k];if(a&&(a.bonus||[]).some((x) =>{return x.s===sp+" (race)"})&&!(SPECIES[sp].asi&&SPECIES[sp].asi[k])&&rp.indexOf(k)<0)rp.push(k)});if(rp.length)B.ch.rasi=rp.slice(0,SPECIES[sp].asiPick.n)}}
+function fsBgPicks(C){const bx=BACKGROUNDS[B.bg];if(!bx)return;if(bx.skPick){const bs=[];(C.skills||[]).forEach((q) =>{if(q.p&&String(q.src||"").indexOf(B.bg+" skill")===0)bs.push(q.n)});if(bs.length)B.ch.bgsk=bs.slice(0,bx.skPick.n)}
+  if(bx.toolPick){let all=[];bx.toolPick.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const fx=(bx.toolFix||"").split(/,\s*/),bt=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.bg&&all.indexOf(q[0])>=0&&fx.indexOf(q[0])<0)bt.push(q[0])});if(bt.length)B.ch.bgTool=bt.slice(0,bx.toolPick.n)}}
+function fsClassTool(C){const tp=CL().toolPick;if(!tp)return;let all=[];tp.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const ct=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.cls&&all.indexOf(q[0])>=0&&ct.indexOf(q[0])<0)ct.push(q[0])});if(ct.length)B.ch.clsTool=ct.slice(0,tp.n)}
+function fsInvRow(x){let n=x.n,al=null;if(!(WEAPONS[baseOf(n).b]||ARMOR[baseOf(n).b]||n==="Shield"||DMAP[n]||itemCost(n)!=null||itemCost(baseOf(n).b)!=null)){/* v32 RU134 */const pm=/\(([^)]+)\)/.exec(n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){al=n;n=pm[1]}}const o={n:n,q:qOf(x),eq:!!x.eq||!!WEAPONS[baseOf(n).b]};if(al)o.alias=al;if(x.in)o.in=x.in;/* v32 RU134 */if(x.mw)o.mw=1;if(x.px)o.px=x.px;return o}
+function fsSpellPicks(C){let cp=[];try{cp=casterParts()}catch(e){}if(!cp.length)return;const first=cp[0].cls,have={};B.sp=[];delete B.spm;
+  (C.spells||[]).forEach((x) =>{if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;const cl=x.src;if(!cp.some((p) =>{return p.cls===cl}))return;const k=cl+"|"+x.n;if(have[k])return;have[k]=1;
+   if(cl===first)B.sp.push(x.n);else{B.spm=B.spm||{};(B.spm[cl]=B.spm[cl]||[]).push(x.n)}});
+  /* the source of a picked spell must be on before its row can be found */
+  try{wxGate()}catch(e){}__set_SPX(null);
+  B.sp=B.sp.filter((n) =>{return !!spRec(n)});if(B.spm)Object.keys(B.spm).forEach((c) =>{B.spm[c]=B.spm[c].filter((n) =>{return !!spRec(n)});if(!B.spm[c].length)delete B.spm[c]})}
 export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.name||"Character";nb.camp=String((typeof st.camp==="string")?st.camp:(C.camp||C.office||"")).trim();if(C.rs==="2014"){nb.rs="2014";nb.bgMode="111"}/* v82 */nb.src=clone(B.src||{core:true,dmg:true});if((B.duelMode==="on"||B.duelMode==="off")&&B.name===C.name)nb.duelMode=B.duelMode;/* RL29: C does not store it. RL36 a: only for the same character */
  let spFull=String(C.species||""),sp=spFull.split(" (")[0],spRest=spFull.slice(sp.length);
  /* v74: species names may hold brackets ("Dragonborn (2014)", "Aasimar (Protector)"). Take the longest known name, the rest is the lineage */
- (function(){let best="";function chk(k){if(k&&k.length>best.length&&(spFull===k||spFull.indexOf(k+" (")===0))best=k}
-  Object.keys(SPECIES).forEach(chk);if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{Object.keys(WXSP[id]).forEach(chk)});allPacks().forEach((pk) =>{if(pk.species)Object.keys(pk.species).forEach(chk)});
-  if(best){sp=best;spRest=spFull.slice(best.length)}})();
+ const spBest=fsBestSpecies(spFull);if(spBest){sp=spBest;spRest=spFull.slice(spBest.length)}
  if(!SPECIES[sp]){allPacks().forEach((p) =>{if(p.species&&p.species[sp])nb.src[p.id]=true})}
  /* v67: a species, background or subclass of a WotC source keeps its source on when the sheet is read back */
- if(genv.WXSP)Object.keys(WXSP).forEach((id) =>{if(WXSP[id][sp])nb.src[id]=true});if(genv.WXBG)Object.keys(WXBG).forEach((id) =>{if(WXBG[id][C.bg])nb.src[id]=true});if(genv.WXS)WXS.forEach((x) =>{if(x.name===C.sub&&x.cls===C.cls)nb.src[x.src]=true});/* v81: an option of the WotC class lists that the sheet shows keeps its source on */if(genv.WXO){const fj=JSON.stringify(C.features||[]);Object.keys(WXO).forEach((id) =>{const g=WXO[id];[].concat(g.inv||[],g.man||[],g.rn||[]).forEach((r) =>{if(fj.indexOf('"n":"'+r[0]+'"')>=0||fj.indexOf("**"+r[0]+".**")>=0)nb.src[id]=true})})}/* v81: an instrument proficiency of the sheet keeps its source on */if(genv.WXG)Object.keys(WXG).forEach((id) =>{WXG[id].forEach((r) =>{if(r[3]==="Musical Instrument"&&((C.profSrc||{}).tools||[]).some((q) =>{return q[0]===r[0]}))nb.src[id]=true})});
+ fsSrcSpecies(nb,C,sp);fsSrcOptions(nb,C);
  __set_B(nb);applyPacks();
- if(SPECIES[sp]){B.species=sp;if(SPECIES[sp].opts){const so=[];(C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{SPECIES[sp].opts.list.forEach((o) =>{if(f.n===o[0]&&so.indexOf(o[0])<0)so.push(o[0])})})});if(so.length)B.ch.spopt=so.slice(0,SPECIES[sp].opts.n)}const lm=/\(([^)]+)\)/.exec(spRest);if(lm&&SPECIES[sp].lin){const o=SPECIES[sp].lin.opts.filter((x) =>{return x.indexOf(lm[1])===0})[0];if(o)B.ch.lin=o}/* v82: 2014 race ability picks come back from the race bonus on the sheet */if(C.rs==="2014"&&SPECIES[sp].asiFlex&&C.abilities){const f2=[],f1=[];Object.keys(C.abilities).forEach((k) =>{let a=C.abilities[k],t=0;((a&&a.bonus)||[]).forEach((x) =>{if(x.s===sp+" (race)")t+=x.v});if(t===2)f2.push(k);else if(t===1)f1.push(k)});if(f2.length===1&&f1.length===1){B.ch.rasi=f2;B.ch.rasi1=f1}else if(f1.length===3){B.ch.rasim="+1, +1, +1";B.ch.rasi=f1}}if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){const rp=[];Object.keys(C.abilities).forEach((k) =>{const a=C.abilities[k];if(a&&(a.bonus||[]).some((x) =>{return x.s===sp+" (race)"})&&!(SPECIES[sp].asi&&SPECIES[sp].asi[k])&&rp.indexOf(k)<0)rp.push(k)});if(rp.length)B.ch.rasi=rp.slice(0,SPECIES[sp].asiPick.n)}}
+ if(SPECIES[sp]){B.species=sp;fsSpOpts(sp,C);fsSpLin(sp,spRest);fsSpAsiFlex(sp,C);fsSpAsiPick(sp,C)}
  else{B.species="Custom";B.cSpecies={name:sp||"Custom",speed:+C.speed||30,dark:+C.darkvision||0,size:C.size||"Medium"};miss.push("species")}
  if(C.size)B.size=C.size;
  const cls=(C.cls||"").split(" ")[0];if(CLASSES[cls])B.cls=cls;else miss.push("class");
@@ -51,11 +68,10 @@ export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.nam
  (C.skills||[]).forEach((s) =>{if(s.p&&/Cunning Eye/i.test(s.src||""))B.ch.sccunning=[s.n]});
  const ck=[];(C.skills||[]).forEach((s) =>{if(s.p&&/class skill/i.test(s.src||""))ck.push(s.n)});if(ck.length)B.ch.clsk=ck;
  /* v70: the skill and tool picks of a 2014 background are read back from the sheet */
- (function(){const bx=BACKGROUNDS[B.bg];if(!bx)return;if(bx.skPick){const bs=[];(C.skills||[]).forEach((q) =>{if(q.p&&String(q.src||"").indexOf(B.bg+" skill")===0)bs.push(q.n)});if(bs.length)B.ch.bgsk=bs.slice(0,bx.skPick.n)}
-  if(bx.toolPick){let all=[];bx.toolPick.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const fx=(bx.toolFix||"").split(/,\s*/),bt=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.bg&&all.indexOf(q[0])>=0&&fx.indexOf(q[0])<0)bt.push(q[0])});if(bt.length)B.ch.bgTool=bt.slice(0,bx.toolPick.n)}})();
+ fsBgPicks(C);
  /* v81: the tool pick of the class (Bard instruments, Monk tool) comes back from the proficiency sources of the sheet */
-  (function(){const tp=CL().toolPick;if(!tp)return;let all=[];tp.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const ct=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.cls&&all.indexOf(q[0])>=0&&ct.indexOf(q[0])<0)ct.push(q[0])});if(ct.length)B.ch.clsTool=ct.slice(0,tp.n)})();
-  B.inv=(C.inv||[]).map((x) =>{let n=x.n,al=null;if(!(WEAPONS[baseOf(n).b]||ARMOR[baseOf(n).b]||n==="Shield"||DMAP[n]||itemCost(n)!=null||itemCost(baseOf(n).b)!=null)){/* v32 RU134 */const pm=/\(([^)]+)\)/.exec(n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){al=n;n=pm[1]}}const o={n:n,q:qOf(x),eq:!!x.eq||!!WEAPONS[baseOf(n).b]};if(al)o.alias=al;if(x.in)o.in=x.in;/* v32 RU134 */if(x.mw)o.mw=1;if(x.px)o.px=x.px;return o});B.eqC="none";B.eqB="none";B.gpOverride=C.gp!=null?C.gp:null;
+  fsClassTool(C);
+  B.inv=(C.inv||[]).map((x) =>{return fsInvRow(x)});B.eqC="none";B.eqB="none";B.gpOverride=C.gp!=null?C.gp:null;
  const lg=(st.lang||C.lang||[]).filter((x) =>{return x&&x!=="Common"&&x!=="Druidic"&&x!=="Thieves' Cant"});if(lg.length)B.ch.lang=lg.slice(0,C.rs==="2014"?9:2);
  applyPacks();if(C.rs==="2014"&&B.ch.lang){const sx=SPECIES[B.species],bx=BACKGROUNDS[B.bg],fxl=((sx&&sx.lgf)||[]).concat((bx&&bx.lgf)||[]),nn=((sx&&sx.lgn)||0)+((bx&&bx.lgn)||0);B.ch.lang=B.ch.lang.filter((x) =>{return fxl.indexOf(x)<0}).slice(0,nn);if(!B.ch.lang.length)delete B.ch.lang}/* v84 */
  /* v79: the choices of the subclass (Hunter's Prey, Land Type, maneuvers, War Bond, Evocation Savant and so on) come back from the sheet. The feature text holds them after "Your choice." */
@@ -77,10 +93,5 @@ export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.nam
    let seen=[];Object.keys(B.ch).forEach((k) =>{if(k!==c.key&&/maneuver$/.test(k)===/maneuver$/.test(c.key)&&Array.isArray(B.ch[k]))seen=seen.concat(B.ch[k])});
    part=part.filter((n) =>{return seen.indexOf(n)<0});if(part.length)B.ch[c.key]=part.slice(0,c.n||1)})})();
  /* v79: the spells chosen in Manage Spells (use Prepared or Cantrip, source = the class) come back as builder picks, so Apply keeps them */
- (function(){let cp=[];try{cp=casterParts()}catch(e){}if(!cp.length)return;const first=cp[0].cls,have={};B.sp=[];delete B.spm;
-  (C.spells||[]).forEach((x) =>{if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;const cl=x.src;if(!cp.some((p) =>{return p.cls===cl}))return;const k=cl+"|"+x.n;if(have[k])return;have[k]=1;
-   if(cl===first)B.sp.push(x.n);else{B.spm=B.spm||{};(B.spm[cl]=B.spm[cl]||[]).push(x.n)}});
-  /* the source of a picked spell must be on before its row can be found */
-  try{wxGate()}catch(e){}__set_SPX(null);
-  B.sp=B.sp.filter((n) =>{return !!spRec(n)});if(B.spm)Object.keys(B.spm).forEach((c) =>{B.spm[c]=B.spm[c].filter((n) =>{return !!spRec(n)});if(!B.spm[c].length)delete B.spm[c]})})();
+ fsSpellPicks(C);
  return miss}
