@@ -6,7 +6,7 @@ import {B,D,fill,richB,richP} from "./06-logic-derivation.js";
 import {aylH,aylSplit,spSum,used} from "./08-ui-render-sheet-and-actions.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {SWP,__set_SWP,__set_navStack,__set_sheetMode,lastFocus,navStack,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"featSpec",{get:function(){return featSpec;},set:function(v){featSpec=v;},configurable:true});
 Object.defineProperty(__R,"grpSpec",{get:function(){return grpSpec;},set:function(v){grpSpec=v;},configurable:true});
 Object.defineProperty(__R,"infoHTML",{get:function(){return infoHTML;},set:function(v){infoHTML=v;},configurable:true});
@@ -46,10 +46,10 @@ let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs
 function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
 const XL_EMPTY=(function(){ const e={}; Object.defineProperty(e,"__f",{value:{}}); return e; })();/* before the data parts are all in, the index would be built twice; it stays empty and the page is linked once when the data is ready */
 function xlIdx(){
-  if(!window.__deferDone) return XL_EMPTY;
+  if(!env.__deferDone) return XL_EMPTY;
   const tn=Date.now(); if(XL_IDX&&tn-XL_KT<250) return XL_IDX;/* the check below walks every table: once in a quarter second is enough */
   XL_KT=tn;
-  const crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], Q=window.QREFS||{}, rl=xlRules(), cl=typeof CLASSES!=="undefined"?CLASSES:{}, spc=typeof SPECIES!=="undefined"?SPECIES:{}, bgs=typeof BACKGROUNDS!=="undefined"?BACKGROUNDS:{};
+  const crs=(typeof CREATURES!=="undefined"&&CREATURES.creatures)||[], sp=(typeof SPELLS!=="undefined"&&SPELLS)||[], mi=(typeof DMGI!=="undefined"&&DMGI)||[], ftk=typeof FEATS!=="undefined"?Object.keys(FEATS):[], Q=env.QREFS||{}, rl=xlRules(), cl=typeof CLASSES!=="undefined"?CLASSES:{}, spc=typeof SPECIES!=="undefined"?SPECIES:{}, bgs=typeof BACKGROUNDS!=="undefined"?BACKGROUNDS:{};
   let qn=0; ["rule","optfeat","facility","hazard","disease","vehicle","object","language","feature","sub"].forEach((q) =>{ qn+=(Q[q]||[]).length; });/* never "monster": it is a lazy getter that inflates 4,500 rows */
   const key=sp.length+"|"+mi.length+"|"+crs.length+"|"+ftk.length+"|"+Object.keys(GLOSS).length+"|"+Object.keys(rl).length+"|"+Object.keys(cl).length+"|"+Object.keys(spc).length+"|"+Object.keys(bgs).length+"|"+qn+"|"+(typeof GEAR!=="undefined"?GEAR.length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).length:0)+"|"+(typeof ARMOR!=="undefined"?Object.keys(ARMOR).join(",").length:0)+"|"+(typeof WEAPONS!=="undefined"?Object.keys(WEAPONS).join(",").length:0);
   if(XL_IDX&&key===XL_KEY) return XL_IDX;
@@ -171,7 +171,7 @@ function xlDom(el){
   return cnt;
 }
 function xlFlush(){
-  XL_T=0; if(!window.__deferDone&&!XL_FORCE){ XL_T=setTimeout(xlFlush,300); return; } if(!XL_FORCE){ const ap=document.getElementById("app"), hv=document.getElementById("homeV"); if(document.documentElement.classList.contains("st-wait")||(ap&&(!ap.offsetParent||(hv&&hv.offsetParent)))){ XL_T=setTimeout(xlFlush,700); return; } }/* Home is showing: the sheet is not drawn, so wait. The index is not built until a sheet is open */
+  XL_T=0; if(!env.__deferDone&&!XL_FORCE){ XL_T=setTimeout(xlFlush,300); return; } if(!XL_FORCE){ const ap=document.getElementById("app"), hv=document.getElementById("homeV"); if(document.documentElement.classList.contains("st-wait")||(ap&&(!ap.offsetParent||(hv&&hv.offsetParent)))){ XL_T=setTimeout(xlFlush,700); return; } }/* Home is showing: the sheet is not drawn, so wait. The index is not built until a sheet is open */
   XL_FORCE=0; const q=Array.from(XL_Q); XL_Q=new Set(); if(!q.length) return;
   if(XL_OBS) XL_OBS.disconnect();/* our own edits must not queue again */
   try{ q.forEach((el) =>{ if(el.isConnected) xlDom(el); }); }catch(er){ try{ console.error("xl",er); }catch(e2){} }
@@ -187,8 +187,8 @@ function xlStart(){
 }
 if(document.body) xlStart(); else document.addEventListener("DOMContentLoaded",xlStart);
 document.addEventListener("bldready",() =>{ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); });/* the data is in: link what was drawn while the index was empty */
-window.__xlDom=xlDom;window.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };window.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
-window.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules};/* test hook */
+env.__xlDom=xlDom;env.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };env.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
+env.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules};/* test hook */
 function miHTML(n){
   const r=(typeof DMGI!=="undefined"?DMGI:[]).filter((x) =>{ return x[0]===n; })[0];
   if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};
@@ -366,4 +366,4 @@ export function mwH(it,ix){ if(!mwEligible(it)) return ""; const on=!!it.mw;
   return '<div class="mwsw"><div class="mwsw-t"><b>Masterwork</b><small>Counts this '+(typeof ARMOR!=="undefined"&&ARMOR[mwBase(it.n)]?'armor':'weapon')+' as Masterwork for the rules that ask for it.</small></div><button type="button" role="switch" class="fxsw press'+(on?' on':'')+'" aria-checked="'+on+'" aria-label="Masterwork" data-imw="'+esc(it.key||it.n)+'" data-iix="'+ix+'"><i></i></button></div>'; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-imw]"); if(!b) return; e.preventDefault(); e.stopPropagation();
   const it=invAt(b.getAttribute("data-imw"),b.getAttribute("data-iix")); if(!it) return; __R.undoMark((it.mw?"Remove":"Add")+" Masterwork");
-  it.mw=!it.mw; b.setAttribute("aria-checked",!!it.mw); b.classList.toggle("on",!!it.mw); saveC(); try{ if(window.__bldSetMw&&it.n) window.__bldSetMw(it.n,__R.occOf(it),!!it.mw); }catch(_){ } __R.renderAll(); },true);
+  it.mw=!it.mw; b.setAttribute("aria-checked",!!it.mw); b.classList.toggle("on",!!it.mw); saveC(); try{ if(env.__bldSetMw&&it.n) env.__bldSetMw(it.n,__R.occOf(it),!!it.mw); }catch(_){ } __R.renderAll(); },true);

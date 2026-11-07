@@ -3,7 +3,7 @@ import {ask,esc,num,toast} from "./05-logic-helpers.js";
 import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
 import {bkpCheck,bkpCount,bkpMake,bkpRestore,cOf,fixCid,fmtT,homeCards,newId,rLoad,rSnap,rawHash,snTake,uiSet,zUnpack} from "./15-logic-roster-backup-files-snapshots.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"impText",{get:function(){return impText;},set:function(v){impText=v;},configurable:true});
 Object.defineProperty(__R,"wnBanner",{get:function(){return wnBanner;},set:function(v){wnBanner=v;},configurable:true});
 Object.defineProperty(__R,"wnOpen",{get:function(){return wnOpen;},set:function(v){wnOpen=v;},configurable:true});
@@ -30,12 +30,12 @@ function bkpMerge(o){ let src=null; try{ src=JSON.parse(o.keys["cs-roster-v1"]||
 function impBuild(b,o){ if(typeof b==="string"){ try{ b=JSON.parse(b); }catch(e){ b=null; } } if(!b||typeof b!=="object"||!(b.cls||b["class"])){ toast("This build has no class, so it cannot be opened."); return; }
   if(!(o&&"_coins" in o)){ const cz=b.coins&&typeof b.coins==="object"?b.coins:(typeof b.gp==="number"||/^\d+(\.\d+)?$/.test(String(b.gp==null?"":b.gp))?{gp:+b.gp}:null); o=Object.assign({},o||{},{_coins:cz?__R.coinsClean(cz):null}); }/* v34 p06 */
   delete b.coins; if(typeof b.gp!=="undefined") delete b.gp;
-  if(!window.__bldSheetFor||!window.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
-  if(!(o&&o._ok)){ const nm0=window.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */
-    b=nm0.b; const chk=window.__bldCheck?window.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return; }
-    let still=[]; try{ still=(window.__bldChoiceList?window.__bldChoiceList(b):[]).filter((c) =>{ return !c.done; }).map((c) =>{ return c.title; }); }catch(er){ still=[]; }/* v34 p07 */
+  if(!env.__bldSheetFor||!env.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
+  if(!(o&&o._ok)){ const nm0=env.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */
+    b=nm0.b; const chk=env.__bldCheck?env.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return; }
+    let still=[]; try{ still=(env.__bldChoiceList?env.__bldChoiceList(b):[]).filter((c) =>{ return !c.done; }).map((c) =>{ return c.title; }); }catch(er){ still=[]; }/* v34 p07 */
     if(nm0.notes.length||still.length){ const bb=b; ask("Open this build?"+(nm0.notes.length?" To fit the app and the 2024 rules, these changes are made:\n"+nm0.notes.map((x) =>{ return "\u2022 "+x+"."; }).join("\n"):"")+(still.length?"\nStill to choose ("+still.length+"): "+still.join(", ")+".":"")+"\nThe builder opens next and marks anything still missing.","Open Build",() =>{ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return; } }
-  let C2=null; try{ C2=window.__bldSheetFor(b); }catch(e){ C2=null; } if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
+  let C2=null; try{ C2=env.__bldSheetFor(b); }catch(e){ C2=null; } if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
   const nm=String(b.name||(o&&o.name)||C2.name||"Character"); b.name=nm; C2.name=nm;
   const r=rSnap(rEnsure()), nid=newId(r); r.chars[nid]={created:Date.now(),name:nm,sub:(C2.species||"")+" "+(C2.clsLabel||((C2.cls||"")+" "+(C2.level||1))),B:JSON.stringify(b),C:JSON.stringify(C2),S:o&&o._coins?JSON.stringify({coins:o._coins,coinBase:num(C2.gp,0)}):null,t:Date.now()};
   if(!rSave(r)) return; try{ __store.setItem("cs-edit","1"); }catch(e){} sessionStorage.setItem("cs-skip","1"); rLoad(r,nid,false); }
@@ -61,4 +61,4 @@ export function wnBanner(){ if(!__R.WN_SHOW) return ""; return '<div class="hwn"
 function wnOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(); const w=document.createElement("div"); w.id="bkp"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
   w.setAttribute("aria-labelledby","bkpT"); w.innerHTML='<div class="bkpb"><div class="bkph"><b id="bkpT">What\'s New</b><button type="button" class="bkpx" data-bkp="close" aria-label="Close">×</button></div>'+wnList(0)+'</div>'; document.body.appendChild(w);
   w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-bkp]")) w.remove(); }); }
-window.__bkpMake=bkpMake; window.__bkpCheck=bkpCheck;
+env.__bkpMake=bkpMake; env.__bkpCheck=bkpCheck;

@@ -6,7 +6,7 @@ import {D} from "./06-logic-derivation.js";
 import {PALS,dataUri,uiGet} from "./07-ui-theme-contrast-spring.js";
 import {esArt} from "./08-ui-render-sheet-and-actions.js";
 import {BKEY,RKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"SN_BAD",{get:function(){return SN_BAD;},set:function(v){SN_BAD=v;},configurable:true});
 Object.defineProperty(__R,"bkpKeyOk",{get:function(){return bkpKeyOk;},set:function(v){bkpKeyOk=v;},configurable:true});
 Object.defineProperty(__R,"bkpName",{get:function(){return bkpName;},set:function(v){bkpName=v;},configurable:true});
@@ -72,9 +72,9 @@ export function learnBand(){ let o={}; try{ o=JSON.parse(lsGet("cs-learn-v1")||"
   return '<div class="hlearn" id="hlearnB"><span class="lrn-hoot"><img src="img/vig/empty/spells.avif" alt="" loading="lazy" decoding="async"></span><span><b>'+esc(t)+'</b><small>'+esc(s)+'</small></span><button type="button" class="btn pri press" data-hlearn="1">'+esc(b)+'</button></div>'; }
 /* G7: the Training Ground band on Home, under the Learn band */
 function tgBand(){ return '<div class="hlearn htg" id="htgB"><span class="lrn-hoot htg-i">'+((typeof __R.ICO==="object"&&__R.ICO)?__R.ico("ui-shield"):"")+'</span><span><b>Training Ground</b><small>Try your character against monsters. Your sheet never changes.</small></span><button type="button" class="btn press" data-tgopen="1">Train</button></div>'; }
-export function tgGo(){ const go=() =>{ if(window.__tgOpen) window.__tgOpen(); else toast("The Training Ground is still loading. Try again in a moment."); }; if(!window.__tgOpen&&window.__bldNeed) Promise.resolve(window.__bldNeed()).then(go,go); else go(); }
+export function tgGo(){ const go=() =>{ if(env.__tgOpen) env.__tgOpen(); else toast("The Training Ground is still loading. Try again in a moment."); }; if(!env.__tgOpen&&env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else go(); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-tgopen]"); if(!b) return; e.preventDefault(); tgGo(); });
-export function learnGo(o){ const go=() =>{ if(window.__learnOpen) window.__learnOpen(o); }; if(!window.__learnOpen&&window.__bldNeed) Promise.resolve(window.__bldNeed()).then(go,go); else go(); }
+export function learnGo(o){ const go=() =>{ if(env.__learnOpen) env.__learnOpen(o); }; if(!env.__learnOpen&&env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else go(); }
 export function showHome(){let w=document.getElementById("homeV");if(!w){w=document.createElement("div");w.id="homeV";w.setAttribute("role","region");w.setAttribute("aria-label","My Characters");document.body.appendChild(w);
   w.addEventListener("click",(e) =>{const l=e.target.closest&&e.target.closest("[data-hlib]");if(l){__R.libOpen({q:l.getAttribute("data-hlib")});return}const c=e.target.closest&&e.target.closest("[data-hcmd]");if(!c)return;const t=w.querySelector(".hbtns "+c.getAttribute("data-hcmd"))||w.querySelector(c.getAttribute("data-hcmd"));if(t)t.click()});
   w.addEventListener("keydown",(e) =>{if(e.target.id==="homeQ"&&e.key==="Enter"){const c=w.querySelector(".hcmd");if(c){e.preventDefault();c.click()}}});
@@ -82,7 +82,7 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
   w.addEventListener("change",(e) =>{if(e.target.id==="homeCamp"){__R.homeCamp=e.target.value;document.getElementById("hgrid").innerHTML=homeCards();return}/* v27 RU64 */if(e.target.id==="homeSort"){homeSort=e.target.value;document.getElementById("hgrid").innerHTML=homeCards()}});
   w.addEventListener("click",(e) =>{const b=e.target.closest("button");if(!b)return;const d=b.dataset,r=rEnsure();
    if(d.hview){if(d.hview===r.active){w.hidden=true;document.body.style.overflow="";return}rSnap(r);sessionStorage.setItem("cs-skip","1");rLoad(r,d.hview,false);return}
-   if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(window.__bldOpen)window.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
+   if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(env.__bldOpen)env.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
    if(d.hkeep){const kp=r.chars[d.hkeep];if(kp){delete kp.practice;rSave(r);document.getElementById("hgrid").innerHTML=homeCards(true);toast("Kept. It is a normal character now.")}return}
    if(d.hdisc){const dc=d.hdisc;if(Object.keys(r.chars).length<2){toast("You need at least one character");return}ask("Discard the practice hero "+((r.chars[dc]||{}).name||"")+"? A copy stays in Snapshots for a while, so it can come back.","Discard",() =>{const r2=rSnap(rEnsure());snTake(dc,"Before Discard",r2);const was=dc===r2.active;delete r2.chars[dc];rSave(r2);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r2,Object.keys(r2.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards(true);toast("Practice hero discarded.")});return}
    if(d.hdel){if(Object.keys(r.chars).length<2){toast("You need at least one character");return}if(b.dataset.sure!=="1"&&b.dataset.heldDone!=="1"){b.dataset.sure="1";const bl=b.querySelector(".holdc-label");if(bl)bl.textContent="Tap again";else b.textContent="Tap again";return}snTake(d.hdel,"Before Delete",rSnap(r));const was=d.hdel===r.active;delete r.chars[d.hdel];rSave(r);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r,Object.keys(r.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards();const hi=document.getElementById("hinfo");if(hi)hi.innerHTML=homeInfo();persistShow();const hs=document.querySelector("#homeV .hslots b");if(hs)hs.textContent=Object.keys(r.chars).length;return}
@@ -92,7 +92,7 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
    if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
    if(d.hwn){if(d.hwn==="ok"){try{__store.setItem("cs-ui-ver",String(APP_VER))}catch(er){}__R.WN_SHOW=false;const bn=document.getElementById("hwnB");if(bn)bn.remove();return}__R.wnOpen();return}/* v18 RU59 */
    if(d.hpers){askPersist();return}
-   if(d.hall){const hg=document.getElementById("hgrid");if(hg)hg.scrollIntoView({behavior:(window.__MI&&window.__MI.rm&&window.__MI.rm())?"auto":"smooth",block:"start"});return}
+   if(d.hall){const hg=document.getElementById("hgrid");if(hg)hg.scrollIntoView({behavior:(env.__MI&&env.__MI.rm&&env.__MI.rm())?"auto":"smooth",block:"start"});return}
    if(d.hbin){BIN_OPEN=!BIN_OPEN;const hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
    if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
    if(d.hnew){rSnap(r);const nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{if(sessionStorage.getItem("cs-forge"))r.chars[nid].practice=1}catch(e){}/* T11 Learn F3: a hero from Forge Your Hero is a practice hero until kept */try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}})}
@@ -208,7 +208,7 @@ function techInfo(){ const q=bkState(), bk=q.bk, u=q.u, pct=q.pct, full=q.full, 
 function pwaNote(){ let st=false; try{ st=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true; }catch(er){} if(st) return '<div class="hbkl"><span>This app is installed on your device.</span></div>';
   return '<div class="hbkl"><span>Install: '+((typeof __R.PWA_EV!=="undefined"&&__R.PWA_EV)?'press Install App on the Home screen, or use the Install command in the search.':'in Chrome or Edge use the install icon in the address bar. In Safari use Share, then Add to Home Screen.')+' An installed app opens faster and works offline.</span></div>'; }
 function homeInfo(){ let q=bkState(), r=q.r, warnH="";
-  if(q.warn||q.full) warnH='<div class="hbkl warn" role="status">'+(q.full&&window.__artVig?window.__artVig("state","storage-full",44):"")+'<span class="hbkw">'+(q.full?'Storage is almost full. Back up, then remove portraits or characters you no longer need.':(q.bk.t?'Your last backup is '+q.days+' days old and there are changes since then.':'You have no backup yet. Back up your characters so they are safe if this browser\'s data is cleared.'))+'</span><button type="button" class="hlink" data-hbk="out">Back Up</button><button type="button" class="hlink" data-hbk="info">Details</button></div>';
+  if(q.warn||q.full) warnH='<div class="hbkl warn" role="status">'+(q.full&&env.__artVig?env.__artVig("state","storage-full",44):"")+'<span class="hbkw">'+(q.full?'Storage is almost full. Back up, then remove portraits or characters you no longer need.':(q.bk.t?'Your last backup is '+q.days+' days old and there are changes since then.':'You have no backup yet. Back up your characters so they are safe if this browser\'s data is cleared.'))+'</span><button type="button" class="hlink" data-hbk="out">Back Up</button><button type="button" class="hlink" data-hbk="info">Details</button></div>';
   return warnH+
     (function(){ const sn=snGet().chars, del=Object.keys(sn).filter((id) =>{ return !r.chars[id]&&sn[id]&&sn[id].length; }); if(!del.length) return "";
       del.sort((a,b) =>{ return (sn[b][0].t||0)-(sn[a][0].t||0); });
@@ -247,14 +247,14 @@ function healUse(){ const h=healFind(); if(!h||h.none){ toast("No readable copy 
     try{ __store.setItem("cs-heal-v1",JSON.stringify({t:Date.now(),src:h.src,keys:(function(){ const k={}; k[CKEY]=lsGet(CKEY); k[KEY]=lsGet(KEY); return k; })()})); }catch(e){}
     try{ if(h.needC&&h.C) __store.setItem(CKEY,h.C); if(h.needS&&h.S) __store.setItem(KEY,h.S); else if(h.needS) __store.removeItem(KEY); }catch(e){ toast("Could not write the copy: storage is full"); return; }
     const go=function(){ sessionStorage.setItem("cs-skip","1"); __miReload(); }; if(__store.flush) __store.flush().then(go,go); else go(); }); }
-window.__healFind=healFind;
+env.__healFind=healFind;
 export function snTake(id,why,r){ if(FROZEN||!id) return; r=r||rGet(); if(!r||!r.chars||!r.chars[id]) return; const x=chRaw(id,r); if(!x.C) return; let s=x.S;
   try{ const so=JSON.parse(s||"null"); if(so&&so.portrait){ so.portrait=""; s=JSON.stringify(so); } }catch(e){}
   const o=snGet(), L=o.chars[id]||[], h=rawHash({B:x.B,C:x.C,S:s}); if(L[0]&&L[0].h===h) return;
   L.unshift({t:Date.now(),why:why,cr:r.chars[id].created||null,name:cOf(x.C).name||r.chars[id].name||"",B:x.B,C:x.C,S:s,h:h}); o.chars[id]=L.slice(0,5); snPut(o); }
 export function snRestore(id,i){ const o=snGet(), x=(o.chars[id]||[])[i]; if(!x) return;
   /* T11 G3 N13: for the open character, the numbers that the restore would change */
-  let pv=""; try{ if(id===(rGet()||{}).active&&window.__rcptRestoreText) pv=window.__rcptRestoreText(typeof x.C==="string"?JSON.parse(x.C):x.C); }catch(er){ pv=""; }
+  let pv=""; try{ if(id===(rGet()||{}).active&&env.__rcptRestoreText) pv=env.__rcptRestoreText(typeof x.C==="string"?JSON.parse(x.C):x.C); }catch(er){ pv=""; }
   ask("Go back to the copy from "+fmtT(x.t)+" ("+x.why+")? The character as it is now is kept as a snapshot first, so you can undo this."+(pv?"\n\nNumbers that change:\n"+pv:""),"Restore Snapshot",() =>{ const r=rSnap(rEnsure()); snTake(id,"Before going back to a snapshot",r);
     let cur=chRaw(id,r), s=x.S; try{ const so=JSON.parse(s), co=cOf(cur.S); if(co.portrait){ so.portrait=co.portrait; s=JSON.stringify(so); } }catch(e){}
     const e=r.chars[id]; e.B=x.B; e.C=x.C; e.S=s; e.name=x.name||e.name; e.t=Date.now(); if(!rSave(r)) return;

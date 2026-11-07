@@ -4,7 +4,7 @@ import {eqOn} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {ico,icoCls,icoItem,icoText} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {ICO} from "./29-ui-ddb-look.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"ICO_CAT",{get:function(){return ICO_CAT;},set:function(v){ICO_CAT=v;},configurable:true});
 Object.defineProperty(__R,"ICO_TXT",{get:function(){return ICO_TXT;},set:function(v){ICO_TXT=v;},configurable:true});
 Object.defineProperty(__R,"icoSp",{get:function(){return icoSp;},set:function(v){icoSp=v;},configurable:true});
@@ -17,7 +17,7 @@ ICO["spellbook"]="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h1
 ICO["home-party"]="M9 8a3 3 0 1 0 0.01 0M3 20c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3M16.5 6.5a2.6 2.6 0 1 1 0 5.2M17.5 14.8c2 .4 3.2 2 3.5 4.7";/* v28 M1 */
 ICO["settings"]="M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1";
 
-window.__ICO=ICO;/* v56: the EFotA block adds its class icon */
+env.__ICO=ICO;/* v56: the EFotA block adds its class icon */
 export var ICO_FCAT={"Actions":"act-action","Bonus Actions":"act-bonus","Reactions":"act-reaction","Other":"act-free","Limited Use":"act-limited","Class Features":"src-class","Species Traits":"src-species","Feats":"src-feat","Background":"src-background","Creatures":"creature"};
 const ICO_STEP={"class":"step-class",bg:"step-background",species:"step-species",abil:"step-abilities",equip:"step-equipment",next:"step-next"};
 const ICO_SENSE=[[/^Passive/,"sense-passive"],[/^Darkvision/,"sense-darkvision"],[/^Blindsight/,"sense-blindsight"],[/^Tremorsense/,"sense-tremorsense"],[/^Truesight/,"sense-truesight"],[/^Devil's Sight/,"sense-darkvision"]];
@@ -102,7 +102,7 @@ function icoAll(root){ const q=function(s){ return Array.prototype.slice.call(ro
   q(".dmgt")/* v32 p91: .abox already shows the damage type icon */.forEach((s) =>{ const k=ICO_DT[s.textContent.trim().toLowerCase()]; if(k) icoPut(s,k); });
   q("#bld .ititle, #bld .it-n, #bld .mi-n").forEach((n) =>{ const sub=n.parentNode&&n.parentNode.textContent; const k=icoItemType(sub); if(k) icoPut(n,k); });
 }
-window.__ICO=ICO; window.__buildPrint=function(){ __R.buildPrint(); };/* v24: for tests */
+env.__ICO=ICO; env.__buildPrint=function(){ __R.buildPrint(); };/* v24: for tests */
 /* q: toasts show what kind of message they are */
 export function toastKind(m){ m=String(m||""); return /\b(cannot|could not|can't|couldn't|isn't|failed|not valid|not a character|is blocked|was not|No room|too big|is full|Not enough|Limit reached|already used|need at least|None left|no .{1,30} left)\b/i.test(m)?"error":/^0 Hit Points|Unconscious|ended\b|Over capacity|over capacity/.test(m)?"warn":/^(Check|Answer|Choose|Build this|Pick|Turn|Finish|Fill|Type|Paste|Open Build first|You are attuned|You can|This build is already)/.test(m)||/Still to check|not chosen yet|Not saved/i.test(m)?"warn":"ok"; }
 

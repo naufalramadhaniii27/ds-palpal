@@ -6,7 +6,7 @@ import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {condHTML} from "./10-ui-conditions.js";
 import {bdHTML} from "./11-ui-breakdown.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"navStack",{get:function(){return navStack;},set:function(v){navStack=v;},configurable:true});
 Object.defineProperty(__R,"openSheet",{get:function(){return openSheet;},set:function(v){openSheet=v;},configurable:true});
 Object.defineProperty(__R,"sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;},configurable:true});
@@ -20,26 +20,26 @@ function growFrom(){ try{ if(REDUCE||innerWidth<760||!LASTPT||Date.now()-LASTPT.
 export function wmHd(h){ return String(h||"").replace(/<img ([^>]*?)src="img\/(emblem\/sub\/|emblem\/|icon\/)([^"]+)"/g,(m,a,d,f) =>{ return '<img '+a+'src="img/hd/'+d+f+'" data-fb="img/'+d+f+'"'; }); }
 /* T11 A1: the fallback to the normal size picture when an HD file is missing, without an inline onerror handler (the CSP allows no inline handlers) */
 document.addEventListener("error",(e) =>{ const t=e.target; if(t&&t.tagName==="IMG"&&t.classList.contains("lib-im")){ t.remove(); return; }/* a Library picture that is missing: no empty frame (was an inline onerror, which the CSP and Trusted Types clean away) */ if(t&&t.tagName==="IMG"&&t.getAttribute("data-fb")){ const f=t.getAttribute("data-fb"); t.removeAttribute("data-fb"); t.src=f; } },true);
-export function wmClass(n){ const k=String(n||"").toLowerCase(); if(!(window.__ART&&window.__ART.emblem&&window.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
+export function wmClass(n){ const k=String(n||"").toLowerCase(); if(!(env.__ART&&env.__ART.emblem&&env.__ART.emblem[k])) return ""; try{ if(__store.getItem("mi-clsart")==="off") return ""; }catch(e){} return '<img class="art-sub" src="img/emblem/'+k+'.avif" alt="">'; }
 /* the picture from 5etools for an entry (window.QIMG, same tables as the Library), found by title: "Background: X", "Species: X" or an item, spell, feat and so on by name. It goes before the Codex icon. */
 const QIM_CATS=["item","gear","spell","feat","bg","species","class","sub","deity","recipe","charopt","language","hazard","object","vehicle","optfeat","rule"];
 const qimN=(z) =>String(z||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-export function wm5(t){ const Q=window.QIMG; if(!Q||!t) return ""; let n=t, cats=QIM_CATS, m=/^(Background|Species): (.+)$/.exec(t);
+export function wm5(t){ const Q=env.QIMG; if(!Q||!t) return ""; let n=t, cats=QIM_CATS, m=/^(Background|Species): (.+)$/.exec(t);
   if(m){ n=m[2]; cats=[m[1]==="Background"?"bg":"species"]; }
-  window.__qimN=window.__qimN||{};
+  env.__qimN=env.__qimN||{};
   for(let i=0;i<cats.length;i++){ const c=cats[i], tb=Q[c]; if(!tb) continue; let im=tb[n]||null;
-    if(!im){ if(!window.__qimN[c]){ const mp={}; Object.keys(tb).forEach((z) =>{ mp[qimN(z)]=tb[z]; }); window.__qimN[c]=mp; } im=window.__qimN[c][qimN(n)]||null; }
+    if(!im){ if(!env.__qimN[c]){ const mp={}; Object.keys(tb).forEach((z) =>{ mp[qimN(z)]=tb[z]; }); env.__qimN[c]=mp; } im=env.__qimN[c][qimN(n)]||null; }
     if(im) return '<img class="lib-im" loading="lazy" decoding="async" alt="" src="data/img/'+encodeURI(im)+'.webp">'; }
   return ""; }
 export function sheetIco(t){ t=String(t||""); let h="", m;
   h=wm5(t); if(h) return h;
-  if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(window.__artSub&&window.__artSub(m[1],m[2],320))||__R.ico("src-class");
-  else if(/^Species: /.test(t)) h=(window.__artIc&&window.__artIc("species",t.slice(9)))||__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
-  else if(/^Background: /.test(t)) h=(window.__artIc&&window.__artIc("background",t.slice(12)))||__R.ico("src-background");
-  else if(t==="Size") h=(window.__artIc&&window.__artIc("size",C.size))||__R.ico("creature");
+  if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(env.__artSub&&env.__artSub(m[1],m[2],320))||__R.ico("src-class");
+  else if(/^Species: /.test(t)) h=(env.__artIc&&env.__artIc("species",t.slice(9)))||__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
+  else if(/^Background: /.test(t)) h=(env.__artIc&&env.__artIc("background",t.slice(12)))||__R.ico("src-background");
+  else if(t==="Size") h=(env.__artIc&&env.__artIc("size",C.size))||__R.ico("creature");
   else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
-  if(!h&&window.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],
-    ["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=window.__artIc(cats[i][0],alt[j]+cats[i][1]);
+  if(!h&&env.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],
+    ["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=env.__artIc(cats[i][0],alt[j]+cats[i][1]);
       }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
   return wmHd(h); }
 function setSheetTitle(t){ const e=$("#sheetTitle"); e.textContent=t; let w=$("#shWm"); if(w){ w.remove(); w=null; }/* a fresh picture holder each time: the blend code writes into it, and a reused one kept the previous entry's scene */ if(!w){ w=document.createElement("span");
@@ -52,8 +52,8 @@ export function openSheet(title, html, mode, wide){
   $("#sheetBack").hidden = navStack.length<2;
   sheet.classList.toggle("wide",!!wide); sheet.style.transform="";
   if(!sheet.classList.contains("on")) growFrom();
-  try{ window.__artSheet&&window.__artSheet(mode,title); }catch(er){}
-  try{ window.__blendSheet&&window.__blendSheet(mode,title); }catch(er){}
+  try{ env.__artSheet&&env.__artSheet(mode,title); }catch(er){}
+  try{ env.__blendSheet&&env.__blendSheet(mode,title); }catch(er){}
   $("#scrim").classList.add("on"); sheet.classList.add("on"); __R.dockApply(mode,wide); __R.shOpened();/* v31 p14, p16 */
   setTimeout(() =>{ const b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
@@ -104,7 +104,7 @@ export function showEntry(en, push){
   if(open){
     sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
-    try{ window.__blendSheet&&window.__blendSheet(c.m,c.t); }catch(er){}/* paging inside an open sheet: rebuild the picture, title bits and colour for this entry */
+    try{ env.__blendSheet&&env.__blendSheet(c.m,c.t); }catch(er){}/* paging inside an open sheet: rebuild the picture, title bits and colour for this entry */
     $("#sheetBack").hidden = navStack.length<2;
   } else openSheet(c.t, c.h, c.m);
   swpSync();/* v36 p18 */
@@ -112,12 +112,12 @@ export function showEntry(en, push){
 export function refreshEntry(){
   if(!navStack.length || !sheet.classList.contains("on") || sheetMode==="edit") return;
   const c=entryContent(navStack[navStack.length-1]), b=$("#sheetBody"), st=b.scrollTop;
-  setSheetTitle(c.t); const shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; try{ window.__blendSheet&&window.__blendSheet(sheetMode,c.t,true); }catch(er){} swpSync();/* v36 p18 */
+  setSheetTitle(c.t); const shw3=$("#shWm"); b.innerHTML=c.h+learnLink(c.t); if(shw3) b.insertBefore(shw3,b.firstChild); b.scrollTop=st; try{ env.__blendSheet&&env.__blendSheet(sheetMode,c.t,true); }catch(er){} swpSync();/* v36 p18 */
 }
 $("#sheetBack").addEventListener("click",() =>{
   if(navStack.length<2) return;
   hpDockBack(); navStack.pop(); const c=entryContent(navStack[navStack.length-1]);
-  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0; try{ window.__blendSheet&&window.__blendSheet(c.m,c.t); }catch(er){}
+  sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0; try{ env.__blendSheet&&env.__blendSheet(c.m,c.t); }catch(er){}
   b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");
   $("#sheetBack").hidden = navStack.length<2; swpSync();/* v36 p18 */
 });

@@ -13,7 +13,7 @@ import {AK_ICON,akIcon,atkKind,ico,scOf,tyIcon} from "./23-ui-uses-items-coins-r
 import {pinnedH} from "./27-ui-party-search-commands-library.js";
 import {INCAP,concChip,concEnd,concOf,hasFeat,lvOf,tmpApply,tmpFeat,toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"cfFlags",{get:function(){return cfFlags;},set:function(v){cfFlags=v;},configurable:true});
 Object.defineProperty(__R,"cfSave",{get:function(){return cfSave;},set:function(v){cfSave=v;},configurable:true});
 Object.defineProperty(__R,"cfSkill",{get:function(){return cfSkill;},set:function(v){cfSkill=v;},configurable:true});
@@ -117,7 +117,7 @@ function sitSt(){ if(!S.sit||typeof S.sit!=="object") S.sit={}; const s=S.sit; i
 function sitRow(k){ return SIT.filter((r) =>{ return r.k===k; })[0]; }
 let SIT_FORCE=false;
 function sitHave(r){ return SIT_FORCE||r.f.some(hasFeat); }
-window.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; __R.renderAll(); },n:function(){ return SIT.length; }};/* test hook */
+env.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; __R.renderAll(); },n:function(){ return SIT.length; }};/* test hook */
 function sitPick(n){ let o=null; (C.features||[]).forEach((g) =>{ (g.items||[]).forEach((f) =>{ if(f.n!==n) return; const m=/\*\*Your choice\.\*\*\s*([^\n*]+)/.exec(String(f.d||f.full||"")); if(m) o=m[1].trim().replace(/\.$/,""); }); }); return o; }
 function sitOpts(r){ if(!r.o) return null; if(r.pick){ const p=sitPick(r.pick); if(p){ const m=r.o.filter((x) =>{ return p.toLowerCase().indexOf(x.toLowerCase())===0||x.toLowerCase().indexOf(p.toLowerCase())===0; }); if(m.length) return m; } } return r.o; }
 function sitOpt(r,st){ const L=sitOpts(r); if(!L) return null; const v=(st||sitRead()).v[r.k]; return L.indexOf(v)>=0?v:L[0]; }
@@ -255,7 +255,7 @@ function xpDlg(){ const ms=S.lvMode==="milestone"; return '<div id="xpDlg"><p cl
   (ms?'':'<div class="xpadd"><input type="number" min="0" inputmode="numeric" data-xpamt="1" placeholder="XP" aria-label="Experience points"><button type="button" class="btn pri press" data-xpadd="1">Add</button><button type="button" class="btn press" data-xpadd="-1">Remove</button></div>')+
   '<label class="ck"><input type="checkbox" data-xpmode="1"'+(ms?' checked':'')+'> Level by milestones instead of XP</label>'+(D.level<20?'<button type="button" class="btn press lvup" data-lvup="1">Level Up</button>':'')+'</div>'; }
 function xpBox(){ const f=$("#idF"); if(!f) return; let b=$("#xpBox"); if(!b){ b=document.createElement("div"); b.id="xpBox"; b.className="xpl"; f.parentNode.insertBefore(b,f.nextSibling); } b.innerHTML=xpH(); }
-export function levelUp(){ if(D.level>=20){ toast("Level 20 is the highest level."); return; } if(window.__bldLevelUp) window.__bldLevelUp(); else { const bb=$("#bldBtn"); if(bb) bb.click(); } }
+export function levelUp(){ if(D.level>=20){ toast("Level 20 is the highest level."); return; } if(env.__bldLevelUp) env.__bldLevelUp(); else { const bb=$("#bldBtn"); if(bb) bb.click(); } }
 document.addEventListener("change",(e) =>{ const t=e.target; if(!t.matches||!t.matches("[data-xpmode]")) return; S.lvMode=t.checked?"milestone":"xp"; save(); xpBox(); const b=$("#sheetBody"); if(b&&sheetMode==="xp") b.innerHTML=xpDlg(); });
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-xpopen],[data-xpadd],[data-lvup]"); if(!t||t.closest("#bld")) return;/* v22 p14: the builder's own Level Up */ e.preventDefault();
   if(t.hasAttribute("data-lvup")){ if(sheet.classList.contains("on")) closeSheet(); levelUp(); return; }

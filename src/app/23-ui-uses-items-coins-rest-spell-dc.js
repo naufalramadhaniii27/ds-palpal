@@ -9,7 +9,7 @@ import {html,render} from "./lib/html.js";
 import {doRest} from "./19-ui-global-click-delegation.js";
 import {setTab} from "./21-ui-tabs-pager.js";
 import {dtIcon,spEffH,spGrpLv,spPact,spRangeH,spRowLv,svgI} from "./22-ui-spell-data-and-slots.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"akIcon",{get:function(){return akIcon;},set:function(v){akIcon=v;},configurable:true});
 Object.defineProperty(__R,"atkKind",{get:function(){return atkKind;},set:function(v){atkKind=v;},configurable:true});
 Object.defineProperty(__R,"coinSet",{get:function(){return coinSet;},set:function(v){coinSet=v;},configurable:true});
@@ -121,8 +121,8 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   const nm=b.getAttribute("data-unpack"), it=invAt(nm,b.getAttribute("data-iix")); if(!it) return; const occ=occOf(it), pn=packOf(it), lbl=it.n;
   if(num(it.q,1)<1){ toast("Qty is 0, so there is nothing to unpack."); return; }
   const done1=function(n){ if(typeof closeSheet==="function") closeSheet(); __R.renderAll(); if(typeof setTab==="function") setTab("p-inv"); __R.toastU(n?"Unpacked "+lbl+": a "+PACKS[pn][0]+" and "+PACKS[pn][1].length+" kinds of items.":"Nothing to unpack."); };
-  if(viaBld(nm)&&window.__bldUnpack){ bldGuard(() =>{ __R.undoMark("Unpack "+lbl); const ok=window.__bldUnpack(nm,C.name,occ,true); done1(ok?1:0); }); return; }
-  __R.undoMark("Unpack "+lbl); const n=unpackC(it); try{ if(window.__bldUnpack) window.__bldUnpack(nm,C.name,occ,false); }catch(er){} saveC(); done1(n); },true);
+  if(viaBld(nm)&&env.__bldUnpack){ bldGuard(() =>{ __R.undoMark("Unpack "+lbl); const ok=env.__bldUnpack(nm,C.name,occ,true); done1(ok?1:0); }); return; }
+  __R.undoMark("Unpack "+lbl); const n=unpackC(it); try{ if(env.__bldUnpack) env.__bldUnpack(nm,C.name,occ,false); }catch(er){} saveC(); done1(n); },true);
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-use1]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const nm=b.getAttribute("data-potn"), ix=+b.getAttribute("data-use1"), it=invAt(nm,ix); if(!it) return;
   const left=Math.max(0,num(it.q,1)-1), lb=it.n; if(num(it.q,1)<1){ toast("None left."); return; } __R.qtyAdj(nm,ix,-1,"Use "+lb,() =>{ __R.toastU("Used 1 "+lb+". "+left+" left."); }); },true);
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("#invBody [data-ctog]"); if(!b) return; const k=b.getAttribute("data-ctog"); ctShut[k]=!ctShut[k]; renderInv();
@@ -201,7 +201,7 @@ function restHTML(kind){ let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-k
       h+='<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">';
       for(let i=0;i<left;i++){ const on=sel[i]!=null; h+='<button type="button" class="bx" aria-pressed="'+on+'" data-hdk="'+r.k+'" data-hdi="'+i+'" aria-label="Spend Hit Die '+(i+1)+'"></button>'; }
       h+='</div>'+(left?'':'<p class="muted">No Hit Dice left. A Long Rest restores '+(x14()?'half of them, at least one':'them')+'.</p>');
-      sel.forEach((v,i) =>{ if(v==null) return; const heal=v?__R.hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(window.__miRoll&&window.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpW(heal):'type the number rolled')+'</span></label>'; });
+      sel.forEach((v,i) =>{ if(v==null) return; const heal=v?__R.hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(env.__miRoll&&env.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpW(heal):'type the number rolled')+'</span></label>'; });
       h+='</div>'; });
     h+=__R.shortExtraH();/* v21 */
     h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpW(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(__R.periOn()?', then doubled':'')+')</p>';
@@ -279,10 +279,10 @@ export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least
   if(hr){ delete S.hpMod; delete S.hpOver; derive(); }
   doRest("long",true); const nc2=__R.chgApply(lc); if(nc2){ save(); syncLU(); } closeSheet(); const LD=restDiff(RS0), ln=restNames(LD), hpx=LD.filter((x) =>{ return x[0]==="Hit Points"; })[0];
   __R.toastU("Long Rest taken."+(LD.length?" Restored: "+[hpx?"Hit Points ("+hpx[1]+")":""].concat(ln?[ln]:[]).filter(Boolean).join(", ")+".":" Everything was already full.")+(hr?" Maximum HP changes reset.":"")+(nc2?" Charges updated.":"")); restSumToast("long"); }
-window.__openRest=openRest; window.__coinsNow=coinsNow;
+env.__openRest=openRest; env.__coinsNow=coinsNow;
 /* v33 p03 (RU123 builder): the five coins the sheet shows after Apply when the starting gold is g (same data and rule as coinsNow) */
-window.__coinsFor=function(g,mine){ g=num(g,0); if(!mine||!S.coins) return {pp:0,gp:g,ep:0,sp:0,cp:0}; const c={}; COINS.forEach((k) =>{ c[k[0]]=num(S.coins[k[0]],0); }); c.gp=Math.max(0,c.gp+g-num(S.coinBase,g)); return c; };
-window.__coinTotal=coinTotal; window.__ico=ico; window.__icoCls=icoCls; window.__icoItem=icoItem; window.__icoText=icoText;
+env.__coinsFor=function(g,mine){ g=num(g,0); if(!mine||!S.coins) return {pp:0,gp:g,ep:0,sp:0,cp:0}; const c={}; COINS.forEach((k) =>{ c[k[0]]=num(S.coins[k[0]],0); }); c.gp=Math.max(0,c.gp+g-num(S.coinBase,g)); return c; };
+env.__coinTotal=coinTotal; env.__ico=ico; env.__icoCls=icoCls; env.__icoItem=icoItem; env.__icoText=icoText;
 export function ordL(n){return n===0?"Cantrip":n+(n===1?"st":n===2?"nd":n===3?"rd":"th")+" Level"}
 var spQ="",spF="all";
 /* Spells tab header: Modifier, Spell Attack, Save DC, then slots. Numbers come from C.spellcasting (builder).
@@ -318,7 +318,7 @@ export function renderSpells(){const el=document.getElementById("spBody");if(!el
  lv.forEach((l) =>{const rows=L.map((x,i) =>{return [x,i]}).filter((p) =>{const x=p[0];return (spGrpLv(x)===l||(UP&&__R.spUpOk(x)&&l>spGrpLv(x)&&l<=UPX))&&(spF==="all"||spF===String(l)||(spF==="conc"&&x.conc)||(spF==="rit"&&x.rit))&&(!q||(x.n+" "+x.ct+" "+x.sum+" "+x.src).toLowerCase().indexOf(q)>=0)&&!(x.use==="Prepared"&&L.some((y) =>{return y!==x&&y.n===x.n&&y.use==="Always prepared"}))/* v22 T1: sheets saved before v22 */}).sort((a,b) =>{return a[0].n<b[0].n?-1:a[0].n>b[0].n?1:a[1]-b[1]});if(!rows.length)return;
   h+='<h3 class="sp-lv"><span>'+ordL(l)+'</span>'+spSlotsH(l,rows)+'</h3><div class="sp-tbl"><div class="sp-r sp-th"><span></span><span>Name</span><span>Time</span><span>Range</span><span>Hit / DC</span><span>Effect</span></div>'+rows.map((p) =>{const x=p[0],xs=scOf(x),hd=x.sv==="ATK"?sg(xs.atk):x.sv?x.sv+" "+xs.dc:"\u2014";
    const badge=/At will|Cantrip/i.test(x.use)||!x.l?'<span class="sp-b" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">AT<br>WILL</span>':/1\/Long/.test(x.use)?'<span class="sp-b use" data-qcast="'+p[1]+'" title="Use '+esc(x.n)+'" aria-hidden="true">USE</span>':'<span class="sp-b cast" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">CAST</span>';
-   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'"'+(x.sch?' data-sch="'+esc(x.sch)+'"':'')+'>'+badge+'<span class="sp-n"><b>'+(window.__artIc?window.__artIc("spell",x.n):"")+esc(__R.cuNm("s:"+x.n,x.n))+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small><span class="sp-u">'+esc(x.use)+' \u2022 </span><span class="sp-s">'+esc(x.src||"")+'</span>'+(l>spGrpLv(x)?'<span class="sp-w"> \u2022 with a '+ordL(l).replace(" Level","")+' slot</span>':'')+'</small></span><span class="sp-t">'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span class="sp-g">'+spRangeH(x.r,x)+'</span><span class="sp-hd'+(hd==="\u2014"?" sp-no":"")+'">'/* v36 p13 */+esc(hd)+'</span><span>'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
+   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'"'+(x.sch?' data-sch="'+esc(x.sch)+'"':'')+'>'+badge+'<span class="sp-n"><b>'+(env.__artIc?env.__artIc("spell",x.n):"")+esc(__R.cuNm("s:"+x.n,x.n))+(x.conc?' <i class="sp-c">C</i>':'')+(x.rit?' <i class="sp-c rit">R</i>':'')+'</b><small><span class="sp-u">'+esc(x.use)+' \u2022 </span><span class="sp-s">'+esc(x.src||"")+'</span>'+(l>spGrpLv(x)?'<span class="sp-w"> \u2022 with a '+ordL(l).replace(" Level","")+' slot</span>':'')+'</small></span><span class="sp-t">'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span class="sp-g">'+spRangeH(x.r,x)+'</span><span class="sp-hd'+(hd==="\u2014"?" sp-no":"")+'">'/* v36 p13 */+esc(hd)+'</span><span>'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}).join("")+'</div>'});/* v21 m4 */
  el.innerHTML=h}
 
 

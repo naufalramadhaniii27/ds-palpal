@@ -1,5 +1,5 @@
 import {HB_CONDS,HB_SRC} from "./02-data-default-character.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* ================= GLOSSARY (paraphrased, not quoted) ================= */
 const RG="PHB-2024, Rules Glossary", EQ="PHB-2024, Equipment", PG="PHB-2024, Playing the Game";
 export var GLOSS={
@@ -120,7 +120,7 @@ export var GLOSS={
   "Shortbow":{c:"Simple ranged weapon",s:EQ,d:"1d6 Piercing. [[Ammunition]] (80/320 ft, Arrow), [[Two-Handed]]. Mastery: [[Vex]]. 2 lb, 25 GP."},
   "Improvised Weapon":{c:"Weapon",s:EQ,d:"Any object you swing or throw, like a chair or a bottle. It deals 1d4 damage of a type the DM picks, and thrown range is 20/60 ft. Tavern Brawler makes you proficient with it."}
 };
-window.__GLOSS=GLOSS;/* v93: the 2014 equipment words change a few entries */
+env.__GLOSS=GLOSS;/* v93: the 2014 equipment words change a few entries */
 
 /* v94: 2014 rules words. gl14 lays the 2014 Rules Glossary entries over GLOSS (rests, Exhaustion, grapple, actions, conditions) and puts the 2024 ones back when off. The sheet follows C.rs, the builder follows the build */
 let GL14S=null,GL14ON=false;
@@ -152,7 +152,7 @@ export function gl14(on){ if(typeof GLOSS==="undefined")return; on=!!on; if(on==
   ks.forEach((k) =>{ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ const o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   let nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
    if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; const n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
  else if(GL14S){ Object.keys(GL14S).forEach((k) =>{ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
-window.__gl14=gl14;
+env.__gl14=gl14;
 export var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
 /* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */
 export function gName(g){ g=String(g==null?"":g); if(!(typeof __R.C!=="undefined"&&__R.C&&__R.C.rs==="2014"))return g; const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }

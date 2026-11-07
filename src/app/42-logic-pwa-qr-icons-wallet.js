@@ -14,7 +14,7 @@ import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_bldDot,bldDot} from "./35-ui-combo.js";
 import {cuNumList} from "./41-ui-edit-mode.js";
 import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";
+import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;},configurable:true});
 Object.defineProperty(__R,"coinsClean",{get:function(){return coinsClean;},set:function(v){coinsClean=v;},configurable:true});
 Object.defineProperty(__R,"pwaInstH",{get:function(){return pwaInstH;},set:function(v){pwaInstH=v;},configurable:true});
@@ -30,20 +30,20 @@ function pwaUpdToast(w){ let t=document.getElementById("pwaUpd"); if(!t){ t=docu
   t.__w=w; render(html`${raw(toastPic("New version ready.")||ico("ui-redo","tico"))}<span>New version ready.</span><button type="button" class="tundo" data-pwareload="1">${raw(ico("ui-redo"))}Reload</button><button type="button" class="tundo pwa-x" data-pwalater="1" aria-label="Later">${raw(ico("ui-close"))}</button>`,t); t.classList.add("on","act"); }
 function pwaInit(){ if(!PWA_BUILD||!/^https?:$/.test(location.protocol)||!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.addEventListener("controllerchange",() =>{ if(PWA_GO) __miReload(); });
-  navigator.serviceWorker.register("sw.js").then((reg) =>{ PWA_REG=reg; window.__pwaReg=reg;
+  navigator.serviceWorker.register("sw.js").then((reg) =>{ PWA_REG=reg; env.__pwaReg=reg;
     const ready=function(w){ if(w&&navigator.serviceWorker.controller) pwaUpdToast(w); };
     if(reg.waiting) ready(reg.waiting);
     reg.addEventListener("updatefound",() =>{ const w=reg.installing; if(w) w.addEventListener("statechange",() =>{ if(w.state==="installed") ready(w); }); });
     document.addEventListener("visibilitychange",() =>{ if(document.visibilityState==="visible") reg.update().catch(() =>{}); });
     setInterval(() =>{ reg.update().catch(() =>{}); },36e5);
-  }).catch((e) =>{ window.__pwaErr=String(e&&e.message||e); }); }
+  }).catch((e) =>{ env.__pwaErr=String(e&&e.message||e); }); }
 pwaInit();
 /* item 6: a .bs file opened from the file manager (installed app, file_handlers) */
 if("launchQueue" in window&&window.launchQueue&&typeof window.launchQueue.setConsumer==="function"){ window.launchQueue.setConsumer((p) =>{ const fs=p&&p.files||[]; if(!fs.length) return;
   Promise.all(fs.slice(0,1).map((h) =>{ return h.getFile().then((f) =>{ return f.text(); }); })).then((t) =>{ if(t[0]) impText(t[0]); }).catch(() =>{ toast("This file could not be read."); }); }); }
 /* v34 temuan: the hidden empty place of a first public visit (ph, v24 p08) is removed when another character opens. After Apply it holds a real
    character, so it stops being a placeholder */
-(function(f){ if(typeof f!=="function") return; window.__sheetApply=function(p,note){ const r=f.apply(this,arguments); if(note===false) return r;/* the blank first sheet itself */ try{ const g=rGet(); if(g&&g.chars&&g.chars[g.active]&&g.chars[g.active].ph){ delete g.chars[g.active].ph; rSave(g); } }catch(er){} return r; }; })(window.__sheetApply);
+(function(f){ if(typeof f!=="function") return; env.__sheetApply=function(p,note){ const r=f.apply(this,arguments); if(note===false) return r;/* the blank first sheet itself */ try{ const g=rGet(); if(g&&g.chars&&g.chars[g.active]&&g.chars[g.active].ph){ delete g.chars[g.active].ph; rSave(g); } }catch(er){} return r; }; })(env.__sheetApply);
 /* install button on Home when the browser offers it (Chrome, Edge). Safari: Share, Add to Home Screen (or File, Add to Dock on a Mac) */
 var PWA_EV=null;
 function pwaInstH(){ return PWA_EV?'<button type="button" class="btn press pwa-inst" data-pwainst="1">'+ico("ui-plus")+'<span>Install App</span></button>':''; }
@@ -52,7 +52,7 @@ window.addEventListener("beforeinstallprompt",(e) =>{ e.preventDefault(); PWA_EV
 window.addEventListener("appinstalled",() =>{ PWA_EV=null; pwaInstSync(); toast("D&D Sheet is installed. Open it from your home screen or app list."); });
 document.addEventListener("click",(e) =>{ if(!e.target.closest||!e.target.closest("[data-pwainst]")||!PWA_EV) return; const ev=PWA_EV; try{ ev.prompt(); }catch(er){}
   Promise.resolve(ev.userChoice).then((c) =>{ if(c&&c.outcome==="accepted"){ PWA_EV=null; pwaInstSync(); } else toast("Not installed. You can install it later from here."); },() =>{}); });
-window.__pwa=function(){ return {build:PWA_BUILD, reg:!!PWA_REG, ctl:!!(navigator.serviceWorker&&navigator.serviceWorker.controller)}; };
+env.__pwa=function(){ return {build:PWA_BUILD, reg:!!PWA_REG, ctl:!!(navigator.serviceWorker&&navigator.serviceWorker.controller)}; };
 /* ===== v34 p05: QR codes. Send a character to another device without a server ===== */
 ICO["ui-qr"]="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM20 14v.01M20 20h.01M17 20h.01M14 20v.01M20 17v.01";
 ICO["ui-share"]="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7";
@@ -141,13 +141,13 @@ function qrHash(s){ let h=0x811c9dc5; for(let i=0;i<s.length;i++){ h^=s.charCode
 /* one code when it fits, else parts "DQ1:<i>/<n>:<hash>:<text>". null: too many parts */
 function qrFrames(txt){ if(txt.length<=QR_ONE) return [txt]; const n=Math.ceil(txt.length/QR_CH), h=qrHash(txt), out=[]; if(n>QR_MAX) return null;
   for(let i=0;i<n;i++) out.push("DQ1:"+(i+1)+"/"+n+":"+h+":"+txt.slice(i*QR_CH,(i+1)*QR_CH)); return out; }
-window.__qrFrames=qrFrames; window.__qrMake=function(t,e,v){ const q=QRG.make(t,e||"L",v||40); return q?{v:q.v,size:q.size,mask:q.mask,svg:QRG.svg(q)}:null; };
+env.__qrFrames=qrFrames; env.__qrMake=function(t,e,v){ const q=QRG.make(t,e||"L",v||40); return q?{v:q.v,size:q.size,mask:q.mask,svg:QRG.svg(q)}:null; };
 let QRS=null;
 function qrStop(){ if(QRS&&QRS.t){ clearInterval(QRS.t); QRS.t=0; } }
 function qrSendOpen(id){ const o=chFile(id), raw=JSON.stringify(o), nm=chName(o);
   const show=function(txt){ const old=document.getElementById("qrSend"); if(old) old.remove(); qrStop();
     const fr=qrFrames(txt), w=document.createElement("div"); w.id="qrSend"; w.className="bkp qrd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","qrT");
-    QRS={fr:fr||[], i:0, t:0, cache:{}, txt:txt, nm:nm, play:true}; window.__qrSent=QRS.fr.slice();
+    QRS={fr:fr||[], i:0, t:0, cache:{}, txt:txt, nm:nm, play:true}; env.__qrSent=QRS.fr.slice();
     w.innerHTML='<div class="bkpb"><div class="bkph"><b id="qrT">'+ico("ui-qr")+'Send to Another Device</b><button type="button" class="bkpx" data-qrs="close" aria-label="Close">×</button></div>'+
       (fr?'<p>On the other device, open <b>My Characters</b>, <b>Open Character</b>, then <b>Scan Code</b>. Hold this screen in front of its camera'+(fr.length>1?' until it has read all '+fr.length+' parts. They change by themselves.':'.')+'</p>'+
         '<div class="qr-box" id="qrBox"></div>'+(fr.length>1?'<p class="qr-n" id="qrN" aria-live="polite"></p><div class="bkpr qr-ctl"><button type="button" class="btn press" data-qrs="prev" aria-label="Previous part">'+ico("ui-chev-l")+'</button><button type="button" class="btn press" data-qrs="play" id="qrPlay" aria-label="Pause">'+ico("ui-pause")+'<span>Pause</span></button><button type="button" class="btn press" data-qrs="next" aria-label="Next part">'+ico("ui-chev-r")+'</button></div>':'')
@@ -172,7 +172,7 @@ function qrShare(txt,nm){ let f=null, f2=null, d=null; try{ f=new File([txt],nm,
 /* receive: camera + BarcodeDetector (Chrome on Android and Mac, Safari 17 on Mac). Elsewhere paste the text */
 function qrCan(){ return typeof window.BarcodeDetector==="function"&&!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia); }
 let QRR=null;
-function qrScanStop(){ if(!QRR) return; clearInterval(QRR.t); try{ (QRR.st&&QRR.st.getTracks()||[]).forEach((t) =>{ t.stop(); }); }catch(e){} window.__qrStream=QRR.st; QRR=null; const w=document.getElementById("qrScan"); if(w) w.remove(); }
+function qrScanStop(){ if(!QRR) return; clearInterval(QRR.t); try{ (QRR.st&&QRR.st.getTracks()||[]).forEach((t) =>{ t.stop(); }); }catch(e){} env.__qrStream=QRR.st; QRR=null; const w=document.getElementById("qrScan"); if(w) w.remove(); }
 function qrScanOpen(){ if(!qrCan()){ toast("This browser cannot read codes. Paste the text instead."); return; } qrScanStop();
   const w=document.createElement("div"); w.id="qrScan"; w.className="bkp qrd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","qrST");
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="qrST">'+ico("ui-camera")+'Scan Code</b><button type="button" class="bkpx" data-qrr="close" aria-label="Close">×</button></div><div class="qr-cam"><video id="qrVid" playsinline muted autoplay></video></div><p class="qr-n" id="qrRN" aria-live="polite">Starting the camera...</p><div class="qr-pg" id="qrPg"></div><div class="bkpr"><button type="button" class="btn press" data-qrr="close">'+ico("ui-close")+'<span>Cancel</span></button></div></div>';
@@ -181,7 +181,7 @@ function qrScanOpen(){ if(!qrCan()){ toast("This browser cannot read codes. Past
   w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-qrr]")) qrScanStop(); });
   const esc1=function(e){ if(e.key==="Escape"&&document.getElementById("qrScan")){ e.stopPropagation(); qrScanStop(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
   let det=null; try{ det=new window.BarcodeDetector({formats:["qr_code"]}); }catch(e){ msg("This browser cannot read codes. Paste the text instead."); return; }
-  navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}).then((st) =>{ if(QRR!==R){ st.getTracks().forEach((t) =>{ t.stop(); }); return; } R.st=st; window.__qrStream=st; const v=document.getElementById("qrVid"); v.srcObject=st; try{ v.play(); }catch(e){} msg("Point the camera at the code on the other device.");
+  navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}).then((st) =>{ if(QRR!==R){ st.getTracks().forEach((t) =>{ t.stop(); }); return; } R.st=st; env.__qrStream=st; const v=document.getElementById("qrVid"); v.srcObject=st; try{ v.play(); }catch(e){} msg("Point the camera at the code on the other device.");
     R.t=setInterval(() =>{ if(QRR!==R||R.busy) return; R.busy=true; det.detect(v).then((L) =>{ R.busy=false; (L||[]).forEach((c) =>{ qrGot(R,String(c.rawValue||"")); }); },() =>{ R.busy=false; }); },150);
   },(e) =>{ msg(e&&e.name==="NotAllowedError"?"The camera is blocked. Allow it in the browser, or paste the text instead.":"No camera found. Paste the text instead."); }); }
 function qrGot(R,raw){ if(!raw||QRR!==R) return; const msg=function(t){ const e=document.getElementById("qrRN"); if(e) e.textContent=t; };
@@ -192,25 +192,25 @@ function qrGot(R,raw){ if(!raw||QRR!==R) return; const msg=function(t){ const e=
   const pg=document.getElementById("qrPg"); if(pg) render(html`${Array.from({length:n},(_,i) => html`<i class="${R.parts[i+1]!=null?"on":""}"></i>`)}`,pg);
   if(got===n){ let t=""; for(let k=1;k<=n;k++) t+=R.parts[k]; if(qrHash(t)!==R.h){ R.parts={}; msg("The parts did not match. Scan again from the first part."); return; } qrDone(t); } }
 function qrDone(t){ qrScanStop(); const b=document.getElementById("bkp"); if(b) b.remove(); toast("Code read. Opening the character..."); impText(t); }
-window.__qrScanOpen=qrScanOpen;
+env.__qrScanOpen=qrScanOpen;
 /* ===== v34 p06: one wallet for the sheet and the builder ===== */
 function coinsClean(c){ const o={}; COINS.forEach((k) =>{ const v=Math.floor(num(c&&c[k[0]],0)); o[k[0]]=v>0?v:0; }); return o; }
 function coinsSame(a,b){ return COINS.every((k) =>{ return num(a[k[0]],0)===num(b[k[0]],0); }); }
-window.__coinsGet=function(){ return coinsNow(); };
-window.__coinsGp=function(){ return num(C.gp,0); };
-window.__coinPay=function(c,cp){ return coinPay(c,cp); }; window.__coinCp=function(c){ return coinCp(c); }; window.__coinList=function(o){ return coinList(o); }; window.__priceTxt=function(g){ return priceTxt(g); };
-window.__coinsPut=function(c,why){ const o=coinsClean(c); if(coinsSame(o,coinsNow())) return coinsNow(); undoMark(why||"Coins"); coinSet(o); try{ renderInv(); coinRefresh(); }catch(e){} return coinsNow(); };
+env.__coinsGet=function(){ return coinsNow(); };
+env.__coinsGp=function(){ return num(C.gp,0); };
+env.__coinPay=function(c,cp){ return coinPay(c,cp); }; env.__coinCp=function(c){ return coinCp(c); }; env.__coinList=function(o){ return coinList(o); }; env.__priceTxt=function(g){ return priceTxt(g); };
+env.__coinsPut=function(c,why){ const o=coinsClean(c); if(coinsSame(o,coinsNow())) return coinsNow(); undoMark(why||"Coins"); coinSet(o); try{ renderInv(); coinRefresh(); }catch(e){} return coinsNow(); };
 /* coins a build brought (new character, build file): to the sheet after Apply. The sheet already has other coins: ask */
-window.__coinsPending=function(c){ const o=coinsClean(c), cur=coinsNow(), f=function(k){ return COINS.map((x) =>{ return num(k[x[0]],0)+" "+x[0]; }).filter((s) =>{ return !/^0 /.test(s); }).join(", ")||"no coins"; };
+env.__coinsPending=function(c){ const o=coinsClean(c), cur=coinsNow(), f=function(k){ return COINS.map((x) =>{ return num(k[x[0]],0)+" "+x[0]; }).filter((s) =>{ return !/^0 /.test(s); }).join(", ")||"no coins"; };
   if(!S.coins||coinsSame(o,cur)||coinTotal(cur)===num(C.gp,0)&&!cur.pp&&!cur.ep&&!cur.sp&&!cur.cp){ coinSet(o); try{ renderInv(); }catch(e){} return true; }
   ask("The builder has coins for this character ("+f(o)+") and the sheet has other coins ("+f(cur)+"). Use the coins from the builder? Cancel keeps the sheet's coins.","Use Builder Coins",() =>{ undoMark("Coins from the builder"); coinSet(o); try{ renderInv(); }catch(e){} toastU("Coins set from the builder."); }); return false; };
-window.__sheetOwnNums=function(){ const L=[]; try{ derive(); }catch(e){} if(typeof cuNumList==="function"&&cuNumList().length) L.push(cuNumList().length+" number"+(cuNumList().length>1?"s":"")+" set in Edit mode"); if(num(S.hpMod,0)) L.push("Max HP modifier "+sg(num(S.hpMod,0))); return L.length?{ac:D.ac,hp:D.hpmax,what:L}:null; };
+env.__sheetOwnNums=function(){ const L=[]; try{ derive(); }catch(e){} if(typeof cuNumList==="function"&&cuNumList().length) L.push(cuNumList().length+" number"+(cuNumList().length>1?"s":"")+" set in Edit mode"); if(num(S.hpMod,0)) L.push("Max HP modifier "+sg(num(S.hpMod,0))); return L.length?{ac:D.ac,hp:D.hpmax,what:L}:null; };
 let BPD_T=0;
-function bldPend(){ clearTimeout(BPD_T); BPD_T=setTimeout(() =>{ const b=document.getElementById("bldBtn"); if(!b) return; let L=[]; try{ L=window.__bldDiff?(window.__bldDiff(C)||[]):[]; }catch(e){ L=[]; }
-  let on=L.length>0, m=b.querySelector(".bpend"); b.classList.toggle("pend",on); window.__bldPendList=L;
+function bldPend(){ clearTimeout(BPD_T); BPD_T=setTimeout(() =>{ const b=document.getElementById("bldBtn"); if(!b) return; let L=[]; try{ L=env.__bldDiff?(env.__bldDiff(C)||[]):[]; }catch(e){ L=[]; }
+  let on=L.length>0, m=b.querySelector(".bpend"); b.classList.toggle("pend",on); env.__bldPendList=L;
   if(on&&!m){ m=document.createElement("i"); m.className="bpend"; m.setAttribute("aria-hidden","true"); b.appendChild(m); } else if(!on&&m) m.remove();
   if(on){ b.setAttribute("aria-description","The builder and the sheet differ"); b.title="The builder and the sheet differ: "+L.slice(0,3).join(". ")+(L.length>3?"...":""); } else if(b.hasAttribute("aria-description")) b.removeAttribute("aria-description"); },250); }
-__set_bldDot((function(f){ return function(){ const r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot)); if(window.__bldDot) window.__bldDot=bldDot;
-document.addEventListener("bldready",() =>{ bldPend(); if(window.__sp14Set&&C&&C.rs==="2014"&&(document.getElementById("bld")||{hidden:true}).hidden)window.__sp14Set(true);/* v92 */ });
+__set_bldDot((function(f){ return function(){ const r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot)); if(env.__bldDot) env.__bldDot=bldDot;
+document.addEventListener("bldready",() =>{ bldPend(); if(env.__sp14Set&&C&&C.rs==="2014"&&(document.getElementById("bld")||{hidden:true}).hidden)env.__sp14Set(true);/* v92 */ });
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(() =>{ moveTabInd(true); });

@@ -3,7 +3,7 @@ import {GLOSS} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
 import {esc,sg} from "./05-logic-helpers.js";
 import {B} from "./06-logic-derivation.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* ================= BREAKDOWN ================= */
 function bdAbout(key){
   let m=key.match(/^(ab|save|sk|ah|ad)-(.+)$/), spec=null, label="";
@@ -13,7 +13,7 @@ function bdAbout(key){
   else { const map={ac:"Armor Class",init:"Initiative",speed:"Speed",pb:"Proficiency Bonus",hp:"Hit Points",carry:"Carrying Capacity",dc:"Grapple",dark:"Darkvision","pas-per":"Passive Perception","pas-ins":"Insight","pas-inv":"Investigation"}; if(map[key]){ spec="g:"+map[key]; label=map[key]; } }
   return spec ? '<p class="bk-about"><button type="button" class="lk" data-info="'+esc(spec)+'">What is '+esc(label)+'?</button></p>' : '';
 }
-window.__miInfo=function(s){ try{ return __R.infoHTML(s); }catch(e){ return null; } }; window.__miBd=function(k){ try{ return B[k]||null; }catch(e){ return null; } };
+env.__miInfo=function(s){ try{ return __R.infoHTML(s); }catch(e){ return null; } }; env.__miBd=function(k){ try{ return B[k]||null; }catch(e){ return null; } };
 /* T11 G4 N10 odds: the exact chance to reach common targets with this bonus, plain, with Advantage and with Disadvantage.
    Checks and saves: d20 + bonus at or above the DC (2024: a 1 or 20 on a check or save is not automatic).
    Attacks: a natural 20 always hits and a natural 1 always misses. Shown as whole percents, worked out, not estimated */

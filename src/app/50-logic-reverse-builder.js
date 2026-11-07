@@ -5,7 +5,7 @@ import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"rbOpen",{get:function(){return rbOpen;},set:function(v){rbOpen=v;},configurable:true});
 /* T11 G4 N1 Reverse Builder. The player writes goals ("AC at least 18, Stealth at least +7"), the app tries legal builds of the same class
    and level and lists the ones that reach every goal, with what changes against the build now.
@@ -32,7 +32,7 @@ function rbOrder(goals,c){ const w={}, add=function(k,v){ w[k]=(w[k]||0)+v; };
   const sc=(c.abilities)||{}; RB_AB.forEach((k) =>{ const a=sc[k]; if(a) add(k,(+a.base||10)/100); });/* ties: keep the build's own order */
   return RB_AB.slice().sort((a,b) =>{ return (w[b]||0)-(w[a]||0); }); }
 /* the numbers of one try, from the real derivation */
-function rbEval(nb,goals,opts,bat){ let c2=null, t0=performance.now(); try{ c2=bat?bat.one(nb):window.__bldSheetFor(nb); }catch(e){ return null; } const t1=performance.now(); RB.st.bld+=t1-t0; if(!c2||!c2.abilities) return null;
+function rbEval(nb,goals,opts,bat){ let c2=null, t0=performance.now(); try{ c2=bat?bat.one(nb):env.__bldSheetFor(nb); }catch(e){ return null; } const t1=performance.now(); RB.st.bld+=t1-t0; if(!c2||!c2.abilities) return null;
   const keepC=C, keepD=D, keepB=B, keepCU=CU0, o={};
   try{ __set_C(c2); derive(); RB.st.der+=performance.now()-t1; RB.st.n++; o.ac=D.ac; o.hp=D.hpmax; o.init=D.init; o.sk={}; (c2.skills||[]).forEach((s,i) =>{ o.sk[s.n]=D.skill[i]; }); o.sv=structuredClone(D.save||{});
     o.atk=null; (D.atk||[]).forEach((a) =>{ if(a&&isFinite(a.hit)) o.atk=o.atk==null?a.hit:Math.max(o.atk,a.hit); });
@@ -61,11 +61,11 @@ function rbDiff(b0,nb,o){ const d=[]; if(nb.species!==b0.species) d.push("Specie
   const bs=RB_AB.filter((k) =>{ return (b0.base||{})[k]!==nb.base[k]; }); if(bs.length) d.push("Scores "+RB_AB.map((k) =>{ return k+" "+nb.base[k]; }).join(", "));
   if(o.alt) d.push(o.alt.armor+(o.alt.shield?" and a Shield":"")); return d; }
 function rbSearch(){ const goals=rbGoals(), box=document.querySelector("#sheetBody .rb-out"); if(!box) return; if(!goals.length){ box.innerHTML='<p class="bk-f">Fill in at least one goal.</p>'; return; }
-  const opts=window.__bldOpts&&window.__bldOpts(); if(!opts||!opts.b||!opts.b.cls){ box.innerHTML='<p class="bk-f">Open the builder once, then try again.</p>'; return; }
+  const opts=env.__bldOpts&&env.__bldOpts(); if(!opts||!opts.b||!opts.b.cls){ box.innerHTML='<p class="bk-f">Open the builder once, then try again.</p>'; return; }
   let run=++RB.run, T=rbTries(opts,goals,C), i=0, hits=[], near=[], t0=Date.now(); RB.st={n:0,bld:0,der:0,tries:T.list.length,t:0,h:2166136261};
   box.innerHTML='<p class="bk-f rb-prog" aria-live="polite">Trying builds: 0 of '+T.list.length+'</p>';
   /* N29: one batch for the whole search (builder tables set up only when they change), paused at the end of each slice */
-  const bat=!RB.slow&&window.__bldSheetBatch?window.__bldSheetBatch():null;
+  const bat=!RB.slow&&env.__bldSheetBatch?env.__bldSheetBatch():null;
   (function slice(){ if(run!==RB.run){ if(bat) bat.end(); return; } const end=Date.now()+14;
     while(i<T.list.length&&Date.now()<end){ var t=T.list[i++], nb=rbBuild(opts.b,t,T.order), o=rbEval(nb,goals,opts,bat); if(!o) continue;
       var m=goals.map((g) =>{ return rbMeets(o,g); }), miss=m.filter((x) =>{ return !x.ok; }).length, gap=goals.reduce((a,g,j) =>{ return a+Math.max(0,g.min-(m[j].v==null?-99:m[j].v)); },0);
@@ -85,26 +85,26 @@ function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop()
 const rbYield=(f) =>{ if(window.scheduler&&typeof window.scheduler.postTask==="function") window.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
 let RB_DUEL_WAIT=false;
 function rbDuel(i,btn){ const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel"); if(!r||!out) return; out.hidden=false;
-  if(!window.__tgDuelPick){ if(window.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(window.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!window.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
-  let pc=null; try{ pc=__R.tgPcFor(window.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
+  if(!env.__tgDuelPick){ if(env.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(env.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!env.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
+  let pc=null; try{ pc=__R.tgPcFor(env.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
   btn.disabled=true; const run=RB.run, pct=function(x){ return Math.round(x*100); };
   const line=function(a,base,e1){ const g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
     return (a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
       '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '+pc.level+'), '+(base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build')+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
   const fin=function(a,base,e1){ btn.disabled=false; if(run!==RB.run) return; if(!a||!base){ out.textContent="The creature list could not be loaded. Check the connection and try again."; return; } out.innerHTML=line(a,base,e1); };
-  const go2=function(base){ const e1=window.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); window.__tgDuel(pc,base.g,(a) =>{ fin(a,base,e1); }); };
+  const go2=function(base){ const e1=env.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); env.__tgDuel(pc,base.g,(a) =>{ fin(a,base,e1); }); };
   if(RB.base&&RB.base.run===run){ go2(RB.base); return; }
   let cur=null; try{ cur=__R.tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
-  out.textContent="Picking a fair group for your current build"; window.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; window.__tgDuel(cur,g,(b) =>{ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); },(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
+  out.textContent="Picking a fair group for your current build"; env.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; env.__tgDuel(cur,g,(b) =>{ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); },(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
 function rbOpen(){ __set_navStack([]); const go=function(){ const sk=(C.skills||[]).map((s) =>{ return '<option>'+esc(s.n)+'</option>'; }).join(""), sv=RB_AB.map((k) =>{ return '<option value="'+k+'">'+esc(ABN[k])+'</option>'; }).join("");
     const f=function(k,l,ph){ return '<label class="rb-f"><span>'+l+' at least</span><input type="number" inputmode="numeric" data-rbg="'+k+'" placeholder="'+ph+'"></label>'; };
     openSheet("Find a build",'<p class="bk-f">Write what you want your '+esc(C.clsLabel||C.cls||"character")+' to reach at level '+D.level+'. The app tries every species, background and score layout of your rules set and shows the builds that get there.</p><div class="rb-g">'+f("ac","Armor Class",D.ac+2)+f("hp","Hit Points",D.hpmax+5)+f("init","Initiative",D.init+2)+f("atk","Best attack bonus","")+
       '<label class="rb-f"><span>Skill</span><select data-rbs="sk"><option value="">None</option>'+sk+'</select></label>'+f("sk","That skill","")+'<label class="rb-f"><span>Saving throw</span><select data-rbs="sv"><option value="">None</option>'+sv+'</select></label>'+f("sv","That save","")+
       '</div><p><button type="button" class="btn pri press" data-rbgo="1">Find builds</button></p><div class="rb-out"></div>',"rb"); };
-  if(window.__bldSheetFor&&window.__bldOpts) go(); else { if(window.__bldNeed) try{ window.__bldNeed(); }catch(e){} let n=0; (function w(){ if(window.__bldSheetFor&&window.__bldOpts) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
+  if(env.__bldSheetFor&&env.__bldOpts) go(); else { if(env.__bldNeed) try{ env.__bldNeed(); }catch(e){} let n=0; (function w(){ if(env.__bldSheetFor&&env.__bldOpts) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-rbgo],[data-rbuse],[data-rbopen],[data-rbduel]"); if(!b) return; e.preventDefault();
   if(b.hasAttribute("data-rbduel")){ rbDuel(+b.getAttribute("data-rbduel"),b); return; }
   if(b.hasAttribute("data-rbopen")){ rbOpen(); return; } if(b.hasAttribute("data-rbgo")){ rbSearch(); return; }
   const r=RB.res&&RB.res[+b.getAttribute("data-rbuse")]; if(!r) return; const nb=rbFinal(r);
-  closeSheet(); window.__bldUse(nb,"Build from Find a build"); });
-window.__rbOpen=rbOpen; window.__rbStats=function(){ return RB.st||null; }; window.__rbSlow=function(v){ RB.slow=!!v; };/* N29 test: one by one, to compare *//* N29: time per part of the last search */
+  closeSheet(); env.__bldUse(nb,"Build from Find a build"); });
+env.__rbOpen=rbOpen; env.__rbStats=function(){ return RB.st||null; }; env.__rbSlow=function(v){ RB.slow=!!v; };/* N29 test: one by one, to compare *//* N29: time per part of the last search */

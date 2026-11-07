@@ -1,6 +1,6 @@
 import {C,S,clsLv} from "./04-logic-storage.js";
 import {$,ask,esc} from "./05-logic-helpers.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"applyLook",{get:function(){return applyLook;},set:function(v){applyLook=v;},configurable:true});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 export function uiGet(k){ try{ return JSON.parse(__store.getItem(k)||"null")||{}; }catch(e){ return {}; } }
@@ -59,13 +59,13 @@ export function hcNote(){ return 'Stronger text and lines for low vision or brig
 export function miSetH(){ const g=function(k,d){ try{ return __store.getItem(k)||d; }catch(e){ return d; } }, fx=g("mi-fx","full"), bz=g("mi-bz","on"), b=function(a,v,cur,label,ik){ const on=cur===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+__R.ico(ik)+label+'</button>'; };
   return '<div class="info-h">Immersive Effects</div><div class="thg">'+b("data-mifx","full",fx,"Full","ui-check")+b("data-mifx","lite",fx,"Lite","ui-minus")+b("data-mifx","off",fx,"Off","ui-close")+'</div><p class="info-d">Full: every effect, condition ambience and celebrations. Lite: transitions and feedback only. Off: no motion effects.</p>'+
     '<div class="info-h">Vibration</div><div class="thg">'+b("data-mibz","on",bz,"On","ui-check")+b("data-mibz","off",bz,"Off","ui-close")+'</div>'+
-    '<div class="info-h">Sound</div><div class="thg">'+b("data-misnd","on",g("mi-snd","on"),"On","ui-check")+b("data-misnd","off",g("mi-snd","on"),"Off","ui-close")+'</div><p class="info-d">Dice, healing, damage, level up and rests make a short sound.</p>'+(window.__miLookH?window.__miLookH():'')+(window.__miPrefH?window.__miPrefH():'')+(window.__miMusicH?window.__miMusicH():'')+(window.__miArtH?window.__miArtH():''); }/* v55 */
+    '<div class="info-h">Sound</div><div class="thg">'+b("data-misnd","on",g("mi-snd","on"),"On","ui-check")+b("data-misnd","off",g("mi-snd","on"),"Off","ui-close")+'</div><p class="info-d">Dice, healing, damage, level up and rests make a short sound.</p>'+(env.__miLookH?env.__miLookH():'')+(env.__miPrefH?env.__miPrefH():'')+(env.__miMusicH?env.__miMusicH():'')+(env.__miArtH?env.__miArtH():''); }/* v55 */
 export function hcBtn(v,label,ik){ const on=hcMode()===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-hc="'+v+'" aria-pressed="'+on+'">'+__R.ico(ik)+label+'</button>'; }
 HC_MQ.forEach((q) =>{ const f=function(){ hcApply(); try{ if(__R.sheetMode==="theme"){ const n=document.getElementById("hcNote"); if(n) n.textContent=hcNote(); } }catch(er){} };
   try{ q.addEventListener("change",f); }catch(er){ try{ q.addListener(f); }catch(er2){} } });
 hcApply();
-window.__hc=function(){ return {mode:hcMode(), sys:hcSys(), on:hcOn(), attr:document.documentElement.getAttribute("data-hc")}; };
-window.__ask=function(m,o,c,a){ return ask(m,o,c,a); };
+env.__hc=function(){ return {mode:hcMode(), sys:hcSys(), on:hcOn(), attr:document.documentElement.getAttribute("data-hc")}; };
+env.__ask=function(m,o,c,a){ return ask(m,o,c,a); };
 
 /* ================= SPRING ================= */
 export var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;

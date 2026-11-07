@@ -13,7 +13,7 @@ import {renderExtras} from "./29-ui-ddb-look.js";
 import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts,undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
 import {combatHTML,sitReset} from "./34-ui-situations.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"CF0",{get:function(){return CF0;},set:function(v){CF0=v;},configurable:true});
 Object.defineProperty(__R,"cmbCast",{get:function(){return cmbCast;},set:function(v){cmbCast=v;},configurable:true});
 Object.defineProperty(__R,"cmbHTML",{get:function(){return cmbHTML;},set:function(v){cmbHTML=v;},configurable:true});
@@ -148,12 +148,12 @@ document.addEventListener("keydown",(e) =>{ if(e.ctrlKey||e.metaKey||e.altKey||e
 
 function CF0(){ return D.cf||{}; }
 /* v32 RU137: a blue dot on the Build button while the build of this character has open choices (same number as Still to choose) */
-export function bldDot(){ const b=document.getElementById("bldBtn"); if(!b) return; let n=0; try{ n=window.__bldOpenCount?(+window.__bldOpenCount()||0):0; }catch(e){ n=0; }
+export function bldDot(){ const b=document.getElementById("bldBtn"); if(!b) return; let n=0; try{ n=env.__bldOpenCount?(+env.__bldOpenCount()||0):0; }catch(e){ n=0; }
   let d=b.querySelector(".bdot"); if(n>0&&!d){ d=document.createElement("i"); d.className="bdot"; d.setAttribute("aria-hidden","true"); b.appendChild(d); } else if(!n&&d) d.remove();
   b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Build, open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
-window.__bldDot=bldDot;
+env.__bldDot=bldDot;
 export function renderAll(instant){
-  try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&window.__sp14Set)window.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
+  try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&env.__sp14Set)env.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); }
   catch(e){ if(FROZEN!=="recover"){ recover("Drawing the sheet",e); setTimeout(() =>{ throw e; },0); } }/* v18 RU78 */
 }
 

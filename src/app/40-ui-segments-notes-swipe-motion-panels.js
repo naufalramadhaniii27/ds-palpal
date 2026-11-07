@@ -16,7 +16,7 @@ import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
 import {ckOf,qOk,spAtWill,spCastOpts} from "./32-logic-play-undo-actions.js";
 import {renderAll} from "./35-ui-combo.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
 Object.defineProperty(__R,"bIndSet",{get:function(){return bIndSet;},set:function(v){bIndSet=v;},configurable:true});
 Object.defineProperty(__R,"barTo",{get:function(){return barTo;},set:function(v){barTo=v;},configurable:true});
@@ -135,7 +135,7 @@ __set_setTab((function(f){ return function(id,focus,instant){ const from=activeT
 let MORPH=null, VTC=null;
 function morphSrc(inf){ if(inf.matches(".sp-r,.islot")) return inf; if(inf.matches(".iname")) return inf.closest(".irow")||inf;
   const h=inf.closest(".fitem>h4,.aitem>h4"); if(h) return h.parentNode; if(inf.closest(".arow .an")) return inf.closest(".arow"); if(inf.closest(".rs-h")) return inf.closest(".rs"); return null; }
-document.addEventListener("click",(e) =>{ MORPH=null; const t=e.target; if(!t||!t.closest||!document.startViewTransition||REDUCE) return; if(window.__MI&&!window.__MI.rm()) return;/* v55: the F1 morph engine takes over */ if(t.closest("#sheet")) return;
+document.addEventListener("click",(e) =>{ MORPH=null; const t=e.target; if(!t||!t.closest||!document.startViewTransition||REDUCE) return; if(env.__MI&&!env.__MI.rm()) return;/* v55: the F1 morph engine takes over */ if(t.closest("#sheet")) return;
   const inf=t.closest("[data-info]"); if(!inf) return; const c=morphSrc(inf); if(c) MORPH={el:c,t:performance.now()}; },true);
 function morphEnd(){ const root=document.documentElement; root.classList.remove("vt-card"); sheet.classList.remove("vt-hold","vt-on"); sheet.style.viewTransitionName=""; $$(".vt-src").forEach((x) =>{ x.classList.remove("vt-src"); x.style.viewTransitionName=""; }); VTC=null; }
 function morphIn(card){ let root=document.documentElement, vt;
@@ -185,9 +185,9 @@ let OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
 window.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });/* a reload or page change is under way: going back in history now would cancel it */
 function ovTop(){ const c=document.getElementById("ctxm"); if(c) return function(){ c.remove(); };
   const a=document.querySelectorAll("body > .ask"); if(a.length){ const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }
-  if(window.__tgBack){ const tb=window.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
-  if(window.__learnBack){ const lb=window.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
-  const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(window.__bldBack) return function(){ window.__bldBack(); }; }/* T11 G6 T5 */
+  if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; }/* G7 Training Ground: field to setup, setup closes */
+  if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; }/* T11 Learn: glossary card, sheet spotlight, then one step back */
+  const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; }/* T11 G6 T5 */
   const q=document.getElementById("hpQm"); if(q) return function(){ qmClose(); };
   const k=Array.prototype.slice.call(document.querySelectorAll("body > .bkp")).filter((w) =>{ return !w.hidden&&w.querySelector(".bkpx"); }); if(k.length){ const z=k[k.length-1]; return function(){ z.querySelector(".bkpx").click(); }; }
   if(sheet.classList.contains("on")) return function(){ const bk=$("#sheetBack"); if(bk&&!bk.hidden) bk.click(); else closeSheet(); };
@@ -200,7 +200,7 @@ function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; const on=!!ovTop();
 export function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
 window.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
 try{ if(history.state&&history.state.csOv) history.replaceState(null,""); }catch(e){}/* a reload while a popup was open: the held entry is plain again */
-window.__ovState=function(){ return {held:OVG, top:!!ovTop()}; };
+env.__ovState=function(){ return {held:OVG, top:!!ovTop()}; };
 /* ===== v32 p34 RU132: right-click menu on a computer ===== */
 function ctxFire(attrs){ const b=document.createElement("button"); b.type="button"; b.hidden=true; Object.keys(attrs).forEach((k) =>{ b.setAttribute(k,attrs[k]); }); document.body.appendChild(b); try{ b.click(); }finally{ b.remove(); } }
 function ctxBoxes(scope){ const bx=Array.prototype.slice.call(scope.querySelectorAll(".bx[data-k]")); if(!bx.length) return []; const on=bx.filter((b) =>{ return b.getAttribute("aria-pressed")==="true"||b.classList.contains("on"); }), off=bx.filter((b) =>{ return on.indexOf(b)<0; }), L=[];

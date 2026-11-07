@@ -5,7 +5,7 @@ import {BKEY,rEnsure,rGet,rSave,setOrDel} from "./14-ui-editor.js";
 import {curRaw,fmtT,rSnap,rawHash,snTake} from "./15-logic-roster-backup-files-snapshots.js";
 import {undoLbl} from "./32-logic-play-undo-actions.js";
 import {rcptDiff,rcptHTML,rcptNow} from "./46-logic-receipts.js";
-import {__R} from "./00-reg.js";
+import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"tmOpen",{get:function(){return tmOpen;},set:function(v){tmOpen=v;},configurable:true});
 /* T11 G3 N2 Time machine. The open character is kept as it was at many points in time: after a quiet minute following a change,
    at most one point per 10 minutes, the last 40 points per character. Each point keeps the build, sheet and state (portrait left out)
@@ -37,5 +37,5 @@ document.addEventListener("click",(e) =>{ const c=e.target.closest&&e.target.clo
   ask("Go back to "+fmtT(q.t)+"? The character as it is now is kept as a snapshot first, so you can undo this."+(pv?"\n\nNumbers that change:\n"+pv:""),"Go Back",() =>{ const r=rSnap(rEnsure()); snTake(id,"Before going back in History",r);
     let s=q.S; try{ const so=JSON.parse(s), co=JSON.parse(curRaw().S||"{}"); if(co.portrait){ so.portrait=co.portrait; s=JSON.stringify(so); } }catch(er){}
     const e2=r.chars[id]; if(!e2) return; e2.B=q.B; e2.C=q.C; e2.S=s; e2.t=Date.now(); if(!rSave(r)) return; clearTimeout(cSaveT); clearTimeout(saveT); setOrDel(BKEY,q.B); lsSet(CKEY,q.C); lsSet(KEY,s); sessionStorage.setItem("cs-skip","1"); __miReload(); }); });
-window.__tm={take:function(w){ tmTake(w||"Test",true); }, list:function(){ return tmGet((rGet()||{}).active).map((p) =>{ return {t:p.t,why:p.why}; }); }, open:tmOpen};
+env.__tm={take:function(w){ tmTake(w||"Test",true); }, list:function(){ return tmGet((rGet()||{}).active).map((p) =>{ return {t:p.t,why:p.why}; }); }, open:tmOpen};
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-tmopen]"); if(b) tmOpen(); });
