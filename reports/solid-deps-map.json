@@ -872,38 +872,39 @@
    "layer": "logic",
    "order": 217
   },
-  "builder/11-logic-derivation.js": {
+  "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
    "order": 218
   },
-  "builder/11b-logic-fx-sources.js": {
+  "builder/11-logic-derivation.js": {
    "layer": "logic",
    "order": 219
   },
-  "builder/11c-logic-fx-handlers-sheet.js": {
+  "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
    "order": 220
   },
-  "builder/12-logic-export-to-sheet.js": {
+  "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
    "order": 221
   },
-  "builder/13-logic-sources-and-packs.js": {
+  "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
    "order": 222
   },
-  "builder/14-logic-multiclass-hp-shop.js": {
+  "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
    "order": 223
   },
-  "builder/15-logic-import-from-sheet.js": {
+  "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
    "order": 224
   },
-  "builder/16-logic-feature-numbers.js": {
+  "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
    "order": 225
   },
+<<<<<<< HEAD
   "builder/17-ui-step-builder.js": {
    "layer": "ui",
    "order": 226
@@ -927,19 +928,51 @@
   "builder/22-ui-shell.js": {
    "layer": "ui",
    "order": 231
+=======
+  "builder/12e-logic-sheet-handlers-defense.js": {
+   "layer": "logic",
+   "order": 225
   },
-  "builder/23-logic-level-up-and-build-files.js": {
+  "builder/12f-logic-sheet-handlers-movement.js": {
+   "layer": "logic",
+   "order": 226
+  },
+  "builder/12g-logic-sheet-handlers-profs.js": {
+   "layer": "logic",
+   "order": 227
+  },
+  "builder/12h-logic-sheet-handlers-attacks.js": {
+   "layer": "logic",
+   "order": 228
+  },
+  "builder/12i-logic-sheet-handlers-gear-resources.js": {
+   "layer": "logic",
+   "order": 229
+  },
+  "builder/12j-logic-sheet-handlers-features.js": {
+   "layer": "logic",
+   "order": 230
+>>>>>>> origin/main
+  },
+  "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
    "order": 232
   },
+<<<<<<< HEAD
   "builder/24-ui-icons.js": {
    "layer": "ui",
    "order": 233
+=======
+  "builder/12l-logic-sheet-handlers-late.js": {
+   "layer": "logic",
+   "order": 232
+>>>>>>> origin/main
   },
-  "builder/25-logic-hooks-for-the-sheet.js": {
+  "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
    "order": 234
   },
+<<<<<<< HEAD
   "builder/main.js": {
    "layer": "-",
    "order": 235
@@ -951,15 +984,29 @@
   "learn/45-data-learn.js": {
    "layer": "data",
    "order": 237
+=======
+  "builder/13-logic-sources-and-packs.js": {
+   "layer": "logic",
+   "order": 234
   },
-  "learn/46-logic-learn.js": {
+  "builder/14-logic-multiclass-hp-shop.js": {
+   "layer": "logic",
+   "order": 235
+  },
+  "builder/15-logic-import-from-sheet.js": {
+   "layer": "logic",
+   "order": 236
+>>>>>>> origin/main
+  },
+  "builder/16-logic-feature-numbers.js": {
    "layer": "logic",
    "order": 238
   },
-  "learn/47-ui-learn.js": {
+  "builder/17-ui-step-builder.js": {
    "layer": "ui",
    "order": 239
   },
+<<<<<<< HEAD
   "tg/00-bridge.js": {
    "layer": "-",
    "order": 240
@@ -971,14 +1018,83 @@
   "tg/25-sim.js": {
    "layer": "logic",
    "order": 242
+=======
+  "builder/18-ui-spells.js": {
+   "layer": "ui",
+   "order": 239
   },
-  "tg/30-ui-tg.js": {
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
+   "layer": "ui",
+   "order": 240
+  },
+  "builder/20-ui-steps-equipment-next.js": {
+   "layer": "ui",
+   "order": 241
+>>>>>>> origin/main
+  },
+  "builder/21-ui-rules-reference.js": {
    "layer": "ui",
    "order": 243
   },
+  "builder/22-ui-shell.js": {
+   "layer": "ui",
+   "order": 243
+  },
+  "builder/23-logic-level-up-and-build-files.js": {
+   "layer": "logic",
+   "order": 244
+  },
+  "builder/24-ui-icons.js": {
+   "layer": "ui",
+   "order": 245
+  },
+  "builder/25-logic-hooks-for-the-sheet.js": {
+   "layer": "logic",
+   "order": 246
+  },
+  "builder/main.js": {
+   "layer": "-",
+   "order": 247
+  },
+  "learn/00-bridge.js": {
+   "layer": "-",
+   "order": 248
+  },
+  "learn/45-data-learn.js": {
+   "layer": "data",
+   "order": 249
+  },
+  "learn/46-logic-learn.js": {
+   "layer": "logic",
+   "order": 250
+  },
+  "learn/47-ui-learn.js": {
+   "layer": "ui",
+   "order": 251
+  },
+  "tg/00-bridge.js": {
+   "layer": "-",
+   "order": 252
+  },
+  "tg/20-engine.js": {
+   "layer": "logic",
+   "order": 253
+  },
+  "tg/25-sim.js": {
+   "layer": "logic",
+   "order": 254
+  },
+  "tg/30-ui-tg.js": {
+   "layer": "ui",
+   "order": 255
+  },
   "data/rs14-2014-wording.js": {
    "layer": "data",
+<<<<<<< HEAD
    "order": 244
+=======
+   "order": 256
+>>>>>>> origin/main
   }
  },
  "edges": [
@@ -1398,15 +1514,6 @@
   },
   {
    "from": "app/07-ui-theme-contrast-spring.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/07-ui-theme-contrast-spring.js",
    "to": "fx/18-m-pack-rolls-concentration.js",
    "import": false,
    "names": [
@@ -1659,6 +1766,15 @@
    "import": false,
    "names": [
     "__store"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08-ui-render-sheet-and-actions.js",
+   "to": "builder/12g-logic-sheet-handlers-profs.js",
+   "import": false,
+   "names": [
+    "rowsOf"
    ],
    "count": 1
   },
@@ -3842,15 +3958,6 @@
     "pCur"
    ],
    "count": 2
-  },
-  {
-   "from": "app/21-ui-tabs-pager.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
   },
   {
    "from": "app/21-ui-tabs-pager.js",
@@ -6797,10 +6904,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": false,
    "names": [
-    "card",
-    "step"
+    "card"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "app/40-ui-segments-notes-swipe-motion-panels.js",
@@ -8721,15 +8827,6 @@
    "count": 1
   },
   {
-   "from": "boot/deferred-loader.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
    "from": "boot/err-report.js",
    "to": "boot/store-gate.js",
    "import": false,
@@ -8769,6 +8866,121 @@
   },
   {
    "from": "builder/00-env.js",
+<<<<<<< HEAD
+=======
+   "to": "app/03-data-glossary.js",
+   "import": false,
+   "names": [
+    "__gl14"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "app/04-logic-storage.js",
+   "import": false,
+   "names": [
+    "__appVer"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "app/17-logic-tab-sync-and-test-hooks.js",
+   "import": false,
+   "names": [
+    "__sheetState"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/cffull-class-feature-text.js",
+   "import": false,
+   "names": [
+    "CF_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db1-phb-skills-species-backgrounds-feats-weapons.js",
+   "import": false,
+   "names": [
+    "ALLSK",
+    "ARMOR",
+    "BACKGROUNDS",
+    "FEATS",
+    "MASTERY",
+    "SKILLS",
+    "SPECIES",
+    "WEAPONS"
+   ],
+   "count": 8
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db2-phb-classes-a.js",
+   "import": false,
+   "names": [
+    "CLASSES",
+    "MANEUVERS"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db3-phb-classes-b.js",
+   "import": false,
+   "names": [
+    "INVOCATIONS",
+    "INV_PICK",
+    "METAMAGIC"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "import": false,
+   "names": [
+    "INV_SPELLS",
+    "MC_GRANT",
+    "PRICE"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db4/03-lifestyle-containers-printed-pages.js",
+   "import": false,
+   "names": [
+    "BOOKPG"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "SUB_GRANT",
+    "TOOL_ONE"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/db4/07-actions.js",
+   "import": false,
+   "names": [
+    "ACTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+>>>>>>> origin/main
    "to": "data/efa-eberron-forge-of-the-artificer.js",
    "import": false,
    "names": [
@@ -8776,6 +8988,42 @@
     "EFA_NAMES"
    ],
    "count": 2
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/itsp-spells-from-items.js",
+   "import": false,
+   "names": [
+    "ITEM_SPELLS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/spells-spell-list.js",
+   "import": false,
+   "names": [
+    "SPELLS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/spfull-spell-text.js",
+   "import": false,
+   "names": [
+    "SPELL_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
+   "to": "data/subfull-subclass-feature-text.js",
+   "import": false,
+   "names": [
+    "SUB_FULL"
+   ],
+   "count": 1
   },
   {
    "from": "builder/01-logic-core-helpers.js",
@@ -9623,6 +9871,33 @@
    "count": 2
   },
   {
+   "from": "builder/10e-logic-fx-schema.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "skillAb"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/10e-logic-fx-schema.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [
+    "typeOk"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/10e-logic-fx-schema.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "abil"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/11-logic-derivation.js",
    "to": "app/08-ui-render-sheet-and-actions.js",
    "import": false,
@@ -9890,10 +10165,10 @@
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
-   "to": "app/40-ui-segments-notes-swipe-motion-panels.js",
+   "to": "app/05-logic-helpers.js",
    "import": false,
    "names": [
-    "shApply"
+    "itemHtml"
    ],
    "count": 1
   },
@@ -9903,10 +10178,14 @@
    "import": true,
    "names": [
     "appVer",
+    "armorDef",
+    "bgDef",
     "inTS",
-    "setInTS"
+    "setInTS",
+    "speciesDef",
+    "spellRows"
    ],
-   "count": 3
+   "count": 7
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -9920,11 +10199,12 @@
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
    "names": [
+    "chJoin",
     "dieAvg",
     "getPbAdd",
     "pbOf"
    ],
-   "count": 3
+   "count": 4
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -10009,15 +10289,6 @@
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
-   "to": "builder/10a-logic-fx-registry.js",
-   "import": true,
-   "names": [
-    "runFxPhase"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12-logic-export-to-sheet.js",
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
@@ -10026,7 +10297,6 @@
     "abil",
     "casterParts",
     "classFeatures",
-    "classFx",
     "clsParts",
     "featsOf",
     "fxCh",
@@ -10040,11 +10310,90 @@
     "spLists",
     "spellAb"
    ],
-   "count": 18
+   "count": 17
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
    "to": "builder/11c-logic-fx-handlers-sheet.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "runSheet"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12c-logic-sheet-handlers-core.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12d-logic-sheet-handlers-skills.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12e-logic-sheet-handlers-defense.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12f-logic-sheet-handlers-movement.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12g-logic-sheet-handlers-profs.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12h-logic-sheet-handlers-attacks.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12j-logic-sheet-handlers-features.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12k-logic-sheet-handlers-spells.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12l-logic-sheet-handlers-late.js",
    "import": true,
    "names": [],
    "count": 0
@@ -10081,7 +10430,6 @@
     "hpCalc",
     "itemCost",
     "itemWEst",
-    "kitItems",
     "langKeys",
     "mcResMax",
     "monkRule",
@@ -10090,7 +10438,7 @@
     "syncPickItems",
     "wpNamed"
    ],
-   "count": 21
+   "count": 20
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -10104,15 +10452,6 @@
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "pickRows"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12-logic-export-to-sheet.js",
    "to": "builder/20-ui-steps-equipment-next.js",
    "import": false,
    "names": [
@@ -10122,123 +10461,832 @@
    "count": 2
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/cffull-class-feature-text.js",
+   "from": "builder/12a-logic-sheet-registry.js",
+   "to": "app/06-logic-derivation.js",
    "import": false,
    "names": [
-    "CF_FULL"
+    "part"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db1-phb-skills-species-backgrounds-feats-weapons.js",
+   "from": "builder/12a-logic-sheet-registry.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "sheetStrict",
+    "sheetTrace"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [
+    "typeOk"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "builder/03-logic-magic-item-effects.js",
    "import": false,
    "names": [
-    "ALLSK",
-    "ARMOR",
-    "BACKGROUNDS",
-    "FEATS",
-    "MASTERY",
-    "SKILLS",
-    "SPECIES",
-    "WEAPONS"
+    "attMax"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "saveNotes"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fxToggles"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "builder/16-logic-feature-numbers.js",
+   "import": false,
+   "names": [
+    "defenses"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "appVer",
+    "featDef"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "chOf",
+    "subAt"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "wisElse"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fxCh"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "allSkillNames",
+    "featDef",
+    "skillAb",
+    "subGrantRow"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/13-logic-sources-and-packs.js",
+   "import": false,
+   "names": [
+    "packSkills"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12d-logic-sheet-handlers-skills.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "langKeys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "armorDef",
+    "classDef",
+    "featDef",
+    "weaponDef"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/03-logic-magic-item-effects.js",
+   "import": false,
+   "names": [
+    "attMax"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "sbWx"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "pactWeapon"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "casterParts",
+    "fxOk"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12e-logic-sheet-handlers-defense.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "baseOf",
+    "ensureInv",
+    "monkRule"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "classDef",
+    "featDef"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "chOf",
+    "subAt"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/10a-logic-fx-registry.js",
+   "import": true,
+   "names": [
+    "runFxPhase"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fxOk"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12f-logic-sheet-handlers-movement.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "hpBonusList"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "featDef",
+    "mcGrantRow"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "bgTl",
+    "gxPicks"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "optAny"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12g-logic-sheet-handlers-profs.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "baseOf"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12h-logic-sheet-handlers-attacks.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "featDef",
+    "masteryText",
+    "weaponDef"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/12h-logic-sheet-handlers-attacks.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [
+    "dieAvg"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12h-logic-sheet-handlers-attacks.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12h-logic-sheet-handlers-attacks.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12h-logic-sheet-handlers-attacks.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "baseOf",
+    "monkRule",
+    "wpNamed"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "app/05-logic-helpers.js",
+   "import": false,
+   "names": [
+    "itemHtml"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "armorDef",
+    "classDef",
+    "featDef",
+    "priceOf",
+    "weaponDef"
+   ],
+   "count": 5
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "kitTool"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "luRows",
+    "saveNotes",
+    "xdmgRows"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "featsOf",
+    "keepResKeys",
+    "resKey",
+    "resMax",
+    "slugK"
+   ],
+   "count": 5
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "baseOf",
+    "clsKitText",
+    "ensureInv",
+    "eqIdx",
+    "equippable",
+    "gpNow",
+    "itemCost",
+    "itemWEst",
+    "mcResMax",
+    "rarityOf",
+    "slotsAll"
+   ],
+   "count": 11
+  },
+  {
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "cfFullText",
+    "classDef",
+    "featDef",
+    "maneuverRows",
+    "masteryText",
+    "subFullText",
+    "toolOneName",
+    "weaponDef"
    ],
    "count": 8
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db2-phb-classes-a.js",
-   "import": false,
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
    "names": [
-    "CLASSES",
-    "MANEUVERS"
+    "chJoin"
    ],
-   "count": 2
+   "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db3-phb-classes-b.js",
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/03-logic-magic-item-effects.js",
    "import": false,
    "names": [
-    "INVOCATIONS",
-    "INV_PICK",
-    "METAMAGIC"
+    "htText"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "chOf",
+    "spLinTrait",
+    "spTraitText",
+    "subAt"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "invList",
+    "saveNotes",
+    "ycOf"
    ],
    "count": 3
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/11-logic-derivation.js",
    "import": false,
    "names": [
-    "INV_SPELLS",
-    "MC_GRANT",
-    "PRICE"
-   ],
-   "count": 3
-  },
-  {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db4/03-lifestyle-containers-printed-pages.js",
-   "import": false,
-   "names": [
-    "BOOKPG"
+    "slotsFor"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
-   "import": false,
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
    "names": [
-    "SUB_GRANT",
-    "TOOL_ONE"
+    "registerSheetGroup",
+    "registerSheetRule"
    ],
    "count": 2
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/db4/07-actions.js",
-   "import": false,
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
    "names": [
-    "ACTS"
+    "defineLocals"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/itsp-spells-from-items.js",
+   "from": "builder/12j-logic-sheet-handlers-features.js",
+   "to": "builder/16-logic-feature-numbers.js",
    "import": false,
    "names": [
-    "ITEM_SPELLS"
+    "calcNote",
+    "defenses"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "featDef",
+    "invPickRow",
+    "invSpellRow",
+    "invocationRows",
+    "itemSpellRow",
+    "metamagicRows",
+    "spellFullText"
+   ],
+   "count": 7
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [
+    "chJoin"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/spells-spell-list.js",
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/09-logic-feats-and-choices.js",
    "import": false,
    "names": [
-    "SPELLS"
+    "dmSpells",
+    "featSpells",
+    "hbPickOk",
+    "spFxTo",
+    "spItemB",
+    "spItemSrc"
+   ],
+   "count": 6
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "agOn"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/spfull-spell-text.js",
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/11-logic-derivation.js",
    "import": false,
    "names": [
-    "SPELL_FULL"
+    "casterParts",
+    "resKey",
+    "spLists",
+    "spellAb"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
    ],
    "count": 1
   },
   {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "data/subfull-subclass-feature-text.js",
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/13-logic-sources-and-packs.js",
    "import": false,
    "names": [
-    "SUB_FULL"
+    "autoSpells",
+    "enabledPacks",
+    "miFeats"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "ensureInv",
+    "slotsAll"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "actsTable",
+    "bookPages",
+    "featDef",
+    "weaponDef"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [
+    "dieAvg",
+    "getPbAdd"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/03-logic-magic-item-effects.js",
+   "import": false,
+   "names": [
+    "attMax",
+    "byOk"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/08-logic-2014-rules.js",
+   "import": false,
+   "names": [
+    "subLbl",
+    "subLv"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "allFeats",
+    "gxPicks",
+    "spItemB",
+    "spItemSrc",
+    "subAt"
+   ],
+   "count": 5
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/10-logic-v17-additions.js",
+   "import": false,
+   "names": [
+    "saveNotes"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/11-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fxOk",
+    "fxToggles"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/13-logic-sources-and-packs.js",
+   "import": false,
+   "names": [
+    "enabledPacks"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "baseOf",
+    "wpNamed"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/16-logic-feature-numbers.js",
+   "import": false,
+   "names": [
+    "defenses"
    ],
    "count": 1
   },
@@ -11175,10 +12223,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "card",
-    "step"
+    "card"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/18-ui-spells.js",
@@ -11652,10 +12699,9 @@
     "__set_step",
     "card",
     "fmtGp",
-    "mfullH",
-    "step"
+    "mfullH"
    ],
-   "count": 5
+   "count": 4
   },
   {
    "from": "builder/20-ui-steps-equipment-next.js",
@@ -11925,10 +12971,9 @@
     "__set_pickSp",
     "__set_step",
     "card",
-    "profSkills",
-    "step"
+    "profSkills"
    ],
-   "count": 6
+   "count": 5
   },
   {
    "from": "builder/21-ui-rules-reference.js",
@@ -12162,10 +13207,9 @@
     "__set_pickSp",
     "__set_step",
     "showLore",
-    "showRef",
-    "step"
+    "showRef"
    ],
-   "count": 8
+   "count": 7
   },
   {
    "from": "builder/22-ui-shell.js",
@@ -12475,10 +13519,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "__set_step",
-    "step"
+    "__set_step"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/23-logic-level-up-and-build-files.js",
@@ -12509,12 +13552,11 @@
    "to": "builder/22-ui-shell.js",
    "import": true,
    "names": [
-    "copyOf",
     "render",
     "stamp",
     "stepBack"
    ],
-   "count": 4
+   "count": 3
   },
   {
    "from": "builder/23-logic-level-up-and-build-files.js",
@@ -12768,6 +13810,16 @@
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
+   "to": "builder/10e-logic-fx-schema.js",
+   "import": true,
+   "names": [
+    "FX_FIELDS",
+    "fxEntryProblems"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/25-logic-hooks-for-the-sheet.js",
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
@@ -12787,6 +13839,31 @@
     "toSheet"
    ],
    "count": 1
+  },
+  {
+   "from": "builder/25-logic-hooks-for-the-sheet.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "SHEET_PHASES",
+    "allSheetHandlers",
+    "applyPatch",
+    "makeCtx",
+    "registerSheetGroup",
+    "registerSheetRule"
+   ],
+   "count": 6
+  },
+  {
+   "from": "builder/25-logic-hooks-for-the-sheet.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "SHEET_C",
+    "SHEET_L",
+    "patchProblems"
+   ],
+   "count": 3
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -12841,10 +13918,9 @@
     "__set_openCards",
     "__set_pickCls",
     "__set_pickSp",
-    "__set_step",
-    "step"
+    "__set_step"
    ],
-   "count": 6
+   "count": 5
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -12893,11 +13969,10 @@
    "to": "builder/22-ui-shell.js",
    "import": true,
    "names": [
-    "copyOf",
     "render",
     "stamp"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -13143,6 +14218,13 @@
   },
   {
    "from": "builder/main.js",
+   "to": "builder/10e-logic-fx-schema.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [],
@@ -13165,6 +14247,90 @@
   {
    "from": "builder/main.js",
    "to": "builder/12-logic-export-to-sheet.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12c-logic-sheet-handlers-core.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12d-logic-sheet-handlers-skills.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12e-logic-sheet-handlers-defense.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12f-logic-sheet-handlers-movement.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12g-logic-sheet-handlers-profs.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12h-logic-sheet-handlers-attacks.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12i-logic-sheet-handlers-gear-resources.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12j-logic-sheet-handlers-features.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12k-logic-sheet-handlers-spells.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/12l-logic-sheet-handlers-late.js",
    "import": true,
    "names": [],
    "count": 0
@@ -13356,6 +14522,27 @@
   },
   {
    "from": "data/efa-eberron-forge-of-the-artificer.js",
+<<<<<<< HEAD
+=======
+   "to": "app/30-ui-icons.js",
+   "import": false,
+   "names": [
+    "__ICO"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/efa-eberron-forge-of-the-artificer.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "speciesDef"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/efa-eberron-forge-of-the-artificer.js",
+>>>>>>> origin/main
    "to": "builder/10-logic-v17-additions.js",
    "import": false,
    "names": [
@@ -13549,11 +14736,29 @@
    "count": 1
   },
   {
+   "from": "data/fx-E-feat.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "skillAb"
+   ],
+   "count": 1
+  },
+  {
    "from": "data/fx-F-sub.js",
    "to": "data/db2-phb-classes-a.js",
    "import": false,
    "names": [
     "MANEUVERS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-L1.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "skillAb"
    ],
    "count": 1
   },
@@ -15783,10 +16988,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": false,
    "names": [
-    "card",
-    "step"
+    "card"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "fx/02-micro-interactions.js",
@@ -16251,10 +17455,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": false,
    "names": [
-    "card",
-    "step"
+    "card"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "fx/14-w-pack.js",
@@ -16596,15 +17799,6 @@
   },
   {
    "from": "fx/19-g-pack-cinematic.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/19-g-pack-cinematic.js",
    "to": "fx/01-core-router-and-switch.js",
    "import": false,
    "names": [
@@ -16777,15 +17971,6 @@
   },
   {
    "from": "fx/24-class-art.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/24-class-art.js",
    "to": "fx/23-class-art-data.js",
    "import": false,
    "names": [
@@ -16892,15 +18077,6 @@
    "import": false,
    "names": [
     "libOpen"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/45-data-learn.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
    ],
    "count": 1
   },
@@ -17046,10 +18222,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": false,
    "names": [
-    "card",
-    "step"
+    "card"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "learn/47-ui-learn.js",
@@ -17138,15 +18313,6 @@
    "count": 1
   },
   {
-   "from": "tg/20-engine.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
    "from": "tg/25-sim.js",
    "to": "app/08-ui-render-sheet-and-actions.js",
    "import": false,
@@ -17161,15 +18327,6 @@
    "import": false,
    "names": [
     "fromSheet"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/25-sim.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
    ],
    "count": 1
   },
@@ -17230,15 +18387,6 @@
   },
   {
    "from": "tg/30-ui-tg.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "step"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
    "to": "builder/20-ui-steps-equipment-next.js",
    "import": false,
    "names": [
@@ -17294,6 +18442,7 @@
   "app/03-data-glossary.js -> app/08-ui-render-sheet-and-actions.js": 1,
   "app/03-data-glossary.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
   "app/04-logic-storage.js -> app/08-ui-render-sheet-and-actions.js": 2,
+<<<<<<< HEAD
   "app/04-logic-storage.js -> app/20-ui-portrait.js": 1,
   "app/04-logic-storage.js -> app/14-ui-editor.js": 2,
   "app/04-logic-storage.js -> app/35-ui-combo.js": 1,
@@ -17304,12 +18453,25 @@
   "app/05-logic-helpers.js -> tg/30-ui-tg.js": 1,
   "app/05-logic-helpers.js -> app/13-ui-detail-cards.js": 2,
   "app/06-logic-derivation.js -> app/26-ui-customize.js": 3,
+=======
+  "app/04-logic-storage.js -> app/14-ui-editor.js": 2,
+  "app/04-logic-storage.js -> app/35-ui-combo.js": 1,
+  "app/04-logic-storage.js -> app/07-ui-theme-contrast-spring.js": 1,
+  "app/04-logic-storage.js -> app/20-ui-portrait.js": 1,
+  "app/05-logic-helpers.js -> app/13-ui-detail-cards.js": 2,
+  "app/05-logic-helpers.js -> app/27-ui-party-search-commands-library.js": 2,
+  "app/05-logic-helpers.js -> tg/30-ui-tg.js": 1,
+  "app/05-logic-helpers.js -> app/30-ui-icons.js": 1,
+  "app/05-logic-helpers.js -> fx/24-class-art.js": 1,
+>>>>>>> origin/main
   "app/06-logic-derivation.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 2,
+  "app/06-logic-derivation.js -> app/26-ui-customize.js": 3,
   "app/06-logic-derivation.js -> app/25-ui-settings-appearance.js": 2,
   "app/06-logic-derivation.js -> app/34-ui-situations.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> app/07-ui-theme-contrast-spring.js": 3,
   "app/15-logic-roster-backup-files-snapshots.js -> app/08-ui-render-sheet-and-actions.js": 2,
   "app/15-logic-roster-backup-files-snapshots.js -> app/14-ui-editor.js": 6,
+<<<<<<< HEAD
   "app/15-logic-roster-backup-files-snapshots.js -> learn/47-ui-learn.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> fx/24-class-art.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> app/27-ui-party-search-commands-library.js": 7,
@@ -17317,15 +18479,30 @@
   "app/15-logic-roster-backup-files-snapshots.js -> tg/30-ui-tg.js": 3,
   "app/15-logic-roster-backup-files-snapshots.js -> app/31-ui-tour-and-focus.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> fx/01-core-router-and-switch.js": 1,
+=======
+  "app/15-logic-roster-backup-files-snapshots.js -> tg/30-ui-tg.js": 3,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/27-ui-party-search-commands-library.js": 7,
+  "app/15-logic-roster-backup-files-snapshots.js -> fx/01-core-router-and-switch.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/31-ui-tour-and-focus.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> fx/24-class-art.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> learn/47-ui-learn.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
+>>>>>>> origin/main
   "app/16-logic-import-chat-text-and-build-files.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/16-logic-import-chat-text-and-build-files.js -> app/14-ui-editor.js": 4,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/08-ui-render-sheet-and-actions.js": 6,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/12-ui-bottom-sheet-modal.js": 2,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/14-ui-editor.js": 5,
+<<<<<<< HEAD
   "app/17-logic-tab-sync-and-test-hooks.js -> app/20-ui-portrait.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/35-ui-combo.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/41-ui-edit-mode.js": 1,
+=======
+  "app/17-logic-tab-sync-and-test-hooks.js -> app/35-ui-combo.js": 1,
+  "app/17-logic-tab-sync-and-test-hooks.js -> app/41-ui-edit-mode.js": 1,
+  "app/17-logic-tab-sync-and-test-hooks.js -> app/20-ui-portrait.js": 1,
+>>>>>>> origin/main
   "app/32-logic-play-undo-actions.js -> app/08-ui-render-sheet-and-actions.js": 5,
   "app/32-logic-play-undo-actions.js -> app/09-ui-hit-points-playbar-death-saves.js": 1,
   "app/32-logic-play-undo-actions.js -> app/10-ui-conditions.js": 1,
@@ -17373,6 +18550,10 @@
   "app/50-logic-reverse-builder.js -> app/41-ui-edit-mode.js": 1,
   "app/50-logic-reverse-builder.js -> tg/30-ui-tg.js": 3,
   "data/fx-B2-subclass.js -> builder/18-ui-spells.js": 1,
+<<<<<<< HEAD
+=======
+  "data/efa-eberron-forge-of-the-artificer.js -> app/30-ui-icons.js": 1,
+>>>>>>> origin/main
   "data/efa-eberron-forge-of-the-artificer.js -> builder/10-logic-v17-additions.js": 1,
   "data/wotc02-subclasses-2025.js -> tg/30-ui-tg.js": 1,
   "data/wotc13-creature-stat-blocks.js -> tg/30-ui-tg.js": 1,
@@ -17399,41 +18580,51 @@
   "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 2,
   "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 2,
   "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 2,
+<<<<<<< HEAD
   "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
   "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
   "builder/10-logic-v17-additions.js -> builder/20-ui-steps-equipment-next.js": 1,
+=======
+  "builder/10-logic-v17-additions.js -> builder/20-ui-steps-equipment-next.js": 1,
+  "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
+  "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
+>>>>>>> origin/main
   "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
   "builder/11-logic-derivation.js -> app/08-ui-render-sheet-and-actions.js": 1,
   "builder/11-logic-derivation.js -> builder/18-ui-spells.js": 1,
   "builder/12-logic-export-to-sheet.js -> builder/20-ui-steps-equipment-next.js": 2,
-  "builder/12-logic-export-to-sheet.js -> app/40-ui-segments-notes-swipe-motion-panels.js": 1,
-  "builder/12-logic-export-to-sheet.js -> builder/18-ui-spells.js": 1,
   "builder/13-logic-sources-and-packs.js -> builder/18-ui-spells.js": 1,
   "builder/15-logic-import-from-sheet.js -> builder/17-ui-step-builder.js": 1,
-  "builder/23-logic-level-up-and-build-files.js -> builder/17-ui-step-builder.js": 2,
+  "builder/23-logic-level-up-and-build-files.js -> builder/17-ui-step-builder.js": 1,
   "builder/23-logic-level-up-and-build-files.js -> builder/18-ui-spells.js": 4,
   "builder/23-logic-level-up-and-build-files.js -> builder/21-ui-rules-reference.js": 4,
-  "builder/23-logic-level-up-and-build-files.js -> builder/22-ui-shell.js": 4,
-  "builder/25-logic-hooks-for-the-sheet.js -> builder/17-ui-step-builder.js": 6,
+  "builder/23-logic-level-up-and-build-files.js -> builder/22-ui-shell.js": 3,
+  "builder/25-logic-hooks-for-the-sheet.js -> builder/17-ui-step-builder.js": 5,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/18-ui-spells.js": 8,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/20-ui-steps-equipment-next.js": 2,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/21-ui-rules-reference.js": 8,
-  "builder/25-logic-hooks-for-the-sheet.js -> builder/22-ui-shell.js": 3,
+  "builder/25-logic-hooks-for-the-sheet.js -> builder/22-ui-shell.js": 2,
   "builder/25-logic-hooks-for-the-sheet.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "builder/25-logic-hooks-for-the-sheet.js -> tg/30-ui-tg.js": 1,
-  "learn/45-data-learn.js -> tg/30-ui-tg.js": 3,
   "learn/45-data-learn.js -> builder/20-ui-steps-equipment-next.js": 1,
+<<<<<<< HEAD
   "learn/45-data-learn.js -> builder/17-ui-step-builder.js": 1,
   "learn/46-logic-learn.js -> app/21-ui-tabs-pager.js": 2,
   "learn/46-logic-learn.js -> fx/01-core-router-and-switch.js": 1,
   "learn/46-logic-learn.js -> fx/25-dice3d.js": 1,
   "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1,
   "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1,
+=======
+  "learn/45-data-learn.js -> tg/30-ui-tg.js": 3,
+  "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1,
+  "learn/46-logic-learn.js -> fx/25-dice3d.js": 1,
+  "learn/46-logic-learn.js -> fx/01-core-router-and-switch.js": 1,
+  "learn/46-logic-learn.js -> app/21-ui-tabs-pager.js": 2,
+  "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1,
+>>>>>>> origin/main
   "tg/20-engine.js -> app/08-ui-render-sheet-and-actions.js": 1,
-  "tg/20-engine.js -> builder/17-ui-step-builder.js": 1,
   "tg/25-sim.js -> app/08-ui-render-sheet-and-actions.js": 1,
-  "tg/25-sim.js -> builder/17-ui-step-builder.js": 1,
   "data/rs14-2014-wording.js -> builder/25-logic-hooks-for-the-sheet.js": 1
  }
 }

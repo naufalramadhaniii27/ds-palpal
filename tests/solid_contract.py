@@ -21,8 +21,13 @@ def ok(cond, msg):
 def rd(f): return open(os.path.join(SRC, f), encoding='utf-8').read()
 
 # 1 static: handler files
-HFILES = ['10b-logic-fx-handlers-entry.js', '10c-logic-fx-handlers-ability.js', '10d-logic-fx-rules-cond-value.js', '11c-logic-fx-handlers-sheet.js']
-ALLOWED_IMPORTS = {'./10a-logic-fx-registry.js', './01-logic-core-helpers.js'}
+SHEET_HFILES = sorted(f for f in os.listdir(SRC) if re.match(r'12[c-z]-logic-sheet-handlers-', f))
+HFILES = ['10b-logic-fx-handlers-entry.js', '10c-logic-fx-handlers-ability.js', '10d-logic-fx-rules-cond-value.js', '11c-logic-fx-handlers-sheet.js', '10e-logic-fx-schema.js'] + SHEET_HFILES
+ok(len(SHEET_HFILES) >= 8, 'sheet handler files not found: %s' % SHEET_HFILES)
+ALLOWED_IMPORTS = {'./10a-logic-fx-registry.js', './01-logic-core-helpers.js', './12a-logic-sheet-registry.js', './12b-logic-sheet-schema.js', './00-env.js'}
+# D: a handler reaches the rule tables only through the accessors of 00-env.js, never by the bare global name
+BARE = ['CLASSES', 'SPECIES', 'BACKGROUNDS', 'FEATS', 'WEAPONS', 'ARMOR', 'SKILLS', 'ALLSK', 'SPELLS', 'SPELL_FULL', 'ITEM_SPELLS', 'INV_SPELLS', 'INV_PICK', 'INVOCATIONS', 'METAMAGIC', 'MANEUVERS', 'MASTERY',
+        'SUB_FULL', 'CF_FULL', 'SUB_GRANT', 'MC_GRANT', 'TOOL_ONE', 'PRICE', 'ACTS', 'BOOKPG', 'DMAP', 'PACTB14', 'GX', 'FXO']
 for f in HFILES:
     t = rd(f)
     for m in re.finditer(r'^import\s.*?from\s+"([^"]+)"', t, re.M):
@@ -30,11 +35,17 @@ for f in HFILES:
     body = re.sub(r'/\*.*?\*/', '', t, flags=re.S)
     for bad in [r'\bwindow\b', r'\bdocument\b', r'\blocalStorage\b', r'\bsessionStorage\b', r'\b__store\b', r'\bDate\b', r'Math\.random', r'\b__R\b', r'\bfetch\b', r'\bperformance\b']:
         ok(not re.search(bad, body), '%s uses %s (handlers are pure)' % (f, bad))
+    for g in BARE:
+        ok(not re.search(r'(?<![\w.$"\'])%s\b(?!["\']\s*:)' % g, re.sub(r'"[^"\n]*"', '""', body)), '%s reads the global %s (use the accessor in 00-env.js)' % (f, g))
 
 # 2 static: orchestrators
 d11 = rd('11-logic-derivation.js')
-blocks = re.findall(r'/\*ORCH-BEGIN (\w+).*?\*/(.*?)/\*ORCH-END \1\*/', d11, re.S)
-ok(sorted(b[0] for b in blocks) == ['abil', 'gfx0'], 'orchestrator markers abil and gfx0 not both found in 11-logic-derivation.js: %s' % [b[0] for b in blocks])
+d12 = rd('12-logic-export-to-sheet.js')
+blocks = re.findall(r'/\*ORCH-BEGIN (\w+).*?\*/(.*?)/\*ORCH-END \1\*/', d11 + d12, re.S)
+m_ts = re.search(r'/\*\s*solid:orchestrator toSheet\s*\*/\s*export function toSheet\(\)\{(.*?)\n return T\.C\}', d12, re.S)
+ok(bool(m_ts), 'toSheet() must carry the marker /* solid:orchestrator toSheet */')
+if m_ts: blocks.append(('toSheet', m_ts.group(1)))
+ok(sorted(b[0] for b in blocks) == ['abil', 'gfx0', 'toSheet'], 'orchestrator markers abil and gfx0 not both found in 11-logic-derivation.js: %s' % [b[0] for b in blocks])
 KINDS = ['cls', 'sub', 'species', 'bg', 'feat', 'item', 'class', 'background', 'items', 'feats']
 # field names a handler owns (read from the registry below, with a fixed fallback): the orchestrators must not name them
 FIELDS_FALLBACK = ['abCut', 'abil', 'abUp', 'abDown', 'abPick', 'abUpPick', 'abSet', 'setsc', 'toggle', 'when', 'spCls', 'speedMul', 'speedAdd', 'speedSet', 'darkAdd', 'darkTo', 'darkNone', 'darkHave', 'init']
@@ -44,12 +55,16 @@ for name, body in blocks:
     for k in KINDS:
         ok(not re.search(r'["\']%s["\']' % k, t), 'orchestrator %s names the kind "%s"' % (name, k))
     ok('window' not in t, 'orchestrator %s reads window' % name)
-d12 = rd('12-logic-export-to-sheet.js')
-ph = re.findall(r'runFxPhase\("sheet","([\w-]+)"', d12)
-ok(sorted(ph) == ['darkvision', 'init', 'speed', 'speed-mul'], 'toSheet runs the sheet phases %s' % ph)
+ph = []
+for f in SHEET_HFILES: ph += re.findall(r'runFxPhase\("sheet","([\w-]+)"', rd(f))
+ok(sorted(set(ph)) == ['darkvision', 'init', 'speed', 'speed-mul'], 'the sheet handlers run the fx sheet phases %s' % sorted(set(ph)))
+ok('runFxPhase' not in d12 and 'sheetInputs()' in d12 and 'runSheet(T)' in d12, 'toSheet() must only build the inputs and run the phases')
+for nm in ['for(', 'switch', 'forEach', 'if(']:
+    tb = [b for b in blocks if b[0] == 'toSheet'][0][1]
+    ok(nm not in re.sub(r'/\*.*?\*/', '', tb, flags=re.S).replace(' ', ''), 'the toSheet orchestrator contains %s' % nm)
 
 # 3 + 4 + 5 browser
-JS = r"""() => {
+JS = r"""(BL) => { 'use strict';
   const R = window.__fxRegistry(); const out = {fails: [], n: 0, info: {}};
   const F = (m) => { out.fails.push(String(m).slice(0, 240)); }, C = (c, m) => { out.n++; if (!c) F(m); };
   const deep = (o, seen) => { seen = seen || new Set(); if (o && typeof o === 'object' && !seen.has(o)) { seen.add(o); Object.keys(o).forEach(k => deep(o[k], seen)); Object.freeze(o); } return o; };
@@ -62,6 +77,7 @@ JS = r"""() => {
       C(typeof h.group === 'string' && h.group, h.id + ': group'); C(phases.indexOf(h.phase) >= 0, h.id + ': phase ' + h.phase);
       C(Array.isArray(h.fields) && h.fields.length && h.fields.every(x => typeof x === 'string'), h.id + ': fields[]');
       C(typeof h.run === 'function' && h.run.length === 2, h.id + ': run(e, ctx) needs two parameters');
+      C(Array.isArray(h.uses) && h.uses.every(x => typeof x === 'string'), h.id + ': uses[] (the context slice) is missing');
     });
     phases.forEach(p => C(R.handlers[reg].some(h => h.phase === p), reg + ': phase ' + p + ' has no handler'));
     out.info[reg] = R.handlers[reg].length;
@@ -85,6 +101,12 @@ JS = r"""() => {
     sheet: [v => ({ok: () => true, val: (x, e) => typeof x === 'number' ? x : 3, spd: 30, dark: {vision: 60, src: 'Species'}}), v => ({ok: () => false, val: () => 0, spd: 0, dark: {vision: undefined, src: undefined}}),
             v => ({ok: () => true, val: () => 0, spd: 30, dark: {vision: undefined, src: undefined}})]
   };
+  // I: a handler is given the context slice it declares (uses) and may read only its fields, the keys in eKeys and nothing else
+  const STRUCT_E = ['n', 'lbl', 'lv', 'kind', 'owner', 'okey', 'pre', 'idx', 'ocls'];/* the structural fields the engine puts on every built entry (see 10e) */
+  const eView = (h, e) => (h.eKeys || []).indexOf('*') >= 0 ? e : new Proxy(e, {
+    get(t, k, r) { if (typeof k === 'string' && h.fields.indexOf(k) < 0 && (h.eKeys || []).indexOf(k) < 0 && STRUCT_E.indexOf(k) < 0) throw new Error(h.id + ' read the entry field ' + k + ' outside its fields/eKeys'); return Reflect.get(t, k, r); },
+    has(t, k) { if (typeof k === 'string' && h.fields.indexOf(k) < 0 && (h.eKeys || []).indexOf(k) < 0 && STRUCT_E.indexOf(k) < 0) throw new Error(h.id + ' tested the entry field ' + k + ' outside its fields/eKeys'); return Reflect.has(t, k); } });
+  const cView = (h, c) => { const s = {}; h.uses.forEach(k => { s[k] = c[k]; }); return new Proxy(s, { get(t, k, r) { if (typeof k === 'string' && h.uses.indexOf(k) < 0) throw new Error(h.id + ' read ctx.' + k + ' outside its uses'); return Reflect.get(t, k, r); } }); };
   const inputsFor = (reg, h) => (reg === 'ability' && /^item-/.test(h.phase)) ? rows.concat(spec) : gx;
   let runs = 0, patches = 0;
   Object.keys(R.handlers).forEach(reg => R.handlers[reg].forEach(h => {
@@ -92,7 +114,7 @@ JS = r"""() => {
     list.forEach(e0 => ctxs[reg].forEach((mk, ci) => [0, 1].forEach(variant => {
       let e1, e2, c1, c2, a, b;
       try { e1 = deep(clone(e0)); e2 = deep(clone(e0)); c1 = deep(Object.assign({}, mk(variant))); c2 = deep(Object.assign({}, mk(variant))); } catch (x) { return; }
-      try { a = h.run(e1, c1); b = h.run(e2, c2); } catch (x) { F(h.id + ' threw on ' + JSON.stringify(e0).slice(0, 80) + ': ' + x); return; }
+      try { a = h.run(eView(h, e1), cView(h, c1)); b = h.run(eView(h, e2), cView(h, c2)); } catch (x) { F(h.id + ' threw on ' + JSON.stringify(e0).slice(0, 80) + ': ' + x); return; }
       runs++;
       const ja = JSON.stringify(a === undefined ? null : a), jb = JSON.stringify(b === undefined ? null : b);
       if (ja !== jb) F(h.id + ': same input gave different patches for ' + JSON.stringify(e0).slice(0, 80));
@@ -120,18 +142,101 @@ JS = r"""() => {
     window.__bldTestSet(tb);
     const before = R.gfx().filter(e => e.n === 'Zz Probe')[0];
     C(before && before.zzProbe === 7 && before.zzSeen === undefined, 'probe entry before registration');
-    R.register('entry', {id: 'zz-probe', group: 'test', phase: 'prepare', fields: ['zzProbe'], run: function (e, ctx) { return e.zzProbe ? {set: {zzSeen: e.zzProbe * ctx.src.lv}} : null; }});
+    R.register('entry', {id: 'zz-probe', group: 'test', phase: 'prepare', fields: ['zzProbe'], uses: ['src'], run: function (e, ctx) { return e.zzProbe ? {set: {zzSeen: e.zzProbe * ctx.src.lv}} : null; }});
     const after = R.gfx().filter(e => e.n === 'Zz Probe')[0];
     C(after && after.zzSeen === 7 * 3, 'a handler registered at run time was not applied by gfx(): ' + JSON.stringify(after));
   } finally { window.__bldTestSet(null); if (keepF) window.GX.cls.Fighter = keepF; else delete window.GX.cls.Fighter; }
+
+  // ===== stage 2: the toSheet() registries (field groups and class rules) =====
+  const S = R.sheet, SH = S.groups.concat(S.rules), ES = R.entrySchema;
+  out.info.sheetGroups = S.groups.length; out.info.sheetRules = S.rules.length;
+  C(S.rules.length >= 38, 'class rules registered: ' + S.rules.length + ' (the old toSheet had about 40 class special cases)');
+  C(S.groups.length >= 100, 'field groups registered: ' + S.groups.length);
+  const sids = new Set(), KEY = /^(i|q|C|l)\.[\w$]+$/;
+  SH.forEach(h => {
+    C(!sids.has(h.id), 'sheet: duplicate id ' + h.id); sids.add(h.id);
+    C(h.kind === 'group' || h.kind === 'rule', h.id + ': kind'); C(typeof h.group === 'string' && h.group, h.id + ': group');
+    C(S.phases.indexOf(h.phase) >= 0, h.id + ': phase ' + h.phase); C(typeof h.order === 'number' && isFinite(h.order), h.id + ': order');
+    C(Array.isArray(h.reads) && h.reads.every(x => KEY.test(x)), h.id + ': reads[]');
+    C(Array.isArray(h.writes) && h.writes.every(x => /^(C|l)\./.test(x) && Object.prototype.hasOwnProperty.call(x[0] === 'C' ? S.schema.C : S.schema.l, x.slice(2))), h.id + ': writes[] must be C.* or l.* keys of the state schema');
+    C(typeof h.run === 'function' && h.run.length === 1, h.id + ': run(ctx) needs one parameter');
+    if (h.kind === 'rule') C(typeof h.about === 'string' && h.about.length > 8, h.id + ': a class rule needs about');
+    C(['build', 'part', 'each'].indexOf(h.scope) >= 0, h.id + ': scope');
+  });
+  S.phases.forEach(p => C(SH.some(h => h.phase === p), 'sheet phase ' + p + ' has no handler'));
+  // L + I + purity: run every handler on real builds, then again on a deep frozen copy of its state, behind the slice Proxies
+  const dclone = (o, m) => { m = m || new Map(); if (!o || typeof o !== 'object') return o; if (m.has(o)) return m.get(o); const r = Array.isArray(o) ? [] : {}; m.set(o, r); Object.keys(o).forEach(k => { r[k] = dclone(o[k], m); }); return r; };
+  const fzI = new WeakMap(), seenH = new Set(), actH = new Set();
+  const frozenOf = st => { if (!fzI.has(st.i)) fzI.set(st.i, deep(dclone(st.i))); return {i: fzI.get(st.i), q: st.q, C: deep(dclone(st.C)), l: deep(dclone(st.l)), parts: st.parts}; };
+  const verifyRun = (h, st, part, patch) => {
+    const msgs = []; S.patchProblems(h, patch).forEach(m => msgs.push(h.id + ': ' + m));
+    let p2; try { p2 = h.run(S.makeCtx(frozenOf(st), h, part === undefined ? undefined : deep(dclone(part)))); } catch (x) { msgs.push(h.id + ' threw on a frozen, sliced re-run: ' + x); return msgs; }
+    if (JSON.stringify(p2 === undefined ? null : p2) !== JSON.stringify(patch === undefined ? null : patch)) msgs.push(h.id + ': same input gave different patches');
+    return msgs; };
+  let sheetCalls = 0; const sheetFails = new Set();
+  window.__sheetStrict = true;
+  window.__sheetTrace = function (h, st, part, patch) {
+    sheetCalls++; seenH.add(h.id); if (patch) actH.add(h.id);
+    verifyRun(h, st, part, patch).forEach(m => sheetFails.add(m));
+  };
+  try { BL.forEach(b => { try { window.__bldSheetFor(b[0], b[1]); } catch (x) { sheetFails.add('build threw: ' + String(x).slice(0, 200)); } }); }
+  finally { window.__sheetTrace = null; window.__sheetStrict = false; }
+  Array.from(sheetFails).slice(0, 30).forEach(m => F(m));
+  C(sheetCalls > 5000, 'sheet purity corpus too small: ' + sheetCalls); out.info.sheetCalls = sheetCalls; out.info.sheetSeen = seenH.size; out.info.sheetActive = actH.size;
+  C(seenH.size >= SH.length * 0.95, 'handlers never reached by the builds: ' + SH.filter(h => !seenH.has(h.id)).map(h => h.id).join(', '));
+  // negative controls: the checks must catch a violating handler
+  window.__sheetStrict = true;
+  try {
+    const mk = (reads, writes, run) => { const h = {id: 'neg', _r: reads.concat(writes).map(x => x.split('.')), _w: {}, run: run}; writes.forEach(w => { h._w[w] = 1; }); return h; };
+    const newSt = () => ({i: {B: {x: 1}, pb: 2}, q: {}, C: {name: 'n', level: 1}, l: {}, parts: []});
+    let k = 0;
+    const cases = [
+      ['reads outside its slice', mk(['i.B'], [], c => { c.i.pb; return null; })],
+      ['changes its input', mk(['i.B'], [], c => { c.i.B.x = 2; return null; })],
+      ['returns a different patch each time', mk([], ['C.name'], c => { c.C.name = 'n' + (++k); return c.patch(); })],
+      ['writes a key it did not declare', mk([], ['C.name'], c => ({C: {level: 5}}))],
+      ['writes a value of the wrong type', mk([], ['C.level'], c => { c.C.level = 'x'; return c.patch(); })],
+      ['writes a key that is not in the schema', mk([], ['C.name'], c => ({C: {zzNope: 1}}))]];
+    cases.forEach(cs => { const h = cs[1], st0 = newSt(); let p; try { p = h.run(S.makeCtx(st0, h)); } catch (x) { p = null; } C(verifyRun(h, st0, undefined, p).length > 0, 'negative control not caught: a handler that ' + cs[0]); });
+    const okH = mk(['i.B'], ['C.name'], c => { c.C.name = 'a' + c.i.B.x; return c.patch(); });
+    const st1 = newSt(), okM = verifyRun(okH, st1, undefined, okH.run(S.makeCtx(st1, okH))); C(okM.length === 0, 'a correct handler was rejected: ' + okM.join('; '));
+  } finally { window.__sheetStrict = false; }
+  // L: ONE entry schema for every registry
+  let nent = 0; const entFails = new Set();
+  const chk = (e, where) => { nent++; ES.problems(e).forEach(m => entFails.add(where + ' ' + (e && e.n || '?') + ': ' + m)); };
+  ents.forEach(e => chk(e, 'GX')); gx.forEach(e => chk(e, 'probe'));
+  (typeof DMGI !== 'undefined' ? DMGI : []).forEach(x => { if (x[5] && x[5].fx) chk(x[5].fx, 'item ' + x[0]); });
+  try { const D = window.__bldData(); Object.keys(D.classes).forEach(c => (D.classes[c].fx || []).forEach(e => chk(e, 'class ' + c))); Object.keys(D.species).forEach(c => (D.species[c].gx || []).forEach(e => chk(e, 'species ' + c))); Object.keys(D.bgs).forEach(c => (D.bgs[c].gx || []).forEach(e => chk(e, 'background ' + c))); } catch (x) { F('entry corpus: ' + x); }
+  try { BL.forEach(b => { window.__bldTestSet(b[0]); R.gfx().forEach(e => chk(e, 'built')); }); } finally { window.__bldTestSet(null); }
+  Array.from(entFails).slice(0, 20).forEach(m => F(m));
+  C(nent > 3000, 'entry corpus too small: ' + nent); out.info.entriesChecked = nent;
+  C(ES.problems({abUp: 'x'}).length > 0 && ES.problems({zzUnknown: 1}).length > 0 && ES.problems([]).length > 0, 'negative control: the entry schema accepts a bad entry');
+  C(ES.problems({abUp: [['STR', 1]], lbl: 'x', kind: 'feat'}).length === 0, 'a valid entry was rejected');
+  // O: a new field group and a new class rule are one registration each, no edit of toSheet()
+  try {
+    S.registerGroup({id: 'zz-sheet-group', group: 'test', phase: 'post', order: 900, reads: ['i.B'], writes: ['C.dcSrc'], run: ctx => { ctx.C.dcSrc = 'zz:' + ctx.i.B.cls; return ctx.patch(); }});
+    S.registerRule({id: 'zz-sheet-rule', group: 'test', about: 'test rule: appends a mark', phase: 'post', order: 901, reads: ['C.dcSrc'], writes: ['C.dcAb'], run: ctx => { ctx.C.dcAb = ctx.C.dcSrc + '!'; return ctx.patch(); }});
+    const sh = window.__bldSheetFor(BL[0][0], BL[0][1]);
+    C(sh.dcSrc === 'zz:' + BL[0][0].cls && sh.dcAb === 'zz:' + BL[0][0].cls + '!', 'a group and a rule registered at run time were not applied by toSheet(): ' + JSON.stringify([sh.dcSrc, sh.dcAb]));
+  } catch (x) { F('open for extension (sheet): ' + x); }
+  let dupe = false; try { S.registerGroup({id: 'zz-sheet-group', group: 'test', phase: 'post', order: 1, reads: [], writes: [], run: () => null}); } catch (x) { dupe = true; }
+  C(dupe, 'a duplicate sheet handler id was accepted');
+  let badRule = false; try { S.registerRule({id: 'zz-no-about', group: 'test', phase: 'post', order: 1, reads: [], writes: [], run: () => null}); } catch (x) { badRule = true; }
+  C(badRule, 'a class rule without about was accepted');
   return out; }"""
+import glob
+_files = sorted(glob.glob(os.path.join(HERE, 'golden', 'builds', '*.json')))
+builds = []
+for _f in _files[::max(1, len(_files) // 30)][:30]:
+    _g = json.load(open(_f)); _e = _g if isinstance(_g, dict) else _g[0]
+    builds.append([_e['build'], _e.get('fxT')])
 with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1250, 'height': 850}); pg.set_default_timeout(300000)
     errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     pg.goto('file://' + os.path.join(ROOT, 'index.html')); pg.wait_for_timeout(1500)
     pg.evaluate("window.__bldNeed && window.__bldNeed()")
     pg.wait_for_function("()=>!!window.__fxRegistry&&!!window.__bldTestSet")
-    r = pg.evaluate(JS); b.close()
+    r = pg.evaluate(JS, builds); b.close()
 n += r['n']
 for m in r['fails'][:40]: fails.append(m); print('FAIL', m)
 if len(r['fails']) > 40: print('... %d more' % (len(r['fails']) - 40))
@@ -143,5 +248,5 @@ for name, body in blocks:
     for f in fields:
         ok(not re.search(r'\.%s\b|["\']%s["\']' % (re.escape(f), re.escape(f)), t), 'orchestrator %s names the field %s' % (name, f))
 ok(not errs, 'page errors: %s' % errs[:3])
-print('solid_contract: %s (%d checks, handlers %s, %d runs, %d patches, %d entries)' % ('FAIL' if fails else 'OK', n, {k: v for k, v in r['info'].items() if k in ('entry', 'ability', 'sheet')}, r['info']['runs'], r['info']['patches'], r['info']['entries']))
+print('solid_contract: %s (%d checks, fx handlers %s, %d runs, %d patches, %d entries; sheet: %d groups, %d class rules, %d handler calls, %d handlers reached, %d entries checked against the schema)' % ('FAIL' if fails else 'OK', n, {k: v for k, v in r['info'].items() if k in ('entry', 'ability', 'sheet')}, r['info']['runs'], r['info']['patches'], r['info']['entries'], r['info']['sheetGroups'], r['info']['sheetRules'], r['info']['sheetCalls'], r['info']['sheetSeen'], r['info']['entriesChecked']))
 sys.exit(1 if fails else 0)
