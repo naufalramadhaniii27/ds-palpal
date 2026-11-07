@@ -4,7 +4,7 @@ import {REDUCE,uiGet} from "./07-ui-theme-contrast-spring.js";
 import {sheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13-ui-detail-cards.js";
 import {rGet} from "./14-ui-editor.js";
-import {learnBand,learnGo,rPh,uiSet} from "./15-logic-roster-backup-files-snapshots.js";
+import {learnBand,learnGo,rPh} from "./15-logic-roster-backup-files-snapshots.js";import {uiSet} from "./15c-logic-file-state-compress.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 Object.defineProperty(__R,"tourBanner",{get:function(){return tourBanner;},set:function(v){tourBanner=v;},configurable:true});
 /* ================= v24: TOUR (RU76) ================= */

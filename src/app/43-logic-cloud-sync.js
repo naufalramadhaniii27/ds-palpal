@@ -1,7 +1,7 @@
 import {CKEY,FROZEN,KEY,lsGet} from "./04-logic-storage.js";
 import {esc,toast} from "./05-logic-helpers.js";
 import {BKEY,rEnsure,rGet,rSave} from "./14-ui-editor.js";
-import {fixCid,hashS,homeCards,newId,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
+import {fixCid,hashS,newId} from "./15c-logic-file-state-compress.js";import {homeCards,rLoad,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* T8 stage 3: cloud backup and sync of characters (Cloudflare Pages Functions /api + D1).
    Off unless /api answers (local files, tests and other hosts keep working as before). Data stays on the device first, the server holds a copy.

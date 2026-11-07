@@ -8,7 +8,7 @@ import {renderConds} from "./10-ui-conditions.js";
 import {sheetMode} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {TPL,__set_edTab,edTab,getPath,rEnsure,rGet,rerenderEditor,scheduleRender,setPath} from "./14-ui-editor.js";
-import {SN_BAD,rSnap,snGet,snRestore,snTake} from "./15-logic-roster-backup-files-snapshots.js";
+import {SN_BAD,snGet,snRestore,snTake} from "./15d-logic-snapshots-character-files.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {MYID} from "./17-logic-tab-sync-and-test-hooks.js";
 import {__R} from "./00-reg.js";import {env} from "./00-env.js";
 /* v30 C1: phone header. My Characters, Edit, Settings, and PDF sit in the More menu (computer: the same buttons in the header row) */

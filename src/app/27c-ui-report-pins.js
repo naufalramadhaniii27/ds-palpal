@@ -7,7 +7,7 @@ import {eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,richP} from "./06-logic-derivation.js";
 import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {BKEY,rEnsure} from "./14-ui-editor.js";
-import {dlFile,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
+import {dlFile} from "./15c-logic-file-state-compress.js";import {rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {coinsNow} from "./23c-ui-coins.js";import {ordL,scOf} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
 import {__R} from "./00-reg.js";
