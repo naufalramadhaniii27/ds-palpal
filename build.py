@@ -128,7 +128,7 @@ def split(index_path, outdir):
 def bundle(srcdir, entry):
     """Module blocks: one entry file, imports are followed by esbuild. Output is a single strict IIFE, names kept."""
     here = os.path.dirname(os.path.abspath(__file__))
-    es = os.path.join(here, "tools", "build", "node_modules", ".bin", "esbuild")
+    es = os.environ.get("ESBUILD_BINARY_PATH") or os.path.join(here, "tools", "build", "node_modules", ".bin", "esbuild")
     if not os.path.exists(es):
         raise SystemExit("esbuild missing: run  npm ci --prefix tools/build")
     r = subprocess.run([es, os.path.join(srcdir, entry), "--bundle", "--format=iife", "--target=esnext", "--charset=utf8",
@@ -188,7 +188,7 @@ CSP_META_RE = re.compile(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n?')
 SCRIPT_RE = re.compile(r'<script(?:\s[^>]*)?>(.*?)</script>', re.S)
 
 
-ESBUILD = os.path.join(HERE if "HERE" in globals() else os.path.dirname(os.path.abspath(__file__)), "tools", "build", "node_modules", ".bin", "esbuild")
+ESBUILD = os.environ.get("ESBUILD_BINARY_PATH") or os.path.join(HERE if "HERE" in globals() else os.path.dirname(os.path.abspath(__file__)), "tools", "build", "node_modules", ".bin", "esbuild")
 BLOCK_RE = re.compile(r'(<(script|style)(?:\s[^>]*)?>)(.*?)</(?:script|style)>', re.S)
 
 
@@ -239,10 +239,10 @@ VENDOR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vendor", "pdf
 
 
 def vendor_sums():
-    """sha256 of every .js file in vendor/pdf, as {name: hex}"""
+    """sha256 of PDF runtime libraries, template, layout and font assets."""
     out = {}
     for fn in sorted(os.listdir(VENDOR)):
-        if fn.endswith(".js"):
+        if fn.endswith((".js", ".pdf", ".json", ".ttf")):
             with open(os.path.join(VENDOR, fn), "rb") as f:
                 out[fn] = hashlib.sha256(f.read()).hexdigest()
     return out
@@ -296,7 +296,10 @@ def lint(srcdir):
                     bad += 1
                     print("node --check FAILED:", fn, why(r.stderr))
             tmp = os.path.join(d, "block-%03d.js" % i)
-            write(tmp, "".join(read(os.path.join(srcdir, fn)) for fn in e["files"]))
+            # Module files have local scopes; concatenating their raw imports/exports
+            # falsely reports duplicate bindings. Check the same bundle we ship.
+            block = ("".join(read(os.path.join(srcdir, fn)) for fn in e.get("pre", [])) + bundle(srcdir, e["entry"])) if e.get("entry") else "".join(read(os.path.join(srcdir, fn)) for fn in e["files"])
+            write(tmp, block)
             n_blocks += 1
             r = subprocess.run([node, "--check", tmp], capture_output=True, text=True)
             if r.returncode:
