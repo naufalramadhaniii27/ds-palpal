@@ -37,7 +37,7 @@ for i, page in enumerate(reader.pages):
 assert len(layout) == len(fields), 'Template contains non-widget fields'
 out = ROOT / 'vendor/pdf'
 shutil.copyfile(source, out / '5e-character-sheet-fillable.pdf')
-(out / '5e-character-sheet-fields.json').write_text(json.dumps(layout, indent=2) + '\n')
+(out / '5e-character-sheet-fields.json').write_bytes((json.dumps(layout, indent=2) + '\n').encode('utf-8'))
 css = (ROOT / 'src/css/00-fonts.css').read_text(encoding='utf-8')
 # Reuse the app's existing Archivo Narrow font, avoiding platform fonts or CDN requests.
 font = re.search(r"font-family:'Archivo Narrow'.*?base64,([^)]*)", css, re.S).group(1).rstrip("'\"")
