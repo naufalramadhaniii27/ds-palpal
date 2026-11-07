@@ -5,6 +5,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.js";
 import {luMax} from "./10-logic-v17-additions.js";
 import {__R} from "./00-reg.js";
+import {gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 Object.defineProperty(__R,"casterParts",{get:function(){return casterParts;},set:function(v){casterParts=v;},configurable:true});
 Object.defineProperty(__R,"clsLv",{get:function(){return clsLv;},set:function(v){clsLv=v;},configurable:true});
 Object.defineProperty(__R,"clsParts",{get:function(){return clsParts;},set:function(v){clsParts=v;},configurable:true});
@@ -22,7 +23,7 @@ export function abil(){
  const bg=bgX();  const rb=raceBonus();Object.keys(rb).forEach((k) =>{if(src[k])src[k].push({s:B.species+" (race)",v:rb[k]})});if(bg&&!R14()){if(B.bgMode==="111")bg.ab.forEach((k) =>{src[k].push({s:B.bg+" background ("+SRC+")",v:1})});
   else{if(B.bg2&&bg.ab.indexOf(B.bg2)>=0)src[B.bg2].push({s:B.bg+" background ("+SRC+")",v:2});if(B.bg1&&B.bg1!==B.bg2&&bg.ab.indexOf(B.bg1)>=0)src[B.bg1].push({s:B.bg+" background ("+SRC+")",v:1})}/* v22 P1: only the background's abilities (PHB 2024) */}
  /* fx batch E: abCut {total,each} on a feat entry (Worthless). Applies to the scores built so far (base, species, background), before later feat increases. Lowers the highest score by 1 until the total is at most total, then lowers every score by each. A tie goes to the first ability in STR to CHA order */
- {const G=(typeof window!=="undefined"&&window.GX)||{},cut=allFeats().map((f) =>{return ((G.feat&&G.feat[f.n])||[]).filter((e) =>{return e&&e.abCut})[0]}).filter(Boolean)[0];
+ {const G=gx(),cut=allFeats().map((f) =>{return ((G.feat&&G.feat[f.n])||[]).filter((e) =>{return e&&e.abCut})[0]}).filter(Boolean)[0];
   if(cut){const t={},c=cut.abCut;let tot=0;ABK.forEach((k) =>{t[k]=sc[k]+src[k].reduce((n,b) =>{return n+b.v},0);tot+=t[k]});
    let g=0;while(tot>c.total&&g++<200){let m=ABK[0];ABK.forEach((k) =>{if(t[k]>t[m])m=k});t[m]--;tot--;src[m].push({s:"Worthless (feat): total lowered to "+c.total,v:-1})}
    ABK.forEach((k) =>{if(c.each&&t[k]>1)src[k].push({s:"Worthless (feat): every score lowered by "+c.each,v:-c.each})})}}
@@ -67,7 +68,7 @@ function fxCh(key,pre,kind,okey,any){let v=B.ch[pre+key];if(v==null&&kind==="fea
 function fxWhen(e,pre,kind,okey){if(!e.when)return true;const v=fxCh(e.when.key,pre,kind,okey,e.when.any),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0}
 /* fx engine v5: gfx() settles pbAdd first. The full list (items too) sums the numeric pbAdd of its entries and, when that differs from the value pbOf() uses, builds the list again once so "pb" values inside the entries are right */
 export function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((e) =>{if(typeof e.pbAdd==="number")n+=e.pbAdd});if(n===getPbAdd())return r;setPbAdd(n);return gfx0(noItem)}
-function gfx0(noItem){const out=[],G=(typeof window!=="undefined"&&window.GX)||{},TLv=__R.TL();
+function gfx0(noItem){const out=[],G=gx(),TLv=__R.TL();
  const FXT=fxtMap();
  function put(list,kind,owner,lv,pre,lblOf,okey,ocls){(list||[]).forEach((e,i) =>{if(!e||(e.l&&lv<e.l)||!fxWhen(e,pre,kind,okey||owner))return;/* fx engine v4: abPick {k,from:[ab],up,max,set} gets its own pick (one ability from the list) unless the entry already has a pick with that k */if(e.abPick&&e.abPick.from&&!(e.pick||[]).some((q) =>{return q.k===e.abPick.k}))e=Object.assign({},e,{pick:(e.pick||[]).concat([{k:e.abPick.k,t:"multi",n:e.abPick.n||1,title:e.abPick.title||"Ability score",list:e.abPick.from.map((k) =>{return [ABFULL[k]||k,""]})}])});const en=e.n||owner;let o=Object.assign({},e,{n:en,kind:kind,owner:owner,lv:lv,pre:pre,okey:okey||owner,idx:i,lbl:lblOf(en),ocls:ocls});/* ocls: the class of a cls or sub entry, the default spellcasting class (spCls) */
   /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
@@ -85,7 +86,7 @@ export function classFx(){return gfx()}
 /* Toggle state (fx engine v3b). Saved sheet state S.fxT = {id: true|false}, read through window.__sheetState().fxT when the open sheet is this character. fxtSet(map) overrides it (tests, __bldSheetFor, __bldFxToggle) */
 const TGKEEP=["n","l","when","pick","pickLv","toggle","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
 let FXTO=null;export function fxtSet(m){FXTO=m||null}
-function fxtMap(){if(FXTO)return FXTO;try{const st=typeof window!=="undefined"&&window.__sheetState&&window.__sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
+function fxtMap(){if(FXTO)return FXTO;try{const st=sheetState();if(st&&st.fxT&&st.C&&st.C.name===B.name)return st.fxT}catch(e){}return {}}
 /* gx pick key of pick k of an entry (same rule as gxPicks) */
 export function gxKey(e,k){const m=e.pre?/^m(\d+):/.exec(e.pre):null;return "gx-"+k+"-"+e.kind+"-"+e.okey+(m?"-m"+m[1]:"")}
 /* C.fxToggles: every toggle available to the character */
@@ -98,9 +99,9 @@ Object.defineProperty(__R,"fxOk",{get:function(){return fxOk;},configurable:true
 Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(__R.MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
-export function isThird3(x){if(typeof window!=="undefined"&&window.THIRD_SUBS&&window.THIRD_SUBS[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
+export function isThird3(x){const ts=thirdSubs();if(ts&&ts[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
 export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?__R.xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
-export function thirdOf(sub){const t=(typeof window!=="undefined"&&window.THIRD_SUBS&&window.THIRD_SUBS[sub])||{};return {list:t.list||"Wizard",ab:t.ab||"INT",cant:t.cant!=null?t.cant:(/^Arcane Trickster/.test(sub)?3:2)}}
+export function thirdOf(sub){const t=(thirdSubs()&&thirdSubs()[sub])||{};return {list:t.list||"Wizard",ab:t.ab||"INT",cant:t.cant!=null?t.cant:(/^Arcane Trickster/.test(sub)?3:2)}}
 /* M9: chosen spells per caster class. B.sp = first caster class (old builds), B.spm[cls] = other classes. A B.sp spell that is not on the first
    class list but is on another caster class list belongs to that class (read only, B is not changed) */
 export var SPX=null;export function spRec(n){if(!SPX){SPX={};SPELLS.forEach((x) =>{SPX[x[0]]=x})}return SPX[n]}
@@ -129,7 +130,7 @@ export function clsLv(cls){const p=clsParts().filter((q) =>{return q.cls===cls})
    already has for the same resource (same name and tag first, then same name): old builds keep "r0", "m0r1", "sw". No stored data is migrated. */
 export function slugK(t){return String(t||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
 export function resKey(pre,n,list){let b=pre+slugK(n),k=b,i=2;while(list.some((x) =>{return x.k===k}))k=b+"-"+(i++);return k}
-export function keepResKeys(C){try{const st=window.__sheetState&&window.__sheetState(),P=st&&st.C;
+export function keepResKeys(C){try{const st=sheetState(),P=st&&st.C;
  if(!P||P.name!==C.name||!Array.isArray(P.res)||!Array.isArray(C.res))return;
  const mine=function(k){return /^[rm]-/.test(k)},fixed={},took={},inh=[],used={};
  C.res.forEach((r) =>{if(!mine(r.k))fixed[r.k]=1});
@@ -157,7 +158,7 @@ export function manualLost(P,C){const out={attacks:[],res:[]};try{if(!P||!C)retu
    before the inventory and cleared after it). Outside toSheet() a fresh toSheet() runs. Inside a __inTS guard without ATKC (__itemMeta for an
    old manual sheet): null, so the caller keeps its own numbers and toSheet() is never re-entered */
 export var ATKC=null;
-export function atkRowFor(n){let L=ATKC;if(!L){if(window.__inTS)return null;L=__R.toSheet().attacks}for(let i=0;i<L.length;i++)if(L[i].n===n)return L[i];return null}
+export function atkRowFor(n){let L=ATKC;if(!L){if(inTS())return null;L=__R.toSheet().attacks}for(let i=0;i<L.length;i++)if(L[i].n===n)return L[i];return null}
 
 export function __set_SPX(v){ return SPX=v; }
 export function __set_ATKC(v){ return ATKC=v; }

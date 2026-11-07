@@ -711,6 +711,7 @@
    "close": "</script>",
    "files": [
     "builder/00-reg.js",
+    "builder/00-env.js",
     "builder/01-logic-core-helpers.js",
     "builder/02-data-magic-item-summaries.js",
     "builder/03-logic-magic-item-effects.js",

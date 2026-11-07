@@ -8,6 +8,7 @@ import {luMax,pk} from "./10-logic-v17-additions.js";
 import {abil,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {__R} from "./00-reg.js";
+import {gx} from "./00-env.js";
 Object.defineProperty(__R,"MCL",{get:function(){return MCL;},set:function(v){MCL=v;},configurable:true});
 Object.defineProperty(__R,"TL",{get:function(){return TL;},set:function(v){TL=v;},configurable:true});
 Object.defineProperty(__R,"baseOf",{get:function(){return baseOf;},set:function(v){baseOf=v;},configurable:true});
@@ -51,7 +52,7 @@ function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],
  if(m.cls==="Ranger"&&m.lv>=2&&!R14())out.push({key:p+"langRanger",mc:i,lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:src(2),feature:"Deft Explorer"}); if(m.lv>=subLv(m.cls))out.push({key:p+"sub",mc:i,lvl:subLv(m.cls),t:"mcsub",title:subLbl(m.cls),src:src(subLv(m.cls))});
  const ps=c.pickSub&&c.pickSub[m.sub];(ps||[]).forEach((q) =>{const el=pEff(m.cls,m.sub,q);if(m.lv>=el){const o=pk(q,m.sub+" "+el,m.cls,m.sub);if(!o)return;o.lvl=el;o.key=p+o.key;o.mc=i;out.push(o)}});
  if(m.sub)subChoicesFor(m.sub).forEach((q) =>{if(m.lv>=q.l)out.push(q.kind==="opt"?{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:m.sub+" "+q.l,feature:q.feature}:{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:m.sub+" "+q.l,feature:q.feature})});/* v20 M2 */
- /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&typeof window!=="undefined"&&window.GX&&window.GX.sub)(window.GX.sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});
+ /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&gx().sub)(gx().sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});
  [4,8,12,16].concat(c.asiX||[]).forEach((l) =>{if(m.lv>=l)out.push({key:p+"feat"+l,mc:i,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+m.cls+" "+l+")"})});
  if(m.lv>=19)out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})});
  return out}
@@ -137,7 +138,7 @@ let pxBusy=false;
 export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want={};__R.gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
  /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq={};__R.gfx().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
  const px=B.px||(B.px={});Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});
- Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(window.GX&&window.GX.item&&window.GX.item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
+ Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
 Object.defineProperty(__R,"slotAddApply",{get:function(){return slotAddApply;},configurable:true});
 Object.defineProperty(__R,"syncPickItems",{get:function(){return syncPickItems;},configurable:true});

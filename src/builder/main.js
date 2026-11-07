@@ -1,4 +1,5 @@
 /* Entry of the module block: every file in the order it used to be joined. */
+import "./00-env.js";
 import "./01-logic-core-helpers.js";
 import "./02-data-magic-item-summaries.js";
 import "./03-logic-magic-item-effects.js";
