@@ -1,4 +1,4 @@
-/* Responsibility: overlay stack, long-press menu and the docked card. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {bindLive} from "./00a-reg-late-ports.js";/* Responsibility: overlay stack, long-press menu and the docked card. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __bldBack, __learnBack, __ovState, __tgBack. Shared names with other modules come from the imports below, late names through __R. */
 import {C,FROZEN} from "./04-logic-storage.js";
 import {$,eqOn,esc,num} from "./05-logic-helpers.js";
@@ -13,11 +13,11 @@ import {ICO} from "./29c-data-ddb-icons.js";
 import {ICO_FCAT,ICO_TXT} from "./30-ui-icons.js";
 import {ckOf,qOk,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";
 import {qmClose} from "./39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js";
-import {__R} from "./00-reg.js";
+
 import {env} from "./00-env.js";
 import {CTXSRC,OVERLAY} from "./06a-logic-ui-registry.js";
-Object.defineProperty(__R,"dockApply",{get:function(){return dockApply;},set:function(v){dockApply=v;},configurable:true});
-Object.defineProperty(__R,"dockOff",{get:function(){return dockOff;},set:function(v){dockOff=v;},configurable:true});
+bindLive("dockApply",{get:function(){return dockApply;}});
+bindLive("dockOff",{get:function(){return dockOff;}});
 let OVG=false, OVSKIP=0, OVQ=0, OV_UNLOAD=0;
 env.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
 /* a reload or page change is under way: going back in history now would cancel it */
@@ -37,7 +37,7 @@ function ovTop(){ const L=OVERLAY.list(); for(let i=0;i<L.length;i++){ const f=L
 function ovSync(){ OVQ=0; if(FROZEN||OV_UNLOAD) return; const on=!!ovTop();
   if(on&&!OVG){ try{ history.pushState({csOv:1},""); OVG=true; }catch(e){} }
   else if(!on&&OVG){ OVG=false; if(history.state&&history.state.csOv){ OVSKIP++; try{ history.back(); }catch(e){ OVSKIP--; } } } }
-Object.defineProperty(__R,"ovQueue",{get:function(){return ovQueue;},configurable:true});
+bindLive("ovQueue",{get:function(){return ovQueue;}});
 export function ovQueue(){ if(!OVQ) OVQ=setTimeout(ovSync,0); }
 env.addEventListener("popstate",() =>{ if(OVSKIP>0){ OVSKIP--; ovQueue(); return; } if(!OVG) return; OVG=false; const f=ovTop(); if(f){ try{ f(); }catch(e){} } ovQueue(); });
 try{ if(history.state&&history.state.csOv) history.replaceState(null,""); }catch(e){}

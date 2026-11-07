@@ -1,20 +1,20 @@
-import {ABK,ABN,SRC,clone,mod,pbOf} from "./01-logic-core-helpers.js";
+import {agOn,bindLive,casterParts,clsLv,clsParts,invList,invLvl,invPicks,lateGet,mcChoices,pactList,pk,preFail,spHasFeat,spLists,spellAb,subChoicesFor,wlMc} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,clone,mod,pbOf} from "./01-logic-core-helpers.js";
 import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {DMAP,activeFx,bgX,dmapAlias,spX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {SP14} from "./07-data-2014-spells.js";
 import {cls14Inject,fs14List,pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
-import {__R} from "./00-reg.js";
+
 import {MCL,TL,enabledPacks,fxCh,fxList,fxListBase,fxVal,miFeats,slotsAll,spOptFx} from "./01b-logic-late-ports.js";
 import {gx,genv} from "./00-env.js";
-Object.defineProperty(__R,"subAt",{get:function(){return subAt;},set:function(v){subAt=v;},configurable:true});
+bindLive("subAt",{get:function(){return subAt;}});
 /* 2014: the ability scores come from the race. sp.asi is fixed ({STR:2}), sp.asiPick {n,v,ex} lets the player choose n scores (choice key rasi) */
 export function raceBonus(){const o={};if(!R14())return o;const sp=spX();if(!sp)return o;function ad(k,v){if(k&&ABK.indexOf(k)>=0)o[k]=(o[k]||0)+v}if(sp.asi)Object.keys(sp.asi).forEach((k) =>{ad(k,sp.asi[k])});const ch=B.ch||{};if(sp.asiPick)(ch.rasi||[]).slice(0,sp.asiPick.n).forEach((k) =>{if((sp.asiPick.ex||[]).indexOf(k)<0)ad(k,sp.asiPick.v||1)});if(sp.asiFlex){if(ch.rasim==="+1, +1, +1")(ch.rasi||[]).slice(0,3).forEach((k) =>{ad(k,1)});else{const t2=(ch.rasi||[])[0];ad(t2,2);(ch.rasi1||[]).slice(0,1).forEach((k) =>{if(k!==t2)ad(k,1)})}}return o}
 export function asiLevels(){const c=CL(),a=R14()?[4,8,12,16,19].concat(c.asiX||[]):[4,8,12,16].concat(c.asiX||[]);/* 2014: level 19 is a normal improvement, no Epic Boon */return a.filter((x,i) =>{return a.indexOf(x)===i}).sort((x,y) =>{return x-y})}
 export function featChosen(exceptKey){const out=[];Object.keys(B.ch).forEach((k) =>{if(k===exceptKey)return;const v=B.ch[k];if(v&&typeof v==="object"&&v.feat)out.push(v.feat);if(k==="spfeat"&&v)out.push(v)});const bg=bgX();if(bg&&!R14())out.push(bgFeatN(bg));return out}
 /* allFeats(raw): every feat the build holds. Without raw, a second copy of a feat that cannot be repeated (FEATS.rep missing: two Fighting Style picks of Defense from two classes) is dropped, so the sheet counts it once; the first pick, in level order, stays. raw=true keeps all (featViol, scoreAt, saveTaken report the duplicate) */
-export function allFeats(raw){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&__R.spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
+export function allFeats(raw){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
 choices(true).forEach((c) =>{const v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat)f.push({n:v.feat,s:c.src,asi:v,key:c.key});if(c.t==="fs"&&v)f.push({n:v,s:c.src});if(c.t==="ofeat"&&c.inv&&v)f.push({n:v,s:"Origin feat (Lessons of the First Ones)",key:c.key})});
  f.slice().forEach((x) =>{const F=FEATS[x.n];if(F&&F.fi){const v=B.ch[F.fi+"-"+(x.key||x.s)];if(Array.isArray(v)&&v[0]&&FEATS[v[0]])f.push({n:v[0],s:x.n})}});/* v69: Fighting Initiate (2014) */
  if(raw)return f;const seen={};return f.filter((x) =>{const F=FEATS[x.n];if(!F||F.rep)return true;if(seen[x.n])return false;seen[x.n]=1;return true})}
@@ -30,9 +30,9 @@ export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spel
 export function chOf(cls,key){if(B.cls===cls)return B.ch[key];let i=-1;MCL().forEach((m,j) =>{if(m.cls===cls)i=j});return i<0?undefined:B.ch["m"+i+":"+key]}
 export function eaType(){return subAt("Sorcerer","Draconic Sorcery")>=6?(chOf("Sorcerer","p6opt")||""):""}
 /* v20 RD24: spell choices of a pack's class feature. List: level lv (or 1 to the class's highest slot level), class list, components */
-export function hbSpellPicks(){const out=[];enabledPacks().forEach((p) =>{Object.keys(p.spellPick||{}).forEach((c) =>{const q=p.spellPick[c],lv=__R.clsLv(c);if(lv<q.l)return;
+export function hbSpellPicks(){const out=[];enabledPacks().forEach((p) =>{Object.keys(p.spellPick||{}).forEach((c) =>{const q=p.spellPick[c],lv=clsLv(c);if(lv<q.l)return;
   const sa=q.slots?slotsAll():null,mx=q.slots?Math.max(sa.slots?sa.slots.length:0,sa.pact?sa.pact.lvl:0):q.lv;
-  const prep=q.prep?((__R.casterParts().length>1&&typeof __R.spLists==="function")?(__R.spLists()[c]||[]):(B.sp||[])):null;/* v20 I1 */
+  const prep=q.prep?((casterParts().length>1&&typeof lateGet("spLists")==="function")?(spLists()[c]||[]):(B.sp||[])):null;/* v20 I1 */
   const comp=q.comp.split(","),list=SPELLS.filter((x) =>{return x[1]>=1&&(!prep||prep.indexOf(x[0])>=0)&&(q.slots?x[1]<=mx:x[1]===q.lv)&&(!q.list||x[3].indexOf(q.list)>=0)&&comp.every((k) =>{return new RegExp("(^|, )"+k+"(,|$| )").test(x[6])})}).map((x) =>{return [x[0],x[11]]});
   out.push({key:q.key,mc:c===B.cls?undefined:MCL().map((m) =>{return m.cls}).indexOf(c),lvl:q.l,t:"multi",n:1,list:list,title:q.title+(list.length?"":q.prep?" (prepare a fitting spell first)":" (no spell fits yet)"),src:p.name+", "+c+" "+q.l,feature:q.feature})})});return out}/* v20 N2 */
 /* v20 N1: a saved pick still fits the current list */
@@ -87,7 +87,7 @@ export var XFX={
   if(F.resBy){const rv=B.ch[F.resBy.k+"-"+(f.key||f.s)];if(Array.isArray(rv)&&rv[0]&&F.resBy.map[rv[0]])add("Resistance",F.resBy.map[rv[0]],f.n)}})}};/* v69 */
 /* v63: WotC subclasses. window.WXS holds each subclass's extra rules (fx, cantrip picks, optfx, skb, sfree) */
 export function sbWx(sub,cls){return (genv.WXS||[]).filter((s) =>{return s.name===sub&&(!cls||s.cls===cls)})[0]}
-function sbEach(cb){__R.clsParts().forEach((q,i) =>{if(!q.sub)return;const x=sbWx(q.sub,q.cls);if(x)cb(x,q,q.mc?"m"+(i-1)+":":"")})}
+function sbEach(cb){clsParts().forEach((q,i) =>{if(!q.sub)return;const x=sbWx(q.sub,q.cls);if(x)cb(x,q,q.mc?"m"+(i-1)+":":"")})}
 function sbFx(cb){sbEach((x,q) =>{x.fx.forEach((r) =>{if(q.lv>=r[0])cb(r[2],r[1],q.sub)})})}
 export function sbAuto(add){sbEach((x,q,pre) =>{
  (x.cantrips||[]).forEach((c) =>{if(q.lv>=c[2])(B.ch[pre+c[0]]||[]).forEach((n) =>{add([[1,n]],c[1],q.lv,CLASSES[q.cls].caster?q.cls:"@sub:"+(x.spab||""))})});
@@ -108,22 +108,22 @@ function sbFree(out){sbEach((x,q) =>{(x.sfree||[]).forEach((r) =>{if(q.lv>=r[0])
 /* v92: the 2014 version of every spell the app has (rows, full text, damage and area numbers, book page) laid over the base rows. SP14 holds the data. 2024-only spells leave the list. sp14Set(false) puts everything back */
 let SP14S=null;
 function sp14Cmp(a,b){return a[1]-b[1]||(a[0]<b[0]?-1:a[0]>b[0]?1:0)}
-export function sp14Set(on,tce){if(typeof SP14==="undefined"||typeof __R.SMAP==="undefined")return;
+export function sp14Set(on,tce){if(typeof SP14==="undefined"||typeof lateGet("SMAP")==="undefined")return;
  if(SP14S){SP14S.rows.forEach((o) =>{for(let i=0;i<12;i++)o.x[i]=o.o[i]});
   Object.keys(SP14S.full).forEach((n) =>{if(SP14S.full[n]===undefined)delete SPELL_FULL[n];else SPELL_FULL[n]=SP14S.full[n]});
   Object.keys(SP14S.fx).forEach((n) =>{if(SP14S.fx[n]===undefined)delete SPELL_FX[n];else SPELL_FX[n]=SP14S.fx[n]});
   if(typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell)Object.keys(SP14S.pg).forEach((n) =>{if(SP14S.pg[n]===undefined)delete BOOKPG.phb.spell[n];else BOOKPG.phb.spell[n]=SP14S.pg[n]});
-  SP14S.hid.forEach((x) =>{if(SPELLS.indexOf(x)<0){SPELLS.push(x);__R.SMAP[x[0]]=x}});SP14S=null;SPELLS.sort(sp14Cmp)}
+  SP14S.hid.forEach((x) =>{if(SPELLS.indexOf(x)<0){SPELLS.push(x);lateGet("SMAP")[x[0]]=x}});SP14S=null;SPELLS.sort(sp14Cmp)}
  if(!on)return;
  const S={rows:[],full:{},fx:{},pg:{},hid:[]},keepL=function(l){return /^(Mark of |Aberrant Dragonmark)/.test(l)};SP14S=S;
  const hasPg=typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell;
- Object.keys(SP14.ov).forEach((n) =>{const x=__R.SMAP[n];if(!x)return;const r=SP14.ov[n];S.rows.push({x:x,o:x.slice(0,12)});
+ Object.keys(SP14.ov).forEach((n) =>{const x=lateGet("SMAP")[n];if(!x)return;const r=SP14.ov[n];S.rows.push({x:x,o:x.slice(0,12)});
   for(let i=1;i<12;i++)x[i]=r[i];
   const cl=r[3].slice();(SP14.cx[n]||[]).forEach((q) =>{if(tce&&B.src&&B.src[q[1]]&&cl.indexOf(q[0])<0)cl.push(q[0])});cl.sort();(S.rows[S.rows.length-1].o[3]||[]).forEach((l) =>{if(keepL(l)&&cl.indexOf(l)<0)cl.push(l)});x[3]=cl;
   S.full[n]=SPELL_FULL[n];SPELL_FULL[n]=SP14.full[n];
   S.fx[n]=SPELL_FX[n];const f=SP14.fx[n];if(f&&Object.keys(f).length)SPELL_FX[n]=f;else delete SPELL_FX[n];
   if(hasPg){S.pg[n]=BOOKPG.phb.spell[n];if(SP14.pg[n])BOOKPG.phb.spell[n]=SP14.pg[n];else delete BOOKPG.phb.spell[n]}});
- SP14.hide.forEach((n) =>{const x=__R.SMAP[n],i=x?SPELLS.indexOf(x):-1;if(i>=0){SPELLS.splice(i,1);delete __R.SMAP[n];S.hid.push(x)}});
+ SP14.hide.forEach((n) =>{const x=lateGet("SMAP")[n],i=x?SPELLS.indexOf(x):-1;if(i>=0){SPELLS.splice(i,1);delete lateGet("SMAP")[n];S.hid.push(x)}});
  SPELLS.sort(sp14Cmp)}
 /* v93: 2014 equipment. eq14Set lays the 2014 weapons (no Weapon Mastery, Lance, Trident, Warhammer, War Pick, Net), equipment packs and armor words over the base tables. dm14Set swaps the 2024 Dungeon Master's Guide items for the 2014 ones (DM14.ov), and leaves out the 2024-only ones (DM14.hide) unless the character owns them. Both put everything back when off */
 function eqGear(n){return GEAR.filter((g) =>{return g[0]===n})[0]||null}
@@ -164,7 +164,7 @@ export function dm14Set(on,force){if(typeof DM14==="undefined"||typeof DMGI==="u
  if(typeof MAGIC_SUM!=="undefined"){DM14M={};Object.keys(DM14.ov).forEach((n) =>{if(MAGIC_SUM[n]!==undefined){DM14M[n]=MAGIC_SUM[n];delete MAGIC_SUM[n]}})}
  DM14ON=true}
 genv.__sp14Set=function(on){sp14Set(on,false);eq14Set(on);dm14Set(on);genv.__gl14&&genv.__gl14(on)};
-function wxRows(s,on){s.rows.forEach((x) =>{const w=on||!!(x[14]&&x[14].some((id) =>{return B.src&&B.src[id]}));const i=SPELLS.indexOf(x);if(w&&i<0){let j=0;while(j<SPELLS.length&&!(SPELLS[j][1]>x[1]||(SPELLS[j][1]===x[1]&&SPELLS[j][0]>x[0])))j++;SPELLS.splice(j,0,x);__R.SMAP[x[0]]=x}else if(!w&&i>=0){SPELLS.splice(i,1);delete __R.SMAP[x[0]]}})}
+function wxRows(s,on){s.rows.forEach((x) =>{const w=on||!!(x[14]&&x[14].some((id) =>{return B.src&&B.src[id]}));const i=SPELLS.indexOf(x);if(w&&i<0){let j=0;while(j<SPELLS.length&&!(SPELLS[j][1]>x[1]||(SPELLS[j][1]===x[1]&&SPELLS[j][0]>x[0])))j++;SPELLS.splice(j,0,x);lateGet("SMAP")[x[0]]=x}else if(!w&&i>=0){SPELLS.splice(i,1);delete lateGet("SMAP")[x[0]]}})}
 /* v65: magic items of the WotC sources. An item is in the list while its source is on. A character that owns one keeps the source on */
 function wxItems(){const R=genv.WXI;if(!R||typeof DMGI==='undefined')return;const own=(B.inv||[]).map((x) =>{return x.n});
  Object.keys(R).forEach((id) =>{const rows=R[id];if(!B.src[id]&&rows.some((r) =>{return own.some((n) =>{return n===r[0]||n.indexOf(r[0]+" (")===0})}))B.src[id]=true;
@@ -246,7 +246,7 @@ function featPicks(){const out=[];allFeats().forEach((f) =>{const F=FEATS[f.n];i
 export function toolChoices(CH){const o=[];(CH||choices()).forEach((c) =>{const v=B.ch[c.key];if(!Array.isArray(v)||/^(clsTool|bgTool|m\d+:tool)$/.test(c.key))return;
   if(c.t==="tool")v.forEach((n) =>{o.push([n,c.feature||c.title])});else if(c.t==="skills"&&c.tools)v.forEach((n) =>{if(!SKILLS[n])o.push([n,c.feature||c.title])})});return o}
 /* v32 RL49: fixed tools of subclasses (SUB_GRANT) and feats (FEATS.tools): [[name, source]] */
-export function grantTools(feats){const o=[];__R.clsParts().forEach((q) =>{const g=typeof SUB_GRANT!=="undefined"&&SUB_GRANT[q.sub];if(g&&g.tools)g.tools.forEach((s) =>{if(q.lv>=s[0])o.push([s[1],g.f])})});
+export function grantTools(feats){const o=[];clsParts().forEach((q) =>{const g=typeof SUB_GRANT!=="undefined"&&SUB_GRANT[q.sub];if(g&&g.tools)g.tools.forEach((s) =>{if(q.lv>=s[0])o.push([s[1],g.f])})});
  (feats||allFeats()).forEach((f) =>{const F=FEATS[f.n];if(F&&F.tools)o.push([F.tools,f.n])});return o}
 /* v32: a starting-kit item with a generic tool name shows the tool chosen for that background or class ("Gaming Set" -> "Dice Set"). "" = none */
 export function kitTool(x){if(!x||!x.kit)return "";const g={"Gaming Set":["game"],"Musical Instrument":["music"],"Artisan's Tools":["art"],"Artisan's Tools or Musical Instrument":["art","music"]}[x.n];if(!g)return "";
@@ -266,7 +266,7 @@ export function featViol(){const out=[],seen={},lv=choiceLvl();
   if(F.asi&&!F.asi2&&v.a1&&F.asi.indexOf(v.a1)<0)out.push({k:k,m:f.n+" can raise only "+F.asi.join(", ")+", not "+v.a1+". The increase is not counted"});
   if(F.saveFromAsi&&v.a1&&saveTaken(f.key).indexOf(v.a1)>=0)out.push({k:k,m:f.n+" must use an ability without saving throw proficiency, and you already have it for "+v.a1});
   if(f.key&&!/^Boon of/.test(f.n)){const sc=scoreAt(lvl,f.key);asiOf(f,F).forEach((q) =>{if(sc[q[0]]+q[1]>20)out.push({k:k,m:f.n+": "+q[0]+" is "+sc[q[0]]+" at level "+lvl+", so +"+q[1]+" would go past 20, the maximum"})})}
-  if(f.key&&typeof __R.preFail==="function"){const why=__R.preFail(f.n,lvl,f.key);if(why)out.push({k:k,m:f.n+": its prerequisite is not met at level "+lvl+" (needs "+why+")"})}});
+  if(f.key&&typeof lateGet("preFail")==="function"){const why=preFail(f.n,lvl,f.key);if(why)out.push({k:k,m:f.n+": its prerequisite is not met at level "+lvl+" (needs "+why+")"})}});
  return out}
 export function choices(noFeat){
  const c=CL(),L=B.level,out=[];
@@ -281,32 +281,32 @@ export function choices(noFeat){
  if(sp&&sp.skillPick)add({key:"spsk",lvl:1,t:"skills",n:sp.skillPick.n,from:sp.skillPick.from,title:sp.skillPick.label+" skill",src:B.species,feature:sp.skillPick.label});
  if(sp&&sp.toolPick)add({key:"sptool",lvl:1,t:"tool",n:sp.toolPick.n,cats:sp.toolPick.cats,title:sp.toolPick.label+" tool",src:B.species,feature:sp.toolPick.label});/* v58: EFotA species with a tool of your choice (Warforged) */
  if(sp&&sp.opts)add({key:"spopt",lvl:1,t:"multi",n:sp.opts.n,list:sp.opts.list.map((x) =>{return [x[0],x[1]]}),title:sp.opts.label,src:B.species});
- const SFX=spOptFx(); if(!R14()&&__R.spHasFeat())add({key:"spfeat",lvl:1,t:"ofeat",title:"Versatile: Origin feat",src:B.species,feature:"Versatile"});
+ const SFX=spOptFx(); if(!R14()&&spHasFeat())add({key:"spfeat",lvl:1,t:"ofeat",title:"Versatile: Origin feat",src:B.species,feature:"Versatile"});
  if(SFX.skills)add({key:"spsk2",lvl:1,t:"skills",n:SFX.skills,from:ALLSK,title:"Skillful skills",src:B.species});
  if(SFX.cantrip)add({key:"spcan",lvl:1,t:"multi",n:1,list:SPELLS.filter((x) =>{return !x[1]&&x[3].indexOf(SFX.cantrip)>=0}).map((x) =>{return [x[0],x[11]]}),title:SFX.cantripLabel||"Limited Spellcaster cantrip",src:B.species});
  if(sp&&sp.wpPick)add({key:"spwp",lvl:1,t:"multi",n:sp.wpPick.n,list:Object.keys(WEAPONS).filter((n) =>{return WEAPONS[n].cat===sp.wpPick.cat&&!WEAPONS[n].xw&&!WEAPONS[n].nm}).map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:sp.wpPick.label+" weapons",src:B.species,feature:sp.wpPick.label});/* v74: species with a weapon choice (Hobgoblin) */
  if(SFX.weapon)add({key:"spwep",lvl:1,t:"multi",n:1,list:wmKeys().map((n) =>{return [n,WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m]]}),title:"Masterful weapon",src:B.species});
- __R.subChoicesFor(B.sub).forEach((q) =>{if(L>=q.l)add(q.kind==="opt"?{key:"sc"+q.k,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:B.sub+" "+q.l,feature:q.feature}:{key:"sc"+q.k,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:B.sub+" "+q.l,feature:q.feature})});
+ subChoicesFor(B.sub).forEach((q) =>{if(L>=q.l)add(q.kind==="opt"?{key:"sc"+q.k,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:B.sub+" "+q.l,feature:q.feature}:{key:"sc"+q.k,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:B.sub+" "+q.l,feature:q.feature})});
  if(gx().sub&&B.sub)(gx().sub[B.sub]||[]).forEach((e) =>{if(e.fsPick&&L>=(e.l||1))add({key:"sfs"+(e.l||1),lvl:e.l||1,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:B.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});/* fx engine v2: fsPick = a Fighting Style feat choice from a subclass */
  if(c.wm&&!R14())add({key:"wm",lvl:1,t:"wm",n:c.wm[L-1],melee:B.cls==="Barbarian"?1:0,title:"Weapon Mastery",src:SRC+", "+B.cls,feature:"Weapon Mastery"});
  if(c.fs&&L>=c.fs)add({key:"fs"+c.fs,lvl:c.fs,t:"fs",cls:B.cls,xopt:1,title:"Fighting Style",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"});
- (c.pick||[]).forEach((p) =>{if(L>=p.l){const o1=__R.pk(p,B.cls+" "+p.l,B.cls);if(o1)add(o1)}}); if(L>=subLv(B.cls))add({key:"sub",lvl:subLv(B.cls),t:"sub",title:subLbl(B.cls),src:B.cls+" "+subLv(B.cls)});
- const ps=c.pickSub&&c.pickSub[B.sub];(ps||[]).forEach((p) =>{const el=pEff(B.cls,B.sub,p);if(L>=el){const o2=__R.pk(p,B.sub+" "+el,B.cls,B.sub);if(o2){o2.lvl=el;add(o2)}}});
+ (c.pick||[]).forEach((p) =>{if(L>=p.l){const o1=pk(p,B.cls+" "+p.l,B.cls);if(o1)add(o1)}}); if(L>=subLv(B.cls))add({key:"sub",lvl:subLv(B.cls),t:"sub",title:subLbl(B.cls),src:B.cls+" "+subLv(B.cls)});
+ const ps=c.pickSub&&c.pickSub[B.sub];(ps||[]).forEach((p) =>{const el=pEff(B.cls,B.sub,p);if(L>=el){const o2=pk(p,B.sub+" "+el,B.cls,B.sub);if(o2){o2.lvl=el;add(o2)}}});
  asiLevels().forEach((l) =>{if(L>=l)add({key:"feat"+l,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+B.cls+" "+l+")"})});
  if(L>=19&&!R14())add({key:"feat19",lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+B.cls+" 19)"});
  const fsv=c.fs?B.ch["fs"+c.fs]:null;
  if(fsv==="Blessed Warrior"||fsv==="Druidic Warrior"){const cl=fsv==="Blessed Warrior"?"Cleric":"Druid";add({key:"bwc",lvl:c.fs,t:"multi",n:2,list:SPELLS.filter((x) =>{return !x[1]&&x[3].indexOf(cl)>=0}).map((x) =>{return [x[0],x[11]]}),title:fsv+" cantrips",src:SRC+", "+B.cls+" "+c.fs,feature:"Fighting Style"})}
  let invs=[];Object.keys(B.ch).forEach((k) =>{if(/invocation$/.test(k))invs=invs.concat(B.ch[k]||[])});
- const wmc=__R.wlMc(),wx=function(o,n){o.lvl=__R.invLvl(n);o.feature="Eldritch Invocations";o.inv=n;o.src=SRC+", "+n+" (Warlock "+o.lvl+(wmc!=null?", multiclass":"")+")";if(wmc!=null)o.mc=wmc;return o};/* v32 RL50: card of the Warlock part */
- if(__R.clsLv("Warlock")&&invs.indexOf("Pact of the Tome")>=0){add(wx({key:"tomeC",t:"multi",n:3,list:SPELLS.filter((x) =>{return !x[1]}).map((x) =>{return [x[0],x[11]]}),title:"Book of Shadows: 3 cantrips"},"Pact of the Tome"));
+ const wmc=wlMc(),wx=function(o,n){o.lvl=invLvl(n);o.feature="Eldritch Invocations";o.inv=n;o.src=SRC+", "+n+" (Warlock "+o.lvl+(wmc!=null?", multiclass":"")+")";if(wmc!=null)o.mc=wmc;return o};/* v32 RL50: card of the Warlock part */
+ if(clsLv("Warlock")&&invs.indexOf("Pact of the Tome")>=0){add(wx({key:"tomeC",t:"multi",n:3,list:SPELLS.filter((x) =>{return !x[1]}).map((x) =>{return [x[0],x[11]]}),title:"Book of Shadows: 3 cantrips"},"Pact of the Tome"));
   if(!R14())add(wx({key:"tomeR",t:"multi",n:2,list:SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]}),title:"Book of Shadows: 2 level 1 Rituals"},"Pact of the Tome"))}
- if(R14()&&__R.clsLv("Warlock")&&invs.indexOf("Pact of the Tome")>=0&&invs.indexOf("Book of Ancient Secrets")>=0)add(wx({key:"tomeR",t:"multi",n:2,list:SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]}),title:"Book of Ancient Secrets: 2 level 1 Rituals"},"Book of Ancient Secrets"));/* v90: 2014 rituals come from the invocation */
- __R.invPicks().forEach(add);/* v32 RL49 no. 19 to 22 */
- if(invs.indexOf("Pact of the Blade")>=0)add(wx({key:"pactWep",t:"multi",n:1,list:__R.pactList(),title:"Pact of the Blade: pact weapon"},"Pact of the Blade"));/* M13 */ if(R14()){const lgn=((sp&&sp.lgn)||0)+(B.species==="Custom"?1:0)+((bgt&&bgt.lgn)||0);/* v99: a custom 2014 race gets one language of your choice next to Common */if(lgn>0)add({key:"lang",lvl:1,t:"lang",n:lgn,from:LANGS,title:"Languages",src:(sp?B.species:"Race")+(bgt&&bgt.lgn?", "+B.bg+" background":""),feature:"Languages"})}else add({key:"lang",lvl:1,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Character Origins",feature:"Languages"});/* v84 */
+ if(R14()&&clsLv("Warlock")&&invs.indexOf("Pact of the Tome")>=0&&invs.indexOf("Book of Ancient Secrets")>=0)add(wx({key:"tomeR",t:"multi",n:2,list:SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]}),title:"Book of Ancient Secrets: 2 level 1 Rituals"},"Book of Ancient Secrets"));/* v90: 2014 rituals come from the invocation */
+ invPicks().forEach(add);/* v32 RL49 no. 19 to 22 */
+ if(invs.indexOf("Pact of the Blade")>=0)add(wx({key:"pactWep",t:"multi",n:1,list:pactList(),title:"Pact of the Blade: pact weapon"},"Pact of the Blade"));/* M13 */ if(R14()){const lgn=((sp&&sp.lgn)||0)+(B.species==="Custom"?1:0)+((bgt&&bgt.lgn)||0);/* v99: a custom 2014 race gets one language of your choice next to Common */if(lgn>0)add({key:"lang",lvl:1,t:"lang",n:lgn,from:LANGS,title:"Languages",src:(sp?B.species:"Race")+(bgt&&bgt.lgn?", "+B.bg+" background":""),feature:"Languages"})}else add({key:"lang",lvl:1,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Character Origins",feature:"Languages"});/* v84 */
  if(B.cls==="Rogue"&&!R14())add({key:"langRogue",lvl:1,t:"lang",n:1,from:LANGS,title:"Extra language",src:SRC+", Rogue 1",feature:"Thieves' Cant"});
  if(B.cls==="Ranger"&&L>=2&&!R14())add({key:"langRanger",lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Ranger 2",feature:"Deft Explorer"});
  if(!noFeat){gxPicks().forEach(add);featPicks().forEach(add);/* fx engine v6: wmAdd N = N more Weapon Mastery weapons (the first class slot "wm"; with no class mastery, a new slot) */let wa=0;fxList().forEach((e) =>{if(typeof e.wmAdd==="number")wa+=e.wmAdd});if(wa>0&&!R14()){const w0=out.filter((o) =>{return o.key==="wm"})[0];if(w0)w0.n+=wa;else add({key:"wm",lvl:1,t:"wm",n:wa,melee:0,title:"Weapon Mastery",src:SRC+", extra mastery",feature:"Weapon Mastery"})}}/* gxPicks reads gfx, which reads allFeats, which calls choices(true): so gx picks are skipped there *//* M17: FEATS.skills. v32 RL49: FEATS.pick */
- __R.mcChoices().forEach((o) =>{out.push(o)});
+ mcChoices().forEach((o) =>{out.push(o)});
  hbSpellPicks().forEach((o) =>{out.push(o)});/* v20 RD24 */
  if(!noFeat)featSpellPicks().forEach((o) =>{out.push(o)});/* v21 i3 */
  return out.sort((a,b) =>{return a.lvl-b.lvl});
@@ -336,10 +336,10 @@ export function spLinTrait(sp){return sp.traits.some((t) =>{return t[0]===sp.lin
    bonus from features, tx alternative damage type from a feature. The sheet computes the dice at the chosen slot and character level */
 export function subAt(cls,sub){if(B.cls===cls&&B.sub===sub)return B.level;const m=MCL().filter((q) =>{return q.cls===cls&&q.sub===sub})[0];return m?m.lv:0}
 export function spFxTo(o,k,a){const F=typeof SPELL_FX!=="undefined"&&SPELL_FX[o.n];if(!F)return;const f=clone(F);if(f.mat){o.mat=f.mat;delete f.mat}if(Object.keys(f).length)o.fx=f;
- const db=[],hb=[],ab=function(x){return mod(a.sc[x])},iv=__R.invList(),ty=(f.dmg||[]).map((p) =>{return p[1]}).join("|");
- if(f.dmg&&__R.agOn(o.n))db.push({v:ab(__R.spellAb(k||"Warlock",a.sc)||"CHA"),s:"Agonizing Blast"});
+ const db=[],hb=[],ab=function(x){return mod(a.sc[x])},iv=invList(),ty=(f.dmg||[]).map((p) =>{return p[1]}).join("|");
+ if(f.dmg&&agOn(o.n))db.push({v:ab(spellAb(k||"Warlock",a.sc)||"CHA"),s:"Agonizing Blast"});
  const eat=eaType();if(f.dmg&&eat&&ty.split("|").indexOf(eat)>=0)db.push({v:ab("CHA"),s:"Elemental Affinity ("+eat+")"});/* v19 RL41 */
- if(f.dmg&&!o.l&&(k==="Cleric"||k==="Druid")&&__R.clsLv(k)>=7&&(k===B.cls?B.ch.p7opt:B.ch["m"+MCL().map((m) =>{return m.cls}).indexOf(k)+":p7opt"])==="Potent Spellcasting")db.push({v:ab("WIS"),s:"Potent Spellcasting"});
+ if(f.dmg&&!o.l&&(k==="Cleric"||k==="Druid")&&clsLv(k)>=7&&(k===B.cls?B.ch.p7opt:B.ch["m"+MCL().map((m) =>{return m.cls}).indexOf(k)+":p7opt"])==="Potent Spellcasting")db.push({v:ab("WIS"),s:"Potent Spellcasting"});
  if(f.dmg&&k==="Wizard"&&o.sch==="Evocation"&&subAt("Wizard","Evoker")>=10)db.push({v:ab("INT"),s:"Empowered Evocation, one damage roll"});
  if(f.dmg&&k==="Warlock"&&subAt("Warlock","Celestial Patron")>=6&&/Radiant|Fire/.test(ty))db.push({v:ab("CHA"),s:"Radiant Soul, one Radiant or Fire damage roll"});
  if(f.heal&&o.l&&subAt("Cleric","Life Domain")>=3)hb.push({v:2,lv:1,s:"Disciple of Life"});

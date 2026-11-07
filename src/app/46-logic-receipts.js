@@ -1,12 +1,12 @@
-import {ABN} from "./02-data-default-character.js";
+import {bindLive,lateGet,__set_navStack,openSheet,rGet,ico} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {APP_VER,C,FROZEN,__set_C,lsGet} from "./04-logic-storage.js";
 import {$,__set_toastT,esc,toastT} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
-import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {rGet} from "./14-ui-editor.js";
-import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"rcptShow",{get:function(){return rcptShow;},set:function(v){rcptShow=v;},configurable:true});
+
+
+
+import {env} from "./00-env.js";
+bindLive("rcptShow",{get:function(){return rcptShow;}});
 /* T11 G3 N3 Number receipts. The derivation already keeps where each number comes from (B, the breakdowns). Here every main number is
    kept as a receipt (label, total, parts). Two receipts compare into "what changed and why": after an app update (N3), before Apply
    in the builder (N16) and before a restore (N13). Kept per character under cs-rcpt-v1 (new key, small, never synced) */

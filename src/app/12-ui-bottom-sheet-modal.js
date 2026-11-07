@@ -1,16 +1,16 @@
-import {C,FROZEN} from "./04-logic-storage.js";
+import {bindLive,coachLine,combatHTML,cuBtn,cuDecor,cuHTML,cuOf,cuqBackH,cuqHTML,cuqOf,dockApply,gsHTML,gsMark,ico,icoCls,icoSp,infoHTML,lateGet,shOpened,spmHTML} from "./00a-reg-late-ports.js";import {C,FROZEN} from "./04-logic-storage.js";
 import {$} from "./05-logic-helpers.js";
 import {B} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {condHTML} from "./10-ui-conditions.js";
 import {bdHTML} from "./11-ui-breakdown.js";
-import {__R} from "./00-reg.js";
-import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";import {ENTRY} from "./06a-logic-ui-registry.js";
-Object.defineProperty(__R,"navStack",{get:function(){return navStack;},set:function(v){navStack=v;},configurable:true});
-Object.defineProperty(__R,"openSheet",{get:function(){return openSheet;},set:function(v){openSheet=v;},configurable:true});
-Object.defineProperty(__R,"sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;},configurable:true});
-Object.defineProperty(__R,"showEntry",{get:function(){return showEntry;},set:function(v){showEntry=v;},configurable:true});
+
+import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";import {ENTRY} from "./06a-logic-ui-registry.js";bindLive("__set_navStack",{get:function(){return __set_navStack;}});bindLive("refreshEntry",{get:function(){return refreshEntry;}});bindLive("sheet",{get:function(){return sheet;}});
+bindLive("navStack",{get:function(){return navStack;},set:function(v){navStack=v;}});
+bindLive("openSheet",{get:function(){return openSheet;}});
+bindLive("sheetMode",{get:function(){return sheetMode;},set:function(v){sheetMode=v;}});
+bindLive("showEntry",{get:function(){return showEntry;}});
 /* ================= SHEET (modal / bottom sheet) with navigation ================= */
 export var sheet=$("#sheet"), sheetMode="", lastFocus=null, navStack=[];
 let LASTPT=null;document.addEventListener("pointerdown",(e) =>{ LASTPT={x:e.clientX,y:e.clientY,t:Date.now()}; },true);/* v53: the panel grows from where you tapped (wide screens) */
@@ -33,11 +33,11 @@ export function wm5(t){ const Q=env.QIMG; if(!Q||!t) return ""; let n=t, cats=QI
   return ""; }
 export function sheetIco(t){ t=String(t||""); let h="", m;
   h=wm5(t); if(h) return h;
-  if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(env.__artSub&&env.__artSub(m[1],m[2],320))||__R.ico("src-class");
-  else if(/^Species: /.test(t)) h=(env.__artIc&&env.__artIc("species",t.slice(9)))||__R.ico(__R.icoSp(t.slice(9))||"sp-custom");
-  else if(/^Background: /.test(t)) h=(env.__artIc&&env.__artIc("background",t.slice(12)))||__R.ico("src-background");
-  else if(t==="Size") h=(env.__artIc&&env.__artIc("size",C.size))||__R.ico("creature");
-  else if(typeof CLASSES==="object"&&CLASSES[t]&&__R.icoCls(t)) h=wmClass(t)||__R.ico(__R.icoCls(t));
+  if((m=/^(\w+) Subclass: (.+)$/.exec(t))) h=(env.__artSub&&env.__artSub(m[1],m[2],320))||ico("src-class");
+  else if(/^Species: /.test(t)) h=(env.__artIc&&env.__artIc("species",t.slice(9)))||ico(icoSp(t.slice(9))||"sp-custom");
+  else if(/^Background: /.test(t)) h=(env.__artIc&&env.__artIc("background",t.slice(12)))||ico("src-background");
+  else if(t==="Size") h=(env.__artIc&&env.__artIc("size",C.size))||ico("creature");
+  else if(typeof CLASSES==="object"&&CLASSES[t]&&icoCls(t)) h=wmClass(t)||ico(icoCls(t));
   if(!h&&env.__artIc){ const cats=[["spell",""],["item",""],["condition",""],["skill",""],["ability",""],["damage",""],["creature",""],["mastery"," Mastery"],["school"," School"],["featcat",""],["itemcat",""],["coin",""],["feature",""],["feat",""],["opt",""],["rule",""],["facility",""],
     ["language",""]]; const alt=[t]; const pm=/\(([^)]+)\)\s*$/.exec(t); if(pm) alt.push(pm[1]); if(/s$/i.test(t)) alt.push(t.replace(/s$/i,"")); for(let j=0;j<alt.length&&!h;j++) for(let i=0;i<cats.length&&!h;i++) h=env.__artIc(cats[i][0],alt[j]+cats[i][1]);
       }/* custom names like "Celurit (Sickle)" use the base item, "Arrows" the single arrow *//* art icons: spells, items, conditions, skills and the rest */
@@ -54,39 +54,39 @@ export function openSheet(title, html, mode, wide){
   if(!sheet.classList.contains("on")) growFrom();
   try{ env.__artSheet&&env.__artSheet(mode,title); }catch(er){}
   try{ env.__blendSheet&&env.__blendSheet(mode,title); }catch(er){}
-  $("#scrim").classList.add("on"); sheet.classList.add("on"); __R.dockApply(mode,wide); __R.shOpened();/* v31 p14, p16 */
+  $("#scrim").classList.add("on"); sheet.classList.add("on"); dockApply(mode,wide); shOpened();/* v31 p14, p16 */
   setTimeout(() =>{ const b=$("#sheet [data-close]"); if(b) b.focus({preventScroll:true}); },80);
 }
 /* Potion of Healing: drinking it or giving it to a creature within 5 feet is a Bonus Action in the 2024 rules, an Action in the 2014 rules. The shared item text is written for 2024, so a 2014 character gets the 2014 wording */
-export function potEd(h){ if(typeof __R.C==="undefined"||!__R.C||__R.C.rs!=="2014") return h;
+export function potEd(h){ if(typeof lateGet("C")==="undefined"||!lateGet("C")||lateGet("C").rs!=="2014") return h;
   const T="(?:<[^>]*>)*";/* the words may carry glossary links (autolink), so tags around them are allowed */
   return String(h).replace(new RegExp("Drink it or give it to someone within 5 feet \\("+T+"Bonus Action"+T+"\\) to regain"),"Drink it or give it to someone (Action) to regain").replace(new RegExp("Drink it, or give it to a creature within 5 feet, as a "+T+"Bonus Action"+T+"\\."),"Drinking it or giving it to another creature takes an Action."); }
 ENTRY.add("bd", {content:function(en){
-  const cb=__R.cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+__R.cuqBackH(en.key)+(cb?__R.cuBtn(cb):""), m:"bd"};
+  const cb=cuOf("bd",en.key); return {t:B[en.key]?B[en.key].t:"", h:bdHTML(en.key)+cuqBackH(en.key)+(cb?cuBtn(cb):""), m:"bd"};
 }});
 ENTRY.add("cond", {content:function(en){
   return {t:"Conditions", h:condHTML(), m:"cond"};
 }});
 ENTRY.add("combat", {content:function(en){
-  return {t:"Combat", h:__R.combatHTML(), m:"combat"};
+  return {t:"Combat", h:combatHTML(), m:"combat"};
 }});
 ENTRY.add("spman", {content:function(en){
-  return {t:"Manage Spells", h:__R.spmHTML(), m:"spman"};
+  return {t:"Manage Spells", h:spmHTML(), m:"spman"};
 }});
 ENTRY.add("search", {content:function(en){
-  setTimeout(__R.gsMark,0); return {t:"Search", h:__R.gsHTML(), m:"search"};
+  setTimeout(gsMark,0); return {t:"Search", h:gsHTML(), m:"search"};
 }});
 ENTRY.add("cuq", {content:function(en){
-  const cq=__R.cuqOf(en.key); return {t:cq?"Edit "+cq.t:"Edit", h:__R.cuqHTML(en.key), m:"cuq"};
+  const cq=cuqOf(en.key); return {t:cq?"Edit "+cq.t:"Edit", h:cuqHTML(en.key), m:"cuq"};
 }});
 ENTRY.add("cust", {content:function(en){
-  return {t:"Customize", h:__R.cuHTML(en.key,en.n), m:"cust"};
+  return {t:"Customize", h:cuHTML(en.key,en.n), m:"cust"};
 }});
 /* The sheet entry types that are not registered above are info cards (DETAIL registry) */
 /* solid:orchestrator entryContent */
 function entryContent(en){
   const e=ENTRY.get(en.type); if(e) return e.content(en);
-  const r=__R.cuDecor(en.spec,__R.infoHTML(en.spec)); return {t:r.t, h:potEd(r.h), m:"info"};
+  const r=cuDecor(en.spec,infoHTML(en.spec)); return {t:r.t, h:potEd(r.h), m:"info"};
 }
 export var SWP=null;/* v36 p18: {list:[spec], i} of the list the open card came from */
 export function swpSet(el){ const c=el.closest("[id$='Body']")||document, sp=el.getAttribute("data-info"), seen={}, L=[];
@@ -111,13 +111,13 @@ export var LEARN_LINK=[[/^(Athletics|Acrobatics|Sleight of Hand|Stealth|Arcana|H
   [/Bonus Action|Reaction|Opportunity Attack/i,"forest2"],[/Advantage|Disadvantage|Heroic Inspiration/i,"cliff"],[/Saving Throw/i,"camp2"],
   [/Prone|Poisoned|Grappled|Blinded|Charmed|Deafened|Frightened|Incapacitated|Invisible|Paralyzed|Petrified|Restrained|Stunned|Exhaustion|Condition/i,"meadow"],
   [/Concentration|Prepared/i,"tower2"],[/Cantrip|Spell Slot|Spellcasting|Spell Attack|Spell Save/i,"tower1"]];
-function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(let i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return '<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:'+LEARN_LINK[i][1]+'">'+__R.ico("ui-book")+'Learn this</button></div>'; return ""; }
+function learnLink(t){ if(FROZEN) return ""; t=String(t||"").replace(/<[^>]*>/g,""); for(let i=0;i<LEARN_LINK.length;i++) if(LEARN_LINK[i][0].test(t)) return '<div class="lrn-link"><button type="button" class="btn press" data-hlearn="place:'+LEARN_LINK[i][1]+'">'+ico("ui-book")+'Learn this</button></div>'; return ""; }
 export function showEntry(en, push){
   hpDockBack();/* v30 */
   sheet.dataset.spec=(en&&en.spec)||"";/* the blend reads the entry kind (lib:species|Drow) to pick a scene */
   const open=sheet.classList.contains("on") && sheetMode!=="edit";
   if(push && open) navStack.push(en); else navStack=[en];
-  let c=entryContent(en); c={t:c.t,h:(typeof __R.coachLine==="function"?__R.coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
+  let c=entryContent(en); c={t:c.t,h:(typeof lateGet("coachLine")==="function"?coachLine(c.t):"")+c.h+learnLink(c.t),m:c.m};/* T11 U47 */
   if(open){
     sheetMode=c.m; setSheetTitle(c.t); const b=$("#sheetBody"),shw2=$("#shWm"); b.innerHTML=c.h; if(shw2) b.insertBefore(shw2,b.firstChild); b.scrollTop=0;
     b.classList.remove("swap"); void b.offsetWidth; b.classList.add("swap");

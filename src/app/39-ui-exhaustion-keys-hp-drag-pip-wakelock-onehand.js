@@ -1,4 +1,4 @@
-import {C,S,save} from "./04-logic-storage.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {C,S,save} from "./04-logic-storage.js";
 import {$,clamp,esc,num,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {barColor,buzz,hpOpen,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
@@ -9,12 +9,12 @@ import {setOf} from "./25-ui-settings-appearance.js";
 import {PAL,__set_gsSel,condSet,fzScore,gsMark,gsRows,gsSel,gsSync,openSearch,palCmds,palFill} from "./27-ui-party-search-commands-library.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {cmbPipClick,cmbPipH,renderAll} from "./35-ui-combo.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"PIP",{get:function(){return PIP;},set:function(v){PIP=v;},configurable:true});
-Object.defineProperty(__R,"exhTo",{get:function(){return exhTo;},set:function(v){exhTo=v;},configurable:true});
-Object.defineProperty(__R,"ohSync",{get:function(){return ohSync;},set:function(v){ohSync=v;},configurable:true});
-Object.defineProperty(__R,"pipSync",{get:function(){return pipSync;},set:function(v){pipSync=v;},configurable:true});
-Object.defineProperty(__R,"wakeApply",{get:function(){return wakeApply;},set:function(v){wakeApply=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("PIP",{get:function(){return PIP;},set:function(v){PIP=v;}});
+bindLive("exhTo",{get:function(){return exhTo;}});
+bindLive("ohSync",{get:function(){return ohSync;}});
+bindLive("pipSync",{get:function(){return pipSync;}});
+bindLive("wakeApply",{get:function(){return wakeApply;}});
 /* v30 p07: Exhaustion to a level (stepper and palette). Level 6 is death, leaving 6 brings Hit Points back (v29 RU127) */
 function exhTo(v,quiet){ const exh0=num(S.exh,0); S.exh=clamp(Math.round(num(v,0)),Math.min(5,Math.max(0,Math.round(num(C.exhMin,0)))),6);/* fx engine v5: a curse keeps a minimum */
   if(S.exh===6&&exh0<6){ S.exhPrev={hp:S.hp,tmp:S.tmp,ds:(S.ds||[0,0]).slice()}; S.hp=0; S.tmp=0; S.ds=[0,3]; }

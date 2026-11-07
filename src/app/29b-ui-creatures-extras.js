@@ -1,8 +1,8 @@
-/* Responsibility: creature stat blocks (manual and spell lists) and the Extras page. Split out of the former single file 29 in SOLID stage 9 (S); runs in the same order as before. */
-import {ABK} from "./02-data-default-character.js";import {C,S,__set_C,save} from "./04-logic-storage.js";import {$,clamp,esc,rich,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {REDUCE} from "./07-ui-theme-contrast-spring.js";import {esArt} from "./08c-ui-render-inventory-features-notes.js";import {navStack,refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {dcHead,dcStrip} from "./13-ui-detail-cards.js";import {spRowLv} from "./22-ui-spell-data-and-slots.js";import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";import {bastionH} from "./28-ui-bastion.js";import {__R} from "./00-reg.js";import {env as PGE} from "./00-env.js";import {scCls,srcPg} from "./29-ui-ddb-look.js";
-Object.defineProperty(__R,"crBlock",{get:function(){return crBlock;},set:function(v){crBlock=v;},configurable:true});
-Object.defineProperty(__R,"crOf",{get:function(){return crOf;},set:function(v){crOf=v;},configurable:true});
-Object.defineProperty(__R,"renderExtras",{get:function(){return renderExtras;},set:function(v){renderExtras=v;},configurable:true});
+import {bindLive,clsLvls,undoMark} from "./00a-reg-late-ports.js";/* Responsibility: creature stat blocks (manual and spell lists) and the Extras page. Split out of the former single file 29 in SOLID stage 9 (S); runs in the same order as before. */
+import {ABK} from "./02-data-default-character.js";import {C,S,__set_C,save} from "./04-logic-storage.js";import {$,clamp,esc,rich,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {REDUCE} from "./07-ui-theme-contrast-spring.js";import {esArt} from "./08c-ui-render-inventory-features-notes.js";import {navStack,refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {dcHead,dcStrip} from "./13-ui-detail-cards.js";import {spRowLv} from "./22-ui-spell-data-and-slots.js";import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";import {bastionH} from "./28-ui-bastion.js";import {env as PGE} from "./00-env.js";import {scCls,srcPg} from "./29-ui-ddb-look.js";
+bindLive("crBlock",{get:function(){return crBlock;}});
+bindLive("crOf",{get:function(){return crOf;}});
+bindLive("renderExtras",{get:function(){return renderExtras;}});
 let crSel={}, crF="all", crQ="";
 function crEval(e){ e=String(e).replace(/floor\(([^()]*)\)/g,(m,x) =>{ return Math.floor(crEval(x)); }).replace(/(min|max)\(([^(),]*),([^()]*)\)/g,(m,f,a,b) =>{ return Math[f](crEval(a),crEval(b)); }); if(!/^[\d+\-*/().\s]+$/.test(e)) return NaN; try{ return Function('"use strict";return ('+e+')')(); }catch(er){ return NaN; } }
 function crExpr(s,env){ s=String(s==null?"":s); const only=s.trim();
@@ -20,7 +20,7 @@ function crSpell(n){ return (C.spells||[]).filter((x) =>{ return x.n===n; })[0];
 function ws14List(L,moon){let cr=L>=8?1:L>=4?0.5:0.25;if(moon)cr=L>=6?Math.max(1,Math.floor(L/3)):1;
  return (typeof CREATURES!=="undefined"?CREATURES.creatures:[]).filter((c) =>{if(c.type!=="Beast"||!(c.tags||[]).some((t) =>{return /wild-shape/.test(t)}))return false;if(crCrNum(c.cr)>cr)return false;const sp=String(c.speed||"");if(L<8&&/Fly/i.test(sp))return false;if(L<4&&/Swim/i.test(sp))return false;return true}).map((c) =>{return c.n})}
 /* the creatures this character can have: [{n, why, ctx}] */
-function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATURES.rules||{}, SPL=CREATURES.spells||{}, out=[], lv=__R.clsLvls(), seen={};
+function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATURES.rules||{}, SPL=CREATURES.spells||{}, out=[], lv=clsLvls(), seen={};
   const add=function(n,why,ctx,grp){ const k=n+"|"+ctx; if(seen[k]||!crOf(n)) return; seen[k]=1; out.push({n:n,why:why,ctx:ctx,grp:grp}); };
   const invs=[]; (C.features||[]).forEach((g) =>{ if(g.g==="Eldritch Invocations") (g.items||[]).forEach((i) =>{ invs.push(i.n); }); });
   const fam=R.familiar||{}, chain=invs.indexOf("Pact of the Chain")>=0, wild=(lv.Druid||0)>=2;
@@ -39,7 +39,7 @@ function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATUR
   const IT=CREATURES.items||{}; (C.inv||[]).forEach((i) =>{ const o=IT[i.n]; if(!o) return; o.creatures.forEach((n) =>{ add(n,i.n,"it:"+i.n,"sum"); }); });/* v56: magic items that call a creature */
   return out; }
 PGE.__crFor=function(c){ const o=C; __set_C(c); try{ return crList().map((e) =>{ const h=crBlock(crOf(e.n),e.ctx); return {n:e.n,ctx:e.ctx,len:h.length,ac:/Armor Class|AC/.test(h)}; }); } finally{ __set_C(o); } };/* test hook */
-function crEnv(ctx,c){ const lv=__R.clsLvls(), env={SL:0,LV:0,PB:D.pb,MOD:0,DC:0,ATK:0};
+function crEnv(ctx,c){ const lv=clsLvls(), env={SL:0,LV:0,PB:D.pb,MOD:0,DC:0,ATK:0};
   if(ctx==="bm"){ const s=scCls("Ranger"); env.LV=lv.Ranger||D.level; env.MOD=D.mod.WIS; env.DC=s.dc||(8+D.pb+D.mod.WIS); env.ATK=s.atk!=null?s.atk:(D.pb+D.mod.WIS); }
   else if(ctx==="vp"){ const sw=scCls("Warlock"); env.LV=lv.Warlock||D.level; env.MOD=D.mod.CHA; env.DC=sw.dc||(8+D.pb+D.mod.CHA); env.ATK=sw.atk!=null?sw.atk:(D.pb+D.mod.CHA); }/* v64 */
   else if(ctx==="sd"||ctx==="ec"||ctx==="rc"){ const sa=scCls("Artificer"); env.LV=lv.Artificer||D.level; env.MOD=D.mod.INT; env.DC=sa.dc||(8+D.pb+D.mod.INT); env.ATK=sa.atk!=null?sa.atk:(D.pb+D.mod.INT); }
@@ -61,7 +61,7 @@ function renderExtras0(){ const el=$("#extBody"); if(!el) return; const L=crList
   if(!L.length){ el.innerHTML=h+'<div class="empty-note empty-st xempty">'+esArt("paw")+'<b>No creatures yet</b><span>Your creatures will appear here. Find Familiar, Pact of the Chain, Wild Shape, a Beast Master companion, spells that summon a creature, and magic items that call one add them.</span></div>'; return; }/* v31 C9 */  if(L.length>5||crQ) h+='<div class="fsearch"><input id="crQ" type="search" placeholder="Search in Creatures" aria-label="Search in Creatures" value="'+esc(crQ)+'"></div>';/* v100: long lists (Wild Shape) need a search */
   h+='<div class="ifil">'+G.map((g) =>{ return '<button type="button" class="ifb'+(crF===g[0]?' on':'')+'" data-crf="'+g[0]+'">'+g[1]+'</button>'; }).join("")+'</div>';
   const R=(CREATURES.rules||{});
-  if(L.some((e) =>{ return e.grp==="ws"; })&&(crF==="all"||crF==="ws")){ const ws=R.wildShape||{}, lv=__R.clsLvls().Druid||0, row=((ws.shapes||{}).rows||[]).filter((r) =>{ return r.lv<=lv; }).pop()||{};
+  if(L.some((e) =>{ return e.grp==="ws"; })&&(crF==="all"||crF==="ws")){ const ws=R.wildShape||{}, lv=clsLvls().Druid||0, row=((ws.shapes||{}).rows||[]).filter((r) =>{ return r.lv<=lv; }).pop()||{};
     let moon=L.some((e) =>{ return e.grp==="ws"&&/Moon/.test(e.why); }), mo=ws.moon||{}, cr=row.maxCr||"", mcr=Math.floor(lv/3);
     if(moon&&mcr>=crCrNum(cr)) cr=String(mcr);
     const w14=C.rs==="2014", hint=(!w14&&!(C.wsForms||[]).length)?' You have not picked your known forms yet, so every eligible form is listed. Pick them in the Builder: Class, Wild Shape.':'';
@@ -101,7 +101,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   const key=b.getAttribute("data-crk"), max=+b.getAttribute("data-crm"), k=b.getAttribute("data-crhp"), inp=b.closest(".crhp").querySelector(".crhp-in"), n=Math.floor(+(inp&&inp.value)||0);
   S.crhp=S.crhp&&typeof S.crhp==="object"&&!Array.isArray(S.crhp)?S.crhp:{}; const cur=crHpCur(key,max);
   if(k!=="full"&&!(n>0)){ toast("Enter an amount first."); if(inp) inp.focus(); return; }
-  __R.undoMark(k==="dmg"?"Creature damage":k==="heal"?"Creature healing":"Creature Hit Points",false);
+  undoMark(k==="dmg"?"Creature damage":k==="heal"?"Creature healing":"Creature Hit Points",false);
   const nv=k==="full"?max:k==="dmg"?Math.max(0,cur-n):Math.min(max,cur+n); if(nv>=max) delete S.crhp[key]; else S.crhp[key]=nv;
   save(); refreshEntry(); renderExtras(); if(k==="dmg") crFx(key,"dmg"); else if(nv>cur) crFx(key,"heal"); },true);
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-crv],[data-crsl]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const n=b.getAttribute("data-crn"), s=crSel[n]=crSel[n]||{};

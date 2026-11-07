@@ -1,17 +1,17 @@
-import {ABK} from "./02-data-default-character.js";
+import {bindLive,featSpec,ico,lateGet,toastKind,xlink} from "./00a-reg-late-ports.js";import {ABK} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"ask",{get:function(){return ask;},set:function(v){ask=v;},configurable:true});
-Object.defineProperty(__R,"esc",{get:function(){return esc;},set:function(v){esc=v;},configurable:true});
-Object.defineProperty(__R,"num",{get:function(){return num;},set:function(v){num=v;},configurable:true});
-Object.defineProperty(__R,"toast",{get:function(){return toast;},set:function(v){toast=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("ask",{get:function(){return ask;}});
+bindLive("esc",{get:function(){return esc;}});
+bindLive("num",{get:function(){return num;}});
+bindLive("toast",{get:function(){return toast;}});
 /* ================= HELPERS ================= */
 export function $(s,r){return (r||document).querySelector(s)}
 export function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
 export function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,(c) =>{return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-export function rich(t){ return xl_(esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>{ const key=k.replace(/&#39;/g,"'").replace(/&amp;/g,"&"); if(GLOSS[key]||(__R.LIBR&&__R.LIB_RULES[key])) return '<button type="button" class="lk" data-info="g:'+esc(key)+'">'+(l||k)+'</button>'; const fsp=__R.featSpec(key); return fsp?'<button type="button" class="lk" data-info="'+fsp+'">'+(l||k)+'</button>':(l||k); })); }
-function xl_(h){ return typeof __R.xlink==="function"?__R.xlink(h):h; }
+export function rich(t){ return xl_(esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>{ const key=k.replace(/&#39;/g,"'").replace(/&amp;/g,"&"); if(GLOSS[key]||(lateGet("LIBR")&&lateGet("LIB_RULES")[key])) return '<button type="button" class="lk" data-info="g:'+esc(key)+'">'+(l||k)+'</button>'; const fsp=featSpec(key); return fsp?'<button type="button" class="lk" data-info="'+fsp+'">'+(l||k)+'</button>':(l||k); })); }
+function xl_(h){ return typeof lateGet("xlink")==="function"?xlink(h):h; }
 export function sg(n){return (n>=0?"+":"\u2212")+Math.abs(n)}
 export function num(v,d){ const n=parseFloat(v); return isNaN(n)?(d||0):n; }
 export function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
@@ -19,9 +19,9 @@ export function fmtW(n){return (Math.round(n*10)/10).toString()}
 export function mod(s){return Math.floor((s-10)/2)}
 export var toastT=null;
 export function hpWord(n){ return n===1?"Hit Point":"Hit Points"; }
-Object.defineProperty(__R,"hpWord",{get:function(){return hpWord;},configurable:true});
+
 export function toastPic(msg){ if(!env.__artVig) return ""; const m=String(msg||""), id=/^Download started|^Backup text copied/.test(m)?"backup-done":/not a character|can't be read|newer version of the app|code is not a character/.test(m)?"import-failed":/^New version ready/.test(m)?"update":""; return id?env.__artVig("state",id,28):""; }
-export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); const tk=typeof __R.toastKind==="function"?__R.toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof __R.ico==="function"?__R.ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(() =>{t.classList.remove("on")},2400); } env.__toast=toast;/* test hook */
+export function toast(msg){ const t=$("#toast"); t.classList.remove("act"); const tk=typeof lateGet("toastKind")==="function"?toastKind(msg):"ok"; t.innerHTML=(toastPic(msg)||(typeof lateGet("ico")==="function"?ico("toast-"+tk,"tico"):""))+'<span>'+esc(msg)+'</span>'; t.setAttribute("data-kind",tk);/* v24 RU73 q */ t.classList.add("on"); topLayer(t); clearTimeout(toastT); toastT=setTimeout(() =>{t.classList.remove("on")},2400); } env.__toast=toast;/* test hook */
 /* ask(): dialog konfirmasi DOM versi sheet. Pengganti confirm(), yang diblokir di artifact. Tanda tangan sama dengan ask() di builder: ask(pesan, labelOk, cb). Cancel, klik di luar kotak, atau Escape menutup tanpa memanggil cb. */
 /* T11 A5: the top layer. Dialogs and the toast open as manual popovers, so they sit above every z-index (sheet panels, the dice tray,
    effects) without a z-index race. A manual popover never closes by itself, Escape and clicks stay with the caller. Browsers without
@@ -77,7 +77,7 @@ export function invAt(nm,ix){ const L=C.inv||[], it=(ix!=null&&ix!==""&&L[+ix]&&
 function itemAtkIx(it){ const ks=[it.key||it.n,it.n], L=C.attacks||[]; for(let i=0;i<L.length;i++){ if(ks.indexOf(L[i].n)>=0) return i; } return -1; }
 /* RU22: item detail html with Damage and Proficient taken from the sheet attack row, so the popup matches the Actions tab.
    Hand-filled sheets get this html from the builder (__itemMeta), which knows nothing about the sheet. Display only, C.inv is not changed */
-export function itemHtml(it){ const h=String(it.html||""), ix=itemAtkIx(it), d=ix>=0?__R.D.atk[ix]:null; if(!d||h.indexOf("<dt>Damage</dt>")<0) return h;
+export function itemHtml(it){ const h=String(it.html||""), ix=itemAtkIx(it), d=ix>=0?lateGet("D").atk[ix]:null; if(!d||h.indexOf("<dt>Damage</dt>")<0) return h;
   return h.replace(/(<dt>Damage<\/dt><dd>)[^<]*(<\/dd>)/, (m,a,b) =>{ return a+esc(d.dmg)+b; }).replace(/(<dt>Proficient<\/dt><dd>)[^<]*(<\/dd>)/, (m,a,b) =>{ return a+(C.attacks[ix].prof?"Yes":"No")+b; })
     /* N5: chosen mastery follows the sheet attack row (m is set only for a chosen mastery) */
     .replace(/<p class="mst">(?:\u2605 )?(<b>Mastery: [^<]*<\/b>)(?: <small>\(not one of your chosen masteries\)<\/small>)?/, (m,b) =>{ const on=!!C.attacks[ix].m; return '<p class="mst">'+(on?"\u2605 ":"")+b+(on?"":' <small>(not one of your chosen masteries)</small>'); }); }

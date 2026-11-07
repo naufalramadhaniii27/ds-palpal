@@ -1,4 +1,4 @@
-import {SRC,esc,mod,pbOf} from "./01-logic-core-helpers.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {SRC,esc,mod,pbOf} from "./01-logic-core-helpers.js";
 import {DMAP,bgX,kitGP,un,ovFx} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
@@ -7,12 +7,12 @@ import {allFeats,gxPicks} from "./09-logic-feats-and-choices.js";
 import {luMax,pk} from "./10-logic-v17-additions.js";
 import {abil,fxList,fxVal,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
-import {__R} from "./00-reg.js";
+
 import {bindLate} from "./01b-logic-late-ports.js";
 import {gx} from "./00-env.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
-Object.defineProperty(__R,"kitItems",{get:function(){return kitItems;},set:function(v){kitItems=v;},configurable:true});
-Object.defineProperty(__R,"mcChoices",{get:function(){return mcChoices;},set:function(v){mcChoices=v;},configurable:true});
+
+bindLive("mcChoices",{get:function(){return mcChoices;}});
 bindLate({MCL,TL,baseOf,ensureInv,itemW,slotsAll,syncPickItems,hpCalc,effArmor,effShield,effWeps});/* the late ports of this file (01b-logic-late-ports.js) */
 provideQueries({MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
 /* ---------- multiclass, HP, shop ---------- */
@@ -121,7 +121,7 @@ export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();con
  const px=B.px||(B.px={});Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});
  Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
-Object.defineProperty(__R,"slotAddApply",{get:function(){return slotAddApply;},configurable:true});
+
 function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq})[0];return a?a.n:""}
 function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq})[0];return s?s.n:""}
 function effWeps(){const w=[];ensureInv().forEach((x) =>{if(WEAPONS[baseOf(x.n).b]&&x.eq&&w.indexOf(x.n)<0)w.push(x.n)});return w}

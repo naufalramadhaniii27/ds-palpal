@@ -1,9 +1,9 @@
-import {C,S,save} from "./04-logic-storage.js";import {esc,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {featAll} from "./08b-ui-render-summaries-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {akIcon,atkKind,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {hasFeat,lvOf} from "./32b-logic-play-concentration-casting.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"sitAtk",{get:function(){return sitAtk;},set:function(v){sitAtk=v;},configurable:true});
-Object.defineProperty(__R,"sitCardH",{get:function(){return sitCardH;},set:function(v){sitCardH=v;},configurable:true});
-Object.defineProperty(__R,"sitDiceRows",{get:function(){return sitDiceRows;},set:function(v){sitDiceRows=v;},configurable:true});
-Object.defineProperty(__R,"sitNum",{get:function(){return sitNum;},set:function(v){sitNum=v;},configurable:true});
-Object.defineProperty(__R,"sitReset",{get:function(){return sitReset;},set:function(v){sitReset=v;},configurable:true});
+import {bindLive,renderAll} from "./00a-reg-late-ports.js";import {C,S,save} from "./04-logic-storage.js";import {esc,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {featAll} from "./08b-ui-render-summaries-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {akIcon,atkKind,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {hasFeat,lvOf} from "./32b-logic-play-concentration-casting.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";import {env} from "./00-env.js";
+bindLive("sitAtk",{get:function(){return sitAtk;}});
+bindLive("sitCardH",{get:function(){return sitCardH;}});
+bindLive("sitDiceRows",{get:function(){return sitDiceRows;}});
+bindLive("sitNum",{get:function(){return sitNum;}});
+bindLive("sitReset",{get:function(){return sitReset;}});
 const SIT=[
  /* in combat */
  {k:"reckless",f:["Reckless Attack"],n:"Reckless Attack",g:"c",t:"on",rs:"turn",s:"Advantage on your Strength attacks. Attacks against you have Advantage too.",e:{atk:[{t:"ADV",m:"str"}]}},
@@ -85,7 +85,7 @@ function sitSt(){ if(!S.sit||typeof S.sit!=="object") S.sit={}; const s=S.sit; i
 function sitRow(k){ return SIT.filter((r) =>{ return r.k===k; })[0]; }
 let SIT_FORCE=false;
 function sitHave(r){ return SIT_FORCE||r.f.some(hasFeat); }
-env.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; __R.renderAll(); },n:function(){ return SIT.length; }};/* test hook */
+env.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; renderAll(); },n:function(){ return SIT.length; }};/* test hook */
 function sitPick(n){ let o=null; (C.features||[]).forEach((g) =>{ (g.items||[]).forEach((f) =>{ if(f.n!==n) return; const m=/\*\*Your choice\.\*\*\s*([^\n*]+)/.exec(String(f.d||f.full||"")); if(m) o=m[1].trim().replace(/\.$/,""); }); }); return o; }
 function sitOpts(r){ if(!r.o) return null; if(r.pick){ const p=sitPick(r.pick); if(p){ const m=r.o.filter((x) =>{ return p.toLowerCase().indexOf(x.toLowerCase())===0||x.toLowerCase().indexOf(p.toLowerCase())===0; }); if(m.length) return m; } } return r.o; }
 function sitOpt(r,st){ const L=sitOpts(r); if(!L) return null; const v=(st||sitRead()).v[r.k]; return L.indexOf(v)>=0?v:L[0]; }
@@ -138,14 +138,14 @@ function sitRoll(r,st){ const d=function(n){ return 1+Math.floor(Math.random()*n
   if(r.roll==="surge"){ const a=d(20); if(a<20){ st.v.surge_r="Rolled "+a+": no surge."; } else { const b=d(100), i=Math.min(SIT_SURGE.length-1,Math.floor((b-1)/2)); st.v.surge_r="Rolled 20. Surge "+b+": "+SIT_SURGE[i]; } st.used[r.k]=1; return st.v.surge_r; }
   if(r.roll==="spirit"){ const bd=lvOf("Bard")>=15?12:lvOf("Bard")>=10?10:lvOf("Bard")>=5?8:6, n=d(bd), t=SIT_SPIRIT[Math.min(SIT_SPIRIT.length,n)-1].replace(/\{d\}/g,"d"+bd); st.v.spirit_r="d"+bd+" rolled "+n+". "+t; return st.v.spirit_r; } return ""; }
 function sitDo(spec){ let p=String(spec).split(":"), kind=p[0], k=p[1], r=sitRow(k), st;
-  if(kind==="grp"){ SIT_OPEN[k]=!sitOpenG(k); __R.renderAll(); return; }
-  if(kind==="turn"){ undoMark("New turn"); const c=sitReset("turn"); save(); __R.renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
+  if(kind==="grp"){ SIT_OPEN[k]=!sitOpenG(k); renderAll(); return; }
+  if(kind==="turn"){ undoMark("New turn"); const c=sitReset("turn"); save(); renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
   if(!r) return; st=sitSt();
-  if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); __R.renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
-  if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); __R.renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
-  if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); __R.renderAll(); return; }
-  if(kind==="act"){ if(r.roll){ undoMark(r.n); const t=sitRoll(r,st); save(); __R.renderAll(); toastU(t); return; }
+  if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
+  if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
+  if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; }
+  if(kind==="act"){ if(r.roll){ undoMark(r.n); const t=sitRoll(r,st); save(); renderAll(); toastU(t); return; }
     const res=(D.res||[]).filter((q) =>{ return r.rx.test(q.n); })[0]; if(!res){ toast("No matching resource on this sheet."); return; } const left=res.max-used(res.k,res.max);
-    if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); __R.renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
-    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); __R.renderAll(); toastU(res.n+": regained 1."); } }
+    if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
+    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); renderAll(); toastU(res.n+": regained 1."); } }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-sit]"); if(!b) return; e.preventDefault(); e.stopPropagation(); sitDo(b.getAttribute("data-sit")); });

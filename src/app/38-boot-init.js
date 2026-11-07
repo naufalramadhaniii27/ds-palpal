@@ -1,10 +1,10 @@
-import {APP_VER,BAD,S,lsGet,save} from "./04-logic-storage.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {APP_VER,BAD,S,lsGet,save} from "./04-logic-storage.js";
 import {showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {RKEY} from "./14-ui-editor.js";
 import {__set_spmQ,openSpMan,spmQ,spmRefresh} from "./24-ui-manage-spells.js";
 import {__set_gsQ,gsQ,gsRefresh,openSearch} from "./27-ui-party-search-commands-library.js";import {pinToggle,printCards} from "./27c-ui-report-pins.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"gsT",{get:function(){return gsT;},set:function(v){gsT=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("gsT",{get:function(){return gsT;},set:function(v){gsT=v;}});
 /* ================= INIT ================= */
 /* v18 RU78: the character list must be readable too, or rEnsure() would start a new one over it */
 (function(){ const r=lsGet(RKEY); if(r!=null){ try{ const p=JSON.parse(r); if(!p||typeof p!=="object"||!p.chars||typeof p.chars!=="object"||Array.isArray(p.chars)) throw new Error("the character list has a shape this version does not know"); }catch(e){ BAD.push("Character list: "+((e&&e.message)||e)); } } })();

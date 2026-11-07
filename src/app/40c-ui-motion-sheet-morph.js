@@ -1,24 +1,24 @@
-/* Responsibility: page indicator, page slide, card morph and the sheet spring. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {bindLive,ovQueue,springEase} from "./00a-reg-late-ports.js";/* Responsibility: page indicator, page slide, card morph and the sheet spring. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __MI. Shared names with other modules come from the imports below, late names through __R. */
 import {$,$$} from "./05-logic-helpers.js";
 import {REDUCE,SPR,spring} from "./07-ui-theme-contrast-spring.js";
 import {__set_openSheet,openSheet,sheet} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {BCSS,PAGES,__set_goPage,__set_setTab,activeTab,bInd,curPage,mq,onPagerScroll,pager,pgShow,setTab} from "./21-ui-tabs-pager.js";
-import {__R} from "./00-reg.js";
+
 import {env} from "./00-env.js";
 
 
-Object.defineProperty(__R,"bIndSet",{get:function(){return bIndSet;},set:function(v){bIndSet=v;},configurable:true});
-Object.defineProperty(__R,"morphStop",{get:function(){return morphStop;},set:function(v){morphStop=v;},configurable:true});
-Object.defineProperty(__R,"pCur",{get:function(){return pCur;},set:function(v){pCur=v;},configurable:true});
-Object.defineProperty(__R,"shClosed",{get:function(){return shClosed;},set:function(v){shClosed=v;},configurable:true});
-Object.defineProperty(__R,"shDragEnd",{get:function(){return shDragEnd;},set:function(v){shDragEnd=v;},configurable:true});
-Object.defineProperty(__R,"shOpened",{get:function(){return shOpened;},set:function(v){shOpened=v;},configurable:true});
+bindLive("bIndSet",{get:function(){return bIndSet;}});
+bindLive("morphStop",{get:function(){return morphStop;}});
+bindLive("pCur",{get:function(){return pCur;}});
+bindLive("shClosed",{get:function(){return shClosed;}});
+bindLive("shDragEnd",{get:function(){return shDragEnd;}});
+bindLive("shOpened",{get:function(){return shOpened;}});
 /* ===== v31 p11 swipe + tab slide (RU112, D6, D2) ===== */
 let BSPR=0;
 function bIndSet(x){ if(BCSS||BSPR) return; const s=SPR.bInd||(SPR.bInd={x:x,v:0,t:x,raf:0}); if(s.raf){ cancelAnimationFrame(s.raf); s.raf=0; } s.x=s.t=x; s.v=0; bInd.style.transform="translateX("+x+"%)"; }
-function bIndTo(i){ if(BCSS){ if(REDUCE) return; const d=(curPage-i)*100; if(!d) return; if(bInd.__a){ try{ bInd.__a.cancel(); }catch(er){} } const e=__R.springEase(340,.82); try{ bInd.__a=bInd.animate([{translate:d+"%"},{translate:"0%"}],{duration:e.d,easing:e.e}); }catch(er){ bInd.__a=null; } return; } const t=i*100; BSPR=1; spring("bInd", t, (v) =>{ bInd.style.transform="translateX("+(Math.round(v*10)/10)+"%)"; if(Math.abs(v-t)<.05) BSPR=0; }, {k:340, zeta:.82}); if(REDUCE) BSPR=0; }
+function bIndTo(i){ if(BCSS){ if(REDUCE) return; const d=(curPage-i)*100; if(!d) return; if(bInd.__a){ try{ bInd.__a.cancel(); }catch(er){} } const e=springEase(340,.82); try{ bInd.__a=bInd.animate([{translate:d+"%"},{translate:"0%"}],{duration:e.d,easing:e.e}); }catch(er){ bInd.__a=null; } return; } const t=i*100; BSPR=1; spring("bInd", t, (v) =>{ bInd.style.transform="translateX("+(Math.round(v*10)/10)+"%)"; if(Math.abs(v-t)<.05) BSPR=0; }, {k:340, zeta:.82}); if(REDUCE) BSPR=0; }
 pager.addEventListener("touchstart",() =>{ if(bInd.__a){ try{ bInd.__a.cancel(); }catch(er){} bInd.__a=null; } if(BSPR){ BSPR=0; onPagerScroll(); } },{passive:true});
 /* a finger on the pages takes the bar line back */
 function pageSlide(el,dir){ if(!el||REDUCE) return; const c=dir>0?"psl-r":"psl-l", busy=el.classList.contains("psl-l")||el.classList.contains("psl-r"); el.classList.remove("psl-l","psl-r"); clearTimeout(el.__psl);
@@ -73,8 +73,8 @@ $("#sheetHead").addEventListener("pointerdown",(e) =>{ const s=SPR.sheet; if(!mq
     document.body.appendChild(g); setTimeout(() =>{ g.remove(); },220); }
   const sig=function(n){ return n.nodeType===1?(n.id||n.className||""):""; };
   const mo=new MutationObserver((recs) =>{ const add={}, rem=[]; recs.forEach((r) =>{ if(r.type==="childList"&&r.target===document.body){ Array.prototype.forEach.call(r.addedNodes,(n) =>{ add[sig(n)]=1; }); Array.prototype.forEach.call(r.removedNodes,(n) =>{ rem.push(n); }); } });
-    rem.forEach((n) =>{ if(!add[sig(n)]) ghost(n); });/* a dialog redrawn in place (same id) does not fade */ __R.ovQueue(); });
+    rem.forEach((n) =>{ if(!add[sig(n)]) ghost(n); });/* a dialog redrawn in place (same id) does not fade */ ovQueue(); });
   mo.observe(document.body,{childList:true}); mo.observe(sheet,{attributes:true,attributeFilter:["class"]});
-  new MutationObserver(() =>{ __R.ovQueue(); }).observe(document.body,{attributes:true,attributeFilter:["hidden"],subtree:true});/* T11 A6: Home shown or hidden */
+  new MutationObserver(() =>{ ovQueue(); }).observe(document.body,{attributes:true,attributeFilter:["hidden"],subtree:true});/* T11 A6: Home shown or hidden */
   const tieB=function(){ const b=document.getElementById("bld"); if(b&&!b.__ovo){ b.__ovo=1; mo.observe(b,{childList:true,attributes:true,attributeFilter:["hidden"]}); } }; tieB(); setTimeout(tieB,500);
 })();

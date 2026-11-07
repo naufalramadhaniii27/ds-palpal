@@ -1,20 +1,20 @@
-import {C,S,save} from "./04-logic-storage.js";
+import {bindLive,lateGet,renderAll,toastU,undoMark} from "./00a-reg-late-ports.js";import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,esc,num,sg} from "./05-logic-helpers.js";
 import {B,part} from "./06-logic-derivation.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet} from "./13-ui-detail-cards.js";
 import {invKey} from "./23b-ui-items-containers.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"cuApply",{get:function(){return cuApply;},set:function(v){cuApply=v;},configurable:true});
-Object.defineProperty(__R,"cuBtn",{get:function(){return cuBtn;},set:function(v){cuBtn=v;},configurable:true});
-Object.defineProperty(__R,"cuDecor",{get:function(){return cuDecor;},set:function(v){cuDecor=v;},configurable:true});
-Object.defineProperty(__R,"cuHTML",{get:function(){return cuHTML;},set:function(v){cuHTML=v;},configurable:true});
-Object.defineProperty(__R,"cuK",{get:function(){return cuK;},set:function(v){cuK=v;},configurable:true});
-Object.defineProperty(__R,"cuNm",{get:function(){return cuNm;},set:function(v){cuNm=v;},configurable:true});
-Object.defineProperty(__R,"cuNum",{get:function(){return cuNum;},set:function(v){cuNum=v;},configurable:true});
-Object.defineProperty(__R,"cuOf",{get:function(){return cuOf;},set:function(v){cuOf=v;},configurable:true});
-Object.defineProperty(__R,"cuSave",{get:function(){return cuSave;},set:function(v){cuSave=v;},configurable:true});
-Object.defineProperty(__R,"cuSpeed",{get:function(){return cuSpeed;},set:function(v){cuSpeed=v;},configurable:true});
+
+bindLive("cuApply",{get:function(){return cuApply;}});
+bindLive("cuBtn",{get:function(){return cuBtn;}});
+bindLive("cuDecor",{get:function(){return cuDecor;}});
+bindLive("cuHTML",{get:function(){return cuHTML;}});
+bindLive("cuK",{get:function(){return cuK;}});
+bindLive("cuNm",{get:function(){return cuNm;}});
+bindLive("cuNum",{get:function(){return cuNum;}});
+bindLive("cuOf",{get:function(){return cuOf;}});
+bindLive("cuSave",{get:function(){return cuSave;}});
+bindLive("cuSpeed",{get:function(){return cuSpeed;}});
 /* ================= v26: CUSTOMIZE (RU38 no. 2) =================
    S.cust (optional): {key: fields}. It sits in the play state, so Apply from the builder keeps it. Keys and fields:
    "n:<number>" numbers (ac, init, speed, save-STR, sk:<skill name>, pas-per, pas-ins, pas-inv): o override, b bonus, note.
@@ -25,13 +25,13 @@ export function cuK(k){ return S.cust&&typeof S.cust==="object"&&S.cust[k]||null
 function cuNum(v){ return v===""||v==null||isNaN(+v)?null:+v; }
 export function cuNm(k,n){ const c=cuK(k); return c&&c.nm?c.nm:n; }
 /* number with a custom bonus or override: adds a line to the breakdown */
-function cuApply(k,parts,tot){ const c=cuK("n:"+k); if(!c) return tot; __R.CU0["n:"+k+"|o"]=tot; const b=cuNum(c.b), o=cuNum(c.o);
+function cuApply(k,parts,tot){ const c=cuK("n:"+k); if(!c) return tot; lateGet("CU0")["n:"+k+"|o"]=tot; const b=cuNum(c.b), o=cuNum(c.o);
   if(b){ parts.push(part("Customize: bonus", b, c.note||"Set with Customize")); tot+=b; }
-  if(o!=null){ parts.push({l:"Set by you", v:cuFmtK(k,o), note:"Calculated value: "+cuFmtK(k,__R.CU0["n:"+k+"|o"])+". Your number replaces it.", raw:true}); tot=o; } return tot; }
+  if(o!=null){ parts.push({l:"Set by you", v:cuFmtK(k,o), note:"Calculated value: "+cuFmtK(k,lateGet("CU0")["n:"+k+"|o"])+". Your number replaces it.", raw:true}); tot=o; } return tot; }
 function cuFmtK(k,v){ return /^(save-|sk:|init|spatk)/.test(k)?sg(v):String(v); }
-function cuSpeed(sp,parts){ const c=cuK("n:speed"); if(!c) return sp; __R.CU0["n:speed|o"]=sp; const b=cuNum(c.b), o=cuNum(c.o);
+function cuSpeed(sp,parts){ const c=cuK("n:speed"); if(!c) return sp; lateGet("CU0")["n:speed|o"]=sp; const b=cuNum(c.b), o=cuNum(c.o);
   if(b){ parts.push({l:"Customize: bonus", v:(b>0?"+":"−")+Math.abs(b)+" ft", note:c.note||"Set with Customize", raw:true}); sp=Math.max(0,sp+b); }
-  if(o!=null){ parts.push({l:"Set by you", v:o+" ft", note:"Calculated value: "+__R.CU0["n:speed|o"]+" ft. Your number replaces it.", raw:true}); sp=Math.max(0,o); } return sp; }
+  if(o!=null){ parts.push({l:"Set by you", v:o+" ft", note:"Calculated value: "+lateGet("CU0")["n:speed|o"]+" ft. Your number replaces it.", raw:true}); sp=Math.max(0,o); } return sp; }
 export function cuW(i){ const c=cuK("i:"+invKey(i)), w=c?cuNum(c.w):null; return w!=null?w:num(i.w,0); }
 /* the customize key of a popup (info spec or breakdown key), with the original name */
 function cuOf(type,key){ const i=+key;
@@ -58,7 +58,7 @@ function cuBack(){ if(navStack.length>1){ $("#sheetBack").click(); } else closeS
 function cuSave(k,reset){ const kind=k.charAt(0), o={};
   if(!reset) $$("#sheetBody [data-cuf]").forEach((el) =>{ let f=el.getAttribute("data-cuf"), v=String(el.value||"").trim(); if(v==="") return;
     if(el.type==="number"){ if(isNaN(+v)) return; v=Math.round(+v); } else v=v.slice(0,f==="note"?600:80); o[f]=v; });
-  __R.undoMark("Customize"); S.cust=S.cust&&typeof S.cust==="object"?S.cust:{};
+  undoMark("Customize"); S.cust=S.cust&&typeof S.cust==="object"?S.cust:{};
   if(Object.keys(o).length) S.cust[k]=o; else delete S.cust[k]; if(!Object.keys(S.cust).length) delete S.cust;
-  save(); __R.renderAll(); cuBack(); __R.toastU(reset||!Object.keys(o).length?"Back to the normal values.":"Customized."); }
+  save(); renderAll(); cuBack(); toastU(reset||!Object.keys(o).length?"Back to the normal values.":"Customized."); }
 

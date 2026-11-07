@@ -1,4 +1,4 @@
-import {env} from "./00-env.js";/* Responsibility: notes sections and the Description page. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {bindLive} from "./00a-reg-late-ports.js";import {env} from "./00-env.js";/* Responsibility: notes sections and the Description page. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env (none used here). Shared names with other modules come from the imports below, late names through __R. */
 import {NOTE_FIELDS} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
@@ -6,9 +6,9 @@ import {$,esc,rich} from "./05-logic-helpers.js";
 import {__set_renderNotes,renderNotes} from "./08c-ui-render-inventory-features-notes.js";import {campName} from "./08-ui-render-sheet-and-actions.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {CHAR_FIELDS} from "./29-ui-ddb-look.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"noteSec",{get:function(){return noteSec;},set:function(v){noteSec=v;},configurable:true});
-Object.defineProperty(__R,"renderDesc",{get:function(){return renderDesc;},set:function(v){renderDesc=v;},configurable:true});
+
+bindLive("noteSec",{get:function(){return noteSec;}});
+bindLive("renderDesc",{get:function(){return renderDesc;}});
 /* ===== v31 p06 notes (B9, C8) ===== */
 const NOTE_ICO={org:"ui-flag",allies:"ui-users",enemies:"sk-intimidation",backstory:"ui-book",other:"ui-pen",session:"tab-notes"};
 function noteSec(f){ return '<section class="nsec"><label class="nsec-h" for="n-'+f.k+'">'+ico(NOTE_ICO[f.k]||"tab-notes","nsec-i")+'<span><b>'+f.l+'</b><small>'+esc(f.h)+'</small></span></label><textarea id="n-'+f.k+'" class="nsec-t grow" data-note="'+f.k+'" rows="2" placeholder="Write here">'+esc(S.notes[f.k]||"")+'</textarea></section>'; }

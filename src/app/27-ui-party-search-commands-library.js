@@ -1,4 +1,4 @@
-import {HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
+import {bindLive,cheatOpen,exhTo,futureOpen,goTab,lateGet,levelUp,rbOpen,rcptShow,recapOpen,redoNow,renderAll,statusCopy,statusText,tmOpen,toastU,undoLbl,undoMark,undoNow,wdOpen} from "./00a-reg-late-ports.js";import {HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,exTxt} from "./03-data-glossary.js";
 import {C,CKEY,DEF,FROZEN,KEY,S,__set_C,__set_S,clone,clsLv,save} from "./04-logic-storage.js";
 import {$,$$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
@@ -13,15 +13,15 @@ import {mq} from "./21-ui-tabs-pager.js";
 import {ico,icoItem} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {invKey} from "./23b-ui-items-containers.js";import {openRest} from "./23d-ui-rest.js";import {ordL,scAdj} from "./23e-ui-spells-dc.js";
 import {spClsJ} from "./24-ui-manage-spells.js";
 import {cuNm} from "./26-ui-customize.js";
-import {__R} from "./00-reg.js";
+
 import {PALWORD,PANEL,SEARCHGRP} from "./06a-logic-ui-registry.js";
-Object.defineProperty(__R,"bkpCamp",{get:function(){return bkpCamp;},set:function(v){bkpCamp=v;},configurable:true});
-Object.defineProperty(__R,"campKeep",{get:function(){return campKeep;},set:function(v){campKeep=v;},configurable:true});
-Object.defineProperty(__R,"campSel",{get:function(){return campSel;},set:function(v){campSel=v;},configurable:true});
-Object.defineProperty(__R,"gsHTML",{get:function(){return gsHTML;},set:function(v){gsHTML=v;},configurable:true});
-Object.defineProperty(__R,"gsMark",{get:function(){return gsMark;},set:function(v){gsMark=v;},configurable:true});
-Object.defineProperty(__R,"homeCamp",{get:function(){return homeCamp;},set:function(v){homeCamp=v;},configurable:true});
-Object.defineProperty(__R,"partyOpen",{get:function(){return partyOpen;},set:function(v){partyOpen=v;},configurable:true});
+bindLive("bkpCamp",{get:function(){return bkpCamp;}});
+bindLive("campKeep",{get:function(){return campKeep;}});
+bindLive("campSel",{get:function(){return campSel;}});
+bindLive("gsHTML",{get:function(){return gsHTML;}});
+bindLive("gsMark",{get:function(){return gsMark;}});
+bindLive("homeCamp",{get:function(){return homeCamp;},set:function(v){homeCamp=v;}});
+bindLive("partyOpen",{get:function(){return partyOpen;}});
 /* ================= v27: PARTY, CAMPAIGNS, SEARCH, SPELL CARDS, REPORT, FOUNDRY, PINNED SKILLS, OLD SHEET NOTICE ================= */
 /* RU60, RU69: summary of a character from its saved sheet and play state. derive() runs on that data, then on the open character again */
 function sumOf(Cc,Ss){ let c0=C,s0=S,out=null; if(!Cc||!Cc.abilities) return null;
@@ -88,7 +88,7 @@ SEARCHGRP.add("spells",{build:function(x){ const pick=x.pick, sc=x.sc; const sp=
 SEARCHGRP.add("attacks",{build:function(x){ const pick=x.pick, sc=x.sc; const at=pick((C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((p) =>{ return atkOn(p[0]); }),(p) =>{ return sc([p[0].n,cuNm("a:"+p[0].n,"")]); }); return at.length?["Attacks",at.map((p) =>{ return ['w:'+p[1],cuNm("a:"+p[0].n,p[0].n),sg(D.atk[p[1]].hit)+" to hit, "+D.atk[p[1]].dmg,"act-attack"]; })]:null; }});
 SEARCHGRP.add("inventory",{build:function(x){ const pick=x.pick, sc=x.sc; const iv=pick((C.inv||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("i:"+invKey(p[0]),"")]); }); return iv.length?["Inventory",iv.slice(0,30).map((p) =>{ return ['it:'+p[1],cuNm("i:"+invKey(p[0]),p[0].n),(p[0].type||"Item")+(num(p[0].q,1)>1?" ×"+num(p[0].q,1):""),typeof icoItem==="function"?icoItem(p[0]):"tab-inventory"]; })]:null; }});
 SEARCHGRP.add("features",{build:function(x){ const pick=x.pick, sc=x.sc; const ft=pick(featAll(),(x) =>{ return sc([x.f.n],[x.t]); }); return ft.length?["Features and Traits",ft.slice(0,30).map((x) =>{ return ['f:'+x.gi+'.'+x.fi,x.f.n,x.g,"ui-feature"]; })]:null; }});
-SEARCHGRP.add("rules",{build:function(x){ const pick=x.pick, sc=x.sc; const gl=pick(Object.keys(GLOSS).sort(),(k) =>{ return sc([k]); }); return gl.length?["Rules and Conditions",gl.slice(0,30).map((k) =>{ return ['g:'+k,k,GLOSS[k].c||"Rule",__R.ICO["cond-"+k.toLowerCase()]?"cond-"+k.toLowerCase():"ui-book"]; })]:null; }});
+SEARCHGRP.add("rules",{build:function(x){ const pick=x.pick, sc=x.sc; const gl=pick(Object.keys(GLOSS).sort(),(k) =>{ return sc([k]); }); return gl.length?["Rules and Conditions",gl.slice(0,30).map((k) =>{ return ['g:'+k,k,GLOSS[k].c||"Rule",lateGet("ICO")["cond-"+k.toLowerCase()]?"cond-"+k.toLowerCase():"ui-book"]; })]:null; }});
 SEARCHGRP.add("other-spells",{build:function(x){ const pick=x.pick, sc=x.sc; const mine=(C.spells||[]).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); return al.length?["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]:null; }});
 /* solid:orchestrator gsHTML */
 function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<input class="sp-q" id="gsQ" type="search" placeholder="Search, or type: dmg 7, heal 5" aria-label="Search the sheet or type a command" autocomplete="off" enterkeyhint="go" spellcheck="false" value="'+esc(gsQ)+'">';
@@ -113,8 +113,8 @@ function palHeal(n){ if(!n) return palNeed("heal"); const hp=num(S.hp,0), h2=Mat
 function palTemp(n){ if(!n) return palNeed("temp"); const tp=num(S.tmp,0);
   return {i:"hp-temp",t:"Temporary Hit Points "+n,s:"Temporary "+tp+" to "+n+(tp>n?". They do not add up, the new number replaces the old":""),run:function(){ palHp("temp",n); }}; }
 function palExh(n){ n=clamp(n,0,6); const e0=num(S.exh,0);
-  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?exTxt(n):"No penalty"),run:function(){ closeSheetIfOn(); __R.undoMark("Exhaustion"); __R.exhTo(n,true); __R.toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
-export function condSet(k,on){ closeSheetIfOn(); __R.undoMark((on?"Add ":"Remove ")+k); if(on) S.cond[k]=true; else delete S.cond[k]; save(); __R.renderAll(); __R.toastU(k+(on?" is on.":" is off.")); }
+  return {i:"cond-exhaustion",t:"Exhaustion "+n,s:"Now "+e0+". "+(n===6?"Level 6: your character dies":n?exTxt(n):"No penalty"),run:function(){ closeSheetIfOn(); undoMark("Exhaustion"); exhTo(n,true); toastU(S.exh===6?"Exhaustion 6: your character dies.":"Exhaustion "+S.exh+"."); }}; }
+export function condSet(k,on){ closeSheetIfOn(); undoMark((on?"Add ":"Remove ")+k); if(on) S.cond[k]=true; else delete S.cond[k]; save(); renderAll(); toastU(k+(on?" is on.":" is off.")); }
 function palCond(k){ const on=!S.cond[k]; return {i:"cond-"+k.toLowerCase(),t:(on?"Turn on ":"Turn off ")+k,s:"Condition, now "+(on?"off":"on"),run:function(){ condSet(k,on); }}; }
 function palVerb(h){ let V={dmg:["dmg","damage","dam","d","hit","hurt","-"],heal:["heal","h","hp","+","healing","cure"],temp:["temp","tmp","thp","temporary","temp hp","temporary hp","temporary hit points"],exh:["exh","exhaustion","exhausted","exhaust"]}, r="";
   Object.keys(V).forEach((k) =>{ if(!r&&V[k].indexOf(h)>=0) r=k; }); if(r||h.length<4) return r;
@@ -132,31 +132,31 @@ PALWORD.add("long rest", {words:function(){ return [
 PALWORD.add("rest", {words:function(){ return [
   {k:["rest"],f:function(){ return {i:"rest-short",t:"Rest",s:"Choose a Short Rest or a Long Rest",run:function(){ openRest("menu"); }}; }}]; }});
 PALWORD.add("inspiration", {words:function(){ return [
-  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ closeSheetIfOn(); const b=$("#insp"); if(b) b.click(); __R.toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }}]; }});
+  {k:["inspiration","heroic inspiration"],f:function(){ return {i:"ui-star",t:S.insp?"Spend Heroic Inspiration":"Gain Heroic Inspiration",s:"Heroic Inspiration, now "+(S.insp?"ready":"none"),run:function(){ closeSheetIfOn(); const b=$("#insp"); if(b) b.click(); toastU(S.insp?"Heroic Inspiration is ready.":"Heroic Inspiration spent."); }}; }}]; }});
 PALWORD.add("level up", {words:function(){ return [
-  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ closeSheetIfOn(); __R.levelUp(); }}; }}]; }});
+  {k:["level up","levelup"],f:function(){ return {i:"ui-levelup",t:"Level Up",s:D.level>=20?"Level 20 is the highest level":"Opens the builder at level "+(D.level+1),run:function(){ closeSheetIfOn(); levelUp(); }}; }}]; }});
 PALWORD.add("conditions", {words:function(){ return [
   {k:["conditions","condition"],f:function(){ return {i:"cond-poisoned",t:"Conditions",s:"Open the Conditions list",run:function(){ showEntry({type:"cond"},false); }}; }}]; }});
 PALWORD.add("exhaustion", {words:function(){ return [
   {k:["exhaustion"],f:function(){ return palNeed("exh"); }}]; }});
 PALWORD.add("history", {words:function(){ return [
-  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ __R.tmOpen(); }}; }}]; }});
+  {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ tmOpen(); }}; }}]; }});
 PALWORD.add("training ground", {words:function(){ return [
   {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ closeSheetIfOn(); tgGo(); }}; }}]; }});
 PALWORD.add("which die", {words:function(){ return [
-  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ __R.wdOpen(); }}; }}]; }});
+  {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ wdOpen(); }}; }}]; }});
 PALWORD.add("cheat sheet", {words:function(){ return [
-  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ __R.cheatOpen(); }}; }}]; }});
+  {k:["cheat sheet","table","rules summary"],f:function(){ return {i:"ui-book",t:"Table cheat sheet",s:"Your turn, the actions and your numbers on one page",run:function(){ cheatOpen(); }}; }}]; }});
 PALWORD.add("find a build", {words:function(){ return [
-  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ __R.rbOpen(); }}; }}]; }});
+  {k:["find a build","reverse builder","optimize","goal"],f:function(){ return {i:"ui-search",t:"Find a build",s:"Set goals like Armor Class 18, get builds that reach them",run:function(){ rbOpen(); }}; }}]; }});
 PALWORD.add("future", {words:function(){ return [
-  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ __R.futureOpen(); }}; }}]; }});
+  {k:["future","future sheet","plan","level 20"],f:function(){ return {i:"ui-levelup",t:"Future sheet",s:"Hit Points, attacks and spells up to level 20",run:function(){ futureOpen(); }}; }}]; }});
 PALWORD.add("recap", {words:function(){ return [
-  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ __R.recapOpen(); }}; }}]; }});
+  {k:["recap","session recap","session","summary"],f:function(){ return {i:"ui-book",t:"Session recap",s:"Damage, healing, spells and rolls of the last session",run:function(){ recapOpen(); }}; }}]; }});
 PALWORD.add("status", {words:function(){ return [
-  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:__R.statusText().slice(0,80),run:function(){ closeSheetIfOn(); __R.statusCopy(); }}; }}]; }});
+  {k:["status","copy status","chat status"],f:function(){ return {i:"ui-copy",t:"Copy status for chat",s:statusText().slice(0,80),run:function(){ closeSheetIfOn(); statusCopy(); }}; }}]; }});
 PALWORD.add("what changed", {words:function(){ return [
-  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ __R.rcptShow(); }}; }}]; }});
+  {k:["what changed","changes","update"],f:function(){ return {i:"ui-info",t:"What changed",s:"Numbers changed by the last update",run:function(){ rcptShow(); }}; }}]; }});
 PALWORD.add("tour", {words:function(){ return [
   {k:["tour","help","guide"],f:function(){ return {i:"ui-info",t:"Tour the app",s:"A short tour on your own sheet",run:function(){ closeSheetIfOn(); learnGo({place:"apptour"}); }}; }}]; }});
 PALWORD.add("learn", {words:function(){ return [
@@ -164,10 +164,10 @@ PALWORD.add("learn", {words:function(){ return [
 PALWORD.add("settings", {words:function(){ return [
   {k:["settings","options"],f:function(){ return {i:"ui-gear",t:"Settings",s:"Appearance, rules, and display",run:function(){ const b=$("#themeBtn"); if(b) b.click(); }}; }}]; }});
 PALWORD.add("undo", {words:function(){ return [
-  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof __R.undoLbl==="function"&&__R.undoLbl()?"Undo "+__R.undoLbl():"Take back the last change",run:function(){ closeSheetIfOn(); __R.undoNow(); }}; }}]; }});
+  {k:["undo"],f:function(){ return {i:"ui-undo",t:"Undo",s:typeof lateGet("undoLbl")==="function"&&undoLbl()?"Undo "+undoLbl():"Take back the last change",run:function(){ closeSheetIfOn(); undoNow(); }}; }}]; }});
 PALWORD.add("redo", {words:function(){ return [
-  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ closeSheetIfOn(); if(typeof __R.redoNow==="function") __R.redoNow(); }}; }}]; }});
-PALWORD.add("tabs", {words:function(){ const W=[]; PANEL.keys().forEach((id,ix) =>{ const t=PANEL.get(id); W.push({k:t.words,f:function(){ return {i:t.icon,t:"Go to "+t.label,s:"Open the "+t.label+" page",run:function(){ closeSheetIfOn(); __R.goTab(ix,t.tab||null); }}; }}); }); return W; }});
+  {k:["redo"],f:function(){ return {i:"ui-redo",t:"Redo",s:"Do again what Undo took back",run:function(){ closeSheetIfOn(); if(typeof lateGet("redoNow")==="function") redoNow(); }}; }}]; }});
+PALWORD.add("tabs", {words:function(){ const W=[]; PANEL.keys().forEach((id,ix) =>{ const t=PANEL.get(id); W.push({k:t.words,f:function(){ return {i:t.icon,t:"Go to "+t.label,s:"Open the "+t.label+" page",run:function(){ closeSheetIfOn(); goTab(ix,t.tab||null); }}; }}); }); return W; }});
 PALWORD.add("condition-toggles", {words:function(){ const W=[]; STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).forEach((k) =>{ W.push({k:[k.toLowerCase()],f:function(){ return palCond(k); }}); }); return W; }});
 /* solid:orchestrator palWords */
 function palWords(){ const W=[]; PALWORD.list().forEach((p) =>{ p.words().forEach((w) =>{ W.push(w); }); }); return W; }
@@ -183,8 +183,8 @@ function palHelp(){ const ex=[["dmg 7","hp-damage"],["heal 5","hp-heal"],["temp 
   return '<p class="info-d gs-hint">Search spells, items, features, and rules, or type a command.'+(mq.matches?'':' '+(mac?'Cmd+K':'Ctrl+K')+' or / opens this. Arrow keys choose, Enter runs.')+'</p><div class="gs-ex" aria-label="Examples">'+ex.map((x) =>{ return '<button type="button" class="chip gs-x press" data-gsfill="'+esc(x[0])+'">'+ico(x[1])+'<span>'+esc(x[0])+'</span></button>'; }).join("")+'</div>'; }
 export function gsRows(){ return $$("#sheetBody .gs-c, #sheetBody .gs-r"); }
 export function gsMark(scroll){ const L=gsRows(); if(gsSel>=L.length) gsSel=0; L.forEach((r,i) =>{ r.classList.toggle("sel",i===gsSel); }); if(scroll&&L[gsSel]) try{ L[gsSel].scrollIntoView({block:"nearest"}); }catch(er){} }
-export function palFill(v){ const q=$("#gsQ"); if(!q) return; q.value=v; gsQ=v; clearTimeout(__R.gsT); gsRefresh(); q.focus(); try{ q.setSelectionRange(v.length,v.length); }catch(er){} }
-export function gsSync(){ const q=$("#gsQ"); if(q&&q.value!==gsShown){ clearTimeout(__R.gsT); gsQ=q.value; gsRefresh(); } }
+export function palFill(v){ const q=$("#gsQ"); if(!q) return; q.value=v; gsQ=v; clearTimeout(lateGet("gsT")); gsRefresh(); q.focus(); try{ q.setSelectionRange(v.length,v.length); }catch(er){} }
+export function gsSync(){ const q=$("#gsQ"); if(q&&q.value!==gsShown){ clearTimeout(lateGet("gsT")); gsQ=q.value; gsRefresh(); } }
 export function openSearch(){ __set_navStack([{type:"search"}]); openSheet("Search", gsHTML(), "search", true); gsMark(); setTimeout(() =>{ const q=$("#gsQ"); if(q){ q.focus(); try{ q.select(); }catch(er){} } },120); }
 export function gsRefresh(){ if(sheetMode!=="search") return; const b=$("#sheetBody"), q=$("#gsQ"); if(!b) return; if(!q){ b.innerHTML=gsHTML(); return; }
   const t=document.createElement("div"); t.innerHTML=gsHTML(); const ni=t.querySelector("#gsQ"); if(ni) ni.remove();

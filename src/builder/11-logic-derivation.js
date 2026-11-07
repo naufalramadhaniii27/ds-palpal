@@ -1,24 +1,24 @@
-import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
+import {bindLive,clsLv as clsLv$L,toSheet,xl14} from "./01b-logic-late-ports.js";import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
 import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.js";
 import {luMax} from "./10-logic-v17-additions.js";
-import {__R} from "./00-reg.js";
+
 import {MCL,TL,baseOf,bindLate,spOptFx} from "./01b-logic-late-ports.js";
 import {gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 import {abOfPick,chPick,fxSources,runFxPhase,foldFxPhase,fxCondRule,fxValueRule} from "./10a-logic-fx-registry.js";
 import "./10d-logic-fx-rules-cond-value.js";
 import "./10b-logic-fx-handlers-entry.js";
 import {applyAbilityPatch} from "./10c-logic-fx-handlers-ability.js";
-Object.defineProperty(__R,"casterParts",{get:function(){return casterParts;},set:function(v){casterParts=v;},configurable:true});
-Object.defineProperty(__R,"clsLv",{get:function(){return clsLv;},set:function(v){clsLv=v;},configurable:true});
-Object.defineProperty(__R,"clsParts",{get:function(){return clsParts;},set:function(v){clsParts=v;},configurable:true});
-Object.defineProperty(__R,"featsOf",{get:function(){return featsOf;},set:function(v){featsOf=v;},configurable:true});
-Object.defineProperty(__R,"resKey",{get:function(){return resKey;},set:function(v){resKey=v;},configurable:true});
-Object.defineProperty(__R,"spLists",{get:function(){return spLists;},set:function(v){spLists=v;},configurable:true});
-Object.defineProperty(__R,"spRec",{get:function(){return spRec;},set:function(v){spRec=v;},configurable:true});
-Object.defineProperty(__R,"spellAb",{get:function(){return spellAb;},set:function(v){spellAb=v;},configurable:true});
+bindLive("casterParts",{get:function(){return casterParts;}});
+bindLive("clsLv",{get:function(){return clsLv;}});
+bindLive("clsParts",{get:function(){return clsParts;}});
+bindLive("featsOf",{get:function(){return featsOf;}});
+bindLive("resKey",{get:function(){return resKey;}});
+bindLive("spLists",{get:function(){return spLists;}});
+bindLive("spRec",{get:function(){return spRec;}});
+bindLive("spellAb",{get:function(){return spellAb;}});
 /* ---------- derivation ---------- */
 export {abOfPick};
 export function abil(){
@@ -54,7 +54,7 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
    FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
    cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
    gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
-function fxv(v,e){if(typeof v==="number")return v;const L=TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return __R.clsLv("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxv(v,e){if(typeof v==="number")return v;const L=TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return clsLv$L("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
 function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;const f=fxCondRule(c);return f?f(ar,ESH,EA,B.inv||[]):true}/* cond words: tables in 10d */
@@ -86,11 +86,11 @@ export function gxKey(e,k){const m=e.pre?/^m(\d+):/.exec(e.pre):null;return "gx-
 /* C.fxToggles: every toggle available to the character */
 export function fxToggles(){const seen={},out=[];gfx().forEach((e) =>{if(!e.toggle||seen[e.toggle.id])return;seen[e.toggle.id]=1;out.push({id:e.toggle.id,label:e.toggle.label||e.n,on:!!e.tgOn,src:e.lbl})});return out}
 export {fxv,fxVal,fxOk,fxCh};
-Object.defineProperty(__R,"classFx",{get:function(){return classFx;},set:function(v){classFx=v;},configurable:true});
+
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
 export function isThird3(x){const ts=thirdSubs();if(ts&&ts[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
-export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?__R.xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
+export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
 export function thirdOf(sub){const t=(thirdSubs()&&thirdSubs()[sub])||{};return {list:t.list||"Wizard",ab:t.ab||"INT",cant:t.cant!=null?t.cant:(/^Arcane Trickster/.test(sub)?3:2)}}
 /* M9: chosen spells per caster class. B.sp = first caster class (old builds), B.spm[cls] = other classes. A B.sp spell that is not on the first
    class list but is on another caster class list belongs to that class (read only, B is not changed) */
@@ -148,7 +148,7 @@ export function manualLost(P,C){const out={attacks:[],res:[]};try{if(!P||!C)retu
    before the inventory and cleared after it). Outside toSheet() a fresh toSheet() runs. Inside a __inTS guard without ATKC (__itemMeta for an
    old manual sheet): null, so the caller keeps its own numbers and toSheet() is never re-entered */
 export var ATKC=null;
-export function atkRowFor(n){let L=ATKC;if(!L){if(inTS())return null;L=__R.toSheet().attacks}for(let i=0;i<L.length;i++)if(L[i].n===n)return L[i];return null}
+export function atkRowFor(n){let L=ATKC;if(!L){if(inTS())return null;L=toSheet().attacks}for(let i=0;i<L.length;i++)if(L[i].n===n)return L[i];return null}
 
 export function __set_SPX(v){ return SPX=v; }
 export function __set_ATKC(v){ return ATKC=v; }

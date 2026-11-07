@@ -1,14 +1,14 @@
-import {HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
+import {bindLive,buildPrint} from "./00a-reg-late-ports.js";import {HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {C} from "./04-logic-storage.js";
 import {eqOn} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {ico,icoCls,icoItem,icoText} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {ICO} from "./29c-data-ddb-icons.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"ICO_CAT",{get:function(){return ICO_CAT;},set:function(v){ICO_CAT=v;},configurable:true});
-Object.defineProperty(__R,"ICO_TXT",{get:function(){return ICO_TXT;},set:function(v){ICO_TXT=v;},configurable:true});
-Object.defineProperty(__R,"icoSp",{get:function(){return icoSp;},set:function(v){icoSp=v;},configurable:true});
-Object.defineProperty(__R,"toastKind",{get:function(){return toastKind;},set:function(v){toastKind=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("ICO_CAT",{get:function(){return ICO_CAT;},set:function(v){ICO_CAT=v;}});
+bindLive("ICO_TXT",{get:function(){return ICO_TXT;},set:function(v){ICO_TXT=v;}});
+bindLive("icoSp",{get:function(){return icoSp;}});
+bindLive("toastKind",{get:function(){return toastKind;}});
 /* ================= v24: ICONS (RU73) ================= */
 /* Every icon is drawn for this app (v24-tests/icons). Decorative icons sit next to a text label, so they carry no title and are hidden from
    screen readers. icoDecorate() adds them to what is drawn, also later (MutationObserver), and marks each element so it runs once */
@@ -102,7 +102,7 @@ function icoAll(root){ const q=function(s){ return Array.prototype.slice.call(ro
   q(".dmgt")/* v32 p91: .abox already shows the damage type icon */.forEach((s) =>{ const k=ICO_DT[s.textContent.trim().toLowerCase()]; if(k) icoPut(s,k); });
   q("#bld .ititle, #bld .it-n, #bld .mi-n").forEach((n) =>{ const sub=n.parentNode&&n.parentNode.textContent; const k=icoItemType(sub); if(k) icoPut(n,k); });
 }
-env.__ICO=ICO; env.__buildPrint=function(){ __R.buildPrint(); };/* v24: for tests */
+env.__ICO=ICO; env.__buildPrint=function(){ buildPrint(); };/* v24: for tests */
 /* q: toasts show what kind of message they are */
 export function toastKind(m){ m=String(m||""); return /\b(cannot|could not|can't|couldn't|isn't|failed|not valid|not a character|is blocked|was not|No room|too big|is full|Not enough|Limit reached|already used|need at least|None left|no .{1,30} left)\b/i.test(m)?"error":/^0 Hit Points|Unconscious|ended\b|Over capacity|over capacity/.test(m)?"warn":/^(Check|Answer|Choose|Build this|Pick|Turn|Finish|Fill|Type|Paste|Open Build first|You are attuned|You can|This build is already)/.test(m)||/Still to check|not chosen yet|Not saved/i.test(m)?"warn":"ok"; }
 

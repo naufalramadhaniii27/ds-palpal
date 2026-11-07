@@ -4,7 +4,7 @@ Runs tsc (tools/build/node_modules/typescript, version locked in tools/build/pac
 Errors are counted per file and compared with tools/ts-baseline.json:
   a file listed with 0, or not listed, must stay at 0 (a new error fails the run)
   a file with a number may go down but not up (the ratchet; the number falls as files are cleaned, and --update writes the new numbers)
-One kind of message is not counted: TS2630 on a line with Object.defineProperty(__R, ...). That line is the module hook that lets other modules replace an imported function (ESM step), by design.
+One kind of message is not counted: TS2630 on a line with Object.defineProperty(__R, ...) or bindLive( (stage 10 late ports). That line is the module hook that lets other modules replace an imported function (ESM step), by design.
 Last stdout line: SCORE <errors left>, the sum over all files, so tools/score.py can measure it. Exit 1 when a file got worse."""
 import json, os, re, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT)
@@ -17,7 +17,8 @@ for ln in r.stdout.splitlines():
     f, row, col, code, msg = m.group(1), int(m.group(2)), int(m.group(3)), m.group(4), m.group(5)
     if code == "TS2630":
         try:
-            if "defineProperty(" in open(f, encoding="utf-8").read().split("\n")[row - 1]: continue
+            _ln = open(f, encoding="utf-8").read().split("\n")[row - 1]
+            if "defineProperty(" in _ln or "bindLive(" in _ln: continue
         except Exception: pass
     counts[f] = counts.get(f, 0) + 1; lines.setdefault(f, []).append("%s(%d,%d) %s %s" % (f, row, col, code, msg[:110]))
 base_path = os.path.join(ROOT, "tools", "ts-baseline.json")

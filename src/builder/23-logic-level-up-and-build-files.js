@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {bindLive,choiceList,lateGet,withB,__set_step,ask,issueText,ruleIssues,spInfoPart,qbBook,qbFill,qbMI,qbSpells,copyOf,own,render,sid,stamp,stepBack} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
@@ -10,13 +10,13 @@ import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,allPacks,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
-import {__set_step,ask,step} from "./17-ui-step-builder.js";
-import {SMAP,issueText,ruleIssues,spInfoPart} from "./18-ui-spells.js";
-import {qbBook,qbFill,qbMI,qbSpells} from "./21-ui-rules-reference.js";
-import {copyOf,own,render,sid,stamp,stepBack} from "./22-ui-shell.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"toSheetApply",{get:function(){return toSheetApply;},set:function(v){toSheetApply=v;},configurable:true});
-Object.defineProperty(__R,"unList",{get:function(){return unList;},set:function(v){unList=v;},configurable:true});
+
+
+
+
+
+bindLive("toSheetApply",{get:function(){return toSheetApply;}});
+bindLive("unList",{get:function(){return unList;}});
 /* v22 RU52: Level Up from the sheet. Opens the build of this character and raises the main class one level. New choices show the usual marks */
 /* v22 P1: names and numbers of a build file. err stops the import, warn is shown before it */
 genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
@@ -31,7 +31,7 @@ genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
   const C0=CLASSES[b.cls];if(b.sub&&b.sub!=="__custom"&&!(C0.subs||{})[b.sub])warn.push("subclass \""+b.sub+"\" for "+b.cls);
   (Array.isArray(b.mc)?b.mc:[]).forEach((m) =>{if(!CLASSES[m.cls])warn.push("multiclass \""+m.cls+"\"");else if(m.sub&&!(CLASSES[m.cls].subs||{})[m.sub])warn.push("subclass \""+m.sub+"\" for "+m.cls)});
   ABK.forEach((k) =>{let v=(b.base||{})[k];if(v==null)return;v=+v;if(!(v>=3&&v<=20&&Math.floor(v)===v))warn.push(k+" score "+(b.base||{})[k])});
-  let sp=[].concat(b.sp||[]);Object.keys(b.spm||{}).forEach((k) =>{sp=sp.concat(b.spm[k]||[])});const bs=sp.filter((n) =>{return !SMAP[n]});if(bs.length)warn.push("spells "+bs.join(", "));
+  let sp=[].concat(b.sp||[]);Object.keys(b.spm||{}).forEach((k) =>{sp=sp.concat(b.spm[k]||[])});const bs=sp.filter((n) =>{return !lateGet("SMAP")[n]});if(bs.length)warn.push("spells "+bs.join(", "));
   const bi=(Array.isArray(b.inv)?b.inv:[]).map((x) =>{return x&&x.n}).filter((n) =>{if(!n)return false;const bo=baseOf(n).b;return !(WEAPONS[bo]||ARMOR[bo]||bo==="Shield"||DMAP[n]||itemCost(bo)!=null||/^Spell Scroll \(/.test(n)||(typeof POTIONS!=="undefined"&&POTIONS.some((p) =>{return p[0]===n})))});if(bi.length)warn.push("items "+bi.join(", "));
   const bf=[];Object.keys(b.ch||{}).forEach((k) =>{const v=b.ch[k];if(v&&typeof v==="object"&&!Array.isArray(v)&&v.feat&&!FEATS[v.feat])bf.push(v.feat)});if(bf.length)warn.push("feats "+bf.join(", "));
  }finally{__set_B(keep);applyPacks()}
@@ -104,7 +104,7 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
    if(b.bg2&&ab.indexOf(b.bg2)<0){const n2=best(b.bg1&&ab.indexOf(b.bg1)>=0?b.bg1:"");notes.push(b.bg+" cannot raise "+b.bg2+", so the +2 goes to "+n2);b.bg2=n2}
    if(b.bg1&&(ab.indexOf(b.bg1)<0||b.bg1===b.bg2)){const n1=best(b.bg2);notes.push(b.bg1===b.bg2?"The +1 cannot go to "+b.bg1+" again, so it goes to "+n1:b.bg+" cannot raise "+b.bg1+", so the +1 goes to "+n1);b.bg1=n1}}}
  /* spells */
- const SN=Object.keys(SMAP),gone=[];
+ const SN=Object.keys(lateGet("SMAP")),gone=[];
  function spl(list){const out=[];arr(list).forEach((n) =>{const r=pick(n,SN);if(!r){if(n)gone.push(n);return}said(n,r);if(out.indexOf(r.v)<0)out.push(r.v)});return out}
  b.sp=spl(b.sp);if(b.spm&&typeof b.spm==="object"){const sm={};Object.keys(b.spm).forEach((c) =>{const r=pick(c,Object.keys(CLASSES));if(r)sm[r.v]=spl(b.spm[c])});b.spm=sm}
  if(b.pk&&typeof b.pk==="object")Object.keys(b.pk).forEach((k) =>{const p=b.pk[k];if(!p||typeof p!=="object")return;if(p.c)p.c=spl(p.c);if(p.s)p.s=spl(p.s);if(p.ab!=null){const a=abl(p.ab);if(a)p.ab=a;else delete p.ab}});
@@ -124,7 +124,7 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
   /* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
   left=left.filter((name) =>{const v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};let i=0;while(b.pk["mi"+i])i++;
    const ab=v.ab||v.ability;b.pk["mi"+i]={c:arr(v.c||v.cantrips||[]),s:arr(v.s||v.spells||v.spell||[]),ab:ab?(abl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
-  for(let pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=__R.withB(b,__R.choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map((c) =>{return c.key});
+  for(let pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=withB(b,choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map((c) =>{return c.key});
    left=left.filter((name) =>{const val=byName[name];if(KS.indexOf(name)>=0){ch0[name]=val;return false}
     const nn=nk(name),lab=function(c){const t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
     let E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return nk(x)===nn})});
@@ -163,12 +163,12 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  return {err:err,notes:notes,b:b}};
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
 genv.__bldAuto=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=structuredClone(B)}finally{__set_B(keep);applyPacks()}return out};
-genv.__bldFeatViol=function(b){return __R.withB(b,featViol)};
+genv.__bldFeatViol=function(b){return withB(b,featViol)};
 function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
  const all=function(){let s=[],o=spLists();for(const k in o)s=s.concat(o[k]);return s};
  cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b),n=function(K){return K?SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max}).length:0};return n(ka)-n(kb)}).forEach((P) =>{const K=spInfoPart(P);if(!K)return;/* the class with the shortest list picks first, so a shared spell does not leave it short */const L=SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max});
   L.sort((a,b) =>{return ((DMG.indexOf(b[0])>=0)-(DMG.indexOf(a[0])>=0))||(b[1]-a[1])});
-  [0,1].forEach((kind) =>{L.forEach((x) =>{const t=(spLists()[P.cls]||[]).map((n) =>{return SMAP[n]}).filter(Boolean),nc=t.filter((y) =>{return !y[1]}).length,np=t.filter((y) =>{return y[1]}).length;
+  [0,1].forEach((kind) =>{L.forEach((x) =>{const t=(spLists()[P.cls]||[]).map((n) =>{return lateGet("SMAP")[n]}).filter(Boolean),nc=t.filter((y) =>{return !y[1]}).length,np=t.filter((y) =>{return y[1]}).length;
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
  const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
  const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */

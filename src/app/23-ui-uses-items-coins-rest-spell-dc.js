@@ -1,30 +1,30 @@
-import {exSpd} from "./03-data-glossary.js";
+import {bindLive,chMaxH,lateGet,lateSet} from "./00a-reg-late-ports.js";import {exSpd} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
 import {esc,num,sg} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {boxes,used} from "./08-ui-render-sheet-and-actions.js";
 import {html,render} from "./lib/html.js";
 import {dtIcon,spPact,svgI} from "./22-ui-spell-data-and-slots.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"akIcon",{get:function(){return akIcon;},set:function(v){akIcon=v;},configurable:true});
-Object.defineProperty(__R,"atkKind",{get:function(){return atkKind;},set:function(v){atkKind=v;},configurable:true});
-Object.defineProperty(__R,"ctOf",{get:function(){return ctOf;},set:function(v){ctOf=v;},configurable:true});
-Object.defineProperty(__R,"ico",{get:function(){return ico;},set:function(v){ico=v;},configurable:true});
-Object.defineProperty(__R,"icoCls",{get:function(){return icoCls;},set:function(v){icoCls=v;},configurable:true});
-Object.defineProperty(__R,"itemRes",{get:function(){return itemRes;},set:function(v){itemRes=v;},configurable:true});
-Object.defineProperty(__R,"manCost",{get:function(){return manCost;},set:function(v){manCost=v;},configurable:true});
-Object.defineProperty(__R,"renderSpeedDef",{get:function(){return renderSpeedDef;},set:function(v){renderSpeedDef=v;},configurable:true});
-Object.defineProperty(__R,"resBoxes",{get:function(){return resBoxes;},set:function(v){resBoxes=v;},configurable:true});
-Object.defineProperty(__R,"resOf",{get:function(){return resOf;},set:function(v){resOf=v;},configurable:true});
-Object.defineProperty(__R,"resPips",{get:function(){return resPips;},set:function(v){resPips=v;},configurable:true});
-Object.defineProperty(__R,"resTail",{get:function(){return resTail;},set:function(v){resTail=v;},configurable:true});
-Object.defineProperty(__R,"saveNotesH",{get:function(){return saveNotesH;},set:function(v){saveNotesH=v;},configurable:true});
-Object.defineProperty(__R,"tyIcon",{get:function(){return tyIcon;},set:function(v){tyIcon=v;},configurable:true});
+
+bindLive("akIcon",{get:function(){return akIcon;}});
+bindLive("atkKind",{get:function(){return atkKind;}});
+bindLive("ctOf",{get:function(){return ctOf;}});
+bindLive("ico",{get:function(){return ico;}});
+bindLive("icoCls",{get:function(){return icoCls;}});
+bindLive("itemRes",{get:function(){return itemRes;}});
+bindLive("manCost",{get:function(){return manCost;}});
+bindLive("renderSpeedDef",{get:function(){return renderSpeedDef;}});
+bindLive("resBoxes",{get:function(){return resBoxes;}});
+bindLive("resOf",{get:function(){return resOf;}});
+bindLive("resPips",{get:function(){return resPips;}});
+bindLive("resTail",{get:function(){return resTail;}});
+bindLive("saveNotesH",{get:function(){return saveNotesH;}});
+bindLive("tyIcon",{get:function(){return tyIcon;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
-export function icoText(el){ const t=(el.getAttribute("aria-label")||el.textContent||"").replace(/\s+/g," ").trim(); for(let i=0;i<__R.ICO_TXT.length;i++) if(__R.ICO_TXT[i][0].test(t)) return __R.ICO_TXT[i][1]; return ""; }
+export function icoText(el){ const t=(el.getAttribute("aria-label")||el.textContent||"").replace(/\s+/g," ").trim(); for(let i=0;i<lateGet("ICO_TXT").length;i++) if(lateGet("ICO_TXT")[i][0].test(t)) return lateGet("ICO_TXT")[i][1]; return ""; }
 export function icoItem(it){ if(!it) return "item-gear"; const n=it.n||"", t=String(it.type||"")+" "+(it.rar||""), b=n.replace(/, \+\d$/,"");
-  if(!__R.ICO_CAT&&typeof DMGI!=="undefined"){ __R.ICO_CAT={}; DMGI.forEach((x) =>{ __R.ICO_CAT[x[0]]=x[1]; }); }
-  const cat=(__R.ICO_CAT&&(__R.ICO_CAT[n]||__R.ICO_CAT[n.replace(/ \(.*\)$/,"")]))||(/^(Rod|Staff|Wand|Ring|Potion|Scroll|Wondrous Item)\b/.exec(String(it.type||""))||[""])[0];/* R2-2: the item type when the DMG list has no entry *//* v24 M4: the DMG category decides for magic items */
+  if(!lateGet("ICO_CAT")&&typeof DMGI!=="undefined"){ lateSet("ICO_CAT",{}); DMGI.forEach((x) =>{ lateGet("ICO_CAT")[x[0]]=x[1]; }); }
+  const cat=(lateGet("ICO_CAT")&&(lateGet("ICO_CAT")[n]||lateGet("ICO_CAT")[n.replace(/ \(.*\)$/,"")]))||(/^(Rod|Staff|Wand|Ring|Potion|Scroll|Wondrous Item)\b/.exec(String(it.type||""))||[""])[0];/* R2-2: the item type when the DMG list has no entry *//* v24 M4: the DMG category decides for magic items */
   if(typeof ctOf==="function"&&ctOf(n)) return "item-container"; if(/^(Arrows|Bolts|Sling Bullets|Needles|Firearm Bullets)\b|^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet), \+/.test(n)) return "item-ammo";
   if(cat&&!(typeof ctOf==="function"&&ctOf(n))){ if(/^Armor/.test(cat)) return /^Shield\b|\bShield$|, Shield|Shield,/.test(n)?"item-shield":"item-armor"; if(/^Weapon/.test(cat)) return /^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet|Ammunition)/.test(n)?"item-ammo":"item-weapon";
     const K={Potion:"item-potion",Ring:"item-ring",Rod:"item-rod",Scroll:"item-scroll",Staff:"item-staff",Wand:"item-wand","Wondrous Item":"item-wondrous"}; for(const k in K) if(cat.indexOf(k)===0) return K[k]; }
@@ -38,7 +38,7 @@ export function icTint(k){ k=String(k||""); const p=k.split("-")[0], r=k.slice(p
   if(p==="dt") return IC_DT[r]?r:"";
   if(k==="hp-heal"||k==="death-success"||k==="toast-ok") return "heal"; if(k==="hp-damage"||k==="death-fail"||k==="toast-error") return "dmg"; if(k==="hp-temp") return "temp"; if(k==="toast-warn") return "warn";
   return ({cond:"cond",school:"arcane",sense:"sense",speed:"sense",coin:"gold",res:"res",tag:"arcane",def:"res"})[p]||""; }
-export function ico(k,cls,label){ const d=__R.ICO[k]; if(!d) return ""; const t=icTint(k); return '<svg class="ico '+(cls||"")+'"'+(t?' data-ic="'+t+'"':'')+' viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(label?'role="img" aria-label="'+esc(label)+'"><title>'+esc(label)+'</title>':'aria-hidden="true" focusable="false">')+'<path d="'+d+'"/></svg>'; }
+export function ico(k,cls,label){ const d=lateGet("ICO")[k]; if(!d) return ""; const t=icTint(k); return '<svg class="ico '+(cls||"")+'"'+(t?' data-ic="'+t+'"':'')+' viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(label?'role="img" aria-label="'+esc(label)+'"><title>'+esc(label)+'</title>':'aria-hidden="true" focusable="false">')+'<path d="'+d+'"/></svg>'; }
 /* ================= v17 ================= */
 /* RU40: every Limited Use row of a feature (several rows can belong to one feature, f = feature or item name) */
 export function resOf(name){ return (D.res||[]).filter((q) =>{ return q.n===name||q.f===name; }); }
@@ -47,7 +47,7 @@ function resPips(rl){ const p=rl.filter((r) =>{ return !r.pool; }); return p.len
 function resTail(rl,so){ const rest=so&&(so.m||[]).some((x) =>{ return /Rest/.test(x); }); return rl.map((r) =>{ if(so&&!r.pool) return rest?'':'<div class="fres">'+resetTxt(r)+'</div>'; return resBoxes([r]); }).join(""); }
 function manCost(rl){ const r=rl.filter((q) =>{ return !q.pool; })[0]; if(!r) return ""; const left=r.max-used(r.k,r.max); return '<div class="sum-m"><span class="supd" data-k="'+r.k+'">'+ico("ui-dice","sum-i")+'<span>1 '+esc(String(r.n).replace(/Dice$/,"Die"))+'. <b>'+left+'</b> left</span></span></div>'; }
 function resBoxes(rl){ return rl.map((r) =>{ return '<div class="fuse">'+(rl.length>1||r.n!==r.f?esc(r.n)+': ':'')+(r.pool?'Points:':'Used:')+'</div><div class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n,r.pool)+'</div><div class="fres">'+resetTxt(r)+'</div>'; }).join(""); }
-function itemRes(it){ const rl=resOf(it.n); return rl.length?'<div class="fsub ires">'+resBoxes(rl)+rl.map(__R.chMaxH).join("")+'</div>':''; }
+function itemRes(it){ const rl=resOf(it.n); return rl.length?'<div class="fsub ires">'+resBoxes(rl)+rl.map(chMaxH).join("")+'</div>':''; }
 function resetTxt(r){ return {short:"Resets on a Short or Long Rest",short1:"One use back on a Short Rest, all on a Long Rest",long:"Resets on a Long Rest",none:"Does not reset on a rest"}[r.reset]||""; }
 /* RU35 no. 4: icon of the kind of attack */
 export var AK_ICON={melee:"M14 3h7v7L10 21l-7-7zM6 14l4 4",ranged:"M4 20L20 4M13 4h7v7M5 13c3 0 6 3 6 6",spell:"M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1z",unarmed:"M7 11V7a2 2 0 0 1 4 0v4M11 9V6a2 2 0 0 1 4 0v5M15 9a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a6 6 0 0 1-6-6v-2a2 2 0 0 1 4 0",feature:"M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"};

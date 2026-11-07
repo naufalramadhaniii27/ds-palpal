@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__set_step,__set_clsTab,choiceStep,ruleIssues,spInfo,spInfoPart,spellCounts,itemDetail,itemType,ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt,copyOf,go,own,render,stamp} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
@@ -17,16 +17,16 @@ import {allPackSteps,registerPackStep,PACK_PHASES,PACK_TABLES} from "./13a-logic
 import {queryNames} from "./01a-logic-query-registry.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
-import {STEPS,__set_openCards,__set_pickCls,__set_pickSp,__set_step,openCards,pickCls,pickSp,step} from "./17-ui-step-builder.js";
-import {SMAP,__set_clsTab,choiceStep,clsTab,ruleIssues,spInfo,spInfoPart,spellCounts} from "./18-ui-spells.js";
-import {itemDetail,itemType} from "./20-ui-steps-equipment-next.js";
-import {ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt} from "./21-ui-rules-reference.js";
-import {copyOf,go,own,render,stamp} from "./22-ui-shell.js";
+
+
+
+
+
 import {blankC,unList} from "./23-logic-level-up-and-build-files.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"bldMine",{get:function(){return bldMine;},set:function(v){bldMine=v;},configurable:true});
-Object.defineProperty(__R,"choiceList",{get:function(){return choiceList;},set:function(v){choiceList=v;},configurable:true});
-Object.defineProperty(__R,"withB",{get:function(){return withB;},set:function(v){withB=v;},configurable:true});
+
+bindLive("bldMine",{get:function(){return bldMine;}});
+bindLive("choiceList",{get:function(){return choiceList;}});
+bindLive("withB",{get:function(){return withB;}});
 /* v32 RU134: open a pack of the build into its container and items. soft: rebuild the sheet from the build. false: not this character, not a pack, or Qty 0 */
 genv.__bldUnpack=function(name,owner,occ,soft){ensureInv();if(!own(owner))return false;const i=invFind(name,occ);if(i<0||!unpackAt(i))return false;save();if(soft&&genv.__sheetSoft)genv.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 genv.__itemMeta=function(n){const c=[n],pm=/\(([^)]+)\)/.exec(n);if(pm)c.push(pm[1]);for(let k=0;k<c.length;k++){const b=baseOf(c[k]).b;if(WEAPONS[b]||ARMOR[b]||b==="Shield"||DMAP[c[k]]||itemCost(b)!=null){let html="";genv.__inTS=1;try{html=itemDetail(c[k],{n:c[k]})}catch(e){}genv.__inTS=0;return {type:itemType(c[k]),cost:itemCost(b),w:itemW(c[k]),equippable:equippable(c[k])||!!(DMAP[c[k]]&&DMAP[c[k]][1]!=="Potion"),html:html,cost:PRICE[c[k]]!=null?PRICE[c[k]]:itemCost(b),/* v20 M1 */att:!!(DMAP[c[k]]&&DMAP[c[k]][3])}}}return null};
@@ -54,7 +54,7 @@ function choiceList(){const cs=choices().map((c) =>{return {key:c.key,t:c.t,n:c.
  casterParts().forEach((p) =>{if(p.xl&&p.xl.length)cs.push({key:"lists:"+p.cls,t:"lists",n:p.xl.length,list:p.xl,title:p.cls+" extra spell lists",feature:"Magical Secrets",done:true,step:"class"})});/* tests only: Magical Secrets */
  return cs}
 function withB(b,fn){const keep=B;if(!b)return fn();try{const x=structuredClone(b);for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x));applyPacks();return fn()}finally{__set_B(keep);applyPacks()}}
-genv.__bldChoiceList=function(b){return withB(b,choiceList)};genv.__bldHasSpell=function(n){return !!SMAP[n]&&!!SPELL_FULL[n]};genv.__bldItems=function(b){return withB(b,() =>{return DMGI.map((r) =>{return r[0]})})};genv.__bldQLive=function(b){return withB(b,() =>{const o={};Object.keys(genv.QLIVE||{}).forEach((c) =>{o[c]=genv.QLIVE[c].map((r) =>{return r.n})});return o})};/* test hooks: magic item names and Library reference rows while build b is open */
+genv.__bldChoiceList=function(b){return withB(b,choiceList)};genv.__bldHasSpell=function(n){return !!lateGet("SMAP")[n]&&!!SPELL_FULL[n]};genv.__bldItems=function(b){return withB(b,() =>{return DMGI.map((r) =>{return r[0]})})};genv.__bldQLive=function(b){return withB(b,() =>{const o={};Object.keys(genv.QLIVE||{}).forEach((c) =>{o[c]=genv.QLIVE[c].map((r) =>{return r.n})});return o})};/* test hooks: magic item names and Library reference rows while build b is open */
 genv.__bldFeats=function(b){return withB(b,() =>{return Object.keys(FEATS)})};/* test hook: the feat names while build b is open (third party feats follow their source) */
 /* v32 RL49 no. 10d, tests only: show build b in the open builder without saving it (null: back to the saved build), and go to a step */
 let TKEEP=null;genv.__bldTestSet=function(b){if(b){if(!TKEEP)TKEEP=B;const x=structuredClone(b);for(const k in BLANK)if(x[k]==null)x[k]=clone(BLANK)[k];__set_B(cleanCh(x))}else if(TKEEP){__set_B(TKEEP);TKEEP=null}applyPacks();__set_openCards({});render()};
@@ -74,7 +74,7 @@ genv.__bldFxToggle=function(id,on){const st=genv.__sheetState&&genv.__sheetState
 genv.__bldSetMw=function(name,occ,on){ensureInv();const i=invFind(name,occ);if(i<0)return false;if(on)B.inv[i].mw=1;else delete B.inv[i].mw;save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet());return true};
 genv.__bldEquip=function(){genv.__bldOpen();go("equip")};
 /* v23 RU38 no. 4: Manage Proficiencies and Manage Feats open the builder at a step */
-genv.__bldGo=function(s){genv.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)"))return;if(STEPS.some((x) =>{return x[0]===s}))go(s)};
+genv.__bldGo=function(s){genv.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)"))return;if(lateGet("STEPS").some((x) =>{return x[0]===s}))go(s)};
 /* RU29: armor or Shield equipped or unequipped on a hand-filled sheet (items without key). st = sheet state before the change.
    Saved build of the same character: it takes the change (as __bldSync). No saved build yet: a copy imported from the sheet is used, not saved.
    Returns {b0,b1,off}: AC, Speed, Stealth of the build before and after, and other armor taken off. null: not armor, not in the build, or another character */

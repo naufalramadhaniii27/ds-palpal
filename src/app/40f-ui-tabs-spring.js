@@ -1,4 +1,4 @@
-import {env} from "./00-env.js";/* Responsibility: scroll per tab and the HP bar spring. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
+import {bindLive} from "./00a-reg-late-ports.js";import {env} from "./00-env.js";/* Responsibility: scroll per tab and the HP bar spring. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env (none used here). Shared names with other modules come from the imports below, late names through __R. */
 import {BAD,recover} from "./04-logic-storage.js";
 import {$} from "./05-logic-helpers.js";
@@ -7,8 +7,8 @@ import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {__set_setTab,activeTab,mq,setTab} from "./21-ui-tabs-pager.js";
 import {renderAll} from "./35-ui-combo.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"barTo",{get:function(){return barTo;},set:function(v){barTo=v;},configurable:true});
+
+bindLive("barTo",{get:function(){return barTo;}});
 /* ===== v31 p19 scroll position per tab (RU132) ===== */
 const TABY={};
 function tabsTop(){ const d=document.querySelector(".detail"), t=$("#tabs"); if(!d||!t) return 0; const st=parseFloat(getComputedStyle(t).top)||0; return Math.max(0,Math.round(d.getBoundingClientRect().top+env.scrollY-st)); }
@@ -17,7 +17,7 @@ __set_setTab((function(f){ return function(id,focus,instant){ const from=activeT
 /* ===== v31 p21 HP bars on the compositor ===== */
 let SPRE=null;
 /* the same spring as spring(), sampled once into a linear() easing, so the browser runs it off the main thread */
-Object.defineProperty(__R,"springEase",{get:function(){return springEase;},configurable:true});
+bindLive("springEase",{get:function(){return springEase;}});
 export function springEase(k,zeta){ let c=2*Math.sqrt(k)*zeta, x=0, v=0, dt=1/240, t=0, pts=[0], step=0;
   while(t<3){ const f=-k*(x-1)-c*v; v+=f*dt; x+=v*dt; t+=dt; if(++step%6===0) pts.push(Math.round(x*1000)/1000); if(t>.2&&Math.abs(1-x)<.002&&Math.abs(v)<.02) break; }
   pts.push(1); const lin=env.CSS&&CSS.supports&&CSS.supports("animation-timing-function","linear(0, 1)");

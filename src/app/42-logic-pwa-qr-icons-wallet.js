@@ -1,26 +1,26 @@
-import {PWA_BUILD} from "./01-logic-boot-flags-builder-loader.js";
+import {bindLive,lateGet,renderInv,rGet,rSave,moveTabInd,onMode,ico,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt,__set_bldDot,cuNumList} from "./00a-reg-late-ports.js";import {PWA_BUILD} from "./01-logic-boot-flags-builder-loader.js";
 import {C,S,saveNow} from "./04-logic-storage.js";
 import {$$,ask,esc,num,sg,toast,toastPic} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
-import {REDUCE} from "./07-ui-theme-contrast-spring.js";
-import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
-import {rGet,rSave} from "./14-ui-editor.js";
+
+
+
 import {chFile,chName,chSave} from "./15d-logic-snapshots-character-files.js";import {zPack} from "./15c-logic-file-state-compress.js";
 import {impText} from "./16-logic-import-chat-text-and-build-files.js";
-import {moveTabInd,onMode} from "./21-ui-tabs-pager.js";
-import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {COINS,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt} from "./23c-ui-coins.js";
+
+
 import {ICO} from "./29c-data-ddb-icons.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
-import {__set_bldDot,bldDot} from "./35-ui-combo.js";
-import {cuNumList} from "./41-ui-edit-mode.js";
-import {__R} from "./00-reg.js";
+import {bldDot} from "./35-ui-combo.js";
+
+
 import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;},configurable:true});
-Object.defineProperty(__R,"coinsClean",{get:function(){return coinsClean;},set:function(v){coinsClean=v;},configurable:true});
-Object.defineProperty(__R,"pwaInstH",{get:function(){return pwaInstH;},set:function(v){pwaInstH=v;},configurable:true});
-Object.defineProperty(__R,"qrCan",{get:function(){return qrCan;},set:function(v){qrCan=v;},configurable:true});
-Object.defineProperty(__R,"qrScanOpen",{get:function(){return qrScanOpen;},set:function(v){qrScanOpen=v;},configurable:true});
-Object.defineProperty(__R,"qrSendOpen",{get:function(){return qrSendOpen;},set:function(v){qrSendOpen=v;},configurable:true});
+bindLive("PWA_EV",{get:function(){return PWA_EV;},set:function(v){PWA_EV=v;}});
+bindLive("coinsClean",{get:function(){return coinsClean;}});
+bindLive("pwaInstH",{get:function(){return pwaInstH;}});
+bindLive("qrCan",{get:function(){return qrCan;}});
+bindLive("qrScanOpen",{get:function(){return qrScanOpen;}});
+bindLive("qrSendOpen",{get:function(){return qrSendOpen;}});
 /* ===== v34 p03 RU82: installable app (manifest, service worker), update toast, open .bs files from the file manager ===== */
 let PWA_REG=null, PWA_GO=false;
 function pwaUpdToast(w){ let t=document.getElementById("pwaUpd"); if(!t){ t=document.createElement("div"); t.id="pwaUpd"; t.className="toast pwa-upd"; t.setAttribute("role","status"); t.setAttribute("aria-live","polite"); document.body.appendChild(t);
@@ -154,12 +154,12 @@ function qrSendOpen(id){ const o=chFile(id), raw=JSON.stringify(o), nm=chName(o)
         :'<p class="hbkl warn">'+ico("toast-warn")+'This character is too large to send with codes. Share or save the file instead.</p>')+
       '<h4 class="chfh">Or Send the File</h4><p class="muted">A file works on every device: send it in a chat or by mail, then use Open Character on the other device.</p><div class="bkpr">'+
       (navigator.share?'<button type="button" class="btn pri press" data-qrs="share">'+ico("ui-share")+'<span>Share File</span></button>':'')+'<button type="button" class="btn press" data-qrs="save">'+ico("ui-save")+'<span>Save File</span></button></div></div>';
-    document.body.appendChild(w); if(fr) qrDraw(); if(fr&&fr.length>1) QRS.t=setInterval(() =>{ if(!document.getElementById("qrSend")){ qrStop(); return; } QRS.i=(QRS.i+1)%QRS.fr.length; qrDraw(); },REDUCE?1400:750);
+    document.body.appendChild(w); if(fr) qrDraw(); if(fr&&fr.length>1) QRS.t=setInterval(() =>{ if(!document.getElementById("qrSend")){ qrStop(); return; } QRS.i=(QRS.i+1)%QRS.fr.length; qrDraw(); },lateGet("REDUCE")?1400:750);
     const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ qrStop(); w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
     w.addEventListener("click",(e) =>{ if(e.target===w){ qrStop(); w.remove(); return; } const b=e.target.closest("[data-qrs]"); if(!b) return; const a=b.getAttribute("data-qrs");
       if(a==="close"){ qrStop(); w.remove(); return; }
       if(a==="prev"||a==="next"){ qrStop(); QRS.play=false; qrPlayBtn(); QRS.i=(QRS.i+(a==="next"?1:QRS.fr.length-1))%QRS.fr.length; qrDraw(); return; }
-      if(a==="play"){ QRS.play=!QRS.play; qrPlayBtn(); if(QRS.play){ QRS.t=setInterval(() =>{ if(!document.getElementById("qrSend")){ qrStop(); return; } QRS.i=(QRS.i+1)%QRS.fr.length; qrDraw(); },REDUCE?1400:750); } else qrStop(); return; }
+      if(a==="play"){ QRS.play=!QRS.play; qrPlayBtn(); if(QRS.play){ QRS.t=setInterval(() =>{ if(!document.getElementById("qrSend")){ qrStop(); return; } QRS.i=(QRS.i+1)%QRS.fr.length; qrDraw(); },lateGet("REDUCE")?1400:750); } else qrStop(); return; }
       if(a==="save"){ chSave(id); return; }
       if(a==="share"){ qrShare(QRS.txt,QRS.nm); } }); };
   zPack(raw).then(show,() =>{ show(raw); }); }
@@ -194,14 +194,14 @@ function qrGot(R,raw){ if(!raw||QRR!==R) return; const msg=function(t){ const e=
 function qrDone(t){ qrScanStop(); const b=document.getElementById("bkp"); if(b) b.remove(); toast("Code read. Opening the character..."); impText(t); }
 env.__qrScanOpen=qrScanOpen;
 /* ===== v34 p06: one wallet for the sheet and the builder ===== */
-function coinsClean(c){ const o={}; COINS.forEach((k) =>{ const v=Math.floor(num(c&&c[k[0]],0)); o[k[0]]=v>0?v:0; }); return o; }
-function coinsSame(a,b){ return COINS.every((k) =>{ return num(a[k[0]],0)===num(b[k[0]],0); }); }
+function coinsClean(c){ const o={}; lateGet("COINS").forEach((k) =>{ const v=Math.floor(num(c&&c[k[0]],0)); o[k[0]]=v>0?v:0; }); return o; }
+function coinsSame(a,b){ return lateGet("COINS").every((k) =>{ return num(a[k[0]],0)===num(b[k[0]],0); }); }
 env.__coinsGet=function(){ return coinsNow(); };
 env.__coinsGp=function(){ return num(C.gp,0); };
 env.__coinPay=function(c,cp){ return coinPay(c,cp); }; env.__coinCp=function(c){ return coinCp(c); }; env.__coinList=function(o){ return coinList(o); }; env.__priceTxt=function(g){ return priceTxt(g); };
 env.__coinsPut=function(c,why){ const o=coinsClean(c); if(coinsSame(o,coinsNow())) return coinsNow(); undoMark(why||"Coins"); coinSet(o); try{ renderInv(); coinRefresh(); }catch(e){} return coinsNow(); };
 /* coins a build brought (new character, build file): to the sheet after Apply. The sheet already has other coins: ask */
-env.__coinsPending=function(c){ const o=coinsClean(c), cur=coinsNow(), f=function(k){ return COINS.map((x) =>{ return num(k[x[0]],0)+" "+x[0]; }).filter((s) =>{ return !/^0 /.test(s); }).join(", ")||"no coins"; };
+env.__coinsPending=function(c){ const o=coinsClean(c), cur=coinsNow(), f=function(k){ return lateGet("COINS").map((x) =>{ return num(k[x[0]],0)+" "+x[0]; }).filter((s) =>{ return !/^0 /.test(s); }).join(", ")||"no coins"; };
   if(!S.coins||coinsSame(o,cur)||coinTotal(cur)===num(C.gp,0)&&!cur.pp&&!cur.ep&&!cur.sp&&!cur.cp){ coinSet(o); try{ renderInv(); }catch(e){} return true; }
   ask("The builder has coins for this character ("+f(o)+") and the sheet has other coins ("+f(cur)+"). Use the coins from the builder? Cancel keeps the sheet's coins.","Use Builder Coins",() =>{ undoMark("Coins from the builder"); coinSet(o); try{ renderInv(); }catch(e){} toastU("Coins set from the builder."); }); return false; };
 env.__sheetOwnNums=function(){ const L=[]; try{ derive(); }catch(e){} if(typeof cuNumList==="function"&&cuNumList().length) L.push(cuNumList().length+" number"+(cuNumList().length>1?"s":"")+" set in Edit mode"); if(num(S.hpMod,0)) L.push("Max HP modifier "+sg(num(S.hpMod,0))); return L.length?{ac:D.ac,hp:D.hpmax,what:L}:null; };

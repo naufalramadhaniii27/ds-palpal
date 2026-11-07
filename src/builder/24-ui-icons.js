@@ -1,13 +1,13 @@
-import {genv} from "./00-env.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {DMAP,attMax} from "./03-logic-magic-item-effects.js";
 import {B,save} from "./04-logic-storage.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {baseOf,ensureInv} from "./14-logic-multiclass-hp-shop.js";
 import {bI} from "./17-ui-step-builder.js";
 import {ctFree,invFind} from "./21-ui-rules-reference.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"attN",{get:function(){return attN;},set:function(v){attN=v;},configurable:true});
-Object.defineProperty(__R,"bDeco",{get:function(){return bDeco;},set:function(v){bDeco=v;},configurable:true});
+
+bindLive("attN",{get:function(){return attN;}});
+bindLive("bDeco",{get:function(){return bDeco;}});
 /* v33 p02: header and footer icons (one line style, like the sheet) */
 (function(){const pre=function(id,k,end){const e=typeof id==="string"?document.querySelector(id):id;if(!e||e.querySelector("svg"))return;e.insertAdjacentHTML(end?"beforeend":"afterbegin",bI(k))};
  pre("#bld .brand b","ui-build");pre("#bld .lvhead","ui-levelup");pre("#b-close","ui-close");pre("#prev","ui-chev-l");const nx=document.getElementById("next"),ns=nx&&nx.querySelector("svg");if(ns)ns.remove();pre("#next","ui-chev-r",true)})();

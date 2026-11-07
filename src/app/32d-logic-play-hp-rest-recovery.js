@@ -1,20 +1,20 @@
-/* Responsibility: hit point changes, rest recovery lists and their handlers. Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
-import {x14} from "./03-data-glossary.js";import {C,S,save} from "./04-logic-storage.js";import {eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";import {D,derive} from "./06-logic-derivation.js";import {renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {renderTiles,used} from "./08-ui-render-sheet-and-actions.js";import {syncHP} from "./09-ui-hit-points-playbar-death-saves.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {closeSheet} from "./13-ui-detail-cards.js";import {restRefresh} from "./23d-ui-rest.js";import {__R} from "./00-reg.js";import {clsLvls,hasFeat,lvOf,slotLeft} from "./32b-logic-play-concentration-casting.js";
-Object.defineProperty(__R,"chMaxH",{get:function(){return chMaxH;},set:function(v){chMaxH=v;},configurable:true});
-Object.defineProperty(__R,"chgApply",{get:function(){return chgApply;},set:function(v){chgApply=v;},configurable:true});
-Object.defineProperty(__R,"chgRows",{get:function(){return chgRows;},set:function(v){chgRows=v;},configurable:true});
-Object.defineProperty(__R,"hdHeal",{get:function(){return hdHeal;},set:function(v){hdHeal=v;},configurable:true});
-Object.defineProperty(__R,"hpModH",{get:function(){return hpModH;},set:function(v){hpModH=v;},configurable:true});
-Object.defineProperty(__R,"hpSpellNote",{get:function(){return hpSpellNote;},set:function(v){hpSpellNote=v;},configurable:true});
-Object.defineProperty(__R,"longExtraH",{get:function(){return longExtraH;},set:function(v){longExtraH=v;},configurable:true});
-Object.defineProperty(__R,"periOn",{get:function(){return periOn;},set:function(v){periOn=v;},configurable:true});
-Object.defineProperty(__R,"recList",{get:function(){return recList;},set:function(v){recList=v;},configurable:true});
-Object.defineProperty(__R,"recSum",{get:function(){return recSum;},set:function(v){recSum=v;},configurable:true});
-Object.defineProperty(__R,"restX",{get:function(){return restX;},set:function(v){restX=v;},configurable:true});
-Object.defineProperty(__R,"shortChg",{get:function(){return shortChg;},set:function(v){shortChg=v;},configurable:true});
-Object.defineProperty(__R,"shortExtraH",{get:function(){return shortExtraH;},set:function(v){shortExtraH=v;},configurable:true});
-Object.defineProperty(__R,"slotUsed",{get:function(){return slotUsed;},set:function(v){slotUsed=v;},configurable:true});
-Object.defineProperty(__R,"spxBody",{get:function(){return spxBody;},set:function(v){spxBody=v;},configurable:true});
+import {bindLive,renderActions,syncLU,renderTiles,used,syncHP,refreshEntry,closeSheet,restRefresh} from "./00a-reg-late-ports.js";/* Responsibility: hit point changes, rest recovery lists and their handlers. Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
+import {x14} from "./03-data-glossary.js";import {C,S,save} from "./04-logic-storage.js";import {eqOn,esc,num,sg,toast} from "./05-logic-helpers.js";import {D,derive} from "./06-logic-derivation.js";import {clsLvls,hasFeat,lvOf,slotLeft} from "./32b-logic-play-concentration-casting.js";
+bindLive("chMaxH",{get:function(){return chMaxH;}});
+bindLive("chgApply",{get:function(){return chgApply;}});
+bindLive("chgRows",{get:function(){return chgRows;}});
+bindLive("hdHeal",{get:function(){return hdHeal;}});
+bindLive("hpModH",{get:function(){return hpModH;}});
+bindLive("hpSpellNote",{get:function(){return hpSpellNote;}});
+bindLive("longExtraH",{get:function(){return longExtraH;}});
+bindLive("periOn",{get:function(){return periOn;}});
+bindLive("recList",{get:function(){return recList;}});
+bindLive("recSum",{get:function(){return recSum;}});
+bindLive("restX",{get:function(){return restX;},set:function(v){restX=v;}});
+bindLive("shortChg",{get:function(){return shortChg;}});
+bindLive("shortExtraH",{get:function(){return shortExtraH;}});
+bindLive("slotUsed",{get:function(){return slotUsed;}});
+bindLive("spxBody",{get:function(){return spxBody;}});
 function chMaxH(r){ if(!r.dmax) return ""; const v=(S.chMax||{})[r.k]; return '<div class="chmax"><label>Starting '+(/Necklace of Fireballs/.test(r.n)?'beads':'charges')+' (roll '+esc(r.dmax)+')<input type="number" min="0" inputmode="numeric" data-chmax="'+esc(r.k)+'" value="'+(v!=null?v:"")+'" placeholder="up to '+r.max0+'"></label>'+(v==null?'<small class="muted">Roll '+esc(r.dmax)+' and type the result. Until then the sheet shows the highest possible number.</small>':'')+'</div>'; }
 document.addEventListener("change",(e) =>{ const t=e.target; if(!t.matches||!t.matches("[data-chmax]")) return; const k=t.getAttribute("data-chmax"); S.chMax=S.chMax||{}; if(t.value===""){ delete S.chMax[k]; } else S.chMax[k]=Math.max(0,Math.round(num(t.value,0))); save(); derive(); syncLU(); renderActions(); refreshEntry(); });
 

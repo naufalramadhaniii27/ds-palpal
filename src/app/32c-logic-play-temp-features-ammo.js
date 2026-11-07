@@ -1,13 +1,13 @@
-/* Responsibility: temporary features and spells, potions and charges use, ammunition. Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
-import {ABN} from "./02-data-default-character.js";import {C,S,save,saveC} from "./04-logic-storage.js";import {$,ask,bldGuard,bldSync,clamp,esc,invAt,num,sg,toast,viaBld,hpWord} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {flash,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {CONS1,invKey,occOf} from "./23b-ui-items-containers.js";import {scOf} from "./23e-ui-spells-dc.js";import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {clsLvls,hasFeat} from "./32b-logic-play-concentration-casting.js";
-Object.defineProperty(__R,"ammoBonus",{get:function(){return ammoBonus;},set:function(v){ammoBonus=v;},configurable:true});
-Object.defineProperty(__R,"ammoFor",{get:function(){return ammoFor;},set:function(v){ammoFor=v;},configurable:true});
-Object.defineProperty(__R,"ammoH",{get:function(){return ammoH;},set:function(v){ammoH=v;},configurable:true});
-Object.defineProperty(__R,"ammoPickH",{get:function(){return ammoPickH;},set:function(v){ammoPickH=v;},configurable:true});
-Object.defineProperty(__R,"qtyAdj",{get:function(){return qtyAdj;},set:function(v){qtyAdj=v;},configurable:true});
-Object.defineProperty(__R,"tmpFeatH",{get:function(){return tmpFeatH;},set:function(v){tmpFeatH=v;},configurable:true});
-Object.defineProperty(__R,"tmpSpellH",{get:function(){return tmpSpellH;},set:function(v){tmpSpellH=v;},configurable:true});
-Object.defineProperty(__R,"useH",{get:function(){return useH;},set:function(v){useH=v;},configurable:true});
+import {bindLive,lateGet,renderAll,flash,syncHP,refreshEntry,ico,invKey,occOf,scOf} from "./00a-reg-late-ports.js";/* Responsibility: temporary features and spells, potions and charges use, ammunition. Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
+import {ABN} from "./02-data-default-character.js";import {C,S,save,saveC} from "./04-logic-storage.js";import {$,ask,bldGuard,bldSync,clamp,esc,invAt,num,sg,toast,viaBld,hpWord} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {clsLvls,hasFeat} from "./32b-logic-play-concentration-casting.js";
+bindLive("ammoBonus",{get:function(){return ammoBonus;}});
+bindLive("ammoFor",{get:function(){return ammoFor;}});
+bindLive("ammoH",{get:function(){return ammoH;}});
+bindLive("ammoPickH",{get:function(){return ammoPickH;}});
+bindLive("qtyAdj",{get:function(){return qtyAdj;}});
+bindLive("tmpFeatH",{get:function(){return tmpFeatH;}});
+bindLive("tmpSpellH",{get:function(){return tmpSpellH;}});
+bindLive("useH",{get:function(){return useH;}});
 export function tmpFeat(n,d){ const cl=clsLvls();
   if(n==="Dark One's Blessing") return {v:Math.max(1,D.mod.CHA+(cl.Warlock||0)),s:"Charisma modifier plus Warlock level, when you or someone within 10 feet drops an enemy to 0 Hit Points"};
   if(n==="Inspiring Leader"){ const ab=/\bWIS \+1/.test(d||"")?"WIS":/\bCHA \+1/.test(d||"")?"CHA":(D.mod.WIS>D.mod.CHA?"WIS":"CHA"); return {v:Math.max(0,D.level+D.mod[ab]),s:"character level plus "+ABN[ab]+" modifier, after a Short or Long Rest"}; }
@@ -36,10 +36,10 @@ const POT={"":"2d4 + 2",Greater:"4d4 + 4",Superior:"8d4 + 8",Supreme:"10d4 + 20"
 function useH(it,ix){ const n=it.n, pm=/^Potion of Healing(?: \((Greater|Superior|Supreme)\))?$/.exec(n), q=num(it.q,1);
   if(pm) return '<div class="info-h">Drink</div><p class="info-d">You regain '+POT[pm[1]||""]+' Hit Points. Roll the dice and type the total.</p>'+(q>0?'<div class="iuse"><input type="number" min="1" inputmode="numeric" data-potv="'+ix+'" placeholder="total" aria-label="Hit Points rolled"><button type="button" class="btn pri press" data-potgo="'+ix+'" data-potn="'+esc(it.key||it.n)+'">Drink</button></div>':'<p class="muted">None left.</p>');
   if(/^Spell Scroll\b/.test(n)) return '<div class="info-h">Use</div><p class="info-d">Reading the scroll casts its spell, and the scroll turns to dust.</p>'+(q>0?'<div class="spcast"><button type="button" class="btn pri press" data-scroll="'+ix+'" data-potn="'+esc(it.key||it.n)+'">Use Scroll</button></div>':'<p class="muted">None left.</p>');
-  if(CONS1.test(n)) return '<div class="info-h">Use</div>'+(q>0?'<p class="info-d">'+q+' left. Use 1 takes one away, Undo puts it back.</p><div class="ipk"><button type="button" class="btn pri press" data-use1="'+ix+'" data-potn="'+esc(it.key||it.n)+'">'+ico("ui-check")+'Use 1</button></div>':'<p class="muted">None left. Raise the Qty below when you get more.</p>');/* v32 RU134 */
+  if(lateGet("CONS1").test(n)) return '<div class="info-h">Use</div>'+(q>0?'<p class="info-d">'+q+' left. Use 1 takes one away, Undo puts it back.</p><div class="ipk"><button type="button" class="btn pri press" data-use1="'+ix+'" data-potn="'+esc(it.key||it.n)+'">'+ico("ui-check")+'Use 1</button></div>':'<p class="muted">None left. Raise the Qty below when you get more.</p>');/* v32 RU134 */
   const a=ammoInfo(it); return a?ammoH(a):""; }
 function qtyAdj(nm,ix,d,lbl,after){ const it=invAt(nm,ix); if(!it) return; const q=Math.max(0,num(it.q,1)+d);
-  const go=function(){ undoMark(lbl); if(viaBld(nm)&&env.__bldSetQty) env.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { const i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); __R.renderAll(); refreshEntry(); };
+  const go=function(){ undoMark(lbl); if(viaBld(nm)&&env.__bldSetQty) env.__bldSetQty(nm,q,occOf(invAt(nm,ix))); else { const i2=invAt(nm,ix); if(i2){ i2.q=q; bldSync(nm,{q:q,occ:occOf(i2)}); saveC(); } } if(after) after(); renderAll(); refreshEntry(); };
   if(viaBld(nm)&&env.__bldSetQty) bldGuard(go); else go(); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-potgo],[data-scroll]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const nm=b.getAttribute("data-potn");
   if(b.hasAttribute("data-scroll")){ const ix=+b.getAttribute("data-scroll"); qtyAdj(nm,ix,-1,"Use "+nm,() =>{ toastU("Used "+nm+"."); }); return; }
@@ -65,4 +65,4 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   const d=b.getAttribute("data-ad"), nu=d==="half"?a.used-Math.floor(a.used/2):clamp(a.used+(+d),0,a.tot); undoMark(d==="1"?"Use ammunition":"Recover ammunition"); S.ammo=S.ammo||{}; S.ammo[k]=nu; if(!nu) delete S.ammo[k]; save(); refreshEntry();
   toastU(d==="1"?"Used 1 from "+it.n+". "+(a.tot-nu)+" left.":"Recovered "+(a.used-nu)+". "+(a.tot-nu)+" left."); },true);
 
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-ammoact]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const kd=b.getAttribute("data-ammoact"), k=b.getAttribute("data-ak"); undoMark("Choose ammunition"); S.ammoAct=S.ammoAct||{}; S.ammoAct[kd]=k; save(); __R.renderAll(); refreshEntry(); },true);
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-ammoact]"); if(!b) return; e.preventDefault(); e.stopPropagation(); const kd=b.getAttribute("data-ammoact"), k=b.getAttribute("data-ak"); undoMark("Choose ammunition"); S.ammoAct=S.ammoAct||{}; S.ammoAct[kd]=k; save(); renderAll(); refreshEntry(); },true);

@@ -1,18 +1,18 @@
-import {DMAP,dmapAlias,spX,un} from "./03-logic-magic-item-effects.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {DMAP,dmapAlias,spX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {cls14Apply} from "./08-logic-2014-rules.js";
 import {DM14M,DM14ON,DM14S,__set_DM14M,__set_DM14ON,__set_DM14S,allFeats,dm14Set,eq14Set,gxPicks,sbAuto,sp14Set,wxGate} from "./09-logic-feats-and-choices.js";
 import {clsParts,fxList} from "./11-logic-derivation.js";
-import {__R} from "./00-reg.js";
+
 import {MCL,TL,bindLate} from "./01b-logic-late-ports.js";
 import {efaCls,efaNames,gl14,exposeSourceHelpers,packTables} from "./00-env.js";
 import {runPackSteps} from "./13a-logic-pack-registry.js";
 import "./13b-logic-pack-handlers.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
-Object.defineProperty(__R,"BASE",{get:function(){return BASE;},set:function(v){BASE=v;},configurable:true});
-Object.defineProperty(__R,"spHasFeat",{get:function(){return spHasFeat;},set:function(v){spHasFeat=v;},configurable:true});
-Object.defineProperty(__R,"subChoicesFor",{get:function(){return subChoicesFor;},set:function(v){subChoicesFor=v;},configurable:true});
+bindLive("BASE",{get:function(){return BASE;},set:function(v){BASE=v;}});
+bindLive("spHasFeat",{get:function(){return spHasFeat;}});
+bindLive("subChoicesFor",{get:function(){return subChoicesFor;}});
 bindLate({enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the late ports of this file (01b-logic-late-ports.js) */
 provideQueries({autoSpells,enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the sheet queries (toSheet state.q) of this file */
 /* ---------- sources & homebrew packs ---------- */

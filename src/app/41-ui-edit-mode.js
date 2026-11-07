@@ -1,4 +1,4 @@
-import {ABN} from "./02-data-default-character.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {C,S,save} from "./04-logic-storage.js";
 import {$,$$,ask,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
@@ -11,13 +11,13 @@ import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {__set_rend
 import {cuK} from "./26-ui-customize.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {__set_renderAll,renderAll} from "./35-ui-combo.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"CU0",{get:function(){return CU0;},set:function(v){CU0=v;},configurable:true});
-Object.defineProperty(__R,"EDM",{get:function(){return EDM;},set:function(v){EDM=v;},configurable:true});
-Object.defineProperty(__R,"cuqBackH",{get:function(){return cuqBackH;},set:function(v){cuqBackH=v;},configurable:true});
-Object.defineProperty(__R,"cuqHTML",{get:function(){return cuqHTML;},set:function(v){cuqHTML=v;},configurable:true});
-Object.defineProperty(__R,"cuqOf",{get:function(){return cuqOf;},set:function(v){cuqOf=v;},configurable:true});
-Object.defineProperty(__R,"edmSet",{get:function(){return edmSet;},set:function(v){edmSet=v;},configurable:true});
+import {env} from "./00-env.js";bindLive("__set_CU0",{get:function(){return __set_CU0;}});bindLive("cuNumList",{get:function(){return cuNumList;}});
+bindLive("CU0",{get:function(){return CU0;},set:function(v){CU0=v;}});
+bindLive("EDM",{get:function(){return EDM;},set:function(v){EDM=v;}});
+bindLive("cuqBackH",{get:function(){return cuqBackH;}});
+bindLive("cuqHTML",{get:function(){return cuqHTML;}});
+bindLive("cuqOf",{get:function(){return cuqOf;}});
+bindLive("edmSet",{get:function(){return edmSet;}});
 /* ===== v34 p01 RU85: Edit mode. Tap a number to set your own value (S.cust), Use calculated, Reset all, ask() after Apply ===== */
 export var CU0={}, EDM=false, cuMT=0;
 /* the S.cust key and field behind a number on the sheet (data-bd key), with its label, kind, and limits */

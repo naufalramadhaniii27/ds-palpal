@@ -127,6 +127,7 @@
     "fx/23-class-art-data.js",
     "app/00-reg.js",
     "app/00-env.js",
+    "app/00a-reg-late-ports.js",
     "app/01-logic-boot-flags-builder-loader.js",
     "app/02-data-default-character.js",
     "app/03-data-glossary.js",

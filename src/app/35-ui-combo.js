@@ -1,4 +1,4 @@
-import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
+import {bindLive,pipSync} from "./00a-reg-late-ports.js";import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
 import {C,FROZEN,S,recover,save} from "./04-logic-storage.js";
 import {$,$$,ask,atkOn,esc,num,rich,sg,toast} from "./05-logic-helpers.js";
 import {D,derive,fill} from "./06-logic-derivation.js";
@@ -13,14 +13,14 @@ import {renderExtras} from "./29b-ui-creatures-extras.js";
 import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";import {undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
 import {combatHTML} from "./34c-ui-experience-journal-combat-view.js";import {sitReset} from "./34-ui-situations.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"CF0",{get:function(){return CF0;},set:function(v){CF0=v;},configurable:true});
-Object.defineProperty(__R,"cmbCast",{get:function(){return cmbCast;},set:function(v){cmbCast=v;},configurable:true});
-Object.defineProperty(__R,"cmbHTML",{get:function(){return cmbHTML;},set:function(v){cmbHTML=v;},configurable:true});
-Object.defineProperty(__R,"cmbRe",{get:function(){return cmbRe;},set:function(v){cmbRe=v;},configurable:true});
-Object.defineProperty(__R,"goTab",{get:function(){return goTab;},set:function(v){goTab=v;},configurable:true});
-Object.defineProperty(__R,"keysOpen",{get:function(){return keysOpen;},set:function(v){keysOpen=v;},configurable:true});
-Object.defineProperty(__R,"renderAll",{get:function(){return renderAll;},set:function(v){renderAll=v;},configurable:true});
+import {env} from "./00-env.js";bindLive("__set_bldDot",{get:function(){return __set_bldDot;}});
+bindLive("CF0",{get:function(){return CF0;}});
+bindLive("cmbCast",{get:function(){return cmbCast;}});
+bindLive("cmbHTML",{get:function(){return cmbHTML;}});
+bindLive("cmbRe",{get:function(){return cmbRe;}});
+bindLive("goTab",{get:function(){return goTab;}});
+bindLive("keysOpen",{get:function(){return keysOpen;}});
+bindLive("renderAll",{get:function(){return renderAll;}});
 /* v42 Combo: three shortcut lists of one Action, one Bonus Action, one Reaction. Options come from what the character has */
 const CMB_MOVE=["Move","Stand Up","Climb or Swim","Jump"], CMB_FREE=["Interact with an Object","Speak","Drop Prone"], CMB_DESC={"Move":"Spend up to your Speed to move on your turn. You can split it before and after your action.","Stand Up":"Standing up from Prone costs movement equal to half your Speed.","Climb or Swim":"Each foot of climbing or swimming costs 1 extra foot of movement, unless you have a Climb or Swim Speed.","Jump":"A running long jump covers feet equal to your Strength score. A high jump covers 3 plus your Strength modifier in feet. Both need a 10 foot run first.","Interact with an Object":"You get one free object interaction on your turn, such as drawing or stowing a weapon. A second one costs the Utilize action.","Speak":"You can say a few short phrases on your turn without using any action.","Drop Prone":"You can fall Prone on your turn. It costs no action and none of your Speed.","Two-Weapon Fighting":"When you take the Attack action and hit with a Light weapon, you can make one extra attack as a Bonus Action with a different Light weapon. Leave out your ability modifier on its damage unless the modifier is negative.","Hasted Action":"With Haste you get one extra action on each of your turns. It can only be used for one weapon attack, Dash, Disengage, Hide, or Utilize."};
 let CMB_SL=[["m","Movement","move"],["a","Action","action"],["x","Extra Action","extra"],["h","On Hit","onhit"],["b","Bonus Action","bonus"],["r","Reaction","reaction"],["f","Free","free"]], CMB_STD=["Dodge","Dash","Disengage","Help","Hide","Search","Ready","Grapple","Shove","Utilize","Influence","Study","Magic","Improvise"], cmbEdit=false;
@@ -83,7 +83,7 @@ function cmbUse(sl){ const st=cmbSteps(cmbCI()).filter((x) =>{ return x.sl===sl;
   cmbSetDone(sl,true); cmbFoc=""; save(); try{ syncLU(); }catch(er){} toast("Used "+it.n+"."+spent); cmbRe(); }
 function cmbQuick(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; } const o=spCastOpts(x), av=o.filter(qOk);
   if(av.length>=1&&!x.rit&&(av.length===1||!av.some((q) =>{ return q.free; }))){ castDo(i,ckOf(av[0]),av[0].lv); return; } if(!av.length&&!x.rit){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } showEntry({type:"info",spec:"sp:"+i},true); }
-function cmbRe(){ try{ const b=$("#sheetBody"); if(sheetMode==="combat"&&b){ const st=b.scrollTop, a=$("#cbAmt"), keep=a&&document.activeElement===a?a.value:null; b.innerHTML=combatHTML(); b.scrollTop=st; if(keep!=null){ const a2=$("#cbAmt"); if(a2){ a2.value=keep; } } } }catch(er){} try{ __R.pipSync(); }catch(er){} }
+function cmbRe(){ try{ const b=$("#sheetBody"); if(sheetMode==="combat"&&b){ const st=b.scrollTop, a=$("#cbAmt"), keep=a&&document.activeElement===a?a.value:null; b.innerHTML=combatHTML(); b.scrollTop=st; if(keep!=null){ const a2=$("#cbAmt"); if(a2){ a2.value=keep; } } } }catch(er){} try{ pipSync(); }catch(er){} }
 function cmbSetDone(sl,v){ S.cdn=S.cdn&&typeof S.cdn==="object"&&!Array.isArray(S.cdn)?S.cdn:{}; if(v) S.cdn[sl]=1; else delete S.cdn[sl]; if(!Object.keys(S.cdn).length) delete S.cdn; }
 function cmbCast(nm){ const ci=cmbCI(); CMB_SL.forEach((s) =>{ if(cmbPick(ci,s[0])==="sp:"+nm){ cmbSetDone(s[0],true); cmbFoc=""; } }); }
 function cmbAct(a,v){ try{ if(a==="tab"){ S.ccur=+v; save(); }

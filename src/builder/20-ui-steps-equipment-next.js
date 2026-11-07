@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {acModeCard,bCt,bInN,bInvOrder,binIn,bindLive,bldMine,render,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,esc,mod,pbOf,sg,toast} from "./01-logic-core-helpers.js";
 import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {BLANK,DMAP,un} from "./03-logic-magic-item-effects.js";
@@ -12,9 +12,9 @@ import {applyPacks} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,clsKitText0,ensureInv,eq14UI,eqIdx,equippable,gpBase,gpNow,hpCalc,itemCost,itemW,qOf,rarCls,rarityOf,scrollOf,wpNamed} from "./14-logic-multiclass-hp-shop.js";
 import {__set_step,ask,bI,card,fmtGp,mfullH,openCards,rt,step} from "./17-ui-step-builder.js";
 import {ruleIssues} from "./18-ui-spells.js";
-import {__R} from "./00-reg.js";
+
 import {provideQueries} from "./01a-logic-query-registry.js";
-import {bindLate} from "./01b-logic-late-ports.js";
+import {bindLate} from "./01b-logic-late-ports.js";bindLive("itemDetail",{get:function(){return itemDetail;}});
 bindLate({itemType});/* the late port of this file (01b-logic-late-ports.js) */
 provideQueries({itemDetail,typeOfItem:itemType,profcSet:function(p){PROFC=p}});/* the sheet queries (toSheet state.q) of this file */
 /* ---------- step: equipment ---------- */
@@ -53,14 +53,14 @@ function coinIn(c){const o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["
 function coinsB(c,t){const o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]];return '<div class="bcoins" role="group" aria-label="Coins: '+o.map((k) =>{return (+c[k[0]]||0)+' '+k[1]}).join(', ')+', '+t+' GP in all">'+o.map((k) =>{return '<span class="icn ic-'+k[0]+'">'+bI("coin-"+k[0],"icn-i")+'<b>'+(+c[k[0]]||0)+'</b><small>'+k[0].toUpperCase()+'</small></span>'}).join("")+'<span class="itot">'+t+' GP in all</span></div>'}
 /* v33 p05 (F2): a short hint with an icon instead of a paragraph */
 function hint(k,txt,cls,attr){return '<p class="bhint'+(cls?" "+cls:"")+'"'+(attr||"")+'>'+bI(k||"ui-info")+'<span>'+txt+'</span></p>'}
-export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 class="ttl">Choose Equipment</h2>'+__R.acModeCard();
+export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 class="ttl">Choose Equipment</h2>'+acModeCard();
  function opt(key,cur,list,title){return '<h3 class="eqh">'+title+'</h3><div class="eqbox">'+list.map((t,i) =>{const L="ABC"[i];return (i?'<p class="or">OR</p>':'')+'<button type="button" class="eqo'+(cur===L?" on":"")+'" data-eq="'+key+'" data-v="'+L+'"><span class="bcb"></span>('+L+') '+esc(t)+'</button>'}).join("")+'</div>'}
  const sec=function(id,title,right,body){const o=openCards[id]!==false;return '<div class="sech2"><button type="button" class="sech2h" data-tog2="'+id+'"><b>'+title+'</b><span>'+(right||"")+'</span><svg class="bchev'+(o?" up":"")+'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+(o?'<div class="sech2b">'+body+'</div>':'')+'</div>'};
  const st=(un("cls")?'<h3 class="eqh">Class Starting Equipment</h3><p class="fd bhint">Choose a class first.</p>':opt("eqC",B.eqC==="none"||un("eqC")?"":"ABC"[eqIdx()],R14()&&CLASSES[B.cls].eqg?[clsKitText0(),CLASSES[B.cls].eq[1]+" ("+CLASSES[B.cls].eqg.goldTxt+" on average)"]:CLASSES[B.cls].eq,B.cls+" Starting Equipment")+eq14UI())+(un("bg")?'<h3 class="eqh">Background Starting Equipment</h3><p class="fd bhint">Choose a background first.</p>':opt("eqB",B.eqB==="none"||un("eqB")?"":B.eqB,R14()?[bg.eq]:[bg.eq,"50 GP"],B.bg+" Starting Equipment"))+'<div class="eqact"><button type="button" class="skip" data-skip="1">Skip Starting Equipment</button><button type="button" class="link" data-clearinv="1">Clear All</button></div>';
  h+=sec("st","Starting Equipment","",st);
  const w=inv.reduce((t,x) =>{return t+itemW(x.n)*qOf(x)},0);
- const cur=inv.length?__R.bInvOrder(inv).map((pp) =>{const x=pp[0],i=pp[1],id="inv"+i+x.n,o=!!openCards[id];return '<div class="icard'+(o?" open":"")+(pp[2]?" isub":"")+'"'+(pp[2]>1?' data-dp="2"':'')+'><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'" aria-expanded="'+o+'">'+bI(bItemIco(x.n,x))+'<span><b class="'+rarCls(rarityOf(x))+'">'+esc(x.n)+(kitTool(x)?' ('+esc(kitTool(x))+')':'')+'</b><small>'+itemType(x.n,x)+(rarityOf(x)?', '+rarityOf(x).toLowerCase():'')+(x.src?' \u2022 '+esc(x.src):'')+(__R.bCt(x.n)?' \u2022 '+__R.bInN(x)+' inside':'')+'</small></span></button>'+badge(x,i)+detBtn(id,o,x.n)+'</div>'+
-  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+__R.binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd bhint">Empty. Pick a starting option or add items below.</p>';
+ const cur=inv.length?bInvOrder(inv).map((pp) =>{const x=pp[0],i=pp[1],id="inv"+i+x.n,o=!!openCards[id];return '<div class="icard'+(o?" open":"")+(pp[2]?" isub":"")+'"'+(pp[2]>1?' data-dp="2"':'')+'><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'" aria-expanded="'+o+'">'+bI(bItemIco(x.n,x))+'<span><b class="'+rarCls(rarityOf(x))+'">'+esc(x.n)+(kitTool(x)?' ('+esc(kitTool(x))+')':'')+'</b><small>'+itemType(x.n,x)+(rarityOf(x)?', '+rarityOf(x).toLowerCase():'')+(x.src?' \u2022 '+esc(x.src):'')+(bCt(x.n)?' \u2022 '+bInN(x)+' inside':'')+'</small></span></button>'+badge(x,i)+detBtn(id,o,x.n)+'</div>'+
+  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd bhint">Empty. Pick a starting option or add items below.</p>';
  const att=inv.filter((x) =>{return x.eq&&DMAP[x.n]&&DMAP[x.n][3]}).length;h+=sec("cur","Current Inventory ("+inv.length+")","Attuned "+att+"/3 \u2022 "+Math.round(w*10)/10+" lb",(att>3?'<div class="caution">\u26a0 You are attuned to '+att+' items. A creature can be attuned to at most 3 magic items at once.</div>':'')+cur);
  const cat=[];Object.keys(ARMOR).forEach((n) =>{cat.push(n)});cat.push("Shield");wpKeys().forEach((n) =>{cat.push(n)});GEAR.forEach((g) =>{cat.push(g[0])});POTIONS.forEach((p) =>{if(cat.indexOf(p[0])<0)cat.push(p[0])});DMGI.forEach((x) =>{if(cat.indexOf(x[0])<0)cat.push(x[0])});
  if((invR&&invR!=="Common"&&invR!=="Artifact")||/\+\s*\d/.test(invQ||"")){[1,2,3].forEach((k) =>{wpKeys().forEach((n) =>{cat.push(n+", +"+k)});Object.keys(ARMOR).forEach((n) =>{cat.push(n+", +"+k)});cat.push("Shield, +"+k)})}
@@ -73,19 +73,19 @@ export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h=
  add+='<div class="custom"><p class="flab">Custom or magic item</p><input class="btx" id="custn" placeholder="Item name, e.g. Belt of Hill Giant Strength" value="'+esc(cust.n)+'"><select class="dd" id="custt">'+["Wondrous Item","Ring","Rod","Staff","Wand","Potion","Scroll","Weapon","Armor","Gear"].map((t) =>{return '<option'+(cust.t===t?" selected":"")+'>'+t+'</option>'}).join("")+'</select><div class="lvbox">'+["Common","Uncommon","Rare","Very Rare","Legendary","Artifact"].map((r) =>{return '<button type="button" class="vb '+rarCls(r)+(cust.r===r?" on":"")+'" data-custr="'+r+'">'+r+'</button>'}).join("")+'</div><textarea class="btx" id="custd" rows="2" placeholder="What it does (optional)">'+esc(cust.d)+'</textarea><button type="button" class="bdg add" data-custadd="1">Add Item</button></div>';
  h+=sec("add","Add Items","",add);
  const g=gpNow();
- let mineC=false;try{mineC=__R.bldMine()}catch(e){}const live=!!(mineC&&genv.__coinsGet),cn=live?genv.__coinsGet():bCoins(g),cT=genv.__coinTotal?genv.__coinTotal(cn):g,ag=live&&genv.__coinsGp?genv.__coinsGp():null,dg=ag==null?0:Math.round(((+g||0)-ag)*100)/100;/* v34 p06: one wallet */
+ let mineC=false;try{mineC=bldMine()}catch(e){}const live=!!(mineC&&genv.__coinsGet),cn=live?genv.__coinsGet():bCoins(g),cT=genv.__coinTotal?genv.__coinTotal(cn):g,ag=live&&genv.__coinsGp?genv.__coinsGp():null,dg=ag==null?0:Math.round(((+g||0)-ag)*100)/100;/* v34 p06: one wallet */
  h+=sec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+coinIn(cn)+hint("ui-info",live?"The same coins as your sheet. A change here shows on the sheet at once.":"These coins go to the sheet when you Apply.")+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+hint("coin-gp","From your choices: "+gpBase()+" GP. Add is free. Buy takes the price from your coins and gives change.")+(live&&dg?hint("ui-info","Starting gold here is "+g+" GP, on the sheet "+ag+" GP. After Apply, Gold changes by "+(dg>0?"+":"")+dg+" GP."):''));
  return h}
 
 /* ---------- step: what's next ---------- */
-export function renderNext(){const miss=__R.unList();if(miss.length){const bk0=bakInfo();return '<h2 class="ttl">'+esc(B.name)+'</h2><div class="bwarn"><b>Not ready yet.</b> Choose your '+miss+' first.</div><button type="button" class="ghost" id="newBtn2">Start a new character</button>'+(bk0?'<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk0.label)+')</button>':'')}
+export function renderNext(){const miss=unList();if(miss.length){const bk0=bakInfo();return '<h2 class="ttl">'+esc(B.name)+'</h2><div class="bwarn"><b>Not ready yet.</b> Choose your '+miss+' first.</div><button type="button" class="ghost" id="newBtn2">Start a new character</button>'+(bk0?'<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk0.label)+')</button>':'')}
  const C=toSheet(),a=abil(),L=B.level,c=CL();
  const acv=C.ac.base+(C.ac.dex==="full"?mod(a.sc.DEX):C.ac.dex==="max2"?Math.min(2,mod(a.sc.DEX)):C.ac.dex==="max3"?Math.min(3,mod(a.sc.DEX)):0)+C.ac.bonus.reduce((t,b) =>{return t+b.v},0);
  const hp=hpCalc().max;
  const open=choices().filter((x) =>{return !isDone(x)}).map((x) =>{const v=B.ch[x.key],F=x.t==="feat"&&v&&v.feat&&FEATS[v.feat];if(F&&F.dt&&!v.dt)return {key:x.key,title:v.feat+": damage type not chosen yet"};return x});/* v19 V19-4 */
  let h='<h2 class="ttl">'+esc(B.name)+'</h2><p class="sub">'+esc(C.species)+' '+(C.clsLabel||B.cls+' '+L)+(C.sub?' \u2022 '+esc(C.sub):'')+' \u2022 '+B.bg+'</p>';
  h+='<div class="stats"><div><b>'+acv+'</b><span>AC</span></div><div><b>'+hp+'</b><span>HP</span></div><div><b>'+sg(pbOf(TL()))+'</b><span>Prof</span></div><div><b>'+C.speed+'</b><span>Speed</span></div><div><b>'+sg(mod(a.sc.DEX)+C.initBonus.reduce((t,b) =>{return t+b.v},0))+'</b><span>Init</span></div></div>';
- (function(){let o=null,mc=false;try{mc=__R.bldMine()}catch(e){}if(mc&&genv.__sheetOwnNums)o=genv.__sheetOwnNums();if(o)h+=hint("ui-pen","Your sheet shows AC "+o.ac+" and HP "+o.hp+" ("+o.what.join(", ")+"). The numbers here are calculated.",""," id=\"ownNums\"")})();/* v34 p06 */
+ (function(){let o=null,mc=false;try{mc=bldMine()}catch(e){}if(mc&&genv.__sheetOwnNums)o=genv.__sheetOwnNums();if(o)h+=hint("ui-pen","Your sheet shows AC "+o.ac+" and HP "+o.hp+" ("+o.what.join(", ")+"). The numbers here are calculated.",""," id=\"ownNums\"")})();/* v34 p06 */
  h+='<div class="abline">'+ABK.map((k) =>{return '<div><small>'+k+'</small><b>'+sg(mod(a.sc[k]))+'</b><span>'+a.sc[k]+'</span></div>'}).join("")+'</div>';
  const RI=ruleIssues(),ro=RI.filter((x) =>{return x.open}),rb=RI.filter((x) =>{return !x.open}),stillN=open.length+ro.length;
  if(stillN)h+='<div class="bwarn" id="stillTo"><b>Still to choose ('+stillN+').</b> '+open.map((x) =>{return esc(x.title)}).concat(ro.map((x) =>{return esc(x.m)})).join(", ")+'.</div>';
@@ -99,10 +99,10 @@ export function renderNext(){const miss=__R.unList();if(miss.length){const bk0=b
 function bakInfo(){let raw=null;try{raw=__store.getItem(BAK)}catch(e){}if(raw==null)return null;let b=null;try{b=JSON.parse(raw)}catch(e){}if(!b||!b.cls)return null;
  const tl=(+b.level||1)+(Array.isArray(b.mc)?b.mc.reduce((t,m) =>{return t+(+m.lv||0)},0):0);
  return {raw:raw,b:b,label:(b.name||"Character")+", level "+tl+": "+[b.cls+" "+(+b.level||1)].concat(Array.isArray(b.mc)?b.mc.map((m) =>{return m.cls+" "+m.lv}):[]).join(" / ")}}
-export function restoreBak(){const bk=bakInfo();if(!bk){toast("No backup build on this device");__R.render();return}
+export function restoreBak(){const bk=bakInfo();if(!bk){toast("No backup build on this device");render();return}
  const cur=B.name+", level "+TL();
  ask("Restore the backup build ("+bk.label+")? It replaces the build you are editing ("+cur+"). The build you are editing becomes the backup, so you can switch back.","Restore",() =>{
-  const now=JSON.stringify(B);const b=bk.b;for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(b);save();saveBak(now);__set_step("class");applyPacks();__R.render();toast("Restored "+B.name+" from the backup")})}
+  const now=JSON.stringify(B);const b=bk.b;for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(b);save();saveBak(now);__set_step("class");applyPacks();render();toast("Restored "+B.name+" from the backup")})}
 
 
 /* T11 G6 B6: Identity and Appearance on the What's Next step. They are the Description fields of the sheet (written at once,

@@ -80,7 +80,7 @@ for _f in manifest_files(ROOT):
         _b = len(BRX.findall(_c[_x[3]:_x[4]]))
         ok(_b <= 20, '%s: function %s has %d branches (budget 20)' % (_f, _x[0], _b))
 _d12 = _re.sub(r'/\*.*?\*/', '', rd('12-logic-export-to-sheet.js'), flags=_re.S)
-ok(len(_re.findall(r'__R\b', _d12)) == 2 and 'Object.defineProperty(__R,"toSheet"' in _d12, '12-logic-export-to-sheet.js may use __R only to export toSheet (the q adapters are gone)')
+ok('__R' not in _d12 and 'bindLive("toSheet"' in _d12, '12-logic-export-to-sheet.js does not use __R (stage 10) and exports toSheet only through the late port bindLive("toSheet")')
 ok('provideQueries({' in _d12 and 'return __R.' not in _d12, '12-logic-export-to-sheet.js must register its queries with provideQueries and hold no adapter')
 for _f in ['14-logic-multiclass-hp-shop.js', '16-logic-feature-numbers.js', '20-ui-steps-equipment-next.js', '13-logic-sources-and-packs.js']:
     ok('provideQueries(' in rd(_f), '%s must provide its sheet queries with provideQueries' % _f)

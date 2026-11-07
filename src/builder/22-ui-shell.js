@@ -1,4 +1,4 @@
-import {genv} from "./00-env.js";
+import {attN,bDeco,bindLive,bldMine,toSheetApply,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,attMax,un,unDone} from "./03-logic-magic-item-effects.js";
@@ -15,10 +15,10 @@ import {SMAP,__set_clsTab,__set_spCls,__set_spLv,__set_spQ,choiceStep,clsTab,iss
 import {__set_lgOpen,__set_packTxt,__set_showTpl,lgOpen,packTxt,renderAbil,renderBg,renderClass,renderHome,renderSpecies,showTpl,srcAll} from "./19-ui-steps-sources-class-bg-species-abilities.js";
 import {__set_bMsg,__set_cust,__set_invP,__set_invQ,__set_invR,__set_invT,addQty,addVar,bCoins,bIdent,bMsg,bTokDraw,cust,invP,invQ,invR,invT,renderEquip,renderNext,restoreBak} from "./20-ui-steps-equipment-next.js";
 import {HBE,HBF,__set_HBE,__set_HBF,__set_qbCls,__set_qbSp,bCt,bInN,ctFree,hbCopy,hbDel,hbEdit,hbRead,hbSave,qbCls,qbSp,quickBuild,renderRules,unpackAt} from "./21-ui-rules-reference.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"commit",{get:function(){return commit;},set:function(v){commit=v;},configurable:true});
-Object.defineProperty(__R,"render",{get:function(){return render;},set:function(v){render=v;},configurable:true});
-Object.defineProperty(__R,"sid",{get:function(){return sid;},set:function(v){sid=v;},configurable:true});
+bindLive("copyOf",{get:function(){return copyOf;}});bindLive("go",{get:function(){return go;}});bindLive("own",{get:function(){return own;}});bindLive("stamp",{get:function(){return stamp;}});bindLive("stepBack",{get:function(){return stepBack;}});
+bindLive("commit",{get:function(){return commit;}});
+bindLive("render",{get:function(){return render;}});
+bindLive("sid",{get:function(){return sid;}});
 /* ---------- shell ---------- */
 function stepIss(s){try{return ruleIssues().some((x) =>{return x.step===s})}catch(e){return false}}
 /* v33 p02: [done, total] for a step. Same rules as stepTodo: the class, background and species themselves, the background ability increase, ability scores, both starting equipment choices, and every choice that belongs to the step */
@@ -47,7 +47,7 @@ export function render(){try{genv.__bldArt&&genv.__bldArt(step,B)}catch(e){}try{
  try{let dn=0,tt=0;STEPS.forEach((x) =>{let pr=null;try{pr=stepProg(x[0],csP)}catch(e){}if(pr){dn+=pr[0];tt+=pr[1]}});let pb=$("#bprog");if(!pb){pb=document.createElement("div");pb.id="bprog";pb.setAttribute("role","progressbar");pb.setAttribute("aria-label","Choices made");$("#steps").insertAdjacentElement("afterend",pb)}
   const pc=tt?Math.round(dn*100/tt):0;pb.style.setProperty("--p",pc+"%");pb.setAttribute("aria-valuenow",pc);pb.setAttribute("aria-valuemin","0");pb.setAttribute("aria-valuemax","100")}catch(e){}
  const f={home:renderHome,class:renderClass,bg:renderBg,species:renderSpecies,abil:renderAbil,equip:renderEquip,next:renderNext,rules:renderRules}[step];
- $("#body").innerHTML=f();try{__R.bDeco($("#body"))}catch(e){}try{genv.__bldBanner&&genv.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{genv.__bldCards&&genv.__bldCards($("#body"))}catch(e){}if(step==="next"){try{if(genv.__rcptPreview&&!__R.unList().length){const pv=genv.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
+ $("#body").innerHTML=f();try{bDeco($("#body"))}catch(e){}try{genv.__bldBanner&&genv.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{genv.__bldCards&&genv.__bldCards($("#body"))}catch(e){}if(step==="next"){try{if(genv.__rcptPreview&&!unList().length){const pv=genv.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
  const i=STEPS.map((s) =>{return s[0]}).indexOf(step);$("#prev").disabled=i===0;$("#next").disabled=i===STEPS.length-1;
  /* T11 G6 B1: Name and Campaign live on the Home step only (they took about 100 px above every step on a phone) */
  const hm=step==="home";$("#nameRow").hidden=!hm;$("#nameRow").style.display=hm?"":"none";const cr2=$("#campRow");if(cr2){cr2.hidden=!hm;cr2.style.display=hm?"":"none"}}
@@ -91,13 +91,13 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.tog2){openCards[d.tog2]=openCards[d.tog2]===false?true:false;render();return}
  if(d.skip){B.eqC="none";B.eqB="none";unDone("eqC");unDone("eqB");rebuildKit();commit();return}
  if(d.clearinv){ask("Clear your starting equipment choices and remove every item from your inventory?","Clear All",() =>{B.inv=[];B.eqC="none";B.eqB="none";B.gpOverride=null;commit();toast("Inventory cleared")});return}
- if(d.ieq!=null){const it=B.inv[+d.ieq];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&__R.attN()>=attMax()){toast("You can attune to at most "+attMax()+" magic items. Unattune one first.");return}it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
+ if(d.ieq!=null){const it=B.inv[+d.ieq];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&attN()>=attMax()){toast("You can attune to at most "+attMax()+" magic items. Unattune one first.");return}it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
  if(d.iq!=null){const iq=B.inv[+d.iq];iq.q=Math.max(0,qOf(iq)+(+d.d));commit();return}
  if(d.irm!=null){const rmx=B.inv[+d.irm],rmn=rmx&&bCt(rmx.n)?bInN(rmx):0;ctFree(rmx);B.inv.splice(+d.irm,1);commit();if(rmn)toast("Removed "+rmx.n+". Its "+rmn+" item"+(rmn>1?"s are":" is")+" now outside any container.");return}
  if(d.iunpack!=null){const upx=B.inv[+d.iunpack],upn=upx&&upx.n;if(!upx)return;if(qOf(upx)<1){toast("Qty is 0, so there is nothing to unpack.");return}const upc=unpackAt(+d.iunpack);commit();toast(upc?"Unpacked "+upn+" into a "+PACKS[upx.alias&&PACKS[upx.alias]?upx.alias:upn][0]+" with its items.":"Nothing to unpack.");return}/* v32 RU134 */
  if(d.aq){addQty[d.aq]=Math.max(1,(addQty[d.aq]||1)+(+d.d));render();return}
  if(d.ibuy){const bq=Math.max(1,+d.qty||1),bp=itemCost(d.ibuy);if(bp==null||!(bp>0)){toast("This item has no listed price. Use Add.");return}
-  let mc2=false;try{mc2=__R.bldMine()}catch(er){}const live2=!!(mc2&&genv.__coinsGet),wal=live2?genv.__coinsGet():bCoins(gpNow()),pr=genv.__coinPay?genv.__coinPay(wal,Math.round(bp*100*bq)):null;
+  let mc2=false;try{mc2=bldMine()}catch(er){}const live2=!!(mc2&&genv.__coinsGet),wal=live2?genv.__coinsGet():bCoins(gpNow()),pr=genv.__coinPay?genv.__coinPay(wal,Math.round(bp*100*bq)):null;
   if(!pr){toast("Not enough coin. It costs "+(genv.__priceTxt?genv.__priceTxt(bp*bq):bp*bq+" gp")+(genv.__coinCp?" and you have "+(Math.round(genv.__coinCp(wal))/100)+" gp in all.":"."));return}
   if(live2&&genv.__coinsPut)genv.__coinsPut(pr.c,"Buy "+d.ibuy);else B.coins=pr.c;
   const pu=genv.__coinList?genv.__coinList(pr.use):"",ch=genv.__coinList?genv.__coinList(pr.chg):"";__set_bMsg("Bought "+(bq>1?bq+" \u00d7 ":"")+d.ibuy+" for "+(genv.__priceTxt?genv.__priceTxt(bp*bq):bp*bq+" gp")+(pu?". Paid "+pu:"")+(ch?", change back: "+ch:"")+".");d.iadd=d.ibuy}
@@ -133,7 +133,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.wep){const n=d.wep,i=B.weps.indexOf(n);if(i>=0)B.weps.splice(i,1);else B.weps.push(n);commit();return}
  if(d.cat){__set_dbCat(d.cat);__set_dbQ("");render();return}
  if(t.id==="prev"||t.id==="next"){const ix=STEPS.map((s) =>{return s[0]}).indexOf(step)+(t.id==="next"?1:-1);if(STEPS[ix])go(STEPS[ix][0]);return}
- if(t.id==="expBtn2"){__R.toSheetApply(true);return}
+ if(t.id==="expBtn2"){toSheetApply(true);return}
  if(t.id==="expCopy"){const ta=$("#expTxt");copyText(ta.value,ta).then((ok) =>{toast(ok?"Copied":"Select the text and copy it")});return}
  if(t.id==="expClose"){$("#exp").hidden=true;return}
  if(t.id==="newBtn2"){/* RL40: a new character in My Characters. The open character keeps its build */if(genv.__sheetNew){ask("Start a new character? "+B.name+" stays in My Characters.","Start new",() =>{genv.__sheetNew()});return}ask("Start a new character? This clears the current build.","Start new",() =>{__set_B(NEWB());save();go("class")});return}
@@ -147,7 +147,7 @@ document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;co
  if(d.mclv!=null){B.mc[+d.mclv].lv=+t.value;commit();return}
  if(d.mcsub!=null){B.mc[+d.mcsub].sub=t.value;commit();return}
  if(d.hpr){B.hpr=B.hpr||{};const hv=parseInt(t.value);if(hv>0)B.hpr[d.hpr]=hv;else delete B.hpr[d.hpr];commit();return}if(d.srcck){B.src=B.src||{core:true,dmg:true};if(d.srcck==='dmg')B.src.dmg=t.checked;else B.src[d.srcck]=t.checked;applyPacks();commit();return}
- if(d.coin){const co={};document.querySelectorAll("#bld [data-coin]").forEach((x) =>{const v=Math.floor(+x.value||0);co[x.dataset.coin]=v>0?v:0});let mc=false;try{mc=__R.bldMine()}catch(er){}
+ if(d.coin){const co={};document.querySelectorAll("#bld [data-coin]").forEach((x) =>{const v=Math.floor(+x.value||0);co[x.dataset.coin]=v>0?v:0});let mc=false;try{mc=bldMine()}catch(er){}
   if(mc&&genv.__coinsPut){genv.__coinsPut(co,"Coins in the builder");render();return}B.coins=co;commit();return}/* v34 p06 */
  if(d.gp){B.gpOverride=t.value;commit();return}
  if(d.invp){__set_invP(t.checked);render();return}

@@ -1,4 +1,4 @@
-import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
 import {num,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
 import {uiGet} from "./07-ui-theme-contrast-spring.js";
@@ -7,9 +7,9 @@ import {uiSet} from "./15c-logic-file-state-compress.js";
 import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
 import {scAdj} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"tgPcFor",{get:function(){return tgPcFor;},set:function(v){tgPcFor=v;},configurable:true});
-Object.defineProperty(__R,"tgPcNow",{get:function(){return tgPcNow;},set:function(v){tgPcNow=v;},configurable:true});
+import {env} from "./00-env.js";
+bindLive("tgPcFor",{get:function(){return tgPcFor;}});
+bindLive("tgPcNow",{get:function(){return tgPcNow;}});
 /* T11 G7 TG1: what the Training Ground needs from the sheet, through window.__app (the Training Ground is a deferred part, src/tg).
    A player character for the engine (src/tg/20-engine.js fromSheet): Armor Class, Hit Point maximum, Speed, Initiative, saves and attacks,
    from the same derivation as the sheet. The open character is read as it is. Another character of the roster, or a class to try

@@ -1,13 +1,13 @@
-import {C,S,save,saveC} from "./04-logic-storage.js";
+import {bIndSet,bindLive,ctOf,invKey,lateSet,occOf,pCur,renderAll,renderSpells,toastU,undoMark} from "./00a-reg-late-ports.js";import {C,S,save,saveC} from "./04-logic-storage.js";
 import {$,$$,armorFx,attCount,attMaxC,bldGuard,bldSync,clamp,eqLinked,eqOn,invAt,num,toast,viaBld} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__set_actF,actF,renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {__set_featF,__set_featQ,__set_invF,featF,featQ,invF,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,infoHTML} from "./13-ui-detail-cards.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {PANEL} from "./06a-logic-ui-registry.js";
-Object.defineProperty(__R,"curPage",{get:function(){return curPage;},set:function(v){curPage=v;},configurable:true});
-Object.defineProperty(__R,"mq",{get:function(){return mq;},set:function(v){mq=v;},configurable:true});
+import {env} from "./00-env.js";import {PANEL} from "./06a-logic-ui-registry.js";bindLive("PAGES",{get:function(){return PAGES;}});bindLive("goPage",{get:function(){return goPage;}});bindLive("moveTabInd",{get:function(){return moveTabInd;}});bindLive("onMode",{get:function(){return onMode;}});bindLive("setTab",{get:function(){return setTab;}});
+bindLive("curPage",{get:function(){return curPage;},set:function(v){curPage=v;}});
+bindLive("mq",{get:function(){return mq;},set:function(v){mq=v;}});
 /* ================= TABS + PAGER ================= */
 export var mq = env.matchMedia("(max-width:759px)");
 /* Pages in order (SOLID stage 9, O): one entry per page in PANEL. The Search sheet builds its "go to" commands from these entries. */
@@ -37,11 +37,11 @@ export function moveTabInd(instant){ const t=$('#tabs .tab[aria-selected="true"]
 $("#tabs").addEventListener("click",(e) =>{ const t=e.target.closest(".tab"); if(t) setTab(t.getAttribute("data-tab")); });
 $("#tabs").addEventListener("keydown",(e) =>{ const tabs=$$("#tabs .tab"), i=tabs.findIndex((t) =>{return t.getAttribute("aria-selected")==="true"});
   if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ e.preventDefault(); const n=(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length; setTab(tabs[n].getAttribute("data-tab"),true); } });
-document.addEventListener("click",(e) =>{ const t=e.target.closest("[data-ieqs],[data-idel],[data-invman]"); if(!t) return; if(t.dataset.invman){ if(env.__bldEquip) env.__bldEquip(); return; } if(t.dataset.ieqs){ e.stopPropagation(); const nm=t.dataset.ieqs; const ai=invAt(nm,t.dataset.iix); if(ai&&ai.att&&!eqOn(ai)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); if(typeof closeSheet==="function"&&t.closest("#sheet")) closeSheet(); return; }/* M18 */ if(viaBld(nm)) bldGuard(() =>{ env.__bldToggleEq(nm,__R.occOf(invAt(nm,t.dataset.iix))); }); else { const it=invAt(nm,t.dataset.iix); if(it){ let lk=eqLinked(it), ne=!eqOn(it), fx=null, acd=false;
+document.addEventListener("click",(e) =>{ const t=e.target.closest("[data-ieqs],[data-idel],[data-invman]"); if(!t) return; if(t.dataset.invman){ if(env.__bldEquip) env.__bldEquip(); return; } if(t.dataset.ieqs){ e.stopPropagation(); const nm=t.dataset.ieqs; const ai=invAt(nm,t.dataset.iix); if(ai&&ai.att&&!eqOn(ai)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); if(typeof closeSheet==="function"&&t.closest("#sheet")) closeSheet(); return; }/* M18 */ if(viaBld(nm)) bldGuard(() =>{ env.__bldToggleEq(nm,occOf(invAt(nm,t.dataset.iix))); }); else { const it=invAt(nm,t.dataset.iix); if(it){ let lk=eqLinked(it), ne=!eqOn(it), fx=null, acd=false;
   /* RU29: armor or Shield on a hand-filled sheet: AC from the builder, no dialog. Manual entries stay */
   if(!lk&&env.__bldArmor){ try{ fx=env.__bldArmor({C:structuredClone(C),lang:S.lang},nm,ne); }catch(er){ fx=null; } }
-  it.eq=ne; if(fx) acd=armorFx(fx,it); else bldSync(nm,{eq:it.eq,occ:__R.occOf(it)}); saveC(); __R.renderAll();
-  toast(lk?(it.eq?"Equipped. Its attack is back on the Actions tab.":"Unequipped. Its attack is hidden from the Actions tab."):acd?((it.eq?"Equipped. ":"Unequipped. ")+"Armor Class is now "+D.ac+"."):(it.eq?"Equipped. Open Build and Apply to recalculate AC and attacks.":"Unequipped. Open Build and Apply to recalculate AC and attacks.")); } } if(typeof closeSheet==="function"&&t.closest("#sheet")) closeSheet(); return; } if(t.dataset.idel){ if(t.dataset.sure!=="1"){ t.dataset.sure="1"; t.textContent="TAP AGAIN TO DELETE"; return; } if(viaBld(t.dataset.idel)){ const dn=t.dataset.idel; bldGuard(() =>{ __R.undoMark("Delete "+dn); env.__bldRemove(dn,__R.occOf(invAt(dn,t.dataset.iix))); __R.toastU("Deleted "+dn+"."); }); } else { __R.undoMark("Delete "+t.dataset.idel); const dIt=invAt(t.dataset.idel,t.dataset.iix); bldSync(t.dataset.idel,{del:1,occ:__R.occOf(dIt)}); C.inv=(C.inv||[]).filter((x) =>{return x!==dIt}); if(dIt&&__R.ctOf(dIt.n)&&!C.inv.some((x) =>{ return __R.invKey(x)===__R.invKey(dIt); })) C.inv.forEach((x) =>{ if(x.in===__R.invKey(dIt)) delete x.in; });/* v32 RU134 */ saveC(); __R.renderAll(); __R.toastU("Deleted "+t.dataset.idel+"."); } if(typeof closeSheet==="function") closeSheet(); } }, true);
+  it.eq=ne; if(fx) acd=armorFx(fx,it); else bldSync(nm,{eq:it.eq,occ:occOf(it)}); saveC(); renderAll();
+  toast(lk?(it.eq?"Equipped. Its attack is back on the Actions tab.":"Unequipped. Its attack is hidden from the Actions tab."):acd?((it.eq?"Equipped. ":"Unequipped. ")+"Armor Class is now "+D.ac+"."):(it.eq?"Equipped. Open Build and Apply to recalculate AC and attacks.":"Unequipped. Open Build and Apply to recalculate AC and attacks.")); } } if(typeof closeSheet==="function"&&t.closest("#sheet")) closeSheet(); return; } if(t.dataset.idel){ if(t.dataset.sure!=="1"){ t.dataset.sure="1"; t.textContent="TAP AGAIN TO DELETE"; return; } if(viaBld(t.dataset.idel)){ const dn=t.dataset.idel; bldGuard(() =>{ undoMark("Delete "+dn); env.__bldRemove(dn,occOf(invAt(dn,t.dataset.iix))); toastU("Deleted "+dn+"."); }); } else { undoMark("Delete "+t.dataset.idel); const dIt=invAt(t.dataset.idel,t.dataset.iix); bldSync(t.dataset.idel,{del:1,occ:occOf(dIt)}); C.inv=(C.inv||[]).filter((x) =>{return x!==dIt}); if(dIt&&ctOf(dIt.n)&&!C.inv.some((x) =>{ return invKey(x)===invKey(dIt); })) C.inv.forEach((x) =>{ if(x.in===invKey(dIt)) delete x.in; });/* v32 RU134 */ saveC(); renderAll(); toastU("Deleted "+t.dataset.idel+"."); } if(typeof closeSheet==="function") closeSheet(); } }, true);
 /* Qty Apply: hand-filled sheet writes C.inv[].q, builder sheet goes through __bldSetQty (B.inv), then the popup redraws in place. */
 function iqSync(box){ const r=box.closest(".iqty-r"), a=r&&r.querySelector("[data-iqa]"), v=parseInt(box.value,10); if(a) a.disabled=isNaN(v)||v<0||v===+box.getAttribute("data-iqv"); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest("[data-iqd],[data-iqa]"); if(!b||!b.closest("#sheet")) return; e.stopPropagation(); const box=b.closest(".iqty-r").querySelector(".iqi");
@@ -49,8 +49,8 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest("[data-iqd],[
   if(b.disabled) return; const nm=b.dataset.iqa, q=Math.max(0,parseInt(box.value,10)||0);
   const bix=b.dataset.iix, fin=function(){ const ix=(bix!=null&&C.inv&&C.inv[+bix]&&(C.inv[+bix].key||C.inv[+bix].n)===nm)?+bix:(C.inv||[]).findIndex((x) =>{return (x.key||x.n)===nm}); if(ix>=0){ const r=infoHTML("it:"+ix); $("#sheetBody").innerHTML=r.h; if(navStack.length) navStack[navStack.length-1]={type:"info",spec:"it:"+ix}; }
     toast("Quantity set to "+q); };
-  if(viaBld(nm)&&env.__bldSetQty){ bldGuard(() =>{ env.__bldSetQty(nm,q,__R.occOf(invAt(nm,bix))); fin(); }); return; } /* N1 */
-  const it=invAt(nm,bix); if(!it) return; it.q=q; bldSync(nm,{q:q,occ:__R.occOf(it)}); saveC(); __R.renderAll(); fin(); },true);
+  if(viaBld(nm)&&env.__bldSetQty){ bldGuard(() =>{ env.__bldSetQty(nm,q,occOf(invAt(nm,bix))); fin(); }); return; } /* N1 */
+  const it=invAt(nm,bix); if(!it) return; it.q=q; bldSync(nm,{q:q,occ:occOf(it)}); saveC(); renderAll(); fin(); },true);
 document.addEventListener("input",(e) =>{ if(e.target.classList&&e.target.classList.contains("iqi")) iqSync(e.target); });
 /* m6: typed points left for a pool resource */
 document.addEventListener("change",(e) =>{ const t=e.target; if(!(t.classList&&t.classList.contains("pli"))) return; const k=t.getAttribute("data-k"), r=(D.res||[]).filter((q) =>{return q.k===k})[0]; if(!r) return; const lf=clamp(Math.round(num(t.value,r.max-used(k,r.max))),0,r.max); S.used[k]=r.max-lf; save(); syncLU(); t.value=lf; });
@@ -59,8 +59,8 @@ $("#invBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-i
 $("#actBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-actf]"); if(!b) return; __set_actF(b.getAttribute("data-actf")); renderActions(); });
 $("#featBody").addEventListener("input",(e) =>{ const t=e.target; if(t.id!=="featQ") return; __set_featQ(t.value); const pos=t.selectionStart; renderFeat(); const qq=document.getElementById("featQ"); if(qq){ qq.focus(); qq.setSelectionRange(pos,pos);} });
 $("#featBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-featf]"); if(!b) return; __set_featF(b.getAttribute("data-featf")); renderFeat(); });
-$("#spBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-spf]"); if(!b) return; e.stopPropagation(); __R.spF=b.getAttribute("data-spf"); __R.renderSpells(); });
-$("#spBody").addEventListener("input",(e) =>{ const t=e.target; if(t.id!=="spQ") return; __R.spQ=t.value; const pos=t.selectionStart; __R.renderSpells(); const qq=document.getElementById("spQ"); if(qq){ qq.focus(); qq.setSelectionRange(pos,pos);} });
+$("#spBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-spf]"); if(!b) return; e.stopPropagation(); lateSet("spF",b.getAttribute("data-spf")); renderSpells(); });
+$("#spBody").addEventListener("input",(e) =>{ const t=e.target; if(t.id!=="spQ") return; lateSet("spQ",t.value); const pos=t.selectionStart; renderSpells(); const qq=document.getElementById("spQ"); if(qq){ qq.focus(); qq.setSelectionRange(pos,pos);} });
 export var pager=$("#pager"), bInd=$("#bInd"), navBtns=$$("#bnav button"), curPage=0, raf=0;
 export var BCSS=!!(env.CSS&&CSS.supports&&CSS.supports("animation-timeline","--a")&&CSS.supports("timeline-scope","--a")&&Element.prototype.animate);/* P1: scroll timeline drives the bar line */
 if(BCSS) document.documentElement.classList.add("bi-css");
@@ -76,8 +76,8 @@ function pgReveal(el){ const p=el&&el.closest&&el.closest("#pager>*, #pager .pan
 (function(){ const f=HTMLElement.prototype.focus, s=Element.prototype.scrollIntoView;
   HTMLElement.prototype.focus=function(){ if(PGCULL) pgReveal(this); return f.apply(this,arguments); };
   Element.prototype.scrollIntoView=function(){ if(PGCULL) pgReveal(this); return s.apply(this,arguments); }; })();
-export function onPagerScroll(){ if(raf) return; raf=requestAnimationFrame(() =>{ raf=0; if(!mq.matches) return; const w=pager.clientWidth||1, f=pager.scrollLeft/w; if(!BCSS) __R.bIndSet(f*100);/* v31 p11 */
-  const idx=clamp(Math.round(f),0,PAGES.length-1); if(idx!==curPage){ curPage=idx; navBtns.forEach((b,i) =>{ b.classList.toggle("on",i===idx); if(i===idx) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); navShow(idx); __R.pCur(idx); const bi=document.getElementById("bInd"); if(bi&&!REDUCE){ bi.classList.remove("hop"); void bi.offsetWidth; bi.classList.add("hop"); } }/* v31 p13 */ }); }
+export function onPagerScroll(){ if(raf) return; raf=requestAnimationFrame(() =>{ raf=0; if(!mq.matches) return; const w=pager.clientWidth||1, f=pager.scrollLeft/w; if(!BCSS) bIndSet(f*100);/* v31 p11 */
+  const idx=clamp(Math.round(f),0,PAGES.length-1); if(idx!==curPage){ curPage=idx; navBtns.forEach((b,i) =>{ b.classList.toggle("on",i===idx); if(i===idx) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); navShow(idx); pCur(idx); const bi=document.getElementById("bInd"); if(bi&&!REDUCE){ bi.classList.remove("hop"); void bi.offsetWidth; bi.classList.add("hop"); } }/* v31 p13 */ }); }
 /* v23: the bottom bar scrolls sideways (9 pages); keep the current button in view */
 function navShow(i){ const bn=document.querySelector(".bnav"), b=navBtns[i]; if(!bn||!b) return; const l=b.offsetLeft, r=l+b.offsetWidth; if(l<bn.scrollLeft+8) bn.scrollTo({left:Math.max(0,l-24),behavior:REDUCE?"auto":"smooth"}); else if(r>bn.scrollLeft+bn.clientWidth-8) bn.scrollTo({left:r-bn.clientWidth+24,behavior:REDUCE?"auto":"smooth"}); }
 pager.addEventListener("scroll",onPagerScroll,{passive:true});

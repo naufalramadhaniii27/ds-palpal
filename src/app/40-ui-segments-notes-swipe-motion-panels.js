@@ -1,14 +1,14 @@
-import {env} from "./00-env.js";import {C,S} from "./04-logic-storage.js";
+import {bindLive} from "./00a-reg-late-ports.js";import {env} from "./00-env.js";import {C,S} from "./04-logic-storage.js";
 import {attMaxC,eqOn,esc,num} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";import {__set_renderFeat,__set_renderInv,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
 import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {__set_renderExtras,renderExtras} from "./29b-ui-creatures-extras.js";
-import {__R} from "./00-reg.js";
-Object.defineProperty(__R,"FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;},configurable:true});
-Object.defineProperty(__R,"foldP",{get:function(){return foldP;},set:function(v){foldP=v;},configurable:true});
-Object.defineProperty(__R,"lintChip",{get:function(){return lintChip;},set:function(v){lintChip=v;},configurable:true});
+bindLive("lintList",{get:function(){return lintList;}});
+bindLive("FOPEN",{get:function(){return FOPEN;},set:function(v){FOPEN=v;}});
+bindLive("foldP",{get:function(){return foldP;}});
+bindLive("lintChip",{get:function(){return lintChip;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 function lintChip(){ const l=lintList(); if(!l.length) return ""; return '<button type="button" class="chip lint-c press" data-lint="1" aria-label="Rules check: '+l.length+(l.length===1?' thing':' things')+' to look at">'+(typeof ico==="function"?ico("ui-info"):"")+'Rules check '+l.length+'</button>'; }
 export function lintList(){ const out=[]; if(!C||!D||!S) return out;

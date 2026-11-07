@@ -1,4 +1,4 @@
-import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
+import {ammoFor,ammoH,ammoPickH,bindLive,clsOfG,crBlock,crOf,ctH,dockOff,fch,featNums,featSpL,hpSpellNote,ico,itemRes,lateGet,libDetail,morphStop,moveCtl,occOf,ordL,packH,pgGuess,pinSpBtn,renderAll,resOf,scOf,shClosed,shDragEnd,spCastH,spFx,spFxBlock,spRowLv,spnHTML,spxBody,srcPg,svgI,tmpFeatH,tmpSpellH,tyIcon,undoMark,useH} from "./00a-reg-late-ports.js";import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,gName} from "./03-data-glossary.js";
 import {C,S,save,saveC} from "./04-logic-storage.js";
 import {$,atkOn,eqOn,esc,fmtW,invAt,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";
@@ -6,12 +6,12 @@ import {B,D,fill,richB,richP} from "./06-logic-derivation.js";
 import {aylH,aylSplit,spSum} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";
 import {SWP,__set_SWP,__set_navStack,__set_sheetMode,lastFocus,navStack,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";
-Object.defineProperty(__R,"featSpec",{get:function(){return featSpec;},set:function(v){featSpec=v;},configurable:true});
-Object.defineProperty(__R,"grpSpec",{get:function(){return grpSpec;},set:function(v){grpSpec=v;},configurable:true});
-Object.defineProperty(__R,"infoHTML",{get:function(){return infoHTML;},set:function(v){infoHTML=v;},configurable:true});
-Object.defineProperty(__R,"resSpec",{get:function(){return resSpec;},set:function(v){resSpec=v;},configurable:true});
-Object.defineProperty(__R,"xlink",{get:function(){return xlink;},set:function(v){xlink=v;},configurable:true});
+import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";bindLive("closeSheet",{get:function(){return closeSheet;}});bindLive("closeSheetIfOn",{get:function(){return closeSheetIfOn;}});
+bindLive("featSpec",{get:function(){return featSpec;}});
+bindLive("grpSpec",{get:function(){return grpSpec;}});
+bindLive("infoHTML",{get:function(){return infoHTML;}});
+bindLive("resSpec",{get:function(){return resSpec;}});
+bindLive("xlink",{get:function(){return xlink;}});
 /* ================= DETAIL (info) BUILDERS ================= */
 export function meta(c,s){ return '<div class="info-meta">'+(c?'<span class="info-cat">'+esc(c)+'</span>':'')+(s?'<span class="src">'+esc(s)+'</span>':'')+'</div>'; }
 function tileBd(label,val,bd){ return '<button type="button" class="tile bd" data-bd="'+bd+'"><span class="k">'+label+'</span><span class="v" style="font-size:24px">'+val+'</span></button>'; }
@@ -41,7 +41,7 @@ let XL_IDX=null, XL_KEY="", XL_STOP={"The":1,"A":1,"An":1,"Each":1,"Any":1,"Your
 const XL_FIRM={"Advantage":1,"Disadvantage":1,"Darkvision":1,"Initiative":1,"Exhaustion":1,"Dash":1,"Disengage":1,"Dodge":1,"Utilize":1,"Grapple":1,"Shove":1,"Blindsight":1,"Truesight":1,"Tremorsense":1};/* single words that are always the term */
 const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;/* glossary gear words: a plain name, may start a sentence */
 const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;/* the word after a level 2 name that makes it a term */
-function xlRules(){ return typeof __R.LIB_RULES!=="undefined"?__R.LIB_RULES:{}; }
+function xlRules(){ return typeof lateGet("LIB_RULES")!=="undefined"?lateGet("LIB_RULES"):{}; }
 let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
 function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
 const XL_EMPTY=(function(){ const e={}; Object.defineProperty(e,"__f",{value:{}}); return e; })();/* before the data parts are all in, the index would be built twice; it stays empty and the page is linked once when the data is ready */
@@ -192,7 +192,7 @@ env.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT
 function miHTML(n){
   const r=(typeof DMGI!=="undefined"?DMGI:[]).filter((x) =>{ return x[0]===n; })[0];
   if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};
-  const h='<div class="dc dc-i">'+dcHead(__R.ico("ui-hand","isch"),esc(r[1]+" • "+r[2]+(r[3]?" • Requires attunement":"")))+'</div><div class="idetail"><p class="info-d">'+kwChips(xlink(richP(r[4]),n))+'</p></div>';
+  const h='<div class="dc dc-i">'+dcHead(ico("ui-hand","isch"),esc(r[1]+" • "+r[2]+(r[3]?" • Requires attunement":"")))+'</div><div class="idetail"><p class="info-d">'+kwChips(xlink(richP(r[4]),n))+'</p></div>';
   return {t:n, h:h};
 }
 const NUM_MAP={"Armor Class":"ac","Initiative":"init","Speed":"speed","Proficiency Bonus":"pb","Hit Points":"hp","Carrying Capacity":"carry","Grapple":"dc","Shove":"dc","Passive Perception":"pas-per"};
@@ -209,13 +209,13 @@ function fKindIco(t){ return /^Bonus/.test(t)?"time-bonus":/^Reaction/.test(t)?"
 function dcItem(html){ let P={}, h=String(html||"");
   h=h.replace(/<dt>([^<]+)<\/dt>\s*<dd>([\s\S]*?)<\/dd>/g,(m,k,v) =>{ P[k]=v; return m; });
   const pick=P["Armor Class"]!=null?[["Armor Class","AC","ui-shield"],["Strength","Strength","ab-str"],["Stealth","Stealth","ui-stealth"],["Cost","Cost","ui-cost"]]:P["Damage"]!=null?[["Damage","Damage","hp-damage"],["Damage Type","Type","item-weapon"],["Proficient","Proficient","ui-prof"],["Cost","Cost","ui-cost"]]:[["Weight","Weight","ui-weight"],["Cost","Cost","ui-cost"]];
-  let cells=[], rest=h; pick.forEach((q) =>{ if(P[q[0]]==null) return; cells.push([q[2],q[1],P[q[0]],q[0]==="Damage Type"&&__R.DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]]?__R.svgI(__R.DT_ICON[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]],"ico dc-ci",""):""]); const re=new RegExp("<dt>"+q[0]+"</dt>\\s*<dd>[\\s\\S]*?</dd>"); rest=rest.replace(re,""); });
+  let cells=[], rest=h; pick.forEach((q) =>{ if(P[q[0]]==null) return; cells.push([q[2],q[1],P[q[0]],q[0]==="Damage Type"&&lateGet("DT_ICON")[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]]?svgI(lateGet("DT_ICON")[String(P[q[0]]).replace(/<[^>]*>/g,"").trim().split(/[ ,]/)[0]],"ico dc-ci",""):""]); const re=new RegExp("<dt>"+q[0]+"</dt>\\s*<dd>[\\s\\S]*?</dd>"); rest=rest.replace(re,""); });
   const kind=(/<i>([^<]{2,40})<\/i>/.exec(h)||[])[1]||"Item";
   rest=rest.replace(/<p>\s*<i>[^<]+<\/i>\s*<\/p>/,"");
-  return {h:dcHead(__R.ico(P["Armor Class"]!=null?"ui-shield":"ui-hand","isch"),esc(kind))+(cells.length?dcStrip(cells):""), rest:rest}; }
+  return {h:dcHead(ico(P["Armor Class"]!=null?"ui-shield":"ui-hand","isch"),esc(kind))+(cells.length?dcStrip(cells):""), rest:rest}; }
 export function dcHead(badge,sub){ return '<div class="dc-head"><span class="dc-badge">'+badge+'</span><div class="dc-sub">'+sub+'</div></div>'; }
-export function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map((c) =>{ return '<div class="dc-cell"><span class="dc-ico">'+(c[3]||__R.ico(c[0],"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(c[1])+'</small><b>'+c[2]+'</b></div></div>'; }).join("")+'</div>'; }/* v38 p11 */
-function wCell(ik,lab,val,bd,raw){ const inner='<span class="dc-ico">'+(raw||__R.ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd?'<button type="button" class="dc-cell bd" data-bd="'+bd+'">'+inner+'</button>':'<div class="dc-cell">'+inner+'</div>'; }/* v38 p14 */
+export function dcStrip(a,cls){ return '<div class="dc-strip'+(cls?' '+cls:'')+'">'+a.map((c) =>{ return '<div class="dc-cell"><span class="dc-ico">'+(c[3]||ico(c[0],"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(c[1])+'</small><b>'+c[2]+'</b></div></div>'; }).join("")+'</div>'; }/* v38 p11 */
+function wCell(ik,lab,val,bd,raw){ const inner='<span class="dc-ico">'+(raw||ico(ik,"dc-ci"))+'</span><div class="dc-tx"><small>'+esc(lab)+'</small><b>'+val+'</b></div>'; return bd?'<button type="button" class="dc-cell bd" data-bd="'+bd+'">'+inner+'</button>':'<div class="dc-cell">'+inner+'</div>'; }/* v38 p14 */
 function dcFoot(l,r){ return '<div class="dc-foot"><b>'+l+'</b><span>'+r+'</span></div>'; }
 
 /* v38 p10: spTgt */
@@ -247,7 +247,7 @@ export function infoHTML(spec){
 }
 DETAIL.add("spn", {
   render:function(key){ let h="";
-  return __R.spnHTML(key);
+  return spnHTML(key);
   },
   self:function(k){ return ((k) =>k)(k); }
 });
@@ -259,7 +259,7 @@ DETAIL.add("mi", {
 });
 DETAIL.add("lib", {
   render:function(key){ let h="";
-  const bar=key.indexOf("|"), ld=typeof __R.libDetail==="function"&&__R.libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'};
+  const bar=key.indexOf("|"), ld=typeof lateGet("libDetail")==="function"&&libDetail(key.slice(0,bar),key.slice(bar+1)); return ld?{t:ld.t,h:ld.h}:{t:key.slice(bar+1),h:'<p class="info-d">Not found.</p>'};
   },
   self:function(k){ return ((k) =>k.slice(k.lastIndexOf("|")+1))(k); }
 });
@@ -285,41 +285,41 @@ DETAIL.add("g", {
 });
 DETAIL.add("cr", {
   render:function(key){ let h="";
-  const cp=key.split("|"), cc=__R.crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:__R.crBlock(cc,cp.slice(1).join("|"))};
+  const cp=key.split("|"), cc=crOf(cp[0]); if(!cc) return {t:"Creature", h:'<p class="info-d">Not found.</p>'}; return {t:cc.n, h:crBlock(cc,cp.slice(1).join("|"))};
   },
   self:function(k){ return ((k) =>k.split("|")[0])(k); }
 });
 DETAIL.add("xd", {
   render:function(key){ let h="";
-  const xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+__R.tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'};
+  const xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'};
   }
 });
 DETAIL.add("sp", {
   render:function(key){ let h="";
-  const x=(C.spells||[])[+key], sc=__R.scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
-    const sch=String(x.sch||"").toLowerCase(), fxb=__R.spFxBlock(x,key);
-    h='<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':__R.ico("school-"+sch,"isch"),__R.ico("school-"+sch,"isch")+'<i>'+(x.l?__R.ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
+  const x=(C.spells||[])[+key], sc=scOf(x); if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
+    const sch=String(x.sch||"").toLowerCase(), fxb=spFxBlock(x,key);
+    h='<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':ico("school-"+sch,"isch"),ico("school-"+sch,"isch")+'<i>'+(x.l?ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
       dcStrip([[/^Bonus/.test(x.ct)?"time-bonus":/^Reaction/.test(x.ct)?"time-reaction":/^Action/.test(x.ct)?"time-action":"time-long","Time",esc(x.ct)+(x.rit?' <i class="sp-c rit">R</i>':'')],["fx-reach","Range",esc(String(x.r||"").replace(/ ft$/," ft."))],spTgtCell(x),[/^V/.test(x.cmp)?"comp-v":"comp-s","Components",esc(x.cmp)],[x.conc?"tag-concentration":"ui-moon","Duration",esc(x.dur)+(x.conc?' <i class="sp-c">C</i>':'')],spEffCell(x)],"dc-s6")+
-      spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(__R.spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||__R.spFx(x).mat)+'</p>':'')+'</div>'+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+__R.hpSpellNote(x)+__R.tmpSpellH(x,__R.spLvSel[x.n]!=null?__R.spLvSel[x.n]:__R.spRowLv(x))+'<div class="dc-use">'+__R.spCastH(x,+key)+__R.pinSpBtn(x)+'</div>'+
-      dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?__R.srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
+      spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||spFx(x).mat)+'</p>':'')+'</div>'+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
+      dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
     return {t:x.n, h:h};
   },
   self:function(k){ return ((k) =>((C.spells||[])[+k]||{}).n||"")(k); }
 });
 DETAIL.add("spx", {
   render:function(key){ let h="";
-  return {t:"Spells cast on you", h:__R.spxBody()};
+  return {t:"Spells cast on you", h:spxBody()};
   }
 });
 DETAIL.add("f", {
   render:function(key){ let h="";
   const ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
-    const cl0=__R.clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
-    const fk=fKind(f), rl0=__R.resOf(f.n), r0=rl0[0];
-    h='<div class="dc dc-f">'+dcHead(__R.ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(__R.srcPg(f.s,__R.pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+__R.fch(__R.featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+__R.featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+__R.fch(__R.featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+__R.featSpL(gr,f);
+    const cl0=clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
+    const fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
+    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(srcPg(f.s,pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
     if(r0){ const lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+'</div>'+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
-    h+=__R.tmpFeatH(f);/* v21 RU55 */
+    h+=tmpFeatH(f);/* v21 RU55 */
     h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button></p></div>';
     return {t:f.n, h:h};
   },
@@ -335,11 +335,11 @@ DETAIL.add("grp", {
 DETAIL.add("w", {
   render:function(key){ let h="";
   const a=(C.attacks||[])[+key], d=D.atk[+key]; if(!a) return {t:"Attack", h:""};
-    h='<div class="dc dc-w">'+dcHead(__R.ico("time-action","isch"),esc(a.dieSrc||"Attack"))+'<div class="dc-strip dc-s4 info-k">'+wCell("fx-attack","To hit",sg(d.hit),"ah-"+key)+wCell("hp-damage","Damage",esc(d.dmg),"ad-"+key)+wCell("fx-reach","Range",esc(a.range||"\u2014"))+wCell("item-weapon","Type",esc(a.type||"\u2014"),"",__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]]?__R.svgI(__R.DT_ICON[String(a.type||"").split(/[ ,]/)[0]],"ico dc-ci",""):"")+'</div>';
+    h='<div class="dc dc-w">'+dcHead(ico("time-action","isch"),esc(a.dieSrc||"Attack"))+'<div class="dc-strip dc-s4 info-k">'+wCell("fx-attack","To hit",sg(d.hit),"ah-"+key)+wCell("hp-damage","Damage",esc(d.dmg),"ad-"+key)+wCell("fx-reach","Range",esc(a.range||"\u2014"))+wCell("item-weapon","Type",esc(a.type||"\u2014"),"",lateGet("DT_ICON")[String(a.type||"").split(/[ ,]/)[0]]?svgI(lateGet("DT_ICON")[String(a.type||"").split(/[ ,]/)[0]],"ico dc-ci",""):"")+'</div>';
     if(a.sub) h+='<div class="info-h">Properties</div><p class="info-d">'+linkify(a.sub)+'</p>';
     if(a.m) h+='<div class="info-h">Mastery: '+(GLOSS[a.m]?'<button type="button" class="lk" data-info="g:'+esc(a.m)+'">'+esc(a.m)+'</button>':esc(a.m))+'</div>'+(GLOSS[a.m]?'<p class="info-d">'+rich(GLOSS[a.m].d)+'</p>':'');
     if(a.note) h+='<div class="info-h">Notes</div><p class="info-d">'+esc(a.note)+'</p>';
-    h+=__R.ammoPickH(a)+__R.ammoH(__R.ammoFor(a));/* v21 RU51, v102 magic ammunition */
+    h+=ammoPickH(a)+ammoH(ammoFor(a));/* v21 RU51, v102 magic ammunition */
     if(GLOSS[a.n]) h+='<div class="info-h">Base weapon</div><p class="info-d">'+rich(GLOSS[a.n].d)+'</p>';
     return {t:a.n, h:h+'</div>'};
   }
@@ -347,14 +347,14 @@ DETAIL.add("w", {
 DETAIL.add("it", {
   render:function(key){ let h="";
   const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(__R.srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?(it.att?"Unattune":"Unequip"):(it.att?"Attune":"Equip"))+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     const base=GLOSS[it.n], q=num(it.q,1), w=num(it.w,0);
     h=meta(base?base.c:"Item", base?base.s:"")+'<div class="info-k">'+tileS("Quantity",q)+tileS("Weight",w?fmtW(q*w)+" lb":"\u2014")+(eqOn(it)?tileS("Status","Worn"):"")+'</div>';
     if(base) h+='<p class="info-d">'+rich(base.d)+'</p>';
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=__R.packH(it,+key)+__R.ctH(it,+key)+__R.useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+__R.itemRes(it)+__R.moveCtl(it,+key);
+    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
     return {t:it.n, h:h};
   },
   self:function(k){ return ((k) =>((C.inv||[])[+k]||{}).n||"")(k); }
@@ -366,8 +366,8 @@ function infoHTML0(spec){
 }
 export function closeSheetIfOn(){ if(sheet.classList.contains("on")) closeSheet(); }
 export function closeSheet(){ __set_SWP(null);/* v36 p18 */ __set_SWP(null);/* v36 p18 */
-  hpDockBack();/* v30 */ __R.morphStop();/* v31 p12 */
-  $("#scrim").classList.remove("on"); sheet.classList.remove("on"); __R.dockOff(); __R.shClosed();/* v31 p14, p16 */
+  hpDockBack();/* v30 */ morphStop();/* v31 p12 */
+  $("#scrim").classList.remove("on"); sheet.classList.remove("on"); dockOff(); shClosed();/* v31 p14, p16 */
   if(sheetMode==="edit") toast("Changes saved");
   __set_sheetMode(""); __set_navStack([]); $("#sheetBack").hidden=true;
   if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
@@ -378,7 +378,7 @@ document.addEventListener("keydown",(e) =>{ if(e.key==="Escape" && sheet.classLi
 (function(){
   let head=$("#sheetHead"), startY=0, dy=0, lastY=0, lastT=0, vel=0, dragging=false;
   head.addEventListener("pointerdown",(e) =>{
-    if(!__R.mq.matches || e.target.closest("button")) return;
+    if(!lateGet("mq").matches || e.target.closest("button")) return;
     dragging=true; head.setPointerCapture(e.pointerId);
     startY=lastY=e.clientY; lastT=performance.now(); dy=0; vel=0; sheet.classList.add("drag");
   });
@@ -389,20 +389,20 @@ document.addEventListener("keydown",(e) =>{ if(e.key==="Escape" && sheet.classLi
     vel = (e.clientY-lastY)/Math.max(1,now-lastT); lastY=e.clientY; lastT=now;
     sheet.style.transform="translateY("+dy+"px)";
   });
-  function end(){ if(!dragging) return; dragging=false; sheet.classList.remove("drag"); const projected=dy+vel*180; __R.shDragEnd(dy,vel,projected > sheet.offsetHeight*.35); }/* v31 p14: the finger speed goes into the spring */
+  function end(){ if(!dragging) return; dragging=false; sheet.classList.remove("drag"); const projected=dy+vel*180; shDragEnd(dy,vel,projected > sheet.offsetHeight*.35); }/* v31 p14: the finger speed goes into the spring */
   head.addEventListener("pointerup",end); head.addEventListener("pointercancel",end);
 })();
 /* v33 p08: pull down from the content to close, on phones, when the content is at its top */
 (function(){ let body=$("#sheetBody"), y0=0, x0=0, dy=0, lastY=0, lastT=0, vel=0, st=0;/* st: 0 idle, 1 armed, 2 pulling, -1 scrolling */
   if(!body) return;
   function scroller(t){ for(let e=t; e&&e!==body; e=e.parentElement){ if(e.scrollHeight>e.clientHeight+1){ const o=getComputedStyle(e).overflowY; if(o==="auto"||o==="scroll") return e; } } return body; }
-  body.addEventListener("touchstart",(e) =>{ st=-1; if(!__R.mq.matches||e.touches.length!==1||!sheet.classList.contains("on")) return; const t=e.target;
+  body.addEventListener("touchstart",(e) =>{ st=-1; if(!lateGet("mq").matches||e.touches.length!==1||!sheet.classList.contains("on")) return; const t=e.target;
     if(t.closest&&t.closest("input,textarea,select,[contenteditable=true],.dragh")) return; const sc=scroller(t); if(sc.scrollTop>0||body.scrollTop>0) return;
     y0=lastY=e.touches[0].clientY; x0=e.touches[0].clientX; lastT=performance.now(); dy=0; vel=0; st=1; },{passive:true});
   body.addEventListener("touchmove",(e) =>{ if(st<1) return; const t=e.touches[0], ddy=t.clientY-y0, ddx=t.clientX-x0;
     if(st===1){ if(Math.abs(ddx)>8&&Math.abs(ddx)>Math.abs(ddy)){ st=-1; return; } if(ddy<-4){ st=-1; return; } if(ddy<10) return; st=2; sheet.classList.add("drag"); y0=t.clientY; }
     if(e.cancelable) e.preventDefault(); const now=performance.now(); dy=Math.max(0,t.clientY-y0); vel=(t.clientY-lastY)/Math.max(1,now-lastT); lastY=t.clientY; lastT=now; sheet.style.transform="translateY("+dy+"px)"; },{passive:false});
-  function end(){ if(st===2){ sheet.classList.remove("drag"); __R.shDragEnd(dy,vel,dy+vel*180>sheet.offsetHeight*.35); } st=0; }
+  function end(){ if(st===2){ sheet.classList.remove("drag"); shDragEnd(dy,vel,dy+vel*180>sheet.offsetHeight*.35); } st=0; }
   body.addEventListener("touchend",end); body.addEventListener("touchcancel",end);
 })();
 
@@ -413,5 +413,5 @@ export function mwEligible(it){ if(!it) return false; if(it.mw!=null) return tru
 export function mwH(it,ix){ if(!mwEligible(it)) return ""; const on=!!it.mw;
   return '<div class="mwsw"><div class="mwsw-t"><b>Masterwork</b><small>Counts this '+(typeof ARMOR!=="undefined"&&ARMOR[mwBase(it.n)]?'armor':'weapon')+' as Masterwork for the rules that ask for it.</small></div><button type="button" role="switch" class="fxsw press'+(on?' on':'')+'" aria-checked="'+on+'" aria-label="Masterwork" data-imw="'+esc(it.key||it.n)+'" data-iix="'+ix+'"><i></i></button></div>'; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-imw]"); if(!b) return; e.preventDefault(); e.stopPropagation();
-  const it=invAt(b.getAttribute("data-imw"),b.getAttribute("data-iix")); if(!it) return; __R.undoMark((it.mw?"Remove":"Add")+" Masterwork");
-  it.mw=!it.mw; b.setAttribute("aria-checked",!!it.mw); b.classList.toggle("on",!!it.mw); saveC(); try{ if(env.__bldSetMw&&it.n) env.__bldSetMw(it.n,__R.occOf(it),!!it.mw); }catch(_){ } __R.renderAll(); },true);
+  const it=invAt(b.getAttribute("data-imw"),b.getAttribute("data-iix")); if(!it) return; undoMark((it.mw?"Remove":"Add")+" Masterwork");
+  it.mw=!it.mw; b.setAttribute("aria-checked",!!it.mw); b.classList.toggle("on",!!it.mw); saveC(); try{ if(env.__bldSetMw&&it.n) env.__bldSetMw(it.n,occOf(it),!!it.mw); }catch(_){ } renderAll(); },true);

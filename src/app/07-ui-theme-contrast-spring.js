@@ -1,7 +1,7 @@
-import {C,S,clsLv} from "./04-logic-storage.js";
+import {applyLook2,bindLive,ico,lateGet,lateSet,openSheet,settingsHTML,uiSet} from "./00a-reg-late-ports.js";import {C,S,clsLv} from "./04-logic-storage.js";
 import {$,ask,esc} from "./05-logic-helpers.js";
-import {__R} from "./00-reg.js";import {env} from "./00-env.js";
-Object.defineProperty(__R,"applyLook",{get:function(){return applyLook;},set:function(v){applyLook=v;},configurable:true});
+import {env} from "./00-env.js";bindLive("PALS",{get:function(){return PALS;}});bindLive("REDUCE",{get:function(){return REDUCE;}});bindLive("dataUri",{get:function(){return dataUri;}});bindLive("uiGet",{get:function(){return uiGet;}});
+bindLive("applyLook",{get:function(){return applyLook;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 export function uiGet(k){ try{ return JSON.parse(__store.getItem(k)||"null")||{}; }catch(e){ return {}; } }
 /* ================= THEME ================= */
@@ -37,7 +37,7 @@ export function applyLook(){document.documentElement.setAttribute("data-skin",S.
  const L=":root{--dinas:"+p[1]+";--dinas-2:"+p[2]+";--on-dinas-2:"+p[3]+";--stamp:"+p[4]+";--stamp-soft:"+p[5]+";--pat:"+dataUri(S.sym,"#ffffff",1,36)+";--wm:"+dataUri(S.sym,"#000000",.8)+"}";
  const Dk="--dinas:"+p[6]+";--dinas-2:"+p[7]+";--on-dinas-2:"+p[8]+";--stamp:"+p[9]+";--stamp-soft:"+p[10]+";--wm:"+dataUri(S.sym,"#ffffff",.8);
  const acc=p[8];st.textContent="@layer app{:root{--acc:"+acc+";--acc2:"+p[9]+"}"+L+"@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"]){"+Dk+"}}:root[data-theme=\"dark\"]{"+Dk+"}}";/* T11 A4: same cascade layer as the app CSS */
- const bs=document.getElementById("bandSym");if(bs)bs.innerHTML=svgOf(S.sym,1.6);renderStamp();__R.applyLook2()}
+ const bs=document.getElementById("bandSym");if(bs)bs.innerHTML=svgOf(S.sym,1.6);renderStamp();applyLook2()}
 export function renderStamp(){const el=document.getElementById("stampSvg");if(!el)return;const txt=((C.name||"")+"  \u2726  "+clsLv()+"  \u2726").toUpperCase();const sy=SYMS[S.sym]||SYMS.star;
  el.innerHTML='<defs><path id="ring" d="M50 50 m-35 0 a35 35 0 1 1 70 0 a35 35 0 1 1 -70 0"/><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25"/><feComposite in="SourceGraphic" operator="in"/></filter></defs><g filter="url(#ink)" fill="none" stroke="currentColor"><circle cx="50" cy="50" r="46" stroke-width="3"/><circle cx="50" cy="50" r="27" stroke-width="1.6"/><text font-family="Archivo Narrow, Arial Narrow, sans-serif" font-weight="700" font-size="'+(txt.length>34?8.5:10.5)+'" letter-spacing="1.4" fill="currentColor" stroke="none"><textPath href="#ring">'+esc(txt)+'</textPath></text><g transform="translate(36 36) scale(1.17)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+sy[1]+'</g></g>'}
 function skinMock(k){ return k==="ddb"?'<svg class="skm" viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#0f1417"/><rect width="120" height="15" fill="#1d2328"/><rect y="15" width="120" height="2" fill="#d6453b"/><rect x="8" y="5" width="44" height="5" rx="2.5" fill="#e8ecef"/><rect x="8" y="24" width="31" height="18" rx="3" fill="#232a30" stroke="#56626b"/><rect x="44.5" y="24" width="31" height="18" rx="3" fill="#232a30" stroke="#56626b"/><rect x="81" y="24" width="31" height="18" rx="3" fill="#232a30" stroke="#56626b"/><rect x="8" y="50" width="50" height="10" rx="3" fill="#24804a"/><rect x="62" y="50" width="50" height="10" rx="3" fill="#d6453b"/></svg>':'<svg class="skm" viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#efe9dc"/><rect width="120" height="17" style="fill:var(--dinas,#142c25)"/><rect x="8" y="6" width="44" height="5" rx="2.5" fill="#f3efe4"/><circle cx="106" cy="8.5" r="5.5" fill="none" stroke-width="1.8" style="stroke:var(--stamp,#7a2f6b)"/><rect x="8" y="24" width="31" height="18" rx="3" fill="#fbf8f1" stroke="#cfc6b2"/><rect x="44.5" y="24" width="31" height="18" rx="3" fill="#fbf8f1" stroke="#cfc6b2"/><rect x="81" y="24" width="31" height="18" rx="3" fill="#fbf8f1" stroke="#cfc6b2"/><rect x="8" y="50" width="104" height="4" rx="2" fill="#b8ae97"/><rect x="8" y="58" width="60" height="4" rx="2" fill="#b8ae97"/></svg>'; }/* v32 p27 C14 */
@@ -45,7 +45,7 @@ export function themeHTML(){let h='<div class="info-h">Style</div><div class="th
  h+='<div class="info-h">Color</div><div class="thg">'+Object.keys(PALS).map((k) =>{const p=PALS[k];return '<button type="button" class="thb thcol'+(S.color===k?" on":"")+'" data-thc="'+k+'" aria-pressed="'+(S.color===k)+'"><span class="sw" style="background:linear-gradient(180deg,'+p[1]+' 0 64%,'+p[4]+' 64%)"><i style="background:'+p[3]+'"></i></span>'+p[0]+'</button>'}).join("")+'</div>';
  h+='<div class="info-h">Symbol</div><div class="thg">'+Object.keys(SYMS).map((k) =>{return '<button type="button" class="thb'+(S.sym===k?" on":"")+'" data-ths="'+k+'">'+svgOf(k,1.7)+SYMS[k][0]+'</button>'}).join("")+'</div><p class="info-d">Pick any color and symbol. They are not tied to class, species, or background.</p>';
  return h}
-$("#themeBtn").addEventListener("click",() =>{ __R.navStack=[]; __R.openSheet("Settings", __R.settingsHTML(), "theme"); });/* v25 RU38 no. 6, no. 7 */
+$("#themeBtn").addEventListener("click",() =>{ lateSet("navStack",[]); openSheet("Settings", settingsHTML(), "theme"); });/* v25 RU38 no. 6, no. 7 */
 applyTheme();
 /* v35 p01: high contrast. A device setting in cs-ui-hc {m:"auto"|"on"|"off"}, the same for every character. Auto follows the system
    (prefers-contrast: more, forced-colors: active). On sets data-hc on <html>; the colors live in sheet.css (v35 p01). */
@@ -54,14 +54,14 @@ function hcMode(){ const m=uiGet("cs-ui-hc").m; return m==="on"||m==="off"?m:"au
 function hcSys(){ return HC_MQ.some((q) =>{ return q.matches; }); }
 export function hcOn(){ const m=hcMode(); return m==="on"||(m==="auto"&&hcSys()); }
 function hcApply(){ const R=document.documentElement; if(hcOn()) R.setAttribute("data-hc","1"); else R.removeAttribute("data-hc"); if(HC_MQ[1]&&HC_MQ[1].matches) R.setAttribute("data-fc","1"); else R.removeAttribute("data-fc"); }
-export function hcSet(m){ __R.uiSet("cs-ui-hc",{m:m==="on"||m==="off"?m:"auto"}); hcApply(); }
+export function hcSet(m){ uiSet("cs-ui-hc",{m:m==="on"||m==="off"?m:"auto"}); hcApply(); }
 export function hcNote(){ return 'Stronger text and lines for low vision or bright light. Auto follows the contrast setting of your device (it is '+(hcSys()?"on":"off")+' now). This setting is for this device and every character on it.'; }
-export function miSetH(){ const g=function(k,d){ try{ return __store.getItem(k)||d; }catch(e){ return d; } }, fx=g("mi-fx","full"), bz=g("mi-bz","on"), b=function(a,v,cur,label,ik){ const on=cur===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+__R.ico(ik)+label+'</button>'; };
+export function miSetH(){ const g=function(k,d){ try{ return __store.getItem(k)||d; }catch(e){ return d; } }, fx=g("mi-fx","full"), bz=g("mi-bz","on"), b=function(a,v,cur,label,ik){ const on=cur===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" '+a+'="'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; };
   return '<div class="info-h">Immersive Effects</div><div class="thg">'+b("data-mifx","full",fx,"Full","ui-check")+b("data-mifx","lite",fx,"Lite","ui-minus")+b("data-mifx","off",fx,"Off","ui-close")+'</div><p class="info-d">Full: every effect, condition ambience and celebrations. Lite: transitions and feedback only. Off: no motion effects.</p>'+
     '<div class="info-h">Vibration</div><div class="thg">'+b("data-mibz","on",bz,"On","ui-check")+b("data-mibz","off",bz,"Off","ui-close")+'</div>'+
     '<div class="info-h">Sound</div><div class="thg">'+b("data-misnd","on",g("mi-snd","on"),"On","ui-check")+b("data-misnd","off",g("mi-snd","on"),"Off","ui-close")+'</div><p class="info-d">Dice, healing, damage, level up and rests make a short sound.</p>'+(env.__miLookH?env.__miLookH():'')+(env.__miPrefH?env.__miPrefH():'')+(env.__miMusicH?env.__miMusicH():'')+(env.__miArtH?env.__miArtH():''); }/* v55 */
-export function hcBtn(v,label,ik){ const on=hcMode()===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-hc="'+v+'" aria-pressed="'+on+'">'+__R.ico(ik)+label+'</button>'; }
-HC_MQ.forEach((q) =>{ const f=function(){ hcApply(); try{ if(__R.sheetMode==="theme"){ const n=document.getElementById("hcNote"); if(n) n.textContent=hcNote(); } }catch(er){} };
+export function hcBtn(v,label,ik){ const on=hcMode()===v; return '<button type="button" class="thb thbi'+(on?" on":"")+'" data-hc="'+v+'" aria-pressed="'+on+'">'+ico(ik)+label+'</button>'; }
+HC_MQ.forEach((q) =>{ const f=function(){ hcApply(); try{ if(lateGet("sheetMode")==="theme"){ const n=document.getElementById("hcNote"); if(n) n.textContent=hcNote(); } }catch(er){} };
   try{ q.addEventListener("change",f); }catch(er){ try{ q.addListener(f); }catch(er2){} } });
 hcApply();
 env.__hc=function(){ return {mode:hcMode(), sys:hcSys(), on:hcOn(), attr:document.documentElement.getAttribute("data-hc")}; };

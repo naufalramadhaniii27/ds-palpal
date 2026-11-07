@@ -1,4 +1,4 @@
-import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf} from "./01-logic-core-helpers.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf} from "./01-logic-core-helpers.js";
 import {DMAP,activeFx,attMax,bgX,byOk,htText,spX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
@@ -6,7 +6,7 @@ import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {XFX,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,optAny,pactWeapon,saveNotes,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
 import {fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
-import {__R} from "./00-reg.js";
+
 import {MCL,TL,baseOf,effArmor,effShield,effWeps,hpCalc,packSkills,spOptFx,subGrant,syncPickItems} from "./01b-logic-late-ports.js";
 import {QRY,provideQueries} from "./01a-logic-query-registry.js";
 import {runSheet} from "./12a-logic-sheet-registry.js";
@@ -22,7 +22,7 @@ import "./12k-logic-sheet-handlers-spells.js";
 import "./12l-logic-sheet-handlers-late.js";
 import "./11c-logic-fx-handlers-sheet.js";
 import {spellRows,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef} from "./00-env.js";
-Object.defineProperty(__R,"toSheet",{get:function(){return toSheet;},set:function(v){toSheet=v;},configurable:true});
+bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R. Functions of 09 and 11 are imported; the modules that load later (13, 14, 16, 20) provide theirs with provideQueries (01a-logic-query-registry.js) */
