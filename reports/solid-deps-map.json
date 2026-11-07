@@ -312,789 +312,801 @@
    "layer": "-",
    "order": 77
   },
-  "fx/01-core-router-and-switch.js": {
+  "fx/00-fx-env.js": {
    "layer": "ui",
    "order": 78
   },
-  "fx/02-micro-interactions.js": {
+  "fx/00b-fx-shared.js": {
    "layer": "ui",
    "order": 79
   },
-  "fx/03-f1-card-light-and-morph.js": {
+  "fx/01-core-router-and-switch.js": {
    "layer": "ui",
    "order": 80
   },
-  "fx/04-f2-odometer-hp-bar-scrub.js": {
+  "fx/02-micro-interactions.js": {
    "layer": "ui",
    "order": 81
   },
-  "fx/05-f3-indicator-dock-toast.js": {
+  "fx/03-f1-card-light-and-morph.js": {
    "layer": "ui",
    "order": 82
   },
-  "fx/06-f4-reveal-on-scroll.js": {
+  "fx/04-f2-odometer-hp-bar-scrub.js": {
    "layer": "ui",
    "order": 83
   },
-  "fx/07-f5-moments.js": {
+  "fx/05-f3-indicator-dock-toast.js": {
    "layer": "ui",
    "order": 84
   },
-  "fx/08-round6.js": {
+  "fx/06-f4-reveal-on-scroll.js": {
    "layer": "ui",
    "order": 85
   },
-  "fx/09-wow-pack.js": {
+  "fx/07-f5-moments.js": {
    "layer": "ui",
    "order": 86
   },
-  "fx/10-x-pack.js": {
+  "fx/08-round6.js": {
    "layer": "ui",
    "order": 87
   },
-  "fx/11-d-pack.js": {
+  "fx/09-wow-pack.js": {
    "layer": "ui",
    "order": 88
   },
-  "fx/12-mini-window-v2.js": {
+  "fx/10-x-pack.js": {
    "layer": "ui",
    "order": 89
   },
-  "fx/13-class-colour-hp-ring.js": {
+  "fx/11-d-pack.js": {
    "layer": "ui",
    "order": 90
   },
-  "fx/14-w-pack.js": {
+  "fx/12-mini-window-v2.js": {
    "layer": "ui",
    "order": 91
   },
-  "fx/15-y-pack.js": {
+  "fx/13-class-colour-hp-ring.js": {
    "layer": "ui",
    "order": 92
   },
-  "fx/16-z-pack-dice-sound-hover.js": {
+  "fx/14-w-pack.js": {
    "layer": "ui",
    "order": 93
   },
-  "fx/17-l-pack-webgl-sky.js": {
+  "fx/15-y-pack.js": {
    "layer": "ui",
    "order": 94
   },
-  "fx/18-m-pack-rolls-concentration.js": {
+  "fx/16-z-pack-dice-sound-hover.js": {
    "layer": "ui",
    "order": 95
   },
-  "fx/19-g-pack-cinematic.js": {
+  "fx/17-l-pack-webgl-sky.js": {
    "layer": "ui",
    "order": 96
   },
-  "fx/20-k-pack-character-colour-icon.js": {
+  "fx/18-m-pack-rolls-concentration.js": {
    "layer": "ui",
    "order": 97
   },
-  "fx/21-connected-home-sheet.js": {
+  "fx/19-g-pack-cinematic.js": {
    "layer": "ui",
    "order": 98
   },
-  "fx/22-home-hero.js": {
+  "fx/20-k-pack-character-colour-icon.js": {
    "layer": "ui",
    "order": 99
   },
-  "fx/24-class-art.js": {
+  "fx/21-connected-home-sheet.js": {
    "layer": "ui",
    "order": 100
   },
-  "fx/25-dice3d.js": {
+  "fx/22-home-hero.js": {
    "layer": "ui",
    "order": 101
   },
-  "fx/26-tab-notch.js": {
+  "fx/24-class-art.js": {
    "layer": "ui",
    "order": 102
   },
-  "fx/27-blend-sheet.js": {
+  "fx/25-dice3d.js": {
    "layer": "ui",
    "order": 103
   },
+  "fx/26-tab-notch.js": {
+   "layer": "ui",
+   "order": 104
+  },
+  "fx/27-blend-sheet.js": {
+   "layer": "ui",
+   "order": 105
+  },
   "boot/deferred-loader.js": {
    "layer": "-",
-   "order": 104
+   "order": 106
   },
   "data/00-data-env.js": {
    "layer": "data",
-   "order": 105
+   "order": 107
   },
   "data/db1-phb-skills-species-backgrounds-feats-weapons.js": {
    "layer": "data",
-   "order": 106
+   "order": 108
   },
   "data/db2-phb-classes-a.js": {
    "layer": "data",
-   "order": 107
+   "order": 109
   },
   "data/db3-phb-classes-b.js": {
    "layer": "data",
-   "order": 108
+   "order": 110
   },
   "data/fx-B2-subclass.js": {
    "layer": "data",
-   "order": 109
+   "order": 111
   },
   "data/cffull-class-feature-text.js": {
    "layer": "data",
-   "order": 110
+   "order": 112
   },
   "data/subfull-subclass-feature-text.js": {
    "layer": "data",
-   "order": 111
+   "order": 113
   },
   "data/spfull-spell-text.js": {
    "layer": "data",
-   "order": 112
+   "order": 114
   },
   "data/spells-spell-list.js": {
    "layer": "data",
-   "order": 113
+   "order": 115
   },
   "data/dmgi-magic-items-dmg2024.js": {
    "layer": "data",
-   "order": 114
+   "order": 116
   },
   "data/itsp-spells-from-items.js": {
    "layer": "data",
-   "order": 115
+   "order": 117
   },
   "data/db4/01-languages-auto-spells-grants-prices-gear.js": {
    "layer": "data",
-   "order": 116
+   "order": 118
   },
   "data/db4/02-limited-uses-damage-rows-save-notes.js": {
    "layer": "data",
-   "order": 117
+   "order": 119
   },
   "data/db4/03-lifestyle-containers-printed-pages.js": {
    "layer": "data",
-   "order": 118
+   "order": 120
   },
   "data/db4/04-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 119
+   "order": 121
   },
   "data/db4/05-gifts-weights-quick-build-bastions.js": {
    "layer": "data",
-   "order": 120
+   "order": 122
   },
   "data/db4/06-tools-proficiencies-packs-kits.js": {
    "layer": "data",
-   "order": 121
+   "order": 123
   },
   "data/db4/07-actions.js": {
    "layer": "data",
-   "order": 122
+   "order": 124
   },
   "data/db4/08-mpmm-species.js": {
    "layer": "data",
-   "order": 123
+   "order": 125
   },
   "data/efa-eberron-forge-of-the-artificer.js": {
    "layer": "data",
-   "order": 124
+   "order": 126
   },
   "data/wotc01-sources-2025-feats-boons-spells.js": {
    "layer": "data",
-   "order": 125
+   "order": 127
   },
   "data/wotc02-subclasses-2025.js": {
    "layer": "data",
-   "order": 126
+   "order": 128
   },
   "data/wotc03-magic-items-2025.js": {
    "layer": "data",
-   "order": 127
+   "order": 129
   },
   "data/wotc04-species-lorwyn-ravenloft.js": {
    "layer": "data",
-   "order": 128
+   "order": 130
   },
   "data/wotc05-backgrounds-2025.js": {
    "layer": "data",
-   "order": 129
+   "order": 131
   },
   "data/wotc06-gear-2024.js": {
    "layer": "data",
-   "order": 130
+   "order": 132
   },
   "data/wotc07-feats-2014.js": {
    "layer": "data",
-   "order": 131
+   "order": 133
   },
   "data/wotc08-backgrounds-2014.js": {
    "layer": "data",
-   "order": 132
+   "order": 134
   },
   "data/wotc09-subclasses-2014.js": {
    "layer": "data",
-   "order": 133
+   "order": 135
   },
   "data/wotc10-species-2014.js": {
    "layer": "data",
-   "order": 134
+   "order": 136
   },
   "data/wotc11-magic-items-2014.js": {
    "layer": "data",
-   "order": 135
+   "order": 137
   },
   "data/wotc12-spells-2014.js": {
    "layer": "data",
-   "order": 136
+   "order": 138
   },
   "data/wotc13-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 137
+   "order": 139
   },
   "data/wotc14-gear-2014.js": {
    "layer": "data",
-   "order": 138
+   "order": 140
   },
   "data/wotc15-class-options-2014.js": {
    "layer": "data",
-   "order": 139
+   "order": 141
   },
   "data/tp01-tdcsr.js": {
    "layer": "data",
-   "order": 140
+   "order": 142
   },
   "data/tp02-tdcg.js": {
    "layer": "data",
-   "order": 141
+   "order": 143
   },
   "data/tp03-tvss.js": {
    "layer": "data",
-   "order": 142
+   "order": 144
   },
   "data/tp04-tee24.js": {
    "layer": "data",
-   "order": 143
+   "order": 145
   },
   "data/tp05-tghp.js": {
    "layer": "data",
-   "order": 144
+   "order": 146
   },
   "data/tp06-tsgeh.js": {
    "layer": "data",
-   "order": 145
+   "order": 147
   },
   "data/tp07-tsae.js": {
    "layer": "data",
-   "order": 146
+   "order": 148
   },
   "data/tp08-tghg.js": {
    "layer": "data",
-   "order": 147
+   "order": 149
   },
   "data/tp09-tshl.js": {
    "layer": "data",
-   "order": 148
+   "order": 150
   },
   "data/tp10-tssm.js": {
    "layer": "data",
-   "order": 149
+   "order": 151
   },
   "data/tp11-tsdd.js": {
    "layer": "data",
-   "order": 150
+   "order": 152
   },
   "data/tp12-tsgs.js": {
    "layer": "data",
-   "order": 151
+   "order": 153
   },
   "data/tp13-tsdm.js": {
    "layer": "data",
-   "order": 152
+   "order": 154
   },
   "data/tp14-tkdm.js": {
    "layer": "data",
-   "order": 153
+   "order": 155
   },
   "data/tp15-thhw.js": {
    "layer": "data",
-   "order": 154
+   "order": 156
   },
   "data/fx-C-feat.js": {
    "layer": "data",
-   "order": 155
+   "order": 157
   },
   "data/fx-E-feat.js": {
    "layer": "data",
-   "order": 156
+   "order": 158
   },
   "data/q00-src.js": {
    "layer": "data",
-   "order": 157
+   "order": 159
   },
   "data/q09-hbindex.js": {
    "layer": "data",
-   "order": 158
+   "order": 160
   },
   "data/q20-hbnames.js": {
    "layer": "data",
-   "order": 159
+   "order": 161
   },
   "data/q21-spellref.js": {
    "layer": "data",
-   "order": 160
+   "order": 162
   },
   "data/q22-textfix.js": {
    "layer": "data",
-   "order": 161
+   "order": 163
   },
   "data/q01-reward.js": {
    "layer": "data",
-   "order": 162
+   "order": 164
   },
   "data/q02-deity.js": {
    "layer": "data",
-   "order": 163
+   "order": 165
   },
   "data/q03-loot.js": {
    "layer": "data",
-   "order": 164
+   "order": 166
   },
   "data/q04-recipe.js": {
    "layer": "data",
-   "order": 165
+   "order": 167
   },
   "data/q05-charopt.js": {
    "layer": "data",
-   "order": 166
+   "order": 168
   },
   "data/q05-cult.js": {
    "layer": "data",
-   "order": 167
+   "order": 169
   },
   "data/q06-disease.js": {
    "layer": "data",
-   "order": 168
+   "order": 170
   },
   "data/q06-language.js": {
    "layer": "data",
-   "order": 169
+   "order": 171
   },
   "data/q08-deck.js": {
    "layer": "data",
-   "order": 170
+   "order": 172
   },
   "data/q08-hazard.js": {
    "layer": "data",
-   "order": 171
+   "order": 173
   },
   "data/q08-object.js": {
    "layer": "data",
-   "order": 172
+   "order": 174
   },
   "data/q08-psionic.js": {
    "layer": "data",
-   "order": 173
+   "order": 175
   },
   "data/q08-table.js": {
    "layer": "data",
-   "order": 174
+   "order": 176
   },
   "data/q08-vehicle.js": {
    "layer": "data",
-   "order": 175
+   "order": 177
   },
   "data/q10-fluff.js": {
    "layer": "data",
-   "order": 176
+   "order": 178
   },
   "data/q11-img.js": {
    "layer": "data",
-   "order": 177
+   "order": 179
   },
   "data/q12-crimg.js": {
    "layer": "data",
-   "order": 178
+   "order": 180
   },
   "data/q19-img-more.js": {
    "layer": "data",
-   "order": 179
+   "order": 181
   },
   "data/q12-rule.js": {
    "layer": "data",
-   "order": 180
+   "order": 182
   },
   "data/q13-rule-gaps.js": {
    "layer": "data",
-   "order": 181
+   "order": 183
   },
   "data/q15-books.js": {
    "layer": "data",
-   "order": 182
+   "order": 184
   },
   "data/q18-life.js": {
    "layer": "data",
-   "order": 183
+   "order": 185
   },
   "data/q16-items-gap.js": {
    "layer": "data",
-   "order": 184
+   "order": 186
   },
   "data/q17-class-gap.js": {
    "layer": "data",
-   "order": 185
+   "order": 187
   },
   "data/q14-optfeat.js": {
    "layer": "data",
-   "order": 186
+   "order": 188
   },
   "data/q12-facility.js": {
    "layer": "data",
-   "order": 187
+   "order": 189
   },
   "data/q23-gapfill.js": {
    "layer": "data",
-   "order": 188
+   "order": 190
   },
   "data/q24-gapfill2.js": {
    "layer": "data",
-   "order": 189
+   "order": 191
   },
   "data/q07-lazy-stub.js": {
    "layer": "data",
-   "order": 190
+   "order": 192
   },
   "data/q07-bestiary.js": {
    "layer": "data",
-   "order": 191
+   "order": 193
   },
   "data/hbpack-builtin-homebrew.js": {
    "layer": "data",
-   "order": 192
+   "order": 194
   },
   "data/fx-A-class-species.js": {
    "layer": "data",
-   "order": 193
+   "order": 195
   },
   "data/fx-B1-subclass.js": {
    "layer": "data",
-   "order": 194
+   "order": 196
   },
   "data/fx-F-sub.js": {
    "layer": "data",
-   "order": 195
+   "order": 197
   },
   "data/fx-G-engine.js": {
    "layer": "data",
-   "order": 196
+   "order": 198
   },
   "data/fx-H-audit.js": {
    "layer": "data",
-   "order": 197
+   "order": 199
   },
   "data/fx-L1.js": {
    "layer": "data",
-   "order": 198
+   "order": 200
   },
   "data/fx-L4.js": {
    "layer": "data",
-   "order": 199
+   "order": 201
   },
   "data/fx-L5.js": {
    "layer": "data",
-   "order": 200
+   "order": 202
   },
   "data/fx-L9.js": {
    "layer": "data",
-   "order": 201
+   "order": 203
   },
   "data/fx-L10.js": {
    "layer": "data",
-   "order": 202
+   "order": 204
   },
   "data/fx-L11.js": {
    "layer": "data",
-   "order": 203
+   "order": 205
   },
   "data/fx-L12.js": {
    "layer": "data",
-   "order": 204
+   "order": 206
   },
   "data/fx-L13.js": {
    "layer": "data",
-   "order": 205
+   "order": 207
   },
   "data/fx-D-item.js": {
    "layer": "data",
-   "order": 206
+   "order": 208
   },
   "data/fx-L2.js": {
    "layer": "data",
-   "order": 207
+   "order": 209
   },
   "data/fx-L3.js": {
    "layer": "data",
-   "order": 208
+   "order": 210
   },
   "data/fx-L6.js": {
    "layer": "data",
-   "order": 209
+   "order": 211
   },
   "data/fx-L7.js": {
    "layer": "data",
-   "order": 210
+   "order": 212
   },
   "data/fx-L8.js": {
    "layer": "data",
-   "order": 211
+   "order": 213
   },
   "data/fx-M1.js": {
    "layer": "data",
-   "order": 212
+   "order": 214
   },
   "data/fx-M2.js": {
    "layer": "data",
-   "order": 213
+   "order": 215
   },
   "data/fx-N1.js": {
    "layer": "data",
-   "order": 214
+   "order": 216
   },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 215
+   "order": 217
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 216
+   "order": 218
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 217
+   "order": 219
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 218
-  },
-  "builder/02-data-magic-item-summaries.js": {
-   "layer": "data",
-   "order": 219
-  },
-  "builder/03-logic-magic-item-effects.js": {
-   "layer": "logic",
    "order": 220
   },
-  "builder/04-logic-storage.js": {
+  "builder/01b-logic-late-ports.js": {
    "layer": "logic",
    "order": 221
   },
-  "builder/05-logic-choice-model-ruleset.js": {
-   "layer": "logic",
+  "builder/02-data-magic-item-summaries.js": {
+   "layer": "data",
    "order": 222
   },
-  "builder/06-data-2014-classes.js": {
-   "layer": "data",
+  "builder/03-logic-magic-item-effects.js": {
+   "layer": "logic",
    "order": 223
   },
-  "builder/07-data-2014-spells.js": {
-   "layer": "data",
+  "builder/04-logic-storage.js": {
+   "layer": "logic",
    "order": 224
   },
-  "builder/08-logic-2014-rules.js": {
+  "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
    "order": 225
   },
-  "builder/09-logic-feats-and-choices.js": {
-   "layer": "logic",
+  "builder/06-data-2014-classes.js": {
+   "layer": "data",
    "order": 226
   },
-  "builder/10-logic-v17-additions.js": {
-   "layer": "logic",
+  "builder/07-data-2014-spells.js": {
+   "layer": "data",
    "order": 227
   },
-  "builder/10a-logic-fx-registry.js": {
+  "builder/08-logic-2014-rules.js": {
    "layer": "logic",
    "order": 228
   },
-  "builder/10b-logic-fx-handlers-entry.js": {
+  "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
    "order": 229
   },
-  "builder/10c-logic-fx-handlers-ability.js": {
+  "builder/10-logic-v17-additions.js": {
    "layer": "logic",
    "order": 230
   },
-  "builder/10d-logic-fx-rules-cond-value.js": {
+  "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
    "order": 231
   },
-  "builder/10e-logic-fx-schema.js": {
+  "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
    "order": 232
   },
-  "builder/11-logic-derivation.js": {
+  "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
    "order": 233
   },
-  "builder/11b-logic-fx-sources.js": {
+  "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
    "order": 234
   },
-  "builder/11c-logic-fx-handlers-sheet.js": {
+  "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
    "order": 235
   },
-  "builder/12a-logic-sheet-registry.js": {
+  "builder/11-logic-derivation.js": {
    "layer": "logic",
    "order": 236
   },
-  "builder/12b-logic-sheet-schema.js": {
+  "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
    "order": 237
   },
-  "builder/12c-logic-sheet-handlers-core.js": {
+  "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
    "order": 238
   },
-  "builder/12d-logic-sheet-handlers-skills.js": {
+  "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
    "order": 239
   },
-  "builder/12e-logic-sheet-handlers-defense.js": {
+  "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
    "order": 240
   },
-  "builder/12f-logic-sheet-handlers-movement.js": {
+  "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
    "order": 241
   },
-  "builder/12g-logic-sheet-handlers-profs.js": {
+  "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
    "order": 242
   },
-  "builder/12h-logic-sheet-handlers-attacks.js": {
+  "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
    "order": 243
   },
-  "builder/12i-logic-sheet-handlers-gear-resources.js": {
+  "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
    "order": 244
   },
-  "builder/12j-logic-sheet-handlers-features.js": {
+  "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
    "order": 245
   },
-  "builder/12k-logic-sheet-handlers-spells.js": {
+  "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
    "order": 246
   },
-  "builder/12l-logic-sheet-handlers-late.js": {
+  "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
    "order": 247
   },
-  "builder/12-logic-export-to-sheet.js": {
+  "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
    "order": 248
   },
-  "builder/13-logic-sources-and-packs.js": {
+  "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
    "order": 249
   },
-  "builder/13a-logic-pack-registry.js": {
+  "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
    "order": 250
   },
-  "builder/13b-logic-pack-handlers.js": {
+  "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
    "order": 251
   },
-  "builder/14-logic-multiclass-hp-shop.js": {
+  "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
    "order": 252
   },
-  "builder/15-logic-import-from-sheet.js": {
+  "builder/13a-logic-pack-registry.js": {
    "layer": "logic",
    "order": 253
   },
-  "builder/16-logic-feature-numbers.js": {
+  "builder/13b-logic-pack-handlers.js": {
    "layer": "logic",
    "order": 254
   },
-  "builder/17-ui-step-builder.js": {
-   "layer": "ui",
+  "builder/14-logic-multiclass-hp-shop.js": {
+   "layer": "logic",
    "order": 255
   },
-  "builder/18-ui-spells.js": {
-   "layer": "ui",
+  "builder/15-logic-import-from-sheet.js": {
+   "layer": "logic",
    "order": 256
   },
-  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
-   "layer": "ui",
+  "builder/16-logic-feature-numbers.js": {
+   "layer": "logic",
    "order": 257
   },
-  "builder/20-ui-steps-equipment-next.js": {
+  "builder/17-ui-step-builder.js": {
    "layer": "ui",
    "order": 258
   },
-  "builder/21-ui-rules-reference.js": {
+  "builder/18-ui-spells.js": {
    "layer": "ui",
    "order": 259
   },
-  "builder/22-ui-shell.js": {
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
    "layer": "ui",
    "order": 260
   },
-  "builder/23-logic-level-up-and-build-files.js": {
-   "layer": "logic",
+  "builder/20-ui-steps-equipment-next.js": {
+   "layer": "ui",
    "order": 261
   },
-  "builder/24-ui-icons.js": {
+  "builder/21-ui-rules-reference.js": {
    "layer": "ui",
    "order": 262
   },
+  "builder/22-ui-shell.js": {
+   "layer": "ui",
+   "order": 263
+  },
+  "builder/23-logic-level-up-and-build-files.js": {
+   "layer": "logic",
+   "order": 264
+  },
+  "builder/24-ui-icons.js": {
+   "layer": "ui",
+   "order": 265
+  },
   "builder/25-logic-hooks-for-the-sheet.js": {
    "layer": "logic",
-   "order": 263
+   "order": 266
   },
   "builder/main.js": {
    "layer": "-",
-   "order": 264
+   "order": 267
   },
   "learn/00-bridge.js": {
    "layer": "-",
-   "order": 265
+   "order": 268
   },
   "learn/45-data-learn.js": {
    "layer": "data",
-   "order": 266
+   "order": 269
   },
   "learn/46-logic-learn.js": {
    "layer": "logic",
-   "order": 267
+   "order": 270
   },
   "learn/47-ui-learn.js": {
    "layer": "ui",
-   "order": 268
+   "order": 271
   },
   "tg/00-bridge.js": {
    "layer": "-",
-   "order": 269
+   "order": 272
   },
   "tg/20-engine.js": {
    "layer": "logic",
-   "order": 270
+   "order": 273
   },
   "tg/25-sim.js": {
    "layer": "logic",
-   "order": 271
+   "order": 274
   },
   "tg/30-ui-tg.js": {
    "layer": "ui",
-   "order": 272
+   "order": 275
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 273
+   "order": 276
   }
  },
  "edges": [
@@ -1338,26 +1350,6 @@
   },
   {
    "from": "app/05-logic-helpers.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldDiff",
-    "__bldHas",
-    "__bldSync"
-   ],
-   "count": 3
-  },
-  {
-   "from": "app/05-logic-helpers.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/05-logic-helpers.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -1533,42 +1525,6 @@
    "import": false,
    "names": [
     "__store"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/07-ui-theme-contrast-spring.js",
-   "to": "fx/18-m-pack-rolls-concentration.js",
-   "import": false,
-   "names": [
-    "__miPrefH"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/07-ui-theme-contrast-spring.js",
-   "to": "fx/19-g-pack-cinematic.js",
-   "import": false,
-   "names": [
-    "__miMusicH"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/07-ui-theme-contrast-spring.js",
-   "to": "fx/20-k-pack-character-colour-icon.js",
-   "import": false,
-   "names": [
-    "__miLookH"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/07-ui-theme-contrast-spring.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__miArtH"
    ],
    "count": 1
   },
@@ -1845,32 +1801,12 @@
   },
   {
    "from": "app/08-ui-render-sheet-and-actions.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__itemMeta",
-    "__publicFresh"
-   ],
-   "count": 2
-  },
-  {
-   "from": "app/08-ui-render-sheet-and-actions.js",
    "to": "fx/23-class-art-data.js",
    "import": false,
    "names": [
     "__ART"
    ],
    "count": 1
-  },
-  {
-   "from": "app/08-ui-render-sheet-and-actions.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc",
-    "__artSub"
-   ],
-   "count": 2
   },
   {
    "from": "app/09-ui-hit-points-playbar-death-saves.js",
@@ -2002,42 +1938,6 @@
    "count": 1
   },
   {
-   "from": "app/09-ui-hit-points-playbar-death-saves.js",
-   "to": "fx/01-core-router-and-switch.js",
-   "import": false,
-   "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/09-ui-hit-points-playbar-death-saves.js",
-   "to": "fx/04-f2-odometer-hp-bar-scrub.js",
-   "import": false,
-   "names": [
-    "__miOdo"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/09-ui-hit-points-playbar-death-saves.js",
-   "to": "fx/07-f5-moments.js",
-   "import": false,
-   "names": [
-    "__miEcho"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/09-ui-hit-points-playbar-death-saves.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/10-ui-conditions.js",
    "to": "app/00-reg.js",
    "import": true,
@@ -2162,24 +2062,6 @@
    "import": false,
    "names": [
     "render"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/10-ui-conditions.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldFxToggle"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/10-ui-conditions.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc"
    ],
    "count": 1
   },
@@ -2488,26 +2370,6 @@
   },
   {
    "from": "app/12-ui-bottom-sheet-modal.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc",
-    "__artSheet",
-    "__artSub"
-   ],
-   "count": 3
-  },
-  {
-   "from": "app/12-ui-bottom-sheet-modal.js",
-   "to": "fx/27-blend-sheet.js",
-   "import": false,
-   "names": [
-    "__blendSheet"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/12-ui-bottom-sheet-modal.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -2790,15 +2652,6 @@
    "import": false,
    "names": [
     "render"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/13-ui-detail-cards.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldSetMw"
    ],
    "count": 1
   },
@@ -3169,24 +3022,6 @@
   },
   {
    "from": "app/15-logic-roster-backup-files-snapshots.js",
-   "to": "fx/01-core-router-and-switch.js",
-   "import": false,
-   "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/15-logic-roster-backup-files-snapshots.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/15-logic-roster-backup-files-snapshots.js",
    "to": "learn/47-ui-learn.js",
    "import": false,
    "names": [
@@ -3315,26 +3150,6 @@
    "import": false,
    "names": [
     "appVer"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/16-logic-import-chat-text-and-build-files.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldCheck",
-    "__bldNorm",
-    "__bldSheetFor"
-   ],
-   "count": 3
-  },
-  {
-   "from": "app/16-logic-import-chat-text-and-build-files.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldChoiceList"
    ],
    "count": 1
   },
@@ -3522,16 +3337,6 @@
     "__store"
    ],
    "count": 1
-  },
-  {
-   "from": "app/17-logic-tab-sync-and-test-hooks.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldReload",
-    "__publicFresh"
-   ],
-   "count": 2
   },
   {
    "from": "app/18-ui-header-and-more-menu.js",
@@ -3746,20 +3551,6 @@
     "exhTo"
    ],
    "count": 1
-  },
-  {
-   "from": "app/18-ui-header-and-more-menu.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldArmor",
-    "__bldDiff",
-    "__bldGo",
-    "__bldHpMode",
-    "__bldRename",
-    "__itemMeta"
-   ],
-   "count": 6
   },
   {
    "from": "app/19-ui-global-click-delegation.js",
@@ -4116,27 +3907,6 @@
   },
   {
    "from": "app/21-ui-tabs-pager.js",
-   "to": "builder/24-ui-icons.js",
-   "import": false,
-   "names": [
-    "__bldRemove",
-    "__bldSetQty",
-    "__bldToggleEq"
-   ],
-   "count": 3
-  },
-  {
-   "from": "app/21-ui-tabs-pager.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldArmor",
-    "__bldEquip"
-   ],
-   "count": 2
-  },
-  {
-   "from": "app/21-ui-tabs-pager.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -4438,15 +4208,6 @@
    "import": false,
    "names": [
     "renderAll"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/23b-ui-items-containers.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldUnpack"
    ],
    "count": 1
   },
@@ -4810,15 +4571,6 @@
    "count": 1
   },
   {
-   "from": "app/23e-ui-spells-dc.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/24-ui-manage-spells.js",
    "to": "app/00-reg.js",
    "import": true,
@@ -4925,26 +4677,6 @@
     "renderAll"
    ],
    "count": 1
-  },
-  {
-   "from": "app/24-ui-manage-spells.js",
-   "to": "builder/09-logic-feats-and-choices.js",
-   "import": false,
-   "names": [
-    "__sp14Set"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/24-ui-manage-spells.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldDiff",
-    "__bldSpInfo",
-    "__bldSpSet"
-   ],
-   "count": 3
   },
   {
    "from": "app/24-ui-manage-spells.js",
@@ -5065,15 +4797,6 @@
    "import": false,
    "names": [
     "coachGet"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/25-ui-settings-appearance.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldHpMode"
    ],
    "count": 1
   },
@@ -5648,15 +5371,6 @@
   },
   {
    "from": "app/27b-ui-library.js",
-   "to": "builder/09-logic-feats-and-choices.js",
-   "import": false,
-   "names": [
-    "WXF_ALL"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/27b-ui-library.js",
    "to": "data/cffull-class-feature-text.js",
    "import": false,
    "names": [
@@ -5800,16 +5514,6 @@
     "__ART"
    ],
    "count": 1
-  },
-  {
-   "from": "app/27b-ui-library.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc",
-    "__artSub"
-   ],
-   "count": 2
   },
   {
    "from": "app/27b-ui-library.js",
@@ -5991,16 +5695,6 @@
     "appVer"
    ],
    "count": 1
-  },
-  {
-   "from": "app/27c-ui-report-pins.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldDiff",
-    "__bldMine"
-   ],
-   "count": 2
   },
   {
    "from": "app/28-ui-bastion.js",
@@ -6230,15 +5924,6 @@
   },
   {
    "from": "app/29-ui-ddb-look.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldGo"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/29-ui-ddb-look.js",
    "to": "data/db4/03-lifestyle-containers-printed-pages.js",
    "import": false,
    "names": [
@@ -6261,15 +5946,6 @@
    "import": false,
    "names": [
     "CRIMG"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/29-ui-ddb-look.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc"
    ],
    "count": 1
   },
@@ -6445,24 +6121,6 @@
    "import": false,
    "names": [
     "__store"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/31-ui-tour-and-focus.js",
-   "to": "fx/16-z-pack-dice-sound-hover.js",
-   "import": false,
-   "names": [
-    "__miRollKey"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/31-ui-tour-and-focus.js",
-   "to": "fx/18-m-pack-rolls-concentration.js",
-   "import": false,
-   "names": [
-    "__miJournal"
    ],
    "count": 1
   },
@@ -6680,24 +6338,6 @@
     "renderAll"
    ],
    "count": 3
-  },
-  {
-   "from": "app/32-logic-play-undo-actions.js",
-   "to": "builder/24-ui-icons.js",
-   "import": false,
-   "names": [
-    "__bldSetQty"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/32-logic-play-undo-actions.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldReload"
-   ],
-   "count": 1
   },
   {
    "from": "app/33-logic-play-rage-conditions.js",
@@ -6932,15 +6572,6 @@
    "count": 1
   },
   {
-   "from": "app/34-ui-situations.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldLevelUp"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/35-ui-combo.js",
    "to": "app/00-reg.js",
    "import": true,
@@ -7137,28 +6768,10 @@
   },
   {
    "from": "app/35-ui-combo.js",
-   "to": "builder/09-logic-feats-and-choices.js",
-   "import": false,
-   "names": [
-    "__sp14Set"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/35-ui-combo.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
     "spent"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/35-ui-combo.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldOpenCount"
    ],
    "count": 1
   },
@@ -7548,24 +7161,6 @@
   },
   {
    "from": "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
-   "to": "fx/12-mini-window-v2.js",
-   "import": false,
-   "names": [
-    "__miPip"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -7792,15 +7387,6 @@
   },
   {
    "from": "app/40c-ui-motion-sheet-morph.js",
-   "to": "fx/01-core-router-and-switch.js",
-   "import": false,
-   "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/40c-ui-motion-sheet-morph.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -7941,15 +7527,6 @@
    "import": true,
    "names": [
     "qmClose"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/40d-ui-overlays-context-dock.js",
-   "to": "builder/22-ui-shell.js",
-   "import": false,
-   "names": [
-    "__bldBack"
    ],
    "count": 1
   },
@@ -8441,28 +8018,10 @@
   },
   {
    "from": "app/42-logic-pwa-qr-icons-wallet.js",
-   "to": "builder/09-logic-feats-and-choices.js",
-   "import": false,
-   "names": [
-    "__sp14Set"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/42-logic-pwa-qr-icons-wallet.js",
    "to": "builder/22-ui-shell.js",
    "import": false,
    "names": [
     "render"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/42-logic-pwa-qr-icons-wallet.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldDiff"
    ],
    "count": 1
   },
@@ -8544,15 +8103,6 @@
    "import": false,
    "names": [
     "__store"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/43-logic-cloud-sync.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__publicFresh"
    ],
    "count": 1
   },
@@ -9206,35 +8756,6 @@
    "count": 1
   },
   {
-   "from": "app/49-logic-status-and-odds.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldNorm",
-    "__bldSheetFor"
-   ],
-   "count": 2
-  },
-  {
-   "from": "app/49-logic-status-and-odds.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldForSheet",
-    "__bldToast"
-   ],
-   "count": 2
-  },
-  {
-   "from": "app/49-logic-status-and-odds.js",
-   "to": "fx/18-m-pack-rolls-concentration.js",
-   "import": false,
-   "names": [
-    "__miJournal"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/50-logic-reverse-builder.js",
    "to": "app/00-reg.js",
    "import": true,
@@ -9320,26 +8841,6 @@
     "__bldNeed"
    ],
    "count": 1
-  },
-  {
-   "from": "app/50-logic-reverse-builder.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldSheetBatch",
-    "__bldSheetFor"
-   ],
-   "count": 2
-  },
-  {
-   "from": "app/50-logic-reverse-builder.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldOpts",
-    "__bldUse"
-   ],
-   "count": 2
   },
   {
    "from": "app/50-logic-reverse-builder.js",
@@ -9508,24 +9009,6 @@
    "import": true,
    "names": [
     "__set_CU0"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/52-tg-bridge.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldSheetFor"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/52-tg-bridge.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldQuickFor"
    ],
    "count": 1
   },
@@ -10150,6 +9633,15 @@
   },
   {
    "from": "builder/00-env.js",
+   "to": "app/00-env.js",
+   "import": false,
+   "names": [
+    "bind"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/00-env.js",
    "to": "data/cffull-class-feature-text.js",
    "import": false,
    "names": [
@@ -10324,6 +9816,13 @@
   },
   {
    "from": "builder/03-logic-magic-item-effects.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/03-logic-magic-item-effects.js",
    "to": "builder/09-logic-feats-and-choices.js",
    "import": false,
    "names": [
@@ -10340,24 +9839,6 @@
     "casterParts"
    ],
    "count": 2
-  },
-  {
-   "from": "builder/03-logic-magic-item-effects.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "miFeats"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/03-logic-magic-item-effects.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "baseOf"
-   ],
-   "count": 1
   },
   {
    "from": "builder/03-logic-magic-item-effects.js",
@@ -10395,6 +9876,15 @@
    "import": false,
    "names": [
     "__store"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/04-logic-storage.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
    ],
    "count": 1
   },
@@ -10447,6 +9937,15 @@
   },
   {
    "from": "builder/08-logic-2014-rules.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/08-logic-2014-rules.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -10493,10 +9992,9 @@
    "to": "builder/13-logic-sources-and-packs.js",
    "import": false,
    "names": [
-    "BASE",
-    "subGrant"
+    "BASE"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/08-logic-2014-rules.js",
@@ -10602,8 +10100,10 @@
    "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/00-env.js",
    "import": true,
-   "names": [],
-   "count": 0
+   "names": [
+    "genv"
+   ],
+   "count": 1
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -10620,6 +10120,13 @@
     "pbOf"
    ],
    "count": 1
+  },
+  {
+   "from": "builder/09-logic-feats-and-choices.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -10698,34 +10205,29 @@
    "names": [
     "casterParts",
     "clsParts",
-    "fxCh",
     "spLists",
     "spellAb"
    ],
-   "count": 5
+   "count": 4
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/13-logic-sources-and-packs.js",
    "import": false,
    "names": [
-    "enabledPacks",
-    "miFeats",
     "spHasFeat",
-    "spOptFx",
     "subChoicesFor"
    ],
-   "count": 5
+   "count": 2
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
-    "mcChoices",
-    "slotsAll"
+    "mcChoices"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -10879,6 +10381,15 @@
   },
   {
    "from": "builder/10-logic-v17-additions.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/10-logic-v17-additions.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -10887,6 +10398,13 @@
   {
    "from": "builder/10-logic-v17-additions.js",
    "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/10-logic-v17-additions.js",
+   "to": "builder/01b-logic-late-ports.js",
    "import": true,
    "names": [],
    "count": 0
@@ -10946,30 +10464,10 @@
   },
   {
    "from": "builder/10-logic-v17-additions.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "baseOf",
-    "ensureInv",
-    "slotsAll"
-   ],
-   "count": 3
-  },
-  {
-   "from": "builder/10-logic-v17-additions.js",
    "to": "builder/18-ui-spells.js",
    "import": false,
    "names": [
     "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/10-logic-v17-additions.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "itemType"
    ],
    "count": 1
   },
@@ -11201,6 +10699,15 @@
   },
   {
    "from": "builder/11-logic-derivation.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [
+    "bindLate"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/11-logic-derivation.js",
    "to": "builder/03-logic-magic-item-effects.js",
    "import": true,
    "names": [
@@ -11287,24 +10794,6 @@
    "import": false,
    "names": [
     "toSheet"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/11-logic-derivation.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "spOptFx"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/11-logic-derivation.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "baseOf"
    ],
    "count": 1
   },
@@ -11481,6 +10970,13 @@
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
    "to": "builder/03-logic-magic-item-effects.js",
    "import": true,
    "names": [
@@ -11572,10 +11068,8 @@
     "classFeatures",
     "clsParts",
     "featsOf",
-    "fxCh",
     "fxOk",
     "fxToggles",
-    "fxVal",
     "keepResKeys",
     "resKey",
     "resMax",
@@ -11584,7 +11078,7 @@
     "spLists",
     "spellAb"
    ],
-   "count": 18
+   "count": 16
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -11671,31 +11165,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "packSkills",
-    "spOptFx",
-    "subGrant"
-   ],
-   "count": 3
-  },
-  {
-   "from": "builder/12-logic-export-to-sheet.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "baseOf",
-    "effArmor",
-    "effShield",
-    "effWeps",
-    "hpCalc",
-    "syncPickItems"
-   ],
-   "count": 6
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -11806,15 +11275,6 @@
   },
   {
    "from": "builder/12c-logic-sheet-handlers-core.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "fxCh"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12c-logic-sheet-handlers-core.js",
    "to": "builder/12a-logic-sheet-registry.js",
    "import": true,
    "names": [
@@ -11858,15 +11318,6 @@
    "import": true,
    "names": [
     "defineLocals"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12d-logic-sheet-handlers-skills.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "packSkills"
    ],
    "count": 1
   },
@@ -11959,11 +11410,9 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
-    "baseOf",
-    "ensureInv",
     "monkRule"
    ],
-   "count": 3
+   "count": 1
   },
   {
    "from": "builder/12f-logic-sheet-handlers-movement.js",
@@ -12087,15 +11536,6 @@
    "count": 1
   },
   {
-   "from": "builder/12g-logic-sheet-handlers-profs.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "baseOf"
-   ],
-   "count": 1
-  },
-  {
    "from": "builder/12h-logic-sheet-handlers-attacks.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -12139,11 +11579,10 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
-    "baseOf",
     "monkRule",
     "wpNamed"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
@@ -12214,19 +11653,16 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
-    "baseOf",
     "clsKitText",
-    "ensureInv",
     "eqIdx",
     "equippable",
     "gpNow",
     "itemCost",
     "itemWEst",
     "mcResMax",
-    "rarityOf",
-    "slotsAll"
+    "rarityOf"
    ],
-   "count": 11
+   "count": 8
   },
   {
    "from": "builder/12j-logic-sheet-handlers-features.js",
@@ -12406,21 +11842,9 @@
    "to": "builder/13-logic-sources-and-packs.js",
    "import": false,
    "names": [
-    "autoSpells",
-    "enabledPacks",
-    "miFeats"
+    "autoSpells"
    ],
-   "count": 3
-  },
-  {
-   "from": "builder/12k-logic-sheet-handlers-spells.js",
-   "to": "builder/14-logic-multiclass-hp-shop.js",
-   "import": false,
-   "names": [
-    "ensureInv",
-    "slotsAll"
-   ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/12l-logic-sheet-handlers-late.js",
@@ -12508,22 +11932,12 @@
   },
   {
    "from": "builder/12l-logic-sheet-handlers-late.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "enabledPacks"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12l-logic-sheet-handlers-late.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [
-    "baseOf",
     "wpNamed"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/12l-logic-sheet-handlers-late.js",
@@ -12559,6 +11973,15 @@
    "import": true,
    "names": [
     "provideQueries"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/13-logic-sources-and-packs.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [
+    "bindLate"
    ],
    "count": 1
   },
@@ -12731,10 +12154,9 @@
    "import": false,
    "names": [
     "BASE",
-    "PACK_CF",
-    "enabledPacks"
+    "PACK_CF"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/13a-logic-pack-registry.js",
@@ -12927,6 +12349,15 @@
   },
   {
    "from": "builder/14-logic-multiclass-hp-shop.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [
+    "bindLate"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/14-logic-multiclass-hp-shop.js",
    "to": "builder/03-logic-magic-item-effects.js",
    "import": true,
    "names": [
@@ -13101,6 +12532,15 @@
   },
   {
    "from": "builder/15-logic-import-from-sheet.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/15-logic-import-from-sheet.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
    "names": [],
@@ -13167,10 +12607,9 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "baseOf",
     "itemCost"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/15-logic-import-from-sheet.js",
@@ -13363,6 +12802,15 @@
   },
   {
    "from": "builder/17-ui-step-builder.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/17-ui-step-builder.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -13456,10 +12904,9 @@
    "to": "builder/13-logic-sources-and-packs.js",
    "import": true,
    "names": [
-    "allPacks",
-    "packSkills"
+    "allPacks"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/17-ui-step-builder.js",
@@ -13573,6 +13020,15 @@
   },
   {
    "from": "builder/18-ui-spells.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/18-ui-spells.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -13654,10 +13110,9 @@
    "import": true,
    "names": [
     "BASE",
-    "autoSpells",
-    "miFeats"
+    "autoSpells"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/18-ui-spells.js",
@@ -13665,10 +13120,9 @@
    "import": true,
    "names": [
     "mcReqFail",
-    "slotAddApply",
-    "slotsAll"
+    "slotAddApply"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/18-ui-spells.js",
@@ -13745,6 +13199,15 @@
    "import": false,
    "names": [
     "used"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/19-ui-steps-sources-class-bg-species-abilities.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
    ],
    "count": 1
   },
@@ -13850,10 +13313,9 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "hpCalc",
     "mcReqFail"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/19-ui-steps-sources-class-bg-species-abilities.js",
@@ -14024,6 +13486,16 @@
   },
   {
    "from": "builder/20-ui-steps-equipment-next.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "__inTS",
+    "genv"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/20-ui-steps-equipment-next.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -14044,6 +13516,15 @@
    "import": true,
    "names": [
     "provideQueries"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/20-ui-steps-equipment-next.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [
+    "bindLate"
    ],
    "count": 1
   },
@@ -14135,22 +13616,19 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "baseOf",
     "clsKitText0",
-    "ensureInv",
     "eq14UI",
     "eqIdx",
     "equippable",
     "gpBase",
     "gpNow",
-    "hpCalc",
     "itemCost",
     "rarCls",
     "rarityOf",
     "scrollOf",
     "wpNamed"
    ],
-   "count": 14
+   "count": 11
   },
   {
    "from": "builder/20-ui-steps-equipment-next.js",
@@ -14317,6 +13795,15 @@
   },
   {
    "from": "builder/21-ui-rules-reference.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/21-ui-rules-reference.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -14406,22 +13893,20 @@
    "import": true,
    "names": [
     "applyPacks",
-    "autoSpells",
-    "miFeats"
+    "autoSpells"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/21-ui-rules-reference.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "baseOf",
     "dbCat",
     "dbItems",
     "rebuildKit"
    ],
-   "count": 4
+   "count": 3
   },
   {
    "from": "builder/21-ui-rules-reference.js",
@@ -14549,6 +14034,15 @@
   },
   {
    "from": "builder/22-ui-shell.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/22-ui-shell.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -14649,13 +14143,12 @@
     "__set_dbCat",
     "__set_dbQ",
     "dbCat",
-    "ensureInv",
     "equippable",
     "gpNow",
     "itemCost",
     "rebuildKit"
    ],
-   "count": 8
+   "count": 7
   },
   {
    "from": "builder/22-ui-shell.js",
@@ -14810,17 +14303,6 @@
   },
   {
    "from": "builder/22-ui-shell.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__bldArt",
-    "__bldBanner",
-    "__bldCards"
-   ],
-   "count": 3
-  },
-  {
-   "from": "builder/22-ui-shell.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -14846,6 +14328,15 @@
    "import": false,
    "names": [
     "__bldBusyOff"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/23-logic-level-up-and-build-files.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
    ],
    "count": 1
   },
@@ -14952,10 +14443,9 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "baseOf",
     "itemCost"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/23-logic-level-up-and-build-files.js",
@@ -15085,6 +14575,15 @@
   },
   {
    "from": "builder/24-ui-icons.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/24-ui-icons.js",
    "to": "builder/00-reg.js",
    "import": true,
    "names": [],
@@ -15120,11 +14619,8 @@
    "from": "builder/24-ui-icons.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
-   "names": [
-    "baseOf",
-    "ensureInv"
-   ],
-   "count": 2
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/24-ui-icons.js",
@@ -15178,6 +14674,16 @@
     "__store"
    ],
    "count": 1
+  },
+  {
+   "from": "builder/25-logic-hooks-for-the-sheet.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "__inTS",
+    "genv"
+   ],
+   "count": 2
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -15247,10 +14753,9 @@
    "to": "builder/09-logic-feats-and-choices.js",
    "import": true,
    "names": [
-    "QLIVE",
     "choices"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -15342,10 +14847,9 @@
     "BASE",
     "applyPacks",
     "autoSpells",
-    "snap",
-    "subGrant"
+    "snap"
    ],
-   "count": 5
+   "count": 4
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -15364,13 +14868,11 @@
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": true,
    "names": [
-    "baseOf",
-    "ensureInv",
     "equippable",
     "itemCost",
     "rebuildKit"
    ],
-   "count": 5
+   "count": 3
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -15424,10 +14926,9 @@
    "to": "builder/20-ui-steps-equipment-next.js",
    "import": true,
    "names": [
-    "itemDetail",
-    "itemType"
+    "itemDetail"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -17095,15 +16596,6 @@
    "import": false,
    "names": [
     "DataEnv"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/rs14-2014-wording.js",
-   "to": "builder/25-logic-hooks-for-the-sheet.js",
-   "import": false,
-   "names": [
-    "__bldRs"
    ],
    "count": 1
   },
@@ -19217,6 +18709,43 @@
    "count": 2
   },
   {
+   "from": "fx/00-fx-env.js",
+   "to": "app/00-env.js",
+   "import": false,
+   "names": [
+    "bind"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/00-fx-env.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "bindG",
+    "bindM"
+   ],
+   "count": 2
+  },
+  {
+   "from": "fx/00b-fx-shared.js",
+   "to": "boot/store-gate.js",
+   "import": false,
+   "names": [
+    "__store"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/00b-fx-shared.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
+   ],
+   "count": 1
+  },
+  {
    "from": "fx/01-core-router-and-switch.js",
    "to": "app/09-ui-hit-points-playbar-death-saves.js",
    "import": false,
@@ -19231,6 +18760,15 @@
    "import": false,
    "names": [
     "__store"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
    ],
    "count": 1
   },
@@ -19291,56 +18829,10 @@
   },
   {
    "from": "fx/02-micro-interactions.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__miNF"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "fx/04-f2-odometer-hp-bar-scrub.js",
-   "import": false,
-   "names": [
-    "__miOdo",
-    "__miOdoVal"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "fx/07-f5-moments.js",
-   "import": false,
-   "names": [
-    "__miBell"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "fx/21-connected-home-sheet.js",
-   "import": false,
-   "names": [
-    "__miFlyOut"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19382,10 +18874,10 @@
   },
   {
    "from": "fx/03-f1-card-light-and-morph.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__miNF"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19418,19 +18910,10 @@
   },
   {
    "from": "fx/04-f2-odometer-hp-bar-scrub.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__miNF"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/04-f2-odometer-hp-bar-scrub.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19472,10 +18955,10 @@
   },
   {
    "from": "fx/06-f4-reveal-on-scroll.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__miNF"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19508,30 +18991,10 @@
   },
   {
    "from": "fx/07-f5-moments.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/07-f5-moments.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst",
-    "__miRing"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/07-f5-moments.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19555,13 +19018,12 @@
   },
   {
    "from": "fx/08-round6.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
+    "FXENV"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "fx/09-wow-pack.js",
@@ -19592,20 +19054,10 @@
   },
   {
    "from": "fx/09-wow-pack.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/09-wow-pack.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19629,30 +19081,10 @@
   },
   {
    "from": "fx/10-x-pack.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/10-x-pack.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst",
-    "__miRing"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/10-x-pack.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19676,47 +19108,28 @@
   },
   {
    "from": "fx/11-d-pack.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/11-d-pack.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/11-d-pack.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
+    "FXENV"
    ],
    "count": 1
   },
   {
    "from": "fx/12-mini-window-v2.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI"
+    "FXENV"
    ],
    "count": 1
   },
   {
    "from": "fx/13-class-colour-hp-ring.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__miNF"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19749,38 +19162,10 @@
   },
   {
    "from": "fx/14-w-pack.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/14-w-pack.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/14-w-pack.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/14-w-pack.js",
-   "to": "fx/20-k-pack-character-colour-icon.js",
-   "import": false,
-   "names": [
-    "__miIcon"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19849,29 +19234,10 @@
   },
   {
    "from": "fx/15-y-pack.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/15-y-pack.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/15-y-pack.js",
-   "to": "fx/20-k-pack-character-colour-icon.js",
-   "import": false,
-   "names": [
-    "__miIcon"
+    "FXENV"
    ],
    "count": 1
   },
@@ -19890,15 +19256,6 @@
    "import": false,
    "names": [
     "buzz"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "boot/store-gate.js",
-   "import": false,
-   "names": [
-    "__store"
    ],
    "count": 1
   },
@@ -19931,65 +19288,19 @@
   },
   {
    "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/02-micro-interactions.js",
-   "import": false,
-   "names": [
-    "__miBurst"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/18-m-pack-rolls-concentration.js",
-   "import": false,
-   "names": [
-    "__miJournal"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artVig"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "fx/25-dice3d.js",
-   "import": false,
-   "names": [
-    "__dice3d"
+    "FXENV"
    ],
    "count": 1
   },
   {
    "from": "fx/17-l-pack-webgl-sky.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20004,15 +19315,6 @@
   },
   {
    "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "boot/store-gate.js",
-   "import": false,
-   "names": [
-    "__store"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
    "to": "builder/20-ui-steps-equipment-next.js",
    "import": false,
    "names": [
@@ -20022,38 +19324,10 @@
   },
   {
    "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "fx/16-z-pack-dice-sound-hover.js",
-   "import": false,
-   "names": [
-    "__miSnd"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "fx/25-dice3d.js",
-   "import": false,
-   "names": [
-    "__dice3d"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20087,37 +19361,10 @@
   },
   {
    "from": "fx/19-g-pack-cinematic.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/19-g-pack-cinematic.js",
-   "to": "fx/09-wow-pack.js",
-   "import": false,
-   "names": [
-    "__miWow"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/19-g-pack-cinematic.js",
-   "to": "fx/16-z-pack-dice-sound-hover.js",
-   "import": false,
-   "names": [
-    "__miSnd"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/19-g-pack-cinematic.js",
-   "to": "fx/17-l-pack-webgl-sky.js",
-   "import": false,
-   "names": [
-    "__miSky"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20150,19 +19397,10 @@
   },
   {
    "from": "fx/20-k-pack-character-colour-icon.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/20-k-pack-character-colour-icon.js",
-   "to": "fx/16-z-pack-dice-sound-hover.js",
-   "import": false,
-   "names": [
-    "__miSnd"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20195,20 +19433,10 @@
   },
   {
    "from": "fx/21-connected-home-sheet.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI",
-    "__miNF"
-   ],
-   "count": 2
-  },
-  {
-   "from": "fx/21-connected-home-sheet.js",
-   "to": "fx/14-w-pack.js",
-   "import": false,
-   "names": [
-    "__miCascade"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20223,10 +19451,10 @@
   },
   {
    "from": "fx/22-home-hero.js",
-   "to": "fx/01-core-router-and-switch.js",
+   "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
-    "__MI"
+    "FXENV"
    ],
    "count": 1
   },
@@ -20259,6 +19487,15 @@
   },
   {
    "from": "fx/24-class-art.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/24-class-art.js",
    "to": "fx/23-class-art-data.js",
    "import": false,
    "names": [
@@ -20272,6 +19509,24 @@
    "import": false,
    "names": [
     "used"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/25-dice3d.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/25-dice3d.js",
+   "to": "fx/27-blend-sheet.js",
+   "import": false,
+   "names": [
+    "BLEND"
    ],
    "count": 1
   },
@@ -20290,6 +19545,15 @@
    "import": false,
    "names": [
     "pager"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/26-tab-notch.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
    ],
    "count": 1
   },
@@ -20322,23 +19586,21 @@
   },
   {
    "from": "fx/27-blend-sheet.js",
+   "to": "fx/00-fx-env.js",
+   "import": false,
+   "names": [
+    "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/27-blend-sheet.js",
    "to": "fx/23-class-art-data.js",
    "import": false,
    "names": [
     "__ART"
    ],
    "count": 1
-  },
-  {
-   "from": "fx/27-blend-sheet.js",
-   "to": "fx/24-class-art.js",
-   "import": false,
-   "names": [
-    "__artIc",
-    "__bslug",
-    "__scnFind"
-   ],
-   "count": 3
   },
   {
    "from": "learn/00-bridge.js",
@@ -20414,24 +19676,6 @@
    "import": false,
    "names": [
     "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/46-logic-learn.js",
-   "to": "fx/01-core-router-and-switch.js",
-   "import": false,
-   "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/46-logic-learn.js",
-   "to": "fx/25-dice3d.js",
-   "import": false,
-   "names": [
-    "__dice3d"
    ],
    "count": 1
   },
@@ -20684,37 +19928,10 @@
   },
   {
    "from": "tg/30-ui-tg.js",
-   "to": "builder/23-logic-level-up-and-build-files.js",
-   "import": false,
-   "names": [
-    "__bldSheetFor"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
    "to": "data/db2-phb-classes-a.js",
    "import": false,
    "names": [
     "CLASSES"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
-   "to": "fx/01-core-router-and-switch.js",
-   "import": false,
-   "names": [
-    "__MI"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
-   "to": "fx/25-dice3d.js",
-   "import": false,
-   "names": [
-    "__dice3d"
    ],
    "count": 1
   },
@@ -20727,43 +19944,40 @@
   }
  ],
  "back_edges": {
-  "app/03-data-glossary.js -> app/23d-ui-rest.js": 1,
   "app/03-data-glossary.js -> app/08-ui-render-sheet-and-actions.js": 1,
+  "app/03-data-glossary.js -> app/23d-ui-rest.js": 1,
   "app/04-logic-storage.js -> app/14-ui-editor.js": 2,
-  "app/04-logic-storage.js -> app/20-ui-portrait.js": 1,
-  "app/04-logic-storage.js -> app/08-ui-render-sheet-and-actions.js": 2,
-  "app/04-logic-storage.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/04-logic-storage.js -> app/35-ui-combo.js": 1,
-  "app/05-logic-helpers.js -> tg/30-ui-tg.js": 1,
-  "app/05-logic-helpers.js -> app/13-ui-detail-cards.js": 2,
-  "app/05-logic-helpers.js -> fx/24-class-art.js": 1,
+  "app/04-logic-storage.js -> app/07-ui-theme-contrast-spring.js": 1,
+  "app/04-logic-storage.js -> app/08-ui-render-sheet-and-actions.js": 2,
+  "app/04-logic-storage.js -> app/20-ui-portrait.js": 1,
   "app/05-logic-helpers.js -> app/27b-ui-library.js": 2,
   "app/05-logic-helpers.js -> app/30-ui-icons.js": 1,
-  "app/06-logic-derivation.js -> app/26-ui-customize.js": 3,
-  "app/06-logic-derivation.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
-  "app/06-logic-derivation.js -> app/34-ui-situations.js": 1,
-  "app/06-logic-derivation.js -> app/25-ui-settings-appearance.js": 2,
+  "app/05-logic-helpers.js -> tg/30-ui-tg.js": 1,
+  "app/05-logic-helpers.js -> app/13-ui-detail-cards.js": 2,
   "app/06-logic-derivation.js -> app/23e-ui-spells-dc.js": 1,
+  "app/06-logic-derivation.js -> app/34-ui-situations.js": 1,
+  "app/06-logic-derivation.js -> app/26-ui-customize.js": 3,
+  "app/06-logic-derivation.js -> app/25-ui-settings-appearance.js": 2,
+  "app/06-logic-derivation.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> app/07-ui-theme-contrast-spring.js": 3,
   "app/15-logic-roster-backup-files-snapshots.js -> app/08-ui-render-sheet-and-actions.js": 2,
   "app/15-logic-roster-backup-files-snapshots.js -> app/14-ui-editor.js": 6,
-  "app/15-logic-roster-backup-files-snapshots.js -> fx/24-class-art.js": 1,
-  "app/15-logic-roster-backup-files-snapshots.js -> learn/47-ui-learn.js": 1,
-  "app/15-logic-roster-backup-files-snapshots.js -> app/27-ui-party-search-commands-library.js": 4,
-  "app/15-logic-roster-backup-files-snapshots.js -> fx/01-core-router-and-switch.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> tg/30-ui-tg.js": 3,
-  "app/15-logic-roster-backup-files-snapshots.js -> app/31-ui-tour-and-focus.js": 1,
-  "app/15-logic-roster-backup-files-snapshots.js -> app/27c-ui-report-pins.js": 2,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/27-ui-party-search-commands-library.js": 4,
   "app/15-logic-roster-backup-files-snapshots.js -> app/27b-ui-library.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/27c-ui-report-pins.js": 2,
+  "app/15-logic-roster-backup-files-snapshots.js -> learn/47-ui-learn.js": 1,
   "app/15-logic-roster-backup-files-snapshots.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
+  "app/15-logic-roster-backup-files-snapshots.js -> app/31-ui-tour-and-focus.js": 1,
   "app/16-logic-import-chat-text-and-build-files.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/16-logic-import-chat-text-and-build-files.js -> app/14-ui-editor.js": 4,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/08-ui-render-sheet-and-actions.js": 6,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/12-ui-bottom-sheet-modal.js": 2,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/14-ui-editor.js": 5,
-  "app/17-logic-tab-sync-and-test-hooks.js -> app/20-ui-portrait.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/35-ui-combo.js": 1,
+  "app/17-logic-tab-sync-and-test-hooks.js -> app/20-ui-portrait.js": 1,
   "app/17-logic-tab-sync-and-test-hooks.js -> app/41-ui-edit-mode.js": 1,
   "app/32-logic-play-undo-actions.js -> app/08-ui-render-sheet-and-actions.js": 5,
   "app/32-logic-play-undo-actions.js -> app/09-ui-hit-points-playbar-death-saves.js": 1,
@@ -20774,11 +19988,10 @@
   "app/32-logic-play-undo-actions.js -> app/22-ui-spell-data-and-slots.js": 3,
   "app/32-logic-play-undo-actions.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
   "app/32-logic-play-undo-actions.js -> app/30-ui-icons.js": 1,
-  "app/32-logic-play-undo-actions.js -> app/23b-ui-items-containers.js": 3,
   "app/32-logic-play-undo-actions.js -> app/23d-ui-rest.js": 1,
+  "app/32-logic-play-undo-actions.js -> app/23b-ui-items-containers.js": 3,
   "app/32-logic-play-undo-actions.js -> app/35-ui-combo.js": 3,
   "app/32-logic-play-undo-actions.js -> app/23e-ui-spells-dc.js": 1,
-  "app/32-logic-play-undo-actions.js -> builder/24-ui-icons.js": 1,
   "app/33-logic-play-rage-conditions.js -> app/35-ui-combo.js": 1,
   "app/42-logic-pwa-qr-icons-wallet.js -> app/07-ui-theme-contrast-spring.js": 1,
   "app/42-logic-pwa-qr-icons-wallet.js -> app/08-ui-render-sheet-and-actions.js": 1,
@@ -20801,8 +20014,8 @@
   "app/48-logic-sync-merge.js -> app/13-ui-detail-cards.js": 1,
   "app/48-logic-sync-merge.js -> app/14-ui-editor.js": 3,
   "app/48-logic-sync-merge.js -> app/23-ui-uses-items-coins-rest-spell-dc.js": 1,
-  "app/48-logic-sync-merge.js -> tg/30-ui-tg.js": 1,
   "app/48-logic-sync-merge.js -> app/08-ui-render-sheet-and-actions.js": 1,
+  "app/48-logic-sync-merge.js -> tg/30-ui-tg.js": 1,
   "app/49-logic-status-and-odds.js -> app/10-ui-conditions.js": 1,
   "app/49-logic-status-and-odds.js -> app/12-ui-bottom-sheet-modal.js": 2,
   "app/49-logic-status-and-odds.js -> app/13-ui-detail-cards.js": 1,
@@ -20810,7 +20023,6 @@
   "app/49-logic-status-and-odds.js -> app/34-ui-situations.js": 1,
   "app/49-logic-status-and-odds.js -> app/40-ui-segments-notes-swipe-motion-panels.js": 1,
   "app/49-logic-status-and-odds.js -> app/41-ui-edit-mode.js": 1,
-  "app/49-logic-status-and-odds.js -> fx/18-m-pack-rolls-concentration.js": 1,
   "app/50-logic-reverse-builder.js -> app/12-ui-bottom-sheet-modal.js": 2,
   "app/50-logic-reverse-builder.js -> app/13-ui-detail-cards.js": 1,
   "app/50-logic-reverse-builder.js -> app/41-ui-edit-mode.js": 1,
@@ -20820,13 +20032,13 @@
   "data/wotc02-subclasses-2025.js -> tg/30-ui-tg.js": 1,
   "data/wotc13-creature-stat-blocks.js -> tg/30-ui-tg.js": 1,
   "data/fx-C-feat.js -> builder/18-ui-spells.js": 1,
-  "data/hbpack-builtin-homebrew.js -> builder/13-logic-sources-and-packs.js": 1,
   "data/hbpack-builtin-homebrew.js -> tg/30-ui-tg.js": 1,
+  "data/hbpack-builtin-homebrew.js -> builder/13-logic-sources-and-packs.js": 1,
   "data/fx-B1-subclass.js -> builder/18-ui-spells.js": 1,
   "data/fx-L1.js -> builder/18-ui-spells.js": 1,
   "data/fx-L4.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L5.js -> builder/11-logic-derivation.js": 1,
   "data/fx-L5.js -> builder/18-ui-spells.js": 1,
+  "data/fx-L5.js -> builder/11-logic-derivation.js": 1,
   "data/fx-L9.js -> builder/18-ui-spells.js": 1,
   "data/fx-L10.js -> builder/18-ui-spells.js": 1,
   "data/fx-L11.js -> builder/18-ui-spells.js": 1,
@@ -20835,16 +20047,15 @@
   "data/fx-D-item.js -> builder/18-ui-spells.js": 1,
   "data/fx-L2.js -> builder/18-ui-spells.js": 1,
   "data/fx-L6.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
   "data/fx-L7.js -> builder/18-ui-spells.js": 1,
+  "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
   "data/fx-M2.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> app/08-ui-render-sheet-and-actions.js": 2,
-  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 2,
-  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 2,
   "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 2,
-  "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
+  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 2,
+  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 2,
+  "builder/09-logic-feats-and-choices.js -> app/08-ui-render-sheet-and-actions.js": 2,
   "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
-  "builder/10-logic-v17-additions.js -> builder/20-ui-steps-equipment-next.js": 1,
+  "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
   "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
   "builder/11-logic-derivation.js -> app/08-ui-render-sheet-and-actions.js": 1,
@@ -20858,20 +20069,17 @@
   "builder/23-logic-level-up-and-build-files.js -> builder/22-ui-shell.js": 3,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/17-ui-step-builder.js": 5,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/18-ui-spells.js": 8,
-  "builder/25-logic-hooks-for-the-sheet.js -> builder/20-ui-steps-equipment-next.js": 2,
+  "builder/25-logic-hooks-for-the-sheet.js -> builder/20-ui-steps-equipment-next.js": 1,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/21-ui-rules-reference.js": 8,
   "builder/25-logic-hooks-for-the-sheet.js -> builder/22-ui-shell.js": 2,
-  "builder/25-logic-hooks-for-the-sheet.js -> tg/30-ui-tg.js": 1,
   "builder/25-logic-hooks-for-the-sheet.js -> app/12-ui-bottom-sheet-modal.js": 1,
+  "builder/25-logic-hooks-for-the-sheet.js -> tg/30-ui-tg.js": 1,
   "learn/45-data-learn.js -> tg/30-ui-tg.js": 3,
   "learn/45-data-learn.js -> builder/20-ui-steps-equipment-next.js": 1,
   "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1,
-  "learn/46-logic-learn.js -> fx/01-core-router-and-switch.js": 1,
-  "learn/46-logic-learn.js -> fx/25-dice3d.js": 1,
-  "learn/46-logic-learn.js -> app/21-ui-tabs-pager.js": 2,
   "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1,
+  "learn/46-logic-learn.js -> app/21-ui-tabs-pager.js": 2,
   "tg/20-engine.js -> app/08-ui-render-sheet-and-actions.js": 1,
-  "tg/25-sim.js -> app/08-ui-render-sheet-and-actions.js": 1,
-  "data/rs14-2014-wording.js -> builder/25-logic-hooks-for-the-sheet.js": 1
+  "tg/25-sim.js -> app/08-ui-render-sheet-and-actions.js": 1
  }
 }

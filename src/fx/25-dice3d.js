@@ -98,7 +98,7 @@
   function model(pos,q,s){ const x=q[0],y=q[1],z=q[2],w=q[3]; return [(1-2*(y*y+z*z))*s,2*(x*y+z*w)*s,2*(x*z-y*w)*s,0, 2*(x*y-z*w)*s,(1-2*(x*x+z*z))*s,2*(y*z+x*w)*s,0, 2*(x*z+y*w)*s,2*(y*z-x*w)*s,(1-2*(x*x+y*y))*s,0, pos[0],pos[1],pos[2],1]; }
   function hex(h){ const n=parseInt(h.slice(1),16); return [(n>>16&255)/255,(n>>8&255)/255,(n&255)/255]; }
   /* ---------- values ---------- */
-  function rnd(n){ const c=window.crypto, a=new Uint32Array(1), lim=4294967296-(4294967296%n); for(let g=0;g<64;g++){ if(c&&c.getRandomValues) c.getRandomValues(a); else a[0]=Math.floor(Math.random()*4294967296); if(a[0]<lim) return 1+a[0]%n; } return 1+a[0]%n; }
+  function rnd(n){ const c=FXENV.crypto, a=new Uint32Array(1), lim=4294967296-(4294967296%n); for(let g=0;g<64;g++){ if(c&&c.getRandomValues) c.getRandomValues(a); else a[0]=Math.floor(Math.random()*4294967296); if(a[0]<lim) return 1+a[0]%n; } return 1+a[0]%n; }
   function acc(){ const v=getComputedStyle(D.documentElement).getPropertyValue("--dice").trim(); return /^#[0-9a-f]{6}$/i.test(v)?v:"#a3182b"; }
   function weak(){ return (navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2; }
   /* ---------- the throw: a small rigid-body simulation on the CPU, nothing more for the GPU ----------
@@ -150,7 +150,7 @@
     it.p=[x,2.2+R()*1.8,box.z1+1.5*s+R()*1.5+Math.floor(i/6)*1.6]; it.vel=[(R()-0.5)*7-x*0.35,1.5+R()*3,-(15+R()*5)];
     it.q=nq([R()-0.5,R()-0.5,R()-0.5,R()-0.5]); it.w=mul(nrm([R()-0.5,R()-0.5,R()-0.5]),14+R()*10); it.delN=Math.min(30,i*3); }
   /* ---------- one throw ---------- */
-  function throwDice(list,given){ const W=innerWidth, H=innerHeight, dpr=Math.min(window.devicePixelRatio||1,weak()?1.5:2);
+  function throwDice(list,given){ const W=innerWidth, H=innerHeight, dpr=Math.min(FXENV.devicePixelRatio||1,weak()?1.5:2);
     if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){ cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); }
     const items=[], vals=[]; list.forEach((f,i) =>{ f=+f; const g=given&&given[i], v=(g>=1&&g<=f&&g===Math.floor(g))?g:rnd(f); vals.push(v);
       if(f===100){ let tens=v===100?10:(Math.floor(v/10)||10), ones=v%10||10; if(v%10===0&&v!==100) tens=v/10; items.push({k:"10t",v:tens},{k:"10",v:ones}); }
@@ -179,7 +179,7 @@
   let FONT=null; function font(){ if(FONT) return FONT; const f=D.fonts&&D.fonts.load?D.fonts.load("700 64px Archivo").catch(() =>{}):null; FONT=f?Promise.race([f,new Promise((r) =>{ setTimeout(r,600); })]):Promise.resolve(); return FONT; }
   function run(list,given){ if(!init()) return Promise.resolve(null); clearTimeout(hideT); tray.classList.add("on"); stats.rolls++;
     return font().then(() =>{ return throwDice(list,given); }).then((v) =>{ hideT=setTimeout(() =>{ tray.classList.remove("on"); },1800); return v; },() =>{ tray.classList.remove("on"); return null; }); }
-  window.__dice3d={ roll:function(list,given){ const p=queue.then(() =>{ try{ return run(list,given); }catch(e){ if(tray) tray.classList.remove("on"); return null; } }); queue=p.catch(() =>{}); return p; },
+  FXENV.__dice3d={ roll:function(list,given){ const p=queue.then(() =>{ try{ return run(list,given); }catch(e){ if(tray) tray.classList.remove("on"); return null; } }); queue=p.catch(() =>{}); return p; },
     preload:function(){ return font().then(() =>{ return init(); }); }, state:function(){ return {loaded:!!gl,loading:false,engine:"lite"}; }, stats:function(){ return stats; },
     /* for tests: the face each die shows, read back from its final turn (the face whose normal points up, or the corner on top of a d4) */
     /* for tests: one die thrown in an empty tray without drawing; answers the value its top face shows and how flat it lies */

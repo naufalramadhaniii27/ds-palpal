@@ -5,7 +5,7 @@
    the first paint and the two targets wait hidden until the copies land. Copies fly in a fixed layer, so no card or scroll box clips
    them. Transform and opacity only. Off with Immersive Off and Reduce Motion. === */
 (function(){
-  const D=document, html=D.documentElement, MI=window.__MI, KEY="mi-cx", EASE="cubic-bezier(.2,.8,.2,1)", DUR=440;
+  const D=document, html=D.documentElement, MI=FXENV.__MI, KEY="mi-cx", EASE="cubic-bezier(.2,.8,.2,1)", DUR=440;
   if(!D.body||!D.body.animate) return;
   function rmo(){ return !MI||MI.rm(); }
   function rect(el){ if(!el||!el.getBoundingClientRect) return null; const r=el.getBoundingClientRect(); if(!r.width||!r.height) return null; return {x:r.left,y:r.top,w:r.width,h:r.height}; }
@@ -34,13 +34,13 @@
         along(src[i],from,to,i===1,L); el.style.visibility="visible"; el.animate([{opacity:0},{opacity:0,offset:.35},{opacity:1}],{duration:DUR,easing:"ease-out",fill:"backwards"}); return; }
       const c=copy(el,to,L); el.style.visibility="hidden"; fly(c,from,to,i===1); });
     html.classList.add("mi-cx-go");/* the backdrop fades while the copies travel */
-    if(window.__miCascade) try{ window.__miCascade(); }catch(e){}/* the rest of the sheet arrives with them (fx/14) */
-    window.__miFlyN=(window.__miFlyN||0)+(n?1:0);/* for tests */
+    if(FXENV.__miCascade) try{ FXENV.__miCascade(); }catch(e){}/* the rest of the sheet arrives with them (fx/14) */
+    FXENV.__miFlyN=(FXENV.__miFlyN||0)+(n?1:0);/* for tests */
     setTimeout(end,n?DUR+40:0); setTimeout(end,DUR+900); }
-  window.__miFlyIn=flyIn;
+  FXENV.__miFlyIn=flyIn;
 
   /* leave Home: keep the portrait and name where they are, cover the rest in the page colour, then let the app switch */
-  window.__miFlyOut=function(card,go){ if(rmo()){ go(); return; }
+  FXENV.__miFlyOut=function(card,go){ if(rmo()){ go(); return; }
     const els=cardEls(card), d={p:rect(els[0]),n:rect(els[1]),t:Date.now(),bg:getComputedStyle(D.body).backgroundColor||"#0f1417"};
     try{ sessionStorage.setItem(KEY,JSON.stringify(d)); }catch(e){}
     const L=layer(), bd=D.createElement("i"); bd.className="mi-cx-bd"; bd.style.background=d.bg; L.appendChild(bd);
@@ -50,7 +50,7 @@
     let leaving=false; addEventListener("pagehide",() =>{ leaving=true; },{once:true}); addEventListener("beforeunload",() =>{ leaving=true; },{once:true});
     let a=bd.animate([{opacity:0},{opacity:1}],{duration:200,easing:"ease-out",fill:"forwards"}), went=false;
     function next(){ if(went) return; went=true; go();
-      window.__miNF(() =>{ window.__miNF(() =>{ const hv=D.getElementById("homeV");
+      FXENV.__miNF(() =>{ FXENV.__miNF(() =>{ const hv=D.getElementById("homeV");
         if(hv&&hv.hidden&&!leaving){/* the same character: no reload, fly now */ try{ sessionStorage.removeItem(KEY); }catch(e){}
           html.classList.add("mi-cx"); const bdc=L.querySelector(".mi-cx-bd"); flyIn(d,null,Array.prototype.slice.call(L.children).filter((x) =>{ return x!==bdc; })); const f=L.animate([{opacity:1},{opacity:0}],{duration:240,easing:"ease-out",fill:"forwards"}); f.onfinish=function(){ L.remove(); }; setTimeout(() =>{ L.remove(); },700); }
         else setTimeout(() =>{ if(!leaving){ L.remove(); try{ sessionStorage.removeItem(KEY); }catch(e){} } },3000); }); }); }
@@ -59,7 +59,7 @@
   /* the new page after a switch */
   function arrive(){ if(!html.classList.contains("mi-cx")) return; let d=null; try{ d=JSON.parse(sessionStorage.getItem(KEY)||"null"); sessionStorage.removeItem(KEY); }catch(e){}
     const hv=D.getElementById("homeV"); if(!d||rmo()||(hv&&!hv.hidden)){ html.classList.remove("mi-cx","mi-cx-go"); const pr=D.querySelector(".mi-cx-pre"); if(pr) pr.remove(); return; }
-    window.__miNF(() =>{ flyIn(d,null); }); }
+    FXENV.__miNF(() =>{ flyIn(d,null); }); }
   if(D.readyState==="loading") D.addEventListener("DOMContentLoaded",arrive,{once:true}); else arrive();
   setTimeout(() =>{ html.classList.remove("mi-cx","mi-cx-go"); },4000);/* never leave the sheet hidden */
 
@@ -74,9 +74,9 @@
       let L=layer(), n=0;
       ce.forEach((el,i) =>{ const to=rect(el), fr=r0[i]; if(!el||!seen(to)||!fr) return; const c=copy(el,to,L); el.style.visibility="hidden"; n++;
         fly(c,fr,to,i===1).onfinish=function(){ el.style.visibility=""; }; setTimeout(() =>{ el.style.visibility=""; },DUR+600); });
-      window.__miFlyBackN=(window.__miFlyBackN||0)+(n?1:0);/* for tests */
+      FXENV.__miFlyBackN=(FXENV.__miFlyBackN||0)+(n?1:0);/* for tests */
       setTimeout(() =>{ L.remove(); },n?DUR+60:0); }
     new MutationObserver(() =>{ if(hv.hidden===was) return; was=hv.hidden; opened(); }).observe(hv,{attributes:true,attributeFilter:["hidden"]});
-    if(isNew&&!hv.hidden) window.__miNF(opened);/* the first open makes #homeV, filled in the same task */ }
+    if(isNew&&!hv.hidden) FXENV.__miNF(opened);/* the first open makes #homeV, filled in the same task */ }
   if(hv0) watchHome(hv0,false); else new MutationObserver((m,o) =>{ const h=D.getElementById("homeV"); if(h){ o.disconnect(); watchHome(h,true); } }).observe(D.body,{childList:true});
 })();

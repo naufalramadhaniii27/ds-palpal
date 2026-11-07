@@ -1,6 +1,6 @@
 /* === F4: rows arrive the first time a page is seen, description reveals on scroll, containers open like folders, spending an item tears it === */
 (function(){
-  if(!document.body.animate||!window.IntersectionObserver) return; const EASE="cubic-bezier(.2,.8,.2,1)";
+  if(!document.body.animate||!FXENV.IntersectionObserver) return; const EASE="cubic-bezier(.2,.8,.2,1)";
   const ROWS=".sp-r,.irow,.arow,.fitem,.aitem,.skr,.svr";
   /* Animated List v2: every row rises in the first time it scrolls on screen (Inventory, Spells, Actions, Features, Skills).
      A row is known by its text, so a redraw of the same list does not replay it. Full: a clear rise with a slight overshoot. Lite: a short soft one */
@@ -12,7 +12,7 @@
         {duration:full?520:280,delay:d,easing:full?"cubic-bezier(.2,.8,.2,1)":EASE,fill:"backwards"}); }); }),{threshold:.12});
   function watchRows(id){ const s=document.getElementById(id); if(!s) return; let q=0;
     const scan=function(){ q=0; Array.prototype.forEach.call(s.querySelectorAll(ROWS),(r) =>{ if(r.__miW) return; r.__miW=1; r.__miPg=id; rio.observe(r); }); };
-    new MutationObserver(() =>{ if(!q){ q=1; (window.__miNF||setTimeout)(scan); } }).observe(s,{childList:true,subtree:true}); scan(); }
+    new MutationObserver(() =>{ if(!q){ q=1; (FXENV.__miNF||setTimeout)(scan); } }).observe(s,{childList:true,subtree:true}); scan(); }
   setTimeout(() =>{ ["p-actions","p-spells","p-inv","p-feat","p-skills"].forEach(watchRows); },1200);/* start after the app has settled which page shows */
   /* Scroll Reveal: description fields that hold text come up softly the first time they scroll into view */
   var rv={}, io2=new IntersectionObserver(((es) =>{ es.forEach((en) =>{ if(!en.isIntersecting) return; io2.unobserve(en.target); const k=en.target.textContent.slice(0,40); if(rv[k]||MI.rm()) return; rv[k]=1;
@@ -29,7 +29,7 @@
       if(nb.getAttribute("aria-expanded")==="true") rowsAfter(nb).slice(0,12).forEach((r,i) =>{ r.animate([{opacity:0,transform:"translateY(-8px) scale(.98)"},{opacity:1,transform:"none"}],{duration:300,delay:40+i*30,easing:"cubic-bezier(.3,1.5,.5,1)",fill:"backwards"}); });
       MI.buzz("light"); }); },true);
   /* Tear Ticket: lowering an item's quantity tears a stub off the quantity box */
-  window.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest('[data-iqd="-1"]'); if(!b||MI.rm()) return;/* window level: the app stops this click before the document */ const box=b.parentNode&&b.parentNode.querySelector("input"); if(!box||+box.value<1) return;
+  FXENV.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest('[data-iqd="-1"]'); if(!b||MI.rm()) return;/* window level: the app stops this click before the document */ const box=b.parentNode&&b.parentNode.querySelector("input"); if(!box||+box.value<1) return;
     const g1=MI.ghost(box), g2=MI.ghost(box); if(!g1||!g2) return; g1.style.clipPath="polygon(0 0,52% 0,46% 20%,54% 40%,46% 60%,54% 80%,48% 100%,0 100%)"; g2.style.clipPath="polygon(52% 0,100% 0,100% 100%,48% 100%,54% 80%,46% 60%,54% 40%,46% 20%)";
     g1.animate([{transform:"none",opacity:1},{transform:"translate(-14px,18px) rotate(-14deg)",opacity:0}],{duration:520,easing:"cubic-bezier(.4,0,.2,1)",fill:"forwards"}).onfinish=function(){ g1.remove(); };
     g2.animate([{transform:"none",opacity:1},{transform:"translate(14px,24px) rotate(12deg)",opacity:0}],{duration:520,easing:"cubic-bezier(.4,0,.2,1)",fill:"forwards"}).onfinish=function(){ g2.remove(); };

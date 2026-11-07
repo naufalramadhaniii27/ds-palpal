@@ -3,21 +3,17 @@ import {DMAP,bgX,kitGP,un,ovFx} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
-import {allFeats} from "./09-logic-feats-and-choices.js";
+import {allFeats,gxPicks} from "./09-logic-feats-and-choices.js";
 import {luMax,pk} from "./10-logic-v17-additions.js";
-import {abil,isThird3} from "./11-logic-derivation.js";
+import {abil,fxList,fxVal,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {__R} from "./00-reg.js";
+import {bindLate} from "./01b-logic-late-ports.js";
 import {gx} from "./00-env.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
-Object.defineProperty(__R,"MCL",{get:function(){return MCL;},set:function(v){MCL=v;},configurable:true});
-Object.defineProperty(__R,"TL",{get:function(){return TL;},set:function(v){TL=v;},configurable:true});
-Object.defineProperty(__R,"baseOf",{get:function(){return baseOf;},set:function(v){baseOf=v;},configurable:true});
-Object.defineProperty(__R,"ensureInv",{get:function(){return ensureInv;},set:function(v){ensureInv=v;},configurable:true});
-Object.defineProperty(__R,"itemW",{get:function(){return itemW;},set:function(v){itemW=v;},configurable:true});
 Object.defineProperty(__R,"kitItems",{get:function(){return kitItems;},set:function(v){kitItems=v;},configurable:true});
 Object.defineProperty(__R,"mcChoices",{get:function(){return mcChoices;},set:function(v){mcChoices=v;},configurable:true});
-Object.defineProperty(__R,"slotsAll",{get:function(){return slotsAll;},set:function(v){slotsAll=v;},configurable:true});
+bindLate({MCL,TL,baseOf,ensureInv,itemW,slotsAll,syncPickItems,hpCalc,effArmor,effShield,effWeps});/* the late ports of this file (01b-logic-late-ports.js) */
 provideQueries({MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
 /* ---------- multiclass, HP, shop ---------- */
 export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
@@ -53,7 +49,7 @@ export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.leve
 /* M17: read from data. SPECIES.hpPerLevel (+hpName), CLASSES.*.hpSub[sub] {v per class level, from level l}, FEATS.hp (per level) and hpFlat */
 function hpBonusList(){const o=[],L=TL(),spx=SPECIES[B.species];if(spx&&spx.hpPerLevel)o.push({s:(spx.hpName||B.species)+" ("+(spx.hb||SRC)+")",v:spx.hpPerLevel*L});
  [[B.cls,B.sub,B.level,0]].concat(MCL().map((m) =>{return [m.cls,m.sub,m.lv,1]})).forEach((q) =>{const h=(CLASSES[q[0]].hpSub||{})[q[1]];if(h&&q[2]>=h.l)o.push({s:h.n+" ("+SRC+(q[3]?", "+q[0]+" "+q[2]+", multiclass":"")+")",v:h.v*q[2]})});
- __R.gfx().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.lbl,v:mod(abil().sc.CON)+e.lv});if(e.hpLvl!=null){const v=__R.fxv(e.hpLvl,e)*e.lv;if(v)o.push({s:e.lbl,v:v})}if(e.hpFlat!=null){const v=__R.fxv(e.hpFlat,e);if(v)o.push({s:e.lbl,v:v})}});/* generic: fx.hp "con+lvl", hpLvl per level of the source (class level for cls and sub, character level for the rest), hpFlat */
+ fxList().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.lbl,v:mod(abil().sc.CON)+e.lv});if(e.hpLvl!=null){const v=fxVal(e.hpLvl,e)*e.lv;if(v)o.push({s:e.lbl,v:v})}if(e.hpFlat!=null){const v=fxVal(e.hpFlat,e);if(v)o.push({s:e.lbl,v:v})}});/* generic: fx.hp "con+lvl", hpLvl per level of the source (class level for cls and sub, character level for the rest), hpFlat */
  allFeats().forEach((f) =>{const F=FEATS[f.n];if(F&&F.hp)o.push({s:f.n+" feat ("+f.s+")",v:F.hp*L});if(F&&F.hpFlat)o.push({s:f.n,v:F.hpFlat})});return o}
 function toSheetHpBonus(){return hpBonusList().reduce((t,x) =>{return t+x.v},0)}
 function casterLv(cls,sub,lv){const c=CLASSES[cls];if(c.caster==="full")return lv;if(c.caster==="half")return R14()&&!c.a14?Math.floor(lv/2):Math.ceil(lv/2);/* v92: 2014 Paladin and Ranger count half their levels rounded down */if(isThird3(sub))return Math.floor(lv/3);return 0}
@@ -65,7 +61,7 @@ export function slotsAll(){const parts=[{cls:B.cls,sub:B.sub,lv:B.level}].concat
  else if(cast.length>1){const s=cast.reduce((t,p) =>{return t+casterLv(p.cls,p.sub,p.lv)},0);slots=s>0?SLOTS_FULL[Math.min(20,s)-1]:null}
  return {slots:slots,pact:pact}}
 /* fx engine v6: slotAdd [{lvl,n,ifHave,max}] of the active entries applied to a slot array (the sheet does the same on C.spellcasting.slots). Returns a new array, the input is not changed. Used by the builder spell step */
-export function slotAddApply(slots){if(!slots)return slots;let sl=slots.slice(),add=[];__R.gfx().forEach((e) =>{if(e.cond)return;(Array.isArray(e.slotAdd)?e.slotAdd:e.slotAdd?[e.slotAdd]:[]).forEach((q) =>{let lv=q.lvl;if(lv==="high"){lv=0;sl.forEach((n,i) =>{if(n>0&&(!q.max||i+1<=q.max))lv=i+1})}if(!lv||lv>9)return;if(q.ifHave&&!(sl[lv-1]>0))return;while(sl.length<lv)sl.push(0);sl[lv-1]+=q.n||1;add.push([lv,q.n||1,e.lbl])})});sl.fxAdd=add;return sl}
+export function slotAddApply(slots){if(!slots)return slots;let sl=slots.slice(),add=[];fxList().forEach((e) =>{if(e.cond)return;(Array.isArray(e.slotAdd)?e.slotAdd:e.slotAdd?[e.slotAdd]:[]).forEach((q) =>{let lv=q.lvl;if(lv==="high"){lv=0;sl.forEach((n,i) =>{if(n>0&&(!q.max||i+1<=q.max))lv=i+1})}if(!lv||lv>9)return;if(q.ifHave&&!(sl[lv-1]>0))return;while(sl.length<lv)sl.push(0);sl[lv-1]+=q.n||1;add.push([lv,q.n||1,e.lbl])})});sl.fxAdd=add;return sl}
 export function mcResMax(r,a,L){if(Array.isArray(r.max))return r.max[L-1];if(r.max&&r.max.f)return luMax(r.max,L,a,pbOf(TL()));if(r.max==="lvl")return L<2&&r.min2?0:L;if(r.max==="lvl5")return L*5;/* m6 */if(typeof r.max==="string"&&r.max.indexOf("mod:")===0)return Math.max(1,mod(a.sc[r.max.slice(4)]));return r.max}
 /* shop: gp prices */
 export function gpBase(){const bg=bgX(),t=clsKitText();return (B.eqC==="none"||un("eqC")||un("cls")?0:/^\d+ GP$/.test(t)?parseInt(t):kitGP(t))+(bg&&B.eqB!=="none"&&!un("eqB")?(B.eqB==="A"?bg.gp:50):0)}/* V14-5: nothing before it is chosen */
@@ -120,8 +116,8 @@ function normInv(){(B.inv||[]).forEach((x) =>{if(x.alias&&/^Spell Scroll \(/.tes
 export function ensureInv(){normInv();if(!B.inv){B.inv=[];if(B.armor)B.inv.push({n:B.armor,q:1,eq:true});if(B.shield)B.inv.push({n:"Shield",q:1,eq:true});(B.weps||[]).forEach((n) =>{B.inv.push({n:n,q:1,eq:true})});(B.buy||[]).forEach((x) =>{if(!B.inv.some((y) =>{return y.n===x.n}))B.inv.push({n:x.n,q:x.q||1,eq:equippable(x.n)})});rebuildKit()}return B.inv}
 /* fx pick t:"item": the chosen items join B.inv (row tag px = pick key) when the pick is made and leave when the pick changes. B.px[key] lists the names already added, so an item the player deleted by hand does not come back. Names without item data stay record-only */
 let pxBusy=false;
-export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want={};__R.gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
- /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq={};__R.gfx().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
+export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want={};gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
+ /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq={};fxList().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
  const px=B.px||(B.px={});Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});
  Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}

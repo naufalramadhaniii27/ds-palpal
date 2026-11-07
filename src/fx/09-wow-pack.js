@@ -1,12 +1,12 @@
 /* === WOW pack: screen-wide moments. One pooled full-screen layer for flashes; everything else is added, animated with
    transform and opacity only, and removed by itself (CSS miKill is the hard stop). Full mode only. === */
 (function(){
-  const MI=window.__MI; if(!MI||!document.body||!document.body.animate) return;
+  const MI=FXENV.__MI; if(!MI||!document.body||!document.body.animate) return;
   function full(){ return MI.full(); }
   function rm(e){ if(e&&e.parentNode) e.parentNode.removeChild(e); }
   function add(cls,html){ const e=document.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; document.body.appendChild(e); setTimeout(() =>{ rm(e); },2600); return e; }
   function C(el){ const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2,r:r}; }
-  function nf(fn){ (window.__miNF||setTimeout)(fn); }
+  function nf(fn){ (FXENV.__miNF||setTimeout)(fn); }
   let FL=null;
   /* edge flash: one layer, reused; colour set once per flash, then only its opacity moves */
   function flash(rgb,peak,dur,dark){ if(!full()) return; if(!FL){ FL=document.createElement("div"); FL.className="mi-flash"; FL.setAttribute("aria-hidden","true"); document.body.appendChild(FL); }
@@ -23,7 +23,7 @@
     nf(() =>{ const box=hpBox(); if(!box) return; const p=C(box);
       if(!heal){ const big=Math.min(1,amt/20); flash("229,57,53",.55+.35*big,520+big*260); shake(box,4+big*6); MI.buzz("heavy");
         const n=add("mi-dmgn","-"+amt); n.animate([{transform:"translate("+p.x+"px,"+(p.y-10)+"px) translate(-50%,-50%) scale(.4) rotate(-8deg)",opacity:0},{transform:"translate("+(p.x+18)+"px,"+(p.y-60)+"px) translate(-50%,-50%) scale(1.25) rotate(6deg)",opacity:1,offset:.25},{transform:"translate("+(p.x+34)+"px,"+(p.y-110)+"px) translate(-50%,-50%) scale(1) rotate(10deg)",opacity:0}],{duration:900,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(n); };
-        if(window.__miBurst) window.__miBurst(p.x,p.y,{n:10,colors:["#e5534b","#ff8a80","#7a1f1a"],shape:"mi-spark",dist:60,dur:600,grav:true}); }
+        if(FXENV.__miBurst) FXENV.__miBurst(p.x,p.y,{n:10,colors:["#e5534b","#ff8a80","#7a1f1a"],shape:"mi-spark",dist:60,dur:600,grav:true}); }
       else { flash("76,194,122",.35,700); const g=add("mi-bloom"); g.style.left=p.x+"px"; g.style.top=p.y+"px";
         g.animate([{transform:"translate(-50%,-50%) scale(.2)",opacity:.9},{transform:"translate(-50%,-50%) scale(1.6)",opacity:0}],{duration:800,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(g); };
         rise(p.x,p.y,["#4cc27a","#b9f6ca","#ffffff"],18); MI.buzz("success"); } }); },true);
@@ -62,6 +62,6 @@
   W.coin=function(el){ if(!full()) return; const p=C(el), c=add("mi-coin","<b>&#10022;</b>"); c.style.left=p.x+"px"; c.style.top=p.y+"px";
     c.animate([{transform:"translate(-50%,-50%) translateY(0) rotateY(0) scale(.5)",opacity:0},{transform:"translate(-50%,-50%) translateY(-70px) rotateY(540deg) scale(1.15)",opacity:1,offset:.55},{transform:"translate(-50%,-50%) translateY(-90px) rotateY(720deg) scale(1)",opacity:0}],{duration:1100,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=function(){ rm(c); }; };
 
-  window.__miWow=W;
+  FXENV.__miWow=W;
 })();
 

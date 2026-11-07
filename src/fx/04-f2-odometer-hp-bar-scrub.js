@@ -7,14 +7,14 @@
   function row(ch){ return /\d/.test(ch)?+ch:10; }
   function build(el,txt){ let h=""; for(let i=0;i<txt.length;i++){ const ch=txt[i]; h+=(/[\d ]/.test(ch))?'<span><i style="transform:translateY(-'+row(ch)+'em)">'+COL+'</i></span>':'<span>'+ch+'</span>'; } el.innerHTML='<span class="mi-odo" aria-hidden="true">'+h+'</span>'; }
   function pad(t,n){ while(t.length<n) t=" "+t; return t; }
-  window.__miOdo=function(el,val){ if(!el) return; const to=String(val), from=el.getAttribute("data-miv"); el.setAttribute("data-miv",to); el.setAttribute("aria-label",to);
+  FXENV.__miOdo=function(el,val){ if(!el) return; const to=String(val), from=el.getAttribute("data-miv"); el.setAttribute("data-miv",to); el.setAttribute("aria-label",to);
     if(MI.rm()||from===null||from===to){ if(!el.querySelector(".mi-odo")&&el.textContent!==to) el.textContent=to; if(MI.rm()&&el.querySelector(".mi-odo")) el.textContent=to; return; }
     const n=Math.max(from.length,to.length), f=pad(from,n), t=pad(to,n);
     if(!/^[\d ]*$/.test(f+t)){ el.textContent=to; return; }
     build(el,f); const cols=el.querySelectorAll(".mi-odo>span>i");
     __miNF(() =>{ __miNF(() =>{ for(let i=0;i<n;i++) if(cols[i]) cols[i].style.transform="translateY(-"+row(t[i])+"em)"; }); });
     if(t!==to) setTimeout(() =>{ if(el.getAttribute("data-miv")===to) build(el,to); },500); };
-  window.__miOdoVal=function(el){ return el?(el.getAttribute("data-miv")||el.textContent.trim()):""; };
+  FXENV.__miOdoVal=function(el){ return el?(el.getAttribute("data-miv")||el.textContent.trim()):""; };
 
   /* liquid HP bar: a slow shimmer on the fill, clipped to the fill, plus a slosh when Hit Points change */
   function liquid(bar,fill){ if(!bar||!fill||bar.querySelector(".mi-wave")) return; bar.classList.add("mi-liq"); const w=document.createElement("span"); w.className="mi-wave"; w.setAttribute("aria-hidden","true"); bar.appendChild(w); }
@@ -26,7 +26,7 @@
       const old=lastP[fillSel]; lastP[fillSel]=p; if(old===undefined||Math.abs(old-p)<.001||MI.rm()) return;
       if(w&&MI.full()){ w.classList.remove("mi-run"); void w.offsetWidth; w.classList.add("mi-run"); clearTimeout(w.__t); w.__t=setTimeout(() =>{ w.classList.remove("mi-run"); },2500); }/* the shimmer runs after a change only */
       bar.animate([{transform:"scaleY(1)"},{transform:"scaleY("+(p<old?1.9:1.6)+") skewX("+(p<old?-8:6)+"deg)"},{transform:"scaleY(.8)"},{transform:"none"}],{duration:520,easing:"cubic-bezier(.3,1.5,.5,1)"});
-      if(MI.full()&&window.__miBurst){ const r=bar.getBoundingClientRect(); if(r.width&&r.bottom>0&&r.top<innerHeight) window.__miBurst(r.left+r.width*p,r.top+r.height/2,{n:6,colors:[getComputedStyle(fill).backgroundColor,"rgba(255,255,255,.8)"],dist:20,dur:520,grav:true}); } };
+      if(MI.full()&&FXENV.__miBurst){ const r=bar.getBoundingClientRect(); if(r.width&&r.bottom>0&&r.top<innerHeight) FXENV.__miBurst(r.left+r.width*p,r.top+r.height/2,{n:6,colors:[getComputedStyle(fill).backgroundColor,"rgba(255,255,255,.8)"],dist:20,dur:520,grav:true}); } };
     let q=0; new MutationObserver(() =>{ if(!q){ q=1; requestAnimationFrame(() =>{ q=0; upd(); }); } }).observe(watch(fill),opt); upd(); }
   function hpP(){ const c=document.getElementById("hpCur"), m=document.getElementById("hpMax"); const v=+(c&&(c.getAttribute("data-miv")||c.textContent)), mx=+(m&&(m.getAttribute("data-v")||m.textContent)); return mx?v/mx:null; }
   function arm(){ track("#hpBar",hpP,() =>{ return document.getElementById("hpCur"); },{attributes:true,attributeFilter:["data-miv"],childList:true,characterData:true,subtree:true});
