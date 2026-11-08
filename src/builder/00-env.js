@@ -65,7 +65,7 @@ export function exposeSourceHelpers(dmap,setSrc){
    The old window names stay (the sheet, the fx packs and the tests use them). Browser methods are returned bound to window, so genv.matchMedia(q) behaves like window.matchMedia(q). ---------- */
 export const genv={};
 function bindG(names){ names.forEach((n) =>{ Object.defineProperty(genv, n, { get(){ return window[n]; }, set(v){ window[n] = v; }, enumerable: true }); }); }
-function bindM(names){ names.forEach((n) =>{ Object.defineProperty(genv, n, { get(){ const f = window[n]; return typeof f === "function" ? f.bind(window) : f; }, enumerable: true }); }); }
+function bindM(names){ names.forEach((n) =>{ Object.defineProperty(genv, n, { get(){ const f = /** @type {any} */ (window[n]); return typeof f === "function" ? f.bind(window) : f; }, enumerable: true }); }); }
 /* data tables the data files fill (read when a step needs them) */
 bindG(["DM_LIST", "DM_SP", "EFA_CLS", "EFA_NAMES", "EFA_PLANS", "EFA_READY", "HBIDX", "QLIVE", "QREFS", "WX", "WXBG", "WXC", "WXE", "WXF_ALL", "WXG", "WXI", "WXO", "WXS", "WXSP", "WXW", "WXWP"]);
 /* hooks and bridges: the sheet, the art scripts and the builder itself publish these on window */
