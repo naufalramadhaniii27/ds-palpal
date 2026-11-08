@@ -11,17 +11,19 @@ Per step it records a trace of the calls the page makes, taken by wrappers that 
 Per step the hashes are: ord (the trace in order), set (the trace as a sorted list with counts), dom (the page DOM, the same normalisation as solid_ui_snapshot, plus the text of every style element and the class and style of html and body),
 win (the sorted window property names), lis (listener count per target kind and type, live: added minus removed).
 Run: python3 tests/solid_fx_snapshot.py OUT.json [--root DIR] [--vp 390|1250] [--scen ABC]
-     python3 tests/solid_fx_snapshot.py --diff A.json B.json     (reports which steps and which hash kinds differ; --ignore-ord compares only set, dom, win, lis)
+     python3 tests/solid_fx_snapshot.py --diff A.json B.json [--stable-with A2.json] [--ignore-ord]    (reports which steps and which hash kinds differ; A2 = a second run of tree A: pairs on which A and A2 disagree are skipped; --ignore-ord compares only set, dom, win, lis)
+Stability (measured on main, two runs): about 93 percent of the (step, hash kind) pairs are equal in both runs; the others are timing races (class art layers in scenario C, the builder step, counts of observers) and are skipped with --stable-with
 Not part of CI: it records and compares, it asserts nothing. Run it twice on the same tree to prove it is stable, then compare a refactored tree with main."""
 import json, os, sys, re, gzip, hashlib, socket, threading, http.server, functools
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 if '--diff' in sys.argv:
     i = sys.argv.index('--diff'); a = json.load(open(sys.argv[i + 1])); b = json.load(open(sys.argv[i + 2]))
     kinds = ['set', 'dom', 'win', 'lis'] if '--ignore-ord' in sys.argv else ['ord', 'set', 'dom', 'win', 'lis']
+    ref = json.load(open(sys.argv[sys.argv.index('--stable-with') + 1])) if '--stable-with' in sys.argv else None   # a second run of tree A: only the (step, hash kind) pairs that both runs of A agree on are compared
     bad = []
     for k in sorted(set(a['h']) | set(b['h'])):
         x, y = a['h'].get(k) or {}, b['h'].get(k) or {}
-        d = [q for q in kinds if x.get(q) != y.get(q)]
+        d = [q for q in kinds if x.get(q) != y.get(q) and (ref is None or (ref['h'].get(k) or {}).get(q) == x.get(q))]
         if d: bad.append((k, d))
     print('steps', len(a['h']), len(b['h']), 'total', a['total'], b['total'], 'DIFFERENT: %d' % len(bad) if bad else 'IDENTICAL')
     for k, d in bad[:40]: print('  ', k, ','.join(d))
@@ -161,7 +163,7 @@ def run(b, base, vp, W, H, h, errs):
             pg.wait_for_timeout(2600)   # the longest effect ends (setTimeout 2300 and the like)
             dom = settle()
             rec = pg.evaluate("()=>{window.__fxRec.on(false); const r=window.__fxRec.take(); const w=Object.keys(window).sort().join(','); return {t:r.t,f:r.f,i:r.i,live:r.live,w:w}}")
-            t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll', name) else 'strict')
+            t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll|builder', name) else 'strict')
             live = sorted('%s %d' % (k, v) for k, v in rec['live'].items() if v)
             if DUMP:
                 os.makedirs(DUMP, exist_ok=True); n = ('%s %s %s' % (vp, tag, name)).replace(' ', '_')
