@@ -50,15 +50,19 @@ function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forE
    "Relentless Rage":function(){return "At 0 Hit Points while raging, Con save DC 10 (+5 per use until a rest). On success you drop to 1 Hit Point instead"}
   };
   const f=(R14()&&T14[name])||T[name];if(!f)return "";try{const s=f();return s?" **At your level:** "+s+".":""}catch(e){return ""}}
-function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v,s){o.push({t:t,v:v,s:s})}
+/* defenses() in parts (SOLID stage 13C): one function per source, in the same order. Each adds rows with add(type,value,source) */
+function defSpecies(add){const sp=SPECIES[B.species];
  (un("species")?[]:DEF_SP[B.species]||[]).forEach((x) =>{add(x[0],x[1],B.species)});
  const lin=B.ch.lin||"";if(B.species==="Dragonborn"&&lin){const mm=/\(([A-Za-z]+)\)/.exec(lin);if(mm)add("Resistance",mm[1],"Dragonborn ("+lin.split(" ")[0]+")")}
  if(sp&&sp.linRes&&lin){const lk=Object.keys(sp.linRes).filter((k) =>{return lin.indexOf(k)===0})[0];if(lk)add("Resistance",sp.linRes[lk],B.species+" ("+lk+")")}/* v66: species whose lineage picks one resistance (Reborn) */
  if(B.species==="Tiefling"&&lin){const tt={Abyssal:"Poison",Chthonic:"Necrotic",Infernal:"Fire"}[lin.split(" ")[0]];if(tt)add("Resistance",tt,"Tiefling ("+lin.split(" ")[0]+")")}
- function cl(cls,lv,sub){if(cls==="Barbarian")add("Resistance","Bludgeoning, Piercing, Slashing (while raging)","Rage");
+}
+function defClassBase(add,cls,lv){if(cls==="Barbarian")add("Resistance","Bludgeoning, Piercing, Slashing (while raging)","Rage");
   if(cls==="Paladin"&&lv>=10)add("Immunity","Frightened (Aura of Courage)","Paladin 10");  if(cls==="Monk"&&lv>=10&&!R14())add("Note","Ends Charmed, Frightened, or Poisoned at the end of your turn","Self-Restoration");
    if(R14()&&cls==="Monk"&&lv>=10){add("Immunity","Disease","Purity of Body");add("Immunity","Poisoned","Purity of Body")}
    if(R14()&&cls==="Paladin"&&lv>=3)add("Immunity","Disease","Divine Health");
+}
+function defSub(add,sub,lv){
   if(sub==="Path of the Berserker"&&lv>=6)add("Immunity","Charmed, Frightened (while raging)","Mindless Rage");
   if(sub==="Life Domain"&&false)add("","","");
   if(sub==="Great Old One Patron"&&lv>=10)add("Resistance","Psychic","Thought Shield");
@@ -68,17 +72,27 @@ function defenses(a){const o=[],L=B.level,sp=SPECIES[B.species];function add(t,v
   if(sub==="War Domain"&&lv>=17)add("Resistance","Bludgeoning, Piercing, Slashing","Avatar of Battle");
   if(sub==="Celestial Patron"&&lv>=6)add("Resistance","Radiant","Radiant Soul");
   if(sub==="Archfey Patron"&&lv>=10)add("Immunity","Charmed","Beguiling Defenses");
-  if(sub==="Circle of the Land"&&lv>=10)add("Immunity","Poisoned","Nature's Ward")}
- cl(B.cls,L,B.sub);MCL().forEach((m) =>{cl(m.cls,m.lv,m.sub)});
+  if(sub==="Circle of the Land"&&lv>=10)add("Immunity","Poisoned","Nature's Ward")
+}
+function defClass(add,cls,lv,sub){defClassBase(add,cls,lv);defSub(add,sub,lv)}
+function defSubChoices(add){
  /* v32 RL49 no. 38: a homebrew subclass choice with dres (Calon Arang: Immunity) adds each chosen type */
  clsParts().forEach((q,i) =>{if(!q.sub)return;subChoicesFor(q.sub).forEach((c) =>{if(!c.dres||q.lv<c.l)return;const v=B.ch[(q.mc?"m"+(i-1)+":":"")+"sc"+c.k];if(Array.isArray(v))v.forEach((t) =>{add(c.dres,t,c.feature)})})});
+}
+function defFiend(add){
  /* v32 RL49 no. 32: Fiendish Resilience type. Nature's Ward resistance of the land type (Circle of the Land 10) */
  clsParts().forEach((q,i) =>{const pre=q.mc?"m"+(i-1)+":":"";if((q.sub==="Fiend Patron"||q.sub==="The Fiend (2014)")&&q.lv>=10&&B.ch[pre+"p10opt"])add("Resistance",B.ch[pre+"p10opt"],"Fiendish Resilience");
   const lt=B.ch[pre+"land"],lr={Arid:"Fire",Polar:"Cold",Temperate:"Lightning",Tropical:"Poison"}[lt];if(q.sub==="Circle of the Land"&&q.lv>=10&&lr)add("Resistance",lr,"Nature's Ward ("+lt+")")});
- (B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring of Resistance")add("Resistance","One type (set by the ring)","Ring of Resistance");if(/^Mithral|^Adamantine Armor/.test(x.n)&&/Adamantine/.test(x.n))add("Note","Critical Hits against you become normal hits","Adamantine Armor")});
- const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
+}
+function defItems(add){(B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring of Resistance")add("Resistance","One type (set by the ring)","Ring of Resistance");if(/^Mithral|^Adamantine Armor/.test(x.n)&&/Adamantine/.test(x.n))add("Note","Critical Hits against you become normal hits","Adamantine Armor")});}
+function defFeats(add){const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
  allFeats().forEach((f) =>{if(f.n==="Boon of Energy Resistance"){const bt=B.ch["ber-"+(f.key||f.s)];if(Array.isArray(bt)&&bt.length)bt.forEach((t) =>{add("Resistance",t,"Boon of Energy Resistance")});else add("Resistance","Two damage types, not chosen yet","Boon of Energy Resistance")}/* v32 RL49 no. 18 */if(f.n==="Heavy Armor Master")add("Note","Reduce Bludgeoning, Piercing, Slashing damage by your Proficiency Bonus in Heavy armor","Heavy Armor Master")});
- fxList().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */
+}
+function defFx(add){fxList().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */}
+function defenses(a){const o=[],L=B.level;function add(t,v,s){o.push({t:t,v:v,s:s})}
+ defSpecies(add);
+ defClass(add,B.cls,L,B.sub);MCL().forEach((m) =>{defClass(add,m.cls,m.lv,m.sub)});
+ defSubChoices(add);defFiend(add);defItems(add);defFeats(add);defFx(add);
  XFX.def(add);/* v62 */
  /* m5 (RL21): one line per type and value, sources joined in order. Class resources (Channel Divinity) are not touched */
  const out=[],at={};o.forEach((x) =>{const k=x.t+"|"+x.v;if(at[k]==null){at[k]=out.length;out.push({t:x.t,v:x.v,s:x.s})}else if((", "+out[at[k]].s+", ").indexOf(", "+x.s+", ")<0)out[at[k]].s+=", "+x.s});

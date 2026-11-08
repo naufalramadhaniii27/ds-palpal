@@ -76,39 +76,49 @@ function featInfo(v){const F=FEATS[v];return '<p class="fd">'+(F?rtp(F.full||F.d
 function duelCtl(v){const F=v&&FEATS[v];if(!F||!F.meleeDmg1h)return "";const m=B.duelMode==="on"||B.duelMode==="off"?B.duelMode:"auto",n="+"+F.meleeDmg1h+" damage";
  return '<label class="one">'+esc(v)+' bonus<select class="dd" data-b="duelMode">'+[["auto","Auto"],["on","Always on"],["off","Off"]].map((o) =>{return '<option value="'+o[0]+'"'+(m===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+
   '<p class="fd">'+{auto:"Auto: "+n+" while a one-handed melee weapon is your only active weapon. A Shield is fine.",on:"Always on: "+n+" with every one-handed melee weapon, even when another weapon is active.",off:"Off: the sheet never adds this damage."}[m]+'</p>'}
-export function choiceBody(c){const v=B.ch[c.key];
- if(c.t==="text"){const tv=typeof v==="string"?v:"";return '<input type="text" class="btx" data-chtx="'+esc(c.key)+'" value="'+esc(tv)+'" maxlength="160" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="'+esc(c.title||"Your choice")+'" placeholder="Type here">'+(c.opt?'<p class="fd bhint">Optional. You can leave this empty.</p>':'')}/* fx v3a: free text pick, string in B.ch */
- if(c.t==="lang"){let tk=[];langKeys().forEach((k) =>{if(k!==c.key)tk=tk.concat(B.ch[k]||[])});if(clsLv("Druid"))tk.push("Druidic");if(clsLv("Rogue"))tk.push("Thieves' Cant");if(R14()){const sq=spX(),bq=bgX();tk=tk.concat((sq&&sq.lgf)||[]).concat((bq&&bq.lgf)||[])}return chips(c,c.from.filter((x) =>{return tk.indexOf(x[0])<0}))+'<p class="fd bhint">You always know Common. Rare languages need your DM\'s approval.</p>'}
- if(c.t==="skills"){const mine=v||[];const cl=(c.from||ALLSK).map((n) =>{const s=skillSrcOther(n,c.key);return s?{n:n,lab:s}:n});const dup=mine.map((n) =>{const s=skillSrcOther(n,c.key);return s?n+' (also from '+s+')':''}).filter(Boolean);
-  if(c.tools)return chips(c,cl).replace('<p class="pick">','<p class="wgrp">Skills</p><p class="pick">')+toolChips(c,["art","music","game","other"])+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(", "))+'.</div>':"");/* v32 RL49: Skilled, any mix of skills and tools */
-  return chips(c,cl)+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(', '))+'. A skill proficiency doesn\'t stack, so this pick is wasted. Choose a different skill.</div>':'')}
- if(c.t==="exp")return chips(c,c.from||profSkills());
- if(c.t==="pe"){const pk0=profSkills(),pv=v||[];return chips(c,c.from)+'<p class="fd bhint">Proficiency, or Expertise if you already have it.'+(pv.length?" "+pv.map((n) =>{return esc(n)+": "+(pk0.indexOf(n)>=0?"Expertise":"proficiency")}).join(", ")+".":"")+'</p>'}/* v32 RL49 no. 12, 13 */
- if(c.t==="tool"){const tv=B.ch[c.key]||[];return '<p class="pick">Choose '+c.n+' ('+tv.length+'/'+c.n+')</p>'+toolChips(c,c.cats)}/* v32 RL49 */
- if(c.t==="wm"){const sel=v||[],G=[["S","M","Simple Melee"],["S","R","Simple Ranged"],["M","M","Martial Melee"],["M","R","Martial Ranged"]];
-  var h='<p class="pick">Choose '+c.n+' ('+sel.length+'/'+c.n+')</p>';
-  G.forEach((g) =>{const ns=Object.keys(WEAPONS).filter((n) =>{const w=WEAPONS[n];return !w.xw&&!w.nm&&w.cat===g[0]&&w.k===g[1]&&(!c.melee||w.k==="M")}).sort();/* v32: Barbarian melee only, also as a multiclass */if(!ns.length)return;
-   h+='<p class="wgrp">'+g[2]+'</p><div class="chips">'+ns.map((n) =>{const on=sel.indexOf(n)>=0;return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'" title="'+esc(WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m])+'">'+esc(n)+' <small>'+WEAPONS[n].m+'</small></button>'}).join("")+'</div>'});
-  return h+(sel.length?'<div class="picked">'+sel.map((n) =>{return '<p><b>'+n+' ('+WEAPONS[n].m+').</b> '+MASTERY[WEAPONS[n].m]+'</p>'}).join("")+'</div>':'')}
- if(c.t==="multi")return chips(c,c.list);
- if(c.t==="fs")return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose a Fighting Style -</option>'+missOpt(v)+(R14()?fs14List(c.cls||B.cls):Object.keys(FEATS).filter((n) =>{return FEATS[n].cat==="F"||(FEATS[n].cat==="X"&&c.xopt&&FEATS[n].cls===(c.cls||B.cls))}))/* v32: a multiclass Paladin or Ranger too */.map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'')+duelCtl(v);
- if(c.t==="opt")return '<div class="radios">'+OPTS[c.list].map((o) =>{return '<button type="button" class="rad'+(v===o[0]?" on":"")+'" data-ch1="'+c.key+'" data-v="'+esc(o[0])+'"><b>'+esc(o[0])+'</b><span>'+esc(o[1])+'</span></button>'}).join("")+'</div>';
- if(c.t==="lin")return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose -</option>'+SPECIES[B.species].lin.opts.map((o) =>{return '<option'+(v===o?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select>';
- if(c.t==="bgfp")return '<select class="dd" data-ch="'+c.key+'">'+c.opts.map((n) =>{return '<option'+((B.ch[c.key]||c.def)===n?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select>';/* v67 */
- if(c.t==="ofeat")return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose an Origin Feat -</option>'+missOpt(v)+featOpts(c).map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'');
- if(c.t==="sub"){const subs=Object.keys(CL().subs);return '<select class="dd" data-subsel="1"><option value="">- Choose a '+subLbl(B.cls)+' -</option>'+subs.map((s) =>{return '<option value="'+esc(s)+'"'+(B.sub===s?" selected":"")+'>'+esc(sdn(s))+'</option>'}).join("")+'<option value="__custom"'+(B.sub==="__custom"?" selected":"")+'>Homebrew subclass</option></select>'+
-  (B.sub==="__custom"?'<input class="btx" data-b="cSub" placeholder="Subclass name" value="'+esc(B.cSub)+'">':'')+(B.sub&&B.sub!=="__custom"?'<p class="fd">'+esc(CL().subs[B.sub].map((f) =>{return f[1]+" ("+ord(f[0])+")"}).join(", "))+'.</p>':'')}
- if(c.t==="feat"){const fv=v||{},F=fv.feat&&FEATS[fv.feat];
-  var h='<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOpts(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n);return '<option value="'+esc(n)+'"'+(fv.feat===n?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")+'</select>';
-  if(F&&redundant(fv.feat))h+='<div class="caution">\u26a0 '+esc(fv.feat)+': '+esc(redundant(fv.feat))+'. You only get the ability score increase from it.</div>';
-  if(F){h+='<p class="fd">'+(F.pre?'<i>Prerequisite: '+esc(F.pre)+'.</i><br>':'')+rtp(F.full||F.d)+'</p>'+duelCtl(fv.feat);
+function cbFeatSel(c,fv){
+  return '<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOpts(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n);return '<option value="'+esc(n)+'"'+(fv.feat===n?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")+'</select>';
+}
+function cbFeatInfo(c,fv,F){
+ var h="";h+='<p class="fd">'+(F.pre?'<i>Prerequisite: '+esc(F.pre)+'.</i><br>':'')+rtp(F.full||F.d)+'</p>'+duelCtl(fv.feat);
    /* v19 RL46: options that would break a rule are disabled with the reason: past 20 at this level, a saving throw Resilient cannot take */
    const sAt=scoreAt(c.lvl,c.key),svT=F.saveFromAsi?saveTaken(c.key):[],why1=function(o){if(svT.indexOf(o)>=0)return "saving throw proficiency already";if(sAt[o]>=20&&!/^Boon of/.test(fv.feat))return "already 20";return ""};
    if(F.asi2)h+='<div class="two"><label>+1 to'+fsel(c.key,"a1",A6,fv.a1,why1)+'</label><label>+1 to (same = +2)'+fsel(c.key,"a2",A6,fv.a2,(o) =>{return why1(o)||(o===fv.a1&&sAt[o]>=19?"would go past 20":"")})+'</label></div>';
    else if(F.asi)h+='<label class="one">Ability Score Increase (+1)'+fsel(c.key,"a1",F.asi,fv.a1,why1)+'</label>';
    if(F.dt){const dtT=[];allFeats().forEach((g) =>{if(g.n===fv.feat&&g.key!==c.key&&g.asi&&g.asi.dt)dtT.push(g.asi.dt)});h+='<label class="one">Damage type (Energy Mastery)'+fsel(c.key,"dt",F.dt,fv.dt,(o) =>{return dtT.indexOf(o)>=0?"taken by your other "+fv.feat:""})+'</label>'}
-   featViol().filter((x) =>{return x.k===c.key}).forEach((x) =>{h+='<div class="caution">\u26a0 '+esc(x.m)+'.</div>'})}
+   featViol().filter((x) =>{return x.k===c.key}).forEach((x) =>{h+='<div class="caution">\u26a0 '+esc(x.m)+'.</div>'})
+ return h}
+/* choiceBody(): one builder of the control html per pick type (c.t), called with (c, current value). SOLID stage 13C */
+const CB_TYPES={
+ text:function(c,v){const tv=typeof v==="string"?v:"";return '<input type="text" class="btx" data-chtx="'+esc(c.key)+'" value="'+esc(tv)+'" maxlength="160" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="'+esc(c.title||"Your choice")+'" placeholder="Type here">'+(c.opt?'<p class="fd bhint">Optional. You can leave this empty.</p>':'')}/* fx v3a: free text pick, string in B.ch */,
+ lang:function(c,v){let tk=[];langKeys().forEach((k) =>{if(k!==c.key)tk=tk.concat(B.ch[k]||[])});if(clsLv("Druid"))tk.push("Druidic");if(clsLv("Rogue"))tk.push("Thieves' Cant");if(R14()){const sq=spX(),bq=bgX();tk=tk.concat((sq&&sq.lgf)||[]).concat((bq&&bq.lgf)||[])}return chips(c,c.from.filter((x) =>{return tk.indexOf(x[0])<0}))+'<p class="fd bhint">You always know Common. Rare languages need your DM\'s approval.</p>'},
+ skills:function(c,v){const mine=v||[];const cl=(c.from||ALLSK).map((n) =>{const s=skillSrcOther(n,c.key);return s?{n:n,lab:s}:n});const dup=mine.map((n) =>{const s=skillSrcOther(n,c.key);return s?n+' (also from '+s+')':''}).filter(Boolean);
+  if(c.tools)return chips(c,cl).replace('<p class="pick">','<p class="wgrp">Skills</p><p class="pick">')+toolChips(c,["art","music","game","other"])+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(", "))+'.</div>':"");/* v32 RL49: Skilled, any mix of skills and tools */
+  return chips(c,cl)+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(', '))+'. A skill proficiency doesn\'t stack, so this pick is wasted. Choose a different skill.</div>':'')},
+ exp:function(c,v){return chips(c,c.from||profSkills());},
+ pe:function(c,v){const pk0=profSkills(),pv=v||[];return chips(c,c.from)+'<p class="fd bhint">Proficiency, or Expertise if you already have it.'+(pv.length?" "+pv.map((n) =>{return esc(n)+": "+(pk0.indexOf(n)>=0?"Expertise":"proficiency")}).join(", ")+".":"")+'</p>'}/* v32 RL49 no. 12, 13 */,
+ tool:function(c,v){const tv=B.ch[c.key]||[];return '<p class="pick">Choose '+c.n+' ('+tv.length+'/'+c.n+')</p>'+toolChips(c,c.cats)}/* v32 RL49 */,
+ wm:function(c,v){const sel=v||[],G=[["S","M","Simple Melee"],["S","R","Simple Ranged"],["M","M","Martial Melee"],["M","R","Martial Ranged"]];
+  var h='<p class="pick">Choose '+c.n+' ('+sel.length+'/'+c.n+')</p>';
+  G.forEach((g) =>{const ns=Object.keys(WEAPONS).filter((n) =>{const w=WEAPONS[n];return !w.xw&&!w.nm&&w.cat===g[0]&&w.k===g[1]&&(!c.melee||w.k==="M")}).sort();/* v32: Barbarian melee only, also as a multiclass */if(!ns.length)return;
+   h+='<p class="wgrp">'+g[2]+'</p><div class="chips">'+ns.map((n) =>{const on=sel.indexOf(n)>=0;return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'" title="'+esc(WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m])+'">'+esc(n)+' <small>'+WEAPONS[n].m+'</small></button>'}).join("")+'</div>'});
+  return h+(sel.length?'<div class="picked">'+sel.map((n) =>{return '<p><b>'+n+' ('+WEAPONS[n].m+').</b> '+MASTERY[WEAPONS[n].m]+'</p>'}).join("")+'</div>':'')},
+ multi:function(c,v){return chips(c,c.list);},
+ fs:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose a Fighting Style -</option>'+missOpt(v)+(R14()?fs14List(c.cls||B.cls):Object.keys(FEATS).filter((n) =>{return FEATS[n].cat==="F"||(FEATS[n].cat==="X"&&c.xopt&&FEATS[n].cls===(c.cls||B.cls))}))/* v32: a multiclass Paladin or Ranger too */.map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'')+duelCtl(v);},
+ opt:function(c,v){return '<div class="radios">'+OPTS[c.list].map((o) =>{return '<button type="button" class="rad'+(v===o[0]?" on":"")+'" data-ch1="'+c.key+'" data-v="'+esc(o[0])+'"><b>'+esc(o[0])+'</b><span>'+esc(o[1])+'</span></button>'}).join("")+'</div>';},
+ lin:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose -</option>'+SPECIES[B.species].lin.opts.map((o) =>{return '<option'+(v===o?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select>';},
+ bgfp:function(c,v){return '<select class="dd" data-ch="'+c.key+'">'+c.opts.map((n) =>{return '<option'+((B.ch[c.key]||c.def)===n?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select>';/* v67 */},
+ ofeat:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose an Origin Feat -</option>'+missOpt(v)+featOpts(c).map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'');},
+ sub:function(c,v){const subs=Object.keys(CL().subs);return '<select class="dd" data-subsel="1"><option value="">- Choose a '+subLbl(B.cls)+' -</option>'+subs.map((s) =>{return '<option value="'+esc(s)+'"'+(B.sub===s?" selected":"")+'>'+esc(sdn(s))+'</option>'}).join("")+'<option value="__custom"'+(B.sub==="__custom"?" selected":"")+'>Homebrew subclass</option></select>'+
+  (B.sub==="__custom"?'<input class="btx" data-b="cSub" placeholder="Subclass name" value="'+esc(B.cSub)+'">':'')+(B.sub&&B.sub!=="__custom"?'<p class="fd">'+esc(CL().subs[B.sub].map((f) =>{return f[1]+" ("+ord(f[0])+")"}).join(", "))+'.</p>':'')},
+ feat:function(c,v){const fv=v||{},F=fv.feat&&FEATS[fv.feat];
+  var h=cbFeatSel(c,fv);
+  if(F&&redundant(fv.feat))h+='<div class="caution">\u26a0 '+esc(fv.feat)+': '+esc(redundant(fv.feat))+'. You only get the ability score increase from it.</div>';
+  if(F)h+=cbFeatInfo(c,fv,F);
   return h}
+};
+export function choiceBody(c){const v=B.ch[c.key];
+ if(Object.prototype.hasOwnProperty.call(CB_TYPES,c.t))return CB_TYPES[c.t](c,v);
  return ""}
 function redundant(n){const p=toSheet().profs,ar=p.armor,wp=p.weapons;
  if(n==="Lightly Armored"&&/Light/.test(ar)&&/Shield/.test(ar))return "you already have Light armor and Shield training";

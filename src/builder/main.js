@@ -9,6 +9,7 @@ import "./06-data-2014-classes.js";
 import "./07-data-2014-spells.js";
 import "./08-logic-2014-rules.js";
 import "./09-logic-feats-and-choices.js";
+import "./09b-logic-choice-stages.js";
 import "./10-logic-v17-additions.js";
 import "./10a-logic-fx-registry.js";
 import "./10b-logic-fx-handlers-entry.js";
