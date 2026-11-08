@@ -48,3 +48,9 @@ html.home-art #homeV::before{content:"";position:fixed;inset:0;z-index:-1;pointe
 /* Hero chip: the subclass emblem replaces the generic icon, so the chip shows one */
 #idF dd:has(.art-sub) svg.ico{display:none}
 #idF dd .art-sub{margin:0;width:24px;height:24px;vertical-align:baseline;flex:none}
+/* portrait picker search (owner 2026-11-08) */
+.pp-s{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:8px;padding:6px 0 10px;background:var(--panel,#1e1e1e)}
+.pp-s input{flex:1;min-width:0;min-height:44px;padding:8px 12px;border:1px solid var(--line-2,#555);border-radius:8px;background:var(--panel-2,#262626);color:inherit;font:inherit}
+.pp-c{flex:none;min-width:2.5em;text-align:right;font-size:12px;opacity:.75;padding-right:2px}
+.pp-i{content-visibility:auto;contain-intrinsic-size:auto 180px}
+.pp-more{height:1px}

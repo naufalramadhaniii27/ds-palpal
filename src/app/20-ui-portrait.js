@@ -7,11 +7,30 @@ bindLive("syncPortrait",{get:function(){return syncPortrait;}});
 /* ================= PORTRAIT ================= */
 export function syncPortrait(){ const p=$("#photo"), pc=$("#phCls"); if(pc){ const ck=icoCls(C.clsLabel||C.cls||""); pc.innerHTML=(ck&&typeof lateGet("ICO")==="object"&&lateGet("ICO")&&lateGet("ICO")[ck])?ico(ck):""; pc.hidden=!pc.innerHTML; }/* v30 B4 */ if(S.portrait&&/^(data:image\/|blob:|https?:)/.test(S.portrait)){ p.style.backgroundImage='url("'+S.portrait+'")'; p.classList.add("has"); p.setAttribute("aria-label","Change portrait"); } else { p.style.backgroundImage=""; p.classList.remove("has"); p.setAttribute("aria-label","Add portrait"); } }
 /* Portrait picker: upload your own picture or pick one of the art portraits. Art portraits are stored the same way as an uploaded photo (a small JPEG in S.portrait), so saves, backups and exports need no change. */
-function ppList(){ const A=env.__ART&&env.__ART.portrait; if(!A||!A.length) return []; const sp=String(C.species||"").toLowerCase(), mine=A.filter((id) =>{ return sp.indexOf(id.replace(/-[ab]$/,""))>=0; }); return mine.concat(A.filter((id) =>{ return mine.indexOf(id)<0; })); }
-function ppOpen(){ const L=ppList(); if(!L.length){ $("#avFile").click(); return; }
-  const nm=function(id){ const b=id.replace(/-[ab]$/,""); return b.charAt(0).toUpperCase()+b.slice(1)+" "+id.slice(-1).toUpperCase(); };
-  const h='<div class="pp-act"><button type="button" class="btn press" data-pp-up="1">'+ico("ui-camera")+'Upload a photo</button>'+(S.portrait?'<button type="button" class="btn press" data-pp-rm="1">Remove portrait</button>':'')+'</div><div class="info-h">Art portraits</div><div class="pp-g">'+L.map((id) =>{ return '<button type="button" class="pp-i" data-pp="'+id+'" aria-label="Use portrait '+nm(id)+'"><img src="img/portrait/'+id+'.avif" alt="" width="96" height="120" loading="lazy" decoding="async"><span>'+nm(id)+'</span></button>'; }).join("")+'</div>';
-  __set_navStack([]); openSheet("Portrait",h,"portrait"); }
+/* Portrait picker (owner 2026-11-08: many portraits, searchable, no lag). The search data img/portrait/index.js
+   ([id, species, role, gender, age]) loads on first open, so it adds nothing to app start. The grid shows 128x160 thumbs
+   (img/portrait/t) and renders in pages of 48 as the list scrolls, so a thousand portraits stay smooth. */
+let PPQ="", PPN=48, PPIO=null;
+function ppIdx(){ const X=env.__PPIDX; if(X&&X.length) return X; const A=env.__ART&&env.__ART.portrait||[]; return A.map((id) =>{ return [id,id.replace(/-[ab]$|-\d+$/,""),"","",""]; }); }
+function ppLoad(cb){ if(env.__PPIDX){ cb(); return; } const s=document.createElement("script"); s.src="img/portrait/index.js"; s.async=true; s.onload=s.onerror=function(){ cb(); }; document.head.appendChild(s); }
+function ppName(r){ const t=function(x){ return String(x||"").replace(/-/g," ").replace(/\b\w/g,(c) =>{ return c.toUpperCase(); }); }; return t(r[1])+(r[2]?" "+t(r[2]):"")+(/-\d+$|-[ab]$/.test(r[0])?" "+r[0].replace(/^.*-/,"").toUpperCase():""); }
+function ppList(){ const X=ppIdx(), sp=String(C.species||"").toLowerCase(), q=PPQ.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const hit=function(r){ const hay=(r[1]+" "+r[1].replace(/-/g," ")+" "+r[2]+" "+r[3]+" "+r[4]).toLowerCase(); return q.every((w) =>{ return hay.indexOf(w)>=0; }); };
+  const L=X.filter(hit), mine=function(r){ return sp&&(sp.indexOf(r[1].replace(/-/g," "))>=0||sp.indexOf(r[1])>=0)?0:1; };
+  return L.sort((a,b) =>{ return mine(a)-mine(b); }); }
+function ppTile(r){ return '<button type="button" class="pp-i" data-pp="'+r[0]+'" aria-label="Use portrait '+ppName(r)+'"><img src="img/portrait/t/'+r[0]+'.avif" alt="" width="128" height="160" loading="lazy" decoding="async"><span>'+ppName(r)+'</span></button>'; }
+function ppFill(reset){ const g=$("#ppG"); if(!g) return; const L=ppList(); if(reset){ g.innerHTML=""; g.dataset.n="0"; }
+  let n=+g.dataset.n||0; const end=Math.min(L.length,n+PPN); g.insertAdjacentHTML("beforeend",L.slice(n,end).map(ppTile).join("")); g.dataset.n=String(end);
+  const c=$("#ppC"); if(c){ c.textContent=String(L.length); c.title=L.length+" portraits"; }
+  const more=$("#ppMore"); if(more) more.hidden=end>=L.length; }
+function ppOpen(){ ppLoad(() =>{ const X=ppIdx(); if(!X.length){ $("#avFile").click(); return; } PPQ="";
+  const sps=Array.from(new Set(X.map((r) =>{ return r[1]; }))).sort();
+  const h='<div class="pp-act"><button type="button" class="btn press" data-pp-up="1">'+ico("ui-camera")+'Upload a photo</button>'+(S.portrait?'<button type="button" class="btn press" data-pp-rm="1">Remove portrait</button>':'')+'</div>'+
+    '<div class="pp-s"><input id="ppQ" type="search" placeholder="Search species or class" aria-label="Search portraits" autocomplete="off" list="ppSp"><datalist id="ppSp">'+sps.map((x) =>{ return '<option value="'+x.replace(/-/g," ")+'">'; }).join("")+'</datalist><span id="ppC" class="pp-c"></span></div>'+
+    '<div class="pp-g" id="ppG"></div><div id="ppMore" class="pp-more" aria-hidden="true"></div>';
+  __set_navStack([]); openSheet("Portrait",h,"portrait"); ppFill(true);
+  const q=$("#ppQ"); let tm=0; if(q) q.addEventListener("input",() =>{ clearTimeout(tm); tm=setTimeout(() =>{ PPQ=q.value; ppFill(true); },120); });
+  if(PPIO) PPIO.disconnect(); const m=$("#ppMore"); if(m&&window.IntersectionObserver){ PPIO=new IntersectionObserver((es) =>{ if(es.some((e) =>{ return e.isIntersecting; })) ppFill(false); },{root:$("#sheetBody")||null,rootMargin:"400px"}); PPIO.observe(m); } }); }
 function ppUse(id){ const img=new Image(); img.onload=function(){ const W=320,H=400,c=document.createElement("canvas"); c.width=W; c.height=H; c.getContext("2d").drawImage(img,0,0,img.width,img.height,0,0,W,H); try{ S.portrait=c.toDataURL("image/jpeg",.86); }catch(e){ S.portrait=""; } save(); syncPortrait(); closeSheet(); toast("Portrait updated"); }; img.onerror=function(){ toast("This portrait could not be loaded. Check your connection."); }; img.src="img/portrait/"+id+".avif"; }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("#sheetBody [data-pp],#sheetBody [data-pp-up],#sheetBody [data-pp-rm]"); if(!t) return;
   if(t.hasAttribute("data-pp")) ppUse(t.getAttribute("data-pp")); else if(t.hasAttribute("data-pp-up")){ closeSheet(); setTimeout(() =>{ $("#avFile").click(); },60); } else { S.portrait=""; save(); syncPortrait(); closeSheet(); toast("Portrait removed"); } });
