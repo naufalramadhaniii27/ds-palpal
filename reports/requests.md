@@ -108,3 +108,12 @@ Seen in the builder at Rules edition 2014 with Retromistika on (Sorcerer 7, Mist
 | Dari | Ke | Permintaan | Catatan |
 |---|---|---|---|
 | Art | Data | Tambah Bastion facility Stable (DMG 2024, special facility level 9) ke data facility | Ikon sudah terpasang di img/icon/facility/stable.avif dan HD, muncul otomatis saat entrinya ada |
+
+## 2026-11-08, PDFX export: perubahan kecil di luar file sendiri
+
+| Dari | Ke | Perubahan | Catatan |
+|---|---|---|---|
+| UI (export PDF) | UI (creature) | `src/app/29b-ui-creatures-extras.js`: kata `export` ditambah di depan `crExpr`, `crText`, `crOf`, `crList`, `crEnv`, `crStat`, `crHpMax` | Hanya kata kunci, perilaku sama. Dipakai `37a-ui-pdf-model.js` untuk stat block creature di PDF. Sudah diterapkan karena tanpa ini fitur tidak jalan. Mohon ditinjau pemilik file |
+| UI (export PDF) | Logic (env) | `src/app/00-env.js`: `PDFLib`, `fontkit`, `PDFX` ditambah ke `bind([...])` | Pola sama dengan `html2canvas` dan `jspdf` |
+| UI (export PDF) | Data | Teks lengkap 2014 untuk fitur class dan subclass belum ada di data, jadi PDF 2014 memakai teks sheet sebagai teks lengkap dan ringkasan otomatis | Usul: tambah `CF_FULL14` dan `SUB_FULL14` |
+| UI (export PDF) | Data | `SPELL_FULL` 2024 masih ringkas untuk Find Steed (tanpa stat block Otherworldly Steed), Command (efek lima perintah), Commune (peluang gagal 25%), komponen bernilai (Holy Water 25+ GP untuk Protection from Evil and Good). Range Find Steed perlu dicek ke PHB 2024 | Detail di claude/pdf-template-2024-mapping.md di project |

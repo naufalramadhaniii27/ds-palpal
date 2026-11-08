@@ -1,0 +1,4 @@
+pdfx-Inter-*.ttf: Inter by Rasmus Andersson, SIL Open Font License 1.1 (https://openfontlicense.org). Converted to TrueType outlines and cut to Latin characters for PDF embedding.
+pdfx-tpl-2014.pdf: the 5E Character Sheet (fillable) by Wizards of the Coast, (c) 2014. The sheet itself says permission is granted to photocopy it for personal use.
+pdfx-tpl-2024.pdf: the same sheet with its labels changed to 2024 terms (Species, Subclass, Heroic Inspiration, Weapons & Damage Cantrips, Species Traits, Feats, Weapon Mastery, Defenses & Conditions, Class Features, Backstory & Personality, Attuned Items & Treasure).
+pdfx-1.0.0.js: this app's own renderer (not third party). Model schema: reports/pdfx-model.md.

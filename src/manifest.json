@@ -185,6 +185,7 @@
     "app/34c-ui-experience-journal-combat-view.js",
     "app/35-ui-combo.js",
     "app/36-ui-printable-sheet.js",
+    "app/37a-ui-pdf-model.js",
     "app/37-ui-pdf-export-hold-slide-confirm.js",
     "app/38-boot-init.js",
     "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",

@@ -13,6 +13,7 @@ Peta source untuk `index.html`. Hasil build `index.html` dan `sw.js`. Source ada
 | `python3 tests/scenarios.py [OUT] [--root DIR]` | Tiga skenario wajib (sheet lama Yudhi, sesudah Apply, karakter baru) di 390x844 dan 1250x850. Menulis screenshot dan isi localStorage ke OUT (default `tests/out/`, diabaikan git) |
 | `python3 tests/measure.py [OUT.json] [--runs N] [--only "1250x850 cpu4x"]` | Waktu siap, data Builder selesai, Builder pertama dan kedua, Search pertama, di 390 dan 1250, CPU 1x dan 4x |
 | `python3 tests/flow_home_sheet.py [OUT]` | Alur Home ke sheet ke Home dan ganti karakter, dengan video. Cek perpindahan tersambung jalan dan tidak ada yang tertinggal tersembunyi |
+| `python3 tests/pdfx_export.py [OUT]` | Export PDF PDFX (template 2014 dan 2024, halaman spell, Features & Traits, creature): Yudhi, Wizard Quick Build sesudah Apply, Wizard yang sama di aturan 2014. 390x844 dan 1250x850. Cek PDF dibuat PDFX (bukan cadangan gambar), bagian wajib ada, ringkasan IN SHORT ada, tanpa error, tanpa request keluar situs |
 | `python3 tests/compare_storage.py RUN_A RUN_B` | Bandingkan localStorage dua run. Cap waktu dan hash snapshot ditutup |
 | `sh tools/pages_dist.sh` | Cloudflare Pages: salin situs jadi (index.html, sw.js, manifest, _headers, img, icons) ke `dist/`. Source, tests, reports tidak ikut. Header ada di `_headers`. Sesudah salin, `tools/split_dist.py` memecah 34 bagian tunda jadi `dist/p/NAME.HASH.js` (lihat bagian Build terpecah) |
 | `python3 build.py --verify-split` | Tes lama pemecah otomatis (nama otomatis, hanya untuk cek). Tidak mengubah `src/` |
@@ -135,7 +136,8 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | app/34-ui-situations.js | UI | 46.791 |
 | app/35-ui-combo.js | UI | 24.239 |
 | app/36-ui-printable-sheet.js | UI | 12.549 |
-| app/37-ui-pdf-export-hold-slide-confirm.js | UI | 8.019 |
+| app/37a-ui-pdf-model.js | UI (model cetak PDF, hanya membaca sheet) | 15.584 |
+| app/37-ui-pdf-export-hold-slide-confirm.js | UI | 10.983 |
 | app/38-boot-init.js | boot | 1.830 |
 | app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js | UI | 20.968 |
 | app/40-ui-segments-notes-swipe-motion-panels.js | UI | 41.003 |
