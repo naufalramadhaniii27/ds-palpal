@@ -77,7 +77,9 @@ export function wmAll(){const o=[],ks=Object.keys(B.ch||{}).filter((k) =>{return
  ks.sort((a,b) =>{const r=function(k){return k==="wm"?0:k==="spwep"?1:2};return r(a)-r(b)});ks.forEach((k) =>{B.ch[k].forEach((n) =>{if(o.indexOf(n)<0)o.push(n)})});return o}
 /* v32: a Divine Order or Primal Order option of any Cleric or Druid part */
 export function optAny(v){if(B.ch.p1opt===v)return true;return MCL().some((m,i) =>{return B.ch["m"+i+":p1opt"]===v})}
-export function pactWeapon(){return invList().indexOf("Pact of the Blade")>=0?((B.ch.pactWep||[])[0]||""):""}
+/* the bonded weapon. A plain weapon name that is not in the inventory, while a variant of the same weapon is (Masterwork or magic Longsword), means that variant, so it is not conjured a second time */
+function pactHeld(n){if(!n)return n;const inv=ensureInv();if(inv.some((x) =>{return x.n===n}))return n;const b=baseOf(n).b,alt=inv.filter((x) =>{return x.eq&&baseOf(x.n).b===b})[0]||inv.filter((x) =>{return baseOf(x.n).b===b})[0];return alt?alt.n:n}
+export function pactWeapon(){return invList().indexOf("Pact of the Blade")>=0?pactHeld((B.ch.pactWep||[])[0]||""):""}
 function pactList(){const o=[],seen={};ensureInv().forEach((x) =>{const w=WEAPONS[baseOf(x.n).b];if(w&&w.k==="M"&&!seen[x.n]){seen[x.n]=1;o.push([x.n,"In your inventory"+(x.eq?"":" (not active)")+": "+w.d+" "+w.t])}});
  Object.keys(WEAPONS).forEach((n) =>{const w=WEAPONS[n];if(w.k==="M"&&!seen[n]){seen[n]=1;o.push([n,"Conjured in your hand: "+w.d+" "+w.t])}});return o}
 /* v32: cls = the class that owns the choice (its skill list), sub = its subclass. p.key replaces the key "p"+level+kind, p.feature names the feature card */
