@@ -833,10 +833,6 @@
     "tg/30-ui-tg.js",
     "tg/31-ui-tg-field.js"
    ],
-   "pre": [
-    "tg/20-engine.js",
-    "tg/25-sim.js"
-   ],
    "entry": "tg/31-ui-tg-field.js"
   },
   {
