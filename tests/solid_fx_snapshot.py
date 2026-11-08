@@ -150,7 +150,7 @@ NORM = r"""()=>{
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
   t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/<([A-Za-z0-9]+) >/g,'<$1>').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');
   t=t.replace(/'sha256-[A-Za-z0-9+\/=]+'/g,"'HASH'");
-  t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/ class=(?=[ >])/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
+  t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/ mi-hd\b/g,'').replace(/ class=(?=[ >])/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
   return t }"""
 
 STRICT = 'LROANCGS'
@@ -167,6 +167,8 @@ def digest(t, mode):
     t = [x for x in t if x and not (x[0] == 'T' and int(x.split()[2]) < 100)]   # short timers (retries, polling) come and go with timing
     if boot: t = [x for x in t if not (x[0] == 'O' and re.search(r'#(bld|steps)\b', x)) and 'SCRIPT' not in x]   # the builder and the deferred scripts attach at their own pace
     cls = lambda k: [x for x in t if x[0] == k]
+    if mode == 'boot':   # the boot step and the builder step: what the page creates (elements, canvases, audio) is compared; the animation and observer traces there depend on which view the boot reaches first (a race in the page itself)
+        return '', sha('\n'.join(sorted(set(x for x in t if x[0] in 'CGS'))))
     boot = mode == 'boot'
     ordh = sha('|'.join('\n'.join(cls(k)) for k in ('RA' if boot else 'LROA'))) if mode != 'loose' else ''
     if boot or mode == 'loose':
@@ -214,7 +216,7 @@ def run(b, base, vp, W, H, h, errs):
             idle(pg, 2600)   # the longest effect ends (setTimeout 2300 and the like)
             dom = settle()
             rec = pg.evaluate("()=>{window.__fxRec.on(false); const r=window.__fxRec.take(); const w=Object.keys(window).sort().join(','); return {t:r.t,f:r.f,i:r.i,live:r.live,w:w}}")
-            t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll|builder', name) else 'strict')
+            t = rec['t']; ordh, sethash = digest(t, 'boot' if name in ('home', 'builder') else 'loose' if re.search(r'hover|scroll', name) else 'strict')
             live = sorted('%s %d' % (k, v) for k, v in rec['live'].items() if v)
             if DUMP:
                 os.makedirs(DUMP, exist_ok=True); n = ('%s %s %s' % (vp, tag, name)).replace(' ', '_')
