@@ -7,7 +7,7 @@ function bind(names){ names.forEach((n) =>{ Object.defineProperty(env, n, { get(
 /* Data tables and registries filled by the data scripts (read only by the sheet) */
 bind(["CRIMG", "DECKFIX", "FLUFF", "HBIDX", "HBN", "ITEMFIX", "LANGFIX", "QIMG", "QREFS", "SPREF", "THIRD_SUBS", "WX", "WXF_ALL", "WXI", "WXG", "WXSP", "WXBG", "WXS", "__D", "__GLOSS", "__ICO"]);
 /* Art helpers published by the art scripts */
-bind(["__ART", "__artIc", "__artSheet", "__artSub", "__artVig", "__miArtH", "__qimN"]);
+bind(["__ART", "__PPIDX", "__artIc", "__artSheet", "__artSub", "__artVig", "__miArtH", "__qimN"]);
 /* Builder bridge (the builder bundle publishes these when it loads) */
 bind(["__bldArmor", "__bldBack", "__bldCheck", "__bldChoiceList", "__bldDiff", "__bldDot", "__bldEquip", "__bldForSheet", "__bldFxToggle", "__bldGo", "__bldHas", "__bldHpMode", "__bldLevelUp", "__bldMine", "__bldNeed", "__bldNorm", "__bldOpen", "__bldOpenCount", "__bldOpts", "__bldPendList", "__bldQuickFor", "__bldReload", "__bldRemove", "__bldRename", "__bldSetMw", "__bldSetQty", "__bldSheetBatch", "__bldSheetFor", "__bldSpInfo", "__bldSpSet", "__bldSync", "__bldToast", "__bldToggleEq", "__bldUnpack", "__bldUse"]);
 /* Mastery-of-interaction, Training Ground and Learn bridges */
