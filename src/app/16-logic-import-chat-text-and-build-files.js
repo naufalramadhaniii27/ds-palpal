@@ -40,10 +40,7 @@ function impBuild(b,o){
   impBuild2Step2(b);
  impBuild2Step3(b);
   if(!env.__bldSheetFor||!env.__bldNorm){ toast("The builder is still loading. Try again in a moment."); return; }
-  if(!(o&&o._ok)){ const nm0=env.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return; }/* v22 RU80b, Q1, Q2 */
-    b=nm0.b; const chk=env.__bldCheck?env.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return; }
-    let still=[]; try{ still=(env.__bldChoiceList?env.__bldChoiceList(b):[]).filter((c) =>{ return !c.done; }).map((c) =>{ return c.title; }); }catch(er){ still=[]; }/* v34 p07 */
-    if(nm0.notes.length||still.length){ const bb=b; ask(impBuildPart3(nm0, still),"Open Build",() =>{ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return; } }
+  if(!(o&&o._ok)){ const gate=impBuildGate(b, o); if(gate.stop) return; b=gate.b; }
   const {C2}=impBuild2Step4(b); if(!C2||!C2.abilities){ toast("This build could not be read. Check the class, species, and background names."); return; }
   const nm=String(b.name||(o&&o.name)||C2.name||"Character");
  impBuild2Step5(b, nm);
@@ -51,6 +48,11 @@ function impBuild(b,o){
   const {r, nid}=impBuild2Step7(); r.chars[nid]={created:Date.now(),name:nm,sub:impBuildPart4(C2),B:JSON.stringify(b),C:JSON.stringify(C2),S:o&&o._coins?JSON.stringify({coins:o._coins,coinBase:num(C2.gp,0)}):null,t:Date.now()};
   if(!rSave(r)) return;
  impBuild2Step8(r, nid); }
+function impBuildGate(b, o){ const nm0=env.__bldNorm(b); if(nm0.err.length){ toast("This build cannot be opened: "+nm0.err.join(". ")+"."); return {stop:true,b}; }/* v22 RU80b, Q1, Q2 */
+    b=nm0.b; const chk=env.__bldCheck?env.__bldCheck(b):{err:[]}; if(chk.err.length){ toast("This build cannot be opened: "+chk.err.join(". ")+"."); return {stop:true,b}; }
+    let still=[]; try{ still=(env.__bldChoiceList?env.__bldChoiceList(b):[]).filter((c) =>{ return !c.done; }).map((c) =>{ return c.title; }); }catch(er){ still=[]; }/* v34 p07 */
+    if(nm0.notes.length||still.length){ const bb=b; ask(impBuildPart3(nm0, still),"Open Build",() =>{ impBuild(bb,Object.assign({},o||{},{_ok:1})); }); return {stop:true,b}; }
+  return {stop:false,b}; }
 function impBuildPart1(b){ return (!b||typeof b!=="object"||!(b.cls||b["class"])); }
 function impBuildPart2(b){ return (b.coins&&typeof b.coins==="object"?b.coins:(typeof b.gp==="number"||/^\d+(\.\d+)?$/.test(String(b.gp==null?"":b.gp))?{gp:+b.gp}:null)); }
 function impBuildPart3(nm0, still){ return ("Open this build?"+(nm0.notes.length?" To fit the app and the 2024 rules, these changes are made:\n"+nm0.notes.map((x) =>{ return "\u2022 "+x+"."; }).join("\n"):"")+(still.length?"\nStill to choose ("+still.length+"): "+still.join(", ")+".":"")+"\nThe builder opens next and marks anything still missing."); }

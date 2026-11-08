@@ -27,6 +27,8 @@ export function icoItem(it){ if(!it) return "item-gear";
   if(typeof ctOf==="function"&&ctOf(n)) return "item-container"; if(/^(Arrows|Bolts|Sling Bullets|Needles|Firearm Bullets)\b|^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet), \+/.test(n)) return "item-ammo";
   if(icoItemPart1(cat, n)){ if(/^Armor/.test(cat)) return /^Shield\b|\bShield$|, Shield|Shield,/.test(n)?"item-shield":"item-armor"; if(/^Weapon/.test(cat)) return /^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet|Ammunition)/.test(n)?"item-ammo":"item-weapon";
     const K={Potion:"item-potion",Ring:"item-ring",Rod:"item-rod",Scroll:"item-scroll",Staff:"item-staff",Wand:"item-wand","Wondrous Item":"item-wondrous"}; for(const k in K) if(cat.indexOf(k)===0) return K[k]; }
+  return icoItemTail(it, n, t, b); }
+function icoItemTail(it, n, t, b){
   if(/^Shield\b/.test(b)) return "item-shield"; if(/Weapon/.test(t)) return "item-weapon"; if(/Armor/.test(t)) return "item-armor";
   if(/^Potion|^Elixir|^Oil of|^Philter/.test(n)) return "item-potion"; if(/^Ring\b|Ring of/.test(n)) return "item-ring"; if(/^Spell Scroll|Scroll/.test(n)) return "item-scroll";
   if(/^Rod\b|Rod of/.test(n)) return "item-rod"; if(/^Staff\b|Staff of/.test(n)) return "item-staff"; if(/^Wand\b|Wand of/.test(n)) return "item-wand"; if(it.rar||/Wondrous/.test(t)) return "item-wondrous"; return "item-gear"; }

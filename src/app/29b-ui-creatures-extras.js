@@ -60,8 +60,9 @@ function crEnv(ctx,c){
   else if(ctx==="vp"){ const sw=scCls("Warlock"); env.LV=lv.Warlock||D.level; env.MOD=D.mod.CHA; env.DC=sw.dc||(8+D.pb+D.mod.CHA); env.ATK=sw.atk!=null?sw.atk:(D.pb+D.mod.CHA); }/* v64 */
   else if(crEnvPart1(ctx)){ const sa=scCls("Artificer"); env.LV=lv.Artificer||D.level; env.MOD=D.mod.INT; env.DC=sa.dc||(8+D.pb+D.mod.INT); env.ATK=sa.atk!=null?sa.atk:(D.pb+D.mod.INT); }
   else if(/^it:/.test(ctx)){ const cfg=crEnvPart2(ctx); if(cfg){ env.SL=cfg.sl||0; env.DC=cfg.dc||0; env.ATK=cfg.atk||0; env.MOD=(cfg.atk||0)-D.pb; env.top=env.SL; env.base=env.SL; } }
-  else if(/^sp:/.test(ctx)){ const x=crSpell(ctx.slice(3)), sc=scOf(x), base=crEnvPart3(ctx, x), dft=x?Math.max(base,spRowLv(x)):base; env.SL=crEnvPart4(base, c, dft);/* Pact Magic casts at the slot level */ let top=0; (crEnvPart5()).forEach((n,k) =>{ if(n>0) top=k+1; }); if((C.spellcasting||{}).pact) top=Math.max(top,+C.spellcasting.pact.lvl||0); env.top=Math.max(base,top||9); env.SL=Math.min(env.SL,env.top); env.MOD=sc.mod||0; env.DC=sc.dc||0; env.ATK=sc.atk||0; env.base=base; }
+  else if(/^sp:/.test(ctx)){ crEnvSp(ctx, c, env); }
   return env; }
+function crEnvSp(ctx, c, env){ const x=crSpell(ctx.slice(3)), sc=scOf(x), base=crEnvPart3(ctx, x), dft=x?Math.max(base,spRowLv(x)):base; env.SL=crEnvPart4(base, c, dft);/* Pact Magic casts at the slot level */ let top=0; (crEnvPart5()).forEach((n,k) =>{ if(n>0) top=k+1; }); if((C.spellcasting||{}).pact) top=Math.max(top,+C.spellcasting.pact.lvl||0); env.top=Math.max(base,top||9); env.SL=Math.min(env.SL,env.top); env.MOD=sc.mod||0; env.DC=sc.dc||0; env.ATK=sc.atk||0; env.base=base; }
 function crEnvPart1(ctx){ return (ctx==="sd"||ctx==="ec"||ctx==="rc"); }
 function crEnvPart2(ctx){ return (((CREATURES.items||{})[ctx.slice(3)]||{}).env); }
 function crEnvPart3(ctx, x){ return (Math.max((CREATURES.spells[ctx.slice(3)]||{}).minLevel||0,x?x.l:0)); }

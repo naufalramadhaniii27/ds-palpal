@@ -145,13 +145,21 @@ function sitDo(spec){
   if(kind==="turn"){ undoMark("New turn"); const c=sitReset("turn"); save(); renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
   if(!r) return;
  ({st}=sitDo2Step2(st));
-  if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
-  if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
-  if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; }
-  if(kind==="act"){ if(r.roll){ undoMark(r.n); const t=sitRoll(r,st); save(); renderAll(); toastU(t); return; }
+  if(kind==="on"){ sitDoOn(p, k, r, st); return; }
+  if(kind==="used"){ sitDoUsed(p, k, r, st); return; }
+  if(kind==="opt"){ sitDoOpt(p, k, r, st); return; }
+  if(kind==="act"){ sitDoAct(p, k, r, st); return; } }
+function sitDoOn(p, k, r, st){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; 
+}
+function sitDoUsed(p, k, r, st){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; 
+}
+function sitDoOpt(p, k, r, st){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; 
+}
+function sitDoAct(p, k, r, st){ if(r.roll){ undoMark(r.n); const t=sitRoll(r,st); save(); renderAll(); toastU(t); return; }
     const res=(D.res||[]).filter((q) =>{ return r.rx.test(q.n); })[0]; if(!res){ toast("No matching resource on this sheet."); return; } const left=res.max-used(res.k,res.max);
     if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
-    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); renderAll(); toastU(res.n+": regained 1."); } }
+    if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); renderAll(); toastU(res.n+": regained 1."); 
+}
 function sitDo2Step1(spec){
  const _sitDoStep1=sitDoStep1(spec);
  const {p, kind, k, r}=_sitDoStep1;

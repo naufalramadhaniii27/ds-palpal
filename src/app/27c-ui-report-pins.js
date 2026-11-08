@@ -122,24 +122,30 @@ export function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; c
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!env.__bldMine||!env.__bldMine()) return ""; let d=[]; try{ d=env.__bldDiff?env.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";
   return '<div class="oldnote" role="note"><p><b>This sheet was made by an older version of the builder.</b> Rules in the builder were updated since. Press Build, then Apply to refresh the sheet. The Apply dialog lists what would change: '+esc(d.join(". "))+'.</p><div class="bkpr"><button type="button" class="btn press" data-oldn="bld">Open Builder</button><button type="button" class="btn press" data-oldn="ok">Dismiss</button></div></div>'; }
 /* T4: press and hold a library row (item, gear or spell), drag it onto the drop zone to add it to the sheet. Same as the Add button */
-(function(){ let timer=0, sx=0, sy=0, cur=null, ghost=null, zone=null, hold=0;
-  const {pick}=uiReportPinsAnon3Step1();
-  function over(x,y){ if(!zone) return false; const r=zone.getBoundingClientRect(); return anonPart1(x, r, y); }
-  function end(){ clearTimeout(timer); timer=0; if(ghost){ ghost.remove(); ghost=null; } if(zone){ zone.remove(); zone=null; } if(cur){ cur=null; hold=Date.now(); } }
-  function begin(r,t,x,y){ cur=t; const w=document.getElementById("lib"); if(!w) { cur=null; return; }
-    ghost=document.createElement("div"); ghost.className="lib-ghost"; ghost.textContent=t.t; ghost.style.left=x+"px"; ghost.style.top=y+"px"; w.appendChild(ghost);
-    zone=document.createElement("div"); zone.className="lib-dz"; zone.setAttribute("role","status"); zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(zone);
+const libDrag={timer:0,sx:0,sy:0,cur:null,ghost:null,zone:null,hold:0};
+libDragWire();
+function libDragOver(x,y){ const D=libDrag; if(!D.zone) return false; const r=D.zone.getBoundingClientRect(); return anonPart1(x, r, y); }
+function libDragEnd(){ const D=libDrag; clearTimeout(D.timer); D.timer=0; if(D.ghost){ D.ghost.remove(); D.ghost=null; } if(D.zone){ D.zone.remove(); D.zone=null; } if(D.cur){ D.cur=null; D.hold=Date.now(); } }
+function libDragBegin(r,t,x,y){ const D=libDrag; D.cur=t; const w=document.getElementById("lib"); if(!w) { D.cur=null; return; }
+    D.ghost=document.createElement("div"); D.ghost.className="lib-ghost"; D.ghost.textContent=t.t; D.ghost.style.left=x+"px"; D.ghost.style.top=y+"px"; w.appendChild(D.ghost);
+    D.zone=document.createElement("div"); D.zone.className="lib-dz"; D.zone.setAttribute("role","status"); D.zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(D.zone);
     try{ if(navigator.vibrate) navigator.vibrate(10); }catch(er){} }
-  document.addEventListener("pointerdown",(e) =>{ const r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(anonPart2(r, e)) return; const t=pick(r); if(!t) return; sx=e.clientX; sy=e.clientY; clearTimeout(timer); timer=setTimeout(() =>{ timer=0; begin(r,t,sx,sy); },e.pointerType==="mouse"?200:380); },true);
-  document.addEventListener("pointermove",(e) =>{ if(timer&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){ clearTimeout(timer); timer=0; }
-    if(!cur) return; if(ghost){ ghost.style.left=e.clientX+"px"; ghost.style.top=e.clientY+"px"; } if(zone) zone.classList.toggle("on",over(e.clientX,e.clientY)); },true);
-  document.addEventListener("touchmove",(e) =>{ if(cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
-  document.addEventListener("pointerup",(e) =>{ clearTimeout(timer); timer=0; if(!cur) return; const t=cur, hit=over(e.clientX,e.clientY); end(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); },true);
-  uiReportPinsAnon3Step2(end);
-  document.addEventListener("keydown",(e) =>{ if(cur&&e.key==="Escape"){ e.stopPropagation(); end(); } },true);
-  document.addEventListener("click",(e) =>{ if(hold&&Date.now()-hold<400){ const r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } hold=0; } },true);
-  document.addEventListener("contextmenu",(e) =>{ if(cur||timer) e.preventDefault(); },true);
-})();
+function libDragDown(e,pick){ const D=libDrag; const r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(anonPart2(r, e)) return; const t=pick(r); if(!t) return; D.sx=e.clientX; D.sy=e.clientY; clearTimeout(D.timer); D.timer=setTimeout(() =>{ D.timer=0; libDragBegin(r,t,D.sx,D.sy); },e.pointerType==="mouse"?200:380); }
+function libDragMove(e){ const D=libDrag; if(D.timer&&(Math.abs(e.clientX-D.sx)>10||Math.abs(e.clientY-D.sy)>10)){ clearTimeout(D.timer); D.timer=0; }
+    if(!D.cur) return; if(D.ghost){ D.ghost.style.left=e.clientX+"px"; D.ghost.style.top=e.clientY+"px"; } if(D.zone) D.zone.classList.toggle("on",libDragOver(e.clientX,e.clientY)); }
+function libDragUp(e){ const D=libDrag; clearTimeout(D.timer); D.timer=0; if(!D.cur) return; const t=D.cur, hit=libDragOver(e.clientX,e.clientY); libDragEnd(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); }
+function libDragClick(e){ const D=libDrag; if(D.hold&&Date.now()-D.hold<400){ const r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } D.hold=0; } }
+function libDragWire(){
+  const {pick}=uiReportPinsAnon3Step1();
+  document.addEventListener("pointerdown",(e) => libDragDown(e,pick),true);
+  document.addEventListener("pointermove",(e) => libDragMove(e),true);
+  document.addEventListener("touchmove",(e) =>{ if(libDrag.cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
+  document.addEventListener("pointerup",(e) => libDragUp(e),true);
+  uiReportPinsAnon3Step2(libDragEnd);
+  document.addEventListener("keydown",(e) =>{ if(libDrag.cur&&e.key==="Escape"){ e.stopPropagation(); libDragEnd(); } },true);
+  document.addEventListener("click",(e) => libDragClick(e),true);
+  document.addEventListener("contextmenu",(e) =>{ if(libDrag.cur||libDrag.timer) e.preventDefault(); },true);
+}
 function anonPart1(x, r, y){ return (x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8); }
 function anonPart2(r, e){ return (!r||(e.pointerType==="mouse"&&e.button!==0)); }
 function uiReportPinsAnon3Step1(){

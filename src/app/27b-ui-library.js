@@ -28,13 +28,15 @@ let LIB_BK=null;
 export function libBook(e){ try{ if(!LIB_BK){ LIB_BK={}; const T={}, nm={core:"2024 core",dmg:"DMG 2024",phb14:"PHB 2014",dmg14:"DMG 2014",mm14:"MM 2014",misc14:"2014 books"};
     libBookPart1(T); const L=env.QREFS||{};
     Object.keys(L).forEach((c) => libBookFn2(L, nm, T, c)); }
-  const k2=e.c+"|"+e.k; if(LIB_BK[k2]) return LIB_BK[k2]; let m=null;
-  if(e.c==="item") m=libX("i")[e.k]; else if(e.c==="gear") m=libX("g")[e.k]; else if(e.c==="species") m=libX("s")[e.k]; else if(e.c==="bg") m=libX("b")[e.k]; else if(e.c==="sub") m=libXs()[e.k]; else if(e.c==="feat") m=env.WXF_ALL&&env.WXF_ALL[e.k];
+  const k2=e.c+"|"+e.k; if(LIB_BK[k2]) return LIB_BK[k2]; let m=libBookFind(e);
   if(!m&&e.c==="feature"){ const f=/^(cls|sub|sp):([^|]+)\|/.exec(e.k); if(f){ if(f[1]==="sub") m=libXs()[f[2]]; else if(f[1]==="sp") m=libX("s")[f[2]]; if(!m) return f[1]==="cls"?"PHB 2024":""; } }
   if(m) return String(m.bk||"").toUpperCase();
   /* the rest is the 2024 core data of the app */
   if(/\(2014\)/.test(e.k)) return "2014 edition";
   if(e.c==="item") return "DMG 2024"; if(/^(spell|class|species|bg|feat|sub|gear|feature|opt|creature)$/.test(e.c)) return "PHB 2024"; }catch(er){} return ""; }
+function libBookFind(e){ let m=null;
+  if(e.c==="item") m=libX("i")[e.k]; else if(e.c==="gear") m=libX("g")[e.k]; else if(e.c==="species") m=libX("s")[e.k]; else if(e.c==="bg") m=libX("b")[e.k]; else if(e.c==="sub") m=libXs()[e.k]; else if(e.c==="feat") m=env.WXF_ALL&&env.WXF_ALL[e.k];
+  return m; }
 function libBookPart1(T){ return ((env.WX&&env.WX.src||[]).forEach((q) => libBookFn1(T, q))); }
 function libBookFn1(T, q){ T[q.id]=(q.tag||q.id); }
 function libBookFn2(L, nm, T, c){ L[c].forEach((r) =>{ const k=c+"|"+r.n; if(r.s&&!LIB_BK[k]) LIB_BK[k]=nm[r.s]||String(T[r.s]||r.s).toUpperCase(); }); }
@@ -170,39 +172,64 @@ export function libDetail(c,k){ const d=libDetailRaw(c,k); if(d&&d.h){ if(c==="s
   d.h=libClean(d.h); } return d; }
 export function __set_libDetail(v){ return libDetail=v; }
 function libDetailRaw(c,k){
- let {h, sub}=libDetailRaw2Step1(k);
   if(c==="spell"){ const o=spnHTML(k); return {t:o.t,sub:"Spell",h:o.h}; }
-  if(c==="rule"){ const gl=libDetailRawPart1(k); if(!gl){ if(!(env.QREFS&&env.QREFS.rule)) return null; let qr0=null; env.QREFS.rule.forEach((r) =>{ if(r.n===k) qr0=r; }); if(!qr0) return null; let h0=libTiles(qr0.tl||[]); (qr0.p||[]).forEach((b) =>{ h0+=(typeof b==="string")?'<p class="info-d">'+richP(b)+'</p>':libFeatBlock(esc(b[0]),b[1]); }); return {t:qr0.n,sub:qr0.sub||"Rule",h:h0}; } LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } }
-  if(c==="creature"){ const cc=crOf(k); if(!cc) return null; return {t:cc.n,sub:"Creature",h:crBlock(cc,"")}; }
-  if(c==="item"){ let r=null; DMGI.forEach((q) =>{ if(q[0]===k) r=q; }); if(!r&&libX("i")[k]) r=libX("i")[k].r; if(r) return {t:k,sub:"Magic Item",h:meta(r[2]+" "+r[1],r[3]?"Requires attunement":"")+'<p class="info-d">'+richP(r[4])+'</p>'}; }
-  if(c==="gear"){ let w=WEAPONS[k], a=ARMOR[k], gr=null, dsc=ITEMDESC[k]||""; GEAR.forEach((q) =>{ if(q[0]===k) gr=q; }); if(libDetailRawPart2(gr, w, a, k)){ gr=libX("g")[k].r; dsc=libDetailRawPart3(dsc, gr); }
+  if(c==="rule") return libDetailRawRule(c, k);
+  if(c==="creature") return libDetailRawCreature(c, k);
+  if(c==="item"){ const v=libDetailRawItem(c, k); if(v!==undefined) return v; }
+  if(c==="gear") return libDetailRawGear(c, k);
+  if(libDetailRawPart9(c, k)) return libDetailRawFeat(c, k);
+  if(libDetailRawPart12(c, k)) return libDetailRawSpecies(c, k);
+  if(libDetailRawPart14(c, k)) return libDetailRawBg(c, k);
+  if(c==="class"&&CLASSES[k]) return libDetailRawClass(c, k);
+  if(c==="sub"&&(function(){ return libDetailRawFn2(k); })()) return libDetailRawSub(c, k);
+  if(c==="feature"&&/^(cls|sub|sp):/.test(k)) return libDetailRawFeature(c, k);
+  if(c==="homebrew") return libDetailRawHomebrew(c, k);
+  if(env.QREFS&&env.QREFS[c]) return libDetailRawQrefs(c, k);
+  if(c==="opt") return libDetailRawOpt(c, k);
+  return null; }
+function libDetailRawRule(c, k){ const gl=libDetailRawPart1(k); if(!gl){ if(!(env.QREFS&&env.QREFS.rule)) return null; let qr0=null; env.QREFS.rule.forEach((r) =>{ if(r.n===k) qr0=r; }); if(!qr0) return null; let h0=libTiles(qr0.tl||[]); (qr0.p||[]).forEach((b) =>{ h0+=(typeof b==="string")?'<p class="info-d">'+richP(b)+'</p>':libFeatBlock(esc(b[0]),b[1]); }); return {t:qr0.n,sub:qr0.sub||"Rule",h:h0}; } LIBR=1; try{ return {t:k,sub:gl.c||"Rule",h:meta(gl.c,gl.s)+'<p class="info-d">'+richP(gl.d)+'</p>'}; } finally { LIBR=0; } 
+}
+function libDetailRawCreature(c, k){ const cc=crOf(k); if(!cc) return null; return {t:cc.n,sub:"Creature",h:crBlock(cc,"")}; 
+}
+function libDetailRawItem(c, k){ let r=null; DMGI.forEach((q) =>{ if(q[0]===k) r=q; }); if(!r&&libX("i")[k]) r=libX("i")[k].r; if(r) return {t:k,sub:"Magic Item",h:meta(r[2]+" "+r[1],r[3]?"Requires attunement":"")+'<p class="info-d">'+richP(r[4])+'</p>'}; 
+}
+function libDetailRawGear(c, k){ let h="", sub=""; let w=WEAPONS[k], a=ARMOR[k], gr=null, dsc=ITEMDESC[k]||""; GEAR.forEach((q) =>{ if(q[0]===k) gr=q; }); if(libDetailRawPart2(gr, w, a, k)){ gr=libX("g")[k].r; dsc=libDetailRawPart3(dsc, gr); }
     const cost=libDetailRawPart4(gr), wt=libDetailRawPart5(w, a, gr);
     if(w){ sub=libDetailRawPart6(w); h=libDetailRawPart7(w, wt); }
     else if(a){ sub=k==="Shield"?"Shield":a.cat+" Armor"; h=libDetailRawPart8(k, a, wt); }
     else { sub="Adventuring Gear"; h=libTiles([["Cost",cost],["Weight",wt?wt+" lb":""]]); }
-    if(dsc) h+='<p class="info-d">'+richP(dsc)+'</p>'; return {t:k,sub:sub,h:h}; }
-  if(libDetailRawPart9(c, k)){ const f=libDetailRawPart10(k); if(!f) return null; return libDetailRawPart11(k, f); }
-  if(libDetailRawPart12(c, k)){ const s=libDetailRawPart13(k); if(!s) return null; h=libTiles([["Size",s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":""]]);
+    if(dsc) h+='<p class="info-d">'+richP(dsc)+'</p>'; return {t:k,sub:sub,h:h}; 
+}
+function libDetailRawFeat(c, k){ const f=libDetailRawPart10(k); if(!f) return null; return libDetailRawPart11(k, f); 
+}
+function libDetailRawSpecies(c, k){ let h="", sub=""; const s=libDetailRawPart13(k); if(!s) return null; h=libTiles([["Size",s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":""]]);
     if(s.lin&&s.lin.opts) h+='<div class="info-h">'+esc(s.lin.label)+'</div><ul class="lib-ul">'+s.lin.opts.map((o) =>{ return '<li>'+esc(o)+'</li>'; }).join("")+'</ul>';
-    (s.traits||[]).forEach((tr) =>{ h+=libFeatBlock(esc(tr[0]),tr[1]); }); return {t:k,sub:"Species",h:h}; }
-  if(libDetailRawPart14(c, k)){ const b=libDetailRawPart15(k); if(!b) return null; h=libDetailRawPart16(b); return {t:k,sub:"Background",h:h}; }
-  if(c==="class"&&CLASSES[k]){ const cl=CLASSES[k]; h=libDetailRawPart17(cl);
+    (s.traits||[]).forEach((tr) =>{ h+=libFeatBlock(esc(tr[0]),tr[1]); }); return {t:k,sub:"Species",h:h}; 
+}
+function libDetailRawBg(c, k){ let h="", sub=""; const b=libDetailRawPart15(k); if(!b) return null; h=libDetailRawPart16(b); return {t:k,sub:"Background",h:h}; 
+}
+function libDetailRawClass(c, k){ let h="", sub=""; const cl=CLASSES[k]; h=libDetailRawPart17(cl);
     if(cl.sk) h+='<p class="info-d">Skills: choose '+cl.sk.n+' from '+esc((cl.sk.from||[]).join(", "))+'.</p>';
     h+='<div class="info-h">Features</div><div class="lib-fl">'+(cl.f||[]).map((f) =>{ return '<button type="button" class="lib-r" data-lib-open="feature|cls:'+esc(k+"|"+f[1])+'"><span class="lib-lv">'+f[0]+'</span><span class="lib-rt"><b>'+esc(f[1])+'</b><small>'+esc(String(f[2]).slice(0,110))+'</small></span></button>'; }).join("")+'</div>';
     const sn=Object.keys(cl.subs||{}); if(sn.length) h+='<div class="info-h">Subclasses</div><div class="lib-fl">'+sn.map((n) => libDetailRawFn1(k, n)).join("")+'</div>';
-    if(cl.eq) h+='<div class="info-h">Starting Equipment</div><p class="info-d">'+esc((cl.eq||[]).join(" or "))+'</p>'; return {t:k,sub:"Class",h:h}; }
-  if(c==="sub"&&(function(){ return libDetailRawFn2(k); })()){ let own=null, xs=libXs()[k]; Object.keys(CLASSES).forEach((cn) =>{ if((CLASSES[cn].subs||{})[k]) own=cn; }); if(!own&&xs) own=xs.cls; if(!own) return null; h=meta(own+" Subclass",xs?xs.bk:"");/* T10: the emblem is the centred watermark now */
-    (libDetailRawPart18(xs, own, k)).forEach((f) =>{ const full=libDetailRawPart19(k, f); h+='<div class="info-h">Level '+f[0]+': '+esc(f[1])+'</div><p class="info-d">'+richP(full)+'</p>'; }); return {t:k,sub:own+" Subclass",h:h}; }
-  if(c==="feature"&&/^(cls|sub|sp):/.test(k)){ const m=/^(cls|sub|sp):([^|]+)\|(.+)$/.exec(k); if(!m) return null;
+    if(cl.eq) h+='<div class="info-h">Starting Equipment</div><p class="info-d">'+esc((cl.eq||[]).join(" or "))+'</p>'; return {t:k,sub:"Class",h:h}; 
+}
+function libDetailRawSub(c, k){ let h="", sub=""; let own=null, xs=libXs()[k]; Object.keys(CLASSES).forEach((cn) =>{ if((CLASSES[cn].subs||{})[k]) own=cn; }); if(!own&&xs) own=xs.cls; if(!own) return null; h=meta(own+" Subclass",xs?xs.bk:"");/* T10: the emblem is the centred watermark now */
+    (libDetailRawPart18(xs, own, k)).forEach((f) =>{ const full=libDetailRawPart19(k, f); h+='<div class="info-h">Level '+f[0]+': '+esc(f[1])+'</div><p class="info-d">'+richP(full)+'</p>'; }); return {t:k,sub:own+" Subclass",h:h}; 
+}
+function libDetailRawFeature(c, k){ const m=/^(cls|sub|sp):([^|]+)\|(.+)$/.exec(k); if(!m) return null;
     if(m[1]==="cls"){ const cf=(CLASSES[m[2]].f||[]).filter((f) =>{ return f[1]===m[3]; })[0]; if(!cf) return null; return libDetailRawPart20(m, cf); }
     if(m[1]==="sub"){ let sf=null, oc=""; Object.keys(CLASSES).forEach((cn) =>{ const l=(CLASSES[cn].subs||{})[m[2]]; if(l){ oc=cn; l.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); } }); if(!sf&&libXs()[m[2]]) libXs()[m[2]].arr.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); if(!sf) return null; return libDetailRawPart21(m, sf); }
-    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+'<p class="info-d">'+richP(tr[1])+'</p><p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; }
-  if(c==="homebrew"){ const hp=k.indexOf("|"), hid=k.slice(0,hp), hn=k.slice(hp+1), hs=(env.HBIDX||[]).filter((q) =>{ return q.id===hid; })[0]; if(!hs) return null;
+    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+'<p class="info-d">'+richP(tr[1])+'</p><p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; 
+}
+function libDetailRawHomebrew(c, k){ const hp=k.indexOf("|"), hid=k.slice(0,hp), hn=k.slice(hp+1), hs=(env.HBIDX||[]).filter((q) =>{ return q.id===hid; })[0]; if(!hs) return null;
     const hh='<div class="info-k">'+tileH("Pack",esc(hs.name))+tileH("Source",esc((hs.tag||"")+" • "+libHbBy(hs)))+'</div><div id="libHb"><p class="info-d">Loading the entry.</p></div>';
-    libHbLoad(hid,hn,k); return {t:hn,sub:"Homebrew • "+hs.name,h:hh}; }
-  if(env.QREFS&&env.QREFS[c]){ let qr=null; env.QREFS[c].forEach((r) =>{ if(r.n===k) qr=r; }); if(!qr) return null; h=libDetailRawPart23(qr); (qr.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); return {t:qr.n,sub:qr.sub||libCat(c)[1],h:h}; }
-  if(c==="opt"){ const p=k.split("|"), L=libDetailRawPart24(p), row=L.filter((q) =>{ return q[0]===p[1]; })[0]; if(!row) return null; return libDetailRawPart25(p, row); }
-  return null; }
+    libHbLoad(hid,hn,k); return {t:hn,sub:"Homebrew • "+hs.name,h:hh}; 
+}
+function libDetailRawQrefs(c, k){ let h="", sub=""; let qr=null; env.QREFS[c].forEach((r) =>{ if(r.n===k) qr=r; }); if(!qr) return null; h=libDetailRawPart23(qr); (qr.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); return {t:qr.n,sub:qr.sub||libCat(c)[1],h:h}; 
+}
+function libDetailRawOpt(c, k){ const p=k.split("|"), L=libDetailRawPart24(p), row=L.filter((q) =>{ return q[0]===p[1]; })[0]; if(!row) return null; return libDetailRawPart25(p, row); 
+}
 function libDetailRawPart1(k){ return (GLOSS[k]||(LIB_RULES[k]&&{c:LIB_RULES[k].c,s:"PHB-2024, Rules Glossary",d:LIB_RULES[k].d})); }
 function libDetailRawPart2(gr, w, a, k){ return (!gr&&!w&&!a&&libX("g")[k]); }
 function libDetailRawPart3(dsc, gr){ return (dsc||gr[4]||""); }

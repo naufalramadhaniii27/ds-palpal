@@ -75,32 +75,44 @@ function tgBand(){ return '<div class="hlearn htg" id="htgB"><span class="lrn-ho
 export function tgGo(){ const go=() =>{ if(env.__tgOpen) env.__tgOpen(); else toast("The Training Ground is still loading. Try again in a moment."); }; if(!env.__tgOpen&&env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else go(); }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-tgopen]"); if(!b) return; e.preventDefault(); tgGo(); });
 export function learnGo(o){ const go=() =>{ if(env.__learnOpen) env.__learnOpen(o); }; if(!env.__learnOpen&&env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else go(); }
-export function showHome(){let w=document.getElementById("homeV");if(!w){w=document.createElement("div");w.id="homeV";w.setAttribute("role","region");w.setAttribute("aria-label","My Characters");document.body.appendChild(w);
-  w.addEventListener("click",(e) =>{const l=e.target.closest&&e.target.closest("[data-hlib]");if(l){libOpen({q:l.getAttribute("data-hlib")});return}const c=e.target.closest&&e.target.closest("[data-hcmd]");if(!c)return;const t=w.querySelector(".hbtns "+c.getAttribute("data-hcmd"))||w.querySelector(c.getAttribute("data-hcmd"));if(t)t.click()});
-  w.addEventListener("keydown",(e) =>{if(e.target.id==="homeQ"&&e.key==="Enter"){const c=w.querySelector(".hcmd");if(c){e.preventDefault();c.click()}}});
-  w.addEventListener("input",(e) => showHomeFn1(e));
-  w.addEventListener("change",(e) => showHomeFn2(e));
-  w.addEventListener("click",(e) =>{const b=e.target.closest("button");if(!b)return;const d=b.dataset,r=rEnsure();
-   if(d.hview){if(d.hview===r.active){w.hidden=true;document.body.style.overflow="";return}rSnap(r);sessionStorage.setItem("cs-skip","1");rLoad(r,d.hview,false);return}
-   if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(env.__bldOpen)env.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
-   if(d.hkeep){const kp=r.chars[d.hkeep];if(kp){delete kp.practice;rSave(r);document.getElementById("hgrid").innerHTML=homeCards(true);toast("Kept. It is a normal character now.")}return}
-   if(d.hdisc){const dc=d.hdisc;if(Object.keys(r.chars).length<2){toast("You need at least one character");return}showHomePart1(r, dc);return}
-   if(d.hdel){if(Object.keys(r.chars).length<2){toast("You need at least one character");return}if(b.dataset.sure!=="1"&&b.dataset.heldDone!=="1"){b.dataset.sure="1";const bl=b.querySelector(".holdc-label");if(bl)bl.textContent="Tap again";else b.textContent="Tap again";return}snTake(d.hdel,"Before Delete",rSnap(r));const was=d.hdel===r.active;delete r.chars[d.hdel];rSave(r);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r,Object.keys(r.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards();const hi=document.getElementById("hinfo");if(hi)hi.innerHTML=homeInfo();persistShow();const hs=document.querySelector("#homeV .hslots b");if(hs)hs.textContent=Object.keys(r.chars).length;return}
-   if(d.hcampf!=null){lateSet("homeCamp",lateGet("homeCamp")===d.hcampf?"":d.hcampf);const hc=document.getElementById("homeCamp");if(hc)hc.value=lateGet("homeCamp");document.getElementById("hgrid").innerHTML=homeCards();return}/* v32 p28 RU133 */
-   if(d.hlearn){learnGo();return}/* T11 Learn */if(d.hparty){partyOpen();return}if(d.hrep){reportOpen();return}/* v27 RU60, RU71 */
-   if(d.hbk){bkpOpen(d.hbk);return}/* v14 Backup/Restore, v18 Open Character */
-   if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
-   if(d.hwn){if(d.hwn==="ok"){try{__store.setItem("cs-ui-ver",String(APP_VER))}catch(er){}lateSet("WN_SHOW",false);const bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}/* v18 RU59 */
-   if(d.hpers){askPersist();return}
-   if(d.hall){const hg=document.getElementById("hgrid");if(hg)showHomePart2(hg);return}
-   if(d.hbin){lateSet("BIN_OPEN",!BIN_OPEN);const hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
-   if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
-   if(d.hnew){rSnap(r);const nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{if(sessionStorage.getItem("cs-forge"))r.chars[nid].practice=1}catch(e){}/* T11 Learn F3: a hero from Forge Your Hero is a practice hero until kept */try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}})}
+export function showHome(){let w=document.getElementById("homeV");if(!w){w=showHomeMake()}
  const {n}=showHome2Step1();
  w.innerHTML='<div class="hwrap"><div class="hhead"><h1>My Characters</h1><div class="hbtns" role="toolbar" aria-label="Character actions"><button type="button" class="hcreate" data-hnew="1"><span class="hbt">Create<span class="hbz"> a Character</span></span></button><button type="button" class="hbk" data-hbk="open"><span class="hbt">Open<span class="hbz"> Character</span></span></button><button type="button" class="hbk" data-hbk="out"><span class="hbt">Back Up</span></button><button type="button" class="hbk" data-hbk="in"><span class="hbt">Restore</span></button><button type="button" class="hbk" data-hparty="1"><span class="hbt">Party</span></button><button type="button" class="hbk hic" data-hbk="info" aria-label="Settings: backup and storage"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div><p class="hslots">Characters: <b>'+n+'</b></p>'+wnBanner()+tourBanner()+'<div id="hinfo">'+homeInfo()+'</div>'+homeHero()+learnBand()+tgBand()+'<div class="hbar"><label class="hsearch"><span>Search</span><input id="homeQ" type="search" placeholder="Name, level, class, species, campaign" aria-label="Search by name, level, class, species, or campaign" value="'+esc(homeQ)+'"></label><label class="hsort"><span>Sort By</span><select id="homeSort">'+[["created","Created: Oldest"],["newest","Created: Newest"],["name","Name"],["level","Level"]].map((o) => showHomeFn4(o)).join("")+'</select></label>'+campSel(rEnsure())+'</div><div class="hgrid" id="hgrid">'+homeCards()+'</div><p class="happ">'+'<img class="happ-i" src="'+LOGO_IMG+'" width="32" height="32" alt="">'+'<b>D&amp;D Sheet</b>'+pwaInstH()+'</p><p class="hcredit">Designed by Palpale</p><p class="hver">Version '+APP_LABEL+' ('+APP_DATE+') <button type="button" class="hlink" data-hwn="all">What\'s new</button> <button type="button" class="hlink" data-hrep="1">Report a problem</button></p></div>';
  showHome2Step2();
  w.hidden=false;
 showHome2Step3();}
+function showHomeMake(){const w=document.createElement("div");w.id="homeV";w.setAttribute("role","region");w.setAttribute("aria-label","My Characters");document.body.appendChild(w);
+  w.addEventListener("click",(e) =>{const l=e.target.closest&&e.target.closest("[data-hlib]");if(l){libOpen({q:l.getAttribute("data-hlib")});return}const c=e.target.closest&&e.target.closest("[data-hcmd]");if(!c)return;const t=w.querySelector(".hbtns "+c.getAttribute("data-hcmd"))||w.querySelector(c.getAttribute("data-hcmd"));if(t)t.click()});
+  w.addEventListener("keydown",(e) =>{if(e.target.id==="homeQ"&&e.key==="Enter"){const c=w.querySelector(".hcmd");if(c){e.preventDefault();c.click()}}});
+  w.addEventListener("input",(e) => showHomeFn1(e));
+  w.addEventListener("change",(e) => showHomeFn2(e));
+  w.addEventListener("click",(e) => showHomeMakeFn1(w, e))
+ return w}
+function showHomeMakeFn1(w, e){const b=e.target.closest("button");if(!b)return;const d=b.dataset,r=rEnsure();
+   if(d.hview){showHomeCaseView(w, r, d, b);return}
+   if(d.hedit){showHomeCaseEdit(w, r, d, b);return}
+   if(d.hkeep){showHomeCaseKeep(w, r, d, b);return}
+   if(d.hdisc){const dc=d.hdisc;if(Object.keys(r.chars).length<2){toast("You need at least one character");return}showHomePart1(r, dc);return}
+   if(d.hdel){showHomeCaseDel(w, r, d, b);return}
+   if(d.hcampf!=null){showHomeCaseCamp(w, r, d, b);return}/* v32 p28 RU133 */
+   if(d.hlearn){learnGo();return}/* T11 Learn */if(d.hparty){partyOpen();return}if(d.hrep){reportOpen();return}/* v27 RU60, RU71 */
+   if(d.hbk){bkpOpen(d.hbk);return}/* v14 Backup/Restore, v18 Open Character */
+   if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
+   if(d.hwn){showHomeCaseWn(w, r, d, b);return}/* v18 RU59 */
+   if(d.hpers){askPersist();return}
+   if(d.hall){showHomeCaseAll(w, r, d, b);return}
+   if(d.hbin){showHomeCaseBin(w, r, d, b);return}
+   if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
+   if(d.hnew){showHomeCaseNew(w, r, d, b);return}}
+function showHomeCaseView(w, r, d, b){if(d.hview===r.active){w.hidden=true;document.body.style.overflow="";return}rSnap(r);sessionStorage.setItem("cs-skip","1");rLoad(r,d.hview,false);return}
+function showHomeCaseEdit(w, r, d, b){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(env.__bldOpen)env.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
+function showHomeCaseKeep(w, r, d, b){const kp=r.chars[d.hkeep];if(kp){delete kp.practice;rSave(r);document.getElementById("hgrid").innerHTML=homeCards(true);toast("Kept. It is a normal character now.")}return}
+function showHomeCaseDel(w, r, d, b){if(Object.keys(r.chars).length<2){toast("You need at least one character");return}if(b.dataset.sure!=="1"&&b.dataset.heldDone!=="1"){b.dataset.sure="1";const bl=b.querySelector(".holdc-label");if(bl)bl.textContent="Tap again";else b.textContent="Tap again";return}snTake(d.hdel,"Before Delete",rSnap(r));const was=d.hdel===r.active;delete r.chars[d.hdel];rSave(r);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r,Object.keys(r.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards();const hi=document.getElementById("hinfo");if(hi)hi.innerHTML=homeInfo();persistShow();const hs=document.querySelector("#homeV .hslots b");if(hs)hs.textContent=Object.keys(r.chars).length;return}
+function showHomeCaseCamp(w, r, d, b){lateSet("homeCamp",lateGet("homeCamp")===d.hcampf?"":d.hcampf);const hc=document.getElementById("homeCamp");if(hc)hc.value=lateGet("homeCamp");document.getElementById("hgrid").innerHTML=homeCards();return}
+function showHomeCaseWn(w, r, d, b){if(d.hwn==="ok"){try{__store.setItem("cs-ui-ver",String(APP_VER))}catch(er){}lateSet("WN_SHOW",false);const bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}
+function showHomeCaseNew(w, r, d, b){rSnap(r);const nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{if(sessionStorage.getItem("cs-forge"))r.chars[nid].practice=1}catch(e){}/* T11 Learn F3: a hero from Forge Your Hero is a practice hero until kept */try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}
+function showHomeCaseAll(w, r, d, b){const hg=document.getElementById("hgrid");if(hg)showHomePart2(hg);return}
+function showHomeCaseBin(w, r, d, b){lateSet("BIN_OPEN",!BIN_OPEN);const hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
 function showHomePart1(r, dc){ return (ask("Discard the practice hero "+((r.chars[dc]||{}).name||"")+"? A copy stays in Snapshots for a while, so it can come back.","Discard",() => showHomeFn3(dc))); }
 function showHomePart2(hg){ return (hg.scrollIntoView({behavior:(env.__MI&&env.__MI.rm&&env.__MI.rm())?"auto":"smooth",block:"start"})); }
 function showHome2Step1(){

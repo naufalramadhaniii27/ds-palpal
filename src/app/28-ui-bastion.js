@@ -113,20 +113,38 @@ function bastionHStep4(b, h, orders){
 function bsSave(msg,undo){ save(); renderExtras(); if(msg) (undo?toastU:toast)(msg); }
 function bsAct(a,t){
  const {b, BF, i}=bsAct2Step1(t);
-  if(a==="setup"){ undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; }
+  if(a==="setup"){ bsActSetup(a, t, b, BF, i); return; }
   if(!b) return;
   if(a==="def+"||a==="def-"){ b.def=Math.max(0,num(b.def,0)+(a==="def+"?1:-1)); bsSave(); return; }
-  if(a==="grow"){ const x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="rmbasic"){ const y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",() =>{ undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; }
-  if(a==="addbasic"){ const ad=BASTION.add[bsAddS]; undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="addfac"){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); const nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; }
-  if(a==="rmfac"){ const f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",() =>{ undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; }
-  if(a==="vast"){ const fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",() =>{ undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; }
-  if(a==="ch"){ const fc=b.fac[i], dc=fc&&BF[fc.k]; if(!dc||!dc.ch) return; const L=fc.ch=fc.ch||[], v=t.dataset.v, j=L.indexOf(v), n=fc.vast?dc.ch[2]:dc.ch[1];
-    if(j>=0) L.splice(j,1); else { if(n===1) L.length=0; else if(L.length>=n){ toast(dc.ch[0]+": "+n+" at most. Remove one first."); return; } L.push(v); } bsSave(); return; }
+  if(a==="grow"){ bsActGrow(a, t, b, BF, i); return; }
+  if(a==="rmbasic"){ bsActRmbasic(a, t, b, BF, i); return; }
+  if(a==="addbasic"){ bsActAddbasic(a, t, b, BF, i); return; }
+  if(a==="addfac"){ bsActAddfac(a, t, b, BF, i); return; }
+  if(a==="rmfac"){ bsActRmfac(a, t, b, BF, i); return; }
+  if(a==="vast"){ bsActVast(a, t, b, BF, i); return; }
+  if(a==="ch"){ bsActCh(a, t, b, BF, i); return; }
   if(a==="mode"){ b.mode=t.dataset.v; bsSave(); return; }
   if(a==="efa"){ b.efa=!bsEfa(b); bsSave(); return; }/* v61 */
-  if(a==="turn"){ const maint=b.mode==="maintain", o=bsActPart1(maint, b);
+  if(a==="turn"){ bsActTurn(a, t, b, BF, i); return; }
+  if(a==="drop"){ bsActDrop(a, t, b, BF, i); return; } }
+function bsActSetup(a, t, b, BF, i){ undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; 
+}
+function bsActGrow(a, t, b, BF, i){ const x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; 
+}
+function bsActRmbasic(a, t, b, BF, i){ const y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",() =>{ undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; 
+}
+function bsActAddbasic(a, t, b, BF, i){ const ad=BASTION.add[bsAddS]; undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; 
+}
+function bsActAddfac(a, t, b, BF, i){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); const nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; 
+}
+function bsActRmfac(a, t, b, BF, i){ const f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",() =>{ undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; 
+}
+function bsActVast(a, t, b, BF, i){ const fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",() =>{ undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; 
+}
+function bsActCh(a, t, b, BF, i){ const fc=b.fac[i], dc=fc&&BF[fc.k]; if(!dc||!dc.ch) return; const L=fc.ch=fc.ch||[], v=t.dataset.v, j=L.indexOf(v), n=fc.vast?dc.ch[2]:dc.ch[1];
+    if(j>=0) L.splice(j,1); else { if(n===1) L.length=0; else if(L.length>=n){ toast(dc.ch[0]+": "+n+" at most. Remove one first."); return; } L.push(v); } bsSave(); return; 
+}
+function bsActTurn(a, t, b, BF, i){ const maint=b.mode==="maintain", o=bsActPart1(maint, b);
     if(maint&&!bsEv){ toast("Pick the Bastion event the DM rolled first."); return; }
     undoMark("Bastion turn"); const e={n:num(b.turn,0)+1,t:new Date().toISOString().slice(0,10),o:o}, note=[];
     if(maint){ e.m=1; e.ev=bsEv; const lost=Math.max(0,Math.round(num(bsLost,0))); if(lost){ e.lost=Math.min(lost,num(b.def,0)); b.def=Math.max(0,num(b.def,0)-lost); } }
@@ -134,8 +152,9 @@ function bsAct(a,t){
     (b.fac||[]).forEach((f) => bsActFn2(maint, b, note, f));
     if(bsNote.trim()) note.push(bsNote.trim()); if(note.length) e.note=note.join(", ");
     b.idle=bsActPart3(maint, o, b); b.turn=e.n; b.log=(b.log||[]).concat([e]).slice(-200); (b.fac||[]).forEach((f) =>{ delete f.ord; }); bsEv=""; bsNote=""; bsLost="";
-    bsSave("Bastion turn "+e.n+" done"+(e.note?": "+e.note:"")+".",1); return; }
-  if(a==="drop"){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",() =>{ undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } }
+    bsSave("Bastion turn "+e.n+" done"+(e.note?": "+e.note:"")+".",1); return; 
+}
+function bsActDrop(a, t, b, BF, i){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",() =>{ undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } 
 function bsActPart1(maint, b){ return (maint?[]:(b.fac||[]).filter((f) =>{ return f.ord; }).map((f) =>{ return [f.k,f.ord]; })); }
 function bsActPart2(maint, b){ return (!maint&&(b.fac||[]).some((f) => bsActFn1(f))&&num(b.def,0)>=bsCap(b)); }
 function bsActPart3(maint, o, b){ return (maint||o.length?0:num(b.idle,0)+1); }
