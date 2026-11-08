@@ -64,22 +64,21 @@ async def main():
         pg.on("pageerror", lambda e: errs.append(str(e)[:200]))
         await pg.goto(url); await pg.evaluate("()=>{localStorage.clear()}"); await pg.reload()
         await pg.wait_for_function("()=>window.__bldNeed||window.__deferDone", timeout=60000)
-        await pg.evaluate("()=>{ if(window.__bldNeed) window.__bldNeed(); }")
+        await pg.evaluate("()=>window.__bldNeed?window.__bldNeed().then(()=>1):1")
         await pg.wait_for_function("()=>!!window.__bldFuzz&&!!window.__pdfModelFor", timeout=120000)
         await pg.evaluate(LOAD)
-        L = await pg.evaluate("()=>window.__bldLists()")
-        sp14 = await pg.evaluate("()=>Object.keys(SPECIES).filter(s=>/\\(2014\\)$/.test(s))")
-        bg14 = await pg.evaluate("()=>Object.keys(BACKGROUNDS).filter(b=>/\\(2014\\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3)")
+        LS = {"2024": await pg.evaluate("()=>window.__bldLists()"), "2014": await pg.evaluate("()=>window.__bldLists('2014')")}
+        print("lists:", {k: (len(v["cls"]), sum(len(x) for x in v["subs"].values()), len(v["sp"]), len(v["bg"])) for k, v in LS.items()})
         i = 0
         for rs in ("2024", "2014"):
-            sps = L["sp"] if rs == "2024" or not sp14 else sp14
-            bgs = L["bg"] if rs == "2024" or not bg14 else bg14
+            L = LS[rs]; sps = L["sp"]; bgs = L["bg"]
             for cls in L["cls"]:
-                for sub in (L["subs"].get(cls) or [""]):
+                subs24 = [x for x in (L["subs"].get(cls) or []) if rs == "2014" or not x.endswith("(2014)")]
+                for sub in (subs24 or [""]):
                     for lv in LEVELS:
                         i += 1
                         o = {"cls": cls, "sub": sub, "lv": lv, "sp": sps[i % len(sps)], "bg": bgs[i % len(bgs)], "arr": L["arr"], "b2": i % 3, "b1": i % 2,
-                             "render": lv in (1, 20), "rs": rs}
+                             "render": lv in (1, 20), "rs": rs, "src": L.get("src")}
                         r = await pg.evaluate(CHECK, o); r["o"] = {k: o[k] for k in ("rs", "cls", "sub", "lv", "sp", "bg")}; res.append(r)
         await b.close()
     srv.shutdown()

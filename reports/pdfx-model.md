@@ -92,7 +92,7 @@ Kalau teks aslinya sudah pendek (230 huruf atau kurang) dan tidak ada teks lengk
 python3 tests/pdfx_export.py [OUT]   # tombol Export PDF: Yudhi, Wizard Quick Build, Wizard 2014, dua viewport
 python3 tests/pdfx_sweep.py [OUT]    # semua class x subclass x 6 level x 2 edisi, model dan PDF, deteksi miss otomatis
 ```
-Hasil sapuan 2026-11-08: 576 karakter, 192 dirender penuh, 0 error, maksimal 19 halaman. Miss tersisa: Beast Master aturan 2014 tanpa companion (gap di daftar creature sheet, lihat reports/requests.md).
+Hasil sapuan 2026-11-08: 540 karakter (2024: 12 class, 48 subclass. 2014: 12 class, 42 subclass, 33 race, 19 background dari PHB 2014 dan DMG 2014), 180 dirender penuh, 0 miss, 0 error, maksimal 21 halaman. Catatan aturan di luar PDF: Beast Master (2014) masih mendapat Primal Companion 2024 di sheet, lihat reports/requests.md.
 
 ## Uji (Node)
 ```
