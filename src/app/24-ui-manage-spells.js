@@ -24,14 +24,27 @@ function spmMode(){ let I=null, d=[]; try{ I=env.__bldSpInfo?env.__bldSpInfo():n
 function isThird3(x){ if(env.THIRD_SUBS&&env.THIRD_SUBS[x]) return true; /* fx engine v4 */ return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"; }/* v101: the sheet script has no access to the builder helper of the same name, so a sheet without a build could not open Manage Spells */
 function spmLocal(){
  const {lv, out}=spmLocalStep1(); if(typeof CLASSES==="undefined") return out;
-  Object.keys(lv).forEach((cls) =>{ const c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3; if(!c||!L||(!c.caster&&!third)) return;
-    let ct=0, pr=0, mx=0;    if(third){ ct=((env.THIRD_SUBS&&env.THIRD_SUBS[C.sub]&&env.THIRD_SUBS[C.sub].cant!=null)?env.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+  Object.keys(lv).forEach((cls) => spmLocalFn1(lv, out, cls));
+  return out; }
+function spmLocalFn1(lv, out, cls){
+ const {c, L, third}=spmLocalFn1Step1(cls, lv); if(!c||!L||(!c.caster&&!third)) return;
+    let {ct, pr, mx}=spmLocalFn1Step2();    if(third){ ct=((env.THIRD_SUBS&&env.THIRD_SUBS[C.sub]&&env.THIRD_SUBS[C.sub].cant!=null)?env.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
     else { const cc=CANT[cls]; ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0; if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
       if(C.rs==="2014"){ if((cls==="Paladin"||cls==="Ranger")&&L<2) return; const q14=pr14(cls,L,(typeof D!=="undefined"&&D.mod&&D.mod[c.cast])||0); if(q14) pr=q14.pr; }/* v92 */
       mx=c.caster==="pact"?(PACT[L-1]||[0,0])[1]:(c.caster==="full"?SLOTS_FULL[L-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(L/2)-1]:SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+    spmLocalFn1Step3(third, cls, out, ct, pr, mx); }
+function spmLocalFn1Step1(cls, lv){
+const c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3;
+  return /** @type {any} */ ({c, L, third});
+}
+function spmLocalFn1Step2(){
+    let ct=0, pr=0, mx=0;
+  return /** @type {any} */ ({ct, pr, mx});
+}
+function spmLocalFn1Step3(third, cls, out, ct, pr, mx){
     const list=third?"Wizard":cls;
-    out.push({cls:cls, ct:ct, pr:pr, max:mx, lists:[list], taken:(C.spells||[]).filter((x) =>{ return x.src===cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map((x) =>{ return x.n; })}); });
-  return out; }
+    out.push({cls:cls, ct:ct, pr:pr, max:mx, lists:[list], taken:(C.spells||[]).filter((x) =>{ return x.src===cls&&/^(Prepared|Cantrip)$/.test(x.use); }).map((x) =>{ return x.n; })});
+}
 function spmLocalStep1(){
 const lv=clsLvls(), out=[];
   return /** @type {any} */ ({lv, out});

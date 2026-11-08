@@ -19,13 +19,13 @@ let restSel={}, restAuto=true;
 function hdRows(){ return (D.res||[]).filter((r) =>{ return r.k==="hd"||/^hd-d/.test(r.k); }); }
 function shortList(){ return (D.res||[]).filter((r) =>{ return r.reset==="short"||r.reset==="short1"; }); }
 function restHTML(kind){
- const _restHTMLStep1=restHTMLStep1(kind);
- const {hp1}=_restHTMLStep1;
- let {h}=_restHTMLStep1;
+ const _restHTML2Step1=restHTML2Step1(kind);
+ const {hp1}=_restHTML2Step1;
+ let {h}=_restHTML2Step1;
   if(kind==="menu") return h+restCards()+'</div>';/* v32 p25 C15 */
   if(kind==="short"){ let cm=D.mod.CON, tot=0; h+=restHint();/* v32 p25 */
     h+=x14()?'<p class="info-d">A Short Rest lasts at least 1 hour. You do nothing more strenuous than eating, drinking, reading, or tending wounds. At the end you can spend any number of your Hit Dice to heal, one at a time, and some features recharge.</p>':'<p class="info-d">A Short Rest is 1 hour of downtime with nothing more tiring than talking, eating, reading, or keeping watch. It ends early, with no benefit, if you roll Initiative, cast any spell except a cantrip, or take damage. You can spend Hit Point Dice to heal, one at a time, and some features recharge.</p>';
-    const rl=shortList(); h+='<div class="info-h">Recover</div>'+(rl.length?recUL(rl.map((r) =>{ const u=used(r.k,r.max); return [r.n+(r.reset==="short1"?" (one use)":"")+(u?"":" (already full)"),!u]; })):'<p class="info-d">No features recharge on a Short Rest.</p>');
+    const rl=shortList(); h+='<div class="info-h">Recover</div>'+(rl.length?recUL(rl.map((r) => restHTMLFn1(r))):'<p class="info-d">No features recharge on a Short Rest.</p>');
     h+='<label class="ck"><input type="checkbox" data-rauto="1"'+(restAuto?' checked':'')+'> Automatically apply healing</label>';
     hdRows().forEach((r) =>{ const die=num(r.die,num(C.hitDie,10)), left=r.max-used(r.k,r.max), sel=restSel[r.k]||[];
       h+='<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">';
@@ -37,8 +37,19 @@ function restHTML(kind){
     h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpWord(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(periOn()?', then doubled':'')+')</p>';
     if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Short Rest.</p>';
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
-  ({h}=restHTMLStep2(h, hp1));
+  ({h}=restHTML2Step2(h, hp1));
   return h+slideC("long","Slide to take Long Rest",hp1)+'</div>'; }
+function restHTML2Step1(kind){
+ const _restHTMLStep1=restHTMLStep1(kind);
+ const {hp1}=_restHTMLStep1;
+ let {h}=_restHTMLStep1;
+  return /** @type {any} */ ({hp1, h});
+}
+function restHTML2Step2(h, hp1){
+  ({h}=restHTMLStep2(h, hp1));
+  return /** @type {any} */ ({h});
+}
+function restHTMLFn1(r){ const u=used(r.k,r.max); return [r.n+(r.reset==="short1"?" (one use)":"")+(u?"":" (already full)"),!u]; }
 function restHTMLStep1(kind){
 let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-kind="'+kind+'">';
   return /** @type {any} */ ({hp1, h});
@@ -110,18 +121,25 @@ function hdCls(die){ return (String(C.clsLabel||"").match(/[A-Z][A-Za-z']+ \d+/g
 export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least 1 Hit Point to rest."); return; }
   if(kind==="short"){ let cm=D.mod.CON, heal=0, spent=0, miss=0; Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(v===0) miss++; }); });
     if(miss){ toast("Type the number rolled for each Hit Die you picked, or untick it."); return; }/* V17-2: nothing changes before this check */
-    const picked=Object.keys(restSel).some((k) =>{ return (restSel[k]||[]).some((v) =>{ return v; }); }), chefV=lateGet("restX").chef&&picked?Math.floor(num(lateGet("restX").chefV,0)):0;
+    const picked=Object.keys(restSel).some((k) => takeRestFn1(k)), chefV=lateGet("restX").chef&&picked?Math.floor(num(lateGet("restX").chefV,0)):0;
     if(lateGet("restX").chef&&picked&&(chefV<1||chefV>8)){ toast("Type the 1d8 roll for Replenishing Meal, 1 to 8, or untick it."); return; }
     const rl=recList(), bad=rl.filter((q,i) =>{ return recSum(i)>q.cap; })[0]; if(bad){ toast(bad.n+": choose slots with a combined level of "+bad.cap+" or less."); return; }
-    const both={}; rl.forEach((q,i) =>{ const m=lateGet("restX").rec&&lateGet("restX").rec[i]||{}; Object.keys(m).forEach((L) =>{ both[L]=(both[L]||0)+num(m[L],0); }); }); const over=Object.keys(both).filter((L) =>{ return both[L]>slotUsed(+L); })[0]; if(over){ toast("You chose more level "+over+" slots than you have spent."); return; }
+    const both={}; rl.forEach((q, i) => takeRestFn2(both, q, i)); const over=Object.keys(both).filter((L) =>{ return both[L]>slotUsed(+L); })[0]; if(over){ toast("You chose more level "+over+" slots than you have spent."); return; }
     undoMark("Short Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
     Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(!v) return; spent++; heal+=hdHeal(v); S.used[k]=num(S.used[k],0)+1; }); });
     if(chefV) heal+=chefV;
     const before=S.hp==null?D.hpmax:S.hp; if(restAuto&&heal) S.hp=Math.min(D.hpmax,before+heal);
-    doRest("short",true); const rec=[]; rl.forEach((q,i) =>{ const s=recSum(i); if(!s) return; const m=lateGet("restX").rec[i]; Object.keys(m).forEach((L) =>{ S.used["s"+L]=Math.max(0,num(S.used["s"+L],0)-num(m[L],0)); }); S.used[q.r.k]=num(S.used[q.r.k],0)+1; rec.push(q.n+": "+s+" slot level"+(s>1?"s":"")+" recovered."); });
+    doRest("short",true); const rec=[]; rl.forEach((q, i) => takeRestFn3(rec, q, i));
     const nc=chgApply(shortChg()); save(); syncLU(); closeSheet();
-    toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; })()); restSumToast("short"); return; }
-  takeRestStep1(); }
+    toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ return takeRestFn4(); })()); restSumToast("short"); return; }
+  takeRest2Step1(); }
+function takeRest2Step1(){
+  takeRestStep1();
+}
+function takeRestFn1(k){ return (restSel[k]||[]).some((v) =>{ return v; }); }
+function takeRestFn2(both, q,i){ const m=lateGet("restX").rec&&lateGet("restX").rec[i]||{}; Object.keys(m).forEach((L) =>{ both[L]=(both[L]||0)+num(m[L],0); }); }
+function takeRestFn3(rec, q,i){ const s=recSum(i); if(!s) return; const m=lateGet("restX").rec[i]; Object.keys(m).forEach((L) =>{ S.used["s"+L]=Math.max(0,num(S.used["s"+L],0)-num(m[L],0)); }); S.used[q.r.k]=num(S.used[q.r.k],0)+1; rec.push(q.n+": "+s+" slot level"+(s>1?"s":"")+" recovered."); }
+function takeRestFn4(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; }
 function takeRestStep1(){
   undoMark("Long Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */ const lc=chgRows(["dawn","dusk","long"]), hr=lateGet("restX").hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0);
   if(hr){ delete S.hpMod; delete S.hpOver; derive(); }

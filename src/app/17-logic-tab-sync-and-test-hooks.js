@@ -38,17 +38,28 @@ function bcPost(k){ if(!BC) return; try{ if(bkpKeyOk(k)) BC.postMessage({k:k,fro
 env.__bcOn=function(){ return !!BC; };
 env.addEventListener("storage",(e) =>{ extChange(e.key,"st"); });
 function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return;
- const {raw}=extChangeStep1(key); if(EXT_LAST[key]===raw) return;
- const _extChangeStep2=extChangeStep2(key, raw);
- const {e}=_extChangeStep2;
- let {r}=_extChangeStep2; if(r&&r.active&&MYID&&r.active!==MYID){ stale(); return; }
+ const {raw}=extChange2Step1(key); if(EXT_LAST[key]===raw) return;
+ const {e, r}=extChange2Step2(key, raw); if(r&&r.active&&MYID&&r.active!==MYID){ stale(); return; }
   if(e.key===CKEY||e.key===KEY){ let c2=loadC(true), s2=loadS(true); if(!c2||!s2) return; const pend=!!saveT||SPEND, pendC=!!cSaveT; clearTimeout(saveT); clearTimeout(cSaveT); __set_saveT(null); __set_cSaveT(null);
     /* V18-2: a change made here in the last 150 ms is not thrown away: fields changed here since the last save are laid over the other tab's data */
     const remoteN=JSON.stringify(s2); if(pend) s2=mergeS(s2);
     if(pendC) c2=C; __set_C(c2); __set_S(s2); __set_S_BASE(remoteN); __set_S_RAW(lsGet(KEY)); if(pend) save(); if(pendC) saveC();
     try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(er){} if(lateGet("sheet")&&lateGet("sheet").classList&&lateGet("sheet").classList.contains("on")){ try{ refreshEntry(); }catch(er){} } return; }
   if(e.key===lateGet("BKEY")&&env.__bldReload){ env.__bldReload(); return; }
-  extChangeStep3(e); }
+  extChange2Step3(e); }
+function extChange2Step1(key){
+ const {raw}=extChangeStep1(key);
+  return /** @type {any} */ ({raw});
+}
+function extChange2Step2(key, raw){
+ const _extChangeStep2=extChangeStep2(key, raw);
+ const {e}=_extChangeStep2;
+ let {r}=_extChangeStep2;
+  return /** @type {any} */ ({e, r});
+}
+function extChange2Step3(e){
+  extChangeStep3(e);
+}
 function extChangeStep1(key){
 const raw=lsGet(key);
   return /** @type {any} */ ({raw});

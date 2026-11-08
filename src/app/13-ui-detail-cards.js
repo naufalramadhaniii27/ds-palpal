@@ -113,15 +113,15 @@ function xlMapStep2(m, fs, key){
 }
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
 function xlScan(t,atStart,selfK,mode,m){
-  const _xlScanStep1=xlScanStep1(m, t);
-  const {ta, tb, res, F, n0}=_xlScanStep1;
-  let {p}=_xlScanStep1;
+  const _xlScan2Step1=xlScan2Step1(m, t);
+  const {ta, tb, res, F, n0}=_xlScan2Step1;
+  let {p}=_xlScan2Step1;
   while(p<n0){
     let c=t.charCodeAt(p);
     if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45){ const s0=p; p++; while(p<n0){ c=t.charCodeAt(p); if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45) p++; else break; } ta.push(s0); tb.push(p); }
     else p++;
   }
-  let {i}=xlScanStep2();
+  let {i}=xlScan2Step2();
   while(i<ta.length){
     const a=ta[i], ch=t.charAt(a); let hit=null, len=0;
     if(ch>="A"&&ch<="Z"){
@@ -152,6 +152,16 @@ function xlScan(t,atStart,selfK,mode,m){
     if(hit){ res.push([a,tb[i+len-1],hit]); i+=len; } else i++;
   }
   return res;
+}
+function xlScan2Step1(m, t){
+  const _xlScanStep1=xlScanStep1(m, t);
+  const {ta, tb, res, F, n0}=_xlScanStep1;
+  let {p}=_xlScanStep1;
+  return /** @type {any} */ ({ta, tb, res, F, n0, p});
+}
+function xlScan2Step2(){
+  let {i}=xlScanStep2();
+  return /** @type {any} */ ({i});
 }
 function xlScanStep1(m, t){
   const ta=[], tb=[], res=[], F=m.__f, n0=t.length; let p=0;/* word starts and ends, found by character code: no match arrays are made */

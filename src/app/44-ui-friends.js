@@ -123,7 +123,8 @@ function frSubmit(e){ const f=e.target; if(!f.getAttribute||!f.getAttribute("dat
 function frChange(e){ const t=e.target; if(t.name==="vis"){ const p=FR.w.querySelector(".fr-pick"); if(p) p.hidden=t.value!=="shared"; } }
 
 /* read-only view of a friend's character: the sheet shows it, nothing is saved, Close reloads your own */
-function frView(owner,id){ frApi("view/"+owner+"/"+encodeURIComponent(id)).then((v) =>{ return syPicIn(owner,id,v.data).then((text) =>{ let e,c2,s2;
+function frView(owner,id){ frApi("view/"+owner+"/"+encodeURIComponent(id)).then((v) => frViewFn1(owner, id, v),frErr); }
+function frViewFn1(owner, id, v){ return syPicIn(owner,id,v.data).then((text) =>{ let e,c2,s2;
     try{ e=JSON.parse(text); c2=JSON.parse(e.C); s2=JSON.parse(e.S||"null")||{}; if(!c2||!c2.abilities) throw 0; }catch(x){ toast("This character could not be read."); return; }
     clearTimeout(saveT); clearTimeout(cSaveT); __set_saveT(null); __set_cSaveT(null); __set_FROZEN("view"); FR.view={owner:owner,id:id,v:v};
     const o=clone(DEF); for(const k in s2) if(Object.prototype.hasOwnProperty.call(s2,k)) o[k]=s2[k]; if(!Array.isArray(o.ds)||o.ds.length!==2) o.ds=[0,0]; ["cond","notes","used"].forEach((k) =>{ if(typeof o[k]!=="object"||!o[k]) o[k]={}; });
@@ -133,7 +134,7 @@ function frView(owner,id){ frApi("view/"+owner+"/"+encodeURIComponent(id)).then(
     bar.innerHTML='<span><b>'+esc(v.name)+'</b> by '+esc((v.by||{}).name||"a friend")+' · view only, changes are not kept</span>'+(owner!==(SY.me||{}).id&&v.copyOk?'<button type="button" class="btn press" data-frask="1"'+(v.requested?' disabled':'')+'>'+(v.requested?'Copy requested':'Request a copy')+'</button>':'')+'<button type="button" class="btn pri press" data-frclose="1">Close</button>';
     document.body.appendChild(bar);
     bar.addEventListener("click",(ev) =>{ if(ev.target.closest("[data-frclose]")){ try{ __miReload(); }catch(x){ location.reload(); } return; }
-      const a=ev.target.closest("[data-frask]"); if(!a||a.disabled) return; frAsk(owner,id,v.name,a); }); }); },frErr); }
+      const a=ev.target.closest("[data-frask]"); if(!a||a.disabled) return; frAsk(owner,id,v.name,a); }); }); }
 function frAsk(owner,id,name,btn){ const w=document.createElement("div"); w.className="ask fr-askd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
   w.innerHTML='<div class="askb"><p>Ask for your own copy of <b>'+esc(name)+'</b>? The owner decides. If they approve, it appears in your characters.</p><textarea maxlength="140" rows="2" placeholder="Message (optional)"></textarea><div class="askr"><button type="button" class="btn press" data-n="1">Cancel</button><button type="button" class="btn pri press" data-y="1">Send request</button></div></div>';
   document.body.appendChild(w); w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-n]")){ w.remove(); return; }

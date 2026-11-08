@@ -60,7 +60,12 @@ export function renderFeat(){
   let {h}=_renderFeatStep1;
   order.forEach((o) =>{
     if(featF!=="all"&&featF!==o[0]) return;
-    const body=groups.map((g,gi) =>{ if(featCat(g.g)!==o[0]) return "";
+    const body=groups.map((g, gi) => renderFeatFn1(o, q, g, gi)).join("");
+    if(body) h+='<h3 class="fcat">'+o[1]+(o[0]==="feats"&&C.cls?'<button type="button" class="btn press fmanb" data-bldgo="class">Manage Feats</button>':'')+'</h3>'+body;/* v23 RU38 no. 4 */
+  });
+  ({h}=renderFeatStep2(h, head));
+}
+function renderFeatFn1(o, q, g,gi){ if(featCat(g.g)!==o[0]) return "";
       const items=(g.items||[]).map((f,fi) =>{
         const txt=f.full||f.d||"", hay=(f.n+" "+(f.d||"")+" "+(f.full||"")).toLowerCase(); if(q&&hay.indexOf(q)<0) return ""; const cs=aylSplit(shortX(f.n,g.g)||f.d||f.full||"",clsOfG(g.g)), so=q?null:sumParse(cs.t);/* v35 p15, p17 */
         const rl=resOf(f.n), r=rl[0], chip=actChip(txt);
@@ -71,11 +76,7 @@ export function renderFeat(){
       if(!items) return "";
       if(g.g==="Eldritch Invocations") return '<div class="fnest">'+items+'</div>';
       return (o[0]==="class"?'<h3 class="fgh">'+esc(gName(g.g))+'</h3>':'')+items;
-    }).join("");
-    if(body) h+='<h3 class="fcat">'+o[1]+(o[0]==="feats"&&C.cls?'<button type="button" class="btn press fmanb" data-bldgo="class">Manage Feats</button>':'')+'</h3>'+body;/* v23 RU38 no. 4 */
-  });
-  ({h}=renderFeatStep2(h, head));
-}
+    }
 function renderFeatStep1(){
   const q=featQ.toLowerCase(), groups=(C.features||[]);
   const head='<div class="fsearch"><input id="featQ" type="search" placeholder="Search in Features" value="'+esc(featQ)+'"></div><div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';

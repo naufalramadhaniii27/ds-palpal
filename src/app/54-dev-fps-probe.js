@@ -6,17 +6,14 @@ import {renderAll} from "./35-ui-combo.js";
    and heals 3, four times. Hit Points and temporary Hit Points are put back after the test. Nothing is sent anywhere. */
 (function(){
   if(!/(^|[#&])fps($|&)/.test(location.hash)) return;
-  const {box}=devFpsProbeAnonStep1();
- devFpsProbeAnonStep2(box);
+  const {box}=devFpsProbeAnon2Step1();
   let out=box.querySelector("#fpsOut"), go=box.querySelector("#fpsGo"), cp=box.querySelector("#fpsCopy"), busy=false, rec=null, lines=[];
-  const {wait}=devFpsProbeAnonStep3();
-  const {visible, waitFor}=devFpsProbeAnonStep4();
+  const {wait, visible, waitFor}=devFpsProbeAnon2Step2();
   (function loop(t){ if(rec) rec.push(t); requestAnimationFrame(loop); })(0);
   let loaf=[], gather=false, wins=[];
   function tabOf(t){ let r="?"; wins.forEach((w) =>{ if(t>=w[1]) r=w[0]; }); return r; } try{ new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(gather) loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
-  function loafTxt(){ if(!loaf.length) return ""; const t=loaf.slice().sort((a,b) =>{ return b.duration-a.duration; }).slice(0,3).map((e) =>{ const sc=(e.scripts||[]).slice().sort((a,b) =>{ return b.duration-a.duration; })[0];
-      return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }).join("\n"); return "\n"+t; }
-  const {stat}=devFpsProbeAnonStep5();
+  function loafTxt(){ if(!loaf.length) return ""; const t=loaf.slice().sort((a,b) =>{ return b.duration-a.duration; }).slice(0,3).map((e) => anonFn1___(tabOf, e)).join("\n"); return "\n"+t; }
+  const {stat}=devFpsProbeAnon2Step3();
   async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); const st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
   async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; let withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
     try{
@@ -27,7 +24,7 @@ import {renderAll} from "./35-ui-combo.js";
       await wait(1500);
       if(box.querySelector("#fpsWarm").checked&&mq.matches){ const wb=[].slice.call(document.querySelectorAll("#bnav button")).filter(visible), pgr=document.getElementById("pager"), t0w=performance.now();
         const fr=function(){ return new Promise((r) =>{ requestAnimationFrame(() =>{ requestAnimationFrame(r); }); }); };
-        const imgs=[].slice.call(document.querySelectorAll("#pager img")); imgs.forEach((im) =>{ try{ im.loading="eager"; if(im.decode) im.decode().catch(() =>{}); }catch(er){} });
+        const imgs=[].slice.call(document.querySelectorAll("#pager img")); imgs.forEach((im) => runFn1(im));
         pgr.style.opacity=".01"; pgr.style.transition="none"; for(let w=0;w<wb.length;w++){ wb[w].click(); await fr(); } wb[0].click(); await fr(); pgr.style.opacity=""; pgr.style.transition="";
         lines.push("Quick warm-up done in "+Math.round(performance.now()-t0w)+" ms ("+imgs.length+" images decoded, pager nearly transparent meanwhile)."); out.textContent=lines.join("\n"); await wait(800); }
       const idle=await phase("1 idle 3 s",() =>{ return wait(3000); });
@@ -41,9 +38,29 @@ import {renderAll} from "./35-ui-combo.js";
     }catch(er){ lines.push("Error: "+(er&&er.message||er)); }
     finally{ if(h0!=null){ try{ S.hp=h0; S.tmp=t0; save(); renderAll(true); lines.push("Hit Points put back to "+h0+(t0?" + "+t0+" temporary":"")+"."); }catch(er2){} } out.textContent=lines.join("\n"); busy=false; go.disabled=false; cp.hidden=false; }
   }
-  devFpsProbeAnonStep6(go, run);
+  devFpsProbeAnon2Step4(go, run);
   cp.addEventListener("click",() =>{ const t=lines.join("\n"); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(() =>{ cp.textContent="Copied"; },() =>{ cp.textContent="Select the text and copy"; }); } else cp.textContent="Select the text and copy"; });
 })();
+function devFpsProbeAnon2Step1(){
+  const {box}=devFpsProbeAnonStep1();
+ devFpsProbeAnonStep2(box);
+  return /** @type {any} */ ({box});
+}
+function devFpsProbeAnon2Step2(){
+  const {wait}=devFpsProbeAnonStep3();
+  const {visible, waitFor}=devFpsProbeAnonStep4();
+  return /** @type {any} */ ({wait, visible, waitFor});
+}
+function devFpsProbeAnon2Step3(){
+  const {stat}=devFpsProbeAnonStep5();
+  return /** @type {any} */ ({stat});
+}
+function devFpsProbeAnon2Step4(go, run){
+  devFpsProbeAnonStep6(go, run);
+}
+function anonFn1___(tabOf, e){ const sc=(e.scripts||[]).slice().sort((a,b) =>{ return b.duration-a.duration; })[0];
+      return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }
+function runFn1(im){ try{ im.loading="eager"; if(im.decode) im.decode().catch(() =>{}); }catch(er){} }
 function devFpsProbeAnonStep1(){
   const box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
   box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";

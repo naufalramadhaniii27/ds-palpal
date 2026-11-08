@@ -57,15 +57,23 @@ function recapData(){
  const {J}=recapDataStep1(); if(!J) return null;
  const {all}=recapDataStep2(J); if(!all.length) return null;
   const {ses, o}=recapDataStep3(all);
-  ses.forEach((e) =>{ let x=String(e.x||""), m;
+  ses.forEach((e) => recapDataFn1(o, e));
+  recapDataStep4(o); return o; }
+function recapDataFn1(o, e){
+ const _recapDataFn1Step1=recapDataFn1Step1(e);
+ const {x}=_recapDataFn1Step1;
+ let {m}=_recapDataFn1Step1;
     if((e.k==="dmg"||e.k==="hurt")&&(m=/Took (\d+)/.exec(x))) o.dmg+=+m[1]; else if(e.k==="heal"&&(m=/(\d+)/.exec(x))) o.heal+=+m[1];
     else if(e.k==="cast"){ const s=x.replace(/^Cast /,""); o.cast[s]=(o.cast[s]||0)+1; }
     else if(e.k==="roll"){ o.rolls++; if(/natural 20/.test(x)) o.n20++; if(/natural 1\)/.test(x)) o.n1++; }
     else if(e.k==="cond"&&/^Became /.test(x)){ const c=x.slice(7); if(o.cond.indexOf(c)<0) o.cond.push(c); }
     else if(e.k==="rest") o.rest.push(x); else if(e.k==="level") o.level++; else if(e.k==="combat") o.fights++;
     else if(e.k==="coin"&&(m=/([+-]?\d+(\.\d+)?)/.exec(x))) o.coin+=+m[1];
-    else if(e.k==="conc"){ if(/held/.test(x)) o.cs++; else o.cb++; } });
-  recapDataStep4(o); return o; }
+    else if(e.k==="conc"){ if(/held/.test(x)) o.cs++; else o.cb++; } }
+function recapDataFn1Step1(e){
+let x=String(e.x||""), m;
+  return /** @type {any} */ ({x, m});
+}
 function recapDataStep1(){
 const J=env.__miJournal;
   return /** @type {any} */ ({J});
