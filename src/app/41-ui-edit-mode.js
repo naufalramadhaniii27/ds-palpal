@@ -5,7 +5,7 @@ import {B,D,derive} from "./06-logic-derivation.js";
 import {__set_renderAbilities,__set_renderSkillsPage,__set_renderTiles,renderAbilities,renderSkillsPage,renderTiles} from "./08-ui-render-sheet-and-actions.js";import {__set_renderActions,renderActions} from "./08b-ui-render-summaries-actions.js";
 import {__set_syncHP,syncHP} from "./09-ui-hit-points-playbar-death-saves.js";
 import {refreshEntry,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {openEditor} from "./14-ui-editor.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {__set_renderSpells,renderSpells} from "./23e-ui-spells-dc.js";
 import {cuK} from "./26-ui-customize.js";
@@ -21,7 +21,10 @@ bindLive("edmSet",{get:function(){return edmSet;}});
 /* ===== v34 p01 RU85: Edit mode. Tap a number to set your own value (S.cust), Use calculated, Reset all, ask() after Apply ===== */
 export var CU0={}, EDM=false, cuMT=0;
 /* the S.cust key and field behind a number on the sheet (data-bd key), with its label, kind, and limits */
-function cuqOf(key){ let m, k=String(key||"");
+function cuqOf(key){
+ const _cuqOfStep1=cuqOfStep1(key);
+ const {k}=_cuqOfStep1;
+ let {m}=_cuqOfStep1;
   if((m=/^ab-([A-Z]{3})$/.exec(k))&&ABN[m[1]]) return {k:"n:"+k,f:"o",fb:"b",t:ABN[m[1]]+" score",kind:"int",min:1,max:30};
   if((m=/^save-([A-Z]{3})$/.exec(k))&&ABN[m[1]]) return {k:"n:"+k,f:"o",fb:"b",t:ABN[m[1]]+" save",kind:"sgn",min:-20,max:30};
   if((m=/^sk-(\d+)$/.exec(k))){ const s=(C.skills||[])[+m[1]]; return s?{k:"n:sk:"+s.n,f:"o",fb:"b",t:s.n,kind:"sgn",min:-20,max:30}:null; }
@@ -34,6 +37,10 @@ function cuqOf(key){ let m, k=String(key||"");
   if((m=/^(ah|ad)-(\d+)$/.exec(k))){ const a=(C.attacks||[])[+m[2]]; if(!a) return null; return m[1]==="ah"?{k:"a:"+a.n,f:"ho",fb:"hb",t:a.n+" to hit",kind:"sgn",min:-20,max:40}:{k:"a:"+a.n,f:"do",fb:"db",t:a.n+" damage",kind:"dmg"}; }
   if((m=/^sp(atk|dc)(-[A-Z]{3})?$/.exec(k))&&C.spellcasting) return {k:"n:sp"+m[1]+(m[2]||""),f:"o",t:(m[1]==="atk"?"Spell Attack":"Spell Save DC")+(m[2]?" ("+m[2].slice(1)+")":""),kind:m[1]==="atk"?"sgn":"int",min:m[1]==="atk"?-20:0,max:m[1]==="atk"?40:60};
   return null; }
+function cuqOfStep1(key){
+let m, k=String(key||"");
+  return /** @type {any} */ ({k, m});
+}
 function cuqSet(q){ if(!q) return false; if(q.k==="hp") return num(S.hpOver,0)>0; const c=cuK(q.k); if(!c) return false; const e=function(f){ return f&&c[f]!=null&&c[f]!==""; }; return e(q.f)||e(q.fb); }
 function cuqCur(key){ const b=B[key]; if(!b) return ""; const t=String(b.total).replace(/−/g,"-"); return t; }
 function cuqCalc(q,key){ let c=q.k==="hp"?CU0.hp:CU0[q.k+"|"+q.f]; if(c==null||!cuqSet(q)) c=cuqCur(key); return c; }

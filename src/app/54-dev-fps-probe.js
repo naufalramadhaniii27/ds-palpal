@@ -6,22 +6,17 @@ import {renderAll} from "./35-ui-combo.js";
    and heals 3, four times. Hit Points and temporary Hit Points are put back after the test. Nothing is sent anywhere. */
 (function(){
   if(!/(^|[#&])fps($|&)/.test(location.hash)) return;
-  const box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
-  box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";
-  box.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Frame rate test</b><button id="fpsGo" style="padding:6px 12px;border-radius:8px">Start</button><button id="fpsCopy" style="padding:6px 12px;border-radius:8px" hidden>Copy result</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsDmg" checked> include damage and heal (HP restored after)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsWarm"> quick warm-up first (pager nearly transparent)</label></div><pre id="fpsOut" style="margin:8px 0 0;white-space:pre-wrap">Press Start. Keep this tab in front and do not touch the screen until it says Done.</pre>';
-  box.setAttribute("popover","manual"); box.style.top="auto"; box.style.margin="0"; box.style.width="auto"; box.style.height="auto";/* top layer, so the Home screen cannot cover it */
-  document.documentElement.appendChild(box); try{ box.showPopover(); }catch(er){}/* outside body: body is inert while a dialog or the Home screen is open */
+  const {box}=devFpsProbeAnonStep1();
+ devFpsProbeAnonStep2(box);
   let out=box.querySelector("#fpsOut"), go=box.querySelector("#fpsGo"), cp=box.querySelector("#fpsCopy"), busy=false, rec=null, lines=[];
-  function wait(ms){ return new Promise((r) =>{ setTimeout(r,ms); }); }
-  function visible(el){ return !!el&&!!el.getClientRects().length; }
-  function waitFor(fn,ms){ const t0=performance.now(); return new Promise((res) =>{ (function p(){ const v=fn(); if(v||performance.now()-t0>ms) return res(v); setTimeout(p,100); })(); }); }
+  const {wait}=devFpsProbeAnonStep3();
+  const {visible, waitFor}=devFpsProbeAnonStep4();
   (function loop(t){ if(rec) rec.push(t); requestAnimationFrame(loop); })(0);
   let loaf=[], gather=false, wins=[];
   function tabOf(t){ let r="?"; wins.forEach((w) =>{ if(t>=w[1]) r=w[0]; }); return r; } try{ new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(gather) loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
   function loafTxt(){ if(!loaf.length) return ""; const t=loaf.slice().sort((a,b) =>{ return b.duration-a.duration; }).slice(0,3).map((e) =>{ const sc=(e.scripts||[]).slice().sort((a,b) =>{ return b.duration-a.duration; })[0];
       return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }).join("\n"); return "\n"+t; }
-  function stat(fr){ if(fr.length<3) return null; let d=[], i; for(i=1;i<fr.length;i++) d.push(fr[i]-fr[i-1]); const s=d.slice().sort((a,b) =>{ return a-b; }), n=d.length, over=function(x){ return Math.round(100*d.filter((v) =>{ return v>x; }).length/n); };
-    return {fps:Math.round(10*n/((fr[fr.length-1]-fr[0])/1000))/10, med:Math.round(10*s[n>>1])/10, p95:Math.round(10*s[Math.max(0,Math.ceil(n*.95)-1)])/10, worst:Math.round(s[n-1]), o17:over(17.7), o33:over(34.4), n:n}; }
+  const {stat}=devFpsProbeAnonStep5();
   async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); const st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
   async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; let withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
     try{
@@ -46,6 +41,34 @@ import {renderAll} from "./35-ui-combo.js";
     }catch(er){ lines.push("Error: "+(er&&er.message||er)); }
     finally{ if(h0!=null){ try{ S.hp=h0; S.tmp=t0; save(); renderAll(true); lines.push("Hit Points put back to "+h0+(t0?" + "+t0+" temporary":"")+"."); }catch(er2){} } out.textContent=lines.join("\n"); busy=false; go.disabled=false; cp.hidden=false; }
   }
-  go.addEventListener("click",run);
+  devFpsProbeAnonStep6(go, run);
   cp.addEventListener("click",() =>{ const t=lines.join("\n"); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(() =>{ cp.textContent="Copied"; },() =>{ cp.textContent="Select the text and copy"; }); } else cp.textContent="Select the text and copy"; });
 })();
+function devFpsProbeAnonStep1(){
+  const box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
+  box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";
+  box.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Frame rate test</b><button id="fpsGo" style="padding:6px 12px;border-radius:8px">Start</button><button id="fpsCopy" style="padding:6px 12px;border-radius:8px" hidden>Copy result</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsDmg" checked> include damage and heal (HP restored after)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="fpsWarm"> quick warm-up first (pager nearly transparent)</label></div><pre id="fpsOut" style="margin:8px 0 0;white-space:pre-wrap">Press Start. Keep this tab in front and do not touch the screen until it says Done.</pre>';
+  box.setAttribute("popover","manual"); box.style.top="auto"; box.style.margin="0"; box.style.width="auto"; box.style.height="auto";/* top layer, so the Home screen cannot cover it */
+  document.documentElement.appendChild(box);
+  return /** @type {any} */ ({box});
+}
+function devFpsProbeAnonStep2(box){
+try{ box.showPopover(); }catch(er){}/* outside body: body is inert while a dialog or the Home screen is open */
+}
+function devFpsProbeAnonStep3(){
+  function wait(ms){ return new Promise((r) =>{ setTimeout(r,ms); }); }
+  return /** @type {any} */ ({wait});
+}
+function devFpsProbeAnonStep4(){
+  function visible(el){ return !!el&&!!el.getClientRects().length; }
+  function waitFor(fn,ms){ const t0=performance.now(); return new Promise((res) =>{ (function p(){ const v=fn(); if(v||performance.now()-t0>ms) return res(v); setTimeout(p,100); })(); }); }
+  return /** @type {any} */ ({visible, waitFor});
+}
+function devFpsProbeAnonStep5(){
+  function stat(fr){ if(fr.length<3) return null; let d=[], i; for(i=1;i<fr.length;i++) d.push(fr[i]-fr[i-1]); const s=d.slice().sort((a,b) =>{ return a-b; }), n=d.length, over=function(x){ return Math.round(100*d.filter((v) =>{ return v>x; }).length/n); };
+    return {fps:Math.round(10*n/((fr[fr.length-1]-fr[0])/1000))/10, med:Math.round(10*s[n>>1])/10, p95:Math.round(10*s[Math.max(0,Math.ceil(n*.95)-1)])/10, worst:Math.round(s[n-1]), o17:over(17.7), o33:over(34.4), n:n}; }
+  return /** @type {any} */ ({stat});
+}
+function devFpsProbeAnonStep6(go, run){
+  go.addEventListener("click",run);
+}

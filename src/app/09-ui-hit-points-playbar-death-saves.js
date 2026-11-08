@@ -38,7 +38,8 @@ export function syncHP(instant){
   syncDeath(); vbSync();
 }
 /* v30 RU87, RU84: play bar on phones (HP, Temp HP, AC, conditions with Exhaustion, Concentration, Heroic Inspiration) */
-export function vbSync(){ if(lateGet("PIP")) try{ pipSync(); }catch(er){} ohSync(); const vb=document.getElementById("vbar"); if(!vb||!D||!D.hpmax) return;
+export function vbSync(){
+ const {vb}=vbSyncStep1(); if(!vb||!D||!D.hpmax) return;
   try{ const hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), p=clamp(hp/D.hpmax,0,1);
   const hasI=typeof lateGet("ICO")==="object"&&!!lateGet("ICO"); if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); render(raw(ico("hp-heal","vb-hi")),$("#vbHpI")); render(raw(ico("tag-concentration")),$("#vbConc")); render(raw(ico("ui-star","vb-star")),$("#vbInsp")); }
   if(env.__miOdo&&env.__MI&&!env.__MI.rm()) env.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
@@ -53,6 +54,10 @@ export function vbSync(){ if(lateGet("PIP")) try{ pipSync(); }catch(er){} ohSync
   cb.setAttribute("aria-label",L.length?"Conditions: "+L.join(", ")+". Change conditions":"No conditions. Add a condition");
   const o=concOf(), cc=$("#vbConc"); cc.hidden=!o; if(o){ const i=spIx(o.n); if(i>=0) cc.setAttribute("data-info","sp:"+i); else cc.removeAttribute("data-info"); cc.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); cc.title="Concentrating on "+o.n; }
   $("#vbInsp").setAttribute("aria-pressed",S.insp?"true":"false"); }catch(er){}
+}
+function vbSyncStep1(){
+if(lateGet("PIP")) try{ pipSync(); }catch(er){} ohSync(); const vb=document.getElementById("vbar");
+  return /** @type {any} */ ({vb});
 }
 /* Hit Points from any page: Main scrolls to the card, other pages open the same controls in a bottom sheet */
 export function hpDockBack(){ const s=document.getElementById("hpSlot"), h=document.getElementById("hpBox"), b=document.getElementById("sheetBody"); if(b) b.classList.remove("hpdock"); if(s&&h&&s.nextElementSibling!==h) s.parentNode.insertBefore(h,s.nextSibling); }

@@ -24,6 +24,11 @@ function bonusList(path,arr,addLabel){
 }
 const ABOPTS=ABK.map((k) =>{return [k,k]});
 function edHTML(){
+  let {h}=edHTMLStep1();
+  ({h}=edHTMLStep2(h));
+  return h;
+}
+function edHTMLStep1(){
   let h='<div class="ed-nav">'+ED_TABS.map((t) =>{return '<button type="button" data-edtab="'+t[0]+'" class="'+(edTab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join("")+'</div>';
   h+='<div class="ed-sec'+(edTab==="id"?' on':'')+'" data-sec="id"><p class="ed-help">Every change applies right away and is saved on this device. Level drives Proficiency Bonus, Hit Points, and Hit Dice automatically.</p><div class="ed-grid">'+
     fld("Name",inp("name",C.name),"w2")+fld("Species",inp("species",C.species))+fld("Size",inp("size",C.size))+
@@ -68,6 +73,9 @@ function edHTML(){
       fld("Name",inp(p+".n",it.n),"w2")+fld("Quantity",inp(p+".q",it.q,{t:"n"}))+fld("Weight each (lb)",inp(p+".w",it.w,{t:"n"}))+
       fld("Description",inp(p+".d",it.d||""),"full")+'<div class="ed-f">'+inp(p+".eq",eqOn(it),{type:"check",label:"Worn"})+'</div></div></div>';
   }).join("")+'<button type="button" class="ed-add" data-act="add" data-list="inv" data-tpl="item">+ Add item</button></div>';
+  return /** @type {any} */ ({h});
+}
+function edHTMLStep2(h){
   h+='<div class="ed-sec'+(edTab==="lu"?' on':'')+'" data-sec="lu"><p class="ed-help">Hit Dice follow your level. A multiclass character has one Hit Dice row per die type. Short Rest options: all uses back, or one use back (like Second Wind).</p>'+(C.res||[]).map((r,i) =>{
     const p="res."+i;
     return '<div class="ed-card"><div class="ed-ct"><b>'+esc(r.n||"Resource")+'</b><button type="button" class="ed-del" data-act="del" data-list="res" data-i="'+i+'">Remove</button></div><div class="ed-grid">'+
@@ -90,7 +98,7 @@ function edHTML(){
   }).join("")+'<button type="button" class="ed-add" data-act="add" data-list="features" data-tpl="group">+ Add group</button></div>';
   h+='<div class="ed-card" style="margin-top:14px"><div class="ed-ct"><b>Import build</b></div><p class="ed-help">Paste the text from PHB 2024 Builder (Export), then tap Apply. This replaces the build. Notes, HP, and conditions stay.</p><textarea id="impTxt" class="ed-in" rows="4" style="width:100%;font-family:var(--f-type);font-size:12px" placeholder="Paste exported build here"></textarea><div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="btn press" data-act="impApply" style="flex:1">Apply import</button><button type="button" class="btn press" data-act="impCopy" style="flex:1">Copy current build</button></div></div>';
   h+='<div class="ed-foot"><p>Saved automatically on this device.</p><button type="button" class="btn warn press" data-act="reset">Clear Build</button></div>';
-  return h;
+  return /** @type {any} */ ({h});
 }
 export var TPL={
   bonus:function(){return {s:"",v:1}},

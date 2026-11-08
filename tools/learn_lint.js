@@ -5,7 +5,9 @@
    no stiff Indonesian words (rencana-kerja-learn.md, U28), no "Anda", the same numbers in both languages, glossary keys that exist.
    Averages over all text: English at most 10 words per sentence, Indonesian at most 9. */
 var fs = require("fs"), path = process.argv[2], stats = process.argv.indexOf("--stats") > 0;
-var src = fs.readFileSync(path, "utf8").replace(/^export var /m, "var "); var LEARN = (new Function(src + "\nreturn LEARN;"))();
+/* the places table is split in data pieces next to the main file (45b, 45c: "export const PLACES_X"); they come first, the import lines of the main file are dropped */
+var dir = require("path").dirname(path), pieces = fs.readdirSync(dir).filter(function (f) { return /^45[b-z]-data-learn.*\.js$/.test(f); }).sort().map(function (f) { return fs.readFileSync(require("path").join(dir, f), "utf8").replace(/^export /gm, ""); }).join("\n");
+var src = pieces + "\n" + fs.readFileSync(path, "utf8").replace(/^import .*$/gm, "").replace(/^export var /m, "var "); var LEARN = (new Function(src + "\nreturn LEARN;"))();
 var STIFF = ["apabila", "jika", "merupakan", "tersebut", "dapat", "memiliki", "melakukan", "sehingga", "namun", "mengenai", "terlebih dahulu", "yakni", "yaitu", "maka", "anda"];
 var MAX = { en: 14, id: 12 }, AVG = { en: 10, id: 9 }, bad = [], tot = { en: [0, 0], id: [0, 0] }, pairs = 0;
 function plain(s) { return s.replace(/\[\[(\w+)\|([^\]]+)\]\]/g, "$2").replace(/["“”]/g, ""); }

@@ -4,7 +4,7 @@ import {C,saveC} from "./04-logic-storage.js";
 import {ask,bldGuard,bldSync,esc,fmtW,invAt,num,toast,viaBld} from "./05-logic-helpers.js";
 import {renderInv} from "./08c-ui-render-inventory-features-notes.js";
 import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {setTab} from "./21-ui-tabs-pager.js";
 
 import {env} from "./00-env.js";

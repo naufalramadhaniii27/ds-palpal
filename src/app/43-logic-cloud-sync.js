@@ -17,7 +17,8 @@ function syGet(){ try{ const o=JSON.parse(__store.getItem(SYKEY)||"null"); retur
 function sySet(o){ try{ __store.setItem(SYKEY,JSON.stringify(o)); }catch(e){} }
 export function syText(e){ const k=Object.keys(e).filter((x) =>{ return x!=="t"; }).sort(), o={}; k.forEach((x) =>{ o[x]=e[x]; }); return JSON.stringify(o); }
 /* every real character on this device as {id:{text,h,name,sub}}. The open one is read live, without saving */
-function syLocal(){ const r=rGet(), out={}; if(!r||!r.chars) return out;
+function syLocal(){
+ const {r, out}=syLocalStep1(); if(!r||!r.chars) return out;
   Object.keys(r.chars).forEach((id) =>{ let e=r.chars[id]; if(!e||e.ph) return; e=Object.assign({},e);
     /* the open character is read from its stored slots, not from memory: right after a switch the memory still holds the previous one */
     if(id===r.active&&!FROZEN){ try{ const c2=lsGet(CKEY), s2=lsGet(KEY), cc=JSON.parse(c2||"null"); if(cc){ e.name=cc.name||e.name; e.sub=(cc.species||"")+" "+(cc.clsLabel||((cc.cls||"")+" "+(cc.level||1))); } e.B=lsGet(lateGet("BKEY")); e.C=c2; e.S=s2; }catch(x){} }
@@ -26,6 +27,10 @@ function syLocal(){ const r=rGet(), out={}; if(!r||!r.chars) return out;
     try{ const c3=JSON.parse(e.C||"null")||{}; sum.lv=+c3.level||1; sum.cls=String(c3.clsLabel||((c3.cls||"")+" "+(c3.level||1))).slice(0,80); sum.sp=String(c3.species||"").split(" (")[0].slice(0,40); }catch(x){}
     const t=syText(e); out[id]={text:t,h:hashS(t),name:e.name||"",sub:e.sub||"",pic:pic,ph:ph,sum:JSON.stringify(sum)}; });
   return out; }
+function syLocalStep1(){
+const r=rGet(), out={};
+  return /** @type {any} */ ({r, out});
+}
 export function syApi(path,opt){ opt=opt||{}; opt.credentials="same-origin"; opt.cache="no-store"; opt.redirect="manual";
   return fetch("/api/"+path,opt).then((res) =>{ if(res.type==="opaqueredirect"||res.status===0) throw {signin:1};
     const ct=res.headers.get("content-type")||""; if(ct.indexOf("application/json")<0) throw {noapi:1};
@@ -45,13 +50,9 @@ function syTake(id,text,r){ let e; try{ e=JSON.parse(text); }catch(x){ return ""
 function syRun(why){
   if(SY.on&&SY.busy&&why!=="tick"){ SY.again=why; return; }
   if(!SY.on||SY.busy||FROZEN) return; if(!navigator.onLine){ syState("offline"); return; }
-  SY.busy=true; const sy=syGet(), L=syLocal(), now=Date.now(); syLog("run "+why);
-  /* a copy taken from the cloud is stored again by the app as it loads (version stamps, derived values). That first local form counts as the synced one */
-  Object.keys(sy.c).forEach((id) =>{ const k=sy.c[id]; if(k.fresh&&L[id]&&SY.first){ k.h=L[id].h; delete k.fresh; syBaseSet(id,L[id].text); } }); sySet(sy);
-  const dirty=Object.keys(L).some((id) =>{ return !sy.c[id]||sy.c[id].h!==L[id].h; })||Object.keys(sy.c).some((id) =>{ return !L[id]; });
-  const gap=SY.mode==="save"?60000:10000, needPull=why==="start"||why==="show"||now-SY.pull>300000;
+  const {sy, L, now, dirty, gap, needPull}=syRunStep1(why);
   if(SY.mode==="pause"||(!needPull&&(!dirty||now-SY.push<gap))){ SY.busy=false; if(!dirty&&SY.st!=="wait") syState("ok"); return; }
-  syState("busy");
+  syRunStep2();
   syApi("chars").then((list) =>{ SY.pull=Date.now(); SY.mode=list.mode||"normal"; const srv={}; (list.chars||[]).forEach((c) =>{ srv[c.id]=c; });
     const r=rGet()||{active:null,chars:{}}; r.chars=r.chars||{}; let hadNone=!Object.keys(L).length, jobs=[], changedR=false, reload=false;
     Object.keys(srv).forEach((id) =>{ const s=srv[id], k=sy.c[id], l=L[id];
@@ -103,6 +104,17 @@ function syRun(why){
     if(e.signin){ syState("signin"); return; }
     syState("offline"); syBanners(); syAgain(); });
 }
+function syRunStep1(why){
+  SY.busy=true; const sy=syGet(), L=syLocal(), now=Date.now(); syLog("run "+why);
+  /* a copy taken from the cloud is stored again by the app as it loads (version stamps, derived values). That first local form counts as the synced one */
+  Object.keys(sy.c).forEach((id) =>{ const k=sy.c[id]; if(k.fresh&&L[id]&&SY.first){ k.h=L[id].h; delete k.fresh; syBaseSet(id,L[id].text); } }); sySet(sy);
+  const dirty=Object.keys(L).some((id) =>{ return !sy.c[id]||sy.c[id].h!==L[id].h; })||Object.keys(sy.c).some((id) =>{ return !L[id]; });
+  const gap=SY.mode==="save"?60000:10000, needPull=why==="start"||why==="show"||now-SY.pull>300000;
+  return /** @type {any} */ ({sy, L, now, dirty, gap, needPull});
+}
+function syRunStep2(){
+  syState("busy");
+}
 /* settings that follow the person: only these keys, newest wins */
 const PF_KEYS=["mi-fx","mi-bz","mi-snd","mi-clsart","cs-ui-remind","cs-learn-v1"];/* T11: Learn progress and language */
 function pfLocal(){ const o={}; PF_KEYS.forEach((k) =>{ const v=lsGet(k); if(v!=null) o[k]=v; }); return JSON.stringify(o); }
@@ -133,7 +145,11 @@ export function syIcon(){ const on=SY.on&&SY.st!=="off";
     if(b.getAttribute("data-st")===SY.st&&b.firstChild) return; b.setAttribute("data-st",SY.st); b.setAttribute("aria-label","Cloud backup: "+syMsg());
     b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(SY_ICO[SY.st]||SY_ICO.ok)+'</svg>'; }); }
 /* cloud dialog: state, characters in the cloud, recycle bin, versions. Restoring always makes a new character, nothing is overwritten */
-function syOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(); const w=document.createElement("div"); w.id="bkp"; w.className="bkp sy-dlg"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","bkpT");
+function syOpen(){
+ const {w, list, vers}=syOpenStep1();
+  syOpenStep2(w, list, vers); }
+function syOpenStep1(){
+const old=document.getElementById("bkp"); if(old) old.remove(); const w=document.createElement("div"); w.id="bkp"; w.className="bkp sy-dlg"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","bkpT");
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="bkpT">Cloud backup</b><button type="button" class="bkpx" data-syx="1" aria-label="Close">×</button></div><p class="sy-st">'+esc(syMsg())+'</p><div class="sy-list"><p class="sy-note">Loading…</p></div></div>';
   document.body.appendChild(w); const box=w.querySelector(".sy-list");
   function when(t){ try{ return new Date(t).toLocaleString(undefined,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
@@ -144,6 +160,9 @@ function syOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(
   function vers(id){ box.innerHTML='<p class="sy-note">Loading…</p>'; syApi("chars/"+encodeURIComponent(id)+"/versions").then((j) =>{ const v=j.versions||[];
       box.innerHTML='<button type="button" class="btn press" data-syb="1">← All characters</button>'+(v.length?'<b class="sy-h">Earlier versions</b>'+v.map((x) =>{ return '<div class="sy-row"><span><b>'+esc(x.name||"Unnamed")+'</b><small>'+esc(when(x.t))+(x.why==="other-device"?" · from another device":"")+'</small></span><button type="button" class="btn press" data-syc="'+esc(id)+'" data-rev="'+x.rev+'">Restore as copy</button></div>'; }).join(""):'<p class="sy-note">No earlier versions yet. A version is kept at most once an hour while you edit.</p>'); },
     () =>{ box.innerHTML='<p class="sy-note">The cloud cannot be reached now.</p>'; }); }
+  return /** @type {any} */ ({w, list, vers});
+}
+function syOpenStep2(w, list, vers){
   function copy(text,label){ let e; try{ e=JSON.parse(text); }catch(x){ toast("This copy could not be read."); return; } const r=rSnap(rEnsure()), nid=newId(r);
     e.B=fixCid(e.B==null?null:e.B,nid); e.name=(e.name||"Character")+(label?" ("+label+")":""); try{ const cc=JSON.parse(e.C); cc.name=e.name; e.C=JSON.stringify(cc); }catch(x){}
     e.created=Date.now(); e.t=Date.now(); delete e.ph; r.chars[nid]=e; if(!rSave(r)) return; w.remove(); toast("Restored as a new character: "+e.name+"."); const g=document.getElementById("hgrid"); if(g&&typeof homeCards==="function") g.innerHTML=homeCards(true); }
@@ -154,7 +173,8 @@ function syOpen(){ const old=document.getElementById("bkp"); if(old) old.remove(
     if(b.hasAttribute("data-syv")){ vers(b.getAttribute("data-syv")); return; }
     if(b.hasAttribute("data-syr")){ syApi("chars/"+encodeURIComponent(b.getAttribute("data-syr"))).then((c) =>{ return syPicIn(SY.me.id,c.id,c.data).then((t) =>{ copy(t,""); }); },() =>{ toast("The cloud cannot be reached now."); }); return; }
     if(b.hasAttribute("data-syc")){ const cid=b.getAttribute("data-syc"); syApi("chars/"+encodeURIComponent(cid)+"/versions/"+b.getAttribute("data-rev")).then((v) =>{ return syPicIn(SY.me.id,cid,v.data).then((t) =>{ copy(t,"restored"); }); },() =>{ toast("The cloud cannot be reached now."); }); } });
-  list(); }
+  list();
+}
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-sync]"); if(!b) return; e.preventDefault(); toast(syMsg()); syOpen(); });
 /* pushes changed small characters while the page closes (keepalive allows about 64 KB) */
 function syFlush(){ if(Date.now()-(SY.fl||0)<1500) return; SY.fl=Date.now(); syLog("flush"); if(!SY.on||SY.mode==="pause"||!navigator.onLine||FROZEN) return; const sy=syGet(), L=syLocal();

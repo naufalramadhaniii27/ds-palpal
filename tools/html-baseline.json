@@ -24,8 +24,9 @@
  "src/app/23e-ui-spells-dc.js": 2,
  "src/app/24-ui-manage-spells.js": 1,
  "src/app/27-ui-party-search-commands-library.js": 3,
- "src/app/27b-ui-library.js": 10,
+ "src/app/27b-ui-library.js": 3,
  "src/app/27c-ui-report-pins.js": 2,
+ "src/app/27d-ui-library-search-open.js": 7,
  "src/app/29b-ui-creatures-extras.js": 4,
  "src/app/30-ui-icons.js": 6,
  "src/app/31-ui-tour-and-focus.js": 1,
@@ -72,5 +73,6 @@
  "src/fx/24-class-art.js": 1,
  "src/learn/46-logic-learn.js": 1,
  "src/learn/47-ui-learn.js": 7,
- "src/tg/30-ui-tg.js": 7
+ "src/tg/30-ui-tg.js": 1,
+ "src/tg/31-ui-tg-field.js": 6
 }

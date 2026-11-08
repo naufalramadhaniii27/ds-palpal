@@ -1,6 +1,6 @@
 {
  "app/12-ui-bottom-sheet-modal.js::entryContent": 0,
- "app/13-ui-detail-cards.js::renderDetail": 0,
+ "app/13b-ui-detail-spell-targets-render.js::renderDetail": 0,
  "app/27-ui-party-search-commands-library.js::gsHTML": 0,
  "app/27-ui-party-search-commands-library.js::palWords": 0,
  "app/40d-ui-overlays-context-dock.js::ctxSpec": 0,

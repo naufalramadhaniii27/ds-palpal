@@ -22,15 +22,20 @@ bindLive("saveNotesH",{get:function(){return saveNotesH;}});
 bindLive("tyIcon",{get:function(){return tyIcon;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 export function icoText(el){ const t=(el.getAttribute("aria-label")||el.textContent||"").replace(/\s+/g," ").trim(); for(let i=0;i<lateGet("ICO_TXT").length;i++) if(lateGet("ICO_TXT")[i][0].test(t)) return lateGet("ICO_TXT")[i][1]; return ""; }
-export function icoItem(it){ if(!it) return "item-gear"; const n=it.n||"", t=String(it.type||"")+" "+(it.rar||""), b=n.replace(/, \+\d$/,"");
-  if(!lateGet("ICO_CAT")&&typeof DMGI!=="undefined"){ lateSet("ICO_CAT",{}); DMGI.forEach((x) =>{ lateGet("ICO_CAT")[x[0]]=x[1]; }); }
-  const cat=(lateGet("ICO_CAT")&&(lateGet("ICO_CAT")[n]||lateGet("ICO_CAT")[n.replace(/ \(.*\)$/,"")]))||(/^(Rod|Staff|Wand|Ring|Potion|Scroll|Wondrous Item)\b/.exec(String(it.type||""))||[""])[0];/* R2-2: the item type when the DMG list has no entry *//* v24 M4: the DMG category decides for magic items */
+export function icoItem(it){ if(!it) return "item-gear";
+ const {n, t, b, cat}=icoItemStep1(it);
   if(typeof ctOf==="function"&&ctOf(n)) return "item-container"; if(/^(Arrows|Bolts|Sling Bullets|Needles|Firearm Bullets)\b|^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet), \+/.test(n)) return "item-ammo";
   if(cat&&!(typeof ctOf==="function"&&ctOf(n))){ if(/^Armor/.test(cat)) return /^Shield\b|\bShield$|, Shield|Shield,/.test(n)?"item-shield":"item-armor"; if(/^Weapon/.test(cat)) return /^(Arrow|Bolt|Needle|Sling Bullet|Firearm Bullet|Ammunition)/.test(n)?"item-ammo":"item-weapon";
     const K={Potion:"item-potion",Ring:"item-ring",Rod:"item-rod",Scroll:"item-scroll",Staff:"item-staff",Wand:"item-wand","Wondrous Item":"item-wondrous"}; for(const k in K) if(cat.indexOf(k)===0) return K[k]; }
   if(/^Shield\b/.test(b)) return "item-shield"; if(/Weapon/.test(t)) return "item-weapon"; if(/Armor/.test(t)) return "item-armor";
   if(/^Potion|^Elixir|^Oil of|^Philter/.test(n)) return "item-potion"; if(/^Ring\b|Ring of/.test(n)) return "item-ring"; if(/^Spell Scroll|Scroll/.test(n)) return "item-scroll";
   if(/^Rod\b|Rod of/.test(n)) return "item-rod"; if(/^Staff\b|Staff of/.test(n)) return "item-staff"; if(/^Wand\b|Wand of/.test(n)) return "item-wand"; if(it.rar||/Wondrous/.test(t)) return "item-wondrous"; return "item-gear"; }
+function icoItemStep1(it){
+const n=it.n||"", t=String(it.type||"")+" "+(it.rar||""), b=n.replace(/, \+\d$/,"");
+  if(!lateGet("ICO_CAT")&&typeof DMGI!=="undefined"){ lateSet("ICO_CAT",{}); DMGI.forEach((x) =>{ lateGet("ICO_CAT")[x[0]]=x[1]; }); }
+  const cat=(lateGet("ICO_CAT")&&(lateGet("ICO_CAT")[n]||lateGet("ICO_CAT")[n.replace(/ \(.*\)$/,"")]))||(/^(Rod|Staff|Wand|Ring|Potion|Scroll|Wondrous Item)\b/.exec(String(it.type||""))||[""])[0];/* R2-2: the item type when the DMG list has no entry *//* v24 M4: the DMG category decides for magic items */
+  return /** @type {any} */ ({n, t, b, cat});
+}
 export function icoCls(t){ const m=/\b(Artificer|Barbarian|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Warlock|Wizard)\b/.exec(t||""); return m?"cls-"+m[1].toLowerCase():""; }
 /* duotone line icons (owner 2026-11-06): a finer line plus a soft fill in the colour of the meaning, set by data-ic */
 const IC_DT={acid:1,bludgeoning:1,cold:1,fire:1,force:1,lightning:1,necrotic:1,piercing:1,poison:1,psychic:1,radiant:1,slashing:1,thunder:1};
