@@ -42,3 +42,18 @@ Saran langkah berikut: (1) cari kenapa `mi-hd` muncul sesaat di panel tersembuny
 ## Tes
 
 Hanya `tests/solid_fx_snapshot.py` yang berubah (alat, bukan CI). Daftar tes penuh tidak dijalankan karena `src/` tidak berubah. Guard: tidak ada perubahan hitungan (guard_size 120 pelanggar pada main).
+
+## Lanjutan (12:25 sampai 13:10)
+
+Sebab `mi-hd`: fx/08 baris 45 (B5 Heading reveal) memberi kelas `mi-hd` pada `.ptitle` saat IntersectionObserver (threshold .6) melihatnya, dan kelas itu tinggal. Ia hanya memicu animasi CSS naik, tidak dibaca kode lain (grep: hanya fx/08 yang menyentuh `mi-hd`), jadi murni dekoratif. Kelas dikeluarkan dari normalisasi DOM. Sebab muncul hanya di satu run: tab/panel sempat terlihat saat boot, bergantung urutan pemuatan.
+
+Dengan normalisasi itu, dua run basis 390x844 (ABC) hanya beda 2 dari 154 langkah (`A home ord,set` dan `C builder set`). Keduanya langkah boot dan builder: jejak animasi di sana bergantung pada tampilan mana yang dicapai boot lebih dulu (balapan di halaman). Langkah itu kini hanya membandingkan elemen, canvas, dan audio yang dibuat.
+
+Pasangan run terakhir (perekam final):
+
+| Viewport | Langkah beda dari 154 |
+|---|---|
+| 390x844 | 26: seluruh skenario C, hanya hash `dom` (A dan B identik). Pada pasangan sebelumnya C identik, jadi ini balapan sesekali |
+| 1250x850 | 27: skenario A, hash `dom`, `win`, `lis` |
+
+Kesimpulan: tidak 100 persen stabil pada tenggat 13:20, tiga pasang berturut-turut tidak dicapai (satu pasang ABC memakan sekitar 11 menit per viewport). fx tidak dipecah. Penyebab sisa (selalu seluruh skenario sekaligus, bukan langkah tunggal) menunjukkan keadaan dasar yang berbeda sejak boot, mis. objek `win` dan `lis` (listener) berbeda: deferred loader atau lazy part yang selesai di sisi nyata pada waktu berbeda. Saran: tunggu `__lazyReady`/`__gateDone` dan semua skrip lazy sebelum langkah pertama, dan rekam daftar `window` yang beda dengan FXSNAP_DUMP.
