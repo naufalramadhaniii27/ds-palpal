@@ -5,7 +5,7 @@ Status 2026-11-08: renderer dan adapter terpasang. Tombol Export PDF memakai PDF
 ## Susunan
 | Lapis | File | Tugas |
 |---|---|---|
-| Renderer | `vendor/pdf/pdfx-1.0.0.js` | Model cetak ke PDF. Tidak membaca state app, tidak menulis storage. Namespace `window.PDFX`. |
+| Renderer | `src/pdf/` (blok tertunda `pdfx`, dibundel esbuild) | Model cetak ke PDF. Tidak membaca state app, tidak menulis storage. Menerbitkan `window.PDFX`. Diperiksa penjaga SOLID repo |
 | Aset | `vendor/pdf/pdfx-tpl-2014.pdf`, `vendor/pdf/pdfx-tpl-2024.pdf` | Template sheet. 2024 = template 2014 dengan label 2024. |
 | Aset | `vendor/pdf/pdfx-map.json` | Posisi field per template + peta baris spell dan checkbox prepared. |
 | Aset | `vendor/pdf/pdfx-Inter-*.ttf` | Inter Regular, Medium, SemiBold, Bold, Italic, dipotong ke Latin (sekitar 52 KB per gaya). |
@@ -21,6 +21,25 @@ PDFX.render(model, assets, { PDFLib, fontkit }) -> Promise<{ bytes, pages, overf
 
 ## Markup teks
 `**tebal**`, `_miring abu_`, `{{kecil abu}}`, `^^LABEL^^` (label kecil), baris diawali `# ` = judul bagian, string kosong = jarak.
+
+## Susunan renderer (SOLID)
+| File | Tanggung jawab |
+|---|---|
+| `pdf/00-env.js` | Satu-satunya pintu ke window |
+| `pdf/01-data-style.js` | Warna, font, ukuran |
+| `pdf/02-logic-markup.js` | Markup teks ke potongan bergaya |
+| `pdf/03-logic-typeset.js` | Bungkus teks ke baris. Hanya butuh fungsi ukur, tidak kenal pdf-lib |
+| `pdf/04-ui-canvas.js` | Satu-satunya file yang memanggil API gambar pdf-lib |
+| `pdf/05-data-sheet-fields.js` | Peta field template sebagai data |
+| `pdf/06-ui-fields.js` | Isi field dan kotak. Kotak yang tidak muat mengembalikan sisanya |
+| `pdf/07-ui-sheet-pages.js` | Registry pengisi halaman 1 sampai 3 (`pxAddPainter`) |
+| `pdf/08-ui-flow.js` | Aliran dua kolom halaman lampiran |
+| `pdf/09-ui-blocks.js` | Jenis blok: spell, fitur, teks, creature, ringkasan IN SHORT |
+| `pdf/10-ui-appendix.js` | Registry bagian lampiran (`pxAddPart`): sambungan sheet, spell, fitur, creature |
+| `pdf/11-ui-render.js` | Orkestrator `renderPdf` |
+| `pdf/main.js` | Menerbitkan `window.PDFX` |
+
+Menambah bagian lampiran atau isi halaman baru = satu `pxAddPart` atau `pxAddPainter`, tanpa mengubah orkestrator.
 
 ## Skema model
 ```
@@ -52,7 +71,7 @@ creatures: [ { name, tag, meta, stats: [[label, nilai]], abilities: {STR: [skor,
 ## Perilaku
 - Field form dibuang, isi digambar langsung (flatten) supaya bisa memakai banyak gaya font. Template kosong tetap fillable.
 - Karakter tanpa spell: halaman 3 dibuang.
-- Kotak yang terlalu panjang: font turun sampai 6.2 pt, lalu dipotong dengan catatan "(continued in Features & Traits)".
+- Kotak yang terlalu panjang: font turun sampai 6.2 pt. Kalau tetap tidak muat, paragraf yang tidak muat pindah utuh ke bagian "Continued from the Sheet" di awal lampiran. Tidak ada isi yang hilang.
 - Spell melebihi baris template: baris terakhir level itu menjadi "+N more, see Spell Descriptions".
 - Lampiran dua kolom: Spell Descriptions, Features & Traits, Companions & Summons. Bagian baru menyambung di kolom kosong. Judul diulang dengan "(CONTINUED)".
 
@@ -70,8 +89,10 @@ Kalau teks aslinya sudah pendek (230 huruf atau kurang) dan tidak ada teks lengk
 
 ## Uji (browser)
 ```
-python3 tests/pdfx_export.py [OUT]
+python3 tests/pdfx_export.py [OUT]   # tombol Export PDF: Yudhi, Wizard Quick Build, Wizard 2014, dua viewport
+python3 tests/pdfx_sweep.py [OUT]    # semua class x subclass x 6 level x 2 edisi, model dan PDF, deteksi miss otomatis
 ```
+Hasil sapuan 2026-11-08: 576 karakter, 192 dirender penuh, 0 error, maksimal 19 halaman. Miss tersisa: Beast Master aturan 2014 tanpa companion (gap di daftar creature sheet, lihat reports/requests.md).
 
 ## Uji (Node)
 ```

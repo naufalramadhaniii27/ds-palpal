@@ -4,9 +4,10 @@
    Model schema: reports/pdfx-model.md */
 import {ABK,ABN} from "./02-data-default-character.js";
 import {gName} from "./03-data-glossary.js";
-import {C,S,clsLv} from "./04-logic-storage.js";
+import {C,DEF,S,__set_C,__set_S,clsLv} from "./04-logic-storage.js";
 import {atkOn,eqOn,num,sg} from "./05-logic-helpers.js";
-import {D,fill} from "./06-logic-derivation.js";
+import {D,__set_D,derive,fill} from "./06-logic-derivation.js";
+import {env} from "./00-env.js";
 import {langText} from "./08-ui-render-sheet-and-actions.js";
 import {coinsNow} from "./23c-ui-coins.js";
 import {ordL,scOf} from "./23e-ui-spells-dc.js";
@@ -161,3 +162,8 @@ export function pdfModel(){ const ed=C.rs==="2014"?"2014":"2024", W=pxWeapons(),
     looks:{}, factionName:"", allies:pxPars(n.allies||""), backstory:pxBackstory(ed),
     moreFeatures:lim.length?["# Limited Use"].concat(lim):[], treasure:pxTreasure(),
     spellcasting:pxSpells(ed), appendix:pxAppendix(), creatures:pxCreatures()}); }
+
+/* test hook (tests/pdfx_sweep.py): the print model of another character, without saving it. The open sheet is restored */
+env.__pdfModelFor=function(c){ const C0=C, S0=S, D0=D; let out=null;
+  try{ __set_C(structuredClone(c)); __set_S(structuredClone(DEF)); derive(); out=pdfModel(); }catch(e){ out={err:String(e&&e.stack||e)}; }
+  __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };

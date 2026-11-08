@@ -836,6 +836,27 @@
    "entry": "tg/30-ui-tg.js"
   },
   {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
+   "close": "</script>",
+   "files": [
+    "pdf/00-env.js",
+    "pdf/01-data-style.js",
+    "pdf/02-logic-markup.js",
+    "pdf/03-logic-typeset.js",
+    "pdf/04-ui-canvas.js",
+    "pdf/05-data-sheet-fields.js",
+    "pdf/06-ui-fields.js",
+    "pdf/07-ui-sheet-pages.js",
+    "pdf/08-ui-flow.js",
+    "pdf/09-ui-blocks.js",
+    "pdf/10-ui-appendix.js",
+    "pdf/11-ui-render.js",
+    "pdf/main.js"
+   ],
+   "entry": "pdf/main.js"
+  },
+  {
    "t": "text",
    "text": "\n"
   },

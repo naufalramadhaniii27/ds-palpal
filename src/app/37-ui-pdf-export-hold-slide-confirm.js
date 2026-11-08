@@ -46,7 +46,7 @@ function makePdfBlob(){
 }
 /* PDFX: the sheet drawn on the official-style template (2014 or 2024 by the character's rules), with spell, feature and creature pages.
    Text is drawn, not photographed, so it stays sharp and searchable. The older picture export above stays as the fallback */
-const PDFX_V="1.0.0", PDFX_LIBS=["vendor/pdf/cantoo-pdf-lib-2.11.1.min.js","vendor/pdf/pdf-lib-fontkit-1.1.1.min.js","vendor/pdf/pdfx-"+PDFX_V+".js"];
+const PDFX_LIBS=["vendor/pdf/cantoo-pdf-lib-2.11.1.min.js","vendor/pdf/pdf-lib-fontkit-1.1.1.min.js"];/* the renderer itself is the deferred block "pdfx" (src/pdf) */
 let pdfxP=null;
 function pdfxBytes(u){ return fetch(u).then((r) =>{ if(!r.ok) throw new Error("load "+u); return r.arrayBuffer(); }); }
 function loadPdfx(){ if(!pdfxP){ const F=["Regular","Medium","SemiBold","Bold","Italic"];
@@ -55,7 +55,7 @@ function loadPdfx(){ if(!pdfxP){ const F=["Regular","Medium","SemiBold","Bold","
   }).then((a) =>{ const fonts={}; F.forEach((f,i) =>{ fonts[f]=a[3+i]; }); return {tpl:{"2014":a[0],"2024":a[1]}, map:a[2], fonts:fonts}; });
   pdfxP.catch(() =>{ pdfxP=null; }); } return pdfxP; }
 function makeSheetPdf(){ const need=env.__bldNeed?env.__bldNeed():Promise.resolve();/* spell, feature and creature texts are deferred data */
-  return Promise.all([loadPdfx(),need]).then((r) =>{ return env.PDFX.render(pdfModel(),r[0],{PDFLib:env.PDFLib,fontkit:env.fontkit}); })
+  return Promise.all([loadPdfx(),need]).then((r) =>{ if(!env.PDFX) throw new Error("PDFX block not loaded"); return env.PDFX.render(pdfModel(),r[0],{PDFLib:env.PDFLib,fontkit:env.fontkit}); })
     .then((out) =>{ return new Blob([out.bytes],{type:"application/pdf"}); }); }
 function makeBlob(){ return makeSheetPdf().catch((e) =>{ try{ console.warn("PDFX failed, using the picture export",e); }catch(er){} return loadLibs().then(makePdfBlob); }); }
 function printFallback(){ buildPrint(); setTimeout(() =>{ env.print(); },60); }

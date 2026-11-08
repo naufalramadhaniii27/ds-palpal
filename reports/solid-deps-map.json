@@ -1180,9 +1180,61 @@
    "layer": "ui",
    "order": 294
   },
+  "pdf/00-env.js": {
+   "layer": "-",
+   "order": 295
+  },
+  "pdf/01-data-style.js": {
+   "layer": "data",
+   "order": 296
+  },
+  "pdf/02-logic-markup.js": {
+   "layer": "logic",
+   "order": 297
+  },
+  "pdf/03-logic-typeset.js": {
+   "layer": "logic",
+   "order": 298
+  },
+  "pdf/04-ui-canvas.js": {
+   "layer": "ui",
+   "order": 299
+  },
+  "pdf/05-data-sheet-fields.js": {
+   "layer": "data",
+   "order": 300
+  },
+  "pdf/06-ui-fields.js": {
+   "layer": "ui",
+   "order": 301
+  },
+  "pdf/07-ui-sheet-pages.js": {
+   "layer": "ui",
+   "order": 302
+  },
+  "pdf/08-ui-flow.js": {
+   "layer": "ui",
+   "order": 303
+  },
+  "pdf/09-ui-blocks.js": {
+   "layer": "ui",
+   "order": 304
+  },
+  "pdf/10-ui-appendix.js": {
+   "layer": "ui",
+   "order": 305
+  },
+  "pdf/11-ui-render.js": {
+   "layer": "ui",
+   "order": 306
+  },
+  "pdf/main.js": {
+   "layer": "-",
+   "order": 307
+  },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 295
+   "order": 308
   }
  },
  "edges": [
@@ -5163,6 +5215,13 @@
   },
   {
    "from": "app/37a-ui-pdf-model.js",
+   "to": "app/00-env.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "app/37a-ui-pdf-model.js",
    "to": "app/02-data-default-character.js",
    "import": true,
    "names": [],
@@ -5181,8 +5240,11 @@
    "from": "app/37a-ui-pdf-model.js",
    "to": "app/04-logic-storage.js",
    "import": true,
-   "names": [],
-   "count": 0
+   "names": [
+    "__set_C",
+    "__set_S"
+   ],
+   "count": 2
   },
   {
    "from": "app/37a-ui-pdf-model.js",
@@ -5199,9 +5261,11 @@
    "to": "app/06-logic-derivation.js",
    "import": true,
    "names": [
+    "__set_D",
+    "derive",
     "fill"
    ],
-   "count": 1
+   "count": 3
   },
   {
    "from": "app/37a-ui-pdf-model.js",
@@ -17064,6 +17128,300 @@
    "count": 6
   },
   {
+   "from": "pdf/02-logic-markup.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_INK"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/03-logic-typeset.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_NB",
+    "PX_SIZE"
+   ],
+   "count": 2
+  },
+  {
+   "from": "pdf/03-logic-typeset.js",
+   "to": "pdf/02-logic-markup.js",
+   "import": true,
+   "names": [
+    "pxIsHeading",
+    "pxRuns"
+   ],
+   "count": 2
+  },
+  {
+   "from": "pdf/04-ui-canvas.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "pdf/04-ui-canvas.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "rect"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/06-ui-fields.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_INK",
+    "PX_SIZE"
+   ],
+   "count": 2
+  },
+  {
+   "from": "pdf/06-ui-fields.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "rect"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/07-ui-sheet-pages.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_INK"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/07-ui-sheet-pages.js",
+   "to": "pdf/05-data-sheet-fields.js",
+   "import": true,
+   "names": [
+    "PX_ABS",
+    "PX_BOXES",
+    "PX_BOXES_P2",
+    "PX_COINS",
+    "PX_DEATH_DOT",
+    "PX_HEADER",
+    "PX_LOOKS",
+    "PX_MOD_FIELD",
+    "PX_SAVES",
+    "PX_SAVE_DOT",
+    "PX_SKILL_DOT",
+    "PX_SPELL_HEAD",
+    "PX_STATS",
+    "PX_WEAPON_ROWS"
+   ],
+   "count": 14
+  },
+  {
+   "from": "pdf/07-ui-sheet-pages.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "rect"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/08-ui-flow.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/08-ui-flow.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_PAGE"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/08-ui-flow.js",
+   "to": "pdf/09-ui-blocks.js",
+   "import": false,
+   "names": [
+    "pxTitle"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/08-ui-flow.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "close"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "app/13-ui-detail-cards.js",
+   "import": false,
+   "names": [
+    "meta"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_INK",
+    "PX_NB",
+    "PX_SIZE"
+   ],
+   "count": 3
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "pdf/02-logic-markup.js",
+   "import": true,
+   "names": [
+    "pxRuns"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "rect"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/10-ui-appendix.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fill"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/10-ui-appendix.js",
+   "to": "pdf/09-ui-blocks.js",
+   "import": true,
+   "names": [
+    "PX_BLOCKS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/10-ui-appendix.js",
+   "to": "tg/30-ui-tg.js",
+   "import": false,
+   "names": [
+    "creatures"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "fill",
+    "part"
+   ],
+   "count": 2
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/01-data-style.js",
+   "import": true,
+   "names": [
+    "PX_FONTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/03-logic-typeset.js",
+   "import": true,
+   "names": [
+    "PxTypesetter"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/04-ui-canvas.js",
+   "import": true,
+   "names": [
+    "PxCanvas"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/06-ui-fields.js",
+   "import": true,
+   "names": [
+    "PxFields"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/07-ui-sheet-pages.js",
+   "import": true,
+   "names": [
+    "PX_PAINTERS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/08-ui-flow.js",
+   "import": true,
+   "names": [
+    "PxFlow"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/11-ui-render.js",
+   "to": "pdf/10-ui-appendix.js",
+   "import": true,
+   "names": [
+    "PX_PARTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/main.js",
+   "to": "pdf/00-env.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "pdf/main.js",
+   "to": "pdf/11-ui-render.js",
+   "import": true,
+   "names": [
+    "renderPdf"
+   ],
+   "count": 1
+  },
+  {
    "from": "tg/00-bridge.js",
    "to": "tg/00-env.js",
    "import": true,
@@ -17163,8 +17521,8 @@
   "data/wotc02-subclasses-2025.js -> tg/30-ui-tg.js": 1,
   "data/wotc13-creature-stat-blocks.js -> tg/30-ui-tg.js": 1,
   "data/fx-C-feat.js -> builder/18-ui-spells.js": 1,
-  "data/hbpack-builtin-homebrew.js -> tg/30-ui-tg.js": 1,
   "data/hbpack-builtin-homebrew.js -> builder/13-logic-sources-and-packs.js": 1,
+  "data/hbpack-builtin-homebrew.js -> tg/30-ui-tg.js": 1,
   "data/fx-B1-subclass.js -> builder/18-ui-spells.js": 1,
   "data/fx-L1.js -> builder/18-ui-spells.js": 1,
   "data/fx-L4.js -> builder/18-ui-spells.js": 1,
@@ -17181,10 +17539,10 @@
   "data/fx-L7.js -> builder/18-ui-spells.js": 1,
   "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
   "data/fx-M2.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 2,
   "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> app/08b-ui-render-summaries-actions.js": 1,
   "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 1,
+  "builder/09-logic-feats-and-choices.js -> app/08b-ui-render-summaries-actions.js": 1,
+  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 2,
   "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
   "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
   "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
@@ -17195,7 +17553,7 @@
   "builder/25-logic-hooks-for-the-sheet.js -> tg/30-ui-tg.js": 1,
   "learn/45-data-learn.js -> tg/30-ui-tg.js": 3,
   "learn/45-data-learn.js -> builder/20-ui-steps-equipment-next.js": 1,
-  "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1,
-  "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1
+  "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1,
+  "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1
  }
 }
