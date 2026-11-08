@@ -1,0 +1,5602 @@
+[
+{
+"id": "human-01",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "human-02",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "human-03",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "human-04",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "human-05",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "artificer"
+},
+{
+"id": "human-06",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "human-07",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "human-08",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "human-09",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "human-10",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "ranger"
+},
+{
+"id": "human-11",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "human-12",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "human-13",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "human-14",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "human-15",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "human-16",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "human-17",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "human-18",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "human-19",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "human-20",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "human-21",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "human-22",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "human-23",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "human-24",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "human-25",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "artificer"
+},
+{
+"id": "human-26",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "human-27",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "human-28",
+"sp": "human",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "human-29",
+"sp": "human",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "human-30",
+"sp": "human",
+"g": "androgynous person",
+"age": "elder",
+"cls": "ranger"
+},
+{
+"id": "human-31",
+"sp": "human",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "human-32",
+"sp": "human",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "elf-01",
+"sp": "elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "elf-02",
+"sp": "elf",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "elf-03",
+"sp": "elf",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "elf-04",
+"sp": "elf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "elf-05",
+"sp": "elf",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "elf-06",
+"sp": "elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "elf-07",
+"sp": "elf",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "elf-08",
+"sp": "elf",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "elf-09",
+"sp": "elf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "elf-10",
+"sp": "elf",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "elf-11",
+"sp": "elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "elf-12",
+"sp": "elf",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "elf-13",
+"sp": "elf",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "elf-14",
+"sp": "elf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "elf-15",
+"sp": "elf",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "elf-16",
+"sp": "elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "high-elf-01",
+"sp": "high-elf",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "high-elf-02",
+"sp": "high-elf",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "high-elf-03",
+"sp": "high-elf",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "high-elf-04",
+"sp": "high-elf",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "high-elf-05",
+"sp": "high-elf",
+"g": "man",
+"age": "young adult",
+"cls": "paladin"
+},
+{
+"id": "high-elf-06",
+"sp": "high-elf",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "high-elf-07",
+"sp": "high-elf",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "high-elf-08",
+"sp": "high-elf",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "wood-elf-01",
+"sp": "wood-elf",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "wood-elf-02",
+"sp": "wood-elf",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "wood-elf-03",
+"sp": "wood-elf",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "wood-elf-04",
+"sp": "wood-elf",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "wood-elf-05",
+"sp": "wood-elf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "wood-elf-06",
+"sp": "wood-elf",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "wood-elf-07",
+"sp": "wood-elf",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "wood-elf-08",
+"sp": "wood-elf",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "drow-01",
+"sp": "drow",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "drow-02",
+"sp": "drow",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "drow-03",
+"sp": "drow",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "drow-04",
+"sp": "drow",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "drow-05",
+"sp": "drow",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "drow-06",
+"sp": "drow",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "drow-07",
+"sp": "drow",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "drow-08",
+"sp": "drow",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "drow-09",
+"sp": "drow",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "drow-10",
+"sp": "drow",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "drow-11",
+"sp": "drow",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "drow-12",
+"sp": "drow",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "sea-elf-01",
+"sp": "sea-elf",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "sea-elf-02",
+"sp": "sea-elf",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "sea-elf-03",
+"sp": "sea-elf",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "sea-elf-04",
+"sp": "sea-elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "sea-elf-05",
+"sp": "sea-elf",
+"g": "androgynous person",
+"age": "elder",
+"cls": "ranger"
+},
+{
+"id": "sea-elf-06",
+"sp": "sea-elf",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "eladrin-01",
+"sp": "eladrin",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "eladrin-02",
+"sp": "eladrin",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "eladrin-03",
+"sp": "eladrin",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "eladrin-04",
+"sp": "eladrin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "eladrin-05",
+"sp": "eladrin",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "eladrin-06",
+"sp": "eladrin",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "eladrin-07",
+"sp": "eladrin",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "eladrin-08",
+"sp": "eladrin",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "shadar-kai-01",
+"sp": "shadar-kai",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "shadar-kai-02",
+"sp": "shadar-kai",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "shadar-kai-03",
+"sp": "shadar-kai",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "shadar-kai-04",
+"sp": "shadar-kai",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "shadar-kai-05",
+"sp": "shadar-kai",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "shadar-kai-06",
+"sp": "shadar-kai",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "astral-elf-01",
+"sp": "astral-elf",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "astral-elf-02",
+"sp": "astral-elf",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "astral-elf-03",
+"sp": "astral-elf",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "astral-elf-04",
+"sp": "astral-elf",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "astral-elf-05",
+"sp": "astral-elf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "astral-elf-06",
+"sp": "astral-elf",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "dwarf-01",
+"sp": "dwarf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "dwarf-02",
+"sp": "dwarf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "dwarf-03",
+"sp": "dwarf",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "dwarf-04",
+"sp": "dwarf",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "dwarf-05",
+"sp": "dwarf",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "dwarf-06",
+"sp": "dwarf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "dwarf-07",
+"sp": "dwarf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "dwarf-08",
+"sp": "dwarf",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "dwarf-09",
+"sp": "dwarf",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "dwarf-10",
+"sp": "dwarf",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "dwarf-11",
+"sp": "dwarf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "dwarf-12",
+"sp": "dwarf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "dwarf-13",
+"sp": "dwarf",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "dwarf-14",
+"sp": "dwarf",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "dwarf-15",
+"sp": "dwarf",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "dwarf-16",
+"sp": "dwarf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "dwarf-17",
+"sp": "dwarf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "dwarf-18",
+"sp": "dwarf",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "dwarf-19",
+"sp": "dwarf",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "dwarf-20",
+"sp": "dwarf",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "dwarf-21",
+"sp": "dwarf",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "dwarf-22",
+"sp": "dwarf",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "dwarf-23",
+"sp": "dwarf",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "dwarf-24",
+"sp": "dwarf",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "duergar-01",
+"sp": "duergar",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "duergar-02",
+"sp": "duergar",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "duergar-03",
+"sp": "duergar",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "duergar-04",
+"sp": "duergar",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "duergar-05",
+"sp": "duergar",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "duergar-06",
+"sp": "duergar",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "gnome-01",
+"sp": "gnome",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "gnome-02",
+"sp": "gnome",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "gnome-03",
+"sp": "gnome",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "gnome-04",
+"sp": "gnome",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "gnome-05",
+"sp": "gnome",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "gnome-06",
+"sp": "gnome",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "gnome-07",
+"sp": "gnome",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "gnome-08",
+"sp": "gnome",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "gnome-09",
+"sp": "gnome",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "gnome-10",
+"sp": "gnome",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "gnome-11",
+"sp": "gnome",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "gnome-12",
+"sp": "gnome",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "gnome-13",
+"sp": "gnome",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "gnome-14",
+"sp": "gnome",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "gnome-15",
+"sp": "gnome",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "gnome-16",
+"sp": "gnome",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "deep-gnome-01",
+"sp": "deep-gnome",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "deep-gnome-02",
+"sp": "deep-gnome",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "deep-gnome-03",
+"sp": "deep-gnome",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "deep-gnome-04",
+"sp": "deep-gnome",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "deep-gnome-05",
+"sp": "deep-gnome",
+"g": "man",
+"age": "young adult",
+"cls": "noble"
+},
+{
+"id": "deep-gnome-06",
+"sp": "deep-gnome",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "halfling-01",
+"sp": "halfling",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "halfling-02",
+"sp": "halfling",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "halfling-03",
+"sp": "halfling",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "halfling-04",
+"sp": "halfling",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "halfling-05",
+"sp": "halfling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "druid"
+},
+{
+"id": "halfling-06",
+"sp": "halfling",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "halfling-07",
+"sp": "halfling",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "halfling-08",
+"sp": "halfling",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "halfling-09",
+"sp": "halfling",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "halfling-10",
+"sp": "halfling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "healer"
+},
+{
+"id": "halfling-11",
+"sp": "halfling",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "halfling-12",
+"sp": "halfling",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "halfling-13",
+"sp": "halfling",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "halfling-14",
+"sp": "halfling",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "halfling-15",
+"sp": "halfling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "halfling-16",
+"sp": "halfling",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "halfling-17",
+"sp": "halfling",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "halfling-18",
+"sp": "halfling",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "halfling-19",
+"sp": "halfling",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "halfling-20",
+"sp": "halfling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "dragonborn-01",
+"sp": "dragonborn",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "dragonborn-02",
+"sp": "dragonborn",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "dragonborn-03",
+"sp": "dragonborn",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "dragonborn-04",
+"sp": "dragonborn",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "dragonborn-05",
+"sp": "dragonborn",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "dragonborn-06",
+"sp": "dragonborn",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "dragonborn-07",
+"sp": "dragonborn",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "dragonborn-08",
+"sp": "dragonborn",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "dragonborn-09",
+"sp": "dragonborn",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "dragonborn-10",
+"sp": "dragonborn",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "dragonborn-11",
+"sp": "dragonborn",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "dragonborn-12",
+"sp": "dragonborn",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "dragonborn-13",
+"sp": "dragonborn",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "dragonborn-14",
+"sp": "dragonborn",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "dragonborn-15",
+"sp": "dragonborn",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "dragonborn-16",
+"sp": "dragonborn",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "dragonborn-17",
+"sp": "dragonborn",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "dragonborn-18",
+"sp": "dragonborn",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "dragonborn-19",
+"sp": "dragonborn",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "dragonborn-20",
+"sp": "dragonborn",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "dragonborn-gem-01",
+"sp": "dragonborn-gem",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "dragonborn-gem-02",
+"sp": "dragonborn-gem",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "dragonborn-gem-03",
+"sp": "dragonborn-gem",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "dragonborn-gem-04",
+"sp": "dragonborn-gem",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "dragonborn-gem-05",
+"sp": "dragonborn-gem",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "dragonborn-gem-06",
+"sp": "dragonborn-gem",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "tiefling-01",
+"sp": "tiefling",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "tiefling-02",
+"sp": "tiefling",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "tiefling-03",
+"sp": "tiefling",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "tiefling-04",
+"sp": "tiefling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "tiefling-05",
+"sp": "tiefling",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "tiefling-06",
+"sp": "tiefling",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "tiefling-07",
+"sp": "tiefling",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "tiefling-08",
+"sp": "tiefling",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "tiefling-09",
+"sp": "tiefling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "tiefling-10",
+"sp": "tiefling",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "tiefling-11",
+"sp": "tiefling",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "tiefling-12",
+"sp": "tiefling",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "tiefling-13",
+"sp": "tiefling",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "tiefling-14",
+"sp": "tiefling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "tiefling-15",
+"sp": "tiefling",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "tiefling-16",
+"sp": "tiefling",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "tiefling-17",
+"sp": "tiefling",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "tiefling-18",
+"sp": "tiefling",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "tiefling-19",
+"sp": "tiefling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "tiefling-20",
+"sp": "tiefling",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "tiefling-21",
+"sp": "tiefling",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "tiefling-22",
+"sp": "tiefling",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "tiefling-23",
+"sp": "tiefling",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "tiefling-24",
+"sp": "tiefling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "aasimar-01",
+"sp": "aasimar",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "aasimar-02",
+"sp": "aasimar",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "aasimar-03",
+"sp": "aasimar",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "aasimar-04",
+"sp": "aasimar",
+"g": "woman",
+"age": "elder",
+"cls": "rogue"
+},
+{
+"id": "aasimar-05",
+"sp": "aasimar",
+"g": "man",
+"age": "young adult",
+"cls": "wizard"
+},
+{
+"id": "aasimar-06",
+"sp": "aasimar",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "aasimar-07",
+"sp": "aasimar",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "aasimar-08",
+"sp": "aasimar",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "aasimar-09",
+"sp": "aasimar",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "aasimar-10",
+"sp": "aasimar",
+"g": "man",
+"age": "young adult",
+"cls": "paladin"
+},
+{
+"id": "aasimar-11",
+"sp": "aasimar",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "aasimar-12",
+"sp": "aasimar",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "aasimar-13",
+"sp": "aasimar",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "aasimar-14",
+"sp": "aasimar",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "aasimar-15",
+"sp": "aasimar",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "aasimar-16",
+"sp": "aasimar",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "goliath-01",
+"sp": "goliath",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "goliath-02",
+"sp": "goliath",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "goliath-03",
+"sp": "goliath",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "goliath-04",
+"sp": "goliath",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "goliath-05",
+"sp": "goliath",
+"g": "woman",
+"age": "middle-aged",
+"cls": "healer"
+},
+{
+"id": "goliath-06",
+"sp": "goliath",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "goliath-07",
+"sp": "goliath",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "goliath-08",
+"sp": "goliath",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "goliath-09",
+"sp": "goliath",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "goliath-10",
+"sp": "goliath",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "goliath-11",
+"sp": "goliath",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "goliath-12",
+"sp": "goliath",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "goliath-13",
+"sp": "goliath",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "goliath-14",
+"sp": "goliath",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "goliath-15",
+"sp": "goliath",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "goliath-16",
+"sp": "goliath",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "orc-01",
+"sp": "orc",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "orc-02",
+"sp": "orc",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "orc-03",
+"sp": "orc",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "orc-04",
+"sp": "orc",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "orc-05",
+"sp": "orc",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "orc-06",
+"sp": "orc",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "orc-07",
+"sp": "orc",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "orc-08",
+"sp": "orc",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "orc-09",
+"sp": "orc",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "orc-10",
+"sp": "orc",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "orc-11",
+"sp": "orc",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "orc-12",
+"sp": "orc",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "orc-13",
+"sp": "orc",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "orc-14",
+"sp": "orc",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "orc-15",
+"sp": "orc",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "orc-16",
+"sp": "orc",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "orc-17",
+"sp": "orc",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "orc-18",
+"sp": "orc",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "orc-19",
+"sp": "orc",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "orc-20",
+"sp": "orc",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "half-elf-01",
+"sp": "half-elf",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "half-elf-02",
+"sp": "half-elf",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "half-elf-03",
+"sp": "half-elf",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "half-elf-04",
+"sp": "half-elf",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "half-elf-05",
+"sp": "half-elf",
+"g": "androgynous person",
+"age": "elder",
+"cls": "artificer"
+},
+{
+"id": "half-elf-06",
+"sp": "half-elf",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "half-elf-07",
+"sp": "half-elf",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "half-elf-08",
+"sp": "half-elf",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "half-orc-01",
+"sp": "half-orc",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "half-orc-02",
+"sp": "half-orc",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "half-orc-03",
+"sp": "half-orc",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "half-orc-04",
+"sp": "half-orc",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "half-orc-05",
+"sp": "half-orc",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "half-orc-06",
+"sp": "half-orc",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "half-orc-07",
+"sp": "half-orc",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "half-orc-08",
+"sp": "half-orc",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "genasi-01",
+"sp": "genasi",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "genasi-02",
+"sp": "genasi",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "genasi-03",
+"sp": "genasi",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "genasi-04",
+"sp": "genasi",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "genasi-05",
+"sp": "genasi",
+"g": "man",
+"age": "young adult",
+"cls": "paladin"
+},
+{
+"id": "genasi-06",
+"sp": "genasi",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "genasi-07",
+"sp": "genasi",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "genasi-08",
+"sp": "genasi",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "genasi-09",
+"sp": "genasi",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "genasi-10",
+"sp": "genasi",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "genasi-11",
+"sp": "genasi",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "genasi-12",
+"sp": "genasi",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "genasi-13",
+"sp": "genasi",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "genasi-14",
+"sp": "genasi",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "genasi-15",
+"sp": "genasi",
+"g": "man",
+"age": "young adult",
+"cls": "noble"
+},
+{
+"id": "genasi-16",
+"sp": "genasi",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "aarakocra-01",
+"sp": "aarakocra",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "aarakocra-02",
+"sp": "aarakocra",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "aarakocra-03",
+"sp": "aarakocra",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "aarakocra-04",
+"sp": "aarakocra",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "aarakocra-05",
+"sp": "aarakocra",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "aarakocra-06",
+"sp": "aarakocra",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "aarakocra-07",
+"sp": "aarakocra",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "aarakocra-08",
+"sp": "aarakocra",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "aarakocra-09",
+"sp": "aarakocra",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "aarakocra-10",
+"sp": "aarakocra",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "aven-01",
+"sp": "aven",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "aven-02",
+"sp": "aven",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "aven-03",
+"sp": "aven",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "aven-04",
+"sp": "aven",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "aven-05",
+"sp": "aven",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "aven-06",
+"sp": "aven",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "aven-07",
+"sp": "aven",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "aven-08",
+"sp": "aven",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "owlin-01",
+"sp": "owlin",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "owlin-02",
+"sp": "owlin",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "owlin-03",
+"sp": "owlin",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "owlin-04",
+"sp": "owlin",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "owlin-05",
+"sp": "owlin",
+"g": "androgynous person",
+"age": "elder",
+"cls": "ranger"
+},
+{
+"id": "owlin-06",
+"sp": "owlin",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "owlin-07",
+"sp": "owlin",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "owlin-08",
+"sp": "owlin",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "owlin-09",
+"sp": "owlin",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "owlin-10",
+"sp": "owlin",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "kenku-01",
+"sp": "kenku",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "kenku-02",
+"sp": "kenku",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "kenku-03",
+"sp": "kenku",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "kenku-04",
+"sp": "kenku",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "kenku-05",
+"sp": "kenku",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "kenku-06",
+"sp": "kenku",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "kenku-07",
+"sp": "kenku",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "kenku-08",
+"sp": "kenku",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "kenku-09",
+"sp": "kenku",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "kenku-10",
+"sp": "kenku",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "tabaxi-01",
+"sp": "tabaxi",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "tabaxi-02",
+"sp": "tabaxi",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "tabaxi-03",
+"sp": "tabaxi",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "tabaxi-04",
+"sp": "tabaxi",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "tabaxi-05",
+"sp": "tabaxi",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "tabaxi-06",
+"sp": "tabaxi",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "tabaxi-07",
+"sp": "tabaxi",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "tabaxi-08",
+"sp": "tabaxi",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "tabaxi-09",
+"sp": "tabaxi",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "tabaxi-10",
+"sp": "tabaxi",
+"g": "man",
+"age": "young adult",
+"cls": "noble"
+},
+{
+"id": "tabaxi-11",
+"sp": "tabaxi",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "tabaxi-12",
+"sp": "tabaxi",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "leonin-01",
+"sp": "leonin",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "leonin-02",
+"sp": "leonin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "leonin-03",
+"sp": "leonin",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "leonin-04",
+"sp": "leonin",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "leonin-05",
+"sp": "leonin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "leonin-06",
+"sp": "leonin",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "leonin-07",
+"sp": "leonin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "leonin-08",
+"sp": "leonin",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "harengon-01",
+"sp": "harengon",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "harengon-02",
+"sp": "harengon",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "harengon-03",
+"sp": "harengon",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "harengon-04",
+"sp": "harengon",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "harengon-05",
+"sp": "harengon",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "harengon-06",
+"sp": "harengon",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "harengon-07",
+"sp": "harengon",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "harengon-08",
+"sp": "harengon",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "harengon-09",
+"sp": "harengon",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "harengon-10",
+"sp": "harengon",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "lupin-01",
+"sp": "lupin",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "lupin-02",
+"sp": "lupin",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "lupin-03",
+"sp": "lupin",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "lupin-04",
+"sp": "lupin",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "lupin-05",
+"sp": "lupin",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "lupin-06",
+"sp": "lupin",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "lupin-07",
+"sp": "lupin",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "lupin-08",
+"sp": "lupin",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "shifter-01",
+"sp": "shifter",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "shifter-02",
+"sp": "shifter",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "shifter-03",
+"sp": "shifter",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "shifter-04",
+"sp": "shifter",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "shifter-05",
+"sp": "shifter",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "shifter-06",
+"sp": "shifter",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "shifter-07",
+"sp": "shifter",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "shifter-08",
+"sp": "shifter",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "shifter-09",
+"sp": "shifter",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "shifter-10",
+"sp": "shifter",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "tortle-01",
+"sp": "tortle",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "tortle-02",
+"sp": "tortle",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "tortle-03",
+"sp": "tortle",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "tortle-04",
+"sp": "tortle",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "tortle-05",
+"sp": "tortle",
+"g": "man",
+"age": "young adult",
+"cls": "noble"
+},
+{
+"id": "tortle-06",
+"sp": "tortle",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "tortle-07",
+"sp": "tortle",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "tortle-08",
+"sp": "tortle",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "lizardfolk-01",
+"sp": "lizardfolk",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "lizardfolk-02",
+"sp": "lizardfolk",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "lizardfolk-03",
+"sp": "lizardfolk",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "lizardfolk-04",
+"sp": "lizardfolk",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "lizardfolk-05",
+"sp": "lizardfolk",
+"g": "woman",
+"age": "middle-aged",
+"cls": "druid"
+},
+{
+"id": "lizardfolk-06",
+"sp": "lizardfolk",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "lizardfolk-07",
+"sp": "lizardfolk",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "lizardfolk-08",
+"sp": "lizardfolk",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "kobold-01",
+"sp": "kobold",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "kobold-02",
+"sp": "kobold",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "kobold-03",
+"sp": "kobold",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "kobold-04",
+"sp": "kobold",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "kobold-05",
+"sp": "kobold",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "kobold-06",
+"sp": "kobold",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "kobold-07",
+"sp": "kobold",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "kobold-08",
+"sp": "kobold",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "kobold-09",
+"sp": "kobold",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "kobold-10",
+"sp": "kobold",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "yuan-ti-01",
+"sp": "yuan-ti",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "yuan-ti-02",
+"sp": "yuan-ti",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "yuan-ti-03",
+"sp": "yuan-ti",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "yuan-ti-04",
+"sp": "yuan-ti",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "yuan-ti-05",
+"sp": "yuan-ti",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "yuan-ti-06",
+"sp": "yuan-ti",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "yuan-ti-07",
+"sp": "yuan-ti",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "yuan-ti-08",
+"sp": "yuan-ti",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "triton-01",
+"sp": "triton",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "triton-02",
+"sp": "triton",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "triton-03",
+"sp": "triton",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "triton-04",
+"sp": "triton",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "triton-05",
+"sp": "triton",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "triton-06",
+"sp": "triton",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "triton-07",
+"sp": "triton",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "triton-08",
+"sp": "triton",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "locathah-01",
+"sp": "locathah",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "locathah-02",
+"sp": "locathah",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "locathah-03",
+"sp": "locathah",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "locathah-04",
+"sp": "locathah",
+"g": "woman",
+"age": "elder",
+"cls": "rogue"
+},
+{
+"id": "locathah-05",
+"sp": "locathah",
+"g": "man",
+"age": "young adult",
+"cls": "wizard"
+},
+{
+"id": "locathah-06",
+"sp": "locathah",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "merfolk-01",
+"sp": "merfolk",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "merfolk-02",
+"sp": "merfolk",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "merfolk-03",
+"sp": "merfolk",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "merfolk-04",
+"sp": "merfolk",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "merfolk-05",
+"sp": "merfolk",
+"g": "woman",
+"age": "middle-aged",
+"cls": "healer"
+},
+{
+"id": "merfolk-06",
+"sp": "merfolk",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "merfolk-07",
+"sp": "merfolk",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "merfolk-08",
+"sp": "merfolk",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "minotaur-01",
+"sp": "minotaur",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "minotaur-02",
+"sp": "minotaur",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "minotaur-03",
+"sp": "minotaur",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "minotaur-04",
+"sp": "minotaur",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "minotaur-05",
+"sp": "minotaur",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "minotaur-06",
+"sp": "minotaur",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "minotaur-07",
+"sp": "minotaur",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "minotaur-08",
+"sp": "minotaur",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "minotaur-09",
+"sp": "minotaur",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "minotaur-10",
+"sp": "minotaur",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "centaur-01",
+"sp": "centaur",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "centaur-02",
+"sp": "centaur",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "centaur-03",
+"sp": "centaur",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "centaur-04",
+"sp": "centaur",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "centaur-05",
+"sp": "centaur",
+"g": "androgynous person",
+"age": "elder",
+"cls": "artificer"
+},
+{
+"id": "centaur-06",
+"sp": "centaur",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "centaur-07",
+"sp": "centaur",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "centaur-08",
+"sp": "centaur",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "satyr-01",
+"sp": "satyr",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "satyr-02",
+"sp": "satyr",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "satyr-03",
+"sp": "satyr",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "satyr-04",
+"sp": "satyr",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "satyr-05",
+"sp": "satyr",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "satyr-06",
+"sp": "satyr",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "satyr-07",
+"sp": "satyr",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "satyr-08",
+"sp": "satyr",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "firbolg-01",
+"sp": "firbolg",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "firbolg-02",
+"sp": "firbolg",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "firbolg-03",
+"sp": "firbolg",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "firbolg-04",
+"sp": "firbolg",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "firbolg-05",
+"sp": "firbolg",
+"g": "man",
+"age": "young adult",
+"cls": "paladin"
+},
+{
+"id": "firbolg-06",
+"sp": "firbolg",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "firbolg-07",
+"sp": "firbolg",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "firbolg-08",
+"sp": "firbolg",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "fairy-01",
+"sp": "fairy",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "fairy-02",
+"sp": "fairy",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "fairy-03",
+"sp": "fairy",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "fairy-04",
+"sp": "fairy",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "fairy-05",
+"sp": "fairy",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "fairy-06",
+"sp": "fairy",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "fairy-07",
+"sp": "fairy",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "fairy-08",
+"sp": "fairy",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "changeling-01",
+"sp": "changeling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "changeling-02",
+"sp": "changeling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "changeling-03",
+"sp": "changeling",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "changeling-04",
+"sp": "changeling",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "changeling-05",
+"sp": "changeling",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "changeling-06",
+"sp": "changeling",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "changeling-07",
+"sp": "changeling",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "changeling-08",
+"sp": "changeling",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "kalashtar-01",
+"sp": "kalashtar",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "kalashtar-02",
+"sp": "kalashtar",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "kalashtar-03",
+"sp": "kalashtar",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "kalashtar-04",
+"sp": "kalashtar",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "kalashtar-05",
+"sp": "kalashtar",
+"g": "androgynous person",
+"age": "elder",
+"cls": "ranger"
+},
+{
+"id": "kalashtar-06",
+"sp": "kalashtar",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "warforged-01",
+"sp": "warforged",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "warforged-02",
+"sp": "warforged",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "warforged-03",
+"sp": "warforged",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "warforged-04",
+"sp": "warforged",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "warforged-05",
+"sp": "warforged",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "warforged-06",
+"sp": "warforged",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "warforged-07",
+"sp": "warforged",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "warforged-08",
+"sp": "warforged",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "warforged-09",
+"sp": "warforged",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "warforged-10",
+"sp": "warforged",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "warforged-11",
+"sp": "warforged",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "warforged-12",
+"sp": "warforged",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "autognome-01",
+"sp": "autognome",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "autognome-02",
+"sp": "autognome",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "autognome-03",
+"sp": "autognome",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "autognome-04",
+"sp": "autognome",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "autognome-05",
+"sp": "autognome",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "autognome-06",
+"sp": "autognome",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "goblin-01",
+"sp": "goblin",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "goblin-02",
+"sp": "goblin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "goblin-03",
+"sp": "goblin",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "goblin-04",
+"sp": "goblin",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "goblin-05",
+"sp": "goblin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "goblin-06",
+"sp": "goblin",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "goblin-07",
+"sp": "goblin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "goblin-08",
+"sp": "goblin",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "goblin-09",
+"sp": "goblin",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "goblin-10",
+"sp": "goblin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "druid"
+},
+{
+"id": "goblin-11",
+"sp": "goblin",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "goblin-12",
+"sp": "goblin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "hobgoblin-01",
+"sp": "hobgoblin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "hobgoblin-02",
+"sp": "hobgoblin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "hobgoblin-03",
+"sp": "hobgoblin",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "hobgoblin-04",
+"sp": "hobgoblin",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "hobgoblin-05",
+"sp": "hobgoblin",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "hobgoblin-06",
+"sp": "hobgoblin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "hobgoblin-07",
+"sp": "hobgoblin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "hobgoblin-08",
+"sp": "hobgoblin",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "hobgoblin-09",
+"sp": "hobgoblin",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "hobgoblin-10",
+"sp": "hobgoblin",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "bugbear-01",
+"sp": "bugbear",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "bugbear-02",
+"sp": "bugbear",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "bugbear-03",
+"sp": "bugbear",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "bugbear-04",
+"sp": "bugbear",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "bugbear-05",
+"sp": "bugbear",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "bugbear-06",
+"sp": "bugbear",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "bugbear-07",
+"sp": "bugbear",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "bugbear-08",
+"sp": "bugbear",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "bugbear-09",
+"sp": "bugbear",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "bugbear-10",
+"sp": "bugbear",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "gnoll-01",
+"sp": "gnoll",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "gnoll-02",
+"sp": "gnoll",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "gnoll-03",
+"sp": "gnoll",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "gnoll-04",
+"sp": "gnoll",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "gnoll-05",
+"sp": "gnoll",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "gnoll-06",
+"sp": "gnoll",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "githyanki-01",
+"sp": "githyanki",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "githyanki-02",
+"sp": "githyanki",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "githyanki-03",
+"sp": "githyanki",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "githyanki-04",
+"sp": "githyanki",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "githyanki-05",
+"sp": "githyanki",
+"g": "man",
+"age": "young adult",
+"cls": "noble"
+},
+{
+"id": "githyanki-06",
+"sp": "githyanki",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "githyanki-07",
+"sp": "githyanki",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "githyanki-08",
+"sp": "githyanki",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "githzerai-01",
+"sp": "githzerai",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "githzerai-02",
+"sp": "githzerai",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "githzerai-03",
+"sp": "githzerai",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "githzerai-04",
+"sp": "githzerai",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "githzerai-05",
+"sp": "githzerai",
+"g": "woman",
+"age": "middle-aged",
+"cls": "druid"
+},
+{
+"id": "githzerai-06",
+"sp": "githzerai",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "githzerai-07",
+"sp": "githzerai",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "githzerai-08",
+"sp": "githzerai",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "hexblood-01",
+"sp": "hexblood",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "hexblood-02",
+"sp": "hexblood",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "hexblood-03",
+"sp": "hexblood",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "hexblood-04",
+"sp": "hexblood",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "hexblood-05",
+"sp": "hexblood",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "hexblood-06",
+"sp": "hexblood",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "dhampir-01",
+"sp": "dhampir",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "dhampir-02",
+"sp": "dhampir",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "dhampir-03",
+"sp": "dhampir",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "dhampir-04",
+"sp": "dhampir",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "dhampir-05",
+"sp": "dhampir",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "dhampir-06",
+"sp": "dhampir",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "dhampir-07",
+"sp": "dhampir",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "dhampir-08",
+"sp": "dhampir",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "reborn-01",
+"sp": "reborn",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "reborn-02",
+"sp": "reborn",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "reborn-03",
+"sp": "reborn",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "reborn-04",
+"sp": "reborn",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "reborn-05",
+"sp": "reborn",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "reborn-06",
+"sp": "reborn",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "loxodon-01",
+"sp": "loxodon",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "loxodon-02",
+"sp": "loxodon",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "loxodon-03",
+"sp": "loxodon",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "loxodon-04",
+"sp": "loxodon",
+"g": "woman",
+"age": "elder",
+"cls": "rogue"
+},
+{
+"id": "loxodon-05",
+"sp": "loxodon",
+"g": "man",
+"age": "young adult",
+"cls": "wizard"
+},
+{
+"id": "loxodon-06",
+"sp": "loxodon",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "vedalken-01",
+"sp": "vedalken",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "vedalken-02",
+"sp": "vedalken",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "vedalken-03",
+"sp": "vedalken",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "vedalken-04",
+"sp": "vedalken",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "vedalken-05",
+"sp": "vedalken",
+"g": "woman",
+"age": "middle-aged",
+"cls": "healer"
+},
+{
+"id": "vedalken-06",
+"sp": "vedalken",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "simic-hybrid-01",
+"sp": "simic-hybrid",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "simic-hybrid-02",
+"sp": "simic-hybrid",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "simic-hybrid-03",
+"sp": "simic-hybrid",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "simic-hybrid-04",
+"sp": "simic-hybrid",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "simic-hybrid-05",
+"sp": "simic-hybrid",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "simic-hybrid-06",
+"sp": "simic-hybrid",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "thri-kreen-01",
+"sp": "thri-kreen",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "thri-kreen-02",
+"sp": "thri-kreen",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "thri-kreen-03",
+"sp": "thri-kreen",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "thri-kreen-04",
+"sp": "thri-kreen",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "thri-kreen-05",
+"sp": "thri-kreen",
+"g": "androgynous person",
+"age": "elder",
+"cls": "artificer"
+},
+{
+"id": "thri-kreen-06",
+"sp": "thri-kreen",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "plasmoid-01",
+"sp": "plasmoid",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "plasmoid-02",
+"sp": "plasmoid",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "plasmoid-03",
+"sp": "plasmoid",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "plasmoid-04",
+"sp": "plasmoid",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "plasmoid-05",
+"sp": "plasmoid",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "plasmoid-06",
+"sp": "plasmoid",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "giff-01",
+"sp": "giff",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "giff-02",
+"sp": "giff",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "giff-03",
+"sp": "giff",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "giff-04",
+"sp": "giff",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "giff-05",
+"sp": "giff",
+"g": "man",
+"age": "young adult",
+"cls": "paladin"
+},
+{
+"id": "giff-06",
+"sp": "giff",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "hadozee-01",
+"sp": "hadozee",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "hadozee-02",
+"sp": "hadozee",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "hadozee-03",
+"sp": "hadozee",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "hadozee-04",
+"sp": "hadozee",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "hadozee-05",
+"sp": "hadozee",
+"g": "woman",
+"age": "middle-aged",
+"cls": "merchant"
+},
+{
+"id": "hadozee-06",
+"sp": "hadozee",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "kender-01",
+"sp": "kender",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "kender-02",
+"sp": "kender",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "kender-03",
+"sp": "kender",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "kender-04",
+"sp": "kender",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "kender-05",
+"sp": "kender",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "kender-06",
+"sp": "kender",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "grung-01",
+"sp": "grung",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "grung-02",
+"sp": "grung",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "grung-03",
+"sp": "grung",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "grung-04",
+"sp": "grung",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "bullywug-01",
+"sp": "bullywug",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "bullywug-02",
+"sp": "bullywug",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "bullywug-03",
+"sp": "bullywug",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "bullywug-04",
+"sp": "bullywug",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "verdan-01",
+"sp": "verdan",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "verdan-02",
+"sp": "verdan",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "verdan-03",
+"sp": "verdan",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "verdan-04",
+"sp": "verdan",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "verdan-05",
+"sp": "verdan",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "verdan-06",
+"sp": "verdan",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "khenra-01",
+"sp": "khenra",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "khenra-02",
+"sp": "khenra",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "khenra-03",
+"sp": "khenra",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "khenra-04",
+"sp": "khenra",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "khenra-05",
+"sp": "khenra",
+"g": "woman",
+"age": "middle-aged",
+"cls": "rogue"
+},
+{
+"id": "khenra-06",
+"sp": "khenra",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "naga-01",
+"sp": "naga",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "naga-02",
+"sp": "naga",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "naga-03",
+"sp": "naga",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "naga-04",
+"sp": "naga",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "kor-01",
+"sp": "kor",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "kor-02",
+"sp": "kor",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "kor-03",
+"sp": "kor",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "kor-04",
+"sp": "kor",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "kor-05",
+"sp": "kor",
+"g": "androgynous person",
+"age": "elder",
+"cls": "cleric"
+},
+{
+"id": "kor-06",
+"sp": "kor",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "kithkin-01",
+"sp": "kithkin",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "kithkin-02",
+"sp": "kithkin",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "kithkin-03",
+"sp": "kithkin",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "kithkin-04",
+"sp": "kithkin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "kithkin-05",
+"sp": "kithkin",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "kithkin-06",
+"sp": "kithkin",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "boggart-01",
+"sp": "boggart",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "boggart-02",
+"sp": "boggart",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "boggart-03",
+"sp": "boggart",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "boggart-04",
+"sp": "boggart",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "flamekin-01",
+"sp": "flamekin",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "flamekin-02",
+"sp": "flamekin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "flamekin-03",
+"sp": "flamekin",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "flamekin-04",
+"sp": "flamekin",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "flamekin-05",
+"sp": "flamekin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "druid"
+},
+{
+"id": "flamekin-06",
+"sp": "flamekin",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "rimekin-01",
+"sp": "rimekin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "rimekin-02",
+"sp": "rimekin",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "rimekin-03",
+"sp": "rimekin",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "rimekin-04",
+"sp": "rimekin",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "rimekin-05",
+"sp": "rimekin",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "rimekin-06",
+"sp": "rimekin",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "aetherborn-01",
+"sp": "aetherborn",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "aetherborn-02",
+"sp": "aetherborn",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "aetherborn-03",
+"sp": "aetherborn",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "aetherborn-04",
+"sp": "aetherborn",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "aetherborn-05",
+"sp": "aetherborn",
+"g": "androgynous person",
+"age": "elder",
+"cls": "blacksmith"
+},
+{
+"id": "aetherborn-06",
+"sp": "aetherborn",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "siren-01",
+"sp": "siren",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "siren-02",
+"sp": "siren",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "siren-03",
+"sp": "siren",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "siren-04",
+"sp": "siren",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "siren-05",
+"sp": "siren",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "siren-06",
+"sp": "siren",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "vampire-01",
+"sp": "vampire",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "vampire-02",
+"sp": "vampire",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "vampire-03",
+"sp": "vampire",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "vampire-04",
+"sp": "vampire",
+"g": "woman",
+"age": "elder",
+"cls": "rogue"
+},
+{
+"id": "vampire-05",
+"sp": "vampire",
+"g": "man",
+"age": "young adult",
+"cls": "wizard"
+},
+{
+"id": "vampire-06",
+"sp": "vampire",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "skeleton-01",
+"sp": "skeleton",
+"g": "man",
+"age": "elder",
+"cls": "paladin"
+},
+{
+"id": "skeleton-02",
+"sp": "skeleton",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sorcerer"
+},
+{
+"id": "skeleton-03",
+"sp": "skeleton",
+"g": "woman",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "skeleton-04",
+"sp": "skeleton",
+"g": "man",
+"age": "adult",
+"cls": "scholar"
+},
+{
+"id": "zombie-01",
+"sp": "zombie",
+"g": "androgynous person",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "zombie-02",
+"sp": "zombie",
+"g": "woman",
+"age": "middle-aged",
+"cls": "noble"
+},
+{
+"id": "zombie-03",
+"sp": "zombie",
+"g": "man",
+"age": "elder",
+"cls": "hunter"
+},
+{
+"id": "zombie-04",
+"sp": "zombie",
+"g": "woman",
+"age": "young adult",
+"cls": "cleric"
+},
+{
+"id": "grimlock-01",
+"sp": "grimlock",
+"g": "woman",
+"age": "young adult",
+"cls": "barbarian"
+},
+{
+"id": "grimlock-02",
+"sp": "grimlock",
+"g": "man",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "grimlock-03",
+"sp": "grimlock",
+"g": "woman",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "grimlock-04",
+"sp": "grimlock",
+"g": "man",
+"age": "middle-aged",
+"cls": "sorcerer"
+},
+{
+"id": "troglodyte-01",
+"sp": "troglodyte",
+"g": "man",
+"age": "middle-aged",
+"cls": "ranger"
+},
+{
+"id": "troglodyte-02",
+"sp": "troglodyte",
+"g": "woman",
+"age": "elder",
+"cls": "warlock"
+},
+{
+"id": "troglodyte-03",
+"sp": "troglodyte",
+"g": "man",
+"age": "young adult",
+"cls": "merchant"
+},
+{
+"id": "troglodyte-04",
+"sp": "troglodyte",
+"g": "androgynous person",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "kuo-toa-01",
+"sp": "kuo-toa",
+"g": "woman",
+"age": "adult",
+"cls": "sailor"
+},
+{
+"id": "kuo-toa-02",
+"sp": "kuo-toa",
+"g": "man",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "kuo-toa-03",
+"sp": "kuo-toa",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "barbarian"
+},
+{
+"id": "kuo-toa-04",
+"sp": "kuo-toa",
+"g": "woman",
+"age": "elder",
+"cls": "druid"
+},
+{
+"id": "sahuagin-01",
+"sp": "sahuagin",
+"g": "man",
+"age": "elder",
+"cls": "bard"
+},
+{
+"id": "sahuagin-02",
+"sp": "sahuagin",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "fighter"
+},
+{
+"id": "sahuagin-03",
+"sp": "sahuagin",
+"g": "woman",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "sahuagin-04",
+"sp": "sahuagin",
+"g": "man",
+"age": "adult",
+"cls": "warlock"
+},
+{
+"id": "khoravar-01",
+"sp": "khoravar",
+"g": "androgynous person",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "khoravar-02",
+"sp": "khoravar",
+"g": "woman",
+"age": "middle-aged",
+"cls": "wizard"
+},
+{
+"id": "khoravar-03",
+"sp": "khoravar",
+"g": "man",
+"age": "elder",
+"cls": "sailor"
+},
+{
+"id": "khoravar-04",
+"sp": "khoravar",
+"g": "woman",
+"age": "young adult",
+"cls": "blacksmith"
+},
+{
+"id": "khoravar-05",
+"sp": "khoravar",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "khoravar-06",
+"sp": "khoravar",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "corvum-01",
+"sp": "corvum",
+"g": "woman",
+"age": "young adult",
+"cls": "scholar"
+},
+{
+"id": "corvum-02",
+"sp": "corvum",
+"g": "man",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "corvum-03",
+"sp": "corvum",
+"g": "woman",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "corvum-04",
+"sp": "corvum",
+"g": "man",
+"age": "middle-aged",
+"cls": "fighter"
+},
+{
+"id": "strig-01",
+"sp": "strig",
+"g": "man",
+"age": "middle-aged",
+"cls": "cleric"
+},
+{
+"id": "strig-02",
+"sp": "strig",
+"g": "woman",
+"age": "elder",
+"cls": "monk"
+},
+{
+"id": "strig-03",
+"sp": "strig",
+"g": "man",
+"age": "young adult",
+"cls": "rogue"
+},
+{
+"id": "strig-04",
+"sp": "strig",
+"g": "androgynous person",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "vulpin-01",
+"sp": "vulpin",
+"g": "woman",
+"age": "adult",
+"cls": "sorcerer"
+},
+{
+"id": "vulpin-02",
+"sp": "vulpin",
+"g": "man",
+"age": "adult",
+"cls": "artificer"
+},
+{
+"id": "vulpin-03",
+"sp": "vulpin",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "scholar"
+},
+{
+"id": "vulpin-04",
+"sp": "vulpin",
+"g": "woman",
+"age": "elder",
+"cls": "healer"
+},
+{
+"id": "vulpin-05",
+"sp": "vulpin",
+"g": "man",
+"age": "young adult",
+"cls": "bard"
+},
+{
+"id": "vulpin-06",
+"sp": "vulpin",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "mapach-01",
+"sp": "mapach",
+"g": "man",
+"age": "elder",
+"cls": "noble"
+},
+{
+"id": "mapach-02",
+"sp": "mapach",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "hunter"
+},
+{
+"id": "mapach-03",
+"sp": "mapach",
+"g": "woman",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "mapach-04",
+"sp": "mapach",
+"g": "man",
+"age": "adult",
+"cls": "monk"
+},
+{
+"id": "cervan-01",
+"sp": "cervan",
+"g": "androgynous person",
+"age": "adult",
+"cls": "druid"
+},
+{
+"id": "cervan-02",
+"sp": "cervan",
+"g": "woman",
+"age": "middle-aged",
+"cls": "paladin"
+},
+{
+"id": "cervan-03",
+"sp": "cervan",
+"g": "man",
+"age": "elder",
+"cls": "sorcerer"
+},
+{
+"id": "cervan-04",
+"sp": "cervan",
+"g": "woman",
+"age": "young adult",
+"cls": "artificer"
+},
+{
+"id": "jerbeen-01",
+"sp": "jerbeen",
+"g": "woman",
+"age": "young adult",
+"cls": "warlock"
+},
+{
+"id": "jerbeen-02",
+"sp": "jerbeen",
+"g": "man",
+"age": "adult",
+"cls": "merchant"
+},
+{
+"id": "jerbeen-03",
+"sp": "jerbeen",
+"g": "woman",
+"age": "adult",
+"cls": "noble"
+},
+{
+"id": "jerbeen-04",
+"sp": "jerbeen",
+"g": "man",
+"age": "middle-aged",
+"cls": "hunter"
+},
+{
+"id": "gallus-01",
+"sp": "gallus",
+"g": "man",
+"age": "middle-aged",
+"cls": "blacksmith"
+},
+{
+"id": "gallus-02",
+"sp": "gallus",
+"g": "woman",
+"age": "elder",
+"cls": "barbarian"
+},
+{
+"id": "gallus-03",
+"sp": "gallus",
+"g": "man",
+"age": "young adult",
+"cls": "druid"
+},
+{
+"id": "gallus-04",
+"sp": "gallus",
+"g": "androgynous person",
+"age": "adult",
+"cls": "paladin"
+},
+{
+"id": "luma-01",
+"sp": "luma",
+"g": "woman",
+"age": "adult",
+"cls": "fighter"
+},
+{
+"id": "luma-02",
+"sp": "luma",
+"g": "man",
+"age": "adult",
+"cls": "ranger"
+},
+{
+"id": "luma-03",
+"sp": "luma",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "warlock"
+},
+{
+"id": "luma-04",
+"sp": "luma",
+"g": "woman",
+"age": "elder",
+"cls": "merchant"
+},
+{
+"id": "mandrake-01",
+"sp": "mandrake",
+"g": "man",
+"age": "elder",
+"cls": "wizard"
+},
+{
+"id": "mandrake-02",
+"sp": "mandrake",
+"g": "androgynous person",
+"age": "young adult",
+"cls": "sailor"
+},
+{
+"id": "mandrake-03",
+"sp": "mandrake",
+"g": "woman",
+"age": "adult",
+"cls": "blacksmith"
+},
+{
+"id": "mandrake-04",
+"sp": "mandrake",
+"g": "man",
+"age": "adult",
+"cls": "barbarian"
+},
+{
+"id": "wechselkind-01",
+"sp": "wechselkind",
+"g": "androgynous person",
+"age": "adult",
+"cls": "healer"
+},
+{
+"id": "wechselkind-02",
+"sp": "wechselkind",
+"g": "woman",
+"age": "middle-aged",
+"cls": "bard"
+},
+{
+"id": "wechselkind-03",
+"sp": "wechselkind",
+"g": "man",
+"age": "elder",
+"cls": "fighter"
+},
+{
+"id": "wechselkind-04",
+"sp": "wechselkind",
+"g": "woman",
+"age": "young adult",
+"cls": "ranger"
+},
+{
+"id": "geppettin-01",
+"sp": "geppettin",
+"g": "woman",
+"age": "young adult",
+"cls": "monk"
+},
+{
+"id": "geppettin-02",
+"sp": "geppettin",
+"g": "man",
+"age": "adult",
+"cls": "rogue"
+},
+{
+"id": "geppettin-03",
+"sp": "geppettin",
+"g": "woman",
+"age": "adult",
+"cls": "wizard"
+},
+{
+"id": "geppettin-04",
+"sp": "geppettin",
+"g": "man",
+"age": "middle-aged",
+"cls": "sailor"
+},
+{
+"id": "nautilid-01",
+"sp": "nautilid",
+"g": "man",
+"age": "middle-aged",
+"cls": "artificer"
+},
+{
+"id": "nautilid-02",
+"sp": "nautilid",
+"g": "woman",
+"age": "elder",
+"cls": "scholar"
+},
+{
+"id": "nautilid-03",
+"sp": "nautilid",
+"g": "man",
+"age": "young adult",
+"cls": "healer"
+},
+{
+"id": "nautilid-04",
+"sp": "nautilid",
+"g": "androgynous person",
+"age": "adult",
+"cls": "bard"
+},
+{
+"id": "raptor-01",
+"sp": "raptor",
+"g": "woman",
+"age": "adult",
+"cls": "hunter"
+},
+{
+"id": "raptor-02",
+"sp": "raptor",
+"g": "man",
+"age": "adult",
+"cls": "cleric"
+},
+{
+"id": "raptor-03",
+"sp": "raptor",
+"g": "androgynous person",
+"age": "middle-aged",
+"cls": "monk"
+},
+{
+"id": "raptor-04",
+"sp": "raptor",
+"g": "woman",
+"age": "elder",
+"cls": "rogue"
+}
+]
