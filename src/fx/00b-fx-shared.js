@@ -7,7 +7,5 @@ const FXH={
   esc:function(t){ return String(t).replace(/[&<>"]/g,(c) =>{ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); },
   fx:function(cls,html,ms){ const e=document.createElement("div"); e.className="mi-w "+cls; e.setAttribute("aria-hidden","true"); if(html) e.innerHTML=html; document.body.appendChild(e); setTimeout(() =>{ FXH.rm(e); },ms||2300); return e; },
   ls:function(k,v){ try{ if(v===undefined) return __store.getItem(k); __store.setItem(k,v); }catch(e){ return null; } },
-  center:function(el){ const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2,r:r}; },
-  inView:function(r){ return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight; },
   st:function(){ try{ return FXENV.__sheetState?FXENV.__sheetState():null; }catch(e){ return null; } }
 };
