@@ -13,7 +13,8 @@ win (the sorted window property names), lis (listener count per target kind and 
 Run: python3 tests/solid_fx_snapshot.py OUT.json [--root DIR] [--vp 390|1250] [--scen ABC]
      python3 tests/solid_fx_snapshot.py --diff A.json B.json [--stable-with A2.json] [--ignore-ord]    (reports which steps and which hash kinds differ; A2 = a second run of tree A: pairs on which A and A2 disagree are skipped; --ignore-ord compares only set, dom, win, lis)
 Stability (stage 13D): the page runs on a paused fake clock (Playwright clock: Date.now, performance.now, timers, rAF, idle callbacks move only through run_for), Math.random is seeded, CSS animations and transitions are off, IntersectionObserver is a stand-in polled by the fake clock, idle is a condition (no request pending, no finite Web Animation running), hooks run one at a time.
-Result on main, scenario A at 390x844, two runs: the ord, set, win and lis hashes are equal in all steps except two (home ord and set, sheet set); the dom hash still differs in every step, from ONE cause (class mi-hd on the p-feat heading appears in one run only). Scenarios B and C and the 1250 viewport were not proved in the time box. NOT yet 100 percent: do not use as proof for a src/fx split.
+Stage 14 (what made the pairs equal): the page waits for __gateDone and runs every lazy part before the first step; the total hash leaves out n (the raw trace length); the DOM normalisation sorts class names and drops the decorative ones (mi-hd, mi-lite, the letters of the Home heading mi-ch and mi-shine, which exist only if #homeV was there when fx/11 ran), and the tab notch outline; the live listener count leaves out DOMContentLoaded on the document and load on the window (added or run at once, by readyState at the time the script runs). All of these are boot races or decoration that no code reads back (see reports/solid-s14-analysis.md).
+Result on main at 390x844 with this recorder: scenarios A, B and C each gave identical total hashes for one pair of runs (C and A,B in separate pairs). The 1250x850 viewport and three pairs in a row were not proved in the 60 minute box (one ABC pair needs about 11 minutes with two processes). Env: FXSNAP_DUMP=dir writes trace, live and window names per step (and the DOM of the steps that match FXSNAP_DUMP_DOM), FXSNAP_STOP=step ends the run after that step.
 Not part of CI: it records and compares, it asserts nothing. Run it twice on the same tree to prove it is stable, then compare a refactored tree with main."""
 import json, os, sys, re, gzip, hashlib, socket, threading, http.server, functools, time
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
@@ -137,7 +138,7 @@ NORM = r"""()=>{
     if(n.nodeType===3) return n.nodeValue.replace(/\s+/g,' ');
     if(n.nodeType!==1||skip[n.tagName]) return '';
     if(n.matches&&n.matches('button.lnk[data-lnk]')) return Array.from(n.childNodes).map(ser).join('');
-    let a=Array.from(n.attributes).map(x=>x.name+'='+x.value).sort().join(' ');
+    let a=Array.from(n.attributes).map(x=>x.name+'='+(x.name==='class'?x.value.trim().split(/\s+/).filter(c=>c!=='mi-hd'&&c!=='mi-lite').sort().join(' '):x.value)).sort().join(' ');   /* the order of class names is not behaviour: classes are added by several scripts, in a different order from run to run */
     let h='<'+n.tagName+' '+a+'>';
     if(n.tagName==='INPUT'||n.tagName==='TEXTAREA'||n.tagName==='SELECT') h+='[v='+n.value+']';
     if(n.tagName==='STYLE') h+=n.textContent.replace(/\s+/g,' ');
@@ -148,6 +149,8 @@ NORM = r"""()=>{
   };
   let t=ser(document.documentElement);
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
+  t=t.replace(/(class=nb-[fl]) d=[^>]*>/g,'$1 d=P>');   /* the tab notch outline is drawn for the position of the active tab (fx/26), frame by frame */
+  t=t.replace(/<H1 aria-label=([^>]*)>(?:<SPAN aria-hidden=true class=mi-ch style=--i:\d+>[^<]*<\/SPAN>)+<\/H1>/g,'<H1>$1</H1>').replace(/ mi-shine\b/g,'');   /* fx/11: the letters of the Home heading and the shine on Create are decoration, added only when #homeV existed at the moment fx/11 ran (a boot race of the page) */
   t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/<([A-Za-z0-9]+) >/g,'<$1>').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');
   t=t.replace(/'sha256-[A-Za-z0-9+\/=]+'/g,"'HASH'");
   t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/ mi-hd\b/g,'').replace(/ class=(?=[ >])/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
@@ -217,15 +220,21 @@ def run(b, base, vp, W, H, h, errs):
             dom = settle()
             rec = pg.evaluate("()=>{window.__fxRec.on(false); const r=window.__fxRec.take(); const w=Object.keys(window).sort().join(','); return {t:r.t,f:r.f,i:r.i,live:r.live,w:w}}")
             t = rec['t']; ordh, sethash = digest(t, 'boot' if name in ('home', 'builder') else 'loose' if re.search(r'hover|scroll', name) else 'strict')
-            live = sorted('%s %d' % (k, v) for k, v in rec['live'].items() if v)
+            live = sorted('%s %d' % (k, v) for k, v in rec['live'].items() if v and k not in ('doc DOMContentLoaded', 'win load'))   # whether a boot listener for DOMContentLoaded or load is added or the code runs at once depends on readyState when the script runs (a real network race); the effect is the same
             if DUMP:
                 os.makedirs(DUMP, exist_ok=True); n = ('%s %s %s' % (vp, tag, name)).replace(' ', '_')
-                open(os.path.join(DUMP, n + '.trace.txt'), 'w').write('\n'.join(t)); open(os.path.join(DUMP, n + '.live.txt'), 'w').write('\n'.join(live)); gzip.open(os.path.join(DUMP, n + '.dom.txt.gz'), 'wt').write(dom)
+                open(os.path.join(DUMP, n + '.win.txt'), 'w').write(rec['w'].replace(',', '\n')); open(os.path.join(DUMP, n + '.trace.txt'), 'w').write('\n'.join(t)); open(os.path.join(DUMP, n + '.live.txt'), 'w').write('\n'.join(live)); (gzip.open(os.path.join(DUMP, n + '.dom.txt.gz'), 'wt').write(dom) if re.search(os.environ.get('FXSNAP_DUMP_DOM', '^$'), name) else None)
+            if os.environ.get('FXSNAP_STOP') == name and DUMP: raise SystemExit(0)
             h['%s %s %s' % (vp, tag, name)] = {'ord': ordh, 'set': sethash, 'dom': sha(dom), 'win': sha(rec['w']), 'lis': sha('\n'.join(live)), 'n': len(t)}
         def ready():
             waitc(pg, "()=>!!window.__deferDone")
             pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()"); waitc(pg, "()=>typeof window.__bldOpen==='function'")
-            idle(pg, 2500)
+            waitc(pg, "()=>!!window.__gateDone")
+            for _ in range(200):   # stage 14: every lazy part runs now, in document order, before the first step (the lazy parts used to run when first asked, at a different moment per run)
+                left = pg.evaluate("()=>{var l=document.querySelectorAll('script[type=\"text/x-defer\"][data-lazy]'); for(var i=0;i<l.length;i++){ try{ window.__lazyRun(l[i].getAttribute('data-defer')) }catch(e){} } return document.querySelectorAll('script[type=\"text/x-defer\"]').length }")
+                if not left: break
+                adv(pg, 100); time.sleep(0.03)
+            idle(pg, 3000)
         def click(sel, nth=0):
             return pg.evaluate("([s,n])=>{var e=document.querySelectorAll(s)[n]; if(!e) return false; e.click(); return true}", [sel, nth])
         def esc():
@@ -325,7 +334,7 @@ def main():
             if ONLY and ONLY not in vp: continue
             run(b, base, vp, W, H, h, errs)
         b.close()
-    tot = sha(json.dumps(h, sort_keys=True))
+    tot = sha(json.dumps({k: {q: v for q, v in x.items() if q != 'n'} for k, x in h.items()}, sort_keys=True))   # n (the raw trace length) is shown but not hashed: its count depends on frame timing
     json.dump({'total': tot, 'h': h, 'errors': errs}, open(OUT, 'w'), indent=0)
     print('fx snapshot %d steps, total %s, page errors %d' % (len(h), tot, len(errs)))
     for e in errs[:5]: print('  ', e)
