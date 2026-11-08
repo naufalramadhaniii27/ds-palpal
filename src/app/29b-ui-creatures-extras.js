@@ -5,22 +5,22 @@ bindLive("crOf",{get:function(){return crOf;}});
 bindLive("renderExtras",{get:function(){return renderExtras;}});
 let crSel={}, crF="all", crQ="";
 function crEval(e){ e=String(e).replace(/floor\(([^()]*)\)/g,(m,x) =>{ return Math.floor(crEval(x)); }).replace(/(min|max)\(([^(),]*),([^()]*)\)/g,(m,f,a,b) =>{ return Math[f](crEval(a),crEval(b)); }); if(!/^[\d+\-*/().\s]+$/.test(e)) return NaN; try{ return Function('"use strict";return ('+e+')')(); }catch(er){ return NaN; } }
-export function crExpr(s,env){ s=String(s==null?"":s); const only=s.trim();
+function crExpr(s,env){ s=String(s==null?"":s); const only=s.trim();
   if(/^ATK$/.test(only)) return sg(env.ATK);
   let t=s.replace(/(?<![A-Za-z])(SL|LV|PB|MOD|DC|ATK)/g,(m) =>{ return "("+env[m]+")"; }).replace(/\((-?\d+)\)/g,"$1");
   t=t.replace(/floor\(([^()]*)\)/g,(m,x) =>{ return Math.floor(crEval(x)); }).replace(/(min|max)\(([^(),]*),([^()]*)\)/g,(m,f,a,b) =>{ return String(Math[f](crEval(a),crEval(b))); }).replace(/\(([^()]*)\)d(\d+)/g,(m,x,f) =>{ return crEval(x)+"d"+f; });
   if(!/d\d/.test(t)){ const v=crEval(t); return isNaN(v)?s:String(Math.round(v)); }
   let dice=[], n=0; t.replace(/\s+/g,"").replace(/^(?=[^+-])/,"+").replace(/([+-])((?:\d+)d\d+|[\d*/().]+)/g,(m,sgn,x) =>{ if(/d/.test(x)) dice.push((sgn==="-"?"- ":dice.length?"+ ":"")+x); else n+=(sgn==="-"?-1:1)*crEval(x); return ""; });
   return dice.join(" ")+(n?(n>0?" + ":" - ")+Math.abs(n):""); }
-export function crText(s,env){ return String(s||"").replace(/\{([^{}]+)\}/g,(m,x) =>{ return crExpr(x,env); }).replace(/\b1 ([A-Z][A-Za-z' ]*?) attacks\b/g,"1 $1 attack"); }
-export function crOf(n){ return (typeof CREATURES!=="undefined"?CREATURES.creatures:[]).filter((c) =>{ return c.n===n; })[0]; }
+function crText(s,env){ return String(s||"").replace(/\{([^{}]+)\}/g,(m,x) =>{ return crExpr(x,env); }).replace(/\b1 ([A-Z][A-Za-z' ]*?) attacks\b/g,"1 $1 attack"); }
+function crOf(n){ return (typeof CREATURES!=="undefined"?CREATURES.creatures:[]).filter((c) =>{ return c.n===n; })[0]; }
 function crCrNum(v){ v=String(v); return /\//.test(v)?(+v.split("/")[0])/(+v.split("/")[1]):+v; }
 function crSpell(n){ return (C.spells||[]).filter((x) =>{ return x.n===n; })[0]; }
 /* v88: 2014 Beast Shapes table: max CR by Druid level (Moon: CR 1, then level / 3), no flying below 8, no swimming below 4 */
 function ws14List(L,moon){let cr=L>=8?1:L>=4?0.5:0.25;if(moon)cr=L>=6?Math.max(1,Math.floor(L/3)):1;
  return (typeof CREATURES!=="undefined"?CREATURES.creatures:[]).filter((c) =>{if(c.type!=="Beast"||!(c.tags||[]).some((t) =>{return /wild-shape/.test(t)}))return false;if(crCrNum(c.cr)>cr)return false;const sp=String(c.speed||"");if(L<8&&/Fly/i.test(sp))return false;if(L<4&&/Swim/i.test(sp))return false;return true}).map((c) =>{return c.n})}
 /* the creatures this character can have: [{n, why, ctx}] */
-export function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATURES.rules||{}, SPL=CREATURES.spells||{}, out=[], lv=clsLvls(), seen={};
+function crList(){ if(typeof CREATURES==="undefined") return []; const R=CREATURES.rules||{}, SPL=CREATURES.spells||{}, out=[], lv=clsLvls(), seen={};
   const add=function(n,why,ctx,grp){ const k=n+"|"+ctx; if(seen[k]||!crOf(n)) return; seen[k]=1; out.push({n:n,why:why,ctx:ctx,grp:grp}); };
   const invs=[]; (C.features||[]).forEach((g) =>{ if(g.g==="Eldritch Invocations") (g.items||[]).forEach((i) =>{ invs.push(i.n); }); });
   const fam=R.familiar||{}, chain=invs.indexOf("Pact of the Chain")>=0, wild=(lv.Druid||0)>=2;
@@ -39,14 +39,14 @@ export function crList(){ if(typeof CREATURES==="undefined") return []; const R=
   const IT=CREATURES.items||{}; (C.inv||[]).forEach((i) =>{ const o=IT[i.n]; if(!o) return; o.creatures.forEach((n) =>{ add(n,i.n,"it:"+i.n,"sum"); }); });/* v56: magic items that call a creature */
   return out; }
 PGE.__crFor=function(c){ const o=C; __set_C(c); try{ return crList().map((e) =>{ const h=crBlock(crOf(e.n),e.ctx); return {n:e.n,ctx:e.ctx,len:h.length,ac:/Armor Class|AC/.test(h)}; }); } finally{ __set_C(o); } };/* test hook */
-export function crEnv(ctx,c){ const lv=clsLvls(), env={SL:0,LV:0,PB:D.pb,MOD:0,DC:0,ATK:0};
+function crEnv(ctx,c){ const lv=clsLvls(), env={SL:0,LV:0,PB:D.pb,MOD:0,DC:0,ATK:0};
   if(ctx==="bm"){ const s=scCls("Ranger"); env.LV=lv.Ranger||D.level; env.MOD=D.mod.WIS; env.DC=s.dc||(8+D.pb+D.mod.WIS); env.ATK=s.atk!=null?s.atk:(D.pb+D.mod.WIS); }
   else if(ctx==="vp"){ const sw=scCls("Warlock"); env.LV=lv.Warlock||D.level; env.MOD=D.mod.CHA; env.DC=sw.dc||(8+D.pb+D.mod.CHA); env.ATK=sw.atk!=null?sw.atk:(D.pb+D.mod.CHA); }/* v64 */
   else if(ctx==="sd"||ctx==="ec"||ctx==="rc"){ const sa=scCls("Artificer"); env.LV=lv.Artificer||D.level; env.MOD=D.mod.INT; env.DC=sa.dc||(8+D.pb+D.mod.INT); env.ATK=sa.atk!=null?sa.atk:(D.pb+D.mod.INT); }
   else if(/^it:/.test(ctx)){ const cfg=((CREATURES.items||{})[ctx.slice(3)]||{}).env; if(cfg){ env.SL=cfg.sl||0; env.DC=cfg.dc||0; env.ATK=cfg.atk||0; env.MOD=(cfg.atk||0)-D.pb; env.top=env.SL; env.base=env.SL; } }
   else if(/^sp:/.test(ctx)){ const x=crSpell(ctx.slice(3)), sc=scOf(x), base=Math.max((CREATURES.spells[ctx.slice(3)]||{}).minLevel||0,x?x.l:0), dft=x?Math.max(base,spRowLv(x)):base; env.SL=Math.max(base,(crSel[c.n]||{}).sl||dft);/* Pact Magic casts at the slot level */ let top=0; ((C.spellcasting||{}).slots||[]).forEach((n,k) =>{ if(n>0) top=k+1; }); if((C.spellcasting||{}).pact) top=Math.max(top,+C.spellcasting.pact.lvl||0); env.top=Math.max(base,top||9); env.SL=Math.min(env.SL,env.top); env.MOD=sc.mod||0; env.DC=sc.dc||0; env.ATK=sc.atk||0; env.base=base; }
   return env; }
-export function crStat(c,ctx){ const sel=crSel[c.n]||{}, v=(c.variants||[]).filter((q) =>{ return q.v===sel.v; })[0]||null, o={}; Object.keys(c).forEach((k) =>{ o[k]=c[k]; });
+function crStat(c,ctx){ const sel=crSel[c.n]||{}, v=(c.variants||[]).filter((q) =>{ return q.v===sel.v; })[0]||null, o={}; Object.keys(c).forEach((k) =>{ o[k]=c[k]; });
   if(v) Object.keys(v).forEach((k) =>{ if(k==="v") return; if(Array.isArray(v[k])&&Array.isArray(o[k])) o[k]=o[k].concat(v[k]); else o[k]=v[k]; });
   const sp=ctx&&/^sp:/.test(ctx)&&(CREATURES.spells||{})[ctx.slice(3)]; if(sp&&sp.override) Object.keys(sp.override).forEach((k) =>{ o[k]=sp.override[k]; });
   const it=ctx&&/^it:/.test(ctx)&&((CREATURES.items||{})[ctx.slice(3)]||{}).override; if(it&&it[c.n]) Object.keys(it[c.n]).forEach((k) =>{ o[k]=it[c.n][k]; });/* v56 */
@@ -71,7 +71,7 @@ function renderExtras0(){ const el=$("#extBody"); if(!el) return; const L=crList
   el.innerHTML=h; }
 document.addEventListener("input",(e) =>{ const t=e.target; if(!t||t.id!=="crQ") return; crQ=t.value; const pos=t.selectionStart; renderExtras(); const qq=document.getElementById("crQ"); if(qq){ qq.focus(); try{ qq.setSelectionRange(pos,pos); }catch(er){} } });
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-crf]"); if(!b) return; crF=b.getAttribute("data-crf"); renderExtras(); });
-export function crHpMax(o,env){ const m=/^\s*(\d+)/.exec(crExpr(o.hp,env)); return m?+m[1]:null; }
+function crHpMax(o,env){ const m=/^\s*(\d+)/.exec(crExpr(o.hp,env)); return m?+m[1]:null; }
 function crHpCur(key,max){ const v=(S.crhp||{})[key]; return v==null?max:clamp(+v,0,max); }
 /* v50: creature card effects. An overlay fades or sweeps, the card shakes on damage */
 function crFx(key,kind){ if(REDUCE||!document.body.animate) return; let els=document.querySelectorAll(".crhp"), el=null; Array.prototype.forEach.call(els,(x) =>{ if(!el&&x.querySelector('[data-crk="'+String(key).replace(/"/g,'\\"')+'"]')) el=x; }); if(!el) return;
@@ -109,3 +109,5 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   else { const en=navStack[navStack.length-1], ctx=en&&en.spec?String(en.spec).split("|")[1]:"", env=crEnv(ctx,crOf(n)); s.sl=clamp(env.SL+(+b.getAttribute("data-crsl")),env.base||1,env.top||9); }
   refreshEntry(); renderExtras(); },true);
 export function __set_renderExtras(v){ return renderExtras=v; }
+/* used by 37a-ui-pdf-model.js for creature stat blocks in the PDF export */
+export {crExpr,crText,crOf,crList,crEnv,crStat,crHpMax};
