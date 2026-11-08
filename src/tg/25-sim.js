@@ -2,7 +2,8 @@
 /* T11 N22 build duel: many headless fights with fixed seeds, to compare builds. Only this simulation has a simple pilot (walk to the
    nearest foe, use the best attack in reach, Multiattack first, a save action when nothing reaches). The Training Ground itself keeps
    no enemy AI: there the player gives every command (user decision 2026-10-29). Same seeds give the same result. */
-import {TGE} from "./20-engine.js";
+import {TGE as TGE0} from "./20-engine.js";
+const TGE=/** @type {any} */(TGE0);/* the engine is plain JSON in, plain JSON out: the type check does not follow its loose unit objects */
 /* the pilot keeps its state in one object P: st (the fight, replaced by every command that works), cmds, id, u (the unit as it was when the turn began), tg (the target), atks */
 function go(P,c){ const s=TGE.step(P.st,c); if(s.err) return false; P.st=s; P.cmds.push(c); return true; }
 function me(P){ return P.st.units[P.id]; }
