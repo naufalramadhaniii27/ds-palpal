@@ -1,7 +1,6 @@
 {
  "files": {
-  "builder/09-logic-feats-and-choices.js": 353,
-  "fx/02-micro-interactions.js": 361
+  "builder/09-logic-feats-and-choices.js": 312
  },
  "funcs": {
   "app/01-logic-boot-flags-builder-loader.js::(anon)": [
@@ -220,10 +219,6 @@
    4,
    23
   ],
-  "builder/09-logic-feats-and-choices.js::choices": [
-   43,
-   113
-  ],
   "builder/09-logic-feats-and-choices.js::dm14Set": [
    13,
    24
@@ -272,13 +267,9 @@
    7,
    30
   ],
-  "builder/10-logic-v17-additions.js::luRows": [
-   19,
-   101
-  ],
   "builder/10-logic-v17-additions.js::pk": [
-   25,
-   78
+   8,
+   26
   ],
   "builder/10-logic-v17-additions.js::saveNotes": [
    6,
@@ -324,25 +315,13 @@
    5,
    30
   ],
-  "builder/15-logic-import-from-sheet.js::(anon)": [
-   17,
-   81
-  ],
   "builder/15-logic-import-from-sheet.js::fromSheet": [
-   62,
-   202
+   46,
+   121
   ],
   "builder/16-logic-feature-numbers.js::calcNote": [
    40,
    42
-  ],
-  "builder/16-logic-feature-numbers.js::cl": [
-   14,
-   32
-  ],
-  "builder/16-logic-feature-numbers.js::defenses": [
-   33,
-   82
   ],
   "builder/17-ui-step-builder.js::armorAt": [
    4,
@@ -351,10 +330,6 @@
   "builder/17-ui-step-builder.js::chips": [
    3,
    26
-  ],
-  "builder/17-ui-step-builder.js::choiceBody": [
-   34,
-   98
   ],
   "builder/17-ui-step-builder.js::preFail": [
    14,
@@ -408,10 +383,6 @@
    9,
    66
   ],
-  "builder/20-ui-steps-equipment-next.js::renderEquip": [
-   23,
-   106
-  ],
   "builder/20-ui-steps-equipment-next.js::renderNext": [
    17,
    21
@@ -445,8 +416,8 @@
    58
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldNorm": [
-   80,
-   162
+   56,
+   82
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldOpen": [
    15,
@@ -476,37 +447,33 @@
    38,
    66
   ],
-  "fx/02-micro-interactions.js::(anon)": [
-   121,
-   127
+  "fx/02-micro-interactions.js::(anon)#5": [
+   19,
+   33
   ],
-  "fx/02-micro-interactions.js::(anon)#11": [
-   90,
-   88
-  ],
-  "fx/02-micro-interactions.js::(anon)#12": [
-   22,
-   29
-  ],
-  "fx/02-micro-interactions.js::(anon)#3": [
+  "fx/02c-micro-interactions-rounds.js::(anon)": [
    65,
    73
   ],
-  "fx/02-micro-interactions.js::(anon)#6": [
+  "fx/02c-micro-interactions-rounds.js::(anon)#4": [
    53,
    66
   ],
-  "fx/02-micro-interactions.js::parts": [
-   15,
-   36
-  ],
-  "fx/02-micro-interactions.js::scan": [
+  "fx/02c-micro-interactions-rounds.js::scan": [
    11,
    29
   ],
-  "fx/02-micro-interactions.js::state": [
+  "fx/02d-ambience.js::fxAmbParts": [
+   15,
+   36
+  ],
+  "fx/02d-ambience.js::fxAmbState": [
    15,
    24
+  ],
+  "fx/02e-micro-interactions-peek.js::(anon)": [
+   22,
+   29
   ],
   "fx/03-f1-card-light-and-morph.js::(anon)": [
    70,
