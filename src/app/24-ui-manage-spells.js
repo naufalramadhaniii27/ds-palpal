@@ -27,12 +27,16 @@ function spmLocal(){
   Object.keys(lv).forEach((cls) => spmLocalFn1(lv, out, cls));
   return out; }
 function spmLocalFn1(lv, out, cls){
- const {c, L, third}=spmLocalFn1Step1(cls, lv); if(!c||!L||(!c.caster&&!third)) return;
-    let {ct, pr, mx}=spmLocalFn1Step2();    if(third){ ct=((env.THIRD_SUBS&&env.THIRD_SUBS[C.sub]&&env.THIRD_SUBS[C.sub].cant!=null)?env.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
-    else { const cc=CANT[cls]; ct=cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0; if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
+ const {c, L, third}=spmLocalFn1Step1(cls, lv); if(spmLocalFn1Part1(c, L, third)) return;
+    let {ct, pr, mx}=spmLocalFn1Step2();    if(third){ ct=spmLocalFn1Part2(L); pr=THIRD[L-3]||0; mx=(SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+    else { const cc=CANT[cls]; ct=spmLocalFn1Part3(cc, L); if(cls==="Sorcerer") ct=4+(L>=4?1:0)+(L>=10?1:0); pr=(PREP[cls]||[])[L-1]||0;
       if(C.rs==="2014"){ if((cls==="Paladin"||cls==="Ranger")&&L<2) return; const q14=pr14(cls,L,(typeof D!=="undefined"&&D.mod&&D.mod[c.cast])||0); if(q14) pr=q14.pr; }/* v92 */
-      mx=c.caster==="pact"?(PACT[L-1]||[0,0])[1]:(c.caster==="full"?SLOTS_FULL[L-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(L/2)-1]:SLOTS_FULL[Math.ceil(L/3)-1]||[]).length; }
+      mx=spmLocalFn1Part4(c, L); }
     spmLocalFn1Step3(third, cls, out, ct, pr, mx); }
+function spmLocalFn1Part1(c, L, third){ return (!c||!L||(!c.caster&&!third)); }
+function spmLocalFn1Part2(L){ return (((env.THIRD_SUBS&&env.THIRD_SUBS[C.sub]&&env.THIRD_SUBS[C.sub].cant!=null)?env.THIRD_SUBS[C.sub].cant:(/^Arcane Trickster/.test(C.sub)?3:2))+(L>=10?1:0)); }
+function spmLocalFn1Part3(cc, L){ return (cc?cc[0]+(L>=cc[1]?1:0)+(L>=cc[2]?1:0):0); }
+function spmLocalFn1Part4(c, L){ return (c.caster==="pact"?(PACT[L-1]||[0,0])[1]:(c.caster==="full"?SLOTS_FULL[L-1]:c.caster==="half"?SLOTS_FULL[Math.ceil(L/2)-1]:SLOTS_FULL[Math.ceil(L/3)-1]||[]).length); }
 function spmLocalFn1Step1(cls, lv){
 const c=CLASSES[cls], L=lv[cls]||0, third=isThird3(C.sub)&&cls===C.cls&&L>=3;
   return /** @type {any} */ ({c, L, third});

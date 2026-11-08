@@ -101,13 +101,15 @@ function rbDuel(i,btn){
   let pc=null; try{ pc=tgPcFor(env.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
   const {run, pct}=rbDuel2Step3(btn);
   const line=function(a,base,e1){ const g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
-    return (a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
-      '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '+pc.level+'), '+(base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build')+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
+    return rbDuelPart1(a, x, y, d, pct, e1, g)+pc.level+'), '+(rbDuelPart2(base))+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
   const {fin}=rbDuel2Step4(btn, run, out, line);
   const go2=function(base){ const e1=env.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); env.__tgDuel(pc,base.g,(a) =>{ fin(a,base,e1); }); };
   if(RB.base&&RB.base.run===run){ go2(RB.base); return; }
   let cur=null; try{ cur=tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
   rbDuel2Step5(out); env.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; env.__tgDuel(cur,g,(b) => rbDuelFn1(fin, run, g, go2, b),(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
+function rbDuelPart1(a, x, y, d, pct, e1, g){ return ((a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
+      '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '); }
+function rbDuelPart2(base){ return (base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build'); }
 function rbDuel2Step1(i, btn){
  const {r, out}=rbDuelStep1(i, btn);
   return /** @type {any} */ ({r, out});

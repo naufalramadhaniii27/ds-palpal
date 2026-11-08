@@ -131,10 +131,12 @@ function frViewFn1(owner, id, v){ return syPicIn(owner,id,v.data).then((text) =>
     __set_C(c2); __set_S(o); document.documentElement.classList.add("fr-viewing"); if(FR.w){ FR.w.remove(); FR.w=null; } const hv=document.getElementById("homeV"); if(hv) hv.hidden=true; document.body.style.overflow="";
     try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(x){}
     const bar=document.createElement("div"); bar.id="frBar"; bar.className="fr-bar"; bar.setAttribute("role","status");
-    bar.innerHTML='<span><b>'+esc(v.name)+'</b> by '+esc((v.by||{}).name||"a friend")+' · view only, changes are not kept</span>'+(owner!==(SY.me||{}).id&&v.copyOk?'<button type="button" class="btn press" data-frask="1"'+(v.requested?' disabled':'')+'>'+(v.requested?'Copy requested':'Request a copy')+'</button>':'')+'<button type="button" class="btn pri press" data-frclose="1">Close</button>';
+    bar.innerHTML=frViewFn1Part1(v, owner);
     document.body.appendChild(bar);
-    bar.addEventListener("click",(ev) =>{ if(ev.target.closest("[data-frclose]")){ try{ __miReload(); }catch(x){ location.reload(); } return; }
-      const a=ev.target.closest("[data-frask]"); if(!a||a.disabled) return; frAsk(owner,id,v.name,a); }); }); }
+    frViewFn1Part2(bar, owner, id, v); }); }
+function frViewFn1Part1(v, owner){ return ('<span><b>'+esc(v.name)+'</b> by '+esc((v.by||{}).name||"a friend")+' · view only, changes are not kept</span>'+(owner!==(SY.me||{}).id&&v.copyOk?'<button type="button" class="btn press" data-frask="1"'+(v.requested?' disabled':'')+'>'+(v.requested?'Copy requested':'Request a copy')+'</button>':'')+'<button type="button" class="btn pri press" data-frclose="1">Close</button>'); }
+function frViewFn1Part2(bar, owner, id, v){ return (bar.addEventListener("click",(ev) =>{ if(ev.target.closest("[data-frclose]")){ try{ __miReload(); }catch(x){ location.reload(); } return; }
+      const a=ev.target.closest("[data-frask]"); if(!a||a.disabled) return; frAsk(owner,id,v.name,a); })); }
 function frAsk(owner,id,name,btn){ const w=document.createElement("div"); w.className="ask fr-askd"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true");
   w.innerHTML='<div class="askb"><p>Ask for your own copy of <b>'+esc(name)+'</b>? The owner decides. If they approve, it appears in your characters.</p><textarea maxlength="140" rows="2" placeholder="Message (optional)"></textarea><div class="askr"><button type="button" class="btn press" data-n="1">Cancel</button><button type="button" class="btn pri press" data-y="1">Send request</button></div></div>';
   document.body.appendChild(w); w.addEventListener("click",(e) =>{ if(e.target===w||e.target.closest("[data-n]")){ w.remove(); return; }

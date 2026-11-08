@@ -8,9 +8,9 @@ export var PWA_BUILD=true;
   logicBootFlagsBuilderLoaderAnonStep1(need); })();/* v34 RU82: true in the public build with manifest and sw.js */
 function anonFn1(e){ if(env.__deferDone) return;
  const {t}=anonFn1Step1(e);
-    if(!env.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")) return;
-    if(e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")) return;
-    if(e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")) return;
+    if(anonFn1Part1(e)) return;
+    if(anonFn1Part2(e)) return;
+    if(anonFn1Part3(e, t)) return;
     /* T1: a tap before the loader script has been read (slow phone, page still loading) waits for it, then goes the usual way. Before, the tap was lost */
     if(!env.__bldNeed){ if(!t||!t.click) return; e.preventDefault(); e.stopImmediatePropagation();
       const bz0=document.getElementById("busy"), sp0=bz0&&bz0.querySelector("div span:last-child"), old0=sp0?sp0.textContent:"";
@@ -18,7 +18,7 @@ function anonFn1(e){ if(env.__deferDone) return;
       let n0=0, again=function(){ if(!env.__bldNeed&&document.readyState==="loading"&&n0++<600){ setTimeout(again,30); return; }
         if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) sp0.textContent=old0; try{ t.click(); }catch(x){} };
       setTimeout(again,30); return; }
-    if(e.type==="click"&&t&&t.click){/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
+    if(anonFn1Part4(e, t)){/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
       e.preventDefault(); e.stopImmediatePropagation();
       const bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";
       if(sp) sp.textContent="Opening the builder"; if(bz){ bz.style.transition="none"; bz.classList.add("on"); }
@@ -26,6 +26,10 @@ function anonFn1(e){ if(env.__deferDone) return;
       if(env.requestAnimationFrame) requestAnimationFrame(() =>{ setTimeout(run,0); }); else setTimeout(run,30);
       return; }
     anonFn1Step2(); }
+function anonFn1Part1(e){ return (!env.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")); }
+function anonFn1Part2(e){ return (e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")); }
+function anonFn1Part3(e, t){ return (e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")); }
+function anonFn1Part4(e, t){ return (e.type==="click"&&t&&t.click); }
 function anonFn1Step1(e){
  const {t}=needStep1(e);
   return /** @type {any} */ ({t});

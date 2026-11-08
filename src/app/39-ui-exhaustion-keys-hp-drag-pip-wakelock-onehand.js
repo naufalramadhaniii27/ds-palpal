@@ -59,7 +59,7 @@ function qmOpen(el){ qmClose(); if(!D||!D.hpmax) return; const w=document.create
 (function(){ let TH=8, STEP=12, HOLD=500, st=null, bub=null, supT=0;
   function bubble(el,n){ if(!bub){ bub=document.createElement("div"); bub.id="hpGest"; bub.className="hp-gest"; bub.setAttribute("aria-hidden","true"); document.body.appendChild(bub); }
     const r=el.getBoundingClientRect(); bub.innerHTML='<b>'+n+'</b><span>Amount. Now tap Heal or Damage</span>'; bub.style.left=Math.round(Math.max(110,Math.min(document.documentElement.clientWidth-110,r.left+r.width/2)))+"px"; bub.style.top=Math.round(Math.max(70,r.top-10))+"px"; bub.classList.add("on"); }
-  function down(e){ if(e.button>0||!D||!D.hpmax) return; const el=e.currentTarget; if(st) clearTimeout(st.t); st={el:el,x:e.clientX,y:e.clientY,id:e.pointerId,a0:hpAmtV(),m:"",n:null};
+  function down(e){ if(anonPart1__(e)) return; const el=e.currentTarget; if(st) clearTimeout(st.t); st={el:el,x:e.clientX,y:e.clientY,id:e.pointerId,a0:hpAmtV(),m:"",n:null};
     st.t=setTimeout(() =>{ if(st&&!st.m){ st.m="hold"; qmOpen(st.el); buzz(10); } },HOLD); }
   function move(e){ if(!st||e.pointerId!==st.id) return; const dx=e.clientX-st.x, dy=e.clientY-st.y;
     if(!st.m){ if(Math.abs(dy)>TH&&Math.abs(dy)>Math.abs(dx)*1.4){ st.m="drag"; clearTimeout(st.t); st.y=e.clientY; try{ st.el.setPointerCapture(e.pointerId); }catch(er){} } else if(Math.abs(dx)>TH||Math.abs(dy)>TH){ clearTimeout(st.t); st=null; } return; }
@@ -72,6 +72,7 @@ function qmOpen(el){ qmClose(); if(!D||!D.hpmax) return; const w=document.create
     el.addEventListener("contextmenu",(e) =>{ e.preventDefault(); supT=Date.now(); if(st){ clearTimeout(st.t); st.m="hold"; } if(!document.getElementById("hpQm")) qmOpen(el); }); });
   document.addEventListener("click",(e) =>{ if(Date.now()-supT<450&&e.target.closest&&e.target.closest("#hpCur,#vbHp")){ e.preventDefault(); e.stopPropagation(); } },true);
 })();
+function anonPart1__(e){ return (e.button>0||!D||!D.hpmax); }
 /* v30 p10 RU130: a small Hit Points window that stays on top of other windows (Document Picture-in-Picture, Chrome and Edge on computers) */
 var PIP=null;
 const PIP_CSS='*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:14px}body{padding:10px;display:flex;flex-direction:column;gap:8px;-webkit-font-smoothing:antialiased}'+

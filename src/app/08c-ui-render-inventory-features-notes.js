@@ -67,16 +67,18 @@ export function renderFeat(){
 }
 function renderFeatFn1(o, q, g,gi){ if(featCat(g.g)!==o[0]) return "";
       const items=(g.items||[]).map((f,fi) =>{
-        const txt=f.full||f.d||"", hay=(f.n+" "+(f.d||"")+" "+(f.full||"")).toLowerCase(); if(q&&hay.indexOf(q)<0) return ""; const cs=aylSplit(shortX(f.n,g.g)||f.d||f.full||"",clsOfG(g.g)), so=q?null:sumParse(cs.t);/* v35 p15, p17 */
+        const txt=f.full||f.d||"", hay=(f.n+" "+(f.d||"")+" "+(f.full||"")).toLowerCase(); if(q&&hay.indexOf(q)<0) return ""; const cs=renderFeatFn1Part1(f, g), so=q?null:sumParse(cs.t);/* v35 p15, p17 */
         const rl=resOf(f.n), r=rl[0], chip=actChip(txt);
         const from=(/^Feats/.test(g.g)&&f.s)?'<div class="ffrom">From <b>'+esc((f.s.match(/\(([^)]+)\)\s*$/)||[0,f.s])[1].replace(/,? ?Versatile/,""))+'</b> <span class="fsrc">\u2022 '+esc(srcPg(f.s.split(",")[0],pgGuess(g,f)))+'</span></div>':'';
-        return '<div class="fitem"><h4><button type="button" class="tx" data-info="f:'+gi+'.'+fi+'">'+esc(f.n)+'</button>'+(from?'':'<span class="fsrc"> \u2022 '+esc(srcPg(f.s,pgGuess(g,f)))+'</span>')+sumPill(so&&so.p)+'</h4>'+from+(so?sumH(so,clsOfG(g.g)):f.full&&!q?sumText(cs.t,clsOfG(g.g)):foldP(fch(featNums(richP(fill(cs.t)),clsOfG(g.g))),"f:"+gi+"."+fi,cs.t,!!q||!!f.full||!!shortX(f.n,g.g)))+aylH(cs.a,clsOfG(g.g))+featSpL(g,f)+
-          ((chip||r)?'<div class="fsub">'+(chip?'<div><b>'+esc(f.n)+'</b> <span class="muted">('+chip+')</span></div>':'')+(r?resBoxes(rl):'')+'</div>':'')+'</div>';
+        return renderFeatFn1Part2(gi, fi, f, from, g, so, q, cs, chip, r, rl);
       }).join("");
       if(!items) return "";
       if(g.g==="Eldritch Invocations") return '<div class="fnest">'+items+'</div>';
       return (o[0]==="class"?'<h3 class="fgh">'+esc(gName(g.g))+'</h3>':'')+items;
     }
+function renderFeatFn1Part1(f, g){ return (aylSplit(shortX(f.n,g.g)||f.d||f.full||"",clsOfG(g.g))); }
+function renderFeatFn1Part2(gi, fi, f, from, g, so, q, cs, chip, r, rl){ return ('<div class="fitem"><h4><button type="button" class="tx" data-info="f:'+gi+'.'+fi+'">'+esc(f.n)+'</button>'+(from?'':'<span class="fsrc"> \u2022 '+esc(srcPg(f.s,pgGuess(g,f)))+'</span>')+sumPill(so&&so.p)+'</h4>'+from+(so?sumH(so,clsOfG(g.g)):f.full&&!q?sumText(cs.t,clsOfG(g.g)):foldP(fch(featNums(richP(fill(cs.t)),clsOfG(g.g))),"f:"+gi+"."+fi,cs.t,!!q||!!f.full||!!shortX(f.n,g.g)))+aylH(cs.a,clsOfG(g.g))+featSpL(g,f)+
+          ((chip||r)?'<div class="fsub">'+(chip?'<div><b>'+esc(f.n)+'</b> <span class="muted">('+chip+')</span></div>':'')+(r?resBoxes(rl):'')+'</div>':'')+'</div>'); }
 function renderFeatStep1(){
   const q=featQ.toLowerCase(), groups=(C.features||[]);
   const head='<div class="fsearch"><input id="featQ" type="search" placeholder="Search in Features" value="'+esc(featQ)+'"></div><div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';

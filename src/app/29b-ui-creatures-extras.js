@@ -58,10 +58,15 @@ function crEnv(ctx,c){
  const {lv, env}=crEnv2Step1();
   if(ctx==="bm"){ const s=scCls("Ranger"); env.LV=lv.Ranger||D.level; env.MOD=D.mod.WIS; env.DC=s.dc||(8+D.pb+D.mod.WIS); env.ATK=s.atk!=null?s.atk:(D.pb+D.mod.WIS); }
   else if(ctx==="vp"){ const sw=scCls("Warlock"); env.LV=lv.Warlock||D.level; env.MOD=D.mod.CHA; env.DC=sw.dc||(8+D.pb+D.mod.CHA); env.ATK=sw.atk!=null?sw.atk:(D.pb+D.mod.CHA); }/* v64 */
-  else if(ctx==="sd"||ctx==="ec"||ctx==="rc"){ const sa=scCls("Artificer"); env.LV=lv.Artificer||D.level; env.MOD=D.mod.INT; env.DC=sa.dc||(8+D.pb+D.mod.INT); env.ATK=sa.atk!=null?sa.atk:(D.pb+D.mod.INT); }
-  else if(/^it:/.test(ctx)){ const cfg=((CREATURES.items||{})[ctx.slice(3)]||{}).env; if(cfg){ env.SL=cfg.sl||0; env.DC=cfg.dc||0; env.ATK=cfg.atk||0; env.MOD=(cfg.atk||0)-D.pb; env.top=env.SL; env.base=env.SL; } }
-  else if(/^sp:/.test(ctx)){ const x=crSpell(ctx.slice(3)), sc=scOf(x), base=Math.max((CREATURES.spells[ctx.slice(3)]||{}).minLevel||0,x?x.l:0), dft=x?Math.max(base,spRowLv(x)):base; env.SL=Math.max(base,(crSel[c.n]||{}).sl||dft);/* Pact Magic casts at the slot level */ let top=0; ((C.spellcasting||{}).slots||[]).forEach((n,k) =>{ if(n>0) top=k+1; }); if((C.spellcasting||{}).pact) top=Math.max(top,+C.spellcasting.pact.lvl||0); env.top=Math.max(base,top||9); env.SL=Math.min(env.SL,env.top); env.MOD=sc.mod||0; env.DC=sc.dc||0; env.ATK=sc.atk||0; env.base=base; }
+  else if(crEnvPart1(ctx)){ const sa=scCls("Artificer"); env.LV=lv.Artificer||D.level; env.MOD=D.mod.INT; env.DC=sa.dc||(8+D.pb+D.mod.INT); env.ATK=sa.atk!=null?sa.atk:(D.pb+D.mod.INT); }
+  else if(/^it:/.test(ctx)){ const cfg=crEnvPart2(ctx); if(cfg){ env.SL=cfg.sl||0; env.DC=cfg.dc||0; env.ATK=cfg.atk||0; env.MOD=(cfg.atk||0)-D.pb; env.top=env.SL; env.base=env.SL; } }
+  else if(/^sp:/.test(ctx)){ const x=crSpell(ctx.slice(3)), sc=scOf(x), base=crEnvPart3(ctx, x), dft=x?Math.max(base,spRowLv(x)):base; env.SL=crEnvPart4(base, c, dft);/* Pact Magic casts at the slot level */ let top=0; (crEnvPart5()).forEach((n,k) =>{ if(n>0) top=k+1; }); if((C.spellcasting||{}).pact) top=Math.max(top,+C.spellcasting.pact.lvl||0); env.top=Math.max(base,top||9); env.SL=Math.min(env.SL,env.top); env.MOD=sc.mod||0; env.DC=sc.dc||0; env.ATK=sc.atk||0; env.base=base; }
   return env; }
+function crEnvPart1(ctx){ return (ctx==="sd"||ctx==="ec"||ctx==="rc"); }
+function crEnvPart2(ctx){ return (((CREATURES.items||{})[ctx.slice(3)]||{}).env); }
+function crEnvPart3(ctx, x){ return (Math.max((CREATURES.spells[ctx.slice(3)]||{}).minLevel||0,x?x.l:0)); }
+function crEnvPart4(base, c, dft){ return (Math.max(base,(crSel[c.n]||{}).sl||dft)); }
+function crEnvPart5(){ return ((C.spellcasting||{}).slots||[]); }
 function crEnv2Step1(){
  const {lv, env}=crEnvStep1();
   return /** @type {any} */ ({lv, env});
@@ -87,13 +92,17 @@ function renderExtras0(){
   const _renderExtras02Step3=renderExtras02Step3(L, h, G);
   const {R}=_renderExtras02Step3;
   h=_renderExtras02Step3.h;
-  if(L.some((e) =>{ return e.grp==="ws"; })&&(crF==="all"||crF==="ws")){ const ws=R.wildShape||{}, lv=clsLvls().Druid||0, row=((ws.shapes||{}).rows||[]).filter((r) =>{ return r.lv<=lv; }).pop()||{};
+  if(renderExtras0Part1(L)){ const ws=R.wildShape||{}, lv=clsLvls().Druid||0, row=renderExtras0Part2(ws, lv);
     let moon=L.some((e) => renderExtras0Fn1(e)), mo=ws.moon||{}, cr=row.maxCr||"", mcr=Math.floor(lv/3);
     if(moon&&mcr>=crCrNum(cr)) cr=String(mcr);
-    const w14=C.rs==="2014", hint=(!w14&&!(C.wsForms||[]).length)?' You have not picked your known forms yet, so every eligible form is listed. Pick them in the Builder: Class, Wild Shape.':'';
+    const w14=C.rs==="2014", hint=renderExtras0Part3(w14);
     if(w14){ let cr14=lv>=8?"1":lv>=4?"1/2":"1/4"; if(moon) cr14=lv>=6?String(Math.max(1,Math.floor(lv/3))):"1"; h+='<p class="crnote">Wild Shape (2014 rules): you can turn into any Beast you have seen, Challenge Rating up to '+cr14+(lv>=8?'':lv>=4?', no Fly Speed':', no Fly or Swim Speed')+'. There is no list of known forms. The list below shows the Beasts the app has stat blocks for. Source: PHB-2014.</p>'; }
-    else h+='<p class="crnote">Wild Shape: you know '+(row.known||"")+' Beast forms, Challenge Rating up to '+cr+(row.fly?'':', no Fly Speed')+'. When you shift you gain '+(moon?3*lv+' Temporary Hit Points (three times your Druid level)':lv+' Temporary Hit Points (your Druid level)')+'.'+(moon?' Your AC in the form is at least '+(13+D.mod.WIS)+' (13 plus your Wisdom modifier).':'')+' Source: '+esc(srcPg("PHB-2024",ws.pg))+(moon?', '+esc(srcPg("PHB-2024",mo.pg)).replace("PHB-2024, ",""):"")+'.'+hint+'</p>'; }
+    else h+=renderExtras0Part4(row, cr, moon, lv, ws, mo, hint); }
   ({h}=renderExtras02Step4(h, L, el)); }
+function renderExtras0Part1(L){ return (L.some((e) =>{ return e.grp==="ws"; })&&(crF==="all"||crF==="ws")); }
+function renderExtras0Part2(ws, lv){ return (((ws.shapes||{}).rows||[]).filter((r) =>{ return r.lv<=lv; }).pop()||{}); }
+function renderExtras0Part3(w14){ return ((!w14&&!(C.wsForms||[]).length)?' You have not picked your known forms yet, so every eligible form is listed. Pick them in the Builder: Class, Wild Shape.':''); }
+function renderExtras0Part4(row, cr, moon, lv, ws, mo, hint){ return ('<p class="crnote">Wild Shape: you know '+(row.known||"")+' Beast forms, Challenge Rating up to '+cr+(row.fly?'':', no Fly Speed')+'. When you shift you gain '+(moon?3*lv+' Temporary Hit Points (three times your Druid level)':lv+' Temporary Hit Points (your Druid level)')+'.'+(moon?' Your AC in the form is at least '+(13+D.mod.WIS)+' (13 plus your Wisdom modifier).':'')+' Source: '+esc(srcPg("PHB-2024",ws.pg))+(moon?', '+esc(srcPg("PHB-2024",mo.pg)).replace("PHB-2024, ",""):"")+'.'+hint+'</p>'); }
 function renderExtras02Step1(){
  const {el}=renderExtras0Step1();
   return /** @type {any} */ ({el});

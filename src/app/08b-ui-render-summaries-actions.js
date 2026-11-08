@@ -146,7 +146,8 @@ function actEnt(e,x,chip){
   if(e.it){ const ix=(C.inv||[]).findIndex((i) => actEntFn1(e, i));
     return '<div class="aitem" data-act="'+e.k+'"><h4>'+(ix>=0?'<button type="button" class="tx" data-info="it:'+ix+'">'+esc(e.n)+'</button>':esc(e.n))+' <span class="muted">(Magic item)</span></h4>'+(e.d?foldP(rich(fill(e.d)),"ai:"+e.k+":"+e.n,e.d):'')+(rl.length?resBoxes(rl):'')+'</div>'; }
   const {same, t, ay, sx, so}=actEnt2Step2(e, x);
-  return '<div class="aitem" data-act="'+e.k+'"><h4>'+(x?'<button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(e.n)+'</button>':esc(e.n))+(!same?(e.f==="Maneuvers known"?'':' <span class="muted">('+esc(e.f)+')</span>'):(chip&&!(so&&so.p)?' <span class="muted">('+chip+')</span>':''))+sumPill(so&&so.p)+(so&&rl.length&&e.f!=="Maneuvers known"?resPips(rl):'')+'</h4>'+(so?sumH(so,clsOfG(x.g)):(e.d==null&&x&&x.f.full)?sumText(t,clsOfG(x.g)):foldP(richP(fill(t)),same&&x?"a:"+x.gi+"."+x.fi:"ae:"+e.f+":"+e.n,t,!!(sx||(e.d==null&&x&&x.f.full))))+ay+(e.f==="Maneuvers known"&&rl.length?manCost(rl):(rl.length?resTail(rl,so):''))+'</div>'; }
+  return actEntPart1(e, x, same, chip, so, rl)+(so?sumH(so,clsOfG(x.g)):(e.d==null&&x&&x.f.full)?sumText(t,clsOfG(x.g)):foldP(richP(fill(t)),same&&x?"a:"+x.gi+"."+x.fi:"ae:"+e.f+":"+e.n,t,!!(sx||(e.d==null&&x&&x.f.full))))+ay+(e.f==="Maneuvers known"&&rl.length?manCost(rl):(rl.length?resTail(rl,so):''))+'</div>'; }
+function actEntPart1(e, x, same, chip, so, rl){ return ('<div class="aitem" data-act="'+e.k+'"><h4>'+(x?'<button type="button" class="tx" data-info="f:'+x.gi+'.'+x.fi+'">'+esc(e.n)+'</button>':esc(e.n))+(!same?(e.f==="Maneuvers known"?'':' <span class="muted">('+esc(e.f)+')</span>'):(chip&&!(so&&so.p)?' <span class="muted">('+chip+')</span>':''))+sumPill(so&&so.p)+(so&&rl.length&&e.f!=="Maneuvers known"?resPips(rl):'')+'</h4>'); }
 function actEnt2Step1(e){
  const {rl}=actEntStep1(e);
   return /** @type {any} */ ({rl});

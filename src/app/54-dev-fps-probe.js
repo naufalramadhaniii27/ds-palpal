@@ -17,7 +17,7 @@ import {renderAll} from "./35-ui-combo.js";
   async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); const st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
   async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; let withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
     try{
-      lines.push("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(env.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB");
+      lines.push(runPart1());
       lines.push("Browser "+navigator.userAgent.replace(/^Mozilla\/5.0 /,"").slice(0,110));
       const hv=document.querySelector("[data-hview]"); if(visible(hv)){ hv.click(); }
       const ok=await waitFor(() =>{ return visible(document.getElementById("dmgBtn")); },8000); if(!ok){ lines.push("Open a character first, then press Start again."); out.textContent=lines.join("\n"); return; }
@@ -31,16 +31,19 @@ import {renderAll} from "./35-ui-combo.js";
       const btns=[].slice.call(document.querySelectorAll(mq.matches?"#bnav button":"#tabs .tab")).filter(visible);
       await phase("2 switch pages ("+btns.length+" x2)",async () =>{ for(let r=0;r<2;r++){ for(let i=0;i<btns.length;i++){ wins.push([(r+1)+","+i+" "+(btns[i].textContent||"").trim().slice(0,10),performance.now()]); btns[i].click(); await wait(320); } } });
       if(withDmg){ const inp=document.getElementById("hpAmt"), d=document.getElementById("dmgBtn"), h=document.getElementById("healBtn");
-        if(visible(d)&&visible(h)&&inp&&typeof S==="object"){ h0=S.hp; t0=S.tmp;
+        if(runPart2(visible, d, h, inp)){ h0=S.hp; t0=S.tmp;
           await phase("3 damage and heal (4 rounds)",async () =>{ for(let k=0;k<4;k++){ inp.value="3"; inp.dispatchEvent(new Event("input",{bubbles:true})); d.click(); await wait(520); h.click(); await wait(520); } });
         } else lines.push("3 damage and heal: skipped (the Hit Points card is not on this page)"); }
       lines.push("Done. A smooth run shows 'over 16.7 ms' under 5% and 'worst' under 100 ms. On a 120 Hz screen the 16.7 ms line is a stricter test.");
-    }catch(er){ lines.push("Error: "+(er&&er.message||er)); }
+    }catch(er){ lines.push(runPart3(er)); }
     finally{ if(h0!=null){ try{ S.hp=h0; S.tmp=t0; save(); renderAll(true); lines.push("Hit Points put back to "+h0+(t0?" + "+t0+" temporary":"")+"."); }catch(er2){} } out.textContent=lines.join("\n"); busy=false; go.disabled=false; cp.hidden=false; }
   }
   devFpsProbeAnon2Step4(go, run);
   cp.addEventListener("click",() =>{ const t=lines.join("\n"); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(() =>{ cp.textContent="Copied"; },() =>{ cp.textContent="Select the text and copy"; }); } else cp.textContent="Select the text and copy"; });
 })();
+function runPart1(){ return ("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(env.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB"); }
+function runPart2(visible, d, h, inp){ return (visible(d)&&visible(h)&&inp&&typeof S==="object"); }
+function runPart3(er){ return ("Error: "+(er&&er.message||er)); }
 function devFpsProbeAnon2Step1(){
   const {box}=devFpsProbeAnonStep1();
  devFpsProbeAnonStep2(box);

@@ -84,7 +84,7 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
    if(d.hview){if(d.hview===r.active){w.hidden=true;document.body.style.overflow="";return}rSnap(r);sessionStorage.setItem("cs-skip","1");rLoad(r,d.hview,false);return}
    if(d.hedit){if(d.hedit===r.active){w.hidden=true;document.body.style.overflow="";if(env.__bldOpen)env.__bldOpen();return}rSnap(r);sessionStorage.setItem("cs-skip","1");try{__store.setItem("cs-edit","1")}catch(er){}if(rLoad(r,d.hedit,false)===false)try{__store.removeItem("cs-edit")}catch(er){}return}
    if(d.hkeep){const kp=r.chars[d.hkeep];if(kp){delete kp.practice;rSave(r);document.getElementById("hgrid").innerHTML=homeCards(true);toast("Kept. It is a normal character now.")}return}
-   if(d.hdisc){const dc=d.hdisc;if(Object.keys(r.chars).length<2){toast("You need at least one character");return}ask("Discard the practice hero "+((r.chars[dc]||{}).name||"")+"? A copy stays in Snapshots for a while, so it can come back.","Discard",() => showHomeFn3(dc));return}
+   if(d.hdisc){const dc=d.hdisc;if(Object.keys(r.chars).length<2){toast("You need at least one character");return}showHomePart1(r, dc);return}
    if(d.hdel){if(Object.keys(r.chars).length<2){toast("You need at least one character");return}if(b.dataset.sure!=="1"&&b.dataset.heldDone!=="1"){b.dataset.sure="1";const bl=b.querySelector(".holdc-label");if(bl)bl.textContent="Tap again";else b.textContent="Tap again";return}snTake(d.hdel,"Before Delete",rSnap(r));const was=d.hdel===r.active;delete r.chars[d.hdel];rSave(r);if(was){sessionStorage.setItem("cs-skip","0");rLoad(r,Object.keys(r.chars)[0],false);return}document.getElementById("hgrid").innerHTML=homeCards();const hi=document.getElementById("hinfo");if(hi)hi.innerHTML=homeInfo();persistShow();const hs=document.querySelector("#homeV .hslots b");if(hs)hs.textContent=Object.keys(r.chars).length;return}
    if(d.hcampf!=null){lateSet("homeCamp",lateGet("homeCamp")===d.hcampf?"":d.hcampf);const hc=document.getElementById("homeCamp");if(hc)hc.value=lateGet("homeCamp");document.getElementById("hgrid").innerHTML=homeCards();return}/* v32 p28 RU133 */
    if(d.hlearn){learnGo();return}/* T11 Learn */if(d.hparty){partyOpen();return}if(d.hrep){reportOpen();return}/* v27 RU60, RU71 */
@@ -92,7 +92,7 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
    if(d.hfile){chfOpen(d.hfile);return}/* v18 RU67 */
    if(d.hwn){if(d.hwn==="ok"){try{__store.setItem("cs-ui-ver",String(APP_VER))}catch(er){}lateSet("WN_SHOW",false);const bn=document.getElementById("hwnB");if(bn)bn.remove();return}wnOpen();return}/* v18 RU59 */
    if(d.hpers){askPersist();return}
-   if(d.hall){const hg=document.getElementById("hgrid");if(hg)hg.scrollIntoView({behavior:(env.__MI&&env.__MI.rm&&env.__MI.rm())?"auto":"smooth",block:"start"});return}
+   if(d.hall){const hg=document.getElementById("hgrid");if(hg)showHomePart2(hg);return}
    if(d.hbin){lateSet("BIN_OPEN",!BIN_OPEN);const hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
    if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
    if(d.hnew){rSnap(r);const nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{if(sessionStorage.getItem("cs-forge"))r.chars[nid].practice=1}catch(e){}/* T11 Learn F3: a hero from Forge Your Hero is a practice hero until kept */try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}})}
@@ -101,6 +101,8 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
  showHome2Step2();
  w.hidden=false;
 showHome2Step3();}
+function showHomePart1(r, dc){ return (ask("Discard the practice hero "+((r.chars[dc]||{}).name||"")+"? A copy stays in Snapshots for a while, so it can come back.","Discard",() => showHomeFn3(dc))); }
+function showHomePart2(hg){ return (hg.scrollIntoView({behavior:(env.__MI&&env.__MI.rm&&env.__MI.rm())?"auto":"smooth",block:"start"})); }
 function showHome2Step1(){
  const {n}=showHomeStep1();
   return /** @type {any} */ ({n});

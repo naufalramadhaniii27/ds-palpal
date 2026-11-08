@@ -28,7 +28,7 @@ function restHTML(kind){
     const rl=shortList(); h+='<div class="info-h">Recover</div>'+(rl.length?recUL(rl.map((r) => restHTMLFn1(r))):'<p class="info-d">No features recharge on a Short Rest.</p>');
     h+='<label class="ck"><input type="checkbox" data-rauto="1"'+(restAuto?' checked':'')+'> Automatically apply healing</label>';
     hdRows().forEach((r) =>{ const die=num(r.die,num(C.hitDie,10)), left=r.max-used(r.k,r.max), sel=restSel[r.k]||[];
-      h+='<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">';
+      h+=restHTMLPart1(die, cm, r, left);
       for(let i=0;i<left;i++){ const on=sel[i]!=null; h+='<button type="button" class="bx" aria-pressed="'+on+'" data-hdk="'+r.k+'" data-hdi="'+i+'" aria-label="Spend Hit Die '+(i+1)+'"></button>'; }
       h+='</div>'+(left?'':'<p class="muted">No Hit Dice left. A Long Rest restores '+(x14()?'half of them, at least one':'them')+'.</p>');
       sel.forEach((v,i) =>{ if(v==null) return; const heal=v?hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(env.__miRoll&&env.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpWord(heal):'type the number rolled')+'</span></label>'; });
@@ -39,6 +39,7 @@ function restHTML(kind){
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
   ({h}=restHTML2Step2(h, hp1));
   return h+slideC("long","Slide to take Long Rest",hp1)+'</div>'; }
+function restHTMLPart1(die, cm, r, left){ return ('<div class="hdrow"><b>'+(hdRows().length<2?esc((C.cls||"").toUpperCase())+' ':'D'+die+' ')+'HIT DICE</b>'+(hdRows().length>1&&hdCls(die)?' <span class="muted">('+esc(hdCls(die))+')</span>':'')+' <span class="muted">(Hit Die: 1d'+die+sg(cm)+' \u2022 Total: '+r.max+', left: '+left+')</span><div class="boxes">'); }
 function restHTML2Step1(kind){
  const _restHTMLStep1=restHTMLStep1(kind);
  const {hp1}=_restHTMLStep1;
@@ -122,7 +123,7 @@ export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least
   if(kind==="short"){ let cm=D.mod.CON, heal=0, spent=0, miss=0; Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(v===0) miss++; }); });
     if(miss){ toast("Type the number rolled for each Hit Die you picked, or untick it."); return; }/* V17-2: nothing changes before this check */
     const picked=Object.keys(restSel).some((k) => takeRestFn1(k)), chefV=lateGet("restX").chef&&picked?Math.floor(num(lateGet("restX").chefV,0)):0;
-    if(lateGet("restX").chef&&picked&&(chefV<1||chefV>8)){ toast("Type the 1d8 roll for Replenishing Meal, 1 to 8, or untick it."); return; }
+    if(takeRestPart1(picked, chefV)){ toast("Type the 1d8 roll for Replenishing Meal, 1 to 8, or untick it."); return; }
     const rl=recList(), bad=rl.filter((q,i) =>{ return recSum(i)>q.cap; })[0]; if(bad){ toast(bad.n+": choose slots with a combined level of "+bad.cap+" or less."); return; }
     const both={}; rl.forEach((q, i) => takeRestFn2(both, q, i)); const over=Object.keys(both).filter((L) =>{ return both[L]>slotUsed(+L); })[0]; if(over){ toast("You chose more level "+over+" slots than you have spent."); return; }
     undoMark("Short Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
@@ -131,8 +132,10 @@ export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least
     const before=S.hp==null?D.hpmax:S.hp; if(restAuto&&heal) S.hp=Math.min(D.hpmax,before+heal);
     doRest("short",true); const rec=[]; rl.forEach((q, i) => takeRestFn3(rec, q, i));
     const nc=chgApply(shortChg()); save(); syncLU(); closeSheet();
-    toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ return takeRestFn4(); })()); restSumToast("short"); return; }
+    takeRestPart2(spent, before, heal, rec, nc); restSumToast("short"); return; }
   takeRest2Step1(); }
+function takeRestPart1(picked, chefV){ return (lateGet("restX").chef&&picked&&(chefV<1||chefV>8)); }
+function takeRestPart2(spent, before, heal, rec, nc){ return (toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ return takeRestFn4(); })())); }
 function takeRest2Step1(){
   takeRestStep1();
 }

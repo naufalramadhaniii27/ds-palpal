@@ -118,7 +118,7 @@ function xlScan(t,atStart,selfK,mode,m){
   let {p}=_xlScan2Step1;
   while(p<n0){
     let c=t.charCodeAt(p);
-    if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45){ const s0=p; p++; while(p<n0){ c=t.charCodeAt(p); if((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45) p++; else break; } ta.push(s0); tb.push(p); }
+    if(xlScanPart1(c)){ const s0=p; p++; while(p<n0){ c=t.charCodeAt(p); if(xlScanPart2(c)) p++; else break; } ta.push(s0); tb.push(p); }
     else p++;
   }
   let {i}=xlScan2Step2();
@@ -133,14 +133,14 @@ function xlScan(t,atStart,selfK,mode,m){
         if(ph===selfK) break;
         if(L===1||ph.indexOf(" ")<0){
           const e0=tb[i+L-1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
-          if(pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]) break;/* part of a longer proper name, such as "Gamma Knight" */
-          if(k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())) k=k[3];/* a spell that shares its name with a rule word (Light, Slow, Darkness): the rule word unless a spell is meant */
+          if(xlScanPart3(pw)) break;/* part of a longer proper name, such as "Gamma Knight" */
+          if(xlScanPart4(k, t, e0, a)) k=k[3];/* a spell that shares its name with a rule word (Light, Slow, Darkness): the rule word unless a spell is meant */
           if(k[2]===3&&!/^[\s.,:;)]|^$/.test(t.slice(e0,e0+1))) break;/* a one-word feature of this character: a link when it stands alone or before a colon */
           if(k[2]===2&&!XL_TRIG.test(t.slice(e0,e0+14))) break;/* a common word: only a term when "action", "property" or "mastery" follows */
-          if(k[2]===1&&k[0]!=="spn"&&k[1].indexOf("feat|")!==0){
+          if(xlScanPart5(k)){
             const bf=t.slice(0,a), ss=bf.trim()?/[.!?:]\s*$/.test(bf):atStart;/* a sentence start: leave it plain unless the whole text is the name */
-            if(ss&&t.slice(e0).replace(/[\s.,:;)]+$/,"")!==""&&!/^\s*,\s+[A-Z]/.test(t.slice(e0,e0+40))) break;/* "Spear, Shortbow": the start of a list is a name */
-            if(k[0]==="lib"&&/^(?:gear|bg|class|sub|species)\|/.test(k[1])&&/^ [A-Z]/.test(t.slice(e0,e0+2))) break;/* followed by a capital: part of a longer name */
+            if(xlScanPart6(ss, t, e0)) break;/* "Spear, Shortbow": the start of a list is a name */
+            if(xlScanPart7(k, t, e0)) break;/* followed by a capital: part of a longer name */
           }
           if(k[0]==="lib"&&k[1].indexOf("feat|")===0){ const sf=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\bfeats?\b/i.test(sf)) break; }
           if(k[0]==="spn"&&!/^: Used/.test(t.slice(e0,e0+7))){ const sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) break; }
@@ -153,6 +153,13 @@ function xlScan(t,atStart,selfK,mode,m){
   }
   return res;
 }
+function xlScanPart1(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
+function xlScanPart2(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
+function xlScanPart3(pw){ return (pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]); }
+function xlScanPart4(k, t, e0, a){ return (k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())); }
+function xlScanPart5(k){ return (k[2]===1&&k[0]!=="spn"&&k[1].indexOf("feat|")!==0); }
+function xlScanPart6(ss, t, e0){ return (ss&&t.slice(e0).replace(/[\s.,:;)]+$/,"")!==""&&!/^\s*,\s+[A-Z]/.test(t.slice(e0,e0+40))); }
+function xlScanPart7(k, t, e0){ return (k[0]==="lib"&&/^(?:gear|bg|class|sub|species)\|/.test(k[1])&&/^ [A-Z]/.test(t.slice(e0,e0+2))); }
 function xlScan2Step1(m, t){
   const _xlScanStep1=xlScanStep1(m, t);
   const {ta, tb, res, F, n0}=_xlScanStep1;

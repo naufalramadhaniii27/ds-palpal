@@ -12,14 +12,20 @@ bindLive("srcPg",{get:function(){return srcPg;}});
 /* RU36 no. 1: source with the printed page, "PHB-2024, pg. 153, Warlock 1" */
 export function srcPg(s,pg,book){ s=String(s||""); if(!pg) return s; const b=book||(/^DMG/.test(s)?"DMG-2024":/^MoM/.test(s)?"MoM":"PHB-2024");/* v36 p21 */ return s.indexOf(b)===0?b+", pg. "+pg+s.slice(b.length):(s?s+", ":"")+b+", pg. "+pg; }
 /* m5: a page for features of sheets saved before v23 (no it.pg): class, subclass, feat, species from the group name */
-function pgGuess(g,f){ if(f.pg) return f.pg; if(typeof BOOKPG!=="undefined"&&BOOKPG.mom&&/^MoM/.test(f.s||"")){ const mm=/^Species: (.+)$/.exec(String(g&&g.g||"")); return mm&&BOOKPG.mom.species[mm[1]]?BOOKPG.mom.species[mm[1]]._||0:0; }/* v36 p21 */ if(typeof BOOKPG==="undefined"||!/^PHB-2024/.test(f.s||"")) return 0;
+function pgGuess(g,f){ if(f.pg) return f.pg; if(pgGuessPart1(f)){ const mm=pgGuessPart2(g); return pgGuessPart3(mm); }/* v36 p21 */ if(pgGuessPart4(f)) return 0;
  const _pgGuess2Step1=pgGuess2Step1(g, f);
  const {P, gg, n}=_pgGuess2Step1;
  let {m}=_pgGuess2Step1;
-  if((m=/^Species: (.+)$/.exec(gg))&&P.species[m[1]]) return P.species[m[1]][n]||P.species[m[1]]._||0;
+  if((m=/^Species: (.+)$/.exec(gg))&&P.species[m[1]]) return pgGuessPart5(P, m, n);
   if(gg==="Feats") return P.feat[n]||0; if(gg==="Eldritch Invocations") return P.invocation[n]||0; if((m=/^Background: (.+)$/.exec(gg))) return P.background[m[1]]||0;
-  if((m=/^(\w+) Subclass: (.+)$/.exec(gg))&&P.subclass[m[1]+"|"+m[2]]) return P.subclass[m[1]+"|"+m[2]][n]||P.subclass[m[1]+"|"+m[2]]._||0;
+  if((m=/^(\w+) Subclass: (.+)$/.exec(gg))&&P.subclass[m[1]+"|"+m[2]]) return pgGuessPart6(P, m, n);
   if((m=/^(\w+)(?: \(multiclass \d+\))?/.exec(gg))&&P["class"][m[1]]) return P["class"][m[1]][n]||P["class"][m[1]][n.split(":")[0]]||0; return 0; }
+function pgGuessPart1(f){ return (typeof BOOKPG!=="undefined"&&BOOKPG.mom&&/^MoM/.test(f.s||"")); }
+function pgGuessPart2(g){ return (/^Species: (.+)$/.exec(String(g&&g.g||""))); }
+function pgGuessPart3(mm){ return (mm&&BOOKPG.mom.species[mm[1]]?BOOKPG.mom.species[mm[1]]._||0:0); }
+function pgGuessPart4(f){ return (typeof BOOKPG==="undefined"||!/^PHB-2024/.test(f.s||"")); }
+function pgGuessPart5(P, m, n){ return (P.species[m[1]][n]||P.species[m[1]]._||0); }
+function pgGuessPart6(P, m, n){ return (P.subclass[m[1]+"|"+m[2]][n]||P.subclass[m[1]+"|"+m[2]]._||0); }
 function pgGuess2Step1(g, f){
  const _pgGuessStep1=pgGuessStep1(g, f);
  const {P, gg, n}=_pgGuessStep1;
@@ -40,12 +46,15 @@ function featNums(h,cl){
   return String(h).split(/(<[^>]+>)/).map((t, i) => featNumsFn1(RX, lv, AB, sc, MUL, B1, t, i)).join(""); }
 function featNumsFn1(RX, lv, AB, sc, MUL, B1, t,i){ if(i%2) return t;
     return t.replace(RX,(m,mul,yo,what,cls,ab,div,par,rnd) =>{ let v, sign=false;
-      if(what==="Proficiency Bonus"){ v=D.pb; sign=true; } else if(cls){ v=cls==="character"?D.level:(lv[cls]||0); if(!v) return m; } else if(ab){ v=D.mod[AB[ab]]; sign=true; }
+      if(what==="Proficiency Bonus"){ v=D.pb; sign=true; } else if(cls){ v=featNumsFn1Part1(cls, lv); if(!v) return m; } else if(ab){ v=D.mod[AB[ab]]; sign=true; }
       else if(/save DC/.test(what)){ if(!sc||!sc.dc) return m; v=sc.dc; } else { if(!sc||sc.atk==null) return m; v=sc.atk; sign=true; }
-      const up=/round(?:ed)? up/.test(par||"")||rnd==="up", mn=/minimum(?: of)? ([+-]?\d+|once|one|two)/.exec(par||""); if(mn) mn[1]={once:1,one:1,two:2}[mn[1]]||mn[1];
+      const up=featNumsFn1Part2(par, rnd), mn=/minimum(?: of)? ([+-]?\d+|once|one|two)/.exec(par||""); if(mn) mn[1]={once:1,one:1,two:2}[mn[1]]||mn[1];
       if(mul) v=v*MUL[mul]; if(div) v=v/(+div); if(v!==Math.floor(v)) v=up?Math.ceil(v):Math.floor(v); if(mn) v=Math.max(v,+mn[1]);
-      return m+B1(sign&&!mul&&!div?sg(v):(sign&&v>0&&what==="Proficiency Bonus"?"+"+v:v)); });
+      return featNumsFn1Part3(m, B1, sign, mul, div, v, what); });
   }
+function featNumsFn1Part1(cls, lv){ return (cls==="character"?D.level:(lv[cls]||0)); }
+function featNumsFn1Part2(par, rnd){ return (/round(?:ed)? up/.test(par||"")||rnd==="up"); }
+function featNumsFn1Part3(m, B1, sign, mul, div, v, what){ return (m+B1(sign&&!mul&&!div?sg(v):(sign&&v>0&&what==="Proficiency Bonus"?"+"+v:v))); }
 function featNumsStep1(cl){
 const sc=scCls(cl), lv=clsLvls(), B1=function(v){ return ' (<b class="fnum">'+v+'</b>)'; }, AB={Strength:"STR",Dexterity:"DEX",Constitution:"CON",Intelligence:"INT",Wisdom:"WIS",Charisma:"CHA"}, MUL={twice:2,"three times":3,"four times":4,"five times":5,"ten times":10,half:0.5};
   const RX=/\b(?:(twice|three times|four times|five times|ten times|half) )?([Yy]our) (Proficiency Bonus|(Barbarian|Bard|Cleric|Druid|Fighter|Monk|Paladin|Ranger|Rogue|Sorcerer|Warlock|Wizard|character) level|(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) modifier|spell save DC|spell attack (?:modifier|bonus))(?: divided by (\d+))?((?: \((?:round(?:ed)? (?:up|down)|minimum(?: of)? (?:[+-]?\d+|once|one|two)[^)]*)\))*)(?:,? rounded (up|down))?(?! \()/g;

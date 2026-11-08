@@ -66,13 +66,14 @@ function icoDecorateFn8(d){ const sm=d.querySelector("small"), s=sm?sm.textConte
 function icoDecorateFn9(c){ if(c.getAttribute("data-ico")) return; const m=/c-(\w\w)/.exec(c.className); if(m){ c.setAttribute("data-ico","1"); c.innerHTML=ico("coin-"+m[1]); } }
 function icoDecorateFn10(h){ const m=/Hit Die: 1d(4|6|8|10|12|20)\b/.exec(h.textContent), b=h.querySelector("b"); if(m&&b) icoPut(b,"die-d"+m[1]); }
 (function(){ let pend=false, roots=[], SVGNS="http://www.w3.org/2000/svg", mo=new MutationObserver((recs) =>{/* v30 p13: decorate only where new elements came in. Text changes (HP number rolling), new icons, and the toast (built with its icons) are skipped */
-  for(let i=0;i<recs.length;i++){ const t=recs[i].target; if(!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))||roots.indexOf(t)>=0) continue; const a=recs[i].addedNodes;
+  for(let i=0;i<recs.length;i++){ const t=recs[i].target; if(anonPart1_(t, SVGNS)||roots.indexOf(t)>=0) continue; const a=recs[i].addedNodes;
     if(a.length&&!t.querySelector("svg")&&t.matches&&t.matches("button,h2,h3,.tab,.bb,.ifb")){ roots.push(t.parentNode||t); continue; }/* a heading or button whose text was replaced */
     for(let j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"&&!/^(SCRIPT|STYLE|LINK)$/.test(a[j].tagName)){ roots.push(t); break; } } }/* T1: script elements (the parser and the builder loader add them to body while the page loads) need no icons. Before, each one started a pass over the whole page */
   if(pend||!roots.length) return; pend=true; requestAnimationFrame(() =>{ pend=false; const L=roots; roots=[];
     if(L.some((r) => anonFn1__(r))||L.length>12){ icoDecorate(document); return; }
     L.filter((r) => anonFn2(L, r)).forEach((r) =>{ icoDecorate(r); }); });});
  uiIconsAnon2Step1(mo); })();
+function anonPart1_(t, SVGNS){ return (!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))); }
 function uiIconsAnon2Step1(mo){
  uiIconsAnonStep1(mo);
 }

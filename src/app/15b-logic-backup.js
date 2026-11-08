@@ -10,15 +10,18 @@ export function bkpMake(){ let rr=null; try{ rr=rSnap(rEnsure()); }catch(e){} le
   /* v18 RU61: the open character comes from memory, so a backup made while storage is full still holds the latest changes */
   if(!FROZEN&&C&&S){ d[CKEY]=JSON.stringify(C); d[KEY]=JSON.stringify(S); if(rr&&rr.chars&&rr.chars[rr.active]){ const e=rr.chars[rr.active]; e.C=d[CKEY]; e.S=d[KEY]; e.B=d[lateGet("BKEY")]==null?null:d[lateGet("BKEY")]; d[lateGet("RKEY")]=JSON.stringify(rr); } }
   d=bkpCamp(d);/* v27 RU64: one campaign */ let r=rGet()||{chars:{}}; try{ r=JSON.parse(d[lateGet("RKEY")])||r; }catch(e){} return {app:"dnd2024-sheet-builder",kind:"backup",version:1,appVer:APP_VER,created:new Date().toISOString(),characters:Object.keys(r.chars||{}).length,keys:d}; }
-export function bkpCheck(o){ if(!o||typeof o!=="object"||o.kind!=="backup"||!o.keys||typeof o.keys!=="object"||Array.isArray(o.keys)) return "This is not a character backup from this app.";
+export function bkpCheck(o){ if(bkpCheckPart1(o)) return "This is not a character backup from this app.";
   const {ks}=bkpCheck2Step1(o); if(!ks.length) return "The backup is empty.";
   for(let i=0;i<ks.length;i++){ const k=ks[i], v=o.keys[k]; if(!bkpKeyOk(k)) return "The backup has an entry this app does not use: "+k+".";
     if(v!==null&&typeof v!=="string") return "The backup entry "+k+" is damaged."; if(v!==null){ try{ JSON.parse(v); }catch(e){ return "The backup entry "+k+" is damaged."; } } }
-  let {r}=bkpCheck2Step2(o); if(r){ try{ r=JSON.parse(r); }catch(e){ r=null; } if(!r||!r.chars||typeof r.chars!=="object"||Array.isArray(r.chars)) return "The character list in the backup is damaged.";
+  let {r}=bkpCheck2Step2(o); if(r){ try{ r=JSON.parse(r); }catch(e){ r=null; } if(bkpCheckPart2(r)) return "The character list in the backup is damaged.";
     const ids=Object.keys(r.chars); for(let j=0;j<ids.length;j++){ const ch=r.chars[ids[j]]; if(!ch||typeof ch!=="object") return "A character in the backup is damaged.";
-      const fs=["B","C","S"]; for(let q=0;q<3;q++){ const x=ch[fs[q]]; if(x!=null){ if(typeof x!=="string") return "Character "+(ch.name||ids[j])+" in the backup is damaged."; try{ const y=JSON.parse(x); if(y!==null&&typeof y!=="object") throw 0; if(fs[q]==="C"&&y&&!y.abilities&&y.name==null) throw 0; }catch(e){ return "Character "+(ch.name||ids[j])+" in the backup is damaged."; } } } }
+      const fs=["B","C","S"]; for(let q=0;q<3;q++){ const x=ch[fs[q]]; if(x!=null){ if(typeof x!=="string") return "Character "+(ch.name||ids[j])+" in the backup is damaged."; try{ const y=JSON.parse(x); if(y!==null&&typeof y!=="object") throw 0; if(bkpCheckPart3(fs, q, y)) throw 0; }catch(e){ return "Character "+(ch.name||ids[j])+" in the backup is damaged."; } } } }
     if(r.active!=null&&!r.chars[r.active]) return "The character list in the backup is damaged."; }
   return ""; }
+function bkpCheckPart1(o){ return (!o||typeof o!=="object"||o.kind!=="backup"||!o.keys||typeof o.keys!=="object"||Array.isArray(o.keys)); }
+function bkpCheckPart2(r){ return (!r||!r.chars||typeof r.chars!=="object"||Array.isArray(r.chars)); }
+function bkpCheckPart3(fs, q, y){ return (fs[q]==="C"&&y&&!y.abilities&&y.name==null); }
 function bkpCheck2Step1(o){
   const {ks}=bkpCheckStep1(o);
   return /** @type {any} */ ({ks});

@@ -39,15 +39,15 @@ export function syncHP(instant){
 }
 /* v30 RU87, RU84: play bar on phones (HP, Temp HP, AC, conditions with Exhaustion, Concentration, Heroic Inspiration) */
 export function vbSync(){
- const {vb}=vbSync2Step1(); if(!vb||!D||!D.hpmax) return;
+ const {vb}=vbSync2Step1(); if(vbSyncPart1(vb)) return;
   try{ const hp=clamp(num(S.hp,0),0,D.hpmax), tp=Math.max(0,num(S.tmp,0)), p=clamp(hp/D.hpmax,0,1);
   const hasI=typeof lateGet("ICO")==="object"&&!!lateGet("ICO"); if(hasI&&!vb.getAttribute("data-ico")){ vb.setAttribute("data-ico","1"); render(raw(ico("hp-heal","vb-hi")),$("#vbHpI")); render(raw(ico("tag-concentration")),$("#vbConc")); render(raw(ico("ui-star","vb-star")),$("#vbInsp")); }
-  if(env.__miOdo&&env.__MI&&!env.__MI.rm()) env.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
+  if(vbSyncPart2()) env.__miOdo($("#vbHpV"),hp); else $("#vbHpV").textContent=hp; $("#vbHpM").textContent=D.hpmax; const t=$("#vbTmp"); t.hidden=!tp; t.textContent="+"+tp;
   const b=$("#vbBar"); b.style.transform="scaleX("+p+")"; b.style.backgroundColor=barColor(p); b.setAttribute("data-lv",hpLv(p)); $("#vbTbar").style.transform="scaleX("+clamp(tp/D.hpmax,0,1)+")";
   $("#vbHp").setAttribute("aria-label","Hit Points "+hp+"/"+D.hpmax+(tp?" +"+tp+" temporary":"")+". Heal or take damage"); $("#vbHp").classList.toggle("zero",hp===0);
   $("#vbAcV").textContent=D.ac; $("#vbAc").setAttribute("aria-label","Armor Class "+D.ac);
   const L=activeConds().map((c) => vbSyncFn1(c)); if(S.exh) L.unshift("Exhaustion "+S.exh);
-  const cb=$("#vbCond"), k0=S.exh?"exhaustion":(activeConds()[0]||{}).k; cb.classList.toggle("on",L.length>0);
+  const cb=$("#vbCond"), k0=vbSyncPart3(); cb.classList.toggle("on",L.length>0);
   if(hasI) render(raw(L.length?(ico("cond-"+String(k0).toLowerCase())||ico("cond-exhaustion")):ico("ui-plus")),$("#vbCondI"));
   $("#vbCondT").textContent=L.length?L[0]+(L.length>1?" +"+(L.length-1):""):"Conditions";
   cb.classList.toggle("vb-none",!L.length);
@@ -55,6 +55,9 @@ export function vbSync(){
   const o=concOf(), cc=$("#vbConc"); cc.hidden=!o; if(o){ const i=spIx(o.n); if(i>=0) cc.setAttribute("data-info","sp:"+i); else cc.removeAttribute("data-info"); cc.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); cc.title="Concentrating on "+o.n; }
   $("#vbInsp").setAttribute("aria-pressed",S.insp?"true":"false"); }catch(er){}
 }
+function vbSyncPart1(vb){ return (!vb||!D||!D.hpmax); }
+function vbSyncPart2(){ return (env.__miOdo&&env.__MI&&!env.__MI.rm()); }
+function vbSyncPart3(){ return (S.exh?"exhaustion":(activeConds()[0]||{}).k); }
 function vbSync2Step1(){
  const {vb}=vbSyncStep1();
   return /** @type {any} */ ({vb});
