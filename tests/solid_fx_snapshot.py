@@ -12,9 +12,10 @@ Per step the hashes are: ord (the trace in order), set (the trace as a sorted li
 win (the sorted window property names), lis (listener count per target kind and type, live: added minus removed).
 Run: python3 tests/solid_fx_snapshot.py OUT.json [--root DIR] [--vp 390|1250] [--scen ABC]
      python3 tests/solid_fx_snapshot.py --diff A.json B.json [--stable-with A2.json] [--ignore-ord]    (reports which steps and which hash kinds differ; A2 = a second run of tree A: pairs on which A and A2 disagree are skipped; --ignore-ord compares only set, dom, win, lis)
-Stability (measured on main, two runs): about 93 percent of the (step, hash kind) pairs are equal in both runs; the others are timing races (class art layers in scenario C, the builder step, counts of observers) and are skipped with --stable-with
+Stability (stage 13D): the page runs on a paused fake clock (Playwright clock: Date.now, performance.now, timers, rAF, idle callbacks move only through run_for), Math.random is seeded, CSS animations and transitions are off, IntersectionObserver is a stand-in polled by the fake clock, idle is a condition (no request pending, no finite Web Animation running), hooks run one at a time.
+Result on main, scenario A at 390x844, two runs: the ord, set, win and lis hashes are equal in all steps except two (home ord and set, sheet set); the dom hash still differs in every step, from ONE cause (class mi-hd on the p-feat heading appears in one run only). Scenarios B and C and the 1250 viewport were not proved in the time box. NOT yet 100 percent: do not use as proof for a src/fx split.
 Not part of CI: it records and compares, it asserts nothing. Run it twice on the same tree to prove it is stable, then compare a refactored tree with main."""
-import json, os, sys, re, gzip, hashlib, socket, threading, http.server, functools
+import json, os, sys, re, gzip, hashlib, socket, threading, http.server, functools, time
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 if '--diff' in sys.argv:
     i = sys.argv.index('--diff'); a = json.load(open(sys.argv[i + 1])); b = json.load(open(sys.argv[i + 2]))
@@ -29,6 +30,34 @@ if '--diff' in sys.argv:
     for k, d in bad[:40]: print('  ', k, ','.join(d))
     sys.exit(1 if bad else 0)
 from playwright.sync_api import sync_playwright
+
+CLOCK0 = 1767225600000   # fixed start of the fake clock (2026-01-01T00:00:00Z)
+FREEZE_CSS = "*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}"
+PEND = {}
+def adv(pg, ms):
+    """advance the fake clock (Date.now, performance.now, timers, rAF, idle callbacks) in steps of 100 ms; a short real pause per step lets promises and fetches finish"""
+    left = ms
+    while left > 0:
+        n = min(left, 100); left -= n
+        try: pg.clock.run_for(n)
+        except Exception as ex:   # a timer callback of the page threw (the hooks are called with odd arguments on purpose): the clock has stopped at that timer, the rest runs on the next step
+            if 'is not' not in str(ex) and 'Error' not in str(ex): raise
+        time.sleep(0.012)
+def idle(pg, ms=0):
+    """advance the fake clock by ms, then until no network request is pending, then twice more"""
+    adv(pg, ms)
+    for _ in range(400):
+        if not PEND.get(id(pg)): break
+        adv(pg, 100); time.sleep(0.02)
+    for _ in range(100):   # Web Animations run on the real clock: wait until the finite ones have ended, so that their finish handlers (layer removal) run inside this step
+        if not pg.evaluate("()=>document.getAnimations().filter(a=>{try{return a.playState==='running'&&a.effect.getComputedTiming().endTime!==Infinity}catch(e){return false}}).length"): break
+        time.sleep(0.05)
+    adv(pg, 200); time.sleep(0.05); adv(pg, 100)
+def waitc(pg, js, steps=6000):
+    for _ in range(steps):
+        if pg.evaluate(js): return
+        adv(pg, 50)
+    raise TimeoutError(js)
 args = sys.argv[1:]
 if '--root' in args:
     i = args.index('--root'); ROOT = os.path.abspath(args[i + 1]); del args[i:i + 2]
@@ -45,9 +74,29 @@ VIEWPORTS = [('390x844', 390, 844), ('1250x850', 1250, 850)]
 GOLD = 'b1_bard_dance3_unarmored.json'
 TABS = ['p-actions', 'p-spells', 'p-inv', 'p-feat', 'p-desc', 'p-notes', 'p-ext']
 
+FREEZE_INIT = "(function(){try{var s=document.createElement('style');s.textContent=%s;(document.head||document.documentElement).appendChild(s)}catch(e){}})()" % json.dumps(FREEZE_CSS)
 INIT = r"""(function(){
  if(window.__fxRec) return;
  var T=[], LIVE={}, on=true, seed=1;
+ var si0=window.setInterval;
+ (function(){ /* IntersectionObserver runs on the real frame clock; this stand-in is polled by the fake clock (every 50 ms) so that the classes it sets (reveal, mi-hd) do not depend on frame timing */
+   var ALL=[], polling=false;
+   function FakeIO(cb,o){ this._cb=cb; o=o||{}; var t=o.threshold; this.thresholds=(t==null?[0]:[].concat(t)).slice().sort(function(a,b){return a-b}); this.root=o.root||null; this.rootMargin=o.rootMargin||'0px'; this._m=new Map(); ALL.push(this); }
+   FakeIO.prototype.observe=function(el){ if(!this._m.has(el)) this._m.set(el,null); if(!polling){ polling=true; si0.call(window,poll,50); } };
+   FakeIO.prototype.unobserve=function(el){ this._m.delete(el); };
+   FakeIO.prototype.disconnect=function(){ this._m.clear(); };
+   FakeIO.prototype.takeRecords=function(){ return []; };
+   function margin(rm){ var a=String(rm).split(/\s+/).map(function(x){ return parseFloat(x)||0; }); return {t:a[0]||0,r:a.length>1?a[1]:a[0]||0,b:a.length>2?a[2]:a[0]||0,l:a.length>3?a[3]:a.length>1?a[1]:a[0]||0}; }
+   function poll(){ ALL.forEach(function(io){ if(!io._m.size) return; var ents=[], mg=margin(io.rootMargin), rt=io.root&&io.root.getBoundingClientRect?io.root.getBoundingClientRect():{top:0,left:0,right:innerWidth,bottom:innerHeight};
+       io._m.forEach(function(prev,el){ var r=el.isConnected?el.getBoundingClientRect():{top:0,left:0,right:0,bottom:0,width:0,height:0};
+         var w=Math.max(0,Math.min(r.right,rt.right+mg.r)-Math.max(r.left,rt.left-mg.l)), h=Math.max(0,Math.min(r.bottom,rt.bottom+mg.b)-Math.max(r.top,rt.top-mg.t)), area=r.width*r.height;
+         var ratio=area>0?(w*h)/area:0;   /* no layout box (display none, zero size): not intersecting */
+         var isI=el.isConnected&&ratio>0; var idx=-1; io.thresholds.forEach(function(t,i){ if(ratio>=t&&(t>0||isI)) idx=i; });
+         var key=isI+':'+idx; if(prev===key) return; io._m.set(el,key);
+         ents.push({target:el,isIntersecting:isI,intersectionRatio:Math.min(1,ratio),boundingClientRect:r,intersectionRect:r,rootBounds:null,time:performance.now()}); });
+       if(ents.length) try{ io._cb(ents,io); }catch(e){ setTimeout(function(){ throw e; },0); } }); }
+   window.IntersectionObserver=FakeIO;
+ })();
  function rnd(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }
  Math.random=rnd;
  function d(n){ try{
@@ -101,7 +150,7 @@ NORM = r"""()=>{
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
   t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/<([A-Za-z0-9]+) >/g,'<$1>').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');
   t=t.replace(/'sha256-[A-Za-z0-9+\/=]+'/g,"'HASH'");
-  t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
+  t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/ class=(?=[ >])/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
   return t }"""
 
 STRICT = 'LROANCGS'
@@ -144,23 +193,25 @@ def seed_js(v):
 def run(b, base, vp, W, H, h, errs):
     def scenario(tag, seed, steps):
         ctx = b.new_context(viewport={'width': W, 'height': H}, service_workers='block')
-        ctx.add_init_script(INIT); ctx.add_init_script(seed_js(seed))
-        pg = ctx.new_page(); pg.set_default_timeout(120000)
+        ctx.add_init_script(INIT); ctx.add_init_script(seed_js(seed)); ctx.add_init_script(FREEZE_INIT)
+        ctx.clock.install(time=CLOCK0); ctx.clock.pause_at(CLOCK0 + 1000)   # paused: the time moves only through run_for
+        pg = ctx.new_page(); pg.set_default_timeout(120000); PEND[id(pg)] = 0
+        pg.on('request', lambda r: PEND.__setitem__(id(pg), PEND.get(id(pg), 0) + 1)); pg.on('requestfinished', lambda r: PEND.__setitem__(id(pg), PEND.get(id(pg), 1) - 1)); pg.on('requestfailed', lambda r: PEND.__setitem__(id(pg), PEND.get(id(pg), 1) - 1))
         pg.on('pageerror', lambda e: errs.append(vp + ' ' + str(e)[:200]))
         def asks(ok=False):
             for _ in range(3):
                 pg.evaluate("(ok)=>{var b=document.querySelector('#askOk,#askBox .ok,[data-ask-ok]'); if(!ok){var c=document.querySelector('#askNo,#askBox .no,[data-ask-no]'); if(c){c.click();return}} if(b&&ok) b.click()}", ok)
-                pg.wait_for_timeout(150)
+                adv(pg, 150)
         def settle():
             dom = pg.evaluate(NORM)
             for _ in range(20):
-                pg.wait_for_timeout(500); d2 = pg.evaluate(NORM)
+                adv(pg, 500); d2 = pg.evaluate(NORM)
                 if d2 == dom: break
                 dom = d2
             return dom
         def begin(): pg.evaluate("()=>{window.__fxRec.reset(1); window.__fxRec.on(true)}")
         def snap(name):
-            pg.wait_for_timeout(2600)   # the longest effect ends (setTimeout 2300 and the like)
+            idle(pg, 2600)   # the longest effect ends (setTimeout 2300 and the like)
             dom = settle()
             rec = pg.evaluate("()=>{window.__fxRec.on(false); const r=window.__fxRec.take(); const w=Object.keys(window).sort().join(','); return {t:r.t,f:r.f,i:r.i,live:r.live,w:w}}")
             t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll|builder', name) else 'strict')
@@ -170,24 +221,25 @@ def run(b, base, vp, W, H, h, errs):
                 open(os.path.join(DUMP, n + '.trace.txt'), 'w').write('\n'.join(t)); open(os.path.join(DUMP, n + '.live.txt'), 'w').write('\n'.join(live)); gzip.open(os.path.join(DUMP, n + '.dom.txt.gz'), 'wt').write(dom)
             h['%s %s %s' % (vp, tag, name)] = {'ord': ordh, 'set': sethash, 'dom': sha(dom), 'win': sha(rec['w']), 'lis': sha('\n'.join(live)), 'n': len(t)}
         def ready():
-            pg.wait_for_function("()=>!!window.__deferDone", timeout=180000)
-            pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("()=>typeof window.__bldOpen==='function'", timeout=180000)
-            pg.wait_for_timeout(2500)
+            waitc(pg, "()=>!!window.__deferDone")
+            pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()"); waitc(pg, "()=>typeof window.__bldOpen==='function'")
+            idle(pg, 2500)
         def click(sel, nth=0):
             return pg.evaluate("([s,n])=>{var e=document.querySelectorAll(s)[n]; if(!e) return false; e.click(); return true}", [sel, nth])
         def esc():
-            pg.keyboard.press('Escape'); pg.wait_for_timeout(500)
-            pg.evaluate("()=>{ var c=document.querySelector('#sheet.on #sheetClose,#sheet.on [data-close]'); if(c) c.click(); var l=document.querySelector('#lib.on [data-libclose],#lib.on .lib-x'); if(l) l.click() }"); pg.wait_for_timeout(400)
+            pg.keyboard.press('Escape'); adv(pg, 500)
+            pg.evaluate("()=>{ var c=document.querySelector('#sheet.on #sheetClose,#sheet.on [data-close]'); if(c) c.click(); var l=document.querySelector('#lib.on [data-libclose],#lib.on .lib-x'); if(l) l.click() }"); adv(pg, 400)
         def hooks(t0):
             # the fx hooks that the sheet and the builder call (window.__mi*, __dice3d), each with several argument sets, one trace segment per hook
             begin()
-            names = pg.evaluate("""async ()=>{ const names=Object.keys(window).filter(k=>/^__mi|^__dice3d$|^__fx/.test(k)&&!/Reload|Music|Pref/.test(k)&&typeof window[k]==='function').sort();
-              const sets=[()=>[200,300],()=>[document.querySelector('.card')||document.body],()=>['Test',200,300],()=>[20],()=>[200,300,'#fc0',70],()=>[]];
-              for(const n of names){ window.__fxRec.seed(7); window.__fxRec.mark(n);
-                for(const mk of sets){ try{ const r=window[n].apply(window,mk()); if(r&&typeof r.then==='function') r.catch(()=>{}) }catch(e){ window.__fxRec.note(String(e).slice(0,40)) } }
-                window.__fxRec.mark('~'); await new Promise(r=>setTimeout(r,60)) }
-              return names }""")
-            pg.wait_for_timeout(2600); settle()
+            names = pg.evaluate("""()=>Object.keys(window).filter(k=>/^__mi|^__dice3d$|^__fx/.test(k)&&!/Reload|Music|Pref/.test(k)&&typeof window[k]==='function').sort()""")
+            for n in names:   # one hook at a time; the fake clock moves 60 ms between hooks (a page-side await on a timer would never return while the clock is paused)
+                pg.evaluate("""(n)=>{ const sets=[()=>[200,300],()=>[document.querySelector('.card')||document.body],()=>['Test',200,300],()=>[20],()=>[200,300,'#fc0',70],()=>[]];
+                  window.__fxRec.seed(7); window.__fxRec.mark(n);
+                  for(const mk of sets){ try{ const r=window[n].apply(window,mk()); if(r&&typeof r.then==='function') r.catch(()=>{}) }catch(e){ window.__fxRec.note(String(e).slice(0,40)) } }
+                  window.__fxRec.mark('~') }""", n)
+                adv(pg, 60)
+            idle(pg, 2600); settle()
             t = pg.evaluate("()=>{window.__fxRec.on(false); return window.__fxRec.take().t}")
             seg = {}; cur = '_'
             for x in t:
@@ -201,9 +253,9 @@ def run(b, base, vp, W, H, h, errs):
             begin(); snap('%s sheet' % t0)
             for t in TABS:
                 begin(); click('.tab[data-tab="%s"]' % t); snap('%s tab %s' % (t0, t))
-            click('.tab[data-tab="p-actions"]'); pg.wait_for_timeout(500)
+            click('.tab[data-tab="p-actions"]'); adv(pg, 500)
             begin(); pg.mouse.move(W // 2, H // 3); pg.mouse.move(W // 2 + 40, H // 3 + 30, steps=4); pg.mouse.move(W // 3, H // 2, steps=4); snap('%s hover' % t0)
-            begin(); pg.evaluate("()=>window.scrollTo(0,400)"); pg.wait_for_timeout(300); pg.evaluate("()=>window.scrollTo(0,0)"); snap('%s scroll' % t0)
+            begin(); pg.evaluate("()=>window.scrollTo(0,400)"); adv(pg, 300); pg.evaluate("()=>window.scrollTo(0,0)"); snap('%s scroll' % t0)
             begin(); click('[data-hpadd]', 0); snap('%s hp0' % t0)
             begin(); click('[data-hpadd]', 1); snap('%s hp1' % t0)
             begin(); click('[data-ck]', 0); snap('%s check0' % t0)
@@ -211,7 +263,7 @@ def run(b, base, vp, W, H, h, errs):
             begin(); click('[data-mi-dice]'); snap('%s dice' % t0); esc()
             begin(); click('[data-bd]', 0); snap('%s breakdown' % t0); esc()
             for tab, nm in (('p-spells', 'spell'), ('p-feat', 'feat'), ('p-inv', 'item'), ('p-actions', 'action')):
-                click('.tab[data-tab="%s"]' % tab); pg.wait_for_timeout(300)
+                click('.tab[data-tab="%s"]' % tab); adv(pg, 300)
                 begin(); pg.evaluate("(t)=>{var e=document.querySelector('#'+t+' [data-info]'); if(e) e.click()}", tab); snap('%s detail %s' % (t0, nm)); esc()
             begin(); click('#srchBtn'); snap('%s search' % t0); esc()
             begin(); click('#libBtn'); snap('%s library' % t0); esc()
@@ -226,24 +278,24 @@ def run(b, base, vp, W, H, h, errs):
             ctx.close()
 
     def stepA(pg, snap, inter, click, asks, begin):
-        try: pg.wait_for_selector('#homeV .hwrap', state='attached', timeout=30000)
+        try: waitc(pg, "()=>!!document.querySelector('#homeV .hwrap')", 600)
         except Exception: pass
         snap('home')
-        begin(); click('[data-hview]'); pg.wait_for_timeout(2500)
+        begin(); click('[data-hview]'); idle(pg, 2500)
         inter('A')
     def stepB(pg, snap, inter, click, asks, begin):
         snap('home')
-        begin(); click('[data-hview]'); pg.wait_for_timeout(2500)
+        begin(); click('[data-hview]'); idle(pg, 2500)
         inter('B')
     def stepC(pg, snap, inter, click, asks, begin):
         snap('home')
-        pg.wait_for_function("typeof window.__bldOpen==='function'", timeout=180000)
+        waitc(pg, "()=>typeof window.__bldOpen==='function'")
         begin(); pg.evaluate("""()=>{ var b=Array.from(document.querySelectorAll('#homeV button, #homeV a')).find(x=>/Create a Character/.test(x.textContent)); if(b) b.click() }""")
-        pg.wait_for_timeout(4000); asks(True); snap('builder')
+        idle(pg, 4000); asks(True); snap('builder')
         begin()
         try:
-            pg.select_option('#qbCls', 'Fighter'); click('[data-qb]'); pg.wait_for_timeout(2500); asks(True)
-            click('#b-toSheet'); pg.wait_for_timeout(3500); asks(True)
+            pg.select_option('#qbCls', 'Fighter'); click('[data-qb]'); idle(pg, 2500); asks(True)
+            click('#b-toSheet'); idle(pg, 3500); asks(True)
         except Exception as ex:
             errs.append('C flow ' + str(ex)[:120])
         inter('C')
