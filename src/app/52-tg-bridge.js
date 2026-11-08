@@ -23,14 +23,27 @@ function tgRange(t){ t=String(t||""); let reach=null, rng=null, m;
 function tgSpells(){
  const {out, man}=tgSpellsStep1(); if(typeof SPELLS==="undefined") return {list:out,manual:man};
  const {row, smod, top}=tgSpellsStep2();
-  (C.spells||[]).forEach((x) =>{ if(!x||!x.n) return; const r=row[x.n], f=spFx(x); if(!r){ return; } const L=+x.l||0;
-    const kind=r[10]==="ATK"?"atk":/^[A-Z]{3}$/.test(r[10])&&f&&f.dmg?"save":f&&f.heal?"heal":f&&f.cnt&&f.dmg?"auto":"";
+  (C.spells||[]).forEach((x) => tgSpellsFn1(row, top, man, smod, out, x));
+  return {list:out,manual:man}; }
+function tgSpellsFn1(row, top, man, smod, out, x){ if(!x||!x.n) return; const r=row[x.n], f=spFx(x); if(!r){ return; }
+ const {L, kind}=tgSpellsFn1Step1(x, r, f);
     if(!kind){ if(L===0||top>=L) man.push({n:x.n,l:L,t:r[11]||""}); return; }
+    const {by, heal, rng, touch, self, area}=tgSpellsFn1Step2(r, f, L, top, x, smod, kind);
+    tgSpellsFn1Step3(out, x, L, kind, r, touch, rng, self, area, f, by, heal); }
+function tgSpellsFn1Step1(x, r, f){
+const L=+x.l||0;
+    const kind=r[10]==="ATK"?"atk":/^[A-Z]{3}$/.test(r[10])&&f&&f.dmg?"save":f&&f.heal?"heal":f&&f.cnt&&f.dmg?"auto":"";
+  return /** @type {any} */ ({L, kind});
+}
+function tgSpellsFn1Step2(r, f, L, top, x, smod, kind){
     const by={}, heal={}, rng=/^(\d+)\s*ft/.exec(r[5]||""), touch=/Touch/i.test(r[5]||""), self=/^Self/i.test(r[5]||"");
     for(let lv=L;lv<=(L?Math.max(L,top):0);lv++){ const cc=spCalc(x,lv,D.level,smod); if(!cc) continue; if(kind==="heal") heal[lv]=String(cc.heal||"0").replace(/\u2212/g,"-"); else by[lv]=cc.parts.map((q) =>{ return [0,String(q.d).replace(/\u2212/g,"-").replace(/\s+/g,""),String(q.t||"").split("|")[0]]; }); }
     const area=f&&f.area;
-    out.push({n:x.n,l:L,k:kind,time:/^Bonus/.test(r[4]||"")?"b":"a",c:+r[8]?1:0,rng:touch?5:rng?+rng[1]:self&&area?+area[1]:null,sv:/^[A-Z]{3}$/.test(r[10])?r[10].toLowerCase():"",half:L>0&&!!area,cnt:f&&(f.cnt||f.beam)?1:0,by:by,heal:heal,t:r[11]||"",area:area?area[0]+" "+area[1]+" ft":""}); });
-  return {list:out,manual:man}; }
+  return /** @type {any} */ ({by, heal, rng, touch, self, area});
+}
+function tgSpellsFn1Step3(out, x, L, kind, r, touch, rng, self, area, f, by, heal){
+    out.push({n:x.n,l:L,k:kind,time:/^Bonus/.test(r[4]||"")?"b":"a",c:+r[8]?1:0,rng:touch?5:rng?+rng[1]:self&&area?+area[1]:null,sv:/^[A-Z]{3}$/.test(r[10])?r[10].toLowerCase():"",half:L>0&&!!area,cnt:f&&(f.cnt||f.beam)?1:0,by:by,heal:heal,t:r[11]||"",area:area?area[0]+" "+area[1]+" ft":""});
+}
 function tgSpellsStep1(){
 const out=[], man=[];
   return /** @type {any} */ ({out, man});

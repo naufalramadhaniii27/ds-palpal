@@ -29,40 +29,56 @@ var ICO_CAT=null;
 function icoPut(el,k,before){ if(!el||el.getAttribute("data-ico")||!ICO[k]||(el.closest&&el.closest(".noico"))) return;/* v35 p09 */ el.setAttribute("data-ico","1"); el.insertAdjacentHTML(before===false?"beforeend":"afterbegin",ico(k)); }
 function icoDecorate(root){ root=root&&root.querySelectorAll?root:document; const q=function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
   try{
-  q("h3.fcat").forEach((h) =>{ const t=(h.firstChild&&h.firstChild.nodeType===3?h.firstChild.nodeValue:h.textContent).trim(); const k=ICO_FCAT[t]; if(k) icoPut(h,k); });
+  q("h3.fcat").forEach((h) => icoDecorateFn1(h));
   const CND=STD_CONDS.concat(HB_CONDS.map((c) =>{ return c.k; })).concat(["Exhaustion"]);
-  q('#conds .chip[data-info^="g:"], .cc-t .tx[data-info^="g:"], .exh .tx[data-info="g:Exhaustion"]').forEach((b) =>{ const k=b.getAttribute("data-info").slice(2); if(CND.indexOf(k)>=0) icoPut(b,"cond-"+k.toLowerCase()); });
-  q("i.sp-c").forEach((i) =>{ if(i.getAttribute("data-ico")) return; const r=i.classList.contains("rit"); i.setAttribute("data-ico","1"); i.setAttribute("title",r?"Ritual":"Concentration"); i.innerHTML=ico(r?"tag-ritual":"tag-concentration")+'<span class="vh">'+(r?"R":"C")+'</span>'; });
-  q('#invBody [data-info^="it:"]').forEach((b) =>{ if(b.getAttribute("data-ico")) return; b.setAttribute("data-ico","1"); const it=(C.inv||[])[+b.getAttribute("data-info").slice(3)], nm=b.querySelector("b")||b; nm.insertAdjacentHTML("afterbegin",ico(icoItem(it)));
-    if(it){ const st=[]; if(it.att&&eqOn(it)) st.push(["item-attuned","Attuned"]); /* v32 RU138: the checkbox alone shows Equipped */ if((D.res||[]).some((r) =>{ return r.f===it.n||r.f===it.key; })) st.push(["item-charge","Has charges or uses"]);
-      if(st.length) nm.insertAdjacentHTML("afterend",'<span class="ists">'+st.map((x) =>{ return '<span title="'+x[1]+'">'+ico(x[0],"ist")+'</span>'; }).join("")+'</span>'); } });/* v24 m4, m5, R2-1: outside the name, no text */
-  q("#speeds .sense > span:last-child").forEach((s) =>{ const w=(s.firstChild&&s.firstChild.nodeValue||"").split(",")[0].trim(); if(ICO_SPEED[w]) icoPut(s,ICO_SPEED[w]); });
-  q("#senses .sense > .tx").forEach((s) =>{ const t=s.textContent; ICO_SENSE.some((p) =>{ if(p[0].test(t)){ icoPut(s,p[1]); return true; } }); });
+  q('#conds .chip[data-info^="g:"], .cc-t .tx[data-info^="g:"], .exh .tx[data-info="g:Exhaustion"]').forEach((b) => icoDecorateFn2(CND, b));
+  q("i.sp-c").forEach((i) => icoDecorateFn3(i));
+  q('#invBody [data-info^="it:"]').forEach((b) => icoDecorateFn4(b));/* v24 m4, m5, R2-1: outside the name, no text */
+  q("#speeds .sense > span:last-child").forEach((s) => icoDecorateFn5(s));
+  q("#senses .sense > .tx").forEach((s) => icoDecorateFn6(s));
   q("#defs h3.defh").forEach((h) =>{ const k={Resistances:"def-resistance",Immunities:"def-immunity",Vulnerabilities:"def-vulnerability",Other:"def-condimmune"}[h.textContent.trim()]; if(k) icoPut(h,k); });
   icoPut(root.querySelector&&root.querySelector("#healBtn")||document.getElementById("healBtn"),"hp-heal"); icoPut(document.getElementById("dmgBtn"),"hp-damage"); icoPut(document.getElementById("hpTmp"),"hp-temp");
   q('.dsr > .tx').forEach((b,i) =>{ icoPut(b,/failure/i.test(b.textContent)?"death-fail":"death-success"); });
   q(".flag.cf.adv, .flag.cf.dis").forEach((f) =>{ icoPut(f,f.classList.contains("adv")?"adv":"dis"); });
-  q("#idF dt").forEach((dt) =>{ const dd=dt.nextElementSibling; if(!dd) return; if(dt.textContent==="Class"&&icoCls(dd.textContent)) icoPut(dd,icoCls(dd.textContent)); if(dt.textContent==="Species") icoPut(dd,icoSp(dd.textContent)||"sp-custom"); });
+  q("#idF dt").forEach((dt) => icoDecorateFn7(dt));
   q('#actBody [data-info="g:Magic"]').forEach((b) =>{ icoPut(b,"act-magic"); });
-  q("#defs .defl").forEach((d) =>{ const sm=d.querySelector("small"), s=sm?sm.textContent:""; if(s&&(C.inv||[]).some((x) =>{ return x.n===s; })) icoPut(d.querySelector("b"),"src-item"); });
+  q("#defs .defl").forEach((d) => icoDecorateFn8(d));
   q(".hcard .hname > span").forEach((s) =>{ const k=icoCls(s.textContent); if(k) icoPut(s,k); });
   q("#steps .st[data-step]").forEach((b) =>{ const k=ICO_STEP[b.getAttribute("data-step")]; if(k) icoPut(b,k); });
   q(".hbtns [data-hnew]").forEach((b) =>{ icoPut(b,"home-create"); }); q('.hbtns [data-hbk="open"]').forEach((b) =>{ icoPut(b,"home-import"); }); q('.hbtns [data-hbk="out"]').forEach((b) =>{ icoPut(b,"home-backup"); }); q('.hbtns [data-hbk="in"]').forEach((b) =>{ icoPut(b,"home-restore"); }); q('.hbtns [data-hparty]').forEach((b) =>{ icoPut(b,"home-party"); });/* v28 M1 */
   q("[data-hfile]").forEach((b) =>{ icoPut(b,"home-export"); });
-  q(".crow .cico").forEach((c) =>{ if(c.getAttribute("data-ico")) return; const m=/c-(\w\w)/.exec(c.className); if(m){ c.setAttribute("data-ico","1"); c.innerHTML=ico("coin-"+m[1]); } });
+  q(".crow .cico").forEach((c) => icoDecorateFn9(c));
   icoPut(document.querySelector(".hp-tmpc .tmp-l"),"hp-temp"); icoPut(document.querySelector('.hp-pre [data-hpadd="0"]'),"ui-close"); const phc=document.getElementById("phCls"); if(phc&&!phc.innerHTML&&C){ const ck0=icoCls(C.clsLabel||C.cls||""); if(ck0&&ICO[ck0]){ phc.innerHTML=ico(ck0); phc.hidden=false; } }/* v30 */
   icoAll(root);/* v29 RU121 */
-  q(".hdrow").forEach((h) =>{ const m=/Hit Die: 1d(4|6|8|10|12|20)\b/.exec(h.textContent), b=h.querySelector("b"); if(m&&b) icoPut(b,"die-d"+m[1]); });
+  q(".hdrow").forEach((h) => icoDecorateFn10(h));
   }catch(er){}
 }
+function icoDecorateFn1(h){ const t=(h.firstChild&&h.firstChild.nodeType===3?h.firstChild.nodeValue:h.textContent).trim(); const k=ICO_FCAT[t]; if(k) icoPut(h,k); }
+function icoDecorateFn2(CND, b){ const k=b.getAttribute("data-info").slice(2); if(CND.indexOf(k)>=0) icoPut(b,"cond-"+k.toLowerCase()); }
+function icoDecorateFn3(i){ if(i.getAttribute("data-ico")) return; const r=i.classList.contains("rit"); i.setAttribute("data-ico","1"); i.setAttribute("title",r?"Ritual":"Concentration"); i.innerHTML=ico(r?"tag-ritual":"tag-concentration")+'<span class="vh">'+(r?"R":"C")+'</span>'; }
+function icoDecorateFn4(b){ if(b.getAttribute("data-ico")) return; b.setAttribute("data-ico","1"); const it=(C.inv||[])[+b.getAttribute("data-info").slice(3)], nm=b.querySelector("b")||b; nm.insertAdjacentHTML("afterbegin",ico(icoItem(it)));
+    if(it){ const st=[]; if(it.att&&eqOn(it)) st.push(["item-attuned","Attuned"]); /* v32 RU138: the checkbox alone shows Equipped */ if((D.res||[]).some((r) =>{ return r.f===it.n||r.f===it.key; })) st.push(["item-charge","Has charges or uses"]);
+      if(st.length) nm.insertAdjacentHTML("afterend",'<span class="ists">'+st.map((x) =>{ return '<span title="'+x[1]+'">'+ico(x[0],"ist")+'</span>'; }).join("")+'</span>'); } }
+function icoDecorateFn5(s){ const w=(s.firstChild&&s.firstChild.nodeValue||"").split(",")[0].trim(); if(ICO_SPEED[w]) icoPut(s,ICO_SPEED[w]); }
+function icoDecorateFn6(s){ const t=s.textContent; ICO_SENSE.some((p) =>{ if(p[0].test(t)){ icoPut(s,p[1]); return true; } }); }
+function icoDecorateFn7(dt){ const dd=dt.nextElementSibling; if(!dd) return; if(dt.textContent==="Class"&&icoCls(dd.textContent)) icoPut(dd,icoCls(dd.textContent)); if(dt.textContent==="Species") icoPut(dd,icoSp(dd.textContent)||"sp-custom"); }
+function icoDecorateFn8(d){ const sm=d.querySelector("small"), s=sm?sm.textContent:""; if(s&&(C.inv||[]).some((x) =>{ return x.n===s; })) icoPut(d.querySelector("b"),"src-item"); }
+function icoDecorateFn9(c){ if(c.getAttribute("data-ico")) return; const m=/c-(\w\w)/.exec(c.className); if(m){ c.setAttribute("data-ico","1"); c.innerHTML=ico("coin-"+m[1]); } }
+function icoDecorateFn10(h){ const m=/Hit Die: 1d(4|6|8|10|12|20)\b/.exec(h.textContent), b=h.querySelector("b"); if(m&&b) icoPut(b,"die-d"+m[1]); }
 (function(){ let pend=false, roots=[], SVGNS="http://www.w3.org/2000/svg", mo=new MutationObserver((recs) =>{/* v30 p13: decorate only where new elements came in. Text changes (HP number rolling), new icons, and the toast (built with its icons) are skipped */
-  for(let i=0;i<recs.length;i++){ const t=recs[i].target; if(!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))||roots.indexOf(t)>=0) continue; const a=recs[i].addedNodes;
+  for(let i=0;i<recs.length;i++){ const t=recs[i].target; if(anonPart1_(t, SVGNS)||roots.indexOf(t)>=0) continue; const a=recs[i].addedNodes;
     if(a.length&&!t.querySelector("svg")&&t.matches&&t.matches("button,h2,h3,.tab,.bb,.ifb")){ roots.push(t.parentNode||t); continue; }/* a heading or button whose text was replaced */
     for(let j=0;j<a.length;j++){ if(a[j].nodeType===1&&a[j].namespaceURI!==SVGNS&&a[j].id!=="hpGest"&&!/^(SCRIPT|STYLE|LINK)$/.test(a[j].tagName)){ roots.push(t); break; } } }/* T1: script elements (the parser and the builder loader add them to body while the page loads) need no icons. Before, each one started a pass over the whole page */
   if(pend||!roots.length) return; pend=true; requestAnimationFrame(() =>{ pend=false; const L=roots; roots=[];
-    if(L.some((r) =>{ return r===document.documentElement||r===document.body; })||L.length>12){ icoDecorate(document); return; }
-    L.filter((r) =>{ return r.isConnected&&!L.some((o) =>{ return o!==r&&o.contains(r); }); }).forEach((r) =>{ icoDecorate(r); }); });});
- uiIconsAnonStep1(mo); })();
+    if(L.some((r) => anonFn1__(r))||L.length>12){ icoDecorate(document); return; }
+    L.filter((r) => anonFn2(L, r)).forEach((r) =>{ icoDecorate(r); }); });});
+ uiIconsAnon2Step1(mo); })();
+function anonPart1_(t, SVGNS){ return (!t||t.nodeType!==1||t.namespaceURI===SVGNS||(t.closest&&t.closest("#toast"))); }
+function uiIconsAnon2Step1(mo){
+ uiIconsAnonStep1(mo);
+}
+function anonFn1__(r){ return r===document.documentElement||r===document.body; }
+function anonFn2(L, r){ return r.isConnected&&!L.some((o) =>{ return o!==r&&o.contains(r); }); }
 function uiIconsAnonStep1(mo){
 mo.observe(document.documentElement,{childList:true,subtree:true});
 }

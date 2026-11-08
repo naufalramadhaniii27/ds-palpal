@@ -4,27 +4,42 @@ export var PUBLIC_BUILD=true;
 export var PWA_BUILD=true;
 /* v34 p04: the builder loads after the sheet is on screen. Any click, input, or key that may need it finishes loading first.
    Tabs, View on Home, the More menu, and scrolling do not wait */
-(function(){ function need(e){ if(env.__deferDone) return;
- const {t}=needStep1(e);
-    if(!env.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")) return;
-    if(e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")) return;
-    if(e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")) return;
+(function(){ function need(e){ return anonFn1(e); }
+  logicBootFlagsBuilderLoaderAnonStep1(need); })();/* v34 RU82: true in the public build with manifest and sw.js */
+function anonFn1(e){ if(env.__deferDone) return;
+ const {t}=anonFn1Step1(e);
+    if(anonFn1Part1(e)) return;
+    if(anonFn1Part2(e)) return;
+    if(anonFn1Part3(e, t)) return;
     /* T1: a tap before the loader script has been read (slow phone, page still loading) waits for it, then goes the usual way. Before, the tap was lost */
-    if(!env.__bldNeed){ if(!t||!t.click) return; e.preventDefault(); e.stopImmediatePropagation();
+    if(!env.__bldNeed){ bldTapWait(e, t); return; }
+    if(anonFn1Part4(e, t)){ bldTapOpen(e, t); return; }
+    anonFn1Step2(); }
+function bldTapWait(e, t){ if(!t||!t.click) return; e.preventDefault(); e.stopImmediatePropagation();
       const bz0=document.getElementById("busy"), sp0=bz0&&bz0.querySelector("div span:last-child"), old0=sp0?sp0.textContent:"";
       if(sp0) sp0.textContent="Opening the builder"; if(bz0){ bz0.style.transition="none"; bz0.classList.add("on"); }
       let n0=0, again=function(){ if(!env.__bldNeed&&document.readyState==="loading"&&n0++<600){ setTimeout(again,30); return; }
         if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) sp0.textContent=old0; try{ t.click(); }catch(x){} };
-      setTimeout(again,30); return; }
-    if(e.type==="click"&&t&&t.click){/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
+      setTimeout(again,30); }
+/* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
+function bldTapOpen(e, t){
       e.preventDefault(); e.stopImmediatePropagation();
       const bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";
       if(sp) sp.textContent="Opening the builder"; if(bz){ bz.style.transition="none"; bz.classList.add("on"); }
-      const run=function(){ let p; try{ p=env.__bldNeed(); }catch(x){ p=null; } Promise.resolve(p).catch(() =>{}).then(() =>{ if(bz){ bz.classList.remove("on"); bz.style.transition=""; } if(sp) sp.textContent=old; try{ t.click(); }catch(x){} }); };/* M7: __bldNeed() gives a Promise */
-      if(env.requestAnimationFrame) requestAnimationFrame(() =>{ setTimeout(run,0); }); else setTimeout(run,30);
-      return; }
-    needStep2(); }
-  logicBootFlagsBuilderLoaderAnonStep1(need); })();/* v34 RU82: true in the public build with manifest and sw.js */
+      const run=function(){ return needFn1(bz, sp, old, t); };/* M7: __bldNeed() gives a Promise */
+      if(env.requestAnimationFrame) requestAnimationFrame(() =>{ setTimeout(run,0); }); else setTimeout(run,30); }
+function anonFn1Part1(e){ return (!env.__bldNeed&&(document.readyState!=="loading"||e.type!=="click")); }
+function anonFn1Part2(e){ return (e.type==="keydown"&&/^(Tab|Shift|Control|Alt|Meta|Arrow|Page|Home|End)/.test(e.key||"")); }
+function anonFn1Part3(e, t){ return (e.type==="click"&&t&&t.closest&&t.closest("#tabs .tab,#bnav button,#homeV [data-hview],#moreBtn,[data-close],#sheetBack")); }
+function anonFn1Part4(e, t){ return (e.type==="click"&&t&&t.click); }
+function anonFn1Step1(e){
+ const {t}=needStep1(e);
+  return /** @type {any} */ ({t});
+}
+function anonFn1Step2(){
+    needStep2();
+}
+function needFn1(bz, sp, old, t){ let p; try{ p=env.__bldNeed(); }catch(x){ p=null; } Promise.resolve(p).catch(() =>{}).then(() =>{ if(bz){ bz.classList.remove("on"); bz.style.transition=""; } if(sp) sp.textContent=old; try{ t.click(); }catch(x){} }); }
 function logicBootFlagsBuilderLoaderAnonStep1(need){
   ["click","input","change","keydown","submit"].forEach((n) =>{ document.addEventListener(n,need,true); });
 }

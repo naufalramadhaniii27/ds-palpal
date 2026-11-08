@@ -92,9 +92,10 @@ export function chfOpen(id){
     if(a==="foundry"){ foundryOut(id); return; }/* v27 RU75 */
     if(a==="send"){ qrSendOpen(id); return; }/* v34 item 5 */
     if(a==="text"){ const t=JSON.stringify(chFile(id)); w.querySelector(".bkpt").hidden=false; zPack(t).then((z) =>{ txt=z; },() =>{ txt=t; }).then(() =>{ const ta=document.getElementById("chfTxt"); if(ta){ ta.value=txt; ta.focus(); ta.select(); } }); return; }
-    if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) =>{ toast(ok?"Character text copied":"Select the text and copy it"); }); return; }
+    if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) => chfOpenFn1(ok)); return; }
     if(a==="snap"&&SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; }
     if(a==="snap"){ const rr=rSnap(rEnsure()), before=(snGet().chars[id]||[]).length; snTake(id,"Taken by hand",rr); toast((snGet().chars[id]||[]).length>before||before>=5?"Snapshot taken":"No changes since the last snapshot"); chfOpen(id); return; } }); }
+function chfOpenFn1(ok){ toast(ok?"Character text copied":"Select the text and copy it"); }
 function chfOpenStep1(id){
 const r=rGet()||{chars:{}}, c=r.chars[id];
   return /** @type {any} */ ({r, c});

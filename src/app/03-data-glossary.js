@@ -150,9 +150,21 @@ const GL14={
 export function gl14(on){ if(typeof GLOSS==="undefined")return;
  ({on}=gl14Step1(on)); if(on===GL14ON)return;
  if(on){ GL14S={}; const ks=Object.keys(GLOSS); Object.keys(GL14).forEach((k) =>{ if(ks.indexOf(k)<0)ks.push(k); });
-  ks.forEach((k) =>{ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */ const o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   let nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
-   if(!ov&&ns==null&&nd==null)return; GL14S[k]=o||null; const n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n; }); GL14ON=true; }
+  ks.forEach((k) => gl14Fn1(k)); GL14ON=true; }
  else if(GL14S){ Object.keys(GL14S).forEach((k) =>{ if(GL14S[k])GLOSS[k]=GL14S[k]; else delete GLOSS[k]; }); GL14S=null; GL14ON=false; } }
+function gl14Fn1(k){ if(k==="Heavy"||k==="Light"||k==="Special")return;/* the equipment words (v93) keep their own copy */
+ const _gl14Fn1Step1=gl14Fn1Step1(k);
+ const {o, ov, ns}=_gl14Fn1Step1;
+ let {nd}=_gl14Fn1Step1;
+   if(!ov&&ns==null&&nd==null)return;
+ gl14Fn1Step2(k, o, ov, ns, nd); }
+function gl14Fn1Step1(k){
+const o=GLOSS[k], ov=GL14[k], s0=o?String(o.s||""):"", ns=/PHB-2024/.test(s0)?(o.c==="Condition"?"PHB-2014, Appendix A":s0===RG?"PHB-2014, Rules":s0===PG?"PHB-2014, Adventuring and Combat":s0.replace("PHB-2024","PHB-2014")):null;   let nd=(o&&!ov&&o.d)?String(o.d).replace(/\s*Mastery: \[\[[^\]]+\]\]\./g,"").replace(/\[\[Utilize\]\]/g,"[[Use an Object]]").replace(/\[\[Magic\]\]/g,"[[Cast a Spell]]"):null; if(nd!=null&&nd===o.d)nd=null;
+  return /** @type {any} */ ({o, ov, ns, nd});
+}
+function gl14Fn1Step2(k, o, ov, ns, nd){
+GL14S[k]=o||null; const n=Object.assign({c:"Rule",s:"PHB-2014, Rules"},o||{},ov||{}); if(ns!=null&&!(ov&&ov.s))n.s=ns; if(nd!=null)n.d=nd; GLOSS[k]=n;
+}
 function gl14Step1(on){
 on=!!on;
   return /** @type {any} */ ({on});

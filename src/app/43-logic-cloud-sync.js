@@ -19,14 +19,26 @@ export function syText(e){ const k=Object.keys(e).filter((x) =>{ return x!=="t";
 /* every real character on this device as {id:{text,h,name,sub}}. The open one is read live, without saving */
 function syLocal(){
  const {r, out}=syLocalStep1(); if(!r||!r.chars) return out;
-  Object.keys(r.chars).forEach((id) =>{ let e=r.chars[id]; if(!e||e.ph) return; e=Object.assign({},e);
+  Object.keys(r.chars).forEach((id) => syLocalFn1(r, out, id));
+  return out; }
+function syLocalFn1(r, out, id){ let e=r.chars[id]; if(!e||e.ph) return;
+ const _syLocalFn1Step1=syLocalFn1Step1(e, id, r);
+ const {sum}=_syLocalFn1Step1;
+ let {pic, ph}=_syLocalFn1Step1;
+ e=_syLocalFn1Step1.e;
+    syLocalFn1Step2(e, out, id, pic, ph, sum); }
+function syLocalFn1Step1(e, id, r){
+e=Object.assign({},e);
     /* the open character is read from its stored slots, not from memory: right after a switch the memory still holds the previous one */
     if(id===r.active&&!FROZEN){ try{ const c2=lsGet(CKEY), s2=lsGet(KEY), cc=JSON.parse(c2||"null"); if(cc){ e.name=cc.name||e.name; e.sub=(cc.species||"")+" "+(cc.clsLabel||((cc.cls||"")+" "+(cc.level||1))); } e.B=lsGet(lateGet("BKEY")); e.C=c2; e.S=s2; }catch(x){} }
     let pic="", ph="", sum={};
     try{ const so=JSON.parse(e.S||"null"); if(so&&typeof so.portrait==="string"){ if(/^data:image\//.test(so.portrait)){ pic=so.portrait; ph=hashS(pic); so.portrait="cloud:"+ph; e.S=JSON.stringify(so); sum.ph=ph; } else if(so.portrait) sum.por=so.portrait.slice(0,120); } }catch(x){}
+  return /** @type {any} */ ({pic, ph, sum, e});
+}
+function syLocalFn1Step2(e, out, id, pic, ph, sum){
     try{ const c3=JSON.parse(e.C||"null")||{}; sum.lv=+c3.level||1; sum.cls=String(c3.clsLabel||((c3.cls||"")+" "+(c3.level||1))).slice(0,80); sum.sp=String(c3.species||"").split(" (")[0].slice(0,40); }catch(x){}
-    const t=syText(e); out[id]={text:t,h:hashS(t),name:e.name||"",sub:e.sub||"",pic:pic,ph:ph,sum:JSON.stringify(sum)}; });
-  return out; }
+    const t=syText(e); out[id]={text:t,h:hashS(t),name:e.name||"",sub:e.sub||"",pic:pic,ph:ph,sum:JSON.stringify(sum)};
+}
 function syLocalStep1(){
 const r=rGet(), out={};
   return /** @type {any} */ ({r, out});
@@ -53,57 +65,82 @@ function syRun(why){
   const {sy, L, now, dirty, gap, needPull}=syRunStep1(why);
   if(SY.mode==="pause"||(!needPull&&(!dirty||now-SY.push<gap))){ SY.busy=false; if(!dirty&&SY.st!=="wait") syState("ok"); return; }
   syRunStep2();
-  syApi("chars").then((list) =>{ SY.pull=Date.now(); SY.mode=list.mode||"normal"; const srv={}; (list.chars||[]).forEach((c) =>{ srv[c.id]=c; });
-    const r=rGet()||{active:null,chars:{}}; r.chars=r.chars||{}; let hadNone=!Object.keys(L).length, jobs=[], changedR=false, reload=false;
-    Object.keys(srv).forEach((id) =>{ const s=srv[id], k=sy.c[id], l=L[id];
-      if(s.deleted){ if(k&&s.rev>k.rev&&l&&l.h===k.h&&id!==r.active){ delete r.chars[id]; changedR=true; delete sy.c[id]; } else if(k&&!l) delete sy.c[id]; return; }
-      if(k&&s.rev===k.rev) return; syLog("newer "+id+" "+(k&&k.rev)+">"+s.rev+" local "+(l?(k&&l.h===k.h?"same":"changed"):"none"));
-      if(l&&k&&l.h!==k.h){ /* both changed. T11 N12: with the last synced copy at hand, combine part by part (git-style three-way). Without it, or for the
+  syApi("chars").then((list) => syRunFn1(L, sy, why, list)).then((x) =>{ if(x==="stop") return "stop"; return needPull?pfRun():null; }).then((x) =>{ if(x==="stop") return; SY.first=false; SY.busy=false; SY.err=""; SY.last=Date.now(); const q=syGet(); q.ok=SY.last; sySet(q); syState(SY.mode==="pause"?"wait":"ok"); syBanners(); mgNotice(); syAgain(); },
+  (e) => syRunFn2(e));
+}
+function syRunFn1(L, sy, why, list){
+ const {srv}=syRunFn1Step1(list);
+    const {r}=syRunFn1Step2(); const cx={hadNone:!Object.keys(L).length, jobs:[], changedR:false, reload:false};
+    Object.keys(srv).forEach((id) => syRunFn1One(id, srv, sy, L, r, why, cx));
+    return Promise.all(cx.jobs).then(() => syRunFn1Done(cx, r, sy, srv));
+  }
+function syRunFn1One(id, srv, sy, L, r, why, cx){ const s=srv[id], k=sy.c[id], l=L[id];
+      if(s.deleted){ if(syRunFn1Part1(k, s, l, id, r)){ delete r.chars[id]; cx.changedR=true; delete sy.c[id]; } else if(k&&!l) delete sy.c[id]; return; }
+      if(k&&s.rev===k.rev) return; syRunFn1Part2(id, k, s, l);
+      if(syRunFn1Part3(l, k)){ /* both changed. T11 N12: with the last synced copy at hand, combine part by part (git-style three-way). Without it, or for the
            open character while it is in use, the push below with force keeps this device and the server keeps the other copy as a version */
-        const bt=syBaseGet(id); if(!bt||hashS(bt)!==k.h||(id===r.active&&!(SY.first||document.hidden||why==="show"))) return;
-        jobs.push(syApi("chars/"+encodeURIComponent(id)).then((full) =>{ const m=syMerge(bt,l.text,full.data); if(!m){ syLog("merge skip "+id); return; }
+        const bt=syBaseGet(id); if(syRunFn1Part4(bt, k, id, r, why)) return;
+        cx.jobs.push(syApi("chars/"+encodeURIComponent(id)).then((full) => syRunFn1OneFn1(bt, l, id, r, cx, sy, full)));
+        return; }
+      if(syRunFn1Part6(id, r, l, why)) return; /* the open character is replaced only when the app starts or comes back to the screen */
+      cx.jobs.push(syApi("chars/"+encodeURIComponent(id)).then((full) => syRunFn1OneFn2(l, sy, k, id, r, cx, full)));
+}
+function syRunFn1OneFn1(bt, l, id, r, cx, sy, full){ const m=syMerge(bt,l.text,full.data); if(!m){ syLog("merge skip "+id); return; }
           syLog("merge "+id+" parts "+m.parts.length); const mt=m.text;
           /* the picture: this device's own data when its reference won, the cloud picture otherwise */
-          let own=null; try{ const me=JSON.parse(mt), mso=JSON.parse(me.S||"null"); if(l.ph&&mso&&mso.portrait==="cloud:"+l.ph){ mso.portrait=l.pic; me.S=JSON.stringify(mso); own=JSON.stringify(me); } }catch(x){}
+          let own=null; try{ const me=JSON.parse(mt), mso=JSON.parse(me.S||"null"); if(syRunFn1Part5(l, mso)){ mso.portrait=l.pic; me.S=JSON.stringify(mso); own=JSON.stringify(me); } }catch(x){}
           const pin=own?Promise.resolve(own):syPicIn(SY.me.id,id,mt);
-          return pin.then((text) =>{ const res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; syBaseSet(id,full.data);
+          return pin.then((text) =>{ const res=syTake(id,text,r); if(!res) return; cx.changedR=true; if(res==="reload") cx.reload=true; syBaseSet(id,full.data);
             /* parts that differ: push with force afterwards, so the server keeps the cloud copy as a version too */
             sy.c[id]=m.parts.length?{rev:full.rev,h:hashS(full.data),force:1}:{rev:full.rev,h:hashS(full.data)};
-            if(m.parts.length){ let nm=""; try{ nm=JSON.parse(text).name||""; }catch(x){} mgSet(id,{t:Date.now(),name:nm,parts:m.parts.map((q) =>{ return {p:q.p,r:q.r}; })}); } }); }));
-        return; }
-      if(id===r.active&&l&&!(SY.first||document.hidden||why==="show")) return; /* the open character is replaced only when the app starts or comes back to the screen */
-      jobs.push(syApi("chars/"+encodeURIComponent(id)).then((full) =>{ const h=hashS(full.data);
+            if(m.parts.length){ let nm=""; try{ nm=JSON.parse(text).name||""; }catch(x){} mgSet(id,{t:Date.now(),name:nm,parts:m.parts.map((q) =>{ return {p:q.p,r:q.r}; })}); } }); }
+function syRunFn1OneFn2(l, sy, k, id, r, cx, full){ const h=hashS(full.data);
         if(l&&l.h===h){ sy.c[id]={rev:full.rev,h:h}; syBaseSet(id,full.data); return; }
         if(l&&!k){ sy.c[id]={rev:full.rev,h:"remote:"+h}; return; } /* same id, different content, never synced here: push wins below with force */
         return syPicIn(SY.me.id,id,full.data).then((text) =>{ const ph=/"portrait\\?":\\?"cloud:([a-z0-9]+)/.exec(full.data);
-          const res=syTake(id,text,r); if(!res) return; changedR=true; if(res==="reload") reload=true; sy.c[id]={rev:full.rev,h:h,fresh:1}; syBaseSet(id,full.data); if(ph&&text!==full.data){ sy.p=sy.p||{}; sy.p[id]=ph[1]; } }); }));
-    });
-    return Promise.all(jobs).then(() =>{
-      if(changedR){ env.__publicFresh=0; /* the builder must not blank the sheet of a character that just came from the cloud */ if(!r.active||!r.chars[r.active]||r.chars[r.active].ph){ const ids=Object.keys(r.chars).filter((x) =>{ return !r.chars[x].ph; }); r.active=ids[0]||r.active; reload=!!ids.length; }
+          const res=syTake(id,text,r); if(!res) return; cx.changedR=true; if(res==="reload") cx.reload=true; sy.c[id]={rev:full.rev,h:h,fresh:1}; syBaseSet(id,full.data); if(ph&&text!==full.data){ sy.p=sy.p||{}; sy.p[id]=ph[1]; } }); }
+function syRunFn1Done(cx, r, sy, srv){
+      if(cx.changedR){ env.__publicFresh=0; /* the builder must not blank the sheet of a character that just came from the cloud */ if(syRunFn1Part7(r)){ const ids=Object.keys(r.chars).filter((x) =>{ return !r.chars[x].ph; }); r.active=ids[0]||r.active; cx.reload=!!ids.length; }
         if(!rSave(r)) throw {local:1}; }
       sySet(sy);
       /* the open character changes: stop here. The live sheet in memory is the old one, so nothing may be sent until the page has reloaded */
-      if(reload&&r.active){ SY.on=false; SY.busy=false; rLoad(rGet(),r.active,false); return "stop"; }
-      if(changedR&&typeof homeCards==="function"){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); }
+      if(cx.reload&&r.active){ SY.on=false; SY.busy=false; rLoad(rGet(),r.active,false); return "stop"; }
+      if(cx.changedR&&typeof homeCards==="function"){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); }
       /* push: changed here, new here, deleted here */
       const L2=syLocal(), pushes=[];
-      Object.keys(L2).forEach((id) =>{ const k=sy.c[id], s=srv[id], l=L2[id]; if(k&&k.h===l.h&&s&&!s.deleted) return;
-        const force=!!(s&&(!k||k.force||s.rev!==k.rev||/^remote:/.test(k.h))); pushes.push(() =>{ return syPut(id,l,k?k.rev:(s?s.rev:0),force).then((o) =>{ sy.c[id]={rev:o.rev,h:l.h}; syBaseSet(id,l.text); return syPic(id,l,sy); }); }); });
-      Object.keys(L2).forEach((id) =>{ const k=sy.c[id], l=L2[id]; if(k&&k.h===l.h&&l.ph&&(sy.p||{})[id]!==l.ph) pushes.push(() =>{ return syPic(id,l,sy); }); });
-      Object.keys(sy.c).forEach((id) =>{ if(L2[id]) return; const s=srv[id]; if(!s||s.deleted){ delete sy.c[id]; return; }
-        pushes.push(() =>{ return syApi("chars/"+encodeURIComponent(id),{method:"DELETE"}).then(() =>{ delete sy.c[id]; syBaseSet(id,null); mgSet(id,null); }); }); });
+      syRunFn1Part8(L2, sy, srv, pushes);
+      syRunFn1Part9(L2, sy, pushes);
+      syRunFn1Part10(sy, L2, srv, pushes);
       SY.push=Date.now();
       return pushes.reduce((p,f) =>{ return p.then(f); },Promise.resolve()).then(() =>{ sySet(sy); });
-    });
-  }).then((x) =>{ if(x==="stop") return "stop"; return needPull?pfRun():null; }).then((x) =>{ if(x==="stop") return; SY.first=false; SY.busy=false; SY.err=""; SY.last=Date.now(); const q=syGet(); q.ok=SY.last; sySet(q); syState(SY.mode==="pause"?"wait":"ok"); syBanners(); mgNotice(); syAgain(); },
-  (e) =>{ SY.busy=false; SY.first=false; e=e||{}; syLog("error "+JSON.stringify(e).slice(0,120));
+}
+function syRunFn1Part1(k, s, l, id, r){ return (k&&s.rev>k.rev&&l&&l.h===k.h&&id!==r.active); }
+function syRunFn1Part2(id, k, s, l){ return (syLog("newer "+id+" "+(k&&k.rev)+">"+s.rev+" local "+(l?(k&&l.h===k.h?"same":"changed"):"none"))); }
+function syRunFn1Part3(l, k){ return (l&&k&&l.h!==k.h); }
+function syRunFn1Part4(bt, k, id, r, why){ return (!bt||hashS(bt)!==k.h||(id===r.active&&!(SY.first||document.hidden||why==="show"))); }
+function syRunFn1Part5(l, mso){ return (l.ph&&mso&&mso.portrait==="cloud:"+l.ph); }
+function syRunFn1Part6(id, r, l, why){ return (id===r.active&&l&&!(SY.first||document.hidden||why==="show")); }
+function syRunFn1Part7(r){ return (!r.active||!r.chars[r.active]||r.chars[r.active].ph); }
+function syRunFn1Part8(L2, sy, srv, pushes){ return (Object.keys(L2).forEach((id) =>{ const k=sy.c[id], s=srv[id], l=L2[id]; if(k&&k.h===l.h&&s&&!s.deleted) return;
+        const force=!!(s&&(!k||k.force||s.rev!==k.rev||/^remote:/.test(k.h))); pushes.push(() =>{ return syPut(id,l,k?k.rev:(s?s.rev:0),force).then((o) =>{ sy.c[id]={rev:o.rev,h:l.h}; syBaseSet(id,l.text); return syPic(id,l,sy); }); }); })); }
+function syRunFn1Part9(L2, sy, pushes){ return (Object.keys(L2).forEach((id) =>{ const k=sy.c[id], l=L2[id]; if(k&&k.h===l.h&&l.ph&&(sy.p||{})[id]!==l.ph) pushes.push(() =>{ return syPic(id,l,sy); }); })); }
+function syRunFn1Part10(sy, L2, srv, pushes){ return (Object.keys(sy.c).forEach((id) =>{ if(L2[id]) return; const s=srv[id]; if(!s||s.deleted){ delete sy.c[id]; return; }
+        pushes.push(() =>{ return syApi("chars/"+encodeURIComponent(id),{method:"DELETE"}).then(() =>{ delete sy.c[id]; syBaseSet(id,null); mgSet(id,null); }); }); })); }
+function syRunFn1Step1(list){
+SY.pull=Date.now(); SY.mode=list.mode||"normal"; const srv={}; (list.chars||[]).forEach((c) =>{ srv[c.id]=c; });
+  return /** @type {any} */ ({srv});
+}
+function syRunFn1Step2(){
+    const r=rGet()||{active:null,chars:{}}; r.chars=r.chars||{};
+  return /** @type {any} */ ({r});
+}
+function syRunFn2(e){ SY.busy=false; SY.first=false; e=e||{}; syLog("error "+JSON.stringify(e).slice(0,120));
     if(e.noapi||e._st===404){ SY.on=false; syState("off"); return; }
     if(e._st===409){ SY.pull=0; SY.again=SY.again||"show"; syAgain(); return; } /* the cloud moved on between reading and writing: read again */
     if(e.error==="quota"){ SY.mode="pause"; syState("wait"); return; }
     if(e.error==="full"||e.error==="too-many"||e.error==="too-big"){ SY.err=e.error; syState("full"); return; }
     if(e.signin){ syState("signin"); return; }
-    syState("offline"); syBanners(); syAgain(); });
-}
+    syState("offline"); syBanners(); syAgain(); }
 function syRunStep1(why){
   SY.busy=true; const sy=syGet(), L=syLocal(), now=Date.now(); syLog("run "+why);
   /* a copy taken from the cloud is stored again by the app as it loads (version stamps, derived values). That first local form counts as the synced one */
