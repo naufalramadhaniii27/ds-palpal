@@ -43,8 +43,16 @@ function crListStep3(wild, R, lv, add){
     let list=ky!=null?(el[ky]||[]):[];if(C.rs==="2014")list=ws14List(lv.Druid,moon); const known=(C.wsForms||[]).length?C.wsForms.slice():null;/* v32 RL49 no. 33: the known forms chosen in the builder */ if(moon&&C.rs!=="2014"){ const mk=Object.keys(mo).map(Number).filter((k) =>{ return k<=lv.Druid; }).sort((a,b) =>{return b-a})[0]; if(mk!=null) list=list.concat(mo[mk]||[]); }
     (known||list).forEach((n) =>{ add(n,"Wild Shape"+(moon?" (Circle of the Moon)":"")+(known?", known form":""),"ws","ws"); }); }
 }
+/* Beast Master: 2024 Primal Companion (Beast of the Land, Sea, Sky). 2014 Ranger's Companion: any beast of CR 1/4 or lower, Medium or smaller,
+   made stronger by crBm14. A chosen companion (C.companion) narrows the list to that one */
+function crListBM(R, add){
+  if(!(C.features||[]).some((g) =>{ return /Subclass: Beast Master|Ranger \(multiclass \d+\): Beast Master/.test(g.g); })) return;
+  const pick=(n) =>{ return !C.companion||n===C.companion; };
+  if(C.rs==="2014"){ crBeasts14().filter(pick).forEach((n) =>{ add(n,"Ranger's Companion (Beast Master)","bm14","comp"); }); return; }
+  ((R.primalCompanion||{}).forms||[]).filter(pick).forEach((n) =>{ add(n,"Primal Companion (Beast Master)","bm","comp"); });/* v32 RL49 no. 28 */ }
+function crBeasts14(){ const seen={}; return (CREATURES.creatures||[]).filter((c) =>{ const ok=c.type==="Beast"&&crCrNum(c.cr)<=0.25&&/^(Tiny|Small|Medium)$/.test(c.size||"")&&!seen[c.n]; if(ok) seen[c.n]=1; return ok; }).map((c) =>{ return c.n; }).sort(); }
 function crListStep4(R, add, SPL){
-  if((C.features||[]).some((g) =>{ return /Subclass: Beast Master|Ranger \(multiclass \d+\): Beast Master/.test(g.g); })) ((R.primalCompanion||{}).forms||[]).filter((n) =>{ return !C.companion||n===C.companion; }).forEach((n) =>{ add(n,"Primal Companion (Beast Master)","bm","comp"); });/* v32 RL49 no. 28 */
+  crListBM(R, add);
   const fg=(C.features||[]).map((g) =>{ return g.g; }).join("|");/* v58: Artificer companions (EFotA) */
   if(/Subclass: Battle Smith|Artificer \(multiclass \d+\): Battle Smith/.test(fg)) add("Steel Defender","Steel Defender (Battle Smith)","sd","comp");
   if(/Subclass: Vestige Patron|Warlock \(multiclass \d+\): Vestige Patron/.test(fg)) add("Vestige Companion","Vestige Companion (Vestige Patron)","vp","comp");/* v64 */
@@ -70,7 +78,22 @@ function crStat(c,ctx){ const sel=crSel[c.n]||{}, v=(c.variants||[]).filter((q) 
   if(v) Object.keys(v).forEach((k) =>{ if(k==="v") return; if(Array.isArray(v[k])&&Array.isArray(o[k])) o[k]=o[k].concat(v[k]); else o[k]=v[k]; });
   const sp=ctx&&/^sp:/.test(ctx)&&(CREATURES.spells||{})[ctx.slice(3)]; if(sp&&sp.override) Object.keys(sp.override).forEach((k) =>{ o[k]=sp.override[k]; });
   const it=ctx&&/^it:/.test(ctx)&&((CREATURES.items||{})[ctx.slice(3)]||{}).override; if(it&&it[c.n]) Object.keys(it[c.n]).forEach((k) =>{ o[k]=it[c.n][k]; });/* v56 */
+  if(ctx==="bm14") crBm14(o);
   return o; }
+/* 2014 Ranger's Companion: your Proficiency Bonus on its AC, attack rolls, damage rolls, and the saves and skills it is proficient in.
+   Hit Point maximum: its own or 4 x your Ranger level, whichever is higher */
+function crPlus(t,pb){ return String(t).replace(/([+\u2212-])(\d+)/,(m,sg0,n) =>{ const v=(sg0==="+"?1:-1)*(+n)+pb; return (v<0?"\u2212":"+")+Math.abs(v); }); }
+function crBm14Hit(t,pb){ return String(t).replace(/(Attack Roll:\s*)([+\u2212-]\d+)/g,(m,a,b) =>{ return a+crPlus(b,pb); })
+  .replace(/(\d+) \((\d+d\d+)(?: ([+\u2212-]) (\d+))?\)/g,(m,avg,dice,sg0,mod) =>{ const md=(sg0?(sg0==="+"?1:-1)*(+mod):0)+pb; return (+avg+pb)+" ("+dice+(md?(md<0?" \u2212 ":" + ")+Math.abs(md):"")+")"; }); }
+function crBm14(o){ const pb=D.pb, lv=clsLvls().Ranger||D.level;
+  o.ac=String(o.ac||"").replace(/^\d+/,(m) =>{ return String(+m+pb); });
+  const hp=parseInt(o.hp,10); if(hp<4*lv){ o.hp=String(4*lv); o.hd=""; }/* 4 x Ranger level, so its own dice no longer apply */
+  o.saves=Object.assign({},o.saves||{}); Object.keys(o.saves).forEach((k) =>{ o.saves[k]=crPlus(o.saves[k],pb); });
+  if(o.skills) o.skills=String(o.skills).split(/,\s*/).map((x) =>{ return crPlus(x,pb); }).join(", ");
+  if(/Perception/.test(o.skills||"")) o.senses=String(o.senses||"").replace(/(Passive Perception )(\d+)/,(m,a,n) =>{ return a+(+n+pb); });
+  o.pb="";/* its own Proficiency Bonus is not the one that matters here; the trait below says what changed */
+  o.actions=(o.actions||[]).map((a) =>{ return /Attack Roll/.test(a[1])?[a[0],crBm14Hit(a[1],pb)]:a; });
+  o.traits=[["Ranger's Companion","Your Proficiency Bonus (+"+pb+") is added to its AC, attack rolls, damage rolls, and the saves and skills it is proficient in (included above). Its Hit Point maximum is its own or 4 \u00d7 your Ranger level, whichever is higher. It acts on your Initiative and takes the Dodge action unless you command it."]].concat(o.traits||[]); }
 function crRowH(e){ const c=crOf(e.n), env=crEnv(e.ctx,c), o=crStat(c,e.ctx);
   return '<button type="button" class="crr" data-info="cr:'+esc(e.n)+'|'+esc(e.ctx)+'"><span class="crn"><b>'+(PGE.__artIc?PGE.__artIc("creature",String(o.type||"").split(/[\s(,]/)[0]):"")+esc(e.n)+'</b><small>'+esc(o.size+" "+o.type)+' • '+esc(e.why)+'</small></span><span><small>AC</small>'+esc(crExpr(o.ac,env))+'</span><span><small>HP</small>'+esc((function(){ const m=crHpMax(o,env); if(m==null||(S.crhp||{})[e.n+"|"+e.ctx]==null) return crExpr(o.hp,env); return crHpCur(e.n+"|"+e.ctx,m)+"/"+m; })())+'</span><span><small>CR</small>'+esc(o.cr||"—")+'</span></button>'; }
 export function renderExtras(){ renderExtras0(); const el=$("#extBody"); if(!el) return; let bh=""; try{ bh=bastionH(); }catch(er){ bh='<h3 class="fcat">Bastion</h3><p class="caution">The Bastion data on this sheet could not be shown. It is kept as it is. Use Report a problem on My Characters.</p>'; } el.innerHTML='<section class="xcard" id="xCr">'+el.innerHTML+'</section>'; if(bh)el.insertAdjacentHTML("beforeend",'<section class="xcard" id="xBs">'+bh+'</section>'); }/* v99: no empty card under Creatures when the rules have no Bastion (2014) *//* v31 C9: one card each *//* v28 I1 *//* v28 RD22 */

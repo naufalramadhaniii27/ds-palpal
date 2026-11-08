@@ -49,6 +49,9 @@ CHECK = r"""async (o)=>{
   (m.creatures||[]).forEach(c=>{ const st={}; c.stats.forEach(x=>st[x[0]]=x[1]); if(!st.AC||!st.HP) bad.push('creature without AC/HP: '+c.name); if(!c.summary) bad.push('creature without short line: '+c.name); });
   if(o.rs!=='2014'&&o.cls==='Druid'&&o.lv>=2&&!(m.creatures||[]).length) bad.push('Druid without Wild Shape creatures');
   if(/Beast Master/.test(o.sub||'')&&o.lv>=3&&!(m.creatures||[]).length) bad.push('Beast Master without a companion');
+  if(/Beast Master/.test(o.sub||'')&&o.lv>=3){ const tags=(m.creatures||[]).map(c=>c.tag).join('|');
+    if(o.rs==='2014'&&(!/Ranger's Companion/.test(tags)||/Primal Companion/.test(tags))) bad.push('Beast Master (2014) without the 2014 Ranger\'s Companion');
+    if(o.rs!=='2014'&&/Ranger's Companion/.test(tags)) bad.push('Beast Master (2024) with the 2014 companion'); }
   let pages=null;
   if(o.render){ try{ const out=await PDFX.render(m,window.__pxA,{PDFLib:window.PDFLib,fontkit:window.fontkit}); pages=out.pages;
       out.overflow.forEach(x=>{ if(/^spells:/.test(x)) rep.spellOver++; else rep.over.push(x); }); }
