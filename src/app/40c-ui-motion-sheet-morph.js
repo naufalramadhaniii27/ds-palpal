@@ -3,7 +3,7 @@ import {bindLive,ovQueue,springEase} from "./00a-reg-late-ports.js";/* Responsib
 import {$,$$} from "./05-logic-helpers.js";
 import {REDUCE,SPR,spring} from "./07-ui-theme-contrast-spring.js";
 import {__set_openSheet,openSheet,sheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {BCSS,PAGES,__set_goPage,__set_setTab,activeTab,bInd,curPage,mq,onPagerScroll,pager,pgShow,setTab} from "./21-ui-tabs-pager.js";
 
 import {env} from "./00-env.js";

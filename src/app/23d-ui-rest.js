@@ -6,7 +6,7 @@ import {$,esc,num,sg,toast,hpWord} from "./05-logic-helpers.js";
 import {B,D,derive} from "./06-logic-derivation.js";
 import {syncLU} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {__set_navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {doRest} from "./19-ui-global-click-delegation.js";
 
 import {env} from "./00-env.js";
@@ -18,7 +18,10 @@ bindLive("openRest",{get:function(){return openRest;}});
 let restSel={}, restAuto=true;
 function hdRows(){ return (D.res||[]).filter((r) =>{ return r.k==="hd"||/^hd-d/.test(r.k); }); }
 function shortList(){ return (D.res||[]).filter((r) =>{ return r.reset==="short"||r.reset==="short1"; }); }
-function restHTML(kind){ let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-kind="'+kind+'">';
+function restHTML(kind){
+ const _restHTMLStep1=restHTMLStep1(kind);
+ const {hp1}=_restHTMLStep1;
+ let {h}=_restHTMLStep1;
   if(kind==="menu") return h+restCards()+'</div>';/* v32 p25 C15 */
   if(kind==="short"){ let cm=D.mod.CON, tot=0; h+=restHint();/* v32 p25 */
     h+=x14()?'<p class="info-d">A Short Rest lasts at least 1 hour. You do nothing more strenuous than eating, drinking, reading, or tending wounds. At the end you can spend any number of your Hit Dice to heal, one at a time, and some features recharge.</p>':'<p class="info-d">A Short Rest is 1 hour of downtime with nothing more tiring than talking, eating, reading, or keeping watch. It ends early, with no benefit, if you roll Initiative, cast any spell except a cantrip, or take damage. You can spend Hit Point Dice to heal, one at a time, and some features recharge.</p>';
@@ -34,19 +37,36 @@ function restHTML(kind){ let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-k
     h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpWord(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(periOn()?', then doubled':'')+')</p>';
     if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Short Rest.</p>';
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
+  ({h}=restHTMLStep2(h, hp1));
+  return h+slideC("long","Slide to take Long Rest",hp1)+'</div>'; }
+function restHTMLStep1(kind){
+let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-kind="'+kind+'">';
+  return /** @type {any} */ ({hp1, h});
+}
+function restHTMLStep2(h, hp1){
   const rec=longRec();/* v32 p25: the same list as the Long Rest card */
   h+=(x14()?'<p class="info-d">A Long Rest lasts at least 8 hours. You sleep and do light activity, with no more than 2 hours awake. One hour of fighting, casting spells, or walking breaks the rest, and you must start it again to gain anything. You can gain the benefit of only one Long Rest in 24 hours, and you need at least 1 Hit Point when you start. You regain all Hit Points and up to half of your total Hit Dice, at least one. If you had food and drink, you also lose 1 level of Exhaustion.</p>':'<p class="info-d">A Long Rest takes at least 8 hours: at least 6 asleep and no more than 2 of light activity. It ends early if you roll Initiative, cast any spell except a cantrip, take damage, or spend 1 hour walking or exerting yourself. If you had rested for at least 1 hour, an early end still counts as a Short Rest. You can resume right away by adding 1 hour to the rest. After a Long Rest, wait 16 hours before starting another.</p>')+'<div class="info-h">Recover</div>'+(rec.length?recUL(rec):'<p class="info-d">Everything is already full.</p>');
   h+=longExtraH();/* v21 */
   if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Long Rest.</p>';
-  return h+slideC("long","Slide to take Long Rest",hp1)+'</div>'; }
+  return /** @type {any} */ ({h});
+}
 /* v55: slide-to-confirm control for the rests (the handler sits next to the PDF button code) */
 function slideC(kind,txt,off){ return '<div class="slidec'+(off?' off':'')+'" data-slide-go="'+kind+'" data-label="'+txt+'"><div class="slidec-fill"></div><div class="slidec-label">'+txt+'</div><button type="button" class="slidec-h" aria-label="'+txt+'. Press Enter to confirm"'+(off?' disabled':'')+'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>'; }
 /* ===== v32 p25 (C15, RU132): rest cards, hint, and the summary after a rest ===== */
-function longRec(){ let sl=(D.res||[]).filter((r) =>{return /^s\d$/.test(r.k)||r.k==="pact"}).reduce((t,r) =>{return t+used(r.k,r.max)},0), hdu=hdRows().reduce((t,r) =>{return t+used(r.k,r.max)},0),
+function longRec(){
+ let {rec}=longRecStep1();
+ longRecStep2(rec);
+  return rec; }
+function longRecStep1(){
+let sl=(D.res||[]).filter((r) =>{return /^s\d$/.test(r.k)||r.k==="pact"}).reduce((t,r) =>{return t+used(r.k,r.max)},0), hdu=hdRows().reduce((t,r) =>{return t+used(r.k,r.max)},0),
       oth=(D.res||[]).filter((r) =>{ return r.reset!=="none"&&!/^s\d$|^pact$|^hd/.test(r.k)&&used(r.k,r.max)>0; }).map((r) =>{return r.n});
   let hpTo=D.hpmax; if(lateGet("restX").hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0)) hpTo=Math.max(1,(B.hp&&B.hp.parts||[]).filter((p) =>{ return p.l!=="Max HP modifier"&&p.l!=="Set by you"; }).reduce((t,p) =>{ return t+num(p.v,0); },0));/* v21 i2 */
-  let rec=[]; if(S.hp==null||S.hp<hpTo) rec.push("Hit Points to "+hpTo); if(x14()) hdu=hdPlan()._n; if(hdu) rec.push(hdu+" Hit "+(hdu>1?"Dice":"Die")); if(sl) rec.push(sl+" Spell Slot"+(sl>1?"s":"")); rec=rec.concat(oth); if(hasFeat("Resourceful")&&!S.insp) rec.push("Heroic Inspiration (Resourceful)"); if(S.exh>0) rec.push("Exhaustion level reduced by 1"); if(S.ds&&(S.ds[0]||S.ds[1])) rec.push("Death Saving Throws reset"); if(S.tmp) rec.push("Temporary Hit Points end");
-  return rec; }
+  let rec=[]; if(S.hp==null||S.hp<hpTo) rec.push("Hit Points to "+hpTo); if(x14()) hdu=hdPlan()._n; if(hdu) rec.push(hdu+" Hit "+(hdu>1?"Dice":"Die")); if(sl) rec.push(sl+" Spell Slot"+(sl>1?"s":"")); rec=rec.concat(oth);
+  return /** @type {any} */ ({rec});
+}
+function longRecStep2(rec){
+if(hasFeat("Resourceful")&&!S.insp) rec.push("Heroic Inspiration (Resourceful)"); if(S.exh>0) rec.push("Exhaustion level reduced by 1"); if(S.ds&&(S.ds[0]||S.ds[1])) rec.push("Death Saving Throws reset"); if(S.tmp) rec.push("Temporary Hit Points end");
+}
 function hdLeft(){ return hdRows().reduce((t,r) =>{ return t+Math.max(0,r.max-used(r.k,r.max)); },0); }
 function shortRec(){ const o=[], miss=Math.max(0,D.hpmax-num(S.hp==null?D.hpmax:S.hp,0)), hl=hdLeft();
   if(miss&&hl) o.push("Spend up to "+hl+" Hit "+(hl>1?"Dice":"Die")+" to heal ("+miss+" "+hpWord(miss)+" missing)"); else if(!hl) o.push(["No Hit Dice left to spend",1]); else o.push(["Hit Points are full",1]);
@@ -101,10 +121,13 @@ export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least
     doRest("short",true); const rec=[]; rl.forEach((q,i) =>{ const s=recSum(i); if(!s) return; const m=lateGet("restX").rec[i]; Object.keys(m).forEach((L) =>{ S.used["s"+L]=Math.max(0,num(S.used["s"+L],0)-num(m[L],0)); }); S.used[q.r.k]=num(S.used[q.r.k],0)+1; rec.push(q.n+": "+s+" slot level"+(s>1?"s":"")+" recovered."); });
     const nc=chgApply(shortChg()); save(); syncLU(); closeSheet();
     toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; })()); restSumToast("short"); return; }
+  takeRestStep1(); }
+function takeRestStep1(){
   undoMark("Long Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */ const lc=chgRows(["dawn","dusk","long"]), hr=lateGet("restX").hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0);
   if(hr){ delete S.hpMod; delete S.hpOver; derive(); }
   doRest("long",true); const nc2=chgApply(lc); if(nc2){ save(); syncLU(); } closeSheet(); const LD=restDiff(RS0), ln=restNames(LD), hpx=LD.filter((x) =>{ return x[0]==="Hit Points"; })[0];
-  toastU("Long Rest taken."+(LD.length?" Restored: "+[hpx?"Hit Points ("+hpx[1]+")":""].concat(ln?[ln]:[]).filter(Boolean).join(", ")+".":" Everything was already full.")+(hr?" Maximum HP changes reset.":"")+(nc2?" Charges updated.":"")); restSumToast("long"); }
+  toastU("Long Rest taken."+(LD.length?" Restored: "+[hpx?"Hit Points ("+hpx[1]+")":""].concat(ln?[ln]:[]).filter(Boolean).join(", ")+".":" Everything was already full.")+(hr?" Maximum HP changes reset.":"")+(nc2?" Charges updated.":"")); restSumToast("long");
+}
 env.__openRest=openRest;
 env.__coinsNow=coinsNow;
 /* v33 p03 (RU123 builder): the five coins the sheet shows after Apply when the starting gold is g (same data and rule as coinsNow) */

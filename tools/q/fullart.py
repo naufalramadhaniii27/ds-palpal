@@ -2,7 +2,7 @@
 """Full creature art instead of tokens (owner 2026-11-06: "pake gambar full nya, bukan gambar token nya").
 Many creatures were mapped to a round token because the older image mirror had no full picture for them. The 5etools fluff files
 name the full picture, often a shared one (Owlbear -> bestiary/XMM/Owlbears). This converts those pictures into data/img and points
-the Library rows (src/data/q07-bestiary.js) and window.CRIMG (src/data/q12-crimg.js) at them. 2024 creatures that had 2014 art get
+the Library rows (src/data/q07-bestiary.js) and DataEnv.slot.CRIMG (src/data/q12-crimg.js) at them. 2024 creatures that had 2014 art get
 their 2024 art. Run after qbuild.py / crimg.py:
   python3 tools/q/fullart.py <5etools-img checkout> <5etools-src checkout>"""
 import json, os, sys, glob, re

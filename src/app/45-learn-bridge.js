@@ -3,11 +3,11 @@ import {ask,esc} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {REDUCE} from "./07-ui-theme-contrast-spring.js";
 import {buzz} from "./09-ui-hit-points-playbar-death-saves.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {learnBand,showHome} from "./15-logic-roster-backup-files-snapshots.js";
 import {PAGES,goPage,mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";
-import {libOpen} from "./27b-ui-library.js";
+import {libOpen} from "./27d-ui-library-search-open.js";
 import {homeInert} from "./31-ui-tour-and-focus.js";
 import {ovQueue} from "./40d-ui-overlays-context-dock.js";import {env} from "./00-env.js";
 /* T11 Learn: the app code runs inside one closure, so Learn (src/learn, a deferred part) reaches it only through this bridge:

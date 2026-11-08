@@ -137,10 +137,14 @@ function sitActiveLine(){ const st=sitRead(), L=SIT.filter((r) =>{ return r.t===
 function sitRoll(r,st){ const d=function(n){ return 1+Math.floor(Math.random()*n); };
   if(r.roll==="surge"){ const a=d(20); if(a<20){ st.v.surge_r="Rolled "+a+": no surge."; } else { const b=d(100), i=Math.min(SIT_SURGE.length-1,Math.floor((b-1)/2)); st.v.surge_r="Rolled 20. Surge "+b+": "+SIT_SURGE[i]; } st.used[r.k]=1; return st.v.surge_r; }
   if(r.roll==="spirit"){ const bd=lvOf("Bard")>=15?12:lvOf("Bard")>=10?10:lvOf("Bard")>=5?8:6, n=d(bd), t=SIT_SPIRIT[Math.min(SIT_SPIRIT.length,n)-1].replace(/\{d\}/g,"d"+bd); st.v.spirit_r="d"+bd+" rolled "+n+". "+t; return st.v.spirit_r; } return ""; }
-function sitDo(spec){ let p=String(spec).split(":"), kind=p[0], k=p[1], r=sitRow(k), st;
+function sitDo(spec){
+ const _sitDoStep1=sitDoStep1(spec);
+ const {p, kind, k, r}=_sitDoStep1;
+ let {st}=_sitDoStep1;
   if(kind==="grp"){ SIT_OPEN[k]=!sitOpenG(k); renderAll(); return; }
   if(kind==="turn"){ undoMark("New turn"); const c=sitReset("turn"); save(); renderAll(); toastU(c?"New turn. Per-turn items are cleared.":"New turn. Nothing to clear."); return; }
-  if(!r) return; st=sitSt();
+  if(!r) return;
+ ({st}=sitDoStep2(st));
   if(kind==="on"){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; }
   if(kind==="used"){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; }
   if(kind==="opt"){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; }
@@ -148,4 +152,12 @@ function sitDo(spec){ let p=String(spec).split(":"), kind=p[0], k=p[1], r=sitRow
     const res=(D.res||[]).filter((q) =>{ return r.rx.test(q.n); })[0]; if(!res){ toast("No matching resource on this sheet."); return; } const left=res.max-used(res.k,res.max);
     if(r.spend){ if(left<r.spend){ toast("Not enough "+res.n+": "+left+" left."); return; } undoMark(r.n); S.used[res.k]=used(res.k,res.max)+r.spend; save(); renderAll(); toastU(res.n+": spent "+r.spend+". Disadvantage canceled."); return; }
     if(left>0){ toast("You still have "+left+" "+res.n+". Nothing to regain."); return; } undoMark(r.n); S.used[res.k]=Math.max(0,res.max-1); save(); renderAll(); toastU(res.n+": regained 1."); } }
+function sitDoStep1(spec){
+let p=String(spec).split(":"), kind=p[0], k=p[1], r=sitRow(k), st;
+  return /** @type {any} */ ({p, kind, k, r, st});
+}
+function sitDoStep2(st){
+st=sitSt();
+  return /** @type {any} */ ({st});
+}
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-sit]"); if(!b) return; e.preventDefault(); e.stopPropagation(); sitDo(b.getAttribute("data-sit")); });

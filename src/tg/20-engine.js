@@ -6,7 +6,7 @@
    always hits and doubles the damage dice, a natural 1 always misses, Resistance halves (round down), Vulnerability doubles, Immunity is 0,
    a Dodge gives Disadvantage to attacks against you and Advantage on Dexterity saves, a ranged attack within 5 feet of a foe that can see you
    has Disadvantage, long range has Disadvantage, Prone gives Advantage to melee within 5 feet and Disadvantage to ranged, diagonal squares cost 5 feet.
-   Works in the browser (window.TGE) and in Node (module.exports) for the headless tests (tests/tg_engine.js).
+   Works in the browser (TGE on the page global, `self` is the window there) and in Node (module.exports) for the headless tests (tests/tg_engine.js).
    State is plain JSON: it can be saved, sent and replayed. Every change goes through step(state, command) and lands in state.log. */
 (function(root){
 "use strict";
@@ -227,4 +227,4 @@ function hash(st){ let t=JSON.stringify(st), h=2166136261>>>0; for(let i=0;i<t.l
 
 const TGE={odds:odds,pmfDice:pmfDice,lgAct:lgAct,create:create,step:step,replay:replay,hash:hash,fromCreature:fromCreature,fromSheet:fromSheet,reach:reach,dist:dist,udist:udist,adjust:adjust,parse:parse,rollExpr:rollExpr,now:now,foes:foes,active:active,speedLeft:speedLeft,inReach:inReach,findAct:findAct};
 if(typeof module!=="undefined"&&module.exports) module.exports=TGE; else root.TGE=TGE;
-})(/** @type {any} */(typeof window!=="undefined"?window:this));
+})(/** @type {any} */(typeof self!=="undefined"?self:this));
