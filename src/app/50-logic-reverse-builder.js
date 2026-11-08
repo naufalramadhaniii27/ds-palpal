@@ -95,19 +95,40 @@ function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop()
 const rbYield=(f) =>{ if(env.scheduler&&typeof env.scheduler.postTask==="function") env.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
 let RB_DUEL_WAIT=false;
 function rbDuel(i,btn){
- const {r, out}=rbDuelStep1(i, btn); if(!r||!out) return;
- rbDuelStep2(out);
+ const {r, out}=rbDuel2Step1(i, btn); if(!r||!out) return;
+ rbDuel2Step2(out);
   if(!env.__tgDuelPick){ if(env.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(env.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!env.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
   let pc=null; try{ pc=tgPcFor(env.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
-  const {run, pct}=rbDuelStep3(btn);
+  const {run, pct}=rbDuel2Step3(btn);
   const line=function(a,base,e1){ const g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
-    return (a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
-      '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '+pc.level+'), '+(base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build')+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
-  const {fin}=rbDuelStep4(btn, run, out, line);
+    return rbDuelPart1(a, x, y, d, pct, e1, g)+pc.level+'), '+(rbDuelPart2(base))+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
+  const {fin}=rbDuel2Step4(btn, run, out, line);
   const go2=function(base){ const e1=env.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); env.__tgDuel(pc,base.g,(a) =>{ fin(a,base,e1); }); };
   if(RB.base&&RB.base.run===run){ go2(RB.base); return; }
   let cur=null; try{ cur=tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
-  rbDuelStep5(out); env.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; env.__tgDuel(cur,g,(b) =>{ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); },(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
+  rbDuel2Step5(out); env.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; env.__tgDuel(cur,g,(b) => rbDuelFn1(fin, run, g, go2, b),(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
+function rbDuelPart1(a, x, y, d, pct, e1, g){ return ((a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
+      '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '); }
+function rbDuelPart2(base){ return (base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build'); }
+function rbDuel2Step1(i, btn){
+ const {r, out}=rbDuelStep1(i, btn);
+  return /** @type {any} */ ({r, out});
+}
+function rbDuel2Step2(out){
+ rbDuelStep2(out);
+}
+function rbDuel2Step3(btn){
+  const {run, pct}=rbDuelStep3(btn);
+  return /** @type {any} */ ({run, pct});
+}
+function rbDuel2Step4(btn, run, out, line){
+  const {fin}=rbDuelStep4(btn, run, out, line);
+  return /** @type {any} */ ({fin});
+}
+function rbDuel2Step5(out){
+  rbDuelStep5(out);
+}
+function rbDuelFn1(fin, run, g, go2, b){ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); }
 function rbDuelStep1(i, btn){
 const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel");
   return /** @type {any} */ ({r, out});

@@ -16,7 +16,21 @@ export function derive(){
   const {hd, cm, avg, hpParts, hpl}=deriveSpeedSensesHpBase(xr, exh);
   const {CY}=deriveHpDcCarry(lvl, hpl, hpParts, avg, hd, cm, xr, exh, abPart, pb);
   const {CF}=deriveCombatFx(CY);
-  (C.attacks||[]).forEach((a,i) =>{
+  (C.attacks||[]).forEach((a, i) => deriveFn1(pb, CF, exhN, exP, a, i));
+  deriveRageDamage();
+  deriveResources(lvl, hd, cm);
+  deriveSpellAdjust();
+}
+function deriveFn1(pb, CF, exhN, exP, a,i){
+    const _deriveFn1Step1=deriveFn1Step1(a, pb, CF, exhN, exP);
+    const {m, hp, amB, amN, cuA}=_deriveFn1Step1;
+    let {hit}=_deriveFn1Step1;
+    const _deriveFn1Step2=deriveFn1Step2(CF, a, m, amN, cuA, i, hit);
+    const {cDo}=_deriveFn1Step2;
+    let {dmg}=_deriveFn1Step2;
+    deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg);
+  }
+function deriveFn1Step1(a, pb, CF, exhN, exP){
     const m=D.mod[a.ab]||0, hp=[part(ABN[a.ab]+" modifier", m, ABN[a.ab]+" score "+D.score[a.ab])];
     if(a.prof) hp.push(part("Proficiency Bonus", pb, "Proficient with this weapon"));
     if(num(a.misc,0)) hp.push(part(a.miscSrc||"Other bonus", num(a.misc)));
@@ -25,16 +39,18 @@ export function derive(){
     const cuA=cuK("a:"+a.n); if(cuA) lateGet("CU0")["a:"+a.n+"|ho"]=hp.reduce((t,p) =>{return t+p.v},0); if(cuA&&cuNum(cuA.hb)) hp.push(part("Customize: bonus", cuNum(cuA.hb), cuA.note||"Set with Customize"));/* v26 RU38 no. 2 */
     let hit=hp.reduce((t,p) =>{return t+p.v},0);
     if(cuA&&cuNum(cuA.ho)!=null){ hp.push({l:"Set by you", v:sg(cuNum(cuA.ho)), note:"Calculated value: "+sg(lateGet("CU0")["a:"+a.n+"|ho"])+". Your number replaces it.", raw:true}); hit=cuNum(cuA.ho); }
+  return /** @type {any} */ ({m, hp, amB, amN, cuA, hit});
+}
+function deriveFn1Step2(CF, a, m, amN, cuA, i, hit){
     const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
     const dmC=dm-(cuA?cuNum(cuA.db)||0:0), cDo=cuA&&cuA["do"]?String(cuA["do"]):""; if(cuA) lateGet("CU0")["a:"+a.n+"|do"]=(a.die||"1")+(dmC===0?"":(dmC>0?"+"+dmC:"\u2212"+Math.abs(dmC))); if(cDo) dmg=cDo;/* v34 RU85 */
     D.atk[i]={hit:hit, dmg:dmg, rg:rgB};
+  return /** @type {any} */ ({dmg, cDo});
+}
+function deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg){
     if(amB&&!amB.on) hp.push({l:"Magic ammunition", v:"None selected", note:"You carry "+amB.L.map((x) =>{ return x.it.n; }).join(" and ")+". Open this attack to pick one.", raw:true});/* v102 */
     B["ah-"+i]={t:a.n+": attack roll", parts:hp, total:sg(hit), f:""};
     B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(amN?[part(amB.on.it.n, amN, "Magic ammunition fired from this weapon")]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]).concat(cDo?[{l:"Set by you", v:cDo, note:"Calculated value: "+lateGet("CU0")["a:"+a.n+"|do"]+". Your text replaces it.", raw:true}]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
-  });
-  deriveRageDamage();
-  deriveResources(lvl, hd, cm);
-  deriveSpellAdjust();
 }
 function deriveBase(){
   D = {}; B = {}; lateSet("CU0",{});/* v34 RU85 */

@@ -1322,6 +1322,16 @@
    "count": 1
   },
   {
+   "from": "app/04-logic-storage.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "app/05-logic-helpers.js",
    "to": "app/00-env.js",
    "import": true,
@@ -1362,10 +1372,10 @@
   },
   {
    "from": "app/05-logic-helpers.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "close"
+    "parse"
    ],
    "count": 1
   },
@@ -1437,6 +1447,24 @@
    "count": 0
   },
   {
+   "from": "app/07-ui-theme-contrast-spring.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/07-ui-theme-contrast-spring.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/08-ui-render-sheet-and-actions.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -1481,6 +1509,16 @@
     "__ART"
    ],
    "count": 1
+  },
+  {
+   "from": "app/08-ui-render-sheet-and-actions.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
   },
   {
    "from": "app/08b-ui-render-summaries-actions.js",
@@ -1538,6 +1576,15 @@
    "import": false,
    "names": [
     "rowsOf"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08b-ui-render-summaries-actions.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "fail"
    ],
    "count": 1
   },
@@ -1609,6 +1656,15 @@
    "import": false,
    "names": [
     "__ART"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08c-ui-render-inventory-features-notes.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
    ],
    "count": 1
   },
@@ -1846,15 +1902,6 @@
    "count": 1
   },
   {
-   "from": "app/12-ui-bottom-sheet-modal.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "open"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/13-ui-detail-cards.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -1973,6 +2020,15 @@
    "import": false,
    "names": [
     "SPELLS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/13-ui-detail-cards.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "cells"
    ],
    "count": 1
   },
@@ -2141,6 +2197,15 @@
    "count": 1
   },
   {
+   "from": "app/13b-ui-detail-spell-targets-render.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/14-ui-editor.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -2179,6 +2244,17 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "app/14-ui-editor.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "fresh",
+    "parse"
+   ],
+   "count": 3
   },
   {
    "from": "app/15-logic-roster-backup-files-snapshots.js",
@@ -2238,6 +2314,16 @@
    "count": 3
   },
   {
+   "from": "app/15-logic-roster-backup-files-snapshots.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "app/15b-logic-backup.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -2289,12 +2375,13 @@
   },
   {
    "from": "app/15b-logic-backup.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "open"
+    "active",
+    "parse"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "app/15c-logic-file-state-compress.js",
@@ -2320,6 +2407,16 @@
    "names": [
     "BIN_OPEN",
     "chSave"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/15c-logic-file-state-compress.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
    ],
    "count": 2
   },
@@ -2384,12 +2481,13 @@
   },
   {
    "from": "app/15d-logic-snapshots-character-files.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "close"
+    "active",
+    "parse"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "app/16-logic-import-chat-text-and-build-files.js",
@@ -2448,6 +2546,15 @@
    "import": false,
    "names": [
     "appVer"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/16-logic-import-chat-text-and-build-files.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -2571,6 +2678,16 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "app/17-logic-tab-sync-and-test-hooks.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
   },
   {
    "from": "app/18-ui-header-and-more-menu.js",
@@ -2712,6 +2829,16 @@
    "count": 1
   },
   {
+   "from": "app/18-ui-header-and-more-menu.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "app/19-ui-global-click-delegation.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -2847,6 +2974,15 @@
    "count": 1
   },
   {
+   "from": "app/20-ui-portrait.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/21-ui-tabs-pager.js",
    "to": "app/00-env.js",
    "import": true,
@@ -2949,15 +3085,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "app/21-ui-tabs-pager.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "back"
-   ],
-   "count": 1
   },
   {
    "from": "app/22-ui-spell-data-and-slots.js",
@@ -3244,15 +3371,6 @@
    "import": false,
    "names": [
     "LIFESTYLE"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/23c-ui-coins.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "back"
    ],
    "count": 1
   },
@@ -3864,6 +3982,16 @@
   },
   {
    "from": "app/27-ui-party-search-commands-library.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/27-ui-party-search-commands-library.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -4205,6 +4333,15 @@
    "count": 1
   },
   {
+   "from": "app/27c-ui-report-pins.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/27d-ui-library-search-open.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -4281,6 +4418,15 @@
    "import": false,
    "names": [
     "__ART"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/27d-ui-library-search-open.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -4475,6 +4621,15 @@
   },
   {
    "from": "app/29b-ui-creatures-extras.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "cells"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/29b-ui-creatures-extras.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -4636,6 +4791,15 @@
   },
   {
    "from": "app/31-ui-tour-and-focus.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/31-ui-tour-and-focus.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -4672,6 +4836,15 @@
     "toastT"
    ],
    "count": 2
+  },
+  {
+   "from": "app/32-logic-play-undo-actions.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
   },
   {
    "from": "app/32b-logic-play-concentration-casting.js",
@@ -5153,15 +5326,6 @@
    "count": 1
   },
   {
-   "from": "app/35-ui-combo.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "open"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/36-ui-printable-sheet.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -5332,6 +5496,24 @@
    "count": 1
   },
   {
+   "from": "app/37-ui-pdf-export-hold-slide-confirm.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/37-ui-pdf-export-hold-slide-confirm.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/37a-ui-pdf-model.js",
    "to": "app/00-env.js",
    "import": true,
@@ -5476,6 +5658,15 @@
   },
   {
    "from": "app/37a-ui-pdf-model.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/37a-ui-pdf-model.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -5553,6 +5744,15 @@
     "printCards"
    ],
    "count": 2
+  },
+  {
+   "from": "app/38-boot-init.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
   },
   {
    "from": "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
@@ -5663,10 +5863,10 @@
   },
   {
    "from": "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "learn/47-ui-learn.js",
    "import": false,
    "names": [
-    "close"
+    "head"
    ],
    "count": 1
   },
@@ -5870,15 +6070,6 @@
    "count": 1
   },
   {
-   "from": "app/40c-ui-motion-sheet-morph.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "close"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/40d-ui-overlays-context-dock.js",
    "to": "app/00-env.js",
    "import": true,
@@ -6005,15 +6196,6 @@
    "import": true,
    "names": [
     "qmClose"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/40d-ui-overlays-context-dock.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "back"
    ],
    "count": 1
   },
@@ -6390,6 +6572,15 @@
    "count": 1
   },
   {
+   "from": "app/42-logic-pwa-qr-icons-wallet.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/43-logic-cloud-sync.js",
    "to": "app/00-env.js",
    "import": true,
@@ -6439,6 +6630,17 @@
     "fixCid",
     "hashS",
     "newId"
+   ],
+   "count": 3
+  },
+  {
+   "from": "app/43-logic-cloud-sync.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "fresh",
+    "parse"
    ],
    "count": 3
   },
@@ -6514,12 +6716,13 @@
   },
   {
    "from": "app/44-ui-friends.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "back"
+    "active",
+    "parse"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "app/45-learn-bridge.js",
@@ -6662,6 +6865,16 @@
    "count": 2
   },
   {
+   "from": "app/46-logic-receipts.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "app/47-logic-time-machine.js",
    "to": "app/00-env.js",
    "import": true,
@@ -6733,12 +6946,13 @@
   },
   {
    "from": "app/47-logic-time-machine.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "open"
+    "active",
+    "parse"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "app/48-logic-sync-merge.js",
@@ -6786,12 +7000,13 @@
   },
   {
    "from": "app/48-logic-sync-merge.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "open"
+    "active",
+    "parse"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "app/49-logic-status-and-odds.js",
@@ -6882,6 +7097,15 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "app/49-logic-status-and-odds.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "hash"
+   ],
+   "count": 1
   },
   {
    "from": "app/50-logic-reverse-builder.js",
@@ -7080,6 +7304,16 @@
    "count": 1
   },
   {
+   "from": "app/52-tg-bridge.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "app/53-logic-number-map.js",
    "to": "app/00-env.js",
    "import": true,
@@ -7134,6 +7368,15 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "app/54-dev-fps-probe.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "hash"
+   ],
+   "count": 1
   },
   {
    "from": "app/99-ui-backup-reminder-handlers.js",
@@ -7740,6 +7983,15 @@
    "count": 0
   },
   {
+   "from": "boot/arrive-flag.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
    "from": "boot/boot-env.js",
    "to": "app/00-env.js",
    "import": false,
@@ -7751,6 +8003,15 @@
   },
   {
    "from": "boot/busy-splash.js",
+   "to": "boot/boot-env.js",
+   "import": false,
+   "names": [
+    "BootEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "boot/debug-overlay.js",
    "to": "boot/boot-env.js",
    "import": false,
    "names": [
@@ -7805,14 +8066,13 @@
   },
   {
    "from": "boot/store-gate.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "back",
-    "close",
-    "open"
+    "fail",
+    "parse"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "boot/trusted-types.js",
@@ -8072,6 +8332,15 @@
    "count": 2
   },
   {
+   "from": "builder/04-logic-storage.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/05-logic-choice-model-ruleset.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
@@ -8233,6 +8502,15 @@
    "import": false,
    "names": [
     "SUB_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/08-logic-2014-rules.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -8470,15 +8748,6 @@
    "import": false,
    "names": [
     "live"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "open"
    ],
    "count": 1
   },
@@ -10298,6 +10567,15 @@
    "count": 1
   },
   {
+   "from": "builder/13b-logic-pack-handlers.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/14-logic-multiclass-hp-shop.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -10944,16 +11222,6 @@
    "count": 1
   },
   {
-   "from": "builder/17-ui-step-builder.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "close",
-    "open"
-   ],
-   "count": 2
-  },
-  {
    "from": "builder/18-ui-spells.js",
    "to": "app/13-ui-detail-cards.js",
    "import": false,
@@ -11126,10 +11394,10 @@
   },
   {
    "from": "builder/18-ui-spells.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "open"
+    "parse"
    ],
    "count": 1
   },
@@ -11385,15 +11653,6 @@
    "count": 1
   },
   {
-   "from": "builder/19-ui-steps-sources-class-bg-species-abilities.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "open"
-   ],
-   "count": 1
-  },
-  {
    "from": "builder/20-ui-steps-equipment-next.js",
    "to": "builder/00-env.js",
    "import": false,
@@ -11616,19 +11875,19 @@
   },
   {
    "from": "builder/20-ui-steps-equipment-next.js",
-   "to": "tg/30-ui-tg.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "live"
+    "parse"
    ],
    "count": 1
   },
   {
    "from": "builder/20-ui-steps-equipment-next.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
-    "open"
+    "live"
    ],
    "count": 1
   },
@@ -11842,6 +12101,16 @@
     "SPELLS"
    ],
    "count": 1
+  },
+  {
+   "from": "builder/21-ui-rules-reference.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
   },
   {
    "from": "builder/22-ui-shell.js",
@@ -12069,15 +12338,21 @@
   },
   {
    "from": "builder/22-ui-shell.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/22-ui-shell.js",
    "to": "tg/31-ui-tg-field.js",
    "import": false,
    "names": [
-    "back",
-    "close",
-    "draw",
-    "open"
+    "draw"
    ],
-   "count": 4
+   "count": 1
   },
   {
    "from": "builder/23-logic-level-up-and-build-files.js",
@@ -12204,10 +12479,8 @@
    "from": "builder/23-logic-level-up-and-build-files.js",
    "to": "builder/15-logic-import-from-sheet.js",
    "import": true,
-   "names": [
-    "fromSheet"
-   ],
-   "count": 1
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/23-logic-level-up-and-build-files.js",
@@ -12269,6 +12542,15 @@
    "import": false,
    "names": [
     "SPELLS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/23-logic-level-up-and-build-files.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -12571,10 +12853,8 @@
    "from": "builder/25-logic-hooks-for-the-sheet.js",
    "to": "builder/15-logic-import-from-sheet.js",
    "import": true,
-   "names": [
-    "fromSheet"
-   ],
-   "count": 1
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -12714,10 +12994,10 @@
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "open"
+    "parse"
    ],
    "count": 1
   },
@@ -16419,12 +16699,13 @@
   },
   {
    "from": "fx/02-micro-interactions.js",
-   "to": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "back"
+    "dist",
+    "fresh"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "fx/03-f1-card-light-and-morph.js",
@@ -16463,15 +16744,6 @@
    "count": 1
   },
   {
-   "from": "fx/03-f1-card-light-and-morph.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "open"
-   ],
-   "count": 1
-  },
-  {
    "from": "fx/04-f2-odometer-hp-bar-scrub.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16495,6 +16767,15 @@
    "import": false,
    "names": [
     "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/04-f2-odometer-hp-bar-scrub.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
    ],
    "count": 1
   },
@@ -16580,6 +16861,15 @@
    "count": 1
   },
   {
+   "from": "fx/07-f5-moments.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
+   ],
+   "count": 1
+  },
+  {
    "from": "fx/08-round6.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16634,6 +16924,15 @@
    "count": 1
   },
   {
+   "from": "fx/09-wow-pack.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
+   ],
+   "count": 1
+  },
+  {
    "from": "fx/10-x-pack.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16661,6 +16960,15 @@
    "count": 1
   },
   {
+   "from": "fx/10-x-pack.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
+   ],
+   "count": 1
+  },
+  {
    "from": "fx/11-d-pack.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16684,6 +16992,15 @@
    "import": false,
    "names": [
     "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/11-d-pack.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
    ],
    "count": 1
   },
@@ -16693,6 +17010,15 @@
    "import": false,
    "names": [
     "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/12-mini-window-v2.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
    ],
    "count": 1
   },
@@ -16738,6 +17064,15 @@
    "import": false,
    "names": [
     "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/14-w-pack.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist"
    ],
    "count": 1
   },
@@ -16796,6 +17131,15 @@
    "count": 1
   },
   {
+   "from": "fx/15-y-pack.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
    "from": "fx/16-z-pack-dice-sound-hover.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16850,6 +17194,27 @@
    "count": 1
   },
   {
+   "from": "fx/16-z-pack-dice-sound-hover.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "cells"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/16-z-pack-dice-sound-hover.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist",
+    "fail",
+    "hurt",
+    "parse"
+   ],
+   "count": 4
+  },
+  {
    "from": "fx/17-l-pack-webgl-sky.js",
    "to": "fx/00-fx-env.js",
    "import": false,
@@ -16887,19 +17252,20 @@
   },
   {
    "from": "fx/18-m-pack-rolls-concentration.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "fail",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
+   "from": "fx/18-m-pack-rolls-concentration.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
     "hpPct"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "close"
    ],
    "count": 1
   },
@@ -16918,6 +17284,24 @@
    "import": false,
    "names": [
     "FXENV"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/19-g-pack-cinematic.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "DICE"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/19-g-pack-cinematic.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -16949,6 +17333,16 @@
    "count": 1
   },
   {
+   "from": "fx/20-k-pack-character-colour-icon.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
    "from": "fx/21-connected-home-sheet.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -16977,6 +17371,16 @@
   },
   {
    "from": "fx/21-connected-home-sheet.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "active",
+    "parse"
+   ],
+   "count": 2
+  },
+  {
+   "from": "fx/21-connected-home-sheet.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -16990,15 +17394,6 @@
    "import": false,
    "names": [
     "FXENV"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/22-home-hero.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "paint"
    ],
    "count": 1
   },
@@ -17046,6 +17441,16 @@
     "BLEND"
    ],
    "count": 1
+  },
+  {
+   "from": "fx/25-dice3d.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "alive",
+    "dist"
+   ],
+   "count": 2
   },
   {
    "from": "fx/26-tab-notch.js",
@@ -17164,17 +17569,6 @@
    "count": 1
   },
   {
-   "from": "learn/45-data-learn.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "back",
-    "close",
-    "open"
-   ],
-   "count": 3
-  },
-  {
    "from": "learn/45b-data-learn-places-a.js",
    "to": "builder/20-ui-steps-equipment-next.js",
    "import": false,
@@ -17215,6 +17609,15 @@
    "import": true,
    "names": [
     "LEARN"
+   ],
+   "count": 1
+  },
+  {
+   "from": "learn/46-logic-learn.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "parse"
    ],
    "count": 1
   },
@@ -17310,25 +17713,22 @@
   },
   {
    "from": "learn/47-ui-learn.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "dist",
+    "hash"
+   ],
+   "count": 2
+  },
+  {
+   "from": "learn/47-ui-learn.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
     "place"
    ],
    "count": 1
-  },
-  {
-   "from": "learn/47-ui-learn.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "back",
-    "close",
-    "open",
-    "paint",
-    "wire"
-   ],
-   "count": 5
   },
   {
    "from": "pdf/02-logic-markup.js",
@@ -17445,6 +17845,15 @@
   },
   {
    "from": "pdf/08-ui-flow.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/08-ui-flow.js",
    "to": "pdf/01-data-style.js",
    "import": true,
    "names": [
@@ -17462,20 +17871,20 @@
    "count": 1
   },
   {
-   "from": "pdf/08-ui-flow.js",
-   "to": "tg/31-ui-tg-field.js",
-   "import": false,
-   "names": [
-    "close"
-   ],
-   "count": 1
-  },
-  {
    "from": "pdf/09-ui-blocks.js",
    "to": "app/13-ui-detail-cards.js",
    "import": false,
    "names": [
     "meta"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
    ],
    "count": 1
   },
@@ -17514,6 +17923,15 @@
    "import": false,
    "names": [
     "fill"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/10-ui-appendix.js",
+   "to": "learn/47-ui-learn.js",
+   "import": false,
+   "names": [
+    "head"
    ],
    "count": 1
   },
@@ -17632,22 +18050,18 @@
    "count": 0
   },
   {
-   "from": "tg/20-engine.js",
-   "to": "builder/15-logic-import-from-sheet.js",
-   "import": false,
-   "names": [
-    "fromSheet"
-   ],
-   "count": 1
-  },
-  {
    "from": "tg/25-sim.js",
-   "to": "builder/15-logic-import-from-sheet.js",
-   "import": false,
+   "to": "tg/20-engine.js",
+   "import": true,
    "names": [
-    "fromSheet"
+    "active",
+    "foes",
+    "fromCreature",
+    "odds",
+    "speedLeft",
+    "udist"
    ],
-   "count": 1
+   "count": 6
   },
   {
    "from": "tg/30-ui-tg.js",
@@ -17655,15 +18069,6 @@
    "import": false,
    "names": [
     "buzz"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
-   "to": "builder/15-logic-import-from-sheet.js",
-   "import": false,
-   "names": [
-    "fromSheet"
    ],
    "count": 1
   },
@@ -17694,15 +18099,26 @@
   },
   {
    "from": "tg/30-ui-tg.js",
+   "to": "tg/20-engine.js",
+   "import": true,
+   "names": [
+    "foes",
+    "fresh",
+    "fromCreature",
+    "lgAct",
+    "odds",
+    "speedLeft"
+   ],
+   "count": 6
+  },
+  {
+   "from": "tg/30-ui-tg.js",
    "to": "tg/31-ui-tg-field.js",
    "import": false,
    "names": [
-    "open",
-    "paint",
-    "targetOk",
-    "wire"
+    "targetOk"
    ],
-   "count": 4
+   "count": 1
   },
   {
    "from": "tg/31-ui-tg-field.js",
@@ -17732,6 +18148,30 @@
   },
   {
    "from": "tg/31-ui-tg-field.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "findAct",
+    "foes",
+    "hash",
+    "lgAct",
+    "parse",
+    "speedLeft",
+    "udist"
+   ],
+   "count": 7
+  },
+  {
+   "from": "tg/31-ui-tg-field.js",
+   "to": "tg/25-sim.js",
+   "import": false,
+   "names": [
+    "duel"
+   ],
+   "count": 1
+  },
+  {
+   "from": "tg/31-ui-tg-field.js",
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
@@ -17756,12 +18196,7 @@
   }
  ],
  "back_edges": {
-  "app/05-logic-helpers.js -> tg/31-ui-tg-field.js": 1,
-  "app/15b-logic-backup.js -> tg/31-ui-tg-field.js": 1,
-  "app/15d-logic-snapshots-character-files.js -> tg/31-ui-tg-field.js": 1,
   "app/42-logic-pwa-qr-icons-wallet.js -> app/35-ui-combo.js": 1,
-  "app/47-logic-time-machine.js -> tg/31-ui-tg-field.js": 1,
-  "app/48-logic-sync-merge.js -> tg/31-ui-tg-field.js": 1,
   "data/fx-B2-subclass.js -> builder/18-ui-spells.js": 1,
   "data/efa-eberron-forge-of-the-artificer.js -> builder/10-logic-v17-additions.js": 1,
   "data/wotc02-subclasses-2025.js -> tg/30-ui-tg.js": 1,
@@ -17785,22 +18220,19 @@
   "data/fx-L7.js -> builder/18-ui-spells.js": 1,
   "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
   "data/fx-M2.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> tg/31-ui-tg-field.js": 1,
+  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 1,
+  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
   "builder/09-logic-feats-and-choices.js -> app/08b-ui-render-summaries-actions.js": 1,
   "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 1,
-  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 1,
   "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
   "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
   "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
   "builder/13-logic-sources-and-packs.js -> builder/18-ui-spells.js": 1,
   "builder/15-logic-import-from-sheet.js -> builder/17-ui-step-builder.js": 1,
-  "builder/25-logic-hooks-for-the-sheet.js -> tg/31-ui-tg-field.js": 1,
   "builder/25-logic-hooks-for-the-sheet.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "learn/45b-data-learn-places-a.js -> builder/20-ui-steps-equipment-next.js": 1,
   "learn/45-data-learn.js -> builder/20-ui-steps-equipment-next.js": 1,
-  "learn/45-data-learn.js -> tg/31-ui-tg-field.js": 3,
   "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1,
   "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1
  }

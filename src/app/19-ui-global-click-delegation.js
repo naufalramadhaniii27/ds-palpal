@@ -53,16 +53,28 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 }); });
 (function(){
   const {inp, nudge, amt}=uiGlobalClickDelegationAnonStep1();
-  $("#dmgBtn").addEventListener("click",() =>{ let a=amt(); if(!a){nudge();return;} undoMark("Damage"); const a0=a, fromTmp=Math.min(S.tmp,a); S.tmp-=fromTmp; a-=fromTmp; const before=S.hp; S.hp=Math.max(0,S.hp-a); if(S.hp<before){ flash("hit"); hpFloat("\u2212"+(before-S.hp),"dmg"); } else if(fromTmp) hpFloat("\u2212"+fromTmp+" temp","tmp"); inp.value="";
+  $("#dmgBtn").addEventListener("click",() => anonFn1_(amt, nudge, inp));/* v21 RU57, RU50 */
+  uiGlobalClickDelegationAnonStep2(inp, amt);
+})();
+function anonFn1_(amt, nudge, inp){ let a=amt(); if(!a){nudge();return;}
+ const _anonFn1_Step1=anonFn1_Step1(a, inp);
+ const {a0, fromTmp, before, z0}=_anonFn1_Step1;
+ let {cm}=_anonFn1_Step1;
+ a=_anonFn1_Step1.a;
+    anonFn1_Step2(before, z0, a0, fromTmp, cm); }
+function anonFn1_Step1(a, inp){
+undoMark("Damage"); const a0=a, fromTmp=Math.min(S.tmp,a); S.tmp-=fromTmp; a-=fromTmp; const before=S.hp; S.hp=Math.max(0,S.hp-a); if(S.hp<before){ flash("hit"); hpFloat("\u2212"+(before-S.hp),"dmg"); } else if(fromTmp) hpFloat("\u2212"+fromTmp+" temp","tmp"); inp.value="";
     let cm="", z0=before===0&&a>0&&S.ds&&S.ds[1]<3&&!(S.exh>=6); if(z0){ S.ds=S.ds.slice(); if(S.ds[0]>=3) S.ds[0]=0; S.ds[1]=Math.min(3,S.ds[1]+1); }/* v32 p26: damage at 0 Hit Points is a failure */
     if(before>0&&S.hp===0) __set_DS_OVER(Math.max(0,a-before)>=D.hpmax?a-before:0);
     if(concOf()&&S.hp===0) cm=" "+concEnd("0 Hit Points"); save(); syncHP(); renderConds();
+  return /** @type {any} */ ({a0, fromTmp, before, cm, z0, a});
+}
+function anonFn1_Step2(before, z0, a0, fromTmp, cm){
     if(before>0 && S.hp===0){ toastU("0 Hit Points. Start making Death Saving Throws."+cm); if(lateGet("mq").matches&&lateGet("curPage")!==0&&!sheet.classList.contains("on")) hpOpen(); else if(!sheet.classList.contains("on")) setTimeout(() =>{ const g=document.getElementById("dsGuide"); if(g&&g.scrollIntoView) g.scrollIntoView({block:"nearest",behavior:REDUCE?"auto":"smooth"}); },480); }
     else if(z0) toastU("Took "+a0+" damage at 0 Hit Points: one Death Saving Throw failure ("+S.ds[1]+" of 3)."+(S.ds[1]>=3?" Your character dies.":" A Critical Hit counts as two: use Critical Hit under Death Saves."));
     else toastU("Took "+a0+" damage"+(fromTmp?" ("+fromTmp+" from Temporary Hit Points)":"")+".");
-    if(concOf()) concCheck(a0); });/* v21 RU57, RU50 */
-  uiGlobalClickDelegationAnonStep2(inp, amt);
-})();
+    if(concOf()) concCheck(a0);
+}
 function uiGlobalClickDelegationAnonStep1(){
   const inp=$("#hpAmt");
   function amt(){ const v=parseInt(inp.value,10); return isNaN(v)?0:Math.max(0,v); }

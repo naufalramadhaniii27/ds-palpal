@@ -1,4 +1,6 @@
 import {env} from "./00-env.js";import {esc,ico} from "./00-bridge.js";import {paint,targetOk,wire} from "./31-ui-tg-field.js";
+import {TGE} from "./20-engine.js";import "./25-sim.js";
+env.TGE=TGE;/* the page global TGE (the engine used to be a classic script that set it) */
 const TIERS=[["easy","Easy",.25,.25],["medium","Medium",.5,1],["hard","Hard",2,3],["extreme","Extreme",3,6],["infernal","Infernal",7,10],["deadly","Deadly",11,16],["legendary","Legendary",17,21]];
 const ALLIES=[["Knight","Leads from the front and takes the hits"],["Scout","Shoots from far away"],["Priest Acolyte","Stays behind and strikes with radiant light"],["Mage Apprentice","Throws arcane bursts"],["Dire Wolf","Runs down a foe"],["Warrior Veteran","Hits hard up close"]];
 function sq(list){ const o={}; list.forEach((p) =>{ o[p[0]+","+p[1]]=1; }); return o; }
@@ -105,7 +107,8 @@ function showDice(fresh){ const M=env.__MI; if(!env.__dice3d||TG.diceBusy||!M||(
   TG.diceBusy=1; env.__dice3d.roll(v.map(() =>{ return 20; }),v).then((r) =>{ TG.diceBusy=0; TG.diceLast={want:v,got:r}; },() =>{ TG.diceBusy=0; }); }
 function errText(e){ return {"out of reach":"Too far for that attack.","out of range":"Out of range.","no action left":"No action left this turn.","square taken":"Someone is standing there.","recharging":"Not recharged yet.","no reaction":"The reaction is already used.","target is dead":"That one is down already.","not enough movement":"Not enough movement left.","no spell slot":"No spell slot left for that.","one spell slot per turn":"Only one spell slot can be spent on a turn.","no target":"Pick a target first.","no legendary actions left":"No legendary actions left this round.","not on its own turn":"Legendary actions are used on another creature's turn."}[e]||e; }
 function nm(id){ const u=TG.st.units[id]; return u?u.name:id; }
-export function evText(e){ switch(e.t){
+export function evText(e){ let r=evTextA(e); if(r===undefined) r=evTextB(e); if(r===undefined) r=evTextC(e); return r===undefined?"":r; }
+function evTextA(e){ switch(e.t){
   case "atk": return nm(e.u)+(e.oa?" (Opportunity Attack)":"")+" attacks "+nm(e.tg)+" with "+e.act+": "+e.roll.join(" and ")+" "+(e.bon<0?"− "+(-e.bon):"+ "+e.bon)+" = "+e.tot+" against AC "+e.ac+". "+(e.crit?"Critical Hit!":e.hit?"Hit.":"Miss.");
   case "dmg": return nm(e.u)+" takes "+e.amt+(e.type?" "+e.type:"")+" damage, "+e.hp+" HP left.";
   case "save": return nm(e.u)+(e.auto?" fails the save automatically.":" rolls a save: "+e.tot+" against DC "+e.dc+", "+(e.ok?"success.":"failure."));
@@ -116,10 +119,14 @@ export function evText(e){ switch(e.t){
   case "down": return nm(e.u)+" drops to 0 Hit Points.";
   case "dead": return nm(e.u)+(e.why==="massive"?" dies from massive damage.":" is down for good.");
   case "ds": return nm(e.u)+" death save: "+e.v+".";
+  } }
+function evTextB(e){ switch(e.t){
   case "recharge": return e.act+" "+(e.ok?"recharged":"not recharged")+" ("+e.v+").";
   case "turn": return nm(e.u)+"'s turn.";
   case "round": return "Round "+e.n+".";
   case "dash": return nm(e.u)+" dashes."; case "disengage": return nm(e.u)+" disengages."; case "dodge": return nm(e.u)+" dodges.";
+  } }
+function evTextC(e){ switch(e.t){
   case "manual": return nm(e.u)+" uses "+(e.act||"an action")+(e.note?": "+e.note:"")+".";
   case "heal": return nm(e.u)+" regains "+e.amt+" HP.";
   case "over": return e.w==="pc"?"Victory!":"Defeat.";
@@ -127,7 +134,7 @@ export function evText(e){ switch(e.t){
   case "cast": return nm(e.u)+" casts "+e.sp+(e.lvl?" (level "+e.lvl+" slot)":"")+".";
   case "conc-end": return nm(e.u)+" stops concentrating on "+(e.sp||"the old spell")+".";
   case "conc": return nm(e.u)+" Concentration save "+e.roll+" against DC "+e.dc+": "+(e.ok?"held.":"broken.");
-  } return ""; }
+  } }
 export function flash(t){ const b=document.getElementById("tgMsg"); if(b){ b.textContent=t; b.classList.remove("on"); void b.offsetWidth; b.classList.add("on"); } }
 export function hpPct(u){ return Math.max(0,Math.min(1,u.hp/u.max)); }
 export function fieldHtml(){ const st=TG.st, u=cur();
@@ -151,7 +158,8 @@ function panelHtml(u){
   return '<div class="tg-p"><div class="tg-who"><b>'+esc(u.name)+'</b><span>HP '+u.hp+'/'+u.max+' · AC '+u.ac+' · '+left+' ft left</span><span class="tg-pips"><i class="'+(t.a?'on':'')+'">Action</i><i class="'+(t.b?'on':'')+'">Bonus</i><i class="'+(t.r?'on':'')+'">Reaction</i></span></div>'+ma+(hint?'<p class="tg-hint">'+hint+'</p>':'')+lens+
     (u.down?'<p class="tg-hint">At 0 Hit Points. End the turn: the death save is rolled at the start of the next one.</p>':'')+
     '<div class="tg-acts"><button type="button" class="btn press'+(TG.mode==="move"?' on':'')+'" data-tg="move"'+(left&&!u.down?'':' disabled')+'>Move</button>'+acts+'</div>'+(bon?'<div class="tg-acts"><small class="tg-l">Bonus Action</small>'+bon+'</div>':'')+(spl?'<div class="tg-acts"><small class="tg-l">Spells'+(slotsTxt?' · slots '+esc(slotsTxt):'')+'</small>'+spl+'</div>':'')+spellBar(u)+
-    '<div class="tg-acts"><button type="button" class="btn press" data-tgx="dash"'+(t.a?'':' disabled')+'>Dash</button><button type="button" class="btn press" data-tgx="disengage"'+(t.a?'':' disabled')+'>Disengage</button><button type="button" class="btn press" data-tgx="dodge"'+(t.a?'':' disabled')+'>Dodge</button>'+(u.cond.prone?'<button type="button" class="btn press" data-tgx="stand">Stand up</button>':'')+'</div>'+
+    panelHtmlTail(u,t); }
+function panelHtmlTail(u,t){ return '<div class="tg-acts"><button type="button" class="btn press" data-tgx="dash"'+(t.a?'':' disabled')+'>Dash</button><button type="button" class="btn press" data-tgx="disengage"'+(t.a?'':' disabled')+'>Disengage</button><button type="button" class="btn press" data-tgx="dodge"'+(t.a?'':' disabled')+'>Dodge</button>'+(u.cond.prone?'<button type="button" class="btn press" data-tgx="stand">Stand up</button>':'')+'</div>'+
     (TG.mode==="save"?'<div class="tg-acts"><button type="button" class="btn pri press" data-tg="savego"'+(TG.pick.length?'':' disabled')+'>Done ('+TG.pick.length+')</button><button type="button" class="btn press" data-tg="cancel">Cancel</button></div>':'')+
     lgHtml(u)+'<div class="tg-acts tg-end"><button type="button" class="btn press" data-tg="undo"'+(TG.undo.length?'':' disabled')+'>Undo</button><button type="button" class="btn pri press tg-et" data-tg="end">End Turn</button></div></div>'; }
 function panelHtmlStep1(u){
