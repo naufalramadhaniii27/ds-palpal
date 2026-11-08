@@ -4,46 +4,69 @@ import {renderAll} from "./35-ui-combo.js";
 /* ===== fps probe: open the app with #fps at the end of the address to measure frame times on this device =====
    Runs only when the address has #fps. It opens the first character, switches every page, and (if you tick the box) deals 3 damage
    and heals 3, four times. Hit Points and temporary Hit Points are put back after the test. Nothing is sent anywhere. */
-(function(){
+const fpsP={out:null,go:null,cp:null,busy:false,rec:null,lines:[],loaf:[],gather:false,wins:[],box:null,wait:null,visible:null,waitFor:null,stat:null};
+devFpsProbeInit();
+function devFpsProbeInit(){
   if(!/(^|[#&])fps($|&)/.test(location.hash)) return;
+  const P=fpsP;
+  const {box}=devFpsProbeAnon2Step1(); P.box=box;
+  P.out=box.querySelector("#fpsOut"); P.go=box.querySelector("#fpsGo"); P.cp=box.querySelector("#fpsCopy");
+  const {wait, visible, waitFor}=devFpsProbeAnon2Step2(); P.wait=wait; P.visible=visible; P.waitFor=waitFor;
+  (function loop(t){ if(fpsP.rec) fpsP.rec.push(t); requestAnimationFrame(loop); })(0);
+  try{ new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(fpsP.gather) fpsP.loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
+  const {stat}=devFpsProbeAnon2Step3(); P.stat=stat;
+  devFpsProbeAnon2Step4(P.go, fpsRun);
+  fpsP.cp.addEventListener("click",() =>{ const t=fpsP.lines.join("\n"); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(() =>{ fpsP.cp.textContent="Copied"; },() =>{ fpsP.cp.textContent="Select the text and copy"; }); } else fpsP.cp.textContent="Select the text and copy"; });
+}
+function fpsTabOf(t){ let r="?"; fpsP.wins.forEach((w) =>{ if(t>=w[1]) r=w[0]; }); return r; }
+function fpsLoafTxt(){ if(!fpsP.loaf.length) return ""; const t=fpsP.loaf.slice().sort((a,b) =>{ return b.duration-a.duration; }).slice(0,3).map((e) => anonFn1___(fpsTabOf, e)).join("\n"); return "\n"+t; }
+async function fpsPhase(name,fn){ fpsP.rec=[]; fpsP.loaf=[]; fpsP.wins=[]; fpsP.gather=true; await fn(); const st=fpsP.stat(fpsP.rec); fpsP.rec=null; await fpsP.wait(300); fpsP.gather=false; fpsP.lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+fpsLoafTxt()); fpsP.out.textContent=fpsP.lines.join("\n"); return st; }
+async function fpsRun(){ if(fpsP.busy) return; fpsP.busy=true; fpsP.go.disabled=true; fpsP.cp.hidden=true; fpsP.lines=[]; let withDmg=fpsP.box.querySelector("#fpsDmg").checked, h0=null, t0=null;
+    try{
+      fpsP.lines.push(runPart1());
+      fpsP.lines.push("Browser "+navigator.userAgent.replace(/^Mozilla\/5.0 /,"").slice(0,110));
+      const hv=document.querySelector("[data-hview]"); if(fpsP.visible(hv)){ hv.click(); }
+      const ok=await fpsP.waitFor(() =>{ return fpsP.visible(document.getElementById("dmgBtn")); },8000); if(!ok){ fpsP.lines.push("Open a character first, then press Start again."); fpsP.out.textContent=fpsP.lines.join("\n"); return; }
+      await fpsP.wait(1500);
+      if(fpsP.box.querySelector("#fpsWarm").checked&&mq.matches){ const wb=[].slice.call(document.querySelectorAll("#bnav button")).filter(fpsP.visible), pgr=document.getElementById("pager"), t0w=performance.now();
+        const fr=function(){ return new Promise((r) =>{ requestAnimationFrame(() =>{ requestAnimationFrame(r); }); }); };
+        const imgs=[].slice.call(document.querySelectorAll("#pager img")); imgs.forEach((im) => runFn1(im));
+        pgr.style.opacity=".01"; pgr.style.transition="none"; for(let w=0;w<wb.length;w++){ wb[w].click(); await fr(); } wb[0].click(); await fr(); pgr.style.opacity=""; pgr.style.transition="";
+        fpsP.lines.push("Quick warm-up done in "+Math.round(performance.now()-t0w)+" ms ("+imgs.length+" images decoded, pager nearly transparent meanwhile)."); fpsP.out.textContent=fpsP.lines.join("\n"); await fpsP.wait(800); }
+      const idle=await fpsPhase("1 idle 3 s",() =>{ return fpsP.wait(3000); });
+      const btns=[].slice.call(document.querySelectorAll(mq.matches?"#bnav button":"#tabs .tab")).filter(fpsP.visible);
+      await fpsPhase("2 switch pages ("+btns.length+" x2)",async () =>{ for(let r=0;r<2;r++){ for(let i=0;i<btns.length;i++){ fpsP.wins.push([(r+1)+","+i+" "+(btns[i].textContent||"").trim().slice(0,10),performance.now()]); btns[i].click(); await fpsP.wait(320); } } });
+      if(withDmg){ const inp=document.getElementById("hpAmt"), d=document.getElementById("dmgBtn"), h=document.getElementById("healBtn");
+        if(runPart2(fpsP.visible, d, h, inp)){ h0=S.hp; t0=S.tmp;
+          await fpsPhase("3 damage and heal (4 rounds)",async () =>{ for(let k=0;k<4;k++){ inp.value="3"; inp.dispatchEvent(new Event("input",{bubbles:true})); d.click(); await fpsP.wait(520); h.click(); await fpsP.wait(520); } });
+        } else fpsP.lines.push("3 damage and heal: skipped (the Hit Points card is not on this page)"); }
+      fpsP.lines.push("Done. A smooth run shows 'over 16.7 ms' under 5% and 'worst' under 100 ms. On a 120 Hz screen the 16.7 ms line is a stricter test.");
+    }catch(er){ fpsP.lines.push(runPart3(er)); }
+    finally{ if(h0!=null){ try{ S.hp=h0; S.tmp=t0; save(); renderAll(true); fpsP.lines.push("Hit Points put back to "+h0+(t0?" + "+t0+" temporary":"")+"."); }catch(er2){} } fpsP.out.textContent=fpsP.lines.join("\n"); fpsP.busy=false; fpsP.go.disabled=false; fpsP.cp.hidden=false; }
+  }
+function runPart1(){ return ("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(env.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB"); }
+function runPart2(visible, d, h, inp){ return (visible(d)&&visible(h)&&inp&&typeof S==="object"); }
+function runPart3(er){ return ("Error: "+(er&&er.message||er)); }
+function devFpsProbeAnon2Step1(){
   const {box}=devFpsProbeAnonStep1();
  devFpsProbeAnonStep2(box);
-  let out=box.querySelector("#fpsOut"), go=box.querySelector("#fpsGo"), cp=box.querySelector("#fpsCopy"), busy=false, rec=null, lines=[];
+  return /** @type {any} */ ({box});
+}
+function devFpsProbeAnon2Step2(){
   const {wait}=devFpsProbeAnonStep3();
   const {visible, waitFor}=devFpsProbeAnonStep4();
-  (function loop(t){ if(rec) rec.push(t); requestAnimationFrame(loop); })(0);
-  let loaf=[], gather=false, wins=[];
-  function tabOf(t){ let r="?"; wins.forEach((w) =>{ if(t>=w[1]) r=w[0]; }); return r; } try{ new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(gather) loaf.push(e); }); }).observe({type:"long-animation-frame",buffered:false}); }catch(er){}
-  function loafTxt(){ if(!loaf.length) return ""; const t=loaf.slice().sort((a,b) =>{ return b.duration-a.duration; }).slice(0,3).map((e) =>{ const sc=(e.scripts||[]).slice().sort((a,b) =>{ return b.duration-a.duration; })[0];
-      return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }).join("\n"); return "\n"+t; }
+  return /** @type {any} */ ({wait, visible, waitFor});
+}
+function devFpsProbeAnon2Step3(){
   const {stat}=devFpsProbeAnonStep5();
-  async function phase(name,fn){ rec=[]; loaf=[]; wins=[]; gather=true; await fn(); const st=stat(rec); rec=null; await wait(300); gather=false; lines.push(name+": "+(st?st.fps+" fps, median "+st.med+" ms, p95 "+st.p95+" ms, worst "+st.worst+" ms, over 16.7 ms: "+st.o17+"%, over 33 ms: "+st.o33+"%":"no frames")+loafTxt()); out.textContent=lines.join("\n"); return st; }
-  async function run(){ if(busy) return; busy=true; go.disabled=true; cp.hidden=true; lines=[]; let withDmg=box.querySelector("#fpsDmg").checked, h0=null, t0=null;
-    try{
-      lines.push("Screen "+innerWidth+" x "+innerHeight+", pixel ratio "+(env.devicePixelRatio||1)+", cores "+(navigator.hardwareConcurrency||"?")+", memory "+(navigator.deviceMemory||"?")+" GB");
-      lines.push("Browser "+navigator.userAgent.replace(/^Mozilla\/5.0 /,"").slice(0,110));
-      const hv=document.querySelector("[data-hview]"); if(visible(hv)){ hv.click(); }
-      const ok=await waitFor(() =>{ return visible(document.getElementById("dmgBtn")); },8000); if(!ok){ lines.push("Open a character first, then press Start again."); out.textContent=lines.join("\n"); return; }
-      await wait(1500);
-      if(box.querySelector("#fpsWarm").checked&&mq.matches){ const wb=[].slice.call(document.querySelectorAll("#bnav button")).filter(visible), pgr=document.getElementById("pager"), t0w=performance.now();
-        const fr=function(){ return new Promise((r) =>{ requestAnimationFrame(() =>{ requestAnimationFrame(r); }); }); };
-        const imgs=[].slice.call(document.querySelectorAll("#pager img")); imgs.forEach((im) =>{ try{ im.loading="eager"; if(im.decode) im.decode().catch(() =>{}); }catch(er){} });
-        pgr.style.opacity=".01"; pgr.style.transition="none"; for(let w=0;w<wb.length;w++){ wb[w].click(); await fr(); } wb[0].click(); await fr(); pgr.style.opacity=""; pgr.style.transition="";
-        lines.push("Quick warm-up done in "+Math.round(performance.now()-t0w)+" ms ("+imgs.length+" images decoded, pager nearly transparent meanwhile)."); out.textContent=lines.join("\n"); await wait(800); }
-      const idle=await phase("1 idle 3 s",() =>{ return wait(3000); });
-      const btns=[].slice.call(document.querySelectorAll(mq.matches?"#bnav button":"#tabs .tab")).filter(visible);
-      await phase("2 switch pages ("+btns.length+" x2)",async () =>{ for(let r=0;r<2;r++){ for(let i=0;i<btns.length;i++){ wins.push([(r+1)+","+i+" "+(btns[i].textContent||"").trim().slice(0,10),performance.now()]); btns[i].click(); await wait(320); } } });
-      if(withDmg){ const inp=document.getElementById("hpAmt"), d=document.getElementById("dmgBtn"), h=document.getElementById("healBtn");
-        if(visible(d)&&visible(h)&&inp&&typeof S==="object"){ h0=S.hp; t0=S.tmp;
-          await phase("3 damage and heal (4 rounds)",async () =>{ for(let k=0;k<4;k++){ inp.value="3"; inp.dispatchEvent(new Event("input",{bubbles:true})); d.click(); await wait(520); h.click(); await wait(520); } });
-        } else lines.push("3 damage and heal: skipped (the Hit Points card is not on this page)"); }
-      lines.push("Done. A smooth run shows 'over 16.7 ms' under 5% and 'worst' under 100 ms. On a 120 Hz screen the 16.7 ms line is a stricter test.");
-    }catch(er){ lines.push("Error: "+(er&&er.message||er)); }
-    finally{ if(h0!=null){ try{ S.hp=h0; S.tmp=t0; save(); renderAll(true); lines.push("Hit Points put back to "+h0+(t0?" + "+t0+" temporary":"")+"."); }catch(er2){} } out.textContent=lines.join("\n"); busy=false; go.disabled=false; cp.hidden=false; }
-  }
+  return /** @type {any} */ ({stat});
+}
+function devFpsProbeAnon2Step4(go, run){
   devFpsProbeAnonStep6(go, run);
-  cp.addEventListener("click",() =>{ const t=lines.join("\n"); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(() =>{ cp.textContent="Copied"; },() =>{ cp.textContent="Select the text and copy"; }); } else cp.textContent="Select the text and copy"; });
-})();
+}
+function anonFn1___(tabOf, e){ const sc=(e.scripts||[]).slice().sort((a,b) =>{ return b.duration-a.duration; })[0];
+      return "   slow frame "+Math.round(e.duration)+" ms at "+tabOf(e.startTime)+" (round,tab)"+"  (script "+Math.round((e.renderStart||e.startTime)-e.startTime)+", style+layout "+Math.round(e.styleAndLayoutStart?(e.startTime+e.duration-e.styleAndLayoutStart):0)+")"+(sc?" top script "+Math.round(sc.duration)+" ms "+(sc.invoker||"")+" "+(sc.sourceFunctionName||"")+" "+(sc.sourceURL?sc.sourceURL.split("/").pop():"")+":"+(sc.sourceCharPosition||""):" no script"); }
+function runFn1(im){ try{ im.loading="eager"; if(im.decode) im.decode().catch(() =>{}); }catch(er){} }
 function devFpsProbeAnonStep1(){
   const box=document.createElement("div"); box.id="fpsProbe"; box.setAttribute("role","dialog"); box.setAttribute("aria-label","Frame rate test");
   box.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483000;background:rgba(10,14,16,.94);color:#e8eef0;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #3a4a52;border-radius:12px;max-height:46vh;overflow:auto;white-space:pre-wrap";
