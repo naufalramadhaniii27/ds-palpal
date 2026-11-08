@@ -35,8 +35,8 @@ const FXAMB_DATA={
     dying:{v:"130,0,0",a:.5,t:1.05,beat:1}
   };
 const FXAMB_HEART='<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.3 5 6.8 5c2 0 3.6 1.1 5.2 3 1.6-1.9 3.2-3 5.2-3 3.5 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>';
-function fxAmbSeeded(k,i){ const x=Math.sin((k.length*31+i*97.3))*43758.5453; return x-Math.floor(x); }
-function fxAmbParts(k,P){ let type=P[0], n=P[1], pc=P[2], h="";
+const fxAmbSeeded=function(k,i){ const x=Math.sin((k.length*31+i*97.3))*43758.5453; return x-Math.floor(x); };
+const fxAmbParts=function(k,P){ let type=P[0], n=P[1], pc=P[2], h="";
     for(let i=0;i<n;i++){ let r1=fxAmbSeeded(k,i), r2=fxAmbSeeded(k,i+50), side=i%2===0, edge=6+Math.round(r1*38), pos=(side?"left":"right")+":"+edge+"px", st="--pc:"+pc+";", cls="p "+type+(side?" sl":" sr"), inner="";
       if(type==="ash"){ cls+=" fall"; st+=pos+";--s:"+(3+Math.round(r2*4))+"px;--d:"+(11+r2*7).toFixed(1)+"s;--dl:-"+(r1*14).toFixed(1)+"s;--w:"+(side?8:-8)+"px"; }
       else if(type==="leaf"){ st+=pos+";--s:"+(12+Math.round(r2*8))+"px;--d:"+(10+r2*6).toFixed(1)+"s;--dl:-"+(r1*14).toFixed(1)+"s;--w:"+(side?6:-6)+"px"; }
@@ -50,8 +50,8 @@ function fxAmbParts(k,P){ let type=P[0], n=P[1], pc=P[2], h="";
       else if(type==="dust"){ st+="left:"+(4+r1*92).toFixed(1)+"%;--s:"+(3+Math.round(r2*4))+"px;--d:"+(2.5+r2*2.5).toFixed(1)+"s;--dl:-"+(r1*4).toFixed(1)+"s;--w:"+(Math.round(r2*30)-15)+"px"; }
       else if(type==="wave"){ st+=(side?"left:0":"right:0")+";--d:3.8s;--dl:-"+(i*1.9).toFixed(1)+"s"; }
       h+='<i class="'+cls+'" style="'+st+'">'+inner+'</i>'; }
-    return h; }
-function fxAmbLayer(box,k){ let c=FXAMB_DATA[k], h="", m=c.m?" "+c.m:"", bt=c.beat?" beat":"";
+    return h; };
+const fxAmbLayer=function(box,k){ let c=FXAMB_DATA[k], h="", m=c.m?" "+c.m:"", bt=c.beat?" beat":"";
     if(c.e) h+='<i class="e l'+m+bt+'"></i><i class="e r'+m+bt+'"></i>';
     if(c.h) h+='<i class="e l h" style="--hc:'+c.h+'"></i><i class="e r h" style="--hc:'+c.h+'"></i>';
     if(c.t2) h+='<i class="e t'+bt+'" style="--c:'+c.t2+'"></i>';
@@ -62,8 +62,8 @@ function fxAmbLayer(box,k){ let c=FXAMB_DATA[k], h="", m=c.m?" "+c.m:"", bt=c.be
     if(c.f) h+='<i class="f"></i>';
     if(c.p) h+=fxAmbParts(k,c.p);
     const d=document.createElement("div"); d.className="ma"; d.setAttribute("data-k",k);
-    d.style.cssText="--c:"+(c.e||c.v||c.f||c.t2||c.b)+";--a:"+c.a+";--t:"+c.t+"s"; d.innerHTML=h; box.appendChild(d); void d.offsetWidth; return d; }
-function fxAmbState(){ const st={}, cd=document.getElementById("conds");
+    d.style.cssText="--c:"+(c.e||c.v||c.f||c.t2||c.b)+";--a:"+c.a+";--t:"+c.t+"s"; d.innerHTML=h; box.appendChild(d); void d.offsetWidth; return d; };
+const fxAmbState=function(){ const st={}, cd=document.getElementById("conds");
     if(cd) Array.prototype.forEach.call(cd.querySelectorAll(".chip.on"),(c) =>{ const di=(c.getAttribute("data-info")||"").replace(/^g:/,""), md=c.getAttribute("data-mode");
       if(c.classList.contains("exh-c")){ const n=/(\d+)/.exec(c.textContent); st.Exhaustion=n?+n[1]:1; }
       else if(c.classList.contains("conc")) st.conc=1;
@@ -77,7 +77,7 @@ function fxAmbState(){ const st={}, cd=document.getElementById("conds");
     else if(bar&&bar.getAttribute("data-lv")==="low") st.low=1;
     if(document.querySelector("#sheet.on #cbv")) st.combat=1;
     const sl=document.querySelectorAll("#p-spells .spsl .bx"); if(sl.length&&!document.querySelector('#p-spells .spsl .bx[aria-pressed="false"]')) st.noslots=1;
-    return st; }
+    return st; };
 (function(){
   let box=null, last="";
   FXENV.__miAmb=function(force){ const st=MI.rm()?{}:fxAmbState(), key=JSON.stringify(st); if(key===last&&!force) return; last=key;

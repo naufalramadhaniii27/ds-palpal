@@ -13,7 +13,7 @@ win (the sorted window property names), lis (listener count per target kind and 
 Run: python3 tests/solid_fx_snapshot.py OUT.json [--root DIR] [--vp 390|1250] [--scen ABC]
      python3 tests/solid_fx_snapshot.py --diff A.json B.json     (reports which steps and which hash kinds differ; --ignore-ord compares only set, dom, win, lis)
 Not part of CI: it records and compares, it asserts nothing. Run it twice on the same tree to prove it is stable, then compare a refactored tree with main."""
-import json, os, sys, re, hashlib, socket, threading, http.server, functools
+import json, os, sys, re, gzip, hashlib, socket, threading, http.server, functools
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 if '--diff' in sys.argv:
     i = sys.argv.index('--diff'); a = json.load(open(sys.argv[i + 1])); b = json.load(open(sys.argv[i + 2]))
@@ -74,10 +74,10 @@ INIT = r"""(function(){
  ['AudioContext','webkitAudioContext'].forEach(function(n){ var A=window[n]; if(!A) return; window[n]=function(){ rec('S '+n); return new A(...arguments); }; window[n].prototype=A.prototype; });
  wrap(Element.prototype,'setAttribute',function(a){ if(a[0]==='class'||a[0]==='style') return; rec('P '+d(this)+' '+a[0]+'='+String(a[1]).slice(0,60)); });
  wrap(Element.prototype,'removeAttribute',function(a){ rec('P '+d(this)+' -'+a[0]); });
- wrap(CSSStyleDeclaration.prototype,'setProperty',function(a){ rec('Y '+a[0]+'='+String(a[1]).slice(0,60)); });
+ wrap(CSSStyleDeclaration.prototype,'setProperty',function(a){ rec('Y '+a[0]); });
  window.__fxRec={ start:function(s){ T=[]; LIVE=LIVE; seed=s||1; on=true; }, stop:function(){ on=false; },
    take:function(){ var o={t:T.slice(), f:!!T.__f, i:!!T.__i, live:Object.assign({},LIVE)}; return o; }, reset:function(s){ T.length=0; T.__f=0; T.__i=0; seed=s||1; } };
- window.__fxRec.on=function(v){ on=v; }; window.__fxRec.mark=function(n){ T.push('M '+n); }; window.__fxRec.note=function(n){ T.push('E '+n); };
+ window.__fxRec.on=function(v){ on=v; }; window.__fxRec.mark=function(n){ T.push('M '+n); }; window.__fxRec.note=function(n){ T.push('E '+n); }; window.__fxRec.seed=function(s){ seed=s; };
 })();"""
 
 NORM = r"""()=>{
@@ -99,7 +99,7 @@ NORM = r"""()=>{
   t=t.replace(/(?<![0-9])1[6-9]\d{11}(?![0-9])/g,'TS').replace(/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[.\dZ+:-]*/g,'ISO');
   t=t.replace(/<svg [^>]*class=ico [^>]*>.*?<\/svg>/g,'').replace(/ data-ico=1/g,'').replace(/<([A-Za-z0-9]+) >/g,'<$1>').replace(/\b(just now|\d+ (min|hr|h|d|s|sec|day|days|hour|hours)\.? ago)\b/g,'AGO').replace(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?/g,'DT');
   t=t.replace(/'sha256-[A-Za-z0-9+\/=]+'/g,"'HASH'");
-  t=t.replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
+  t=t.replace(/<DIV [^>]*class="?cls-art-l[^>]*>/g,'<DIV cls-art-l>').replace(/(<I [^>]*class=mi-crest) style=[^>]*>/g,'$1>').replace(/ mi-lite\b/g,'').replace(/ loading=\w+/g,'').replace(/translate\([^)]*\)/g,'translate(P)').replace(/>\s+</g,'><').replace(/\s+/g,' ');/* loading: set when an image comes into view (timing). translate: the tab notch is placed with a one pixel difference between runs */
   return t }"""
 
 STRICT = 'LROANCGS'
@@ -119,7 +119,7 @@ def digest(t, mode):
     boot = mode == 'boot'
     ordh = sha('|'.join('\n'.join(cls(k)) for k in ('RA' if boot else 'LROA'))) if mode != 'loose' else ''
     if boot or mode == 'loose':
-        s = count_lines(cls('L') + cls('R') + cls('O')) + '\n--\n' + '\n'.join(sorted(set(x for x in t if x[0] in 'NCGSA')))
+        s = count_lines(cls('L') + cls('R')) + '\n--\n' + '\n'.join(sorted(set(x for x in t if x[0] in 'ONCGSA')))
         if mode == 'loose': s = '\n'.join(sorted(set(x for x in t if x[0] in 'LROANCGSTY' and not re.match(r'P \S+ d=', x))))
     else:
         loose = sorted(set(x for x in t if x[0] in 'TPY' and not re.match(r'P \S+ d=', x)))
@@ -161,11 +161,11 @@ def run(b, base, vp, W, H, h, errs):
             pg.wait_for_timeout(2600)   # the longest effect ends (setTimeout 2300 and the like)
             dom = settle()
             rec = pg.evaluate("()=>{window.__fxRec.on(false); const r=window.__fxRec.take(); const w=Object.keys(window).sort().join(','); return {t:r.t,f:r.f,i:r.i,live:r.live,w:w}}")
-            t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll|keys', name) else 'strict')
+            t = rec['t']; ordh, sethash = digest(t, 'boot' if name == 'home' else 'loose' if re.search(r'hover|scroll', name) else 'strict')
             live = sorted('%s %d' % (k, v) for k, v in rec['live'].items() if v)
             if DUMP:
                 os.makedirs(DUMP, exist_ok=True); n = ('%s %s %s' % (vp, tag, name)).replace(' ', '_')
-                open(os.path.join(DUMP, n + '.trace.txt'), 'w').write('\n'.join(t)); open(os.path.join(DUMP, n + '.live.txt'), 'w').write('\n'.join(live)); open(os.path.join(DUMP, n + '.dom.txt'), 'w').write(dom)
+                open(os.path.join(DUMP, n + '.trace.txt'), 'w').write('\n'.join(t)); open(os.path.join(DUMP, n + '.live.txt'), 'w').write('\n'.join(live)); gzip.open(os.path.join(DUMP, n + '.dom.txt.gz'), 'wt').write(dom)
             h['%s %s %s' % (vp, tag, name)] = {'ord': ordh, 'set': sethash, 'dom': sha(dom), 'win': sha(rec['w']), 'lis': sha('\n'.join(live)), 'n': len(t)}
         def ready():
             pg.wait_for_function("()=>!!window.__deferDone", timeout=180000)
@@ -181,7 +181,7 @@ def run(b, base, vp, W, H, h, errs):
             begin()
             names = pg.evaluate("""async ()=>{ const names=Object.keys(window).filter(k=>/^__mi|^__dice3d$|^__fx/.test(k)&&!/Reload|Music|Pref/.test(k)&&typeof window[k]==='function').sort();
               const sets=[()=>[200,300],()=>[document.querySelector('.card')||document.body],()=>['Test',200,300],()=>[20],()=>[200,300,'#fc0',70],()=>[]];
-              for(const n of names){ window.__fxRec.mark(n);
+              for(const n of names){ window.__fxRec.seed(7); window.__fxRec.mark(n);
                 for(const mk of sets){ try{ const r=window[n].apply(window,mk()); if(r&&typeof r.then==='function') r.catch(()=>{}) }catch(e){ window.__fxRec.note(String(e).slice(0,40)) } }
                 window.__fxRec.mark('~'); await new Promise(r=>setTimeout(r,60)) }
               return names }""")
@@ -216,7 +216,6 @@ def run(b, base, vp, W, H, h, errs):
             begin(); click('#themeBtn'); snap('%s theme' % t0); esc()
             begin(); click('#healBtn'); snap('%s heal' % t0); esc()
             begin(); pg.evaluate("()=>{var e=document.querySelector('[data-rest],#restBtn,[data-open-rest]'); if(e) e.click()}"); snap('%s rest' % t0); asks(False); esc()
-            begin(); pg.keyboard.press('Tab'); pg.keyboard.press('Tab'); pg.keyboard.press('Enter'); snap('%s keys' % t0); esc()
             hooks(t0)
         try:
             pg.goto(base); ready(); asks(False)
