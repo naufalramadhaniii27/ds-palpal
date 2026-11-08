@@ -4,14 +4,13 @@ import {LRN,refreshLRN,lrnGet,lrnPut,lrnL,lrnF,lrnCore,lrnCoreDone,lrnFinish,lrn
 /* T11 Learn UI: the map, the stops step by step, the final check, the glossary card and "Find it on your sheet".
    One root (#learn) over Home and the sheet. Every drag has a tap way, every button works with the keyboard, the step text is read out
    by a live region. Motion off and reduced motion: no transitions, the 2D die shows its number at once, no 3D dice. */
-(function(){
 let V={view:"map",p:0,i:0,ok:false,s:{}}, OPENER=null, D20S='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';
 const U=function(k){ return lrnL(LEARN.ui[k]); }, F=function(k,o){ return lrnF(LEARN.ui[k],o); };
 const HOOT="img/vig/learn/owl-";/* the Hoot art from the Codex batch: owl-welcome, owl-explain, owl-think, owl-cheer */
 const RANKS=["novice","apprentice","adventurer","hero"];
 const ICONS={party:"ui-users",die:"ui-dice",sword:"ui-shield",rest:"ui-moon",talk:"ui-bag",wind:"ui-star"};
 function ic(k,c){ return typeof ico==="function"?ico(k,c||""):""; }
-function reduce(){ return (A.reduce&&A.reduce())||document.documentElement.classList.contains("mi-off"); }
+function lrnReduce(){ return (A.reduce&&A.reduce())||document.documentElement.classList.contains("mi-off"); }
 /* text with glossary words: [[key|words]] becomes a button that opens the glossary card */
 function fmt(t){ return esc(lrnL(t)).replace(/\[\[(\w+)\|([^\]]+)\]\]/g,(m,k,w) =>{ return LEARN.terms[k]?'<button type="button" class="lrn-term" data-lterm="'+k+'">'+w+'</button>':w; }); }
 function pic(base,cls,alt){ if(!base) return ""; if(/\.avif$/.test(base)) return '<picture class="'+(cls||"")+'"><img src="'+base+'" alt="'+esc(alt||"")+'" loading="lazy" decoding="async"></picture>'; return '<picture class="'+(cls||"")+'"><source media="(min-width:760px)" srcset="'+base+'-pc.avif"><img src="'+base+'-phone.avif" alt="'+esc(alt||"")+'" loading="lazy" decoding="async"></picture>'; }
@@ -29,10 +28,10 @@ function head(){ let t="",s=""; if(V.view==="forge"){ t=lrnL(LEARN.places[V.p].n
   Array.prototype.forEach.call(document.querySelectorAll("[data-llang]"),(b) =>{ b.setAttribute("aria-pressed",b.getAttribute("data-llang")===LRN.lang); });
   const w=document.getElementById("learn"); w.setAttribute("lang",LRN.lang); w.setAttribute("data-view",V.view); }
 function say(html){ const b=document.getElementById("lrnSay"); if(b){ b.innerHTML=html; } const l=document.getElementById("lrnLive"); if(l){ l.textContent=""; l.textContent=(b?b.textContent:""); } }
-function paint(focus){ const go=function(){ head(); const b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():V.view==="forge"?forgeHtml():placeHtml(); after(); if(focus!==false){ const h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
+function paint(focus){ const go=function(){ head(); const b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():V.view==="forge"?forgeHtml():placeHtml(); lrnAfter(); if(focus!==false){ const h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
   /* a new view or a new step moves with a View Transition, a change inside a step (paint(false)) draws at once */
-  if(focus===undefined&&document.startViewTransition&&!reduce()&&!document.getElementById("learn").hidden){ try{ document.startViewTransition(go); return; }catch(e){} } go(); }
-function after(){ const p=V.view==="place"&&!V.fin?LEARN.places[V.p]:null, st=p&&p.steps[V.i]; if(st&&st.t==="show") drawFrame(); if(st&&st.t==="grid") gridPaint(); }
+  if(focus===undefined&&document.startViewTransition&&!lrnReduce()&&!document.getElementById("learn").hidden){ try{ document.startViewTransition(go); return; }catch(e){} } go(); }
+function lrnAfter(){ const p=V.view==="place"&&!V.fin?LEARN.places[V.p]:null, st=p&&p.steps[V.i]; if(st&&st.t==="show") drawFrame(); if(st&&st.t==="grid") gridPaint(); }
 
 /* ===== map ===== */
 function stopCard(p,k,num){ const d=LRN.done[p.id], next=!d&&num&&lrnCore().filter((x) =>{ return !LRN.done[x.id]; })[0]===p;
@@ -59,20 +58,26 @@ function placeHtml(){ const p=LEARN.places[V.p];
 function nextLabel(st){ const p=LEARN.places[V.p]; if(st.t==="show"&&V.s.f<st.frames.length-1) return U("next"); return V.i===p.steps.length-1?U("done"):U("next"); }
 function nextCore(){ const c=LEARN.places; for(let k=0;k<c.length;k++) if(c[k].core&&!LRN.done[c[k].id]) return k; return -1; }
 function opt(cls,attrs,label,state){ return '<button type="button" class="lrn-opt'+(state?" "+state:"")+(cls?" "+cls:"")+'" '+attrs+'>'+label+'</button>'; }
-function step(st){ let S=V.s, i;
+function step(st){ let S=V.s;
   switch(st.t){
-  case "guess": return {say:S.pick!=null?fmt(st.a):fmt(st.q), body:'<div class="lrn-opts" role="group">'+st.opts.map((o,k) =>{ return opt("",'data-lg="'+k+'" aria-pressed="'+(S.pick===k)+'"',esc(lrnL(o)),S.pick===k?"sel":""); }).join("")+'</div>'};
-  case "show": i=S.f||0; return {say:fmt(st.frames[i].say), body:'<div class="lrn-vis" id="lrnVis"></div><div class="lrn-frm">'+st.frames.map((x,k) =>{ return '<i class="'+(k<=i?"on":"")+'"></i>'; }).join("")+'</div>'+(i===st.frames.length-1?'<button type="button" class="btn press lrn-again" data-l="replay">'+ic("ui-redo")+esc(U("replay"))+'</button>':'')};
-  case "pick": case "why": return {say:S.fb?fmt(S.fb)+(S.hint?' <span class="lrn-hint">'+fmt(st.hint)+'</span>':''):fmt(st.q), body:'<div class="lrn-opts" role="group">'+st.opts.map((o,k) =>{ const s=S.res&&S.res[k]; return opt("",'data-lp="'+k+'"',(s==="good"?ic("ui-check"):"")+esc(lrnL(o.x)),s||""); }).join("")+'</div>'};
+  case "guess": return guessStep(st,S);
+  case "show": return showStep(st,S);
+  case "pick": case "why": return pickStep(st,S);
   case "roll": return rollStep(st,S);
   case "check": return checkStep(st,S);
-  case "grid": return {say:S.msg||fmt(st.say), body:'<div class="lrn-grid" id="lrnGrid" role="grid" aria-label="'+esc(lrnL(LEARN.places[V.p].name))+'"></div><p class="lrn-left" id="lrnLeft"></p><div class="lrn-acts lrn-gacts" role="group" aria-label="'+esc(U("pickAction"))+'">'+st.acts.map((a) =>{ return opt("lrn-act",'data-la="'+a[0]+'"','<b>'+a[0]+'</b><small>'+esc(lrnL(a[1]))+'</small>',S.act===a[0]?"good":""); }).join("")+'</div>'};
+  case "grid": return gridStep(st,S);
   case "hp": return hpStep(st,S);
   case "dice": return diceStep(st,S);
   case "adv": return advStep(st,S);
-  case "sheet": return {say:fmt(st.say), body:'<div class="lrn-sheet">'+(lrnHasChar()?'<button type="button" class="btn pri press" data-l="sheet">'+ic("ui-search")+esc(U("showSheet"))+'</button><p class="lrn-lbl"><b>'+esc(lrnL(st.label))+'</b></p>':'<p>'+esc(U("noChar"))+'</p>')+'</div>'};
-  case "card": return {say:'<b>'+esc(lrnL(st.title))+'</b>', body:'<div class="lrn-card"><h3>'+esc(lrnL(st.title))+'</h3><ul>'+st.items.map((x) =>{ return '<li>'+ic("ui-check")+'<span>'+fmt(x)+'</span></li>'; }).join("")+'</ul></div>'};
+  case "sheet": return sheetStep(st);
+  case "card": return cardStep(st);
   } return {say:"",body:""}; }
+function guessStep(st,S){ return {say:S.pick!=null?fmt(st.a):fmt(st.q), body:'<div class="lrn-opts" role="group">'+st.opts.map((o,k) =>{ return opt("",'data-lg="'+k+'" aria-pressed="'+(S.pick===k)+'"',esc(lrnL(o)),S.pick===k?"sel":""); }).join("")+'</div>'}; }
+function showStep(st,S){ const i=S.f||0; return {say:fmt(st.frames[i].say), body:'<div class="lrn-vis" id="lrnVis"></div><div class="lrn-frm">'+st.frames.map((x,k) =>{ return '<i class="'+(k<=i?"on":"")+'"></i>'; }).join("")+'</div>'+(i===st.frames.length-1?'<button type="button" class="btn press lrn-again" data-l="replay">'+ic("ui-redo")+esc(U("replay"))+'</button>':'')}; }
+function pickStep(st,S){ return {say:S.fb?fmt(S.fb)+(S.hint?' <span class="lrn-hint">'+fmt(st.hint)+'</span>':''):fmt(st.q), body:'<div class="lrn-opts" role="group">'+st.opts.map((o,k) =>{ const s=S.res&&S.res[k]; return opt("",'data-lp="'+k+'"',(s==="good"?ic("ui-check"):"")+esc(lrnL(o.x)),s||""); }).join("")+'</div>'}; }
+function gridStep(st,S){ return {say:S.msg||fmt(st.say), body:'<div class="lrn-grid" id="lrnGrid" role="grid" aria-label="'+esc(lrnL(LEARN.places[V.p].name))+'"></div><p class="lrn-left" id="lrnLeft"></p><div class="lrn-acts lrn-gacts" role="group" aria-label="'+esc(U("pickAction"))+'">'+st.acts.map((a) =>{ return opt("lrn-act",'data-la="'+a[0]+'"','<b>'+a[0]+'</b><small>'+esc(lrnL(a[1]))+'</small>',S.act===a[0]?"good":""); }).join("")+'</div>'}; }
+function sheetStep(st){ return {say:fmt(st.say), body:'<div class="lrn-sheet">'+(lrnHasChar()?'<button type="button" class="btn pri press" data-l="sheet">'+ic("ui-search")+esc(U("showSheet"))+'</button><p class="lrn-lbl"><b>'+esc(lrnL(st.label))+'</b></p>':'<p>'+esc(U("noChar"))+'</p>')+'</div>'}; }
+function cardStep(st){ return {say:'<b>'+esc(lrnL(st.title))+'</b>', body:'<div class="lrn-card"><h3>'+esc(lrnL(st.title))+'</h3><ul>'+st.items.map((x) =>{ return '<li>'+ic("ui-check")+'<span>'+fmt(x)+'</span></li>'; }).join("")+'</ul></div>'}; }
 /* the d20 plus bonus against the Target Number, drawn as blocks: die, bonus, total bar and a target line (concrete, picture, number) */
 function sumVis(die,bonus,dc,stage,tl){ const TL=U(tl||"target"); const tot=die+bonus, max=Math.max(25,tot,dc+2), pct=function(v){ return Math.round(Math.max(0,v)*100/max); };
   return '<div class="lrn-sum" data-stage="'+stage+'"><div class="lrn-die" aria-hidden="true">'+D20S+'<b>'+(stage>=1?die:"?")+'</b></div><span class="lrn-plus">+</span><div class="lrn-chip'+(stage>=2?" in":"")+'">'+(bonus<0?"−"+(-bonus):"+"+bonus)+'</div><span class="lrn-plus">=</span><div class="lrn-tot">'+(stage>=2?tot:"?")+'</div></div>'
@@ -106,19 +111,22 @@ function advStep(st,S){ let v=S.v, act, said=fmt(st.say), body;
 /* Hoot shows: one visual per frame, built from data (U38 Choreo: the same frames give the animation, the still version and the test steps) */
 function drawFrame(){ const st=LEARN.places[V.p].steps[V.i], fr=st.frames[V.s.f||0], el=document.getElementById("lrnVis"); if(!el) return; let h="";
   if(fr.vis==="sum") h=sumVis(fr.die,fr.bonus,fr.dc,fr.stage,fr.tl);
-  else if(fr.vis==="mod"){ let row=""; for(let sc=6;sc<=20;sc++){ const md=Math.floor((sc-10)/2); row+='<div class="lrn-mc'+(sc===fr.score?" on":"")+'"><b>'+sc+'</b><small>'+(md<0?"−"+(-md):"+"+md)+'</small></div>'; } const mm=Math.floor((fr.score-10)/2);
-    h='<div class="lrn-sum"><div class="lrn-tot">'+fr.score+'</div><span class="lrn-plus">→</span><div class="lrn-chip in">'+(mm<0?"−"+(-mm):"+"+mm)+'</div></div><div class="lrn-mods" aria-hidden="true">'+row+'</div><p class="sr">'+esc(U("score"))+' '+fr.score+', '+(mm<0?"−"+(-mm):"+"+mm)+'</p>'; }
+  else if(fr.vis==="mod") h=frameMod(fr);
   else if(fr.vis==="hp") h=hpVis(fr.max,fr.to,fr.dmg?["dmg","−"+fr.dmg]:fr.heal?["heal","+"+fr.heal]:null);
-  else if(fr.vis==="talk") h='<div class="lrn-talk who-'+fr.who+'"><span class="lrn-tk">'+(fr.who==="die"?'<span class="lrn-die sm">'+D20S+'<b>?</b></span>':fr.who==="dm"?ic("ui-book"):ic("ui-users"))+'</span><b>'+esc(fr.who==="dm"?lrnL(LEARN.terms.dm.name):fr.who==="you"?U("you"):"d20")+'</b></div>';
-  else if(fr.vis==="grid"){ h='<div class="lrn-grid demo" aria-hidden="true">'+cells(6,(x,y) =>{ let c=""; if(fr.path&&fr.path.some((q) =>{ return q[0]===x&&q[1]===y; })) c+=" path"; if(fr.hero[0]===x&&fr.hero[1]===y) return '<i class="hero'+c+'">'+ic("ui-users")+'</i>'; if(fr.foe[0]===x&&fr.foe[1]===y) return '<i class="foe">'+ic("ui-shield")+'</i>'; return '<i class="'+c+'"></i>'; })+'</div>'+(fr.act?'<p class="lrn-lbl"><b>'+esc(fr.act)+'</b>'+(fr.over?' · '+esc(U("turnOver")):'')+'</p>':''); }
+  else if(fr.vis==="talk") h=frameTalk(fr);
+  else if(fr.vis==="grid") h=frameGrid(fr);
   el.innerHTML=h; }
+function frameMod(fr){ let h, row=""; for(let sc=6;sc<=20;sc++){ const md=Math.floor((sc-10)/2); row+='<div class="lrn-mc'+(sc===fr.score?" on":"")+'"><b>'+sc+'</b><small>'+(md<0?"−"+(-md):"+"+md)+'</small></div>'; } const mm=Math.floor((fr.score-10)/2);
+  h='<div class="lrn-sum"><div class="lrn-tot">'+fr.score+'</div><span class="lrn-plus">→</span><div class="lrn-chip in">'+(mm<0?"−"+(-mm):"+"+mm)+'</div></div><div class="lrn-mods" aria-hidden="true">'+row+'</div><p class="sr">'+esc(U("score"))+' '+fr.score+', '+(mm<0?"−"+(-mm):"+"+mm)+'</p>'; return h; }
+function frameTalk(fr){ return '<div class="lrn-talk who-'+fr.who+'"><span class="lrn-tk">'+(fr.who==="die"?'<span class="lrn-die sm">'+D20S+'<b>?</b></span>':fr.who==="dm"?ic("ui-book"):ic("ui-users"))+'</span><b>'+esc(fr.who==="dm"?lrnL(LEARN.terms.dm.name):fr.who==="you"?U("you"):"d20")+'</b></div>'; }
+function frameGrid(fr){ return '<div class="lrn-grid demo" aria-hidden="true">'+cells(6,(x,y) =>{ let c=""; if(fr.path&&fr.path.some((q) =>{ return q[0]===x&&q[1]===y; })) c+=" path"; if(fr.hero[0]===x&&fr.hero[1]===y) return '<i class="hero'+c+'">'+ic("ui-users")+'</i>'; if(fr.foe[0]===x&&fr.foe[1]===y) return '<i class="foe">'+ic("ui-shield")+'</i>'; return '<i class="'+c+'"></i>'; })+'</div>'+(fr.act?'<p class="lrn-lbl"><b>'+esc(fr.act)+'</b>'+(fr.over?' · '+esc(U("turnOver")):'')+'</p>':''); }
 function cells(n,f){ let h=""; for(let y=0;y<n;y++) for(let x=0;x<n;x++) h+=f(x,y); return h; }
 /* the turn on a grid: the hero walks up to Speed squares (each square 5 feet), then picks one main action */
 function gridPaint(){ const st=LEARN.places[V.p].steps[V.i], S=V.s, g=document.getElementById("lrnGrid"); if(!g) return; if(!S.pos) S.pos=st.hero.slice(); if(S.left==null) S.left=st.speed;
   let h=""; for(let y=0;y<6;y++){ h+='<div role="row" class="lrn-gr">'; for(let x=0;x<6;x++){ const d=Math.max(Math.abs(x-S.pos[0]),Math.abs(y-S.pos[1])), hero=x===S.pos[0]&&y===S.pos[1], foe=x===st.foe[0]&&y===st.foe[1], can=!hero&&!foe&&d<=S.left&&!S.act;
       h+='<button type="button" role="gridcell" class="lrn-cell'+(hero?" hero":"")+(foe?" foe":"")+(can?" can":"")+'" data-lx="'+x+'" data-ly="'+y+'" aria-label="'+(hero?esc(U("you")):foe?"Goblin":esc(U("moveHere"))+" "+(x+1)+", "+(y+1))+'"'+(hero||foe?' aria-disabled="true"':"")+'>'+(hero?ic("ui-users"):foe?ic("ui-shield"):"")+'</button>'; } h+='</div>'; }
   g.innerHTML=h; const l=document.getElementById("lrnLeft"); if(l) l.textContent=U("squaresLeft")+": "+S.left; }
-function near(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))===1; }
+function lrnNear(a,b){ return Math.max(Math.abs(a[0]-b[0]),Math.abs(a[1]-b[1]))===1; }
 
 /* ===== F3 Forge Your Hero: class and species as picture cards, a name, Surprise me, then a level 1 Quick Build in the builder ===== */
 /* F3 "How the builder works": a picture of the real builder (phone or PC) with numbered points from img/learn/shots/shots.json.
@@ -156,18 +164,18 @@ function runTour(k){ const p=LEARN.places[k], T=LEARN.tour, w=dom(); if(!env.__t
   const hv=document.getElementById("homeV"), home=!!(hv&&!hv.hidden); w.classList.remove("on"); w.hidden=true; ovQueue();
   env.__tour.go({texts:T.steps.map((x) =>{ return lrnL(x.t); }),wide:T.steps.map((x) =>{ return x.w?lrnL(x.w):""; }),create:lrnL(T.create),
     ui:{step:lrnL(T.ui.step),of:lrnL(T.ui.of),skip:lrnL(T.ui.skip),back:lrnL(T.ui.back),next:lrnL(T.ui.next),skipThis:lrnL(T.ui.skipThis),done:lrnL(T.ui.done)},
-    done:function(full){ if(full) lrnFinish(p.id,false); if(home&&typeof showHome==="function") showHome(); w.hidden=false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint("instant"); show(w); }}); }
+    done:function(full){ if(full) lrnFinish(p.id,false); if(home&&typeof showHome==="function") showHome(); w.hidden=false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint("instant"); lrnShow(w); }}); }
 function okInit(){ const st=LEARN.places[V.p].steps[V.i]; V.ok=st.t==="sheet"||st.t==="card"; if(st.t==="show") V.ok=true;/* Next walks through the frames */ }
 function setOk(v){ V.ok=v; const n=document.getElementById("lrnNext"); if(n){ n.disabled=!v; n.textContent=nextLabel(LEARN.places[V.p].steps[V.i]); } }
-function next(){ const p=LEARN.places[V.p], st=p.steps[V.i];
+function lrnNext(){ const p=LEARN.places[V.p], st=p.steps[V.i];
   if(st.t==="show"&&(V.s.f||0)<st.frames.length-1){ V.s.f=(V.s.f||0)+1; paint(); return; }
   if(V.i<p.steps.length-1){ V.i++; V.s={}; okInit(); paint(); return; }
   V.fin=lrnFinish(p.id,false)||-1; paint(); }
 function back(){ if(V.view==="place"&&!V.fin&&V.i>0){ V.i--; V.s={}; okInit(); paint(); return; } if(V.view!=="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; } close(); }
 function pre(t){ return t==="map"?0:1; }
-function open(o){ const w=dom(); OPENER=document.activeElement; refreshLRN(); if(o&&o.place!=null){ let k=-1; LEARN.places.forEach((p,j) =>{ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); show(w); return; } }
-  if(!V.view||w.hidden) V={view:"map",p:0,i:0,ok:false,s:{}}; w.hidden=false; paint("instant"); show(w); }
-function show(w){ requestAnimationFrame(() =>{ w.classList.add("on"); }); if(typeof ovQueue==="function") ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){} const h=w.querySelector("#lrnB h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } }
+function open(o){ const w=dom(); OPENER=document.activeElement; refreshLRN(); if(o&&o.place!=null){ let k=-1; LEARN.places.forEach((p,j) =>{ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); lrnShow(w); return; } }
+  if(!V.view||w.hidden) V={view:"map",p:0,i:0,ok:false,s:{}}; w.hidden=false; paint("instant"); lrnShow(w); }
+function lrnShow(w){ requestAnimationFrame(() =>{ w.classList.add("on"); }); if(typeof ovQueue==="function") ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){} const h=w.querySelector("#lrnB h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } }
 function close(){ const w=document.getElementById("learn"); if(!w) return; popHide(); w.classList.remove("on"); w.hidden=true; if(typeof ovQueue==="function") ovQueue(); if(typeof homeInert==="function") try{ homeInert(); }catch(e){} if(OPENER&&OPENER.focus&&OPENER.isConnected) try{ OPENER.focus({preventScroll:true}); }catch(e){} if(A.learnBand){ const hb=document.getElementById("hlearnB"); if(hb) hb.outerHTML=A.learnBand(); } }
 /* glossary card: a popover in the top layer, placed under the word with anchor positioning when the browser has it */
 let POPB=null;
@@ -182,49 +190,54 @@ function toSheet(st){ const w=document.getElementById("learn"), hv=document.getE
   if(A.sheetOn&&A.sheetOn()) try{ A.closeSheet(); }catch(e){}
   const done=function(){ w.hidden=false; if(home&&typeof showHome==="function") showHome(); if(typeof ovQueue==="function") ovQueue(); const b=w.querySelector('[data-l="sheet"]'); if(b) try{ b.focus({preventScroll:true}); }catch(e){} };
   setTimeout(() =>{ const el=lrnFind(st.find); if(!el){ done(); say(esc(U("notYet"))); return; }/* a new character may not have it yet (no weapon, no spells) */
-    try{ el.scrollIntoView({block:"center",behavior:reduce()?"auto":"smooth"}); }catch(e){}
-    setTimeout(() =>{ spotShow(el,'<p><b>'+esc(lrnL(st.label))+'</b></p><p>'+fmt(st.say)+'</p><button type="button" class="btn pri press" data-spot-x="1">'+ic("ui-chev-l")+esc(U("backLearn"))+'</button>',done); if(typeof ovQueue==="function") ovQueue(); },reduce()?0:350); },60); }
+    try{ el.scrollIntoView({block:"center",behavior:lrnReduce()?"auto":"smooth"}); }catch(e){}
+    setTimeout(() =>{ spotShow(el,'<p><b>'+esc(lrnL(st.label))+'</b></p><p>'+fmt(st.say)+'</p><button type="button" class="btn pri press" data-spot-x="1">'+ic("ui-chev-l")+esc(U("backLearn"))+'</button>',done); if(typeof ovQueue==="function") ovQueue(); },lrnReduce()?0:350); },60); }
 document.addEventListener("click",(e) =>{ const x=e.target.closest&&e.target.closest("[data-spot-x]"); if(x){ spotHide(); } });
 
+function clk01(t,d,st,S){ if(!(d.llang)) return false; LRN.lang=d.llang; lrnPut(LRN); paint(false); return true; return true; }
+function clk02(t,d,st,S){ if(!(d.lterm)) return false; popShow(t); return true; return true; }
+function clk03(t,d,st,S){ if(!(d.libQ)) return false; const q=d.libQ; popHide(); if(typeof libOpen==="function"){ libOpen({q:q}); const lb=document.getElementById("lib"); if(lb) lb.classList.add("lrn-over"); } return true; return true; }
+function clk04(t,d,st,S){ if(!(d.lgo!=null)) return false; goPlace(+d.lgo); return true; return true; }
+function clk05(t,d,st,S){ if(!(d.lfcls||d.lfsp)) return false; if(d.lfcls) V.s.cls=d.lfcls; else V.s.sp=d.lfsp; V.s.msg=""; const nm=document.getElementById("lrnFn"); if(nm) V.s.name=nm.value; paint(false); return true; return true; }
+function clk06(t,d,st,S){ if(!(d.l==="surprise"&&V.view==="forge")) return false; const FG=LEARN.forge; V.s.cls=FG.classes[lrnD(FG.classes.length)-1][0]; V.s.sp=FG.species[lrnD(FG.species.length)-1][0]; const nm2=document.getElementById("lrnFn"); if(nm2) V.s.name=nm2.value; V.s.msg=""; paint(false); return true; return true; }
+function clk07(t,d,st,S){ if(!(d.lshot)) return false; V.s.shot=d.lshot; V.s.dot=null; paint(false); return true; return true; }
+function clk08(t,d,st,S){ if(!(d.ldot)) return false; V.s.dot=d.ldot; const nm4=document.getElementById("lrnFn"); if(nm4) V.s.name=nm4.value; V.s.msg=lrnL(LEARN.shots.dots[d.ldot]); paint(false); var bb=document.querySelector('[data-ldot="'+d.ldot+'"]'); if(bb) try{ bb.focus({preventScroll:true}); }catch(er){} say(esc(V.s.msg)); return true; return true; }
+function clk09(t,d,st,S){ if(!(d.l==="forge")) return false; const nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return true; return true; }
+function clk10(t,d,st,S){ if(!(d.lrecap)) return false; V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return true; return true; }
+function clk11(t,d,st,S){ if(!(d.lquiz)) return false; if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); const c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return true; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return true; return true; }
+function clk12(t,d,st,S){ if(!(d.l==="tool")) return false; const tk=d.tool; close(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") env.__whichDie(); else if(env.__cheatOpen) env.__cheatOpen(); },60); return true; return true; }
+function clk13(t,d,st,S){ if(!(d.l==="close")) return false; close(); return true; return true; }
+function clk14(t,d,st,S){ if(!(d.l==="back")) return false; back(); return true; return true; }
+function clk15(t,d,st,S){ if(!(d.l==="map")) return false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return true; return true; }
+function clk16(t,d,st,S){ if(!(d.l==="pop")) return false; popHide(); return true; return true; }
+function clk17(t,d,st,S){ if(!(d.l==="next")) return false; lrnNext(); return true; return true; }
+function clk18(t,d,st,S){ if(!(d.l==="skip")) return false; const p=LEARN.places[V.p]; ask(U("skipAsk"),U("skipOk"),() =>{ lrnFinish(p.id,true); V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); }); return true; return true; }
+function clk19(t,d,st,S){ if(!(d.l==="replay")) return false; S.f=0; paint(false); return true; return true; }
+function clk20(t,d,st,S){ if(!(d.l==="sheet"&&st)) return false; toSheet(st); return true; return true; }
+function clk21(t,d,st,S){ if(!(d.l==="hero")) return false; close(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(env.__bldOpen) env.__bldOpen(); return true; return true; }
+function clk22(t,d,st,S){ if(!(d.lg!=null&&st)) return false; S.pick=+d.lg; paint(false); setOk(true); return true; return true; }
+function clk23(t,d,st,S){ if(!(d.lp!=null&&st)) return false; const o=st.opts[+d.lp]; S.res=S.res||{}; S.fb=o.fb; if(o.ok){ S.res[+d.lp]="good"; S.hint=0; if(typeof buzz==="function") buzz(12); paint(false); setOk(true); } else { S.res[+d.lp]="try"; S.hint=st.hint?1:0; paint(false); setOk(!!V.ok||Object.keys(S.res).some((k) =>{ return S.res[k]==="good"; })); } return true; return true; }
+function clk24(t,d,st,S){ if(!(d.l==="roll"||d.l==="reroll")) return false; if(S.busy) return true; S.busy=1; if(d.l==="reroll"){ S.stage=0; } paint(false); lrnRoll([20]).then((r) =>{ S.busy=0; S.die=r.v[0]; S.stage=1; paint(false); }); return true; return true; }
+function clk25(t,d,st,S){ if(!(d.l==="bonus")) return false; S.stage=2; paint(false); setOk(true); return true; return true; }
+function clk26(t,d,st,S){ if(!(d.lc!=null&&st)) return false; const it=st.items[S.k||0], tot=it.die+it.bonus, right=(tot>=it.dc)===(d.lc==="1"); if(right){ S.k=(S.k||0)+1; S.miss=0; if(S.k>=st.items.length) setOk(true); } else S.miss=1; paint(false); if(V.ok) setOk(true); return true; return true; }
+function clk27(t,d,st,S){ if(!(d.lh!=null&&st)) return false; const v=+d.lh; S.res=S.res||{}; if(v===st.ok){ S.res[v]="good"; S.ph=1; S.fb=null; } else { S.res[v]="try"; S.miss=1; } paint(false); return true; return true; }
+function clk28(t,d,st,S){ if(!(d.lr!=null&&st)) return false; const ro=st.rest.opts[+d.lr]; S.res2=S.res2||{}; S.fb=ro.fb; if(ro.ok){ S.res2[+d.lr]="good"; S.ph=2; paint(false); setOk(true); } else { S.res2[+d.lr]="try"; paint(false); } return true; return true; }
+function clk29(t,d,st,S){ if(!(d.ld!=null&&st)) return false; const n=+d.ld; if(S.busy) return true; S.busy=1; t.classList.add("roll"); lrnRoll([n]).then((r) =>{ S.busy=0; S.r=S.r||{}; S.r[n]=r.v[0]; S.last=n; paint(false); if(Object.keys(S.r).length>=3) setOk(true); }); return true; return true; }
+function clk30(t,d,st,S){ if(!(d.l==="arol"&&st)) return false; if(S.busy) return true; S.busy=1; S.re=null; lrnRoll(st.mode==="insp"?[20]:[20,20]).then((r) =>{ S.busy=0; let v=r.v; if(st.mode==="insp"&&v[0]>12) v=[Math.max(1,v[0]-10)];/* the first roll in this lesson is a low one, so the reroll makes sense */ S.v=v; paint(false); if(st.mode!=="insp") setOk(true); }); return true; return true; }
+function clk31(t,d,st,S){ if(!(d.l==="insp"&&st)) return false; if(S.busy) return true; S.busy=1; lrnRoll([20]).then((r) =>{ S.busy=0; S.re=r.v[0]; paint(false); setOk(true); }); return true; return true; }
+function clk32(t,d,st,S){ if(!(d.lx!=null&&st)) return false; const x=+d.lx, y=+d.ly, dist=Math.max(Math.abs(x-S.pos[0]),Math.abs(y-S.pos[1])); if(t.classList.contains("hero")||t.classList.contains("foe")) return true; if(S.act){ S.msg=fmt(st.second); paint(false); return true; }
+      if(dist>S.left){ S.msg=fmt(st.far); paint(false); return true; } S.left-=dist; S.pos=[x,y]; S.msg=esc(F("moved",{n:S.left})); paint(false); const c2=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(c2) try{ c2.focus({preventScroll:true}); }catch(er){} return true; return true; }
+function clk33(t,d,st,S){ if(!(d.la&&st)) return false; if(S.act){ S.msg=fmt(st.second); paint(false); return true; } if(d.la==="Attack"&&!lrnNear(S.pos||st.hero,st.foe)){ S.msg=esc(U("notNear")); paint(false); return true; } S.act=d.la; S.msg=fmt(st.good); paint(false); setOk(true); return true; return true; }
+function clk34(t,d,st,S){ if(!(V.view==="quiz"&&d.lq!=null)) return false; const Q=V.Q[V.qi]; if(S.ok) return true; S.res=S.res||{}; const right2=+d.lq===Q.a; S.res[+d.lq]=right2?"good":"try"; if(right2){ S.ok=1; if(!S.miss) V.qok++; } else S.miss=1; paint(false); return true; return true; }
+function clk35(t,d,st,S){ if(!(V.view==="quiz"&&d.l==="qnext")) return false; const Q=V.Q[V.qi]; if(V.qi<V.Q.length-1){ V.qi++; V.s={}; paint(); } else { V.qd=1; if(V.recap){ LRN.recap=new Date().toISOString().slice(0,10); lrnPut(LRN); } else if(V.exam!=null){ lrnFinish(LEARN.places[V.exam].id,false); var bb=LRN.bridge||{}; if(!(bb.best>=V.qok)) bb.best=V.qok; bb.t=Date.now(); LRN.bridge=bb; lrnPut(LRN); } else lrnQuizDone(V.qok); paint(); } return true; return true; }
+const CLICKS=[clk01,clk02,clk03,clk04,clk05,clk06,clk07,clk08,clk09,clk10,clk11,clk12,clk13,clk14,clk15,clk16,clk17,clk18,clk19,clk20,clk21,clk22,clk23,clk24,clk25,clk26,clk27,clk28,clk29,clk30,clk31,clk32,clk33,clk34,clk35];
+function onClick(w,e){ const t=e.target.closest("button"); if(!t||t.disabled||!w.contains(t)) return; const d=t.dataset, st=V.view==="place"&&!V.fin?LEARN.places[V.p].steps[V.i]:null, S=V.s;
+  for(let k=0;k<CLICKS.length;k++) if(CLICKS[k](t,d,st,S)) return; }
+function lrnOnKey(e){ if(e.key==="Escape"){ e.stopPropagation(); if(document.getElementById("lrnPop").classList.contains("on")) popHide(); else back(); return; }
+    const c=e.target.closest&&e.target.closest(".lrn-cell"); if(c&&/^Arrow/.test(e.key)){ e.preventDefault(); const x=+c.dataset.lx+(e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0), y=+c.dataset.ly+(e.key==="ArrowDown"?1:e.key==="ArrowUp"?-1:0); const n=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(n) n.focus(); } }
 function wire(w){
-  w.addEventListener("click",(e) =>{ const t=e.target.closest("button"); if(!t||t.disabled||!w.contains(t)) return; const d=t.dataset, st=V.view==="place"&&!V.fin?LEARN.places[V.p].steps[V.i]:null, S=V.s;
-    if(d.llang){ LRN.lang=d.llang; lrnPut(LRN); paint(false); return; }
-    if(d.lterm){ popShow(t); return; }
-    if(d.libQ){ const q=d.libQ; popHide(); if(typeof libOpen==="function"){ libOpen({q:q}); const lb=document.getElementById("lib"); if(lb) lb.classList.add("lrn-over"); } return; }
-    if(d.lgo!=null){ goPlace(+d.lgo); return; }
-    if(d.lfcls||d.lfsp){ if(d.lfcls) V.s.cls=d.lfcls; else V.s.sp=d.lfsp; V.s.msg=""; const nm=document.getElementById("lrnFn"); if(nm) V.s.name=nm.value; paint(false); return; }
-    if(d.l==="surprise"&&V.view==="forge"){ const FG=LEARN.forge; V.s.cls=FG.classes[lrnD(FG.classes.length)-1][0]; V.s.sp=FG.species[lrnD(FG.species.length)-1][0]; const nm2=document.getElementById("lrnFn"); if(nm2) V.s.name=nm2.value; V.s.msg=""; paint(false); return; }
-    if(d.lshot){ V.s.shot=d.lshot; V.s.dot=null; paint(false); return; }
-    if(d.ldot){ V.s.dot=d.ldot; const nm4=document.getElementById("lrnFn"); if(nm4) V.s.name=nm4.value; V.s.msg=lrnL(LEARN.shots.dots[d.ldot]); paint(false); var bb=document.querySelector('[data-ldot="'+d.ldot+'"]'); if(bb) try{ bb.focus({preventScroll:true}); }catch(er){} say(esc(V.s.msg)); return; }
-    if(d.l==="forge"){ const nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return; }
-    if(d.lrecap){ V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return; }
-    if(d.lquiz){ if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); const c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return; }
-    if(d.l==="tool"){ const tk=d.tool; close(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") env.__whichDie(); else if(env.__cheatOpen) env.__cheatOpen(); },60); return; }
-    if(d.l==="close"){ close(); return; } if(d.l==="back"){ back(); return; } if(d.l==="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; }
-    if(d.l==="pop"){ popHide(); return; }
-    if(d.l==="next"){ next(); return; }
-    if(d.l==="skip"){ const p=LEARN.places[V.p]; ask(U("skipAsk"),U("skipOk"),() =>{ lrnFinish(p.id,true); V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); }); return; }
-    if(d.l==="replay"){ S.f=0; paint(false); return; }
-    if(d.l==="sheet"&&st){ toSheet(st); return; }
-    if(d.l==="hero"){ close(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(env.__bldOpen) env.__bldOpen(); return; }
-    if(d.lg!=null&&st){ S.pick=+d.lg; paint(false); setOk(true); return; }
-    if(d.lp!=null&&st){ const o=st.opts[+d.lp]; S.res=S.res||{}; S.fb=o.fb; if(o.ok){ S.res[+d.lp]="good"; S.hint=0; if(typeof buzz==="function") buzz(12); paint(false); setOk(true); } else { S.res[+d.lp]="try"; S.hint=st.hint?1:0; paint(false); setOk(!!V.ok||Object.keys(S.res).some((k) =>{ return S.res[k]==="good"; })); } return; }
-    if(d.l==="roll"||d.l==="reroll"){ if(S.busy) return; S.busy=1; if(d.l==="reroll"){ S.stage=0; } paint(false); lrnRoll([20]).then((r) =>{ S.busy=0; S.die=r.v[0]; S.stage=1; paint(false); }); return; }
-    if(d.l==="bonus"){ S.stage=2; paint(false); setOk(true); return; }
-    if(d.lc!=null&&st){ const it=st.items[S.k||0], tot=it.die+it.bonus, right=(tot>=it.dc)===(d.lc==="1"); if(right){ S.k=(S.k||0)+1; S.miss=0; if(S.k>=st.items.length) setOk(true); } else S.miss=1; paint(false); if(V.ok) setOk(true); return; }
-    if(d.lh!=null&&st){ const v=+d.lh; S.res=S.res||{}; if(v===st.ok){ S.res[v]="good"; S.ph=1; S.fb=null; } else { S.res[v]="try"; S.miss=1; } paint(false); return; }
-    if(d.lr!=null&&st){ const ro=st.rest.opts[+d.lr]; S.res2=S.res2||{}; S.fb=ro.fb; if(ro.ok){ S.res2[+d.lr]="good"; S.ph=2; paint(false); setOk(true); } else { S.res2[+d.lr]="try"; paint(false); } return; }
-    if(d.ld!=null&&st){ const n=+d.ld; if(S.busy) return; S.busy=1; t.classList.add("roll"); lrnRoll([n]).then((r) =>{ S.busy=0; S.r=S.r||{}; S.r[n]=r.v[0]; S.last=n; paint(false); if(Object.keys(S.r).length>=3) setOk(true); }); return; }
-    if(d.l==="arol"&&st){ if(S.busy) return; S.busy=1; S.re=null; lrnRoll(st.mode==="insp"?[20]:[20,20]).then((r) =>{ S.busy=0; let v=r.v; if(st.mode==="insp"&&v[0]>12) v=[Math.max(1,v[0]-10)];/* the first roll in this lesson is a low one, so the reroll makes sense */ S.v=v; paint(false); if(st.mode!=="insp") setOk(true); }); return; }
-    if(d.l==="insp"&&st){ if(S.busy) return; S.busy=1; lrnRoll([20]).then((r) =>{ S.busy=0; S.re=r.v[0]; paint(false); setOk(true); }); return; }
-    if(d.lx!=null&&st){ const x=+d.lx, y=+d.ly, dist=Math.max(Math.abs(x-S.pos[0]),Math.abs(y-S.pos[1])); if(t.classList.contains("hero")||t.classList.contains("foe")) return; if(S.act){ S.msg=fmt(st.second); paint(false); return; }
-      if(dist>S.left){ S.msg=fmt(st.far); paint(false); return; } S.left-=dist; S.pos=[x,y]; S.msg=esc(F("moved",{n:S.left})); paint(false); const c2=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(c2) try{ c2.focus({preventScroll:true}); }catch(er){} return; }
-    if(d.la&&st){ if(S.act){ S.msg=fmt(st.second); paint(false); return; } if(d.la==="Attack"&&!near(S.pos||st.hero,st.foe)){ S.msg=esc(U("notNear")); paint(false); return; } S.act=d.la; S.msg=fmt(st.good); paint(false); setOk(true); return; }
-    if(V.view==="quiz"){ const Q=V.Q[V.qi]; if(d.lq!=null){ if(S.ok) return; S.res=S.res||{}; const right2=+d.lq===Q.a; S.res[+d.lq]=right2?"good":"try"; if(right2){ S.ok=1; if(!S.miss) V.qok++; } else S.miss=1; paint(false); return; }
-      if(d.l==="qnext"){ if(V.qi<V.Q.length-1){ V.qi++; V.s={}; paint(); } else { V.qd=1; if(V.recap){ LRN.recap=new Date().toISOString().slice(0,10); lrnPut(LRN); } else if(V.exam!=null){ lrnFinish(LEARN.places[V.exam].id,false); var bb=LRN.bridge||{}; if(!(bb.best>=V.qok)) bb.best=V.qok; bb.t=Date.now(); LRN.bridge=bb; lrnPut(LRN); } else lrnQuizDone(V.qok); paint(); } return; } }
-  });
-  w.addEventListener("keydown",(e) =>{ if(e.key==="Escape"){ e.stopPropagation(); if(document.getElementById("lrnPop").classList.contains("on")) popHide(); else back(); return; }
-    const c=e.target.closest&&e.target.closest(".lrn-cell"); if(c&&/^Arrow/.test(e.key)){ e.preventDefault(); const x=+c.dataset.lx+(e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0), y=+c.dataset.ly+(e.key==="ArrowDown"?1:e.key==="ArrowUp"?-1:0); const n=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(n) n.focus(); } });
+  w.addEventListener("click",(e) =>{ onClick(w,e); });
+  w.addEventListener("keydown",(e) =>{ lrnOnKey(e); });
   /* Escape on the glossary card (it sits in the top layer, outside the keydown path of the root on some browsers) */
   document.getElementById("lrnPop").addEventListener("keydown",(e) =>{ if(e.key==="Escape"){ e.stopPropagation(); popHide(); } });
 }
@@ -233,4 +246,3 @@ env.__learnBack=function(){ const p=document.getElementById("lrnPop"); if(p&&p.c
 env.__learnOpen=open;
 env.__learnState=function(){ return {view:V.view,p:V.p,i:V.i,ok:V.ok,s:V.s,fin:V.fin,qi:V.qi,qd:V.qd,lrn:LRN}; };
 try{ if(location.hash==="#learn") setTimeout(() =>{ open(); },0); }catch(e){}
-})();

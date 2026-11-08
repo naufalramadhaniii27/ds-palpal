@@ -47,13 +47,15 @@ export function targetOk(t){ const u=cur(); if(TG.mode==="spell"){ const x=u.spe
 function unitAt(cx,cy){ let st=TG.st, hit=null; Object.keys(st.units).forEach((id) =>{ const t=st.units[id]; if(t.dead&&t.kind!=="pc") return; if(cx>=t.pos[0]&&cx<t.pos[0]+t.size&&cy>=t.pos[1]&&cy<t.pos[1]+t.size) hit=t; }); return hit; }
 function tapCell(cx,cy){ if(!TG.st||TG.st.over||TG.oa.length) return;
  const {u, t}=tapCellStep1(cx, cy);
-  if(TG.mode==="move"){ if(run({t:"move",to:[cx,cy]})){ TG.mode=TGE.speedLeft(TG.st.units[u.id])?"move":""; } paint(); return; }
+  if(tapMove(cx,cy,u)) return;
   tapCellStep2(t, u);
-  if(TG.mode==="lgtarget"&&t){ const lb=TG.st.units[TG.lgBy], la=TGE.lgAct(lb,TG.lgN); run({t:"attack",lg:TG.lgN,by:TG.lgBy,target:t.id,act:la.n}); TG.mode=""; TG.lgBy=null; paint(); return; }
-  if(TG.mode==="target"&&t){ if(!targetOk(t)){ flash("Out of reach or range."); return; } run({t:"attack",target:t.id,act:TG.act}); const m=TG.st.units[u.id].turn.ma; if(m&&m.length&&!TG.st.over){ TG.act=pickAtk(TG.st.units[u.id],m[0]); TG.mode=TG.act?"target":""; } else { TG.mode=""; TG.act=null; } paint(); return; }
-  if(TG.mode==="spell"&&t){ if(!targetOk(t)){ flash("Out of range for this spell."); return; } const x=u.spells[TG.sp], j=TG.pick.indexOf(t.id); if(x&&x.cnt&&j>=0&&TG.pick.length<6){ TG.pick.push(t.id); } else if(j>=0) TG.pick.splice(j,1); else TG.pick.push(t.id); paint(); return; }
-  if(TG.mode==="save"&&t){ const i=TG.pick.indexOf(t.id); if(i>=0) TG.pick.splice(i,1); else TG.pick.push(t.id); paint(); return; }
+  if(tapLg(t)||tapTarget(t,u)||tapSpell(t,u)||tapSave(t)) return;
   tapCellStep3(t); }
+function tapMove(cx,cy,u){ if(TG.mode!=="move") return false; if(run({t:"move",to:[cx,cy]})){ TG.mode=TGE.speedLeft(TG.st.units[u.id])?"move":""; } paint(); return true; return true; }
+function tapLg(t){ if(!(TG.mode==="lgtarget"&&t)) return false; const lb=TG.st.units[TG.lgBy], la=TGE.lgAct(lb,TG.lgN); run({t:"attack",lg:TG.lgN,by:TG.lgBy,target:t.id,act:la.n}); TG.mode=""; TG.lgBy=null; paint(); return true; return true; }
+function tapTarget(t,u){ if(!(TG.mode==="target"&&t)) return false; if(!targetOk(t)){ flash("Out of reach or range."); return true; } run({t:"attack",target:t.id,act:TG.act}); const m=TG.st.units[u.id].turn.ma; if(m&&m.length&&!TG.st.over){ TG.act=pickAtk(TG.st.units[u.id],m[0]); TG.mode=TG.act?"target":""; } else { TG.mode=""; TG.act=null; } paint(); return true; return true; }
+function tapSpell(t,u){ if(!(TG.mode==="spell"&&t)) return false; if(!targetOk(t)){ flash("Out of range for this spell."); return true; } const x=u.spells[TG.sp], j=TG.pick.indexOf(t.id); if(x&&x.cnt&&j>=0&&TG.pick.length<6){ TG.pick.push(t.id); } else if(j>=0) TG.pick.splice(j,1); else TG.pick.push(t.id); paint(); return true; return true; }
+function tapSave(t){ if(!(TG.mode==="save"&&t)) return false; const i=TG.pick.indexOf(t.id); if(i>=0) TG.pick.splice(i,1); else TG.pick.push(t.id); paint(); return true; return true; }
 function tapCellStep1(cx, cy){
 const u=cur(), t=unitAt(cx,cy);
   return /** @type {any} */ ({u, t});
@@ -114,43 +116,49 @@ function wireCv(){ const cv=document.getElementById("tgCv"); if(!cv) return;
     if(d){ e.preventDefault(); TG.kb=1; CUR=[Math.max(0,Math.min(TG.st.w-1,CUR[0]+d[0])),Math.max(0,Math.min(TG.st.h-1,CUR[1]+d[1]))]; draw(); const t=unitAt(CUR[0],CUR[1]); live("Square "+(CUR[0]+1)+", "+(CUR[1]+1)+(t?": "+t.name:"")); }
     else if(k==="Enter"||k===" "){ e.preventDefault(); tapCell(CUR[0],CUR[1]); const c2=document.getElementById("tgCv"); if(c2) try{ c2.focus({preventScroll:true}); }catch(er){} } });
   const u=cur(), wrap=document.getElementById("tgWrap"); if(wrap&&u&&!TG.kb){ const cs=TG.cell; const lft=u.pos[0]*cs-wrap.clientWidth/2+cs, top=u.pos[1]*cs-wrap.clientHeight/2+cs; try{ wrap.scrollTo({left:Math.max(0,lft),top:Math.max(0,top)}); }catch(e){} } }
-export function wire(w){ w.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(!b||!w.contains(b)) return; const d=b.dataset;
-  if(b.getAttribute("aria-disabled")==="true"){ live(d.tg==="enter"?"Pick who goes in and at least one creature.":""); flash("Pick who goes in and at least one creature."); return; }
-  if(d.tg==="close"){ close(); return; } if(d.tg==="back"){ back(); return; }
-  if(d.tgpc!=null){ TG.pc=TG.pcs[+d.tgpc]; paint(); return; }
-  if(d.tg==="try"){ const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ live("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); live(p.name+" is ready."); }; if(env.__bldSheetFor) go(); else if(env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else setTimeout(go,300); return; }
-  if(d.tgtier){ TG.tier=d.tgtier; TG.q=""; TG.lim=24; paint(); return; }
-  if(d.tgf){ const n=(TG.foes[d.tgf]||0)+(+d.d); if(n>0&&nFoes()>=12&&+d.d>0){ flash("Up to 12 creatures."); return; } if(n<=0) delete TG.foes[d.tgf]; else TG.foes[d.tgf]=n; const l=document.getElementById("tgFoes"), sc=l?l.scrollTop:0; paint(); return; }
-  if(d.tg==="balance"){ balance(); return; }
-  if(d.tg==="replay"){ rpOpen(); return; } if(d.tg==="sharefight"){ fightShare(); return; }
-  if(d.tgrs){ clearInterval(TG.rpT); TG.rpT=0; rpStep(+d.tgrs); return; }
-  if(d.tg==="rpplay"){ if(TG.rpT){ clearInterval(TG.rpT); TG.rpT=0; paint(); return; } if(TG.rp.i>=TG.rp.cmds.length) TG.rp.i=0; TG.rpT=setInterval(() =>{ if(TG.view!=="replay"||TG.rp.i>=TG.rp.cmds.length){ clearInterval(TG.rpT); TG.rpT=0; if(TG.view==="replay") paint(); return; } rpStep(1); },A.reduce&&A.reduce()?1200:700); paint(); return; }
-  if(d.tg==="rpdone"){ clearInterval(TG.rpT); TG.rpT=0; TG.st=TG.rp.back||TG.rp.states[TG.rp.states.length-1]; TG.view="field"; paint(); return; }
-  if(d.tg==="more"){ TG.lim+=24; paint(); return; }
-  if(d.tgally){ if(TG.allies[d.tgally]) delete TG.allies[d.tgally]; else { if(nAllies()>=3){ flash("Up to 3 companions."); return; } TG.allies[d.tgally]=1; } paint(); return; }
-  if(d.tgarena){ TG.arena=d.tgarena; paint(); return; }
-  if(d.tg==="enter"){ TG.linkMode=0; enter(); return; }
-  if(d.tg==="move"){ TG.mode=TG.mode==="move"?"":"move"; TG.act=null; paint(); return; }
-  if(d.tga!=null){ actPick(+d.tga); return; }
-  if(d.tgb!=null){ const u=cur(), a=u.bonus[+d.tgb]; if(a&&a.k==="save"){ TG.act=a.n; TG.mode="save"; TG.bonus=1; TG.pick=[]; paint(); } else A.ask(a.n+": "+(a.t||"")+"\n\nResolve it at the table, then use it here to spend the Bonus Action.","Use it",() =>{ run({t:"manual",act:a.n,slot:"b"}); paint(); }); return; }
-  if(d.tgx){ run({t:d.tgx}); TG.mode=""; paint(); return; }
-  if(d.tgsp!=null){ TG.sp=+d.tgsp; TG.mode="spell"; TG.pick=[]; TG.act=null; paint(); return; }
-  if(d.tg==="castgo"){ run({t:"cast",sp:cur().spells[TG.sp].n,targets:TG.pick.slice(),lvl:TG.lvl||0}); TG.mode=""; TG.pick=[]; TG.sp=null; paint(); return; }
-  if(d.tgman!=null){ const mu=cur(), mx=mu.manual[+d.tgman]; A.ask(mx.n+": "+(mx.t||"")+"\n\nThe board does not run this spell. Resolve it at the table (damage and conditions can be set on the tokens), then use it here to spend the action.","Use it",() =>{ run({t:"manual",act:mx.n}); paint(); }); return; }
-  if(d.tglg){ const pp=d.tglg.split("|"), lu=TG.st.units[pp[0]], lx=lu&&lu.lg[+pp[1]]; if(!lx) return; const lr=TGE.lgAct(lu,lx.n);
-    if(lr&&lr.k==="atk"){ TG.mode="lgtarget"; TG.lgBy=lu.id; TG.lgN=lx.n; flash("Tap the creature "+lu.name+" attacks."); paint(); return; }
-    if(lr&&lr.k==="save"){ TG.mode="save"; TG.act=null; TG.lgBy=lu.id; TG.lgN=lx.n; TG.pick=[]; paint(); return; }
-    A.ask(lu.name+": "+lx.n+". "+(lx.t||"")+"\n\nResolve it at the table, then use it here to spend one legendary action.","Use it",() =>{ run({t:"manual",lg:lx.n,by:lu.id}); paint(); }); return; }
-  if(d.tg==="savego"&&TG.lgBy){ run({t:"save",lg:TG.lgN,by:TG.lgBy,targets:TG.pick.slice()}); TG.mode=""; TG.lgBy=null; TG.pick=[]; paint(); return; }
-  if(d.tg==="savego"){ run({t:"save",act:TG.act,targets:TG.pick.slice(),bonus:TG.bonus?1:0}); TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; paint(); return; }
-  if(d.tg==="cancel"){ TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; TG.sp=null; TG.lgBy=null; paint(); return; }
-  if(d.tgoa!=null){ const o=TG.oa.shift(); if(d.tgoa&&o) run({t:"attack",oa:1,by:o.by,target:o.u,act:d.tgoa}); paint(); return; }
-  if(d.tg==="undo"){ const p=TG.undo.pop(); if(p){ TG.st=p; TG.cmds.pop(); TG.oa=[]; TG.mode=""; TG.act=null; fightSave(); live("Undone."); } paint(); return; }
-  if(d.tg==="resume"){ const rec=TG.saved; if(rec){ TG.start=rec.start; TG.cmds=rec.cmds.slice(); TG.st=TGE.replay(rec.start,rec.cmds); TG.arena=rec.arena; TG.undo=[]; TG.oa=[]; TG.mode=""; TG.act=null; TG.view="field"; TG.saved=null; paint(); live("Back in the fight. Round "+TG.st.round+"."); } return; }
-  if(d.tg==="drop"){ fightClear(); paint(); return; }
-  if(d.tg==="end"){ TG.oa=[]; TG.mode=""; TG.act=null; TG.pick=[]; run({t:"end"}); paint(); const c=cur(); if(c) live(c.name+"'s turn."); return; }
-  if(d.tg==="again"){ TG.linkMode=0; enter(); return; } if(d.tg==="setup"){ TG.view="setup"; TG.st=null; vtPaint(); return; }
-  if(d.tgu){ const t=TG.st.units[d.tgu]; if(t){ if(TG.mode==="target"||TG.mode==="save"||TG.mode==="spell"){ tapCell(t.pos[0],t.pos[1]); return; } flash(t.name+": HP "+t.hp+"/"+t.max+", AC "+t.ac); } return; } });
+function tgc01(b,d,w){ if(!(b.getAttribute("aria-disabled")==="true")) return false; live(d.tg==="enter"?"Pick who goes in and at least one creature.":""); flash("Pick who goes in and at least one creature."); return true; return true; }
+function tgc02(b,d,w){ if(!(d.tg==="close")) return false; close(); return true; return true; }
+function tgc03(b,d,w){ if(!(d.tg==="back")) return false; back(); return true; return true; }
+function tgc04(b,d,w){ if(!(d.tgpc!=null)) return false; TG.pc=TG.pcs[+d.tgpc]; paint(); return true; return true; }
+function tgc05(b,d,w){ if(!(d.tg==="try")) return false; const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ live("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); live(p.name+" is ready."); }; if(env.__bldSheetFor) go(); else if(env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else setTimeout(go,300); return true; return true; }
+function tgc06(b,d,w){ if(!(d.tgtier)) return false; TG.tier=d.tgtier; TG.q=""; TG.lim=24; paint(); return true; return true; }
+function tgc07(b,d,w){ if(!(d.tgf)) return false; const n=(TG.foes[d.tgf]||0)+(+d.d); if(n>0&&nFoes()>=12&&+d.d>0){ flash("Up to 12 creatures."); return true; } if(n<=0) delete TG.foes[d.tgf]; else TG.foes[d.tgf]=n; const l=document.getElementById("tgFoes"), sc=l?l.scrollTop:0; paint(); return true; return true; }
+function tgc08(b,d,w){ if(!(d.tg==="balance")) return false; balance(); return true; return true; }
+function tgc09(b,d,w){ if(!(d.tg==="replay")) return false; rpOpen(); return true; return true; }
+function tgc10(b,d,w){ if(!(d.tg==="sharefight")) return false; fightShare(); return true; return true; }
+function tgc11(b,d,w){ if(!(d.tgrs)) return false; clearInterval(TG.rpT); TG.rpT=0; rpStep(+d.tgrs); return true; return true; }
+function tgc12(b,d,w){ if(!(d.tg==="rpplay")) return false; if(TG.rpT){ clearInterval(TG.rpT); TG.rpT=0; paint(); return true; } if(TG.rp.i>=TG.rp.cmds.length) TG.rp.i=0; TG.rpT=setInterval(() =>{ if(TG.view!=="replay"||TG.rp.i>=TG.rp.cmds.length){ clearInterval(TG.rpT); TG.rpT=0; if(TG.view==="replay") paint(); return; } rpStep(1); },A.reduce&&A.reduce()?1200:700); paint(); return true; return true; }
+function tgc13(b,d,w){ if(!(d.tg==="rpdone")) return false; clearInterval(TG.rpT); TG.rpT=0; TG.st=TG.rp.back||TG.rp.states[TG.rp.states.length-1]; TG.view="field"; paint(); return true; return true; }
+function tgc14(b,d,w){ if(!(d.tg==="more")) return false; TG.lim+=24; paint(); return true; return true; }
+function tgc15(b,d,w){ if(!(d.tgally)) return false; if(TG.allies[d.tgally]) delete TG.allies[d.tgally]; else { if(nAllies()>=3){ flash("Up to 3 companions."); return true; } TG.allies[d.tgally]=1; } paint(); return true; return true; }
+function tgc16(b,d,w){ if(!(d.tgarena)) return false; TG.arena=d.tgarena; paint(); return true; return true; }
+function tgc17(b,d,w){ if(!(d.tg==="enter")) return false; TG.linkMode=0; enter(); return true; return true; }
+function tgc18(b,d,w){ if(!(d.tg==="move")) return false; TG.mode=TG.mode==="move"?"":"move"; TG.act=null; paint(); return true; return true; }
+function tgc19(b,d,w){ if(!(d.tga!=null)) return false; actPick(+d.tga); return true; return true; }
+function tgc20(b,d,w){ if(!(d.tgb!=null)) return false; const u=cur(), a=u.bonus[+d.tgb]; if(a&&a.k==="save"){ TG.act=a.n; TG.mode="save"; TG.bonus=1; TG.pick=[]; paint(); } else A.ask(a.n+": "+(a.t||"")+"\n\nResolve it at the table, then use it here to spend the Bonus Action.","Use it",() =>{ run({t:"manual",act:a.n,slot:"b"}); paint(); }); return true; return true; }
+function tgc21(b,d,w){ if(!(d.tgx)) return false; run({t:d.tgx}); TG.mode=""; paint(); return true; return true; }
+function tgc22(b,d,w){ if(!(d.tgsp!=null)) return false; TG.sp=+d.tgsp; TG.mode="spell"; TG.pick=[]; TG.act=null; paint(); return true; return true; }
+function tgc23(b,d,w){ if(!(d.tg==="castgo")) return false; run({t:"cast",sp:cur().spells[TG.sp].n,targets:TG.pick.slice(),lvl:TG.lvl||0}); TG.mode=""; TG.pick=[]; TG.sp=null; paint(); return true; return true; }
+function tgc24(b,d,w){ if(!(d.tgman!=null)) return false; const mu=cur(), mx=mu.manual[+d.tgman]; A.ask(mx.n+": "+(mx.t||"")+"\n\nThe board does not run this spell. Resolve it at the table (damage and conditions can be set on the tokens), then use it here to spend the action.","Use it",() =>{ run({t:"manual",act:mx.n}); paint(); }); return true; return true; }
+function tgc25(b,d,w){ if(!(d.tglg)) return false; const pp=d.tglg.split("|"), lu=TG.st.units[pp[0]], lx=lu&&lu.lg[+pp[1]]; if(!lx) return true; const lr=TGE.lgAct(lu,lx.n);
+    if(lr&&lr.k==="atk"){ TG.mode="lgtarget"; TG.lgBy=lu.id; TG.lgN=lx.n; flash("Tap the creature "+lu.name+" attacks."); paint(); return true; }
+    if(lr&&lr.k==="save"){ TG.mode="save"; TG.act=null; TG.lgBy=lu.id; TG.lgN=lx.n; TG.pick=[]; paint(); return true; }
+    A.ask(lu.name+": "+lx.n+". "+(lx.t||"")+"\n\nResolve it at the table, then use it here to spend one legendary action.","Use it",() =>{ run({t:"manual",lg:lx.n,by:lu.id}); paint(); }); return true; return true; }
+function tgc26(b,d,w){ if(!(d.tg==="savego"&&TG.lgBy)) return false; run({t:"save",lg:TG.lgN,by:TG.lgBy,targets:TG.pick.slice()}); TG.mode=""; TG.lgBy=null; TG.pick=[]; paint(); return true; return true; }
+function tgc27(b,d,w){ if(!(d.tg==="savego")) return false; run({t:"save",act:TG.act,targets:TG.pick.slice(),bonus:TG.bonus?1:0}); TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; paint(); return true; return true; }
+function tgc28(b,d,w){ if(!(d.tg==="cancel")) return false; TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; TG.sp=null; TG.lgBy=null; paint(); return true; return true; }
+function tgc29(b,d,w){ if(!(d.tgoa!=null)) return false; const o=TG.oa.shift(); if(d.tgoa&&o) run({t:"attack",oa:1,by:o.by,target:o.u,act:d.tgoa}); paint(); return true; return true; }
+function tgc30(b,d,w){ if(!(d.tg==="undo")) return false; const p=TG.undo.pop(); if(p){ TG.st=p; TG.cmds.pop(); TG.oa=[]; TG.mode=""; TG.act=null; fightSave(); live("Undone."); } paint(); return true; return true; }
+function tgc31(b,d,w){ if(!(d.tg==="resume")) return false; const rec=TG.saved; if(rec){ TG.start=rec.start; TG.cmds=rec.cmds.slice(); TG.st=TGE.replay(rec.start,rec.cmds); TG.arena=rec.arena; TG.undo=[]; TG.oa=[]; TG.mode=""; TG.act=null; TG.view="field"; TG.saved=null; paint(); live("Back in the fight. Round "+TG.st.round+"."); } return true; return true; }
+function tgc32(b,d,w){ if(!(d.tg==="drop")) return false; fightClear(); paint(); return true; return true; }
+function tgc33(b,d,w){ if(!(d.tg==="end")) return false; TG.oa=[]; TG.mode=""; TG.act=null; TG.pick=[]; run({t:"end"}); paint(); const c=cur(); if(c) live(c.name+"'s turn."); return true; return true; }
+function tgc34(b,d,w){ if(!(d.tg==="again")) return false; TG.linkMode=0; enter(); return true; return true; }
+function tgc35(b,d,w){ if(!(d.tg==="setup")) return false; TG.view="setup"; TG.st=null; vtPaint(); return true; return true; }
+function tgc36(b,d,w){ if(!(d.tgu)) return false; const t=TG.st.units[d.tgu]; if(t){ if(TG.mode==="target"||TG.mode==="save"||TG.mode==="spell"){ tapCell(t.pos[0],t.pos[1]); return true; } flash(t.name+": HP "+t.hp+"/"+t.max+", AC "+t.ac); } return true; return true; }
+const CLICKS=[tgc01,tgc02,tgc03,tgc04,tgc05,tgc06,tgc07,tgc08,tgc09,tgc10,tgc11,tgc12,tgc13,tgc14,tgc15,tgc16,tgc17,tgc18,tgc19,tgc20,tgc21,tgc22,tgc23,tgc24,tgc25,tgc26,tgc27,tgc28,tgc29,tgc30,tgc31,tgc32,tgc33,tgc34,tgc35,tgc36];
+function onClick(w,e){ const b=e.target.closest("button"); if(!b||!w.contains(b)) return; const d=b.dataset;
+  for(let k=0;k<CLICKS.length;k++) if(CLICKS[k](b,d,w)) return; }
+export function wire(w){ w.addEventListener("click",(e) =>{ onClick(w,e); });
   wireStep1(w); }
 function wireStep1(w){
   w.addEventListener("change",(e) =>{ const t=e.target; if(t.matches&&t.matches("[data-tglv]")){ TG.lvl=+t.value; } });
