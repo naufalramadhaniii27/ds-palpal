@@ -757,6 +757,7 @@
     "builder/07-data-2014-spells.js",
     "builder/08-logic-2014-rules.js",
     "builder/09-logic-feats-and-choices.js",
+    "builder/09b-logic-choice-stages.js",
     "builder/10-logic-v17-additions.js",
     "builder/10a-logic-fx-registry.js",
     "builder/10b-logic-fx-handlers-entry.js",
