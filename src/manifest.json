@@ -757,6 +757,7 @@
     "builder/07-data-2014-spells.js",
     "builder/08-logic-2014-rules.js",
     "builder/09-logic-feats-and-choices.js",
+    "builder/09b-logic-choice-stages.js",
     "builder/10-logic-v17-additions.js",
     "builder/10a-logic-fx-registry.js",
     "builder/10b-logic-fx-handlers-entry.js",
@@ -832,10 +833,6 @@
     "tg/25-sim.js",
     "tg/30-ui-tg.js",
     "tg/31-ui-tg-field.js"
-   ],
-   "pre": [
-    "tg/20-engine.js",
-    "tg/25-sim.js"
    ],
    "entry": "tg/31-ui-tg-field.js"
   },

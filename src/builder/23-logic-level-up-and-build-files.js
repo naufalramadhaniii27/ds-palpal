@@ -94,6 +94,36 @@ function normItems(b,notes,said,SN){
  if(b.inv!=null){const st={arm:0};b.inv=bnArr(b.inv).map((x) =>{const row=normInvRow(x,IN,SN,said,plain);if(!row)return null;normInvEquip(row.o,row.eq0,st);return row.o}).filter(Boolean);
   if(plain.length)notes.push("Not in the app item lists, so kept as plain gear with no weight or cost: "+plain.join(", "));
   if(b.eqC==null)b.eqC="none";if(b.eqB==null)b.eqB="none"}}
+/* v34 p07: choices by feature name ({"Eldritch Invocations":[...],"Fighting Style":"Defense"}). Raw builder keys still work. X = {b, notes, said, L, FT, ch0}: the build being read and its notes. One function per step: candidates, put, Magic Initiate, match, deal, pass */
+function bnCands(X,c){const FT=X.FT,L=X.L,b=X.b;if(c.t==="feat"||c.t==="fs"||c.t==="ofeat")return FT;if(c.t==="tool")return c.cats?[].concat.apply([],c.cats.map((k) =>{return TOOLS[k]||[]})):toolAll();if(c.t==="sub")return L.subs[b.cls]||[];
+ if(c.t==="lang")return c.from||LANGS.map((x) =>{return x[0]});if(c.t==="skills"||c.t==="exp")return c.from||Object.keys(SKILLS);if(c.t==="wm")return c.from||wmKeys();return c.list||c.from||null}
+function bnOne(c){return /^(feat|fs|ofeat|opt|sub|mcsub|lin)$/.test(c.t)}
+function bnStore(X,c,out){const b=X.b,ch0=X.ch0;
+ if(c.t==="sub"){if(!b.sub)b.sub=out[0];return}if(c.t==="mcsub"){const mcx=(b.mc||[])[c.mc];if(mcx&&!mcx.sub)mcx.sub=out[0];return}
+ if(c.t==="feat"){const o=out[0];ch0[c.key]=typeof o==="object"?o:{feat:o};return}if(bnOne(c)){ch0[c.key]=typeof out[0]==="object"?out[0].feat:out[0];return}ch0[c.key]=out.slice(0,c.n)}
+function bnPut(X,c,vals,name){const cl=bnCands(X,c),out=[],bad=[],notes=X.notes;vals.forEach((v) =>{if(v&&typeof v==="object"){out.push(v);return}const r=cl?bnPick(v,cl,1):{v:String(v)};if(r){X.said(v,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(v)});
+ if(bad.length)notes.push(name+": "+bad.map(bnQ).join(", ")+" "+(bad.length>1?"are":"is")+" not an option there, so it is left for you to choose");if(!out.length)return;
+ bnStore(X,c,out)}
+/* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
+function bnMiPicks(b,left,byName){return left.filter((name) =>{const v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};let i=0;while(b.pk["mi"+i])i++;
+  const ab=v.ab||v.ability;b.pk["mi"+i]={c:bnArr(v.c||v.cantrips||[]),s:bnArr(v.s||v.spells||v.spell||[]),ab:ab?(bnAbl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false})}
+function bnLabels(c){const t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)}
+function bnMatch(CLx,name){const nn=bnNk(name);let E=CLx.filter((c) =>{return c.t!=="spell"&&bnLabels(c).some((x) =>{return bnNk(x)===nn})});
+ if(!E.length&&nn.length>=6)E=CLx.filter((c) =>{return c.t!=="spell"&&bnLabels(c).some((x) =>{return bnLev(bnNk(x),nn,2)<=2})});
+ return E}
+/* each value goes to the first entry (lowest level) that has room and offers it, so level 5 picks land at level 5 */
+function bnDeal(X,E,val,name){E.sort((a,c) =>{return (a.lvl||0)-(c.lvl||0)});const got=E.map(() =>{return []}),rest=[];
+ bnArr(val).forEach((v) =>{const placed=E.some((c,i) =>{if(got[i].length>=(bnOne(c)?1:c.n))return false;if(v&&typeof v==="object"){if(/^(feat|fs|ofeat)$/.test(c.t)){got[i].push(v);return true}return false}const cl=bnCands(X,c);if(cl&&!bnPick(v,cl,1))return false;got[i].push(v);return true});if(!placed)rest.push(v)});
+ E.forEach((c,i) =>{bnPut(X,c,got[i],name)});
+ if(rest.length)X.notes.push(name+": more picks than this build has, so left out: "+rest.map((v) =>{return typeof v==="object"?JSON.stringify(v):bnQ(v)}).join(", "))}
+function bnPass(X,left,byName){let CLx=[];try{CLx=withB(X.b,choiceList)||[]}catch(er){CLx=[]}const KS=CLx.map((c) =>{return c.key});
+ return left.filter((name) =>{const val=byName[name];if(KS.indexOf(name)>=0){X.ch0[name]=val;return false}
+  const E=bnMatch(CLx,name);if(!E.length)return true;
+  bnDeal(X,E,val,name);return false})}
+function normByName(X,byName){let left=Object.keys(byName).filter((k) =>{return byName[k]!=null&&byName[k]!==""});
+ left=bnMiPicks(X.b,left,byName);
+ for(let pass=0;pass<3&&left.length;pass++)left=bnPass(X,left,byName);
+ left.forEach((name) =>{if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){X.ch0[name]=byName[name];return}X.notes.push(bnQ(name)+" is not a choice for this build, so it is left out")})}
 genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  const said=saidIn(notes);
  try{
@@ -142,31 +172,7 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  /* choices: skills, languages, Weapon Mastery, feats */
  const FT=L.ft;
  /* v34 p07: choices by feature name ({"Eldritch Invocations":[...],"Fighting Style":"Defense"}). Raw builder keys still work */
- if(byName){let left=Object.keys(byName).filter((k) =>{return byName[k]!=null&&byName[k]!==""}),CHN=[];
-  const cands=function(c){if(c.t==="feat"||c.t==="fs"||c.t==="ofeat")return FT;if(c.t==="tool")return c.cats?[].concat.apply([],c.cats.map((k) =>{return TOOLS[k]||[]})):toolAll();if(c.t==="sub")return L.subs[b.cls]||[];
-   if(c.t==="lang")return c.from||LANGS.map((x) =>{return x[0]});if(c.t==="skills"||c.t==="exp")return c.from||Object.keys(SKILLS);if(c.t==="wm")return c.from||wmKeys();return c.list||c.from||null};
-  const one=function(c){return /^(feat|fs|ofeat|opt|sub|mcsub|lin)$/.test(c.t)};
-  const put=function(c,vals,name){const cl=cands(c),out=[],bad=[];vals.forEach((v) =>{if(v&&typeof v==="object"){out.push(v);return}const r=cl?bnPick(v,cl,1):{v:String(v)};if(r){said(v,r);if(out.indexOf(r.v)<0)out.push(r.v)}else bad.push(v)});
-   if(bad.length)notes.push(name+": "+bad.map(bnQ).join(", ")+" "+(bad.length>1?"are":"is")+" not an option there, so it is left for you to choose");if(!out.length)return;
-   if(c.t==="sub"){if(!b.sub)b.sub=out[0];return}if(c.t==="mcsub"){const mcx=(b.mc||[])[c.mc];if(mcx&&!mcx.sub)mcx.sub=out[0];return}
-   if(c.t==="feat"){const o=out[0];ch0[c.key]=typeof o==="object"?o:{feat:o};return}if(one(c)){ch0[c.key]=typeof out[0]==="object"?out[0].feat:out[0];return}ch0[c.key]=out.slice(0,c.n)};
-  var ch0=b.ch;
-  /* Magic Initiate spells ("Magic Initiate (Wizard)": {"cantrips":[..],"spell":"..","ability":"INT"}) go to the spell feat picks (pk mi0, mi1) */
-  left=left.filter((name) =>{const v=byName[name];if(!/^magic initiate/i.test(String(name).trim())||!v||typeof v!=="object"||Array.isArray(v))return true;b.pk=b.pk&&typeof b.pk==="object"?b.pk:{};let i=0;while(b.pk["mi"+i])i++;
-   const ab=v.ab||v.ability;b.pk["mi"+i]={c:bnArr(v.c||v.cantrips||[]),s:bnArr(v.s||v.spells||v.spell||[]),ab:ab?(bnAbl(ab)||ab):undefined};if(!b.pk["mi"+i].ab)delete b.pk["mi"+i].ab;return false});
-  for(let pass=0;pass<3&&left.length;pass++){var CLx=[];try{CLx=withB(b,choiceList)||[]}catch(er){CLx=[]}var KS=CLx.map((c) =>{return c.key});
-   left=left.filter((name) =>{const val=byName[name];if(KS.indexOf(name)>=0){ch0[name]=val;return false}
-    const nn=bnNk(name),lab=function(c){const t=c.title||"",f=c.feature||"",i=t.indexOf(": ");return [t,f,t.split(":")[0],i>0&&f?f+": "+t.slice(i+2):"",i>0?t.slice(i+2):""].filter(Boolean)};
-    let E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return bnNk(x)===nn})});
-    if(!E.length&&nn.length>=6)E=CLx.filter((c) =>{return c.t!=="spell"&&lab(c).some((x) =>{return bnLev(bnNk(x),nn,2)<=2})});
-    if(!E.length)return true;
-    E.sort((a,c) =>{return (a.lvl||0)-(c.lvl||0)});const got=E.map(() =>{return []}),rest=[];
-    /* each value goes to the first entry (lowest level) that has room and offers it, so level 5 picks land at level 5 */
-    bnArr(val).forEach((v) =>{const placed=E.some((c,i) =>{if(got[i].length>=(one(c)?1:c.n))return false;if(v&&typeof v==="object"){if(/^(feat|fs|ofeat)$/.test(c.t)){got[i].push(v);return true}return false}const cl=cands(c);if(cl&&!bnPick(v,cl,1))return false;got[i].push(v);return true});if(!placed)rest.push(v)});
-    E.forEach((c,i) =>{put(c,got[i],name)});
-    if(rest.length)notes.push(name+": more picks than this build has, so left out: "+rest.map((v) =>{return typeof v==="object"?JSON.stringify(v):bnQ(v)}).join(", "));
-    return false})}
-  left.forEach((name) =>{if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){ch0[name]=byName[name];return}notes.push(bnQ(name)+" is not a choice for this build, so it is left out")})}
+ if(byName)normByName({b:b,notes:notes,said:said,L:L,FT:FT,ch0:b.ch},byName);
  const ch=b.ch;
  normChoiceLists(b,notes,said,FT);
  /* items: names from the app lists, "+1 Longsword", "Plate" for "Plate Armor"; an unknown item stays as plain gear */

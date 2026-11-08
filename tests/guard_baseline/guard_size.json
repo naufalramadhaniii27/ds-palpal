@@ -1,25 +1,9 @@
 {
  "files": {
-  "builder/09-logic-feats-and-choices.js": 353,
+  "builder/09-logic-feats-and-choices.js": 312,
   "fx/02-micro-interactions.js": 361
  },
  "funcs": {
-  "boot/debug-overlay.js::(anon)": [
-   12,
-   22
-  ],
-  "boot/deferred-loader.js::(anon)": [
-   48,
-   76
-  ],
-  "boot/err-report.js::(anon)": [
-   13,
-   41
-  ],
-  "boot/store-gate.js::(anon)": [
-   102,
-   132
-  ],
   "builder/08-logic-2014-rules.js::cls14Apply": [
    18,
    46
@@ -35,10 +19,6 @@
   "builder/09-logic-feats-and-choices.js::allFeats": [
    4,
    23
-  ],
-  "builder/09-logic-feats-and-choices.js::choices": [
-   43,
-   113
   ],
   "builder/09-logic-feats-and-choices.js::dm14Set": [
    13,
@@ -88,13 +68,9 @@
    7,
    30
   ],
-  "builder/10-logic-v17-additions.js::luRows": [
-   19,
-   101
-  ],
   "builder/10-logic-v17-additions.js::pk": [
-   25,
-   78
+   8,
+   26
   ],
   "builder/10-logic-v17-additions.js::saveNotes": [
    6,
@@ -140,25 +116,13 @@
    5,
    30
   ],
-  "builder/15-logic-import-from-sheet.js::(anon)": [
-   17,
-   81
-  ],
   "builder/15-logic-import-from-sheet.js::fromSheet": [
-   62,
-   202
+   46,
+   121
   ],
   "builder/16-logic-feature-numbers.js::calcNote": [
    40,
    42
-  ],
-  "builder/16-logic-feature-numbers.js::cl": [
-   14,
-   32
-  ],
-  "builder/16-logic-feature-numbers.js::defenses": [
-   33,
-   82
   ],
   "builder/17-ui-step-builder.js::armorAt": [
    4,
@@ -167,10 +131,6 @@
   "builder/17-ui-step-builder.js::chips": [
    3,
    26
-  ],
-  "builder/17-ui-step-builder.js::choiceBody": [
-   34,
-   98
   ],
   "builder/17-ui-step-builder.js::preFail": [
    14,
@@ -224,10 +184,6 @@
    9,
    66
   ],
-  "builder/20-ui-steps-equipment-next.js::renderEquip": [
-   23,
-   106
-  ],
   "builder/20-ui-steps-equipment-next.js::renderNext": [
    17,
    21
@@ -261,8 +217,8 @@
    58
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldNorm": [
-   80,
-   162
+   56,
+   82
   ],
   "builder/23-logic-level-up-and-build-files.js::__bldOpen": [
    15,
@@ -435,74 +391,6 @@
   "fx/25-dice3d.js::throwDice": [
    25,
    30
-  ],
-  "learn/47-ui-learn.js::(anon)": [
-   230,
-   474
-  ],
-  "learn/47-ui-learn.js::drawFrame": [
-   8,
-   27
-  ],
-  "learn/47-ui-learn.js::step": [
-   14,
-   25
-  ],
-  "learn/47-ui-learn.js::wire": [
-   42,
-   131
-  ],
-  "tg/20-engine.js::(anon)": [
-   220,
-   418
-  ],
-  "tg/20-engine.js::advOf": [
-   8,
-   31
-  ],
-  "tg/20-engine.js::attack": [
-   15,
-   41
-  ],
-  "tg/20-engine.js::cast": [
-   19,
-   63
-  ],
-  "tg/20-engine.js::odds": [
-   8,
-   27
-  ],
-  "tg/20-engine.js::reach": [
-   9,
-   25
-  ],
-  "tg/20-engine.js::save": [
-   9,
-   29
-  ],
-  "tg/25-sim.js::(anon)": [
-   43,
-   93
-  ],
-  "tg/25-sim.js::pilot": [
-   21,
-   63
-  ],
-  "tg/30-ui-tg.js::evText": [
-   23,
-   38
-  ],
-  "tg/30-ui-tg.js::panelHtml": [
-   17,
-   23
-  ],
-  "tg/31-ui-tg-field.js::tapCell": [
-   9,
-   26
-  ],
-  "tg/31-ui-tg-field.js::wire": [
-   38,
-   83
   ]
  }
 }

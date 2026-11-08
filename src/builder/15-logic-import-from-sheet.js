@@ -27,6 +27,38 @@ function fsBgPicks(C){const bx=BACKGROUNDS[B.bg];if(!bx)return;if(bx.skPick){con
   if(bx.toolPick){let all=[];bx.toolPick.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const fx=(bx.toolFix||"").split(/,\s*/),bt=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.bg&&all.indexOf(q[0])>=0&&fx.indexOf(q[0])<0)bt.push(q[0])});if(bt.length)B.ch.bgTool=bt.slice(0,bx.toolPick.n)}}
 function fsClassTool(C){const tp=CL().toolPick;if(!tp)return;let all=[];tp.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const ct=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.cls&&all.indexOf(q[0])>=0&&ct.indexOf(q[0])<0)ct.push(q[0])});if(ct.length)B.ch.clsTool=ct.slice(0,tp.n)}
 function fsInvRow(x){let n=x.n,al=null;if(!(WEAPONS[baseOf(n).b]||ARMOR[baseOf(n).b]||n==="Shield"||DMAP[n]||itemCost(n)!=null||itemCost(baseOf(n).b)!=null)){/* v32 RU134 */const pm=/\(([^)]+)\)/.exec(n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){al=n;n=pm[1]}}const o={n:n,q:qOf(x),eq:!!x.eq||!!WEAPONS[baseOf(n).b]};if(al)o.alias=al;if(x.in)o.in=x.in;/* v32 RU134 */if(x.mw)o.mw=1;if(x.px)o.px=x.px;return o}
+/* v79: the choices of the subclass (Hunter's Prey, Land Type, maneuvers, War Bond, Evocation Savant and so on) come back from the sheet. The feature text holds them after "Your choice." One function per pick type (tool, skills, named list, resistance) and one per step */
+function fsRd(f){const d=f.d||"",m=/\*\*Your choice\.\*\*\s*([^\n]*?)\.(?:\s|$)/.exec(d);/* the names end at the first full stop. Text such as "At your level" may follow */return m?m[1].split(/,\s*/).map((x) =>{return x.replace(/\.$/,"").trim()}).filter(Boolean):[]}
+/* Eldritch Invocations: the names of the group "Eldritch Invocations" fill the invocation picks in order */
+function fsInvPicks(C,cs){const iv=[];(C.features||[]).forEach((g) =>{if(g.g==="Eldritch Invocations")(g.items||[]).forEach((f) =>{if(iv.indexOf(f.n)<0&&INVOCATIONS.some((r) =>{return r[0]===f.n}))iv.push(f.n)})});if(!iv.length)return;let i=0;
+ cs.forEach((c) =>{if(c.t!=="multi"||c.list!==INVOCATIONS||c.mc!=null)return;const part=iv.slice(i,i+(c.n||1));i+=part.length;if(part.length)B.ch[c.key]=part})}
+function fsToolPool(c){let al=[];(c.cats||[]).forEach((k) =>{al=al.concat(TOOLS[k]||[])});return al}
+function fsPool(c){let pool=c.list&&typeof c.list!=="string"?c.list.map((x) =>{return Array.isArray(x)?x[0]:x}):c.list?(OPTS[c.list]||[]).map((x) =>{return x[0]}):(c.from||[]).map((x) =>{return Array.isArray(x)?x[0]:x});if(c.t==="tool")pool=fsToolPool(c);return pool}
+function fsGotTool(C,c){const got=[],al=fsToolPool(c);((C.profSrc||{}).tools||[]).forEach((q) =>{if((q[1]===c.feature||q[1]===c.title)&&al.indexOf(q[0])>=0&&got.indexOf(q[0])<0)got.push(q[0])});return got}
+function fsGotSkills(C,c,sb,pool){const got=[],tg=sb+" "+c.lvl;(C.skills||[]).forEach((k) =>{if(k.p&&(k.src||"").indexOf(tg)>=0&&pool.indexOf(k.n)>=0)got.push(k.n)});return got}
+/* named list: the feature text of the subclass. Returns null when the feature row is missing (skip the pick) */
+function fsGotNamed(c,sb,pool,fs){let fk=/maneuver$/.test(c.key)?"Maneuvers known":c.feature,f=fs.filter((x) =>{return x.n===fk&&x.s.indexOf(sb)>=0})[0];if(!f&&c.t!=="opt")return null;if(!f)f={d:""};
+ if(fk==="Maneuvers known"){let mm=[],re=/\*\*([^*]+?)\.\*\*/g,q;while((q=re.exec(f.d||"")))mm.push(q[1]);return mm.filter((n) =>{return pool.indexOf(n)>=0})}return fsRd(f).filter((n) =>{return pool.indexOf(n)>=0})}
+/* the pick shows only as a resistance (Elemental Affinity) */
+function fsGotDefense(C,c,sb,pool,got){const tg2=sb+" "+c.lvl;(C.defenses||[]).forEach((d) =>{if((d.s||"").indexOf(tg2)>=0)(d.v||[]).forEach((v) =>{if(pool.indexOf(v)>=0&&got.indexOf(v)<0)got.push(v)})})}
+function fsGot(C,c,sb,pool,fs){let got;
+ if(c.t==="tool")got=fsGotTool(C,c);
+ else if(c.t==="skills")got=fsGotSkills(C,c,sb,pool);
+ else{got=fsGotNamed(c,sb,pool,fs);if(got===null)return null}
+ if(!got.length&&c.t==="opt")fsGotDefense(C,c,sb,pool,got);
+ return got}
+function fsSeen(c){let seen=[];Object.keys(B.ch).forEach((k) =>{if(k!==c.key&&/maneuver$/.test(k)===/maneuver$/.test(c.key)&&Array.isArray(B.ch[k]))seen=seen.concat(B.ch[k])});return seen}
+function fsSubOf(c){return c.mc!=null?(B.mc&&B.mc[c.mc]||{}).sub:B.sub}
+function fsSubFits(c,sb){if(!sb||sb==="__custom"||!c.src||c.src.indexOf(sb)<0||/^(m\d+:)?sc/.test(c.key))return false;return c.t==="multi"||c.t==="opt"||c.t==="skills"||c.t==="tool"}
+function fsSubPick(C,c,fs,by){const sb=fsSubOf(c);if(!fsSubFits(c,sb))return;
+ const pool=fsPool(c);if(!pool.length)return;
+ const got=fsGot(C,c,sb,pool,fs);if(got===null)return;
+ const tk=c.t+":"+(c.mc!=null?c.mc+":":"")+(c.feature||c.key);by[tk]=by[tk]||{g:got,i:0};let part=c.t==="skills"?got:by[tk].g.slice(by[tk].i,by[tk].i+(c.n||1));by[tk].i+=part.length;
+ const seen=fsSeen(c);part=part.filter((n) =>{return seen.indexOf(n)<0});if(part.length)B.ch[c.key]=part.slice(0,c.n||1)}
+function fsSubPicks(C){let cs=[];try{cs=choices()}catch(e){return}
+ const by={},fs=[];(C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{if(f.s)fs.push(f)})});
+ fsInvPicks(C,cs);
+ cs.forEach((c) =>{fsSubPick(C,c,fs,by)})}
 function fsSpellPicks(C){let cp=[];try{cp=casterParts()}catch(e){}if(!cp.length)return;const first=cp[0].cls,have={};B.sp=[];delete B.spm;
   (C.spells||[]).forEach((x) =>{if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;const cl=x.src;if(!cp.some((p) =>{return p.cls===cl}))return;const k=cl+"|"+x.n;if(have[k])return;have[k]=1;
    if(cl===first)B.sp.push(x.n);else{B.spm=B.spm||{};(B.spm[cl]=B.spm[cl]||[]).push(x.n)}});
@@ -75,23 +107,7 @@ export function fromSheet(st){const C=st.C,nb=clone(BLANK),miss=[];nb.name=C.nam
  const lg=(st.lang||C.lang||[]).filter((x) =>{return x&&x!=="Common"&&x!=="Druidic"&&x!=="Thieves' Cant"});if(lg.length)B.ch.lang=lg.slice(0,C.rs==="2014"?9:2);
  applyPacks();if(C.rs==="2014"&&B.ch.lang){const sx=SPECIES[B.species],bx=BACKGROUNDS[B.bg],fxl=((sx&&sx.lgf)||[]).concat((bx&&bx.lgf)||[]),nn=((sx&&sx.lgn)||0)+((bx&&bx.lgn)||0);B.ch.lang=B.ch.lang.filter((x) =>{return fxl.indexOf(x)<0}).slice(0,nn);if(!B.ch.lang.length)delete B.ch.lang}/* v84 */
  /* v79: the choices of the subclass (Hunter's Prey, Land Type, maneuvers, War Bond, Evocation Savant and so on) come back from the sheet. The feature text holds them after "Your choice." */
- (function(){let cs=[];try{cs=choices()}catch(e){return}
-  const by={},rd=function(f){const d=f.d||"",m=/\*\*Your choice\.\*\*\s*([^\n]*?)\.(?:\s|$)/.exec(d);/* the names end at the first full stop. Text such as "At your level" may follow */return m?m[1].split(/,\s*/).map((x) =>{return x.replace(/\.$/,"").trim()}).filter(Boolean):[]};
-  const fs=[];(C.features||[]).forEach((g) =>{(g.items||[]).forEach((f) =>{if(f.s)fs.push(f)})});
-  /* Eldritch Invocations: the names of the group "Eldritch Invocations" fill the invocation picks in order */
-  (function(){const iv=[];(C.features||[]).forEach((g) =>{if(g.g==="Eldritch Invocations")(g.items||[]).forEach((f) =>{if(iv.indexOf(f.n)<0&&INVOCATIONS.some((r) =>{return r[0]===f.n}))iv.push(f.n)})});if(!iv.length)return;let i=0;
-   cs.forEach((c) =>{if(c.t!=="multi"||c.list!==INVOCATIONS||c.mc!=null)return;const part=iv.slice(i,i+(c.n||1));i+=part.length;if(part.length)B.ch[c.key]=part})})();
-  cs.forEach((c) =>{const sb=c.mc!=null?(B.mc&&B.mc[c.mc]||{}).sub:B.sub;if(!sb||sb==="__custom"||!c.src||c.src.indexOf(sb)<0||/^(m\d+:)?sc/.test(c.key))return;if(c.t!=="multi"&&c.t!=="opt"&&c.t!=="skills"&&c.t!=="tool")return;
-   let pool=c.list&&typeof c.list!=="string"?c.list.map((x) =>{return Array.isArray(x)?x[0]:x}):c.list?(OPTS[c.list]||[]).map((x) =>{return x[0]}):(c.from||[]).map((x) =>{return Array.isArray(x)?x[0]:x});if(c.t==="tool"){pool=[];(c.cats||[]).forEach((k) =>{pool=pool.concat(TOOLS[k]||[])})}if(!pool.length)return;
-   let got=[];
-   if(c.t==="tool"){let al=[];(c.cats||[]).forEach((k) =>{al=al.concat(TOOLS[k]||[])});((C.profSrc||{}).tools||[]).forEach((q) =>{if((q[1]===c.feature||q[1]===c.title)&&al.indexOf(q[0])>=0&&got.indexOf(q[0])<0)got.push(q[0])})}
-   else if(c.t==="skills"){const tg=sb+" "+c.lvl;(C.skills||[]).forEach((k) =>{if(k.p&&(k.src||"").indexOf(tg)>=0&&pool.indexOf(k.n)>=0)got.push(k.n)})}
-   else{let fk=/maneuver$/.test(c.key)?"Maneuvers known":c.feature,f=fs.filter((x) =>{return x.n===fk&&x.s.indexOf(sb)>=0})[0];if(!f&&c.t!=="opt")return;if(!f)f={d:""};
-    if(fk==="Maneuvers known"){let mm=[],re=/\*\*([^*]+?)\.\*\*/g,q;while((q=re.exec(f.d||"")))mm.push(q[1]);got=mm.filter((n) =>{return pool.indexOf(n)>=0})}else got=rd(f).filter((n) =>{return pool.indexOf(n)>=0})}
-   if(!got.length&&c.t==="opt"){const tg2=sb+" "+c.lvl;(C.defenses||[]).forEach((d) =>{if((d.s||"").indexOf(tg2)>=0)(d.v||[]).forEach((v) =>{if(pool.indexOf(v)>=0&&got.indexOf(v)<0)got.push(v)})})}/* the pick shows only as a resistance (Elemental Affinity) */
-   const tk=c.t+":"+(c.mc!=null?c.mc+":":"")+(c.feature||c.key);by[tk]=by[tk]||{g:got,i:0};let part=c.t==="skills"?got:by[tk].g.slice(by[tk].i,by[tk].i+(c.n||1));by[tk].i+=part.length;
-   let seen=[];Object.keys(B.ch).forEach((k) =>{if(k!==c.key&&/maneuver$/.test(k)===/maneuver$/.test(c.key)&&Array.isArray(B.ch[k]))seen=seen.concat(B.ch[k])});
-   part=part.filter((n) =>{return seen.indexOf(n)<0});if(part.length)B.ch[c.key]=part.slice(0,c.n||1)})})();
+ fsSubPicks(C);
  /* v79: the spells chosen in Manage Spells (use Prepared or Cantrip, source = the class) come back as builder picks, so Apply keeps them */
  fsSpellPicks(C);
  return miss}

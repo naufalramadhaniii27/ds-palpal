@@ -144,7 +144,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | app/98-close.wrap.js | pembungkus IIFE | 7 |
 | app/99-ui-backup-reminder-handlers.js | UI | 664 |
 | fx/01-core-router-and-switch.js | efek | 3.337 |
-| fx/02-micro-interactions.js | efek | 41.492 |
+| fx/02-micro-interactions.js | efek | partikel, riak, goyang |
 | fx/03-f1-card-light-and-morph.js | efek | 9.065 |
 | fx/04-f2-odometer-hp-bar-scrub.js | efek | 5.884 |
 | fx/05-f3-indicator-dock-toast.js | efek | 3.287 |
@@ -215,6 +215,7 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | builder/07-data-2014-spells.js | Data | 431.814 |
 | builder/08-logic-2014-rules.js | Logic | 16.285 |
 | builder/09-logic-feats-and-choices.js | Logic | 47.909 |
+| builder/09b-logic-choice-stages.js | Logic | tahap `choices()` |
 | builder/10-logic-v17-additions.js | Logic | 18.011 |
 | builder/11-logic-derivation.js | Logic | 10.560 |
 | builder/12-logic-export-to-sheet.js | Logic | 6.506 |
@@ -629,3 +630,9 @@ Analisis dan angka: `reports/solid-s9-analysis.md`. Ringkas:
 - Registry baru di `app/06a-logic-ui-registry.js`: SEARCHGRP (grup hasil Search, `gsHTML`), OVERLAY (lapisan Back, `ovTop`, urutan daftar = urutan z), PANEL (halaman sheet, `PAGES` dan perintah "go to").
 - `__R`: tahap 9 menyisakan 275 nama di app dan 49 di builder. Tahap 10 menghapus semua pemakaian: nama dengan pembaca lebih awal pindah ke port akhir (`app/00a-reg-late-ports.js`, `builder/01b-logic-late-ports.js`), `hpWord` dan `slotAddApply` jadi impor, `classFx` dan `kitItems` dibuang karena tidak ada pembacanya. Lihat `reports/solid-s10-analysis.md`.
 
+## SOLID tahap 13C (builder sisa, tes baru)
+
+- `builder/09b-logic-choice-stages.js` memiliki `choicesBuild` (isi lama `choices()` dalam tahap `chBase`, `chBg`, `chSp*`, `chClass`, `chWarlock`, `chLang`, `chFxPicks`). `choices()` di file 09 memanggilnya lewat port akhir.
+- `fromSheet`: pilihan subclass jadi `fsSubPicks` (satu fungsi per tipe pilihan: `fsGotTool`, `fsGotSkills`, `fsGotNamed`, `fsGotDefense`). `__bldNorm`: blok `byName` jadi `normByName` dengan langkah `bnCands`, `bnPut`, `bnMiPicks`, `bnMatch`, `bnDeal`, `bnPass`. `pk` dan `choiceBody` memakai tabel per tipe (`PK_KINDS`, `CB_TYPES`). `luRows`, `defenses`, `renderEquip` dibagi per sumber atau bagian.
+- `fx/02` TIDAK dipecah (ditunda): perekam efek baru baru 93 persen stabil, belum cukup sebagai bukti identik.
+- Tes: `python3 tests/solid_builder_diff.py --base DIR` (keluaran `__bldNorm` dan `__bldRound` pada 3890 masukan, build ini lawan pohon pembanding). `python3 tests/solid_fx_snapshot.py OUT.json [--root DIR]` dan `--diff A B [--ignore-ord]` (perekam efek: pendengar, animasi, pengamat, simpul DOM, DOM akhir, hook `__mi*`, tiga skenario, 390 dan 1250). Perekam tidak masuk CI.
