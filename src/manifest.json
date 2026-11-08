@@ -144,6 +144,7 @@
     "app/11-ui-breakdown.js",
     "app/12-ui-bottom-sheet-modal.js",
     "app/13-ui-detail-cards.js",
+    "app/13b-ui-detail-spell-targets-render.js",
     "app/14-ui-editor.js",
     "app/15-logic-roster-backup-files-snapshots.js",
     "app/15b-logic-backup.js",
@@ -168,6 +169,7 @@
     "app/26-ui-customize.js",
     "app/27-ui-party-search-commands-library.js",
     "app/27b-ui-library.js",
+    "app/27d-ui-library-search-open.js",
     "app/27c-ui-report-pins.js",
     "app/28-ui-bastion.js",
     "app/29-ui-ddb-look.js",
@@ -808,6 +810,8 @@
    "files": [
     "learn/00-env.js",
     "learn/00-bridge.js",
+    "learn/45b-data-learn-places-a.js",
+    "learn/45c-data-learn-places-b.js",
     "learn/45-data-learn.js",
     "learn/46-logic-learn.js",
     "learn/47-ui-learn.js"
@@ -827,13 +831,14 @@
     "tg/00-bridge.js",
     "tg/20-engine.js",
     "tg/25-sim.js",
-    "tg/30-ui-tg.js"
+    "tg/30-ui-tg.js",
+    "tg/31-ui-tg-field.js"
    ],
    "pre": [
     "tg/20-engine.js",
     "tg/25-sim.js"
    ],
-   "entry": "tg/30-ui-tg.js"
+   "entry": "tg/31-ui-tg-field.js"
   },
   {
    "t": "block",

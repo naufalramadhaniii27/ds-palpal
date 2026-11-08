@@ -11,8 +11,15 @@ export function rLoad(r,id,openB){const t=r.chars[id],prev=r.active;if(!t||FROZE
  nv.forEach((p) =>{if(!ok)return;if(p[1]==null){try{__store.removeItem(p[0])}catch(e){}}else if(!lsSet(p[0],p[1]))ok=false});
  if(!ok){old.forEach((p) =>{try{if(p[1]==null)__store.removeItem(p[0]);else __store.setItem(p[0],p[1])}catch(e){}});r.active=prev;rSave(r);toast("Storage is full, so the character was not switched and nothing was lost. Back up, then make room.");return false}
  if(openB)try{__store.setItem("cs-new","1")}catch(e){}__miReload();return true}
-function charInfo(id,r){let c=r.chars[id]||{},Cc=null,Ss=null;try{Cc=id===r.active?C:JSON.parse(c.C||"null")}catch(e){}try{Ss=id===r.active?S:JSON.parse(c.S||"null")}catch(e){}
- Cc=Cc||{};Ss=Ss||{};const lv=Cc.clsLabel||((Cc.cls||"")+" "+(Cc.level||1));return {id:id,name:Cc.name||c.name||"Unnamed",level:+Cc.level||1,species:(Cc.species||"").split(" (")[0],cls:Cc.cls||"",sub:Cc.sub||"",label:Cc.clsLabel||"",camp:(typeof Ss.camp==="string"?Ss.camp.trim():Cc.office)||"",por:(/^(data:image\/|blob:|https?:)/.test(Ss.portrait||"")?Ss.portrait:""),color:Ss.color||"forest",sym:Ss.sym||"star",created:c.created||c.t||0}}
+function charInfo(id,r){
+const _charInfoStep1=charInfoStep1(r, id);
+const {c}=_charInfoStep1;
+let {Cc, Ss}=_charInfoStep1;return {id:id,name:Cc.name||c.name||"Unnamed",level:+Cc.level||1,species:(Cc.species||"").split(" (")[0],cls:Cc.cls||"",sub:Cc.sub||"",label:Cc.clsLabel||"",camp:(typeof Ss.camp==="string"?Ss.camp.trim():Cc.office)||"",por:(/^(data:image\/|blob:|https?:)/.test(Ss.portrait||"")?Ss.portrait:""),color:Ss.color||"forest",sym:Ss.sym||"star",created:c.created||c.t||0}}
+function charInfoStep1(r, id){
+let c=r.chars[id]||{},Cc=null,Ss=null;try{Cc=id===r.active?C:JSON.parse(c.C||"null")}catch(e){}try{Ss=id===r.active?S:JSON.parse(c.S||"null")}catch(e){}
+ Cc=Cc||{};Ss=Ss||{};const lv=Cc.clsLabel||((Cc.cls||"")+" "+(Cc.level||1));
+  return /** @type {any} */ ({c, Cc, Ss});
+}
 let homeQ="",homeSort="created";
 /* T3: the Home hero, "Continue your adventure", for the character that is open now. Hidden while a search is typed */
 function homeHero(){ const r=rEnsure(), id=r.active&&r.chars[r.active]&&!r.chars[r.active].ph?r.active:Object.keys(r.chars).filter((k) =>{ return !r.chars[k].ph; })[0]; if(!id) return "";
@@ -37,14 +44,26 @@ function homeLibBtn(){const q=homeQ.trim();return q.length>=2&&typeof lateGet("l
 function homeCmds(){const q=homeQ.trim().toLowerCase();if(!q)return "";let m=hcmdList().filter((c) =>{return (c[0]+" "+c[1]).toLowerCase().indexOf(q)>=0});if(!m.length)m=[];
  return '<div class="hcmds" role="group" aria-label="Commands">'+m.map((c) =>{return '<button type="button" class="hbk hcmd" data-hcmd="'+c[2]+'"><span class="hbt">'+esc(c[0])+'</span></button>'}).join("")+homeLibBtn()+'</div>'}
 export function homeCards(noSnap){return homeCmds()+homeCards1(noSnap)}
-function homeCards1(noSnap){let r=noSnap?rEnsure():rSnap(rEnsure()),list=Object.keys(r.chars).filter((id) =>{return !r.chars[id].ph&&campKeep(id,r)})/* v27 RU64 */.map((id) =>{return charInfo(id,r)});
- if(!list.length&&!homeQ) return '<div class="hempty hempty-art">'+esArt("hero")+'<p>No characters yet. Press <b>Create a Character</b> to build one, or <b>Open Character</b> to add one from a file.</p></div>';/* v24 p08 */const q=homeQ.toLowerCase();
- if(q)list=list.filter((x) =>{return (x.name+" "+x.level+" "+x.species+" "+x.cls+" "+x.sub+" "+x.camp).toLowerCase().indexOf(q)>=0});
- list.sort((a,b) =>{if(homeSort==="name")return a.name.localeCompare(b.name);if(homeSort==="level")return b.level-a.level;if(homeSort==="newest")return b.created-a.created;return a.created-b.created});
+function homeCards1(noSnap){
+const _homeCards1Step1=homeCards1Step1(noSnap);
+const {r}=_homeCards1Step1;
+let {list}=_homeCards1Step1;
+ if(!list.length&&!homeQ) return '<div class="hempty hempty-art">'+esArt("hero")+'<p>No characters yet. Press <b>Create a Character</b> to build one, or <b>Open Character</b> to add one from a file.</p></div>';/* v24 p08 */
+({list}=homeCards1Step2(list));
  return list.map((x) =>{const p=lateGet("PALS")[x.color]||lateGet("PALS").forest;const bg='background:linear-gradient(90deg,'+p[1]+' 0%,'+p[2]+' 100%)';
   const line=x.label?("Level "+x.level+" | "+x.species+" | "+x.label):("Level "+x.level+" | "+x.species+" | "+x.cls+(x.sub?"/"+x.sub:""));
   const fm=fileMark(x.id),uns=fileStale(fm,!!fm&&fm.h!==rawHash(chRaw(x.id,r)));/* v33 p10 */
   return '<div class="hcard"><div class="hcard-top" style="'+bg+'"><span class="hwm" style="background-image:'+dataUri(x.sym,"#ffffff",.9)+'"></span><span class="hpor'+(x.por?' has':'')+'" style="'+(x.por?'background-image:url('+x.por+')':'')+'">'+(x.por?'':homeSil(x))+'</span><div class="hname"><b>'+esc(x.name)+'</b><span>'+esc(line)+'</span>'+(uns?'<button type="button" class="hunsv" data-hfile="'+x.id+'" aria-label="File out of date. Open the file options">File out of date</button>':'')/* v32 p92 */+'</div>'+(x.camp?'<button type="button" class="hcamp'+(lateGet("homeCamp")===x.camp?' on':'')+'" data-hcampf="'+esc(x.camp)+'" aria-pressed="'+(lateGet("homeCamp")===x.camp)+'" aria-label="'+(lateGet("homeCamp")===x.camp?'Show all campaigns':'Show only the campaign '+esc(x.camp))+'">'+((typeof lateGet("ICO")==="object"&&lateGet("ICO"))?ico("ui-flag","hcamp-i"):'')+'Campaign: <i>'+esc(x.camp)+'</i>'+((typeof lateGet("ICO")==="object"&&lateGet("ICO"))?ico(lateGet("homeCamp")===x.camp?"ui-close":"ui-filter","hcamp-f"):'')+'</button>':'')+'</div><div class="hact">'+(r.chars[x.id]&&r.chars[x.id].practice?'<div class="hprac"><span>Practice hero from Learn</span><button type="button" data-hkeep="'+x.id+'">Keep</button><button type="button" data-hdisc="'+x.id+'">Discard</button></div>':'')+'<button type="button" data-hview="'+x.id+'">View</button><button type="button" data-hedit="'+x.id+'">Edit</button><button type="button" data-hfile="'+x.id+'">File</button><button type="button" class="del holdc" data-hdel="'+x.id+'" title="Hold to delete"><span class="holdc-fill"></span><span class="holdc-label">Delete</span></button></div></div>'}).join("")||'<p class="hempty">No characters match your search.</p>'}
+function homeCards1Step1(noSnap){
+let r=noSnap?rEnsure():rSnap(rEnsure()),list=Object.keys(r.chars).filter((id) =>{return !r.chars[id].ph&&campKeep(id,r)})/* v27 RU64 */.map((id) =>{return charInfo(id,r)});
+  return /** @type {any} */ ({r, list});
+}
+function homeCards1Step2(list){
+const q=homeQ.toLowerCase();
+ if(q)list=list.filter((x) =>{return (x.name+" "+x.level+" "+x.species+" "+x.cls+" "+x.sub+" "+x.camp).toLowerCase().indexOf(q)>=0});
+ list.sort((a,b) =>{if(homeSort==="name")return a.name.localeCompare(b.name);if(homeSort==="level")return b.level-a.level;if(homeSort==="newest")return b.created-a.created;return a.created-b.created});
+  return /** @type {any} */ ({list});
+}
 /* T11 Learn: the band on Home that opens Hoot's Training Grounds (src/learn, loaded with the deferred parts). Its words follow the
    language chosen in Learn (cs-learn-v1). After the first stop it shows how many of the five first stops are done */
 export function learnBand(){ let o={}; try{ o=JSON.parse(lsGet("cs-learn-v1")||"{}")||{}; }catch(e){ o={}; } const id=o.lang==="id", dn=o.done&&typeof o.done==="object"?o.done:{}, d=["tavern","rooftops","forest","campsite","market"].filter((k) =>{ return dn[k]; }).length;
@@ -76,7 +95,18 @@ export function showHome(){let w=document.getElementById("homeV");if(!w){w=docum
    if(d.hbin){lateSet("BIN_OPEN",!BIN_OPEN);const hb=document.getElementById("hinfo");if(hb)hb.innerHTML=homeInfo();return}
    if(d.hback){snBack(d.hback);return}/* v18: bring back a deleted character from its newest snapshot */
    if(d.hnew){rSnap(r);const nid="c"+Date.now();r.chars[nid]={name:"New Character",created:Date.now(),t:Date.now()};try{if(sessionStorage.getItem("cs-forge"))r.chars[nid].practice=1}catch(e){}/* T11 Learn F3: a hero from Forge Your Hero is a practice hero until kept */try{sessionStorage.setItem("cs-skip","1")}catch(e){}rLoad(r,nid,true);return}})}
- const n=Object.keys(rEnsure().chars).length-rPh(rEnsure()).length;
+ const {n}=showHomeStep1();
  w.innerHTML='<div class="hwrap"><div class="hhead"><h1>My Characters</h1><div class="hbtns" role="toolbar" aria-label="Character actions"><button type="button" class="hcreate" data-hnew="1"><span class="hbt">Create<span class="hbz"> a Character</span></span></button><button type="button" class="hbk" data-hbk="open"><span class="hbt">Open<span class="hbz"> Character</span></span></button><button type="button" class="hbk" data-hbk="out"><span class="hbt">Back Up</span></button><button type="button" class="hbk" data-hbk="in"><span class="hbt">Restore</span></button><button type="button" class="hbk" data-hparty="1"><span class="hbt">Party</span></button><button type="button" class="hbk hic" data-hbk="info" aria-label="Settings: backup and storage"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div><p class="hslots">Characters: <b>'+n+'</b></p>'+wnBanner()+tourBanner()+'<div id="hinfo">'+homeInfo()+'</div>'+homeHero()+learnBand()+tgBand()+'<div class="hbar"><label class="hsearch"><span>Search</span><input id="homeQ" type="search" placeholder="Name, level, class, species, campaign" aria-label="Search by name, level, class, species, or campaign" value="'+esc(homeQ)+'"></label><label class="hsort"><span>Sort By</span><select id="homeSort">'+[["created","Created: Oldest"],["newest","Created: Newest"],["name","Name"],["level","Level"]].map((o) =>{return '<option value="'+o[0]+'"'+(homeSort===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+campSel(rEnsure())+'</div><div class="hgrid" id="hgrid">'+homeCards()+'</div><p class="happ">'+'<img class="happ-i" src="'+LOGO_IMG+'" width="32" height="32" alt="">'+'<b>D&amp;D Sheet</b>'+pwaInstH()+'</p><p class="hcredit">Designed by Palpale</p><p class="hver">Version '+APP_LABEL+' ('+APP_DATE+') <button type="button" class="hlink" data-hwn="all">What\'s new</button> <button type="button" class="hlink" data-hrep="1">Report a problem</button></p></div>';
+ showHomeStep2();
+ w.hidden=false;
+showHomeStep3();}
+function showHomeStep1(){
+ const n=Object.keys(rEnsure().chars).length-rPh(rEnsure()).length;
+  return /** @type {any} */ ({n});
+}
+function showHomeStep2(){
  setTimeout(() =>{ const hi=document.getElementById("hinfo"); if(hi) hi.innerHTML=homeInfo(); persistShow(); },0);
- w.hidden=false;document.body.style.overflow="hidden"}
+}
+function showHomeStep3(){
+document.body.style.overflow="hidden"
+}

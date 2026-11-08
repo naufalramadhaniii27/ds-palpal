@@ -103,14 +103,8 @@ $("#pdfBtn").addEventListener("click",() =>{
    Keyboard: Enter, Space, or the Right arrow on the handle confirm. If the rest is refused (for example a Hit Die without a roll), the slider resets. === */
 (function(){ let el=null,handle=null,maxX=0,startX=0,curX=0,dragging=false;
   function label(w,t){ const lb=w.querySelector(".slidec-label"); if(lb) lb.textContent=t; }
-  function reset(w){ const h=w.querySelector(".slidec-h"); w.classList.remove("dragging","committing","done"); w.style.setProperty("--sp","0"); if(h){ h.style.transform="translateX(0px)"; const sv=h.querySelector("svg path"); if(sv) sv.setAttribute("d","M5 12h14M13 6l6 6-6 6"); }
-    label(w,w.getAttribute("data-label")||""); }
-  function commit(w,h){ const kind=w.getAttribute("data-slide-go"), mx=w.clientWidth-h.offsetWidth-6;
-    h.style.transform="translateX("+mx+"px)"; w.style.setProperty("--sp","1"); w.classList.add("committing"); label(w,"Resting…");
-    setTimeout(() =>{ w.classList.remove("committing"); w.classList.add("done"); label(w,"Rested"); const sv=h.querySelector("svg path"); if(sv) sv.setAttribute("d","M5 12.5l4.5 4.5L19 7.5"); if(typeof buzz==="function") buzz([10,40,18]);
-      setTimeout(() =>{ takeRest(kind); if(document.querySelector("#sheet.on #restDlg")&&w.isConnected){ reset(w); return; }/* refused: the dialog is still open */
-        try{ document.dispatchEvent(new CustomEvent("mi:rest",{detail:kind})); }catch(er){} },120); },240); }
-  function usable(w,h){ return w&&!w.classList.contains("off")&&!w.classList.contains("done")&&!w.classList.contains("committing")&&!h.disabled; }
+  const {reset}=uiPdfExportHoldSlideConfirmAnonStep1(label);
+  const {usable, commit}=uiPdfExportHoldSlideConfirmAnonStep2(label, reset);
   document.addEventListener("pointerdown",(e) =>{ if(e.button>0) return;
     const h=e.target.closest&&e.target.closest(".slidec-h"); if(!h) return; const w=h.closest(".slidec"); if(!usable(w,h)) return;
     el=w; handle=h; maxX=w.clientWidth-h.offsetWidth-6; startX=e.clientX; curX=0; dragging=true; w.classList.add("dragging");
@@ -119,7 +113,25 @@ $("#pdfBtn").addEventListener("click",() =>{
     handle.style.transform="translateX("+curX+"px)"; el.style.setProperty("--sp",String(maxX?curX/maxX:0)); });
   function finish(){ if(!dragging||!el) return; dragging=false; const w=el,h=handle; el=null; handle=null; w.classList.remove("dragging");
     if(maxX>0&&curX>=maxX*0.88) commit(w,h); else { h.style.transform="translateX(0px)"; w.style.setProperty("--sp","0"); } }
-  document.addEventListener("pointerup",finish); document.addEventListener("pointercancel",finish);
-  document.addEventListener("keydown",(e) =>{ const h=e.target.closest&&e.target.closest(".slidec-h"); if(!h) return; if(e.key!=="Enter"&&e.key!==" "&&e.key!=="ArrowRight") return; e.preventDefault(); const w=h.closest(".slidec"); if(usable(w,h)) commit(w,h); });
+  document.addEventListener("pointerup",finish);
+ uiPdfExportHoldSlideConfirmAnonStep3(finish, usable, commit);
 })();
+function uiPdfExportHoldSlideConfirmAnonStep1(label){
+  function reset(w){ const h=w.querySelector(".slidec-h"); w.classList.remove("dragging","committing","done"); w.style.setProperty("--sp","0"); if(h){ h.style.transform="translateX(0px)"; const sv=h.querySelector("svg path"); if(sv) sv.setAttribute("d","M5 12h14M13 6l6 6-6 6"); }
+    label(w,w.getAttribute("data-label")||""); }
+  return /** @type {any} */ ({reset});
+}
+function uiPdfExportHoldSlideConfirmAnonStep2(label, reset){
+  function commit(w,h){ const kind=w.getAttribute("data-slide-go"), mx=w.clientWidth-h.offsetWidth-6;
+    h.style.transform="translateX("+mx+"px)"; w.style.setProperty("--sp","1"); w.classList.add("committing"); label(w,"Resting…");
+    setTimeout(() =>{ w.classList.remove("committing"); w.classList.add("done"); label(w,"Rested"); const sv=h.querySelector("svg path"); if(sv) sv.setAttribute("d","M5 12.5l4.5 4.5L19 7.5"); if(typeof buzz==="function") buzz([10,40,18]);
+      setTimeout(() =>{ takeRest(kind); if(document.querySelector("#sheet.on #restDlg")&&w.isConnected){ reset(w); return; }/* refused: the dialog is still open */
+        try{ document.dispatchEvent(new CustomEvent("mi:rest",{detail:kind})); }catch(er){} },120); },240); }
+  function usable(w,h){ return w&&!w.classList.contains("off")&&!w.classList.contains("done")&&!w.classList.contains("committing")&&!h.disabled; }
+  return /** @type {any} */ ({usable, commit});
+}
+function uiPdfExportHoldSlideConfirmAnonStep3(finish, usable, commit){
+document.addEventListener("pointercancel",finish);
+  document.addEventListener("keydown",(e) =>{ const h=e.target.closest&&e.target.closest(".slidec-h"); if(!h) return; if(e.key!=="Enter"&&e.key!==" "&&e.key!=="ArrowRight") return; e.preventDefault(); const w=h.closest(".slidec"); if(usable(w,h)) commit(w,h); });
+}
 

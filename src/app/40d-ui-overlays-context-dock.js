@@ -3,7 +3,7 @@ import {bindLive} from "./00a-reg-late-ports.js";/* Responsibility: overlay stac
 import {C,FROZEN} from "./04-logic-storage.js";
 import {$,eqOn,esc,num} from "./05-logic-helpers.js";
 import {lastFocus,sheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {showHome} from "./15-logic-roster-backup-files-snapshots.js";
 import {moveTabInd,mq} from "./21-ui-tabs-pager.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";

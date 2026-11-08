@@ -44,4 +44,4 @@ function est(pc,c,k){ const st=TGE.create({seed:1,w:6,h:4,units:[TGE.fromSheet(p
   const taken=D>0?F*(c.hp/D)*k*(k+1)/2:1e9, r=(pc.hp-taken)/Math.max(1,pc.hp); return {p:1/(1+Math.exp(-4.5*(r-0.25))),D:D,F:F,taken:taken}; }
 // @ts-ignore the node export of this file and of 20-engine.js refer to each other
 TGE.sim={pilot:pilot,fight:fight,duel:duel,est:est}; if(typeof module!=="undefined"&&module.exports&&!root.TGE) module.exports=TGE.sim;
-})(typeof window!=="undefined"?window:this);
+})(typeof self!=="undefined"?self:this);

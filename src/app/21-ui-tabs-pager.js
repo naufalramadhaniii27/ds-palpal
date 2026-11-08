@@ -4,7 +4,7 @@ import {D} from "./06-logic-derivation.js";
 import {REDUCE,spring} from "./07-ui-theme-contrast-spring.js";
 import {__set_actF,actF,renderActions,syncLU} from "./08b-ui-render-summaries-actions.js";import {__set_featF,__set_featQ,__set_invF,featF,featQ,invF,renderFeat,renderInv} from "./08c-ui-render-inventory-features-notes.js";import {used} from "./08-ui-render-sheet-and-actions.js";
 import {navStack} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet,infoHTML} from "./13-ui-detail-cards.js";
+import {closeSheet,infoHTML} from "./13b-ui-detail-spell-targets-render.js";
 import {env} from "./00-env.js";import {PANEL} from "./06a-logic-ui-registry.js";bindLive("PAGES",{get:function(){return PAGES;}});bindLive("goPage",{get:function(){return goPage;}});bindLive("moveTabInd",{get:function(){return moveTabInd;}});bindLive("onMode",{get:function(){return onMode;}});bindLive("setTab",{get:function(){return setTab;}});
 bindLive("curPage",{get:function(){return curPage;},set:function(v){curPage=v;}});
 bindLive("mq",{get:function(){return mq;},set:function(v){mq=v;}});

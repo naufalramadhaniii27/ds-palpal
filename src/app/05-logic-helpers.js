@@ -55,6 +55,10 @@ export function atkOn(a){ if(a&&a.of){ const o=eqInvOf(a.of); if(o&&!eqOn(o)) re
 export function attMaxC(){ return +C.attMax||3; }/* v19 RL43 */
 export function attCount(){ return (C.inv||[]).filter((i) =>{ return i.att&&eqOn(i); }).length; }
 export function armorFx(fx,it){ const j=JSON.stringify; if(!fx||j(C.ac)!==j(fx.b0.ac)) return false;
+  armorFxStep1(j, fx);
+  armorFxStep2(it, fx);
+  return true; }
+function armorFxStep1(j, fx){
   C.ac=JSON.parse(j(fx.b1.ac));
   /* M18: saving throw bonus and ability scores from magic items follow too, when the sheet still has the builder's values */
   if(fx.b0.sb&&j(C.saveBonus||[])===j(fx.b0.sb)){ if(fx.b1.sb.length) C.saveBonus=JSON.parse(j(fx.b1.sb)); else delete C.saveBonus; }
@@ -63,8 +67,10 @@ export function armorFx(fx,it){ const j=JSON.stringify; if(!fx||j(C.ac)!==j(fx.b
   if(C.speed===fx.b0.speed&&fx.b1.speed!==fx.b0.speed){ if(!C.speedSrc0) C.speedSrc0={v:C.speed,s:C.speedSrc||""}; C.speed=fx.b1.speed;
     if(C.speedSrc0.v===C.speed){ C.speedSrc=C.speedSrc0.s; delete C.speedSrc0; } else C.speedSrc=fx.b1.speedSrc; }
   const sk=(C.skills||[]).filter((k) =>{return k.n==="Stealth"})[0]; if(sk&&(sk.dis||"")===fx.b0.stealth){ if(fx.b1.stealth) sk.dis=fx.b1.stealth; else delete sk.dis; }
+}
+function armorFxStep2(it, fx){
   (C.inv||[]).forEach((x) =>{ if(x!==it&&fx.off.indexOf(x.key||x.n)>=0) x.eq=false; });
-  return true; }
+}
 export function viaBld(nm){ const it=(C.inv||[]).filter((x) =>{return (x.key||x.n)===nm})[0]; return !!(it&&it.key&&env.__bldHas&&env.__bldHas(nm,C.name)); }
 /* N2: hand-filled sheet path also updates the saved build of the same character (B.inv only), so a later Apply keeps the change */
 export function bldSync(nm,ch){ try{ if(env.__bldSync) env.__bldSync(nm,C.name,ch); }catch(e){} }

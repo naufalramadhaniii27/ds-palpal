@@ -37,16 +37,31 @@ try{ if(typeof BroadcastChannel==="function"){ BC=new BroadcastChannel("cs-sync"
 function bcPost(k){ if(!BC) return; try{ if(bkpKeyOk(k)) BC.postMessage({k:k,from:TABID}); }catch(e){} }
 env.__bcOn=function(){ return !!BC; };
 env.addEventListener("storage",(e) =>{ extChange(e.key,"st"); });
-function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return; const raw=lsGet(key); if(EXT_LAST[key]===raw) return; EXT_LAST[key]=raw; const e={key:key};
-  if(key===CKEY||key===KEY){ EXT_LAST[key===KEY?CKEY:KEY]=lsGet(key===KEY?CKEY:KEY); }
-  let r=null; try{ r=JSON.parse(lsGet(lateGet("RKEY"))||"null"); }catch(er){} if(r&&r.active&&MYID&&r.active!==MYID){ stale(); return; }
+function extChange(key,via){ if(FROZEN||!key||!bkpKeyOk(key)) return;
+ const {raw}=extChangeStep1(key); if(EXT_LAST[key]===raw) return;
+ const _extChangeStep2=extChangeStep2(key, raw);
+ const {e}=_extChangeStep2;
+ let {r}=_extChangeStep2; if(r&&r.active&&MYID&&r.active!==MYID){ stale(); return; }
   if(e.key===CKEY||e.key===KEY){ let c2=loadC(true), s2=loadS(true); if(!c2||!s2) return; const pend=!!saveT||SPEND, pendC=!!cSaveT; clearTimeout(saveT); clearTimeout(cSaveT); __set_saveT(null); __set_cSaveT(null);
     /* V18-2: a change made here in the last 150 ms is not thrown away: fields changed here since the last save are laid over the other tab's data */
     const remoteN=JSON.stringify(s2); if(pend) s2=mergeS(s2);
     if(pendC) c2=C; __set_C(c2); __set_S(s2); __set_S_BASE(remoteN); __set_S_RAW(lsGet(KEY)); if(pend) save(); if(pendC) saveC();
     try{ applyLook(); renderAll(true); renderNotes(); syncPortrait(); }catch(er){} if(lateGet("sheet")&&lateGet("sheet").classList&&lateGet("sheet").classList.contains("on")){ try{ refreshEntry(); }catch(er){} } return; }
   if(e.key===lateGet("BKEY")&&env.__bldReload){ env.__bldReload(); return; }
-  if(e.key===lateGet("RKEY")){ const w=document.getElementById("homeV"); if(w&&!w.hidden){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); } } }
+  extChangeStep3(e); }
+function extChangeStep1(key){
+const raw=lsGet(key);
+  return /** @type {any} */ ({raw});
+}
+function extChangeStep2(key, raw){
+EXT_LAST[key]=raw; const e={key:key};
+  if(key===CKEY||key===KEY){ EXT_LAST[key===KEY?CKEY:KEY]=lsGet(key===KEY?CKEY:KEY); }
+  let r=null; try{ r=JSON.parse(lsGet(lateGet("RKEY"))||"null"); }catch(er){}
+  return /** @type {any} */ ({e, r});
+}
+function extChangeStep3(e){
+  if(e.key===lateGet("RKEY")){ const w=document.getElementById("homeV"); if(w&&!w.hidden){ const g=document.getElementById("hgrid"); if(g) g.innerHTML=homeCards(true); } }
+}
 document.getElementById("rosterBtn").addEventListener("click",showHome);
 setTimeout(() =>{if(FROZEN)return;const r=rEnsure();Object.keys(r.chars).forEach((id) =>{if(!r.chars[id].created)r.chars[id].created=r.chars[id].t||Date.now()});rSave(r);MYID=r.active;startup(r);if(sessionStorage.getItem("cs-skip")==="1"){sessionStorage.removeItem("cs-skip");const ce=__store.getItem("cs-edit"),cn=__store.getItem("cs-new");if(ce)__store.removeItem("cs-edit");if(ce||cn){let tries=0,st=function(){(function go(){if(!env.__bldOpen&&env.__bldNeed)env.__bldNeed();if(cn&&!ce)return;if(env.__bldOpen)env.__bldOpen();else if(tries++<100)setTimeout(go,50)})()};/* v100: one frame first, so the message is on screen before the builder loads */if(env.requestAnimationFrame)requestAnimationFrame(() =>{setTimeout(st,0)});else setTimeout(st,30)}return}/* V18-7: the builder script may load after this timer */showHome()},0);
 /* V14-4: Apply keeps the game state (HANDOFF section 6). Damage taken stays the same when Hit Point maximum changes, used boxes stay (used() clamps to the new maximum) */

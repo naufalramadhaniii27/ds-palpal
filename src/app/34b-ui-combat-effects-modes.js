@@ -8,13 +8,23 @@ bindLive("modeChips",{get:function(){return modeChips;}});
 bindLive("modeXdRows",{get:function(){return modeXdRows;}});
 bindLive("noActH",{get:function(){return noActH;}});
 bindLive("saveCantripRows",{get:function(){return saveCantripRows;}});
-function cfx(){ const o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[],res:[],fly:null,xd:[],dmgStr:0,atkW:0,init:[],ds:[]}, c=Object.assign({},S.cond||{});
+function cfx(){
+ const {o, c, inc, xr2, add, sv}=cfxStep1();
+  cfxStep2(c, add, o, inc, sv);
+  cfxStep3(c, add, o, xr2, sv);
+  cfxStep4(o);
+  return o; }
+function cfxStep1(){
+const o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct:[],res:[],fly:null,xd:[],dmgStr:0,atkW:0,init:[],ds:[]}, c=Object.assign({},S.cond||{});
   if(c.Petrified) delete c.Poisoned;/* v22 m2: Petrified gives Immunity to the Poisoned condition */
   if(c.Invisible) o.init.push({t:"ADV",s:"Invisible when you roll Initiative"}); INCAP.forEach((k) =>{ if(c[k]) o.init.push({t:"DIS",s:k+" when you roll Initiative"}); });/* v22 m1 */
   function add(a,t,s){ a.push({t:t,s:s}); } function sv(ab,t,s){ (o.save[ab]=o.save[ab]||[]).push({t:t,s:s}); }  const inc=INCAP.some((k) =>{ return c[k]; });
   const exL=num(S.exh,0), xr2=x14();/* v94: Exhaustion, 2014: level 1 Disadvantage on ability checks, level 3 on attack rolls and saving throws */
   if(xr2&&exL>=1){ add(o.chk,"DIS","Exhaustion level "+exL); add(o.init,"DIS","Exhaustion level "+exL+" (Initiative is an ability check)"); }
   if(xr2&&exL>=3){ add(o.atk,"DIS","Exhaustion level "+exL); ABK.forEach((k) =>{ sv(k,"DIS","Exhaustion level "+exL); }); }
+  return /** @type {any} */ ({o, c, inc, xr2, add, sv});
+}
+function cfxStep2(c, add, o, inc, sv){
   PADV.forEach((r) =>{ if(!hasFeat(r.f)) return; if(/\(2014\)$/.test(C.sub||"")&&(r.f==="Remarkable Athlete"||r.f==="Survivor"||r.f==="Assassinate")) return;/* v72: 2014 versions of these features give no Advantage */ const src=r.f+(r.note?" ("+r.note+")":"");
     if(r.init) add(o.init,"ADV",src);
     (r.skill||[]).forEach((k) =>{ (o.skill[k]=o.skill[k]||[]).push({t:"ADV",s:src}); });
@@ -22,6 +32,8 @@ function cfx(){ const o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct
     if(r.ds) add(o.ds,"ADV",src); if(r.dsd) add(o.ds,"DIS",src); });
   (C.itemAdv||[]).forEach((r) =>{ if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push({t:"ADV",s:r.s}); });/* v65: magic items */
   if(c.Blinded) add(o.atk,"DIS","Blinded");
+}
+function cfxStep3(c, add, o, xr2, sv){
   if(c.Frightened){ add(o.atk,"DIS","Frightened, while the source of fear is in sight"); add(o.chk,"DIS","Frightened, while the source of fear is in sight"); }
   if(c.Grappled){ if(!xr2) add(o.atk,"DIS","Grappled, against anyone other than the grappler"); o.speed0.push("Grappled"); }
   if(c.Invisible) add(o.atk,"ADV","Invisible, against creatures that cannot see you");
@@ -34,9 +46,11 @@ function cfx(){ const o={atk:[],chk:[],chkAb:{},skill:{},save:{},speed0:[],noAct
   if(modeOn("rage")){ o.dmgStr=rageDmg(); (o.chkAb.STR=[]).push({t:"ADV",s:"Rage"}); sv("STR","ADV","Rage"); if(!(C.defenses||[]).some((d) =>{ return /while raging|\bRage\b/i.test(String(d.v)+" "+String(d.s)); })) ["Bludgeoning","Piercing","Slashing"].forEach((t) =>{ o.res.push({t:"Resistance",v:t,s:"Rage"}); }); }
   if(modeOn("sacred")) o.atkW=Math.max(1,D.mod.CHA);
   if(modeOn("wings")) o.fly={v:"walk",s:"Heavenly Wings (Celestial Revelation)"};
+}
+function cfxStep4(o){
   ["wings","radiance","shroud"].forEach((k) =>{ if(modeOn(k)) o.xd.push({n:"Celestial Revelation",dmg:String(D.pb),type:k==="shroud"?"Necrotic":"Radiant",note:"Once on each of your turns, one target you damage with an attack or a spell takes this extra damage while the transformation lasts."+(k==="radiance"?" At the end of each of your turns, each creature within 10 feet takes "+D.pb+" Radiant damage.":k==="shroud"?" When you transform, creatures other than your allies within 10 feet make a Charisma save (DC "+(8+D.pb+D.mod.CHA)+") or have the Frightened condition until the end of your next turn.":"")}); });
   sitFx(o);/* v103 */
-  return o; }
+}
 /* one tag per kind. Advantage and Disadvantage together cancel out */
 export function cfFlags(list){ list=list||[]; if(!list.length) return ""; const by={}; list.forEach((x) =>{ (by[x.t]=by[x.t]||[]).push(x.s); });
   if(by.FAIL) return '<span class="flag cf fail" title="'+esc("Automatic failure: "+by.FAIL.join(", "))+'">FAIL</span>';
@@ -48,6 +62,12 @@ export function modeChips(){ const av=modesAvail(); if(!av.length) return ""; re
 function modeUse(m){ return (D.res||[]).filter((r) =>{ return m.use.test(r.n); })[0]; }
 function modeToggle(k){ const m=MODES.filter((x) =>{ return x.k===k; })[0]; if(!m) return; S.mode=S.mode||{};
   if(S.mode[k]){ undoMark("End "+m.n); delete S.mode[k]; save(); renderAll(); refreshEntry(); toastU(m.n+" ended."); return; }
+  const {go, r, grp}=modeToggleStep1(m, k);
+  if(grp){ go(false); return; }
+  if(k==="rage"&&(C.inv||[]).some((i) =>{ return eqOn(i)&&HEAVY.test(i.n); })){ ask("You wear Heavy armor. Rage needs you out of Heavy armor. Turn it on anyway?","Turn On",() =>{ go(!!r&&used(r.k,r.max)<r.max); }); return; }/* v22 m3 */
+  if(r&&used(r.k,r.max)>=r.max){ ask("No "+r.n+" uses left. Turn on "+m.n+" anyway, without spending a use?","Turn On",() =>{ go(false); }); return; }
+  go(true); }
+function modeToggleStep1(m, k){
   const go=function(useIt){ undoMark(m.n); let r=modeUse(m), msg=m.n+" is active.", wsT=null;
     if(m.g) MODES.forEach((x) =>{ if(x.g===m.g&&x.k!==k) delete S.mode[x.k]; });
     S.mode[k]=1; if(useIt&&r){ S.used[r.k]=num(S.used[r.k],0)+1; msg+=" One use of "+r.n+" spent."; }
@@ -56,10 +76,8 @@ function modeToggle(k){ const m=MODES.filter((x) =>{ return x.k===k; })[0]; if(!
     save(); renderAll(); refreshEntry(); toastU(msg);
     if(wsT&&wsT.v) tmpApply(wsT.v,"Wild Shape",true); };/* v22 M5: one Undo for the whole action */
   const r=modeUse(m), grp=m.g&&MODES.some((x) =>{ return x.g===m.g&&modeOn(x.k); });
-  if(grp){ go(false); return; }
-  if(k==="rage"&&(C.inv||[]).some((i) =>{ return eqOn(i)&&HEAVY.test(i.n); })){ ask("You wear Heavy armor. Rage needs you out of Heavy armor. Turn it on anyway?","Turn On",() =>{ go(!!r&&used(r.k,r.max)<r.max); }); return; }/* v22 m3 */
-  if(r&&used(r.k,r.max)>=r.max){ ask("No "+r.n+" uses left. Turn on "+m.n+" anyway, without spending a use?","Turn On",() =>{ go(false); }); return; }
-  go(true); }
+  return /** @type {any} */ ({go, r, grp});
+}
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-mode]"); if(!b) return; e.preventDefault(); e.stopPropagation(); modeToggle(b.getAttribute("data-mode")); },true);
 export function noActH(){ const f=D.cf||{}; return f.noAct&&f.noAct.length?'<div class="caution cfna">⚠ '+esc(f.noAct.join(", "))+': you cannot take actions, Bonus Actions, or Reactions.</div>':''; }
 

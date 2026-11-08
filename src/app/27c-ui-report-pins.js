@@ -57,10 +57,18 @@ env.__reportText=function(){ return reportText(); };
 /* T11 A10: field timing on this device, kept in memory only. Long Animation Frames (Chromium) and Event Timing (slow taps), the 10 worst of each.
    They go into the problem report, nothing is sent anywhere */
 var PERF={loaf:[],ev:[]};
-(function(){ const keep=function(L,x){ L.push(x); L.sort((a,b) =>{ return b.d-a.d; }); if(L.length>10) L.length=10; };
-  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ const sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
-  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(e.duration>=100){ const t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
+(function(){
+ const {keep}=uiReportPinsAnon2Step1();
+  uiReportPinsAnon2Step2(keep);
 })();
+function uiReportPinsAnon2Step1(){
+const keep=function(L,x){ L.push(x); L.sort((a,b) =>{ return b.d-a.d; }); if(L.length>10) L.length=10; };
+  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("long-animation-frame")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ const sc=(e.scripts||[])[0]; keep(PERF.loaf,{d:Math.round(e.duration),blk:Math.round(e.blockingDuration||0),at:Math.round(e.startTime),src:sc?String(sc.sourceFunctionName||sc.invoker||"").slice(0,60):""}); }); }).observe({type:"long-animation-frame",buffered:true}); }catch(e){}
+  return /** @type {any} */ ({keep});
+}
+function uiReportPinsAnon2Step2(keep){
+  try{ if(env.PerformanceObserver&&(PerformanceObserver.supportedEntryTypes||[]).indexOf("event")>=0) new PerformanceObserver((l) =>{ l.getEntries().forEach((e) =>{ if(e.duration>=100){ const t=e.target, id=t?(t.id||t.getAttribute&&(t.getAttribute("data-tab")||t.getAttribute("aria-label"))||t.className||t.tagName):""; keep(PERF.ev,{d:Math.round(e.duration),type:e.name,on:String(id||"").slice(0,60),at:Math.round(e.startTime)}); } }); }).observe({type:"event",buffered:true,durationThreshold:100}); }catch(e){}
+}
 function reportOpen(){ const old=document.getElementById("rep"); if(old) old.remove(); const w=document.createElement("div"); w.id="rep"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","repT");
   let txt=reportText();
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="repT">Report a Problem</b><button type="button" class="bkpx" data-rep="close" aria-label="Close">×</button></div>'+
@@ -73,7 +81,10 @@ function reportOpen(){ const old=document.getElementById("rep"); if(old) old.rem
     const ta=document.getElementById("repTxt"); copyText(txt,ta).then((ok) =>{ toast(ok?"Report copied. Paste it in your message.":"Select the text and copy it."); }); }); }
 /* RU75: a basic actor file for Foundry VTT (dnd5e system). Numbers come from this sheet; Foundry fills item and spell details only when they are dragged in from its own compendiums */
 const FVTT_SK={"Acrobatics":"acr","Animal Handling":"ani","Arcana":"arc","Athletics":"ath","Deception":"dec","History":"his","Insight":"ins","Intimidation":"itm","Investigation":"inv","Medicine":"med","Nature":"nat","Perception":"prc","Performance":"prf","Persuasion":"per","Religion":"rel","Sleight of Hand":"slt","Stealth":"ste","Survival":"sur"};
-function foundryOf(Cc,Ss){ let c0=C,s0=S,out=null; try{ __set_C(Cc); __set_S(Object.assign(clone(DEF),Ss||{})); ["cond","notes","used"].forEach((k) =>{ if(typeof S[k]!=="object"||!S[k]) S[k]={}; }); derive();
+function foundryOf(Cc,Ss){
+ const _foundryOfStep1=foundryOfStep1();
+ const {c0, s0}=_foundryOfStep1;
+ let {out}=_foundryOfStep1; try{ __set_C(Cc); __set_S(Object.assign(clone(DEF),Ss||{})); ["cond","notes","used"].forEach((k) =>{ if(typeof S[k]!=="object"||!S[k]) S[k]={}; }); derive();
   const ab={}; ABK.forEach((k) =>{ ab[k.toLowerCase()]={value:D.score[k],proficient:C.saves&&C.saves[k]?1:0}; });
   const sk={}; (C.skills||[]).forEach((s) =>{ const k=FVTT_SK[s.n]; if(k) sk[k]={value:num(s.p,0),ability:String(s.ab||"").toLowerCase()}; });
   const cz=coinsNow(), lv=clsLvls(), items=[];
@@ -86,7 +97,15 @@ function foundryOf(Cc,Ss){ let c0=C,s0=S,out=null; try{ __set_C(Cc); __set_S(Obj
     details:{alignment:S.align||"",biography:{value:'<p>'+esc((S.notes&&S.notes.backstory)||"")+'</p>'},xp:{value:num(S.xp,0)}},
     currency:{pp:num(cz.pp,0),gp:num(cz.gp,0),ep:num(cz.ep,0),sp:num(cz.sp,0),cp:num(cz.cp,0)},traits:{languages:{custom:(C.lang||[]).join("; ")}}},
     items:items,flags:{"dnd2024-sheet-builder":{appVer:APP_VER,note:"Basic export. Ability scores, saves, skills, Hit Points, Armor Class, Speed, coins, class levels, and the names of items, spells, and features."}}}; }
-  catch(e){ out=null; } __set_C(c0); __set_S(s0); try{ derive(); }catch(e){} return out; }
+  catch(e){ out=null; }
+ foundryOfStep2(c0, s0); return out; }
+function foundryOfStep1(){
+let c0=C,s0=S,out=null;
+  return /** @type {any} */ ({c0, s0, out});
+}
+function foundryOfStep2(c0, s0){
+__set_C(c0); __set_S(s0); try{ derive(); }catch(e){}
+}
 function WEAPONS_T(x){ return /Weapon/.test(x.type||"")||(C.attacks||[]).some((a) =>{ return a.n===x.n; }); }
 function foundryOut(id){ const r=rSnap(rEnsure()), o=foundryOf(rC(id,r),rS(id,r)||{}); if(!o){ toast("This character could not be exported."); return; }
   const nm=String(o.name).replace(/[^A-Za-z0-9 _-]+/g,"").trim().replace(/\s+/g,"-")||"character"; dlFile(JSON.stringify(o,null,1),"fvtt-"+nm+".json",(ok) =>{ toast(ok?"Download started: fvtt-"+nm+".json. In Foundry, right-click a character and choose Import Data.":"Download is blocked here."); }); }
@@ -102,7 +121,7 @@ function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!env.__bldMine||!env.__bldMin
   return '<div class="oldnote" role="note"><p><b>This sheet was made by an older version of the builder.</b> Rules in the builder were updated since. Press Build, then Apply to refresh the sheet. The Apply dialog lists what would change: '+esc(d.join(". "))+'.</p><div class="bkpr"><button type="button" class="btn press" data-oldn="bld">Open Builder</button><button type="button" class="btn press" data-oldn="ok">Dismiss</button></div></div>'; }
 /* T4: press and hold a library row (item, gear or spell), drag it onto the drop zone to add it to the sheet. Same as the Add button */
 (function(){ let timer=0, sx=0, sy=0, cur=null, ghost=null, zone=null, hold=0;
-  function pick(r){ const s=r.getAttribute("data-lib-open")||"", i=s.indexOf("|"), c=s.slice(0,i); return (c==="spell"||c==="item"||c==="gear")?{c:c,k:s.slice(i+1),t:(r.querySelector("b")||r).textContent}:null; }
+  const {pick}=uiReportPinsAnonStep1();
   function over(x,y){ if(!zone) return false; const r=zone.getBoundingClientRect(); return x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8; }
   function end(){ clearTimeout(timer); timer=0; if(ghost){ ghost.remove(); ghost=null; } if(zone){ zone.remove(); zone=null; } if(cur){ cur=null; hold=Date.now(); } }
   function begin(r,t,x,y){ cur=t; const w=document.getElementById("lib"); if(!w) { cur=null; return; }
@@ -114,8 +133,15 @@ function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!env.__bldMine||!env.__bldMin
     if(!cur) return; if(ghost){ ghost.style.left=e.clientX+"px"; ghost.style.top=e.clientY+"px"; } if(zone) zone.classList.toggle("on",over(e.clientX,e.clientY)); },true);
   document.addEventListener("touchmove",(e) =>{ if(cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
   document.addEventListener("pointerup",(e) =>{ clearTimeout(timer); timer=0; if(!cur) return; const t=cur, hit=over(e.clientX,e.clientY); end(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); },true);
-  document.addEventListener("pointercancel",() =>{ end(); },true);
+  uiReportPinsAnonStep2(end);
   document.addEventListener("keydown",(e) =>{ if(cur&&e.key==="Escape"){ e.stopPropagation(); end(); } },true);
   document.addEventListener("click",(e) =>{ if(hold&&Date.now()-hold<400){ const r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } hold=0; } },true);
   document.addEventListener("contextmenu",(e) =>{ if(cur||timer) e.preventDefault(); },true);
 })();
+function uiReportPinsAnonStep1(){
+  function pick(r){ const s=r.getAttribute("data-lib-open")||"", i=s.indexOf("|"), c=s.slice(0,i); return (c==="spell"||c==="item"||c==="gear")?{c:c,k:s.slice(i+1),t:(r.querySelector("b")||r).textContent}:null; }
+  return /** @type {any} */ ({pick});
+}
+function uiReportPinsAnonStep2(end){
+  document.addEventListener("pointercancel",() =>{ end(); },true);
+}

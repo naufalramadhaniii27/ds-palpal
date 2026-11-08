@@ -12,12 +12,15 @@ bindLive("lintChip",{get:function(){return lintChip;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 function lintChip(){ const l=lintList(); if(!l.length) return ""; return '<button type="button" class="chip lint-c press" data-lint="1" aria-label="Rules check: '+l.length+(l.length===1?' thing':' things')+' to look at">'+(typeof ico==="function"?ico("ui-info"):"")+'Rules check '+l.length+'</button>'; }
 export function lintList(){ const out=[]; if(!C||!D||!S) return out;
+  lintListStep1(out);
+  return out; }
+function lintListStep1(out){
   (C.inv||[]).forEach((i,ix) =>{ if(!eqOn(i)) return; const m=/Requires Str (\d+)/i.exec(i.d||""); if(m&&D.score&&D.score.STR<+m[1]) out.push({k:"str-"+ix,t:"Heavy armor too heavy",x:i.n+" needs Strength "+m[1]+". Your Strength is "+D.score.STR+", so your Speed is 10 feet lower while you wear it.",fix:"inv",fl:"Open Inventory"}); });
   const att=(C.inv||[]).filter((i) =>{ return i.att&&eqOn(i); }).length, aM=attMaxC(); if(att>aM) out.push({k:"att",t:"Too many attuned items",x:"You can be attuned to "+aM+" magic items at a time. You have "+att+". Only the first "+aM+" work.",fix:"inv",fl:"Open Inventory"});
   if(num(S.hp,1)===0&&!(S.cond&&S.cond.Unconscious)&&!(S.ds&&S.ds[1]>=3)) out.push({k:"unc",t:"0 Hit Points",x:"At 0 Hit Points you have the Unconscious condition until you regain a Hit Point.",fix:"unc",fl:"Add Unconscious"});
   if(S.exh>=6) out.push({k:"exh",t:"Exhaustion 6",x:"At Exhaustion level 6 a creature dies. Lower it if this was a mistake.",fix:"exh",fl:"Lower to 5"});
   const dup=(C.inv||[]).filter((i) =>{ return eqOn(i)&&/^Shield\b/i.test(i.n); }).length; if(dup>1) out.push({k:"sh",t:"Two Shields",x:"Only one Shield gives its bonus to Armor Class.",fix:"inv",fl:"Open Inventory"});
-  return out; }
+}
 /* ===== v31 p02 segments (B2) ===== */
 const SEGX={};
 function segKey(el){ const r=el.closest("[id]"); return (r?r.id:"")+"|"+Array.prototype.indexOf.call((r||document).querySelectorAll(".ifil"),el); }

@@ -8,7 +8,7 @@ import {renderConds} from "./10-ui-conditions.js";
 import {__set_navStack,navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {mq,setTab} from "./21-ui-tabs-pager.js";
 import {ico,resOf} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {openRest} from "./23d-ui-rest.js";import {renderSpells} from "./23e-ui-spells-dc.js";
-import {openSearch} from "./27-ui-party-search-commands-library.js";import {libOpen} from "./27b-ui-library.js";
+import {openSearch} from "./27-ui-party-search-commands-library.js";import {libOpen} from "./27d-ui-library-search-open.js";
 import {renderExtras} from "./29b-ui-creatures-extras.js";
 import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";import {undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
@@ -24,17 +24,26 @@ bindLive("renderAll",{get:function(){return renderAll;}});
 /* v42 Combo: three shortcut lists of one Action, one Bonus Action, one Reaction. Options come from what the character has */
 const CMB_MOVE=["Move","Stand Up","Climb or Swim","Jump"], CMB_FREE=["Interact with an Object","Speak","Drop Prone"], CMB_DESC={"Move":"Spend up to your Speed to move on your turn. You can split it before and after your action.","Stand Up":"Standing up from Prone costs movement equal to half your Speed.","Climb or Swim":"Each foot of climbing or swimming costs 1 extra foot of movement, unless you have a Climb or Swim Speed.","Jump":"A running long jump covers feet equal to your Strength score. A high jump covers 3 plus your Strength modifier in feet. Both need a 10 foot run first.","Interact with an Object":"You get one free object interaction on your turn, such as drawing or stowing a weapon. A second one costs the Utilize action.","Speak":"You can say a few short phrases on your turn without using any action.","Drop Prone":"You can fall Prone on your turn. It costs no action and none of your Speed.","Two-Weapon Fighting":"When you take the Attack action and hit with a Light weapon, you can make one extra attack as a Bonus Action with a different Light weapon. Leave out your ability modifier on its damage unless the modifier is negative.","Hasted Action":"With Haste you get one extra action on each of your turns. It can only be used for one weapon attack, Dash, Disengage, Hide, or Utilize."};
 let CMB_SL=[["m","Movement","move"],["a","Action","action"],["x","Extra Action","extra"],["h","On Hit","onhit"],["b","Bonus Action","bonus"],["r","Reaction","reaction"],["f","Free","free"]], CMB_STD=["Dodge","Dash","Disengage","Help","Hide","Search","Ready","Grapple","Shove","Utilize","Influence","Study","Magic","Improvise"], cmbEdit=false;
-function cmbPool(sl){ const out=[], seen={}, add=function(o){ if(seen[o.k]) return; seen[o.k]=1; out.push(o); }, kk={a:"action",h:"onhit",b:"bonus",r:"reaction"}[sl], kinds=actSplit(featAll());
+function cmbPool(sl){
+ const {out, add, kk, kinds}=cmbPoolStep1(sl);
+  const {re}=cmbPoolStep2(sl, add, kinds, kk); if(re) spellsBy(re).forEach((p) =>{ add({k:"sp:"+p[0].n,n:p[0].n,g:"Spells",i:p[1]}); });
+  return out; }
+function cmbPoolStep1(sl){
+const out=[], seen={}, add=function(o){ if(seen[o.k]) return; seen[o.k]=1; out.push(o); }, kk={a:"action",h:"onhit",b:"bonus",r:"reaction"}[sl], kinds=actSplit(featAll());
   if(sl==="a") CMB_STD.forEach((n) =>{ if(x14()&&(n==="Influence"||n==="Study")) return; add({k:"std:"+n,n:x14n(n),g:"Standard actions"}); });/* v94 */
   if(sl==="r") add({k:"std:Opportunity Attack",n:"Opportunity Attack",g:"Standard actions"});
   if(sl==="m") CMB_MOVE.forEach((n) =>{ add({k:"std:"+n,n:n,g:"Movement"}); });
   if(sl==="f") CMB_FREE.forEach((n) =>{ add({k:"std:"+n,n:n,g:"Free"}); });
   if(sl==="x"){ kinds.other.concat(kinds.action,kinds.bonus).forEach((o) =>{ const n=o.e?o.e.n:o.x.f.n; if(n==="Action Surge") add({k:"ft:"+n+"|"+(o.e?(o.e.it?"item":o.e.f):o.x.g),n:n,g:"Features",o:o}); }); if((C.spells||[]).some((s) =>{ return s.n==="Haste"; })) add({k:"std:Hasted Action",n:"Hasted Action",g:"Spells"}); }
+  return /** @type {any} */ ({out, add, kk, kinds});
+}
+function cmbPoolStep2(sl, add, kinds, kk){
   (C.attacks||[]).forEach((a,i) =>{ if(!atkOn(a)) return; const act=a.act||""; if((sl==="a"&&act==="")||(sl==="b"&&act==="bonus")||(sl==="r"&&act==="reaction")) add({k:"atk:"+a.n,n:(act===""?"Attack \u00b7 ":"")+a.n,g:"Attacks",i:i}); });
   if(sl==="b"&&(C.attacks||[]).some((a) =>{ return atkOn(a)&&/Light/.test(a.sub||""); })) add({k:"std:Two-Weapon Fighting",n:"Two-Weapon Fighting",g:"Standard actions"});
   (kinds[kk]||[]).forEach((o) =>{ const n=o.e?o.e.n:o.x.f.n; add({k:"ft:"+n+"|"+(o.e?(o.e.it?"item":o.e.f):o.x.g),n:n,g:"Features",o:o}); });
-  const re={a:/^Action/,b:/^Bonus/,r:/^Reaction/}[sl]; if(re) spellsBy(re).forEach((p) =>{ add({k:"sp:"+p[0].n,n:p[0].n,g:"Spells",i:p[1]}); });
-  return out; }
+  const re={a:/^Action/,b:/^Bonus/,r:/^Reaction/}[sl];
+  return /** @type {any} */ ({re});
+}
 function cmbScrollOn(){ try{ const t=document.querySelector('.cmb-tab.on'), w=t&&t.parentNode; if(w&&w.scrollWidth>w.clientWidth) w.scrollLeft=Math.max(0,t.offsetLeft-(w.clientWidth-t.offsetWidth)/2); }catch(er){} }
 function cmbN(){ const n=Math.floor(+S.cmbn||0), m=Array.isArray(S.combos)?S.combos.length:0; return Math.max(1,n||Math.max(3,m)); }/* v54: no fixed limit of three */
 function cmbCI(){ const c=+S.ccur; return c>=0&&c<cmbN()?c:0; }
@@ -57,8 +66,12 @@ function cmbBody(it){ if(it.o) return actOne(it.o,"");
     const nA=cmbApa(); return '<div class="cmbf-t">'+(!a.act?'Attack \u00b7 ':'')+'<button type="button" class="tx" data-info="w:'+it.i+'">'+esc(a.n)+'</button></div>'+(!a.act?'<p>'+(nA>1?'Make '+nA+' attacks':'Make one attack')+' with your weapon. Roll to hit, then damage.</p>':'')+'<div class="cmbf-st"><span><small>To hit</small><b>'+sg(d.hit)+'</b></span><span><small>Damage</small><b>'+esc(d.dmg)+'</b></span></div><div class="cmbf-ch">'+ch.map((c) =>{ return '<span>'+esc(c)+'</span>'; }).join("")+'</div>'+cmbPills(a); }
   if(it.k.indexOf("sp:")===0){ const x=(C.spells||[])[it.i]; if(!x) return ""; const ch2=[x.l?"Level "+x.l:"Cantrip",x.r,x.dur,x.sv?"Save: "+x.sv:"",x.conc?"Concentration":""].filter(Boolean);
     return '<div class="cmbf-t"><button type="button" class="tx" data-info="sp:'+it.i+'">'+esc(x.n)+'</button></div><div class="cmbf-ch">'+ch2.map((c) =>{ return '<span>'+esc(c)+'</span>'; }).join("")+'</div>'+(x.sum?'<p>'+rich(x.sum)+'</p>':'')+cmbSlotLk(x,it.i); }
-  const g=GLOSS[it.n], t=CMB_DESC[it.n]||(g?g.d:(it.n==="Opportunity Attack"?"When a creature you can see leaves your reach, use your Reaction to make one melee attack against it with a weapon or an Unarmed Strike.":""));
+  const {t}=cmbBodyStep1(it);
   return '<div class="cmbf-t">'+esc(it.n)+'</div>'+(t?'<p>'+rich(fill(t))+'</p>':''); }
+function cmbBodyStep1(it){
+  const g=GLOSS[it.n], t=CMB_DESC[it.n]||(g?g.d:(it.n==="Opportunity Attack"?"When a creature you can see leaves your reach, use your Reaction to make one melee attack against it with a weapon or an Unarmed Strike.":""));
+  return /** @type {any} */ ({t});
+}
 function cmbHTML(){ try{ setTimeout(cmbScrollOn,30); let ci=cmbCI(), st=cmbSteps(ci), h='<div class="cmb"><div class="cmb-top"><div class="cmb-tabs" role="tablist">';
   for(let i=0;i<cmbN();i++) h+='<button type="button" role="tab" aria-selected="'+(i===ci)+'" class="cmb-tab'+(i===ci?' on':'')+'" data-cmbtab="'+i+'">'+esc(cmbName(i))+'</button>';
   h+='</div><button type="button" class="cmb-add noico press" data-cmbadd="1" aria-label="Add a combo">+</button><button type="button" class="cmb-pen press'+(cmbEdit?' on':'')+'" data-cmbedit="1" aria-pressed="'+cmbEdit+'" aria-label="'+(cmbEdit?'Finish editing':'Edit combo')+'">'+(cmbEdit?'Done':'Edit')+'</button></div>';

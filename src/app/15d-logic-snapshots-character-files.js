@@ -20,13 +20,26 @@ function snPut(o){ if(FROZEN||SN_BAD) return false;/* a damaged snapshot store i
 function healOkC(raw){ try{ const p=JSON.parse(raw); return !!(p&&p.v===3&&p.abilities); }catch(e){ return false; } }
 function healOkS(raw){ try{ const p=JSON.parse(raw); return !!(p&&typeof p==="object"&&!Array.isArray(p)); }catch(e){ return false; } }
 function healFind(){ const curC=lsGet(CKEY), curS=lsGet(KEY), needC=curC!=null&&!healOkC(curC), needS=curS!=null&&!healOkS(curS); if(!needC&&!needS) return null;
+  const _healFindStep1=healFindStep1(needC, needS);
+  const {L, add}=_healFindStep1;
+  let {r}=_healFindStep1;
+  healFindStep2(r, add);
+  if(!L.length) return {needC:needC,needS:needS,none:1};
+  const {pick}=healFindStep3(L, needC, needS, curC); return pick; }
+function healFindStep1(needC, needS){
   const L=[], add=function(src,t,c,st){ if(needC&&!healOkC(c)) return; if(!needC&&needS&&!healOkS(st)) return; L.push({src:src,t:t||0,C:needC?c:null,S:needS&&healOkS(st)?st:null}); };
   try{ add("the second copy on this device",0,localStorage.getItem(CKEY),localStorage.getItem(KEY)); }catch(e){}
   let r=null; try{ r=JSON.parse(lsGet(lateGet("RKEY"))||"null"); }catch(e){ r=null; } const e0=r&&r.chars&&r.active&&r.chars[r.active]; if(e0) add("the character list",e0.t,e0.C,e0.S);
+  return /** @type {any} */ ({L, add, r});
+}
+function healFindStep2(r, add){
   if(r&&r.active){ const o=snGet(); (o.chars[r.active]||[]).forEach((x) =>{ add("a snapshot ("+x.why+")",x.t,typeof x.C==="string"?x.C:JSON.stringify(x.C),x.S); }); }
-  if(!L.length) return {needC:needC,needS:needS,none:1};
+}
+function healFindStep3(L, needC, needS, curC){
   const first=L[0].src.indexOf("second copy")===0?L[0]:null, rest=L.filter((x) =>{ return x!==first; }).sort((a,b) =>{ return b.t-a.t; });
-  const pick=first||rest[0]; pick.needC=needC; pick.needS=needS; const c=cOf(pick.C||curC); pick.label=(c.name||"Character")+(c.cls?", "+(c.clsLabel||(c.cls+" "+(c.level||""))):"")+(pick.t?", saved "+fmtAgo(pick.t):""); return pick; }
+  const pick=first||rest[0]; pick.needC=needC; pick.needS=needS; const c=cOf(pick.C||curC); pick.label=(c.name||"Character")+(c.cls?", "+(c.clsLabel||(c.cls+" "+(c.level||""))):"")+(pick.t?", saved "+fmtAgo(pick.t):"");
+  return /** @type {any} */ ({pick});
+}
 function healHTML(){ let h=null; try{ h=healFind(); }catch(e){ h=null; } if(!h) return "";
   if(h.none) return '<p class="muted">No readable copy of this character was found on this device. Download a backup and keep it.</p>';
   return '<div class="rec-heal"><p><b>A readable copy was found</b> in '+esc(h.src)+': '+esc(h.label)+'.</p><div class="bkpr"><button type="button" class="btn pri press" data-rec="heal">Use This Copy</button></div></div>'; }
@@ -66,8 +79,32 @@ function chSave2(id,o,txt){ const nm=chName(o);
   if(env.showSaveFilePicker&&env.isSecureContext&&!/Mobi|Android/i.test(navigator.userAgent)){ const hp=FH[id]?Promise.resolve(FH[id]):env.showSaveFilePicker({suggestedName:nm,types:[{description:"Character file",accept:{"application/octet-stream":[".bs"]}}]});
     hp.then((h) =>{ FH[id]=h; return h.createWritable().then((w) =>{ return w.write(txt).then(() =>{ return w.close(); }); }).then(() =>{ mark("Saved to "+h.name); }); }).catch((e) =>{ if(e&&e.name==="AbortError") return; delete FH[id]; dl(); }); return; }
   dl(); }
-export function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) return; const old=document.getElementById("chf"); if(old) old.remove(); const w=document.createElement("div"); w.id="chf"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","chfT");
+export function chfOpen(id){
+ const {r, c}=chfOpenStep1(id); if(!c) return;
+ const {w, fm, chg, uns, rc, L}=chfOpenStep2(id, r);
+  const {esc1}=chfOpenStep3(w, c, fm, uns, chg, rc, L);
+ chfOpenStep4(esc1);
+  let txt=null;
+  w.addEventListener("click",(e) =>{ if(e.target===w){ w.remove(); return; } const s=e.target.closest("[data-snr]"); if(s){ snRestore(id,+s.getAttribute("data-snr")); return; } const b=e.target.closest("[data-chf]"); if(!b) return; const a=b.getAttribute("data-chf");
+    if(a==="close"){ w.remove(); return; }
+    if(a==="save"){ chSave(id); return; }
+    if(a==="dup"){ chCopy(id); w.remove(); return; }
+    if(a==="foundry"){ foundryOut(id); return; }/* v27 RU75 */
+    if(a==="send"){ qrSendOpen(id); return; }/* v34 item 5 */
+    if(a==="text"){ const t=JSON.stringify(chFile(id)); w.querySelector(".bkpt").hidden=false; zPack(t).then((z) =>{ txt=z; },() =>{ txt=t; }).then(() =>{ const ta=document.getElementById("chfTxt"); if(ta){ ta.value=txt; ta.focus(); ta.select(); } }); return; }
+    if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) =>{ toast(ok?"Character text copied":"Select the text and copy it"); }); return; }
+    if(a==="snap"&&SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; }
+    if(a==="snap"){ const rr=rSnap(rEnsure()), before=(snGet().chars[id]||[]).length; snTake(id,"Taken by hand",rr); toast((snGet().chars[id]||[]).length>before||before>=5?"Snapshot taken":"No changes since the last snapshot"); chfOpen(id); return; } }); }
+function chfOpenStep1(id){
+const r=rGet()||{chars:{}}, c=r.chars[id];
+  return /** @type {any} */ ({r, c});
+}
+function chfOpenStep2(id, r){
+const old=document.getElementById("chf"); if(old) old.remove(); const w=document.createElement("div"); w.id="chf"; w.className="bkp"; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","chfT");
   const fm=fileMark(id), chg=!!fm&&fm.h!==rawHash(chRaw(id,r)), uns=fileStale(fm,chg), rc=remindCfg(), L=snGet().chars[id]||[];/* v33 p10 */
+  return /** @type {any} */ ({w, fm, chg, uns, rc, L});
+}
+function chfOpenStep3(w, c, fm, uns, chg, rc, L){
   w.innerHTML='<div class="bkpb"><div class="bkph"><b id="chfT">'+esc(c.name||"Character")+'</b><button type="button" class="bkpx" data-chf="close" aria-label="Close">×</button></div>'+
    '<p>Save this character in its own file (.bs). The text inside is packed, so other apps cannot open it directly. Open Character on any device adds it back, next to the characters already there.</p>'+
    '<p class="muted">Last saved to a file: <b>'+(fm?fmtT(fm.t):'never')+'</b>'+(uns?' <span class="hunsv">File out of date</span>':'')+'</p>'+(uns?'<p class="hunsv-x">Your last file backup was '+fileAgo(fm)+' and the character changed since. Your progress is kept on this device automatically. Press Save Character to refresh the backup file.</p>':(chg?'<p class="muted">Changed since the last file save. Your progress is kept on this device automatically, so this is only a backup reminder.</p>':''))+
@@ -81,16 +118,10 @@ export function chfOpen(id){ const r=rGet()||{chars:{}}, c=r.chars[id]; if(!c) r
    (SN_BAD?'<p class="hbkl warn">The snapshot list on this device is damaged, so new snapshots are not saved. It is left as it is. Back Up your characters to keep a safe copy.</p>':'')+(L.length?'<div class="snl">'+L.map((x,i) =>{ return '<div class="snr"><span><b>'+fmtT(x.t)+'</b><small>'+esc(x.why)+(x.name?' • '+esc(x.name)+' '+esc(cOf(x.C).clsLabel||((cOf(x.C).cls||"")+" "+(cOf(x.C).level||""))):'')+'</small></span><button type="button" class="btn press" data-snr="'+i+'">Restore</button></div>'; }).join("")+'</div>':'<p class="muted">No snapshots yet.</p>')+
    '<div class="bkpr"><button type="button" class="btn press" data-chf="snap">Take Snapshot Now</button><button type="button" class="btn press" data-chf="dup">Make a Copy</button></div></div>';
   document.body.appendChild(w);
-  const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } }; document.addEventListener("keydown",esc1,true);
-  let txt=null;
-  w.addEventListener("click",(e) =>{ if(e.target===w){ w.remove(); return; } const s=e.target.closest("[data-snr]"); if(s){ snRestore(id,+s.getAttribute("data-snr")); return; } const b=e.target.closest("[data-chf]"); if(!b) return; const a=b.getAttribute("data-chf");
-    if(a==="close"){ w.remove(); return; }
-    if(a==="save"){ chSave(id); return; }
-    if(a==="dup"){ chCopy(id); w.remove(); return; }
-    if(a==="foundry"){ foundryOut(id); return; }/* v27 RU75 */
-    if(a==="send"){ qrSendOpen(id); return; }/* v34 item 5 */
-    if(a==="text"){ const t=JSON.stringify(chFile(id)); w.querySelector(".bkpt").hidden=false; zPack(t).then((z) =>{ txt=z; },() =>{ txt=t; }).then(() =>{ const ta=document.getElementById("chfTxt"); if(ta){ ta.value=txt; ta.focus(); ta.select(); } }); return; }
-    if(a==="copy"){ const ta=document.getElementById("chfTxt"); copyText(txt||ta.value,ta).then((ok) =>{ toast(ok?"Character text copied":"Select the text and copy it"); }); return; }
-    if(a==="snap"&&SN_BAD){ toast("Snapshots cannot be saved: the snapshot list on this device is damaged"); return; }
-    if(a==="snap"){ const rr=rSnap(rEnsure()), before=(snGet().chars[id]||[]).length; snTake(id,"Taken by hand",rr); toast((snGet().chars[id]||[]).length>before||before>=5?"Snapshot taken":"No changes since the last snapshot"); chfOpen(id); return; } }); }
+  const esc1=function(e){ if(e.key==="Escape"&&!document.querySelector(".ask")){ w.remove(); document.removeEventListener("keydown",esc1,true); } };
+  return /** @type {any} */ ({esc1});
+}
+function chfOpenStep4(esc1){
+document.addEventListener("keydown",esc1,true);
+}
 /* import: backup or character file, plain or packed */

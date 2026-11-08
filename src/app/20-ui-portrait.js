@@ -1,7 +1,7 @@
 import {bindLive,ico,icoCls,lateGet} from "./00a-reg-late-ports.js";import {C,S,save} from "./04-logic-storage.js";
 import {$,toast} from "./05-logic-helpers.js";
 import {__set_navStack,navStack,openSheet} from "./12-ui-bottom-sheet-modal.js";
-import {closeSheet} from "./13-ui-detail-cards.js";
+import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";
 import {env} from "./00-env.js";
 bindLive("syncPortrait",{get:function(){return syncPortrait;}});
 /* ================= PORTRAIT ================= */
