@@ -84,12 +84,12 @@ const FVTT_SK={"Acrobatics":"acr","Animal Handling":"ani","Arcana":"arc","Athlet
 function foundryOf(Cc,Ss){
  const _foundryOfStep1=foundryOfStep1();
  const {c0, s0}=_foundryOfStep1;
- let {out}=_foundryOfStep1; try{ __set_C(Cc); __set_S(Object.assign(clone(DEF),Ss||{})); ["cond","notes","used"].forEach((k) =>{ if(typeof S[k]!=="object"||!S[k]) S[k]={}; }); derive();
+ let {out}=_foundryOfStep1; try{ __set_C(Cc); __set_S(Object.assign(clone(DEF),Ss||{})); ["cond","notes","used"].forEach((k) => foundryOfFn1(k)); derive();
   const ab={}; ABK.forEach((k) =>{ ab[k.toLowerCase()]={value:D.score[k],proficient:C.saves&&C.saves[k]?1:0}; });
   const sk={}; (C.skills||[]).forEach((s) =>{ const k=FVTT_SK[s.n]; if(k) sk[k]={value:num(s.p,0),ability:String(s.ab||"").toLowerCase()}; });
   const cz=coinsNow(), lv=clsLvls(), items=[];
   Object.keys(lv).forEach((cl) =>{ items.push({name:cl,type:"class",system:{levels:lv[cl],identifier:cl.toLowerCase()}}); });
-  (C.inv||[]).forEach((x) =>{ const w=WEAPONS_T(x); items.push({name:x.n,type:w?"weapon":/Armor|Shield/.test(x.type||"")?"equipment":"loot",system:{quantity:num(x.q,1),weight:{value:num(x.w,0),units:"lb"},equipped:!!eqOn(x),attuned:!!x.att&&!!eqOn(x)}}); });
+  (C.inv||[]).forEach((x) => foundryOfFn2(items, x));
   (C.spells||[]).forEach((x) =>{ items.push({name:x.n,type:"spell",system:{level:num(x.l,0),preparation:{mode:/Always/.test(x.use||"")?"always":"prepared",prepared:true}}}); });
   featAll().forEach((x) =>{ items.push({name:x.f.n,type:"feat",system:{description:{value:'<p>'+esc(x.t).slice(0,4000)+'</p>'}}}); });
   out={name:C.name||"Character",type:"character",img:"icons/svg/mystery-man.svg",system:{abilities:ab,skills:sk,
@@ -99,6 +99,8 @@ function foundryOf(Cc,Ss){
     items:items,flags:{"dnd2024-sheet-builder":{appVer:APP_VER,note:"Basic export. Ability scores, saves, skills, Hit Points, Armor Class, Speed, coins, class levels, and the names of items, spells, and features."}}}; }
   catch(e){ out=null; }
  foundryOfStep2(c0, s0); return out; }
+function foundryOfFn1(k){ if(typeof S[k]!=="object"||!S[k]) S[k]={}; }
+function foundryOfFn2(items, x){ const w=WEAPONS_T(x); items.push({name:x.n,type:w?"weapon":/Armor|Shield/.test(x.type||"")?"equipment":"loot",system:{quantity:num(x.q,1),weight:{value:num(x.w,0),units:"lb"},equipped:!!eqOn(x),attuned:!!x.att&&!!eqOn(x)}}); }
 function foundryOfStep1(){
 let c0=C,s0=S,out=null;
   return /** @type {any} */ ({c0, s0, out});
@@ -120,24 +122,39 @@ export function pinnedH(){ if(!Array.isArray(S.pin)||!S.pin.length) return ""; c
 function oldNoteH(){ if(C.bv||S.updSeen===APP_VER||!env.__bldMine||!env.__bldMine()) return ""; let d=[]; try{ d=env.__bldDiff?env.__bldDiff(C)||[]:[]; }catch(e){ d=[]; } if(!d.length) return "";
   return '<div class="oldnote" role="note"><p><b>This sheet was made by an older version of the builder.</b> Rules in the builder were updated since. Press Build, then Apply to refresh the sheet. The Apply dialog lists what would change: '+esc(d.join(". "))+'.</p><div class="bkpr"><button type="button" class="btn press" data-oldn="bld">Open Builder</button><button type="button" class="btn press" data-oldn="ok">Dismiss</button></div></div>'; }
 /* T4: press and hold a library row (item, gear or spell), drag it onto the drop zone to add it to the sheet. Same as the Add button */
-(function(){ let timer=0, sx=0, sy=0, cur=null, ghost=null, zone=null, hold=0;
-  const {pick}=uiReportPinsAnonStep1();
-  function over(x,y){ if(!zone) return false; const r=zone.getBoundingClientRect(); return x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8; }
-  function end(){ clearTimeout(timer); timer=0; if(ghost){ ghost.remove(); ghost=null; } if(zone){ zone.remove(); zone=null; } if(cur){ cur=null; hold=Date.now(); } }
-  function begin(r,t,x,y){ cur=t; const w=document.getElementById("lib"); if(!w) { cur=null; return; }
-    ghost=document.createElement("div"); ghost.className="lib-ghost"; ghost.textContent=t.t; ghost.style.left=x+"px"; ghost.style.top=y+"px"; w.appendChild(ghost);
-    zone=document.createElement("div"); zone.className="lib-dz"; zone.setAttribute("role","status"); zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(zone);
+const libDrag={timer:0,sx:0,sy:0,cur:null,ghost:null,zone:null,hold:0};
+libDragWire();
+function libDragOver(x,y){ const D=libDrag; if(!D.zone) return false; const r=D.zone.getBoundingClientRect(); return anonPart1(x, r, y); }
+function libDragEnd(){ const D=libDrag; clearTimeout(D.timer); D.timer=0; if(D.ghost){ D.ghost.remove(); D.ghost=null; } if(D.zone){ D.zone.remove(); D.zone=null; } if(D.cur){ D.cur=null; D.hold=Date.now(); } }
+function libDragBegin(r,t,x,y){ const D=libDrag; D.cur=t; const w=document.getElementById("lib"); if(!w) { D.cur=null; return; }
+    D.ghost=document.createElement("div"); D.ghost.className="lib-ghost"; D.ghost.textContent=t.t; D.ghost.style.left=x+"px"; D.ghost.style.top=y+"px"; w.appendChild(D.ghost);
+    D.zone=document.createElement("div"); D.zone.className="lib-dz"; D.zone.setAttribute("role","status"); D.zone.textContent=(t.c==="spell"?"Drop here to add to your spells":"Drop here to add to your inventory"); w.appendChild(D.zone);
     try{ if(navigator.vibrate) navigator.vibrate(10); }catch(er){} }
-  document.addEventListener("pointerdown",(e) =>{ const r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(!r||(e.pointerType==="mouse"&&e.button!==0)) return; const t=pick(r); if(!t) return; sx=e.clientX; sy=e.clientY; clearTimeout(timer); timer=setTimeout(() =>{ timer=0; begin(r,t,sx,sy); },e.pointerType==="mouse"?200:380); },true);
-  document.addEventListener("pointermove",(e) =>{ if(timer&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){ clearTimeout(timer); timer=0; }
-    if(!cur) return; if(ghost){ ghost.style.left=e.clientX+"px"; ghost.style.top=e.clientY+"px"; } if(zone) zone.classList.toggle("on",over(e.clientX,e.clientY)); },true);
-  document.addEventListener("touchmove",(e) =>{ if(cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
-  document.addEventListener("pointerup",(e) =>{ clearTimeout(timer); timer=0; if(!cur) return; const t=cur, hit=over(e.clientX,e.clientY); end(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); },true);
+function libDragDown(e,pick){ const D=libDrag; const r=e.target.closest&&e.target.closest("#lib .lib-r[data-lib-open]"); if(anonPart2(r, e)) return; const t=pick(r); if(!t) return; D.sx=e.clientX; D.sy=e.clientY; clearTimeout(D.timer); D.timer=setTimeout(() =>{ D.timer=0; libDragBegin(r,t,D.sx,D.sy); },e.pointerType==="mouse"?200:380); }
+function libDragMove(e){ const D=libDrag; if(D.timer&&(Math.abs(e.clientX-D.sx)>10||Math.abs(e.clientY-D.sy)>10)){ clearTimeout(D.timer); D.timer=0; }
+    if(!D.cur) return; if(D.ghost){ D.ghost.style.left=e.clientX+"px"; D.ghost.style.top=e.clientY+"px"; } if(D.zone) D.zone.classList.toggle("on",libDragOver(e.clientX,e.clientY)); }
+function libDragUp(e){ const D=libDrag; clearTimeout(D.timer); D.timer=0; if(!D.cur) return; const t=D.cur, hit=libDragOver(e.clientX,e.clientY); libDragEnd(); if(hit) libAddDo(t.c,t.k); else toast("Dropped outside. Nothing added."); }
+function libDragClick(e){ const D=libDrag; if(D.hold&&Date.now()-D.hold<400){ const r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } D.hold=0; } }
+function libDragWire(){
+  const {pick}=uiReportPinsAnon3Step1();
+  document.addEventListener("pointerdown",(e) => libDragDown(e,pick),true);
+  document.addEventListener("pointermove",(e) => libDragMove(e),true);
+  document.addEventListener("touchmove",(e) =>{ if(libDrag.cur&&e.cancelable) e.preventDefault(); },{passive:false,capture:true});
+  document.addEventListener("pointerup",(e) => libDragUp(e),true);
+  uiReportPinsAnon3Step2(libDragEnd);
+  document.addEventListener("keydown",(e) =>{ if(libDrag.cur&&e.key==="Escape"){ e.stopPropagation(); libDragEnd(); } },true);
+  document.addEventListener("click",(e) => libDragClick(e),true);
+  document.addEventListener("contextmenu",(e) =>{ if(libDrag.cur||libDrag.timer) e.preventDefault(); },true);
+}
+function anonPart1(x, r, y){ return (x>=r.left-8&&x<=r.right+8&&y>=r.top-8&&y<=r.bottom+8); }
+function anonPart2(r, e){ return (!r||(e.pointerType==="mouse"&&e.button!==0)); }
+function uiReportPinsAnon3Step1(){
+  const {pick}=uiReportPinsAnonStep1();
+  return /** @type {any} */ ({pick});
+}
+function uiReportPinsAnon3Step2(end){
   uiReportPinsAnonStep2(end);
-  document.addEventListener("keydown",(e) =>{ if(cur&&e.key==="Escape"){ e.stopPropagation(); end(); } },true);
-  document.addEventListener("click",(e) =>{ if(hold&&Date.now()-hold<400){ const r=e.target.closest&&e.target.closest("#lib .lib-r"); if(r){ e.preventDefault(); e.stopPropagation(); } hold=0; } },true);
-  document.addEventListener("contextmenu",(e) =>{ if(cur||timer) e.preventDefault(); },true);
-})();
+}
 function uiReportPinsAnonStep1(){
   function pick(r){ const s=r.getAttribute("data-lib-open")||"", i=s.indexOf("|"), c=s.slice(0,i); return (c==="spell"||c==="item"||c==="gear")?{c:c,k:s.slice(i+1),t:(r.querySelector("b")||r).textContent}:null; }
   return /** @type {any} */ ({pick});

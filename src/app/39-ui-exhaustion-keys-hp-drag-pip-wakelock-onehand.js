@@ -56,22 +56,25 @@ function qmOpen(el){ qmClose(); if(!D||!D.hpmax) return; const w=document.create
   w.addEventListener("click",(e) =>{ const b=e.target.closest("button"); if(!b) return; if(b.hasAttribute("data-qmadd")){ const q=document.getElementById("qmAmt"); hpAmtSet((parseInt(q.value,10)||0)+(+b.getAttribute("data-qmadd"))); return; } const k=b.getAttribute("data-qm"); if(k==="x"){ qmClose(); return; } if(k) qmRun(k); });
   w.addEventListener("input",(e) =>{ if(e.target.id==="qmAmt"){ const v=parseInt(e.target.value,10); const h=$("#hpAmt"); if(h) h.value=isNaN(v)?"":String(Math.max(0,v)); } });
   setTimeout(() =>{ document.addEventListener("pointerdown",qmOut,true); document.addEventListener("keydown",qmKey,true); },0); try{ w.focus({preventScroll:true}); }catch(er){} }
-(function(){ let TH=8, STEP=12, HOLD=500, st=null, bub=null, supT=0;
-  function bubble(el,n){ if(!bub){ bub=document.createElement("div"); bub.id="hpGest"; bub.className="hp-gest"; bub.setAttribute("aria-hidden","true"); document.body.appendChild(bub); }
-    const r=el.getBoundingClientRect(); bub.innerHTML='<b>'+n+'</b><span>Amount. Now tap Heal or Damage</span>'; bub.style.left=Math.round(Math.max(110,Math.min(document.documentElement.clientWidth-110,r.left+r.width/2)))+"px"; bub.style.top=Math.round(Math.max(70,r.top-10))+"px"; bub.classList.add("on"); }
-  function down(e){ if(e.button>0||!D||!D.hpmax) return; const el=e.currentTarget; if(st) clearTimeout(st.t); st={el:el,x:e.clientX,y:e.clientY,id:e.pointerId,a0:hpAmtV(),m:"",n:null};
-    st.t=setTimeout(() =>{ if(st&&!st.m){ st.m="hold"; qmOpen(st.el); buzz(10); } },HOLD); }
-  function move(e){ if(!st||e.pointerId!==st.id) return; const dx=e.clientX-st.x, dy=e.clientY-st.y;
-    if(!st.m){ if(Math.abs(dy)>TH&&Math.abs(dy)>Math.abs(dx)*1.4){ st.m="drag"; clearTimeout(st.t); st.y=e.clientY; try{ st.el.setPointerCapture(e.pointerId); }catch(er){} } else if(Math.abs(dx)>TH||Math.abs(dy)>TH){ clearTimeout(st.t); st=null; } return; }
-    if(st.m==="drag"){ e.preventDefault(); const n=Math.max(0,Math.min(999,st.a0+Math.round((st.y-e.clientY)/STEP))); if(n!==st.n){ st.n=n; hpAmtSet(n); bubble(st.el,n); } } }
-  function up(e){ if(!st||e.pointerId!==st.id) return; clearTimeout(st.t); const s0=st; st=null; if(!s0.m) return; supT=Date.now();
-    if(s0.m==="drag"){ setTimeout(() =>{ if(bub) bub.classList.remove("on"); },700); if(s0.n&&s0.el.id==="vbHp") hpOpen(); } }
-  function cancel(e){ if(st&&(!e||e.pointerId===st.id)){ clearTimeout(st.t); st=null; } if(bub) bub.classList.remove("on"); }
+const hpGest={TH:8,STEP:12,HOLD:500,st:null,bub:null,supT:0};
+hpGWire();
+function hpGBubble(el,n){ if(!hpGest.bub){ hpGest.bub=document.createElement("div"); hpGest.bub.id="hpGest"; hpGest.bub.className="hp-gest"; hpGest.bub.setAttribute("aria-hidden","true"); document.body.appendChild(hpGest.bub); }
+    const r=el.getBoundingClientRect(); hpGest.bub.innerHTML='<b>'+n+'</b><span>Amount. Now tap Heal or Damage</span>'; hpGest.bub.style.left=Math.round(Math.max(110,Math.min(document.documentElement.clientWidth-110,r.left+r.width/2)))+"px"; hpGest.bub.style.top=Math.round(Math.max(70,r.top-10))+"px"; hpGest.bub.classList.add("on"); }
+function hpGDown(e){ if(anonPart1__(e)) return; const el=e.currentTarget; if(hpGest.st) clearTimeout(hpGest.st.t); hpGest.st={el:el,x:e.clientX,y:e.clientY,id:e.pointerId,a0:hpAmtV(),m:"",n:null};
+    hpGest.st.t=setTimeout(() =>{ if(hpGest.st&&!hpGest.st.m){ hpGest.st.m="hold"; qmOpen(hpGest.st.el); buzz(10); } },hpGest.HOLD); }
+function hpGMove(e){ if(!hpGest.st||e.pointerId!==hpGest.st.id) return; const dx=e.clientX-hpGest.st.x, dy=e.clientY-hpGest.st.y;
+    if(!hpGest.st.m){ if(Math.abs(dy)>hpGest.TH&&Math.abs(dy)>Math.abs(dx)*1.4){ hpGest.st.m="drag"; clearTimeout(hpGest.st.t); hpGest.st.y=e.clientY; try{ hpGest.st.el.setPointerCapture(e.pointerId); }catch(er){} } else if(Math.abs(dx)>hpGest.TH||Math.abs(dy)>hpGest.TH){ clearTimeout(hpGest.st.t); hpGest.st=null; } return; }
+    if(hpGest.st.m==="drag"){ e.preventDefault(); const n=Math.max(0,Math.min(999,hpGest.st.a0+Math.round((hpGest.st.y-e.clientY)/hpGest.STEP))); if(n!==hpGest.st.n){ hpGest.st.n=n; hpAmtSet(n); hpGBubble(hpGest.st.el,n); } } }
+function hpGUp(e){ if(!hpGest.st||e.pointerId!==hpGest.st.id) return; clearTimeout(hpGest.st.t); const s0=hpGest.st; hpGest.st=null; if(!s0.m) return; hpGest.supT=Date.now();
+    if(s0.m==="drag"){ setTimeout(() =>{ if(hpGest.bub) hpGest.bub.classList.remove("on"); },700); if(s0.n&&s0.el.id==="vbHp") hpOpen(); } }
+function hpGCancel(e){ if(hpGest.st&&(!e||e.pointerId===hpGest.st.id)){ clearTimeout(hpGest.st.t); hpGest.st=null; } if(hpGest.bub) hpGest.bub.classList.remove("on"); }
+function hpGWire(){
   ["hpCur","vbHp"].forEach((id) =>{ const el=document.getElementById(id); if(!el) return; el.classList.add("hp-g"); if(id==="hpCur") el.title="Drag up or down to set the amount. Hold for a quick menu.";
-    el.addEventListener("pointerdown",down); el.addEventListener("pointermove",move); el.addEventListener("pointerup",up); el.addEventListener("pointercancel",cancel);
-    el.addEventListener("contextmenu",(e) =>{ e.preventDefault(); supT=Date.now(); if(st){ clearTimeout(st.t); st.m="hold"; } if(!document.getElementById("hpQm")) qmOpen(el); }); });
-  document.addEventListener("click",(e) =>{ if(Date.now()-supT<450&&e.target.closest&&e.target.closest("#hpCur,#vbHp")){ e.preventDefault(); e.stopPropagation(); } },true);
-})();
+    el.addEventListener("pointerdown",hpGDown); el.addEventListener("pointermove",hpGMove); el.addEventListener("pointerup",hpGUp); el.addEventListener("pointercancel",hpGCancel);
+    el.addEventListener("contextmenu",(e) =>{ e.preventDefault(); hpGest.supT=Date.now(); if(hpGest.st){ clearTimeout(hpGest.st.t); hpGest.st.m="hold"; } if(!document.getElementById("hpQm")) qmOpen(el); }); });
+  document.addEventListener("click",(e) =>{ if(Date.now()-hpGest.supT<450&&e.target.closest&&e.target.closest("#hpCur,#vbHp")){ e.preventDefault(); e.stopPropagation(); } },true);
+}
+function anonPart1__(e){ return (e.button>0||!D||!D.hpmax); }
 /* v30 p10 RU130: a small Hit Points window that stays on top of other windows (Document Picture-in-Picture, Chrome and Edge on computers) */
 var PIP=null;
 const PIP_CSS='*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:14px}body{padding:10px;display:flex;flex-direction:column;gap:8px;-webkit-font-smoothing:antialiased}'+

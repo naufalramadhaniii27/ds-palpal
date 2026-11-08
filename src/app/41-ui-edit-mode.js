@@ -22,9 +22,9 @@ bindLive("edmSet",{get:function(){return edmSet;}});
 export var CU0={}, EDM=false, cuMT=0;
 /* the S.cust key and field behind a number on the sheet (data-bd key), with its label, kind, and limits */
 function cuqOf(key){
- const _cuqOfStep1=cuqOfStep1(key);
- const {k}=_cuqOfStep1;
- let {m}=_cuqOfStep1;
+ const _cuqOf2Step1=cuqOf2Step1(key);
+ const {k}=_cuqOf2Step1;
+ let {m}=_cuqOf2Step1;
   if((m=/^ab-([A-Z]{3})$/.exec(k))&&ABN[m[1]]) return {k:"n:"+k,f:"o",fb:"b",t:ABN[m[1]]+" score",kind:"int",min:1,max:30};
   if((m=/^save-([A-Z]{3})$/.exec(k))&&ABN[m[1]]) return {k:"n:"+k,f:"o",fb:"b",t:ABN[m[1]]+" save",kind:"sgn",min:-20,max:30};
   if((m=/^sk-(\d+)$/.exec(k))){ const s=(C.skills||[])[+m[1]]; return s?{k:"n:sk:"+s.n,f:"o",fb:"b",t:s.n,kind:"sgn",min:-20,max:30}:null; }
@@ -35,8 +35,15 @@ function cuqOf(key){
   if(k==="dc") return {k:"n:dc",f:"o",fb:"b",t:"Grapple DC",kind:"int",min:0,max:60};
   if(k==="hp") return {k:"hp",f:"hpOver",t:"Hit Point Maximum",kind:"int",min:1,max:9999};
   if((m=/^(ah|ad)-(\d+)$/.exec(k))){ const a=(C.attacks||[])[+m[2]]; if(!a) return null; return m[1]==="ah"?{k:"a:"+a.n,f:"ho",fb:"hb",t:a.n+" to hit",kind:"sgn",min:-20,max:40}:{k:"a:"+a.n,f:"do",fb:"db",t:a.n+" damage",kind:"dmg"}; }
-  if((m=/^sp(atk|dc)(-[A-Z]{3})?$/.exec(k))&&C.spellcasting) return {k:"n:sp"+m[1]+(m[2]||""),f:"o",t:(m[1]==="atk"?"Spell Attack":"Spell Save DC")+(m[2]?" ("+m[2].slice(1)+")":""),kind:m[1]==="atk"?"sgn":"int",min:m[1]==="atk"?-20:0,max:m[1]==="atk"?40:60};
+  if((m=/^sp(atk|dc)(-[A-Z]{3})?$/.exec(k))&&C.spellcasting) return cuqOfPart1(m);
   return null; }
+function cuqOfPart1(m){ return ({k:"n:sp"+m[1]+(m[2]||""),f:"o",t:(m[1]==="atk"?"Spell Attack":"Spell Save DC")+(m[2]?" ("+m[2].slice(1)+")":""),kind:m[1]==="atk"?"sgn":"int",min:m[1]==="atk"?-20:0,max:m[1]==="atk"?40:60}); }
+function cuqOf2Step1(key){
+ const _cuqOfStep1=cuqOfStep1(key);
+ const {k}=_cuqOfStep1;
+ let {m}=_cuqOfStep1;
+  return /** @type {any} */ ({k, m});
+}
 function cuqOfStep1(key){
 let m, k=String(key||"");
   return /** @type {any} */ ({k, m});

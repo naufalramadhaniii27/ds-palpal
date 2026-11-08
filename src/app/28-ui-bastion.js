@@ -27,29 +27,49 @@ function bsSel(attr,opts,cur,ph){ return '<select class="bs-sel" '+attr+'>'+(ph?
 function bsGP(n){ return fmtInt(n)+" GP"; }
 let bsAddK="",bsAddB="Bedroom",bsAddS="Cramped",bsEv="",bsNote="",bsLost="";
 export function bastionH(){ if(typeof BASTION==="undefined"||x14()) return "";/* v94: Bastions are a 2024 Dungeon Master's Guide rule */
+ const _bastionH2Step1=bastionH2Step1();
+ const {b, lv, BF}=_bastionH2Step1;
+ let {h}=_bastionH2Step1;
+  if(!b) return h+'<div class="bs empty-note empty-st xempty">'+ico("ui-castle","es-i")+'<b>No Bastion yet</b><p class="bs-why">A Bastion is a home base that works for you between adventures: special facilities with hirelings who craft, harvest, recruit, research, and trade (DMG 2024, chapter 8). It usually comes at level 5'+(lv<5?'; your character is level '+lv+', so ask your DM first':'')+'.</p><button type="button" class="btn pri press" data-bs="setup">'+ico("ui-castle","ibt")+'Set Up Bastion</button></div>';/* v31 C9 */
+  const _bastionH2Step2=bastionH2Step2(lv, b, h, BF);
+  const {slots, nf}=_bastionH2Step2;
+  h=_bastionH2Step2.h;
+  (b.fac||[]).forEach((f,i) =>{ const d=BF[f.k]; if(!d) return; let vast=!!f.vast, ok=bsPreOk(d.pre), ch=d.ch, chosen=f.ch||[];
+    h+=bastionHPart1(f, d, vast, ok);
+    if(ch&&f.k==="Garden"){ const gn=vast?2:1; h+='<div class="bs-ch"><small>'+esc(ch[0])+(gn>1?' (a Vast Garden is two gardens)':'')+'</small><div class="bs-add">'+Array.apply(null,{length:gn}).map((_,j) =>{ return bsSel('data-bsg="'+i+':'+j+'" aria-label="'+esc(ch[0])+' '+(j+1)+'"',ch[3].map((o) =>{ return o[0]; }),chosen[j]||"","- Choose -"); }).join("")+'</div>'+(chosen.length?'<p class="info-d bs-chd">'+chosen.map((c) =>{ const o=ch[3].filter((x) =>{ return x[0]===c; })[0]; return o?'<b>'+esc(o[0])+'.</b> '+esc(o[1])+'.':''; }).join(" ")+'</p>':'')+'</div>'; ch=null; }/* v28 M4 */
+    if(ch){ const n=vast?ch[2]:ch[1]; h+='<div class="bs-ch"><small>'+esc(ch[0])+' ('+chosen.length+' / '+n+')</small><div class="bs-chips">'+ch[3].map((o) => bastionHFn1(chosen, i, o)).join("")+'</div>'+
+      (chosen.length?'<p class="info-d bs-chd">'+ch[3].filter((o) => bastionHFn2(chosen, o)).map((o) =>{ return '<b>'+esc(o[0])+'.</b> '+esc(o[1])+'.'; }).join(" ")+'</p>':'')+'</div>'; }
+    h+=bastionHPart2(d, i, b, f, vast); });
+  ({h}=bastionH2Step3(b, BF, h, nf, slots, lv));
+  return h; }
+function bastionHPart1(f, d, vast, ok){ return ('<div class="bs-f"><div class="bs-fh"><b>'+esc(f.k)+'</b><small>Level '+d.lv+' • '+(vast?"Vast":d.sp)+' • '+(d.hi+(vast&&/Garden/.test(f.k)?1:0)+(vast&&f.k==="Pub"?3:0)+(vast&&f.k==="Workshop"?2:0)+(vast&&d.enlHi||0))+' hireling'+(d.hi>1||vast?'s':'')+' • '+d.ord+' • '+(d.src||"DMG-2024")+(d.pg?", pg. "+d.pg:"")+'</small></div>'+
+      (ok?'':'<p class="caution">Prerequisite not met: '+esc(BASTION.pre[d.pre])+'. Ask your DM.</p>')+(d.lv>bsLv()?'<p class="caution">This facility needs level '+d.lv+'.</p>':'')+
+      '<p class="info-d">'+esc(d.d)+'</p>'); }
+function bastionHPart2(d, i, b, f, vast){ return ('<div class="bs-ord"><small>Order this turn ('+d.ord+')</small>'+bsSel('data-bso="'+i+'"'+(b.mode==="maintain"?' disabled':''),d.opts.map((o) =>{ return [o[0],o[0]]; }),f.ord||"","No order")+'</div>'+
+      (f.ord?'<p class="info-d bs-od">'+esc((d.opts.filter((o) =>{ return o[0]===f.ord; })[0]||["",""])[1])+'</p>':'')+
+      '<div class="bkpr">'+(d.enl&&!vast?'<button type="button" class="btn sm press" data-bs="vast" data-i="'+i+'">Enlarge to Vast ('+bsGP(d.enl[0])+')</button>':'')+'<button type="button" class="btn sm press rm" data-bs="rmfac" data-i="'+i+'">Remove</button></div>'+
+      (d.enl?'<p class="info-d bs-enl">'+(vast?'Enlarged. ':'')+esc(d.enl[1])+'</p>':'')+'</div>'); }
+function bastionH2Step1(){
  const _bastionHStep1=bastionHStep1();
  const {b, lv, BF}=_bastionHStep1;
  let {h}=_bastionHStep1;
-  if(!b) return h+'<div class="bs empty-note empty-st xempty">'+ico("ui-castle","es-i")+'<b>No Bastion yet</b><p class="bs-why">A Bastion is a home base that works for you between adventures: special facilities with hirelings who craft, harvest, recruit, research, and trade (DMG 2024, chapter 8). It usually comes at level 5'+(lv<5?'; your character is level '+lv+', so ask your DM first':'')+'.</p><button type="button" class="btn pri press" data-bs="setup">'+ico("ui-castle","ibt")+'Set Up Bastion</button></div>';/* v31 C9 */
+  return /** @type {any} */ ({b, lv, BF, h});
+}
+function bastionH2Step2(lv, b, h, BF){
   const _bastionHStep2=bastionHStep2(lv, b, h, BF);
   const {slots, nf}=_bastionHStep2;
   h=_bastionHStep2.h;
-  (b.fac||[]).forEach((f,i) =>{ const d=BF[f.k]; if(!d) return; let vast=!!f.vast, ok=bsPreOk(d.pre), ch=d.ch, chosen=f.ch||[];
-    h+='<div class="bs-f"><div class="bs-fh"><b>'+esc(f.k)+'</b><small>Level '+d.lv+' • '+(vast?"Vast":d.sp)+' • '+(d.hi+(vast&&/Garden/.test(f.k)?1:0)+(vast&&f.k==="Pub"?3:0)+(vast&&f.k==="Workshop"?2:0)+(vast&&d.enlHi||0))+' hireling'+(d.hi>1||vast?'s':'')+' • '+d.ord+' • '+(d.src||"DMG-2024")+(d.pg?", pg. "+d.pg:"")+'</small></div>'+
-      (ok?'':'<p class="caution">Prerequisite not met: '+esc(BASTION.pre[d.pre])+'. Ask your DM.</p>')+(d.lv>bsLv()?'<p class="caution">This facility needs level '+d.lv+'.</p>':'')+
-      '<p class="info-d">'+esc(d.d)+'</p>';
-    if(ch&&f.k==="Garden"){ const gn=vast?2:1; h+='<div class="bs-ch"><small>'+esc(ch[0])+(gn>1?' (a Vast Garden is two gardens)':'')+'</small><div class="bs-add">'+Array.apply(null,{length:gn}).map((_,j) =>{ return bsSel('data-bsg="'+i+':'+j+'" aria-label="'+esc(ch[0])+' '+(j+1)+'"',ch[3].map((o) =>{ return o[0]; }),chosen[j]||"","- Choose -"); }).join("")+'</div>'+(chosen.length?'<p class="info-d bs-chd">'+chosen.map((c) =>{ const o=ch[3].filter((x) =>{ return x[0]===c; })[0]; return o?'<b>'+esc(o[0])+'.</b> '+esc(o[1])+'.':''; }).join(" ")+'</p>':'')+'</div>'; ch=null; }/* v28 M4 */
-    if(ch){ const n=vast?ch[2]:ch[1]; h+='<div class="bs-ch"><small>'+esc(ch[0])+' ('+chosen.length+' / '+n+')</small><div class="bs-chips">'+ch[3].map((o) =>{ const on=chosen.indexOf(o[0])>=0; return '<button type="button" class="chip'+(on?' on':'')+'" data-bs="ch" data-i="'+i+'" data-v="'+esc(o[0])+'" aria-pressed="'+on+'"'+(o[1]?' title="'+esc(o[1])+'"':'')+'>'+esc(o[0])+'</button>'; }).join("")+'</div>'+
-      (chosen.length?'<p class="info-d bs-chd">'+ch[3].filter((o) =>{ return chosen.indexOf(o[0])>=0&&o[1]; }).map((o) =>{ return '<b>'+esc(o[0])+'.</b> '+esc(o[1])+'.'; }).join(" ")+'</p>':'')+'</div>'; }
-    h+='<div class="bs-ord"><small>Order this turn ('+d.ord+')</small>'+bsSel('data-bso="'+i+'"'+(b.mode==="maintain"?' disabled':''),d.opts.map((o) =>{ return [o[0],o[0]]; }),f.ord||"","No order")+'</div>'+
-      (f.ord?'<p class="info-d bs-od">'+esc((d.opts.filter((o) =>{ return o[0]===f.ord; })[0]||["",""])[1])+'</p>':'')+
-      '<div class="bkpr">'+(d.enl&&!vast?'<button type="button" class="btn sm press" data-bs="vast" data-i="'+i+'">Enlarge to Vast ('+bsGP(d.enl[0])+')</button>':'')+'<button type="button" class="btn sm press rm" data-bs="rmfac" data-i="'+i+'">Remove</button></div>'+
-      (d.enl?'<p class="info-d bs-enl">'+(vast?'Enlarged. ':'')+esc(d.enl[1])+'</p>':'')+'</div>'; });
+  return /** @type {any} */ ({slots, nf, h});
+}
+function bastionH2Step3(b, BF, h, nf, slots, lv){
   const _bastionHStep3=bastionHStep3(b, BF, h, nf, slots, lv);
   const {orders}=_bastionHStep3;
   h=_bastionHStep3.h;
   ({h}=bastionHStep4(b, h, orders));
-  return h; }
+  return /** @type {any} */ ({h});
+}
+function bastionHFn1(chosen, i, o){ const on=chosen.indexOf(o[0])>=0; return '<button type="button" class="chip'+(on?' on':'')+'" data-bs="ch" data-i="'+i+'" data-v="'+esc(o[0])+'" aria-pressed="'+on+'"'+(o[1]?' title="'+esc(o[1])+'"':'')+'>'+esc(o[0])+'</button>'; }
+function bastionHFn2(chosen, o){ return chosen.indexOf(o[0])>=0&&o[1]; }
 function bastionHStep1(){
 let b=bsOn(), lv=bsLv(), BF=BASTION.f, h='<h3 class="fcat" id="bastion">Bastion</h3>';
   return /** @type {any} */ ({b, lv, BF, h});
@@ -92,30 +112,58 @@ function bastionHStep4(b, h, orders){
 }
 function bsSave(msg,undo){ save(); renderExtras(); if(msg) (undo?toastU:toast)(msg); }
 function bsAct(a,t){
- const {b, BF, i}=bsActStep1(t);
-  if(a==="setup"){ undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; }
+ const {b, BF, i}=bsAct2Step1(t);
+  if(a==="setup"){ bsActSetup(a, t, b, BF, i); return; }
   if(!b) return;
   if(a==="def+"||a==="def-"){ b.def=Math.max(0,num(b.def,0)+(a==="def+"?1:-1)); bsSave(); return; }
-  if(a==="grow"){ const x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="rmbasic"){ const y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",() =>{ undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; }
-  if(a==="addbasic"){ const ad=BASTION.add[bsAddS]; undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; }
-  if(a==="addfac"){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); const nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; }
-  if(a==="rmfac"){ const f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",() =>{ undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; }
-  if(a==="vast"){ const fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",() =>{ undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; }
-  if(a==="ch"){ const fc=b.fac[i], dc=fc&&BF[fc.k]; if(!dc||!dc.ch) return; const L=fc.ch=fc.ch||[], v=t.dataset.v, j=L.indexOf(v), n=fc.vast?dc.ch[2]:dc.ch[1];
-    if(j>=0) L.splice(j,1); else { if(n===1) L.length=0; else if(L.length>=n){ toast(dc.ch[0]+": "+n+" at most. Remove one first."); return; } L.push(v); } bsSave(); return; }
+  if(a==="grow"){ bsActGrow(a, t, b, BF, i); return; }
+  if(a==="rmbasic"){ bsActRmbasic(a, t, b, BF, i); return; }
+  if(a==="addbasic"){ bsActAddbasic(a, t, b, BF, i); return; }
+  if(a==="addfac"){ bsActAddfac(a, t, b, BF, i); return; }
+  if(a==="rmfac"){ bsActRmfac(a, t, b, BF, i); return; }
+  if(a==="vast"){ bsActVast(a, t, b, BF, i); return; }
+  if(a==="ch"){ bsActCh(a, t, b, BF, i); return; }
   if(a==="mode"){ b.mode=t.dataset.v; bsSave(); return; }
   if(a==="efa"){ b.efa=!bsEfa(b); bsSave(); return; }/* v61 */
-  if(a==="turn"){ const maint=b.mode==="maintain", o=maint?[]:(b.fac||[]).filter((f) =>{ return f.ord; }).map((f) =>{ return [f.k,f.ord]; });
+  if(a==="turn"){ bsActTurn(a, t, b, BF, i); return; }
+  if(a==="drop"){ bsActDrop(a, t, b, BF, i); return; } }
+function bsActSetup(a, t, b, BF, i){ undoMark("Set up Bastion"); S.bastion={name:"",basic:[{k:"Bedroom",sp:"Cramped"},{k:"Kitchen",sp:"Roomy"}],fac:[],def:0,turn:0,idle:0,mode:"orders",log:[]}; bsSave("Bastion set up with two basic facilities. Add your special facilities.",1); return; 
+}
+function bsActGrow(a, t, b, BF, i){ const x=b.basic[i], g=x&&BASTION.grow[x.sp]; if(!g) return; undoMark("Enlarge "+x.k); x.sp=x.sp==="Cramped"?"Roomy":"Vast"; bsSave(x.k+" is now "+x.sp+". It costs "+bsGP(g[0])+" and takes "+g[1]+" days: take the coins in Manage Coin.",1); return; 
+}
+function bsActRmbasic(a, t, b, BF, i){ const y=b.basic[i]; if(!y) return; ask("Remove "+y.k+" ("+y.sp+") from the Bastion?","Remove",() =>{ undoMark("Remove "+y.k); b.basic.splice(i,1); bsSave("Removed "+y.k+".",1); }); return; 
+}
+function bsActAddbasic(a, t, b, BF, i){ const ad=BASTION.add[bsAddS]; undoMark("Add "+bsAddB); b.basic=b.basic||[]; b.basic.push({k:bsAddB,sp:bsAddS}); bsSave("Added "+bsAddB+" ("+bsAddS+"). It costs "+bsGP(ad[0])+" and takes "+ad[1]+" days: take the coins in Manage Coin.",1); return; 
+}
+function bsActAddfac(a, t, b, BF, i){ if(!bsAddK){ toast("Choose a special facility first."); return; } if((b.fac||[]).length>=bsSlots(bsLv())){ toast("All places are used. Remove one first."); return; } undoMark("Add "+bsAddK); b.fac=b.fac||[]; b.fac.push({k:bsAddK}); const nk=bsAddK; bsAddK=""; bsSave("Added "+nk+".",1); return; 
+}
+function bsActRmfac(a, t, b, BF, i){ const f=b.fac[i]; if(!f) return; ask("Remove "+f.k+" from the Bastion? Its choices and order go with it.","Remove",() =>{ undoMark("Remove "+f.k); b.fac.splice(i,1); bsSave("Removed "+f.k+".",1); }); return; 
+}
+function bsActVast(a, t, b, BF, i){ const fv=b.fac[i], dv=fv&&BF[fv.k]; if(!dv||!dv.enl) return; ask("Enlarge "+fv.k+" to Vast for "+bsGP(dv.enl[0])+"? "+dv.enl[1]+" Take the coins in Manage Coin.","Enlarge",() =>{ undoMark("Enlarge "+fv.k); fv.vast=1; bsSave(fv.k+" is now Vast.",1); }); return; 
+}
+function bsActCh(a, t, b, BF, i){ const fc=b.fac[i], dc=fc&&BF[fc.k]; if(!dc||!dc.ch) return; const L=fc.ch=fc.ch||[], v=t.dataset.v, j=L.indexOf(v), n=fc.vast?dc.ch[2]:dc.ch[1];
+    if(j>=0) L.splice(j,1); else { if(n===1) L.length=0; else if(L.length>=n){ toast(dc.ch[0]+": "+n+" at most. Remove one first."); return; } L.push(v); } bsSave(); return; 
+}
+function bsActTurn(a, t, b, BF, i){ const maint=b.mode==="maintain", o=bsActPart1(maint, b);
     if(maint&&!bsEv){ toast("Pick the Bastion event the DM rolled first."); return; }
     undoMark("Bastion turn"); const e={n:num(b.turn,0)+1,t:new Date().toISOString().slice(0,10),o:o}, note=[];
     if(maint){ e.m=1; e.ev=bsEv; const lost=Math.max(0,Math.round(num(bsLost,0))); if(lost){ e.lost=Math.min(lost,num(b.def,0)); b.def=Math.max(0,num(b.def,0)-lost); } }
-    const bfull=!maint&&(b.fac||[]).some((f) =>{ return f.k==="Barrack"&&f.ord&&/^Recruit/.test(f.ord); })&&num(b.def,0)>=bsCap(b); if(bfull){ lateSet("UNDO",null); toast("The Barracks are full. Clear the Recruit order on the Barrack first."); return; }/* v28 M3 */
-    (b.fac||[]).forEach((f) =>{ if(!maint&&f.k==="Barrack"&&f.ord==="Recruit: Bastion Defenders"){ const room=bsCap(b)-num(b.def,0), add=Math.max(0,Math.min(4,room)); if(add){ b.def=num(b.def,0)+add; note.push(add+" defender"+(add>1?"s":"")+" recruited"); } } if(f.k==="War Room"&&f.ord==="Recruit: Lieutenant"&&!maint) note.push("one lieutenant joined"); });
+    const bfull=bsActPart2(maint, b); if(bfull){ lateSet("UNDO",null); toast("The Barracks are full. Clear the Recruit order on the Barrack first."); return; }/* v28 M3 */
+    (b.fac||[]).forEach((f) => bsActFn2(maint, b, note, f));
     if(bsNote.trim()) note.push(bsNote.trim()); if(note.length) e.note=note.join(", ");
-    b.idle=maint||o.length?0:num(b.idle,0)+1; b.turn=e.n; b.log=(b.log||[]).concat([e]).slice(-200); (b.fac||[]).forEach((f) =>{ delete f.ord; }); bsEv=""; bsNote=""; bsLost="";
-    bsSave("Bastion turn "+e.n+" done"+(e.note?": "+e.note:"")+".",1); return; }
-  if(a==="drop"){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",() =>{ undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } }
+    b.idle=bsActPart3(maint, o, b); b.turn=e.n; b.log=(b.log||[]).concat([e]).slice(-200); (b.fac||[]).forEach((f) =>{ delete f.ord; }); bsEv=""; bsNote=""; bsLost="";
+    bsSave("Bastion turn "+e.n+" done"+(e.note?": "+e.note:"")+".",1); return; 
+}
+function bsActDrop(a, t, b, BF, i){ ask("Give up the Bastion? Its facilities, defenders, and turn log are removed from this sheet. Undo can bring them back right after.","Give Up",() =>{ undoMark("Give up Bastion"); delete S.bastion; bsSave("The Bastion is given up.",1); }); return; } 
+function bsActPart1(maint, b){ return (maint?[]:(b.fac||[]).filter((f) =>{ return f.ord; }).map((f) =>{ return [f.k,f.ord]; })); }
+function bsActPart2(maint, b){ return (!maint&&(b.fac||[]).some((f) => bsActFn1(f))&&num(b.def,0)>=bsCap(b)); }
+function bsActPart3(maint, o, b){ return (maint||o.length?0:num(b.idle,0)+1); }
+function bsAct2Step1(t){
+ const {b, BF, i}=bsActStep1(t);
+  return /** @type {any} */ ({b, BF, i});
+}
+function bsActFn1(f){ return f.k==="Barrack"&&f.ord&&/^Recruit/.test(f.ord); }
+function bsActFn2(maint, b, note, f){ if(!maint&&f.k==="Barrack"&&f.ord==="Recruit: Bastion Defenders"){ const room=bsCap(b)-num(b.def,0), add=Math.max(0,Math.min(4,room)); if(add){ b.def=num(b.def,0)+add; note.push(add+" defender"+(add>1?"s":"")+" recruited"); } } if(f.k==="War Room"&&f.ord==="Recruit: Lieutenant"&&!maint) note.push("one lieutenant joined"); }
 function bsActStep1(t){
 const b=bsOn(), BF=BASTION.f, i=t&&t.dataset&&t.dataset.i!=null?+t.dataset.i:-1;
   return /** @type {any} */ ({b, BF, i});
