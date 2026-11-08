@@ -38,6 +38,23 @@ Beyond the standard evidence list (see the PR description):
 | Same for the simulation: `fight` on 60 groups, `est`, and `pilot` turn by turn on 30 turns each | 0 differences |
 | `node tests/tg_engine.js 300` | same text as before (109 won, 191 lost, average 6.9 rounds, longest 26) |
 
+### 3.1 Standard evidence (on the merge with origin/main 04f3141a)
+
+| Test | Result |
+|---|---|
+| `solid_snapshot` full (2997 builds) | total a893fba7ab867bb0, page errors 0 (identical to the required total) |
+| `solid_ui_snapshot` against a build of origin/main | 390x844: identical (280 steps total 18c6e679b5a4fc47 on the base side). 1250x850: identical in clean runs of A, B and C. Under heavy machine load a different single step differed in some runs, and base against base differed the same way (one run of the base itself gave 569f0901be409eef where two other base runs and the new build gave a749e498391181af) |
+| golden_builds 1479, fx_engine 265, solid_contract (4766 checks), solid_ui_contract (308 checks), invariants (2220 builds, 0 violations) | pass |
+| scenarios (3 required, both viewports) | 24 checks, 0 failed |
+| perf_budget `--fast --runs 3 --check` | budget ok (raw heap 34.9 MB at 1250x850, limit 35, not raised) |
+| e2e_fx_toggle, csp_check, split_dist, names_lint, storage_idb (39 checks), chaos_storage (seeds 0 to 39 in the first run) | pass |
+| area tests: tg_engine 300, tg_ui, tg_layer, tg_n2, tg_dice, tg_queue, learn_flow, g4_play, learn_lint | pass (tg_queue and learn_flow each failed once on a timeout while eight other test runs shared the machine, and passed on the rerun with the same code. `lazy_parts` "early read" failed on the base too under that load) |
+| guard_all | size 173 to 152, deps 47 to 39, window 1 (see 5), dispatch 1, dup 0 |
+
+## 5. Not from this stage
+
+`guard_window` reports 1 new use in `src/app/20-ui-portrait.js` (`IntersectionObserver`), and `tools/html_gate.py` reports 1 new site in `src/fx/00b-fx-shared.js`. Both come from origin/main commit 369edca4 (portrait picker), not from this branch. `tools/tsc_gate.py` still fails on `builder/00-env.js` (known on main since stage 12). Left for their owners.
+
 ## 4. Deferred
 
 Nothing deferred in the three areas. Remaining over-budget functions of the whole tree are in `src/app`, `src/fx`, `src/builder` (other stages).
