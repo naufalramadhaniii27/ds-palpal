@@ -36,7 +36,7 @@ with sync_playwright() as p:
             check("scenes %s: %d entries (expect %d), every file exists" % (k, len(have), v), len(have) == v and not miss, miss[:5])
         tp = ["alchemist","captain","craftsman","dancer","gadgeteer","healer","investigator","jaeger","martyr","monster-hunter","necromancer","summoner","vagabond","warden","warmage","witch"]
         check("16 third-party class scenes exist", all(os.path.exists(os.path.join(ROOT, "img/scene", c + "-pc.avif")) and os.path.exists(os.path.join(ROOT, "img/scene", c + "-phone.avif")) and c in man["scene"] for c in tp))
-        check("portraits: 142 listed, every file exists", len(man["portrait"]) == 142 and all(os.path.exists(os.path.join(ROOT, "img/portrait", x + ".avif")) for x in man["portrait"]))
+        check("portraits: at least 142 listed (Q5 adds more), every file and thumb exists", len(man["portrait"]) >= 142 and all(os.path.exists(os.path.join(ROOT, "img/portrait/t", x + ".avif")) for x in man["portrait"]) and all(os.path.exists(os.path.join(ROOT, "img/portrait", x + ".avif")) for x in man["portrait"]))
         check("subclass cards: 517 listed, every file exists", len(man["scard"]) == 517 and all(os.path.exists(os.path.join(ROOT, "img/scard", x + ".avif")) for x in man["scard"]))
         NEWSP = {"Accursed": "accursed", "Faerie": "faerie", "Mandrake": "mandrake", "Drow": "drow", "Gallus": "gallus"}
         VARS = {"Hill Dwarf": "dwarf", "High Elf": "elf", "Human (2014)": "human", "Custom Lineage": "human", "Lightfoot Halfling": "halfling"}
