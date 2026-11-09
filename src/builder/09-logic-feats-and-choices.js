@@ -119,7 +119,7 @@ export function featSpells(){const out=[];allFeats().forEach((f) =>{const q=FT_S
    fk = the feat's own choice key (feat4, m0:feat8, lfo1) or its source ("Origin feat (Soldier)"). The builder shows these in the feat's card */
 export function toolAll(){const o=[];["art","music","game","other"].forEach((k) =>{TOOLS[k].forEach((n) =>{if(o.indexOf(n)<0)o.push(n)})});return o}
 function featList(q){if(Array.isArray(q.list))return q.list;
- if(q.list==="maneuvers")return MANEUVERS.map((x) =>{return [x[0],""]});/* v69 */
+ if(q.list==="maneuvers")return MANEUVERS.map((x) =>{return [x[0],(genv.__MANSUM||{})[x[0]]||""]});/* v69 */
  if(q.list==="metamagic")return METAMAGIC.map((x) =>{return [x[0],""]});
  if(q.list==="invocations"){const wl=wxCls().indexOf("Warlock")>=0;return INVOCATIONS.filter((x) =>{return wl||!/\*\*Prerequisite\.\*\*/.test(x[1])}).map((x) =>{return [x[0],""]})} if(q.list==="fstyle"&&R14())return fs14List(B.cls).map((n) =>{return [n,""]});
  if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
