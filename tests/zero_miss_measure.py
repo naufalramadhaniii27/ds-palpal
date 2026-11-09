@@ -56,7 +56,7 @@ PROF_COND = re.compile(r"attack with proficiency|(?:weapons?|skills?|tools?|armo
 # RES: "overcoming Resistance" and "immune to your aura / Charm" are about the TARGET of the feature, not a resistance of the character.
 RES_TARGET = re.compile(r"(?:overcom\w+|ignor\w+|bypass\w*) resistance(?: and immunity)?|(?:are|is|cannot be|can't be) immune to (?:being )?(?:charm\w*|frighten\w*|your \w+)|immune to (?:charm|being frightened|frightened)")
 # SPELL: "against your spell save DC", "such as a Lightning Bolt spell" and "as with the Hallow spell" name a spell or the DC, they do not grant spellcasting.
-SPELL_REF = re.compile(r"(?:against|using|with) your spell save dc|such as [^.]*|as with the [a-z' ]+ spell")
+SPELL_REF = re.compile(r"(?:against|using|with) your spell save dc|such as [^.]*|as with the [a-z' ]+ spell|(?:attack|attacks) or cast a spell|(?:is|are) cast on (?:it|them)")
 DICE_COSMETIC = re.compile(r"(?:or )?roll(?:ing)? \d*d\d+ (?:to decide|on the [a-z ]{3,30} table)")
 SPELL_WORDS = re.compile(r"(can|may|could) cast\b|always have [^.]{0,60}prepared|\bspell slots?\b|\bcantrips?\b|spell list|spellcasting ability|spell save dc|spell attack|without (expending )?a spell slot|\bprepared\b")
 GENERIC = {"your choice", "hit points", "temporary hit points", "ability score increase", "benefit", "prerequisite", "duration", "effect", "damage", "options"}
@@ -70,6 +70,8 @@ VARIANTS = {
     "sub|Barbarian/Path of the Wild Heart|Aspect of the Wilds|SPEED": [{"ch": {"p6opt": "Panther"}}, {"ch": {"p6opt": "Salmon"}}],
     "feat|Medium Armor Master|Medium Armor Master|AC": [{"fz": {"cls": "Fighter", "lv": 19, "arr": [10, 15, 14, 12, 10, 8]}, "inv": BREAST, "a1": "DEX"}],
     "sub|Bard/College of Dance|Dazzling Footwork|AC": [{"fz": {"cls": "Bard", "sub": "College of Dance", "arr": [10, 15, 14, 12, 10, 13]}, "inv": []}],
+    "feat14|Medium Armor Master (2014)|Medium Armor Master (2014)|AC": [{"fz": {"rs": "2014", "sp": "Human (2014)", "bg": "Acolyte (2014)", "src": {"phb14": True, "dmg14": True}, "cls": "Fighter", "lv": 19, "arr": [10, 15, 14, 12, 10, 8]}, "inv": BREAST, "a1": "DEX"}],
+    "sub14|Ranger/Hunter (2014)|Defensive Tactics|AC": [{"ch": {"p7hunt14b": ["Multiattack Defense"]}}],
     "feat|Martial Weapon Training|Martial Weapon Training|PROF": [{"fz": {"cls": "Wizard", "lv": 19}}],
 }
 # The sheet calls the row by another name than the feature
@@ -82,6 +84,7 @@ def classes_of(text, spells):
         if c == "PROF": return PROF_COND.sub(" ", t.replace("proficiency bonus", ""))
         if c == "DICE": return DICE_COSMETIC.sub(" ", t)
         if c == "RES": return RES_TARGET.sub(" ", t)
+        if c == "NUM": return re.sub(r"(?:below|at or below|under) (?:its|their|half its) (?:hit point maximum|maximum hit points)", " ", t)
         return t
     out = [c for c, rx in RX.items() if rx.search(view(c))]
     # SPELL: a spell sentence (cast, prepared, slot, cantrip, spell list ...) or a named spell next to cast / prepared / spell
