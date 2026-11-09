@@ -151,7 +151,10 @@ const FXS24A={};
   const A=FXENV.__ART, D=document, H=D.documentElement;
   if(!A||!A.scene) return;
   ;
-  FXENV.__artIc=function(cat,name){ const l=A.icon&&A.icon[cat]; if(!l||FXS24A.ls("mi-clsart")==="off") return ""; const k=FXS24A.slug(name); if(l.indexOf(k)<0) return ""; return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">'; };
+  /* Codex icon, else the entry's 5etools picture shrunk to the same box (icon5: entries whose Codex icon was dropped because 5etools has a picture, owner 2026-11-09) */
+  FXENV.__artIc=function(cat,name){ const l=A.icon&&A.icon[cat], f=A.icon5&&A.icon5[cat]; if((!l&&!f)||FXS24A.ls("mi-clsart")==="off") return ""; const k=FXS24A.slug(name);
+    if(l&&l.indexOf(k)>=0) return '<img class="art-ic" src="img/icon/'+cat+'/'+k+'.avif" alt="" width="24" height="24" loading="lazy" decoding="async">';
+    return f&&f[k]?'<img class="art-ic art-5e" src="data/img/'+encodeURI(f[k])+'.webp" alt="" width="24" height="24" loading="lazy" decoding="async">':""; };
   FXENV.__clsArt=function(){ FXS24A.apply(); };
   FXENV.__miArtH=function(){ const on=FXS24A.ls("mi-clsart")!=="off", B=function(v,l){ const a=(v==="on")===on; return '<button type="button" class="thb'+(a?" on":"")+'" data-miart="'+v+'" aria-pressed="'+a+'">'+l+'</button>'; };
     return '<div class="info-h">Art</div><div class="thg">'+B("on","On")+B("off","Off")+'</div><p class="info-d">Pictures of your class behind the sheet and on the empty portrait, and small icons on spells and gear. Cards stay solid, so text keeps its contrast.</p>'; };

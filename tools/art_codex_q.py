@@ -2,6 +2,7 @@
 """Install the Codex pictures of queues Q3 (creatures) and Q4 (icons) that Claude approved.
   python3 tools/art_codex_q.py ART_TASKS_CHECKOUT [--dry]
 ART_TASKS_CHECKOUT is a checkout of branch art-tasks (it holds art-tasks/q3, q3-out, q4, q4-out).
+Codex files marked "dihapus: ada 5etools" in img/codex-q-src.json are never installed again (their entry shows its 5etools picture).
 Only rows of the Status tables that start with "approved by Claude" are used, minus the names listed after "redo:" in the same row.
 Q3: art-tasks/q3-out/<slug>.png  -> img/mon/<slug>.avif 256 px and img/hd/mon/<slug>.avif 768 px, manifest key "mon".
 Q4: art-tasks/q4-out/S0NNN.png (2x2) -> each cell trimmed to the object with a uniform margin,
@@ -35,8 +36,10 @@ def save(im, rel, q):
     if DRY: return
     os.makedirs(os.path.dirname(dst), exist_ok=True); im.save(dst, "AVIF", quality=q, speed=6); led.add(rel)
     if rel in PEND: SRCH[rel] = PEND[rel]
+REMOVED = "dihapus: ada 5etools"    # img/codex-q-src.json marks Codex files the owner dropped because the entry has a 5etools picture (2026-11-09)
 def newer(src, rel):
     dst = os.path.join(ROOT, rel)
+    if SRCH.get(rel) == REMOVED or SRCH.get(rel.replace("img/icon/", "img/hd/icon/").replace("img/mon/", "img/hd/mon/")) == REMOVED: return False   # never install again
     if not os.path.exists(dst): PEND[rel] = SHA(src); return True
     if rel not in led: return False            # someone else's art: never overwrite
     h = SHA(src); PEND[rel] = h                 # redraws are found by the source content, not by file times (checkouts reset the times)
