@@ -64,7 +64,7 @@ Tidak dihapus:
 
 Catatan screenshot 6: pada run "sebelum" lembar detail Soldier masih menutup bagian atas inventaris (urutan klik skrip). Baris yang terlihat (Shortbow sampai Longsword) cukup untuk dibandingkan.
 
-Screenshot 4 sempat menunjukkan baris feat lebih tinggi 12 px karena gambar 5etools tidak persegi. Sudah diperbaiki dengan `.lib-ri .art-ic.art-5e{height:auto;aspect-ratio:1}` dan diperiksa ulang pada run terakhir.
+Run pertama sesudah hapus menunjukkan baris feat lebih tinggi 12 px karena gambar 5etools tidak persegi. Sudah diperbaiki dengan `.lib-ri .art-ic.art-5e{height:auto;aspect-ratio:1}`. Screenshot 4 diambil dari run terakhir (sesudah merge main).
 
 ## Perubahan kode dan data
 
@@ -85,7 +85,7 @@ Kunci localStorage dan bentuk data tersimpan tidak berubah.
 
 | Bukti | Hasil |
 |---|---|
-| Jejak jaringan Playwright 390x844 dan 1250x850: sheet Yudhi (chip, kondisi, detail, inventaris), Library satu entri per kategori (item, spell, feat, bestiary, species, background, deck, recipe, language, facility, gear, rule), builder semua langkah | 0 permintaan gambar gagal atau 404. Satu-satunya 404 adalah `/api/me` (server statis lokal tanpa API, juga ada di main). Permintaan `img/mon` turun dari 1 ke 0, `data/img` naik dari 11 ke 29. |
+| Jejak jaringan Playwright 390x844 dan 1250x850: sheet Yudhi (chip, kondisi, detail, inventaris), Library satu entri per kategori (item, spell, feat, bestiary, species, background, deck, recipe, language, facility, gear, rule), builder semua langkah | 0 permintaan gambar gagal atau 404 (run sebelum, sesudah, dan sesudah merge main). Deck: pencarian Library tidak memunculkan baris deck, jadi dicek lewat `__libHtml('deck', ...)` yang dipasang ke halaman: deck tidak punya gambar di detail Library dan tidak ada permintaan gagal. Recipe Abyssal Chicken Egg Omelet: gambar 5etools termuat. Satu-satunya 404 adalah `/api/me` (server statis lokal tanpa API, juga ada di main). Permintaan `img/mon` turun dari 1 ke 0, `data/img` naik dari 11 ke 29. |
 | Tiga skenario wajib (`tests/scenarios.py`) | 24 cek lulus. `tests/compare_storage.py` sebelum vs sesudah: 6 file, 0 beda. |
 | `tests/solid_snapshot.py` | 2997 build, total f65fce1937133458 (sama). |
 | golden_builds, fx_engine, solid_contract, solid_data_contract, solid_ui_contract, csp_check, names_lint, version_label, e2e_fx_toggle, q_lib, xlinks | lulus semua |
