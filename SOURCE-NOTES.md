@@ -215,6 +215,8 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | builder/07-data-2014-spells.js | Data | 431.814 |
 | builder/08-logic-2014-rules.js | Logic | 16.285 |
 | builder/09-logic-feats-and-choices.js | Logic | 47.909 |
+| builder/09c-logic-edition-overlays.js | Logic | tabel edisi 2014 (spell, equipment, magic item) |
+| builder/09d-logic-wotc-source-gate.js | Logic | gerbang sumber WotC (`wxGate`) |
 | builder/09b-logic-choice-stages.js | Logic | tahap `choices()` |
 | builder/10-logic-v17-additions.js | Logic | 18.011 |
 | builder/11-logic-derivation.js | Logic | 10.560 |
