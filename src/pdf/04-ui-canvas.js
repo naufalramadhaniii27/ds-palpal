@@ -10,6 +10,12 @@ export class PxCanvas {
     if(s.rect){ page.drawRectangle({x:x+s.x, y:y-0.2, width:s.w, height:h+0.4, color:this.rgb(s.c)});
       if(s.bar) page.drawRectangle({x:x+s.x, y:y-0.2, width:1.6, height:h+0.4, color:this.rgb(PX_ACC)}); return; }
     this.line(page, x+s.x, y+h*0.5, x+s.x+s.w, y+h*0.5, s.t||0.6, s.c); }
+  /* a JPEG or PNG data URL embedded once; null when it is not one or pdf-lib cannot read it */
+  async embed(doc, url){ const m = /^data:image\/(jpe?g|png);base64,(.+)$/i.exec(String(url||"")); if(!m) return null;
+    try{ return /png/i.test(m[1]) ? await doc.embedPng(m[2]) : await doc.embedJpg(m[2]); }catch(e){ return null; } }
+  /* a picture fitted inside a box, centred, aspect kept */
+  image(page, img, x, y, w, h){ const k = Math.min(w/img.width, h/img.height), iw = img.width*k, ih = img.height*k;
+    page.drawImage(img, {x:x+(w-iw)/2, y:y+(h-ih)/2, width:iw, height:ih}); }
   /* draws typeset lines from the top y down; returns the y under the last line */
   lines(page, ls, x, ytop){ let y = ytop;
     ls.forEach((l) =>{ y -= l[0];

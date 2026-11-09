@@ -28,8 +28,8 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/fx-B1-subclass.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L1.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L4.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
-| data/fx-L5.js (data) | builder/11-logic-derivation.js (logic) | 1: abil | yes |
 | data/fx-L5.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
+| data/fx-L5.js (data) | builder/11-logic-derivation.js (logic) | 1: abil | yes |
 | data/fx-L9.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L10.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-L11.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
@@ -42,9 +42,9 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | data/fx-L7.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | data/fx-M2.js (data) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/09-logic-feats-and-choices.js (logic) | app/08b-ui-render-summaries-actions.js (ui) | 1: MAN_SUM | yes |
-| builder/09-logic-feats-and-choices.js (logic) | tg/30-ui-tg.js (ui) | 1: live | yes |
-| builder/09-logic-feats-and-choices.js (logic) | builder/17-ui-step-builder.js (ui) | 1: featOpts | yes |
 | builder/09-logic-feats-and-choices.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
+| builder/09-logic-feats-and-choices.js (logic) | builder/17-ui-step-builder.js (ui) | 1: featOpts | yes |
+| builder/09-logic-feats-and-choices.js (logic) | tg/30-ui-tg.js (ui) | 1: live | yes |
 | builder/10-logic-v17-additions.js (logic) | builder/18-ui-spells.js (ui) | 1: spCls | yes |
 | builder/10-logic-v17-additions.js (logic) | tg/30-ui-tg.js (ui) | 1: creatures | yes |
 | builder/10a-logic-fx-registry.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
@@ -54,8 +54,8 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | builder/25-logic-hooks-for-the-sheet.js (logic) | app/12-ui-bottom-sheet-modal.js (ui) | 1: sheet | yes |
 | learn/45b-data-learn-places-a.js (data) | builder/20-ui-steps-equipment-next.js (ui) | 1: hint | yes |
 | learn/45-data-learn.js (data) | builder/20-ui-steps-equipment-next.js (ui) | 1: hint | yes |
-| learn/46-logic-learn.js (logic) | builder/17-ui-step-builder.js (ui) | 1: card | yes |
 | learn/46-logic-learn.js (logic) | tg/30-ui-tg.js (ui) | 1: place | yes |
+| learn/46-logic-learn.js (logic) | builder/17-ui-step-builder.js (ui) | 1: card | yes |
 
 ## Fan-in (most depended on files)
 

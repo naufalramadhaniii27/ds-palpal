@@ -16,7 +16,7 @@ export async function renderPdf(M, assets, libs){
   const ed = M.edition==="2014" ? "2014" : "2024", o = await pxOpenDoc(libs.PDFLib, libs.fontkit, assets, ed);
   const cv = new PxCanvas(libs.PDFLib, o.fonts), T = new PxTypesetter((t,f,s) =>{ return o.fonts[f].widthOfTextAtSize(t,s); });
   const F = new PxFields(cv, T, assets.map[ed], o.doc.getPages());
-  const ctx = {F:F, M:M, ed:ed, cont:[], over:[], smap:assets.map.spells, note:"Continued after the sheet (Continued from the Sheet)"};
+  const ctx = {F:F, M:M, ed:ed, cont:[], over:[], smap:assets.map.spells, note:"Continued after the sheet (Continued from the Sheet)", img:await cv.embed(o.doc, M.portrait)};
   PX_PAINTERS.forEach((p) =>{ p.fn(ctx); });
   if(!pxHasSpells(M)) o.doc.removePage(2);
   const flow = new PxFlow(o.doc, cv, T, M, M.classLevel+" ("+ed+" rules)", o.doc.getPageCount());

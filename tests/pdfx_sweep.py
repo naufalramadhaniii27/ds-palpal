@@ -52,6 +52,16 @@ CHECK = r"""async (o)=>{
   if(/Beast Master/.test(o.sub||'')&&o.lv>=3){ const tags=(m.creatures||[]).map(c=>c.tag).join('|');
     if(o.rs==='2014'&&(!/Ranger's Companion/.test(tags)||/Primal Companion/.test(tags))) bad.push('Beast Master (2014) without the 2014 Ranger\'s Companion');
     if(o.rs!=='2014'&&/Ranger's Companion/.test(tags)) bad.push('Beast Master (2024) with the 2014 companion'); }
+  /* the sheet against the PDF model: everything on the sheet must be in the print */
+  const c=r.c, has=(arr,n)=>JSON.stringify(arr||[]).indexOf(JSON.stringify(String(n)).slice(1,-1))>=0;
+  (c.features||[]).forEach(g=>(g.items||[]).forEach(f=>{ if(!has(m.appendix,f.n)&&!has(m.appendix,(f.n||'').split(':')[0])) bad.push('sheet feature not in PDF: '+f.n); }));
+  (c.spells||[]).forEach(x=>{ if(!has(m.spellcasting&&m.spellcasting.levels,x.n)) bad.push('sheet spell not in PDF: '+x.n); });
+  (c.inv||[]).forEach(i=>{ if(!has(m.equipment,i.n)) bad.push('sheet item not in PDF: '+i.n); });
+  (c.attacks||[]).filter(a=>a&&a.n&&a.on!==false).forEach(a=>{ if(!has(m.weapons,a.n)&&!has(m.attackNotes,a.n)) bad.push('sheet attack not in PDF: '+a.n); });
+  (c.res||[]).forEach(x=>{ if(!/^(hd|pact|s\d)/.test(x.k)&&!has(m.moreFeatures,x.n)&&!has(m.hitDice,x.n)) bad.push('sheet limited use not in PDF: '+x.n); });
+  if(+c.darkvision>0&&!has(m.proficiencies,'Darkvision '+c.darkvision)) bad.push('darkvision not in PDF');
+  (c.senses||[]).filter(x=>x&&x.n).forEach(x=>{ if(!has(m.proficiencies,x.n)) bad.push('sense not in PDF: '+x.n); });
+  (c.defenses||[]).forEach(x=>{ const where=o.rs==='2014'?m.moreFeatures:m.boxes; if(x&&x.v&&!(has(where,x.t)&&has(where,x.v))) bad.push('defense not in PDF: '+x.t+' '+x.v); });
   let pages=null;
   if(o.render){ try{ const out=await PDFX.render(m,window.__pxA,{PDFLib:window.PDFLib,fontkit:window.fontkit}); pages=out.pages;
       out.overflow.forEach(x=>{ if(/^spells:/.test(x)) rep.spellOver++; else rep.over.push(x); }); }

@@ -32,6 +32,7 @@ pxAddPainter("page2", (ctx) =>{ const F = ctx.F, M = ctx.M;
   F.one("CharacterName 2", M.name, "Bold", 18, "left", 7);
   PX_LOOKS.forEach((l) =>{ F.one(l[1], (M.looks||{})[l[0]], "SemiBold", 10.5, "left", 2, 0.42); });
   F.one("FactionName", M.factionName, "Bold", 10, "center");
+  F.picture("CHARACTER IMAGE", ctx.img);
   PX_BOXES_P2.forEach((b) =>{ pxBoxTo(ctx,b); }); });
 /* one spell row: name, a small gray tag after it when it fits, the prepared dot */
 function pxSpellRow(ctx, fld, cb, sp){ const F = ctx.F, T = F.T, r = F.rect(fld), y = r.y0+2.4, maxW = r.x1-r.x0-4;

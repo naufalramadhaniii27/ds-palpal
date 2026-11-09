@@ -11,6 +11,9 @@ export class PxFields {
     while(this.T.width(text,f,s)>w&&s>5) s -= 0.25;
     const tw = this.T.width(text,f,s), x = align==="center" ? r.x0+(r.x1-r.x0-tw)/2 : r.x0+pad;
     this.cv.text(r.p, x, r.y0+(r.y1-r.y0)*(vfrac==null?0.5:vfrac)-s*0.36, text, f, s, PX_INK); }
+  /* a picture inside a field; pad keeps it off the border, bottom keeps the box title free */
+  picture(name, img, pad, bottom){ if(!img) return; const r = this.rect(name); pad = pad==null ? 4 : pad; bottom = bottom==null ? pad : bottom;
+    this.cv.image(r.p, img, r.x0+pad, r.y0+bottom, r.x1-r.x0-2*pad, r.y1-r.y0-pad-bottom); }
   /* a number with a small unit after it, centred: "30 ft" */
   unit(name, num, unit, s){ if(!num) return;
     const r = this.rect(name), a = this.T.width(num,"Bold",s), b = unit ? this.T.width(" "+unit,"Medium",s*0.45) : 0;

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """PDFX export: the sheet drawn on the 2014/2024 template, with spell, feature and creature pages. 390x844 and 1250x850.
   python3 tests/pdfx_export.py [OUTDIR] [--root DIR]
-Cases: (1) old Yudhi sheet (2024, Fighter, no spells), (2) Wizard from Quick Build after Apply (spells, Find Familiar if the build has it),
+Cases: (1) old Yudhi sheet (2024, Fighter, no spells), (2) Wizard from Quick Build after Apply (spells, Find Familiar if the build has it), with a portrait uploaded through the
+sheet's own file input: the picture must sit in the Character Appearance box on page 2,
 (3) the same Wizard switched to the 2014 rules by its sheet field. Each case taps Export PDF, saves the download and checks:
 it is a PDF made by PDFX (not the picture fallback), the expected sections are there, every feature has an IN SHORT line, no page error,
 no request outside the site, no native dialog. Page images go to OUTDIR for a look."""
@@ -90,10 +91,16 @@ async def run(b, base, W, H, bad, info):
     inspect(p, vp + "-1-yudhi", ["Yudhi Kelapa", "Second Wind", "IN SHORT"], bad, info)
     # 2. Wizard from Quick Build, after Apply
     await quick_build(pg, "Wizard"); await pg.wait_for_timeout(1000)
+    await pg.set_input_files("#avFile", os.path.join(HERE, "fixtures", "portrait-test.png")); await pg.wait_for_timeout(1500)
+    await pg.evaluate("()=>{const f=window.__sheetIdentSet; f('ch_age','27'); f('ch_eyes','Grey'); f('ch_gender','Female'); f('ch_faith','Oghma'); f('personality','Talks to books.'); f('align','Neutral Good');}")
+    por = await pg.evaluate("()=>window.__sheetPortrait()")
+    if not por.startswith("data:image/jpeg"): bad.append(vp + " uploaded portrait not saved")
     st = await pg.evaluate("()=>{var o=JSON.parse(localStorage.getItem('yudhi-kelapa-build-v3')||'{}');o=o.C||o;return {name:o.name,cls:o.cls,spells:(o.spells||[]).map(function(x){return x.n})}}")
     info[vp + "-2-wizard-storage"] = st
     p = await export(pg, os.path.join(OUT, vp + "-2-wizard.pdf"))
-    inspect(p, vp + "-2-wizard", ["SPELL DESCRIPTIONS", "Wizard"] + st["spells"][:3], bad, info)
+    inspect(p, vp + "-2-wizard", ["SPELL DESCRIPTIONS", "Wizard", "Grey", "Female", "Oghma", "Talks to books.", "Neutral Good", "Senses."] + st["spells"][:3], bad, info)
+    if not pypdf.PdfReader(p).pages[1].images: bad.append(vp + " portrait missing from Character Appearance")
+    if pypdf.PdfReader(os.path.join(OUT, vp + "-1-yudhi.pdf")).pages[1].images: bad.append(vp + " Yudhi has no portrait but page 2 has a picture")
     # 3. the same Wizard on the 2014 rules (C.rs), exported from the sheet
     await pg.evaluate("()=>{var k='yudhi-kelapa-build-v3', o=JSON.parse(localStorage.getItem(k)); (o.C||o).rs='2014'; localStorage.setItem(k,JSON.stringify(o));}")
     await pg.reload(); await pg.wait_for_timeout(3000); await answer_asks(pg, ok=False)

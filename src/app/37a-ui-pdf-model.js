@@ -5,7 +5,7 @@
 import {ABK,ABN} from "./02-data-default-character.js";
 import {gName} from "./03-data-glossary.js";
 import {C,DEF,S,__set_C,__set_S,clsLv} from "./04-logic-storage.js";
-import {atkOn,eqOn,num,sg} from "./05-logic-helpers.js";
+import {atkOn,eqOn,num,senseList,sg} from "./05-logic-helpers.js";
 import {D,__set_D,derive,fill} from "./06-logic-derivation.js";
 import {env} from "./00-env.js";
 import {langText} from "./08-ui-render-sheet-and-actions.js";
@@ -29,7 +29,11 @@ function pxBrief(t){ const p=pxLine(t).replace(/\*\*/g,""); if(p.length<=230) re
   let out=""; p.split(/(?<=[.!?])\s+/).some((x) =>{ if(out&&(out+" "+x).length>170) return true; out=(out?out+" ":"")+x; return out.length>=70; });
   return out.length>200 ? out.slice(0,190).replace(/\s+\S*$/,"")+"…" : out; }
 /* short line plus full text; the full part is left out when it would only repeat the short line */
-function pxTwo(short,full){ const sp=pxLine(short);
+const PX_NOT_PICK = /^(Prerequisites?|Repeatable|Your choice|At your level|Uses?|Level \d+|Note)$/i;
+/* a list of picks written as "**Name.** text" paragraphs (maneuvers, invocations, metamagic): the names */
+function pxLabels(t){ const L=[]; pxPlain(t).split(/\n+/).forEach((p) =>{ const m=/^\s*\*\*([^*\n]{1,60}?)\.\*\*/.exec(p); if(m&&!PX_NOT_PICK.test(m[1])) L.push(m[1]); }); return L; }
+function pxTwo(short,full){ const sp=pxLine(short), lab=pxLabels(short);
+  if(lab.length>1&&!full) return {summary:lab.length+" picks: "+lab.join(", ")+".", text:pxPars(short)};
   if(full&&pxKey(full)!==pxKey(short)&&pxPlain(full).length>sp.length*1.1) return {summary:sp.length>260?pxBrief(sp):sp, text:pxPars(full)};
   if(sp.length>230) return {summary:pxBrief(sp), text:pxPars(short)};
   return {summary:sp, text:[]}; }
@@ -58,7 +62,11 @@ function pxCoins(){ const c=coinsNow(), o={}; ["cp","sp","ep","gp","pp"].forEach
 function pxProfs(ed){ const p=C.profs||{}, sv=ABK.filter((k) =>{ return C.saves&&C.saves[k]; }).map((k) =>{ return ABN[k]; });
   const sk=(C.skills||[]).filter((s) =>{ return num(s.p,0)>0; }).map((s) =>{ return s.n+(num(s.p,0)>1?" (expertise)":""); });
   return [(ed==="2014"?"**Armor.** ":"**Armor Training.** ")+(p.armor||"None"),"**Weapons.** "+(p.weapons||"None"),"**Tools.** "+(p.tools||"None"),
-    "**Saving Throws.** "+(sv.join(", ")||"None"),"**Skills.** "+(sk.join(", ")||"None"),"","**Languages.** "+pxUnEsc(langText())]; }
+    "**Saving Throws.** "+(sv.join(", ")||"None"),"**Skills.** "+(sk.join(", ")||"None"),"","**Senses.** "+pxSenses(),"**Languages.** "+pxUnEsc(langText())]; }
+/* Darkvision and the other senses from the builder, then Passive Perception */
+function pxSenses(){ const L=[]; if(num(C.darkvision,0)) L.push("Darkvision "+num(C.darkvision,0)+" ft");
+  senseList().forEach((x) =>{ L.push(pxPlain(x[0].n)+(num(x[0].v,0)?" "+num(x[0].v,0)+" ft":"")); });
+  return L.join(", ")||"None"; }
 function pxInvLine(i){ const q=num(i.q,1), on=eqOn(i); return (i.att?"**"+i.n+"**":i.n)+(q>1?" ×"+q:"")+(i.att&&on?" {{attuned}}":on?" {{worn}}":""); }
 function pxGroupNames(re){ const out=[]; (C.features||[]).filter((g) =>{ return re.test(String(g.g||"")); }).forEach((g) =>{ (g.items||[]).forEach((f) =>{ out.push(cuNm("f:"+f.n,f.n)); }); }); return out; }
 function pxDefenses(){ const L=(C.defenses||[]).concat(D.cf&&D.cf.res?D.cf.res:[]), by={};
@@ -75,12 +83,23 @@ function pxFeatureNames(){ const out=[]; (C.features||[]).forEach((g) =>{ const 
 
 /* ---------- page 2 ---------- */
 function pxLimited(){ return (D.res||[]).filter((r) =>{ return !(r.k==="hd"||/^hd-d/.test(r.k)||r.k==="pact"||/^s\d$/.test(r.k)); })
-  .map((r) =>{ return "**"+pxPlain(r.n)+".** "+r.max+(r.pool?" points":" uses")+(r.rest?" {{"+r.rest+"}}":""); }); }
+  .map((r) =>{ const back=PX_RESET[r.reset]||(r.reset==="none"&&r.tag?pxLine(r.tag):"");
+    return "**"+pxPlain(r.n)+".** "+r.max+(r.pool?" points":+r.max===1?" use":" uses")+(r.die?" (d"+r.die+")":"")+(back?" {{"+back+"}}":""); }); }
+/* when the uses come back, in the words the player reads at the table */
+const PX_RESET = {long:"back on a Long Rest", short:"back on a Short or Long Rest", short1:"all back on a Long Rest, 1 back on a Short Rest", dawn:"back at dawn", dusk:"back at dusk"};
 function pxMagicItems(){ return (C.inv||[]).filter((i) =>{ return i.d&&(i.att||i.rar||/magic|\+\d/i.test(i.n+" "+(i.t||""))); }); }
 function pxTreasure(){ const att=(C.inv||[]).filter((i) =>{ return i.att; });
   const head=att.length?["**Attuned** {{"+Math.min(3,att.filter(eqOn).length)+" of 3}}. "+att.map((i) =>{ return i.n; }).join(", ")]:[];
   return head.concat(pxMagicItems().map((i) =>{ return "**"+i.n+".** "+pxBrief(i.d); })); }
-function pxBackstory(ed){ const n=S.notes||{}, out=pxPars(n.backstory||"");
+/* Character tab fields (S.notes.ch_*): six on the template line, gender and faith go to the backstory box */
+function pxLooks(n){ const o={}; ["age","height","weight","eyes","skin","hair"].forEach((k) =>{ const v=pxLine(n["ch_"+k]||""); if(v) o[k]=v; }); return o; }
+function pxAllies(n){ const sec=[["Organizations",n.org],["Allies",n.allies],["Enemies",n.enemies]].filter((x) =>{ return String(x[1]||"").trim(); });
+  if(sec.length===1&&sec[0][0]==="Allies") return pxPars(n.allies);
+  return sec.reduce((out,x,i) =>{ return out.concat(i?[""]:[],["# "+x[0]],pxPars(x[1])); },[]); }
+function pxNotesTail(n){ const who=[["Gender",n.ch_gender],["Faith",n.ch_faith]].filter((x) =>{ return String(x[1]||"").trim(); }).map((x) =>{ return "**"+x[0]+".** "+pxLine(x[1]); });
+  const ses=pxPars(n.session||""); return (who.length?["","# Details"].concat(who):[]).concat(ses.length?["","# Notes"].concat(ses):[]); }
+function pxBackstory(ed){ return pxBackstoryMain(ed).concat(pxNotesTail(S.notes||{})); }
+function pxBackstoryMain(ed){ const n=S.notes||{}, out=pxPars(n.backstory||"");
   const pers=[["Personality",n.personality],["Ideals",n.ideal],["Bonds",n.bond],["Flaws",n.flaw],["Appearance",n.appearance]].filter((x) =>{ return String(x[1]||"").trim(); });
   if(ed==="2024"&&pers.length) return out.concat(["","# Personality"],pers.map((x) =>{ return "**"+x[0]+".** "+pxLine(x[1]); }));
   if(ed==="2014"&&String(n.appearance||"").trim()) return out.concat(["","# Appearance",pxLine(n.appearance)]);
@@ -116,7 +135,8 @@ function pxSpells(ed){ const L=(C.spells||[]).slice(); if(!L.length) return null
   L.forEach((x) =>{ const lv=num(x.l,0); (by[lv]=by[lv]||[]).push(x); });
   const levels=Object.keys(by).map(Number).sort((a,b) =>{ return a-b; }).map((lv) =>{
     return {level:lv, slots:slots[lv]?slots[lv].total:null, spells:by[lv].sort((a,b) =>{ return a.n<b.n?-1:1; }).map((x) =>{ return pxSpell(x,lv,ed); })}; });
-  const cls=Array.isArray(sc.by)&&sc.by.length>1?sc.by.map((b) =>{ return b.n; }).join(" / "):(sc.n||C.cls||"");
+  const own=[...new Set(L.map((x) =>{ return String(x.src||"").split(" (")[0]; }).filter(Boolean))];
+  const cls=Array.isArray(sc.by)&&sc.by.length>1?sc.by.map((b) =>{ return b.n; }).join(" / "):own.length&&own.indexOf(C.cls)<0?own.join(" / "):(sc.n||C.cls||"");/* a Fighter with only a species cantrip: "Aasimar" */
   return {className:cls, ability:main.ab||sc.ab||"", dc:main.dc!=null?String(main.dc):"", attack:main.atk!=null?sg(main.atk):"", slots:slots, levels:levels}; }
 
 /* ---------- creatures ---------- */
@@ -159,9 +179,15 @@ export function pdfModel(){ const ed=C.rs==="2014"?"2014":"2024", W=pxWeapons(),
   return Object.assign(pxHeader(ed),pxCombat(),{
     weapons:W.map((w) =>{ return [w.n,w.hit,w.dmg]; }), attackNotes:pxAtkNotes(W), coins:pxCoins(), boxes:pxBoxes(ed,W),
     proficiencies:pxProfs(ed), equipment:(C.inv||[]).map(pxInvLine), features:pxFeatureNames(),
-    looks:{}, factionName:"", allies:pxPars(n.allies||""), backstory:pxBackstory(ed),
-    moreFeatures:lim.length?["# Limited Use"].concat(lim):[], treasure:pxTreasure(),
+    looks:pxLooks(n), portrait:pxPortrait(), factionName:"", allies:pxAllies(n), backstory:pxBackstory(ed),
+    moreFeatures:pxMore(ed,lim), treasure:pxTreasure(),
     spellcasting:pxSpells(ed), appendix:pxAppendix(), creatures:pxCreatures()}); }
+
+/* page 2 box: limited uses, and on the 2014 sheet (no defenses box) the defenses too */
+function pxMore(ed,lim){ const d=ed==="2014"?pxDefenses():[], out=lim.length?["# Limited Use"].concat(lim):[];
+  return d.length?out.concat(out.length?[""]:[],["# Defenses & Conditions"],d):out; }
+/* the token picture (S.portrait, a JPEG data URL) for the Character Appearance box; other formats are left out */
+function pxPortrait(){ const p=String(S.portrait||""); return /^data:image\/(jpe?g|png);base64,/i.test(p)?p:""; }
 
 /* test hook (tests/pdfx_sweep.py): the print model of another character, without saving it. The open sheet is restored */
 env.__pdfModelFor=function(c){ const C0=C, S0=S, D0=D; let out=null;
