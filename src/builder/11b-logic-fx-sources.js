@@ -19,4 +19,4 @@ registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out
  out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
- return {list:(q.gx||[]).concat((G.item&&G.item[q.n])||[]),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+ return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
