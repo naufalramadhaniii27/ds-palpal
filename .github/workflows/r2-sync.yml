@@ -1,0 +1,36 @@
+# Uploads the 5etools bestiary pictures (data/img/bestiary) to the R2 bucket dnd-sheet-img, so the Pages deploy stays under 20000 files.
+# Needs the repository secrets R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and R2_ACCOUNT_ID. Run by hand (workflow_dispatch) or when a bestiary picture changes.
+name: r2-sync
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["data/img/bestiary/**"]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check the secrets
+        id: has
+        env:
+          K: ${{ secrets.R2_ACCESS_KEY_ID }}
+          S: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          A: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          if [ -n "$K" ] && [ -n "$S" ] && [ -n "$A" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "No R2 secrets: sync skipped."; fi
+      - uses: actions/checkout@v4
+        if: steps.has.outputs.go == '1'
+      - name: Sync data/img/bestiary to R2
+        if: steps.has.outputs.go == '1'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          aws s3 sync data/img/bestiary "s3://dnd-sheet-img/bestiary" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --only-show-errors
+          echo "synced $(find data/img/bestiary -type f | wc -l) files"
