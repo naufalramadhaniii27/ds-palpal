@@ -58,7 +58,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  S("Hunter (2014)",{n:"Hunter's Prey (Colossus Slayer)",l:3,when:{key:"p3hunt14a",val:"Colossus Slayer"},atkDice:[{when:"weapon",d:"1d8",t:"of the weapon's type",note:"Colossus Slayer, once per turn, against a target below its Hit Point maximum"}]});
  S("Hunter (2014)",{n:"Defensive Tactics (Escape the Horde)",l:7,when:{key:"p7hunt14b",val:"Escape the Horde"},defs:[["Note","Opportunity Attacks against you have Disadvantage"]]});
  S("Hunter (2014)",{n:"Defensive Tactics (Multiattack Defense)",l:7,when:{key:"p7hunt14b",val:"Multiattack Defense"},defs:[["Note","When a creature hits you, you gain +4 AC against its later attacks this turn"]]});
- S("Hunter (2014)",{n:"Defensive Tactics (Steel Will)",l:7,when:{key:"p7hunt14b",val:"Steel Will"},advOn:["saving throws against being Frightened"]});
  S("Arcane Trickster (2014)",{n:"Versatile Trickster",l:13,toggle:{id:"versatile-trickster",label:"Versatile Trickster used this turn"},advOn:["attack rolls against the creature you designated near your Mage Hand"]});
  S("Assassin (2014)",{n:"Assassinate",l:3,defs:[["Note","Advantage on attack rolls against any creature that has not taken a turn in the combat yet; a hit against a surprised creature is a Critical Hit"]]});
  S("Draconic Bloodline",{n:"Elemental Affinity",l:6,defs:[["Note","Spell damage of your ancestry type: add your Charisma modifier to one damage roll, and spend 1 sorcery point for Resistance to that type for 1 hour"]]});
