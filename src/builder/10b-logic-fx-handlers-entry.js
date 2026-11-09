@@ -3,6 +3,8 @@ import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
 /* l: the entry counts from this level (class level for cls and sub entries, character level for the rest) */
 registerFxHandler("entry",{id:"gate-level",group:"gate",phase:"gate",fields:["l"],uses:["src"],run:function(e,ctx){return e.l&&ctx.src.lv<e.l?{skip:true}:null}});
+/* ed:"2024": the entry is for a 2024 build only (a feature the 2014 class table does not have, or reads differently). A 2014 build drops it, toggle row included (zero miss 3) */
+registerFxHandler("entry",{id:"gate-edition",group:"gate",phase:"gate",fields:["ed"],uses:["rs"],run:function(e,ctx){return (e.ed==="2024"&&ctx.rs==="2014")||(e.ed==="2014"&&ctx.rs!=="2014")?{skip:true}:null}});
 /* when {key,val,any}: only while the pick named in key holds val */
 registerFxHandler("entry",{id:"gate-when",group:"gate",phase:"gate",fields:["when"],uses:["ch", "src"],run:function(e,ctx){if(!e.when)return null;const s=ctx.src,v=chPick(ctx.ch,e.when.key,s.pre,s.kind,s.okey,e.when.any),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0?null:{skip:true}}});
 /* spCls "@asi" / "@abpick": the source names the ability, the entry gets the "@sub:AB" form (src.alias is {"@asi":"@sub:CHA",...}) */

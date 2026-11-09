@@ -91,4 +91,6 @@
 #bld .sub-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--panel-2,var(--panel))}
 #bld .sub-card span{display:block;padding:6px 8px 8px;font-size:calc(13px*var(--tz,1));line-height:1.25;min-height:2.6em}
 #bld .sub-card.on{border-color:var(--accent,#c9a24a);box-shadow:0 0 0 1px var(--accent,#c9a24a)}
+/* ui-1109: the D&D Beyond skin button rule flattened border and shadow (an outline and a tint are not touched by it), so a chosen subclass card looked like the others (found by tests/visual_state_scan.py) */
+:root[data-skin="ddb"] #bld .sub-card.on:not(#a):not(#b){outline:2px solid var(--accent,#c9a24a)!important;outline-offset:-2px;background:color-mix(in srgb,var(--accent,#c9a24a) 14%,var(--panel))!important}
 @media (min-width:760px){ #bld .sub-card{flex-basis:188px} }

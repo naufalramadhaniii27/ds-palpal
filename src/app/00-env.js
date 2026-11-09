@@ -5,7 +5,7 @@
 export const env = {};
 function bind(names){ names.forEach((n) =>{ Object.defineProperty(env, n, { get(){ return window[n]; }, set(v){ window[n] = v; }, enumerable: true }); }); }
 /* Data tables and registries filled by the data scripts (read only by the sheet) */
-bind(["CRIMG", "DECKFIX", "FLUFF", "HBIDX", "HBN", "ITEMFIX", "LANGFIX", "QIMG", "QREFS", "SPREF", "THIRD_SUBS", "WX", "WXF_ALL", "WXI", "WXG", "WXSP", "WXBG", "WXS", "__D", "__GLOSS", "__ICO"]);
+bind(["CRIMG", "DECKFIX", "FLUFF", "HBIDX", "HBN", "ITEMFIX", "LANGFIX", "QIMG", "QREFS", "SPREF", "THIRD_SUBS", "WX", "WXF_ALL", "WXI", "WXG", "WXSP", "WXBG", "WXS", "__D", "__GLOSS", "__MANSUM", "__ICO"]);
 /* Art helpers published by the art scripts */
 bind(["__ART", "__PPIDX", "__artIc", "__artSheet", "__artSub", "__artVig", "__miArtH", "__qimN"]);
 /* Builder bridge (the builder bundle publishes these when it loads) */

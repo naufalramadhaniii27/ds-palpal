@@ -28,10 +28,18 @@ export function linkify(text){
    weapons, armor, gear, species, classes, subclasses, backgrounds, options, languages) become links to their detail. One index, one matcher, used by every text.
    An index value is [type, key, level]. Level 0: always a link. Level 1: a link unless the word only starts a sentence ("Fighter levels"). Level 2: a common
    English word that is also a name (Light, Range, Speed, Help): a link only when the next word makes it a term ("Help action", "Light property"). */
-let XL_IDX=null, XL_KEY="", XL_STOP={"The":1,"A":1,"An":1,"Each":1,"Any":1,"Your":1,"This":1,"That":1,"One":1,"If":1,"When":1,"While":1,"You":1,"It":1,"Its":1,"On":1,"In":1,"At":1,"As":1,"For":1,"With":1,"Once":1,"Until":1,"After":1,"Before":1,"Any":1,"No":1,"Choose":1,"Cast":1,"Casts":1,"Roll":1,"Both":1,"Either":1,"All":1,"Other":1,"Another":1,"Of":1};
-const XL_FIRM={"Advantage":1,"Disadvantage":1,"Darkvision":1,"Initiative":1,"Exhaustion":1,"Dash":1,"Disengage":1,"Dodge":1,"Utilize":1,"Grapple":1,"Shove":1,"Blindsight":1,"Truesight":1,"Tremorsense":1};/* single words that are always the term */
+let XL_IDX=null, XL_KEY="", XL_STOP={"The":1,"A":1,"An":1,"Each":1,"Any":1,"Your":1,"This":1,"That":1,"One":1,"If":1,"When":1,"While":1,"You":1,"It":1,"Its":1,"On":1,"In":1,"At":1,"As":1,"For":1,"With":1,"Once":1,"Until":1,"After":1,"Before":1,"No":1,"Choose":1,"Cast":1,"Casts":1,"Roll":1,"Both":1,"Either":1,"All":1,"Other":1,"Another":1,"Of":1,"Pick":1,"Picks":1,"Add":1,"Take":1,"Make":1,"Use":1,"Using":1,"Rolling":1,"Gain":1,"Spend":1,"Expend":1,"Select":1,"Learn":1,"Swap":1,"Replace":1,"Treat":1,"Apply":1,"Regain":1};/* v-measure: sentence-opening verbs ("Pick Dexterity") are not the first word of a longer name */
+const XL_FIRM={"Advantage":1,"Disadvantage":1,"Darkvision":1,"Initiative":1,"Exhaustion":1,"Dash":1,"Disengage":1,"Dodge":1,"Utilize":1,"Grapple":1,"Shove":1,"Blindsight":1,"Truesight":1,"Tremorsense":1,"Reaction":1};/* single words that are always the term */
 const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;/* glossary gear words: a plain name, may start a sentence */
-const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;/* the word after a level 2 name that makes it a term */
+const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;
+const XL_LANG={"Celestial":1,"Giant":1};/* v-measure: also a creature type ("Aberration, Celestial, Fey"): a language only when "language" follows */
+const XL_LANGT=/^ languages?\b/;
+const XL_SHAPE={"Cone":1,"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Line":1};/* v-measure: an area shape after a size ("a 10-foot Cube") */
+const XL_SHAPEB=/\d-(?:foot|feet)(?:-[a-z]+)*,? (?:\d+-foot(?:-[a-z]+)* )?$/;
+const XL_PROP={"Finesse":1,"Heavy":1,"Light":1,"Thrown":1,"Versatile":1,"Reach":1,"Two-Handed":1};/* v-measure: weapon properties named before "weapon" or in a list that ends with "property" */
+const XL_LC={"saving throw":"Saving Throw","saving throws":"Saving Throw","death saving throw":"Death Saving Throw","death saving throws":"Death Saving Throw","attack roll":"Attack Roll","attack rolls":"Attack Roll","ability check":"Ability Check","ability checks":"Ability Check","spell attack":"Spell Attack","opportunity attack":"Opportunity Attack","opportunity attacks":"Opportunity Attack"};/* v-measure: rule phrases in running text are lowercase; short labels such as "long rest" are left alone */
+const XL_LCF={"saving":1,"death":1,"attack":1,"ability":1,"spell":1,"opportunity":1};
+const XL_PROPT=/^ (?:weapons?\b|(?:or|and) [A-Z][A-Za-z-]+ propert)/;/* the word after a level 2 name that makes it a term */
 function xlRules(){ return typeof lateGet("LIB_RULES")!=="undefined"?lateGet("LIB_RULES"):{}; }
 let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
 function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
@@ -67,7 +75,7 @@ function xlIdxStep2(Q){
   return /** @type {any} */ ({m, put});
 }
 function xlIdxStep3(Q, bgs, spc, cl, rl, put, m){
-  (Q.language||[]).forEach((r) =>{ if(r.n!=="Common") put(r.n,["lib","language|"+r.n],1); });
+  (Q.language||[]).forEach((r) =>{ if(r.n!=="Common") put(r.n,["lib","language|"+r.n],XL_LANG[r.n]?2:1); });
   if(typeof MANEUVERS!=="undefined") MANEUVERS.forEach((x) =>{ put(x[0],["lib","opt|man|"+x[0]],1); });
   if(typeof INVOCATIONS!=="undefined") INVOCATIONS.forEach((x) =>{ put(x[0],["lib","opt|inv|"+x[0]],1); });
   if(typeof METAMAGIC!=="undefined") METAMAGIC.forEach((x) =>{ put(x[0],["lib","opt|mm|"+x[0]],1); });
@@ -111,6 +119,18 @@ function xlMapStep2(m, fs, key){
   XL_CM=o; XL_CK=key;
   return /** @type {any} */ ({o});
 }
+function xlScanLc(t, i, a, ta, tb, m, selfK, mode){
+  if(XL_LCF[t.slice(a,tb[i])]!==1) return [null,0];
+  for(let L=Math.min(3,ta.length-i);L>=2;L--){
+    let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
+    if(!ok) continue;
+    const cn=XL_LC[t.slice(a,tb[i+L-1])]; if(!cn||cn===selfK) continue;
+    let k=m[cn]; if(!k) continue;
+    if(mode==="b"){ if(k[0]!=="g"&&k[0]!=="lib") continue; if(k[0]==="g") k=["lib","rule|"+k[1]]; }
+    return [k,L];
+  }
+  return [null,0];
+}
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
 function xlScan(t,atStart,selfK,mode,m){
   const _xlScan2Step1=xlScan2Step1(m, t);
@@ -134,6 +154,7 @@ function xlScan(t,atStart,selfK,mode,m){
         hit=kk; len=L; break;
       }
     }
+    else{ const lc=xlScanLc(t, i, a, ta, tb, m, selfK, mode); hit=lc[0]; len=lc[1]; }/* lowercase rule phrases */
     if(hit){ res.push([a,tb[i+len-1],hit]); i+=len; } else i++;
   }
   return res;
@@ -145,12 +166,17 @@ function xlScanTokens(t, n0, p, ta, tb){
     else p++;
   }
 }
+const XL_DT="(?:Cold|Fire|Force|Lightning|Necrotic|Poison|Psychic|Radiant|Thunder)";
+const XL_DTA=new RegExp("^,? (?:or |and )?"+XL_DT+"\\b"), XL_DTB=new RegExp("\\b"+XL_DT+",? (?:or |and )?$");
+function xlDmgList(t, a, e0){ return XL_DTA.test(t.slice(e0,e0+14))||XL_DTB.test(t.slice(Math.max(0,a-14),a)); }
+function xlTrig2(k, t, a, e0){ const w=t.slice(a,e0); return !!((XL_LANG[w]&&k[1].indexOf("language|")===0&&XL_LANGT.test(t.slice(e0,e0+11)))||(XL_SHAPE[w]&&XL_SHAPEB.test(t.slice(Math.max(0,a-40),a)))||(XL_PROP[w]&&XL_PROPT.test(t.slice(e0,e0+40)))); }
 function xlScanGate(k, t, a, i, L, tb, atStart){
+          if(k[1]==="gear|Acid"&&(/^ damage\b/.test(t.slice(tb[i+L-1],tb[i+L-1]+8))||xlDmgList(t, a, tb[i+L-1]))) return null;/* "Acid damage" and "Acid, Cold, Fire" are damage types, not the Acid item */
           const e0=tb[i+L-1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
           if(xlScanPart3(pw)) return null;/* part of a longer proper name, such as "Gamma Knight" */
           if(xlScanPart4(k, t, e0, a)) k=k[3];/* a spell that shares its name with a rule word (Light, Slow, Darkness): the rule word unless a spell is meant */
           if(k[2]===3&&!/^[\s.,:;)]|^$/.test(t.slice(e0,e0+1))) return null;/* a one-word feature of this character: a link when it stands alone or before a colon */
-          if(k[2]===2&&!XL_TRIG.test(t.slice(e0,e0+14))) return null;/* a common word: only a term when "action", "property" or "mastery" follows */
+          if(k[2]===2&&!XL_TRIG.test(t.slice(e0,e0+14))&&!xlTrig2(k, t, a, e0)) return null;/* a common word: only a term when "action", "property" or "mastery" follows */
           if(xlScanPart5(k)){
             const bf=t.slice(0,a), ss=bf.trim()?/[.!?:]\s*$/.test(bf):atStart;/* a sentence start: leave it plain unless the whole text is the name */
             if(xlScanPart6(ss, t, e0)) return null;/* "Spear, Shortbow": the start of a list is a name */
@@ -185,6 +211,10 @@ function xlScanStep2(){
   let i=0;
   return /** @type {any} */ ({i});
 }
+function xlPair(t,ms,k){ return k+1<ms.length&&ms[k][1]+1===ms[k+1][0]&&t.charAt(ms[k][1])===" "; }/* two links with one space between them (Dexterity + saving throw) go in span.xlp: one line, button markup unchanged */
+function xlHtml(t,ms,mode){ let out="", pos=0, op=false;
+    ms.forEach((x,k) =>{ const hit=x[2], nm_=hit[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;"), pr=mode!=="b"&&xlPair(t,ms,k); out+=t.slice(pos,x[0])+(pr&&!op?'<span class="xlp">':'')+(mode==="b"?'<button type="button" class="lnk" data-lnk="'+hit[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+hit[0]+':'+nm_+'">')+t.slice(x[0],x[1])+'</button>'+(op&&!pr?'</span>':''); if(pr) op=true; else if(op) op=false; pos=x[1]; });
+  return out+t.slice(pos); }
 export function xlink(h,self,mode){
   self=self||XL_SELF; h=String(h==null?"":h); if(!h||h.indexOf("<")<0&&h.length<3) return h;
   const m=xlMap(), selfK=String(self||"").replace(/&#39;/g,"'").replace(/'/g,"\u0001"); let depth=0, first=true;
@@ -194,9 +224,7 @@ export function xlink(h,self,mode){
     const atStart=first; if(p.trim()) first=false;
     const t=p.replace(/&#39;/g,"\u0001"), ms=xlScan(t,atStart,selfK,mode,m);
     if(!ms.length) return t.replace(/\u0001/g,"&#39;");
-    let out="", pos=0;
-    ms.forEach((x) =>{ const hit=x[2], nm_=hit[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;"); out+=t.slice(pos,x[0])+(mode==="b"?'<button type="button" class="lnk" data-lnk="'+hit[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+hit[0]+':'+nm_+'">')+t.slice(x[0],x[1])+'</button>'; pos=x[1]; });
-    return (out+t.slice(pos)).replace(/\u0001/g,"&#39;");
+    return xlHtml(t,ms,mode).replace(/\u0001/g,"&#39;");
   }).join("");
 }
 /* The same matcher on the page itself. Text that is printed by code that never calls xlink (class lists, skill lists, labels, "Used:" rows, detail tables)
@@ -205,6 +233,12 @@ export function xlink(h,self,mode){
 const XL_SKIP="a,button,input,textarea,select,option,script,style,svg,canvas,label,summary,h1,h2,h3,[contenteditable],[data-info],[data-bd],[data-lib-open],[data-lnk],[data-xl-off],[role=button],[role=tab],[role=menuitem],[role=option],[role=link],.fcat,#speeds,.toast,#toasts,.lk,.lnk,.ask,.swp";
 let XL_Q=new Set(), XL_T=0, XL_OBS=null, XL_FORCE=0;
 function xlDomRoot(el){ if(el.closest("#bld")) return "b"; if(el.closest("#sheetBody")) return "s"; if(el.closest("#libBd")) return "s"; if(el.closest("#app")) return "a"; return ""; }
+function xlFrag(v,t,ms,mode){ const fr=document.createDocumentFragment(); let pos=0; /** @type {any} */ let host=fr;
+  ms.forEach((x,k) =>{ const hit=x[2], b=document.createElement("button"), pr=mode!=="b"&&xlPair(t,ms,k); b.type="button"; if(mode==="b"){ b.className="lnk"; b.setAttribute("data-lnk",hit[0]+"|"+hit[1]); } else { b.className="lk xl"; b.setAttribute("data-info",hit[0]+":"+hit[1]); }
+    if(x[0]>pos) host.appendChild(document.createTextNode(v.slice(pos,x[0]))); if(pr&&host===fr){ host=document.createElement("span"); host.className="xlp"; fr.appendChild(host); }
+    b.textContent=v.slice(x[0],x[1]); host.appendChild(b); pos=x[1]; if(!pr) host=fr; });
+  if(pos<v.length) fr.appendChild(document.createTextNode(v.slice(pos)));
+  return fr; }
 function xlDom(el){
   const k=xlDomRoot(el); if(!k||(el.closest&&el.closest(XL_SKIP))) return 0;
   const m=k==="b"?xlIdx():xlMap(), mode=k==="b"?"b":undefined, ttl=k==="s"?(el.closest("#libBd")?($("#libT")||{}):($("#sheetTitle")||{})).textContent||"":"", selfK=String(ttl).replace(/'/g,"\u0001").replace(/’/g,"\u0001").trim();
@@ -213,11 +247,7 @@ function xlDom(el){
   let cnt=0;
   nodes.forEach((n) =>{ const pe=n.parentElement; if(!pe||pe.closest(XL_SKIP)) return;
     const t=n.nodeValue.replace(/['’]/g,"\u0001"), ms=xlScan(t,!n.previousSibling,selfK,mode,m); if(!ms.length) return;
-    const fr=document.createDocumentFragment(); let pos=0;
-    ms.forEach((x) =>{ const hit=x[2], b=document.createElement("button"); b.type="button"; if(mode==="b"){ b.className="lnk"; b.setAttribute("data-lnk",hit[0]+"|"+hit[1]); } else { b.className="lk xl"; b.setAttribute("data-info",hit[0]+":"+hit[1]); }
-      if(x[0]>pos) fr.appendChild(document.createTextNode(n.nodeValue.slice(pos,x[0]))); b.textContent=n.nodeValue.slice(x[0],x[1]); fr.appendChild(b); pos=x[1]; cnt++; });
-    if(pos<n.nodeValue.length) fr.appendChild(document.createTextNode(n.nodeValue.slice(pos)));
-    n.parentNode.replaceChild(fr,n); });
+    n.parentNode.replaceChild(xlFrag(n.nodeValue,t,ms,mode),n); cnt+=ms.length; });
   return cnt;
 }
 function xlFlush(){

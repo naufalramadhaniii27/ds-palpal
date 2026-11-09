@@ -1,12 +1,12 @@
-import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,invLvl,invPicks,lateGet,mcChoices,pactList,pk,preFail,spHasFeat,spLists,spellAb,subChoicesFor,wlMc} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,clone,mod,pbOf} from "./01-logic-core-helpers.js";
-import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
-import {DMAP,activeFx,bgX,dmapAlias,spX} from "./03-logic-magic-item-effects.js";
+import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,lateGet,pk,preFail,spHasFeat,spLists,spellAb} from "./01b-logic-late-ports.js";import {ABK,clone,mod,pbOf} from "./01-logic-core-helpers.js";
+
+import {activeFx,bgX,spX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
-import {SP14} from "./07-data-2014-spells.js";
-import {cls14Inject,fs14List,pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
 
-import {MCL,TL,enabledPacks,fxCh,fxList,fxListBase,fxVal,miFeats,slotsAll,spOptFx} from "./01b-logic-late-ports.js";
+import {fs14List} from "./08-logic-2014-rules.js";
+
+import {MCL,TL,enabledPacks,fxCh,fxList,fxListBase,fxVal,miFeats,slotsAll} from "./01b-logic-late-ports.js";
 import {gx,genv} from "./00-env.js";
 bindLive("subAt",{get:function(){return subAt;}});
 /* 2014: the ability scores come from the race. sp.asi is fixed ({STR:2}), sp.asiPick {n,v,ex} lets the player choose n scores (choice key rasi) */
@@ -103,105 +103,9 @@ function sbFree(out){sbEach((x,q) =>{(x.sfree||[]).forEach((r) =>{if(q.lv>=r[0])
   sbEach((x,q,pre) =>{xfDefOpt(add,x,q,pre)})};
  XFX.post=function(C,a){sbEach((x,q,pre) =>{xfPost(C,a,x,q,pre)})}})();
 
-/*SP14FN*/
-/* v92: the 2014 version of every spell the app has (rows, full text, damage and area numbers, book page) laid over the base rows. SP14 holds the data. 2024-only spells leave the list. sp14Set(false) puts everything back */
-let SP14S=null;
-function sp14Cmp(a,b){return a[1]-b[1]||(a[0]<b[0]?-1:a[0]>b[0]?1:0)}
-/* sp14Set steps (SOLID s16): put the 2024 spells back, lay the 2014 rows over them (one row n at a time) */function sp14Undo(){SP14S.rows.forEach((o) =>{for(let i=0;i<12;i++)o.x[i]=o.o[i]});
-  Object.keys(SP14S.full).forEach((n) =>{if(SP14S.full[n]===undefined)delete SPELL_FULL[n];else SPELL_FULL[n]=SP14S.full[n]});
-  Object.keys(SP14S.fx).forEach((n) =>{if(SP14S.fx[n]===undefined)delete SPELL_FX[n];else SPELL_FX[n]=SP14S.fx[n]});
-  if(typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell)Object.keys(SP14S.pg).forEach((n) =>{if(SP14S.pg[n]===undefined)delete BOOKPG.phb.spell[n];else BOOKPG.phb.spell[n]=SP14S.pg[n]});
-  SP14S.hid.forEach((x) =>{if(SPELLS.indexOf(x)<0){SPELLS.push(x);lateGet("SMAP")[x[0]]=x}});SP14S=null;SPELLS.sort(sp14Cmp)}function sp14Ov(n,S,tce,keepL,hasPg){const x=lateGet("SMAP")[n];if(!x)return;const r=SP14.ov[n];S.rows.push({x:x,o:x.slice(0,12)});
-  for(let i=1;i<12;i++)x[i]=r[i];
-  const cl=r[3].slice();(SP14.cx[n]||[]).forEach((q) =>{if(tce&&B.src&&B.src[q[1]]&&cl.indexOf(q[0])<0)cl.push(q[0])});cl.sort();(S.rows[S.rows.length-1].o[3]||[]).forEach((l) =>{if(keepL(l)&&cl.indexOf(l)<0)cl.push(l)});x[3]=cl;
-  S.full[n]=SPELL_FULL[n];SPELL_FULL[n]=SP14.full[n];
-  S.fx[n]=SPELL_FX[n];const f=SP14.fx[n];if(f&&Object.keys(f).length)SPELL_FX[n]=f;else delete SPELL_FX[n];
-  if(hasPg){S.pg[n]=BOOKPG.phb.spell[n];if(SP14.pg[n])BOOKPG.phb.spell[n]=SP14.pg[n];else delete BOOKPG.phb.spell[n]}}function sp14Do(tce){const S={rows:[],full:{},fx:{},pg:{},hid:[]},keepL=function(l){return /^(Mark of |Aberrant Dragonmark)/.test(l)};SP14S=S;
- const hasPg=typeof BOOKPG!=="undefined"&&BOOKPG.phb&&BOOKPG.phb.spell;
- Object.keys(SP14.ov).forEach((n) =>{sp14Ov(n,S,tce,keepL,hasPg)});
- SP14.hide.forEach((n) =>{const x=lateGet("SMAP")[n],i=x?SPELLS.indexOf(x):-1;if(i>=0){SPELLS.splice(i,1);delete lateGet("SMAP")[n];S.hid.push(x)}});
- SPELLS.sort(sp14Cmp)}export function sp14Set(on,tce){if(typeof SP14==="undefined"||typeof lateGet("SMAP")==="undefined")return;
- if(SP14S)sp14Undo();
- if(!on)return;sp14Do(tce)}
-/* v93: 2014 equipment. eq14Set lays the 2014 weapons (no Weapon Mastery, Lance, Trident, Warhammer, War Pick, Net), equipment packs and armor words over the base tables. dm14Set swaps the 2024 Dungeon Master's Guide items for the 2014 ones (DM14.ov), and leaves out the 2024-only ones (DM14.hide) unless the character owns them. Both put everything back when off */
-function eqGear(n){return GEAR.filter((g) =>{return g[0]===n})[0]||null}
-export var EQ14S=null,EQ14SH=null,DM14ON=false,DM14S=null,DM14M=null;
-/* eq14Set steps (SOLID s16): put the 2024 equipment back from the saved copy S, lay the 2014 equipment over it */function eq14Undo(S){Object.keys(S.w).forEach((k) =>{const o=WEAPONS[k];if(S.w[k]===null){delete WEAPONS[k];return}if(o){Object.keys(o).forEach((q) =>{delete o[q]});Object.assign(o,S.w[k])}});
-  Object.keys(S.pr).forEach((k) =>{if(S.pr[k]===undefined)delete PRICE[k];else PRICE[k]=S.pr[k]});
-  Object.keys(S.pk).forEach((k) =>{PACKS[k]=S.pk[k]});
-  Object.keys(S.id).forEach((k) =>{if(S.id[k]===undefined)delete ITEMDESC[k];else ITEMDESC[k]=S.id[k]});
-  Object.keys(S.gc).forEach((k) =>{const g=eqGear(k);if(g){g[1]=S.gc[k][0];g[2]=S.gc[k][1]}});
-  S.ga.forEach((g) =>{const i=GEAR.indexOf(g);if(i>=0)GEAR.splice(i,1)});
-  var GL=genv.__GLOSS||{};Object.keys(S.gl).forEach((k) =>{if(S.gl[k]===null)delete GL[k];else if(GL[k]){GL[k].d=S.gl[k];if(S.gs&&S.gs[k]!=null)GL[k].s=S.gs[k]}});
-  ARMOR_GEN=S.ag;EQ14SH=null;EQ14S=null}function eq14Do(){const T={w:{},pr:{},pk:{},id:{},gc:{},ga:[],gl:{},gs:{},ag:ARMOR_GEN};EQ14S=T;
- const cp=function(o){return structuredClone(o)};
- Object.keys(WEAPONS).forEach((k) =>{const o=WEAPONS[k];if(o.m!==undefined||EQ14D.w[k]){T.w[k]=cp(o);delete o.m}});
- Object.keys(EQ14D.w).forEach((k) =>{const o=WEAPONS[k];if(o)Object.assign(o,EQ14D.w[k])});
- if(!WEAPONS.Net){T.w.Net=null;WEAPONS.Net=Object.assign({},EQ14D.net);T.pr.Net=PRICE.Net;PRICE.Net=EQ14D.pr.Net}
- Object.keys(EQ14D.packs).forEach((n) =>{const q=EQ14D.packs[n];T.pk[n]=PACKS[n];PACKS[n]=[q[0],q[1]];T.id[n]=ITEMDESC[n];
-  ITEMDESC[n]="Comes as a "+q[0].toLowerCase()+" with: "+q[1].map((x) =>{return (x[1]>1?x[1]+" × ":"")+x[0]}).join(", ")+". Added to your inventory, it opens into the "+q[0].toLowerCase()+" and its items, each with its own quantity and weight.";
-  const g=eqGear(n);if(g){T.gc[n]=[g[1],g[2]];g[1]=q[2];g[2]=q[3]}});
- EQ14D.gear.forEach((r) =>{if(!eqGear(r[0])){const g=r.slice();GEAR.push(g);T.ga.push(g)}});
- var GL=genv.__GLOSS||{};Object.keys(EQ14D.gloss).forEach((k) =>{if(GL[k]){T.gl[k]=GL[k].d;T.gs[k]=GL[k].s;GL[k].d=EQ14D.gloss[k];GL[k].s=String(GL[k].s||"").replace("PHB-2024","PHB-2014")}else if(GL.Heavy){T.gl[k]=null;GL[k]={c:"Weapon property",s:String(GL.Heavy.s||"").replace("PHB-2024","PHB-2014"),d:EQ14D.gloss[k]}}});
- ARMOR_GEN=EQ14D.armorGen;EQ14SH=EQ14D.shield}export function eq14Set(on,force){if(typeof EQ14D==="undefined"||typeof WEAPONS==="undefined"||typeof PACKS==="undefined"||typeof GEAR==="undefined")return;
- const S=EQ14S;if(S&&!force&&on)return;
- if(S)eq14Undo(S);
- if(!on)return;eq14Do()}
-/* dm14Set steps (SOLID s16): put the 2024 magic items back, lay the 2014 items over them */function dm14Undo(){DMGI.length=0;DM14S.forEach((x) =>{DMGI.push(x)});Object.keys(DMAP).forEach((k) =>{delete DMAP[k]});DMGI.forEach((x) =>{DMAP[x[0]]=x});dmapAlias();
-  if(DM14M&&typeof MAGIC_SUM!=="undefined")Object.keys(DM14M).forEach((k) =>{MAGIC_SUM[k]=DM14M[k]})}function dm14Do(){const own={};((typeof B!=="undefined"&&B&&B.inv)||[]).concat((typeof C!=="undefined"&&C&&C.inv)||[]).forEach((x) =>{if(x&&x.n)own[x.n]=1});
- DM14S=DMGI.slice();const out=[],seen={};
- DMGI.forEach((x) =>{const n=x[0];if(DM14.hide[n]&&!own[n])return;const o=DM14.ov[n];seen[n]=1;out.push(o||x)});
- Object.keys(DM14.ov).forEach((n) =>{if(!seen[n])out.push(DM14.ov[n])});
- DMGI.length=0;out.forEach((x) =>{DMGI.push(x)});Object.keys(DMAP).forEach((k) =>{delete DMAP[k]});DMGI.forEach((x) =>{DMAP[x[0]]=x});dmapAlias();
- if(typeof MAGIC_SUM!=="undefined"){DM14M={};Object.keys(DM14.ov).forEach((n) =>{if(MAGIC_SUM[n]!==undefined){DM14M[n]=MAGIC_SUM[n];delete MAGIC_SUM[n]}})}}export function dm14Set(on,force){if(typeof DM14==="undefined"||typeof DMGI==="undefined"||typeof DMAP==="undefined")return;
- if(!force&&on===DM14ON)return;
- if(DM14ON&&DM14S)dm14Undo();
- DM14ON=false;DM14S=null;DM14M=null;
- if(!on)return;dm14Do();
- DM14ON=true}
-genv.__sp14Set=function(on){sp14Set(on,false);eq14Set(on);dm14Set(on);genv.__gl14&&genv.__gl14(on)};
-function wxRows(s,on){s.rows.forEach((x) =>{const w=on||!!(x[14]&&x[14].some((id) =>{return B.src&&B.src[id]}));const i=SPELLS.indexOf(x);if(w&&i<0){let j=0;while(j<SPELLS.length&&!(SPELLS[j][1]>x[1]||(SPELLS[j][1]===x[1]&&SPELLS[j][0]>x[0])))j++;SPELLS.splice(j,0,x);lateGet("SMAP")[x[0]]=x}else if(!w&&i>=0){SPELLS.splice(i,1);delete lateGet("SMAP")[x[0]]}})}
-/* v65: magic items of the WotC sources. An item is in the list while its source is on. A character that owns one keeps the source on */
-function wxItems(){const R=genv.WXI;if(!R||typeof DMGI==='undefined')return;const own=(B.inv||[]).map((x) =>{return x.n});
- Object.keys(R).forEach((id) =>{const rows=R[id];if(!B.src[id]&&rows.some((r) =>{return own.some((n) =>{return n===r[0]||n.indexOf(r[0]+" (")===0})}))B.src[id]=true;
-  if((B.src[id]||id==="dmg14"&&R14())&&B.src.dmg!==false)rows.forEach((r) =>{if(!DMAP[r[0]]){DMGI.push(r);DMAP[r[0]]=r}})/* v93: in a 2014 build the Dungeon Master's Guide row brings its variant items too */});(genv.WXWP||[]).forEach((n) =>{const r=DMAP[n],w=r&&r[5]&&r[5].wp;if(own.indexOf(n)>=0){if(w&&!WEAPONS[n])WEAPONS[n]=Object.assign({},w)}else if(WEAPONS[n]&&WEAPONS[n].xw)delete WEAPONS[n]});dmapAlias()}
-/* v66: species of the WotC sources. SPECIES is rebuilt on every applyPacks, so they are added again here. A character that uses one keeps the source on */
-function wxSpecies(){const R=genv.WXSP;if(!R)return;Object.keys(R).forEach((id) =>{if(R[id][B.species])B.src[id]=true;if(B.src[id])Object.keys(R[id]).forEach((k) =>{SPECIES[k]=R[id][k]})})}
-/* v67: backgrounds of the WotC sources. BACKGROUNDS is rebuilt on every applyPacks, so they are added again here. A character that uses one keeps its source on */
-function wxBackgrounds(){const R=genv.WXBG;if(!R)return;let add=0;Object.keys(R).forEach((id) =>{if(R[id][B.bg])B.src[id]=true;if(B.src[id])Object.keys(R[id]).forEach((k) =>{if(!BACKGROUNDS[k]){BACKGROUNDS[k]=R[id][k];add=1}})});if(add){const o={};Object.keys(BACKGROUNDS).sort().forEach((k) =>{o[k]=BACKGROUNDS[k]});Object.keys(BACKGROUNDS).forEach((k) =>{delete BACKGROUNDS[k]});Object.assign(BACKGROUNDS,o)}}
 /* v67: the Origin feat of a background. A background with featOpts lets you pick it (B.ch.bgfeatc), else bg.feat */
 export function bgTl(bg,tp){const t=tp(bg.tool,bg.toolPick,"bgTool");return bg.toolFix?(t?t+", ":"")+bg.toolFix:t}/* v70: a 2014 background can add fixed tools to its pick */
 export function bgFeatN(bg){bg=bg||bgX();if(!bg)return "";const v=B.ch.bgfeatc;return bg.featOpts&&typeof v==="string"&&bg.featOpts.indexOf(v)>=0?v:bg.feat}
-/* v68: gear of the WotC sources (FRHoF clothing, mounts, wagon). GEAR is not rebuilt by applyPacks, so each row is added while its source is on and taken out when it is off. A character that owns one keeps the source on */
-/* v78: weapons and armor of the 2014 books that the 2024 list lacks (WXW). They join WEAPONS or ARMOR while the source is on or the character owns one. nm = no weapon mastery, so the mastery lists skip them */
-function wxWeapons(){const R=genv.WXW;if(!R)return;const own=(B.inv||[]).map((x) =>{return x.n});Object.keys(R).forEach((id) =>{const o=R[id],all=Object.keys(o.w).concat(Object.keys(o.a));if(!B.src[id]&&all.some((n) =>{return own.indexOf(n)>=0}))B.src[id]=true;
-  Object.keys(o.w).forEach((n) =>{const r=o.w[n];if(B.src[id]){if(!WEAPONS[n]){WEAPONS[n]=Object.assign({},r.o);PRICE[n]=r.c;if(r.t)ITEMDESC[n]=r.t}}else if(WEAPONS[n]&&(WEAPONS[n].nm||WEAPONS[n].tp===id)){delete WEAPONS[n];delete PRICE[n];delete ITEMDESC[n]}});
-  Object.keys(o.a).forEach((n) =>{const r=o.a[n];if(B.src[id]){if(!ARMOR[n]){ARMOR[n]=Object.assign({sx:1},r.o);PRICE[n]=r.c;if(r.t)ITEMDESC[n]=r.t}}else if(ARMOR[n]&&ARMOR[n].sx){delete ARMOR[n];delete PRICE[n];delete ITEMDESC[n]}})})}
-function wxGear(){const R=genv.WXG;if(!R)return;const own=(B.inv||[]).map((x) =>{return x.n}),chj=JSON.stringify(B.ch||{});Object.keys(R).forEach((id) =>{const rows=R[id];if(!B.src[id]&&rows.some((r) =>{return own.indexOf(r[0])>=0||(r[3]==="Musical Instrument"&&chj.indexOf('"'+r[0]+'"')>=0)}))B.src[id]=true;/* v81: an instrument that a tool pick holds keeps its source on */rows.forEach((r) =>{const i=GEAR.findIndex((g) =>{return g[0]===r[0]});if(B.src[id]){if(i<0)GEAR.push([r[0],r[1],r[2]]);MOUNTT[r[0]]=r[3];ITEMDESC[r[0]]=r[4]}else if(i>=0){GEAR.splice(i,1);delete MOUNTT[r[0]];delete ITEMDESC[r[0]]}if(r[3]==="Musical Instrument"){const k=TOOLS.music.indexOf(r[0]);/* v81: the instruments of an on source join the Musical Instruments list of tool picks */if(B.src[id]&&k<0){TOOLS.music.push(r[0]);TOOLS.music.sort()}else if(!B.src[id]&&k>=0)TOOLS.music.splice(k,1)}})})}
-/* v81: the class options of the WotC sources (invocations, maneuvers, runes, arcane shots, elemental disciplines) are in their lists while the source is on. An option that a character holds keeps the source on */
-function wxOpts(){const R=genv.WXO;if(!R||typeof INVOCATIONS==="undefined")return;const chj=JSON.stringify(B.ch||{});
- const put=function(arr,r,on){let i=-1;arr.forEach((x,j) =>{if(x[0]===r[0])i=j});if(on&&i<0){arr.push(r);arr.sort((a,b) =>{return a[0]<b[0]?-1:a[0]>b[0]?1:0})}else if(!on&&i>=0)arr.splice(i,1)};
- const LN={rn:"Runes"};
- Object.keys(R).forEach((id) =>{const g=R[id],all=[].concat(g.inv||[],g.man||[],g.rn||[]);
-  if(!B.src[id]&&all.some((r) =>{return chj.indexOf('"'+r[0]+'"')>=0}))B.src[id]=true;const on=!!B.src[id];
-  if(!R14())(g.inv||[]).forEach((r) =>{put(INVOCATIONS,r,on)});(g.man||[]).forEach((r) =>{put(MANEUVERS,r,on)});
-  Object.keys(LN).forEach((k) =>{(g[k]||[]).forEach((r) =>{OPTS[LN[k]]=OPTS[LN[k]]||[];put(OPTS[LN[k]],r,on)})})})}
-/* v100: spells of Xanathar's and Tasha's that the same book data holds under a later source (2025 and 2026 reprints). They also join the list while the older book is on, so a 2014 build has them */
-let XSP14={xge:["Catnap","Enervation","Illusory Dragon","Invulnerability","Negative Energy Flood","Power Word Pain"],tce:["Blade of Disaster"]},XSP14_DONE=0;
-function wxXsp(W){if(XSP14_DONE)return;XSP14_DONE=1;const all={};W.src.forEach((s) =>{(s.rows||[]).forEach((r) =>{if(!all[r[0]])all[r[0]]=r})});Object.keys(XSP14).forEach((id) =>{XSP14[id].forEach((n) =>{const r=all[n];if(!r)return;r[14]=r[14]||[];if(r[14].indexOf(id)<0)r[14].push(id)})})}
-/* Q: reference rows of 5e.tools categories (deities, traps, vehicles...). window.QREFS[cat] holds every row, window.QLIVE[cat] only the rows whose source is on. The Library reads QREFS (every book, as a reference) and QLIVE stays for the builder */
-function wxRef(){const R=genv.QREFS;if(!R)return;const live={},pick=(c) =>{return R[c].filter((r) =>{return [].concat(r.s).some((id) =>{return id==="core"||id==="dmg"?B.src[id]!==false:!!B.src[id]})})};Object.keys(R).forEach((c) =>{const d=Object.getOwnPropertyDescriptor(R,c);
-  if(d&&d.get){/* a lazy list (monster rows): filter it when it is first read, so building QLIVE does not load it */ Object.defineProperty(live,c,{configurable:true,enumerable:true,get(){const v=pick(c);Object.defineProperty(live,c,{value:v,writable:true,configurable:true,enumerable:true});return v},set(v){Object.defineProperty(live,c,{value:v,writable:true,configurable:true,enumerable:true})}});return}
-  live[c]=pick(c)});genv.QLIVE=live;wxHbLoad()}
-const HBLOADED={};function wxHbLoad(){const L=genv.HBIDX;if(!L||!genv.fetch)return;L.forEach((q) =>{if(!(B.src||{})[q.id]||HBLOADED[q.id])return;HBLOADED[q.id]=1;fetch("data/hb/"+q.id+".json").then((r) =>{return r.json()}).then((rows) =>{const R=genv.QREFS=genv.QREFS||{};R.homebrew=(R.homebrew||[]).concat(rows);wxRef();try{document.dispatchEvent(new Event("qrefs"))}catch(e){}}).catch(() =>{HBLOADED[q.id]=0})})}
-/* wxGate steps (SOLID s16): book s on or off (js = the build as text), the upgrade picks e of a book, the subclasses x of a book */function wgSrc(s,js){const q=function(n){return js.indexOf('"'+n+'"')>=0};if(s.feats.some(q)||s.spells.some(q)||(s.subs||[]).some((n) =>{return B.sub===n||(B.mc||[]).some((m) =>{return m.sub===n})}))B.src[s.id]=true;/* P4: a subclass name such as Medium also appears as a size, so only the chosen subclasses count */
-  if(!B.src[s.id]){genv.WXF_ALL=genv.WXF_ALL||{};s.feats.forEach((n) =>{if(FEATS[n]&&!genv.WXF_ALL[n])genv.WXF_ALL[n]={f:FEATS[n],bk:s.tag||s.id};delete FEATS[n]});wxRows(s,false)}/* the Library lists feats of books that are off, so a copy stays in WXF_ALL */else wxRows(s,true)}function wgExt(e){const c=CLASSES[e.cls];if(!c)return;c.pickSub=c.pickSub||{};if(!e.base)e.base=(c.pickSub[e.sub]||[]).slice();c.pickSub[e.sub]=B.src[e.src]?e.base.concat(e.pick):e.base.slice()}function wgSub(x){[x.cls].concat(x.alt||[]).forEach((cn) =>{const c=CLASSES[cn];if(!c)return;if(B.src[x.src]){c.subs=c.subs||{};if(!c.subs[x.name])c.subs[x.name]=subDedup(x.arr);if(x.pick&&x.pick.length){c.pickSub=c.pickSub||{};c.pickSub[x.name]=x.pick}}else if(c.subs)delete c.subs[x.name]})}export function wxGate(){const W=genv.WX;if(!W)return;wxXsp(W);wxItems();wxSpecies();wxBackgrounds();wxGear();wxWeapons();wxOpts();wxClasses();wxRef();let js="";try{const c=Object.assign({},B);delete c.src;delete c.packs;js=JSON.stringify(c)}catch(e){}
- W.src.forEach((s) =>{wgSrc(s,js)});(genv.WXE||[]).forEach((e) =>{wgExt(e)});/* P5: a book adds upgrade picks to a subclass of the app (EXT) while it is on */
- (genv.WXS||[]).forEach((x) =>{wgSub(x)});Object.keys(CLASSES).forEach((cn) =>{const S=CLASSES[cn].subs;if(S)Object.keys(S).forEach((n) =>{S[n]=subDedup(S[n])})})}
-/* P4: classes of third party books (window.WXC) are in CLASSES only while the book is on or the build uses the class. Sorted like the other classes */
-function wxClasses(){const W=genv.WXC;if(!W)return;const used={};used[B.cls]=1;(B.mc||[]).forEach((m) =>{used[m.cls]=1});
- Object.keys(W).forEach((n) =>{const e=W[n],on=!!(B.src&&B.src[e.book])||!!used[n]||(genv.WXS||[]).some((x) =>{return B.src&&B.src[x.src]&&([x.cls].concat(x.alt||[]).indexOf(n)>=0)});/* P5: a book that adds subclasses to a class of another third party book brings that class along */if(used[n]&&B.src)B.src[e.book]=true;
-  if(on&&!CLASSES[n]){const o=structuredClone(e.rec);cls14Inject(n,o)}else if(!on&&CLASSES[n]&&CLASSES[n].tp===e.book)delete CLASSES[n]})}
 /* extra spell lists from chosen Dragonmark feats (Spells of the Mark). Reads B only, so it is safe inside casterParts */
 /* fx engine v4: spListAdd {cls?, spells:[names] | from:"Wizard", school?, lvl?} (or an array of them) on any entry: the spells join the class spell list of the character (cls given: only that class). Not always prepared (use spells for that). Each entry gets a pseudo list "fx:..." added to the SPELLS rows once, and dmXl returns the names of the active ones, like a Dragonmark list */
 function fxListName(e,q,i){return "fx:"+e.kind+":"+e.owner+":"+e.idx+":"+i+(q.from?":"+q.from+(q.school?":"+q.school:""):"")}
@@ -215,7 +119,7 @@ export function featSpells(){const out=[];allFeats().forEach((f) =>{const q=FT_S
    fk = the feat's own choice key (feat4, m0:feat8, lfo1) or its source ("Origin feat (Soldier)"). The builder shows these in the feat's card */
 export function toolAll(){const o=[];["art","music","game","other"].forEach((k) =>{TOOLS[k].forEach((n) =>{if(o.indexOf(n)<0)o.push(n)})});return o}
 function featList(q){if(Array.isArray(q.list))return q.list;
- if(q.list==="maneuvers")return MANEUVERS.map((x) =>{return [x[0],(typeof MAN_SUM!=="undefined"&&MAN_SUM[x[0]])||""]});/* v69 */
+ if(q.list==="maneuvers")return MANEUVERS.map((x) =>{return [x[0],(genv.__MANSUM||{})[x[0]]||""]});/* v69 */
  if(q.list==="metamagic")return METAMAGIC.map((x) =>{return [x[0],""]});
  if(q.list==="invocations"){const wl=wxCls().indexOf("Warlock")>=0;return INVOCATIONS.filter((x) =>{return wl||!/\*\*Prerequisite\.\*\*/.test(x[1])}).map((x) =>{return [x[0],""]})} if(q.list==="fstyle"&&R14())return fs14List(B.cls).map((n) =>{return [n,""]});
  if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
@@ -300,8 +204,3 @@ export function subAt(cls,sub){if(B.cls===cls&&B.sub===sub)return B.level;const 
  if(f.heal&&o.l&&subAt("Cleric","Life Domain")>=3)hb.push({v:2,lv:1,s:"Disciple of Life"});
  if(db.length)o.db=db;if(hb.length)o.hb=hb;if(f.dmg&&k==="Warlock"&&subAt("Warlock","Great Old One Patron")>=3)o.tx="Psychic"}
 
-export function __set_DM14ON(v){ return DM14ON=v; }
-export function __set_DM14S(v){ return DM14S=v; }
-export function __set_DM14M(v){ return DM14M=v; }
-/* tests/invariants.py: a subclass table that lists a feature twice (same level and name) gets one card, the longer text wins */
-function subDedup(arr){const at={},out=[];(arr||[]).forEach((f) =>{const k=f[0]+"|"+f[1];if(k in at){const o=out[at[k]];if(String(f[2]||"").length>String(o[2]||"").length)out[at[k]]=f;return}at[k]=out.length;out.push(f)});return out.length===(arr||[]).length?arr:out}

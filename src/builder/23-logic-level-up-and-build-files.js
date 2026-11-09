@@ -7,7 +7,7 @@ import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOwn} from "./10-logic-v17-additions.js";
 import {fxtSet,casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
-import {BASE,allPacks,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {BASE,allPacks,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
 
@@ -215,7 +215,7 @@ function qbSpFill(P,auto,DMG){const K=spInfoPart(P);if(!K)return;/* the class wi
    if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(qbSpAll().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})}
 function qbSpArc(){const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}})}
 function qbSpBook(cp){const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}
-function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
+function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpellList().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
  cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b);return qbSpN(ka)-qbSpN(kb)}).forEach((P) =>{qbSpFill(P,auto,DMG)});
  qbSpArc();
  qbSpBook(cp)}/* v35 p05 */

@@ -35,9 +35,10 @@
  "GX.cls|Ranger": {
   "files": [
    "fx-L1.js",
-   "fx-N1.js"
+   "fx-N1.js",
+   "fx-Z4.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
   "shared": []
  },
  "GX.feat|Forest Sage": {
@@ -190,7 +191,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Adept)": {
+ "GX.item|D\u00e4mglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -198,7 +199,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Master)": {
+ "GX.item|D\u00e4mglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -465,7 +466,7 @@
   "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.species|Skathári": {
+ "GX.species|Skath\u00e1ri": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -487,14 +488,6 @@
    "fx-L12.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Apocalypse Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Bond of the Shambling Plant": {
@@ -561,14 +554,6 @@
    "fx-L11.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Darkness Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Death Knight": {
@@ -683,14 +668,6 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Mountain Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
- },
  "GX.sub|Occultist Guild": {
   "files": [
    "fx-L11.js",
@@ -720,18 +697,14 @@
  "GX.sub|Path of the Wild Heart": {
   "files": [
    "fx-L10.js",
-   "fx-N1.js"
+   "fx-N1.js",
+   "fx-Z2.js",
+   "fx-Z3.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
- },
- "GX.sub|Peace Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
+  "reason": "Different features of the same entry are defined in the files (different feature names). The shared field holds different values per feature, so nothing is counted twice.",
+  "shared": [
+   "mv"
+  ]
  },
  "GX.sub|Phantom": {
   "files": [
@@ -758,14 +731,6 @@
   "shared": [
    "mv"
   ]
- },
- "GX.sub|Samurai": {
-  "files": [
-   "fx-L11.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
  },
  "GX.sub|Star-Spangled Banner": {
   "files": [
@@ -801,14 +766,6 @@
    "fx-L11.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Travel Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Universalist": {
@@ -859,6 +816,310 @@
    "fx-F-sub.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Barbarian": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Bard": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z3 Countercharm is ed 2024 (a Note), Z4 Countercharm is ed 2014 (toggle and advOn), the edition gate lets only one through. Song of Rest (Z4) is another feature.",
+  "shared": [
+   "defs",
+   "ed"
+  ]
+ },
+ "GX.species|Goliath": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (different feature names). The shared field holds different values per feature, so nothing is counted twice.",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.sub|Aberrant Sorcery": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Blood Domain": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Divine Strike is layered by level: fx-N1 gives 1d8 from level 8, fx-Z2 gives the second 1d8 from level 14, so level 14 shows 2d8 in all as the rule says. Not counted twice.",
+  "shared": [
+   "atkDice"
+  ]
+ },
+ "GX.sub|Champion": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of the Stars": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 Starry Form (Dragon) is another feature than Z2 Twinkling Constellations and Z3 Full of Stars. It shares the toggle id stars-dragon with Z2 on purpose (one state), and the toggle is listed once (tested).",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Divine Soul": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Draconic Sorcery": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Forge Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Gloom Stalker": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Great Old One Patron": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of Glory": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "fx-B2 Aura of Alacrity, Z3 Living Legend and Z4 Inspiring Smite are three different features, each with its own Note.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Oath of Vengeance": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Both rows share one toggle (avenging-angel). fx-Z2 gives the flying speed and hover, fx-Z3 gives only a note about Frightful Aura, so the shared defs field holds different notes. Nothing is counted twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Path of the Zealot": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Psi Warrior": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Tempest Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|War Domain (2014)": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Warrior of Shadow": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Warrior of the Elements": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z2.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Monk": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z3 Superior Defense is ed 2024, Z4 Empty Body is ed 2014 (another feature). The edition gate keeps the two apart and each has its own toggle id.",
+  "shared": [
+   "ed",
+   "res"
+  ]
+ },
+ "GX.cls|Paladin": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.cls|Rogue": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z3 Elusive and Steady Aim are other features than Z4 Reliable Talent. Each Note carries its own feature name. Steady Aim (2024) and the two Reliable Talent lines (2024 level 7, 2014 level 11) all carry ed, each for its own edition.",
+  "shared": [
+   "defs",
+   "ed"
+  ]
+ },
+ "GX.sub|Draconic Bloodline": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Hunter (2014)": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Knowledge Domain (2014)": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Life Domain (2014)": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Nature Domain": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Oath of Vengeance (2014)": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Path of the Totem Warrior": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|School of Evocation": {
+  "files": [
+   "fx-L13.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|The Fiend (2014)": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|The Great Old One (2014)": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Trickery Domain (2014)": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Wild Magic Sorcery": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
   "shared": []
  }
 }

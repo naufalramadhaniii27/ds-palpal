@@ -30,7 +30,7 @@ export const ABFULL={STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Inte
 export function abOfPick(v){const t=Array.isArray(v)?v.join(" "):String(v||""),o=[];ABK.forEach((k) =>{if(new RegExp("\\b"+k+"\\b|\\b"+ABFULL[k]+"\\b","i").test(t))o.push(k)});return o}
 /* fxCh: the stored pick "key" for an entry, read from the pick map ch. A feat entry also finds its own picks: gx pick (gx-key-feat-slot) or native FEATS pick (key-slot) */
 export function chPick(ch,key,pre,kind,okey,any){let v=ch[pre+key];if(v==null&&kind==="feat"){v=ch["gx-"+key+"-feat-"+okey];if(v==null)v=ch[key+"-"+okey];if(v==null&&any){const k0=key+"-";Object.keys(ch).some((k) =>{if(k.indexOf(k0)===0&&ch[k]!=null){v=ch[k];return true}return false})}}return v}/* fx batch H: when.any = also read the pick from another feat slot (Fey Stage 4 reads the Court of the Stage 1 feat) */
-const PHASES={entry:["gate","prepare","post"],ability:["pre-asi","item-raise","raise","item-set","set"],sheet:["speed","speed-mul","darkvision","init"]};
+const PHASES={entry:["gate","prepare","post"],ability:["pre-asi","item-raise","raise","item-set","set"],"sheet":["speed","speed-mul","darkvision","init"]};
 const REG={};
 function reg(name){if(!PHASES[name])throw new Error("fx registry: unknown registry "+name);return REG[name]||(REG[name]={name:name,list:[],cache:{}})}
 export function registerFxHandler(name,h){const r=reg(name);

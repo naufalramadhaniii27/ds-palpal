@@ -11,7 +11,7 @@ import {toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks} from "./13-logic-sources-and-packs.js";
 import {TL,__set_dbCat,__set_dbQ,dbCat,dbQ,ensureInv,equippable,gpNow,itemCost,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {STEPS,STEP_ICO,__set_pickCls,__set_pickSp,__set_step,ask,bI,openCards,pickCls,pickSp,showLore,showRef,step} from "./17-ui-step-builder.js";
-import {SMAP,__set_clsTab,__set_spCls,__set_spLv,__set_spQ,choiceStep,clsTab,issueText,ruleIssues,spCls,spLv,spQ} from "./18-ui-spells.js";
+import {SMAP,__set_clsTab,__set_spClsTab,__set_spLv,__set_spQ,choiceStep,clsTab,issueText,ruleIssues,spClsTab,spLv,spQ} from "./18-ui-spells.js";
 import {__set_lgOpen,__set_packTxt,__set_showTpl,lgOpen,packTxt,renderAbil,renderBg,renderClass,renderHome,renderSpecies,showTpl,srcAll} from "./19-ui-steps-sources-class-bg-species-abilities.js";
 import {__set_bMsg,__set_cust,__set_invP,__set_invQ,__set_invR,__set_invT,addQty,addVar,bCoins,bIdent,bMsg,bTokDraw,cust,invP,invQ,invR,invT,renderEquip,renderNext,restoreBak} from "./20-ui-steps-equipment-next.js";
 import {HBE,HBF,__set_HBE,__set_HBF,__set_qbCls,__set_qbSp,bCt,bInN,ctFree,hbCopy,hbDel,hbEdit,hbRead,hbSave,qbCls,qbSp,quickBuild,renderRules,unpackAt} from "./21-ui-rules-reference.js";
@@ -123,7 +123,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.invt){__set_invT(invT===d.invt?"":d.invt);render();return}
  if(d.ctab){__set_clsTab(d.ctab);render();return}if(d.lore){showLore(d.lore);return}
  if(d.splv!=null){__set_spLv(String(spLv)===d.splv?"all":d.splv);render();return}
- if(d.spcls){__set_spCls(d.spcls);render();return}
+ if(d.spcls){__set_spClsTab(d.spcls);render();return}
  if(d.sp&&d.full==="b"){toast("Your spellbook is full ("+bookNeed()+" spells). Remove a spell from it first.");return}
  if(d.sp&&!d.full){const wsx=SMAP[d.sp],wcl=d.spc||(casterParts()[0]||{}).cls;if(wsx&&wsx[1]&&wcl==="Wizard"&&(spLists().Wizard||[]).indexOf(d.sp)<0&&bookOf().indexOf(d.sp)<0){B.pk=B.pk||{};(B.pk.book=B.pk.book||[]).push(d.sp)}}/* v32: preparing adds to the spellbook */
  if(d.sp&&d.full){toast(d.full==="c"?"All cantrips are chosen. Unlearn one first.":"All prepared spells are chosen. Unprepare one first.");return}/* v32 p90 */

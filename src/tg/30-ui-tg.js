@@ -19,7 +19,7 @@ let saveT=0; export function fightSave(){ if(TG.linkMode) return;/* a fight open
 export function fightLoad(){ return tdb().then((d) =>{ return new Promise((ok) =>{ const q=d.transaction("fight").objectStore("fight").get("cur"); q.onsuccess=function(){ ok(q.result||null); }; q.onerror=function(){ ok(null); }; }); }).catch(() =>{ return null; }); }
 export function fightClear(){ TG.saved=null; tdb().then((d) =>{ d.transaction("fight","readwrite").objectStore("fight").delete("cur"); }).catch(() =>{}); }
 function tgIc(k){ return ico?ico(k,""):""; }
-export function creatures(){ if(TG.cr) return Promise.resolve(TG.cr); if(TG.load) return TG.load;
+export function tgCreatures(){ if(TG.cr) return Promise.resolve(TG.cr); if(TG.load) return TG.load;
   TG.load=fetch("data/tg-creatures.json").then((r) =>{ if(!r.ok) throw new Error("http "+r.status); return r.json(); }).then((j) =>{ TG.cr=j.creatures||[]; TG.byId={}; TG.cr.forEach((c) =>{ TG.byId[c.id]=c; }); return TG.cr; },(e) =>{ TG.load=null; throw e; });
   return TG.load; }
 function crById(id){ return TG.byId&&TG.byId[id]; }
@@ -30,7 +30,7 @@ export function dom(){ let w=document.getElementById("tg"); if(w) return w;
   w=document.createElement("div"); w.id="tg"; w.className="lrn tg noico"; w.hidden=true; w.setAttribute("role","dialog"); w.setAttribute("aria-modal","true"); w.setAttribute("aria-labelledby","tgT"); w.tabIndex=-1;
   w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-tg="back" id="tgBk" aria-label="Back">'+tgIc("ui-chev-l")+'</button><div class="lrn-tt"><b id="tgT">Training Ground</b><small id="tgS"></small></div><button type="button" class="lrn-ib" data-tg="close" aria-label="Close">'+tgIc("ui-close")+'</button></header><div class="lrn-b tg-b" id="tgB"></div><p class="lrn-live sr" id="tgLive" aria-live="polite"></p>';
   document.body.appendChild(w); wire(w); return w; }
-export function live(t){ const l=document.getElementById("tgLive"); if(l){ l.textContent=""; l.textContent=t; } }
+export function tgSay(t){ const l=document.getElementById("tgLive"); if(l){ l.textContent=""; l.textContent=t; } }
 /* ---------- TG1 setup ---------- */
 function crLine(c){ return "AC "+c.ac+", HP "+c.hp+", "+(c.sp.walk||0)+" ft"+(c.sp.fly?", fly "+c.sp.fly:""); }
 export function setupHtml(){
@@ -69,8 +69,8 @@ export function balance(){ const b=budget(), ids=Object.keys(TG.foes); if(!ids.l
     best=xpOf()<=b[2]?{c:c}:null; }
   else (function walk(i,cur){ if(i===ids.length){ const n=cur.reduce((a,x) =>{ return a+x; },0); if(!n||n>12) return; const xp=cur.reduce((a,x,j) =>{ return a+x*crById(ids[j]).xp; },0); if(xp>b[2]) return; const d=Math.abs(xp-b[1]); if(!best||d<best.d) best={d:d,c:cur.slice()}; return; }
     for(let k=0;k<=8;k++){ cur.push(k); walk(i+1,cur); cur.pop(); } })(0,[]);
-  if(!best){ live("Even one of these is above High for this level."); flash("Even one of these is above High for this level."); return; }
-  ids.forEach((id,j) =>{ if(best.c[j]) TG.foes[id]=best.c[j]; else delete TG.foes[id]; }); paint(); live("Now "+sizeOf(xpFoes())+": "+xpFoes()+" XP."); }
+  if(!best){ tgSay("Even one of these is above High for this level."); flash("Even one of these is above High for this level."); return; }
+  ids.forEach((id,j) =>{ if(best.c[j]) TG.foes[id]=best.c[j]; else delete TG.foes[id]; }); paint(); tgSay("Now "+sizeOf(xpFoes())+": "+xpFoes()+" XP."); }
 function fmtCr(v){ return v===.25?"1/4":v===.5?"1/2":v===.125?"1/8":String(v); }
 function tryClasses(){ const c=env.CLASSES?Object.keys(env.CLASSES).filter((k) =>{ return !/\(2014\)/.test(k); }):[]; return c.length?c:["Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Warlock","Wizard"]; }
 function arenaPic(a){ let W=a.w, H=a.h, b=sq(a.block), r=sq(a.rough), s='<svg class="tg-map" viewBox="0 0 '+W+' '+H+'" aria-hidden="true"><rect width="'+W+'" height="'+H+'" class="g"/>';
@@ -80,22 +80,22 @@ export function foeList(){ const t=TIERS.filter((x) =>{ return x[0]===TG.tier; }
   if(!L.length) return '<p class="bk-f">No creature with that name.</p>';
   return L.slice(0,TG.lim).map((c) =>{ const n=TG.foes[c.id]||0; return '<div class="tg-foe'+(n?' on':'')+'"><span><b>'+esc(c.n)+'</b><small>CR '+esc(c.cr)+' · '+esc(c.ty)+' · '+esc(crLine(c))+'</small><i>Monster Manual 2024, page '+c.pg+(c.srd?' · SRD 5.2.1':'')+'</i></span><span class="tg-cnt"><button type="button" data-tgf="'+c.id+'" data-d="-1" aria-label="One less '+esc(c.n)+'"'+(n?'':' disabled')+'>−</button><output aria-live="polite">'+n+'</output><button type="button" data-tgf="'+c.id+'" data-d="1" aria-label="One more '+esc(c.n)+'">+</button></span></div>'; }).join("")+(L.length>TG.lim?'<button type="button" class="lib-more" data-tg="more">Show more ('+(L.length-TG.lim)+')</button>':''); }
 /* ---------- TG2 to TG4 field ---------- */
-function place(ar){ const units=[], used={}, take=function(x,y,s){ for(let i=0;i<s;i++) for(let j=0;j<s;j++) used[(x+i)+","+(y+j)]=1; }, free=function(x,y,s){ if(x<0||y<0||x+s>ar.w||y+s>ar.h) return false; for(let i=0;i<s;i++) for(let j=0;j<s;j++){ const k=(x+i)+","+(y+j); if(used[k]||sq(ar.block)[k]) return false; } return true; };
+function tgPlace(ar){ const units=[], used={}, take=function(x,y,s){ for(let i=0;i<s;i++) for(let j=0;j<s;j++) used[(x+i)+","+(y+j)]=1; }, free=function(x,y,s){ if(x<0||y<0||x+s>ar.w||y+s>ar.h) return false; for(let i=0;i<s;i++) for(let j=0;j<s;j++){ const k=(x+i)+","+(y+j); if(used[k]||sq(ar.block)[k]) return false; } return true; };
   /* the spiral placement of the plan (5d): each group around its own corner, never on a wall, never on top of another token */
   function put(u,cx,cy){ for(let r=0;r<12;r++) for(let dx=-r;dx<=r;dx++) for(let dy=-r;dy<=r;dy++){ if(Math.max(Math.abs(dx),Math.abs(dy))!==r) continue; const x=cx+dx, y=cy+dy; if(free(x,y,u.size)){ u.pos=[x,y]; take(x,y,u.size); units.push(u); return; } } }
   put(TGE.fromSheet(TG.pc,"pc",[1,Math.floor(ar.h/2)]),1,Math.floor(ar.h/2));
   Object.keys(TG.allies).forEach((n,i) =>{ const c=crByName(n); if(c){ const u=TGE.fromCreature(c,"a"+i,[0,0],"ally"); put(u,1,Math.floor(ar.h/2)+1); } });
   let k=0; Object.keys(TG.foes).forEach((id) =>{ const c=crById(id); for(let i=0;i<TG.foes[id];i++){ const u=TGE.fromCreature(c,"f"+(k++),[0,0],"foe"); if(TG.foes[id]>1) u.name=c.n+" "+(i+1); put(u,ar.w-2,Math.floor(ar.h/2)); } });
   return units; }
-export function enter(){ if(!TG.pc||!nFoes()) { live("Pick who goes in and at least one creature."); return; } const ar=ARENAS.filter((a) =>{ return a.id===TG.arena; })[0];
+export function enter(){ if(!TG.pc||!nFoes()) { tgSay("Pick who goes in and at least one creature."); return; } const ar=ARENAS.filter((a) =>{ return a.id===TG.arena; })[0];
   let seed=0; if(TG.forceSeed!=null){ seed=TG.forceSeed>>>0; TG.forceSeed=null; } else { try{ const a=new Uint32Array(1); crypto.getRandomValues(a); seed=a[0]; }catch(e){ seed=Date.now()>>>0; } } TG.seed=seed;
-  TG.start=TGE.create({seed:seed,w:ar.w,h:ar.h,block:sq(ar.block),rough:sq(ar.rough),units:place(ar)}); TG.st=TGE.step(TG.start,{t:"start"}); fightSave(); TG.undo=[]; TG.mode=""; TG.act=null; TG.pick=[]; TG.oa=[]; TG.view="field"; TG.cmds=[{t:"start"}]; TG.hpPrev={};
-  vtPaint(); live("The fight starts. "+cur().name+" goes first."); }
+  TG.start=TGE.create({seed:seed,w:ar.w,h:ar.h,block:sq(ar.block),rough:sq(ar.rough),units:tgPlace(ar)}); TG.st=TGE.step(TG.start,{t:"start"}); fightSave(); TG.undo=[]; TG.mode=""; TG.act=null; TG.pick=[]; TG.oa=[]; TG.view="field"; TG.cmds=[{t:"start"}]; TG.hpPrev={};
+  vtPaint(); tgSay("The fight starts. "+cur().name+" goes first."); }
 /* G7 queue 2: View Transitions between the setup and the board (a cross-fade the browser draws). Only with motion on, plain paint otherwise */
 export function vtPaint(){ const M=env.__MI; if(document.startViewTransition&&M&&!(M.rm&&M.rm())&&M.mode!=="off"){ try{ document.startViewTransition(paint); return; }catch(e){} } paint(); }
 export function cur(){ return TG.st.units[TGE.now(TG.st)]; }
-export function run(c){ const before=TG.st, s=TGE.step(TG.st,c); if(s.err){ live(errText(s.err)); flash(errText(s.err)); return false; } TG.undo.push(before); if(TG.undo.length>60) TG.undo.shift(); TG.st=s; TG.cmds.push(c); if(s.over) fightClear(); else fightSave();
-  const fresh=s.log.slice(before.log.length); fresh.forEach((e) =>{ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); live(fresh.map(evText).filter(Boolean).join(" ")); showDice(fresh); feel(fresh); return true; }
+export function run(c){ const before=TG.st, s=TGE.step(TG.st,c); if(s.err){ tgSay(errText(s.err)); flash(errText(s.err)); return false; } TG.undo.push(before); if(TG.undo.length>60) TG.undo.shift(); TG.st=s; TG.cmds.push(c); if(s.over) fightClear(); else fightSave();
+  const fresh=s.log.slice(before.log.length); fresh.forEach((e) =>{ if(e.t==="oa-open") TG.oa.push({by:e.by,u:e.u}); }); tgSay(fresh.map(evText).filter(Boolean).join(" ")); showDice(fresh); feel(fresh); return true; }
 /* G7 queue 8: a short vibration when a hero or ally takes damage, a longer one when it drops. Follows the app setting (MI.buzz: vibration
    on, motion not reduced). Gamepad support is left out: no player asked, and the board already works with the keyboard */
 function feel(fresh){ const M=env.__MI; if(!M||!M.buzz||!TG.st) return; let k="";

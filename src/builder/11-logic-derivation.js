@@ -32,7 +32,7 @@ function abTotal(sc,src){
   if(B.level>=20&&((B.cls==="Barbarian"&&(k==="STR"||k==="CON"))||(B.cls==="Monk"&&!R14()&&(k==="DEX"||k==="WIS"))))cap=R14()?24:25;
   if(sc[k]>cap&&+B.base[k]<=cap){src[k].push({s:"Capped at "+cap+" (score maximum)",v:cap-sc[k],cap:1});sc[k]=cap}
   if(boon){sc[k]=Math.min(30,sc[k]+boon)}});}
-export function abil(){
+export function abilScores(){
  const sc={},src={};ABK.forEach((k) =>{sc[k]=+B.base[k]||10;src[k]=[]});
  abBg(src);
  /*ORCH-BEGIN abil: the effect rules (feat abCut, item abil, abUp, abDown, abPick, abUpPick, setsc, abSet) are handlers in 10c-logic-fx-handlers-ability.js; this function only runs the phases in order */
@@ -61,7 +61,7 @@ export function classFeatures(){return featsOf(B.cls,B.level)}
    FEATS[n], SPECIES[n], BACKGROUNDS[n] and the DMGI row ([5].gx). Full field table: SOURCE-NOTES.md, "fx schema". An entry counts from level l (class level for
    cls and sub, character level for the rest), only while the pick named in when holds the value, and for items only while equipped (and attuned when needed).
    gfx() returns every active entry with lbl (the source text shown on the sheet), kind, owner, lv, pre. classFx() is the same list (kept for old callers) */
-function fxv(v,e){if(typeof v==="number")return v;const L=TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return clsLv$L("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abil().sc[v]);return 0}
+function fxv(v,e){if(typeof v==="number")return v;const L=TL();/* fx engine v4: [[level, value], ...] steps (the last step with level <= the entry level counts; values may be "pb", ability keys and so on) */if(Array.isArray(v)){let r=0;const lv=e&&e.lv!=null?e.lv:L;v.forEach((s) =>{if(lv>=s[0])r=fxv(s[1],e)});return r}const vr=fxValueRule(v);if(vr)return vr(e,{L:L,pb:pbOf(L),rageLv:() =>{return clsLv$L("Barbarian")}});/* value words: tables in 10d */if(typeof v==="string"&&ABK.indexOf(v)>=0)return mod(abilScores().sc[v]);return 0}
 function fxVal(v,e){let r=fxv(v,e);if(e&&e.min!=null&&r<e.min)r=e.min;return r}
 /* cond: noHeavy (no Heavy armor), noArmor (no armor and no Shield), noBody (no armor, a Shield is fine), noShield, shield, armor (wearing armor) */
 function fxOk(e,ar,ESH,EA){const c=e.cond;if(!c)return true;const f=fxCondRule(c);return f?f(ar,ESH,EA,B.inv||[]):true}/* cond words: tables in 10d */
@@ -72,7 +72,7 @@ function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((
 /*ORCH-BEGIN gfx0: sources (11b-logic-fx-sources.js) say where entries come from, "entry" handlers (10b-logic-fx-handlers-entry.js) gate, prepare and finish each one. This loop knows no source kind and no field */
 function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem};
  fxSources().forEach((s) =>{if(s.items&&noItem)return;
-  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias},ch:ctx0.ch,fxT:ctx0.fxT};
+  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias},ch:ctx0.ch,fxT:ctx0.fxT,rs:B.rs||""};
    (d.list||[]).forEach((e,i) =>{if(!e)return;e=foldFxPhase("entry","gate",e,ctx);if(e===null)return;e=foldFxPhase("entry","prepare",e,ctx);const en=e.n||d.owner;
     let o=Object.assign({},e,{n:en,kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,idx:i,lbl:d.lblOf(en),ocls:d.ocls});/* ocls: the class of a cls or sub entry, the default spellcasting class (spCls) */
     out.push(foldFxPhase("entry","post",o,ctx))})})});
@@ -123,7 +123,7 @@ function sabSpecial2(key){
  if(/^@mi:/.test(key)){const v=(B.pk||{})[key.slice(4)];return (v&&v.ab)||"WIS"}
  if(/^@ft:/.test(key)){const ff=allFeats().filter((x) =>{return x.key===key.slice(4)})[0];return (ff&&ff.asi&&ff.asi.a1)||"CHA"}/* v21 i3: the ability the feat raised */
  return null}
-export function spellAb(key,sc){const cp=casterParts(),cast=cp.length?cp[0].ab:null;sc=sc||abil().sc;
+export function spellAb(key,sc){const cp=casterParts(),cast=cp.length?cp[0].ab:null;sc=sc||abilScores().sc;
  const sa=sabSpecial1(key,cast,sc);if(sa!==null)return sa;
  const sb=sabSpecial2(key);if(sb!==null)return sb;
  const p=cp.filter((q) =>{return q.cls===key})[0];if(p)return p.ab;const c=CLASSES[key];if(c&&c.cast)return c.cast;return cast||"CHA"}

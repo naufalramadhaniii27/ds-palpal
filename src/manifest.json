@@ -736,7 +736,10 @@
     "data/fx-M1.js",
     "data/fx-M2.js",
     "data/fx-N1.js",
-    "data/fx-Z1.js"
+    "data/fx-Z1.js",
+    "data/fx-Z2.js",
+    "data/fx-Z3.js",
+    "data/fx-Z4.js"
    ]
   },
   {
@@ -764,6 +767,8 @@
     "builder/07-data-2014-spells.js",
     "builder/08-logic-2014-rules.js",
     "builder/09-logic-feats-and-choices.js",
+    "builder/09c-logic-edition-overlays.js",
+    "builder/09d-logic-wotc-source-gate.js",
     "builder/09b-logic-choice-stages.js",
     "builder/10-logic-v17-additions.js",
     "builder/10a-logic-fx-registry.js",

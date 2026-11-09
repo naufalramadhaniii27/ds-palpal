@@ -956,333 +956,353 @@
    "layer": "data",
    "order": 238
   },
+  "data/fx-Z2.js": {
+   "layer": "data",
+   "order": 239
+  },
+  "data/fx-Z3.js": {
+   "layer": "data",
+   "order": 240
+  },
+  "data/fx-Z4.js": {
+   "layer": "data",
+   "order": 241
+  },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 239
+   "order": 242
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 240
+   "order": 243
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 241
+   "order": 244
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 242
+   "order": 245
   },
   "builder/01b-logic-late-ports.js": {
    "layer": "logic",
-   "order": 243
+   "order": 246
   },
   "builder/02-data-magic-item-summaries.js": {
    "layer": "data",
-   "order": 244
+   "order": 247
   },
   "builder/03-logic-magic-item-effects.js": {
    "layer": "logic",
-   "order": 245
+   "order": 248
   },
   "builder/04-logic-storage.js": {
    "layer": "logic",
-   "order": 246
+   "order": 249
   },
   "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
-   "order": 247
+   "order": 250
   },
   "builder/06-data-2014-classes.js": {
    "layer": "data",
-   "order": 248
+   "order": 251
   },
   "builder/06a-data-2014-long-text-more.js": {
    "layer": "data",
-   "order": 249
+   "order": 252
   },
   "builder/06a2-data-2024-species-long-text.js": {
    "layer": "data",
-   "order": 250
+   "order": 253
   },
   "builder/06b-data-2014-long-text.js": {
    "layer": "data",
-   "order": 251
+   "order": 254
   },
   "builder/07-data-2014-spells.js": {
    "layer": "data",
-   "order": 252
+   "order": 255
   },
   "builder/08-logic-2014-rules.js": {
    "layer": "logic",
-   "order": 253
+   "order": 256
   },
   "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
-   "order": 254
-  },
-  "builder/09b-logic-choice-stages.js": {
-   "layer": "logic",
-   "order": 255
-  },
-  "builder/10-logic-v17-additions.js": {
-   "layer": "logic",
-   "order": 256
-  },
-  "builder/10a-logic-fx-registry.js": {
-   "layer": "logic",
    "order": 257
   },
-  "builder/10b-logic-fx-handlers-entry.js": {
+  "builder/09c-logic-edition-overlays.js": {
    "layer": "logic",
    "order": 258
   },
-  "builder/10c-logic-fx-handlers-ability.js": {
+  "builder/09d-logic-wotc-source-gate.js": {
    "layer": "logic",
    "order": 259
   },
-  "builder/10d-logic-fx-rules-cond-value.js": {
+  "builder/09b-logic-choice-stages.js": {
    "layer": "logic",
    "order": 260
   },
-  "builder/10e-logic-fx-schema.js": {
+  "builder/10-logic-v17-additions.js": {
    "layer": "logic",
    "order": 261
   },
-  "builder/11-logic-derivation.js": {
+  "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
    "order": 262
   },
-  "builder/11b-logic-fx-sources.js": {
+  "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
    "order": 263
   },
-  "builder/11c-logic-fx-handlers-sheet.js": {
+  "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
    "order": 264
   },
-  "builder/12a-logic-sheet-registry.js": {
+  "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
    "order": 265
   },
-  "builder/12b-logic-sheet-schema.js": {
+  "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
    "order": 266
   },
-  "builder/12c-logic-sheet-handlers-core.js": {
+  "builder/11-logic-derivation.js": {
    "layer": "logic",
    "order": 267
   },
-  "builder/12d-logic-sheet-handlers-skills.js": {
+  "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
    "order": 268
   },
-  "builder/12e-logic-sheet-handlers-defense.js": {
+  "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
    "order": 269
   },
-  "builder/12f-logic-sheet-handlers-movement.js": {
+  "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
    "order": 270
   },
-  "builder/12g-logic-sheet-handlers-profs.js": {
+  "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
    "order": 271
   },
-  "builder/12h-logic-sheet-handlers-attacks.js": {
+  "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
    "order": 272
   },
-  "builder/12i-logic-sheet-handlers-gear-resources.js": {
+  "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
    "order": 273
   },
-  "builder/12j-logic-sheet-handlers-features.js": {
+  "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
    "order": 274
   },
-  "builder/12k-logic-sheet-handlers-spells.js": {
+  "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
    "order": 275
   },
-  "builder/12l-logic-sheet-handlers-late.js": {
+  "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
    "order": 276
   },
-  "builder/12-logic-export-to-sheet.js": {
+  "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
    "order": 277
   },
-  "builder/13-logic-sources-and-packs.js": {
+  "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
    "order": 278
   },
-  "builder/13a-logic-pack-registry.js": {
+  "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
    "order": 279
   },
-  "builder/13b-logic-pack-handlers.js": {
+  "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
    "order": 280
   },
-  "builder/14-logic-multiclass-hp-shop.js": {
+  "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
    "order": 281
   },
-  "builder/15-logic-import-from-sheet.js": {
+  "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
    "order": 282
   },
-  "builder/16-logic-feature-numbers.js": {
+  "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
    "order": 283
   },
-  "builder/17-ui-step-builder.js": {
-   "layer": "ui",
+  "builder/13a-logic-pack-registry.js": {
+   "layer": "logic",
    "order": 284
   },
-  "builder/18-ui-spells.js": {
-   "layer": "ui",
+  "builder/13b-logic-pack-handlers.js": {
+   "layer": "logic",
    "order": 285
   },
-  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
-   "layer": "ui",
+  "builder/14-logic-multiclass-hp-shop.js": {
+   "layer": "logic",
    "order": 286
   },
-  "builder/20-ui-steps-equipment-next.js": {
-   "layer": "ui",
+  "builder/15-logic-import-from-sheet.js": {
+   "layer": "logic",
    "order": 287
   },
-  "builder/21-ui-rules-reference.js": {
-   "layer": "ui",
+  "builder/16-logic-feature-numbers.js": {
+   "layer": "logic",
    "order": 288
   },
-  "builder/22-ui-shell.js": {
+  "builder/17-ui-step-builder.js": {
    "layer": "ui",
    "order": 289
   },
-  "builder/23-logic-level-up-and-build-files.js": {
-   "layer": "logic",
+  "builder/18-ui-spells.js": {
+   "layer": "ui",
    "order": 290
   },
-  "builder/24-ui-icons.js": {
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
    "layer": "ui",
    "order": 291
   },
+  "builder/20-ui-steps-equipment-next.js": {
+   "layer": "ui",
+   "order": 292
+  },
+  "builder/21-ui-rules-reference.js": {
+   "layer": "ui",
+   "order": 293
+  },
+  "builder/22-ui-shell.js": {
+   "layer": "ui",
+   "order": 294
+  },
+  "builder/23-logic-level-up-and-build-files.js": {
+   "layer": "logic",
+   "order": 295
+  },
+  "builder/24-ui-icons.js": {
+   "layer": "ui",
+   "order": 296
+  },
   "builder/25-logic-hooks-for-the-sheet.js": {
    "layer": "logic",
-   "order": 292
+   "order": 297
   },
   "builder/main.js": {
    "layer": "-",
-   "order": 293
+   "order": 298
   },
   "learn/00-env.js": {
    "layer": "-",
-   "order": 294
+   "order": 299
   },
   "learn/00-bridge.js": {
    "layer": "-",
-   "order": 295
+   "order": 300
   },
   "learn/45b-data-learn-places-a.js": {
    "layer": "data",
-   "order": 296
+   "order": 301
   },
   "learn/45c-data-learn-places-b.js": {
    "layer": "data",
-   "order": 297
+   "order": 302
   },
   "learn/45-data-learn.js": {
    "layer": "data",
-   "order": 298
+   "order": 303
   },
   "learn/46-logic-learn.js": {
    "layer": "logic",
-   "order": 299
+   "order": 304
   },
   "learn/47-ui-learn.js": {
    "layer": "ui",
-   "order": 300
+   "order": 305
   },
   "tg/00-env.js": {
    "layer": "-",
-   "order": 301
+   "order": 306
   },
   "tg/00-bridge.js": {
    "layer": "-",
-   "order": 302
+   "order": 307
   },
   "tg/20-engine.js": {
    "layer": "logic",
-   "order": 303
+   "order": 308
   },
   "tg/25-sim.js": {
    "layer": "logic",
-   "order": 304
+   "order": 309
   },
   "tg/30-ui-tg.js": {
    "layer": "ui",
-   "order": 305
+   "order": 310
   },
   "tg/31-ui-tg-field.js": {
    "layer": "ui",
-   "order": 306
+   "order": 311
   },
   "pdf/00-env.js": {
    "layer": "-",
-   "order": 307
+   "order": 312
   },
   "pdf/01-data-style.js": {
    "layer": "data",
-   "order": 308
+   "order": 313
   },
   "pdf/02-logic-markup.js": {
    "layer": "logic",
-   "order": 309
+   "order": 314
   },
   "pdf/03-logic-typeset.js": {
    "layer": "logic",
-   "order": 310
+   "order": 315
   },
   "pdf/04-ui-canvas.js": {
    "layer": "ui",
-   "order": 311
+   "order": 316
   },
   "pdf/05-data-sheet-fields.js": {
    "layer": "data",
-   "order": 312
+   "order": 317
   },
   "pdf/06-ui-fields.js": {
    "layer": "ui",
-   "order": 313
+   "order": 318
   },
   "pdf/07-ui-sheet-pages.js": {
    "layer": "ui",
-   "order": 314
+   "order": 319
   },
   "pdf/08-ui-flow.js": {
    "layer": "ui",
-   "order": 315
+   "order": 320
   },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 316
+   "order": 321
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 317
+   "order": 322
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 318
+   "order": 323
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 319
+   "order": 324
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 320
+   "order": 325
   }
  },
  "edges": [
@@ -1793,15 +1813,6 @@
    "count": 1
   },
   {
-   "from": "app/10-ui-conditions.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/11-ui-breakdown.js",
    "to": "app/00-env.js",
    "import": true,
@@ -2057,15 +2068,6 @@
    "import": false,
    "names": [
     "cells"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/13-ui-detail-cards.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
    ],
    "count": 1
   },
@@ -3226,15 +3228,6 @@
   },
   {
    "from": "app/23-ui-uses-items-coins-rest-spell-dc.js",
-   "to": "builder/10-logic-v17-additions.js",
-   "import": false,
-   "names": [
-    "saveNotes"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/23-ui-uses-items-coins-rest-spell-dc.js",
    "to": "builder/16-logic-feature-numbers.js",
    "import": false,
    "names": [
@@ -3505,15 +3498,6 @@
    "import": false,
    "names": [
     "spent"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/23d-ui-rest.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
    ],
    "count": 1
   },
@@ -4023,10 +4007,9 @@
    "to": "tg/30-ui-tg.js",
    "import": false,
    "names": [
-    "hpPct",
-    "place"
+    "hpPct"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "app/27-ui-party-search-commands-library.js",
@@ -4216,15 +4199,6 @@
    "import": false,
    "names": [
     "SUB_FULL"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/27b-ui-library.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
    ],
    "count": 1
   },
@@ -4622,15 +4596,6 @@
   },
   {
    "from": "app/29b-ui-creatures-extras.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/29b-ui-creatures-extras.js",
    "to": "data/db4/04-creature-stat-blocks.js",
    "import": false,
    "names": [
@@ -4653,15 +4618,6 @@
    "import": false,
    "names": [
     "cells"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/29b-ui-creatures-extras.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
    ],
    "count": 1
   },
@@ -4735,15 +4691,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "app/30-ui-icons.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
   },
   {
    "from": "app/31-ui-tour-and-focus.js",
@@ -4823,15 +4770,6 @@
    "import": false,
    "names": [
     "active"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/31-ui-tour-and-focus.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "place"
    ],
    "count": 1
   },
@@ -5449,24 +5387,6 @@
    "count": 0
   },
   {
-   "from": "app/36-ui-printable-sheet.js",
-   "to": "builder/10-logic-v17-additions.js",
-   "import": false,
-   "names": [
-    "saveNotes"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/36-ui-printable-sheet.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/37-ui-pdf-export-hold-slide-confirm.js",
    "to": "app/04-logic-storage.js",
    "import": true,
@@ -5691,15 +5611,6 @@
    "import": false,
    "names": [
     "head"
-   ],
-   "count": 1
-  },
-  {
-   "from": "app/37a-ui-pdf-model.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
    ],
    "count": 1
   },
@@ -6090,15 +6001,6 @@
    "count": 8
   },
   {
-   "from": "app/40c-ui-motion-sheet-morph.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
    "from": "app/40d-ui-overlays-context-dock.js",
    "to": "app/00-env.js",
    "import": true,
@@ -6302,15 +6204,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "app/40e-ui-reorder-drag.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
   },
   {
    "from": "app/40f-ui-tabs-spring.js",
@@ -6590,15 +6483,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "app/42-logic-pwa-qr-icons-wallet.js",
-   "to": "app/35-ui-combo.js",
-   "import": true,
-   "names": [
-    "bldDot"
-   ],
-   "count": 1
   },
   {
    "from": "app/42-logic-pwa-qr-icons-wallet.js",
@@ -8290,15 +8174,6 @@
   },
   {
    "from": "builder/03-logic-magic-item-effects.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/03-logic-magic-item-effects.js",
    "to": "data/db1-phb-skills-species-backgrounds-feats-weapons.js",
    "import": false,
    "names": [
@@ -8565,15 +8440,6 @@
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
-   "to": "app/08b-ui-render-summaries-actions.js",
-   "import": false,
-   "names": [
-    "MAN_SUM"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/00-env.js",
    "import": true,
    "names": [
@@ -8599,23 +8465,12 @@
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
-   "to": "builder/02-data-magic-item-summaries.js",
-   "import": true,
-   "names": [
-    "MAGIC_SUM"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/03-logic-magic-item-effects.js",
    "import": true,
    "names": [
-    "DMAP",
-    "activeFx",
-    "dmapAlias"
+    "activeFx"
    ],
-   "count": 3
+   "count": 1
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -8633,41 +8488,10 @@
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
-   "to": "builder/07-data-2014-spells.js",
-   "import": true,
-   "names": [
-    "SP14"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/08-logic-2014-rules.js",
    "import": true,
    "names": [
-    "cls14Inject",
-    "fs14List",
-    "pEff",
-    "subLbl",
-    "subLv"
-   ],
-   "count": 5
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "featOpts"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
+    "fs14List"
    ],
    "count": 1
   },
@@ -8677,16 +8501,13 @@
    "import": false,
    "names": [
     "ALLSK",
-    "ARMOR",
-    "BACKGROUNDS",
     "FEATS",
     "MASTERY",
     "SKILLS",
-    "SPECIES",
     "WEAPONS",
     "wmKeys"
    ],
-   "count": 9
+   "count": 6
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -8694,10 +8515,9 @@
    "import": false,
    "names": [
     "CLASSES",
-    "MANEUVERS",
-    "OPTS"
+    "MANEUVERS"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -8714,21 +8534,7 @@
    "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
    "import": false,
    "names": [
-    "ARMOR_GEN",
-    "GEAR",
-    "ITEMDESC",
-    "LANGS",
-    "MOUNTT",
-    "PRICE"
-   ],
-   "count": 6
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "data/db4/03-lifestyle-containers-printed-pages.js",
-   "import": false,
-   "names": [
-    "BOOKPG"
+    "LANGS"
    ],
    "count": 1
   },
@@ -8737,22 +8543,10 @@
    "to": "data/db4/06-tools-proficiencies-packs-kits.js",
    "import": false,
    "names": [
-    "PACKS",
     "SUB_GRANT",
     "TOOLS"
    ],
-   "count": 3
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "data/dmgi-magic-items-dmg2024.js",
-   "import": false,
-   "names": [
-    "DM14",
-    "DMGI",
-    "EQ14D"
-   ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
@@ -8760,15 +8554,6 @@
    "import": false,
    "names": [
     "DM_LIST"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "data/q09-hbindex.js",
-   "import": false,
-   "names": [
-    "HBIDX"
    ],
    "count": 1
   },
@@ -8788,15 +8573,6 @@
    "import": false,
    "names": [
     "SPELL_FULL"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/09-logic-feats-and-choices.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "live"
    ],
    "count": 1
   },
@@ -8890,6 +8666,256 @@
    "count": 1
   },
   {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/02-data-magic-item-summaries.js",
+   "import": true,
+   "names": [
+    "MAGIC_SUM"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/03-logic-magic-item-effects.js",
+   "import": true,
+   "names": [
+    "DMAP",
+    "dmapAlias"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/04-logic-storage.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "builder/07-data-2014-spells.js",
+   "import": true,
+   "names": [
+    "SP14"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/db1-phb-skills-species-backgrounds-feats-weapons.js",
+   "import": false,
+   "names": [
+    "WEAPONS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "import": false,
+   "names": [
+    "ARMOR_GEN",
+    "GEAR",
+    "ITEMDESC",
+    "PRICE"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/db4/03-lifestyle-containers-printed-pages.js",
+   "import": false,
+   "names": [
+    "BOOKPG"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "PACKS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/dmgi-magic-items-dmg2024.js",
+   "import": false,
+   "names": [
+    "DM14",
+    "DMGI",
+    "EQ14D"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/spells-spell-list.js",
+   "import": false,
+   "names": [
+    "SPELLS",
+    "SPELL_FX"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/spfull-spell-text.js",
+   "import": false,
+   "names": [
+    "SPELL_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/03-logic-magic-item-effects.js",
+   "import": true,
+   "names": [
+    "DMAP",
+    "dmapAlias"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/04-logic-storage.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/05-logic-choice-model-ruleset.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "builder/08-logic-2014-rules.js",
+   "import": true,
+   "names": [
+    "cls14Inject"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/db1-phb-skills-species-backgrounds-feats-weapons.js",
+   "import": false,
+   "names": [
+    "ARMOR",
+    "BACKGROUNDS",
+    "FEATS",
+    "SPECIES",
+    "WEAPONS"
+   ],
+   "count": 5
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/db2-phb-classes-a.js",
+   "import": false,
+   "names": [
+    "CLASSES",
+    "MANEUVERS",
+    "OPTS"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/db3-phb-classes-b.js",
+   "import": false,
+   "names": [
+    "INVOCATIONS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "import": false,
+   "names": [
+    "GEAR",
+    "ITEMDESC",
+    "MOUNTT",
+    "PRICE"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "TOOLS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/dmgi-magic-items-dmg2024.js",
+   "import": false,
+   "names": [
+    "DMGI"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/q09-hbindex.js",
+   "import": false,
+   "names": [
+    "HBIDX"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09d-logic-wotc-source-gate.js",
+   "to": "data/spells-spell-list.js",
+   "import": false,
+   "names": [
+    "SPELLS"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/10-logic-v17-additions.js",
    "to": "builder/00-env.js",
    "import": false,
@@ -8949,15 +8975,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "builder/10-logic-v17-additions.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
   },
   {
    "from": "builder/10-logic-v17-additions.js",
@@ -9043,24 +9060,6 @@
    "count": 2
   },
   {
-   "from": "builder/10-logic-v17-additions.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/10a-logic-fx-registry.js",
-   "to": "app/12-ui-bottom-sheet-modal.js",
-   "import": false,
-   "names": [
-    "sheet"
-   ],
-   "count": 1
-  },
-  {
    "from": "builder/10a-logic-fx-registry.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
@@ -9079,15 +9078,6 @@
    "count": 3
   },
   {
-   "from": "builder/10b-logic-fx-handlers-entry.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
    "from": "builder/10c-logic-fx-handlers-ability.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
@@ -9100,15 +9090,6 @@
    "import": true,
    "names": [
     "registerFxHandler"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/10c-logic-fx-handlers-ability.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
    ],
    "count": 1
   },
@@ -9137,15 +9118,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "builder/10e-logic-fx-schema.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
   },
   {
    "from": "builder/11-logic-derivation.js",
@@ -9490,7 +9462,7 @@
     "luRows",
     "optAny",
     "pactWeapon",
-    "saveNotes",
+    "saveNoteRows",
     "wisElse",
     "wmAll",
     "xdmgRows",
@@ -9505,7 +9477,7 @@
    "names": [
     "ATKC",
     "__set_ATKC",
-    "abil",
+    "abilScores",
     "classFeatures",
     "fxOk",
     "fxToggles",
@@ -9634,15 +9606,6 @@
    "import": false,
    "names": [
     "attMax"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/12b-logic-sheet-schema.js",
-   "to": "builder/10-logic-v17-additions.js",
-   "import": false,
-   "names": [
-    "saveNotes"
    ],
    "count": 1
   },
@@ -10045,10 +10008,9 @@
    "import": false,
    "names": [
     "luRows",
-    "saveNotes",
     "xdmgRows"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/12i-logic-sheet-handlers-gear-resources.js",
@@ -10137,10 +10099,9 @@
    "to": "builder/10-logic-v17-additions.js",
    "import": false,
    "names": [
-    "saveNotes",
     "ycOf"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/12j-logic-sheet-handlers-features.js",
@@ -10238,15 +10199,6 @@
    "count": 1
   },
   {
-   "from": "builder/12k-logic-sheet-handlers-spells.js",
-   "to": "builder/13-logic-sources-and-packs.js",
-   "import": false,
-   "names": [
-    "autoSpells"
-   ],
-   "count": 1
-  },
-  {
    "from": "builder/12l-logic-sheet-handlers-late.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -10299,15 +10251,6 @@
     "spItemSrc"
    ],
    "count": 4
-  },
-  {
-   "from": "builder/12l-logic-sheet-handlers-late.js",
-   "to": "builder/10-logic-v17-additions.js",
-   "import": false,
-   "names": [
-    "saveNotes"
-   ],
-   "count": 1
   },
   {
    "from": "builder/12l-logic-sheet-handlers-late.js",
@@ -10415,18 +10358,34 @@
    "to": "builder/09-logic-feats-and-choices.js",
    "import": true,
    "names": [
+    "allFeats",
+    "gxPicks",
+    "sbAuto"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/13-logic-sources-and-packs.js",
+   "to": "builder/09c-logic-edition-overlays.js",
+   "import": false,
+   "names": [
     "__set_DM14M",
     "__set_DM14ON",
     "__set_DM14S",
-    "allFeats",
     "dm14Set",
     "eq14Set",
-    "gxPicks",
-    "sbAuto",
-    "sp14Set",
+    "sp14Set"
+   ],
+   "count": 6
+  },
+  {
+   "from": "builder/13-logic-sources-and-packs.js",
+   "to": "builder/09d-logic-wotc-source-gate.js",
+   "import": false,
+   "names": [
     "wxGate"
    ],
-   "count": 10
+   "count": 1
   },
   {
    "from": "builder/13-logic-sources-and-packs.js",
@@ -10450,15 +10409,6 @@
    "import": true,
    "names": [],
    "count": 0
-  },
-  {
-   "from": "builder/13-logic-sources-and-packs.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
   },
   {
    "from": "builder/13-logic-sources-and-packs.js",
@@ -10627,15 +10577,23 @@
   },
   {
    "from": "builder/13b-logic-pack-handlers.js",
-   "to": "builder/09-logic-feats-and-choices.js",
+   "to": "builder/09c-logic-edition-overlays.js",
    "import": false,
    "names": [
     "dm14Set",
     "eq14Set",
-    "sp14Set",
+    "sp14Set"
+   ],
+   "count": 3
+  },
+  {
+   "from": "builder/13b-logic-pack-handlers.js",
+   "to": "builder/09d-logic-wotc-source-gate.js",
+   "import": false,
+   "names": [
     "wxGate"
    ],
-   "count": 4
+   "count": 1
   },
   {
    "from": "builder/13b-logic-pack-handlers.js",
@@ -10643,10 +10601,9 @@
    "import": false,
    "names": [
     "BASE",
-    "PACK_CF",
-    "autoSpells"
+    "PACK_CF"
    ],
-   "count": 3
+   "count": 2
   },
   {
    "from": "builder/13b-logic-pack-handlers.js",
@@ -10808,7 +10765,7 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil"
+    "abilScores"
    ],
    "count": 1
   },
@@ -10966,10 +10923,18 @@
    "import": true,
    "names": [
     "asiLevels",
-    "choices",
+    "choices"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/15-logic-import-from-sheet.js",
+   "to": "builder/09d-logic-wotc-source-gate.js",
+   "import": false,
+   "names": [
     "wxGate"
    ],
-   "count": 3
+   "count": 1
   },
   {
    "from": "builder/15-logic-import-from-sheet.js",
@@ -11005,15 +10970,6 @@
    "import": false,
    "names": [
     "defenses"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/15-logic-import-from-sheet.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "featOpts"
    ],
    "count": 1
   },
@@ -11261,7 +11217,7 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil"
+    "abilScores"
    ],
    "count": 1
   },
@@ -11446,7 +11402,7 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil",
+    "abilScores",
     "thirdOf"
    ],
    "count": 2
@@ -11457,7 +11413,7 @@
    "import": true,
    "names": [
     "BASE",
-    "autoSpells"
+    "autoSpellList"
    ],
    "count": 2
   },
@@ -11476,7 +11432,7 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "card"
+    "stepCard"
    ],
    "count": 1
   },
@@ -11632,7 +11588,7 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil"
+    "abilScores"
    ],
    "count": 1
   },
@@ -11660,12 +11616,11 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "card",
     "choiceBody",
-    "featOpts",
-    "metaOf"
+    "metaOf",
+    "stepCard"
    ],
-   "count": 4
+   "count": 3
   },
   {
    "from": "builder/19-ui-steps-sources-class-bg-species-abilities.js",
@@ -11888,7 +11843,7 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil",
+    "abilScores",
     "atkRowFor"
    ],
    "count": 2
@@ -11933,9 +11888,9 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "card",
     "fmtGp",
-    "mfullH"
+    "mfullH",
+    "stepCard"
    ],
    "count": 3
   },
@@ -12018,15 +11973,6 @@
    "import": false,
    "names": [
     "parse"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/20-ui-steps-equipment-next.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "live"
    ],
    "count": 1
   },
@@ -12128,7 +12074,7 @@
    "import": true,
    "names": [
     "applyPacks",
-    "autoSpells"
+    "autoSpellList"
    ],
    "count": 2
   },
@@ -12148,8 +12094,8 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
-    "card",
-    "profSkills"
+    "profSkills",
+    "stepCard"
    ],
    "count": 2
   },
@@ -12320,10 +12266,9 @@
    "to": "builder/11-logic-derivation.js",
    "import": true,
    "names": [
-    "abil",
     "spToggle"
    ],
-   "count": 2
+   "count": 1
   },
   {
    "from": "builder/22-ui-shell.js",
@@ -12373,11 +12318,11 @@
    "to": "builder/18-ui-spells.js",
    "import": true,
    "names": [
-    "__set_spCls",
+    "__set_spClsTab",
     "__set_spLv",
     "__set_spQ",
     "clsTab",
-    "spCls"
+    "spClsTab"
    ],
    "count": 5
   },
@@ -12591,7 +12536,7 @@
     "BASE",
     "allPacks",
     "applyPacks",
-    "autoSpells",
+    "autoSpellList",
     "snap"
    ],
    "count": 5
@@ -12765,15 +12710,6 @@
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
-   "to": "app/12-ui-bottom-sheet-modal.js",
-   "import": false,
-   "names": [
-    "sheet"
-   ],
-   "count": 1
-  },
-  {
-   "from": "builder/25-logic-hooks-for-the-sheet.js",
    "to": "builder/00-env.js",
    "import": false,
    "names": [
@@ -12886,10 +12822,9 @@
     "bookOf",
     "bookOwn",
     "isDone",
-    "pactWeapon",
-    "saveNotes"
+    "pactWeapon"
    ],
-   "count": 6
+   "count": 5
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -12963,7 +12898,7 @@
    "names": [
     "BASE",
     "applyPacks",
-    "autoSpells",
+    "autoSpellList",
     "snap"
    ],
    "count": 4
@@ -13570,15 +13505,6 @@
   },
   {
    "from": "data/efa-eberron-forge-of-the-artificer.js",
-   "to": "builder/10-logic-v17-additions.js",
-   "import": false,
-   "names": [
-    "saveNotes"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/efa-eberron-forge-of-the-artificer.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -13737,15 +13663,6 @@
   },
   {
    "from": "data/fx-B1-subclass.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-B1-subclass.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -13755,28 +13672,10 @@
   },
   {
    "from": "data/fx-B2-subclass.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-B2-subclass.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
     "DataEnv"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-C-feat.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -13795,15 +13694,6 @@
    "import": false,
    "names": [
     "LU_X"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-D-item.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -13881,28 +13771,10 @@
   },
   {
    "from": "data/fx-L1.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L1.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
     "DataEnv"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L10.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -13935,15 +13807,6 @@
   },
   {
    "from": "data/fx-L11.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L11.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -13971,15 +13834,6 @@
   },
   {
    "from": "data/fx-L12.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L12.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -14002,15 +13856,6 @@
    "import": false,
    "names": [
     "LU_X"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L13.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -14061,15 +13906,6 @@
   },
   {
    "from": "data/fx-L2.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L2.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -14097,15 +13933,6 @@
   },
   {
    "from": "data/fx-L4.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L4.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -14115,37 +13942,10 @@
   },
   {
    "from": "data/fx-L5.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L5.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L5.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
     "DataEnv"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L6.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -14164,24 +13964,6 @@
    "import": false,
    "names": [
     "ITEM_SPELLS"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L7.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L7.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -14209,15 +13991,6 @@
    "import": false,
    "names": [
     "ITEM_SPELLS"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-L9.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
    ],
    "count": 1
   },
@@ -14260,15 +14033,6 @@
   },
   {
    "from": "data/fx-M2.js",
-   "to": "builder/18-ui-spells.js",
-   "import": false,
-   "names": [
-    "spCls"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/fx-M2.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
@@ -14295,11 +14059,29 @@
    "count": 1
   },
   {
-   "from": "data/hbpack-builtin-homebrew.js",
-   "to": "builder/13-logic-sources-and-packs.js",
+   "from": "data/fx-Z2.js",
+   "to": "data/00-data-env.js",
    "import": false,
    "names": [
-    "autoSpells"
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-Z3.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-Z4.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
    ],
    "count": 1
   },
@@ -14319,15 +14101,6 @@
    "import": false,
    "names": [
     "CREATURES"
-   ],
-   "count": 1
-  },
-  {
-   "from": "data/hbpack-builtin-homebrew.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
    ],
    "count": 1
   },
@@ -16401,15 +16174,6 @@
    "count": 1
   },
   {
-   "from": "data/wotc02-subclasses-2025.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
-   ],
-   "count": 1
-  },
-  {
    "from": "data/wotc03-magic-items-2025.js",
    "to": "data/00-data-env.js",
    "import": false,
@@ -16728,15 +16492,6 @@
    "count": 1
   },
   {
-   "from": "data/wotc13-creature-stat-blocks.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
-   ],
-   "count": 1
-  },
-  {
    "from": "data/wotc14-gear-2014.js",
    "to": "data/00-data-env.js",
    "import": false,
@@ -16825,15 +16580,6 @@
    "import": false,
    "names": [
     "buzz"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/02-micro-interactions.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
    ],
    "count": 1
   },
@@ -17047,15 +16793,6 @@
   },
   {
    "from": "fx/07-f5-moments.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/07-f5-moments.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -17254,15 +16991,6 @@
   },
   {
    "from": "fx/14-w-pack.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/14-w-pack.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -17308,15 +17036,6 @@
   },
   {
    "from": "fx/15-y-pack.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/15-y-pack.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -17348,15 +17067,6 @@
    "import": false,
    "names": [
     "buzz"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16-z-pack-dice-sound-hover.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
    ],
    "count": 1
   },
@@ -17419,15 +17129,6 @@
   },
   {
    "from": "fx/16b-z-pack-dice-sound-hover-2.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/16b-z-pack-dice-sound-hover-2.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -17468,15 +17169,6 @@
    "import": false,
    "names": [
     "fill"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/18-m-pack-rolls-concentration.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
    ],
    "count": 1
   },
@@ -17592,15 +17284,6 @@
   },
   {
    "from": "fx/21-connected-home-sheet.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/21-connected-home-sheet.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -17633,15 +17316,6 @@
    "import": false,
    "names": [
     "FXENV"
-   ],
-   "count": 1
-  },
-  {
-   "from": "fx/24-class-art.js",
-   "to": "builder/11-logic-derivation.js",
-   "import": false,
-   "names": [
-    "abil"
    ],
    "count": 1
   },
@@ -17782,15 +17456,6 @@
   },
   {
    "from": "learn/45-data-learn.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/45-data-learn.js",
    "to": "learn/45b-data-learn-places-a.js",
    "import": true,
    "names": [
@@ -17808,15 +17473,6 @@
    "count": 1
   },
   {
-   "from": "learn/45b-data-learn-places-a.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
-   ],
-   "count": 1
-  },
-  {
    "from": "learn/46-logic-learn.js",
    "to": "app/04-logic-storage.js",
    "import": false,
@@ -17825,15 +17481,6 @@
     "lsSet"
    ],
    "count": 2
-  },
-  {
-   "from": "learn/46-logic-learn.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
   },
   {
    "from": "learn/46-logic-learn.js",
@@ -17861,15 +17508,6 @@
    "count": 1
   },
   {
-   "from": "learn/46-logic-learn.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "place"
-   ],
-   "count": 1
-  },
-  {
    "from": "learn/47-ui-learn.js",
    "to": "app/09-ui-hit-points-playbar-death-saves.js",
    "import": false,
@@ -17884,24 +17522,6 @@
    "import": false,
    "names": [
     "learnBand"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/47-ui-learn.js",
-   "to": "builder/17-ui-step-builder.js",
-   "import": false,
-   "names": [
-    "card"
-   ],
-   "count": 1
-  },
-  {
-   "from": "learn/47-ui-learn.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
    ],
    "count": 1
   },
@@ -17959,15 +17579,6 @@
     "hash"
    ],
    "count": 2
-  },
-  {
-   "from": "learn/47-ui-learn.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "place"
-   ],
-   "count": 1
   },
   {
    "from": "pdf/02-logic-markup.js",
@@ -18184,15 +17795,6 @@
    "count": 1
   },
   {
-   "from": "pdf/10-ui-appendix.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "creatures"
-   ],
-   "count": 1
-  },
-  {
    "from": "pdf/11-ui-render.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -18313,15 +17915,6 @@
   },
   {
    "from": "tg/30-ui-tg.js",
-   "to": "builder/20-ui-steps-equipment-next.js",
-   "import": false,
-   "names": [
-    "hint"
-   ],
-   "count": 1
-  },
-  {
-   "from": "tg/30-ui-tg.js",
    "to": "data/db2-phb-classes-a.js",
    "import": false,
    "names": [
@@ -18416,7 +18009,6 @@
    "names": [
     "ARENAS",
     "balance",
-    "creatures",
     "enter",
     "evText",
     "fieldHtml",
@@ -18425,54 +18017,15 @@
     "fightSave",
     "foeList",
     "hpPct",
-    "live",
     "nAllies",
     "nFoes",
     "setupHtml",
+    "tgCreatures",
+    "tgSay",
     "vtPaint"
    ],
    "count": 16
   }
  ],
- "back_edges": {
-  "app/42-logic-pwa-qr-icons-wallet.js -> app/35-ui-combo.js": 1,
-  "data/fx-B2-subclass.js -> builder/18-ui-spells.js": 1,
-  "data/efa-eberron-forge-of-the-artificer.js -> builder/10-logic-v17-additions.js": 1,
-  "data/wotc02-subclasses-2025.js -> tg/30-ui-tg.js": 1,
-  "data/wotc13-creature-stat-blocks.js -> tg/30-ui-tg.js": 1,
-  "data/fx-C-feat.js -> builder/18-ui-spells.js": 1,
-  "data/hbpack-builtin-homebrew.js -> builder/13-logic-sources-and-packs.js": 1,
-  "data/hbpack-builtin-homebrew.js -> tg/30-ui-tg.js": 1,
-  "data/fx-B1-subclass.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L1.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L4.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L5.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L5.js -> builder/11-logic-derivation.js": 1,
-  "data/fx-L9.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L10.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L11.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L12.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L13.js -> builder/18-ui-spells.js": 1,
-  "data/fx-D-item.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L2.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L6.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
-  "data/fx-L7.js -> builder/18-ui-spells.js": 1,
-  "data/fx-M2.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 1,
-  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
-  "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 1,
-  "builder/09-logic-feats-and-choices.js -> app/08b-ui-render-summaries-actions.js": 1,
-  "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
-  "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
-  "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
-  "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
-  "builder/13-logic-sources-and-packs.js -> builder/18-ui-spells.js": 1,
-  "builder/15-logic-import-from-sheet.js -> builder/17-ui-step-builder.js": 1,
-  "builder/25-logic-hooks-for-the-sheet.js -> app/12-ui-bottom-sheet-modal.js": 1,
-  "learn/45b-data-learn-places-a.js -> builder/20-ui-steps-equipment-next.js": 1,
-  "learn/45-data-learn.js -> builder/20-ui-steps-equipment-next.js": 1,
-  "learn/46-logic-learn.js -> builder/17-ui-step-builder.js": 1,
-  "learn/46-logic-learn.js -> tg/30-ui-tg.js": 1
- }
+ "back_edges": {}
 }

@@ -1,0 +1,194 @@
+{
+ "measured": {
+  "AC": {
+   "n": 10,
+   "ok": 8,
+   "card": 1,
+   "design": 1,
+   "miss": 0
+  },
+  "SPEED": {
+   "n": 22,
+   "ok": 21,
+   "card": 0,
+   "design": 1,
+   "miss": 0
+  },
+  "RES": {
+   "n": 30,
+   "ok": 28,
+   "card": 0,
+   "design": 2,
+   "miss": 0
+  },
+  "ADV": {
+   "n": 51,
+   "ok": 48,
+   "card": 0,
+   "design": 3,
+   "miss": 0
+  },
+  "PROF": {
+   "n": 33,
+   "ok": 32,
+   "card": 0,
+   "design": 1,
+   "miss": 0
+  },
+  "RESOURCE": {
+   "n": 89,
+   "ok": 89,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  },
+  "DICE": {
+   "n": 63,
+   "ok": 58,
+   "card": 4,
+   "design": 1,
+   "miss": 0
+  },
+  "SPELL": {
+   "n": 139,
+   "ok": 133,
+   "card": 0,
+   "design": 6,
+   "miss": 0
+  },
+  "NUM": {
+   "n": 10,
+   "ok": 10,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  },
+  "MASTERY": {
+   "n": 4,
+   "ok": 4,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  },
+  "D20": {
+   "n": 3,
+   "ok": 3,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  }
+ },
+ "measured14": {
+  "AC": {
+   "n": 14,
+   "ok": 12,
+   "card": 1,
+   "design": 1,
+   "miss": 0
+  },
+  "SPEED": {
+   "n": 10,
+   "ok": 9,
+   "card": 0,
+   "design": 1,
+   "miss": 0
+  },
+  "RES": {
+   "n": 19,
+   "ok": 18,
+   "card": 0,
+   "design": 1,
+   "miss": 0
+  },
+  "ADV": {
+   "n": 46,
+   "ok": 45,
+   "card": 0,
+   "design": 1,
+   "miss": 0
+  },
+  "PROF": {
+   "n": 40,
+   "ok": 37,
+   "card": 0,
+   "design": 3,
+   "miss": 0
+  },
+  "RESOURCE": {
+   "n": 44,
+   "ok": 44,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  },
+  "DICE": {
+   "n": 36,
+   "ok": 33,
+   "card": 0,
+   "design": 3,
+   "miss": 0
+  },
+  "SPELL": {
+   "n": 78,
+   "ok": 76,
+   "card": 0,
+   "design": 2,
+   "miss": 0
+  },
+  "NUM": {
+   "n": 9,
+   "ok": 7,
+   "card": 0,
+   "design": 2,
+   "miss": 0
+  },
+  "D20": {
+   "n": 2,
+   "ok": 2,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  }
+ },
+ "miss": [],
+ "card": [
+  "feat|Boon of Energy Resistance|Boon of Energy Resistance|DICE",
+  "feat|Charger|Charger|DICE",
+  "feat|Defensive Duelist|Defensive Duelist|AC",
+  "feat|Poisoner|Poisoner|DICE",
+  "feat|Polearm Master|Polearm Master|DICE",
+  "sub14|Fighter/Battle Master (2014)|Maneuvers known|AC"
+ ],
+ "by_design": {
+  "cls14|Bard|Magical Secrets (second)|SPELL": "Baris kedua mengulang pilihan spell Magical Secrets pertama (spell dari kelas mana pun lewat daftar spell builder). Belum dicocokkan ke buku",
+  "cls14|Druid|Wild Shape Improvement (second)|SPEED": "Mode gerak (Fly) datang dari stat block Beast yang dipilih saat dipakai, bukan dari karakter",
+  "cls14|Druid|Wild Shape|PROF": "Stat block Beast menggantikan statistik, keahlian karakter memakai Proficiency Bonus sendiri. Tidak ada angka di sheet karakter",
+  "cls14|Warlock|Pact Boon|DICE": "Pact of the Talisman (1d4 pada check gagal, Tasha) bukan pilihan builder, builder hanya menawarkan Blade, Chain, Tome. Perlu keputusan Data",
+  "cls|Cleric|Divine Order|SPELL": "Cantrip tambahan Thaumaturge dihitung builder lewat pilihan p1opt (18-ui-spells.js). Pengukur membangun pilihan bawaan Protector",
+  "cls|Cleric|Improved Blessed Strikes|SPELL": "Potent Spellcasting ada di fx-L1.js di balik pilihan p7opt, diuji di zero_miss_fx (Z3 Improved Blessed Strikes)",
+  "cls|Druid|Primal Order|SPELL": "Cantrip tambahan Magician dihitung builder lewat pilihan p1opt (18-ui-spells.js). Pengukur membangun pilihan bawaan Protector",
+  "cls|Druid|Wild Shape|PROF": "Bestie menggantikan statistik permainan, tetapi karakter memakai Proficiency Bonus sendiri untuk skill dan save yang dikuasai. Tidak ada angka di sheet karakter, nilai bentuk ada di stat block Beast pilihan pemain",
+  "cls|Druid|Wild Shape|SPEED": "Kecepatan dan mode gerak (Fly dari level 8) datang dari stat block Beast yang dipilih saat dipakai, bukan dari karakter. Jumlah penggunaan sudah punya baris resource",
+  "cls|Monk|Stunning Strike|ADV": "Efek pada target (Speed setengah, serangan berikutnya terhadap target punya Advantage), keputusan meja",
+  "cls|Ranger|Fighting Style|SPELL": "Druidic Warrior adalah feat sendiri (fx-C-feat.js), diukur sebagai feat",
+  "cls|Wizard|Ritual Adept|SPELL": "Sheet menandai tag Ritual tiap spell. Aturan buku spell (membaca dari buku) adalah aturan meja",
+  "feat|Elemental Adept|Elemental Adept|RES": "Spell mengabaikan Resistance milik target, bukan resistance karakter",
+  "feat|Poisoner|Poisoner|RES": "Resistance Poison milik target tidak mengurangi damage, bukan resistance karakter",
+  "sub14|Druid/Circle of the Land (2014)|Nature's Sanctuary|RES": "Efek pada penyerang (save Wisdom milik makhluk Beast atau Plant), bukan resistance karakter",
+  "sub14|Monk/Way of the Four Elements|Extra Elemental Discipline|DICE": "Satu disiplin tambahan lewat pilihan builder Elemental Discipline, efek tiap disiplin ada di daftar disiplin",
+  "sub14|Ranger/Beast Master (2014)|Ranger's Companion|AC": "Angka AC, serangan, dan HP milik makhluk pendamping, ada di stat block pendamping (panel creature), bukan di karakter",
+  "sub14|Ranger/Beast Master (2014)|Ranger's Companion|NUM": "HP maksimum milik makhluk pendamping, bukan karakter",
+  "sub14|Ranger/Beast Master (2014)|Ranger's Companion|PROF": "Proficiency Bonus milik makhluk pendamping, bukan karakter",
+  "sub14|Wizard/School of Necromancy|Command Undead|ADV": "Advantage milik target pada save, bukan karakter",
+  "sub14|Wizard/School of Necromancy|Undead Thralls|NUM": "HP maksimum makhluk undead ciptaan, bukan karakter",
+  "sub14|Wizard/School of Transmutation|Master Transmuter|DICE": "Satu efek sekali pakai dari daftar (Major Transformation, Panacea, Restore Life, Restore Youth), pilihan saat dipakai",
+  "sub14|Wizard/School of Transmutation|Master Transmuter|SPELL": "Satu efek sekali pakai dari daftar, pilihan saat dipakai",
+  "sub14|Wizard/School of Transmutation|Transmuter's Stone|PROF": "Manfaat batu dipegang pemegangnya (karakter atau makhluk lain), pilihan saat membuat batu",
+  "sub|Druid/Circle of the Sea|Oceanic Gift|SPELL": "Efek Emanation pada sekutu yang dipilih, memakai DC milik karakter, tidak ada angka baru di sheet",
+  "sub|Sorcerer/Clockwork Sorcery|Restore Balance|ADV": "Reaction meniadakan Advantage atau Disadvantage pada roll makhluk lain, tidak ada angka di sheet. Penggunaan sudah punya baris resource",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|AC": "Entri tabel acak 1d100, bukan efek tetap",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|ADV": "Entri tabel acak 1d8 dan 1d100 yang dilempar DM atau pemain, bukan efek tetap",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|DICE": "Lemparan 1d20 dan tabel 1d100 dilempar pemain atau DM, hasilnya acak, bukan efek tetap",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|RES": "Entri tabel acak, bukan efek tetap"
+ }
+}

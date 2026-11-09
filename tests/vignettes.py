@@ -29,8 +29,12 @@ async def main():
             chk(t + " empty roster shows the picture and it loads", await pg.evaluate(LOAD))
             chk(t + " moment pictures exist (level-up, natural 20, natural 1)", await pg.evaluate("['level-up','natural-20','natural-1'].every(function(i){return __artVig('moment',i).indexOf('img/vig/moment/'+i+'.avif')>0})&&__artVig('moment','nope')===''"))
             for nat, nm in ((19, "natural-20"), (0, "natural-1")):
-                await pg.evaluate("(n)=>{var f=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=function(a){a[0]=n;return a};__miRoll.roll({bon:5},'','T');crypto.getRandomValues=f}", nat)
-                await pg.wait_for_timeout(500)
+                # With 3D dice the value is decided after the call returns (queued), so the fake random stays until the roll overlay is up.
+                await pg.evaluate("(n)=>{window.__rf=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=function(a){a[0]=n;return a};__miRoll.roll({bon:5},'','T')}", nat)
+                try: await pg.wait_for_selector(".mi-roll-o img.mi-vig", state="attached", timeout=20000)
+                except Exception: pass
+                await pg.evaluate("()=>{crypto.getRandomValues=window.__rf}")
+                await pg.wait_for_timeout(300)
                 chk(t + " " + nm + " roll shows its picture", await pg.evaluate("!!document.querySelector('.mi-roll-o img.mi-vig[src*=\"%s\"]')" % nm))
                 await pg.wait_for_timeout(2600)
             # T7: on IndexedDB the limit is the browser quota. Report 85 percent used, as a nearly full device would

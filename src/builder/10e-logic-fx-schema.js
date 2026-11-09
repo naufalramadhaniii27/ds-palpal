@@ -107,6 +107,7 @@ export const FX_FIELDS={
  cdAdd:"number",
  pbAdd:"number",
  exhLock:"number",
+ ed:"string",
  hp:"string",
  /* fields of the magic item rows */setsc:"array",atk:"number",dmg:"number",dark:"number",abil:"array",adv:"array",climb:"string",save:"number",swim:"number|string",spellAtk:"number",spellDc:"number",spellCls:"string",
  speedSet:"number",off:"number|boolean?",lv:"number?",lbl:"string",kind:"string",owner:"string?",okey:"string?",pre:"string?",idx:"number?",ocls:"string?",tgOn:"boolean?",fx:"object?"};

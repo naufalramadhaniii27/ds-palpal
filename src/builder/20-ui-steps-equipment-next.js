@@ -4,13 +4,13 @@ import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {BLANK,DMAP,un} from "./03-logic-magic-item-effects.js";
 import {B,BAK,__set_B,save,saveBak} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
-import {EQ14SH,choices,kitTool} from "./09-logic-feats-and-choices.js";
+import {choices,kitTool} from "./09-logic-feats-and-choices.js";import {EQ14SH} from "./09c-logic-edition-overlays.js";
 import {isDone,wmAll} from "./10-logic-v17-additions.js";
-import {abil,atkRowFor} from "./11-logic-derivation.js";
+import {abilScores,atkRowFor} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,clsKitText0,ensureInv,eq14UI,eqIdx,equippable,gpBase,gpNow,hpCalc,itemCost,itemW,qOf,rarCls,rarityOf,scrollOf,wpNamed} from "./14-logic-multiclass-hp-shop.js";
-import {__set_step,ask,bI,card,fmtGp,mfullH,openCards,rt,step} from "./17-ui-step-builder.js";
+import {__set_step,ask,bI,stepCard,fmtGp,mfullH,openCards,rt,step} from "./17-ui-step-builder.js";
 import {ruleIssues} from "./18-ui-spells.js";
 
 import {provideQueries} from "./01a-logic-query-registry.js";
@@ -41,7 +41,7 @@ function idWeapon(n,fullN,BO,c,a){let h="";const w=WEAPONS[n],ab=w.k==="R"?"DEX"
 function idArmor(n,c){let h="";const r=ARMOR[n];h+='<p><i>'+itemType(n)+'</i></p><dl><dt>Proficient</dt><dd>'+(isProf(n)?"Yes":"No")+'</dd><dt>Armor Class</dt><dd>'+r.ac+(r.dex==="full"?" + Dex":r.dex==="max2"?" + Dex (max 2)":"")+'</dd><dt>Strength</dt><dd>'+(r.str?r.str:"--")+'</dd><dt>Stealth</dt><dd>'+(r.dis?"Disadvantage":"--")+'</dd><dt>Weight</dt><dd>'+r.w+' lb</dd><dt>Cost</dt><dd>'+fmtGp(c)+'</dd></dl>'+'<p>'+esc(ITEMDESC[n]||'')+'</p><p class="rule">'+esc(ARMOR_RULE[r.cat])+(r.str?' If your Strength is below '+r.str+', your Speed drops by 10 ft.':'')+(r.dis?' You have Disadvantage on Dexterity (Stealth) checks.':'')+' '+esc(ARMOR_GEN)+'</p>';return h}
 function idShield(n){return '<p><i>Shield</i></p><dl><dt>Proficient</dt><dd>'+(isProf(n)?"Yes":"No")+'</dd><dt>Armor Class</dt><dd>+2</dd><dt>Weight</dt><dd>6 lb</dd><dt>Cost</dt><dd>10 GP</dd></dl><p>'+esc(ITEMDESC.Shield)+'</p><p class="rule">'+(EQ14SH||"Putting it on or taking it off takes a Utilize action.")+'</p>'}
 function idGear(n,c){return '<p><i>'+(MOUNTT[n]||"Adventuring Gear")+'</i></p><dl><dt>Weight</dt><dd>'+(itemW(n)||"--")+(itemW(n)?' lb':'')+'</dd><dt>Cost</dt><dd>'+(c!=null?fmtGp(c):"--")+'</dd></dl>'+(ITEMDESC[n]?'<p>'+esc(ITEMDESC[n])+'</p>':'')}
-export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n}),pot=POTIONS.filter((p) =>{return p[0]===n})[0];n=BO.b;let h='<div class="idet">'+idRarity(n,fullN,BO,rr)+idPotScroll(BO,pot)+idMagic(fullN,BO,x),c=PRICE[fullN]!=null?PRICE[fullN]:BO.p?null:itemCost(n),a=abil();/* v20 M1 */
+export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n}),pot=POTIONS.filter((p) =>{return p[0]===n})[0];n=BO.b;let h='<div class="idet">'+idRarity(n,fullN,BO,rr)+idPotScroll(BO,pot)+idMagic(fullN,BO,x),c=PRICE[fullN]!=null?PRICE[fullN]:BO.p?null:itemCost(n),a=abilScores();/* v20 M1 */
  if(WEAPONS[n])h+=idWeapon(n,fullN,BO,c,a);
  else if(ARMOR[n])h+=idArmor(n,c);
  else if(n==="Shield")h+=idShield(n);
@@ -63,7 +63,7 @@ function coinIn(c){const o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["
 /* v33 p04 (RU123): the five coins, copper to platinum, with the sheet's coin icons */
 function coinsB(c,t){const o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],["gp","Gold"],["pp","Platinum"]];return '<div class="bcoins" role="group" aria-label="Coins: '+o.map((k) =>{return (+c[k[0]]||0)+' '+k[1]}).join(', ')+', '+t+' GP in all">'+o.map((k) =>{return '<span class="icn ic-'+k[0]+'">'+bI("coin-"+k[0],"icn-i")+'<b>'+(+c[k[0]]||0)+'</b><small>'+k[0].toUpperCase()+'</small></span>'}).join("")+'<span class="itot">'+t+' GP in all</span></div>'}
 /* v33 p05 (F2): a short hint with an icon instead of a paragraph */
-function hint(k,txt,cls,attr){return '<p class="bhint'+(cls?" "+cls:"")+'"'+(attr||"")+'>'+bI(k||"ui-info")+'<span>'+txt+'</span></p>'}
+function bHint(k,txt,cls,attr){return '<p class="bhint'+(cls?" "+cls:"")+'"'+(attr||"")+'>'+bI(k||"ui-info")+'<span>'+txt+'</span></p>'}
 /* renderEquip() in parts (SOLID stage 13C): one function per section of the step, in the same order. eqOpt and eqSec are the two helpers the sections share */
 function eqOpt(key,cur,list,title){return '<h3 class="eqh">'+title+'</h3><div class="eqbox">'+list.map((t,i) =>{const L="ABC"[i];return (i?'<p class="or">OR</p>':'')+'<button type="button" class="eqo'+(cur===L?" on":"")+'" data-eq="'+key+'" data-v="'+L+'"><span class="bcb"></span>('+L+') '+esc(t)+'</button>'}).join("")+'</div>'}
 function eqSec(id,title,right,body){const o=openCards[id]!==false;return '<div class="sech2"><button type="button" class="sech2h" data-tog2="'+id+'"><b>'+title+'</b><span>'+(right||"")+'</span><svg class="bchev'+(o?" up":"")+'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+(o?'<div class="sech2b">'+body+'</div>':'')+'</div>'}
@@ -99,7 +99,7 @@ function eqCustom(){
 function eqCoins(){
  const g=gpNow();
  let mineC=false;try{mineC=bldMine()}catch(e){}const live=!!(mineC&&genv.__coinsGet),cn=live?genv.__coinsGet():bCoins(g),cT=genv.__coinTotal?genv.__coinTotal(cn):g,ag=live&&genv.__coinsGp?genv.__coinsGp():null,dg=ag==null?0:Math.round(((+g||0)-ag)*100)/100;/* v34 p06: one wallet */
- return eqSec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+coinIn(cn)+hint("ui-info",live?"The same coins as your sheet. A change here shows on the sheet at once.":"These coins go to the sheet when you Apply.")+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+hint("coin-gp","From your choices: "+gpBase()+" GP. Add is free. Buy takes the price from your coins and gives change.")+(live&&dg?hint("ui-info","Starting gold here is "+g+" GP, on the sheet "+ag+" GP. After Apply, Gold changes by "+(dg>0?"+":"")+dg+" GP."):''));
+ return eqSec("cur2","Currency","Total in GP: "+cT,coinsB(cn,cT)+coinIn(cn)+bHint("ui-info",live?"The same coins as your sheet. A change here shows on the sheet at once.":"These coins go to the sheet when you Apply.")+'<label class="one">Starting gold (GP)<input class="btx" type="number" step="0.01" data-gp="1" value="'+g+'"></label>'+bHint("coin-gp","From your choices: "+gpBase()+" GP. Add is free. Buy takes the price from your coins and gives change.")+(live&&dg?bHint("ui-info","Starting gold here is "+g+" GP, on the sheet "+ag+" GP. After Apply, Gold changes by "+(dg>0?"+":"")+dg+" GP."):''));
 }
 export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 class="ttl">Choose Equipment</h2>'+acModeCard();
  h+=eqSec("st","Starting Equipment","",eqStart(bg));
@@ -110,9 +110,9 @@ export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h=
 
 /* ---------- step: what's next ---------- */
 /* renderNext step (SOLID s16): the note when the sheet shows its own AC and HP */
-function rnOwn(){let h="";let o=null,mc=false;try{mc=bldMine()}catch(e){}if(mc&&genv.__sheetOwnNums)o=genv.__sheetOwnNums();if(o)h+=hint("ui-pen","Your sheet shows AC "+o.ac+" and HP "+o.hp+" ("+o.what.join(", ")+"). The numbers here are calculated.",""," id=\"ownNums\"");return h}
+function rnOwn(){let h="";let o=null,mc=false;try{mc=bldMine()}catch(e){}if(mc&&genv.__sheetOwnNums)o=genv.__sheetOwnNums();if(o)h+=bHint("ui-pen","Your sheet shows AC "+o.ac+" and HP "+o.hp+" ("+o.what.join(", ")+"). The numbers here are calculated.",""," id=\"ownNums\"");return h}
 export function renderNext(){const miss=unList();if(miss.length){const bk0=bakInfo();return '<h2 class="ttl">'+esc(B.name)+'</h2><div class="bwarn"><b>Not ready yet.</b> Choose your '+miss+' first.</div><button type="button" class="ghost" id="newBtn2">Start a new character</button>'+(bk0?'<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk0.label)+')</button>':'')}
- const C=toSheet(),a=abil(),L=B.level,c=CL();
+ const C=toSheet(),a=abilScores(),L=B.level,c=CL();
  const acv=C.ac.base+(C.ac.dex==="full"?mod(a.sc.DEX):C.ac.dex==="max2"?Math.min(2,mod(a.sc.DEX)):C.ac.dex==="max3"?Math.min(3,mod(a.sc.DEX)):0)+C.ac.bonus.reduce((t,b) =>{return t+b.v},0);
  const hp=hpCalc().max;
  const open=choices().filter((x) =>{return !isDone(x)}).map((x) =>{const v=B.ch[x.key],F=x.t==="feat"&&v&&v.feat&&FEATS[v.feat];if(F&&F.dt&&!v.dt)return {key:x.key,title:v.feat+": damage type not chosen yet"};return x});/* v19 V19-4 */
@@ -124,7 +124,7 @@ export function renderNext(){const miss=unList();if(miss.length){const bk0=bakIn
  if(stillN)h+='<div class="bwarn" id="stillTo"><b>Still to choose ('+stillN+').</b> '+open.map((x) =>{return esc(x.title)}).concat(ro.map((x) =>{return esc(x.m)})).join(", ")+'.</div>';
  if(rb.length)h+='<div class="caution" id="checkThese"><b>Check these ('+rb.length+').</b> '+rb.map((x) =>{return esc(x.m)}).join(". ")+'.</div>';
  h+='<button type="button" class="big" id="expBtn2">Open Character Sheet</button>';
- h+=C.features.map((g) =>{return card("g"+g.g,g.g,g.items.length+" entries",g.items.map((f) =>{return '<p class="fd"><b>'+esc(f.n)+'.</b> '+rt(f.d)+' <i>'+esc(f.s)+'</i></p>'}).join("")+(g.next?'<p class="fd"><i>'+esc(g.next)+'</i></p>':''))}).join("");
+ h+=C.features.map((g) =>{return stepCard("g"+g.g,g.g,g.items.length+" entries",g.items.map((f) =>{return '<p class="fd"><b>'+esc(f.n)+'.</b> '+rt(f.d)+' <i>'+esc(f.s)+'</i></p>'}).join("")+(g.next?'<p class="fd"><i>'+esc(g.next)+'</i></p>':''))}).join("");
  h+='<button type="button" class="ghost" id="newBtn2">Start a new character</button>';
  const bk=bakInfo();if(bk)h+='<button type="button" class="ghost" id="bakBtn">Restore backup build ('+esc(bk.label)+')</button><p class="fd bhint">Saved at your last Load from sheet. Restoring swaps it with this build.</p>';
  return h}

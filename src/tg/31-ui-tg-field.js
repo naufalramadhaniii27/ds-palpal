@@ -1,5 +1,5 @@
 /* Training Ground field: board, taps, replay, wire and open (split from 30, SOLID stage 12) */
-import {env} from "./00-env.js";import {A,esc} from "./00-bridge.js";import {ARENAS,TG,XPB,balance,creatures,cur,dom,enter,evText,fieldHtml,fightClear,fightLoad,fightSave,flash,foeList,hpPct,ini,live,nAllies,nFoes,run,setupHtml,vtPaint} from "./30-ui-tg.js";
+import {env} from "./00-env.js";import {A,esc} from "./00-bridge.js";import {ARENAS,TG,XPB,balance,tgCreatures,cur,dom,enter,evText,fieldHtml,fightClear,fightLoad,fightSave,flash,foeList,hpPct,ini,tgSay,nAllies,nFoes,run,setupHtml,vtPaint} from "./30-ui-tg.js";
 /* the grid: one canvas, sized to whole squares. A phone gets 44 px squares and the grid scrolls inside its frame */
 let CUR=[0,0];
 /* N28 layered board: ground, rough ground, walls and grid are drawn once into a spare canvas and only copied on each tap. Tokens are
@@ -78,7 +78,7 @@ function pickAtk(u,entry){ const names=entry.split("|"); for(let i=0;i<names.len
    Play and step buttons. A fight is shared as a link: setup and commands, gzip and base64url after #fight=, nothing goes to a server */
 function rpBuild(start,cmds){ let st=[start], x=start; cmds.forEach((c) =>{ x=TGE.step(x,c); st.push(x); }); return st; }
 function rpOpen(){ if(!TG.start||!TG.cmds) return; TG.rp={cmds:TG.cmds.slice(),states:rpBuild(TG.start,TG.cmds),i:0,back:TG.st}; TG.view="replay"; paint(); }
-function rpStep(d){ const r=TG.rp; r.i=Math.max(0,Math.min(r.cmds.length,r.i+d)); paint(); const n=r.states[r.i], p=r.states[Math.max(0,r.i-1)]; if(d) live(n.log.slice(p.log.length).map(evText).filter(Boolean).join(" ")); }
+function rpStep(d){ const r=TG.rp; r.i=Math.max(0,Math.min(r.cmds.length,r.i+d)); paint(); const n=r.states[r.i], p=r.states[Math.max(0,r.i-1)]; if(d) tgSay(n.log.slice(p.log.length).map(evText).filter(Boolean).join(" ")); }
 function replayHtml(){ const r=TG.rp, n=r.states[r.i], p=r.i?r.states[r.i-1]:null, lines=p?n.log.slice(p.log.length).map(evText).filter(Boolean):["The fight is about to start."];
   return '<div class="tg-wrap" id="tgWrap"><canvas id="tgCv" aria-label="Battle grid at step '+r.i+'"></canvas></div><div class="tg-p tg-rp"><label class="tg-rps"><span class="vh">Step</span><input type="range" min="0" max="'+r.cmds.length+'" value="'+r.i+'" data-tgrp="1"></label>'
    +'<div class="tg-acts"><button type="button" class="btn press" data-tgrs="-1" aria-label="One step back">Back</button><button type="button" class="btn pri press" data-tg="rpplay">'+(TG.rpT?'Pause':'Play')+'</button><button type="button" class="btn press" data-tgrs="1" aria-label="One step forward">Next</button></div>'
@@ -92,7 +92,7 @@ function fightShare(){ fightCode().then((code) =>{ const u=location.origin+locat
     try{ navigator.clipboard.writeText(u).then(() =>{ flash("Link copied ("+u.length+" characters)."); },() =>{ flash("Copy did not work here."); }); }catch(e){ flash("Copy is not available here."); } },(e) =>{ flash(e.message); }); }
 function fightFromCode(code){ let u; try{ u=unb64u(code); }catch(e){ return Promise.reject(new Error("This fight link is damaged.")); }
   return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text().then((t) =>{ return JSON.parse(t); }); }
-function fightOpenLink(code){ fightFromCode(code).then((rec) =>{ return creatures().then(() =>{ TG.pc=rec.pc; TG.foes=rec.foes||{}; TG.allies=rec.allies||{}; TG.arena=rec.arena||"field"; TG.forceSeed=rec.seed; TG.linkMode=1; enter(); if(TG.start&&rec.cmds){ TG.cmds=[{t:"start"}]; TG.st=TGE.step(TG.start,{t:"start"}); rec.cmds.slice(1).forEach((c) =>{ TG.st=TGE.step(TG.st,c); TG.cmds.push(c); }); rpOpen(); live("A shared fight: "+(TG.pc&&TG.pc.name||"a hero")+". Watch it, or go back to the setup to fight your own."); } }); }).catch((e) =>{ flash(e.message||"This fight link could not be opened."); }); }
+function fightOpenLink(code){ fightFromCode(code).then((rec) =>{ return tgCreatures().then(() =>{ TG.pc=rec.pc; TG.foes=rec.foes||{}; TG.allies=rec.allies||{}; TG.arena=rec.arena||"field"; TG.forceSeed=rec.seed; TG.linkMode=1; enter(); if(TG.start&&rec.cmds){ TG.cmds=[{t:"start"}]; TG.st=TGE.step(TG.start,{t:"start"}); rec.cmds.slice(1).forEach((c) =>{ TG.st=TGE.step(TG.st,c); TG.cmds.push(c); }); rpOpen(); tgSay("A shared fight: "+(TG.pc&&TG.pc.name||"a hero")+". Watch it, or go back to the setup to fight your own."); } }); }).catch((e) =>{ flash(e.message||"This fight link could not be opened."); }); }
 /* G7 queue 1: Screen Wake Lock. While a fight is on screen the display stays on (players think between turns); released on the setup
    screen, on close and when the page is hidden (the browser drops it then), taken again when the page comes back to a fight */
 const WL={l:null,want:false};
@@ -113,14 +113,14 @@ export function paint(){ wakeSync(); const b=document.getElementById("tgB"); if(
 function wireCv(){ const cv=document.getElementById("tgCv"); if(!cv) return;
   cv.addEventListener("click",(e) =>{ const r=cv.getBoundingClientRect(), cx=Math.floor((e.clientX-r.left)/TG.cell), cy=Math.floor((e.clientY-r.top)/TG.cell); TG.kb=0; tapCell(cx,cy); });
   cv.addEventListener("keydown",(e) =>{ const k=e.key, d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[k];
-    if(d){ e.preventDefault(); TG.kb=1; CUR=[Math.max(0,Math.min(TG.st.w-1,CUR[0]+d[0])),Math.max(0,Math.min(TG.st.h-1,CUR[1]+d[1]))]; draw(); const t=unitAt(CUR[0],CUR[1]); live("Square "+(CUR[0]+1)+", "+(CUR[1]+1)+(t?": "+t.name:"")); }
+    if(d){ e.preventDefault(); TG.kb=1; CUR=[Math.max(0,Math.min(TG.st.w-1,CUR[0]+d[0])),Math.max(0,Math.min(TG.st.h-1,CUR[1]+d[1]))]; draw(); const t=unitAt(CUR[0],CUR[1]); tgSay("Square "+(CUR[0]+1)+", "+(CUR[1]+1)+(t?": "+t.name:"")); }
     else if(k==="Enter"||k===" "){ e.preventDefault(); tapCell(CUR[0],CUR[1]); const c2=document.getElementById("tgCv"); if(c2) try{ c2.focus({preventScroll:true}); }catch(er){} } });
   const u=cur(), wrap=document.getElementById("tgWrap"); if(wrap&&u&&!TG.kb){ const cs=TG.cell; const lft=u.pos[0]*cs-wrap.clientWidth/2+cs, top=u.pos[1]*cs-wrap.clientHeight/2+cs; try{ wrap.scrollTo({left:Math.max(0,lft),top:Math.max(0,top)}); }catch(e){} } }
-function tgc01(b,d,w){ if(!(b.getAttribute("aria-disabled")==="true")) return false; live(d.tg==="enter"?"Pick who goes in and at least one creature.":""); flash("Pick who goes in and at least one creature."); return true; return true; }
+function tgc01(b,d,w){ if(!(b.getAttribute("aria-disabled")==="true")) return false; tgSay(d.tg==="enter"?"Pick who goes in and at least one creature.":""); flash("Pick who goes in and at least one creature."); return true; return true; }
 function tgc02(b,d,w){ if(!(d.tg==="close")) return false; close(); return true; return true; }
 function tgc03(b,d,w){ if(!(d.tg==="back")) return false; back(); return true; return true; }
 function tgc04(b,d,w){ if(!(d.tgpc!=null)) return false; TG.pc=TG.pcs[+d.tgpc]; paint(); return true; return true; }
-function tgc05(b,d,w){ if(!(d.tg==="try")) return false; const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ live("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); live(p.name+" is ready."); }; if(env.__bldSheetFor) go(); else if(env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else setTimeout(go,300); return true; return true; }
+function tgc05(b,d,w){ if(!(d.tg==="try")) return false; const cls=w.querySelector('[data-tgtry="cls"]').value, lv=+w.querySelector('[data-tgtry="lv"]').value||1; TG.trial={cls:cls,lv:lv}; const go=function(){ const p=A.tgTry(cls,lv); if(!p){ tgSay("That class could not be made."); return; } p.id="trial"; TG.pc=p; paint(); tgSay(p.name+" is ready."); }; if(env.__bldSheetFor) go(); else if(env.__bldNeed) Promise.resolve(env.__bldNeed()).then(go,go); else setTimeout(go,300); return true; return true; }
 function tgc06(b,d,w){ if(!(d.tgtier)) return false; TG.tier=d.tgtier; TG.q=""; TG.lim=24; paint(); return true; return true; }
 function tgc07(b,d,w){ if(!(d.tgf)) return false; const n=(TG.foes[d.tgf]||0)+(+d.d); if(n>0&&nFoes()>=12&&+d.d>0){ flash("Up to 12 creatures."); return true; } if(n<=0) delete TG.foes[d.tgf]; else TG.foes[d.tgf]=n; const l=document.getElementById("tgFoes"), sc=l?l.scrollTop:0; paint(); return true; return true; }
 function tgc08(b,d,w){ if(!(d.tg==="balance")) return false; balance(); return true; return true; }
@@ -148,10 +148,10 @@ function tgc26(b,d,w){ if(!(d.tg==="savego"&&TG.lgBy)) return false; run({t:"sav
 function tgc27(b,d,w){ if(!(d.tg==="savego")) return false; run({t:"save",act:TG.act,targets:TG.pick.slice(),bonus:TG.bonus?1:0}); TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; paint(); return true; return true; }
 function tgc28(b,d,w){ if(!(d.tg==="cancel")) return false; TG.mode=""; TG.act=null; TG.pick=[]; TG.bonus=0; TG.sp=null; TG.lgBy=null; paint(); return true; return true; }
 function tgc29(b,d,w){ if(!(d.tgoa!=null)) return false; const o=TG.oa.shift(); if(d.tgoa&&o) run({t:"attack",oa:1,by:o.by,target:o.u,act:d.tgoa}); paint(); return true; return true; }
-function tgc30(b,d,w){ if(!(d.tg==="undo")) return false; const p=TG.undo.pop(); if(p){ TG.st=p; TG.cmds.pop(); TG.oa=[]; TG.mode=""; TG.act=null; fightSave(); live("Undone."); } paint(); return true; return true; }
-function tgc31(b,d,w){ if(!(d.tg==="resume")) return false; const rec=TG.saved; if(rec){ TG.start=rec.start; TG.cmds=rec.cmds.slice(); TG.st=TGE.replay(rec.start,rec.cmds); TG.arena=rec.arena; TG.undo=[]; TG.oa=[]; TG.mode=""; TG.act=null; TG.view="field"; TG.saved=null; paint(); live("Back in the fight. Round "+TG.st.round+"."); } return true; return true; }
+function tgc30(b,d,w){ if(!(d.tg==="undo")) return false; const p=TG.undo.pop(); if(p){ TG.st=p; TG.cmds.pop(); TG.oa=[]; TG.mode=""; TG.act=null; fightSave(); tgSay("Undone."); } paint(); return true; return true; }
+function tgc31(b,d,w){ if(!(d.tg==="resume")) return false; const rec=TG.saved; if(rec){ TG.start=rec.start; TG.cmds=rec.cmds.slice(); TG.st=TGE.replay(rec.start,rec.cmds); TG.arena=rec.arena; TG.undo=[]; TG.oa=[]; TG.mode=""; TG.act=null; TG.view="field"; TG.saved=null; paint(); tgSay("Back in the fight. Round "+TG.st.round+"."); } return true; return true; }
 function tgc32(b,d,w){ if(!(d.tg==="drop")) return false; fightClear(); paint(); return true; return true; }
-function tgc33(b,d,w){ if(!(d.tg==="end")) return false; TG.oa=[]; TG.mode=""; TG.act=null; TG.pick=[]; run({t:"end"}); paint(); const c=cur(); if(c) live(c.name+"'s turn."); return true; return true; }
+function tgc33(b,d,w){ if(!(d.tg==="end")) return false; TG.oa=[]; TG.mode=""; TG.act=null; TG.pick=[]; run({t:"end"}); paint(); const c=cur(); if(c) tgSay(c.name+"'s turn."); return true; return true; }
 function tgc34(b,d,w){ if(!(d.tg==="again")) return false; TG.linkMode=0; enter(); return true; return true; }
 function tgc35(b,d,w){ if(!(d.tg==="setup")) return false; TG.view="setup"; TG.st=null; vtPaint(); return true; return true; }
 function tgc36(b,d,w){ if(!(d.tgu)) return false; const t=TG.st.units[d.tgu]; if(t){ if(TG.mode==="target"||TG.mode==="save"||TG.mode==="spell"){ tapCell(t.pos[0],t.pos[1]); return true; } flash(t.name+": HP "+t.hp+"/"+t.max+", AC "+t.ac); } return true; return true; }
@@ -172,7 +172,7 @@ function open(){ const w=dom(); TG.opener=document.activeElement; try{ TG.pcs=A.
   if(!TG.pc&&TG.pcs.length) TG.pc=TG.pcs[0];
   w.hidden=false; if(TG.view!=="field") TG.view="setup"; paint(); requestAnimationFrame(() =>{ w.classList.add("on"); }); if(A.ovQueue) A.ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){}
   if(TG.view==="setup"&&!TG.st) fightLoad().then((rec) =>{ if(rec&&rec.start&&rec.cmds&&!w.hidden&&TG.view==="setup"){ TG.saved=rec; paint(); } });
-  if(!TG.cr) creatures().then(() =>{ if(!w.hidden&&TG.view==="setup") paint(); },() =>{ const l=document.getElementById("tgFoes"); if(l) l.innerHTML='<p class="bk-f">The creature list could not be loaded. Check the connection and open the Training Ground again.</p>'; }); }
+  if(!TG.cr) tgCreatures().then(() =>{ if(!w.hidden&&TG.view==="setup") paint(); },() =>{ const l=document.getElementById("tgFoes"); if(l) l.innerHTML='<p class="bk-f">The creature list could not be loaded. Check the connection and open the Training Ground again.</p>'; }); }
 env.__tgOpen=open;
 /* N22 build duel: the same group for both builds, so results compare. A ladder of groups: for 1 to 4 copies of one creature and for the
    Low, Moderate and High budgets of the level (DMG 2024), the strongest SRD creature without legendary actions that has an attack and fits
@@ -193,7 +193,7 @@ function duelLadderStep2(row, out, cand, seen, rank){
 }
 function duelFoes(g){ const f=[]; for(let i=0;i<g.k;i++) f.push(g.c); return f; }
 /* pc: the current build. onDone gets the chosen group with the estimate (est), or null when the creature list cannot be loaded */
-env.__tgDuelPick=function(pc,onDone,onStep){ if(!pc||!env.TGE||!TGE.sim){ onDone(null); return; } creatures().then(() =>{
+env.__tgDuelPick=function(pc,onDone,onStep){ if(!pc||!env.TGE||!TGE.sim){ onDone(null); return; } tgCreatures().then(() =>{
   /* the quick estimate shortlists the 3 groups closest to half, 30 fights each pick the one */
   let L=duelLadder(pc.level).map((g) =>{ g.est=TGE.sim.est(pc,g.c,g.k).p; return g; }).sort((a,b) =>{ return Math.abs(a.est-0.5)-Math.abs(b.est-0.5)||a.xp-b.xp; }).slice(0,3), i=0, best=null;
   if(!L.length){ onDone(null); return; }

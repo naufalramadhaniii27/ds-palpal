@@ -12,7 +12,7 @@ import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from ".
 import {allSheetHandlers,SHEET_PHASES,registerSheetGroup,registerSheetRule,makeCtx,applyPatch} from "./12a-logic-sheet-registry.js";
 import {SHEET_C,SHEET_L,patchProblems} from "./12b-logic-sheet-schema.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
-import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {BASE,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {allPackSteps,registerPackStep,PACK_PHASES,PACK_TABLES} from "./13a-logic-pack-registry.js";
 import {queryNames} from "./01a-logic-query-registry.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -47,7 +47,7 @@ genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElemen
 function bldMine(){const st=genv.__sheetState&&genv.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}
 /* fx engine v6 test hook: the slot table the builder spell step shows (with slotAdd), for the build that is set with __bldTestSet */genv.__bldSpellSlots=function(){const I=spInfo();return I&&I.SA&&I.SA.slots?{slots:I.SA.slots.slice(),add:(I.SA.slots.fxAdd||[]).map((x) =>{return [x[0],x[1],x[2]]})}:null};
 genv.__bldSpInfo=function(){if(!bldMine())return null;const CP=casterParts();if(!CP.length)return null;const SLs=spLists();
- return {parts:CP.map((p) =>{const K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]},o={cls:p.cls,ct:K.ct,pr:K.pr,kn:K.kn||0,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()};if(p.cls==="Wizard"){o.book=bookOf();o.bookO=bookOwn().length;o.bookN=bookNeed()}return o}),/* v32: Wizard spellbook */auto:autoSpells().map((a) =>{return a.n})}};
+ return {parts:CP.map((p) =>{const K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]},o={cls:p.cls,ct:K.ct,pr:K.pr,kn:K.kn||0,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()};if(p.cls==="Wizard"){o.book=bookOf();o.bookO=bookOwn().length;o.bookN=bookNeed()}return o}),/* v32: Wizard spellbook */auto:autoSpellList().map((a) =>{return a.n})}};
 /* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */
 genv.__bldSpSet=function(n,cls,on,soft){if(!bldMine())return false;const L=spLists();if(((L[cls]||[]).indexOf(n)>=0)!==!!on)spToggle(n,cls);save();if(soft&&genv.__sheetSoft)genv.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 /* v25 RU38 no. 6: Hit Points fixed (average) or rolled, from Settings. m null: read */
@@ -120,6 +120,8 @@ genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());if(o.rs==="20
   const bg=BACKGROUNDS[o.bg],ab=bg.ab||[];B.bg=o.bg;B.bgMode=o.rs==="2014"?"111":"21";if(o.rs!=="2014"){B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];}/* 2014: no background ability scores */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&(o.lv>=subLv(o.cls)||o.anySub))B.sub=o.sub;/* 2014: some subclasses start at level 1 or 2 */applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
   out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
+/* test hook (tests/zero_miss_measure.py): fills the open choices of a given build the Quick Build way (picks, spells, magic item, book) on a copy. Nothing saved, the open build is put back */
+genv.__bldFillFor=function(b){let keep=B,out=null;try{__set_B(structuredClone(b));applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();out=structuredClone(B)}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 genv.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
 /* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */
 /* the build of the open character without opening the builder: the saved one when it is this character's, otherwise made from the sheet (like Build does) */
@@ -136,4 +138,4 @@ genv.__bldQuickFor=function(cls,lv){const Q=QUICK[cls];if(!Q)return null;let kee
   B.bg=BACKGROUNDS[Q.bg]?Q.bg:B.bg;B.bgMode="21";B.bg2=Q.b2;B.bg1=Q.b1;B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);B.level=Math.max(1,Math.min(20,lv|0||1));applyPacks();qbFill();qbSpells();qbMI();qbBook();out=structuredClone(B)}
  catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 /* SOLID stage 1 test hook (tests/solid_contract.py): the handler registries, the sources, the phase names and the effect list of the build set with __bldTestSet. Read only, no stored data */
-genv.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),sheet:allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),sheet:fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return noItem?fxListBase():fxList()},sheet:{groups:allSheetHandlers("group"),rules:allSheetHandlers("rule"),phases:SHEET_PHASES.slice(),registerGroup:registerSheetGroup,registerRule:registerSheetRule,makeCtx:makeCtx,applyPatch:applyPatch,schema:{C:SHEET_C,l:SHEET_L},patchProblems:patchProblems},entrySchema:{fields:FX_FIELDS,problems:fxEntryProblems},pack:{steps:allPackSteps(),phases:PACK_PHASES.slice(),tables:PACK_TABLES,register:registerPackStep},queries:queryNames()}};
+genv.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),"sheet":allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),"sheet":fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return noItem?fxListBase():fxList()},"sheet":{groups:allSheetHandlers("group"),rules:allSheetHandlers("rule"),phases:SHEET_PHASES.slice(),registerGroup:registerSheetGroup,registerRule:registerSheetRule,makeCtx:makeCtx,applyPatch:applyPatch,schema:{C:SHEET_C,l:SHEET_L},patchProblems:patchProblems},entrySchema:{fields:FX_FIELDS,problems:fxEntryProblems},pack:{steps:allPackSteps(),phases:PACK_PHASES.slice(),tables:PACK_TABLES,register:registerPackStep},queries:queryNames()}};
