@@ -75,7 +75,7 @@ export function xdmgRows(a,pb){const out=[],TLv=TL(),iv=invList(),SA=slotsAll();
 /* saveNotes steps (SOLID s16): the class features of one class part q (cf names, cfo owners), one SAVE_NOTES row s */
 function snClassFeats(q,cf,cfo){featsOf(q.cls,q.lv).forEach((x) =>{cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(q.cls)});const s=q.sub||(q.cls===B.cls?B.sub:"");if(s&&CLASSES[q.cls].subs[s])CLASSES[q.cls].subs[s].forEach((x) =>{if(x[0]<=q.lv){cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(s,q.cls)}})}
 function snRow(s,seen,fn,iv,tr,cf,cfo,o){if(!s[2]||seen[s[1]+s[2]+(s[3]||"")])return;let has=s[0]==="feat"?fn.indexOf(s[1])>=0:s[0]==="inv"?iv.indexOf(s[1])>=0:s[0]==="trait"?tr.indexOf(s[1])>=0:cf.indexOf(s[1])>=0;if(has&&s[3]){const w=s[3];has=s[0]==="trait"?B.species===w:s[0]==="feat"?fn.indexOf(w)>=0:s[0]==="inv"?true:(cfo[s[1]]||[]).indexOf(w)>=0}if(has){seen[s[1]+s[2]+(s[3]||"")]=1;o.push({t:s[2],s:s[1]})}}
-export function saveNotes(feats){const o=[],seen={},fn=feats.map((f) =>{return f.n}),iv=invList(),sp=spX(),tr=sp?sp.traits.map((t) =>{return t[0]}):[],cf=[],cfo={};
+export function saveNoteRows(feats){const o=[],seen={},fn=feats.map((f) =>{return f.n}),iv=invList(),sp=spX(),tr=sp?sp.traits.map((t) =>{return t[0]}):[],cf=[],cfo={};
  clsParts().forEach((q) =>{snClassFeats(q,cf,cfo)});
  /* fx engine v4: a SAVE_NOTES row may carry a 4th item, the owner (species name for a trait, class or subclass name for a class feature, feat name for a feat). With it the row counts only for that owner; without it the old match by name alone stays. Two sources with a feature of the same name (Kalashtar and Githzerai "Mental Discipline") no longer share a note */
  (typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]).forEach((s) =>{snRow(s,seen,fn,iv,tr,cf,cfo,o)});

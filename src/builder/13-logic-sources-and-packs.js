@@ -14,7 +14,7 @@ bindLive("BASE",{get:function(){return BASE;},set:function(v){BASE=v;}});
 bindLive("spHasFeat",{get:function(){return spHasFeat;}});
 bindLive("subChoicesFor",{get:function(){return subChoicesFor;}});
 bindLate({enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the late ports of this file (01b-logic-late-ports.js) */
-provideQueries({autoSpells,enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the sheet queries (toSheet state.q) of this file */
+provideQueries({autoSpells:autoSpellList,enabledPacks,miFeats,packSkills,spOptFx,subGrant});/* the sheet queries (toSheet state.q) of this file */
 /* ---------- sources & homebrew packs ---------- */
 export var PACK_TEMPLATE={id:"my-homebrew",name:"My Homebrew",desc:"Short description",species:{"Example Folk":{size:"Medium",speed:30,dark:60,traits:[["Trait Name","What it does."]]}},subclasses:{"Rogue":{"Example Archetype":[[3,"Feature","What it does."]]}},feats:{"Example Feat":{cat:"G",pre:"Level 4+",asi:["STR","DEX"],d:"What it does."}},backgrounds:{"Example Background":{ab:["STR","DEX","CON"],feat:"Alert",sk:["Athletics","Stealth"],tool:"Thieves' Tools",eq:"Dagger, 15 GP",gp:15}},skills:{"Example Skill":"INT"},items:[["Example Ring","Ring","Rare",1,"What it does."]]};
 export var BASE=null;
@@ -58,7 +58,7 @@ function asPicks(add){
  MCL().forEach((m,i) =>{(B.ch["m"+i+":bwc"]||[]).forEach((n) =>{add([[1,n]],B.ch["m"+i+":fs"]||"Fighting Style",m.lv,m.cls)})});/* v32 RL49 no. 42 */(B.ch.tomeC||[]).concat(B.ch.tomeR||[]).forEach((n) =>{add([[1,n]],"Pact of the Tome",0,"Warlock")});}
 function asHecan(out){
  const hc=(B.ch.hecan||[])[0],hs=spX();if(hc&&hs&&hs.linCan)out.forEach((o) =>{if(o.k==="@species"&&o.n===hs.linCan[Object.keys(hs.linCan)[0]].def)o.n=hc});}
-export function autoSpells(){const L=B.level,out=[],add=asAdder(out,L);
+export function autoSpellList(){const L=B.level,out=[],add=asAdder(out,L);
  asClass(add);
  asMcLand(add);
  asParts(add);

@@ -8,7 +8,7 @@ import {allFeats,choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOwn,isDone,wizLv} from "./10-logic-v17-additions.js";
 import {clsLv} from "./11-logic-derivation.js";
 import {ACM,toSheet} from "./12-logic-export-to-sheet.js";
-import {applyPacks,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
+import {applyPacks,autoSpellList,miFeats} from "./13-logic-sources-and-packs.js";
 import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {__set_pickCls,__set_pickSp,__set_step,ask,card,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
 import {SMAP,issueText,plural,ruleIssues,spInfo} from "./18-ui-spells.js";
@@ -143,16 +143,16 @@ function qbsFirst(Q,L,I,auto){
 function qbsRest(L,I,auto){
  const byL={};L.forEach((x) =>{if(x[1])(byL[x[1]]=byL[x[1]]||[]).push(x[0])});for(let g=0;g<400&&qbsNp()<I.pr;g++){let put=false;for(let lv=I.max;lv>=1&&qbsNp()<I.pr;lv--){const q=byL[lv]||[];while(q.length){const n=q.shift();if(B.sp.indexOf(n)<0&&auto.indexOf(n)<0){B.sp.push(n);put=true;break}}}if(!put)break}}
 export function qbSpells(){const I=spInfo();if(!I)return;const Q=QUICK[B.cls]||{},L=SPELLS.filter((x) =>{return I.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
- const auto=autoSpells().map((a) =>{return a.n});
+ const auto=autoSpellList().map((a) =>{return a.n});
  qbsFirst(Q,L,I,auto);
  /* T11 N6: when the level 1 spells run out (or the list is short), the rest come from higher levels in turn, so no prepared spell stays empty */
  qbsRest(L,I,auto);
  qbArc()}
 /* T11 N6: Mystic Arcanum picks (Warlock 11, 13, 15, 17): the first Warlock spell of that level not already known */
-function qbArc(){const wl=clsLv("Warlock");if(!wl)return;B.pk=B.pk||{};const mine=(B.sp||[]).concat(autoSpells().map((a) =>{return a.n}));[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{const k="ma"+r[1];if(wl<r[0]||B.pk[k])return;const x=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0&&mine.indexOf(x[0])<0})[0];if(x)B.pk[k]=x[0]})}
+function qbArc(){const wl=clsLv("Warlock");if(!wl)return;B.pk=B.pk||{};const mine=(B.sp||[]).concat(autoSpellList().map((a) =>{return a.n}));[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{const k="ma"+r[1];if(wl<r[0]||B.pk[k])return;const x=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0&&mine.indexOf(x[0])<0})[0];if(x)B.pk[k]=x[0]})}
 /* Magic Initiate from the background (Acolyte, Guide, Sage): two cantrips and one level 1 spell of that list, not already chosen */
 const QB_MI={Wizard:{c:["Prestidigitation","Minor Illusion","Ray of Frost","Light"],s:["Find Familiar","Sleep","Feather Fall"]},Cleric:{c:["Spare the Dying","Light","Resistance","Guidance"],s:["Shield of Faith","Sanctuary","Command"]},Druid:{c:["Druidcraft","Shillelagh","Guidance","Produce Flame"],s:["Goodberry","Speak with Animals","Healing Word"]}};
-export function qbMI(){B.pk=B.pk||{};miFeats().forEach((m) =>{const v=B.pk[m.key];if(v&&v.c&&v.c.length>=2&&v.s&&v.s.length>=1)return;const L=SPELLS.filter((x) =>{return x[3].indexOf(m.cls)>=0&&x[1]<=1}),mine=(B.sp||[]).concat(autoSpells().map((a) =>{return a.n})),P=QB_MI[m.cls]||{c:[],s:[]};
+export function qbMI(){B.pk=B.pk||{};miFeats().forEach((m) =>{const v=B.pk[m.key];if(v&&v.c&&v.c.length>=2&&v.s&&v.s.length>=1)return;const L=SPELLS.filter((x) =>{return x[3].indexOf(m.cls)>=0&&x[1]<=1}),mine=(B.sp||[]).concat(autoSpellList().map((a) =>{return a.n})),P=QB_MI[m.cls]||{c:[],s:[]};
  const pick=function(pref,lv,n){const out=[];pref.concat(L.filter((x) =>{return x[1]===lv}).map((x) =>{return x[0]})).forEach((nm) =>{const x=SMAP[nm];if(out.length<n&&x&&x[1]===lv&&x[3].indexOf(m.cls)>=0&&mine.indexOf(nm)<0&&out.indexOf(nm)<0)out.push(nm)});return out};
  let cast=CLASSES[B.cls].cast,cs=pick(P.c,0,2),ss=pick(P.s,1,1);
  /* T11 N6: a Cleric or Druid of high level can already know every level 1 spell of the list. Then Magic Initiate takes one of them again */

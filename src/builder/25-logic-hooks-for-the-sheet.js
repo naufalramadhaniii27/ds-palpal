@@ -12,7 +12,7 @@ import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from ".
 import {allSheetHandlers,SHEET_PHASES,registerSheetGroup,registerSheetRule,makeCtx,applyPatch} from "./12a-logic-sheet-registry.js";
 import {SHEET_C,SHEET_L,patchProblems} from "./12b-logic-sheet-schema.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
-import {BASE,applyPacks,autoSpells,snap} from "./13-logic-sources-and-packs.js";
+import {BASE,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {allPackSteps,registerPackStep,PACK_PHASES,PACK_TABLES} from "./13a-logic-pack-registry.js";
 import {queryNames} from "./01a-logic-query-registry.js";
 import {baseOf,ensureInv,equippable,itemCost,itemW,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -47,7 +47,7 @@ genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElemen
 function bldMine(){const st=genv.__sheetState&&genv.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}
 /* fx engine v6 test hook: the slot table the builder spell step shows (with slotAdd), for the build that is set with __bldTestSet */genv.__bldSpellSlots=function(){const I=spInfo();return I&&I.SA&&I.SA.slots?{slots:I.SA.slots.slice(),add:(I.SA.slots.fxAdd||[]).map((x) =>{return [x[0],x[1],x[2]]})}:null};
 genv.__bldSpInfo=function(){if(!bldMine())return null;const CP=casterParts();if(!CP.length)return null;const SLs=spLists();
- return {parts:CP.map((p) =>{const K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]},o={cls:p.cls,ct:K.ct,pr:K.pr,kn:K.kn||0,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()};if(p.cls==="Wizard"){o.book=bookOf();o.bookO=bookOwn().length;o.bookN=bookNeed()}return o}),/* v32: Wizard spellbook */auto:autoSpells().map((a) =>{return a.n})}};
+ return {parts:CP.map((p) =>{const K=spInfoPart(p)||{ct:0,pr:0,max:0,lists:[p.list]},o={cls:p.cls,ct:K.ct,pr:K.pr,kn:K.kn||0,max:K.max,lists:K.lists,taken:(SLs[p.cls]||[]).slice()};if(p.cls==="Wizard"){o.book=bookOf();o.bookO=bookOwn().length;o.bookN=bookNeed()}return o}),/* v32: Wizard spellbook */auto:autoSpellList().map((a) =>{return a.n})}};
 /* on: the spell is chosen for that class. soft: rebuild the sheet from the build (only when the sheet matches the build) */
 genv.__bldSpSet=function(n,cls,on,soft){if(!bldMine())return false;const L=spLists();if(((L[cls]||[]).indexOf(n)>=0)!==!!on)spToggle(n,cls);save();if(soft&&genv.__sheetSoft)genv.__sheetSoft(toSheet());if(!document.getElementById("bld").hidden)render();return true};
 /* v25 RU38 no. 6: Hit Points fixed (average) or rolled, from Settings. m null: read */

@@ -6,7 +6,7 @@ import {R14} from "./05-logic-choice-model-ruleset.js";
 import {chOf,choices,dmXl,featViol,hbSpellPicks,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,savVals} from "./10-logic-v17-additions.js";
 import {abil,casterParts,clsLv,clsParts,fxList,fxVal,isThird3,spLists,spellAb,thirdOf} from "./11-logic-derivation.js";
-import {BASE,autoSpells,miFeats} from "./13-logic-sources-and-packs.js";
+import {BASE,autoSpellList,miFeats} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcReqFail,slotsAll} from "./14-logic-multiclass-hp-shop.js";
 import {bI,card,openCards,ord,rtp} from "./17-ui-step-builder.js";
 bindLive("__set_clsTab",{get:function(){return __set_clsTab;}});bindLive("choiceStep",{get:function(){return choiceStep;}});bindLive("clsTab",{get:function(){return clsTab;}});bindLive("issueText",{get:function(){return issueText;}});bindLive("ruleIssues",{get:function(){return ruleIssues;}});bindLive("spInfo",{get:function(){return spInfo;}});bindLive("spInfoPart",{get:function(){return spInfoPart;}});bindLive("spellCounts",{get:function(){return spellCounts;}});
@@ -109,7 +109,7 @@ function spAvRows(av,K,np,nc,bk){let t="";
  const bfull=bk&&bookOwn().length>=bookNeed();
  t+=av.map((x) =>{let r=spRow(x,false,x[1]?np>=K.pr:nc>=K.ct,K);if(bfull&&x[1]&&bk.indexOf(x[0])<0)r=r.replace('data-sp="'+esc(x[0])+'">','data-sp="'+esc(x[0])+'" aria-disabled="true" data-full="b">');return r}).join("");/* v32: book full */
  return t}
-export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
+export function renderSpells(){let I=spInfo(),h="",auto=autoSpellList(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
  const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spClsTab})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
  if(!I&&!auto.length&&!mis.length)return spNone();
  if(multi)h+=spTabs(CP,P);
