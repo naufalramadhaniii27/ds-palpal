@@ -1,6 +1,5 @@
 import {chJoin} from "./01-logic-core-helpers.js";
-import {full14} from "./06b-data-2014-long-text.js";
-import {cfFullText,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
+import {cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 8 (contract in 12a-logic-sheet-registry.js): the feature cards (phase "features"): species, class (one handler per class

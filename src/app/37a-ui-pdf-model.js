@@ -161,9 +161,9 @@ function pxCrSummary(o,env){ const a0=(o.actions||[])[0], at=a0?pxLine(crText(a0
   const hit=/Attack Roll:\s*([+−-]\d+)/.exec(at)||/([+−-]\d+) to hit/.exec(at), dm=/(?:Hit|Damage(?: on a hit)?):\s*([^.]+)/.exec(at);
   const act=a0?" Main action: "+pxLine(a0[0])+(hit||dm?" ("+[hit&&hit[1],dm&&dm[1].trim()].filter(Boolean).join(", ")+")":"")+".":"";
   return ((o.size||"")+" "+(o.type||"")).trim()+". AC "+crExpr(o.ac,env)+", HP "+crExpr(o.hp,env)+", Speed "+String(o.speed||"-").replace(/\.$/,"")+"."+act; }
-function pxCreature(e){ const c=crOf(e.n); if(!c) return null; const env=crEnv(e.ctx,c), o=crStat(c,e.ctx);
-  return {name:e.n, tag:e.why+(env.SL?PX_DOT+"Level "+env.SL:""), meta:((o.size||"")+" "+(o.type||"")).trim()+(o.al?", "+o.al:""),
-    summary:pxCrSummary(o,env), stats:pxCrStats(o,env), abilities:pxCrAbil(o), lines:pxCrLines(o,env), sections:pxCrSections(o,env)}; }
+function pxCreature(e){ const c=crOf(e.n); if(!c) return null; const ce=crEnv(e.ctx,c), o=crStat(c,e.ctx);
+  return {name:e.n, tag:e.why+(ce.SL?PX_DOT+"Level "+ce.SL:""), meta:((o.size||"")+" "+(o.type||"")).trim()+(o.al?", "+o.al:""),
+    summary:pxCrSummary(o,ce), stats:pxCrStats(o,ce), abilities:pxCrAbil(o), lines:pxCrLines(o,ce), sections:pxCrSections(o,ce)}; }
 function pxCreatures(){ let L=[]; try{ L=crList(); }catch(e){ return []; } return L.map(pxCreature).filter(Boolean); }
 
 /* ---------- appendix ---------- */

@@ -21,7 +21,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
  R("Sword of Kas","2d10","Slashing against an Undead");
  R("Sword of Life Stealing","15","Necrotic when the d20 shows a 20, not against a Construct or an Undead; you gain that many Temporary Hit Points");
  R("Vorpal Sword","30","Slashing when the d20 shows a 20 and the target keeps its head (no head, Slashing Immunity, too large, or Legendary Resistance spent)");
- R("Wand of Orcus","2d12","Necrotic on every hit");
  R("Wave","21","Necrotic when the d20 shows a 20");
  R("Whelm","1d8","Force on a ranged hit (4d8 against a Giant, an Elemental, or a Construct)");
 })();
