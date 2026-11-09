@@ -1,4 +1,4 @@
-import {concCheck,concEnd,concOf,hasFeat,lateGet,openRest,renderAll,sitReset,toastU,undoMark} from "./00a-reg-late-ports.js";import {hpWord} from "./05-logic-helpers.js";import {hdPlan,x14} from "./03-data-glossary.js";
+import {env} from "./00-env.js";import {concCheck,concEnd,concOf,hasFeat,lateGet,openRest,renderAll,sitReset,toastU,undoMark} from "./00a-reg-late-ports.js";import {hpWord} from "./05-logic-helpers.js";import {hdPlan,x14} from "./03-data-glossary.js";
 import {S,save} from "./04-logic-storage.js";
 import {$,$$,clamp,esc,num,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
@@ -20,6 +20,7 @@ document.addEventListener("click",(e) =>{
   const swb=e.target.closest("[data-swp]"); if(swb){ if(!swb.disabled) swpMove(+swb.getAttribute("data-swp")); return; }/* v36 p18 */
   const uf=e.target.closest("[data-usef]"); if(uf&&!uf.disabled){ const up=uf.getAttribute("data-usef").split("|"), ur=(D.res||[]).filter((q) =>{return q.k===up[0]})[0]; if(ur){ undoMark("Limited Use",1); const ulf=clamp(ur.max-used(up[0],ur.max)+(+up[1]),0,ur.max); S.used[up[0]]=ur.max-ulf; save(); syncLU(); refreshEntry(); toast((+up[1]<0?"Used ":"Gave back ")+esc(ur.n||"")+". "+ulf+" left"); } return; }/* v36 p17 */
   const plb=e.target.closest(".plb[data-k]"); if(plb){ const pk=plb.getAttribute("data-k"), pr=(D.res||[]).filter((q) =>{return q.k===pk})[0]; if(pr){ undoMark("Limited Use",1); const lf=clamp(pr.max-used(pk,pr.max)+(+plb.getAttribute("data-pd")),0,pr.max); S.used[pk]=pr.max-lf; save(); syncLU(); } return; }
+  const pw=e.target.closest("[data-pactset]"); if(pw){ const nm=pw.getAttribute("data-pactset"); if(env.__bldSetPact&&env.__bldSetPact(nm)){ toast(nm+" is now your pact weapon."); renderAll(); } return; }
   const bx=e.target.closest("#lu .bx, #featBody .bx, #actBody .bx, #spBody .bx, #sheetBody .bx[data-k]"); if(bx){ const k=bx.getAttribute("data-k"), i=+bx.getAttribute("data-i"); undoMark(/^s\d$/.test(k)?"Spell slot":k==="hd"?"Hit Dice":"Limited Use"); S.used[k] = (num(S.used[k],0)===i+1) ? i : i+1; save(); syncLU(); return; }
   const rest=e.target.closest("[data-rest]"); if(rest){ openRest(rest.getAttribute("data-rest")); return; }/* RU41 */
   const pip=e.target.closest("#dsS .pip, #dsF .pip"); if(pip){ undoMark("Death Saving Throw"); const which=pip.parentNode.id==="dsS"?0:1, pi=+pip.getAttribute("data-i"); S.ds[which]=(S.ds[which]===pi+1)?pi:pi+1; save(); syncDeath(); if(S.ds[0]===3) toast("Stable at 0 Hit Points"); if(S.ds[1]===3) toast("Three failures. Your character dies"); return; }
