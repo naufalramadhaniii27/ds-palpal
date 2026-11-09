@@ -5,7 +5,7 @@
  "app/27-ui-party-search-commands-library.js::palWords": 0,
  "app/40d-ui-overlays-context-dock.js::ctxSpec": 0,
  "app/40d-ui-overlays-context-dock.js::ovTop": 0,
- "builder/11-logic-derivation.js::abil": 1,
+ "builder/11-logic-derivation.js::abil": 0,
  "builder/11-logic-derivation.js::gfx0": 0,
  "builder/12-logic-export-to-sheet.js::toSheet": 0,
  "builder/12a-logic-sheet-registry.js::runPhases": 0,

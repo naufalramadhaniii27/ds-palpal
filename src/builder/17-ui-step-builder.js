@@ -49,8 +49,12 @@ export function showLore(id){const p=allPacks().filter((x) =>{return x.id===id})
  (document.getElementById("bld")||document.body).appendChild(w);function close(){w.remove();document.removeEventListener("keydown",onKey,true);if(prev&&prev.focus)try{prev.focus({preventScroll:true})}catch(er){}}function onKey(e){if(e.key==="Escape"){e.stopPropagation();close()}}
  document.addEventListener("keydown",onKey,true);const cb=w.querySelector("[data-no]");if(cb)cb.focus({preventScroll:true});w.addEventListener("click",(e) =>{if(e.target===w||e.target.closest("[data-no]"))close()})}
 genv.__bldRef=function(k,n){return showRef(k,n)};/* test hook */
-export function showRef(kind,name){let h="";if(kind==="cr"||kind==="mi"||kind==="lib"){try{const inf=genv.__xl.info(kind+":"+name);const ih=String(inf.h).replace(/<button type="button" class="lk xl" data-info="(cr|mi|spn|lib|g):([^"]*)"/g,(m,k,n) =>{return '<button type="button" class="lnk" data-lnk="'+(k==="spn"?"sp":k==="g"?"lib":k)+'|'+(k==="g"?"rule|":"")+n+'"'}).replace(/<button\b[^>]*data-info="[^"]*"[^>]*>([\s\S]*?)<\/button>/g,"$1");h='<h3 class="rh">'+esc(inf.t||name)+'</h3><div class="xref">'+ih+'</div>'}catch(er){return}}else if(kind==="sp"){const x=lateGet("SMAP")[name];if(!x)return;h='<h3 class="rh">'+esc(x[0])+'</h3><p class="fd"><i>'+(x[1]?ord(x[1])+" level ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i>'+(x[8]?' \u2022 Concentration':'')+(x[9]?' \u2022 Ritual':'')+'</p><p class="fd">'+rtp(SPELL_FULL[x[0]]||x[11]||"")+'</p><div class="sdet"><span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack roll":x[10]?x[10]+" saving throw":"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span></div>'}
- else{const F=FEATS[name];if(!F)return;h='<h3 class="rh">'+esc(name)+'</h3><p class="fd"><i>'+({O:"Origin feat",G:"General feat",F:"Fighting Style feat",E:"Epic Boon",X:"Fighting Style option"}[F.cat]||"Feat")+(F.pre?' \u2022 '+esc(F.pre):'')+'</i></p><p class="fd">'+rtp(F.full||F.d)+'</p>'}
+/* showRef steps (SOLID s16): the HTML of one reference card, null when there is nothing to show */
+function srXl(kind,name){try{const inf=genv.__xl.info(kind+":"+name);const ih=String(inf.h).replace(/<button type="button" class="lk xl" data-info="(cr|mi|spn|lib|g):([^"]*)"/g,(m,k,n) =>{return '<button type="button" class="lnk" data-lnk="'+(k==="spn"?"sp":k==="g"?"lib":k)+'|'+(k==="g"?"rule|":"")+n+'"'}).replace(/<button\b[^>]*data-info="[^"]*"[^>]*>([\s\S]*?)<\/button>/g,"$1");return '<h3 class="rh">'+esc(inf.t||name)+'</h3><div class="xref">'+ih+'</div>'}catch(er){return null}}
+function srSpell(name){const x=lateGet("SMAP")[name];if(!x)return null;return '<h3 class="rh">'+esc(x[0])+'</h3><p class="fd"><i>'+(x[1]?ord(x[1])+" level ":"")+esc(x[2])+(x[1]?"":" cantrip")+'</i>'+(x[8]?' \u2022 Concentration':'')+(x[9]?' \u2022 Ritual':'')+'</p><p class="fd">'+rtp(SPELL_FULL[x[0]]||x[11]||"")+'</p><div class="sdet"><span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack roll":x[10]?x[10]+" saving throw":"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span></div>'}
+function srFeat(name){const F=FEATS[name];if(!F)return null;return '<h3 class="rh">'+esc(name)+'</h3><p class="fd"><i>'+({O:"Origin feat",G:"General feat",F:"Fighting Style feat",E:"Epic Boon",X:"Fighting Style option"}[F.cat]||"Feat")+(F.pre?' \u2022 '+esc(F.pre):'')+'</i></p><p class="fd">'+rtp(F.full||F.d)+'</p>'}
+export function showRef(kind,name){let h="";if(kind==="cr"||kind==="mi"||kind==="lib")h=srXl(kind,name);else if(kind==="sp")h=srSpell(name);
+ else h=srFeat(name);if(h===null)return;
  const w=document.createElement("div");w.className="exp";w.innerHTML='<div class="expb">'+h+'<div class="row"><button type="button" class="pri" data-no="1">Close</button></div></div>';(document.getElementById("bld")||document.body).appendChild(w);
  w.addEventListener("click",(e) =>{if(e.target===w||e.target.closest("[data-no]"))w.remove()})}
 
@@ -64,9 +68,12 @@ export function metaOf(nChoice,lvl){const a=[];if(nChoice)a.push(nChoice+" Choic
 /* choice widgets */
 function skillSrcOther(n,key){const bg=bgX();if(bg&&bg.sk.indexOf(n)>=0)return B.bg+" background";const s=choices().filter((c) =>{return c.key!==key&&c.t==="skills"&&(B.ch[c.key]||[]).indexOf(n)>=0})[0];return s?s.title.replace(/ skill.*$/,""):""}
 function skillSrc(n){const bg=bgX();if(bg&&bg.sk.indexOf(n)>=0)return B.bg;const s=choices().filter((c) =>{return c.t==="skills"&&(B.ch[c.key]||[]).indexOf(n)>=0})[0];return s?s.title.replace(/ skill.*$/,""):"have"}
-function chips(c,items){const v=B.ch[c.key]||[];if(!items.length){const why=/\(([^)]+)\)$/.exec(c.title||"");return '<p class="fd bhint" data-cko="'+c.key+'">Nothing to choose from yet'+(why?': '+esc(why[1]):'')+'.</p>'}/* v32: empty list still names the choice */return '<p class="pick">Choose '+(c.opt?'up to ':'')+c.n+' ('+v.length+'/'+c.n+')</p><div class="chips">'+items.map((it) =>{var n=Array.isArray(it)?it[0]:it,lb=it&&it.lab;if(lb)return '<button type="button" class="chip clash'+(v.indexOf(it.n)>=0?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(it.n)+'" data-clash="'+esc(lb)+'">\u26a0 '+esc(it.n)+' ('+esc(lb)+')</button>';var n=Array.isArray(it)?it[0]:it,d=Array.isArray(it)?it[1]:"",lk=Array.isArray(it)&&((it[2]&&it[2]>(c.lvCap||B.level))||(it[3]&&invList().indexOf(it[3])<0&&v.indexOf(n)<0))/* RD18: another invocation required */,on=v.indexOf(n)>=0;
- return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'"'+(lk?" disabled":"")+(d?' title="'+esc(String(d).replace(/\*\*/g,""))+'"':'')+'>'+esc(n)+'</button>'}).join("")+'</div>'+
- (c.list&&v.length?'<div class="picked">'+v.map((n) =>{const m=c.list.filter((x) =>{return x[0]===n})[0];return m?'<p><b>'+esc(n)+'.</b> '+rtp(m[1])+'</p>'+(m[3]&&c.list===INVOCATIONS&&invList().indexOf(m[3])<0?'<div class="caution">\u26a0 '+esc(n)+' needs the '+esc(m[3])+' invocation. Choose it, or swap '+esc(n)+' for another invocation.</div>':''):''}).join("")+'</div>':'')}/* RU33: spell and feat names in the picked text open their popup */
+/* chips steps (SOLID s16): one chip, the texts of the picked entries. v = the picked values */
+function chItem(c,v,it){var n=Array.isArray(it)?it[0]:it,lb=it&&it.lab;if(lb)return '<button type="button" class="chip clash'+(v.indexOf(it.n)>=0?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(it.n)+'" data-clash="'+esc(lb)+'">\u26a0 '+esc(it.n)+' ('+esc(lb)+')</button>';var n=Array.isArray(it)?it[0]:it,d=Array.isArray(it)?it[1]:"",lk=Array.isArray(it)&&((it[2]&&it[2]>(c.lvCap||B.level))||(it[3]&&invList().indexOf(it[3])<0&&v.indexOf(n)<0))/* RD18: another invocation required */,on=v.indexOf(n)>=0;
+ return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'"'+(lk?" disabled":"")+(d?' title="'+esc(String(d).replace(/\*\*/g,""))+'"':'')+'>'+esc(n)+'</button>'}
+function chPicked(c,v){return '<div class="picked">'+v.map((n) =>{const m=c.list.filter((x) =>{return x[0]===n})[0];return m?'<p><b>'+esc(n)+'.</b> '+rtp(m[1])+'</p>'+(m[3]&&c.list===INVOCATIONS&&invList().indexOf(m[3])<0?'<div class="caution">\u26a0 '+esc(n)+' needs the '+esc(m[3])+' invocation. Choose it, or swap '+esc(n)+' for another invocation.</div>':''):''}).join("")+'</div>'}
+function chips(c,items){const v=B.ch[c.key]||[];if(!items.length){const why=/\(([^)]+)\)$/.exec(c.title||"");return '<p class="fd bhint" data-cko="'+c.key+'">Nothing to choose from yet'+(why?': '+esc(why[1]):'')+'.</p>'}/* v32: empty list still names the choice */return '<p class="pick">Choose '+(c.opt?'up to ':'')+c.n+' ('+v.length+'/'+c.n+')</p><div class="chips">'+items.map((it) =>{return chItem(c,v,it)}).join("")+'</div>'+
+ (c.list&&v.length?chPicked(c,v):'')}/* RU33: spell and feat names in the picked text open their popup */
 /* RU13: a saved Fighting Style or Origin feat can be missing from FEATS (its source is off, or it was renamed).
    Keep the saved value in B.ch, show it as a disabled selected option, and explain instead of reading FEATS[v].full. */
 function missOpt(v){return v&&!FEATS[v]?'<option value="'+esc(v)+'" selected disabled>'+esc(v)+' (not available)</option>':""}
@@ -130,26 +137,37 @@ function redundant(n){const p=toSheet().profs,ar=p.armor,wp=p.weapons;
 /* v69: species prerequisite of 2014 feats. A token matches the species name or its lineage as a whole word; "Small" matches a Small species */
 function spMatch(L){const sp=SPECIES[B.species]||{},lab=(B.species||"")+" "+((B.ch&&B.ch.lin)||"");return L.some((t) =>{if(t==="Small")return sp.size==="Small"||(/Small/.test(sp.size||"")&&B.size==="Small");return new RegExp("(^|[^A-Za-z])"+t.replace(/-/g,"[- ]?")+"([^A-Za-z]|$)","i").test(lab)})}
 let WRC={k:null,v:""};function weaponNow(){let k="";try{k=JSON.stringify(B)}catch(e){}if(!k||WRC.k!==k)WRC={k:k,v:toSheet().profs.weapons};return WRC.v}
-function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abil().sc,miss=[];
- const m=/Level (\d+)\+/.exec(p);if(m&&lvl<+m[1])miss.push("level "+m[1]);
+/* preFail steps (SOLID s16): each adds the unmet parts of one kind of prerequisite to miss. F = the feat, p = its prerequisite text */
+function pfNeeds(F,key,miss){
  if(F.needs){const hv=featChosen(key||null);const okn=F.needs==="*D"?hv.some((x) =>{return FEATS[x]&&FEATS[x].cat==="D"}):hv.indexOf(F.needs)>=0;if(!okn)miss.push(F.needs==="*D"?"a Dragonmark feat":F.needs+" feat")}/* v60 */
- if(F.preSp&&!spMatch(F.preSp))miss.push(F.preSp.indexOf("Small")>=0?"a Small species":F.preSp.slice(0,2).join(" or "));/* v69: species prerequisite of 2014 feats */
+ if(F.preSp&&!spMatch(F.preSp))miss.push(F.preSp.indexOf("Small")>=0?"a Small species":F.preSp.slice(0,2).join(" or "));/* v69: species prerequisite of 2014 feats */}
+function pfAbil(p,a,miss){
  const am=/((?:Str|Dex|Con|Int|Wis|Cha)(?:,? (?:or )?(?:Str|Dex|Con|Int|Wis|Cha))*) 13\+/.exec(p);
- if(am){const ks=am[1].match(/Str|Dex|Con|Int|Wis|Cha/g).map((x) =>{return x.toUpperCase()});if(!ks.some((k) =>{return a[k]>=13}))miss.push(ks.join(" or ")+" 13")}
+ if(am){const ks=am[1].match(/Str|Dex|Con|Int|Wis|Cha/g).map((x) =>{return x.toUpperCase()});if(!ks.some((k) =>{return a[k]>=13}))miss.push(ks.join(" or ")+" 13")}}
+function pfCast(p,F,miss){
  if(/Spellcasting/.test(p)&&!casterParts().length&&!(F.preBg&&B.bg===F.preBg))miss.push("Spellcasting");
- if(/Martial weapon proficiency/.test(p)&&!(F.preBg&&B.bg===F.preBg)&&!/Martial/.test(weaponNow()))miss.push("Martial weapon proficiency");/* v69 *//* M9: any spellcasting class, also a multiclass */
- const prof=key?armorAt(lvl,key):toSheet().profs.armor;/* v19 V19-3 */
+ if(/Martial weapon proficiency/.test(p)&&!(F.preBg&&B.bg===F.preBg)&&!/Martial/.test(weaponNow()))miss.push("Martial weapon proficiency");/* v69 *//* M9: any spellcasting class, also a multiclass */}
+function pfArmor(p,prof,miss){
  if(/Light Armor training/.test(p)&&!/Light/.test(prof))miss.push("Light armor training");
  if(/Medium Armor training/.test(p)&&!/Medium/.test(prof))miss.push("Medium armor training");
  if(/Heavy Armor training/.test(p)&&!/Heavy/.test(prof))miss.push("Heavy armor training");
- if(/Shield training/.test(p)&&!/Shield/.test(prof))miss.push("Shield training");
+ if(/Shield training/.test(p)&&!/Shield/.test(prof))miss.push("Shield training");}
+function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abil().sc,miss=[];
+ const m=/Level (\d+)\+/.exec(p);if(m&&lvl<+m[1])miss.push("level "+m[1]);
+ pfNeeds(F,key,miss);
+ pfAbil(p,a,miss);
+ pfCast(p,F,miss);
+ const prof=key?armorAt(lvl,key):toSheet().profs.armor;/* v19 V19-3 */
+ pfArmor(p,prof,miss);
  return miss.join(", ")}
 /* v19 V19-3: armor training at a choice level: armor from feats taken at that level or later is left out, unless the class, a multiclass, or a class option gives it too */
 let ARC={k:null,v:""};/* v19 Checker round 2 idea: one toSheet() per state of B */
 function armorNow(){let k="";try{k=JSON.stringify(B)}catch(e){}if(!k||ARC.k!==k)ARC={k:k,v:toSheet().profs.armor};return ARC.v}
+/* armorAt step (SOLID s16): another source (class, multiclass, feature) gives the armor training a */
+function aaOther(a,c){return (c.armor||"").indexOf(a)>=0||MCL().some((m) =>{return ((MC_GRANT[m.cls]||{}).armor||"").indexOf(a)>=0})||(a==="Heavy"&&optAny("Protector"))||(a==="Medium"&&(B.ch.p1opt==="Warden"||(B.sub==="College of Valor"&&B.level>=3)))||(a==="Shields"&&B.sub==="College of Valor"&&B.level>=3)}
 function armorAt(lvl,key){let lv=choiceLvl(),late={},keep={},A=armorNow(),c=CL(),AF=allFeats(),me=AF.findIndex((f) =>{return f.key===key});
  AF.forEach((f,i) =>{const F=FEATS[f.n];if(!F||!F.armor)return;const l=lv[f.key]||1,lt=f.key===key||l>lvl||(l===lvl&&(me<0||i>me));F.armor.split(/,\s*/).forEach((a) =>{(lt?late:keep)[a]=1})});
- Object.keys(late).forEach((a) =>{if(keep[a])return;const other=(c.armor||"").indexOf(a)>=0||MCL().some((m) =>{return ((MC_GRANT[m.cls]||{}).armor||"").indexOf(a)>=0})||(a==="Heavy"&&optAny("Protector"))||(a==="Medium"&&(B.ch.p1opt==="Warden"||(B.sub==="College of Valor"&&B.level>=3)))||(a==="Shields"&&B.sub==="College of Valor"&&B.level>=3);
+ Object.keys(late).forEach((a) =>{if(keep[a])return;const other=aaOther(a,c);
   if(!other)A=A.split(/,\s*/).filter((x) =>{return x!==a}).join(", ")});return A}
 function fsel(k,p,opts,v,dis){return '<select class="dd" data-fk="'+k+'" data-fp="'+p+'"><option value="">- Choose -</option>'+opts.map((o) =>{const w=dis&&v!==o?dis(o):"";return '<option value="'+o+'"'+(v===o?" selected":"")+(w?" disabled":"")+'>'+o+(w?" ("+w+")":"")+'</option>'}).join("")+'</select>'}
 export function nC(c){return c.n||1}

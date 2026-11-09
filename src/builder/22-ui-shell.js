@@ -35,22 +35,35 @@ function stepTodo(s){if(s==="abil")return un("abil");if(s==="equip")return un("e
  if(s==="bg")return !(R14()||B.bgMode==="111"||(B.bg2&&B.bg1))||cs.some((c) =>{return choiceStep(c)==="bg"&&!isDone(c)});
  if(s==="species")return cs.some((c) =>{return choiceStep(c)==="species"&&!isDone(c)});
  return false}
-export function render(){try{genv.__bldArt&&genv.__bldArt(step,B)}catch(e){}try{const hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
- $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);
+/* render steps (SOLID s16): the header and name, the campaign row, the step buttons and Apply, the progress line, the step body, Prev and Next */
+function rdTop(){try{genv.__bldArt&&genv.__bldArt(step,B)}catch(e){}try{const hb=document.querySelector("#bld .brand>span");if(hb)hb.textContent=R14()?"PHB 2014":"PHB 2024"}catch(e){}
+ $("#nmIn").value!==B.name&&document.activeElement!==$("#nmIn")&&($("#nmIn").value=B.name);}
+function rdCamp(){
  /* T10: which campaign the character belongs to. Optional. A non-empty value goes to the sheet on Apply */
  if(!$("#cpIn")){if(!B.camp&&genv.__sheetCamp){const sc0=genv.__sheetCamp();if(sc0){B.camp=sc0;save()}}const nr=$("#nameRow");if(nr){const cr=document.createElement("div");cr.className="bnm";cr.id="campRow";cr.innerHTML='<label for="cpIn">Campaign</label><input class="btx" id="cpIn" autocomplete="off" placeholder="Optional, for example Lost Mine">';nr.parentNode.insertBefore(cr,nr.nextSibling)}}
- if($("#cpIn")&&$("#cpIn").value!==(B.camp||"")&&document.activeElement!==$("#cpIn"))$("#cpIn").value=B.camp||"";
- let csP=null;try{csP=choices()}catch(e){}
- $("#steps").innerHTML=STEPS.map((s) =>{let pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}).join("");const nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}
- const on=$("#steps .on");if(on)on.scrollIntoView({block:"nearest",inline:"center"});
- /* T11 G6 T12: one thin line under the steps fills with the share of choices made (an animated @property gradient) */
+ if($("#cpIn")&&$("#cpIn").value!==(B.camp||"")&&document.activeElement!==$("#cpIn"))$("#cpIn").value=B.camp||"";}
+function rdStepBtn(s,csP){let pr=null;try{pr=stepProg(s[0],csP)}catch(e){}return '<button type="button" class="st'+(s[0]===step?" on":"")+'" data-step="'+s[0]+'" data-ico="1"'+(s[0]===step?' aria-current="step"':'')+'>'+bI(STEP_ICO[s[0]])+'<span class="stl">'+s[1]+'</span>'+(pr?'<span class="sprog'+(pr[0]===pr[1]?" ok":"")+'" aria-hidden="true">'+(pr[0]===pr[1]?bI("ui-check"):"")+pr[0]+'/'+pr[1]+'</span><span class="vh">, '+pr[0]+' of '+pr[1]+' done</span>':'')+(stepIss(s[0])?'<i class="r" aria-hidden="true"></i><span class="vh"> (has problems)</span>':stepTodo(s[0])?'<i aria-hidden="true"></i><span class="vh"> (choices left)</span>':'')+'</button>'}
+function rdApply(){const nI=ruleIssues().length,ab=$("#b-toSheet");if(ab){ab.innerHTML=bI("ui-check")+'<span>Apply<span class="bt2"> to Sheet</span></span>'+(nI?'<span class="abad" title="'+esc("Rule checks and missing spells: "+issueText(ruleIssues())+". Other open choices are listed in What\'s Next.")+'">'+nI+'</span>':'');ab.setAttribute("aria-label","Apply to Sheet"+(nI?". "+nI+" thing"+(nI===1?"":"s")+" to check first":""))}}
+function rdProg(csP){
  try{let dn=0,tt=0;STEPS.forEach((x) =>{let pr=null;try{pr=stepProg(x[0],csP)}catch(e){}if(pr){dn+=pr[0];tt+=pr[1]}});let pb=$("#bprog");if(!pb){pb=document.createElement("div");pb.id="bprog";pb.setAttribute("role","progressbar");pb.setAttribute("aria-label","Choices made");$("#steps").insertAdjacentElement("afterend",pb)}
-  const pc=tt?Math.round(dn*100/tt):0;pb.style.setProperty("--p",pc+"%");pb.setAttribute("aria-valuenow",pc);pb.setAttribute("aria-valuemin","0");pb.setAttribute("aria-valuemax","100")}catch(e){}
+  const pc=tt?Math.round(dn*100/tt):0;pb.style.setProperty("--p",pc+"%");pb.setAttribute("aria-valuenow",pc);pb.setAttribute("aria-valuemin","0");pb.setAttribute("aria-valuemax","100")}catch(e){}}
+function rdNext(){try{if(genv.__rcptPreview&&!unList().length){const pv=genv.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
+function rdBody(){
  const f={home:renderHome,class:renderClass,bg:renderBg,species:renderSpecies,abil:renderAbil,equip:renderEquip,next:renderNext,rules:renderRules}[step];
- $("#body").innerHTML=f();try{bDeco($("#body"))}catch(e){}try{genv.__bldBanner&&genv.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{genv.__bldCards&&genv.__bldCards($("#body"))}catch(e){}if(step==="next"){try{if(genv.__rcptPreview&&!unList().length){const pv=genv.__rcptPreview(toSheet());if(pv)$("#body").insertAdjacentHTML("beforeend",'<section class="bprev"><h2 class="ttl sm">Changes on your sheet</h2><p class="fd bhint">What Apply will change, and why.</p>'+pv+'</section>')}}catch(e){}/* T11 G3 N16 */try{$("#body").insertAdjacentHTML("beforeend",bIdent());bTokDraw()}catch(e){}}
+ $("#body").innerHTML=f();try{bDeco($("#body"))}catch(e){}try{genv.__bldBanner&&genv.__bldBanner(step,B,$("#body"))}catch(e){}try{missBar()}catch(e){}try{genv.__bldCards&&genv.__bldCards($("#body"))}catch(e){}if(step==="next")rdNext()}
+function rdNav(){
  const i=STEPS.map((s) =>{return s[0]}).indexOf(step);$("#prev").disabled=i===0;$("#next").disabled=i===STEPS.length-1;
  /* T11 G6 B1: Name and Campaign live on the Home step only (they took about 100 px above every step on a phone) */
  const hm=step==="home";$("#nameRow").hidden=!hm;$("#nameRow").style.display=hm?"":"none";const cr2=$("#campRow");if(cr2){cr2.hidden=!hm;cr2.style.display=hm?"":"none"}}
+export function render(){rdTop();
+rdCamp();
+ let csP=null;try{csP=choices()}catch(e){}
+ $("#steps").innerHTML=STEPS.map((s) =>{return rdStepBtn(s,csP)}).join("");rdApply();
+ const on=$("#steps .on");if(on)on.scrollIntoView({block:"nearest",inline:"center"});
+ /* T11 G6 T12: one thin line under the steps fills with the share of choices made (an animated @property gradient) */
+ rdProg(csP);
+ rdBody();
+ rdNav()}
 /* T11 G6 B5: how many choices are still open on this step, and a button that jumps to the next one (or to the next step with open
    choices when this one is done). The bar sits under the step title */
 function missBar(){const bd=$("#body");if(!bd||step==="rules"||step==="home")return;let n=bd.querySelectorAll(".acc.todo").length,o=STEPS.map((x) =>{return x[0]}),nx=null;
@@ -184,24 +197,26 @@ export function copyOf(nm){const n=B.name||"";return !B.cid&&!!nm&&nm.indexOf(n)
 export function stamp(){const id=sid();if(id)B.cid=id}
 
 /* T4: Ctrl+K or Cmd+K inside the builder opens a small jump list: steps, Prev, Next, Close. Apply is left out on purpose */
-(function(){ let pal=null, back=null;
-  function items(){ const l=[]; STEPS.forEach((s) =>{ l.push({t:"Go to "+s[1],k:s[1]+" step go",f:function(){ const b=document.querySelector('#steps [data-step="'+s[0]+'"]'); if(b) b.click(); }}); });
+/* jump list steps (SOLID s16): the entries, the keys inside the list */
+function bpItems(){ const l=[]; STEPS.forEach((s) =>{ l.push({t:"Go to "+s[1],k:s[1]+" step go",f:function(){ const b=document.querySelector('#steps [data-step="'+s[0]+'"]'); if(b) b.click(); }}); });
     l.push({t:"Previous step",k:"prev back",f:function(){ const b=document.getElementById("prev"); if(b&&!b.disabled) b.click(); }});
     l.push({t:"Next step",k:"next forward",f:function(){ const b=document.getElementById("next"); if(b&&!b.disabled) b.click(); }});
     l.push({t:"Close builder",k:"close exit leave",f:function(){ const b=document.getElementById("b-close"); if(b) b.click(); }}); return l; }
+function bpKey(e,pal,q,close){ const bs=[].slice.call(pal.querySelectorAll(".bpal-i")), i=bs.indexOf(document.activeElement);
+      if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); close(); }
+      else if(e.key==="ArrowDown"){ e.preventDefault(); (bs[i+1]||bs[0]||q).focus(); }
+      else if(e.key==="ArrowUp"){ e.preventDefault(); (i<=0?q:bs[i-1]).focus(); }
+      else if(e.key==="Enter"&&document.activeElement===q){ e.preventDefault(); const it=pal._l&&pal._l[0]; close(); if(it) it.f(); }
+      else if(e.key==="Tab"){ const all=[q].concat(bs); const j=all.indexOf(document.activeElement); e.preventDefault(); all[(j+(e.shiftKey?-1:1)+all.length)%all.length].focus(); }}
+(function(){ let pal=null, back=null;
   function close(){ if(!pal) return; pal.remove(); pal=null; try{ if(back&&back.focus) back.focus(); }catch(er){} back=null; }
-  function draw(q){ const l=items().filter((i) =>{ return !q||(i.t+" "+i.k).toLowerCase().indexOf(q.toLowerCase())>=0; }), box=pal.querySelector(".bpal-l");
+  function draw(q){ const l=bpItems().filter((i) =>{ return !q||(i.t+" "+i.k).toLowerCase().indexOf(q.toLowerCase())>=0; }), box=pal.querySelector(".bpal-l");
     box.innerHTML=l.map((i,n) =>{ return '<button type="button" class="bpal-i" data-bpi="'+n+'">'+esc(i.t)+'</button>'; }).join("")||'<p class="bpal-e">No match.</p>'; pal._l=l; }
   function open(){ if(pal) return; back=document.activeElement; pal=document.createElement("div"); pal.className="bpal"; pal.setAttribute("role","dialog"); pal.setAttribute("aria-modal","true"); pal.setAttribute("aria-label","Builder jump list");
     pal.innerHTML='<div class="bpal-b"><input class="bpal-q" type="text" autocomplete="off" placeholder="Jump to a step" aria-label="Jump to a step"><div class="bpal-l"></div></div>';
     document.getElementById("bld").appendChild(pal); draw(""); const q=pal.querySelector(".bpal-q"); q.focus();
     q.addEventListener("input",() =>{ draw(q.value); });
     pal.addEventListener("click",(e) =>{ if(e.target===pal){ close(); return; } const b=e.target.closest(".bpal-i"); if(!b) return; const it=pal._l[+b.getAttribute("data-bpi")]; close(); if(it) it.f(); });
-    pal.addEventListener("keydown",(e) =>{ const bs=[].slice.call(pal.querySelectorAll(".bpal-i")), i=bs.indexOf(document.activeElement);
-      if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); close(); }
-      else if(e.key==="ArrowDown"){ e.preventDefault(); (bs[i+1]||bs[0]||q).focus(); }
-      else if(e.key==="ArrowUp"){ e.preventDefault(); (i<=0?q:bs[i-1]).focus(); }
-      else if(e.key==="Enter"&&document.activeElement===q){ e.preventDefault(); const it=pal._l&&pal._l[0]; close(); if(it) it.f(); }
-      else if(e.key==="Tab"){ const all=[q].concat(bs); const j=all.indexOf(document.activeElement); e.preventDefault(); all[(j+(e.shiftKey?-1:1)+all.length)%all.length].focus(); } }); }
+    pal.addEventListener("keydown",(e) =>{ bpKey(e,pal,q,close); }); }
   document.addEventListener("keydown",(e) =>{ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return; const bl=document.getElementById("bld"); if(!bl||bl.hidden||document.querySelector(".ask")) return; e.preventDefault(); if(pal){ pal.querySelector(".bpal-q").focus(); return; } open(); },true);
 })();

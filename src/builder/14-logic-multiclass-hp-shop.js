@@ -21,21 +21,28 @@ export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}
 /* M10: every B.ch key that holds languages: lang, langRogue, langRanger, and m<i>:langRogue / m<i>:langRanger for a multiclass */
 export function langKeys(){return ["lang","langRogue","langRanger"].concat(Object.keys(B.ch||{}).filter((k) =>{return /^m\d+:lang(Rogue|Ranger)$/.test(k)||/^(m\d+:)?p\d+(lang|slang)\w*$/.test(k)}))}/* v63: subclass language picks */
 export function mcReqFail(cls){const a=abil().sc;return (MC_REQ[cls]||[]).filter((g) =>{return !g.some((k) =>{return a[k]>=13})}).map((g) =>{return g.join(" or ")+" 13"}).join(", ")}
-function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],p="m"+i+":",src=function(l){return SRC+", "+m.cls+" "+l+" (multiclass)"};
+/* mcChoices steps (SOLID s16): the picks of multiclass part i (m), p is its key prefix, src(l) its source label */
+function mcGrant(out,m,i,c,p,src){
  const g=MC_GRANT[m.cls]||{};/* a class without an mcg entry (Warmage, Necromancer, Investigator) grants nothing */if(g.sk)out.push({key:p+"sk",mc:i,lvl:1,t:"skills",n:1,from:g.skFrom==="any"?ALLSK:c.sk.from,title:m.cls+" multiclass skill",src:src(1)});
  if(g.toolPick)out.push({key:p+"tool",mc:i,lvl:1,t:"tool",n:g.toolPick.n,cats:g.toolPick.cats,title:m.cls+" multiclass tool",src:src(1),feature:"Multiclass Proficiencies"});/* v32 RL49 */
- if(c.wm&&!R14())out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */
+ if(c.wm&&!R14())out.push({key:p+"wm",mc:i,lvl:1,t:"wm",n:c.wm[m.lv-1],melee:m.cls==="Barbarian"?1:0,title:m.cls+" Weapon Mastery",src:src(1),feature:"Weapon Mastery"});/* v32 RL49 no. 39 */}
+function mcStyle(out,m,i,c,p,src){
  if(c.fs&&m.lv>=c.fs){out.push({key:p+"fs",mc:i,lvl:c.fs,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:src(c.fs),feature:"Fighting Style"});
-  const fv=B.ch[p+"fs"];if(fv==="Blessed Warrior"||fv==="Druidic Warrior"){const cl2=fv==="Blessed Warrior"?"Cleric":"Druid";out.push({key:p+"bwc",mc:i,lvl:c.fs,t:"multi",n:2,list:SPELLS.filter((x) =>{return !x[1]&&x[3].indexOf(cl2)>=0}).map((x) =>{return [x[0],x[11]]}),title:fv+" cantrips",src:src(c.fs),feature:"Fighting Style"})}}/* v32 RL49 no. 42 */
+  const fv=B.ch[p+"fs"];if(fv==="Blessed Warrior"||fv==="Druidic Warrior"){const cl2=fv==="Blessed Warrior"?"Cleric":"Druid";out.push({key:p+"bwc",mc:i,lvl:c.fs,t:"multi",n:2,list:SPELLS.filter((x) =>{return !x[1]&&x[3].indexOf(cl2)>=0}).map((x) =>{return [x[0],x[11]]}),title:fv+" cantrips",src:src(c.fs),feature:"Fighting Style"})}}/* v32 RL49 no. 42 */}
+function mcPicks(out,m,i,c,p,src){
  (c.pick||[]).forEach((q) =>{if(m.lv>=q.l){const o=pk(q,m.cls+" "+q.l,m.cls,undefined,p);if(!o)return;o.key=p+o.key;o.mc=i;if(o.list===INVOCATIONS)o.lvCap=m.lv;/* v32: level of this class */if(o.t==="skills"||o.t==="exp")o.src=src(q.l);out.push(o)}});/* v32 RL49 no. 40: Primal Knowledge too */
  /* M10: Rogue 1 (Thieves' Cant: one more language) and Ranger 2 (Deft Explorer: two languages) also as a multiclass */
  if(m.cls==="Rogue"&&!R14())out.push({key:p+"langRogue",mc:i,lvl:1,t:"lang",n:1,from:LANGS,title:"Extra language",src:src(1),feature:"Thieves' Cant"});
- if(m.cls==="Ranger"&&m.lv>=2&&!R14())out.push({key:p+"langRanger",mc:i,lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:src(2),feature:"Deft Explorer"}); if(m.lv>=subLv(m.cls))out.push({key:p+"sub",mc:i,lvl:subLv(m.cls),t:"mcsub",title:subLbl(m.cls),src:src(subLv(m.cls))});
+ if(m.cls==="Ranger"&&m.lv>=2&&!R14())out.push({key:p+"langRanger",mc:i,lvl:2,t:"lang",n:2,from:LANGS,title:"Languages",src:src(2),feature:"Deft Explorer"}); if(m.lv>=subLv(m.cls))out.push({key:p+"sub",mc:i,lvl:subLv(m.cls),t:"mcsub",title:subLbl(m.cls),src:src(subLv(m.cls))});}
+function mcSubPicks(out,m,i,c,p,src){
  const ps=c.pickSub&&c.pickSub[m.sub];(ps||[]).forEach((q) =>{const el=pEff(m.cls,m.sub,q);if(m.lv>=el){const o=pk(q,m.sub+" "+el,m.cls,m.sub);if(!o)return;o.lvl=el;o.key=p+o.key;o.mc=i;out.push(o)}});
  if(m.sub)subChoicesFor(m.sub).forEach((q) =>{if(m.lv>=q.l)out.push(q.kind==="opt"?{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:m.sub+" "+q.l,feature:q.feature}:{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:m.sub+" "+q.l,feature:q.feature})});/* v20 M2 */
- /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&gx().sub)(gx().sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});
+ /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&gx().sub)(gx().sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});}
+function mcFeats(out,m,i,c,p,src){
  [4,8,12,16].concat(c.asiX||[]).forEach((l) =>{if(m.lv>=l)out.push({key:p+"feat"+l,mc:i,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+m.cls+" "+l+")"})});
- if(m.lv>=19)out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})});
+ if(m.lv>=19)out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})}
+function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],p="m"+i+":",src=function(l){return SRC+", "+m.cls+" "+l+" (multiclass)"};
+ mcGrant(out,m,i,c,p,src);mcStyle(out,m,i,c,p,src);mcPicks(out,m,i,c,p,src);mcSubPicks(out,m,i,c,p,src);mcFeats(out,m,i,c,p,src)});
  return out}
 function rollAvg(hd){return hd/2+1}
 export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.level;B.hpr=B.hpr||{};
@@ -116,10 +123,16 @@ function normInv(){(B.inv||[]).forEach((x) =>{if(x.alias&&/^Spell Scroll \(/.tes
 export function ensureInv(){normInv();if(!B.inv){B.inv=[];if(B.armor)B.inv.push({n:B.armor,q:1,eq:true});if(B.shield)B.inv.push({n:"Shield",q:1,eq:true});(B.weps||[]).forEach((n) =>{B.inv.push({n:n,q:1,eq:true})});(B.buy||[]).forEach((x) =>{if(!B.inv.some((y) =>{return y.n===x.n}))B.inv.push({n:x.n,q:x.q||1,eq:equippable(x.n)})});rebuildKit()}return B.inv}
 /* fx pick t:"item": the chosen items join B.inv (row tag px = pick key) when the pick is made and leave when the pick changes. B.px[key] lists the names already added, so an item the player deleted by hand does not come back. Names without item data stay record-only */
 let pxBusy=false;
-export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want={};gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
- /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq={};fxList().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
- const px=B.px||(B.px={});Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});
- Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});
+/* syncPickItems steps (SOLID s16): want = the items the picks and grantItem entries ask for, gq their quantities, px the rows the builder put in */
+function spiWant(){const want={};gxPicks().forEach((o) =>{if(!o.gxi)return;const v=B.ch[o.key];want[o.key]=(Array.isArray(v)?v:(v?[v]:[]))});
+return want}
+function spiGrants(want){const gq={};fxList().forEach((e) =>{(Array.isArray(e.grantItem)?e.grantItem:e.grantItem?[e.grantItem]:[]).forEach((g,i) =>{if(!g||!g.n)return;const k="fx:"+e.kind+":"+e.okey+":"+e.idx+":"+i;want[k]=[g.n];gq[k]=g.q||1})});
+return gq}
+function spiDrop(px,want){Object.keys(px).forEach((k) =>{px[k]=px[k].filter((n) =>{if((want[k]||[]).indexOf(n)>=0)return true;B.inv=B.inv.filter((x) =>{return !(x.px===k&&x.n===n)});return false});if(!px[k].length&&!want[k])delete px[k]});}
+function spiAdd(px,want,gq){Object.keys(want).forEach((k) =>{want[k].forEach((n) =>{if((px[k]||[]).indexOf(n)>=0)return;if(!DMAP[n]&&itemCost(baseOf(n).b)==null&&!WEAPONS[baseOf(n).b])return;const d=DMAP[n],has=!!(d&&(ovFx(d)||(d[5]&&d[5].gx)||(gx().item&&gx().item[n])));(px[k]||(px[k]=[])).push(n);if(B.inv.some((x) =>{return x.n===n}))return;B.inv.push({n:n,q:gq[k]||1,eq:has||equippable(n),px:k})})});}
+export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();const want=spiWant();
+ /* fx engine v6: grantItem [{n,q}] on an active entry puts the item in B.inv (row tag px = "fx:kind:owner:idx:i") and takes it out when the entry stops counting (item unequipped, level, toggle). A copy the player owns without the px tag is never touched */const gq=spiGrants(want);
+ const px=B.px||(B.px={});spiDrop(px,want);spiAdd(px,want,gq);
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
 
 function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq})[0];return a?a.n:""}
@@ -130,22 +143,26 @@ export function gpNow(){return B.gpOverride!=null&&B.gpOverride!==""?+B.gpOverri
 /* Item quantity. Missing = 1. 0 is kept (used-up ammunition stays in the inventory). */
 export function qOf(x){const n=parseFloat(x&&x.q);return isNaN(n)?1:Math.max(0,n)}
 /* V16-1: a named magic weapon or armor (DMGI[5].base) resolves to its base item and its bonus (fx.ac for armor and shields, fx.atk for weapons) */
-export function baseOf(n){const pq=/^(Backpack|Chest) \(([^()]+'s Pack)(?: \d+)?\)$/.exec(n);if(pq&&typeof PACKS!=="undefined"&&PACKS[pq[2]])return {b:pq[1],p:0};/* v32 RU134 */const m=/^(.+), \+(\d)$/.exec(n);if(m)return {b:m[1],p:+m[2]};const mw=/^(.+), Masterwork(?: \(\d+\))?$/.exec(n);if(mw&&!(typeof DMAP!=="undefined"&&DMAP[n])&&(WEAPONS[mw[1]]||ARMOR[mw[1]]))return {b:mw[1],p:0};/* v20 M6 */const d=typeof DMAP!=="undefined"&&DMAP[n],mb=d&&d[5]&&d[5].base;if(mb){const o=n!==d[0]&&/^(.*) \(([^()]+)\)$/.exec(n),b=o&&mb.indexOf(o[2])>=0?o[2]:mb[0],f=ovFx(d)||{};return {b:b,p:(ARMOR[b]||b==="Shield")?(f.ac||0):(f.atk||0),mi:d[0],mw:!!f.mw}}/* v20 RD24: mw = Masterwork, attack only */return {b:n,p:0}}
+/* baseOf step (SOLID s16): the base item of a magic item row, or null */
+function baseOfMi(n){const d=typeof DMAP!=="undefined"&&DMAP[n],mb=d&&d[5]&&d[5].base;if(mb){const o=n!==d[0]&&/^(.*) \(([^()]+)\)$/.exec(n),b=o&&mb.indexOf(o[2])>=0?o[2]:mb[0],f=ovFx(d)||{};return {b:b,p:(ARMOR[b]||b==="Shield")?(f.ac||0):(f.atk||0),mi:d[0],mw:!!f.mw}}return null}
+export function baseOf(n){const pq=/^(Backpack|Chest) \(([^()]+'s Pack)(?: \d+)?\)$/.exec(n);if(pq&&typeof PACKS!=="undefined"&&PACKS[pq[2]])return {b:pq[1],p:0};/* v32 RU134 */const m=/^(.+), \+(\d)$/.exec(n);if(m)return {b:m[1],p:+m[2]};const mw=/^(.+), Masterwork(?: \(\d+\))?$/.exec(n);if(mw&&!(typeof DMAP!=="undefined"&&DMAP[n])&&(WEAPONS[mw[1]]||ARMOR[mw[1]]))return {b:mw[1],p:0};/* v20 M6 */const mi=baseOfMi(n);if(mi)return mi;/* v20 RD24: mw = Masterwork, attack only */return {b:n,p:0}}
 export function rarityOf(x){if(x.rar)return x.rar;const dm=DMAP[x.n];if(dm)return dm[2]==="Varies"||dm[2]==="Not magic"?"":dm[2];const o=baseOf(x.n);if(o.p){if(WEAPONS[o.b])return RAR_W[o.p];if(ARMOR[o.b])return RAR_A[o.p];if(o.b==="Shield")return RAR_S[o.p]}const p=POTIONS.filter((q) =>{return q[0]===x.n})[0];if(p)return p[1];const sc=scrollOf(x.n);if(sc)return sc.rar;return ""}
 export function rarCls(r){return r?"r-"+r.toLowerCase().replace(/\s+/g,""):""}
 
 export function scrollOf(n){const m=/^Spell Scroll \((.+)\)$/.exec(n);if(!m)return null;const s=SPELLS.filter((x) =>{return x[0]===m[1]})[0];if(!s)return null;const t=SCROLL_T[s[1]];return {sp:s,rar:t[1],dc:t[2],atk:t[3]}}
 export var dbCat="Classes",dbQ="";
 export function dbItems(){const o=[],keep=dbCat;if(dbQ){let all=[];["Classes","Subclasses","Species","Backgrounds","Feats","Weapons","Armor","Options"].forEach((c) =>{dbCat=c;all=all.concat(dbItems0())});dbCat=keep;const q=dbQ.toLowerCase();return all.filter((i) =>{return (i.t+" "+i.m+" "+i.d+" "+i.x.join(" ")).toLowerCase().indexOf(q)>=0})}return dbItems0()}
-function dbItems0(){const o=[];
- if(dbCat==="Classes")Object.keys(CLASSES).forEach((n) =>{const c=CLASSES[n];o.push({t:n,m:"d"+c.hd+" \u00b7 "+c.prim+" \u00b7 Saves "+c.saves.join(", "),d:"Armor: "+(c.armor||"none")+". Weapons: "+c.weapons+". Skills: choose "+c.sk.n+(c.caster?". Caster: "+c.caster+" ("+c.cast+")":"")+".",x:c.f.map((f) =>{return "L"+f[0]+" "+f[1]+": "+f[2]})})});
- if(dbCat==="Subclasses")Object.keys(CLASSES).forEach((n) =>{Object.keys(CLASSES[n].subs).forEach((s) =>{o.push({t:s,m:n,d:"",x:CLASSES[n].subs[s].map((f) =>{return "L"+f[0]+" "+f[1]+": "+f[2]})})})});
- if(dbCat==="Species")Object.keys(SPECIES).forEach((n) =>{const s=SPECIES[n];o.push({t:n,m:s.size+" \u00b7 "+s.speed+" ft"+(s.dark?" \u00b7 Darkvision "+s.dark:""),d:s.lin?s.lin.label+": "+s.lin.opts.join("; ")+".":"",x:s.traits.map((t) =>{return t[0]+": "+t[1]})})});
- if(dbCat==="Backgrounds")Object.keys(BACKGROUNDS).forEach((n) =>{const b=BACKGROUNDS[n];o.push({t:n,m:b.ab.join(", ")+" \u00b7 "+b.feat,d:"Skills: "+b.sk.join(", ")+". Tool: "+b.tool+". Gear: "+b.eq+".",x:[]})});
- if(dbCat==="Feats")Object.keys(FEATS).forEach((n) =>{const f=FEATS[n];o.push({t:n,m:({O:"Origin",G:"General",F:"Fighting Style",E:"Epic Boon",X:"Fighting Style option"}[f.cat]||"Feat")+(f.pre?" \u00b7 "+f.pre:"")+(f.asi?" \u00b7 +1 "+f.asi.join("/"):""),d:(f.full||f.d).replace(/\*\*/g,""),x:[]})});
- if(dbCat==="Weapons")wpKeys().forEach((n) =>{const w=WEAPONS[n];o.push({t:n,m:(w.cat==="S"?"Simple":"Martial")+" "+(w.k==="M"?"Melee":"Ranged")+" \u00b7 "+w.d+" "+w.t,d:(w.p||"No properties")+(w.r?". Range "+w.r:"")+((w.nm||!w.m)?"":". Mastery: "+w.m+", "+MASTERY[w.m]),x:[]})});
- if(dbCat==="Armor")Object.keys(ARMOR).forEach((n) =>{const r=ARMOR[n];o.push({t:n,m:r.cat+" \u00b7 AC "+r.ac+(r.dex==="full"?" + Dex":r.dex==="max2"?" + Dex (max 2)":""),d:(r.str?"Str "+r.str+". ":"")+(r.dis?"Stealth Disadvantage. ":"")+r.w+" lb.",x:[]})});
- if(dbCat==="Options"){MANEUVERS.forEach((m) =>{o.push({t:m[0],m:"Battle Master Maneuver",d:m[1].replace(/\*\*/g,""),x:[]})});METAMAGIC.forEach((m) =>{o.push({t:m[0],m:"Metamagic",d:m[1].replace(/\*\*/g,""),x:[]})});INVOCATIONS.forEach((m) =>{o.push({t:m[0],m:"Eldritch Invocation"+(m[2]>1?" \u00b7 Warlock "+m[2]+"+":"")+(m[3]?" \u00b7 "+m[3]:""),d:m[1].replace(/\*\*/g,""),x:[]})});Object.keys(OPTS).forEach((k) =>{OPTS[k].forEach((m) =>{o.push({t:m[0],m:k,d:m[1],x:[]})})})}
+/* dbItems0 rows per category (SOLID s16): one function per Rules Reference category */
+function dbRowsClasses(o){Object.keys(CLASSES).forEach((n) =>{const c=CLASSES[n];o.push({t:n,m:"d"+c.hd+" \u00b7 "+c.prim+" \u00b7 Saves "+c.saves.join(", "),d:"Armor: "+(c.armor||"none")+". Weapons: "+c.weapons+". Skills: choose "+c.sk.n+(c.caster?". Caster: "+c.caster+" ("+c.cast+")":"")+".",x:c.f.map((f) =>{return "L"+f[0]+" "+f[1]+": "+f[2]})})})}
+function dbRowsSubclasses(o){Object.keys(CLASSES).forEach((n) =>{Object.keys(CLASSES[n].subs).forEach((s) =>{o.push({t:s,m:n,d:"",x:CLASSES[n].subs[s].map((f) =>{return "L"+f[0]+" "+f[1]+": "+f[2]})})})})}
+function dbRowsSpecies(o){Object.keys(SPECIES).forEach((n) =>{const s=SPECIES[n];o.push({t:n,m:s.size+" \u00b7 "+s.speed+" ft"+(s.dark?" \u00b7 Darkvision "+s.dark:""),d:s.lin?s.lin.label+": "+s.lin.opts.join("; ")+".":"",x:s.traits.map((t) =>{return t[0]+": "+t[1]})})})}
+function dbRowsBackgrounds(o){Object.keys(BACKGROUNDS).forEach((n) =>{const b=BACKGROUNDS[n];o.push({t:n,m:b.ab.join(", ")+" \u00b7 "+b.feat,d:"Skills: "+b.sk.join(", ")+". Tool: "+b.tool+". Gear: "+b.eq+".",x:[]})})}
+function dbRowsFeats(o){Object.keys(FEATS).forEach((n) =>{const f=FEATS[n];o.push({t:n,m:({O:"Origin",G:"General",F:"Fighting Style",E:"Epic Boon",X:"Fighting Style option"}[f.cat]||"Feat")+(f.pre?" \u00b7 "+f.pre:"")+(f.asi?" \u00b7 +1 "+f.asi.join("/"):""),d:(f.full||f.d).replace(/\*\*/g,""),x:[]})})}
+function dbRowsWeapons(o){wpKeys().forEach((n) =>{const w=WEAPONS[n];o.push({t:n,m:(w.cat==="S"?"Simple":"Martial")+" "+(w.k==="M"?"Melee":"Ranged")+" \u00b7 "+w.d+" "+w.t,d:(w.p||"No properties")+(w.r?". Range "+w.r:"")+((w.nm||!w.m)?"":". Mastery: "+w.m+", "+MASTERY[w.m]),x:[]})})}
+function dbRowsArmor(o){Object.keys(ARMOR).forEach((n) =>{const r=ARMOR[n];o.push({t:n,m:r.cat+" \u00b7 AC "+r.ac+(r.dex==="full"?" + Dex":r.dex==="max2"?" + Dex (max 2)":""),d:(r.str?"Str "+r.str+". ":"")+(r.dis?"Stealth Disadvantage. ":"")+r.w+" lb.",x:[]})})}
+function dbRowsOptions(o){MANEUVERS.forEach((m) =>{o.push({t:m[0],m:"Battle Master Maneuver",d:m[1].replace(/\*\*/g,""),x:[]})});METAMAGIC.forEach((m) =>{o.push({t:m[0],m:"Metamagic",d:m[1].replace(/\*\*/g,""),x:[]})});INVOCATIONS.forEach((m) =>{o.push({t:m[0],m:"Eldritch Invocation"+(m[2]>1?" \u00b7 Warlock "+m[2]+"+":"")+(m[3]?" \u00b7 "+m[3]:""),d:m[1].replace(/\*\*/g,""),x:[]})});Object.keys(OPTS).forEach((k) =>{OPTS[k].forEach((m) =>{o.push({t:m[0],m:k,d:m[1],x:[]})})})}
+function dbItems0(){const o=[],t={Classes:dbRowsClasses,Subclasses:dbRowsSubclasses,Species:dbRowsSpecies,Backgrounds:dbRowsBackgrounds,Feats:dbRowsFeats,Weapons:dbRowsWeapons,Armor:dbRowsArmor,Options:dbRowsOptions};
+ if(Object.prototype.hasOwnProperty.call(t,dbCat))t[dbCat](o);
  return o}
 
 export function __set_dbCat(v){ return dbCat=v; }
