@@ -13,6 +13,13 @@ Peta source untuk `index.html`. Hasil build `index.html` dan `sw.js`. Source ada
 | `python3 tests/scenarios.py [OUT] [--root DIR]` | Tiga skenario wajib (sheet lama Yudhi, sesudah Apply, karakter baru) di 390x844 dan 1250x850. Menulis screenshot dan isi localStorage ke OUT (default `tests/out/`, diabaikan git) |
 | `python3 tests/measure.py [OUT.json] [--runs N] [--only "1250x850 cpu4x"]` | Waktu siap, data Builder selesai, Builder pertama dan kedua, Search pertama, di 390 dan 1250, CPU 1x dan 4x |
 | `python3 tests/flow_home_sheet.py [OUT]` | Alur Home ke sheet ke Home dan ganti karakter, dengan video. Cek perpindahan tersambung jalan dan tidak ada yang tertinggal tersembunyi |
+| `python3 tests/companion_2014.py [OUT]` | Pemilih Ranger's Companion 2014 di Extras: daftar semua beast yang memenuhi syarat, tombol di kartu beast, pilihan tersimpan di `S.comp14` dan bertahan setelah Apply, PDF hanya melampirkan beast pilihan, Change mengembalikan daftar. 390x844 dan 1250x850 |
+| `python3 tests/long14_sheet.py [OUT]` | Teks panjang species dan background PHB 2014 (`src/builder/06b-data-2014-long-text.js`): sheet menyimpan `full` dan kartu fitur menampilkannya, 390x844 dan 1250x850 |
+| `python3 tests/long24_sheet.py [OUT]` | Teks panjang species resmi 2024 (`src/builder/06a2-data-2024-species-long-text.js`): Orc Fighter 2024 menyimpan `full` untuk Relentless Endurance dan kartu fitur menampilkannya, 390x844 dan 1250x850 |
+| `python3 tests/pdfx_legacy24.py` | Sheet 2024 lama tanpa `full`: model PDF tetap memuat teks panjang species (Orc Fighter, Relentless Endurance). Jalur cadangan: `pxFull` di `src/app/37a-ui-pdf-model.js` memanggil `__bldLong14(g,n,"2024")`. |
+| `python3 tests/long14_coverage.py` | Setiap teks di `src/builder/06a-data-2014-long-text-more.js` (species dan background 2014 di luar PHB) harus terjangkau lewat `__bldLong14` dari data app. Exit 1 bila ada yang tidak terjangkau |
+| `python3 tests/pdfx_sweep.py [OUT]` | Sapuan PDFX: setiap class x subclass x level 1, 3, 5, 11, 17, 20, aturan 2024 dan 2014, lewat builder asli (`__bldFuzz`) dan `__pdfModelFor`. Model diperiksa untuk miss (teks rusak, ringkasan kosong, spell tanpa detail, creature tanpa AC/HP), level 1 dan 20 dirender. Sekitar 2 menit |
+| `python3 tests/pdfx_export.py [OUT]` | Export PDF PDFX (template 2014 dan 2024, halaman spell, Features & Traits, creature): Yudhi, Wizard Quick Build sesudah Apply, Wizard yang sama di aturan 2014. 390x844 dan 1250x850. Cek PDF dibuat PDFX (bukan cadangan gambar), bagian wajib ada, ringkasan IN SHORT ada, tanpa error, tanpa request keluar situs |
 | `python3 tests/compare_storage.py RUN_A RUN_B` | Bandingkan localStorage dua run. Cap waktu dan hash snapshot ditutup |
 | `sh tools/pages_dist.sh` | Cloudflare Pages: salin situs jadi (index.html, sw.js, manifest, _headers, img, icons) ke `dist/`. Source, tests, reports tidak ikut. Header ada di `_headers`. Sesudah salin, `tools/split_dist.py` memecah 34 bagian tunda jadi `dist/p/NAME.HASH.js` (lihat bagian Build terpecah) |
 | `python3 build.py --verify-split` | Tes lama pemecah otomatis (nama otomatis, hanya untuk cek). Tidak mengubah `src/` |
@@ -36,6 +43,7 @@ Alur edit: ubah file di `src/`, jalankan `python3 build.py`, lalu `python3 build
 | `app/` | Aplikasi sheet dan Home. Modul ES, entry `main.js`, dibundel esbuild jadi satu IIFE strict | `<script>` |
 | `fx/` | Paket efek dan interaksi (MI core, F1 sampai F5, WOW, X, D, W, Y, Z, L, M, G, K). Tiap file berisi IIFE sendiri | `<script>` |
 | `data/` | Data aturan dan isi buku. Tiap file satu blok `<script type="text/x-defer" data-defer="...">`. `data/db4/` adalah satu blok yang dipecah per topik | x-defer |
+| `pdf/` | Renderer PDF (PDFX). Modul ES, entry `main.js`, dibundel esbuild, blok tertunda data-defer="pdfx". Pustaka pdf-lib dan aset ada di `vendor/pdf/` | x-defer |
 | `builder/` | Builder karakter. Modul ES, entry `main.js`, dibundel esbuild, dimuat tertunda (data-defer="builder") | x-defer |
 
 Peran di nama file `app/` dan `builder/`: `logic` (hitung, simpan, impor), `ui` (render dan interaksi), `data` (tabel tetap), `boot` (mulai). Peran ditentukan dari isi utama bagian itu. Kode lama tersusun per patch, jadi beberapa file `ui` masih memuat sedikit logic dan sebaliknya. Pemisahan penuh butuh pemindahan kode (mengubah urutan), di luar T0.
@@ -135,7 +143,8 @@ Urutan sama dengan manifest. Ukuran dalam byte.
 | app/34-ui-situations.js | UI | 46.791 |
 | app/35-ui-combo.js | UI | 24.239 |
 | app/36-ui-printable-sheet.js | UI | 12.549 |
-| app/37-ui-pdf-export-hold-slide-confirm.js | UI | 8.019 |
+| app/37a-ui-pdf-model.js | UI (model cetak PDF, hanya membaca sheet) | 15.584 |
+| app/37-ui-pdf-export-hold-slide-confirm.js | UI | 10.983 |
 | app/38-boot-init.js | boot | 1.830 |
 | app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js | UI | 20.968 |
 | app/40-ui-segments-notes-swipe-motion-panels.js | UI | 41.003 |
