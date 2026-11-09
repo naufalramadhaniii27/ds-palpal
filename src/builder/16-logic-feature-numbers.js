@@ -10,10 +10,8 @@ import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 import {provideQueries} from "./01a-logic-query-registry.js";
 provideQueries({calcNote,defenses});
 /* ---------- level-based numbers for feature text ---------- */
-function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
- /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
- const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
- const T={
+/* calcNote tables (SOLID s16): one note per feature name, from the numbers of the class at level L */
+function cnTA(L,c,m,dc,rv,pb){return {
   "Rage":function(){return rv("Rage")+" uses per Long Rest, +"+c.track["Rage Damage"][L-1]+" Rage Damage"},
   "Bardic Inspiration":function(){return Math.max(1,m("CHA"))+" uses, die "+c.track["Inspiration Die"][L-1]},
   "Second Wind":function(){return rv("Second Wind")+" uses, heals 1d10 + "+L},
@@ -26,7 +24,8 @@ function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forE
   "Monk's Focus":function(){return L+" Focus Points, save DC "+dc("WIS")},
   "Stunning Strike":function(){return "Constitution save DC "+dc("WIS")},
   "Sneak Attack":function(){return c.track["Sneak Attack"][L-1]},
-  "Lay on Hands":function(){return "Pool of "+(5*L)+" Hit Points"},
+  "Lay on Hands":function(){return "Pool of "+(5*L)+" Hit Points"}}}
+function cnTB(L,c,m,dc,rv,pb){return {
   "Aura of Protection":function(){return "+"+Math.max(1,m("CHA"))+" to saves, "+(L>=18?30:10)+"-foot aura"},
   "Favored Enemy":function(){return rv("Favored Enemy")+" free Hunter's Mark casts"},
   "Font of Magic":function(){return L+" Sorcery Points"},
@@ -40,7 +39,8 @@ function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forE
   "Healing Hands":function(){return pb+"d4 Hit Points"},
   "Relentless Rage":function(){return "Drops to "+(2*L)+" Hit Points on success"},
   "Divine Intervention":function(){return "Once per Long Rest"},
-  "Mystic Arcanum":function(){return L>=17?"Level 6, 7, 8, 9 spells":L>=15?"Level 6, 7, 8 spells":L>=13?"Level 6, 7 spells":"Level 6 spell"}};  const T14={
+  "Mystic Arcanum":function(){return L>=17?"Level 6, 7, 8, 9 spells":L>=15?"Level 6, 7, 8 spells":L>=13?"Level 6, 7 spells":"Level 6 spell"}}}
+function cnT14(L,c,m,dc,rv,pb){return {
    "Rage":function(){return (L>=20?"Unlimited uses":rv("Rage")+" uses per Long Rest")+", +"+c.track["Rage Damage"][L-1]+" Rage Damage"},
    "Indomitable":function(){return "Reroll a failed save, "+rv("Indomitable")+" use"+(rv("Indomitable")>1?"s":"")+" per Long Rest, you must keep the new roll"},  "Ki":function(){return L+" ki points, ki save DC "+dc("WIS")},
    "Divine Sense":function(){return Math.max(1,1+m("CHA"))+" uses per Long Rest"},
@@ -48,7 +48,11 @@ function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forE
    "Wild Shape":function(){const lim=L>=8?"CR 1":L>=4?"CR 1/2, no flying speed":"CR 1/4, no flying or swimming speed";return (L>=20?"Unlimited uses":rv("Wild Shape")+" uses per Short Rest")+", "+lim+", lasts "+Math.floor(L/2)+" hour"+(Math.floor(L/2)>1?"s":"")},
    "Divine Intervention":function(){return L>=20?"Succeeds automatically":"Succeeds on a d100 roll of "+L+" or lower, then 7 days before you can try again"},
    "Relentless Rage":function(){return "At 0 Hit Points while raging, Con save DC 10 (+5 per use until a rest). On success you drop to 1 Hit Point instead"}
-  };
+  }}
+function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
+ /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
+ const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
+ const T=Object.assign(cnTA(L,c,m,dc,rv,pb),cnTB(L,c,m,dc,rv,pb)),T14=cnT14(L,c,m,dc,rv,pb);
   const f=(R14()&&T14[name])||T[name];if(!f)return "";try{const s=f();return s?" **At your level:** "+s+".":""}catch(e){return ""}}
 /* defenses() in parts (SOLID stage 13C): one function per source, in the same order. Each adds rows with add(type,value,source) */
 function defSpecies(add){const sp=SPECIES[B.species];

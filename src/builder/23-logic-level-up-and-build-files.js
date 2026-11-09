@@ -19,21 +19,31 @@ bindLive("toSheetApply",{get:function(){return toSheetApply;}});
 bindLive("unList",{get:function(){return unList;}});
 /* v22 RU52: Level Up from the sheet. Opens the build of this character and raises the main class one level. New choices show the usual marks */
 /* v22 P1: names and numbers of a build file. err stops the import, warn is shown before it */
-genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
+/* __bldCheck steps (SOLID s16): errors stop the import, warnings name what the app does not know */
+function bcErr(b,lv,err){
  if(!b.cls||!CLASSES[b.cls])err.push("unknown class \""+(b.cls||"")+"\"");
  if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv))err.push("level must be a whole number from 1 to 20");
- const tl=(lv||0)+(Array.isArray(b.mc)?b.mc.reduce((t,m) =>{return t+(+m.lv||0)},0):0);if(tl>20)err.push("total level "+tl+" is more than 20");
- if(err.length)return {err:err,warn:warn};
- try{__set_B(structuredClone(BLANK));B.src=b.src||{core:true,dmg:true};applyPacks();
+ const tl=(lv||0)+(Array.isArray(b.mc)?b.mc.reduce((t,m) =>{return t+(+m.lv||0)},0):0);if(tl>20)err.push("total level "+tl+" is more than 20")}
+function bcNames(b,warn){
   if(b.species&&!SPECIES[b.species]&&b.species!=="Custom")warn.push("species \""+b.species+"\"");
   const bg=BACKGROUNDS[b.bg];if(b.bg&&!bg)warn.push("background \""+b.bg+"\"");
   if(bg&&b.bgMode!=="111")["bg2","bg1"].forEach((k) =>{if(b[k]&&bg.ab.indexOf(b[k])<0)warn.push(b.bg+" cannot raise "+b[k])});
-  const C0=CLASSES[b.cls];if(b.sub&&b.sub!=="__custom"&&!(C0.subs||{})[b.sub])warn.push("subclass \""+b.sub+"\" for "+b.cls);
-  (Array.isArray(b.mc)?b.mc:[]).forEach((m) =>{if(!CLASSES[m.cls])warn.push("multiclass \""+m.cls+"\"");else if(m.sub&&!(CLASSES[m.cls].subs||{})[m.sub])warn.push("subclass \""+m.sub+"\" for "+m.cls)});
-  ABK.forEach((k) =>{let v=(b.base||{})[k];if(v==null)return;v=+v;if(!(v>=3&&v<=20&&Math.floor(v)===v))warn.push(k+" score "+(b.base||{})[k])});
-  let sp=[].concat(b.sp||[]);Object.keys(b.spm||{}).forEach((k) =>{sp=sp.concat(b.spm[k]||[])});const bs=sp.filter((n) =>{return !lateGet("SMAP")[n]});if(bs.length)warn.push("spells "+bs.join(", "));
-  const bi=(Array.isArray(b.inv)?b.inv:[]).map((x) =>{return x&&x.n}).filter((n) =>{if(!n)return false;const bo=baseOf(n).b;return !(WEAPONS[bo]||ARMOR[bo]||bo==="Shield"||DMAP[n]||itemCost(bo)!=null||/^Spell Scroll \(/.test(n)||(typeof POTIONS!=="undefined"&&POTIONS.some((p) =>{return p[0]===n})))});if(bi.length)warn.push("items "+bi.join(", "));
-  const bf=[];Object.keys(b.ch||{}).forEach((k) =>{const v=b.ch[k];if(v&&typeof v==="object"&&!Array.isArray(v)&&v.feat&&!FEATS[v.feat])bf.push(v.feat)});if(bf.length)warn.push("feats "+bf.join(", "));
+  const C0=CLASSES[b.cls];if(b.sub&&b.sub!=="__custom"&&!(C0.subs||{})[b.sub])warn.push("subclass \""+b.sub+"\" for "+b.cls)}
+function bcMc(b,warn){
+  (Array.isArray(b.mc)?b.mc:[]).forEach((m) =>{if(!CLASSES[m.cls])warn.push("multiclass \""+m.cls+"\"");else if(m.sub&&!(CLASSES[m.cls].subs||{})[m.sub])warn.push("subclass \""+m.sub+"\" for "+m.cls)})}
+function bcScores(b,warn){
+  ABK.forEach((k) =>{let v=(b.base||{})[k];if(v==null)return;v=+v;if(!(v>=3&&v<=20&&Math.floor(v)===v))warn.push(k+" score "+(b.base||{})[k])})}
+function bcSpells(b,warn){
+  let sp=[].concat(b.sp||[]);Object.keys(b.spm||{}).forEach((k) =>{sp=sp.concat(b.spm[k]||[])});const bs=sp.filter((n) =>{return !lateGet("SMAP")[n]});if(bs.length)warn.push("spells "+bs.join(", "))}
+function bcItems(b,warn){
+  const bi=(Array.isArray(b.inv)?b.inv:[]).map((x) =>{return x&&x.n}).filter((n) =>{if(!n)return false;const bo=baseOf(n).b;return !(WEAPONS[bo]||ARMOR[bo]||bo==="Shield"||DMAP[n]||itemCost(bo)!=null||/^Spell Scroll \(/.test(n)||(typeof POTIONS!=="undefined"&&POTIONS.some((p) =>{return p[0]===n})))});if(bi.length)warn.push("items "+bi.join(", "))}
+function bcFeats(b,warn){
+  const bf=[];Object.keys(b.ch||{}).forEach((k) =>{const v=b.ch[k];if(v&&typeof v==="object"&&!Array.isArray(v)&&v.feat&&!FEATS[v.feat])bf.push(v.feat)});if(bf.length)warn.push("feats "+bf.join(", "))}
+genv.__bldCheck=function(b){const err=[],warn=[],keep=B,lv=+b.level;
+ bcErr(b,lv,err);
+ if(err.length)return {err:err,warn:warn};
+ try{__set_B(structuredClone(BLANK));B.src=b.src||{core:true,dmg:true};applyPacks();
+  bcNames(b,warn);bcMc(b,warn);bcScores(b,warn);bcSpells(b,warn);bcItems(b,warn);bcFeats(b,warn);
  }finally{__set_B(keep);applyPacks()}
  return {err:err,warn:warn}};
 /* v22 RU80b: a build file written by hand or in a chat is tidied before it opens. Names are matched to the app lists
@@ -124,45 +134,58 @@ function normByName(X,byName){let left=Object.keys(byName).filter((k) =>{return 
  left=bnMiPicks(X.b,left,byName);
  for(let pass=0;pass<3&&left.length;pass++)left=bnPass(X,left,byName);
  left.forEach((name) =>{if(/^[a-z][A-Za-z0-9:_-]*$/.test(name)){X.ch0[name]=byName[name];return}X.notes.push(bnQ(name)+" is not a choice for this build, so it is left out")})}
-genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
- const said=saidIn(notes);
- try{
- b=structuredClone(b0||{});delete b.kind;delete b.app;delete b.format;
- /* other field names a chat may use */
+/* __bldNorm steps (SOLID s16). b is the build being read, notes and said its notes */
+function bnOn(b,src){__set_B(structuredClone(BLANK));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
+function bnNames(){const o={sp:Object.keys(SPECIES),bg:Object.keys(BACKGROUNDS),ft:Object.keys(FEATS),subs:{}};Object.keys(CLASSES).forEach((c) =>{o.subs[c]=Object.keys(CLASSES[c].subs||{})});return o}
+function bnNeed(v,list,part,wide){return v&&!bnPick(v,list,part,wide)}
+/* other field names a chat may use; the choices by name come back */
+function bnHead(b){delete b.kind;delete b.app;delete b.format;
  [["class","cls"],["subclass","sub"],["background","bg"],["race","species"],["spells","sp"],["abilities","base"],["scores","base"],["items","inv"],["inventory","inv"],["equipment","inv"],["multiclass","mc"]].forEach((p) =>{if(b[p[1]]==null&&b[p[0]]!=null){b[p[1]]=b[p[0]];delete b[p[0]]}});
  const byName=b.choices&&typeof b.choices==="object"&&!Array.isArray(b.choices)?b.choices:null;delete b.choices;/* v34 p07 */
  b.ch=b.ch&&typeof b.ch==="object"&&!Array.isArray(b.ch)?b.ch:{};
  const lin=b.lin!=null?b.lin:b.lineage;delete b.lin;delete b.lineage;if(lin&&!b.ch.lin)b.ch.lin=lin;
  /* homebrew packs this build needs */
- const src0=b.src&&typeof b.src==="object"?b.src:{core:true,dmg:true};b.src=src0;
- function on(src){__set_B(structuredClone(BLANK));B.src=src;B.packs=Array.isArray(b.packs)?b.packs:[];applyPacks()}
- function names(){const o={sp:Object.keys(SPECIES),bg:Object.keys(BACKGROUNDS),ft:Object.keys(FEATS),subs:{}};Object.keys(CLASSES).forEach((c) =>{o.subs[c]=Object.keys(CLASSES[c].subs||{})});return o}
- on(src0);const N0=names(),ids=[];
- const cl=bnPick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+bnQ(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
- function need(v,list,part,wide){return v&&!bnPick(v,list,part,wide)}
- let want=[];if(need(b.species,N0.sp))want.push(["sp",b.species]);if(need(b.bg,N0.bg,1,1))want.push(["bg",b.bg]);if(need(b.sub,N0.subs[b.cls]||[],1))want.push(["sub",b.sub]);
- if(want.length)allPacks().forEach((p) =>{if(src0[p.id])return;const s=Object.assign({},src0);s[p.id]=true;on(s);const N=names(),hit=want.filter((w) =>{return w[0]==="sp"?bnPick(w[1],N.sp):w[0]==="bg"?bnPick(w[1],N.bg,1,1):bnPick(w[1],N.subs[b.cls]||[],1)});
-  if(hit.length){src0[p.id]=true;notes.push("The "+p.name+" source is turned on for "+hit.map((w) =>{return bnQ(w[1])}).join(", "));want=want.filter((w) =>{return hit.indexOf(w)<0})}});
- on(src0);const L=names();
- /* level and multiclass */
- const lv=b.level==null||b.level===""?1:bnNum(b.level);if(b.level==null||b.level==="")notes.push("Level is missing, so it is 1");
- if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv)){err.push("level must be a whole number from 1 to 20");return {err:err,notes:notes,b:b}}b.level=lv;
- b.mc=bnArr(b.mc).filter((m) =>{if(!m||typeof m!=="object")return false;const r=bnPick(m.cls||m.class,Object.keys(CLASSES));if(!r){notes.push("Multiclass "+bnQ(m.cls||m.class||"")+" is removed. It is not a 2024 class");return false}
+ const src0=b.src&&typeof b.src==="object"?b.src:{core:true,dmg:true};b.src=src0;return byName}
+function bnWant(b,N0){const want=[];if(bnNeed(b.species,N0.sp))want.push(["sp",b.species]);if(bnNeed(b.bg,N0.bg,1,1))want.push(["bg",b.bg]);if(bnNeed(b.sub,N0.subs[b.cls]||[],1))want.push(["sub",b.sub]);return want}
+function bnHunt(b,src0,want,notes){allPacks().forEach((p) =>{if(src0[p.id])return;const s=Object.assign({},src0);s[p.id]=true;bnOn(b,s);const N=bnNames(),hit=want.filter((w) =>{return w[0]==="sp"?bnPick(w[1],N.sp):w[0]==="bg"?bnPick(w[1],N.bg,1,1):bnPick(w[1],N.subs[b.cls]||[],1)});
+  if(hit.length){src0[p.id]=true;notes.push("The "+p.name+" source is turned on for "+hit.map((w) =>{return bnQ(w[1])}).join(", "));want=want.filter((w) =>{return hit.indexOf(w)<0})}})}
+/* level: false when it is not a whole number from 1 to 20 */
+function bnLevel(b,notes,err){const lv=b.level==null||b.level===""?1:bnNum(b.level);if(b.level==null||b.level==="")notes.push("Level is missing, so it is 1");
+ if(!(lv>=1&&lv<=20&&Math.floor(lv)===lv)){err.push("level must be a whole number from 1 to 20");return false}b.level=lv;return true}
+function bnMcRow(m,notes,said,L){if(!m||typeof m!=="object")return false;const r=bnPick(m.cls||m.class,Object.keys(CLASSES));if(!r){notes.push("Multiclass "+bnQ(m.cls||m.class||"")+" is removed. It is not a 2024 class");return false}
   said(m.cls||m.class,r);m.cls=r.v;delete m["class"];let l=m.lv==null?bnNum(m.level):bnNum(m.lv);delete m.level;if(!(l>=1&&Math.floor(l)===l)){notes.push("Multiclass "+m.cls+" has no level, so it is 1");l=1}m.lv=l;
-  if(m.sub){const s=bnPick(m.sub,L.subs[m.cls]||[],1);if(s){said(m.sub,s);m.sub=s.v}else{notes.push("Subclass "+bnQ(m.sub)+" is not a "+m.cls+" subclass, so it is left for you to choose");m.sub=""}}return true});
- const tl=b.level+b.mc.reduce((t,m) =>{return t+m.lv},0);if(tl>20){err.push("total level "+tl+" is more than 20");return {err:err,notes:notes,b:b}}
- /* species, lineage, background, subclass */
- b.unset=b.unset&&typeof b.unset==="object"?b.unset:{};
- if(b.species){let sr=bnPick(b.species,L.sp);
-  if(!sr&&b.species!=="Custom"){/* "Wood Elf", "Tiefling (Infernal)", "Red Dragonborn": species plus lineage */const t0=String(b.species);L.sp.forEach((s) =>{if(sr)return;const o=(SPECIES[s].lin||{}).opts;if(!o)return;
-    if(bnNk(t0).indexOf(bnNk(s))<0&&bnNk(t0)!=="drow")return;const rest=bnNk(t0).replace(bnNk(s),"");const lo=o.filter((x) =>{const y=bnNk(x);return rest.length>=3&&y.indexOf(rest)===0});if(lo.length===1&&(bnNk(t0).indexOf(bnNk(s))>=0||lo.length===1)){sr={v:s,near:1};b.ch.lin=lo[0]}});
+  if(m.sub){const s=bnPick(m.sub,L.subs[m.cls]||[],1);if(s){said(m.sub,s);m.sub=s.v}else{notes.push("Subclass "+bnQ(m.sub)+" is not a "+m.cls+" subclass, so it is left for you to choose");m.sub=""}}return true}
+/* "Wood Elf", "Tiefling (Infernal)", "Red Dragonborn": species plus lineage */
+function bnSpLin(b,t0,L){let sr=null;L.sp.forEach((s) =>{if(sr)return;const o=(SPECIES[s].lin||{}).opts;if(!o)return;
+    if(bnNk(t0).indexOf(bnNk(s))<0&&bnNk(t0)!=="drow")return;const rest=bnNk(t0).replace(bnNk(s),"");const lo=o.filter((x) =>{const y=bnNk(x);return rest.length>=3&&y.indexOf(rest)===0});if(lo.length===1&&(bnNk(t0).indexOf(bnNk(s))>=0||lo.length===1)){sr={v:s,near:1};b.ch.lin=lo[0]}});return sr}
+function bnSpecies(b,notes,said,L){if(!b.species)return;let sr=bnPick(b.species,L.sp);
+  if(!sr&&b.species!=="Custom"){const t0=String(b.species);sr=bnSpLin(b,t0,L);
    if(sr)notes.push(bnQ(t0)+" is read as "+sr.v+", "+String(b.ch.lin).replace(/ \(.*$/,""))}
   else said(b.species,sr);
   if(sr)b.species=sr.v;else if(b.species!=="Custom"){notes.push("Species "+bnQ(b.species)+" is not in the app, so it is left for you to choose");delete b.species;b.unset.species=1}}
- if(b.species&&SPECIES[b.species]&&b.ch.lin){const lo2=(SPECIES[b.species].lin||{}).opts||[],k2=bnNk(b.ch.lin),lr=lo2.filter((x) =>{return x===b.ch.lin})[0]||lo2.filter((x) =>{return bnNk(x).indexOf(k2)===0||bnNk(x.replace(/ \(.*$/,""))===k2})[0];
-  if(lr)b.ch.lin=lr;else{notes.push(bnQ(b.ch.lin)+" is not a "+b.species+" option, so it is left for you to choose");delete b.ch.lin}}
+function bnLin(b,notes){if(b.species&&SPECIES[b.species]&&b.ch.lin){const lo2=(SPECIES[b.species].lin||{}).opts||[],k2=bnNk(b.ch.lin),lr=lo2.filter((x) =>{return x===b.ch.lin})[0]||lo2.filter((x) =>{return bnNk(x).indexOf(k2)===0||bnNk(x.replace(/ \(.*$/,""))===k2})[0];
+  if(lr)b.ch.lin=lr;else{notes.push(bnQ(b.ch.lin)+" is not a "+b.species+" option, so it is left for you to choose");delete b.ch.lin}}}
+function bnBgSub(b,notes,said,L){
  if(b.bg){const br=bnPick(b.bg,L.bg,1,1);if(br){said(b.bg,br);b.bg=br.v}else{notes.push("Background "+bnQ(b.bg)+" is not in the app, so it is left for you to choose");delete b.bg;b.unset.bg=1}}
- if(b.sub){const ur=bnPick(b.sub,L.subs[b.cls]||[],1);if(ur){said(b.sub,ur);b.sub=ur.v}else{notes.push("Subclass "+bnQ(b.sub)+" is not a "+b.cls+" subclass, so it is left for you to choose");b.sub=""}}
+ if(b.sub){const ur=bnPick(b.sub,L.subs[b.cls]||[],1);if(ur){said(b.sub,ur);b.sub=ur.v}else{notes.push("Subclass "+bnQ(b.sub)+" is not a "+b.cls+" subclass, so it is left for you to choose");b.sub=""}}}
+genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
+ const said=saidIn(notes);
+ try{
+ b=structuredClone(b0||{});const byName=bnHead(b),src0=b.src;
+ bnOn(b,src0);const N0=bnNames(),ids=[];
+ const cl=bnPick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+bnQ(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
+ const want=bnWant(b,N0);
+ if(want.length)bnHunt(b,src0,want,notes);
+ bnOn(b,src0);const L=bnNames();
+ /* level and multiclass */
+ if(!bnLevel(b,notes,err))return {err:err,notes:notes,b:b};
+ b.mc=bnArr(b.mc).filter((m) =>{return bnMcRow(m,notes,said,L)});
+ const tl=b.level+b.mc.reduce((t,m) =>{return t+m.lv},0);if(tl>20){err.push("total level "+tl+" is more than 20");return {err:err,notes:notes,b:b}}
+ /* species, lineage, background, subclass */
+ b.unset=b.unset&&typeof b.unset==="object"?b.unset:{};
+ bnSpecies(b,notes,said,L);
+ bnLin(b,notes);
+ bnBgSub(b,notes,said,L);
  /* ability scores */
  normScores(b,notes);
  /* background bonus: only the background's three abilities */
@@ -183,28 +206,36 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
 /* v22 RU80: the sheet a build gives, without touching the build being edited */
 genv.__bldAuto=function(nb){let keep=B,out=null;try{const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();qbFill();if(MCL().length){if(!(nb.sp&&nb.sp.length))B.sp=[]}else qbSpells();qbSpMC();qbMI();qbBook();qbFill();qbSpMC();out=structuredClone(B)}finally{__set_B(keep);applyPacks()}return out};
 genv.__bldFeatViol=function(b){return withB(b,featViol)};
-function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
- const all=function(){let s=[],o=spLists();for(const k in o)s=s.concat(o[k]);return s};
- cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b),n=function(K){return K?SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max}).length:0};return n(ka)-n(kb)}).forEach((P) =>{const K=spInfoPart(P);if(!K)return;/* the class with the shortest list picks first, so a shared spell does not leave it short */const L=SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max});
+/* qbSpMC steps (SOLID s16) */
+function qbSpAll(){let s=[],o=spLists();for(const k in o)s=s.concat(o[k]);return s}
+function qbSpN(K){return K?SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max}).length:0}
+function qbSpFill(P,auto,DMG){const K=spInfoPart(P);if(!K)return;/* the class with the shortest list picks first, so a shared spell does not leave it short */const L=SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=K.max});
   L.sort((a,b) =>{return ((DMG.indexOf(b[0])>=0)-(DMG.indexOf(a[0])>=0))||(b[1]-a[1])});
   [0,1].forEach((kind) =>{L.forEach((x) =>{const t=(spLists()[P.cls]||[]).map((n) =>{return lateGet("SMAP")[n]}).filter(Boolean),nc=t.filter((y) =>{return !y[1]}).length,np=t.filter((y) =>{return y[1]}).length;
-   if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(all().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})});
- const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}});
- const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}/* v35 p05 */
+   if((kind===0&&!x[1]&&nc<K.ct)||(kind===1&&x[1]&&np<K.pr)){if(qbSpAll().indexOf(x[0])<0&&auto.indexOf(x[0])<0)spToggle(x[0],P.cls)}})})}
+function qbSpArc(){const wl=clsLv("Warlock");B.pk=B.pk||{};[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!B.pk["ma"+r[1]]){const s=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0})[0];if(s)B.pk["ma"+r[1]]=s[0]}})}
+function qbSpBook(cp){const need=bookNeed(),wz=cp.filter((p) =>{return p.cls==="Wizard"})[0];if(need&&wz){const mx=(spInfoPart(wz)||{max:1}).max,bk=B.pk.book=B.pk.book||[];SPELLS.filter((x) =>{return x[1]>=1&&x[1]<=mx&&x[3].indexOf("Wizard")>=0}).map((x,i,A) =>{return [x,A.slice(0,i).filter((y) =>{return y[1]===x[1]}).length]}).sort((a,b) =>{return a[1]-b[1]||b[0][1]-a[0][1]}).map((p) =>{return p[0]}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])})}}
+function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpells().map((a) =>{return a.n}),DMG=["Eldritch Blast","Fire Bolt","Sacred Flame","Vicious Mockery","Produce Flame","Starry Wisp","Toll the Dead","Mind Sliver"];
+ cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b);return qbSpN(ka)-qbSpN(kb)}).forEach((P) =>{qbSpFill(P,auto,DMG)});
+ qbSpArc();
+ qbSpBook(cp)}/* v35 p05 */
 genv.__bldSheetFor=function(nb,fxT){let keep=B,out=null;try{fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{fxtSet(null);__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
    scores, the tables stay the same, so the second set-up is skipped, and the open character's tables are set up once per slice of work (pause) and at the end,
    not after every try. Same results as __bldSheetFor one by one (tests/rb_fast.py compares every try) */
+/* __bldSheetBatch steps (SOLID s16) */
+function sbTag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
+function sbKey(VARY,bs,bb){const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});return JSON.stringify(o)+"|"+sbTag(SPECIES,bs,B.species)+"|"+sbTag(BACKGROUNDS,bb,B.bg)}
+function sbReuse(srcAfter){B.src=JSON.parse(srcAfter);if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
 genv.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=null,done=false,VARY={species:1,bg:1,bgMode:1,bg1:1,bg2:1,base:1,arr:1,method:1,unset:1,name:1};
- function tag(t,base,n){return base[n]?(base[n].hb||"core"):"x:"+n+":"+(t[n]&&t[n].hb||"")}
  return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}let out=null;try{const b=structuredClone(nb),z=clone(BLANK);for(const k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
-   const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});const key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);
-   if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else{B.src=JSON.parse(srcAfter);if(!SPECIES[B.species]&&B.species!=="Custom")B.species="Human";if(!BACKGROUNDS[B.bg])B.bg="Soldier";if(B.sub&&B.sub!=="__custom"&&!CL().subs[B.sub])B.sub=""}
+   const key=sbKey(VARY,bs,bb);
+   if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else sbReuse(srcAfter);
    out=toSheet()}catch(e){out=null;last=null}finally{__set_B(keep)}return out},
   /* between slices the open character's tables come back, so nothing else ever sees a try's tables. Skipped when they are the same */
-  pause:function(){if(last===null)return;__set_B(keep);const o={};Object.keys(B).forEach((k) =>{if(!VARY[k])o[k]=B[k]});const key=JSON.stringify(o)+"|"+tag(SPECIES,bs,B.species)+"|"+tag(BACKGROUNDS,bb,B.bg);if(key!==last)applyPacks();last=null},
+  pause:function(){if(last===null)return;__set_B(keep);const key=sbKey(VARY,bs,bb);if(key!==last)applyPacks();last=null},
   end:function(){if(done)return;done=true;__set_B(keep);applyPacks()}}};
 /* v74 test hook: reads a sheet back without saving. Returns the species, lineage and sources the builder would hold */
 genv.__bldRound=function(C){let keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet().spells||[]).map((x) =>{return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
@@ -213,20 +244,24 @@ genv.__bldLevelUp=function(){const st0=genv.__sheetState&&genv.__sheetState();if
  const st=genv.__sheetState&&genv.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){__set_step("class");render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */
  if(TL()>=20){toast("Level 20 is the highest level.");return}B.level=Math.min(20,(+B.level||1)+1);save();__set_step("class");applyPacks();render();
  toast("Level "+TL()+": "+B.cls+" "+B.level+". New choices are marked. To level another class instead, change it in the Class step. Apply when you are done.")};
-genv.__bldOpen=function(){if(genv.__bldBusyOff)genv.__bldBusyOff();document.getElementById("bld").hidden=false;try{if(!B.camp&&genv.__sheetCamp){const sc1=genv.__sheetCamp();if(sc1){B.camp=sc1;save()}}const ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}/* T10: the campaign of the sheet */document.body.style.overflow="hidden";const st=genv.__sheetState&&genv.__sheetState();
- const load=function(more){const miss=fromSheet(st);stamp();save();__set_step("class");toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
- if(st&&st.C){const raw=savedRaw();
-  /* no saved build yet (old manual sheet): nothing to lose, import as before */
-  if(raw==null){if(B.name!==st.C.name||TL()!==(+st.C.level||1)){load();return}}
-  /* RL40: the saved build is another character's (Start new before v13, older data). The Build button always opens this character:
-     load it from the sheet. The other build stays as the backup (Restore backup build on the last step) */
-  else if(!own(st.C.name)&&!copyOf(st.C.name)){const other=B.name;saveBak(raw);load(". "+other+" is kept as the backup build");return}
-  else{if(copyOf(st.C.name))B.name=st.C.name;
+/* __bldOpen steps (SOLID s16). true: the open stops there (loaded or asking) */
+function boCamp(){try{if(!B.camp&&genv.__sheetCamp){const sc1=genv.__sheetCamp();if(sc1){B.camp=sc1;save()}}const ci1=document.getElementById("cpIn");if(ci1)ci1.value=B.camp||""}catch(e){}}
+function boSame(st,raw,load){if(copyOf(st.C.name))B.name=st.C.name;
    /* same character. Build level higher: a level-up not applied yet, open it. Sheet level higher (C2/L3): show the build, ask, back it up before loading from the sheet */
    if(TL()<(+st.C.level||1)){const ml=MCL().length?": "+[B.cls+" "+B.level].concat(MCL().map((m) =>{return m.cls+" "+m.lv})).join(" / "):"";
     applyPacks();render();
-    ask("The sheet ("+(st.C.name||"Character")+", level "+(+st.C.level||1)+") does not match your saved build ("+B.name+", level "+TL()+ml+"). Load the build from the sheet? This replaces the saved choices, spells, and multiclass. A backup copy stays on this device. Cancel keeps the saved build.","Load from sheet",() =>{saveBak(raw);load()});return}
-   if(B.cid!==sid()||copyOf(st.C.name)){stamp();save()}}}
+    ask("The sheet ("+(st.C.name||"Character")+", level "+(+st.C.level||1)+") does not match your saved build ("+B.name+", level "+TL()+ml+"). Load the build from the sheet? This replaces the saved choices, spells, and multiclass. A backup copy stays on this device. Cancel keeps the saved build.","Load from sheet",() =>{saveBak(raw);load()});return true}
+   if(B.cid!==sid()||copyOf(st.C.name)){stamp();save()}return false}
+function boSheet(st,load){const raw=savedRaw();
+  /* no saved build yet (old manual sheet): nothing to lose, import as before */
+  if(raw==null){if(B.name!==st.C.name||TL()!==(+st.C.level||1)){load();return true}return false}
+  /* RL40: the saved build is another character's (Start new before v13, older data). The Build button always opens this character:
+     load it from the sheet. The other build stays as the backup (Restore backup build on the last step) */
+  if(!own(st.C.name)&&!copyOf(st.C.name)){const other=B.name;saveBak(raw);load(". "+other+" is kept as the backup build");return true}
+  return boSame(st,raw,load)}
+genv.__bldOpen=function(){if(genv.__bldBusyOff)genv.__bldBusyOff();document.getElementById("bld").hidden=false;boCamp();/* T10: the campaign of the sheet */document.body.style.overflow="hidden";const st=genv.__sheetState&&genv.__sheetState();
+ const load=function(more){const miss=fromSheet(st);stamp();save();__set_step("class");toast("Loaded "+B.name+" from the sheet"+(miss.length?". Check: "+miss.join(", "):"")+(more||""));applyPacks();render()};
+ if(st&&st.C&&boSheet(st,load))return;
  try{stepBack()}catch(e){}applyPacks();render()};
 function closeBld(){document.getElementById("bld").hidden=true;document.body.style.overflow="";if(genv.__bldDot)genv.__bldDot()}/* v32 RU137 */
 /* RU30: what a new character still has to choose before Apply: "class, species, and background" */
