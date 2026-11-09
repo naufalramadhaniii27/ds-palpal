@@ -758,6 +758,7 @@
     "builder/04-logic-storage.js",
     "builder/05-logic-choice-model-ruleset.js",
     "builder/06-data-2014-classes.js",
+    "builder/06a-data-2014-long-text-more.js",
     "builder/06b-data-2014-long-text.js",
     "builder/07-data-2014-spells.js",
     "builder/08-logic-2014-rules.js",

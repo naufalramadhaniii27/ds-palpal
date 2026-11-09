@@ -1,5 +1,6 @@
 /* Responsibility: long rules text for the 2014 Player's Handbook species traits and background features. The builder stores it as `full` on the
    sheet feature, so the sheet (Show more) and the PDF export both read it. Own wording; the short text stays in `d`. Key: species name (without "(2014)") then trait name; background feature name, or "background|feature" when two backgrounds share a name. */
+import {MORE14_SPECIES,MORE14_BACKGROUND} from "./06a-data-2014-long-text-more.js";
 const LONG14_SPECIES = {
  "Hill Dwarf": {
   "Dwarven Resilience": "Your saving throws against poison are made with Advantage, and poison damage against you is halved. Dwarves are hardy, and venom and toxins that fell other folk often leave them standing.",
@@ -114,7 +115,7 @@ const LONG14_BACKGROUND = {
 /* long text of a feature group ("Species: Hill Dwarf", "Background: Acolyte (2014)") and a feature name; "" when there is none */
 export function long14(group, name){ const m=/^(Species|Race|Background): (.+)$/.exec(String(group||"")); if(!m) return "";
   const bare=m[2].replace(/\s*\(2014\)$/,"");
-  if(m[1]==="Background") return LONG14_BACKGROUND[bare+"|"+name]||LONG14_BACKGROUND[m[2]+"|"+name]||LONG14_BACKGROUND[name]||"";
-  const t=LONG14_SPECIES[bare]; return t&&t[name]||""; }
+  if(m[1]==="Background") return MORE14_BACKGROUND[bare+"|"+name]||LONG14_BACKGROUND[bare+"|"+name]||LONG14_BACKGROUND[m[2]+"|"+name]||LONG14_BACKGROUND[name]||"";
+  const t=LONG14_SPECIES[bare]||MORE14_SPECIES[bare]; return t&&t[name]||""; }
 /* the `full` field to merge into a sheet feature: {full:text} on the 2014 rules when there is a long text, else {} */
 export function full14(rs, group, name){ const t=rs==="2014" ? long14(group,name) : ""; return t ? {full:t} : {}; }
