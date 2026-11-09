@@ -190,7 +190,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Adept)": {
+ "GX.item|D\u00e4mglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -198,7 +198,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Dämglesvir (Master)": {
+ "GX.item|D\u00e4mglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -465,7 +465,7 @@
   "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.species|Skathári": {
+ "GX.species|Skath\u00e1ri": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -487,14 +487,6 @@
    "fx-L12.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Apocalypse Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Bond of the Shambling Plant": {
@@ -561,14 +553,6 @@
    "fx-L11.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Darkness Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Death Knight": {
@@ -683,14 +667,6 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Mountain Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
- },
  "GX.sub|Occultist Guild": {
   "files": [
    "fx-L11.js",
@@ -720,18 +696,14 @@
  "GX.sub|Path of the Wild Heart": {
   "files": [
    "fx-L10.js",
-   "fx-N1.js"
+   "fx-N1.js",
+   "fx-Z2.js",
+   "fx-Z3.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
- },
- "GX.sub|Peace Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
+  "reason": "Different features of the same entry are defined in the files (different feature names). The shared field holds different values per feature, so nothing is counted twice.",
+  "shared": [
+   "mv"
+  ]
  },
  "GX.sub|Phantom": {
   "files": [
@@ -758,14 +730,6 @@
   "shared": [
    "mv"
   ]
- },
- "GX.sub|Samurai": {
-  "files": [
-   "fx-L11.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
  },
  "GX.sub|Star-Spangled Banner": {
   "files": [
@@ -801,14 +765,6 @@
    "fx-L11.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Travel Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
  "GX.sub|Universalist": {
@@ -859,6 +815,173 @@
    "fx-F-sub.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Barbarian": {
+  "files": [
+   "fx-A-class-species.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Bard": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Goliath": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (different feature names). The shared field holds different values per feature, so nothing is counted twice.",
+  "shared": [
+   "advOn"
+  ]
+ },
+ "GX.sub|Aberrant Sorcery": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Blood Domain": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Divine Strike is layered by level: fx-N1 gives 1d8 from level 8, fx-Z2 gives the second 1d8 from level 14, so level 14 shows 2d8 in all as the rule says. Not counted twice.",
+  "shared": [
+   "atkDice"
+  ]
+ },
+ "GX.sub|Champion": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of the Stars": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Divine Soul": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Draconic Sorcery": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Forge Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Gloom Stalker": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Great Old One Patron": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of Glory": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of Vengeance": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Both rows share one toggle (avenging-angel). fx-Z2 gives the flying speed and hover, fx-Z3 gives only a note about Frightful Aura, so the shared defs field holds different notes. Nothing is counted twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Path of the Zealot": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Psi Warrior": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Tempest Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|War Domain (2014)": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Warrior of Shadow": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Warrior of the Elements": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z2.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
   "shared": []
  }
 }
