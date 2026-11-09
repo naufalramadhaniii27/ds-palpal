@@ -5,7 +5,7 @@ Cabang `claude/zm4`, dasar `claude/all-1109`. Tafsir aturan: `reports/rules-note
 ## Hasil singkat
 
 - Fitur hilang 2024: 37 menjadi 0. Fitur hilang 2014: 81 pada ukuran pertama menjadi 0. Dua edisi nol miss.
-- Dari 37: 22 salah baca atau efek sudah ada di balik pilihan dan gear (pengukur diperbaiki dengan aturan klasifikasi dan varian build), 13 benar hilang dan diisi, 2 design (Wild Shape PROF dan SPEED). Wild Magic Surge (dua ukuran) ikut design.
+- Dari 37: 18 salah baca atau efek sudah ada di balik pilihan dan gear (pengukur diperbaiki dengan aturan klasifikasi dan varian build), 15 benar hilang dan diisi, 4 design (Wild Shape PROF dan SPEED, Wild Magic Surge AC dan DICE).
 - Pengukur baru memuat kelas MASTERY dan D20, jadi angka "terukur" 2024 berubah dari 465 ke 454.
 
 ## Angka pengukur, 2024
@@ -45,11 +45,11 @@ Semesta 2014: 12 kelas PHB 2014, 40 subclass PHB dan DMG 2014, 15 spesies PHB, 3
 | RESOURCE | 44 | 0 | 44 | 0 | 0 | 0 |
 | DICE | 36 | 13 | 33 | 0 | 3 | 0 |
 | SPELL | 78 | 6 | 76 | 0 | 2 | 0 |
-| NUM | 9 | 2 | 7 | 0 | 2 | 0 |
+| NUM | 9 | 5 | 7 | 0 | 2 | 0 |
 | D20 | 2 | 0 | 2 | 0 | 0 | 0 |
-| Semua | 298 | 54 | 283 | 1 | 14 | 0 |
+| Semua | 298 | 57 | 283 | 1 | 14 | 0 |
 
-Ukuran pertama 2014 (sebelum aturan baca): 327 terukur, 81 miss. Setelah aturan baca yang sama dengan 2024 dan sub-fitur level 1 dibandingkan dengan build tanpa subclass: 298 terukur, 57 miss. Kolom "Miss pertama" memakai angka 57 itu per kelas, jumlah di baris Semua 54 adalah jumlah miss yang diisi, 3 sisanya langsung design.
+Ukuran pertama 2014 (sebelum aturan baca): 327 terukur, 81 miss. Setelah aturan baca yang sama dengan 2024 dan sub-fitur level 1 dibandingkan dengan build tanpa subclass: 298 terukur, 57 miss. Kolom "Miss pertama" memakai angka 57 itu. Dari 57: 43 diisi di `fx-Z4.js` atau diperbaiki di pengukur, 14 design.
 
 Per pemilik 2014: kelas 78 (74 ok, 4 design), subclass 155 (144 ok, 1 card, 10 design), spesies 38 (38 ok), feat 27 (27 ok).
 
@@ -58,8 +58,8 @@ Per pemilik 2014: kelas 78 (74 ok, 4 design), subclass 155 (144 ok, 1 card, 10 d
 | Berkas | Isi |
 |---|---|
 | `tests/zero_miss_measure.py` | Edisi 2014, kelas MASTERY dan D20, aturan baca, varian build (pilihan, gear, build lain), pilihan feat terisi, alias baris, uji di tiap level fitur |
-| `tests/zero_miss_baseline.json` | Kunci `measured14`, miss 0, 30 entri design baru dengan alasan |
-| `src/data/fx-Z4.js` (baru, di manifest sesudah fx-Z3) | 2024: 15 entri. 2014: 40 entri |
+| `tests/zero_miss_baseline.json` | Kunci `measured14`, miss 0, entri design baru (2024 empat, 2014 empat belas) dengan alasan |
+| `src/data/fx-Z4.js` (baru, di manifest sesudah fx-Z3) | Entri 2024 dan 2014 (Note, toggle, `when` pada pilihan) |
 | `src/data/db4/02-limited-uses-damage-rows-save-notes.js` | 7 tag baris resource memuat dadu atau bonus |
 | `src/builder/10b-logic-fx-handlers-entry.js` | Engine, satu baris: `gate-edition` juga membuang entri `ed:"2014"` pada build 2024 |
 | `tests/zero_miss_fx.py` | 81 kasus baru (satu per kalimat, ditambah kasus negatif edisi dan level) |
