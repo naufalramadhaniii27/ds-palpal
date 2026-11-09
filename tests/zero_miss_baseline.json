@@ -2,17 +2,17 @@
  "measured": {
   "AC": {
    "n": 10,
-   "ok": 4,
+   "ok": 8,
    "card": 1,
-   "design": 0,
-   "miss": 5
+   "design": 1,
+   "miss": 0
   },
   "SPEED": {
    "n": 22,
-   "ok": 19,
+   "ok": 21,
    "card": 0,
-   "design": 0,
-   "miss": 3
+   "design": 1,
+   "miss": 0
   },
   "RES": {
    "n": 31,
@@ -29,25 +29,25 @@
    "miss": 0
   },
   "PROF": {
-   "n": 40,
-   "ok": 29,
-   "card": 1,
-   "design": 0,
-   "miss": 10
+   "n": 33,
+   "ok": 32,
+   "card": 0,
+   "design": 1,
+   "miss": 0
   },
   "RESOURCE": {
    "n": 89,
-   "ok": 88,
+   "ok": 89,
    "card": 0,
    "design": 0,
-   "miss": 1
+   "miss": 0
   },
   "DICE": {
-   "n": 66,
-   "ok": 44,
+   "n": 63,
+   "ok": 58,
    "card": 4,
-   "design": 0,
-   "miss": 18
+   "design": 1,
+   "miss": 0
   },
   "SPELL": {
    "n": 146,
@@ -62,59 +62,36 @@
    "card": 0,
    "design": 0,
    "miss": 0
+  },
+  "MASTERY": {
+   "n": 4,
+   "ok": 4,
+   "card": 0,
+   "design": 0,
+   "miss": 0
+  },
+  "D20": {
+   "n": 3,
+   "ok": 3,
+   "card": 0,
+   "design": 0,
+   "miss": 0
   }
  },
- "miss": [
-  "cls|Barbarian|Improved Brutal Strike|DICE",
-  "cls|Druid|Improved Elemental Fury|DICE",
-  "cls|Druid|Wild Shape|PROF",
-  "cls|Druid|Wild Shape|SPEED",
-  "cls|Paladin|Paladin's Smite|DICE",
-  "cls|Paladin|Weapon Mastery|PROF",
-  "cls|Ranger|Foe Slayer|DICE",
-  "cls|Ranger|Tireless|DICE",
-  "cls|Ranger|Weapon Mastery|PROF",
-  "cls|Rogue|Reliable Talent|PROF",
-  "cls|Rogue|Weapon Mastery|PROF",
-  "cls|Warlock|Pact Magic|RESOURCE",
-  "feat|Alert|Alert|PROF",
-  "feat|Boon of Fate|Boon of Fate|DICE",
-  "feat|Chef|Chef|DICE",
-  "feat|Grappler|Grappler|SPEED",
-  "feat|Interception|Interception|DICE",
-  "feat|Keen Mind|Keen Mind|PROF",
-  "feat|Martial Weapon Training|Martial Weapon Training|PROF",
-  "feat|Medium Armor Master|Medium Armor Master|AC",
-  "feat|Observant|Observant|PROF",
-  "feat|Weapon Master|Weapon Master|PROF",
-  "sub|Barbarian/Path of the Wild Heart|Aspect of the Wilds|SPEED",
-  "sub|Bard/College of Dance|Dazzling Footwork|AC",
-  "sub|Bard/College of Valor|Combat Inspiration|AC",
-  "sub|Druid/Circle of the Stars|Cosmic Omen|DICE",
-  "sub|Druid/Circle of the Stars|Star Map|DICE",
-  "sub|Paladin/Oath of Glory|Glorious Defense|AC",
-  "sub|Paladin/Oath of Glory|Inspiring Smite|DICE",
-  "sub|Ranger/Fey Wanderer|Fey Wanderer Spells|DICE",
-  "sub|Sorcerer/Clockwork Sorcery|Clockwork Spells|DICE",
-  "sub|Sorcerer/Wild Magic Sorcery|Bend Luck|DICE",
-  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|AC",
-  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|DICE",
-  "sub|Warlock/Archfey Patron|Steps of the Fey|DICE",
-  "sub|Warlock/Fiend Patron|Dark One's Own Luck|DICE",
-  "sub|Wizard/Evoker|Overchannel|DICE"
- ],
+ "miss": [],
  "card": [
   "feat|Boon of Energy Resistance|Boon of Energy Resistance|DICE",
   "feat|Charger|Charger|DICE",
   "feat|Defensive Duelist|Defensive Duelist|AC",
   "feat|Poisoner|Poisoner|DICE",
-  "feat|Polearm Master|Polearm Master|DICE",
-  "sub|Rogue/Soulknife|Psionic Power|PROF"
+  "feat|Polearm Master|Polearm Master|DICE"
  ],
  "by_design": {
   "cls|Cleric|Divine Order|SPELL": "Cantrip tambahan Thaumaturge dihitung builder lewat pilihan p1opt (18-ui-spells.js). Pengukur membangun pilihan bawaan Protector",
   "cls|Cleric|Improved Blessed Strikes|SPELL": "Potent Spellcasting ada di fx-L1.js di balik pilihan p7opt, diuji di zero_miss_fx (Z3 Improved Blessed Strikes)",
   "cls|Druid|Primal Order|SPELL": "Cantrip tambahan Magician dihitung builder lewat pilihan p1opt (18-ui-spells.js). Pengukur membangun pilihan bawaan Protector",
+  "cls|Druid|Wild Shape|PROF": "Bestie menggantikan statistik permainan, tetapi karakter memakai Proficiency Bonus sendiri untuk skill dan save yang dikuasai. Tidak ada angka di sheet karakter, nilai bentuk ada di stat block Beast pilihan pemain",
+  "cls|Druid|Wild Shape|SPEED": "Kecepatan dan mode gerak (Fly dari level 8) datang dari stat block Beast yang dipilih saat dipakai, bukan dari karakter. Jumlah penggunaan sudah punya baris resource",
   "cls|Monk|Stunning Strike|ADV": "Efek pada target (Speed setengah, serangan berikutnya terhadap target punya Advantage), keputusan meja",
   "cls|Ranger|Fighting Style|SPELL": "Druidic Warrior adalah feat sendiri (fx-C-feat.js), diukur sebagai feat",
   "cls|Wizard|Ritual Adept|SPELL": "Sheet menandai tag Ritual tiap spell. Aturan buku spell (membaca dari buku) adalah aturan meja",
@@ -122,7 +99,9 @@
   "feat|Poisoner|Poisoner|RES": "Resistance Poison milik target tidak mengurangi damage, bukan resistance karakter",
   "sub|Druid/Circle of the Sea|Oceanic Gift|SPELL": "Efek Emanation pada sekutu yang dipilih, memakai DC milik karakter, tidak ada angka baru di sheet",
   "sub|Sorcerer/Clockwork Sorcery|Restore Balance|ADV": "Reaction meniadakan Advantage atau Disadvantage pada roll makhluk lain, tidak ada angka di sheet. Penggunaan sudah punya baris resource",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|AC": "Entri tabel acak 1d100, bukan efek tetap",
   "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|ADV": "Entri tabel acak 1d8 dan 1d100 yang dilempar DM atau pemain, bukan efek tetap",
+  "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|DICE": "Lemparan 1d20 dan tabel 1d100 dilempar pemain atau DM, hasilnya acak, bukan efek tetap",
   "sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge|RES": "Entri tabel acak, bukan efek tetap"
  }
 }

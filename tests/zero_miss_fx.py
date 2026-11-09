@@ -264,6 +264,46 @@ CASES += [
     z3("Z3 Improved Blessed Strikes, Potent Spellcasting option: Temporary Hit Points equal to twice your Wisdom modifier", dict(cls="Cleric", level=14, base=WL, ch={"p7opt": "Potent Spellcasting"}), [(NT("Improved Blessed Strikes", "twice your Wisdom modifier"), True)]),
 ]
 
+
+# ---------------- zero miss 4 (reports/zm4.md): DICE, AC, SPEED and D20 sentences filled in src/data/fx-Z4.js and in the row tags of LU_X. Same helpers as zero miss 3.
+def RT(name):  # the tag of a resource row
+    return "C.res.find(r=>r.n===%r).tag" % name
+
+
+CASES += [
+    z3("Z4 Paladin 2 (2024) Paladin's Smite: Divine Smite deals 2d8 Radiant, +1d8 against Fiend or Undead, +1d8 per slot level above 1", dict(cls="Paladin", level=2, base=WL), [(NT("Paladin's Smite", "2d8 Radiant damage, plus 1d8 against a Fiend or an Undead, plus 1d8 for each spell slot level above 1"), True)]),
+    z3("NEG Z4 no Paladin's Smite line at Paladin 1", dict(cls="Paladin", level=1, base=WL), [(DL("Paladin's Smite") + ".length", 0)]),
+    z3("NEG Z4 the 2014 Paladin has no Paladin's Smite line", dict(rs="2014", cls="Paladin", level=2, base=WL), [(DL("Paladin's Smite") + ".length", 0)]),
+    z3("Z4 Ranger 20 (2024) Foe Slayer: Hunter's Mark uses a d10", dict(cls="Ranger", level=20, base=WL), [(NT("Foe Slayer", "d10 for its damage die instead of a d6"), True)]),
+    z3("NEG Z4 no Foe Slayer line at Ranger 19", dict(cls="Ranger", level=19, base=WL), [(DL("Foe Slayer") + ".length", 0)]),
+    z3("NEG Z4 the 2014 Ranger has no 2024 Foe Slayer line", dict(rs="2014", cls="Ranger", level=20, base=WL), [(DL("Foe Slayer") + ".length", 0)]),
+    z3("Z4 Ranger 10 (2024) Tireless: 1d8 plus Wisdom modifier Temporary Hit Points", dict(cls="Ranger", level=10, base=WL), [(NT("Tireless", "1d8 and add your Wisdom modifier"), True)]),
+    z3("Z4 Ranger 10 (2024) Tireless: a Short Rest lowers Exhaustion by 1", dict(cls="Ranger", level=10, base=WL), [(NT("Tireless", "Short Rest you finish lowers your Exhaustion level by 1"), True)]),
+    z3("Z4 Ranger 10 (2024) Tireless: the row tag names the dice", dict(cls="Ranger", level=10, base=WL), [(RT("Tireless: Temporary Hit Points"), "Magic action, 1d8 + WIS Temp HP")]),
+    z3("NEG Z4 no Tireless line at Ranger 9", dict(cls="Ranger", level=9, base=WL), [(DL("Tireless") + ".length", 0)]),
+    z3("Z4 Rogue 7 Reliable Talent: a d20 of 9 or lower counts as 10 on a proficient check", dict(cls="Rogue", level=7, base=WL), [(NT("Reliable Talent", "9 or lower counts as a 10"), True)]),
+    z3("Z4 Rogue 7 (2014) Reliable Talent: the same line in the 2014 build", dict(rs="2014", cls="Rogue", level=7, base=WL), [(NT("Reliable Talent", "9 or lower counts as a 10"), True)]),
+    z3("NEG Z4 no Reliable Talent line at Rogue 6", dict(cls="Rogue", level=6, base=WL), [(DL("Reliable Talent") + ".length", 0)]),
+    z3("Z4 Valor 3 Combat Inspiration, Defense: the die is added to the Armor Class of the creature that holds it", dict(cls="Bard", level=3, sub="College of Valor", base=WL), [(NT("Combat Inspiration (Defense)", "add the result to its Armor Class against that attack"), True)]),
+    z3("Z4 Valor 3 Combat Inspiration, Offense: the die is added to the damage of an attack that hit", dict(cls="Bard", level=3, sub="College of Valor", base=WL), [(NT("Combat Inspiration (Offense)", "add the result to the damage"), True)]),
+    z3("Z4 Glory 3 Inspiring Smite: 2d8 plus Paladin level Temporary Hit Points shared within 30 ft", dict(cls="Paladin", level=3, sub="Oath of Glory", base=WL), [(NT("Inspiring Smite", "roll 2d8 and add your Paladin level"), True)]),
+    z3("Z4 Glory 15 Glorious Defense: the row tag names the Charisma bonus to Armor Class", dict(cls="Paladin", level=15, sub="Oath of Glory", base=WL), [(RT("Glorious Defense"), "Reaction, +CHA to AC (min +1)")]),
+    z3("Z4 Wild Magic 6 Bend Luck: 1d4 added to or subtracted from another creature's d20", dict(cls="Sorcerer", level=6, sub="Wild Magic Sorcery", base=WL), [(NT("Bend Luck", "roll 1d4 and add it to or subtract it from that roll"), True)]),
+    z3("NEG Z4 no Bend Luck line at Wild Magic 5", dict(cls="Sorcerer", level=5, sub="Wild Magic Sorcery", base=WL), [(DL("Bend Luck") + ".length", 0)]),
+    z3("Z4 Evoker 14 Overchannel: 2d12 Necrotic per spell level on the second use, plus 1d12 per further use", dict(cls="Wizard", level=14, sub="Evoker", base=WL), [(NT("Overchannel", "2d12 Necrotic damage per spell level"), True), (NT("Overchannel", "raises it by 1d12 per spell level"), True)]),
+    z3("Z4 Evoker 14 Overchannel: the row tag says maximum damage", dict(cls="Wizard", level=14, sub="Evoker", base=WL), [(RT("Overchannel"), "Damage spell, maximum damage")]),
+    z3("Z4 Stars 6 Cosmic Omen: the row tag names the 1d6", dict(cls="Druid", level=6, sub="Circle of the Stars", base=WL), [(RT("Cosmic Omen"), "Reaction, add or subtract 1d6")]),
+    z3("Z4 Stars 3 Starry Form, Dragon: a d20 of 9 or lower counts as 10 on Intelligence, Wisdom and Concentration rolls", dict(cls="Druid", level=3, sub="Circle of the Stars", base=WL), [(NT("Starry Form (Dragon)", "Intelligence checks, Wisdom checks, and Constitution saves to keep Concentration: a d20 roll of 9 or lower counts as a 10"), True)], tog={"stars-dragon": True}),
+    z3("NEG Z4 Stars 3 Starry Form, Dragon: the line is absent while the toggle is off", dict(cls="Druid", level=3, sub="Circle of the Stars", base=WL), [(DL("Starry Form (Dragon)") + ".length", 0)]),
+    z3("NEG Z4 Stars 10: the Dragon toggle is listed once although two entries carry it", dict(cls="Druid", level=10, sub="Circle of the Stars", base=WL), [("(C.fxToggles||[]).filter(t=>t.id==='stars-dragon').length", 1)]),
+    z3("Z4 Archfey 3 Steps of the Fey: the row tag names the 1d10 Temporary Hit Points", dict(cls="Warlock", level=3, sub="Archfey Patron", base=WL), [(RT("Steps of the Fey: Misty Step"), "Free spell, Refreshing Step 1d10 Temp HP")]),
+    z3("Z4 Fiend 6 Dark One's Own Luck: the row tag names the d10", dict(cls="Warlock", level=6, sub="Fiend Patron", base=WL), [(RT("Dark One's Own Luck"), "Check or save, add 1d10")]),
+    z3("Z4 Grappler feat Fast Wrestler: moving a Grappled creature does not halve Speed", dict(cls="Fighter", level=4, base=WL, ch={"feat4": {"feat": "Grappler", "a1": "STR"}}), [(NT("Grappler", "does not halve your Speed"), True)]),
+    z3("Z4 Chef feat Replenishing Meal: an extra 1d8 Hit Points from Hit Point Dice after the meal", dict(cls="Fighter", level=4, base=WL, ch={"feat4": {"feat": "Chef", "a1": "CON"}}), [(NT("Chef", "extra 1d8 Hit Points"), True)]),
+    z3("Z4 Interception feat: the Reaction lowers the damage by 1d10 plus Proficiency Bonus", dict(cls="Fighter", level=4, base=WL, ch={"feat4": {"feat": "Interception", "a1": "STR"}}), [(NT("Interception", "reduce that damage by 1d10 plus your Proficiency Bonus"), True)]),
+    z3("Z4 Boon of Fate Improve Fate: the row tag names the 2d4", dict(cls="Fighter", level=19, base=WL, ch={"feat19": {"feat": "Boon of Fate", "a1": "STR"}}), [(RT("Improve Fate") + ".indexOf('On D20 Test, add or subtract 2d4')", 0)]),
+]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

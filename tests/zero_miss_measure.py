@@ -30,7 +30,7 @@ if "--root" in args:
 ONLY = args[args.index("--only") + 1] if "--only" in args else None
 BASE = os.path.join(HERE, "zero_miss_baseline.json")
 OUT = args[args.index("--json") + 1] if "--json" in args else None
-CLASSES = ["AC", "SPEED", "RES", "ADV", "PROF", "RESOURCE", "DICE", "SPELL", "NUM"]
+CLASSES = ["AC", "SPEED", "RES", "ADV", "PROF", "RESOURCE", "DICE", "SPELL", "NUM", "MASTERY", "D20"]
 
 # ------------------------------------------------------------------------------------------------ reading the feature text
 RX = {
@@ -42,16 +42,40 @@ RX = {
     "RESOURCE": re.compile(r"(short|long) rest[^.]{0,60}(regain|expended|restore)|(uses?|times)[^.]{0,40}(short|long) rest|(once|twice) (per|before|until)[^.]{0,20}(short|long) rest|proficiency bonus times|\b(number of|equal to)[^.]{0,30}\buses\b|\bexpend(ed)? (one|a|an|1)\b[^.]{0,30}\buse"),
     "DICE": re.compile(r"\b\d*d(4|6|8|10|12)\b|\b\d+d20\b"),
     "NUM": re.compile(r"\binitiative\b[^.]{0,40}(bonus|add|\+\d)|(bonus|add)[^.]{0,40}\binitiative\b|hit point maximum|hit points? maximum|maximum hit points"),
+    "MASTERY": re.compile(r"use the mastery propert(?:y|ies) of (?:those|that)"),
+    "D20": re.compile(r"d20 (roll|result)s? (of|below) \d+ or (lower|less)|(count|treat)[^.]{0,40}d20[^.]{0,40}as (a )?\d+|roll of \d+ or lower[^.]{0,30}(count|treat)"),
 }
+# Reading rules that keep a word from being read as a grant (zero miss 4, reports/zm4.md):
+#  PROF: "weapons you're proficient with" and "a skill you have proficiency in" are CONDITIONS of a pick, not a proficiency the feature grants; "Initiative Proficiency" is the
+#        Proficiency Bonus added to Initiative (class NUM). Weapon Mastery has its own class MASTERY, a d20 floor (Reliable Talent) has D20.
+#  DICE: "pick it or roll 1d6 on the Star Map table / to decide" is a cosmetic table (look of a map, a gift, a manifestation), not a game die.
+PROF_COND = re.compile(r"(?:weapons?|skills?|tools?|armor|kinds? of \w+|that|which)\b[^.]{0,30}\byou(?:['\u2019]re| are| have)\s+(?:now\s+)?(?:proficient|proficiency)(?: with| in)?|initiative proficiency")
+DICE_COSMETIC = re.compile(r"(?:or )?roll(?:ing)? \d*d\d+ (?:to decide|on the [a-z ]{3,30} table)")
 SPELL_WORDS = re.compile(r"(can|may|could) cast\b|always have [^.]{0,60}prepared|\bspell slots?\b|\bcantrips?\b|spell list|spellcasting ability|spell save dc|spell attack|without (expending )?a spell slot|\bprepared\b")
 GENERIC = {"your choice", "hit points", "temporary hit points", "ability score increase", "benefit", "prerequisite", "duration", "effect", "damage", "options"}
 COMMON_SPELLS = {"Shield", "Light", "Guidance", "Resistance", "Command", "Heroism", "Fly", "Haste", "Bless", "Bane", "Sleep", "Fear", "Message", "Longstrider", "Aid", "Jump", "Alarm", "Entangle", "Confusion", "Blur", "Slow", "Web", "Darkness", "Daylight", "Silence", "Sanctuary", "Smite", "Barkskin", "Reincarnate"}
 SKIP_TRAITS = {"Creature Type", "Size", "Speed"}
+# Features that sit behind a builder pick or a piece of gear the default build does not take. The unit is also built with each variant and counts as ok when ANY build shows it.
+# fz = other base build (Ability scores ...), ch = builder choices, inv = items, a1 = the Ability the feat raises. Reasons in reports/zm4.md.
+BREAST = [{"n": "Breastplate", "q": 1, "eq": True}]
+VARIANTS = {
+    "cls|Druid|Improved Elemental Fury|DICE": [{"ch": {"p7opt": "Primal Strike"}}],
+    "sub|Barbarian/Path of the Wild Heart|Aspect of the Wilds|SPEED": [{"ch": {"p6opt": "Panther"}}, {"ch": {"p6opt": "Salmon"}}],
+    "feat|Medium Armor Master|Medium Armor Master|AC": [{"fz": {"cls": "Fighter", "lv": 19, "arr": [10, 15, 14, 12, 10, 8]}, "inv": BREAST, "a1": "DEX"}],
+    "sub|Bard/College of Dance|Dazzling Footwork|AC": [{"fz": {"cls": "Bard", "sub": "College of Dance", "arr": [10, 15, 14, 12, 10, 13]}, "inv": []}],
+    "feat|Martial Weapon Training|Martial Weapon Training|PROF": [{"fz": {"cls": "Wizard", "lv": 19}}],
+}
+# The sheet calls the row by another name than the feature
+ALIAS = {"cls|Warlock|Pact Magic|RESOURCE": ["pact slots"]}
 
 
 def classes_of(text, spells):
     t = (text or "").lower()
-    out = [c for c, rx in RX.items() if rx.search(t if c != "PROF" else t.replace("proficiency bonus", ""))]
+    def view(c):
+        if c == "PROF": return PROF_COND.sub(" ", t.replace("proficiency bonus", ""))
+        if c == "DICE": return DICE_COSMETIC.sub(" ", t)
+        return t
+    out = [c for c, rx in RX.items() if rx.search(view(c))]
     # SPELL: a spell sentence (cast, prepared, slot, cantrip, spell list ...) or a named spell next to cast / prepared / spell
     if SPELL_WORDS.search(t) or (re.search(r"\bcast|prepared|\bspell", t) and any(re.search(r"(?<![a-z])" + re.escape(s) + r"(?![a-z])", t) for s in spells)):
         out.append("SPELL")
@@ -83,8 +107,9 @@ JS_LIB = r"""()=>{
  const SRC={core:true,dmg:true,efa:true}; const store={};
  const t=x=>x==null?'':String(x);
  const lines=(C)=>{ const o=[]; const add=(sec,kind,label,text)=>o.push([sec,kind,t(label),t(text)]);
-  if(C.ac&&typeof C.ac==='object'){ add('ac','c',C.ac.baseSrc,'base '+C.ac.base); (C.ac.bonus||[]).forEach(b=>add('ac','c',b.s,b.v)) }
+  if(C.ac&&typeof C.ac==='object'){ add('ac','c',C.ac.baseSrc,'base '+C.ac.base); (C.ac.bonus||[]).forEach(b=>add('ac','c',b.s,b.v)); if(C.ac.dex==='max3') add('ac','c','Medium Armor Master','Dexterity modifier cap +3, the rule of the feat') /* the editor names this mode "Up to +3 (Medium Armor Master)" */ }
   add('speed','c',C.speedSrc,'speed '+C.speed); if(C.moves) add('speed','c','',JSON.stringify(C.moves));
+  if(C.speeds) for(const k in C.speeds) add('speed','c',C.speeds[k].s,k+' speed '+C.speeds[k].v);
   (C.defenses||[]).forEach(x=>add('def','c',x.s,x.t+': '+x.v)); (C.saveNotes||[]).forEach(x=>add('sn','c',x.s,x.t));
   (C.skills||[]).forEach(s=>{ if(s.p||s.e) add('skill','c',s.src,s.n+(s.e?' expertise':' proficiency')) });
   const ps=C.profSrc||{}; for(const k in ps) (ps[k]||[]).forEach(e=>add('prof','c',e[1],k+': '+e[0]));
@@ -96,13 +121,16 @@ JS_LIB = r"""()=>{
   (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','spellcasting pact magic',JSON.stringify(C.spellcasting));
   (C.itemAdv||[]).forEach(x=>add('def','c','',JSON.stringify(x)));
   if(window.__sit&&window.__sit.table) window.__sit.table.forEach(r=>add('sit','c',(r.f||[]).join(' | '),t(r.n)+' '+(typeof r.s==='string'?r.s:'')+' '+JSON.stringify(r.e||{}))); /* the Situations panel of the sheet (app/34): switchable play states, a static table */
-  (C.features||[]).forEach(g=>(g.items||[]).forEach(i=>{ const m=/\*\*(At your level|Your choice)\.?:?\*\*\.?:?\s*(.*)$/.exec(t(i.d)); if(m) add('fnum','c',i.n,m[2]) })); /* numbers and choices the sheet adds to a feature text (feature numbers, picks) */
+  (C.features||[]).forEach(g=>(g.items||[]).forEach(i=>{ const m=/\*\*(At your level|Your choice)\.?:?\*\*\.?:?\s*(.*)$/.exec(t(i.d)); if(m) add('fnum','c',i.n,m[2]); if(/^Masteries:|\bweapon mastery: /i.test(t(i.d))) add('wm','c',i.n,t(i.d)) })); /* numbers and choices the sheet adds to a feature text (feature numbers, picks) */
   (C.actions||[]).forEach(a=>add('card','k',a.n+' '+t(a.t),t(a.d))); (C.acts||[]).forEach(a=>add('card','k',a.n+' '+t(a.f),t(a.d)));
   return o };
  window.__zm={
   base(key,o){ const f=window.__bldFuzz(Object.assign({sp:'Human',bg:'Acolyte',arr:[15,14,13,12,10,8],b2:0,b1:0,lv:20,sub:'',src:SRC,anySub:true},o)); if(!f||!f.b) return f&&f.err||'none'; store[key]=f.b; return null },
   run(reqs){ return reqs.map(r=>{ try{ let b=structuredClone(store[r.key]); b.level=r.lv; if(r.sp) b.species=r.sp;
-      if(r.feat){ b.ch=b.ch||{}; b.ch.feat4={feat:r.feat,a1:'STR',a2:'CON'}; const b2=window.__bldFillFor(b); if(b2) b=b2 }
+      if(r.feat){ b.ch=b.ch||{}; b.ch.feat4={feat:r.feat,a1:r.a1||'STR',a2:'CON'}; const b2=window.__bldFillFor(b); if(b2) b=b2;
+        /* the picks a feat asks for (a skill for Keen Mind and Observant, a weapon kind for Weapon Master) are left open by the quick fill: take the first options */
+        (window.__bldChoiceList(b)||[]).forEach(c=>{ if(c.fk==='feat4'&&!c.done&&c.from&&c.from.length){ b.ch[c.key]=c.from.slice(0,c.n||1) } }) }
+      if(r.ch){ b.ch=Object.assign(b.ch||{},r.ch) } if(r.inv){ b.inv=r.inv }
       const tg={}; (r.tog||[]).forEach(i=>{tg[i]=true}); const C=window.__bldSheetFor(b,Object.keys(tg).length?tg:undefined); return lines(C) }catch(e){ return 'ERR '+String(e).slice(0,120) } }) }
  };
  return 1}"""
@@ -122,9 +150,11 @@ def units(D):
             names.append(base_name(owner))  # the sheet labels species lines with the species name (Dwarf, Aasimar)
         names = [x for x in dict.fromkeys(names) if x and x not in GENERIC]
         for c in cs:
-            if any(x["id"] == "%s|%s|%s|%s" % (kind, owner, name, c) for x in U):
-                continue  # the same feature name at two levels (Reckless Attack, Improved ...): one measure
-            U.append({"id": "%s|%s|%s|%s" % (kind, owner, name, c), "kind": kind, "owner": owner, "name": name, "lvl": lvl, "cat": c, "names": names, "spn": [x.lower() for x in spn], "tog": tg})
+            old = [x for x in U if x["id"] == "%s|%s|%s|%s" % (kind, owner, name, c)]
+            if old:
+                old[0]["lvls"].append(lvl)  # the same feature name at two levels (Reckless Attack, Improved ...): one measure, checked at each of its levels
+                continue
+            U.append({"id": "%s|%s|%s|%s" % (kind, owner, name, c), "kind": kind, "owner": owner, "name": name, "lvl": lvl, "lvls": [lvl], "cat": c, "names": names, "spn": [x.lower() for x in spn], "tog": tg})
 
     for cls, o in D["classes"].items():
         for lv, n, tx in o["f"]:
@@ -144,10 +174,11 @@ def units(D):
 
 
 SEC = {  # section -> classes it is evidence for, plus the keyword rule below for text sections
-    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"]}
+    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"], "wm": ["MASTERY"]}
 KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage|\"adv\""), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
-      "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast|\bslots?\b|cantrip"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point")}
-TEXT_SEC = {"def", "sn", "card", "xdmg", "att", "res", "sit", "fnum"}
+      "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast|\bslots?\b|cantrip"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point"),
+      "MASTERY": re.compile(r"mastery|masteries"), "D20": re.compile(r"9 or lower|count[^.]{0,30}as a 10|treat[^.]{0,30}as a 10")}
+TEXT_SEC = {"def", "sn", "card", "xdmg", "att", "res", "sit", "fnum", "wm"}
 
 
 def line_classes(sec, label, text):
@@ -193,11 +224,14 @@ def main():
     U = units(D)
     cache = {}
 
-    def sheet(key, lv, tog=(), feat=None, sp=None):
-        """lines of the sheet (prepared), cached"""
-        k = (key, lv, tuple(tog), feat, sp)
+    def sheet(key, lv, tog=(), feat=None, sp=None, extra=None):
+        """lines of the sheet (prepared), cached. extra = a variant (VARIANTS): choices (ch), items (inv), feat Ability pick (a1)"""
+        ex = json.dumps(extra, sort_keys=True) if extra else ""
+        k = (key, lv, tuple(tog), feat, sp, ex)
         if k not in cache:
-            r = pg.evaluate("(q)=>window.__zm.run(q)", [{"key": key, "lv": lv, "tog": list(tog), "feat": feat, "sp": sp}])[0]
+            q = {"key": key, "lv": lv, "tog": list(tog), "feat": feat, "sp": sp}
+            if extra: q.update({x: extra[x] for x in ("ch", "inv", "a1") if x in extra})
+            r = pg.evaluate("(q)=>window.__zm.run(q)", [q])[0]
             if isinstance(r, str):
                 raise RuntimeError("build %s: %s" % (k, r))
             cache[k] = prep(r)
@@ -245,12 +279,14 @@ def main():
         else:
             key, lv, tog, ft, sp = "feat|base", 19, u["tog"], u["name"], None
         u["_b"] = (key, lv, tuple(tog), ft, sp)
+        u["names"] = u["names"] + ALIAS.get(u["id"], [])
         L1 = sheet(*u["_b"])
         if match(L1, u, ("c",)):
             status[u["id"]] = ("ok", "name")
         elif match(L1, u, ("k",)):
             status[u["id"]] = ("card", "name")
-        groups[(u["kind"], u["owner"], u["lvl"] if u["kind"] in ("cls", "sub") else 0, u["cat"])].append(u)
+        for gl in (u["lvls"] if u["kind"] in ("cls", "sub") else [0]):
+            groups[(u["kind"], u["owner"], gl, u["cat"])].append(u)
     print("pass 1 %.0fs, builds %d" % (time.time() - t0, len(cache)), flush=True)
 
     # pass 2: delta for what the names did not explain
@@ -277,6 +313,28 @@ def main():
         elif status.get(unmet[0]["id"]) is None and new_k and len(new_k) >= len(unmet):
             for u in unmet:
                 if u["id"] not in status: status[u["id"]] = ("card", "delta")
+    # pass 3: the builds with a pick or gear the default build does not take (VARIANTS)
+    made = set()
+    for u in U:
+        if status.get(u["id"], ("",))[0] == "ok" or u["id"] not in VARIANTS:
+            continue
+        for v in VARIANTS[u["id"]]:
+            key, lv, tog, ft, sp = u["_b"]
+            if v.get("fz"):
+                key = "var|" + json.dumps(v["fz"], sort_keys=True); lv = v["fz"].get("lv", lv)
+                if key not in made:
+                    e = pg.evaluate("(a)=>window.__zm.base(a[0],a[1])", [key, v["fz"]]); made.add(key)
+                    if e: print("base error", key, e)
+            L = sheet(key, lv, tog, ft, sp, v)
+            hit = match(L, u, ("c",))
+            if not hit and u["kind"] in ("cls", "sub"):
+                for gl in u["lvls"]:
+                    if gl < 2: continue
+                    zs = {x[4] for x in sheet(key, gl - 1, tog, ft, sp, v)}
+                    if [x for x in sheet(key, gl, tog, ft, sp, v) if x[4] not in zs and u["cat"] in x[3] and x[0] == "c"]:
+                        hit = True; break
+            if hit:
+                status[u["id"]] = ("ok", "variant"); break
     print("pass 2 %.0fs, builds %d" % (time.time() - t0, len(cache)), flush=True)
     b.close(); p.stop(); srv.shutdown()
 
