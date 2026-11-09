@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Portrait picker. python3 tests/portrait_pick.py [--root DIR]
-Tap the portrait: a sheet lists 20 art portraits. Pick one: portrait is set (data URL in the saved state), sheet closes. Remove clears it. 390x844 and 1250x850. No page error."""
+Tap the portrait: a sheet lists the first 48 art portraits (pages of 48 on scroll). Pick one: portrait is set (data URL in the saved state), sheet closes. Remove clears it. 390x844 and 1250x850. No page error."""
 import asyncio, json, os, sys, socket, threading, functools, http.server
 from playwright.async_api import async_playwright
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
@@ -30,7 +30,7 @@ async def main():
             await pg.click("#homeV .hcard [data-hview]"); await pg.wait_for_selector("#photo", state="attached"); await pg.wait_for_timeout(1000)
             await pg.evaluate("document.getElementById('photo').click()"); await pg.wait_for_selector("#sheetBody .pp-i", state="attached"); await pg.wait_for_timeout(500)
             n = await pg.evaluate("document.querySelectorAll('#sheetBody .pp-i').length")
-            chk(t + " sheet lists 20 art portraits (%d)" % n, n == 20)
+            chk(t + " sheet lists the first page of 48 art portraits (%d)" % n, n == 48)
             chk(t + " no sheet overflow sideways", await pg.evaluate("var b=document.getElementById('sheetBody');b.scrollWidth<=b.clientWidth+1"))
             await pg.evaluate("document.querySelector('#sheetBody .pp-i').click()"); await pg.wait_for_timeout(1200)
             chk(t + " portrait is set", await pg.evaluate("document.getElementById('photo').classList.contains('has')&&document.getElementById('photo').style.backgroundImage.indexOf('data:image/jpeg')>0"))

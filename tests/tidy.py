@@ -52,7 +52,9 @@ async def main():
                 check("record light: inventory button is light", ib and sum(map(float, __import__('re').findall(r'[\d.]+', ib)[:3])) > 600, ib)
             await pg.evaluate("()=>{var i=document.querySelector('[data-info]');i&&i.click()}"); await pg.wait_for_timeout(1200)
             hh = await pg.evaluate("()=>{var h=document.getElementById('sheetHead');return h?Math.round(h.getBoundingClientRect().height):-1}")
-            check("%d entry sheet header is a normal height" % W, 0 < hh < 130, hh)
+            # A blended sheet (entry with a picture) lays the header over the hero picture on purpose, so its height equals the hero height.
+            hero = await pg.evaluate("()=>{var s=document.getElementById('sheet'),w=document.getElementById('shWm');return s.classList.contains('blend')&&!s.classList.contains('bl-compact')&&w?Math.round(w.offsetHeight):0}")
+            check("%d entry sheet header is a normal height" % W, (0 < hh < 130) or (hero > 0 and abs(hh - hero) <= 1), [hh, hero])
             await pg.evaluate("()=>{var x=document.querySelector('.sx,[aria-label=Close]');x&&x.click()}"); await pg.wait_for_timeout(500)
             await pg.evaluate("()=>window.__ask('Delete '+'x'.repeat(120)+' for good? This cannot be undone and the long name must wrap.',' Delete',function(){},['Keep both',function(){}])"); await pg.wait_for_timeout(500)
             ad = await pg.evaluate("()=>{const b=document.querySelector('.askb');const r=b.getBoundingClientRect();const btns=[...b.parentElement.querySelectorAll('.btn')].map(x=>x.getBoundingClientRect());return {sw:b.scrollWidth,cw:b.clientWidth,right:r.right,vw:innerWidth,minH:Math.min(...btns.map(x=>x.height))}}")
