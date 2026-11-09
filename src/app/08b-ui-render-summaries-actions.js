@@ -119,6 +119,7 @@ var MAN_SUM={"Paladin's Smite":"Bonus Action: right after you hit with a melee w
  "Distracting Strike":"Add the die to damage and leave the target open. Damage +(Superiority Die). The next attack roll by someone else against it before your next turn has Advantage.",
  "Maneuvering Attack":"Add the die to damage and move an ally. Damage +(Superiority Die). A willing ally who sees or hears you uses its Reaction to move up to half its Speed without provoking the target.",
  "Sweeping Attack":"Hit a second creature within your reach and 5 ft of the first target, if the original roll would hit it. Damage (Superiority Die), same damage type. Melee, weapon or Unarmed Strike."};
+env.__MANSUM=MAN_SUM;/* the maneuver summaries, shown in the builder choice list */
 
 export function actSplit(feats){
  const {kinds, ak}=actSplitStep1(feats);
