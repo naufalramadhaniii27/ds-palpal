@@ -9,7 +9,7 @@ Skrip: `tests/visual_state_scan.py`. Cabang: `claude/visual-state-scan`.
 - Mengumpulkan kontrol `.bx`, `.pip`, `.chip`, `.tog`, `[aria-pressed]`, `[aria-checked]` yang terlihat. Satu wakil per tanda tangan (kelas, data-k, induk) per karakter dan viewport.
 - Tiap wakil diklik, dibaca, diklik balik. Yang dibaca: background-image, background-color, border, opacity, warna, shadow, filter, serta `::before`, `::after` dan anak langsung.
 - Jika `::before` menggambar penuh, latar elemen dan cincin tepi tidak dihitung. Isi latar `::before` yang menentukan. Teks atau ikon yang berganti dihitung sebagai beda.
-- Delapan proses paralel dibagi empat. Keluar dengan kode 1 jika ada kontrol yang dua keadaannya sama, kecuali ada di `tests/visual_state_allow.json` (belum ada).
+- Empat proses paralel. Keluar dengan kode 1 jika ada kontrol yang dua keadaannya sama, kecuali ada di `tests/visual_state_allow.json` (belum ada).
 - `--selftest` mematikan lagi syarat `:not([aria-pressed="true"])` pada aturan pact hijau. Skrip harus menemukannya.
 - Lembar gaya disuntik lewat `adoptedStyleSheets`, karena CSP menolak tag `<style>` sisipan.
 
