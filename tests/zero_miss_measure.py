@@ -15,7 +15,7 @@ The sheet is flattened into evidence lines (section, label, text). A measure is
   card   only an action card (actions, acts) names the feature: the rule is shown as text, no number is computed
   miss   neither.
 The sections of C that never count as evidence: features (the book text), inv, names, the builder choice list.
-DELTA is accepted only when the new lines of that class are at least as many as the features of the same owner, level and class that no name explained
+DELTA is not used for ADV and RES (their lines always name the source). For the other classes it is accepted only when the new lines of that class are at least as many as the features of the same owner, level and class that no name explained
 (a lone new line cannot explain two features).
 Result: a table per mechanical class (measured, ok, card, miss) and, with --list, the lists of miss and card.
 Baseline tests/zero_miss_baseline.json: the miss list and the card list may only get SHORTER. A new miss (or a counted feature that was ok) fails with exit 1.
@@ -93,8 +93,10 @@ JS_LIB = r"""()=>{
   (C.xdmg||[]).forEach(x=>add('xdmg','c',x.n+' '+x.sub,x.dmg+' '+x.type+' '+x.note));
   (C.attacks||[]).forEach(a=>add('att','c',t(a.dieSrc)+' '+t(a.miscSrc),a.n+' '+t(a.die)+' '+t(a.note)+' '+JSON.stringify(a.xdice||'')));
   (C.hpBonus||[]).forEach(x=>add('num','c',x.s,'hp '+x.v)); (C.initBonus||[]).forEach(x=>add('num','c',x.s,'init '+x.v));
-  (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','',JSON.stringify(C.spellcasting));
+  (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','spellcasting pact magic',JSON.stringify(C.spellcasting));
   (C.itemAdv||[]).forEach(x=>add('def','c','',JSON.stringify(x)));
+  if(window.__sit&&window.__sit.table) window.__sit.table.forEach(r=>add('sit','c',(r.f||[]).join(' | '),t(r.n)+' '+(typeof r.s==='string'?r.s:'')+' '+JSON.stringify(r.e||{}))); /* the Situations panel of the sheet (app/34): switchable play states, a static table */
+  (C.features||[]).forEach(g=>(g.items||[]).forEach(i=>{ const m=/\*\*(At your level|Your choice)\.?:?\*\*\.?:?\s*(.*)$/.exec(t(i.d)); if(m) add('fnum','c',i.n,m[2]) })); /* numbers and choices the sheet adds to a feature text (feature numbers, picks) */
   (C.actions||[]).forEach(a=>add('card','k',a.n+' '+t(a.t),t(a.d))); (C.acts||[]).forEach(a=>add('card','k',a.n+' '+t(a.f),t(a.d)));
   return o };
  window.__zm={
@@ -114,12 +116,15 @@ def units(D):
         if ONLY and kind != ONLY:
             return
         cs = classes_of(text, spells)
+        spn = [x for x in D["spells"] if re.search(r"(?<![A-Za-z])" + re.escape(x) + r"(?![A-Za-z])", text or "") and len(x) > 5 and x not in COMMON_SPELLS]
         names = [base_name(name)] + [base_name(x) for x in re.findall(r"\*\*([^*]{3,40}?)\.?\*\*", text or "")]
+        if kind == "species":
+            names.append(base_name(owner))  # the sheet labels species lines with the species name (Dwarf, Aasimar)
         names = [x for x in dict.fromkeys(names) if x and x not in GENERIC]
         for c in cs:
             if any(x["id"] == "%s|%s|%s|%s" % (kind, owner, name, c) for x in U):
                 continue  # the same feature name at two levels (Reckless Attack, Improved ...): one measure
-            U.append({"id": "%s|%s|%s|%s" % (kind, owner, name, c), "kind": kind, "owner": owner, "name": name, "lvl": lvl, "cat": c, "names": names, "tog": tg})
+            U.append({"id": "%s|%s|%s|%s" % (kind, owner, name, c), "kind": kind, "owner": owner, "name": name, "lvl": lvl, "cat": c, "names": names, "spn": [x.lower() for x in spn], "tog": tg})
 
     for cls, o in D["classes"].items():
         for lv, n, tx in o["f"]:
@@ -140,9 +145,9 @@ def units(D):
 
 SEC = {  # section -> classes it is evidence for, plus the keyword rule below for text sections
     "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"]}
-KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage"), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
-      "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point")}
-TEXT_SEC = {"def", "sn", "card", "xdmg", "att", "res"}
+KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage|\"adv\""), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
+      "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast|\bslots?\b|cantrip"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point")}
+TEXT_SEC = {"def", "sn", "card", "xdmg", "att", "res", "sit", "fnum"}
 
 
 def line_classes(sec, label, text):
@@ -222,6 +227,10 @@ def main():
         for kind, lab, txt, cs, key in lines:
             if kind in kinds and u["cat"] in cs and rx.search(lab if lab.strip() else txt):
                 return True
+        if u["cat"] == "SPELL" and "c" in kinds and u["spn"]:  # a spell the feature text names is on the sheet (spell list or a limited use row)
+            for kind, lab, txt, cs, key in lines:
+                if kind == "c" and key.split("|")[0] in ("spell", "res") and any(sn == txt.strip() or sn in lab or sn in txt for sn in u["spn"]):
+                    return True
         return False
 
     # pass 1: names
@@ -247,7 +256,7 @@ def main():
     # pass 2: delta for what the names did not explain
     for (kind, owner, lvl, cat), us in groups.items():
         unmet = [u for u in us if status.get(u["id"], ("", ""))[0] != "ok"]
-        if not unmet:
+        if not unmet or cat in ("ADV", "RES"):  # advantage and resistance lines always carry the name of their source: no delta guess
             continue
         named = len([u for u in us if status.get(u["id"], ("",))[0] == "ok"])
         u0 = us[0]
@@ -271,35 +280,40 @@ def main():
     print("pass 2 %.0fs, builds %d" % (time.time() - t0, len(cache)), flush=True)
     b.close(); p.stop(); srv.shutdown()
 
-    res = {c: {"n": 0, "ok": 0, "card": 0, "miss": 0} for c in CLASSES}
-    by_kind = {k: {"n": 0, "ok": 0, "card": 0, "miss": 0} for k in ("cls", "sub", "species", "feat")}
-    miss, card = [], []
+    base = json.load(open(BASE)) if os.path.exists(BASE) else None
+    design = (base or {}).get("by_design", {})   # id -> reason: a sentence the sheet cannot count (effect on another creature, a table rule, a roll table); listed in reports/rules-notes.md
+    res = {c: {"n": 0, "ok": 0, "card": 0, "design": 0, "miss": 0} for c in CLASSES}
+    by_kind = {k: {"n": 0, "ok": 0, "card": 0, "design": 0, "miss": 0} for k in ("cls", "sub", "species", "feat")}
+    miss, card, dlist = [], [], []
     how = collections.Counter()
     for u in U:
         st = status.get(u["id"], ("miss", ""))
+        if st[0] == "miss" and u["id"] in design:
+            st = ("design", "")
         for tab in (res[u["cat"]], by_kind[u["kind"]]):
             tab["n"] += 1; tab[st[0]] += 1
         how[st] += 1
         (miss if st[0] == "miss" else card if st[0] == "card" else []).append(u["id"])
+        if st[0] == "design": dlist.append(u["id"])
     print("\nMeasure %s (%.0fs, %d builds)\n" % (time.strftime("%Y-%m-%d"), time.time() - t0, len(cache)))
-    print("%-9s %8s %6s %6s %6s" % ("class", "measured", "ok", "card", "miss"))
+    print("%-9s %8s %6s %6s %6s %6s" % ("class", "measured", "ok", "card", "design", "miss"))
     tot = collections.Counter()
     for c in CLASSES:
-        r = res[c]; print("%-9s %8d %6d %6d %6d" % (c, r["n"], r["ok"], r["card"], r["miss"]))
+        r = res[c]; print("%-9s %8d %6d %6d %6d %6d" % (c, r["n"], r["ok"], r["card"], r["design"], r["miss"]))
         for k in r: tot[k] += r[k]
-    print("%-9s %8d %6d %6d %6d" % ("all", tot["n"], tot["ok"], tot["card"], tot["miss"]))
-    print("\n%-9s %8s %6s %6s %6s" % ("owner", "measured", "ok", "card", "miss"))
-    for k, r in by_kind.items(): print("%-9s %8d %6d %6d %6d" % (k, r["n"], r["ok"], r["card"], r["miss"]))
+    print("%-9s %8d %6d %6d %6d %6d" % ("all", tot["n"], tot["ok"], tot["card"], tot["design"], tot["miss"]))
+    print("\n%-9s %8s %6s %6s %6s %6s" % ("owner", "measured", "ok", "card", "design", "miss"))
+    for k, r in by_kind.items(): print("%-9s %8d %6d %6d %6d %6d" % (k, r["n"], r["ok"], r["card"], r["design"], r["miss"]))
     print("\nhow:", dict((a + ":" + b2, n) for (a, b2), n in how.items()))
     if "--list" in args:
         print("\nMISS (%d)" % len(miss)); [print("  " + x) for x in sorted(miss)]
         print("\nCARD (%d)" % len(card)); [print("  " + x) for x in sorted(card)]
-    cur = {"measured": {c: res[c] for c in CLASSES}, "miss": sorted(miss), "card": sorted(card)}
+    cur = {"measured": {c: res[c] for c in CLASSES}, "miss": sorted(miss), "card": sorted(card), "by_design": {k: design[k] for k in sorted(design)}}
     if OUT: json.dump(cur, open(OUT, "w"), indent=1)
-    base = json.load(open(BASE)) if os.path.exists(BASE) else None
     bad = 0
     if base:
-        newm = sorted(set(miss) - set(base["miss"])); newc = sorted((set(card) | set(miss)) - set(base["card"]) - set(base["miss"]))
+        newm = sorted(set(miss) - set(base["miss"]))
+        newc = sorted((set(card) | set(miss)) - set(base["card"]) - set(base["miss"])); newc = sorted((set(card) | set(miss)) - set(base["card"]) - set(base["miss"]))
         fixed = sorted(set(base["miss"]) - set(miss))
         print("\nagainst baseline: %d fixed, %d new miss, %d new card-or-miss" % (len(fixed), len(newm), len(newc)))
         for x in newm: print("  NEW MISS " + x)

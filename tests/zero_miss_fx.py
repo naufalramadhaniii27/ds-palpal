@@ -180,6 +180,90 @@ for feat, key in [("Squat Nimbleness", "sq-feat4"), ("Inspirational Caster", "ic
 CASES.append(dict(name="Z2 an old save with both Samurai picks keeps one skill from Samurai", b=dict(cls="Fighter", level=3, sub="Samurai", base=WL, src=SRC_ALL, ch={"p3skilsamurai": ["History"], "gx-sk-sub-Samurai": ["Insight"]}),
                   expect=[("C.skills.filter(s=>s.p&&/Samurai/.test(s.src||'')).map(s=>s.n).join()", "History")], base_allow=[r"^skills\.\d+\."]))
 
+
+# ---------------- zero miss 3 (reports/zm3.md): ADV, RES and SPELL sentences filled in src/data/fx-Z3.js. Toggle cases compare the build with the toggle on against the same build with every toggle off.
+DEFA = [r"^fxToggles\.\d+\.on$", r"^defenses", r"^saveNotes", r"^spellcasting", r"^features\.\d+\.items\.\d+\.d$"]  # what a toggle may change
+DEFB = [r"^fxToggles", r"^defenses", r"^saveNotes", r"^spellcasting", r"^features\.", r"^res\.", r"^attacks\.", r"^spells\."]  # vs origin/main
+WLC = dict(WL)
+
+
+def DL(src):  # the defenses lines of one source
+    return "C.defenses.filter(d=>d.s.indexOf(%r)===0)" % src
+
+
+def RS(src):  # the resistances of one source, as a list
+    return "%s.filter(d=>d.t==='Resistance').map(d=>d.v).join()" % DL(src)
+
+
+def NT(src, rx):  # a Note of one source matches
+    return "%s.some(d=>d.t==='Note'&&/%s/.test(d.v))" % (DL(src), rx)
+
+
+def z3(name, b, expect, tog=None, **kw):
+    c = dict(name=name, b=b, expect=expect, base_allow=DEFB, **kw)
+    if tog:
+        c["tog"] = tog; c.setdefault("allow", DEFA)
+    return c
+
+
+EXC = lambda xs: ",".join(t for t in ["Acid", "Bludgeoning", "Cold", "Fire", "Force", "Lightning", "Necrotic", "Piercing", "Poison", "Psychic", "Radiant", "Slashing", "Thunder"] if t not in xs)
+CASES += [
+    z3("Z3 Bard 7 (2024) Countercharm: a reroll of a failed Charmed or Frightened save with Advantage", dict(cls="Bard", level=7, base=WL), [(NT("Countercharm", "reroll"), True), (NT("Countercharm", "Advantage"), True)]),
+    z3("NEG Z3 no Countercharm line at Bard 6", dict(cls="Bard", level=6, base=WL), [(DL("Countercharm") + ".length", 0)]),
+    z3("NEG Z3 the 2014 Bard has no 2024 Countercharm line", dict(rs="2014", cls="Bard", level=7, base=WL), [(DL("Countercharm") + ".length", 0)]),
+    z3("Z3 Rogue 18 Elusive: attack rolls against you can't have Advantage", dict(cls="Rogue", level=18, base=WL), [(NT("Elusive", "can't have Advantage"), True)]),
+    z3("NEG Z3 no Elusive line at Rogue 17", dict(cls="Rogue", level=17, base=WL), [(DL("Elusive") + ".length", 0)]),
+    z3("Z3 Innate Sorcery: the spell save DC of Sorcerer spells goes up by 1", dict(cls="Sorcerer", level=5, base=WL), [("C.spellcasting.dc", 16)], tog={"innate-sorcery": True}),
+    z3("Z3 Innate Sorcery: Advantage on attack rolls for Sorcerer spells", dict(cls="Sorcerer", level=5, base=WL), [(NT("Innate Sorcery", "Advantage on attack rolls for Sorcerer spells"), True)], tog={"innate-sorcery": True}),
+    z3("NEG Z3 the 2014 Sorcerer has no Innate Sorcery toggle", dict(rs="2014", cls="Sorcerer", level=5, base=WL), [("(C.fxToggles||[]).some(t=>t.id==='innate-sorcery')", False)]),
+    z3("Z3 Monk 18 Superior Defense: Resistance to every damage type except Force", dict(cls="Monk", level=18, base=WL), [(RS("Superior Defense"), EXC(["Force"]))], tog={"superior-defense": True}),
+    z3("NEG Z3 no Superior Defense toggle at Monk 17", dict(cls="Monk", level=17, base=WL), [("(C.fxToggles||[]).some(t=>t.id==='superior-defense')", False)]),
+    z3("Z3 Warlock 20 Eldritch Master: Magical Cunning restores every Pact Magic slot", dict(cls="Warlock", level=20, base=WL), [(NT("Eldritch Master", "restores every expended Pact Magic slot"), True)]),
+    z3("Z3 Wild Heart 3, Rage of the Wilds Bear: Resistance to all but Force, Necrotic, Psychic, Radiant", dict(cls="Barbarian", level=3, sub="Path of the Wild Heart", base=WL), [(RS("Rage of the Wilds (Bear)"), EXC(["Force", "Necrotic", "Psychic", "Radiant"]))], tog={"wild-bear": True}),
+    z3("Z3 Wild Heart 3, Rage of the Wilds Wolf: allies attack with Advantage near you", dict(cls="Barbarian", level=3, sub="Path of the Wild Heart", base=WL), [(NT("Rage of the Wilds (Wolf)", "allies make attack rolls with Advantage"), True)], tog={"wild-wolf": True}),
+    z3("Z3 Trickery 3, Blessing of the Trickster: Advantage on Dexterity (Stealth) checks", dict(cls="Cleric", level=3, sub="Trickery Domain", base=WL), [(NT("Blessing of the Trickster", "Advantage on Dexterity \\(Stealth\\) checks"), True)], tog={"trickster-blessing": True}),
+    z3("Z3 Trickery 3, Invoke Duplicity Distract: Advantage on attack rolls against the creature", dict(cls="Cleric", level=3, sub="Trickery Domain", base=WL), [(NT("Invoke Duplicity", "Advantage on attack rolls against a creature"), True)], tog={"invoke-duplicity": True}),
+    z3("Z3 Moon 10, Moonlight Step: your next attack roll has Advantage", dict(cls="Druid", level=10, sub="Circle of the Moon", base=WL), [(NT("Moonlight Step", "next attack roll"), True)], tog={"moonlight-step": True}),
+    z3("Z3 Stars 14, Full of Stars: Resistance to Slashing, Piercing, Bludgeoning", dict(cls="Druid", level=14, sub="Circle of the Stars", base=WL), [(RS("Full of Stars"), "Bludgeoning,Piercing,Slashing")], tog={"starry-form": True}),
+    z3("Z3 Shadow 6, Shadow Step: the next melee attack has Advantage", dict(cls="Monk", level=6, sub="Warrior of Shadow", base=WL), [(NT("Shadow Step", "next melee attack"), True)], tog={"shadow-step": True}),
+    z3("Z3 Elements 17, Elemental Epitome: the picked type (Fire) is resisted", dict(cls="Monk", level=17, sub="Warrior of the Elements", base=WL, ch={"gx-epitome-sub-Warrior of the Elements": ["Fire"]}), [(RS("Elemental Epitome"), "Fire")], tog={"elem-attune": True}, allow=DEFA + [r"^moves\.", r"^speedSrc$"]),
+    z3("Z3 Elements 17, Elemental Epitome: switching the pick (Thunder) changes the resisted type", dict(cls="Monk", level=17, sub="Warrior of the Elements", base=WL, ch={"gx-epitome-sub-Warrior of the Elements": ["Thunder"]}), [(RS("Elemental Epitome"), "Thunder")], tog={"elem-attune": True}, allow=DEFA + [r"^moves\.", r"^speedSrc$"]),
+    z3("Z3 Glory 3, Peerless Athlete: Advantage on Acrobatics and Athletics checks", dict(cls="Paladin", level=3, sub="Oath of Glory", base=WL), [(NT("Peerless Athlete", "Advantage on Dexterity \\(Acrobatics\\) and Strength \\(Athletics\\)"), True)], tog={"peerless-athlete": True}),
+    z3("Z3 Vengeance 3, Vow of Enmity: Advantage on attack rolls against the creature", dict(cls="Paladin", level=3, sub="Oath of Vengeance", base=WL), [(NT("Vow of Enmity", "Advantage on attack rolls against the creature"), True)], tog={"vow-of-enmity": True}),
+    z3("Z3 Ancients 20, Elder Champion Diminish Defiance: enemies save with Disadvantage against your spells", dict(cls="Paladin", level=20, sub="Oath of the Ancients", base=WL), [(NT("Elder Champion", "Disadvantage on saves against your spells"), True)], tog={"elder-champion": True}),
+    z3("Z3 Ancients 20, Elder Champion Regeneration: 10 Hit Points at the start of each turn", dict(cls="Paladin", level=20, sub="Oath of the Ancients", base=WL), [(NT("Elder Champion", "regain 10 Hit Points"), True)], tog={"elder-champion": True}),
+    z3("Z3 Ancients 20, Elder Champion Swift Spells: action spells as a Bonus Action", dict(cls="Paladin", level=20, sub="Oath of the Ancients", base=WL), [(NT("Elder Champion", "cast with a Bonus Action"), True)], tog={"elder-champion": True}),
+    z3("Z3 Ancients 20, Elder Champion: a level 5 slot restores the use (tag of the row)", dict(cls="Paladin", level=20, sub="Oath of the Ancients", base=WL), [("C.res.find(r=>r.n==='Elder Champion').tag", "Bonus Action, or a level 5 slot")]),
+    z3("Z3 Vengeance 20, Avenging Angel: a level 5 slot restores the use (tag of the row)", dict(cls="Paladin", level=20, sub="Oath of Vengeance", base=WL), [("C.res.find(r=>r.n==='Avenging Angel').tag", "Bonus Action, or a level 5 slot")]),
+    z3("Z3 Devotion 20, Holy Nimbus: a level 5 slot restores the use (tag of the row)", dict(cls="Paladin", level=20, sub="Oath of Devotion", base=WL), [("C.res.find(r=>r.n==='Holy Nimbus').tag", "Bonus Action, or a level 5 slot")]),
+    z3("Z3 Glory 20, Living Legend: a level 5 slot restores the use (tag of the row)", dict(cls="Paladin", level=20, sub="Oath of Glory", base=WL), [("C.res.find(r=>r.n==='Living Legend').tag", "Bonus Action, or a level 5 slot")]),
+    z3("Z3 Fiend 14, Hurl Through Hell: a Pact Magic slot restores the use (tag of the row)", dict(cls="Warlock", level=14, sub="Fiend Patron", base=WL), [("C.res.find(r=>r.n==='Hurl Through Hell').tag", "On hit, or a Pact slot")]),
+    z3("Z3 Archfey 10, Beguiling Defenses: a Pact Magic slot restores the use (tag of the row)", dict(cls="Warlock", level=10, sub="Archfey Patron", base=WL), [("C.res.find(r=>r.n==='Beguiling Defenses').tag", "Reaction, or a Pact slot")]),
+    z3("Z3 Hunter 15, Superior Hunter's Defense: Reaction Resistance to the damage just taken", dict(cls="Ranger", level=15, sub="Hunter", base=WL), [(NT("Superior Hunter's Defense", "Resistance to that damage"), True)]),
+    z3("NEG Z3 no Superior Hunter's Defense line at Ranger 14", dict(cls="Ranger", level=14, sub="Hunter", base=WL), [(DL("Superior Hunter's Defense") + ".length", 0)]),
+    z3("Z3 Clockwork 14, Trance of Order: attack rolls against you can't benefit from Advantage", dict(cls="Sorcerer", level=14, sub="Clockwork Sorcery", base=WL), [(NT("Trance of Order", "can't benefit from Advantage"), True)], tog={"trance-of-order": True}),
+    z3("Z3 Clockwork 14, Trance of Order: a d20 result of 9 or lower counts as 10", dict(cls="Sorcerer", level=14, sub="Clockwork Sorcery", base=WL), [(NT("Trance of Order", "9 or lower as a 10"), True)], tog={"trance-of-order": True}),
+    z3("Z3 Wild Magic 3, Tides of Chaos: Advantage on a single D20 Test", dict(cls="Sorcerer", level=3, sub="Wild Magic Sorcery", base=WL), [(NT("Tides of Chaos", "Advantage on a single D20 Test"), True)], tog={"tides-of-chaos": True}),
+    z3("Z3 Great Old One 6, Clairvoyant Combatant: Advantage on your attacks against the bonded creature", dict(cls="Warlock", level=6, sub="Great Old One Patron", base=WL), [(NT("Clairvoyant Combatant", "Advantage on attack rolls against the bonded creature"), True)], tog={"clairvoyant-combatant": True}),
+    z3("Z3 Great Old One 6, Clairvoyant Combatant: the bonded creature attacks you with Disadvantage", dict(cls="Warlock", level=6, sub="Great Old One Patron", base=WL), [(NT("Clairvoyant Combatant", "Disadvantage on attack rolls against you"), True)], tog={"clairvoyant-combatant": True}),
+    z3("Z3 Great Old One 6, Clairvoyant Combatant: a Pact Magic slot restores the use early", dict(cls="Warlock", level=6, sub="Great Old One Patron", base=WL), [(NT("Clairvoyant Combatant", "expending a Pact Magic slot"), True)], tog={"clairvoyant-combatant": True}),
+    z3("Z3 Crusher feat Enhanced Critical: Advantage against a creature after a Bludgeoning critical", dict(cls="Fighter", level=4, base=WL, ch={"feat4": {"feat": "Crusher", "a1": "STR"}}), [(NT("Crusher", "Advantage until the start of your next turn"), True)]),
+    z3("Z3 Boon of Spell Recall Free Casting: roll 1d4 when you use a slot of level 1 to 4", dict(cls="Fighter", level=19, base=WL, ch={"feat19": {"feat": "Boon of Spell Recall", "a1": "INT"}}), [(NT("Boon of Spell Recall", "roll 1d4"), True)]),
+    z3("Z3 Boon of the Night Spirit Shadowy Form: Resistance to all but Psychic and Radiant", dict(cls="Fighter", level=19, base=WL, ch={"feat19": {"feat": "Boon of the Night Spirit", "a1": "STR"}}), [(RS("Boon of the Night Spirit"), EXC(["Psychic", "Radiant"]))], tog={"shadowy-form": True}),
+    z3("Z3 Rogue 3 Steady Aim: Advantage on your next attack roll this turn", dict(cls="Rogue", level=3, base=WL), [(NT("Steady Aim", "Advantage on your next attack roll"), True)], tog={"steady-aim": True}),
+    z3("Z3 Rogue 3 Steady Aim: your Speed drops to 0 for the rest of the turn", dict(cls="Rogue", level=3, base=WL), [(NT("Steady Aim", "Speed is 0"), True)], tog={"steady-aim": True}),
+    z3("NEG Z3 the 2014 Rogue has no Steady Aim toggle", dict(rs="2014", cls="Rogue", level=3, base=WL), [("(C.fxToggles||[]).some(t=>t.id==='steady-aim')", False)]),
+    z3("Z3 Zealot 10, Zealous Presence: ten creatures have Advantage on attack rolls and saves", dict(cls="Barbarian", level=10, sub="Path of the Zealot", base=WL), [(NT("Zealous Presence", "Advantage on attack rolls and saving throws"), True)], tog={"zealous-presence": True}),
+    z3("Z3 Champion 18, Survivor Defy Death: Advantage on Death Saving Throws", dict(cls="Fighter", level=18, sub="Champion", base=WL), [("C.saveNotes.some(n=>/Advantage on Death Saving Throws/.test(n.t))", True)]),
+    z3("Z3 Champion 18, Survivor Defy Death: a Death Saving Throw of 18 to 20 counts as a 20", dict(cls="Fighter", level=18, sub="Champion", base=WL), [(NT("Survivor", "18 to 20 counts as a 20"), True)]),
+    z3("Z3 Glory 20, Living Legend Charismatic: Advantage on Charisma checks", dict(cls="Paladin", level=20, sub="Oath of Glory", base=WL), [(NT("Living Legend", "Advantage on Charisma checks"), True)], tog={"living-legend": True}),
+    z3("Z3 Glory 20, Living Legend Saving Throw Reroll: reroll a failed save", dict(cls="Paladin", level=20, sub="Oath of Glory", base=WL), [(NT("Living Legend", "reroll it and keep the new result"), True)], tog={"living-legend": True}),
+    z3("Z3 Glory 20, Living Legend Unerring Strike: turn a missed weapon attack into a hit", dict(cls="Paladin", level=20, sub="Oath of Glory", base=WL), [(NT("Living Legend", "turned into a hit"), True)], tog={"living-legend": True}),
+    z3("Z3 Vengeance 20, Avenging Angel Frightful Aura: attack rolls against the Frightened enemy have Advantage", dict(cls="Paladin", level=20, sub="Oath of Vengeance", base=WL), [(NT("Avenging Angel (Frightful Aura)", "attack rolls against it have Advantage"), True)], tog={"avenging-angel": True}, allow=DEFA + [r"^moves\.", r"^speedSrc$", r"^speed$"]),
+    # kept behind a pick: the measure builds the default option, so these two sentences are checked here
+    z3("Z3 Improved Blessed Strikes, Potent Spellcasting option: Temporary Hit Points equal to twice your Wisdom modifier", dict(cls="Cleric", level=14, base=WL, ch={"p7opt": "Potent Spellcasting"}), [(NT("Improved Blessed Strikes", "twice your Wisdom modifier"), True)]),
+]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
