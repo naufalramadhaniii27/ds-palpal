@@ -35,6 +35,8 @@ export function subGrantRow(sub){return typeof SUB_GRANT!=="undefined"?SUB_GRANT
 export function mcGrantRow(cls){return MC_GRANT[cls]}
 export function subFullText(key){return SUB_FULL[key]}
 export function cfFullText(key){return CF_FULL[key]}
+/* long text of a species trait or background feature, set by 25-logic-hooks-for-the-sheet.js (the data lives in 06b, a handler may not import it) */
+export function full14(rs,g,n){const f=genv.__bldFull14;return f?f(rs,g,n):{}}
 export function masteryText(m){return MASTERY[m]}
 export function maneuverRows(){return MANEUVERS}
 export function metamagicRows(){return METAMAGIC}
