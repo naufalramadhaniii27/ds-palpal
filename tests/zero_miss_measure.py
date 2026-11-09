@@ -1,0 +1,317 @@
+#!/usr/bin/env python3
+"""Zero miss measure (reports/zm3.md, part A): reads the RESULT SHEET, it does not count sentences.
+
+  python3 tests/zero_miss_measure.py [--list] [--only KIND] [--update-baseline] [--root DIR] [--json OUT]
+
+Universe: the 2024 core features that state a measurable effect: 12 class features, 48 subclass features, 10 species traits, 79 feats
+(names come from the app data through window.__bldLists and window.__bldData). For each owner a character is built with the builder hooks
+(window.__bldFuzz for the class, subclass and species, window.__bldFillFor for a feat, then window.__bldSheetFor, as tests/zero_miss_fx.py does)
+at level 20 (level 19 with the feat for a feat), with every play toggle (fx toggle) of the owner switched on.
+A feature gets one measure per MECHANICAL CLASS its text states (the class comes from the words of the feature text, see CLASSES):
+  AC, SPEED, RES (resistance or immunity), ADV (advantage), PROF (proficiency), RESOURCE (limited use), DICE, SPELL, NUM (initiative, Hit Point maximum).
+The sheet is flattened into evidence lines (section, label, text). A measure is
+  ok     a computed line of the right class names the feature (its label, or the bold sub-feature names in its text), or the sheet line of that
+         class is new when the feature level is reached (level L against level L-1, or the owner against the base build), see DELTA below
+  card   only an action card (actions, acts) names the feature: the rule is shown as text, no number is computed
+  miss   neither.
+The sections of C that never count as evidence: features (the book text), inv, names, the builder choice list.
+DELTA is accepted only when the new lines of that class are at least as many as the features of the same owner, level and class that no name explained
+(a lone new line cannot explain two features).
+Result: a table per mechanical class (measured, ok, card, miss) and, with --list, the lists of miss and card.
+Baseline tests/zero_miss_baseline.json: the miss list and the card list may only get SHORTER. A new miss (or a counted feature that was ok) fails with exit 1.
+The lists are kept in the baseline so a diff shows which feature moved. --update-baseline writes the baseline (only when it is not worse, unless --force).
+About 2 minutes. Needs playwright."""
+import json, os, re, sys, time, functools, http.server, socket, threading, collections
+
+HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
+args = sys.argv[1:]
+if "--root" in args:
+    ROOT = os.path.abspath(args[args.index("--root") + 1])
+ONLY = args[args.index("--only") + 1] if "--only" in args else None
+BASE = os.path.join(HERE, "zero_miss_baseline.json")
+OUT = args[args.index("--json") + 1] if "--json" in args else None
+CLASSES = ["AC", "SPEED", "RES", "ADV", "PROF", "RESOURCE", "DICE", "SPELL", "NUM"]
+
+# ------------------------------------------------------------------------------------------------ reading the feature text
+RX = {
+    "AC": re.compile(r"(armor class|\bac\b)[^.]{0,60}(\+\d|bonus|equals|increase|base|plus|\bcan be\b)|(\+\d|bonus|add)[^.]{0,40}(armor class|\bac\b)|\bbase armor class\b"),
+    "SPEED": re.compile(r"\b(fly|flying|climb|swim|burrow) speed\b|\bspeed (increases|is increased|rises|grows)|your speed (is|becomes)|\+\d+ feet to your speed|(gain|have) a [^.]{0,20}speed|speed rises by|speed increases by"),
+    "RES": re.compile(r"\bresistance to\b|\bimmunity to\b|\bimmune to\b|\bresistances? (to|against)\b|\bhave resistance\b|\bgain resistance\b"),
+    "ADV": re.compile(r"(?<!dis)advantage\b"),
+    "PROF": re.compile(r"proficien\w*|\bexpertise\b"),
+    "RESOURCE": re.compile(r"(short|long) rest[^.]{0,60}(regain|expended|restore)|(uses?|times)[^.]{0,40}(short|long) rest|(once|twice) (per|before|until)[^.]{0,20}(short|long) rest|proficiency bonus times|\b(number of|equal to)[^.]{0,30}\buses\b|\bexpend(ed)? (one|a|an|1)\b[^.]{0,30}\buse"),
+    "DICE": re.compile(r"\b\d*d(4|6|8|10|12)\b|\b\d+d20\b"),
+    "NUM": re.compile(r"\binitiative\b[^.]{0,40}(bonus|add|\+\d)|(bonus|add)[^.]{0,40}\binitiative\b|hit point maximum|hit points? maximum|maximum hit points"),
+}
+SPELL_WORDS = re.compile(r"(can|may|could) cast\b|always have [^.]{0,60}prepared|\bspell slots?\b|\bcantrips?\b|spell list|spellcasting ability|spell save dc|spell attack|without (expending )?a spell slot|\bprepared\b")
+GENERIC = {"your choice", "hit points", "temporary hit points", "ability score increase", "benefit", "prerequisite", "duration", "effect", "damage", "options"}
+COMMON_SPELLS = {"Shield", "Light", "Guidance", "Resistance", "Command", "Heroism", "Fly", "Haste", "Bless", "Bane", "Sleep", "Fear", "Message", "Longstrider", "Aid", "Jump", "Alarm", "Entangle", "Confusion", "Blur", "Slow", "Web", "Darkness", "Daylight", "Silence", "Sanctuary", "Smite", "Barkskin", "Reincarnate"}
+SKIP_TRAITS = {"Creature Type", "Size", "Speed"}
+
+
+def classes_of(text, spells):
+    t = (text or "").lower()
+    out = [c for c, rx in RX.items() if rx.search(t if c != "PROF" else t.replace("proficiency bonus", ""))]
+    # SPELL: a spell sentence (cast, prepared, slot, cantrip, spell list ...) or a named spell next to cast / prepared / spell
+    if SPELL_WORDS.search(t) or (re.search(r"\bcast|prepared|\bspell", t) and any(re.search(r"(?<![a-z])" + re.escape(s) + r"(?![a-z])", t) for s in spells)):
+        out.append("SPELL")
+    return out
+
+
+def base_name(n):
+    return re.sub(r"\s+", " ", re.sub(r"\(.*?\)", "", (n or "").lower())).strip()
+
+
+def name_rx(names):
+    ps = [r"(?<![a-z])" + re.escape(x) + r"(?![a-z])" for x in names if len(x) >= 3]
+    return re.compile("|".join(ps)) if ps else None
+
+
+# ------------------------------------------------------------------------------------------------ the page side
+JS_DATA = r"""()=>{
+ const L=window.__bldLists(), d=window.__bldData(), J=o=>JSON.parse(JSON.stringify(o===undefined?null:o));
+ const out={classes:{},species:{},feats:{},tog:{cls:{},sub:{},species:{},feat:{}},spells:window.__spellNames()};
+ for(const c of L.cls){ const C=d.classes[c]; const o={f:C.f.map(x=>[x[0],x[1],d.cf[c+'|'+x[1]]||x[2]]),subs:{}};
+   for(const s of L.subs[c]){ o.subs[s]=(C.subs[s]||[]).map(x=>[x[0],x[1],d.sub[s+'|'+x[1]]||x[2]]) } out.classes[c]=o }
+ for(const s of L.sp){ out.species[s]=J(d.species[s]) }
+ for(const k in d.feats){ const f=d.feats[k]; if(f.src||f.hb||/\(2014\)/.test(k)||k==='Ability Score Improvement') continue; if(!f.full&&!f.d) continue; out.feats[k]={cat:f.cat,t:f.full||f.d} }
+ const G=window.GX||{}; for(const t of ['cls','sub','species','feat']){ const T=G[t]||{}; for(const n in T){ const ids=[]; (T[n]||[]).forEach(e=>{ if(e&&e.toggle&&e.toggle.id) ids.push(e.toggle.id) }); if(ids.length) out.tog[t][n]=ids } }
+ return out}"""
+
+JS_LIB = r"""()=>{
+ if(window.__zm) return 1;
+ const SRC={core:true,dmg:true,efa:true}; const store={};
+ const t=x=>x==null?'':String(x);
+ const lines=(C)=>{ const o=[]; const add=(sec,kind,label,text)=>o.push([sec,kind,t(label),t(text)]);
+  if(C.ac&&typeof C.ac==='object'){ add('ac','c',C.ac.baseSrc,'base '+C.ac.base); (C.ac.bonus||[]).forEach(b=>add('ac','c',b.s,b.v)) }
+  add('speed','c',C.speedSrc,'speed '+C.speed); if(C.moves) add('speed','c','',JSON.stringify(C.moves));
+  (C.defenses||[]).forEach(x=>add('def','c',x.s,x.t+': '+x.v)); (C.saveNotes||[]).forEach(x=>add('sn','c',x.s,x.t));
+  (C.skills||[]).forEach(s=>{ if(s.p||s.e) add('skill','c',s.src,s.n+(s.e?' expertise':' proficiency')) });
+  const ps=C.profSrc||{}; for(const k in ps) (ps[k]||[]).forEach(e=>add('prof','c',e[1],k+': '+e[0]));
+  const sv=C.saves||{}; for(const k in sv) add('prof','c',sv[k],'save '+k);
+  (C.res||[]).forEach(r=>add('res','c',[r.n,r.f,r.own].join(' | '),r.tag+' max '+r.max+' '+r.reset));
+  (C.xdmg||[]).forEach(x=>add('xdmg','c',x.n+' '+x.sub,x.dmg+' '+x.type+' '+x.note));
+  (C.attacks||[]).forEach(a=>add('att','c',t(a.dieSrc)+' '+t(a.miscSrc),a.n+' '+t(a.die)+' '+t(a.note)+' '+JSON.stringify(a.xdice||'')));
+  (C.hpBonus||[]).forEach(x=>add('num','c',x.s,'hp '+x.v)); (C.initBonus||[]).forEach(x=>add('num','c',x.s,'init '+x.v));
+  (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','',JSON.stringify(C.spellcasting));
+  (C.itemAdv||[]).forEach(x=>add('def','c','',JSON.stringify(x)));
+  (C.actions||[]).forEach(a=>add('card','k',a.n+' '+t(a.t),t(a.d))); (C.acts||[]).forEach(a=>add('card','k',a.n+' '+t(a.f),t(a.d)));
+  return o };
+ window.__zm={
+  base(key,o){ const f=window.__bldFuzz(Object.assign({sp:'Human',bg:'Acolyte',arr:[15,14,13,12,10,8],b2:0,b1:0,lv:20,sub:'',src:SRC,anySub:true},o)); if(!f||!f.b) return f&&f.err||'none'; store[key]=f.b; return null },
+  run(reqs){ return reqs.map(r=>{ try{ let b=structuredClone(store[r.key]); b.level=r.lv; if(r.sp) b.species=r.sp;
+      if(r.feat){ b.ch=b.ch||{}; b.ch.feat4={feat:r.feat,a1:'STR',a2:'CON'}; const b2=window.__bldFillFor(b); if(b2) b=b2 }
+      const tg={}; (r.tog||[]).forEach(i=>{tg[i]=true}); const C=window.__bldSheetFor(b,Object.keys(tg).length?tg:undefined); return lines(C) }catch(e){ return 'ERR '+String(e).slice(0,120) } }) }
+ };
+ return 1}"""
+
+# ------------------------------------------------------------------------------------------------ the units
+def units(D):
+    spells = [s.lower() for s in D["spells"] if len(s) > 4 and s not in COMMON_SPELLS]
+    U = []
+
+    def add(kind, owner, name, lvl, text, tg):
+        if ONLY and kind != ONLY:
+            return
+        cs = classes_of(text, spells)
+        names = [base_name(name)] + [base_name(x) for x in re.findall(r"\*\*([^*]{3,40}?)\.?\*\*", text or "")]
+        names = [x for x in dict.fromkeys(names) if x and x not in GENERIC]
+        for c in cs:
+            if any(x["id"] == "%s|%s|%s|%s" % (kind, owner, name, c) for x in U):
+                continue  # the same feature name at two levels (Reckless Attack, Improved ...): one measure
+            U.append({"id": "%s|%s|%s|%s" % (kind, owner, name, c), "kind": kind, "owner": owner, "name": name, "lvl": lvl, "cat": c, "names": names, "tog": tg})
+
+    for cls, o in D["classes"].items():
+        for lv, n, tx in o["f"]:
+            add("cls", cls, n, lv, tx, D["tog"]["cls"].get(cls, []))
+        for sub, fl in o["subs"].items():
+            for lv, n, tx in fl:
+                add("sub", cls + "/" + sub, n, lv, tx, D["tog"]["cls"].get(cls, []) + D["tog"]["sub"].get(sub, []))
+    for sp, o in D["species"].items():
+        for tr in o.get("traits", []):
+            if tr[0] in SKIP_TRAITS:
+                continue
+            m = re.search(r"\blevel (\d+)", tr[1] or "")
+            add("species", sp, tr[0], int(m.group(1)) if m else 1, tr[1], D["tog"]["species"].get(sp, []))
+    for ft, o in D["feats"].items():
+        add("feat", ft, ft, 1, o["t"], D["tog"]["feat"].get(ft, []))
+    return U
+
+
+SEC = {  # section -> classes it is evidence for, plus the keyword rule below for text sections
+    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"]}
+KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage"), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
+      "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point")}
+TEXT_SEC = {"def", "sn", "card", "xdmg", "att", "res"}
+
+
+def line_classes(sec, label, text):
+    cs = set(SEC.get(sec, []))
+    if sec in TEXT_SEC:
+        t = (label + " " + text).lower()
+        for c, rx in KW.items():
+            if rx.search(t):
+                cs.add(c)
+    return cs
+
+
+def prep(lines):
+    """lines from the page -> list of (kind, label.lower, text.lower, classes, key)"""
+    out = []
+    for sec, kind, label, text in lines:
+        out.append((kind, label.lower(), text.lower(), line_classes(sec, label.lower(), text.lower()), sec + "|" + label + "|" + text))
+    return out
+
+
+def run_page(root, D=None):
+    from playwright.sync_api import sync_playwright
+    s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
+
+    class Q(http.server.SimpleHTTPRequestHandler):
+        def log_message(self, *a): pass
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=root))
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    p = sync_playwright().start()
+    b = p.chromium.launch(); pg = b.new_context(service_workers="block").new_page(); pg.set_default_timeout(600000)
+    errs = []; pg.on("pageerror", lambda e: errs.append(str(e)[:200]))
+    pg.goto("http://127.0.0.1:%d/index.html" % port); pg.wait_for_function("()=>!!window.__deferDone")
+    pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("()=>!!window.__bldFuzz&&!!window.__bldFillFor&&!!window.__bldData&&!!window.__bldSheetFor")
+    pg.wait_for_timeout(2500)
+    return p, b, pg, srv, errs
+
+
+def main():
+    t0 = time.time()
+    p, b, pg, srv, errs = run_page(ROOT)
+    D = pg.evaluate(JS_DATA)
+    pg.evaluate(JS_LIB)
+    U = units(D)
+    cache = {}
+
+    def sheet(key, lv, tog=(), feat=None, sp=None):
+        """lines of the sheet (prepared), cached"""
+        k = (key, lv, tuple(tog), feat, sp)
+        if k not in cache:
+            r = pg.evaluate("(q)=>window.__zm.run(q)", [{"key": key, "lv": lv, "tog": list(tog), "feat": feat, "sp": sp}])[0]
+            if isinstance(r, str):
+                raise RuntimeError("build %s: %s" % (k, r))
+            cache[k] = prep(r)
+        return cache[k]
+
+    # base builds (one fuzz per owner, level 20)
+    L = pg.evaluate("window.__bldLists()")
+    bases = {}
+    for c in D["classes"]:
+        e = pg.evaluate("(a)=>window.__zm.base(a[0],a[1])", ["cls|" + c, {"cls": c}])
+        if e: print("base error", c, e)
+        for s in D["classes"][c]["subs"]:
+            e = pg.evaluate("(a)=>window.__zm.base(a[0],a[1])", ["sub|%s/%s" % (c, s), {"cls": c, "sub": s}])
+            if e: print("base error", c, s, e)
+    for sp in D["species"]:
+        e = pg.evaluate("(a)=>window.__zm.base(a[0],a[1])", ["species|" + sp, {"cls": "Fighter", "sp": sp}])
+        if e: print("base error", sp, e)
+    e = pg.evaluate("(a)=>window.__zm.base(a[0],a[1])", ["feat|base", {"cls": "Fighter", "lv": 19}])
+    print("bases %.0fs" % (time.time() - t0), flush=True)
+
+    status = {}   # id -> (state, how)
+
+    def match(lines, u, kinds):
+        rx = name_rx(u["names"])
+        if not rx:
+            return False
+        for kind, lab, txt, cs, key in lines:
+            if kind in kinds and u["cat"] in cs and rx.search(lab if lab.strip() else txt):
+                return True
+        return False
+
+    # pass 1: names
+    groups = collections.defaultdict(list)
+    for u in U:
+        if u["kind"] == "cls":
+            key, lv, tog, ft, sp = "cls|" + u["owner"], 20, u["tog"], None, None
+        elif u["kind"] == "sub":
+            key, lv, tog, ft, sp = "sub|" + u["owner"], 20, u["tog"], None, None
+        elif u["kind"] == "species":
+            key, lv, tog, ft, sp = "species|" + u["owner"], 20, u["tog"], None, None
+        else:
+            key, lv, tog, ft, sp = "feat|base", 19, u["tog"], u["name"], None
+        u["_b"] = (key, lv, tuple(tog), ft, sp)
+        L1 = sheet(*u["_b"])
+        if match(L1, u, ("c",)):
+            status[u["id"]] = ("ok", "name")
+        elif match(L1, u, ("k",)):
+            status[u["id"]] = ("card", "name")
+        groups[(u["kind"], u["owner"], u["lvl"] if u["kind"] in ("cls", "sub") else 0, u["cat"])].append(u)
+    print("pass 1 %.0fs, builds %d" % (time.time() - t0, len(cache)), flush=True)
+
+    # pass 2: delta for what the names did not explain
+    for (kind, owner, lvl, cat), us in groups.items():
+        unmet = [u for u in us if status.get(u["id"], ("", ""))[0] != "ok"]
+        if not unmet:
+            continue
+        named = len([u for u in us if status.get(u["id"], ("",))[0] == "ok"])
+        u0 = us[0]
+        key, lv, tog, ft, sp = u0["_b"]
+        if kind in ("cls", "sub"):
+            if lvl < 2:
+                continue
+            A = sheet(key, lvl, tog); Z = sheet(key, lvl - 1, tog)
+        elif kind == "species":
+            A = sheet(key, 20, tog); Z = sheet("species|Human", 20, ())
+        else:
+            A = sheet(key, 19, tog, ft); Z = sheet("feat|base", 19, ())
+        zs = {x[4] for x in Z}
+        new_c = [x for x in A if x[4] not in zs and cat in x[3] and x[0] == "c"]
+        new_k = [x for x in A if x[4] not in zs and cat in x[3] and x[0] == "k"]
+        if len(new_c) - named >= len(unmet) and new_c:
+            for u in unmet: status[u["id"]] = ("ok", "delta")
+        elif status.get(unmet[0]["id"]) is None and new_k and len(new_k) >= len(unmet):
+            for u in unmet:
+                if u["id"] not in status: status[u["id"]] = ("card", "delta")
+    print("pass 2 %.0fs, builds %d" % (time.time() - t0, len(cache)), flush=True)
+    b.close(); p.stop(); srv.shutdown()
+
+    res = {c: {"n": 0, "ok": 0, "card": 0, "miss": 0} for c in CLASSES}
+    by_kind = {k: {"n": 0, "ok": 0, "card": 0, "miss": 0} for k in ("cls", "sub", "species", "feat")}
+    miss, card = [], []
+    how = collections.Counter()
+    for u in U:
+        st = status.get(u["id"], ("miss", ""))
+        for tab in (res[u["cat"]], by_kind[u["kind"]]):
+            tab["n"] += 1; tab[st[0]] += 1
+        how[st] += 1
+        (miss if st[0] == "miss" else card if st[0] == "card" else []).append(u["id"])
+    print("\nMeasure %s (%.0fs, %d builds)\n" % (time.strftime("%Y-%m-%d"), time.time() - t0, len(cache)))
+    print("%-9s %8s %6s %6s %6s" % ("class", "measured", "ok", "card", "miss"))
+    tot = collections.Counter()
+    for c in CLASSES:
+        r = res[c]; print("%-9s %8d %6d %6d %6d" % (c, r["n"], r["ok"], r["card"], r["miss"]))
+        for k in r: tot[k] += r[k]
+    print("%-9s %8d %6d %6d %6d" % ("all", tot["n"], tot["ok"], tot["card"], tot["miss"]))
+    print("\n%-9s %8s %6s %6s %6s" % ("owner", "measured", "ok", "card", "miss"))
+    for k, r in by_kind.items(): print("%-9s %8d %6d %6d %6d" % (k, r["n"], r["ok"], r["card"], r["miss"]))
+    print("\nhow:", dict((a + ":" + b2, n) for (a, b2), n in how.items()))
+    if "--list" in args:
+        print("\nMISS (%d)" % len(miss)); [print("  " + x) for x in sorted(miss)]
+        print("\nCARD (%d)" % len(card)); [print("  " + x) for x in sorted(card)]
+    cur = {"measured": {c: res[c] for c in CLASSES}, "miss": sorted(miss), "card": sorted(card)}
+    if OUT: json.dump(cur, open(OUT, "w"), indent=1)
+    base = json.load(open(BASE)) if os.path.exists(BASE) else None
+    bad = 0
+    if base:
+        newm = sorted(set(miss) - set(base["miss"])); newc = sorted((set(card) | set(miss)) - set(base["card"]) - set(base["miss"]))
+        fixed = sorted(set(base["miss"]) - set(miss))
+        print("\nagainst baseline: %d fixed, %d new miss, %d new card-or-miss" % (len(fixed), len(newm), len(newc)))
+        for x in newm: print("  NEW MISS " + x)
+        for x in newc: print("  NEW CARD " + x)
+        bad = len(newm) + len(newc)
+    if "--update-baseline" in args:
+        if base and bad and "--force" not in args:
+            print("not written: the baseline would get worse"); return 1
+        json.dump(cur, open(BASE, "w"), indent=1); print("baseline written")
+    if errs: print("page errors:", errs[:3])
+    return 1 if bad or errs else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

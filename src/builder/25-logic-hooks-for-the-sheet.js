@@ -114,6 +114,8 @@ genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz"
   const bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&(o.lv>=3||o.anySub))B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
   out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
+/* test hook (tests/zero_miss_measure.py): fills the open choices of a given build the Quick Build way (picks, spells, magic item, book) on a copy. Nothing saved, the open build is put back */
+genv.__bldFillFor=function(b){let keep=B,out=null;try{__set_B(structuredClone(b));applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();out=structuredClone(B)}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 genv.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */
 /* T11 G4 N1 Reverse Builder: the lists it may try (the rules set of this build only), and a way to take a found build into the builder */
 /* the build of the open character without opening the builder: the saved one when it is this character's, otherwise made from the sheet (like Build does) */
