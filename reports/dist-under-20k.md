@@ -55,7 +55,7 @@ Semua dijalankan di worktree ini (lokal, `http.server`, Playwright Chromium). Pe
 | No | Bukti | Hasil |
 |---|---|---|
 | 1 | `sh tools/pages_dist.sh` lalu `find dist -type f \| wc -l` | main 20.999, cabang ini **19.363**. `python3 tests/dist_budget.py` PASS (7 cek) |
-| 2a | Library dari dist: 68 paket homebrew (paket pertama dan terakhir dari tiap 38 shard, satu shard berisi satu paket), semua pihak ketiga, dibuka lewat `data-lib-open` | 0 timeout, 0 page error di 390x844 dan 1250x850. Sesudah data tertunda selesai dimuat (jeda 8 detik), innerHTML `#libHb` 68 dari 68 identik dengan dist main di kedua viewport. Tanpa jeda, sebagian paket punya dua varian HTML (beda sekitar 70 karakter) yang muncul acak di main juga, jadi itu soal waktu muat, bukan perubahan ini |
+| 2a | Library dari dist: 68 paket homebrew (paket pertama dan terakhir dari tiap 38 shard; shard yang hanya berisi satu paket diambil sekali), semua pihak ketiga, dibuka lewat `data-lib-open` | 0 timeout, 0 page error di 390x844 dan 1250x850. Sesudah data tertunda selesai dimuat (jeda 8 detik), innerHTML `#libHb` 68 dari 68 identik dengan dist main di kedua viewport. Tanpa jeda, sebagian paket punya dua varian HTML (beda sekitar 70 karakter) yang muncul acak di main juga, jadi itu soal waktu muat, bukan perubahan ini |
 | 2b | Retromistika (paket bawaan): Library cari "Mistikan" dan buka species Mistikan | Teks Library sama dengan main (hash sama) di kedua viewport |
 | 2c | Picker potret: 48 tile pertama, data-pp, aria-label, ukuran gambar, hash piksel tiap thumbnail lewat canvas | Identik dengan main di kedua viewport. Screenshot picker: beda maksimum 17 dari 255 di latar (animasi), area thumbnail sama. Cari "fighter" (42 hasil lintas spesies) tampil lengkap |
 | 2d | Jejak jaringan | Main meminta `data/hb/<id>.json` dan `img/portrait/t/*.avif`. Cabang ini hanya `data/hbs/NN.json`, `data/hbs/map.json`, `img/portrait/tp/N.bin`. Tidak ada permintaan ke jalur lama |
@@ -78,3 +78,7 @@ Semua dijalankan di worktree ini (lokal, `http.server`, Playwright Chromium). Pe
 | Pengguna dengan versi lama di cache service worker meminta `data/hb/<id>.json` atau `img/portrait/t/<id>.avif` yang tidak ada lagi di deploy baru | Sampai app memperbarui diri (service worker mengambil versi baru di latar), paket homebrew baru tidak bisa dibuka dan thumbnail yang belum pernah dilihat kosong. Yang sudah tersimpan di cache tetap tampil | Sementara, hilang sesudah pembaruan |
 | Sisa anggaran 137 file | Rilis art berikutnya cepat melewati 19.500 | `tests/dist_budget.py` gagal di CI dengan pesan jelas, bukan di Cloudflare. Pemilik sudah memutuskan tidak menambah art |
 | Pengujian lokal memakai `http.server`, bukan Cloudflare | Perilaku khusus host (SPA fallback untuk file hilang) tidak teruji | Semua file yang diminta app ada di dist, jadi fallback tidak terpakai |
+
+## Catatan: r2-sync di main
+
+Main sesudah d5584092 menambah `.github/workflows/r2-sync.yml` (PR #37): mengunggah `data/img/bestiary` (4.889 file) ke R2. `tools/pages_dist.sh` di main belum membuang folder itu dari dist, jadi cabang ini tetap perlu. Jika nanti bestiary dilayani dari R2 dan dikeluarkan dari dist, sisa anggaran naik sekitar 4.889 file. Kedua cara tidak bertabrakan. Hasil sesudah merge origin/main (1f49b7bf): dist tetap 19.363 file, `tests/dist_budget.py` PASS, `build.py --check` lulus.
