@@ -1,11 +1,11 @@
-import {bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__set_step,__set_clsTab,choiceStep,ruleIssues,spInfo,spInfoPart,spellCounts,itemDetail,itemType,ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt,copyOf,go,own,render,stamp} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
+import {invList,bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__set_step,__set_clsTab,choiceStep,ruleIssues,spInfo,spInfoPart,spellCounts,itemDetail,itemType,ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt,copyOf,go,own,render,stamp} from "./01b-logic-late-ports.js";import {genv,weaponDef} from "./00-env.js";
 import {ABK,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {RL14} from "./08-logic-2014-rules.js";
 import {choices} from "./09-logic-feats-and-choices.js";
-import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
+import {bookNeed,bookOf,bookOwn,isDone,pactWeapon} from "./10-logic-v17-additions.js";
 import {fxtSet,casterParts,manualLost,spLists,spToggle,fxList,fxListBase} from "./11-logic-derivation.js";
 import {FX_FIELDS,fxEntryProblems} from "./10e-logic-fx-schema.js";
 import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from "./10a-logic-fx-registry.js";
@@ -75,6 +75,9 @@ genv.__bldRename=function(from,to){if(!to||B.name===to||!own(from)||savedRaw()==
 /* fx engine v3b: toggle fx. The sheet keeps the state in S.fxT {id:bool} and exposes it as window.__sheetState().fxT. This hook rebuilds the sheet of the saved build after a toggle changed. (id,on) may be given when S.fxT is not written yet. Returns false: not a builder-made sheet */
 genv.__bldFxToggle=function(id,on){const st=genv.__sheetState&&genv.__sheetState();if(!st||!st.C||!own(st.C.name))return false;const m=Object.assign({},st.fxT||{});if(id!=null)m[id]=!!on;fxtSet(m);try{if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}finally{fxtSet(null)}return true};
 /* Masterwork flag of an inventory row (B.inv[].mw, copied to C.inv[].mw). Counts for cond mwArmor while the armor is worn */
+/* Pact of the Blade on the sheet: which melee weapons can be bonded, which one is, and a setter that keeps the builder choice (B.ch.pactWep) in step */
+genv.__bldPactInfo=function(){if(invList().indexOf("Pact of the Blade")<0)return null;return {cur:pactWeapon(),melee:ensureInv().filter((x) =>{const w=weaponDef(baseOf(x.n).b);return !!w&&w.k==="M"}).map((x) =>{return x.n})}};
+genv.__bldSetPact=function(name){if(!genv.__bldPactInfo()||genv.__bldPactInfo().melee.indexOf(name)<0)return false;B.ch=B.ch||{};B.ch.pactWep=[name];save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet());return true};
 genv.__bldSetMw=function(name,occ,on){ensureInv();const i=invFind(name,occ);if(i<0)return false;if(on)B.inv[i].mw=1;else delete B.inv[i].mw;save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet());return true};
 genv.__bldEquip=function(){genv.__bldOpen();go("equip")};
 /* v23 RU38 no. 4: Manage Proficiencies and Manage Feats open the builder at a step */
