@@ -20,9 +20,11 @@ QUICK = "--quick" in args
 SELFTEST = "--selftest" in args  # menyuntik aturan CSS yang sengaja merusak, skrip harus menemukannya
 COVER = {}
 
-CHARS = [("Warlock", 3, "2024"), ("Warlock", 11, "2024"), ("Wizard", 5, "2024"),
-         ("Fighter", 5, "2024"), ("Cleric", 5, "2024"),
-         ("Warlock", 3, "2014"), ("Wizard", 5, "2014"), ("Cleric", 5, "2014")]
+# Urutan: wakil tanda tangan paling beragam dulu. (kelas, level, edisi, skin). Skin kedua dipindai satu kali.
+CHARS = [("Warlock", 3, "2024", "ddb"), ("Wizard", 5, "2024", "ddb"), ("Cleric", 5, "2014", "ddb"),
+         ("Fighter", 5, "2024", "ddb"), ("Warlock", 11, "2024", "ddb"), ("Wizard", 5, "2014", "ddb"),
+         ("Cleric", 5, "2024", "ddb"),
+         ("Warlock", 3, "2024", "record")]
 if QUICK:
     CHARS = CHARS[:2]
 WORKERS = 4  # proses paralel, tiap proses punya browser dan server sendiri
@@ -56,9 +58,11 @@ if "--worker" not in args and "--single" not in args:
     allow = json.load(open(os.path.join(HERE, "visual_state_allow.json"))) if os.path.exists(os.path.join(HERE, "visual_state_allow.json")) else []
     rows = list(merged.values())
     for r in rows: r["allowed"] = r["sel"] in allow
-    print("Tanda tangan teruji: %d, kontrol diperiksa: %d, dilewati: %d, waktu %.0f detik" % (len(cover), checked, skipped, time.time() - t0))
+    print("Tanda tangan teruji: %d, kontrol diperiksa: %d, dilewati: %d, waktu %.0f detik" % (len([k for k in cover if k[0] != "@"]), checked, skipped, time.time() - t0))
+    print("Kontrol baru per layar:", ", ".join("%s %d" % (k[1:], cover[k]) for k in sorted(cover) if k[0] == "@"))
     if "--cover" in args:
-        for k2 in sorted(cover): print("  ", k2, cover[k2])
+        for k2 in sorted(cover):
+            if k2[0] != "@": print("  ", k2, cover[k2])
     for r in rows:
         print("%s  %s  aria=%s -> %s  (%d tempat, contoh: %s)" % ("IZIN " if r["allowed"] else "SAMA ", r["sel"], r["aria"][0], r["aria"][1], len(r["where"]), r["where"][0]))
     bad = [r for r in rows if not r["allowed"]]
@@ -78,7 +82,7 @@ BASE = "http://127.0.0.1:%d/index.html" % port
 
 # Daftar kontrol berstatus yang terlihat, dengan tanda tangan untuk dedup.
 LIST_JS = r"""()=>{
- const sel='.bx,.pip,[aria-pressed],[aria-checked],.chip,.tog';
+ const sel='.bx,.pip,[aria-pressed],[aria-checked],[role=switch],.chip,.tog,.fxchip';
  const out=[],seen={};let n=0;
  document.querySelectorAll(sel).forEach(el=>{
   if(!el.offsetParent) return; const r=el.getBoundingClientRect(); if(r.width<4||r.height<4) return;
@@ -153,7 +157,8 @@ with sync_playwright() as p:
     ctx = br.new_context(viewport={"width": 390, "height": 844}, service_workers="block")
     pg = ctx.new_page(); pg.set_default_timeout(120000)
     pg.goto(BASE); pg.wait_for_function("()=>!!window.__deferDone"); pg.wait_for_timeout(800)
-    for cls, lv, ed in worker_slice():
+    SEEN = {}  # satu wakil per tanda tangan, dipakai bersama semua karakter dalam satu proses (kunci: ukuran layar dan skin)
+    for cls, lv, ed, skin in worker_slice():
         r = pg.evaluate("""async (a)=>{ if(window.__bldNeed) await window.__bldNeed(); const b=window.__bldQuickFor(a[0],a[1]);
             if(!b) return null; if(a[2]==='2014') b.rs='2014'; return JSON.stringify([b,window.__bldSheetFor(b)]) }""", [cls, lv, ed])
         if not r:
@@ -161,35 +166,28 @@ with sync_playwright() as p:
         b, C = json.loads(r)
         for (w, h) in VIEWS:
             pg.set_viewport_size({"width": w, "height": h})
-            if (w, h) == VIEWS[0]:
-                pg.evaluate("(v)=>{localStorage.clear(); localStorage.setItem('phb24-builder-v1', v[0]); localStorage.setItem('yudhi-kelapa-build-v3', v[1])}",
-                            [json.dumps(b), json.dumps(C)])
-            seen = []
-            if (w, h) == VIEWS[0]:
-                pg.goto(BASE); pg.wait_for_function("()=>!!window.__deferDone"); pg.wait_for_timeout(700)
-                add_css(pg, "*,*::before,*::after{transition:none!important}")
-                if SELFTEST:
-                    # Menghidupkan lagi bug pact: buang :not([aria-pressed="true"]) dari aturan hijau
-                    print("selftest", pg.evaluate("""()=>{let n=0;const walk=(rs)=>{for(const r of rs){if(r.cssRules&&!r.selectorText)walk(r.cssRules);
-                        else if(r.selectorText&&r.selectorText.includes('pact')&&r.selectorText.includes(':not(')){r.selectorText=r.selectorText.replace(/:not\\(\\[aria-pressed="true"\\]\\)/,'');n++}}};
-                        for(const sh of document.styleSheets){try{walk(sh.cssRules)}catch(e){}}return n}"""))
-                pg.evaluate("()=>{var b=[...document.querySelectorAll('#homeV button')].filter(x=>/Continue/.test(x.textContent))[0]; b&&b.click()}")
-            pg.wait_for_timeout(500)
-            pages = [("Home", None)] + [(t, t) for t in TABS]
-            for pname, tab in pages:
-                if tab:
-                    pg.evaluate("(t)=>{var x=[...document.querySelectorAll('.tab,[data-tab]')].filter(e=>e.textContent.trim()===t)[0]; x&&x.click()}", tab)
-                    pg.wait_for_timeout(200)
-                else:
-                    # Home: kembali ke Home bila ada tombol, jika tidak lewati
-                    ok = pg.evaluate("()=>{var b=document.querySelector('#homeBtn,[data-act=home],.home-btn');if(b){b.click();return true}return false}")
-                    if not ok: continue
-                    pg.wait_for_timeout(500)
-                res = pg.evaluate(CYCLE_JS, seen); seen = res["seen"]
+            pg.evaluate("(v)=>{localStorage.clear(); localStorage.setItem('phb24-builder-v1', v[0]); localStorage.setItem('yudhi-kelapa-build-v3', v[1])}",
+                        [json.dumps(b), json.dumps(C)])
+            seen = SEEN.setdefault((w, skin), [])
+            pg.goto(BASE); pg.wait_for_function("()=>!!window.__deferDone"); pg.wait_for_timeout(700)
+            add_css(pg, "*,*::before,*::after{transition:none!important}")
+            if skin != "ddb":
+                pg.evaluate("(k)=>document.documentElement.setAttribute('data-skin',k)", skin)
+            if SELFTEST and (w, h) == VIEWS[0]:
+                # Menghidupkan lagi bug pact: buang :not([aria-pressed="true"]) dari aturan hijau
+                print("selftest", pg.evaluate("""()=>{let n=0;const walk=(rs)=>{for(const r of rs){if(r.cssRules&&!r.selectorText)walk(r.cssRules);
+                    else if(r.selectorText&&r.selectorText.includes('pact')&&r.selectorText.includes(':not(')){r.selectorText=r.selectorText.replace(/:not\\(\\[aria-pressed="true"\\]\\)/,'');n++}}};
+                    for(const sh of document.styleSheets){try{walk(sh.cssRules)}catch(e){}}return n}"""))
+
+            def scan(pname):
+                global checked, skipped
+                global seen
+                res = pg.evaluate(CYCLE_JS, seen); seen[:] = res["seen"]
                 skipped += res["skipped"]
                 for r in res["rows"]:
                     checked += 1
                     COVER[r["c"]["sig"]] = COVER.get(r["c"]["sig"], 0) + 1
+                    scr = "@" + pname.split()[0] + " " + str(w); COVER[scr] = COVER.get(scr, 0) + 1  # kontrol teruji per layar
                     if "--diffs" in args and "pact" in r["c"]["sig"]: print("   DIFF", r["c"]["sig"], diff(r["A"], r["B"]), flush=True)
                     A, Bs, c = r["A"], r["B"], r["c"]
                     d = diff(A, Bs)
@@ -198,10 +196,30 @@ with sync_playwright() as p:
                     if not vis:
                         f = findings.setdefault(c["sig"], {"sel": c["sig"], "where": set(), "aria": [A["aria"], Bs["aria"]],
                                                          "transformOnly": bool(d), "txt": A["txt"]})
-                        f["where"].add("%s%s %s %s %dx%d" % (cls, lv, ed, pname, w, h))
-                # tutup overlay yang mungkin terbuka
+                        f["where"].add("%s%s %s %s %s %dx%d" % (cls, lv, ed, skin, pname, w, h))
                 pg.keyboard.press("Escape")
-            print("selesai", cls, lv, ed, w, "t=%.0fs" % (time.time() - t0), flush=True)
+
+            # Home (sebelum Continue)
+            pg.wait_for_timeout(300); scan("Home")
+            pg.evaluate("()=>{var b=[...document.querySelectorAll('#homeV button')].filter(x=>/Continue/.test(x.textContent))[0]; b&&b.click()}")
+            pg.wait_for_timeout(500)
+            for tab in TABS:
+                pg.evaluate("(t)=>{var x=[...document.querySelectorAll('.tab,[data-tab]')].filter(e=>e.textContent.trim()===t)[0]; x&&x.click()}", tab)
+                pg.wait_for_timeout(200)
+                scan(tab)
+            # Builder: tiap langkah di #steps, chip pilihan dan toggle
+            if not QUICK:
+                try:
+                    pg.evaluate("async()=>{ if(window.__bldNeed) await window.__bldNeed(); window.__bldOpen() }"); pg.wait_for_timeout(700)
+                    steps = pg.evaluate("()=>[...document.querySelectorAll('#steps [data-step]')].map(x=>x.getAttribute('data-step'))")
+                    for st in steps[:8]:
+                        if st == "next": continue
+                        pg.evaluate("(k)=>{var x=document.querySelector('#steps [data-step=\"'+k+'\"]'); x&&x.click()}", st); pg.wait_for_timeout(350)
+                        pg.evaluate("()=>document.querySelectorAll('#bld .acc:not(.open) [data-tog]').forEach(h=>h.click())"); pg.wait_for_timeout(150)  # buka kartu tertutup, chip pilihan ada di dalamnya
+                        scan("Builder " + st)
+                except Exception as e:
+                    print("builder dilewati:", str(e)[:120])
+            print("selesai", cls, lv, ed, skin, w, "t=%.0fs" % (time.time() - t0), flush=True)
     br.close()
 
 allow = []

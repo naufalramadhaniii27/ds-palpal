@@ -211,6 +211,10 @@ function xlScanStep2(){
   let i=0;
   return /** @type {any} */ ({i});
 }
+function xlPair(t,ms,k){ return k+1<ms.length&&ms[k][1]+1===ms[k+1][0]&&t.charAt(ms[k][1])===" "; }/* two links with one space between them (Dexterity + saving throw) go in span.xlp: one line, button markup unchanged */
+function xlHtml(t,ms,mode){ let out="", pos=0, op=false;
+    ms.forEach((x,k) =>{ const hit=x[2], nm_=hit[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;"), pr=mode!=="b"&&xlPair(t,ms,k); out+=t.slice(pos,x[0])+(pr&&!op?'<span class="xlp">':'')+(mode==="b"?'<button type="button" class="lnk" data-lnk="'+hit[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+hit[0]+':'+nm_+'">')+t.slice(x[0],x[1])+'</button>'+(op&&!pr?'</span>':''); if(pr) op=true; else if(op) op=false; pos=x[1]; });
+  return out+t.slice(pos); }
 export function xlink(h,self,mode){
   self=self||XL_SELF; h=String(h==null?"":h); if(!h||h.indexOf("<")<0&&h.length<3) return h;
   const m=xlMap(), selfK=String(self||"").replace(/&#39;/g,"'").replace(/'/g,"\u0001"); let depth=0, first=true;
@@ -220,9 +224,7 @@ export function xlink(h,self,mode){
     const atStart=first; if(p.trim()) first=false;
     const t=p.replace(/&#39;/g,"\u0001"), ms=xlScan(t,atStart,selfK,mode,m);
     if(!ms.length) return t.replace(/\u0001/g,"&#39;");
-    let out="", pos=0;
-    ms.forEach((x) =>{ const hit=x[2], nm_=hit[1].replace(/&/g,"&amp;").replace(/"/g,"&quot;"); out+=t.slice(pos,x[0])+(mode==="b"?'<button type="button" class="lnk" data-lnk="'+hit[0]+'|'+nm_+'">':'<button type="button" class="lk xl" data-info="'+hit[0]+':'+nm_+'">')+t.slice(x[0],x[1])+'</button>'; pos=x[1]; });
-    return (out+t.slice(pos)).replace(/\u0001/g,"&#39;");
+    return xlHtml(t,ms,mode).replace(/\u0001/g,"&#39;");
   }).join("");
 }
 /* The same matcher on the page itself. Text that is printed by code that never calls xlink (class lists, skill lists, labels, "Used:" rows, detail tables)
@@ -231,6 +233,12 @@ export function xlink(h,self,mode){
 const XL_SKIP="a,button,input,textarea,select,option,script,style,svg,canvas,label,summary,h1,h2,h3,[contenteditable],[data-info],[data-bd],[data-lib-open],[data-lnk],[data-xl-off],[role=button],[role=tab],[role=menuitem],[role=option],[role=link],.fcat,#speeds,.toast,#toasts,.lk,.lnk,.ask,.swp";
 let XL_Q=new Set(), XL_T=0, XL_OBS=null, XL_FORCE=0;
 function xlDomRoot(el){ if(el.closest("#bld")) return "b"; if(el.closest("#sheetBody")) return "s"; if(el.closest("#libBd")) return "s"; if(el.closest("#app")) return "a"; return ""; }
+function xlFrag(v,t,ms,mode){ const fr=document.createDocumentFragment(); let pos=0, host=fr;
+  ms.forEach((x,k) =>{ const hit=x[2], b=document.createElement("button"), pr=mode!=="b"&&xlPair(t,ms,k); b.type="button"; if(mode==="b"){ b.className="lnk"; b.setAttribute("data-lnk",hit[0]+"|"+hit[1]); } else { b.className="lk xl"; b.setAttribute("data-info",hit[0]+":"+hit[1]); }
+    if(x[0]>pos) host.appendChild(document.createTextNode(v.slice(pos,x[0]))); if(pr&&host===fr){ host=document.createElement("span"); host.className="xlp"; fr.appendChild(host); }
+    b.textContent=v.slice(x[0],x[1]); host.appendChild(b); pos=x[1]; if(!pr) host=fr; });
+  if(pos<v.length) fr.appendChild(document.createTextNode(v.slice(pos)));
+  return fr; }
 function xlDom(el){
   const k=xlDomRoot(el); if(!k||(el.closest&&el.closest(XL_SKIP))) return 0;
   const m=k==="b"?xlIdx():xlMap(), mode=k==="b"?"b":undefined, ttl=k==="s"?(el.closest("#libBd")?($("#libT")||{}):($("#sheetTitle")||{})).textContent||"":"", selfK=String(ttl).replace(/'/g,"\u0001").replace(/’/g,"\u0001").trim();
@@ -239,11 +247,7 @@ function xlDom(el){
   let cnt=0;
   nodes.forEach((n) =>{ const pe=n.parentElement; if(!pe||pe.closest(XL_SKIP)) return;
     const t=n.nodeValue.replace(/['’]/g,"\u0001"), ms=xlScan(t,!n.previousSibling,selfK,mode,m); if(!ms.length) return;
-    const fr=document.createDocumentFragment(); let pos=0;
-    ms.forEach((x) =>{ const hit=x[2], b=document.createElement("button"); b.type="button"; if(mode==="b"){ b.className="lnk"; b.setAttribute("data-lnk",hit[0]+"|"+hit[1]); } else { b.className="lk xl"; b.setAttribute("data-info",hit[0]+":"+hit[1]); }
-      if(x[0]>pos) fr.appendChild(document.createTextNode(n.nodeValue.slice(pos,x[0]))); b.textContent=n.nodeValue.slice(x[0],x[1]); fr.appendChild(b); pos=x[1]; cnt++; });
-    if(pos<n.nodeValue.length) fr.appendChild(document.createTextNode(n.nodeValue.slice(pos)));
-    n.parentNode.replaceChild(fr,n); });
+    n.parentNode.replaceChild(xlFrag(n.nodeValue,t,ms,mode),n); cnt+=ms.length; });
   return cnt;
 }
 function xlFlush(){
