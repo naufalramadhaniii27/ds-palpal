@@ -20,7 +20,7 @@ const PX_DOT = " • ";
 /* ---------- text ---------- */
 function pxUnEsc(t){ return String(t==null?"":t).replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&"); }
 /* sheet text to print markup: {dc} filled, [[link|label]] to label, no HTML */
-function pxPlain(t){ return pxUnEsc(fill(t)).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>{ return l||k; }).replace(/<[^>]+>/g,""); }
+function pxPlain(t){ return pxUnEsc(fill(t)).replace(/\b1 uses\b/g,"1 use").replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>{ return l||k; }).replace(/<[^>]+>/g,""); }
 function pxPars(t){ return pxPlain(t).split(/\n+/).map((p) =>{ return p.trim(); }).filter(Boolean); }
 function pxLine(t){ return pxPlain(t).replace(/\s*\n+\s*/g," ").trim(); }
 function pxKey(t){ return pxPlain(t).replace(/[^a-z0-9]+/gi,"").toLowerCase(); }
@@ -164,7 +164,7 @@ function pxCreature(e){ const c=crOf(e.n); if(!c) return null; const env=crEnv(e
 function pxCreatures(){ let L=[]; try{ L=crList(); }catch(e){ return []; } return L.map(pxCreature).filter(Boolean); }
 
 /* ---------- appendix ---------- */
-function pxAppendix(){ const out=(C.features||[]).map((g) =>{ return [gName(g.g),(g.items||[]).map((f) =>{ return Object.assign({name:cuNm("f:"+f.n,f.n), tag:f.s||""},pxTwo(f.d,pxFull(g,f.n))); })]; }).filter((g) =>{ return g[1].length; });
+function pxAppendix(){ const out=(C.features||[]).map((g) =>{ return [gName(g.g),(g.items||[]).map((f) =>{ return Object.assign({name:cuNm("f:"+f.n,f.n), tag:f.s||""},pxTwo(f.d,f.full||pxFull(g,f.n))); })]; }).filter((g) =>{ return g[1].length; });
   const mi=pxMagicItems(); if(mi.length) out.push(["Magic Items",mi.map((i) =>{ return Object.assign({name:i.n, tag:[i.rar,i.att?"Attunement":""].filter(Boolean).join(PX_DOT)},pxTwo(i.d,"")); })]);
   const hb=(C.actions||[]).filter((a) =>{ return a.hb; }); if(hb.length) out.push(["Other Rules",hb.map((a) =>{ return Object.assign({name:a.n, tag:""},pxTwo(a.d,"")); })]);
   return out; }

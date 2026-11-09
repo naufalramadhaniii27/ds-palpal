@@ -42,7 +42,7 @@ CHECK = r"""async (o)=>{
     if(Array.isArray(v)) v.forEach((x,i)=>scan(x,path+'['+i+']')); else if(typeof v==='object') Object.keys(v).forEach(k=>scan(v[k],path+'.'+k)); };
   scan(m,'m');
   (m.appendix||[]).forEach(g=>g[1].forEach(f=>{ if(!f.summary) bad.push('no short line: '+g[0]+' / '+f.name);
-    if(o.rs!=='2014'&&!f.text.length&&f.summary.length>120&&/^(Feats?$|\w+ Subclass:|[A-Z][a-z]+$)/.test(g[0])) rep.nofull.push(g[0]+' / '+f.name); }));
+    if(!f.text.length&&f.summary.length>120&&/^(Feats?$|\w+ Subclass:|[A-Z][a-z]+$)/.test(g[0])) rep.nofull.push(o.rs+' '+g[0]+' / '+f.name); }));
   const sc=m.spellcasting; if(sc) sc.levels.forEach(L=>L.spells.forEach(s=>{ if(!s.summary) bad.push('spell without short line: '+s.name);
     const d={}; s.details.forEach(x=>d[x[0]]=x[1]); ['Casting Time','Range','Duration'].forEach(k=>{ if(!d[k]) bad.push('spell '+s.name+' has no '+k); }); }));
   (m.weapons||[]).forEach(w=>{ if(!w[1]||w[1]==='+NaN') bad.push('weapon without hit: '+w[0]); });
