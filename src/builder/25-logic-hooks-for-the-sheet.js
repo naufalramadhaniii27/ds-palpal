@@ -1,11 +1,11 @@
-import {bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__set_step,__set_clsTab,choiceStep,ruleIssues,spInfo,spInfoPart,spellCounts,itemDetail,itemType,ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt,copyOf,go,own,render,stamp} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
+import {invList,bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__set_step,__set_clsTab,choiceStep,ruleIssues,spInfo,spInfoPart,spellCounts,itemDetail,itemType,ctFree,invFind,qbBook,qbFill,qbMI,qbSpells,quickBuild,unpackAt,copyOf,go,own,render,stamp} from "./01b-logic-late-ports.js";import {genv,weaponDef} from "./00-env.js";
 import {ABK,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {R14,rsLoad} from "./05-logic-choice-model-ruleset.js";
 import {RL14,subLv} from "./08-logic-2014-rules.js";import {CLS14} from "./06-data-2014-classes.js";
 import {choices} from "./09-logic-feats-and-choices.js";
-import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
+import {bookNeed,bookOf,bookOwn,isDone,pactWeapon} from "./10-logic-v17-additions.js";
 import {fxtSet,casterParts,manualLost,spLists,spToggle,fxList,fxListBase} from "./11-logic-derivation.js";
 import {FX_FIELDS,fxEntryProblems} from "./10e-logic-fx-schema.js";
 import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from "./10a-logic-fx-registry.js";
@@ -36,7 +36,11 @@ genv.__bldSync=function(name,owner,ch){ensureInv();if(!ch||!own(owner))return fa
 /* N1: what a builder-made sheet P has that toSheet() would not produce now: named attacks and resources the builder does not make (Logic manualLost),
    then other sections whose values differ (Edit changes, or builder changes not applied yet). [] if P matches, or P is another character */
 const DIFFL={name:"Name",species:"Species",size:"Size",cls:"Class",clsLabel:"Class",sub:"Subclass",bg:"Background",level:"Level",hitDie:"Hit Points",hpPerLevel:"Hit Points",hpBonus:"Hit Points",office:"Campaign",cardNo:"Record number",rolledNote:"Roll record",abilities:"Ability scores",saves:"Saving throws",skills:"Skills",initBonus:"Initiative",ac:"Armor Class",speed:"Speed",speedSrc:"Speed",darkvision:"Darkvision",darkSrc:"Darkvision",senses:"Senses",profs:"Proficiencies",attacks:"Attacks",inv:"Inventory",gp:"Gold",equipNote:"Equipment note",res:"Limited Use",actions:"Actions",features:"Features",defenses:"Defenses",spellcasting:"Spells",spells:"Spells",lang:"Languages",grappler:"Grappler",dcAb:"Grapple DC",dcSrc:"Grapple DC"};
-genv.__bldDiff=function(P){if(!P||!own(P.name))return [];const N=toSheet(),lost=manualLost(P,N),out=[],oth=[],j=function(x){return JSON.stringify(x===undefined?null:x)},jf=function(x){return j((x||[]).filter((g) =>{return !/^Species/.test(g.g)}))};/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach((k) =>{if(k==="v"||k==="_app"||k==="bv")return;/* v27 RU28: C.bv is the builder version */if((+P._app||0)>(genv.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */const l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?jf(P[k])!==jf(N[k]):j(P[k])!==j(N[k]))oth.push(l)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
+/* __bldDiff steps (SOLID s16) */
+function bdJ(x){return JSON.stringify(x===undefined?null:x)}
+function bdJf(x){return bdJ((x||[]).filter((g) =>{return !/^Species/.test(g.g)}))}
+function bdField(k,P,N,lost,oth){if(k==="v"||k==="_app"||k==="bv")return;/* v27 RU28: C.bv is the builder version */if((+P._app||0)>(genv.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */const l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?bdJf(P[k])!==bdJf(N[k]):bdJ(P[k])!==bdJ(N[k]))oth.push(l)}
+genv.__bldDiff=function(P){if(!P||!own(P.name))return [];const N=toSheet(),lost=manualLost(P,N),out=[],oth=[];/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach((k) =>{bdField(k,P,N,lost,oth)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
 /* v18 RU74: the build was saved in another tab: load it here */
 genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
@@ -71,6 +75,9 @@ genv.__bldRename=function(from,to){if(!to||B.name===to||!own(from)||savedRaw()==
 /* fx engine v3b: toggle fx. The sheet keeps the state in S.fxT {id:bool} and exposes it as window.__sheetState().fxT. This hook rebuilds the sheet of the saved build after a toggle changed. (id,on) may be given when S.fxT is not written yet. Returns false: not a builder-made sheet */
 genv.__bldFxToggle=function(id,on){const st=genv.__sheetState&&genv.__sheetState();if(!st||!st.C||!own(st.C.name))return false;const m=Object.assign({},st.fxT||{});if(id!=null)m[id]=!!on;fxtSet(m);try{if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}finally{fxtSet(null)}return true};
 /* Masterwork flag of an inventory row (B.inv[].mw, copied to C.inv[].mw). Counts for cond mwArmor while the armor is worn */
+/* Pact of the Blade on the sheet: which melee weapons can be bonded, which one is, and a setter that keeps the builder choice (B.ch.pactWep) in step */
+genv.__bldPactInfo=function(){if(invList().indexOf("Pact of the Blade")<0)return null;return {cur:pactWeapon(),melee:ensureInv().filter((x) =>{const w=weaponDef(baseOf(x.n).b);return !!w&&w.k==="M"}).map((x) =>{return x.n})}};
+genv.__bldSetPact=function(name){if(!genv.__bldPactInfo()||genv.__bldPactInfo().melee.indexOf(name)<0)return false;B.ch=B.ch||{};B.ch.pactWep=[name];save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet());return true};
 genv.__bldSetMw=function(name,occ,on){ensureInv();const i=invFind(name,occ);if(i<0)return false;if(on)B.inv[i].mw=1;else delete B.inv[i].mw;save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet());return true};
 genv.__bldEquip=function(){genv.__bldOpen();go("equip")};
 /* v23 RU38 no. 4: Manage Proficiencies and Manage Feats open the builder at a step */
@@ -78,14 +85,17 @@ genv.__bldGo=function(s){genv.__bldOpen();if(document.querySelector("#bld > .exp
 /* RU29: armor or Shield equipped or unequipped on a hand-filled sheet (items without key). st = sheet state before the change.
    Saved build of the same character: it takes the change (as __bldSync). No saved build yet: a copy imported from the sheet is used, not saved.
    Returns {b0,b1,off}: AC, Speed, Stealth of the build before and after, and other armor taken off. null: not armor, not in the build, or another character */
+/* __bldArmor steps (SOLID s16) */
+function baPick(){const c=toSheet(),s=(c.skills||[]).filter((k) =>{return k.n==="Stealth"})[0];return {ac:c.ac,speed:c.speed,speedSrc:c.speedSrc,stealth:s&&s.dis||"",sb:c.saveBonus||[],ab:c.abilities}}
+function baIndex(name,keep){ensureInv();let i=B.inv.findIndex((x) =>{return x.n===name});if(i<0)i=B.inv.findIndex((x) =>{return x.alias===name});
+  /* RU31: armor typed into the Edit form after the build was saved: it joins the build too (as N2), so a later Apply keeps it */
+  if(i<0&&!keep){B.inv.push({n:name,q:1,eq:false});i=B.inv.length-1}/* V14-1: full name, so "Shield, +1" keeps its +1 */return i}
+function baWear(i,eq){const b0=baPick(),it=B.inv[i],off=[];it.eq=!!eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach((y,k) =>{if(k!==i&&ARMOR[baseOf(y.n).b]&&y.eq){y.eq=false;off.push(y.n);if(y.alias)off.push(y.alias)}});
+   return {b0:b0,b1:baPick(),off:off}}
 genv.__bldArmor=function(st,name,eq){const bn=baseOf(name).b;if(!st||!st.C||!(ARMOR[bn]||bn==="Shield"||itemFx(name)))return null;/* M18: magic items with numbers too */let raw=savedRaw(),keep=null,out=null;
  if(raw==null){keep=B;fromSheet(st)}else if(!own(st.C.name))return null;
- try{ensureInv();let i=B.inv.findIndex((x) =>{return x.n===name});if(i<0)i=B.inv.findIndex((x) =>{return x.alias===name});
-  /* RU31: armor typed into the Edit form after the build was saved: it joins the build too (as N2), so a later Apply keeps it */
-  if(i<0&&!keep){B.inv.push({n:name,q:1,eq:false});i=B.inv.length-1}/* V14-1: full name, so "Shield, +1" keeps its +1 */
-  if(i>=0){const pick=function(){const c=toSheet(),s=(c.skills||[]).filter((k) =>{return k.n==="Stealth"})[0];return {ac:c.ac,speed:c.speed,speedSrc:c.speedSrc,stealth:s&&s.dis||"",sb:c.saveBonus||[],ab:c.abilities}};
-   const b0=pick(),it=B.inv[i],off=[];it.eq=!!eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach((y,k) =>{if(k!==i&&ARMOR[baseOf(y.n).b]&&y.eq){y.eq=false;off.push(y.n);if(y.alias)off.push(y.alias)}});
-   out={b0:b0,b1:pick(),off:off}}
+ try{const i=baIndex(name,keep);
+  if(i>=0)out=baWear(i,eq);
  }finally{if(keep){__set_B(keep);applyPacks()}else if(out)save()}
  return out};
 if(genv.__sheetRerender)setTimeout(genv.__sheetRerender,0);

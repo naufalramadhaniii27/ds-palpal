@@ -66,6 +66,7 @@ function chWarlock(add){
  chTome(add,invs,wx);
  invPicks().forEach(add);/* v32 RL49 no. 19 to 22 */
  if(invs.indexOf("Pact of the Blade")>=0)add(wx({key:"pactWep",t:"multi",n:1,list:pactList(),title:"Pact of the Blade: pact weapon"},"Pact of the Blade"));/* M13 */
+ if(!R14()&&invs.indexOf("Pact of the Blade")>=0)add(wx({key:"pactDmg",t:"multi",n:1,opt:1,list:[["Necrotic","Pact weapon hits deal Necrotic damage instead of the weapon's type."],["Psychic","Pact weapon hits deal Psychic damage instead of the weapon's type."],["Radiant","Pact weapon hits deal Radiant damage instead of the weapon's type."]],title:"Pact of the Blade: damage type (optional, leave empty for the weapon's own type)"},"Pact of the Blade"));/* zero-miss-1 */
 }
 function chLang(add,c,L,sp,bgt){
  if(R14()){const lgn=((sp&&sp.lgn)||0)+(B.species==="Custom"?1:0)+((bgt&&bgt.lgn)||0);/* v99: a custom 2014 race gets one language of your choice next to Common */if(lgn>0)add({key:"lang",lvl:1,t:"lang",n:lgn,from:LANGS,title:"Languages",src:(sp?B.species:"Race")+(bgt&&bgt.lgn?", "+B.bg+" background":""),feature:"Languages"})}else add({key:"lang",lvl:1,t:"lang",n:2,from:LANGS,title:"Languages",src:SRC+", Character Origins",feature:"Languages"});/* v84 */

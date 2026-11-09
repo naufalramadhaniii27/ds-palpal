@@ -21,12 +21,16 @@ export var clsTab="feat",spLv="all",spQ="",SMAP={};SPELLS.forEach((x) =>{SMAP[x[
 function xl14(sub,L){if(!(L>=10||(L>=6&&sub==="College of Lore (2014)")))return [];const o=["Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];if(B.src&&B.src.tce)o.push("Artificer");return o}
 /* fx engine v4: prepAdd N (extra prepared or known spells) and cantAdd N (extra cantrips) on any entry. N: number, "pb", ability key or [[level, n]] steps. spCls limits it to that class (class and subclass entries count only for their own class) */
 function spFxN(field,cls){let t=0;try{fxList().forEach((e) =>{if(e[field]==null)return;if(e.kind==="cls"&&e.owner!==cls)return;if(e.kind==="sub"&&!(CLASSES[cls].subs||{})[e.owner])return;if(e.spCls&&!/^@/.test(e.spCls)&&e.spCls!==cls)return;t+=fxVal(e[field],e)})}catch(er){}return t}
+/* spInfoOne steps (SOLID s16): the cantrip, prepared and known numbers of a full or half caster (null: no spells yet), and the result row */
+function spOneCls(cls,sub,L,c){let ct=0,pr=0,kn=0;const cc=CANT[cls];ct=cc?cc.slice(1).reduce((a,l) =>{return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
+  if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;const q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */
+ return [ct,pr,kn]}
+function spOneOut(c,cls,sub,L,third,ct,pr,kn){return {smax:c.smax?c.smax[L-1]:0,list:third?thirdOf(sub).list:cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(cls)),ab:third?thirdOf(sub).ab:c.cast,ct:ct+spFxN("cantAdd",cls),pr:pr+spFxN("prepAdd",cls),kn:kn}}
 function spInfoOne(cls,sub,L){let c=CLASSES[cls],third=isThird3(sub)&&L>=3,kn=0;
  if(!c.caster&&!c.nslot&&!third)return null;let ct=0,pr=0;
  if(third){ct=thirdOf(sub).cant+(L>=10?1:0);pr=THIRD[L-3];if(R14())kn=1}
- else{const cc=CANT[cls];ct=cc?cc.slice(1).reduce((a,l) =>{return a+(L>=l?1:0)},cc[0]):0;/* P4: a list of any length */if(cls==="Sorcerer")ct=4+(L>=4?1:0)+(L>=10?1:0);pr=PREP[cls]?PREP[cls][L-1]:0;
-  if(R14()){if((cls==="Paladin"||cls==="Ranger")&&L<2)return null;const q14=pr14(cls,L,mod(abil().sc[c.cast]));if(q14){pr=q14.pr;kn=q14.kn}if(cls==="Bard"&&L>=6&&sub==="College of Lore (2014)")pr+=2}/* v92: Additional Magical Secrets do not count against the spells known */}
- return {smax:c.smax?c.smax[L-1]:0,list:third?thirdOf(sub).list:cls,xl:(R14()&&cls==="Bard"?xl14(sub,L):(c.xlists&&L>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(cls)),ab:third?thirdOf(sub).ab:c.cast,ct:ct+spFxN("cantAdd",cls),pr:pr+spFxN("prepAdd",cls),kn:kn}}
+ else{const r=spOneCls(cls,sub,L,c);if(!r)return null;ct=r[0];pr=r[1];kn=r[2]}
+ return spOneOut(c,cls,sub,L,third,ct,pr,kn)}
 export function spInfo(){const parts=[spInfoOne(B.cls,B.sub,B.level)].concat(MCL().map((m) =>{return spInfoOne(m.cls,m.sub,m.lv)})).filter(Boolean);
  if(!parts.length)return null;let ct=0,pr=0,lists=[];parts.forEach((p) =>{ct+=p.ct;pr+=p.pr;[p.list].concat(p.xl||[]).forEach((l) =>{if(lists.indexOf(l)<0)lists.push(l)})});/* v32: Magical Secrets */
  clsParts().forEach((q) =>{const po=chOf(q.cls,"p1opt");if((q.cls==="Cleric"&&po==="Thaumaturge")||(q.cls==="Druid"&&po==="Magician"))ct++});/* v32 RL49 no. 45: per class part */
@@ -39,13 +43,17 @@ function spX2(x){return {n:x[0],l:x[1],fx:typeof SPELL_FX!=="undefined"?SPELL_FX
 function spDmgB(x){const c=genv.__spCalc&&genv.__spCalc(spX2(x),x[1],TL(),null);if(!c||(!c.parts.length&&!c.heal))return "";return '<span class="w"><b>'+(c.parts.length?"Damage":"Healing")+'</b>'+(c.n>1?c.n+' '+c.unit+'s, each ':'')+c.parts.map((p) =>{return esc(p.d)+' '+esc(genv.__dTxt(p.t))+genv.__dtIcon(p.t)+(p.lab?' ('+esc(p.lab)+')':'')}).join(" + ")+(c.heal?esc(c.heal)+(SPELL_FX[x[0]].heal[1]?' + your spellcasting modifier':'')+genv.__dtIcon("Healing"):'')+'</span>'}
 function spRngB(x){return genv.__spRangeH?genv.__spRangeH(x[5],spX2(x)):esc(x[5])}
 function spCmpB(x){return genv.__spCompH?genv.__spCompH(x[6],spX2(x)):esc(x[6])}
+/* spRow steps (SOLID s16): the number at the right, the add or remove button, the open details */
+function spRowRight(x,I){return x[10]==="ATK"?'<span class="bsv"><small>TO<br>HIT</small><b>'+sg(I.atk)+'</b></span>':x[10]?'<span class="bsv"><small>'+x[10]+'</small><b>'+I.dc+'</b></span>':''}
+function spRowBtn(x,mine,full,I){return mine?'<button type="button" class="sbtn rm unp" data-sp="'+esc(x[0])+'">'+(x[1]&&!(I&&I.kn)?"Unprepare":"Unlearn")+'</button>':'<button type="button" class="sbtn" data-sp="'+esc(x[0])+'"'+(full?' aria-disabled="true" data-full="'+(x[1]?"p":"c")+'"':"")+'>'+(x[1]&&!(I&&I.kn)?"Prepare":"Learn")+'</button>'}/* v32 p90 */
+function spRowDet(x,mine,I){return '<div class="sdet">'+((SPELL_FULL[x[0]]||x[11])?'<p class="ssum">'+rtp(SPELL_FULL[x[0]]||x[11])+'</p>':'')+'<span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>School</b>'+esc(x[2])+'</span><span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack "+sg(I.atk):x[10]?x[10]+" save, DC "+I.dc:"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span>'+(mine?'<button type="button" class="sbtn rm" data-sp="'+esc(x[0])+'">Remove</button>':'')+'</div>'}
 function spRow(x,mine,full,I){const id="sp"+x[0],open=!!openCards[id];
  const meta=(x[1]?ord(x[1])+" Level":"Cantrip")+(x[8]?" \u2022 Concentration":"")+(x[9]?" \u2022 Ritual":"");
- const right=x[10]==="ATK"?'<span class="bsv"><small>TO<br>HIT</small><b>'+sg(I.atk)+'</b></span>':x[10]?'<span class="bsv"><small>'+x[10]+'</small><b>'+I.dc+'</b></span>':'';
- const btn=mine?'<button type="button" class="sbtn rm unp" data-sp="'+esc(x[0])+'">'+(x[1]&&!(I&&I.kn)?"Unprepare":"Unlearn")+'</button>':'<button type="button" class="sbtn" data-sp="'+esc(x[0])+'"'+(full?' aria-disabled="true" data-full="'+(x[1]?"p":"c")+'"':"")+'>'+(x[1]&&!(I&&I.kn)?"Prepare":"Learn")+'</button>';/* v32 p90 */
+ const right=spRowRight(x,I);
+ const btn=spRowBtn(x,mine,full,I);
  return '<div class="scard'+(open?" open":"")+'"><button type="button" class="sh" data-tog="'+esc(id)+'" aria-expanded="'+open+'">'+bI("school-"+String(x[2]||"").toLowerCase())+'<span class="snm"><b>'+esc(x[0])+(x[8]?'<i class="cd">C</i>':'')+(x[9]?'<i class="cd r">R</i>':'')+'</b><small>'+esc(meta)+'</small></span>'+right+'</button>'+btn+
   '<button type="button" class="schev" data-tog="'+esc(id)+'" aria-label="Details"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
-  (open?'<div class="sdet">'+((SPELL_FULL[x[0]]||x[11])?'<p class="ssum">'+rtp(SPELL_FULL[x[0]]||x[11])+'</p>':'')+'<span><b>Casting Time</b>'+esc(x[4])+(x[9]?" or Ritual":"")+'</span><span><b>Range</b>'+spRngB(x)+'</span><span><b>Components</b>'+spCmpB(x)+'</span><span><b>Duration</b>'+(x[8]?"Concentration, ":"")+esc(x[7])+'</span>'+spDmgB(x)+'<span><b>School</b>'+esc(x[2])+'</span><span><b>'+(x[10]==="ATK"?"Attack":"Save")+'</b>'+(x[10]==="ATK"?"Spell attack "+sg(I.atk):x[10]?x[10]+" save, DC "+I.dc:"None")+'</span><span class="w"><b>Classes</b>'+esc(spClsJ(x))+'</span>'+(mine?'<button type="button" class="sbtn rm" data-sp="'+esc(x[0])+'">Remove</button>':'')+'</div>':'')+'</div>'}
+  (open?spRowDet(x,mine,I):'')+'</div>'}
 function spSec(title,count,rows){return '<div class="sech"><b>'+title+'</b>'+(count!=null?' <span>('+count+')</span>':'')+'</div>'+rows}
 function pickRows(list,taken,full,I,key){return list.map((x) =>{const on=taken.indexOf(x[0])>=0;return spRow(x,false,full&&!on,I).replace('data-sp="'+esc(x[0])+'"','data-pk="'+key+'" data-v="'+esc(x[0])+'"').replace(/>(Prepare|Learn)</,on?'>Chosen<':'>$1<').replace('class="sbtn"',on?'class="sbtn on"':'class="sbtn"')}).join("")}
 /* M9: one spell section per spellcasting class (PHB 2024 p. 44: each class prepares as if single-classed, with its own ability).
@@ -60,35 +68,68 @@ export function spInfoPart(p){const o=spInfoOne(p.cls,p.sub,p.lv);if(!o)return n
  if(!t&&CLASSES[p.cls].nslot){o.max=o.smax}else
  o.max=t==="pact"?PACT[p.lv-1][1]:(t==="full"?SLOTS_FULL[p.lv-1]:t==="half"?SLOTS_FULL[Math.ceil(p.lv/2)-1]:SLOTS_FULL[Math.ceil(p.lv/3)-1]).length;
  const x=abInfo(o.ab);o.dc=x.dc;o.atk=x.atk;o.lists=[o.list].concat(o.xl||[]);o.cls=p.cls;return o}
-export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
- const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
- if(!I&&!auto.length&&!mis.length)return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>';
- if(multi)h+='<div class="subtabs">'+CP.map((p) =>{return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>';
- if(I){h+='<div class="spstat"><div><b>'+K.dc+'</b><span>Save DC</span></div><div><b>'+sg(K.atk)+'</b><span>Spell Attack</span></div><div><b>'+K.ab+'</b><span>Ability</span></div></div>';
-  if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map((n,i) =>{return ord(i+1)+' \u00d7'+n}).join(", ")+((I.SA.slots.fxAdd||[]).length?' <small>(includes '+I.SA.slots.fxAdd.map((x) =>{return '+'+x[1]+' level '+x[0]+' from '+esc(x[2])}).join("; ")+')</small>':'')+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'}
+/* renderSpells steps (SOLID s16): each returns the HTML of one part of the Spells tab. I = spInfo(), K = the numbers of the class shown */
+function spNone(){return '<p class="fd">'+B.cls+(B.sub?" ("+B.sub+")":"")+' has no Spellcasting at level '+B.level+'.'+(B.cls==="Fighter"||B.cls==="Rogue"?' Eldritch Knight or Arcane Trickster gets spells from level 3.':'')+'</p>'}
+function spTabs(CP,P){return '<div class="subtabs">'+CP.map((p) =>{return '<button type="button" class="'+(p===P?"on":"")+'" data-spcls="'+esc(p.cls)+'">'+esc(p.cls)+'</button>'}).join("")+'</div><p class="fd bhint">Each class prepares and casts with its own ability.</p>'}
+function spStat(I,K){let h="";h+='<div class="spstat"><div><b>'+K.dc+'</b><span>Save DC</span></div><div><b>'+sg(K.atk)+'</b><span>Spell Attack</span></div><div><b>'+K.ab+'</b><span>Ability</span></div></div>';
+  if(I.SA.slots)h+='<p class="slots">Spell Slots: '+I.SA.slots.map((n,i) =>{return ord(i+1)+' \u00d7'+n}).join(", ")+((I.SA.slots.fxAdd||[]).length?' <small>(includes '+I.SA.slots.fxAdd.map((x) =>{return '+'+x[1]+' level '+x[0]+' from '+esc(x[2])}).join("; ")+')</small>':'')+'</p>';if(I.SA.pact)h+='<p class="slots">Pact Slots: '+I.SA.pact.n+' \u00d7 level '+I.SA.pact.lvl+'</p>'
+ return h}
+function spLand(){let h="";
  if(B.sub==="Circle of the Land")h+=card("land","Circle of the Land: Land Type",B.ch.land||"1 Choice",'<div class="radios h">'+Object.keys(LAND).map((k) =>{return '<button type="button" class="rad'+(B.ch.land===k?" on":"")+'" data-ch1="land" data-v="'+k+'"><b>'+k+'</b></button>'}).join("")+'</div><p class="fd bhint">You can change it after each Long Rest.</p>',{todo:!B.ch.land});
+ return h}
+function spAlways(auto,RJ){let h="";
  if(auto.length)h+=spSec("Always Prepared",auto.length,auto.map((a) =>{const x=SMAP[a.n];return x?spRow(x,true,false,RJ(a.k)).replace(/<button type="button" class="sbtn rm"[^>]*>(Remove|Unprepare|Unlearn)<\/button>/g,'').replace('<small>','<small>'+esc(a.src)+' \u2022 '):''}).join(""));
+ return h}
+function spArcanum(){let h="";
  if(clsLv("Warlock")>=11){const wl=clsLv("Warlock"),ma=[[11,6],[13,7],[15,8],[17,9]].filter((r) =>{return wl>=r[0]});
   h+=spSec("Mystic Arcanum",ma.length,ma.map((r) =>{const k="ma"+r[1],v=B.pk[k],opts=SPELLS.filter((x) =>{return x[1]===r[1]&&x[3].indexOf("Warlock")>=0});
    return card(k,"Level "+r[1]+" Arcanum",(v||"1 Choice")+" \u2022 "+ord(r[0])+" level",'<p class="fd bhint">Cast once per Long Rest without a slot.</p><select class="dd" data-pksel="'+k+'"><option value="">- Choose a level '+r[1]+' Warlock spell -</option>'+opts.map((x) =>{return '<option'+(v===x[0]?" selected":"")+'>'+esc(x[0])+'</option>'}).join("")+'</select>',{todo:!v})}).join(""))}
- mis.forEach((m) =>{const v=B.pk[m.key]||{c:[],s:[]},list=SPELLS.filter((x) =>{return x[3].indexOf(m.cls)>=0&&x[1]<=1}),MJ=RJ("@mi:"+m.key);
+ return h}
+function spMi(m,RJ){let h="";const v=B.pk[m.key]||{c:[],s:[]},list=SPELLS.filter((x) =>{return x[3].indexOf(m.cls)>=0&&x[1]<=1}),MJ=RJ("@mi:"+m.key);
   const body='<p class="fd">Two '+m.cls+' cantrips and one level 1 '+m.cls+' spell. Cast the level 1 spell once per Long Rest free, or with your slots. Pick Int, Wis, or Cha as the spellcasting ability.</p><select class="dd" data-miab="'+m.key+'">'+["INT","WIS","CHA"].map((k) =>{return '<option'+((v.ab||"WIS")===k?" selected":"")+'>'+k+'</option>'}).join("")+'</select>'+
    '<h4>Cantrips ('+v.c.length+'/2)</h4>'+pickRows(list.filter((x) =>{return !x[1]}),v.c,v.c.length>=2,MJ,m.key+":c")+'<h4>Level 1 spell ('+v.s.length+'/1)</h4>'+pickRows(list.filter((x) =>{return x[1]===1}),v.s,v.s.length>=1,MJ,m.key+":s");
-  h+=card(m.key,"Magic Initiate ("+m.cls+")",m.src+" \u2022 "+(v.c.length+v.s.length)+"/3 chosen",body,{todo:v.c.length<2||v.s.length<1})});
- if(!I)return h;
- const taken=multi?(SLs[P.cls]||[]):B.sp,mine=taken.map((n) =>{return SMAP[n]}).filter(Boolean),an=auto.map((a) =>{return a.n});
- let nc=mine.filter((x) =>{return !x[1]}).length,np=mine.filter((x) =>{return x[1]}).length,t="";
+  h+=card(m.key,"Magic Initiate ("+m.cls+")",m.src+" \u2022 "+(v.c.length+v.s.length)+"/3 chosen",body,{todo:v.c.length<2||v.s.length<1})
+ return h}
+function spMineSec(multi,P,K,mine){let t="";
  t+=spSec((multi?P.cls+" ":"")+(K.kn?"Spells Known":"Prepared Spells"),mine.length,mine.length?mine.sort((p,q) =>{return p[1]-q[1]||(p[0]<q[0]?-1:1)}).map((x) =>{return spRow(x,true,false,K)}).join(""):'<p class="fd bhint">No spells yet. Add them below.</p>');
+ return t}
+function spCounts(K,nc,np){let t="";
  t+='<div class="sech"><b>Add Spells</b></div><p class="cnt'+(nc!==K.ct||np!==K.pr?' short':'')+'">Cantrips: '+nc+' / '+K.ct+(nc<K.ct?' <em>('+(K.ct-nc)+' to choose)</em>':nc>K.ct?' <em>('+(nc-K.ct)+' too many)</em>':'')+'<br>'+(K.kn?"Spells Known":"Prepared Spells")+': '+np+' / '+K.pr+(np<K.pr?' <em>('+(K.pr-np)+' to choose)</em>':np>K.pr?' <em>('+(np-K.pr)+' too many)</em>':'')+'</p>';
+ return t}
+function spSch14(t,multi,P,mine){
  const s14=sch14Info(multi?P.cls:B.cls,multi?P.sub:B.sub,multi?P.lv:B.level,mine);if(s14)t=t.replace(/<\/p>$/,'<br>Other schools: '+s14.off+' / '+s14.free+' <em>(all others must be '+s14.sch.join(" or ")+')</em>'+(s14.off>s14.free?' <em>('+(s14.off-s14.free)+' too many)</em>':'')+'</p>');
- t+='<p class="flab">Filter</p><input class="btx" id="spq" type="search" placeholder="Enter Spell Name" value="'+esc(spQ)+'">';
- const mx=multi?K.max:I.max;t+='<p class="flab">Filter By Spell Level</p><div class="lvbox">';for(let i=0;i<=mx;i++)t+='<button type="button" class="lvb'+(String(spLv)===String(i)?" on":"")+'" data-splv="'+i+'" aria-label="'+(i===0?"Level 0 spells (cantrips)":"Level "+i+" spells")+'">'+(i===0?"0":i+'<sup>'+ord(i).slice(-2).toUpperCase()+'</sup>')+'</button>';t+='</div>';
- const wz=(multi?P.cls:(CP[0]||{}).cls)==="Wizard",bk=wz?bookOf():null;/* v32 RL49 no. 34: a Wizard prepares level 1+ spells from the spellbook */
- if(wz)t=bookCard(mx)+t;
+ return t}
+function spLvBox(mx){let t="";t+='<p class="flab">Filter By Spell Level</p><div class="lvbox">';for(let i=0;i<=mx;i++)t+='<button type="button" class="lvb'+(String(spLv)===String(i)?" on":"")+'" data-splv="'+i+'" aria-label="'+(i===0?"Level 0 spells (cantrips)":"Level "+i+" spells")+'">'+(i===0?"0":i+'<sup>'+ord(i).slice(-2).toUpperCase()+'</sup>')+'</button>';t+='</div>';
+ return t}
+function spAvail(K,mx,taken,an){
  const q=spQ.toLowerCase(),av=SPELLS.filter((x) =>{return K.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=mx&&taken.indexOf(x[0])<0&&an.indexOf(x[0])<0&&(spLv==="all"||String(x[1])===String(spLv))&&(!q||x[0].toLowerCase().indexOf(q)>=0)});
+ return av}
+function spAvRows(av,K,np,nc,bk){let t="";
  if(bk)t+='<p class="fd bhint">Preparing a spell also writes it in your spellbook while there is room.</p>';
  const bfull=bk&&bookOwn().length>=bookNeed();
  t+=av.map((x) =>{let r=spRow(x,false,x[1]?np>=K.pr:nc>=K.ct,K);if(bfull&&x[1]&&bk.indexOf(x[0])<0)r=r.replace('data-sp="'+esc(x[0])+'">','data-sp="'+esc(x[0])+'" aria-disabled="true" data-full="b">');return r}).join("");/* v32: book full */
+ return t}
+export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
+ const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
+ if(!I&&!auto.length&&!mis.length)return spNone();
+ if(multi)h+=spTabs(CP,P);
+ if(I)h+=spStat(I,K);
+ h+=spLand();
+ h+=spAlways(auto,RJ);
+ h+=spArcanum();
+ mis.forEach((m) =>{h+=spMi(m,RJ)});
+ if(!I)return h;
+ const taken=multi?(SLs[P.cls]||[]):B.sp,mine=taken.map((n) =>{return SMAP[n]}).filter(Boolean),an=auto.map((a) =>{return a.n});
+ let nc=mine.filter((x) =>{return !x[1]}).length,np=mine.filter((x) =>{return x[1]}).length,t="";
+ t+=spMineSec(multi,P,K,mine);
+ t+=spCounts(K,nc,np);
+ t=spSch14(t,multi,P,mine);
+ t+='<p class="flab">Filter</p><input class="btx" id="spq" type="search" placeholder="Enter Spell Name" value="'+esc(spQ)+'">';
+ const mx=multi?K.max:I.max;t+=spLvBox(mx);
+ const wz=(multi?P.cls:(CP[0]||{}).cls)==="Wizard",bk=wz?bookOf():null;/* v32 RL49 no. 34: a Wizard prepares level 1+ spells from the spellbook */
+ if(wz)t=bookCard(mx)+t;
+ const av=spAvail(K,mx,taken,an);
+ t+=spAvRows(av,K,np,nc,bk);
  if(multi)t=t.replace(/data-sp="/g,'data-spc="'+esc(P.cls)+'" data-sp="');
  return h+t}
 /* v32 RL49 no. 34: Wizard spellbook card. Chips per spell level (level 1 to mx). Prepared spells are in the book (Unprepare them to take them out),
@@ -100,14 +141,21 @@ function bookCard(mx){let own=bookOwn(),need=bookNeed(),sv=savVals(),pr=spLists(
  return card("book","Spellbook",own.length+" / "+need+" spells",h,{todo:own.length<need})}
 /* v19 RU47, RL45, RL46: what is still short (open) or wrong (bad). Items {step, tab, open, m} */
 export function plural(n,w){return n+" "+w+(n===1?"":"s")}
-export function spellCounts(){const out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,SLs=multi?spLists():null;
- if(I)(multi?CP:[null]).forEach((P) =>{const K=P?spInfoPart(P):I;if(!K)return;const taken=P?(SLs[P.cls]||[]):(B.sp||[]),mine=taken.map((n) =>{return SMAP[n]}).filter(Boolean),who=P?P.cls+": ":"";
+/* spellCounts steps (SOLID s16): the open spell picks of one caster part P (null: the one class), Magic Initiate, Mystic Arcanum, the spellbook */
+function scPart(P,I,SLs,out){const K=P?spInfoPart(P):I;if(!K)return;const taken=P?(SLs[P.cls]||[]):(B.sp||[]),mine=taken.map((n) =>{return SMAP[n]}).filter(Boolean),who=P?P.cls+": ":"";
   const nc=mine.filter((x) =>{return !x[1]}).length,np=mine.filter((x) =>{return x[1]}).length;
   if(nc<K.ct)out.push({step:"class",tab:"spell",open:1,m:who+plural(K.ct-nc,"cantrip")+" not chosen yet"});else if(nc>K.ct)out.push({step:"class",tab:"spell",m:who+plural(nc-K.ct,"cantrip")+" more than allowed ("+K.ct+")"});  const s14=sch14Info(P?P.cls:B.cls,P?P.sub:B.sub,P?P.lv:B.level,mine);if(s14&&s14.off>s14.free)out.push({step:"class",tab:"spell",m:who+plural(s14.off-s14.free,"spell")+" outside "+s14.sch.join(" and ")+" (only "+s14.free+" allowed)"});
-  if(np<K.pr)out.push({step:"class",tab:"spell",open:1,m:who+plural(K.pr-np,K.kn?"known spell":"prepared spell")+" not chosen yet"});else if(np>K.pr)out.push({step:"class",tab:"spell",m:who+plural(np-K.pr,K.kn?"known spell":"prepared spell")+" more than allowed ("+K.pr+")"})});
- miFeats().forEach((m) =>{const v=(B.pk||{})[m.key]||{c:[],s:[]},a=Math.max(0,2-v.c.length),b=Math.max(0,1-v.s.length);if(a||b)out.push({step:"class",tab:"spell",open:1,m:"Magic Initiate ("+m.cls+"): "+[a?plural(a,"cantrip"):"",b?"1 level 1 spell":""].filter(Boolean).join(" and ")+" not chosen yet"})});
- const wl=clsLv("Warlock");[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!(B.pk||{})["ma"+r[1]])out.push({step:"class",tab:"spell",open:1,key:"ma"+r[1],f:"Mystic Arcanum",m:"Mystic Arcanum: level "+r[1]+" spell not chosen yet"})});
- const bo=bookOwn().length,bn=bookNeed();if(bn&&bo<bn)out.push({step:"class",tab:"spell",open:1,key:"book",f:"Spellcasting",n:bn,m:"Wizard spellbook: "+plural(bn-bo,"spell")+" not chosen yet"});else if(bn&&bo>bn)out.push({step:"class",tab:"spell",m:"Wizard spellbook: "+plural(bo-bn,"spell")+" more than allowed ("+bn+")"});/* v32 RL49 no. 34 */
+  if(np<K.pr)out.push({step:"class",tab:"spell",open:1,m:who+plural(K.pr-np,K.kn?"known spell":"prepared spell")+" not chosen yet"});else if(np>K.pr)out.push({step:"class",tab:"spell",m:who+plural(np-K.pr,K.kn?"known spell":"prepared spell")+" more than allowed ("+K.pr+")"})}
+function scMi(m,out){const v=(B.pk||{})[m.key]||{c:[],s:[]},a=Math.max(0,2-v.c.length),b=Math.max(0,1-v.s.length);if(a||b)out.push({step:"class",tab:"spell",open:1,m:"Magic Initiate ("+m.cls+"): "+[a?plural(a,"cantrip"):"",b?"1 level 1 spell":""].filter(Boolean).join(" and ")+" not chosen yet"})}
+function scArc(out){
+ const wl=clsLv("Warlock");[[11,6],[13,7],[15,8],[17,9]].forEach((r) =>{if(wl>=r[0]&&!(B.pk||{})["ma"+r[1]])out.push({step:"class",tab:"spell",open:1,key:"ma"+r[1],f:"Mystic Arcanum",m:"Mystic Arcanum: level "+r[1]+" spell not chosen yet"})});}
+function scBook(out){
+ const bo=bookOwn().length,bn=bookNeed();if(bn&&bo<bn)out.push({step:"class",tab:"spell",open:1,key:"book",f:"Spellcasting",n:bn,m:"Wizard spellbook: "+plural(bn-bo,"spell")+" not chosen yet"});else if(bn&&bo>bn)out.push({step:"class",tab:"spell",m:"Wizard spellbook: "+plural(bo-bn,"spell")+" more than allowed ("+bn+")"});/* v32 RL49 no. 34 */}
+export function spellCounts(){const out=[],I=spInfo(),CP=casterParts(),multi=CP.length>1,SLs=multi?spLists():null;
+ if(I)(multi?CP:[null]).forEach((P) =>{scPart(P,I,SLs,out)});
+ miFeats().forEach((m) =>{scMi(m,out)});
+ scArc(out);
+ scBook(out);
  return out}
 function stepOfKey(k){if(/^[a-z0-9]+-Origin feat \(/.test(k)||k==="Origin feat ("+B.bg+")")return /Versatile/.test(k)?"species":"bg";if(k==="spfeat"||/Versatile/.test(k))return "species";if(k==="bgTool"||k==="bgfeatc"||k==="bgsk")return "bg";return "class"}
 /* v32 RL49: the builder step that holds a choice (its card and its badge) */

@@ -52,23 +52,33 @@ function luArc(C){
 /* v21 RU44: highest result of a dice expression such as "1d6+3" or "2d8+4" (0 when it is not one) */
 function diceTop(t){const m=/^\s*(\d+)d(\d+)\s*(?:([+-])\s*(\d+))?\s*$/.exec(String(t||""));if(!m)return 0;return (+m[1])*(+m[2])+(m[3]==="-"?-1:1)*(+(m[4]||0))}
 /* RU35 no. 5: features that add damage, as rows in Actions (C.xdmg [{n, sub, dmg, type, note, save, dc, src}]) */
-export function xdmgRows(a,pb){const out=[],TLv=TL(),iv=invList(),SA=slotsAll();
- (typeof FDMG!=="undefined"?FDMG:[]).forEach((r) =>{let kind=r[0],own=r[1],lv=0;
-  if(kind==="inv"){if(iv.indexOf(own)<0)return;lv=clsLv("Warlock")}
+/* xdmgRows steps (SOLID s16): the level that counts for row r (null: the row does not apply), its gate, its dice */
+function xdLv(kind,own,iv,TLv){let lv=0;
+  if(kind==="inv"){if(iv.indexOf(own)<0)return null;lv=clsLv("Warlock")}
   else if(kind==="cls")lv=clsLv(own);
   else if(kind==="sub"){const sc=subClsOf(own);lv=sc?subAt(sc,own):0}
-  else if(kind==="sp"){if(un("species")||B.species!==own)return;lv=TLv}
-  if(!lv||lv<r[3])return;const g=r[10];if(g){const gp=g.split(":");if(/^p\d+opt$/.test(gp[0])&&B.ch[gp[0]]!==gp[1])return;if(gp[0]==="lin"&&(B.ch.lin||"").indexOf(gp[1])!==0)return}
-  let dice=r[4]==="smite"?(SA.pact?(1+SA.pact.lvl)+"d8":""):r[4][lv-1]||"";if(!dice)return;
+  else if(kind==="sp"){if(un("species")||B.species!==own)return null;lv=TLv}
+ return lv}
+function xdGate(g){const gp=g.split(":");if(/^p\d+opt$/.test(gp[0])&&B.ch[gp[0]]!==gp[1])return true;if(gp[0]==="lin"&&(B.ch.lin||"").indexOf(gp[1])!==0)return true;return false}
+function xdDice(r,lv,SA,a){let dice=r[4]==="smite"?(SA.pact?(1+SA.pact.lvl)+"d8":""):r[4][lv-1]||"";if(!dice)return "";
   dice=dice.replace(/^([A-Z]{3})d(\d+)/,(_,k,dd) =>{return Math.max(1,mod(a.sc[k]))+"d"+dd});if(r[9])dice+=(mod(a.sc[r[9]])<0?"":"+")+mod(a.sc[r[9]]);
+ return dice}
+function xdRow(r,a,pb,TLv,iv,SA,out){let kind=r[0],own=r[1];const lv=xdLv(kind,own,iv,TLv);if(lv===null)return;
+  if(!lv||lv<r[3])return;const g=r[10];if(g&&xdGate(g))return;
+  const dice=xdDice(r,lv,SA,a);if(!dice)return;
   let ty=r[5];if(ty==="lin"){const mm=/\(([A-Za-z]+)\)/.exec(B.ch.lin||"");ty=mm?mm[1]:"ancestry type"}else if(ty==="weapon")ty="Weapon type";
-  out.push({n:r[2],sub:kind==="inv"?"Eldritch Invocation":kind==="sp"?B.species:own,dmg:dice,type:ty.split("|").join(" or "),note:r[6],save:r[7]||"",dc:r[7]?8+mod(a.sc[r[8]])+pb:null,lv:lv})});
+  out.push({n:r[2],sub:kind==="inv"?"Eldritch Invocation":kind==="sp"?B.species:own,dmg:dice,type:ty.split("|").join(" or "),note:r[6],save:r[7]||"",dc:r[7]?8+mod(a.sc[r[8]])+pb:null,lv:lv})}
+export function xdmgRows(a,pb){const out=[],TLv=TL(),iv=invList(),SA=slotsAll();
+ (typeof FDMG!=="undefined"?FDMG:[]).forEach((r) =>{xdRow(r,a,pb,TLv,iv,SA,out)});
  return out}
 /* RU35 no. 6: notes under Saving Throws (Advantage and bonuses from features, feats, species, items) */
+/* saveNotes steps (SOLID s16): the class features of one class part q (cf names, cfo owners), one SAVE_NOTES row s */
+function snClassFeats(q,cf,cfo){featsOf(q.cls,q.lv).forEach((x) =>{cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(q.cls)});const s=q.sub||(q.cls===B.cls?B.sub:"");if(s&&CLASSES[q.cls].subs[s])CLASSES[q.cls].subs[s].forEach((x) =>{if(x[0]<=q.lv){cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(s,q.cls)}})}
+function snRow(s,seen,fn,iv,tr,cf,cfo,o){if(!s[2]||seen[s[1]+s[2]+(s[3]||"")])return;let has=s[0]==="feat"?fn.indexOf(s[1])>=0:s[0]==="inv"?iv.indexOf(s[1])>=0:s[0]==="trait"?tr.indexOf(s[1])>=0:cf.indexOf(s[1])>=0;if(has&&s[3]){const w=s[3];has=s[0]==="trait"?B.species===w:s[0]==="feat"?fn.indexOf(w)>=0:s[0]==="inv"?true:(cfo[s[1]]||[]).indexOf(w)>=0}if(has){seen[s[1]+s[2]+(s[3]||"")]=1;o.push({t:s[2],s:s[1]})}}
 export function saveNotes(feats){const o=[],seen={},fn=feats.map((f) =>{return f.n}),iv=invList(),sp=spX(),tr=sp?sp.traits.map((t) =>{return t[0]}):[],cf=[],cfo={};
- clsParts().forEach((q) =>{featsOf(q.cls,q.lv).forEach((x) =>{cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(q.cls)});const s=q.sub||(q.cls===B.cls?B.sub:"");if(s&&CLASSES[q.cls].subs[s])CLASSES[q.cls].subs[s].forEach((x) =>{if(x[0]<=q.lv){cf.push(x[1]);(cfo[x[1]]=cfo[x[1]]||[]).push(s,q.cls)}})});
+ clsParts().forEach((q) =>{snClassFeats(q,cf,cfo)});
  /* fx engine v4: a SAVE_NOTES row may carry a 4th item, the owner (species name for a trait, class or subclass name for a class feature, feat name for a feat). With it the row counts only for that owner; without it the old match by name alone stays. Two sources with a feature of the same name (Kalashtar and Githzerai "Mental Discipline") no longer share a note */
- (typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]).forEach((s) =>{if(!s[2]||seen[s[1]+s[2]+(s[3]||"")])return;let has=s[0]==="feat"?fn.indexOf(s[1])>=0:s[0]==="inv"?iv.indexOf(s[1])>=0:s[0]==="trait"?tr.indexOf(s[1])>=0:cf.indexOf(s[1])>=0;if(has&&s[3]){const w=s[3];has=s[0]==="trait"?B.species===w:s[0]==="feat"?fn.indexOf(w)>=0:s[0]==="inv"?true:(cfo[s[1]]||[]).indexOf(w)>=0}if(has){seen[s[1]+s[2]+(s[3]||"")]=1;o.push({t:s[2],s:s[1]})}});
+ (typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]).forEach((s) =>{snRow(s,seen,fn,iv,tr,cf,cfo,o)});
  activeFx().forEach((q) =>{(q.fx.adv||[]).forEach((k) =>{if(/save|Concentration/i.test(k))o.push({t:"Advantage: "+k,s:q.n})})});
  return o}
 export function invList(){let iv=[];Object.keys(B.ch||{}).forEach((k) =>{if(/invocation$/.test(k))iv=iv.concat(B.ch[k]||[])});return iv}
@@ -77,7 +87,9 @@ export function wmAll(){const o=[],ks=Object.keys(B.ch||{}).filter((k) =>{return
  ks.sort((a,b) =>{const r=function(k){return k==="wm"?0:k==="spwep"?1:2};return r(a)-r(b)});ks.forEach((k) =>{B.ch[k].forEach((n) =>{if(o.indexOf(n)<0)o.push(n)})});return o}
 /* v32: a Divine Order or Primal Order option of any Cleric or Druid part */
 export function optAny(v){if(B.ch.p1opt===v)return true;return MCL().some((m,i) =>{return B.ch["m"+i+":p1opt"]===v})}
-export function pactWeapon(){return invList().indexOf("Pact of the Blade")>=0?((B.ch.pactWep||[])[0]||""):""}
+/* the bonded weapon. A plain weapon name that is not in the inventory, while a variant of the same weapon is (Masterwork or magic Longsword), means that variant, so it is not conjured a second time */
+function pactHeld(n){if(!n)return n;const inv=ensureInv();if(inv.some((x) =>{return x.n===n}))return n;const b=baseOf(n).b,alt=inv.filter((x) =>{return x.eq&&baseOf(x.n).b===b})[0]||inv.filter((x) =>{return baseOf(x.n).b===b})[0];return alt?alt.n:n}
+export function pactWeapon(){return invList().indexOf("Pact of the Blade")>=0?pactHeld((B.ch.pactWep||[])[0]||""):""}
 function pactList(){const o=[],seen={};ensureInv().forEach((x) =>{const w=WEAPONS[baseOf(x.n).b];if(w&&w.k==="M"&&!seen[x.n]){seen[x.n]=1;o.push([x.n,"In your inventory"+(x.eq?"":" (not active)")+": "+w.d+" "+w.t])}});
  Object.keys(WEAPONS).forEach((n) =>{const w=WEAPONS[n];if(w.k==="M"&&!seen[n]){seen[n]=1;o.push([n,"Conjured in your hand: "+w.d+" "+w.t])}});return o}
 /* v32: cls = the class that owns the choice (its skill list), sub = its subclass. p.key replaces the key "p"+level+kind, p.feature names the feature card */
@@ -104,9 +116,14 @@ const PK_KINDS={
  metamagic:function(o,p,cls,plv){const mm=pkOthers(o.key,/metamagic$/);return Object.assign(o,{t:"multi",n:p.n,list:METAMAGIC.filter((x) =>{return !mm[x[0]]}),title:"Metamagic",feature:"Metamagic"})},
  invocation:function(o,p,cls,plv){const iv=pkOthers(o.key,/invocation$/);/* one invocation is not taken in two slots unless it says Repeatable */return Object.assign(o,{t:"multi",n:p.n,list:INVOCATIONS.filter((x) =>{return !iv[x[0]]||/Repeatable/i.test(x[1])}),title:"Eldritch Invocations",minLvl:1})},
  pact:function(o,p,cls,plv){return Object.assign(o,{t:"multi",n:1,list:PACTB14,title:"Pact Boon",feature:"Pact Boon"});/* v90 */}};
-export function pk(p,src,cls,sub,pre){if(p.when){/* generic: the pick shows only while another pick holds the value (when:{key,val}), e.g. Warden Stalwart Spirit */const wv=B.ch[(pre||"")+p.when.key],wa=Array.isArray(wv)?wv:(wv?[wv]:[]);if(wa.indexOf(p.when.val)<0)return null}const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
+/* pk steps (SOLID s16): true when the pick waits for another pick, the skill and Expertise picks (null for the other kinds) */
+function pkHidden(p,pre){/* generic: the pick shows only while another pick holds the value (when:{key,val}), e.g. Warden Stalwart Spirit */const wv=B.ch[(pre||"")+p.when.key],wa=Array.isArray(wv)?wv:(wv?[wv]:[]);return wa.indexOf(p.when.val)<0}
+function pkSkillExp(o,p,cls){
  if(p.k==="skill")return Object.assign(o,{t:"skills",n:p.n,from:p.from==="all"?ALLSK:p.from||(CLASSES[cls]||CL()).sk.from,title:p.title||"Extra class skill",ex:p.ex?1:0});
  if(p.k==="expertise")return Object.assign(o,{t:"exp",n:p.n,from:p.from,title:"Expertise",feature:p.feature||"Expertise"});
+ return null}
+export function pk(p,src,cls,sub,pre){if(p.when&&pkHidden(p,pre))return null;const o={key:p.key||("p"+p.l+p.k),lvl:p.l,src:SRC+", "+src};if(p.feature)o.feature=p.feature;
+ const se=pkSkillExp(o,p,cls);if(se)return se;
  if(p.yc)o.yc=1;if(p.ytx)o.ytx=1;const plv=clsLv(cls||B.cls)||B.level;
  if(p.cond==="wis"&&!wisElse())return null;
  if(p.cond==="minill"&&((spLists()[cls||B.cls])||[]).indexOf("Minor Illusion")<0)return null;/* Improved Illusions: only when Minor Illusion is known already */
@@ -129,20 +146,25 @@ export function bookNeed(){const l=wizLv();return l?6+2*(l-1):0}
 function wlMc(){if(B.cls==="Warlock")return undefined;let i;MCL().forEach((m,j) =>{if(m.cls==="Warlock")i=j});return i}
 function invLvl(n){let lv=99;Object.keys(B.ch||{}).forEach((k) =>{const m=/^(?:m\d+:)?p(\d+)invocation$/.exec(k);if(m&&(B.ch[k]||[]).indexOf(n)>=0)lv=Math.min(lv,+m[1])});return lv===99?1:lv}
 function wlCantrips(){const o=[];((spLists().Warlock)||[]).concat(B.ch.tomeC||[]).forEach((n) =>{const x=spRec(n);if(x&&!x[1]&&o.indexOf(n)<0)o.push(n)});return o}
+/* invPicks step (SOLID s16): cantrip c fits the invocation rule q */
+function ipFits(q,c){const x=spRec(c),fx=typeof SPELL_FX!=="undefined"&&SPELL_FX[c];if(q.dmg&&!(fx&&fx.dmg))return false;if(q.atk&&x[10]!=="ATK")return false;if(q.rng){const r=/(\d+) f/.exec(x[5]||"");if(!r||+r[1]<q.rng)return false}return true}
 function invPicks(){const out=[],iv=invList(),wl=clsLv("Warlock");if(!wl||typeof INV_PICK==="undefined")return out;const mc=wlMc(),can=wlCantrips(),src=function(n){return SRC+", "+n+" (Warlock "+invLvl(n)+(mc!=null?", multiclass":"")+")"};
  Object.keys(INV_PICK).forEach((n) =>{const q=INV_PICK[n],cnt=iv.filter((x) =>{return x===n}).length;if(!cnt)return;
   if(q.feat){for(let j=1;j<=cnt;j++){const o=Object.assign({key:q.key+j,lvl:invLvl(n),t:"ofeat",title:n+": Origin feat"+(cnt>1?" "+j:""),src:src(n),feature:"Eldritch Invocations",inv:n},mc!=null?{mc:mc}:{});out.push(o)}return}
-  const L2=can.filter((c) =>{const x=spRec(c),fx=typeof SPELL_FX!=="undefined"&&SPELL_FX[c];if(q.dmg&&!(fx&&fx.dmg))return false;if(q.atk&&x[10]!=="ATK")return false;if(q.rng){const r=/(\d+) f/.exec(x[5]||"");if(!r||+r[1]<q.rng)return false}return true});
+  const L2=can.filter((c) =>{return ipFits(q,c)});
   out.push(Object.assign({key:q.key,lvl:invLvl(n),t:"multi",n:cnt,list:L2.map((c) =>{return [c,spRec(c)[11]]}),title:n+": cantrip"+(cnt>1?"s":"")+(L2.length?"":" (learn a fitting Warlock cantrip first)"),src:src(n),feature:"Eldritch Invocations",inv:n},mc!=null?{mc:mc}:{}))});return out}
 /* Agonizing Blast: the chosen cantrips. Not chosen yet: Eldritch Blast, as before v32 (the choice stays marked as open) */
 export function agOn(n){const v=B.ch.invab;if(Array.isArray(v)&&v.length)return v.indexOf(n)>=0;return n==="Eldritch Blast"&&invList().indexOf("Agonizing Blast")>=0}
 /* the values of choices with yc (shown as "Your choice." under the feature on the sheet). mc: multiclass index or undefined */
 export function ycOf(CH,feature,mc){let o=[],tx=[];CH.forEach((c) =>{if(!c.yc||c.feature!==feature||c.mc!==mc)return;const v=B.ch[c.key];if(Array.isArray(v)){o=o.concat(v);if(c.ytx&&Array.isArray(c.list))v.forEach((n) =>{const r=c.list.filter((x) =>{return x[0]===n})[0];if(r&&r[1])tx.push("**"+n+".** "+r[1])})}else if(v&&typeof v==="string")o.push(v)});/* v81: ytx adds the text of each chosen option before the choice line */return o.length?(tx.length?" "+tx.join(" "):"")+" **Your choice.** "+o.join(", ")+".":""}
+/* isDone steps (SOLID s16): the kinds that store a list, a feat pick */
+function doneIsList(t){return t==="skills"||t==="exp"||t==="multi"||t==="wm"||t==="lang"||t==="tool"||t==="pe"}
+function doneFeat(v){if(!v||!v.feat)return false;const F=FEATS[v.feat];if(!F)return false;/* M12: feat missing from FEATS (pack off, renamed) */if(F.dt&&!v.dt)return false;/* v19 RL46 (4) */if(F.asi2)return !!(v.a1&&v.a2);if(F.asi)return !!v.a1;return true}
 export function isDone(c){const v=B.ch[c.key];if(c.def&&v==null)return true;if(c.opt)return v==null||v===""||(Array.isArray(v)&&v.length<=c.n)||c.t==="text";/* v32: optional choice (War Bond) *//* v32: a default counts as chosen */
- if(c.t==="skills"||c.t==="exp"||c.t==="multi"||c.t==="wm"||c.t==="lang"||c.t==="tool"||c.t==="pe")return Array.isArray(v)&&v.length===c.n;
+ if(doneIsList(c.t))return Array.isArray(v)&&v.length===c.n;
  if(c.t==="sub")return !!B.sub;
  if(c.t==="mcsub")return !!(B.mc[c.mc]&&B.mc[c.mc].sub);
- if(c.t==="feat"){if(!v||!v.feat)return false;const F=FEATS[v.feat];if(!F)return false;/* M12: feat missing from FEATS (pack off, renamed) */if(F.dt&&!v.dt)return false;/* v19 RL46 (4) */if(F.asi2)return !!(v.a1&&v.a2);if(F.asi)return !!v.a1;return true}
+ if(c.t==="feat")return doneFeat(v);
  if((c.t==="fs"||c.t==="ofeat")&&!FEATS[v])return false;/* RL28: saved feat missing from FEATS, card shows "(not available)" */
  return !!v}
 

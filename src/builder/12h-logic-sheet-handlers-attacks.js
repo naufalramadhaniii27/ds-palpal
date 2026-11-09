@@ -44,8 +44,9 @@ registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows
 registerSheetRule(Object.assign({},EACH,{id:"monk-weapon-ability",group:"weaponRows",about:"Monk: Martial Arts lets a Monk weapon use Dexterity",phase:"attacks",order:110,reads:["i.a","l.maOn"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const w=r.w,a=ctx.i.a;if(ctx.l.maOn&&w.k!=="R"&&(w.cat==="S"||/Light/.test(w.p)))r.ab=a.sc.DEX>a.sc.STR?"DEX":"STR";return ctx.patch()}}));
 /* M13: only the bonded weapon, Charisma when it is at least as high */
-registerSheetRule(Object.assign({},EACH,{id:"pact-blade-ability",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon may use Charisma",phase:"attacks",order:120,reads:["i.a","l.pactW"],writes:["l.wrow"],
- run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const pactW=ctx.l.pactW,a=ctx.i.a;r.isPact=!!pactW&&ctx.p===pactW;if(r.isPact&&a.sc.CHA>=a.sc[r.ab])r.ab="CHA";return ctx.patch()}}));
+/* zero-miss-1: 2014 Pact of the Blade has no Charisma rule; the Hexblade's Hex Warrior (XGE 2014) extends Charisma to every pact weapon */
+registerSheetRule(Object.assign({},EACH,{id:"pact-blade-ability",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon may use Charisma (2014: only with Hex Warrior)",phase:"attacks",order:120,reads:["i.a","i.r14","i.B","l.pactW"],writes:["l.wrow"],
+ run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const pactW=ctx.l.pactW,a=ctx.i.a;r.isPact=!!pactW&&ctx.p===pactW;const chaOk=!ctx.i.r14||/Hexblade/.test(ctx.i.B.sub||"");if(r.isPact&&chaOk&&a.sc.CHA>=a.sc[r.ab])r.ab="CHA";return ctx.patch()}}));
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-proficiency",group:"weaponRows",phase:"attacks",order:130,reads:["l.weapons","q.wpNamed"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const weapons=ctx.l.weapons,w=r.w,BO=r.BO;
   r.pr=!!(r.isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||ctx.q.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p)));return ctx.patch()}}));
@@ -73,11 +74,22 @@ registerSheetGroup(Object.assign({},EACH,{id:"style-great-weapon",group:"fightin
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;if(ctx.l.hasGWF&&r.w.k==="M"&&/Two-Handed|Versatile/.test(r.w.p))r.note+=(r.note?" ":"")+"Great Weapon Fighting: with two hands, treat a 1 or 2 on a damage die as a 3.";return ctx.patch()}}));
 registerSheetGroup(Object.assign({},EACH,{id:"style-two-weapon",group:"fightingStyles",phase:"attacks",order:220,reads:["l.hasTWF"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;if(ctx.l.hasTWF&&/Light/.test(r.w.p))r.note+=(r.note?" ":"")+"Two-Weapon Fighting: add your ability modifier to the damage of the extra Light weapon attack.";return ctx.patch()}}));
-registerSheetRule(Object.assign({},EACH,{id:"pact-blade-note",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon note",phase:"attacks",order:230,reads:[],writes:["l.wrow"],
- run:function(ctx){const r=ctx.l.wrow;if(!r)return null;if(r.isPact)r.note="Pact of the Blade: "+(r.ab==="CHA"?"uses Charisma":"you can use Charisma")+"; can deal Necrotic, Psychic, or Radiant damage. "+r.note;return ctx.patch()}}));
+/* zero-miss-1: Improved Pact Weapon (XGE 2014): +1 to attack and damage rolls unless the weapon already has a magic bonus */
+registerSheetRule(Object.assign({},EACH,{id:"improved-pact-weapon-2014",group:"weaponRows",about:"Warlock 2014 invocation Improved Pact Weapon: +1 attack and damage on a pact weapon without a magic bonus",phase:"attacks",order:175,reads:["i.r14","i.invs"],writes:["l.wrow"],
+ run:function(ctx){const r=ctx.l.wrow;if(!r||!r.isPact||!ctx.i.r14||ctx.i.invs.indexOf("Improved Pact Weapon")<0||r.BO.p)return null;r.hit+=1;r.dmg+=1;r.srcs.push("Improved Pact Weapon: +1 to hit and damage");return ctx.patch()}}));
+/* zero-miss-1: the pact weapon note per edition. 2024 (PHB p. 156): Charisma, Spellcasting Focus, damage type Necrotic, Psychic or Radiant by choice (B.ch.pactDmg).
+   2014 (PHB p. 108): proficient, magical for resistance; Improved Pact Weapon makes it a focus; Hex Warrior gives Charisma */
+const PACT_TY=["Necrotic","Psychic","Radiant"];
+registerSheetRule(Object.assign({},EACH,{id:"pact-blade-note",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon note",phase:"attacks",order:230,reads:["i.r14","i.invs","i.B"],writes:["l.wrow"],
+ run:function(ctx){const r=ctx.l.wrow;if(!r||!r.isPact)return null;const I=ctx.i,cha=r.ab==="CHA"?"uses Charisma":"you can use Charisma",pick=((I.B.ch||{}).pactDmg||[])[0]||"";
+  if(I.r14)r.note="Pact weapon: magical for overcoming resistance"+(r.ab==="CHA"?"; uses Charisma (Hex Warrior)":"")+(I.invs.indexOf("Improved Pact Weapon")>=0?"; your Spellcasting Focus":"")+". "+r.note;
+  else r.note="Pact of the Blade: "+cha+"; your Spellcasting Focus. Damage type "+(PACT_TY.indexOf(pick)>=0?pick+" (your choice; "+r.w.t+" or "+PACT_TY.filter((t) =>{return t!==pick}).join(" or ")+" also allowed)":r.w.t+" (or Necrotic, Psychic, or Radiant: pick one in the builder)")+". "+r.note;return ctx.patch()}}));
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-push",group:"weaponRows",phase:"attacks",order:240,reads:["l.wrow"],writes:["C.attacks"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const w=r.w;
   ctx.C.attacks.push({n:ctx.p,sub:r.isPact?(w.p?w.p+" • ":"")+"Pact Weapon":w.p,ab:r.ab,prof:!!r.pr,die:r.die,dieSrc:r.dieSrc,misc:r.hit,miscSrc:r.srcs.join("; "),dmgBonus:r.dmg,type:w.t,range:w.r?(w.k==="M"?"5 ft, "+w.r+" ft":w.r+" ft"):(/Reach \(20/.test(w.p)?"20 ft":/Reach/.test(w.p)?"10 ft":"5 ft"),m:r.m,note:r.note});return ctx.patch()}}));
+/* zero-miss-1: the chosen pact damage type (2024) becomes the damage type of the pact weapon row */
+registerSheetRule(Object.assign({},EACH,{id:"pact-blade-damage-type",group:"weaponRows",about:"Warlock 2024, Pact of the Blade: chosen damage type (Necrotic, Psychic, Radiant) on the pact weapon row",phase:"attacks",order:245,reads:["i.r14","i.B","l.wrow"],writes:["C.attacks"],
+ run:function(ctx){const r=ctx.l.wrow,C=ctx.C,pick=((ctx.i.B.ch||{}).pactDmg||[])[0]||"",last=C.attacks[C.attacks.length-1];if(!r||!r.isPact||ctx.i.r14||PACT_TY.indexOf(pick)<0||!last||last.n!==ctx.p)return null;last.type=pick;return ctx.patch()}}));
 /* Thrown Weapon Fighting: a melee weapon with Thrown gets a second row for the throw. Same ability (PHB 2024, Thrown property). The melee row keeps no thrown bonus */
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-thrown",group:"fightingStyles",phase:"attacks",order:250,reads:["l.wrow","l.fsb","l.fss"],writes:["C.attacks"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const w=r.w,BO=r.BO,FSB=ctx.l.fsb,FSS=ctx.l.fss,n=ctx.p;
