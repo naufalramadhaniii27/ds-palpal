@@ -59,7 +59,7 @@ function pickRows(list,taken,full,I,key){return list.map((x) =>{const on=taken.i
 /* M9: one spell section per spellcasting class (PHB 2024 p. 44: each class prepares as if single-classed, with its own ability).
    One caster class: same layout as before. Two or more: a tab per class; DC, counts, list, highest spell level per class.
    Always prepared and Magic Initiate rows show the DC of their own ability (spellAb) */
-export var spCls="";
+export var spClsTab="";
 function abInfo(ab){const sc=abil().sc,pb=pbOf(TL()),m=mod(sc[ab]);return {ab:ab,dc:8+pb+m,atk:pb+m}}
 /* v92: 2014 Eldritch Knight and Arcane Trickster learn most spells from two schools. The spells gained at levels 3, 8, 14 and 20 can come from any school */
 function sch14Info(cls,sub,lv,mine){if(!R14()||!isThird3(sub)||lv<3)return null;const sch=cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"];
@@ -110,7 +110,7 @@ function spAvRows(av,K,np,nc,bk){let t="";
  t+=av.map((x) =>{let r=spRow(x,false,x[1]?np>=K.pr:nc>=K.ct,K);if(bfull&&x[1]&&bk.indexOf(x[0])<0)r=r.replace('data-sp="'+esc(x[0])+'">','data-sp="'+esc(x[0])+'" aria-disabled="true" data-full="b">');return r}).join("");/* v32: book full */
  return t}
 export function renderSpells(){let I=spInfo(),h="",auto=autoSpells(),mis=miFeats();B.sp=B.sp||[];B.pk=B.pk||{};
- const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spCls})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
+ const CP=casterParts(),multi=CP.length>1,P=multi?(CP.filter((p) =>{return p.cls===spClsTab})[0]||CP[0]):null,K=multi?spInfoPart(P):I,SLs=multi?spLists():null,RJ=function(k){return abInfo(spellAb(k))};
  if(!I&&!auto.length&&!mis.length)return spNone();
  if(multi)h+=spTabs(CP,P);
  if(I)h+=spStat(I,K);
@@ -180,4 +180,4 @@ export function issueText(L){return L.map((x) =>{return x.m}).join(". ")}
 export function __set_clsTab(v){ return clsTab=v; }
 export function __set_spLv(v){ return spLv=v; }
 export function __set_spQ(v){ return spQ=v; }
-export function __set_spCls(v){ return spCls=v; }
+export function __set_spClsTab(v){ return spClsTab=v; }
