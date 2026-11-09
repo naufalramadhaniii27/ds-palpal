@@ -1,0 +1,4593 @@
+{
+ "about": "Sampel emas auto link. set dev: 300 kalimat (seed 20261109), dipakai untuk menemukan kesalahan. set holdout: 104 kalimat (seed 777, scale 0.34), dilabeli sesudah perbaikan dipilih, dipakai untuk uji umum. want = tautan yang seharusnya. no = tautan mesin yang salah (sudah ditinjau). Label tangan 2026-11-09. Lihat tests/autolink_measure.py.",
+ "items": [
+  {
+   "id": 1,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Rope Trick",
+   "text": "At the top end of the rope, an Invisible 3-foot-by-5-foot portal opens into an extradimensional space that lasts until the spell ends.",
+   "want": [
+    "Invisible"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 2,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Charm Person",
+   "text": "The Charmed Humanoid is Friendly to you.",
+   "want": [
+    "Charmed",
+    "Friendly"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 3,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Contingency",
+   "text": "Contingency also ends on you whenever its material component is no longer on your person.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 4,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Water Breathing",
+   "text": "Their normal way of breathing still works too.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 5,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Clone",
+   "text": "The clone's body is physically identical to the original's.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 6,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Enhance Ability",
+   "text": "Touch a creature and pick Strength, Dexterity, Intelligence, Wisdom, or Charisma.",
+   "want": [
+    "Strength",
+    "Dexterity",
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 7,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Insect Plague",
+   "text": "When the swarm appears, every creature in it attempts a Constitution saving throw.",
+   "want": [
+    "Constitution",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 8,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Elemental",
+   "text": "Immunities: Fire damage (Fire only) and Poison damage, plus the Exhaustion, Paralyzed, Petrified, and Poisoned conditions.",
+   "want": [
+    "Exhaustion",
+    "Paralyzed",
+    "Petrified",
+    "Poisoned"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 9,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Protection from Poison",
+   "text": "For the duration, that creature has Resistance to Poison damage and has Advantage on any saving throw to avoid or end the Poisoned condition.",
+   "want": [
+    "Advantage",
+    "Poisoned",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 10,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Elementalism",
+   "text": "Dirt, sand, fire, smoke, mist, or water that fits within a 1-foot Cube takes on a crude shape (such as the shape of a creature) for 1 hour.",
+   "want": [
+    "Cube"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 11,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Telekinesis",
+   "text": "You can try to move a creature that is Huge or smaller.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 12,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Shield of Faith",
+   "text": "A shimmering field envelops it, and it gains a +2 bonus to Armor Class until the spell ends.",
+   "want": [
+    "Armor Class"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 13,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Animate Dead",
+   "text": "It becomes an Undead creature: a Skeleton if you picked bones, or a Zombie if you picked a corpse (appendix B has their stat blocks).",
+   "want": [
+    "Skeleton",
+    "Zombie"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 14,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Create Undead",
+   "text": "It instead restores your control over as many as three creatures that you previously animated with it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 15,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Call Lightning",
+   "text": "As part of casting the spell, pick a point you can see beneath the cloud, and a bolt of lightning strikes it from the cloud.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 16,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Elemental",
+   "text": "The spirit can pass through a space as narrow as 1 inch wide, and doing so doesn't count as Difficult Terrain for it.",
+   "want": [
+    "Difficult Terrain"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 17,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Knock",
+   "text": "When the object has more than one lock, only one of them opens.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 18,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Evard's Black Tentacles",
+   "text": "For the duration, they make the ground in that area Difficult Terrain.",
+   "want": [
+    "Difficult Terrain"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 19,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Imprisonment",
+   "text": "Light passes through the gemstone, letting the target see out and other creatures see in, but no other thing can cross it by any means.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 20,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Confusion",
+   "text": "On a failure, the creature can't take Bonus Actions or Reactions, and at the start of each of its turns it must roll 1d10 to find out what it does that turn.",
+   "want": [
+    "Bonus Actions",
+    "Reactions"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 21,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Knock",
+   "text": "If Arcane Lock is holding the target shut, that spell is suppressed for 10 minutes, and the target can be opened and closed while the suppression lasts.",
+   "want": [
+    "Arcane Lock"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 22,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Elemental",
+   "text": "Hit Points: 50, plus 10 for each spell level above 4.",
+   "want": [
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 23,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Insect Plague",
+   "text": "Swarming locusts fill a 20-foot-radius Sphere centered there.",
+   "want": [
+    "Sphere"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 24,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Conjure Volley",
+   "text": "Raising the weapon you used to cast the spell, you choose a point within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 25,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Conjure Animals",
+   "text": "While you are within 5 feet of the pack, you have Advantage on Strength saving throws.",
+   "want": [
+    "Advantage",
+    "Strength",
+    "saving throws"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 26,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Mordenkainen's Sword",
+   "text": "A miniature sword worth at least 250 GP.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 27,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Clone",
+   "text": "A sealable vessel worth at least 2,000 GP that is big enough to hold the creature being cloned, plus a diamond worth at least 1,000 GP, which the spell consumes.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 28,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Hallow",
+   "text": "Pick any number of these creature types: Aberration, Celestial, Elemental, Fey, Fiend, Undead.",
+   "want": [],
+   "no": [
+    "Celestial"
+   ],
+   "set": "dev"
+  },
+  {
+   "id": 29,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Illusory Script",
+   "text": "Dispelling the spell makes both the original script and the illusion vanish.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 30,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Shining Smite",
+   "text": "Your strike deals an extra 2d6 Radiant damage to the target.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 31,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Rope Trick",
+   "text": "Anything inside the space drops out when the spell ends.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 32,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Mass Healing Word",
+   "text": "Choose up to six creatures within range that you can see.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 33,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Hold Person",
+   "text": "Unless it succeeds on a Wisdom saving throw, it has the Paralyzed condition while the spell lasts.",
+   "want": [
+    "Wisdom",
+    "Paralyzed",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 34,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Fire Storm",
+   "text": "Its area is made up of as many as ten 10-foot Cubes, arranged however you like, and every Cube has to be contiguous with another Cube.",
+   "want": [
+    "Cubes",
+    "Cube",
+    "Cube"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 35,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Celestial",
+   "text": "Senses: Darkvision 60 feet, Passive Perception 12.",
+   "want": [
+    "Darkvision",
+    "Passive Perception"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 36,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Darkness",
+   "text": "The Darkness then fills a 15-foot Emanation coming from that object.",
+   "want": [
+    "Emanation"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 37,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Banishment",
+   "text": "It is instead sent to a random location on a plane, chosen by the Dungeon Master, that is tied to its creature type.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 38,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Dominate Beast",
+   "text": "Each time the target takes damage, it repeats the save, and on a success the spell ends on it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 39,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Aberration",
+   "text": "Armor Class: 11 + the spell's level.",
+   "want": [
+    "Armor Class"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 40,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Maze",
+   "text": "It stays there for the duration or until it finds its way out of the maze.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 41,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Oathbow",
+   "text": "Such an attack ignores the benefits of Half Cover and Three-Quarters Cover, and long range doesn't give you Disadvantage on it.",
+   "want": [
+    "Disadvantage",
+    "Half Cover",
+    "Three-Quarters Cover"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 42,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Charm of Heroism",
+   "text": "As a Magic action, you gain the effect of a Potion of Heroism: 10 Temporary Hit Points for 1 hour, and the Bless spell on you for that hour without Concentration.",
+   "want": [
+    "Magic",
+    "Potion of Heroism",
+    "Temporary Hit Points",
+    "Bless"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 43,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Efreeti Chain",
+   "text": "While wearing it, you have Immunity to Fire damage, your Armor Class gets a +3 bonus, and you know the Primordial language.",
+   "want": [
+    "Armor Class",
+    "Primordial"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 44,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Moonblade",
+   "text": "It has hearing and Darkvision with a range of 120 feet, and its alignment is the same as its creator's.",
+   "want": [
+    "Darkvision"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 45,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "The fabric of reality unravels and is spun again, letting you avoid or undo one event as though it never happened.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 46,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Ring of Djinni Summoning",
+   "text": "While it is summoned, the djinni is Friendly toward you and your allies and follows your orders.",
+   "want": [
+    "Friendly"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 47,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Enspelled Armor",
+   "text": "The level of the bound spell sets the armor's rarity and the spell's saving throw DC and attack bonus.",
+   "want": [
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 48,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Horn of Blasting",
+   "text": "It lets out a thunderous blast that fills a 30-foot Cone, and the sound carries up to 600 feet.",
+   "want": [
+    "Cone"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 49,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Tentacle Rod",
+   "text": "It repeats the saving throw when each of its turns ends and frees itself on a success.",
+   "want": [
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 50,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Book of Vile Darkness",
+   "text": "A creature attuned to the book has to read and study it for 80 hours to absorb its contents before it can use these properties: Spells, Tireless Form, Vile Lore, Vile Speech, and Adjusted Ability Scores.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 51,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Belt of Giant Strength (storm)",
+   "text": "If your Strength without the belt is already 29 or higher, the belt has no effect on you.",
+   "want": [
+    "Strength"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 52,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "You lose all forms of wealth you carry or own, except magic items.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 53,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Saddle of the Cavalier",
+   "text": "Nothing can dismount you against your will.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 54,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Talisman of Pure Good",
+   "text": "While wearing or holding it, you can take a Magic action, spend 1 charge, and choose one creature you can see that is on the ground within 120 feet of you.",
+   "want": [
+    "Magic"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 55,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Figurine of Wondrous Power",
+   "text": "It can turn into a Griffon for no more than 6 hours.",
+   "want": [
+    "Griffon"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 56,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Berserker Axe",
+   "text": "Whenever another creature deals damage to you while the axe is in your possession, you make a DC 15 Wisdom saving throw, and on a failure you go berserk.",
+   "want": [
+    "Wisdom",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 57,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Ioun Stone (awareness)",
+   "text": "Up to three Ioun Stones can circle your head at once.",
+   "want": [
+    "Ioun Stones"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 58,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Figurine of Wondrous Power (golden lions)",
+   "text": "Toward you and your allies, the creature is Friendly.",
+   "want": [
+    "Friendly"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 59,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Figurine of Wondrous Power",
+   "text": "Goat of Travail: it can turn into a Giant Goat for no more than 3 hours.",
+   "want": [
+    "Giant Goat"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 60,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Hammer of Thunderbolts",
+   "text": "Each one that fails has the Stunned condition until your next turn ends.",
+   "want": [
+    "Stunned"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 61,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Quarterstaff of the Acrobat",
+   "text": "As long as you hold the weapon, you have Advantage on Dexterity (Acrobatics) checks.",
+   "want": [
+    "Advantage",
+    "Dexterity",
+    "Acrobatics"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 62,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Scroll of Protection",
+   "text": "During that time, creatures of the chosen type can't enter the area or affect anything inside it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 63,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "However, one or more monsters currently live in the keep, and you must clear them out before you can claim it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 64,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Staff of the Magi",
+   "text": "The spell's effect is canceled, and the staff gains charges equal to the level of the absorbed spell.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 65,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Potion of Giant Strength (cloud)",
+   "text": "Inside the transparent liquid floats a sliver of light that looks like the fingernail of a giant.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 66,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Sword of Vengeance",
+   "text": "After that, the item is a +1 Weapon that has no other properties.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 67,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Silvered Weapon",
+   "text": "This can be any Simple or Martial weapon.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 68,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Talking Doll",
+   "text": "You can also swap old phrases for new ones.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 69,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Mirror of Life Trapping",
+   "text": "This mirror is 4 feet tall and 2 feet wide.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 70,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Wand of Web",
+   "text": "With the wand in your hand, spending 1 charge lets you cast Web (save DC 13) from it.",
+   "want": [
+    "Web"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 71,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Ioun Stone (fortitude)",
+   "text": "A stone circling your head counts as an object you are wearing.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 72,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Wind Fan",
+   "text": "Every further use of the fan before the next dawn carries a cumulative 20 percent chance that it fails to work.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 73,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Sword of Kas",
+   "text": "After you cast one of these spells from the sword, you can't cast that same spell from it again until the next dawn.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 74,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Perfume of Bewitching",
+   "text": "During that hour, you have Advantage on every Charisma (Deception) and Charisma (Persuasion) check you make to influence a creature that is within 5 feet of you.",
+   "want": [
+    "Advantage",
+    "Charisma",
+    "Deception",
+    "Charisma",
+    "Persuasion"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 75,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Axe of the Dwarvish Lords",
+   "text": "You gain Darkvision with a range of 60 feet.",
+   "want": [
+    "Darkvision"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 76,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Portable Hole",
+   "text": "Once the cloth is folded, the hole is shut, and any creatures or objects inside stay in the extradimensional space.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 77,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Energy Bow",
+   "text": "The bow also has the following properties.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 78,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Circlet of Blasting",
+   "text": "While you wear this circlet, you can use it to cast Scorching Ray, with a +5 bonus to hit.",
+   "want": [
+    "Scorching Ray"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 79,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Figurine of Wondrous Power",
+   "text": "After a use, you must wait 7 days before using it again.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 80,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Adamantine Weapon",
+   "text": "This item is a melee weapon or a piece of ammunition (any melee weapon or any ammunition) crafted from adamantine, among the toughest materials that exist.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 81,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Cleric)",
+   "text": "Any spell slots you have can also be used to cast it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 82,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Fey Touched",
+   "text": "Once you cast one of them this way, that spell's free casting comes back only when you finish a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 83,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Wizard)",
+   "text": "You can cast it once without expending a spell slot, and that free casting returns once you finish a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 84,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Athlete",
+   "text": "You have a Climb Speed that matches your Speed.",
+   "want": [
+    "Climb Speed",
+    "Speed"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 85,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Cleric)",
+   "text": "You can take this feat more than once, but each time you must pick a different spell list.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 86,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telekinetic",
+   "text": "Add 1 to your Intelligence, Wisdom, or Charisma (maximum 20).",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 87,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Chef",
+   "text": "Your Constitution or Wisdom score goes up by 1, up to 20.",
+   "want": [
+    "Constitution",
+    "Wisdom"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 88,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Wizard)",
+   "text": "When you take this feat, also pick Intelligence, Wisdom, or Charisma as the spellcasting ability for the spells it gives you.",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 89,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "War Caster",
+   "text": "When you make a Constitution saving throw to keep your Concentration, you have Advantage on it.",
+   "want": [
+    "Constitution",
+    "Advantage",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 90,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Actor",
+   "text": "You can imitate the sounds other creatures make, speech included.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 91,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Fey Touched",
+   "text": "That spell and Misty Step are always prepared for you.",
+   "want": [
+    "Misty Step"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 92,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Crafter",
+   "text": "Choose three different Artisan's Tools listed in the Fast Crafting table.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 93,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Poisoner",
+   "text": "On a failed save, it takes 2d8 Poison damage and is Poisoned until your next turn ends.",
+   "want": [
+    "Poisoned"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 94,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Blessed Warrior",
+   "text": "Each time you gain a Paladin level, you can swap one of them for a different Cleric cantrip.",
+   "want": [
+    "Paladin",
+    "Cleric"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 95,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telepathic",
+   "text": "Add 1 to your Intelligence, Wisdom, or Charisma (maximum 20).",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 96,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Shield Master",
+   "text": "On a failed save, you either push it 5 feet away from you or give it the Prone condition, whichever you choose.",
+   "want": [
+    "Prone"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 97,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telepathic",
+   "text": "You can also cast it by expending spell slots of the right level that you have.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 98,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Great Weapon Master",
+   "text": "On your turn, if an attack you make with a Heavy weapon during the Attack action hits a creature, you can make the weapon deal extra damage to the target equal to your Proficiency Bonus.",
+   "want": [
+    "Attack",
+    "Proficiency Bonus",
+    "Heavy"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 99,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Mage Slayer",
+   "text": "Once used, this benefit comes back only after you finish a Short or Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 100,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Mounted Combatant",
+   "text": "When an effect offers your mount a Dexterity saving throw that halves the damage, the mount instead takes no damage on a success and only half damage on a failure.",
+   "want": [
+    "Dexterity",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 101,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Boon of Energy Resistance",
+   "text": "Choose two damage types from Acid, Fire, Cold, Thunder, Lightning, Necrotic, Radiant, Poison, and Psychic.",
+   "want": [],
+   "no": [
+    "Acid"
+   ],
+   "set": "dev"
+  },
+  {
+   "id": 102,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Grappler",
+   "text": "Once per turn, when an Unarmed Strike you make as part of the Attack action on your turn hits a creature, you can apply both the Damage option and the Grapple option.",
+   "want": [
+    "Unarmed Strike",
+    "Attack",
+    "Grapple"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 103,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "War Caster",
+   "text": "Even with weapons or a Shield occupying one or both hands, you can still perform Somatic components when casting spells.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 104,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Defensive Duelist",
+   "text": "When another creature hits you with a melee attack while you hold a Finesse weapon, you can use a Reaction to raise your Armor Class by an amount equal to your Proficiency Bonus, which might make the attack miss.",
+   "want": [
+    "Armor Class",
+    "Proficiency Bonus",
+    "Finesse",
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 105,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Shadow Touched",
+   "text": "Your Intelligence, Wisdom, or Charisma score goes up by 1, up to 20.",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 106,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Cleric)",
+   "text": "Pick two cantrips on the Cleric spell list, and you learn them.",
+   "want": [
+    "Cleric"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 107,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Lucky",
+   "text": "You can spend 1 Luck Point when a creature makes an attack roll against you.",
+   "want": [
+    "attack roll"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 108,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Boon of Recovery",
+   "text": "You keep a pool of ten d10s.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 109,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Shield Master",
+   "text": "In that case, you can take a Reaction so that a successful saving throw leaves you with no damage at all.",
+   "want": [
+    "Reaction",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 110,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Poisoner",
+   "text": "The Poisoner's Kit becomes one of your proficiencies.",
+   "want": [
+    "Poisoner's Kit"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 111,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Poisoner",
+   "text": "Pick Dexterity or Intelligence and raise it by 1 (maximum 20).",
+   "want": [
+    "Intelligence",
+    "Dexterity"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 112,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Skill Expert",
+   "text": "Choose any skill and become proficient in it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 113,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Grappler",
+   "text": "Either your Strength or your Dexterity score rises by 1, but not above 20.",
+   "want": [
+    "Strength",
+    "Dexterity"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 114,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Skulker",
+   "text": "Your Dexterity rises by 1 (maximum 20).",
+   "want": [
+    "Dexterity"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 115,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Great Weapon Fighting",
+   "text": "This requires a weapon with the Versatile or Two-Handed property.",
+   "want": [
+    "Two-Handed",
+    "Versatile"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 116,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telekinetic",
+   "text": "It makes a Strength saving throw against a DC of 8 + your Proficiency Bonus + the modifier of the ability this feat raised.",
+   "want": [
+    "Strength",
+    "Proficiency Bonus",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 117,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Savage Attacker",
+   "text": "Your training lets you land especially brutal blows.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 118,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Keen Mind",
+   "text": "The Study action is available to you as a Bonus Action.",
+   "want": [
+    "Study",
+    "Bonus Action"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 119,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Shield Master",
+   "text": "When you use the Attack action to attack a creature within 5 feet of you and hit it with a Melee weapon, you can strike it right away with your Shield, as long as the Shield is equipped.",
+   "want": [
+    "Attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 120,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telepathic",
+   "text": "You can cast it with no spell slot and no spell components, and once you do, that free casting returns only after you finish a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 121,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Fighting Style",
+   "text": "Whenever you gain a Captain level, you can swap it for a different Fighting Style feat.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 122,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Each chosen spell's level must be one for which you have spell slots.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 123,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "The list grows as shown in the Prepared Spells column.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 124,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Choose three cantrips from the Cleric spell list to know.",
+   "want": [
+    "Cleric"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 125,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Battle Tactics",
+   "text": "You regain all expended dice when you roll Initiative or finish a Short or Long Rest.",
+   "want": [
+    "Initiative",
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 126,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Rushed Incantation",
+   "text": "You have 3 uses at level 2, and the Rushed Incantation column gives more at higher levels (up to 10).",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 127,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Mystic Arcanum",
+   "text": "You gain another Warlock spell of your choice that you can cast this way at Warlock level 13 (a level 7 spell), level 15 (a level 8 spell), and level 17 (a level 9 spell), as the Warlock Features table shows.",
+   "want": [
+    "Warlock",
+    "Warlock"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 128,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Sneak Attack",
+   "text": "This extra damage is the same type as the weapon's damage.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 129,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Brutal Strike",
+   "text": "A target can be under only one Hamstring Blow at a time, and the most recent one is the one that counts.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 130,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Legendary Commander",
+   "text": "For Dash or Disengage, the benefits last until the end of that creature's next turn.",
+   "want": [
+    "Dash",
+    "Disengage"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 131,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Extra Attack",
+   "text": "Each time you take the Attack action during your turn, you can make two attacks rather than one.",
+   "want": [
+    "Attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 132,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Channel Divinity",
+   "text": "With that total, you either restore that many Hit Points to the creature or force it to make a Constitution saving throw.",
+   "want": [
+    "Hit Points",
+    "Constitution",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 133,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Lichdom",
+   "text": "Agree on the jar and its weakness with your GM.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 134,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Warlock Subclass",
+   "text": "At level 3 you pick a Warlock subclass: Great Old One Patron, Fiend Patron, Celestial Patron, or Archfey Patron.",
+   "want": [
+    "Warlock",
+    "Great Old One Patron",
+    "Fiend Patron",
+    "Celestial Patron",
+    "Archfey Patron"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 135,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Prime Bomb",
+   "text": "With Explode, each Reagent spent also lets you widen the blast radius by up to 5 feet.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 136,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Thralls",
+   "text": "All thralls share one Reaction and one Bonus Action per round, and only one thrall can use each.",
+   "want": [
+    "Bonus Action",
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 137,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Fighting Style",
+   "text": "Whenever you gain a Warden level, you can swap that feat for a different Fighting Style feat.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 138,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Epic Boon",
+   "text": "You gain an Epic Boon feat or another feat of your choice that you qualify for.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 139,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Potion Brewing",
+   "text": "Level 1: Climbing 1, Diminution 1, Growth 2, Healing 1, Resistance 1, Water Breathing 1.",
+   "want": [
+    "Water Breathing"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 140,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Masterwork Weapon",
+   "text": "If the weapon already has a bonus, such as a +2 Longsword, you pick one bonus and cannot combine them.",
+   "want": [
+    "Longsword"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 141,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Battle Tactics",
+   "text": "You regain all spent dice when you roll Initiative or finish a Short or Long Rest.",
+   "want": [
+    "Initiative",
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 142,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Rules for spellcasting are in the Player's Handbook.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 143,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Arcane Recovery",
+   "text": "When you finish a Short Rest, you can pick expended spell slots to recover.",
+   "want": [
+    "Short Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 144,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Magic Item Adept",
+   "text": "You can attune to up to four magic items at once.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 145,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Momentum",
+   "text": "You can expend all your Momentum dice to perform a Finisher.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 146,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Radiant damage you take from a Martyr feature never forces a Constitution save to hold Concentration.",
+   "want": [
+    "Constitution"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 147,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Uncanny Dodge",
+   "text": "When an attack roll from an attacker you can see hits you, you can take a Reaction to cut the damage you take from that attack in half (round down).",
+   "want": [
+    "attack roll",
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 148,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Extra Attack",
+   "text": "You attack twice instead of once when you take the Attack action on your turn.",
+   "want": [
+    "Attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 149,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Sneak Attack",
+   "text": "Once per turn, if you have Advantage on an attack roll that uses a Finesse or Ranged weapon and the attack hits a creature, you can deal an extra 1d6 damage to that creature.",
+   "want": [
+    "Advantage",
+    "attack roll",
+    "Finesse"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 150,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Divine Respite",
+   "text": "The number of dice you regain becomes 6 at level 13 and 10 at level 17.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 151,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Lichdom",
+   "text": "If you drop to 0 Hit Points, your body crumbles and you reform after 1d4 + 1 days with full Hit Points.",
+   "want": [
+    "Hit Points",
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 152,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Devious Strikes",
+   "text": "If it fails, it is knocked out, having the Unconscious condition until it takes any damage or 1 minute passes.",
+   "want": [
+    "Unconscious"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 153,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Familiar",
+   "text": "The familiar must be within 100 feet of you and must use its Reaction to deliver the spell.",
+   "want": [
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 154,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Gadgets",
+   "text": "You have built or collected cutting-edge devices.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 155,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You know four Sorcerer cantrips of your choice.",
+   "want": [
+    "Sorcerer"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 156,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Thieves' Cant",
+   "text": "Working your roguish trade in various communities taught you several languages.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 157,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "It cannot be higher than the Max Spell Levels column of the Martyr table for your level.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 158,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Interrupt",
+   "text": "A Long Rest regains all of them.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 159,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Extra Attack",
+   "text": "You can attack twice, instead of once, when you take the Attack action on your turn.",
+   "want": [
+    "Attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 160,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Sacrifice Foe",
+   "text": "When an attack or damage roll improved by Sacrifice reduces an enemy to 0 Hit Points, you take no Radiant damage from using that feature.",
+   "want": [
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 161,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Potion Brewing",
+   "text": "Level 16: Fire Giant Strength 7, Speed 9.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 162,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Lichdom",
+   "text": "You are immune to Necrotic and Poison damage and to the Exhaustion and Poisoned conditions.",
+   "want": [
+    "Exhaustion",
+    "Poisoned"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 163,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Customize Armor",
+   "text": "You can change which item is integrated after a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 164,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Persistent Rage",
+   "text": "Also, your Rage is now fierce enough to last 10 minutes with no need for you to extend it each round.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 165,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Arcane Surge Improvement",
+   "text": "You gain one additional use of Arcane Surge, for a total of three.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 166,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Greater Invisibility",
+   "text": "Anything the target is wearing or carrying is invisible as long as it is on the target's person.",
+   "want": [
+    "invisible"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 167,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Mordenkainen's Magnificent Mansion",
+   "text": "The place is furnished and decorated as you choose.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 168,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Contingency",
+   "text": "The contingent spell takes effect only on you, even if it can normally target others.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 169,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Telepathy",
+   "text": "Until the spell ends, you and the target can instantaneously share words, images, sounds, and other sensory messages with one another through the link, and the target recognizes you as the creature it is communicating with.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 170,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Magic Jar",
+   "text": "If another creature's soul is in the container when it is destroyed, the creature's soul returns to its body if the body is alive and within 100 feet.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 171,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Imprisonment",
+   "text": "The target must succeed on a Wisdom saving throw or be bound by the spell; if it succeeds, it is immune to this spell if you cast it again.",
+   "want": [
+    "Wisdom",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 172,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Disintegrate",
+   "text": "The creature can be restored to life only by means of a true resurrection or a wish spell.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 173,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Compulsion",
+   "text": "On a failed save, a target is affected by this spell.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 174,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Silent Image",
+   "text": "You can use your action to cause the image to move to any spot within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 175,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Imprisonment",
+   "text": "The conditions can be based on a creature's name, identity, or deity but otherwise must be based on observable actions or qualities and not based on intangibles such as level, class, or hit points.",
+   "want": [
+    "hit points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 176,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Forbiddance",
+   "text": "If you cast forbiddance every day for 30 days in the same location, the spell lasts until it is dispelled, and the material components are consumed on the last casting.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 177,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Weird",
+   "text": "On a failed save, a creature becomes frightened for the duration.",
+   "want": [
+    "frightened"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 178,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Grasping Vine",
+   "text": "You conjure a vine that sprouts from the ground in an unoccupied space of your choice that you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 179,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Call Lightning",
+   "text": "A bolt of lightning flashes down from the cloud to that point.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 180,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Burning Hands",
+   "text": "The fire ignites any flammable objects in the area that aren't being worn or carried.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 181,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Detect Thoughts",
+   "text": "You initially learn the surface thoughts of the creature—what is most on its mind in that moment.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 182,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Major Image",
+   "text": "Physical interaction with the image reveals it to be an illusion, because things can pass through it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 183,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Planar Ally",
+   "text": "Payment can take a variety of forms.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 184,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Symbol",
+   "text": "Each target must make a Wisdom saving throw and falls unconscious for 10 minutes on a failed save.",
+   "want": [
+    "Wisdom",
+    "saving throw",
+    "unconscious"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 185,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Arcane Gate",
+   "text": "Choose two points on the ground that you can see, one point within 10 feet of you and one point within 500 feet of you.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 186,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Geas",
+   "text": "When you cast this spell using a spell slot of 7th or 8th level, the duration is 1 year.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 187,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Bane",
+   "text": "Up to three creatures of your choice that you can see within range must make Charisma saving throws.",
+   "want": [
+    "Charisma",
+    "saving throws"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 188,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Flame Strike",
+   "text": "A vertical column of divine fire roars down from the heavens in a location you specify.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 189,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Demiplane",
+   "text": "You create a shadowy door on a flat solid surface that you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 190,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Leomund's Tiny Hut",
+   "text": "The spell ends if you leave its area.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 191,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Wall of Fire",
+   "text": "One side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet of that side or inside the wall.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 192,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Animal Friendship",
+   "text": "If the beast's Intelligence is 4 or higher, the spell fails.",
+   "want": [
+    "Intelligence"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 193,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Conjure Minor Elementals",
+   "text": "You summon elementals that appear in unoccupied spaces that you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 194,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Chill Touch",
+   "text": "Make a ranged spell attack against the creature to assail it with the chill of the grave.",
+   "want": [
+    "spell attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 195,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Swift Quiver",
+   "text": "You transmute your quiver so it produces an endless supply of nonmagical ammunition, which seems to leap into your hand when you reach for it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 196,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Conjure Minor Elementals",
+   "text": "When you cast this spell using certain higher-level spell slots, you choose one of the summoning options above, and more creatures appear: twice as many with a 6th-level slot and three times as many with an 8th-level slot.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 197,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Scrying",
+   "text": "On a successful save, the target isn't affected, and you can't use this spell against it again for 24 hours.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 198,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Mage Hand",
+   "text": "You can use your action to control the hand.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 199,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Summon Construct",
+   "text": "This corporeal form uses the Construct Spirit stat block.",
+   "want": [
+    "Construct Spirit"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 200,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Evard's Black Tentacles",
+   "text": "A creature restrained by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your spell save DC.",
+   "want": [
+    "Strength",
+    "Dexterity",
+    "restrained"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 201,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Guards and Wards",
+   "text": "When you cast this spell, you can specify individuals that are unaffected by any or all of the effects that you choose.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 202,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "See Invisibility",
+   "text": "For the duration, you see invisible creatures and objects as if they were visible, and you can see into the Ethereal Plane.",
+   "want": [
+    "invisible"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 203,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Gentle Repose",
+   "text": "For the duration, the target is protected from decay and can't become undead.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 204,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Meteor Swarm",
+   "text": "A creature takes 20d6 fire damage and 20d6 bludgeoning damage on a failed save, or half as much damage on a successful one.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 205,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Knock",
+   "text": "Choose an object that you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 206,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Rope of Entanglement",
+   "text": "The target must succeed on a DC 15 Dexterity saving throw or become restrained.",
+   "want": [
+    "Dexterity",
+    "saving throw",
+    "restrained"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 207,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Wave",
+   "text": "The trident has a nostalgic attachment to the place where it was forged, a desolate island called Thunderforge.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 208,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Cauldron of Rebirth",
+   "text": "The potion lasts for 24 hours, then loses its magic if not consumed.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 209,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Beans",
+   "text": "Each creature in the area, including you, must make a DC 15 Dexterity saving throw, taking 5d4 fire damage on a failed save, or half as much damage on a successful one.",
+   "want": [
+    "Dexterity",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 210,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Orb of Dragonkind",
+   "text": "Dragons drawn to the orb might be hostile toward you for compelling them against their will.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 211,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Robe of Useful Items",
+   "text": "This robe has cloth patches of various shapes and colors covering it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 212,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Ring of Shooting Stars",
+   "text": "You can expend 1 to 3 charges as an action.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 213,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Devouring",
+   "text": "However, once each day, the bag swallows any objects inside it and spits them out into another plane of existence.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 214,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Tome of Leadership and Influence",
+   "text": "This book contains guidelines for influencing and charming others, and its words are charged with magic.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 215,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Dwarven Thrower",
+   "text": "When you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a giant, 2d8 damage.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 216,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Arrow, +3",
+   "text": "A set of ten such arrows is worth as much as one Very Rare potion.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 217,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "Usually found in a box or pouch, this deck contains a number of cards made of ivory or vellum.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 218,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Demonomicon of Iggwilv",
+   "text": "An expansive treatise documenting the Abyss's infinite layers and inhabitants, the Demonomicon of Iggwilv is the most thorough and blasphemous tome of demonology in the multiverse.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 219,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Dimensional Shackles",
+   "text": "In addition to serving as mundane manacles, the shackles prevent a creature bound by them from using any method of extradimensional movement, including teleportation or travel to a different plane of existence.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 220,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Dancing Sword",
+   "text": "As part of the same bonus action, you can cause the sword to attack one creature within 5 feet of it.",
+   "want": [
+    "bonus action"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 221,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Staff of Thunder and Lightning",
+   "text": "On a successful save, a creature takes half damage and isn't deafened.",
+   "want": [
+    "deafened"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 222,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Heward's Handy Haversack",
+   "text": "When you reach into the haversack for a specific item, the item is always magically on top.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 223,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Devouring",
+   "text": "Any creature that starts its turn inside the bag is devoured, its body destroyed.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 224,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Cauldron of Rebirth",
+   "text": "If you place the corpse of a humanoid into the cauldron and cover the corpse with 200 pounds of salt (which costs 10 gp) for at least 8 hours, the salt is consumed and the creature returns to life as if by raise dead at the next dawn.",
+   "want": [
+    "raise dead"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 225,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Wand of Wonder",
+   "text": "If you chose a point in space, the creature nearest to that point is affected.. 98-00: If you targeted a creature, it must make a DC 15 Constitution saving throw.",
+   "want": [
+    "Constitution",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 226,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Gloves of Thievery",
+   "text": "While wearing them, you gain a +5 bonus to Dexterity (Sleight of Hand) checks and Dexterity checks made to pick locks.",
+   "want": [
+    "Dexterity",
+    "Sleight of Hand",
+    "Dexterity"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 227,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Demon Armor",
+   "text": "While wearing the armor, you have disadvantage on attack rolls against demons and on saving throws against their spells and special abilities.",
+   "want": [
+    "disadvantage",
+    "attack rolls",
+    "saving throws"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 228,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Eye of Vecna",
+   "text": "Any other attempt to destroy the eye or hand seems to work, but the artifact reappears in one of Vecna's many hidden vaults, where it waits to be rediscovered.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 229,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Well of Many Worlds",
+   "text": "It unfolds into a circular sheet 6 feet in diameter.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 230,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Animated Shield",
+   "text": "The shield leaps into the air and hovers in your space to protect you as if you were wielding it, leaving your hands free.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 231,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Sanctuary Charm",
+   "text": "You cannot gain it again while you still hold it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 232,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Driftglobe",
+   "text": "If you are within 60 feet of it, you can speak its command word and cause it to emanate the light or daylight spell.",
+   "want": [
+    "light",
+    "daylight"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 233,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Vicious Weapon",
+   "text": "When you roll a 20 on your attack roll with this magic weapon, the target takes an extra 2d6 damage of the weapon's type.",
+   "want": [
+    "attack roll"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 234,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Moonblade",
+   "text": "It uses the statistics for a shadow, except it is neutral, immune to effects that turn undead, and doesn't create new shadows.",
+   "want": [
+    "shadow"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 235,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Staff of Flowers",
+   "text": "While holding it, you can use an action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of you, or from the staff itself.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 236,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Tankard of Sobriety",
+   "text": "You can drink ale, wine, or any other nonmagical alcoholic beverage poured into it without becoming inebriated.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 237,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Wand of Wonder",
+   "text": "On a 01-25, a rhinoceros appears; on a 26-50, an elephant appears; and on a 51-100, a rat appears.. 37-46: You cast lightning bolt.. 47-49: A cloud of 600 oversized butterflies fills a 30-foot radius centered on the target.",
+   "want": [
+    "lightning bolt",
+    "rhinoceros",
+    "elephant",
+    "rat"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 238,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Heward's Handy Haversack",
+   "text": "If the haversack is turned inside out, its contents spill forth, unharmed, and the haversack must be put right before it can be used again.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 239,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Beans",
+   "text": "The top leads where the DM chooses, such as to a great view, a cloud giant's castle, or a different plane of existence..",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 240,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Mithral Armor",
+   "text": "If the armor normally imposes disadvantage on Dexterity (Stealth) checks or has a Strength requirement, the mithral version of the armor doesn't.",
+   "want": [
+    "Dexterity",
+    "Stealth",
+    "Strength",
+    "disadvantage"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 241,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Holding",
+   "text": "If the bag is overloaded, pierced, or torn, it ruptures and is destroyed, and its contents are scattered in the Astral Plane.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 242,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Folding Boat",
+   "text": "It can be opened to store items inside.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 243,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Moonblade",
+   "text": "It has hearing and darkvision out to a range of 120 feet.",
+   "want": [
+    "darkvision"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 244,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Blessing of Magic Resistance",
+   "text": "When a spell or another magical effect forces a saving throw on you, you make it with Advantage.",
+   "want": [
+    "Advantage",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 245,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Rod of Lordly Might",
+   "text": "(Nothing happens if this function of the rod is used in a location that has no magnetic north.) The rod also gives you knowledge of your approximate depth beneath the ground or your height above it.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 246,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You know three cantrips at level 1, and you gain more as shown in the Cantrips Known column of the Cleric table.",
+   "want": [
+    "Cleric"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 247,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Font of Magic",
+   "text": "Flexible Casting lets you convert slots and points.",
+   "want": [
+    "Flexible Casting"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 248,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Unarmored Defense",
+   "text": "You can hold a shield and keep this benefit.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 249,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Primeval Awareness",
+   "text": "You can use your action and expend one Ranger spell slot to focus your awareness on the region around you.",
+   "want": [
+    "Ranger"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 250,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You can cast a known Bard spell as a ritual if it has the ritual tag.",
+   "want": [
+    "Bard"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 251,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Perfect Self",
+   "text": "When you roll Initiative and have no ki points left, you regain 4 ki points.",
+   "want": [
+    "Initiative"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 252,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Aura of Courage",
+   "text": "You and friendly creatures within 10 feet of you cannot be Frightened while you are conscious.",
+   "want": [
+    "Frightened"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 253,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You prepare Artificer spells from your list, a number equal to your Intelligence modifier + half your Artificer level (rounded down, minimum 1), each of a level you have slots for.",
+   "want": [
+    "Intelligence"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 254,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Martial Arts",
+   "text": "Your practice of martial arts gives you mastery of combat styles that use Unarmed Strikes and monk weapons, which are Shortswords and any Simple melee weapons that do not have the Two-Handed or Heavy property.",
+   "want": [
+    "Unarmed Strikes",
+    "Shortswords",
+    "Heavy",
+    "Two-Handed"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 255,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Martial Arts",
+   "text": "You can use Dexterity instead of Strength for the attack and damage rolls of your Unarmed Strikes and monk weapons.",
+   "want": [
+    "Dexterity",
+    "Strength",
+    "Unarmed Strikes"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 256,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Extra Attack (2)",
+   "text": "You can attack three times whenever you take the Attack action on your turn.",
+   "want": [
+    "Attack"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 257,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Metamagic",
+   "text": "You learn two Metamagic options of your choice at level 3, and you learn one more at level 10 and at level 17.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 258,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Improved Divine Smite",
+   "text": "If you also use Divine Smite with an attack, you add this damage to the extra damage of Divine Smite.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 259,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "The number is your Wisdom modifier plus your Cleric level (minimum 1), and each spell must be of a level for which you have spell slots.",
+   "want": [
+    "Wisdom",
+    "Cleric"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 260,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Channel Divinity",
+   "text": "At level 2 you can draw divine energy directly from your deity.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 261,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spell Mastery",
+   "text": "Choose a level 1 Wizard spell and a level 2 Wizard spell in your spellbook.",
+   "want": [
+    "Wizard",
+    "Wizard"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 262,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Pact Magic",
+   "text": "Regain all expended slots when you finish a Short Rest or a Long Rest.",
+   "want": [
+    "Short Rest",
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 263,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Favored Enemy",
+   "text": "You have significant experience studying, tracking, hunting and talking to a certain type of enemy.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 264,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Action Surge (two uses)",
+   "text": "You can use Action Surge twice before a rest, but only once on the same turn.",
+   "want": [
+    "Action Surge"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 265,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Indomitable",
+   "text": "You can use it twice between Long Rests from level 13 and three times from level 17.",
+   "want": [
+    "Long Rests"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 266,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Land's Stride",
+   "text": "You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines or a similar hazard.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 267,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Rage",
+   "text": "On your turn you can enter a rage as a Bonus Action.",
+   "want": [
+    "Bonus Action"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 268,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Indomitable",
+   "text": "You must use the new roll, and you cannot use this feature again until you finish a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 269,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Fighting Style",
+   "text": "You adopt a style of fighting as your specialty.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 270,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Ki",
+   "text": "Some ki features require a saving throw.",
+   "want": [
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 271,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Favored Enemy",
+   "text": "Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants or undead.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 272,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Favored Enemy (second)",
+   "text": "You choose one additional favored enemy and an associated language.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 273,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Divine Smite",
+   "text": "The extra damage is 2d8 for a level 1 slot, plus 1d8 for each slot level above 1, to a maximum of 5d8.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 274,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Hide in Plain Sight",
+   "text": "Once you move or take an action or a Reaction, you must camouflage yourself again to gain the benefit.",
+   "want": [
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 275,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Ki",
+   "text": "A spent ki point is unavailable until you finish a Short or Long Rest, when you draw all your ki back.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 276,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Infuse Item",
+   "text": "You imbue mundane items with magical infusions, turning them into magic items.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 277,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Magical Tinkering",
+   "text": "Light: it sheds bright light in a 5-foot radius and dim light for 5 feet more.",
+   "want": [
+    "bright light",
+    "dim light"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 278,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Channel Divinity: Turn Undead",
+   "text": "Each undead within 30 feet that can see or hear you makes a Wisdom saving throw.",
+   "want": [
+    "Wisdom",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 279,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Wild Shape",
+   "text": "Level 4: CR 1/2 or lower, no flying speed.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 280,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Divine Intervention",
+   "text": "Describe the help you seek and roll percentile dice.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 281,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Bardic Inspiration",
+   "text": "Within the next 10 minutes it can roll that die once and add the result to one ability check, attack roll or saving throw.",
+   "want": [
+    "ability check",
+    "attack roll",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 282,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Feral Senses",
+   "text": "When you attack a creature you cannot see, your inability to see it does not impose Disadvantage on your attack rolls against it.",
+   "want": [
+    "Disadvantage",
+    "attack rolls"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 283,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Relentless Rage",
+   "text": "On a success you drop to 1 Hit Point instead.",
+   "want": [
+    "Hit Point"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 284,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Divine Sense",
+   "text": "As an action you can open your awareness to detect such forces.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 285,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Slow Fall",
+   "text": "You can use your Reaction when you fall to reduce any falling damage you take by an amount equal to five times your Monk level.",
+   "want": [
+    "Monk",
+    "Reaction"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 286,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Wild Shape",
+   "text": "When you revert you return to the Hit Points you had, and if you revert from dropping to 0, the excess damage carries over to your normal form.",
+   "want": [
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 287,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Expertise",
+   "text": "At level 10 you choose two more.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 288,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Wild Shape",
+   "text": "As an action you can magically take the shape of a Beast you have seen before.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 289,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You can change that list after a Long Rest, studying at least 1 minute per spell level for each spell.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 290,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Foe Slayer",
+   "text": "You can use this feature before or after the roll, but before the DM says whether the attack hits or misses.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 291,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Martial Arts",
+   "text": "You can roll a d4 in place of the normal damage of your Unarmed Strike or monk weapon.",
+   "want": [
+    "Unarmed Strike"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 292,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Cleansing Touch",
+   "text": "You can use your action to end one spell on yourself or on one willing creature that you touch.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 293,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Thieves' Cant",
+   "text": "It takes four times longer to convey such a message than it does to speak the same idea plainly.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 294,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Infuse Item",
+   "text": "At level 2 you know four infusions, and you learn more at the levels the Artificer table shows.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 295,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Preparing a new list takes at least 1 minute per spell level of each spell.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 296,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Your domain spells are always prepared and do not count against that number.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 297,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Magical Secrets",
+   "text": "You have gathered magic from many traditions.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 298,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Wild Shape",
+   "text": "You revert automatically if you fall Unconscious, drop to 0 Hit Points or die.",
+   "want": [
+    "Unconscious",
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 299,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Indomitable Might",
+   "text": "If your total for a Strength check is lower than your Strength score, you can use the score in place of the total.",
+   "want": [
+    "Strength",
+    "Strength"
+   ],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 300,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Tongue of the Sun and Moon",
+   "text": "Any creature that can understand a language can understand what you say.",
+   "want": [],
+   "no": [],
+   "set": "dev"
+  },
+  {
+   "id": 301,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Fireball",
+   "text": "For each spell slot level above 3, the damage rises by 1d6.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 302,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Scrying",
+   "text": "Through the sensor, you see and hear as though you were present.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 303,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Scrying",
+   "text": "If the save fails, the spell makes an Invisible, intangible sensor appear no more than 10 feet from the target.",
+   "want": [
+    "Invisible"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 304,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Elemental",
+   "text": "The spirit looks like a bipedal figure wrapped in that element, and the element decides certain details of its stat block.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 305,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Mordenkainen's Magnificent Mansion",
+   "text": "When closed, the door can't be perceived.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 306,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Speak with Plants",
+   "text": "You can also cause Difficult Terrain that comes from plant growth, for example thickets and undergrowth, to become ordinary terrain for the duration.",
+   "want": [
+    "Difficult Terrain"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 307,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Ice Storm",
+   "text": "Until your next turn ends, the hailstones make the ground in the Cylinder Difficult Terrain.",
+   "want": [
+    "Difficult Terrain",
+    "Cylinder"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 308,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Summon Fiend",
+   "text": "The spirit counts as an ally to you and your allies.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 309,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Animal Friendship",
+   "text": "Choose a Beast you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 310,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Storm of Vengeance",
+   "text": "On a failure, the creature takes 2d6 Thunder damage and is Deafened (it has the Deafened condition) until the spell ends.",
+   "want": [
+    "Deafened",
+    "Deafened"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 311,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Demiplane",
+   "text": "The door can be opened and closed, and it opens onto a demiplane: an empty room that measures 30 feet in every dimension, built of wood or stone, whichever you choose.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 312,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Tasha's Bubbling Cauldron",
+   "text": "Each potion comes in a vial that vanishes after the potion is used up.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 313,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Bigby's Hand",
+   "text": "The target makes a Strength saving throw.",
+   "want": [
+    "Strength",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 314,
+   "ed": "2024",
+   "kind": "spell",
+   "self": "Symbol",
+   "text": "No creature is targeted more than once per turn.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 315,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Folding Boat",
+   "text": "The box unfolds and becomes a Keelboat.",
+   "want": [
+    "Keelboat"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 316,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Daern's Instant Fortress",
+   "text": "Inside are two floors, joined by a ladder, staircase, or ramp of your choice, which ends at a trapdoor to the roof.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 317,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Crystal Ball of Telepathy",
+   "text": "You can also speak telepathically to any creature you can see that is no more than 30 feet from the Scrying sensor.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 318,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Talking Doll",
+   "text": "Whatever condition you pick, it must happen within 5 feet of the doll for the doll to speak.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 319,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Book of Vile Darkness",
+   "text": "Other evildoers have since added to its store of wicked learning.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 320,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Horn of Blasting",
+   "text": "A creature that succeeds takes half as much damage and suffers no other effect.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 321,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Chime of Opening",
+   "text": "After its tenth use, it cracks and no longer functions.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 322,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Wand of Wonder",
+   "text": "If no object in range qualifies, nothing happens.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 323,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Alchemy Jug",
+   "text": "It weighs 12 pounds whether it is full or empty, and it makes a sloshing sound when shaken, even with nothing inside.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 324,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Staff of Flowers",
+   "text": "The flower is nonmagical and can't hurt anyone, and like a normal flower, it grows and later withers.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 325,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Rival Coin",
+   "text": "The coin holds 1 charge and recovers it each day at dawn.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 326,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Horn of Valhalla (brass)",
+   "text": "A spirit goes back to Ysgard when 1 hour has passed or when its Hit Points reach 0.",
+   "want": [
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 327,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Flame Tongue",
+   "text": "The flames give off Bright Light out to 40 feet and Dim Light 40 feet beyond that.",
+   "want": [
+    "Bright Light",
+    "Dim Light"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 328,
+   "ed": "2024",
+   "kind": "item",
+   "self": "Robe of Useful Items",
+   "text": "As a Magic action while wearing it, you can pull off one patch, and the patch turns into the object or creature it depicts.",
+   "want": [
+    "Magic"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 329,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Mounted Combatant",
+   "text": "When an effect offers your mount a Dexterity saving throw that halves the damage, the mount instead takes no damage on a success and only half damage on a failure.",
+   "want": [
+    "Dexterity",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 330,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Actor",
+   "text": "Your Charisma score rises by 1, but not above 20.",
+   "want": [
+    "Charisma"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 331,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Grappler",
+   "text": "When you move a creature you have Grappled that is your size or smaller, your Speed isn't halved.",
+   "want": [
+    "Grappled",
+    "Speed"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 332,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Resilient",
+   "text": "From now on, you are proficient in saving throws of that ability.",
+   "want": [
+    "saving throws"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 333,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Boon of Energy Resistance",
+   "text": "Choose two damage types from Acid, Fire, Cold, Thunder, Lightning, Necrotic, Radiant, Poison, and Psychic.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 334,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Charger",
+   "text": "When a melee attack roll you make during the Attack action hits a target immediately after you move at least 10 feet straight toward it, pick one effect: the attack's damage roll gets a 1d8 bonus, or you push the target up to 10 feet away if its size is at most one size above yours.",
+   "want": [
+    "attack roll",
+    "Attack",
+    "damage roll"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 335,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Telepathic",
+   "text": "Add 1 to your Intelligence, Wisdom, or Charisma (maximum 20).",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 336,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Lucky",
+   "text": "You can spend 1 Luck Point when a creature makes an attack roll against you.",
+   "want": [
+    "attack roll"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 337,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Sharpshooter",
+   "text": "Three-Quarters Cover and Half Cover give no protection against ranged attacks you make with weapons.",
+   "want": [
+    "Three-Quarters Cover",
+    "Half Cover"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 338,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Crossbow Expert",
+   "text": "The Hand Crossbow, Heavy Crossbow, and Light Crossbow (called crossbows in the rest of this feat) lose the Loading property for you.",
+   "want": [
+    "Hand Crossbow",
+    "Heavy Crossbow",
+    "Light Crossbow"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 339,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Boon of Irresistible Offense",
+   "text": "Whenever the d20 of your attack roll shows a 20, you can deal the target bonus damage equal to the score of the ability you raised with this feat.",
+   "want": [
+    "attack roll"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 340,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Magic Initiate (Wizard)",
+   "text": "You can take this feat more than once, but each time you must pick a different spell list.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 341,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Boon of Speed",
+   "text": "Choose an ability score and add 1 to it (maximum 30).",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 342,
+   "ed": "2024",
+   "kind": "feat",
+   "self": "Observant",
+   "text": "You gain proficiency in that skill, or Expertise in it if you are already proficient.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 343,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Seasoned Survivor",
+   "text": "You have Advantage on checks to find secret passages, to read markings or messages other creatures left on walls or surfaces, and to work out what happened to creatures from blood stains and remains.",
+   "want": [
+    "Advantage"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 344,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "The list grows as shown in the Prepared Spells column.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 345,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Druidic",
+   "text": "Other creatures notice that the message is there by succeeding on a DC 15 Intelligence (Investigation) check, but they can't decipher it without magic.",
+   "want": [
+    "Intelligence",
+    "Investigation"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 346,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Undying Servitude",
+   "text": "Once used, it returns after a Long Rest.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 347,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Eye for Quality",
+   "text": "When you cast Identify, you also learn the target item's market value in Gold Pieces.",
+   "want": [
+    "Identify"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 348,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Lay on Hands",
+   "text": "You can also remove the Poisoned condition from the creature by spending 5 Hit Points from the pool.",
+   "want": [
+    "Poisoned",
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 349,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Reckless Attack",
+   "text": "You can drop every thought of defense and attack with greater ferocity.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 350,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Masterwork Armor",
+   "text": "If the armor already gives such a bonus, such as +2 Half Plate Armor, you pick one bonus and cannot combine them.",
+   "want": [
+    "Half Plate Armor"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 351,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Each time you gain a Sorcerer level, you can swap one spell on your list for a different Sorcerer spell, as long as you have spell slots of that spell's level.",
+   "want": [
+    "Sorcerer",
+    "Sorcerer"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 352,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Relentless Hunter",
+   "text": "When you take damage, it can't break your Concentration on Hunter's Mark.",
+   "want": [
+    "Hunter's Mark"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 353,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Monster Grimoire",
+   "text": "Add your Proficiency Bonus to Intelligence and Wisdom checks that relate to those types, for example History to recall lore about an Undead or Medicine to read the claw marks an Undead left.",
+   "want": [
+    "Proficiency Bonus",
+    "Intelligence",
+    "Wisdom",
+    "History",
+    "Medicine"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 354,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Overexertion",
+   "text": "You then take Necrotic damage equal to one roll of that die.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 355,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Potion Brewing",
+   "text": "Spend 10 minutes and expend Reagents to brew potions.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 356,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Your list grows as you gain Druid levels, following the Prepared Spells column of the Druid Features table.",
+   "want": [
+    "Druid"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 357,
+   "ed": "2024",
+   "kind": "cf",
+   "self": "Soul of Artifice",
+   "text": "If you drop to 0 Hit Points but are not killed outright, you can disintegrate any number of Uncommon or Rare items you created with Replicate Magic Item.",
+   "want": [
+    "Hit Points",
+    "Replicate Magic Item"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 358,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Ray of Enfeeblement",
+   "text": "Make a ranged spell attack against the target.",
+   "want": [
+    "spell attack"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 359,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Forbiddance",
+   "text": "In addition, the spell damages types of creatures that you choose when you cast it.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 360,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Feather Fall",
+   "text": "If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 361,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Etherealness",
+   "text": "While on the Ethereal Plane, you can only affect and be affected by other creatures on that plane.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 362,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Dream",
+   "text": "If the target is asleep, the messenger appears in the target's dreams and can converse with the target as long as it remains asleep, through the duration of the spell.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 363,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Project Image",
+   "text": "If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 364,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Guardian of Faith",
+   "text": "A Large spectral guardian appears and hovers for the duration in an unoccupied space of your choice that you can see within range.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 365,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Divination",
+   "text": "Your magic and an offering put you in contact with a god or a god's servants.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 366,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Spiritual Weapon",
+   "text": "Cuthbert is known for his mace and Thor for his hammer) make this spell's effect resemble that weapon.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 367,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Silent Image",
+   "text": "Physical interaction with the image reveals it to be an illusion, because things can pass through it.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 368,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Phantasmal Force",
+   "text": "The target must make an Intelligence saving throw.",
+   "want": [
+    "Intelligence",
+    "saving throw"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 369,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Crown of Madness",
+   "text": "The target can act normally on its turn if you choose no creature or if none are within its reach.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 370,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Prismatic Spray",
+   "text": "For each target, roll a d8 to determine which color ray affects it. 1-Red.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 371,
+   "ed": "2014",
+   "kind": "spell",
+   "self": "Teleport",
+   "text": "You and your group (or the target object) wind up in a different area that's visually or thematically similar to the target area.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 372,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Bag of Holding",
+   "text": "Breathing creatures inside the bag can survive up to a number of minutes equal to 10 divided by the number of creatures (minimum 1 minute), after which time they begin to suffocate.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 373,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Apparatus of Kwalish",
+   "text": "The barrel has a hidden catch, which can be found with a successful DC 20 Intelligence (Investigation) check.",
+   "want": [
+    "Intelligence",
+    "Investigation"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 374,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Wand of Orcus",
+   "text": "The wand is cold, cruel, nihilistic, and bereft of humor.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 375,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Mystery Key",
+   "text": "Once it unlocks something, the key disappears.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 376,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Necklace of Fireballs",
+   "text": "When you do so, increase the level of the fireball by 1 for each bead beyond the first.",
+   "want": [
+    "fireball"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 377,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Armor of Invulnerability",
+   "text": "Additionally, you can use an action to make yourself immune to nonmagical damage for 10 minutes or until you are no longer wearing the armor.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 378,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Eye of Vecna",
+   "text": "You can use an action and expend 1 or more charges to cast one of the following spells (save DC 18) from it: clairvoyance (2 charges), crown of madness (1 charge), disintegrate (4 charges), dominate monster (5 charges), or eyebite (4 charges).",
+   "want": [
+    "clairvoyance",
+    "crown of madness",
+    "disintegrate",
+    "dominate monster",
+    "eyebite"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 379,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "Before you draw a card, you must declare how many cards you intend to draw and then draw them randomly (you can use an altered deck of playing cards to simulate the deck).",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 380,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Whelm",
+   "text": "Conflict arises if the wielder fails to destroy goblins and giants or to protect dwarves.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 381,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Sphere of Annihilation",
+   "text": "If the sphere comes into contact with a planar portal, such as that created by the gate spell, or an extradimensional space, such as that within a portable hole, the DM determines randomly what happens, using the following table.",
+   "want": [
+    "gate",
+    "portable hole"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 382,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Deck of Many Things",
+   "text": "The score can exceed 20 but can't exceed 24.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 383,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Whelm",
+   "text": "Whelm has ties to the dwarf clan that created it, variously called the Dankil or the Mightyhammer clan.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 384,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Staff of the Magi",
+   "text": "While holding the staff, you have advantage on saving throws against spells.",
+   "want": [
+    "saving throws",
+    "advantage"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 385,
+   "ed": "2014",
+   "kind": "item",
+   "self": "Sword of Kas",
+   "text": "His sword urged him to supplant Vecna, so that they could rule the lich's empire in Vecna's stead.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 386,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Martial Arts",
+   "text": "You gain these benefits while you are unarmed or wielding only monk weapons, and you wear no armor and wield no shield.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 387,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Deflect Missiles",
+   "text": "You make this attack with Proficiency, and the missile counts as a monk weapon for it.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 388,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Wild Shape Improvement",
+   "text": "At level 4 you can become a Beast of CR 1/2 or lower with no flying speed.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 389,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Natural Explorer",
+   "text": "When you make an Intelligence or Wisdom check related to your favored terrain, your Proficiency Bonus is doubled if you use a skill you are proficient in.",
+   "want": [
+    "Intelligence",
+    "Wisdom",
+    "Proficiency Bonus"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 390,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Thieves' Cant",
+   "text": "You also understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 391,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Favored Enemy (third)",
+   "text": "Your choice should reflect the monsters you have met on your adventures.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 392,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Hide in Plain Sight",
+   "text": "You can spend 1 minute creating camouflage for yourself.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 393,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Aura of Protection",
+   "text": "Whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the save equal to your Charisma modifier (minimum +1).",
+   "want": [
+    "saving throw",
+    "Charisma"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 394,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Archdruid",
+   "text": "You can also ignore the verbal and somatic components of your Druid spells, and any material components that have no cost and are not consumed by the spell.",
+   "want": [
+    "Druid"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 395,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Thieves' Cant",
+   "text": "It takes four times longer to convey such a message than it does to speak the same idea plainly.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 396,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Channel Divinity",
+   "text": "Each Channel Divinity option from your oath explains how to use it.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 397,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "Each must be of a level for which you have spell slots.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 398,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Lay on Hands",
+   "text": "As an action you can touch a creature and draw from the pool to restore Hit Points to it, up to the amount left in the pool.",
+   "want": [
+    "Hit Points"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 399,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "The Right Tool for the Job",
+   "text": "The tools are nonmagical and vanish when you use this feature again.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 400,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Primeval Awareness",
+   "text": "You can use your action and expend one Ranger spell slot to focus your awareness on the region around you.",
+   "want": [
+    "Ranger"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 401,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spellcasting",
+   "text": "You can change that list after a Long Rest, studying at least 1 minute per spell level for each spell.",
+   "want": [
+    "Long Rest"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 402,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Tool Expertise",
+   "text": "At level 6, your Proficiency Bonus is doubled for any ability check that uses your proficiency with a tool.",
+   "want": [
+    "Proficiency Bonus",
+    "ability check"
+   ],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 403,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Spell Mastery",
+   "text": "You can cast each at its lowest level without expending a slot while you have it prepared.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  },
+  {
+   "id": 404,
+   "ed": "2014",
+   "kind": "cf",
+   "self": "Action Surge",
+   "text": "From level 17 you can use it twice before a rest, but only once on the same turn.",
+   "want": [],
+   "no": [],
+   "set": "holdout"
+  }
+ ]
+}
