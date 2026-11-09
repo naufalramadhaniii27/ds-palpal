@@ -3,7 +3,7 @@ import {ABK,clone} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP} from "./03-logic-magic-item-effects.js";
 import {B,__set_B} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
-import {asiLevels,choices,wxGate} from "./09-logic-feats-and-choices.js";
+import {asiLevels,choices} from "./09-logic-feats-and-choices.js";import {wxGate} from "./09d-logic-wotc-source-gate.js";
 import {SPX,__set_SPX,casterParts,spRec} from "./11-logic-derivation.js";
 import {allPacks,applyPacks} from "./13-logic-sources-and-packs.js";
 import {baseOf,itemCost,qOf} from "./14-logic-multiclass-hp-shop.js";

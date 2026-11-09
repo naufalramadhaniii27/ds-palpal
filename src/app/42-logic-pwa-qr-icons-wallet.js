@@ -1,4 +1,4 @@
-import {bindLive,lateGet,renderInv,rGet,rSave,moveTabInd,onMode,ico,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt,__set_bldDot,cuNumList} from "./00a-reg-late-ports.js";import {PWA_BUILD} from "./01-logic-boot-flags-builder-loader.js";
+import {bindLive,lateGet,renderInv,rGet,rSave,moveTabInd,onMode,ico,coinCp,coinList,coinPay,coinRefresh,coinSet,coinTotal,coinsNow,priceTxt,cuNumList} from "./00a-reg-late-ports.js";import {PWA_BUILD} from "./01-logic-boot-flags-builder-loader.js";
 import {C,S,saveNow} from "./04-logic-storage.js";
 import {$$,ask,esc,num,sg,toast,toastPic} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
@@ -11,7 +11,6 @@ import {impText} from "./16-logic-import-chat-text-and-build-files.js";
 
 import {ICO} from "./29c-data-ddb-icons.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
-import {bldDot} from "./35-ui-combo.js";
 
 
 import {html,raw,render} from "./lib/html.js";import {env} from "./00-env.js";
@@ -286,7 +285,7 @@ function bldPend(){ clearTimeout(BPD_T); BPD_T=setTimeout(() =>{ const b=documen
   let on=L.length>0, m=b.querySelector(".bpend"); b.classList.toggle("pend",on); env.__bldPendList=L;
   if(on&&!m){ m=document.createElement("i"); m.className="bpend"; m.setAttribute("aria-hidden","true"); b.appendChild(m); } else if(!on&&m) m.remove();
   if(on){ b.setAttribute("aria-description","The builder and the sheet differ"); b.title="The builder and the sheet differ: "+L.slice(0,3).join(". ")+(L.length>3?"...":""); } else if(b.hasAttribute("aria-description")) b.removeAttribute("aria-description"); },250); }
-__set_bldDot((function(f){ return function(){ const r=f.apply(this,arguments); bldPend(); return r; }; })(bldDot)); if(env.__bldDot) env.__bldDot=bldDot;
+/* single owner of the wrapper: app/35 publishes env.__bldDot, this file wraps it once (nobody reads bldDot by name) */ env.__bldDot=(function(f){ return function(){ const r=f.apply(this,arguments); bldPend(); return r; }; })(env.__bldDot);
 document.addEventListener("bldready",() =>{ bldPend(); if(env.__sp14Set&&C&&C.rs==="2014"&&(document.getElementById("bld")||{hidden:true}).hidden)env.__sp14Set(true);/* v92 */ });
 onMode();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(() =>{ moveTabInd(true); });

@@ -13,7 +13,7 @@ import {renderExtras} from "./29b-ui-creatures-extras.js";
 import {castDo,ckOf,qOk,quickCast,spAtWill,spCastOpts} from "./32b-logic-play-concentration-casting.js";import {undoMark,undoNow} from "./32-logic-play-undo-actions.js";
 import {modeFix} from "./33-logic-play-rage-conditions.js";
 import {combatHTML} from "./34c-ui-experience-journal-combat-view.js";import {sitReset} from "./34-ui-situations.js";
-import {env} from "./00-env.js";bindLive("__set_bldDot",{get:function(){return __set_bldDot;}});
+import {env} from "./00-env.js";
 bindLive("CF0",{get:function(){return CF0;}});
 bindLive("cmbCast",{get:function(){return cmbCast;}});
 bindLive("cmbHTML",{get:function(){return cmbHTML;}});
@@ -178,5 +178,4 @@ export function renderAll(instant){
 }
 
 
-export function __set_bldDot(v){ return bldDot=v; }
 export function __set_renderAll(v){ return renderAll=v; }

@@ -2,7 +2,7 @@ import {bindLive} from "./01b-logic-late-ports.js";import {DMAP,dmapAlias,spX,un
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {cls14Apply} from "./08-logic-2014-rules.js";
-import {DM14M,DM14ON,DM14S,__set_DM14M,__set_DM14ON,__set_DM14S,allFeats,dm14Set,eq14Set,gxPicks,sbAuto,sp14Set,wxGate} from "./09-logic-feats-and-choices.js";
+import {allFeats,gxPicks,sbAuto} from "./09-logic-feats-and-choices.js";import {DM14M,DM14ON,DM14S,__set_DM14M,__set_DM14ON,__set_DM14S,dm14Set,eq14Set,sp14Set} from "./09c-logic-edition-overlays.js";import {wxGate} from "./09d-logic-wotc-source-gate.js";
 import {clsParts,fxList} from "./11-logic-derivation.js";
 
 import {MCL,TL,bindLate} from "./01b-logic-late-ports.js";

@@ -4,7 +4,7 @@ import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {BLANK,DMAP,un} from "./03-logic-magic-item-effects.js";
 import {B,BAK,__set_B,save,saveBak} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
-import {EQ14SH,choices,kitTool} from "./09-logic-feats-and-choices.js";
+import {choices,kitTool} from "./09-logic-feats-and-choices.js";import {EQ14SH} from "./09c-logic-edition-overlays.js";
 import {isDone,wmAll} from "./10-logic-v17-additions.js";
 import {abilScores,atkRowFor} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
