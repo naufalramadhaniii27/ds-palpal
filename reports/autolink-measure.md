@@ -83,7 +83,7 @@ Catatan teknis: `xlDom` melewati teks tanpa huruf besar (`/[A-Z]/` di `acceptNod
 | `python3 tests/guard_all.py --enforce` | exit 0. Sempat 1 pelanggaran baru (`xlScan` 21 cabang), diperbaiki dengan memindah cabang ke `xlScanLc` |
 | `python3 tests/scenarios.py` | 24 cek, 0 gagal (390x844 dan 1250x850) |
 | `python3 tests/autolink_measure.py` | dev P 100% R 87,4%, holdout P 100% R 81,8% |
-| `python3 tests/solid_ui_snapshot.py` sebelum dan sesudah | lihat bagian bawah |
+| `python3 tests/solid_ui_snapshot.py` sebelum dan sesudah | 280 langkah, 0 error halaman. Hash DOM beda di 94 langkah (wajar, ada tautan tambahan). Tidak ada langkah dengan localStorage yang beda. Saya tidak menelaah isi tiap selisih DOM satu per satu |
 
 ## Sisa pekerjaan yang disarankan
 
