@@ -5,6 +5,8 @@
 @keyframes swap{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
 .lk{display:inline;padding:0;border:0;background:none;font:inherit;color:var(--stamp);font-weight:600;text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:pointer}
 .lk:hover{text-decoration-style:solid}
+/* ui-1109: two auto links with one space between them ("Dexterity saving throw") stay on one line and the space is not a hit area */
+.xlp{white-space:nowrap}.xlp > .lk + .lk,.xlp > .lk{display:inline}
 .tx{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:4px}
 .tx:hover{color:var(--stamp);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .info-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 12px}
