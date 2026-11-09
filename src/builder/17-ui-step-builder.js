@@ -6,7 +6,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List,sdn,subLbl} from "./08-logic-2014-rules.js";
 import {allFeats,choiceLvl,choices,featChosen,featViol,grantTools,saveTaken,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {invList,optAny} from "./10-logic-v17-additions.js";
-import {abil,casterParts,clsLv} from "./11-logic-derivation.js";
+import {abilScores,casterParts,clsLv} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {allPacks,packSkills} from "./13-logic-sources-and-packs.js";
 import {MCL,langKeys} from "./14-logic-multiclass-hp-shop.js";
@@ -31,7 +31,7 @@ function toolTaken(key){const o={},c=CL(),bg=bgX(),add=function(t,s){String(t||"
  choices().forEach((x) =>{if(x.key===key)return;const v=B.ch[x.key];if(Array.isArray(v)&&(x.t==="tool"||(x.t==="skills"&&x.tools)))v.forEach((n) =>{if(!SKILLS[n]&&!o[n])o[n]=x.feature||x.title})});return o}
 function toolChips(c,cats){const v=B.ch[c.key]||[],tk=toolTaken(c.key);return cats.map((k) =>{return '<p class="wgrp">'+esc(TOOL_CAT[k])+'</p><div class="chips">'+TOOLS[k].map((n) =>{const on=v.indexOf(n)>=0,cl=!on&&tk[n];
   return '<button type="button" class="chip'+(on?" on":"")+(cl?" clash":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'"'+(cl?' data-clash="'+esc(cl)+'"':"")+'>'+(cl?"\u26a0 ":"")+esc(n)+(cl?" ("+esc(cl)+")":"")+'</button>'}).join("")+'</div>'}).join("")}
-function featOpts(c){const taken=featChosen(c.key),hasFS=(CL().fs&&B.level>=CL().fs)||MCL().some((m) =>{const f=CLASSES[m.cls].fs;return f&&m.lv>=f});/* v19 idea: Fighting Style from a multiclass too */
+function featOptsList(c){const taken=featChosen(c.key),hasFS=(CL().fs&&B.level>=CL().fs)||MCL().some((m) =>{const f=CLASSES[m.cls].fs;return f&&m.lv>=f});/* v19 idea: Fighting Style from a multiclass too */
  return Object.keys(FEATS).filter((n) =>{const F=FEATS[n];if(c.t==="ofeat")return F.cat==="O";/* v19 RL46: Origin feats allowed at an ASI level */if(F.cat==="E"&&c.cat!=="E")return false;if(F.cat==="F"&&!hasFS)return false;return F.rep||taken.indexOf(n)<0||(B.ch[c.key]&&B.ch[c.key].feat===n)})}
 let LINKRX=null,LINKMAP={};
 function buildLinks(){const names=[];SPELLS.forEach((x) =>{const e=esc(x[0]);LINKMAP[e.toLowerCase()]=["sp",x[0]];names.push(e)});Object.keys(FEATS).forEach((n) =>{const e=esc(n);if(n.length>4&&!LINKMAP[e.toLowerCase()]){LINKMAP[e.toLowerCase()]=["ft",n];names.push(e)}});
@@ -59,7 +59,7 @@ export function showRef(kind,name){let h="";if(kind==="cr"||kind==="mi"||kind===
  w.addEventListener("click",(e) =>{if(e.target===w||e.target.closest("[data-no]"))w.remove()})}
 
 /* accordion card */
-export function card(id,title,meta,body,opts){opts=opts||{};const open=!!openCards[id];
+export function stepCard(id,title,meta,body,opts){opts=opts||{};const open=!!openCards[id];
  return '<div class="acc'+(opts.todo?" todo":"")+(open?" open":"")+'" data-acc="'+esc(id)+'">'+(opts.todo?'<span class="bang">!</span>':'')+
   '<button type="button" class="acc-h" data-tog="'+esc(id)+'"><span class="acc-t"><b>'+esc(title)+'</b>'+(meta?'<small>'+esc(meta)+'</small>':'')+'</span><svg class="bchev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
   '<div class="acc-b"'+(open?'':' hidden')+'>'+body+'</div></div>'}
@@ -84,7 +84,7 @@ function duelCtl(v){const F=v&&FEATS[v];if(!F||!F.meleeDmg1h)return "";const m=B
  return '<label class="one">'+esc(v)+' bonus<select class="dd" data-b="duelMode">'+[["auto","Auto"],["on","Always on"],["off","Off"]].map((o) =>{return '<option value="'+o[0]+'"'+(m===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+
   '<p class="fd">'+{auto:"Auto: "+n+" while a one-handed melee weapon is your only active weapon. A Shield is fine.",on:"Always on: "+n+" with every one-handed melee weapon, even when another weapon is active.",off:"Off: the sheet never adds this damage."}[m]+'</p>'}
 function cbFeatSel(c,fv){
-  return '<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOpts(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n);return '<option value="'+esc(n)+'"'+(fv.feat===n?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")+'</select>';
+  return '<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOptsList(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n);return '<option value="'+esc(n)+'"'+(fv.feat===n?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")+'</select>';
 }
 function cbFeatInfo(c,fv,F){
  var h="";h+='<p class="fd">'+(F.pre?'<i>Prerequisite: '+esc(F.pre)+'.</i><br>':'')+rtp(F.full||F.d)+'</p>'+duelCtl(fv.feat);
@@ -115,7 +115,7 @@ const CB_TYPES={
  opt:function(c,v){return '<div class="radios">'+OPTS[c.list].map((o) =>{return '<button type="button" class="rad'+(v===o[0]?" on":"")+'" data-ch1="'+c.key+'" data-v="'+esc(o[0])+'"><b>'+esc(o[0])+'</b><span>'+esc(o[1])+'</span></button>'}).join("")+'</div>';},
  lin:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose -</option>'+SPECIES[B.species].lin.opts.map((o) =>{return '<option'+(v===o?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select>';},
  bgfp:function(c,v){return '<select class="dd" data-ch="'+c.key+'">'+c.opts.map((n) =>{return '<option'+((B.ch[c.key]||c.def)===n?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select>';/* v67 */},
- ofeat:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose an Origin Feat -</option>'+missOpt(v)+featOpts(c).map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'');},
+ ofeat:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose an Origin Feat -</option>'+missOpt(v)+featOptsList(c).map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'');},
  sub:function(c,v){const subs=Object.keys(CL().subs);return '<select class="dd" data-subsel="1"><option value="">- Choose a '+subLbl(B.cls)+' -</option>'+subs.map((s) =>{return '<option value="'+esc(s)+'"'+(B.sub===s?" selected":"")+'>'+esc(sdn(s))+'</option>'}).join("")+'<option value="__custom"'+(B.sub==="__custom"?" selected":"")+'>Homebrew subclass</option></select>'+
   (B.sub==="__custom"?'<input class="btx" data-b="cSub" placeholder="Subclass name" value="'+esc(B.cSub)+'">':'')+(B.sub&&B.sub!=="__custom"?'<p class="fd">'+esc(CL().subs[B.sub].map((f) =>{return f[1]+" ("+ord(f[0])+")"}).join(", "))+'.</p>':'')},
  feat:function(c,v){const fv=v||{},F=fv.feat&&FEATS[fv.feat];
@@ -152,7 +152,7 @@ function pfArmor(p,prof,miss){
  if(/Medium Armor training/.test(p)&&!/Medium/.test(prof))miss.push("Medium armor training");
  if(/Heavy Armor training/.test(p)&&!/Heavy/.test(prof))miss.push("Heavy armor training");
  if(/Shield training/.test(p)&&!/Shield/.test(prof))miss.push("Shield training");}
-function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abil().sc,miss=[];
+function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abilScores().sc,miss=[];
  const m=/Level (\d+)\+/.exec(p);if(m&&lvl<+m[1])miss.push("level "+m[1]);
  pfNeeds(F,key,miss);
  pfAbil(p,a,miss);

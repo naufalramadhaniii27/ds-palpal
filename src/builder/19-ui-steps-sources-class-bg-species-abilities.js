@@ -7,10 +7,10 @@ import {CLS14} from "./06-data-2014-classes.js";
 import {sdn,subLbl} from "./08-logic-2014-rules.js";
 import {bgFeatN,choices,linNote,sbWx} from "./09-logic-feats-and-choices.js";
 import {isDone} from "./10-logic-v17-additions.js";
-import {abil} from "./11-logic-derivation.js";
+import {abilScores} from "./11-logic-derivation.js";
 import {PACK_TEMPLATE,allPacks} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,hpCalc,mcReqFail} from "./14-logic-multiclass-hp-shop.js";
-import {card,choiceBody,metaOf,nC,ord,pickCls,pickSp,rt,rtp} from "./17-ui-step-builder.js";
+import {stepCard,choiceBody,metaOf,nC,ord,pickCls,pickSp,rt,rtp} from "./17-ui-step-builder.js";
 import {choiceStep,clsTab,hbSubs,renderSpells,spellCounts} from "./18-ui-spells.js";
 
 /* ---------- step: home (sources) ---------- */
@@ -146,7 +146,7 @@ function rcTail(c,L){let h="";
  h+=MCL().map((m,i) =>{return mcBlock(m,i)}).join("");
  if(TL()<20)h+='<div class="addcls"><select class="dd" data-addcls="1"><option value="">+ Add Another Class (multiclass)</option>'+Object.keys(CLASSES).filter((n) =>{return n!==B.cls&&!MCL().some((m) =>{return m.cls===n})}).map((n) =>{const why=mcReqFail(n)||mcReqFail(B.cls);return '<option value="'+n+'">'+n+(why?' (needs '+why+')':'')+'</option>'}).join("")+'</select><p class="fd bhint">Needs 13 in the primary ability of each class you have and the new one.</p></div>';
  return h}
-export function renderClass(){let c=CL(),L=B.level,a=abil(),h="";
+export function renderClass(){let c=CL(),L=B.level,a=abilScores(),h="";
  if(pickCls||un("cls")){h+=rcPick();return h}
  const H=hpCalc(),hp=H.max,others=TL()-L;
  h+=rcHead(c,L,H,hp,others);
@@ -159,7 +159,7 @@ export function renderClass(){let c=CL(),L=B.level,a=abil(),h="";
  rcSubCards(c,L,cs,used,cards);
  rcRest(cs,used,cards);
  cards.sort((p,q) =>{return p.l-q.l});
- h+=cards.map((k) =>{return card(k.id,k.t,metaOf(k.n,k.l),k.b,{todo:k.todo})}).join("");
+ h+=cards.map((k) =>{return stepCard(k.id,k.t,metaOf(k.n,k.l),k.b,{todo:k.todo})}).join("");
  h+=rcTail(c,L);
  return h}
 function hpRollUI(H){return '<div class="hproll"><p class="fd bhint">Enter each roll, or tap Roll. Empty boxes use the average.</p>'+H.list.map((e) =>{return '<label><span>'+esc(e.c)+' (d'+e.hd+')</span><input class="btx c" type="number" min="1" max="'+e.hd+'" data-hpr="'+e.key+'" value="'+(B.hpr[e.key]||'')+'"><button type="button" class="sbtn" data-roll="'+e.key+'" data-hd="'+e.hd+'">Roll</button></label>'}).join("")+'</div>'}
@@ -168,18 +168,18 @@ function mcbWarn(m){let h="";
  const why=[mcReqFail(B.cls)?B.cls+" needs "+mcReqFail(B.cls):"",mcReqFail(m.cls)?m.cls+" needs "+mcReqFail(m.cls):""].filter(Boolean).join(", ");if(why)h+='<div class="caution">\u26a0 Multiclass prerequisite not met: '+esc(why)+'. Multiclassing needs 13 in the primary ability of your current class and of the new class. Your DM can allow it anyway.</div>';
  return h}
 function mcbProfs(m,i){let h="";
- const g=MC_GRANT[m.cls]||{};h+=card("mcg"+i,"Multiclass Proficiencies","",'<p class="fd">'+([g.armor?"Armor: "+g.armor:"",g.weapons?"Weapons: "+g.weapons:"",g.tools?"Tools: "+g.tools:"",g.sk?"One skill":""].filter(Boolean).join(". ")||"None")+'. You don\'t gain this class\'s saving throws.</p>');
+ const g=MC_GRANT[m.cls]||{};h+=stepCard("mcg"+i,"Multiclass Proficiencies","",'<p class="fd">'+([g.armor?"Armor: "+g.armor:"",g.weapons?"Weapons: "+g.weapons:"",g.tools?"Tools: "+g.tools:"",g.sk?"One skill":""].filter(Boolean).join(". ")||"None")+'. You don\'t gain this class\'s saving throws.</p>');
  return h}
 function mcbSub(cs,x){return cs.filter((y) =>{return y.fk&&y.fk===x.key})}/* v32 RL49 */
 function mcbChoice(x,cs,m,i,c,items){if(x.fk&&cs.some((y) =>{return y.key===x.fk}))return;const xs=mcbSub(cs,x),body=x.t==="mcsub"?'<select class="dd" data-mcsub="'+i+'"><option value="">- Choose a '+subLbl(m.cls)+' -</option>'+Object.keys(c.subs).map((s) =>{return '<option value="'+esc(s)+'"'+(m.sub===s?" selected":"")+'>'+esc(sdn(s))+'</option>'}).join("")+'</select>':(x.t==="feat"?'<p class="fd bhint">Take Ability Score Improvement or another feat you qualify for.</p>':'')+choiceBody(x)+xs.map((y) =>{return '<h4>'+esc(y.title)+'</h4>'+choiceBody(y)}).join("");
-  items.push({l:x.lvl,html:card(x.key,x.t==="feat"?m.cls+" "+x.lvl+": Ability Score Improvement":x.title,metaOf(nC(x)+xs.reduce((t,y) =>{return t+nC(y)},0),x.lvl),body,{todo:!isDone(x)||xs.some((y) =>{return !isDone(y)})})})}
+  items.push({l:x.lvl,html:stepCard(x.key,x.t==="feat"?m.cls+" "+x.lvl+": Ability Score Improvement":x.title,metaOf(nC(x)+xs.reduce((t,y) =>{return t+nC(y)},0),x.lvl),body,{todo:!isDone(x)||xs.some((y) =>{return !isDone(y)})})})}
 function mcBlock(m,i){let c=CLASSES[m.cls],others=TL()-m.lv,h='<div class="mcblk"><div class="clsrow"><div><small>'+esc(m.sub||"")+'</small><b>'+m.cls+'</b></div><label>Level<select class="dd sm" data-mclv="'+i+'">'+Array.from({length:20-others},(_,k) =>{return '<option'+(k+1===m.lv?" selected":"")+'>'+(k+1)+'</option>'}).join("")+'</select></label><button type="button" class="bxbtn" data-mcdel="'+i+'" aria-label="Remove class">\u2715</button></div>';
  h+=mcbWarn(m);
  h+=mcbProfs(m,i);
  const cs=choices().filter((x) =>{return x.mc===i});
  const feats=c.f.filter((f) =>{return f[0]<=m.lv}).map((f) =>{return {l:f[0],t:f[1],d:f[2]}});
  if(m.sub&&c.subs[m.sub])c.subs[m.sub].forEach((f) =>{if(f[0]<=m.lv)feats.push({l:f[0],t:f[1],d:SUB_FULL[m.sub+"|"+f[1]]||f[2]})});
- const items=feats.map((f) =>{return {l:f.l,html:card("mc"+i+f.l+f.t,f.t,ord(f.l)+" level",'<p class="fd">'+rtp(CF_FULL[m.cls+"|"+f.t]||f.d)+'</p>')}});
+ const items=feats.map((f) =>{return {l:f.l,html:stepCard("mc"+i+f.l+f.t,f.t,ord(f.l)+" level",'<p class="fd">'+rtp(CF_FULL[m.cls+"|"+f.t]||f.d)+'</p>')}});
  cs.forEach((x) =>{mcbChoice(x,cs,m,i,c,items)});
  items.sort((p,q) =>{return p.l-q.l});
  return h+items.map((x) =>{return x.html}).join("")+'</div>'}
@@ -195,19 +195,19 @@ function rbHead(bg){let h="";
  return h}
 function rbChoices(bg){let h="";
  let F=FEATS[bgFeatN(bg)],CB=choices(),bfc=null,fsb=CB.filter((c) =>{return c.fk==="Origin feat ("+B.bg+")"}),bt=CB.filter((c) =>{return c.key==="bgTool"})[0];const bsk=CB.filter((c) =>{return c.key==="bgsk"})[0];bfc=CB.filter((c) =>{return c.key==="bgfeatc"})[0];
- if(bsk)h+=card("bgsk","Skill Proficiency",metaOf(bsk.n,0)||bsk.n+" Choice"+(bsk.n>1?"s":""),'<p class="fd bhint">Choose '+bsk.n+' skill'+(bsk.n>1?"s":"")+'. A skill you already have from another source is not available.</p>'+choiceBody(bsk),{todo:!isDone(bsk)});/* v70 */
- if(bt)h+=card("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd bhint">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */ if(!R14())h+=card("bgfeat",bgFeatN(bg),"Granted Feat",(bfc?'<p class="fd bhint">This background lets you choose its feat.</p>'+choiceBody(bfc):"")+'<p class="fd">'+rtp(F?(F.full||F.d):"")+'</p>'+fsb.map((x) =>{return (fsb.length>1?'<h4>'+esc(x.title)+'</h4>':"")+choiceBody(x)}).join(""),{todo:fsb.some((x) =>{return !isDone(x)})});
+ if(bsk)h+=stepCard("bgsk","Skill Proficiency",metaOf(bsk.n,0)||bsk.n+" Choice"+(bsk.n>1?"s":""),'<p class="fd bhint">Choose '+bsk.n+' skill'+(bsk.n>1?"s":"")+'. A skill you already have from another source is not available.</p>'+choiceBody(bsk),{todo:!isDone(bsk)});/* v70 */
+ if(bt)h+=stepCard("bgtool","Tool Proficiency",metaOf(bt.n,0)||"1 Choice",'<p class="fd bhint">Choose one kind of '+esc(TOOL_ONE[bt.cats[0]])+'. Each kind needs its own proficiency.</p>'+choiceBody(bt),{todo:!isDone(bt)});/* v32 RL49 */ if(!R14())h+=stepCard("bgfeat",bgFeatN(bg),"Granted Feat",(bfc?'<p class="fd bhint">This background lets you choose its feat.</p>'+choiceBody(bfc):"")+'<p class="fd">'+rtp(F?(F.full||F.d):"")+'</p>'+fsb.map((x) =>{return (fsb.length>1?'<h4>'+esc(x.title)+'</h4>':"")+choiceBody(x)}).join(""),{todo:fsb.some((x) =>{return !isDone(x)})});
  return h}
 function rbAb(bg){let h="";
  const doneAb=R14()||B.bgMode==="111"||(B.bg2&&B.bg1);
  let ab='<p class="fd">Increase '+bg.ab.join(", ")+'. Pick +2 to one and +1 to another, or +1 to all three. No score can go above 20.</p><div class="radios h"><button type="button" class="rad'+(B.bgMode==="21"?" on":"")+'" data-bgmode="21"><b>+2 / +1</b></button><button type="button" class="rad'+(B.bgMode==="111"?" on":"")+'" data-bgmode="111"><b>+1 / +1 / +1</b></button></div>';
  if(B.bgMode==="111")ab+='<div class="picked"><p>Applied automatically: '+bg.ab.map((k) =>{return '<b>'+ABN[k]+' +1</b>'}).join(', ')+'. No choice needed, because this background always uses these three scores.</p></div>';
  if(B.bgMode==="21")ab+='<div class="two"><label>+2 to<select class="dd" data-b="bg2"><option value="">- Choose -</option>'+bg.ab.map((k) =>{return '<option value="'+k+'"'+(B.bg2===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label><label>+1 to<select class="dd" data-b="bg1"><option value="">- Choose -</option>'+bg.ab.filter((k) =>{return k!==B.bg2}).map((k) =>{return '<option value="'+k+'"'+(B.bg1===k?" selected":"")+'>'+ABN[k]+'</option>'}).join("")+'</select></label></div>';
- if(!R14())h+=card("bgab","Ability Scores",B.bgMode==="111"?"3 Choices":"2 Choices",ab,{todo:!doneAb});
+ if(!R14())h+=stepCard("bgab","Ability Scores",B.bgMode==="111"?"3 Choices":"2 Choices",ab,{todo:!doneAb});
  return h}
 function rbTail(bg){let h="";
- (bg.bf||[]).forEach((f,i) =>{h+=card("bgf"+i,f[0],"Feature",'<p class="fd">'+esc(f[1])+'</p>')}); if(bg.leg&&!R14())h+='<p class="fd bhint">This is a 2014 background. It has no ability increase of its own, so the three scores above follow its skills.'+(bg.featOpts&&!bg.featOpts.length?"":"")+'</p>';
- h+=card("bgeq","Equipment","Starting gear",(R14()?'<p class="fd">'+esc(bg.eq)+'.</p>':'<p class="fd"><b>Option A:</b> '+esc(bg.eq)+'.<br><b>Option B:</b> 50 GP.</p>')+'<p class="fd bhint">Choose on the Equipment step.</p>');
+ (bg.bf||[]).forEach((f,i) =>{h+=stepCard("bgf"+i,f[0],"Feature",'<p class="fd">'+esc(f[1])+'</p>')}); if(bg.leg&&!R14())h+='<p class="fd bhint">This is a 2014 background. It has no ability increase of its own, so the three scores above follow its skills.'+(bg.featOpts&&!bg.featOpts.length?"":"")+'</p>';
+ h+=stepCard("bgeq","Equipment","Starting gear",(R14()?'<p class="fd">'+esc(bg.eq)+'.</p>':'<p class="fd"><b>Option A:</b> '+esc(bg.eq)+'.<br><b>Option B:</b> 50 GP.</p>')+'<p class="fd bhint">Choose on the Equipment step.</p>');
  return h}
 export function renderBg(){let bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">'+(R14()?"Choose a Background":"Choose Origin: Background")+'</h2>';
  if(un("bg"))return h+rbEmpty();
@@ -221,35 +221,35 @@ export function renderBg(){let bg=BACKGROUNDS[B.bg],h='<h2 class="ttl">'+(R14()?
 /* renderSpecies steps (SOLID s16): each returns the HTML of one part of the Species step. s = the species, cs = the choices */
 function rsPick(){return '<h2 class="ttl">Choose a '+(R14()?"Race":"Species")+'</h2>'+(R14()?sp14List():Object.keys(SPECIES)).concat(["Custom"]).map((n) =>{const s=SPECIES[n];return '<button type="button" class="pickrow" data-setsp="'+n+'"><b>'+(n==="Custom"?"Custom (homebrew)":(R14()?n.replace(/ \(2014\)$/,""):n))+'</b><span>'+(s?s.traits.map((t) =>{return t[0]}).join(", "):"Your setting's species")+'</span></button>'}).join("")}
 function rsCustom(){let h="";h+='<div class="sphead"><div><h2>Custom species</h2></div><button type="button" class="link" data-chgsp="1">Change Species</button></div>';
-  h+='<div class="two"><label>Name<input class="btx" data-b="cSpecies.name" value="'+esc(B.cSpecies.name)+'"></label><label>Size<select class="dd" data-b="cSpecies.size"><option'+(B.cSpecies.size==="Medium"?" selected":"")+'>Medium</option><option'+(B.cSpecies.size==="Small"?" selected":"")+'>Small</option></select></label><label>Speed (ft)<input class="btx" type="number" data-b="cSpecies.speed" value="'+B.cSpecies.speed+'"></label><label>Darkvision (ft)<input class="btx" type="number" data-b="cSpecies.dark" value="'+B.cSpecies.dark+'"></label></div>';const lc0=choices().filter((c) =>{return c.key==="lang"})[0];if(lc0)h+=card("lang","Languages",R14()?((lc0.n||2)+" Choices"):"2 Choices \u2022 Origin",choiceBody(lc0),{todo:!isDone(lc0)});return h}/* v99 */
+  h+='<div class="two"><label>Name<input class="btx" data-b="cSpecies.name" value="'+esc(B.cSpecies.name)+'"></label><label>Size<select class="dd" data-b="cSpecies.size"><option'+(B.cSpecies.size==="Medium"?" selected":"")+'>Medium</option><option'+(B.cSpecies.size==="Small"?" selected":"")+'>Small</option></select></label><label>Speed (ft)<input class="btx" type="number" data-b="cSpecies.speed" value="'+B.cSpecies.speed+'"></label><label>Darkvision (ft)<input class="btx" type="number" data-b="cSpecies.dark" value="'+B.cSpecies.dark+'"></label></div>';const lc0=choices().filter((c) =>{return c.key==="lang"})[0];if(lc0)h+=stepCard("lang","Languages",R14()?((lc0.n||2)+" Choices"):"2 Choices \u2022 Origin",choiceBody(lc0),{todo:!isDone(lc0)});return h}/* v99 */
 function rsHead(s){let h="";
  const dn=R14()?B.species.replace(/ \(2014\)$/,""):B.species;h+='<div class="sphead"><div><h2>'+dn+'</h2><p><b>'+dn+' Traits</b><br>'+s.traits.map((t) =>{return t[0]}).join(", ")+'</p></div><button type="button" class="link" data-chgsp="1">Change Species</button></div>';
  h+=bStrip([["Size",/or/.test(s.size)?(B.size||"Medium"):s.size],["Speed",s.speed+" ft"],["Darkvision",s.dark?s.dark+" ft":"None"],["Languages",R14()?((s.lgf&&s.lgf.length?s.lgf:["Common"]).join(", ")+(s.lgn?" + "+s.lgn+" of your choice":"")):"Common + 2"]]);
  const szNote='<p class="fd bhint">Both take up a 5-ft square. '+(R14()?'Small creatures have Disadvantage on attack rolls with Heavy weapons.':'Heavy weapons need Strength 13 (melee) or Dexterity 13 (ranged).')+'</p>';
- if(/or/.test(s.size))h+=card("size","Size",(B.size||"Medium")+" \u2022 "+htText(B.species,B.size||"Medium"),'<div class="radios h">'+["Medium","Small"].map((z) =>{return '<button type="button" class="rad'+((B.size||"Medium")===z?" on":"")+'" data-size="'+z+'"><b>'+z+'</b><span>'+htText(B.species,z)+'</span></button>'}).join("")+'</div>'+szNote);
- else h+=card("size","Size",s.size+" \u2022 "+htText(B.species,s.size),'<p class="fd">'+s.size+', '+htText(B.species,s.size)+'.</p>'+szNote); h+=card("speed","Speed","",'<p class="fd">'+s.speed+' feet.'+(s.dark?' Darkvision '+s.dark+' feet.':'')+'</p>');
+ if(/or/.test(s.size))h+=stepCard("size","Size",(B.size||"Medium")+" \u2022 "+htText(B.species,B.size||"Medium"),'<div class="radios h">'+["Medium","Small"].map((z) =>{return '<button type="button" class="rad'+((B.size||"Medium")===z?" on":"")+'" data-size="'+z+'"><b>'+z+'</b><span>'+htText(B.species,z)+'</span></button>'}).join("")+'</div>'+szNote);
+ else h+=stepCard("size","Size",s.size+" \u2022 "+htText(B.species,s.size),'<p class="fd">'+s.size+', '+htText(B.species,s.size)+'.</p>'+szNote); h+=stepCard("speed","Speed","",'<p class="fd">'+s.speed+' feet.'+(s.dark?' Darkvision '+s.dark+' feet.':'')+'</p>');
  return h}
 function rsRace14(s,cs){let h="";
- if(R14()){const rac=cs.filter((c) =>{return /^rasi/.test(c.key)}),ra0=rac[0],fx0=Object.keys(s.asi||{}).map((k) =>{return ABN[k]+" +"+s.asi[k]}).join(", ");const rb0=s.asiFlex?"Choose a pattern":(ra0?"Choose "+ra0.n:(fx0?"Fixed":"None"));let rbody=(fx0?'<p class="fd">'+esc(fx0)+".</p>":"");if(s.asiPick&&!s.asiFlex)rbody+='<p class="fd bhint">Choose '+s.asiPick.n+" different scores to raise by "+(s.asiPick.v||1)+".</p>";rac.forEach((c) =>{rbody+='<p class="fd bhint">'+esc(c.title)+"</p>"+choiceBody(c)});h+=card("rasi","Ability Score Increase",rb0,rbody,{todo:rac.some((c) =>{return !isDone(c)})})}/* v82 v83 */
+ if(R14()){const rac=cs.filter((c) =>{return /^rasi/.test(c.key)}),ra0=rac[0],fx0=Object.keys(s.asi||{}).map((k) =>{return ABN[k]+" +"+s.asi[k]}).join(", ");const rb0=s.asiFlex?"Choose a pattern":(ra0?"Choose "+ra0.n:(fx0?"Fixed":"None"));let rbody=(fx0?'<p class="fd">'+esc(fx0)+".</p>":"");if(s.asiPick&&!s.asiFlex)rbody+='<p class="fd bhint">Choose '+s.asiPick.n+" different scores to raise by "+(s.asiPick.v||1)+".</p>";rac.forEach((c) =>{rbody+='<p class="fd bhint">'+esc(c.title)+"</p>"+choiceBody(c)});h+=stepCard("rasi","Ability Score Increase",rb0,rbody,{todo:rac.some((c) =>{return !isDone(c)})})}/* v82 v83 */
  return h}
 function rsLin(s,cs){let h="";
  const lin=cs.filter((c) =>{return c.key==="lin"})[0],sab=cs.filter((c) =>{return c.key==="spab"})[0];/* RL35 2b */
  const hcn=cs.filter((c) =>{return c.key==="hecan"})[0];/* v32 RL49 no. 43 */
- if(lin)h+=card("lin",s.lin.label,sab?"2 Choices":"1 Choice",choiceBody(lin)+linNote(s)+(hcn?'<h4>Lineage cantrip</h4><p class="fd">'+esc(hcn.def[0])+' unless you pick another Wizard cantrip. You can swap it after a Long Rest.</p>'+choiceBody(hcn):"")+(sab?'<h4>Spellcasting ability</h4><p class="fd bhint">The spells from your '+esc(s.lin.label)+' use this ability.</p>'+choiceBody(sab):""),{todo:!isDone(lin)||(sab&&!isDone(sab))});
+ if(lin)h+=stepCard("lin",s.lin.label,sab?"2 Choices":"1 Choice",choiceBody(lin)+linNote(s)+(hcn?'<h4>Lineage cantrip</h4><p class="fd">'+esc(hcn.def[0])+' unless you pick another Wizard cantrip. You can swap it after a Long Rest.</p>'+choiceBody(hcn):"")+(sab?'<h4>Spellcasting ability</h4><p class="fd bhint">The spells from your '+esc(s.lin.label)+' use this ability.</p>'+choiceBody(sab):""),{todo:!isDone(lin)||(sab&&!isDone(sab))});
  return h}
 function rsOpt(s,cs){let h="";
  const so=cs.filter((c) =>{return c.key==="spopt"})[0];if(so){const sub=["spfeat","spsk2","spcan","spwep"].map((k) =>{const x=cs.filter((c) =>{return c.key===k})[0];if(!x)return "";let ex="";if(k==="spfeat")ex=cs.filter((c) =>{return c.fk==="Origin feat ("+B.species+", Versatile)"}).map(choiceBody).join("");/* v32 RL49 */return '<h4>'+esc(x.title)+'</h4>'+choiceBody(x)+ex}).join("");
-  const todo=!isDone(so)||["spfeat","spsk2","spcan","spwep"].some((k) =>{const x=cs.filter((c) =>{return c.key===k})[0];return x&&!isDone(x)});h+=card("spopt",s.opts.label,s.opts.n+" Choices",'<p class="fd">'+esc((s.traits.filter((t) =>{return t[0]===s.opts.label})[0]||["",""])[1])+'</p>'+choiceBody(so)+sub,{todo:todo})}
+  const todo=!isDone(so)||["spfeat","spsk2","spcan","spwep"].some((k) =>{const x=cs.filter((c) =>{return c.key===k})[0];return x&&!isDone(x)});h+=stepCard("spopt",s.opts.label,s.opts.n+" Choices",'<p class="fd">'+esc((s.traits.filter((t) =>{return t[0]===s.opts.label})[0]||["",""])[1])+'</p>'+choiceBody(so)+sub,{todo:todo})}
  return h}
 function rsTraitPick(s,cs,t){let x=null;if(t[0]==="Skillful"||t[0]==="Keen Senses"||(s.skillPick&&t[0]===s.skillPick.label))x=cs.filter((c) =>{return c.key==="spsk"})[0];if(s.toolPick&&t[0]===s.toolPick.label)x=cs.filter((c) =>{return c.key==="sptool"})[0];if(s.wpPick&&t[0]===s.wpPick.label)x=cs.filter((c) =>{return c.key==="spwp"})[0];if(s.fx&&s.fx.cantripTrait===t[0])x=cs.filter((c) =>{return c.key==="spcan"})[0];/* v74 */if(t[0]==="Versatile"&&!s.opts)x=cs.filter((c) =>{return c.key==="spfeat"})[0];if(!s.lin&&s.spAbTrait&&t[0]===s.spAbTrait)x=cs.filter((c) =>{return c.key==="spab"})[0];/* v38 p15 */
  return x}
 function rsTrait(s,cs,t){let h="";const x=rsTraitPick(s,cs,t);
   const vfs=x&&x.key==="spfeat"?cs.filter((c) =>{return c.fk==="Origin feat ("+B.species+", Versatile)"}):[],extra=vfs.map(choiceBody).join("");/* v32 RL49 */
   if(s.lin&&t[0]===s.lin.label)return h;if(s.opts&&t[0]===s.opts.label)return h;
-  h+=card("t"+t[0],t[0],x?"1 Choice":"",'<p class="fd">'+rt(t[1])+'</p>'+(x?choiceBody(x)+extra:""),{todo:x&&(!isDone(x)||vfs.some((y) =>{return !isDone(y)}))})
+  h+=stepCard("t"+t[0],t[0],x?"1 Choice":"",'<p class="fd">'+rt(t[1])+'</p>'+(x?choiceBody(x)+extra:""),{todo:x&&(!isDone(x)||vfs.some((y) =>{return !isDone(y)}))})
  return h}
 function rsLang(cs){let h="";
- const lc=cs.filter((c) =>{return c.key==="lang"})[0];if(lc)h+=card("lang","Languages",R14()?((lc.n?lc.n:2)+" Choices"):"2 Choices \u2022 Origin",choiceBody(lc),{todo:!isDone(lc)});/* v99: a 2014 race with fixed languages has no language pick */
+ const lc=cs.filter((c) =>{return c.key==="lang"})[0];if(lc)h+=stepCard("lang","Languages",R14()?((lc.n?lc.n:2)+" Choices"):"2 Choices \u2022 Origin",choiceBody(lc),{todo:!isDone(lc)});/* v99: a 2014 race with fixed languages has no language pick */
  return h}
 export function renderSpecies(){let h="";
  if(pickSp||un("species")){h+=rsPick();return h}
@@ -264,7 +264,7 @@ export function renderSpecies(){let h="";
  return h}
 
 /* ---------- step: abilities ---------- */
-export function renderAbil(){let a=abil(),h='<h2 class="ttl">Ability Scores</h2>';
+export function renderAbil(){let a=abilScores(),h='<h2 class="ttl">Ability Scores</h2>';
  h+='<select class="dd" data-method="1">'+(un("abil")?'<option value="" selected>- Choose a Generation Method -</option>':'')+[["manual","Manual/Rolled"],["array","Standard Array"],["point","Point Buy"]].map((m) =>{return '<option value="'+m[0]+'"'+(B.method===m[0]&&!un("abil")?" selected":"")+'>'+m[1]+'</option>'}).join("")+'</select>';
  if(un("abil"))return h+'<p class="fd bhint">Choose how to set your ability scores.</p>';
  if(B.method==="point"){const used=ABK.reduce((t,k) =>{return t+(PBC[B.base[k]]!=null?PBC[B.base[k]]:0)},0);h+='<p class="pts'+(27-used===0?" done":27-used<0?" over":"")+'"><b>'+(27-used)+'</b> / 27 points left</p>'}
