@@ -1,13 +1,13 @@
 {
- "commit": "e0a67ea6",
- "branch": "nilai-98/art-0013",
- "date": "2026-11-03 06:53",
+ "commit": "13bdf688",
+ "branch": "main",
+ "date": "2026-11-09 09:54",
  "mode": "quick",
  "sections": {
   "logic": {
    "name": "Logic aturan",
    "floor": 8,
-   "score": 6.8,
+   "score": 7.2,
    "measures": [
     {
      "id": "golden_rules",
@@ -74,10 +74,10 @@
     },
     {
      "id": "rules_notes",
-     "value": 0,
+     "value": 1,
      "base": 0,
      "target": 1,
-     "credit": 0.0,
+     "credit": 1.0,
      "gate": false,
      "note": ""
     }
@@ -458,7 +458,7 @@
     },
     {
      "id": "ci_tests",
-     "value": 32,
+     "value": 34,
      "base": null,
      "target": 45,
      "credit": 0.0,
@@ -497,7 +497,7 @@
   "code": {
    "name": "Kerapian kode",
    "floor": 5,
-   "score": 6.24,
+   "score": 6.3,
    "measures": [
     {
      "id": "css_patch_files",
@@ -510,7 +510,7 @@
     },
     {
      "id": "important",
-     "value": 807,
+     "value": 811,
      "base": 807,
      "target": 99,
      "credit": 0.0,
@@ -519,16 +519,16 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1083,
+     "value": 1474,
      "base": 1099,
      "target": 0,
-     "credit": 0.01,
+     "credit": 0.0,
      "gate": true,
      "note": ""
     },
     {
      "id": "lines_over_2000",
-     "value": 17,
+     "value": 19,
      "base": 17,
      "target": 0,
      "credit": 0.0,
@@ -537,7 +537,7 @@
     },
     {
      "id": "var_decl",
-     "value": 186,
+     "value": 179,
      "base": 6595,
      "target": 0,
      "credit": 0.97,
@@ -546,16 +546,16 @@
     },
     {
      "id": "json_clone",
-     "value": 0,
+     "value": 1,
      "base": 50,
      "target": 0,
-     "credit": 1.0,
+     "credit": 0.98,
      "gate": false,
      "note": ""
     },
     {
      "id": "then_calls",
-     "value": 161,
+     "value": 167,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -573,16 +573,16 @@
     },
     {
      "id": "navstack",
-     "value": 46,
+     "value": 38,
      "base": 46,
      "target": 0,
-     "credit": 0.0,
+     "credit": 0.17,
      "gate": false,
      "note": ""
     },
     {
      "id": "mutation_observer",
-     "value": 76,
+     "value": 79,
      "base": 76,
      "target": 0,
      "credit": 0.0,
@@ -634,10 +634,10 @@
     },
     {
      "id": "innerhtml_outside_lib",
-     "value": 247,
+     "value": 249,
      "base": 262,
      "target": 0,
-     "credit": 0.06,
+     "credit": 0.05,
      "gate": true,
      "note": ""
     },
@@ -750,6 +750,6 @@
    ]
   }
  },
- "average": 6.24,
- "secs": 48
+ "average": 6.28,
+ "secs": 50
 }
