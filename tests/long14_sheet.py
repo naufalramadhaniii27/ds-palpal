@@ -25,7 +25,7 @@ async def run(b,url,W,H):
     ok=await pg.evaluate("""()=>{ const e=[...document.querySelectorAll('[data-info^=\"f:\"]')].filter(x=>/Stonecunning/.test(x.textContent))[0]; if(!e) return 'no card'; e.click(); return 'clicked'; }""")
     await pg.wait_for_timeout(1000)
     txt=await pg.evaluate("()=>document.body.innerText")
-    seen="instead of your normal bonus" in txt
+    seen="add twice your Proficiency Bonus rather than the normal amount" in txt
     print(W,"stored full:",stored,"| card:",ok,"| long text visible:",seen,"| errors:",errs)
     if not stored or ok!="clicked" or not seen or errs: BAD.append(W)
     await pg.screenshot(path="%s/sheet-%d.png"%(OUT,W)); await ctx.close()
