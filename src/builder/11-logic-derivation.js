@@ -72,7 +72,7 @@ function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((
 /*ORCH-BEGIN gfx0: sources (11b-logic-fx-sources.js) say where entries come from, "entry" handlers (10b-logic-fx-handlers-entry.js) gate, prepare and finish each one. This loop knows no source kind and no field */
 function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem};
  fxSources().forEach((s) =>{if(s.items&&noItem)return;
-  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias},ch:ctx0.ch,fxT:ctx0.fxT};
+  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias},ch:ctx0.ch,fxT:ctx0.fxT,rs:B.rs||""};
    (d.list||[]).forEach((e,i) =>{if(!e)return;e=foldFxPhase("entry","gate",e,ctx);if(e===null)return;e=foldFxPhase("entry","prepare",e,ctx);const en=e.n||d.owner;
     let o=Object.assign({},e,{n:en,kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,idx:i,lbl:d.lblOf(en),ocls:d.ocls});/* ocls: the class of a cls or sub entry, the default spellcasting class (spCls) */
     out.push(foldFxPhase("entry","post",o,ctx))})})});

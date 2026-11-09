@@ -81,3 +81,63 @@ Tidak diisi: baris resource yang sudah ada tetapi ditandai gate (muatan item: `W
 | 26 | Sembilan subclass dan dua feat menawarkan DUA pilihan skill untuk satu aturan "pilih satu skill": Nature, Order, Peace, Apocalypse, Darkness, Mountain, Travel Domain, Cavalier, Samurai, feat Squat Nimbleness dan Inspirational Caster. Satu pilihan dari builder atau `fx-L10.js`, satu lagi dari `fx-N1.js` | Pilihan dobel dari `fx-N1.js` dihapus. Hasil uji: dua skill proficiency menjadi satu | Teks data tiap subclass dan feat (kalimat "pilih satu skill", satu proficiency). Halaman tidak dicatat di data | Cacat data. Sheet lama yang sudah memilih dua tetap memuat nilai pilihan kedua di `B.ch` (kunci `gx-sk-...`), nilainya tidak dipakai lagi dan tidak dihapus (tidak ada migrasi data) |
 
 Selain itu ratusan kalimat PROF yang ditandai gate sudah dihitung sheet lewat data kelas (SUB_GRANT, pilihan builder p3skill, p2expertise, feat Resilient dan lain-lain). Feat Woodwise (tp15-thhw.js) berbeda: pilihan bawaan data feat (kunci `woodwise_sk`) tidak memberi proficiency apa pun, pilihan `fx-N1.js` adalah satu-satunya yang bekerja, jadi dibiarkan (permintaan 8). Sebelas subclass dicek langsung di sheet (Alchemist, Armorer, Artillerist, Battle Smith, Cartographer, Swords, Mercy, Drunken Master, Mastermind, Scout, Kensei) tanpa menemukan proficiency yang hilang. Kalimat gate untuk itu adalah false positive (permintaan 1 ke Checker).
+
+## Zero miss 3: ADV, RES, SPELL (`src/data/fx-Z3.js`)
+
+Semua tafsir di bagian ini hanya dari teks data aplikasi dan ingatan. Belum dicocokkan ke halaman buku (folder `books/` tidak ada). Naufal bisa mengecek kolom "Tafsir" ke buku PHB 2024. Kata "toggle" berarti baris keadaan main di sheet (fx toggle). Baris Note tanpa toggle berarti aturan yang selalu berlaku dengan syarat di kalimatnya.
+
+### ADV (advantage)
+
+| No | Kalimat (ditulis ulang) | Tafsir yang dipakai | Status |
+|---|---|---|---|
+| 1 | Bard 7 Countercharm: Reaction, diri sendiri atau makhluk dalam 30 ft yang gagal save Charmed atau Frightened mengulang save dengan Advantage | Note di Defenses, hanya build 2024 (`ed:"2024"`). Teks 2014 beda (Advantage untuk sekutu selama aura) | Teks data, belum dicek ke buku |
+| 2 | Rogue 18 Elusive: serangan terhadap Anda tidak bisa punya Advantage kecuali Anda Incapacitated | Note, dua edisi (teks 2014 sama artinya) | Teks data |
+| 3 | Rogue 3 Steady Aim (2024): Bonus Action, Advantage di serangan berikutnya giliran ini bila belum bergerak, Speed jadi 0 | Toggle `steady-aim`, advOn dan Note Speed 0. Syarat "belum bergerak" tertulis di teks, tidak dihitung engine | Teks data |
+| 4 | Innate Sorcery (2024): DC spell Sorcerer naik 1 dan Advantage di attack roll spell Sorcerer | Toggle `innate-sorcery` (id sama dengan Bear Witness Apocalypse Sorcery, jadi keduanya menyala bersama, memang satu keadaan). `spDc:1` kelas Sorcerer, advOn | Teks data |
+| 5 | Wild Heart 3 Rage of the Wilds: Wolf, sekutu menyerang dengan Advantage terhadap musuh dalam 5 ft dari Anda | Toggle `wild-wolf`, Note. Pilihan Eagle (Dash dan Disengage dalam satu Bonus Action) tidak diberi model karena tidak ada angka | Teks data |
+| 6 | Zealot 10 Zealous Presence: sampai sepuluh makhluk memiliki Advantage di attack roll dan save sampai giliran berikutnya | Toggle `zealous-presence`, Note (yang diuntungkan sekutu, bukan Anda) | Teks data |
+| 7 | Champion 18 Survivor, Defy Death: death save punya Advantage dan hasil 18 sampai 20 dihitung 20 | advOn "Death Saving Throws" (masuk juga ke baris Saving Throws) dan Note 18 sampai 20. Heroic Rally sudah ada di data lain | Teks data |
+| 8 | Glory 20 Living Legend: Advantage di semua check Charisma, reroll save gagal dengan Reaction, ubah serangan senjata meleset jadi kena sekali per giliran | Toggle `living-legend`, advOn dan dua Note | Teks data |
+| 9 | Vengeance 20 Avenging Angel: musuh yang Frightened oleh Frightful Aura diserang dengan Advantage | Toggle `avenging-angel` (dipakai bersama baris Flight di `fx-Z2.js`), Note | Teks data |
+| 10 | Trickery 3 Blessing of the Trickster: Advantage di Stealth untuk diri sendiri atau satu makhluk | Toggle `trickster-blessing`, advOn. Untuk makhluk lain tidak ada baris | Teks data |
+| 11 | Trickery 3 Invoke Duplicity, Distract: Advantage di serangan terhadap makhluk yang bisa melihat ilusi bila Anda dan ilusi dalam 5 ft darinya | Toggle `invoke-duplicity`, advOn | Teks data |
+| 12 | Moon 10 Moonlight Step: attack roll berikutnya giliran ini punya Advantage | Toggle `moonlight-step`, advOn | Teks data |
+| 13 | Warrior of Shadow 6 Shadow Step: serangan melee berikutnya sebelum giliran selesai punya Advantage | Toggle `shadow-step`, advOn | Teks data |
+| 14 | Glory 3 Peerless Athlete: 1 jam Advantage di Acrobatics dan Athletics | Toggle `peerless-athlete`, advOn. Tambahan jarak lompat 10 ft tidak dihitung | Teks data |
+| 15 | Vengeance 3 Vow of Enmity: Advantage di serangan terhadap makhluk yang disumpah | Toggle `vow-of-enmity`, advOn | Teks data |
+| 16 | Clockwork 14 Trance of Order: serangan terhadap Anda tidak bisa memakai Advantage dan d20 hasil 9 atau kurang dihitung 10 pada D20 Test | Toggle `trance-of-order`, dua Note | Teks data |
+| 17 | Wild Magic 3 Tides of Chaos: Advantage di satu D20 Test, dipilih sebelum lemparan | Toggle `tides-of-chaos`, advOn. Pemulihan lewat slot sudah di baris resource | Teks data |
+| 18 | Great Old One 6 Clairvoyant Combatant: makhluk yang gagal save menyerang Anda dengan Disadvantage dan Anda menyerangnya dengan Advantage. Pulih saat Short atau Long Rest atau dengan satu slot Pact Magic | Toggle `clairvoyant-combatant`, advOn dan dua Note. Baris resource lama (`Short Rest`) tidak diubah | Teks data |
+| 19 | Feat Crusher, Enhanced Critical: critical Bludgeoning memberi Advantage pada semua serangan ke makhluk itu sampai awal giliran berikut | Note (efek untuk seluruh tim, tanpa toggle) | Teks data |
+| 20 | Trickery 17 Improved Duplicity: Advantage untuk Anda dan sekutu di dekat ilusi | Tidak diubah, sudah ada di Situations | Sudah ada |
+
+Situations (`src/app/34-ui-situations.js`, tabel `window.__sit`) sudah memberi 68 baris keadaan main dengan Advantage (Reckless Attack, Studied Attacks, Precise Hunter, Actor, Grappler, Mounted Combatant dan lain-lain). Pengukur membaca tabel itu sebagai bukti sheet. Tidak ada baris Situations yang ditambah (file milik UI).
+
+Sengaja tidak diberi baris (by_design di `tests/zero_miss_baseline.json`): Stunning Strike (efek pada target), Restore Balance (meniadakan Advantage atau Disadvantage di roll makhluk lain), Wild Magic Surge (tabel acak).
+
+### RES (resistance dan immunity)
+
+| No | Kalimat (ditulis ulang) | Tafsir yang dipakai | Status |
+|---|---|---|---|
+| 21 | Monk 18 Superior Defense (2024): 3 Focus Points, 1 menit Resistance ke semua damage kecuali Force | Toggle `superior-defense`, 12 jenis (semua kecuali Force). Biaya Focus Points tidak dipotong otomatis | Teks data |
+| 22 | Wild Heart 3 Rage of the Wilds, Bear: selama Rage Resistance ke semua damage kecuali Force, Necrotic, Psychic, Radiant | Toggle `wild-bear`, 9 jenis. Dipilih tiap Rage, jadi bukan pilihan builder (sama dengan Falcon di `fx-Z2.js`) | Teks data |
+| 23 | Stars 14 Full of Stars: selama Starry Form Resistance ke Bludgeoning, Piercing, Slashing | Toggle `starry-form` (id baru, baris Archer yang sudah ada tidak berubah) | Teks data |
+| 24 | Elements 17 Elemental Epitome: pilih Acid, Cold, Fire, Lightning atau Thunder, Resistance ke jenis itu selama Elemental Attunement, boleh diganti tiap awal giliran | Pilihan builder `gx-epitome-sub-Warrior of the Elements` (satu jenis, bisa diubah di builder) dan toggle `elem-attune` yang sudah dipakai Stride of the Elements. Mengganti jenis tiap giliran berarti mengubah pilihan | Teks data. Alternatif: lima toggle (lebih ramai) |
+| 25 | Hunter 15 Superior Hunter's Defense (2024): Reaction, Resistance ke damage yang baru diterima dan damage sejenis sampai akhir giliran | Note (jenis damage tergantung serangan, tidak bisa jadi daftar tetap) | Teks data |
+| 26 | Boon of the Night Spirit, Shadowy Form: di Dim Light atau Darkness Resistance ke semua damage kecuali Psychic dan Radiant | Toggle `shadowy-form`, 11 jenis | Teks data |
+
+Sengaja tidak diberi baris (by_design): Elemental Adept dan Poisoner (mengabaikan resistance milik target), entri tabel Wild Magic Surge.
+
+### SPELL
+
+| No | Kalimat (ditulis ulang) | Tafsir yang dipakai | Status |
+|---|---|---|---|
+| 27 | Warlock 20 Eldritch Master: Magical Cunning memulihkan semua slot Pact Magic | Note. Angka "Regain up to N Pact slots" di baris Magical Cunning (`16-logic-feature-numbers.js`) tidak berubah | Teks data |
+| 28 | Slot level 5 memulihkan Holy Nimbus, Living Legend, Avenging Angel, Elder Champion | Tag baris resource menjadi "Bonus Action, or a level 5 slot" (`LU_X` di `src/data/db4/02-limited-uses-damage-rows-save-notes.js`). Pemulihan tetap manual dengan titik | Teks data |
+| 29 | Slot Pact Magic memulihkan Hurl Through Hell dan Beguiling Defenses | Tag "On hit, or a Pact slot" dan "Reaction, or a Pact slot" | Teks data |
+| 30 | Elder Champion (Ancients 20): musuh dalam aura save melawan spell dengan Disadvantage, pulih 10 HP tiap awal giliran, spell berwaktu action bisa jadi Bonus Action | Toggle `elder-champion`, tiga Note | Teks data |
+| 31 | Boon of Spell Recall, Free Casting: tiap memakai slot level 1 sampai 4 lempar 1d4, slot tidak terpakai bila hasil sama dengan level slot | Note | Teks data |
+
+Sengaja tidak diberi baris (by_design): Divine Order Thaumaturge dan Primal Order Magician (cantrip tambahan dihitung builder lewat pilihan `p1opt`), Improved Blessed Strikes Potent Spellcasting (ada di `fx-L1.js` di balik pilihan `p7opt`, diuji), Ranger Fighting Style Druidic Warrior (feat sendiri), Ritual Adept (tag Ritual di baris spell), Oceanic Gift (efek ke sekutu).
+
+Hanya build 2024 untuk Countercharm, Steady Aim, Innate Sorcery, Superior Defense dan Eldritch Master. Alasan: nama fitur sama di tabel kelas 2014 dengan teks lain atau tidak ada. Entri subclass memakai nama subclass 2024, jadi edisi 2014 (`Oath of Vengeance (2014)` dan sebagainya) tidak terpengaruh. Versi 2014 dari fitur ini (Wild Magic, Clockwork Soul, Circle of Stars dan lain-lain) belum diisi.
