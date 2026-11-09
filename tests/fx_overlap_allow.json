@@ -1020,9 +1020,10 @@
    "fx-Z3.js",
    "fx-Z4.js"
   ],
-  "reason": "Z3 Elusive and Steady Aim are other features than Z4 Reliable Talent. Each Note carries its own feature name.",
+  "reason": "Z3 Elusive and Steady Aim are other features than Z4 Reliable Talent. Each Note carries its own feature name. Steady Aim (2024) and the two Reliable Talent lines (2024 level 7, 2014 level 11) all carry ed, each for its own edition.",
   "shared": [
-   "defs"
+   "defs",
+   "ed"
   ]
  },
  "GX.sub|Draconic Bloodline": {
