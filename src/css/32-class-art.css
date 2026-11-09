@@ -18,6 +18,10 @@ html.cls-emb .photo:not(.has) .ph-sil svg,html.cls-emb .photo:not(.has) .ph-cls{
 .art-ic{width:24px;height:24px;margin-right:6px;vertical-align:-6px;object-fit:contain;border-radius:4px}
 .lib-ri .art-ic{width:100%;height:100%;margin:0;vertical-align:middle}
 .chip .art-ic{width:18px;height:18px;margin-right:4px;vertical-align:-4px}
+/* a 5etools picture standing in for a dropped Codex icon: cropped to the small box, whole inside the detail watermark */
+.art-ic.art-5e,.art-sub.art-5e{object-fit:cover;object-position:50% 25%}
+.lib-ri .art-ic.art-5e{height:auto;aspect-ratio:1}
+.sh-wm .art-5e{object-fit:contain}
 .mi-vig{display:block;margin:0 auto;object-fit:contain;border-radius:14px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));pointer-events:none}
 .mi-lv .mi-vig{margin-bottom:6px}.mi-roll-o .mi-vig{margin-bottom:-4px}
 #offNote{display:flex;align-items:center;gap:10px}#offNote .mi-vig{flex:none;border-radius:8px;filter:none}

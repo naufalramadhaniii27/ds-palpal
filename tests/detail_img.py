@@ -1,6 +1,6 @@
 """Also covers the N44 template sites that draw on the sheet: playbar icons, condition chips, death save pips, speeds.
 Detail panel picture (sheet card): the 5etools picture comes first, then the Codex icon, then the generic one.
-Checks at 390x844 and 1250x850: Background Soldier and an inventory Potion of Healing use data/img/*.webp, Size uses img/icon/size/medium."""
+Checks at 390x844 and 1250x850: Background Soldier uses its Codex scene, an inventory Potion of Healing uses data/img/*.webp, Size uses img/icon/size/medium."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +32,7 @@ with sync_playwright() as p:
             closeit()
         pg.evaluate("()=>document.getElementById('t-inv').click()"); pg.wait_for_timeout(1200)
         pg.evaluate("()=>{var e=[...document.querySelectorAll('#p-inv .iname')].find(x=>/Potion of Healing/.test(x.textContent));e&&e.click()}"); pg.wait_for_timeout(1200)
-        h1 = wm(); check(vp + " Potion of Healing uses the Codex HD icon (blended sheet)", "img/hd/icon/item/potion-of-healing.avif" in h1, h1[:300])
+        h1 = wm(); check(vp + " Potion of Healing uses its 5etools picture (its Codex icon was dropped, owner 2026-11-09)", "data/img/items/" in h1 and "img/hd/icon/item/potion-of-healing" not in h1, h1[:300])
         check(vp + " no page errors", not errs, errs); ctx.close()
     b.close()
 print("SCORE %d" % round(100 * sum(R) / len(R))); sys.exit(0 if all(R) else 1)

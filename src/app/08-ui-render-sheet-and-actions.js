@@ -22,10 +22,12 @@ function idArt(lbl,val){
  const {A}=idArtStep1(); if(!A||!A.icon||(env.__idNoArt&&env.__idNoArt())) return "";
  const {sl, cls, im, has}=idArtStep2(A);
   if(lbl==="Class"){ const ck=cls.toLowerCase(); if(A.emblem&&A.emblem[ck]) return im("img/emblem/"+ck); return has("cat","class")?im("img/icon/cat/class"):""; }
-  if(lbl==="Species"){ const k=sl(val); return has("species",k)?im("img/icon/species/"+k):has("species","custom")?im("img/icon/species/custom"):""; }
-  if(lbl==="Background"){ const b=sl(val); return has("background",b)?im("img/icon/background/"+b):has("background","custom")?im("img/icon/background/custom"):""; }
+  if(lbl==="Species"){ const k=sl(val); return has("species",k)?im("img/icon/species/"+k):im5(A,"species",k)||(has("species","custom")?im("img/icon/species/custom"):""); }
+  if(lbl==="Background"){ const b=sl(val); return has("background",b)?im("img/icon/background/"+b):im5(A,"background",b)||(has("background","custom")?im("img/icon/background/custom"):""); }
   if(lbl==="Size"){ const z=sl(val); return has("size",z)?im("img/icon/size/"+z):""; }
   const {e}=idArtStep3(cls, val); return e||(has("cat","subclass")?im("img/icon/cat/subclass"):""); }
+/* the 5etools picture of a species or background whose Codex icon was dropped (manifest icon5), cropped to the chip */
+function im5(A,c,k){ const m=A.icon5&&A.icon5[c]; return m&&m[k]?'<img class="art-sub art-5e" src="data/img/'+encodeURI(m[k])+'.webp" width="24" height="24" alt="" decoding="async">':""; }
 function idArtStep1(){
 const A=env.__ART;
   return /** @type {any} */ ({A});
