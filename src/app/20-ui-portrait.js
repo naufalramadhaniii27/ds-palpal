@@ -18,9 +18,23 @@ function ppList(){ const X=ppIdx(), sp=String(C.species||"").toLowerCase(), q=PP
   const hit=function(r){ const hay=(r[1]+" "+r[1].replace(/-/g," ")+" "+r[2]+" "+r[3]+" "+r[4]).toLowerCase(); return q.every((w) =>{ return hay.indexOf(w)>=0; }); };
   const L=X.filter(hit), mine=function(r){ return sp&&(sp.indexOf(r[1].replace(/-/g," "))>=0||sp.indexOf(r[1])>=0)?0:1; };
   return L.sort((a,b) =>{ return mine(a)-mine(b); }); }
-function ppTile(r){ return '<button type="button" class="pp-i" data-pp="'+r[0]+'" aria-label="Use portrait '+ppName(r)+'"><img src="img/portrait/t/'+r[0]+'.avif" alt="" width="128" height="160" loading="lazy" decoding="async"><span>'+ppName(r)+'</span></button>'; }
-function ppFill(reset){ const g=$("#ppG"); if(!g) return; const L=ppList(); if(reset){ g.innerHTML=""; g.dataset.n="0"; }
-  let n=+g.dataset.n||0; const end=Math.min(L.length,n+PPN); g.insertAdjacentHTML("beforeend",L.slice(n,end).map(ppTile).join("")); g.dataset.n=String(end);
+/* Hosted build: tools/dist_pack.py packs the thumbs into img/portrait/tp/N.bin and appends window.__PPTP to img/portrait/index.js
+   ([[id, bytes, id, bytes, ...] per pack], 4 thumbs of one species per pack), so the site stays under the host's file limit. A tile shows
+   the same AVIF bytes through a blob URL; its pack is fetched when the tile comes near the view (the margin of native lazy loading).
+   Without __PPTP (source tree) the tile reads img/portrait/t/<id>.avif as before. */
+let PPTM=null, PPTO=null; const PPTB={}, PPTU={};
+function pptMap(){ if(PPTM) return PPTM; const P=env.__PPTP; if(!Array.isArray(P)) return {}; PPTM={}; P.forEach((L,i) =>{ let o=0; for(let j=0;j<L.length;j+=2){ PPTM[L[j]]=[i,o,L[j+1]]; o+=L[j+1]; } }); return PPTM; }
+function pptUrl(id){ if(PPTU[id]) return Promise.resolve(PPTU[id]); const m=pptMap()[id]; if(!m) return Promise.reject(new Error("no pack"));
+  const p=PPTB[m[0]]=PPTB[m[0]]||fetch("img/portrait/tp/"+m[0]+".bin").then((r) =>{ if(!r.ok) throw new Error("pack "+r.status); return r.arrayBuffer(); }).catch((e) =>{ delete PPTB[m[0]]; throw e; });
+  return p.then((b) =>{ return PPTU[id]=PPTU[id]||URL.createObjectURL(new Blob([b.slice(m[1],m[1]+m[2])],{type:"image/avif"})); }); }
+function pptGo(im){ const id=im.getAttribute("data-ppt"); im.removeAttribute("data-ppt"); pptUrl(id).then((u) =>{ im.src=u; },() =>{ im.src="img/portrait/t/"+id+".avif"; }); }
+function pptWatch(g){ const L=g.querySelectorAll("img[data-ppt]"); if(!L.length) return; if(typeof IntersectionObserver==="undefined"){ L.forEach(pptGo); return; }
+  if(!PPTO) PPTO=new IntersectionObserver((es) =>{ es.forEach((e) =>{ if(e.isIntersecting){ PPTO.unobserve(e.target); pptGo(e.target); } }); },{root:$("#sheetBody")||null,rootMargin:"1250px"});
+  L.forEach((im) =>{ PPTO.observe(im); }); }
+function ppSrc(id){ const u=PPTU[id]; return u?'src="'+u+'"':pptMap()[id]?'data-ppt="'+id+'"':'src="img/portrait/t/'+id+'.avif"'; }
+function ppTile(r){ return '<button type="button" class="pp-i" data-pp="'+r[0]+'" aria-label="Use portrait '+ppName(r)+'"><img '+ppSrc(r[0])+' alt="" width="128" height="160" loading="lazy" decoding="async"><span>'+ppName(r)+'</span></button>'; }
+function ppFill(reset){ const g=$("#ppG"); if(!g) return; const L=ppList(); if(reset){ g.innerHTML=""; g.dataset.n="0"; if(PPTO){ PPTO.disconnect(); PPTO=null; } }
+  let n=+g.dataset.n||0; const end=Math.min(L.length,n+PPN); g.insertAdjacentHTML("beforeend",L.slice(n,end).map(ppTile).join("")); g.dataset.n=String(end); pptWatch(g);
   const c=$("#ppC"); if(c){ c.textContent=String(L.length); c.title=L.length+" portraits"; }
   const more=$("#ppMore"); if(more) more.hidden=end>=L.length; }
 function ppOpen(){ ppLoad(() =>{ const X=ppIdx(); if(!X.length){ $("#avFile").click(); return; } PPQ="";
