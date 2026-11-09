@@ -12862,9 +12862,10 @@
    "to": "builder/06b-data-2014-long-text.js",
    "import": false,
    "names": [
-    "long14"
+    "long14",
+    "long24"
    ],
-   "count": 1
+   "count": 2
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
@@ -18464,15 +18465,15 @@
   "data/fx-D-item.js -> builder/18-ui-spells.js": 1,
   "data/fx-L2.js -> builder/18-ui-spells.js": 1,
   "data/fx-L6.js -> builder/18-ui-spells.js": 1,
-  "data/fx-L7.js -> builder/18-ui-spells.js": 1,
   "data/fx-L7.js -> builder/11-logic-derivation.js": 1,
+  "data/fx-L7.js -> builder/18-ui-spells.js": 1,
   "data/fx-M2.js -> builder/18-ui-spells.js": 1,
   "builder/09-logic-feats-and-choices.js -> tg/30-ui-tg.js": 1,
+  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
   "builder/09-logic-feats-and-choices.js -> app/08b-ui-render-summaries-actions.js": 1,
   "builder/09-logic-feats-and-choices.js -> builder/17-ui-step-builder.js": 1,
-  "builder/09-logic-feats-and-choices.js -> builder/18-ui-spells.js": 1,
-  "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
   "builder/10-logic-v17-additions.js -> builder/18-ui-spells.js": 1,
+  "builder/10-logic-v17-additions.js -> tg/30-ui-tg.js": 1,
   "builder/10a-logic-fx-registry.js -> app/12-ui-bottom-sheet-modal.js": 1,
   "builder/10b-logic-fx-handlers-entry.js -> builder/18-ui-spells.js": 1,
   "builder/13-logic-sources-and-packs.js -> builder/18-ui-spells.js": 1,
