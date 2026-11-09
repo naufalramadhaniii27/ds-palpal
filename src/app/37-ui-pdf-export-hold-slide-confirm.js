@@ -3,7 +3,7 @@ import {$,$$,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {buzz} from "./09-ui-hit-points-playbar-death-saves.js";
 import {takeRest} from "./23d-ui-rest.js";
-import {buildPrint} from "./36-ui-printable-sheet.js";import {env} from "./00-env.js";
+import {buildPrint} from "./36-ui-printable-sheet.js";import {env} from "./00-env.js";import {pdfModel} from "./37a-ui-pdf-model.js";
 /* ================= PDF EXPORT ================= */
 /* T11 A3: the PDF libraries come from this site (vendor/pdf), not a CDN: jsPDF 4.2.1 (fixes the 2026 advisories of the 2.x line) and
    html2canvas-pro 2.5.2 (maintained fork, reads modern colors such as color-mix and oklch). The service worker keeps them after the first use */
@@ -44,16 +44,30 @@ function makePdfBlob(){
     return chain.then(() =>{ return pdf.output("blob"); });
   });
 }
+/* PDFX: the sheet drawn on the official-style template (2014 or 2024 by the character's rules), with spell, feature and creature pages.
+   Text is drawn, not photographed, so it stays sharp and searchable. The older picture export above stays as the fallback */
+const PDFX_LIBS=["vendor/pdf/cantoo-pdf-lib-2.11.1.min.js","vendor/pdf/pdf-lib-fontkit-1.1.1.min.js"];/* the renderer itself is the deferred block "pdfx" (src/pdf) */
+let pdfxP=null;
+function pdfxBytes(u){ return fetch(u).then((r) =>{ if(!r.ok) throw new Error("load "+u); return r.arrayBuffer(); }); }
+function loadPdfx(){ if(!pdfxP){ const F=["Regular","Medium","SemiBold","Bold","Italic"];
+  pdfxP=PDFX_LIBS.reduce((p,u) =>{ return p.then(() =>{ return loadScript(u); }); },Promise.resolve()).then(() =>{
+    return Promise.all([pdfxBytes("vendor/pdf/pdfx-tpl-2014.pdf"),pdfxBytes("vendor/pdf/pdfx-tpl-2024.pdf"),fetch("vendor/pdf/pdfx-map.json").then((r) =>{ return r.json(); })].concat(F.map((f) =>{ return pdfxBytes("vendor/pdf/pdfx-Inter-"+f+".ttf"); })));
+  }).then((a) =>{ const fonts={}; F.forEach((f,i) =>{ fonts[f]=a[3+i]; }); return {tpl:{"2014":a[0],"2024":a[1]}, map:a[2], fonts:fonts}; });
+  pdfxP.catch(() =>{ pdfxP=null; }); } return pdfxP; }
+function makeSheetPdf(){ const need=env.__bldNeed?env.__bldNeed():Promise.resolve();/* spell, feature and creature texts are deferred data */
+  return Promise.all([loadPdfx(),need]).then((r) =>{ if(!env.PDFX) throw new Error("PDFX block not loaded"); return env.PDFX.render(pdfModel(),r[0],{PDFLib:env.PDFLib,fontkit:env.fontkit}); })
+    .then((out) =>{ return new Blob([out.bytes],{type:"application/pdf"}); }); }
+function makeBlob(){ return makeSheetPdf().catch((e) =>{ try{ console.warn("PDFX failed, using the picture export",e); }catch(er){} return loadLibs().then(makePdfBlob); }); }
 function printFallback(){ buildPrint(); setTimeout(() =>{ env.print(); },60); }
 $("#pdfBtn").addEventListener("click",() =>{
   const busy=$("#busy");
   downloadsP.then((dl) =>{
     busy.classList.add("on");
     /* T11 A3: outside the old artifact host there is no save API. The PDF is now built here too and downloaded as a file. Before, this case went straight to the print dialog */
-    if(!dl) return loadLibs().then(makePdfBlob).then((blob) =>{ busy.classList.remove("on");
+    if(!dl) return makeBlob().then((blob) =>{ busy.classList.remove("on");
       const u=URL.createObjectURL(blob), a=document.createElement("a"); a.href=u; a.download=(C.name||"character").replace(/[^A-Za-z0-9]+/g,"-")+"-"+C.cls+D.level+".pdf"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() =>{ URL.revokeObjectURL(u); },4000); toast("PDF saved");
     }).catch(() =>{ busy.classList.remove("on"); toast("The PDF couldn't be built. Opening the print dialog"); printFallback(); });
-    return loadLibs().then(makePdfBlob).then((blob) =>{
+    return makeBlob().then((blob) =>{
       busy.classList.remove("on");
       return dl.save({filename:(C.name||"character").replace(/[^A-Za-z0-9]+/g,"-")+"-"+C.cls+D.level+".pdf", data:blob}).then((r) =>{
         if(r && r.status==="saved") toast("PDF saved");

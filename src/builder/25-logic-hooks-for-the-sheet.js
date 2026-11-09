@@ -2,8 +2,8 @@ import {invList,bindLive,lateGet,__set_openCards,__set_pickCls,__set_pickSp,__se
 import {ABK,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
-import {R14} from "./05-logic-choice-model-ruleset.js";
-import {RL14} from "./08-logic-2014-rules.js";
+import {R14,rsLoad} from "./05-logic-choice-model-ruleset.js";
+import {RL14,subLv} from "./08-logic-2014-rules.js";import {CLS14} from "./06-data-2014-classes.js";import {long14,long24,full14 as full14Of} from "./06b-data-2014-long-text.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone,pactWeapon} from "./10-logic-v17-additions.js";
 import {fxtSet,casterParts,manualLost,spLists,spToggle,fxList,fxListBase} from "./11-logic-derivation.js";
@@ -106,13 +106,19 @@ applyPacks();render();
 /* T11 N6: rules fuzzer hooks. __bldLists gives the 2024 classes, species, backgrounds and subclasses. __bldFuzz builds one character from the given picks
    (class, species, background, standard array order, level, subclass), fills the remaining choices the Quick Build way, and returns the build, the sheet
    object, the rule issues and the unfinished list. The open build is put back afterwards, nothing is saved */
-genv.__bldLists=function(){const subs={};Object.keys(CLASSES).forEach((c) =>{subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter((c) =>{return CLASSES[c]}),sp:Object.keys(SPECIES).filter((s) =>{return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter((b) =>{return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort((a,b) =>{return b-a})}};
+genv.__bldLists=function(rs){if(rs==="2014")return bldLists14();const subs={};Object.keys(CLASSES).forEach((c) =>{subs[c]=Object.keys(CLASSES[c].subs||{})});return {cls:Object.keys(QUICK).filter((c) =>{return CLASSES[c]}),sp:Object.keys(SPECIES).filter((s) =>{return !/\(2014\)$/.test(s)&&s!=="Custom"&&!SPECIES[s].hb}),bg:Object.keys(BACKGROUNDS).filter((b) =>{return !/\(2014\)$/.test(b)&&(BACKGROUNDS[b].ab||[]).length===3&&!BACKGROUNDS[b].hb}),subs:subs,arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort((a,b) =>{return b-a})}};
+/* tests/pdfx_sweep.py: the 2014 lists, the same as the PHB 2014 and DMG 2014 entries of the Sources step */
+function bldLists14(){const P=(genv.WX?WX.src:[]).filter((q) =>{return q.id==="phb14"||q.id==="dmg14"}), pick=(k) =>{let o=[];P.forEach((q) =>{o=o.concat(q[k]||[])});return o};
+ const S14=pick("subs"),w={},subs={};(genv.WXS||[]).forEach((x) =>{w[x.name]=x.cls});Object.keys(CLS14).forEach((c) =>{Object.keys(CLS14[c].subs||{}).forEach((n) =>{w[n]=w[n]||c})});
+ S14.forEach((n) =>{const c=w[n];if(c)(subs[c]=subs[c]||[]).push(n)});
+ return {cls:Object.keys(QUICK).filter((c) =>{return CLASSES[c]&&CLS14[c]&&c!=="Artificer"}),sp:pick("species"),bg:pick("backgrounds"),subs:subs,src:{phb14:true,dmg14:true},arr:QUICK[Object.keys(QUICK)[0]].arr.slice().sort((a,b) =>{return b-a})}}
 /* test hook (tests/mech_scan.py, tests/audit_logic.py): every rules table with all sources on, as plain JSON. Read only, the open build is put back */
 genv.__bldData=function(){const b=structuredClone(BLANK);b.name="Data";b.cls="Fighter";b.level=1;b.src={core:true,dmg:true,efa:true};(genv.WX&&genv.WX.src||[]).forEach((x) =>{b.src[x.id]=true});
  return withB(b,() =>{const J=function(o){return JSON.parse(JSON.stringify(o===undefined?null:o))};return {classes:J(CLASSES),cf:J(typeof CF_FULL!=="undefined"?CF_FULL:{}),sub:J(typeof SUB_FULL!=="undefined"?SUB_FULL:{}),feats:J(FEATS),species:J(SPECIES),bgs:J(BACKGROUNDS),dmgi:J(DMGI),wxi:J(genv.WXI||{}),auto:J(typeof AUTO!=="undefined"?AUTO:{}),lu:J(typeof LU_X!=="undefined"?LU_X:[]),acts:J(typeof ACTS!=="undefined"?ACTS:{}),saveNotes:J(typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]),clsAuto:J(typeof CLS_AUTO!=="undefined"?CLS_AUTO:{}),spAuto:J(typeof SP_AUTO!=="undefined"?SP_AUTO:{}),subGrant:J(typeof SUB_GRANT!=="undefined"?SUB_GRANT:{}),wxs:J(genv.WXS||[]).map(function(x){delete x.arr;delete x.full;return x}),srcOf:(function(){const o={species:{},feats:{},items:{},cls:{}};(genv.WX&&genv.WX.src||[]).forEach((x) =>{(x.species||[]).forEach((n) =>{o.species[n]=x.id});(x.feats||[]).forEach((n) =>{o.feats[n]=x.id});(x.items||[]).forEach((n) =>{o.items[n]=x.id})});Object.keys(genv.WXC||{}).forEach((n) =>{o.cls[n]=genv.WXC[n].book});return o})()}})};
-genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];if(o.src)B.src=Object.assign({},B.src,o.src);/* tests/invariants.py: extra sources */applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
-  const bg=BACKGROUNDS[o.bg],ab=bg.ab;B.bg=o.bg;B.bgMode="21";B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
-  B.level=o.lv;if(o.sub&&(o.lv>=3||o.anySub))B.sub=o.sub;applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
+genv.__bldFull14=full14Of;genv.__bldLong14=(g,n,rs)=>rs==="2024"?long24(g,n):long14(g,n);/* the PDF export reads it for sheets made before the builder stored `full` */
+genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());if(o.rs==="2014"){B.rs="2014";rsLoad("2014");}/* tests/pdfx_sweep.py: the 2014 rules, the way the edition switch sets them */B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];if(o.src)B.src=Object.assign({},B.src,o.src);/* tests/invariants.py: extra sources */applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
+  const bg=BACKGROUNDS[o.bg],ab=bg.ab||[];B.bg=o.bg;B.bgMode=o.rs==="2014"?"111":"21";if(o.rs!=="2014"){B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];}/* 2014: no background ability scores */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
+  B.level=o.lv;if(o.sub&&(o.lv>=subLv(o.cls)||o.anySub))B.sub=o.sub;/* 2014: some subclasses start at level 1 or 2 */applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
   out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
 /* test hook (tests/zero_miss_measure.py): fills the open choices of a given build the Quick Build way (picks, spells, magic item, book) on a copy. Nothing saved, the open build is put back */
 genv.__bldFillFor=function(b){let keep=B,out=null;try{__set_B(structuredClone(b));applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();out=structuredClone(B)}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Split build (tools/split_dist.py): the same app from a page of about 1 MB gzip plus 35 part files.
+"""Split build (tools/split_dist.py): the same app from a page of about 1 MB gzip plus 36 part files.
 390x844 and 1250x850, with the old Yudhi sheet. Checks:
   1 the sheet opens, every part runs in order, __deferDone is set, no page error, no CSP violation, each part is fetched once
   2 the window holds the same names as the single-file build (nothing lost, nothing added)
@@ -64,7 +64,7 @@ async def main():
             if log["err"]: bad.append("%s page errors: %s" % (vp, log["err"][:2]))
             if log["csp"]: bad.append("%s CSP or Trusted Types messages: %s" % (vp, log["csp"][:2]))
             urls = [u for u in log["parts"]]
-            if len(urls) != len(set(urls)) or len(set(urls)) != 35: bad.append("%s part requests: %d, different: %d (want 35 and 35)" % (vp, len(urls), len(set(urls))))
+            if len(urls) != len(set(urls)) or len(set(urls)) != 36: bad.append("%s part requests: %d, different: %d (want 36 and 36)" % (vp, len(urls), len(set(urls))))
             if not await pg.evaluate("()=>typeof window.__bldOpen==='function'"): bad.append(vp + " the builder did not load")
             await ctx.close()
             ctx1, pg1, log1 = await fresh(b, w, h, url1); await pg1.reload(); await done(pg1)
@@ -74,7 +74,7 @@ async def main():
                 a, c = set(names.split("|")), set(names1.split("|"))
                 bad.append("%s window names differ. only split: %s. only single: %s" % (vp, sorted(a - c)[:8], sorted(c - a)[:8]))
             else:
-                print(vp, "ok: 35 parts (one lazy), %d window names equal to the single file" % len(names.split("|")))
+                print(vp, "ok: 36 parts (one lazy), %d window names equal to the single file" % len(names.split("|")))
             # 3: __bldNeed while the files are slow (M7: a Promise, no synchronous request)
             ctx, pg, log = await fresh(b, w, h, url)
             async def slow(route):
@@ -107,9 +107,9 @@ async def main():
         n = 0
         for _ in range(120):
             n = await pg.evaluate("async()=>{ var ks=await caches.keys(), c=0; for(var k of ks){ var q=await caches.open(k); c+=(await q.keys()).filter(r=>/\\/p\\/.*\\.js$/.test(r.url)).length; } return c; }")
-            if n >= 35: break
+            if n >= 36: break
             await pg.wait_for_timeout(500)
-        if n < 35: bad.append("service worker stored %d of 35 parts" % n)
+        if n < 36: bad.append("service worker stored %d of 36 parts" % n)
         await pg.reload(); await pg.wait_for_timeout(1500)
         ctl = await pg.evaluate("()=>!!navigator.serviceWorker.controller")
         if not ctl: bad.append("page not controlled by the service worker")

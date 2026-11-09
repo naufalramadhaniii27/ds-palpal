@@ -142,6 +142,14 @@
   "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.item|Axe of the Dwarvish Lords": {
+  "files": [
+   "fx-L2.js",
+   "fx-Z1.js"
+  ],
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
+  "shared": []
+ },
  "GX.item|Black Dragon Mask": {
   "files": [
    "fx-D-item.js",
@@ -223,6 +231,14 @@
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
   "shared": []
  },
+ "GX.item|Holy Avenger": {
+  "files": [
+   "fx-L4.js",
+   "fx-Z1.js"
+  ],
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
+  "shared": []
+ },
  "GX.item|Ionbreaker, the Tempest's Reach": {
   "files": [
    "fx-H-audit.js",
@@ -279,6 +295,14 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
+ "GX.item|Staff of Thunder and Lightning": {
+  "files": [
+   "fx-L5.js",
+   "fx-Z1.js"
+  ],
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
+  "shared": []
+ },
  "GX.item|Starmetal Shield": {
   "files": [
    "fx-L9.js",
@@ -293,6 +317,22 @@
    "fx-M1.js"
   ],
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Sun Blade": {
+  "files": [
+   "fx-M1.js",
+   "fx-Z1.js"
+  ],
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Sword of Kas": {
+  "files": [
+   "fx-L5.js",
+   "fx-Z1.js"
+  ],
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
   "shared": []
  },
  "GX.item|Sword of Resonance": {

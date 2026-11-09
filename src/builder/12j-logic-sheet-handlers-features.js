@@ -1,5 +1,5 @@
 import {chJoin} from "./01-logic-core-helpers.js";
-import {cfFullText,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
+import {cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 8 (contract in 12a-logic-sheet-registry.js): the feature cards (phase "features"): species, class (one handler per class
@@ -11,7 +11,7 @@ registerSheetGroup({id:"features-init",group:"features",phase:"features",order:5
 /* species traits, the Size choice (RU34), the chosen lineage (v36 p21) */
 registerSheetGroup({id:"species-features",group:"features",phase:"features",order:10,reads:["i.B","i.sp","i.custom","i.spName","i.a","i.TLv","i.SRC","q.spTraitText","q.htText","q.spLinTrait","q.calcNote"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,sp=I.sp,Q=ctx.q,SRC=I.SRC;
-  const spItems=I.custom?[{n:"Homebrew species",s:"Homebrew",d:"Fill in the traits from your setting."}]:sp.traits.map((t) =>{return {n:t[0],s:(sp.hb||SRC)+", "+B.species,d:Q.spTraitText(sp,t)}});
+  const spItems=I.custom?[{n:"Homebrew species",s:"Homebrew",d:"Fill in the traits from your setting."}]:sp.traits.map((t) =>{return Object.assign({n:t[0],s:(sp.hb||SRC)+", "+B.species,d:Q.spTraitText(sp,t)},full14(B.rs,"Species: "+B.species,t[0]))});
   if(!I.custom&&/or/.test(sp.size))spItems.push({n:"Size",s:(sp.hb||SRC)+", "+B.species,d:"You can be Medium or Small, chosen when you create the character. **Your choice.** "+(B.size||"Medium")+(Q.htText(B.species,B.size||"Medium")?", "+Q.htText(B.species,B.size||"Medium"):"")+"."});
   if(B.ch.lin&&!(sp&&sp.lin&&(Q.spLinTrait(sp)||sp.traits.some((t) =>{return /ancestr|lineage|legacy/i.test(t[1])}))))spItems.push({n:"Chosen: "+B.ch.lin,s:(sp&&sp.hb||SRC)+", "+B.species,d:(sp&&sp.hb&&sp.linText&&sp.linText[B.ch.lin])||"Your lineage or ancestry choice."});
   spItems.forEach((it) =>{it.d+=Q.calcNote(it.n,B.cls,I.TLv,I.a)});ctx.C.features.push({g:"Species: "+I.spName,items:spItems});return ctx.patch()}});
@@ -94,4 +94,4 @@ registerSheetGroup({id:"feat-features",group:"features",phase:"features",order:1
    return {n:f.n,s:f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s/* m4 (RL20): no "PHB-2024, PHB-2024" */,d:(F.d||"")+ex,full:F.full?F.full+(ex?" **Your choice.**"+ex:""):""}})});return ctx.patch()}});/* v19: the chosen increase and damage type also under the full text */
 registerSheetGroup({id:"background-features",group:"features",phase:"features",order:120,reads:["i.B","i.bg","i.SRC"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,bg=I.bg,SRC=I.SRC;if(!bg)return null;
-  ctx.C.features.push({g:"Background: "+B.bg,items:[{n:"Ability Scores",s:SRC+", "+B.bg,d:B.bgMode==="111"?bg.ab.join(" +1, ")+" +1.":(B.bg2||"?")+" +2, "+(B.bg1||"?")+" +1."},{n:"Proficiencies",s:SRC+", "+B.bg,d:"Skills: "+bg.sk.concat(Array.isArray(B.ch.bgsk)?B.ch.bgsk:[]).join(" and ")+(bg.skPick&&!(Array.isArray(B.ch.bgsk)&&B.ch.bgsk.length)?" (+"+bg.skPick.n+" of your choice, not chosen yet)":"")+". Tool: "+(bg.toolPick?((B.ch.bgTool||[]).join(", ")||"not chosen yet")+" ("+toolOneName(bg.toolPick.cats[0])+", your pick)":bg.tool)+"."},{n:"Equipment",s:SRC+", "+B.bg,d:"Option A: "+bg.eq+"."}].concat((bg.bf||[]).map((f) =>{return {n:f[0],s:SRC+", "+B.bg,d:f[1]}}))});return ctx.patch()}});
+  ctx.C.features.push({g:"Background: "+B.bg,items:[{n:"Ability Scores",s:SRC+", "+B.bg,d:B.bgMode==="111"?bg.ab.join(" +1, ")+" +1.":(B.bg2||"?")+" +2, "+(B.bg1||"?")+" +1."},{n:"Proficiencies",s:SRC+", "+B.bg,d:"Skills: "+bg.sk.concat(Array.isArray(B.ch.bgsk)?B.ch.bgsk:[]).join(" and ")+(bg.skPick&&!(Array.isArray(B.ch.bgsk)&&B.ch.bgsk.length)?" (+"+bg.skPick.n+" of your choice, not chosen yet)":"")+". Tool: "+(bg.toolPick?((B.ch.bgTool||[]).join(", ")||"not chosen yet")+" ("+toolOneName(bg.toolPick.cats[0])+", your pick)":bg.tool)+"."},{n:"Equipment",s:SRC+", "+B.bg,d:"Option A: "+bg.eq+"."}].concat((bg.bf||[]).map((f) =>{return Object.assign({n:f[0],s:SRC+", "+B.bg,d:f[1]},full14(B.rs,"Background: "+B.bg,f[0]))}))});return ctx.patch()}});

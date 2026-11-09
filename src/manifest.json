@@ -187,6 +187,7 @@
     "app/34c-ui-experience-journal-combat-view.js",
     "app/35-ui-combo.js",
     "app/36-ui-printable-sheet.js",
+    "app/37a-ui-pdf-model.js",
     "app/37-ui-pdf-export-hold-slide-confirm.js",
     "app/38-boot-init.js",
     "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
@@ -759,6 +760,9 @@
     "builder/04-logic-storage.js",
     "builder/05-logic-choice-model-ruleset.js",
     "builder/06-data-2014-classes.js",
+    "builder/06a-data-2014-long-text-more.js",
+    "builder/06a2-data-2024-species-long-text.js",
+    "builder/06b-data-2014-long-text.js",
     "builder/07-data-2014-spells.js",
     "builder/08-logic-2014-rules.js",
     "builder/09-logic-feats-and-choices.js",
@@ -842,6 +846,27 @@
     "tg/31-ui-tg-field.js"
    ],
    "entry": "tg/31-ui-tg-field.js"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
+   "close": "</script>",
+   "files": [
+    "pdf/00-env.js",
+    "pdf/01-data-style.js",
+    "pdf/02-logic-markup.js",
+    "pdf/03-logic-typeset.js",
+    "pdf/04-ui-canvas.js",
+    "pdf/05-data-sheet-fields.js",
+    "pdf/06-ui-fields.js",
+    "pdf/07-ui-sheet-pages.js",
+    "pdf/08-ui-flow.js",
+    "pdf/09-ui-blocks.js",
+    "pdf/10-ui-appendix.js",
+    "pdf/11-ui-render.js",
+    "pdf/main.js"
+   ],
+   "entry": "pdf/main.js"
   },
   {
    "t": "text",

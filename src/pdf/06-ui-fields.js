@@ -1,0 +1,44 @@
+/* PDFX fields: fills one field of the template. A text box that does not fit returns the paragraphs it could not show,
+   so nothing is lost: the caller sends them to the continuation page */
+import {PX_INK,PX_GRAY,PX_SIZE} from "./01-data-style.js";
+export class PxFields {
+  constructor(canvas, typeset, map, pages){ this.cv = canvas; this.T = typeset; this.map = map; this.pages = pages; }
+  rect(name){ const r = this.map[name]; if(!r) throw new Error("PDFX: no field "+name); return {p:this.pages[r[0]], x0:r[1], y0:r[2], x1:r[3], y1:r[4]}; }
+  one(name, text, f, s, align, pad, vfrac){
+    if(text==null||text==="") return;
+    text = String(text); pad = pad==null ? 2 : pad;
+    const r = this.rect(name), w = r.x1-r.x0-2*pad;
+    while(this.T.width(text,f,s)>w&&s>5) s -= 0.25;
+    const tw = this.T.width(text,f,s), x = align==="center" ? r.x0+(r.x1-r.x0-tw)/2 : r.x0+pad;
+    this.cv.text(r.p, x, r.y0+(r.y1-r.y0)*(vfrac==null?0.5:vfrac)-s*0.36, text, f, s, PX_INK); }
+  /* a picture inside a field; pad keeps it off the border, bottom keeps the box title free */
+  picture(name, img, pad, bottom){ if(!img) return; const r = this.rect(name); pad = pad==null ? 4 : pad; bottom = bottom==null ? pad : bottom;
+    this.cv.image(r.p, img, r.x0+pad, r.y0+bottom, r.x1-r.x0-2*pad, r.y1-r.y0-pad-bottom); }
+  /* a number with a small unit after it, centred: "30 ft" */
+  unit(name, num, unit, s){ if(!num) return;
+    const r = this.rect(name), a = this.T.width(num,"Bold",s), b = unit ? this.T.width(" "+unit,"Medium",s*0.45) : 0;
+    const x = r.x0+(r.x1-r.x0-a-b)/2, y = r.y0+(r.y1-r.y0)/2-s*0.36;
+    this.cv.text(r.p, x, y, num, "Bold", s, PX_INK); if(unit) this.cv.text(r.p, x+a, y, " "+unit, "Medium", s*0.45, PX_GRAY); }
+  dot(name){ const r = this.rect(name); this.cv.dot(r.p, (r.x0+r.x1)/2, (r.y0+r.y1)/2, 2.1, PX_INK); }
+  fit(pars, w, h, s, smin){ let ls;
+    for(;;){ ls = this.T.layout(pars,w,s); if(this.T.height(ls)<=h||s<=smin) return {ls:ls, s:s}; s -= 0.2; } }
+  /* whole paragraphs that fit above the note line; a lone heading at the end moves on with its text */
+  split(pars, w, h, s){ let k = pars.length;
+    while(k>0&&this.T.height(this.T.layout(pars.slice(0,k),w,s))>h) k--;
+    const keep = pars.slice(0,k), rest = pars.slice(k);
+    while(keep.length&&(/^# /.test(keep[keep.length-1])||keep[keep.length-1]==="")) rest.unshift(keep.pop());
+    return {keep:keep, rest:rest}; }
+  /* one long paragraph: the lines that fit, the rest as plain text */
+  splitLines(pars, w, h, s){ const ls = this.T.layout([pars[0]],w,s), keep = []; let acc = 0;
+    while(keep.length<ls.length&&acc+ls[keep.length][0]<=h){ acc += ls[keep.length][0]; keep.push(ls[keep.length]); }
+    const tail = ls.slice(keep.length).map((l) =>{ return l[1].map((g) =>{ return g[1]; }).join(""); }).join(" ").trim();
+    return {lines:keep, rest:(tail?[tail]:[]).concat(pars.slice(1))}; }
+  box(name, pars, s, note){
+    if(!pars||!pars.length) return [];
+    const pad = 3, r = this.rect(name), w = r.x1-r.x0-2*pad, h = r.y1-r.y0-2*pad, f = this.fit(pars,w,h,s,PX_SIZE.boxMin);
+    if(this.T.height(f.ls)<=h){ this.cv.lines(r.p, f.ls, r.x0+pad, r.y1-pad); return []; }
+    const nl = f.s*PX_SIZE.line, sp = this.split(pars,w,h-nl,f.s);
+    const out = sp.keep.length ? {lines:this.T.layout(sp.keep,w,f.s), rest:sp.rest} : this.splitLines(pars,w,h-nl,f.s);
+    this.cv.lines(r.p, out.lines.concat([[nl,[[0,note,"Italic",f.s*0.9,PX_GRAY]]]]), r.x0+pad, r.y1-pad);
+    return out.rest; }
+}

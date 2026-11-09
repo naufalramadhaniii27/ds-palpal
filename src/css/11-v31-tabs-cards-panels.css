@@ -56,8 +56,7 @@
 :root[data-skin="ddb"] .bx:hover::before{border-color:#8a959e}
 :root[data-skin="ddb"] .bx:active{transform:none}
 :root[data-skin="ddb"] .bx:active::before{transform:scale(.88);transition:transform .06s}
-:root[data-skin="ddb"] .boxes{gap:0;margin:-4px -8px}
-:root[data-skin="ddb"] .fuse{padding-bottom:10px}/* the -4px box margin pulled the boxes under the label link */
+:root[data-skin="ddb"] .boxes{gap:0;margin:-4px -8px}:root[data-skin="ddb"] .fuse+.boxes{margin-top:4px}
 :root[data-skin="ddb"] .spslw{display:inline-flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
 :root[data-skin="ddb"] .spsl{display:inline-flex;flex-wrap:wrap;align-items:center;gap:0}
 :root[data-skin="ddb"] .spsl small{margin-right:6px;font-size:var(--fs1)}
