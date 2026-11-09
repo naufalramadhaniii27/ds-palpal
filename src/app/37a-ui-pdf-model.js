@@ -38,8 +38,10 @@ function pxTwo(short,full){ const sp=pxLine(short), lab=pxLabels(short);
   if(sp.length>230) return {summary:pxBrief(sp), text:pxPars(short)};
   return {summary:sp, text:[]}; }
 function pxPick(M,keys){ if(!M) return ""; for(const k of keys){ if(M[k]) return M[k]; } return ""; }
+/* 2014: long text of a Player's Handbook species trait or background feature (the sheet keeps the short text) */
+function pxFull14(gg,n){ return typeof env.__bldLong14==="function" ? env.__bldLong14(gg,n) : ""; }
 /* full rules text of a feature from the 2024 data (feat, subclass or class feature) */
-function pxFull(g,n){ if(C.rs==="2014") return "";
+function pxFull(g,n){ if(C.rs==="2014") return pxFull14(String(g.g||""),n);
   const gg=String(g.g||""), base=String(n).split(":")[0].trim();
   if(/^Feats?\b/.test(gg)) return pxPick(typeof FEAT_FULL==="undefined"?null:FEAT_FULL,[n,base,String(n).replace(/\s*\(.*\)$/,"")]);
   const m=/Subclass: (.+)$|\(multiclass \d+\): (.+)$/.exec(gg);

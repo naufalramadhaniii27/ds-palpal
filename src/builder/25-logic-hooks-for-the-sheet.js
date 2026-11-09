@@ -3,7 +3,7 @@ import {ABK,clone,toast} from "./01-logic-core-helpers.js";
 import {BLANK,DMAP,NEWB,cleanCh,itemFx,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,loadB,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {R14,rsLoad} from "./05-logic-choice-model-ruleset.js";
-import {RL14,subLv} from "./08-logic-2014-rules.js";import {CLS14} from "./06-data-2014-classes.js";
+import {RL14,subLv} from "./08-logic-2014-rules.js";import {CLS14} from "./06-data-2014-classes.js";import {long14} from "./06b-data-2014-long-text.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone,pactWeapon} from "./10-logic-v17-additions.js";
 import {fxtSet,casterParts,manualLost,spLists,spToggle,fxList,fxListBase} from "./11-logic-derivation.js";
@@ -115,6 +115,7 @@ function bldLists14(){const P=(genv.WX?WX.src:[]).filter((q) =>{return q.id==="p
 /* test hook (tests/mech_scan.py, tests/audit_logic.py): every rules table with all sources on, as plain JSON. Read only, the open build is put back */
 genv.__bldData=function(){const b=structuredClone(BLANK);b.name="Data";b.cls="Fighter";b.level=1;b.src={core:true,dmg:true,efa:true};(genv.WX&&genv.WX.src||[]).forEach((x) =>{b.src[x.id]=true});
  return withB(b,() =>{const J=function(o){return JSON.parse(JSON.stringify(o===undefined?null:o))};return {classes:J(CLASSES),cf:J(typeof CF_FULL!=="undefined"?CF_FULL:{}),sub:J(typeof SUB_FULL!=="undefined"?SUB_FULL:{}),feats:J(FEATS),species:J(SPECIES),bgs:J(BACKGROUNDS),dmgi:J(DMGI),wxi:J(genv.WXI||{}),auto:J(typeof AUTO!=="undefined"?AUTO:{}),lu:J(typeof LU_X!=="undefined"?LU_X:[]),acts:J(typeof ACTS!=="undefined"?ACTS:{}),saveNotes:J(typeof SAVE_NOTES!=="undefined"?SAVE_NOTES:[]),clsAuto:J(typeof CLS_AUTO!=="undefined"?CLS_AUTO:{}),spAuto:J(typeof SP_AUTO!=="undefined"?SP_AUTO:{}),subGrant:J(typeof SUB_GRANT!=="undefined"?SUB_GRANT:{}),wxs:J(genv.WXS||[]).map(function(x){delete x.arr;delete x.full;return x}),srcOf:(function(){const o={species:{},feats:{},items:{},cls:{}};(genv.WX&&genv.WX.src||[]).forEach((x) =>{(x.species||[]).forEach((n) =>{o.species[n]=x.id});(x.feats||[]).forEach((n) =>{o.feats[n]=x.id});(x.items||[]).forEach((n) =>{o.items[n]=x.id})});Object.keys(genv.WXC||{}).forEach((n) =>{o.cls[n]=genv.WXC[n].book});return o})()}})};
+genv.__bldLong14=long14;/* the PDF export reads it for sheets made before the builder stored `full` */
 genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());if(o.rs==="2014"){B.rs="2014";rsLoad("2014");}/* tests/pdfx_sweep.py: the 2014 rules, the way the edition switch sets them */B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];if(o.src)B.src=Object.assign({},B.src,o.src);/* tests/invariants.py: extra sources */applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
   const bg=BACKGROUNDS[o.bg],ab=bg.ab||[];B.bg=o.bg;B.bgMode=o.rs==="2014"?"111":"21";if(o.rs!=="2014"){B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];}/* 2014: no background ability scores */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&(o.lv>=subLv(o.cls)||o.anySub))B.sub=o.sub;/* 2014: some subclasses start at level 1 or 2 */applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
