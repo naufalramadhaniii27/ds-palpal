@@ -1,5 +1,5 @@
 import {armorDef,classDef,featDef,priceOf,weaponDef} from "./00-env.js";
-import {registerSheetGroup} from "./12a-logic-sheet-registry.js";
+import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 /* Sheet handlers, part 7 (contract in 12a-logic-sheet-registry.js): the inventory rows (phase "inventory"), resources (phase "resources") and
    the action cards that do not come from spells (phase "actions"). */
 /* ---------- inventory ---------- */
@@ -63,3 +63,11 @@ registerSheetGroup({id:"item-unarmed-wraps",group:"actions",phase:"actions",orde
 /* RU35 no. 5, 6: saving throw notes and damage rows of features */
 registerSheetGroup({id:"save-notes-damage-rows",group:"actions",phase:"actions",order:50,reads:["i.a","i.pb","i.feats","q.saveNotesOf","q.xdmgRows"],writes:["C.saveNotes","C.xdmg"],
  run:function(ctx){const I=ctx.i,C=ctx.C,sno=ctx.q.saveNotesOf(I.feats);if(sno.length)C.saveNotes=sno;const xd=ctx.q.xdmgRows(I.a,I.pb);if(xd.length)C.xdmg=xd;return ctx.patch()}});
+/* zero-miss-1: Pact of the Blade damage rows per edition. 2024 Lifedrinker (PHB p. 156): the Hit Point Die heal as a number. 2014 Lifedrinker (XGE p. 57):
+   extra Necrotic damage equal to the Charisma modifier (minimum 1), not 1d6; 2014 Eldritch Smite spends a warlock (Pact Magic) slot */
+registerSheetRule({id:"pact-blade-damage-rows",group:"actions",about:"Warlock invocations Lifedrinker and Eldritch Smite: numbers per rules edition",phase:"actions",order:51,reads:["i.a","i.r14","i.c","i.parts","C.xdmg"],writes:["C.xdmg"],
+ run:function(ctx){const I=ctx.i,C=ctx.C;if(!C.xdmg)return null;const m=(k) =>{return Math.floor((I.a.sc[k]-10)/2)},con=m("CON"),hd=I.parts.length<2&&I.c&&I.c.hd?"1d"+I.c.hd:"the die roll";
+  C.xdmg.forEach((x) =>{if(x.sub!=="Eldritch Invocation")return;
+   if(x.n==="Lifedrinker"&&I.r14){x.dmg=String(Math.max(1,m("CHA")));x.type="Necrotic";x.note="When your pact weapon hits a creature: extra Necrotic damage equal to your Charisma modifier (at least 1)."}
+   else if(x.n==="Lifedrinker")x.note="Once per turn when your pact weapon hits, choose the type. You can also spend one Hit Point Die: regain "+hd+(con?(con>0?"+":"")+con:"")+" Hit Points (at least 1).";
+   else if(x.n==="Eldritch Smite"&&I.r14)x.note="Once per turn when your pact weapon hits: spend a warlock spell slot for 1d8 plus 1d8 per level of the slot. You can knock a Huge or smaller target Prone."});return ctx.patch()}});

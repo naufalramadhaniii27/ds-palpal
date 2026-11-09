@@ -4,8 +4,10 @@ import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.j
 /* Sheet handlers, part 10 (contract in 12a-logic-sheet-registry.js): the late pass (phase "late") and the closing steps (phase "post").
    The field groups of the fx engine run in one element loop over the active effect entries (loop "late-fx"), one handler per field group,
    so the groups still interleave entry by entry as in the old single loop. */
+/* an attack row named k: the row, its base weapon, its thrown copy, or (zero-miss-1) the magic item of a variant row ("Flame Tongue (Rapier)" for "Flame Tongue") */
+function rowHit(Q,r,k){const nn=(r.n||"").replace(/ \(thrown\)$/,"");return r.n===k||Q.baseOf(r.n).b===k||nn===k||Q.baseOf(nn).mi===k}
 function pickRowsOf(C,Q,kind){const hasW=function(r){return !!weaponDef(Q.baseOf(r.n).b)||!!r.gk},isSp=function(r){return /^Cantrip/.test(r.sub||"")};
-  const hit=function(r,k){return r.n===k||Q.baseOf(r.n).b===k||(r.n||"").replace(/ \(thrown\)$/,"")===k},
+  const hit=function(r,k){return rowHit(Q,r,k)},
    rowsPick=function(kind){/* fx engine v4: kind may also be "melee", "ranged", "natural" (natural weapon rows), "any" (every row), or an array of kinds */if(Array.isArray(kind)){const out=[];kind.forEach(function(k){rowsPick(k).forEach(function(r){if(out.indexOf(r)<0)out.push(r)})});return out}const wk=function(r){const w=weaponDef(Q.baseOf(r.n).b);return w?w.k:(r.gk||"")};return C.attacks.filter(function(r){return kind==="unarmed"?r.n==="Unarmed Strike":kind==="weapon"?hasW(r)&&r.n!=="Unarmed Strike":kind==="spell"?isSp(r):kind==="melee"?hasW(r)&&r.n!=="Unarmed Strike"&&wk(r)==="M":kind==="ranged"?hasW(r)&&wk(r)==="R":kind==="natural"?r.sub==="Natural weapon":kind==="any"?true:hit(r,kind)})};
  return rowsPick(kind)}
 function spdTxt(k){return k.charAt(0).toUpperCase()+k.slice(1)+" Speed"}
