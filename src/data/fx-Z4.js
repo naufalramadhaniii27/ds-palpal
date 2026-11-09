@@ -17,7 +17,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  C("Paladin",{n:"Paladin's Smite",l:2,ed:"2024",defs:[["Note","Divine Smite, as a Bonus Action right after a melee weapon or Unarmed Strike hit: 2d8 Radiant damage, plus 1d8 against a Fiend or an Undead, plus 1d8 for each spell slot level above 1"]]});
  C("Ranger",{n:"Foe Slayer",l:20,ed:"2024",defs:[["Note","Hunter's Mark uses a d10 for its damage die instead of a d6"]]});
  C("Ranger",{n:"Tireless",l:10,ed:"2024",defs:[["Note","Magic action: roll 1d8 and add your Wisdom modifier, then gain that many Temporary Hit Points (minimum of 1)"],["Note","Each Short Rest you finish lowers your Exhaustion level by 1"]]});
- C("Rogue",{n:"Reliable Talent",l:7,defs:[["Note","Ability check with a skill or tool you are proficient with: a d20 roll of 9 or lower counts as a 10"]]});
+ C("Rogue",{n:"Reliable Talent",l:7,ed:"2024",defs:[["Note","Ability check with a skill or tool you are proficient with: a d20 roll of 9 or lower counts as a 10"]]});
+ C("Rogue",{n:"Reliable Talent",l:11,ed:"2014",defs:[["Note","Ability check with a skill or tool you are proficient with: a d20 roll of 9 or lower counts as a 10"]]});
  /* ---- subclass ---- */
  S("College of Valor",{n:"Combat Inspiration (Defense)",l:3,defs:[["Note","A creature holding your Bardic Inspiration die can use a Reaction when an attack hits it, roll the die, and add the result to its Armor Class against that attack"]]});
  S("College of Valor",{n:"Combat Inspiration (Offense)",l:3,defs:[["Note","A creature holding your Bardic Inspiration die can roll it as soon as its attack roll hits and add the result to the damage"]]});
@@ -45,7 +46,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  S("College of Valor (2014)",{n:"Combat Inspiration",l:3,defs:[["Note","A creature holding your Bardic Inspiration die can add it to a weapon damage roll it just made, or use a Reaction when it is hit to add the die to its Armor Class against that attack"]]});
  S("Knowledge Domain (2014)",{n:"Channel Divinity: Knowledge of the Ages",l:2,defs:[["Note","Channel Divinity, action: choose a skill or tool and you are proficient with it for 10 minutes"]]});
  S("Life Domain (2014)",{n:"Channel Divinity: Preserve Life",l:2,defs:[["Note","Channel Divinity, action: share a pool of Hit Points equal to 5 times your Cleric level among creatures within 30 ft, none raised above half its Hit Point maximum (not Undead or Constructs)"]]});
- S("Nature Domain",{n:"Dampen Elements",l:2,defs:[["Note","Reaction: you or a creature within 30 ft that takes Acid, Cold, Fire, Lightning, or Thunder damage gains Resistance to that instance of damage"]]});
+ S("Nature Domain",{n:"Dampen Elements",l:6,defs:[["Note","Reaction: you or a creature within 30 ft that takes Acid, Cold, Fire, Lightning, or Thunder damage gains Resistance to that instance of damage"]]});
  S("Tempest Domain",{n:"Wrath of the Storm",l:1,ed:"2014",defs:[["Note","Reaction, when a creature within 5 ft hits you: it makes a Dexterity save or takes 2d8 Lightning or Thunder damage (half on a success)"]]});
  S("Trickery Domain (2014)",{n:"Blessing of the Trickster",l:1,toggle:{id:"trickster-blessing",label:"Blessing of the Trickster on you"},advOn:["Dexterity (Stealth) checks"]});
  S("Trickery Domain (2014)",{n:"Channel Divinity: Invoke Duplicity",l:2,toggle:{id:"invoke-duplicity",label:"Invoke Duplicity: you and the illusion are within 5 ft of the target"},advOn:["attack rolls against a creature that can see your illusion"]});
@@ -61,9 +62,9 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  S("Arcane Trickster (2014)",{n:"Versatile Trickster",l:13,toggle:{id:"versatile-trickster",label:"Versatile Trickster used this turn"},advOn:["attack rolls against the creature you designated near your Mage Hand"]});
  S("Assassin (2014)",{n:"Assassinate",l:3,defs:[["Note","Advantage on attack rolls against any creature that has not taken a turn in the combat yet; a hit against a surprised creature is a Critical Hit"]]});
  S("Draconic Bloodline",{n:"Elemental Affinity",l:6,defs:[["Note","Spell damage of your ancestry type: add your Charisma modifier to one damage roll, and spend 1 sorcery point for Resistance to that type for 1 hour"]]});
- S("Wild Magic",{n:"Bend Luck",l:14,defs:[["Note","Reaction and 2 sorcery points, when another creature you can see rolls an attack, check, or save: roll 1d4 and add or subtract it"]]});
+ S("Wild Magic",{n:"Bend Luck",l:6,defs:[["Note","Reaction and 2 sorcery points, when another creature you can see rolls an attack, check, or save: roll 1d4 and add or subtract it"]]});
  S("The Fiend (2014)",{n:"Hurl Through Hell",l:14,defs:[["Note","When you hit with an attack, the target vanishes and takes 10d10 Psychic damage when it returns at the end of your next turn (not Fiends)"]]});
- S("The Great Old One (2014)",{n:"Entropic Ward",l:10,defs:[["Note","Reaction, when a creature attacks you: impose Disadvantage on the roll. If it misses, you have Advantage on your next attack roll against it before the end of your next turn"]],advOn:["your next attack roll against a creature whose attack missed you thanks to Entropic Ward"]});
+ S("The Great Old One (2014)",{n:"Entropic Ward",l:6,defs:[["Note","Reaction, when a creature attacks you: impose Disadvantage on the roll. If it misses, you have Advantage on your next attack roll against it before the end of your next turn"]],advOn:["your next attack roll against a creature whose attack missed you thanks to Entropic Ward"]});
  S("School of Abjuration",{n:"Arcane Ward",l:2,defs:[["Note","Ward Hit Point maximum: twice your Wizard level plus your Intelligence modifier. It takes damage in your place until you finish a Long Rest"]]});
  S("School of Evocation",{n:"Overchannel",l:14,defs:[["Note","Wizard spell of level 1 to 5 that deals damage: maximum damage. Each use after the first before a Long Rest costs you 2d12 Necrotic damage per spell level, plus 1d12 per level for every further use (ignores Resistance and Immunity)"]]});
  /* ---- feat 2014 ---- */

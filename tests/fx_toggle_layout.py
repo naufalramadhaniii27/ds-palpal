@@ -18,7 +18,7 @@ CH = [
  ("dragon-wings-24", dict(cls="Sorcerer", level=14, sub="Draconic Sorcery"), "dragon-wings"),
  ("dragon-wings-14", dict(rs="2014", cls="Sorcerer", level=14, sub="Draconic Bloodline"), "dragon-wings"),
  ("otherworldly", dict(rs="2014", cls="Sorcerer", level=14, sub="Divine Soul"), "otherworldly-wings"),
- ("in-flesh", dict(cls="Sorcerer", level=6, sub="Aberrant Sorcery"), "flesh-aquatic"),
+ ("in-flesh", dict(cls="Sorcerer", level=14, sub="Aberrant Sorcery"), "flesh-aquatic"),
  ("avenging-24", dict(cls="Paladin", level=20, sub="Oath of Vengeance"), "avenging-angel"),
  ("avenging-14", dict(rs="2014", cls="Paladin", level=20, sub="Oath of Vengeance (2014)"), "avenging-angel"),
  ("psi-leap", dict(cls="Fighter", level=11, sub="Psi Warrior"), "psi-leap"),

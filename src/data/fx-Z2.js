@@ -17,11 +17,11 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  S("Draconic Sorcery",{n:"Dragon Wings",l:14,toggle:{id:"dragon-wings",label:"Dragon Wings out"},mv:{fly:60}});
  S("Draconic Bloodline",{n:"Dragon Wings",l:14,toggle:{id:"dragon-wings",label:"Dragon Wings out"},mv:{fly:"speed"}});
  S("Divine Soul",{n:"Otherworldly Wings",l:14,toggle:{id:"otherworldly-wings",label:"Spectral wings out"},mv:{fly:30}});
- S("Aberrant Sorcery",{n:"Revelation in Flesh (aquatic)",l:6,toggle:{id:"flesh-aquatic",label:"Revelation in Flesh: aquatic form"},mv:{swim:"speed2"},defs:[["Note","You can breathe underwater"]]});
- S("Aberrant Sorcery",{n:"Revelation in Flesh (flight)",l:6,toggle:{id:"flesh-flight",label:"Revelation in Flesh: flight"},mv:{fly:"speed"},defs:[["Note","You can hover"]]});
+ S("Aberrant Sorcery",{n:"Revelation in Flesh (aquatic)",l:14,toggle:{id:"flesh-aquatic",label:"Revelation in Flesh: aquatic form"},mv:{swim:"speed2"},defs:[["Note","You can breathe underwater"]]});
+ S("Aberrant Sorcery",{n:"Revelation in Flesh (flight)",l:14,toggle:{id:"flesh-flight",label:"Revelation in Flesh: flight"},mv:{fly:"speed"},defs:[["Note","You can hover"]]});
  S("Oath of Vengeance",{n:"Avenging Angel",l:20,toggle:{id:"avenging-angel",label:"Avenging Angel active"},mv:{fly:60},defs:[["Note","You can hover"]]});
  S("Oath of Vengeance (2014)",{n:"Avenging Angel",l:20,toggle:{id:"avenging-angel",label:"Avenging Angel active"},mv:{fly:60}});
- S("Psi Warrior",{n:"Telekinetic Adept (Psi-Powered Leap)",l:11,toggle:{id:"psi-leap",label:"Psi-Powered Leap (until the end of the turn)"},mv:{fly:"speed2"}});
+ S("Psi Warrior",{n:"Telekinetic Adept (Psi-Powered Leap)",l:7,toggle:{id:"psi-leap",label:"Psi-Powered Leap (until the end of the turn)"},mv:{fly:"speed2"}});
  S("Gloom Stalker",{n:"Dread Ambusher (Speed)",l:3,toggle:{id:"dread-ambusher",label:"First turn of the combat"},speedAdd:10});
  S("Gloom Stalker (2014)",{n:"Dread Ambusher (Speed)",l:3,toggle:{id:"dread-ambusher",label:"First turn of the combat"},speedAdd:10});
  S("Warrior of the Elements",{n:"Elemental Epitome (Step of the Wind)",l:17,toggle:{id:"epitome-step",label:"Step of the Wind used this turn"},speedAdd:20});
