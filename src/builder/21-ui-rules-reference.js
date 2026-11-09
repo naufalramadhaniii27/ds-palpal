@@ -10,7 +10,7 @@ import {clsLv} from "./11-logic-derivation.js";
 import {ACM,toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks,autoSpellList,miFeats} from "./13-logic-sources-and-packs.js";
 import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
-import {__set_pickCls,__set_pickSp,__set_step,ask,card,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
+import {__set_pickCls,__set_pickSp,__set_step,ask,stepCard,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
 import {SMAP,issueText,plural,ruleIssues,spInfo} from "./18-ui-spells.js";
 bindLive("ctFree",{get:function(){return ctFree;}});bindLive("invFind",{get:function(){return invFind;}});bindLive("qbBook",{get:function(){return qbBook;}});bindLive("qbFill",{get:function(){return qbFill;}});bindLive("qbMI",{get:function(){return qbMI;}});bindLive("qbSpells",{get:function(){return qbSpells;}});bindLive("quickBuild",{get:function(){return quickBuild;}});bindLive("unpackAt",{get:function(){return unpackAt;}});
 bindLive("acModeCard",{get:function(){return acModeCard;}});
@@ -24,7 +24,7 @@ bindLive("sp14List",{get:function(){return sp14List;}});
 /* ---------- rules ---------- */
 export function renderRules(){const cats=["Classes","Subclasses","Species","Backgrounds","Feats","Weapons","Armor","Options"],it=dbItems();
  return '<h2 class="ttl">Rules Database</h2><input class="btx" id="dbq" type="search" placeholder="Search name or rule text" value="'+esc(dbQ)+'"><div class="chips cats">'+cats.map((c) =>{return '<button type="button" class="chip'+(c===dbCat&&!dbQ?" on":"")+'" data-cat="'+c+'">'+c+'</button>'}).join("")+'</div><p class="pick">'+it.length+' entries'+(dbQ?' across all categories':'')+'</p>'+
-  it.map((i,n) =>{return card("db"+i.t+n,i.t,i.m,(i.d?'<p class="fd">'+esc(i.d)+'</p>':'')+(i.x.length?i.x.map((x) =>{return '<p class="fd">'+esc(x)+'</p>'}).join(""):''))}).join("")}
+  it.map((i,n) =>{return stepCard("db"+i.t+n,i.t,i.m,(i.d?'<p class="fd">'+esc(i.d)+'</p>':'')+(i.x.length?i.x.map((x) =>{return '<p class="fd">'+esc(x)+'</p>'}).join(""):''))}).join("")}
 
 /* v26 RU38 no. 8: make your own species, feat, or magic item in the builder (Sources step). They go into the source "My Homebrew" (B.packs, id my-homebrew),
    which this build turns on. The pack format is the one Add Homebrew Source reads, so a made entry also works in a pasted pack.

@@ -6,7 +6,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List,sdn,subLbl} from "./08-logic-2014-rules.js";
 import {allFeats,choiceLvl,choices,featChosen,featViol,grantTools,saveTaken,scoreAt,spClsJ} from "./09-logic-feats-and-choices.js";
 import {invList,optAny} from "./10-logic-v17-additions.js";
-import {abil,casterParts,clsLv} from "./11-logic-derivation.js";
+import {abilScores,casterParts,clsLv} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {allPacks,packSkills} from "./13-logic-sources-and-packs.js";
 import {MCL,langKeys} from "./14-logic-multiclass-hp-shop.js";
@@ -59,7 +59,7 @@ export function showRef(kind,name){let h="";if(kind==="cr"||kind==="mi"||kind===
  w.addEventListener("click",(e) =>{if(e.target===w||e.target.closest("[data-no]"))w.remove()})}
 
 /* accordion card */
-export function card(id,title,meta,body,opts){opts=opts||{};const open=!!openCards[id];
+export function stepCard(id,title,meta,body,opts){opts=opts||{};const open=!!openCards[id];
  return '<div class="acc'+(opts.todo?" todo":"")+(open?" open":"")+'" data-acc="'+esc(id)+'">'+(opts.todo?'<span class="bang">!</span>':'')+
   '<button type="button" class="acc-h" data-tog="'+esc(id)+'"><span class="acc-t"><b>'+esc(title)+'</b>'+(meta?'<small>'+esc(meta)+'</small>':'')+'</span><svg class="bchev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
   '<div class="acc-b"'+(open?'':' hidden')+'>'+body+'</div></div>'}
@@ -152,7 +152,7 @@ function pfArmor(p,prof,miss){
  if(/Medium Armor training/.test(p)&&!/Medium/.test(prof))miss.push("Medium armor training");
  if(/Heavy Armor training/.test(p)&&!/Heavy/.test(prof))miss.push("Heavy armor training");
  if(/Shield training/.test(p)&&!/Shield/.test(prof))miss.push("Shield training");}
-function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abil().sc,miss=[];
+function preFail(n,lvl,key){const F=FEATS[n];if(!F||!F.pre)return "";const p=F.pre,a=key?scoreAt(lvl,key):abilScores().sc,miss=[];
  const m=/Level (\d+)\+/.exec(p);if(m&&lvl<+m[1])miss.push("level "+m[1]);
  pfNeeds(F,key,miss);
  pfAbil(p,a,miss);

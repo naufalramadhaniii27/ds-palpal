@@ -5,7 +5,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {allFeats,gxPicks} from "./09-logic-feats-and-choices.js";
 import {luMax,pk} from "./10-logic-v17-additions.js";
-import {abil,fxList,fxVal,isThird3} from "./11-logic-derivation.js";
+import {abilScores,fxList,fxVal,isThird3} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 
 import {bindLate} from "./01b-logic-late-ports.js";
@@ -20,7 +20,7 @@ export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
 export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}
 /* M10: every B.ch key that holds languages: lang, langRogue, langRanger, and m<i>:langRogue / m<i>:langRanger for a multiclass */
 export function langKeys(){return ["lang","langRogue","langRanger"].concat(Object.keys(B.ch||{}).filter((k) =>{return /^m\d+:lang(Rogue|Ranger)$/.test(k)||/^(m\d+:)?p\d+(lang|slang)\w*$/.test(k)}))}/* v63: subclass language picks */
-export function mcReqFail(cls){const a=abil().sc;return (MC_REQ[cls]||[]).filter((g) =>{return !g.some((k) =>{return a[k]>=13})}).map((g) =>{return g.join(" or ")+" 13"}).join(", ")}
+export function mcReqFail(cls){const a=abilScores().sc;return (MC_REQ[cls]||[]).filter((g) =>{return !g.some((k) =>{return a[k]>=13})}).map((g) =>{return g.join(" or ")+" 13"}).join(", ")}
 /* mcChoices steps (SOLID s16): the picks of multiclass part i (m), p is its key prefix, src(l) its source label */
 function mcGrant(out,m,i,c,p,src){
  const g=MC_GRANT[m.cls]||{};/* a class without an mcg entry (Warmage, Necromancer, Investigator) grants nothing */if(g.sk)out.push({key:p+"sk",mc:i,lvl:1,t:"skills",n:1,from:g.skFrom==="any"?ALLSK:c.sk.from,title:m.cls+" multiclass skill",src:src(1)});
@@ -45,7 +45,7 @@ function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],
  mcGrant(out,m,i,c,p,src);mcStyle(out,m,i,c,p,src);mcPicks(out,m,i,c,p,src);mcSubPicks(out,m,i,c,p,src);mcFeats(out,m,i,c,p,src)});
  return out}
 function rollAvg(hd){return hd/2+1}
-export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.level;B.hpr=B.hpr||{};
+export function hpCalc(){const a=abilScores(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.level;B.hpr=B.hpr||{};
  function push(cls,hd,lv){const key=cls+lv,r=B.hpMode==="roll"?+B.hpr[key]:0;const v=(r>=1&&r<=hd)?r:rollAvg(hd);list.push({c:cls+" "+lv,v:v,r:B.hpMode==="roll"&&r>=1&&r<=hd?1:0,n:"d"+hd,key:key,hd:hd})}
  for(let l=2;l<=L;l++)push(B.cls,c.hd,l);
  MCL().forEach((m) =>{for(let l=1;l<=m.lv;l++)push(m.cls,CLASSES[m.cls].hd,l)});
@@ -56,7 +56,7 @@ export function hpCalc(){const a=abil(),cm=mod(a.sc.CON),c=CL(),list=[],L=B.leve
 /* M17: read from data. SPECIES.hpPerLevel (+hpName), CLASSES.*.hpSub[sub] {v per class level, from level l}, FEATS.hp (per level) and hpFlat */
 function hpBonusList(){const o=[],L=TL(),spx=SPECIES[B.species];if(spx&&spx.hpPerLevel)o.push({s:(spx.hpName||B.species)+" ("+(spx.hb||SRC)+")",v:spx.hpPerLevel*L});
  [[B.cls,B.sub,B.level,0]].concat(MCL().map((m) =>{return [m.cls,m.sub,m.lv,1]})).forEach((q) =>{const h=(CLASSES[q[0]].hpSub||{})[q[1]];if(h&&q[2]>=h.l)o.push({s:h.n+" ("+SRC+(q[3]?", "+q[0]+" "+q[2]+", multiclass":"")+")",v:h.v*q[2]})});
- fxList().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.lbl,v:mod(abil().sc.CON)+e.lv});if(e.hpLvl!=null){const v=fxVal(e.hpLvl,e)*e.lv;if(v)o.push({s:e.lbl,v:v})}if(e.hpFlat!=null){const v=fxVal(e.hpFlat,e);if(v)o.push({s:e.lbl,v:v})}});/* generic: fx.hp "con+lvl", hpLvl per level of the source (class level for cls and sub, character level for the rest), hpFlat */
+ fxList().forEach((e) =>{if(e.hp==="con+lvl")o.push({s:e.lbl,v:mod(abilScores().sc.CON)+e.lv});if(e.hpLvl!=null){const v=fxVal(e.hpLvl,e)*e.lv;if(v)o.push({s:e.lbl,v:v})}if(e.hpFlat!=null){const v=fxVal(e.hpFlat,e);if(v)o.push({s:e.lbl,v:v})}});/* generic: fx.hp "con+lvl", hpLvl per level of the source (class level for cls and sub, character level for the rest), hpFlat */
  allFeats().forEach((f) =>{const F=FEATS[f.n];if(F&&F.hp)o.push({s:f.n+" feat ("+f.s+")",v:F.hp*L});if(F&&F.hpFlat)o.push({s:f.n,v:F.hpFlat})});return o}
 function toSheetHpBonus(){return hpBonusList().reduce((t,x) =>{return t+x.v},0)}
 function casterLv(cls,sub,lv){const c=CLASSES[cls];if(c.caster==="full")return lv;if(c.caster==="half")return R14()&&!c.a14?Math.floor(lv/2):Math.ceil(lv/2);/* v92: 2014 Paladin and Ranger count half their levels rounded down */if(isThird3(sub))return Math.floor(lv/3);return 0}

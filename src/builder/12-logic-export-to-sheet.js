@@ -5,7 +5,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {XFX,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,optAny,pactWeapon,saveNoteRows,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
-import {fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abil,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
+import {fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abilScores,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 
 import {MCL,TL,baseOf,effArmor,effShield,effWeps,hpCalc,packSkills,spOptFx,subGrant,syncPickItems} from "./01b-logic-late-ports.js";
 import {QRY,provideQueries} from "./01a-logic-query-registry.js";
@@ -33,10 +33,10 @@ provideQueries({byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,ge
  bgTl:bgTl,optAny:optAny,gxPicks:gxPicks,fxCh:fxCh,fxv:fxVal,subAt:subAt,chOf:chOf,wisElse:wisElse,clsLv:clsLv,spX:spX,bgX:bgX,
  xfxSkills:function(feats,p,prof,exp){XFX.skills(feats,p,prof,exp)},xfxPost:function(C,a){XFX.post(C,a)},xfxLang:function(lg){XFX.lang(lg)},
  pactWeapon:pactWeapon,fxOk:fxOk,casterParts:casterParts,dmapRow:function(n){return DMAP[n]},sbWx:function(sub,cls){return typeof sbWx==="function"?sbWx(sub,cls):null}});
-/* the inputs of a build: read once, in the order the old code read them (abil() settles pbAdd before pb is taken) */
+/* the inputs of a build: read once, in the order the old code read them (abilScores() settles pbAdd before pb is taken) */
 function sheetInputs(){
  syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
- const c=CL(),L=B.level,TLv=TL(),a=abil(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
+ const c=CL(),L=B.level,TLv=TL(),a=abilScores(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
  const spName=custom?(B.cSpecies.name||"Custom species"):B.species;
  const subName=B.sub==="__custom"?(B.cSub||"Homebrew subclass"):B.sub;
  const bg=bgDef(B.bg),feats=allFeats();
