@@ -266,10 +266,19 @@ function libDetailRawStep1(k){
 let h="",t=k,sub="",x,i;
   return /** @type {any} */ ({h, sub});
 }
-/* homebrew rows live in data/hb/<id>.json; the entry is drawn when the file arrives */
+/* homebrew rows live in data/hb/<id>.json; the entry is drawn when the file arrives.
+   The hosted build (tools/dist_pack.py, run by tools/pages_dist.sh) packs those files into data/hbs/NN.json shards ({id: rows}) plus
+   data/hbs/map.json (id -> shard), so the site stays under the host's file limit. Without the map (source tree) the single file is read.
+   The builder reads packs through the same function (env.__hbRows). */
+let HB_MAP=null; const HB_SH={};
+function hbShard(n){ return (HB_SH[n]=HB_SH[n]||fetch("data/hbs/"+n+".json").then((r) =>{ return r.json(); }).catch((e) =>{ delete HB_SH[n]; throw e; })); }
+export function hbRows(hid){ HB_MAP=HB_MAP||fetch("data/hbs/map.json").then((r) =>{ return r.ok?r.json():null; }).catch(() =>{ HB_MAP=null; return null; });
+  return HB_MAP.then((m) =>{ const n=m&&m[hid]; if(n==null) return fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); });
+    return hbShard(n).then((sh) =>{ if(!sh[hid]) throw new Error("homebrew pack missing from its shard: "+hid); return sh[hid]; }); }); }
+env.__hbRows=hbRows;
 const LIB_HB={}, LIB_HBP={};
 function libHbDraw(rows,hn,k){ const box=document.getElementById("libHb"); if(!box||!LIB.cur||LIB.cur.id!=="homebrew|"+k) return; let r=null; (rows||[]).forEach((x) =>{ if(x.n===hn) r=x; });
   if(!r){ box.innerHTML='<p class="info-d">This entry could not be found in its pack.</p>'; return; }
   let h=(r.tl||[]).some((x) =>{ return x&&x[0]==="Abilities"; })?libStat(r.tl):libTiles(r.tl||[]); (r.p||[]).forEach((b) =>{ h+=(typeof b==="string")?'<p class="info-d">'+richP(libTag(b))+'</p>':libFeatBlock(esc(b[0]),libTag(b[1])); }); box.innerHTML=h; }
 function libHbLoad(hid,hn,k){ if(LIB_HB[hid]){ setTimeout(() =>{ libHbDraw(LIB_HB[hid],hn,k); },0); return; }
-  if(!env.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||fetch("data/hb/"+hid+".json").then((r) =>{ return r.json(); })).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) box.innerHTML='<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>'; }); }
+  if(!env.fetch){ return; } (LIB_HBP[hid]=LIB_HBP[hid]||hbRows(hid)).then((rows) =>{ LIB_HB[hid]=rows; libHbDraw(rows,hn,k); }).catch(() =>{ const box=document.getElementById("libHb"); if(box) box.innerHTML='<p class="info-d">This pack could not be loaded. Check your connection and open the entry again.</p>'; }); }
