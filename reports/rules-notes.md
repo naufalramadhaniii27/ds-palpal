@@ -141,3 +141,63 @@ Sengaja tidak diberi baris (by_design): Elemental Adept dan Poisoner (mengabaika
 Sengaja tidak diberi baris (by_design): Divine Order Thaumaturge dan Primal Order Magician (cantrip tambahan dihitung builder lewat pilihan `p1opt`), Improved Blessed Strikes Potent Spellcasting (ada di `fx-L1.js` di balik pilihan `p7opt`, diuji), Ranger Fighting Style Druidic Warrior (feat sendiri), Ritual Adept (tag Ritual di baris spell), Oceanic Gift (efek ke sekutu).
 
 Hanya build 2024 untuk Countercharm, Steady Aim, Innate Sorcery, Superior Defense dan Eldritch Master. Alasan: nama fitur sama di tabel kelas 2014 dengan teks lain atau tidak ada. Entri subclass memakai nama subclass 2024, jadi edisi 2014 (`Oath of Vengeance (2014)` dan sebagainya) tidak terpengaruh. Versi 2014 dari fitur ini (Wild Magic, Clockwork Soul, Circle of Stars dan lain-lain) belum diisi.
+
+## Zero miss 4: triase 37 fitur hilang dan edisi 2014 (`src/data/fx-Z4.js`)
+
+Semua tafsir di bagian ini hanya dari teks data aplikasi dan ingatan. Belum dicocokkan ke halaman buku (folder `books/` tidak ada). Kolom "Tafsir" bisa dicek Naufal ke buku.
+
+### 2024: efek yang benar-benar kurang (diisi)
+
+| No | Kalimat (ditulis ulang) | Tafsir yang dipakai | Status |
+|---|---|---|---|
+| 1 | Paladin 2 Paladin's Smite: Divine Smite 2d8 Radiant, +1d8 lawan Fiend atau Undead, +1d8 per level slot di atas 1 | Note, ed 2024 | Teks data |
+| 2 | Ranger 20 Foe Slayer: Hunter's Mark memakai d10 | Note, ed 2024 | Teks data |
+| 3 | Ranger 10 Tireless: 1d8 + Wis Temp HP, Exhaustion turun 1 tiap Short Rest | Dua Note dan tag baris resource "Magic action, 1d8 + WIS Temp HP", ed 2024 | Teks data |
+| 4 | Rogue 7 Reliable Talent: d20 9 atau kurang dihitung 10 pada check dengan skill atau tool yang dikuasai | Note, dua edisi (teks sama) | Teks data |
+| 5 | Valor 3 Combat Inspiration: die menambah AC atau damage makhluk pemegangnya | Dua Note (efek ke makhluk lain, bukan AC karakter) | Teks data |
+| 6 | Glory 3 Inspiring Smite: 2d8 + level Paladin Temp HP dibagi dalam 30 ft | Note | Teks data |
+| 7 | Glory 15 Glorious Defense: bonus AC sebesar Cha (minimal +1) untuk target serangan | Tag baris resource "Reaction, +CHA to AC (min +1)" | Teks data |
+| 8 | Wild Magic 6 Bend Luck: 1d4 ditambah atau dikurangi ke d20 makhluk lain | Note | Teks data |
+| 9 | Evoker 14 Overchannel: pakai kedua dst. memberi 2d12 Necrotic per level spell, naik 1d12 tiap pakai | Note dan tag "Damage spell, maximum damage" | Teks data |
+| 10 | Stars 3 Starry Form, Dragon: d20 9 atau kurang dihitung 10 untuk Int, Wis, Concentration | Toggle `stars-dragon` (id sama dengan Twinkling Constellations, satu keadaan), Note | Teks data |
+| 11 | Stars 6 Cosmic Omen 1d6, Archfey 3 Steps of the Fey 1d10 Temp HP, Fiend 6 Dark One's Own Luck 1d10, Boon of Fate 2d4 | Tag baris resource | Teks data |
+| 12 | Feat Grappler Fast Wrestler, Chef Replenishing Meal 1d8, Interception 1d10 + Proficiency Bonus | Note | Teks data |
+
+### 2024: bukan hilang, salah baca pengukur (aturan klasifikasi, bukan pengecualian per fitur)
+
+| Aturan baru | Fitur yang terdampak |
+|---|---|
+| "weapons you're proficient with" dan "Initiative Proficiency" bukan pemberian proficiency | Weapon Mastery (3 kelas), Alert, Weapon Master, Reliable Talent |
+| Weapon Mastery punya kelas sendiri MASTERY, d20 floor punya kelas D20 | sama di atas |
+| "roll 1d6 to decide" atau "on the ... table" untuk tampilan (Star Map, Feywild Gifts, Manifestations) bukan dadu permainan | Star Map, Fey Wanderer Spells, Clockwork Spells |
+| Sheet sudah punya efek tetapi di balik pilihan atau gear: pengukur membangun varian | Improved Elemental Fury (Primal Strike), Aspect of the Wilds (Panther, Salmon), Medium Armor Master (Breastplate, Dex 16), Dazzling Footwork (tanpa armor, Cha tinggi), Martial Weapon Training (Wizard) |
+| Pilihan feat yang dibiarkan kosong oleh quick fill diisi dengan opsi pertama | Keen Mind, Observant, Weapon Master |
+| Baris sheet bernama lain | Pact Magic muncul sebagai baris "Pact Slots" |
+| Fitur dengan nama sama di dua level diuji di tiap level | Improved Brutal Strike |
+| Mode `ac.dex = max3` adalah aturan Medium Armor Master | Medium Armor Master |
+| Baris `speeds` (Panther, Salmon) dibaca | Aspect of the Wilds |
+
+Efek 2024 yang tidak bisa dihitung sheet (design): Wild Shape (stat block Beast), Wild Magic Surge (tabel acak, dua kelas).
+
+### 2014: yang diisi
+
+Semua entri kelas 2014 memakai `ed:"2014"` karena tabel kelas 2024 punya fitur bernama sama. Catatan engine: handler `gate-edition` kini juga membuang entri `ed:"2014"` pada build 2024.
+
+| No | Kalimat (ditulis ulang) | Tafsir yang dipakai | Status |
+|---|---|---|---|
+| 13 | Bard 6 Countercharm: performa, Advantage di save lawan Frightened dan Charmed untuk Anda dan sekutu 30 ft | Toggle `countercharm`, advOn | Teks data |
+| 14 | Bard 2 Song of Rest: extra d6 (d8, d10, d12 di level 9, 13, 17) | Note dengan seluruh skala | Teks data |
+| 15 | Paladin 2 Divine Smite (2014): 2d8, maksimum 5d8, 6d8 lawan Undead atau Fiend | Note | Teks data |
+| 16 | Ranger Favored Enemy Advantage Survival dan Int, Land's Stride Advantage save lawan tumbuhan | advOn | Teks data |
+| 17 | Monk 18 Empty Body: Resistance semua kecuali Force, Invisible, Astral Projection 8 ki | Toggle `empty-body` | Teks data |
+| 18 | Totem Warrior: Wolf (sekutu Advantage), Aspect Bear (Advantage Str check), Eagle (Fly sama dengan Speed saat Rage) | `when` di pilihan `p3tot14`, `p6tot14`, `p14tot14`, toggle `totem-eagle` | Teks data |
+| 19 | Valor Combat Inspiration, Knowledge of the Ages, Preserve Life (5 x level), Dampen Elements, Wrath of the Storm 2d8, Combat Wild Shape 1d8 per level | Note | Teks data |
+| 20 | Trickery Blessing dan Invoke Duplicity, Way of Shadow Shadow Step, Devotion Holy Nimbus, Vengeance Avenging Angel (musuh Frightened) dan Vow of Enmity, Arcane Trickster Versatile Trickster | Toggle dengan advOn atau Note. Id toggle dipakai bersama dengan versi 2024 | Teks data |
+| 21 | Oathbreaker Dread Lord 4d10 dan 3d10 + Cha | Toggle `dread-lord`, Note. Angka 3d10 dari teks data yang terpotong, perlu cek buku | Perlu cek buku |
+| 22 | Hunter: Colossus Slayer 1d8, Escape the Horde, Multiattack Defense +4 AC | `when` di `p3hunt14a`, `p7hunt14b`. Steel Will sudah ada di `fx-L12.js` | Teks data |
+| 23 | Assassin Assassinate, Draconic Elemental Affinity, Wild Magic Bend Luck 2 sorcery points, Fiend Hurl Through Hell 10d10, Great Old One Entropic Ward, Abjuration Arcane Ward, Evocation Overchannel | Note (Entropic Ward juga advOn) | Teks data |
+| 24 | Feat Alert (hidden attacker), Defensive Duelist, Healer, Polearm Master 1d4, Dual Wielder +1 AC | Note. Dual Wielder toggle `dual-defense` dengan `acAdd:1` | Teks data |
+
+### 2014: design (tidak dimodelkan, alasan di baseline)
+
+Wild Shape dan Wild Shape Improvement (stat block Beast), Magical Secrets baris kedua (pilihan spell yang sama, **belum dicek ke buku**), Pact Boon (Pact of the Talisman bukan pilihan builder, perlu keputusan Data), Nature's Sanctuary (efek pada penyerang), Extra Elemental Discipline (pilihan builder), Ranger's Companion tiga ukuran (stat block pendamping), Command Undead dan Undead Thralls (makhluk lain), Master Transmuter dan Transmuter's Stone (efek sekali pakai dan batu).
