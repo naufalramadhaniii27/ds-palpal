@@ -1,6 +1,7 @@
 /* Responsibility: long rules text for the 2014 Player's Handbook species traits and background features. The builder stores it as `full` on the
    sheet feature, so the sheet (Show more) and the PDF export both read it. Own wording; the short text stays in `d`. Key: species name (without "(2014)") then trait name; background feature name, or "background|feature" when two backgrounds share a name. */
-import {MORE14_SPECIES,MORE14_BACKGROUND} from "./06a-data-2014-long-text-more.js";
+import {MORE14_SPECIES,MORE14_BACKGROUND,ONLY14} from "./06a-data-2014-long-text-more.js";
+import {LONG24_SPECIES} from "./06a2-data-2024-species-long-text.js";
 const LONG14_SPECIES = {
  "Hill Dwarf": {
   "Dwarven Resilience": "Your saving throws against poison are made with Advantage, and poison damage against you is halved. Dwarves are hardy, and venom and toxins that fell other folk often leave them standing.",
@@ -118,4 +119,8 @@ export function long14(group, name){ const m=/^(Species|Race|Background): (.+)$/
   if(m[1]==="Background") return MORE14_BACKGROUND[bare+"|"+name]||LONG14_BACKGROUND[bare+"|"+name]||LONG14_BACKGROUND[m[2]+"|"+name]||LONG14_BACKGROUND[name]||"";
   const t=LONG14_SPECIES[bare]||MORE14_SPECIES[bare]; return t&&t[name]||""; }
 /* the `full` field to merge into a sheet feature: {full:text} on the 2014 rules when there is a long text, else {} */
-export function full14(rs, group, name){ const t=rs==="2014" ? long14(group,name) : ""; return t ? {full:t} : {}; }
+/* the 2024 rules: the official Player's Handbook species first, then the species that exist under one name in both editions */
+export function long24(group, name){ const m=/^Species: (.+)$/.exec(String(group||"")); if(!m) return "";
+  const t=LONG24_SPECIES[m[1]]; if(t&&t[name]) return t[name];
+  const o=ONLY14.indexOf(m[1])<0&&MORE14_SPECIES[m[1]]; return o&&o[name]||""; }
+export function full14(rs, group, name){ const t=rs==="2014" ? long14(group,name) : long24(group,name); return t ? {full:t} : {}; }
